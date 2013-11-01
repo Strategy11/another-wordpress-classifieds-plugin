@@ -74,7 +74,7 @@ class AWPCP_Media {
     }
 
     public function get_icon_url() {
-        $url = AWPCP_URL . '/images/page_white_picture.png';
+        $url = AWPCP_URL . '/resources/images/page_white_picture.png';
         return apply_filters( 'awpcp-get-file-icon-url', $url, $this );
     }
 

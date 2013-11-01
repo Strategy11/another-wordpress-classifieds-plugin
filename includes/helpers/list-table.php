@@ -3,7 +3,7 @@
 if (file_exists(ABSPATH . 'wp-admin/includes/class-wp-list-table.php')) {
 	require_once(ABSPATH . 'wp-admin/includes/class-wp-list-table.php');
 } else {
-	require_once(AWPCP_DIR . '/classes/helpers/wp-list-table.php');
+	require_once(AWPCP_DIR . '/includes/helpers/wp-list-table.php');
 }
 
 

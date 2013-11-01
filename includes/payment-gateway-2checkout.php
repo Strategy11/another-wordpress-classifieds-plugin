@@ -3,7 +3,7 @@
 class AWPCP_2CheckoutPaymentGateway extends AWPCP_PaymentGateway {
 
     public function __construct() {
-        $icon = AWPCP_URL . '/images/payments-2checkout.png';
+        $icon = AWPCP_URL . '/resources/images/payments-2checkout.png';
         parent::__construct('2checkout', _x('2Checkout', 'payment gateways', 'AWPCP'), '', $icon);
     }
 

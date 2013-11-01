@@ -33,19 +33,19 @@
                 <div class="inside" style="background-color:#FFFFCF">
                     <ul>
                         <li class="li_link">
-                            <img style="align:left" src="<?php echo $url; ?>/images/new.gif"/>
+                            <img style="align:left" src="<?php echo $url; ?>/resources/images/new.gif"/>
                             <a style="color:#145200;" href="http://awpcp.com/premium-modules/comments-ratings-module/?ref=panel" target="_blank">
                                 <?php _e('Comments/Ratings Module', 'AWPCP'); ?>
                             </a>
                         </li>
                         <li class="li_link">
-                            <img style="align:left" src="<?php echo $url; ?>/images/new.gif"/>
+                            <img style="align:left" src="<?php echo $url; ?>/resources/images/new.gif"/>
                             <a style="color:#145200;" href="http://www.awpcp.com/premium-modules/authorizenet-payment-module/?ref=panel" target="_blank">
                                 <?php _e('Authorize.Net Module', 'AWPCP'); ?>
                             </a>
                         </li>
                         <li class="li_link">
-                            <img style="align:left" src="<?php echo $url; ?>/images/new.gif"/>
+                            <img style="align:left" src="<?php echo $url; ?>/resources/images/new.gif"/>
                             <a style="color:#145200;" href="http://www.awpcp.com/premium-modules/paypalpro-payment-module/?ref=panel" target="_blank">
                                 <?php _e('PayPal Pro Module', 'AWPCP'); ?>
                             </a>

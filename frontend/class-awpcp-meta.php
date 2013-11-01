@@ -235,7 +235,7 @@ class AWPCP_Meta {
         }
 
         if (empty($this->properties['images'])) {
-            echo '<meta property="og:image" content="' . AWPCP_URL . '/images/adhasnoimage.gif" />' . PHP_EOL;
+            echo '<meta property="og:image" content="' . AWPCP_URL . '/resources/images/adhasnoimage.gif" />' . PHP_EOL;
         }
     }
 

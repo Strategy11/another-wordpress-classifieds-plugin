@@ -106,8 +106,8 @@ $wpcontenturl = WP_CONTENT_URL;
 $wpcontentdir = WP_CONTENT_DIR;
 $awpcp_plugin_path = AWPCP_DIR;
 $awpcp_plugin_url = AWPCP_URL;
-$imagespath = $awpcp_plugin_path . '/images';
-$awpcp_imagesurl = $awpcp_plugin_url .'/images';
+$imagespath = $awpcp_plugin_path . '/resources/images';
+$awpcp_imagesurl = $awpcp_plugin_url .'/resources/images';
 
 
 // common
@@ -125,40 +125,40 @@ require_once(AWPCP_DIR . "/functions_awpcp.php");
 require_once(AWPCP_DIR . "/upload_awpcp.php");
 
 // API & Classes
-require_once(AWPCP_DIR . "/classes/compatibility/compatibility.php");
+require_once(AWPCP_DIR . "/includes/compatibility/compatibility.php");
 
-require_once(AWPCP_DIR . "/classes/helpers/class-awpcp-request.php");
-require_once(AWPCP_DIR . "/classes/helpers/list-table.php");
-require_once(AWPCP_DIR . "/classes/helpers/email.php");
-require_once(AWPCP_DIR . "/classes/helpers/javascript.php");
-require_once(AWPCP_DIR . "/classes/helpers/captcha.php");
-require_once(AWPCP_DIR . "/classes/helpers/widgets/categories-dropdown.php");
-require_once(AWPCP_DIR . "/classes/helpers/widgets/multiple-region-selector.php");
+require_once(AWPCP_DIR . "/includes/helpers/class-awpcp-request.php");
+require_once(AWPCP_DIR . "/includes/helpers/list-table.php");
+require_once(AWPCP_DIR . "/includes/helpers/email.php");
+require_once(AWPCP_DIR . "/includes/helpers/javascript.php");
+require_once(AWPCP_DIR . "/includes/helpers/captcha.php");
+require_once(AWPCP_DIR . "/includes/helpers/widgets/categories-dropdown.php");
+require_once(AWPCP_DIR . "/includes/helpers/widgets/multiple-region-selector.php");
 
-require_once(AWPCP_DIR . "/classes/models/class-media.php");
-require_once(AWPCP_DIR . "/classes/models/ad.php");
-require_once(AWPCP_DIR . "/classes/models/category.php");
-require_once(AWPCP_DIR . "/classes/models/image.php");
-require_once(AWPCP_DIR . "/classes/models/payment-transaction.php");
+require_once(AWPCP_DIR . "/includes/models/class-media.php");
+require_once(AWPCP_DIR . "/includes/models/ad.php");
+require_once(AWPCP_DIR . "/includes/models/category.php");
+require_once(AWPCP_DIR . "/includes/models/image.php");
+require_once(AWPCP_DIR . "/includes/models/payment-transaction.php");
 
-require_once( AWPCP_DIR . "/classes/class-awpcp-listings-api.php" );
-require_once( AWPCP_DIR . "/classes/class-media-api.php" );
-require_once(AWPCP_DIR . "/classes/payments-api.php");
-require_once(AWPCP_DIR . "/classes/regions-api.php");
-require_once(AWPCP_DIR . "/classes/settings-api.php");
+require_once( AWPCP_DIR . "/includes/class-awpcp-listings-api.php" );
+require_once( AWPCP_DIR . "/includes/class-media-api.php" );
+require_once(AWPCP_DIR . "/includes/payments-api.php");
+require_once(AWPCP_DIR . "/includes/regions-api.php");
+require_once(AWPCP_DIR . "/includes/settings-api.php");
 
-require_once(AWPCP_DIR . "/classes/credit-plan.php");
+require_once(AWPCP_DIR . "/includes/credit-plan.php");
 
-require_once(AWPCP_DIR . "/classes/payment-term-type.php");
-require_once(AWPCP_DIR . "/classes/payment-term.php");
-require_once(AWPCP_DIR . "/classes/payment-term-fee-type.php");
-require_once(AWPCP_DIR . "/classes/payment-term-fee.php");
+require_once(AWPCP_DIR . "/includes/payment-term-type.php");
+require_once(AWPCP_DIR . "/includes/payment-term.php");
+require_once(AWPCP_DIR . "/includes/payment-term-fee-type.php");
+require_once(AWPCP_DIR . "/includes/payment-term-fee.php");
 
-require_once(AWPCP_DIR . "/classes/payment-gateway.php");
-require_once(AWPCP_DIR . "/classes/payment-gateway-paypal-standard.php");
-require_once(AWPCP_DIR . "/classes/payment-gateway-2checkout.php");
+require_once(AWPCP_DIR . "/includes/payment-gateway.php");
+require_once(AWPCP_DIR . "/includes/payment-gateway-paypal-standard.php");
+require_once(AWPCP_DIR . "/includes/payment-gateway-2checkout.php");
 
-require_once(AWPCP_DIR . "/classes/payment-terms-table.php");
+require_once(AWPCP_DIR . "/includes/payment-terms-table.php");
 
 // installation functions
 require_once(AWPCP_DIR . "/install.php");
@@ -537,8 +537,8 @@ class AWPCP {
 
 		global $awpcp_db_version;
 
-		$js = AWPCP_URL . '/js';
-		$css = AWPCP_URL . '/css';
+		$js = AWPCP_URL . '/resources/js';
+		$css = AWPCP_URL . '/resources/css';
 
 		/* vendors */
 

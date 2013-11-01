@@ -6,7 +6,7 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
     const SANDBOX_URL = 'https://www.sandbox.paypal.com/cgi-bin/webscr';
 
     public function __construct() {
-        $icon = AWPCP_URL . '/images/payments-paypal.jpg';
+        $icon = AWPCP_URL . '/resources/images/payments-paypal.jpg';
         parent::__construct('paypal', _x('PayPal', 'payment gateways', 'AWPCP'), '', $icon);
     }
 
