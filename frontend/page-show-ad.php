@@ -169,10 +169,10 @@ function showad($adid, $omitmenu, $preview=false, $send_email=true, $show_messag
 			if ($show_messages && $isadmin && $ad->disabled == 1) {
 				$message = __('This Ad is currently disabled until the Administrator approves it. Only you (the Administrator) and the author can see it.', 'AWPCP');
 				$messages[] = awpcp_print_error($message);
-			} else if ( $show_messages && $is_ad_owner && ! $ad->verified ) {
+			} else if ( $show_messages && ( $is_ad_owner || $preview ) && ! $ad->verified ) {
 				$message = __('This Ad is currently disabled until you verify the email address used for the contact information. Only you (the author) can see it.', 'AWPCP');
 				$messages[] = awpcp_print_error($message);
-			} else if ( $show_messages && $is_ad_owner && $ad->disabled == 1 ) {
+			} else if ( $show_messages && ( $is_ad_owner || $preview ) && $ad->disabled == 1 ) {
 				$message = __('This Ad is currently disabled until the Administrator approves it. Only you (the author) can see it.', 'AWPCP');
 				$messages[] = awpcp_print_error($message);
 			}
