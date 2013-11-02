@@ -74,7 +74,7 @@ if (!function_exists('AWPCPErrorHandler')) {
 
 }
 
-if (file_exists(AWPCP_DIR . '/DEBUG')) {
+if ( get_option( 'awpcp-debug', false ) ) {
 	// let's see some errors
 } else {
 	set_error_handler("AWPCPErrorHandler");
