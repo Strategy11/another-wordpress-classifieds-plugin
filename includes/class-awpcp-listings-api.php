@@ -77,7 +77,7 @@ class AWPCP_ListingsAPI {
 
         do_action( 'awpcp-place-ad', $ad, $transaction );
 
-        if ( get_awpcp_option( 'enable-email-verification' ) ) {
+        if ( ! is_user_logged_in() && get_awpcp_option( 'enable-email-verification' ) ) {
             $ad->verified = false;
             $ad->disabled = true;
         } else {
