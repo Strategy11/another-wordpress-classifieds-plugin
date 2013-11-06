@@ -292,12 +292,13 @@ if (typeof jQuery !== 'undefined') {
 
                 // fetch new options only if the new value is one of
                 // the options
-                if (null !== value && undefined !== value) {
+                if (null !== value && undefined !== value && value.length) {
                     first = next[0];
                     first.selected(undefined);
-                    first.show(true);
 
                     this.getPartialOptions(first, first.type, type, value);
+
+                    first.show(true);
 
                     // hide all other fields until a new value is selected
                     hidden = next.slice(1);
