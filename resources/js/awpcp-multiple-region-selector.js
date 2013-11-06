@@ -250,6 +250,9 @@ if (typeof jQuery !== 'undefined') {
              */
             getPartialOptions: function(partial, type, parentType, parentValue) {
                 var self = this;
+
+                partial.loading(true);
+
                 $.getJSON($.AWPCP.get('ajaxurl'), {
                     action: 'awpcp-get-regions-options',
                     parent_type: parentType,
@@ -262,6 +265,8 @@ if (typeof jQuery !== 'undefined') {
                     } else {
                         partial.options([]);
                     }
+
+                    partial.loading(false);
                 });
             },
 
@@ -332,6 +337,7 @@ if (typeof jQuery !== 'undefined') {
             self.selectedOption = ko.observable(selected);
             self.selectedText = ko.observable(selected);
 
+            self.loading = ko.observable(false);
             self._show = ko.observable(undefined);
 
             self.caption = ko.computed(function() {
@@ -340,9 +346,10 @@ if (typeof jQuery !== 'undefined') {
 
             self.showTextField = ko.computed(function() {
                 var options = self.options(),
+                    loading = self.loading(),
                     show = self._show() || self.config.alwaysShown;
 
-                if (show === true) {
+                if (show === true && !loading) {
                     return options.length === 0 && self.config.showTextField;
                 } else {
                     return false;
@@ -351,9 +358,10 @@ if (typeof jQuery !== 'undefined') {
 
             self.showSelectField = ko.computed(function() {
                 var options = self.options(),
+                    loading = self.loading(),
                     show = self._show() || self.config.alwaysShown;
 
-                if (show === true) {
+                if (show === true && !loading) {
                     return options.length > 0 || !self.config.showTextField;
                 } else {
                     return false;

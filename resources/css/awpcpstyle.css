@@ -1010,6 +1010,11 @@ p.ad_status_msg {
 .awpcp-region-selector .awpcp-region-selector-partial label {
     margin-right: 5px;
 }
+.awpcp-region-selector .awpcp-region-selector-partial .loading-message {
+    color: #555;
+    font-size: 0.9em;
+    font-style: italic;
+}
 
 /* Region Control styles */
 

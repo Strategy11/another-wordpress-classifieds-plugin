@@ -4,9 +4,14 @@
         <!-- ko foreach: partials -->
         <div class="awpcp-region-selector-partial" data-bind="visible: visible">
             <label data-bind="attr: { 'for': id }, text: label"></label>
+
             <select class="multiple-region" data-bind="attr: { id: id, name: selectName }, options: options, optionsText: 'name', optionsValue: 'id', optionsCaption: caption, value: selectedOption, visible: showSelectField, disable: $root.options.disabled">
             </select>
+
             <input class="multiple-region" type="text" data-bind="attr: { id: id, name: textfieldName }, value: selectedText, visible: showTextField, disable: $root.options.disabled" />
+
+            <span class="loading-message" data-bind="visible: loading"><?php echo _x( 'loading...', 'loading region options', 'AWPCP' ); ?></span>
+
             <input type="hidden" data-bind="attr: { name: param }, value: selected" />
         </div>
         <!-- /ko -->
