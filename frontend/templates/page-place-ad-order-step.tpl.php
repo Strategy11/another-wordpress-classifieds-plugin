@@ -1,4 +1,8 @@
-<h2><?php _ex('Select Payment/Category', 'place ad order step', 'AWPCP'); ?></h2>
+<?php if ( get_awpcp_option( 'freepay' ) == 1 ): ?>
+<h2><?php _ex( 'Select Payment/Category', 'place ad order step', 'AWPCP' ); ?></h2>
+<?php else: ?>
+<h2><?php _ex( 'Select Category', 'place ad order step', 'AWPCP' ); ?></h2>
+<?php endif; ?>
 
 <?php foreach ($messages as $message): ?>
     <?php echo awpcp_print_message($message); ?>
