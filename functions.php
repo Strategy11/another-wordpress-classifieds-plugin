@@ -1869,6 +1869,25 @@ function awpcp_form_error($field, $errors) {
 }
 
 
+/**
+ * @since 3.0.2
+ */
+function awpcp_module_not_compatible_notice( $module, $installed_version ) {
+	global $awpcp_db_version;
+
+	$modules = awpcp()->get_premium_modules_information();
+
+	$name = $modules[ $module ][ 'name' ];
+	$required_version = $modules[ $module ][ 'required' ];
+
+	$message = __( 'This version of AWPCP %1$s module is not compatible with AWPCP version %2$s. Please get AWPCP %1$s %3$s or newer!', 'AWPCP' );
+	$message = sprintf( $message, '<strong>' . $name . '</strong>', $awpcp_db_version, '<strong>' . $required_version . '</strong>' );
+    $message = sprintf( '<strong>%s:</strong> %s', __( 'Error', 'AWPCP' ), $message );
+
+    return awpcp_print_error( $message );
+}
+
+
 function awpcp_render_attributes($attrs) {
     $attributes = array();
     foreach ($attrs as $name => $value) {
