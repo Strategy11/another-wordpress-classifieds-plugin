@@ -478,6 +478,18 @@ function awpcp_opsconfig_categories() {
 		$tbl_ad_categories = $wpdb->prefix . "awpcp_categories";
 		$offset=(isset($_REQUEST['offset'])) ? (clean_field($_REQUEST['offset'])) : ($offset=0);
 		$results=(isset($_REQUEST['results']) && !empty($_REQUEST['results'])) ? clean_field($_REQUEST['results']) : ($results=10);
+
+		if ( isset( $_REQUEST['results'] ) && !empty( $_REQUEST['results'] ) ) {
+			$results = max( intval( $_REQUEST['results'] ), 5 );
+			update_user_option( get_current_user_id(), 'awpcp-admin-categories-results', $results );
+		} else {
+			$results = intval( get_user_option( 'awpcp-admin-categories-results', get_current_user_id() ) );
+		}
+
+		if ( empty( $results ) ) {
+			$results = 10;
+		}
+
 		$cat_ID='';
 		$category_name='';
 		$aeaction='';
@@ -569,10 +581,6 @@ function awpcp_opsconfig_categories() {
 
 					if (isset($_REQUEST['offset']) && !empty($_REQUEST['offset'])) {
 						$offset=$_REQUEST['offset'];
-					}
-
-					if (isset($_REQUEST['results']) && !empty($_REQUEST['results'])) {
-						$results=$_REQUEST['results'];
 					}
 
 					$message=set_category_icon($thecategory_id,$theiconfile,$offset,$results);
@@ -745,7 +753,7 @@ function awpcp_opsconfig_categories() {
 		} else {
 			$output .= "<div style=\"padding:10px; width: 75%\"><p>";
 		}
-		
+
 		$output .= __("Below you can add and edit your categories. For more information about managing your categories visit the link below.","AWPCP");
 		$output .= "</p><p><a href=\"http://www.awpcp.com/about/categories/\">";
 		$output .= __("Useful Information for Classifieds Categories Management","AWPCP");
@@ -783,7 +791,7 @@ function awpcp_opsconfig_categories() {
 		} else {
 			$output .= "<div class=\"postbox\" style=\"width:75%;float:left;padding:10px;\">";
 		}
-			 
+
 		$output .= "<form method=\"post\" id=\"awpcp_launch\">
 			 <input type=\"hidden\" name=\"category_id\" value=\"$cat_ID\" />
 			  <input type=\"hidden\" name=\"aeaction\" value=\"$aeaction\" />
