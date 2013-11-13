@@ -283,11 +283,13 @@
                     if (!submit.data('submit')) {
                         event.preventDefault();
                         confirmation.show();
-                        submit.attr('name', 'confirm').data('submit', true);
+                        form.append($('<input type="hidden" name="confirm" value="true">'));
+                        submit.data('submit', true);
                     }
                 }).find('.confirm:button').click(function() {
                     confirmation.hide();
-                    submit.removeAttr('name').data('submit', false);
+                    form.find('[name="confirm"]').remove();
+                    submit.data('submit', false);
                 });
             }
         })();
