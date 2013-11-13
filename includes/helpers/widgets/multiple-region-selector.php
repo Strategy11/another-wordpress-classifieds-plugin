@@ -27,8 +27,8 @@ class AWPCP_MultipleRegionSelector {
         $this->options['maxRegions'] = max( $this->options['maxRegions'], count( $regions ) );
     }
 
-    private function get_region_fields() {
-        return awpcp_region_fields();
+    private function get_region_fields( $context ) {
+        return awpcp_region_fields( $context );
     }
 
     private function get_region_field_options( $context, $type, $selected, $hierarchy ) {
@@ -83,7 +83,7 @@ class AWPCP_MultipleRegionSelector {
             'duplicated-region' => __( 'This particular region is already selected in another field. Please choose one or more sub-regions, to make the selection more specific, or change the selected region.', 'AWPCP' ),
         ) );
 
-        $fields = $this->get_region_fields();
+        $fields = $this->get_region_fields( $context );
 
         $regions = array();
         foreach ( $this->regions as $i => $region ) {
@@ -95,7 +95,6 @@ class AWPCP_MultipleRegionSelector {
                 $regions[$i][$type]['options'] = $this->get_region_field_options( $context, $type, $selected, $hierarchy );
                 $regions[$i][$type]['selected'] = awpcp_array_data( $type, null, $region );
                 $regions[$i][$type]['required'] = ( 'search' == $context ) ? false : $field['required'];
-                $regions[$i][$type]['alwaysShown'] = ( 'search' == $context ) ? true : false;
 
                 if ( isset( $translations[ $type ] ) ) {
                     $regions[$i][$type]['param'] = $translations[ $type ];

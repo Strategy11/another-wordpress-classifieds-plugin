@@ -541,21 +541,25 @@ function awpcp_get_comma_separated_list($items=array(), $threshold=5, $none='') 
  *								to this Region Field.
  * @since 3.0.2
  */
-function awpcp_region_fields() {
-    $fields = apply_filters('awpcp-region-fields', false);
+function awpcp_region_fields( $context='details' ) {
+    $fields = apply_filters( 'awpcp-region-fields', false, $context );
 
-    if ( false !== $fields ) return $fields;
+    if ( false === $fields ) {
+    	$fields = awpcp_default_region_fields( $context );
+    }
 
-    return awpcp_default_region_fields();
+    return $fields;
 }
 
 /**
  * @since 3.0.2
  */
-function awpcp_default_region_fields() {
+function awpcp_default_region_fields( $context='details' ) {
     static $fields = null;
 
     if ( is_array( $fields ) ) return $fields;
+
+    $always_shown = in_array( $context, array( 'details', 'search' ) );
 
     if (get_awpcp_option('displaycountryfield')) {
         $_fields['country'] = array(
@@ -563,6 +567,7 @@ function awpcp_default_region_fields() {
             'label' => __('Country', 'AWPCP'),
             'help' => __('separate countries by commas', 'AWPCP'),
             'required' => (bool) get_awpcp_option( 'displaycountryfieldreqop', false ),
+            'alwaysShown' => $always_shown,
         );
     }
     if (get_awpcp_option('displaystatefield')) {
@@ -571,6 +576,7 @@ function awpcp_default_region_fields() {
             'label' => __('State/Province', 'AWPCP'),
             'help' => __('separate states by commas', 'AWPCP'),
             'required' => (bool) get_awpcp_option( 'displaystatefieldreqop', false ),
+            'alwaysShown' => $always_shown,
         );
     }
     if (get_awpcp_option('displaycityfield')) {
@@ -579,6 +585,7 @@ function awpcp_default_region_fields() {
             'label' => __('City', 'AWPCP'),
             'help' => __('separate cities by commas', 'AWPCP'),
             'required' => (bool) get_awpcp_option( 'displaycityfieldreqop', false ),
+            'alwaysShown' => $always_shown,
         );
     }
     if (get_awpcp_option('displaycountyvillagefield')) {
@@ -587,6 +594,7 @@ function awpcp_default_region_fields() {
             'label' => __('County/Village/Other', 'AWPCP'),
             'help' => __('separate counties by commas', 'AWPCP'),
             'required' => (bool) get_awpcp_option( 'displaycountyvillagefieldreqop', false ),
+            'alwaysShown' => $always_shown,
         );
     }
 

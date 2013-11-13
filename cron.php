@@ -240,7 +240,6 @@ function awpcp_clean_up_non_verified_ads( /* AWPCP_ListingsAPI */ $listings ) {
     foreach ( AWPCP_Ad::find( join( ' AND ', $conditions ) ) as $ad ) {
         if ( intval( awpcp_get_ad_meta( $ad->ad_id, 'verification_emails_sent', true ) ) <= 1 ) {
             $listings->send_verification_email( $ad );
-            debug( $ad );
         }
     }
 }
