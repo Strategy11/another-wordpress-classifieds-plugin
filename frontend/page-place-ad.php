@@ -671,7 +671,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         }
 
         if (!empty($errors)) {
-            $message = __("We found some errors, please fix them and submit the form again.", "AWPCP");
+            $message = __( "We found errors in the details you submitted. A detailed error message is shown in front or below each invalid field. Please fix the errors and submit the form again.", 'AWPCP' );
             $errors = array_merge(array($message), $errors);
         }
 

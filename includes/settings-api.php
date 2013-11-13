@@ -230,7 +230,7 @@ class AWPCP_Settings_API {
 								<div class="awpcp-title">$ad_title</div><br/>
 								<div class="showawpcpadpage">
 									$featureimg
-									<label>' . __("Contact Information","AWPCP"). '</label><br/>
+									<div class="awpcp-subtitle">' . __( "Contact Information","AWPCP" ). '</div>
 									<a href="$codecontact">' . __("Contact","AWPCP") . ' $adcontact_name</a>
 									$adcontactphone
 									$location
@@ -241,7 +241,7 @@ class AWPCP_Settings_API {
 								<div class="fixfloat"></div>
 								$showadsense1
 								<div class="showawpcpadpage">
-									<label>' . __("More Information", "AWPCP") . '</label><br/>
+									<div class="awpcp-subtitle">' . __( "More Information", "AWPCP" ) . '</div>
 									$addetails
 								</div>
 								$showadsense2
