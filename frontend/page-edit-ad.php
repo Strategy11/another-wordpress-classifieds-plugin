@@ -221,7 +221,11 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
         }
 
         if (awpcp_current_user_is_admin() && !empty($data['ad_category'])) {
-            $ad->ad_category_id = $data['ad_category'];
+            $category = AWPCP_Category::find_by_id( $data['ad_category'] );
+            if ( ! is_null( $category ) ) {
+                $ad->ad_category_id = $category->id;
+                $ad->ad_category_parent_id = $category->parent;
+            }
         }
 
         if (!$ad->save()) {
