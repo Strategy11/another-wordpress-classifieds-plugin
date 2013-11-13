@@ -173,13 +173,13 @@
         self.hidden = $(hidden);
         self.dropdown = $(dropdown);
 
+        // using multiple dropdowns
         if (self.hidden.length > 0) {
             self.identifier = self.dropdown.attr('target');
             self.category_id = parseInt(self.dropdown.val(), 10);
 
             self.widget = new $.AWPCP.CategoriesDropdownWidget(self.identifier,
                                                                self.dropdown,
-                                                               null,
                                                                null,
                                                                self.category_id);
 
@@ -199,6 +199,8 @@
                     self.widget.change(null);
                 }, 100);
             }
+
+        // using a single dropdown
         } else {
             self.dropdown.change(function() {
                 var category_id = parseInt(self.dropdown.val(), 10);
@@ -207,16 +209,15 @@
         }
     };
 
-    $.AWPCP.CategoriesDropdownWidget = function(identifier, dropdown, parent, parent_category, category_id) {
+    $.AWPCP.CategoriesDropdownWidget = function(identifier, dropdown, parent, category_id) {
         var self = this;
 
         self.identifier = identifier;
 
-        self.parent_category = parent_category;
         self.category_id = category_id;
 
-        self.parent = parent;  // parent dropdown widget
-        self.child = null;  // child dropdown widget
+        self.parent = parent;  // parent dropdown
+        self.child = null;  // child dropdown
 
         if (!dropdown && parent) {
             self.dropdown = $('<select class="awpcp-category-dropdown">').insertAfter(parent).hide();
@@ -230,9 +231,9 @@
             self.change(parseInt($(this).val(), 10));
         });
 
-        $.subscribe('/category/widget/updated/' + self.identifier, function(event, dropdown, parent_category) {
+        $.subscribe('/category/widget/updated/' + self.identifier, function(event, dropdown, parent_category_id) {
             if (self.parent === dropdown) {
-                self.render(parent_category);
+                self.render(parent_category_id);
             }
         });
 
@@ -240,56 +241,38 @@
     };
 
     $.extend($.AWPCP.CategoriesDropdownWidget.prototype, {
-        get_category: function(category_id) {
-            var self = this, siblings, category;
-
-            if (self.parent_category === null) {
-                siblings = $.AWPCP.get('categories');
-            } else {
-                siblings = self.parent_category.children;
-            }
-
-            if (category_id in siblings) {
-                category = siblings[category_id];
-            } else {
-                category = null;
-            }
-
-            return category;
-        },
-
         change: function(category_id) {
-            var self = this, parent_category;
+            var self = this;
 
             self.category_id = isNaN(category_id) ? null : category_id;
-            parent_category = self.get_category(self.category_id);
 
             if (self.child === null) {
-                self.child = new $.AWPCP.CategoriesDropdownWidget(self.identifier, null, self.dropdown, parent_category, null);
+                self.child = new $.AWPCP.CategoriesDropdownWidget(self.identifier, null, self.dropdown, null);
             }
 
             $.publish('/category/updated' , [self.category_id]);
             $.publish('/category/updated/' + self.identifier , [self.category_id]);
-            $.publish('/category/widget/updated/' + self.identifier, [self.dropdown, parent_category]);
+            $.publish('/category/widget/updated/' + self.identifier, [self.dropdown, self.category_id]);
         },
 
-        render: function(parent_category) {
-            var self = this, children, category, length;
+        render: function(parent_category_id) {
+            var self = this, children, categories, length;
 
-            self.parent_category = parent_category;
+            categories = $.AWPCP.get('categories');
+            if (parent_category_id === null && categories.hasOwnProperty('root')) {
+                children = categories.root;
+            } else if (categories.hasOwnProperty(parent_category_id)) {
+                children = categories[parent_category_id];
+            } else {
+                children = [];
+            }
 
-            children = parent_category ? parent_category.children : {};
-            length = 0;
+            self.dropdown.empty()
+                         .append($('<option value="">' + $.AWPCP.l10n('categories-dropdown', 'no-category') + '</option>'));
 
-            self.dropdown.empty();
-            self.dropdown.append( $('<option value="">' + $.AWPCP.l10n('categories-dropdown', 'no-category') + '</option>') );
-
-            for (var id in children) {
-                if (children.hasOwnProperty(id)) {
-                    category = children[id];
-                    self.dropdown.append($('<option value="' + category.id + '">' + category.name + '</option>'));
-                    length = length + 1;
-                }
+            length = children.length;
+            for (var i = 0; i < length; i = i + 1) {
+                self.dropdown.append($('<option value="' + children[i].id + '">' + children[i].name + '</option>'));
             }
 
             if (length > 0) {

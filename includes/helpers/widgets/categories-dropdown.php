@@ -5,24 +5,20 @@ class AWPCP_CategoriesDropdown {
     private function get_categories($parent_id=0) {
         global $wpdb;
 
-        $results = AWPCP_Category::query( array(
+        $categories = AWPCP_Category::query( array(
             'where' => $wpdb->prepare( "category_parent_id = %d AND category_name <> ''", $parent_id ),
-            'orderby' => 'category_order, category_name',
+            'orderby' => 'category_order ASC, category_name',
             'order' => 'ASC',
         ) );
-
-        $categories = array();
-        foreach ($results as $category) {
-            $categories[ $category->id ] = $category;
-        }
 
         return $categories;
     }
 
     private function get_all_categories() {
-        $categories = $this->get_categories();
-        foreach ( array_keys( $categories ) as $id ) {
-            $categories[ $id ]->children = $this->get_categories( $id );
+        $categories['root'] = $this->get_categories();
+
+        foreach ( $categories['root'] as $category ) {
+            $categories[ $category->id ] = $this->get_categories( $category->id );
         }
 
         return $categories;
