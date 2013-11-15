@@ -342,7 +342,13 @@ if (typeof jQuery !== 'undefined') {
             self._show = ko.observable(undefined);
 
             self.caption = ko.computed(function() {
-                return AWPCP.l10n('multiple-region-selector', 'select-placeholder').replace('%s', self.label());
+                var caption = AWPCP.l10n('multiple-region-selector', 'select-placeholder').replace('%s', self.label());
+
+                if (caption.lastIndexOf('*') === (caption.length - 1)) {
+                    caption = caption.substr(0, caption.length - 1);
+                }
+
+                return caption;
             }, self);
 
             self.showTextField = ko.computed(function() {

@@ -216,6 +216,28 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         return array($users, $payment_terms);
     }
 
+    /**
+     * @since 3.0.2
+     */
+    protected function get_required_fields() {
+        $required['start-date'] = false;
+        $required['end-date'] = false;
+        $required['ad-title'] = true;
+        $required['website-url'] = get_awpcp_option( 'displaywebsitefieldreqop' );
+        $required['ad-contact-name'] = true;
+        $required['ad-contact-email'] = true;
+        $required['ad-contact-phone'] = get_awpcp_option( 'displayphonefieldreqop' );
+        $required['ad-item-price'] = get_awpcp_option( 'displaypricefieldreqop' );
+        $required['ad-details'] = true;
+        $required['country'] = get_awpcp_option( 'displaycountryfieldreqop' );
+        $required['state'] = get_awpcp_option( 'displaystatefieldreqop' );
+        $required['county'] = get_awpcp_option( 'displaycountyvillagefieldreqop' );
+        $required['city'] = get_awpcp_option( 'displaycityfieldreqop' );
+        $required['terms-of-service'] = true;
+
+        return $required;
+    }
+
     protected function users_dropdown($selected=false, $errors) {
         global $current_user;
         get_currentuserinfo();
@@ -644,7 +666,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         return $data;
     }
 
-    public function details_form($form=array(), $edit=false, $hidden=array(), $errors=array()) {
+    public function details_form($form=array(), $edit=false, $hidden=array(), $required=array(), $errors=array()) {
         global $hasregionsmodule, $hasextrafieldsmodule;
 
         $is_admin_user = awpcp_current_user_is_admin();
@@ -717,7 +739,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $url = $this->url();
 
         $template = AWPCP_DIR . '/frontend/templates/page-place-ad-details-step.tpl.php';
-        $params = compact('page', 'ui', 'messages', 'form', 'hidden', 'url', 'edit', 'preview', 'errors');
+        $params = compact('page', 'ui', 'messages', 'form', 'hidden', 'required', 'url', 'edit', 'preview', 'errors');
 
         return $this->render($template, $params);
     }
@@ -743,7 +765,9 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             }
         }
 
-        return $this->details_form($form, false, array(), $errors);
+        $required = $this->get_required_fields();
+
+        return $this->details_form($form, false, array(), $required, $errors);
     }
 
     public function details_step() {

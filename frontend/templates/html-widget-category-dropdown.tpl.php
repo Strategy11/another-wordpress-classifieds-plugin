@@ -1,4 +1,4 @@
-<label for="awpcp-category-dropdown"><?php echo $label ?></label>
+<label for="awpcp-category-dropdown"><?php echo $label ?><?php echo $required ? '*' : ''; ?></label>
 
 <?php if ( $use_multiple_dropdowns ): ?>
 

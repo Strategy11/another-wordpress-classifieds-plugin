@@ -562,36 +562,40 @@ function awpcp_default_region_fields( $context='details' ) {
     $always_shown = in_array( $context, array( 'details', 'search' ) );
 
     if (get_awpcp_option('displaycountryfield')) {
+    	$required = get_awpcp_option( 'displaycountryfieldreqop' );
         $_fields['country'] = array(
             'type' => 'country',
-            'label' => __('Country', 'AWPCP'),
+            'label' => __('Country', 'AWPCP') . ( $required ? '*' : '' ),
             'help' => __('separate countries by commas', 'AWPCP'),
             'required' => (bool) get_awpcp_option( 'displaycountryfieldreqop', false ),
             'alwaysShown' => $always_shown,
         );
     }
     if (get_awpcp_option('displaystatefield')) {
+    	$required = get_awpcp_option( 'displaystatefieldreqop' );
         $_fields['state'] = array(
             'type' => 'state',
-            'label' => __('State/Province', 'AWPCP'),
+            'label' => __('State/Province', 'AWPCP') . ( $required ? '*' : '' ),
             'help' => __('separate states by commas', 'AWPCP'),
             'required' => (bool) get_awpcp_option( 'displaystatefieldreqop', false ),
             'alwaysShown' => $always_shown,
         );
     }
     if (get_awpcp_option('displaycityfield')) {
+    	$required = get_awpcp_option( 'displaycityfieldreqop' );
         $_fields['city'] = array(
             'type' => 'city',
-            'label' => __('City', 'AWPCP'),
+            'label' => __('City', 'AWPCP') . ( $required ? '*' : '' ),
             'help' => __('separate cities by commas', 'AWPCP'),
             'required' => (bool) get_awpcp_option( 'displaycityfieldreqop', false ),
             'alwaysShown' => $always_shown,
         );
     }
     if (get_awpcp_option('displaycountyvillagefield')) {
+    	$required = get_awpcp_option( 'displaycountyvillagefieldreqop' );
         $_fields['county'] = array(
             'type' => 'county',
-            'label' => __('County/Village/Other', 'AWPCP'),
+            'label' => __('County/Village/Other', 'AWPCP') . ( $required ? '*' : '' ),
             'help' => __('separate counties by commas', 'AWPCP'),
             'required' => (bool) get_awpcp_option( 'displaycountyvillagefieldreqop', false ),
             'alwaysShown' => $always_shown,

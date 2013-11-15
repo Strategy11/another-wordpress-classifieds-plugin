@@ -172,8 +172,9 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
         }
 
         $hidden = array('edit-hash' => $this->get_edit_hash($ad));
+        $required = $this->get_required_fields();
 
-        return $this->details_form($form, true, $hidden, $errors);
+        return $this->details_form($form, true, $hidden, $required, $errors);
     }
 
     /**

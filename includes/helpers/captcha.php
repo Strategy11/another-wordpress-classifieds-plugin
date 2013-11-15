@@ -36,7 +36,7 @@ class AWPCP_DefaultCAPTCHA extends AWPCP_CAPTCHA {
         $hash = $this->hash( $a + $b );
         $answer = awpcp_post_param( 'captcha' );
 
-        $label = _x( 'Enter the value of the following sum: %d + %d ', 'CAPTCHA', 'AWPCP' );
+        $label = _x( 'Enter the value of the following sum: %d + %d', 'CAPTCHA', 'AWPCP' ) . '*';
         $label = sprintf( $label, $a, $b );
 
         $html = '<label for="captcha"><span>%s</span></label>';
