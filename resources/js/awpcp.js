@@ -259,7 +259,7 @@
             var self = this, children, categories, length;
 
             categories = $.AWPCP.get('categories');
-            if (parent_category_id === null && categories.hasOwnProperty('root')) {
+            if (null === self.parent && categories.hasOwnProperty('root')) {
                 children = categories.root;
             } else if (categories.hasOwnProperty(parent_category_id)) {
                 children = categories[parent_category_id];
