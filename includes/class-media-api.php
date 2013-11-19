@@ -38,14 +38,12 @@ class AWPCP_MediaAPI {
 
         $image_mime_types = awpcp_get_image_mime_types();
 
-        if ( ! is_null( $enabled ) ) {
-            // pass
-        } else if ( ! awpcp_current_user_is_admin() ) {
-            if ( in_array( $mime_type, $image_mime_types ) && get_awpcp_option( 'imagesapprove' ) ) {
+        if ( is_null( $enabled ) ) {
+            if ( ! awpcp_current_user_is_admin() && in_array( $mime_type, $image_mime_types ) && get_awpcp_option( 'imagesapprove' ) ) {
                 $enabled = false;
+            } else {
+                $enabled = true;
             }
-        } else {
-            $enabled = true;
         }
 
         $data = compact( 'ad_id', 'name', 'path', 'mime_type', 'enabled', 'is_primary' );

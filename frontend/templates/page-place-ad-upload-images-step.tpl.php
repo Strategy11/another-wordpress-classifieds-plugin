@@ -66,7 +66,7 @@
 <?php endif ?>
 
 	<p class="form-submit">
-		<input class="button" type="submit" value="<?php echo $next; ?>" id="submit" name="submit-no-images">
+		<input class="button" type="submit" value="<?php echo $next; ?>" id="submit-no-images" name="submit-no-images">
 
 		<?php if ($images_left > 0): ?>
 		<input class="button" type="submit" value="<?php _e('Upload Images', 'AWPCP') ?>" id="submit" name="submit">
