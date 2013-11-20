@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: AWPCP\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2013-11-02 01:31:30+00:00\n"
+"POT-Creation-Date: 2013-11-20 21:59:34+00:00\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: \n"
@@ -603,6 +603,9 @@ msgstr "Correo electrónico y clave de acceso"
 
 msgid "Ad/Listings"
 msgstr "Anuncios/Listados"
+
+msgid "Ad/Listings settings page"
+msgstr "Página de Configuración de los Anuncios"
 
 msgid "AdSense"
 msgstr "AdSense"
@@ -1994,7 +1997,7 @@ msgid "Enter the category name"
 msgstr "Ingresá un nombre para la categoría"
 
 msgctxt "CAPTCHA"
-msgid "Enter the value of the following sum: %d + %d "
+msgid "Enter the value of the following sum: %d + %d"
 msgstr "Ingrese el resultado de la siguiente suma: %d + %d"
 
 msgid "Enter your Ad access key"
@@ -2002,6 +2005,9 @@ msgstr "Ingreso su clave de acceso"
 
 msgid "Enter your email address"
 msgstr "Ingrese su dirección de correo electrónico"
+
+msgid "Error"
+msgstr "Error"
 
 msgid "Error connecting to %s"
 msgstr "Error conectándose a %s"
@@ -2279,6 +2285,11 @@ msgid "Go to the %s section to manage the Images and Attachments for this Ad."
 msgstr ""
 "Vaya a la sección %s para administrar las imágenes y archivos adjunto de "
 "este anuncio."
+
+msgid "Go to the %s to change the Single Ad layout."
+msgstr ""
+"Dirijase a la %s para cambiar la plantilla de la vista sencilla del los "
+"anuncios."
 
 msgid "Go to the first page"
 msgstr "Ir a la primera página"
@@ -4395,6 +4406,10 @@ msgctxt "Select <Region Type> in Multiple Region Selector"
 msgid "Select %s"
 msgstr "Seleccionar %s"
 
+msgctxt "place ad order step"
+msgid "Select Category"
+msgstr "Seleccionar Categoría"
+
 msgid "Select Field Input Type"
 msgstr "Seleccioná el tipo de entrada"
 
@@ -5022,6 +5037,17 @@ msgstr ""
 "El módulo AWPCP Archivos Adjuntos require la version %s o posterior del "
 "plugin AWPCP!"
 
+msgid ""
+"The AWPCP Attachments module requires that you add an '$attachments' "
+"placeholder to the Single Ad layout. The placeholder will be replaced with a "
+"list of the attachments for the current Ad. Without the placeholder, the "
+"attachments won't be shown in the Ad's single view."
+msgstr ""
+"El módulo AWPCP Archivos Adjuntos requiere que agregue un marcador "
+"'$attachments' a la plantilla de la vista sencilla de los anuncios. El "
+"marcador será reemplazado con una lista de de los archivos adjuntos para el "
+"anuncio actual. Sin el marcador, los archivos adjuntos no se mostrarán."
+
 msgid "The AWPCP Authorize.Net module requires AWPCP version %s or newer!"
 msgstr ""
 "El módulo AWPCP Authorize.net require la version %s o posterior del plugin "
@@ -5083,6 +5109,10 @@ msgstr "El modulo AWPCP RSS Sitemap requiere AWPCP versión %s o más nueva!"
 msgid "The AWPCP Region Control module requires AWPCP version %s or newer!"
 msgstr ""
 "El módulo AWPCP Comments require la version %s o posterior del plugin AWPCP!"
+
+msgid "The AWPCP Remove Powered By module requires AWPCP version %s or newer!"
+msgstr ""
+"El modulo AWPCP Remover Creado Por requiere AWPCP versión %s o más nueva!"
 
 msgid "The AWPCP Subscriptions module requires AWPCP version %s or newer!"
 msgstr "El modulo AWPCP RSS Sitemap requiere AWPCP versión %s o más nueva!"
@@ -6127,6 +6157,13 @@ msgstr ""
 "Las opciones en esta sección no están disponibles todavía. Por favor llene "
 "los campos requeridos arriba y guarde la configuración."
 
+msgid ""
+"This version of AWPCP %1$s module is not compatible with AWPCP version %2$s. "
+"Please get AWPCP %1$s %3$s or newer!"
+msgstr ""
+"La versión del módulo %1$s no es compatible con la versión %2$s de AWPCP. "
+"Por favor descargue AWPCP %1$s %3$s o posterior."
+
 msgid "Thousands separator"
 msgstr "Separador de miles"
 
@@ -6579,9 +6616,14 @@ msgstr ""
 "administrador. Si por el contrario no trató de hacer un pago y esta viendo "
 "este mensaje, significa que se está mostrando por error y puede descartarlo."
 
-msgid "We found some errors, please fix them and submit the form again."
+msgid ""
+"We found errors in the details you submitted. A detailed error message is "
+"shown in front or below each invalid field. Please fix the errors and submit "
+"the form again."
 msgstr ""
-"Encontramos algunos errores, por favor corrijalos y envíe el form de nuevo."
+"Encontramos algunos errores in los detalles que usted envió. Un mensaje de "
+"error detallado aparece al frente o debajo de cada campo inválido. Por favor "
+"corrija los errores y envié el formulario de nuevo."
 
 msgid ""
 "We haven't received your payment information from PayPal yet and we are "
@@ -7437,6 +7479,10 @@ msgstr "Continuar"
 msgid "is Coupon active?"
 msgstr "Cupón está activo?"
 
+msgctxt "loading region options"
+msgid "loading..."
+msgstr "cargando..."
+
 msgid "reCAPTCHA (recommended)"
 msgstr "reCAPTCHA (recomendado)"
 
@@ -7522,6 +7568,15 @@ msgstr "usar información de planilla"
 
 msgid "visit the forums!"
 msgstr "viste los foros!"
+
+#~ msgctxt "CAPTCHA"
+#~ msgid "Enter the value of the following sum: %d + %d "
+#~ msgstr "Ingrese el resultado de la siguiente suma: %d + %d"
+
+#~ msgid "We found some errors, please fix them and submit the form again."
+#~ msgstr ""
+#~ "Encontramos algunos errores, por favor corrijalos y envíe el form de "
+#~ "nuevo."
 
 #, fuzzy
 #~ msgid "Activate"
@@ -11984,9 +12039,6 @@ msgstr "viste los foros!"
 #~ msgid "A list or dropdown of categories"
 #~ msgstr "Usar multiples desplegables para elegir categorías"
 
-#~ msgid "Select Category"
-#~ msgstr "Seleccionar Categoría"
-
 #, fuzzy
 #~ msgid "Show hierarchy"
 #~ msgstr "Buscar por"
@@ -12554,14 +12606,6 @@ msgstr "viste los foros!"
 #, fuzzy
 #~ msgid "Drop files anywhere to upload"
 #~ msgstr "No se cargó ningún archivo"
-
-#, fuzzy
-#~ msgid "Uploading"
-#~ msgstr "Subir los archivos seleccionados"
-
-#, fuzzy
-#~ msgid "Error"
-#~ msgstr "Errores"
 
 #, fuzzy
 #~ msgid "Deselect"
@@ -13541,10 +13585,6 @@ msgstr "viste los foros!"
 
 #~ msgid "You did not enter any message. Please enter a message"
 #~ msgstr "No ingresaste ningún mensaje. Por favor, ingresá un mensaje."
-
-#~ msgctxt "reply to ad form"
-#~ msgid "Enter the value of the following sum: %d + %d"
-#~ msgstr "Ingrese el resultado de la siguiente suma: %d + %d"
 
 #~ msgid ""
 #~ "Warning: The AWPCP Fee Per Category plugin requires AWPCP version 2.0 or "

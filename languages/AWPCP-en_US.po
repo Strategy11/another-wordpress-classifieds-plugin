@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: AWPCP\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2013-11-02 01:31:30+00:00\n"
+"POT-Creation-Date: 2013-11-20 21:59:34+00:00\n"
 "PO-Revision-Date: 2013-10-28 19:39-0500\n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: \n"
@@ -537,6 +537,9 @@ msgid "Ad email and access key"
 msgstr ""
 
 msgid "Ad/Listings"
+msgstr ""
+
+msgid "Ad/Listings settings page"
 msgstr ""
 
 msgid "AdSense"
@@ -1796,13 +1799,16 @@ msgid "Enter the category name"
 msgstr ""
 
 msgctxt "CAPTCHA"
-msgid "Enter the value of the following sum: %d + %d "
+msgid "Enter the value of the following sum: %d + %d"
 msgstr ""
 
 msgid "Enter your Ad access key"
 msgstr ""
 
 msgid "Enter your email address"
+msgstr ""
+
+msgid "Error"
 msgstr ""
 
 msgid "Error connecting to %s"
@@ -2053,6 +2059,9 @@ msgid ""
 msgstr ""
 
 msgid "Go to the %s section to manage the Images and Attachments for this Ad."
+msgstr ""
+
+msgid "Go to the %s to change the Single Ad layout."
 msgstr ""
 
 msgid "Go to the first page"
@@ -3940,6 +3949,10 @@ msgctxt "Select <Region Type> in Multiple Region Selector"
 msgid "Select %s"
 msgstr ""
 
+msgctxt "place ad order step"
+msgid "Select Category"
+msgstr ""
+
 msgid "Select Field Input Type"
 msgstr ""
 
@@ -4508,6 +4521,13 @@ msgstr ""
 msgid "The AWPCP Attachments module requires AWPCP version %s or newer!"
 msgstr ""
 
+msgid ""
+"The AWPCP Attachments module requires that you add an '$attachments' "
+"placeholder to the Single Ad layout. The placeholder will be replaced with a "
+"list of the attachments for the current Ad. Without the placeholder, the "
+"attachments won't be shown in the Ad's single view."
+msgstr ""
+
 msgid "The AWPCP Authorize.Net module requires AWPCP version %s or newer!"
 msgstr ""
 
@@ -4552,6 +4572,9 @@ msgid "The AWPCP RSS module requires AWPCP version %s or newer!"
 msgstr ""
 
 msgid "The AWPCP Region Control module requires AWPCP version %s or newer!"
+msgstr ""
+
+msgid "The AWPCP Remove Powered By module requires AWPCP version %s or newer!"
 msgstr ""
 
 msgid "The AWPCP Subscriptions module requires AWPCP version %s or newer!"
@@ -5400,6 +5423,11 @@ msgid ""
 "above and save your settings."
 msgstr ""
 
+msgid ""
+"This version of AWPCP %1$s module is not compatible with AWPCP version %2$s. "
+"Please get AWPCP %1$s %3$s or newer!"
+msgstr ""
+
 msgid "Thousands separator"
 msgstr ""
 
@@ -5796,7 +5824,10 @@ msgid ""
 "disregarded."
 msgstr ""
 
-msgid "We found some errors, please fix them and submit the form again."
+msgid ""
+"We found errors in the details you submitted. A detailed error message is "
+"shown in front or below each invalid field. Please fix the errors and submit "
+"the form again."
 msgstr ""
 
 msgid ""
@@ -6460,6 +6491,10 @@ msgid "continue"
 msgstr ""
 
 msgid "is Coupon active?"
+msgstr ""
+
+msgctxt "loading region options"
+msgid "loading..."
 msgstr ""
 
 msgid "reCAPTCHA (recommended)"
