@@ -342,6 +342,16 @@ function awpcp_get_users($where='') {
 
 
 /**
+ * @since 3.0.2
+ */
+function awpcp_get_users_basic_information() {
+	global $wpdb;
+
+	return $wpdb->get_results( "SELECT ID, display_name, user_login FROM $wpdb->users" );
+}
+
+
+/**
  * Returns a WP capability required to be considered an AWPCP admin.
  *
  * http://codex.wordpress.org/Roles_and_Capabilities#Capability_vs._Role_Table

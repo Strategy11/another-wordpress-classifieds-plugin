@@ -190,8 +190,8 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
     }
 
     protected function get_users() {
+        $users = awpcp_get_users_basic_information();
         $payments = awpcp_payments_api();
-        $users = awpcp_get_users();
 
         $payment_terms = array();
         foreach ($users as $k => $user) {
