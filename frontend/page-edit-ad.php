@@ -217,8 +217,8 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
         $ad->ad_last_updated = current_time('mysql');
 
         if (awpcp_current_user_is_admin()) {
-            $ad->ad_startdate = awpcp_datetime( 'mysql', $data['start_date'] );
-            $ad->ad_enddate = awpcp_datetime( 'mysql', $data['end_date'] );
+            $ad->ad_startdate = awpcp_set_datetime_date( $ad->ad_startdate, $data['start_date'] );
+            $ad->ad_enddate = awpcp_set_datetime_date( $ad->ad_enddate, $data['end_date'] );
         }
 
         if (awpcp_current_user_is_admin() && !empty($data['ad_category'])) {

@@ -284,6 +284,19 @@ function awpcp_datetime( $format='mysql', $date=null ) {
 }
 
 
+function awpcp_set_datetime_date( $datetime, $date ) {
+    $base_timestamp = strtotime( $datetime );
+    $base_year_month_day_timestamp = strtotime( date( 'Y-m-d', strtotime( $datetime ) ) );
+    $time_of_the_day_in_seconds = $base_timestamp - $base_year_month_day_timestamp;
+
+    $target_year_month_day_timestamp = strtotime( date( 'Y-m-d', strtotime( $date ) ) );
+
+    $new_datetime_timestamp = $target_year_month_day_timestamp + $time_of_the_day_in_seconds;
+
+    return awpcp_datetime( 'mysql', $new_datetime_timestamp );
+}
+
+
 /**
  * Get a WP User. See awpcp_get_users for details.
  *
