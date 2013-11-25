@@ -64,11 +64,8 @@ class AWPCP_Email {
      */
     public function send($format='plain') {
         $headers = $this->get_headers($format);
-
-        $format = get_awpcp_option('date-format') . ' \a\t ' . get_awpcp_option('time-format');
-        $time = date_i18n($format, current_time('timestamp'));
-
-        $body = sprintf("%s\n\n%s", $this->body, sprintf(__("Email sent on: %s\n\n", 'AWPCP'), $time));
+        $sent_date = awpcp_format_email_sent_datetime();
+        $body = sprintf( "%s\n\n%s", $this->body, $sent_date );
 
         if ($result = wp_mail($this->to, $this->subject, $body, $headers)) {
             return $result;

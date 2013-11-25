@@ -1902,12 +1902,8 @@ function awpcp_process_mail($senderemail='', $receiveremail='',  $subject='',
 	}
 
 	$subject = $subject;
+	$message = "$body\n\n" . awpcp_format_email_sent_datetime() . "\n\n";
 
-	$format = get_awpcp_option('date-format') . ' \a\t ' . get_awpcp_option('time-format');
-	$time = date_i18n($format, current_time('timestamp'));
-
-	$message = "$body\n\n";
-	$message.= __('Email sent on:', 'AWPCP')." $time\n\n";
 	_log("Processing email");
 
 	if (wp_mail($receiveremail, $subject, $message, $headers )) {
@@ -1926,6 +1922,11 @@ function awpcp_process_mail($senderemail='', $receiveremail='',  $subject='',
 	    _log("SMTP not configured properly, all attempts failed");
 	    return 0;
 	}
+}
+
+function awpcp_format_email_sent_datetime() {
+	$time = date_i18n( awpcp_get_datetime_format(), current_time( 'timestamp' ) );
+	return sprintf( __( 'Email sent %s.', 'AWPCP' ), $time );
 }
 
 // make sure the IP isn't a reserved IP address
