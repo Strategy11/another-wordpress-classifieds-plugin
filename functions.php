@@ -360,7 +360,7 @@ function awpcp_get_users($where='') {
 function awpcp_get_users_basic_information() {
 	global $wpdb;
 
-	return $wpdb->get_results( "SELECT ID, display_name, user_login FROM $wpdb->users" );
+	return $wpdb->get_results( "SELECT ID, display_name, user_login FROM $wpdb->users ORDER BY display_name" );
 }
 
 
