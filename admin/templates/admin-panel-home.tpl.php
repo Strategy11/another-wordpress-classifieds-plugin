@@ -76,7 +76,7 @@
 
                 <div style="border-top:1px solid #dddddd;">
                     <?php $msg = __("Go to the %s section to edit/delete current categories or add new categories.", "AWPCP"); ?>
-                    <?php $url = add_query_arg('page', 'Configure3', admin_url('admin.php')); ?>
+                    <?php $url = awpcp_get_admin_categories_url(); ?>
                     <p><?php echo sprintf($msg, sprintf('<a href="%s">%s</a>', $url, __('Manage Categories', 'AWPCP'))); ?></p>
 
                     <ul>

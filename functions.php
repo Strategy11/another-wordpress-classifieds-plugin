@@ -1520,6 +1520,13 @@ function awpcp_get_admin_settings_url( $section = false ) {
 }
 
 /**
+ * @since 3.0.2
+ */
+function awpcp_get_admin_categories_url() {
+	return add_query_arg( 'page', 'awpcp-admin-categories', admin_url( 'admin.php' ) );
+}
+
+/**
  * @since  3.0
  */
 function awpcp_get_admin_upgrade_url() {

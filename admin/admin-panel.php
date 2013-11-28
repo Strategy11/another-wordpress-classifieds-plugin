@@ -262,7 +262,7 @@ class AWPCP_Admin {
 			// $page = add_submenu_page($parent, $parts[0], $parts[1], $capability, $parts[2], array($this->categories, 'dispatch'));
 			// add_action('admin_print_styles-' . $page, array($this->categories, 'scripts'));
 
-			add_submenu_page($parent, __('Add/Edit Categories', 'AWPCP'), __('Categories', 'AWPCP'), $capability, 'Configure3', 'awpcp_opsconfig_categories');
+			add_submenu_page($parent, __('Add/Edit Categories', 'AWPCP'), __('Categories', 'AWPCP'), $capability, 'awpcp-admin-categories', 'awpcp_opsconfig_categories');
 
 			$parts = array($this->listings->title, $this->listings->menu, $this->listings->page);
 			$page = add_submenu_page($parent, $parts[0], $parts[1], $capability, 'awpcp-listings', array($this->listings, 'dispatch'));
@@ -431,20 +431,24 @@ function awpcp_admin_categories_render_category_item($category, $level, $start, 
 	}
 
 	$params = array('page' => 'awpcp-listings', 'filterby' => 'category', 'category' => $category->id);
-	$url = add_query_arg($params, admin_url('admin.php'));
+	$admin_listings_url = add_query_arg( $params, admin_url( 'admin.php' ) );
 
 	$thecategory_parent_id = $category->parent;
 	$thecategory_parent_name = stripslashes(get_adparentcatname($thecategory_parent_id));
 	$thecategory_order = $category->order ? $category->order : 0;
 	$thecategory_name = sprintf( '%s%s<a href="%s">%s</a>', str_repeat( '&mdash;&nbsp;', $level ),
 															$thecategoryicon,
-															$url,
+															$admin_listings_url,
 															esc_attr( stripslashes( $category->name ) ) );
 
 	$totaladsincat = total_ads_in_cat( $category->id );
 
+	$params = array( 'cat_ID' => $category->id, 'offset' => $start, 'results' => $per_page );
+	$admin_categories_url = add_query_arg( $params, awpcp_get_admin_categories_url() );
+
 	if ($hascaticonsmodule == 1 && is_installed_category_icon_module()) {
-		$managecaticon = "<a href=\"?page=Configure3&cat_ID={$category->id}&action=managecaticon&offset=$start&results=$per_page\"><img src=\"$awpcp_imagesurl/icon_manage_ico.png\" alt=\"";
+		$url = add_query_arg( 'action', 'managecaticon', $admin_categories_url );
+		$managecaticon = "<a href=\"$url\"><img src=\"$awpcp_imagesurl/icon_manage_ico.png\" alt=\"";
 		$managecaticon.= __("Manage Category Icon", "AWPCP");
 		$managecaticon.= "\" title=\"" . __("Manage Category Icon", "AWPCP") . "\" border=\"0\"/></a>";
 	} else {
@@ -454,12 +458,19 @@ function awpcp_admin_categories_render_category_item($category, $level, $start, 
 	$awpcpeditcategoryword = __("Edit Category","AWPCP");
 	$awpcpdeletecategoryword = __("Delete Category","AWPCP");
 
+
 	$row = '<tr>';
 	$row.= '<td style="font-weight:normal; text-align: center;">' . $category->id . '</td>';
 	$row.= "<td style=\"border-bottom:1px dotted #dddddd;font-weight:normal;\"><label><input type=\"checkbox\" name=\"category_to_delete_or_move[]\" value=\"{$category->id}\" /> $thecategory_name ($totaladsincat)</label></td>";
 	$row.= "<td style=\"border-bottom:1px dotted #dddddd;font-weight:normal;\">$thecategory_parent_name</td>";
 	$row.= "<td style=\"border-bottom:1px dotted #dddddd;font-weight:normal;\">$thecategory_order</td>";
-	$row.= "<td style=\"border-bottom:1px dotted #dddddd;font-size:smaller;font-weight:normal;\"><a href=\"?page=Configure3&cat_ID={$category->id}&action=editcat&offset=$start&results=$per_page\"><img src=\"$awpcp_imagesurl/edit_ico.png\" alt=\"$awpcpeditcategoryword\" title=\"$awpcpeditcategoryword\" border=\"0\"/></a> <a href=\"?page=Configure3&cat_ID={$category->id}&action=delcat&offset=$start&results=$per_page\"><img src=\"$awpcp_imagesurl/delete_ico.png\" alt=\"$awpcpdeletecategoryword\" title=\"$awpcpdeletecategoryword\" border=\"0\"/></a> $managecaticon</td>";
+	$row.= "<td style=\"border-bottom:1px dotted #dddddd;font-size:smaller;font-weight:normal;\">";
+	$url = add_query_arg( 'action', 'editcat', $admin_categories_url );
+	$row.= "<a href=\"$url\"><img src=\"$awpcp_imagesurl/edit_ico.png\" alt=\"$awpcpeditcategoryword\" title=\"$awpcpeditcategoryword\" border=\"0\"/></a>";
+	$url = add_query_arg( 'action', 'delcat', $admin_categories_url );
+	$row.= "<a href=\"$url\"><img src=\"$awpcp_imagesurl/delete_ico.png\" alt=\"$awpcpdeletecategoryword\" title=\"$awpcpdeletecategoryword\" border=\"0\"/></a>";
+	$row.= $managecaticon;
+	$row.= "</td>";
 	$row.= "</tr>";
 
 	return $row;
@@ -601,7 +612,7 @@ function awpcp_opsconfig_categories() {
 		$cat_parent_ID=get_cat_parent_ID($cat_ID);
 
 		$add_label = __( 'Ad A New Category', 'AWPCP' );
-		$add_url = add_query_arg( array( 'page' => 'Configure3' ), admin_url('admin.php') );
+		$add_url = awpcp_get_admin_categories_url();
 		$addnewlink = '<a class="" title="%1$s" href="%2$s"" accesskey="s">%1$s</a>';
 		$addnewlink = sprintf( $addnewlink, $add_label, $add_url );
 
