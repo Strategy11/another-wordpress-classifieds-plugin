@@ -399,52 +399,6 @@ function awpcp_upload_image_file($directory, $filename, $tmpname, $min_size, $ma
 
 
 /**
- * Used in the admin panels to add images to existing ads
- */
-function admin_handleimagesupload($adid) {
-	global $wpdb;
-	global $wpcontentdir, $awpcp_plugin_path;
-
-	list($images_dir, $thumbs_dir) = awpcp_setup_uploads_dir();
-	list($min_width, $min_height, $min_size, $max_size) = awpcp_get_image_constraints();
-
-	$ad = AWPCP_Ad::find_by_id($adid);
-	if (!is_null($ad)) {
-
-		list($images_allowed, $images_uploaded, $images_left) = awpcp_get_ad_images_information($adid);
-
-		if ($images_left > 0) {
-			$filename = awpcp_array_data('name', '', $_FILES['awpcp_add_file']);
-			$tmpname = awpcp_array_data('tmp_name', '', $_FILES['awpcp_add_file']);
-			$result = awpcp_upload_image_file($images_dir, $filename, $tmpname,
-											  $min_size, $max_size, $min_width, $min_height);
-		} else {
-			$message = __('No more images can be added to this Ad. The Ad already have %d of %d images allowed.', 'AWPCP');
-			$result = sprintf($message, $images_uploaded, $images_allowed);
-		}
-	} else {
-		$result = __("The Ad doesn't exists. All uploaded files were rejected.", 'AWPCP');
-	}
-
-	if ( is_array( $result ) && isset( $result['filename'] ) ) {
-		if ( !awpcp_current_user_is_admin() && get_awpcp_option( 'imagesapprove' ) ) {
-			$disabled = true;
-		} else {
-			$disabled = false;
-		}
-
-		$query = 'INSERT INTO ' . AWPCP_TABLE_ADPHOTOS . ' SET image_name = %s, ad_id = %d, disabled = %d';
-		$query = $wpdb->prepare( $query, $result['filename'], $ad->ad_id, $disabled );
-		$result = $wpdb->query( $query );
-	} else {
-		return '<div class="error"><p>' . $result . '</p></div>';
-	}
-
-	return $result !== false ? true : false;
-}
-
-
-/**
  * Resize images if they're too wide or too tall based on admin's Image Settings.
  * Requires both max width and max height to be set otherwise no resizing 
  * takes place. If the image exceeds either max width or max height then the 
@@ -566,91 +520,17 @@ function awpcp_get_image_constraints() {
 }
 
 
-function awpcp_handle_uploaded_images($ad_id, &$form_errors=array()) {
-	global $wpdb;
-
-	list($images_dir, $thumbs_dir) = awpcp_setup_uploads_dir();
-	list($images_allowed, $images_uploaded, $images_left) = awpcp_get_ad_images_information($ad_id);
-	list($min_width, $min_height, $min_size, $max_size) = awpcp_get_image_constraints();
-
-	$primary = awpcp_post_param('primary-image');
-
-	if ( !awpcp_current_user_is_admin() && get_awpcp_option( 'imagesapprove' ) ) {
-		$disabled = true;
-	} else {
-		$disabled = false;
-	}
-
-	if ($images_left <= 0) {
-		$form_errors['form'] = __("You can't add more images to this Ad. There are not remaining images slots.", 'AWPCP');
-	}
-
-	$count = 0;
-	for ($i=0; $i < $images_left; $i++) {
-		$field = 'AWPCPfileToUpload' . $i;
-		$file = $_FILES[$field];
-
-		if ($file['error'] !== 0) {
-			continue;
-		}
-
-		$filename = sanitize_file_name($file['name']);
-		$tmpname = awpcp_array_data('tmp_name', '', $file);
-
-		$uploaded = awpcp_upload_image_file($images_dir, $filename, $tmpname, $min_size, $max_size, $min_width, $min_height);
-
-		if (is_array($uploaded) && isset($uploaded['filename'])) {
-			$sql = 'INSERT INTO ' . AWPCP_TABLE_ADPHOTOS . " SET image_name = '%s', ad_id = %d, disabled = %d";
-			$sql = $wpdb->prepare($sql, $uploaded['filename'], $ad_id, $disabled);
-			$result = $wpdb->query($sql);
-
-			if ($result !== false) {
-				if ($primary == "field-$i") {
-					awpcp_set_ad_primary_image($ad_id, $wpdb->insert_id);
-				}
-				$count += 1;
-			} else {
-				$msg = __("Could not save the information to the database for: %s", 'AWPCP');
-				$form_errors[$field] = sprintf($msg, $uploaded['original']);
-			}
-		} else {
-			$form_errors[$field] = $uploaded;
-		}
-	}
-
-	if (intval($primary) > 0) {
-		awpcp_set_ad_primary_image($ad_id, intval($primary));
-	}
-
-	if (empty($form_errors) && $count <= 0) {
-		$form_errors['form'] = __('No image files were uploaded', 'AWPCP');
-	}
-
-	$form_errors = array_filter($form_errors);
-
-	if (!empty($form_errors)) {
-		return false;
-	}
-
-	return true;
-}
-
-
-function handleimagesupload($adid, $adtermid, $nextstep, $adpaymethod, $adaction, $adkey) {
-	return awpcp_handle_uploaded_images($ad_id);
-}
-
-
 /**
- * Create thumbnails and resize original image to match image size 
+ * Create thumbnails and resize original image to match image size
  * restrictions.
  */
 function awpcp_create_image_versions($filename, $directory) {
-// function awpcpcreatethumb($filename, $directory, $width, $height) {
 	$directory = trailingslashit($directory);
 	$thumbnails = $directory . 'thumbs/';
 
 	$filepath = $directory . $filename;
+
+	awpcp_fix_image_rotation( $filepath );
 
 	// create thumbnail
 	$width = get_awpcp_option('imgthumbwidth');
@@ -672,6 +552,83 @@ function awpcp_create_image_versions($filename, $directory) {
 	return $resized && $thumbnail && $primary;
 }
 
+/**
+ * @since 3.0.2
+ */
+function awpcp_fix_image_rotation( $filepath ) {
+	$exif_data = @exif_read_data( $filepath );
+
+	$orientation = isset( $exif_data['Orientation'] ) ? $exif_data['Orientation'] : 0;
+	$mime_type = isset( $exif_data['MimeType'] ) ? $exif_data['MimeType'] : '';
+
+	$rotation_angle = 0;
+	if ( 6 == $orientation ) {
+		$rotation_angle = 90;
+	} else if ( 3 == $orientation ) {
+		$rotation_angle = 180;
+	} else if ( 8 == $orientation ) {
+		$rotation_angle = 270;
+	}
+
+	if ( $rotation_angle > 0 ) {
+		awpcp_rotate_image( $filepath, $mime_type, $rotation_angle );
+	}
+}
+
+
+/**
+ * @since 3.0.2
+ */
+function awpcp_rotate_image( $file, $mime_type, $angle ) {
+	if ( class_exists( 'Imagick' ) ) {
+		awpcp_rotate_image_with_imagick( $file, $angle );
+	} else {
+		awpcp_rotate_image_with_gd( $file, $mime_type, $angle );
+	}
+}
+
+
+/**
+ * @since 3.0.2
+ */
+function awpcp_rotate_image_with_imagick( $filepath, $angle ) {
+	$imagick = new Imagick();
+	$imagick->readImage( $filepath );
+	$imagick->rotateImage( new ImagickPixel(), $angle );
+	$imagick->setImageOrientation( 1 );
+	$imagick->writeImage( $filepath );
+	$imagick->clear();
+	$imagick->destroy();
+}
+
+
+/**
+ * @since 3.0.2
+ */
+function awpcp_rotate_image_with_gd( $filepath, $mime_type, $angle ) {
+    // GD needs negative degrees
+    $angle = -$angle;
+
+    switch ( $mime_type ) {
+    	case 'image/jpeg':
+    		$source = imagecreatefromjpeg( $filepath );
+    		$rotate = imagerotate( $source, $angle, 0 );
+    		imagejpeg( $rotate, $filepath );
+    		break;
+    	case 'image/png':
+    		$source = imagecreatefrompng( $filepath );
+    		$rotate = imagerotate( $source, $angle, 0 );
+    		imagepng( $rotate, $filepath );
+    		break;
+    	case 'image/gif':
+    		$source = imagecreatefromgif( $filepath );
+    		$rotate = imagerotate( $source, $angle, 0 );
+    		imagegif( $rotate, $filepath );
+    		break;
+    	default:
+    		break;
+    }
+}
 
 function awpcp_make_intermediate_size($file, $directory, $width, $height, $crop=false, $suffix='') {
 	$info = pathinfo($file);
