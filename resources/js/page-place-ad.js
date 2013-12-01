@@ -34,10 +34,12 @@
         self.category = null;
         self.user_terms = null;
 
-        $.subscribe('/category/updated', function(event, category) {
-            if (category) {
-                self.category = category;
-                self.update();
+        $.subscribe('/category/updated', function(event, dropdown, category) {
+            if ($.contains(dropdown.closest('form').get(0), self.table.get(0))) {
+                if (category) {
+                    self.category = category;
+                    self.update();
+                }
             }
         });
 

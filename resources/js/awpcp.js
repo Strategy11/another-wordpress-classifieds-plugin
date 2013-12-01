@@ -204,7 +204,7 @@
         } else {
             self.dropdown.change(function() {
                 var category_id = parseInt(self.dropdown.val(), 10);
-                $.publish('/category/updated' , [isNaN(category_id) ? null : category_id]);
+                $.publish('/category/updated' , [self.dropdown, isNaN(category_id) ? null : category_id]);
             });
         }
     };
@@ -250,7 +250,7 @@
                 self.child = new $.AWPCP.CategoriesDropdownWidget(self.identifier, null, self.dropdown, null);
             }
 
-            $.publish('/category/updated' , [self.category_id]);
+            $.publish('/category/updated' , [self.dropdown, self.category_id]);
             $.publish('/category/updated/' + self.identifier , [self.category_id]);
             $.publish('/category/widget/updated/' + self.identifier, [self.dropdown, self.category_id]);
         },
