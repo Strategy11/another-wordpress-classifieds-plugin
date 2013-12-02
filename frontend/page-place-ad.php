@@ -683,15 +683,6 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             $messages[] = __("Fill out the form below to post your classified Ad.", "AWPCP");
         }
 
-        if ( is_admin() ) {
-            $manage_attachments = __( 'Manage Attachments', 'AWPCP' );
-            $url = add_query_arg( array( 'action' => 'manage-images', 'id' => '64' ), $this->url() );
-            $link = sprintf( '<strong><a href="%s" title="%s">%s</a></strong>', $url, esc_attr( $manage_attachments ), esc_html( $manage_attachments ) );
-            $message = __( "Go to the %s section to manage the Images and Attachments for this Ad.", "AWPCP");
-
-            $messages[] = sprintf( $message, $link );
-        }
-
         if (!empty($errors)) {
             $message = __( "We found errors in the details you submitted. A detailed error message is shown in front or below each invalid field. Please fix the errors and submit the form again.", 'AWPCP' );
             $errors = array_merge(array($message), $errors);

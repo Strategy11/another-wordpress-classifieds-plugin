@@ -19,7 +19,7 @@ class AWPCP_MediaManager {
 
         if ( ! $is_admin_user && ! $ad_belongs_to_user ) {
             $message = _x( "You don't have sufficient permissions to modify that Ad's media", 'media manager', 'AWPCP' );
-            awpcp_flash( $message, 'error' );
+            return $this->page->render( 'content', awpcp_print_error( $message ) );
         }
 
         if ( ! is_null( $media ) && $ad->ad_id != $media->ad_id ) {

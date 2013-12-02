@@ -174,6 +174,15 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
         $hidden = array('edit-hash' => $this->get_edit_hash($ad));
         $required = $this->get_required_fields();
 
+        if ( is_admin() ) {
+            $manage_attachments = __( 'Manage Attachments', 'AWPCP' );
+            $url = add_query_arg( array( 'action' => 'manage-images', 'id' => $ad->ad_id ), $this->url() );
+            $link = sprintf( '<strong><a href="%s" title="%s">%s</a></strong>', $url, esc_attr( $manage_attachments ), esc_html( $manage_attachments ) );
+            $message = __( "Go to the %s section to manage the Images and Attachments for this Ad.", "AWPCP");
+
+            $this->messages[] = sprintf( $message, $link );
+        }
+
         return $this->details_form($form, true, $hidden, $required, $errors);
     }
 
