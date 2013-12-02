@@ -541,7 +541,7 @@ msgid "Ad Categories"
 msgstr "Categorias de Anuncios"
 
 msgid "Ad Category"
-msgstr "<h3>Categoría del Aviso</h3>"
+msgstr "Categoría del Aviso"
 
 msgid "Ad Category field is required"
 msgstr "Una categoría para el anuncio es requerida"
