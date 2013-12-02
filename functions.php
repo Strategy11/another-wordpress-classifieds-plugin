@@ -583,6 +583,7 @@ function awpcp_default_region_fields( $context='details' ) {
     if ( is_array( $fields ) ) return $fields;
 
     $always_shown = in_array( $context, array( 'details', 'search' ) );
+    $_fields = array();
 
     if (get_awpcp_option('displaycountryfield')) {
     	$required = get_awpcp_option( 'displaycountryfieldreqop' );

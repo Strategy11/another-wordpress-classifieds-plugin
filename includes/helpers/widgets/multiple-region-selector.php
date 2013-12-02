@@ -76,14 +76,18 @@ class AWPCP_MultipleRegionSelector {
     }
 
     public function render($context, $translations=array(), $errors=array()) {
+        $fields = $this->get_region_fields( $context );
+
+        if ( empty( $fields ) ) {
+            return '';
+        }
+
         wp_enqueue_script( 'awpcp-multiple-region-selector' );
 
         awpcp()->js->localize( 'multiple-region-selector', array(
             'select-placeholder' => _x( 'Select %s', 'Select <Region Type> in Multiple Region Selector', 'AWPCP' ),
             'duplicated-region' => __( 'This particular region is already selected in another field. Please choose one or more sub-regions, to make the selection more specific, or change the selected region.', 'AWPCP' ),
         ) );
-
-        $fields = $this->get_region_fields( $context );
 
         $regions = array();
         foreach ( $this->regions as $i => $region ) {
