@@ -43,7 +43,7 @@ class AWPCP_Pages {
 		add_shortcode('AWPCPBROWSEADS', array($this->browse_ads, 'dispatch'));
 		add_shortcode('AWPCPBROWSECATS', array($this->browse_categories, 'dispatch'));
 
-        add_shortcode('AWPCPSHOWAD','showad');
+        add_shortcode('AWPCPSHOWAD', array( $this, 'show_ad' ) );
 		add_shortcode('AWPCPCLASSIFIEDSUI', 'awpcpui_homescreen');
 
         add_shortcode('AWPCPLATESTLISTINGS', array($this, 'listings_shortcode'));
@@ -89,6 +89,14 @@ class AWPCP_Pages {
 			$this->renew_ad_page = new AWPCP_RenewAdPage();
 		return is_null($this->renew_ad_page) ? '' : $this->renew_ad_page->dispatch();
 	}
+
+    public function show_ad() {
+        if ( ! isset( $this->output['show-ad'] ) ) {
+            $this->output['show-ad'] = showad();
+        }
+
+        return $this->output['show-ad'];
+    }
 
 	public function search_ads() {
 		if (!isset($this->search_ads_page))
