@@ -1766,6 +1766,9 @@ function awpcp_parse_bool($value) {
 }
 
 
+/**
+ * XXX: Referenced in FAQ: http://awpcp.com/forum/faq/why-doesnt-my-currency-code-change-when-i-set-it/
+ */
 function awpcp_get_currency_symbol() {
 	$dollar = array('CAD', 'AUD', 'NZD', 'SGD', 'HKD', 'USD');
 	$code = get_awpcp_option('displaycurrencycode');
@@ -1788,6 +1791,7 @@ function awpcp_get_currency_symbol() {
 
 	return empty($symbol) ? $code : $symbol;
 }
+
 
 /**
  * @since 3.0

@@ -864,6 +864,7 @@ class AWPCP_Settings_API {
 
 	/**
 	 * Payment Settings checks
+	 * XXX: Referenced in FAQ: http://awpcp.com/forum/faq/why-doesnt-my-currency-code-change-when-i-set-it/
 	 */
 	public function validate_payment_settings($options, $group) {
 		$currency_codes = array('AUD','BRL','CAD','CZK','DKK','EUR',
