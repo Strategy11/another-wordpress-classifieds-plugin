@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: AWPCP\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2013-11-20 21:59:34+00:00\n"
+"POT-Creation-Date: 2013-12-02 16:46:34+00:00\n"
 "PO-Revision-Date: 2013-10-28 19:39-0500\n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: \n"
@@ -1296,9 +1296,6 @@ msgstr ""
 msgid "Could not save the information to the database for %s in row %d"
 msgstr ""
 
-msgid "Could not save the information to the database for: %s"
-msgstr ""
-
 msgid ""
 "Could not validate User Access Token. Are you connected to the internet?"
 msgstr ""
@@ -1700,12 +1697,7 @@ msgid ""
 "activated)."
 msgstr ""
 
-msgid "Email sent on:"
-msgstr ""
-
-msgid ""
-"Email sent on: %s\n"
-"\n"
+msgid "Email sent %s."
 msgstr ""
 
 msgid ""
@@ -2378,6 +2370,9 @@ msgstr ""
 msgid "Imported rows:"
 msgstr ""
 
+msgid "Include Ad access key in email messages"
+msgstr ""
+
 msgid ""
 "Include Ad access key in email notifications. You may want to uncheck this "
 "option if you are using the Ad Management panel, but is not necessary."
@@ -2966,15 +2961,7 @@ msgctxt "upload files"
 msgid "No files were uploaded"
 msgstr ""
 
-msgid "No image files were uploaded"
-msgstr ""
-
 msgid "No items found."
-msgstr ""
-
-msgid ""
-"No more images can be added to this Ad. The Ad already have %d of %d images "
-"allowed."
 msgstr ""
 
 msgctxt "awpcp latest news"
@@ -4607,9 +4594,6 @@ msgstr ""
 msgid "The Ad doesn't exists."
 msgstr ""
 
-msgid "The Ad doesn't exists. All uploaded files were rejected."
-msgstr ""
-
 msgid "The Ad has been deleted"
 msgstr ""
 
@@ -5686,6 +5670,9 @@ msgstr ""
 msgid "Use multiple dropdowns to choose categories"
 msgstr ""
 
+msgid "Use sender email for reply messages"
+msgstr ""
+
 msgctxt "upload files step"
 msgid ""
 "Use the check icons in front of each upload field to mark an uploaded image "
@@ -6041,10 +6028,6 @@ msgctxt "upload files"
 msgid ""
 "You can't add more files to this Ad. There are not remaining attachment "
 "slots."
-msgstr ""
-
-msgid ""
-"You can't add more images to this Ad. There are not remaining images slots."
 msgstr ""
 
 msgctxt "upload files"
