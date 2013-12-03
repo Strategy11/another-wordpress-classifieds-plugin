@@ -1,6 +1,6 @@
 <p class="awpcp-form-spacer">
-    <label for="ad-user-id"><?php _e('User', 'AWPCP') ?>*</label>
-    <select id="ad-user-id" name="user" class="required">
+    <label for="ad-user-id"><?php _e('User', 'AWPCP') ?><span class="required">*</span></label>
+    <select id="ad-user-id" name="user" class="awpcp-users-dropdown awpcp-dropdown required">
         <option value=""><?php _e('Select an User owner for this Ad', 'AWPCP') ?></option>
 
         <?php foreach ($users as $k => $user): ?>

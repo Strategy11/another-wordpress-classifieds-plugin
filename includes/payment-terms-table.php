@@ -33,7 +33,7 @@ class AWPCP_PaymentTermsTable {
             'name' => _x('Payment Term', 'place ad payment terms column headers', 'AWPCP'),
             'ads' => _x('Ads Allowed', 'place ad payment terms column headers', 'AWPCP'),
             'images' => _x('Images Allowed', 'place ad payment terms column headers', 'AWPCP'),
-            'title_characters' => _x( 'Characters Allowed in Title', 'place ad payment terms column headers', 'AWPCP'),
+            'title_characters' => _x( 'Characters in Title', 'place ad payment terms column headers', 'AWPCP'),
             'characters' => _x('Characters in Description', 'place ad payment terms column headers', 'AWPCP'),
             'duration' => _x('Duration', 'place ad payment terms column headers', 'AWPCP'),
         );
