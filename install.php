@@ -188,7 +188,7 @@ class AWPCP_Installer {
 
         // if table exists, this is an upgrade
         $table = $wpdb->get_var("SHOW TABLES LIKE '" . AWPCP_TABLE_CATEGORIES . "'");
-        if (strcmp($table, AWPCP_TABLE_CATEGORIES) === 0) {
+        if ( strcasecmp( $table, AWPCP_TABLE_CATEGORIES ) === 0 ) {
             return $this->upgrade($version, $awpcp_db_version);
         }
 
