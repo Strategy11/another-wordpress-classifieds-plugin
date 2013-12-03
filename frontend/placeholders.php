@@ -302,9 +302,12 @@ function awpcp_do_placeholder_details($ad, $placeholder) {
  * @since 3.0
  */
 function awpcp_do_placeholder_excerpt($ad, $placeholder) {
+    $word_count = get_awpcp_option( 'words-in-listing-excerpt' );
     $details = stripslashes_deep($ad->ad_details);
-    $replacements['addetailssummary'] = wp_trim_words($details, 20, '');
-    $replacements['excerpt'] = wp_trim_words($details, 20);
+
+    $replacements['addetailssummary'] = wp_trim_words( $details, $word_count, '' );
+    $replacements['excerpt'] = wp_trim_words( $details, $word_count );
+
     return $replacements[$placeholder];
 }
 

@@ -202,6 +202,7 @@ class AWPCP_Settings_API {
 		$this->add_setting( $key, 'htmlstatustext', __( 'Display this text above ad detail text input box on ad post page', 'AWPCP' ), 'textarea', __( 'No HTML Allowed', 'AWPCP' ), '');
 		$this->add_setting( $key, 'characters-allowed-in-title', __( 'Maximun Ad title length', 'AWPCP' ), 'textfield', 100, __( 'Number of characters allowed in Ad title.', 'AWPCP' ) );
 		$this->add_setting( $key, 'maxcharactersallowed', __( 'Maximun Ad details length', 'AWPCP' ), 'textfield', 750, __( 'Number of characters allowed in Ad details.', 'AWPCP' ) );
+		$this->add_setting( $key, 'words-in-listing-excerpt', __( 'Number of words in Ad excerpt', 'AWPCP' ), 'textfield', 20, __( 'Number of words shown by the Ad excerpt placeholder.', 'AWPCP' ) );
 		$this->add_setting( $key, 'hidelistingcontactname', __( 'Hide contact name to anonymous users?', 'AWPCP' ), 'checkbox', 0, __( 'Hide listing contact name to anonymous (non logged in) users.', 'AWPCP' ) );
 		$this->add_setting( $key, 'displayadlayoutcode', __( 'Ad Listings page layout', 'AWPCP' ),
 							'textarea', '
