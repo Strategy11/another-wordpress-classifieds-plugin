@@ -150,16 +150,12 @@ function showad( $adid=null, $omitmenu=false, $preview=false, $send_email=true, 
 				$is_ad_owner = false;
 			}
 
-			if ($omitmenu) {
-				$output = '<div id="classiwrapper">%s</div><!--close classiwrapper-->';
-			} else {
-				$output = '<div id="classiwrapper">%s%%s</div><!--close classiwrapper-->';
-				$output = sprintf($output, awpcp_menu_items());
-			}
+			$output = '<div id="classiwrapper">%s<!--awpcp-single-ad-layout--></div><!--close classiwrapper-->';
+			$output = sprintf( $output, $omitmenu ? '' : awpcp_menu_items() );
 
 			if (!$isadmin && !$is_ad_owner && !$preview && $ad->disabled == 1) {
 				$message = __('The Ad you are trying to view is pending approval. Once the Administrator approves it, it will be active and visible.', 'AWPCP');
-				return sprintf($output, awpcp_print_error($message));
+				return str_replace( '<!--awpcp-single-ad-layout-->', awpcp_print_error( $message ), $output );
 			}
 
 			if ( awpcp_request_param('verified') && $ad->verified ) {
@@ -185,7 +181,7 @@ function showad( $adid=null, $omitmenu=false, $preview=false, $send_email=true, 
 
 			$layout = awpcp_do_placeholders( $ad, $layout, 'single' );
 
-			$output = sprintf($output, join('', $messages) . $layout);
+			$output = str_replace( '<!--awpcp-single-ad-layout-->', join('', $messages) . $layout, $output );
 			$output = apply_filters('awpcp-show-ad', $output, $adid);
 
 			$ad->visit();
