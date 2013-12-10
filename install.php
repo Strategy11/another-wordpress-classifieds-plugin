@@ -305,15 +305,18 @@ class AWPCP_Installer {
         }
 
         // Drop the tables
-        $wpdb->query("DROP TABLE IF EXISTS " . AWPCP_TABLE_CATEGORIES);
-        $wpdb->query("DROP TABLE IF EXISTS " . AWPCP_TABLE_ADFEES);
-        $wpdb->query("DROP TABLE IF EXISTS " . AWPCP_TABLE_CREDIT_PLANS);
-        $wpdb->query("DROP TABLE IF EXISTS " . AWPCP_TABLE_PAYMENTS);
-        $wpdb->query("DROP TABLE IF EXISTS " . AWPCP_TABLE_ADS);
-        $wpdb->query("DROP TABLE IF EXISTS " . AWPCP_TABLE_ADSETTINGS);
-        $wpdb->query("DROP TABLE IF EXISTS " . AWPCP_TABLE_ADPHOTOS);
-        $wpdb->query("DROP TABLE IF EXISTS " . AWPCP_TABLE_PAGENAME);
-        $wpdb->query("DROP TABLE IF EXISTS " . AWPCP_TABLE_PAGES);
+        $wpdb->query( "DROP TABLE IF EXISTS " . AWPCP_TABLE_ADFEES );
+        $wpdb->query( "DROP TABLE IF EXISTS " . AWPCP_TABLE_ADPHOTOS );
+        $wpdb->query( "DROP TABLE IF EXISTS " . AWPCP_TABLE_ADS );
+        $wpdb->query( "DROP TABLE IF EXISTS " . AWPCP_TABLE_ADSETTINGS );
+        $wpdb->query( "DROP TABLE IF EXISTS " . AWPCP_TABLE_AD_META );
+        $wpdb->query( "DROP TABLE IF EXISTS " . AWPCP_TABLE_AD_REGIONS );
+        $wpdb->query( "DROP TABLE IF EXISTS " . AWPCP_TABLE_CATEGORIES );
+        $wpdb->query( "DROP TABLE IF EXISTS " . AWPCP_TABLE_CREDIT_PLANS );
+        $wpdb->query( "DROP TABLE IF EXISTS " . AWPCP_TABLE_MEDIA );
+        $wpdb->query( "DROP TABLE IF EXISTS " . AWPCP_TABLE_PAGES );
+        $wpdb->query( "DROP TABLE IF EXISTS " . AWPCP_TABLE_PAGENAME );
+        $wpdb->query( "DROP TABLE IF EXISTS " . AWPCP_TABLE_PAYMENTS );
 
         // TODO: implement uninstall methods in other modules
         $tables = array($wpdb->prefix . 'awpcp_comments');
