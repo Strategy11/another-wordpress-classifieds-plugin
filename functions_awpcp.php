@@ -180,7 +180,7 @@ function awpcp_check_spam($name, $website, $email, $details) {
 			$content['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
 			$content['referrer'] = get_option('home'); // use site home page instead of $_SERVER['HTTP_REFERER']; seems to work better
 			$content['blog'] = get_option('home');
-			
+
 			//if (empty($content['referrer'])) {
 			//	$content['referrer'] = get_permalink();
 			//}
@@ -194,10 +194,6 @@ function awpcp_check_spam($name, $website, $email, $details) {
 			}
 
 			$response = akismet_http_post($queryString, $akismet_api_host, '/1.1/comment-check', $akismet_api_port);
-			_log("Spam check, Akismet said: ");
-			foreach ($response as $key => $value) {
-				_log($key." - ".$value."");
-			}
 
 			if ($response[1] == 'true') {
 				//update_option('akismet_spam_count', get_option('akismet_spam_count') + 1);
@@ -222,7 +218,7 @@ function awpcp_check_spam($name, $website, $email, $details) {
 	    $isSpam = wp_blacklist_check($name, $email, $website, $details, preg_replace( '/[^0-9., ]/', '', awpcp_getip() ), $_SERVER['HTTP_USER_AGENT']);
 
 	_log("Ad spam check final answer: " . $isSpam);
-	
+
 	return $isSpam;
 }
 
