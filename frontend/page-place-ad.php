@@ -1313,8 +1313,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         }
 
         if (!$transaction->is_completed()) {
-            // TODO: uncomment me!
-            // awpcp_payments_api()->set_transaction_status_to_completed( $transaction, $errors );
+            awpcp_payments_api()->set_transaction_status_to_completed( $transaction, $errors );
 
             if (!empty($errors)) {
                 return $this->render('content', join(',', array_map('awpcp_print_error', $errors)));
