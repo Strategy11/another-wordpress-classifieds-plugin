@@ -577,56 +577,58 @@ function awpcp_region_fields( $context='details' ) {
 /**
  * @since 3.0.2
  */
-function awpcp_default_region_fields( $context='details' ) {
-    static $fields = null;
-
-    if ( is_array( $fields ) ) return $fields;
+function awpcp_default_region_fields( $context='details', $cache=true ) {
+    $show_country_field = get_awpcp_option( 'displaycountryfield' );
+    $show_state_field = get_awpcp_option( 'displaystatefield' );
+    $show_city_field = get_awpcp_option( 'displaystatefield' );
+    $show_county_field = get_awpcp_option( 'displaycountyvillagefield' );
+    $show_city_field_before_county_field = get_awpcp_option( 'show-city-field-before-county-field' );
 
     $always_shown = in_array( $context, array( 'details', 'search' ) );
     $_fields = array();
 
-    if (get_awpcp_option('displaycountryfield')) {
-    	$required = get_awpcp_option( 'displaycountryfieldreqop' );
+    if ( $show_country_field ) {
+    	$required = (bool) get_awpcp_option( 'displaycountryfieldreqop' );
         $_fields['country'] = array(
             'type' => 'country',
             'label' => __('Country', 'AWPCP') . ( $required ? '*' : '' ),
             'help' => __('separate countries by commas', 'AWPCP'),
-            'required' => (bool) get_awpcp_option( 'displaycountryfieldreqop', false ),
+            'required' => $required,
             'alwaysShown' => $always_shown,
         );
     }
-    if (get_awpcp_option('displaystatefield')) {
-    	$required = get_awpcp_option( 'displaystatefieldreqop' );
+    if ( $show_state_field ) {
+    	$required = (bool) get_awpcp_option( 'displaystatefieldreqop' );
         $_fields['state'] = array(
             'type' => 'state',
             'label' => __('State/Province', 'AWPCP') . ( $required ? '*' : '' ),
             'help' => __('separate states by commas', 'AWPCP'),
-            'required' => (bool) get_awpcp_option( 'displaystatefieldreqop', false ),
+            'required' => $required,
             'alwaysShown' => $always_shown,
         );
     }
-    if (get_awpcp_option('displaycityfield')) {
-    	$required = get_awpcp_option( 'displaycityfieldreqop' );
+    if ( $show_city_field ) {
+    	$required = (bool) get_awpcp_option( 'displaycityfieldreqop' );
         $_fields['city'] = array(
             'type' => 'city',
             'label' => __('City', 'AWPCP') . ( $required ? '*' : '' ),
             'help' => __('separate cities by commas', 'AWPCP'),
-            'required' => (bool) get_awpcp_option( 'displaycityfieldreqop', false ),
+            'required' => $required,
             'alwaysShown' => $always_shown,
         );
     }
-    if (get_awpcp_option('displaycountyvillagefield')) {
-    	$required = get_awpcp_option( 'displaycountyvillagefieldreqop' );
+    if ( $show_county_field ) {
+    	$required = (bool) get_awpcp_option( 'displaycountyvillagefieldreqop' );
         $_fields['county'] = array(
             'type' => 'county',
             'label' => __('County/Village/Other', 'AWPCP') . ( $required ? '*' : '' ),
             'help' => __('separate counties by commas', 'AWPCP'),
-            'required' => (bool) get_awpcp_option( 'displaycountyvillagefieldreqop', false ),
+            'required' => $required,
             'alwaysShown' => $always_shown,
         );
     }
 
-    if ( ! get_awpcp_option( 'show-city-field-before-county-field' ) ) {
+    if ( ! $show_city_field_before_county_field ) {
         $fields = array();
         foreach( array( 'country', 'state', 'county', 'city' ) as $field ) {
             if ( isset( $_fields[ $field ] ) ) {
