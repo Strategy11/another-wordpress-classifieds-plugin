@@ -41,7 +41,7 @@
     <p class='awpcp-form-spacer'>
         <label for="name"><?php _e("For Ads Posted By", "AWPCP"); ?></label>
         <select id="name" name="searchname">
-            <option value=""><?php _e("Select Option", "AWPCP"); ?></option>
+            <option value=""><?php _e("All Users", "AWPCP"); ?></option>
             <?php echo create_ad_postedby_list($form['name']); ?>
         </select>
     </p>

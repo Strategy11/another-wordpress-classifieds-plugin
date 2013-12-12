@@ -61,7 +61,7 @@ class AWPCP_Search_Widget extends WP_Widget {
 
         $selected = stripslashes_deep( awpcp_post_param( 'searchname', null ) );
 
-        return $this->select( $options, __('Find ads by Contact Name', "AWPCP"), 'searchname', $selected );
+        return $this->select( $options, __('Find ads by Contact Name', "AWPCP"), 'searchname', $selected, __( 'All Contact Names', 'AWPCP' ) );
     }
 
     /**
@@ -111,13 +111,14 @@ class AWPCP_Search_Widget extends WP_Widget {
 	/**
 	 * @since 3.0
 	 */
-	public function select($options, $label, $name, $selected=null) {
+	public function select($options, $label, $name, $selected=null, $default=null) {
 		$id = 'awpcp-search-' . sanitize_title($label);
+        $default = is_null( $default ) ? __('Select Option', 'AWPCP') : $default;
 
 		$html = sprintf('<label for="%s">%s</label><br>', $id, $label);
 		$html .= sprintf('<select id="%s" name="%s">', $id, $name);
 		if (is_array($options)) {
-			$html .= sprintf('<option value="">%s</option>', __('Select Option', 'AWPCP'));
+			$html .= sprintf( '<option value="">%s</option>', $default );
 			foreach ($options as $value => $option) {
 				$_value = esc_attr($value);
 				if ($value == $selected) {
