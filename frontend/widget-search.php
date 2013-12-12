@@ -167,7 +167,7 @@ class AWPCP_Search_Widget extends WP_Widget {
 			$selected = stripslashes_deep(awpcp_post_param($name, null));
 
 			$dropdown = new AWPCP_CategoriesDropdown();
-			echo $dropdown->render( $selected, $name, $label );
+			echo $dropdown->render( array( 'context' => 'search', 'selected' => $selected, 'name' => $name, 'label' => $label ) );
 		}
 
 		echo '<br/><input class="button" type="submit" value="Search"></form></div>';

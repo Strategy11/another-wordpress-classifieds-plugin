@@ -29,7 +29,12 @@
 
     <p class="awpcp-form-spacer">
         <?php $dropdown = new AWPCP_CategoriesDropdown(); ?>
-        <?php echo $dropdown->render(awpcp_array_data('category', '', $form), 'searchcategory', null, false); ?>
+        <?php echo $dropdown->render( array(
+                'context' => 'search',
+                'selected' => awpcp_array_data('category', '', $form),
+                'name' => 'searchcategory',
+                'required' => false,
+              ) ); ?>
     </p>
 
     <?php if ($ui['posted-by-field']): ?>

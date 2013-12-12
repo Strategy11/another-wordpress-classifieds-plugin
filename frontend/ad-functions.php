@@ -684,11 +684,14 @@ function awpcp_display_ads($where, $byl, $hidepager, $grouporderby, $adorcat, $b
 		}
 
 		if ($ads_exist) {
+			$category_id = (int) awpcp_request_param('category_id', -1);
+			$category_id = $category_id === -1 ? (int) get_query_var('cid') : $category_id;
+
 			$output .= "<div class=\"changecategoryselect\"><form method=\"post\" action=\"$url_browsecatselect\">";
 
 			$output .= '<div class="awpcp-category-dropdown-container">';
 			$dropdown = new AWPCP_CategoriesDropdown();
-			$output .= $dropdown->render( null, 'category_id' );
+			$output .= $dropdown->render( array( 'context' => 'search', 'name' => 'category_id', 'selected' => $category_id ) );
 			$output .= '</div>';
 
 			$output .= "<input type=\"hidden\" name=\"a\" value=\"browsecat\" />&nbsp;<input class=\"button\" type=\"submit\" value=\"";
@@ -699,8 +702,6 @@ function awpcp_display_ads($where, $byl, $hidepager, $grouporderby, $adorcat, $b
 
 			$output .= "<div id='awpcpcatname' class=\"fixfloat\">";
 
-			$category_id = (int) awpcp_request_param('category_id', -1);
-			$category_id = $category_id === -1 ? (int) get_query_var('cid') : $category_id;
 			if ($category_id > 0) {
 				$output .= "<h3>" . __("Category: ", "AWPCP") . get_adcatname($category_id) . "</h3>";
 			}

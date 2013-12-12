@@ -87,7 +87,7 @@
         <?php if ($ui['category-field']): ?>
         <p class="awpcp-form-spacer">
             <?php $dropdown = new AWPCP_CategoriesDropdown(); ?>
-            <?php echo $dropdown->render( awpcp_array_data( 'ad_category', '', $form ), 'ad_category' ); ?>
+            <?php echo $dropdown->render( array( 'selected' => awpcp_array_data( 'ad_category', '', $form ), 'name' => 'ad_category' ) ); ?>
             <?php echo awpcp_form_error( 'ad_category', $errors ); ?>
         </p>
         <?php endif ?>

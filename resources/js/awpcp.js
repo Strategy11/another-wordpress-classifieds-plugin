@@ -220,6 +220,7 @@
         self.child = null;  // child dropdown
 
         if (!dropdown && parent) {
+            self.default_option = self.parent.attr('next-default-option');
             self.dropdown = $('<select class="awpcp-category-dropdown">').insertAfter(parent).hide();
         } else if (dropdown) {
             self.dropdown = dropdown;
@@ -268,7 +269,7 @@
             }
 
             self.dropdown.empty()
-                         .append($('<option value="">' + $.AWPCP.l10n('categories-dropdown', 'no-category') + '</option>'));
+                         .append($('<option value="">' + self.default_option + '</option>'));
 
             length = children.length;
             for (var i = 0; i < length; i = i + 1) {
