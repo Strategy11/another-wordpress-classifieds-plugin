@@ -800,7 +800,7 @@ class AWPCP {
 		}
 
 		$unique_transaction_id = $transaction->id;
-		$referrer = $_COOKIE['ap_id'];
+		$referrer = isset( $_COOKIE['ap_id'] ) ? $_COOKIE['ap_id'] : null;
 		$email = '';
 
 		if ( $transaction->get( 'ad_id' ) ) {
