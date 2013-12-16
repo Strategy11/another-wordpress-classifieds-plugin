@@ -580,7 +580,7 @@ function awpcp_region_fields( $context='details' ) {
 function awpcp_default_region_fields( $context='details', $cache=true ) {
     $show_country_field = get_awpcp_option( 'displaycountryfield' );
     $show_state_field = get_awpcp_option( 'displaystatefield' );
-    $show_city_field = get_awpcp_option( 'displaystatefield' );
+    $show_city_field = get_awpcp_option( 'displaycityfield' );
     $show_county_field = get_awpcp_option( 'displaycountyvillagefield' );
     $show_city_field_before_county_field = get_awpcp_option( 'show-city-field-before-county-field' );
 
