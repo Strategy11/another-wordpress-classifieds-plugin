@@ -39,7 +39,7 @@ abstract class AWPCP_PaymentGateway {
         $data['email'] = awpcp_post_param('email');
 
         $data['direct-payment-step'] = awpcp_post_param('direct-payment-step');
-        $data['awpcp-txn'] = awpcp_post_param('awpcp-txn');
+        $data['transaction_id'] = awpcp_post_param('transaction_id');
         $data['step'] = awpcp_post_param('step');
 
         return $this->sanitize_billing_information($data);

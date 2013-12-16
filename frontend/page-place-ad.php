@@ -26,7 +26,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         // Those URL paramters are necessary only to *arrive* to the Payment
         // Completed step page for the first time. The same parameters are
         // then passed in the POST requests.
-        return remove_query_arg(array('step', 'awpcp-txn'), $url);
+        return remove_query_arg(array('step', 'transaction_id'), $url);
     }
 
     public function transaction_error() {
@@ -37,7 +37,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         if (!isset($this->transaction))
             $this->transaction = null;
 
-        $id = awpcp_request_param('awpcp-txn');
+        $id = awpcp_request_param('transaction_id');
 
         if (is_null($this->transaction) && $create)
             $this->transaction = AWPCP_Payment_Transaction::find_or_create($id);
@@ -655,7 +655,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
                 $data['ad_payment_term'] = "{$payment_term_type}-{$payment_term_id}";
             }
 
-            $data['awpcp-txn'] = $transaction->id;
+            $data['transaction_id'] = $transaction->id;
         }
 
         // parse the value provided by the user and convert it to a float value
@@ -722,8 +722,8 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $hidden['preview-hash'] = awpcp_post_param( 'preview-hash', false );
         $preview = strlen( $hidden['preview-hash'] ) > 0;
 
-        if ( isset( $form['awpcp-txn'] ) ) {
-            $hidden['awpcp-txn'] = $form['awpcp-txn'];
+        if ( isset( $form['transaction_id'] ) ) {
+            $hidden['transaction_id'] = $form['transaction_id'];
         }
 
         $page = $this;
@@ -1139,7 +1139,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         // we are still here... let's show the upload images form
 
         $params = array_merge( $params, array(
-            'hidden' => array( 'awpcp-txn' => $transaction->id ),
+            'hidden' => array( 'transaction_id' => $transaction->id ),
             'errors' => $errors,
         ) );
 
@@ -1281,7 +1281,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
                 'messages' => $this->messages,
                 'hidden' => array(
                     'preview-hash' => $this->get_preview_hash( $ad ),
-                    'awpcp-txn' => $transaction->id,
+                    'transaction_id' => $transaction->id,
                 ),
                 'ui' => array(
                     'manage-images' => $manage_images,
@@ -1329,7 +1329,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             'edit' => false,
             'ad' => $ad,
             'messages' => array_merge( $messages, awpcp_listings_api()->get_ad_alerts( $ad ) ),
-            'awpcp-txn' => $transaction->id
+            'transaction_id' => $transaction->id
         );
 
         $template = AWPCP_DIR . '/frontend/templates/page-place-ad-finish-step.tpl.php';

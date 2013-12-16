@@ -24,7 +24,7 @@ class AWPCP_UserAccount extends AWPCP_AdminPage {
     }
 
     public function get_transaction() {
-        $id = awpcp_request_param('awpcp-txn');
+        $id = awpcp_request_param('transaction_id');
 
         if (!isset($this->transaction))
             $this->transaction = AWPCP_Payment_Transaction::find_or_create($id);
@@ -95,7 +95,7 @@ class AWPCP_UserAccount extends AWPCP_AdminPage {
     public function summary() {
         $payments = awpcp_payments_api();
 
-        $action = remove_query_arg(array('step', 'awpcp-txn'), $this->url());
+        $action = remove_query_arg(array('step', 'transaction_id'), $this->url());
 
         $params = array(
             'action' => $action,

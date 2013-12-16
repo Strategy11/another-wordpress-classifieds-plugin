@@ -20,7 +20,7 @@
 
     <p class="form-submit">
         <input class="button" type="submit" value="<?php _e('Continue', 'AWPCP') ?>" id="submit" name="submit">
-        <input type="hidden" value="<?php echo esc_attr($transaction->id) ?>" name="awpcp-txn">
+        <input type="hidden" value="<?php echo esc_attr( $transaction->id ); ?>" name="transaction_id">
         <input type="hidden" value="<?php echo $attempts + 1 ?>" name="attempts">
         <input type="hidden" value="order" name="step">
     </p>

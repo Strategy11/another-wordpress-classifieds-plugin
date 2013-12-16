@@ -336,7 +336,7 @@ class AWPCP_PaymentsAPI {
     }
 
     public function process_payment_request($action) {
-        $transaction = AWPCP_Payment_Transaction::find_by_id(get_query_var('awpcp-txn'));
+        $transaction = AWPCP_Payment_Transaction::find_by_id( get_query_var( 'transaction_id' ) );
 
         if (is_null($transaction)) {
             $messages[] = __('The specified payment transaction doesn\'t exists. We can\'t process your payment.', 'AWPCP');
@@ -391,7 +391,7 @@ class AWPCP_PaymentsAPI {
         if ($redirect) {
             $url = $transaction->get('redirect', $transaction->get('success-redirect'));
             $url = add_query_arg('step', 'payment-completed', $url);
-            $url = add_query_arg('awpcp-txn', $transaction->id, $url);
+            $url = add_query_arg('transaction_id', $transaction->id, $url);
             wp_redirect($url);
         }
 
@@ -399,7 +399,7 @@ class AWPCP_PaymentsAPI {
     }
 
     public function process_payment() {
-        if (!($id = awpcp_post_param('awpcp-txn', false))) return;
+        if ( ! ( $id = awpcp_post_param( 'transaction_id', false ) ) ) return;
 
         $transaction = AWPCP_Payment_Transaction::find_by_id($id);
 
