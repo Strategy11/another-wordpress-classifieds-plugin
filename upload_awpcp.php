@@ -556,6 +556,10 @@ function awpcp_create_image_versions($filename, $directory) {
  * @since 3.0.2
  */
 function awpcp_fix_image_rotation( $filepath ) {
+	if ( ! function_exists( 'exif_read_data' ) ) {
+		return;
+	}
+
 	$exif_data = @exif_read_data( $filepath );
 
 	$orientation = isset( $exif_data['Orientation'] ) ? $exif_data['Orientation'] : 0;
