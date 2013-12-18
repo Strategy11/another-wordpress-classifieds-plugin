@@ -662,8 +662,9 @@ function awpcp_regions_search_conditions($regions=array()) {
 		}
 
 		foreach ( $fields as $column ) {
-			if ( isset( $region[ $column ] ) && ! empty( $region[ $column ] ) ) {
-				$conditions[] = sprintf( "{$column} LIKE '%%%s%%'", esc_sql( $region[ $column ] ) );
+			$value = isset( $region[ $column ] ) ? trim( $region[ $column ] ) : '';
+			if ( ! empty( $value ) ) {
+				$conditions[] = sprintf( "{$column} LIKE '%%%s%%'", esc_sql( trim( $value ) ) );
 				break;
 			}
 		}
