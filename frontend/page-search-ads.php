@@ -66,6 +66,7 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
             'regions' => awpcp_request_param('regions'),
         );
 
+        $data = stripslashes_deep( $data );
         $data = apply_filters( 'awpcp-get-posted-data', $data, 'search' );
 
         return $data;
@@ -136,7 +137,7 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
 
         if (!empty($form['query'])) {
             $sql = 'MATCH (ad_title, ad_details) AGAINST (%s IN BOOLEAN MODE)';
-            $conditions[] = $wpdb->prepare($sql, $form['query']);
+            $conditions[] = $wpdb->prepare( $sql, $form['query'] );
         }
 
         if (!empty($form['name'])) {
