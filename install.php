@@ -58,6 +58,7 @@ class AWPCP_Installer {
             `ad_transaction_id` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
             `payment_gateway` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
             `payment_status` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
+            `payer_email` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
             `is_featured_ad` TINYINT(1) DEFAULT NULL,
             `posterip` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
             `user_id` INT(10) DEFAULT NULL,
@@ -1037,6 +1038,16 @@ class AWPCP_Installer {
         if ( ! $this->column_exists( AWPCP_TABLE_ADS, 'verified_at' ) ) {
             $wpdb->query( "ALTER TABLE " . AWPCP_TABLE_ADS . " ADD `verified_at` DATETIME" );
         }
+
+        // add payer email column
+        if ( ! $this->column_exists( AWPCP_TABLE_ADS, 'payer_email' ) ) {
+            $wpdb->query( "ALTER TABLE " . AWPCP_TABLE_ADS . " ADD `payer_email` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' AFTER `payment_status`" );
+        }
+
+        if ( $this->column_exists( AWPCP_TABLE_ADS, 'payer_email' ) ) {
+            $wpdb->query( "UPDATE " . AWPCP_TABLE_ADS . " SET payer_email = ad_contact_email" );
+        }
+
 
         update_option( 'awpcp-pending-manual-upgrade', true );
     }
