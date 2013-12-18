@@ -585,10 +585,11 @@ function awpcp_default_region_fields( $context='details', $cache=true ) {
     $show_city_field_before_county_field = get_awpcp_option( 'show-city-field-before-county-field' );
 
     $always_shown = in_array( $context, array( 'details', 'search' ) );
+    $can_be_required = $context !== 'search';
     $_fields = array();
 
     if ( $show_country_field ) {
-    	$required = (bool) get_awpcp_option( 'displaycountryfieldreqop' );
+    	$required = $can_be_required && ( (bool) get_awpcp_option( 'displaycountryfieldreqop' ) );
         $_fields['country'] = array(
             'type' => 'country',
             'label' => __('Country', 'AWPCP') . ( $required ? '*' : '' ),
@@ -598,7 +599,7 @@ function awpcp_default_region_fields( $context='details', $cache=true ) {
         );
     }
     if ( $show_state_field ) {
-    	$required = (bool) get_awpcp_option( 'displaystatefieldreqop' );
+    	$required = $can_be_required && ( (bool) get_awpcp_option( 'displaystatefieldreqop' ) );
         $_fields['state'] = array(
             'type' => 'state',
             'label' => __('State/Province', 'AWPCP') . ( $required ? '*' : '' ),
@@ -608,7 +609,7 @@ function awpcp_default_region_fields( $context='details', $cache=true ) {
         );
     }
     if ( $show_city_field ) {
-    	$required = (bool) get_awpcp_option( 'displaycityfieldreqop' );
+    	$required = $can_be_required && ( (bool) get_awpcp_option( 'displaycityfieldreqop' ) );
         $_fields['city'] = array(
             'type' => 'city',
             'label' => __('City', 'AWPCP') . ( $required ? '*' : '' ),
@@ -618,7 +619,7 @@ function awpcp_default_region_fields( $context='details', $cache=true ) {
         );
     }
     if ( $show_county_field ) {
-    	$required = (bool) get_awpcp_option( 'displaycountyvillagefieldreqop' );
+    	$required = $can_be_required && ( (bool) get_awpcp_option( 'displaycountyvillagefieldreqop' ) );
         $_fields['county'] = array(
             'type' => 'county',
             'label' => __('County/Village/Other', 'AWPCP') . ( $required ? '*' : '' ),
