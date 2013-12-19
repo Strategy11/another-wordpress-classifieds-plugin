@@ -136,8 +136,9 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
         $conditions = array('disabled = 0');
 
         if (!empty($form['query'])) {
-            $sql = 'MATCH (ad_title, ad_details) AGAINST (%s IN BOOLEAN MODE)';
-            $conditions[] = $wpdb->prepare( $sql, $form['query'] );
+            // $sql = 'MATCH (ad_title, ad_details) AGAINST (%s IN BOOLEAN MODE)';
+            // $conditions[] = $wpdb->prepare( $sql, $form['query'] );
+            $conditions[] = sprintf( "ad_title LIKE '%%%s%%' OR ad_details LIKE '%%%s%%'", $form['query'], $form['query'] );
         }
 
         if (!empty($form['name'])) {
