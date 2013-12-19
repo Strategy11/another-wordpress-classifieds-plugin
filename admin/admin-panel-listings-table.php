@@ -29,41 +29,12 @@ class AWPCP_Listings_Table extends WP_List_Table {
             $conditions[] = sprintf('user_id = %d', wp_get_current_user()->ID);
         }
 
-        if (!empty($params['s'])) {
-            switch ($params['search-by']) {
-                case 'id':
-                    $conditions[] = sprintf('ad_id = %d', (int) $params['s']);
-                    break;
-
-                case 'keyword':
-                    $conditions[] = sprintf('MATCH (ad_title, ad_details) AGAINST ("%s")', $params['s']);
-                    break;
-
-                case 'location':
-                    $conditions[] = sprintf('( ad_city=\'%1$s\' OR ad_state=\'%1$s\' OR ad_country=\'%1$s\' OR ad_county_village=\'%1$s\' )', $params['s']);
-                    break;
-
-                case 'user':
-                    global $wpdb;
-
-                    $sql = "SELECT DISTINCT ID FROM wp_users ";
-                    $sql.= "LEFT JOIN wp_usermeta ON (ID = user_id) ";
-                    $sql.= 'WHERE (user_login LIKE \'%%%1$s%%\') OR ';
-                    $sql.= '(meta_key = \'last_name\' AND meta_value LIKE \'%%%1$s%%\') ';
-                    $sql.= 'OR (meta_key = \'first_name\' AND meta_value LIKE \'%%%1$s%%\')';
-
-                    $users = $wpdb->get_col($wpdb->prepare($sql, $params['s']));
-
-                    if (!empty($users))
-                        $conditions[] = 'user_id IN (' . join(',', $users) . ')';
-
-                    break;
-
-                case 'title':
-                default:
-                    $conditions[] = sprintf('ad_title LIKE \'%%%s%%\'', $params['s']);
-                    break;
-            }
+        try {
+            $search_by_conditions_parser = awpcp_listings_table_search_by_condition_parser();
+            $search_by_condition = $search_by_conditions_parser->parse( $params['search-by'], $params['s']);
+            $conditions[] = $search_by_condition;
+        } catch (Exception $e) {
+            // TODO: ignore?
         }
 
         $show_unpaid = false;
@@ -277,13 +248,16 @@ class AWPCP_Listings_Table extends WP_List_Table {
         $id = 'search-by';
         $label = __('Search by', 'AWPCP');
 
-        $options = array(
-            // 'id' => __('Ad ID', 'AWPCP'),
-            'title' => __('Ad Title', 'AWPCP'),
-            'keyword' => __('Keyword', 'AWPCP'),
-            'location' => __('Location', 'AWPCP'),
-            'user' => __('User', 'AWPCP')
-        );
+        $options['id'] = __('Ad ID', 'AWPCP');
+        $options['title'] = __('Ad Title', 'AWPCP');
+        $options['keyword'] = __('Keyword', 'AWPCP');
+        $options['location'] = __('Location', 'AWPCP');
+
+        if ( awpcp_current_user_is_admin() ) {
+            $options['payer-email'] = __('Payer Email', 'AWPCP');
+        }
+
+        $options['user'] = __('User', 'AWPCP');
 
         $search_by = awpcp_request_param('search-by', 'title');
 

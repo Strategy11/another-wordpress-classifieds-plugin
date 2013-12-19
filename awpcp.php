@@ -141,6 +141,13 @@ require_once(AWPCP_DIR . "/includes/models/category.php");
 require_once(AWPCP_DIR . "/includes/models/image.php");
 require_once(AWPCP_DIR . "/includes/models/payment-transaction.php");
 
+require_once( AWPCP_DIR . "/includes/admin/listings/class-listings-table-search-by-id-condition.php" );
+require_once( AWPCP_DIR . "/includes/admin/listings/class-listings-table-search-by-keyword-condition.php" );
+require_once( AWPCP_DIR . "/includes/admin/listings/class-listings-table-search-by-location-condition.php" );
+require_once( AWPCP_DIR . "/includes/admin/listings/class-listings-table-search-by-payer-email-condition.php" );
+require_once( AWPCP_DIR . "/includes/admin/listings/class-listings-table-search-by-title-condition.php" );
+require_once( AWPCP_DIR . "/includes/admin/listings/class-listings-table-search-by-user-condition.php" );
+require_once( AWPCP_DIR . "/includes/admin/listings/class-listings-table-search-conditions-parser.php" );
 require_once( AWPCP_DIR . "/includes/class-awpcp-listings-api.php" );
 require_once( AWPCP_DIR . "/includes/class-media-api.php" );
 require_once(AWPCP_DIR . "/includes/payments-api.php");
