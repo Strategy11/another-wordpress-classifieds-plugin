@@ -148,6 +148,7 @@ require_once( AWPCP_DIR . "/includes/admin/listings/class-listings-table-search-
 require_once( AWPCP_DIR . "/includes/admin/listings/class-listings-table-search-by-title-condition.php" );
 require_once( AWPCP_DIR . "/includes/admin/listings/class-listings-table-search-by-user-condition.php" );
 require_once( AWPCP_DIR . "/includes/admin/listings/class-listings-table-search-conditions-parser.php" );
+require_once( AWPCP_DIR . "/includes/db/class-database-column-creator.php" );
 require_once( AWPCP_DIR . "/includes/class-awpcp-listings-api.php" );
 require_once( AWPCP_DIR . "/includes/class-media-api.php" );
 require_once(AWPCP_DIR . "/includes/payments-api.php");

@@ -39,7 +39,10 @@ class AWPCP_Payment_Transaction {
 
 	public $id;
 	public $user_id;
+
 	public $payment_status;
+    public $payment_gateway;
+    public $payer_email;
 
 	public $errors = array();
 
@@ -58,6 +61,8 @@ class AWPCP_Payment_Transaction {
 				'user_id' => null,
 				'status' => self::STATUS_NEW,
 				'payment_status' => null,
+                'payment_gateway' => null,
+                'payer_email' => null,
 				'items' => array(),
 				'data' => array(),
 				'errors' => array(),

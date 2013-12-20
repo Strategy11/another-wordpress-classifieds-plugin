@@ -74,8 +74,8 @@ class AWPCP_ListingsAPI {
      */
     public function consolidate_new_ad( $ad, $transaction ) {
         $ad->payment_status = $transaction->payment_status;
-        $ad->payment_gateway = $transaction->get( 'payment-gateway' );
-        $ad->payer_email = $transaction->get( 'payer-email' );
+        $ad->payment_gateway = $transaction->payment_gateway;
+        $ad->payer_email = $transaction->payer_email;
 
         do_action( 'awpcp-place-ad', $ad, $transaction );
 

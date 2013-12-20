@@ -287,8 +287,8 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
         unset($transaction->errors['validation']);
 
         $transaction->set( 'validated', true );
-        $transaction->set( 'payment-gateway', $this->slug );
-        $transaction->set( 'payer-email', $payer_email );
+        $transaction->payment_gateway = $this->slug;
+        $transaction->payer_email = $payer_email;
 
         return true;
     }

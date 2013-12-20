@@ -25,6 +25,8 @@ class AWPCP_Installer {
     private static $instance = null;
 
     private function AWPCP_Installer() {
+        $this->columns = new AWPCP_DatabaseColumnCreator();
+
         $this->create_ads_table =
         "CREATE TABLE IF NOT EXISTS " . AWPCP_TABLE_ADS . " (
             `ad_id` INT(10) NOT NULL AUTO_INCREMENT,
@@ -113,6 +115,8 @@ class AWPCP_Installer {
             `user_id` INT(10) NOT NULL,
             `status` VARCHAR(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'open',
             `payment_status` VARCHAR(32) CHARACTER SET utf8 COLLATE utf8_general_ci,
+            `payment_gateway` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
+            `payer_email` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
             `version` TINYINT(1),
             `created` DATETIME NOT NULL,
             `updated` DATETIME NOT NULL,
@@ -1031,23 +1035,17 @@ class AWPCP_Installer {
         }
 
         // add columns required for email verification feature
-        if ( ! $this->column_exists( AWPCP_TABLE_ADS, 'verified' ) ) {
-            $wpdb->query( "ALTER TABLE " . AWPCP_TABLE_ADS . " ADD `verified` TINYINT(1) NOT NULL DEFAULT 1" );
-        }
-
-        if ( ! $this->column_exists( AWPCP_TABLE_ADS, 'verified_at' ) ) {
-            $wpdb->query( "ALTER TABLE " . AWPCP_TABLE_ADS . " ADD `verified_at` DATETIME" );
-        }
+        $this->columns->create( AWPCP_TABLE_ADS, 'verified', "TINYINT(1) NOT NULL DEFAULT 1" );
+        $this->columns->create( AWPCP_TABLE_ADS, 'verified_at', "DATETIME" );
 
         // add payer email column
-        if ( ! $this->column_exists( AWPCP_TABLE_ADS, 'payer_email' ) ) {
-            $wpdb->query( "ALTER TABLE " . AWPCP_TABLE_ADS . " ADD `payer_email` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' AFTER `payment_status`" );
-        }
+        $this->columns->create( AWPCP_TABLE_ADS, 'payer_email', "VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' AFTER `payment_status`" );
+        $this->columns->create( AWPCP_TABLE_PAYMENTS, 'payment_gateway', "VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' AFTER `payment_status`" );
+        $this->columns->create( AWPCP_TABLE_PAYMENTS, 'payer_email', "VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' AFTER `payment_status`" );
 
         if ( $this->column_exists( AWPCP_TABLE_ADS, 'payer_email' ) ) {
             $wpdb->query( "UPDATE " . AWPCP_TABLE_ADS . " SET payer_email = ad_contact_email" );
         }
-
 
         update_option( 'awpcp-pending-manual-upgrade', true );
     }
