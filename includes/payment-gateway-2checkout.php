@@ -67,6 +67,7 @@ class AWPCP_2CheckoutPaymentGateway extends AWPCP_PaymentGateway {
     private function validate_transaction($transaction) {
         $x_amount = number_format(awpcp_request_param('x_amount'), 2);
         $x_Login = awpcp_request_param('x_login');
+        $payer_email = awpcp_request_param( 'email', awpcp_request_param( 'x_Email' ) );
 
         $x_2checked = awpcp_request_param('x_2checked');
         $x_MD5_Hash = awpcp_request_param('x_MD5_Hash');
@@ -77,7 +78,6 @@ class AWPCP_2CheckoutPaymentGateway extends AWPCP_PaymentGateway {
         $x_State = awpcp_request_param('x_State');
         $x_Zip = awpcp_request_param('x_Zip');
         $x_Address = awpcp_request_param('x_Address');
-        $x_Email = awpcp_request_param('x_Email');
         $x_Phone = awpcp_request_param('x_Phone');
         $demo = awpcp_request_param('demo');
         $x_response_code= awpcp_request_param('x_response_code');
@@ -85,7 +85,6 @@ class AWPCP_2CheckoutPaymentGateway extends AWPCP_PaymentGateway {
         $x_response_reason_text = awpcp_request_param('x_response_reason_text');
         $x_item_number = awpcp_request_param('x_item_number');
         $x_custom = awpcp_request_param('x_custom');
-        $x_buyer_mail = awpcp_request_param('email');
         $x_twocorec = awpcp_request_param('x_twocorec');
         $x_order_number = awpcp_request_param('order_number');
         $x_sid = awpcp_request_param('sid');
@@ -123,6 +122,10 @@ class AWPCP_2CheckoutPaymentGateway extends AWPCP_PaymentGateway {
         // at this point the validation was successful, any previously stored
         // errors are irrelevant
         unset($transaction->errors['validation']);
+
+        $transaction->set( 'validated', true );
+        $transaction->set( 'payment-gateway', $this->slug );
+        $transaction->set( 'payer-email', $payer_email );
 
         return true;
     }

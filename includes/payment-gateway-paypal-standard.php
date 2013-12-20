@@ -14,36 +14,6 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
         return self::INTEGRATION_BUTTON;
     }
 
-    private function render_payment_button($transaction) {
-        global $awpcp_imagesurl;
-
-        // no current support for multiple items
-        $item = $transaction->get_item(0);
-
-        $is_recurring = get_awpcp_option('paypalpaymentsrecurring');
-        $is_test_mode_enabled = get_awpcp_option('paylivetestmode') == 1;
-
-        $currency = get_awpcp_option('paypalcurrencycode');
-        $custom = $transaction->id;
-
-        $totals = $transaction->get_totals();
-        $amount = $totals['money'];
-
-        $payments = awpcp_payments_api();
-        $return_url = $payments->get_return_url($transaction);
-        $notify_url = $payments->get_notify_url($transaction);
-        $cancel_url = $payments->get_cancel_url($transaction);
-
-        $paypal_url = $is_test_mode_enabled ? self::SANDBOX_URL : self::PAYPAL_URL;
-
-        ob_start();
-            include(AWPCP_DIR . '/frontend/templates/payments-paypal-payment-button.tpl.php');
-            $html = ob_get_contents();
-        ob_end_clean();
-
-        return $html;
-    }
-
     /**
      * Verify data received from PayPal IPN notifications using cURL and
      * returns PayPal's response.
@@ -228,6 +198,7 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
         $txn_type = awpcp_post_param('txn_type');
         $custom = awpcp_post_param('custom');
         $receiver_email = awpcp_post_param('receiver_email');
+        $payer_email = awpcp_post_param('payer_email');
 
         // this variables are not used for verification purposes
         $item_name = awpcp_post_param('item_name');
@@ -242,7 +213,6 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
         $payment_date = awpcp_post_param('payment_date');
         $first_name = awpcp_post_param('first_name');
         $last_name = awpcp_post_param('last_name');
-        $payer_email = awpcp_post_param('payer_email');
         $address_street = awpcp_post_param('address_street');
         $address_zip = awpcp_post_param('address_zip');
         $address_city = awpcp_post_param('address_city');
@@ -316,11 +286,45 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
         // errors are irrelevant
         unset($transaction->errors['validation']);
 
+        $transaction->set( 'validated', true );
+        $transaction->set( 'payment-gateway', $this->slug );
+        $transaction->set( 'payer-email', $payer_email );
+
         return true;
     }
 
     public function process_payment($transaction) {
         return $this->render_payment_button($transaction);
+    }
+
+    private function render_payment_button($transaction) {
+        global $awpcp_imagesurl;
+
+        // no current support for multiple items
+        $item = $transaction->get_item(0);
+
+        $is_recurring = get_awpcp_option('paypalpaymentsrecurring');
+        $is_test_mode_enabled = get_awpcp_option('paylivetestmode') == 1;
+
+        $currency = get_awpcp_option('paypalcurrencycode');
+        $custom = $transaction->id;
+
+        $totals = $transaction->get_totals();
+        $amount = $totals['money'];
+
+        $payments = awpcp_payments_api();
+        $return_url = $payments->get_return_url($transaction);
+        $notify_url = $payments->get_notify_url($transaction);
+        $cancel_url = $payments->get_cancel_url($transaction);
+
+        $paypal_url = $is_test_mode_enabled ? self::SANDBOX_URL : self::PAYPAL_URL;
+
+        ob_start();
+            include(AWPCP_DIR . '/frontend/templates/payments-paypal-payment-button.tpl.php');
+            $html = ob_get_contents();
+        ob_end_clean();
+
+        return $html;
     }
 
     public function process_payment_completed($transaction) {

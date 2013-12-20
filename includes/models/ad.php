@@ -32,6 +32,7 @@ class AWPCP_Ad {
 
 		$ad->payment_gateway = $object->payment_gateway;
 		$ad->payment_status = $object->payment_status;
+		$ad->payer_email = $object->payer_email;
 
 		$ad->is_featured_ad = $object->is_featured_ad;
 		$ad->flagged = $object->flagged;
@@ -409,6 +410,7 @@ class AWPCP_Ad {
 
 			'payment_gateway' => awpcp_get_property($this, 'payment_gateway'),
 			'payment_status' => awpcp_get_property($this, 'payment_status'),
+			'payer_email' => awpcp_get_property( $this, 'payer_email' ),
 
 			'is_featured_ad' => awpcp_get_property($this, 'is_featured_ad'),
 			'flagged' => awpcp_get_property($this, 'flagged'),
