@@ -336,7 +336,7 @@ class AWPCP_PaymentsAPI {
     }
 
     public function process_payment_request($action) {
-        $transaction = AWPCP_Payment_Transaction::find_by_id( get_query_var( 'transaction_id' ) );
+        $transaction = AWPCP_Payment_Transaction::find_by_id( get_query_var( 'awpcp-txn' ) );
 
         if (is_null($transaction)) {
             $messages[] = __('The specified payment transaction doesn\'t exists. We can\'t process your payment.', 'AWPCP');
