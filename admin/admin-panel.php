@@ -62,20 +62,20 @@ class AWPCP_Admin {
 
 
 	public function notices() {
+		if ( ! awpcp_current_user_is_admin() ) return;
+
 		if ( awpcp_request_param( 'page', false ) == 'awpcp-admin-upgrade' ) return;
 
-		$pending_manual_upgrade = get_option( 'awpcp-pending-manual-upgrade' );
-
-		if ( $pending_manual_upgrade ) {
+		if ( get_option( 'awpcp-pending-manual-upgrade' ) ) {
 			ob_start();
 				include( AWPCP_DIR . '/admin/templates/admin-pending-manual-upgrade-notice.tpl.php' );
 				$html = ob_get_contents();
 			ob_end_clean();
 
 			echo $html;
-		}
 
-		if ( $pending_manual_upgrade ) return;
+			return;
+		}
 
 		if (get_awpcp_option('show-quick-start-guide-notice')) {
 			ob_start();
