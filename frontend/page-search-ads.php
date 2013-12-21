@@ -171,6 +171,6 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
 
         $order = get_awpcp_option( 'search-results-order' );
 
-        return awpcp_display_ads( $where, '', '', $order, 'ad' );
+        return awpcp_display_ads( $where, '', '', $order, 'search' );
     }
 }

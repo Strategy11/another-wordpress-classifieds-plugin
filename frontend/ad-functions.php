@@ -547,6 +547,8 @@ function awpcp_display_ads($where, $byl, $hidepager, $grouporderby, $adorcat, $b
 	$awpcpwppostpageid=awpcp_get_page_id_by_ref('main-page-name');
 	$browseadspageid=awpcp_get_page_id_by_ref('browse-ads-page-name');
 
+	$searchadspageid=awpcp_get_page_id_by_ref('search-ads-page-name');
+
 	$displayadthumbwidth = get_awpcp_option('displayadthumbwidth');
 
 	$url_browsecats='';
@@ -611,6 +613,8 @@ function awpcp_display_ads($where, $byl, $hidepager, $grouporderby, $adorcat, $b
 
 			if ($adorcat == 'cat') {
 				$tpname = get_permalink($awpcp_browsecats_pageid);
+			} elseif ($adorcat == 'search') {
+				$tpname = get_permalink($searchadspageid);
 			} else {
 				$tpname = get_permalink($browseadspageid);
 			}
