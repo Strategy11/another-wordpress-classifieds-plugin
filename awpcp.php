@@ -424,7 +424,7 @@ class AWPCP {
 					'url' => 'http://www.awpcp.com/premium-modules/coupon-module/?ref=panel',
 					'installed' => defined( 'AWPCP_COUPONS_MODULE' ),
 					'version' => 'AWPCP_COUPONS_MODULE_DB_VERSION',
-					'required' => '3.0.2',
+					'required' => '3.0.3',
 				),
 				'extra-fields' => array(
 					'name' => __( 'Extra Fields', 'AWPCP' ),
