@@ -1814,7 +1814,7 @@ function check_ad_fee_paid($adid) {
 }
 
 // START FUNCTION: Clear HTML tags
-function strip_html_tags( $text )
+function awpcp_strip_html_tags( $text )
 {
 	// Remove invisible content
 	$text = preg_replace(
