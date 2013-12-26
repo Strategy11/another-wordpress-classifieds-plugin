@@ -355,7 +355,7 @@ class AWPCP_Ad {
 
 		// make sure dates are dates or NULL, MySQL Strict mode does not allow empty strings
 		$columns = array('ad_postdate', 'ad_last_updated', 'ad_startdate', 'ad_enddate',
-						 'disabled_date', 'renewed_date');
+						 'disabled_date', 'renewed_date', 'verified_at');
 		$regexp = '/^\d{4}-\d{1,2}-\d{1,2}(\s\d{1,2}:\d{1,2}(:\d{1,2})?)?$/';
 		foreach ($columns as $column) {
 			$value = trim($sanitized[$column]);
@@ -369,9 +369,17 @@ class AWPCP_Ad {
 			}
 		}
 
+		// make sure values for float columns are float
+		$columns = array( 'ad_fee_paid' );
+		foreach ($columns as $column) {
+			$sanitized[ $column ] = floatval( trim( $sanitized[ $column ] ) );
+		}
+
 		// make sure values for int/tinyint columns are int
 		$columns = array('ad_id', 'adterm_id', 'ad_category_id', 'ad_category_parent_id',
-						 'ad_views', 'disabled', 'is_featured_ad', 'flagged', 'renew_email_sent');
+						 'ad_views',
+						 'disabled', 'is_featured_ad', 'flagged', 'renew_email_sent', 'verified',
+						 'ad_item_price');
 		foreach ($columns as $column) {
 			$sanitized[$column] = intval(trim($sanitized[$column]));
 		}
