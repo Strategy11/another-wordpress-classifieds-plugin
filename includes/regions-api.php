@@ -13,7 +13,7 @@ class AWPCP_BasicRegionsAPI {
 
     // public function find_by_id( $region_id ) {
     //     global $wpdb;
-    //     $sql = 'SELECT * FROM wp_awpcp_ad_regions WHERE region_id = %d';
+    //     $sql = 'SELECT * FROM ' . AWPCP_TABLE_AD_REGIONS . ' WHERE region_id = %d';
     //     $row = $wpdb->get_row( $wpdb->prepare( $sql, $region_id ) );
 
     //     return false !== $row ? $row : null;
@@ -21,17 +21,20 @@ class AWPCP_BasicRegionsAPI {
 
     // public function find_by_name( $region_name ) {
     //     global $wpdb;
-    //     $sql = 'SELECT * FROM wp_awpcp_ad_regions WHERE region_name = %s';
+    //     $sql = 'SELECT * FROM ' . AWPCP_TABLE_AD_REGIONS . ' WHERE region_name = %s';
     //     $row = $wpdb->get_row( $wpdb->prepare( $sql, $region_name ) );
 
     //     return false !== $row ? $row : null;
     // }
 
+    /**
+     * TODO: trigger an exception on SQL errors
+     */
     public function find_by_type($type) {
         global $wpdb;
 
         // column are named after the type of the reigon
-        $sql = 'SELECT DISTINCT `%s` FROM wp_awpcp_ad_regions';
+        $sql = 'SELECT DISTINCT `%s` FROM ' . AWPCP_TABLE_AD_REGIONS;
 
         $rows = $wpdb->get_col( sprintf( $sql, $type ) );
 
@@ -41,8 +44,8 @@ class AWPCP_BasicRegionsAPI {
     // public function find_by_parent_type($parent_type, $type) {
     //     global $wpdb;
 
-    //     $sql = 'SELECT ' . $type . ' FROM wp_awpcp_ad_regions WHERE ad_id IN ( ';
-    //     $sql.= '    SELECT ad_id FROM wp_awpcp_ad_regions WHERE region_type = %s';
+    //     $sql = 'SELECT ' . $type . ' FROM ' . AWPCP_TABLE_AD_REGIONS . ' WHERE ad_id IN ( ';
+    //     $sql.= '    SELECT ad_id FROM ' . AWPCP_TABLE_AD_REGIONS . ' WHERE region_type = %s';
     //     $sql.= ')';
 
     //     $rows = $wpdb->get_results( $wpdb->prepare( $sql, $type, $parent_type ) );
@@ -63,8 +66,8 @@ class AWPCP_BasicRegionsAPI {
     // public function find_by_parent_id($parent_id, $type) {
     //     global $wpdb;
 
-    //     $sql = 'SELECT ' . $type . ' FROM wp_awpcp_ad_regions WHERE ad_id IN ( ';
-    //     $sql.= '    SELECT ad_id FROM wp_awpcp_ad_regions WHERE region_id = %d';
+    //     $sql = 'SELECT ' . $type . ' FROM ' . AWPCP_TABLE_AD_REGIONS . ' WHERE ad_id IN ( ';
+    //     $sql.= '    SELECT ad_id FROM ' . AWPCP_TABLE_AD_REGIONS . ' WHERE region_id = %d';
     //     $sql.= ')';
 
     //     return $wpdb->get_results( $wpdb->prepare( $sql, $type, $parent_id ) );
@@ -73,8 +76,8 @@ class AWPCP_BasicRegionsAPI {
     public function find_by_parent_name($parent_name, $parent_type, $type) {
         global $wpdb;
 
-        $sql = 'SELECT DISTINCT `%s` FROM wp_awpcp_ad_regions AS r1 INNER JOIN ( ';
-        $sql.= '    SELECT id FROM wp_awpcp_ad_regions WHERE `%s` = %%s';
+        $sql = 'SELECT DISTINCT `%s` FROM ' . AWPCP_TABLE_AD_REGIONS . ' AS r1 INNER JOIN ( ';
+        $sql.= '    SELECT id FROM ' . AWPCP_TABLE_AD_REGIONS . ' WHERE `%s` = %%s';
         $sql.= ') AS r2 ON ( r1.id = r2.id )';
 
         $sql = sprintf( $sql, $type, $parent_type );
