@@ -320,7 +320,8 @@ function create_pager($from,$where,$offset,$results,$tpname) {
 	$radius=5;
 	global $accepted_results_per_page;
 
-	$accepted_results_per_page=array("5"=>5,"10"=>10,"20"=>20,"30"=>30,"40"=>40,"50"=>50,"60"=>60,"70"=>70,"80"=>80,"90"=>90,"100"=>100);
+	$accepted_results_per_page = array( 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 500 );
+	$accepted_results_per_page = array_combine( $accepted_results_per_page , $accepted_results_per_page );
 
 	// // The code below removes query parameters from URL when seofriendlyurls are ON.
 	// // However, SEO URLs may be ON while WP are still NOT using permalinks, which means

@@ -283,7 +283,8 @@ class AWPCP_Listings_Table extends WP_List_Table {
         $option   = '<option %2$s value="%1$s">%1$s</option>';
 
         $select = '<div class="tablenav-pages"><select name="items-per-page">';
-        foreach (array(5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100) as $value)
+        // TODO: use a single pagination form, check create_pager function in dcfunctions.php
+        foreach (array(5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 500) as $value)
             $select.= sprintf($option, $value, $value == $ipp ? $selected : '');
         $select.= '</select></div>';
 
