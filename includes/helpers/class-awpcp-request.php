@@ -6,6 +6,14 @@ class AWPCP_Request {
      * @tested
      * @since 3.0.2
      */
+    public function method() {
+        return strtoupper( $_SERVER['REQUEST_METHOD'] );
+    }
+
+    /**
+     * @tested
+     * @since 3.0.2
+     */
     public function param( $name, $default='' ) {
         return isset( $_REQUEST[ $name ] ) ? $_REQUEST[ $name ] : $default;
     }
@@ -22,8 +30,24 @@ class AWPCP_Request {
      * @tested
      * @since 3.0.2
      */
+    public function get( $name, $default='' ) {
+        return $this->get_param( $name, $default );
+    }
+
+    /**
+     * @tested
+     * @since 3.0.2
+     */
     public function post_param( $name, $default='' ) {
         return isset( $_POST[ $name ] ) ? $_POST[ $name ] : $default;
+    }
+
+    /**
+     * @tested
+     * @since 3.0.2
+     */
+    public function post( $name, $default='' ) {
+        return $this->post_param( $name, $default );
     }
 
     /**
