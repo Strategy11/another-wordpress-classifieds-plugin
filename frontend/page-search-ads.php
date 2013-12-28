@@ -138,7 +138,10 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
         if (!empty($form['query'])) {
             // $sql = 'MATCH (ad_title, ad_details) AGAINST (%s IN BOOLEAN MODE)';
             // $conditions[] = $wpdb->prepare( $sql, $form['query'] );
-            $conditions[] = sprintf( "ad_title LIKE '%%%s%%' OR ad_details LIKE '%%%s%%'", $form['query'], $form['query'] );
+            if (!$hasextrafieldsmodule) {
+                $conditions[] = sprintf( "ad_title LIKE '%%%s%%' OR ad_details LIKE '%%%s%%'", $form['query'], $form['query'] );
+            }
+            // If user has extra fields module, we'll set this condition later inside the module logic.
         }
 
         if (!empty($form['name'])) {
