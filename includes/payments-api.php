@@ -1,12 +1,16 @@
 <?php
 
 function awpcp_payments_api() {
-    return AWPCP_PaymentsAPI::instance();
+    static $payments = null;
+
+    if ( is_null( $payments ) ) {
+        $payments = new AWPCP_PaymentsAPI( new AWPCP_Request() );
+    }
+
+    return $payments;
 }
 
 class AWPCP_PaymentsAPI {
-
-    private static $instance;
 
     private $request = null;
 
@@ -16,7 +20,7 @@ class AWPCP_PaymentsAPI {
 
     private $cache = array();
 
-    private function __construct( /*AWPCP_Request*/ $request = null ) {
+    public function __construct( /*AWPCP_Request*/ $request = null ) {
         if ( ! is_null( $request ) ) {
             $this->request = $request;
         } else {
@@ -32,12 +36,6 @@ class AWPCP_PaymentsAPI {
         }
 
         add_action('awpcp-transaction-status-updated', array($this, 'update_account_balance'), 10, 1);
-    }
-
-    public static function instance() {
-        if (is_null(self::$instance))
-            self::$instance = new AWPCP_PaymentsAPI();
-        return self::$instance;
     }
 
     public function init() {
@@ -259,6 +257,9 @@ class AWPCP_PaymentsAPI {
 
     /* Transactions Management */
 
+    /**
+     * TODO: should throw an exception if the status can't be set
+     */
     private function set_transaction_status($transaction, $status, &$errors) {
         if ($result = $transaction->set_status($status, $errors)) {
             do_action('awpcp-transaction-status-updated', $transaction, $status, $errors);
