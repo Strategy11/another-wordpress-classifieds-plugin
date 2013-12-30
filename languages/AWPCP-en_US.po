@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: AWPCP\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2013-12-02 16:46:34+00:00\n"
+"POT-Creation-Date: 2013-12-30 18:47:51+00:00\n"
 "PO-Revision-Date: 2013-10-28 19:39-0500\n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: \n"
@@ -494,7 +494,7 @@ msgstr ""
 msgid "Ad Expired Message"
 msgstr ""
 
-msgid "Ad Headline"
+msgid "Ad ID"
 msgstr ""
 
 msgid "Ad Information"
@@ -574,9 +574,6 @@ msgid "Add File"
 msgstr ""
 
 msgid "Add Files"
-msgstr ""
-
-msgid "Add Image"
 msgstr ""
 
 msgctxt "AWPCP"
@@ -668,6 +665,18 @@ msgid "All"
 msgstr ""
 
 msgid "All Ads associated to Fee %s have been associated with Fee %s."
+msgstr ""
+
+msgid "All Categories"
+msgstr ""
+
+msgid "All Contact Names"
+msgstr ""
+
+msgid "All Sub-categories"
+msgstr ""
+
+msgid "All Users"
 msgstr ""
 
 msgid ""
@@ -1052,10 +1061,6 @@ msgstr ""
 msgid "Characters Allowed in Title"
 msgstr ""
 
-msgctxt "place ad payment terms column headers"
-msgid "Characters Allowed in Title"
-msgstr ""
-
 msgid "Characters in Description"
 msgstr ""
 
@@ -1063,6 +1068,10 @@ msgctxt "place ad payment terms column headers"
 msgid "Characters in Description"
 msgstr ""
 
+msgid "Characters in Title"
+msgstr ""
+
+msgctxt "place ad payment terms column headers"
 msgid "Characters in Title"
 msgstr ""
 
@@ -1497,9 +1506,6 @@ msgctxt "upload images"
 msgid "Delete Image"
 msgstr ""
 
-msgid "Delete Selected Ads"
-msgstr ""
-
 msgid "Delete Selected Categories"
 msgstr ""
 
@@ -1909,9 +1915,6 @@ msgid "Fee"
 msgstr ""
 
 msgid "Fee Per Category Module"
-msgstr ""
-
-msgid "Fee Plan"
 msgstr ""
 
 msgid "Fee order"
@@ -2543,12 +2546,6 @@ msgstr ""
 msgid "Long Text"
 msgstr ""
 
-msgid "Look Up Ad"
-msgstr ""
-
-msgid "Look Up Ad By"
-msgstr ""
-
 msgid ""
 "Looking for a job? Trying to find a date? Looking for an apartment? Browse "
 "our classifieds. Have a job to advertise? An apartment to rent? Post a "
@@ -2980,6 +2977,9 @@ msgstr ""
 msgid "No premium modules installed."
 msgstr ""
 
+msgid "No results found. Exepcting one."
+msgstr ""
+
 msgid ""
 "No specific category was selected for browsing so you are viewing listings "
 "from all categories."
@@ -3041,10 +3041,14 @@ msgstr ""
 msgid "Number of active listings currently in the system"
 msgstr ""
 
-msgid "Number of characters allowed in Ad details."
+msgid ""
+"Number of characters allowed in Ad details. Please note this is the default "
+"value and can be overwritten in Fees and Subscription Plans."
 msgstr ""
 
-msgid "Number of characters allowed in Ad title."
+msgid ""
+"Number of characters allowed in Ad title. Please note this is the default "
+"value and can be overwritten in Fees and Subscription Plans."
 msgstr ""
 
 msgid "Number of columns of Extra Fields to show."
@@ -3074,6 +3078,12 @@ msgid "Number of items to show in RSS feed"
 msgstr ""
 
 msgid "Number of sub level children categories"
+msgstr ""
+
+msgid "Number of words in Ad excerpt"
+msgstr ""
+
+msgid "Number of words shown by the Ad excerpt placeholder."
 msgstr ""
 
 msgid "Numeric decimal allowed"
@@ -3237,6 +3247,9 @@ msgstr ""
 msgid ""
 "PayPal returned the following status from your payment: %s. %d payment "
 "variables were posted."
+msgstr ""
+
+msgid "Payer Email"
 msgstr ""
 
 msgid "Payment"
@@ -3713,9 +3726,6 @@ msgstr ""
 msgid "Renew your ad by visiting:"
 msgstr ""
 
-msgid "Renewed"
-msgstr ""
-
 msgid "Renewed Date"
 msgstr ""
 
@@ -3983,13 +3993,13 @@ msgctxt "add credit order step"
 msgid "Select a Credit Plan"
 msgstr ""
 
+msgid "Select a Sub-category"
+msgstr ""
+
+msgid "Select a Sub-category (optional)"
+msgstr ""
+
 msgid "Select a Subscription Plan"
-msgstr ""
-
-msgid "Select a sub category"
-msgstr ""
-
-msgid "Select a sub category (optional)"
 msgstr ""
 
 msgid "Select an User"
@@ -4284,9 +4294,6 @@ msgstr ""
 msgid ""
 "Sorry, that Ad is no available. Please try browsing or searching existing "
 "ads."
-msgstr ""
-
-msgid "Sort Ads By"
 msgstr ""
 
 msgid "Start & End Date"
@@ -5463,6 +5470,9 @@ msgid ""
 msgstr ""
 
 msgid "To use reCAPTCHA you must get an API key from %s."
+msgstr ""
+
+msgid "Too many results found. Expecting one."
 msgstr ""
 
 msgid "Top Level Category"

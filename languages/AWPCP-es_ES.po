@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: AWPCP\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2013-12-02 16:46:34+00:00\n"
+"POT-Creation-Date: 2013-12-30 18:47:51+00:00\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: \n"
@@ -16,7 +16,7 @@ msgstr ""
 "X-Poedit-KeywordsList: _e;__;_ex;_x\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.6.3\n"
 "X-Poedit-SearchPath-0: .\n"
 
 msgid ""
@@ -559,8 +559,8 @@ msgstr "Anuncio Expirado"
 msgid "Ad Expired Message"
 msgstr "Mensaje de Anuncio expirado"
 
-msgid "Ad Headline"
-msgstr "Titular del Aviso"
+msgid "Ad ID"
+msgstr "ID del Anuncio"
 
 msgid "Ad Information"
 msgstr "Información del Anuncio"
@@ -640,9 +640,6 @@ msgstr "Agregar archivo"
 
 msgid "Add Files"
 msgstr "Agregar archivos"
-
-msgid "Add Image"
-msgstr "Agregar Imagen"
 
 msgctxt "AWPCP"
 msgid "Add Image/Attachment"
@@ -746,6 +743,18 @@ msgid "All Ads associated to Fee %s have been associated with Fee %s."
 msgstr ""
 "Todos los anuncios asociados al plan de pagos %s han sido asociados con el "
 "plan de pagos %s."
+
+msgid "All Categories"
+msgstr "Todas las categorías"
+
+msgid "All Contact Names"
+msgstr "Todos los nombres de contacto"
+
+msgid "All Sub-categories"
+msgstr "Todas las sub-categorías"
+
+msgid "All Users"
+msgstr "Todos los usuarios"
 
 msgid ""
 "All ads must first be approved by the administrator before they are "
@@ -1178,10 +1187,6 @@ msgstr "Cambiar Categoría"
 msgid "Characters Allowed in Title"
 msgstr "Caracteres permitidos en el título"
 
-msgctxt "place ad payment terms column headers"
-msgid "Characters Allowed in Title"
-msgstr "Caracteres permitidos en el título"
-
 msgid "Characters in Description"
 msgstr "Caracteres en la descripción"
 
@@ -1190,7 +1195,11 @@ msgid "Characters in Description"
 msgstr "Caracteres en la descripción"
 
 msgid "Characters in Title"
-msgstr " Caracteres en el título"
+msgstr "Caracteres en el título"
+
+msgctxt "place ad payment terms column headers"
+msgid "Characters in Title"
+msgstr "Caracteres en el título"
 
 msgid ""
 "Charge Listing Fee setting was enabled automatically because you activated "
@@ -1662,9 +1671,6 @@ msgctxt "upload images"
 msgid "Delete Image"
 msgstr "Eliminar Imagen"
 
-msgid "Delete Selected Ads"
-msgstr "Eliminar anuncios seleccionados"
-
 msgid "Delete Selected Categories"
 msgstr "Eliminar las Categorías Seleccionadas"
 
@@ -2117,9 +2123,6 @@ msgstr "Plan de Pago"
 
 msgid "Fee Per Category Module"
 msgstr "Módulo de Precio por Categorías"
-
-msgid "Fee Plan"
-msgstr "Plan de pago"
 
 msgid "Fee order"
 msgstr "Orden de plan de pago"
@@ -2888,12 +2891,6 @@ msgstr "Login ID"
 msgid "Long Text"
 msgstr "Texto Largo"
 
-msgid "Look Up Ad"
-msgstr "Buscar Anuncio"
-
-msgid "Look Up Ad By"
-msgstr "Buscar Aviso por"
-
 msgid ""
 "Looking for a job? Trying to find a date? Looking for an apartment? Browse "
 "our classifieds. Have a job to advertise? An apartment to rent? Post a "
@@ -3366,6 +3363,9 @@ msgstr ""
 msgid "No premium modules installed."
 msgstr "No hay módulos premiun instalados."
 
+msgid "No results found. Exepcting one."
+msgstr "No se encontró ningún resultado. Se esperaba uno."
+
 msgid ""
 "No specific category was selected for browsing so you are viewing listings "
 "from all categories."
@@ -3429,11 +3429,21 @@ msgstr "Número de categorías principales"
 msgid "Number of active listings currently in the system"
 msgstr "Número de entradas activas actualmente en el sistema"
 
-msgid "Number of characters allowed in Ad details."
-msgstr "Número de caracteres permitidos en los detalles del anuncio."
+msgid ""
+"Number of characters allowed in Ad details. Please note this is the default "
+"value and can be overwritten in Fees and Subscription Plans."
+msgstr ""
+"Número de caracteres permitidos en los detalles del anuncio. Tenga en cuenta "
+"que este es el valor por defecto y puede ser sobreescrito en Términos de "
+"Pago y Planes de Subscripción."
 
-msgid "Number of characters allowed in Ad title."
-msgstr "Número de caracteres permitidos en el título del anuncio."
+msgid ""
+"Number of characters allowed in Ad title. Please note this is the default "
+"value and can be overwritten in Fees and Subscription Plans."
+msgstr ""
+"Número de caracteres permitidos en el título del anuncion. Tenga en cuenta "
+"que este es el valor por defecto y puede ser sobreescrito en Términos de "
+"Pago y Planes de Subscripción."
 
 msgid "Number of columns of Extra Fields to show."
 msgstr "Número de columnas de Campos Extras a mostrar."
@@ -3470,6 +3480,14 @@ msgstr "Número de Avisos para mostrar en RSS"
 
 msgid "Number of sub level children categories"
 msgstr "Número de sub-categorías"
+
+msgid "Number of words in Ad excerpt"
+msgstr "Número de palabras en el resumen del anuncio"
+
+msgid "Number of words shown by the Ad excerpt placeholder."
+msgstr ""
+"Número de palabras mostradas por el marcador utilizado para mostrar el "
+"resumen del anuncio."
 
 msgid "Numeric decimal allowed"
 msgstr "Numérico decimal permitido"
@@ -3649,6 +3667,9 @@ msgid ""
 msgstr ""
 "PayPal le devolvió el siguiente estado de su pago:% s. % D variables de pago "
 "fueron publicadas."
+
+msgid "Payer Email"
+msgstr "Email del Pagador"
 
 msgid "Payment"
 msgstr "Pago"
@@ -4160,9 +4181,6 @@ msgstr "Renueve o actualice su Plan de Subscripción"
 msgid "Renew your ad by visiting:"
 msgstr "Renová tu Aviso visitando:"
 
-msgid "Renewed"
-msgstr "Renovado"
-
 msgid "Renewed Date"
 msgstr "Fecha de Renovación"
 
@@ -4439,14 +4457,14 @@ msgctxt "add credit order step"
 msgid "Select a Credit Plan"
 msgstr "Selecciona un Plan de Crédito"
 
-msgid "Select a Subscription Plan"
-msgstr "Selecciona un Plan de Suscripción"
-
-msgid "Select a sub category"
+msgid "Select a Sub-category"
 msgstr "Seleccionar una sub categoría"
 
-msgid "Select a sub category (optional)"
+msgid "Select a Sub-category (optional)"
 msgstr "Seleccionar una sub categoría (opcional)"
+
+msgid "Select a Subscription Plan"
+msgstr "Selecciona un Plan de Suscripción"
 
 msgid "Select an User"
 msgstr "Seleccione un usuario"
@@ -4759,9 +4777,6 @@ msgid ""
 msgstr ""
 "Lo sentimos, ese anuncio ya no está disponible. Por favor intente explorar o "
 "buscar los anuncios existentes."
-
-msgid "Sort Ads By"
-msgstr "Ordenar Avisos por"
 
 msgid "Start & End Date"
 msgstr "Fecha de inicio y fecha de finalización"
@@ -6200,6 +6215,9 @@ msgstr ""
 msgid "To use reCAPTCHA you must get an API key from %s."
 msgstr "Para usar reCAPTCHA usted debe obtener una clave para la API en %s."
 
+msgid "Too many results found. Expecting one."
+msgstr "Se encontraron multiples resultados. Se esperaba uno."
+
 msgid "Top Level Category"
 msgstr "Categoría de Nivel Superior"
 
@@ -7548,3 +7566,37 @@ msgstr "usar información de planilla"
 
 msgid "visit the forums!"
 msgstr "viste los foros!"
+
+#~ msgid "Ad Headline"
+#~ msgstr "Titular del Aviso"
+
+#~ msgid "Add Image"
+#~ msgstr "Agregar Imagen"
+
+#~ msgctxt "place ad payment terms column headers"
+#~ msgid "Characters Allowed in Title"
+#~ msgstr "Caracteres permitidos en el título"
+
+#~ msgid "Delete Selected Ads"
+#~ msgstr "Eliminar anuncios seleccionados"
+
+#~ msgid "Fee Plan"
+#~ msgstr "Plan de pago"
+
+#~ msgid "Look Up Ad"
+#~ msgstr "Buscar Anuncio"
+
+#~ msgid "Look Up Ad By"
+#~ msgstr "Buscar Aviso por"
+
+#~ msgid "Number of characters allowed in Ad details."
+#~ msgstr "Número de caracteres permitidos en los detalles del anuncio."
+
+#~ msgid "Number of characters allowed in Ad title."
+#~ msgstr "Número de caracteres permitidos en el título del anuncio."
+
+#~ msgid "Renewed"
+#~ msgstr "Renovado"
+
+#~ msgid "Sort Ads By"
+#~ msgstr "Ordenar Avisos por"
