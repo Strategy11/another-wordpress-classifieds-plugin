@@ -141,13 +141,6 @@ require_once(AWPCP_DIR . "/includes/models/category.php");
 require_once(AWPCP_DIR . "/includes/models/image.php");
 require_once(AWPCP_DIR . "/includes/models/payment-transaction.php");
 
-require_once( AWPCP_DIR . "/includes/admin/listings/class-listings-table-search-by-id-condition.php" );
-require_once( AWPCP_DIR . "/includes/admin/listings/class-listings-table-search-by-keyword-condition.php" );
-require_once( AWPCP_DIR . "/includes/admin/listings/class-listings-table-search-by-location-condition.php" );
-require_once( AWPCP_DIR . "/includes/admin/listings/class-listings-table-search-by-payer-email-condition.php" );
-require_once( AWPCP_DIR . "/includes/admin/listings/class-listings-table-search-by-title-condition.php" );
-require_once( AWPCP_DIR . "/includes/admin/listings/class-listings-table-search-by-user-condition.php" );
-require_once( AWPCP_DIR . "/includes/admin/listings/class-listings-table-search-conditions-parser.php" );
 require_once( AWPCP_DIR . "/includes/api/credit-plans/class-credit-plan-builder.php" );
 require_once( AWPCP_DIR . "/includes/api/credit-plans/class-find-credit-plan-by-id-query-handler.php" );
 require_once( AWPCP_DIR . "/includes/db/class-database-column-creator.php" );
@@ -161,6 +154,13 @@ require_once( AWPCP_DIR . "/includes/views/class-set-transaction-status-to-check
 require_once( AWPCP_DIR . "/includes/views/class-set-transaction-status-to-completed-step-decorator.php" );
 require_once( AWPCP_DIR . "/includes/views/class-verify-payment-can-be-processed-step-decorator.php" );
 require_once( AWPCP_DIR . "/includes/views/class-verify-transaction-exists-step-decorator.php" );
+require_once( AWPCP_DIR . "/includes/views/admin/listings/class-listings-table-search-by-id-condition.php" );
+require_once( AWPCP_DIR . "/includes/views/admin/listings/class-listings-table-search-by-keyword-condition.php" );
+require_once( AWPCP_DIR . "/includes/views/admin/listings/class-listings-table-search-by-location-condition.php" );
+require_once( AWPCP_DIR . "/includes/views/admin/listings/class-listings-table-search-by-payer-email-condition.php" );
+require_once( AWPCP_DIR . "/includes/views/admin/listings/class-listings-table-search-by-title-condition.php" );
+require_once( AWPCP_DIR . "/includes/views/admin/listings/class-listings-table-search-by-user-condition.php" );
+require_once( AWPCP_DIR . "/includes/views/admin/listings/class-listings-table-search-conditions-parser.php" );
 require_once( AWPCP_DIR . "/includes/views/frontend/buy-credits/class-buy-credits-page-select-credit-plan-step.php" );
 require_once( AWPCP_DIR . "/includes/views/frontend/buy-credits/class-buy-credits-page-checkout-step.php" );
 require_once( AWPCP_DIR . "/includes/views/frontend/buy-credits/class-buy-credits-page-payment-completed-step.php" );
