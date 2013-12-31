@@ -494,8 +494,16 @@ class AWPCP_PaymentsAPI {
         $credit_plans = $this->get_credit_plans();
         $selected = is_null($transaction) ? '' : $transaction->get('credit-plan');
 
-        if (empty($credit_plans))
+        if ( empty( $credit_plans ) ) {
             return '';
+        }
+
+        $column_names = array(
+            'plan' => _x( 'Plan', 'credit plans table', 'AWPCP' ),
+            'description' => _x( 'Description', 'credit plans table', 'AWPCP' ),
+            'credits' => _x( 'Credits', 'credit plans table', 'AWPCP' ),
+            'price' => _x( 'Price', 'credit plans table', 'AWPCP' ),
+        );
 
         ob_start();
             include(AWPCP_DIR . '/frontend/templates/payments-credit-plans-table.tpl.php');
