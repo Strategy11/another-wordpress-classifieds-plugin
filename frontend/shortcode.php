@@ -50,6 +50,8 @@ class AWPCP_Pages {
         add_shortcode('AWPCPRANDOMLISTINGS', array($this, 'random_listings_shortcode'));
         add_shortcode('AWPCPSHOWCAT', array($this, 'category_shortcode'));
 
+        add_shortcode( 'AWPCPBUYCREDITS', array( $this, 'buy_credits' ) );
+
         add_action( 'wp_ajax_awpcp-flag-ad', array( $this, 'ajax_flag_ad' ) );
         add_action( 'wp_ajax_nopriv_awpcp-flag-ad', array( $this, 'ajax_flag_ad' ) );
 
@@ -113,6 +115,17 @@ class AWPCP_Pages {
 
 		return $this->reply_to_ad_page->dispatch();
 	}
+
+    /**
+     * @since 3.0.2
+     */
+    public function buy_credits() {
+        static $output = null;
+        if ( is_null( $output ) ) {
+            $output = awpcp_buy_credits_page()->dispatch();
+        }
+        return $output;
+    }
 
     /* Shortcodes */
 
