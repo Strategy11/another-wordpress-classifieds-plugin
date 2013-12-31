@@ -141,9 +141,6 @@ require_once(AWPCP_DIR . "/includes/models/category.php");
 require_once(AWPCP_DIR . "/includes/models/image.php");
 require_once(AWPCP_DIR . "/includes/models/payment-transaction.php");
 
-require_once( AWPCP_DIR . "/includes/api/credit-plans/class-credit-plan-builder.php" );
-require_once( AWPCP_DIR . "/includes/api/credit-plans/class-find-credit-plan-by-id-query-handler.php" );
-
 require_once( AWPCP_DIR . "/includes/db/class-database-column-creator.php" );
 
 require_once( AWPCP_DIR . "/includes/views/class-base-page.php" );
