@@ -143,17 +143,26 @@ require_once(AWPCP_DIR . "/includes/models/payment-transaction.php");
 
 require_once( AWPCP_DIR . "/includes/api/credit-plans/class-credit-plan-builder.php" );
 require_once( AWPCP_DIR . "/includes/api/credit-plans/class-find-credit-plan-by-id-query-handler.php" );
+
 require_once( AWPCP_DIR . "/includes/db/class-database-column-creator.php" );
+
+require_once( AWPCP_DIR . "/includes/views/class-base-page.php" );
 require_once( AWPCP_DIR . "/includes/views/class-step-decorator.php" );
 require_once( AWPCP_DIR . "/includes/views/class-prepare-transaction-for-payment-step-decorator.php" );
 require_once( AWPCP_DIR . "/includes/views/class-set-credit-plan-step-decorator.php" );
-require_once( AWPCP_DIR . "/includes/views/class-verify-credit-plan-was-set-step-decorator.php" );
 require_once( AWPCP_DIR . "/includes/views/class-set-payment-method-step-decorator.php" );
 require_once( AWPCP_DIR . "/includes/views/class-set-transaction-status-to-open-step-decorator.php" );
 require_once( AWPCP_DIR . "/includes/views/class-set-transaction-status-to-checkout-step-decorator.php" );
 require_once( AWPCP_DIR . "/includes/views/class-set-transaction-status-to-completed-step-decorator.php" );
+require_once( AWPCP_DIR . "/includes/views/class-verify-credit-plan-was-set-step-decorator.php" );
 require_once( AWPCP_DIR . "/includes/views/class-verify-payment-can-be-processed-step-decorator.php" );
 require_once( AWPCP_DIR . "/includes/views/class-verify-transaction-exists-step-decorator.php" );
+// load frontend views first, some frontend pages are required in admin pages
+require_once( AWPCP_DIR . '/includes/views/frontend/buy-credits/class-buy-credits-page.php');
+require_once( AWPCP_DIR . "/includes/views/frontend/buy-credits/class-buy-credits-page-select-credit-plan-step.php" );
+require_once( AWPCP_DIR . "/includes/views/frontend/buy-credits/class-buy-credits-page-checkout-step.php" );
+require_once( AWPCP_DIR . "/includes/views/frontend/buy-credits/class-buy-credits-page-payment-completed-step.php" );
+require_once( AWPCP_DIR . "/includes/views/frontend/buy-credits/class-buy-credits-page-final-step.php" );
 require_once( AWPCP_DIR . "/includes/views/admin/listings/class-listings-table-search-by-id-condition.php" );
 require_once( AWPCP_DIR . "/includes/views/admin/listings/class-listings-table-search-by-keyword-condition.php" );
 require_once( AWPCP_DIR . "/includes/views/admin/listings/class-listings-table-search-by-location-condition.php" );
@@ -161,10 +170,9 @@ require_once( AWPCP_DIR . "/includes/views/admin/listings/class-listings-table-s
 require_once( AWPCP_DIR . "/includes/views/admin/listings/class-listings-table-search-by-title-condition.php" );
 require_once( AWPCP_DIR . "/includes/views/admin/listings/class-listings-table-search-by-user-condition.php" );
 require_once( AWPCP_DIR . "/includes/views/admin/listings/class-listings-table-search-conditions-parser.php" );
-require_once( AWPCP_DIR . "/includes/views/frontend/buy-credits/class-buy-credits-page-select-credit-plan-step.php" );
-require_once( AWPCP_DIR . "/includes/views/frontend/buy-credits/class-buy-credits-page-checkout-step.php" );
-require_once( AWPCP_DIR . "/includes/views/frontend/buy-credits/class-buy-credits-page-payment-completed-step.php" );
-require_once( AWPCP_DIR . "/includes/views/frontend/buy-credits/class-buy-credits-page-final-step.php" );
+require_once( AWPCP_DIR . "/includes/views/admin/account-balance/class-account-balance-page.php" );
+require_once( AWPCP_DIR . "/includes/views/admin/account-balance/class-account-balance-page-summary-step.php" );
+
 require_once( AWPCP_DIR . "/includes/class-awpcp-listings-api.php" );
 require_once( AWPCP_DIR . "/includes/class-media-api.php" );
 require_once(AWPCP_DIR . "/includes/payments-api.php");

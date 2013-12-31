@@ -13,8 +13,6 @@ require_once(AWPCP_DIR . '/frontend/page-search-ads.php');
 require_once(AWPCP_DIR . '/frontend/page-browse-ads.php');
 require_once(AWPCP_DIR . '/frontend/page-browse-categories.php');
 
-require_once( AWPCP_DIR . '/includes/views/frontend/buy-credits/class-buy-credits-page.php');
-
 
 class AWPCP_Pages {
     private $output = array();

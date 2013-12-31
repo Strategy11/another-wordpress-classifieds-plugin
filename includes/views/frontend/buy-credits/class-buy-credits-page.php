@@ -1,31 +1,21 @@
 <?php
 
-require_once(AWPCP_DIR . '/includes/helpers/page.php');
-
 /**
  * @since 3.0.2
  */
-class AWPCP_BuyCreditsPage extends AWPCP_Page {
-
-    private $request = null;
-
-    private $do_next_step = true;
-    private $output = '';
-
-    public $messages = array();
-    public $errors = array();
+class AWPCP_BuyCreditsPage extends AWPCP_BasePage {
 
     public function __construct( $steps, $request ) {
-        parent::__construct( 'awpcp-buy-credits', __( 'Buy Credits', 'AWPCP' ) );
+        parent::__construct( $steps, $request );
 
-        $this->steps = $steps;
-        $this->request = $request;
+        $this->page = 'awpcp-buy-credits';
+        $this->title = __( 'Buy Credits', 'AWPCP' );
     }
 
     public function get_transaction( $create = true ) {
         $id = $this->request->param( 'transaction_id' );
 
-        // TODO: inject PaymentTransaction dependecny
+        // TODO: inject PaymentTransaction dependency
         if ( ! isset( $this->transaction ) && $create === true  ) {
             $this->transaction = AWPCP_Payment_Transaction::find_or_create( $id );
         } else if ( ! isset( $this->transaction ) ) {
@@ -42,16 +32,11 @@ class AWPCP_BuyCreditsPage extends AWPCP_Page {
         return $this->transaction;
     }
 
-    public function render( $template, $params=array() ) {
-        $this->output = parent::render( $template, $params );
-    }
-
     public function dispatch() {
         if ( $this->is_user_allowed_to_buy_credits() ) {
             $this->do_page();
         } else {
-            $this->errors[] = __( 'You are not allowed to buy credits.', 'AWPCP' );
-            $this->render_page_error();
+            $this->render_user_not_allowed_error();
         }
 
         return $this->output;
@@ -61,108 +46,81 @@ class AWPCP_BuyCreditsPage extends AWPCP_Page {
         return awpcp_current_user_is_admin() ? false : true;
     }
 
-    private function do_page() {
-        try {
-            $this->handle_request();
-        } catch (Exception $e) {
-            $this->errors[] = $e->getMessage();
-            $this->render_page_error();
-        }
+    protected function do_page_steps() {
+        $this->validate_payment_transaction();
+        parent::do_page_steps();
     }
 
-    private function handle_request() {
-        $current_step = $this->get_current_step();
-        $this->do_steps( $current_step );
+    private function validate_payment_transaction() {
+        $this->verify_payment_transaction_has_a_valid_context();
+        $this->verify_payment_was_succesfull();
+        $this->force_payment_completed_step_if_necessary();
+        $this->force_final_step_if_necessary();
     }
 
-    private function get_current_step() {
-        if ( ! isset( $this->step ) ) {
-            $step_name = $this->request->param( 'step', 'select-credit-plan' );
-            $this->step = $this->get_step_by_name( $step_name );
-        }
+    private function verify_payment_transaction_has_a_valid_context() {
+        $transaction = $this->get_transaction();
 
-        return $this->step;
-    }
+        if ( ! is_null( $transaction ) && $transaction->get( 'context' ) != 'add-credit' ) {
+            $page_name = $this->title;
+            $page_url = $this->url( array( 'page', $this->page ) );
 
-    private function get_step_by_name( $step_name ) {
-        if ( isset( $this->steps[ $step_name ] ) ) {
-            return $this->steps[ $step_name ];
-        } else {
-            throw new Exception( __( 'Unkown step. Please contact the administrator about this error.', 'AWPCP' ) );
-        }
-    }
+            $message = __( 'You are trying to buy credits using a transaction created for a different purpose. Pelase go back to the <a href="%s">%s</a> page.<br>If you think this is an error please contact the administrator and provide the following transaction ID: %s', 'AWPCP' );
+            $message = sprintf( $message, $page_url, $page_name, $transaction->id );
 
-    private function do_steps( $current_step ) {
-        try {
-            $this->do_step_method( $current_step );
-            $this->do_next_step();
-        } catch (Exception $e) {
-            $this->errors[] = $e->getMessage();
-            $this->handle_step_exception( $current_step );
-        }
-    }
-
-    private function do_step_method( $step ) {
-        switch ( $this->request->method() ) {
-            case 'POST':
-                $step->post( $this );
-                break;
-            case 'GET':
-            default:
-                $step->get( $this );
-                break;
-        }
-    }
-
-    private function do_next_step() {
-        if ( $this->do_next_step ) {
-            $step = $this->get_next_step();
-            $step->get( $this );
-        }
-    }
-
-    private function get_next_step() {
-        if ( ! isset( $this->next_step ) ) {
-            $current_step = $this->get_current_step();
-            $this->next_step = $this->calculate_next_step( $current_step );
-        }
-
-        return $this->next_step;
-    }
-
-    public function calculate_next_step( $current_step ) {
-        throw new Exception( __( 'Not yet implemented.', 'AWPCP' ) );
-    }
-
-    private function handle_step_exception( $step ) {
-        if ( $this->request->method() === 'POST' ) {
-            $step->get( $this );
-        } else {
-            $message = __( 'Your request cannot be processed at this time. Please try again or contact the administrator about the incident.', 'AWPCP' );
             throw new Exception( $message );
         }
     }
 
-    private function render_page_error() {
-        $template = AWPCP_DIR . '/frontend/templates/page-error.tpl.php';
-        $params = array( 'errors' => $this->errors );
-        $this->render( $template, $params );
+    private function verify_payment_was_succesfull() {
+        $transaction = $this->get_transaction();
+
+        if ( ! is_null( $transaction ) && $transaction->is_payment_completed() ) {
+            if ( ! $transaction->was_payment_successful() ) {
+                $this->errors = array_merge( $this->errors, $transaction->errors );
+                $message = __('The payment associated with this transaction failed (see reasons below).', 'AWPCP');
+
+                throw new Exception( $message );
+            }
+        }
     }
 
-    public function set_next_step( $step_name ) {
-        $this->next_step = $this->get_step_by_name( $step_name );
+    private function force_payment_completed_step_if_necessary() {
+        $transaction = $this->get_transaction();
+
+        $step_name = $this->get_current_step_name();
+        $step_not_allowed = in_array( $step_name, array( 'select-credit-plan', 'checkout' ) );
+
+        if ( ! is_null( $transaction ) && $transaction->is_payment_completed() ) {
+            if ( $transaction->was_payment_successful() && $step_not_allowed ) {
+                $this->set_current_step( 'payment-completed' );
+            }
+        }
     }
 
-    public function skip_next_step() {
-        $this->do_next_step = false;
+    private function force_final_step_if_necessary() {
+        $transaction = $this->get_transaction();
+
+        if ( ! is_null($transaction) && $transaction->is_completed() ) {
+            $this->set_current_step( 'final' );
+        }
+    }
+
+    protected function render_user_not_allowed_error() {
+        $this->errors[] = __( 'You are not allowed to buy credits.', 'AWPCP' );
+        $this->render_page_error();
     }
 }
 
 function awpcp_buy_credits_page() {
     $request = new AWPCP_Request();
-    $payments = awpcp_payments_api();
+    $steps = awpcp_buy_credit_page_steps( awpcp_payments_api() );
 
-    $steps = array(
+    return new AWPCP_BuyCreditsPage( $steps, $request );
+}
+
+function awpcp_buy_credit_page_steps( $payments ) {
+    return array(
         'select-credit-plan' =>
             new AWPCP_SetTransactionStatusToOpenStepDecorator(
                 new AWPCP_SetCreditPlanStepDecorator(
@@ -198,6 +156,4 @@ function awpcp_buy_credits_page() {
                 $payments
             ),
     );
-
-    return new AWPCP_BuyCreditsPage( $steps, $request );
 }
