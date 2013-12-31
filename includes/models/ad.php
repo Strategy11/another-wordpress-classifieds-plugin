@@ -356,10 +356,9 @@ class AWPCP_Ad {
 		// make sure dates are dates or NULL, MySQL Strict mode does not allow empty strings
 		$columns = array('ad_postdate', 'ad_last_updated', 'ad_startdate', 'ad_enddate',
 						 'disabled_date', 'renewed_date', 'verified_at');
-		$regexp = '/^\d{4}-\d{1,2}-\d{1,2}(\s\d{1,2}:\d{1,2}(:\d{1,2})?)?$/';
 		foreach ($columns as $column) {
 			$value = trim($sanitized[$column]);
-			if (preg_match($regexp, $value) !== 1) {
+			if ( ! awpcp_is_mysql_date( $value ) ) {
 				// Remove this column. Not a valid date or datetime and
 				// WordPress does not handle NULL values very well:
 				// http://core.trac.wordpress.org/ticket/15158

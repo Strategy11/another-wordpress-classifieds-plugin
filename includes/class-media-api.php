@@ -65,13 +65,10 @@ class AWPCP_MediaAPI {
         global $wpdb;
 
         if ( is_object( $data ) ) {
-            if ( ! awpcp_get_property( $data, 'id', false ) ) {
-                $data->created = awpcp_datetime();
-            }
             $data = $this->translate( $data );
-        } else if ( is_array( $data ) && ! awpcp_array_data( 'id', false, $data ) ) {
-            $data['created'] = awpcp_datetime();
         }
+
+        $data = $this->sanitize( $data );
 
         if ( isset( $data[ 'id' ] ) ) {
             $result = $wpdb->update( AWPCP_TABLE_MEDIA, $data, array( 'id' => $data[ 'id' ] ) );
@@ -82,6 +79,17 @@ class AWPCP_MediaAPI {
         }
 
         return $result;
+    }
+
+    private function sanitize( $data ) {
+        if ( ! isset( $data['created'] ) || ! awpcp_is_mysql_date( $data['created'] ) ) {
+            $data['created'] = awpcp_datetime();
+        }
+
+        $data['enabled'] = absint( $data['enabled'] );
+        $data['is_primary'] = absint( $data['is_primary'] );
+
+        return $data;
     }
 
     public function delete( $media ) {

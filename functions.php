@@ -296,6 +296,11 @@ function awpcp_set_datetime_date( $datetime, $date ) {
     return awpcp_datetime( 'mysql', $new_datetime_timestamp );
 }
 
+function awpcp_is_mysql_date( $date ) {
+	$regexp = '/^\d{4}-\d{1,2}-\d{1,2}(\s\d{1,2}:\d{1,2}(:\d{1,2})?)?$/';
+	return preg_match( $regexp, $date ) === 1;
+}
+
 
 /**
  * Get a WP User. See awpcp_get_users for details.
