@@ -3,7 +3,6 @@
  * User Ad Management Panel functions
  */
 
-require_once(AWPCP_DIR . '/admin/user-panel-account.php');
 require_once(AWPCP_DIR . '/admin/user-panel-listings.php');
 
 
