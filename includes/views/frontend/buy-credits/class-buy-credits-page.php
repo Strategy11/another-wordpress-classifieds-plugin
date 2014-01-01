@@ -13,13 +13,15 @@ class AWPCP_BuyCreditsPage extends AWPCP_BasePage {
     }
 
     public function get_transaction( $create = true ) {
-        $id = $this->request->param( 'transaction_id' );
+        if ( ! isset( $this->transaction ) ) {
+            $id = $this->request->param( 'transaction_id' );
 
-        // TODO: inject PaymentTransaction dependency
-        if ( ! isset( $this->transaction ) && $create === true  ) {
-            $this->transaction = AWPCP_Payment_Transaction::find_or_create( $id );
-        } else if ( ! isset( $this->transaction ) ) {
-            $this->transaction = AWPCP_Payment_Transaction::find_by_id( $id );
+            // TODO: inject PaymentTransaction dependency
+            if ( $create === true  ) {
+                $this->transaction = AWPCP_Payment_Transaction::find_or_create( $id );
+            } else {
+                $this->transaction = AWPCP_Payment_Transaction::find_by_id( $id );
+            }
         }
 
         if ( ! is_null( $this->transaction ) && $this->transaction->is_new() ) {
