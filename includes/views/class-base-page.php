@@ -30,7 +30,8 @@ class AWPCP_BasePage extends AWPCP_Page {
     protected function do_page() {
         try {
             $this->do_page_steps();
-        } catch (Exception $e) {
+        } catch (AWPCP_Exception $e) {
+            throw $e;
             $this->errors[] = $e->getMessage();
             $this->render_page_error();
         }
@@ -67,7 +68,7 @@ class AWPCP_BasePage extends AWPCP_Page {
         if ( isset( $this->steps[ $step_name ] ) ) {
             return $this->steps[ $step_name ];
         } else {
-            throw new Exception( __( 'Unkown step. Please contact the administrator about this error.', 'AWPCP' ) );
+            throw new AWPCP_Exception( __( 'Unkown step. Please contact the administrator about this error.', 'AWPCP' ) );
         }
     }
 
@@ -75,7 +76,7 @@ class AWPCP_BasePage extends AWPCP_Page {
         try {
             $this->do_step_method( $current_step );
             $this->do_next_step();
-        } catch (Exception $e) {
+        } catch (AWPCP_Exception $e) {
             $this->errors[] = $e->getMessage();
             $this->handle_step_exception( $current_step );
         }
@@ -110,7 +111,7 @@ class AWPCP_BasePage extends AWPCP_Page {
     }
 
     private function calculate_next_step( $current_step ) {
-        throw new Exception( __( 'Not yet implemented.', 'AWPCP' ) );
+        throw new AWPCP_Exception( __( 'Not yet implemented.', 'AWPCP' ) );
     }
 
     private function handle_step_exception( $step ) {
@@ -118,7 +119,7 @@ class AWPCP_BasePage extends AWPCP_Page {
             $step->get( $this );
         } else {
             $message = __( 'Your request cannot be processed at this time. Please try again or contact the administrator about the incident.', 'AWPCP' );
-            throw new Exception( $message );
+            throw new AWPCP_Exception( $message );
         }
     }
 

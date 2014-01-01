@@ -18,7 +18,7 @@ class AWPCP_ListingsTableSearchByUserCondition {
         $users = $wpdb->get_col( $wpdb->prepare( $sql, $search_term ) );
 
         if ( empty( $users ) ) {
-            throw new Exception( sprintf( 'No users found for "%s"', $search_term ) );
+            throw new AWPCP_Exception( sprintf( 'No users found for "%s"', $search_term ) );
         }
 
         return 'user_id IN (' . join( ',', $users ) . ')';

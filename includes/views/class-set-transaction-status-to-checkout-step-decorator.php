@@ -31,7 +31,7 @@ class AWPCP_SetTransactionStatusToCheckoutStepDecorator extends AWPCP_StepDecora
         $this->payments->set_transaction_status_to_checkout( $this->transaction, $errors );
 
         if ( ! $this->transaction->is_doing_checkout() ) {
-            throw new Exception( implode( ' ', $errors ) );
+            throw new AWPCP_Exception( implode( ' ', $errors ) );
         }
     }
 }

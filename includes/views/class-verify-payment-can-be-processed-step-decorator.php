@@ -16,7 +16,7 @@ class AWPCP_VerifyPaymentCanBeProcessedStepDecorator extends AWPCP_StepDecorator
         if ( ! $this->payment_can_be_processed( $transaction ) ) {
             $message = __( "We can't process payments for this Payment Transaction at this time. Please contact the website administrator and provide the following transaction ID: %s", 'AWPCP');
             $message = sprintf( $message, $transaction->id );
-            throw new Exception( $message );
+            throw new AWPCP_Exception( $message );
         }
     }
 

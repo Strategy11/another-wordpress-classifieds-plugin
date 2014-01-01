@@ -68,7 +68,7 @@ class AWPCP_BuyCreditsPage extends AWPCP_BasePage {
             $message = __( 'You are trying to buy credits using a transaction created for a different purpose. Pelase go back to the <a href="%s">%s</a> page.<br>If you think this is an error please contact the administrator and provide the following transaction ID: %s', 'AWPCP' );
             $message = sprintf( $message, $page_url, $page_name, $transaction->id );
 
-            throw new Exception( $message );
+            throw new AWPCP_Exception( $message );
         }
     }
 
@@ -80,7 +80,7 @@ class AWPCP_BuyCreditsPage extends AWPCP_BasePage {
                 $this->errors = array_merge( $this->errors, $transaction->errors );
                 $message = __('The payment associated with this transaction failed (see reasons below).', 'AWPCP');
 
-                throw new Exception( $message );
+                throw new AWPCP_Exception( $message );
             }
         }
     }

@@ -19,7 +19,7 @@ class AWPCP_VerifyCreditPlanWasSetStepDecorator extends AWPCP_StepDecorator {
         $credit_plan = $this->payments->get_transaction_credit_plan( $this->transaction );
         if ( is_null( $credit_plan ) ) {
             $message = __( 'No credit plan was set. You should choose one of the available Credit Plans', 'AWPCP' );
-            throw new Exception( $message );
+            throw new AWPCP_Exception( $message );
         }
     }
 }

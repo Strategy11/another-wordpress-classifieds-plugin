@@ -14,7 +14,7 @@ class AWPCP_ListingsTableSearchConditionsParser {
             }
         }
 
-        throw new Exception( sprintf( 'Unknown search type: ', $search_type ) );
+        throw new AWPCP_Exception( sprintf( 'Unknown search type: ', $search_type ) );
     }
 }
 

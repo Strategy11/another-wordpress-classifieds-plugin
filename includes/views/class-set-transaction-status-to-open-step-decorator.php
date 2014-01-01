@@ -24,7 +24,7 @@ class AWPCP_SetTransactionStatusToOpenStepDecorator extends AWPCP_StepDecorator 
         $this->payments->set_transaction_status_to_open( $this->transaction, $errors );
 
         if ( ! $this->transaction->is_open() ) {
-            throw new Exception( implode( ' ', $errors ) );
+            throw new AWPCP_Exception( implode( ' ', $errors ) );
         }
     }
 }

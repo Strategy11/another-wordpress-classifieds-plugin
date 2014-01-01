@@ -125,6 +125,8 @@ require_once(AWPCP_DIR . "/functions_awpcp.php");
 require_once(AWPCP_DIR . "/upload_awpcp.php");
 
 // API & Classes
+require_once(AWPCP_DIR . "/includes/exceptions.php");
+
 require_once(AWPCP_DIR . "/includes/compatibility/compatibility.php");
 
 require_once(AWPCP_DIR . "/includes/helpers/class-awpcp-request.php");
