@@ -31,7 +31,7 @@ class AWPCP_PaymentTerm {
 
     public $recurring;
 
-    public function __construct($data) {
+    public function __construct( $data = array() ) {
         $data = $this->normalize($data);
         $data = $this->sanitize($data);
         $this->update($data, true);
@@ -109,8 +109,8 @@ class AWPCP_PaymentTerm {
         $data['credits'] = (int) $data['credits'];
         $data['price'] = (float) $data['price'];
         $data['ads'] = (int) $data['ads'];
-        $data['featured'] = (bool) $data['featured'];
-        $data['private'] = (bool) $data['private'];
+        $data['featured'] = absint( (bool) $data['featured'] );
+        $data['private'] = absint( (bool) $data['private'] );
         return $data;
     }
 

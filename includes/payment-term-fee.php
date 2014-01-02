@@ -159,6 +159,10 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
         $data['private'] = $_data['private'];
         $data['is_featured_ad_pricing'] = $_data['featured'];
 
+        if ( is_null( $data[ 'adterm_id' ] ) ) {
+            unset( $data[ 'adterm_id' ] );
+        }
+
         return $data;
     }
 
