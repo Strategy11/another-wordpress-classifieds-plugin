@@ -1,0 +1,74 @@
+.awpcp-navigation {
+    .awpcp-menu-toggle {
+        background-color: #000;
+        color: #fff;
+        cursor: pointer;
+        display: none;
+        padding: 8px 8px 8px 30px;
+        font-size: 1.1em;
+    }
+    .awpcp-menu-toggle:before {
+        content: "\b7";
+        font-size: 2em;
+        line-height: 0.5em;
+        margin: 1px 0 0 -18px;
+        position: absolute;
+    }
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0px 0 15px 0;
+
+        li {
+            background: transparent no-repeat left center;
+            float: left;
+            list-style: none;
+            margin: 0 15px 10px 0;
+            padding-left: 20px;
+        }
+
+        .search-listings {
+            background-image: url("../images/search_ico.png");
+        }
+
+        .edit-listing {
+            background-image: url("../images/edit_ico.png");
+        }
+
+        .post-listing {
+            background-image: url("../images/post_ico.png");
+        }
+
+        .browse-listings {
+            background-image: url("../images/browse_ico.png");
+        }
+
+        .buy-subscription {
+            background-image: url("../images/buy_subscription_ico.png");
+        }
+    }
+}
+
+@media screen and (max-width: 44em) {
+    .awpcp-navigation {
+        .awpcp-menu-toggle {
+            display: block;
+        }
+
+        .awpcp-nav-menu {
+            display: none;
+
+            li {
+                margin-bottom: 6px;
+                width: 100%;
+            }
+        }
+    }
+
+    .awpcp-navigation.toggle-on {
+        .awpcp-nav-menu {
+            display: block;
+        }
+    }
+}

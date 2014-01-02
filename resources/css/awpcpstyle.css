@@ -623,55 +623,6 @@ table.listcatsc tr.special td {
   margin: 0;
   padding: 0;
 }
-#classiwrapper ul li {
-  list-style: none;
-  background-image: none;
-  margin: 0;
-  padding: 0;
-}
-#classiwrapper #postsearchads,
-#classiwrapper .awpcp-menu-items {
-  padding: 0px 0 15px 0;
-  list-style: none;
-  margin: 0;
-}
-#postsearchads ul,
-#classiwrapper .awpcp-menu-items ul {
-  margin: 0;
-  padding: 0;
-  float: left;
-}
-#classiwrapper #postsearchads li,
-#classiwrapper .awpcp-menu-items li {
-  list-style: none;
-  float: left;
-  margin: 0 15px 10px 0;
-}
-#postsearchads .searchcads,
-#classiwrapper .awpcp-menu-items .search-listings {
-  background: transparent url("../images/search_ico.png") no-repeat left center;
-  padding-left: 20px;
-}
-#postsearchads .edit,
-#classiwrapper .awpcp-menu-items .edit-listing {
-  background: transparent url("../images/edit_ico.png") no-repeat left center;
-  padding-left: 20px;
-}
-#postsearchads .postad,
-#classiwrapper .awpcp-menu-items .post-listing {
-  background: transparent url("../images/post_ico.png") no-repeat left center;
-  padding-left: 20px;
-}
-#postsearchads .browse,
-#classiwrapper .awpcp-menu-items .browse-listings {
-  background: transparent url("../images/browse_ico.png") no-repeat left center;
-  padding-left: 20px;
-}
-#postsearchads .buy-subscriptions,
-#classiwrapper .awpcp-menu-items .buy-subscriptions {
-  background: transparent url("../images/buy_subscription_ico.png") no-repeat left center;
-  padding-left: 20px;
-}
 #classiwrapper form fieldset {
   margin-bottom: 20px;
 }
@@ -1212,6 +1163,63 @@ p.ad_status_msg {
 @media only screen and (max-width: 480px) {
   .awpcp-category-dropdown {
     margin-right: 0;
+  }
+}
+.awpcp-navigation .awpcp-menu-toggle {
+  background-color: #000;
+  color: #fff;
+  cursor: pointer;
+  display: none;
+  padding: 8px 8px 8px 30px;
+  font-size: 1.1em;
+}
+.awpcp-navigation .awpcp-menu-toggle:before {
+  content: "\b7";
+  font-size: 2em;
+  line-height: 0.5em;
+  margin: 1px 0 0 -18px;
+  position: absolute;
+}
+.awpcp-navigation ul {
+  list-style: none;
+  margin: 0;
+  padding: 0px 0 15px 0;
+}
+.awpcp-navigation ul li {
+  background: transparent no-repeat left center;
+  float: left;
+  list-style: none;
+  margin: 0 15px 10px 0;
+  padding-left: 20px;
+}
+.awpcp-navigation ul .search-listings {
+  background-image: url("../images/search_ico.png");
+}
+.awpcp-navigation ul .edit-listing {
+  background-image: url("../images/edit_ico.png");
+}
+.awpcp-navigation ul .post-listing {
+  background-image: url("../images/post_ico.png");
+}
+.awpcp-navigation ul .browse-listings {
+  background-image: url("../images/browse_ico.png");
+}
+.awpcp-navigation ul .buy-subscription {
+  background-image: url("../images/buy_subscription_ico.png");
+}
+@media screen and (max-width: 44em) {
+  .awpcp-navigation .awpcp-menu-toggle {
+    display: block;
+  }
+  .awpcp-navigation .awpcp-nav-menu {
+    display: none;
+  }
+  .awpcp-navigation .awpcp-nav-menu li {
+    margin-bottom: 6px;
+    width: 100%;
+  }
+  .awpcp-navigation.toggle-on .awpcp-nav-menu {
+    display: block;
   }
 }
 .awpcp-multiple-region-selector .add-region,

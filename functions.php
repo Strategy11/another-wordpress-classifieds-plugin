@@ -1557,8 +1557,8 @@ function awpcp_get_admin_listings_url() {
  *
  * @since 2.0.7
  */
-function awpcp_get_user_panel_url() {
-	return admin_url('admin.php?page=awpcp-panel');
+function awpcp_get_user_panel_url( $params=array() ) {
+	return add_query_arg( $params, admin_url( 'admin.php?page=awpcp-panel' ) );
 }
 
 
