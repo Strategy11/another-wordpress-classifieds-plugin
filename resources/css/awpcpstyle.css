@@ -1,99 +1,3 @@
-/* new clearfix */
-.clearfix:after {
-  visibility: hidden;
-  display: block;
-  font-size: 0;
-  content: " ";
-  clear: both;
-  height: 0;
-}
-* html .clearfix {
-  zoom: 1;
-}
-/* IE6 */
-*:first-child + html .clearfix {
-  zoom: 1;
-}
-/* IE7 */
-.clearboth {
-  clear: both;
-}
-.align-text-right {
-  text-align: right;
-}
-@media only screen and (max-width: 480px) {
-  .awpcp-dropdown {
-    width: 100%;
-  }
-}
-.awpcp-table {
-  border-bottom: 1px solid #DDDDDD;
-  margin: 0 0 1.625em;
-  width: 100%;
-}
-.awpcp-table th,
-.awpcp-table td {
-  padding: 6px 10px 6px 0;
-  text-align: left;
-}
-.awpcp-table td {
-  border-top: 1px solid #DDDDDD;
-}
-/* copied from http://elvery.net/demo/responsive-tables/#flip-scroll */
-@media only screen and (max-width: 800px) {
-  .awpcp-table {
-    /* Force table to not be like tables anymore */
-    /* Hide table headers (but not display: none;, for accessibility) */
-    /*
-        Label the data
-        */
-  }
-  .awpcp-table table,
-  .awpcp-table thead,
-  .awpcp-table tbody,
-  .awpcp-table th,
-  .awpcp-table td,
-  .awpcp-table tr {
-    display: block;
-  }
-  .awpcp-table thead tr {
-    position: absolute;
-    top: -9999px;
-    left: -9999px;
-  }
-  .awpcp-table tbody tr th {
-    padding-left: 10px;
-  }
-  .awpcp-table tr {
-    border: 1px solid #ccc;
-  }
-  .awpcp-table td {
-    /* Behave  like a "row" */
-    border: none;
-    border-bottom: 1px solid #eee;
-    position: relative;
-    padding-top: 3px;
-    padding-bottom: 3px;
-    padding-left: 50%;
-    white-space: normal;
-    text-align: left;
-  }
-  .awpcp-table td:before {
-    /* Now like a table header */
-    position: absolute;
-    /* Top/left values mimic padding */
-    top: 6px;
-    left: 6px;
-    width: 45%;
-    padding-right: 10px;
-    white-space: nowrap;
-    text-align: left;
-    font-weight: bold;
-  }
-  .awpcp-table td:before {
-    content: attr(data-title);
-  }
-}
 /* AWPCP Mesages */
 .awpcp-message {
   background-color: #FFFBCC;
@@ -260,153 +164,6 @@
   font-weight: bold;
   font-style: italic;
 }
-/* Upload Images */
-#classiwrapper .upload-conditions,
-.upload-conditions {
-  background: #EEE;
-  margin-bottom: 10px;
-  padding: 4px 10px;
-}
-#classiwrapper .upload-conditions li,
-.upload-conditions li {
-  float: left;
-  width: 50%;
-}
-#classiwrapper .uploaded-images,
-.uploaded-images {
-  margin-bottom: 10px;
-}
-#classiwrapper .uploaded-images li,
-.uploaded-images li {
-  background: #EEE;
-  float: left;
-  margin: 0 5px 5px 0;
-  padding: 6px 3px 3px;
-  text-align: center;
-  min-width: 180px;
-}
-#classiwrapper .uploaded-images li img,
-.uploaded-images li img {
-  display: block;
-  margin: 0 auto;
-}
-#classiwrapper .uploaded-images .primary-image,
-.uploaded-images .primary-image {
-  border: 1px solid #111;
-  padding: 5px 2px 2px;
-}
-#classiwrapper .uploaded-images .disabled img,
-.uploaded-images .disabled img {
-  opacity: 0.5;
-}
-#classiwrapper .uploaded-files li,
-.uploaded-files li {
-  margin: 0;
-  padding: 6px 10px 3px;
-  min-width: 100%;
-}
-#classiwrapper .uploaded-files li > a,
-.uploaded-files li > a {
-  float: left;
-}
-#classiwrapper .uploaded-files li img,
-.uploaded-files li img {
-  display: inline;
-}
-#classiwrapper .image-actions,
-.image-actions {
-  padding-bottom: 5px;
-}
-#classiwrapper .image-actions li,
-.image-actions li {
-  margin: 0;
-  padding: 0 7.5px;
-  min-width: 0;
-}
-#classiwrapper .image-actions li a,
-#classiwrapper .image-actions li label,
-.image-actions li a,
-.image-actions li label {
-  background: url(../images/image-enable.png) center center no-repeat;
-  cursor: pointer;
-  display: block;
-  height: 22px;
-  width: 25px;
-}
-#classiwrapper .image-actions li a:hover,
-#classiwrapper .image-actions li label:hover,
-.image-actions li a:hover,
-.image-actions li label:hover {
-  background-color: #C6C6C6;
-}
-#classiwrapper .image-actions li span,
-.image-actions li span {
-  display: none;
-}
-#classiwrapper .image-actions .enable a,
-.image-actions .enable a {
-  background-image: url(../images/image-enable.png);
-}
-#classiwrapper .image-actions .disable a,
-.image-actions .disable a {
-  background-image: url(../images/image-disable.png);
-}
-#classiwrapper .image-actions .delete a,
-.image-actions .delete a {
-  background-image: url(../images/image-delete.png);
-}
-#classiwrapper .image-actions .primary a,
-#classiwrapper .image-actions .primary label,
-.image-actions .primary a,
-.image-actions .primary label {
-  background-image: url(../images/image-primary.png);
-}
-#classiwrapper .image-actions .not-primary a,
-#classiwrapper .image-actions .not-primary label,
-.image-actions .not-primary a,
-.image-actions .not-primary label {
-  background-image: url(../images/image-not-primary.png);
-}
-#classiwrapper .image-actions .primary input,
-#classiwrapper .image-actions .not-primary input,
-.image-actions .primary input,
-.image-actions .not-primary input {
-  display: none;
-}
-#classiwrapper .image-actions .label,
-.image-actions .label {
-  color: #333;
-  font-size: 0.9em;
-  padding-top: 1px;
-  padding-right: 0;
-}
-#classiwrapper .uploadform .image-upload-field,
-#classiwrapper .uploadform .image-actions,
-.uploadform .image-upload-field,
-.uploadform .image-actions {
-  float: left;
-}
-#classiwrapper .uploadform .image-actions,
-.uploadform .image-actions {
-  padding-bottom: 0;
-  margin-bottom: 0;
-}
-#classiwrapper .uploaded-files .image-actions,
-.uploaded-files .image-actions {
-  float: right;
-}
-#classiwrapper .uploaded-files .image-actions .delete a,
-.uploaded-files .image-actions .delete a {
-  background-image: url(../images/file-delete.png);
-}
-#classiwrapper .uploaded-files .image-actions .enable a,
-.uploaded-files .image-actions .enable a {
-  background-image: url(../images/enable-attachment.png);
-}
-#classiwrapper .uploaded-files .image-actions .disable a,
-.uploaded-files .image-actions .disable a {
-  background-image: url(../images/disable-attachment.png);
-}
 /* Preview Ad*/
 .awpcp-page .awpcp-preview-ad-form {
   border: 1px solid #E6DB55;
@@ -525,10 +282,6 @@
 }
 #awpcpqsearch b {
   font-size: 12px;
-}
-.textareainput {
-  width: 80%;
-  border: 1px inset #444444;
 }
 .messagedisplay {
   padding: 5px;
@@ -992,11 +745,6 @@ p.maincategoryclass {
   margin: 0px 2px 0px 2px;
   vertical-align: middle;
 }
-div.uploadform {
-  float: left;
-  padding: 5px;
-  width: 100%;
-}
 .theuploaddiv .button {
   margin-top: 20px;
   padding: 6px;
@@ -1154,6 +902,116 @@ p.ad_status_msg {
   list-style-type: circle;
   list-style-position: inside;
 }
+/* new clearfix */
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+* html .clearfix {
+  zoom: 1;
+}
+/* IE6 */
+*:first-child + html .clearfix {
+  zoom: 1;
+}
+/* IE7 */
+.clearboth {
+  clear: both;
+}
+.align-text-right {
+  text-align: right;
+}
+.awpcp-textarea,
+.textareainput {
+  width: 80%;
+  border: 1px inset #888;
+}
+@media only screen and (max-width: 480px) {
+  .awpcp-page .button,
+  .awpcp-page input[type="submit"] {
+    margin-bottom: 5px;
+    width: 100%;
+  }
+  .awpcp-dropdown {
+    width: 100%;
+  }
+  .awpcp-textarea,
+  .textareainput {
+    width: 100%;
+  }
+}
+.awpcp-table {
+  border-bottom: 1px solid #DDDDDD;
+  margin: 0 0 1.625em;
+  width: 100%;
+}
+.awpcp-table th,
+.awpcp-table td {
+  padding: 6px 10px 6px 0;
+  text-align: left;
+}
+.awpcp-table td {
+  border-top: 1px solid #DDDDDD;
+}
+/* copied from http://elvery.net/demo/responsive-tables/#flip-scroll */
+@media only screen and (max-width: 800px) {
+  .awpcp-table {
+    /* Force table to not be like tables anymore */
+    /* Hide table headers (but not display: none;, for accessibility) */
+    /*
+        Label the data
+        */
+  }
+  .awpcp-table table,
+  .awpcp-table thead,
+  .awpcp-table tbody,
+  .awpcp-table th,
+  .awpcp-table td,
+  .awpcp-table tr {
+    display: block;
+  }
+  .awpcp-table thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  .awpcp-table tbody tr th {
+    padding-left: 10px;
+  }
+  .awpcp-table tr {
+    border: 1px solid #ccc;
+  }
+  .awpcp-table td {
+    /* Behave  like a "row" */
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 50%;
+    white-space: normal;
+    text-align: left;
+  }
+  .awpcp-table td:before {
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    text-align: left;
+    font-weight: bold;
+  }
+  .awpcp-table td:before {
+    content: attr(data-title);
+  }
+}
 .awpcp-category-dropdown {
   margin-right: 5px;
 }
@@ -1260,4 +1118,171 @@ p.ad_status_msg {
 #classiwrapper .awpcp-region-selector:last-of-type,
 .awpcp-multiple-region-selector .awpcp-region-selector:last-of-type {
   margin-bottom: 0;
+}
+/* Upload Images Step */
+#classiwrapper .upload-conditions,
+.upload-conditions {
+  background: #EEE;
+  margin-bottom: 10px;
+  padding: 4px 10px;
+}
+#classiwrapper .upload-conditions li,
+.upload-conditions li {
+  float: left;
+  width: 50%;
+}
+#classiwrapper .uploaded-images,
+.uploaded-images {
+  margin-bottom: 10px;
+}
+#classiwrapper .uploaded-images li,
+.uploaded-images li {
+  background: #EEE;
+  float: left;
+  margin: 0 5px 5px 0;
+  min-width: 180px;
+  padding: 6px 3px 3px;
+  text-align: center;
+}
+#classiwrapper .uploaded-images li img,
+.uploaded-images li img {
+  display: block;
+  margin: 0 auto;
+}
+#classiwrapper .uploaded-images .primary-image,
+.uploaded-images .primary-image {
+  border: 1px solid #111;
+  padding: 5px 2px 2px;
+}
+#classiwrapper .uploaded-images .disabled img,
+.uploaded-images .disabled img {
+  opacity: 0.5;
+}
+#classiwrapper .uploaded-files li,
+.uploaded-files li {
+  margin: 0;
+  min-width: 100%;
+  padding: 6px 10px 3px;
+}
+#classiwrapper .uploaded-files li > a,
+.uploaded-files li > a {
+  float: left;
+}
+#classiwrapper .uploaded-files li img,
+.uploaded-files li img {
+  display: inline;
+}
+#classiwrapper .image-actions,
+.image-actions {
+  padding-bottom: 5px;
+}
+#classiwrapper .image-actions li,
+.image-actions li {
+  margin: 0;
+  padding: 0 7.5px;
+  min-width: 0;
+  width: auto;
+}
+#classiwrapper .image-actions li a,
+.image-actions li a,
+#classiwrapper .image-actions li label,
+.image-actions li label {
+  background: url(../images/image-enable.png) center center no-repeat;
+  cursor: pointer;
+  display: block;
+  height: 22px;
+  width: 25px;
+}
+#classiwrapper .image-actions li a:hover,
+.image-actions li a:hover,
+#classiwrapper .image-actions li label:hover,
+.image-actions li label:hover {
+  background-color: #C6C6C6;
+}
+#classiwrapper .image-actions li span,
+.image-actions li span {
+  display: none;
+}
+#classiwrapper .image-actions .enable a,
+.image-actions .enable a {
+  background-image: url(../images/image-enable.png);
+}
+#classiwrapper .image-actions .disable a,
+.image-actions .disable a {
+  background-image: url(../images/image-disable.png);
+}
+#classiwrapper .image-actions .delete a,
+.image-actions .delete a {
+  background-image: url(../images/image-delete.png);
+}
+#classiwrapper .image-actions .primary a,
+.image-actions .primary a,
+#classiwrapper .image-actions .primary label,
+.image-actions .primary label {
+  background-image: url(../images/image-primary.png);
+}
+#classiwrapper .image-actions .not-primary a,
+.image-actions .not-primary a,
+#classiwrapper .image-actions .not-primary label,
+.image-actions .not-primary label {
+  background-image: url(../images/image-not-primary.png);
+}
+#classiwrapper .image-actions .primary input,
+.image-actions .primary input,
+#classiwrapper .image-actions .not-primary input,
+.image-actions .not-primary input {
+  display: none;
+}
+#classiwrapper .image-actions .label,
+.image-actions .label {
+  color: #333;
+  font-size: 0.9em;
+  padding-top: 1px;
+  padding-right: 0;
+}
+#classiwrapper .uploaded-files .image-actions,
+.uploaded-files .image-actions {
+  float: right;
+}
+#classiwrapper .uploaded-files .image-actions .delete a,
+.uploaded-files .image-actions .delete a {
+  background-image: url(../images/file-delete.png);
+}
+#classiwrapper .uploaded-files .image-actions .enable a,
+.uploaded-files .image-actions .enable a {
+  background-image: url(../images/enable-attachment.png);
+}
+#classiwrapper .uploaded-files .image-actions .disable a,
+.uploaded-files .image-actions .disable a {
+  background-image: url(../images/disable-attachment.png);
+}
+#classiwrapper .uploadform,
+.uploadform {
+  float: left;
+  width: 100%;
+}
+#classiwrapper .uploadform .image-upload-field,
+.uploadform .image-upload-field,
+#classiwrapper .uploadform .image-actions,
+.uploadform .image-actions {
+  float: left;
+}
+#classiwrapper .uploadform .image-actions,
+.uploadform .image-actions {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+@media only screen and (max-width: 480px) {
+  #classiwrapper .uploadform .image-upload-field,
+  .uploadform .image-upload-field {
+    width: 80%;
+  }
+  #classiwrapper .uploaded-images li,
+  .uploaded-images li {
+    width: 100%;
+  }
+  #classiwrapper .uploaded-images li .image-actions li,
+  .uploaded-images li .image-actions li {
+    width: auto;
+  }
 }

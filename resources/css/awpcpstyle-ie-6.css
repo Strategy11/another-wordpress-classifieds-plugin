@@ -42,10 +42,6 @@
 #awpcpqsearch b {
   font-size: 12px;
 }
-.textareainput {
-  width: 80%;
-  border: 1px inset #444444;
-}
 .messagedisplay {
   padding: 5px;
   background-color: #fffbcc;
@@ -402,10 +398,6 @@ p.maincategoryclass {
 .categoryicon {
   margin: 0px 2px 0px 2px;
   vertical-align: middle;
-}
-div.uploadform {
-  float: left;
-  padding: 5px;
 }
 .theuploaddiv .button {
   margin-top: 20px;
