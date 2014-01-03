@@ -49,7 +49,7 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
     protected function render($items, $instance, $html_class='') {
         global $awpcp_imagesurl;
 
-        $thumbnail_width = absint(trim(get_awpcp_option('displayadthumbwidth'))) . 'px';
+        $thumbnail_width = absint( trim( get_awpcp_option( 'displayadthumbwidth' ) ) );
 
         foreach ($items as $item) {
             $url = url_showad($item->ad_id);
