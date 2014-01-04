@@ -317,6 +317,17 @@
         });
     };
 
+    $.AWPCP.MainMenu = function(toggle) {
+        var self = this;
+
+        self.toggle = $(toggle);
+        self.container = self.toggle.parent();
+
+        self.toggle.click(function() {
+            self.container.toggleClass('toggle-on');
+        });
+    };
+
     /* Common Operations */
 
     $(function() {
@@ -330,6 +341,10 @@
         });
 
         $('.awpcp-categories-list .top-level-category').closest('li').collapsible();
+
+        $('.awpcp-navigation').each(function() {
+            $.noop(new $.AWPCP.MainMenu($(this).find('.awpcp-menu-toggle')));
+        });
     });
 
 })(jQuery);

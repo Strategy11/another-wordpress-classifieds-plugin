@@ -42,10 +42,6 @@
 #awpcpqsearch b {
   font-size: 12px;
 }
-.textareainput {
-  width: 80%;
-  border: 1px inset #444444;
-}
 .messagedisplay {
   padding: 5px;
   background-color: #fffbcc;
@@ -206,17 +202,6 @@ table.listcatsc tr.special td {
   margin: 0px 20px 0px 0px;
   padding: 2px;
   border: 1px solid #dddddd;
-}
-#displayimagethumbswrapper #displayimagethumbs img {
-  border: none;
-}
-#displayimagethumbswrapper #displayimagethumbs ul {
-  list-style: none;
-}
-#displayimagethumbswrapper #displayimagethumbs li {
-  list-style: none;
-  float: left;
-  margin: 10px;
 }
 .classimenu1 {
   padding: 15px;
@@ -402,10 +387,6 @@ p.maincategoryclass {
 .categoryicon {
   margin: 0px 2px 0px 2px;
   vertical-align: middle;
-}
-div.uploadform {
-  float: left;
-  padding: 5px;
 }
 .theuploaddiv .button {
   margin-top: 20px;
