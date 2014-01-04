@@ -1,18 +1,11 @@
 .awpcp-navigation {
     .awpcp-menu-toggle {
-        background-color: #000;
-        color: #fff;
+        background: #000 url("../images/bullet_arrow_down.png") 10px center no-repeat;
+        color: #eee;
         cursor: pointer;
         display: none;
         padding: 8px 8px 8px 30px;
         font-size: 1.1em;
-    }
-    .awpcp-menu-toggle:before {
-        content: "\b7";
-        font-size: 2em;
-        line-height: 0.5em;
-        margin: 1px 0 0 -18px;
-        position: absolute;
     }
 
     ul {
@@ -67,6 +60,9 @@
     }
 
     .awpcp-navigation.toggle-on {
+        .awpcp-menu-toggle {
+            background-image: url("../images/bullet_arrow_up.png");
+        }
         .awpcp-nav-menu {
             display: block;
         }
