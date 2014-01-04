@@ -203,17 +203,6 @@ table.listcatsc tr.special td {
   padding: 2px;
   border: 1px solid #dddddd;
 }
-#displayimagethumbswrapper #displayimagethumbs img {
-  border: none;
-}
-#displayimagethumbswrapper #displayimagethumbs ul {
-  list-style: none;
-}
-#displayimagethumbswrapper #displayimagethumbs li {
-  list-style: none;
-  float: left;
-  margin: 10px;
-}
 .classimenu1 {
   padding: 15px;
 }
