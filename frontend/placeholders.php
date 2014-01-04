@@ -34,7 +34,7 @@ function awpcp_content_placeholders() {
         ),
         'addetails' => array(
             'callback' => 'awpcp_do_placeholder_details',
-            ),
+        ),
         'location' => array(
             'callback' => 'awpcp_do_placeholder_location',
         ),
@@ -161,7 +161,16 @@ function awpcp_content_placeholders() {
         'start_date' => array(
             'callback' => 'awpcp_do_placeholder_dates',
         ),
+        'end_date' => array(
+            'callback' => 'awpcp_do_placeholder_dates',
+        ),
         'posted_date' => array(
+            'callback' => 'awpcp_do_placeholder_dates',
+        ),
+        'last_updated_date' => array(
+            'callback' => 'awpcp_do_placeholder_dates',
+        ),
+        'renewed_date' => array(
             'callback' => 'awpcp_do_placeholder_dates',
         ),
 
@@ -350,7 +359,7 @@ function awpcp_do_placeholder_website_link($ad, $placeholder) {
     } else {
         $replacements['awpcpvisitwebsite'] = '';
         $replacements['website_link'] = '';
-    }    
+    }
 
     return $replacements[$placeholder];
 }
@@ -384,7 +393,10 @@ function awpcp_do_placeholder_price($ad, $placeholder) {
  */
 function awpcp_do_placeholder_dates($ad, $placeholder) {
     $replacements['start_date'] = awpcp_datetime( 'awpcp-date', $ad->ad_startdate );
+    $replacements['end_date'] = awpcp_datetime( 'awpcp-date', $ad->ad_enddate );
     $replacements['posted_date'] = awpcp_datetime( 'awpcp-date', $ad->ad_postdate );
+    $replacements['last_updated_date'] = awpcp_datetime( 'awpcp-date', $ad->ad_last_updated );
+    $replacements['renewed_date'] = awpcp_datetime( 'awpcp-date', $ad->renewed_date );
 
     return $replacements[$placeholder];
 }
