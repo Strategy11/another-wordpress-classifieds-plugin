@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: AWPCP\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2013-12-30 18:47:51+00:00\n"
+"POT-Creation-Date: 2014-01-04 05:06:01+00:00\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: \n"
@@ -702,6 +702,13 @@ msgstr "Administrador"
 msgid "Administrator & Editor"
 msgstr "Administrador y Editor"
 
+msgid ""
+"Administrator users are not allowed to access this page. They can't add or "
+"remove credits to their accounts."
+msgstr ""
+"Esta página no está disponible para usuarios administradores. Ellos no "
+"pueden agregar o remover credito de sus cuentas."
+
 msgctxt "place ad payment terms column headers"
 msgid "Ads Allowed"
 msgstr "Anuncios permitidos"
@@ -1110,6 +1117,9 @@ msgstr "Acciónes"
 msgid "Button URL"
 msgstr "Botón URL"
 
+msgid "Buy Credits"
+msgstr "Comprar Créditos"
+
 msgid "Buy Subscription"
 msgstr "Comprar suscripción"
 
@@ -1190,10 +1200,6 @@ msgstr "Caracteres permitidos en el título"
 msgid "Characters in Description"
 msgstr "Caracteres en la descripción"
 
-msgctxt "place ad payment terms column headers"
-msgid "Characters in Description"
-msgstr "Caracteres en la descripción"
-
 msgid "Characters in Title"
 msgstr "Caracteres en el título"
 
@@ -1213,6 +1219,10 @@ msgstr "Cobrar por los anuncios?"
 
 msgid "Charge Listing Fee? (Pay Mode)"
 msgstr "Cobrar por publicar un anuncio? (modo pago)"
+
+msgctxt "place ad payment terms column headers"
+msgid "Chars in Description"
+msgstr "Caracteres en la descripción"
 
 msgid ""
 "Check this to use the name and email of the sender in the FROM field when "
@@ -1286,6 +1296,9 @@ msgstr "Clasificados"
 msgctxt "awpcp admin menu"
 msgid "Classifieds"
 msgstr "Clasificados"
+
+msgid "Classifieds Menu"
+msgstr "Menu Clasificados"
 
 msgid "Classifieds Pages"
 msgstr "Páginas de Clasificados"
@@ -3319,6 +3332,12 @@ msgid ""
 msgstr ""
 "No se pude usar ningún cupón, es posible que los cupones existentes hayan "
 "expirado o ya fueron redimidos."
+
+msgid ""
+"No credit plan was set. You should choose one of the available Credit Plans"
+msgstr ""
+"No seleccionó un plan de crédito. Debe selecciona uno de los planes de "
+"crédito disponibles."
 
 msgid "No credit plans available."
 msgstr "No hay planes de crédito disponibles."
@@ -5404,6 +5423,15 @@ msgstr ""
 "Usted puede agregar más crédito cuando esté publicando un nuevo anuncio o "
 "haciendo click en el botón \"Agregar Crédito\" que aparece abajo."
 
+msgid ""
+"The credit in your account can be used to pay for posting your Ads. You can "
+"add more credit when posting a new Ad or using the \"Add Credit\" button "
+"below."
+msgstr ""
+"El crédito en su cuenta puede ser usado para pagar para publicar anuncios. "
+"Usted puede agregar más crédito cuando esté publicando un nuevo anuncio o "
+"haciendo click en el botón \"Agregar Crédito\" que aparece abajo."
+
 msgid "The currency in which you would like to receive your PayPal payments"
 msgstr "La moneda en la cual quisiera recibir sus pagos a través de PayPal"
 
@@ -6361,6 +6389,10 @@ msgctxt "upload files"
 msgid "Unknown error encountered while uploading the image."
 msgstr "Ocurrió un error desconocido mientras se intentaba subir la imagen."
 
+msgid "Unkown step. Please contact the administrator about this error."
+msgstr ""
+"Paso desconocido. Por favor contacte el administrador acerca de este error."
+
 msgid "Unpaid"
 msgstr "No pagada."
 
@@ -6771,6 +6803,9 @@ msgstr ""
 "Está conectado como administrador. Los pasos que involucren pago no se "
 "mostrarán."
 
+msgid "You are not allowed to buy credits."
+msgstr "Usted no está autorizado para comprar créditos."
+
 msgid "You are not allowed to delete this Comment."
 msgstr "Usted no está autorizado para eliminar este comentario."
 
@@ -6802,6 +6837,17 @@ msgstr ""
 "creada para un propósito diferente. Por favor regrese a la <a href=\"%s\">"
 "%s</a> página.<br>Si cree que esto es un error por favor contacte el "
 "administrador e incluya el siguiente número de transacción: %d."
+
+msgid ""
+"You are trying to buy credits using a transaction created for a different "
+"purpose. Pelase go back to the <a href=\"%s\">%s</a> page.<br>If you think "
+"this is an error please contact the administrator and provide the following "
+"transaction ID: %s"
+msgstr ""
+"Usted está intentando comprar créditos usando una transacción creada para un "
+"propósito diferente. Por favor regese a la página <a href=\"%s\">%s</a>. Si "
+"usted cree que este mensaje es un error, por favor contacte al administrador "
+"e incluya el siguiente número de transacción en el mensaje: %s"
 
 msgid ""
 "You are trying to post an Ad using a transaction created for a different "
@@ -7201,9 +7247,6 @@ msgstr ""
 "de contacto en este anuncio. El anuncio permanecerá deshabilitado hasta que "
 "verifique su dirección. Un mensaje de verifiación le fue enviado."
 
-msgid "You should choose one of the available Credit Plans"
-msgstr "Usted debe elegir uno de los planes de crédito disponibles"
-
 msgid "You should choose one of the available Payment Terms."
 msgstr "Debe seleccionar one de los términos de pago disponibles."
 
@@ -7427,6 +7470,13 @@ msgstr ""
 "verificación. Usted será redirigido al sitio web donde podrá ver su anuncio."
 
 msgid ""
+"Your request cannot be processed at this time. Please try again or contact "
+"the administrator about the incident."
+msgstr ""
+"Su petición no puede ser procesada en este momento. Por favor intente de "
+"nuevo o contacte el administrador acerca de este incidente."
+
+msgid ""
 "Your sitemap will build automatically as Ads are created/edited/disabled. "
 "You don't need to rebuild it unless there is some problem."
 msgstr ""
@@ -7566,6 +7616,10 @@ msgstr "usar información de planilla"
 
 msgid "visit the forums!"
 msgstr "viste los foros!"
+
+#~ msgctxt "place ad payment terms column headers"
+#~ msgid "Characters in Description"
+#~ msgstr "Caracteres en la descripción"
 
 #~ msgid "Ad Headline"
 #~ msgstr "Titular del Aviso"

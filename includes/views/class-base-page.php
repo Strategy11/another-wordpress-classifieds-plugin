@@ -111,7 +111,7 @@ class AWPCP_BasePage extends AWPCP_Page {
     }
 
     private function calculate_next_step( $current_step ) {
-        throw new AWPCP_Exception( __( 'Not yet implemented.', 'AWPCP' ) );
+        throw new AWPCP_Exception( 'Not yet implemented.' );
     }
 
     private function handle_step_exception( $step ) {

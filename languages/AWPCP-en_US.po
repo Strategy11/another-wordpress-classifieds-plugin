@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: AWPCP\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2013-12-30 18:47:51+00:00\n"
+"POT-Creation-Date: 2014-01-04 05:06:01+00:00\n"
 "PO-Revision-Date: 2013-10-28 19:39-0500\n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: \n"
@@ -634,6 +634,11 @@ msgstr ""
 msgid "Administrator & Editor"
 msgstr ""
 
+msgid ""
+"Administrator users are not allowed to access this page. They can't add or "
+"remove credits to their accounts."
+msgstr ""
+
 msgctxt "place ad payment terms column headers"
 msgid "Ads Allowed"
 msgstr ""
@@ -986,6 +991,9 @@ msgstr ""
 msgid "Button URL"
 msgstr ""
 
+msgid "Buy Credits"
+msgstr ""
+
 msgid "Buy Subscription"
 msgstr ""
 
@@ -1064,10 +1072,6 @@ msgstr ""
 msgid "Characters in Description"
 msgstr ""
 
-msgctxt "place ad payment terms column headers"
-msgid "Characters in Description"
-msgstr ""
-
 msgid "Characters in Title"
 msgstr ""
 
@@ -1084,6 +1088,10 @@ msgid "Charge Listing Fee?"
 msgstr ""
 
 msgid "Charge Listing Fee? (Pay Mode)"
+msgstr ""
+
+msgctxt "place ad payment terms column headers"
+msgid "Chars in Description"
 msgstr ""
 
 msgid ""
@@ -1138,6 +1146,9 @@ msgstr ""
 
 msgctxt "awpcp admin menu"
 msgid "Classifieds"
+msgstr ""
+
+msgid "Classifieds Menu"
 msgstr ""
 
 msgid "Classifieds Pages"
@@ -2934,6 +2945,10 @@ msgctxt "awpcp coupons"
 msgid ""
 "No coupons could be used, either they expired or already exceeded the "
 "redemption limit."
+msgstr ""
+
+msgid ""
+"No credit plan was set. You should choose one of the available Credit Plans"
 msgstr ""
 
 msgid "No credit plans available."
@@ -4813,6 +4828,12 @@ msgid ""
 "add credit when posting a new Ad or using the \"Add Credit\" button below."
 msgstr ""
 
+msgid ""
+"The credit in your account can be used to pay for posting your Ads. You can "
+"add more credit when posting a new Ad or using the \"Add Credit\" button "
+"below."
+msgstr ""
+
 msgid "The currency in which you would like to receive your PayPal payments"
 msgstr ""
 
@@ -5599,6 +5620,9 @@ msgctxt "upload files"
 msgid "Unknown error encountered while uploading the image."
 msgstr ""
 
+msgid "Unkown step. Please contact the administrator about this error."
+msgstr ""
+
 msgid "Unpaid"
 msgstr ""
 
@@ -5946,6 +5970,9 @@ msgid ""
 "You are logged in as an administrator. Any payment steps will be skipped."
 msgstr ""
 
+msgid "You are not allowed to buy credits."
+msgstr ""
+
 msgid "You are not allowed to delete this Comment."
 msgstr ""
 
@@ -5969,6 +5996,13 @@ msgid ""
 "different purpose. Pelase go back to the <a href=\"%s\">%s</a> page.<br>If "
 "you think this is an error please contact the administrator and provide the "
 "following transaction ID: %s"
+msgstr ""
+
+msgid ""
+"You are trying to buy credits using a transaction created for a different "
+"purpose. Pelase go back to the <a href=\"%s\">%s</a> page.<br>If you think "
+"this is an error please contact the administrator and provide the following "
+"transaction ID: %s"
 msgstr ""
 
 msgid ""
@@ -6264,9 +6298,6 @@ msgid ""
 "address. A verification email has been sent to you."
 msgstr ""
 
-msgid "You should choose one of the available Credit Plans"
-msgstr ""
-
 msgid "You should choose one of the available Payment Terms."
 msgstr ""
 
@@ -6440,6 +6471,11 @@ msgid ""
 "process you have to verify your email address. Please click the link below "
 "to complete the verification process. You will be redirected to the website "
 "where you can see your Ad."
+msgstr ""
+
+msgid ""
+"Your request cannot be processed at this time. Please try again or contact "
+"the administrator about the incident."
 msgstr ""
 
 msgid ""

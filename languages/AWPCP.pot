@@ -1,14 +1,14 @@
-# Copyright (C) 2013 
+# Copyright (C) 2014 
 # This file is distributed under the same license as the  package.
 msgid ""
 msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2013-12-30 18:47:51+00:00\n"
+"POT-Creation-Date: 2014-01-04 05:06:01+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2013-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2014-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
@@ -580,6 +580,9 @@ msgstr ""
 msgid "Administrator & Editor"
 msgstr ""
 
+msgid "Administrator users are not allowed to access this page. They can't add or remove credits to their accounts."
+msgstr ""
+
 msgctxt "place ad payment terms column headers"
 msgid "Ads Allowed"
 msgstr ""
@@ -888,6 +891,9 @@ msgstr ""
 msgid "Button URL"
 msgstr ""
 
+msgid "Buy Credits"
+msgstr ""
+
 msgid "Buy Subscription"
 msgstr ""
 
@@ -966,10 +972,6 @@ msgstr ""
 msgid "Characters in Description"
 msgstr ""
 
-msgctxt "place ad payment terms column headers"
-msgid "Characters in Description"
-msgstr ""
-
 msgid "Characters in Title"
 msgstr ""
 
@@ -984,6 +986,10 @@ msgid "Charge Listing Fee?"
 msgstr ""
 
 msgid "Charge Listing Fee? (Pay Mode)"
+msgstr ""
+
+msgctxt "place ad payment terms column headers"
+msgid "Chars in Description"
 msgstr ""
 
 msgid "Check this to use the name and email of the sender in the FROM field when someone replies to an ad. When unchecked the messages go out with the website name and WP admin email address in the from field. Some servers will not process outgoing emails that have an email address from gmail, yahoo, hotmail and other free email services in the FROM field. Some servers will also not process emails that have an email address that is different from the email address associated with your hosting account in the FROM field. If you are with such a webhost you need to leave this option unchecked and make sure your WordPress admin email address is tied to your hosting account."
@@ -1026,6 +1032,9 @@ msgstr ""
 
 msgctxt "awpcp admin menu"
 msgid "Classifieds"
+msgstr ""
+
+msgid "Classifieds Menu"
 msgstr ""
 
 msgid "Classifieds Pages"
@@ -2660,6 +2669,9 @@ msgstr ""
 
 msgctxt "awpcp coupons"
 msgid "No coupons could be used, either they expired or already exceeded the redemption limit."
+msgstr ""
+
+msgid "No credit plan was set. You should choose one of the available Credit Plans"
 msgstr ""
 
 msgid "No credit plans available."
@@ -4408,6 +4420,9 @@ msgstr ""
 msgid "The credit in your account can be used to pay for posting your Ads. You can add credit when posting a new Ad or using the \"Add Credit\" button below."
 msgstr ""
 
+msgid "The credit in your account can be used to pay for posting your Ads. You can add more credit when posting a new Ad or using the \"Add Credit\" button below."
+msgstr ""
+
 msgid "The currency in which you would like to receive your PayPal payments"
 msgstr ""
 
@@ -5063,6 +5078,9 @@ msgctxt "upload files"
 msgid "Unknown error encountered while uploading the image."
 msgstr ""
 
+msgid "Unkown step. Please contact the administrator about this error."
+msgstr ""
+
 msgid "Unpaid"
 msgstr ""
 
@@ -5364,6 +5382,9 @@ msgstr ""
 msgid "You are logged in as an administrator. Any payment steps will be skipped."
 msgstr ""
 
+msgid "You are not allowed to buy credits."
+msgstr ""
+
 msgid "You are not allowed to delete this Comment."
 msgstr ""
 
@@ -5380,6 +5401,9 @@ msgid "You are responding to Ad: %s."
 msgstr ""
 
 msgid "You are trying to buy a Subscription Plan using a transaction created for a different purpose. Pelase go back to the <a href=\"%s\">%s</a> page.<br>If you think this is an error please contact the administrator and provide the following transaction ID: %s"
+msgstr ""
+
+msgid "You are trying to buy credits using a transaction created for a different purpose. Pelase go back to the <a href=\"%s\">%s</a> page.<br>If you think this is an error please contact the administrator and provide the following transaction ID: %s"
 msgstr ""
 
 msgid "You are trying to post an Ad using a transaction created for a different purpose. Pelase go back to the <a href=\"%s\">%s</a> page.<br>If you think this is an error please contact the administrator and provide the following transaction ID: %s"
@@ -5590,9 +5614,6 @@ msgstr ""
 msgid "You need to verify the email address used as the contact email address for this Ad. The Ad will remain in a disabled status until you verify you address. A verification email has been sent to you."
 msgstr ""
 
-msgid "You should choose one of the available Credit Plans"
-msgstr ""
-
 msgid "You should choose one of the available Payment Terms."
 msgstr ""
 
@@ -5725,6 +5746,9 @@ msgid "Your received a comment for your ad, don't forget to reply!"
 msgstr ""
 
 msgid "Your recently posted the Ad \"%s\" to %s. In order to complete the posting process you have to verify your email address. Please click the link below to complete the verification process. You will be redirected to the website where you can see your Ad."
+msgstr ""
+
+msgid "Your request cannot be processed at this time. Please try again or contact the administrator about the incident."
 msgstr ""
 
 msgid "Your sitemap will build automatically as Ads are created/edited/disabled. You don't need to rebuild it unless there is some problem."
