@@ -1,3 +1,16 @@
+<div class="postbox">
+    <div class="inside">
+        <ul class="awpcp-admin-manage-links">
+            <li class="label">Manage Links:</li>
+            <li><a href="<?php echo $urls['view-listing']; ?>">View Listing</a></li>
+            <li><a href="<?php echo $urls['listings']; ?>">Return to Listings</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="postbox">
+    <div class="inside">
+
 <h3><?php echo sprintf( _x( 'Files for Ad %s.', 'media manager', 'AWPCP' ), '&laquo;' . $ad->get_title() . '&raquo;' ); ?></h3>
 
 <form class="awpcp-media-manager-upload-form" method="post" enctype="multipart/form-data">
@@ -41,7 +54,7 @@
 
             <?php if ( ! $file->enabled && $action == 'rejectpic' ) continue; ?>
 
-                <form class="awcp-media-manager-file-action" method="post" action="<?php echo $endpoint ?>">
+                <form class="awcp-media-manager-file-action" method="post" action="<?php echo $urls['endpoint']; ?>">
                 <?php foreach( $hidden as $name => $value ): ?>
                     <input type="hidden" name="<?php echo $name; ?>" value="<?php echo $value; ?>" />
                 <?php endforeach; ?>
@@ -60,3 +73,6 @@
 </ul>
 
 <?php endforeach; ?>
+
+    </div>
+</div>

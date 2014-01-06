@@ -162,9 +162,13 @@ class AWPCP_MediaManager {
         $this->page->title = apply_filters( 'awpcp-media-manager-page-title', $title );
         $this->page->page = 'awpcp-admin-images';
 
-        $endpoint = $this->page->url( array( 'action' => 'manage-images') );
-        $hidden = array( 'adid' => $ad->ad_id, );
+        $urls = array(
+            'endpoint' => $this->page->url( array( 'action' => 'manage-images') ),
+            'view-listing' => $this->page->url( array( 'action' => 'view', 'id' => $ad->ad_id ) ),
+            'listings' => $this->page->url( array( 'id' => null ) ),
+        );
 
+        $hidden = array( 'adid' => $ad->ad_id, );
         $groups = $this->get_files( $ad );
 
         $actions = array(
