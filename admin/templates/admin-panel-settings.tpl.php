@@ -3,15 +3,18 @@
 
 <?php include(AWPCP_DIR . '/admin/templates/admin-panel-header.tpl.php') ?>
 
-<?php awpcp_print_messages(); ?>
+			<?php awpcp_print_messages(); ?>
 
-			<ul class="tabs clearfix">
-<?php foreach ($groups as $g):
-		$href = add_query_arg(array('g' => $g->slug), awpcp_current_url());
-		$active = $group->slug == $g->slug ? 'active' : ''; ?>
-				<li><a href="<?php echo $href ?>" class="<?php echo $active ?>"><?php echo $g->name ?></a></li>
-<?php endforeach ?>
-			</ul>
+			<h2 class="nav-tab-wrapper">
+			<?php foreach ($groups as $g): ?>
+				<?php $href = add_query_arg(array('g' => $g->slug), awpcp_current_url()); ?>
+				<?php $active = $group->slug == $g->slug ? 'nav-tab nav-tab-active' : 'nav-tab'; ?>
+				<a href="<?php echo $href ?>" class="<?php echo $active ?>"><?php echo $g->name ?></a>
+			<?php endforeach ?>
+			</h2>
+
+			<!-- <div class="postbox">
+				<div class="inside"> -->
 
 			<?php do_action('awpcp-admin-settings-page--' . $group->slug); ?>
 
@@ -39,6 +42,9 @@
 				</p>
 				<?php endif; ?>
 			</form>
+
+				<!-- </div>
+			</div> -->
 		</div><!-- end of .awpcp-main-content -->
 	</div><!-- end of .page-content -->
 </div><!-- end of #page_id -->

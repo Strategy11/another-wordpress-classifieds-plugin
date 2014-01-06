@@ -51,6 +51,10 @@
 .tabs li a.active {
   background: #FFF;
 }
+.nav-tab-wrapper .nav-tab {
+  font-size: 12px;
+  padding: 2px 5px;
+}
 .category-checklist {
   background: #FFF;
   border: 1px solid #DDD;
@@ -209,6 +213,9 @@
 .awpcp-admin-settings label {
   font-weight: normal;
 }
+.awpcp-admin-settings .awpcp-main-content .metabox-holder {
+  padding-top: 20px !important;
+}
 /* =Admin Credit Plans
 ---------------------------------------------------------------------------- */
 #wpbody-content .awpcp-admin-credit-plans .inline-edit-row .inline-edit-col-left,
@@ -352,28 +359,25 @@
 }
 /* =Debug Page
 ---------------------------------------------------------------------------- */
-#awpcp-admin-debug .apostboxes table {
+#awpcp-admin-debug .nav-tab-wrapper {
+  margin-bottom: 20px;
+}
+#awpcp-admin-debug .postbox table {
   border-spacing: 0;
   width: 100%;
 }
-#awpcp-admin-debug .apostboxes table thead th {
+#awpcp-admin-debug .postbox table thead th {
   padding: 4px 0px;
 }
-#awpcp-admin-debug .apostboxes table tbody th {
+#awpcp-admin-debug .postbox table tbody th {
   padding: 6px 10px;
   text-align: left;
 }
-#awpcp-admin-debug .apostboxes table tbody td {
+#awpcp-admin-debug .postbox table tbody td {
   padding: 6px 10px;
 }
-#awpcp-admin-debug .apostboxes table tbody td.align-center {
+#awpcp-admin-debug .postbox table tbody td.align-center {
   text-align: center;
-}
-#awpcp-admin-debug .apostboxes table tbody tr:nth-child(2n+1) {
-  background: #EFEFEF;
-}
-#awpcp-admin-debug .apostboxes table tbody tr:nth-child(2n) {
-  background: #F5F5F5;
 }
 /* User Ad Management Panel
  ---------------------------------------------------------------------------- */

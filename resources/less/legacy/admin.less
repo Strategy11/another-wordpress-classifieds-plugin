@@ -57,6 +57,13 @@
     background: #FFF;
 }
 
+.nav-tab-wrapper {
+    .nav-tab {
+        font-size: 12px;
+        padding: 2px 5px;
+    }
+}
+
 .category-checklist {
     background: #FFF;
     border: 1px solid #DDD;
@@ -236,12 +243,21 @@
 /* =Admin Settings
 ---------------------------------------------------------------------------- */
 
-.awpcp-admin-settings form textarea {
-    width: 600px;
-    height: 120px;
-}
-.awpcp-admin-settings label {
-    font-weight: normal;
+.awpcp-admin-settings {
+    form textarea {
+        width: 600px;
+        height: 120px;
+    }
+
+    label {
+        font-weight: normal;
+    }
+
+    .awpcp-main-content {
+        .metabox-holder {
+            padding-top: 20px !important;
+        }
+    }
 }
 
 /* =Admin Credit Plans
@@ -417,28 +433,38 @@
 /* =Debug Page
 ---------------------------------------------------------------------------- */
 
-#awpcp-admin-debug .apostboxes table {
-    border-spacing: 0;
-    width: 100%;
-}
-#awpcp-admin-debug .apostboxes table thead th {
-    padding: 4px 0px;
-}
-#awpcp-admin-debug .apostboxes table tbody th {
-    padding: 6px 10px;
-    text-align: left;
-}
-#awpcp-admin-debug .apostboxes table tbody td {
-    padding: 6px 10px;
-}
-#awpcp-admin-debug .apostboxes table tbody td.align-center {
-    text-align: center;
-}
-#awpcp-admin-debug .apostboxes table tbody tr:nth-child(2n+1) {
-    background: #EFEFEF;
-}
-#awpcp-admin-debug .apostboxes table tbody tr:nth-child(2n) {
-    background: #F5F5F5;
+#awpcp-admin-debug {
+    .nav-tab-wrapper {
+        margin-bottom: 20px;
+    }
+
+    .postbox table {
+        border-spacing: 0;
+        width: 100%;
+
+        thead th {
+            padding: 4px 0px;
+        }
+
+        tbody {
+            tr:nth-child(2n+1) {
+                // background: #EFEFEF;
+            }
+            tr:nth-child(2n) {
+                // background: #FDFDFD;
+            }
+            th {
+                padding: 6px 10px;
+                text-align: left;
+            }
+            td {
+                padding: 6px 10px;
+            }
+            td.align-center {
+                text-align: center;
+            }
+        }
+    }
 }
 
 

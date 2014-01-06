@@ -43,7 +43,7 @@
 <div class="metabox-holder">
     <div class="meta-box-sortables" <?php echo empty($sidebar) ? '' : ' style="float:left;width:70%;"'; ?>>
 
-        <div class="apostboxes">
+        <div class="postbox">
             <h3 class="hndle1"><span><?php _e("Another Wordpress Classifieds Plugin Stats", "AWPCP"); ?><span></h3>
             <div class="inside">
                 <ul>
@@ -121,16 +121,17 @@
             </div>
         </div>
 
-        <?php $href = admin_url('admin.php?page=awpcp-admin-settings'); ?>
-
-        <p>
-            <?php _e('AWPCP is highly customizable. Use the next button to go to the Settings section to fit AWPCP to your needs.', 'AWPCP'); ?>
-            <a href="<?php echo $href ?>" class="button-primary"><?php _e('Configure AWPCP', 'AWPCP'); ?></a>
-        </p>
+        <div class="postbox">
+            <div class="inside">
+                <?php $href = admin_url( 'admin.php?page=awpcp-admin-settings' ); ?>
+                <?php _e( 'AWPCP is highly customizable. Use the next button to go to the Settings section to fit AWPCP to your needs.', 'AWPCP' ); ?>
+                <a href="<?php echo $href; ?>" class="button-primary"><?php _e( 'Configure AWPCP', 'AWPCP' ); ?></a>
+            </div>
+        </div>
 
         <?php if (get_awpcp_option('showlatestawpcpnews')): ?>
 
-        <div class="apostboxes">
+        <div class="postbox">
             <h3 class="hndle1"><span><?php _e("Latest News About Another Wordpress Classifieds Plugin","AWPCP"); ?></span></h3>
             <div class="inside">
 
