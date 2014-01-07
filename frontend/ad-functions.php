@@ -745,19 +745,27 @@ function awpcp_display_ads($where, $byl, $hidepager, $grouporderby, $adorcat, $b
 
 /**
  * Generates HTML to display login form when user is not registered.
+ * @tested
  */
 function awpcp_login_form($message=null, $redirect=null) {
 	if ( is_null( $redirect ) ) {
 		$redirect = awpcp_current_url();
 	}
 
-	$register_url = add_query_arg( array(
-		'redirect_to' => add_query_arg( 'register', true, $redirect ),
-	), site_url( 'wp-login.php?action=register', 'login' ) );
+	$registration_url = get_awpcp_option( 'registrationurl' );
+	if ( empty( $registration_url ) ) {
+		if ( function_exists( 'wp_registration_url' ) ) {
+			$registration_url = wp_registration_url();
+		} else {
+			$registration_url = site_url( 'wp-login.php?action=register', 'login' );
+		}
+	}
 
-	$lost_password_url = add_query_arg( array(
-		'redirect_to' => add_query_arg( 'reset', true, $redirect ),
-	), wp_lostpassword_url() );
+	$redirect_to = add_query_arg( 'register', true, $redirect );
+	$register_url = add_query_arg( array( 'redirect_to', $redirect_to ), $registration_url );
+
+	$redirect_to = add_query_arg( 'reset', true, $redirect );
+	$lost_password_url = add_query_arg( array( 'redirect_to' => $redirect_to ), wp_lostpassword_url() );
 
 	ob_start();
 		include( AWPCP_DIR . '/frontend/templates/login-form.tpl.php' );

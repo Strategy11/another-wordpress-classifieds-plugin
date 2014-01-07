@@ -487,7 +487,7 @@ class AWPCP_Settings_API {
 
 		$this->add_setting( $key, 'requireuserregistration', __( 'Require user registration', 'AWPCP' ), 'checkbox', 0, __( 'Require user registration?', 'AWPCP' ) );
 		$this->add_setting( $key, 'reply-to-ad-requires-registration', __( 'Reply to Ad requires user registration', 'AWPCP' ), 'checkbox', 0, __( 'Require user registration for replying to an Ad?', 'AWPCP' ) );
-		$this->add_setting( $key, 'postloginformto', __( 'Post login form to', 'AWPCP' ), 'textfield', '', __( 'Post login form to this URL. Value should be the full URL to the wordpress login script (e.g. http://www.awpcp.com/wp-login.php).', 'AWPCP' ) . '<br/>' . __( '**Only needed if registration is required and your login url is mod-rewritten.', 'AWPCP' ) );
+		// $this->add_setting( $key, 'postloginformto', __( 'Post login form to', 'AWPCP' ), 'textfield', '', __( 'Post login form to this URL. Value should be the full URL to the wordpress login script (e.g. http://www.awpcp.com/wp-login.php).', 'AWPCP' ) . '<br/>' . __( '**Only needed if registration is required and your login url is mod-rewritten.', 'AWPCP' ) );
 		$this->add_setting( $key, 'registrationurl', __( 'Location of registration page', 'AWPCP' ), 'textfield', '', __( 'Location of registraiton page. Value should be the full URL to the wordpress registration page (e.g. http://www.awpcp.com/wp-login.php?action=register).', 'AWPCP' ) . '<br/>' . __( '**Only needed if registration is required and your login url is mod-rewritten.', 'AWPCP' ) );
 
 
