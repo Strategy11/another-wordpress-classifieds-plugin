@@ -190,6 +190,8 @@ require_once(AWPCP_DIR . "/includes/payment-gateway-2checkout.php");
 
 require_once(AWPCP_DIR . "/includes/payment-terms-table.php");
 
+require_once( AWPCP_DIR . "/includes/class-secure-url-redirection-handler.php" );
+
 // installation functions
 require_once(AWPCP_DIR . "/install.php");
 
@@ -291,10 +293,6 @@ class AWPCP {
 	public function setup() {
 		global $wpdb;
 
-		if ( !function_exists( 'imagecreatefrompng' ) ) {
-			add_action( 'admin_notices', array( $this, 'missing_gd_library' ) );
-		}
-
 		if (!$this->is_up_to_date()) {
 			$this->installer->install();
 			// we can't call flush_rewrite_rules() because
@@ -305,6 +303,15 @@ class AWPCP {
 
 		if (!$this->is_up_to_date()) {
 			return;
+		}
+
+		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+			// load resources required to handle Ajax requests only.
+		} if ( is_admin() ) {
+			// load resources required in admin screens only.
+		} else {
+			// load resources required in frontend screens only.
+			add_action( 'template_redirect', array( new AWPCP_SecureURLRedirectionHandler(), 'dispatch' ) );
 		}
 
 		// Ad metadata integration.
@@ -390,12 +397,16 @@ class AWPCP {
 		foreach (awpcp_get_property($this, 'errors', array()) as $error) {
 			echo awpcp_print_error($error);
 		}
+
+		if ( ! function_exists( 'imagecreatefrompng' ) ) {
+			echo $this->missing_gd_library_notice();
+		}
 	}
 
-	public function missing_gd_library() {
+	private function missing_gd_library_notice() {
         $message = __( "AWPCP requires the graphics processing library GD and it is not installed. Contact your web host to fix this.", "AWPCP" );
         $message = sprintf( '<strong>%s</strong> %s', __( 'Warning', 'AWPCP' ), $message );
-        echo '<div class="error"><p>' . $message . '</p></div>';
+        return awpcp_print_error( $message );
 	}
 
 	/**

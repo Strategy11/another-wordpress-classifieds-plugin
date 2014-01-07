@@ -335,6 +335,7 @@ class AWPCP_Settings_API {
 		$this->add_setting($key, 'pay-before-place-ad', _x('Pay before entering Ad details', 'settings', 'AWPCP'), 'checkbox', 1, _x('Check to ask for payment before entering Ad details. Uncheck if you want users to pay for Ads at the end of the process, after images have been uploaded.', 'settings', 'AWPCP'));
 		$this->add_setting( $key, 'displaycurrencycode', __( 'Currency used in payment pages', 'AWPCP' ), 'textfield', 'USD', __( 'The display currency for your payment pages', 'AWPCP' ) );
 		$this->add_setting( $key, 'paylivetestmode', __( 'Put payment gateways in test mode?', 'AWPCP' ), 'checkbox', 0, '');
+		$this->add_setting( $key, 'force-secure-urls', __( 'Force secure URLs on payment pages', 'AWPCP' ), 'checkbox', 0, __( 'If checked all classifieds pages that involve payments will be accessed through a secure (HTTPS) URL.', 'AWPCP' ) );
 
 		// Section: Payment Settings - PayPal
 
