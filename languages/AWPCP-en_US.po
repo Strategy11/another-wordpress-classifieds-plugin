@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: AWPCP\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2014-01-04 05:06:01+00:00\n"
+"POT-Creation-Date: 2014-01-07 15:30:40+00:00\n"
 "PO-Revision-Date: 2013-10-28 19:39-0500\n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: \n"
@@ -3532,14 +3532,6 @@ msgid "Post Comment"
 msgstr ""
 
 msgid "Post Label"
-msgstr ""
-
-msgid "Post login form to"
-msgstr ""
-
-msgid ""
-"Post login form to this URL. Value should be the full URL to the wordpress "
-"login script (e.g. http://www.awpcp.com/wp-login.php)."
 msgstr ""
 
 msgid "Postal Code"
