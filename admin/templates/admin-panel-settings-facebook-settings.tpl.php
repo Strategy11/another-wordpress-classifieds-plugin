@@ -1,3 +1,17 @@
+<div class="metabox-holder">
+	<div class="postbox">
+		<h3 class="hndle"><span><?php _e('Facebook Integration', 'AWPCP') ?></span></h3>
+		<div class="inside">
+			<div>
+				<?php echo str_replace( '<a>',
+					'<a href="https://developers.facebook.com/docs/web/tutorials/scrumptious/register-facebook-application/" target="_blank">',
+					__( 'This configuration allows you to post ads to Facebook. You must have a Facebook Application created to use this feature. Read <a>How to Register and Configure a Facebook Application.</a>', 'AWPCP' ) );
+				?>
+			</div>
+		</div>
+	</div>
+</div>
+
 <h3><?php _e( 'Facebook Integration', 'AWPCP' ); ?></h3>
 
 <?php if ( isset( $errors ) && $errors ): ?>
@@ -26,7 +40,7 @@
 		<p><?php
 			echo str_replace( '<a>',
 					 		  '<a href="https://developers.facebook.com/apps/" target="_blank">',
-						 	  __( 'You will have to register your application at <a>Facebook Developers</a>. Please see the link for more information.', 'AWPCP' ) );
+						 	  __( 'You can find your application information in the <a>Facebook Developer Apps</a> page.', 'AWPCP' ) );
 		?></p>
 
 		<table class="form-table">
