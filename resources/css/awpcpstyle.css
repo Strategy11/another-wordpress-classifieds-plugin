@@ -1073,11 +1073,13 @@ p.ad_status_msg {
 #classiwrapper .awpcp-region-selector,
 .awpcp-multiple-region-selector .awpcp-region-selector {
   background: rgba(0, 0, 0, 0.02);
+  list-style-type: none;
   margin-bottom: 5px;
   padding: 4px 0px;
 }
 #classiwrapper .awpcp-region-selector .awpcp-region-selector-partial,
 .awpcp-multiple-region-selector .awpcp-region-selector .awpcp-region-selector-partial {
+  list-style-type: none;
   margin-bottom: 2px;
 }
 #classiwrapper .awpcp-region-selector .awpcp-region-selector-partial label,
