@@ -1002,6 +1002,7 @@ class AWPCP_Installer {
 
         require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
+        $manual_upgrade_required = false;
         $settings = awpcp()->settings;
 
         // fix for all Ads being (visually) marked as featured (part of #527).
@@ -1027,11 +1028,15 @@ class AWPCP_Installer {
             // and the upgrade had to be run again. The new cursor is:
             // 'awpcp-migrate-regions-info-cursor'.
             delete_option( 'awpcp-migrate-regions-information-cursor' );
+
+            $manual_upgrade_required = true;
         }
 
         // migrate media regions
         if ( awpcp_table_exists( AWPCP_TABLE_ADPHOTOS ) ) {
             update_option( 'awpcp-migrate-media-information', true );
+
+            $manual_upgrade_required = true;
         }
 
         // add columns required for email verification feature
@@ -1047,7 +1052,9 @@ class AWPCP_Installer {
             $wpdb->query( "UPDATE " . AWPCP_TABLE_ADS . " SET payer_email = ad_contact_email" );
         }
 
-        update_option( 'awpcp-pending-manual-upgrade', true );
+        if ( $manual_upgrade_required ) {
+            update_option( 'awpcp-pending-manual-upgrade', true );
+        }
     }
 }
 
