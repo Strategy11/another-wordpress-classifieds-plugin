@@ -129,6 +129,7 @@ require_once(AWPCP_DIR . "/includes/exceptions.php");
 require_once(AWPCP_DIR . "/includes/compatibility/compatibility.php");
 
 require_once(AWPCP_DIR . "/includes/helpers/class-awpcp-request.php");
+require_once(AWPCP_DIR . "/includes/helpers/class-file-cache.php");
 require_once(AWPCP_DIR . "/includes/helpers/list-table.php");
 require_once(AWPCP_DIR . "/includes/helpers/email.php");
 require_once(AWPCP_DIR . "/includes/helpers/javascript.php");

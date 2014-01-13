@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * @since 3.0.2
+ */
+function awpcp_request() {
+    return new AWPCP_Request();
+}
+
 class AWPCP_Request {
 
     /**
