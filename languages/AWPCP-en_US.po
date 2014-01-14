@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: AWPCP\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2014-01-07 15:30:40+00:00\n"
+"POT-Creation-Date: 2014-01-14 15:11:29+00:00\n"
 "PO-Revision-Date: 2014-01-09 15:56-0500\n"
 "Last-Translator: Daniel Pérez <dapanas@gmail.com>\n"
 "Language-Team: \n"
@@ -1262,6 +1262,11 @@ msgid ""
 "all features. <a href=\"%s\">Click here to Continue</a>."
 msgstr ""
 
+msgid ""
+"Congratulations. The Regions Sidelist was successfully regenerated. Go back "
+"to %s section."
+msgstr ""
+
 msgid "Congratulations. You have successfully added credit to your account."
 msgstr ""
 
@@ -2016,6 +2021,9 @@ msgstr ""
 msgid "For security reasons, you must pass the remote ip to reCAPTCHA."
 msgstr ""
 
+msgid "Force secure URLs on payment pages"
+msgstr ""
+
 msgid "Form"
 msgstr ""
 
@@ -2175,6 +2183,11 @@ msgid "Icon Meanings"
 msgstr ""
 
 msgid "If adding images to your ad, select your image from your local computer"
+msgstr ""
+
+msgid ""
+"If checked all classifieds pages that involve payments will be accessed "
+"through a secure (HTTPS) URL."
 msgstr ""
 
 msgid "If checked only administrator users will be allowed to post Ads."
@@ -2992,9 +3005,6 @@ msgstr ""
 msgid "No premium modules installed."
 msgstr ""
 
-msgid "No results found. Exepcting one."
-msgstr ""
-
 msgid ""
 "No specific category was selected for browsing so you are viewing listings "
 "from all categories."
@@ -3666,6 +3676,12 @@ msgid "Redemption Limit"
 msgstr ""
 
 msgid "Reference"
+msgstr ""
+
+msgid "Regenerate Regions Sidelist"
+msgstr ""
+
+msgid "Regenerate Sidelist"
 msgstr ""
 
 msgid "Region Control Settings"
@@ -4726,6 +4742,18 @@ msgctxt "Edit Region success message"
 msgid "The Region data has been updated."
 msgstr ""
 
+msgid ""
+"The Regions Sidelist needs to be rebuilt because the Regions data has "
+"changed, the cache expired or it has never been build before. Please go to "
+"the %s page."
+msgstr ""
+
+msgid ""
+"The Regions Sidelist needs to be rebuilt because the Regions data has "
+"changed, the cache expired or it has never been build before. Please press "
+"the Regenerate Sidelist button shown below to start the process."
+msgstr ""
+
 msgid "The State is required."
 msgstr ""
 
@@ -5290,6 +5318,11 @@ msgstr ""
 msgid "There was an error trying to add the new field."
 msgstr ""
 
+msgid ""
+"There was an error trying to contact Facebook servers. Facebook responded: "
+"\"%s\"."
+msgstr ""
+
 msgid "There was an error trying to delete the Ad. The Ad was not deleted."
 msgstr ""
 
@@ -5489,9 +5522,6 @@ msgid ""
 msgstr ""
 
 msgid "To use reCAPTCHA you must get an API key from %s."
-msgstr ""
-
-msgid "Too many results found. Expecting one."
 msgstr ""
 
 msgid "Top Level Category"
@@ -6036,6 +6066,11 @@ msgstr ""
 msgid "You can configure default dates for imported Ads"
 msgstr ""
 
+msgid ""
+"You can find your application information in the <a>Facebook Developer Apps</"
+"a> page."
+msgstr ""
+
 msgid "You can get an API key from %s."
 msgstr ""
 
@@ -6303,11 +6338,6 @@ msgid "You should choose one of the available Subscription Plans."
 msgstr ""
 
 msgid "You should select an owner for this Ad."
-msgstr ""
-
-msgid ""
-"You will have to register your application at <a>Facebook Developers</a>. "
-"Please see the link for more information."
 msgstr ""
 
 msgid "Your Ad \"%s\" has been approved"
