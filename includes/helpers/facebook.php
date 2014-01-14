@@ -283,4 +283,10 @@ class AWPCP_Facebook {
         return !$res || isset( $res->error ) ? false : $res;
     }
 
+    /**
+     * @since 3.0.2
+     */
+    public function get_last_error() {
+        return $this->last_error;
+    }
 }

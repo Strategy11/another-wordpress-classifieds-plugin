@@ -16,9 +16,7 @@
 
 <?php if ( isset( $errors ) && $errors ): ?>
 <?php foreach ( $errors as $err ): ?>
-<div class="error">
-	<p><?php echo $err; ?></p>
-</div>
+	<?php echo awpcp_print_error( $err ); ?>
 <?php endforeach; ?>
 <?php endif; ?>
 

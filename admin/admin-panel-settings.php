@@ -126,7 +126,7 @@ class AWPCP_Facebook_Page_Settings {
 				break;
 		}
 	}
-
+	
 	private function display_settings( $errors=array() ) {
 		$fb = AWPCP_Facebook::instance();
 		$config = $fb->get_config();
@@ -143,7 +143,6 @@ class AWPCP_Facebook_Page_Settings {
 			$login_url = $fb->get_login_url( $redirect_uri, 'publish_stream,manage_pages' );
 		}
 
-		$errors = array();
 		if ( isset( $_GET['code_error'] ) )
 			$errors[] = __( 'AWPCP could not obtain a valid access token from Facebook. Please try again.', 'AWPCP' );
 
@@ -196,7 +195,15 @@ class AWPCP_Facebook_Page_Settings {
 		}
 
 		$awpcp_fb->set_config( $config );
-		return $this->display_settings();
+
+		if ( $last_error = $awpcp_fb->get_last_error() ) {
+			$message = __( 'There was an error trying to contact Facebook servers. Facebook responded: "%s".', 'AWPCP' );
+			$errors[] = sprintf( $message, $last_error->message );
+		} else {
+			$errors = array();
+		}
+
+		return $this->display_settings( $errors );
 	}
 
 }
