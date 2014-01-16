@@ -266,6 +266,8 @@ class AWPCP_Facebook {
         curl_setopt( $c, CURLOPT_URL, $url );
         curl_setopt( $c, CURLOPT_HEADER, 0 );
         curl_setopt( $c, CURLOPT_RETURNTRANSFER, 1 );
+        curl_setopt( $c, CURLOPT_SSL_VERIFYPEER, 1 );
+        curl_setopt( $c, CURLOPT_CAINFO, AWPCP_DIR . '/cacert.pem' );
 
         if ( $method == 'POST' ) {
             curl_setopt( $c, CURLOPT_POST, 1 );
@@ -273,14 +275,24 @@ class AWPCP_Facebook {
         }
 
         $res = curl_exec( $c );
+        $curl_error_number = curl_errno( $c );
+        $curl_error_message = curl_error( $c );
         curl_close( $c );
 
-        $res = $json_decode ? json_decode( $res ) : $res;
+        if ( $curl_error_number === 0 ) {
+            $res = $json_decode ? json_decode( $res ) : $res;
 
-        if ( isset( $res->error ) )
-            $this->last_error = $res->error;
+            if ( isset( $res->error ) )
+                $this->last_error = $res->error;
 
-        return !$res || isset( $res->error ) ? false : $res;
+            $response = !$res || isset( $res->error ) ? false : $res;
+        } else {
+            $this->last_error = new stdClass();
+            $this->last_error->message = $curl_error_message;
+            $response = false;
+        }
+
+        return $response;
     }
 
     /**

@@ -197,7 +197,7 @@ class AWPCP_Facebook_Page_Settings {
 		$awpcp_fb->set_config( $config );
 
 		if ( $last_error = $awpcp_fb->get_last_error() ) {
-			$message = __( 'There was an error trying to contact Facebook servers. Facebook responded: "%s".', 'AWPCP' );
+			$message = __( 'There was an error trying to contact Facebook servers: "%s".', 'AWPCP' );
 			$errors[] = sprintf( $message, $last_error->message );
 		} else {
 			$errors = array();
