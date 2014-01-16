@@ -17,7 +17,7 @@ class AWPCP_FileCache {
     }
 
     public function set( $name, $value ) {
-        $filename = trailingslashit( $this->location ) . $name;
+        $filename = $this->path( $name );
 
         if ( $file = fopen( $filename, 'w' ) ) {
             fwrite( $file, $value );
@@ -27,8 +27,12 @@ class AWPCP_FileCache {
         }
     }
 
+    public function path( $name ) {
+        return trailingslashit( $this->location ) . $name . '.json';
+    }
+
     public function get( $name ) {
-        $filename = trailingslashit( $this->location ) . $name;
+        $filename = $this->path( $name );
 
         if ( file_exists( $filename ) && is_readable( $filename ) ) {
             $file = fopen( $filename, 'r' );
@@ -41,8 +45,12 @@ class AWPCP_FileCache {
         return $content;
     }
 
+    public function url( $name ) {
+        return str_replace( WP_CONTENT_DIR, WP_CONTENT_URL, $this->path( $name ) );
+    }
+
     public function remove( $name ) {
-        $filename = trailingslashit( $this->location ) . $name;
+        $filename = $this->path( $name );
 
         if ( file_exists( $filename ) && ! @unlink( $filename ) ) {
             throw new AWPCP_IOError( sprintf( "Can't remove %s associated with entry '%s'.", $filename, $name ) );
