@@ -500,7 +500,7 @@ class AWPCP {
 					'url' => 'http://www.awpcp.com/premium-modules/regions-control-module?ref=panel',
 					'installed' => $hasregionsmodule,
 					'version' => 'AWPCP_REGION_CONTROL_MODULE_DB_VERSION',
-					'required' => '3.2.1',
+					'required' => '3.2.2',
 				),
 				'rss' => array(
 					'name' => __( 'RSS', 'AWPCP' ),
