@@ -68,19 +68,22 @@ class AWPCP_Facebook_Page_Settings {
 		if ( !isset( $_GET['g'] ) || $_GET['g'] != 'facebook-settings' || $this->get_current_action() != 'obtain_user_token' )
 			return;
 
-		$settings_url = admin_url( 'admin.php?page=awpcp-admin-settings&g=facebook-settings' );
+		if ( isset( $_GET[ 'error_code' ] ) ) {
+			return $this->redirect_with_error( $_GET[ 'error_code' ], urlencode( $_GET['error_message'] )  );
+		}
+
 		$code = isset( $_GET['code'] ) ? $_GET['code'] : '';
 
 		$fb = AWPCP_Facebook::instance();
 		$access_token = $fb->token_from_code( $code );
 
-		if ( !$access_token ) {
-			wp_redirect( add_query_arg( array( 'code_error' => 1 ), $settings_url ) );
-			die();
+		if ( ! $access_token ) {
+			return $this->redirect_with_error( 1, '' );
 		}
 
 		$fb->set( 'user_token', $access_token );
-		wp_redirect( $settings_url );
+
+		wp_redirect( admin_url( 'admin.php?page=awpcp-admin-settings&g=facebook-settings' ) );
 		die();
 	}
 
@@ -95,6 +98,13 @@ class AWPCP_Facebook_Page_Settings {
 			return 'obtain_user_token';
 
 		return 'display_settings';
+	}
+
+	private function redirect_with_error( $error_code, $error_message ) {
+		$params = array( 'code_error' => $error_code, 'error_message' => $error_message );
+		$settings_url = admin_url( 'admin.php?page=awpcp-admin-settings&g=facebook-settings' );
+		wp_redirect( add_query_arg( $params, $settings_url ) );
+		die();
 	}
 
 	private function get_current_settings_step() {
@@ -143,8 +153,11 @@ class AWPCP_Facebook_Page_Settings {
 			$login_url = $fb->get_login_url( $redirect_uri, 'publish_stream,manage_pages' );
 		}
 
-		if ( isset( $_GET['code_error'] ) )
+		if ( isset( $_GET['code_error'] ) && isset( $_GET['error_message'] )  ) {
+			$errors[] = sprintf( __( 'AWPCP could not obtain a valid access token from Facebook: %s', 'AWPCP' ), $_GET['error_message'] );
+		} else if ( isset( $_GET['code_error'] ) ) {
 			$errors[] = __( 'AWPCP could not obtain a valid access token from Facebook. Please try again.', 'AWPCP' );
+		}
 
 		if ( $this->get_current_action() == 'diagnostics' ) {
 			$diagnostics_errors = array();
