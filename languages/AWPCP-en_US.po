@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: AWPCP\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2014-01-16 20:39:50+00:00\n"
+"POT-Creation-Date: 2014-01-20 21:37:40+00:00\n"
 "PO-Revision-Date: 2014-01-09 15:56-0500\n"
 "Last-Translator: Daniel Pérez <dapanas@gmail.com>\n"
 "Language-Team: \n"
@@ -1009,6 +1009,9 @@ msgstr ""
 msgid "CSV file"
 msgstr ""
 
+msgid "Calculate Regions Listings Count"
+msgstr ""
+
 msgid "Can't write file to disk."
 msgstr ""
 
@@ -1180,6 +1183,11 @@ msgstr ""
 msgid "Click here to have your Ad access keys sent to you."
 msgstr ""
 
+msgid ""
+"Click the button below if you want to re-calculate the number of Ads posted "
+"in each region. Click the button to start the process."
+msgstr ""
+
 msgid "Click to enlarge image."
 msgstr ""
 
@@ -1267,6 +1275,11 @@ msgid ""
 "to %s section."
 msgstr ""
 
+msgid ""
+"Congratulations. We finished counting all Ads posted in existing Regions. Go "
+"back to %s section."
+msgstr ""
+
 msgid "Congratulations. You have successfully added credit to your account."
 msgstr ""
 
@@ -1326,6 +1339,9 @@ msgid ""
 msgstr ""
 
 msgid "Could not write temporary file %s"
+msgstr ""
+
+msgid "Count Listings in Regions"
 msgstr ""
 
 msgid "Country"

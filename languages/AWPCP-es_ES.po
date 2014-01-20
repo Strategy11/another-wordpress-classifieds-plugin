@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: AWPCP\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2014-01-16 20:39:50+00:00\n"
+"POT-Creation-Date: 2014-01-20 21:37:40+00:00\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: \n"
@@ -1135,6 +1135,9 @@ msgstr "CSC"
 msgid "CSV file"
 msgstr "Archivo CVS"
 
+msgid "Calculate Regions Listings Count"
+msgstr "Calcular el número de anuncios en las regiones"
+
 msgid "Can't write file to disk."
 msgstr "No se puede escribir el archivo en disco."
 
@@ -1331,6 +1334,14 @@ msgstr ""
 msgid "Click here to have your Ad access keys sent to you."
 msgstr "Haga click aquí para enviarle las claves de acceso de sus anuncios."
 
+msgid ""
+"Click the button below if you want to re-calculate the number of Ads posted "
+"in each region. Click the button to start the process."
+msgstr ""
+"Presione el botón que aparece abajo si desea re-calcular el número de "
+"anuncios publicados en cada región. Presione el botón para iniciar el "
+"proceso."
+
 msgid "Click to enlarge image."
 msgstr "Click para ampliar la imagen."
 
@@ -1426,6 +1437,13 @@ msgstr ""
 "Felicidades. La lista lateral de regiones ha sido reconstruida con éxito. "
 "Regrese a la sección %s."
 
+msgid ""
+"Congratulations. We finished counting all Ads posted in existing Regions. Go "
+"back to %s section."
+msgstr ""
+"Felicidades. Hemos terminado de contar los anunciones publicados en las "
+"regiones existente. Regrese a la sección %s."
+
 msgid "Congratulations. You have successfully added credit to your account."
 msgstr "Felicidades. Usted ha agregado crédito a su cuenta con éxito."
 
@@ -1491,6 +1509,9 @@ msgstr ""
 
 msgid "Could not write temporary file %s"
 msgstr "No se pudo crear el archivo temporal de %s"
+
+msgid "Count Listings in Regions"
+msgstr "Contar anuncios en las regiones"
 
 msgid "Country"
 msgstr "País"
