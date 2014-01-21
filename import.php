@@ -786,7 +786,7 @@ class AWPCP_CSV_Importer {
 		$date = null;
 		foreach ($date_formats[$date_time_format] as $_format) {
 			$_format = trim(sprintf("%s %s", join($date_separator, $_format), $suffix));
-			$parsed = strptime($val, $_format);
+			$parsed = awpcp_strptime( $val, $_format );
 			if ($parsed && empty($parsed['unparsed'])) {
 				$date = $parsed;
 				break;

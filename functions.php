@@ -113,6 +113,53 @@ function awpcp_esc_textarea($text) {
 	return $text;
 }
 
+/**
+ * @since 3.0.2
+ */
+function awpcp_strptime( $date, $format ) {
+	if ( function_exists( 'strptime' ) ) {
+		return strptime( $date, $format );
+	} else {
+		return awpcp_strptime_replacement( $date, $format );
+	}
+}
+
+/**
+ * @since 3.0.2
+ */
+function awpcp_strptime_replacement( $date, $format ) {
+    $masks = array(
+        '%d' => '(?P<d>[0-9]{2})',
+        '%m' => '(?P<m>[0-9]{2})',
+        '%y' => '(?P<y>[0-9]{2})',
+        '%Y' => '(?P<Y>[0-9]{4})',
+        '%H' => '(?P<H>[0-9]{2})',
+        '%M' => '(?P<M>[0-9]{2})',
+        '%S' => '(?P<S>[0-9]{2})',
+        // usw..
+    );
+
+    $rexep = "#" . strtr( preg_quote( $format ), $masks ) . "#";
+    if ( ! preg_match( $rexep, $date, $out ) )
+        return false;
+
+    $unparsed = preg_replace( $rexep, '', $date );
+
+    if ( strlen( $out['y'] ) )
+    	$out['Y'] = ( $out['y'] > 69 ? 1900 : 2000 ) + $out['y'];
+
+    $ret = array(
+        'tm_sec' => (int) $out['S'],
+        'tm_min' => (int) $out['M'],
+        'tm_hour' => (int) $out['H'],
+        'tm_mday' => (int) $out['d'],
+        'tm_mon' => $out['m'] ? $out['m'] - 1 : 0,
+        'tm_year' => $out['Y'] > 1900 ? $out['Y'] - 1900 : 0,
+        'unparsed' => $unparsed,
+    );
+
+    return $ret;
+}
 
 /**
  * @since	3.0
