@@ -2040,19 +2040,10 @@ function awpcp_get_ad_share_info($id) {
 	$info['published-time'] = awpcp_datetime( 'Y-m-d', $ad->ad_postdate );
 	$info['modified-time'] = awpcp_datetime( 'Y-m-d', $ad->ad_last_updated );
 
-	$sql = 'SELECT image_name FROM ' . AWPCP_TABLE_ADPHOTOS . ' ';
-	$sql.= 'WHERE ad_id=%d AND disabled=0';
+	$images = awpcp_media_api()->find_by_ad_id( $ad->ad_id, array( 'enabled' => true ) );
 
-	$images = $wpdb->get_results($wpdb->prepare($sql, $id), ARRAY_A);
-
-	if (!empty($images)) {
-
-		$uploads_dir = get_awpcp_option('uploadfoldername', 'uploads');
-		$blogurl = network_site_url();
-
-		foreach ($images as $image) {
-			$info['images'][] = $blogurl . '/wp-content/' . $uploads_dir . '/awpcp/' . $image['image_name'];
-		}
+	foreach ( $images as $image ) {
+		$info[ 'images' ][] = $image->get_url( 'large' );
 	}
 
 	return $info;
