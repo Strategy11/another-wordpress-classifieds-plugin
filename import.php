@@ -560,12 +560,22 @@ class AWPCP_CSV_Importer {
 		global $wpdb;
 
 		$test_import = $this->options['test-import'];
+		$media_api = awpcp_media_api();
 
 		foreach ($entries as $entry) {
-			$sql = 'INSERT INTO ' . AWPCP_TABLE_ADPHOTOS . " SET image_name = '%s', ad_id = %d, disabled = 0";
-			$sql = $wpdb->prepare($sql, $entry['filename'], $adid);
+            $extension = pathinfo( $entry['filename'], PATHINFO_EXTENSION );
+            $mime_type = sprintf( 'image/%s', $extension );
 
-			$result = $test_import || $wpdb->query($sql);
+			$data = array(
+				'ad_id' => $adid,
+				'name' => $entry['filename'],
+				'path' => $entry['filename'],
+				'mime_type' => $mime_type,
+				'enabled' => true,
+				'is_primary' => false,
+			);
+
+			$result = $test_import || $media_api->create( $data );
 
 			if ($result === false) {
 				$msg = __("Could not save the information to the database for %s in row %d", 'AWPCP');

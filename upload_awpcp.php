@@ -330,6 +330,8 @@ function awpcp_upload_image_file($directory, $filename, $tmpname, $min_size, $ma
 	$newname = wp_unique_filename($directory, $filename);
 	$newpath = trailingslashit($directory) . $newname;
 
+	// debugp( $directory, $filename, $tmpname ); kaboom();
+
 	if ( !file_exists( $tmpname ) ) {
 		return sprintf( __( 'The specified image file does not exists: %s.', 'AWPCP' ), $filename );
 	}
@@ -354,7 +356,7 @@ function awpcp_upload_image_file($directory, $filename, $tmpname, $min_size, $ma
 	}
 
 	if (!(in_array($ext, $allowed_extensions))) {
-		return __('The file has an invalid extension and was rejected.', 'AWPCP');
+		return sprintf( __('The file %s has an invalid extension and was rejected.', 'AWPCP'), $filename );
 
 	} elseif ($size < $min_size) {
 		$message = __('The size of %1$s was too small. The file was not uploaded. File size must be greater than %2$d bytes.', 'AWPCP');
@@ -365,15 +367,15 @@ function awpcp_upload_image_file($directory, $filename, $tmpname, $min_size, $ma
 		return sprintf($message, $filename, $max_size);
 
 	} elseif (!isset($imginfo[0]) && !isset($imginfo[1])) {
-		return __('The file does not appear to be a valid image file.', 'AWPCP');
+		return sprintf( __('The file %s does not appear to be a valid image file.', 'AWPCP' ), $filename );
 
-	} elseif ($imginfo[0] < $min_height) {
-		$message = __('The image did not meet the minimum width of %s pixels. The file was not uploaded.', 'AWPCP');
-		return sprintf($message, $min_width);
+	} elseif ( $imginfo[0] < $min_width ) {
+		$message = __('The image %s did not meet the minimum width of %s pixels. The file was not uploaded.', 'AWPCP');
+		return sprintf($message, $filename, $min_width);
 
 	} elseif ($imginfo[1] < $min_height) {
-		$message = __('The image did not meet the minimum height of %s pixels. The file was not uploaded.', 'AWPCP');
-		return sprintf($message, $min_width);
+		$message = __('The image %s did not meet the minimum height of %s pixels. The file was not uploaded.', 'AWPCP');
+		return sprintf( $message, $filename, $min_height );
 	}
 
 	if ($uploaded && !@move_uploaded_file($tmpname, $newpath)) {
