@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2014-01-20 21:37:40+00:00\n"
+"POT-Creation-Date: 2014-01-22 00:02:54+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -4506,8 +4506,14 @@ msgctxt "upload files"
 msgid "The file %s could not be moved to the destination directory."
 msgstr ""
 
+msgid "The file %s does not appear to be a valid image file."
+msgstr ""
+
 msgctxt "upload files"
 msgid "The file %s does not appear to be a valid image file."
+msgstr ""
+
+msgid "The file %s has an invalid extension and was rejected."
 msgstr ""
 
 msgid "The file %s was larger than the maximum allowed file size of %s bytes. The file was not uploaded."
@@ -4519,12 +4525,6 @@ msgstr ""
 
 msgctxt "upload files"
 msgid "The file %s was properly uploaded but there was a problem trying to save the information to the database."
-msgstr ""
-
-msgid "The file does not appear to be a valid image file."
-msgstr ""
-
-msgid "The file has an invalid extension and was rejected."
 msgstr ""
 
 msgctxt "media manager"
@@ -4561,18 +4561,18 @@ msgstr ""
 msgid "The form has errors"
 msgstr ""
 
-msgctxt "upload files"
 msgid "The image %s did not meet the minimum height of %s pixels. The file was not uploaded."
 msgstr ""
 
 msgctxt "upload files"
+msgid "The image %s did not meet the minimum height of %s pixels. The file was not uploaded."
+msgstr ""
+
 msgid "The image %s did not meet the minimum width of %s pixels. The file was not uploaded."
 msgstr ""
 
-msgid "The image did not meet the minimum height of %s pixels. The file was not uploaded."
-msgstr ""
-
-msgid "The image did not meet the minimum width of %s pixels. The file was not uploaded."
+msgctxt "upload files"
+msgid "The image %s did not meet the minimum width of %s pixels. The file was not uploaded."
 msgstr ""
 
 msgctxt "media manager"
