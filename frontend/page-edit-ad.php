@@ -204,6 +204,8 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
         $characters = $this->get_characters_allowed( $ad->ad_id );
         $errors = array();
 
+        $payment_term = awpcp_payments_api()->get_ad_payment_term( $ad );
+
         if (!$this->validate_details($data, true, $errors)) {
             return $this->details_step_form($ad, $data, $errors);
         }

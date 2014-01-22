@@ -785,7 +785,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
      * @param  array  $errors
      * @return boolean          true if data validates, false otherwise
      */
-    protected function validate_details($data=array(), $edit=false, &$errors=array()) {
+    protected function validate_details($data=array(), $edit=false, $payment_term = null, &$errors=array()) {
         global $hasextrafieldsmodule;
 
         // $edit = !empty($data['ad_id']);
@@ -884,7 +884,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         }
 
         // If country field is checked and required make sure country value was entered
-        if ((get_awpcp_option('displaycountryfield') == 1) &&
+        if ( $payment_term->regions > 0 && (get_awpcp_option('displaycountryfield') == 1) &&
             (get_awpcp_option('displaycountryfieldreqop') == 1))
         {
             if ( ! awpcp_array_data( 'country', false, $region_fields ) ) {
@@ -893,7 +893,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         }
 
         // If state field is checked and required make sure state value was entered
-        if ((get_awpcp_option('displaystatefield') == 1) &&
+        if ( $payment_term->regions > 0 && (get_awpcp_option('displaystatefield') == 1) &&
             (get_awpcp_option('displaystatefieldreqop') == 1))
         {
             if ( ! awpcp_array_data( 'state', false, $region_fields ) ) {
@@ -902,7 +902,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         }
 
         // If city field is checked and required make sure city value was entered
-        if ((get_awpcp_option('displaycityfield') == 1) &&
+        if ( $payment_term->regions > 0 && (get_awpcp_option('displaycityfield') == 1) &&
             (get_awpcp_option('displaycityfieldreqop') == 1))
         {
             if ( ! awpcp_array_data( 'city', false, $region_fields ) ) {
@@ -911,7 +911,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         }
 
         // If county/village field is checked and required make sure county/village value was entered
-        if ((get_awpcp_option('displaycountyvillagefield') == 1) &&
+        if ( $payment_term->regions > 0 && (get_awpcp_option('displaycountyvillagefield') == 1) &&
             (get_awpcp_option('displaycountyvillagefieldreqop') == 1))
         {
             if ( ! awpcp_array_data( 'county', false, $region_fields ) ) {
@@ -1006,7 +1006,9 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $characters = $this->get_characters_allowed( $data['ad_id'], $transaction );
         $errors = array();
 
-        if (!$this->validate_details($data, false, $errors)) {
+        $payment_term = awpcp_payments_api()->get_transaction_payment_term( $transaction );
+
+        if (!$this->validate_details($data, false, $payment_term, $errors)) {
             return $this->details_step_form($transaction, $data, $errors);
         }
 
