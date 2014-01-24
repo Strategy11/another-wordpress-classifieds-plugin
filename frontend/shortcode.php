@@ -391,12 +391,7 @@ function awpcp_get_menu_items() {
     $show_search_ads_item = get_awpcp_option( 'show-menu-item-search-ads' );
 
     if ( $show_place_ad_item ) {
-        if ( get_awpcp_option('enable-user-panel') ) {
-            $place_ad_url = awpcp_get_user_panel_url( array( 'action' => 'place-ad' ) );
-        } else {
-            $place_ad_url = awpcp_get_page_url( 'place-ad-page-name' );
-        }
-
+        $place_ad_url = awpcp_get_page_url( 'place-ad-page-name' );
         $place_ad_page_name = get_awpcp_option( 'place-ad-page-name' );
         $items['post-listing'] = array( 'url' => $place_ad_url, 'title' => $place_ad_page_name );
     }
