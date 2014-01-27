@@ -17,11 +17,11 @@
                 </li>
             </ul>
 
-            <a class="button remove-region" href="#" data-bind="click: $root.onRemoveRegion(), visible: $root.showRemoveRegionButton"><?php echo __( 'Delete Search Region', 'AWPCP' ); ?></a>
+            <a class="button remove-region" href="#" data-bind="click: $root.onRemoveRegion(), visible: $root.showRemoveRegionButton, text: $root.getLocalizedText('remove-region')"></a>
             <span class="awpcp-error" data-bind="text: error, visible: error"></span>
         </li>
     </ul>
 
-    <a class="button add-region" href="#" data-bind="click: onAddRegion, visible: showAddRegionButton"><?php echo __( 'Add Search Region', 'AWPCP' ); ?></a>
+    <a class="button add-region" href="#" data-bind="click: onAddRegion, visible: showAddRegionButton, text: $root.getLocalizedText('add-region')"></a>
     <?php echo awpcp_form_error('regions', $errors); ?>
 </div>

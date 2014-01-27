@@ -179,6 +179,10 @@ if (typeof jQuery !== 'undefined') {
                     event.preventDefault();
                     self.removeRegion(region);
                 };
+            },
+
+            getLocalizedText: function(key) {
+                return AWPCP.l10n('multiple-region-selector', key);
             }
         });
 
