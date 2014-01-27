@@ -21,7 +21,6 @@ var AWPCP = function() {
         instantiate(resource);
     }
 
-
     function instantiate(resource) {
         try {
             _instantiate(resource);

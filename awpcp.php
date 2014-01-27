@@ -134,6 +134,7 @@ require_once(AWPCP_DIR . "/includes/helpers/list-table.php");
 require_once(AWPCP_DIR . "/includes/helpers/email.php");
 require_once(AWPCP_DIR . "/includes/helpers/javascript.php");
 require_once(AWPCP_DIR . "/includes/helpers/captcha.php");
+require_once(AWPCP_DIR . "/includes/helpers/widgets/asynchronous-tasks.php");
 require_once(AWPCP_DIR . "/includes/helpers/widgets/categories-dropdown.php");
 require_once(AWPCP_DIR . "/includes/helpers/widgets/multiple-region-selector.php");
 
@@ -617,7 +618,6 @@ class AWPCP {
 		wp_register_style('awpcp-jquery-ui', "//ajax.googleapis.com/ajax/libs/jqueryui/$ui_version/themes/smoothness/jquery-ui.css", array(), $ui_version);
 
 		wp_register_script('awpcp-jquery-validate', "{$js}/jquery-validate/all.js", array('jquery'), '1.10.0', true);
-        wp_register_script('awpcp-knockout', "{$js}/knockout-2.2.0.js", array(), '2.2.0', true);
 
 		if (!get_awpcp_option('awpcp_thickbox_disabled')) {
 			add_thickbox();
@@ -627,8 +627,8 @@ class AWPCP {
 
 		wp_register_script('awpcp', "{$js}/awpcp.min.js", array('jquery'), $awpcp_db_version, true);
 		wp_register_script('awpcp-admin-wp-table-ajax', "{$js}/admin-wp-table-ajax.js", array('jquery-form'), $awpcp_db_version, true);
-		wp_register_script('awpcp-billing-form', "{$js}/awpcp-billing-form.js", array('jquery', 'awpcp-knockout'), $awpcp_db_version, true);
-		wp_register_script('awpcp-multiple-region-selector', "{$js}/awpcp-multiple-region-selector.js", array('awpcp', 'awpcp-knockout', 'awpcp-jquery-validate'), $awpcp_db_version, true);
+		wp_register_script( 'awpcp-billing-form', "{$js}/awpcp-billing-form.js", array( 'awpcp' ), $awpcp_db_version, true );
+		wp_register_script( 'awpcp-multiple-region-selector', "{$js}/awpcp-multiple-region-selector.js", array( 'awpcp', 'awpcp-jquery-validate' ), $awpcp_db_version, true );
 
 		// register again with old name too (awpcp-table-ajax-admin), for backwards compatibility
 		wp_register_script('awpcp-table-ajax-admin', "{$js}/admin-wp-table-ajax.js", array('jquery-form'), $awpcp_db_version, true);
@@ -643,7 +643,7 @@ class AWPCP {
 		wp_register_script('awpcp-admin-settings', "{$js}/admin-settings.js", array('awpcp'), $awpcp_db_version, true);
 		wp_register_script('awpcp-admin-fees', "{$js}/admin-fees.js", array('awpcp-admin-wp-table-ajax'), $awpcp_db_version, true);
 		wp_register_script('awpcp-admin-credit-plans', "{$js}/admin-credit-plans.js", array('awpcp-admin-wp-table-ajax'), $awpcp_db_version, true);
-		wp_register_script('awpcp-admin-listings', "{$js}/admin-listings.js", array('awpcp', 'awpcp-admin-wp-table-ajax', 'awpcp-knockout'), $awpcp_db_version, true);
+		wp_register_script( 'awpcp-admin-listings', "{$js}/admin-listings.js", array( 'awpcp', 'awpcp-admin-wp-table-ajax' ), $awpcp_db_version, true );
 		wp_register_script('awpcp-admin-users', "{$js}/admin-users.js", array('awpcp-admin-wp-table-ajax'), $awpcp_db_version, true);
 
 		/* frontend */
