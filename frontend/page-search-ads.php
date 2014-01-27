@@ -106,6 +106,7 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
         $ui['module-extra-fields'] = $hasextrafieldsmodule;
         $ui['posted-by-field'] = get_awpcp_option('displaypostedbyfield');
         $ui['price-field'] = get_awpcp_option('displaypricefield');
+        $ui['allow-user-to-search-in-multiple-regions'] = get_awpcp_option('allow-user-to-search-in-multiple-regions');
 
         $messages = $this->messages;
         $hidden = array('a' => 'dosearch');

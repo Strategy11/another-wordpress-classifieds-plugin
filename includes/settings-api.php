@@ -193,6 +193,8 @@ class AWPCP_Settings_API {
 
 		$this->add_setting( $key, 'allow-regions-modification', __( 'Allow Regions modification', 'AWPCP' ), 'checkbox', 1, __( 'If enabled, users will be allowed to change the region information associated with their Ads.', 'AWPCP' ) );
 
+		$this->add_setting( $key, 'allow-user-to-search-in-multiple-regions', __( 'Allow users to search Ads in multiple regions', 'AWPCP' ), 'checkbox', 0, __( 'If enabled, users will be allowed to search Ads in multiple regions.', 'AWPCP' ) );
+
 		// Section: Ad/Listings - Layout and Presentation
 
 		$key = $this->add_section($group, __('Layout and Presentation', 'AWPCP'), 'layout', 10, array($this, 'section'));
