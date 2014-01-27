@@ -124,8 +124,8 @@ function($, ko, settings) {
                 this.showMessage(response.message);
             }
 
-            task.recordsCount(task.recordsCount() || response.recordsCount);
-            task.recordsLeft(response.recordsLeft);
+            task.recordsCount(task.recordsCount() || parseInt(response.recordsCount, 10));
+            task.recordsLeft(parseInt(response.recordsLeft, 10));
 
             if (task.recordsLeft() === 0) {
                 this.tasksCompleted(this.tasksCompleted() + 1);
