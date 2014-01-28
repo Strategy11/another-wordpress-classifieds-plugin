@@ -15,15 +15,12 @@ class AWPCP_AdminUpgrade extends AWPCP_AdminPage {
 
         $this->upgrades = array(
             'awpcp-import-payment-transactions' => array(
-                'callback' => array( $this, 'import_payment_transactions' ),
                 'name' => 'Import Payment Transactions',
             ),
             'awpcp-migrate-regions-information' => array(
-                'callback' => array( $this, 'migrate_regions_information' ),
                 'name' => 'Migrate Regions Information',
             ),
             'awpcp-migrate-media-information' => array(
-                'callback' => array( $this, 'migrate_media_information' ),
                 'name' => 'Migrate Media Information',
             ),
         );
@@ -72,45 +69,26 @@ class AWPCP_AdminUpgrade extends AWPCP_AdminPage {
     private function _dispatch() {
         $pending_upgrades = $this->get_pending_upgrades();
 
-        $js_data = array();
-        foreach ( $pending_upgrades as $upgrade => $data ) {
-            $js_data[] = array( 'action' => $upgrade, 'name' => $data['name'] );
-        }
-        awpcp()->js->set( 'pending-upgrades', $js_data );
-
-        foreach ($pending_upgrades as $upgrade => $data) {
-            return call_user_func( $data['callback'] );
+        $tasks = array();
+        foreach ( $pending_upgrades as $action => $data ) {
+            $tasks[] = array('name' => $data['name'], 'action' => $action);
         }
 
-        // seems like there are no pending upgrade, let's clear
-        // the pending-manual-upgrade flag
-        $this->update_pending_upgrades_status();
+        $messages = array(
+            'introduction' => _x( 'Before you can use AWPCP again we need to upgrade your database. This operation may take a few minutes, depending on the amount of information stored. Please press the Upgrade button shown below to start the process.', 'awpcp upgrade', 'AWPCP' ),
+            'success' => sprintf( _x( 'Congratulations. AWPCP has been successfully upgraded. You can now access all features. <a href="%s">Click here to Continue</a>.', 'awpcp upgrade', 'AWPCP' ), add_query_arg( 'page', 'awpcp.php' ) ),
+            'button' => _x( 'Upgrade', 'awpcp upgrade', 'AWPCP' ),
+        );
 
-        // ... and tell to the user everything is ready
-        $template = AWPCP_DIR . '/admin/templates/admin-panel-upgrade.tpl.php';
-        return $this->render($template, array('url' => add_query_arg('page', 'awpcp.php')));
+        $tasks = new AWPCP_AsynchronousTasksHelper( $tasks, $messages );
+
+        return $this->render( 'content', $tasks->render() );
     }
 
     /**
      * ------------------------------------------------------------------------
      * Import Pyment Transactions
      */
-
-    private function import_payment_transactions() {
-        if ($this->count_old_payment_transactions() === 0) {
-            delete_option('awpcp-import-payment-transactions');
-            return $this->dispatch();
-        }
-
-        $params = array(
-            'url' => add_query_arg('page', 'awpcp.php'),
-            'action' => 'awpcp-import-payment-transaction',
-            'pending_upgrades' => $this->count_pending_upgrades(),
-        );
-
-        $template = AWPCP_DIR . '/admin/templates/admin-panel-upgrade-progress-bar.tpl.php';
-        return $this->render($template, $params);
-    }
 
     private function count_old_payment_transactions() {
         global $wpdb;
@@ -220,28 +198,13 @@ class AWPCP_AdminUpgrade extends AWPCP_AdminPage {
             $this->update_pending_upgrades_status();
         }
 
-        $response = array('total' => $existing_transactions, 'remaining' => $remaining_transactions);
-
-        header( "Content-Type: application/json" );
-        echo json_encode($response);
-        die();
+        return $this->ajax_response( $existing_transactions, $remaining_transactions );
     }
 
     /**
      * ------------------------------------------------------------------------
      * Migrate Regions Information
      */
-
-    private function migrate_regions_information() {
-        $params = array(
-            'url' => add_query_arg('page', 'awpcp.php'),
-            'action' => 'awpcp-migrate-regions-information',
-            'pending_upgrades' => $this->count_pending_upgrades(),
-        );
-
-        $template = AWPCP_DIR . '/admin/templates/admin-panel-upgrade-progress-bar.tpl.php';
-        return $this->render($template, $params);
-    }
 
     private function count_ads_pending_region_information_migration($cursor) {
         global $wpdb;
@@ -312,28 +275,13 @@ class AWPCP_AdminUpgrade extends AWPCP_AdminPage {
             $remaining = 0;
         }
 
-        $response = array( 'total' => $total, 'remaining' => $remaining );
-
-        header( "Content-Type: application/json" );
-        echo json_encode( $response );
-        die();
+        return $this->ajax_response( $total, $remaining );
     }
 
     /**
      * ------------------------------------------------------------------------
      * Migrate Media Information
      */
-
-    private function migrate_media_information() {
-        $params = array(
-            'url' => add_query_arg('page', 'awpcp.php'),
-            'action' => 'awpcp-migrate-media-information',
-            'pending_upgrades' => $this->count_pending_upgrades(),
-        );
-
-        $template = AWPCP_DIR . '/admin/templates/admin-panel-upgrade-progress-bar.tpl.php';
-        return $this->render($template, $params);
-    }
 
     public function ajax_migrate_media_information() {
         global $wpdb;
@@ -405,8 +353,17 @@ class AWPCP_AdminUpgrade extends AWPCP_AdminPage {
         return intval( $wpdb->get_var( $wpdb->prepare( $sql, $cursor ) ) );
     }
 
+    /**
+     * ------------------------------------------------------------------------
+     * Ajax Response
+     */
+
     private function ajax_response( $total, $remaining ) {
-        $response = array( 'total' => $total, 'remaining' => $remaining );
+        $response = array(
+            'status' => 'ok',
+            'recordsCount' => $total,
+            'recordsLeft' => $remaining
+        );
 
         header( "Content-Type: application/json" );
         echo json_encode( $response );

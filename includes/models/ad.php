@@ -456,6 +456,9 @@ class AWPCP_Ad {
 			awpcp_media_api()->delete( $image );
 		}
 
+		$query = 'DELETE FROM ' . AWPCP_TABLE_AD_REGIONS . ' WHERE ad_id = %d';
+		$result = $wpdb->query( $wpdb->prepare( $query, $this->ad_id ) );
+
 		$query = 'DELETE FROM ' . AWPCP_TABLE_ADS . ' WHERE ad_id = %d';
 		$result = $wpdb->query($wpdb->prepare($query, $this->ad_id));
 
