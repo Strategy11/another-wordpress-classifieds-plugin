@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: AWPCP\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2014-01-22 00:02:54+00:00\n"
+"POT-Creation-Date: 2014-01-28 01:08:53+00:00\n"
 "PO-Revision-Date: 2014-01-09 15:56-0500\n"
 "Last-Translator: Daniel Pérez <dapanas@gmail.com>\n"
 "Language-Team: \n"
@@ -595,6 +595,9 @@ msgstr ""
 msgid "Add Region"
 msgstr ""
 
+msgid "Add Search Region"
+msgstr ""
+
 msgid "Add Subscription"
 msgstr ""
 
@@ -715,6 +718,9 @@ msgid "Allow images in Ads?"
 msgstr ""
 
 msgid "Allow images in ads? (affects both free and pay mode)"
+msgstr ""
+
+msgid "Allow users to search Ads in multiple regions"
 msgstr ""
 
 msgid "Allowed Ad Count"
@@ -1258,14 +1264,6 @@ msgstr ""
 
 msgctxt "awpcp upgrade"
 msgid ""
-"Congratulations. AWPCP has been successfully upgraded. You are seeing this "
-"message because your database needed to be upgraded in order to support the "
-"newest version. You can now access all features. <a href=\"%s\">Click here "
-"to Continue</a>."
-msgstr ""
-
-msgctxt "awpcp upgrade"
-msgid ""
 "Congratulations. AWPCP has been successfully upgraded. You can now access "
 "all features. <a href=\"%s\">Click here to Continue</a>."
 msgstr ""
@@ -1536,6 +1534,9 @@ msgstr ""
 
 msgctxt "upload images"
 msgid "Delete Image"
+msgstr ""
+
+msgid "Delete Search Region"
 msgstr ""
 
 msgid "Delete Selected Categories"
@@ -2258,6 +2259,9 @@ msgstr ""
 msgid ""
 "If enabled, users will be allowed to change the region information "
 "associated with their Ads."
+msgstr ""
+
+msgid "If enabled, users will be allowed to search Ads in multiple regions."
 msgstr ""
 
 msgid ""
@@ -3363,6 +3367,10 @@ msgstr ""
 
 msgctxt "ad payment status"
 msgid "Pending"
+msgstr ""
+
+msgctxt "asynchrounous tasks screen"
+msgid "Pending Tasks"
 msgstr ""
 
 msgid "Percent"
@@ -5254,10 +5262,6 @@ msgid ""
 "that level are: <strong>%s</strong>."
 msgstr ""
 
-msgctxt "awpcp upgrade"
-msgid "There are %s pending upgrades."
-msgstr ""
-
 msgid "There are currently no ads in the system"
 msgstr ""
 
@@ -5692,6 +5696,10 @@ msgstr ""
 msgid "Update Field"
 msgstr ""
 
+msgid "Upgrade"
+msgstr ""
+
+msgctxt "awpcp upgrade"
 msgid "Upgrade"
 msgstr ""
 

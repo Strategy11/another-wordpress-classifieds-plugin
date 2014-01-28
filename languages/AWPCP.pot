@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2014-01-22 00:02:54+00:00\n"
+"POT-Creation-Date: 2014-01-28 01:08:53+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -544,6 +544,9 @@ msgstr ""
 msgid "Add Region"
 msgstr ""
 
+msgid "Add Search Region"
+msgstr ""
+
 msgid "Add Subscription"
 msgstr ""
 
@@ -650,6 +653,9 @@ msgid "Allow images in Ads?"
 msgstr ""
 
 msgid "Allow images in ads? (affects both free and pay mode)"
+msgstr ""
+
+msgid "Allow users to search Ads in multiple regions"
 msgstr ""
 
 msgid "Allowed Ad Count"
@@ -1141,10 +1147,6 @@ msgid "Congratulations"
 msgstr ""
 
 msgctxt "awpcp upgrade"
-msgid "Congratulations. AWPCP has been successfully upgraded. You are seeing this message because your database needed to be upgraded in order to support the newest version. You can now access all features. <a href=\"%s\">Click here to Continue</a>."
-msgstr ""
-
-msgctxt "awpcp upgrade"
 msgid "Congratulations. AWPCP has been successfully upgraded. You can now access all features. <a href=\"%s\">Click here to Continue</a>."
 msgstr ""
 
@@ -1402,6 +1404,9 @@ msgstr ""
 
 msgctxt "upload images"
 msgid "Delete Image"
+msgstr ""
+
+msgid "Delete Search Region"
 msgstr ""
 
 msgid "Delete Selected Categories"
@@ -2061,6 +2066,9 @@ msgid "If enabled, a preview of the Ad being posted will be shown after the imag
 msgstr ""
 
 msgid "If enabled, users will be allowed to change the region information associated with their Ads."
+msgstr ""
+
+msgid "If enabled, users will be allowed to search Ads in multiple regions."
 msgstr ""
 
 msgid "If this is a Fee for specific categories then select those categories below, otherwise leave the categories unchecked."
@@ -3058,6 +3066,10 @@ msgstr ""
 
 msgctxt "ad payment status"
 msgid "Pending"
+msgstr ""
+
+msgctxt "asynchrounous tasks screen"
+msgid "Pending Tasks"
 msgstr ""
 
 msgid "Percent"
@@ -4771,10 +4783,6 @@ msgctxt "e.g. There are [15 regions of type City and 3 regions of type County] i
 msgid "There are %s in level %d. Some of the regions of type <strong>%s</strong> in that level are: <strong>%s</strong>."
 msgstr ""
 
-msgctxt "awpcp upgrade"
-msgid "There are %s pending upgrades."
-msgstr ""
-
 msgid "There are currently no ads in the system"
 msgstr ""
 
@@ -5135,6 +5143,10 @@ msgstr ""
 msgid "Update Field"
 msgstr ""
 
+msgid "Upgrade"
+msgstr ""
+
+msgctxt "awpcp upgrade"
 msgid "Upgrade"
 msgstr ""
 
