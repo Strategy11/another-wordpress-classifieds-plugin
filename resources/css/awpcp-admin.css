@@ -447,3 +447,11 @@
 .align-text-right {
   text-align: right;
 }
+.progress-bar {
+  border: 1px solid #AAA;
+}
+.progress-bar-value {
+  background: #DDD;
+  height: 24px;
+  width: 0;
+}
