@@ -1,5 +1,10 @@
 <?php
 
+function awpcp_meta() {
+    return new AWPCP_Meta( awpcp_request() );
+}
+
+
 class AWPCP_Meta {
 
     public $ad = null;
@@ -11,30 +16,44 @@ class AWPCP_Meta {
     private $doing_opengraph = false;
 
     public function __construct( /*AWPCP_Request*/ $request = null ) {
-        if ( is_null( $request ) ) {
-            $this->request = new AWPCP_Request();
-        } else {
-            $this->request = $request;
-        }
+        $this->request = $request;
 
+        add_action( 'template_redirect', array( $this, 'configure' ) );
         add_action('template_redirect', array($this, 'init'));
     }
 
-    public function init() {
+    public function configure() {
+        $this->configure_opengraph_meta_tags();
+        $this->configure_title_generation();
+    }
+
+    private function configure_opengraph_meta_tags() {
         $this->category_id = $this->request->get_category_id();
-        $this->ad_id = $this->request->get_ad_id();
+        $this->ad_id = absint( $this->request->get_ad_id() );
 
-        // Generate OpenGraph information if we are viewing an Ad
-        if ( intval( $this->ad_id ) > 0 ) {
-            $this->ad = AWPCP_Ad::find_by_id( $this->ad_id );
-            $this->properties = awpcp_get_ad_share_info( $this->ad_id );
-
-            if (!is_null($this->ad) && !is_null($this->properties)) {
-                add_action('wp_head', array($this, 'opengraph'));
-                $this->doing_opengraph = true;
-            }
+        if ( $this->ad_id === 0 ) {
+            return;
         }
 
+        $this->ad = AWPCP_Ad::find_by_id( $this->ad_id );
+        $this->properties = awpcp_get_ad_share_info( $this->ad_id );
+
+        if ( is_null( $this->ad ) || is_null( $this->properties ) ) {
+            return;
+        }
+
+        if ( apply_filters( 'awpcp-should-generate-opengraph-tags', true, $this ) ) {
+            add_action( 'wp_head', array( $this, 'opengraph' ) );
+            $this->doing_opengraph = true;
+        }
+    }
+
+    private function configure_title_generation() {
+        // TODO: code me using what's already in init()
+        // TODO: move plugin integrations to their own file.
+    }
+
+    public function init() {
         add_action('wp_title', array($this, 'title'), 10, 3);
 
         // YOAST WordPress SEO Integration
@@ -215,28 +234,56 @@ class AWPCP_Meta {
     // The function to add the page meta and Facebook meta to the header of the index page
     // https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F108.166.84.26%2F%25253Fpage_id%25253D5%252526id%25253D3&t=Ad+in+Rackspace+1.8.9.4+(2)
     public function opengraph() {
-        $charset = get_bloginfo('charset');
+        // http://wiki.whatwg.org/wiki/FAQ#Should_I_close_empty_elements_with_.2F.3E_or_.3E.3F
+        $CLOSE = current_theme_supports('html5') ? '>' : ' />';
+
+        $meta_tags = $this->get_meta_tags();
 
         // TODO: handle integration with other plugins
-        echo '<meta name="title" content="' . $this->properties['title'] . '" />' . PHP_EOL;
-        echo '<meta name="description" content="' . htmlspecialchars($this->properties['description'], ENT_QUOTES, $charset) . '" />' . PHP_EOL;
+        echo '<meta name="title" content="' . $meta_tags['http://ogp.me/ns#title'] . '"' . $CLOSE . PHP_EOL;
+        echo '<meta name="description" content="' . $meta_tags['http://ogp.me/ns#description'] . '"' . $CLOSE . PHP_EOL;
 
-        echo '<meta property="og:type" content="article" />' . PHP_EOL;
-        echo '<meta property="og:url" content="' . $this->properties['url'] . '" />' . PHP_EOL;
-        echo '<meta property="og:title" content="' . $this->properties['title'] . '" />' . PHP_EOL;
-        echo '<meta property="og:description" content="' . htmlspecialchars($this->properties['description'], ENT_QUOTES, $charset) . '" />' . PHP_EOL;
+        echo '<meta property="og:type" content="article"' . $CLOSE . PHP_EOL;
+        echo '<meta property="og:url" content="' . $meta_tags['http://ogp.me/ns#url'] . '"' . $CLOSE . PHP_EOL;
+        echo '<meta property="og:title" content="' . $meta_tags['http://ogp.me/ns#title'] . '"' . $CLOSE . PHP_EOL;
+        echo '<meta property="og:description" content="' . $meta_tags['http://ogp.me/ns#description'] . '"' . $CLOSE . PHP_EOL;
 
-        echo '<meta property="article:published_time" content="' . $this->properties['published-time'] . '" />' . PHP_EOL;
-        echo '<meta property="article:modified_time" content="' . $this->properties['modified-time'] . '" />' . PHP_EOL;
+        echo '<meta property="article:published_time" content="' . $meta_tags['http://ogp.me/ns/article#published_time'] . '"' . $CLOSE . PHP_EOL;
+        echo '<meta property="article:modified_time" content="' . $meta_tags['http://ogp.me/ns/article#modified_time'] . '"' . $CLOSE . PHP_EOL;
 
-        foreach ($this->properties['images'] as $k => $image) {
-            echo '<meta property="og:image" content="' . $image . '" />' . PHP_EOL;
-            echo '<link rel="image_src" href="' . $image . '" />' . PHP_EOL;
+        foreach ( $meta_tags as $property => $content ) {
+            if ( $property === 'http://ogp.me/ns#image' ) {
+                echo '<meta property="og:image" content="' . $content . '"' . $CLOSE . PHP_EOL;
+            }
         }
 
-        if (empty($this->properties['images'])) {
-            echo '<meta property="og:image" content="' . AWPCP_URL . '/resources/images/adhasnoimage.gif" />' . PHP_EOL;
+        if ( isset( $meta_tags['http://ogp.me/ns#image'] ) ) {
+            // this helps Facebook determine which image to put next to the link
+            echo '<link rel="image_src" href="' . $meta_tags['http://ogp.me/ns#image'] . '"' . $CLOSE . PHP_EOL;
         }
+    }
+
+    public function get_meta_tags() {
+        $charset = get_bloginfo('charset');
+
+        $meta_tags = array(
+            'http://ogp.me/ns#type' => 'article',
+            'http://ogp.me/ns#url' => $this->properties['url'],
+            'http://ogp.me/ns#title' => $this->properties['title'],
+            'http://ogp.me/ns#description' => htmlspecialchars( $this->properties['description'], ENT_QUOTES, $charset ),
+            'http://ogp.me/ns/article#published_time' => $this->properties['published-time'],
+            'http://ogp.me/ns/article#modified_time' => $this->properties['modified-time'],
+        );
+
+        foreach ( $this->properties['images'] as $k => $image ) {
+            $meta_tags['http://ogp.me/ns#image'] = $image;
+        }
+
+        if ( empty( $this->properties['images'] ) ) {
+            $meta_tags['http://ogp.me/ns#image'] = AWPCP_URL . '/resources/images/adhasnoimage.gif';
+        }
+
+        return $meta_tags;
     }
 
     /**

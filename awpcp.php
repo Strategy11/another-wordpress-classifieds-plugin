@@ -127,6 +127,7 @@ require_once(AWPCP_DIR . "/upload_awpcp.php");
 require_once(AWPCP_DIR . "/includes/exceptions.php");
 
 require_once(AWPCP_DIR . "/includes/compatibility/compatibility.php");
+require_once(AWPCP_DIR . "/includes/compatibility/class-facebook-plugin-integration.php");
 
 require_once(AWPCP_DIR . "/includes/helpers/class-awpcp-request.php");
 require_once(AWPCP_DIR . "/includes/helpers/class-file-cache.php");
@@ -351,6 +352,8 @@ class AWPCP {
 		if (get_option('awpcp-pending-manual-upgrade')) return;
 
 		$this->pages = new AWPCP_Pages();
+
+		add_filter( 'awpcp-should-generate-opengraph-tags', array( new AWPCP_FacebookPluginIntegration(), 'should_generate_opengraph_tags' ), 10, 2 );
 
 		add_action('awpcp-register-payment-term-types', array($this, 'register_payment_term_types'));
 		add_action('awpcp-register-payment-methods', array($this, 'register_payment_methods'));

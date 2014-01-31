@@ -18,7 +18,7 @@ class AWPCP_Pages {
     private $output = array();
 
 	public function __construct() {
-		$this->meta = new AWPCP_Meta();
+		$this->meta = awpcp_meta();
 
 		$this->show_ad = new AWPCP_Show_Ad_Page();
 		$this->browse_ads = new AWPCP_BrowseAdsPage();
