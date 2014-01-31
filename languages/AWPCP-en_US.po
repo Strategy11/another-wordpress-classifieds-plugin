@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: AWPCP\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2014-01-28 01:08:53+00:00\n"
+"POT-Creation-Date: 2014-01-31 14:15:53+00:00\n"
 "PO-Revision-Date: 2014-01-09 15:56-0500\n"
 "Last-Translator: Daniel Pérez <dapanas@gmail.com>\n"
 "Language-Team: \n"
@@ -375,6 +375,9 @@ msgstr ""
 
 msgid ""
 "AWPCP could not obtain a valid access token from Facebook. Please try again."
+msgstr ""
+
+msgid "AWPCP could not obtain a valid access token from Facebook: %s"
 msgstr ""
 
 msgid ""
@@ -1920,6 +1923,11 @@ msgid "Facebook Config Diagnostics"
 msgstr ""
 
 msgid "Facebook Integration"
+msgstr ""
+
+msgid ""
+"Facebook Integration is in beta. Please let us know if you experience any "
+"problems or have feature suggestions."
 msgstr ""
 
 msgid "Facebook Page"

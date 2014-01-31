@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2014-01-28 01:08:53+00:00\n"
+"POT-Creation-Date: 2014-01-31 14:15:53+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -335,6 +335,9 @@ msgid "AWPCP can not post to Facebook because your credentials are invalid or ha
 msgstr ""
 
 msgid "AWPCP could not obtain a valid access token from Facebook. Please try again."
+msgstr ""
+
+msgid "AWPCP could not obtain a valid access token from Facebook: %s"
 msgstr ""
 
 msgid "AWPCP features are currently disabled because the plugin needs you to perform a manual upgrade before continuing."
@@ -1763,6 +1766,9 @@ msgid "Facebook Config Diagnostics"
 msgstr ""
 
 msgid "Facebook Integration"
+msgstr ""
+
+msgid "Facebook Integration is in beta. Please let us know if you experience any problems or have feature suggestions."
 msgstr ""
 
 msgid "Facebook Page"
