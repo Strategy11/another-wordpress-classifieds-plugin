@@ -28,7 +28,6 @@ class AWPCP_Meta {
     }
 
     private function configure_opengraph_meta_tags() {
-        $this->category_id = $this->request->get_category_id();
         $this->ad_id = absint( $this->request->get_ad_id() );
 
         if ( $this->ad_id === 0 ) {
@@ -54,6 +53,8 @@ class AWPCP_Meta {
     }
 
     public function init() {
+        $this->category_id = $this->request->get_category_id();
+
         add_action('wp_title', array($this, 'title'), 10, 3);
 
         // YOAST WordPress SEO Integration
