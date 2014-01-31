@@ -10,7 +10,21 @@
 			</div>
 		</div>
 	</div>
+	<?php if ( $current_step > 1 && $this->get_current_action() != 'diagnostics' ): ?>
+	<div class="postbox">
+		<h3 class="hndle"><span><?php _e( 'Diagnostics', 'AWPCP' ) ?></span></h3>
+		<div class="inside">
+			<form  method="post">
+				<?php wp_nonce_field( 'awpcp-facebook-settings' ); ?>
+				If you are having trouble with Facebook integration, click "Diagnostics" to check your settings.
+				<input type="submit" class="button-secondary" name="diagnostics" value="<?php _e( 'Diagnostics', 'AWPCP' ); ?>" />
+			</form>
+		</div>
+	</div>
+	<?php endif; ?>
 </div>
+
+<?php echo awpcp_print_message( __( 'Facebook Integration is in beta. Please let us know if you experience any problems or have feature suggestions.', 'AWPCP' ), array( 'updated', 'below-h2', 'highlight' ) ); ?>
 
 <h3><?php _e( 'Facebook Integration', 'AWPCP' ); ?></h3>
 
@@ -18,15 +32,6 @@
 <?php foreach ( $errors as $err ): ?>
 	<?php echo awpcp_print_error( $err ); ?>
 <?php endforeach; ?>
-<?php endif; ?>
-
-<?php if ( $current_step > 1 && $this->get_current_action() != 'diagnostics' ): ?>	
-<div class="facebook-integration-diagnostics">
-	<form  method="post">
-	<?php wp_nonce_field( 'awpcp-facebook-settings' ); ?>		
-	If you are having trouble with Facebook integration, click "Diagnostics" to check your settings. <input type="submit" class="button-secondary" name="diagnostics" value="<?php _e( 'Diagnostics', 'AWPCP' ); ?>" />
-	</form>
-</div>	
 <?php endif; ?>
 
 <form  method="post" class="facebook-integration-settings">
