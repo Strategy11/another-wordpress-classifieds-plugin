@@ -556,6 +556,16 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             }
         }
 
+        $info['regions'] = array();
+
+        if ( isset( $info['ad_city'] ) && isset( $info['ad_state'] ) ) {
+            $info['regions'][] = array( 'state' => $info['ad_state'], 'city' => $info['ad_city'] );
+        } else if ( isset( $info['ad_state'] ) ) {
+            $info['regions'][] = array( 'state' => $info['ad_state'] );
+        } else if ( isset( $info['ad_city'] ) ) {
+            $info['regions'][] = array( 'city' => $info['ad_city'] );
+        }
+
         return $info;
     }
 
