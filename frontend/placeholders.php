@@ -139,6 +139,8 @@ function awpcp_content_placeholders() {
         'category_url' => array(),
         // 'category_link' => array(),
         'category_name' => array(),
+        'parent_category_url' => array(),
+        'parent_category_name' => array(),
         'details' => array(),
         'excerpt' => array(),
         'contact_name' => array(),
@@ -275,6 +277,20 @@ function awpcp_do_placeholder_category_name($ad, $placeholder) {
  */
 function awpcp_do_placeholder_category_url($ad, $placeholder) {
     return url_browsecategory($ad->ad_category_id);
+}
+
+/**
+ * @since 3.2
+ */
+function awpcp_do_placeholder_parent_category_name( $ad, $placeholder ) {
+    return $ad->ad_category_parent_id > 0 ? stripslashes( get_adcatname( $ad->ad_category_parent_id ) ) : '';
+}
+
+/**
+ * @since 3.2
+ */
+function awpcp_do_placeholder_parent_category_url( $ad, $placeholder ) {
+    return $ad->ad_category_parent_id > 0 ? url_browsecategory( $ad->ad_category_parent_id ) : '';
 }
 
 
