@@ -734,7 +734,7 @@ class AWPCP_Settings_API {
 			$value = strip_slashes_recursive($value);
 		}
 
-		return $value;
+		return trim( $value );
 	}
 
 	public function get_option_default_value($name) {
