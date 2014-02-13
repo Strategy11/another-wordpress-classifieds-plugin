@@ -30,10 +30,10 @@ class AWPCP_BasePage extends AWPCP_Page {
     protected function do_page() {
         try {
             $this->do_page_steps();
+        } catch (AWPCP_RedirectionException $e) {
+            $this->handle_redirection_exception( $e );
         } catch (AWPCP_Exception $e) {
-            throw $e;
-            $this->errors[] = $e->getMessage();
-            $this->render_page_error();
+            $this->render_page_error( $e );
         }
     }
 
@@ -69,6 +69,8 @@ class AWPCP_BasePage extends AWPCP_Page {
             return $this->steps[ $step_name ];
         } else {
             throw new AWPCP_Exception( __( 'Unkown step. Please contact the administrator about this error.', 'AWPCP' ) );
+            $message = __( 'Unkown step "%s". Please contact the administrator about this error.', 'AWPCP' );
+            throw new AWPCP_Exception( sprintf( $message, $step_name ) );
         }
     }
 
@@ -76,9 +78,10 @@ class AWPCP_BasePage extends AWPCP_Page {
         try {
             $this->do_step_method( $current_step );
             $this->do_next_step();
+        } catch ( AWPCP_RedirectionException $e ) {
+            throw $e;
         } catch (AWPCP_Exception $e) {
-            $this->errors[] = $e->getMessage();
-            $this->handle_step_exception( $current_step );
+            $this->handle_step_exception( $e, $current_step );
         }
     }
 
@@ -114,19 +117,35 @@ class AWPCP_BasePage extends AWPCP_Page {
         throw new AWPCP_Exception( 'Not yet implemented.' );
     }
 
-    private function handle_step_exception( $step ) {
+    private function handle_step_exception( $exception, $step ) {
         if ( $this->request->method() === 'POST' ) {
+            $this->errors[] = $exception->getMessage();
             $step->get( $this );
         } else {
             $message = __( 'Your request cannot be processed at this time. Please try again or contact the administrator about the incident.', 'AWPCP' );
-            throw new AWPCP_Exception( $message );
+            throw new AWPCP_Exception( $message, $exception->get_errors() );
         }
     }
 
-    protected function render_page_error() {
+    private function handle_redirection_exception( $redirection ) {
+        $this->request_method = $redirection->request_method;
+        $this->default_step_name = null;
+        $this->current_step_name = null;
+        $this->do_next_step = true;
+        $this->next_step = null;
+
+        $this->set_current_step( $redirection->step_name );
+
+        $this->do_page();
+
+        $this->errors = array_merge( $this->errors, $exception->get_errors() );
+        debugp( $this->errors, $exception->get_errors() );
+
         $template = AWPCP_DIR . '/frontend/templates/page-error.tpl.php';
-        $params = array( 'errors' => $this->errors );
-        $this->render( $template, $params );
+
+        $this->render( $template, array( 'errors' => $this->errors ) );
+    }
+
     }
 
     public function set_current_step( $step_name ) {
@@ -139,5 +158,11 @@ class AWPCP_BasePage extends AWPCP_Page {
 
     public function skip_next_step() {
         $this->do_next_step = false;
+    }
+
+    public function redirect( $step_name, $request_method='GET' ) {
+        if ( strcmp( $this->get_current_step_name(), $step_name ) !== 0 ) {
+            throw new AWPCP_RedirectionException( $step_name, $request_method );
+        }
     }
 }
