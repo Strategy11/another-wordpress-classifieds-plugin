@@ -33,7 +33,7 @@ class AWPCP_BasePage extends AWPCP_Page {
         } catch (AWPCP_RedirectionException $e) {
             $this->handle_redirection_exception( $e );
         } catch (AWPCP_Exception $e) {
-            $this->render_page_error( $e );
+            $this->handle_page_exception( $e );
         }
     }
 
@@ -68,7 +68,6 @@ class AWPCP_BasePage extends AWPCP_Page {
         if ( isset( $this->steps[ $step_name ] ) ) {
             return $this->steps[ $step_name ];
         } else {
-            throw new AWPCP_Exception( __( 'Unkown step. Please contact the administrator about this error.', 'AWPCP' ) );
             $message = __( 'Unkown step "%s". Please contact the administrator about this error.', 'AWPCP' );
             throw new AWPCP_Exception( sprintf( $message, $step_name ) );
         }
@@ -138,11 +137,13 @@ class AWPCP_BasePage extends AWPCP_Page {
 
         $this->do_page();
 
+    private function handle_page_exception( $exception ) {
         $this->errors = array_merge( $this->errors, $exception->get_errors() );
-        debugp( $this->errors, $exception->get_errors() );
+        $this->render_page_error();
+    }
 
+    protected function render_page_error() {
         $template = AWPCP_DIR . '/frontend/templates/page-error.tpl.php';
-
         $this->render( $template, array( 'errors' => $this->errors ) );
     }
 
