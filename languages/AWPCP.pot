@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2014-01-31 14:15:53+00:00\n"
+"POT-Creation-Date: 2014-02-13 06:14:01+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1712,6 +1712,9 @@ msgstr ""
 msgid "Excerpt View"
 msgstr ""
 
+msgid "Existing Ads were renewed using the new expiration date for your Subscription."
+msgstr ""
+
 msgid "Existing Files"
 msgstr ""
 
@@ -2090,6 +2093,9 @@ msgid "If unchecked, Ads won't be associated to an user."
 msgstr ""
 
 msgid "If you are having problems with your plugin pages, you can delete them and use the Restore button to have the plugin create them again."
+msgstr ""
+
+msgid "If you are trying to upgrade your subscription in order to place more Ads, please take into account that you need to choose a plan that allows you to place more than %d Ads. Othersie your subscription will be upgraded and your existing Ads renewed, but your subscription would still be full."
 msgstr ""
 
 msgctxt "AWPCP"
@@ -2885,6 +2891,9 @@ msgid "Only registered users can place Ad comments."
 msgstr ""
 
 msgid "Only registered users can purchase Subscription Plans. If you are already registered, please login below in order to buy a Subscription."
+msgstr ""
+
+msgid "Only registered users can purchase Subscription Plans. If you are already registered, please login below in order to buy or renew a Subscription."
 msgstr ""
 
 msgid "Only registered users can reply to Ads. If you are already registered, please login below in order to reply to the Ad."
@@ -4396,6 +4405,9 @@ msgstr ""
 msgid "The Subscription Plan doesn't exist."
 msgstr ""
 
+msgid "The Subscription associated with this transaction can't be found."
+msgstr ""
+
 msgid "The Subscription couldn't be deleted"
 msgstr ""
 
@@ -4631,6 +4643,9 @@ msgid "The order used to sort Fees in the payment screens."
 msgstr ""
 
 msgid "The order used to sort Subscription Plans in the payment screens."
+msgstr ""
+
+msgid "The payment associated with the current transaction failed (see reasons below)."
 msgstr ""
 
 msgid "The payment associated with this transaction failed (see reasons below)."
@@ -5119,7 +5134,7 @@ msgctxt "upload files"
 msgid "Unknown error encountered while uploading the image."
 msgstr ""
 
-msgid "Unkown step. Please contact the administrator about this error."
+msgid "Unkown step \"%s\". Please contact the administrator about this error."
 msgstr ""
 
 msgid "Unpaid"
