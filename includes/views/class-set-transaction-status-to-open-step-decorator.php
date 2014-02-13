@@ -11,7 +11,7 @@ class AWPCP_SetTransactionStatusToOpenStepDecorator extends AWPCP_StepDecorator 
     }
 
     public function before_post( $controller ) {
-        $this->transaction = $controller->get_transaction();
+        $this->transaction = $controller->get_or_create_transaction();
 
         if ( $this->transaction->is_new() ) {
             $this->set_transaction_status_to_open();

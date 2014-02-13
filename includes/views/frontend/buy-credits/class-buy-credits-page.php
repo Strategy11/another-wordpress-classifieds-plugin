@@ -34,6 +34,10 @@ class AWPCP_BuyCreditsPage extends AWPCP_BasePage {
         return $this->transaction;
     }
 
+    public function get_or_create_transaction() {
+        return $this->get_transaction( true );
+    }
+
     public function dispatch() {
         if ( $this->is_user_allowed_to_buy_credits() ) {
             $this->do_page();
