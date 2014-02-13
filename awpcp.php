@@ -131,6 +131,7 @@ require_once(AWPCP_DIR . "/includes/compatibility/class-facebook-plugin-integrat
 
 require_once(AWPCP_DIR . "/includes/helpers/class-awpcp-request.php");
 require_once(AWPCP_DIR . "/includes/helpers/class-file-cache.php");
+require_once(AWPCP_DIR . "/includes/helpers/class-payment-transaction-helper.php");
 require_once(AWPCP_DIR . "/includes/helpers/list-table.php");
 require_once(AWPCP_DIR . "/includes/helpers/email.php");
 require_once(AWPCP_DIR . "/includes/helpers/javascript.php");
