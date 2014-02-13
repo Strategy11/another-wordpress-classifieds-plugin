@@ -150,12 +150,14 @@ require_once( AWPCP_DIR . "/includes/db/class-database-column-creator.php" );
 
 require_once( AWPCP_DIR . "/includes/views/class-base-page.php" );
 require_once( AWPCP_DIR . "/includes/views/class-step-decorator.php" );
+require_once( AWPCP_DIR . "/includes/views/class-payment-step-decorator.php" );
 require_once( AWPCP_DIR . "/includes/views/class-prepare-transaction-for-payment-step-decorator.php" );
 require_once( AWPCP_DIR . "/includes/views/class-set-credit-plan-step-decorator.php" );
 require_once( AWPCP_DIR . "/includes/views/class-set-payment-method-step-decorator.php" );
 require_once( AWPCP_DIR . "/includes/views/class-set-transaction-status-to-open-step-decorator.php" );
 require_once( AWPCP_DIR . "/includes/views/class-set-transaction-status-to-checkout-step-decorator.php" );
 require_once( AWPCP_DIR . "/includes/views/class-set-transaction-status-to-completed-step-decorator.php" );
+require_once( AWPCP_DIR . "/includes/views/class-skip-payment-step-if-payment-is-not-required.php" );
 require_once( AWPCP_DIR . "/includes/views/class-verify-credit-plan-was-set-step-decorator.php" );
 require_once( AWPCP_DIR . "/includes/views/class-verify-payment-can-be-processed-step-decorator.php" );
 require_once( AWPCP_DIR . "/includes/views/class-verify-transaction-exists-step-decorator.php" );
@@ -772,6 +774,8 @@ class AWPCP {
 	/**
 	 * Set payment status to Not Required in requiredtransactions made by
 	 * admin users.
+	 *
+	 * TODO: move this into one of the steps decorator, when steps decorators become widely used.
 	 *
 	 * @since  2.2.2
 	 */
