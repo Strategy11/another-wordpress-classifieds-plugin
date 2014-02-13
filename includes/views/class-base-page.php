@@ -5,7 +5,11 @@ require_once(AWPCP_DIR . '/includes/helpers/page.php');
 
 class AWPCP_BasePage extends AWPCP_Page {
 
+    private $request_method = null;
+    private $default_step_name = null;
+    private $current_step_name = null;
     private $do_next_step = true;
+    private $next_step = null;
 
     protected $request = null;
 
@@ -23,7 +27,9 @@ class AWPCP_BasePage extends AWPCP_Page {
     }
 
     public function dispatch() {
+        $this->request_method = $this->request->method();
         $this->do_page();
+
         return $this->output;
     }
 
@@ -52,7 +58,11 @@ class AWPCP_BasePage extends AWPCP_Page {
     }
 
     protected function get_current_step_name() {
-        return $this->request->param( 'step', $this->get_default_step_name() );
+        if ( ! isset( $this->current_step_name ) ) {
+            $this->current_step_name = $this->request->param( 'step', $this->get_default_step_name() );
+        }
+
+        return $this->current_step_name;
     }
 
     private function get_default_step_name() {
@@ -85,7 +95,7 @@ class AWPCP_BasePage extends AWPCP_Page {
     }
 
     private function do_step_method( $step ) {
-        switch ( $this->request->method() ) {
+        switch ( $this->request_method ) {
             case 'POST':
                 $step->post( $this );
                 break;
@@ -136,6 +146,7 @@ class AWPCP_BasePage extends AWPCP_Page {
         $this->set_current_step( $redirection->step_name );
 
         $this->do_page();
+    }
 
     private function handle_page_exception( $exception ) {
         $this->errors = array_merge( $this->errors, $exception->get_errors() );
@@ -147,10 +158,13 @@ class AWPCP_BasePage extends AWPCP_Page {
         $this->render( $template, array( 'errors' => $this->errors ) );
     }
 
+    public function is_current_step( $step_name ) {
+        return in_array( $this->get_current_step_name(), $step_name );
     }
 
     public function set_current_step( $step_name ) {
-        $this->step = $this->get_step_by_name( $step_name );
+        $this->current_step_name = $step_name;
+        $this->step = $this->get_step_by_name( $this->current_step_name );
     }
 
     public function set_next_step( $step_name ) {
