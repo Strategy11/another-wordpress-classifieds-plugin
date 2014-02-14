@@ -23,8 +23,16 @@ class AWPCP_Meta {
     }
 
     public function configure() {
+        $this->configure_rel_canonical();
         $this->configure_opengraph_meta_tags();
         $this->configure_title_generation();
+    }
+
+    private function configure_rel_canonical() {
+        if ( apply_filters( 'awpcp-should-generate-rel-canonical', true, $this ) ) {
+            remove_action( 'wp_head', 'rel_canonical' );
+            add_action( 'wp_head', 'awpcp_rel_canonical' );
+        }
     }
 
     private function configure_opengraph_meta_tags() {
@@ -244,7 +252,7 @@ class AWPCP_Meta {
         echo '<meta name="title" content="' . $meta_tags['http://ogp.me/ns#title'] . '"' . $CLOSE . PHP_EOL;
         echo '<meta name="description" content="' . $meta_tags['http://ogp.me/ns#description'] . '"' . $CLOSE . PHP_EOL;
 
-        echo '<meta property="og:type" content="article"' . $CLOSE . PHP_EOL;
+        echo '<meta property="og:type" content="' . $meta_tags['http://ogp.me/ns#type'] . '"' . $CLOSE . PHP_EOL;
         echo '<meta property="og:url" content="' . $meta_tags['http://ogp.me/ns#url'] . '"' . $CLOSE . PHP_EOL;
         echo '<meta property="og:title" content="' . $meta_tags['http://ogp.me/ns#title'] . '"' . $CLOSE . PHP_EOL;
         echo '<meta property="og:description" content="' . $meta_tags['http://ogp.me/ns#description'] . '"' . $CLOSE . PHP_EOL;
@@ -278,6 +286,7 @@ class AWPCP_Meta {
 
         foreach ( $this->properties['images'] as $k => $image ) {
             $meta_tags['http://ogp.me/ns#image'] = $image;
+            break;
         }
 
         if ( empty( $this->properties['images'] ) ) {

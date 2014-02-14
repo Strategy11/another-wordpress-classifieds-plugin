@@ -127,6 +127,7 @@ require_once(AWPCP_DIR . "/upload_awpcp.php");
 require_once(AWPCP_DIR . "/includes/exceptions.php");
 
 require_once(AWPCP_DIR . "/includes/compatibility/compatibility.php");
+require_once(AWPCP_DIR . "/includes/compatibility/class-all-in-one-seo-pack-plugin-integration.php");
 require_once(AWPCP_DIR . "/includes/compatibility/class-facebook-plugin-integration.php");
 
 require_once(AWPCP_DIR . "/includes/helpers/class-awpcp-request.php");
@@ -318,6 +319,12 @@ class AWPCP {
 		} else {
 			// load resources required in frontend screens only.
 			add_action( 'template_redirect', array( new AWPCP_SecureURLRedirectionHandler(), 'dispatch' ) );
+
+			add_filter( 'awpcp-should-generate-opengraph-tags', array( new AWPCP_FacebookPluginIntegration(), 'should_generate_opengraph_tags' ), 10, 2 );
+
+			$all_in_one_seo_pack_plugin_integration = new AWPCP_AllInOneSEOPackPluginIntegration();
+			add_filter( 'awpcp-should-generate-opengraph-tags', array( $all_in_one_seo_pack_plugin_integration, 'should_generate_opengraph_tags' ), 10, 2 );
+			add_filter( 'awpcp-should-generate-rel-canonical', array( $all_in_one_seo_pack_plugin_integration, 'should_generate_rel_canonical' ), 10, 1 );
 		}
 
 		// Ad metadata integration.
@@ -356,8 +363,6 @@ class AWPCP {
 
 		$this->pages = new AWPCP_Pages();
 
-		add_filter( 'awpcp-should-generate-opengraph-tags', array( new AWPCP_FacebookPluginIntegration(), 'should_generate_opengraph_tags' ), 10, 2 );
-
 		add_action('awpcp-register-payment-term-types', array($this, 'register_payment_term_types'));
 		add_action('awpcp-register-payment-methods', array($this, 'register_payment_methods'));
 
@@ -380,9 +385,6 @@ class AWPCP {
 		if (get_awpcp_option('awpcppagefilterswitch') == 1) {
 			add_filter('wp_list_pages_excludes', 'exclude_awpcp_child_pages');
 		}
-
-		remove_action('wp_head', 'rel_canonical');
-		add_action('wp_head', 'awpcp_rel_canonical');
 	}
 
 	public function init() {
@@ -1192,34 +1194,46 @@ function awpcp_query_vars($query_vars) {
 	return array_merge($query_vars, $vars);
 }
 
+/**
+ * @since next-release
+ */
+function awpcp_rel_canonical_url() {
+	global $wp_the_query;
+
+	if ( ! is_singular() )
+		return false;
+
+	if ( ! $page_id = $wp_the_query->get_queried_object_id() ) {
+		return false;
+	}
+
+	if ( $page_id != awpcp_get_page_id_by_ref( 'show-ads-page-name' ) ) {
+		return false;
+	}
+
+	$ad_id = intval( awpcp_request_param( 'id', '' ) );
+	$ad_id = empty( $ad_id ) ? intval( get_query_var( 'id' ) ) : $ad_id;
+
+	if ( empty( $ad_id ) ) {
+		$url = get_permalink( $page_id );
+	} else {
+		$url = url_showad( $ad_id );
+	}
+
+	return $url;
+}
 
 /**
- * Set canonical URL to the Ad URL when in viewing on of AWPCP Ads
+ * Set canonical URL to the Ad URL when in viewing on of AWPCP Ads.
+ *
+ * @since unknown
+ * @since next-release	logic moved to awpcp_rel_canonical_url()
  */
 function awpcp_rel_canonical() {
-	if (!is_singular())
-		return;
-
-	global $wp_the_query;
-	if (!$page = $wp_the_query->get_queried_object_id()) {
-		return;
-	}
-
-	if ($page != awpcp_get_page_id_by_ref('show-ads-page-name')) {
-		return rel_canonical();
-	}
-
-	$ad = intval(awpcp_request_param('id', ''));
-	$ad = empty($ad) ? intval(get_query_var('id')) : $ad;
-
-	if (empty($ad)) {
-		$link = get_permalink($page);
+	if ( $url = awpcp_rel_canonical_url() ) {
+		echo "<link rel='canonical' href='$url' />\n";
 	} else {
-		$link = url_showad($ad);
-	}
-
-	if ( ! empty( $link ) ) {
-		echo "<link rel='canonical' href='$link' />\n";
+		rel_canonical();
 	}
 }
 
