@@ -61,7 +61,7 @@ class AWPCP_AllInOneSEOPackPluginIntegration {
     }
 
     public function should_generate_rel_canonical( $should, $meta ) {
-        if ( class_exists( 'All_in_One_SEO_Pack_Opengraph' ) ) {
+        if ( class_exists( 'All_in_One_SEO_Pack' ) ) {
             add_filter( 'aioseop_canonical_url', array( $this, 'canonical_url' ) );
             return false;
         }
