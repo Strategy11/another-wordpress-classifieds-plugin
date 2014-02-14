@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @since 3.3
+ * @since next-release
  */
 class AWPCP_SkipPaymentStepIfPaymentIsNotRequiredStepDecorator extends AWPCP_StepDecorator {
 

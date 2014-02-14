@@ -72,8 +72,6 @@ if (!function_exists('wp_trim_words')) {
 	/**
 	 * Trims text to a certain number of words.
 	 *
-	 * @since 3.3.0
-	 *
 	 * @param string $text Text to trim.
 	 * @param int $num_words Number of words. Default 55.
 	 * @param string $more What to append if $text needs to be trimmed. Default '&hellip;'.

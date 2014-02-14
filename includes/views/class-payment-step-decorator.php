@@ -3,7 +3,7 @@
 /**
  * TODO: Use in BuyCreditsPage.
  * TODO: test.
- * @since 3.3
+ * @since next-release
  */
 class AWPCP_PaymentStepDecorator extends AWPCP_StepDecorator {
 
