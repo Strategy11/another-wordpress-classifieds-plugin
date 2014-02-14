@@ -794,19 +794,7 @@ function awpcp_do_placeholder_twitter_button($ad, $placeholder) {
 function awpcp_do_placeholder_facebook_button($ad, $placeholder) {
     $info = awpcp_get_ad_share_info($ad->ad_id);
 
-    $href = 'http://www.facebook.com/sharer.php?';
-    $href.= 's=100';
-
-    foreach ($info['images'] as $k => $image) {
-        $href.= '&p[images][' . $k . ']=' . urlencode($image);
-    }
-
-    // put them after the image URLs to avoid conflict with lightbox plugins
-    // https://github.com/drodenbaugh/awpcp/issues/310
-    // http://www.awpcp.com/forum/viewtopic.php?f=4&t=3470&p=15358#p15358
-    $href.= '&p[url]=' . urlencode($info['url']);
-    $href.= '&p[title]=' . urlencode($ad->get_title());
-    $href.= '&p[summary]=' . urlencode($info['description']);
+    $href = sprintf( 'http://www.facebook.com/sharer/sharer.php?u=%s', urlencode( $info['url'] ) );
 
     $button = '<div class="tw_button awpcp_tweet_button_div">';
     $button.= '<a href="%s" class="facebook-share-button" title="%s" target="_blank"></a>';
