@@ -811,10 +811,10 @@ class AWPCP_Settings_API {
 		if (isset($options[$setting])) {
 			$wpcom_api_key = get_option('wordpress_api_key');
 			if ($options[$setting] == 1 && !function_exists('akismet_init')) {
-				awpcp_flash(__("You cannot enable Akismet SPAM control because you do not have Akismet installed/activated","AWPCP"));
+				awpcp_flash( __( "You cannot enable Akismet SPAM control because you do not have Akismet installed/activated","AWPCP"), 'error' );
 				$options[$setting] = 0;
 			} else if ($options[$setting] == 1 && empty($wpcom_api_key)) {
-				awpcp_flash(__("You cannot enable Akismet SPAM control because you have not configured Akismet properly","AWPCP"));
+				awpcp_flash( __( "You cannot enable Akismet SPAM control because you have not configured Akismet properly", "AWPCP" ), 'error' );
 				$options[$setting] = 0;
 			}
 		}
