@@ -1,5 +1,5 @@
-<nav class="awpcp-navigation awpcp-menu-items-container clearfix">
-    <h1 class="awpcp-menu-toggle"><?php _e( 'Classifieds Menu', 'AWPCP' ); ?></h1>
+<div class="awpcp-navigation awpcp-menu-items-container clearfix">
+    <span class="awpcp-menu-toggle"><?php _e( 'Classifieds Menu', 'AWPCP' ); ?></span>
     <div class="awpcp-nav-menu">
         <ul class="awpcp-menu-items">
         <?php foreach ( $menu_items as $item => $parts ): ?>
@@ -7,4 +7,4 @@
         <?php endforeach; ?>
         </ul>
     </div>
-</nav>
+</div>
