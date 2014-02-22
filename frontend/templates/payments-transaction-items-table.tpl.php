@@ -37,7 +37,8 @@
         <?php endif; ?>
 
         <tr>
-            <td class="row-header"><?php _ex('Total Amount ($)', 'transaction items', 'AWPCP'); ?></td>
+            <?php $label = sprintf( '%s (%s)', _x( 'Total Amount', 'transaction items', 'AWPCP' ), awpcp_get_currency_symbol() ); ?>
+            <td class="row-header"><?php echo $label; ?></td>
             <td class="amount"><?php echo awpcp_format_money($totals['money']); ?></td>
         </tr>
     </tfoot>
