@@ -761,10 +761,10 @@ function awpcp_login_form($message=null, $redirect=null) {
 		}
 	}
 
-	$redirect_to = add_query_arg( 'register', true, $redirect );
+	$redirect_to = urlencode( add_query_arg( 'register', true, $redirect ) );
 	$register_url = add_query_arg( array( 'redirect_to' => $redirect_to ), $registration_url );
 
-	$redirect_to = add_query_arg( 'reset', true, $redirect );
+	$redirect_to = urlencode( add_query_arg( 'reset', true, $redirect ) );
 	$lost_password_url = add_query_arg( array( 'redirect_to' => $redirect_to ), wp_lostpassword_url() );
 
 	ob_start();
