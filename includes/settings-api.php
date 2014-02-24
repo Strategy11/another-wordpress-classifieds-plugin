@@ -202,8 +202,8 @@ class AWPCP_Settings_API {
 		$this->add_setting( $key, 'show-ad-preview-before-payment', __( 'Show Ad preview before payment.', 'AWPCP' ), 'checkbox', 0, __( 'If enabled, a preview of the Ad being posted will be shown after the images have been uploaded and before the user is asked to pay. The user is allowed to go back and edit the Ad details and uploaded images or proceed with the posting process.', 'AWPCP' ) );
 		$this->add_setting( $key, 'allowhtmlinadtext', __( 'Allow HTML in Ad text', 'AWPCP' ), 'checkbox', 0, __( 'Allow HTML in ad text (Not recommended).', 'AWPCP' ) );
 		$this->add_setting( $key, 'htmlstatustext', __( 'Display this text above ad detail text input box on ad post page', 'AWPCP' ), 'textarea', __( 'No HTML Allowed', 'AWPCP' ), '');
-		$this->add_setting( $key, 'characters-allowed-in-title', __( 'Maximun Ad title length', 'AWPCP' ), 'textfield', 100, __( 'Number of characters allowed in Ad title. Please note this is the default value and can be overwritten in Fees and Subscription Plans.', 'AWPCP' ) );
-		$this->add_setting( $key, 'maxcharactersallowed', __( 'Maximun Ad details length', 'AWPCP' ), 'textfield', 750, __( 'Number of characters allowed in Ad details. Please note this is the default value and can be overwritten in Fees and Subscription Plans.', 'AWPCP' ) );
+		$this->add_setting( $key, 'characters-allowed-in-title', __( 'Maximum Ad title length', 'AWPCP' ), 'textfield', 100, __( 'Number of characters allowed in Ad title. Please note this is the default value and can be overwritten in Fees and Subscription Plans.', 'AWPCP' ) );
+		$this->add_setting( $key, 'maxcharactersallowed', __( 'Maximum Ad details length', 'AWPCP' ), 'textfield', 750, __( 'Number of characters allowed in Ad details. Please note this is the default value and can be overwritten in Fees and Subscription Plans.', 'AWPCP' ) );
 		$this->add_setting( $key, 'words-in-listing-excerpt', __( 'Number of words in Ad excerpt', 'AWPCP' ), 'textfield', 20, __( 'Number of words shown by the Ad excerpt placeholder.', 'AWPCP' ) );
 		$this->add_setting( $key, 'hidelistingcontactname', __( 'Hide contact name to anonymous users?', 'AWPCP' ), 'checkbox', 0, __( 'Hide listing contact name to anonymous (non logged in) users.', 'AWPCP' ) );
 		$this->add_setting( $key, 'displayadlayoutcode', __( 'Ad Listings page layout', 'AWPCP' ),
@@ -382,8 +382,8 @@ class AWPCP_Settings_API {
 		$this->add_setting( $key, 'minimagesize', __( 'Minimum file size per image', 'AWPCP' ), 'textfield', '300', __( 'Minimum file size per image user can upload to system', 'AWPCP' ) );
 		$this->add_setting( $key, 'imgminwidth', __( 'Minimum image width', 'AWPCP' ), 'textfield', '640', __( 'Minimum width for images.', 'AWPCP' ) );
 		$this->add_setting( $key, 'imgminheight', __( 'Minimum image height', 'AWPCP' ), 'textfield', '480', __( 'Minimum height for images.', 'AWPCP' ) );
-		$this->add_setting( $key, 'imgmaxwidth', __( 'Maximun image width', 'AWPCP' ), 'textfield', '640', __( 'Maximun width for images. Images wider than this are automatically resized upon upload.', 'AWPCP' ) );
-		$this->add_setting( $key, 'imgmaxheight', __( 'Maximun image height', 'AWPCP' ), 'textfield', '480', __( 'Maximun height for images. Images taller than this are automatically resized upon upload.', 'AWPCP' ) );
+		$this->add_setting( $key, 'imgmaxwidth', __( 'Maximum image width', 'AWPCP' ), 'textfield', '640', __( 'Maximum width for images. Images wider than this are automatically resized upon upload.', 'AWPCP' ) );
+		$this->add_setting( $key, 'imgmaxheight', __( 'Maximum image height', 'AWPCP' ), 'textfield', '480', __( 'Maximum height for images. Images taller than this are automatically resized upon upload.', 'AWPCP' ) );
 
 		// Section: Image Settings - Primary Images
 
