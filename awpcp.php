@@ -129,6 +129,7 @@ require_once(AWPCP_DIR . "/includes/exceptions.php");
 require_once(AWPCP_DIR . "/includes/compatibility/compatibility.php");
 require_once(AWPCP_DIR . "/includes/compatibility/class-all-in-one-seo-pack-plugin-integration.php");
 require_once(AWPCP_DIR . "/includes/compatibility/class-facebook-plugin-integration.php");
+require_once( AWPCP_DIR . "/includes/compatibility/class-yoast-wordpress-seo-plugin-integration.php" );
 
 require_once(AWPCP_DIR . "/includes/helpers/class-awpcp-request.php");
 require_once(AWPCP_DIR . "/includes/helpers/class-file-cache.php");
@@ -325,6 +326,11 @@ class AWPCP {
 			$all_in_one_seo_pack_plugin_integration = new AWPCP_AllInOneSEOPackPluginIntegration();
 			add_filter( 'awpcp-should-generate-opengraph-tags', array( $all_in_one_seo_pack_plugin_integration, 'should_generate_opengraph_tags' ), 10, 2 );
 			add_filter( 'awpcp-should-generate-rel-canonical', array( $all_in_one_seo_pack_plugin_integration, 'should_generate_rel_canonical' ), 10, 1 );
+
+			$yoast_wordpress_seo_plugin_integration = new AWPCP_YoastWordPressSEOPluginIntegration();
+			add_filter( 'awpcp-should-generate-opengraph-tags', array( $yoast_wordpress_seo_plugin_integration, 'should_generate_opengraph_tags' ), 10, 2 );
+			add_filter( 'awpcp-should-generate-rel-canonical', array( $yoast_wordpress_seo_plugin_integration, 'should_generate_rel_canonical' ), 10, 1 );
+			add_filter( 'awpcp-should-generate-title', array( $yoast_wordpress_seo_plugin_integration, 'should_generate_title' ), 10, 2 );
 		}
 
 		// Ad metadata integration.

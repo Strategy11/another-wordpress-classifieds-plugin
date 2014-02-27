@@ -14,12 +14,12 @@ class AWPCP_Meta {
     private $request = null;
 
     private $doing_opengraph = false;
+    private $meta_tags;
 
     public function __construct( /*AWPCP_Request*/ $request = null ) {
         $this->request = $request;
 
         add_action( 'template_redirect', array( $this, 'configure' ) );
-        add_action('template_redirect', array($this, 'init'));
     }
 
     public function configure() {
@@ -56,18 +56,10 @@ class AWPCP_Meta {
     }
 
     private function configure_title_generation() {
-        // TODO: code me using what's already in init()
-        // TODO: move plugin integrations to their own file.
-    }
-
-    public function init() {
         $this->category_id = $this->request->get_category_id();
 
-        add_action('wp_title', array($this, 'title'), 10, 3);
-
-        // YOAST WordPress SEO Integration
-        if (defined('WPSEO_VERSION')) {
-            $this->wordpress_seo();
+        if ( apply_filters( 'awpcp-should-generate-title', true, $this ) ) {
+            add_action( 'wp_title', array( $this, 'title' ), 10, 3 );
         }
 
         // SEO Ultimate
@@ -273,9 +265,13 @@ class AWPCP_Meta {
     }
 
     public function get_meta_tags() {
+        if ( ! empty( $this->meta_tags ) ) {
+            return $this->meta_tags;
+        }
+
         $charset = get_bloginfo('charset');
 
-        $meta_tags = array(
+        $this->meta_tags = array(
             'http://ogp.me/ns#type' => 'article',
             'http://ogp.me/ns#url' => $this->properties['url'],
             'http://ogp.me/ns#title' => $this->properties['title'],
@@ -285,34 +281,15 @@ class AWPCP_Meta {
         );
 
         foreach ( $this->properties['images'] as $k => $image ) {
-            $meta_tags['http://ogp.me/ns#image'] = $image;
+            $this->meta_tags['http://ogp.me/ns#image'] = $image;
             break;
         }
 
         if ( empty( $this->properties['images'] ) ) {
-            $meta_tags['http://ogp.me/ns#image'] = AWPCP_URL . '/resources/images/adhasnoimage.gif';
+            $this->meta_tags['http://ogp.me/ns#image'] = AWPCP_URL . '/resources/images/adhasnoimage.gif';
         }
 
-        return $meta_tags;
-    }
-
-    /**
-     * Integration with YOAST WordPress SEO
-     */
-    public function wordpress_seo() {
-        // overwrite title
-        add_filter('wpseo_title', array($this, 'wordpress_seo_title'));
-        remove_filter('wp_title', array($this, 'title'), 10, 3);
-
-        // disable OpenGraph meta tags in Show Ad page
-        if ($this->doing_opengraph) {
-            $this->remove_filter( 'wpseo_head', 'WPSEO_OpenGraph' );
-        }
-    }
-
-    public function wordpress_seo_title($title) {
-        global $sep;
-        return $this->title($title, $sep, '');
+        return $this->meta_tags;
     }
 
     /**
