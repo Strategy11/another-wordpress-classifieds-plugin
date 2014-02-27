@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: AWPCP\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2014-02-19 23:01:17+00:00\n"
+"POT-Creation-Date: 2014-02-27 15:55:41+00:00\n"
 "PO-Revision-Date: 2014-01-09 15:56-0500\n"
 "Last-Translator: Daniel Pérez <dapanas@gmail.com>\n"
 "Language-Team: \n"
@@ -2730,31 +2730,31 @@ msgstr ""
 msgid "Max number used in Math CAPTCHA"
 msgstr ""
 
+msgid "Maximum Ad details length"
+msgstr ""
+
+msgid "Maximum Ad title length"
+msgstr ""
+
 msgid "Maximum file size per image"
 msgstr ""
 
 msgid "Maximum file size per image user can upload to system."
 msgstr ""
 
-msgid "Maximun Ad details length"
-msgstr ""
-
-msgid "Maximun Ad title length"
-msgstr ""
-
 msgid ""
-"Maximun height for images. Images taller than this are automatically resized "
+"Maximum height for images. Images taller than this are automatically resized "
 "upon upload."
 msgstr ""
 
-msgid "Maximun image height"
+msgid "Maximum image height"
 msgstr ""
 
-msgid "Maximun image width"
+msgid "Maximum image width"
 msgstr ""
 
 msgid ""
-"Maximun width for images. Images wider than this are automatically resized "
+"Maximum width for images. Images wider than this are automatically resized "
 "upon upload."
 msgstr ""
 
@@ -5583,7 +5583,7 @@ msgid "Top Level Category"
 msgstr ""
 
 msgctxt "transaction items"
-msgid "Total Amount ($)"
+msgid "Total Amount"
 msgstr ""
 
 msgctxt "transaction items"
