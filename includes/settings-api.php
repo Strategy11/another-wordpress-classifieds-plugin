@@ -183,7 +183,7 @@ class AWPCP_Settings_API {
 		$this->add_setting( $key, 'disablependingads', __( 'Enable paid ads that are pending payment.', 'AWPCP' ), 'checkbox', 1, __( 'Enable paid ads that are pending payment.', 'AWPCP' ) );
 		$this->add_setting( $key, 'notice_awaiting_approval_ad', __( 'Awaiting approval message', 'AWPCP' ), 'textarea', __( 'All ads must first be approved by the administrator before they are activated in the system. As soon as an admin has approved your ad it will become visible in the system. Thank you for your business.', 'AWPCP' ), __( 'Text for message to notify user that ad is awaiting approval', 'AWPCP') );
 
-		$this->add_setting( $key, 'ad-poster-email-address-whitelist', __( 'Allowed domains in Ad poster email', 'AWPCP' ), 'textarea', '', __( 'Only email addresses with a domain in the list above will be allowed. Please type a domain per line.', 'AWPCP' ) );
+		$this->add_setting( $key, 'ad-poster-email-address-whitelist', __( 'Allowed domains in Ad poster email', 'AWPCP' ), 'textarea', '', __( 'Only email addresses with a domain in the list above will be allowed. *.foo.com will match a.foo.com, b.foo.com, etc. but foo.com will match foo.com only. Please type a domain per line.', 'AWPCP' ) );
 
 		$this->add_setting( $key, 'noadsinparentcat', __( 'Prevent ads from being posted to top level categories?', 'AWPCP' ), 'checkbox', 0, '' );
 		$this->add_setting( $key, 'use-multiple-category-dropdowns', __( 'Use multiple dropdowns to choose categories', 'AWPCP' ), 'checkbox', 0, __( 'If checked, a dropdown with top level categories will be shown. When the user chooses a category, a new dropdown will apper showing the sub-categories of the selected category, if any. Useful if your website supports a high number of categories.', 'AWPCP' ) );

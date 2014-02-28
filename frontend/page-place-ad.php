@@ -861,16 +861,25 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             $errors['ad_contact_email'] = __("You did not enter your email. Your email is required.", "AWPCP");
         }
 
-        $email_address_domain_whitelist = array_filter( explode( "\n", get_awpcp_option( 'ad-poster-email-address-whitelist' ) ) );
+        $wildcard = 'BCCsyfxU6HMXyyasic6t';
+        $pattern = '[a-zA-Z0-9-]*';
+
+        $domains_whitelist = str_replace( '*', $wildcard, get_awpcp_option( 'ad-poster-email-address-whitelist' ) );
+        $domains_whitelist = preg_quote( $domains_whitelist );
+        $domains_whitelist = str_replace( $wildcard, $pattern, $domains_whitelist );
+        $domains_whitelist = str_replace( "{$pattern}\.", "(?:{$pattern}\.)?", $domains_whitelist );
+        $domains_whitelist = array_filter( explode( "\n", $domains_whitelist ) );
+        $domains_pattern = '/' . implode( '|', $domains_whitelist ) . '/';
 
         // Check if email address entered is in a valid email address format
         if (!isValidEmailAddress($data['ad_contact_email'])) {
             $errors['ad_contact_email'] = __("The email address you entered was not a valid email address. Please check for errors and try again.", "AWPCP");
-        } else if ( ! empty( $email_address_domain_whitelist ) ) {
+        } else if ( ! empty( $domains_whitelist ) ) {
             $domain = substr( $data['ad_contact_email'], strpos( $data['ad_contact_email'], '@' ) + 1 );
-            if ( ! in_array( $domain, $email_address_domain_whitelist ) ) {
+            if ( ! preg_match( $domains_pattern, 'wvega.com' ) ) {
                 $message = __( 'The email address you entered is not allowed in this website. Please use an email address from one of the following domains: %s.', 'AWPCP' );
-                $domains_list = '<strong>' . implode( '</strong>, <strong>', $email_address_domain_whitelist ) . '</strong>';
+                $domains_whitelist = explode( "\n", get_awpcp_option( 'ad-poster-email-address-whitelist' ) );
+                $domains_list = '<strong>' . implode( '</strong>, <strong>', $domains_whitelist ) . '</strong>';
                 $errors['ad_contact_email'] = sprintf( $message, $domains_list );
             }
         }
@@ -972,7 +981,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             // XXX: check why it isn't working so well
             if (awpcp_check_spam($data['ad_contact_name'], $data['websiteurl'], $data['ad_contact_email'], $data['ad_details'])) {
                 //Spam detected!
-                $errors[] = __("Your Ad was flagged as spam.  Please contact the administrator of this site.", "AWPCP");
+                $errors[] = __("Your Ad was flagged as spam. Please contact the administrator of this site.", "AWPCP");
             }
         }
 
