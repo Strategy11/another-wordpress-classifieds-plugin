@@ -393,8 +393,7 @@ class AWPCP_Settings_API {
 		$this->add_setting( $key, 'displayadthumbwidth', __( 'Thumbnail width (Ad Listings page)', 'AWPCP' ), 'textfield', '80', __( 'Width of the thumbnail for the primary image shown in Ad Listings view.', 'AWPCP' ) );
 		$this->add_setting( $key, 'primary-image-thumbnail-width', __( 'Thumbnail width (Primary Image)', 'AWPCP' ), 'textfield', '200', __( 'Width of the thumbnail for the primary image shown in Single Ad view.', 'AWPCP' ) );
 		$this->add_setting( $key, 'primary-image-thumbnail-height', __( 'Thumbnail height (Primary Image)', 'AWPCP' ), 'textfield', '200', __( 'Height of the thumbnail for the primary image shown in Single Ad view.', 'AWPCP' ) );
-		$this->add_setting( $key, 'crop-primary-image-thumbnails', __( 'Crop primary image thumbnails?', 'AWPCP' ), 'checkbox', 1, _x('If you decide to crop thumbnails, images will match exactly the dimensions in the settings above but part of the image may be cropped out. If you decide to resize, image thumbnails will be resized to match the specified width and their height will be adjusted proportionally; depending on the uploaded images, thumbnails may have differnt heights.', 'settings', 'AWPCP'));
-
+		$this->add_setting( $key, 'crop-primary-image-thumbnails', __( 'Crop primary image thumbnails?', 'AWPCP' ), 'checkbox', 1, _x('If you decide to crop thumbnails, images will match exactly the dimensions in the settings above but part of the image may be cropped out. If you decide to resize, image thumbnails will be resized to match the specified width and their height will be adjusted proportionally; depending on the uploaded images, thumbnails may have different heights.', 'settings', 'AWPCP' ) );
 		// Section: Image Settings - Thumbnails
 
 		$key = $this->add_section($group, __('Thumbnails Settings', 'AWPCP'), 'thumbnails', 10, array($this, 'section'));
@@ -403,7 +402,7 @@ class AWPCP_Settings_API {
 		$this->add_setting( $key, 'display-thumbnails-in-columns', __( 'Number of columns of thumbnails to show in Show Ad page.', 'AWPCP' ), 'select', 0, __( 'Zero means there will be as many thumbnails as possible per row.', 'AWPCP' ), array( 'options' => $options ) );
 		$this->add_setting( $key, 'imgthumbwidth', __( 'Thumbnail width', 'AWPCP' ), 'textfield', '125', __( 'Width of the thumbnail images.', 'AWPCP' ) );
 		$this->add_setting( $key, 'imgthumbheight', __( 'Thumbnail height', 'AWPCP' ), 'textfield', '125', __( 'Height of the thumbnail images.', 'AWPCP' ) );
-		$this->add_setting( $key, 'crop-thumbnails', __( 'Crop thumbnails images?', 'AWPCP' ), 'checkbox', 1, _x( 'If you decide to crop thumbnails, images will match exactly the dimensions in the settings above but part of the image may be cropped out. If you decide to resize, image thumbnails will be resized to match the specified width and their height will be adjusted proportionally; depending on the uploaded images, thumbnails may have differnt heights.', 'settings', 'AWPCP' ) );
+		$this->add_setting( $key, 'crop-thumbnails', __( 'Crop thumbnails images?', 'AWPCP' ), 'checkbox', 1, _x( 'If you decide to crop thumbnails, images will match exactly the dimensions in the settings above but part of the image may be cropped out. If you decide to resize, image thumbnails will be resized to match the specified width and their height will be adjusted proportionally; depending on the uploaded images, thumbnails may have different heights.', 'settings', 'AWPCP' ) );
 
 
 		// Group: AdSense
@@ -492,7 +491,7 @@ class AWPCP_Settings_API {
 		$this->add_setting( $key, 'requireuserregistration', __( 'Require user registration', 'AWPCP' ), 'checkbox', 0, __( 'Require user registration?', 'AWPCP' ) );
 		$this->add_setting( $key, 'reply-to-ad-requires-registration', __( 'Reply to Ad requires user registration', 'AWPCP' ), 'checkbox', 0, __( 'Require user registration for replying to an Ad?', 'AWPCP' ) );
 		// $this->add_setting( $key, 'postloginformto', __( 'Post login form to', 'AWPCP' ), 'textfield', '', __( 'Post login form to this URL. Value should be the full URL to the wordpress login script (e.g. http://www.awpcp.com/wp-login.php).', 'AWPCP' ) . '<br/>' . __( '**Only needed if registration is required and your login url is mod-rewritten.', 'AWPCP' ) );
-		$this->add_setting( $key, 'registrationurl', __( 'Location of registration page', 'AWPCP' ), 'textfield', '', __( 'Location of registraiton page. Value should be the full URL to the wordpress registration page (e.g. http://www.awpcp.com/wp-login.php?action=register).', 'AWPCP' ) . '<br/>' . __( '**Only needed if registration is required and your login url is mod-rewritten.', 'AWPCP' ) );
+		$this->add_setting( $key, 'registrationurl', __( 'Location of registration page', 'AWPCP' ), 'textfield', '', __( 'Location of registration page. Value should be the full URL to the wordpress registration page (e.g. http://www.awpcp.com/wp-login.php?action=register).', 'AWPCP' ) . '<br/>' . __( '**Only needed if registration is required and your login url is mod-rewritten.', 'AWPCP' ) );
 
 
 		// Group: Email
