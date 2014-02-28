@@ -379,8 +379,8 @@ class AWPCP_Settings_API {
 		$options = array( '0755' => '0755', '0777' => '0777' );
 		$this->add_setting( $key, 'upload-directory-permissions', __( 'File permissions for uploads directory', 'AWPCP' ), 'select', '0755', __( 'File permissions applied to the uploads directory and sub-directories so that the plugin is allowed to write to those directories.', 'AWPCP' ), array( 'options' => $options ) );
 
-		$this->add_setting( $key, 'maximagesize', __( 'Maximum file size per image', 'AWPCP' ), 'textfield', '1048576', __( 'Maximum file size per image user can upload to system.', 'AWPCP' ) );
-		$this->add_setting( $key, 'minimagesize', __( 'Minimum file size per image', 'AWPCP' ), 'textfield', '300', __( 'Minimum file size per image user can upload to system', 'AWPCP' ) );
+		$this->add_setting( $key, 'maximagesize', __( 'Maximum file size per image', 'AWPCP' ), 'textfield', '1048576', __( 'Maximum file size, in bytes, for files user can upload to system. 1 MB = 1048576 bytes. You can google "x MB to bytes" to get an accurate convertion.', 'AWPCP' ) );
+		$this->add_setting( $key, 'minimagesize', __( 'Minimum file size per image', 'AWPCP' ), 'textfield', '300', __( 'Minimum file size, in bytes, for files user can upload to system. 1 MB = 1048576 bytes. You can google "x MB to bytes" to get an accurate convertion.', 'AWPCP' ) );
 		$this->add_setting( $key, 'imgminwidth', __( 'Minimum image width', 'AWPCP' ), 'textfield', '640', __( 'Minimum width for images.', 'AWPCP' ) );
 		$this->add_setting( $key, 'imgminheight', __( 'Minimum image height', 'AWPCP' ), 'textfield', '480', __( 'Minimum height for images.', 'AWPCP' ) );
 		$this->add_setting( $key, 'imgmaxwidth', __( 'Maximum image width', 'AWPCP' ), 'textfield', '640', __( 'Maximum width for images. Images wider than this are automatically resized upon upload.', 'AWPCP' ) );
