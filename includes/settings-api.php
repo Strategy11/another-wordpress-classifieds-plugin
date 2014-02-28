@@ -191,8 +191,9 @@ class AWPCP_Settings_API {
 		$this->add_setting( $key, 'addurationfreemode', __( 'Free Ads expiration threshold', 'AWPCP' ), 'textfield', 0, __( 'Expire free ads after how many days? (0 for no expiration).', 'AWPCP' ) );
 		$this->add_setting( $key, 'autoexpiredisabledelete', __( 'Disable expired ads instead of deleting them?', 'AWPCP' ), 'checkbox', 0, __( 'Check to disable.', 'AWPCP' ) );
 
-		$this->add_setting( $key, 'allow-regions-modification', __( 'Allow Regions modification', 'AWPCP' ), 'checkbox', 1, __( 'If enabled, users will be allowed to change the region information associated with their Ads.', 'AWPCP' ) );
+		$key = $this->add_section( $group, __( 'Regions Settings', 'AWPCP' ), 'regions-settings', 10, array( $this, 'section' ) );
 
+		$this->add_setting( $key, 'allow-regions-modification', __( 'Allow Regions modification', 'AWPCP' ), 'checkbox', 1, __( 'If enabled, users will be allowed to change the region information associated with their Ads.', 'AWPCP' ) );
 		$this->add_setting( $key, 'allow-user-to-search-in-multiple-regions', __( 'Allow users to search Ads in multiple regions', 'AWPCP' ), 'checkbox', 0, __( 'If enabled, users will be allowed to search Ads in multiple regions.', 'AWPCP' ) );
 
 		// Section: Ad/Listings - Layout and Presentation
