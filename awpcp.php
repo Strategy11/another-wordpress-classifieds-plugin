@@ -169,6 +169,8 @@ require_once( AWPCP_DIR . "/includes/views/frontend/buy-credits/class-buy-credit
 require_once( AWPCP_DIR . "/includes/views/frontend/buy-credits/class-buy-credits-page-checkout-step.php" );
 require_once( AWPCP_DIR . "/includes/views/frontend/buy-credits/class-buy-credits-page-payment-completed-step.php" );
 require_once( AWPCP_DIR . "/includes/views/frontend/buy-credits/class-buy-credits-page-final-step.php" );
+require_once( AWPCP_DIR . "/includes/views/admin/class-fee-payment-terms-notices.php" );
+require_once( AWPCP_DIR . "/includes/views/admin/class-credit-plans-notices.php" );
 require_once( AWPCP_DIR . "/includes/views/admin/listings/class-listings-table-search-by-id-condition.php" );
 require_once( AWPCP_DIR . "/includes/views/admin/listings/class-listings-table-search-by-keyword-condition.php" );
 require_once( AWPCP_DIR . "/includes/views/admin/listings/class-listings-table-search-by-location-condition.php" );
@@ -178,6 +180,8 @@ require_once( AWPCP_DIR . "/includes/views/admin/listings/class-listings-table-s
 require_once( AWPCP_DIR . "/includes/views/admin/listings/class-listings-table-search-conditions-parser.php" );
 require_once( AWPCP_DIR . "/includes/views/admin/account-balance/class-account-balance-page.php" );
 require_once( AWPCP_DIR . "/includes/views/admin/account-balance/class-account-balance-page-summary-step.php" );
+
+require_once( AWPCP_DIR . "/includes/settings/class-credit-plans-settings.php" );
 
 require_once( AWPCP_DIR . "/includes/class-awpcp-listings-api.php" );
 require_once( AWPCP_DIR . "/includes/class-media-api.php" );
@@ -313,10 +317,14 @@ class AWPCP {
 			return;
 		}
 
+		add_action( 'awpcp_register_settings', array( new AWPCP_CreditPlansSettings, 'register_settings' ) );
+
 		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 			// load resources required to handle Ajax requests only.
 		} if ( is_admin() ) {
 			// load resources required in admin screens only.
+			add_action( 'admin_notices', array( awpcp_fee_payment_terms_notices(), 'dispatch' ) );
+			add_action( 'admin_notices', array( awpcp_credit_plans_notices(), 'dispatch' ) );
 		} else {
 			// load resources required in frontend screens only.
 			add_action( 'template_redirect', array( new AWPCP_SecureURLRedirectionHandler(), 'dispatch' ) );

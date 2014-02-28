@@ -31,7 +31,7 @@ class AWPCP_Settings_API {
 
 		// Group: Private
 
-		$group = $this->add_group(__('Private Settings', 'AWPCP'), 'private-settings', 10);
+		$group = $this->add_group( __( 'Private Settings', 'AWPCP' ), 'private-settings', 0 );
 
 
 		// Group: General
@@ -299,22 +299,6 @@ class AWPCP_Settings_API {
 		// Group: Payment Settings
 
 		$group = $this->add_group( __( 'Payment', 'AWPCP') , 'payment-settings', 40 );
-
-		// Section: Payment Settings - Credit System
-
-		$key = $this->add_section($group, __('Credit System', 'AWPCP'), 'credit-system', 10, array($this, 'section'));
-
-		$help = __('The Credit System allow users to purchase credit that can later be used to pay for placing Ads.', 'AWPCP');
-		$this->add_setting($key, 'enable-credit-system', __('Enable Credit System', 'AWPCP'), 'checkbox', 0, $help);
-
-		$help = __( 'Select the type of payment that can be used to purchase Ads.', 'AWPCP' );
-		$options = array(
-			AWPCP_Payment_Transaction::PAYMENT_TYPE_MONEY => __( 'Currency', 'AWPCP' ),
-			AWPCP_Payment_Transaction::PAYMENT_TYPE_CREDITS => __( 'Credits', 'AWPCP' ),
-			'both' => __( 'Currency & Credits', 'AWPCP' ),
-		);
-
-		$this->add_setting( $key, 'accepted-payment-type', __( 'Accepted payment type', 'AWPCP' ), 'select', 'both', $help, array( 'options' => $options ) );
 
 		// Section: Payment Settings - Default
 
@@ -635,7 +619,9 @@ class AWPCP_Settings_API {
 	}
 
 	public function register() {
+		uasort( $this->groups, create_function( '$a, $b', 'return $a->priority - $b->priority;') );
 		foreach ($this->groups as $group) {
+			uasort( $group->sections, create_function( '$a, $b', 'return $a->priority - $b->priority;') );
 			foreach ($group->sections as $section) {
 				add_settings_section($section->slug, $section->name, $section->callback, $group->slug);
 				foreach ($section->settings as $setting) {
@@ -643,8 +629,7 @@ class AWPCP_Settings_API {
 					$args = array('label_for' => $setting->name, 'setting' => $setting);
 					$args = array_merge($args, $setting->args);
 
-					add_settings_field($setting->name, $setting->label, $callback,
-									   $group->slug, $section->slug, $args);
+					add_settings_field( $setting->name, $setting->label, $callback, $group->slug, $section->slug, $args );
 				}
 			}
 		}

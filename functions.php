@@ -1575,6 +1575,20 @@ function awpcp_get_admin_settings_url( $section = false ) {
 }
 
 /**
+ * @since 3.2.1
+ */
+function awpcp_get_admin_credit_plans_url() {
+	return add_query_arg( 'page', 'awpcp-admin-credit-plans', admin_url( 'admin.php' ) );
+}
+
+/**
+ * @since 3.2.1
+ */
+function awpcp_get_admin_fees_url() {
+	return add_query_arg( 'page', 'awpcp-admin-fees', admin_url( 'admin.php' ) );
+}
+
+/**
  * @since 3.0.2
  */
 function awpcp_get_admin_categories_url() {
