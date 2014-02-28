@@ -695,7 +695,7 @@ function awpcp_opsconfig_categories() {
 				$aeaction="newcategory";
 			}
 
-			$aeword1=__("Enter the category name","AWPCP");
+			$aeword1 = __( 'Add a New Category', 'AWPCP' );
 			$aeword2=__("Add New Category","AWPCP");
 			$aeword3=__("List Category Under","AWPCP");
 			$aeword4=__("Category List Order","AWPCP");
@@ -720,7 +720,9 @@ function awpcp_opsconfig_categories() {
 		}
 		elseif ($aeaction == 'edit')
 		{
-			$categorynameinput="<p style=\"background:transparent url($awpcp_imagesurl/edit_ico.png) left center no-repeat;padding-left:20px;\">";
+			$section_icon_style = "background:transparent url($awpcp_imagesurl/edit_ico.png) left center no-repeat;padding-left:20px;";
+
+			$categorynameinput = "<p>";
 			$categorynameinput.=__("Category to Edit","AWPCP");
 			$categorynameinput.=": $category_name ";
 			$categorynamefield = "<input name=\"category_name\" id=\"cat_name\" type=\"text\" class=\"inputbox\" value=\"$category_name\" size=\"40\" style=\"width: 220px\"/>";
@@ -734,8 +736,10 @@ function awpcp_opsconfig_categories() {
 			$submitbuttoncode="<input type=\"submit\" class=\"button-primary button\" name=\"createeditadcategory\" value=\"$aeword2\" />";
 		}
 		else {
-			$categorynameinput="<p style=\"background:transparent url($awpcp_imagesurl/post_ico.png) left center no-repeat;padding-left:20px;\">";
-			$categorynameinput.=__("Add a New Category","AWPCP");
+			$section_icon_style = "background:transparent url($awpcp_imagesurl/post_ico.png) left center no-repeat;padding-left:20px;";
+
+			$categorynameinput="<p>";
+			$categorynameinput .= __( 'Enter the category name', 'AWPCP' );
 			$categorynamefield ="<input name=\"category_name\" id=\"cat_name\" type=\"text\" class=\"inputbox\" value=\"$category_name\" size=\"40\" style=\"width: 220px\"/>";
 			$selectinput="<select name=\"category_parent_id\"><option value=\"0\">";
 			$selectinput.=__("Make This a Top Level Category","AWPCP");
@@ -765,10 +769,7 @@ function awpcp_opsconfig_categories() {
 			$output .= "<div style=\"padding:10px; width: 75%\"><p>";
 		}
 
-		$output .= __("Below you can add and edit your categories. For more information about managing your categories visit the link below.","AWPCP");
-		$output .= "</p><p><a href=\"http://www.awpcp.com/about/categories/\">";
-		$output .= __("Useful Information for Classifieds Categories Management","AWPCP");
-		$output .= "</a></p><b>";
+		$output .= "<b>";
 		$output .= __("Icon Meanings","AWPCP");
 		$output .= ":</b> &nbsp;&nbsp;&nbsp;<img src=\"$awpcp_imagesurl/edit_ico.png\" alt=\"";
 		$output .= __("Edit Category","AWPCP");
@@ -786,12 +787,6 @@ function awpcp_opsconfig_categories() {
 			$output .= $label;
 			$output .= "\" border=\"0\"/>";
 			$output .= $label;
-		} else {
-			$output .= "<div><p style=\"padding-top:25px;\">";
-			$output .= __("There is a premium module available that allows you to add icons to your categories. If you are interested in adding icons to your categories ","AWPCP");
-			$output .= "<a href=\"http://www.awpcp.com/premium-modules/\">";
-			$output .= __("Click here to find out about purchasing the Category Icons Module","AWPCP");
-			$output .= "</a></p></div>";
 		}
 
 		$output .= "
@@ -809,7 +804,7 @@ function awpcp_opsconfig_categories() {
 			  <input type=\"hidden\" name=\"offset\" value=\"$offset\" />
 			  <input type=\"hidden\" name=\"results\" value=\"$results\" />
 
-			<p style=\"line-height: 1em\">$aeword1</p>
+			<p style=\"line-height: 1.3em; $section_icon_style\"> $aeword1</p>
 			<table width=\"75%\" cellpadding=\"5\"><tr>
 			<td>$categorynameinput</td>
 			<td>$aeword3</td>

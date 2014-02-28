@@ -129,7 +129,6 @@ class AWPCP_Meta {
         }
     }
 
-
     public function title($title, $separator='-', $seplocation='left') {
         // we want't to use the original query but calling wp_reset_query
         // breaks things for Events Manager and maybe other plugins
