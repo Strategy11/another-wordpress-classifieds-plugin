@@ -52,6 +52,7 @@ class AWPCP_Listings_Table extends WP_List_Table {
             case 'unpaid':
                 $conditions[] = "payment_status = 'Unpaid'";
                 $show_unpaid = true;
+                $show_non_verified = true;
                 break;
 
             case 'non-verified':
@@ -70,7 +71,7 @@ class AWPCP_Listings_Table extends WP_List_Table {
                 $conditions[] = sprintf($sql, $category->id);
                 break;
 
-            case 'all':
+            case 'completed':
             default:
                 break;
         }
@@ -135,6 +136,7 @@ class AWPCP_Listings_Table extends WP_List_Table {
 
     public function prepare_items() {
         $query = $this->parse_query();
+
         $this->total_items = AWPCP_Ad::query(array_merge(array('fields' => 'count'), $query));
         $this->items = AWPCP_Ad::query(array_merge(array('fields' => '*'), $query));
 
@@ -224,10 +226,10 @@ class AWPCP_Listings_Table extends WP_List_Table {
             'unpaid' => 'unpaid-ads',
             'non-verified' => 'non-verified-ads',
             'awaiting-approval' => 'awaiting-approval',
-            'all' => 'all',
+            'completed' => 'completed',
         );
 
-        $selected = awpcp_array_data($this->params['filterby'], 'all', $filters);
+        $selected = awpcp_array_data($this->params['filterby'], 'completed', $filters);
 
         $views = array(
             'featured-ads' => array(__('Featured', 'AWPCP'), $this->page->url(array('filterby' => 'is-featured', 'filter' => true))),
@@ -235,7 +237,7 @@ class AWPCP_Listings_Table extends WP_List_Table {
             'unpaid-ads' => array(__('Unpaid', 'AWPCP'), $this->page->url(array('filterby' => 'unpaid', 'filter' => true))),
             'non-verified-ads' => array( __( 'Non Verified', 'AWPCP' ), $this->page->url( array( 'filterby' => 'non-verified', 'filter' => true ) ) ),
             'awaiting-approval' => array( __( 'Awaiting Approval', 'AWPCP' ), $this->page->url( array( 'filterby' => 'awaiting-approval', 'filter' => true ) ) ),
-            'all' => array( __( 'All', 'AWPCP' ), $this->page->url( array( 'filterby' => 'all', 'filter' => false ) ) ),
+            'completed' => array( __( 'Completed', 'AWPCP' ), $this->page->url( array( 'filterby' => 'completed', 'filter' => false ) ) ),
         );
 
         return $this->page->links($views, $selected);
