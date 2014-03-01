@@ -430,7 +430,7 @@ function awpcp_admin_categories_render_category_item($category, $level, $start, 
 		$thecategoryicon = '';
 	}
 
-	$params = array('page' => 'awpcp-listings', 'filterby' => 'category', 'category' => $category->id);
+	$params = array( 'page' => 'awpcp-admin-categories', 'cat_ID' => $category->id );
 	$admin_listings_url = add_query_arg( $params, admin_url( 'admin.php' ) );
 
 	$thecategory_parent_id = $category->parent;
@@ -851,9 +851,9 @@ function awpcp_opsconfig_categories() {
 		$movetocategories=  get_categorynameid($cat_id = 0,$cat_parent_id= 0,$exclude);
 		$output .= "$movetocategories</select></p>
 		<p>";
-		$output .= __("If deleting categories","AWPCP");
-		$output .= ": <label><input type=\"radio\" name=\"movedeleteads\" value=\"1\" checked='checked' > " . __("Move Ads if any","AWPCP") . "</label>";
-		$output .= " <label><input type=\"radio\" name=\"movedeleteads\" value=\"2\" > " . __("Delete Ads if any","AWPCP") . "</label></p>";
+		$output .= __( 'Delete categories should do this with existing Ads', 'AWPCP' );
+		$output .= ": <label><input type=\"radio\" name=\"movedeleteads\" value=\"1\" checked='checked' > " . __( 'Move Ads to new category', 'AWPCP' ) . "</label>";
+		$output .= " <label><input type=\"radio\" name=\"movedeleteads\" value=\"2\" > " . __( 'Delete Ads too', 'AWPCP' ) . "</label></p>";
 
 		$children = awpcp_get_categories_hierarchy();
 		$categories = AWPCP_Category::query( array(
