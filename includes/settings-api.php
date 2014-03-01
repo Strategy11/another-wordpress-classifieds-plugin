@@ -36,17 +36,25 @@ class AWPCP_Settings_API {
 
 		// Group: General
 
-		$group = $this->add_group( __( 'General', 'AWPCP' ), 'general-settings', 10);
+		$group = $this->add_group( __( 'General', 'AWPCP' ), 'general-settings', 5 );
+
+		// Section: General - Ad Management Panel
+
+		$key = $this->add_section( $group, __( 'User Ad Management Panel', 'AWPCP' ), 'user-panel', 5, array( $this, 'section' ) );
+
+		$help_text = __( 'You must have registered users to use this setting. Turning it on will automatically enable "Require Registration" for AWPCP. Make sure you site allows users to register under <wp-settings-link>Settings->General</a>.' );
+		$help_text = str_replace( '<wp-settings-link>', sprintf( '<a href="%s">', admin_url( 'options-general.php' ) ), $help_text );
+		$this->add_setting( $key, 'enable-user-panel', __( 'Enable User Ad Management Panel', 'AWPCP' ), 'checkbox', 0, $help_text );
 
 		// Section: General - Default
 
-		$key = $this->add_section( $group, __( 'General Settings', 'AWPCP' ), 'default', 10, array( $this, 'section' ) );
+		$key = $this->add_section( $group, __( 'General Settings', 'AWPCP' ), 'default', 9, array( $this, 'section' ) );
 
 		$this->add_setting( $key, 'activatelanguages', __( 'Turn on transalation file (POT)', 'AWPCP' ), 'checkbox', 0, __( "Enable translations. WordPress will look for an AWPCP-&lt;language&gt;.mo file in AWPCP's languages/ directory. Example filenames are: AWPCP-en_EN.mo, AWPCP-es_ES.mo. You can generate .mo files using POEdit and the AWPCP.pot or AWPCP-en_EN.po files included with the plugin.", 'AWPCP' ) );
 		$this->add_setting( $key, 'main_page_display', __( 'Show Ad listings on main page', 'AWPCP' ), 'checkbox', 0, __( 'If unchecked only categories will be displayed', 'AWPCP' ) );
 		$this->add_setting( $key, 'view-categories-columns', __( 'Category columns in View Categories page', 'AWPCP' ), 'select', 2, '', array('options' => array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5)));
 		$this->add_setting( $key, 'collapse-categories-columns', __( 'Collapse Categories', 'AWPCP' ), 'checkbox', 0, __( 'If checked the list of sub-categories will be collapsed by default. Users would have to click the down arrow icon to expand the list and see the sub-categories.', 'AWPCP' ) );
-		$this->add_setting( $key, 'uiwelcome', __( 'Welcome message in Classified page', 'AWPCP' ), 'textarea', __( 'Looking for a job? Trying to find a date? Looking for an apartment? Browse our classifieds. Have a job to advertise? An apartment to rent? Post a classified ad.', 'AWPCP' ), __( 'The welcome text for your classified page on the user side', 'AWPCP' ) );
+		$this->add_setting( $key, 'uiwelcome', __( 'Welcome message in Classified page', 'AWPCP' ), 'textarea', __( 'Looking for a job? Trying to find a date? Looking for an apartment? Browse our classifieds. Have a job to advertise? An apartment to rent? Post a Classified Ad.', 'AWPCP' ), __( 'The welcome text for your classified page on the user side', 'AWPCP' ) );
 
         $options = array('admin' => __( 'Administrator', 'AWPCP' ), 'admin,editor' => __( 'Administrator & Editor', 'AWPCP' ) );
         $this->add_setting( $key, 'awpcpadminaccesslevel', __( 'Who can access AWPCP Admin Dashboard', 'AWPCP' ), 'radio', 'admin', __( 'Role of WordPress users who can have admin access to Classifieds.', 'AWPCP' ), array( 'options' => $options ) );
@@ -83,7 +91,7 @@ class AWPCP_Settings_API {
 
 		// Section: General - Terms of Service
 
-		$key = $this->add_section($group, __( 'Terms of Service', 'AWPCP' ), 'terms-of-service', 10, array($this, 'section'));
+		$key = $this->add_section( $group, __( 'Terms of Service', 'AWPCP' ), 'terms-of-service', 11, array( $this, 'section' ) );
 
 		$this->add_setting( $key, 'requiredtos', __( 'Display and require Terms of Service', 'AWPCP' ), 'checkbox', 1, __( 'Display and require Terms of Service', 'AWPCP' ) );
 		$this->add_setting( $key, 'tos', __( 'Terms of Service', 'AWPCP' ), 'textarea', __( 'Terms of service go here...', 'AWPCP' ), __( 'Terms of Service for posting Ads. Put in text or an URL starting with http. If you use an URL, the text box will be replaced by a link to the appropriate Terms of Service page', 'AWPCP' ) );
@@ -125,11 +133,6 @@ class AWPCP_Settings_API {
 
 		$this->add_setting( $key, 'seofriendlyurls', __( 'Turn on Search Engine Friendly URLs', 'AWPCP' ), 'checkbox', 0, __( 'Turn on Search Engine Friendly URLs? (SEO Mode)', 'AWPCP' ) );
 
-		// Section: General - Terms of Service
-
-		$key = $this->add_section( $group, __( 'User Ad Management Panel', 'AWPCP' ), 'user-panel', 10, array( $this, 'section' ) );
-
-		$this->add_setting( $key, 'enable-user-panel', __( 'Enable User Ad Management Panel', 'AWPCP' ), 'checkbox', 0, '');
 
 		// Group: Classified Pages
 
@@ -317,8 +320,8 @@ class AWPCP_Settings_API {
 		);
 
 		$this->add_setting( $key, 'freepay', __( 'Charge Listing Fee?', 'AWPCP' ), 'checkbox', 0, __( 'Charge Listing Fee? (Pay Mode)', 'AWPCP' ) );
-		$this->add_setting( $key, 'fee-order', __( 'Fee order', 'AWPCP' ), 'select', 1, __( 'The order used to sort Fees in the payment screens.', 'AWPCP' ), array( 'options' => $order_options ) );
-		$this->add_setting( $key, 'fee-order-direction', __( 'Fee order direction', 'AWPCP' ), 'select', 'ASC', __( 'The direction used to sort Fees in the payment screens.', 'AWPCP' ), array( 'options' => $direction_options ) );
+		$this->add_setting( $key, 'fee-order', __( 'Fee Plan sort order', 'AWPCP' ), 'select', 1, __( 'The order used to sort Fees in the payment screens.', 'AWPCP' ), array( 'options' => $order_options ) );
+		$this->add_setting( $key, 'fee-order-direction', __( 'Fee Plan sort direction', 'AWPCP' ), 'select', 'ASC', __( 'The direction used to sort Fees in the payment screens.', 'AWPCP' ), array( 'options' => $direction_options ) );
 		$this->add_setting($key, 'pay-before-place-ad', _x('Pay before entering Ad details', 'settings', 'AWPCP'), 'checkbox', 1, _x('Check to ask for payment before entering Ad details. Uncheck if you want users to pay for Ads at the end of the process, after images have been uploaded.', 'settings', 'AWPCP'));
 		$this->add_setting( $key, 'displaycurrencycode', __( 'Currency used in payment pages', 'AWPCP' ), 'textfield', 'USD', __( 'The display currency for your payment pages', 'AWPCP' ) );
 		$this->add_setting( $key, 'paylivetestmode', __( 'Put payment gateways in test mode?', 'AWPCP' ), 'checkbox', 0, '');
@@ -350,7 +353,7 @@ class AWPCP_Settings_API {
 
 		$this->add_setting( $key, 'imagesallowdisallow', __( 'Allow images in Ads?', 'AWPCP' ), 'checkbox', 1, __( 'Allow images in ads? (affects both free and pay mode)', 'AWPCP' ) );
 		$this->add_setting( $key, 'imagesapprove', __( 'Hide images until admin approves them', 'AWPCP' ), 'checkbox', 0, '');
-		$this->add_setting( $key, 'awpcp_thickbox_disabled', __( 'Turn off thickbox/lightbox?', 'AWPCP' ), 'checkbox', 0, __( 'Turn off the thickbox/lightbox if it conflicts with other elements of your site', 'AWPCP' ) );
+		$this->add_setting( $key, 'awpcp_thickbox_disabled', __( 'Disable AWPCP Lightbox feature', 'AWPCP' ), 'checkbox', 0, __( 'Turn off the lightbox/thickbox element used by AWPCP. Some themes cannot handle it and a conflict results.', 'AWPCP' ) );
 		$this->add_setting( $key, 'show-click-to-enlarge-link', __( 'Show click to enlarge link?', 'AWPCP' ), 'checkbox', 1, '' );
 		$this->add_setting( $key, 'imagesallowedfree', __( 'Number of images allowed in Free mode', 'AWPCP' ), 'textfield', 4, __( 'Number of Image Uploads Allowed (Free Mode)', 'AWPCP' ) );
 
@@ -380,13 +383,13 @@ class AWPCP_Settings_API {
 		$this->add_setting( $key, 'crop-primary-image-thumbnails', __( 'Crop primary image thumbnails?', 'AWPCP' ), 'checkbox', 1, _x('If you decide to crop thumbnails, images will match exactly the dimensions in the settings above but part of the image may be cropped out. If you decide to resize, image thumbnails will be resized to match the specified width and their height will be adjusted proportionally; depending on the uploaded images, thumbnails may have different heights.', 'settings', 'AWPCP' ) );
 		// Section: Image Settings - Thumbnails
 
-		$key = $this->add_section($group, __('Thumbnails Settings', 'AWPCP'), 'thumbnails', 10, array($this, 'section'));
+		$key = $this->add_section( $group, __( 'Thumbnail Settings', 'AWPCP' ), 'thumbnails', 10, array( $this, 'section' ) );
 
 		$options = array(0 => 0, 1 => 1, 2 => 2, 3 => 3, 4 => 4);
 		$this->add_setting( $key, 'display-thumbnails-in-columns', __( 'Number of columns of thumbnails to show in Show Ad page.', 'AWPCP' ), 'select', 0, __( 'Zero means there will be as many thumbnails as possible per row.', 'AWPCP' ), array( 'options' => $options ) );
 		$this->add_setting( $key, 'imgthumbwidth', __( 'Thumbnail width', 'AWPCP' ), 'textfield', '125', __( 'Width of the thumbnail images.', 'AWPCP' ) );
 		$this->add_setting( $key, 'imgthumbheight', __( 'Thumbnail height', 'AWPCP' ), 'textfield', '125', __( 'Height of the thumbnail images.', 'AWPCP' ) );
-		$this->add_setting( $key, 'crop-thumbnails', __( 'Crop thumbnails images?', 'AWPCP' ), 'checkbox', 1, _x( 'If you decide to crop thumbnails, images will match exactly the dimensions in the settings above but part of the image may be cropped out. If you decide to resize, image thumbnails will be resized to match the specified width and their height will be adjusted proportionally; depending on the uploaded images, thumbnails may have different heights.', 'settings', 'AWPCP' ) );
+		$this->add_setting( $key, 'crop-thumbnails', __( 'Crop thumbnail images?', 'AWPCP' ), 'checkbox', 1, _x( 'If you decide to crop thumbnails, images will match exactly the dimensions in the settings above but part of the image may be cropped out. If you decide to resize, image thumbnails will be resized to match the specified width and their height will be adjusted proportionally; depending on the uploaded images, thumbnails may have different heights.', 'settings', 'AWPCP' ) );
 
 
 		// Group: AdSense
@@ -475,7 +478,7 @@ class AWPCP_Settings_API {
 		$this->add_setting( $key, 'requireuserregistration', __( 'Require user registration', 'AWPCP' ), 'checkbox', 0, __( 'Require user registration?', 'AWPCP' ) );
 		$this->add_setting( $key, 'reply-to-ad-requires-registration', __( 'Reply to Ad requires user registration', 'AWPCP' ), 'checkbox', 0, __( 'Require user registration for replying to an Ad?', 'AWPCP' ) );
 		// $this->add_setting( $key, 'postloginformto', __( 'Post login form to', 'AWPCP' ), 'textfield', '', __( 'Post login form to this URL. Value should be the full URL to the wordpress login script (e.g. http://www.awpcp.com/wp-login.php).', 'AWPCP' ) . '<br/>' . __( '**Only needed if registration is required and your login url is mod-rewritten.', 'AWPCP' ) );
-		$this->add_setting( $key, 'registrationurl', __( 'Location of registration page', 'AWPCP' ), 'textfield', '', __( 'Location of registration page. Value should be the full URL to the wordpress registration page (e.g. http://www.awpcp.com/wp-login.php?action=register).', 'AWPCP' ) . '<br/>' . __( '**Only needed if registration is required and your login url is mod-rewritten.', 'AWPCP' ) );
+		$this->add_setting( $key, 'registrationurl', __( 'Custom Registration Page URL', 'AWPCP' ), 'textfield', '', __( 'Location of registration page. Value should be the full URL to the wordpress registration page (e.g. http://www.awpcp.com/wp-login.php?action=register).', 'AWPCP' ) . '<br/>' . __( '**Only change this setting when using membership plugin with custom login pages or similar scenarios.', 'AWPCP' ) );
 
 
 		// Group: Email
@@ -495,8 +498,8 @@ class AWPCP_Settings_API {
 
 		$key = $this->add_section($group, __('Ad Posted Message', 'AWPCP'), 'ad-posted-message', 10, array($this, 'section'));
 
-		$this->add_setting( $key, 'listingaddedsubject', __( 'Subject for Ad posted notification email', 'AWPCP' ), 'textfield', __( 'Your classified ad listing has been submitted', 'AWPCP' ), __( 'Subject line for email sent out when someone posts an Ad', 'AWPCP' ) );
-		$this->add_setting( $key, 'listingaddedbody', __( 'Body for Ad posted notification email', 'AWPCP' ), 'textarea', __( 'Thank you for submitting your classified ad. The details of your ad are shown below.', 'AWPCP' ), __( 'Message body text for email sent out when someone posts an Ad', 'AWPCP' ) );
+		$this->add_setting( $key, 'listingaddedsubject', __( 'Subject for Ad posted notification email', 'AWPCP' ), 'textfield', __( 'Your Classified Ad listing has been submitted', 'AWPCP' ), __( 'Subject line for email sent out when someone posts an Ad', 'AWPCP' ) );
+		$this->add_setting( $key, 'listingaddedbody', __( 'Body for Ad posted notification email', 'AWPCP' ), 'textarea', __( 'Thank you for submitting your Classified Ad. The details of your ad are shown below.', 'AWPCP' ), __( 'Message body text for email sent out when someone posts an Ad', 'AWPCP' ) );
 
 		// Section: Reply to Ad Message
 
@@ -510,8 +513,8 @@ class AWPCP_Settings_API {
 
 		$key = $this->add_section($group, __('Resend Access Key Message', 'AWPCP'), 'request-ad-message', 10, array($this, 'section'));
 
-		$this->add_setting( $key, 'resendakeyformsubjectline', __( 'Subject for Request Ad Access Key email', 'AWPCP' ), 'textfield', __( "The classified Ad's ad access key you requested", 'AWPCP' ), __( 'Subject line for email sent out when someone requests their ad access key resent', 'AWPCP' ) );
-		$this->add_setting( $key, 'resendakeyformbodymessage', __( 'Body for Request Ad Access Key email', 'AWPCP' ), 'textarea', __( "You asked to have your classified Ad's access key resent. Below are all the Ad access keys in the system that are tied to the email address you provided", 'AWPCP' ), __('Message body text for email sent out when someone requests their ad access key resent', 'AWPCP' ) );
+		$this->add_setting( $key, 'resendakeyformsubjectline', __( 'Subject for Request Ad Access Key email', 'AWPCP' ), 'textfield', __( "The Classified Ad's ad access key you requested", 'AWPCP' ), __( 'Subject line for email sent out when someone requests their ad access key resent', 'AWPCP' ) );
+		$this->add_setting( $key, 'resendakeyformbodymessage', __( 'Body for Request Ad Access Key email', 'AWPCP' ), 'textarea', __( "You asked to have your Classified Ad's access key resent. Below are all the Ad access keys in the system that are tied to the email address you provided", 'AWPCP' ), __('Message body text for email sent out when someone requests their ad access key resent', 'AWPCP' ) );
 
 		// Section: Incomplete Payment Message
 
@@ -525,7 +528,7 @@ class AWPCP_Settings_API {
 		$key = $this->add_section($group, __('Renew Ad Message', 'AWPCP'), 'renew-ad-message', 10, array($this, 'section'));
 
 		$this->add_setting( $key, 'renew-ad-email-subject', __( 'Subject for Renew Ad email', 'AWPCP' ), 'textfield', __( 'Your classifieds listing Ad will expire in %d days.', 'AWPCP' ), __( 'Subject line for email sent out when an Ad is about to expire.', 'AWPCP' ) );
-		$this->add_setting( $key, 'renew-ad-email-body', __( 'Body for Renew Ad email', 'AWPCP' ), 'textarea', __( 'This is an automated notification that your classified Ad will expire in %d days.', 'AWPCP' ), __( 'Message body text for email sent out when an Ad is about to expire. Use %d as placeholder for the number of days before the Ad expires.', 'AWPCP' ) );
+		$this->add_setting( $key, 'renew-ad-email-body', __( 'Body for Renew Ad email', 'AWPCP' ), 'textarea', __( 'This is an automated notification that your Classified Ad will expire in %d days.', 'AWPCP' ), __( 'Message body text for email sent out when an Ad is about to expire. Use %d as placeholder for the number of days before the Ad expires.', 'AWPCP' ) );
 
 		// Section: Ad Renewed Message
 
@@ -539,7 +542,7 @@ class AWPCP_Settings_API {
 		$key = $this->add_section($group, __('Ad Expired Message', 'AWPCP'), 'ad-expired-message', 10, array($this, 'section'));
 
 		$this->add_setting( $key, 'adexpiredsubjectline', __( 'Subject for Ad Expired email', 'AWPCP' ), 'textfield', __( 'Your classifieds listing at %s has expired', 'AWPCP' ), __( 'Subject line for email sent out when an ad has auto-expired', 'AWPCP' ) );
-		$this->add_setting( $key, 'adexpiredbodymessage', __( 'Body for Ad Expired email', 'AWPCP' ), 'textarea', __( 'This is an automated notification that your classified ad has expired.', 'AWPCP' ), __( 'Message body text for email sent out when an ad has auto-expired', 'AWPCP' ) );
+		$this->add_setting( $key, 'adexpiredbodymessage', __( 'Body for Ad Expired email', 'AWPCP' ), 'textarea', __( 'This is an automated notification that your Classified Ad has expired.', 'AWPCP' ), __( 'Message body text for email sent out when an ad has auto-expired', 'AWPCP' ) );
 
 		// Section: Advanced Email Configuration
 
