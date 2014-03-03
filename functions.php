@@ -1428,10 +1428,15 @@ function awpcp_get_page_name($pagename) {
  * @since 2.0.7
  */
 function awpcp_get_page_url($pagename, $trailingslashit=false) {
+	global $wp_rewrite;
+
 	$id = awpcp_get_page_id_by_ref($pagename);
 
 	if (get_option('permalink_structure')) {
-		$url = home_url(get_page_uri($id));
+		$permalink = $wp_rewrite->get_page_permastruct();
+		$permalink = str_replace( '%pagename%', get_page_uri( $id ), $permalink );
+
+		$url = home_url( $permalink );
 		$url = $trailingslashit ? user_trailingslashit( $url ) : rtrim($url, '/');
 	} else {
 		$url = add_query_arg( 'page_id', $id, home_url('/') );
