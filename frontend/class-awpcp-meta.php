@@ -62,6 +62,10 @@ class AWPCP_Meta {
             add_action( 'wp_title', array( $this, 'title' ), 10, 3 );
         }
 
+        if ( apply_filters( 'awpcp-should-generate-single-post-title', true, $this ) ) {
+            add_action( 'single_post_title', array( $this, 'page_title' ) );
+        }
+
         // SEO Ultimate
         if ( defined( 'SU_PLUGIN_NAME' ) ) {
             $this->seo_ultimate();
@@ -130,24 +134,7 @@ class AWPCP_Meta {
     }
 
     public function title($title, $separator='-', $seplocation='left') {
-        // we want't to use the original query but calling wp_reset_query
-        // breaks things for Events Manager and maybe other plugins
-        $query = $GLOBALS['wp_the_query'];
-
-        if (!isset($query)) return $title;
-
-        $show_ad_page = awpcp_get_page_id_by_ref('show-ads-page-name');
-        $browse_cats_page = awpcp_get_page_id_by_ref('browse-categories-page-name');
-
-        $is_show_ad_page = $query->is_page( $show_ad_page );
-        $is_browse_ads_page = $query->is_page( $browse_cats_page );
-
-        // only change title in the Show Ad and Browse Categories pages
-        if ( ! $is_show_ad_page && ! $is_browse_ads_page )
-            return $title;
-        if ( $is_show_ad_page && is_null( $this->ad ) )
-            return $title;
-        if ( $is_browse_ads_page && empty( $this->category_id ) )
+        if ( ! $this->is_browse_categories_or_single_ad_page() )
             return $title;
 
         // We want to strip separators characters from each side of
@@ -175,16 +162,57 @@ class AWPCP_Meta {
             $name = '';
         }
 
-        // overwrite default separator using AWPCP setting value
-        $sep = get_awpcp_option('awpcptitleseparator');
-        $sep = empty($sep) ? $separator : $sep;
+        $sep = $this->get_separator( $separator );
+        $page_title = $this->get_page_title( $sep, $seplocation );
+
+        $title = trim($title, " $sep");
+        if ($seplocation == 'right') {
+            $title = sprintf( "%s %s %s%s%s", $page_title, $sep, $title, $name, $appendix );
+        } else {
+            $title = sprintf( "%s%s%s %s %s", $appendix, $name, $title, $sep, $page_title );
+        }
+
+        return $title;
+    }
+
+    private function is_browse_categories_or_single_ad_page() {
+        // we want't to use the original query but calling wp_reset_query
+        // breaks things for Events Manager and maybe other plugins
+        $query = $GLOBALS['wp_the_query'];
+
+        if ( ! isset( $query ) ) return false;
+
+        $show_ad_page = awpcp_get_page_id_by_ref( 'show-ads-page-name' );
+        $browse_cats_page = awpcp_get_page_id_by_ref( 'browse-categories-page-name' );
+
+        $is_show_ad_page = $query->is_page( $show_ad_page );
+        $is_browse_ads_page = $query->is_page( $browse_cats_page );
+
+        // only change title in the Show Ad and Browse Categories pages
+        if ( ! $is_show_ad_page && ! $is_browse_ads_page )
+            return false;
+        if ( $is_show_ad_page && is_null( $this->ad ) )
+            return false;
+        if ( $is_browse_ads_page && empty( $this->category_id ) )
+            return false;
+
+        return true;
+    }
+
+    private function get_separator( $fallback_separator = '-' ) {
+        $separator = get_awpcp_option( 'awpcptitleseparator' );
+        return empty( $separator ) ? $fallback_separator : $separator;
+    }
+
+    private function get_page_title( $fallback_separator = '-', $seplocation = 'left' ) {
+        $separator = $this->get_separator( $fallback_separator );
 
         $parts = array();
 
-        if (!empty($this->category_id)) {
-            $parts[] = get_adcatname($this->category_id);
+        if ( ! empty( $this->category_id ) ) {
+            $parts[] = get_adcatname( $this->category_id );
 
-        } else if (!is_null($this->ad)) {
+        } else if ( ! is_null( $this->ad ) ) {
             $regions = $this->ad->get_regions();
             if ( count( $regions ) > 0 ) {
                 $region = $regions[0];
@@ -192,44 +220,40 @@ class AWPCP_Meta {
                 $region = array();
             }
 
-            if (get_awpcp_option('showcategoryinpagetitle') ) {
+            if ( get_awpcp_option( 'showcategoryinpagetitle' ) ) {
                 $parts[] = get_adcatname( $this->ad->ad_category_id );
             }
 
-            if (get_awpcp_option('showcountryinpagetitle')) {
+            if ( get_awpcp_option( 'showcountryinpagetitle' ) ) {
                 $parts[] = awpcp_array_data( 'country', '', $region );
             }
 
-            if (get_awpcp_option('showstateinpagetitle')) {
+            if ( get_awpcp_option( 'showstateinpagetitle' ) ) {
                 $parts[] = awpcp_array_data( 'state', '', $region );
             }
 
-            if (get_awpcp_option('showcityinpagetitle')) {
+            if ( get_awpcp_option( 'showcityinpagetitle' ) ) {
                 $parts[] = awpcp_array_data( 'city', '', $region );
             }
 
-            if (get_awpcp_option('showcountyvillageinpagetitle')) {
+            if ( get_awpcp_option( 'showcountyvillageinpagetitle' ) ) {
                 $parts[] = awpcp_array_data( 'county', '', $region );
             }
 
             $parts[] = $this->ad->get_title();
         }
 
-        $parts = array_filter($parts);
+        $parts = array_filter( $parts );
+        $parts = $seplocation === 'right' ? array_reverse( $parts ) : $parts;
 
-        if (empty($parts)) return $title;
-
-        $title = trim($title, " $sep");
-        if ($seplocation == 'right') {
-            $parts = array_reverse($parts);
-            $title = sprintf("%s %s %s%s%s", join(" $sep ", $parts), $sep, $title, $name, $appendix);
-        } else {
-            $title = sprintf("%s%s%s %s %s", $appendix, $name, $title, $sep, join(" $sep ", $parts));
-        }
-
-        return $title;
+        return implode( " $separator ", $parts );
     }
 
+    public function page_title( $post_title, $post ) {
+        if ( ! $this->is_browse_categories_or_single_ad_page() )
+            return $post_title;
+        return $this->get_page_title();
+    }
 
     // The function to add the page meta and Facebook meta to the header of the index page
     // https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F108.166.84.26%2F%25253Fpage_id%25253D5%252526id%25253D3&t=Ad+in+Rackspace+1.8.9.4+(2)
