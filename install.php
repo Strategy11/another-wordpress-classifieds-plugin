@@ -402,9 +402,6 @@ class AWPCP_Installer {
         if ( version_compare( $oldversion, '3.0.2' ) < 0 ) {
             $this->upgrade_to_3_0_2( $oldversion );
         }
-        if ( version_compare( $oldversion, '3.2.1' ) < 0 ) {
-            $this->upgrade_to_3_2_1( $oldversion );
-        }
 
         do_action('awpcp_upgrade', $oldversion, $newversion);
 
@@ -1057,24 +1054,6 @@ class AWPCP_Installer {
 
         if ( $manual_upgrade_required ) {
             update_option( 'awpcp-pending-manual-upgrade', true );
-        }
-    }
-
-    private function upgrade_to_3_2_1( $oldversion ) {
-        $options = array(
-            'uiwelcome',
-            'listingaddedsubject',
-            'listingaddedbody',
-            'resendakeyformsubjectline',
-            'resendakeyformbodymessage',
-            'renew-ad-email-body',
-            'adexpiredbodymessage',
-        );
-
-        $settings = awpcp()->settings;
-
-        foreach ( $options as $option ) {
-            $settings->update_option( $option, str_ireplace( 'classified ad', 'Classified Ad', $settings->get_option( $option ) ) );
         }
     }
 }
