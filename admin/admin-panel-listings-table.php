@@ -235,7 +235,7 @@ class AWPCP_Listings_Table extends WP_List_Table {
             'featured-ads' => array(__('Featured', 'AWPCP'), $this->page->url(array('filterby' => 'is-featured', 'filter' => true))),
             'flagged-ads'  => array(__('Flagged', 'AWPCP'), $this->page->url(array('filterby' => 'flagged', 'filter' => true))),
             'unpaid-ads' => array(__('Unpaid', 'AWPCP'), $this->page->url(array('filterby' => 'unpaid', 'filter' => true))),
-            'non-verified-ads' => array( __( 'Non Verified', 'AWPCP' ), $this->page->url( array( 'filterby' => 'non-verified', 'filter' => true ) ) ),
+            'non-verified-ads' => array( __( 'Unverified', 'AWPCP' ), $this->page->url( array( 'filterby' => 'non-verified', 'filter' => true ) ) ),
             'awaiting-approval' => array( __( 'Awaiting Approval', 'AWPCP' ), $this->page->url( array( 'filterby' => 'awaiting-approval', 'filter' => true ) ) ),
             'completed' => array( __( 'Completed', 'AWPCP' ), $this->page->url( array( 'filterby' => 'completed', 'filter' => false ) ) ),
         );
