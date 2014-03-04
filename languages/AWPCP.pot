@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2014-02-27 15:55:41+00:00\n"
+"POT-Creation-Date: 2014-03-04 00:26:28+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -115,7 +115,7 @@ msgstr ""
 msgid "(semi-colon)"
 msgstr ""
 
-msgid "**Only needed if registration is required and your login url is mod-rewritten."
+msgid "**Only change this setting when using membership plugin with custom login pages or similar scenarios."
 msgstr ""
 
 msgctxt "This translation is deprecated. Please go to the Settings section to change the thousands separator."
@@ -593,9 +593,6 @@ msgctxt "place ad payment terms column headers"
 msgid "Ads Allowed"
 msgstr ""
 
-msgid "Ads will be associated to this user if the username column is not present in the CSV file, there is no user with that username and we couldn't find an user with the contact_email address specified in the CSV file."
-msgstr ""
-
 msgid "Advanced Email Configuration"
 msgstr ""
 
@@ -772,6 +769,10 @@ msgstr ""
 msgid "Anti-SPAM"
 msgstr ""
 
+msgctxt "csv-importer"
+msgid "Any value other than 'use spreadsheet information' means the Ads will be associated to the selected user if: the username column is not present in the CSV file, there is no user with that username and we couldn't find a user with the contact_email address specified in the CSV file."
+msgstr ""
+
 msgid "App Id"
 msgstr ""
 
@@ -804,7 +805,8 @@ msgstr ""
 msgid "Ascending"
 msgstr ""
 
-msgid "Assign Ads to an user?"
+msgctxt "csv-importer"
+msgid "Assign Ads to a user?"
 msgstr ""
 
 msgid "Attachments"
@@ -835,6 +837,9 @@ msgstr ""
 msgid "Awaiting Approval"
 msgstr ""
 
+msgid "Awaiting approval message"
+msgstr ""
+
 msgctxt "awpcp upgrade"
 msgid "Before you can use AWPCP again we need to upgrade your database. This operation may take a few minutes, depending on the amount of information stored. Please press the Upgrade button shown below to start the process."
 msgstr ""
@@ -843,9 +848,6 @@ msgid "Before you can use Region Control module we need to upgrade your database
 msgstr ""
 
 msgid "Below Ad images."
-msgstr ""
-
-msgid "Below you can add and edit your categories. For more information about managing your categories visit the link below."
 msgstr ""
 
 msgid "Below you will find the access key for your Ad \"%s\" associated to the email address %s."
@@ -1072,9 +1074,6 @@ msgstr ""
 msgid "Click here to configure fees"
 msgstr ""
 
-msgid "Click here to find out about purchasing the Category Icons Module"
-msgstr ""
-
 msgid "Click here to have your Ad access keys sent to you."
 msgstr ""
 
@@ -1133,6 +1132,9 @@ msgstr ""
 
 msgctxt "place ad checkout step"
 msgid "Complete Payment"
+msgstr ""
+
+msgid "Completed"
 msgstr ""
 
 msgctxt "ad payment status"
@@ -1293,7 +1295,7 @@ msgstr ""
 msgid "Crop primary image thumbnails?"
 msgstr ""
 
-msgid "Crop thumbnails images?"
+msgid "Crop thumbnail images?"
 msgstr ""
 
 msgid "Currency"
@@ -1318,6 +1320,9 @@ msgid "Current Ad count must be equal or greater than zero."
 msgstr ""
 
 msgid "Current page"
+msgstr ""
+
+msgid "Custom Registration Page URL"
 msgstr ""
 
 msgid "Customer attempt to pay has failed"
@@ -1392,7 +1397,7 @@ msgstr ""
 msgid "Delete Ad"
 msgstr ""
 
-msgid "Delete Ads if any"
+msgid "Delete Ads too"
 msgstr ""
 
 msgid "Delete Category"
@@ -1413,6 +1418,9 @@ msgid "Delete Search Region"
 msgstr ""
 
 msgid "Delete Selected Categories"
+msgstr ""
+
+msgid "Delete categories should do this with existing Ads"
 msgstr ""
 
 msgid "Delete this item"
@@ -1443,6 +1451,9 @@ msgstr ""
 
 msgctxt "media manager"
 msgid "Disable"
+msgstr ""
+
+msgid "Disable AWPCP Lightbox feature"
 msgstr ""
 
 msgid "Disable Ad until admin approves"
@@ -1802,10 +1813,10 @@ msgstr ""
 msgid "Fee Per Category Module"
 msgstr ""
 
-msgid "Fee order"
+msgid "Fee Plan sort direction"
 msgstr ""
 
-msgid "Fee order direction"
+msgid "Fee Plan sort order"
 msgstr ""
 
 msgid "Fee per Category"
@@ -2065,10 +2076,11 @@ msgstr ""
 msgid "If checked, categories with 0 listings in it won't be shown."
 msgstr ""
 
-msgid "If checked, the RSS feed for specific categories will include Ads in children categories."
+msgctxt "csv-importer"
+msgid "If checked, the Ads will belong to the user specified below."
 msgstr ""
 
-msgid "If deleting categories"
+msgid "If checked, the RSS feed for specific categories will include Ads in children categories."
 msgstr ""
 
 msgid "If enabled, a preview of the Ad being posted will be shown after the images have been uploaded and before the user is asked to pay. The user is allowed to go back and edit the Ad details and uploaded images or proceed with the posting process."
@@ -2080,6 +2092,10 @@ msgstr ""
 msgid "If enabled, users will be allowed to search Ads in multiple regions."
 msgstr ""
 
+msgctxt "csv-importer"
+msgid "If the CSV does not contain start/end dates, use these by default:"
+msgstr ""
+
 msgid "If this is a Fee for specific categories then select those categories below, otherwise leave the categories unchecked."
 msgstr ""
 
@@ -2087,9 +2103,6 @@ msgid "If this status is not COMPLETED or VERIFIED, then you may need to wait a 
 msgstr ""
 
 msgid "If unchecked only categories will be displayed"
-msgstr ""
-
-msgid "If unchecked, Ads won't be associated to an user."
 msgstr ""
 
 msgid "If you are having problems with your plugin pages, you can delete them and use the Restore button to have the plugin create them again."
@@ -2103,7 +2116,7 @@ msgid "If you are trying to upgrade your subscription in order to place more Ads
 msgstr ""
 
 msgctxt "settings"
-msgid "If you decide to crop thumbnails, images will match exactly the dimensions in the settings above but part of the image may be cropped out. If you decide to resize, image thumbnails will be resized to match the specified width and their height will be adjusted proportionally; depending on the uploaded images, thumbnails may have differnt heights."
+msgid "If you decide to crop thumbnails, images will match exactly the dimensions in the settings above but part of the image may be cropped out. If you decide to resize, image thumbnails will be resized to match the specified width and their height will be adjusted proportionally; depending on the uploaded images, thumbnails may have different heights."
 msgstr ""
 
 msgid "If you have a Coupon code please enter it below and click the Use Coupon button."
@@ -2335,10 +2348,7 @@ msgstr ""
 msgid "Location"
 msgstr ""
 
-msgid "Location of registraiton page. Value should be the full URL to the wordpress registration page (e.g. http://www.awpcp.com/wp-login.php?action=register)."
-msgstr ""
-
-msgid "Location of registration page"
+msgid "Location of registration page. Value should be the full URL to the wordpress registration page (e.g. http://www.awpcp.com/wp-login.php?action=register)."
 msgstr ""
 
 msgctxt "authorize.net"
@@ -2348,7 +2358,7 @@ msgstr ""
 msgid "Long Text"
 msgstr ""
 
-msgid "Looking for a job? Trying to find a date? Looking for an apartment? Browse our classifieds. Have a job to advertise? An apartment to rent? Post a classified ad."
+msgid "Looking for a job? Trying to find a date? Looking for an apartment? Browse our classifieds. Have a job to advertise? An apartment to rent? Post a Classified Ad."
 msgstr ""
 
 msgid "Lost your password?"
@@ -2474,7 +2484,7 @@ msgstr ""
 msgid "Maximum file size per image"
 msgstr ""
 
-msgid "Maximum file size per image user can upload to system."
+msgid "Maximum file size, in bytes, for files user can upload to system. 1 MB = 1048576 bytes. You can google \"x MB to bytes\" to get an accurate convertion."
 msgstr ""
 
 msgid "Maximum height for images. Images taller than this are automatically resized upon upload."
@@ -2530,7 +2540,7 @@ msgstr ""
 msgid "Minimum file size per image"
 msgstr ""
 
-msgid "Minimum file size per image user can upload to system"
+msgid "Minimum file size, in bytes, for files user can upload to system. 1 MB = 1048576 bytes. You can google \"x MB to bytes\" to get an accurate convertion."
 msgstr ""
 
 msgid "Minimum height for images."
@@ -2579,7 +2589,7 @@ msgstr[1] ""
 msgid "More Information"
 msgstr ""
 
-msgid "Move Ads if any"
+msgid "Move Ads to new category"
 msgstr ""
 
 msgid "Move Selected Categories"
@@ -2759,9 +2769,6 @@ msgstr ""
 msgid "No specific category was selected for browsing so you are viewing listings from all categories."
 msgstr ""
 
-msgid "Non Verified"
-msgstr ""
-
 msgid "None"
 msgstr ""
 
@@ -2827,7 +2834,7 @@ msgstr ""
 msgid "Number of columns of thumbnails to show in Show Ad page."
 msgstr ""
 
-msgid "Number of days before Ads that remain in a non verified status will be deleted"
+msgid "Number of days before Ads that remain in a unverified status will be deleted"
 msgstr ""
 
 msgid "Number of days before the verification email is sent again"
@@ -2881,7 +2888,7 @@ msgstr ""
 msgid "Only admin users are allowed to edit or post commments."
 msgstr ""
 
-msgid "Only email addresses with a domain in the list above will be allowed. Please type a domain per line."
+msgid "Only email addresses with a domain in the list above will be allowed. *.foo.com will match a.foo.com, b.foo.com, etc. but foo.com will match foo.com only. Please type a domain per line."
 msgstr ""
 
 msgid "Only one of those links will work, depending on your Google XML Sitemap Generator settings."
@@ -3416,6 +3423,9 @@ msgstr ""
 msgid "Regions Control Module"
 msgstr ""
 
+msgid "Regions Settings"
+msgstr ""
+
 msgctxt "regions module"
 msgid "Regions of types <strong>%s</strong> were found in level %d of your hierarchy. Please fix it so only one type of Region is found in each level of the regions hierarchy."
 msgstr ""
@@ -3587,9 +3597,6 @@ msgid "Rewrite Rules"
 msgstr ""
 
 msgid "Role of WordPress users who can have admin access to Classifieds."
-msgstr ""
-
-msgid "Role of admin users"
 msgstr ""
 
 msgid "Row %d. %s"
@@ -4192,7 +4199,7 @@ msgstr ""
 msgid "Textarea"
 msgstr ""
 
-msgid "Thank you for submitting your classified ad. The details of your ad are shown below."
+msgid "Thank you for submitting your Classified Ad. The details of your ad are shown below."
 msgstr ""
 
 msgid "Thank you for using AWPCP. You have arrived at this page by clicking the Uninstall link. If you are certain you wish to uninstall the plugin, please click the link below to proceed. Please note that all your data related to the plugin, your ads, images and everything else created by the plugin will be destroyed."
@@ -4232,7 +4239,7 @@ msgid "The AWPCP Comments module requires AWPCP version %s or newer!"
 msgstr ""
 
 msgctxt "awpcp comments notices"
-msgid "The AWPCP Comments module requires Akismet to be configured with a valid API key."
+msgid "The AWPCP Comments module requires Akismet to be configured with a <akismet-config-link>valid API key</a>."
 msgstr ""
 
 msgid "The AWPCP Coupons module requires AWPCP version %s or newer!"
@@ -4317,6 +4324,9 @@ msgid "The Card Security Code is required."
 msgstr ""
 
 msgid "The City is required."
+msgstr ""
+
+msgid "The Classified Ad's ad access key you requested"
 msgstr ""
 
 msgid "The Comment text can't be empty. HTML is not allowed."
@@ -4454,9 +4464,6 @@ msgid "The characters in the image weren't entered correctly. Please try it agai
 msgstr ""
 
 msgid "The city is a required field."
-msgstr ""
-
-msgid "The classified Ad's ad access key you requested"
 msgstr ""
 
 msgid "The classifieds listing \"%s\" has been successfully renewed."
@@ -4816,9 +4823,6 @@ msgstr ""
 msgid "There has been a problem encountered. The system is unable to continue processing the task in progress. Please start over and if you encounter the problem again, please contact a system administrator."
 msgstr ""
 
-msgid "There is a premium module available that allows you to add icons to your categories. If you are interested in adding icons to your categories "
-msgstr ""
-
 msgid "There is a problem with the currency code you have entered. It does not match any of the codes in the list of available currencies provided by PayPal."
 msgstr ""
 
@@ -4957,10 +4961,10 @@ msgstr ""
 msgid "This is a preview of your Ad. Use the buttons below to go back and edit your Ad, manage the uploaded images or finish the posting process."
 msgstr ""
 
-msgid "This is an automated notification that your classified Ad will expire in %d days."
+msgid "This is an automated notification that your Classified Ad has expired."
 msgstr ""
 
-msgid "This is an automated notification that your classified ad has expired."
+msgid "This is an automated notification that your Classified Ad will expire in %d days."
 msgstr ""
 
 msgid "This particular region is already selected in another field. Please choose one or more sub-regions, to make the selection more specific, or change the selected region."
@@ -4973,6 +4977,9 @@ msgid "This version of AWPCP %1$s module is not compatible with AWPCP version %2
 msgstr ""
 
 msgid "Thousands separator"
+msgstr ""
+
+msgid "Thumbnail Settings"
 msgstr ""
 
 msgid "Thumbnail height"
@@ -4988,9 +4995,6 @@ msgid "Thumbnail width (Ad Listings page)"
 msgstr ""
 
 msgid "Thumbnail width (Primary Image)"
-msgstr ""
-
-msgid "Thumbnails Settings"
 msgstr ""
 
 msgctxt "images upload step"
@@ -5051,10 +5055,7 @@ msgctxt "authorize.net"
 msgid "Transaction Key"
 msgstr ""
 
-msgid "Turn off the thickbox/lightbox if it conflicts with other elements of your site"
-msgstr ""
-
-msgid "Turn off thickbox/lightbox?"
+msgid "Turn off the lightbox/thickbox element used by AWPCP. Some themes cannot handle it and a conflict results."
 msgstr ""
 
 msgid "Turn on Search Engine Friendly URLs"
@@ -5151,6 +5152,9 @@ msgstr ""
 msgid "Untitled"
 msgstr ""
 
+msgid "Unverified"
+msgstr ""
+
 msgid "Up"
 msgstr ""
 
@@ -5235,9 +5239,6 @@ msgid "Use the form below to conduct a broad or narrow search. For a broader sea
 msgstr ""
 
 msgid "Use your own. Create custom-on.png, custom-off.png and custom-half.png 16x16 icons in %s."
-msgstr ""
-
-msgid "Useful Information for Classifieds Categories Management"
 msgstr ""
 
 msgid "User"
@@ -5325,9 +5326,6 @@ msgstr ""
 msgid "Visit Website"
 msgstr ""
 
-msgid "Waiting approval message"
-msgstr ""
-
 msgid "Warning"
 msgstr ""
 
@@ -5372,6 +5370,9 @@ msgid "What input element type should be used to collect the data from user?"
 msgstr ""
 
 msgid "When checked your customers will be able to enter a coupon code in the shopping cart before checkout"
+msgstr ""
+
+msgid "Who can access AWPCP Admin Dashboard"
 msgstr ""
 
 msgid "Whole Number"
@@ -5472,7 +5473,7 @@ msgstr ""
 msgid "You are trying to renew your Ad using a different Payment Term. That's not allowed."
 msgstr ""
 
-msgid "You asked to have your classified Ad's access key resent. Below are all the Ad access keys in the system that are tied to the email address you provided"
+msgid "You asked to have your Classified Ad's access key resent. Below are all the Ad access keys in the system that are tied to the email address you provided"
 msgstr ""
 
 msgctxt "credit plans table"
@@ -5481,9 +5482,6 @@ msgstr ""
 
 msgctxt "upload files step"
 msgid "You can also upload a new image and mark it as primary using the fields below."
-msgstr ""
-
-msgid "You can configure default dates for imported Ads"
 msgstr ""
 
 msgid "You can find your application information in the <a>Facebook Developer Apps</a> page."
@@ -5632,6 +5630,9 @@ msgctxt "media manager"
 msgid "You don't have sufficient permissions to modify that Ad's media"
 msgstr ""
 
+msgid "You enabled the Credit System, but there are no credit plans defined. Please <credits-section-link>add credit plans or disable the Credit System</a>."
+msgstr ""
+
 msgid "You have entered a keyword that is too short to search on. Search keywords must be at least 3 letters in length. Please try another term."
 msgstr ""
 
@@ -5653,6 +5654,9 @@ msgstr ""
 msgid "You have not configured your Listing fees. Go to %s to set up your listing fees. Once that is completed, if you are running in pay mode, the options will automatically appear on the listing form for users to fill out."
 msgstr ""
 
+msgid "You have payments enabled, but there are no payment terms defined. Users won't be able to post Ads. Please <fee-section-link>add payment terms</a> or <payments-settings-link>configure the website as a free board</a>."
+msgstr ""
+
 msgid "You have setup your listing fees. To edit your fees go to %s."
 msgstr ""
 
@@ -5665,6 +5669,9 @@ msgid "You have the <strong>%1$s</strong> plan. The subscription allows you to p
 msgstr ""
 
 msgid "You may view your sitemap here: %s or perhaps here if you set it to GZIP instead: %s"
+msgstr ""
+
+msgid "You must have registered users to use this setting. Turning it on will automatically enable \"Require Registration\" for AWPCP. Make sure you site allows users to register under <wp-settings-link>Settings->General</a>."
 msgstr ""
 
 msgctxt "Edit Region error message"
@@ -5716,10 +5723,13 @@ msgstr ""
 msgid "Your Ad has been successfully updated. Ad information is shown below."
 msgstr ""
 
-msgid "Your Ad was flagged as spam.  Please contact the administrator of this site."
+msgid "Your Ad was flagged as spam. Please contact the administrator of this site."
 msgstr ""
 
 msgid "Your AdSense code (Best if 468x60 text or banner.)"
+msgstr ""
+
+msgid "Your Classified Ad listing has been submitted"
 msgstr ""
 
 msgid "Your Payment has been processed successfully. However is still pending approvation from the payment gateway. Please press the button below to continue with the process."
@@ -5751,9 +5761,6 @@ msgid "Your category changes have been saved."
 msgstr ""
 
 msgid "Your changes have been saved."
-msgstr ""
-
-msgid "Your classified ad listing has been submitted"
 msgstr ""
 
 msgid "Your classifieds listing \"%s\" has been successfully renewed."
