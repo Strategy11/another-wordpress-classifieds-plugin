@@ -204,7 +204,7 @@ class AWPCP_Meta {
         return empty( $separator ) ? $fallback_separator : $separator;
     }
 
-    private function get_page_title( $fallback_separator = '-', $seplocation = 'left' ) {
+    private function get_page_title( $fallback_separator = '-', $seplocation = 'right' ) {
         $separator = $this->get_separator( $fallback_separator );
 
         $parts = array();
