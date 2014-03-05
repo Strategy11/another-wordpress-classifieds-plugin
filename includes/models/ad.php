@@ -155,6 +155,11 @@ class AWPCP_Ad {
         return self::query(array_merge($args, array('where' => join(' AND ', $conditions))));
 	}
 
+	public static function count_enabled_ads( $conditions = array() ) {
+        $conditions = self::get_where_conditions( $conditions );
+        return self::query( array( 'fields' => 'count', 'where' => join( ' AND ', $conditions ) ) );
+	}
+
 	public static function get_random_ads($limit, $args=array(), $conditions=array()) {
         $conditions = self::get_where_conditions($conditions);
 

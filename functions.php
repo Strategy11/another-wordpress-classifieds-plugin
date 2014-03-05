@@ -515,6 +515,7 @@ function awpcp_pagination($config, $url) {
 	}
 
 	$pagination = join('', $items);
+	$options = awpcp_pagination_options( $results );
 
 	ob_start();
 		include(AWPCP_DIR . '/frontend/templates/listings-pagination.tpl.php');

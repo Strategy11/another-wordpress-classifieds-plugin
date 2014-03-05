@@ -303,7 +303,25 @@ function array2qs($myarray) {
 	return $myreturn;
 }
 
+/**
+ * TODO: replace usage of this function with awpcp_pagination()
+ */
 function create_pager($from,$where,$offset,$results,$tpname) {
+	$query = "SELECT count(*) FROM $from WHERE $where";
+
+	if ( ! ( $res = @mysql_query( $query ) ) ) {
+		die( mysql_error().' on line: '.__LINE__ );
+	}
+
+	$totalrows=mysql_result($res,0,0);
+
+	return awpcp_create_pager( $totalrows, $offset, $results, $tpname );
+}
+
+/**
+ * TODO: replace usage of this function with awpcp_pagination()
+ */
+function _create_pager( $item_count, $offset, $results, $tpname ) {
 	$permastruc=get_option('permalink_structure');
 
 	if (isset($permastruc) && !empty($permastruc)) {
@@ -318,30 +336,9 @@ function create_pager($from,$where,$offset,$results,$tpname) {
 
 	mt_srand(create_awpcp_random_seed());
 	$radius=5;
+
 	global $accepted_results_per_page;
-
-	$accepted_results_per_page = array( 0, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 500 );
-
-	for ( $i = count( $accepted_results_per_page ) - 1; $i >= 0; $i-- ) {
-		if ( $accepted_results_per_page[ $i ] < $results ) {
-			array_splice( $accepted_results_per_page, $i + 1, 0, $results );
-			break;
-		}
-	}
-
-	$accepted_results_per_page = array_slice( $accepted_results_per_page, 1 );
-	$accepted_results_per_page = array_combine( $accepted_results_per_page , $accepted_results_per_page );
-
-	// // The code below removes query parameters from URL when seofriendlyurls are ON.
-	// // However, SEO URLs may be ON while WP are still NOT using permalinks, which means
-	// // page_id is going to be in every URL that points to a page. This break pagination.
-	// if (get_awpcp_option('seofriendlyurls')) { 
-	// 	$tpname = $_SERVER['REQUEST_URI'];
-	// 	$tpparts = explode('?', $tpname);
-	// 	if (is_array($tpparts)) {
-	// 		$tpname = $tpparts[0];
-	// 	}
-	// }
+	$accepted_results_per_page = awpcp_pagination_options( $results );
 
 	// TODO: remove all fields that belongs to the Edit Ad form (including extra fields and others?)
 	$params = array_merge($_GET,$_POST);
@@ -370,9 +367,8 @@ function create_pager($from,$where,$offset,$results,$tpname) {
 	$form.="<table>\n";
 	$form.="<tr>\n";
 	$form.="\t<td>\n";
-	$query="SELECT count(*) FROM $from WHERE $where";
-	if (!($res=@mysql_query($query))) {die(mysql_error().' on line: '.__LINE__);}
-	$totalrows=mysql_result($res,0,0);
+
+	$totalrows = $item_count;
 	$total_pages=ceil($totalrows/$results);
 	$dotsbefore=false;
 	$dotsafter=false;
@@ -397,7 +393,6 @@ function create_pager($from,$where,$offset,$results,$tpname) {
 			$href_params = array_merge($params, array('offset' => ($i-1) * $results, 'results' => $results));
 			$href = add_query_arg($href_params, $tpname);
 			$myreturn.= sprintf('<a href="%s">%d</a>&nbsp;', esc_attr($href), esc_attr($i));
-			// $myreturn.="<a href=\"$tpname$awpcpoffset_set".(($i-1)*$results)."&results=$results&".array2qs($params)."\">$i</a>&nbsp;";
 		}
 	}
 
@@ -406,11 +401,9 @@ function create_pager($from,$where,$offset,$results,$tpname) {
 		if ( (($current_page-2) * $results) < $results) {
 			$href_params = array_merge($params, array('offset' => 0, 'results' => $results));
 			$href = add_query_arg($href_params, $tpname);
-			// $prev ="\t\t<a href=\"$tpname".$awpcpoffset_set."0&results=$results&".array2qs($params)."\">&laquo;</a>&nbsp;";
 		} else {
 			$href_params = array_merge($params, array('offset' => ($current_page-2) * $results, 'results' => $results));
 			$href = add_query_arg($href_params, $tpname);
-			// $prev ="\t\t<a href=\"$tpname".$awpcpoffset_set.(($current_page-2) * $results)."&results=$results&".array2qs($params)."\">&laquo;</a>&nbsp;";
 		}
 		$prev = sprintf('<a href="%s">&laquo;</a>&nbsp;', esc_attr($href));
 	} else {
@@ -421,7 +414,6 @@ function create_pager($from,$where,$offset,$results,$tpname) {
 		$href_params = array_merge($params, array('offset' => $current_page * $results, 'results' => $results));
 		$href = add_query_arg($href_params, $tpname);
 		$next = sprintf('<a href="%s">&raquo;</a>&nbsp;', esc_attr($href));
-		// $next = "<a href=\"$tpname$awpcpoffset_set".($current_page * $results)."&results=$results&".array2qs($params)."\">&raquo;</a>&nbsp;\n";
 	} else {
 		$next = '';
 	}
@@ -451,6 +443,24 @@ function create_pager($from,$where,$offset,$results,$tpname) {
 	$form.="</table>\n";
 	$form.="</form>\n";
 	return $form;
+}
+
+/**
+ * @since next-release
+ */
+function awpcp_pagination_options( $selected=10 ) {
+	$options = array( 0, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 500 );
+
+	for ( $i = count( $options ) - 1; $i >= 0; $i-- ) {
+		if ( $options[ $i ] < $selected ) {
+			array_splice( $options, $i + 1, 0, $selected );
+			break;
+		}
+	}
+
+	$options_without_zero = array_slice( $options, 1 );
+
+	return array_combine( $options_without_zero , $options_without_zero );
 }
 
 function _gdinfo() {
