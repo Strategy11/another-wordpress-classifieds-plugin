@@ -164,7 +164,14 @@ class AWPCP_Pages {
     public function category_shortcode($attrs) {
         global $wpdb;
 
-        extract(shortcode_atts(array('id' => 0, 'children' => true), $attrs));
+        $default = array( 'id' => 0, 'children' => true, 'items_per_page' => 10 );
+        extract( shortcode_atts( $default, $attrs ) );
+
+        // request param overrides shortcode param
+        $items_per_page = awpcp_request_param( 'results', $items_per_page );
+        // set the number of items per page, to make sure both the shortcode handler
+        // and the awpcp_display_ads function are using the same value
+        $_REQUEST['results'] = $_GET['results'] = $items_per_page;
 
         $category = $id > 0 ? AWPCP_Category::find_by_id($id) : null;
         $children = awpcp_parse_bool($children);
@@ -193,7 +200,9 @@ class AWPCP_Pages {
         // required so awpcp_display_ads shows the name of the current category
         $_REQUEST['category_id'] = $category->id;
 
-        return awpcp_display_ads($where, '', '', $order, 'cat', $before);
+        $base_url = sprintf( 'custom:%s', awpcp_current_url() );
+
+        return awpcp_display_ads( $where, '', '', $order, $base_url, $before );
     }
 
     /* Ajax handlers */

@@ -320,7 +320,16 @@ function create_pager($from,$where,$offset,$results,$tpname) {
 	$radius=5;
 	global $accepted_results_per_page;
 
-	$accepted_results_per_page = array( 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 500 );
+	$accepted_results_per_page = array( 0, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 500 );
+
+	for ( $i = count( $accepted_results_per_page ) - 1; $i >= 0; $i-- ) {
+		if ( $accepted_results_per_page[ $i ] < $results ) {
+			array_splice( $accepted_results_per_page, $i + 1, 0, $results );
+			break;
+		}
+	}
+
+	$accepted_results_per_page = array_slice( $accepted_results_per_page, 1 );
 	$accepted_results_per_page = array_combine( $accepted_results_per_page , $accepted_results_per_page );
 
 	// // The code below removes query parameters from URL when seofriendlyurls are ON.

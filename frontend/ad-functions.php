@@ -615,6 +615,8 @@ function awpcp_display_ads($where, $byl, $hidepager, $grouporderby, $adorcat, $b
 				$tpname = get_permalink($awpcp_browsecats_pageid);
 			} elseif ($adorcat == 'search') {
 				$tpname = get_permalink($searchadspageid);
+			} elseif ( preg_match( '/^custom:/', $adorcat ) ) {
+				$tpname = str_replace( 'custom:', '', $adorcat );
 			} else {
 				$tpname = get_permalink($browseadspageid);
 			}
