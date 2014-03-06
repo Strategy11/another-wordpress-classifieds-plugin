@@ -544,7 +544,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             'ad_state' => 'state',
         );
 
-        $info['ad_contact_name'] = trim($data->first_name . " " . $data->last_name);
+        $info = array();
 
         foreach ($translations as $field => $keys) {
             foreach ( (array) $keys as $key ) {
@@ -554,6 +554,10 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
                     break;
                 }
             }
+        }
+
+        if ( empty( $info['ad_contact_name'] ) ) {
+            $info['ad_contact_name'] = trim( $data->first_name . " " . $data->last_name );
         }
 
         $info['regions'] = array();
