@@ -315,7 +315,7 @@ function create_pager($from,$where,$offset,$results,$tpname) {
 
 	$totalrows=mysql_result($res,0,0);
 
-	return awpcp_create_pager( $totalrows, $offset, $results, $tpname );
+	return _create_pager( $totalrows, $offset, $results, $tpname );
 }
 
 /**
