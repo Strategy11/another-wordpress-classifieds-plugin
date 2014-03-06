@@ -1,3 +1,4 @@
+<?php if ( count( $menu_items ) > 0 ): ?>
 <nav class="awpcp-navigation awpcp-menu-items-container clearfix">
     <h1 class="awpcp-menu-toggle"><?php _e( 'Classifieds Menu', 'AWPCP' ); ?></h1>
     <div class="awpcp-nav-menu">
@@ -8,3 +9,4 @@
         </ul>
     </div>
 </nav>
+<?php endif; ?>
