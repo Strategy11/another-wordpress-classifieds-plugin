@@ -25,7 +25,7 @@ class AWPCP_AdminUpgrade extends AWPCP_AdminPage {
             ),
         );
 
-        add_action('wp_ajax_awpcp-import-payment-transaction', array($this, 'ajax_import_payment_transactions'));
+        add_action( 'wp_ajax_awpcp-import-payment-transactions', array( $this, 'ajax_import_payment_transactions' ) );
         add_action('wp_ajax_awpcp-migrate-regions-information', array($this, 'ajax_migrate_regions_information'));
         add_action( 'wp_ajax_awpcp-migrate-media-information', array( $this, 'ajax_migrate_media_information' ) );
     }
