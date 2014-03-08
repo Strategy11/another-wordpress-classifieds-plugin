@@ -249,14 +249,7 @@ class AWPCP {
 		$this->settings = AWPCP_Settings_API::instance();
 		$this->js = AWPCP_JavaScript::instance();
 
-		// l10n MO file can be in the top level directory or inside the languages
-		// directory. A file inside the languages directory is prefered.
-		if ($this->settings->get_option('activatelanguages')) {
-			$basename = dirname(plugin_basename(__FILE__));
-			if (!load_plugin_textdomain('AWPCP', false, $basename . '/languages/')) {
-				load_plugin_textdomain('AWPCP', false, $basename);
-			}
-		}
+		awpcp_load_plugin_textdomain( __FILE__, 'AWPCP' );
 
 		// register settings, this will define default values for settings
 		// that have never been stored
