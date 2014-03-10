@@ -446,7 +446,7 @@ function _create_pager( $item_count, $offset, $results, $tpname ) {
 }
 
 /**
- * @since next-release
+ * @since 3.2.1
  */
 function awpcp_pagination_options( $selected=10 ) {
 	$options = array( 0, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 500 );

@@ -2313,7 +2313,7 @@ function awpcp_print_inline_javascript() {
 }
 
 /**
- * @since next-release
+ * @since 3.2.1
  */
 function awpcp_load_plugin_textdomain( $__file__, $text_domain ) {
 	if ( get_awpcp_option( 'activatelanguages' ) ) {

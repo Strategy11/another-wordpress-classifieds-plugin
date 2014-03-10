@@ -1202,7 +1202,7 @@ function awpcp_query_vars($query_vars) {
 }
 
 /**
- * @since next-release
+ * @since 3.2.1
  */
 function awpcp_rel_canonical_url() {
 	global $wp_the_query;
@@ -1234,7 +1234,7 @@ function awpcp_rel_canonical_url() {
  * Set canonical URL to the Ad URL when in viewing on of AWPCP Ads.
  *
  * @since unknown
- * @since next-release	logic moved to awpcp_rel_canonical_url()
+ * @since 3.2.1	logic moved to awpcp_rel_canonical_url()
  */
 function awpcp_rel_canonical() {
 	if ( $url = awpcp_rel_canonical_url() ) {
