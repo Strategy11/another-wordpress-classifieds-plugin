@@ -722,7 +722,11 @@ class AWPCP_Settings_API {
 			$value = strip_slashes_recursive($value);
 		}
 
-		return trim( $value );
+        if ( ! is_array( $value ) ) {
+            $value = trim( $value );
+        }
+
+		return $value;
 	}
 
 	public function get_option_default_value($name) {
