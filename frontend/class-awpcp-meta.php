@@ -63,7 +63,7 @@ class AWPCP_Meta {
         }
 
         if ( apply_filters( 'awpcp-should-generate-single-post-title', true, $this ) ) {
-            add_action( 'single_post_title', array( $this, 'page_title' ) );
+            add_action( 'single_post_title', array( $this, 'page_title' ), 10, 2 );
         }
 
         // SEO Ultimate
