@@ -504,8 +504,9 @@ function awpcp_display_classifieds_category_item($category, $class='toplevelitem
 		$ads_in_cat = '';
 	}
 
-	if (isset($category_icon) && !empty($category_icon)) {
-		$cat_icon = "<img class=\"categoryicon\" src=\"$awpcp_imagesurl/caticons/$category_icon\" alt=\"$category[1]\" border=\"0\"/>";
+	if ( isset( $category_icon ) && !empty( $category_icon ) && function_exists( 'awpcp_category_icon_url' ) ) {
+        $cat_icon_url = awpcp_category_icon_url( $category_icon );
+		$cat_icon = "<img class=\"categoryicon\" src=\"$cat_icon_url\" alt=\"$category[1]\" border=\"0\"/>";
 		$cat_icon = sprintf('<a href="%s">%s</a>', esc_url($url_browsecats), $cat_icon);
 	} else {
 		$cat_icon = '';
@@ -528,8 +529,8 @@ function awpcp_render_category_item($category, $args=array()) {
 
     if ( function_exists( 'get_category_icon' ) ) {
         $category_icon = get_category_icon( $category->id );
-        if ( ! empty( $category_icon ) ) {
-            $icon_url = "$awpcp_imagesurl/caticons/$category_icon";
+        if ( ! empty( $category_icon ) && function_exists( 'awpcp_category_icon_url' ) ) {
+            $icon_url = awpcp_category_icon_url( $category_icon );
             $image = '<img class="categoryicon" src="%s" alt="%s" border="0" />';
             $image = sprintf( $image, $icon_url, esc_attr( $category->name ) );
             $icon = sprintf( '<a href="%s">%s</a>', esc_url( $url_browsecats ), $image );
