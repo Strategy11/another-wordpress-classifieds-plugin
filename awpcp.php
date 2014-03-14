@@ -36,49 +36,6 @@ define( 'AWPCP_BASENAME', basename( dirname( __FILE__ ) ) );
 define( 'AWPCP_DIR', rtrim( plugin_dir_path( __FILE__ ), '/' ) );
 define( 'AWPCP_URL', rtrim( plugin_dir_url( __FILE__ ), '/' ) );
 
-// TODO: Why do we need a custom error handler?
-if (!function_exists('AWPCPErrorHandler')) {
-
-	/**
-	 * Set custom error handler functions.
-	 */
-	function AWPCPErrorHandler($errno, $errstr, $errfile, $errline){
-		$output = '';
-		switch ($errno) {
-			case E_USER_ERROR:
-				if ($errstr == "(SQL)"){
-					// handling an sql error
-					$output .= "<b>AWPCP SQL Error</b> Errno: [$errno] SQLError:" . SQLMESSAGE . "<br />\n";
-					$output .= "Query : " . SQLQUERY . "<br />\n";
-					$output .= "Called by line " . SQLERRORLINE . " in file " . SQLERRORFILE . ", error in ".$errfile." at line ".$errline;
-					$output .= ", PHP " . PHP_VERSION . " (" . PHP_OS . ")<br />\n";
-					$output .= "Aborting...<br />\n";
-				} else {
-					$output .= "<b>AWPCP PHP Error</b> [$errno] $errstr<br />\n";
-					$output .= "  Fatal error called by line $errline in file $errfile, error in ".$errfile." at line ".$errline;
-					$output .= ", PHP " . PHP_VERSION . " (" . PHP_OS . ")<br />\n";
-					$output .= "Aborting...<br />\n";
-				}
-				//Echo OK here:
-				echo $output;
-				exit(1);
-				break;
-
-			case E_USER_WARNING:
-			case E_USER_NOTICE:
-		}
-		/* true=Don't execute PHP internal error handler */
-		return true;
-	}
-
-}
-
-if ( get_option( 'awpcp-debug', false ) ) {
-	// let's see some errors
-} else {
-	set_error_handler("AWPCPErrorHandler");
-}
-
 global $awpcp;
 
 global $awpcp_plugin_data;
@@ -150,6 +107,7 @@ require_once(AWPCP_DIR . "/includes/models/payment-transaction.php");
 
 require_once( AWPCP_DIR . "/includes/db/class-database-column-creator.php" );
 
+require_once( AWPCP_DIR . "/includes/views/class-ajax-handler.php" );
 require_once( AWPCP_DIR . "/includes/views/class-base-page.php" );
 require_once( AWPCP_DIR . "/includes/views/class-step-decorator.php" );
 require_once( AWPCP_DIR . "/includes/views/class-payment-step-decorator.php" );
