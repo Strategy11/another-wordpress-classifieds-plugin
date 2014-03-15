@@ -137,22 +137,24 @@ function awpcp_strptime_replacement( $date, $format ) {
         // usw..
     );
 
-    $rexep = "#" . strtr( preg_quote( $format ), $masks ) . "#";
-    if ( ! preg_match( $rexep, $date, $out ) )
+    $regexp = "#" . strtr( preg_quote( $format ), $masks ) . "#";
+    if ( ! preg_match( $regexp, $date, $out ) ) {
         return false;
+    }
 
-    $unparsed = preg_replace( $rexep, '', $date );
+    $unparsed = preg_replace( $regexp, '', $date );
 
-    if ( strlen( $out['y'] ) )
+    if ( isset( $out['y'] ) && strlen( $out['y'] ) ) {
     	$out['Y'] = ( $out['y'] > 69 ? 1900 : 2000 ) + $out['y'];
+    }
 
     $ret = array(
-        'tm_sec' => (int) $out['S'],
-        'tm_min' => (int) $out['M'],
-        'tm_hour' => (int) $out['H'],
-        'tm_mday' => (int) $out['d'],
-        'tm_mon' => $out['m'] ? $out['m'] - 1 : 0,
-        'tm_year' => $out['Y'] > 1900 ? $out['Y'] - 1900 : 0,
+        'tm_sec' => (int) awpcp_array_data( 'S', 0, $out),
+        'tm_min' => (int) awpcp_array_data( 'M', 0, $out),
+        'tm_hour' => (int) awpcp_array_data( 'H', 0, $out),
+        'tm_mday' => (int) awpcp_array_data( 'd', 0, $out),
+        'tm_mon' => awpcp_array_data( 'm', 0, $out) ? awpcp_array_data( 'm', 0, $out) - 1 : 0,
+        'tm_year' => awpcp_array_data( 'Y', 0, $out) > 1900 ? awpcp_array_data( 'Y', 0, $out) - 1900 : 0,
         'unparsed' => $unparsed,
     );
 
