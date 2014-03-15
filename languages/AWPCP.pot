@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2014-03-08 02:54:58+00:00\n"
+"POT-Creation-Date: 2014-03-15 01:37:00+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -138,7 +138,7 @@ msgstr ""
 msgid "Categories"
 msgstr ""
 
-#: admin/admin-panel-fees-table.php:116 awpcp.php:487
+#: admin/admin-panel-fees-table.php:116 awpcp.php:445
 msgid "Featured Ads"
 msgstr ""
 
@@ -352,7 +352,7 @@ msgstr ""
 msgid "Access Key"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:341 frontend/shortcode.php:858
+#: admin/admin-panel-listings-table.php:341 frontend/shortcode.php:859
 msgid "Disabled"
 msgstr ""
 
@@ -651,7 +651,7 @@ msgstr ""
 msgid "Manage Extra Fields"
 msgstr ""
 
-#: admin/admin-panel.php:276 awpcp.php:480
+#: admin/admin-panel.php:276 awpcp.php:438
 msgid "Extra Fields"
 msgstr ""
 
@@ -1963,7 +1963,7 @@ msgid "State"
 msgstr ""
 
 #: admin/templates/user-panel-profile-fields.tpl.php:51
-#: frontend/templates/payments-billing-form.tpl.php:101 functions.php:666
+#: frontend/templates/payments-billing-form.tpl.php:101 functions.php:668
 msgid "City"
 msgstr ""
 
@@ -1995,91 +1995,91 @@ msgstr ""
 msgid "Manage Ad Listings"
 msgstr ""
 
-#: awpcp.php:402
+#: awpcp.php:360
 msgid "AWPCP"
 msgstr ""
 
-#: awpcp.php:424
+#: awpcp.php:382
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
 msgstr ""
 
-#: awpcp.php:425
+#: awpcp.php:383
 msgid "Warning"
 msgstr ""
 
-#: awpcp.php:445
+#: awpcp.php:403
 msgid "Attachments"
 msgstr ""
 
-#: awpcp.php:452
+#: awpcp.php:410
 msgid "Authorize.Net"
 msgstr ""
 
-#: awpcp.php:459
+#: awpcp.php:417
 msgid "Category Icons"
 msgstr ""
 
-#: awpcp.php:466
+#: awpcp.php:424
 msgid "Comments & Ratings"
 msgstr ""
 
-#: awpcp.php:473
+#: awpcp.php:431
 msgid "Coupons/Discount"
 msgstr ""
 
-#: awpcp.php:494
+#: awpcp.php:452
 msgid "Fee per Category"
 msgstr ""
 
-#: awpcp.php:501
+#: awpcp.php:459
 msgid "Google Checkout"
 msgstr ""
 
-#: awpcp.php:508
+#: awpcp.php:466
 msgid "PayPal Pro"
 msgstr ""
 
-#: awpcp.php:515
+#: awpcp.php:473
 msgid "Regions Control"
 msgstr ""
 
-#: awpcp.php:522
+#: awpcp.php:480
 msgid "RSS"
 msgstr ""
 
-#: awpcp.php:529
+#: awpcp.php:487
 msgid "Subscriptions"
 msgstr ""
 
-#: awpcp.php:536
+#: awpcp.php:494
 msgid "XML Sitemap"
 msgstr ""
 
-#: awpcp.php:583
+#: awpcp.php:541
 msgid ""
 "The %1$s module you have installed is outdated and not compatible with this "
 "version of AWPCP. Please get %1$s %2$s or newer."
 msgstr ""
 
-#: awpcp.php:709
+#: awpcp.php:667
 msgid "This field is required."
 msgstr ""
 
-#: awpcp.php:710 frontend/page-edit-ad.php:111 frontend/page-edit-ad.php:384
+#: awpcp.php:668 frontend/page-edit-ad.php:111 frontend/page-edit-ad.php:384
 msgid "Please enter a valid email address."
 msgstr ""
 
-#: awpcp.php:711
+#: awpcp.php:669
 msgid "Please enter a valid URL."
 msgstr ""
 
-#: awpcp.php:712
+#: awpcp.php:670
 msgid "Please enter a valid number."
 msgstr ""
 
-#: awpcp.php:713
+#: awpcp.php:671
 msgid "Please enter a valid amount."
 msgstr ""
 
@@ -2161,7 +2161,7 @@ msgstr ""
 msgid "Max image size"
 msgstr ""
 
-#: frontend/ad-functions.php:87 frontend/shortcode.php:822
+#: frontend/ad-functions.php:87 frontend/shortcode.php:823
 msgid ""
 "Image approval is in effect so any new images you upload will not be visible "
 "to viewers until an admin has approved it"
@@ -2880,45 +2880,45 @@ msgstr ""
 msgid "You currently have no classifieds"
 msgstr ""
 
-#: frontend/shortcode.php:793
+#: frontend/shortcode.php:794
 msgid "Manage your Ad images"
 msgstr ""
 
-#: frontend/shortcode.php:796
+#: frontend/shortcode.php:797
 msgid ""
 "There has been a problem encountered. The system is unable to continue "
 "processing the task in progress. Please start over and if you encounter the "
 "problem again, please contact a system administrator."
 msgstr ""
 
-#: frontend/shortcode.php:810
+#: frontend/shortcode.php:811
 msgid ""
 "Your images are displayed below. The total number of images you are allowed "
 "is"
 msgstr ""
 
-#: frontend/shortcode.php:815
+#: frontend/shortcode.php:816
 msgid ""
 "If you want to change your images you will first need to delete the current "
 "images"
 msgstr ""
 
-#: frontend/shortcode.php:846
+#: frontend/shortcode.php:847
 msgctxt "edit ad"
 msgid "Delete"
 msgstr ""
 
-#: frontend/shortcode.php:852
+#: frontend/shortcode.php:853
 msgctxt "edit ad"
 msgid "Enable"
 msgstr ""
 
-#: frontend/shortcode.php:855
+#: frontend/shortcode.php:856
 msgctxt "edit ad"
 msgid "Disable"
 msgstr ""
 
-#: frontend/shortcode.php:877
+#: frontend/shortcode.php:878
 msgid ""
 "You do not currently have any images uploaded. Use the upload form below to "
 "upload your images. If you do not wish to upload any images simply click the "
@@ -3498,7 +3498,7 @@ msgid ""
 "payment."
 msgstr ""
 
-#: frontend/templates/payments-billing-form.tpl.php:6 functions.php:646
+#: frontend/templates/payments-billing-form.tpl.php:6 functions.php:648
 msgid "Country"
 msgstr ""
 
@@ -3766,7 +3766,7 @@ msgid "Search by Country"
 msgstr ""
 
 #: frontend/widget-search.php:116 frontend/widget-search.php:131
-#: functions.php:763
+#: functions.php:765
 msgid "Select Option"
 msgstr ""
 
@@ -3782,121 +3782,121 @@ msgstr ""
 msgid "&hellip;"
 msgstr ""
 
-#: functions.php:588
+#: functions.php:590
 msgid "None"
 msgstr ""
 
-#: functions.php:599
+#: functions.php:601
 msgctxt "comma separated list of things"
 msgid "%s and %d more."
 msgstr ""
 
-#: functions.php:647
+#: functions.php:649
 msgid "separate countries by commas"
 msgstr ""
 
-#: functions.php:656
+#: functions.php:658
 msgid "State/Province"
 msgstr ""
 
-#: functions.php:657
+#: functions.php:659
 msgid "separate states by commas"
 msgstr ""
 
-#: functions.php:667
+#: functions.php:669
 msgid "separate cities by commas"
 msgstr ""
 
-#: functions.php:676
+#: functions.php:678
 msgid "County/Village/Other"
 msgstr ""
 
-#: functions.php:677
+#: functions.php:679
 msgid "separate counties by commas"
 msgstr ""
 
-#: functions.php:1038
+#: functions.php:1040
 msgid "-- Choose a Country --"
 msgstr ""
 
-#: functions.php:1679
+#: functions.php:1681
 msgctxt "default blog title"
 msgid "Classifieds Website"
 msgstr ""
 
-#: functions.php:2011
+#: functions.php:2013
 msgid ""
 "This version of AWPCP %1$s module is not compatible with AWPCP version %2$s. "
 "Please get AWPCP %1$s %3$s or newer!"
 msgstr ""
 
-#: functions.php:2013
+#: functions.php:2015
 msgid "Error"
 msgstr ""
 
-#: functions.php:2032
+#: functions.php:2034
 msgid "No errors."
 msgstr ""
 
-#: functions.php:2033
+#: functions.php:2035
 msgid "The file is larger than upload_max_filesize."
 msgstr ""
 
-#: functions.php:2034
+#: functions.php:2036
 msgid "The file is larger than form MAX_FILE_SIZE."
 msgstr ""
 
-#: functions.php:2035
+#: functions.php:2037
 msgid "The file was only partially uploaded."
 msgstr ""
 
-#: functions.php:2036
+#: functions.php:2038
 msgid "No file was uploaded."
 msgstr ""
 
-#: functions.php:2037
+#: functions.php:2039
 msgid "Missing temporary directory."
 msgstr ""
 
-#: functions.php:2038
+#: functions.php:2040
 msgid "Can't write file to disk."
 msgstr ""
 
-#: functions.php:2039
+#: functions.php:2041
 msgid "The file upload was stopped by extension."
 msgstr ""
 
-#: functions.php:2189
+#: functions.php:2191
 msgid "Your Ad \"%s\" has been approved"
 msgstr ""
 
-#: functions.php:2205
+#: functions.php:2207
 msgid "Your Ad \"%s\" has been successfully updated"
 msgstr ""
 
-#: functions.php:2226
+#: functions.php:2228
 msgid "Images on Ad \"%s\" are awaiting approval"
 msgstr ""
 
-#: functions.php:2228
+#: functions.php:2230
 msgid ""
 "Images on Ad \"%s\" are awaiting approval. You can approve the images going "
 "to the Manage Images sections for that Ad and clicking the \"Enable\" button "
 "below each image. Click here to continue: %s."
 msgstr ""
 
-#: functions.php:2231
+#: functions.php:2233
 msgid "The Ad \"%s\" is awaiting approval"
 msgstr ""
 
-#: functions.php:2233
+#: functions.php:2235
 msgid ""
 "The Ad \"%s\" is awaiting approval. You can approve the Ad going to the "
 "Manage Listings section and clicking the \"Enable\" action shown on top. "
 "Click here to continue: %s."
 msgstr ""
 
-#: functions.php:2240
+#: functions.php:2242
 msgid ""
 "Additionally, You can approve the images going to the Manage Images sections "
 "for that Ad and clicking the \"Enable\" button below each image. Click here "
@@ -6440,84 +6440,84 @@ msgstr ""
 msgid "SMTP password (if emails not processing normally)."
 msgstr ""
 
-#: includes/settings-api.php:802
+#: includes/settings-api.php:814
 msgid ""
 "You cannot enable Akismet SPAM control because you do not have Akismet "
 "installed/activated"
 msgstr ""
 
-#: includes/settings-api.php:805
+#: includes/settings-api.php:817
 msgid ""
 "You cannot enable Akismet SPAM control because you have not configured "
 "Akismet properly"
 msgstr ""
 
-#: includes/settings-api.php:817
+#: includes/settings-api.php:829
 msgid ""
 "reCAPTCHA can't be used because the public key and private key settings are "
 "required for reCAPTCHA to work properly."
 msgstr ""
 
-#: includes/settings-api.php:819
+#: includes/settings-api.php:831
 msgid ""
 "reCAPTCHA can't be used because the public key setting is required for "
 "reCAPTCHA to work properly."
 msgstr ""
 
-#: includes/settings-api.php:821
+#: includes/settings-api.php:833
 msgid ""
 "reCAPTCHA can't be used because the private key setting is required for "
 "reCAPTCHA to work properly."
 msgstr ""
 
-#: includes/settings-api.php:830
+#: includes/settings-api.php:842
 msgid ""
 "Require Registration setting was enabled automatically because you activated "
 "the User Ad Management panel."
 msgstr ""
 
-#: includes/settings-api.php:845
+#: includes/settings-api.php:857
 msgid ""
 "User Ad Management panel was automatically deactivated because you disabled "
 "Require Registration setting."
 msgstr ""
 
-#: includes/settings-api.php:850
+#: includes/settings-api.php:862
 msgid ""
 "Credit System was automatically disabled because you disabled Require "
 "Registration setting."
 msgstr ""
 
-#: includes/settings-api.php:871 includes/settings-api.php:883
+#: includes/settings-api.php:883 includes/settings-api.php:895
 msgid ""
 "There is a problem with the currency code you have entered. It does not "
 "match any of the codes in the list of available currencies provided by "
 "PayPal."
 msgstr ""
 
-#: includes/settings-api.php:872 includes/settings-api.php:884
+#: includes/settings-api.php:884 includes/settings-api.php:896
 msgid "The available currency codes are"
 msgstr ""
 
-#: includes/settings-api.php:893
+#: includes/settings-api.php:905
 msgid ""
 "Require Registration setting was enabled automatically because you activated "
 "the Credit System."
 msgstr ""
 
-#: includes/settings-api.php:898
+#: includes/settings-api.php:910
 msgid ""
 "Charge Listing Fee setting was enabled automatically because you activated "
 "the Credit System."
 msgstr ""
 
-#: includes/settings-api.php:904
+#: includes/settings-api.php:916
 msgid ""
 "Credit System was disabled automatically because you disabled Charge Listing "
 "Fee."
 msgstr ""
 
-#: includes/settings-api.php:1090
+#: includes/settings-api.php:1102
 msgid "Documentation on date and time formatting"
 msgstr ""
 
