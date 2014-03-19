@@ -2092,9 +2092,9 @@ function awpcp_table_exists($table) {
  */
 function awpcp_column_exists($table, $column) {
     global $wpdb;
-    $wpdb->hide_errors();
+    $suppress_errors = $wpdb->suppress_errors();
     $result = $wpdb->query("SELECT `$column` FROM $table");
-    $wpdb->show_errors();
+    $wpdb->suppress_errors( $suppress_errors );
     return $result !== false;
 }
 
