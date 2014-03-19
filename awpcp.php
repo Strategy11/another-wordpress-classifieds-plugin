@@ -142,6 +142,7 @@ require_once( AWPCP_DIR . "/includes/views/admin/account-balance/class-account-b
 require_once( AWPCP_DIR . "/includes/settings/class-credit-plans-settings.php" );
 
 require_once( AWPCP_DIR . "/includes/class-awpcp-listings-api.php" );
+require_once( AWPCP_DIR . "/includes/class-listing-payment-transaction-handler.php" );
 require_once( AWPCP_DIR . "/includes/class-media-api.php" );
 require_once(AWPCP_DIR . "/includes/payments-api.php");
 require_once(AWPCP_DIR . "/includes/regions-api.php");
@@ -290,6 +291,10 @@ class AWPCP {
 			add_filter( 'awpcp-should-generate-opengraph-tags', array( $yoast_wordpress_seo_plugin_integration, 'should_generate_opengraph_tags' ), 10, 2 );
 			add_filter( 'awpcp-should-generate-rel-canonical', array( $yoast_wordpress_seo_plugin_integration, 'should_generate_rel_canonical' ), 10, 2 );
 			add_filter( 'awpcp-should-generate-title', array( $yoast_wordpress_seo_plugin_integration, 'should_generate_title' ), 10, 2 );
+
+			$listing_payment_transaction_handler = awpcp_listing_payment_transaction_handler();
+            add_action( 'awpcp-transaction-status-updated', array( $listing_payment_transaction_handler, 'transaction_status_updated' ), 10, 2 );
+			add_filter( 'awpcp-process-payment-transaction', array( $listing_payment_transaction_handler, 'process_payment_transaction' ) );
 		}
 
 		// Ad metadata integration.

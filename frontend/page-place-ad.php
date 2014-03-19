@@ -1344,8 +1344,6 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
                 return $this->render('content', join(',', array_map('awpcp_print_error', $errors)));
             }
 
-            awpcp_listings_api()->consolidate_new_ad( $ad, $transaction );
-
             $transaction->save();
             $ad->save();
         }
