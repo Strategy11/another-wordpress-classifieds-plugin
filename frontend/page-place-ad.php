@@ -1345,8 +1345,11 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             }
 
             $transaction->save();
-            $ad->save();
         }
+
+        // reload Ad, since modifications were probably made as part of the
+        // transaction handling workflow
+        $ad = AWPCP_Ad::find_by_id( $transaction->get( 'ad-id', 0 ) );
 
         $params = array(
             'edit' => false,

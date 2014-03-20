@@ -291,7 +291,10 @@ class AWPCP {
 			add_filter( 'awpcp-should-generate-opengraph-tags', array( $yoast_wordpress_seo_plugin_integration, 'should_generate_opengraph_tags' ), 10, 2 );
 			add_filter( 'awpcp-should-generate-rel-canonical', array( $yoast_wordpress_seo_plugin_integration, 'should_generate_rel_canonical' ), 10, 2 );
 			add_filter( 'awpcp-should-generate-title', array( $yoast_wordpress_seo_plugin_integration, 'should_generate_title' ), 10, 2 );
+		}
 
+		if ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) {
+			// load resources required both in front end and admin screens.
 			$listing_payment_transaction_handler = awpcp_listing_payment_transaction_handler();
             add_action( 'awpcp-transaction-status-updated', array( $listing_payment_transaction_handler, 'transaction_status_updated' ), 10, 2 );
 			add_filter( 'awpcp-process-payment-transaction', array( $listing_payment_transaction_handler, 'process_payment_transaction' ) );
@@ -337,7 +340,6 @@ class AWPCP {
 		add_action('awpcp-register-payment-methods', array($this, 'register_payment_methods'));
 
         add_action( 'awpcp-process-payment-transaction', array( $this, 'process_transaction_update_payment_status' ) );
-        add_action( 'awpcp-process-payment-transaction', array( $this, 'process_transaction_update_ad_payment_status' ) );
         add_action( 'awpcp-process-payment-transaction', array( $this, 'process_transaction_notify_wp_affiliate_platform' ) );
 
         add_action( 'wp_ajax_awpcp-get-regions-options', array( $this, 'get_regions_options' ) );
@@ -722,27 +724,6 @@ class AWPCP {
 	 * Payment Transaction Integration
 	 */
 
-    /**
-     * Update Ad payment status based on the transaction payment
-     * status.
-     *
-     * The purpose of this method is to handle payment notifications sent
-     * by the payment gateway after the Place Ad operation has been completed.
-     *
-     * @since 2.2.2
-     */
-    private function update_ad_payment_status($transaction) {
-        $ad = AWPCP_Ad::find_by_id($transaction->get('ad-id'));
-
-        if (is_null($ad)) return;
-
-        if ($transaction->payment_is_completed() || $transaction->payment_is_pending() || $transaction->payment_is_failed()) {
-            $ad->payment_status = $transaction->payment_status;
-        }
-
-        $ad->save();
-    }
-
 	/**
 	 * Set payment status to Not Required in requiredtransactions made by
 	 * admin users.
@@ -758,33 +739,6 @@ class AWPCP {
                     $transaction->payment_status = AWPCP_Payment_Transaction::PAYMENT_STATUS_NOT_REQUIRED;
                 break;
 		}
-	}
-
-	/**
-     * Update Ad payment status based on the transaction payment
-     * status.
-     *
-     * The purpose of this method is to handle payment notifications sent
-     * by the payment gateway after the Place Ad operation has been completed.
-     *
-	 * @since 2.2.2
-	 */
-	public function process_transaction_update_ad_payment_status($transaction) {
-        if (!in_array($transaction->get('context'), array('renew-ad', 'place-ad')));
-            return;
-
-        switch ($transaction->get_status()) {
-            case AWPCP_Payment_Transaction::STATUS_NEW:
-                break;
-
-            case AWPCP_Payment_Transaction::STATUS_OPEN:
-                break;
-
-            case AWPCP_Payment_Transaction::STATUS_PAYMENT_COMPLETED:
-            case AWPCP_Payment_Transaction::STATUS_COMPLETED:
-                $this->update_ad_payment_status($transaction);
-                break;
-        }
 	}
 
 	/**
