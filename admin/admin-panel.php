@@ -1400,16 +1400,17 @@ function awpcp_handle_admin_requests() {
 		$aeaction=clean_field($_REQUEST['aeaction']);
 
 		if ( $aeaction == 'newcategory' ) {
-			global $wpdb;
+			$name = stripslashes_deep( awpcp_request_param( 'category_name' ) );
+			$parent = intval( awpcp_request_param( 'category_parent_id' ) );
+			$order = intval( awpcp_request_param( 'category_order' ) );
 
-			$data = array(
-				'category_name' => stripslashes_deep( awpcp_request_param( 'category_name' ) ),
-				'category_parent_id' => intval( awpcp_request_param( 'category_parent_id' ) ),
-				'category_order' => intval( awpcp_request_param( 'category_order' ) )
-			);
+			$category = new AWPCP_Category( null, $name, null, $order, $parent );
 
-			if ( $wpdb->insert( AWPCP_TABLE_CATEGORIES, $data ) ) {
-				$themessagetoprint = __( "The new category has been successfully added.", "AWPCP" );
+			try {
+				awpcp_categories_collection()->save( $category );
+				$themessagetoprint = __( 'The new category was successfully added.', 'AWPCP' );
+			} catch ( AWPCP_Exception $e ) {
+				$themessagetoprint = $e->getMessage();
 			}
 		}
 		elseif ($aeaction == 'delete')
@@ -1491,18 +1492,17 @@ function awpcp_handle_admin_requests() {
 		}
 		elseif ($aeaction == 'edit')
 		{
+			$category = AWPCP_Category::find_by_id( $category_id );
+			$category->name = clean_field( awpcp_request_param( 'category_name' ) );
+			$category->parent = intval( clean_field( awpcp_request_param( 'category_parent_id' ) ) );
+			$category->order = intval( awpcp_request_param( 'category_order', 0 ) );
 
-			$category_name = clean_field( awpcp_request_param( 'category_name' ) );
-			$category_parent_id = clean_field( awpcp_request_param( 'category_parent_id' ) );
-			$category_order = intval( awpcp_request_param( 'category_order', 0 ) );
-
-			$query="UPDATE ".$tbl_ad_categories." SET category_name='$category_name',category_parent_id='$category_parent_id',category_order='$category_order' WHERE category_id='$category_id'";
-			awpcp_query($query, __LINE__);
-
-			$query="UPDATE ".$tbl_ads." SET ad_category_parent_id='$category_parent_id' WHERE ad_category_id='$category_id'";
-			awpcp_query($query, __LINE__);
-
-			$themessagetoprint=__("Your category changes have been saved.","AWPCP");
+			try {
+				awpcp_categories_collection()->save( $category );
+				$themessagetoprint = __( 'Your category changes have been saved.', 'AWPCP' );
+			} catch ( AWPCP_Exception $e ) {
+				$themessagetoprint = $e->getMessage();
+			}
 		}
 		else
 		{
