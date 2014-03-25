@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: AWPCP\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2014-03-21 23:00:02+00:00\n"
+"POT-Creation-Date: 2014-03-25 16:49:45+00:00\n"
 "PO-Revision-Date: 2014-03-07 21:42-0500\n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: \n"
@@ -6260,7 +6260,7 @@ msgid ""
 msgstr ""
 
 #: includes/payments-api.php:462
-msgid "You currently have %d in credit in your account."
+msgid "You currently have %s in credit in your account."
 msgstr ""
 
 #: frontend/shortcode.php:293
