@@ -105,6 +105,7 @@ class AWPCP_Installer {
             `private` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
             PRIMARY KEY  (`adterm_id`)
         ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;";
+
         $this->create_payments_table =
         'CREATE TABLE IF NOT EXISTS ' . AWPCP_TABLE_PAYMENTS . " (
             `id` VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
@@ -163,14 +164,6 @@ class AWPCP_Installer {
             AWPCP_Installer::$instance = new AWPCP_Installer();
         }
         return AWPCP_Installer::$instance;
-    }
-
-    public function column_exists($table, $column) {
-        global $wpdb;
-        $wpdb->hide_errors();
-        $result = $wpdb->query("SELECT `$column` FROM $table");
-        $wpdb->show_errors();
-        return $result !== false;
     }
 
     public function activate() {
@@ -265,22 +258,34 @@ class AWPCP_Installer {
 
 
         // insert deafult category
-        $data = array('category_id' => 1,
-                      'category_parent_id' => 0,
-                      'category_name' => __('General', 'AWPCP'),
-                      'category_order' => 0);
-        $wpdb->insert(AWPCP_TABLE_CATEGORIES, $data);
+        $category = $wpdb->get_results( 'SELECT * FROM ' . AWPCP_TABLE_CATEGORIES . ' WHERE category_id = 1' );
+        if ( empty( $category ) ) {
+            $data = array(
+                'category_id' => 1,
+                'category_parent_id' => 0,
+                'category_name' => __( 'General', 'AWPCP' ),
+                'category_order' => 0
+            );
+
+            $wpdb->insert( AWPCP_TABLE_CATEGORIES, $data );
+        }
 
         // insert default Fee
-        $data = array('adterm_id' => 1,
-                      'adterm_name' => __('30 Day Listing', 'AWPCP'),
-                      'amount' => 9.99,
-                      'recurring' => 1,
-                      'rec_period' => 31,
-                      'rec_increment' => 'D',
-                      'buys' => 0,
-                      'imagesallowed' => 6);
-        $wpdb->insert(AWPCP_TABLE_ADFEES, $data);
+        $fee = $wpdb->get_results( 'SELECT * FROM ' . AWPCP_TABLE_ADFEES . ' WHERE adterm_id = 1' );
+        if ( empty( $fee ) ) {
+            $data = array(
+                'adterm_id' => 1,
+                'adterm_name' => __( '30 Day Listing', 'AWPCP' ),
+                'amount' => 9.99,
+                'recurring' => 1,
+                'rec_period' => 31,
+                'rec_increment' => 'D',
+                'buys' => 0,
+                'imagesallowed' => 6
+            );
+
+            $wpdb->insert(AWPCP_TABLE_ADFEES, $data);
+        }
 
 
         $result = update_option('awpcp_db_version', $awpcp_db_version);
@@ -423,35 +428,35 @@ class AWPCP_Installer {
         }
 
         // Upgrade featured ad columns for module
-        if (!$this->column_exists(AWPCP_TABLE_ADS, 'is_featured_ad')) {
+        if ( ! awpcp_column_exists( AWPCP_TABLE_ADS, 'is_featured_ad' ) ) {
             $wpdb->query("ALTER TABLE " . AWPCP_TABLE_ADS . "  ADD `is_featured_ad` TINYINT(1) DEFAULT NULL");
         }
 
         // Upgrade for tracking poster's IP address
-        if (!$this->column_exists(AWPCP_TABLE_ADS, 'posterip')) {
+        if ( ! awpcp_column_exists( AWPCP_TABLE_ADS, 'posterip' ) ) {
             $wpdb->query("ALTER TABLE " . AWPCP_TABLE_ADS . "  ADD `posterip` VARCHAR(15) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL");
         }
 
-        if (!$this->column_exists(AWPCP_TABLE_ADS, 'flagged')) {
+        if ( ! awpcp_column_exists( AWPCP_TABLE_ADS, 'flagged' ) ) {
             $wpdb->query("ALTER TABLE " . AWPCP_TABLE_ADS . "  ADD `flagged` TINYINT(1) DEFAULT NULL");
         }
 
         // Upgrade for deleting ads that are marked as disabled or deleted
-        if (!$this->column_exists(AWPCP_TABLE_ADS, 'disabled_date')) {
+        if ( ! awpcp_column_exists( AWPCP_TABLE_ADS, 'disabled_date' ) ) {
             $wpdb->query("ALTER TABLE " . AWPCP_TABLE_ADS . "  ADD `disabled_date` DATETIME DEFAULT NULL");
         }
 
 
-        if (!$this->column_exists(AWPCP_TABLE_ADFEES, 'is_featured_ad_pricing')) {
+        if ( ! awpcp_column_exists( AWPCP_TABLE_ADFEES, 'is_featured_ad_pricing' ) ) {
             $wpdb->query("ALTER TABLE " . AWPCP_TABLE_ADFEES . "  ADD `is_featured_ad_pricing` TINYINT(1) DEFAULT NULL");
         }
 
-        if (!$this->column_exists(AWPCP_TABLE_ADFEES, 'categories')) {
+        if ( ! awpcp_column_exists( AWPCP_TABLE_ADFEES, 'categories' ) ) {
             $wpdb->query("ALTER TABLE " . AWPCP_TABLE_ADFEES . "  ADD `categories` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci");
         }
 
 
-        if (!$this->column_exists(AWPCP_TABLE_CATEGORIES, 'category_order')) {
+        if ( ! awpcp_column_exists( AWPCP_TABLE_CATEGORIES, 'category_order' ) ) {
             $wpdb->query("ALTER TABLE " . AWPCP_TABLE_CATEGORIES . "  ADD `category_order` INT(10) NULL DEFAULT 0 AFTER category_name");
             $wpdb->query("UPDATE " . AWPCP_TABLE_CATEGORIES . " SET category_order=0");
         }
@@ -663,7 +668,7 @@ class AWPCP_Installer {
 
 
         // Add new field websiteurl to awpcp_ads
-        if (!$this->column_exists(AWPCP_TABLE_ADS, 'websiteurl')) {
+        if ( ! awpcp_column_exists( AWPCP_TABLE_ADS, 'websiteurl' ) ) {
             $wpdb->query("ALTER TABLE " . AWPCP_TABLE_ADS . "  ADD `websiteurl` VARCHAR( 500 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL AFTER `ad_contact_email`");
         }
 
@@ -672,7 +677,7 @@ class AWPCP_Installer {
 
 
         // Add new field ad_fee_paid for sorting ads by paid listings first
-        if (!$this->column_exists(AWPCP_TABLE_ADS, 'ad_fee_paid')) {
+        if ( ! awpcp_column_exists( AWPCP_TABLE_ADS, 'ad_fee_paid' ) ) {
              $query=("ALTER TABLE " . AWPCP_TABLE_ADS . "  ADD `ad_fee_paid` FLOAT(7,2) NOT NULL AFTER `adterm_id`");
              awpcp_query($query, __LINE__);
         }
@@ -681,17 +686,17 @@ class AWPCP_Installer {
         $wpdb->query("ALTER TABLE " . AWPCP_TABLE_ADS . " CHANGE `ad_item_price` `ad_item_price` INT( 25 ) NOT NULL");
 
         // Ad new field add_county_village to awpcp_ads
-        if (!$this->column_exists(AWPCP_TABLE_ADS, 'ad_county_village')) {
+        if ( ! awpcp_column_exists( AWPCP_TABLE_ADS, 'ad_county_village' ) ) {
             $wpdb->query("ALTER TABLE " . AWPCP_TABLE_ADS . "  ADD `ad_county_village` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL AFTER `ad_country`");
         }
 
         // Add field ad_views to table awpcp_ads to track ad views
-        if (!$this->column_exists(AWPCP_TABLE_ADS, 'ad_views')) {
+        if ( ! awpcp_column_exists( AWPCP_TABLE_ADS, 'ad_views' ) ) {
             $wpdb->query("ALTER TABLE " . AWPCP_TABLE_ADS . "  ADD `ad_views` INT(10) NOT NULL DEFAULT 0 AFTER `ad_item_price`");
         }
 
         // Insert new field ad_item_price into awpcp_ads table
-        if (!$this->column_exists(AWPCP_TABLE_ADS, 'ad_item_price')) {
+        if ( ! awpcp_column_exists( AWPCP_TABLE_ADS, 'ad_item_price' ) ) {
             $wpdb->query("ALTER TABLE " . AWPCP_TABLE_ADS . "  ADD `ad_item_price` INT( 10 ) NOT NULL AFTER `ad_country`");
         }
     }
@@ -700,7 +705,7 @@ class AWPCP_Installer {
         global $wpdb, $awpcp;
 
         // Add an user_id column to the Ads table
-        if (!$this->column_exists(AWPCP_TABLE_ADS, 'user_id')) {
+        if ( ! awpcp_column_exists( AWPCP_TABLE_ADS, 'user_id' ) ) {
             $wpdb->query("ALTER TABLE " . AWPCP_TABLE_ADS . "  ADD `user_id` INT(10) DEFAULT NULL");
 
             // attempt to populate user_id column
@@ -714,7 +719,7 @@ class AWPCP_Installer {
 
 
         // Add a renew_email_sent column to Ads table
-        if (!$this->column_exists(AWPCP_TABLE_ADS, 'renew_email_sent')) {
+        if ( ! awpcp_column_exists( AWPCP_TABLE_ADS, 'renew_email_sent' ) ) {
             $wpdb->query("ALTER TABLE " . AWPCP_TABLE_ADS . "  ADD `renew_email_sent` TINYINT(1) NOT NULL DEFAULT 0");
         }
 
@@ -894,12 +899,12 @@ class AWPCP_Installer {
         $value = preg_replace('/<div class="adtitle">/', '<div class="awpcp-title">', $value);
         $awpcp->settings->update_option('awpcpshowtheadlayout', $value);
 
-        if (!$this->column_exists(AWPCP_TABLE_ADPHOTOS, 'is_primary')) {
+        if ( ! awpcp_column_exists( AWPCP_TABLE_ADPHOTOS, 'is_primary' ) ) {
             $wpdb->query("ALTER TABLE " . AWPCP_TABLE_ADPHOTOS . "  ADD `is_primary` TINYINT(1) NOT NULL DEFAULT 0");
         }
 
         // add character limit to Fee plans
-        if (!$this->column_exists(AWPCP_TABLE_ADFEES, 'characters_allowed')) {
+        if ( ! awpcp_column_exists( AWPCP_TABLE_ADFEES, 'characters_allowed' ) ) {
             $wpdb->query("ALTER TABLE " . AWPCP_TABLE_ADFEES . "  ADD `characters_allowed` INT(1) NOT NULL DEFAULT 0");
         }
 
@@ -914,7 +919,7 @@ class AWPCP_Installer {
     private function upgrade_to_2_1_3($version) {
         global $wpdb;
 
-        if (!$this->column_exists(AWPCP_TABLE_ADS, 'renewed_date')) {
+        if ( ! awpcp_column_exists( AWPCP_TABLE_ADS, 'renewed_date' ) ) {
             $wpdb->query("ALTER TABLE " . AWPCP_TABLE_ADS . "  ADD `renewed_date` DATETIME");
         }
     }
@@ -923,7 +928,7 @@ class AWPCP_Installer {
         global $wpdb;
 
         // Upgrade posterip for IPv6 address space
-        if ($this->column_exists(AWPCP_TABLE_ADS, 'posterip')) {
+        if ( awpcp_column_exists( AWPCP_TABLE_ADS, 'posterip' ) ) {
             $wpdb->query("ALTER TABLE " . AWPCP_TABLE_ADS . "  MODIFY `posterip` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT ''");
         }
     }
@@ -935,7 +940,7 @@ class AWPCP_Installer {
         // that doesn't not support more than 15 caharacters. We need to
         // upgrade the field again
         // https://github.com/drodenbaugh/awpcp/issues/347#issuecomment-13159975
-        if ($this->column_exists(AWPCP_TABLE_ADS, 'posterip')) {
+        if ( awpcp_column_exists( AWPCP_TABLE_ADS, 'posterip' ) ) {
             $wpdb->query("ALTER TABLE " . AWPCP_TABLE_ADS . "  MODIFY `posterip` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT ''");
         }
     }
@@ -951,21 +956,21 @@ class AWPCP_Installer {
 
         /* Add payment_term_type columns to Ads table */
 
-        if (!$this->column_exists(AWPCP_TABLE_ADS, 'payment_term_type')) {
+        if ( ! awpcp_column_exists( AWPCP_TABLE_ADS, 'payment_term_type' ) ) {
             $wpdb->query("ALTER TABLE " . AWPCP_TABLE_ADS . "  ADD `payment_term_type` VARCHAR(64) NOT NULL DEFAULT 'fee'");
         }
 
         /* Add credits, private, title_characters columns to Fees table */
 
-        if (!$this->column_exists(AWPCP_TABLE_ADFEES, 'credits')) {
+        if ( ! awpcp_column_exists( AWPCP_TABLE_ADFEES, 'credits' ) ) {
             $wpdb->query("ALTER TABLE " . AWPCP_TABLE_ADFEES . "  ADD `credits` INT(10) NOT NULL DEFAULT 0");
         }
 
-        if ( ! $this->column_exists( AWPCP_TABLE_ADFEES, 'private' ) ) {
+        if ( ! awpcp_column_exists( AWPCP_TABLE_ADFEES, 'private' )   ) {
             $wpdb->query( "ALTER TABLE " . AWPCP_TABLE_ADFEES . " ADD `private` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0" );
         }
 
-        if ( ! $this->column_exists( AWPCP_TABLE_ADFEES, 'title_characters' ) ) {
+        if ( ! awpcp_column_exists( AWPCP_TABLE_ADFEES, 'title_characters' )   ) {
             $wpdb->query( "ALTER TABLE " . AWPCP_TABLE_ADFEES . " ADD `title_characters` INT(1) NOT NULL DEFAULT 0" );
         }
 
@@ -1019,7 +1024,7 @@ class AWPCP_Installer {
         dbDelta( $this->create_ad_meta_table );
 
         // migrate old regions
-        if ( $this->column_exists( AWPCP_TABLE_ADS, 'ad_country' ) ) {
+        if ( awpcp_column_exists( AWPCP_TABLE_ADS, 'ad_country' )   ) {
             update_option( 'awpcp-migrate-regions-information', true );
 
             // the following option was used as the cursor during the first
@@ -1047,7 +1052,7 @@ class AWPCP_Installer {
         $this->columns->create( AWPCP_TABLE_PAYMENTS, 'payment_gateway', "VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' AFTER `payment_status`" );
         $this->columns->create( AWPCP_TABLE_PAYMENTS, 'payer_email', "VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' AFTER `payment_status`" );
 
-        if ( $this->column_exists( AWPCP_TABLE_ADS, 'payer_email' ) ) {
+        if ( awpcp_column_exists( AWPCP_TABLE_ADS, 'payer_email' )   ) {
             $wpdb->query( "UPDATE " . AWPCP_TABLE_ADS . " SET payer_email = ad_contact_email" );
         }
 
