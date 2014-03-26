@@ -995,8 +995,8 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
     protected function prepare_ad_title($title, $characters) {
         $$title = stripslashes_deep( $title );
 
-        if ( $characters > 0 && strlen( $title ) > $characters ) {
-            $title = substr( $title, 0, $characters );
+        if ( $characters > 0 && awpcp_utf8_strlen( $title ) > $characters ) {
+            $title = awpcp_utf8_substr( $title, 0, $characters );
         }
 
         return $title;
@@ -1011,8 +1011,8 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             $details = wp_kses_post(stripslashes_deep($details));
         }
 
-        if ($characters > 0 && strlen($details) > $characters) {
-            $details = substr($details, 0, $characters);
+        if ( $characters > 0 && awpcp_utf8_strlen( $details ) > $characters ) {
+            $details = awpcp_utf8_substr( $details, 0, $characters );
         }
 
         if ($allow_html) {

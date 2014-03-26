@@ -83,7 +83,7 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
                 }
 
                 if ($instance['show-excerpt']) {
-                    $excerpt = stripslashes(substr($item->ad_details, 0, 50)) . "...";
+                    $excerpt = stripslashes( awpcp_utf8_substr( $item->ad_details, 0, 50 ) ) . "...";
                     $read_more = sprintf('<a class="awpcp-widget-read-more" href="%s">[%s]</a>', $url, __("Read more", "AWPCP"));
                     $html_excerpt = sprintf('<p>%s<br/>%s</p>', $excerpt, $read_more);
                 }

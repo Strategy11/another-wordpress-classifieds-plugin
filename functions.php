@@ -2332,3 +2332,31 @@ function awpcp_load_plugin_textdomain( $__file__, $text_domain ) {
 		}
 	}
 }
+
+function awpcp_utf8_strlen( $string ) {
+	if ( function_exists( 'mb_strlen' ) ) {
+		return mb_strlen( $string, 'UTF-8' );
+	} else {
+		return preg_match_all( '(.)su', $string );
+	}
+}
+
+function awpcp_utf8_substr( $string, $start, $length=null ) {
+	if ( function_exists( 'mb_substr' ) ) {
+		return mb_substr( $string, $start, $length, 'UTF-8' );
+	} else {
+		return awpcp_utf8_substr_pcre( $string, $start, $length );
+	}
+}
+
+function awpcp_utf8_substr_pcre( $string, $start, $length=null ) {
+	if ( is_null( $length ) ) {
+		$length = awpcp_utf8_strlen( $string ) - $start;
+	}
+
+	if ( preg_match_all( '/.{' . $start . '}(.{' . $length . '})/su', $string, $matches ) ) {
+		return $matches[1][0];
+	} else {
+		return '';
+	}
+}

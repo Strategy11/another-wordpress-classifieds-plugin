@@ -2030,8 +2030,8 @@ function awpcp_get_ad_share_info($id) {
 	$info['description'] = strip_tags(stripslashes($ad->ad_details));
 	$info['description'] = str_replace("\n", " ", $info['description']);
 
-	if ( strlen($info['description']) > 300 ) {
-		$info['description'] = substr($info['description'], 0, 300) . '...';
+	if ( awpcp_utf8_strlen( $info['description'] ) > 300 ) {
+		$info['description'] = awpcp_utf8_substr( $info['description'], 0, 300 ) . '...';
 	}
 
 	$info['images'] = array();
