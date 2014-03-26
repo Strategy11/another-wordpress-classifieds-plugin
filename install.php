@@ -105,7 +105,6 @@ class AWPCP_Installer {
             `private` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
             PRIMARY KEY  (`adterm_id`)
         ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;";
-
         $this->create_payments_table =
         'CREATE TABLE IF NOT EXISTS ' . AWPCP_TABLE_PAYMENTS . " (
             `id` VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
@@ -193,7 +192,7 @@ class AWPCP_Installer {
 
         // if table exists, this is an upgrade
         $table = $wpdb->get_var("SHOW TABLES LIKE '" . AWPCP_TABLE_CATEGORIES . "'");
-        if ( strcasecmp( $table, AWPCP_TABLE_CATEGORIES ) === 0 ) {
+        if ( $version !== false && strcasecmp( $table, AWPCP_TABLE_CATEGORIES ) === 0 ) {
             return $this->upgrade($version, $awpcp_db_version);
         }
 
@@ -494,9 +493,9 @@ class AWPCP_Installer {
 
         // Update ad_settings table to ad field config groud ID if field does not exist in installed version
 
-        $cgid_column_name="config_group_id";
-        $cgid_column_name_exists=mysql_query("SELECT $cgid_column_name FROM " . AWPCP_TABLE_ADSETTINGS);
-        if ( $settings_table_exists && ( mysql_errno() || !$cgid_column_name_exists ) ) {
+        $cgid_column_name_exists = $wpdb->get_var( "SELECT config_group_id FROM " . AWPCP_TABLE_ADSETTINGS );
+
+        if ( $settings_table_exists && ( $cgid_column_name_exists === false || is_null( $cgid_column_name_exists ) ) ) {
             $query=("ALTER TABLE " . AWPCP_TABLE_ADSETTINGS . "  ADD `config_group_id` TINYINT(1) UNSIGNED NOT NULL DEFAULT 1 AFTER config_diz");
             awpcp_query($query, __LINE__);
 
