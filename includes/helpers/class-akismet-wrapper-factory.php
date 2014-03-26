@@ -1,5 +1,9 @@
 <?php
 
+function awpcp_akismet_wrapper_factory() {
+    return new AWPCP_AkismetWrapperFactory();
+}
+
 class AWPCP_AkismetWrapperFactory {
 
     public function get_akismet_wrapper() {
