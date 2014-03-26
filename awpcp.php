@@ -88,6 +88,9 @@ require_once(AWPCP_DIR . "/includes/compatibility/class-all-in-one-seo-pack-plug
 require_once(AWPCP_DIR . "/includes/compatibility/class-facebook-plugin-integration.php");
 require_once( AWPCP_DIR . "/includes/compatibility/class-yoast-wordpress-seo-plugin-integration.php" );
 
+require_once(AWPCP_DIR . "/includes/helpers/class-akismet-wrapper-base.php");
+require_once(AWPCP_DIR . "/includes/helpers/class-akismet-wrapper.php");
+require_once(AWPCP_DIR . "/includes/helpers/class-akismet-wrapper-factory.php");
 require_once(AWPCP_DIR . "/includes/helpers/class-awpcp-request.php");
 require_once(AWPCP_DIR . "/includes/helpers/class-file-cache.php");
 require_once(AWPCP_DIR . "/includes/helpers/class-payment-transaction-helper.php");
