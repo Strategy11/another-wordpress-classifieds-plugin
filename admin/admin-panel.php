@@ -1238,27 +1238,28 @@ function awpcp_create_subpage($refname, $name, $shortcode, $awpcp_page_id=null) 
 }
 
 
-function maketheclassifiedsubpage($theawpcppagename,$awpcpwppostpageid,$awpcpshortcodex) {
-	global $wpdb,$table_prefix,$wp_rewrite;
+function maketheclassifiedsubpage( $page_name, $parent_page_id, $short_code ) {
+	$post_date = date("Y-m-d");
+	$parent_page_id = intval( $parent_page_id );
+	$post_name = sanitize_title( $page_name );
+	$page_name = add_slashes_recursive( $page_name );
 
-	$pdate = date("Y-m-d");
+	$page_id = wp_insert_post( array(
+		'post_date' => $post_date,
+		'post_date_gmt' => $post_date,
+		'post_title' => $page_name,
+		'post_content' => $short_code,
+		'post_status' => 'publish',
+		'comment_status' => 'closed',
+		'post_name' => $post_name,
+		'post_modified' => $post_date,
+		'post_modified_gmt' => $post_date,
+		'post_content_filtered' => $short_code,
+		'post_parent' => $parent_page_id,
+		'post_type' => 'page',
+	) );
 
-	$awpcpwppostpageid = intval($awpcpwppostpageid);
-
-	// First delete any pages already existing with the title and post name of the new page to be created
-	//checkfortotalpageswithawpcpname($theawpcppagename);
-
-	$post_name = sanitize_title($theawpcppagename);
-	$theawpcppagename = add_slashes_recursive($theawpcppagename);
-	$query="INSERT INTO {$table_prefix}posts SET post_author=1, post_date='$pdate', post_date_gmt='$pdate', post_content='$awpcpshortcodex', post_title='$theawpcppagename', post_excerpt='', post_status='publish', comment_status='closed', post_name='$post_name', to_ping='', pinged='', post_modified='$pdate', post_modified_gmt='$pdate', post_content_filtered='$awpcpshortcodex', post_parent=$awpcpwppostpageid, guid='', post_type='page', menu_order=0";
-	$res = awpcp_query($query, __LINE__);
-	$newawpcpwppostpageid=mysql_insert_id();
-	$guid = get_option('home') . "/?page_id=$newawpcpwppostpageid";
-
-	$query="UPDATE {$table_prefix}posts set guid='$guid' WHERE post_title='$theawpcppagename'";
-	$res = awpcp_query($query, __LINE__);
-
-	return $newawpcpwppostpageid;
+	return $page_id;
 }
 
 
@@ -1688,33 +1689,6 @@ function awpcp_handle_admin_requests() {
 				$ad->delete();
 			}
 
-			// $listofadstodelete=join("','",$fordeletionid);
-
-			// // Delete the ad images
-			// $query="SELECT image_name FROM ".$tbl_ad_photos." WHERE ad_id IN ('$listofadstodelete')";
-			// $res = awpcp_query($query, __LINE__);
-
-			// for ($i=0;$i<mysql_num_rows($res);$i++)
-			// {
-			// 	$photo=mysql_result($res,$i,0);
-
-			// 	if (file_exists(AWPCPUPLOADDIR.'/'.$photo))
-			// 	{
-			// 		@unlink(AWPCPUPLOADDIR.'/'.$photo);
-			// 	}
-			// 	if (file_exists(AWPCPTHUMBSUPLOADDIR.'/'.$photo))
-			// 	{
-			// 		@unlink(AWPCPTHUMBSUPLOADDIR.'/'.$photo);
-			// 	}
-			// }
-
-			// $query="DELETE FROM ".$tbl_ad_photos." WHERE ad_id IN ('$listofadstodelete')";
-			// awpcp_query($query, __LINE__);
-
-			// // Delete the ads
-			// $query="DELETE FROM ".$tbl_ads." WHERE ad_id IN ('$listofadstodelete')";
-			// awpcp_query($query, __LINE__);
-
 			$themessagetoprint=__("The ads have been deleted","AWPCP");
 
 		}
@@ -1752,18 +1726,12 @@ function awpcp_handle_admin_requests() {
 				$ad->delete();
 			}
 			
-			// $listofadstospam=join("','",$forspamid);
-			// // Delete the ads
-			// $query="DELETE FROM ".$tbl_ads." WHERE ad_id IN ('$listofadstospam')";
-			// awpcp_query($query, __LINE__);
-			
 			$themessagetoprint=__("The selected Ads have been marked as SPAM and removed.","AWPCP");
 		}
 
 		$message = "<div style=\"background-color: rgb(255, 251, 204);\" id=\"message\" class=\"updated fade\">$themessagetoprint</div>";
 	}
 }
-//	End Process of spamming multiple ads
 
 
 
