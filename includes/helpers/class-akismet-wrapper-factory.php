@@ -25,10 +25,6 @@ class AWPCP_AkismetWrapperFactory {
             return false;
         }
 
-        if ( strcmp( Akismet::verify_key( $api_key ), 'valid' ) != 0 ) {
-            return false;
-        }
-
         return true;
     }
 }
