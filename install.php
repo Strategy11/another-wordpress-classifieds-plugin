@@ -421,7 +421,7 @@ class AWPCP_Installer {
             $wpdb->query($query);
         }
 
-        if (!is_at_least_awpcp_version('1.8.7.1')) {
+        if ( version_compare( $version, '1.8.7.1', "<" ) ) {
             // Fix the problem with disabled_date not being nullable from 1.8.7
             $query = "ALTER TABLE ". AWPCP_TABLE_ADS ." MODIFY disabled_date DATETIME";
             $wpdb->query($query);
@@ -502,7 +502,7 @@ class AWPCP_Installer {
 
         if ( $settings_table_exists && ( $cgid_column_name_exists === false || is_null( $cgid_column_name_exists ) ) ) {
             $query=("ALTER TABLE " . AWPCP_TABLE_ADSETTINGS . "  ADD `config_group_id` TINYINT(1) UNSIGNED NOT NULL DEFAULT 1 AFTER config_diz");
-            awpcp_query($query, __LINE__);
+            $wpdb->query( $query );
 
             $myconfig_group_ops_1=array('showlatestawpcpnews','uiwelcome','main_page_display','useakismet','contactformcheckhuman', 'contactformcheckhumanhighnumval','awpcptitleseparator','showcityinpagetitle','showstateinpagetitle','showcountryinpagetitle','showcategoryinpagetitle','showcountyvillageinpagetitle','awpcppagefilterswitch','activatelanguages','sidebarwidgetbeforecontent','sidebarwidgetaftercontent','sidebarwidgetbeforetitle','sidebarwidgetaftertitle','usesenderemailinsteadofadmin','awpcpadminaccesslevel','awpcpadminemail','useakismet');
             $myconfig_group_ops_2=array('addurationfreemode','autoexpiredisabledelete','maxcharactersallowed','notifyofadexpiring', 'notifyofadposted', 'adapprove', 'disablependingads', 'showadcount', 'displayadviews','onlyadmincanplaceads','allowhtmlinadtext', 'hyperlinkurlsinadtext', 'notice_awaiting_approval_ad', 'buildsearchdropdownlists','visitwebsitelinknofollow','groupbrowseadsby','groupsearchresultsby','displayadthumbwidth','adresultsperpage','displayadlayoutcode','awpcpshowtheadlayout');
@@ -679,7 +679,7 @@ class AWPCP_Installer {
         // Add new field ad_fee_paid for sorting ads by paid listings first
         if ( ! awpcp_column_exists( AWPCP_TABLE_ADS, 'ad_fee_paid' ) ) {
              $query=("ALTER TABLE " . AWPCP_TABLE_ADS . "  ADD `ad_fee_paid` FLOAT(7,2) NOT NULL AFTER `adterm_id`");
-             awpcp_query($query, __LINE__);
+             $wpdb->query( $query );
         }
 
         // Increase the length value for the ad_item_price field

@@ -88,50 +88,64 @@ function string_ends_with($haystack, $needle, $case=true) {
 	return string_contains_string_at_position($haystack, $needle, (strlen($haystack) - strlen($needle)), $case);
 }
 
+/**
+ * TODO: update to use newer Akismet functions.
+ */
 function awpcp_submit_spam($ad_id) {
 	if (function_exists('akismet_init')) {
 		$wpcom_api_key = get_option('wordpress_api_key');
 
 		if (!empty($wpcom_api_key)) {
 			require_once(ABSPATH . WPINC . '/pluggable.php');
+
 			_log("Now submitting ad " . $ad_id . " as spam");
+
 			global $wpdb, $akismet_api_host, $akismet_api_port, $current_user, $current_site;
-			$ad_id = (int) $ad_id;
-			$tbl_ads = $wpdb->prefix . "awpcp_ads";
-			$query = "SELECT * FROM " . $tbl_ads . " WHERE ad_id = ".$ad_id;
-			$res = awpcp_query($query, __LINE__);
-			if ($ad_record=mysql_fetch_array($res)) {
-				if ( $ad_record['disabled'] == 1 ) {
+
+			$ad = AWPCP_Ad::find_by_id( (int) $ad_id );
+
+			if ( ! is_null( $ad ) ) {
+				if ( $ad->disabled == 1 ) {
 					_log("Ad " . $ad_id . " already marked as spam");
 					return;
 				}
+
 				$content = array();
+
 				_log("Ad " . $ad_id . " constructing Akismet call");
+
 				//Construct an Akismet-like query:
-				$content['user_ip'] = $ad_record['posterip'];
-				$content['comment_author'] = $ad_record['ad_contact_name'];
-				$content['comment_author_email'] = $ad_record['ad_contact_email'];
-				$content['comment_author_url'] = $ad_record['websiteurl'];
-				$content['comment_content'] = $ad_record['ad_details'];
+				$content['user_ip'] = $ad->posterip;
+				$content['comment_author'] = $ad->ad_contact_name;
+				$content['comment_author_email'] = $ad->ad_contact_email;
+				$content['comment_author_url'] = $ad->websiteurl;
+				$content['comment_content'] = $ad->ad_details;
 				$content['blog'] = get_option('home');
 				$content['blog_lang'] = get_locale();
 				$content['blog_charset'] = get_option('blog_charset');
 				$content['permalink'] = '';
+
 				get_currentuserinfo();
+
 				if ( is_object($current_user) ) {
 					$content['reporter'] = $current_user->user_login;
 				}
+
 				if ( is_object($current_site) ) {
 					$content['site_domain'] = $current_site->domain;
 				}
+
 				$content['user_role'] = 'Editor'; // probably best to present the user with some level of authority
 				$query_string = '';
+
 				foreach ( $content as $key => $data ) {
 					$query_string .= $key . '=' . urlencode( stripslashes($data) ) . '&';
 				}
+
 				_log("Ad " . $ad_id . " query: " . $query_string);
 				$response = akismet_http_post($query_string, $akismet_api_host, "/1.1/submit-spam", $akismet_api_port);
 				_log("Ad " . $ad_id . " spammed, Akismet said: ");
+
 				foreach ($response as $key => $value) {
 					_log($key." - ".$value."");
 				}
@@ -315,57 +329,38 @@ function checkifisadmin() {
 	return awpcp_current_user_is_admin() ? 1 : 0;
 }
 
-
-// END FUNCTION
 function awpcpistableempty($table){
 	global $wpdb;
 
-	$myreturn=true;
-	$query="SELECT count(*) FROM ".$table."";
-	$res = awpcp_query($query, __LINE__);
-	if (mysql_num_rows($res) && mysql_result($res,0,0)) {
-		$myreturn=false;
+	$query = 'SELECT COUNT(*) FROM ' . $table;
+	$results = $wpdb->get_var( $results );
+
+	if ( $results !== false && intval( $results ) === 0 ) {
+		return true;
+	} else {
+		return false;
 	}
-	return $myreturn;
 }
 
 function awpcpisqueryempty($table, $where){
 	global $wpdb;
 
-	$myreturn=true;
-	$query="SELECT count(*) FROM ".$table." ".$where;
-	$res = awpcp_query($query, __LINE__);
-	if (mysql_num_rows($res) && mysql_result($res,0,0)) {
-		$myreturn=false;
+	$query = 'SELECT COUNT(*) FROM ' . $table . ' ' . $where;
+	$count = $wpdb->get_var( $query );
+
+	if ( $count !== false && intval( $count ) === 0 ) {
+		return true;
+	} else {
+		return false;
 	}
-	return $myreturn;
 }
-// START FUNCTION: Check if the admin has setup any listing fee options
+
 function adtermsset(){
 	global $wpdb;
 	$myreturn = !awpcpistableempty(AWPCP_TABLE_ADFEES);
 	return $myreturn;
 }
-// END FUNCTION
 
-/**
- * Get the product ID for 2 Checkout.. or something like that.
- */
-function get_2co_prodid($adterm_id) {
-	global $wpdb;
-
-	$query = "SELECT twoco_pid FROM " . AWPCP_TABLE_ADFEES . " WHERE adterm_id='$adterm_id'";
-	$res = awpcp_query($query, __LINE__);
-
-	$twoco_pid='';
-	while ($rsrow=mysql_fetch_row($res)) {
-		list($twoco_pid)=$rsrow;
-	}
-
-	return $twoco_pid;
-}
-
-// START FUNCTION: Check if the admin has setup some categories
 function categoriesexist(){
 
 	global $wpdb;
@@ -383,81 +378,37 @@ function adtermidinuse($adterm_id)
 	$myreturn=!awpcpisqueryempty($tbl_ads, " WHERE adterm_id='$adterm_id'");
 	return $myreturn;
 }
-// START FUNCTION: Count the total number of active ads in the  system
+
 function countlistings($is_active) {
-
 	global $wpdb;
-	$tbl_ads = $wpdb->prefix . "awpcp_ads";
 
-	$totallistings='';
+	$query = 'SELECT COUNT(*) FROM ' . AWPCP_TABLE_ADS . ' WHERE disabled = %d';
+	$query = $wpdb->prepare( $query, $is_active );
 
-	$query="SELECT count(*) FROM ".$tbl_ads." WHERE disabled='". !$is_active ."'";
-	$res = awpcp_query($query, __LINE__);
-	while ($rsrow=mysql_fetch_row($res)) {
-		list($totallistings)=$rsrow;
-	}
-	return $totallistings;
+	return $wpdb->get_var( $query );
 }
-// END FUNCTION
-// START FUNCTION: Count the total number of categories
+
 function countcategories(){
-
-	global $wpdb;
-	$tbl_categories = $wpdb->prefix . "awpcp_categories";
-
-	$totalcategories='';
-
-	$query="SELECT count(*) FROM ".$tbl_categories."";
-	$res = awpcp_query($query, __LINE__);
-	while ($rsrow=mysql_fetch_row($res)) {
-		list($totalcategories)=$rsrow;
-	}
-	return $totalcategories;
+	return AWPCP_Category::query( array( 'fields' => 'count' ) );
 }
-// END FUNCTION
-// START FUNCTION: Count parent categories
-function countcategoriesparents(){
 
-	global $wpdb;
-	$tbl_categories = $wpdb->prefix . "awpcp_categories";
+function countcategoriesparents() {
+	$params = array(
+		'fields' => 'count',
+		'where' => 'category_parent_id = 0'
+	);
 
-	$totalparentcategories='';
-	$query="SELECT count(*) FROM ".$tbl_categories." WHERE category_parent_id=0";
-	$res = awpcp_query($query, __LINE__);
-	while ($rsrow=mysql_fetch_row($res)) {
-		list($totalparentcategories)=$rsrow;
-	}
-	return $totalparentcategories;
+	return AWPCP_Category::query( $params );
 }
-// END FUNCTION
-// START FUNCTION: Count children categories
+
 function countcategorieschildren(){
+	$params = array(
+		'fields' => 'count',
+		'where' => 'category_parent_id != 0'
+	);
 
-	global $wpdb;
-	$tbl_categories = $wpdb->prefix . "awpcp_categories";
-
-	$totalchildrencategories='';
-	$query="SELECT count(*) FROM ".$tbl_categories." WHERE category_parent_id!=0";
-	$res = awpcp_query($query, __LINE__);
-	while ($rsrow=mysql_fetch_row($res)) {
-		list($totalchildrencategories)=$rsrow;
-	}
-	return $totalchildrencategories;
+	return AWPCP_Category::query( $params );
 }
-// END FUNCTION
-// START FUNCTION: get number of images allowed per ad term id
-function get_numimgsallowed($adtermid){
-	global $wpdb;
-	$tbl_ad_fees = $wpdb->prefix . "awpcp_adfees";
-	$imagesallowed='';
-	$query="SELECT imagesallowed FROM ".$tbl_ad_fees." WHERE adterm_id='$adtermid'";
-	$res = awpcp_query($query, __LINE__);
-	while ($rsrow=mysql_fetch_row($res)) {
-		list($imagesallowed)=$rsrow;
-	}
-	return $imagesallowed;
-}
-// END FUNCTION
 
 // this way if user paid for ad user continues to be allowed number of images paid for
 // START FUNCTION: Check to see how many images an ad is currently using
@@ -620,26 +571,6 @@ function get_numtimesadviewd($adid)
 function get_adtitle($adid) {
 	return strip_slashes_recursive(get_adfield_by_pk('ad_title', $adid));
 }
-// END FUNCTION
-// START FUNCTION: Get the ad term fee amount for the ad term based on having the ad term ID
-function get_adfee_amount($adterm_id) {
-
-	global $wpdb;
-	$tbl_ad_fees = $wpdb->prefix . "awpcp_adfees";
-
-	$adterm_amount='';
-
-	$query="SELECT amount from ".$tbl_ad_fees." WHERE adterm_id='$adterm_id'";
-	$res = awpcp_query($query, __LINE__);
-	while ($rsrow=mysql_fetch_row($res)) {
-		list($adterm_amount)=$rsrow;
-	}
-	return $adterm_amount;
-}
-// END FUNCTION: get ad term fee amount based on ad term ID
-
-
-
 
 // START FUNCTION: Create list of top level categories for admin category management
 function get_categorynameid($cat_id = 0,$cat_parent_id= 0,$exclude)
@@ -654,7 +585,7 @@ function get_categorynameid($cat_id = 0,$cat_parent_id= 0,$exclude)
 		$excludequery="AND category_id !='$exclude'";
 	}else{$excludequery='';}
 
-	$catnid=$wpdb->get_results("select category_id as cat_ID, category_parent_id as cat_parent_ID, category_name as cat_name from ".$tbl_categories." WHERE category_parent_id=0 AND category_name <> '' $excludequery");
+	$catnid=$wpdb->get_results("select category_id as cat_ID, category_parent_id as cat_parent_ID, category_name as cat_name from " . AWPCP_TABLE_CATEGORIES . " WHERE category_parent_id=0 AND category_name <> '' $excludequery");
 
 	foreach($catnid as $categories)
 	{
@@ -681,15 +612,13 @@ function get_categorynameidall($cat_id = 0) {
 	$optionitem='';
 
 	// Start with the main categories
-
 	$query = "SELECT category_id,category_name FROM " . AWPCP_TABLE_CATEGORIES . " ";
 	$query.= "WHERE category_parent_id=0 AND category_name <> '' ";
 	$query.= "ORDER BY category_order, category_name ASC";
 
-	$res = awpcp_query($query, __LINE__);
+	$query_results = $wpdb->get_results( $query, ARRAY_N );
 
-	while ($rsrow=mysql_fetch_row($res)) {
-
+	foreach ( $query_results as $rsrow ) {
 		$cat_ID = $rsrow[0];
 		$cat_name = stripslashes(stripslashes($rsrow[1]));
 
@@ -713,9 +642,9 @@ function get_categorynameidall($cat_id = 0) {
 
 		$query = $wpdb->prepare( $query, $maincatid );
 
-		$res2 = awpcp_query($query, __LINE__);
+		$sub_query_results = $wpdb->get_results( $query, ARRAY_N );
 
-		while ($rsrow2=mysql_fetch_row($res2)) {
+		foreach ( $sub_query_results as $rsrow2) {
 			$subcat_ID = $rsrow2[0];
 			$subcat_name = stripslashes(stripslashes($rsrow2[1]));
 
@@ -808,7 +737,7 @@ function get_adcatname($cat_ID) {
 	$tbl_categories = $wpdb->prefix . "awpcp_categories";
 
 	if(isset($cat_ID) && (!empty($cat_ID))){
-		$query="SELECT category_name from ".$tbl_categories." WHERE category_id='$cat_ID'";
+		$query="SELECT category_name from " . AWPCP_TABLE_CATEGORIES . " WHERE category_id='$cat_ID'";
 		$cname = $wpdb->get_results($query, ARRAY_A);
 		foreach($cname as $cn) {
 			$cname = $cn['category_name'];
@@ -824,7 +753,7 @@ function get_adcatorder($cat_ID){
 	$tbl_categories = $wpdb->prefix . "awpcp_categories";
 
 	if(isset($cat_ID) && (!empty($cat_ID))){
-		$query="SELECT category_order from ".$tbl_categories." WHERE category_id='$cat_ID'";
+		$query="SELECT category_order from " . AWPCP_TABLE_CATEGORIES . " WHERE category_id='$cat_ID'";
 		$corder = $wpdb->get_var($query);
 	}
 	return $corder;
@@ -847,58 +776,27 @@ function get_adcategory($adid){
 }
 
 function get_adparentcatname($cat_ID){
-
 	global $wpdb;
-	$tbl_categories = $wpdb->prefix . "awpcp_categories";
-	$cname='';
 
-	if ($cat_ID == 0) {
-		$cname = __('Top Level Category', 'AWPCP');
+	if ( $cat_ID == 0 ) {
+		return __( 'Top Level Category', 'AWPCP' );
 	}
 
-	else
-	{
-		if(isset($cat_ID) && (!empty($cat_ID)))
-		{
-			$query="SELECT category_name from ".$tbl_categories." WHERE category_id='$cat_ID'";
-			$res = awpcp_query($query, __LINE__);
+	$query = 'SELECT category_name FROM ' . AWPCP_TABLE_CATEGORIES . ' WHERE category_id = %d';
+	$query = $wpdb->prepare( $query, $cat_ID );
 
-			while ($rsrow=mysql_fetch_row($res))
-			{
-				list($cname)=$rsrow;
-			}
-		}
-	}
-	return $cname;
+	return $wpdb->get_var( $query );
 }
-// END FUNCTION: get the name of the category parent
-// START FUNCTION: Retrieve the parent category ID
+
 function get_cat_parent_ID($cat_ID){
-
 	global $wpdb;
-	$cpID='';
-	$tbl_categories = $wpdb->prefix . "awpcp_categories";
 
-	if(isset($cat_ID) && (!empty($cat_ID))){
-		$query="SELECT category_parent_id from ".$tbl_categories." WHERE category_id='$cat_ID'";
-		$res = awpcp_query($query, __LINE__);
-		while ($rsrow=mysql_fetch_row($res)) {
-			list($cpID)=$rsrow;
-		}
-	}
-	return $cpID;
-}
-// END FUNCTION: get the ID or the category parent
-// START FUNCTION: Check if the transaction ID coming back from paypal or 2checkout is a duplicate
-function isdupetransid($transid){
-	global $wpdb;
-	$tbl_ads = $wpdb->prefix . "awpcp_ads";
+	$query = 'SELECT category_parent_id FROM ' . AWPCP_TABLE_CATEGORIES . ' WHERE category_id = %d';
+	$query = $wpdb->prepare( $query, $cat_ID );
 
-	$myreturn=!awpcpisqueryempty($tbl_ads, " WHERE ad_transaction_id='$transid'");
-	return $myreturn;
+	return $wpdb->get_var( $query );
 }
-// END FUNCTION: check if a transaction ID from paypal or 2checkout is already in the system
-// START FUNCTION: Check if there are any ads in the system
+
 function ads_exist() {
 	global $wpdb;
 	$tbl_ads = $wpdb->prefix . "awpcp_ads";
@@ -914,37 +812,31 @@ function ads_exist_cat($catid) {
 	return $myreturn;
 }
 // END FUNCTION: check if a category has ads
-// START FUNCTION: Check if the category has children
 function category_has_children($catid) {
 	global $wpdb;
 	$tbl_categories = $wpdb->prefix . "awpcp_categories";
 	$myreturn=!awpcpisqueryempty($tbl_categories, " WHERE category_parent_id='$catid'");
 	return $myreturn;
 }
-// END FUNCTION: check if a category has children
-// START FUNCTION: Check if the category is a child
+
 function category_is_child($catid) {
 	global $wpdb;
-	$tbl_categories = $wpdb->prefix . "awpcp_categories";
-	$myreturn=false;
 
-	$query="SELECT category_parent_id FROM ".$tbl_categories." WHERE category_id='$catid'";
-	$res = awpcp_query($query, __LINE__);
-	while ($rsrow=mysql_fetch_row($res)) {
-		list($cparentid)=$rsrow;
-		if( $cparentid != 0 )
-		{
-			$myreturn=true;
-		}
+	$query = 'SELECT category_parent_id FROM ' . AWPCP_TABLE_CATEGORIES . ' WHERE category_id = %d';
+	$query = $wpdb->prepare( $query, $catid );
+
+	$parent_id = $wpdb->get_var( $query );
+
+	if ( $parent_id !== false && $parent_id != 0 ) {
+		return true;
+	} else {
+		return false;
 	}
-	return $myreturn;
 }
-
-// END FUNCTION: check if a category is a child
 
 // TODO: cache the results of this function
 function total_ads_in_cat($catid) {
-    global $wpdb,$hasregionsmodule;
+    global $wpdb, $hasregionsmodule;
 
     $totaladsincat = '';
 
@@ -1245,18 +1137,14 @@ function checkfortable($table) {
 	return awpcp_table_exists($table);
 }
 
-
-
-// START FUNCTION: add field config_group_id to table adsettings v 1.0.5.6 update specific
 function add_config_group_id($cvalue,$coption) {
 	global $wpdb;
-	$tbl_ad_settings = $wpdb->prefix . "awpcp_adsettings";
-	//Escape quotes:
-	$cvalue = add_slashes_recursive($cvalue);
-	$query="UPDATE ".$tbl_ad_settings." SET config_group_id='$cvalue' WHERE config_option='$coption'";
-	$res = awpcp_query($query, __LINE__);
+
+	$query = 'UPDATE ' . AWPCP_TABLE_ADSETTINGS . ' SET config_group_id = %d WHERE config_option = %s';
+	$query = $wpdb->prepare( $query, $cvalue, $coption );
+
+	$wpdb->query( $query );
 }
-// END FUNCTION: add field config_group_id to table adsettings v 1.0.5.6 update specific
 
 
 
@@ -1334,79 +1222,28 @@ function get_currentpagename() {
 	return get_awpcp_option('main-page-name');
 }
 
-
-
-// START FUNCTION: delete the classfied page name from database as needed
-function deleteuserpageentry() {
-
-	global $wpdb;
-	$tbl_pagename = $wpdb->prefix . "awpcp_pagename";
-
-	$query="TRUNCATE ".$tbl_pagename."";
-	$res = awpcp_query($query, __LINE__);
-	mysql_query($query);
-}
-// END FUNCTION: delete the user page entry from awpcp_pagename table
-
-
-
-
-// START FUNCTION: check if the classifieds page exists in the wp posts table
-function findpagebyname($pagename) {
-	global $wpdb,$table_prefix;
-	$myreturn=false;
-
-	$query="SELECT post_title FROM {$table_prefix}posts WHERE post_title='$pagename'";
-	$res = awpcp_query($query, __LINE__);
-	if (mysql_num_rows($res) && mysql_result($res,0,0)) {
-		$myreturn=true;
-	}
-	return $myreturn;
-}
-
-
-
-function findpage($pagename,$shortcode) {
-	global $wpdb,$table_prefix;
-	$myreturn=false;
-
-	$query="SELECT post_title FROM {$table_prefix}posts WHERE post_title='$pagename' AND post_content LIKE '%$shortcode%'";
-	$res = awpcp_query($query, __LINE__);
-	if (mysql_num_rows($res) && mysql_result($res,0,0)) {
-		$myreturn=true;
-	}
-	return $myreturn;
-}
-
-
-
-
-// START FUNCTION: check ad_settings to see if a particular function exists to prevent duplicate entery when updating plugin
 function field_exists($field) {
 	global $wpdb;
-	$tbl_ad_settings = $wpdb->prefix . "awpcp_adsettings";
 
-	$tableexists=checkfortable($tbl_ad_settings);
-
-	if($tableexists) {
-		$query="SELECT config_value FROM  ".$tbl_ad_settings." WHERE config_option='$field'";
-		$res = awpcp_query($query, __LINE__);
-		if (mysql_num_rows($res)) {
-			$myreturn=true;
-		} else {
-			$myreturn=false;
-		}
-		return $myreturn;
+	if ( ! checkfortable( AWPCP_TABLE_ADSETTINGS ) ) {
+		return false;
 	}
-	return false;
-}
-// END FUNCTION: check if ad_settings field exists
 
+	$query = 'SELECT config_value FROM ' . AWPCP_TABLE_ADSETTINGS . ' WHERE config_option = %s';
+	$query = $wpdb->prepare( $query, $field );
+
+	$value = $wpdb->get_var( $config_value );
+
+	if ( $value === false || is_null( $value ) ) {
+		return false;
+	} else {
+		return true;
+	}
+}
 
 function isValidURL($url) {
 	return preg_match('|^http(s)?://[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(/.*)?$|i', $url);
 }
-
 
 /**
  * @since 3.0.2
@@ -1423,60 +1260,32 @@ function isValidEmailAddress($email) {
 	return awpcp_is_valid_email_address( $email );
 }
 
-
-/**
- * Unused function
- */
-function renewsubscription($adid) {
-	global $wpdb;
-
-	$query = "SELECT payment_status FROM " . AWPCP_TABLE_ADS . " WHERE ad_id='$adid'";
-	$res = awpcp_query($query, __LINE__);
-
-	while ($rsrow=mysql_fetch_row($res)) {
-		list($paymentstatus)=$rsrow;
-	}
-
-	if($paymentstatus != 'Cancelled') {
-		return true;
-	}
-
-	return false;
-}
-// END FUNCTION: process auto ad expiration
-
-
-
-// START FUNCTION: Function to check for the existence of a default category with a category ID of 1 (used with mass category deletion)
 function defaultcatexists($defid) {
 	global $wpdb;
-	$tbl_categories = $wpdb->prefix . "awpcp_categories";
 
-	$myreturn=false;
-	$query="SELECT * FROM ".$tbl_categories." WHERE category_id='$defid'";
-	$res = awpcp_query($query, __LINE__);
-	if (mysql_num_rows($res)) {
-		$myreturn=true;
+	$query = 'SELECT COUNT(*) FROM ' . AWPCP_TABLE_CATEGORIES . ' WHERE category_id = %d';
+	$query = $wpdb->prepare( $query, $defid );
+
+	$count = $wpdb->get_var( $query );
+
+	if ( $count !== false && $count > 0 ) {
+		return true;
+	} else {
+		return false;
 	}
 
-	return $myreturn;
-
 }
-// END FUNCTION: check if default category exists
-
-
 
 // START FUNCTION: function to create a default category with an ID of  1 in the event a default category with ID 1 does not exist
 function createdefaultcategory($idtomake,$titletocallit) {
 	global $wpdb;
-	$tbl_categories = $wpdb->prefix . "awpcp_categories";
 
-	$query="INSERT INTO ".$tbl_categories." SET category_name='$titletocallit',category_parent_id=0";
-	$res = awpcp_query($query, __LINE__);
-	$newdefid=mysql_insert_id();
+	$wpdb->insert( AWPCP_TABLE_CATEGORIES, array( 'category_name' => $titletocallit, 'category_parent_id' => 0 ) );
 
-	$query="UPDATE ".$tbl_categories." SET category_id=1 WHERE category_id='$newdefid'";
-	$res = awpcp_query($query, __LINE__);
+	$query = 'UPDATE ' . AWPCP_TABLE_CATEGORIES . ' SET category_id = 1 WHERE category_id = %d';
+	$query = $wpdb->prepare( $query, $wpdb->insert_id );
+
+	$wpdb->query( $query );
 }
 // END FUNCTION: create default category
 
@@ -1495,163 +1304,38 @@ function massdeleteadsfromcategory($catid) {
 // END FUNCTION: sidebar widget
 // START FUNCTION: make sure there's not more than one page with the name of the classifieds page
 function checkforduplicate($cpagename_awpcp) {
-	$awpcppagename = sanitize_title($cpagename_awpcp, $post_ID='');
+	global $wpdb, $table_prefix;
 
-	$pageswithawpcpname=array();
-	global $wpdb,$table_prefix;
-	$totalpageswithawpcpname='';
+	$awpcppagename = sanitize_title( $cpagename_awpcp );
 
-	$query="SELECT ID FROM {$table_prefix}posts WHERE post_name = '$awpcppagename' AND post_type='post'";
-	$res = awpcp_query($query, __LINE__);
+	$query = "SELECT ID {$table_prefix}posts WHERE post_name = %s AND post_type = %s";
+	$query = $wpdb->prepare( $query, $awpcppagename, 'post' );
 
-	if (mysql_num_rows($res))
-	{
-		while ($rsrow=mysql_fetch_row($res))
-		{
-			$pageswithawpcpname[]=$rsrow[0];
-		}
-		$totalpageswithawpcpname=count($pageswithawpcpname);
+	$post_ids = $wpdb->get_col( $query );
+
+	if ( $post_ids !== false ) {
+		return count( $post_ids );
+	} else {
+		return '';
 	}
-
-	return $totalpageswithawpcpname;
 }
 
-
-
-// END FUNCTION: make sure there's not more than one page with the name of the classifieds page
-// START FUNCTION: create a drop down list containing names of ad posters
 function create_ad_postedby_list($name) {
-	$output = '';
 	global $wpdb;
-	$tbl_ads = $wpdb->prefix . "awpcp_ads";
 
-	$query="SELECT DISTINCT ad_contact_name FROM ".$tbl_ads." WHERE disabled=0";
-	$res = awpcp_query($query, __LINE__);
+	$output = '';
+	$query = 'SELECT DISTINCT ad_contact_name FROM ' . AWPCP_TABLE_ADS . ' WHERE disabled = 0';
 
-	while ($rsrow=mysql_fetch_row($res)) {
-		if (strcmp($rsrow[0], $name) === 0) {
-			$output .= "<option value=\"$rsrow[0]\" selected=\"selected\">$rsrow[0]</option>";
+	$results = $wpdb->get_col( $query );
+
+	foreach ( $results as $contact_name ) {
+		if ( strcmp( $contact_name, $name ) === 0 ) {
+			$output .= "<option value=\"$contact_name\" selected=\"selected\">$contact_name</option>";
 		} else {
-			$output .= "<option value=\"$rsrow[0]\">$rsrow[0]</option>";
+			$output .= "<option value=\"$contact_name\">$contact_name</option>";
 		}
 	}
-	return $output;
-}
 
-function awpcp_array_range($from, $to, $step){
-
-	$array = array();
-	for ($x=$from; $x <= $to; $x += $step){
-		$array[] = $x;
-	}
-	return $array;
-
-}
-
-function awpcp_get_max_ad_price()
-{
-	$query="SELECT MAX(ad_item_price) as endval FROM ".$tbl_ads."";
-	$res = awpcp_query($query, __LINE__);
-
-	while ($rsrow=mysql_fetch_row($res))
-	{
-		$maxadprice=$rsrow[0];
-	}
-	return $maxadprice;
-}
-// END FUNCTION: create a drop down list containing price option
-// START FUNCTION: create a drop down list containing cities options from saved cities in database
-function create_dropdown_from_current_cities()
-{
-	$output = '';
-	global $wpdb;
-	$tbl_ads = $wpdb->prefix . "awpcp_ads";
-	$listofsavedcities=array();
-
-	$query="SELECT DISTINCT ad_city FROM ".$tbl_ads." WHERE ad_city <> '' AND disabled = 0 ORDER by ad_city ASC";
-	$res = awpcp_query($query, __LINE__);
-
-	while ($rsrow=mysql_fetch_row($res))
-	{
-		$listofsavedcities[]=$rsrow[0];
-		$savedcitieslist=array_unique($listofsavedcities);
-	}
-
-	foreach ($savedcitieslist as $savedcity)
-	{
-		$output .= "<option value=\"" . esc_attr($savedcity) . "\">" . stripslashes($savedcity) . "</option>";
-	}
-	return $output;
-}
-// END FUNCTION: create a drop down list containing cities options from saved cities in database
-// START FUNCTION: create a drop down list containing state options from saved states in database
-function create_dropdown_from_current_states()
-{
-	$output = '';
-	global $wpdb;
-	$tbl_ads = $wpdb->prefix . "awpcp_ads";
-
-	$listofsavedstates=array();
-
-	$query="SELECT DISTINCT ad_state FROM ".$tbl_ads." WHERE ad_state <> '' AND disabled = 0 ORDER by ad_state ASC";
-	$res = awpcp_query($query, __LINE__);
-
-	while ($rsrow=mysql_fetch_row($res))
-	{
-		$listofsavedstates[]=$rsrow[0];
-		$savedstateslist=array_unique($listofsavedstates);
-	}
-
-	foreach ($savedstateslist as $savedstate)
-	{
-		$output .= "<option value=\"" . esc_attr($savedstate) . "\">" . stripslashes($savedstate) . "</option>";
-	}
-	return $output;
-}
-// END FUNCTION: create a drop down list containing states options from saved states in database
-// START FUNCTION: create a drop down list containing county/village options from saved states in database
-function create_dropdown_from_current_counties()
-{
-	$output = '';
-	global $wpdb;
-	$tbl_ads = $wpdb->prefix . "awpcp_ads";
-
-	$listofsavedcounties=array();
-
-	$query="SELECT DISTINCT ad_county_village FROM ".$tbl_ads." WHERE ad_county_village <> '' AND disabled = 0 ORDER by ad_county_village ASC";
-	$res = awpcp_query($query, __LINE__);
-
-	while ($rsrow=mysql_fetch_row($res))
-	{
-		$listofsavedcounties[]=$rsrow[0];
-		$savedcountieslist=array_unique($listofsavedcounties);
-
-	}
-	foreach ($savedcountieslist as $savedcounty)
-	{
-		$output .= "<option value=\"" . esc_attr($savedcounty) . "\">" . stripslashes($savedcounty) . "</option>";
-	}
-	return $output;
-}
-// END FUNCTION: create a drop down list containing county/village options from saved states in database
-// START FUNCTION: create a drop down list containing country options from saved countries in database
-function create_dropdown_from_current_countries() {
-	global $wpdb;
-	$output = '';
-	$tbl_ads = $wpdb->prefix . "awpcp_ads";
-
-	$query="SELECT DISTINCT ad_country FROM ".$tbl_ads." WHERE ad_country <> '' AND disabled = 0 ORDER by ad_country ASC";
-	$res = awpcp_query($query, __LINE__);
-
-	$listofsavedcountries = array();
-	while ($rsrow=mysql_fetch_row($res)) {
-		$listofsavedcountries[] = $rsrow[0];
-	}
-	$savedcountrieslist = $listofsavedcountries;
-
-	foreach ($savedcountrieslist as $savedcountry) {
-		$output .= "<option value=\"" . esc_attr($savedcountry) . "\">" . stripslashes($savedcountry) . "</option>";
-	}
 	return $output;
 }
 // END FUNCTION: create a drop down list containing country options from saved states in database

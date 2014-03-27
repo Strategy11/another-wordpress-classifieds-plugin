@@ -1118,19 +1118,25 @@ function awpcp_handle_admin_requests() {
 
 				if ( isset($movetocat) && !empty($movetocat) && ($movetocat != 0) )
 				{
-
 					$movetocatparent=get_cat_parent_ID($movetocat);
 
-					$query="UPDATE ".$tbl_ads." SET ad_category_id='$movetocat' ad_category_parent_id='$movetocatparent' WHERE ad_category_id='$category_id'";
-					awpcp_query($query, __LINE__);
+					$query = 'UPDATE ' . AWPCP_TABLE_ADS . ' SET ad_category_id = %d ad_category_parent_id=%d ';
+					$query.= 'WHERE ad_category_id = %d';
+					$query = $wpdb->prepare( $query, $movetocat, $movetocatparent, $category_id );
+
+					$wpdb->query( $query );
 
 					// Must also relocate ads where the main category was a child of the category being deleted
-					$query="UPDATE ".$tbl_ads." SET ad_category_parent_id='$movetocat' WHERE ad_category_parent_id='$category_id'";
-					awpcp_query($query, __LINE__);
+					$query = 'UPDATE ' . AWPCP_TABLE_ADS . ' SET ad_category_parent_id = %d WHERE ad_category_parent_id = %d';
+					$query = $wpdb->prepare( $query, $movetocat, $category_id );
+
+					$wpdb->query( $query );
 
 					// Must also relocate any children categories to the the move-to-cat
-					$query="UPDATE ".$tbl_ad_categories." SET category_parent_id='$movetocat' WHERE category_parent_id='$category_id'";
-					awpcp_query($query, __LINE__);
+					$query = 'UPDATE ' . AWPCP_TABLE_CATEGORIES . ' SET category_parent_id = %d WHERE category_parent_id = %d';
+					$wpdb->prepare( $query, $movetocat, $category_id );
+
+					$wpdb->query( $query );
 				}
 
 
@@ -1156,19 +1162,19 @@ function awpcp_handle_admin_requests() {
 
 					// Adjust any ads transferred from the main category
 					$query="UPDATE ".$tbl_ads." SET ad_category_id='$movetocat', ad_category_parent_id='$movetocatparent' WHERE ad_category_id='$category_id'";
-					awpcp_query($query, __LINE__);
+					$wpdb->query( $query );
 
 					// Must also relocate any children categories to the the move-to-cat
 					$query="UPDATE ".$tbl_ad_categories." SET category_parent_id='$movetocat' WHERE category_parent_id='$category_id'";
-					awpcp_query($query, __LINE__);
+					$wpdb->query( $query );
 
 					// Adjust  any ads transferred from children categories
 					$query="UPDATE ".$tbl_ads." SET ad_category_parent_id='$movetocat' WHERE ad_category_parent_id='$category_id'";
-					$res = awpcp_query($query, __LINE__);
+					$wpdb->query( $query );
 				}
 
-				$query="DELETE FROM  ".$tbl_ad_categories." WHERE category_id='$category_id'";
-				awpcp_query($query, __LINE__);
+				$query = "DELETE FROM  " . AWPCP_TABLE_CATEGORIES . " WHERE category_id='$category_id'";
+				$wpdb->query( $query );
 
 				$themessagetoprint=__("The category has been deleted","AWPCP");
 			}
@@ -1218,13 +1224,12 @@ function awpcp_handle_admin_requests() {
 
 				if ($cattomove != $moveadstocategory)
 				{
-
 					// First update all the ads in the category to take on the new parent ID
-					$query="UPDATE ".$tbl_ads." SET ad_category_parent_id='$moveadstocategory' WHERE ad_category_id='$cattomove'";
-					awpcp_query($query, __LINE__);
+					$query = "UPDATE " . AWPCP_TABLE_ADS . " SET ad_category_parent_id='$moveadstocategory' WHERE ad_category_id='$cattomove'";
+					$wpdb->query( $query );
 
-					$query="UPDATE ".$tbl_ad_categories." SET category_parent_id='$moveadstocategory' WHERE category_id='$cattomove'";
-					awpcp_query($query, __LINE__);
+					$query = "UPDATE " . AWPCP_TABLE_CATEGORIES . " SET category_parent_id='$moveadstocategory' WHERE category_id='$cattomove'";
+					$wpdb->query( $query );
 				}
 
 			}
@@ -1291,21 +1296,20 @@ function awpcp_handle_admin_requests() {
 					$movetocatparent=get_cat_parent_ID($movetocat);
 
 					// Move the ads in the category main
-					$query="UPDATE ".$tbl_ads." SET ad_category_id='$movetocat',ad_category_parent_id='$movetocatparent' WHERE ad_category_id='$cattodel'";
-					awpcp_query($query, __LINE__);
+					$query = "UPDATE " . AWPCP_TABLE_ADS . " SET ad_category_id='$movetocat',ad_category_parent_id='$movetocatparent' WHERE ad_category_id='$cattodel'";
+					$wpdb->query( $query );
 
 					// Must also relocate ads where the main category was a child of the category being deleted
-					$query="UPDATE ".$tbl_ads." SET ad_category_parent_id='$movetocat' WHERE ad_category_parent_id='$cattodel'";
-					awpcp_query($query, __LINE__);
+					$query = "UPDATE " . AWPCP_TABLE_ADS . " SET ad_category_parent_id='$movetocat' WHERE ad_category_parent_id='$cattodel'";
+					$wpdb->query( $query );
 
 					// Must also relocate any children categories that do not exist in the categories to delete loop to the the move-to-cat
-					$query="UPDATE ".$tbl_ad_categories." SET category_parent_id='$movetocat' WHERE category_parent_id='$cattodel' AND category_id NOT IN (".implode(',',$categoriestodelete).")";
+					$query = "UPDATE " . AWPCP_TABLE_CATEGORIES . " SET category_parent_id='$movetocat' WHERE category_parent_id='$cattodel' AND category_id NOT IN (".implode(',',$categoriestodelete).")";
 
-					awpcp_query($query, __LINE__);
+					$wpdb->query( $query );
 				}
 				elseif ($movedeleteads == 2)
 				{
-
 					$movetocat=$moveadstocategory;
 
 					// If the category has children move the ads in the child categories to the default category
@@ -1313,23 +1317,21 @@ function awpcp_handle_admin_requests() {
 					if ( category_has_children($cattodel) )
 					{
 						//  Relocate the ads ads in any children categories of the category being deleted
-
-						$query="UPDATE ".$tbl_ads." SET ad_category_parent_id='$movetocat' WHERE ad_category_parent_id='$cattodel'";
-						awpcp_query($query, __LINE__);
+						$query = "UPDATE " . AWPCP_TABLE_ADS . " SET ad_category_parent_id='$movetocat' WHERE ad_category_parent_id='$cattodel'";
+						$wpdb->query( $query );
 
 						// Relocate any children categories that exist under the category being deleted
-						$query="UPDATE ".$tbl_ad_categories." SET category_parent_id='$movetocat' WHERE category_parent_id='$cattodel'";
-						awpcp_query($query, __LINE__);
+						$query = "UPDATE " . AWPCP_TABLE_CATEGORIES . " SET category_parent_id='$movetocat' WHERE category_parent_id='$cattodel'";
+						$wpdb->query( $query );
 					}
-
 
 					// Now delete the ads because the admin has checked Delete ads if any
 					massdeleteadsfromcategory($cattodel);
 				}
 
 				// Now delete the categories
-				$query="DELETE FROM  ".$tbl_ad_categories." WHERE category_id='$cattodel'";
-				awpcp_query($query, __LINE__);
+				$query = "DELETE FROM  " . AWPCP_TABLE_CATEGORIES . " WHERE category_id='$cattodel'";
+				$wpdb->query( $query );
 
 				$themessagetoprint=__("The categories have been deleted","AWPCP");
 			}

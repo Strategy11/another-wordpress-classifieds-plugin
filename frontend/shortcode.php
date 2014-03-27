@@ -741,15 +741,18 @@ function awpcp_display_the_classifieds_category($awpcppagename, $parent=0, $side
             $query = "SELECT category_id,category_name FROM ". AWPCP_TABLE_CATEGORIES ." ";
             $query.= "WHERE category_parent_id='$mcid' AND category_name <> '' ";
             $query.= "ORDER BY category_order,category_name ASC";
-            $res2 = awpcp_query($query, __LINE__);
 
-            if (mysql_num_rows($res2)) {
+            $query_results = $wpdb->get_results( $query, ARRAY_N );
+
+            if ( is_array( $query_results ) && ! empty( $query_results ) ) {
                 $myreturn .= "<ul class=\"showcategoriessublist\">";
-                while ($rsrow2=mysql_fetch_row($res2)) {
+
+                foreach ( $query_results as $sub_category ) {
                     $myreturn .= "<li>";
-                    $myreturn .= awpcp_display_classifieds_category_item($rsrow2, '');
+                    $myreturn .= awpcp_display_classifieds_category_item( $sub_category, '' );
                     $myreturn .= "</li>";
                 }
+
                 $myreturn .= "</ul>";
             }
 

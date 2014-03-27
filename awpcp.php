@@ -988,14 +988,14 @@ function exclude_awpcp_child_pages($excluded=array()) {
 
 	$query = "SELECT ID FROM {$table_prefix}posts ";
 	$query.= "WHERE post_parent=$awpcp_page_id AND post_content LIKE '%AWPCP%'";
-	$res = awpcp_query($query, __LINE__);
 
-	$awpcpchildpages = array();
-	while ($rsrow=mysql_fetch_row($res)) {
-		$awpcpchildpages[] = $rsrow[0];
+	$child_pages = $wpdb->get_col( $query );
+
+	if ( is_array( $child_pages ) ) {
+		return array_merge( $child_pages, $excluded );
+	} else {
+		return $excluded;
 	}
-
-	return array_merge($awpcpchildpages, $excluded);
 }
 
 
