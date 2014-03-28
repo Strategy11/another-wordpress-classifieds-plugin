@@ -31,19 +31,6 @@ function sqlerrorhandler($ERROR, $QUERY, $PHPFILE, $LINE) {
 	trigger_error("(SQL) $ERROR", E_USER_ERROR);
 }
 
-/**
- * Wrapper for mysql_query which triggers an error if the query fails.
- */
-function awpcp_query($query, $LINE) {
-	global $wpdb;
-	//Query, and if failure happens, emit an appropriate error
-	$res = array();
-	if (!($res=mysql_query($query))) {
-		sqlerrorhandler("(".mysql_errno().") ".mysql_error(), $query, $_SERVER['PHP_SELF'], $LINE);
-	}
-	return $res;
-}
-
 //Error handler installed in main awpcp.php file, after this file is included.
 function add_slashes_recursive( $variable ) {
 	if (is_string($variable)) {
@@ -303,26 +290,6 @@ function get_awpcp_option_type($option) {
 function get_awpcp_option_config_diz($option) {
 	return get_awpcp_setting('config_diz', $option);
 }
-// END FUNCTION
-function awpcp_is_classifieds()
-{
-	global $post,$table_prefix;
-	$awpcppageid=$post->ID;
-	$classifiedspagecontent="[AWPCPCLASSIFIEDSUI]";
-
-	$query="SELECT post_content FROM {$table_prefix}posts WHERE ID='$awpcppageid' AND post_type='page' AND post_status='publish'";
-	$res = awpcp_query($query, __LINE__);
-
-	while ($rsrow=mysql_fetch_row($res))
-	{
-		list($thepostcontentvalue)=$rsrow;
-	}
-
-	$istheclassifiedspage= (strcasecmp($thepostcontentvalue, $classifiedspagecontent) == 0);
-	return $istheclassifiedspage;
-
-}
-
 
 // START FUNCTION: Check if the user is an admin
 function checkifisadmin() {
@@ -456,103 +423,10 @@ function awpcp_get_term_duration($adtermid) {
 	return array('duration' => $duration, 'increment' => $increment);
 }
 
-// START FUNCTION: Get the total number of days an ad term last based on term ID value
-function get_num_days_in_term($adtermid) {
-	$numdaysinterm='';
-	global $wpdb;
-	$tbl_ad_fees = $wpdb->prefix . "awpcp_adfees";
-
-	$query="SELECT rec_period from ".$tbl_ad_fees." WHERE adterm_id='$adtermid'";
-	$res = awpcp_query($query, __LINE__);
-	while ($rsrow=mysql_fetch_row($res)) {
-		list($numdaysinterm)=$rsrow;
-	}
-
-	if ('' == $numdaysinterm || 0 == $numdaysinterm) {
-		$numdaysinterm = 3650; // 100 years, equivalent of never expires
-	}
-
-	return $numdaysinterm;
-}
-// END FUNCTION
-// START FUNCTION: Get the id for the ad term based on having the ad ID
-function get_adterm_id($adid) {
-	return get_adfield_by_pk('adterm_id', $adid);
-}
-// END FUNCTION
-// START FUNCTION: Get the ad term name for the ad term based on having the ad term ID
-function get_adterm_name($adterm_id) {
-
-	global $wpdb;
-	$tbl_ad_fees = $wpdb->prefix . "awpcp_adfees";
-
-	$adterm_name='';
-
-	$query="SELECT adterm_name from ".$tbl_ad_fees." WHERE adterm_id='$adterm_id'";
-	$res = awpcp_query($query, __LINE__);
-	while ($rsrow=mysql_fetch_row($res)) {
-		list($adterm_name)=$rsrow;
-	}
-	return $adterm_name;
-}
-// END FUNCTION
-// START FUNCTION: Get the ad recperiod based on having the ad term ID
-function get_fee_recperiod($adterm_id) {
-
-	global $wpdb;
-	$tbl_ad_fees = $wpdb->prefix . "awpcp_adfees";
-
-	$recperiod='';
-
-	$query="SELECT rec_period from ".$tbl_ad_fees." WHERE adterm_id='$adterm_id'";
-	$res = awpcp_query($query, __LINE__);
-	while ($rsrow=mysql_fetch_row($res)) {
-		list($recperiod)=$rsrow;
-	}
-	return $recperiod;
-}
-// END FUNCTION
-// START FUNCTION: Get the ad posters name based on having the ad ID
 function get_adpostername($adid) {
 	return get_adfield_by_pk('ad_contact_name', $adid);
 }
-// END FUNCTION
-// START FUNCTION: Get the ad posters access key based on given ID
-function get_adkey($adid) {
-	return get_adfield_by_pk('ad_key', $adid);
-}
-// END FUNCTION
-// START FUNCTION: Get the ad title based on having the ad email
-function get_adcontactbyem($email) {
-	$adcontact='';
-	global $wpdb;
-	$tbl_ads = $wpdb->prefix . "awpcp_ads";
 
-	$query="SELECT ad_contact_name from ".$tbl_ads." WHERE ad_contact_email='$email'";
-	$res = awpcp_query($query, __LINE__);
-	while ($rsrow=mysql_fetch_row($res)) {
-		list($adcontact)=$rsrow;
-	}
-	return $adcontact;
-
-}
-// END FUNCTION
-// START FUNCTION: Get the ad posters name based on having the ad email
-function get_adtitlebyem($email) {
-	$adtitle='';
-	global $wpdb;
-	$tbl_ads = $wpdb->prefix . "awpcp_ads";
-
-	$query="SELECT ad_title from ".$tbl_ads." WHERE ad_contact_email='$email'";
-	$res = awpcp_query($query, __LINE__);
-	while ($rsrow=mysql_fetch_row($res)) {
-		list($adtitle)=$rsrow;
-	}
-	return strip_slashes_recursive($adtitle);
-
-}
-// END FUNCTION
-// START FUNCTION: Get the ad posters email based on having the ad ID
 function get_adposteremail($adid) {
 	return get_adfield_by_pk('ad_contact_email', $adid);
 }
@@ -652,73 +526,6 @@ function get_categorynameidall($cat_id = 0) {
 				$subcatoptionitem = "<option selected='selected' value='$subcat_ID'>- $subcat_name</option>";
 			} else {
 				$subcatoptionitem = "<option  value='$subcat_ID'>- $subcat_name</option>";
-			}
-
-			$optionitem.="$subcatoptionitem";
-		}
-	}
-
-	return $optionitem;
-}
-
-function get_categorycheckboxes( $cats=array(), $adterm_id=null, $field_name='fee_cats' ) {
-	global $wpdb;
-
-	$tbl_categories = $wpdb->prefix . "awpcp_categories";
-	$tbl_fees = $wpdb->prefix . "awpcp_adfees";
-
-	$optionitem='';
-
-	$catswithfees = array();
-	if (!empty($adterm_id)) {
-		$sql = 'select categories from '.$tbl_fees.' where adterm_id = '.$adterm_id;
-		$catswithfees = $wpdb->get_var($sql);
-
-		if (!empty($catswithfees)) {
-			$catswithfees = explode(',', $catswithfees);
-		} else {
-			$catswithfees = array();
-		}
-	}
-
-
-	// Start with the main categories
-
-	$query="SELECT category_id,category_name FROM ".$tbl_categories." WHERE category_parent_id=0 and category_name <> '' ORDER BY category_order, category_name ASC";
-	$res = awpcp_query($query, __LINE__);
-
-	while ($rsrow=mysql_fetch_row($res)) {
-
-		$cat_ID=$rsrow[0];
-		$cat_name=$rsrow[1];
-
-		$opstyle="class=\"checkboxparentcategory\"";
-
-		if(in_array($cat_ID, $catswithfees)) {
-			$maincatoptionitem = "<label><input name='{$field_name}[]' type='checkbox' $opstyle checked='checked' value='$cat_ID'> $cat_name</label><br/>";
-		} else {
-			$maincatoptionitem = "<label><input name='{$field_name}[]' type='checkbox' $opstyle value='$cat_ID'> $cat_name</label><br/>";
-		}
-
-		$optionitem.="$maincatoptionitem";
-
-		// While still looping through main categories get any sub categories of the main category
-
-		$maincatid=$cat_ID;
-
-		$query="SELECT category_id,category_name FROM ".$tbl_categories." WHERE category_parent_id='$maincatid' ORDER BY category_order, category_name ASC";
-		$res2 = awpcp_query($query, __LINE__);
-
-		while ($rsrow2=mysql_fetch_row($res2)) {
-			$subcat_ID=$rsrow2[0];
-			$subcat_name=$rsrow2[1];
-
-			if( in_array($subcat_ID, $catswithfees) )
-			{
-				$subcatoptionitem = "<label><input name='{$field_name}[]' type='checkbox' checked='checked' value='$subcat_ID'> &nbsp; &nbsp; - $subcat_name</label><br/>";
-			}
-			else {
-				$subcatoptionitem = "<label><input name='{$field_name}[]' type='checkbox' value='$subcat_ID'> &nbsp; &nbsp; - $subcat_name</label><br/>";
 			}
 
 			$optionitem.="$subcatoptionitem";
@@ -871,46 +678,7 @@ function total_ads_in_cat($catid) {
     // $query.= "AND disabled = 0 AND (flagged IS NULL OR flagged =0) $filter";
     $query.= "AND disabled = 0 $filter";
 
-    $res = awpcp_query($query, __LINE__);
-    while ($rsrow=mysql_fetch_row($res)) {
-        list($totaladsincat)=$rsrow;
-    }
-    return $totaladsincat;
-}
-
-// END FUNCTION: check how many ads are in a category
-// START FUNCTION: Check if there are any ads in the system
-function images_exist() {
-	global $wpdb;
-	$tbl_ad_photos = $wpdb->prefix . "awpcp_ads";
-	$myreturn=!awpcpistableempty($tbl_ad_photos);
-	return $myreturn;
-}
-// END FUNCTION: Check if images exist in system
-
-/**
- * Remove unwanted characters from string and setup for use with search engine
- * friendly urls.
- *
- * @deprecated deprecated since 2.0.6. Use sanitize_title instead.
- */
-function cleanstring($text) {
-	$code_entities_match = array(' ','--','&quot;','!','@','#','$','%','^','&','*','(',')','+','{','}','|',':','"','<','>','?','[',']','\\',';',"'",',','.','/','*','+','~','`','=');
-	$code_entities_replace = array('_','_','','','','','','','','','','','','','','','','','','','','','','','');
-	$text = str_replace($code_entities_match, $code_entities_replace, $text);
-	if (version_compare(PHP_VERSION, '5.2.0', '>=')) {
-		$text="".(filter_var($text, FILTER_SANITIZE_URL))."";
-	}
-	return $text;
-}
-
-
-// END FUNCTION: remove unwanted characters from string to be used in URL for search engine friendliness
-// START FUNCTION: replace underscores with dashes for search engine friendly urls
-function add_dashes($text) {
-	$text=str_replace("_","-",$text);
-	$text=str_replace(" ","-",$text);
-	return $text;
+    return $wpdb->get_var( $query );
 }
 
 //Function to replace addslashes_mq, which is causing major grief.  Stripping of undesireable characters now done
@@ -968,28 +736,16 @@ function awpcp_get_page_ids_by_ref($refnames) {
 	return $wpdb->get_col($query);
 }
 
-
-// END FUNCTION: Get the ID from wordpress posts table where the post_name is known
-// START FUNCTION: Get the page guid
-function awpcp_get_guid($awpcpshowadspageid){
-	global $wpdb;
-	$awpcppageguid = $wpdb->get_var("SELECT guid FROM $wpdb->posts WHERE ID ='$awpcpshowadspageid'");
-	return $awpcppageguid;
-}
-// END FUNCTION: Get the page guid
-
-
-// START FUNCTION: 
 /**
  * Setup the structure of the URLs based on if permalinks are on and SEO urls
  * are turned on.
- * 
- * Actually it doesn't take into account if SEO urls are on. It also takes an 
+ *
+ * Actually it doesn't take into account if SEO urls are on. It also takes an
  * argument that is expected to have the same value ALWAYS.
  *
  * Is easier to get the URL for a given page using:
  * get_permalink(awpcp_get_page_id(sanitize-title($human-readable-pagename)));
- * or 
+ * or
  * get_permalink(awpcp_get_page_id_by_ref(<setting that stores that pages name>))
  */
 function setup_url_structure($awpcpthepagename) {
@@ -1104,32 +860,6 @@ function url_editad() {
 	return user_trailingslashit(awpcp_get_page_url('edit-ad-page-name'));
 }
 
-// START FUNCTION: get the parent_id of the post
-
-//XXX: never used?
-function get_page_parent_id($awpcpwppostpageid){
-	global $wpdb;
-	$awpcppageparentid = $wpdb->get_var("SELECT post_parent FROM $wpdb->posts WHERE ID = '$awpcpwppostpageid'");
-	return $awpcppageparentid;
-}
-
-
-// END FUNCTION: get the parent id of a wordpress post where the post ID is known
-
-
-
-// START FUNCTION: get the name of a wordpress entry from table posts where the parent id is present
-//XXX: never used?
-function get_awpcp_parent_page_name($awpcppageparentid) {
-
-	global $wpdb;
-	$awpcpparentpagename = $wpdb->get_var("SELECT post_name FROM $wpdb->posts WHERE ID = '$awpcppageparentid'");
-	return $awpcpparentpagename;
-}
-// END FUNCTION: get the name of a wordpress wp_post entry where the ID of the post parent is present
-
-
-
 /**
  * @deprecated since 2.0.7
  */ 
@@ -1145,75 +875,6 @@ function add_config_group_id($cvalue,$coption) {
 
 	$wpdb->query( $query );
 }
-
-
-
-// START FUNCTION: check if a specific ad id already exists
-function adidexists($adid) {
-	global $wpdb;
-	$tbl_ads = $wpdb->prefix . "awpcp_ads";
-	$adidexists=false;
-	$query="SELECT count(*) FROM ".$tbl_ads." WHERE ad_id='$adid'";
-	if (($res=mysql_query($query))) {
-		$adidexists=true;
-	}
-
-	return $adidexists;
-}
-
-
-function categoryidexists($adcategoryid) {
-	global $wpdb;
-	$tbl_categories = $wpdb->prefix . "awpcp_adcategories";
-	$categoryidexists=false;
-	$query="SELECT count(*) FROM ".$tbl_categories." WHERE categoryid='$adcategoryid'";
-	if (($res=mysql_query($query))) {
-		$categoryidexists=true;
-	}
-
-	return $categoryidexists;
-}
-// END FUNCTION: check if a specific ad id already exists
-
-
-
-// START FUNCTION: get the current name of the classfieds page
-function display_setup_text() {
-	$awpcpsetuptext="<h2>";
-	$awpcpsetuptext.=__("Setup Process","AWPCP");
-	$awpcpsetuptext.="</h2>";
-	$awpcpsetuptext.="<p>";
-	$awpcpsetuptext.=__("It looks like you have not yet told the system how you want your classifieds to operate.","AWPCP");
-	$awpcpsetuptext.="</p>";
-	$awpcpsetuptext.="<p>";
-	$awpcpsetuptext.=__("Please begin by setting up the options for your site. The system needs to know a number of things about how you want to run your classifieds.","AWPCP");
-	$awpcpsetuptext.='
-		<p>
-		    <form action="?page=Configure1&mspgs=1" method="post">
-			    <input type="hidden" name="userpagename" value="AWPCP" >
-				<input type="hidden" name="showadspagename" value="Show Ad" >
-				<input type="hidden" name="placeadpagename" value="Place Ad" >
-				<input type="hidden" name="page-name-renew-ad" value="Renew Ad" >
-				<input type="hidden" name="browseadspagename" value="Browse Ads" >
-				<input type="hidden" name="replytoadpagename" value="Reply To Ad" >
-				<input type="hidden" name="paymentthankyoupagename" value="Payment Thank You" >
-				<input type="hidden" name="paymentcancelpagename" value="Cancel Payment" >
-				<input type="hidden" name="searchadspagename" value="Search Ads" >
-				<input type="hidden" name="browsecatspagename" value="Browse Categories" >
-				<input type="hidden" name="editadpagename" value="Edit Ad" >
-				<input type="hidden" name="categoriesviewpagename" value="View Categories" >
-				<input type="hidden" name="cgid" value="10" >
-				<input type="hidden" name="makesubpagesa" value="" >
-				<input type="hidden" name="confirmsave" value="1">
-				<input type="hidden" name="awpcp_installationcomplete" value="1">
-				<input type="submit" name="savesettings" class="button" value="Click here to complete setup" style="width: 375px;font: 22px Georgia; margin:20px auto;padding: 10px"> 
-			</form>
-		</p>';
-
-
-	return $awpcpsetuptext;
-}
-
 
 /**
  * Returns the current name of the AWPCP main page.
@@ -1251,7 +912,6 @@ function isValidURL($url) {
 function awpcp_is_valid_email_address($email) {
 	return filter_var( $email, FILTER_VALIDATE_EMAIL ) !== false;
 }
-
 
 /**
  * @deprecated since 3.0.2. @see awpcp_is_valid_email_address()
@@ -1338,165 +998,7 @@ function create_ad_postedby_list($name) {
 
 	return $output;
 }
-// END FUNCTION: create a drop down list containing country options from saved states in database
-// START FUNCTION: Check if ads table contains city data
-function adstablehascities()
-{
-	$myreturn=false;
 
-	global $wpdb;
-	$tbl_ads = $wpdb->prefix . "awpcp_ads";
-
-	$query="SELECT ad_city FROM ".$tbl_ads." WHERE ad_city <> ''";
-	$res = awpcp_query($query, __LINE__);
-
-	if (mysql_num_rows($res))
-	{
-		$myreturn=true;
-	}
-
-	return $myreturn;
-
-}
-// END FUNCTION: Check if ads table contains city data
-// START FUNCTION: Check if ads table contains state data
-function adstablehasstates()
-{
-	$myreturn=false;
-
-	global $wpdb;
-	$tbl_ads = $wpdb->prefix . "awpcp_ads";
-
-	$query="SELECT ad_state FROM ".$tbl_ads." WHERE ad_state <> ''";
-	$res = awpcp_query($query, __LINE__);
-
-	if (mysql_num_rows($res))
-	{
-		$myreturn=true;
-	}
-
-	return $myreturn;
-
-}
-// END FUNCTION: Check if ads table contains state data
-// START FUNCTION: Check if ads table contains country data
-function adstablehascountries()
-{
-
-	$myreturn=false;
-
-	global $wpdb;
-	$tbl_ads = $wpdb->prefix . "awpcp_ads";
-
-	$query="SELECT ad_country FROM ".$tbl_ads." WHERE ad_country <> ''";
-	$res = awpcp_query($query, __LINE__);
-
-	if (mysql_num_rows($res))
-	{
-		$myreturn=true;
-	}
-
-	return $myreturn;
-
-}
-// END FUNCTION: Check if ads table contains country data
-// START FUNCTION: Check if ads table contains county data
-function adstablehascounties()
-{
-
-	$myreturn=false;
-
-	global $wpdb;
-	$tbl_ads = $wpdb->prefix . "awpcp_ads";
-
-	$query="SELECT ad_county_village FROM ".$tbl_ads." WHERE ad_county_village <> ''";
-	$res = awpcp_query($query, __LINE__);
-
-	if (mysql_num_rows($res))
-	{
-		$myreturn=true;
-	}
-
-	return $myreturn;
-
-}
-// END FUNCTION: Check if ads table contains county data
-// START FUNCTION: check if there are any values entered into the price field for any ad
-function price_field_has_values()
-{
-	$myreturn=false;
-
-	global $wpdb;
-	$tbl_ads = $wpdb->prefix . "awpcp_ads";
-
-	$query="SELECT ad_item_price FROM ".$tbl_ads." WHERE ad_item_price > 0";
-	$res = awpcp_query($query, __LINE__);
-
-	if (mysql_num_rows($res))
-	{
-		$myreturn=true;
-	}
-
-	return $myreturn;
-}
-// END FUNCTION: check if there are any values entered into the price field for any ad
-
-/**
- * This function is supposed to return a random image from the images associated 
- * to an Ad with id $ad_id but it returns the oldest image available instead.
- */
-function get_a_random_image($ad_id) {
-	global $wpdb;
-	$tbl_ad_photos = $wpdb->prefix . "awpcp_adphotos";
-	$awpcp_image_name='';
-
-	$query="SELECT image_name FROM ".$tbl_ad_photos." WHERE ad_id='$ad_id' AND disabled=0 LIMIT 1";
-	$res = awpcp_query($query, __LINE__);
-
-	if (mysql_num_rows($res)) {
-		list($awpcp_image_name)=mysql_fetch_row($res);
-	}
-
-	return $awpcp_image_name;
-}
-
-
-// START FUNCTION: check a specific ad to see if it is disabled or enabled
-function check_if_ad_is_disabled($adid) {
-	global $wpdb;
-	$tbl_ads = $wpdb->prefix . "awpcp_ads";
-
-	$myreturn=false;
-	$query="SELECT disabled FROM ".$tbl_ads." WHERE ad_id='$adid'";
-	$res = awpcp_query($query, __LINE__);
-
-	while ($rsrow=mysql_fetch_row($res))
-	{
-		list($adstatusdisabled)=$rsrow;
-	}
-	if ($adstatusdisabled == 1)
-	{
-		$myreturn=true;
-	}
-
-	return $myreturn;
-}
-// END FUNCTION: check a specific ad to see if it is disabled or enabled
-function check_ad_fee_paid($adid) {
-	global $wpdb;
-	$tbl_ads = $wpdb->prefix . "awpcp_ads";
-	$adfeeispaid=false;
-	$query="SELECT ad_fee_paid FROM ".$tbl_ads." WHERE ad_id='$adid'";
-	while ($rsrow=mysql_fetch_row($res))
-	{
-		list($ad_fee_paid)=$rsrow;
-	}
-	if($ad_fee_paid > 0){$adfeeispaid=true;}
-
-	return $adfeeispaid;
-}
-
-// START FUNCTION: Clear HTML tags
 function awpcp_strip_html_tags( $text )
 {
 	// Remove invisible content
@@ -1666,39 +1168,6 @@ function awpcp_getip() {
 	}
 }
 
-
-function is_at_least_awpcp_version($version)
-{
-	global $awpcp_plugin_data;
-	if (version_compare($awpcp_plugin_data['Version'], $version, ">=")) {
-		// you're on a later or equal version, this is good
-		$ok = true;
-	} else {
-		// earlier version, this is bad
-		$ok = false;
-	}
-	return $ok;
-}
-
-function awpcp_insert_tweet_button($layout, $adid, $title) {
-	$properties = array(
-		'url' => urlencode(url_showad($adid)),
-		'text' => urlencode($title)
-	);
-
-	$url = add_query_arg($properties, 'http://twitter.com/share');
-
-	$button = '<div class="tw_button awpcp_tweet_button_div">';
-	$button.= '<a href="' . $url . '" rel="nofollow" class="twitter-share-button" target="_blank">';
-	$button.= 'Tweet This'.'</a>';
-	$button.= '</div>';
-
-	$layout = str_replace('$tweetbtn', $button, $layout);
-
-	return $layout;
-}
-
-
 function awpcp_get_ad_share_info($id) {
 	global $wpdb;
 
@@ -1730,34 +1199,6 @@ function awpcp_get_ad_share_info($id) {
 	}
 
 	return $info;
-}
-
-
-function awpcp_insert_share_button($layout, $adid, $title) {
-	global $awpcp_plugin_url;
-
-	$info = awpcp_get_ad_share_info($adid);
-
-	$href = 'http://www.facebook.com/sharer.php?';
-	$href.= 's=100';
-
-	foreach ($info['images'] as $k => $image) {
-		$href.= '&p[images][' . $k . ']=' . urlencode($image);
-	}
-
-	// put them after the image URLs to avoid conflict with lightbox plugins
-	// https://github.com/drodenbaugh/awpcp/issues/310
-	// http://www.awpcp.com/forum/viewtopic.php?f=4&t=3470&p=15358#p15358
-	$href.= '&p[url]=' . urlencode($info['url']);
-	$href.= '&p[title]=' . urlencode($title);
-	$href.= '&p[summary]=' . urlencode($info['description']);
-
-	$button = '<div class="tw_button awpcp_tweet_button_div">';
-	$button.= '<a href="' . $href . '" class="facebook-share-button" title="Share on Facebook" target="_blank"></a>';
-	$button.= '</div>';
-
-	$layout = str_replace('$sharebtn', $button, $layout);
-	return $layout;
 }
 
 //
