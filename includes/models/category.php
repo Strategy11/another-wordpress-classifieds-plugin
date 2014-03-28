@@ -35,7 +35,7 @@ class AWPCP_Category {
         $query = 'SELECT %s FROM ' . AWPCP_TABLE_CATEGORIES . ' ';
 
         if ($fields == 'count') {
-            $query = sprintf($query, 'COUNT(id)');
+            $query = sprintf($query, 'COUNT(category_id)');
             $limit = 0;
         } else {
             $query = sprintf($query, $fields);
