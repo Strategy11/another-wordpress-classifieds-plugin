@@ -351,15 +351,15 @@ class AWPCP {
 		// actions and filters from functions_awpcp.php
 		add_action('phpmailer_init','awpcp_phpmailer_init_smtp');
 
-		add_filter('cron_schedules', 'awpcp_cron_schedules');
-
-		add_action('init', 'awpcp_schedule_activation');
-
 		add_action('widgets_init', array($this, 'register_widgets'));
 
 		if (get_awpcp_option('awpcppagefilterswitch') == 1) {
 			add_filter('wp_list_pages_excludes', 'exclude_awpcp_child_pages');
 		}
+
+		add_filter('cron_schedules', 'awpcp_cron_schedules');
+
+		awpcp_schedule_activation();
 	}
 
 	public function init() {
