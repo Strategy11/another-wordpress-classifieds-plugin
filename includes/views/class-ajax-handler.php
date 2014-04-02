@@ -15,7 +15,7 @@ class AWPCP_AjaxResponse {
      * @since next-release
      */
     public function set_content_type( $content_type ) {
-        header( sprintf( "Content-Type: %s" ) );
+        header( sprintf( "Content-Type: %s", $content_type ) );
     }
 
     /**
