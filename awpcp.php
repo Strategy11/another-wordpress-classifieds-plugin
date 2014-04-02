@@ -435,7 +435,7 @@ class AWPCP {
 					'url' => 'http://www.awpcp.com/premium-modules/comments-ratings-module/?ref=user-panel',
 					'installed' => defined( 'AWPCP_COMMENTS_MODULE' ),
 					'version' => 'AWPCP_COMMENTS_MODULE_VERSION',
-					'required' => '3.2.5',
+					'required' => '3.2.6',
 				),
 				'coupons' => array(
 					'name' => __( 'Coupons/Discount', 'AWPCP' ),
