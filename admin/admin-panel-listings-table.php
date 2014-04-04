@@ -338,7 +338,22 @@ class AWPCP_Listings_Table extends WP_List_Table {
     }
 
     public function column_status($item) {
-        return $item->disabled ? __('Disabled', 'AWPCP') : __('Enabled', 'AWPCP');
+        $actions = array();
+
+        if ( $item->verified == 0 ) {
+            $url = $this->page->url( array( 'action' => 'mark-verified', 'id' => $item->ad_id ) );
+            $actions['mark-verified'] = array( __( 'Mark as Verified', 'AWPCP' ), $url );
+        }
+
+        if ( ! empty( $actions ) ) {
+            $actions = $this->row_actions( $this->page->links( $actions ), true );
+        } else {
+            $actions = '';
+        }
+
+        $status = $item->disabled ? __( 'Disabled', 'AWPCP' ) : __( 'Enabled', 'AWPCP' );
+
+        return $status . $actions;
     }
 
     public function column_payment_term($item) {
@@ -346,10 +361,15 @@ class AWPCP_Listings_Table extends WP_List_Table {
     }
 
     public function column_payment_status($item) {
+        $actions = array();
+
         if ($item->payment_status == 'Unpaid') {
             $url = $this->page->url(array('action' => 'mark-paid', 'id' => $item->ad_id));
-            $actions = array('mark-paid' => array(__('Mark as Paid', 'AWPCP'), $url));
-            $actions = $this->row_actions($this->page->links($actions), true);
+            $actions['mark-paid'] = array( __( 'Mark as Paid', 'AWPCP' ), $url );
+        }
+
+        if ( ! empty( $actions ) ) {
+            $actions = $this->row_actions( $this->page->links( $actions ), true );
         } else {
             $actions = '';
         }

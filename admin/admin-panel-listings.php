@@ -154,6 +154,7 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
             'disable', 'rejectad', 'bulk-disable',
             'remove-featured', 'bulk-remove-featured',
             'make-featured', 'bulk-make-featured',
+            'mark-verified',
             'mark-paid',
             'send-key',
             'bulk-renew',
@@ -195,6 +196,10 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
 
             case 'unflag':
                 return $this->unflag_ad();
+                break;
+
+            case 'mark-verified':
+                return $this->mark_as_verified();
                 break;
 
             case 'mark-paid':
@@ -385,6 +390,15 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
         }
 
         return $this->redirect('index');
+    }
+
+    public function mark_as_verified() {
+        $ad = AWPCP_Ad::find_by_id( $this->id );
+
+        awpcp_listings_api()->verify_ad( $ad );
+        awpcp_flash( __( 'The Ad was marked as verified.', 'AWPCP' ) );
+
+        return $this->redirect( 'index' );
     }
 
     public function mark_as_paid() {
