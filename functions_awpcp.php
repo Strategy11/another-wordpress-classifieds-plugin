@@ -300,7 +300,7 @@ function awpcpistableempty($table){
 	global $wpdb;
 
 	$query = 'SELECT COUNT(*) FROM ' . $table;
-	$results = $wpdb->get_var( $results );
+	$results = $wpdb->get_var( $query );
 
 	if ( $results !== false && intval( $results ) === 0 ) {
 		return true;
