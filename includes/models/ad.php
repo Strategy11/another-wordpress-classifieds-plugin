@@ -584,7 +584,7 @@ class AWPCP_Ad {
 		return count( $regions ) > 0 ? $regions[0] : null;
 	}
 
-	function renew($end_date=false) {
+	public function renew($end_date=false) {
 		if ($end_date === false) {
 			// if the Ad's end date is in the future, use that as starting point
 			// for the new end date, else use current date.
@@ -602,11 +602,48 @@ class AWPCP_Ad {
 		$this->renewed_date = current_time('mysql');
 
 		// if Ad is disabled lets see if we can enable it
-		if ($this->disabled && ! awpcp_calculate_ad_disabled_state($this->ad_id)) {
+		if ($this->disabled && $this->should_be_enabled() ) {
 			$this->enable();
+		} else if ( $this->disabled ) {
+			$this->clear_disabled_date();
 		}
 
 		return true;
+	}
+
+	/**
+	 * @since next-release
+	 */
+	public function should_be_enabled() {
+		return awpcp_calculate_ad_disabled_state( $this->ad_id ) ? false : true;
+	}
+
+	/**
+	 * @since next-release
+	 */
+	public function should_be_disabled() {
+		return ! $this->should_be_enabled();
+	}
+
+	public function clear_disabled_date() {
+		$this->clear_property( 'disabled_date' );
+	}
+
+	protected function clear_property( $property_name ) {
+		global $wpdb;
+
+		if ( ! property_exists( $this, $property_name ) ) {
+			return false;
+		}
+
+		$query = 'UPDATE ' . AWPCP_TABLE_ADS . ' SET `%s` = NULL WHERE ad_id = %%d';
+		$query = sprintf( $query, $property_name );
+
+		$result = $wpdb->query( $wpdb->prepare( $query, $this->ad_id ) );
+
+		if ( $result !== false ) {
+			$this->$property_name = null;
+		}
 	}
 
 	function get_payment_status() {

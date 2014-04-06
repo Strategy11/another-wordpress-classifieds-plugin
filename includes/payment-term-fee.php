@@ -120,9 +120,8 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
         return $result !== false;
     }
 
-    protected function &get_default_properties() {
-        if (!is_array($this->defaults))
-            parent::get_default_properties();
+    protected function prepare_default_properties() {
+        parent::prepare_default_properties();
 
         if (!isset($this->defaults['buys'])) {
             $this->defaults['buys'] = 0;
@@ -131,7 +130,7 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
         return $this->defaults;
     }
 
-    protected function &sanitize(&$data) {
+    protected function sanitize( $data ) {
         $data = parent::sanitize($data);
         $data['ads'] = 1;
         $data['buys'] = (int) $data['buys'];

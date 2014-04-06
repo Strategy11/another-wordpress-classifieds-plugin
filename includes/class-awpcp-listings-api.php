@@ -100,9 +100,11 @@ class AWPCP_ListingsAPI {
     public function consolidate_existing_ad( $ad ) {
         // if Ad is enabled and should be disabled, then disable it, otherwise
         // do not alter the Ad disabled status.
-        // TODO: move awpcp_calculate_ad_disabled_state() function to Ad model
-        if ( ! $ad->disabled && awpcp_calculate_ad_disabled_state( $ad->ad_id ) ) {
+        if ( ! $ad->disabled && $ad->should_be_disabled() ) {
             $ad->disable();
+            $ad->clear_disabled_date();
+        } else if ( $ad->disabled ) {
+            $ad->clear_disabled_date();
         }
 
         if ( $ad->verified ) {
