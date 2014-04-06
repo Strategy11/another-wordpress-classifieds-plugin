@@ -125,7 +125,7 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
 
         if ( $admin ) {
             $fb = AWPCP_Facebook::instance();
-            if ( $fb->get( 'page_token', '' ) && !awpcp_get_ad_meta( $ad->ad_id, 'sent-to-facebook' ) ) {
+            if ( $fb->get( 'page_token', '' ) && !awpcp_get_ad_meta( $ad->ad_id, 'sent-to-facebook' ) && !$ad->disabled ) {
                 $actions['send-to-facebook'] = array(
                     __( 'Send to Facebook', 'AWPCP' ),
                     $this->url( array(
@@ -598,12 +598,12 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
         $failed = 0;
 
         $fb = AWPCP_Facebook::instance();
-        $fb->set_access_token( 'page_token' );        
+        $fb->set_access_token( 'page_token' );
 
         foreach ( $ads as $ad_id ) {
             $ad = AWPCP_Ad::find_by_id( $ad_id );
 
-            if ( !$ad || awpcp_get_ad_meta( $ad_id, 'sent-to-facebook', true ) == 1 ) {
+            if ( !$ad || awpcp_get_ad_meta( $ad_id, 'sent-to-facebook', true ) == 1 || $ad->disabled ) {
                 $failed++;
                 continue;
             }
