@@ -322,7 +322,7 @@ class AWPCP_Meta {
         }
 
         if ( empty( $this->properties['images'] ) ) {
-            $this->meta_tags['http://ogp.me/ns#image'] = AWPCP_URL . '/resources/images/adhasnoimage.gif';
+            $this->meta_tags['http://ogp.me/ns#image'] = AWPCP_URL . '/resources/images/adhasnoimage.png';
         }
 
         return $this->meta_tags;

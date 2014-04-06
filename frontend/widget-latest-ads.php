@@ -63,7 +63,7 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
                 if (!is_null($image) && get_awpcp_option('imagesallowdisallow')) {
                     $image_url = $image->get_url();
                 } else {
-                    $image_url = "$awpcp_imagesurl/adhasnoimage.gif";
+                    $image_url = "$awpcp_imagesurl/adhasnoimage.png";
                 }
 
                 if (!$instance['show-blank'] && is_null($image)) {
