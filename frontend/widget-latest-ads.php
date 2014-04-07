@@ -51,6 +51,10 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
 
         $thumbnail_width = absint( trim( get_awpcp_option( 'displayadthumbwidth' ) ) );
 
+        if ( empty( $items ) ) {
+            return sprintf( '<li class="awpcp-empty-widget %s">%s</li>', $html_class, __( 'There are currently no Ads to show.', 'AWPCP' ) );
+        }
+
         foreach ($items as $item) {
             $url = url_showad($item->ad_id);
             $title = sprintf('<a href="%s">%s</a>', $url, stripslashes($item->ad_title));
@@ -129,22 +133,19 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
     public function widget($args, $instance) {
         extract($args);
 
-        $items = AWPCP_Ad::query($this->query($instance));
+        $title = apply_filters( 'widget_title', $instance['title'] );
 
-        if ($items) {
-            $title = apply_filters('widget_title', $instance['title']);
+        echo $before_widget;
 
-            echo $before_widget;
+        // do not show empty titles
+        echo !empty( $title ) ? $before_title . $title . $after_title : '';
 
-            // do not show empty titles
-            echo !empty($title) ? $before_title . $title . $after_title : '';
+        echo '<ul>';
+        $items = AWPCP_Ad::query( $this->query( $instance ) );
+        echo $this->render( $items, $instance );
+        echo '</ul>';
 
-            echo '<ul>';
-            echo $this->render($items, $instance);
-            echo '</ul>';
-
-            echo $after_widget;
-        }
+        echo $after_widget;
     }
 
     public function form($instance) {
