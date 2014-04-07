@@ -409,10 +409,6 @@ class AWPCP {
 	 * @since  3.0
 	 */
 	public function get_premium_modules_information() {
-		global $hasextrafieldsmodule, $hasregionsmodule;
-		global $hascaticonsmodule, $hasgooglecheckoutmodule;
-		global $hasrssmodule;
-
 		static $modules = null;
 
 		if ( is_null( $modules ) ) {
@@ -434,7 +430,7 @@ class AWPCP {
 				'category-icons' => array(
 					'name' => __( 'Category Icons', 'AWPCP' ),
 					'url' => 'http://www.awpcp.com/premium-modules/category-icons-module?ref=panel',
-					'installed' => $hascaticonsmodule,
+					'installed' => defined( 'AWPCP_CATEGORY_ICONS_MODULE_DB_VERSION' ),
 					'version' => 'AWPCP_CATEGORY_ICONS_MODULE_DB_VERSION',
 					'required' => '3.2.1',
 				),
@@ -476,7 +472,7 @@ class AWPCP {
 				'google-checkout' => array(
 					'name' => __( 'Google Checkout', 'AWPCP' ),
 					'url' => 'http://www.awpcp.com/premium-modules/google-checkout-module/?ref=panel',
-					'installed' => $hasgooglecheckoutmodule,
+					'installed' => defined( 'AWPCP_GOOGLE_CHECKOUT_MODULE' ),
 					'version' => 'AWPCP_GOOGLE_CHECKOUT_MODULE_DB_VERSION',
 					'required' => '3.0.1',
 				),
@@ -490,14 +486,14 @@ class AWPCP {
 				'region-control' => array(
 					'name' => __( 'Regions Control', 'AWPCP' ),
 					'url' => 'http://www.awpcp.com/premium-modules/regions-control-module?ref=panel',
-					'installed' => $hasregionsmodule,
+					'installed' => defined( 'AWPCP_REGION_CONTROL_MODULE' ),
 					'version' => 'AWPCP_REGION_CONTROL_MODULE_DB_VERSION',
 					'required' => '3.2.9',
 				),
 				'rss' => array(
 					'name' => __( 'RSS', 'AWPCP' ),
 					'url' => 'http://www.awpcp.com/premium-modules/rss-module?ref=panel',
-					'installed' => $hasrssmodule,
+					'installed' => defined( 'AWPCP_RSS_MODULE' ),
 					'version' => 'AWPCP_RSS_MODULE_DB_VERSION',
 					'required' => '3.0.3',
 				),
@@ -949,7 +945,6 @@ $awpcpthumbsurl = AWPCPTHUMBSUPLOADURL;
 $hascaticonsmodule = 0;
 $haspoweredbyremovalmodule = 0;
 $hasgooglecheckoutmodule = 0;
-
 
 if (!defined('AWPCP_REGION_CONTROL_MODULE') && file_exists(AWPCP_DIR . "/awpcp_region_control_module.php")) {
 	require_once(AWPCP_DIR . "/awpcp_region_control_module.php");
