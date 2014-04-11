@@ -20,6 +20,7 @@ class AWPCP_MediaAPI {
             'path' => awpcp_get_property( $object, 'path', null ),
             'mime_type' => awpcp_get_property( $object, 'mime_type', null ),
             'enabled' => awpcp_get_property( $object, 'enabled', null ),
+            'approved' => awpcp_get_property( $object, 'approved', null ),
             'is_primary' => awpcp_get_property( $object, 'is_primary', null ),
         );
 
@@ -34,15 +35,19 @@ class AWPCP_MediaAPI {
     }
 
     public function create( $args ) {
-        extract( wp_parse_args( $args, array( 'enabled' => null, 'is_primary' => false, ) ) );
+        extract( wp_parse_args( $args, array(
+            'enabled' => true,
+            'status' => null,
+            'is_primary' => false,
+        ) ) );
 
         $image_mime_types = awpcp_get_image_mime_types();
 
-        if ( is_null( $enabled ) ) {
+        if ( is_null( $status ) ) {
             if ( ! awpcp_current_user_is_admin() && in_array( $mime_type, $image_mime_types ) && get_awpcp_option( 'imagesapprove' ) ) {
-                $enabled = false;
+                $status = AWPCP_Media::STATUS_AWAITING_APPROVAL;
             } else {
-                $enabled = true;
+                $status = AWPCP_Media::STATUS_APPROVED;
             }
         }
 

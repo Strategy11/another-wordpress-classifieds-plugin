@@ -144,6 +144,7 @@ class AWPCP_Installer {
             `path` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
             `mime_type` VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
             `enabled` TINYINT(1) NOT NULL DEFAULT 0,
+            `status` VARCHAR(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '" . AWPCP_Media::STATUS_APPROVED . "',
             `is_primary` TINYINT(1) NOT NULL DEFAULT 0,
             `created` DATETIME NOT NULL,
             PRIMARY KEY  (`id`)
@@ -405,6 +406,9 @@ class AWPCP_Installer {
         }
         if ( version_compare( $oldversion, '3.0.2' ) < 0 ) {
             $this->upgrade_to_3_0_2( $oldversion );
+        }
+        if ( version_compare( $oldversion, '3.2.2' ) < 0 ) {
+            $this->upgrade_to_3_2_2( $oldversion );
         }
 
         do_action('awpcp_upgrade', $oldversion, $newversion);
@@ -1058,6 +1062,36 @@ class AWPCP_Installer {
 
         if ( $manual_upgrade_required ) {
             update_option( 'awpcp-pending-manual-upgrade', true );
+        }
+    }
+
+    private function upgrade_to_3_2_2( $oldversion ) {
+        global $wpdb;
+
+        if ( ! awpcp_column_exists( AWPCP_TABLE_MEDIA, 'status' ) ) {
+            $query = 'ALTER TABLE ' . AWPCP_TABLE_MEDIA . ' ADD `status` VARCHAR(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT %s AFTER `enabled`';
+            $wpdb->query( $wpdb->prepare( $query, AWPCP_Media::STATUS_APPROVED ) );
+        }
+
+        if ( get_awpcp_option( 'imagesapprove' ) ) {
+            $query = 'UPDATE ' . AWPCP_TABLE_MEDIA . ' SET `status` = %s WHERE enabled = 1';
+            $wpdb->query( $wpdb->prepare( $query, AWPCP_Media::STATUS_APPROVED ) );
+
+            $query = 'UPDATE ' . AWPCP_TABLE_MEDIA . ' SET `status` = %s WHERE enabled = 0';
+            $wpdb->query( $wpdb->prepare( $query, AWPCP_Media::STATUS_REJECTED ) );
+        } else {
+            $query = 'UPDATE ' . AWPCP_TABLE_MEDIA . ' SET `status` = %s';
+            $wpdb->query( $wpdb->prepare( $query, AWPCP_Media::STATUS_APPROVED ) );
+        }
+
+        if ( get_awpcp_option( 'adapprove' ) && get_awpcp_option( 'imagesapprove' ) ) {
+            $query = 'UPDATE ' . AWPCP_TABLE_MEDIA . ' m INNER JOIN ' . AWPCP_TABLE_ADS . ' a ';
+            $query.= 'ON (m.ad_id = a.ad_id AND a.disabled = 1 AND a.disabled_date IS NULL ) ';
+            $query.= 'SET m.status = %s';
+
+            $query = $wpdb->prepare( $query, AWPCP_Media::STATUS_AWAITING_APPROVAL );
+
+            $wpdb->query( $query );
         }
     }
 }
