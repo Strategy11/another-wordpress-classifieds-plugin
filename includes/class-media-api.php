@@ -1,5 +1,9 @@
 <?php
 
+function awpcp_media_api() {
+    return AWPCP_MediaAPI::instance();
+}
+
 class AWPCP_MediaAPI {
     private static $instance = null;
 
@@ -20,7 +24,7 @@ class AWPCP_MediaAPI {
             'path' => awpcp_get_property( $object, 'path', null ),
             'mime_type' => awpcp_get_property( $object, 'mime_type', null ),
             'enabled' => awpcp_get_property( $object, 'enabled', null ),
-            'approved' => awpcp_get_property( $object, 'approved', null ),
+            'status' => awpcp_get_property( $object, 'status', null ),
             'is_primary' => awpcp_get_property( $object, 'is_primary', null ),
         );
 
@@ -51,7 +55,7 @@ class AWPCP_MediaAPI {
             }
         }
 
-        $data = compact( 'ad_id', 'name', 'path', 'mime_type', 'enabled', 'is_primary' );
+        $data = compact( 'ad_id', 'name', 'path', 'mime_type', 'enabled', 'status', 'is_primary' );
 
         if ( $insert_id = $this->save( $data ) ) {
             return $this->find_by_id( $insert_id );
@@ -132,6 +136,22 @@ class AWPCP_MediaAPI {
         return $this->save( $media );
     }
 
+    /**
+     * @since next-release
+     */
+    public function approve( $media ) {
+        $media->status = AWPCP_Media::STATUS_APPROVED;
+        return $this->save( $media );
+    }
+
+    /**
+     * @since next-release
+     */
+    public function reject( $media ) {
+        $media->status = AWPCP_Media::STATUS_REJECTED;
+        return $this->save( $media );
+    }
+
     public function set_ad_primary_image( $ad, $media ) {
         global $wpdb;
 
@@ -156,6 +176,7 @@ class AWPCP_MediaAPI {
             'ad_id' => $ad->ad_id,
             'is_primary' => true,
             'enabled' => true,
+            'status' => AWPCP_Media::STATUS_APPROVED,
             'mime_type' => $image_mime_types,
         ) );
 
@@ -163,8 +184,9 @@ class AWPCP_MediaAPI {
             $results = $this->query( array(
                 'ad_id' => $ad->ad_id,
                 'enabled' => true,
-                'order' => array( 'id ASC' ),
+                'status' => AWPCP_Media::STATUS_APPROVED,
                 'mime_type' => $image_mime_types,
+                'order' => array( 'id ASC' ),
             ) );
         }
 
@@ -180,6 +202,7 @@ class AWPCP_MediaAPI {
             'ad_id' => false,
             'mime_type' => false,
             'enabled' => null,
+            'status' => null,
             'is_primary' => null,
             'order' => array( 'id ASC' ),
         ) ) );
@@ -202,6 +225,10 @@ class AWPCP_MediaAPI {
             $conditions[] = "mime_type IN ('" . join( "', '", $mime_type ) . "')";
         } else if ( ! empty( $mime_type ) ) {
             $conditions[] = $wpdb->prepare( 'mime_type = IN %s', $mime_type );
+        }
+
+        if ( ! is_null( $status ) ) {
+            $conditions[] = $wpdb->prepare( 'status = %s', $status );
         }
 
         if ( ! is_null( $enabled ) ) {
@@ -250,6 +277,11 @@ class AWPCP_MediaAPI {
         return self::query( array_merge( $args, array( 'ad_id' => $ad_id ) ) );
     }
 
+    public function count_images_by_ad_id( $ad_id ) {
+        $mime_types = awpcp_get_image_mime_types();
+        return self::query( array( 'fields' => 'count', 'ad_id' => $ad_id, 'mime_type' => $mime_types ) );
+    }
+
     public function find_images_by_ad_id( $ad_id, $args=array() ) {
         $mime_types = awpcp_get_image_mime_types();
 
@@ -259,12 +291,28 @@ class AWPCP_MediaAPI {
         ) ) );
     }
 
-    public function count_images_by_ad_id( $ad_id ) {
-        $mime_types = awpcp_get_image_mime_types();
-        return self::query( array( 'fields' => 'count', 'ad_id' => $ad_id, 'mime_type' => $mime_types ) );
-    }
-}
+    /**
+     * @since next-release
+     */
+    public function find_public_images_by_ad_id( $ad_id ) {
+        $args = array_merge( $args, array(
+            'status' => AWPCP_Media::STATUS_APPROVED,
+            'enabled' => 1,
+            'order' => array( 'is_primary ASC', 'name ASC' ),
+        ) );
 
-function awpcp_media_api() {
-    return AWPCP_MediaAPI::instance();
+        return $this->find_images_by_ad_id( $ad_id, $args );
+    }
+
+    /**
+     * @since next-release
+     */
+    public function find_images_awaiting_approval_by_ad_id( $ad_id ) {
+        $args = array_merge( $args, array(
+            'status' => AWPCP_Media::STATUS_AWAITING_APPROVAL,
+            'order' => array( 'is_primary ASC', 'name ASC' ),
+        ) );
+
+        return $this->find_images_by_ad_id( $ad_id, $args );
+    }
 }

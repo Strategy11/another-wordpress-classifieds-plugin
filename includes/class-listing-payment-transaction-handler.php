@@ -76,8 +76,8 @@ class AWPCP_ListingPaymentTransactionHandler {
 
     public function maybe_enable_listing( $listing, $transaction ) {
         if ( $listing->disabled && $this->should_enable_listing( $listing, $transaction ) ) {
-            $should_enable_listing_images = get_awpcp_option( 'imagesapprove' ) ? false : true;
-            $listing->enable( $should_enable_listing_images );
+            $should_approve_listing_images = get_awpcp_option( 'imagesapprove' ) ? false : true;
+            $listing->enable( $should_approve_listing_images );
         }
     }
 

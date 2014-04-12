@@ -152,7 +152,7 @@ class AWPCP_ListingsAPI {
 
         // TODO: move awpcp_calculate_ad_disabled_state() function to Ad model
         if ( $ad->disabled && ! awpcp_calculate_ad_disabled_state( null, null, $ad->payment_status ) ) {
-            $ad->enable( /*enable images?*/ ! get_awpcp_option( 'imagesapprove', false ) );
+            $ad->enable( /*approve images?*/ ! get_awpcp_option( 'imagesapprove', false ) );
         }
 
         $this->send_ad_posted_email_notifications( $ad );

@@ -728,23 +728,18 @@ class AWPCP_Ad {
 
 	public function disable() {
 		if ($result = $this->set_disabled_status(true)) {
-			$images = awpcp_media_api()->find_images_by_ad_id( $this->ad_id );
-			foreach ($images as $image) {
-				awpcp_media_api()->disable( $image );
-			}
-
 			do_action('awpcp_disable_ad', $this);
 		}
 
 		return $result;
 	}
 
-	public function enable( $enable_images=true ) {
+	public function enable( $approve_images = true ) {
 		if ($result = $this->set_disabled_status(false)) {
-			if ( $enable_images ) {
-				$images = awpcp_media_api()->find_images_by_ad_id( $this->ad_id );
+			if ( $approve_images ) {
+				$images = awpcp_media_api()->find_images_awaiting_approval_by_ad_id( $this->ad_id );
 				foreach ($images as $image) {
-					awpcp_media_api()->enable( $image );
+					awpcp_media_api()->approve( $image );
 				}
 			}
 

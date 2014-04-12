@@ -470,10 +470,7 @@ function awpcp_do_placeholder_images($ad, $placeholder) {
         }
 
         if ($images_uploaded >= 1) {
-            $results = awpcp_media_api()->find_images_by_ad_id( $ad->ad_id, array(
-                'enabled' => 1,
-                'order' => array( 'is_primary ASC', 'name ASC' ),
-            ) );
+            $results = awpcp_media_api()->find_public_images_by_ad_id( $ad->ad_id );
 
             $columns = get_awpcp_option('display-thumbnails-in-columns', 0);
             $rows = $columns > 0 ? ceil(count($results) / $columns) : 0;
