@@ -294,14 +294,23 @@
 .awpcp-admin-listings .add {
   margin-bottom: 10px;
 }
+.awpcp-admin-listings .subsubsub {
+  float: none;
+  margin-top: 5px;
+}
+.awpcp-admin-listings .awpcp-search-container {
+  margin: 5px 0 10px;
+}
+.awpcp-admin-listings .awpcp-search-container .search-by-box {
+  float: left;
+  margin: 5px 10px 0 0;
+}
+.awpcp-admin-listings .awpcp-search-container .search-box {
+  float: left;
+}
 .awpcp-admin-listings table .column-title,
 .awpcp-admin-listings table .column-manage {
   width: 17%;
-}
-.awpcp-admin-listings .search-by-box {
-  clear: both;
-  float: right;
-  margin: 5px 10px 0 0;
 }
 .awpcp-admin-listings #classiwrapper {
   padding: 0;

@@ -728,7 +728,7 @@ function awpcp_regions_search_conditions($regions=array()) {
 	$sql = 'SELECT ad_id FROM ' . AWPCP_TABLE_AD_REGIONS . ' ';
 	$sql.= 'WHERE ' . join( ' OR ', $conditions );
 
-	return array( '`ad_id` IN ( ' . $sql . ' )' );
+	return array( AWPCP_TABLE_ADS . '.`ad_id` IN ( ' . $sql . ' )' );
 }
 
 

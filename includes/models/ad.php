@@ -190,6 +190,7 @@ class AWPCP_Ad {
 
 		extract(wp_parse_args($args, array(
 			'fields' => '*',
+			'join' => false,
 			'where' => '1 = 1',
 			'order' => array( 'ad_startdate DESC' ),
 			'offset' => 0,
@@ -204,6 +205,10 @@ class AWPCP_Ad {
         	$limit = 0;
         } else {
         	$query = sprintf($query, $fields);
+        }
+
+        if ( $join !== false ) {
+        	$query = $query . $join . ' ';
         }
 
         $query.= sprintf('WHERE %s ', $where);
