@@ -329,6 +329,8 @@ class AWPCP {
 		add_action('admin_notices', array($this, 'admin_notices'));
 
 		add_action('awpcp_register_settings', array($this, 'register_settings'));
+		add_action( 'awpcp-register-payment-term-types', array( $this, 'register_payment_term_types' ) );
+		add_action( 'awpcp-register-payment-methods', array( $this, 'register_payment_methods' ) );
 
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 1000 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ), 1000 );
@@ -346,9 +348,6 @@ class AWPCP {
 		if (get_option('awpcp-pending-manual-upgrade')) return;
 
 		$this->pages = new AWPCP_Pages();
-
-		add_action('awpcp-register-payment-term-types', array($this, 'register_payment_term_types'));
-		add_action('awpcp-register-payment-methods', array($this, 'register_payment_methods'));
 
         add_action( 'awpcp-process-payment-transaction', array( $this, 'process_transaction_update_payment_status' ) );
         add_action( 'awpcp-process-payment-transaction', array( $this, 'process_transaction_notify_wp_affiliate_platform' ) );
