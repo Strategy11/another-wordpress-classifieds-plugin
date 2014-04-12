@@ -295,11 +295,11 @@ class AWPCP_MediaAPI {
      * @since next-release
      */
     public function find_public_images_by_ad_id( $ad_id ) {
-        $args = array_merge( $args, array(
+        $args = array(
             'status' => AWPCP_Media::STATUS_APPROVED,
             'enabled' => 1,
             'order' => array( 'is_primary ASC', 'name ASC' ),
-        ) );
+        );
 
         return $this->find_images_by_ad_id( $ad_id, $args );
     }
@@ -308,10 +308,10 @@ class AWPCP_MediaAPI {
      * @since next-release
      */
     public function find_images_awaiting_approval_by_ad_id( $ad_id ) {
-        $args = array_merge( $args, array(
+        $args = array(
             'status' => AWPCP_Media::STATUS_AWAITING_APPROVAL,
             'order' => array( 'is_primary ASC', 'name ASC' ),
-        ) );
+        );
 
         return $this->find_images_by_ad_id( $ad_id, $args );
     }
