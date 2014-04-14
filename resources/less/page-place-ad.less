@@ -33,6 +33,16 @@
         padding: 5px 2px 2px;
     }
 
+    .awaiting-approval {
+        background: @attachment_awaiting_approval_background;
+    }
+    .rejected {
+        background: @attachment_rejected_background;
+    }
+    .approved {
+        // background: @attachment_approved_background;
+    }
+
     .disabled img {
         opacity: 0.5;
     }
@@ -56,6 +66,7 @@
     padding-bottom: 5px;
 
     li {
+        background: transparent;
         margin: 0;
         padding: 0 7.5px;
         min-width: 0;
@@ -106,13 +117,13 @@
     float: right;
 
     .delete a {
-        background-image: url(../images/file-delete.png);
+        background-image: @delete_attachment_icon_url;
     }
     .enable a {
-        background-image: url(../images/enable-attachment.png);
+        background-image: @enable_attachment_icon_url;
     }
     .disable a {
-        background-image: url(../images/disable-attachment.png);
+        background-image: @disable_attachment_icon_url;
     }
 }
 

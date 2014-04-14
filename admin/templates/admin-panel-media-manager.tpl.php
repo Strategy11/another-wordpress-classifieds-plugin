@@ -30,9 +30,7 @@
 
 <h3><?php echo sprintf( _x( 'Existing files for Ad %s.', 'media manager', 'AWPCP' ), '&laquo;' . $ad->get_title() . '&raquo;' ); ?></h3>
 
-<?php if ( get_awpcp_option( 'imagesapprove' ) ): ?>
-<p><?php echo _x( 'The images or files with pale red background have been rejected by an administrator user. Likewise, files with a pale yellow background are awaiting approval. Both files that are awaiting approval and rejected files, cannot be shown in the frontend.', 'AWPCP' ); ?></p>
-<?php endif; ?>
+<?php echo awpcp_attachment_background_color_explanation(); ?>
 
 <?php foreach ( $groups as $group => $files ): ?>
 

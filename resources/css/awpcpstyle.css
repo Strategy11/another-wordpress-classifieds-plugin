@@ -1144,6 +1144,14 @@ p.ad_status_msg {
   border: 1px solid #111;
   padding: 5px 2px 2px;
 }
+#classiwrapper .uploaded-images .awaiting-approval,
+.uploaded-images .awaiting-approval {
+  background: #fff6db;
+}
+#classiwrapper .uploaded-images .rejected,
+.uploaded-images .rejected {
+  background: #ffb3b3;
+}
 #classiwrapper .uploaded-images .disabled img,
 .uploaded-images .disabled img {
   opacity: 0.5;
@@ -1168,6 +1176,7 @@ p.ad_status_msg {
 }
 #classiwrapper .image-actions li,
 .image-actions li {
+  background: transparent;
   margin: 0;
   padding: 0 7.5px;
   min-width: 0;

@@ -347,13 +347,10 @@
   opacity: 0.5;
 }
 .awpcp-media-manager-file-list li .awaiting-approval {
-  background: #FFF6DB;
+  background: #fff6db;
 }
 .awpcp-media-manager-file-list li .rejected {
-  background: #FFB3B3;
-}
-.awpcp-media-manager-file-list li .approved {
-  /*background: green;*/
+  background: #ffb3b3;
 }
 .awpcp-media-manager-file-list li .awcp-media-manager-file-actions {
   background: red;
