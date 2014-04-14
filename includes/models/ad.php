@@ -201,7 +201,7 @@ class AWPCP_Ad {
 		$query = 'SELECT %s FROM ' . AWPCP_TABLE_ADS . ' ';
 
 		if ($fields == 'count') {
-        	$query = sprintf($query, 'COUNT(ad_id)');
+        	$query = sprintf($query, 'COUNT( DISTINCT ' . AWPCP_TABLE_ADS .'.ad_id )');
         	$limit = 0;
         } else {
         	$query = sprintf($query, $fields);

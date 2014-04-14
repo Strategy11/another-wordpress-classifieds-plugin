@@ -147,7 +147,7 @@ class AWPCP_Listings_Table extends WP_List_Table {
         $query = $this->parse_query();
 
         $this->total_items = AWPCP_Ad::query(array_merge(array('fields' => 'count'), $query));
-        $this->items = AWPCP_Ad::query(array_merge(array('fields' => '*'), $query));
+        $this->items = AWPCP_Ad::query(array_merge(array('fields' => 'DISTINCT ' . AWPCP_TABLE_ADS . '.*'), $query));
 
         if (awpcp_request_param('filterby') == 'category') {
             $category = AWPCP_Category::find_by_id(awpcp_request_param('category'));
