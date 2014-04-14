@@ -83,4 +83,16 @@ class AWPCP_Media {
         $url = AWPCP_URL . '/resources/images/page_white_picture.png';
         return apply_filters( 'awpcp-get-file-icon-url', $url, $this );
     }
+
+    public function is_awaiting_approval() {
+        return $this->status == self::STATUS_AWAITING_APPROVAL;
+    }
+
+    public function is_rejected() {
+        return $this->status == self::STATUS_REJECTED;
+    }
+
+    public function is_approved() {
+        return $this->status == self::STATUS_APPROVED;
+    }
 }

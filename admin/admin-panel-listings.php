@@ -161,6 +161,8 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
             'bulk-send-to-facebook',
             'unflag',
             'spam', 'bulk-spam',
+
+            'approve-file', 'reject-file',
         );
 
         if (!awpcp_current_user_is_admin() && in_array($action, $protected_actions)) {
@@ -237,6 +239,8 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
             case 'deletepic':
             case 'rejectpic':
             case 'approvepic':
+            case 'approve-file':
+            case 'reject-file':
                 return $this->manage_images();
                 break;
 
@@ -537,6 +541,7 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
     }
 
     public function manage_images() {
+        wp_enqueue_script( 'awpcp-admin-attachments' );
         echo awpcp_media_manager()->dispatch( $this );
     }
 
