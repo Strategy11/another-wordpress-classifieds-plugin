@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: AWPCP\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2014-04-09 18:54:42+00:00\n"
+"POT-Creation-Date: 2014-04-14 19:37:31+00:00\n"
 "PO-Revision-Date: 2014-03-07 21:42-0500\n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: \n"
@@ -32,49 +32,49 @@ msgctxt "paging"
 msgid "%1$s of %2$s"
 msgstr ""
 
-#: admin/admin-panel-listings.php:343
+#: admin/admin-panel-listings.php:347
 msgid "%d Ad was disabled"
 msgid_plural "%d Ads were disabled"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/admin-panel-listings.php:438
+#: admin/admin-panel-listings.php:442
 msgid "%d Ad was renewed"
 msgid_plural "%d Ads were renewed"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/admin-panel-listings.php:478
+#: admin/admin-panel-listings.php:482
 msgid "%d Ad was set as fatured"
 msgid_plural "%d Ads were set as featured"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/admin-panel-listings.php:498
+#: admin/admin-panel-listings.php:502
 msgid "%d Ad was set as non-fatured"
 msgid_plural "%d Ads were set as non-featured"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/admin-panel-listings.php:458
+#: admin/admin-panel-listings.php:462
 msgid "%d Ad were marked as SPAM and removed"
 msgid_plural "%d Ads were marked as SPAM and removed"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/admin-panel-listings.php:579
+#: admin/admin-panel-listings.php:584
 msgid "%d of %d Ads were deleted."
 msgstr ""
 
-#: admin/admin-panel-listings.php:577
+#: admin/admin-panel-listings.php:582
 msgid "%d of %d Ads were deleted. %d generated errors."
 msgstr ""
 
-#: admin/admin-panel-listings.php:644 admin/admin-panel-listings.php:646
+#: admin/admin-panel-listings.php:649 admin/admin-panel-listings.php:651
 msgid "%d of %d Ads were sent to Facebook. %d generated errors."
 msgstr ""
 
-#: admin/admin-panel-listings.php:370
+#: admin/admin-panel-listings.php:374
 msgid "%d was enabled"
 msgid_plural "%d Ads were enabled"
 msgstr[0] ""
@@ -93,7 +93,7 @@ msgctxt "comma separated list of things"
 msgid "%s and %d more."
 msgstr ""
 
-#: admin/admin-panel-listings.php:326
+#: admin/admin-panel-listings.php:330
 msgctxt "Listing bulk operations: <message-ok> and <message-error>."
 msgid "%s and %s."
 msgstr ""
@@ -182,7 +182,7 @@ msgstr ""
 msgid "3. Page Selection"
 msgstr ""
 
-#: install.php:278
+#: install.php:279
 msgid "30 Day Listing"
 msgstr ""
 
@@ -227,7 +227,7 @@ msgid ""
 "row %d."
 msgstr ""
 
-#: awpcp.php:378
+#: awpcp.php:377
 msgid "AWPCP"
 msgstr ""
 
@@ -296,7 +296,7 @@ msgstr ""
 msgid "AWPCP Classifieds Management System - Manage Credit Plans"
 msgstr ""
 
-#: admin/class-media-manager.php:160
+#: admin/class-media-manager.php:186
 msgid "AWPCP Classifieds Management System - Manage Images"
 msgstr ""
 
@@ -347,7 +347,7 @@ msgstr ""
 msgid "AWPCP Support Website"
 msgstr ""
 
-#: admin/admin-panel-listings.php:639
+#: admin/admin-panel-listings.php:644
 msgid ""
 "AWPCP can not post to Facebook because your credentials are invalid or have "
 "expired. Please check your <a>settings</a>."
@@ -381,7 +381,7 @@ msgid ""
 "any personal information from your profile."
 msgstr ""
 
-#: awpcp.php:400
+#: awpcp.php:399
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
@@ -399,7 +399,7 @@ msgstr ""
 msgid "Accepted payment type"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:315
+#: admin/admin-panel-listings-table.php:326
 #: admin/templates/admin-panel-listings-view.tpl.php:5
 #: frontend/templates/email-send-ad-access-key.tpl.php:6
 #: frontend/templates/email-send-all-ad-access-keys.tpl.php:8
@@ -474,7 +474,7 @@ msgstr ""
 msgid "Ad Expired Message"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:253
+#: admin/admin-panel-listings-table.php:264
 msgid "Ad ID"
 msgstr ""
 
@@ -514,7 +514,7 @@ msgstr ""
 msgid "Ad Renewed Message"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:254
+#: admin/admin-panel-listings-table.php:265
 #: frontend/templates/page-place-ad-details-step.tpl.php:70
 msgid "Ad Title"
 msgstr ""
@@ -567,13 +567,13 @@ msgstr ""
 msgid "Add Fee Plan"
 msgstr ""
 
-#: admin/templates/admin-panel-media-manager.tpl.php:24
+#: admin/templates/admin-panel-media-manager.tpl.php:22
 msgctxt "media manager"
 msgid "Add File"
 msgstr ""
 
 #: admin/admin-panel-listings.php:123
-#: frontend/templates/page-place-ad-upload-images-step.tpl.php:42
+#: frontend/templates/page-place-ad-upload-images-step.tpl.php:44
 msgid "Add Images"
 msgstr ""
 
@@ -606,7 +606,7 @@ msgstr ""
 msgid "Additional Details"
 msgstr ""
 
-#: functions.php:2242
+#: functions.php:2249
 msgid ""
 "Additionally, You can approve the images going to the Manage Images sections "
 "for that Ad and clicking the \"Enable\" button below each image. Click here "
@@ -818,6 +818,11 @@ msgstr ""
 msgid "Apply"
 msgstr ""
 
+#: admin/class-media-manager.php:205
+msgctxt "media manager"
+msgid "Approve"
+msgstr ""
+
 #: admin/admin-panel-listings.php:40
 msgid "Are you sure you want to delete the selected Ads?"
 msgstr ""
@@ -846,11 +851,11 @@ msgctxt "csv-importer"
 msgid "Assign Ads to a user?"
 msgstr ""
 
-#: awpcp.php:417
+#: awpcp.php:416
 msgid "Attachments"
 msgstr ""
 
-#: awpcp.php:424
+#: awpcp.php:423
 msgid "Authorize.Net"
 msgstr ""
 
@@ -862,7 +867,7 @@ msgstr ""
 msgid "Auto create Categories"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:239
+#: admin/admin-panel-listings-table.php:249
 msgid "Awaiting Approval"
 msgstr ""
 
@@ -870,7 +875,7 @@ msgstr ""
 msgid "Awaiting approval message"
 msgstr ""
 
-#: admin/admin-panel-upgrade.php:78
+#: admin/admin-panel-upgrade.php:82
 msgctxt "awpcp upgrade"
 msgid ""
 "Before you can use AWPCP again we need to upgrade your database. This "
@@ -953,7 +958,7 @@ msgstr ""
 msgid "CSV file"
 msgstr ""
 
-#: functions.php:2040
+#: functions.php:2047
 msgid "Can't write file to disk."
 msgstr ""
 
@@ -998,7 +1003,7 @@ msgstr ""
 msgid "Category ID must be valid for Ads to display."
 msgstr ""
 
-#: awpcp.php:431
+#: awpcp.php:430
 msgid "Category Icons"
 msgstr ""
 
@@ -1137,7 +1142,7 @@ msgid "Classifieds Website"
 msgstr ""
 
 #: frontend/page-edit-ad.php:55 frontend/page-edit-ad.php:102
-#: frontend/page-edit-ad.php:377
+#: frontend/page-edit-ad.php:371
 msgid "Click here"
 msgstr ""
 
@@ -1158,7 +1163,7 @@ msgstr ""
 msgid "Collapse Categories"
 msgstr ""
 
-#: awpcp.php:438
+#: awpcp.php:437
 msgid "Comments & Ratings"
 msgstr ""
 
@@ -1176,11 +1181,11 @@ msgctxt "place ad checkout step"
 msgid "Complete Payment"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:240
+#: admin/admin-panel-listings-table.php:251
 msgid "Completed"
 msgstr ""
 
-#: includes/models/ad.php:658
+#: includes/models/ad.php:663
 msgctxt "ad payment status"
 msgid "Completed"
 msgstr ""
@@ -1193,7 +1198,7 @@ msgstr ""
 msgid "Configure General Options"
 msgstr ""
 
-#: admin/admin-panel-upgrade.php:79
+#: admin/admin-panel-upgrade.php:83
 msgctxt "awpcp upgrade"
 msgid ""
 "Congratulations. AWPCP has been successfully upgraded. You can now access "
@@ -1294,7 +1299,7 @@ msgstr ""
 msgid "Coupon/Discount Module"
 msgstr ""
 
-#: awpcp.php:445
+#: awpcp.php:444
 msgid "Coupons/Discount"
 msgstr ""
 
@@ -1426,13 +1431,13 @@ msgid "Default user"
 msgstr ""
 
 #: admin/admin-panel-credit-plans.php:43 admin/admin-panel-fees.php:46
-#: admin/admin-panel-listings-table.php:217 admin/admin-panel-listings.php:89
+#: admin/admin-panel-listings-table.php:226 admin/admin-panel-listings.php:89
 #: admin/templates/admin-panel-fees-delete-form.tpl.php:13
 #: admin/templates/delete_form.tpl.php:12
 msgid "Delete"
 msgstr ""
 
-#: admin/class-media-manager.php:175
+#: admin/class-media-manager.php:203
 msgctxt "media manager"
 msgid "Delete"
 msgstr ""
@@ -1450,7 +1455,7 @@ msgstr ""
 msgid "Delete Category"
 msgstr ""
 
-#: frontend/templates/page-place-ad-uploaded-images.tpl.php:42
+#: frontend/templates/page-place-ad-uploaded-images.tpl.php:48
 msgctxt "upload images"
 msgid "Delete Image"
 msgstr ""
@@ -1486,11 +1491,11 @@ msgstr ""
 msgid "Diagnostics"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:205 admin/admin-panel-listings.php:95
+#: admin/admin-panel-listings-table.php:214 admin/admin-panel-listings.php:95
 msgid "Disable"
 msgstr ""
 
-#: admin/class-media-manager.php:177
+#: admin/class-media-manager.php:202
 msgctxt "media manager"
 msgid "Disable"
 msgstr ""
@@ -1503,7 +1508,7 @@ msgstr ""
 msgid "Disable Ad until admin approves"
 msgstr ""
 
-#: frontend/templates/page-place-ad-uploaded-images.tpl.php:36
+#: frontend/templates/page-place-ad-uploaded-images.tpl.php:42
 msgctxt "upload images step"
 msgid "Disable Image (make invisible)"
 msgstr ""
@@ -1512,11 +1517,11 @@ msgstr ""
 msgid "Disable expired ads instead of deleting them?"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:354
+#: admin/admin-panel-listings-table.php:365
 msgid "Disabled"
 msgstr ""
 
-#: frontend/templates/page-place-ad-uploaded-images.tpl.php:25
+#: frontend/templates/page-place-ad-uploaded-images.tpl.php:31
 msgctxt "upload images"
 msgid "Disabled"
 msgstr ""
@@ -1625,11 +1630,11 @@ msgstr ""
 msgid "Empty ZIP Archive"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:204 admin/admin-panel-listings.php:93
+#: admin/admin-panel-listings-table.php:213 admin/admin-panel-listings.php:93
 msgid "Enable"
 msgstr ""
 
-#: admin/class-media-manager.php:176
+#: admin/class-media-manager.php:201
 msgctxt "media manager"
 msgid "Enable"
 msgstr ""
@@ -1642,7 +1647,7 @@ msgstr ""
 msgid "Enable Credit System"
 msgstr ""
 
-#: frontend/templates/page-place-ad-uploaded-images.tpl.php:28
+#: frontend/templates/page-place-ad-uploaded-images.tpl.php:34
 msgctxt "upload images step"
 msgid "Enable Image (make visible)"
 msgstr ""
@@ -1676,11 +1681,11 @@ msgid ""
 "the plugin."
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:354
+#: admin/admin-panel-listings-table.php:365
 msgid "Enabled"
 msgstr ""
 
-#: frontend/templates/page-place-ad-uploaded-images.tpl.php:33
+#: frontend/templates/page-place-ad-uploaded-images.tpl.php:39
 msgctxt "upload images"
 msgid "Enabled"
 msgstr ""
@@ -1689,7 +1694,7 @@ msgstr ""
 msgid "Enabled external SMTP server (if emails not processing normally)."
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:169
+#: admin/admin-panel-listings-table.php:178
 msgid "End Date"
 msgstr ""
 
@@ -1730,7 +1735,7 @@ msgstr ""
 msgid "Enter your email address"
 msgstr ""
 
-#: functions.php:2015
+#: functions.php:2022
 msgid "Error"
 msgstr ""
 
@@ -1761,6 +1766,11 @@ msgctxt "upload files step"
 msgid "Existing Images"
 msgstr ""
 
+#: admin/templates/admin-panel-media-manager.tpl.php:31
+msgctxt "media manager"
+msgid "Existing files for Ad %s."
+msgstr ""
+
 #: admin/templates/admin-panel-debug.tpl.php:112
 msgctxt "alternate CA info for cURL"
 msgid "Exists"
@@ -1788,7 +1798,7 @@ msgid ""
 "Extra Field %s's value is not allowed in row %d. Allowed values are: %%s"
 msgstr ""
 
-#: admin/admin-panel.php:276 awpcp.php:452
+#: admin/admin-panel.php:276 awpcp.php:451
 msgid "Extra Fields"
 msgstr ""
 
@@ -1819,13 +1829,13 @@ msgstr ""
 msgid "Facebook Page"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:176
-#: admin/admin-panel-listings-table.php:235
-#: admin/admin-panel-listings-table.php:381
+#: admin/admin-panel-listings-table.php:185
+#: admin/admin-panel-listings-table.php:245
+#: admin/admin-panel-listings-table.php:392
 msgid "Featured"
 msgstr ""
 
-#: admin/admin-panel-fees-table.php:116 awpcp.php:459
+#: admin/admin-panel-fees-table.php:116 awpcp.php:458
 msgid "Featured Ads"
 msgstr ""
 
@@ -1850,7 +1860,7 @@ msgstr ""
 msgid "Fee Plan sort order"
 msgstr ""
 
-#: awpcp.php:466
+#: awpcp.php:465
 msgid "Fee per Category"
 msgstr ""
 
@@ -1872,11 +1882,6 @@ msgstr ""
 msgid "File permissions for uploads directory"
 msgstr ""
 
-#: admin/templates/admin-panel-media-manager.tpl.php:14
-msgctxt "media manager"
-msgid "Files for Ad %s."
-msgstr ""
-
 #: frontend/page-place-ad.php:697
 msgid "Fill out the form below to post your classified Ad."
 msgstr ""
@@ -1889,7 +1894,7 @@ msgstr ""
 msgid "Find ads by Contact Name"
 msgstr ""
 
-#: frontend/page-edit-ad.php:312 frontend/page-place-ad.php:1181
+#: frontend/page-edit-ad.php:306 frontend/page-place-ad.php:1181
 #: frontend/templates/page-place-ad-preview-step.tpl.php:17
 msgid "Finish"
 msgstr ""
@@ -1898,11 +1903,11 @@ msgstr ""
 msgid "First Name"
 msgstr ""
 
-#: frontend/placeholders.php:767
+#: frontend/placeholders.php:764
 msgid "Flag Ad"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:236
+#: admin/admin-panel-listings-table.php:246
 msgid "Flagged"
 msgstr ""
 
@@ -1947,7 +1952,7 @@ msgid ""
 "the Date Format and Time Format settings above."
 msgstr ""
 
-#: includes/settings-api.php:39 install.php:266
+#: includes/settings-api.php:39 install.php:267
 msgid "General"
 msgstr ""
 
@@ -1996,7 +2001,7 @@ msgstr ""
 msgid "Go to the previous page"
 msgstr ""
 
-#: awpcp.php:473
+#: awpcp.php:472
 msgid "Google Checkout"
 msgstr ""
 
@@ -2004,7 +2009,11 @@ msgstr ""
 msgid "Google Checkout Payment Module"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:166
+#: admin/admin-panel-listings-table.php:250
+msgid "Have Images Awaiting Approval"
+msgstr ""
+
+#: admin/admin-panel-listings-table.php:175
 msgid "Headline"
 msgstr ""
 
@@ -2269,11 +2278,11 @@ msgctxt "place ad payment terms column headers"
 msgid "Images Allowed"
 msgstr ""
 
-#: functions.php:2228
+#: functions.php:2235
 msgid "Images on Ad \"%s\" are awaiting approval"
 msgstr ""
 
-#: functions.php:2230
+#: functions.php:2237
 msgid ""
 "Images on Ad \"%s\" are awaiting approval. You can approve the images going "
 "to the Manage Images sections for that Ad and clicking the \"Enable\" button "
@@ -2399,7 +2408,7 @@ msgstr ""
 msgid "Item price non numeric at row number %s"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:255
+#: admin/admin-panel-listings-table.php:266
 msgid "Keyword"
 msgstr ""
 
@@ -2485,8 +2494,8 @@ msgstr ""
 msgid "Listings"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:256 frontend/page-show-ad.php:71
-#: frontend/placeholders.php:619
+#: admin/admin-panel-listings-table.php:267 frontend/page-show-ad.php:71
+#: frontend/placeholders.php:616
 msgid "Location"
 msgstr ""
 
@@ -2508,11 +2517,11 @@ msgstr ""
 msgid "Lost your password?"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:206 admin/admin-panel-listings.php:107
+#: admin/admin-panel-listings-table.php:215 admin/admin-panel-listings.php:107
 msgid "Make Featured"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:207
+#: admin/admin-panel-listings-table.php:216
 msgid "Make Non Featured"
 msgstr ""
 
@@ -2544,7 +2553,7 @@ msgstr ""
 msgid "Make payments with PayPal - it's fast, free and secure!"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:167
+#: admin/admin-panel-listings-table.php:176
 msgid "Manage Ad"
 msgstr ""
 
@@ -2587,15 +2596,15 @@ msgstr ""
 msgid "Manual Upgrade Required"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:368
+#: admin/admin-panel-listings-table.php:379
 msgid "Mark as Paid"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:209
+#: admin/admin-panel-listings-table.php:218
 msgid "Mark as SPAM"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:345
+#: admin/admin-panel-listings-table.php:356
 msgid "Mark as Verified"
 msgstr ""
 
@@ -2752,7 +2761,7 @@ msgstr ""
 msgid "Missing app ID/secret."
 msgstr ""
 
-#: functions.php:2039
+#: functions.php:2046
 msgid "Missing temporary directory."
 msgstr ""
 
@@ -2793,11 +2802,11 @@ msgstr ""
 msgid "Move Selected Categories"
 msgstr ""
 
-#: includes/models/ad.php:502
+#: includes/models/ad.php:507
 msgid "N/A"
 msgstr ""
 
-#: includes/models/ad.php:651
+#: includes/models/ad.php:656
 msgctxt "ad payment status"
 msgid "N/A"
 msgstr ""
@@ -2890,11 +2899,11 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: admin/admin-panel-listings.php:270
+#: admin/admin-panel-listings.php:274
 msgid "No Ad ID was specified."
 msgstr ""
 
-#: admin/admin-panel-listings.php:320
+#: admin/admin-panel-listings.php:324
 msgid "No Ads were selected."
 msgstr ""
 
@@ -2945,7 +2954,7 @@ msgstr ""
 msgid "No credit plans available."
 msgstr ""
 
-#: functions.php:2034
+#: functions.php:2041
 msgid "No errors."
 msgstr ""
 
@@ -2953,11 +2962,11 @@ msgstr ""
 msgid "No file was selected."
 msgstr ""
 
-#: functions.php:2038
+#: functions.php:2045
 msgid "No file was uploaded."
 msgstr ""
 
-#: frontend/page-place-ad.php:1274
+#: frontend/page-place-ad.php:1268
 msgctxt "upload files"
 msgid "No files were uploaded"
 msgstr ""
@@ -2998,7 +3007,7 @@ msgctxt "no categories"
 msgid "None"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:381
+#: admin/admin-panel-listings-table.php:392
 msgid "Not Featured"
 msgstr ""
 
@@ -3008,7 +3017,7 @@ msgstr ""
 msgid "Not Installed"
 msgstr ""
 
-#: includes/models/ad.php:660
+#: includes/models/ad.php:665
 msgctxt "ad payment status"
 msgid "Not Required"
 msgstr ""
@@ -3144,7 +3153,7 @@ msgstr ""
 msgid "Other Modules"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:180
+#: admin/admin-panel-listings-table.php:189
 msgid "Owner"
 msgstr ""
 
@@ -3214,7 +3223,7 @@ msgctxt "debug page"
 msgid "PayPal Connection"
 msgstr ""
 
-#: awpcp.php:480
+#: awpcp.php:479
 msgid "PayPal Pro"
 msgstr ""
 
@@ -3240,7 +3249,7 @@ msgid ""
 "variables were posted."
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:259
+#: admin/admin-panel-listings-table.php:270
 msgid "Payer Email"
 msgstr ""
 
@@ -3286,11 +3295,11 @@ msgstr ""
 msgid "Payment Settings"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:173
+#: admin/admin-panel-listings-table.php:182
 msgid "Payment Status"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:172
+#: admin/admin-panel-listings-table.php:181
 msgid "Payment Term"
 msgstr ""
 
@@ -3331,7 +3340,7 @@ msgstr ""
 msgid "Payment transaction ID"
 msgstr ""
 
-#: includes/models/ad.php:656
+#: includes/models/ad.php:661
 msgctxt "ad payment status"
 msgid "Pending"
 msgstr ""
@@ -3341,7 +3350,7 @@ msgctxt "asynchrounous tasks screen"
 msgid "Pending Tasks"
 msgstr ""
 
-#: frontend/placeholders.php:710
+#: frontend/placeholders.php:707
 msgid "Phone"
 msgstr ""
 
@@ -3420,7 +3429,7 @@ msgstr ""
 msgid "Please enter a valid amount."
 msgstr ""
 
-#: awpcp.php:682 frontend/page-edit-ad.php:111 frontend/page-edit-ad.php:384
+#: awpcp.php:682 frontend/page-edit-ad.php:111 frontend/page-edit-ad.php:378
 msgid "Please enter a valid email address."
 msgstr ""
 
@@ -3438,7 +3447,7 @@ msgid ""
 "to the Ad access key that was emailed to you after your Ad was submitted."
 msgstr ""
 
-#: frontend/page-edit-ad.php:382
+#: frontend/page-edit-ad.php:376
 msgid "Please enter the email address you used when you created your Ad."
 msgstr ""
 
@@ -3654,7 +3663,7 @@ msgstr ""
 msgid "Quick Start Guide"
 msgstr ""
 
-#: awpcp.php:494
+#: awpcp.php:493
 msgid "RSS"
 msgstr ""
 
@@ -3684,7 +3693,7 @@ msgstr ""
 msgid "Reference"
 msgstr ""
 
-#: awpcp.php:487
+#: awpcp.php:486
 msgid "Regions Control"
 msgstr ""
 
@@ -3708,6 +3717,11 @@ msgstr ""
 msgid "Registration Settings"
 msgstr ""
 
+#: admin/class-media-manager.php:206
+msgctxt "media manager"
+msgid "Reject"
+msgstr ""
+
 #: admin/templates/admin-panel-csv-importer.tpl.php:16
 msgid "Rejected rows:"
 msgstr ""
@@ -3725,7 +3739,7 @@ msgstr ""
 msgid "Remove Region"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:208
+#: admin/admin-panel-listings-table.php:217
 msgid "Renew"
 msgstr ""
 
@@ -3746,7 +3760,7 @@ msgstr ""
 msgid "Renew your ad by visiting:"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:170
+#: admin/admin-panel-listings-table.php:179
 msgid "Renewed Date"
 msgstr ""
 
@@ -3972,7 +3986,7 @@ msgstr ""
 msgid "Save Token Value"
 msgstr ""
 
-#: admin/templates/admin-panel-listings.tpl.php:11
+#: admin/templates/admin-panel-listings.tpl.php:14
 #: frontend/page-search-ads.php:14
 msgid "Search Ads"
 msgstr ""
@@ -3981,7 +3995,7 @@ msgstr ""
 msgid "Search Ads page"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:251
+#: admin/admin-panel-listings-table.php:262
 msgid "Search by"
 msgstr ""
 
@@ -4071,7 +4085,7 @@ msgstr ""
 msgid "Send Access Key"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:214 admin/admin-panel-listings.php:130
+#: admin/admin-panel-listings-table.php:223 admin/admin-panel-listings.php:130
 msgid "Send to Facebook"
 msgstr ""
 
@@ -4083,12 +4097,12 @@ msgstr ""
 msgid "Separators Used in CSV"
 msgstr ""
 
-#: frontend/templates/page-place-ad-uploaded-images.tpl.php:53
+#: frontend/templates/page-place-ad-uploaded-images.tpl.php:59
 msgctxt "upload images"
 msgid "Set as Primary Image"
 msgstr ""
 
-#: admin/class-media-manager.php:178
+#: admin/class-media-manager.php:204
 msgctxt "media manager"
 msgid "Set as primary"
 msgstr ""
@@ -4097,7 +4111,7 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: frontend/placeholders.php:811
+#: frontend/placeholders.php:808
 msgid "Share on Facebook"
 msgstr ""
 
@@ -4317,7 +4331,7 @@ msgstr ""
 msgid "Show website field?"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:146
+#: admin/admin-panel-listings-table.php:155
 msgid "Showing Ads from %s category."
 msgstr ""
 
@@ -4353,7 +4367,7 @@ msgstr ""
 msgid "Start & End Date"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:168
+#: admin/admin-panel-listings-table.php:177
 msgid "Start Date"
 msgstr ""
 
@@ -4390,7 +4404,7 @@ msgstr ""
 msgid "State/Province"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:171
+#: admin/admin-panel-listings-table.php:180
 msgid "Status"
 msgstr ""
 
@@ -4457,7 +4471,7 @@ msgid ""
 "Subject line for email sent out when the payment processing does not complete"
 msgstr ""
 
-#: awpcp.php:501
+#: awpcp.php:500
 msgid "Subscriptions"
 msgstr ""
 
@@ -4540,24 +4554,24 @@ msgstr ""
 msgid "Thank you for your business"
 msgstr ""
 
-#: awpcp.php:555
+#: awpcp.php:554
 msgid ""
 "The %1$s module you have installed is outdated and not compatible with this "
 "version of AWPCP. Please get %1$s %2$s or newer."
 msgstr ""
 
-#: functions.php:2233
+#: functions.php:2240
 msgid "The Ad \"%s\" is awaiting approval"
 msgstr ""
 
-#: functions.php:2235
+#: functions.php:2242
 msgid ""
 "The Ad \"%s\" is awaiting approval. You can approve the Ad going to the "
 "Manage Listings section and clicking the \"Enable\" action shown on top. "
 "Click here to continue: %s."
 msgstr ""
 
-#: frontend/page-place-ad.php:1289 frontend/page-place-ad.php:1336
+#: frontend/page-place-ad.php:1283 frontend/page-place-ad.php:1330
 #: frontend/page-renew-ad.php:334
 msgid "The Ad associated with this transaction doesn't exists."
 msgstr ""
@@ -4566,13 +4580,13 @@ msgstr ""
 msgid "The Ad has been deleted"
 msgstr ""
 
-#: frontend/page-edit-ad.php:331
+#: frontend/page-edit-ad.php:325
 msgid ""
 "The Ad has been edited successfully. <a href=\"%s\">Go back to view "
 "listings</a>."
 msgstr ""
 
-#: admin/admin-panel-listings.php:409
+#: admin/admin-panel-listings.php:413
 msgid "The Ad has been marked as paid."
 msgstr ""
 
@@ -4580,11 +4594,11 @@ msgstr ""
 msgid "The Ad has been successfully renewed. New expiration date is %s. "
 msgstr ""
 
-#: admin/admin-panel-listings.php:389
+#: admin/admin-panel-listings.php:393
 msgid "The Ad has been unflagged."
 msgstr ""
 
-#: admin/admin-panel-listings.php:399
+#: admin/admin-panel-listings.php:403
 msgid "The Ad was marked as verified."
 msgstr ""
 
@@ -4683,7 +4697,7 @@ msgid ""
 "The ID of the parent category and the ID of the category must be different."
 msgstr ""
 
-#: admin/class-media-manager.php:81
+#: admin/class-media-manager.php:87
 msgctxt "media manager"
 msgid "The Image has been enabled and can now be viewed."
 msgstr ""
@@ -4713,11 +4727,11 @@ msgstr ""
 msgid "The State is required."
 msgstr ""
 
-#: admin/admin-panel-listings.php:531
+#: admin/admin-panel-listings.php:535
 msgid "The access key was sent to %s."
 msgstr ""
 
-#: frontend/page-edit-ad.php:434
+#: frontend/page-edit-ad.php:428
 msgid "The access keys were sent to %s."
 msgstr ""
 
@@ -4836,7 +4850,7 @@ msgid ""
 "in our system."
 msgstr ""
 
-#: frontend/page-edit-ad.php:391
+#: frontend/page-edit-ad.php:385
 msgid ""
 "The email address you entered does not match any of the Ads in our system."
 msgstr ""
@@ -4904,33 +4918,43 @@ msgid ""
 "information to the database."
 msgstr ""
 
-#: admin/class-media-manager.php:63
+#: admin/class-media-manager.php:96
+msgctxt "media manager"
+msgid "The file has been approved."
+msgstr ""
+
+#: admin/class-media-manager.php:69
 msgctxt "media manager"
 msgid "The file has been deleted."
 msgstr ""
 
-#: admin/class-media-manager.php:72
+#: admin/class-media-manager.php:78
 msgctxt "media manager"
 msgid "The file has been disabled and can no longer be viewed."
 msgstr ""
 
-#: functions.php:2036
+#: admin/class-media-manager.php:106
+msgctxt "media manager"
+msgid "The file has been rejected."
+msgstr ""
+
+#: functions.php:2043
 msgid "The file is larger than form MAX_FILE_SIZE."
 msgstr ""
 
-#: functions.php:2035
+#: functions.php:2042
 msgid "The file is larger than upload_max_filesize."
 msgstr ""
 
-#: functions.php:2041
+#: functions.php:2048
 msgid "The file upload was stopped by extension."
 msgstr ""
 
-#: functions.php:2037
+#: functions.php:2044
 msgid "The file was only partially uploaded."
 msgstr ""
 
-#: admin/class-media-manager.php:127
+#: admin/class-media-manager.php:153
 msgctxt "media manager"
 msgid "The file was properly uploaded."
 msgstr ""
@@ -4969,9 +4993,18 @@ msgid ""
 "uploaded."
 msgstr ""
 
-#: admin/class-media-manager.php:93
+#: admin/class-media-manager.php:119
 msgctxt "media manager"
 msgid "The image has been set as primary image."
+msgstr ""
+
+#: functions.php:2003
+msgctxt "AWPCP"
+msgid ""
+"The images or files with pale red background have been rejected by an "
+"administrator user. Likewise, files with a pale yellow background are "
+"awaiting approval. Files that are awaiting approval and rejected files, "
+"cannot be shown in the frontend."
 msgstr ""
 
 #: frontend/page-reply-to-ad.php:51
@@ -5114,13 +5147,13 @@ msgid ""
 "specifying the Ad ID."
 msgstr ""
 
-#: admin/admin-panel-listings.php:268 frontend/ad-functions.php:233
-#: frontend/page-edit-ad.php:199 frontend/page-edit-ad.php:324
-#: frontend/page-edit-ad.php:352
+#: admin/admin-panel-listings.php:272 frontend/ad-functions.php:233
+#: frontend/page-edit-ad.php:199 frontend/page-edit-ad.php:318
+#: frontend/page-edit-ad.php:346
 msgid "The specified Ad doesn't exists."
 msgstr ""
 
-#: admin/admin-panel-listings.php:674
+#: admin/admin-panel-listings.php:679
 msgctxt "ajax delete ad"
 msgid "The specified Ad doesn't exists."
 msgstr ""
@@ -5165,7 +5198,7 @@ msgctxt "upload files"
 msgid "The specified file does not exists: %s."
 msgstr ""
 
-#: admin/class-media-manager.php:90
+#: admin/class-media-manager.php:116
 msgctxt "media manager"
 msgid ""
 "The specified file is not an image. It cannot be set as the primary image."
@@ -5268,7 +5301,7 @@ msgstr ""
 msgid "There was a problem processing your payment"
 msgstr ""
 
-#: frontend/page-edit-ad.php:360
+#: frontend/page-edit-ad.php:354
 msgid "There was a problem trying to delete your Ad. The Ad was not deleted."
 msgstr ""
 
@@ -5293,6 +5326,11 @@ msgid ""
 "need to contact PayPal about the matter."
 msgstr ""
 
+#: admin/class-media-manager.php:98
+msgctxt "media manager"
+msgid "There was an error trying to approve the file."
+msgstr ""
+
 #: admin/admin-panel-settings.php:211
 msgid "There was an error trying to contact Facebook servers: \"%s\"."
 msgstr ""
@@ -5301,12 +5339,12 @@ msgstr ""
 msgid "There was an error trying to delete the Ad. The Ad was not deleted."
 msgstr ""
 
-#: admin/class-media-manager.php:74
+#: admin/class-media-manager.php:80
 msgctxt "media manager"
 msgid "There was an error trying to disable the file."
 msgstr ""
 
-#: admin/class-media-manager.php:83
+#: admin/class-media-manager.php:89
 msgctxt "media manager"
 msgid "There was an error trying to enable the file."
 msgstr ""
@@ -5314,6 +5352,11 @@ msgstr ""
 #: upload_awpcp.php:98
 msgctxt "upload files"
 msgid "There was an error trying to find out the file size of the image %s."
+msgstr ""
+
+#: admin/class-media-manager.php:108
+msgctxt "media manager"
+msgid "There was an error trying to reject the file."
 msgstr ""
 
 #: frontend/page-renew-ad.php:49
@@ -5330,11 +5373,11 @@ msgstr ""
 msgid "There was an error trying to save the category to the database."
 msgstr ""
 
-#: admin/admin-panel-listings.php:533 frontend/page-edit-ad.php:437
+#: admin/admin-panel-listings.php:537 frontend/page-edit-ad.php:431
 msgid "There was an error trying to send the email to %s."
 msgstr ""
 
-#: admin/class-media-manager.php:95
+#: admin/class-media-manager.php:121
 msgctxt "media manager"
 msgid "There was an error trying to set the image as the primary image."
 msgstr ""
@@ -5344,7 +5387,7 @@ msgid ""
 "There was an error trying to update category parent information in Ads table."
 msgstr ""
 
-#: admin/class-media-manager.php:117
+#: admin/class-media-manager.php:143
 msgctxt "media manager"
 msgid "There was an error trying to upload your file."
 msgstr ""
@@ -5375,7 +5418,7 @@ msgstr ""
 msgid "This Ad has been flagged."
 msgstr ""
 
-#: frontend/placeholders.php:655
+#: frontend/placeholders.php:652
 msgid "This Ad has been viewed %d time."
 msgid_plural "This Ad has been viewed %d times."
 msgstr[0] ""
@@ -5455,7 +5498,7 @@ msgid ""
 "above and save your settings."
 msgstr ""
 
-#: functions.php:2013
+#: functions.php:2020
 msgid ""
 "This version of AWPCP %1$s module is not compatible with AWPCP version %2$s. "
 "Please get AWPCP %1$s %3$s or newer!"
@@ -5554,7 +5597,7 @@ msgstr ""
 msgid "Total number of categories in the system"
 msgstr ""
 
-#: frontend/placeholders.php:659
+#: frontend/placeholders.php:656
 msgid "Total views: %d"
 msgstr ""
 
@@ -5581,7 +5624,7 @@ msgstr ""
 msgid "Turn on transalation file (POT)"
 msgstr ""
 
-#: frontend/placeholders.php:782
+#: frontend/placeholders.php:779
 msgid "Tweet This"
 msgstr ""
 
@@ -5605,7 +5648,7 @@ msgstr ""
 msgid "US Date and Time (mm/dd/year hh:mm:ss)"
 msgstr ""
 
-#: admin/class-media-manager.php:65
+#: admin/class-media-manager.php:71
 msgctxt "media manager"
 msgid "Unable to delete your file, please contact the administrator."
 msgstr ""
@@ -5668,16 +5711,16 @@ msgstr ""
 msgid "Unkown step \"%s\". Please contact the administrator about this error."
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:237
+#: admin/admin-panel-listings-table.php:247
 msgid "Unpaid"
 msgstr ""
 
-#: includes/models/ad.php:662
+#: includes/models/ad.php:667
 msgctxt "ad payment status"
 msgid "Unpaid"
 msgstr ""
 
-#: frontend/templates/page-place-ad-uploaded-images.tpl.php:48
+#: frontend/templates/page-place-ad-uploaded-images.tpl.php:54
 msgctxt "upload images"
 msgid "Unset as Primary Image"
 msgstr ""
@@ -5686,7 +5729,7 @@ msgstr ""
 msgid "Untitled"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:238
+#: admin/admin-panel-listings-table.php:248
 msgid "Unverified"
 msgstr ""
 
@@ -5699,19 +5742,19 @@ msgstr ""
 msgid "Upgrade"
 msgstr ""
 
-#: admin/admin-panel-upgrade.php:80
+#: admin/admin-panel-upgrade.php:84
 msgctxt "awpcp upgrade"
 msgid "Upgrade"
 msgstr ""
 
 #: frontend/templates/page-place-ad-upload-images-step.tpl.php:1
-#: frontend/templates/page-place-ad-upload-images-step.tpl.php:72
+#: frontend/templates/page-place-ad-upload-images-step.tpl.php:74
 msgid "Upload Images"
 msgstr ""
 
-#: admin/templates/admin-panel-media-manager.tpl.php:21
+#: admin/templates/admin-panel-media-manager.tpl.php:14
 msgctxt "media manager"
-msgid "Upload a file for this Ad:"
+msgid "Upload files for Ad %s."
 msgstr ""
 
 #: includes/settings-api.php:364
@@ -5733,7 +5776,7 @@ msgid "Use Akismet for Posting Ads/Contact Responses (strong anti-spam)."
 msgstr ""
 
 #: frontend/templates/page-place-ad-upload-fields.tpl.php:14
-#: frontend/templates/page-place-ad-upload-images-step.tpl.php:58
+#: frontend/templates/page-place-ad-upload-images-step.tpl.php:60
 msgctxt "images upload step"
 msgid "Use as Primary Image."
 msgstr ""
@@ -5746,7 +5789,7 @@ msgstr ""
 msgid "Use sender email for reply messages"
 msgstr ""
 
-#: frontend/templates/page-place-ad-upload-images-step.tpl.php:44
+#: frontend/templates/page-place-ad-upload-images-step.tpl.php:46
 msgctxt "upload images step"
 msgid ""
 "Use the check icons in front of each upload field to mark the uploaded image "
@@ -5760,7 +5803,7 @@ msgid ""
 "needed to limit your search to a specific criteria."
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:262
+#: admin/admin-panel-listings-table.php:273
 #: frontend/templates/page-place-ad-details-step-users-dropdown.tpl.php:2
 msgid "User"
 msgstr ""
@@ -5824,8 +5867,8 @@ msgstr ""
 msgid "View"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:315
-#: admin/admin-panel-listings-table.php:318
+#: admin/admin-panel-listings-table.php:326
+#: admin/admin-panel-listings-table.php:329
 msgid "View Ad."
 msgstr ""
 
@@ -5853,7 +5896,7 @@ msgstr ""
 msgid "Visit Website"
 msgstr ""
 
-#: awpcp.php:401
+#: awpcp.php:400
 msgid "Warning"
 msgstr ""
 
@@ -5888,7 +5931,7 @@ msgid ""
 "\"%s\">%s</a> in 30 seconds to continue placing your Ad."
 msgstr ""
 
-#: frontend/page-place-ad.php:1282 frontend/page-place-ad.php:1329
+#: frontend/page-place-ad.php:1276 frontend/page-place-ad.php:1323
 msgid ""
 "We were unable to find a Payment Transaction assigned to this operation."
 msgstr ""
@@ -5958,7 +6001,7 @@ msgstr ""
 msgid "Would you like some help getting started?"
 msgstr ""
 
-#: awpcp.php:508
+#: awpcp.php:507
 msgid "XML Sitemap"
 msgstr ""
 
@@ -5995,7 +6038,7 @@ msgstr ""
 msgid "You are currently editing the category shown below"
 msgstr ""
 
-#: frontend/page-edit-ad.php:101 frontend/page-edit-ad.php:376
+#: frontend/page-edit-ad.php:101 frontend/page-edit-ad.php:370
 msgid ""
 "You are currently not logged in, if you have an account in this website you "
 "can log in and go to the Ad Management panel to edit your Ads."
@@ -6227,7 +6270,7 @@ msgid ""
 "perform. Access to this page has been denied"
 msgstr ""
 
-#: admin/admin-panel-listings.php:167
+#: admin/admin-panel-listings.php:169
 msgctxt "admin listings"
 msgid "You do not have sufficient permissions to perform that action."
 msgstr ""
@@ -6317,11 +6360,11 @@ msgstr ""
 msgid "You should select an owner for this Ad."
 msgstr ""
 
-#: functions.php:2191
+#: functions.php:2198
 msgid "Your Ad \"%s\" has been approved"
 msgstr ""
 
-#: functions.php:2207
+#: functions.php:2214
 msgid "Your Ad \"%s\" has been successfully updated"
 msgstr ""
 
@@ -6351,7 +6394,7 @@ msgstr ""
 msgid "Your Ad has been submitted."
 msgstr ""
 
-#: frontend/page-edit-ad.php:357
+#: frontend/page-edit-ad.php:351
 msgid "Your Ad has been successfully deleted."
 msgstr ""
 
@@ -6568,27 +6611,27 @@ msgstr ""
 msgid "separate states by commas"
 msgstr ""
 
-#: admin/admin-panel-listings.php:347
+#: admin/admin-panel-listings.php:351
 msgid "there was an error trying to disable %d Ads"
 msgstr ""
 
-#: admin/admin-panel-listings.php:374
+#: admin/admin-panel-listings.php:378
 msgid "there was an error trying to enable %d Ads"
 msgstr ""
 
-#: admin/admin-panel-listings.php:462
+#: admin/admin-panel-listings.php:466
 msgid "there was an error trying to mark %d Ad as SPAM"
 msgstr ""
 
-#: admin/admin-panel-listings.php:442
+#: admin/admin-panel-listings.php:446
 msgid "there was an error trying to renew %d Ads"
 msgstr ""
 
-#: admin/admin-panel-listings.php:482
+#: admin/admin-panel-listings.php:486
 msgid "there was an error trying to set %d Ads as featured"
 msgstr ""
 
-#: admin/admin-panel-listings.php:502
+#: admin/admin-panel-listings.php:506
 msgid "there was an error trying to set %d Ads as non-featured"
 msgstr ""
 
