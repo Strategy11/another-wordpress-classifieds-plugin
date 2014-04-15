@@ -379,7 +379,7 @@ function awpcp_get_users( $user_id = null ) {
 	global $wpdb;
 
 	$query = 'SELECT <wp-users>.ID, <wp-users>.user_login, <wp-users>.user_email, <wp-users>.user_url, <wp-users>.display_name, <wp-user-meta>.meta_key, <wp-user-meta>.meta_value ';
-	$query.= 'FROM wp_users JOIN <wp-user-meta> ON (<wp-user-meta>.user_id = <wp-users>.ID) ';
+	$query.= 'FROM <wp-users> JOIN <wp-user-meta> ON (<wp-user-meta>.user_id = <wp-users>.ID) ';
 	$query.= "WHERE <wp-user-meta>.meta_key IN ('first_name', 'last_name', 'awpcp-profile') ";
 
 	if ( ! is_null( $user_id ) ) {
