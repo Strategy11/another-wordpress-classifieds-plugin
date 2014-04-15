@@ -111,13 +111,6 @@
 .awpcp-sticky-notice .actions {
   text-align: center;
 }
-.awpcp-sticky-error {
-  background: #FFEBE8;
-  border-color: #CC0000;
-}
-.awpcp-sticky-error a {
-  color: #CC0000;
-}
 /* Admin Upgrade */
 .awpcp-upgrade-form .progress-bar {
   border: 1px solid #AAA;
