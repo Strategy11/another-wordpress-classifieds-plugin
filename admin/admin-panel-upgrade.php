@@ -373,8 +373,9 @@ class AWPCP_AdminUpgrade extends AWPCP_AdminPage {
 
         if ( get_awpcp_option( 'adapprove' ) && get_awpcp_option( 'imagesapprove' ) ) {
             $query = 'UPDATE ' . AWPCP_TABLE_MEDIA . ' m INNER JOIN ' . AWPCP_TABLE_ADS . ' a ';
-            $query.= 'ON (m.ad_id = a.ad_id AND a.disabled = 1 AND a.disabled_date IS NULL ) ';
+            $query.= 'ON (m.ad_id = a.ad_id AND a.disabled = 1 AND a.disabled_date IS NULL) ';
             $query.= 'SET m.status = %s';
+            $query.= 'WHERE m.enabled != 1';
 
             $query = $wpdb->prepare( $query, AWPCP_Media::STATUS_AWAITING_APPROVAL );
 
