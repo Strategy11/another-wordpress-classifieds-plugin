@@ -355,7 +355,7 @@ function awpcp_is_mysql_date( $date ) {
  * @param $id int 	User ID
  */
 function awpcp_get_user_data($id) {
-	$users = awpcp_get_users('WHERE ID = ' . intval($id));
+	$users = awpcp_get_users( $id );
 	if (!empty($users)) {
 		return array_shift($users);
 	}
@@ -375,44 +375,49 @@ function awpcp_get_user_data($id) {
  *
  * @param $where string 	SQL Where clause to filter users
  */
-function awpcp_get_users($where='') {
+function awpcp_get_users( $user_id = null ) {
 	global $wpdb;
 
-	$users = $wpdb->get_results("SELECT ID, display_name FROM $wpdb->users $where");
+	$query = 'SELECT <wp-users>.ID, <wp-users>.user_login, <wp-users>.user_email, <wp-users>.user_url, <wp-users>.display_name, <wp-user-meta>.meta_key, <wp-user-meta>.meta_value ';
+	$query.= 'FROM wp_users JOIN <wp-user-meta> ON (<wp-user-meta>.user_id = <wp-users>.ID) ';
+	$query.= "WHERE <wp-user-meta>.meta_key IN ('first_name', 'last_name', 'awpcp-profile') ";
 
-	foreach ($users as $k => $user) {
-		$data = get_userdata($user->ID);
-		$profile = get_user_meta($user->ID, 'awpcp-profile', true);
-
-		$users[$k] = new stdClass();
-		$users[$k]->ID = $user->ID;
-		$users[$k]->user_email = empty($profile['email']) ? $data->user_email : $profile['email'];
-		$users[$k]->user_login = awpcp_get_property($data, 'user_login', '');
-		$users[$k]->display_name = awpcp_get_property($data, 'display_name', '');
-		$users[$k]->first_name = awpcp_get_property($data, 'first_name', '');
-		$users[$k]->last_name = awpcp_get_property($data, 'last_name', '');
-		$users[$k]->username = awpcp_array_data('username', '', $profile);
-		$users[$k]->user_url = awpcp_get_property($data, 'user_url', '');
-
-		$users[$k]->address = awpcp_array_data('address', '', $profile);
-		$users[$k]->phone = awpcp_array_data('phone', '', $profile);
-		$users[$k]->city = awpcp_array_data('city', '', $profile);
-		$users[$k]->state = awpcp_array_data('state', '', $profile);
+	if ( ! is_null( $user_id ) ) {
+		$query .= $wpdb->prepare( ' AND <wp-users>.ID = %d ', $user_id );
 	}
 
-	usort( $users, create_function( '$a, $b', 'return strcasecmp( $a->display_name, $b->display_name );' ) );
+	$query.= 'ORDER BY <wp-users>.display_name ASC, <wp-users>.ID ASC';
+
+	$query = str_replace( '<wp-users>', $wpdb->users, $query );
+	$query = str_replace( '<wp-user-meta>', $wpdb->usermeta, $query);
+
+	$users_info = $wpdb->get_results( $query );
+	$users = array();
+
+	$profile_info = null;
+
+	foreach ( $users_info as $k => $info ) {
+		if ( ! isset( $users[ $info->ID ] ) ) {
+			$users[ $info->ID ] = new stdClass();
+			$users[ $info->ID ]->ID = $info->ID;
+			$users[ $info->ID ]->user_login = $info->user_login;
+			$users[ $info->ID ]->user_email = $info->user_email;
+			$users[ $info->ID ]->user_url = $info->user_url;
+			$users[ $info->ID ]->display_name = $info->display_name;
+		}
+
+		if ( $info->meta_key == 'awpcp-profile' ) {
+			$profile_info = maybe_unserialize( $info->meta_value );
+			$users[ $info->ID ]->address = awpcp_array_data( 'address', '', $profile_info );
+			$users[ $info->ID ]->phone = awpcp_array_data( 'phone', '', $profile_info );
+			$users[ $info->ID ]->city = awpcp_array_data( 'city', '', $profile_info );
+			$users[ $info->ID ]->state = awpcp_array_data( 'state', '', $profile_info );
+		} else {
+			$users[ $info->ID ]->{$info->meta_key} = $info->meta_value;
+		}
+	}
 
 	return $users;
-}
-
-
-/**
- * @since 3.0.2
- */
-function awpcp_get_users_basic_information() {
-	global $wpdb;
-
-	return $wpdb->get_results( "SELECT ID, display_name, user_login FROM $wpdb->users ORDER BY display_name" );
 }
 
 
