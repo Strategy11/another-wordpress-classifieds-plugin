@@ -405,7 +405,7 @@ class AWPCP_Payment_Transaction {
     }
 
     /**
-     * @since next-release
+     * @since 3.2.2
      */
     public function did_payment_failed() {
         return $this->payment_is_failed() || $this->payment_is_canceled() || $this->payment_is_invalid();

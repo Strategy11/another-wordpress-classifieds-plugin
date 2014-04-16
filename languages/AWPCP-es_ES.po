@@ -5990,7 +5990,7 @@ msgid ""
 "(the Administrator) and the author can see it."
 msgstr ""
 "Este anuncio está actualmente deshabilitado hasta que el adminstrador lo "
-"apruebe. Unicamente el usted (el administrador) y el autor pueden verlo."
+"apruebe. Unicamente usted (el administrador) y el autor pueden verlo."
 
 #: frontend/page-show-ad.php:172
 msgid ""
@@ -5998,7 +5998,7 @@ msgid ""
 "(the author) can see it."
 msgstr ""
 "Este anuncio está actualmente deshabilitado hasta que el administrador lo "
-"apruebe. "
+"apruebe. Unicamente usted (el autor) y el administrador pueden verlo."
 
 #: frontend/page-show-ad.php:169
 msgid ""

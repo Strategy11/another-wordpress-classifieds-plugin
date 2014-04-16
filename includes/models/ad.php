@@ -617,14 +617,14 @@ class AWPCP_Ad {
 	}
 
 	/**
-	 * @since next-release
+	 * @since 3.2.2
 	 */
 	public function should_be_enabled() {
 		return awpcp_calculate_ad_disabled_state( $this->ad_id ) ? false : true;
 	}
 
 	/**
-	 * @since next-release
+	 * @since 3.2.2
 	 */
 	public function should_be_disabled() {
 		return ! $this->should_be_enabled();
