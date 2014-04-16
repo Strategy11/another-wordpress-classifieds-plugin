@@ -440,6 +440,7 @@ class AWPCP_Settings_API {
 		$key = $this->add_section($group, __('Price Field', 'AWPCP'), 'price', 10, array($this, 'section'));
 		$this->add_setting( $key, 'displaypricefield', __( 'Show Price field', 'AWPCP' ), 'checkbox', 1, __( 'Show price field?', 'AWPCP' ) );
 		$this->add_setting( $key, 'displaypricefieldreqop', __( 'Require Price', 'AWPCP' ), 'checkbox', 0, __( 'Require price?', 'AWPCP' ) );
+		$this->add_setting( $key, 'price-field-is-restricted', __( 'Make Price private?', 'AWPCP' ), 'checkbox', 0, __( 'Make Price private (only visible to logged in users).', 'AWPCP' ) );
 
 		// Section: Country Field
 
