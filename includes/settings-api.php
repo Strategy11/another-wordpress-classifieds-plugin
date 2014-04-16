@@ -426,21 +426,21 @@ class AWPCP_Settings_API {
 
 		$this->add_setting( $key, 'displayphonefield', __( 'Show Phone field', 'AWPCP' ), 'checkbox', 1, __( 'Show phone field?', 'AWPCP' ) );
 		$this->add_setting( $key, 'displayphonefieldreqop', __( 'Require Phone', 'AWPCP' ), 'checkbox', 0, __( 'Require phone?', 'AWPCP' ) );
-		$this->add_setting( $key, 'displayphonefieldpriv', __( 'Make Phone private?', 'AWPCP' ), 'checkbox', 0, __( 'Make Phone private (only visible to logged in users).', 'AWPCP' ) );
+		$this->add_setting( $key, 'displayphonefieldpriv', __( 'Make Phone restricted?', 'AWPCP' ), 'checkbox', 0, __( 'Make Phone restricted (only visible to logged in users).', 'AWPCP' ) );
 
 		// Section: Website Field
 
 		$key = $this->add_section($group, __('Website Field', 'AWPCP'), 'website', 10, array($this, 'section'));
 		$this->add_setting( $key, 'displaywebsitefield', __( 'Show Website field', 'AWPCP' ), 'checkbox', 1, __( 'Show website field?', 'AWPCP' ) );
 		$this->add_setting( $key, 'displaywebsitefieldreqop', __( 'Require Website', 'AWPCP' ), 'checkbox', 0, __( 'Require website?', 'AWPCP' ) );
-		$this->add_setting( $key, 'displaywebsitefieldreqpriv', __( 'Make Website private?', 'AWPCP' ), 'checkbox', 0, __( 'Make Website private (only visible to logged in users).', 'AWPCP' ) );
+		$this->add_setting( $key, 'displaywebsitefieldreqpriv', __( 'Make Website restricted?', 'AWPCP' ), 'checkbox', 0, __( 'Make Website restricted (only visible to logged in users).', 'AWPCP' ) );
 
 		// Section: Price Field
 
 		$key = $this->add_section($group, __('Price Field', 'AWPCP'), 'price', 10, array($this, 'section'));
 		$this->add_setting( $key, 'displaypricefield', __( 'Show Price field', 'AWPCP' ), 'checkbox', 1, __( 'Show price field?', 'AWPCP' ) );
 		$this->add_setting( $key, 'displaypricefieldreqop', __( 'Require Price', 'AWPCP' ), 'checkbox', 0, __( 'Require price?', 'AWPCP' ) );
-		$this->add_setting( $key, 'price-field-is-restricted', __( 'Make Price private?', 'AWPCP' ), 'checkbox', 0, __( 'Make Price private (only visible to logged in users).', 'AWPCP' ) );
+		$this->add_setting( $key, 'price-field-is-restricted', __( 'Make Price restricted?', 'AWPCP' ), 'checkbox', 0, __( 'Make Price restricted (only visible to logged in users).', 'AWPCP' ) );
 
 		// Section: Country Field
 
