@@ -390,6 +390,7 @@ function awpcp_do_placeholder_price($ad, $placeholder) {
     $price = empty($ad->ad_item_price) ? 0 : ($ad->ad_item_price / 100);
 
     $replacements = array();
+
     if ($price >= 0 && get_awpcp_option('displaypricefield') == 1) {
         $label = __('Price', 'AWPCP');
         $currency = awpcp_format_money($price);
@@ -785,7 +786,7 @@ function awpcp_do_placeholder_twitter_button($ad, $placeholder) {
 
 
 /**
- * @since next-release
+ * @since 3.2.2
  */
 function awpcp_do_placeholder_twitter_button_url( $ad, $placeholder ) {
     return add_query_arg(array(
@@ -810,7 +811,7 @@ function awpcp_do_placeholder_facebook_button($ad, $placeholder) {
 
 
 /**
- * @since next-release
+ * @since 3.2.2
  */
 function awpcp_do_placeholder_facebook_button_url( $ad, $placeholder ) {
     $info = awpcp_get_ad_share_info( $ad->ad_id );

@@ -7,19 +7,19 @@ function awpcp_ajax_response() {
 }
 
 /**
- * @since next-release
+ * @since 3.2.2
  */
 class AWPCP_AjaxResponse {
 
     /**
-     * @since next-release
+     * @since 3.2.2
      */
     public function set_content_type( $content_type ) {
         header( sprintf( "Content-Type: %s", $content_type ) );
     }
 
     /**
-     * @since next-release
+     * @since 3.2.2
      */
     public function write( $content ) {
         echo $content;
@@ -27,7 +27,7 @@ class AWPCP_AjaxResponse {
 
     /**
      * TODO: use wp_die instead of die()
-     * @since next-release
+     * @since 3.2.2
      */
     public function close() {
         die();
@@ -35,7 +35,7 @@ class AWPCP_AjaxResponse {
 }
 
 /**
- * @since next-release
+ * @since 3.2.2
  */
 abstract class AWPCP_AjaxHandler {
 
@@ -46,55 +46,55 @@ abstract class AWPCP_AjaxHandler {
     }
 
     /**
-     * @since next-release
+     * @since 3.2.2
      */
     public abstract function ajax();
 
     /**
-     * @since next-release
+     * @since 3.2.2
      */
     protected function success( $params = array() ) {
         return $this->flush( array_merge( array( 'status' => 'ok' ), $params ) );
     }
 
     /**
-     * @since next-release
+     * @since 3.2.2
      */
     protected function error( $params = array() ) {
         return $this->flush( array_merge( array( 'status' => 'error' ), $params ) );
     }
 
     /**
-     * @since next-release
+     * @since 3.2.2
      */
     protected function progress_response( $records_count, $records_left ) {
         return $this->success( array( 'recordsCount' => $records_count, 'recordsLeft' => $records_left ) );
     }
 
     /**
-     * @since next-release
+     * @since 3.2.2
      */
     protected function response( $records_count, $records_left ) {
-        _deprecated_function( __FUNCTION__, 'next-release', 'AWPCP_AjaxHandler::progress_response' );
+        _deprecated_function( __FUNCTION__, '3.2.2', 'AWPCP_AjaxHandler::progress_response' );
         return $this->progress_response( $records_count, $records_left );
     }
 
     /**
-     * @since next-release
+     * @since 3.2.2
      */
     protected function error_response( $error_message ) {
         return $this->error( array( 'error' => $error_message ) );
     }
 
     /**
-     * @since next-release
+     * @since 3.2.2
      */
     protected function multiple_errors_response( $errors ) {
         return $this->error( array( 'errors' => $errors ) );
     }
 
     /**
-     * @since next-release
+     * @since 3.2.2
      */
     protected function flush( $array_response ) {
         $this->response->set_content_type( 'application/json' );

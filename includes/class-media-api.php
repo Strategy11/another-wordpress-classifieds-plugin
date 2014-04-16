@@ -137,7 +137,7 @@ class AWPCP_MediaAPI {
     }
 
     /**
-     * @since next-release
+     * @since 3.2.2
      */
     public function approve( $media ) {
         $media->status = AWPCP_Media::STATUS_APPROVED;
@@ -145,7 +145,7 @@ class AWPCP_MediaAPI {
     }
 
     /**
-     * @since next-release
+     * @since 3.2.2
      */
     public function reject( $media ) {
         $media->status = AWPCP_Media::STATUS_REJECTED;
@@ -292,7 +292,7 @@ class AWPCP_MediaAPI {
     }
 
     /**
-     * @since next-release
+     * @since 3.2.2
      */
     public function find_public_images_by_ad_id( $ad_id ) {
         $args = array(
@@ -305,7 +305,7 @@ class AWPCP_MediaAPI {
     }
 
     /**
-     * @since next-release
+     * @since 3.2.2
      */
     public function find_images_awaiting_approval_by_ad_id( $ad_id ) {
         $args = array(

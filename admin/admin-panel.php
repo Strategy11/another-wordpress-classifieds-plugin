@@ -204,15 +204,6 @@ class AWPCP_Admin {
 			// in _wp_menu_output, despite the fact we are showing the
 			// All Users page.
 			$typenow = 'hide-users-menu';
-
-			// foreach ( array_keys( $submenu ) as $parent ) {
-			// 	foreach ( $submenu[ $parent ] as $priority => $submenu_array ) {
-			// 		if ( $submenu_array[2] == 'users.php' ) {
-			// 			unset( $submenu[ $parent ][ $priority ] );
-			// 			break 2;
-			// 		}
-			// 	}
-			// }
 		}
 
 		return $parent_file;
