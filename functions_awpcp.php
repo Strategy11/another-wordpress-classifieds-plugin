@@ -650,11 +650,8 @@ function total_ads_in_cat($catid) {
     // never allow Unpaid Ads
     $filter = " AND payment_status != 'Unpaid' ";
     $filter = " AND verified = 1 ";
-    // the name of the disablependingads setting gives the wrong meaning,
-    // it actually means "Enable Paid Ads that are Pendings payment", so when
-    // the setting has a value of 1, pending Ads should NOT be excluded.
-    // I'll change the next condition considering the above
-    if((get_awpcp_option('disablependingads') == 0) && (get_awpcp_option('freepay') == 1)){
+
+    if( ( get_awpcp_option( 'enable-ads-pending-payment' ) == 0 ) && ( get_awpcp_option( 'freepay' ) == 1 ) ) {
         $filter = " AND payment_status != 'Pending'";
     }
 

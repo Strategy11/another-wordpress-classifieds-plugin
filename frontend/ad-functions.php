@@ -95,28 +95,25 @@ function awpcp_calculate_ad_end_date($duration, $interval='DAY', $ad=null) {
  * the payment_status when the Ad is placed AND renewed. ~2012-09-19
  */
 function awpcp_calculate_ad_disabled_state($id=null, $transaction=null, $payment_status=null) {
-	if (!is_null($payment_status)) {
-		$is_pending = $payment_status == AWPCP_Payment_Transaction::PAYMENT_STATUS_PENDING;
-	} else if (!is_null($transaction)) {
-		$payment_status = $transaction->get('payment-status');
-		$is_pending = $payment_status == AWPCP_Payment_Transaction::PAYMENT_STATUS_PENDING;
-	} else {
-		// set to false to bypass disablependingads verification
-		$is_pending = false;
-	}
+    if ( is_null( $payment_status ) && ! is_null( $transaction ) ) {
+        $payment_status = $transaction->payment_status;
+    }
 
-	if (awpcp_current_user_is_admin()) {
-		$disabled = 0;
-	} else if (get_awpcp_option('adapprove') == 1) {
-		$disabled = 1;
-	// if disablependingads == 1, pending Ads should be enabled
-	} else if ($is_pending && get_awpcp_option('disablependingads') == 0) {
-		$disabled = 1;
-	} else {
-		$disabled = 0;
-	}
+    $payment_is_pending = $payment_status == AWPCP_Payment_Transaction::PAYMENT_STATUS_PENDING;
 
-	return $disabled;
+    if ( awpcp_current_user_is_admin() ) {
+        $disabled = 0;
+    } else if ( get_awpcp_option( 'adapprove' ) == 1 ) {
+        $disabled = 1;
+    } else if ( $payment_is_pending && get_awpcp_option( 'enable-ads-pending-payment' ) == 1 ) {
+        $disabled = 0;
+    } else if ( $payment_is_pending ) {
+        $disabled = 1;
+    } else {
+        $disabled = 0;
+    }
+
+    return $disabled;
 }
 
 

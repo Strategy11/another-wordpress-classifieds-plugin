@@ -180,7 +180,7 @@ class AWPCP_Settings_API {
 
 		$this->add_setting( $key, 'onlyadmincanplaceads', __( 'Only admin can post Ads', 'AWPCP' ), 'checkbox', 0, __( 'If checked only administrator users will be allowed to post Ads.', 'AWPCP' ) );
 		$this->add_setting( $key, 'adapprove', __( 'Disable Ad until admin approves', 'AWPCP' ), 'checkbox', 0, __( 'New Ads will be in a disabled status, not visible to visitors, until the administrator approves them.', 'AWPCP' ) );
-		$this->add_setting( $key, 'disablependingads', __( 'Enable paid ads that are pending payment.', 'AWPCP' ), 'checkbox', 1, __( 'Enable paid ads that are pending payment.', 'AWPCP' ) );
+		$this->add_setting( $key, 'enable-ads-pending-payment', __( 'Enable paid ads that are pending payment.', 'AWPCP' ), 'checkbox', get_awpcp_option( 'disablependingads', 1 ), __( 'Enable paid ads that are pending payment.', 'AWPCP' ) );
 		$this->add_setting( $key, 'enable-email-verification', __( 'Enable email verification for new Ads', 'AWPCP' ), 'checkbox', 0, __( 'If checked, all new Ads will remain disabled until the user clicks a verification link sent to the email address used to post the Ad.', 'AWPCP' ) );
 		$this->add_setting( $key, 'email-verification-first-threshold', __( 'Number of days before the verification email is sent again', 'AWPCP' ), 'textfield', 5, '' );
 		$this->add_setting( $key, 'email-verification-second-threshold', __( 'Number of days before Ads that remain in a unverified status will be deleted', 'AWPCP' ), 'textfield', 30, '' );
