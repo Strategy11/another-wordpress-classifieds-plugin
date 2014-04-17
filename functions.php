@@ -754,7 +754,8 @@ function awpcp_get_region_field_entries($field) {
 	$conditions[] = "disabled = 0";
 	$conditions[] = "verified = 1";
 	$conditions[] = "payment_status != 'Unpaid'";
-    if (get_awpcp_option('disablependingads') == 0 && get_awpcp_option('freepay') == 1) {
+
+    if ( get_awpcp_option( 'enable-ads-pending-payment' ) == 0 && get_awpcp_option( 'freepay' ) == 1 ) {
         $conditions[] = "payment_status != 'Pending'";
     }
 

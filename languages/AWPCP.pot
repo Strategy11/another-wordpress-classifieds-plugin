@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2014-04-14 19:37:31+00:00\n"
+"POT-Creation-Date: 2014-04-17 15:29:15+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -38,7 +38,7 @@ msgstr ""
 #: admin/admin-panel-fees-table.php:109
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:19
 #: admin/templates/admin-panel-fees-entry-form.tpl.php:22
-#: frontend/placeholders.php:394 frontend/templates/page-search-ads.tpl.php:52
+#: frontend/placeholders.php:398 frontend/templates/page-search-ads.tpl.php:52
 #: includes/settings-api.php:312
 msgid "Price"
 msgstr ""
@@ -132,7 +132,7 @@ msgstr ""
 msgid "Characters in Description"
 msgstr ""
 
-#: admin/admin-panel-fees-table.php:113 admin/admin-panel.php:265
+#: admin/admin-panel-fees-table.php:113 admin/admin-panel.php:256
 #: admin/templates/admin-panel-fees-entry-form.tpl.php:91
 msgid "Categories"
 msgstr ""
@@ -299,11 +299,11 @@ msgid "Unverified"
 msgstr ""
 
 #: admin/admin-panel-listings-table.php:249
-msgid "Awaiting Approval"
+msgid "Ads Awaiting Approval"
 msgstr ""
 
 #: admin/admin-panel-listings-table.php:250
-msgid "Have Images Awaiting Approval"
+msgid "Images Awaiting Approval"
 msgstr ""
 
 #: admin/admin-panel-listings-table.php:251
@@ -328,7 +328,7 @@ msgid "Keyword"
 msgstr ""
 
 #: admin/admin-panel-listings-table.php:267 frontend/page-show-ad.php:71
-#: frontend/placeholders.php:616
+#: frontend/placeholders.php:620
 msgid "Location"
 msgstr ""
 
@@ -433,7 +433,7 @@ msgctxt "admin listings"
 msgid "You do not have sufficient permissions to perform that action."
 msgstr ""
 
-#: admin/admin-panel-listings.php:272 frontend/ad-functions.php:233
+#: admin/admin-panel-listings.php:272 frontend/ad-functions.php:230
 #: frontend/page-edit-ad.php:199 frontend/page-edit-ad.php:318
 #: frontend/page-edit-ad.php:346
 msgid "The specified Ad doesn't exists."
@@ -640,243 +640,243 @@ msgctxt "awpcp admin menu"
 msgid "Classifieds"
 msgstr ""
 
-#: admin/admin-panel.php:245
+#: admin/admin-panel.php:236
 msgid "Configure General Options"
 msgstr ""
 
-#: admin/admin-panel.php:245
+#: admin/admin-panel.php:236
 msgid "Settings"
 msgstr ""
 
-#: admin/admin-panel.php:254
+#: admin/admin-panel.php:245
 msgid "Manage Credit"
 msgstr ""
 
-#: admin/admin-panel.php:265
+#: admin/admin-panel.php:256
 msgid "Add/Edit Categories"
 msgstr ""
 
-#: admin/admin-panel.php:276
+#: admin/admin-panel.php:267
 msgid "Manage Extra Fields"
 msgstr ""
 
-#: admin/admin-panel.php:276 awpcp.php:451
+#: admin/admin-panel.php:267 awpcp.php:451
 msgid "Extra Fields"
 msgstr ""
 
-#: admin/admin-panel.php:279
+#: admin/admin-panel.php:270
 msgid "Import Ad"
 msgstr ""
 
-#: admin/admin-panel.php:279
+#: admin/admin-panel.php:270
 #: admin/templates/admin-panel-csv-importer.tpl.php:189
 msgid "Import"
 msgstr ""
 
-#: admin/admin-panel.php:452 admin/admin-panel.php:453
-#: admin/admin-panel.php:785
+#: admin/admin-panel.php:443 admin/admin-panel.php:444
+#: admin/admin-panel.php:776
 msgid "Manage Category Icon"
 msgstr ""
 
-#: admin/admin-panel.php:458 admin/admin-panel.php:775
-#: admin/admin-panel.php:777
+#: admin/admin-panel.php:449 admin/admin-panel.php:766
+#: admin/admin-panel.php:768
 msgid "Edit Category"
 msgstr ""
 
-#: admin/admin-panel.php:459 admin/admin-panel.php:631
-#: admin/admin-panel.php:779 admin/admin-panel.php:781
+#: admin/admin-panel.php:450 admin/admin-panel.php:622
+#: admin/admin-panel.php:770 admin/admin-panel.php:772
 msgid "Delete Category"
 msgstr ""
 
-#: admin/admin-panel.php:560 admin/admin-panel.php:756
+#: admin/admin-panel.php:551 admin/admin-panel.php:747
 msgid "AWPCP Classifieds Management System Categories Management"
 msgstr ""
 
-#: admin/admin-panel.php:614
+#: admin/admin-panel.php:605
 msgid "Ad A New Category"
 msgstr ""
 
-#: admin/admin-panel.php:621
+#: admin/admin-panel.php:612
 msgid "You are currently editing the category shown below"
 msgstr ""
 
-#: admin/admin-panel.php:622
+#: admin/admin-panel.php:613
 msgid "Save Category Changes"
 msgstr ""
 
-#: admin/admin-panel.php:623 admin/admin-panel.php:632
+#: admin/admin-panel.php:614 admin/admin-panel.php:623
 msgid "Parent Category"
 msgstr ""
 
-#: admin/admin-panel.php:624 admin/admin-panel.php:701
+#: admin/admin-panel.php:615 admin/admin-panel.php:692
 msgid "Category List Order"
 msgstr ""
 
-#: admin/admin-panel.php:630
+#: admin/admin-panel.php:621
 msgid ""
 "If you're sure that you want to delete this category please press the delete "
 "button"
 msgstr ""
 
-#: admin/admin-panel.php:648 admin/admin-panel.php:659
+#: admin/admin-panel.php:639 admin/admin-panel.php:650
 msgid "Untitled"
 msgstr ""
 
-#: admin/admin-panel.php:652
+#: admin/admin-panel.php:643
 msgid ""
 "The category contains ads. If you do not select a category to move them to "
 "the ads will be moved to:"
 msgstr ""
 
-#: admin/admin-panel.php:665
+#: admin/admin-panel.php:656
 msgid ""
 "The category also has children. If you do not specify a move-to category the "
 "children will be adopted by"
 msgstr ""
 
-#: admin/admin-panel.php:667
+#: admin/admin-panel.php:658
 msgid "Note"
 msgstr ""
 
-#: admin/admin-panel.php:669
+#: admin/admin-panel.php:660
 msgid "The move-to category specified applies to both ads and categories"
 msgstr ""
 
-#: admin/admin-panel.php:673
+#: admin/admin-panel.php:664
 msgid "Please select a Move-To category"
 msgstr ""
 
-#: admin/admin-panel.php:683
+#: admin/admin-panel.php:674
 msgid "Sorry but you cannot delete "
 msgstr ""
 
-#: admin/admin-panel.php:685
+#: admin/admin-panel.php:676
 msgid " It is the default category. The default category cannot be deleted"
 msgstr ""
 
-#: admin/admin-panel.php:698
+#: admin/admin-panel.php:689
 msgid "Add a New Category"
 msgstr ""
 
-#: admin/admin-panel.php:699
+#: admin/admin-panel.php:690
 msgid "Add New Category"
 msgstr ""
 
-#: admin/admin-panel.php:700
+#: admin/admin-panel.php:691
 msgid "List Category Under"
 msgstr ""
 
-#: admin/admin-panel.php:715
+#: admin/admin-panel.php:706
 msgid "Category to Delete"
 msgstr ""
 
-#: admin/admin-panel.php:726
+#: admin/admin-panel.php:717
 msgid "Category to Edit"
 msgstr ""
 
-#: admin/admin-panel.php:730 admin/admin-panel.php:745
+#: admin/admin-panel.php:721 admin/admin-panel.php:736
 msgid "Make This a Top Level Category"
 msgstr ""
 
-#: admin/admin-panel.php:742
+#: admin/admin-panel.php:733
 msgid "Enter the category name"
 msgstr ""
 
-#: admin/admin-panel.php:773
+#: admin/admin-panel.php:764
 msgid "Icon Meanings"
 msgstr ""
 
-#: admin/admin-panel.php:843
+#: admin/admin-panel.php:834
 msgid "Delete Selected Categories"
 msgstr ""
 
-#: admin/admin-panel.php:846
+#: admin/admin-panel.php:837
 msgid "Move Selected Categories"
 msgstr ""
 
-#: admin/admin-panel.php:849
+#: admin/admin-panel.php:840
 msgid "Select Move-To category"
 msgstr ""
 
-#: admin/admin-panel.php:854
+#: admin/admin-panel.php:845
 msgid "Delete categories should do this with existing Ads"
 msgstr ""
 
-#: admin/admin-panel.php:855
+#: admin/admin-panel.php:846
 msgid "Move Ads to new category"
 msgstr ""
 
-#: admin/admin-panel.php:856
+#: admin/admin-panel.php:847
 msgid "Delete Ads too"
 msgstr ""
 
-#: admin/admin-panel.php:868 admin/admin-panel.php:880
+#: admin/admin-panel.php:859 admin/admin-panel.php:871
 msgid "Category ID"
 msgstr ""
 
-#: admin/admin-panel.php:870 admin/admin-panel.php:882
+#: admin/admin-panel.php:861 admin/admin-panel.php:873
 msgid "Category Name (Total Ads)"
 msgstr ""
 
-#: admin/admin-panel.php:872 admin/admin-panel.php:884
+#: admin/admin-panel.php:863 admin/admin-panel.php:875
 msgid "Parent"
 msgstr ""
 
-#: admin/admin-panel.php:874 admin/admin-panel.php:886
+#: admin/admin-panel.php:865 admin/admin-panel.php:877
 msgid "Order"
 msgstr ""
 
-#: admin/admin-panel.php:876 admin/admin-panel.php:888
+#: admin/admin-panel.php:867 admin/admin-panel.php:879
 msgid "Action"
 msgstr ""
 
-#: admin/admin-panel.php:1094
+#: admin/admin-panel.php:1085
 msgid "The new category was successfully added."
 msgstr ""
 
-#: admin/admin-panel.php:1113
+#: admin/admin-panel.php:1104
 msgid ""
 "Sorry but you cannot delete the default category. The default category can "
 "only be renamed"
 msgstr ""
 
-#: admin/admin-panel.php:1179
+#: admin/admin-panel.php:1170
 msgid "The category has been deleted"
 msgstr ""
 
-#: admin/admin-panel.php:1191
+#: admin/admin-panel.php:1182
 msgid "Your category changes have been saved."
 msgstr ""
 
-#: admin/admin-panel.php:1198
+#: admin/admin-panel.php:1189
 msgid "No changes made to categories."
 msgstr ""
 
-#: admin/admin-panel.php:1237
+#: admin/admin-panel.php:1228
 msgid ""
 "With the exception of any category that was being moved to itself, the "
 "categories have been moved"
 msgstr ""
 
-#: admin/admin-panel.php:1241
+#: admin/admin-panel.php:1232
 msgid ""
 "The categories have not been moved because you did not indicate where you "
 "want the categories to be moved to"
 msgstr ""
 
-#: admin/admin-panel.php:1336
+#: admin/admin-panel.php:1327
 msgid "The categories have been deleted"
 msgstr ""
 
-#: admin/admin-panel.php:1362 admin/admin-panel.php:1399
+#: admin/admin-panel.php:1353 admin/admin-panel.php:1390
 msgid "No ads have been selected, you must select one or more ads first."
 msgstr ""
 
-#: admin/admin-panel.php:1376
+#: admin/admin-panel.php:1367
 msgid "The ads have been deleted"
 msgstr ""
 
-#: admin/admin-panel.php:1413
+#: admin/admin-panel.php:1404
 msgid "The selected Ads have been marked as SPAM and removed."
 msgstr ""
 
@@ -1503,7 +1503,7 @@ msgid "No news right now."
 msgstr ""
 
 #: admin/templates/admin-panel-listings-view.tpl.php:8
-#: frontend/ad-functions.php:178 frontend/page-renew-ad.php:121
+#: frontend/ad-functions.php:175 frontend/page-renew-ad.php:121
 msgid "Return to Listings"
 msgstr ""
 
@@ -1960,7 +1960,7 @@ msgid "State"
 msgstr ""
 
 #: admin/templates/user-panel-profile-fields.tpl.php:51
-#: frontend/templates/payments-billing-form.tpl.php:101 functions.php:668
+#: frontend/templates/payments-billing-form.tpl.php:101 functions.php:673
 msgid "City"
 msgstr ""
 
@@ -2120,59 +2120,59 @@ msgstr ""
 msgid "An unexpected error ocurred. No Ad was specified."
 msgstr ""
 
-#: frontend/ad-functions.php:146
+#: frontend/ad-functions.php:143
 msgid "The classifieds listing \"%s\" has been successfully renewed."
 msgstr ""
 
-#: frontend/ad-functions.php:173 frontend/page-renew-ad.php:130
+#: frontend/ad-functions.php:170 frontend/page-renew-ad.php:130
 msgid "The Ad has been successfully renewed. New expiration date is %s. "
 msgstr ""
 
-#: frontend/ad-functions.php:212 frontend/page-place-ad.php:114
+#: frontend/ad-functions.php:209 frontend/page-place-ad.php:114
 msgid ""
 "You do not have permission to perform the function you are trying to "
 "perform. Access to this page has been denied"
 msgstr ""
 
-#: frontend/ad-functions.php:226
+#: frontend/ad-functions.php:223
 msgid "The Ad has been deleted"
 msgstr ""
 
-#: frontend/ad-functions.php:229
+#: frontend/ad-functions.php:226
 msgid ""
 "Your Ad details and any photos you have uploaded have been deleted from the "
 "system"
 msgstr ""
 
-#: frontend/ad-functions.php:235
+#: frontend/ad-functions.php:232
 msgid "There was an error trying to delete the Ad. The Ad was not deleted."
 msgstr ""
 
-#: frontend/ad-functions.php:238
+#: frontend/ad-functions.php:235
 msgid "Problem encountered. Cannot complete  request"
 msgstr ""
 
-#: frontend/ad-functions.php:290
+#: frontend/ad-functions.php:287
 msgid "New classified Ad listing posted."
 msgstr ""
 
-#: frontend/ad-functions.php:438
+#: frontend/ad-functions.php:435
 msgid "There are currently no ads in the system"
 msgstr ""
 
-#: frontend/ad-functions.php:509
+#: frontend/ad-functions.php:506
 msgid "There were no ads found"
 msgstr ""
 
-#: frontend/ad-functions.php:536
+#: frontend/ad-functions.php:533
 msgid "Change Category"
 msgstr ""
 
-#: frontend/ad-functions.php:544
+#: frontend/ad-functions.php:541
 msgid "Category: "
 msgstr ""
 
-#: frontend/ad-functions.php:560 frontend/shortcode.php:364
+#: frontend/ad-functions.php:557 frontend/shortcode.php:364
 msgid "Powered by "
 msgstr ""
 
@@ -2757,33 +2757,33 @@ msgstr ""
 msgid "Visit Website"
 msgstr ""
 
-#: frontend/placeholders.php:449
+#: frontend/placeholders.php:453
 msgid "Click to enlarge image."
 msgstr ""
 
-#: frontend/placeholders.php:652
+#: frontend/placeholders.php:656
 msgid "This Ad has been viewed %d time."
 msgid_plural "This Ad has been viewed %d times."
 msgstr[0] ""
 msgstr[1] ""
 
-#: frontend/placeholders.php:656
+#: frontend/placeholders.php:660
 msgid "Total views: %d"
 msgstr ""
 
-#: frontend/placeholders.php:707
+#: frontend/placeholders.php:711
 msgid "Phone"
 msgstr ""
 
-#: frontend/placeholders.php:764
+#: frontend/placeholders.php:768
 msgid "Flag Ad"
 msgstr ""
 
-#: frontend/placeholders.php:779
+#: frontend/placeholders.php:783
 msgid "Tweet This"
 msgstr ""
 
-#: frontend/placeholders.php:808
+#: frontend/placeholders.php:812
 msgid "Share on Facebook"
 msgstr ""
 
@@ -3383,7 +3383,7 @@ msgid ""
 "payment."
 msgstr ""
 
-#: frontend/templates/payments-billing-form.tpl.php:6 functions.php:648
+#: frontend/templates/payments-billing-form.tpl.php:6 functions.php:653
 msgid "Country"
 msgstr ""
 
@@ -3574,7 +3574,7 @@ msgid "Show City field?"
 msgstr ""
 
 #: frontend/templates/widget-search-form.tpl.php:22
-#: includes/settings-api.php:453
+#: includes/settings-api.php:454
 msgid "Show State field?"
 msgstr ""
 
@@ -3655,7 +3655,7 @@ msgid "Search by Country"
 msgstr ""
 
 #: frontend/widget-search.php:116 frontend/widget-search.php:131
-#: functions.php:765
+#: functions.php:771
 msgid "Select Option"
 msgstr ""
 
@@ -3671,49 +3671,49 @@ msgstr ""
 msgid "&hellip;"
 msgstr ""
 
-#: functions.php:590
+#: functions.php:595
 msgid "None"
 msgstr ""
 
-#: functions.php:601
+#: functions.php:606
 msgctxt "comma separated list of things"
 msgid "%s and %d more."
 msgstr ""
 
-#: functions.php:649
+#: functions.php:654
 msgid "separate countries by commas"
 msgstr ""
 
-#: functions.php:658
+#: functions.php:663
 msgid "State/Province"
 msgstr ""
 
-#: functions.php:659
+#: functions.php:664
 msgid "separate states by commas"
 msgstr ""
 
-#: functions.php:669
+#: functions.php:674
 msgid "separate cities by commas"
 msgstr ""
 
-#: functions.php:678
+#: functions.php:683
 msgid "County/Village/Other"
 msgstr ""
 
-#: functions.php:679
+#: functions.php:684
 msgid "separate counties by commas"
 msgstr ""
 
-#: functions.php:1040
+#: functions.php:1046
 msgid "-- Choose a Country --"
 msgstr ""
 
-#: functions.php:1681
+#: functions.php:1687
 msgctxt "default blog title"
 msgid "Classifieds Website"
 msgstr ""
 
-#: functions.php:2003
+#: functions.php:2009
 msgctxt "AWPCP"
 msgid ""
 "The images or files with pale red background have been rejected by an "
@@ -3722,79 +3722,79 @@ msgid ""
 "cannot be shown in the frontend."
 msgstr ""
 
-#: functions.php:2020
+#: functions.php:2026
 msgid ""
 "This version of AWPCP %1$s module is not compatible with AWPCP version %2$s. "
 "Please get AWPCP %1$s %3$s or newer!"
 msgstr ""
 
-#: functions.php:2022
+#: functions.php:2028
 msgid "Error"
 msgstr ""
 
-#: functions.php:2041
+#: functions.php:2047
 msgid "No errors."
 msgstr ""
 
-#: functions.php:2042
+#: functions.php:2048
 msgid "The file is larger than upload_max_filesize."
 msgstr ""
 
-#: functions.php:2043
+#: functions.php:2049
 msgid "The file is larger than form MAX_FILE_SIZE."
 msgstr ""
 
-#: functions.php:2044
+#: functions.php:2050
 msgid "The file was only partially uploaded."
 msgstr ""
 
-#: functions.php:2045
+#: functions.php:2051
 msgid "No file was uploaded."
 msgstr ""
 
-#: functions.php:2046
+#: functions.php:2052
 msgid "Missing temporary directory."
 msgstr ""
 
-#: functions.php:2047
+#: functions.php:2053
 msgid "Can't write file to disk."
 msgstr ""
 
-#: functions.php:2048
+#: functions.php:2054
 msgid "The file upload was stopped by extension."
 msgstr ""
 
-#: functions.php:2198
+#: functions.php:2204
 msgid "Your Ad \"%s\" has been approved"
 msgstr ""
 
-#: functions.php:2214
+#: functions.php:2220
 msgid "Your Ad \"%s\" has been successfully updated"
 msgstr ""
 
-#: functions.php:2235
+#: functions.php:2241
 msgid "Images on Ad \"%s\" are awaiting approval"
 msgstr ""
 
-#: functions.php:2237
+#: functions.php:2243
 msgid ""
 "Images on Ad \"%s\" are awaiting approval. You can approve the images going "
 "to the Manage Images sections for that Ad and clicking the \"Enable\" button "
 "below each image. Click here to continue: %s."
 msgstr ""
 
-#: functions.php:2240
+#: functions.php:2246
 msgid "The Ad \"%s\" is awaiting approval"
 msgstr ""
 
-#: functions.php:2242
+#: functions.php:2248
 msgid ""
 "The Ad \"%s\" is awaiting approval. You can approve the Ad going to the "
 "Manage Listings section and clicking the \"Enable\" action shown on top. "
 "Click here to continue: %s."
 msgstr ""
 
-#: functions.php:2249
+#: functions.php:2255
 msgid ""
 "Additionally, You can approve the images going to the Manage Images sections "
 "for that Ad and clicking the \"Enable\" button below each image. Click here "
@@ -3817,7 +3817,7 @@ msgstr ""
 msgid "Top Level Category"
 msgstr ""
 
-#: functions_awpcp.php:1110
+#: functions_awpcp.php:1107
 msgid "Email sent %s."
 msgstr ""
 
@@ -5844,11 +5844,11 @@ msgid "Require phone?"
 msgstr ""
 
 #: includes/settings-api.php:429
-msgid "Make Phone private?"
+msgid "Make Phone restricted?"
 msgstr ""
 
 #: includes/settings-api.php:429
-msgid "Make Phone private (only visible to logged in users)."
+msgid "Make Phone restricted (only visible to logged in users)."
 msgstr ""
 
 #: includes/settings-api.php:433
@@ -5872,11 +5872,11 @@ msgid "Require website?"
 msgstr ""
 
 #: includes/settings-api.php:436
-msgid "Make Website private?"
+msgid "Make Website restricted?"
 msgstr ""
 
 #: includes/settings-api.php:436
-msgid "Make Website private (only visible to logged in users)."
+msgid "Make Website restricted (only visible to logged in users)."
 msgstr ""
 
 #: includes/settings-api.php:440
@@ -5899,161 +5899,169 @@ msgstr ""
 msgid "Require price?"
 msgstr ""
 
-#: includes/settings-api.php:446
+#: includes/settings-api.php:443
+msgid "Make Price restricted?"
+msgstr ""
+
+#: includes/settings-api.php:443
+msgid "Make Price restricted (only visible to logged in users)."
+msgstr ""
+
+#: includes/settings-api.php:447
 msgid "Country Field"
 msgstr ""
 
-#: includes/settings-api.php:447
+#: includes/settings-api.php:448
 msgid "Show Country field"
 msgstr ""
 
-#: includes/settings-api.php:447
+#: includes/settings-api.php:448
 msgid "Show country field?"
 msgstr ""
 
-#: includes/settings-api.php:448
+#: includes/settings-api.php:449
 msgid "Require Country"
 msgstr ""
 
-#: includes/settings-api.php:448
+#: includes/settings-api.php:449
 msgid "Require country?"
 msgstr ""
 
-#: includes/settings-api.php:452
+#: includes/settings-api.php:453
 msgid "State Field"
 msgstr ""
 
-#: includes/settings-api.php:453
+#: includes/settings-api.php:454
 msgid "Show State field"
 msgstr ""
 
-#: includes/settings-api.php:454
+#: includes/settings-api.php:455
 msgid "Require State"
 msgstr ""
 
-#: includes/settings-api.php:454
+#: includes/settings-api.php:455
 msgid "Require state?"
 msgstr ""
 
-#: includes/settings-api.php:458
+#: includes/settings-api.php:459
 msgid "County Field"
 msgstr ""
 
-#: includes/settings-api.php:459
+#: includes/settings-api.php:460
 msgid "Show County/Village/other"
 msgstr ""
 
-#: includes/settings-api.php:459
+#: includes/settings-api.php:460
 msgid "Show County/village/other?"
 msgstr ""
 
-#: includes/settings-api.php:460
+#: includes/settings-api.php:461
 msgid "Require County/Village/other"
 msgstr ""
 
-#: includes/settings-api.php:460
+#: includes/settings-api.php:461
 msgid "Require county/village/other?"
 msgstr ""
 
-#: includes/settings-api.php:464
+#: includes/settings-api.php:465
 msgid "City Field"
 msgstr ""
 
-#: includes/settings-api.php:465
+#: includes/settings-api.php:466
 msgid "Show City field"
 msgstr ""
 
-#: includes/settings-api.php:465
+#: includes/settings-api.php:466
 msgid "Show city field?"
 msgstr ""
 
-#: includes/settings-api.php:466
+#: includes/settings-api.php:467
 msgid "Show City field before County field"
 msgstr ""
 
-#: includes/settings-api.php:466
+#: includes/settings-api.php:467
 msgid ""
 "If checked the City field will be shown before the County field. This "
 "setting may be overwritten if Region Control module is installed."
 msgstr ""
 
-#: includes/settings-api.php:467
+#: includes/settings-api.php:468
 msgid "Require City"
 msgstr ""
 
-#: includes/settings-api.php:467
+#: includes/settings-api.php:468
 msgid "Require city?"
 msgstr ""
 
-#: includes/settings-api.php:472
+#: includes/settings-api.php:473
 msgid "Registration"
 msgstr ""
 
-#: includes/settings-api.php:476
+#: includes/settings-api.php:477
 msgid "Registration Settings"
 msgstr ""
 
-#: includes/settings-api.php:478
+#: includes/settings-api.php:479
 msgid "Require user registration"
 msgstr ""
 
-#: includes/settings-api.php:478
+#: includes/settings-api.php:479
 msgid "Require user registration?"
 msgstr ""
 
-#: includes/settings-api.php:479
+#: includes/settings-api.php:480
 msgid "Reply to Ad requires user registration"
 msgstr ""
 
-#: includes/settings-api.php:479
+#: includes/settings-api.php:480
 msgid "Require user registration for replying to an Ad?"
 msgstr ""
 
-#: includes/settings-api.php:481
+#: includes/settings-api.php:482
 msgid "Custom Registration Page URL"
 msgstr ""
 
-#: includes/settings-api.php:481
+#: includes/settings-api.php:482
 msgid ""
 "Location of registration page. Value should be the full URL to the wordpress "
 "registration page (e.g. http://www.awpcp.com/wp-login.php?action=register)."
 msgstr ""
 
-#: includes/settings-api.php:481
+#: includes/settings-api.php:482
 msgid ""
 "**Only change this setting when using membership plugin with custom login "
 "pages or similar scenarios."
 msgstr ""
 
-#: includes/settings-api.php:490
+#: includes/settings-api.php:491
 msgid "General Email Settings"
 msgstr ""
 
-#: includes/settings-api.php:492
+#: includes/settings-api.php:493
 msgid "TO email address for outgoing emails"
 msgstr ""
 
-#: includes/settings-api.php:492
+#: includes/settings-api.php:493
 msgid ""
 "Emails are sent to your WordPress admin email. If you prefere to receive "
 "emails in a different address, please enter it here."
 msgstr ""
 
-#: includes/settings-api.php:493
+#: includes/settings-api.php:494
 msgid "FROM email address for outgoing emails"
 msgstr ""
 
-#: includes/settings-api.php:493
+#: includes/settings-api.php:494
 msgid ""
 "Emails go out using your WordPress admin email. If you prefer to use a "
 "different email enter it here."
 msgstr ""
 
-#: includes/settings-api.php:494
+#: includes/settings-api.php:495
 msgid "Use sender email for reply messages"
 msgstr ""
 
-#: includes/settings-api.php:494
+#: includes/settings-api.php:495
 msgid ""
 "Check this to use the name and email of the sender in the FROM field when "
 "someone replies to an ad. When unchecked the messages go out with the "
@@ -6066,140 +6074,140 @@ msgid ""
 "sure your WordPress admin email address is tied to your hosting account."
 msgstr ""
 
-#: includes/settings-api.php:495
+#: includes/settings-api.php:496
 msgid "Include Ad access key in email messages"
 msgstr ""
 
-#: includes/settings-api.php:495
+#: includes/settings-api.php:496
 msgid ""
 "Include Ad access key in email notifications. You may want to uncheck this "
 "option if you are using the Ad Management panel, but is not necessary."
 msgstr ""
 
-#: includes/settings-api.php:499
+#: includes/settings-api.php:500
 msgid "Ad Posted Message"
 msgstr ""
 
-#: includes/settings-api.php:501
+#: includes/settings-api.php:502
 msgid "Subject for Ad posted notification email"
 msgstr ""
 
-#: includes/settings-api.php:501
+#: includes/settings-api.php:502
 msgid "Your Classified Ad listing has been submitted"
 msgstr ""
 
-#: includes/settings-api.php:501
+#: includes/settings-api.php:502
 msgid "Subject line for email sent out when someone posts an Ad"
 msgstr ""
 
-#: includes/settings-api.php:502
+#: includes/settings-api.php:503
 msgid "Body for Ad posted notification email"
 msgstr ""
 
-#: includes/settings-api.php:502
+#: includes/settings-api.php:503
 msgid ""
 "Thank you for submitting your Classified Ad. The details of your ad are "
 "shown below."
 msgstr ""
 
-#: includes/settings-api.php:502
+#: includes/settings-api.php:503
 msgid "Message body text for email sent out when someone posts an Ad"
 msgstr ""
 
-#: includes/settings-api.php:506
+#: includes/settings-api.php:507
 msgid "Reply to Ad Message"
 msgstr ""
 
-#: includes/settings-api.php:508
+#: includes/settings-api.php:509
 msgid "Subject for Reply to Ad email"
 msgstr ""
 
-#: includes/settings-api.php:508
+#: includes/settings-api.php:509
 msgid "Response to your AWPCP Demo Ad"
 msgstr ""
 
-#: includes/settings-api.php:508
+#: includes/settings-api.php:509
 msgid "Subject line for email sent out when someone replies to Ad"
 msgstr ""
 
-#: includes/settings-api.php:509
+#: includes/settings-api.php:510
 msgid "Body for Reply to Ad email"
 msgstr ""
 
-#: includes/settings-api.php:509
+#: includes/settings-api.php:510
 msgid "Someone has responded to your AWPCP Demo Ad"
 msgstr ""
 
-#: includes/settings-api.php:509
+#: includes/settings-api.php:510
 msgid "Message body text for email sent out when someone replies to Ad"
 msgstr ""
 
-#: includes/settings-api.php:510
+#: includes/settings-api.php:511
 msgid "Notify admin about contact message"
 msgstr ""
 
-#: includes/settings-api.php:510
+#: includes/settings-api.php:511
 msgid ""
 "An email will be sent to the administrator every time a visitor sends a "
 "message to one of the Ad posters through the Reply to Ad page."
 msgstr ""
 
-#: includes/settings-api.php:514
+#: includes/settings-api.php:515
 msgid "Resend Access Key Message"
 msgstr ""
 
-#: includes/settings-api.php:516
+#: includes/settings-api.php:517
 msgid "Subject for Request Ad Access Key email"
 msgstr ""
 
-#: includes/settings-api.php:516
+#: includes/settings-api.php:517
 msgid "The Classified Ad's ad access key you requested"
 msgstr ""
 
-#: includes/settings-api.php:516
+#: includes/settings-api.php:517
 msgid ""
 "Subject line for email sent out when someone requests their ad access key "
 "resent"
 msgstr ""
 
-#: includes/settings-api.php:517
+#: includes/settings-api.php:518
 msgid "Body for Request Ad Access Key email"
 msgstr ""
 
-#: includes/settings-api.php:517
+#: includes/settings-api.php:518
 msgid ""
 "You asked to have your Classified Ad's access key resent. Below are all the "
 "Ad access keys in the system that are tied to the email address you provided"
 msgstr ""
 
-#: includes/settings-api.php:517
+#: includes/settings-api.php:518
 msgid ""
 "Message body text for email sent out when someone requests their ad access "
 "key resent"
 msgstr ""
 
-#: includes/settings-api.php:521
+#: includes/settings-api.php:522
 msgid "Incomplete Payment Message"
 msgstr ""
 
-#: includes/settings-api.php:523
+#: includes/settings-api.php:524
 msgid "Subject for Incomplete Payment email"
 msgstr ""
 
-#: includes/settings-api.php:523
+#: includes/settings-api.php:524
 msgid "There was a problem processing your payment"
 msgstr ""
 
-#: includes/settings-api.php:523
+#: includes/settings-api.php:524
 msgid ""
 "Subject line for email sent out when the payment processing does not complete"
 msgstr ""
 
-#: includes/settings-api.php:524
+#: includes/settings-api.php:525
 msgid "Body for Incomplete Payment email"
 msgstr ""
 
-#: includes/settings-api.php:524
+#: includes/settings-api.php:525
 msgid ""
 "There was a problem encountered during your attempt to submit payment. If "
 "funds were removed from the account you tried to use to make a payment "
@@ -6207,221 +6215,221 @@ msgid ""
 "assistance."
 msgstr ""
 
-#: includes/settings-api.php:524
+#: includes/settings-api.php:525
 msgid ""
 "Message body text for email sent out when the payment processing does not "
 "complete"
 msgstr ""
 
-#: includes/settings-api.php:528
+#: includes/settings-api.php:529
 msgid "Renew Ad Message"
 msgstr ""
 
-#: includes/settings-api.php:530
+#: includes/settings-api.php:531
 msgid "Subject for Renew Ad email"
 msgstr ""
 
-#: includes/settings-api.php:530
+#: includes/settings-api.php:531
 msgid "Your classifieds listing Ad will expire in %d days."
 msgstr ""
 
-#: includes/settings-api.php:530
+#: includes/settings-api.php:531
 msgid "Subject line for email sent out when an Ad is about to expire."
 msgstr ""
 
-#: includes/settings-api.php:531 includes/settings-api.php:538
+#: includes/settings-api.php:532 includes/settings-api.php:539
 msgid "Body for Renew Ad email"
 msgstr ""
 
-#: includes/settings-api.php:531
+#: includes/settings-api.php:532
 msgid ""
 "This is an automated notification that your Classified Ad will expire in %d "
 "days."
 msgstr ""
 
-#: includes/settings-api.php:531
+#: includes/settings-api.php:532
 msgid ""
 "Message body text for email sent out when an Ad is about to expire. Use %d "
 "as placeholder for the number of days before the Ad expires."
 msgstr ""
 
-#: includes/settings-api.php:535
+#: includes/settings-api.php:536
 msgid "Ad Renewed Message"
 msgstr ""
 
-#: includes/settings-api.php:537
+#: includes/settings-api.php:538
 msgid "Subject for Ad Renewed email"
 msgstr ""
 
-#: includes/settings-api.php:537
+#: includes/settings-api.php:538
 msgid "Your classifieds listing \"%s\" has been successfully renewed."
 msgstr ""
 
-#: includes/settings-api.php:537
+#: includes/settings-api.php:538
 msgid "Subject line for email sent out when an Ad is successfully renewed."
 msgstr ""
 
-#: includes/settings-api.php:538
+#: includes/settings-api.php:539
 msgid ""
 "Your classifieds listing Ad has been successfully renewed. More information "
 "below:"
 msgstr ""
 
-#: includes/settings-api.php:538
+#: includes/settings-api.php:539
 msgid ""
 "Message body text for email sent out when an Ad is successfully renewed. "
 msgstr ""
 
-#: includes/settings-api.php:542
+#: includes/settings-api.php:543
 msgid "Ad Expired Message"
 msgstr ""
 
-#: includes/settings-api.php:544
+#: includes/settings-api.php:545
 msgid "Subject for Ad Expired email"
 msgstr ""
 
-#: includes/settings-api.php:544
+#: includes/settings-api.php:545
 msgid "Your classifieds listing at %s has expired"
 msgstr ""
 
-#: includes/settings-api.php:544
+#: includes/settings-api.php:545
 msgid "Subject line for email sent out when an ad has auto-expired"
 msgstr ""
 
-#: includes/settings-api.php:545
+#: includes/settings-api.php:546
 msgid "Body for Ad Expired email"
 msgstr ""
 
-#: includes/settings-api.php:545
+#: includes/settings-api.php:546
 msgid "This is an automated notification that your Classified Ad has expired."
 msgstr ""
 
-#: includes/settings-api.php:545
+#: includes/settings-api.php:546
 msgid "Message body text for email sent out when an ad has auto-expired"
 msgstr ""
 
-#: includes/settings-api.php:549
+#: includes/settings-api.php:550
 msgid "Advanced Email Configuration"
 msgstr ""
 
-#: includes/settings-api.php:551
+#: includes/settings-api.php:552
 msgid "Enable external SMTP server"
 msgstr ""
 
-#: includes/settings-api.php:551
+#: includes/settings-api.php:552
 msgid "Enabled external SMTP server (if emails not processing normally)."
 msgstr ""
 
-#: includes/settings-api.php:552
+#: includes/settings-api.php:553
 msgid "SMTP host"
 msgstr ""
 
-#: includes/settings-api.php:552
+#: includes/settings-api.php:553
 msgid "SMTP host (if emails not processing normally)."
 msgstr ""
 
-#: includes/settings-api.php:553
+#: includes/settings-api.php:554
 msgid "SMTP port"
 msgstr ""
 
-#: includes/settings-api.php:553
+#: includes/settings-api.php:554
 msgid "SMTP port (if emails not processing normally)."
 msgstr ""
 
-#: includes/settings-api.php:554
+#: includes/settings-api.php:555
 msgid "SMTP username"
 msgstr ""
 
-#: includes/settings-api.php:554
+#: includes/settings-api.php:555
 msgid "SMTP username (if emails not processing normally)."
 msgstr ""
 
-#: includes/settings-api.php:555
+#: includes/settings-api.php:556
 msgid "SMTP password"
 msgstr ""
 
-#: includes/settings-api.php:555
+#: includes/settings-api.php:556
 msgid "SMTP password (if emails not processing normally)."
 msgstr ""
 
-#: includes/settings-api.php:814
+#: includes/settings-api.php:815
 msgid ""
 "You cannot enable Akismet SPAM control because you do not have Akismet "
 "installed/activated"
 msgstr ""
 
-#: includes/settings-api.php:817
+#: includes/settings-api.php:818
 msgid ""
 "You cannot enable Akismet SPAM control because you have not configured "
 "Akismet properly"
 msgstr ""
 
-#: includes/settings-api.php:829
+#: includes/settings-api.php:830
 msgid ""
 "reCAPTCHA can't be used because the public key and private key settings are "
 "required for reCAPTCHA to work properly."
 msgstr ""
 
-#: includes/settings-api.php:831
+#: includes/settings-api.php:832
 msgid ""
 "reCAPTCHA can't be used because the public key setting is required for "
 "reCAPTCHA to work properly."
 msgstr ""
 
-#: includes/settings-api.php:833
+#: includes/settings-api.php:834
 msgid ""
 "reCAPTCHA can't be used because the private key setting is required for "
 "reCAPTCHA to work properly."
 msgstr ""
 
-#: includes/settings-api.php:842
+#: includes/settings-api.php:843
 msgid ""
 "Require Registration setting was enabled automatically because you activated "
 "the User Ad Management panel."
 msgstr ""
 
-#: includes/settings-api.php:857
+#: includes/settings-api.php:858
 msgid ""
 "User Ad Management panel was automatically deactivated because you disabled "
 "Require Registration setting."
 msgstr ""
 
-#: includes/settings-api.php:862
+#: includes/settings-api.php:863
 msgid ""
 "Credit System was automatically disabled because you disabled Require "
 "Registration setting."
 msgstr ""
 
-#: includes/settings-api.php:883 includes/settings-api.php:895
+#: includes/settings-api.php:884 includes/settings-api.php:896
 msgid ""
 "There is a problem with the currency code you have entered. It does not "
 "match any of the codes in the list of available currencies provided by "
 "PayPal."
 msgstr ""
 
-#: includes/settings-api.php:884 includes/settings-api.php:896
+#: includes/settings-api.php:885 includes/settings-api.php:897
 msgid "The available currency codes are"
 msgstr ""
 
-#: includes/settings-api.php:905
+#: includes/settings-api.php:906
 msgid ""
 "Require Registration setting was enabled automatically because you activated "
 "the Credit System."
 msgstr ""
 
-#: includes/settings-api.php:910
+#: includes/settings-api.php:911
 msgid ""
 "Charge Listing Fee setting was enabled automatically because you activated "
 "the Credit System."
 msgstr ""
 
-#: includes/settings-api.php:916
+#: includes/settings-api.php:917
 msgid ""
 "Credit System was disabled automatically because you disabled Charge Listing "
 "Fee."
 msgstr ""
 
-#: includes/settings-api.php:1102
+#: includes/settings-api.php:1103
 msgid "Documentation on date and time formatting"
 msgstr ""
 

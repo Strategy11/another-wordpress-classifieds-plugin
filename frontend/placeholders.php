@@ -389,9 +389,12 @@ function awpcp_do_placeholder_website_link($ad, $placeholder) {
 function awpcp_do_placeholder_price($ad, $placeholder) {
     $price = empty($ad->ad_item_price) ? 0 : ($ad->ad_item_price / 100);
 
+    $show_price_field = get_awpcp_option( 'displaypricefield' ) == 1;
+    $user_can_see_price_field = is_user_logged_in() || get_awpcp_option( 'price-field-is-restricted' ) == 0;
+
     $replacements = array();
 
-    if ($price >= 0 && get_awpcp_option('displaypricefield') == 1) {
+    if ( $show_price_field && $user_can_see_price_field && $price >= 0 ) {
         $label = __('Price', 'AWPCP');
         $currency = awpcp_format_money($price);
         // single ad

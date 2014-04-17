@@ -180,7 +180,7 @@ class AWPCP_Settings_API {
 
 		$this->add_setting( $key, 'onlyadmincanplaceads', __( 'Only admin can post Ads', 'AWPCP' ), 'checkbox', 0, __( 'If checked only administrator users will be allowed to post Ads.', 'AWPCP' ) );
 		$this->add_setting( $key, 'adapprove', __( 'Disable Ad until admin approves', 'AWPCP' ), 'checkbox', 0, __( 'New Ads will be in a disabled status, not visible to visitors, until the administrator approves them.', 'AWPCP' ) );
-		$this->add_setting( $key, 'disablependingads', __( 'Enable paid ads that are pending payment.', 'AWPCP' ), 'checkbox', 1, __( 'Enable paid ads that are pending payment.', 'AWPCP' ) );
+		$this->add_setting( $key, 'enable-ads-pending-payment', __( 'Enable paid ads that are pending payment.', 'AWPCP' ), 'checkbox', get_awpcp_option( 'disablependingads', 1 ), __( 'Enable paid ads that are pending payment.', 'AWPCP' ) );
 		$this->add_setting( $key, 'enable-email-verification', __( 'Enable email verification for new Ads', 'AWPCP' ), 'checkbox', 0, __( 'If checked, all new Ads will remain disabled until the user clicks a verification link sent to the email address used to post the Ad.', 'AWPCP' ) );
 		$this->add_setting( $key, 'email-verification-first-threshold', __( 'Number of days before the verification email is sent again', 'AWPCP' ), 'textfield', 5, '' );
 		$this->add_setting( $key, 'email-verification-second-threshold', __( 'Number of days before Ads that remain in a unverified status will be deleted', 'AWPCP' ), 'textfield', 30, '' );
@@ -426,20 +426,21 @@ class AWPCP_Settings_API {
 
 		$this->add_setting( $key, 'displayphonefield', __( 'Show Phone field', 'AWPCP' ), 'checkbox', 1, __( 'Show phone field?', 'AWPCP' ) );
 		$this->add_setting( $key, 'displayphonefieldreqop', __( 'Require Phone', 'AWPCP' ), 'checkbox', 0, __( 'Require phone?', 'AWPCP' ) );
-		$this->add_setting( $key, 'displayphonefieldpriv', __( 'Make Phone private?', 'AWPCP' ), 'checkbox', 0, __( 'Make Phone private (only visible to logged in users).', 'AWPCP' ) );
+		$this->add_setting( $key, 'displayphonefieldpriv', __( 'Make Phone restricted?', 'AWPCP' ), 'checkbox', 0, __( 'Make Phone restricted (only visible to logged in users).', 'AWPCP' ) );
 
 		// Section: Website Field
 
 		$key = $this->add_section($group, __('Website Field', 'AWPCP'), 'website', 10, array($this, 'section'));
 		$this->add_setting( $key, 'displaywebsitefield', __( 'Show Website field', 'AWPCP' ), 'checkbox', 1, __( 'Show website field?', 'AWPCP' ) );
 		$this->add_setting( $key, 'displaywebsitefieldreqop', __( 'Require Website', 'AWPCP' ), 'checkbox', 0, __( 'Require website?', 'AWPCP' ) );
-		$this->add_setting( $key, 'displaywebsitefieldreqpriv', __( 'Make Website private?', 'AWPCP' ), 'checkbox', 0, __( 'Make Website private (only visible to logged in users).', 'AWPCP' ) );
+		$this->add_setting( $key, 'displaywebsitefieldreqpriv', __( 'Make Website restricted?', 'AWPCP' ), 'checkbox', 0, __( 'Make Website restricted (only visible to logged in users).', 'AWPCP' ) );
 
 		// Section: Price Field
 
 		$key = $this->add_section($group, __('Price Field', 'AWPCP'), 'price', 10, array($this, 'section'));
 		$this->add_setting( $key, 'displaypricefield', __( 'Show Price field', 'AWPCP' ), 'checkbox', 1, __( 'Show price field?', 'AWPCP' ) );
 		$this->add_setting( $key, 'displaypricefieldreqop', __( 'Require Price', 'AWPCP' ), 'checkbox', 0, __( 'Require price?', 'AWPCP' ) );
+		$this->add_setting( $key, 'price-field-is-restricted', __( 'Make Price restricted?', 'AWPCP' ), 'checkbox', 0, __( 'Make Price restricted (only visible to logged in users).', 'AWPCP' ) );
 
 		// Section: Country Field
 

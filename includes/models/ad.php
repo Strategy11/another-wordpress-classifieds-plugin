@@ -140,7 +140,7 @@ class AWPCP_Ad {
         $conditions[] = "verified = 1";
 		$conditions[] = "disabled = 0";
 
-        if ((get_awpcp_option('disablependingads') == 0) && (get_awpcp_option('freepay') == 1)) {
+        if ( ( get_awpcp_option( 'enable-ads-pending-payment' ) == 0 ) && ( get_awpcp_option( 'freepay' ) == 1 ) ) {
             $conditions[] = "payment_status != 'Pending'";
         }
 
