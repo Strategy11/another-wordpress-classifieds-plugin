@@ -18,6 +18,29 @@ class AWPCP_Request {
     }
 
     /**
+     * Returns the domain used in the current request, optionally replacing
+     * the www part of the domain with $www_prefix_replacement.
+     *
+     * @since next-release
+     */
+    function domain( $include_www = true, $www_prefix_replacement = '' ) {
+        $domain = isset( $_SERVER['HTTP_HOST'] ) ? $_SERVER['HTTP_HOST'] : '';
+
+        if ( empty( $domain ) ) {
+            $domain = isset( $_SERVER['SERVER_NAME'] ) ? $_SERVER['SERVER_NAME'] : '';
+        }
+
+        $should_replace_www = $include_www ? false : true;
+        $domain_starts_with_www = substr( $domain, 0, 4 ) === 'www.';
+
+        if ( $should_replace_www && $domain_starts_with_www ) {
+            $domain = $www_prefix_replacement . substr( $domain, 4 );
+        }
+
+        return $domain;
+    }
+
+    /**
      * @tested
      * @since 3.0.2
      */
@@ -89,5 +112,14 @@ class AWPCP_Request {
         $ad_id = empty( $ad_id ) ? $this->get_query_var( 'id' ) : $ad_id;
 
         return $ad_id;
+    }
+
+    /**
+     * @since next-release
+     */
+    public function get_current_user() {
+        global $current_user;
+        get_currentuserinfo();
+        return $current_user;
     }
 }

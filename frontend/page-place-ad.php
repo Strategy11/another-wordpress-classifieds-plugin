@@ -982,9 +982,9 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         }
 
         if (get_awpcp_option('useakismet')) {
-            // XXX: check why it isn't working so well
-            if (awpcp_check_spam($data['ad_contact_name'], $data['websiteurl'], $data['ad_contact_email'], $data['ad_details'])) {
-                //Spam detected!
+            $spam_filter = awpcp_listing_spam_filter();
+
+            if ( $spam_filter->is_spam( $data ) ) {
                 $errors[] = __("Your Ad was flagged as spam. Please contact the administrator of this site.", "AWPCP");
             }
         }
