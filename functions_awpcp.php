@@ -507,7 +507,7 @@ function clean_field($foo) {
 function awpcp_get_page_id($name) {
 	global $wpdb;
 	if (!empty($name)) {
-		$sql = "SELECT ID FROM $wpdb->posts WHERE post_name = '$name'";
+		$sql = "SELECT ID FROM {$wpdb->posts} WHERE post_name = '$name'";
 		$id = $wpdb->get_var($sql);
 		return $id;
 	}
@@ -777,11 +777,11 @@ function massdeleteadsfromcategory($catid) {
 // END FUNCTION: sidebar widget
 // START FUNCTION: make sure there's not more than one page with the name of the classifieds page
 function checkforduplicate($cpagename_awpcp) {
-	global $wpdb, $table_prefix;
+	global $wpdb;
 
 	$awpcppagename = sanitize_title( $cpagename_awpcp );
 
-	$query = "SELECT ID {$table_prefix}posts WHERE post_name = %s AND post_type = %s";
+	$query = "SELECT ID FROM {$wpdb->posts} WHERE post_name = %s AND post_type = %s";
 	$query = $wpdb->prepare( $query, $awpcppagename, 'post' );
 
 	$post_ids = $wpdb->get_col( $query );
