@@ -212,26 +212,29 @@ class AWPCP {
 		// stored options are loaded when the settings API is instatiated
 		$this->settings = AWPCP_Settings_API::instance();
 		$this->js = AWPCP_JavaScript::instance();
+        $this->installer = AWPCP_Installer::instance();
+	}
 
-		awpcp_load_plugin_textdomain( __FILE__, 'AWPCP' );
+    public function bootstrap() {
+        if ( $this->settings->get_option( 'activatelanguages' ) ) {
+            awpcp_load_plugin_textdomain( __FILE__, 'AWPCP' );
+        }
 
-		// register settings, this will define default values for settings
-		// that have never been stored
-		$this->settings->register_settings();
+        // register settings, this will define default values for settings
+        // that have never been stored
+        $this->settings->register_settings();
 
-		$this->installer = AWPCP_Installer::instance();
-
-		$file = WP_CONTENT_DIR . '/plugins/' . basename(dirname(__FILE__)) . '/' . basename(__FILE__);
+        $file = WP_CONTENT_DIR . '/plugins/' . basename(dirname(__FILE__)) . '/' . basename(__FILE__);
         register_activation_hook($file, array($this->installer, 'activate'));
 
         add_action('plugins_loaded', array($this, 'setup'), 10);
 
         // register rewrite rules when the plugin file is loaded.
-		// generate_rewrite_rules or rewrite_rules_array hooks are
-		// too late to add rules using add_rewrite_rule function
-		add_action('page_rewrite_rules', 'awpcp_add_rewrite_rules');
-		add_filter('query_vars', 'awpcp_query_vars');
-	}
+        // generate_rewrite_rules or rewrite_rules_array hooks are
+        // too late to add rules using add_rewrite_rule function
+        add_action('page_rewrite_rules', 'awpcp_add_rewrite_rules');
+        add_filter('query_vars', 'awpcp_query_vars');
+    }
 
 	/**
 	 * Check if AWPCP DB version corresponds to current AWPCP plugin version.
@@ -909,6 +912,7 @@ function awpcp() {
 
 	if (!is_object($awpcp)) {
 		$awpcp = new AWPCP();
+        $awpcp->bootstrap();
 	}
 
 	return $awpcp;

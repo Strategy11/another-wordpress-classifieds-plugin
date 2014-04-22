@@ -92,7 +92,7 @@ function get_awpcp_setting($column, $option) {
 }
 
 function get_awpcp_option($option, $default='', $reload=false) {
-	return AWPCP_Settings_API::instance()->get_option($option, $default, $reload);
+	return awpcp()->settings->get_option( $option, $default, $reload );
 }
 
 function get_awpcp_option_group_id($option) {
