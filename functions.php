@@ -2329,18 +2329,16 @@ function awpcp_print_inline_javascript() {
  * @since 3.2.1
  */
 function awpcp_load_plugin_textdomain( $__file__, $text_domain ) {
-	if ( get_awpcp_option( 'activatelanguages' ) ) {
-		$basename = dirname( plugin_basename( $__file__ ) );
+	$basename = dirname( plugin_basename( $__file__ ) );
 
-		if ( load_plugin_textdomain( $text_domain, false, $basename . '/languages/' ) ) {
-			return true;
-		}
+	if ( load_plugin_textdomain( $text_domain, false, $basename . '/languages/' ) ) {
+		return true;
+	}
 
-		// main l10n MO file can be in the top level directory or inside the
-		// languages directory. A file inside the languages directory is prefered.
-		if ( $text_domain == 'AWPCP' ) {
-			return load_plugin_textdomain( $text_domain, false, $basename );
-		}
+	// main l10n MO file can be in the top level directory or inside the
+	// languages directory. A file inside the languages directory is prefered.
+	if ( $text_domain == 'AWPCP' ) {
+		return load_plugin_textdomain( $text_domain, false, $basename );
 	}
 }
 
