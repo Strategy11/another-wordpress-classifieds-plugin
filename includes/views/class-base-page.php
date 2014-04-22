@@ -159,7 +159,7 @@ class AWPCP_BasePage extends AWPCP_Page {
     }
 
     public function is_current_step( $step_name ) {
-        return in_array( $this->get_current_step_name(), $step_name );
+        return strcmp( $this->get_current_step_name(), $step_name ) === 0;
     }
 
     public function set_current_step( $step_name ) {
