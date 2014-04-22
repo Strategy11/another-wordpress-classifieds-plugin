@@ -496,8 +496,6 @@ function awpcp_pagination($config, $url) {
 					   'picid',
 					   'adkey',
 					   'editemail',
-					   'deletemultipleads',
-					   'spammultipleads',
 					   'awpcp_ads_to_action',
 					   'post_type');
 
