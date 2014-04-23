@@ -783,7 +783,8 @@ class AWPCP_Ad {
 	public function mark_as_spam() {
 		// this doesn't feel right :\
 		if ($result = $this->delete()) {
-        	awpcp_submit_spam($this->ad_id);
+			$spam_submitter = awpcp_listing_spam_submitter();
+			$spam_submitter->submit( (array) $this );
         }
 
         return $result;

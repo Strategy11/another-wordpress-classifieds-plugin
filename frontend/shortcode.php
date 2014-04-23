@@ -357,19 +357,6 @@ function awpcp_display_the_classifieds_page_body($awpcppagename) {
     ) );
 
 	$output .= "</div>";
-	$removeLink = get_awpcp_option('removepoweredbysign');
-
-	if ( field_exists($field='removepoweredbysign') && !($removeLink) ) {
-		$output .= "<p><font style=\"font-size:smaller\">";
-		$output .= __("Powered by ","AWPCP");
-		$output .= "<a href=\"http://www.awpcp.com\">Another Wordpress Classifieds Plugin</a> </font></p>";
-	} elseif ( field_exists($field='removepoweredbysign') && ($removeLink) ) {
-
-	} else {
-//		$output .= "<p><font style=\"font-size:smaller\">";
-//		$output .= __("Powered by ","AWPCP");
-//		$output .= "<a href=\"http://www.awpcp.com\">Another Wordpress Classifieds Plugin</a> </font></p>";
-	}
 
 	$output .= "</div>";
 

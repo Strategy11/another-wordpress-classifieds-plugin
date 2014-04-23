@@ -105,10 +105,10 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
         }
 
         if (get_awpcp_option('useakismet')) {
-            // XXX: check why it isn't working so well
-            if (awpcp_check_spam($data['sender_name'], '', $data['sender_email'], $data['message'])) {
-                //Spam detected!
-                $errors[] = __("Your message flagged as spam.  Please contact the administrator of this site.", "AWPCP");
+            $spam_filter = awpcp_listing_reply_spam_filter();
+
+            if ( $spam_filter->is_spam( $data ) ) {
+                $errors['message'] = __( 'Your message was flagged as spam. Please contact the administrator of this site.', 'AWPCP' );
             }
         }
 
@@ -154,15 +154,14 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
     protected function process_contact_form() {
         global $nameofsite;
 
-        $form = $this->get_posted_data();
+        $ad = $this->get_ad();
+
+        $form = array_merge( $this->get_posted_data(), array( 'ad_id' => $ad->ad_id ) );
         $errors = array();
 
         if (!$this->validate_posted_data($form, $errors)) {
             return $this->contact_form($form, $errors);
         }
-
-
-        $ad = $this->get_ad();
 
         $ad_title = $ad->get_title();
         $ad_url = url_showad($ad->ad_id);

@@ -3,7 +3,7 @@
  Plugin Name: Another Wordpress Classifieds Plugin (AWPCP)
  Plugin URI: http://www.awpcp.com
  Description: AWPCP - A plugin that provides the ability to run a free or paid classified ads service on your wordpress blog. <strong>!!!IMPORTANT!!!</strong> Whether updating a previous installation of Another Wordpress Classifieds Plugin or installing Another Wordpress Classifieds Plugin for the first time, please backup your wordpress database before you install/uninstall/activate/deactivate/upgrade Another Wordpress Classifieds Plugin.
- Version: 3.2.3-dev-4
+ Version: 3.2.3-dev-5
  Author: D. Rodenbaugh
  License: GPLv2 or any later version
  Author URI: http://www.skylineconsult.com
@@ -94,7 +94,11 @@ require_once(AWPCP_DIR . "/includes/helpers/class-akismet-wrapper-factory.php");
 require_once(AWPCP_DIR . "/includes/helpers/class-awpcp-request.php");
 require_once( AWPCP_DIR . '/includes/helpers/class-facebook-cache-helper.php' );
 require_once(AWPCP_DIR . "/includes/helpers/class-file-cache.php");
+require_once( AWPCP_DIR . "/includes/helpers/class-listing-akismet-data-source.php" );
+require_once( AWPCP_DIR . "/includes/helpers/class-listing-reply-akismet-data-source.php" );
 require_once(AWPCP_DIR . "/includes/helpers/class-payment-transaction-helper.php");
+require_once( AWPCP_DIR . "/includes/helpers/class-spam-filter.php" );
+require_once( AWPCP_DIR . "/includes/helpers/class-spam-submitter.php" );
 require_once( AWPCP_DIR . '/includes/helpers/facebook.php' );
 require_once(AWPCP_DIR . "/includes/helpers/list-table.php");
 require_once(AWPCP_DIR . "/includes/helpers/email.php");
@@ -212,26 +216,29 @@ class AWPCP {
 		// stored options are loaded when the settings API is instatiated
 		$this->settings = AWPCP_Settings_API::instance();
 		$this->js = AWPCP_JavaScript::instance();
+        $this->installer = AWPCP_Installer::instance();
+	}
 
-		awpcp_load_plugin_textdomain( __FILE__, 'AWPCP' );
+    public function bootstrap() {
+        if ( $this->settings->get_option( 'activatelanguages' ) ) {
+            awpcp_load_plugin_textdomain( __FILE__, 'AWPCP' );
+        }
 
-		// register settings, this will define default values for settings
-		// that have never been stored
-		$this->settings->register_settings();
+        // register settings, this will define default values for settings
+        // that have never been stored
+        $this->settings->register_settings();
 
-		$this->installer = AWPCP_Installer::instance();
-
-		$file = WP_CONTENT_DIR . '/plugins/' . basename(dirname(__FILE__)) . '/' . basename(__FILE__);
+        $file = WP_CONTENT_DIR . '/plugins/' . basename(dirname(__FILE__)) . '/' . basename(__FILE__);
         register_activation_hook($file, array($this->installer, 'activate'));
 
         add_action('plugins_loaded', array($this, 'setup'), 10);
 
         // register rewrite rules when the plugin file is loaded.
-		// generate_rewrite_rules or rewrite_rules_array hooks are
-		// too late to add rules using add_rewrite_rule function
-		add_action('page_rewrite_rules', 'awpcp_add_rewrite_rules');
-		add_filter('query_vars', 'awpcp_query_vars');
-	}
+        // generate_rewrite_rules or rewrite_rules_array hooks are
+        // too late to add rules using add_rewrite_rule function
+        add_action('page_rewrite_rules', 'awpcp_add_rewrite_rules');
+        add_filter('query_vars', 'awpcp_query_vars');
+    }
 
 	/**
 	 * Check if AWPCP DB version corresponds to current AWPCP plugin version.
@@ -909,6 +916,7 @@ function awpcp() {
 
 	if (!is_object($awpcp)) {
 		$awpcp = new AWPCP();
+        $awpcp->bootstrap();
 	}
 
 	return $awpcp;

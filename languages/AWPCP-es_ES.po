@@ -2196,7 +2196,7 @@ msgid ""
 "Hello and welcome to <strong>Another WordPress Classifieds</strong>. This "
 "plugin is super easy to use AND highly configurable."
 msgstr ""
-"Hola y bienvenidos a <strong> AWPCP </ strong>. Este plugin es super fácil "
+"Hola y bienvenidos a <strong>AWPCP</strong>. Este plugin es super fácil "
 "de usar y altamente configurable."
 
 #: admin/templates/admin-quick-start-guide-notice.tpl.php:15
