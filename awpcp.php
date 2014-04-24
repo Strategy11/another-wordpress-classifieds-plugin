@@ -3,7 +3,7 @@
  Plugin Name: Another Wordpress Classifieds Plugin (AWPCP)
  Plugin URI: http://www.awpcp.com
  Description: AWPCP - A plugin that provides the ability to run a free or paid classified ads service on your wordpress blog. <strong>!!!IMPORTANT!!!</strong> Whether updating a previous installation of Another Wordpress Classifieds Plugin or installing Another Wordpress Classifieds Plugin for the first time, please backup your wordpress database before you install/uninstall/activate/deactivate/upgrade Another Wordpress Classifieds Plugin.
- Version: 3.2.3-dev-6
+ Version: 3.2.3-dev-7
  Author: D. Rodenbaugh
  License: GPLv2 or any later version
  Author URI: http://www.skylineconsult.com
@@ -152,7 +152,9 @@ require_once( AWPCP_DIR . "/includes/settings/class-credit-plans-settings.php" )
 
 require_once( AWPCP_DIR . "/includes/class-awpcp-listings-api.php" );
 require_once( AWPCP_DIR . "/includes/class-listing-payment-transaction-handler.php" );
+require_once( AWPCP_DIR . "/includes/class-listings-collection.php" );
 require_once( AWPCP_DIR . "/includes/class-media-api.php" );
+require_once( AWPCP_DIR . "/includes/class-secure-url-redirection-handler.php" );
 require_once(AWPCP_DIR . "/includes/payments-api.php");
 require_once(AWPCP_DIR . "/includes/regions-api.php");
 require_once(AWPCP_DIR . "/includes/settings-api.php");
@@ -169,8 +171,6 @@ require_once(AWPCP_DIR . "/includes/payment-gateway-paypal-standard.php");
 require_once(AWPCP_DIR . "/includes/payment-gateway-2checkout.php");
 
 require_once(AWPCP_DIR . "/includes/payment-terms-table.php");
-
-require_once( AWPCP_DIR . "/includes/class-secure-url-redirection-handler.php" );
 
 // installation functions
 require_once(AWPCP_DIR . "/install.php");

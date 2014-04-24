@@ -1,13 +1,7 @@
 <?php
 
 function awpcp_listing_payment_transaction_handler() {
-    return new AWPCP_ListingPaymentTransactionHandler( new AWPCP_ListingsCollection, awpcp_listings_api() );
-}
-
-class AWPCP_ListingsCollection {
-    public function find_by_id( $ad_id ) {
-        return AWPCP_Ad::find_by_id( $ad_id );
-    }
+    return new AWPCP_ListingPaymentTransactionHandler( awpcp_listings_collection(), awpcp_listings_api() );
 }
 
 class AWPCP_ListingPaymentTransactionHandler {
@@ -56,7 +50,7 @@ class AWPCP_ListingPaymentTransactionHandler {
         $listing->save();
     }
 
-    public function listing_has_accepted_payment_status( $listing ) {
+    private function listing_has_accepted_payment_status( $listing ) {
         // TODO: how to remove dependency on AWPCP_Payment_Transaction?
         if ( $listing->payment_status === AWPCP_Payment_Transaction::PAYMENT_STATUS_PENDING ) {
             return true;
@@ -68,13 +62,13 @@ class AWPCP_ListingPaymentTransactionHandler {
         return false;
     }
 
-    public function update_listing_payment_information( $listing, $transaction ) {
+    private function update_listing_payment_information( $listing, $transaction ) {
         $listing->payment_status = $transaction->payment_status;
         $listing->payment_gateway = $transaction->payment_gateway;
         $listing->payer_email = $transaction->payer_email;
     }
 
-    public function maybe_enable_listing( $listing, $transaction ) {
+    private function maybe_enable_listing( $listing, $transaction ) {
         if ( $listing->disabled && $this->should_enable_listing( $listing, $transaction ) ) {
             $should_approve_listing_images = get_awpcp_option( 'imagesapprove' ) ? false : true;
             $listing->enable( $should_approve_listing_images );

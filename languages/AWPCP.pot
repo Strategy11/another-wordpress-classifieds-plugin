@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2014-04-17 15:29:15+00:00\n"
+"POT-Creation-Date: 2014-04-24 19:13:42+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -137,7 +137,7 @@ msgstr ""
 msgid "Categories"
 msgstr ""
 
-#: admin/admin-panel-fees-table.php:116 awpcp.php:458
+#: admin/admin-panel-fees-table.php:116 awpcp.php:465
 msgid "Featured Ads"
 msgstr ""
 
@@ -660,7 +660,7 @@ msgstr ""
 msgid "Manage Extra Fields"
 msgstr ""
 
-#: admin/admin-panel.php:267 awpcp.php:451
+#: admin/admin-panel.php:267 awpcp.php:458
 msgid "Extra Fields"
 msgstr ""
 
@@ -866,18 +866,6 @@ msgstr ""
 
 #: admin/admin-panel.php:1327
 msgid "The categories have been deleted"
-msgstr ""
-
-#: admin/admin-panel.php:1353 admin/admin-panel.php:1390
-msgid "No ads have been selected, you must select one or more ads first."
-msgstr ""
-
-#: admin/admin-panel.php:1367
-msgid "The ads have been deleted"
-msgstr ""
-
-#: admin/admin-panel.php:1404
-msgid "The selected Ads have been marked as SPAM and removed."
 msgstr ""
 
 #: admin/class-media-manager.php:21
@@ -1960,7 +1948,7 @@ msgid "State"
 msgstr ""
 
 #: admin/templates/user-panel-profile-fields.tpl.php:51
-#: frontend/templates/payments-billing-form.tpl.php:101 functions.php:673
+#: frontend/templates/payments-billing-form.tpl.php:101 functions.php:671
 msgid "City"
 msgstr ""
 
@@ -1992,91 +1980,91 @@ msgstr ""
 msgid "Manage Ad Listings"
 msgstr ""
 
-#: awpcp.php:377
+#: awpcp.php:384
 msgid "AWPCP"
 msgstr ""
 
-#: awpcp.php:399
+#: awpcp.php:406
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
 msgstr ""
 
-#: awpcp.php:400
+#: awpcp.php:407
 msgid "Warning"
 msgstr ""
 
-#: awpcp.php:416
+#: awpcp.php:423
 msgid "Attachments"
 msgstr ""
 
-#: awpcp.php:423
+#: awpcp.php:430
 msgid "Authorize.Net"
 msgstr ""
 
-#: awpcp.php:430
+#: awpcp.php:437
 msgid "Category Icons"
 msgstr ""
 
-#: awpcp.php:437
+#: awpcp.php:444
 msgid "Comments & Ratings"
 msgstr ""
 
-#: awpcp.php:444
+#: awpcp.php:451
 msgid "Coupons/Discount"
 msgstr ""
 
-#: awpcp.php:465
+#: awpcp.php:472
 msgid "Fee per Category"
 msgstr ""
 
-#: awpcp.php:472
+#: awpcp.php:479
 msgid "Google Checkout"
 msgstr ""
 
-#: awpcp.php:479
+#: awpcp.php:486
 msgid "PayPal Pro"
 msgstr ""
 
-#: awpcp.php:486
+#: awpcp.php:493
 msgid "Regions Control"
 msgstr ""
 
-#: awpcp.php:493
+#: awpcp.php:500
 msgid "RSS"
 msgstr ""
 
-#: awpcp.php:500
+#: awpcp.php:507
 msgid "Subscriptions"
 msgstr ""
 
-#: awpcp.php:507
+#: awpcp.php:514
 msgid "XML Sitemap"
 msgstr ""
 
-#: awpcp.php:554
+#: awpcp.php:561
 msgid ""
 "The %1$s module you have installed is outdated and not compatible with this "
 "version of AWPCP. Please get %1$s %2$s or newer."
 msgstr ""
 
-#: awpcp.php:681
+#: awpcp.php:688
 msgid "This field is required."
 msgstr ""
 
-#: awpcp.php:682 frontend/page-edit-ad.php:111 frontend/page-edit-ad.php:378
+#: awpcp.php:689 frontend/page-edit-ad.php:111 frontend/page-edit-ad.php:378
 msgid "Please enter a valid email address."
 msgstr ""
 
-#: awpcp.php:683
+#: awpcp.php:690
 msgid "Please enter a valid URL."
 msgstr ""
 
-#: awpcp.php:684
+#: awpcp.php:691
 msgid "Please enter a valid number."
 msgstr ""
 
-#: awpcp.php:685
+#: awpcp.php:692
 msgid "Please enter a valid amount."
 msgstr ""
 
@@ -2172,7 +2160,7 @@ msgstr ""
 msgid "Category: "
 msgstr ""
 
-#: frontend/ad-functions.php:557 frontend/shortcode.php:364
+#: frontend/ad-functions.php:557
 msgid "Powered by "
 msgstr ""
 
@@ -2641,23 +2629,24 @@ msgstr ""
 
 #: frontend/page-reply-to-ad.php:111
 msgid ""
-"Your message flagged as spam.  Please contact the administrator of this site."
+"Your message was flagged as spam. Please contact the administrator of this "
+"site."
 msgstr ""
 
-#: frontend/page-reply-to-ad.php:185
+#: frontend/page-reply-to-ad.php:184
 msgid "Notification about a response regarding Ad: %s"
 msgstr ""
 
-#: frontend/page-reply-to-ad.php:199
+#: frontend/page-reply-to-ad.php:198
 msgctxt "reply email"
 msgid "regarding"
 msgstr ""
 
-#: frontend/page-reply-to-ad.php:212
+#: frontend/page-reply-to-ad.php:211
 msgid "Your message has been sent."
 msgstr ""
 
-#: frontend/page-reply-to-ad.php:215
+#: frontend/page-reply-to-ad.php:214
 msgid ""
 "There was a problem encountered during the attempt to send your message. "
 "Please try again and if the problem persists, please contact the system "
@@ -3383,7 +3372,7 @@ msgid ""
 "payment."
 msgstr ""
 
-#: frontend/templates/payments-billing-form.tpl.php:6 functions.php:653
+#: frontend/templates/payments-billing-form.tpl.php:6 functions.php:651
 msgid "Country"
 msgstr ""
 
@@ -3655,7 +3644,7 @@ msgid "Search by Country"
 msgstr ""
 
 #: frontend/widget-search.php:116 frontend/widget-search.php:131
-#: functions.php:771
+#: functions.php:769
 msgid "Select Option"
 msgstr ""
 
@@ -3671,49 +3660,49 @@ msgstr ""
 msgid "&hellip;"
 msgstr ""
 
-#: functions.php:595
+#: functions.php:593
 msgid "None"
 msgstr ""
 
-#: functions.php:606
+#: functions.php:604
 msgctxt "comma separated list of things"
 msgid "%s and %d more."
 msgstr ""
 
-#: functions.php:654
+#: functions.php:652
 msgid "separate countries by commas"
 msgstr ""
 
-#: functions.php:663
+#: functions.php:661
 msgid "State/Province"
 msgstr ""
 
-#: functions.php:664
+#: functions.php:662
 msgid "separate states by commas"
 msgstr ""
 
-#: functions.php:674
+#: functions.php:672
 msgid "separate cities by commas"
 msgstr ""
 
-#: functions.php:683
+#: functions.php:681
 msgid "County/Village/Other"
 msgstr ""
 
-#: functions.php:684
+#: functions.php:682
 msgid "separate counties by commas"
 msgstr ""
 
-#: functions.php:1046
+#: functions.php:1044
 msgid "-- Choose a Country --"
 msgstr ""
 
-#: functions.php:1687
+#: functions.php:1685
 msgctxt "default blog title"
 msgid "Classifieds Website"
 msgstr ""
 
-#: functions.php:2009
+#: functions.php:2007
 msgctxt "AWPCP"
 msgid ""
 "The images or files with pale red background have been rejected by an "
@@ -3722,102 +3711,90 @@ msgid ""
 "cannot be shown in the frontend."
 msgstr ""
 
-#: functions.php:2026
+#: functions.php:2024
 msgid ""
 "This version of AWPCP %1$s module is not compatible with AWPCP version %2$s. "
 "Please get AWPCP %1$s %3$s or newer!"
 msgstr ""
 
-#: functions.php:2028
+#: functions.php:2026
 msgid "Error"
 msgstr ""
 
-#: functions.php:2047
+#: functions.php:2045
 msgid "No errors."
 msgstr ""
 
-#: functions.php:2048
+#: functions.php:2046
 msgid "The file is larger than upload_max_filesize."
 msgstr ""
 
-#: functions.php:2049
+#: functions.php:2047
 msgid "The file is larger than form MAX_FILE_SIZE."
 msgstr ""
 
-#: functions.php:2050
+#: functions.php:2048
 msgid "The file was only partially uploaded."
 msgstr ""
 
-#: functions.php:2051
+#: functions.php:2049
 msgid "No file was uploaded."
 msgstr ""
 
-#: functions.php:2052
+#: functions.php:2050
 msgid "Missing temporary directory."
 msgstr ""
 
-#: functions.php:2053
+#: functions.php:2051
 msgid "Can't write file to disk."
 msgstr ""
 
-#: functions.php:2054
+#: functions.php:2052
 msgid "The file upload was stopped by extension."
 msgstr ""
 
-#: functions.php:2204
+#: functions.php:2202
 msgid "Your Ad \"%s\" has been approved"
 msgstr ""
 
-#: functions.php:2220
+#: functions.php:2218
 msgid "Your Ad \"%s\" has been successfully updated"
 msgstr ""
 
-#: functions.php:2241
+#: functions.php:2239
 msgid "Images on Ad \"%s\" are awaiting approval"
 msgstr ""
 
-#: functions.php:2243
+#: functions.php:2241
 msgid ""
 "Images on Ad \"%s\" are awaiting approval. You can approve the images going "
 "to the Manage Images sections for that Ad and clicking the \"Enable\" button "
 "below each image. Click here to continue: %s."
 msgstr ""
 
-#: functions.php:2246
+#: functions.php:2244
 msgid "The Ad \"%s\" is awaiting approval"
 msgstr ""
 
-#: functions.php:2248
+#: functions.php:2246
 msgid ""
 "The Ad \"%s\" is awaiting approval. You can approve the Ad going to the "
 "Manage Listings section and clicking the \"Enable\" action shown on top. "
 "Click here to continue: %s."
 msgstr ""
 
-#: functions.php:2255
+#: functions.php:2253
 msgid ""
 "Additionally, You can approve the images going to the Manage Images sections "
 "for that Ad and clicking the \"Enable\" button below each image. Click here "
 "to continue: %s."
 msgstr ""
 
-#: functions_awpcp.php:145 functions_awpcp.php:206
-msgid ""
-"Please disable spam control on your AWPCP settings because you do not have "
-"Akismet properly configured (missing API key)"
-msgstr ""
-
-#: functions_awpcp.php:151 functions_awpcp.php:212
-msgid ""
-"Please disable spam control on your AWPCP settings because you do not have "
-"Akismet installed"
-msgstr ""
-
-#: functions_awpcp.php:589
+#: functions_awpcp.php:405
 msgid "Top Level Category"
 msgstr ""
 
-#: functions_awpcp.php:1107
+#: functions_awpcp.php:923
 msgid "Email sent %s."
 msgstr ""
 
@@ -6449,18 +6426,18 @@ msgid ""
 "<credits-section-link>add credit plans or disable the Credit System</a>."
 msgstr ""
 
-#: includes/views/admin/class-fee-payment-terms-notices.php:28
+#: includes/views/admin/class-fee-payment-terms-notices.php:29
 msgid ""
 "You have payments enabled, but there are no payment terms defined. Users "
 "won't be able to post Ads. Please <fee-section-link>add payment terms</a> or "
 "<payments-settings-link>configure the website as a free board</a>."
 msgstr ""
 
-#: includes/views/class-base-page.php:81
+#: includes/views/class-base-page.php:79
 msgid "Unkown step \"%s\". Please contact the administrator about this error."
 msgstr ""
 
-#: includes/views/class-base-page.php:134
+#: includes/views/class-base-page.php:132
 msgid ""
 "Your request cannot be processed at this time. Please try again or contact "
 "the administrator about the incident."
