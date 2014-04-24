@@ -152,7 +152,9 @@ require_once( AWPCP_DIR . "/includes/settings/class-credit-plans-settings.php" )
 
 require_once( AWPCP_DIR . "/includes/class-awpcp-listings-api.php" );
 require_once( AWPCP_DIR . "/includes/class-listing-payment-transaction-handler.php" );
+require_once( AWPCP_DIR . "/includes/class-listings-collection.php" );
 require_once( AWPCP_DIR . "/includes/class-media-api.php" );
+require_once( AWPCP_DIR . "/includes/class-secure-url-redirection-handler.php" );
 require_once(AWPCP_DIR . "/includes/payments-api.php");
 require_once(AWPCP_DIR . "/includes/regions-api.php");
 require_once(AWPCP_DIR . "/includes/settings-api.php");
@@ -169,8 +171,6 @@ require_once(AWPCP_DIR . "/includes/payment-gateway-paypal-standard.php");
 require_once(AWPCP_DIR . "/includes/payment-gateway-2checkout.php");
 
 require_once(AWPCP_DIR . "/includes/payment-terms-table.php");
-
-require_once( AWPCP_DIR . "/includes/class-secure-url-redirection-handler.php" );
 
 // installation functions
 require_once(AWPCP_DIR . "/install.php");
