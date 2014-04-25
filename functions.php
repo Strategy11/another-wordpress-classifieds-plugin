@@ -2346,7 +2346,7 @@ function awpcp_utf8_strlen( $string ) {
 	if ( function_exists( 'mb_strlen' ) ) {
 		return mb_strlen( $string, 'UTF-8' );
 	} else {
-		return preg_match_all( '(.)su', $string );
+		return preg_match_all( '(.)su', $string, $matches );
 	}
 }
 
