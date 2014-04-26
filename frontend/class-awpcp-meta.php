@@ -277,26 +277,26 @@ class AWPCP_Meta {
         $meta_tags = $this->get_meta_tags();
 
         // TODO: handle integration with other plugins
-        echo '<meta name="title" content="' . $meta_tags['http://ogp.me/ns#title'] . '"' . $CLOSE . PHP_EOL;
-        echo '<meta name="description" content="' . $meta_tags['http://ogp.me/ns#description'] . '"' . $CLOSE . PHP_EOL;
+        echo $this->render_tag( 'meta', array( 'name' => 'title', 'content' => $meta_tags['http://ogp.me/ns#title'] ) );
+        echo $this->render_tag( 'meta', array( 'name' => 'description', 'content' => $meta_tags['http://ogp.me/ns#description'] ) );
 
-        echo '<meta property="og:type" content="' . $meta_tags['http://ogp.me/ns#type'] . '"' . $CLOSE . PHP_EOL;
-        echo '<meta property="og:url" content="' . $meta_tags['http://ogp.me/ns#url'] . '"' . $CLOSE . PHP_EOL;
-        echo '<meta property="og:title" content="' . $meta_tags['http://ogp.me/ns#title'] . '"' . $CLOSE . PHP_EOL;
-        echo '<meta property="og:description" content="' . $meta_tags['http://ogp.me/ns#description'] . '"' . $CLOSE . PHP_EOL;
+        echo $this->render_tag( 'meta', array( 'property' => 'og:type', 'content' => $meta_tags['http://ogp.me/ns#type'] ) );
+        echo $this->render_tag( 'meta', array( 'property' => 'og:url', 'content' => $meta_tags['http://ogp.me/ns#url'] ) );
+        echo $this->render_tag( 'meta', array( 'property' => 'og:title', 'content' => $meta_tags['http://ogp.me/ns#title'] ) );
+        echo $this->render_tag( 'meta', array( 'property' => 'og:description', 'content' => $meta_tags['http://ogp.me/ns#description'] ) );
 
-        echo '<meta property="article:published_time" content="' . $meta_tags['http://ogp.me/ns/article#published_time'] . '"' . $CLOSE . PHP_EOL;
-        echo '<meta property="article:modified_time" content="' . $meta_tags['http://ogp.me/ns/article#modified_time'] . '"' . $CLOSE . PHP_EOL;
+        echo $this->render_tag( 'meta', array( 'property' => 'article:published_time', 'content' => $meta_tags['http://ogp.me/ns/article#published_time'] ) );
+        echo $this->render_tag( 'meta', array( 'property' => 'article:modified_time', 'content' => $meta_tags['http://ogp.me/ns/article#modified_time'] ) );
 
         foreach ( $meta_tags as $property => $content ) {
             if ( $property === 'http://ogp.me/ns#image' ) {
-                echo '<meta property="og:image" content="' . $content . '"' . $CLOSE . PHP_EOL;
+                echo $this->render_tag( 'meta', array( 'property' => 'og:image', 'content' => $content ) );
             }
         }
 
         if ( isset( $meta_tags['http://ogp.me/ns#image'] ) ) {
             // this helps Facebook determine which image to put next to the link
-            echo '<link rel="image_src" href="' . $meta_tags['http://ogp.me/ns#image'] . '"' . $CLOSE . PHP_EOL;
+            echo $this->render_tag( 'link', array( 'rel' => 'image_src', 'href' => $meta_tags['http://ogp.me/ns#image'] ) );
         }
     }
 
@@ -326,6 +326,17 @@ class AWPCP_Meta {
         }
 
         return $this->meta_tags;
+    }
+
+    public function render_tag( $tag_name, $attributes ) {
+        $pieces = array();
+
+        foreach ( $attributes as $attribute_name => $attribute_value ) {
+            $pieces[] = sprintf( '%s="%s"', $attribute_name, $attribute_value );
+        }
+
+        // http://wiki.whatwg.org/wiki/FAQ#Should_I_close_empty_elements_with_.2F.3E_or_.3E.3F
+        return '<' . $tag_name . ' ' . implode( ' ', $pieces ) . ( current_theme_supports('html5') ? '>' : ' />') . PHP_EOL;
     }
 
     /**
