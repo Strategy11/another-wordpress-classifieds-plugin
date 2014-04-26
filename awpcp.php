@@ -285,8 +285,8 @@ class AWPCP {
 
 		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 			// load resources required to handle Ajax requests only.
-		} if ( is_admin() ) {
-			// load resources required in admin screens only.
+		} if ( is_admin() && awpcp_current_user_is_admin() ) {
+			// load resources required in admin screens only, visible to admin users only.
 			add_action( 'admin_notices', array( awpcp_fee_payment_terms_notices(), 'dispatch' ) );
 			add_action( 'admin_notices', array( awpcp_credit_plans_notices(), 'dispatch' ) );
 		} else {
