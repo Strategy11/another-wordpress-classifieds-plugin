@@ -38,7 +38,10 @@
         <?php if ($ui['user-dropdown']): ?>
 
         <h3><?php _e('Ad Owner', 'AWPCP') ?></h3>
-        <?php echo $page->users_dropdown($form['user_id'], $errors) ?>
+        <p class="awpcp-form-spacer">
+            <?php echo awpcp_users_field()->render( awpcp_array_data( 'user_id', '', $form ) ); ?>
+            <?php echo awpcp_form_error( 'user', $errors ); ?>
+        </p>
 
         <?php endif; ?>
 

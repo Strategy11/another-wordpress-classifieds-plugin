@@ -415,14 +415,21 @@ class AWPCP_Settings_API {
 
 		$group = $this->add_group( __( 'Form', 'AWPCP' ), 'form-field-settings', 70);
 
+		// Section: User Field
+
+		// TODO: Is this the right place to put this setting?
+		$key = $this->add_section( $group, __( 'User Field', 'AWPCP' ), 'user', 5, array( $this, 'section' ) );
+		$options = array( 'dropdown' => __( 'Dropdown', 'AWPCP' ), 'autocomplete' => __( 'Autocomplete', 'AWPCP' ) );
+		$this->add_setting( $key, 'user-field-widget', __( 'HTML Widget for User field', 'AWPCP' ), 'radio', 'dropdown', __( 'The user field can be represented with an HTML dropdown or a text field with autocomplete capabilities. Using the dropdown is faster if you have a small number of users. If your website has a lot of registered users, however, the dropdown may take too long to render and using the autocomplete version may be a better idea.', 'AWPCP' ), array( 'options' => $options ) );
+
 		// Section: Posted By Field
 
 		$key = $this->add_section($group, __('Posted By Field', 'AWPCP'), 'posted-by', 10, array($this, 'section'));
-		$this->add_setting($key, 'displaypostedbyfield', __( 'Show Posted By field', 'AWPCP' ), 'checkbox', 1, __( 'Show Posted By field?', 'AWPCP' ) );
+		$this->add_setting($key, 'displaypostedbyfield', __( 'Show Posted By field', 'AWPCP' ), 'checkbox', 1, __( 'Show Posted By field in search form?', 'AWPCP' ) );
 
 		// Section: Phone Field
 
-		$key = $this->add_section($group, __('Phone Field', 'AWPCP'), 'phone', 10, array($this, 'section'));
+		$key = $this->add_section($group, __('Phone Field', 'AWPCP'), 'phone', 15, array($this, 'section'));
 
 		$this->add_setting( $key, 'displayphonefield', __( 'Show Phone field', 'AWPCP' ), 'checkbox', 1, __( 'Show phone field?', 'AWPCP' ) );
 		$this->add_setting( $key, 'displayphonefieldreqop', __( 'Require Phone', 'AWPCP' ), 'checkbox', 0, __( 'Require phone?', 'AWPCP' ) );
@@ -430,39 +437,39 @@ class AWPCP_Settings_API {
 
 		// Section: Website Field
 
-		$key = $this->add_section($group, __('Website Field', 'AWPCP'), 'website', 10, array($this, 'section'));
+		$key = $this->add_section($group, __('Website Field', 'AWPCP'), 'website', 15, array($this, 'section'));
 		$this->add_setting( $key, 'displaywebsitefield', __( 'Show Website field', 'AWPCP' ), 'checkbox', 1, __( 'Show website field?', 'AWPCP' ) );
 		$this->add_setting( $key, 'displaywebsitefieldreqop', __( 'Require Website', 'AWPCP' ), 'checkbox', 0, __( 'Require website?', 'AWPCP' ) );
 		$this->add_setting( $key, 'displaywebsitefieldreqpriv', __( 'Make Website restricted?', 'AWPCP' ), 'checkbox', 0, __( 'Make Website restricted (only visible to logged in users).', 'AWPCP' ) );
 
 		// Section: Price Field
 
-		$key = $this->add_section($group, __('Price Field', 'AWPCP'), 'price', 10, array($this, 'section'));
+		$key = $this->add_section($group, __('Price Field', 'AWPCP'), 'price', 15, array($this, 'section'));
 		$this->add_setting( $key, 'displaypricefield', __( 'Show Price field', 'AWPCP' ), 'checkbox', 1, __( 'Show price field?', 'AWPCP' ) );
 		$this->add_setting( $key, 'displaypricefieldreqop', __( 'Require Price', 'AWPCP' ), 'checkbox', 0, __( 'Require price?', 'AWPCP' ) );
 		$this->add_setting( $key, 'price-field-is-restricted', __( 'Make Price restricted?', 'AWPCP' ), 'checkbox', 0, __( 'Make Price restricted (only visible to logged in users).', 'AWPCP' ) );
 
 		// Section: Country Field
 
-		$key = $this->add_section($group, __('Country Field', 'AWPCP'), 'country', 10, array($this, 'section'));
+		$key = $this->add_section($group, __('Country Field', 'AWPCP'), 'country', 20, array($this, 'section'));
 		$this->add_setting($key, 'displaycountryfield', __( 'Show Country field', 'AWPCP' ), 'checkbox', 1, __( 'Show country field?', 'AWPCP' ) );
 		$this->add_setting($key, 'displaycountryfieldreqop', __( 'Require Country', 'AWPCP' ), 'checkbox', 0, __( 'Require country?', 'AWPCP' ) );
 
 		// Section: State Field
 
-		$key = $this->add_section($group, __('State Field', 'AWPCP'), 'state', 10, array($this, 'section'));
+		$key = $this->add_section($group, __('State Field', 'AWPCP'), 'state', 25, array($this, 'section'));
 		$this->add_setting( $key, 'displaystatefield', __( 'Show State field', 'AWPCP' ), 'checkbox', 1, __( 'Show State field?', 'AWPCP' ) );
 		$this->add_setting( $key, 'displaystatefieldreqop', __( 'Require State', 'AWPCP' ), 'checkbox', 0, __( 'Require state?', 'AWPCP' ) );
 
 		// Section: County Field
 
-		$key = $this->add_section($group, __('County Field', 'AWPCP'), 'county', 10, array($this, 'section'));
+		$key = $this->add_section($group, __('County Field', 'AWPCP'), 'county', 30, array($this, 'section'));
 		$this->add_setting($key, 'displaycountyvillagefield', __( 'Show County/Village/other', 'AWPCP' ), 'checkbox', 0, __( 'Show County/village/other?', 'AWPCP' ) );
 		$this->add_setting($key, 'displaycountyvillagefieldreqop', __( 'Require County/Village/other', 'AWPCP' ), 'checkbox', 0, __( 'Require county/village/other?', 'AWPCP' ) );
 
 		// Section: City Field
 
-		$key = $this->add_section($group, __('City Field', 'AWPCP'), 'city', 10, array($this, 'section'));
+		$key = $this->add_section($group, __('City Field', 'AWPCP'), 'city', 35, array($this, 'section'));
 		$this->add_setting($key, 'displaycityfield', __( 'Show City field', 'AWPCP' ), 'checkbox', 1, __( 'Show city field?', 'AWPCP' ) );
 		$this->add_setting($key, 'show-city-field-before-county-field', __( 'Show City field before County field', 'AWPCP' ), 'checkbox', 1, __( 'If checked the City field will be shown before the County field. This setting may be overwritten if Region Control module is installed.', 'AWPCP' ) );
 		$this->add_setting($key, 'displaycityfieldreqop', __( 'Require City', 'AWPCP' ), 'checkbox', 0, __( 'Require city?', 'AWPCP' ) );

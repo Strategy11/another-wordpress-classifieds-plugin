@@ -181,41 +181,6 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         return $this->order_step();
     }
 
-    protected function sort_payment_terms($a, $b) {
-        $result = strcasecmp($a->type, $b->type);
-        if ($result == 0) {
-            $result = strcasecmp($a->name, $b->name);
-        }
-        return $result;
-    }
-
-    protected function get_users() {
-        $users = awpcp_get_users();
-        $payments = awpcp_payments_api();
-
-        $payment_terms = array();
-        foreach ($users as $k => $user) {
-            $user_terms = $payments->get_user_payment_terms($user->ID);
-
-            $ids = array();
-            foreach ($user_terms as $type => $terms) {
-                foreach ($terms as $term) {
-                    $id = "{$term->type}-{$term->id}";
-                    if (!isset($payment_terms[$id])) {
-                        $payment_terms[$id] = $term;
-                    }
-                    $ids[] = $id;
-                }
-            }
-
-            $users[$k]->payment_terms = join(',', $ids);
-        }
-
-        usort($payment_terms, array($this, 'sort_payment_terms'));
-
-        return array($users, $payment_terms);
-    }
-
     /**
      * @since 3.0.2
      */
@@ -242,19 +207,34 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         global $current_user;
         get_currentuserinfo();
 
+        // TODO: show information for the selected user, if any.
         if ($selected !== false && empty($selected) && $current_user) {
             $selected = $current_user->ID;
         }
 
-        list($users, $payment_terms) = $this->get_users();
+        if ( ! empty( $selected ) ) {
+            $payment_terms = awpcp_payments_api()->get_user_payment_terms( $selected );
+            $payment_terms_ids = array();
+
+            foreach ( $payment_terms as $type => $terms ) {
+                foreach ( $terms as $term ) {
+                    $payment_terms_ids[] = "{$term->type}-{$term->id}";
+                }
+            }
+
+            $user_info = awpcp_get_user_data( $selected );
+            $user_info->payment_terms = $payment_terms_ids;
+
+            awpcp()->js->set( 'users-autocomplete-default-user', $user_info );
+        }
 
         ob_start();
             include(AWPCP_DIR . '/frontend/templates/page-place-ad-details-step-users-dropdown.tpl.php');
             $html = ob_get_contents();
         ob_end_clean();
 
-        // TODO: set this information as a property in the AWPCP JavaScript object
-        wp_localize_script('awpcp-page-place-ad', 'AWPCPUsers', $users);
+        // // TODO: set this information as a property in the AWPCP JavaScript object
+        // wp_localize_script('awpcp-page-place-ad', 'AWPCPUsers', $users);
 
         return $html;
     }

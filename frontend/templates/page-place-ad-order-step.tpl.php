@@ -27,7 +27,10 @@
 
     <?php if (awpcp_current_user_is_admin()): ?>
     <h3><?php _ex('Please select the owner for this Ad', 'place ad order step', 'AWPCP')?></h3>
-    <?php echo $page->users_dropdown(awpcp_array_data('user', '', $form), $form_errors); ?>
+    <p class="awpcp-form-spacer">
+        <?php echo awpcp_users_field()->render( awpcp_array_data( 'user', '', $form ) ); ?>
+        <?php echo awpcp_form_error( 'user', $form_errors ); ?>
+    </p>
     <?php endif ?>
 
     <?php if ( ! $skip_payment_term_selection ): ?>
