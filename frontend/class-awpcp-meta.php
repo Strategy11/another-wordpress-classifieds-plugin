@@ -65,7 +65,7 @@ class AWPCP_Meta {
         }
 
         if ( apply_filters( 'awpcp-should-generate-single-post-title', true, $this ) ) {
-            add_action( 'single_post_title', array( $this, 'page_title' ), 10, 2 );
+            add_action( 'single_post_title', array( $this, 'page_title' ) );
         }
 
         // SEO Ultimate
@@ -260,7 +260,7 @@ class AWPCP_Meta {
      * TODO: test that titles are not generated twice
      * TODO: test that generated title is set after this function finish
      */
-    public function page_title( $post_title, $post ) {
+    public function page_title( $post_title ) {
         if ( $this->generated_title || ! $this->is_browse_categories_or_single_ad_page() ) {
             return $post_title;
         }
