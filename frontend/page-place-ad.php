@@ -203,42 +203,6 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         return $required;
     }
 
-    protected function users_dropdown($selected=false, $errors) {
-        global $current_user;
-        get_currentuserinfo();
-
-        // TODO: show information for the selected user, if any.
-        if ($selected !== false && empty($selected) && $current_user) {
-            $selected = $current_user->ID;
-        }
-
-        if ( ! empty( $selected ) ) {
-            $payment_terms = awpcp_payments_api()->get_user_payment_terms( $selected );
-            $payment_terms_ids = array();
-
-            foreach ( $payment_terms as $type => $terms ) {
-                foreach ( $terms as $term ) {
-                    $payment_terms_ids[] = "{$term->type}-{$term->id}";
-                }
-            }
-
-            $user_info = awpcp_get_user_data( $selected );
-            $user_info->payment_terms = $payment_terms_ids;
-
-            awpcp()->js->set( 'users-autocomplete-default-user', $user_info );
-        }
-
-        ob_start();
-            include(AWPCP_DIR . '/frontend/templates/page-place-ad-details-step-users-dropdown.tpl.php');
-            $html = ob_get_contents();
-        ob_end_clean();
-
-        // // TODO: set this information as a property in the AWPCP JavaScript object
-        // wp_localize_script('awpcp-page-place-ad', 'AWPCPUsers', $users);
-
-        return $html;
-    }
-
     protected function validate_order($data, &$errors=array()) {
         if ($data['category'] <= 0) {
             $errors['category'] = __('Ad Category field is required', 'AWPCP');
@@ -513,7 +477,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
     protected function get_user_info($user_id=false) {
         $user_id = $user_id === false ? get_current_user_id() : $user_id;
-        $data = awpcp_get_user_data($user_id);
+        $data = awpcp_users_collection()->find_by_id( $user_id );
 
         $translations = array(
             'ad_contact_name' => array('display_name', 'user_login', 'username'),
