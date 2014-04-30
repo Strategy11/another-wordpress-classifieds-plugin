@@ -36,7 +36,7 @@
                 'default' => __( 'Select an User owner for this Ad', 'AWPCP' ),
                 'id' => 'ad-user-id',
                 'name' => 'user',
-                'class' => 'awpcp-users-dropdown awpcp-dropdown',
+                'class' => array( 'awpcp-users-dropdown', 'awpcp-dropdown' ),
             ) );
         ?>
         <?php echo awpcp_form_error( 'user', $form_errors ); ?>
