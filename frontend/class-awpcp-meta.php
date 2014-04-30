@@ -16,7 +16,6 @@ class AWPCP_Meta {
     private $meta_tags;
 
     private $doing_opengraph = false;
-    private $generated_title = false;
 
     public function __construct( /*AWPCP_Request*/ $request = null ) {
         $this->request = $request;
@@ -140,7 +139,9 @@ class AWPCP_Meta {
      * TODO: test that generated title is set after this function finish
      */
     public function title($title, $separator='-', $seplocation='left') {
-        if ( $this->generated_title || ! $this->is_browse_categories_or_single_ad_page() ) {
+        $original_title = $title;
+
+        if ( ! $this->is_browse_categories_or_single_ad_page() ) {
             return $title;
         }
 
@@ -158,6 +159,7 @@ class AWPCP_Meta {
         } else {
             $appendix = '';
         }
+
         // $title = trim($title, " $separator" . trim(wptexturize(" $separator ")));
 
         // if $seplocation is empty we are probably being called from one of
@@ -172,14 +174,29 @@ class AWPCP_Meta {
         $sep = $this->get_separator( $separator );
         $page_title = $this->get_page_title( $sep, $seplocation );
 
+        if ( $this->title_already_includes_page_title( $original_title, $page_title ) ) {
+            return $original_title;
+        }
+
         $title = trim($title, " $sep");
+
         if ($seplocation == 'right') {
             $title = sprintf( "%s %s %s%s%s", $page_title, $sep, $title, $name, $appendix );
         } else {
             $title = sprintf( "%s%s%s %s %s", $appendix, $name, $title, $sep, $page_title );
         }
 
-        return $this->generated_title = $title;
+        return $title;
+    }
+
+    private function title_already_includes_page_title( $original_title, $page_title ) {
+        if ( strpos( $original_title, $page_title ) !== false ) {
+            return true;
+        } else if ( strpos( $original_title, wptexturize( $page_title ) ) !== false ) {
+            return true;
+        }
+
+        return false;
     }
 
     private function is_browse_categories_or_single_ad_page() {
@@ -261,11 +278,17 @@ class AWPCP_Meta {
      * TODO: test that generated title is set after this function finish
      */
     public function page_title( $post_title ) {
-        if ( $this->generated_title || ! $this->is_browse_categories_or_single_ad_page() ) {
+        if ( ! $this->is_browse_categories_or_single_ad_page() ) {
             return $post_title;
         }
 
-        return $this->generated_title = $this->get_page_title();
+        $page_title = $this->get_page_title();
+
+        if ( $this->title_already_includes_page_title( $post_title, $page_title ) ) {
+            return $post_title;
+        }
+
+        return $page_title;
     }
 
     // The function to add the page meta and Facebook meta to the header of the index page
