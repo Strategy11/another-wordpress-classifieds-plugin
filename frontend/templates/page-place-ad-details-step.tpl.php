@@ -38,7 +38,20 @@
         <?php if ($ui['user-dropdown']): ?>
 
         <h3><?php _e('Ad Owner', 'AWPCP') ?></h3>
-        <?php echo $page->users_dropdown($form['user_id'], $errors) ?>
+        <p class="awpcp-form-spacer">
+            <?php
+                echo awpcp_users_field()->render( array(
+                    'required' => true,
+                    'selected' => awpcp_array_data( 'user_id', '', $form ),
+                    'label' => __( 'User', 'AWPCP' ),
+                    'default' => __( 'Select an User owner for this Ad', 'AWPCP' ),
+                    'id' => 'ad-user-id',
+                    'name' => 'user',
+                    'class' => array( 'awpcp-users-dropdown', 'awpcp-dropdown' ),
+                ) );
+            ?>
+            <?php echo awpcp_form_error( 'user', $errors ); ?>
+        </p>
 
         <?php endif; ?>
 

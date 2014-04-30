@@ -181,41 +181,6 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         return $this->order_step();
     }
 
-    protected function sort_payment_terms($a, $b) {
-        $result = strcasecmp($a->type, $b->type);
-        if ($result == 0) {
-            $result = strcasecmp($a->name, $b->name);
-        }
-        return $result;
-    }
-
-    protected function get_users() {
-        $users = awpcp_get_users();
-        $payments = awpcp_payments_api();
-
-        $payment_terms = array();
-        foreach ($users as $k => $user) {
-            $user_terms = $payments->get_user_payment_terms($user->ID);
-
-            $ids = array();
-            foreach ($user_terms as $type => $terms) {
-                foreach ($terms as $term) {
-                    $id = "{$term->type}-{$term->id}";
-                    if (!isset($payment_terms[$id])) {
-                        $payment_terms[$id] = $term;
-                    }
-                    $ids[] = $id;
-                }
-            }
-
-            $users[$k]->payment_terms = join(',', $ids);
-        }
-
-        usort($payment_terms, array($this, 'sort_payment_terms'));
-
-        return array($users, $payment_terms);
-    }
-
     /**
      * @since 3.0.2
      */
@@ -236,27 +201,6 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $required['terms-of-service'] = true;
 
         return $required;
-    }
-
-    protected function users_dropdown($selected=false, $errors) {
-        global $current_user;
-        get_currentuserinfo();
-
-        if ($selected !== false && empty($selected) && $current_user) {
-            $selected = $current_user->ID;
-        }
-
-        list($users, $payment_terms) = $this->get_users();
-
-        ob_start();
-            include(AWPCP_DIR . '/frontend/templates/page-place-ad-details-step-users-dropdown.tpl.php');
-            $html = ob_get_contents();
-        ob_end_clean();
-
-        // TODO: set this information as a property in the AWPCP JavaScript object
-        wp_localize_script('awpcp-page-place-ad', 'AWPCPUsers', $users);
-
-        return $html;
     }
 
     protected function validate_order($data, &$errors=array()) {
@@ -533,7 +477,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
     protected function get_user_info($user_id=false) {
         $user_id = $user_id === false ? get_current_user_id() : $user_id;
-        $data = awpcp_get_user_data($user_id);
+        $data = awpcp_users_collection()->find_by_id( $user_id );
 
         $translations = array(
             'ad_contact_name' => array('display_name', 'user_login', 'username'),

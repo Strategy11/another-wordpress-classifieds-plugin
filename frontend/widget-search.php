@@ -22,30 +22,6 @@ class AWPCP_Search_Widget extends WP_Widget {
 		);
 	}
 
-	// /**
-	//  * @since 3.0
-	//  */
-	// protected function get_ad_categories() {
-	// 	global $wpdb;
-
-	// 	$conditions[] = 'disabled = 0';
-	// 	$conditions[] = '(flagged IS NULL OR flagged = 0)';
-
-	// 	$query = 'SELECT DISTINCT ad_category_id AS id, category_name AS name FROM ' . AWPCP_TABLE_ADS . ' ';
-	// 	$query.= 'LEFT JOIN ' . AWPCP_TABLE_CATEGORIES . ' ON (category_id = ad_category_id)';
-	// 	$query.= 'WHERE ' . join(' AND ', $conditions);
-	// 	$query.= 'ORDER BY category_name';
-
-	// 	$results = $wpdb->get_results($query);
-
-	// 	$categories = array();
-	// 	foreach ($results as $result) {
-	// 		$categories[$result->id] = $result->name;
-	// 	}
-
-	// 	return $categories;
-	// }
-
     /**
      * @since 3.0.2
      */
