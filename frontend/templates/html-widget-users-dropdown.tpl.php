@@ -1,8 +1,12 @@
-<label for="ad-user-id"><?php _e( 'User', 'AWPCP' ); ?><span class="required">*</span></label>
-<select id="ad-user-id" name="user" class="awpcp-users-dropdown awpcp-dropdown required" dropdown-field>
-    <option value=""><?php _e( 'Select an User owner for this Ad', 'AWPCP' ); ?></option>
-    <?php foreach ( $users as $k => $user ): ?>
-    <option value="<?php echo esc_attr( $user->ID ); ?>" data-user-information="<?php echo esc_attr( json_encode( $user ) ); ?>" <?php echo $selected_user_id == $user->ID ? 'selected="selected"' : ''; ?>>
+<?php if ( $args['label'] ): ?>
+<label for="<?php echo $args['id']; ?>"><?php echo $args['label']; ?><?php if ( $args['required'] ): ?><span class="required">*</span><?php endif; ?></label>
+<?php endif; ?>
+<select id="<?php echo $args['id']; ?>" name="<?php echo $args['name']; ?>" class="<?php echo implode( ' ', $args['class'] ); ?>" dropdown-field>
+    <?php if ( $args['default'] ): ?>
+    <option value=""><?php echo $args['default'] ?></option>
+    <?php endif; ?>
+    <?php foreach ( $args['users'] as $k => $user ): ?>
+    <option value="<?php echo esc_attr( $user->ID ); ?>"<?php if ( $args['include-full-user-information'] ): ?> data-user-information="<?php echo esc_attr( json_encode( $user ) ); ?>"<?php endif; ?> <?php echo $args['selected'] == $user->ID ? 'selected="selected"' : ''; ?>>
         <?php echo $user->display_name; ?>
     </option>
     <?php endforeach; ?>

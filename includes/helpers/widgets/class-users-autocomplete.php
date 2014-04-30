@@ -4,35 +4,31 @@ function awpcp_users_autocomplete() {
     return new AWPCP_UsersAutocomplete( awpcp_users_collection(), awpcp_request(), awpcp()->js );
 }
 
-class AWPCP_UsersAutocomplete {
+class AWPCP_UsersAutocomplete extends AWPCP_UserField {
 
     private $users;
-    private $request;
     private $javascript;
 
     public function __construct( $users, $request, $javascript  ) {
+        parent::__construct( $request );
         $this->users = $users;
-        $this->request = $request;
         $this->javascript = $javascript;
     }
 
-    public function render( $selected_user_id = null ) {
-        $current_user = $this->request->get_current_user();
+    public function render( $args = array() ) {
+        $args = wp_parse_args( $args, array(
+            'selected' => null,
+        ) );
 
-        if ( $selected_user_id !== null && empty( $selected_user_id ) && $current_user ) {
-            $selected_user_id = $current_user->ID;
-        }
+        $args['selected'] = $this->find_selected_user( $args );
 
-        if ( ! empty( $selected_user_id ) ) {
-            $user_info = $this->users->find_by_id( $selected_user_id );
+        if ( ! empty( $args['selected'] ) ) {
+            $user_info = $this->users->find_by_id( $args['selected'] );
             $this->javascript->set( 'users-autocomplete-default-user', $user_info );
         }
 
-        ob_start();
-            include(AWPCP_DIR . '/frontend/templates/html-widget-users-autocomplete.tpl.php');
-            $html = ob_get_contents();
-        ob_end_clean();
+        $template = AWPCP_DIR . '/frontend/templates/html-widget-users-autocomplete.tpl.php';
 
-        return $html;
+        return $this->render_template( $template, $args );
     }
 }

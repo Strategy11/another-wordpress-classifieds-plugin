@@ -35,24 +35,6 @@
 				</ul>
 			<?php endif ?>
 
-			<script type="text/javascript">
-				(function($){
-					$(function() {
-						$('#awpcp-importer-start-date, #awpcp-importer-end-date').datepicker({
-							changeMonth: true,
-							changeYear: true
-						});
-						$('#awpcp-importer-auto-assign-user').change(function(event) {
-							if (!$(this).attr('checked') || !$(this).prop('checked')) {
-								$('#awpcp-importer-user').attr('disabled', 'disabled');
-							} else {
-								$('#awpcp-importer-user').removeAttr('disabled');
-							}
-						}).change();
-					});
-				})(jQuery);
-			</script>
-
 			<form enctype="multipart/form-data" method="post">
 				<table class="form-table">
 					<tbody>
@@ -169,14 +151,16 @@
 								<label for="awpcp-importer-user"><?php _e('Default user', 'AWPCP') ?></label>
 							</th>
 							<td>
-								<select id="awpcp-importer-user" name="user">
-									<option value=""><?php _e('use spreadsheet information', 'AWPCP') ?></option>
-								<?php foreach (awpcp_get_users() as $user): ?>
-									<option value="<?php echo esc_attr($user->ID) ?>" <?php echo $assigned_user == $user->ID ? 'selected="selected"' : ''; ?>>
-										<?php echo $user->user_login ?>
-									</option>
-								<?php endforeach ?>
-								</select><br/>
+                                <?php
+                                    echo awpcp_users_field()->render( array(
+                                        'selected' => empty( $assigned_user ) ? null : $assigned_user,
+                                        'label' => false,
+                                        'default' => __( 'use spreadsheet information', 'AWPCP' ),
+                                        'id' => 'awpcp-importer-user',
+                                        'name' => 'user',
+                                        'include-full-user-information' => false,
+                                    ) );
+                                ?><br/>
 								<span class="description"><?php _ex( "Any value other than 'use spreadsheet information' means the Ads will be associated to the selected user if: the username column is not present in the CSV file, there is no user with that username and we couldn't find a user with the contact_email address specified in the CSV file.", 'csv-importer', 'AWPCP' ); ?></span>
 								<br/><br/><?php echo awpcp_form_error('user', $form_errors) ?>
 							</td>

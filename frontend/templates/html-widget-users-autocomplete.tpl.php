@@ -1,3 +1,5 @@
-<label for="ad-user-id"><?php _e('User', 'AWPCP') ?><span class="required">*</span></label>
-<input type="hidden" name="user" autocomplete-selected-value>
-<input id="ad-user-id" class="required" type="text" autocomplete-field>
+<?php if ( $args['label'] ): ?>
+<label for="<?php echo $args['id']; ?>"><?php echo $args['label']; ?><?php if ( $args['required'] ): ?><span class="required">*</span><?php endif; ?></label>
+<?php endif; ?>
+<input type="hidden" name="<?php echo $args['name']; ?>" autocomplete-selected-value>
+<input id="<?php echo $args['id']; ?>" class="<?php echo implode( ' ', $args['class'] ); ?>" type="text" autocomplete-field>
