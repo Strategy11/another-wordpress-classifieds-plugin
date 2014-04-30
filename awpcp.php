@@ -515,7 +515,7 @@ class AWPCP {
 					'url' => 'http://www.awpcp.com/premium-modules/subscriptions-module/?ref=panel',
 					'installed' => defined( 'AWPCP_SUBSCRIPTIONS_MODULE' ),
 					'version' => 'AWPCP_SUBSCRIPTIONS_MODULE_DB_VERSION',
-					'required' => '3.2.5',
+					'required' => '3.2.6',
 				),
 				'xml-sitemap' => array(
 					'name' => __(  'XML Sitemap', 'AWPCP'  ),
