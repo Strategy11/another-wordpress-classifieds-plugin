@@ -11,11 +11,11 @@ class AWPCP_FacebookCacheHelper {
     }
 
     private function schedule_clear_cache_action( $ad ) {
-        wp_schedule_single_event( time() + 60, 'awpcp-clear-ad-facebook-cache', array( $ad->ad_id ) );
+        wp_schedule_single_event( time() + 10, 'awpcp-clear-ad-facebook-cache', array( $ad->ad_id ) );
     }
 
     public function on_edit_ad( $ad ) {
-        $this->clear_ad_cache( $ad );
+        wp_schedule_single_event( time() + 10, 'awpcp-clear-ad-facebook-cache', array( $ad->ad_id ) );
     }
 
     public function on_approve_ad( $ad ) {
@@ -32,7 +32,7 @@ class AWPCP_FacebookCacheHelper {
         }
 
         $args = array(
-            'timeout' => 60,
+            'timeout' => 30,
             'body' => array(
                 'id' => url_showad( $ad->ad_id ),
                 'scrape' => true
@@ -41,11 +41,22 @@ class AWPCP_FacebookCacheHelper {
 
         $response = wp_remote_post( 'https://graph.facebook.com/', $args  );
 
-
-        if ( isset( $response['response']['code'] ) && $response['response']['code'] == 200 ) {
+        if ( $this->is_successful_response( $response ) ) {
             return;
+        } else {
+            $this->schedule_clear_cache_action( $ad );
+        }
+    }
+
+    private function is_successful_response( $response ) {
+        if ( is_wp_error( $response ) || ! is_array( $response ) ) {
+            return false;
+        } else if ( ! isset( $response['response']['code'] ) ) {
+            return false;
+        } else if ( $response['response']['code'] != 200 ) {
+            return false;
         }
 
-        $this->schedule_clear_cache_action( $ad );
+        return true;
     }
 }
