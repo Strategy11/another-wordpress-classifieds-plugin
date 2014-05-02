@@ -134,7 +134,7 @@ class AWPCP_Facebook_Page_Settings {
 				break;
 		}
 	}
-	
+
 	private function display_settings( $errors=array() ) {
 		$fb = AWPCP_Facebook::instance();
 		$config = $fb->get_config();
@@ -148,7 +148,7 @@ class AWPCP_Facebook_Page_Settings {
 		if ( $current_step >= 2 ) {
 			// Login URL.
 			$redirect_uri = add_query_arg( 'obtain_user_token', 1, admin_url( '/admin.php?page=awpcp-admin-settings&g=facebook-settings' ) );
-			$login_url = $fb->get_login_url( $redirect_uri, 'publish_stream,manage_pages' );
+			$login_url = $fb->get_login_url( $redirect_uri, 'publish_actions,manage_pages' );
 		}
 
 		if ( isset( $_GET['code_error'] ) && isset( $_GET['error_message'] )  ) {
