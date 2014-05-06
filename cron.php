@@ -25,7 +25,7 @@ function awpcp_schedule_activation() {
     }
 
     if (!wp_next_scheduled('awpcp_ad_renewal_email_hook')) {
-        wp_schedule_event( time(), 'daily', 'awpcp_ad_renewal_email_hook' );
+        wp_schedule_event( time(), 'hourly', 'awpcp_ad_renewal_email_hook' );
     }
 
     if (!wp_next_scheduled('awpcp-clean-up-payment-transactions')) {
@@ -179,13 +179,6 @@ function awpcp_ad_renewal_email() {
 	}
 }
 
-function awpcp_calculate_end_of_renew_email_date_range_from_now() {
-    $threshold = intval( get_awpcp_option( 'ad-renew-email-threshold' ) );
-    $target_date = strtotime( "+ $threshold days", current_time( 'timestamp' ) );
-
-    return awpcp_extend_date_to_end_of_the_day( $target_date );
-}
-
 function awpcp_get_listings_about_to_expire() {
     global $wpdb;
 
@@ -196,6 +189,13 @@ function awpcp_get_listings_about_to_expire() {
     $conditions[] = 'renew_email_sent != 1';
 
     return AWPCP_Ad::find( implode( ' AND ', $conditions ) );
+}
+
+function awpcp_calculate_end_of_renew_email_date_range_from_now() {
+    $threshold = intval( get_awpcp_option( 'ad-renew-email-threshold' ) );
+    $target_date = strtotime( "+ $threshold days", current_time( 'timestamp' ) );
+
+    return $target_date;
 }
 
 
