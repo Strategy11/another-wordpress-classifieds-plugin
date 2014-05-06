@@ -109,7 +109,7 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
             $actions['send-key'] = array(__('Send Access Key', 'AWPCP'), $this->url(array('action' => 'send-key', 'id' => $ad->ad_id)));
         }
 
-        if ( $ad->is_about_to_expire() ) {
+        if ( $ad->is_about_to_expire() || $ad->has_expired() ) {
             $hash = awpcp_get_renew_ad_hash( $ad->ad_id );
             $params = array( 'action' => 'renew', 'id' => $ad->ad_id, 'awpcprah' => $hash );
             $actions['renwew-ad'] = array( __( 'Renew Ad', 'AWPCP' ), $this->url( $params ) );

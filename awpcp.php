@@ -155,6 +155,7 @@ require_once( AWPCP_DIR . "/includes/settings/class-credit-plans-settings.php" )
 
 require_once( AWPCP_DIR . "/includes/class-awpcp-listings-api.php" );
 require_once( AWPCP_DIR . "/includes/class-listing-payment-transaction-handler.php" );
+require_once( AWPCP_DIR . "/includes/class-listing-is-about-to-expire-notification.php" );
 require_once( AWPCP_DIR . "/includes/class-listings-collection.php" );
 require_once( AWPCP_DIR . "/includes/class-media-api.php" );
 require_once( AWPCP_DIR . "/includes/class-secure-url-redirection-handler.php" );

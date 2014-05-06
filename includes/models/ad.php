@@ -565,16 +565,24 @@ class AWPCP_Ad {
 		return '';
 	}
 
-	function has_expired($date=null) {
-		$end_date = strtotime( $this->ad_enddate ) + 24 * 60 * 60;
-		$date = is_null($date) ? current_time('timestamp') : $date;
-		return $end_date < $date;
+	function has_expired( $target_date = null ) {
+		$target_date = is_null( $target_date ) ? current_time( 'timestamp' ) : $target_date;
+
+		$end_date = strtotime( $this->ad_enddate );
+		$extended_end_date = awpcp_extend_date_to_end_of_the_day( $end_date );
+
+		return $extended_end_date < $target_date;
 	}
 
 	function is_about_to_expire() {
-		$threshold = get_awpcp_option( 'ad-renew-email-threshold' );
-		$date = strtotime( "+ $threshold days", current_time( 'timestamp' ) );
-		return $this->has_expired( $date );
+		if ( $this->has_expired() ) {
+			return false;
+		}
+
+		$end_of_date_range = awpcp_calculate_end_of_renew_email_date_range_from_now();
+		$beginning_of_day_after_end_of_range = $end_of_date_range + 1;
+
+		return $this->has_expired( $beginning_of_day_after_end_of_range );
 	}
 
 	/**
