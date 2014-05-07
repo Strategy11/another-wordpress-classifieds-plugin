@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: AWPCP\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2014-04-30 01:24:14+00:00\n"
+"POT-Creation-Date: 2014-05-07 00:03:43+00:00\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: \n"
@@ -16,7 +16,7 @@ msgstr ""
 "X-Poedit-KeywordsList: _e;__;_ex;_x\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.6.4\n"
+"X-Generator: Poedit 1.6.5\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: admin/admin-panel.php:676
@@ -71,7 +71,7 @@ msgstr "%d de %d anuncios fueron eliminados."
 msgid "%d of %d Ads were deleted. %d generated errors."
 msgstr "%d de %d anuncios fueron eliminados. %d generaron errores."
 
-#: admin/admin-panel-listings.php:649 admin/admin-panel-listings.php:651
+#: admin/admin-panel-listings.php:655 admin/admin-panel-listings.php:657
 msgid "%d of %d Ads were sent to Facebook. %d generated errors."
 msgstr "%d de %d anuncios fueron enviados en Facebook. %d generaron errores."
 
@@ -89,7 +89,7 @@ msgstr "%s Panel de Administración de Anuncios"
 msgid "%s Transaction"
 msgstr "Transacción %s"
 
-#: functions.php:532
+#: functions.php:542
 msgctxt "comma separated list of things"
 msgid "%s and %d more."
 msgstr "%s y %d más."
@@ -139,7 +139,7 @@ msgctxt ""
 msgid ","
 msgstr ","
 
-#: functions.php:972
+#: functions.php:982
 msgid "-- Choose a Country --"
 msgstr "Elija un país"
 
@@ -247,7 +247,7 @@ msgstr ""
 "Un nuevo usuario '%s' con dirección de correo electrónico '%s' y contraseña "
 "'% s' fue creado para la fila %d."
 
-#: awpcp.php:391
+#: awpcp.php:392
 msgid "AWPCP"
 msgstr "AWPCP"
 
@@ -387,11 +387,27 @@ msgstr "sitio soporte de AWPCP"
 
 #: admin/admin-panel-listings.php:644
 msgid ""
-"AWPCP can not post to Facebook because your credentials are invalid or have "
-"expired. Please check your <a>settings</a>."
+"AWPCP cannot post to Facebook. Perhaps your credentials are invalid or have "
+"expired. Please check your <a>settings</a>. If your token expired, please "
+"try to get a new access token from Facebook using the link in step 2 of the "
+"settings."
 msgstr ""
 "AWPCP no puede publicar a Facebook porque sus credenciales son inválidas o "
-"expiraron. Por favor verifique la <a>configuración</a>."
+"expiraron. Por favor verifique la <a>configuración</a>. Si su token expiró, "
+"por favor intente obtener un token de acceso nuevo, usando el link en el "
+"paso 2 de la configuración."
+
+#: admin/admin-panel-listings.php:649
+msgid ""
+"AWPCP cannot post to Facebook. The API returned the following error: %s. "
+"Perhaps your credentials are invalid or have expired. Please check your "
+"<a>settings</a>. If your token expired, please try to get a new access token "
+"from Facebook using the link in step 2 of the settings."
+msgstr ""
+"AWPCP no puede publicar a Facebook. El API retornó el siguiente error: %s. "
+"Tal vez sus credenciales no son inválidas o expiraron. Por favor verifique "
+"la <a>configuración</a>. Si su token expiró, por favor intente obtener un "
+"token de acceso nuevo, usando el link en el paso 2 de la configuración."
 
 #: admin/admin-panel-settings.php:157
 msgid ""
@@ -430,7 +446,7 @@ msgstr ""
 "correctamente. Usted será redirigido a Facebook para iniciar sesión. AWPCP "
 "no almacena u obtiene información personal de su perfil."
 
-#: awpcp.php:413
+#: awpcp.php:414
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
@@ -660,7 +676,7 @@ msgstr "Agregar/Editar Categorías"
 msgid "Additional Details"
 msgstr "Detalles Adicionales"
 
-#: functions.php:2181
+#: functions.php:2191
 msgid ""
 "Additionally, You can approve the images going to the Manage Images sections "
 "for that Ad and clicking the \"Enable\" button below each image. Click here "
@@ -939,11 +955,11 @@ msgctxt "csv-importer"
 msgid "Assign Ads to a user?"
 msgstr "Asignar anuncios a un usuario?"
 
-#: awpcp.php:430
+#: awpcp.php:431
 msgid "Attachments"
 msgstr "Adjuntos"
 
-#: awpcp.php:437
+#: awpcp.php:438
 msgid "Authorize.Net"
 msgstr "Authorize.Net"
 
@@ -1052,7 +1068,7 @@ msgstr "CSC"
 msgid "CSV file"
 msgstr "Archivo CVS"
 
-#: functions.php:1979
+#: functions.php:1989
 msgid "Can't write file to disk."
 msgstr "No se puede escribir el archivo en disco."
 
@@ -1097,7 +1113,7 @@ msgstr "ID  de Categoría"
 msgid "Category ID must be valid for Ads to display."
 msgstr "El ID de la categoría debe ser válido para poder mostrar anuncios."
 
-#: awpcp.php:444
+#: awpcp.php:445
 msgid "Category Icons"
 msgstr "Íconos para Categorías"
 
@@ -1220,7 +1236,7 @@ msgid "Checkout"
 msgstr "Pagar"
 
 #: admin/templates/user-panel-profile-fields.tpl.php:51
-#: frontend/templates/payments-billing-form.tpl.php:101 functions.php:599
+#: frontend/templates/payments-billing-form.tpl.php:101 functions.php:609
 msgid "City"
 msgstr "Ciudad"
 
@@ -1249,7 +1265,7 @@ msgstr "Páginas de Clasificados"
 msgid "Classifieds Profile Info"
 msgstr "Información de perfil de clasificados"
 
-#: functions.php:1613
+#: functions.php:1623
 msgctxt "default blog title"
 msgid "Classifieds Website"
 msgstr "Página de Clasificados"
@@ -1276,7 +1292,7 @@ msgstr "Cerrar, revisaré la configuration de mis Widgets."
 msgid "Collapse Categories"
 msgstr "Cerra categorías"
 
-#: awpcp.php:451
+#: awpcp.php:452
 msgid "Comments & Ratings"
 msgstr "Comentarios y Calificaciones"
 
@@ -1298,7 +1314,7 @@ msgstr "Completar Pago"
 msgid "Completed"
 msgstr "Completado"
 
-#: includes/models/ad.php:663
+#: includes/models/ad.php:669
 msgctxt "ad payment status"
 msgid "Completed"
 msgstr "Completado"
@@ -1396,7 +1412,7 @@ msgstr ""
 msgid "Could not write temporary file %s"
 msgstr "No se pudo crear el archivo temporal de %s"
 
-#: frontend/templates/payments-billing-form.tpl.php:6 functions.php:579
+#: frontend/templates/payments-billing-form.tpl.php:6 functions.php:589
 msgid "Country"
 msgstr "País"
 
@@ -1408,7 +1424,7 @@ msgstr "País"
 msgid "County Field"
 msgstr "Pueblo"
 
-#: functions.php:609
+#: functions.php:619
 msgid "County/Village/Other"
 msgstr "Distrito/Otro"
 
@@ -1416,7 +1432,7 @@ msgstr "Distrito/Otro"
 msgid "Coupon/Discount Module"
 msgstr "Módulo de Cupones/Descuentos"
 
-#: awpcp.php:458
+#: awpcp.php:459
 msgid "Coupons/Discount"
 msgstr "Cupones/Descuentos"
 
@@ -1879,7 +1895,7 @@ msgstr "Ingreso su clave de acceso"
 msgid "Enter your email address"
 msgstr "Ingrese su dirección de correo electrónico"
 
-#: functions.php:1954
+#: functions.php:1964
 msgid "Error"
 msgstr "Error"
 
@@ -1930,7 +1946,7 @@ msgstr ""
 "Después de cuantos días expiran los anuncios gratuitos? (Use 0 para que no "
 "expiren)."
 
-#: cron.php:184
+#: templates/email/listing-is-about-to-expire-notification.plain.tpl.php:7
 msgid "Expires on"
 msgstr "Expira en"
 
@@ -1948,7 +1964,7 @@ msgstr ""
 "En la fila %d, el valor para el campo extra %s no está permitido. Los "
 "valores permitidos son: %s"
 
-#: admin/admin-panel.php:267 awpcp.php:465
+#: admin/admin-panel.php:267 awpcp.php:466
 msgid "Extra Fields"
 msgstr "Campos Extras"
 
@@ -1989,7 +2005,7 @@ msgstr "Página de Facebook"
 msgid "Featured"
 msgstr "Destacado"
 
-#: admin/admin-panel-fees-table.php:116 awpcp.php:472
+#: admin/admin-panel-fees-table.php:116 awpcp.php:473
 msgid "Featured Ads"
 msgstr "Anuncios destacados"
 
@@ -2014,7 +2030,7 @@ msgstr "Dirección del orden de los Planes de Pago"
 msgid "Fee Plan sort order"
 msgstr "Orden de los Planes de Pago"
 
-#: awpcp.php:479
+#: awpcp.php:480
 msgid "Fee per Category"
 msgstr "Precio por Categoría"
 
@@ -2171,7 +2187,7 @@ msgstr "Ir a la página siguiente"
 msgid "Go to the previous page"
 msgstr "Ir a la página anterior"
 
-#: awpcp.php:486
+#: awpcp.php:487
 msgid "Google Checkout"
 msgstr "Google Checkout"
 
@@ -2524,11 +2540,11 @@ msgstr "Imágenes Permitidas"
 msgid "Images Awaiting Approval"
 msgstr "Imágenes Esperando Aprobación."
 
-#: functions.php:2167
+#: functions.php:2177
 msgid "Images on Ad \"%s\" are awaiting approval"
 msgstr "Las imágenes en el anuncio \"%s\" está esperando aprobación"
 
-#: functions.php:2169
+#: functions.php:2179
 msgid ""
 "Images on Ad \"%s\" are awaiting approval. You can approve the images going "
 "to the Manage Images sections for that Ad and clicking the \"Enable\" button "
@@ -2725,7 +2741,7 @@ msgstr "Lista"
 msgid "Listing Details"
 msgstr "Detalles del Aviso Clasificado"
 
-#: cron.php:181
+#: templates/email/listing-is-about-to-expire-notification.plain.tpl.php:3
 msgid "Listing Details are below:"
 msgstr "Detalles del listado:"
 
@@ -3072,7 +3088,7 @@ msgstr "Falta un token de acceso de usuario (User Access Token) válido."
 msgid "Missing app ID/secret."
 msgstr "Falta app ID/secret."
 
-#: functions.php:1978
+#: functions.php:1988
 msgid "Missing temporary directory."
 msgstr "El directorio temporarl no existe."
 
@@ -3125,7 +3141,7 @@ msgstr "Mover las Categorías Seleccionadas"
 msgid "N/A"
 msgstr "N/A"
 
-#: includes/models/ad.php:656
+#: includes/models/ad.php:662
 msgctxt "ad payment status"
 msgid "N/A"
 msgstr "N/A"
@@ -3277,7 +3293,7 @@ msgstr ""
 msgid "No credit plans available."
 msgstr "No hay planes de crédito disponibles."
 
-#: functions.php:1973
+#: functions.php:1983
 msgid "No errors."
 msgstr "Sin errores."
 
@@ -3285,7 +3301,7 @@ msgstr "Sin errores."
 msgid "No file was selected."
 msgstr "Ningún archivo fue seleccionado"
 
-#: functions.php:1977
+#: functions.php:1987
 msgid "No file was uploaded."
 msgstr "Ningún archivo fue cargado."
 
@@ -3323,7 +3339,7 @@ msgstr ""
 "Está viendo anuncios de todas las categorías porque no se seleccionó una "
 "categoría específica."
 
-#: functions.php:521
+#: functions.php:531
 msgid "None"
 msgstr "Ninguna"
 
@@ -3342,7 +3358,7 @@ msgstr "No destacado"
 msgid "Not Installed"
 msgstr "No Instalado"
 
-#: includes/models/ad.php:665
+#: includes/models/ad.php:671
 msgctxt "ad payment status"
 msgid "Not Required"
 msgstr "No require pago"
@@ -3569,7 +3585,7 @@ msgctxt "debug page"
 msgid "PayPal Connection"
 msgstr "Conexión PayPal"
 
-#: awpcp.php:493
+#: awpcp.php:494
 msgid "PayPal Pro"
 msgstr "PayPal Pro"
 
@@ -3688,7 +3704,7 @@ msgstr "Transacción de Pago"
 msgid "Payment transaction ID"
 msgstr "ID de la transacción del pago"
 
-#: includes/models/ad.php:661
+#: includes/models/ad.php:667
 msgctxt "ad payment status"
 msgid "Pending"
 msgstr "Pendiente"
@@ -3764,19 +3780,19 @@ msgstr ""
 msgid "Please enter a start date for the Ad."
 msgstr "Por favor ingrese una fecha de inicio para el anuncio."
 
-#: awpcp.php:698
+#: awpcp.php:699
 msgid "Please enter a valid URL."
 msgstr "Por favor ingrese una URL válida."
 
-#: awpcp.php:700
+#: awpcp.php:701
 msgid "Please enter a valid amount."
 msgstr "Por favor ingresa una cantidad válida."
 
-#: awpcp.php:697 frontend/page-edit-ad.php:111 frontend/page-edit-ad.php:378
+#: awpcp.php:698 frontend/page-edit-ad.php:111 frontend/page-edit-ad.php:378
 msgid "Please enter a valid email address."
 msgstr "Por favor ingrese una dirección de correo electrónico válida."
 
-#: awpcp.php:699
+#: awpcp.php:700
 msgid "Please enter a valid number."
 msgstr "Por favor ingrese un número."
 
@@ -3923,7 +3939,7 @@ msgstr "Código Postal"
 msgid "Posted By Field"
 msgstr "Publicado por"
 
-#: cron.php:183
+#: templates/email/listing-is-about-to-expire-notification.plain.tpl.php:6
 msgid "Posted on"
 msgstr "Publicado:"
 
@@ -4019,7 +4035,7 @@ msgstr "Configurar las pasarelas de pago en modo prueba?"
 msgid "Quick Start Guide"
 msgstr "Guía de incio rápido"
 
-#: awpcp.php:507
+#: awpcp.php:508
 msgid "RSS"
 msgstr "RSS"
 
@@ -4049,7 +4065,7 @@ msgstr "Lea la %s completa."
 msgid "Reference"
 msgstr "Referencia"
 
-#: awpcp.php:500
+#: awpcp.php:501
 msgid "Regions Control"
 msgstr "Control de Regiones"
 
@@ -4400,7 +4416,7 @@ msgid "Select Move-To category"
 msgstr "Seleccionar la Categoría a la cual se moverán"
 
 #: frontend/widget-search.php:92 frontend/widget-search.php:107
-#: functions.php:697
+#: functions.php:707
 msgid "Select Option"
 msgstr "Seleccionar"
 
@@ -4788,7 +4804,7 @@ msgstr "Estado"
 msgid "State Field"
 msgstr "Estado"
 
-#: functions.php:589
+#: functions.php:599
 msgid "State/Province"
 msgstr "Estado/Provincia"
 
@@ -4866,7 +4882,7 @@ msgid ""
 msgstr ""
 "Asunto para el mensaje enviado cuando el proceso de un pago no se completa"
 
-#: awpcp.php:514
+#: awpcp.php:515
 msgid "Subscriptions"
 msgstr "Suscripciones"
 
@@ -4966,7 +4982,7 @@ msgstr ""
 msgid "Thank you for your business"
 msgstr "Gracias por tu operación"
 
-#: awpcp.php:568
+#: awpcp.php:569
 msgid ""
 "The %1$s module you have installed is outdated and not compatible with this "
 "version of AWPCP. Please get %1$s %2$s or newer."
@@ -4974,11 +4990,11 @@ msgstr ""
 "El módulo %1$s que usted ha instalado está desactualizado y no es compatible "
 "con esta versión de AWPCP. Por favor descargue %1$s %2$s o posterior."
 
-#: functions.php:2172
+#: functions.php:2182
 msgid "The Ad \"%s\" is awaiting approval"
 msgstr "El anuncio \"%s\" está esperando aprobación"
 
-#: functions.php:2174
+#: functions.php:2184
 msgid ""
 "The Ad \"%s\" is awaiting approval. You can approve the Ad going to the "
 "Manage Listings section and clicking the \"Enable\" action shown on top. "
@@ -5414,19 +5430,19 @@ msgctxt "media manager"
 msgid "The file has been rejected."
 msgstr "El archivo ha sido rechazado."
 
-#: functions.php:1975
+#: functions.php:1985
 msgid "The file is larger than form MAX_FILE_SIZE."
 msgstr "ElEl tamaño del archivo es mayor que MAX_FILE_SIZE."
 
-#: functions.php:1974
+#: functions.php:1984
 msgid "The file is larger than upload_max_filesize."
 msgstr "El tamaño del archivo es mayor que upload_max_filesize."
 
-#: functions.php:1980
+#: functions.php:1990
 msgid "The file upload was stopped by extension."
 msgstr "La carga del archivo fue detenida por una extensión."
 
-#: functions.php:1976
+#: functions.php:1986
 msgid "The file was only partially uploaded."
 msgstr "El archivo fue cargado parcialmente."
 
@@ -5483,7 +5499,7 @@ msgctxt "media manager"
 msgid "The image has been set as primary image."
 msgstr "La imagen ha sido asignada como imagen primaria."
 
-#: functions.php:1935
+#: functions.php:1945
 msgctxt "AWPCP"
 msgid ""
 "The images or files with pale red background have been rejected by an "
@@ -5663,7 +5679,7 @@ msgstr ""
 msgid "The specified Ad doesn't exists."
 msgstr "El Anuncio especificado no existe."
 
-#: admin/admin-panel-listings.php:679
+#: admin/admin-panel-listings.php:685
 msgctxt "ajax delete ad"
 msgid "The specified Ad doesn't exists."
 msgstr "El Anuncio especificado no existe."
@@ -6037,7 +6053,7 @@ msgstr ""
 "tener creada una Aplicación de Facebook para usar esta característica. Lea "
 "<a>Cómo registrar y configurar una aplicación de Facebook (inglés)</a>."
 
-#: awpcp.php:696
+#: awpcp.php:697
 msgid "This field is required."
 msgstr "Este campo es obligatorio."
 
@@ -6100,7 +6116,7 @@ msgstr ""
 "Las opciones en esta sección no están disponibles todavía. Por favor llene "
 "los campos requeridos arriba y guarde la configuración."
 
-#: functions.php:1952
+#: functions.php:1962
 msgid ""
 "This version of AWPCP %1$s module is not compatible with AWPCP version %2$s. "
 "Please get AWPCP %1$s %3$s or newer!"
@@ -6150,9 +6166,10 @@ msgstr "Formato de hora"
 msgid "Time Separator"
 msgstr "Separador de hora"
 
-#: admin/templates/admin-panel-debug.tpl.php:32 cron.php:182
+#: admin/templates/admin-panel-debug.tpl.php:32
 #: frontend/templates/widget-categories-form.tpl.php:2
 #: frontend/templates/widget-latest-ads-form.tpl.php:2
+#: templates/email/listing-is-about-to-expire-notification.plain.tpl.php:5
 msgid "Title"
 msgstr "Título"
 
@@ -6341,7 +6358,7 @@ msgstr ""
 msgid "Unpaid"
 msgstr "No pagada."
 
-#: includes/models/ad.php:667
+#: includes/models/ad.php:673
 msgctxt "ad payment status"
 msgid "Unpaid"
 msgstr "No pagada"
@@ -6550,7 +6567,7 @@ msgstr "Visitas (los más vistos primero, luego por título)"
 msgid "Visit Website"
 msgstr "Visitar el Sitio Web"
 
-#: awpcp.php:414
+#: awpcp.php:415
 msgid "Warning"
 msgstr "Adevertencia"
 
@@ -6677,7 +6694,7 @@ msgstr "Trabajando"
 msgid "Would you like some help getting started?"
 msgstr "¿Te gustaría un poco de ayuda para empezar?"
 
-#: awpcp.php:521
+#: awpcp.php:522
 msgid "XML Sitemap"
 msgstr "XML Sitemap"
 
@@ -6827,7 +6844,7 @@ msgstr ""
 "Usted puede ingresar un token de accesso manualmente (si lo conoce) o "
 "iniciar sesión en Facebook para obtener uno."
 
-#: cron.php:185
+#: templates/email/listing-is-about-to-expire-notification.plain.tpl.php:9
 msgid "You can renew your Ad visiting this link: %s"
 msgstr "Renueva tu Anuncio visitando: %s"
 
@@ -7136,11 +7153,11 @@ msgstr "Debe seleccionar one de los términos de pago disponibles."
 msgid "You should select an owner for this Ad."
 msgstr "Debe seleccionar un autor para este anuncio."
 
-#: functions.php:2130
+#: functions.php:2140
 msgid "Your Ad \"%s\" has been approved"
 msgstr "Su anuncio \"%s\" ha sido aprobado"
 
-#: functions.php:2146
+#: functions.php:2156
 msgid "Your Ad \"%s\" has been successfully updated"
 msgstr "Su anuncio \"%s\" ha sido actualizado exitosamente"
 
@@ -7361,6 +7378,10 @@ msgctxt "credit plans table"
 msgid "clear selection"
 msgstr "borrar selección"
 
+#: includes/class-listing-is-about-to-expire-notification.php:38
+msgid "less than 1"
+msgstr "menos de 1"
+
 #: frontend/templates/html-widget-multiple-region-selector.tpl.php:14
 msgctxt "loading region options"
 msgid "loading..."
@@ -7415,19 +7436,19 @@ msgctxt "reply email"
 msgid "regarding"
 msgstr "al respecto"
 
-#: functions.php:600
+#: functions.php:610
 msgid "separate cities by commas"
 msgstr "Separar Ciudades por comas"
 
-#: functions.php:610
+#: functions.php:620
 msgid "separate counties by commas"
 msgstr "Separar Distritos por comas"
 
-#: functions.php:580
+#: functions.php:590
 msgid "separate countries by commas"
 msgstr "Separar Países por comas"
 
-#: functions.php:590
+#: functions.php:600
 msgid "separate states by commas"
 msgstr "Separar Estados/Provincias por comas"
 

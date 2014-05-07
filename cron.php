@@ -25,7 +25,7 @@ function awpcp_schedule_activation() {
     }
 
     if (!wp_next_scheduled('awpcp_ad_renewal_email_hook')) {
-        wp_schedule_event( time(), 'daily', 'awpcp_ad_renewal_email_hook' );
+        wp_schedule_event( time(), 'hourly', 'awpcp_ad_renewal_email_hook' );
     }
 
     if (!wp_next_scheduled('awpcp-clean-up-payment-transactions')) {
@@ -149,54 +149,53 @@ function doadcleanup() {
  * This functions runs daily.
  */
 function awpcp_ad_renewal_email() {
-	global $wpdb, $nameofsite;
+	global $wpdb;
 
 	if (!(get_awpcp_option('sent-ad-renew-email') == 1)) {
 		return;
 	}
 
-	$threshold = intval(get_awpcp_option('ad-renew-email-threshold'));
-
-	$query = 'ad_enddate <= ADDDATE(NOW(), INTERVAL %d DAY) AND ';
-	$query.= 'disabled != 1 AND renew_email_sent != 1';
-	$ads = AWPCP_Ad::find($wpdb->prepare($query, $threshold + 1));
-
-	$subject = get_awpcp_option('renew-ad-email-subject');
-	$subject = sprintf($subject, $threshold);
-
+    $notification = awpcp_listing_is_about_to_expire_notification();
     $admin_sender_email = awpcp_admin_sender_email_address();
 
-	foreach ($ads as $ad) {
+	foreach ( awpcp_get_listings_about_to_expire() as $listing ) {
         // When the user clicks the renew ad link, AWPCP uses
         // the is_about_to_expire() method to decide if the Ad
         // can be renewed. We double check here to make
         // sure users can use the link in the email immediately.
-        if ( ! $ad->is_about_to_expire() ) continue;
+        if ( ! $listing->is_about_to_expire() ) continue;
 
-		$href = awpcp_get_renew_ad_url($ad->ad_id);
+        $email = new AWPCP_Email();
 
-		// awpcp_process_mail doesn't support HTML
-		$body = get_awpcp_option('renew-ad-email-body');
-		$body = sprintf($body, $threshold) . "\n\n";
-		$body.= __('Listing Details are below:', 'AWPCP') . "\n\n";
-		$body.= __('Title', 'AWPCP') . ": " . $ad->ad_title . "\n";
-		$body.= __('Posted on', 'AWPCP') . ": " . $ad->get_start_date() . "\n";
-		$body.= __('Expires on', 'AWPCP') . ": " . $ad->get_end_date() . "\n\n";
-		$text = __('You can renew your Ad visiting this link: %s', 'AWPCP');
-		$body.= sprintf($text, $href);
+        $email->from = $admin_sender_email;
+        $email->to = $listing->ad_contact_email;
+        $email->subject = $notification->render_subject( $listing );
+        $email->body = $notification->render_body( $listing );
 
-		$result = awpcp_process_mail( $admin_sender_email,
-                                      $ad->ad_contact_email,
-                                      $subject,
-                                      $body,
-                                      $nameofsite,
-                                      awpcp_admin_recipient_email_address() );
-
-		if ($result == 1) {
-			$ad->renew_email_sent = true;
-			$ad->save();
+		if ( $email->send() ) {
+			$listing->renew_email_sent = true;
+			$listing->save();
 		}
 	}
+}
+
+function awpcp_get_listings_about_to_expire() {
+    global $wpdb;
+
+    $end_of_range = awpcp_calculate_end_of_renew_email_date_range_from_now();
+
+    $conditions[] = $wpdb->prepare( 'ad_enddate <= %s', date( 'Y-m-d H:i:s', $end_of_range ) );
+    $conditions[] = 'disabled != 1';
+    $conditions[] = 'renew_email_sent != 1';
+
+    return AWPCP_Ad::find( implode( ' AND ', $conditions ) );
+}
+
+function awpcp_calculate_end_of_renew_email_date_range_from_now() {
+    $threshold = intval( get_awpcp_option( 'ad-renew-email-threshold' ) );
+    $target_date = strtotime( "+ $threshold days", current_time( 'timestamp' ) );
+
+    return $target_date;
 }
 
 

@@ -109,7 +109,7 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
             $actions['send-key'] = array(__('Send Access Key', 'AWPCP'), $this->url(array('action' => 'send-key', 'id' => $ad->ad_id)));
         }
 
-        if ( $ad->is_about_to_expire() ) {
+        if ( $ad->is_about_to_expire() || $ad->has_expired() ) {
             $hash = awpcp_get_renew_ad_hash( $ad->ad_id );
             $params = array( 'action' => 'renew', 'id' => $ad->ad_id, 'awpcprah' => $hash );
             $actions['renwew-ad'] = array( __( 'Renew Ad', 'AWPCP' ), $this->url( $params ) );
@@ -625,24 +625,30 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
                 $response = $fb->api_request( '/' . $fb->get( 'page_id' ) . '/links',
                                               'POST',
                                               $data );
-
-                if ( $response && isset( $response->id ) ) {
-                    awpcp_update_ad_meta( $ad_id, 'sent-to-facebook', 1 );
-                    $sent++;
-                } else {
-                    $failed++;
-                }
             } catch (Exception $e) {
+                $response = false;
                 $error = true;
+            }
+
+            if ( $response && isset( $response->id ) ) {
+                awpcp_update_ad_meta( $ad_id, 'sent-to-facebook', 1 );
+                $sent++;
+            } else {
                 $failed++;
             }
         }
 
         if ( isset( $error ) && $error ) {
             $msg = str_replace( '<a>',
-                                '<a href="' . admin_url( 'admin.php?page=awpcp-settings&g=facebook-settings' ) . '">',
-                                __( 'AWPCP can not post to Facebook because your credentials are invalid or have expired. Please check your <a>settings</a>.', 'AWPCP' ) );
-            awpcp_flash( $msg, 'error' );            
+                                '<a href="' . admin_url( 'admin.php?page=awpcp-admin-settings&g=facebook-settings' ) . '">',
+                                __( 'AWPCP cannot post to Facebook. Perhaps your credentials are invalid or have expired. Please check your <a>settings</a>. If your token expired, please try to get a new access token from Facebook using the link in step 2 of the settings.', 'AWPCP' ) );
+            awpcp_flash( $msg, 'error' );
+        } else if ( $fb->get_last_error() ) {
+            $msg = str_replace( '<a>',
+                                '<a href="' . admin_url( 'admin.php?page=awpcp-admin-settings&g=facebook-settings' ) . '">',
+                                __( 'AWPCP cannot post to Facebook. The API returned the following error: %s. Perhaps your credentials are invalid or have expired. Please check your <a>settings</a>. If your token expired, please try to get a new access token from Facebook using the link in step 2 of the settings.', 'AWPCP' ) );
+            $msg = sprintf( $msg, $fb->get_last_error()->message );
+            awpcp_flash( $msg, 'error' );
         }
 
         if ( $sent > 0 && $failed > 0 ) {

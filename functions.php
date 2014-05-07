@@ -309,24 +309,26 @@ function awpcp_time($date=null, $format='mysql') {
  */
 function awpcp_datetime( $format='mysql', $date=null ) {
 	if ( is_null( $date ) || strlen( $date ) === 0 ) {
-		$date = current_time( 'timestamp' );
+		$timestamp = current_time( 'timestamp' );
 	} else if ( is_string( $date ) ) {
-		$date = strtotime( $date );
-	} // else, we asume a timestamp
+		$timestamp = strtotime( $date );
+	} else {
+        $timestamp = $date;
+    }
 
 	switch ( $format ) {
 		case 'mysql':
-			return date( 'Y-m-d H:i:s', $date );
+			return date( 'Y-m-d H:i:s', $timestamp );
 		case 'timestamp':
-			return $date;
+			return $timestamp;
 		case 'awpcp':
-			return date( awpcp_get_datetime_format(), $date) ;
+			return date( awpcp_get_datetime_format(), $timestamp) ;
 		case 'awpcp-date':
-			return date( awpcp_get_date_format(), $date );
+			return date( awpcp_get_date_format(), $timestamp );
 		case 'awpcp-time':
-			return date( awpcp_get_time_format(), $date );
+			return date( awpcp_get_time_format(), $timestamp );
 		default:
-			return date( $format, $date );
+			return date( $format, $timestamp );
 	}
 }
 
@@ -341,6 +343,14 @@ function awpcp_set_datetime_date( $datetime, $date ) {
     $new_datetime_timestamp = $target_year_month_day_timestamp + $time_of_the_day_in_seconds;
 
     return awpcp_datetime( 'mysql', $new_datetime_timestamp );
+}
+
+function awpcp_extend_date_to_end_of_the_day( $datetime ) {
+    $next_day = strtotime( '+ 1 days', $datetime );
+    $zero_hours_next_day = strtotime( date( 'Y-m-d', $next_day ) );
+    $end_of_the_day = $zero_hours_next_day - 1;
+
+    return $end_of_the_day;
 }
 
 function awpcp_is_mysql_date( $date ) {

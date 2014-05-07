@@ -6,7 +6,7 @@
  */
 class AWPCP_Facebook {
 
-    const GRAPH_URL = 'https://graph.facebook.com/';
+    const GRAPH_URL = 'https://graph.facebook.com/v2.0';
 
 	private static $instance = null;
     private $access_token = '';
@@ -64,7 +64,7 @@ class AWPCP_Facebook {
                 if ( !$token_info->is_valid ) {
                     $errors[] = __( 'User Access Token is not valid for current app. Maybe you de-authorized the app or the token expired? Try clicking "Obtain an access token from Facebook" again.', 'AWPCP' );
                 } else {
-                    if ( !in_array( 'manage_pages', $token_info->scopes ) || !in_array( 'publish_stream', $token_info->scopes ) )
+                    if ( !in_array( 'manage_pages', $token_info->scopes ) || ( !in_array( 'publish_stream', $token_info->scopes ) && !in_array( 'publish_actions', $token_info->scopes ) ) )
                         $errors[] = __( 'User Access Token is valid but doesn\'t have the permissions required for AWPCP integration (publish_stream and manage_pages).', 'AWPCP' );
                 }
 
@@ -208,7 +208,7 @@ class AWPCP_Facebook {
     }
 
     public function get_login_url( $redirect_uri = '', $scope = '' ) {
-        return sprintf( 'https://www.facebook.com/dialog/oauth?client_id=%s&redirect_uri=%s&scope=%s',
+        return sprintf( 'https://www.facebook.com/v2.0/dialog/oauth?client_id=%s&redirect_uri=%s&scope=%s',
                         $this->get( 'app_id' ),
                         urlencode( $redirect_uri ),
                         urlencode( $scope )
@@ -237,7 +237,7 @@ class AWPCP_Facebook {
 
         if ( $response ) {
             parse_str( $response, $parts );
-            return $parts['access_token'];
+            return isset( $parts['access_token'] ) ? $parts['access_token'] : '';
         }
 
         return '';
