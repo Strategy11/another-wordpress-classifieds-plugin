@@ -105,11 +105,9 @@ function doadexpirations() {
         $body.= " $adstartdate";
         $body.= "\n\n";
 
-        if ( $disable_ads ) {
-            $body.= __("Renew your ad by visiting:", "AWPCP");
-            $body.= " " . awpcp_get_renew_ad_url($ad->ad_id);
-            $body.= "\n\n";
-        }
+        $body.= __( "Renew your ad by visiting:", "AWPCP" );
+        $body.= " " . awpcp_get_renew_ad_url( $ad->ad_id );
+        $body.= "\n\n";
 
         if ( $notify_expiring ) {
             $user_email = get_adposteremail( $ad->ad_id );
