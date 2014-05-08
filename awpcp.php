@@ -315,17 +315,19 @@ class AWPCP {
 			add_filter( 'awpcp-should-generate-title', array( $yoast_wordpress_seo_plugin_integration, 'should_generate_title' ), 10, 2 );
 		}
 
+		// load resources always required
+		$facebook_cache_helper = awpcp_facebook_cache_helper();
+		add_action( 'awpcp-clear-ad-facebook-cache', array( $facebook_cache_helper, 'handle_clear_cache_event_hook' ), 10, 1 );
+
+		// load resources required both in front end and admin screens, but not during ajax calss.
 		if ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) {
-			// load resources required both in front end and admin screens.
 			$listing_payment_transaction_handler = awpcp_listing_payment_transaction_handler();
             add_action( 'awpcp-transaction-status-updated', array( $listing_payment_transaction_handler, 'transaction_status_updated' ), 10, 2 );
 			add_filter( 'awpcp-process-payment-transaction', array( $listing_payment_transaction_handler, 'process_payment_transaction' ) );
 
-			$facebook_cache_helper = awpcp_facebook_cache_helper();
 			add_action( 'awpcp-place-ad', array( $facebook_cache_helper, 'on_place_ad' ) );
 			add_action( 'awpcp_approve_ad', array( $facebook_cache_helper, 'on_approve_ad' ) );
 			add_action( 'awpcp_edit_ad', array( $facebook_cache_helper, 'on_edit_ad' ) );
-			add_action( 'awpcp-clear-ad-facebook-cache', array( $facebook_cache_helper, 'handle_clear_cache_event_hook' ), 10, 1 );
 		}
 
 		// Ad metadata integration.

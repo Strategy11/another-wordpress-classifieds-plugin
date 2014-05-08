@@ -57,6 +57,16 @@ class AWPCP_FacebookCacheHelper {
             return false;
         }
 
+        $listing_info = json_decode( $response['body'] );
+
+        if ( $listing_info['type'] != 'article' ) {
+            return false;
+        } else if ( empty( $listing_info['title'] ) ) {
+            return false;
+        } else if ( ! isset( $listing_info['description'] ) ) {
+            return false;
+        }
+
         return true;
     }
 }
