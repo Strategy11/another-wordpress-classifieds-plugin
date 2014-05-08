@@ -161,7 +161,7 @@ class AWPCP_Settings_API {
 
 		// Section: Ad/Listings - Notifications
 
-		$key = $this->add_section($group, __('User Notifications', 'AWPCP'), 'user-notifications', 10, array($this, 'section'));
+		$key = $this->add_section($group, __('User Notifications', 'AWPCP'), 'user-notifications', 5, array($this, 'section'));
 
 		$this->add_setting( $key, 'send-user-ad-posted-notification', __( 'Ad Posted', 'AWPCP' ), 'checkbox', 1, __( 'An email will be sent when an Ad is posted.', 'AWPCP' ) );
 		$this->add_setting( $key, 'send-ad-enabled-email', __( 'Ad Enabled', 'AWPCP' ), 'checkbox', 1, __( 'Notify Ad owner when the Ad is enabled.', 'AWPCP' ) );
@@ -169,39 +169,23 @@ class AWPCP_Settings_API {
 		$this->add_setting( $key, 'ad-renew-email-threshold', __( 'Ad Renew email threshold', 'AWPCP' ), 'textfield', 5, __( 'The email is sent the specified number of days before the Ad expires.', 'AWPCP' ) );
 		$this->add_setting( $key, 'notifyofadexpiring', __( 'Ad Expired', 'AWPCP' ), 'checkbox', 1, __( 'An email will be sent when the Ad expires.', 'AWPCP' ) );
 
-		$key = $this->add_section($group, __('Admin Notifications', 'AWPCP'), 'admin-notifications', 10, array($this, 'section'));
+		// Section: Ad/Listings - Admin Notifications
+
+		$key = $this->add_section($group, __('Admin Notifications', 'AWPCP'), 'admin-notifications', 5, array($this, 'section'));
 
 		$this->add_setting( $key, 'notifyofadposted', __( 'Ad Posted', 'AWPCP' ), 'checkbox', 1, __( 'An email will be sent when an Ad is posted.', 'AWPCP' ) );
 		$this->add_setting( $key, 'notifyofadexpired', __( 'Ad Expired', 'AWPCP' ), 'checkbox', 1, __( 'An email will be sent when the Ad expires.', 'AWPCP' ) );
 
-		// Section: Ad/Listings - Moderation
+		// Section: Ad/Listings - Regions
 
-		$key = $this->add_section($group, __('Moderation', 'AWPCP'), 'moderation', 10, array($this, 'section'));
-
-		$this->add_setting( $key, 'onlyadmincanplaceads', __( 'Only admin can post Ads', 'AWPCP' ), 'checkbox', 0, __( 'If checked only administrator users will be allowed to post Ads.', 'AWPCP' ) );
-		$this->add_setting( $key, 'adapprove', __( 'Disable Ad until admin approves', 'AWPCP' ), 'checkbox', 0, __( 'New Ads will be in a disabled status, not visible to visitors, until the administrator approves them.', 'AWPCP' ) );
-		$this->add_setting( $key, 'enable-ads-pending-payment', __( 'Enable paid ads that are pending payment.', 'AWPCP' ), 'checkbox', get_awpcp_option( 'disablependingads', 1 ), __( 'Enable paid ads that are pending payment.', 'AWPCP' ) );
-		$this->add_setting( $key, 'enable-email-verification', __( 'Enable email verification for new Ads', 'AWPCP' ), 'checkbox', 0, __( 'If checked, all new Ads will remain disabled until the user clicks a verification link sent to the email address used to post the Ad.', 'AWPCP' ) );
-		$this->add_setting( $key, 'email-verification-first-threshold', __( 'Number of days before the verification email is sent again', 'AWPCP' ), 'textfield', 5, '' );
-		$this->add_setting( $key, 'email-verification-second-threshold', __( 'Number of days before Ads that remain in a unverified status will be deleted', 'AWPCP' ), 'textfield', 30, '' );
-		$this->add_setting( $key, 'notice_awaiting_approval_ad', __( 'Awaiting approval message', 'AWPCP' ), 'textarea', __( 'All ads must first be approved by the administrator before they are activated in the system. As soon as an admin has approved your ad it will become visible in the system. Thank you for your business.', 'AWPCP' ), __( 'Text for message to notify user that ad is awaiting approval', 'AWPCP') );
-
-		$this->add_setting( $key, 'ad-poster-email-address-whitelist', __( 'Allowed domains in Ad poster email', 'AWPCP' ), 'textarea', '', __( 'Only email addresses with a domain in the list above will be allowed. *.foo.com will match a.foo.com, b.foo.com, etc. but foo.com will match foo.com only. Please type a domain per line.', 'AWPCP' ) );
-
-		$this->add_setting( $key, 'noadsinparentcat', __( 'Prevent ads from being posted to top level categories?', 'AWPCP' ), 'checkbox', 0, '' );
-		$this->add_setting( $key, 'use-multiple-category-dropdowns', __( 'Use multiple dropdowns to choose categories', 'AWPCP' ), 'checkbox', 0, __( 'If checked, a dropdown with top level categories will be shown. When the user chooses a category, a new dropdown will apper showing the sub-categories of the selected category, if any. Useful if your website supports a high number of categories.', 'AWPCP' ) );
-
-		$this->add_setting( $key, 'addurationfreemode', __( 'Free Ads expiration threshold', 'AWPCP' ), 'textfield', 0, __( 'Expire free ads after how many days? (0 for no expiration).', 'AWPCP' ) );
-		$this->add_setting( $key, 'autoexpiredisabledelete', __( 'Disable expired ads instead of deleting them?', 'AWPCP' ), 'checkbox', 0, __( 'Check to disable.', 'AWPCP' ) );
-
-		$key = $this->add_section( $group, __( 'Regions Settings', 'AWPCP' ), 'regions-settings', 10, array( $this, 'section' ) );
+		$key = $this->add_section( $group, __( 'Regions Settings', 'AWPCP' ), 'regions-settings', 20, array( $this, 'section' ) );
 
 		$this->add_setting( $key, 'allow-regions-modification', __( 'Allow Regions modification', 'AWPCP' ), 'checkbox', 1, __( 'If enabled, users will be allowed to change the region information associated with their Ads.', 'AWPCP' ) );
 		$this->add_setting( $key, 'allow-user-to-search-in-multiple-regions', __( 'Allow users to search Ads in multiple regions', 'AWPCP' ), 'checkbox', 0, __( 'If enabled, users will be allowed to search Ads in multiple regions.', 'AWPCP' ) );
 
 		// Section: Ad/Listings - Layout and Presentation
 
-		$key = $this->add_section($group, __('Layout and Presentation', 'AWPCP'), 'layout', 10, array($this, 'section'));
+		$key = $this->add_section($group, __('Layout and Presentation', 'AWPCP'), 'layout', 30, array($this, 'section'));
 
 		$this->add_setting( $key, 'show-ad-preview-before-payment', __( 'Show Ad preview before payment.', 'AWPCP' ), 'checkbox', 0, __( 'If enabled, a preview of the Ad being posted will be shown after the images have been uploaded and before the user is asked to pay. The user is allowed to go back and edit the Ad details and uploaded images or proceed with the posting process.', 'AWPCP' ) );
 		$this->add_setting( $key, 'allowhtmlinadtext', __( 'Allow HTML in Ad text', 'AWPCP' ), 'checkbox', 0, __( 'Allow HTML in ad text (Not recommended).', 'AWPCP' ) );
@@ -292,7 +276,7 @@ class AWPCP_Settings_API {
 
 		// Section: Ad/Listings - Menu Items
 
-		$key = $this->add_section($group, __('Menu Items', 'AWPCP'), 'menu-items', 20, array($this, 'section'));
+		$key = $this->add_section( $group, __( 'Menu Items', 'AWPCP' ), 'menu-items', 40, array( $this, 'section' ) );
 
 		$this->add_setting( $key, 'show-menu-item-place-ad', __( 'Show Place Ad menu item', 'AWPCP' ), 'checkbox', 1, '' );
 		$this->add_setting( $key, 'show-menu-item-edit-ad', __( 'Show Edit Ad menu item', 'AWPCP' ), 'checkbox', 1, '' );
@@ -475,19 +459,9 @@ class AWPCP_Settings_API {
 		$this->add_setting($key, 'displaycityfieldreqop', __( 'Require City', 'AWPCP' ), 'checkbox', 0, __( 'Require city?', 'AWPCP' ) );
 
 
-		// Group: User Registration
+		// Group: Registration
 
 		$group = $this->add_group( __( 'Registration', 'AWPCP' ), 'registration-settings', 80);
-
-		// Section: User Registration
-
-		$key = $this->add_section($group, __('Registration Settings', 'AWPCP'), 'default', 10, array($this, 'section'));
-
-		$this->add_setting( $key, 'requireuserregistration', __( 'Require user registration', 'AWPCP' ), 'checkbox', 0, __( 'Require user registration?', 'AWPCP' ) );
-		$this->add_setting( $key, 'reply-to-ad-requires-registration', __( 'Reply to Ad requires user registration', 'AWPCP' ), 'checkbox', 0, __( 'Require user registration for replying to an Ad?', 'AWPCP' ) );
-		// $this->add_setting( $key, 'postloginformto', __( 'Post login form to', 'AWPCP' ), 'textfield', '', __( 'Post login form to this URL. Value should be the full URL to the wordpress login script (e.g. http://www.awpcp.com/wp-login.php).', 'AWPCP' ) . '<br/>' . __( '**Only needed if registration is required and your login url is mod-rewritten.', 'AWPCP' ) );
-		$this->add_setting( $key, 'registrationurl', __( 'Custom Registration Page URL', 'AWPCP' ), 'textfield', '', __( 'Location of registration page. Value should be the full URL to the wordpress registration page (e.g. http://www.awpcp.com/wp-login.php?action=register).', 'AWPCP' ) . '<br/>' . __( '**Only change this setting when using membership plugin with custom login pages or similar scenarios.', 'AWPCP' ) );
-
 
 		// Group: Email
 

@@ -3,7 +3,7 @@
  Plugin Name: Another Wordpress Classifieds Plugin (AWPCP)
  Plugin URI: http://www.awpcp.com
  Description: AWPCP - A plugin that provides the ability to run a free or paid classified ads service on your wordpress blog. <strong>!!!IMPORTANT!!!</strong> Whether updating a previous installation of Another Wordpress Classifieds Plugin or installing Another Wordpress Classifieds Plugin for the first time, please backup your wordpress database before you install/uninstall/activate/deactivate/upgrade Another Wordpress Classifieds Plugin.
- Version: 3.2.3-dev-12
+ Version: 3.2.3-dev-13
  Author: D. Rodenbaugh
  License: GPLv2 or any later version
  Author URI: http://www.skylineconsult.com
@@ -152,6 +152,8 @@ require_once( AWPCP_DIR . "/includes/views/admin/account-balance/class-account-b
 require_once( AWPCP_DIR . "/includes/views/admin/account-balance/class-account-balance-page-summary-step.php" );
 
 require_once( AWPCP_DIR . "/includes/settings/class-credit-plans-settings.php" );
+require_once( AWPCP_DIR . "/includes/settings/class-listings-settings.php" );
+require_once( AWPCP_DIR . "/includes/settings/class-registration-settings.php" );
 
 require_once( AWPCP_DIR . "/includes/class-awpcp-listings-api.php" );
 require_once( AWPCP_DIR . "/includes/class-listing-payment-transaction-handler.php" );
@@ -286,7 +288,7 @@ class AWPCP {
 			return;
 		}
 
-		add_action( 'awpcp_register_settings', array( new AWPCP_CreditPlansSettings, 'register_settings' ) );
+		$this->setup_register_settings_handlers();
 
 		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 			$handler = awpcp_users_autocomplete_ajax_handler();
@@ -382,6 +384,16 @@ class AWPCP {
 		add_filter('cron_schedules', 'awpcp_cron_schedules');
 
 		awpcp_schedule_activation();
+	}
+
+	public function setup_register_settings_handlers() {
+		add_action( 'awpcp_register_settings', array( new AWPCP_CreditPlansSettings, 'register_settings' ) );
+		add_action( 'awpcp_register_settings', array( new AWPCP_RegistrationSettings, 'register_settings' ) );
+
+		$listing_moderation_settings = new AWPCP_ListingsModerationSettings;
+		add_action( 'awpcp_register_settings', array( $listing_moderation_settings, 'register_settings' ) );
+		add_filter( 'awpcp_validate_settings', array( $listing_moderation_settings, 'validate_all_settings' ), 10, 2 );
+		add_filter( 'awpcp_validate_settings_listings-settings', array( $listing_moderation_settings, 'validate_group_settings' ), 10, 2 );
 	}
 
 	public function init() {

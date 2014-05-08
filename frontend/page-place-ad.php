@@ -663,7 +663,6 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $ui['contact-phone-field-required'] = get_awpcp_option('displayphonefieldreqop') == 1;
         $ui['price-field'] = get_awpcp_option('displaypricefield') == 1;
         $ui['price-field-required'] = get_awpcp_option('displaypricefieldreqop') == 1;
-        // $ui['module-region-fields'] = $hasregionsmodule;
         $ui['allow-regions-modification'] = $is_admin_user || !$edit || get_awpcp_option( 'allow-regions-modification' );
         $ui['price-field'] = get_awpcp_option('displaypricefield') == 1;
         $ui['extra-fields'] = $hasextrafieldsmodule && function_exists('awpcp_extra_fields_render_form');

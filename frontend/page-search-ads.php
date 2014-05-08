@@ -102,7 +102,6 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
     protected function search_form($form, $errors=array()) {
         global $hasregionsmodule, $hasextrafieldsmodule;
 
-        $ui['module-region-fields'] = $hasregionsmodule;
         $ui['module-extra-fields'] = $hasextrafieldsmodule;
         $ui['posted-by-field'] = get_awpcp_option('displaypostedbyfield');
         $ui['price-field'] = get_awpcp_option('displaypricefield');

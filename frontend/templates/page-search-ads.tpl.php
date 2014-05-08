@@ -12,10 +12,6 @@
     }
 ?>
 
-<?php if ($ui['module-region-fields']): ?>
-<?php echo awpcp_region_control_selector(); ?>
-<?php endif ?>
-
 <form class="awpcp-search-ads-form" method="post" action="<?php echo $page->url(); ?>"name="myform">
     <?php foreach($hidden as $name => $value): ?>
     <input type="hidden" name="<?php echo esc_attr($name); ?>" value="<?php echo esc_attr($value); ?>" />

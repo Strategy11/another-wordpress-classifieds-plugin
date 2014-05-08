@@ -87,34 +87,37 @@ function doadexpirations() {
     foreach ($ads as $ad) {
         $ad->disable();
 
-        if ($notify_expiring == 1 && $disable_ads) {
-            $user_email = get_adposteremail($ad->ad_id);
+        if ( $notify_expiring == false && $notify_admin == false ) {
+            continue;
+        }
 
-            if ('' == $user_email) continue; // no email, can't send a message without it.
+        $adtitle = get_adtitle( $ad->ad_id );
+        $adstartdate = date( "D M j Y G:i:s", strtotime( get_adstartdate( $ad->ad_id ) ) );
 
-            $adtitle = get_adtitle($ad->ad_id);
-            $adcontact = get_adpostername($ad->ad_id);
-            $adstartdate = date("D M j Y G:i:s", strtotime(get_adstartdate($ad->ad_id)));
+        $body = $bodybase;
+        $body.= "\n\n";
+        $body.= __( "Listing Details", "AWPCP" );
+        $body.= "\n\n";
+        $body.= __( "Ad Title:", "AWPCP" );
+        $body.= " $adtitle";
+        $body.= "\n\n";
+        $body.= __( "Posted:", "AWPCP" );
+        $body.= " $adstartdate";
+        $body.= "\n\n";
 
-            $body = $bodybase;
-            $body.= "\n\n";
-            $body.= __("Listing Details", "AWPCP");
-            $body.= "\n\n";
-            $body.= __("Ad Title:", "AWPCP");
-            $body.= " $adtitle";
-            $body.= "\n\n";
-            $body.= __("Posted:", "AWPCP");
-            $body.= " $adstartdate";
-            $body.= "\n\n";
-            $body.= __("Renew your ad by visiting:", "AWPCP");
-            $body.= " " . awpcp_get_renew_ad_url($ad->ad_id);
-            $body.= "\n\n";
+        $body.= __( "Renew your ad by visiting:", "AWPCP" );
+        $body.= " " . awpcp_get_renew_ad_url( $ad->ad_id );
+        $body.= "\n\n";
 
-            awpcp_process_mail($admin_sender_email, $user_email, $subject, $body, $nameofsite, $admin_recipient_email);
-
-            if ( $notify_admin ) {
-                awpcp_process_mail($admin_sender_email, $admin_recipient_email, $subject, $body, $nameofsite, $admin_recipient_email);
+        if ( $notify_expiring ) {
+            $user_email = get_adposteremail( $ad->ad_id );
+            if ( ! empty( $user_email ) ) {
+                awpcp_process_mail( $admin_sender_email, $user_email, $subject, $body, $nameofsite, $admin_recipient_email );
             }
+        }
+
+        if ( $notify_admin ) {
+            awpcp_process_mail( $admin_sender_email, $admin_recipient_email, $subject, $body, $nameofsite, $admin_recipient_email );
         }
     }
 }
