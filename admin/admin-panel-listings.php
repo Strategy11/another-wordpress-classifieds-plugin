@@ -423,7 +423,7 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
             return false;
         }
 
-        if ( $term->ad_can_be_renewed( $ad ) ) {
+        if ( is_object( $term ) && $term->ad_can_be_renewed( $ad ) ) {
             $ad->renew();
             $ad->save();
 
