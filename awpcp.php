@@ -3,7 +3,7 @@
  Plugin Name: Another Wordpress Classifieds Plugin (AWPCP)
  Plugin URI: http://www.awpcp.com
  Description: AWPCP - A plugin that provides the ability to run a free or paid classified ads service on your wordpress blog. <strong>!!!IMPORTANT!!!</strong> Whether updating a previous installation of Another Wordpress Classifieds Plugin or installing Another Wordpress Classifieds Plugin for the first time, please backup your wordpress database before you install/uninstall/activate/deactivate/upgrade Another Wordpress Classifieds Plugin.
- Version: 3.2.3-dev-13
+ Version: 3.2.3-dev-14
  Author: D. Rodenbaugh
  License: GPLv2 or any later version
  Author URI: http://www.skylineconsult.com
@@ -315,17 +315,19 @@ class AWPCP {
 			add_filter( 'awpcp-should-generate-title', array( $yoast_wordpress_seo_plugin_integration, 'should_generate_title' ), 10, 2 );
 		}
 
+		// load resources always required
+		$facebook_cache_helper = awpcp_facebook_cache_helper();
+		add_action( 'awpcp-clear-ad-facebook-cache', array( $facebook_cache_helper, 'handle_clear_cache_event_hook' ), 10, 1 );
+
+		// load resources required both in front end and admin screens, but not during ajax calss.
 		if ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) {
-			// load resources required both in front end and admin screens.
 			$listing_payment_transaction_handler = awpcp_listing_payment_transaction_handler();
             add_action( 'awpcp-transaction-status-updated', array( $listing_payment_transaction_handler, 'transaction_status_updated' ), 10, 2 );
 			add_filter( 'awpcp-process-payment-transaction', array( $listing_payment_transaction_handler, 'process_payment_transaction' ) );
 
-			$facebook_cache_helper = awpcp_facebook_cache_helper();
 			add_action( 'awpcp-place-ad', array( $facebook_cache_helper, 'on_place_ad' ) );
 			add_action( 'awpcp_approve_ad', array( $facebook_cache_helper, 'on_approve_ad' ) );
 			add_action( 'awpcp_edit_ad', array( $facebook_cache_helper, 'on_edit_ad' ) );
-			add_action( 'awpcp-clear-ad-facebook-cache', array( $facebook_cache_helper, 'handle_clear_cache_event_hook' ), 10, 1 );
 		}
 
 		// Ad metadata integration.
@@ -528,7 +530,7 @@ class AWPCP {
 					'url' => 'http://www.awpcp.com/premium-modules/subscriptions-module/?ref=panel',
 					'installed' => defined( 'AWPCP_SUBSCRIPTIONS_MODULE' ),
 					'version' => 'AWPCP_SUBSCRIPTIONS_MODULE_DB_VERSION',
-					'required' => '3.2.6',
+					'required' => '3.2.7',
 				),
 				'xml-sitemap' => array(
 					'name' => __(  'XML Sitemap', 'AWPCP'  ),
