@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2014-05-08 18:00:33+00:00\n"
+"POT-Creation-Date: 2014-05-16 05:37:20+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -137,7 +137,7 @@ msgstr ""
 msgid "Categories"
 msgstr ""
 
-#: admin/admin-panel-fees-table.php:116 awpcp.php:487
+#: admin/admin-panel-fees-table.php:116 awpcp.php:478
 msgid "Featured Ads"
 msgstr ""
 
@@ -671,7 +671,7 @@ msgstr ""
 msgid "Manage Extra Fields"
 msgstr ""
 
-#: admin/admin-panel.php:267 awpcp.php:480
+#: admin/admin-panel.php:267 awpcp.php:471
 msgid "Extra Fields"
 msgstr ""
 
@@ -1992,91 +1992,91 @@ msgstr ""
 msgid "Manage Ad Listings"
 msgstr ""
 
-#: awpcp.php:406
+#: awpcp.php:397
 msgid "AWPCP"
 msgstr ""
 
-#: awpcp.php:428
+#: awpcp.php:419
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
 msgstr ""
 
-#: awpcp.php:429
+#: awpcp.php:420
 msgid "Warning"
 msgstr ""
 
-#: awpcp.php:445
+#: awpcp.php:436
 msgid "Attachments"
 msgstr ""
 
-#: awpcp.php:452
+#: awpcp.php:443
 msgid "Authorize.Net"
 msgstr ""
 
-#: awpcp.php:459
+#: awpcp.php:450
 msgid "Category Icons"
 msgstr ""
 
-#: awpcp.php:466
+#: awpcp.php:457
 msgid "Comments & Ratings"
 msgstr ""
 
-#: awpcp.php:473
+#: awpcp.php:464
 msgid "Coupons/Discount"
 msgstr ""
 
-#: awpcp.php:494
+#: awpcp.php:485
 msgid "Fee per Category"
 msgstr ""
 
-#: awpcp.php:501
+#: awpcp.php:492
 msgid "Google Checkout"
 msgstr ""
 
-#: awpcp.php:508
+#: awpcp.php:499
 msgid "PayPal Pro"
 msgstr ""
 
-#: awpcp.php:515
+#: awpcp.php:506
 msgid "Regions Control"
 msgstr ""
 
-#: awpcp.php:522
+#: awpcp.php:513
 msgid "RSS"
 msgstr ""
 
-#: awpcp.php:529
+#: awpcp.php:520
 msgid "Subscriptions"
 msgstr ""
 
-#: awpcp.php:536
+#: awpcp.php:527
 msgid "XML Sitemap"
 msgstr ""
 
-#: awpcp.php:583
+#: awpcp.php:574
 msgid ""
 "The %1$s module you have installed is outdated and not compatible with this "
 "version of AWPCP. Please get %1$s %2$s or newer."
 msgstr ""
 
-#: awpcp.php:711
+#: awpcp.php:702
 msgid "This field is required."
 msgstr ""
 
-#: awpcp.php:712 frontend/page-edit-ad.php:111 frontend/page-edit-ad.php:378
+#: awpcp.php:703 frontend/page-edit-ad.php:111 frontend/page-edit-ad.php:378
 msgid "Please enter a valid email address."
 msgstr ""
 
-#: awpcp.php:713
+#: awpcp.php:704
 msgid "Please enter a valid URL."
 msgstr ""
 
-#: awpcp.php:714
+#: awpcp.php:705
 msgid "Please enter a valid number."
 msgstr ""
 
-#: awpcp.php:715
+#: awpcp.php:706
 msgid "Please enter a valid amount."
 msgstr ""
 
@@ -3907,6 +3907,10 @@ msgstr ""
 msgid "less than 1"
 msgstr ""
 
+#: includes/compatibility/class-content-aware-sidebars-listings-categories-module.php:22
+msgid "Categories (AWPCP)"
+msgstr ""
+
 #: includes/credit-plan.php:95 includes/payment-term.php:121
 msgid "The name of the plan is required."
 msgstr ""
@@ -4133,24 +4137,24 @@ msgctxt "ad payment status"
 msgid "Unpaid"
 msgstr ""
 
-#: includes/models/category.php:134 includes/models/category.php:207
+#: includes/models/category.php:140 includes/models/category.php:213
 msgid "There was an error trying to save the category to the database."
 msgstr ""
 
-#: includes/models/category.php:147
+#: includes/models/category.php:153
 msgid "The name of the Category is required."
 msgstr ""
 
-#: includes/models/category.php:150
+#: includes/models/category.php:156
 msgid ""
 "The ID of the parent category and the ID of the category must be different."
 msgstr ""
 
-#: includes/models/category.php:192
+#: includes/models/category.php:198
 msgid "There was an error trying to retrieve existing category information."
 msgstr ""
 
-#: includes/models/category.php:222
+#: includes/models/category.php:228
 msgid ""
 "There was an error trying to update category parent information in Ads table."
 msgstr ""
