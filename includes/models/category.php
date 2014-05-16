@@ -240,4 +240,8 @@ class AWPCP_CategoriesCollection {
     public function get_all() {
         return AWPCP_Category::find();
     }
+
+    public function find( $args = array() ) {
+        return AWPCP_Category::find( $args );
+    }
 }

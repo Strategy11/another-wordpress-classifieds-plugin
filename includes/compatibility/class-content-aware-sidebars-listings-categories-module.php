@@ -2,23 +2,21 @@
 
 define( 'AWPCP_CAS_LISTINGS_CATEGORIES_MODULE', 'awpcp_listings_categories' );
 
-function awpcp_register_content_aware_sidebars_listings_categories_module( $modules ) {
-    if ( class_exists( 'AWPCP_ContentAwareSidebarsListingsCategoriesModule' ) ) {
-        $modules[ AWPCP_CAS_LISTINGS_CATEGORIES_MODULE ] = 'AWPCP_ContentAwareSidebarsListingsCategoriesModule';
-    }
+if ( class_exists( 'CASModule' ) ) {
 
+function awpcp_register_content_aware_sidebars_listings_categories_module( $modules ) {
+    $modules[ AWPCP_CAS_LISTINGS_CATEGORIES_MODULE ] = 'AWPCP_ContentAwareSidebarsListingsCategoriesModule';
     return $modules;
 }
-
-if ( class_exists( 'CASModule' ) ) {
 
 class AWPCP_ContentAwareSidebarsListingsCategoriesModule extends CASModule {
 
     private $categories;
     private $listings;
+    private $walker;
     private $request;
 
-    public function __construct( $categories = null, $listings = null, $request = null ) {
+    public function __construct( $categories = null, $listings = null, $walker = null, $request = null ) {
         parent::__construct( AWPCP_CAS_LISTINGS_CATEGORIES_MODULE, __( 'Categories (AWPCP)', 'AWPCP' ) );
 
         if ( is_null( $categories ) ) {
@@ -33,6 +31,12 @@ class AWPCP_ContentAwareSidebarsListingsCategoriesModule extends CASModule {
             $this->listings = $listings;
         }
 
+        if ( is_null( $walker ) ) {
+            $this->walker = awpcp_content_aware_sidebars_categories_walker( $this->id );
+        } else {
+            $this->walker = $walker;
+        }
+
         if ( is_null( $request ) ) {
             $this->request = awpcp_request();
         } else {
@@ -41,14 +45,26 @@ class AWPCP_ContentAwareSidebarsListingsCategoriesModule extends CASModule {
     }
 
     protected function _get_content( $args = array() ) {
-        $all_categories = $this->categories->get_all();
+        $categories = $this->get_categories( $args );
 
         $control_items = array();
-        foreach ( $all_categories as $category ) {
+        foreach ( $categories as $category ) {
             $control_items[ $category->id ] = $category->name;
         }
 
         return $control_items;
+    }
+
+    private function get_categories( $args = array() ) {
+        $args = wp_parse_args( $args, array( 'include' => '' ) );
+
+        if ( empty( $args['include'] ) ) {
+            $categories = $this->categories->get_all();
+        } else {
+            $categories = $this->categories->find( array( 'id' => $args['include'] ) );
+        }
+
+        return $categories;
     }
 
     public function in_context() {
@@ -73,6 +89,37 @@ class AWPCP_ContentAwareSidebarsListingsCategoriesModule extends CASModule {
         }
 
         return array();
+    }
+
+    public function meta_box_content() {
+        $categories = $this->get_categories();
+
+        if ( empty( $categories ) ) {
+            return;
+        }
+
+        echo '<li class="control-section accordion-section">';
+        echo '<h3 class="accordion-section-title title="' . $this->name . '" tabindex="0">' . $this->name . '</h3>';
+        echo '<div class="accordion-section-content cas-rule-content" data-cas-module="' . $this->id . '" id="cas-' . $this->id . '">';
+
+        $tabs = array(
+            'all' => array(
+                'title' => __( 'View All' ),
+                'status' => true,
+                'content' => $this->walker->walk( $categories, 0 ),
+            ),
+        );
+
+        echo $this->create_tab_panels( $this->id, $tabs );
+
+        echo '<p class="button-controls">';
+
+        echo '<span class="add-to-group"><input data-cas-condition="' . $this->id . '" data-cas-module="' . $this->id . '" type="button" name="cas-condition-add" class="js-cas-condition-add button" value="' . __('Add to Group', ContentAwareSidebars::DOMAIN ) . '"></span>';
+
+        echo '</p>';
+
+        echo '</div>';
+        echo '</li>';
     }
 }
 

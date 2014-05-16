@@ -30,8 +30,9 @@ class AWPCP_Compatibility {
     }
 
     private function load_content_aware_sidebars_integration() {
-        if ( class_exists( 'ContentAwareSidebars' ) ) {
+        if ( class_exists( 'ContentAwareSidebars' ) && class_exists( 'CASModule' ) && class_exists( 'CAS_Walker_Checklist' ) ) {
             require_once( AWPCP_DIR . '/includes/compatibility/class-content-aware-sidebars-listings-categories-module.php' );
+            require_once( AWPCP_DIR . '/includes/compatibility/class-content-aware-sidebars-categories-walker.php' );
             add_filter( 'cas-module-pre-deploy', 'awpcp_register_content_aware_sidebars_listings_categories_module' );
         }
     }
