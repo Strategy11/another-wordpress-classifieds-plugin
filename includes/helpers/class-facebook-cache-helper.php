@@ -11,11 +11,11 @@ class AWPCP_FacebookCacheHelper {
     }
 
     private function schedule_clear_cache_action( $ad ) {
-        wp_schedule_single_event( time() + 10, 'awpcp-clear-ad-facebook-cache', array( $ad->ad_id ) );
+        wp_schedule_single_event( time() + 10, 'awpcp-clear-ad-facebook-cache', array( $ad->ad_id, time() ) );
     }
 
     public function on_edit_ad( $ad ) {
-        wp_schedule_single_event( time() + 10, 'awpcp-clear-ad-facebook-cache', array( $ad->ad_id ) );
+        $this->schedule_clear_cache_action( $ad );
     }
 
     public function on_approve_ad( $ad ) {
@@ -59,11 +59,11 @@ class AWPCP_FacebookCacheHelper {
 
         $listing_info = json_decode( $response['body'] );
 
-        if ( $listing_info['type'] != 'article' ) {
+        if ( $listing_info->type != 'article' ) {
             return false;
-        } else if ( empty( $listing_info['title'] ) ) {
+        } else if ( empty( $listing_info->title ) ) {
             return false;
-        } else if ( ! isset( $listing_info['description'] ) ) {
+        } else if ( ! isset( $listing_info->description ) ) {
             return false;
         }
 

@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: AWPCP\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2014-05-08 18:00:33+00:00\n"
+"POT-Creation-Date: 2014-05-16 05:37:20+00:00\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: \n"
@@ -258,7 +258,7 @@ msgstr ""
 "Un nuevo usuario '%s' con dirección de correo electrónico '%s' y contraseña "
 "'% s' fue creado para la fila %d."
 
-#: awpcp.php:406
+#: awpcp.php:397
 msgid "AWPCP"
 msgstr "AWPCP"
 
@@ -457,7 +457,7 @@ msgstr ""
 "correctamente. Usted será redirigido a Facebook para iniciar sesión. AWPCP "
 "no almacena u obtiene información personal de su perfil."
 
-#: awpcp.php:428
+#: awpcp.php:419
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
@@ -966,11 +966,11 @@ msgctxt "csv-importer"
 msgid "Assign Ads to a user?"
 msgstr "Asignar anuncios a un usuario?"
 
-#: awpcp.php:445
+#: awpcp.php:436
 msgid "Attachments"
 msgstr "Adjuntos"
 
-#: awpcp.php:452
+#: awpcp.php:443
 msgid "Authorize.Net"
 msgstr "Authorize.Net"
 
@@ -1108,6 +1108,10 @@ msgstr "Tipo de Tarjeta"
 msgid "Categories"
 msgstr "Categorías"
 
+#: includes/compatibility/class-content-aware-sidebars-listings-categories-module.php:22
+msgid "Categories (AWPCP)"
+msgstr "Categorías (AWPCP)"
+
 #: admin/templates/admin-panel-listings-view.tpl.php:14
 msgid "Category"
 msgstr "Categoría"
@@ -1124,7 +1128,7 @@ msgstr "ID  de Categoría"
 msgid "Category ID must be valid for Ads to display."
 msgstr "El ID de la categoría debe ser válido para poder mostrar anuncios."
 
-#: awpcp.php:459
+#: awpcp.php:450
 msgid "Category Icons"
 msgstr "Íconos para Categorías"
 
@@ -1303,7 +1307,7 @@ msgstr "Cerrar, revisaré la configuration de mis Widgets."
 msgid "Collapse Categories"
 msgstr "Cerra categorías"
 
-#: awpcp.php:466
+#: awpcp.php:457
 msgid "Comments & Ratings"
 msgstr "Comentarios y Calificaciones"
 
@@ -1443,7 +1447,7 @@ msgstr "Distrito/Otro"
 msgid "Coupon/Discount Module"
 msgstr "Módulo de Cupones/Descuentos"
 
-#: awpcp.php:473
+#: awpcp.php:464
 msgid "Coupons/Discount"
 msgstr "Cupones/Descuentos"
 
@@ -1991,7 +1995,7 @@ msgstr ""
 "En la fila %d, el valor para el campo extra %s no está permitido. Los "
 "valores permitidos son: %s"
 
-#: admin/admin-panel.php:267 awpcp.php:480
+#: admin/admin-panel.php:267 awpcp.php:471
 msgid "Extra Fields"
 msgstr "Campos Extras"
 
@@ -2032,7 +2036,7 @@ msgstr "Página de Facebook"
 msgid "Featured"
 msgstr "Destacado"
 
-#: admin/admin-panel-fees-table.php:116 awpcp.php:487
+#: admin/admin-panel-fees-table.php:116 awpcp.php:478
 msgid "Featured Ads"
 msgstr "Anuncios destacados"
 
@@ -2057,7 +2061,7 @@ msgstr "Dirección del orden de los Planes de Pago"
 msgid "Fee Plan sort order"
 msgstr "Orden de los Planes de Pago"
 
-#: awpcp.php:494
+#: awpcp.php:485
 msgid "Fee per Category"
 msgstr "Precio por Categoría"
 
@@ -2214,7 +2218,7 @@ msgstr "Ir a la página siguiente"
 msgid "Go to the previous page"
 msgstr "Ir a la página anterior"
 
-#: awpcp.php:501
+#: awpcp.php:492
 msgid "Google Checkout"
 msgstr "Google Checkout"
 
@@ -3609,7 +3613,7 @@ msgctxt "debug page"
 msgid "PayPal Connection"
 msgstr "Conexión PayPal"
 
-#: awpcp.php:508
+#: awpcp.php:499
 msgid "PayPal Pro"
 msgstr "PayPal Pro"
 
@@ -3804,19 +3808,19 @@ msgstr ""
 msgid "Please enter a start date for the Ad."
 msgstr "Por favor ingrese una fecha de inicio para el anuncio."
 
-#: awpcp.php:713
+#: awpcp.php:704
 msgid "Please enter a valid URL."
 msgstr "Por favor ingrese una URL válida."
 
-#: awpcp.php:715
+#: awpcp.php:706
 msgid "Please enter a valid amount."
 msgstr "Por favor ingresa una cantidad válida."
 
-#: awpcp.php:712 frontend/page-edit-ad.php:111 frontend/page-edit-ad.php:378
+#: awpcp.php:703 frontend/page-edit-ad.php:111 frontend/page-edit-ad.php:378
 msgid "Please enter a valid email address."
 msgstr "Por favor ingrese una dirección de correo electrónico válida."
 
-#: awpcp.php:714
+#: awpcp.php:705
 msgid "Please enter a valid number."
 msgstr "Por favor ingrese un número."
 
@@ -4059,7 +4063,7 @@ msgstr "Configurar las pasarelas de pago en modo prueba?"
 msgid "Quick Start Guide"
 msgstr "Guía de incio rápido"
 
-#: awpcp.php:522
+#: awpcp.php:513
 msgid "RSS"
 msgstr "RSS"
 
@@ -4089,7 +4093,7 @@ msgstr "Lea la %s completa."
 msgid "Reference"
 msgstr "Referencia"
 
-#: awpcp.php:515
+#: awpcp.php:506
 msgid "Regions Control"
 msgstr "Control de Regiones"
 
@@ -4906,7 +4910,7 @@ msgid ""
 msgstr ""
 "Asunto para el mensaje enviado cuando el proceso de un pago no se completa"
 
-#: awpcp.php:529
+#: awpcp.php:520
 msgid "Subscriptions"
 msgstr "Suscripciones"
 
@@ -5006,7 +5010,7 @@ msgstr ""
 msgid "Thank you for your business"
 msgstr "Gracias por tu operación"
 
-#: awpcp.php:583
+#: awpcp.php:574
 msgid ""
 "The %1$s module you have installed is outdated and not compatible with this "
 "version of AWPCP. Please get %1$s %2$s or newer."
@@ -5166,7 +5170,7 @@ msgstr "El plan de pago ha sido eliminado exitosamente."
 msgid "The First Name is required."
 msgstr "El primer nombre es necesario."
 
-#: includes/models/category.php:150
+#: includes/models/category.php:156
 msgid ""
 "The ID of the parent category and the ID of the category must be different."
 msgstr ""
@@ -5546,7 +5550,7 @@ msgstr ""
 "La categoría a la que se van a mover se aplica tanto para los avisos como "
 "para las categorías"
 
-#: includes/models/category.php:147
+#: includes/models/category.php:153
 msgid "The name of the Category is required."
 msgstr "El nombre de la categoría es necesario."
 
@@ -5973,13 +5977,13 @@ msgstr ""
 "Ocurrió un error tratando de renovar su anuncio. La URL no es válida. Por "
 "favor contacte el administrador de este sitio por más ayuda."
 
-#: includes/models/category.php:192
+#: includes/models/category.php:198
 msgid "There was an error trying to retrieve existing category information."
 msgstr ""
 "Ocurrió un error tratando de recuperar la información existente de la "
 "categoría."
 
-#: includes/models/category.php:134 includes/models/category.php:207
+#: includes/models/category.php:140 includes/models/category.php:213
 msgid "There was an error trying to save the category to the database."
 msgstr "Ocurrió un error tratando de guardar la categoría en la base de datos."
 
@@ -5992,7 +5996,7 @@ msgctxt "media manager"
 msgid "There was an error trying to set the image as the primary image."
 msgstr "Ocurrió un error tratando de asignar la imagen como imagen primaria."
 
-#: includes/models/category.php:222
+#: includes/models/category.php:228
 msgid ""
 "There was an error trying to update category parent information in Ads table."
 msgstr ""
@@ -6077,7 +6081,7 @@ msgstr ""
 "tener creada una Aplicación de Facebook para usar esta característica. Lea "
 "<a>Cómo registrar y configurar una aplicación de Facebook (inglés)</a>."
 
-#: awpcp.php:711
+#: awpcp.php:702
 msgid "This field is required."
 msgstr "Este campo es obligatorio."
 
@@ -6591,7 +6595,7 @@ msgstr "Visitas (los más vistos primero, luego por título)"
 msgid "Visit Website"
 msgstr "Visitar el Sitio Web"
 
-#: awpcp.php:429
+#: awpcp.php:420
 msgid "Warning"
 msgstr "Adevertencia"
 
@@ -6718,7 +6722,7 @@ msgstr "Trabajando"
 msgid "Would you like some help getting started?"
 msgstr "¿Te gustaría un poco de ayuda para empezar?"
 
-#: awpcp.php:536
+#: awpcp.php:527
 msgid "XML Sitemap"
 msgstr "XML Sitemap"
 

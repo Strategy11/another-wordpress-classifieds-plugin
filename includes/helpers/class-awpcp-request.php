@@ -96,9 +96,9 @@ class AWPCP_Request {
     public function get_category_id() {
         $category_id = $this->param( 'category_id', 0 );
         if ( empty( $category_id ) ) {
-            return $this->get_query_var( 'cid' );
+            return intval( $this->get_query_var( 'cid' ) );
         } else {
-            return $category_id;
+            return intval( $category_id );
         }
     }
 

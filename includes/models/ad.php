@@ -688,7 +688,8 @@ class AWPCP_Ad {
 	 * @since 3.0
 	 */
 	function get_characters_allowed_in_title() {
-		return $this->get_payment_term()->get_characters_allowed_in_title();
+        $term = $this->get_payment_term();
+		return is_object( $term ) ? $term->get_characters_allowed_in_title() : 0;
 	}
 
 	/**
@@ -704,7 +705,8 @@ class AWPCP_Ad {
 	 * @since 2.1.2
 	 */
 	function get_characters_allowed() {
-		return $this->get_payment_term()->get_characters_allowed();
+        $term = $this->get_payment_term();
+		return is_object( $term ) ? $term->get_characters_allowed() : 0;
 	}
 
 	function get_remaining_characters_count() {
@@ -715,7 +717,8 @@ class AWPCP_Ad {
 	 * @since 3.0.2
 	 */
 	function get_regions_allowed() {
-		return $this->get_payment_term()->get_regions_allowed();
+        $term = $this->get_payment_term();
+		return is_object( $term ) ? $term->get_regions_allowed() : 0;
 	}
 
 	private function set_disabled_status($disabled) {
