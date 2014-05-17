@@ -14,7 +14,7 @@ function awpcp_schedule_activation() {
     add_action('doadcleanup_hook', 'doadcleanup');
     add_action('awpcp_ad_renewal_email_hook', 'awpcp_ad_renewal_email');
     add_action('awpcp-clean-up-payment-transactions', 'awpcp_clean_up_payment_transactions');
-    add_action( 'awpcp-clean-up-payment-transactions', 'awpcp_clean_up_non_verified_ads' );
+    add_action( 'awpcp-clean-up-payment-transactions', 'awpcp_clean_up_non_verified_ads_handler' );
 
     if (!wp_next_scheduled('doadexpirations_hook')) {
         wp_schedule_event( time(), 'hourly', 'doadexpirations_hook' );
@@ -221,6 +221,12 @@ function awpcp_clean_up_payment_transactions() {
     }
 }
 
+/**
+ * @since next-release
+ */
+function awpcp_clean_up_non_verified_ads_handler() {
+    return awpcp_clean_up_non_verified_ads( awpcp_listings_api() );
+}
 
 /**
  * @since 3.0.2
@@ -254,8 +260,4 @@ function awpcp_clean_up_non_verified_ads( /* AWPCP_ListingsAPI */ $listings ) {
             $listings->send_verification_email( $ad );
         }
     }
-}
-
-function awpcp_clean_up_non_verified_ads_handler() {
-    return awpcp_clean_up_non_verified_ads( awpcp_listings_api() );
 }
