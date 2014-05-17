@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2014-05-16 05:37:20+00:00\n"
+"POT-Creation-Date: 2014-05-16 23:30:00+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -3699,7 +3699,6 @@ msgid "Classifieds Website"
 msgstr ""
 
 #: functions.php:1945
-msgctxt "AWPCP"
 msgid ""
 "The images or files with pale red background have been rejected by an "
 "administrator user. Likewise, files with a pale yellow background are "
@@ -3907,8 +3906,16 @@ msgstr ""
 msgid "less than 1"
 msgstr ""
 
-#: includes/compatibility/class-content-aware-sidebars-listings-categories-module.php:22
+#: includes/compatibility/class-content-aware-sidebars-listings-categories-module.php:20
 msgid "Categories (AWPCP)"
+msgstr ""
+
+#: includes/compatibility/class-content-aware-sidebars-listings-categories-module.php:107
+msgid "View All"
+msgstr ""
+
+#: includes/compatibility/class-content-aware-sidebars-listings-categories-module.php:117
+msgid "Add to Group"
 msgstr ""
 
 #: includes/credit-plan.php:95 includes/payment-term.php:121

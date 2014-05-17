@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: AWPCP\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2014-05-16 05:37:20+00:00\n"
+"POT-Creation-Date: 2014-05-16 23:30:00+00:00\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: \n"
@@ -678,6 +678,10 @@ msgstr "Agregar una Nueva Categoría"
 msgid "Add no follow to links in Ads"
 msgstr "Agregar nofollow a los enlaces en los anuncios"
 
+#: includes/compatibility/class-content-aware-sidebars-listings-categories-module.php:117
+msgid "Add to Group"
+msgstr "Agregar al Grupo"
+
 #: admin/admin-panel.php:256
 msgid "Add/Edit Categories"
 msgstr "Agregar/Editar Categorías"
@@ -1108,7 +1112,7 @@ msgstr "Tipo de Tarjeta"
 msgid "Categories"
 msgstr "Categorías"
 
-#: includes/compatibility/class-content-aware-sidebars-listings-categories-module.php:22
+#: includes/compatibility/class-content-aware-sidebars-listings-categories-module.php:20
 msgid "Categories (AWPCP)"
 msgstr "Categorías (AWPCP)"
 
@@ -5528,7 +5532,6 @@ msgid "The image has been set as primary image."
 msgstr "La imagen ha sido asignada como imagen primaria."
 
 #: functions.php:1945
-msgctxt "AWPCP"
 msgid ""
 "The images or files with pale red background have been rejected by an "
 "administrator user. Likewise, files with a pale yellow background are "
@@ -6564,12 +6567,16 @@ msgstr ""
 
 #: admin/admin-panel-listings.php:86
 msgid "View"
-msgstr "Ver Imágenes"
+msgstr "Ver"
 
 #: admin/admin-panel-listings-table.php:326
 #: admin/admin-panel-listings-table.php:329
 msgid "View Ad."
 msgstr "Ver anuncio."
+
+#: includes/compatibility/class-content-aware-sidebars-listings-categories-module.php:107
+msgid "View All"
+msgstr "Ver todos"
 
 #: includes/settings-api.php:154
 msgid "View Categories page"
@@ -7665,9 +7672,6 @@ msgstr "viste los foros!"
 
 #~ msgid "Ad/Listings settings page"
 #~ msgstr "Página de Configuración de los Anuncios"
-
-#~ msgid "Add Coupon"
-#~ msgstr "Agregar coupon"
 
 #~ msgid "Add Files"
 #~ msgstr "Agregar archivos"
@@ -9407,10 +9411,6 @@ msgstr "viste los foros!"
 
 #~ msgid "Validation"
 #~ msgstr "Validaciones"
-
-#~ msgctxt "comments table"
-#~ msgid "View Ad"
-#~ msgstr "Ver anuncio"
 
 #~ msgid "View Current Fields"
 #~ msgstr "Ver Campos Actuales"
