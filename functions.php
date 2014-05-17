@@ -1942,7 +1942,7 @@ function awpcp_form_error($field, $errors) {
 
 function awpcp_attachment_background_color_explanation() {
 	if ( get_awpcp_option( 'imagesapprove' ) ) {
-		return '<p>' . _x( 'The images or files with pale red background have been rejected by an administrator user. Likewise, files with a pale yellow background are awaiting approval. Files that are awaiting approval and rejected files, cannot be shown in the frontend.', 'AWPCP' ) . '</p>';
+		return '<p>' . __( 'The images or files with pale red background have been rejected by an administrator user. Likewise, files with a pale yellow background are awaiting approval. Files that are awaiting approval and rejected files, cannot be shown in the frontend.', 'AWPCP' ) . '</p>';
 	} else {
 		return '';
 	}
