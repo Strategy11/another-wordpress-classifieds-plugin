@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: AWPCP\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2014-05-16 23:30:00+00:00\n"
+"POT-Creation-Date: 2014-05-20 22:26:02+00:00\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: \n"
@@ -39,39 +39,39 @@ msgid_plural "%d Ads were disabled"
 msgstr[0] "%d anuncio ha sido deshabitado"
 msgstr[1] "%d anuncios fueron deshabilitados"
 
-#: admin/admin-panel-listings.php:442
+#: includes/views/admin/listings/class-renew-listings-admin-page.php:81
 msgid "%d Ad was renewed"
 msgid_plural "%d Ads were renewed"
 msgstr[0] "%d anuncio fue renovado"
 msgstr[1] "%d anuncios fueron renovados"
 
-#: admin/admin-panel-listings.php:482
+#: admin/admin-panel-listings.php:450
 msgid "%d Ad was set as fatured"
 msgid_plural "%d Ads were set as featured"
 msgstr[0] "%d anuncio fue marcado como destacado"
 msgstr[1] "%d anuncios fueron marcado como destacados"
 
-#: admin/admin-panel-listings.php:502
+#: admin/admin-panel-listings.php:470
 msgid "%d Ad was set as non-fatured"
 msgid_plural "%d Ads were set as non-featured"
 msgstr[0] "%d anuncio fue marcado como no destacado"
 msgstr[1] "%d anuncios fueron marcados como no destacados"
 
-#: admin/admin-panel-listings.php:462
+#: admin/admin-panel-listings.php:430
 msgid "%d Ad were marked as SPAM and removed"
 msgid_plural "%d Ads were marked as SPAM and removed"
 msgstr[0] "%d anuncio fue marcado como SPAM y eliminado"
 msgstr[1] "%d anuncios fueron marcados como SPAM y eliminados"
 
-#: admin/admin-panel-listings.php:584
+#: admin/admin-panel-listings.php:552
 msgid "%d of %d Ads were deleted."
 msgstr "%d de %d anuncios fueron eliminados."
 
-#: admin/admin-panel-listings.php:582
+#: admin/admin-panel-listings.php:550
 msgid "%d of %d Ads were deleted. %d generated errors."
 msgstr "%d de %d anuncios fueron eliminados. %d generaron errores."
 
-#: admin/admin-panel-listings.php:655 admin/admin-panel-listings.php:657
+#: admin/admin-panel-listings.php:623 admin/admin-panel-listings.php:625
 msgid "%d of %d Ads were sent to Facebook. %d generated errors."
 msgstr "%d de %d anuncios fueron enviados en Facebook. %d generaron errores."
 
@@ -95,6 +95,7 @@ msgid "%s and %d more."
 msgstr "%s y %d más."
 
 #: admin/admin-panel-listings.php:330
+#: includes/views/admin/listings/class-renew-listings-admin-page.php:85
 msgctxt "Listing bulk operations: <message-ok> and <message-error>."
 msgid "%s and %s."
 msgstr "%s y %s."
@@ -258,7 +259,7 @@ msgstr ""
 "Un nuevo usuario '%s' con dirección de correo electrónico '%s' y contraseña "
 "'% s' fue creado para la fila %d."
 
-#: awpcp.php:397
+#: awpcp.php:398
 msgid "AWPCP"
 msgstr "AWPCP"
 
@@ -396,7 +397,7 @@ msgstr "Configuración AWPCP"
 msgid "AWPCP Support Website"
 msgstr "sitio soporte de AWPCP"
 
-#: admin/admin-panel-listings.php:644
+#: admin/admin-panel-listings.php:612
 msgid ""
 "AWPCP cannot post to Facebook. Perhaps your credentials are invalid or have "
 "expired. Please check your <a>settings</a>. If your token expired, please "
@@ -408,7 +409,7 @@ msgstr ""
 "por favor intente obtener un token de acceso nuevo, usando el link en el "
 "paso 2 de la configuración."
 
-#: admin/admin-panel-listings.php:649
+#: admin/admin-panel-listings.php:617
 msgid ""
 "AWPCP cannot post to Facebook. The API returned the following error: %s. "
 "Perhaps your credentials are invalid or have expired. Please check your "
@@ -457,7 +458,7 @@ msgstr ""
 "correctamente. Usted será redirigido a Facebook para iniciar sesión. AWPCP "
 "no almacena u obtiene información personal de su perfil."
 
-#: awpcp.php:419
+#: awpcp.php:420
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
@@ -970,11 +971,11 @@ msgctxt "csv-importer"
 msgid "Assign Ads to a user?"
 msgstr "Asignar anuncios a un usuario?"
 
-#: awpcp.php:436
+#: awpcp.php:437
 msgid "Attachments"
 msgstr "Adjuntos"
 
-#: awpcp.php:443
+#: awpcp.php:444
 msgid "Authorize.Net"
 msgstr "Authorize.Net"
 
@@ -1132,7 +1133,7 @@ msgstr "ID  de Categoría"
 msgid "Category ID must be valid for Ads to display."
 msgstr "El ID de la categoría debe ser válido para poder mostrar anuncios."
 
-#: awpcp.php:450
+#: awpcp.php:451
 msgid "Category Icons"
 msgstr "Íconos para Categorías"
 
@@ -1311,7 +1312,7 @@ msgstr "Cerrar, revisaré la configuration de mis Widgets."
 msgid "Collapse Categories"
 msgstr "Cerra categorías"
 
-#: awpcp.php:457
+#: awpcp.php:458
 msgid "Comments & Ratings"
 msgstr "Comentarios y Calificaciones"
 
@@ -1451,7 +1452,7 @@ msgstr "Distrito/Otro"
 msgid "Coupon/Discount Module"
 msgstr "Módulo de Cupones/Descuentos"
 
-#: awpcp.php:464
+#: awpcp.php:465
 msgid "Coupons/Discount"
 msgstr "Cupones/Descuentos"
 
@@ -1999,7 +2000,7 @@ msgstr ""
 "En la fila %d, el valor para el campo extra %s no está permitido. Los "
 "valores permitidos son: %s"
 
-#: admin/admin-panel.php:267 awpcp.php:471
+#: admin/admin-panel.php:267 awpcp.php:472
 msgid "Extra Fields"
 msgstr "Campos Extras"
 
@@ -2040,7 +2041,7 @@ msgstr "Página de Facebook"
 msgid "Featured"
 msgstr "Destacado"
 
-#: admin/admin-panel-fees-table.php:116 awpcp.php:478
+#: admin/admin-panel-fees-table.php:116 awpcp.php:479
 msgid "Featured Ads"
 msgstr "Anuncios destacados"
 
@@ -2065,7 +2066,7 @@ msgstr "Dirección del orden de los Planes de Pago"
 msgid "Fee Plan sort order"
 msgstr "Orden de los Planes de Pago"
 
-#: awpcp.php:485
+#: awpcp.php:486
 msgid "Fee per Category"
 msgstr "Precio por Categoría"
 
@@ -2222,7 +2223,7 @@ msgstr "Ir a la página siguiente"
 msgid "Go to the previous page"
 msgstr "Ir a la página anterior"
 
-#: awpcp.php:492
+#: awpcp.php:493
 msgid "Google Checkout"
 msgstr "Google Checkout"
 
@@ -3272,6 +3273,10 @@ msgstr "No"
 msgid "No Ad ID was specified."
 msgstr "No se proporcione el ID de un anuncio."
 
+#: includes/views/admin/listings/class-renew-listings-admin-page.php:79
+msgid "No Ads were selected"
+msgstr "No seleccionó anuncios"
+
 #: admin/admin-panel-listings.php:324
 msgid "No Ads were selected."
 msgstr "No seleccionó anuncios."
@@ -3617,7 +3622,7 @@ msgctxt "debug page"
 msgid "PayPal Connection"
 msgstr "Conexión PayPal"
 
-#: awpcp.php:499
+#: awpcp.php:500
 msgid "PayPal Pro"
 msgstr "PayPal Pro"
 
@@ -3812,19 +3817,19 @@ msgstr ""
 msgid "Please enter a start date for the Ad."
 msgstr "Por favor ingrese una fecha de inicio para el anuncio."
 
-#: awpcp.php:704
+#: awpcp.php:705
 msgid "Please enter a valid URL."
 msgstr "Por favor ingrese una URL válida."
 
-#: awpcp.php:706
+#: awpcp.php:707
 msgid "Please enter a valid amount."
 msgstr "Por favor ingresa una cantidad válida."
 
-#: awpcp.php:703 frontend/page-edit-ad.php:111 frontend/page-edit-ad.php:378
+#: awpcp.php:704 frontend/page-edit-ad.php:111 frontend/page-edit-ad.php:378
 msgid "Please enter a valid email address."
 msgstr "Por favor ingrese una dirección de correo electrónico válida."
 
-#: awpcp.php:705
+#: awpcp.php:706
 msgid "Please enter a valid number."
 msgstr "Por favor ingrese un número."
 
@@ -4067,7 +4072,7 @@ msgstr "Configurar las pasarelas de pago en modo prueba?"
 msgid "Quick Start Guide"
 msgstr "Guía de incio rápido"
 
-#: awpcp.php:513
+#: awpcp.php:514
 msgid "RSS"
 msgstr "RSS"
 
@@ -4097,7 +4102,7 @@ msgstr "Lea la %s completa."
 msgid "Reference"
 msgstr "Referencia"
 
-#: awpcp.php:506
+#: awpcp.php:507
 msgid "Regions Control"
 msgstr "Control de Regiones"
 
@@ -4914,7 +4919,7 @@ msgid ""
 msgstr ""
 "Asunto para el mensaje enviado cuando el proceso de un pago no se completa"
 
-#: awpcp.php:520
+#: awpcp.php:521
 msgid "Subscriptions"
 msgstr "Suscripciones"
 
@@ -5014,7 +5019,7 @@ msgstr ""
 msgid "Thank you for your business"
 msgstr "Gracias por tu operación"
 
-#: awpcp.php:574
+#: awpcp.php:575
 msgid ""
 "The %1$s module you have installed is outdated and not compatible with this "
 "version of AWPCP. Please get %1$s %2$s or newer."
@@ -5064,6 +5069,10 @@ msgstr "Su anuncio fue renovado. La nueva fecha de expiración es %s."
 #: admin/admin-panel-listings.php:393
 msgid "The Ad has been unflagged."
 msgstr "El anuncio ha sido marcado como no reportado."
+
+#: includes/views/admin/listings/class-renew-listings-admin-page.php:54
+msgid "The Ad hasn't expired yet and is not about to expire."
+msgstr "El anuncio no ha expirado aún y no está a punto de expirar."
 
 #: admin/admin-panel-listings.php:403
 msgid "The Ad was marked as verified."
@@ -5214,7 +5223,7 @@ msgstr "El código postal es necesario."
 msgid "The State is required."
 msgstr "El estado es necesario."
 
-#: admin/admin-panel-listings.php:535
+#: admin/admin-panel-listings.php:503
 msgid "The access key was sent to %s."
 msgstr "La clave de acceso fue enviada a %s."
 
@@ -5710,7 +5719,7 @@ msgstr ""
 msgid "The specified Ad doesn't exists."
 msgstr "El Anuncio especificado no existe."
 
-#: admin/admin-panel-listings.php:685
+#: admin/admin-panel-listings.php:653
 msgctxt "ajax delete ad"
 msgid "The specified Ad doesn't exists."
 msgstr "El Anuncio especificado no existe."
@@ -5972,6 +5981,10 @@ msgctxt "media manager"
 msgid "There was an error trying to reject the file."
 msgstr "Ocurrió un error tratando de rechazar el archivo."
 
+#: includes/views/admin/listings/class-renew-listings-admin-page.php:44
+msgid "There was an error trying to renew Ad %s."
+msgstr "Ocurrió un error tratando de renovar %d anuncios."
+
 #: frontend/page-renew-ad.php:49
 msgid ""
 "There was an error trying to renew your Ad. The URL is not valid. Please "
@@ -5990,7 +6003,7 @@ msgstr ""
 msgid "There was an error trying to save the category to the database."
 msgstr "Ocurrió un error tratando de guardar la categoría en la base de datos."
 
-#: admin/admin-panel-listings.php:537 frontend/page-edit-ad.php:431
+#: admin/admin-panel-listings.php:505 frontend/page-edit-ad.php:431
 msgid "There was an error trying to send the email to %s."
 msgstr "Ocurrió un error tratando de enviar el correo electrónico a %s."
 
@@ -6084,7 +6097,7 @@ msgstr ""
 "tener creada una Aplicación de Facebook para usar esta característica. Lea "
 "<a>Cómo registrar y configurar una aplicación de Facebook (inglés)</a>."
 
-#: awpcp.php:702
+#: awpcp.php:703
 msgid "This field is required."
 msgstr "Este campo es obligatorio."
 
@@ -6602,7 +6615,7 @@ msgstr "Visitas (los más vistos primero, luego por título)"
 msgid "Visit Website"
 msgstr "Visitar el Sitio Web"
 
-#: awpcp.php:420
+#: awpcp.php:421
 msgid "Warning"
 msgstr "Adevertencia"
 
@@ -6629,6 +6642,11 @@ msgstr ""
 "mensaje después de haber realizado un pago, por favor comuniquese con el "
 "administrador. Si por el contrario no trató de hacer un pago y esta viendo "
 "este mensaje, significa que se está mostrando por error y puede descartarlo."
+
+#: includes/views/admin/listings/class-renew-listings-admin-page.php:60
+msgid "We couldn't find a valid payment term associated with this Ad."
+msgstr ""
+"No pudimos encontrar un término de pago válido asociado con este anuncio."
 
 #: frontend/page-place-ad.php:645
 msgid ""
@@ -6729,7 +6747,7 @@ msgstr "Trabajando"
 msgid "Would you like some help getting started?"
 msgstr "¿Te gustaría un poco de ayuda para empezar?"
 
-#: awpcp.php:527
+#: awpcp.php:528
 msgid "XML Sitemap"
 msgstr "XML Sitemap"
 
@@ -7495,19 +7513,19 @@ msgstr "ocurrió un error tratando de deshabilitar %d anuncios"
 msgid "there was an error trying to enable %d Ads"
 msgstr "ocurrió un error tratando de aprobar %d anuncios"
 
-#: admin/admin-panel-listings.php:466
+#: admin/admin-panel-listings.php:434
 msgid "there was an error trying to mark %d Ad as SPAM"
 msgstr "ocurrió un error tratando de marcar %d anuncio como SPAM"
 
-#: admin/admin-panel-listings.php:446
+#: includes/views/admin/listings/class-renew-listings-admin-page.php:82
 msgid "there was an error trying to renew %d Ads"
 msgstr "ocurrió un error tratando de  aprobar %d anuncios"
 
-#: admin/admin-panel-listings.php:486
+#: admin/admin-panel-listings.php:454
 msgid "there was an error trying to set %d Ads as featured"
 msgstr "ocurrió un error tratando de marcar %d anuncios como destacado"
 
-#: admin/admin-panel-listings.php:506
+#: admin/admin-panel-listings.php:474
 msgid "there was an error trying to set %d Ads as non-featured"
 msgstr "ocurrió un error tratando de marcar %d anuncios como no destacado"
 

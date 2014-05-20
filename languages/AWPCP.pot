@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2014-05-16 23:30:00+00:00\n"
+"POT-Creation-Date: 2014-05-20 22:26:02+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -137,7 +137,7 @@ msgstr ""
 msgid "Categories"
 msgstr ""
 
-#: admin/admin-panel-fees-table.php:116 awpcp.php:478
+#: admin/admin-panel-fees-table.php:116 awpcp.php:479
 msgid "Featured Ads"
 msgstr ""
 
@@ -449,6 +449,7 @@ msgid "No Ads were selected."
 msgstr ""
 
 #: admin/admin-panel-listings.php:330
+#: includes/views/admin/listings/class-renew-listings-admin-page.php:85
 msgctxt "Listing bulk operations: <message-ok> and <message-error>."
 msgid "%s and %s."
 msgstr ""
@@ -485,63 +486,53 @@ msgstr ""
 msgid "The Ad has been marked as paid."
 msgstr ""
 
-#: admin/admin-panel-listings.php:442
-msgid "%d Ad was renewed"
-msgid_plural "%d Ads were renewed"
-msgstr[0] ""
-msgstr[1] ""
-
-#: admin/admin-panel-listings.php:446
-msgid "there was an error trying to renew %d Ads"
-msgstr ""
-
-#: admin/admin-panel-listings.php:462
+#: admin/admin-panel-listings.php:430
 msgid "%d Ad were marked as SPAM and removed"
 msgid_plural "%d Ads were marked as SPAM and removed"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/admin-panel-listings.php:466
+#: admin/admin-panel-listings.php:434
 msgid "there was an error trying to mark %d Ad as SPAM"
 msgstr ""
 
-#: admin/admin-panel-listings.php:482
+#: admin/admin-panel-listings.php:450
 msgid "%d Ad was set as fatured"
 msgid_plural "%d Ads were set as featured"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/admin-panel-listings.php:486
+#: admin/admin-panel-listings.php:454
 msgid "there was an error trying to set %d Ads as featured"
 msgstr ""
 
-#: admin/admin-panel-listings.php:502
+#: admin/admin-panel-listings.php:470
 msgid "%d Ad was set as non-fatured"
 msgid_plural "%d Ads were set as non-featured"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/admin-panel-listings.php:506
+#: admin/admin-panel-listings.php:474
 msgid "there was an error trying to set %d Ads as non-featured"
 msgstr ""
 
-#: admin/admin-panel-listings.php:535
+#: admin/admin-panel-listings.php:503
 msgid "The access key was sent to %s."
 msgstr ""
 
-#: admin/admin-panel-listings.php:537 frontend/page-edit-ad.php:431
+#: admin/admin-panel-listings.php:505 frontend/page-edit-ad.php:431
 msgid "There was an error trying to send the email to %s."
 msgstr ""
 
-#: admin/admin-panel-listings.php:582
+#: admin/admin-panel-listings.php:550
 msgid "%d of %d Ads were deleted. %d generated errors."
 msgstr ""
 
-#: admin/admin-panel-listings.php:584
+#: admin/admin-panel-listings.php:552
 msgid "%d of %d Ads were deleted."
 msgstr ""
 
-#: admin/admin-panel-listings.php:644
+#: admin/admin-panel-listings.php:612
 msgid ""
 "AWPCP cannot post to Facebook. Perhaps your credentials are invalid or have "
 "expired. Please check your <a>settings</a>. If your token expired, please "
@@ -549,7 +540,7 @@ msgid ""
 "settings."
 msgstr ""
 
-#: admin/admin-panel-listings.php:649
+#: admin/admin-panel-listings.php:617
 msgid ""
 "AWPCP cannot post to Facebook. The API returned the following error: %s. "
 "Perhaps your credentials are invalid or have expired. Please check your "
@@ -557,11 +548,11 @@ msgid ""
 "from Facebook using the link in step 2 of the settings."
 msgstr ""
 
-#: admin/admin-panel-listings.php:655 admin/admin-panel-listings.php:657
+#: admin/admin-panel-listings.php:623 admin/admin-panel-listings.php:625
 msgid "%d of %d Ads were sent to Facebook. %d generated errors."
 msgstr ""
 
-#: admin/admin-panel-listings.php:685
+#: admin/admin-panel-listings.php:653
 msgctxt "ajax delete ad"
 msgid "The specified Ad doesn't exists."
 msgstr ""
@@ -671,7 +662,7 @@ msgstr ""
 msgid "Manage Extra Fields"
 msgstr ""
 
-#: admin/admin-panel.php:267 awpcp.php:471
+#: admin/admin-panel.php:267 awpcp.php:472
 msgid "Extra Fields"
 msgstr ""
 
@@ -1992,91 +1983,91 @@ msgstr ""
 msgid "Manage Ad Listings"
 msgstr ""
 
-#: awpcp.php:397
+#: awpcp.php:398
 msgid "AWPCP"
 msgstr ""
 
-#: awpcp.php:419
+#: awpcp.php:420
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
 msgstr ""
 
-#: awpcp.php:420
+#: awpcp.php:421
 msgid "Warning"
 msgstr ""
 
-#: awpcp.php:436
+#: awpcp.php:437
 msgid "Attachments"
 msgstr ""
 
-#: awpcp.php:443
+#: awpcp.php:444
 msgid "Authorize.Net"
 msgstr ""
 
-#: awpcp.php:450
+#: awpcp.php:451
 msgid "Category Icons"
 msgstr ""
 
-#: awpcp.php:457
+#: awpcp.php:458
 msgid "Comments & Ratings"
 msgstr ""
 
-#: awpcp.php:464
+#: awpcp.php:465
 msgid "Coupons/Discount"
 msgstr ""
 
-#: awpcp.php:485
+#: awpcp.php:486
 msgid "Fee per Category"
 msgstr ""
 
-#: awpcp.php:492
+#: awpcp.php:493
 msgid "Google Checkout"
 msgstr ""
 
-#: awpcp.php:499
+#: awpcp.php:500
 msgid "PayPal Pro"
 msgstr ""
 
-#: awpcp.php:506
+#: awpcp.php:507
 msgid "Regions Control"
 msgstr ""
 
-#: awpcp.php:513
+#: awpcp.php:514
 msgid "RSS"
 msgstr ""
 
-#: awpcp.php:520
+#: awpcp.php:521
 msgid "Subscriptions"
 msgstr ""
 
-#: awpcp.php:527
+#: awpcp.php:528
 msgid "XML Sitemap"
 msgstr ""
 
-#: awpcp.php:574
+#: awpcp.php:575
 msgid ""
 "The %1$s module you have installed is outdated and not compatible with this "
 "version of AWPCP. Please get %1$s %2$s or newer."
 msgstr ""
 
-#: awpcp.php:702
+#: awpcp.php:703
 msgid "This field is required."
 msgstr ""
 
-#: awpcp.php:703 frontend/page-edit-ad.php:111 frontend/page-edit-ad.php:378
+#: awpcp.php:704 frontend/page-edit-ad.php:111 frontend/page-edit-ad.php:378
 msgid "Please enter a valid email address."
 msgstr ""
 
-#: awpcp.php:704
+#: awpcp.php:705
 msgid "Please enter a valid URL."
 msgstr ""
 
-#: awpcp.php:705
+#: awpcp.php:706
 msgid "Please enter a valid number."
 msgstr ""
 
-#: awpcp.php:706
+#: awpcp.php:707
 msgid "Please enter a valid amount."
 msgstr ""
 
@@ -6490,6 +6481,32 @@ msgid ""
 "You have payments enabled, but there are no payment terms defined. Users "
 "won't be able to post Ads. Please <fee-section-link>add payment terms</a> or "
 "<payments-settings-link>configure the website as a free board</a>."
+msgstr ""
+
+#: includes/views/admin/listings/class-renew-listings-admin-page.php:44
+msgid "There was an error trying to renew Ad %s."
+msgstr ""
+
+#: includes/views/admin/listings/class-renew-listings-admin-page.php:54
+msgid "The Ad hasn't expired yet and is not about to expire."
+msgstr ""
+
+#: includes/views/admin/listings/class-renew-listings-admin-page.php:60
+msgid "We couldn't find a valid payment term associated with this Ad."
+msgstr ""
+
+#: includes/views/admin/listings/class-renew-listings-admin-page.php:79
+msgid "No Ads were selected"
+msgstr ""
+
+#: includes/views/admin/listings/class-renew-listings-admin-page.php:81
+msgid "%d Ad was renewed"
+msgid_plural "%d Ads were renewed"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/views/admin/listings/class-renew-listings-admin-page.php:82
+msgid "there was an error trying to renew %d Ads"
 msgstr ""
 
 #: includes/views/class-base-page.php:79
