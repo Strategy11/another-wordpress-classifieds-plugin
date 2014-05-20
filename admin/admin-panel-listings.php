@@ -416,42 +416,10 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
         return $this->redirect('index');
     }
 
-    public function renew_ad_action($ad) {
-        $term = awpcp_payments_api()->get_ad_payment_term( $ad );
-
-        if ( !$ad->has_expired() && !$ad->is_about_to_expire() ) {
-            return false;
-        }
-
-        if ( is_object( $term ) && $term->ad_can_be_renewed( $ad ) ) {
-            $ad->renew();
-            $ad->save();
-
-            awpcp_send_ad_renewed_email( $ad );
-
-            // MOVE inside Ad::renew() ?
-            do_action('awpcp-renew-ad', $ad->ad_id, null);
-
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public function renew_ad_success($n) {
-        return _n('%d Ad was renewed', '%d Ads were renewed', $n, 'AWPCP');
-    }
-
-    public function renew_ad_failure($n) {
-        return __('there was an error trying to renew %d Ads', 'AWPCP');
-    }
-
     public function renew_ad() {
-        return $this->bulk_action(
-            array( $this, 'renew_ad_action' ),
-            array( $this, 'renew_ad_success' ),
-            array( $this, 'renew_ad_failure' )
-        );
+        $page = awpcp_renew_listings_admin_page();
+        $page->dispatch();
+        return $this->redirect( 'index' );
     }
 
     public function mark_as_spam_action($ad) {
