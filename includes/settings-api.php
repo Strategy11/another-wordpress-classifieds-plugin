@@ -287,30 +287,6 @@ class AWPCP_Settings_API {
 
 		$group = $this->add_group( __( 'Payment', 'AWPCP') , 'payment-settings', 40 );
 
-		// Section: Payment Settings - Default
-
-		$key = $this->add_section($group, __('Payment Settings', 'AWPCP'), 'default', 10, array($this, 'section'));
-
-		$order_options = array(
-			1 => __( 'Name', 'AWPCP' ),
-			2 => __( 'Price', 'AWPCP' ),
-			3 => __( 'Images Allowed', 'AWPCP' ),
-			5 => __( 'Duration', 'AWPCP' ),
-		);
-
-		$direction_options = array(
-			'ASC' => __( 'Ascending', 'AWPCP' ),
-			'DESC' => __( 'Descending', 'AWPCP' ),
-		);
-
-		$this->add_setting( $key, 'freepay', __( 'Charge Listing Fee?', 'AWPCP' ), 'checkbox', 0, __( 'Charge Listing Fee? (Pay Mode)', 'AWPCP' ) );
-		$this->add_setting( $key, 'fee-order', __( 'Fee Plan sort order', 'AWPCP' ), 'select', 1, __( 'The order used to sort Fees in the payment screens.', 'AWPCP' ), array( 'options' => $order_options ) );
-		$this->add_setting( $key, 'fee-order-direction', __( 'Fee Plan sort direction', 'AWPCP' ), 'select', 'ASC', __( 'The direction used to sort Fees in the payment screens.', 'AWPCP' ), array( 'options' => $direction_options ) );
-		$this->add_setting($key, 'pay-before-place-ad', _x('Pay before entering Ad details', 'settings', 'AWPCP'), 'checkbox', 1, _x('Check to ask for payment before entering Ad details. Uncheck if you want users to pay for Ads at the end of the process, after images have been uploaded.', 'settings', 'AWPCP'));
-		$this->add_setting( $key, 'displaycurrencycode', __( 'Currency used in payment pages', 'AWPCP' ), 'textfield', 'USD', __( 'The display currency for your payment pages', 'AWPCP' ) );
-		$this->add_setting( $key, 'paylivetestmode', __( 'Put payment gateways in test mode?', 'AWPCP' ), 'checkbox', 0, '');
-		$this->add_setting( $key, 'force-secure-urls', __( 'Force secure URLs on payment pages', 'AWPCP' ), 'checkbox', 0, __( 'If checked all classifieds pages that involve payments will be accessed through a secure (HTTPS) URL.', 'AWPCP' ) );
-
 		// Section: Payment Settings - PayPal
 
 		$key = $this->add_section($group, __('PayPal Settings', 'AWPCP'), 'paypal', 20, array($this, 'section'));

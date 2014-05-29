@@ -153,7 +153,8 @@ require_once( AWPCP_DIR . "/includes/views/admin/account-balance/class-account-b
 require_once( AWPCP_DIR . "/includes/views/admin/account-balance/class-account-balance-page-summary-step.php" );
 
 require_once( AWPCP_DIR . "/includes/settings/class-credit-plans-settings.php" );
-require_once( AWPCP_DIR . "/includes/settings/class-listings-settings.php" );
+require_once( AWPCP_DIR . "/includes/settings/class-listings-moderation-settings.php" );
+require_once( AWPCP_DIR . "/includes/settings/class-payment-general-settings.php" );
 require_once( AWPCP_DIR . "/includes/settings/class-registration-settings.php" );
 
 require_once( AWPCP_DIR . "/includes/class-awpcp-listings-api.php" );
@@ -384,10 +385,14 @@ class AWPCP {
 		add_action( 'awpcp_register_settings', array( new AWPCP_CreditPlansSettings, 'register_settings' ) );
 		add_action( 'awpcp_register_settings', array( new AWPCP_RegistrationSettings, 'register_settings' ) );
 
-		$listing_moderation_settings = new AWPCP_ListingsModerationSettings;
-		add_action( 'awpcp_register_settings', array( $listing_moderation_settings, 'register_settings' ) );
-		add_filter( 'awpcp_validate_settings', array( $listing_moderation_settings, 'validate_all_settings' ), 10, 2 );
-		add_filter( 'awpcp_validate_settings_listings-settings', array( $listing_moderation_settings, 'validate_group_settings' ), 10, 2 );
+		$listings_moderation_settings = new AWPCP_ListingsModerationSettings;
+		add_action( 'awpcp_register_settings', array( $listings_moderation_settings, 'register_settings' ) );
+		add_filter( 'awpcp_validate_settings', array( $listings_moderation_settings, 'validate_all_settings' ), 10, 2 );
+		add_filter( 'awpcp_validate_settings_listings-settings', array( $listings_moderation_settings, 'validate_group_settings' ), 10, 2 );
+
+		$payment_general_settings = new AWPCP_PaymentGeneralSettings;
+		add_action( 'awpcp_register_settings', array( $payment_general_settings, 'register_settings' ) );
+		add_filter( 'awpcp_validate_settings_payment-settings', array( $payment_general_settings, 'validate_group_settings' ), 10, 2 );
 	}
 
 	public function init() {
