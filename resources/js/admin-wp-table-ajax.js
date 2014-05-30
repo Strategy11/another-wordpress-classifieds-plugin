@@ -48,6 +48,8 @@ if (typeof jQuery !== 'undefined') {
                     self.move();
                 } else if (parent.hasClass('trash')) {
                     self.trash();
+                } else {
+                    self.default(parent.attr('class'));
                 }
             });
 
@@ -220,7 +222,7 @@ if (typeof jQuery !== 'undefined') {
                 $.post(options.ajaxurl, $.extend({}, options.data, {
                     'id': row.data('id'),
                     'action': options.actions.remove,
-                    'columns': row.find('th, td').length
+                    'columns': row.closest('tbody').closest('table').find('thead th').length
                 }), function(response) {
                     inline = $(response.html).insertAfter(row);
                     inline.find('a.cancel').click(function() {
@@ -296,6 +298,25 @@ if (typeof jQuery !== 'undefined') {
                         row.hide();
                     } else {
                         alert(response.message);
+                    }
+                });
+            },
+
+            default: function(action) {
+                var self = this, options = self.options;
+
+                $.post(options.ajaxurl, $.extend({}, options.data, {
+                    'action': options.actions[action],
+                    'id': self.row.data('id')
+                }), function(response) {
+                    if (response.status == 'success' || response.status == 'ok') {
+                        if ($.isFunction(options.onDefaultActionSuccess)) {
+                            options.onDefaultActionSuccess.apply(self, [action, response]);
+                        }
+                    } else {
+                        if ($.isFunction(options.onDefaultActionError)) {
+                            options.onDefaultActionError.apply(self, [action, response]);
+                        }
                     }
                 });
             }
