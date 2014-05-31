@@ -463,12 +463,13 @@ function total_ads_in_cat($catid) {
 
     $totaladsincat = '';
 
-    // never allow Unpaid Ads
-    $filter = " AND payment_status != 'Unpaid' ";
-    $filter = " AND verified = 1 ";
+    // never allow Unpaid, Unverified or Disabled Ads
+    $conditions[] = "payment_status != 'Unpaid'";
+    $conditions[] = 'verified = 1';
+    $conditions[] = 'disabled = 0';
 
     if( ( get_awpcp_option( 'enable-ads-pending-payment' ) == 0 ) && ( get_awpcp_option( 'freepay' ) == 1 ) ) {
-        $filter = " AND payment_status != 'Pending'";
+        $conditions[] = "payment_status != 'Pending'";
     }
 
     // TODO: ideally there would be a function to get all visible Ads,
@@ -480,16 +481,16 @@ function total_ads_in_cat($catid) {
 
             if (function_exists('awpcp_regions_api')) {
             	$regions = awpcp_regions_api();
-            	$filter .= ' AND ' . $regions->sql_where($theactiveregionid);
+            	$conditions[] = $regions->sql_where( $theactiveregionid );
             }
         }
     }
 
+    $conditions[] = "(ad_category_id='$catid' OR ad_category_parent_id='$catid')";
+
     // TODO: at some point we should start using the Category model.
-    $query = "SELECT count(*) FROM " . AWPCP_TABLE_ADS . " ";
-    $query.= "WHERE (ad_category_id='$catid' OR ad_category_parent_id='$catid') ";
-    // $query.= "AND disabled = 0 AND (flagged IS NULL OR flagged =0) $filter";
-    $query.= "AND disabled = 0 $filter";
+    $query = 'SELECT count(*) FROM ' . AWPCP_TABLE_ADS;
+    $query = sprintf( '%s WHERE %s', $query, implode( ' AND ', $conditions ) );
 
     return $wpdb->get_var( $query );
 }
