@@ -46,7 +46,7 @@ class AWPCP_ListingIsAboutToExpireNotification {
             $introduction = sprintf( str_replace( '%d', '%s', $introduction ), $days_before_listing_expires );
         }
 
-        $renew_url = awpcp_get_renew_ad_url( $listing->ad_id );
+        $renew_url = urldecode( awpcp_get_renew_ad_url( $listing->ad_id ) );
 
         ob_start();
         include( AWPCP_DIR . '/templates/email/listing-is-about-to-expire-notification.plain.tpl.php' );
