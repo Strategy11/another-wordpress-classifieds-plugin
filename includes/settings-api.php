@@ -445,7 +445,7 @@ class AWPCP_Settings_API {
 
 		// Section: General Email Settings
 
-		$key = $this->add_section($group, __('General Email Settings', 'AWPCP'), 'default', 10, array($this, 'section'));
+		$key = $this->add_section($group, __('General Email Settings', 'AWPCP'), 'default', 20, array($this, 'section'));
 
 		$this->add_setting( $key, 'admin-recipient-email', __( 'TO email address for outgoing emails', 'AWPCP' ), 'textfield', '', __( 'Emails are sent to your WordPress admin email. If you prefere to receive emails in a different address, please enter it here.', 'AWPCP' ) );
 		$this->add_setting( $key, 'awpcpadminemail', __( 'FROM email address for outgoing emails', 'AWPCP' ), 'textfield', '', __( 'Emails go out using your WordPress admin email. If you prefer to use a different email enter it here.', 'AWPCP' ) );
@@ -504,7 +504,7 @@ class AWPCP_Settings_API {
 
 		// Section: Advanced Email Configuration
 
-		$key = $this->add_section( $group, __( 'Advanced Email Configuration', 'AWPCP' ), 'advanced', 10, array( $this, 'section' ) );
+		$key = $this->add_section( $group, __( 'Advanced Email Configuration', 'AWPCP' ), 'advanced', 30, array( $this, 'section' ) );
 
 		$this->add_setting( $key, 'usesmtp', __( 'Enable external SMTP server', 'AWPCP' ), 'checkbox', 0, __( 'Enabled external SMTP server (if emails not processing normally).', 'AWPCP' ) );
 		$this->add_setting( $key, 'smtphost', __( 'SMTP host', 'AWPCP' ), 'textfield', 'mail.example.com', __( 'SMTP host (if emails not processing normally).', 'AWPCP' ) );
@@ -512,7 +512,7 @@ class AWPCP_Settings_API {
 		$this->add_setting( $key, 'smtpusername', __( 'SMTP username', 'AWPCP' ), 'textfield', 'smtp_username', __( 'SMTP username (if emails not processing normally).', 'AWPCP' ) );
 		$this->add_setting( $key, 'smtppassword', __( 'SMTP password', 'AWPCP' ), 'password', '', __( 'SMTP password (if emails not processing normally).', 'AWPCP' ) );
 
-		// Group: Email
+		// Group: Facebook
 
 		$group = $this->add_group('Facebook', 'facebook-settings', 100);
 
