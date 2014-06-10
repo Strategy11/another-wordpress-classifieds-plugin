@@ -111,7 +111,7 @@ class AWPCP_Request {
         $ad_id = empty( $ad_id ) ? $this->param( 'id' ) : $ad_id;
         $ad_id = empty( $ad_id ) ? $this->get_query_var( 'id' ) : $ad_id;
 
-        return $ad_id;
+        return intval( $ad_id );
     }
 
     /**
