@@ -69,7 +69,7 @@ class AWPCP_Facebook {
                 }
 
                 if ( $token_info->user_id != $user_id )
-                    $errors[] = __( 'User Access Token user id does not match stored user id.', 'AWPCP' );                
+                    $errors[] = __( 'User Access Token user id does not match stored user id.', 'AWPCP' );
             }
         }
 
@@ -180,7 +180,7 @@ class AWPCP_Facebook {
     public function get_user_pages() {
         if ( !$this->get( 'user_id' ) || !$this->get( 'user_token' ) )
             return array();
-        
+
         $pages = array();
 
         $this->set_access_token( 'user_token' );
@@ -203,8 +203,26 @@ class AWPCP_Facebook {
                                       'access_token' => $p->access_token );
             }
         }
-	
+
     	return $pages;
+    }
+
+    public function get_user_groups() {
+        if ( ! $this->get( 'user_id' ) || ! $this->get( 'user_token' ) ) {
+            return array();
+        }
+
+        $this->set_access_token( 'user_token' );
+        $response = $this->api_request( '/me/groups' );
+
+        $groups = array();
+        if ( $response && isset( $response->data ) ) {
+            foreach ( $response->data as &$p ) {
+                $groups[] = array( 'id' => $p->id, 'name' => $p->name );
+            }
+        }
+
+        return $groups;
     }
 
     public function get_login_url( $redirect_uri = '', $scope = '' ) {

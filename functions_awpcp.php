@@ -1014,23 +1014,3 @@ function awpcp_get_ad_share_info($id) {
 
 	return $info;
 }
-
-//
-// Metadata API.
-//
-
-function awpcp_add_ad_meta( $ad_id, $meta_key, $meta_value, $unique = false ) {
-    return add_metadata( 'awpcp_ad', $ad_id, $meta_key, $meta_value, $unique );
-}
-
-function awpcp_update_ad_meta( $ad_id, $meta_key, $meta_value, $prev_value = '' ) {
-    return update_metadata( 'awpcp_ad', $ad_id, $meta_key, $meta_value, $prev_value );
-}
-
-function awpcp_delete_ad_meta( $ad_id, $meta_key, $meta_value = '', $delete_all = false) {
-    return delete_metadata( 'awpcp_ad', $ad_id, $meta_key, $meta_value, $delete_all );
-}
-
-function awpcp_get_ad_meta( $ad_id, $meta_key='', $single = false ) {
-    return get_metadata( 'awpcp_ad', $ad_id, $meta_key, $single );
-}

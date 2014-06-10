@@ -4,20 +4,18 @@ function awpcp_renew_listings_admin_page() {
     return new AWPCP_RenewListingsAdminPage( awpcp_listings_collection(), awpcp_payments_api(), awpcp_request() );
 }
 
-class AWPCP_RenewListingsAdminPage {
+class AWPCP_RenewListingsAdminPage extends AWPCP_ListingActionAdminPage {
 
-    private $listings;
     private $payments;
-    private $request;
 
     public $successful = 0;
     public $failed = 0;
     public $errors = array();
 
     public function __construct( $listings, $payments, $request ) {
-        $this->listings = $listings;
+        parent::__construct( $listings, $request );
+
         $this->payments = $payments;
-        $this->request = $request;
     }
 
     public function dispatch() {
@@ -26,15 +24,6 @@ class AWPCP_RenewListingsAdminPage {
         }
 
         $this->show_results();
-    }
-
-    private function get_selected_listings() {
-        $listing_id = $this->request->param( 'id' );
-
-        $listings_ids = $this->request->param( 'selected', array( $listing_id ) );
-        $listings_ids = array_filter( array_map( 'intval', $listings_ids ) );
-
-        return $this->listings->find_all_by_id( $listings_ids );
     }
 
     private function try_to_renew_listing( $listing ) {
@@ -79,16 +68,10 @@ class AWPCP_RenewListingsAdminPage {
             awpcp_flash( __( 'No Ads were selected', 'AWPCP' ), 'error' );
         } else {
             $success_message = _n( '%d Ad was renewed', '%d Ads were renewed', $this->successful, 'AWPCP' );
+            $success_message = sprintf( $success_message, $this->successful );
             $error_message = sprintf( __('there was an error trying to renew %d Ads', 'AWPCP'), $this->failed );
 
-            if ( $this->successful > 0 && $this->failed > 0) {
-                $message = _x( '%s and %s.', 'Listing bulk operations: <message-ok> and <message-error>.', 'AWPCP' );
-                awpcp_flash( sprintf( $message, $success_message, $error_message ), 'error' );
-            } else if ( $this->successful > 0 ) {
-                awpcp_flash( $success_message . '.' );
-            } else if ( $this->failed > 0 ) {
-                awpcp_flash( ucfirst( $error_message . '.' ), 'error' );
-            }
+            $this->show_bulk_operation_result_message( $this->successful, $this->failed, $success_message, $error_message );
         }
 
         foreach ( $this->errors as $error ) {

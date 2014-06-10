@@ -58,7 +58,7 @@ class AWPCP_Classified_Pages_Settings {
 class AWPCP_Facebook_Page_Settings {
 
 	public function __construct() {
-		add_action( 'load-classifieds_page_awpcp-admin-settings', array( $this, 'maybe_redirect' ) );
+		add_action( 'current_screen', array( $this, 'maybe_redirect' ) );
 		add_action( 'awpcp-admin-settings-page--facebook-settings', array($this, 'dispatch'));
 	}
 
@@ -143,6 +143,7 @@ class AWPCP_Facebook_Page_Settings {
 		if ( $current_step == 3 ) {
 			// User Pages.
 			$pages = $fb->get_user_pages();
+			$groups = $fb->get_user_groups();
 		}
 
 		if ( $current_step >= 2 ) {
@@ -162,9 +163,9 @@ class AWPCP_Facebook_Page_Settings {
 			$fb->validate_config( $diagnostics_errors );
 
 			$error_msg  = '';
-			$error_msg .= '<strong>' . __( 'Facebook Config Diagnostics', 'AWPCP' ) . '</strong><br />';			
+			$error_msg .= '<strong>' . __( 'Facebook Config Diagnostics', 'AWPCP' ) . '</strong><br />';
 
-			if ( $diagnostics_errors ) {				
+			if ( $diagnostics_errors ) {
 				foreach ( $diagnostics_errors as &$e ) {
 					$error_msg .= '&#149; ' . $e . '<br />';
 				}
@@ -190,7 +191,9 @@ class AWPCP_Facebook_Page_Settings {
 		$app_id = isset( $_POST['app_id'] ) ? trim( $_POST['app_id'] ) : '';
 		$app_secret = isset( $_POST['app_secret'] ) ? trim( $_POST['app_secret'] ) : '';
 		$user_token = isset( $_POST['user_token'] ) ? trim( $_POST['user_token'] ) : '';
+
 		$page = isset( $_POST['page'] ) ? trim( $_POST['page'] ) : '';
+		$group = isset( $_POST['group'] ) ? trim( $_POST['group'] ) : '';
 
 		$config['app_id'] = $app_id;
 		$config['app_secret'] = $app_secret;
@@ -203,6 +206,10 @@ class AWPCP_Facebook_Page_Settings {
 
 			$config['page_id'] = $page_id;
 			$config['page_token'] = $page_token;
+		}
+
+		if ( $group ) {
+			$config['group_id'] = $group;
 		}
 
 		$awpcp_fb->set_config( $config );

@@ -106,7 +106,7 @@
 	</div>
 
 	<div class="section page-token <?php echo $current_step < 3 ? 'disabled' : ''; ?>">
-		<h4><?php _e( '3. Page Selection', 'AWPCP'); ?></h4>
+		<h4><?php _e( '3. Page and Group Selection', 'AWPCP'); ?></h4>
 		<?php if ( $current_step < 3 ): ?>
 		<p><?php _e( 'This settings section is not available yet. Please fill out required fields above and save your settings.', 'AWPCP' ); ?></p>
 		<?php else: ?>
@@ -117,13 +117,35 @@
 					</th>
 					<td>
 						<?php if ( $pages ): ?>
+								<label>
+									<input type="radio" name="page" value="" <?php echo empty( $config['page_id'] ) ? 'checked="checked"' : ''; ?> /> <?php echo __( 'None (Do not sent Ads to a Facebook Page)', 'AWPCP' ); ?>
+								</label><br />
 							<?php foreach( $pages as $page ): ?>
 								<label>
-									<input type="radio" name="page" value="<?php echo esc_attr( $page['id'] . '|' . $page['access_token'] ); ?>" <?php echo $page['access_token'] == $config['page_token'] ? 'checked="checked"' : ''; ?> /> <?php echo esc_html( $page['name'] ); ?> <?php echo isset( $page['profile'] ) && $page['profile'] ? __( '(Your own profile page)', 'AWPCP' ) : ''; ?>
+									<input type="radio" name="page" value="<?php echo esc_attr( $page['id'] . '|' . $page['access_token'] ); ?>" <?php echo $page['id'] == $config['page_id'] ? 'checked="checked"' : ''; ?> /> <?php echo esc_html( $page['name'] ); ?> <?php echo isset( $page['profile'] ) && $page['profile'] ? __( '(Your own profile page)', 'AWPCP' ) : ''; ?>
 								</label><br />
 							<?php endforeach; ?>
 						<?php else: ?>
 							<p><?php _e( 'There are no Facebook pages available for you to select. Please make sure you are connected to the internet and have granted the Facebook application the correct permissions. Click "Diagnostics" if you are in doubt.', 'AWPCP' ); ?></p>
+						<?php endif; ?>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">
+						<label><?php _e( 'Facebook Group', 'AWPCP' ); ?></label>
+					</th>
+					<td>
+						<?php if ( $groups ): ?>
+								<label>
+									<input type="radio" name="group" value="" <?php echo empty( $config['group_id'] ) ? 'checked="checked"' : ''; ?> /> <?php echo __( 'None (Do not sent Ads to a Facebook Group)', 'AWPCP' ); ?>
+								</label><br />
+							<?php foreach( $groups as $group ): ?>
+								<label>
+									<input type="radio" name="group" value="<?php echo esc_attr( $group['id'] ); ?>" <?php echo $group['id'] == $config['group_id'] ? 'checked="checked"' : ''; ?> /> <?php echo esc_html( $group['name'] ); ?>
+								</label><br />
+							<?php endforeach; ?>
+						<?php else: ?>
+							<p><?php _e( 'There are no Facebook groups available for you to select. Please make sure you are connected to the internet and have granted the Facebook application the correct permissions. Click "Diagnostics" if you are in doubt.', 'AWPCP' ); ?></p>
 						<?php endif; ?>
 					</td>
 				</tr>
