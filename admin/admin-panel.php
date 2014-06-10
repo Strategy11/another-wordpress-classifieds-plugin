@@ -178,8 +178,6 @@ class AWPCP_Admin {
 	}
 
 	public function scripts() {
-		// wp_enqueue_style('awpcp-admin-style');
-		// wp_enqueue_script('awpcp-admin-script');
 	}
 
 	private function get_manage_credits_section_url() {
