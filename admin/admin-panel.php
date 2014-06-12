@@ -669,9 +669,9 @@ function awpcp_opsconfig_categories() {
 			}
 			else
 			{
-				$aeword1=__("Sorry but you cannot delete ","AWPCP");
-				$aeword1.="<b>$category_name</b>";
-				$aeword1.=__(" It is the default category. The default category cannot be deleted","AWPCP");
+				$aeword1 = __( 'Sorry but you cannot delete %s. It is the default category and the default category cannot be deleted.', 'AWPCP' );
+				$aeword1 = sprintf( $aeword1, '<strong>' . $category_name . '</strong>' );
+
 				$aeword2='';
 				$aeword3='';
 				$aeword4='';

@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2014-06-05 04:05:26+00:00\n"
+"POT-Creation-Date: 2014-06-12 18:09:25+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -132,12 +132,12 @@ msgstr ""
 msgid "Characters in Description"
 msgstr ""
 
-#: admin/admin-panel-fees-table.php:113 admin/admin-panel.php:256
+#: admin/admin-panel-fees-table.php:113 admin/admin-panel.php:254
 #: admin/templates/admin-panel-fees-entry-form.tpl.php:91
 msgid "Categories"
 msgstr ""
 
-#: admin/admin-panel-fees-table.php:116 awpcp.php:484
+#: admin/admin-panel-fees-table.php:116 awpcp.php:493
 msgid "Featured Ads"
 msgstr ""
 
@@ -429,152 +429,136 @@ msgstr ""
 msgid "Add Images"
 msgstr ""
 
-#: admin/admin-panel-listings.php:169
+#: admin/admin-panel-listings.php:138
+msgid "Send to Facebook Group"
+msgstr ""
+
+#: admin/admin-panel-listings.php:177
 msgctxt "admin listings"
 msgid "You do not have sufficient permissions to perform that action."
 msgstr ""
 
-#: admin/admin-panel-listings.php:272 frontend/ad-functions.php:230
+#: admin/admin-panel-listings.php:280 frontend/ad-functions.php:230
 #: frontend/page-edit-ad.php:199 frontend/page-edit-ad.php:318
 #: frontend/page-edit-ad.php:346
 msgid "The specified Ad doesn't exists."
 msgstr ""
 
-#: admin/admin-panel-listings.php:274
+#: admin/admin-panel-listings.php:282
 msgid "No Ad ID was specified."
 msgstr ""
 
-#: admin/admin-panel-listings.php:324
+#: admin/admin-panel-listings.php:332
 msgid "No Ads were selected."
 msgstr ""
 
-#: admin/admin-panel-listings.php:330
-#: includes/views/admin/listings/class-renew-listings-admin-page.php:85
+#: admin/admin-panel-listings.php:338
+#: includes/views/admin/listings/class-listing-action-admin-page.php:24
 msgctxt "Listing bulk operations: <message-ok> and <message-error>."
 msgid "%s and %s."
 msgstr ""
 
-#: admin/admin-panel-listings.php:347
+#: admin/admin-panel-listings.php:355
 msgid "%d Ad was disabled"
 msgid_plural "%d Ads were disabled"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/admin-panel-listings.php:351
+#: admin/admin-panel-listings.php:359
 msgid "there was an error trying to disable %d Ads"
 msgstr ""
 
-#: admin/admin-panel-listings.php:374
+#: admin/admin-panel-listings.php:382
 msgid "%d was enabled"
 msgid_plural "%d Ads were enabled"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/admin-panel-listings.php:378
+#: admin/admin-panel-listings.php:386
 msgid "there was an error trying to enable %d Ads"
 msgstr ""
 
-#: admin/admin-panel-listings.php:393
+#: admin/admin-panel-listings.php:401
 msgid "The Ad has been unflagged."
 msgstr ""
 
-#: admin/admin-panel-listings.php:403
+#: admin/admin-panel-listings.php:411
 msgid "The Ad was marked as verified."
 msgstr ""
 
-#: admin/admin-panel-listings.php:413
+#: admin/admin-panel-listings.php:421
 msgid "The Ad has been marked as paid."
 msgstr ""
 
-#: admin/admin-panel-listings.php:430
+#: admin/admin-panel-listings.php:438
 msgid "%d Ad were marked as SPAM and removed"
 msgid_plural "%d Ads were marked as SPAM and removed"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/admin-panel-listings.php:434
+#: admin/admin-panel-listings.php:442
 msgid "there was an error trying to mark %d Ad as SPAM"
 msgstr ""
 
-#: admin/admin-panel-listings.php:450
+#: admin/admin-panel-listings.php:458
 msgid "%d Ad was set as fatured"
 msgid_plural "%d Ads were set as featured"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/admin-panel-listings.php:454
+#: admin/admin-panel-listings.php:462
 msgid "there was an error trying to set %d Ads as featured"
 msgstr ""
 
-#: admin/admin-panel-listings.php:470
+#: admin/admin-panel-listings.php:478
 msgid "%d Ad was set as non-fatured"
 msgid_plural "%d Ads were set as non-featured"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/admin-panel-listings.php:474
+#: admin/admin-panel-listings.php:482
 msgid "there was an error trying to set %d Ads as non-featured"
 msgstr ""
 
-#: admin/admin-panel-listings.php:503
+#: admin/admin-panel-listings.php:511
 msgid "The access key was sent to %s."
 msgstr ""
 
-#: admin/admin-panel-listings.php:505 frontend/page-edit-ad.php:431
+#: admin/admin-panel-listings.php:513 frontend/page-edit-ad.php:431
 msgid "There was an error trying to send the email to %s."
 msgstr ""
 
-#: admin/admin-panel-listings.php:550
+#: admin/admin-panel-listings.php:558
 msgid "%d of %d Ads were deleted. %d generated errors."
 msgstr ""
 
-#: admin/admin-panel-listings.php:552
+#: admin/admin-panel-listings.php:560
 msgid "%d of %d Ads were deleted."
 msgstr ""
 
-#: admin/admin-panel-listings.php:612
-msgid ""
-"AWPCP cannot post to Facebook. Perhaps your credentials are invalid or have "
-"expired. Please check your <a>settings</a>. If your token expired, please "
-"try to get a new access token from Facebook using the link in step 2 of the "
-"settings."
-msgstr ""
-
-#: admin/admin-panel-listings.php:617
-msgid ""
-"AWPCP cannot post to Facebook. The API returned the following error: %s. "
-"Perhaps your credentials are invalid or have expired. Please check your "
-"<a>settings</a>. If your token expired, please try to get a new access token "
-"from Facebook using the link in step 2 of the settings."
-msgstr ""
-
-#: admin/admin-panel-listings.php:623 admin/admin-panel-listings.php:625
-msgid "%d of %d Ads were sent to Facebook. %d generated errors."
-msgstr ""
-
-#: admin/admin-panel-listings.php:653
+#: admin/admin-panel-listings.php:594
 msgctxt "ajax delete ad"
 msgid "The specified Ad doesn't exists."
 msgstr ""
 
-#: admin/admin-panel-settings.php:155
+#: admin/admin-panel-settings.php:156
 msgid "AWPCP could not obtain a valid access token from Facebook: %s"
 msgstr ""
 
-#: admin/admin-panel-settings.php:157
+#: admin/admin-panel-settings.php:158
 msgid ""
 "AWPCP could not obtain a valid access token from Facebook. Please try again."
 msgstr ""
 
-#: admin/admin-panel-settings.php:165
+#: admin/admin-panel-settings.php:166
 msgid "Facebook Config Diagnostics"
 msgstr ""
 
-#: admin/admin-panel-settings.php:172
+#: admin/admin-panel-settings.php:173
 msgid "Everything looks OK."
 msgstr ""
 
-#: admin/admin-panel-settings.php:211
+#: admin/admin-panel-settings.php:218
 msgid "There was an error trying to contact Facebook servers: \"%s\"."
 msgstr ""
 
@@ -642,231 +626,229 @@ msgctxt "awpcp admin menu"
 msgid "Classifieds"
 msgstr ""
 
-#: admin/admin-panel.php:236
+#: admin/admin-panel.php:234
 msgid "Configure General Options"
 msgstr ""
 
-#: admin/admin-panel.php:236
+#: admin/admin-panel.php:234
 msgid "Settings"
 msgstr ""
 
-#: admin/admin-panel.php:245
+#: admin/admin-panel.php:243
 msgid "Manage Credit"
 msgstr ""
 
-#: admin/admin-panel.php:256
+#: admin/admin-panel.php:254
 msgid "Add/Edit Categories"
 msgstr ""
 
-#: admin/admin-panel.php:267
+#: admin/admin-panel.php:265
 msgid "Manage Extra Fields"
 msgstr ""
 
-#: admin/admin-panel.php:267 awpcp.php:477
+#: admin/admin-panel.php:265 awpcp.php:486
 msgid "Extra Fields"
 msgstr ""
 
-#: admin/admin-panel.php:270
+#: admin/admin-panel.php:268
 msgid "Import Ad"
 msgstr ""
 
-#: admin/admin-panel.php:270
+#: admin/admin-panel.php:268
 #: admin/templates/admin-panel-csv-importer.tpl.php:173
 msgid "Import"
 msgstr ""
 
-#: admin/admin-panel.php:443 admin/admin-panel.php:444
-#: admin/admin-panel.php:776
+#: admin/admin-panel.php:441 admin/admin-panel.php:442
+#: admin/admin-panel.php:774
 msgid "Manage Category Icon"
 msgstr ""
 
-#: admin/admin-panel.php:449 admin/admin-panel.php:766
-#: admin/admin-panel.php:768
+#: admin/admin-panel.php:447 admin/admin-panel.php:764
+#: admin/admin-panel.php:766
 msgid "Edit Category"
 msgstr ""
 
-#: admin/admin-panel.php:450 admin/admin-panel.php:622
-#: admin/admin-panel.php:770 admin/admin-panel.php:772
+#: admin/admin-panel.php:448 admin/admin-panel.php:620
+#: admin/admin-panel.php:768 admin/admin-panel.php:770
 msgid "Delete Category"
 msgstr ""
 
-#: admin/admin-panel.php:551 admin/admin-panel.php:747
+#: admin/admin-panel.php:549 admin/admin-panel.php:745
 msgid "AWPCP Classifieds Management System Categories Management"
 msgstr ""
 
-#: admin/admin-panel.php:605
+#: admin/admin-panel.php:603
 msgid "Ad A New Category"
 msgstr ""
 
-#: admin/admin-panel.php:612
+#: admin/admin-panel.php:610
 msgid "You are currently editing the category shown below"
 msgstr ""
 
-#: admin/admin-panel.php:613
+#: admin/admin-panel.php:611
 msgid "Save Category Changes"
 msgstr ""
 
-#: admin/admin-panel.php:614 admin/admin-panel.php:623
+#: admin/admin-panel.php:612 admin/admin-panel.php:621
 msgid "Parent Category"
 msgstr ""
 
-#: admin/admin-panel.php:615 admin/admin-panel.php:692
+#: admin/admin-panel.php:613 admin/admin-panel.php:690
 msgid "Category List Order"
 msgstr ""
 
-#: admin/admin-panel.php:621
+#: admin/admin-panel.php:619
 msgid ""
 "If you're sure that you want to delete this category please press the delete "
 "button"
 msgstr ""
 
-#: admin/admin-panel.php:639 admin/admin-panel.php:650
+#: admin/admin-panel.php:637 admin/admin-panel.php:648
 msgid "Untitled"
 msgstr ""
 
-#: admin/admin-panel.php:643
+#: admin/admin-panel.php:641
 msgid ""
 "The category contains ads. If you do not select a category to move them to "
 "the ads will be moved to:"
 msgstr ""
 
-#: admin/admin-panel.php:656
+#: admin/admin-panel.php:654
 msgid ""
 "The category also has children. If you do not specify a move-to category the "
 "children will be adopted by"
 msgstr ""
 
-#: admin/admin-panel.php:658
+#: admin/admin-panel.php:656
 msgid "Note"
 msgstr ""
 
-#: admin/admin-panel.php:660
+#: admin/admin-panel.php:658
 msgid "The move-to category specified applies to both ads and categories"
 msgstr ""
 
-#: admin/admin-panel.php:664
+#: admin/admin-panel.php:662
 msgid "Please select a Move-To category"
 msgstr ""
 
-#: admin/admin-panel.php:674
-msgid "Sorry but you cannot delete "
+#: admin/admin-panel.php:672
+msgid ""
+"Sorry but you cannot delete %s. It is the default category and the default "
+"category cannot be deleted."
 msgstr ""
 
-#: admin/admin-panel.php:676
-msgid " It is the default category. The default category cannot be deleted"
-msgstr ""
-
-#: admin/admin-panel.php:689
+#: admin/admin-panel.php:687
 msgid "Add a New Category"
 msgstr ""
 
-#: admin/admin-panel.php:690
+#: admin/admin-panel.php:688
 msgid "Add New Category"
 msgstr ""
 
-#: admin/admin-panel.php:691
+#: admin/admin-panel.php:689
 msgid "List Category Under"
 msgstr ""
 
-#: admin/admin-panel.php:706
+#: admin/admin-panel.php:704
 msgid "Category to Delete"
 msgstr ""
 
-#: admin/admin-panel.php:717
+#: admin/admin-panel.php:715
 msgid "Category to Edit"
 msgstr ""
 
-#: admin/admin-panel.php:721 admin/admin-panel.php:736
+#: admin/admin-panel.php:719 admin/admin-panel.php:734
 msgid "Make This a Top Level Category"
 msgstr ""
 
-#: admin/admin-panel.php:733
+#: admin/admin-panel.php:731
 msgid "Enter the category name"
 msgstr ""
 
-#: admin/admin-panel.php:764
+#: admin/admin-panel.php:762
 msgid "Icon Meanings"
 msgstr ""
 
-#: admin/admin-panel.php:834
+#: admin/admin-panel.php:832
 msgid "Delete Selected Categories"
 msgstr ""
 
-#: admin/admin-panel.php:837
+#: admin/admin-panel.php:835
 msgid "Move Selected Categories"
 msgstr ""
 
-#: admin/admin-panel.php:840
+#: admin/admin-panel.php:838
 msgid "Select Move-To category"
 msgstr ""
 
-#: admin/admin-panel.php:845
+#: admin/admin-panel.php:843
 msgid "Delete categories should do this with existing Ads"
 msgstr ""
 
-#: admin/admin-panel.php:846
+#: admin/admin-panel.php:844
 msgid "Move Ads to new category"
 msgstr ""
 
-#: admin/admin-panel.php:847
+#: admin/admin-panel.php:845
 msgid "Delete Ads too"
 msgstr ""
 
-#: admin/admin-panel.php:859 admin/admin-panel.php:871
+#: admin/admin-panel.php:857 admin/admin-panel.php:869
 msgid "Category ID"
 msgstr ""
 
-#: admin/admin-panel.php:861 admin/admin-panel.php:873
+#: admin/admin-panel.php:859 admin/admin-panel.php:871
 msgid "Category Name (Total Ads)"
 msgstr ""
 
-#: admin/admin-panel.php:863 admin/admin-panel.php:875
+#: admin/admin-panel.php:861 admin/admin-panel.php:873
 msgid "Parent"
 msgstr ""
 
-#: admin/admin-panel.php:865 admin/admin-panel.php:877
+#: admin/admin-panel.php:863 admin/admin-panel.php:875
 msgid "Order"
 msgstr ""
 
-#: admin/admin-panel.php:867 admin/admin-panel.php:879
+#: admin/admin-panel.php:865 admin/admin-panel.php:877
 msgid "Action"
 msgstr ""
 
-#: admin/admin-panel.php:1085
+#: admin/admin-panel.php:1083
 msgid "The new category was successfully added."
 msgstr ""
 
-#: admin/admin-panel.php:1104
+#: admin/admin-panel.php:1102
 msgid ""
 "Sorry but you cannot delete the default category. The default category can "
 "only be renamed"
 msgstr ""
 
-#: admin/admin-panel.php:1170
+#: admin/admin-panel.php:1168
 msgid "The category has been deleted"
 msgstr ""
 
-#: admin/admin-panel.php:1182
+#: admin/admin-panel.php:1180
 msgid "Your category changes have been saved."
 msgstr ""
 
-#: admin/admin-panel.php:1189
+#: admin/admin-panel.php:1187
 msgid "No changes made to categories."
 msgstr ""
 
-#: admin/admin-panel.php:1228
+#: admin/admin-panel.php:1226
 msgid ""
 "With the exception of any category that was being moved to itself, the "
 "categories have been moved"
 msgstr ""
 
-#: admin/admin-panel.php:1232
+#: admin/admin-panel.php:1230
 msgid ""
 "The categories have not been moved because you did not indicate where you "
 "want the categories to be moved to"
 msgstr ""
 
-#: admin/admin-panel.php:1327
+#: admin/admin-panel.php:1325
 msgid "The categories have been deleted"
 msgstr ""
 
@@ -1531,122 +1513,143 @@ msgid "Existing files for Ad %s."
 msgstr ""
 
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:3
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:29
+msgid ""
+"Facebook Integration is in beta. Please let us know if you experience any "
+"problems or have feature suggestions."
+msgstr ""
+
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:6
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:31
 msgid "Facebook Integration"
 msgstr ""
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:8
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:11
 msgid ""
 "This configuration allows you to post ads to Facebook. You must have a "
 "Facebook Application created to use this feature. Read <a>How to Register "
 "and Configure a Facebook Application.</a>"
 msgstr ""
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:15
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:20
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:19
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:24
 msgid "Diagnostics"
 msgstr ""
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:27
-msgid ""
-"Facebook Integration is in beta. Please let us know if you experience any "
-"problems or have feature suggestions."
-msgstr ""
-
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:41
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:43
 msgid "1. Application Information"
 msgstr ""
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:46
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:48
 msgid ""
 "You can find your application information in the <a>Facebook Developer Apps</"
 "a> page."
 msgstr ""
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:52
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:54
 msgid "App Id"
 msgstr ""
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:57
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:59
 msgid ""
 "An application identifier associates your site, its pages, and visitor "
 "actions with a registered Facebook application."
 msgstr ""
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:63
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:65
 msgid "App Secret"
 msgstr ""
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:68
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:70
 msgid ""
 "An application secret is a secret shared between Facebook and your "
 "application, similar to a password."
 msgstr ""
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:74
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:76
 msgid "Save App Settings"
 msgstr ""
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:81
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:83
 msgid "2. User Authorization"
 msgstr ""
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:83
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:111
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:85
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:113
 msgid ""
 "This settings section is not available yet. Please fill out required fields "
 "above and save your settings."
 msgstr ""
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:85
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:87
 msgid ""
 "AWPCP needs to get an authorization token from Facebook to work correctly. "
 "You'll be redirected to Facebook to login. AWPCP does not store or obtain "
 "any personal information from your profile."
 msgstr ""
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:90
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:92
 msgid "User Access Token"
 msgstr ""
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:93
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:95
 msgid " or <a>obtain an access token from Facebook</a>."
 msgstr ""
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:95
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:97
 msgid ""
 "You can manually enter your user access token (if you know it) or log in to "
 "Facebook to get one."
 msgstr ""
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:101
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:103
 msgid "Save Token Value"
 msgstr ""
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:109
-msgid "3. Page Selection"
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:111
+msgid "3. Page and Group Selection"
 msgstr ""
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:116
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:118
+#: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:27
 msgid "Facebook Page"
 msgstr ""
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:122
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:123
+msgid "None (Do not sent Ads to a Facebook Page)"
+msgstr ""
+
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:127
 msgid "(Your own profile page)"
 msgstr ""
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:126
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:131
 msgid ""
 "There are no Facebook pages available for you to select. Please make sure "
 "you are connected to the internet and have granted the Facebook application "
 "the correct permissions. Click \"Diagnostics\" if you are in doubt."
 msgstr ""
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:133
-msgid "Page Token (not editable)"
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:137
+#: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:31
+msgid "Facebook Group"
 msgstr ""
 
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:142
+msgid "None (Do not sent Ads to a Facebook Group)"
+msgstr ""
+
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:150
+msgid ""
+"There are no Facebook groups available for you to select. Please make sure "
+"you are connected to the internet and have granted the Facebook application "
+"the correct permissions. Click \"Diagnostics\" if you are in doubt."
+msgstr ""
+
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:157
+msgid "Page Token (not editable)"
+msgstr ""
+
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:166
 msgid "Save Page Selection"
 msgstr ""
 
@@ -1983,91 +1986,91 @@ msgstr ""
 msgid "Manage Ad Listings"
 msgstr ""
 
-#: awpcp.php:403
+#: awpcp.php:412
 msgid "AWPCP"
 msgstr ""
 
-#: awpcp.php:425
+#: awpcp.php:434
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
 msgstr ""
 
-#: awpcp.php:426
+#: awpcp.php:435
 msgid "Warning"
 msgstr ""
 
-#: awpcp.php:442
+#: awpcp.php:451
 msgid "Attachments"
 msgstr ""
 
-#: awpcp.php:449
+#: awpcp.php:458
 msgid "Authorize.Net"
 msgstr ""
 
-#: awpcp.php:456
+#: awpcp.php:465
 msgid "Category Icons"
 msgstr ""
 
-#: awpcp.php:463
+#: awpcp.php:472
 msgid "Comments & Ratings"
 msgstr ""
 
-#: awpcp.php:470
+#: awpcp.php:479
 msgid "Coupons/Discount"
 msgstr ""
 
-#: awpcp.php:491
+#: awpcp.php:500
 msgid "Fee per Category"
 msgstr ""
 
-#: awpcp.php:498
+#: awpcp.php:507
 msgid "Google Checkout"
 msgstr ""
 
-#: awpcp.php:505
+#: awpcp.php:514
 msgid "PayPal Pro"
 msgstr ""
 
-#: awpcp.php:512
+#: awpcp.php:521
 msgid "Regions Control"
 msgstr ""
 
-#: awpcp.php:519
+#: awpcp.php:528
 msgid "RSS"
 msgstr ""
 
-#: awpcp.php:526
+#: awpcp.php:535
 msgid "Subscriptions"
 msgstr ""
 
-#: awpcp.php:533
+#: awpcp.php:542
 msgid "XML Sitemap"
 msgstr ""
 
-#: awpcp.php:580
+#: awpcp.php:589
 msgid ""
 "The %1$s module you have installed is outdated and not compatible with this "
 "version of AWPCP. Please get %1$s %2$s or newer."
 msgstr ""
 
-#: awpcp.php:708
+#: awpcp.php:717
 msgid "This field is required."
 msgstr ""
 
-#: awpcp.php:709 frontend/page-edit-ad.php:111 frontend/page-edit-ad.php:378
+#: awpcp.php:718 frontend/page-edit-ad.php:111 frontend/page-edit-ad.php:378
 msgid "Please enter a valid email address."
 msgstr ""
 
-#: awpcp.php:710
+#: awpcp.php:719
 msgid "Please enter a valid URL."
 msgstr ""
 
-#: awpcp.php:711
+#: awpcp.php:720
 msgid "Please enter a valid number."
 msgstr ""
 
-#: awpcp.php:712
+#: awpcp.php:721
 msgid "Please enter a valid amount."
 msgstr ""
 
@@ -3897,6 +3900,10 @@ msgstr ""
 msgid "less than 1"
 msgstr ""
 
+#: includes/class-listings-collection.php:22
+msgid "No Ad was found with id: %d"
+msgstr ""
+
 #: includes/compatibility/class-content-aware-sidebars-listings-categories-module.php:20
 msgid "Categories (AWPCP)"
 msgstr ""
@@ -3950,6 +3957,29 @@ msgstr ""
 #: includes/helpers/captcha.php:110
 msgid ""
 "The characters in the image weren't entered correctly. Please try it again."
+msgstr ""
+
+#: includes/helpers/class-send-to-facebook-helper.php:23
+msgid "The Ad was already sent to Facebook Page."
+msgstr ""
+
+#: includes/helpers/class-send-to-facebook-helper.php:27
+#: includes/helpers/class-send-to-facebook-helper.php:68
+msgid ""
+"The Ad is currently disabled. If you share it, Facebook servers and users "
+"won't be able to access it."
+msgstr ""
+
+#: includes/helpers/class-send-to-facebook-helper.php:48
+msgid "There was an error trying to contact Facebook servers: %s."
+msgstr ""
+
+#: includes/helpers/class-send-to-facebook-helper.php:54
+msgid "Facebook API returned the following errors: %s."
+msgstr ""
+
+#: includes/helpers/class-send-to-facebook-helper.php:64
+msgid "The Ad was already sent to Facebook Group."
 msgstr ""
 
 #: includes/helpers/facebook.php:31
@@ -4843,7 +4873,7 @@ msgstr ""
 msgid "Enable User Ad Management Panel"
 msgstr ""
 
-#: includes/settings-api.php:51
+#: includes/settings-api.php:51 includes/settings-api.php:519
 msgid "General Settings"
 msgstr ""
 
@@ -6386,84 +6416,95 @@ msgstr ""
 msgid "SMTP password (if emails not processing normally)."
 msgstr ""
 
-#: includes/settings-api.php:772
+#: includes/settings-api.php:521
+msgid "Send Ads to Facebook Automatically"
+msgstr ""
+
+#: includes/settings-api.php:521
+msgid ""
+"If checked, Ads will be posted to Facebook shortly after they are posted, "
+"enabled or edited, whichever occurs first. Ads will be posted only once. "
+"Please note that disabled Ads cannot be posted to Facebook."
+msgstr ""
+
+#: includes/settings-api.php:777
 msgid ""
 "You cannot enable Akismet SPAM control because you do not have Akismet "
 "installed/activated"
 msgstr ""
 
-#: includes/settings-api.php:775
+#: includes/settings-api.php:780
 msgid ""
 "You cannot enable Akismet SPAM control because you have not configured "
 "Akismet properly"
 msgstr ""
 
-#: includes/settings-api.php:787
+#: includes/settings-api.php:792
 msgid ""
 "reCAPTCHA can't be used because the public key and private key settings are "
 "required for reCAPTCHA to work properly."
 msgstr ""
 
-#: includes/settings-api.php:789
+#: includes/settings-api.php:794
 msgid ""
 "reCAPTCHA can't be used because the public key setting is required for "
 "reCAPTCHA to work properly."
 msgstr ""
 
-#: includes/settings-api.php:791
+#: includes/settings-api.php:796
 msgid ""
 "reCAPTCHA can't be used because the private key setting is required for "
 "reCAPTCHA to work properly."
 msgstr ""
 
-#: includes/settings-api.php:800
+#: includes/settings-api.php:805
 msgid ""
 "Require Registration setting was enabled automatically because you activated "
 "the User Ad Management panel."
 msgstr ""
 
-#: includes/settings-api.php:815
+#: includes/settings-api.php:820
 msgid ""
 "User Ad Management panel was automatically deactivated because you disabled "
 "Require Registration setting."
 msgstr ""
 
-#: includes/settings-api.php:820
+#: includes/settings-api.php:825
 msgid ""
 "Credit System was automatically disabled because you disabled Require "
 "Registration setting."
 msgstr ""
 
-#: includes/settings-api.php:841 includes/settings-api.php:853
+#: includes/settings-api.php:846 includes/settings-api.php:858
 msgid ""
 "There is a problem with the currency code you have entered. It does not "
 "match any of the codes in the list of available currencies provided by "
 "PayPal."
 msgstr ""
 
-#: includes/settings-api.php:842 includes/settings-api.php:854
+#: includes/settings-api.php:847 includes/settings-api.php:859
 msgid "The available currency codes are"
 msgstr ""
 
-#: includes/settings-api.php:863
+#: includes/settings-api.php:868
 msgid ""
 "Require Registration setting was enabled automatically because you activated "
 "the Credit System."
 msgstr ""
 
-#: includes/settings-api.php:868
+#: includes/settings-api.php:873
 msgid ""
 "Charge Listing Fee setting was enabled automatically because you activated "
 "the Credit System."
 msgstr ""
 
-#: includes/settings-api.php:874
+#: includes/settings-api.php:879
 msgid ""
 "Credit System was disabled automatically because you disabled Charge Listing "
 "Fee."
 msgstr ""
 
-#: includes/settings-api.php:1060
+#: includes/settings-api.php:1065
 msgid "Documentation on date and time formatting"
 msgstr ""
 
@@ -6490,30 +6531,76 @@ msgid ""
 "<payments-settings-link>configure the website as a free board</a>."
 msgstr ""
 
-#: includes/views/admin/listings/class-renew-listings-admin-page.php:44
+#: includes/views/admin/listings/class-renew-listings-admin-page.php:33
 msgid "There was an error trying to renew Ad %s."
 msgstr ""
 
-#: includes/views/admin/listings/class-renew-listings-admin-page.php:54
+#: includes/views/admin/listings/class-renew-listings-admin-page.php:43
 msgid "The Ad hasn't expired yet and is not about to expire."
 msgstr ""
 
-#: includes/views/admin/listings/class-renew-listings-admin-page.php:60
+#: includes/views/admin/listings/class-renew-listings-admin-page.php:49
 msgid "We couldn't find a valid payment term associated with this Ad."
 msgstr ""
 
-#: includes/views/admin/listings/class-renew-listings-admin-page.php:79
+#: includes/views/admin/listings/class-renew-listings-admin-page.php:68
+#: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:80
 msgid "No Ads were selected"
 msgstr ""
 
-#: includes/views/admin/listings/class-renew-listings-admin-page.php:81
+#: includes/views/admin/listings/class-renew-listings-admin-page.php:70
 msgid "%d Ad was renewed"
 msgid_plural "%d Ads were renewed"
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/views/admin/listings/class-renew-listings-admin-page.php:82
+#: includes/views/admin/listings/class-renew-listings-admin-page.php:72
 msgid "there was an error trying to renew %d Ads"
+msgstr ""
+
+#: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:35
+msgid ""
+"AWPCP could not post to Facebook because you haven't selected a Page or a "
+"Group."
+msgstr ""
+
+#: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:47
+msgid ""
+"The Ad %s was not sent to Facebook because is currently disabled. If you "
+"share it, Facebook servers and users won't be able to access it."
+msgstr ""
+
+#: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:56
+msgctxt "... <listing-title> to a <Facebook Group/Page>"
+msgid "There was an error trying to send the listing %s to a %s."
+msgstr ""
+
+#: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:88
+msgid ""
+"There were errors trying to Send Ads to Facebook, perhaps your credentials "
+"are invalid or have expired. Please check your <a>settings</a>. If your "
+"token expired, please try to get a new access token from Facebook using the "
+"link in step 2 of the settings."
+msgstr ""
+
+#: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:98
+msgid "%d Ad was sent to a Facebook Page"
+msgid_plural "%d Ads were sent to a Facebook Page"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:100
+msgid "there was an error trying to send %d Ads to a Facebook Page"
+msgstr ""
+
+#: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:106
+msgid "%d Ad was sent to a Facebook Group"
+msgid_plural "%d Ads were sent to a Facebook Group"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:108
+msgid "there was an error trying to send %d Ads to a Facebook Group"
 msgstr ""
 
 #: includes/views/class-base-page.php:79
