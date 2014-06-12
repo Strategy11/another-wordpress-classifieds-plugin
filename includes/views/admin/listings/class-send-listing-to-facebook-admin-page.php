@@ -1,37 +1,33 @@
 <?php
 
 function awpcp_send_listing_to_facebook_admin_page() {
-    return new AWPCP_SendListingToFacebookAdminPage( awpcp_listings_collection(), awpcp_listings_metadata(), awpcp_media_api(), AWPCP_Facebook::instance(), awpcp_request() );
+    return new AWPCP_SendListingToFacebookAdminPage( awpcp_listings_collection(), AWPCP_Facebook::instance(), awpcp_send_to_facebook_helper(), awpcp_request() );
 }
 
 class AWPCP_SendListingToFacebookAdminPage extends AWPCP_ListingActionAdminPage {
 
-    private $listings_metadata;
-    private $media;
-    private $facebook;
+    private $facebook_config;
+    private $facebook_helper;
 
     public $successful = array( 'page' => 0, 'group' => 0 );
     public $failed = array( 'page' => 0, 'group' => 0 );
     public $errors = array();
 
-    public function __construct( $listings, $listings_metadata, $media, $facebook, $request ) {
+    public function __construct( $listings, $facebook_config, $facebook_helper, $request ) {
         parent::__construct( $listings, $request );
 
-        $this->listings_metadata = $listings_metadata;
-        $this->media = $media;
-        $this->facebook = $facebook;
+        $this->facebook_config = $facebook_config;
+        $this->facebook_helper = $facebook_helper;
     }
 
     public function dispatch() {
         $destinations = array();
 
-        $selected_page = $this->facebook->get( 'page_id' );
-        if ( ! empty( $selected_page ) ) {
+        if ( $this->facebook_config->is_page_set() ) {
             $destinations['page'] = __( 'Facebook Page', 'AWPCP' );
         }
 
-        $selected_group = $this->facebook->get( 'group_id' );
-        if ( ! empty( $selected_group ) ) {
+        if ( $this->facebook_config->is_group_set() ) {
             $destinations['group'] = __( 'Facebook Group', 'AWPCP' );
         }
 
@@ -67,59 +63,12 @@ class AWPCP_SendListingToFacebookAdminPage extends AWPCP_ListingActionAdminPage 
     }
 
     public function send_listing_to_facebook_page( $listing ) {
-        $this->facebook->set_access_token( 'page_token' );
-
-        if ( $this->listings_metadata->get( $listing->ad_id, 'sent-to-facebook' ) ) {
-            throw new AWPCP_Exception( __( 'The Ad was already sent to Facebook Page.', 'AWPCP' ) );
-        }
-
-        $this->do_facebook_request( $listing,
-                                    '/' . $this->facebook->get( 'page_id' ) . '/links',
-                                    'POST' );
-
-        $this->listings_metadata->set( $listing->ad_id, 'sent-to-facebook', true );
+        $this->facebook_helper->send_listing_to_facebook_page( $listing );
         $this->successful['page'] = $this->successful['page'] + 1;
     }
 
-    private function do_facebook_request( $listing, $path, $method ) {
-        $primary_image = $this->media->get_ad_primary_image( $listing );
-        $primary_image_thumbnail_url = $primary_image ? $primary_image->get_url( 'primary' ) : '';
-
-        $params = array( 'link' => url_showad( $listing->ad_id ),
-                         'name' => $listing->get_title(),
-                         'picture' =>  $primary_image_thumbnail_url );
-
-        try {
-            $response = $this->facebook->api_request( $path, $method, $params );
-        } catch ( Exception $e ) {
-            $message = __( "There was an error trying to contact Facebook servers: %s.", 'AWPCP' );
-            $message = sprintf( $message, $e->getMessage() );
-            throw new AWPCP_Exception( $message );
-        }
-
-        if ( ! $response || ! isset( $response->id ) ) {
-            $message = __( 'Facebook API returned the following errors: %s.', 'AWPCP' );
-            $message = sprintf( $message, $this->facebook->get_last_error()->message );
-            throw new AWPCP_Exception( $message );
-        }
-    }
-
     public function send_listing_to_facebook_group( $listing ) {
-        $this->facebook->set_access_token( 'user_token' );
-
-        if ( $this->listings_metadata->get( $listing->ad_id, 'sent-to-facebook-group' ) ) {
-            throw new AWPCP_Exception( __( 'The Ad was already sent to Facebook Group.', 'AWPCP' ) );
-        }
-
-        if ( $listing->disabled ) {
-            throw new AWPCP_Exception( __( "The Ad is currently disabled. If you share it, Facebook servers and users won't be able to access it.", 'AWPCP' ) );
-        }
-
-        $this->do_facebook_request( $listing,
-                                    '/' . $this->facebook->get( 'group_id' ) . '/feed',
-                                    'POST' );
-
-        $this->listings_metadata->set( $listing->ad_id, 'sent-to-facebook-group', true );
+        $this->facebook_helper->send_listing_to_facebook_group( $listing );
         $this->successful['group'] = $this->successful['group'] + 1;
     }
 

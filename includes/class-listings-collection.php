@@ -13,6 +13,20 @@ function awpcp_listings_collection() {
 class AWPCP_ListingsCollection {
 
     /**
+     * @since next-release
+     */
+    public function get( $listing_id ) {
+        $listing = AWPCP_Ad::find_by_id( $listing_id );
+
+        if ( is_null( $listing ) ) {
+            $message = __( 'No Ad was found with id: %d', 'AWPCP' );
+            throw new AWPCP_Exception( sprintf( $message, $listing_id ) );
+        }
+
+        return $listing;
+    }
+
+    /**
      * @since 3.2.2
      */
     public function find_by_id( $ad_id ) {

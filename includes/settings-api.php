@@ -516,6 +516,11 @@ class AWPCP_Settings_API {
 
 		$group = $this->add_group('Facebook', 'facebook-settings', 100);
 
+		$key = $this->add_section( $group, __( 'General Settings', 'AWPCP' ), 'general', 10, array( $this, 'section' ) );
+
+		$this->add_setting( $key, 'sends-listings-to-facebook-automatically', __( 'Send Ads to Facebook Automatically', 'AWPCP' ), 'checkbox', 1, __( 'If checked, Ads will be posted to Facebook shortly after they are posted, enabled or edited, whichever occurs first. Ads will be posted only once. Please note that disabled Ads cannot be posted to Facebook.', 'AWPCP' ) );
+
+
 		// save settings to database
 		$this->skip = true;
 		update_option($this->option, $this->options);

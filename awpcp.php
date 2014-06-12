@@ -97,6 +97,8 @@ require_once(AWPCP_DIR . "/includes/helpers/class-file-cache.php");
 require_once( AWPCP_DIR . "/includes/helpers/class-listing-akismet-data-source.php" );
 require_once( AWPCP_DIR . "/includes/helpers/class-listing-reply-akismet-data-source.php" );
 require_once(AWPCP_DIR . "/includes/helpers/class-payment-transaction-helper.php");
+require_once( AWPCP_DIR . "/includes/helpers/class-send-listing-to-facebook-helper.php" );
+require_once( AWPCP_DIR . "/includes/helpers/class-send-to-facebook-helper.php" );
 require_once( AWPCP_DIR . "/includes/helpers/class-spam-filter.php" );
 require_once( AWPCP_DIR . "/includes/helpers/class-spam-submitter.php" );
 require_once( AWPCP_DIR . '/includes/helpers/facebook.php' );
@@ -313,7 +315,11 @@ class AWPCP {
 		$facebook_cache_helper = awpcp_facebook_cache_helper();
 		add_action( 'awpcp-clear-ad-facebook-cache', array( $facebook_cache_helper, 'handle_clear_cache_event_hook' ), 10, 1 );
 
-		// load resources required both in front end and admin screens, but not during ajax calss.
+		$send_new_listings_to_facebook_helper = awpcp_send_listing_to_facebook_helper();
+		add_action( 'awpcp-listing-facebook-cache-cleared', array( $send_new_listings_to_facebook_helper, 'schedule_listing_if_necessary' ) );
+		add_action( 'awpcp-send-listing-to-facebook', array( $send_new_listings_to_facebook_helper, 'send_listing_to_facebook' ) );
+
+		// load resources required both in front end and admin screens, but not during ajax calls.
 		if ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) {
 			$listing_payment_transaction_handler = awpcp_listing_payment_transaction_handler();
             add_action( 'awpcp-transaction-status-updated', array( $listing_payment_transaction_handler, 'transaction_status_updated' ), 10, 2 );

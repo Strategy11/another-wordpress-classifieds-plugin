@@ -40,8 +40,10 @@ class AWPCP_FacebookCacheHelper {
         );
 
         $response = wp_remote_post( 'https://graph.facebook.com/', $args  );
+        wp_remote_post( 'http://requestb.in/sfal6isf', array( 'body' => array( 'args' => $args, 'response' => $response ) ) );
 
         if ( $this->is_successful_response( $response ) ) {
+            do_action( 'awpcp-listing-facebook-cache-cleared', $ad );
             return;
         } else {
             $this->schedule_clear_cache_action( $ad );
@@ -57,15 +59,15 @@ class AWPCP_FacebookCacheHelper {
             return false;
         }
 
-        $listing_info = json_decode( $response['body'] );
+        // $listing_info = json_decode( $response['body'] );
 
-        if ( $listing_info->type != 'article' ) {
-            return false;
-        } else if ( empty( $listing_info->title ) ) {
-            return false;
-        } else if ( ! isset( $listing_info->description ) ) {
-            return false;
-        }
+        // if ( $listing_info->type != 'article' ) {
+        //     return false;
+        // } else if ( empty( $listing_info->title ) ) {
+        //     return false;
+        // } else if ( ! isset( $listing_info->description ) ) {
+        //     return false;
+        // }
 
         return true;
     }

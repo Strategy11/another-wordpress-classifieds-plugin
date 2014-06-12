@@ -319,4 +319,16 @@ class AWPCP_Facebook {
     public function get_last_error() {
         return $this->last_error;
     }
+
+    public function is_page_set() {
+        $page_id = $this->get( 'page_id' );
+        $page_token = $this->get( 'page_token' );
+
+        return ( empty( $page_id ) || empty( $page_token ) ) ? false : true;
+    }
+
+    public function is_group_set() {
+        $group_id = $this->get( 'group_id' );
+        return empty( $group_id ) ? false : true;
+    }
 }

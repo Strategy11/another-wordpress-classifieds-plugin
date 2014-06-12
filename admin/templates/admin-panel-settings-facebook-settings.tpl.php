@@ -1,4 +1,7 @@
 <div class="metabox-holder">
+
+	<?php echo awpcp_print_message( __( 'Facebook Integration is in beta. Please let us know if you experience any problems or have feature suggestions.', 'AWPCP' ), array( 'updated', 'below-h2', 'highlight' ) ); ?>
+
 	<div class="postbox">
 		<h3 class="hndle"><span><?php _e('Facebook Integration', 'AWPCP') ?></span></h3>
 		<div class="inside">
@@ -8,8 +11,9 @@
 					__( 'This configuration allows you to post ads to Facebook. You must have a Facebook Application created to use this feature. Read <a>How to Register and Configure a Facebook Application.</a>', 'AWPCP' ) );
 				?>
 			</div>
-		</div>
+	     </div>
 	</div>
+
 	<?php if ( $current_step > 1 && $this->get_current_action() != 'diagnostics' ): ?>
 	<div class="postbox">
 		<h3 class="hndle"><span><?php _e( 'Diagnostics', 'AWPCP' ) ?></span></h3>
@@ -23,8 +27,6 @@
 	</div>
 	<?php endif; ?>
 </div>
-
-<?php echo awpcp_print_message( __( 'Facebook Integration is in beta. Please let us know if you experience any problems or have feature suggestions.', 'AWPCP' ), array( 'updated', 'below-h2', 'highlight' ) ); ?>
 
 <h3><?php _e( 'Facebook Integration', 'AWPCP' ); ?></h3>
 
