@@ -141,6 +141,9 @@ require_once( AWPCP_DIR . "/includes/views/frontend/buy-credits/class-buy-credit
 require_once( AWPCP_DIR . "/includes/views/frontend/buy-credits/class-buy-credits-page-checkout-step.php" );
 require_once( AWPCP_DIR . "/includes/views/frontend/buy-credits/class-buy-credits-page-payment-completed-step.php" );
 require_once( AWPCP_DIR . "/includes/views/frontend/buy-credits/class-buy-credits-page-final-step.php" );
+require_once( AWPCP_DIR . "/includes/views/frontend/class-categories-list-walker.php" );
+require_once( AWPCP_DIR . "/includes/views/frontend/class-categories-plain-list-walker.php" );
+require_once( AWPCP_DIR . "/includes/views/frontend/class-categories-renderer.php" );
 require_once( AWPCP_DIR . "/includes/views/admin/class-fee-payment-terms-notices.php" );
 require_once( AWPCP_DIR . "/includes/views/admin/class-credit-plans-notices.php" );
 require_once( AWPCP_DIR . "/includes/views/admin/listings/class-listing-action-admin-page.php" );
