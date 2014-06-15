@@ -141,6 +141,7 @@ function awpcp_content_placeholders() {
         'category_name' => array(),
         'parent_category_url' => array(),
         'parent_category_name' => array(),
+        'categories' => array(),
         'details' => array(),
         'excerpt' => array(),
         'contact_name' => array(),
@@ -295,11 +296,38 @@ function awpcp_do_placeholder_parent_category_url( $ad, $placeholder ) {
     return $ad->ad_category_parent_id > 0 ? url_browsecategory( $ad->ad_category_parent_id ) : '';
 }
 
+/**
+ * @since next-release
+ */
+function awpcp_do_placeholder_categories( $listing, $placeholder ) {
+    $categories_ids = array_filter( array( $listing->ad_category_id, $listing->ad_category_parent_id ) );
+    $categories = awpcp_categories_collection()->find( array( 'id' => $categories_ids ) );
+
+    $links = array( 'parent-category' => '', 'category' => '' );
+
+    foreach ( $categories as $category ) {
+        if ( $listing->ad_category_parent_id == $category->id ) {
+            $category_type = 'parent-category';
+        } else {
+            $category_type = 'category';
+        }
+
+        $link = '<a href="<category-url>"><category-name></a>';
+        $link = str_replace( '<category-url>', url_browsecategory( $listing->ad_category_parent_id ), $link );
+        $link = str_replace( '<category-name>', esc_html( $category->name ), $link );
+
+        $links[ $category_type ] = $link;
+    }
+
+    $output = '<span class="awpcp-listing-categories"><categories></span>';
+    $output = str_replace( '<categories>', implode( ' / ', array_filter( $links ) ), $output );
+
+    return $output;
+}
 
 /**
  * @since 3.0
  */
-
 function awpcp_do_placeholder_details($ad, $placeholder) {
     static $replacements = array();
 
