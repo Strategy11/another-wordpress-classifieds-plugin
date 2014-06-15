@@ -1,7 +1,7 @@
 <?php
 
 function awpcp_send_listing_to_facebook_helper() {
-    return new AWPCP_SendListingToFacebookHelper( AWPCP_Facebook::instance(), awpcp_send_to_facebook_helper(), awpcp_listings_collection(), awpcp_listings_metadata() );
+    return new AWPCP_SendListingToFacebookHelper( AWPCP_Facebook::instance(), awpcp_send_to_facebook_helper(), awpcp_listings_collection(), awpcp_listings_metadata(), awpcp()->settings );
 }
 
 class AWPCP_SendListingToFacebookHelper {
@@ -10,16 +10,18 @@ class AWPCP_SendListingToFacebookHelper {
     private $facebook_helper;
     private $listings_collection;
     private $listings_metadata;
+    private $settings;
 
-    public function __construct( $facebook_config, $facebook_helper, $listings_collection, $listings_metadata ) {
+    public function __construct( $facebook_config, $facebook_helper, $listings_collection, $listings_metadata, $settings ) {
         $this->facebook_config = $facebook_config;
         $this->facebook_helper = $facebook_helper;
         $this->listings_collection = $listings_collection;
         $this->listings_metadata = $listings_metadata;
+        $this->settings = $settings;
     }
 
     public function schedule_listing_if_necessary( $listing ) {
-        if ( ! $this->facebook_config->get( 'send_listings_automatically', true ) ) {
+        if ( ! $this->settings->get_option( 'sends-listings-to-facebook-automatically', true ) ) {
             return;
         }
 
