@@ -141,6 +141,8 @@ require_once( AWPCP_DIR . "/includes/views/frontend/buy-credits/class-buy-credit
 require_once( AWPCP_DIR . "/includes/views/frontend/buy-credits/class-buy-credits-page-checkout-step.php" );
 require_once( AWPCP_DIR . "/includes/views/frontend/buy-credits/class-buy-credits-page-payment-completed-step.php" );
 require_once( AWPCP_DIR . "/includes/views/frontend/buy-credits/class-buy-credits-page-final-step.php" );
+require_once( AWPCP_DIR . "/includes/views/frontend/class-categories-list-walker.php" );
+require_once( AWPCP_DIR . "/includes/views/frontend/class-categories-renderer.php" );
 require_once( AWPCP_DIR . "/includes/views/admin/class-fee-payment-terms-notices.php" );
 require_once( AWPCP_DIR . "/includes/views/admin/class-credit-plans-notices.php" );
 require_once( AWPCP_DIR . "/includes/views/admin/listings/class-listing-action-admin-page.php" );
@@ -298,14 +300,19 @@ class AWPCP {
 		$this->setup_register_settings_handlers();
 
 		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+			// load resources required to handle Ajax requests only.
 			$handler = awpcp_users_autocomplete_ajax_handler();
 			add_action( 'wp_ajax_awpcp-autocomplete-users', array( $handler, 'ajax' ) );
 			add_action( 'wp_ajax_nopriv_awpcp-autocomplete-users', array( $handler, 'ajax' ) );
-			// load resources required to handle Ajax requests only.
 		} if ( is_admin() && awpcp_current_user_is_admin() ) {
 			// load resources required in admin screens only, visible to admin users only.
 			add_action( 'admin_notices', array( awpcp_fee_payment_terms_notices(), 'dispatch' ) );
 			add_action( 'admin_notices', array( awpcp_credit_plans_notices(), 'dispatch' ) );
+		} if ( is_admin() ) {
+			// load resoruces required in admin screens only
+			add_action( 'awpcp-category-added', array( $this, 'clear_categories_list_cache' ) );
+			add_action( 'awpcp-category-edited', array( $this, 'clear_categories_list_cache' ) );
+			add_action( 'awpcp-category-deleted', array( $this, 'clear_categories_list_cache' ) );
 		} else {
 			// load resources required in frontend screens only.
 			add_action( 'template_redirect', array( new AWPCP_SecureURLRedirectionHandler(), 'dispatch' ) );
@@ -319,6 +326,8 @@ class AWPCP {
 		add_action( 'awpcp-listing-facebook-cache-cleared', array( $send_new_listings_to_facebook_helper, 'schedule_listing_if_necessary' ) );
 		add_action( 'awpcp-send-listing-to-facebook', array( $send_new_listings_to_facebook_helper, 'send_listing_to_facebook' ) );
 
+		add_action( 'awpcp_delete_ad', array( $this, 'clear_categories_list_cache' ) );
+
 		// load resources required both in front end and admin screens, but not during ajax calls.
 		if ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) {
 			$listing_payment_transaction_handler = awpcp_listing_payment_transaction_handler();
@@ -328,6 +337,11 @@ class AWPCP {
 			add_action( 'awpcp-place-ad', array( $facebook_cache_helper, 'on_place_ad' ) );
 			add_action( 'awpcp_approve_ad', array( $facebook_cache_helper, 'on_approve_ad' ) );
 			add_action( 'awpcp_edit_ad', array( $facebook_cache_helper, 'on_edit_ad' ) );
+
+			add_action( 'awpcp-place-ad', array( $this, 'clear_categories_list_cache' ) );
+			add_action( 'awpcp_approve_ad', array( $this, 'clear_categories_list_cache' ) );
+			add_action( 'awpcp_edit_ad', array( $this, 'clear_categories_list_cache' ) );
+			add_action( 'awpcp_disable_ad', array( $this, 'clear_categories_list_cache' ) );
 		}
 
 		// Ad metadata integration.
@@ -937,6 +951,14 @@ class AWPCP {
 		header( "Content-Type: application/json" );
     	echo json_encode($response);
     	die();
+	}
+
+	public function clear_categories_list_cache() {
+		$transient_keys = get_option( 'awpcp-categories-list-cache-keys', array() );
+		foreach ( $transient_keys as $transient_key ) {
+			delete_transient( $transient_key );
+		}
+		delete_option( 'awpcp-categories-list-cache-keys' );
 	}
 }
 

@@ -1165,6 +1165,8 @@ function awpcp_handle_admin_requests() {
 				$query = "DELETE FROM  " . AWPCP_TABLE_CATEGORIES . " WHERE category_id='$category_id'";
 				$wpdb->query( $query );
 
+				do_action( 'awpcp-category-deleted', $category_id );
+
 				$themessagetoprint=__("The category has been deleted","AWPCP");
 			}
 		}
