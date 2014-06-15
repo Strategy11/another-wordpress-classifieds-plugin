@@ -13,10 +13,7 @@ class AWPCP_CategoriesListWalker extends Walker {
 
     public function configure( $options = array() ) {
         $this->options = wp_parse_args( $options, array(
-            'parent_category_id' => null,
             'show_in_columns' => 1,
-            'show_empty_categories' => true,
-            'show_children_categories' => true,
             'show_listings_count' => true,
             'collapsible_categories' => get_awpcp_option( 'collapse-categories-columns' ),
         ) );
@@ -71,7 +68,7 @@ class AWPCP_CategoriesListWalker extends Walker {
             $output .= '</p>';
         }
 
-        $this->update_elemetns_count( $depth );
+        $this->update_elements_count( $depth );
     }
 
     private function is_first_element_in_row( $depth ) {
@@ -110,7 +107,7 @@ class AWPCP_CategoriesListWalker extends Walker {
     }
 
     private function render_listings_count( $category ) {
-        return $this->options['show_listings_count'] ? '(' . total_ads_in_cat( $category->id ) . ')' : '';
+        return $this->options['show_listings_count'] ? '(' . $category->listings_count . ')' : '';
     }
 
     private function render_js_handler( $depth ) {
@@ -121,7 +118,7 @@ class AWPCP_CategoriesListWalker extends Walker {
         }
     }
 
-    private function update_elemetns_count( $depth ) {
+    private function update_elements_count( $depth ) {
         if ( $depth == 0 ) {
             $this->top_level_elements_count = $this->top_level_elements_count + 1;
         }

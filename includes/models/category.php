@@ -142,6 +142,11 @@ class AWPCP_CategoriesCollection {
 
             $category->id = $this->db->insert_id;
 
+            /**
+             * @since next-release
+             */
+            do_action( 'awpcp-category-added', $category );
+
             return $rows_affected;
         } else {
             return false;
@@ -186,6 +191,11 @@ class AWPCP_CategoriesCollection {
             $result = $this->update_category( $category );
             throw new AWPCP_Exception( $e->getMessage() );
         }
+
+        /**
+         * @since next-release
+         */
+        do_action( 'awpcp-category-edited' );
 
         return $rows_updated;
     }
@@ -237,11 +247,31 @@ class AWPCP_CategoriesCollection {
         $category->order = $previous_category_data->category_order;
     }
 
+    /**
+     * @since next-release
+     */
     public function get_all() {
-        return AWPCP_Category::find();
+        return AWPCP_Category::query( array(
+            'orderby' => 'category_order ASC, category_name',
+            'order' => 'ASC',
+        ) );
     }
 
+    /**
+     * @since next-release
+     */
     public function find( $args = array() ) {
         return AWPCP_Category::find( $args );
+    }
+
+    /**
+     * @since next-release
+     */
+    public function find_by_parent_id( $category_parent_id ) {
+        return AWPCP_Category::query( array(
+            'where' => sprintf( 'category_parent_id = %d', absint( $category_parent_id ) ),
+            'orderby' => 'category_order ASC, category_name',
+            'order' => 'ASC',
+        ) );
     }
 }
