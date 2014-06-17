@@ -1,5 +1,11 @@
 <?php
 
+if ( ! class_exists( 'Walker' ) ) {
+  require_once( ABSPATH . '/wp-includes/class-wp-walker.php' );
+}
+
+if ( class_exists( 'Walker' ) ) {
+
 class AWPCP_CategoriesListWalker extends Walker {
 
     protected $options = array();
@@ -148,4 +154,6 @@ class AWPCP_CategoriesListWalker extends Walker {
 
         return false;
     }
+}
+
 }
