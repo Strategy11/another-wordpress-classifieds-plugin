@@ -408,6 +408,7 @@ class AWPCP_Settings_API {
 		$this->add_setting( $key, 'displaypricefield', __( 'Show Price field', 'AWPCP' ), 'checkbox', 1, __( 'Show price field?', 'AWPCP' ) );
 		$this->add_setting( $key, 'displaypricefieldreqop', __( 'Require Price', 'AWPCP' ), 'checkbox', 0, __( 'Require price?', 'AWPCP' ) );
 		$this->add_setting( $key, 'price-field-is-restricted', __( 'Make Price restricted?', 'AWPCP' ), 'checkbox', 0, __( 'Make Price restricted (only visible to logged in users).', 'AWPCP' ) );
+		$this->add_setting( $key, 'hide-price-field-if-empty', __( 'Hide price field if empty or zero', 'AWPCP' ), 'checkbox', 0, __( 'If checked all price placeholders will be replaced with an empty string when the price of the Ad is zero or was not set.', 'AWPCP' ) );
 
 		// Section: Country Field
 

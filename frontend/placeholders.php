@@ -420,6 +420,10 @@ function awpcp_do_placeholder_price($ad, $placeholder) {
     $show_price_field = get_awpcp_option( 'displaypricefield' ) == 1;
     $user_can_see_price_field = is_user_logged_in() || get_awpcp_option( 'price-field-is-restricted' ) == 0;
 
+    if ( get_awpcp_option( 'hide-price-field-if-empty' ) && $price <= 0 ) {
+        $show_price_field = false;
+    }
+
     $replacements = array();
 
     if ( $show_price_field && $user_can_see_price_field && $price >= 0 ) {
