@@ -920,7 +920,7 @@ class AWPCP {
 	}
 
 	/**
-	 * Handler for AJAX request from the Multile Region Selector to get new options
+	 * Handler for AJAX request from the Multiple Region Selector to get new options
 	 * for a given field.
 	 *
 	 * @since 3.0.2
@@ -931,7 +931,7 @@ class AWPCP {
 		$parent = awpcp_request_param( 'parent', '', $_GET );
 		$context = awpcp_request_param( 'context', '', $_GET );
 
-		$options = apply_filters( 'awpcp-get-regions-options', false, $type, $parent_type, $parent );
+		$options = apply_filters( 'awpcp-get-regions-options', false, $type, $parent_type, $parent, $context );
 
 		if ( $options === false ) {
 		    $options = array();
