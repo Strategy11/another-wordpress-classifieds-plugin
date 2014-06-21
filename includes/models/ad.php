@@ -135,16 +135,25 @@ class AWPCP_Ad {
 		return array_filter( apply_filters( 'awpcp-ad-order-conditions', $parts, $order ) );
 	}
 
-	public static function get_where_conditions($conditions=array()) {
+	/**
+	 * @since next-release
+	 */
+	public static function get_where_conditions_for_valid_ads( $conditions = array() ) {
         $conditions[] = "payment_status != 'Unpaid'";
         $conditions[] = "verified = 1";
-		$conditions[] = "disabled = 0";
 
         if ( ( get_awpcp_option( 'enable-ads-pending-payment' ) == 0 ) && ( get_awpcp_option( 'freepay' ) == 1 ) ) {
             $conditions[] = "payment_status != 'Pending'";
         }
 
         return array_filter( apply_filters( 'awpcp-ad-where-statement', $conditions ) );
+	}
+
+	public static function get_where_conditions($conditions=array()) {
+		$conditions = self::get_where_conditions_for_valid_ads( $conditions );
+		$conditions = array_merge( $conditions, array( "disabled = 0" ) );
+
+        return $conditions;
 	}
 
 	/**
