@@ -53,13 +53,38 @@ class AWPCP_ListingsCollection {
         }
     }
 
+    private function find_valid_listings( $conditions = array() ) {
+        $conditions = AWPCP_Ad::get_where_conditions_for_valid_ads( $conditions );
+        return AWPCP_Ad::query( array( 'where' => implode( ' AND ', $conditions ) ) );
+    }
+
+    private function count_valid_listings( $conditions = array() ) {
+        $conditions = AWPCP_Ad::get_where_conditions_for_valid_ads( $conditions );
+        return AWPCP_Ad::count( implode( ' AND ', $conditions ) );
+    }
+
+    /**
+     * @since next-release
+     */
+    public function find_user_listings( $user_id ) {
+        $conditions = array( $this->db->prepare( 'user_id = %d', $user_id ) );
+        return $this->find_valid_listings( $conditions );
+    }
+
     /**
      * @since next-release
      */
     public function count_user_listings( $user_id ) {
         $conditions = array( $this->db->prepare( 'user_id = %d', $user_id ) );
-        $conditions = AWPCP_Ad::get_where_conditions_for_valid_ads( $conditions );
-        return AWPCP_Ad::count( implode( ' AND ', $conditions ) );
+        return $this->count_valid_listings( $conditions );
+    }
+
+    /**
+     * @since next-release
+     */
+    public function find_user_enabled_listings( $user_id ) {
+        $conditions = array( $this->db->prepare( 'user_id = %d', $user_id ), 'disabled = 0' );
+        return $this->find_valid_listings( $conditions );
     }
 
     /**
@@ -67,8 +92,15 @@ class AWPCP_ListingsCollection {
      */
     public function count_user_enabled_listings( $user_id ) {
         $conditions = array( $this->db->prepare( 'user_id = %d', $user_id ), 'disabled = 0' );
-        $conditions = AWPCP_Ad::get_where_conditions_for_valid_ads( $conditions );
-        return AWPCP_Ad::count( implode( ' AND ', $conditions ) );
+        return $this->count_valid_listings( $conditions );
+    }
+
+    /**
+     * @since next-release
+     */
+    public function find_user_disabled_listings( $user_id ) {
+        $conditions = array( $this->db->prepare( 'user_id = %d', $user_id ), 'disabled = 1' );
+        return $this->find_valid_listings( $conditions );
     }
 
     /**
@@ -76,7 +108,6 @@ class AWPCP_ListingsCollection {
      */
     public function count_user_disabled_listings( $user_id ) {
         $conditions = array( $this->db->prepare( 'user_id = %d', $user_id ), 'disabled = 1' );
-        $conditions = AWPCP_Ad::get_where_conditions_for_valid_ads( $conditions );
-        return AWPCP_Ad::count( implode( ' AND ', $conditions ) );
+        return $this->count_valid_listings( $conditions );
     }
 }
