@@ -2,7 +2,7 @@
 
 class AWPCP_Show_Ad_Page {
 
-	public function AWPCP_Show_Ad_Page() {
+	public function __construct() {
 		add_action('init', array($this, 'init'));
 		add_filter('awpcp-ad-details', array($this, 'oembed'));
 	}
@@ -44,6 +44,10 @@ class AWPCP_Show_Ad_Page {
 		$wp_embed->usecache = $usecache;
 
 		return $content;
+	}
+
+	public function dispatch() {
+		return showad();
 	}
 }
 

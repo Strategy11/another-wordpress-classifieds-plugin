@@ -174,6 +174,8 @@ function( $, ko, FileManager, settings ) {
         pages.push('.awpcp-edit-ad');
         pages.push('.awpcp-admin-listings-place-ad');
         pages.push('.awpcp-admin-listings-edit-ad');
+        pages.push('.awpcp-buddypress-create-listing');
+        pages.push('.awpcp-buddypress-edit-listing');
 
         container = $(pages.join(', '));
 

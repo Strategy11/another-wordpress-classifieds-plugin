@@ -94,7 +94,7 @@ class AWPCP_Pages {
 
     public function show_ad() {
         if ( ! isset( $this->output['show-ad'] ) ) {
-            $this->output['show-ad'] = showad();
+            $this->output['show-ad'] = $this->show_ad->dispatch();
         }
 
         return $this->output['show-ad'];
