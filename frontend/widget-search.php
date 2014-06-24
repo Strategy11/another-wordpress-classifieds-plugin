@@ -33,7 +33,12 @@ class AWPCP_Search_Widget extends WP_Widget {
         $query.= 'ORDER BY ad_contact_name ASC';
 
         $names = $wpdb->get_col( $query );
-        $options = array_combine( $names, $names );
+
+        if ( empty( $names ) ) {
+            $options = array();
+        } else {
+            $options = array_combine( $names, $names );
+        }
 
         $selected = stripslashes_deep( awpcp_post_param( 'searchname', null ) );
 
@@ -63,8 +68,11 @@ class AWPCP_Search_Widget extends WP_Widget {
         foreach ( $fields as $name => $label ) {
             if ( $instance[ "show_$name" ] ) {
                 $options = array_filter( array_unique( awpcp_get_properties( $results, $name, '' ) ) );
-                asort( $options );
-                $options = array_combine( $options, $options );
+
+                if ( ! empty( $options ) ) {
+                    asort( $options );
+                    $options = array_combine( $options, $options );
+                }
 
                 echo $this->render_region_field( $label, $options, $name ) . '<br/>';
             }
