@@ -53,9 +53,20 @@ class AWPCP_ListingsCollection {
         }
     }
 
-    private function find_valid_listings( $conditions = array() ) {
-        $conditions = AWPCP_Ad::get_where_conditions_for_valid_ads( $conditions );
-        return AWPCP_Ad::query( array( 'where' => implode( ' AND ', $conditions ) ) );
+    private function find_valid_listings( $params = array() ) {
+        $params = wp_parse_args( $params, array(
+            'items_per_page' => 10,
+            'page' => 1,
+            'conditions' => array(),
+        ) );
+
+        $params['conditions'] = AWPCP_Ad::get_where_conditions_for_valid_ads( $params['conditions'] );
+
+        return AWPCP_Ad::query( array(
+            'where' => implode( ' AND ', $params['conditions'] ),
+            'limit' => $params['items_per_page'],
+            'offset' => ( $params['page'] - 1 ) * $params['items_per_page']
+        ) );
     }
 
     private function count_valid_listings( $conditions = array() ) {
@@ -66,9 +77,12 @@ class AWPCP_ListingsCollection {
     /**
      * @since next-release
      */
-    public function find_user_listings( $user_id ) {
-        $conditions = array( $this->db->prepare( 'user_id = %d', $user_id ) );
-        return $this->find_valid_listings( $conditions );
+    public function find_user_listings( $user_id, $params = array() ) {
+        $params = array_merge( $params, array(
+            'conditions' => array( $this->db->prepare( 'user_id = %d', $user_id ) )
+        ) );
+
+        return $this->find_valid_listings( $params );
     }
 
     /**
@@ -82,9 +96,12 @@ class AWPCP_ListingsCollection {
     /**
      * @since next-release
      */
-    public function find_user_enabled_listings( $user_id ) {
-        $conditions = array( $this->db->prepare( 'user_id = %d', $user_id ), 'disabled = 0' );
-        return $this->find_valid_listings( $conditions );
+    public function find_user_enabled_listings( $user_id, $params = array() ) {
+        $params = array_merge( $params, array(
+            'conditions' => array( $this->db->prepare( 'user_id = %d', $user_id ), 'disabled = 0' )
+        ) );
+
+        return $this->find_valid_listings( $params );
     }
 
     /**
@@ -98,9 +115,12 @@ class AWPCP_ListingsCollection {
     /**
      * @since next-release
      */
-    public function find_user_disabled_listings( $user_id ) {
-        $conditions = array( $this->db->prepare( 'user_id = %d', $user_id ), 'disabled = 1' );
-        return $this->find_valid_listings( $conditions );
+    public function find_user_disabled_listings( $user_id, $params = array() ) {
+        $params = array_merge( $params, array(
+            'conditions' => array( $this->db->prepare( 'user_id = %d', $user_id ), 'disabled = 1' )
+        ) );
+
+        return $this->find_valid_listings( $params );
     }
 
     /**

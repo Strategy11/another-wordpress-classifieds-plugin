@@ -216,7 +216,7 @@ function deletead($adid, $adkey, $editemail, $force=false, &$errors=array()) {
 		$tbl_ad_photos = $wpdb->prefix . "awpcp_adphotos";
 		$savedemail=get_adposteremail($adid);
 
-		if ((strcasecmp($editemail, $savedemail) == 0) || ($isadmin == 1 )) {
+		if ( $isadmin == 1 || strcasecmp( $editemail, $savedemail ) == 0 ) {
 			$ad = AWPCP_Ad::find_by_id($adid);
 			if ( $ad && $ad->delete() ) {
 				if (($isadmin == 1) && is_admin()) {
