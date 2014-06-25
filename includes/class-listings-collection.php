@@ -53,6 +53,9 @@ class AWPCP_ListingsCollection {
         }
     }
 
+    /**
+     * @since next-release
+     */
     private function find_valid_listings( $params = array() ) {
         $params = wp_parse_args( $params, array(
             'items_per_page' => 10,
@@ -69,9 +72,41 @@ class AWPCP_ListingsCollection {
         ) );
     }
 
+    /**
+     * @since next-release
+     */
     private function count_valid_listings( $conditions = array() ) {
         $conditions = AWPCP_Ad::get_where_conditions_for_valid_ads( $conditions );
         return AWPCP_Ad::count( implode( ' AND ', $conditions ) );
+    }
+
+    /**
+     * @since next-release
+     */
+    public function find_listings( $params = array() ) {
+        return $this->find_valid_listings( $params );
+    }
+
+    /**
+     * @since next-release
+     */
+    public function count_listings() {
+        return $this->count_valid_listings();
+    }
+
+    /**
+     * @since next-release
+     */
+    public function find_enabled_listings( $params = array() ) {
+        $params = array_merge( $params, array( 'conditions' => array( 'disabled = 0' ) ) );
+        return $this->find_valid_listings( $params );
+    }
+
+    /**
+     * @since next-release
+     */
+    public function count_enabled_listings() {
+        return $this->count_valid_listings( array( 'disabled = 0' ) );
     }
 
     /**
