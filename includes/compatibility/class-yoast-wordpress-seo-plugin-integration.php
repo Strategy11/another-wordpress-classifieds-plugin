@@ -97,15 +97,15 @@ class AWPCP_YoastWordPressSEOPluginIntegration {
         $this->meta = $meta;
 
         if ( defined( 'WPSEO_VERSION' ) ) {
-            add_filter( 'wpseo_title', array( $this, 'title' ) );
+            add_filter( 'wpseo_title', array( $this, 'build_title' ) );
             return false;
         }
 
         return $should;
     }
 
-    public function title( $title ) {
+    public function build_title( $title ) {
         global $sep;
-        return $this->meta->title( $title, $sep, '' );
+        return $this->meta->title_builder->build_title( $title, $sep, '' );
     }
 }
