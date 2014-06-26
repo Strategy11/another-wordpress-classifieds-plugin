@@ -95,6 +95,7 @@ require_once(AWPCP_DIR . "/includes/helpers/class-awpcp-request.php");
 require_once( AWPCP_DIR . '/includes/helpers/class-facebook-cache-helper.php' );
 require_once(AWPCP_DIR . "/includes/helpers/class-file-cache.php");
 require_once( AWPCP_DIR . "/includes/helpers/class-listing-akismet-data-source.php" );
+require_once( AWPCP_DIR . "/includes/helpers/class-listing-renderer.php" );
 require_once( AWPCP_DIR . "/includes/helpers/class-listing-reply-akismet-data-source.php" );
 require_once( AWPCP_DIR . "/includes/helpers/class-page-title-builder.php" );
 require_once( AWPCP_DIR . "/includes/helpers/class-payment-transaction-helper.php" );
@@ -1233,7 +1234,9 @@ function awpcp_rel_canonical_url() {
  * @since 3.2.1	logic moved to awpcp_rel_canonical_url()
  */
 function awpcp_rel_canonical() {
-	if ( $url = awpcp_rel_canonical_url() ) {
+	$url = awpcp_rel_canonical_url();
+
+	if ( $url ) {
 		echo "<link rel='canonical' href='$url' />\n";
 	} else {
 		rel_canonical();

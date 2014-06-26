@@ -253,14 +253,15 @@ function awpcp_do_placeholders($ad, $content, $context) {
  * @since 3.0
  */
 function awpcp_do_placeholder_url($ad, $placeholder) {
-    return url_showad($ad->ad_id);
+    return awpcp_get_listing_renderer()->get_view_listing_url( $ad );
 }
 
 /**
  * @since 3.0
  */
 function awpcp_do_placeholder_title($ad, $placeholder) {
-    $url = url_showad($ad->ad_id);
+    $url = awpcp_get_listing_renderer()->get_view_listing_url( $ad );
+
     $replacements['ad_title'] = sprintf('<a href="%s">%s</a>', $url, $ad->get_title());
     $replacements['title'] = $ad->get_title();
     $replacements['title_link'] = $replacements['ad_title'];
@@ -469,8 +470,8 @@ function awpcp_do_placeholder_images($ad, $placeholder) {
         return $replacements[$ad->ad_id][$placeholder];
     }
 
+    $url = awpcp_get_listing_renderer()->get_view_listing_url( $ad );
     $thumbnail_width = get_awpcp_option('displayadthumbwidth');
-    $url = url_showad($ad->ad_id);
 
     if (get_awpcp_option('imagesallowdisallow') == 1) {
         $images_uploaded = $ad->count_image_files();
@@ -824,8 +825,10 @@ function awpcp_do_placeholder_twitter_button($ad, $placeholder) {
  * @since 3.2.2
  */
 function awpcp_do_placeholder_twitter_button_url( $ad, $placeholder ) {
+    $url = awpcp_get_listing_renderer()->get_view_listing_url( $ad );
+
     return add_query_arg(array(
-        'url' => urlencode(url_showad($ad->ad_id)),
+        'url' => urlencode( $url ),
         'text' => urlencode($ad->get_title()),
     ), 'http://twitter.com/share');
 }

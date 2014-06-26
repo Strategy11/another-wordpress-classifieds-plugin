@@ -84,7 +84,6 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
         $actions = array();
 
         $actions['view'] = array(__('View', 'AWPCP'), $this->url(array('action' => 'view', 'id' => $ad->ad_id)));
-        // $actions['open'] = array(__('Open', 'AWPCP'), url_showad($ad->ad_id));
         $actions['edit'] = array(__('Edit', 'AWPCP'), $this->url(array('action' => 'edit', 'id' => $ad->ad_id)));
         $actions['trash'] = array(__('Delete', 'AWPCP'), $this->url(array('action' => 'delete', 'id' => $ad->ad_id)));
 
