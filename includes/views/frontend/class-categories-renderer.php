@@ -37,6 +37,7 @@ class AWPCP_CategoriesRenderer {
     private function generate_transient_key( $params ) {
         $transient_key_params = apply_filters( 'awpcp-categories-list-transient-key-params', $params );
         $transient_key = 'awpcp-categories-list-cache-' . hash( 'crc32b', maybe_serialize( $transient_key_params ) );
+
         return $transient_key;
     }
 

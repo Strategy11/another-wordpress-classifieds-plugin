@@ -906,6 +906,7 @@ class AWPCP_Settings_API {
 
 		$pages = awpcp_pages();
 		$pageids = $wpdb->get_results('SELECT page, id FROM ' . AWPCP_TABLE_PAGES, OBJECT_K);
+		$pages_updated = 0;
 
 		foreach ($pages as $key => $data) {
 			$id = intval($pageids[$key]->id);
@@ -918,9 +919,16 @@ class AWPCP_Settings_API {
 			$page = array(
 				'ID' => $id,
 				'post_title' => $title,
-				'post_name' => sanitize_title($options[$key]));
+				'post_name' => sanitize_title($options[$key])
+			);
 
 			wp_update_post($page);
+
+			$pages_updated = $pages_updated + 1;
+		}
+
+		if ( $pages_updated ) {
+			do_action( 'awpcp-pages-updated' );
 		}
 
 		flush_rewrite_rules();
