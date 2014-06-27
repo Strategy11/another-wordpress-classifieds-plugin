@@ -491,6 +491,13 @@ class AWPCP {
 					'version' => 'AWPCP_AUTHORIZE_NET_MODULE_DB_VERSION',
 					'required' => '3.0.3',
 				),
+				'buddypress-listings' => array(
+					'name' => __( 'BuddyPress Listings', 'AWPCP' ),
+					'url' => 'http://www.awpcp.com/premium-modules/?ref=panel',
+					'installed' => defined( 'AWPCP_BUDDYPRESS_LISTINGS_MODULE_DB_VERSION' ),
+					'version' => 'AWPCP_BUDDYPRESS_LISTINGS_MODULE_DB_VERSION',
+					'required' => '1.0-rc1',
+				),
 				'category-icons' => array(
 					'name' => __( 'Category Icons', 'AWPCP' ),
 					'url' => 'http://www.awpcp.com/premium-modules/category-icons-module?ref=panel',
