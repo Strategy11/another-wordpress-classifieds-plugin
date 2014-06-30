@@ -106,9 +106,9 @@ require_once(AWPCP_DIR . "/includes/helpers/list-table.php");
 require_once(AWPCP_DIR . "/includes/helpers/email.php");
 require_once(AWPCP_DIR . "/includes/helpers/javascript.php");
 require_once(AWPCP_DIR . "/includes/helpers/captcha.php");
-require_once(AWPCP_DIR . "/includes/helpers/widgets/asynchronous-tasks.php");
 require_once(AWPCP_DIR . "/includes/helpers/widgets/categories-dropdown.php");
 require_once(AWPCP_DIR . "/includes/helpers/widgets/multiple-region-selector.php");
+require_once(AWPCP_DIR . "/includes/helpers/widgets/class-asynchronous-tasks-component.php");
 require_once(AWPCP_DIR . "/includes/helpers/widgets/class-users-dropdown.php");
 require_once(AWPCP_DIR . "/includes/helpers/widgets/class-users-autocomplete.php");
 

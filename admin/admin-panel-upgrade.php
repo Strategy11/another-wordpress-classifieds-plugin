@@ -84,7 +84,7 @@ class AWPCP_AdminUpgrade extends AWPCP_AdminPage {
             'button' => _x( 'Upgrade', 'awpcp upgrade', 'AWPCP' ),
         );
 
-        $tasks = new AWPCP_AsynchronousTasksHelper( $tasks, $messages );
+        $tasks = new AWPCP_AsynchronousTasksComponent( $tasks, $messages );
 
         return $this->render( 'content', $tasks->render() );
     }
