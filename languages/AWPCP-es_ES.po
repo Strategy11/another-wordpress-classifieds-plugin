@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: AWPCP\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2014-06-19 18:12:12+00:00\n"
+"POT-Creation-Date: 2014-07-04 15:32:13+00:00\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: \n"
@@ -262,7 +262,7 @@ msgstr ""
 "Un nuevo usuario '%s' con dirección de correo electrónico '%s' y contraseña "
 "'% s' fue creado para la fila %d."
 
-#: awpcp.php:426
+#: awpcp.php:440
 msgid "AWPCP"
 msgstr "AWPCP"
 
@@ -445,7 +445,7 @@ msgstr ""
 "correctamente. Usted será redirigido a Facebook para iniciar sesión. AWPCP "
 "no almacena u obtiene información personal de su perfil."
 
-#: awpcp.php:448
+#: awpcp.php:462
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
@@ -642,7 +642,7 @@ msgid "Add File"
 msgstr "Agregar archivo"
 
 #: admin/admin-panel-listings.php:123
-#: frontend/templates/page-place-ad-upload-images-step.tpl.php:44
+#: frontend/templates/page-place-ad-upload-images-step.tpl.php:31
 msgid "Add Images"
 msgstr "Agregar Imágenes"
 
@@ -759,7 +759,7 @@ msgstr ""
 msgid "All Categories"
 msgstr "Todas las categorías"
 
-#: frontend/widget-search.php:40
+#: frontend/widget-search.php:45
 msgid "All Contact Names"
 msgstr "Todos los nombres de contacto"
 
@@ -925,7 +925,7 @@ msgstr "App Secret"
 msgid "Apply"
 msgstr "Aplicar"
 
-#: admin/class-media-manager.php:205
+#: admin/class-media-manager.php:204
 msgctxt "media manager"
 msgid "Approve"
 msgstr "Aprobar"
@@ -958,11 +958,11 @@ msgctxt "csv-importer"
 msgid "Assign Ads to a user?"
 msgstr "Asignar anuncios a un usuario?"
 
-#: awpcp.php:465
+#: awpcp.php:479
 msgid "Attachments"
 msgstr "Adjuntos"
 
-#: awpcp.php:472
+#: awpcp.php:486
 msgid "Authorize.Net"
 msgstr "Authorize.Net"
 
@@ -1120,7 +1120,7 @@ msgstr "ID  de Categoría"
 msgid "Category ID must be valid for Ads to display."
 msgstr "El ID de la categoría debe ser válido para poder mostrar anuncios."
 
-#: awpcp.php:479
+#: awpcp.php:493
 msgid "Category Icons"
 msgstr "Íconos para Categorías"
 
@@ -1278,7 +1278,7 @@ msgid "Classifieds Website"
 msgstr "Página de Clasificados"
 
 #: frontend/page-edit-ad.php:55 frontend/page-edit-ad.php:102
-#: frontend/page-edit-ad.php:371
+#: frontend/page-edit-ad.php:372
 msgid "Click here"
 msgstr "Haga clic aquí"
 
@@ -1299,7 +1299,7 @@ msgstr "Cerrar, revisaré la configuration de mis Widgets."
 msgid "Collapse Categories"
 msgstr "Cerra categorías"
 
-#: awpcp.php:486
+#: awpcp.php:500
 msgid "Comments & Ratings"
 msgstr "Comentarios y Calificaciones"
 
@@ -1439,7 +1439,7 @@ msgstr "Distrito/Otro"
 msgid "Coupon/Discount Module"
 msgstr "Módulo de Cupones/Descuentos"
 
-#: awpcp.php:493
+#: awpcp.php:507
 msgid "Coupons/Discount"
 msgstr "Cupones/Descuentos"
 
@@ -1599,8 +1599,11 @@ msgstr "Eliminar Anuncios también"
 msgid "Delete Category"
 msgstr "Eliminar Categoría"
 
-#: frontend/templates/page-place-ad-uploaded-images.tpl.php:48
-msgctxt "upload images"
+#: templates/components/file-manager.tpl.php:50
+msgid "Delete File"
+msgstr "Eliminar archivo"
+
+#: templates/components/file-manager.tpl.php:23
 msgid "Delete Image"
 msgstr "Eliminar Imagen"
 
@@ -1652,21 +1655,11 @@ msgstr "Deshabilitar la característica Lightbox de AWPCP"
 msgid "Disable Ad until admin approves"
 msgstr "Deshabilitar anunciones hasta que el administrador los apruebe."
 
-#: frontend/templates/page-place-ad-uploaded-images.tpl.php:42
-msgctxt "upload images step"
-msgid "Disable Image (make invisible)"
-msgstr "Deshablitar imágen (hacerla invisible)"
-
 #: includes/settings/class-listings-moderation-settings.php:24
 msgid "Disable expired ads instead of deleting them?"
 msgstr "Deshabilitar los anuncios que hayan expirado, en vez de eliminarlos?"
 
 #: admin/admin-panel-listings-table.php:365
-msgid "Disabled"
-msgstr "Deshabilitar"
-
-#: frontend/templates/page-place-ad-uploaded-images.tpl.php:31
-msgctxt "upload images"
 msgid "Disabled"
 msgstr "Deshabilitar"
 
@@ -1696,7 +1689,7 @@ msgstr "Muestra una lista aleatoria de anuncios"
 msgid "Documentation"
 msgstr "Documentación"
 
-#: includes/settings-api.php:1066
+#: includes/settings-api.php:1074
 msgid "Documentation on date and time formatting"
 msgstr "Documentación sobre el formato de fecha y hora"
 
@@ -1825,11 +1818,6 @@ msgstr "Habilitar CAPTCHA"
 msgid "Enable Credit System"
 msgstr "Habilitar el Sistema de Crédito"
 
-#: frontend/templates/page-place-ad-uploaded-images.tpl.php:34
-msgctxt "upload images step"
-msgid "Enable Image (make visible)"
-msgstr "Habilitar Imagen (hacerla visible)"
-
 #: includes/settings-api.php:47
 msgid "Enable User Ad Management Panel"
 msgstr "Habilitar el panel de Usuario para la Administración de Anuncios"
@@ -1861,11 +1849,8 @@ msgstr ""
 "AWPCP-en_EN.po incluidos con el plugin."
 
 #: admin/admin-panel-listings-table.php:365
-msgid "Enabled"
-msgstr "Habilitado"
-
-#: frontend/templates/page-place-ad-uploaded-images.tpl.php:39
-msgctxt "upload images"
+#: templates/components/file-manager.tpl.php:22
+#: templates/components/file-manager.tpl.php:49
 msgid "Enabled"
 msgstr "Habilitado"
 
@@ -1944,8 +1929,11 @@ msgstr "Ejemplo de salid: %s"
 msgid "Excerpt View"
 msgstr "Ecerpt View"
 
-#: frontend/templates/page-place-ad-uploaded-images.tpl.php:1
-msgctxt "upload files step"
+#: templates/components/file-manager.tpl.php:38
+msgid "Existing Files"
+msgstr "Archivos Existentes"
+
+#: templates/components/file-manager.tpl.php:7
 msgid "Existing Images"
 msgstr "Imágenes Existentes"
 
@@ -1987,7 +1975,7 @@ msgstr ""
 "En la fila %d, el valor para el campo extra %s no está permitido. Los "
 "valores permitidos son: %s"
 
-#: admin/admin-panel.php:265 awpcp.php:500
+#: admin/admin-panel.php:265 awpcp.php:514
 msgid "Extra Fields"
 msgstr "Campos Extras"
 
@@ -2038,7 +2026,7 @@ msgstr "Página de Facebook"
 msgid "Featured"
 msgstr "Destacado"
 
-#: admin/admin-panel-fees-table.php:116 awpcp.php:507
+#: admin/admin-panel-fees-table.php:116 awpcp.php:521
 msgid "Featured Ads"
 msgstr "Anuncios destacados"
 
@@ -2063,7 +2051,7 @@ msgstr "Dirección del orden de los Planes de Pago"
 msgid "Fee Plan sort order"
 msgstr "Orden de los Planes de Pago"
 
-#: awpcp.php:514
+#: awpcp.php:528
 msgid "Fee per Category"
 msgstr "Precio por Categoría"
 
@@ -2074,6 +2062,10 @@ msgstr "Planes de Pago"
 #: import.php:457
 msgid "File %s does not exists."
 msgstr "El archivo %s no existe."
+
+#: includes/helpers/widgets/class-file-manager-component.php:26
+msgid "File Manager component is not properly configured"
+msgstr "El Administrador de Archivos no esta configurado adecuadamente"
 
 #: includes/settings-api.php:327
 msgid ""
@@ -2099,11 +2091,11 @@ msgstr ""
 msgid "Final Import Results"
 msgstr "Resultados finales de importación"
 
-#: frontend/widget-search.php:40
+#: frontend/widget-search.php:45
 msgid "Find ads by Contact Name"
 msgstr "Buscar anuncios por nombre de contacto"
 
-#: frontend/page-edit-ad.php:306 frontend/page-place-ad.php:1124
+#: frontend/page-edit-ad.php:307 frontend/page-place-ad.php:1124
 #: frontend/templates/page-place-ad-preview-step.tpl.php:17
 msgid "Finish"
 msgstr "Finalizar"
@@ -2228,7 +2220,7 @@ msgstr "Ir a la página siguiente"
 msgid "Go to the previous page"
 msgstr "Ir a la página anterior"
 
-#: awpcp.php:521
+#: awpcp.php:535
 msgid "Google Checkout"
 msgstr "Google Checkout"
 
@@ -3370,6 +3362,10 @@ msgstr "No hay planes de crédito disponibles."
 msgid "No errors."
 msgstr "Sin errores."
 
+#: includes/models/class-media.php:110
+msgid "No file was found with id: %d"
+msgstr "No se encontró un archivo con ID: %d"
+
 #: upload_awpcp.php:344
 msgid "No file was selected."
 msgstr "Ningún archivo fue seleccionado"
@@ -3378,7 +3374,7 @@ msgstr "Ningún archivo fue seleccionado"
 msgid "No file was uploaded."
 msgstr "Ningún archivo fue cargado."
 
-#: frontend/page-place-ad.php:1211
+#: frontend/page-place-ad.php:1212
 msgctxt "upload files"
 msgid "No files were uploaded"
 msgstr "No se cargó ningún archivo"
@@ -3666,7 +3662,7 @@ msgctxt "debug page"
 msgid "PayPal Connection"
 msgstr "Conexión PayPal"
 
-#: awpcp.php:528
+#: awpcp.php:542
 msgid "PayPal Pro"
 msgstr "PayPal Pro"
 
@@ -3861,19 +3857,19 @@ msgstr ""
 msgid "Please enter a start date for the Ad."
 msgstr "Por favor ingrese una fecha de inicio para el anuncio."
 
-#: awpcp.php:733
+#: awpcp.php:747
 msgid "Please enter a valid URL."
 msgstr "Por favor ingrese una URL válida."
 
-#: awpcp.php:735
+#: awpcp.php:749
 msgid "Please enter a valid amount."
 msgstr "Por favor ingresa una cantidad válida."
 
-#: awpcp.php:732 frontend/page-edit-ad.php:111 frontend/page-edit-ad.php:378
+#: awpcp.php:746 frontend/page-edit-ad.php:111 frontend/page-edit-ad.php:379
 msgid "Please enter a valid email address."
 msgstr "Por favor ingrese una dirección de correo electrónico válida."
 
-#: awpcp.php:734
+#: awpcp.php:748
 msgid "Please enter a valid number."
 msgstr "Por favor ingrese un número."
 
@@ -3890,7 +3886,7 @@ msgstr ""
 "clave de acceso que le fue enviada a su correo eléctrónico cuando el anuncio "
 "fue publicado."
 
-#: frontend/page-edit-ad.php:376
+#: frontend/page-edit-ad.php:377
 msgid "Please enter the email address you used when you created your Ad."
 msgstr ""
 "Por favor ingrese la dirección que uso para la persona de contacto cuando "
@@ -4086,6 +4082,10 @@ msgstr "Precio (más bajo al más alto, luego por fecha)"
 msgid "Price Field"
 msgstr "Precio"
 
+#: templates/components/file-manager.tpl.php:31
+msgid "Primary Image"
+msgstr "Imagen Principal"
+
 #: includes/settings-api.php:338
 msgid "Primary Image Settings"
 msgstr "Configuración de Imagen primaria"
@@ -4116,7 +4116,7 @@ msgstr "Configurar las pasarelas de pago en modo prueba?"
 msgid "Quick Start Guide"
 msgstr "Guía de incio rápido"
 
-#: awpcp.php:542
+#: awpcp.php:556
 msgid "RSS"
 msgstr "RSS"
 
@@ -4146,7 +4146,7 @@ msgstr "Lea la %s completa."
 msgid "Reference"
 msgstr "Referencia"
 
-#: awpcp.php:535
+#: awpcp.php:549
 msgid "Regions Control"
 msgstr "Control de Regiones"
 
@@ -4170,7 +4170,7 @@ msgstr "Registro"
 msgid "Registration Settings"
 msgstr "Configuración de Registro"
 
-#: admin/class-media-manager.php:206
+#: admin/class-media-manager.php:205
 msgctxt "media manager"
 msgid "Reject"
 msgstr "Rechazar"
@@ -4458,23 +4458,23 @@ msgstr "Página Buscar Anuncios"
 msgid "Search by"
 msgstr "Buscar por"
 
-#: frontend/widget-search.php:142
+#: frontend/widget-search.php:150
 msgid "Search by Category"
 msgstr "Buscar por Categoría"
 
-#: frontend/widget-search.php:58
+#: frontend/widget-search.php:63
 msgid "Search by City"
 msgstr "Buscar por Ciudad"
 
-#: frontend/widget-search.php:60
+#: frontend/widget-search.php:65
 msgid "Search by Country"
 msgstr "Buscar por País"
 
-#: frontend/widget-search.php:59
+#: frontend/widget-search.php:64
 msgid "Search by State"
 msgstr "Buscar por Estado/Provincia"
 
-#: frontend/widget-search.php:132
+#: frontend/widget-search.php:140
 msgid "Search by keyword"
 msgstr "Buscar por palabra clave"
 
@@ -4496,7 +4496,7 @@ msgstr "Seleccionar Categoría"
 msgid "Select Move-To category"
 msgstr "Seleccionar la Categoría a la cual se moverán"
 
-#: frontend/widget-search.php:92 frontend/widget-search.php:107
+#: frontend/widget-search.php:100 frontend/widget-search.php:115
 #: functions.php:707
 msgid "Select Option"
 msgstr "Seleccionar"
@@ -4569,12 +4569,11 @@ msgstr "Separator para el punto decimal"
 msgid "Separators Used in CSV"
 msgstr "Separadores empleados en CSV"
 
-#: frontend/templates/page-place-ad-uploaded-images.tpl.php:59
-msgctxt "upload images"
+#: templates/components/file-manager.tpl.php:27
 msgid "Set as Primary Image"
-msgstr "Utilizar como imagen principal"
+msgstr "Utilizar como Imagen Principal"
 
-#: admin/class-media-manager.php:204
+#: admin/class-media-manager.php:206
 msgctxt "media manager"
 msgid "Set as primary"
 msgstr "Establecer como primaria"
@@ -4975,7 +4974,7 @@ msgid ""
 msgstr ""
 "Asunto para el mensaje enviado cuando el proceso de un pago no se completa"
 
-#: awpcp.php:549
+#: awpcp.php:563
 msgid "Subscriptions"
 msgstr "Suscripciones"
 
@@ -5075,7 +5074,7 @@ msgstr ""
 msgid "Thank you for your business"
 msgstr "Gracias por tu operación"
 
-#: awpcp.php:603
+#: awpcp.php:617
 msgid ""
 "The %1$s module you have installed is outdated and not compatible with this "
 "version of AWPCP. Please get %1$s %2$s or newer."
@@ -5105,7 +5104,7 @@ msgstr ""
 "El anuncio %s no fue enviado a Facebook porque está deshabitado. Si lo "
 "publica, ni los servidores de Facebook ni sus usuarios podrán verlo."
 
-#: frontend/page-place-ad.php:1226 frontend/page-place-ad.php:1273
+#: frontend/page-place-ad.php:1227 frontend/page-place-ad.php:1274
 #: frontend/page-renew-ad.php:334
 msgid "The Ad associated with this transaction doesn't exists."
 msgstr "El anuncio asociado con esta transacción no existe."
@@ -5114,7 +5113,7 @@ msgstr "El anuncio asociado con esta transacción no existe."
 msgid "The Ad has been deleted"
 msgstr "El Aviso ha sido eliminado."
 
-#: frontend/page-edit-ad.php:325
+#: frontend/page-edit-ad.php:326
 msgid ""
 "The Ad has been edited successfully. <a href=\"%s\">Go back to view "
 "listings</a>."
@@ -5308,7 +5307,7 @@ msgstr "El estado es necesario."
 msgid "The access key was sent to %s."
 msgstr "La clave de acceso fue enviada a %s."
 
-#: frontend/page-edit-ad.php:428
+#: frontend/page-edit-ad.php:429
 msgid "The access keys were sent to %s."
 msgstr "Las claves de acceso fueron enviadas a %s."
 
@@ -5449,7 +5448,7 @@ msgstr ""
 "La dirección de correo electrónico y la llave de acceso que ingresó no "
 "corresponde con ningúno de los anuncios en nuestro sistema."
 
-#: frontend/page-edit-ad.php:385
+#: frontend/page-edit-ad.php:386
 msgid ""
 "The email address you entered does not match any of the Ads in our system."
 msgstr ""
@@ -5795,8 +5794,8 @@ msgstr ""
 "sin especificar el ID de un anucio."
 
 #: admin/admin-panel-listings.php:280 frontend/ad-functions.php:230
-#: frontend/page-edit-ad.php:199 frontend/page-edit-ad.php:318
-#: frontend/page-edit-ad.php:346
+#: frontend/page-edit-ad.php:199 frontend/page-edit-ad.php:319
+#: frontend/page-edit-ad.php:347
 msgid "The specified Ad doesn't exists."
 msgstr "El Anuncio especificado no existe."
 
@@ -5856,6 +5855,11 @@ msgid ""
 msgstr ""
 "El archivo especificado no es una image. No se puede asignar como imagen "
 "primaria."
+
+#: includes/views/class-file-action-ajax-handler.php:47
+msgid "The specified file is not associated with Listing with ID %d."
+msgstr ""
+"El archivo especificado no está asociado con el anuncio cuyo ID es : %d."
 
 #: upload_awpcp.php:334
 msgid "The specified image file does not exists: %s."
@@ -6001,7 +6005,7 @@ msgstr ""
 msgid "There was a problem processing your payment"
 msgstr "Ocurrió un error al procesar su pago"
 
-#: frontend/page-edit-ad.php:354
+#: frontend/page-edit-ad.php:355
 msgid "There was a problem trying to delete your Ad. The Ad was not deleted."
 msgstr ""
 "Ocurrió un error tratando de eliminar su anuncio. El anuncio no fue "
@@ -6099,7 +6103,7 @@ msgstr ""
 msgid "There was an error trying to save the category to the database."
 msgstr "Ocurrió un error tratando de guardar la categoría en la base de datos."
 
-#: admin/admin-panel-listings.php:513 frontend/page-edit-ad.php:431
+#: admin/admin-panel-listings.php:513 frontend/page-edit-ad.php:432
 msgid "There was an error trying to send the email to %s."
 msgstr "Ocurrió un error tratando de enviar el correo electrónico a %s."
 
@@ -6119,6 +6123,10 @@ msgid ""
 msgstr ""
 "Ocurrió un error tratando de actualizar la información de la categoría padre "
 "en la tabla de anuncios."
+
+#: includes/views/class-file-action-ajax-handler.php:32
+msgid "There was an error trying to update the database."
+msgstr "Ocurrió un error tratando actualizar la base de datos."
 
 #: admin/class-media-manager.php:143
 msgctxt "media manager"
@@ -6210,7 +6218,7 @@ msgstr ""
 "tener creada una Aplicación de Facebook para usar esta característica. Lea "
 "<a>Cómo registrar y configurar una aplicación de Facebook (inglés)</a>."
 
-#: awpcp.php:731
+#: awpcp.php:745
 msgid "This field is required."
 msgstr "Este campo es obligatorio."
 
@@ -6253,6 +6261,10 @@ msgid ""
 msgstr ""
 "Esta es una notificación automática para informarle su anuncio clasificado "
 "va a expirar en %d días."
+
+#: templates/components/file-manager.tpl.php:26
+msgid "This is the Primary Image"
+msgstr "Está es la imagen principal"
 
 #: includes/helpers/widgets/multiple-region-selector.php:89
 msgid ""
@@ -6341,16 +6353,6 @@ msgstr "Título (ascendente)"
 #: frontend/templates/widget-search-form.tpl.php:2
 msgid "Title:"
 msgstr "Título: "
-
-#: frontend/templates/page-place-ad-uploaded-images.tpl.php:4
-msgctxt "upload files step"
-msgid ""
-"To choose one of the existing images as the primary image for your Ad, click "
-"the corresponding check icon (green means that is the primary image)."
-msgstr ""
-"Para elegir una de las imágenes existentes como la imagen principal de su "
-"anuncio, haga clic en el ícono de verificación correspondiente (verde "
-"significa que esa es la imagen principal)."
 
 #: includes/helpers/captcha.php:81
 msgid "To use reCAPTCHA you must get an API key from %s."
@@ -6520,11 +6522,6 @@ msgctxt "ad payment status"
 msgid "Unpaid"
 msgstr "No pagada"
 
-#: frontend/templates/page-place-ad-uploaded-images.tpl.php:54
-msgctxt "upload images"
-msgid "Unset as Primary Image"
-msgstr "No usar como imagen principal"
-
 #: admin/admin-panel.php:637 admin/admin-panel.php:648
 msgid "Untitled"
 msgstr "Sin Título"
@@ -6548,7 +6545,7 @@ msgid "Upgrade"
 msgstr "Actualizar"
 
 #: frontend/templates/page-place-ad-upload-images-step.tpl.php:1
-#: frontend/templates/page-place-ad-upload-images-step.tpl.php:74
+#: frontend/templates/page-place-ad-upload-images-step.tpl.php:40
 msgid "Upload Images"
 msgstr "Subir Imágenes"
 
@@ -6579,8 +6576,7 @@ msgstr ""
 "Usar Akismer cuando se publiquen anuncios y respuestas a los anuncios (anti-"
 "spam fuerte)."
 
-#: frontend/templates/page-place-ad-upload-fields.tpl.php:14
-#: frontend/templates/page-place-ad-upload-images-step.tpl.php:60
+#: frontend/templates/page-place-ad-upload-fields.tpl.php:13
 msgctxt "images upload step"
 msgid "Use as Primary Image."
 msgstr "Utilizar como imagen principal."
@@ -6595,7 +6591,7 @@ msgstr ""
 "Utilizar la dirección de correo de quien envía el mensaje para los mensajes "
 "de respuesta."
 
-#: frontend/templates/page-place-ad-upload-images-step.tpl.php:46
+#: frontend/templates/page-place-ad-upload-images-step.tpl.php:33
 msgctxt "upload images step"
 msgid ""
 "Use the check icons in front of each upload field to mark the uploaded image "
@@ -6614,6 +6610,19 @@ msgstr ""
 "avanzaa. Para realizar una búsqueda amplia ingrese pocos parámetros. Cuanto "
 "más parámetros de filtro ingrese, más acotados y específicos serán los "
 "resultados de tu búsqueda."
+
+#: templates/components/file-manager.tpl.php:10
+msgid ""
+"Use the green check mark icon to set an image as the primary image for this "
+"Ad. The primary image is shown with a green background and border. The "
+"background may be different if the image is awaiting approval or rejected "
+"(see above)."
+msgstr ""
+"Use los íconos de verificación verdes para seleccionar una imagen como la "
+"imagen principal para este anuncio. La imagen principal se muestra con un "
+"fondo y un borde verde. El fondo, sin embargo, puede aparecer diferente si "
+"la imagen está pendiente de ser aprobada o fue rechazada (ver explicación "
+"más arriba)."
 
 #: admin/admin-panel-listings-table.php:273
 #: frontend/templates/page-place-ad-details-step.tpl.php:46
@@ -6728,7 +6737,7 @@ msgstr "Visitas (los más vistos primero, luego por título)"
 msgid "Visit Website"
 msgstr "Visitar el Sitio Web"
 
-#: awpcp.php:449
+#: awpcp.php:463
 msgid "Warning"
 msgstr "Adevertencia"
 
@@ -6782,7 +6791,7 @@ msgstr ""
 "visite <a href=\"%s\">%s </ a> en 30 segundos para continuar con la "
 "colocación de su anuncio."
 
-#: frontend/page-place-ad.php:1219 frontend/page-place-ad.php:1266
+#: frontend/page-place-ad.php:1220 frontend/page-place-ad.php:1267
 msgid ""
 "We were unable to find a Payment Transaction assigned to this operation."
 msgstr "No encontramos una transacción de pago asignada a esta operación."
@@ -6860,7 +6869,7 @@ msgstr "Trabajando"
 msgid "Would you like some help getting started?"
 msgstr "¿Te gustaría un poco de ayuda para empezar?"
 
-#: awpcp.php:556
+#: awpcp.php:570
 msgid "XML Sitemap"
 msgstr "XML Sitemap"
 
@@ -6899,7 +6908,7 @@ msgstr ""
 msgid "You are currently editing the category shown below"
 msgstr "Está editando la Categoría que aparece a continuación"
 
-#: frontend/page-edit-ad.php:101 frontend/page-edit-ad.php:370
+#: frontend/page-edit-ad.php:101 frontend/page-edit-ad.php:371
 msgid ""
 "You are currently not logged in, if you have an account in this website you "
 "can log in and go to the Ad Management panel to edit your Ads."
@@ -6981,15 +6990,6 @@ msgstr ""
 "su cuenta. Si selecciona pagar con créditos, el precio del termino de pago "
 "seleccionado sera deducido del saldo de su cuenta cuando completa el pago."
 
-#: frontend/templates/page-place-ad-uploaded-images.tpl.php:6
-msgctxt "upload files step"
-msgid ""
-"You can also upload a new image and mark it as primary using the fields "
-"below."
-msgstr ""
-"También puede subir una nueva imágen y marcarla como imagen principal usando "
-"los campos que aparecen debajo."
-
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:48
 msgid ""
 "You can find your application information in the <a>Facebook Developer Apps</"
@@ -7017,6 +7017,13 @@ msgstr "Renueva tu Anuncio visitando: %s"
 #: frontend/page-renew-ad.php:123
 msgid "You can see your Ad here"
 msgstr "Usted puede ver los anuncios aquí"
+
+#: templates/components/file-manager.tpl.php:12
+msgid ""
+"You can upload a new image and mark it as primary using the fields below."
+msgstr ""
+"Puede subir una nueva imagen y marcarla como imagen principal usando los "
+"campos que aparecen debajo."
 
 #: frontend/templates/page-place-ad-details-step.tpl.php:24
 msgid "You can use this button to delete your Ad."
@@ -7360,7 +7367,7 @@ msgstr "Su anuncio ha sido renovado"
 msgid "Your Ad has been submitted."
 msgstr "Tu anucio ha sido enviado."
 
-#: frontend/page-edit-ad.php:351
+#: frontend/page-edit-ad.php:352
 msgid "Your Ad has been successfully deleted."
 msgstr "Su anuncio ha sido eliminado con éxito."
 
@@ -8223,10 +8230,6 @@ msgstr "viste los foros!"
 #~ msgid "Delete Comment"
 #~ msgstr "Eliminar Comentario"
 
-#~ msgctxt "upload images"
-#~ msgid "Delete File"
-#~ msgstr "Eliminar archivo"
-
 #~ msgid "Delete Selected Ads"
 #~ msgstr "Eliminar anuncios seleccionados"
 
@@ -8243,6 +8246,14 @@ msgstr "viste los foros!"
 #~ msgctxt "edit ad"
 #~ msgid "Disable"
 #~ msgstr "Desaprobar"
+
+#~ msgctxt "upload images step"
+#~ msgid "Disable Image (make invisible)"
+#~ msgstr "Deshablitar imágen (hacerla invisible)"
+
+#~ msgctxt "upload images"
+#~ msgid "Disabled"
+#~ msgstr "Deshabilitar"
 
 #~ msgid "Discount Value"
 #~ msgstr "Valor de descuento"
@@ -8342,11 +8353,19 @@ msgstr "viste los foros!"
 #~ msgid "Enable"
 #~ msgstr "Aprobar"
 
+#~ msgctxt "upload images step"
+#~ msgid "Enable Image (make visible)"
+#~ msgstr "Habilitar Imagen (hacerla visible)"
+
 #~ msgid "Enable User Ratings"
 #~ msgstr "Habilitar Calificaciones"
 
 #~ msgid "Enable email verification for new Ads"
 #~ msgstr "Habilitar verificación por email para los nuevos anuncios."
+
+#~ msgctxt "upload images"
+#~ msgid "Enabled"
+#~ msgstr "Habilitado"
 
 #~ msgid "Error connecting to %s"
 #~ msgstr "Error conectándose a %s"
@@ -8357,9 +8376,6 @@ msgstr "viste los foros!"
 #~ msgstr ""
 #~ "Los anuncios existenes fueron renovados usando la nueva fecha de "
 #~ "expiración de su subscripción."
-
-#~ msgid "Existing Files"
-#~ msgstr "Archivos Existentes"
 
 #~ msgid "Expire Date"
 #~ msgstr "Fecha de caducidad"
@@ -9478,6 +9494,16 @@ msgstr "viste los foros!"
 #~ msgid "This field will appear only in the selected categories."
 #~ msgstr "Este campo aparecerá solo en las categorías seleccionadas."
 
+#~ msgctxt "upload files step"
+#~ msgid ""
+#~ "To choose one of the existing images as the primary image for your Ad, "
+#~ "click the corresponding check icon (green means that is the primary "
+#~ "image)."
+#~ msgstr ""
+#~ "Para elegir una de las imágenes existentes como la imagen principal de su "
+#~ "anuncio, haga clic en el ícono de verificación correspondiente (verde "
+#~ "significa que esa es la imagen principal)."
+
 #~ msgid "Too many results found. Expecting one."
 #~ msgstr "Se encontraron multiples resultados. Se esperaba uno."
 
@@ -9510,6 +9536,10 @@ msgstr "viste los foros!"
 #~ msgctxt "comments table"
 #~ msgid "Unflag"
 #~ msgstr "Reportar"
+
+#~ msgctxt "upload images"
+#~ msgid "Unset as Primary Image"
+#~ msgstr "No usar como imagen principal"
 
 #~ msgid "Up"
 #~ msgstr "Arriba"
