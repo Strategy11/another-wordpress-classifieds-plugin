@@ -1453,6 +1453,7 @@ p.ad_status_msg {
 #classiwrapper .uploadform .upload-field-actions,
 .uploadform .upload-field-actions {
   padding-bottom: 5px;
+  margin-bottom: 0;
 }
 #classiwrapper .uploadform .upload-field-actions li,
 .uploadform .upload-field-actions li {
