@@ -109,6 +109,7 @@ require_once(AWPCP_DIR . "/includes/helpers/captcha.php");
 require_once(AWPCP_DIR . "/includes/helpers/widgets/categories-dropdown.php");
 require_once(AWPCP_DIR . "/includes/helpers/widgets/multiple-region-selector.php");
 require_once(AWPCP_DIR . "/includes/helpers/widgets/class-asynchronous-tasks-component.php");
+require_once(AWPCP_DIR . "/includes/helpers/widgets/class-file-manager-component.php");
 require_once(AWPCP_DIR . "/includes/helpers/widgets/class-users-dropdown.php");
 require_once(AWPCP_DIR . "/includes/helpers/widgets/class-users-autocomplete.php");
 
@@ -122,6 +123,7 @@ require_once( AWPCP_DIR . "/includes/db/class-database-column-creator.php" );
 
 require_once( AWPCP_DIR . "/includes/views/class-ajax-handler.php" );
 require_once( AWPCP_DIR . "/includes/views/class-base-page.php" );
+require_once( AWPCP_DIR . "/includes/views/class-file-action-ajax-handler.php" );
 require_once( AWPCP_DIR . "/includes/views/class-step-decorator.php" );
 require_once( AWPCP_DIR . "/includes/views/class-payment-step-decorator.php" );
 require_once( AWPCP_DIR . "/includes/views/class-prepare-transaction-for-payment-step-decorator.php" );
@@ -304,6 +306,18 @@ class AWPCP {
 			$handler = awpcp_users_autocomplete_ajax_handler();
 			add_action( 'wp_ajax_awpcp-autocomplete-users', array( $handler, 'ajax' ) );
 			add_action( 'wp_ajax_nopriv_awpcp-autocomplete-users', array( $handler, 'ajax' ) );
+
+			$handler = awpcp_set_image_as_primary_ajax_handler();
+			add_action( 'wp_ajax_awpcp-set-image-as-primary', array( $handler, 'ajax' ) );
+			add_action( 'wp_ajax_nopriv_awpcp-set-image-as-primary', array( $handler, 'ajax' ) );
+
+			$handler = awpcp_update_file_enabled_status_ajax_handler();
+			add_action( 'wp_ajax_awpcp-update-file-enabled-status', array( $handler, 'ajax' ) );
+			add_action( 'wp_ajax_nopriv_awpcp-update-file-enabled-status', array( $handler, 'ajax' ) );
+
+			$handler = awpcp_delete_file_ajax_handler();
+			add_action( 'wp_ajax_awpcp-delete-file', array( $handler, 'ajax' ) );
+			add_action( 'wp_ajax_nopriv_awpcp-delete-file', array( $handler, 'ajax' ) );
 		} if ( is_admin() && awpcp_current_user_is_admin() ) {
 			// load resources required in admin screens only, visible to admin users only.
 			add_action( 'admin_notices', array( awpcp_fee_payment_terms_notices(), 'dispatch' ) );

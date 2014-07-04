@@ -355,7 +355,8 @@
   margin-right: 3px;
   width: auto;
 }
-.awpcp-media-manager-file-list li .awcp-media-manager-file-actions li a {
+.awpcp-media-manager-file-list li .awcp-media-manager-file-actions li a,
+.awpcp-media-manager-file-list li .awcp-media-manager-file-actions li span {
   background: url(../images/file-delete.png) center center no-repeat;
   display: block;
   height: 24px;
@@ -377,6 +378,9 @@
   background-image: url(../images/enable-attachment.png);
 }
 .awpcp-media-manager-file-list li .awcp-media-manager-file-actions li a.set-primary-image {
+  background-image: url(../images/image-not-primary.png);
+}
+.awpcp-media-manager-file-list li .awcp-media-manager-file-actions li span.primary-image {
   background-image: url(../images/image-primary.png);
 }
 .awpcp-media-manager-file-list li.jpg .awpcp-media-manager-file-thumbnail,

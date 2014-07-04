@@ -1,9 +1,8 @@
-
     <div class="clearfix">
     <?php for ( $i = 0; $i < $files_left; $i++ ): ?>
         <div class="uploadform">
             <input class="image-upload-field" type="file" name="AWPCPfileToUpload<?php echo $i; ?>" id="AWPCPfileToUpload<?php echo $i; ?>" size="18" />
-            <ul class="image-actions clearfix">
+            <ul class="upload-field-actions clearfix">
                 <?php if (!$is_primary_set && $i == 0): ?>
                 <li class="primary">
                     <input id="awpcp-image-upload-field-<?php echo $i; ?>" checked="checked" type="radio" name="primary-image" value="field-<?php echo $i; ?>" />

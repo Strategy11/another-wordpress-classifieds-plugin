@@ -431,12 +431,14 @@
             margin-right: 3px;
             width: auto;
 
-            a {
+            a, span {
                 background: @delete_attachment_icon_url center center no-repeat;
                 display: block;
                 height: 24px;
                 width: 24px;
+            }
 
+            a {
                 &.delete {
                     background-image: @delete_attachment_icon_url;
                 }
@@ -453,8 +455,12 @@
                     background-image: @enable_attachment_icon_url;
                 }
                 &.set-primary-image {
-                    background-image: @primary_image_icon_url;
+                    background-image: @not_primary_image_icon_url;
                 }
+            }
+
+            span.primary-image {
+                background-image: @primary_image_icon_url;
             }
         }
     }

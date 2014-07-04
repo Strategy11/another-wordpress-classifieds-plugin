@@ -1,6 +1,12 @@
 /*global AWPCP*/
-
-AWPCP.run('awpcp/page-place-ads', ['jquery', 'awpcp/jquery-userfield'], function($) {
+AWPCP.run('awpcp/page-place-ads', [
+    'jquery',
+    'knockout',
+    'awpcp/file-manager',
+    'awpcp/settings',
+    'awpcp/jquery-userfield'
+],
+function( $, ko, FileManager, settings ) {
     var AWPCP = jQuery.AWPCP = jQuery.extend({}, jQuery.AWPCP, AWPCP);
 
     $.AWPCP.PaymentTermsTable = function(table) {
@@ -73,7 +79,6 @@ AWPCP.run('awpcp/page-place-ads', ['jquery', 'awpcp/jquery-userfield'], function
         }
     });
 
-
     $.AWPCP.UserInformation = function(container) {
         var self = this;
 
@@ -87,7 +92,6 @@ AWPCP.run('awpcp/page-place-ads', ['jquery', 'awpcp/jquery-userfield'], function
         self.city = self.container.find('input[name=ad_city], select[name=ad_city]');
 
         $.subscribe('/user/updated', function(event, user, overwrite) {
-            console.log(user, overwrite);
             self.update(user, overwrite);
         });
     };
@@ -225,8 +229,12 @@ AWPCP.run('awpcp/page-place-ads', ['jquery', 'awpcp/jquery-userfield'], function
         /* Upload Images Form */
 
         (function() {
-            form = container.find('.awpcp-upload-images-form');
+            var form = container.find('.awpcp-upload-images-form');
+
             if (form.length) {
+                var data = settings.get( 'file-manager-data' );
+                ko.applyBindings( new FileManager( data.nonce, data.files, data.options ), $('.awpcp-file-manager').get( 0 ) );
+
                 var radios = form.find('.uploadform :radio').change(function() {
                     radios.closest('li').removeClass('primary').addClass('not-primary');
                     $(this).closest('li').removeClass('not-primary').addClass('primary');

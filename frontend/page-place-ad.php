@@ -1133,6 +1133,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         }
 
         $params = array_merge( $params, array(
+            'listing' => $ad,
             'images' => awpcp_media_api()->find_images_by_ad_id( $ad->ad_id ),
             'messages' => $this->messages,
             'actions' => array(
