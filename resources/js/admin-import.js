@@ -6,7 +6,7 @@ AWPCP.run('awpcp/admin-import', ['jquery', 'awpcp/jquery-userfield'], function($
             changeYear: true
         });
 
-        $('#awpcp-importer-auto-assign-user').change(function(event) {
+        $( '#awpcp-importer-auto-assign-user' ).change( function() {
             if (!$(this).attr('checked') || !$(this).prop('checked')) {
                 $('#awpcp-importer-user').attr('disabled', 'disabled');
             } else {

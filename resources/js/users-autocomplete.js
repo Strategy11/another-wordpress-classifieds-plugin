@@ -26,7 +26,7 @@ AWPCP.define('awpcp/users-autocomplete', ['jquery', 'awpcp/settings'], function(
                 },
 
                 select: function(event, ui) {
-                    ui.item && self.update(ui.item);
+                    if ( ui.item ) { self.update(ui.item); }
                 }
             });
 

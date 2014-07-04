@@ -1,6 +1,7 @@
+/*jslint evil: true */
 /*global AWPCP*/
 
-AWPCP.define('awpcp/users-dropdown', ['jquery', 'awpcp/settings'], function($, settings) {
+AWPCP.define( 'awpcp/users-dropdown', [ 'jquery' ], function( $ ) {
     function UsersDropdown(element) {
         var self = this;
 
@@ -47,7 +48,7 @@ AWPCP.define('awpcp/users-dropdown', ['jquery', 'awpcp/settings'], function($, s
         },
 
         update: function(user) {
-            var overwrite = self.previous_value != user.ID;
+            var overwrite = this.previous_value !== user.ID;
             $.publish('/user/updated', [user, overwrite]);
             this.previous_value = user.ID;
         }
