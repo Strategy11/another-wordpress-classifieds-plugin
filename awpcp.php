@@ -480,7 +480,7 @@ class AWPCP {
 					'url' => '',
 					'installed' => defined( 'AWPCP_ATTACHMENTS_MODULE' ),
 					'version' => 'AWPCP_ATTACHMENTS_MODULE_DB_VERSION',
-					'required' => '3.2.1',
+					'required' => '3.2.3',
 				),
 				'authorize.net' => array(
 					'name' => __(  'Authorize.Net', 'AWPCP'  ),
