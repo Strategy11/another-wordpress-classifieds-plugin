@@ -740,16 +740,20 @@ class AWPCP_Ad {
 		return $result;
 	}
 
-	public function disable() {
-		if ($result = $this->set_disabled_status(true)) {
+	public function disable( $trigger_actions = true ) {
+		$listing_disabled = $this->set_disabled_status( true );
+
+		if ( $listing_disabled && $trigger_actions ) {
 			do_action('awpcp_disable_ad', $this);
 		}
 
-		return $result;
+		return $listing_disabled;
 	}
 
-	public function enable( $approve_images = true ) {
-		if ($result = $this->set_disabled_status(false)) {
+	public function enable( $approve_images = true, $trigger_actions = true ) {
+		$listing_enabled = $this->set_disabled_status( false );
+
+		if ( $listing_enabled ) {
 			if ( $approve_images ) {
 				$images = awpcp_media_api()->find_images_awaiting_approval_by_ad_id( $this->ad_id );
 				foreach ($images as $image) {
@@ -757,10 +761,12 @@ class AWPCP_Ad {
 				}
 			}
 
-			do_action('awpcp_approve_ad', $this);
+			if ( $trigger_actions ) {
+				do_action( 'awpcp_approve_ad', $this );
+			}
 		}
 
-		return $result;
+		return $listing_enabled;
 	}
 
 	/**
