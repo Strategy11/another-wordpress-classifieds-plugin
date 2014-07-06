@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: AWPCP\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2014-07-05 17:08:58+00:00\n"
+"POT-Creation-Date: 2014-07-06 22:04:36+00:00\n"
 "PO-Revision-Date: 2014-03-07 21:42-0500\n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: \n"
@@ -233,7 +233,7 @@ msgid ""
 "the Ad."
 msgstr ""
 
-#: import.php:1018
+#: import.php:1024
 msgid ""
 "A new user '%s' with email address '%s' and password '%s' was created for "
 "row %d."
@@ -1255,7 +1255,7 @@ msgctxt "ad details form"
 msgid "Contact Person's Phone Number"
 msgstr ""
 
-#: import.php:1000
+#: import.php:1006
 msgid "Contact email is required in row %s."
 msgstr ""
 
@@ -1294,7 +1294,7 @@ msgctxt "upload files"
 msgid "Could not create resized versions of image %s."
 msgstr ""
 
-#: import.php:581
+#: import.php:587
 msgid "Could not save the information to the database for %s in row %d"
 msgstr ""
 
@@ -1303,7 +1303,7 @@ msgid ""
 "Could not validate User Access Token. Are you connected to the internet?"
 msgstr ""
 
-#: import.php:428 import.php:509
+#: import.php:434 import.php:515
 msgid "Could not write temporary file %s"
 msgstr ""
 
@@ -1665,7 +1665,7 @@ msgid ""
 "different email enter it here."
 msgstr ""
 
-#: import.php:411 import.php:482
+#: import.php:417 import.php:488
 msgid "Empty ZIP Archive"
 msgstr ""
 
@@ -1734,7 +1734,7 @@ msgstr ""
 msgid "End Date (mm/dd/yyyy)"
 msgstr ""
 
-#: import.php:749
+#: import.php:755
 msgid ""
 "End date missing (alternately you can specify the default end date) at row "
 "number %s"
@@ -1818,12 +1818,12 @@ msgstr ""
 msgid "Expires on"
 msgstr ""
 
-#: import.php:869
+#: import.php:875
 msgid ""
 "Extra Field %s's value is not allowed in row %d. Allowed value is one of: %%s"
 msgstr ""
 
-#: import.php:860
+#: import.php:866
 msgid ""
 "Extra Field %s's value is not allowed in row %d. Allowed values are: %%s"
 msgstr ""
@@ -1908,7 +1908,7 @@ msgstr ""
 msgid "Fees"
 msgstr ""
 
-#: import.php:457
+#: import.php:463
 msgid "File %s does not exists."
 msgstr ""
 
@@ -2376,7 +2376,7 @@ msgstr ""
 msgid "Import can't continue. Unknown column(s) specified(s):"
 msgstr ""
 
-#: import.php:465
+#: import.php:471
 msgid "Import directory %s does not exists."
 msgstr ""
 
@@ -2402,7 +2402,7 @@ msgid ""
 "option if you are using the Ad Management panel, but is not necessary."
 msgstr ""
 
-#: import.php:406 import.php:477
+#: import.php:412 import.php:483
 msgid "Incompatible ZIP Archive"
 msgstr ""
 
@@ -2428,7 +2428,7 @@ msgstr ""
 msgid "Invalid End Date."
 msgstr ""
 
-#: import.php:741
+#: import.php:747
 msgid "Invalid End date at row number: %s"
 msgstr ""
 
@@ -2474,7 +2474,7 @@ msgctxt "ad details form"
 msgid "Item Price"
 msgstr ""
 
-#: import.php:713
+#: import.php:719
 msgid "Item price non numeric at row number %s"
 msgstr ""
 
@@ -3961,7 +3961,7 @@ msgstr ""
 msgid "Require website?"
 msgstr ""
 
-#: import.php:267
+#: import.php:273
 msgid "Required value <em>%s</em> missing at row number: %d"
 msgstr ""
 
@@ -4012,7 +4012,7 @@ msgstr ""
 msgid "Role of WordPress users who can have admin access to Classifieds."
 msgstr ""
 
-#: import.php:544
+#: import.php:550
 msgid "Row %d. %s"
 msgstr ""
 
@@ -4489,7 +4489,7 @@ msgctxt "ad search form"
 msgid "Start Search"
 msgstr ""
 
-#: import.php:729
+#: import.php:735
 msgid ""
 "Start date missing (alternately you can specify the default start date) at "
 "row number %s"
@@ -6025,8 +6025,10 @@ msgstr ""
 msgid "User Notifications"
 msgstr ""
 
-#: import.php:997
-msgid "Username is required in row %s."
+#: import.php:1003
+msgid ""
+"Username is required in row %s. Please include a username or selected a "
+"default user."
 msgstr ""
 
 #: includes/class-awpcp-listings-api.php:218

@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2014-07-05 17:09:21+00:00\n"
+"POT-Creation-Date: 2014-07-06 22:04:36+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -3754,77 +3754,79 @@ msgstr ""
 msgid "Import can't continue. Unknown column(s) specified(s):"
 msgstr ""
 
-#: import.php:267
+#: import.php:273
 msgid "Required value <em>%s</em> missing at row number: %d"
 msgstr ""
 
-#: import.php:406 import.php:477
+#: import.php:412 import.php:483
 msgid "Incompatible ZIP Archive"
 msgstr ""
 
-#: import.php:411 import.php:482
+#: import.php:417 import.php:488
 msgid "Empty ZIP Archive"
 msgstr ""
 
-#: import.php:428 import.php:509
+#: import.php:434 import.php:515
 msgid "Could not write temporary file %s"
 msgstr ""
 
-#: import.php:457
+#: import.php:463
 msgid "File %s does not exists."
 msgstr ""
 
-#: import.php:465
+#: import.php:471
 msgid "Import directory %s does not exists."
 msgstr ""
 
-#: import.php:544
+#: import.php:550
 msgid "Row %d. %s"
 msgstr ""
 
-#: import.php:581
+#: import.php:587
 msgid "Could not save the information to the database for %s in row %d"
 msgstr ""
 
-#: import.php:713
+#: import.php:719
 msgid "Item price non numeric at row number %s"
 msgstr ""
 
-#: import.php:729
+#: import.php:735
 msgid ""
 "Start date missing (alternately you can specify the default start date) at "
 "row number %s"
 msgstr ""
 
-#: import.php:741
+#: import.php:747
 msgid "Invalid End date at row number: %s"
 msgstr ""
 
-#: import.php:749
+#: import.php:755
 msgid ""
 "End date missing (alternately you can specify the default end date) at row "
 "number %s"
 msgstr ""
 
-#: import.php:860
+#: import.php:866
 msgid ""
 "Extra Field %s's value is not allowed in row %d. Allowed values are: %%s"
 msgstr ""
 
-#: import.php:869
+#: import.php:875
 msgid ""
 "Extra Field %s's value is not allowed in row %d. Allowed value is one of: %%s"
 msgstr ""
 
-#: import.php:997
-msgid "Username is required in row %s."
+#: import.php:1003
+msgid ""
+"Username is required in row %s. Please include a username or selected a "
+"default user."
 msgstr ""
 
-#: import.php:1000
+#: import.php:1006
 msgid "Contact email is required in row %s."
 msgstr ""
 
-#: import.php:1018
+#: import.php:1024
 msgid ""
 "A new user '%s' with email address '%s' and password '%s' was created for "
 "row %d."
