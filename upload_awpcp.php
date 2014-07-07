@@ -584,7 +584,7 @@ function awpcp_fix_image_rotation( $filepath ) {
  * @since 3.0.2
  */
 function awpcp_rotate_image( $file, $mime_type, $angle ) {
-	if ( class_exists( 'Imagick' ) ) {
+	if ( class_exists( 'Imagick' ) && method_exists( 'Imagick', 'setImageOrientation' ) ) {
 		awpcp_rotate_image_with_imagick( $file, $angle );
 	} else {
 		awpcp_rotate_image_with_gd( $file, $mime_type, $angle );
