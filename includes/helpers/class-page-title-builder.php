@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @since next-release
+ * @since 3.2.3
  */
 class AWPCP_PageTitleBuilder {
 
@@ -9,14 +9,14 @@ class AWPCP_PageTitleBuilder {
     private $category_id;
 
     /**
-     * @since next-release
+     * @since 3.2.3
      */
     public function set_current_listing( $listing ) {
         $this->listing = $listing;
     }
 
     /**
-     * @since next-release
+     * @since 3.2.3
      */
     public function set_current_category_id( $category_id ) {
         $this->category_id = $category_id;

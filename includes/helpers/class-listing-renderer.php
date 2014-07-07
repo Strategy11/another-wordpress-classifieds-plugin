@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @since next-release
+ * @since 3.2.3
  */
 function awpcp_get_listing_renderer() {
     $renderer = apply_filters( 'awpcp-get-listing-renderer', null );
@@ -14,14 +14,14 @@ function awpcp_get_listing_renderer() {
 }
 
 /**
- * @since next-release
+ * @since 3.2.3
  */
 function awpcp_listing_renderer() {
     return new AWPCP_ListingRenderer();
 }
 
 /**
- * @since next-release
+ * @since 3.2.3
  */
 class AWPCP_ListingRenderer {
     public function get_view_listing_link( $listing ) {

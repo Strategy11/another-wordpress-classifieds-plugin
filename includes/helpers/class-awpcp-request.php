@@ -21,7 +21,7 @@ class AWPCP_Request {
      * Returns the domain used in the current request, optionally replacing
      * the www part of the domain with $www_prefix_replacement.
      *
-     * @since next-release
+     * @since 3.2.3
      */
     function domain( $include_www = true, $www_prefix_replacement = '' ) {
         $domain = isset( $_SERVER['HTTP_HOST'] ) ? $_SERVER['HTTP_HOST'] : '';
@@ -115,7 +115,7 @@ class AWPCP_Request {
     }
 
     /**
-     * @since next-release
+     * @since 3.2.3
      */
     public function get_current_user() {
         global $current_user;

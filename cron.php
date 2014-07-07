@@ -222,7 +222,7 @@ function awpcp_clean_up_payment_transactions() {
 }
 
 /**
- * @since next-release
+ * @since 3.2.3
  */
 function awpcp_clean_up_non_verified_ads_handler() {
     return awpcp_clean_up_non_verified_ads( awpcp_listings_api() );

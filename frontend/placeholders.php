@@ -298,7 +298,7 @@ function awpcp_do_placeholder_parent_category_url( $ad, $placeholder ) {
 }
 
 /**
- * @since next-release
+ * @since 3.2.3
  */
 function awpcp_do_placeholder_categories( $listing, $placeholder ) {
     $categories_ids = array_filter( array( $listing->ad_category_id, $listing->ad_category_parent_id ) );

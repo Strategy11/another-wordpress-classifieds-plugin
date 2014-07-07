@@ -143,7 +143,7 @@ class AWPCP_CategoriesCollection {
             $category->id = $this->db->insert_id;
 
             /**
-             * @since next-release
+             * @since 3.2.3
              */
             do_action( 'awpcp-category-added', $category );
 
@@ -193,7 +193,7 @@ class AWPCP_CategoriesCollection {
         }
 
         /**
-         * @since next-release
+         * @since 3.2.3
          */
         do_action( 'awpcp-category-edited' );
 
@@ -248,7 +248,7 @@ class AWPCP_CategoriesCollection {
     }
 
     /**
-     * @since next-release
+     * @since 3.2.3
      */
     public function get_all() {
         return AWPCP_Category::query( array(
@@ -258,14 +258,14 @@ class AWPCP_CategoriesCollection {
     }
 
     /**
-     * @since next-release
+     * @since 3.2.3
      */
     public function find( $args = array() ) {
         return AWPCP_Category::find( $args );
     }
 
     /**
-     * @since next-release
+     * @since 3.2.3
      */
     public function find_by_parent_id( $category_parent_id ) {
         return AWPCP_Category::query( array(
