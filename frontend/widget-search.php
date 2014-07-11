@@ -49,34 +49,20 @@ class AWPCP_Search_Widget extends WP_Widget {
      * @since 3.0.2
      */
     private function render_region_fields( $instance ) {
-        global $wpdb;
+        if ( isset( $_POST['regions'][0] ) ) {
+            $regions = array( stripslashes_deep( $_POST['regions'][0] ) );
+        } else {
+            $regions = array();
+        }
 
-        $query = 'SELECT DISTINCT country, state, city FROM ' . AWPCP_TABLE_AD_REGIONS . ' ';
-        $query.= 'WHERE ad_id IN (';
-        $query.=    'SELECT ad_id FROM ' . AWPCP_TABLE_ADS . ' WHERE disabled = 0 AND (flagged IS NULL OR flagged = 0)';
-        $query.= ')';
-        $query.= 'ORDER BY ad_id ASC';
-
-        $results = $wpdb->get_results( $query );
-
-        $fields = array(
-            'city' => __('Search by City', "AWPCP"),
-            'state' => __('Search by State', "AWPCP"),
-            'country' => __('Search by Country', "AWPCP"),
+        $options = array(
+            'showTextField' => false,
+            'showExistingRegionsOnly' => true,
+            'maxRegions' => 1,
         );
 
-        foreach ( $fields as $name => $label ) {
-            if ( $instance[ "show_$name" ] ) {
-                $options = array_filter( array_unique( awpcp_get_properties( $results, $name, '' ) ) );
-
-                if ( ! empty( $options ) ) {
-                    asort( $options );
-                    $options = array_combine( $options, $options );
-                }
-
-                echo $this->render_region_field( $label, $options, $name ) . '<br/>';
-            }
-        }
+        $selector = new AWPCP_MultipleRegionSelector( $regions, $options );
+        echo $selector->render( 'search', array(), $errors );
     }
 
     /**
@@ -99,7 +85,7 @@ class AWPCP_Search_Widget extends WP_Widget {
 		$id = 'awpcp-search-' . sanitize_title($label);
         $default = is_null( $default ) ? __('Select Option', 'AWPCP') : $default;
 
-		$html = sprintf('<label for="%s">%s</label><br>', $id, $label);
+		$html = sprintf('<label for="%s">%s</label>', $id, $label);
 		$html .= sprintf('<select id="%s" name="%s">', $id, $name);
 		if (is_array($options)) {
 			$html .= sprintf( '<option value="">%s</option>', $default );
@@ -131,17 +117,19 @@ class AWPCP_Search_Widget extends WP_Widget {
 			$title = $instance['title'] . '</span>';
 		}
 
+        echo '<div class="awpcp-search-listings-widget">';
 		echo $before_widget . $before_title . $title . $after_title;
-		echo '<div align="center"><form method=\'post\' action="'.url_searchads().'"><input type="hidden" name="a" value="dosearch"/>';
+		echo '<div align="center"><form method=\'post\' action="'.url_searchads().'">';
+        echo '<input type="hidden" name="a" value="dosearch"/>';
 
 		$keywordphrase = stripslashes_deep(awpcp_post_param('keywordphrase'));
 
 		if ($instance['show_keyword'] == 1) {
-			echo '<label for="awpcp-search-keywordphrase">' . __('Search by keyword', "AWPCP") . '</label><br/>';
-			echo '<input id="awpcp-search-keywordphrase" type="text" name="keywordphrase" value="' . esc_attr($keywordphrase) . '"><br/>';
+			echo '<label for="awpcp-search-keywordphrase">' . __('Search by keyword', "AWPCP") . '</label>';
+			echo '<input id="awpcp-search-keywordphrase" type="text" name="keywordphrase" value="' . esc_attr($keywordphrase) . '">';
 		}
 		if ($instance['show_by'] == 1) {
-			echo $this->render_find_by_contact_name_field() . '<br/>';
+			echo $this->render_find_by_contact_name_field();
 		}
 
 		echo $this->render_region_fields( $instance );
@@ -152,10 +140,18 @@ class AWPCP_Search_Widget extends WP_Widget {
 			$selected = stripslashes_deep(awpcp_post_param($name, null));
 
 			$dropdown = new AWPCP_CategoriesDropdown();
-			echo $dropdown->render( array( 'context' => 'search', 'selected' => $selected, 'name' => $name, 'label' => $label ) );
+			echo $dropdown->render( array(
+                'context' => 'search',
+                'selected' => $selected,
+                'required' => false,
+                'name' => $name,
+                'label' => $label,
+            ) );
 		}
 
-		echo '<br/><input class="button" type="submit" value="Search"></form></div>';
+		echo '<div class="submit"><input class="button" type="submit" value="Search"></div>';
+        echo '</form></div>';
+        echo '</div>';
 		echo $after_widget;
 	}
 
