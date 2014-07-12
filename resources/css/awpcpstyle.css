@@ -1058,6 +1058,8 @@ p.ad_status_msg {
 .uploaded-images li .image-container img,
 #classiwrapper .awpcp-uploaded-images li .image-container img,
 .awpcp-uploaded-images li .image-container img {
+  border-radius: 0;
+  box-shadow: none;
   display: block;
   margin: 0 auto;
 }
