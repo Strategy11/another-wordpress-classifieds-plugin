@@ -62,7 +62,7 @@ class AWPCP_Search_Widget extends WP_Widget {
         );
 
         $selector = new AWPCP_MultipleRegionSelector( $regions, $options );
-        echo $selector->render( 'search', array(), $errors );
+        echo $selector->render( 'search', array(), array() );
     }
 
     /**

@@ -315,4 +315,17 @@ class AWPCP_MediaAPI {
 
         return $this->find_images_by_ad_id( $ad_id, $args );
     }
+
+    /**
+     * @since 3.2.3
+     */
+    public function listing_has_primary_image( $listing ) {
+        $image = $this->get_ad_primary_image( $listing );
+
+        if ( ! is_null( $image ) ) {
+            return $image->is_primary;
+        } else {
+            return false;
+        }
+    }
 }
