@@ -96,6 +96,7 @@ function awpcp_get_ad_location($ad_id, $country=false, $county=false, $state=fal
 function showad( $adid=null, $omitmenu=false, $preview=false, $send_email=true, $show_messages=true ) {
 	global $wpdb;
 
+	awpcp_maybe_add_thickbox();
 	wp_enqueue_script('awpcp-page-show-ad');
 
     $awpcp = awpcp();

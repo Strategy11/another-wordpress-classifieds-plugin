@@ -15,6 +15,8 @@ class AWPCP_CategoriesRenderer {
     }
 
     public function render( $params = array() ) {
+        awpcp_enqueue_main_script();
+
         $params = $this->merge_params( $params );
         $transient_key = $this->generate_transient_key( $params );
 

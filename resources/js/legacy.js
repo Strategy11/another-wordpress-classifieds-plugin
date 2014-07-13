@@ -48,7 +48,7 @@
         if (this.get('ajaxurl') === null) {
             if (typeof AWPCP !== 'undefined' && AWPCP.ajaxurl) {
                 this.set('ajaxurl', AWPCP.ajaxurl);
-            } else if (ajaxurl) {
+            } else if ( typeof ajaxurl !== 'undefined' ) {
                 this.set('ajaxurl', ajaxurl);
             } else {
                 this.set('ajaxurl', '/wp-admin/admin-ajax.php');

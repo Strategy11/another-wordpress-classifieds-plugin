@@ -2133,53 +2133,24 @@ function awpcp_print_column_headers($screen, $id = true, $sortable=array()) {
 	$wp_list_table->print_column_headers($id);
 }
 
-
-/** Temporary solution to avoid breaking inline scripts due to wpauotp and wptexturize
- ---------------------------------------------------------------------------- */
-
 /**
- * @since  2.1.2
+ * @since 3.2.3
  */
-function awpcp_inline_javascript_placeholder($name, $script) {
-	global $awpcp;
-
-	if (!isset($awpcp->inline_scripts) || !is_array($awpcp->inline_scripts))
-		$awpcp->inline_scripts = array();
-
-	$awpcp->inline_scripts[$name] = $script;
-
-	return "<AWPCPScript style='display:none'>$name</AWPCPScript>";
+function awpcp_enqueue_main_script() {
+    wp_enqueue_script( 'awpcp' );
 }
 
 /**
- * @since  2.1.2
+ * @since 3.2.3
  */
-function awpcp_inline_javascript($content) {
-	global $awpcp;
+function awpcp_maybe_add_thickbox() {
+    if ( get_awpcp_option( 'awpcp_thickbox_disabled' ) ) {
+        return;
+    }
 
-	if (!isset($awpcp->inline_scripts) || !is_array($awpcp->inline_scripts))
-		return $content;
-
-	foreach ($awpcp->inline_scripts as $name => $script) {
-		$content = preg_replace("{<AWPCPScript style='display:none'>$name</AWPCPScript>}", $script, $content);
-	}
-
-	return $content;
+    add_thickbox();
 }
 
-/**
- * @since  2.1.3
- */
-function awpcp_print_inline_javascript() {
-	global $awpcp;
-
-	if (!isset($awpcp->inline_scripts) || !is_array($awpcp->inline_scripts))
-		return;
-
-	foreach ($awpcp->inline_scripts as $name => $script) {
-		echo $script;
-	}
-}
 
 /**
  * @since 3.2.1

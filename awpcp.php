@@ -388,11 +388,6 @@ class AWPCP {
 		add_action( 'wp_footer', array( $this, 'localize_scripts' ) );
 		add_action( 'admin_footer', array( $this, 'localize_scripts' ) );
 
-		// we need to dalay insertion of inline JavaScript to avoid problems
-		// with wpauotp and wptexturize functions
-		add_filter('the_content', 'awpcp_inline_javascript', 1000);
-		add_filter('admin_footer', 'awpcp_print_inline_javascript', 1000);
-
 		// some upgrade operations can't be done in background.
 		// if one those is pending, we will disable all other features
 		// until the user executes the upgrade operaton
@@ -677,10 +672,6 @@ class AWPCP {
 
 		wp_register_script('awpcp-jquery-validate', "{$js}/jquery-validate/all.js", array('jquery'), '1.10.0', true);
 
-		if (!get_awpcp_option('awpcp_thickbox_disabled')) {
-			add_thickbox();
-		}
-
 		/* helpers */
 
 		wp_register_script('awpcp', "{$js}/awpcp.min.js", array('jquery'), $awpcp_db_version, true);
@@ -737,7 +728,6 @@ class AWPCP {
 			wp_enqueue_style('awpcp-frontend-style');
 			wp_enqueue_style('awpcp-frontend-style-ie-6');
 	        wp_enqueue_style('awpcp-custom-css');
-	        wp_enqueue_script( 'awpcp' );
 		}
 
 		if (is_admin()) {
