@@ -49,8 +49,6 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
     protected function render($items, $instance, $html_class='') {
         global $awpcp_imagesurl;
 
-        $thumbnail_width = absint( trim( get_awpcp_option( 'displayadthumbwidth' ) ) );
-
         if ( empty( $items ) ) {
             return sprintf( '<li class="awpcp-empty-widget %s">%s</li>', $html_class, __( 'There are currently no Ads to show.', 'AWPCP' ) );
         }
@@ -73,11 +71,10 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
                 if (!$instance['show-blank'] && is_null($image)) {
                     $html_image = '';
                 } else {
-                    $html_image = sprintf('<a class="self" href="%1$s"><img src="%2$s" width="%3$s" alt="%4$s" /></a>',
-                                          $url,
-                                          $image_url,
-                                          $thumbnail_width,
-                                          esc_attr($item->ad_title));
+                    $html_image = sprintf( '<a class="self" href="%1$s"><img src="%2$s" alt="%3$s" /></a>',
+                                           $url,
+                                           $image_url,
+                                           esc_attr( $item->ad_title ) );
                 }
 
                 if ($instance['show-title']) {
@@ -89,10 +86,10 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
                 if ($instance['show-excerpt']) {
                     $excerpt = stripslashes( awpcp_utf8_substr( $item->ad_details, 0, 50 ) ) . "...";
                     $read_more = sprintf('<a class="awpcp-widget-read-more" href="%s">[%s]</a>', $url, __("Read more", "AWPCP"));
-                    $html_excerpt = sprintf('<p>%s<br/>%s</p>', $excerpt, $read_more);
+                    $html_excerpt = sprintf( '<div class="awpcp-listings-widget-item-excerpt">%s%s</div>', $excerpt, $read_more );
                 }
 
-                $html[] = sprintf('<li class="%s"><div class="awpcplatestbox"><div class="awpcplatestthumb clearfix">%s</div>%s %s<div class="awpcplatestspacer"></div></div></li>',
+                $html[] = sprintf('<li class="awpcp-listings-widget-item %s"><div class="awpcplatestbox"><div class="awpcplatestthumb clearfix">%s</div>%s %s</div></li>',
                                   $html_class,
                                   $html_image,
                                   $html_title,
@@ -140,7 +137,7 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
         // do not show empty titles
         echo !empty( $title ) ? $before_title . $title . $after_title : '';
 
-        echo '<ul>';
+        echo '<ul class="awpcp-listings-widget-items-list">';
         $items = AWPCP_Ad::query( $this->query( $instance ) );
         echo $this->render( $items, $instance );
         echo '</ul>';

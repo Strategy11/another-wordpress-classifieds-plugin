@@ -700,9 +700,13 @@ class AWPCP {
 		/* frontend */
 
 		wp_register_style('awpcp-frontend-style', "{$css}/awpcpstyle.css", array(), $awpcp_db_version);
-		wp_register_style('awpcp-frontend-style-ie-6', "{$css}/awpcpstyle-ie-6.css", array('awpcp-frontend-style'), $awpcp_db_version);
 
-		$wp_styles->add_data('awpcp-frontend-style-ie-6', 'conditional', 'lte IE 6');
+		wp_register_style('awpcp-frontend-style-ie-6', "{$css}/awpcpstyle-ie-6.css", array('awpcp-frontend-style'), $awpcp_db_version);
+		$wp_styles->add_data( 'awpcp-frontend-style-ie-6', 'conditional', 'lte IE 6' );
+
+		wp_register_style( 'awpcp-frontend-style-lte-ie-7', "{$css}/awpcpstyle-lte-ie-7.css", array( 'awpcp-frontend-style' ), $awpcp_db_version );
+		$wp_styles->add_data( 'awpcp-frontend-style-lte-ie-7', 'conditional', 'lte IE 7' );
+
 
 		wp_register_script('awpcp-page-place-ad', "{$js}/page-place-ad.js", array('awpcp', 'awpcp-multiple-region-selector', 'awpcp-jquery-validate', 'jquery-ui-datepicker', 'jquery-ui-autocomplete'), $awpcp_db_version, true);
 		wp_register_script('awpcp-page-reply-to-ad', "{$js}/page-reply-to-ad.js", array('awpcp', 'awpcp-jquery-validate'), $awpcp_db_version, true);
@@ -727,6 +731,7 @@ class AWPCP {
 		} else {
 			wp_enqueue_style('awpcp-frontend-style');
 			wp_enqueue_style('awpcp-frontend-style-ie-6');
+			wp_enqueue_style('awpcp-frontend-style-lte-ie-7');
 	        wp_enqueue_style('awpcp-custom-css');
 		}
 

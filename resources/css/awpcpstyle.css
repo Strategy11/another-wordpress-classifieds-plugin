@@ -493,47 +493,6 @@ table.displayads .displayadsicell {
   display: block;
   max-width: 300px;
 }
-.awpcplatestbox {
-  margin-bottom: 5px;
-}
-.awpcplatestbox .awpcp-listing-title {
-  clear: both;
-  font-weight: bold;
-  margin: 4px 0 8px;
-}
-.awpcplatestspacer {
-  clear: both;
-}
-#alphabarwrapper ul#alphabar {
-  margin: 0;
-  padding: 0px 0px 25px 0px;
-  list-style-type: none;
-  float: left;
-}
-#alphabarwrapper #alphabar li {
-  list-style: none;
-  list-style-type: none;
-  float: left;
-  padding: 5px;
-  text-align: center;
-  background: #f1f1f1;
-  margin: 0px 2px 2px 0px;
-}
-#alphabarwrapper #alphabar li a {
-  text-decoration: none;
-  font-weight: normal;
-  font-size: small;
-}
-#alphabarwrapper {
-  padding: 5px;
-}
-#alphabarwrapper h3 {
-  margin: 0;
-  padding: 0;
-  border-bottom: #f3f3f3;
-  font-size: small;
-  text-transform: uppercase;
-}
 .awpcp-login-form form {
   display: block;
   margin: 10px auto;
@@ -1329,6 +1288,48 @@ p.ad_status_msg {
     width: auto;
   }
 }
+/*.awpcplatestbox {
+    margin-bottom:5px;
+}
+.awpcplatestbox .awpcp-listing-title {
+    clear: both;
+    font-weight: bold;
+    margin: 4px 0 8px;
+}
+.awpcplatestspacer {
+    clear:both;
+}*/
+/* Using !important because theme authors love to use IDs in their
+   CSS selectors. My rules won't be applied unless I know the exact
+   selector or use !important. */
+.awpcp-listings-widget-items-list {
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style-type: none !important;
+}
+.awpcp-listings-widget-items-list .awpcp-listings-widget-item {
+  margin-bottom: 15px;
+}
+.awpcp-listings-widget-items-list .awpcp-listings-widget-item .awpcplatestthumb {
+  box-sizing: border-box;
+  margin: 0 0 5px;
+  width: 100%;
+}
+.awpcp-listings-widget-items-list .awpcp-listings-widget-item .awpcplatestthumb a {
+  display: block !important;
+  margin: 0 auto !important;
+  width: 60%;
+}
+.awpcp-listings-widget-items-list .awpcp-listings-widget-item .awpcplatestthumb a img {
+  max-width: 100%;
+  margin: 0 auto;
+}
+.awpcp-listings-widget-items-list .awpcp-listings-widget-item .awpcp-listing-title {
+  font-weight: bold;
+}
+.awpcp-listings-widget-items-list .awpcp-listings-widget-item .awpcp-widget-read-more {
+  margin-left: 10px !important;
+}
 .awpcp-navigation .awpcp-menu-toggle {
   background: #000000 url("../images/bullet_arrow_down.png") 10px center no-repeat;
   color: #eee;
@@ -1398,7 +1399,7 @@ p.ad_status_msg {
 #classiwrapper ul,
 .awpcp-multiple-region-selector ul {
   margin: 0;
-  padding: 0;
+  padding: 0 !important;
 }
 #classiwrapper ul li,
 .awpcp-multiple-region-selector ul li {
@@ -1436,7 +1437,7 @@ p.ad_status_msg {
 .awpcp-multiple-region-selector .awpcp-region-selector:last-of-type {
   margin-bottom: 0;
 }
-.widget_awpcp_search_widget label {
+.widget_awpcp_search_widget form label {
   display: block;
   font-size: 13px;
   font-size: 0.9rem;
@@ -1444,8 +1445,10 @@ p.ad_status_msg {
   margin: 1px 0;
   text-align: left;
 }
-.widget_awpcp_search_widget input,
-.widget_awpcp_search_widget select {
+.widget_awpcp_search_widget form input[type="text"],
+.widget_awpcp_search_widget form input[type="email"],
+.widget_awpcp_search_widget form input[type="password"],
+.widget_awpcp_search_widget form select {
   -webkit-box-sizing: border-box;
   /* Safari/Chrome, other WebKit */
   -moz-box-sizing: border-box;
@@ -1459,6 +1462,9 @@ p.ad_status_msg {
 .widget_awpcp_search_widget .awpcp-multiple-region-selector .awpcp-region-selector-partials,
 .widget_awpcp_search_widget .awpcp-multiple-region-selector .awpcp-region-selector-partials label {
   padding: 0;
+}
+.widget_awpcp_search_widget .awpcp-multiple-region-selector {
+  margin: 0;
 }
 .widget_awpcp_search_widget .awpcp-multiple-region-selector .awpcp-region-selector {
   background: none;

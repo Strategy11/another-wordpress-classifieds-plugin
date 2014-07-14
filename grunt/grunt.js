@@ -30,6 +30,7 @@ module.exports = function(grunt) {
       files: {
         '<%= path.awpcp %>/css/awpcpstyle.css': '<%= path.awpcp %>/less/frontend.less',
         '<%= path.awpcp %>/css/awpcpstyle-ie-6.css': '<%= path.awpcp %>/less/frontend-ie6.less',
+        '<%= path.awpcp %>/css/awpcpstyle-lte-ie-7.css': '<%= path.awpcp %>/less/frontend-lte-ie-7.less',
         '<%= path.awpcp %>/css/awpcp-admin.css': '<%= path.awpcp %>/less/admin.less'
       }
     }
