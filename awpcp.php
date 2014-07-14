@@ -883,7 +883,7 @@ class AWPCP {
 		$query = 'SELECT pages.page, pages.id, posts.ID post ';
 		$query.= 'FROM ' . AWPCP_TABLE_PAGES . ' AS pages ';
 		$query.= 'LEFT JOIN ' . $wpdb->posts . ' AS posts ON (posts.ID = pages.id) ';
-		$query.= 'WHERE posts.ID IS NULL ';
+		$query.= "WHERE posts.ID IS NULL OR posts.post_status != 'publish'";
 
 		if (!empty($excluded)) {
 			$query.= " AND pages.page NOT IN ('" . join("','", $excluded) . "')";
