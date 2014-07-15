@@ -1,19 +1,21 @@
 .widget_awpcp_search_widget {
-    label {
-        display: block;
-        font-size: 13px;
-        font-size: 0.9rem;
-        line-height: 1.2rem;
-        margin: 1px 0;
-        text-align: left;
-    }
+    form {
+        label {
+            display: block;
+            font-size: 13px;
+            font-size: 0.9rem;
+            line-height: 1.2rem;
+            margin: 1px 0;
+            text-align: left;
+        }
 
-    input, select {
-        -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-        -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-        box-sizing: border-box;         /* Opera/IE 8+ */
-        margin: 0;
-        width: 100%;
+        input[type="text"], input[type="email"], input[type="password"], select {
+            -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+            -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+            box-sizing: border-box;         /* Opera/IE 8+ */
+            margin: 0;
+            width: 100%;
+        }
     }
 
     .awpcp-multiple-region-selector,
@@ -23,6 +25,8 @@
     }
 
     .awpcp-multiple-region-selector {
+        margin: 0;
+
         .awpcp-region-selector {
             background: none;
 
