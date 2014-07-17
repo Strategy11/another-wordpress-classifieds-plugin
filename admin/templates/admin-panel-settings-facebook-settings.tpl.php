@@ -138,12 +138,13 @@
 					</th>
 					<td>
 						<?php if ( $groups ): ?>
+								<?php $group_id = isset( $config['group_id'] ) ? $config['group_id'] : ''; ?>
 								<label>
-									<input type="radio" name="group" value="" <?php echo empty( $config['group_id'] ) ? 'checked="checked"' : ''; ?> /> <?php echo __( 'None (Do not sent Ads to a Facebook Group)', 'AWPCP' ); ?>
+									<input type="radio" name="group" value="" <?php echo empty( $group_id ) ? 'checked="checked"' : ''; ?> /> <?php echo __( 'None (Do not sent Ads to a Facebook Group)', 'AWPCP' ); ?>
 								</label><br />
 							<?php foreach( $groups as $group ): ?>
 								<label>
-									<input type="radio" name="group" value="<?php echo esc_attr( $group['id'] ); ?>" <?php echo $group['id'] == $config['group_id'] ? 'checked="checked"' : ''; ?> /> <?php echo esc_html( $group['name'] ); ?>
+									<input type="radio" name="group" value="<?php echo esc_attr( $group['id'] ); ?>" <?php echo $group['id'] == $group_id ? 'checked="checked"' : ''; ?> /> <?php echo esc_html( $group['name'] ); ?>
 								</label><br />
 							<?php endforeach; ?>
 						<?php else: ?>
@@ -163,7 +164,7 @@
 				<?php endif; ?>
 				<tr>
 					<td colspan="2">
-						<input type="submit" value="<?php _e( 'Save Page Selection', 'AWPCP' ); ?>" class="button-primary" name="save_config" />	
+						<input type="submit" value="<?php _e( 'Save Page and Group Selection', 'AWPCP' ); ?>" class="button-primary" name="save_config" />	
 					</td>
 				</tr>
 			</table>		
