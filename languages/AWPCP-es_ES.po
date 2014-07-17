@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: AWPCP\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2014-07-14 18:08:48+00:00\n"
+"POT-Creation-Date: 2014-07-17 16:02:44+00:00\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: \n"
@@ -3421,7 +3421,7 @@ msgctxt "no categories"
 msgid "None"
 msgstr "Ninguna"
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:142
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:143
 msgid "None (Do not sent Ads to a Facebook Group)"
 msgstr "Ninguno (No envíe los anuncios a un Grupo de Facebook)"
 
@@ -3614,7 +3614,7 @@ msgstr "Versión PHP"
 msgid "Page ID"
 msgstr "ID de página"
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:157
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:158
 msgid "Page Token (not editable)"
 msgstr "Token de la página (no editable)"
 
@@ -3861,19 +3861,19 @@ msgstr ""
 msgid "Please enter a start date for the Ad."
 msgstr "Por favor ingrese una fecha de inicio para el anuncio."
 
-#: awpcp.php:745
+#: awpcp.php:751
 msgid "Please enter a valid URL."
 msgstr "Por favor ingrese una URL válida."
 
-#: awpcp.php:747
+#: awpcp.php:753
 msgid "Please enter a valid amount."
 msgstr "Por favor ingresa una cantidad válida."
 
-#: awpcp.php:744 frontend/page-edit-ad.php:128 frontend/page-edit-ad.php:397
+#: awpcp.php:750 frontend/page-edit-ad.php:128 frontend/page-edit-ad.php:397
 msgid "Please enter a valid email address."
 msgstr "Por favor ingrese una dirección de correo electrónico válida."
 
-#: awpcp.php:746
+#: awpcp.php:752
 msgid "Please enter a valid number."
 msgstr "Por favor ingrese un número."
 
@@ -4132,7 +4132,7 @@ msgstr "Módulo RSS"
 msgid "Random Ads"
 msgstr "Anuncios Aleatorios"
 
-#: frontend/widget-latest-ads.php:91
+#: frontend/widget-latest-ads.php:88
 msgid "Read more"
 msgstr "Leer Más"
 
@@ -4441,9 +4441,9 @@ msgstr "Guardar Cambios de Categorías"
 msgid "Save Changes"
 msgstr "Guardar Cambios"
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:166
-msgid "Save Page Selection"
-msgstr "Guardar la página seleccionada"
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:167
+msgid "Save Page and Group Selection"
+msgstr "Guardar Selección de Grupo y Página"
 
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:103
 msgid "Save Token Value"
@@ -5926,7 +5926,7 @@ msgstr ""
 "administrador. Si por el contrario no trató de hacer un pago y esta viendo "
 "este mensaje, significa que se está mostrando por error y puede descartarlo."
 
-#: frontend/widget-latest-ads.php:55
+#: frontend/widget-latest-ads.php:53
 msgid "There are currently no Ads to show."
 msgstr "Actualmente no hay ningún aviso para mostrar."
 
@@ -5934,7 +5934,7 @@ msgstr "Actualmente no hay ningún aviso para mostrar."
 msgid "There are currently no ads in the system"
 msgstr "No hay actualmente ningún Aviso en el Sistema"
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:150
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:151
 msgid ""
 "There are no Facebook groups available for you to select. Please make sure "
 "you are connected to the internet and have granted the Facebook application "
@@ -6212,7 +6212,7 @@ msgstr ""
 "tener creada una Aplicación de Facebook para usar esta característica. Lea "
 "<a>Cómo registrar y configurar una aplicación de Facebook (inglés)</a>."
 
-#: awpcp.php:743
+#: awpcp.php:749
 msgid "This field is required."
 msgstr "Este campo es obligatorio."
 
@@ -8971,6 +8971,9 @@ msgstr "viste los foros!"
 
 #~ msgid "Sandbox Merchant ID"
 #~ msgstr "Sandbox Merchant ID"
+
+#~ msgid "Save Page Selection"
+#~ msgstr "Guardar la página seleccionada"
 
 #~ msgid "Search by City"
 #~ msgstr "Buscar por Ciudad"

@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: AWPCP\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2014-07-14 18:08:48+00:00\n"
+"POT-Creation-Date: 2014-07-17 16:02:44+00:00\n"
 "PO-Revision-Date: 2014-03-07 21:42-0500\n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: \n"
@@ -3094,7 +3094,7 @@ msgctxt "no categories"
 msgid "None"
 msgstr ""
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:142
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:143
 msgid "None (Do not sent Ads to a Facebook Group)"
 msgstr ""
 
@@ -3266,7 +3266,7 @@ msgstr ""
 msgid "Page ID"
 msgstr ""
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:157
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:158
 msgid "Page Token (not editable)"
 msgstr ""
 
@@ -3504,19 +3504,19 @@ msgstr ""
 msgid "Please enter a start date for the Ad."
 msgstr ""
 
-#: awpcp.php:745
+#: awpcp.php:751
 msgid "Please enter a valid URL."
 msgstr ""
 
-#: awpcp.php:747
+#: awpcp.php:753
 msgid "Please enter a valid amount."
 msgstr ""
 
-#: awpcp.php:744 frontend/page-edit-ad.php:128 frontend/page-edit-ad.php:397
+#: awpcp.php:750 frontend/page-edit-ad.php:128 frontend/page-edit-ad.php:397
 msgid "Please enter a valid email address."
 msgstr ""
 
-#: awpcp.php:746
+#: awpcp.php:752
 msgid "Please enter a valid number."
 msgstr ""
 
@@ -3762,7 +3762,7 @@ msgstr ""
 msgid "Random Ads"
 msgstr ""
 
-#: frontend/widget-latest-ads.php:91
+#: frontend/widget-latest-ads.php:88
 msgid "Read more"
 msgstr ""
 
@@ -4065,8 +4065,8 @@ msgstr ""
 msgid "Save Changes"
 msgstr ""
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:166
-msgid "Save Page Selection"
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:167
+msgid "Save Page and Group Selection"
 msgstr ""
 
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:103
@@ -5376,7 +5376,7 @@ msgid ""
 "disregarded."
 msgstr ""
 
-#: frontend/widget-latest-ads.php:55
+#: frontend/widget-latest-ads.php:53
 msgid "There are currently no Ads to show."
 msgstr ""
 
@@ -5384,7 +5384,7 @@ msgstr ""
 msgid "There are currently no ads in the system"
 msgstr ""
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:150
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:151
 msgid ""
 "There are no Facebook groups available for you to select. Please make sure "
 "you are connected to the internet and have granted the Facebook application "
@@ -5607,7 +5607,7 @@ msgid ""
 "and Configure a Facebook Application.</a>"
 msgstr ""
 
-#: awpcp.php:743
+#: awpcp.php:749
 msgid "This field is required."
 msgstr ""
 
