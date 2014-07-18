@@ -53,7 +53,7 @@ class AWPCP_Media {
         $thumbnail = $thumbnails . $basename;
         $suffix = empty( $size ) ? '.' : "-$size.";
 
-        $info = pathinfo( $original );
+        $info = awpcp_utf8_pathinfo( $original );
 
         if ( $size == 'original' ) {
             $alternatives = array( $original );

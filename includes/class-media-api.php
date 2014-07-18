@@ -104,7 +104,7 @@ class AWPCP_MediaAPI {
     public function delete( $media ) {
         global $wpdb;
 
-        $info = pathinfo( AWPCPUPLOADDIR . "{$media->name}" );
+        $info = awpcp_utf8_pathinfo( AWPCPUPLOADDIR . $media->name );
         $filename = preg_replace( "/\.{$info['extension']}/", '', $info['basename'] );
 
         $filenames = array(

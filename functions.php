@@ -1069,7 +1069,7 @@ function awpcp_get_image_url($image, $suffix='') {
 	$thumbnail = $thumbnails . $basename;
 	$part = empty($suffix) ? '.' : "-$suffix.";
 
-	$info = pathinfo($original);
+	$info = awpcp_utf8_pathinfo($original);
 
 	if ($suffix == 'original') {
 		$alternatives = array($original);
@@ -1912,7 +1912,7 @@ function awpcp_uploaded_file_error($file) {
 }
 
 function awpcp_get_file_extension( $filename ) {
-	return pathinfo( $filename, PATHINFO_EXTENSION );
+	return awpcp_utf8_pathinfo( $filename, PATHINFO_EXTENSION );
 }
 
 /**
@@ -2195,4 +2195,36 @@ function awpcp_utf8_substr_pcre( $string, $start, $length=null ) {
 	} else {
 		return '';
 	}
+}
+
+/**
+ * from http://stackoverflow.com/a/4459219/201354.
+ *
+ * @since 3.2.3
+ */
+function awpcp_utf8_pathinfo( $path, $options = null ) {
+    $modified_path = awpcp_utf8_prefix_path( $path );
+    $path_parts = is_null( $options ) ? pathinfo( $modified_path ) : pathinfo( $modified_path, $options );
+
+    $path_parts['dirname'] = str_replace( '/a', '/', $path_parts['dirname'] );
+    $path_parts['basename'] = substr( $path_parts['basename'], 1 );
+    $path_parts['filename'] = substr( $path_parts['filename'], 1 );
+
+    return $path_parts;
+}
+
+function awpcp_utf8_prefix_path( $path ) {
+    if ( strpos( $path, '/' ) === false ) {
+        $modified_path = 'a' . $path;
+    } else {
+        $modified_path = str_replace( '/', '/a', $path );
+    }
+
+    return $modified_path;
+}
+
+function awpcp_utf8_basename( $path, $suffix = null ) {
+    $modified_path = awpcp_utf8_prefix_path( $path );
+    $basename = basename( $modified_path );
+    return substr( $basename, 1 );
 }

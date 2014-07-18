@@ -569,7 +569,7 @@ class AWPCP_CSV_Importer {
 		$media_api = awpcp_media_api();
 
 		foreach ($entries as $entry) {
-            $extension = pathinfo( $entry['filename'], PATHINFO_EXTENSION );
+            $extension = awpcp_get_file_extension( $entry['filename'] );
             $mime_type = sprintf( 'image/%s', $extension );
 
 			$data = array(
