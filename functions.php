@@ -2202,29 +2202,48 @@ function awpcp_utf8_substr_pcre( $string, $start, $length=null ) {
  *
  * @since 3.2.3
  */
-function awpcp_utf8_pathinfo( $path, $options = null ) {
-    $modified_path = awpcp_utf8_prefix_path( $path );
-    $path_parts = is_null( $options ) ? pathinfo( $modified_path ) : pathinfo( $modified_path, $options );
-
-    $path_parts['dirname'] = str_replace( '/a', '/', $path_parts['dirname'] );
-    $path_parts['basename'] = substr( $path_parts['basename'], 1 );
-    $path_parts['filename'] = substr( $path_parts['filename'], 1 );
+function awpcp_utf8_pathinfo( $path, $path_parts_types = null ) {
+    $modified_path = awpcp_add_path_prefix( $path );
+    $path_parts = is_null( $path_parts_types ) ? pathinfo( $modified_path ) : pathinfo( $modified_path, $path_parts_types );
+    $path_parts = awpcp_remove_path_prefix( $path_parts, $path_parts_types );
 
     return $path_parts;
 }
 
-function awpcp_utf8_prefix_path( $path ) {
+function awpcp_add_path_prefix( $path, $prefix = 'a' ) {
     if ( strpos( $path, '/' ) === false ) {
-        $modified_path = 'a' . $path;
+        $modified_path = $prefix . $path;
     } else {
-        $modified_path = str_replace( '/', '/a', $path );
+        $modified_path = str_replace( '/', "/$prefix", $path );
     }
 
     return $modified_path;
 }
 
+function awpcp_remove_path_prefix( $path_parts, $path_part_type, $prefix = 'a' ) {
+    if ( is_array( $path_parts ) ) {
+        if ( isset( $path_parts['dirname'] ) ) {
+            $path_parts['dirname'] = str_replace( "/$prefix", '/', $path_parts['dirname'] );
+        }
+
+        if ( isset( $path_parts['basename'] ) ) {
+            $path_parts['basename'] = substr( $path_parts['basename'], 1 );
+        }
+
+        if ( isset( $path_parts['filename'] ) ) {
+            $path_parts['filename'] = substr( $path_parts['filename'], 1 );
+        }
+    } else if ( $path_part_type === PATHINFO_DIRNAME ) {
+        $path_parts = str_replace( "/$prefix", '/', $path_parts );
+    } else if ( ( PATHINFO_BASENAME | PATHINFO_FILENAME ) & $path_part_type ) {
+        $path_parts = substr( $path_parts, 1 );
+    }
+
+    return $path_parts;
+}
+
 function awpcp_utf8_basename( $path, $suffix = null ) {
-    $modified_path = awpcp_utf8_prefix_path( $path );
+    $modified_path = awpcp_add_path_prefix( $path );
     $basename = basename( $modified_path );
-    return substr( $basename, 1 );
+    return awpcp_remove_path_prefix( $basename, PATHINFO_BASENAME );
 }
