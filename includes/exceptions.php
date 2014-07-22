@@ -56,6 +56,18 @@ class AWPCP_DatabaseException extends AWPCP_Exception {
     }
 }
 
+class AWPCP_DBException extends AWPCP_Exception {
+
+    public function __construct( $message, $database_error = null ) {
+        if ( $database_error ) {
+            $template = _x( '%s The error was: %s.', 'DBException message template', 'AWPCP' );
+            $message = sprintf( $template, $message, $database_error );
+        }
+
+        parent::__construct( $message );
+    }
+}
+
 class AWPCP_Easy_Digital_Downloads_Exception extends Exception {
 }
 

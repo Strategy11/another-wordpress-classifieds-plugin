@@ -174,11 +174,7 @@ class AWPCP_CategoriesCollection {
     }
 
     private function throw_database_exception( $message ) {
-        if ( $this->db->last_error ) {
-            throw new AWPCP_Exception( $message . ' ' . $this->db->last_error );
-        } else {
-            throw new AWPCP_Exception( $message );
-        }
+        throw new AWPCP_DBException( $message, $this->db->last_error );
     }
 
     private function save_category( $category ) {

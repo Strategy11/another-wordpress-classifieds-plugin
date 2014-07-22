@@ -156,8 +156,8 @@ if (typeof jQuery !== 'undefined') {
                         var loadingIcon = inline.find( 'p.submit' ).find( 'img.waiting, .spinner' );
 
                         loadingIcon.show().addClass( 'is-visible-inline-block' );
+                        inline.find('div.awpcp-ajax-error').remove();
 
-                        inline.find('div.error').remove();
                         inline.find('form').ajaxSubmit({
                             data: $.extend({}, options.data, {save: true}),
                             dataType: 'json',
@@ -173,7 +173,7 @@ if (typeof jQuery !== 'undefined') {
                                     }
                                 } else {
                                     loadingIcon.hide().removeClass( 'is-visible-inline-block' );
-                                    var errors = $('<div class="awpcp-error awpcp-inline-form-error">');
+                                    var errors = $('<div class="awpcp-ajax-error error awpcp-error awpcp-inline-form-error">');
                                     $.each(response.errors, function(k,v) {
                                         errors.append(v + '</br>');
                                     });
