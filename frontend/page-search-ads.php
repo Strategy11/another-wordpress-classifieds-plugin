@@ -33,7 +33,7 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
     }
 
     public function dispatch() {
-        wp_enqueue_script('awpcp-page-search-ads');
+        wp_enqueue_script('awpcp-page-search-listings');
         wp_enqueue_script('awpcp-extra-fields');
 
         $awpcp = awpcp();
