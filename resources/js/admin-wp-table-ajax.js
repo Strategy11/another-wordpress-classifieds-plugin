@@ -244,10 +244,12 @@ if (typeof jQuery !== 'undefined') {
                             data: { 'remove': true, 'option': option },
                             dataType: 'json',
                             success: function(response) {
-                                var link = null, label;
+                                var link = null, label, errorMessage;
+
+                                loadingIcon.hide().removeClass( 'is-visible-inline-block' );
 
                                 // mission acomplished!
-                                if (response.status === 'success' || response.status === 'ok' ) {
+                                if ( response.status === 'success' || response.status === 'ok' ) {
                                     row.remove();
                                     inline.remove();
 
@@ -257,8 +259,6 @@ if (typeof jQuery !== 'undefined') {
 
                                 // we need to ask something else to the user
                                 } else if (response.status === 'confirm') {
-                                    loadingIcon.hide().removeClass( 'is-visible-inline-block' );
-
                                     // create a set of options
                                     $.each(response.options, function(value, label) {
                                         link = $('<a></a>').attr({
@@ -275,11 +275,11 @@ if (typeof jQuery !== 'undefined') {
 
                                 // ¬_¬
                                 } else {
-                                    loadingIcon.hide().removeClass( 'is-visible-inline-block' );
-                                    form.find('div.error').remove();
-                                    form.append('<div class="error"><p>' + response.message + '</p></div>');
-
+                                    errorMessage = response.message || response.error;
                                     label = 'Delete';
+
+                                    form.find('div.awpcp-ajax-error').remove();
+                                    form.append('<div class="awpcp-ajax-error error">' + errorMessage + '</div>');
 
                                     // create default Delete button
                                     link = $('<a></a>').attr({
