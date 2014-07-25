@@ -470,6 +470,13 @@ function awpcp_do_placeholder_images($ad, $placeholder) {
         return $replacements[$ad->ad_id][$placeholder];
     }
 
+    $placeholders = array(
+        'featureimg' => '',
+        'awpcpshowadotherimages' => '',
+        'images' => '',
+        'awpcp_image_name_srccode' => '',
+    );
+
     $url = awpcp_get_listing_renderer()->get_view_listing_url( $ad );
     $thumbnail_width = get_awpcp_option('displayadthumbwidth');
 
@@ -545,7 +552,7 @@ function awpcp_do_placeholder_images($ad, $placeholder) {
     }
 
     // fallback thumbnail
-    if (!isset($placeholders['awpcp_image_name_srccode'])) {
+    if ( get_awpcp_option( 'imagesallowdisallow' ) == 1 && ! isset( $placeholders['awpcp_image_name_srccode'] ) ) {
         $thumbnail = sprintf('%s/adhasnoimage.png', $awpcp_imagesurl);
         $content = '<a href="%s"><img src="%s" width="%spx" border="0" alt="%s" /></a>';
         $content = sprintf($content, $url, $thumbnail, $thumbnail_width, awpcp_esc_attr($ad->ad_title));
@@ -553,12 +560,8 @@ function awpcp_do_placeholder_images($ad, $placeholder) {
         $placeholders['awpcp_image_name_srccode'] = $content;
     }
 
-    $placeholders['featureimg'] = awpcp_array_data('featureimg', '', $placeholders);
-    $placeholders['awpcpshowadotherimages'] = awpcp_array_data('awpcpshowadotherimages', '', $placeholders);
-    $placeholders['imgblockwidth'] = "{$thumbnail_width}px";
-
     $placeholders['featured_image'] = $placeholders['featureimg'];
-    $placeholders['images'] = awpcp_array_data('images', '', $placeholders);
+    $placeholders['imgblockwidth'] = "{$thumbnail_width}px";
     $placeholders['thumbnail_width'] = "{$thumbnail_width}px";
 
     $replacements[$ad->ad_id] = $placeholders;

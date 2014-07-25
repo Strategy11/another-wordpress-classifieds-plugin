@@ -54,6 +54,7 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
         }
 
         foreach ($items as $item) {
+            $images_are_allowed = get_awpcp_option( 'imagesallowdisallow' ) == 1;
             $url = url_showad($item->ad_id);
             $title = sprintf('<a href="%s">%s</a>', $url, stripslashes($item->ad_title));
 
@@ -62,13 +63,15 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
             } else {
                 $image = awpcp_media_api()->get_ad_primary_image( $item );
 
-                if (!is_null($image) && get_awpcp_option('imagesallowdisallow')) {
+                if ( ! is_null( $image ) && $images_are_allowed ) {
                     $image_url = $image->get_url();
-                } else {
+                } else if ( $instance['show-blank'] && $images_are_allowed ) {
                     $image_url = "$awpcp_imagesurl/adhasnoimage.png";
+                } else {
+                    $image_url = '';
                 }
 
-                if (!$instance['show-blank'] && is_null($image)) {
+                if ( empty( $image_url ) ) {
                     $html_image = '';
                 } else {
                     $html_image = sprintf( '<a class="self" href="%1$s"><img src="%2$s" alt="%3$s" /></a>',
@@ -89,11 +92,13 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
                     $html_excerpt = sprintf( '<div class="awpcp-listings-widget-item-excerpt">%s%s</div>', $excerpt, $read_more );
                 }
 
-                $html[] = sprintf('<li class="awpcp-listings-widget-item %s"><div class="awpcplatestbox"><div class="awpcplatestthumb clearfix">%s</div>%s %s</div></li>',
-                                  $html_class,
-                                  $html_image,
-                                  $html_title,
-                                  $html_excerpt);
+                if ( $images_are_allowed ) {
+                    $template = '<li class="awpcp-listings-widget-item %1$s"><div class="awpcplatestbox"><div class="awpcplatestthumb clearfix">%2$s</div>%3$s %4$s</div></li>';
+                } else {
+                    $template = '<li class="awpcp-listings-widget-item %1$s"><div class="awpcplatestbox">%3$s %4$s</div></li>';
+                }
+
+                $html[] = sprintf( $template, $html_class, $html_image, $html_title, $html_excerpt );
             }
         }
 
