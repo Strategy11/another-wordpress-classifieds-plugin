@@ -348,6 +348,7 @@ class AWPCP {
 		add_action( 'awpcp-category-edited', array( $this, 'clear_categories_list_cache' ) );
 		add_action( 'awpcp-category-deleted', array( $this, 'clear_categories_list_cache' ) );
 		add_action( 'awpcp-pages-updated', array( $this, 'clear_categories_list_cache' ) );
+		add_action( 'generate_rewrite_rules', array( $this, 'clear_categories_list_cache' ) );
 
 		// load resources required both in front end and admin screens, but not during ajax calls.
 		if ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) {
