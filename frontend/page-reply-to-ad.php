@@ -80,13 +80,36 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
     }
 
     protected function get_posted_data() {
-        $data = array(
+        $posted_data = array(
             'sender_name' => awpcp_request_param('sender_name'),
             'sender_email' => awpcp_request_param('sender_email'),
             'message' => awpcp_request_param('message'),
         );
 
-        return $data;
+        if ( is_user_logged_in() ) {
+            $posted_data = $this->overwrite_sender_information( $posted_data );
+        }
+
+        return $posted_data;
+    }
+
+    /**
+     * @since 3.2.3
+     */
+    private function overwrite_sender_information( $posted_data ) {
+        $user_information = awpcp_users_collection()->find_by_id( get_current_user_id() );
+
+        if ( isset( $user_information->display_name ) && ! empty( $user_information->display_name ) ) {
+            $posted_data['sender_name'] = $user_information->display_name;
+        } else if ( isset( $user_information->user_login ) && ! empty( $user_information->user_login ) ) {
+            $posted_data['sender_name'] = $user_information->user_login;
+        } else if ( isset( $user_information->username ) && ! empty( $user_information->username ) ) {
+            $posted_data['sender_name'] = $user_information->username;
+        }
+
+        $posted_data['sender_email'] = $user_information->user_email;
+
+        return $posted_data;
     }
 
     protected function validate_posted_data($data, &$errors=array()) {
@@ -142,6 +165,7 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
             'errors' => $errors,
             'ad_link' => $ad_link,
             'ui' => array(
+                'disable-sender-fields' => get_awpcp_option( 'reply-to-ad-requires-registration' ),
                 'captcha' => get_awpcp_option( 'captcha-enabled' ),
             ),
         );

@@ -12,15 +12,17 @@
     <input type="hidden" name="<?php echo esc_attr($name) ?>" value="<?php echo esc_attr($value) ?>" />
     <?php endforeach ?>
 
+    <?php $disabled = $ui['disable-sender-fields'] ? 'disabled="disabled"' : ''; ?>
+
     <p class="awpcp-form-spacer">
         <label for="awpcp-contact-sender-name"><?php _e("Your name", "AWPCP"); ?></label>
-        <input id="awpcp-contact-sender-name" class="inputbox required" type="text" name="sender_name" value="<?php echo $form['sender_name']; ?>" />
+        <input id="awpcp-contact-sender-name" class="inputbox required" type="text" name="sender_name" value="<?php echo $form['sender_name']; ?>" <?php echo $disabled; ?> />
         <?php echo awpcp_form_error('sender_name', $errors) ?>
     </p>
 
     <p class="awpcp-form-spacer">
         <label for="awpcp-contact-sender-email"><?php _e("Your email address", "AWPCP"); ?></label>
-        <input id="awpcp-contact-sender-email" class="inputbox required email" type="text" name="sender_email" value="<?php echo $form['sender_email']; ?>" />
+        <input id="awpcp-contact-sender-email" class="inputbox required email" type="text" name="sender_email" value="<?php echo $form['sender_email']; ?>" <?php echo $disabled; ?> />
         <?php echo awpcp_form_error('sender_email', $errors) ?>
     </p>
 
