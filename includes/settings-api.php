@@ -738,6 +738,12 @@ class AWPCP_Settings_API {
 		return update_option($this->option, $this->options);
 	}
 
+	/**
+	 * @since 3.2.3
+	 */
+	public function option_exists( $name ) {
+		return isset( $this->options[ $name ] );
+	}
 
 	/* Auxiliar methods to validate settings */
 
