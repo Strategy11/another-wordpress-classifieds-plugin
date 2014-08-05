@@ -199,7 +199,10 @@ class AWPCP_Facebook_Page_Settings {
 		$config['app_secret'] = $app_secret;
 		$config['user_token'] = $user_token;
 
-		if ( $page ) {
+		if ( $page == 'none' ) {
+			$config['page_id'] = '';
+			$config['page_token'] = '';
+		} else if ( ! empty( $page ) ) {
 			$parts = explode( '|', $page );
 			$page_id = $parts[0];
 			$page_token = $parts[1];

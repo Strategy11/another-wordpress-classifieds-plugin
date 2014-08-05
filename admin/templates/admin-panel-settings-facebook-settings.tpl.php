@@ -120,7 +120,7 @@
 					<td>
 						<?php if ( $pages ): ?>
 								<label>
-									<input type="radio" name="page" value="" <?php echo empty( $config['page_id'] ) ? 'checked="checked"' : ''; ?> /> <?php echo __( 'None (Do not sent Ads to a Facebook Page)', 'AWPCP' ); ?>
+									<input type="radio" name="page" value="none" <?php echo empty( $config['page_id'] ) ? 'checked="checked"' : ''; ?> /> <?php echo __( 'None (Do not sent Ads to a Facebook Page)', 'AWPCP' ); ?>
 								</label><br />
 							<?php foreach( $pages as $page ): ?>
 								<label>
@@ -140,7 +140,7 @@
 						<?php if ( $groups ): ?>
 								<?php $group_id = isset( $config['group_id'] ) ? $config['group_id'] : ''; ?>
 								<label>
-									<input type="radio" name="group" value="" <?php echo empty( $group_id ) ? 'checked="checked"' : ''; ?> /> <?php echo __( 'None (Do not sent Ads to a Facebook Group)', 'AWPCP' ); ?>
+									<input type="radio" name="group" value="none" <?php echo empty( $group_id ) ? 'checked="checked"' : ''; ?> /> <?php echo __( 'None (Do not sent Ads to a Facebook Group)', 'AWPCP' ); ?>
 								</label><br />
 							<?php foreach( $groups as $group ): ?>
 								<label>
