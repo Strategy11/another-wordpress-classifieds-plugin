@@ -440,7 +440,7 @@ class AWPCP {
 			$this->flush_rewrite_rules = true;
 		}
 
-		if ($this->flush_rewrite_rules) {
+		if ( $this->flush_rewrite_rules || get_option( 'awpcp-flush-rewrite-rules' ) ) {
 			flush_rewrite_rules();
 		}
 
