@@ -149,6 +149,7 @@ require_once( AWPCP_DIR . "/includes/views/frontend/class-categories-list-walker
 require_once( AWPCP_DIR . "/includes/views/frontend/class-categories-renderer.php" );
 require_once( AWPCP_DIR . "/includes/views/admin/class-fee-payment-terms-notices.php" );
 require_once( AWPCP_DIR . "/includes/views/admin/class-credit-plans-notices.php" );
+require_once( AWPCP_DIR . "/includes/views/admin/class-categories-checkbox-list-walker.php" );
 require_once( AWPCP_DIR . "/includes/views/admin/listings/class-listing-action-admin-page.php" );
 require_once( AWPCP_DIR . "/includes/views/admin/listings/class-renew-listings-admin-page.php" );
 require_once( AWPCP_DIR . "/includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php" );
@@ -473,6 +474,13 @@ class AWPCP {
 
 		if ( is_null( $modules ) ) {
 			$modules = array(
+				'age-restriction' => array(
+					'name' => __( 'Age Restriction', 'AWPCP' ),
+					'url' => '',
+					'installed' => defined( 'AWPCP_AGE_RESTRICTION_MODULE' ),
+					'version' => 'AWPCP_AGE_RESTRICTION_MODULE_DB_VERSION',
+					'required' => '1.0',
+				),
 				'attachments' => array(
 					'name' => __( 'Attachments', 'AWPCP' ),
 					'url' => '',

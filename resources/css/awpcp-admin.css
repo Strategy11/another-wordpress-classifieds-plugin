@@ -52,8 +52,9 @@
   background: #FFF;
 }
 .nav-tab-wrapper .nav-tab {
-  font-size: 12px;
+  font-size: 11px;
   padding: 2px 5px;
+  margin-right: -3px;
 }
 .category-checklist {
   background: #FFF;
@@ -211,6 +212,22 @@
 }
 .awpcp-admin-settings .awpcp-main-content .metabox-holder {
   padding-top: 20px !important;
+}
+.awpcp-admin-settings .category-checklist {
+  height: 290px;
+  max-height: 290px;
+}
+.awpcp-admin-settings .category-checklist .awpcp-categories-list {
+  margin-top: 4px;
+}
+.awpcp-admin-settings .category-checklist .awpcp-categories-list li {
+  margin-bottom: 4px;
+}
+.awpcp-admin-settings .category-checklist .awpcp-categories-list ul {
+  margin-left: 20px;
+}
+.awpcp-admin-settings .category-checklist .awpcp-categories-list ul li:first-child {
+  margin-top: 4px;
 }
 /* =Admin Credit Plans
 ---------------------------------------------------------------------------- */

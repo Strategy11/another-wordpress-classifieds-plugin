@@ -4,6 +4,10 @@ function awpcp_categories_list_renderer() {
     return new AWPCP_CategoriesRenderer( awpcp_categories_collection(), new AWPCP_CategoriesListWalker() );
 }
 
+function awpcp_categories_checkbox_list_renderer() {
+    return new AWPCP_CategoriesRenderer( awpcp_categories_collection(), new AWPCP_CategoriesCheckboxListWalker() );
+}
+
 class AWPCP_CategoriesRenderer {
 
     private $categories;
@@ -37,6 +41,7 @@ class AWPCP_CategoriesRenderer {
     }
 
     private function generate_transient_key( $params ) {
+        $params = array_merge( $params, array( 'walker' => get_class( $this->walker ) ) );
         $transient_key_params = apply_filters( 'awpcp-categories-list-transient-key-params', $params );
         $transient_key = 'awpcp-categories-list-cache-' . hash( 'crc32b', maybe_serialize( $transient_key_params ) );
 

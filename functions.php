@@ -488,41 +488,6 @@ function awpcp_get_categories_ids() {
 	return $categories;
 }
 
-function _awpcp_get_categories_checkboxes($field_name, $categories=array(), $selected=array(), $editable=true) {
-	$checked = 'checked="checked"';
-	$template = '<label class="selectit"><input type="checkbox" id="in-category-%1$d" %3$s name="%4$s[]" value="%1$d"> %2$s</label>';
-
-	$items = '';
-	foreach ($categories as $category) {
-		$items .= sprintf('<li id="category-%1$d">', $category->id);
-
-		$attributes = '';
-		if (in_array($category->id, $selected))
-			$attributes .= 'checked="checked"';
-		if (!$editable)
-			$attributes .= 'disabled="disabled"';
-
-		$items .= sprintf($template, $category->id, $category->name, $attributes, $field_name);
-
-		$children = AWPCP_Category::find(array('parent' => $category->id));
-		if (!empty($children)) {
-			$items .= _awpcp_get_categories_checkboxes($field_name, $children, $selected, $editable);
-		}
-
-		$items .= '</li>';
-	}
-
-	return '<ul>' . $items . '</ul>';
-}
-
-function awpcp_get_categories_checkboxes($selected=array(), $editable=true, $field_name='categories') {
-	global $wpdb;
-
-	$categories = AWPCP_Category::find(array('parent' => 0));
-
-	return _awpcp_get_categories_checkboxes( $field_name, $categories, (array) $selected, $editable );
-}
-
 /**
  * @since 3.0
  */

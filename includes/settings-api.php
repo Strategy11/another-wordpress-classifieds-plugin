@@ -1068,6 +1068,22 @@ class AWPCP_Settings_API {
 		echo join( '', $html );
 	}
 
+	public function categories( $args ) {
+		$setting = $args['setting'];
+
+        $params = array(
+        	'field_name' => 'awpcp-options[' . $setting->name . ']',
+            'selected' => $this->get_option( $setting->name ),
+
+            'first_level_ul_class' => 'awpcp-categories-list',
+            'no-cache' => time()
+        );
+		$checklist = awpcp_categories_checkbox_list_renderer()->render( $params );
+
+        echo sprintf( '<div class="cat-checklist category-checklist">%s</div>', $checklist );
+		echo '<span class="description">' . $setting->helptext . '</span>';
+	}
+
 	/**
 	 * Dummy function to render an (empty) introduction
 	 * for each settings section.

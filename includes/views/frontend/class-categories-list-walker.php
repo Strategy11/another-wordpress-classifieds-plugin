@@ -22,6 +22,13 @@ class AWPCP_CategoriesListWalker extends Walker {
             'show_in_columns' => 1,
             'show_listings_count' => true,
             'collapsible_categories' => get_awpcp_option( 'collapse-categories-columns' ),
+
+            'first_level_ul_class' => 'top-level-categories showcategoriesmainlist clearfix',
+            'second_level_ul_class' => 'sub-categories showcategoriessublist clearfix',
+            'first_level_element_wrapper' => 'p',
+            'first_level_element_wrapper_class' => 'top-level-category maincategoryclass',
+            'second_level_element_wrapper' => false,
+            'second_level_element_wrapper_class' => false,
         ) );
 
         return true;
@@ -29,18 +36,27 @@ class AWPCP_CategoriesListWalker extends Walker {
 
     public function walk( $elements, $max_depth = 0 ) {
         $this->all_elements_count = count( $elements );
+        return str_replace( '[categories-list]', parent::walk( $elements, $max_depth ), $this->list_container() );
+    }
 
+    protected function list_container() {
         $container = '<div id="awpcpcatlayout" class="awpcp-categories-list">[categories-list]</div><div class="fixfloat"></div>';
-        $container = apply_filters( 'awpcp-categories-list-container', $container, $this->options );
-
-        return str_replace( '[categories-list]', parent::walk( $elements, $max_depth ), $container );
+        return apply_filters( 'awpcp-categories-list-container', $container, $this->options );
     }
 
     public function start_lvl( &$output, $depth = 0, $args = array() ) {
         if ( $this->options['collapsible_categories'] ) {
-            $output .= '<ul class="sub-categories showcategoriessublist clearfix" data-collapsible="true">';
+            $element_start = '<ul %s data-collapsible="true">';
         } else {
-            $output .= '<ul class="sub-categories showcategoriessublist clearfix">';
+            $element_start = '<ul %s>';
+        }
+
+        $class = $this->options[ 'second_level_ul_class' ];
+
+        if ( ! empty( $class ) ) {
+            $output .= sprintf( $element_start, 'class="' . $class . '"' );
+        } else {
+            $output .= sprintf( $element_start, '' );
         }
     }
 
@@ -50,28 +66,23 @@ class AWPCP_CategoriesListWalker extends Walker {
 
     public function start_el( &$output, $category, $depth = 0, $args = array(), $current_object_id = 0 ) {
         if ( $this->is_first_element_in_row( $depth ) ) {
-            $output .= '<ul class="top-level-categories showcategoriesmainlist clearfix">';
+            $output .= $this->first_level_ul_start();
         }
 
         if ( $depth == 0 ) {
             $output .= sprintf( '<li class="columns-%d">', $this->options['show_in_columns'] );
-            $output .= '<p class="top-level-category maincategoryclass">';
+            $output .= $this->first_level_element_wrapper_start();
         } else {
             $output .= '<li>';
+            $output .= $this->second_level_element_wrapper_start();
         }
 
-        $element = '[category-icon]<a class="[category-class]" href="[category-url]">[category-name]</a> [listings-count][js-handler]';
-        $element = str_replace( '[category-icon]', $this->render_category_icon( $category ), $element );
-        $element = str_replace( '[category-class]', $depth == 0 ? 'toplevelitem' : '', $element );
-        $element = str_replace( '[category-url]', esc_attr( url_browsecategory( $category->id ) ), $element );
-        $element = str_replace( '[category-name]', esc_attr( $category->name ), $element );
-        $element = str_replace( '[listings-count]', $this->render_listings_count( $category ), $element );
-        $element = str_replace( '[js-handler]', $this->render_js_handler( $depth ), $element );
-
-        $output .= $element;
+        $output .= $this->element( $category, $depth, $args, $current_object_id );
 
         if ( $depth == 0 ) {
-            $output .= '</p>';
+            $output .= $this->first_level_element_wrapper_end();
+        } else {
+            $output .= $this->second_level_element_wrapper_end();
         }
 
         $this->update_elements_count( $depth );
@@ -91,6 +102,64 @@ class AWPCP_CategoriesListWalker extends Walker {
         }
 
         return false;
+    }
+
+    private function first_level_ul_start() {
+        if ( ! empty( $this->options[ 'first_level_ul_class' ] ) ) {
+            return sprintf( '<ul class="%s">', $this->options[ 'first_level_ul_class' ] );
+        } else {
+            return '<ul>';
+        }
+    }
+
+    private function first_level_element_wrapper_start() {
+        $tag = $this->options['first_level_element_wrapper'];
+        $class = $this->options['first_level_element_wrapper_class'];
+        return $this->element_wrapper_start( $tag, $class );
+    }
+
+    private function element_wrapper_start( $tag, $class ) {
+        if ( ! empty( $tag ) && ! empty( $class ) ) {
+            return sprintf( '<%s class="%s">', $tag, $class );
+        } else if ( ! empty( $tag ) ) {
+            return sprintf( '<%s>', $tag );
+        } else {
+            return '';
+        }
+    }
+
+    private function second_level_element_wrapper_start() {
+        $tag = $this->options['second_level_element_wrapper'];
+        $class = $this->options['second_level_element_wrapper_class'];
+        return $this->element_wrapper_start( $tag, $class );
+    }
+
+    protected function element( $category, $depth, $args, $current_object_id ) {
+        $element = '[category-icon]<a class="[category-class]" href="[category-url]">[category-name]</a> [listings-count][js-handler]';
+        $element = str_replace( '[category-icon]', $this->render_category_icon( $category ), $element );
+        $element = str_replace( '[category-class]', $depth == 0 ? 'toplevelitem' : '', $element );
+        $element = str_replace( '[category-url]', esc_attr( url_browsecategory( $category->id ) ), $element );
+        $element = str_replace( '[category-name]', esc_attr( $category->name ), $element );
+        $element = str_replace( '[listings-count]', $this->render_listings_count( $category ), $element );
+        $element = str_replace( '[js-handler]', $this->render_js_handler( $depth ), $element );
+
+        return $element;
+    }
+
+    private function first_level_element_wrapper_end() {
+        return $this->element_wrapper_end( $this->options['first_level_element_wrapper'] );
+    }
+
+    private function element_wrapper_end( $tag ) {
+        if ( $tag ) {
+            return '</' . $tag . '>';
+        } else {
+            return '';
+        }
+    }
+
+    private function second_level_element_wrapper_end() {
+        return $this->element_wrapper_end( $this->options['second_level_element_wrapper'] );
     }
 
     private function render_category_icon( $category ) {
