@@ -47,7 +47,13 @@ class AWPCP_Show_Ad_Page {
 	}
 
 	public function dispatch() {
-		return showad();
+		$output = apply_filters( 'awpcp-show-listing-content-replacement', null );
+
+		if ( is_null( $output ) ) {
+			return showad();
+		} else {
+			return $output;
+		}
 	}
 }
 
