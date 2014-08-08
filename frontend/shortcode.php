@@ -161,47 +161,14 @@ class AWPCP_Pages {
         return awpcp_render_ads($ads, 'ramdom-listings-shortcode', $config, false);
     }
 
-    public function category_shortcode($attrs) {
-        global $wpdb;
+    public function category_shortcode( $attrs ) {
+        static $output = null;
 
-        $default = array( 'id' => 0, 'children' => true, 'items_per_page' => 10 );
-        extract( shortcode_atts( $default, $attrs ) );
-
-        // request param overrides shortcode param
-        $items_per_page = awpcp_request_param( 'results', $items_per_page );
-        // set the number of items per page, to make sure both the shortcode handler
-        // and the awpcp_display_ads function are using the same value
-        $_REQUEST['results'] = $_GET['results'] = $items_per_page;
-
-        $category = $id > 0 ? AWPCP_Category::find_by_id($id) : null;
-        $children = awpcp_parse_bool($children);
-
-        if ( is_null( $category ) ) {
-            return __('Category ID must be valid for Ads to display.', 'category shortcode', 'AWPCP');
+        if ( is_null( $output ) ) {
+            $output = awpcp_category_shortcode()->render( $attrs );
         }
 
-        if ($children) {
-            // show children categories and disable possible sidebar (Region Control sidelist)
-            $before = awpcp_categories_list_renderer()->render( array( 'parent_category_id' => $category->id, 'show_listings_count' => true ) );
-        } else {
-            $before = '';
-        }
-
-        if ( $children ) {
-            $where = '( ad_category_id=%1$d OR ad_category_parent_id = %1$d ) AND disabled = 0';
-        } else {
-            $where = 'ad_category_id=%1$d AND disabled = 0';
-        }
-        $where = $wpdb->prepare($where, $category->id);
-
-        $order = get_awpcp_option( 'groupbrowseadsby' );
-
-        // required so awpcp_display_ads shows the name of the current category
-        $_REQUEST['category_id'] = $category->id;
-
-        $base_url = sprintf( 'custom:%s', awpcp_current_url() );
-
-        return awpcp_display_ads( $where, '', '', $order, $base_url, $before );
+        return $output;
     }
 
     /* Ajax handlers */

@@ -147,6 +147,7 @@ require_once( AWPCP_DIR . "/includes/views/frontend/buy-credits/class-buy-credit
 require_once( AWPCP_DIR . "/includes/views/frontend/buy-credits/class-buy-credits-page-final-step.php" );
 require_once( AWPCP_DIR . "/includes/views/frontend/class-categories-list-walker.php" );
 require_once( AWPCP_DIR . "/includes/views/frontend/class-categories-renderer.php" );
+require_once( AWPCP_DIR . "/includes/views/frontend/class-category-shortcode.php" );
 require_once( AWPCP_DIR . "/includes/views/admin/class-fee-payment-terms-notices.php" );
 require_once( AWPCP_DIR . "/includes/views/admin/class-credit-plans-notices.php" );
 require_once( AWPCP_DIR . "/includes/views/admin/class-categories-checkbox-list-walker.php" );
