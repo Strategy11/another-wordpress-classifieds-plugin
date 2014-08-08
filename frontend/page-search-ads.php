@@ -118,20 +118,29 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
     }
 
     protected function do_search_step() {
-        global $wpdb, $hasextrafieldsmodule;
-
-        $errors = array();
         $form = $this->get_posted_data();
 
+        $errors = array();
         if (!$this->validate_posted_data($form, $errors)) {
             return $this->search_form($form, $errors);
         }
+
+        $output = apply_filters( 'awpcp-search-listings-content-replacement', null, $form );
+
+        if ( is_null( $output ) ) {
+            return $this->search_listings( $form );
+        } else {
+            return $output;
+        }
+    }
+
+    private function search_listings( $form ) {
+        global $wpdb, $hasextrafieldsmodule;
 
         // build a link to hold all query parameters
         $params = array_merge(stripslashes_deep($_REQUEST), array('a' => 'searchads'));
         $href = add_query_arg(urlencode_deep($params), awpcp_current_url());
         $this->return_link = '<div class="awpcp-return-to-search-link"><a href="' . esc_attr($href) . '">' . __('Return to Search', 'AWPCP') . '</a></div>';
-
 
         $conditions = array('disabled = 0');
 

@@ -53,7 +53,8 @@ class AWPCP_Request {
      * @since 3.0.2
      */
     public function get_param( $name, $default='' ) {
-        return isset( $_GET[ $name ] ) ? $_GET[ $name ] : $default;
+        _deprecated_function( __FUNCTION__, '3.2.3', 'get( $name, $default )' );
+        return $this->get( $name, $default );
     }
 
     /**
@@ -61,7 +62,7 @@ class AWPCP_Request {
      * @since 3.0.2
      */
     public function get( $name, $default='' ) {
-        return $this->get_param( $name, $default );
+        return isset( $_GET[ $name ] ) ? $_GET[ $name ] : $default;
     }
 
     /**
@@ -69,7 +70,15 @@ class AWPCP_Request {
      * @since 3.0.2
      */
     public function post_param( $name, $default='' ) {
-        return isset( $_POST[ $name ] ) ? $_POST[ $name ] : $default;
+        _deprecated_function( __FUNCTION__, '3.2.3', 'post( $name, $default )' );
+        return $this->post( $name, $default );
+    }
+
+    /**
+     * @since 3.2.3
+     */
+    public function all_request_params() {
+        return $_REQUEST;
     }
 
     /**
@@ -77,7 +86,7 @@ class AWPCP_Request {
      * @since 3.0.2
      */
     public function post( $name, $default='' ) {
-        return $this->post_param( $name, $default );
+        return isset( $_POST[ $name ] ) ? $_POST[ $name ] : $default;
     }
 
     /**
