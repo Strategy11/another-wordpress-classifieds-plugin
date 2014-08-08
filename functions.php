@@ -1467,16 +1467,8 @@ function awpcp_current_url() {
  *							false to attempt to strip it.
  */
 function awpcp_get_current_domain($www=true, $prefix='') {
-	$domain = awpcp_array_data('HTTP_HOST', '', $_SERVER);
-	if (empty($domain)) {
-		$domain = awpcp_array_data('SERVER_NAME', '', $_SERVER);
-	}
-
-	if (!$www && substr($domain, 0, 4) === 'www.') {
-		$domain = $prefix . substr($domain, 4);
-	}
-
-	return $domain;
+    _deprecated_function( __FUNCTION__, '3.2.3', 'awpcp_request()->domain( $include_www, $www_prefix_replacement )' );
+    return awpcp_request()->domain( $www, $prefix );
 }
 
 /**
@@ -1490,7 +1482,7 @@ function awpcp_ajaxurl($overwrite=false) {
 	if ($overwrite || $ajaxurl === false) {
 		$url = admin_url('admin-ajax.php');
 		$parts = parse_url($url);
-		$ajaxurl = str_replace($parts['host'], awpcp_get_current_domain(), $url);
+		$ajaxurl = str_replace($parts['host'], awpcp_request()->domain(), $url);
 	}
 
 	return $ajaxurl;

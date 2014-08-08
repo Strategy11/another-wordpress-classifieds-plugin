@@ -642,13 +642,15 @@ class AWPCP {
 	 */
 	public function initialize_session() {
 		$session_id = session_id();
+
 		if (empty($session_id)) {
+			$request = awpcp_request();
 			// if we are in a subdomain, let PHP choose the right domain
-			if (strcmp(awpcp_get_current_domain(), awpcp_get_current_domain(false)) == 0) {
+			if ( strcmp( $request->domain(), $request->domain( false ) ) == 0 ) {
 				$domain = '';
 			// otherwise strip the www part
 			} else {
-				$domain = awpcp_get_current_domain(false, '.');
+				$domain = $request->domain( false, '.' );
 			}
 
 			@session_set_cookie_params(0, '/', $domain, false, true);
