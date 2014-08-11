@@ -12,6 +12,8 @@
     <?php echo awpcp_print_message($error, array('error')); ?>
 <?php endforeach ?>
 
+<?php awpcp_print_form_errors( $form_errors ); ?>
+
 <?php if ( ! $skip_payment_term_selection && ! awpcp_current_user_is_admin() ): ?>
 <?php echo $payments->render_account_balance(); ?>
 <?php endif ?>

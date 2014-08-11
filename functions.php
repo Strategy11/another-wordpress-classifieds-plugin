@@ -1793,6 +1793,16 @@ function awpcp_print_messages() {
 	awpcp_clear_flash_messages();
 }
 
+function awpcp_print_form_errors( $errors ) {
+    foreach ( $errors as $index => $error ) {
+        if ( is_numeric( $index ) ) {
+            echo awpcp_print_message( $error, array( 'error' ) );
+        } else {
+            echo awpcp_print_message( $error, array( 'error', 'ghost' ) );
+        }
+    }
+}
+
 function awpcp_print_message($message, $class=array('updated')) {
 	$class = array_merge(array('awpcp-message'), $class);
 	return '<div class="' . join(' ', $class) . '"><p>' . $message . '</p></div>';
@@ -1801,7 +1811,6 @@ function awpcp_print_message($message, $class=array('updated')) {
 function awpcp_print_error($message) {
 	return awpcp_print_message($message, array('error'));
 }
-
 
 function awpcp_validate_error($field, $errors) {
 	$error = awpcp_array_data($field, '', $errors);

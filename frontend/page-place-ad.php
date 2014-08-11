@@ -73,6 +73,8 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
     }
 
     public function dispatch($default=null) {
+        do_action( 'awpcp-before-post-listing-page' );
+
         wp_enqueue_style('awpcp-jquery-ui');
         wp_enqueue_script('awpcp-page-place-ad');
 
@@ -230,6 +232,10 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             $message = __( 'The Payment Term you selected is not available for non-administrator users.', 'AWPCP' );
             $errors['payment-term'] = $message;
         }
+
+        $additional_errors = apply_filters( 'awpcp-validate-post-listing-order', array(), $data );
+
+        array_splice( $errors, count( $errors ), 0, $additional_errors );
     }
 
     public function order_step() {

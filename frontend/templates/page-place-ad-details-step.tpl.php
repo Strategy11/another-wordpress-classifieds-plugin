@@ -5,13 +5,7 @@
         echo awpcp_print_message($message);
     }
 
-    foreach ($errors as $index => $error) {
-        if (is_numeric($index)) {
-            echo awpcp_print_message($error, array('error'));
-        } else {
-            echo awpcp_print_message($error, array('error', 'ghost'));
-        }
-    }
+    awpcp_print_form_errors( $errors );
 ?>
 
 <?php if ($ui['delete-button']): ?>
