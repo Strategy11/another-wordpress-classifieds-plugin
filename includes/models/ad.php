@@ -146,7 +146,7 @@ class AWPCP_Ad {
             $conditions[] = "payment_status != 'Pending'";
         }
 
-        return array_filter( apply_filters( 'awpcp-ad-where-statement', $conditions ) );
+        return array_filter( apply_filters( 'awpcp-ad-where-statement', array_filter( $conditions, 'strlen' ) ) );
 	}
 
 	public static function get_where_conditions($conditions=array()) {
