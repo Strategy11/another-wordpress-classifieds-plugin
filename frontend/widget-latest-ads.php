@@ -106,29 +106,12 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
     }
 
     protected function query($instance) {
-        $conditions[] = "ad_title <> ''";
-        $conditions[] = "disabled = 0";
-        $conditions[] = "verified = 1";
-        $conditions[] = "payment_status != 'Unpaid'";
-
-        // Quick fix, to make this module work with Region Control module.
-        // TODO: create a function to return Ads that uses AWCP_Ad::find()
-        // and filters to control which Ads are returned
-        global $hasregionsmodule;
-        if ($hasregionsmodule == 1 && isset($_SESSION['theactiveregionid'])) {
-            $region_id = $_SESSION['theactiveregionid'];
-
-            if (function_exists('awpcp_regions_api')) {
-                $regions = awpcp_regions_api();
-                $conditions[] = $regions->sql_where($region_id);
-            }
-        }
-
         return array(
-            'conditions' => $conditions,
-            'where' => join(' AND ', $conditions),
-            'order' => array( 'ad_postdate DESC', 'ad_id DESC' ),
-            'limit' => $instance['limit']
+            'conditions' => array( "ad_title <> ''" ),
+            'args' => array(
+                'order' => array( 'ad_postdate DESC', 'ad_id DESC' ),
+                'limit' => $instance['limit']
+            )
         );
     }
 
@@ -143,7 +126,8 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
         echo !empty( $title ) ? $before_title . $title . $after_title : '';
 
         echo '<ul class="awpcp-listings-widget-items-list">';
-        $items = AWPCP_Ad::query( $this->query( $instance ) );
+        $query = $this->query( $instance );
+        $items = AWPCP_Ad::get_enabled_ads( $query['args'], $query['conditions'] );
         echo $this->render( $items, $instance );
         echo '</ul>';
 
