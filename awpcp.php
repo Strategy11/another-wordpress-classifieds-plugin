@@ -564,8 +564,8 @@ class AWPCP {
 				'restricted-categories' => array(
 					'name' => __( 'Restricted Categories', 'AWPCP' ),
 					'url' => 'http://www.awpcp.com/premium-modules/',
-					'installed' => defined( 'AWPCP_AGE_RESTRICTION_MODULE' ),
-					'version' => 'AWPCP_AGE_RESTRICTION_MODULE_DB_VERSION',
+					'installed' => defined( 'AWPCP_RESTRICTED_CATEGORIES_MODULE' ),
+					'version' => 'AWPCP_RESTRICTED_CATEGORIES_MODULE_DB_VERSION',
 					'required' => '1.0',
 				),
 				'rss' => array(
