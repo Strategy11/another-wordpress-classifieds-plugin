@@ -477,13 +477,6 @@ class AWPCP {
 
 		if ( is_null( $modules ) ) {
 			$modules = array(
-				'age-restriction' => array(
-					'name' => __( 'Age Restriction', 'AWPCP' ),
-					'url' => '',
-					'installed' => defined( 'AWPCP_AGE_RESTRICTION_MODULE' ),
-					'version' => 'AWPCP_AGE_RESTRICTION_MODULE_DB_VERSION',
-					'required' => '1.0',
-				),
 				'attachments' => array(
 					'name' => __( 'Attachments', 'AWPCP' ),
 					'url' => '',
@@ -567,6 +560,13 @@ class AWPCP {
 					'installed' => defined( 'AWPCP_REGION_CONTROL_MODULE' ),
 					'version' => 'AWPCP_REGION_CONTROL_MODULE_DB_VERSION',
 					'required' => '3.2.17',
+				),
+				'restricted-categories' => array(
+					'name' => __( 'Restricted Categories', 'AWPCP' ),
+					'url' => 'http://www.awpcp.com/premium-modules/',
+					'installed' => defined( 'AWPCP_AGE_RESTRICTION_MODULE' ),
+					'version' => 'AWPCP_AGE_RESTRICTION_MODULE_DB_VERSION',
+					'required' => '1.0',
 				),
 				'rss' => array(
 					'name' => __( 'RSS', 'AWPCP' ),
