@@ -479,7 +479,7 @@ class AWPCP {
 			$modules = array(
 				'attachments' => array(
 					'name' => __( 'Attachments', 'AWPCP' ),
-					'url' => '',
+					'url' => 'http://awpcp.com/premium-modules/attachments-module/?ref=panel',
 					'installed' => defined( 'AWPCP_ATTACHMENTS_MODULE' ),
 					'version' => 'AWPCP_ATTACHMENTS_MODULE_DB_VERSION',
 					'required' => '3.2.4',
@@ -507,7 +507,7 @@ class AWPCP {
 				),
 				'comments' => array(
 					'name' => __(  'Comments & Ratings', 'AWPCP'  ),
-					'url' => 'http://www.awpcp.com/premium-modules/comments-ratings-module/?ref=user-panel',
+					'url' => 'http://www.awpcp.com/premium-modules/comments-ratings-module/?ref=panel',
 					'installed' => defined( 'AWPCP_COMMENTS_MODULE' ),
 					'version' => 'AWPCP_COMMENTS_MODULE_VERSION',
 					'required' => '3.2.6',
