@@ -469,6 +469,10 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
         $data = $wpdb->get_row( $wpdb->prepare( $query, (int) $ad_id ), ARRAY_A );
 
+        if ( get_awpcp_option('allowhtmlinadtext') ) {
+            $data['ad_details'] = awpcp_esc_textarea( $data['ad_details'] );
+        }
+
         // please note we are dividing the Ad price by 100
         // Ad prices have been historically stored in cents
         $data['ad_category'] = $data['ad_category_id'];

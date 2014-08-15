@@ -169,7 +169,7 @@
             <label for="ad-details" class="helptext"><?php echo nl2br(get_awpcp_option('htmlstatustext')) ?></label>
             <label for="ad-details" class="characters-left"><span class="characters-left-placeholder"><?php echo $characters ?></span>&nbsp;<?php echo $text ?></label>
 
-            <textarea class="awpcp-textarea textareainput required" id="ad-details" name="ad_details" rows="10" cols="50" data-max-characters="<?php echo $form['characters_allowed']; ?>" data-remaining-characters="<?php echo $form['remaining_characters'] ?>"><?php echo awpcp_esc_textarea($form['ad_details']) ?></textarea>
+            <textarea class="awpcp-textarea textareainput required" id="ad-details" name="ad_details" rows="10" cols="50" data-max-characters="<?php echo $form['characters_allowed']; ?>" data-remaining-characters="<?php echo $form['remaining_characters'] ?>"><?php /* Content alerady e scaped if necessary. Do not escape again here! */ echo $form['ad_details']; ?></textarea>
         </p>
 
         <?php
