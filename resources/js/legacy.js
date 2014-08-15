@@ -298,8 +298,6 @@
             $.noop(new $.AWPCP.CategoriesDropdown(hidden, select));
         });
 
-        // $('.awpcp-categories-list .top-level-category').closest('li').collapsible();
-
         $('.awpcp-navigation').each(function() {
             $.noop(new $.AWPCP.MainMenu($(this).find('.awpcp-menu-toggle')));
         });

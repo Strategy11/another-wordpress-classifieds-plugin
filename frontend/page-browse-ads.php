@@ -23,6 +23,8 @@ class AWPCP_BrowseAdsPage extends AWPCP_Page {
     }
 
     protected function _dispatch() {
+        wp_enqueue_script( 'awpcp' );
+
         $action = $this->get_current_action();
 
         switch ($action) {
