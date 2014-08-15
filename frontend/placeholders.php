@@ -496,7 +496,7 @@ function awpcp_do_placeholder_images($ad, $placeholder) {
             }
 
             // single ad
-            $content = '<div class="awpcp-ad-primary-image" style="float:right;">';
+            $content = '<div class="awpcp-ad-primary-image">';
             $content.= '<a class="thickbox thumbnail" href="%s">';
             $content.= '<img class="thumbshow" src="%s"/>';
             $content.= '</a>%s';
