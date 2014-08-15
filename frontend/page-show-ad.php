@@ -47,7 +47,7 @@ class AWPCP_Show_Ad_Page {
 	}
 
 	public function dispatch() {
-		wp_enqueue_script( 'awpcp' );
+		awpcp_enqueue_main_script();
 
 		$output = apply_filters( 'awpcp-show-listing-content-replacement', null );
 
