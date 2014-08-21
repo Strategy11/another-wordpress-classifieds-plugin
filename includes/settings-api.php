@@ -663,6 +663,24 @@ class AWPCP_Settings_API {
 		return true;
 	}
 
+	public function add_license_setting( $module_name, $module_slug ) {
+        $group = $this->enable_license_settings_group();
+        $section = $this->add_section( $group, $module_name, "$module_slug-license", 10, array( $this, 'section' ) );
+
+        $setting_label = str_replace( '<module-name>', $module_name, __( '<module-name> License Key', 'AWPCP' ) );
+        $this->add_setting( $section, "$module_slug-license", $setting_label, 'license', '', '', compact( 'module_name', 'module_slug' ) );
+	}
+
+	private function enable_license_settings_group() {
+		$slug = 'license-settings';
+
+		if ( ! isset( $this->groups[ $slug ] ) ) {
+			return $this->add_group( __( 'License', 'AWPCP' ), $slug, 100000 );
+		} else {
+			return $slug;
+		}
+	}
+
 	public function get_option($name, $default='', $reload=false) {
 		// reload options
 		if ($reload) { $this->load(); }
@@ -1082,6 +1100,34 @@ class AWPCP_Settings_API {
 
         echo sprintf( '<div class="cat-checklist category-checklist">%s</div>', $checklist );
 		echo '<span class="description">' . $setting->helptext . '</span>';
+	}
+
+	public function license( $args ) {
+		$setting = $args['setting'];
+
+		$module_name = $args['module_name'];
+		$module_slug = $args['module_slug'];
+
+		$this->licenses_manager = awpcp_licenses_manager();
+
+		$license = $this->get_option( $setting->name );
+
+		echo '<input id="' . $setting->name . '" class="regular-text" type="text" name="awpcp-options[' . $setting->name . ']" value="' . esc_attr( $license ) . '">';
+
+		if ( ! empty( $license ) ) {
+			if ( $this->licenses_manager->is_license_valid( $module_name, $module_slug ) ) {
+				echo '<input class="button-secondary" type="submit" name="awpcp-deactivate-' . $module_slug . '-license" value="' . __( 'Deactivate License', 'AWPCP' ) . '"/>';
+				echo '<br>Status: <span class="awpcp-license-status awpcp-license-valid">' . __( 'active', 'AWPCP' ) . '</span>.';
+			} else if ( $this->licenses_manager->is_license_inactive( $module_name, $module_slug ) ) {
+				echo '<input class="button-secondary" type="submit" name="awpcp-activate-' . $module_slug . '-license" value="' . __( 'Activate License', 'AWPCP' ) . '"/>';
+				echo '<br>Status: <span class="awpcp-license-status awpcp-license-inactive">' . __( 'inactive', 'AWPCP' ) . '</span>.';
+			} else if ( $this->licenses_manager->is_license_expired( $module_name, $module_slug ) ) {
+				echo '<br>Status: <span class="awpcp-license-status awpcp-license-expired">' . __( 'expired', 'AWPCP' ) . '</span>.';
+			} else {
+				echo '<br>Status: <span class="awpcp-license-status awpcp-license-invalid">' . __( 'invalid', 'AWPCP' ) . '</span>. Please contact customer support.';
+			}
+			wp_nonce_field( 'awpcp-update-license-status-nonce', 'awpcp-update-license-status-nonce' );
+		}
 	}
 
 	/**

@@ -5,34 +5,29 @@
  */
 abstract class AWPCP_Module {
 
-    protected $slig;
-    protected $version;
-    protected $required_awpcp_version;
-    protected $text_domain;
+    public $file;
+    public $name;
+    public $slug;
+    public $version;
+    public $required_awpcp_version;
 
-    public function __construct( $slug, $version, $required_awpcp_version ) {
+    public $notices = array();
+
+    public function __construct( $file, $name, $slug, $version, $required_awpcp_version, $textdomain=null ) {
+        $this->file = $file;
+        $this->name = $name;
         $this->slug = $slug;
         $this->version = $version;
         $this->required_awpcp_version = $required_awpcp_version;
-        $this->text_domain = "awpcp-$slug";
     }
 
-    public function setup( $awpcp ) {
-        load_plugin_textdomain( $this->text_domain, false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+    public abstract function required_awpcp_version_notice();
 
-        if ( ! method_exists( $awpcp, 'is_up_to_date' ) || ! $awpcp->is_up_to_date() ) {
-            // plugin installed but db versions differs from plugin version.
-            // upgrade is required
-            add_action( 'admin_notices', array( $this, 'required_awpcp_version_notice' ) );
-            return;
-        } else if ( version_compare( $awpcp->version, $this->required_awpcp_version ) < 0 ) {
-            add_action( 'admin_notices', array( $this, 'required_awpcp_version_notice' ) );
-            return;
-        } else if ( ! $awpcp->is_compatible_with( $this->slug, $this->version ) ) {
-            add_action( 'admin_notices', array( $this, 'module_not_compatible_notice' ) );
-            return;
-        }
+    public function load_textdomain() {
+        load_plugin_textdomain( "awpcp-{$this->slug}", false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+    }
 
+    public function setup() {
         if ( ! $this->is_up_to_date() ) {
             $this->install_or_upgrade();
         }
@@ -44,22 +39,16 @@ abstract class AWPCP_Module {
         $this->module_setup();
     }
 
-    public abstract function required_awpcp_version_notice();
-
-    public function module_not_compatible_notice() {
-        if ( function_exists( 'awpcp_module_not_compatible_notice' ) ) {
-            echo awpcp_module_not_compatible_notice( $this->slug, $this->version );
-        }
-    }
-
     protected function is_up_to_date() {
         $installed_version = $this->get_installed_version();
         return version_compare( $installed_version, $this->version, '==' );
     }
 
-    protected abstract function get_installed_version();
+    public function get_installed_version() {
+        return $this->version;
+    }
 
-    protected function install_or_upgrade() {
+    public function install_or_upgrade() {
         // overwrite in children classes if necessary
     }
 

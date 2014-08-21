@@ -1,4 +1,5 @@
 <?php $page_id = 'awpcp-admin-settings' ?>
+<?php $page_class = "$page_id awpcp-$group->slug"; ?>
 <?php $page_title = sprintf(__('AWPCP %s Settings', 'AWPCP'), $group->name) ?>
 
 <?php include(AWPCP_DIR . '/admin/templates/admin-panel-header.tpl.php') ?>

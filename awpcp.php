@@ -88,7 +88,10 @@ require_once(AWPCP_DIR . "/includes/compatibility/class-all-in-one-seo-pack-plug
 require_once(AWPCP_DIR . "/includes/compatibility/class-facebook-plugin-integration.php");
 require_once( AWPCP_DIR . "/includes/compatibility/class-yoast-wordpress-seo-plugin-integration.php" );
 
+require_once( AWPCP_DIR . "/includes/helpers/class-easy-digital-downloads.php" );
+require_once( AWPCP_DIR . "/includes/helpers/class-licenses-manager.php" );
 require_once( AWPCP_DIR . '/includes/helpers/class-module.php' );
+require_once( AWPCP_DIR . "/includes/helpers/class-modules-manager.php" );
 
 require_once(AWPCP_DIR . "/includes/helpers/class-akismet-wrapper-base.php");
 require_once(AWPCP_DIR . "/includes/helpers/class-akismet-wrapper.php");
@@ -96,6 +99,7 @@ require_once(AWPCP_DIR . "/includes/helpers/class-akismet-wrapper-factory.php");
 require_once(AWPCP_DIR . "/includes/helpers/class-awpcp-request.php");
 require_once( AWPCP_DIR . '/includes/helpers/class-facebook-cache-helper.php' );
 require_once(AWPCP_DIR . "/includes/helpers/class-file-cache.php");
+require_once( AWPCP_DIR . "/includes/helpers/class-http.php" );
 require_once( AWPCP_DIR . "/includes/helpers/class-listing-akismet-data-source.php" );
 require_once( AWPCP_DIR . "/includes/helpers/class-listing-renderer.php" );
 require_once( AWPCP_DIR . "/includes/helpers/class-listing-reply-akismet-data-source.php" );
@@ -223,6 +227,7 @@ class AWPCP {
 	public $panel = null; // User Ad Management panel
 	public $pages = null; // Frontend pages
 
+	public $modules_manager;
 	public $settings = null;
 	public $payments = null;
 	public $js = null;
@@ -369,6 +374,7 @@ class AWPCP {
         $wpdb->awpcp_admeta = AWPCP_TABLE_AD_META;
 
 		$this->settings->setup();
+		$this->modules_manager = awpcp_modules_manager();
 		$this->payments = awpcp_payments_api();
 		$this->listings = awpcp_listings_api();
 
@@ -383,6 +389,7 @@ class AWPCP {
 
 		add_action( 'admin_init', array( $this, 'check_compatibility_with_premium_modules' ) );
 		add_action('admin_notices', array($this, 'admin_notices'));
+		add_action( 'admin_notices', array( $this->modules_manager, 'show_admin_notices' ) );
 
 		add_action('awpcp_register_settings', array($this, 'register_settings'));
 		add_action( 'awpcp-register-payment-term-types', array( $this, 'register_payment_term_types' ) );
@@ -418,6 +425,8 @@ class AWPCP {
 		add_filter('cron_schedules', 'awpcp_cron_schedules');
 
 		awpcp_schedule_activation();
+
+		$this->modules_manager->load_modules();
 	}
 
 	public function setup_register_settings_handlers() {

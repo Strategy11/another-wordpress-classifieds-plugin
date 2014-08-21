@@ -229,6 +229,12 @@
 .awpcp-admin-settings .category-checklist .awpcp-categories-list ul li:first-child {
   margin-top: 4px;
 }
+.awpcp-license-settings .form-table th {
+  width: 250px;
+}
+.awpcp-license-settings .awpcp-license-valid {
+  color: green;
+}
 /* =Admin Credit Plans
 ---------------------------------------------------------------------------- */
 #wpbody-content .awpcp-admin-credit-plans .inline-edit-row .inline-edit-col-left,
