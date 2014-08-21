@@ -20,6 +20,15 @@ class AWPCP_LicensesManager {
         $this->settings = $settings;
     }
 
+    public function set_module_license( $module_slug, $license ) {
+        $this->settings->set_or_update_option( "{$module_slug}-license", $license );
+        $this->drop_license_status( $module_slug );
+    }
+
+    public function get_module_license( $module_slug ) {
+        return $this->settings->get_option( "{$module_slug}-license" );
+    }
+
     public function is_license_valid( $module_name, $module_slug ) {
         return $this->get_license_status( $module_name, $module_slug ) === self::LICENSE_STATUS_VALID;
     }
@@ -48,20 +57,12 @@ class AWPCP_LicensesManager {
     }
 
     private function get_license_status_from_store( $module_name, $module_slug ) {
-        $license_information = $this->get_license_information( $module_name, $module_slug );
+        $license_information = $this->edd->check_license( $module_name, $this->get_module_license( $module_slug ) );
         $license_status = $license_information->license;
 
         $this->update_license_status( $module_slug, $license_status );
 
         return $license_status;
-    }
-
-    private function get_license_information( $module_name, $module_slug ) {
-        return $this->edd->check_license( $module_name, $this->get_module_license( $module_slug ) );
-    }
-
-    private function get_module_license( $module_slug ) {
-        return $this->settings->get_option( "{$module_slug}-license" );
     }
 
     private function update_license_status( $module_slug, $license_status ) {

@@ -23,17 +23,18 @@ class AWPCP_UpdateLicenseStatusRequestHandler {
     }
 
     private function handle_request() {
-        foreach ( $this->request->post( 'awpcp-options' ) as $option_name => $license ) {
+        foreach ( $this->request->post( 'awpcp-options' ) as $option_name => $new_license ) {
             $module_slug = str_replace( '-license', '', $option_name );
+            $old_license = $this->licenses_manager->get_module_license( $module_slug );
 
-            if ( ! empty( $this->request->post( "awpcp-activate-$option_name" ) ) ) {
+
+            if ( strcmp( $new_license, $old_license ) !== 0 ) {
+                debugp( 'New License detected' );
+                $this->update_license( $module_slug, $new_license );
+            } else if ( ! empty( $this->request->post( "awpcp-activate-$option_name" ) ) ) {
                 $this->activate_license( $module_slug );
-                break;
-            }
-
-            if ( ! empty( $this->request->post( "awpcp-deactivate-$option_name" ) ) ) {
+            } else if ( ! empty( $this->request->post( "awpcp-deactivate-$option_name" ) ) ) {
                 $this->deactivate_license( $module_slug );
-                break;
             }
         }
     }
@@ -46,5 +47,14 @@ class AWPCP_UpdateLicenseStatusRequestHandler {
     private function deactivate_license( $module_slug ) {
         $module = $this->modules_manager->get_module( $module_slug );
         $this->licenses_manager->deactivate_license( $module->name, $module->slug );
+    }
+
+    private function update_license( $module_slug, $new_license ) {
+        if ( ! empty( $new_license ) ) {
+            $this->licenses_manager->set_module_license( $module_slug, $new_license );
+            $this->activate_license( $module_slug );
+        } else {
+            $this->licenses_manager->set_module_license( $module_slug, $new_license );
+        }
     }
 }
