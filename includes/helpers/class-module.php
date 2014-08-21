@@ -49,7 +49,7 @@ abstract class AWPCP_Module {
         return version_compare( $installed_version, $this->version, '==' );
     }
 
-    public function get_installed_version() {
+    protected function get_installed_version() {
         return $this->version;
     }
 

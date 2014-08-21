@@ -125,7 +125,7 @@ class AWPCP_ModulesManager {
 
     private function show_module_notices( $module ) {
         if ( in_array( 'required-awpcp-version-notice', $module->notices ) ) {
-            return $module->required_awpcp_version_notice();
+            echo $module->required_awpcp_version_notice();
         }
 
         if ( in_array( 'module-not-compatible-notice', $module->notices ) ) {
