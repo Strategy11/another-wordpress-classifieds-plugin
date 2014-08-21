@@ -169,6 +169,7 @@ require_once( AWPCP_DIR . "/includes/views/admin/listings/class-listings-table-s
 require_once( AWPCP_DIR . "/includes/views/admin/listings/class-listings-table-search-conditions-parser.php" );
 require_once( AWPCP_DIR . "/includes/views/admin/account-balance/class-account-balance-page.php" );
 require_once( AWPCP_DIR . "/includes/views/admin/account-balance/class-account-balance-page-summary-step.php" );
+require_once( AWPCP_DIR . "/includes/views/admin/settings/class-update-license-status-request-handler.php" );
 
 require_once( AWPCP_DIR . "/includes/settings/class-credit-plans-settings.php" );
 require_once( AWPCP_DIR . "/includes/settings/class-listings-moderation-settings.php" );
@@ -333,6 +334,9 @@ class AWPCP {
 			// load resources required in admin screens only, visible to admin users only.
 			add_action( 'admin_notices', array( awpcp_fee_payment_terms_notices(), 'dispatch' ) );
 			add_action( 'admin_notices', array( awpcp_credit_plans_notices(), 'dispatch' ) );
+
+			$handler = awpcp_update_license_status_request_handler();
+			add_action( 'admin_init', array( $handler, 'dispatch' ) );
 		} if ( is_admin() ) {
 			// load resources required in admin screens only
 		} else {
