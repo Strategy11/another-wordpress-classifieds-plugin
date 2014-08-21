@@ -14,18 +14,11 @@
 			<?php endforeach ?>
 			</h2>
 
-			<!-- <div class="postbox">
-				<div class="inside"> -->
-
 			<?php do_action('awpcp-admin-settings-page--' . $group->slug); ?>
 
 			<form class="settings-form" action="<?php echo admin_url('options.php') ?>" method="post">
 				<?php settings_fields($awpcp->settings->option); ?>
 				<input type="hidden" name="group" value="<?php echo $group->slug ?>" />
-
-				<!--<p class="submit">
-					<input type="submit" value="Save Changes" class="button-primary" id="submit" name="submit">
-				</p>-->
 
 				<?php $awpcp->settings->load() ?>
 				<?php
@@ -33,13 +26,25 @@
 				do_settings_sections($group->slug);
 				$output = ob_get_contents();
 				ob_end_clean();
-
-				echo $output;
 				?>
 
 				<?php if ( $output ): ?>
+				<p class="submit hidden">
+					<input type="submit" value="<?php _e( 'Save Changes', 'AWPCP' ); ?>" class="button-primary" id="submit-top" name="submit">
+				</p>
+				<?php endif; ?>
+
+				<?php
+					// A hidden submit button is necessary so that whenever the user hits enter on an input field,
+					// that one is the button that is triggered, avoiding other submit buttons in the form to trigger
+					// unwanted behaviours.
+				?>
+
+				<?php echo $output; ?>
+
+				<?php if ( $output ): ?>
 				<p class="submit">
-					<input type="submit" value="<?php _e('Save Changes', 'AWPCP') ?>" class="button-primary" id="submit" name="submit">
+					<input type="submit" value="<?php _e('Save Changes', 'AWPCP') ?>" class="button-primary" id="submit-bottom" name="submit">
 				</p>
 				<?php endif; ?>
 			</form>
