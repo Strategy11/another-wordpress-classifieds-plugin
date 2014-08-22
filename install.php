@@ -25,7 +25,7 @@ class AWPCP_Installer {
     private static $instance = null;
 
     private function AWPCP_Installer() {
-        $this->columns = new AWPCP_DatabaseColumnCreator();
+        $this->columns = awpcp_database_column_creator();
 
         $this->create_ads_table =
         "CREATE TABLE IF NOT EXISTS " . AWPCP_TABLE_ADS . " (
