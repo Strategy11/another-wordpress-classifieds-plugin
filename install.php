@@ -182,12 +182,11 @@ class AWPCP_Installer {
 
         require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
-        $version = get_option('awpcp_db_version');
+        $installed_version = get_option( 'awpcp_db_version' );
 
         // if table exists, this is an upgrade
-        $table = $wpdb->get_var("SHOW TABLES LIKE '" . AWPCP_TABLE_CATEGORIES . "'");
-        if ( $version !== false && strcasecmp( $table, AWPCP_TABLE_CATEGORIES ) === 0 ) {
-            return $this->upgrade($version, $awpcp_db_version);
+        if ( $installed_version !== false && awpcp_table_exists( AWPCP_TABLE_CATEGORIES ) ) {
+            return $this->upgrade( $installed_version, $awpcp_db_version );
         }
 
 
