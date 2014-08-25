@@ -31,12 +31,30 @@ class AWPCP_UpdateLicenseStatusRequestHandler {
             if ( strcmp( $new_license, $old_license ) !== 0 ) {
                 debugp( 'New License detected' );
                 $this->update_license( $module_slug, $new_license );
+            } else if ( ! empty( $this->request->post( "awpcp-check-$option_name" ) ) ) {
+                $this->check_license( $module_slug, $new_license );
             } else if ( ! empty( $this->request->post( "awpcp-activate-$option_name" ) ) ) {
                 $this->activate_license( $module_slug );
             } else if ( ! empty( $this->request->post( "awpcp-deactivate-$option_name" ) ) ) {
                 $this->deactivate_license( $module_slug );
             }
         }
+    }
+
+    private function update_license( $module_slug, $new_license ) {
+        if ( ! empty( $new_license ) ) {
+            $this->licenses_manager->set_module_license( $module_slug, $new_license );
+            $this->activate_license( $module_slug );
+        } else {
+            $this->licenses_manager->set_module_license( $module_slug, $new_license );
+        }
+    }
+
+    private function check_license( $module_slug, $license ) {
+        // calling set module license causes the license manager to drop
+        // the saved status, forcing it to check with the store in the next
+        // request.
+        $this->licenses_manager->set_module_license( $module_slug, $license );
     }
 
     private function activate_license( $module_slug ) {
@@ -47,14 +65,5 @@ class AWPCP_UpdateLicenseStatusRequestHandler {
     private function deactivate_license( $module_slug ) {
         $module = $this->modules_manager->get_module( $module_slug );
         $this->licenses_manager->deactivate_license( $module->name, $module->slug );
-    }
-
-    private function update_license( $module_slug, $new_license ) {
-        if ( ! empty( $new_license ) ) {
-            $this->licenses_manager->set_module_license( $module_slug, $new_license );
-            $this->activate_license( $module_slug );
-        } else {
-            $this->licenses_manager->set_module_license( $module_slug, $new_license );
-        }
     }
 }

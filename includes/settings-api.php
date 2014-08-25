@@ -1122,6 +1122,7 @@ class AWPCP_Settings_API {
 				echo '<input class="button-secondary" type="submit" name="awpcp-activate-' . $module_slug . '-license" value="' . __( 'Activate License', 'AWPCP' ) . '"/>';
 				echo '<br>Status: <span class="awpcp-license-status awpcp-license-inactive">' . __( 'inactive', 'AWPCP' ) . '</span>.';
 			} else if ( $this->licenses_manager->is_license_expired( $module_name, $module_slug ) ) {
+				echo '<input class="button-secondary" type="submit" name="awpcp-check-' . $module_slug . '-license" value="' . __( 'Check License', 'AWPCP' ) . '"/>';
 				echo '<br>Status: <span class="awpcp-license-status awpcp-license-expired">' . __( 'expired', 'AWPCP' ) . '</span>.';
 			} else {
 				echo '<br>Status: <span class="awpcp-license-status awpcp-license-invalid">' . __( 'invalid', 'AWPCP' ) . '</span>. Please contact customer support.';
