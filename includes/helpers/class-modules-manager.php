@@ -69,6 +69,13 @@ class AWPCP_ModulesManager {
     }
 
     private function verify_version_compatibility( $module ) {
+        $modules = $this->plugin->get_premium_modules_information();
+
+        if ( ! isset( $modules[ $module->slug ] ) ) {
+            $module->notices[] = 'module-is-not-registered-notice';
+            throw new AWPCP_Exception( 'Module is not registered.' );
+        }
+
         if ( version_compare( $this->plugin->version, $module->required_awpcp_version, '<' ) ) {
             $module->notices[] = 'required-awpcp-version-notice';
             throw new AWPCP_Exception( 'Required AWPCP version not installed.' );
@@ -140,13 +147,17 @@ class AWPCP_ModulesManager {
         if ( in_array( 'expired-license-notice', $module->notices ) ) {
             echo $this->show_expired_license_notice( $module->name );
         }
+
+        if ( in_array( 'module-is-not-registered-notice', $module->notices ) ) {
+            echo $this->show_module_no_registered_notice( $module->name );
+        }
     }
 
     private function show_module_not_compatible_notice( $module_slug ) {
-        $modules = awpcp()->get_premium_modules_information();
+        $modules = $this->plugin->get_premium_modules_information();
 
-        $module_name = $modules[ $module ][ 'name' ];
-        $required_version = $modules[ $module ][ 'required' ];
+        $module_name = $modules[ $module_slug ][ 'name' ];
+        $required_version = $modules[ $module_slug ][ 'required' ];
 
         $message = __( 'This version of AWPCP %1$s module is not compatible with AWPCP version %2$s. Please get AWPCP %1$s %3$s or newer!', 'AWPCP' );
         $message = sprintf( $message, '<strong>' . $module_name . '</strong>', $this->plugin->version, '<strong>' . $required_version . '</strong>' );
@@ -177,6 +188,13 @@ class AWPCP_ModulesManager {
 
     private function show_expired_license_notice( $module_name ) {
         $message = __( 'The license for AWPCP <module-name> module expired. The module will continue to work but you will not receive automatic updates when a new version is available.', 'AWPCP' );
+        $message = str_replace( '<module-name>', '<strong>' . $module_name . '</strong>', $message );
+
+        return awpcp_print_error( $message );
+    }
+
+    private function show_module_no_registered_notice( $module_name ) {
+        $message = __( 'Yikes, there has been a mistake. It looks like you have an outdated version of AWPCP <module-name> module. Please contact customer support and ask for a newer version. Please also include a reference to this error in your message.', 'AWPCP' );
         $message = str_replace( '<module-name>', '<strong>' . $module_name . '</strong>', $message );
 
         return awpcp_print_error( $message );
