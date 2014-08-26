@@ -10,21 +10,23 @@ abstract class AWPCP_Module {
     public $slug;
     public $version;
     public $required_awpcp_version;
+    public $textdomain;
 
     public $notices = array();
 
-    public function __construct( $file, $name, $slug, $version, $required_awpcp_version, $textdomain=null ) {
+    public function __construct( $file, $name, $slug, $version, $required_awpcp_version, $textdomain = null ) {
         $this->file = $file;
         $this->name = $name;
         $this->slug = $slug;
         $this->version = $version;
         $this->required_awpcp_version = $required_awpcp_version;
+        $this->textdomain = $textdomain ? $textdomain : "awpcp-{$this->slug}";
     }
 
     public abstract function required_awpcp_version_notice();
 
     public function load_textdomain() {
-        load_plugin_textdomain( "awpcp-{$this->slug}", false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+        load_plugin_textdomain( $this->textdomain, false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
     }
 
     public function setup() {
