@@ -30,11 +30,9 @@ class AWPCP_BrowseAdsPage extends AWPCP_Page {
         switch ($action) {
             case 'browsecat':
                 return $this->browse_listings( 'render_listings_from_category' );
-                return $this->browse_cat_step();
             case 'browseads':
             default:
                 return $this->browse_listings( 'render_all_listings' );
-                return $this->browse_ads_step();
         }
     }
 
