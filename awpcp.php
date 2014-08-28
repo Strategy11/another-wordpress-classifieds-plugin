@@ -1274,6 +1274,9 @@ class AWPCP {
     	die();
 	}
 
+	/**
+	 * XXX: Used in Region Control installer.
+	 */
 	public function clear_categories_list_cache() {
 		$transient_keys = get_option( 'awpcp-categories-list-cache-keys', array() );
 		foreach ( $transient_keys as $transient_key ) {
