@@ -34,6 +34,16 @@ class AWPCP_LicensesManager {
     }
 
     private function get_license_status( $module_name, $module_slug ) {
+        static $cache = array();
+
+        if ( ! isset( $cache[ $module_slug ] ) ) {
+            $cache[ $module_slug ] = $this->calculate_license_status( $module_name, $module_slug );
+        }
+
+        return $cache[ $module_slug ];
+    }
+
+    private function calculate_license_status( $module_name, $module_slug ) {
         $license_status = get_site_transient( $this->get_license_status_transient_key( $module_slug ) );
 
         if ( $license_status !== false ) {
