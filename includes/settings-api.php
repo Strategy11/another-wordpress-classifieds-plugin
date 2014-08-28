@@ -671,10 +671,10 @@ class AWPCP_Settings_API {
 	}
 
 	private function enable_licenses_settings_section() {
-		$group_slug = 'license-settings';
+		$group_slug = 'licenses-settings';
 		$section_slug = 'premium-modules';
 
-		if ( ! isset( $this->groups[ 'license-settings' ] ) ) {
+		if ( ! isset( $this->groups[ $group_slug ] ) ) {
 			$this->add_group( __( 'Licenses', 'AWPCP' ), $group_slug, 100000 );
 			$this->add_section( $group_slug, 'Premium Modules', $section_slug, 10, array( $this, 'section' ) );
 		}

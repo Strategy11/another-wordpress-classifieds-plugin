@@ -167,11 +167,11 @@ class AWPCP_ModulesManager {
     }
 
     private function show_invalid_license_notice( $module_name ) {
-        $link = sprintf( '<a href="%s">', awpcp_get_admin_settings_url( 'license-settings' ) );
+        $link = sprintf( '<a href="%s">', awpcp_get_admin_settings_url( 'licenses-settings' ) );
 
-        $message = __( 'The AWPCP <module-name> module requires a license to be used. All features will remain disabled until a valid license is entered. Please go to the <license-settings-link>License Settings</a> section to enter or update your license.', 'AWPCP' );
+        $message = __( 'The AWPCP <module-name> module requires a license to be used. All features will remain disabled until a valid license is entered. Please go to the <licenses-settings-link>Licenses Settings</a> section to enter or update your license.', 'AWPCP' );
         $message = str_replace( '<module-name>', '<strong>' . $module_name . '</strong>', $message );
-        $message = str_replace( '<license-settings-link>', $link, $message );
+        $message = str_replace( '<licenses-settings-link>', $link, $message );
 
         return awpcp_print_error( $message );
     }
