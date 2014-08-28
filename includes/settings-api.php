@@ -664,21 +664,22 @@ class AWPCP_Settings_API {
 	}
 
 	public function add_license_setting( $module_name, $module_slug ) {
-        $group = $this->enable_license_settings_group();
-        $section = $this->add_section( $group, $module_name, "$module_slug-license", microtime( true ) * 1000, array( $this, 'section' ) );
+        $section = $this->enable_licenses_settings_section();
 
         $setting_label = str_replace( '<module-name>', $module_name, __( '<module-name> License Key', 'AWPCP' ) );
         $this->add_setting( $section, "$module_slug-license", $setting_label, 'license', '', '', compact( 'module_name', 'module_slug' ) );
 	}
 
-	private function enable_license_settings_group() {
-		$slug = 'license-settings';
+	private function enable_licenses_settings_section() {
+		$group_slug = 'license-settings';
+		$section_slug = 'premium-modules';
 
-		if ( ! isset( $this->groups[ $slug ] ) ) {
-			return $this->add_group( __( 'License', 'AWPCP' ), $slug, 100000 );
-		} else {
-			return $slug;
+		if ( ! isset( $this->groups[ 'license-settings' ] ) ) {
+			$this->add_group( __( 'Licenses', 'AWPCP' ), $group_slug, 100000 );
+			$this->add_section( $group_slug, 'Premium Modules', $section_slug, 10, array( $this, 'section' ) );
 		}
+
+		return "$group_slug:$section_slug";
 	}
 
 	public function get_option($name, $default='', $reload=false) {
