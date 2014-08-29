@@ -1,16 +1,16 @@
 <?php
 
 function awpcp_easy_digital_downloads() {
-    return new AWPCP_EasyDigitalDownloads( awpcp_http() );
+    return new AWPCP_EasyDigitalDownloads( awpcp()->settings, awpcp_http() );
 }
 
 class AWPCP_EasyDigitalDownloads {
 
-    const STORE_URL = 'http://awpcp.local';
-
+    private $settings;
     private $http;
 
-    public function __construct( $http ) {
+    public function __construct( $settings, $http ) {
+        $this->settings = $settings;
         $this->http = $http;
     }
 
@@ -31,7 +31,7 @@ class AWPCP_EasyDigitalDownloads {
     }
 
     private function request( $params ) {
-        $url = add_query_arg( $params, self::STORE_URL );
+        $url = add_query_arg( $params, $this->settings->get_runtime_option( 'easy-digital-downloads-store-url' ) );
 
         $response = $this->http->get( $url, array( 'timeout' => 15, 'sslverify' => false ) );
         $decoded_data = json_decode( wp_remote_retrieve_body( $response ) );

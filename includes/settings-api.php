@@ -4,8 +4,11 @@ class AWPCP_Settings_API {
 
 	private static $instance = null;
 
-	public $option = 'awpcp-options';
+	public $setting_name = 'awpcp-options';
+
 	public $options = array();
+	private $runtime_options = array();
+
 	public $defaults = array();
 	public $groups = array();
 
@@ -21,13 +24,13 @@ class AWPCP_Settings_API {
 	}
 
 	public function load() {
-		$options = get_option($this->option);
+		$options = get_option($this->setting_name);
 		$this->options = is_array($options) ? $options : array();
 	}
 
 	public function register_settings() {
 
-		register_setting($this->option, $this->option, array($this, 'validate'));
+		register_setting($this->setting_name, $this->setting_name, array($this, 'validate'));
 
 		// Group: Private
 
@@ -524,8 +527,12 @@ class AWPCP_Settings_API {
 
 		// save settings to database
 		$this->skip = true;
-		update_option($this->option, $this->options);
+		$this->save_settings();
 		$this->skip = false;
+	}
+
+	private function save_settings() {
+		update_option( $this->setting_name, $this->options );
 	}
 
 	/**
@@ -554,7 +561,7 @@ class AWPCP_Settings_API {
 
 		// save settings to database
 		$this->skip = true;
-		update_option($this->option, $this->options);
+		$this->save_settings();
 		$this->skip = false;
 
 		$this->set_javascript_data();
@@ -743,7 +750,7 @@ class AWPCP_Settings_API {
 	public function update_option($name, $value, $force=false) {
 		if (isset($this->options[$name]) || $force) {
 			$this->options[$name] = $value;
-			update_option($this->option, $this->options);
+			$this->save_settings();
 			return true;
 		}
 		return false;
@@ -754,7 +761,7 @@ class AWPCP_Settings_API {
 	 */
 	public function set_or_update_option( $name, $value ) {
 		$this->options[$name] = $value;
-		return update_option($this->option, $this->options);
+		return $this->save_settings();
 	}
 
 	/**
@@ -762,6 +769,18 @@ class AWPCP_Settings_API {
 	 */
 	public function option_exists( $name ) {
 		return isset( $this->options[ $name ] );
+	}
+
+	public function set_runtime_option( $name, $value ) {
+		$this->runtime_settings[ $name ] = $value;
+	}
+
+	public function get_runtime_option( $name, $default = '' ) {
+		if ( isset( $this->runtime_settings[ $name ] ) ) {
+			return $this->runtime_settings[ $name ];
+		} else {
+			return $default;
+		}
 	}
 
 	/* Auxiliar methods to validate settings */
