@@ -161,9 +161,14 @@ class AWPCP_PageTitleBuilder {
     }
 
     private function title_already_includes_page_title( $original_title, $page_title ) {
+        $texturized_title = wptexturize( $page_title );
+        $escaped_texturized_title = esc_html( $texturized_title );
+
         if ( strpos( $original_title, $page_title ) !== false ) {
             return true;
-        } else if ( strpos( $original_title, wptexturize( $page_title ) ) !== false ) {
+        } else if ( strpos( $original_title, $texturized_title ) !== false ) {
+            return true;
+        } else if ( strpos( $original_title, $escaped_texturized_title ) !== false ) {
             return true;
         }
 
