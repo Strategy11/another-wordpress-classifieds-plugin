@@ -17,7 +17,7 @@
 			<?php do_action('awpcp-admin-settings-page--' . $group->slug); ?>
 
 			<form class="settings-form" action="<?php echo admin_url('options.php') ?>" method="post">
-				<?php settings_fields($awpcp->settings->option); ?>
+				<?php settings_fields( $awpcp->settings->setting_name ); ?>
 				<input type="hidden" name="group" value="<?php echo $group->slug ?>" />
 
 				<?php $awpcp->settings->load() ?>
