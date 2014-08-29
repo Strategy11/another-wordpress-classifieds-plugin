@@ -605,7 +605,14 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
         $data = array();
         foreach ($defaults as $name => $default) {
-            $data[$name] = awpcp_array_data($name, $default, $from);
+            $value = awpcp_array_data( $name, $default, $from );
+            $value = stripslashes_deep( $value );
+
+            if ( $name != 'ad_details' ) {
+                $value = awpcp_strip_all_tags_deep( $value );
+            }
+
+            $data[ $name ] = $value;
         }
 
         if (empty($data['user_id'])) {
@@ -946,7 +953,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
     }
 
     protected function prepare_ad_title($title, $characters) {
-        $$title = stripslashes_deep( $title );
+        $$title = $title;
 
         if ( $characters > 0 && awpcp_utf8_strlen( $title ) > $characters ) {
             $title = awpcp_utf8_substr( $title, 0, $characters );
@@ -959,9 +966,9 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $allow_html = (bool) get_awpcp_option('allowhtmlinadtext');
 
         if (!$allow_html) {
-            $details = esc_html(stripslashes_deep($details));
+            $details = esc_html( $details );
         } else {
-            $details = wp_kses_post(stripslashes_deep($details));
+            $details = wp_kses_post( $details );
         }
 
         if ( $characters > 0 && awpcp_utf8_strlen( $details ) > $characters ) {
