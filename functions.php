@@ -112,6 +112,33 @@ function awpcp_esc_textarea($text) {
 }
 
 /**
+ * @since 3.2.3
+ */
+function awpcp_apply_function_deep( $function, $value ) {
+    if ( is_array( $value ) ) {
+        foreach ( $value as $key => $data ) {
+            $value[ $key ] = awpcp_apply_function_deep( $function, $data );
+        }
+    } elseif ( is_object( $value ) ) {
+        $vars = get_object_vars( $value );
+        foreach ( $vars as $key => $data ) {
+            $value->{$key} = awpcp_apply_function_deep( $function, $data );
+        }
+    } elseif ( is_string( $value ) ) {
+        $value = call_user_func( $function, $value );
+    }
+
+    return $value;
+}
+
+/**
+ * @since 3.2.3
+ */
+function awpcp_strip_all_tags_deep( $string ) {
+    return awpcp_apply_function_deep( 'wp_strip_all_tags', $string );
+}
+
+/**
  * @since 3.0.2
  */
 function awpcp_strptime( $date, $format ) {
