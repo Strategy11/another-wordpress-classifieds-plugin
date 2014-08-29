@@ -17,7 +17,7 @@ class AWPCP_EasyDigitalDownloads {
     public function check_license( $module_name, $license ) {
         $params = array(
             'edd_action' => 'check_license',
-            'item_name' => urlencode( $module_name ),
+            'item_name' => $module_name,
             'license' => $license
         );
 
@@ -45,6 +45,7 @@ class AWPCP_EasyDigitalDownloads {
     }
 
     private function request( $params ) {
+        $params = urlencode_deep( $params );
         $url = add_query_arg( $params, $this->settings->get_runtime_option( 'easy-digital-downloads-store-url' ) );
 
         $response = $this->http->get( $url, array( 'timeout' => 15, 'sslverify' => false ) );
@@ -71,7 +72,7 @@ class AWPCP_EasyDigitalDownloads {
         $params = array(
             'edd_action' => $action_name,
             'license' => $license,
-            'item_name' => urlencode( $module_name ),
+            'item_name' => $module_name,
             'url' => home_url(),
         );
 
