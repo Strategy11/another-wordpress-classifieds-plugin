@@ -4,7 +4,7 @@ function awpcp_modules_manager() {
     static $instance = null;
 
     if ( is_null( $instance ) ) {
-        $instance = new AWPCP_ModulesManager( awpcp(), awpcp_licenses_manager(), awpcp()->settings );
+        $instance = new AWPCP_ModulesManager( awpcp(), awpcp_licenses_manager(), awpcp_modules_updater(), awpcp()->settings );
     }
 
     return $instance;
@@ -14,13 +14,15 @@ class AWPCP_ModulesManager {
 
     private $plugin;
     private $licenses_manager;
+    private $modules_updater;
     private $settings;
 
     private $modules = array();
 
-    public function __construct( $plugin, $licenses_manager, $settings ) {
+    public function __construct( $plugin, $licenses_manager, $modules_updater, $settings ) {
         $this->plugin = $plugin;
         $this->licenses_manager = $licenses_manager;
+        $this->modules_updater = $modules_updater;
         $this->settings = $settings;
     }
 
@@ -52,6 +54,7 @@ class AWPCP_ModulesManager {
             $this->verify_version_compatibility( $module );
             $this->settings->add_license_setting( $module->name, $module->slug );
             $this->verify_license_status( $module );
+            $this->handle_module_updates( $module );
             $module->setup( $this->plugin );
         } catch ( AWPCP_Exception $e ) {
             // pass
@@ -62,6 +65,7 @@ class AWPCP_ModulesManager {
         try {
             $module->load_textdomain();
             $this->verify_version_compatibility( $module );
+            $this->handle_module_updates( $module );
             $module->setup();
         } catch ( AWPCP_Exception $e ) {
             // pass
@@ -88,10 +92,6 @@ class AWPCP_ModulesManager {
     }
 
     private function verify_license_status( $module ) {
-        if ( isset( $_REQUEST['edd_action'] ) ) {
-            return;
-        }
-
         if ( $this->licenses_manager->is_license_inactive( $module->name, $module->slug ) ) {
             $module->notices[] = 'inactive-license-notice';
             throw new AWPCP_Exception( "Module's license is inactive." );
@@ -115,6 +115,11 @@ class AWPCP_ModulesManager {
         }
 
         return false;
+    }
+
+    private function handle_module_updates( $module ) {
+        $license = $this->licenses_manager->get_module_license( $module->slug );
+        $this->modules_updater->watch( $module, $license );
     }
 
     public function show_admin_notices() {

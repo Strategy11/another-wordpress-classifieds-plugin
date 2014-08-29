@@ -92,6 +92,7 @@ require_once( AWPCP_DIR . "/includes/helpers/class-easy-digital-downloads.php" )
 require_once( AWPCP_DIR . "/includes/helpers/class-licenses-manager.php" );
 require_once( AWPCP_DIR . '/includes/helpers/class-module.php' );
 require_once( AWPCP_DIR . "/includes/helpers/class-modules-manager.php" );
+require_once( AWPCP_DIR . "/includes/helpers/class-modules-updater.php" );
 
 require_once(AWPCP_DIR . "/includes/helpers/class-akismet-wrapper-base.php");
 require_once(AWPCP_DIR . "/includes/helpers/class-akismet-wrapper.php");
@@ -229,6 +230,7 @@ class AWPCP {
 	public $pages = null; // Frontend pages
 
 	public $modules_manager;
+    public $modules_updater;
 	public $settings = null;
 	public $payments = null;
 	public $js = null;
@@ -253,6 +255,9 @@ class AWPCP {
         if ( $this->settings->get_option( 'activatelanguages' ) ) {
             awpcp_load_plugin_textdomain( __FILE__, 'AWPCP' );
         }
+
+        // TODO: replace with real store URL
+        $this->settings->set_runtime_option( 'easy-digital-downloads-store-url', 'http://awpcp.local' );
 
         // register settings, this will define default values for settings
         // that have never been stored
@@ -379,6 +384,7 @@ class AWPCP {
 
 		$this->settings->setup();
 		$this->modules_manager = awpcp_modules_manager();
+        $this->modules_updater = awpcp_modules_updater();
 		$this->payments = awpcp_payments_api();
 		$this->listings = awpcp_listings_api();
 
@@ -398,6 +404,10 @@ class AWPCP {
 		add_action('awpcp_register_settings', array($this, 'register_settings'));
 		add_action( 'awpcp-register-payment-term-types', array( $this, 'register_payment_term_types' ) );
 		add_action( 'awpcp-register-payment-methods', array( $this, 'register_payment_methods' ) );
+
+        add_filter( 'pre_set_site_transient_update_plugins', array( $this->modules_updater, 'filter_plugins_version_information' ) );
+        add_filter( 'plugins_api', array( $this->modules_updater, 'filter_detailed_plugin_information' ), 10, 3 );
+        add_filter( 'http_request_args', array( $this->modules_updater, 'filter_http_request_args' ), 10, 2 );
 
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 1000 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ), 1000 );
