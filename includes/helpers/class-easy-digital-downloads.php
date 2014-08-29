@@ -22,12 +22,26 @@ class AWPCP_EasyDigitalDownloads {
         );
 
         try {
-            return $this->request( $params );
+            return $this->license_request( $params );
         } catch ( AWPCP_Exception $e ) {
             $message = __( 'There was an error trying to retrieve information about your <module-name> license.', 'AWPCP' );
             $message = str_replace( '<module-name>', '<strong>' . $module_name . '</strong>', $message );
             throw new AWPCP_Exception( $this->build_error_message( $e, $message ) );
         }
+    }
+
+    private function license_request( $params ) {
+        $response = $this->request( $params );
+
+        if ( ! isset( $response->license ) ) {
+            throw new AWPCP_Exception( 'Missing License Status parameter' );
+        }
+
+        if ( $response->license === 'failed' ) {
+            throw new AWPCP_Exception( 'License Status parameter was set to <strong>Failed</strong>' );
+        }
+
+        return $response;
     }
 
     private function request( $params ) {
@@ -38,14 +52,6 @@ class AWPCP_EasyDigitalDownloads {
 
         if ( isset( $decoded_data->error ) ) {
             throw new AWPCP_Exception( $decoded_data->error );
-        }
-
-        if ( ! isset( $decoded_data->license ) ) {
-            throw new AWPCP_Exception( 'Missing License Status parameter' );
-        }
-
-        if ( $decoded_data->license === 'failed' ) {
-            throw new AWPCP_Exception( 'License Status parameter was set to <strong>Failed</strong>' );
         }
 
         return $decoded_data;
@@ -69,7 +75,7 @@ class AWPCP_EasyDigitalDownloads {
             'url' => home_url(),
         );
 
-        return $this->request( $params );
+        return $this->license_request( $params );
     }
 
     private function build_error_message( $exception, $message ) {
@@ -87,5 +93,24 @@ class AWPCP_EasyDigitalDownloads {
             $message = str_replace( '<module-name>', '<strong>' . $module_name . '</strong>', $message );
             throw new AWPCP_Exception( $this->build_error_message( $e, $message ) );
         }
+    }
+
+    public function get_version( $module_name, $module_slug, $author, $license ) {
+        $params = array(
+            'edd_action' => 'get_version',
+            'license' => $license,
+            'name' => $module_name,
+            'slug' => $module_slug,
+            'author' => $author,
+            'url' => home_url(),
+        );
+
+        $response = $this->request( $params );
+
+        if ( isset( $response->sections ) ) {
+            $response->sections = maybe_unserialize( $response->sections );
+        }
+
+        return $response;
     }
 }
