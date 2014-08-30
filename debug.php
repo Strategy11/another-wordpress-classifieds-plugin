@@ -78,7 +78,7 @@ class WP_Skeleton_Logger {
         $var = print_r($var, true);
         if ($this->html && !empty($var)) {
             $html .= "\n<pre class=\"cake-debug\" style=\"color:#000; background: #FFF\">\n";
-            $var = htmlspecialchars( $var );
+            $var = $var;
             $html .= $var . "\n</pre>\n";
         } else {
             $html .= '<br/>';
