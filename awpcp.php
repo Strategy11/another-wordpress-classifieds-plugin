@@ -496,7 +496,7 @@ class AWPCP {
 					'url' => 'http://www.awpcp.com/premium-modules/?ref=panel',
 					'installed' => defined( 'AWPCP_BUDDYPRESS_LISTINGS_MODULE_DB_VERSION' ),
 					'version' => 'AWPCP_BUDDYPRESS_LISTINGS_MODULE_DB_VERSION',
-					'required' => '1.0',
+					'required' => '1.0.1',
 				),
 				'category-icons' => array(
 					'name' => __( 'Category Icons', 'AWPCP' ),
@@ -524,7 +524,7 @@ class AWPCP {
 					'url' => 'http://www.awpcp.com/premium-modules/extra-fields-module?ref=panel',
 					'installed' => defined( 'AWPCP_EXTRA_FIELDS_MODULE' ),
 					'version' => 'AWPCP_EXTRA_FIELDS_MODULE_DB_VERSION',
-					'required' => '3.2.10',
+					'required' => '3.2.13',
 				),
 				'featured-ads' => array(
 					'name' => __( 'Featured Ads', 'AWPCP' ),
