@@ -552,7 +552,7 @@ function awpcp_do_placeholder_images($ad, $placeholder) {
     }
 
     // fallback thumbnail
-    if ( get_awpcp_option( 'imagesallowdisallow' ) == 1 && ! isset( $placeholders['awpcp_image_name_srccode'] ) ) {
+    if ( get_awpcp_option( 'imagesallowdisallow' ) == 1 && empty( $placeholders['awpcp_image_name_srccode'] ) ) {
         $thumbnail = sprintf('%s/adhasnoimage.png', $awpcp_imagesurl);
         $content = '<a href="%s"><img src="%s" width="%spx" border="0" alt="%s" /></a>';
         $content = sprintf($content, $url, $thumbnail, $thumbnail_width, awpcp_esc_attr($ad->ad_title));
