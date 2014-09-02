@@ -739,6 +739,7 @@ function awpcp_render_region_form_field_options($entries, $selected=false) {
  * @param $translations array 	Allow developers to change the name
  * 								attribute of the form field associated
  *								to this Region Field.
+ * @deprecated since 3.2.3
  */
 function awpcp_region_form_fields($query, $translations=null, $context='details', $errors=array()) {
 	if (is_null($translations)) {

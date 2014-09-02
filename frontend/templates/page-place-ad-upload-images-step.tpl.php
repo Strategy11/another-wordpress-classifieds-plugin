@@ -19,8 +19,8 @@
 ?>
 
 <ul class="upload-conditions clearfix">
-	<li><?php _e('Image slots available', 'AWPCP') ?>: <strong><?php echo $images_left ?></strong></li>
-	<li><?php _e('Max image size', 'AWPCP') ?>: <strong><?php echo $max_image_size/1000 ?> KB</strong></li>
+	<li><?php _e('Image slots available', 'AWPCP') ?>: <strong><?php echo esc_html( $images_left ); ?></strong></li>
+	<li><?php _e('Max image size', 'AWPCP') ?>: <strong><?php echo esc_html( $max_image_size / 1000 ); ?> KB</strong></li>
 </ul>
 
 <?php $fm = awpcp_file_manager_component(); ?>
@@ -36,8 +36,8 @@
     <?php include( AWPCP_DIR . '/frontend/templates/page-place-ad-upload-fields.tpl.php' ); ?>
 
 	<p class="form-submit">
-		<input class="button" type="submit" value="<?php echo $next; ?>" id="submit-no-images" name="submit-no-images">
-		<input class="button" type="submit" value="<?php _e('Upload Images', 'AWPCP') ?>" id="submit" name="submit">
+		<input class="button" type="submit" value="<?php echo esc_attr( $next ); ?>" id="submit-no-images" name="submit-no-images">
+		<input class="button" type="submit" value="<?php echo esc_attr( __( 'Upload Images', 'AWPCP' ) ); ?>" id="submit" name="submit">
 
 		<input type="hidden" name="step" value="upload-images">
 		<?php foreach ($hidden as $name => $value): ?>

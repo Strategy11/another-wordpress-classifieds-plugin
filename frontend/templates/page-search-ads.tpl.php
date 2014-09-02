@@ -12,7 +12,7 @@
     }
 ?>
 
-<form class="awpcp-search-ads-form" method="post" action="<?php echo $page->url(); ?>"name="myform">
+<form class="awpcp-search-ads-form" method="post" action="<?php echo esc_attr( $page->url() ); ?>"name="myform">
     <?php foreach($hidden as $name => $value): ?>
     <input type="hidden" name="<?php echo esc_attr($name); ?>" value="<?php echo esc_attr($value); ?>" />
     <?php endforeach ?>
@@ -71,5 +71,5 @@
     <?php echo awpcp_extra_fields_render_form(array(), $form, 'search', $errors); ?>
     <?php endif ?>
 
-    <input type="submit" class="button" value="<?php _ex('Start Search', 'ad search form', "AWPCP"); ?>" />
+    <input type="submit" class="button" value="<?php echo esc_attr( _x( 'Start Search', 'ad search form', "AWPCP" ) ); ?>" />
 </form>

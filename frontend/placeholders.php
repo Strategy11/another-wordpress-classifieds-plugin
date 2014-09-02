@@ -253,7 +253,7 @@ function awpcp_do_placeholders($ad, $content, $context) {
  * @since 3.0
  */
 function awpcp_do_placeholder_url($ad, $placeholder) {
-    return awpcp_get_listing_renderer()->get_view_listing_url( $ad );
+    return esc_url( awpcp_get_listing_renderer()->get_view_listing_url( $ad ) );
 }
 
 /**
@@ -262,8 +262,8 @@ function awpcp_do_placeholder_url($ad, $placeholder) {
 function awpcp_do_placeholder_title($ad, $placeholder) {
     $url = awpcp_get_listing_renderer()->get_view_listing_url( $ad );
 
-    $replacements['ad_title'] = sprintf('<a href="%s">%s</a>', $url, $ad->get_title());
-    $replacements['title'] = $ad->get_title();
+    $replacements['ad_title'] = sprintf( '<a href="%s">%s</a>', esc_attr( $url ), esc_html( $ad->get_title() ) );
+    $replacements['title'] = esc_html( $ad->get_title() );
     $replacements['title_link'] = $replacements['ad_title'];
 
     return $replacements[$placeholder];
@@ -273,7 +273,7 @@ function awpcp_do_placeholder_title($ad, $placeholder) {
  * @since 3.0
  */
 function awpcp_do_placeholder_category_name($ad, $placeholder) {
-    return stripslashes(get_adcatname($ad->ad_category_id));
+    return esc_html( stripslashes( get_adcatname( $ad->ad_category_id ) ) );
 }
 
 /**
@@ -287,7 +287,14 @@ function awpcp_do_placeholder_category_url($ad, $placeholder) {
  * @since 3.2
  */
 function awpcp_do_placeholder_parent_category_name( $ad, $placeholder ) {
-    return $ad->ad_category_parent_id > 0 ? stripslashes( get_adcatname( $ad->ad_category_parent_id ) ) : '';
+    if ( $ad->ad_category_parent_id > 0 ) {
+        $parent_category_name = stripslashes( get_adcatname( $ad->ad_category_parent_id ) );
+        $parent_category_name = esc_html( $parent_category_name );
+    } else {
+        $parent_category_name = '';
+    }
+
+    return $parent_category_name;
 }
 
 /**
@@ -314,7 +321,7 @@ function awpcp_do_placeholder_categories( $listing, $placeholder ) {
         }
 
         $link = '<a href="<category-url>"><category-name></a>';
-        $link = str_replace( '<category-url>', url_browsecategory( $category->id ), $link );
+        $link = str_replace( '<category-url>', esc_attr( url_browsecategory( $category->id ), $link ) );
         $link = str_replace( '<category-name>', esc_html( $category->name ), $link );
 
         $links[ $category_type ] = $link;
@@ -359,7 +366,7 @@ function awpcp_do_placeholder_details($ad, $placeholder) {
  */
 function awpcp_do_placeholder_excerpt($ad, $placeholder) {
     $word_count = get_awpcp_option( 'words-in-listing-excerpt' );
-    $details = stripslashes_deep($ad->ad_details);
+    $details = stripslashes( $ad->ad_details );
 
     $replacements['addetailssummary'] = wp_trim_words( $details, $word_count, '' );
     $replacements['excerpt'] = wp_trim_words( $details, $word_count );
@@ -372,9 +379,13 @@ function awpcp_do_placeholder_excerpt($ad, $placeholder) {
  * @since 3.0
  */
 function awpcp_do_placeholder_contact_name($ad, $placeholder) {
-    $contact_name = get_awpcp_option( 'hidelistingcontactname' ) == 1 && !is_user_logged_in()
-                    ? __( 'Seller', 'AWPCP' ) : $ad->ad_contact_name;
-    return stripslashes( $contact_name );
+    if ( get_awpcp_option( 'hidelistingcontactname' ) == 1 && ! is_user_logged_in() ) {
+        $contact_name = __( 'Seller', 'AWPCP' );
+    } else {
+        $contact_name = $ad->ad_contact_name;
+    }
+
+    return esc_html( stripslashes( $contact_name ) );
 }
 
 
@@ -390,18 +401,17 @@ function awpcp_do_placeholder_website_url($ad, $placeholder) {
  * @since 3.0
  */
 function awpcp_do_placeholder_website_link($ad, $placeholder) {
-    $nofollow = get_awpcp_option('visitwebsitelinknofollow') ? 'rel="nofollow"' : '';
-    $label = __('Visit Website', 'AWPCP');
-
     if ( ( get_awpcp_option( 'displaywebsitefieldreqpriv' ) != 1 || is_user_logged_in() ) && !empty( $ad->websiteurl ) ) {
-        $url = awpcp_esc_attr($ad->websiteurl);
+        $nofollow = get_awpcp_option('visitwebsitelinknofollow') ? 'rel="nofollow"' : '';
+        $escaped_label = esc_html( __( 'Visit Website', 'AWPCP' ) );
+        $escaped_url = awpcp_esc_attr( $ad->websiteurl );
 
         $content = '<br/><a %s href="%s" target="_blank">%s</a>';
-        $content = sprintf($content, $nofollow, $url, $label);
+        $content = sprintf( $content, $nofollow, $escaped_url, $escaped_label );
         $replacements['awpcpvisitwebsite'] = $content;
 
         $content = '<a %s href="%s" target="_blank">%s</a>';
-        $content = sprintf($content, $nofollow, $url, $label);
+        $content = sprintf( $content, $nofollow, $escaped_url, $escaped_label );
         $replacements['website_link'] = $content;
     } else {
         $replacements['awpcpvisitwebsite'] = '';
@@ -428,15 +438,15 @@ function awpcp_do_placeholder_price($ad, $placeholder) {
     $replacements = array();
 
     if ( $show_price_field && $user_can_see_price_field && $price >= 0 ) {
-        $label = __('Price', 'AWPCP');
-        $currency = awpcp_format_money($price);
+        $escaped_label = esc_html( __( 'Price', 'AWPCP' ) );
+        $escaped_currency = esc_html( awpcp_format_money( $price ) );
         // single ad
         $content = '<div class="showawpcpadpage"><label>%s</label>: <strong>%s</strong></div>';
-        $replacements['aditemprice'] = sprintf($content, $label, $currency);
+        $replacements['aditemprice'] = sprintf($content, $escaped_label, $escaped_currency);
         // listings
-        $replacements['awpcp_display_price'] = sprintf('%s: %s', $label, $currency);
+        $replacements['awpcp_display_price'] = sprintf('%s: %s', $escaped_label, $escaped_currency);
 
-        $replacements['price'] = $currency;
+        $replacements['price'] = $escaped_currency;
     }
 
     return awpcp_array_data( $placeholder, '', $replacements );

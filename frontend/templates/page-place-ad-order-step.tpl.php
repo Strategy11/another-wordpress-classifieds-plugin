@@ -1,7 +1,7 @@
 <?php if ( get_awpcp_option( 'freepay' ) == 1 ): ?>
-<h2><?php _ex( 'Select Payment/Category', 'place ad order step', 'AWPCP' ); ?></h2>
+<h2><?php echo esc_html( _x( 'Select Payment/Category', 'place ad order step', 'AWPCP' ) ); ?></h2>
 <?php else: ?>
-<h2><?php _ex( 'Select Category', 'place ad order step', 'AWPCP' ); ?></h2>
+<h2><?php echo esc_html( _x( 'Select Category', 'place ad order step', 'AWPCP' ) ); ?></h2>
 <?php endif; ?>
 
 <?php foreach ($messages as $message): ?>
@@ -19,7 +19,7 @@
 <?php endif ?>
 
 <form class="awpcp-order-form" method="post">
-    <h3><?php _ex('Please select a Category for your Ad', 'place ad order step', 'AWPCP'); ?></h3>
+    <h3><?php echo esc_html( _x( 'Please select a Category for your Ad', 'place ad order step', 'AWPCP' ) ); ?></h3>
 
     <p class="awpcp-form-spacer">
         <?php $dropdown = new AWPCP_CategoriesDropdown(); ?>
@@ -28,7 +28,7 @@
     </p>
 
     <?php if (awpcp_current_user_is_admin()): ?>
-    <h3><?php _ex('Please select the owner for this Ad', 'place ad order step', 'AWPCP')?></h3>
+    <h3><?php echo esc_html( _x( 'Please select the owner for this Ad', 'place ad order step', 'AWPCP' ) ); ?></h3>
     <p class="awpcp-form-spacer">
         <?php
             echo awpcp_users_field()->render( array(
@@ -50,7 +50,7 @@
     <?php endif; ?>
 
     <p class="form-submit">
-        <input class="button" type="submit" value="<?php _e('Continue', 'AWPCP'); ?>" id="submit" name="submit">
+        <input class="button" type="submit" value="<?php echo esc_attr( __('Continue', 'AWPCP' ) ); ?>" id="submit" name="submit">
         <?php if (!is_null($transaction)): ?>
         <input type="hidden" value="<?php echo esc_attr( $transaction->id ); ?>" name="transaction_id">
         <?php endif; ?>

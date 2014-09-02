@@ -233,7 +233,7 @@ class AWPCP_Meta {
         $pieces = array();
 
         foreach ( $attributes as $attribute_name => $attribute_value ) {
-            $pieces[] = sprintf( '%s="%s"', $attribute_name, $attribute_value );
+            $pieces[] = sprintf( '%s="%s"', $attribute_name, esc_attr( $attribute_value ) );
         }
 
         // http://wiki.whatwg.org/wiki/FAQ#Should_I_close_empty_elements_with_.2F.3E_or_.3E.3F
