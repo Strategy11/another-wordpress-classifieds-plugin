@@ -57,16 +57,15 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
     }
 
     protected function get_posted_data() {
-        $data = array(
+        $data = stripslashes_deep( array(
             'query' => awpcp_request_param('keywordphrase'),
             'category' => awpcp_request_param('searchcategory'),
             'name' => awpcp_request_param('searchname'),
             'min_price' => awpcp_parse_money( awpcp_request_param( 'searchpricemin' ) ),
             'max_price' => awpcp_parse_money( awpcp_request_param( 'searchpricemax' ) ),
             'regions' => awpcp_request_param('regions'),
-        );
+        ) );
 
-        $data = stripslashes_deep( $data );
         $data = apply_filters( 'awpcp-get-posted-data', $data, 'search' );
 
         return $data;
@@ -145,12 +144,10 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
         $conditions = array('disabled = 0');
 
         if (!empty($form['query'])) {
-            // $sql = 'MATCH (ad_title, ad_details) AGAINST (%s IN BOOLEAN MODE)';
-            // $conditions[] = $wpdb->prepare( $sql, $form['query'] );
-            if (!$hasextrafieldsmodule) {
-                $conditions[] = sprintf( "( ad_title LIKE '%%%s%%' OR ad_details LIKE '%%%s%%' )", $form['query'], $form['query'] );
-            }
             // If user has extra fields module, we'll set this condition later inside the module logic.
+            if (!$hasextrafieldsmodule) {
+                $conditions[] = $wpdb->prepare( "( ad_title LIKE '%%%s%%' OR ad_details LIKE '%%%s%%' )", $form['query'], $form['query'] );
+            }
         }
 
         if (!empty($form['name'])) {
