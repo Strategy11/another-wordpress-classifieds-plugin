@@ -10,7 +10,7 @@
             <input type="hidden" name="group" value="<?php echo 'payment-settings'; ?>" />
 
             <p class="submit">
-                <input type="submit" value="<?php esc_attr( _e( 'Save Changes', 'AWPCP' ) ); ?>" class="button-primary" id="submit" name="submit">
+                <input type="submit" value="<?php echo esc_attr( __( 'Save Changes', 'AWPCP' ) ); ?>" class="button-primary" id="submit" name="submit">
             </p>
         </form>
         </div>

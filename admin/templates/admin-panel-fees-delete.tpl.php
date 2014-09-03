@@ -10,7 +10,7 @@
     </select>
 
     <input class="button" type="submit" value="<?php echo esc_attr( __( 'Cancel', 'AWPCP' ) ); ?>" id="submit" name="cancel">
-    <input class="button button-primary" type="submit" value="<?php esc_attr( ( 'Switch', 'AWPCP' ) ); ?>" id="submit" name="transfer">
+    <input class="button button-primary" type="submit" value="<?php echo esc_attr( __( 'Switch', 'AWPCP' ) ); ?>" id="submit" name="transfer">
     <input type="hidden" value="<?php echo esc_attr( $fee->id ); ?>" name="id">
     <input type="hidden" value="transfer" name="action">
 </form>

@@ -31,6 +31,6 @@
             <br><a href="<?php echo esc_attr( $send_access_key_url ); ?>"><?php echo esc_html( __( 'Click here to have your Ad access keys sent to you.', 'AWPCP' ) ); ?></a>
         </p>
 
-        <input type="submit" class="button" value="<?php esc_attr( _ex( "Continue", 'ad details form', "AWPCP" ) ); ?>" />
+        <input type="submit" class="button" value="<?php echo esc_attr( _x( "Continue", 'ad details form', "AWPCP" ) ); ?>" />
 	</form>
 </div>

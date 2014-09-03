@@ -18,7 +18,7 @@
 <?php endif ?>
 
 			<?php if (!empty($messages)): ?>
-				<h3><?php esc_html( _x( 'Messages', 'csv importer', 'AWPCP' ) ); ?></h3>
+				<h3><?php echo esc_html( _x( 'Messages', 'csv importer', 'AWPCP' ) ); ?></h3>
 				<ul>
 				<?php foreach ($messages as $message): ?>
 					<li><?php echo "$message" ?></li>
@@ -27,7 +27,7 @@
 			<?php endif ?>
 
 			<?php if (!empty($errors)): ?>
-				<h3><?php esc_html( _x( 'Errors', 'csv importer', 'AWPCP' ) ); ?></h3>
+				<h3><?php echo esc_html( _x( 'Errors', 'csv importer', 'AWPCP' ) ); ?></h3>
 				<ul>
 				<?php foreach ($errors as $error): ?>
 					<li><?php echo "$error" ?></li>
@@ -137,7 +137,7 @@
 						</tr>
 						<tr>
 							<th scope="row">
-								<?php echo esc_html( _x(  'Assign Ads to a user?', 'csv-importer', 'AWPCP' ) ); ?>
+								<?php echo esc_html( _x( 'Assign Ads to a user?', 'csv-importer', 'AWPCP' ) ); ?>
 							</th>
 							<td>
 								<input type="checkbox" name="assign_user" id="awpcp-importer-auto-assign-user" value="1" <?php echo $assign_user == 1 ? 'checked="checked"' : ''; ?> />
