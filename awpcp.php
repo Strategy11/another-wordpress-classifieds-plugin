@@ -496,7 +496,7 @@ class AWPCP {
 					'url' => 'http://www.awpcp.com/premium-modules/?ref=panel',
 					'installed' => defined( 'AWPCP_BUDDYPRESS_LISTINGS_MODULE_DB_VERSION' ),
 					'version' => 'AWPCP_BUDDYPRESS_LISTINGS_MODULE_DB_VERSION',
-					'required' => '1.0.1',
+					'required' => '1.0.2',
 				),
 				'category-icons' => array(
 					'name' => __( 'Category Icons', 'AWPCP' ),
