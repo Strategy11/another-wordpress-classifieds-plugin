@@ -275,6 +275,17 @@
 }
 /* =Admin Listings
 ---------------------------------------------------------------------------- */
+.awpcp-admin-listings .awpcp-category-filter {
+  max-width: 270px;
+}
+.awpcp-admin-listings .awpcp-category-filter select {
+  max-width: 180px;
+}
+.awpcp-admin-listings .awpcp-category-filter input {
+  margin: 1px 8px 0 0;
+}
+/* .awpcp-listings refers to the listings table in Classifieds > Listings */
+/* .manage is the Manage column */
 .wp-admin .awpcp-listings .manage {
   width: 40%;
 }
