@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: AWPCP\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2014-08-13 22:46:45+00:00\n"
+"POT-Creation-Date: 2014-09-04 01:38:58+00:00\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: \n"
@@ -16,7 +16,7 @@ msgstr ""
 "X-Poedit-KeywordsList: _e;__;_ex;_x\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.6.7\n"
+"X-Generator: Poedit 1.6.9\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:95
@@ -92,7 +92,7 @@ msgstr "%s Panel de Administración de Anuncios"
 msgid "%s Transaction"
 msgstr "Transacción %s"
 
-#: functions.php:507
+#: functions.php:534
 msgctxt "comma separated list of things"
 msgid "%s and %d more."
 msgstr "%s y %d más."
@@ -143,7 +143,7 @@ msgctxt ""
 msgid ","
 msgstr ","
 
-#: functions.php:947
+#: functions.php:975
 msgid "-- Choose a Country --"
 msgstr "Elija un país"
 
@@ -679,7 +679,7 @@ msgstr "Agregar/Editar Categorías"
 msgid "Additional Details"
 msgstr "Detalles Adicionales"
 
-#: functions.php:2075
+#: functions.php:2103
 msgid ""
 "Additionally, You can approve the images going to the Manage Images sections "
 "for that Ad and clicking the \"Enable\" button below each image. Click here "
@@ -883,7 +883,7 @@ msgctxt "upload files"
 msgid "An error occurred trying to upload the file %s."
 msgstr "Se produjo un error intentando cargar el archivo %s."
 
-#: frontend/page-show-ad.php:115
+#: frontend/page-show-ad.php:117
 msgid "An error occurred while trying to flag the Ad."
 msgstr "Se produjo un error al intentar reportar el anuncio."
 
@@ -939,7 +939,7 @@ msgstr "¿Está seguro que quiere eliminar los anuncios seleccionados?"
 msgid "Are you sure you want to delete this item?"
 msgstr "¿Está seguro que quiere eliminar este comentario?"
 
-#: frontend/page-show-ad.php:113
+#: frontend/page-show-ad.php:115
 msgid "Are you sure you want to flag this ad?"
 msgstr "¿Seguro que desea marcar este anuncio?"
 
@@ -1075,7 +1075,7 @@ msgstr "CSC"
 msgid "CSV file"
 msgstr "Archivo CVS"
 
-#: functions.php:1873
+#: functions.php:1901
 msgid "Can't write file to disk."
 msgstr "No se puede escribir el archivo en disco."
 
@@ -1242,12 +1242,12 @@ msgstr ""
 msgid "Check to disable."
 msgstr "Marcar para deshabilitar."
 
-#: frontend/page-place-ad.php:1138
+#: frontend/page-place-ad.php:1149
 msgid "Checkout"
 msgstr "Pagar"
 
 #: admin/templates/user-panel-profile-fields.tpl.php:51
-#: frontend/templates/payments-billing-form.tpl.php:101 functions.php:574
+#: frontend/templates/payments-billing-form.tpl.php:101 functions.php:601
 msgid "City"
 msgstr "Ciudad"
 
@@ -1276,7 +1276,7 @@ msgstr "Páginas de Clasificados"
 msgid "Classifieds Profile Info"
 msgstr "Información de perfil de clasificados"
 
-#: functions.php:1498
+#: functions.php:1526
 msgctxt "default blog title"
 msgid "Classifieds Website"
 msgstr "Página de Clasificados"
@@ -1290,7 +1290,7 @@ msgstr "Haga clic aquí"
 msgid "Click here to have your Ad access keys sent to you."
 msgstr "Haga click aquí para enviarle las claves de acceso de sus anuncios."
 
-#: frontend/placeholders.php:493
+#: frontend/placeholders.php:503
 msgid "Click to enlarge image."
 msgstr "Click para ampliar la imagen."
 
@@ -1423,7 +1423,7 @@ msgstr ""
 msgid "Could not write temporary file %s"
 msgstr "No se pudo crear el archivo temporal de %s"
 
-#: frontend/templates/payments-billing-form.tpl.php:6 functions.php:554
+#: frontend/templates/payments-billing-form.tpl.php:6 functions.php:581
 msgid "Country"
 msgstr "País"
 
@@ -1435,7 +1435,7 @@ msgstr "País"
 msgid "County Field"
 msgstr "Pueblo"
 
-#: functions.php:584
+#: functions.php:611
 msgid "County/Village/Other"
 msgstr "Distrito/Otro"
 
@@ -1907,7 +1907,7 @@ msgstr "Ingreso su clave de acceso"
 msgid "Enter your email address"
 msgstr "Ingrese su dirección de correo electrónico"
 
-#: functions.php:1848
+#: functions.php:1876
 msgid "Error"
 msgstr "Error"
 
@@ -2086,7 +2086,7 @@ msgstr ""
 "Permisos para el directorio de donde se almacenan los archivos de los "
 "anuncios"
 
-#: frontend/page-place-ad.php:647
+#: frontend/page-place-ad.php:658
 msgid "Fill out the form below to post your classified Ad."
 msgstr ""
 "Complete el formulario que aparece a continuación para publicar tu anuncio."
@@ -2099,7 +2099,7 @@ msgstr "Resultados finales de importación"
 msgid "Find ads by Contact Name"
 msgstr "Buscar anuncios por nombre de contacto"
 
-#: frontend/page-edit-ad.php:325 frontend/page-place-ad.php:1130
+#: frontend/page-edit-ad.php:325 frontend/page-place-ad.php:1141
 #: frontend/templates/page-place-ad-preview-step.tpl.php:17
 msgid "Finish"
 msgstr "Finalizar"
@@ -2108,7 +2108,7 @@ msgstr "Finalizar"
 msgid "First Name"
 msgstr "Primer Nombre"
 
-#: frontend/placeholders.php:804
+#: frontend/placeholders.php:814
 msgid "Flag Ad"
 msgstr "Marcar anuncio"
 
@@ -2281,7 +2281,7 @@ msgstr ""
 "Hola Administrador, tenés que ir a tu Panel de Control y configurar tus "
 "clasificados."
 
-#: frontend/page-place-ad.php:734
+#: frontend/page-place-ad.php:745
 msgid ""
 "Hi, Payment is required for posting Ads in this website and we couldn't find "
 "a Payment Transaction asssigned to you. You can't post Ads this time. If you "
@@ -2336,7 +2336,6 @@ msgid "Highest number used in aithmetic operation."
 msgstr "Número máximo usado en la operación aritmética."
 
 #: frontend/templates/page-place-ad-details-step.tpl.php:196
-msgctxt "ad details form"
 msgid "I agree to the terms of service"
 msgstr "Estoy de acuerdo con los términos del servicio"
 
@@ -2422,11 +2421,10 @@ msgstr ""
 "Si selecciona esta opción, las categorías con 0 anuncios no serán mostrados."
 
 #: admin/templates/admin-panel-csv-importer.tpl.php:145
-msgctxt "csv-importer"
 msgid "If checked, the Ads will belong to the user specified below."
 msgstr ""
-"Cuando está seleccionada, los anunucios serán asociados con el usuario "
-"debajo."
+"Cuando está seleccionada, los anuncios serán asociados con el usuario "
+"seleccionado más abajo."
 
 #: includes/settings-api.php:190
 msgid ""
@@ -2600,11 +2598,11 @@ msgstr "Imágenes Permitidas"
 msgid "Images Awaiting Approval"
 msgstr "Imágenes Esperando Aprobación."
 
-#: functions.php:2061
+#: functions.php:2089
 msgid "Images on Ad \"%s\" are awaiting approval"
 msgstr "Las imágenes en el anuncio \"%s\" está esperando aprobación"
 
-#: functions.php:2063
+#: functions.php:2091
 msgid ""
 "Images on Ad \"%s\" are awaiting approval. You can approve the images going "
 "to the Manage Images sections for that Ad and clicking the \"Enable\" button "
@@ -2843,8 +2841,8 @@ msgstr "URL del Anuncio"
 msgid "Listings"
 msgstr "Anuncios/Listados"
 
-#: admin/admin-panel-listings-table.php:267 frontend/page-show-ad.php:81
-#: frontend/placeholders.php:656
+#: admin/admin-panel-listings-table.php:267 frontend/page-show-ad.php:83
+#: frontend/placeholders.php:666
 msgid "Location"
 msgstr "Ubicación"
 
@@ -2867,8 +2865,8 @@ msgstr ""
 "apartamento? Explore nuestros clasificados. ¿Tiene un trabajo para ofrecer o "
 "un apartamento para alquilar? Publique un anuncio clasificado."
 
-#: frontend/templates/login-form.tpl.php:16
-#: frontend/templates/login-form.tpl.php:18
+#: frontend/templates/login-form.tpl.php:17
+#: frontend/templates/login-form.tpl.php:19
 msgid "Lost your password?"
 msgstr "¿Perdió su contraseña?"
 
@@ -3148,7 +3146,7 @@ msgstr "Falta un token de acceso de usuario (User Access Token) válido."
 msgid "Missing app ID/secret."
 msgstr "Falta app ID/secret."
 
-#: functions.php:1872
+#: functions.php:1900
 msgid "Missing temporary directory."
 msgstr "El directorio temporarl no existe."
 
@@ -3362,7 +3360,7 @@ msgstr ""
 msgid "No credit plans available."
 msgstr "No hay planes de crédito disponibles."
 
-#: functions.php:1867
+#: functions.php:1895
 msgid "No errors."
 msgstr "Sin errores."
 
@@ -3374,11 +3372,11 @@ msgstr "No se encontró un archivo con ID: %d"
 msgid "No file was selected."
 msgstr "Ningún archivo fue seleccionado"
 
-#: functions.php:1871
+#: functions.php:1899
 msgid "No file was uploaded."
 msgstr "Ningún archivo fue cargado."
 
-#: frontend/page-place-ad.php:1219
+#: frontend/page-place-ad.php:1230
 msgctxt "upload files"
 msgid "No files were uploaded"
 msgstr "No se cargó ningún archivo"
@@ -3412,7 +3410,7 @@ msgstr ""
 "Está viendo anuncios de todas las categorías porque no se seleccionó una "
 "categoría específica."
 
-#: functions.php:496
+#: functions.php:523
 msgid "None"
 msgstr "Ninguna"
 
@@ -3634,8 +3632,8 @@ msgstr "Padre"
 msgid "Parent Category"
 msgstr "Categoría Principal"
 
-#: frontend/templates/login-form.tpl.php:16
-#: frontend/templates/login-form.tpl.php:18
+#: frontend/templates/login-form.tpl.php:17
+#: frontend/templates/login-form.tpl.php:19
 msgid "Password Lost and Found"
 msgstr "Contraseña perdida y encontrada"
 
@@ -3795,7 +3793,7 @@ msgctxt "asynchrounous tasks screen"
 msgid "Pending Tasks"
 msgstr "Tareas Pendientes"
 
-#: frontend/placeholders.php:747
+#: frontend/placeholders.php:757
 msgid "Phone"
 msgstr "Teléfono"
 
@@ -3815,7 +3813,7 @@ msgstr "Publicar Anuncio"
 msgid "Place Ad page"
 msgstr "Página Publicar Anuncio"
 
-#: frontend/page-place-ad.php:1134
+#: frontend/page-place-ad.php:1145
 msgid "Place Ad without Images"
 msgstr "Colocar Anuncio sin imágenes\t"
 
@@ -3857,7 +3855,7 @@ msgstr ""
 "contacter servicio al cliente. Si por el contrario, no ha intentado hacer un "
 "pago, significa que el mensaje se ha mostrado por error y puede ignorarlo."
 
-#: frontend/page-place-ad.php:766
+#: frontend/page-place-ad.php:777
 msgid "Please enter a start date for the Ad."
 msgstr "Por favor ingrese una fecha de inicio para el anuncio."
 
@@ -3877,7 +3875,7 @@ msgstr "Por favor ingrese una dirección de correo electrónico válida."
 msgid "Please enter a valid number."
 msgstr "Por favor ingrese un número."
 
-#: frontend/page-place-ad.php:771
+#: frontend/page-place-ad.php:782
 msgid "Please enter an end date for the Ad."
 msgstr "Por favor ingrese una fecha de finalización para el anuncio."
 
@@ -4041,12 +4039,12 @@ msgid "Prevent ads from being posted to top level categories?"
 msgstr ""
 "Impedir que los anuncios se publiquen en las categorías de primer nivel?"
 
-#: frontend/page-place-ad.php:1136
+#: frontend/page-place-ad.php:1147
 #: frontend/templates/page-place-ad-details-step.tpl.php:210
 msgid "Preview Ad"
 msgstr "Ver vista previa del anuncio"
 
-#: frontend/page-place-ad.php:1132
+#: frontend/page-place-ad.php:1143
 msgid "Preview Ad without Images"
 msgstr "Ver vista previa sin imágenes"
 
@@ -4054,7 +4052,7 @@ msgstr "Ver vista previa sin imágenes"
 #: admin/admin-panel-fees-table.php:109
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:19
 #: admin/templates/admin-panel-fees-entry-form.tpl.php:22
-#: frontend/placeholders.php:431 frontend/templates/page-search-ads.tpl.php:48
+#: frontend/placeholders.php:441 frontend/templates/page-search-ads.tpl.php:48
 #: includes/settings/class-payment-general-settings.php:10
 msgid "Price"
 msgstr "Precio"
@@ -4137,7 +4135,6 @@ msgid "Read more"
 msgstr "Leer Más"
 
 #: frontend/templates/page-place-ad-details-step.tpl.php:189
-msgctxt "ad details form"
 msgid "Read our Terms of Service"
 msgstr "Lea nuestros Términos de Servicio"
 
@@ -4162,7 +4159,7 @@ msgstr "Módulo Regions Control"
 msgid "Regions Settings"
 msgstr "Configuración de Regiones"
 
-#: frontend/templates/login-form.tpl.php:15
+#: frontend/templates/login-form.tpl.php:16
 msgid "Register"
 msgstr "Registrarse"
 
@@ -4377,7 +4374,7 @@ msgstr "Regrese a la <a href=\"%s\">página principal</a>."
 msgid "Return to Listings"
 msgstr "Configuración de Registro"
 
-#: frontend/page-search-ads.php:143
+#: frontend/page-search-ads.php:142
 msgid "Return to Search"
 msgstr "Volver a la búsqueda"
 
@@ -4493,7 +4490,7 @@ msgid "Select Move-To category"
 msgstr "Seleccionar la Categoría a la cual se moverán"
 
 #: frontend/widget-search.php:86 frontend/widget-search.php:101
-#: functions.php:672
+#: functions.php:699
 msgid "Select Option"
 msgstr "Seleccionar"
 
@@ -4512,9 +4509,8 @@ msgid "Select a Category"
 msgstr "Selecciona una Categoría"
 
 #: frontend/templates/page-buy-credits-select-credit-plan-step.tpl.php:11
-msgctxt "add credit order step"
 msgid "Select a Credit Plan"
-msgstr "Selecciona un Plan de Crédito"
+msgstr "Selecciona un plan de crédito"
 
 #: includes/helpers/widgets/categories-dropdown.php:21
 msgid "Select a Sub-category"
@@ -4537,7 +4533,7 @@ msgstr "Selecione un autor para este anuncio"
 msgid "Select the type of payment that can be used to purchase Ads."
 msgstr "Seleccione el tipo de pago que puede ser usado para publicar anuncios."
 
-#: frontend/placeholders.php:376
+#: frontend/placeholders.php:383
 msgid "Seller"
 msgstr "Vendedor"
 
@@ -4578,7 +4574,7 @@ msgstr "Establecer como primaria"
 msgid "Settings"
 msgstr "Configuración"
 
-#: frontend/placeholders.php:850
+#: frontend/placeholders.php:860
 msgid "Share on Facebook"
 msgstr "Compartir en Facebook"
 
@@ -4845,7 +4841,7 @@ msgstr ""
 "Perdón pero no se puede eliminar esta Categoría. Las Categorías por defecto "
 "sólo pueden renombrarse."
 
-#: frontend/page-show-ad.php:154
+#: frontend/page-show-ad.php:156
 msgid ""
 "Sorry, that Ad is no available. Please try browsing or searching existing "
 "ads."
@@ -4892,7 +4888,7 @@ msgstr "Estado"
 msgid "State Field"
 msgstr "Estado"
 
-#: functions.php:564
+#: functions.php:591
 msgid "State/Province"
 msgstr "Estado/Provincia"
 
@@ -5015,7 +5011,6 @@ msgid "Terms of service go here..."
 msgstr "Los términos de servicio van aquí..."
 
 #: frontend/templates/page-place-ad-details-step.tpl.php:191
-msgctxt "ad details form"
 msgid "Terms of service:"
 msgstr "Términos de servicio:"
 
@@ -5078,11 +5073,11 @@ msgstr ""
 "El módulo %1$s que usted ha instalado está desactualizado y no es compatible "
 "con esta versión de AWPCP. Por favor descargue %1$s %2$s o posterior."
 
-#: functions.php:2066
+#: functions.php:2094
 msgid "The Ad \"%s\" is awaiting approval"
 msgstr "El anuncio \"%s\" está esperando aprobación"
 
-#: functions.php:2068
+#: functions.php:2096
 msgid ""
 "The Ad \"%s\" is awaiting approval. You can approve the Ad going to the "
 "Manage Listings section and clicking the \"Enable\" action shown on top. "
@@ -5100,7 +5095,7 @@ msgstr ""
 "El anuncio %s no fue enviado a Facebook porque está deshabitado. Si lo "
 "publica, ni los servidores de Facebook ni sus usuarios podrán verlo."
 
-#: frontend/page-place-ad.php:1234 frontend/page-place-ad.php:1281
+#: frontend/page-place-ad.php:1245 frontend/page-place-ad.php:1292
 #: frontend/page-renew-ad.php:334
 msgid "The Ad associated with this transaction doesn't exists."
 msgstr "El anuncio asociado con esta transacción no existe."
@@ -5162,7 +5157,7 @@ msgstr ""
 "El anuncio fue publicado bajo un término de pago que ya no existe o está "
 "deshabilitado. El anuncio no puede ser renovado."
 
-#: frontend/page-show-ad.php:168
+#: frontend/page-show-ad.php:170
 msgid ""
 "The Ad you are trying to view is pending approval. Once the Administrator "
 "approves it, it will be active and visible."
@@ -5451,7 +5446,7 @@ msgstr ""
 "La dirección de correo electrónico no corresponde con ningúno de los "
 "anuncios en nuestro sistema."
 
-#: frontend/page-place-ad.php:833
+#: frontend/page-place-ad.php:844
 msgid ""
 "The email address you entered is not allowed in this website. Please use an "
 "email address from one of the following domains: %s."
@@ -5460,7 +5455,7 @@ msgstr ""
 "web. Por favor use una dirección de correo electrónico de uno de los "
 "siguientes dominios: %s."
 
-#: frontend/page-place-ad.php:829 frontend/page-reply-to-ad.php:123
+#: frontend/page-place-ad.php:840 frontend/page-reply-to-ad.php:123
 msgid ""
 "The email address you entered was not a valid email address. Please check "
 "for errors and try again."
@@ -5547,19 +5542,19 @@ msgctxt "media manager"
 msgid "The file has been rejected."
 msgstr "El archivo ha sido rechazado."
 
-#: functions.php:1869
+#: functions.php:1897
 msgid "The file is larger than form MAX_FILE_SIZE."
 msgstr "ElEl tamaño del archivo es mayor que MAX_FILE_SIZE."
 
-#: functions.php:1868
+#: functions.php:1896
 msgid "The file is larger than upload_max_filesize."
 msgstr "El tamaño del archivo es mayor que upload_max_filesize."
 
-#: functions.php:1874
+#: functions.php:1902
 msgid "The file upload was stopped by extension."
 msgstr "La carga del archivo fue detenida por una extensión."
 
-#: functions.php:1870
+#: functions.php:1898
 msgid "The file was only partially uploaded."
 msgstr "El archivo fue cargado parcialmente."
 
@@ -5618,7 +5613,7 @@ msgctxt "media manager"
 msgid "The image has been set as primary image."
 msgstr "La imagen ha sido asignada como imagen primaria."
 
-#: functions.php:1829
+#: functions.php:1857
 msgid ""
 "The images or files with pale red background have been rejected by an "
 "administrator user. Likewise, files with a pale yellow background are "
@@ -5802,7 +5797,7 @@ msgctxt "ajax delete ad"
 msgid "The specified Ad doesn't exists."
 msgstr "El Anuncio especificado no existe."
 
-#: frontend/page-edit-ad.php:283 frontend/page-place-ad.php:1087
+#: frontend/page-edit-ad.php:283 frontend/page-place-ad.php:1098
 msgid "The specified Ad doesn't exists. No images can be added at this time."
 msgstr ""
 "El anuncio especificado no existe. No se puede agregar imágenes en este "
@@ -5869,7 +5864,7 @@ msgid ""
 "payment."
 msgstr "La transacción especificada no existe. No podemos procesar su pago."
 
-#: frontend/page-place-ad.php:775
+#: frontend/page-place-ad.php:786
 msgid "The start date must occur before the end date."
 msgstr "La fecha de inicio debe ser anterior de la fecha de finalización."
 
@@ -6139,7 +6134,7 @@ msgstr "Se ha producido un error con su archivo CSV: %s"
 msgid "There was an error with your ZIP file: %s"
 msgstr "Se ha producido un error con su archivo ZIP: %s"
 
-#: frontend/page-edit-ad.php:261 frontend/page-place-ad.php:1029
+#: frontend/page-edit-ad.php:261 frontend/page-place-ad.php:1040
 msgid ""
 "There was an unexpected error trying to save your Ad details. Please try "
 "again or contact an administrator."
@@ -6167,17 +6162,17 @@ msgstr ""
 msgid "There were no ads found"
 msgstr "No se han encontrado Avisos"
 
-#: frontend/page-show-ad.php:114
+#: frontend/page-show-ad.php:116
 msgid "This Ad has been flagged."
 msgstr "Este aviso ha sido reportado."
 
-#: frontend/placeholders.php:692
+#: frontend/placeholders.php:702
 msgid "This Ad has been viewed %d time."
 msgid_plural "This Ad has been viewed %d times."
 msgstr[0] "Este anuncio ha sido visto %d vez: "
 msgstr[1] "Este anuncio ha sido visto %d veces: "
 
-#: frontend/page-show-ad.php:177
+#: frontend/page-show-ad.php:179
 msgid ""
 "This Ad is currently disabled until the Administrator approves it. Only you "
 "(the Administrator) and the author can see it."
@@ -6185,7 +6180,7 @@ msgstr ""
 "Este anuncio está actualmente deshabilitado hasta que el adminstrador lo "
 "apruebe. Unicamente usted (el administrador) y el autor pueden verlo."
 
-#: frontend/page-show-ad.php:183
+#: frontend/page-show-ad.php:185
 msgid ""
 "This Ad is currently disabled until the Administrator approves it. Only you "
 "(the author) can see it."
@@ -6193,7 +6188,7 @@ msgstr ""
 "Este anuncio está actualmente deshabilitado hasta que el administrador lo "
 "apruebe. Unicamente usted (el autor) y el administrador pueden verlo."
 
-#: frontend/page-show-ad.php:180
+#: frontend/page-show-ad.php:182
 msgid ""
 "This Ad is currently disabled until you verify the email address used for "
 "the contact information. Only you (the author) can see it."
@@ -6283,7 +6278,7 @@ msgstr ""
 "Las opciones en esta sección no están disponibles todavía. Por favor llene "
 "los campos requeridos arriba y guarde la configuración."
 
-#: functions.php:1846
+#: functions.php:1874
 msgid ""
 "This version of AWPCP %1$s module is not compatible with AWPCP version %2$s. "
 "Please get AWPCP %1$s %3$s or newer!"
@@ -6378,7 +6373,7 @@ msgstr "Total de Avisos clasificados encontrados bajo tu dirección de Email"
 msgid "Total number of categories in the system"
 msgstr "Número total de categorías en el sistema"
 
-#: frontend/placeholders.php:696
+#: frontend/placeholders.php:706
 msgid "Total views: %d"
 msgstr "Vistas totales: %d"
 
@@ -6407,7 +6402,7 @@ msgstr "Activar URLs amigables con los motores de búsqueda (modo SEO) ?"
 msgid "Turn on transalation file (POT)"
 msgstr "Actiar el archivo de traducción (POT)"
 
-#: frontend/placeholders.php:819
+#: frontend/placeholders.php:829
 msgid "Tweet This"
 msgstr "Twitear esto"
 
@@ -6598,7 +6593,7 @@ msgstr ""
 "Utilice los íconos en frente de cada campo de archivo para marcar la imagen "
 "como imagen principal para el anuncio."
 
-#: frontend/page-search-ads.php:98
+#: frontend/page-search-ads.php:97
 msgid ""
 "Use the form below to conduct a broad or narrow search. For a broader search "
 "enter fewer parameters. For a narrower search enter as many parameters as "
@@ -6735,7 +6730,7 @@ msgstr "Vistas (más vistos primero, luego por fecha)"
 msgid "Views (most viewed first, then by title)"
 msgstr "Visitas (los más vistos primero, luego por título)"
 
-#: frontend/placeholders.php:394
+#: frontend/placeholders.php:406
 msgid "Visit Website"
 msgstr "Visitar el Sitio Web"
 
@@ -6772,7 +6767,7 @@ msgid "We couldn't find a valid payment term associated with this Ad."
 msgstr ""
 "No pudimos encontrar un término de pago válido asociado con este anuncio."
 
-#: frontend/page-place-ad.php:651
+#: frontend/page-place-ad.php:662
 msgid ""
 "We found errors in the details you submitted. A detailed error message is "
 "shown in front or below each invalid field. Please fix the errors and submit "
@@ -6793,12 +6788,12 @@ msgstr ""
 "visite <a href=\"%s\">%s </ a> en 30 segundos para continuar con la "
 "colocación de su anuncio."
 
-#: frontend/page-place-ad.php:1227 frontend/page-place-ad.php:1274
+#: frontend/page-place-ad.php:1238 frontend/page-place-ad.php:1285
 msgid ""
 "We were unable to find a Payment Transaction assigned to this operation."
 msgstr "No encontramos una transacción de pago asignada a esta operación."
 
-#: frontend/page-place-ad.php:1080
+#: frontend/page-place-ad.php:1091
 msgid ""
 "We were unable to find a Payment Transaction assigned to this operation. No "
 "images can be added at this time."
@@ -6919,7 +6914,7 @@ msgstr ""
 "sesión y luego ir al panel de Adminstración de Anuncios para editar sus "
 "anuncios."
 
-#: frontend/page-place-ad.php:333 frontend/page-place-ad.php:645
+#: frontend/page-place-ad.php:333 frontend/page-place-ad.php:656
 #: frontend/page-renew-ad.php:226
 msgid ""
 "You are logged in as an administrator. Any payment steps will be skipped."
@@ -7107,11 +7102,11 @@ msgstr ""
 "gratuito vaya a %s y deseleccione la opción etiquetada con 'Cobrar "
 "Publicación (Modo Pago)'."
 
-#: frontend/page-place-ad.php:921
+#: frontend/page-place-ad.php:932
 msgid "You did not accept the terms of service"
 msgstr "No has aceptado los términos del servicio."
 
-#: frontend/page-search-ads.php:41 frontend/page-search-ads.php:79
+#: frontend/page-search-ads.php:41 frontend/page-search-ads.php:78
 msgid ""
 "You did not enter a keyword or phrase to search for. You must at the very "
 "least provide a keyword or phrase to search for."
@@ -7119,68 +7114,68 @@ msgstr ""
 "No ingresó ninguna palabra o frase para buscar. Deberás proporcionar alguna "
 "palabra o frase para poder llevar a cabo la búsqueda."
 
-#: frontend/page-place-ad.php:780
+#: frontend/page-place-ad.php:791
 msgid "You did not enter a title for your Ad"
 msgstr "No iingresó un título para su anuncio"
 
-#: frontend/page-place-ad.php:785
+#: frontend/page-place-ad.php:796
 msgid ""
 "You did not enter any text for your Ad. Please enter some text for your Ad."
 msgstr ""
 "No ingresó una descripción para su anuncio. Por favor ingrese los detalles "
 "de su anuncio."
 
-#: frontend/page-place-ad.php:897
+#: frontend/page-place-ad.php:908
 msgid "You did not enter the price of your item. The item price is required."
 msgstr ""
 "No ingresaste el precio de tu item. El precio es requerido por el sistema."
 
-#: frontend/page-place-ad.php:881
+#: frontend/page-place-ad.php:892
 msgid "You did not enter your city. Your city is required."
 msgstr "No ingresó una ciudad. Es necesario ingresar una ciudad."
 
-#: frontend/page-place-ad.php:863
+#: frontend/page-place-ad.php:874
 msgid "You did not enter your country. Your country is required."
 msgstr "No ingreso un país. Es necesario ingresar un país."
 
-#: frontend/page-place-ad.php:890
+#: frontend/page-place-ad.php:901
 msgid "You did not enter your county/village. Your county/village is required."
 msgstr ""
 "No ingresó un condado ó pueblo. Es necesario ingresar un condado ó pueblo."
 
-#: frontend/page-place-ad.php:814
+#: frontend/page-place-ad.php:825
 msgid "You did not enter your email. Your email is required."
 msgstr ""
 "No ingresó su dirección de correo electrónico. La dirección de correo es "
 "necesaria."
 
-#: frontend/page-place-ad.php:809
+#: frontend/page-place-ad.php:820
 msgid "You did not enter your name. Your name is required."
 msgstr "No ingresó su nombre. El nombre es requerido."
 
-#: frontend/page-place-ad.php:845
+#: frontend/page-place-ad.php:856
 msgid "You did not enter your phone number. Your phone number is required."
 msgstr "No ingreso un número de teléfono. El número de teléfono es necesario."
 
-#: frontend/page-place-ad.php:872
+#: frontend/page-place-ad.php:883
 msgid "You did not enter your state. Your state is required."
 msgstr "No ingresó un estado. Es necesario ingresar un estado."
 
-#: frontend/page-place-ad.php:798
+#: frontend/page-place-ad.php:809
 msgid ""
 "You did not enter your website address. Your website address is required."
 msgstr ""
 "No ingresaste la dirección de tu sitio web. Es una información requerida "
 "para continuar."
 
-#: frontend/page-place-ad.php:761
+#: frontend/page-place-ad.php:772
 msgid ""
 "You did not select a Payment Term. Please select a Payment Term for this Ad."
 msgstr ""
 "No has seleccionado un plan de pago. Por favor selecciona una para tu "
 "anuncio."
 
-#: frontend/page-place-ad.php:790
+#: frontend/page-place-ad.php:801
 msgid ""
 "You did not select a category for your Ad. Please select a category for your "
 "Ad."
@@ -7224,7 +7219,7 @@ msgstr ""
 "Por favor <credits-section-link>agregue planes de crédito o deshabilite el "
 "Sistema de Créditos</a>."
 
-#: frontend/page-search-ads.php:83
+#: frontend/page-search-ads.php:82
 msgid ""
 "You have entered a keyword that is too short to search on. Search keywords "
 "must be at least 3 letters in length. Please try another term."
@@ -7233,7 +7228,7 @@ msgstr ""
 "búsquea. Las palabras de búsqueda deben tener al menos 3 letras. Por favor "
 "pruebe con otra palabra."
 
-#: frontend/page-place-ad.php:903
+#: frontend/page-place-ad.php:914
 msgid ""
 "You have entered an invalid item price. Make sure your price contains "
 "numbers only. Please do not include currency symbols."
@@ -7241,7 +7236,7 @@ msgstr ""
 "Ingresaste un precio no válido. Asegurate de que sólo contenga números. NO "
 "incluyas el símbolo de la moneda (Ej: $)"
 
-#: frontend/page-search-ads.php:91
+#: frontend/page-search-ads.php:90
 msgid ""
 "You have entered an invalid maximum price. Make sure your price contains "
 "numbers only. Please do not include currency symbols."
@@ -7250,7 +7245,7 @@ msgstr ""
 "contenga sólo valores numéricos. Por favor no incluya los símbolos de moneda "
 "(Ej: $)."
 
-#: frontend/page-search-ads.php:87
+#: frontend/page-search-ads.php:86
 msgid ""
 "You have entered an invalid minimum price. Make sure your price contains "
 "numbers only. Please do not include currency symbols."
@@ -7328,11 +7323,11 @@ msgstr "Debe seleccionar one de los términos de pago disponibles."
 msgid "You should select an owner for this Ad."
 msgstr "Debe seleccionar un autor para este anuncio."
 
-#: functions.php:2024
+#: functions.php:2052
 msgid "Your Ad \"%s\" has been approved"
 msgstr "Su anuncio \"%s\" ha sido aprobado"
 
-#: functions.php:2040
+#: functions.php:2068
 msgid "Your Ad \"%s\" has been successfully updated"
 msgstr "Su anuncio \"%s\" ha sido actualizado exitosamente"
 
@@ -7352,7 +7347,7 @@ msgstr ""
 "Los detalles de tu Anuncio y las imágenes que cargaste serán eliminadas del "
 "sistema"
 
-#: frontend/page-place-ad.php:643
+#: frontend/page-place-ad.php:654
 msgid ""
 "Your Ad details have been filled out in the form below. Make any changes "
 "needed and then resubmit the Ad to update it."
@@ -7379,7 +7374,7 @@ msgstr ""
 "Su anuncio ha sido actualizado exitosamente. La información del anuncio "
 "aparece debajo."
 
-#: frontend/page-place-ad.php:937
+#: frontend/page-place-ad.php:948
 msgid ""
 "Your Ad was flagged as spam. Please contact the administrator of this site."
 msgstr ""
@@ -7454,7 +7449,7 @@ msgstr "Su anuncio clasficado \"%s\" expiró."
 msgid "Your email address"
 msgstr "Su dirección de correo electrónico"
 
-#: frontend/page-show-ad.php:173
+#: frontend/page-show-ad.php:175
 msgid "Your email address was successfully verified."
 msgstr "Su dirección de correo electrónico fue verificado con éxito."
 
@@ -7516,7 +7511,7 @@ msgstr ""
 "La solución a la operación mátemática fue incorrecta. Por favor intentalo "
 "nuevamente."
 
-#: frontend/page-place-ad.php:804
+#: frontend/page-place-ad.php:815
 msgid ""
 "Your website address is not properly formatted. Please make sure you have "
 "included the http:// part of your website address"
@@ -7611,19 +7606,19 @@ msgctxt "reply email"
 msgid "regarding"
 msgstr "al respecto"
 
-#: functions.php:575
+#: functions.php:602
 msgid "separate cities by commas"
 msgstr "Separar Ciudades por comas"
 
-#: functions.php:585
+#: functions.php:612
 msgid "separate counties by commas"
 msgstr "Separar Distritos por comas"
 
-#: functions.php:555
+#: functions.php:582
 msgid "separate countries by commas"
 msgstr "Separar Países por comas"
 
-#: functions.php:565
+#: functions.php:592
 msgid "separate states by commas"
 msgstr "Separar Estados/Provincias por comas"
 
