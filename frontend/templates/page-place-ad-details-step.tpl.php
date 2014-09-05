@@ -62,7 +62,7 @@
         </p>
 
         <p class="awpcp-form-spacer">
-            <label for="end-date"><?php echo esc_html( _x( 'End Date', 'ad details form', 'AWPCP' ); ?><?php echo $required['end-date'] ? '*' : ''; ?></label>
+            <label for="end-date"><?php echo esc_html( _x( 'End Date', 'ad details form', 'AWPCP' ) ); ?><?php echo $required['end-date'] ? '*' : ''; ?></label>
             <?php $date = awpcp_datetime( 'awpcp-date', $form['end_date'] ); ?>
             <input class="inputbox" id="end-date" type="text" size="50" datepicker-placeholder value="<?php echo awpcp_esc_attr($date); ?>" />
             <input type="hidden" name="end_date" value="<?php echo esc_attr( awpcp_datetime( 'Y/m/d', $form['end_date'] ) ); ?>" />
