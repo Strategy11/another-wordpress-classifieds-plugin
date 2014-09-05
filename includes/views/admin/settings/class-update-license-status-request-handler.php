@@ -27,15 +27,13 @@ class AWPCP_UpdateLicenseStatusRequestHandler {
             $module_slug = str_replace( '-license', '', $option_name );
             $old_license = $this->licenses_manager->get_module_license( $module_slug );
 
-
             if ( strcmp( $new_license, $old_license ) !== 0 ) {
-                debugp( 'New License detected' );
                 $this->update_license( $module_slug, $new_license );
-            } else if ( ! empty( $this->request->post( "awpcp-check-$option_name" ) ) ) {
+            } else if ( $this->request->post( "awpcp-check-$option_name", false ) ) {
                 $this->check_license( $module_slug, $new_license );
-            } else if ( ! empty( $this->request->post( "awpcp-activate-$option_name" ) ) ) {
+            } else if ( $this->request->post( "awpcp-activate-$option_name", false ) ) {
                 $this->activate_license( $module_slug );
-            } else if ( ! empty( $this->request->post( "awpcp-deactivate-$option_name" ) ) ) {
+            } else if ( $this->request->post( "awpcp-deactivate-$option_name", false ) ) {
                 $this->deactivate_license( $module_slug );
             }
         }
