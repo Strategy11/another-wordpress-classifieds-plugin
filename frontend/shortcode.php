@@ -355,7 +355,7 @@ function awpcp_get_menu_items() {
     if ( $show_place_ad_item ) {
         $place_ad_url = awpcp_get_page_url( 'place-ad-page-name' );
         $place_ad_page_name = get_awpcp_option( 'place-ad-page-name' );
-        $items['post-listing'] = array( 'url' => $place_ad_url, 'title' => $place_ad_page_name );
+        $items['post-listing'] = array( 'url' => $place_ad_url, 'title' => esc_html( $place_ad_page_name ) );
     }
 
     if ( $show_edit_ad_item ) {
@@ -366,7 +366,7 @@ function awpcp_get_menu_items() {
         }
 
         $edit_ad_page_name = get_awpcp_option( 'edit-ad-page-name' );
-        $items['edit-listing'] = array( 'url' => $edit_ad_url, 'title' => $edit_ad_page_name );
+        $items['edit-listing'] = array( 'url' => $edit_ad_url, 'title' => esc_html( $edit_ad_page_name ) );
     }
 
     if ( $show_browse_ads_item ) {
@@ -391,17 +391,17 @@ function awpcp_get_menu_items() {
             }
 
             $view_categories_page_name = get_awpcp_option( 'view-categories-page-name' );
-            $items['browse-listings'] = array( 'url' => $browse_cats_url, 'title' => $view_categories_page_name );
+            $items['browse-listings'] = array( 'url' => $browse_cats_url, 'title' => esc_html( $view_categories_page_name ) );
         } else {
             $browse_ads_url = awpcp_get_page_url( 'browse-ads-page-name' );
-            $items['browse-listings'] = array( 'url' => $browse_ads_url, 'title' => $browse_ads_page_name );
+            $items['browse-listings'] = array( 'url' => $browse_ads_url, 'title' => esc_html( $browse_ads_page_name  ) );
         }
     }
 
     if ( $show_search_ads_item ) {
         $search_ads_page_name = get_awpcp_option( 'search-ads-page-name' );
         $search_ads_url = awpcp_get_page_url( 'search-ads-page-name' );
-        $items['search-listings'] = array( 'url' => $search_ads_url, 'title' => $search_ads_page_name );
+        $items['search-listings'] = array( 'url' => $search_ads_url, 'title' => esc_html( $search_ads_page_name ) );
     }
 
     $items = apply_filters( 'awpcp_menu_items', $items );
