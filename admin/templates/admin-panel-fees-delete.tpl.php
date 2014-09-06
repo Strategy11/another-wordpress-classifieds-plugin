@@ -1,5 +1,5 @@
-<?php $message = __('Change Ads associated with Fee plan %s to one of the following fees.', 'AWPCP') ?>
-<p><?php echo sprintf($message, '<strong>' . $fee->name . '</strong>') ?></p>
+<?php $message = __( 'Associate Ads currently associated with Fee plan %s to one of the following fees:', 'AWPCP' ); ?>
+<p><?php echo sprintf($message, '<strong>' . esc_html( $fee->name ) . '</strong>') ?></p>
 
 <form method="post" action="<?php echo esc_attr( $this->url() ); ?>">
     <select name="payment_term">
