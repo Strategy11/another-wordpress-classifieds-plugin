@@ -1862,10 +1862,8 @@ function awpcp_attachment_background_color_explanation() {
 
 /**
  * @since 3.0.2
- * @deprecated since 3.2.3
  */
 function awpcp_module_not_compatible_notice( $module, $installed_version ) {
-    _deprecated_function( __FUNCTION__, '3.2.3', 'ModulesManager::show_module_not_compatible_notice()' );
 	global $awpcp_db_version;
 
 	$modules = awpcp()->get_premium_modules_information();
