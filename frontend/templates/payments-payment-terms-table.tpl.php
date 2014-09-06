@@ -20,7 +20,7 @@
 
         <tr <?php echo $this->item_attributes($item) ?>>
             <?php foreach ($columns as $column => $name): ?>
-            <td data-title="<?php echo esc_attr( $name ); ?>"><?php echo esc_html( $this->item_column( $item, $column ) ); ?></td>
+            <td data-title="<?php echo esc_attr( $name ); ?>"><?php /* item_column() returns escaped strings */ echo $this->item_column( $item, $column ); ?></td>
             <?php endforeach ?>
         </tr>
 
