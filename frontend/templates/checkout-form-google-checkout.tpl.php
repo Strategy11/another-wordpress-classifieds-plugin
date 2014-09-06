@@ -11,5 +11,5 @@
 	<!--<input type="hidden" name="shopping-cart.items.item-1.digital-content.key" value="<?php echo esc_attr( $key ); ?>" />-->
 	<input type="hidden" name="shopping-cart.items.item-1.digital-content.url" value="<?php echo esc_attr( $return_url ); ?>" />
 	<input type="hidden" name="_charset_" value="utf-8" />
-	<input type="image" src="<?php echo esc_attr( $button_url ); ?>" alt="<?php echo esc_html( __( "Pay With Google Checkout", "AWPCP" ) ); ?>" /></form>
+	<input type="image" src="<?php echo esc_attr( $button_url ); ?>" alt="<?php echo esc_attr( __( "Pay With Google Checkout", "AWPCP" ) ); ?>" /></form>
 </form>
