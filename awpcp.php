@@ -562,7 +562,7 @@ class AWPCP {
 					'url' =>'http://www.awpcp.com/premium-modules/fee-per-category-module?ref=panel',
 					'installed' => function_exists( 'awpcp_price_cats' ),
 					'version' => 'AWPCP_FPC_MODULE_DB_VERSION',
-					'required' => '3.2.1',
+					'required' => '3.2.2',
 				),
 				'google-checkout' => array(
 					'name' => __( 'Google Checkout', 'AWPCP' ),
