@@ -53,7 +53,7 @@ class AWPCP_ModulesManager {
             $module->load_textdomain();
             $this->verify_version_compatibility( $module );
             $this->settings->add_license_setting( $module->name, $module->slug );
-            $this->verify_license_status( $module );
+            // $this->verify_license_status( $module );
             $this->handle_module_updates( $module );
             $module->setup( $this->plugin );
         } catch ( AWPCP_Exception $e ) {
