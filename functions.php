@@ -112,7 +112,7 @@ function awpcp_esc_textarea($text) {
 }
 
 /**
- * @since 3.2.3
+ * @since 3.3
  */
 function awpcp_apply_function_deep( $function, $value ) {
     if ( is_array( $value ) ) {
@@ -132,7 +132,7 @@ function awpcp_apply_function_deep( $function, $value ) {
 }
 
 /**
- * @since 3.2.3
+ * @since 3.3
  */
 function awpcp_strip_all_tags_deep( $string ) {
     return awpcp_apply_function_deep( 'wp_strip_all_tags', $string );
@@ -2128,14 +2128,14 @@ function awpcp_print_column_headers($screen, $id = true, $sortable=array()) {
 }
 
 /**
- * @since 3.2.3
+ * @since 3.3
  */
 function awpcp_enqueue_main_script() {
     wp_enqueue_script( 'awpcp' );
 }
 
 /**
- * @since 3.2.3
+ * @since 3.3
  */
 function awpcp_maybe_add_thickbox() {
     if ( get_awpcp_option( 'awpcp_thickbox_disabled' ) ) {
@@ -2194,7 +2194,7 @@ function awpcp_utf8_substr_pcre( $string, $start, $length=null ) {
 /**
  * from http://stackoverflow.com/a/4459219/201354.
  *
- * @since 3.2.3
+ * @since 3.3
  */
 function awpcp_utf8_pathinfo( $path, $path_parts_types = null ) {
     $modified_path = awpcp_add_path_prefix( $path );
@@ -2233,7 +2233,7 @@ function awpcp_utf8_basename( $path, $suffix = null ) {
 }
 
 /**
- * @since 3.2.3
+ * @since 3.3
  */
 function awpcp_register_activation_hook( $__FILE__, $callback ) {
     $file = WP_CONTENT_DIR . '/plugins/' . basename( dirname( $__FILE__ ) ) . '/' . basename( $__FILE__ );

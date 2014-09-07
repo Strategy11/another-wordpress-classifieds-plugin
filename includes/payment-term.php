@@ -189,7 +189,7 @@ class AWPCP_PaymentTerm {
      * Until the above is possible, every payment term will implement this
      * method to produce informative errors when ad_can_be_renewed returns false.
      *
-     * @since 3.2.3
+     * @since 3.3
      * @return string
      */
     public function ad_cannot_be_renewed_error( $listing ) {

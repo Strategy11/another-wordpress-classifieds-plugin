@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @since 3.2.3
+ * @since 3.3
  */
 abstract class AWPCP_Module {
 

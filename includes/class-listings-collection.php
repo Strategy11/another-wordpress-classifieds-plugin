@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @since 3.2.3
+ * @since 3.3
  */
 function awpcp_listings_collection() {
     return new AWPCP_ListingsCollection( $GLOBALS['wpdb'] );
@@ -19,7 +19,7 @@ class AWPCP_ListingsCollection {
     }
 
     /**
-     * @since 3.2.3
+     * @since 3.3
      */
     public function get( $listing_id ) {
         $listing = AWPCP_Ad::find_by_id( $listing_id );
@@ -40,7 +40,7 @@ class AWPCP_ListingsCollection {
     }
 
     /**
-     * @since 3.2.3
+     * @since 3.3
      */
     public function find_all_by_id( $identifiers ) {
         $identifiers = array_filter( array_map( 'intval', $identifiers ) );
@@ -54,7 +54,7 @@ class AWPCP_ListingsCollection {
     }
 
     /**
-     * @since 3.2.3
+     * @since 3.3
      */
     private function find_valid_listings( $params = array() ) {
         $params = wp_parse_args( $params, array(
@@ -73,7 +73,7 @@ class AWPCP_ListingsCollection {
     }
 
     /**
-     * @since 3.2.3
+     * @since 3.3
      */
     private function count_valid_listings( $conditions = array() ) {
         $conditions = AWPCP_Ad::get_where_conditions_for_valid_ads( $conditions );
@@ -81,21 +81,21 @@ class AWPCP_ListingsCollection {
     }
 
     /**
-     * @since 3.2.3
+     * @since 3.3
      */
     public function find_listings( $params = array() ) {
         return $this->find_valid_listings( $params );
     }
 
     /**
-     * @since 3.2.3
+     * @since 3.3
      */
     public function count_listings() {
         return $this->count_valid_listings();
     }
 
     /**
-     * @since 3.2.3
+     * @since 3.3
      */
     public function find_enabled_listings( $params = array() ) {
         $params = array_merge( $params, array( 'conditions' => array( 'disabled = 0' ) ) );
@@ -103,14 +103,14 @@ class AWPCP_ListingsCollection {
     }
 
     /**
-     * @since 3.2.3
+     * @since 3.3
      */
     public function count_enabled_listings() {
         return $this->count_valid_listings( array( 'disabled = 0' ) );
     }
 
     /**
-     * @since 3.2.3
+     * @since 3.3
      */
     public function find_user_listings( $user_id, $params = array() ) {
         $params = array_merge( $params, array(
@@ -121,7 +121,7 @@ class AWPCP_ListingsCollection {
     }
 
     /**
-     * @since 3.2.3
+     * @since 3.3
      */
     public function count_user_listings( $user_id ) {
         $conditions = array( $this->db->prepare( 'user_id = %d', $user_id ) );
@@ -129,7 +129,7 @@ class AWPCP_ListingsCollection {
     }
 
     /**
-     * @since 3.2.3
+     * @since 3.3
      */
     public function find_user_enabled_listings( $user_id, $params = array() ) {
         $params = array_merge( $params, array(
@@ -140,7 +140,7 @@ class AWPCP_ListingsCollection {
     }
 
     /**
-     * @since 3.2.3
+     * @since 3.3
      */
     public function count_user_enabled_listings( $user_id ) {
         $conditions = array( $this->db->prepare( 'user_id = %d', $user_id ), 'disabled = 0' );
@@ -148,7 +148,7 @@ class AWPCP_ListingsCollection {
     }
 
     /**
-     * @since 3.2.3
+     * @since 3.3
      */
     public function find_user_disabled_listings( $user_id, $params = array() ) {
         $params = array_merge( $params, array(
@@ -159,7 +159,7 @@ class AWPCP_ListingsCollection {
     }
 
     /**
-     * @since 3.2.3
+     * @since 3.3
      */
     public function count_user_disabled_listings( $user_id ) {
         $conditions = array( $this->db->prepare( 'user_id = %d', $user_id ), 'disabled = 1' );

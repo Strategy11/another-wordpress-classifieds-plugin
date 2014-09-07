@@ -764,7 +764,7 @@ class AWPCP_Settings_API {
 	}
 
 	/**
-	 * @since 3.2.3
+	 * @since 3.3
 	 */
 	public function option_exists( $name ) {
 		return isset( $this->options[ $name ] );
