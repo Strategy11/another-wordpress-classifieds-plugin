@@ -340,7 +340,7 @@ class AWPCP_Installer {
             'awpcp_pagename_warning',
             'widget_awpcplatestads',
             'awpcp_db_version',
-            $awpcp->settings->option,
+            $awpcp->settings->setting_name,
         ));
 
         // delete payment transactions

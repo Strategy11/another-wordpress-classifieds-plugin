@@ -69,7 +69,7 @@ class AWPCP_AdminCreditPlans extends AWPCP_AdminPageWithTable {
         $this->table->prepare_items();
 
         $template = AWPCP_DIR . '/admin/templates/admin-panel-credit-plans.tpl.php';
-        $option = $awpcp->settings->option;
+        $option = $awpcp->settings->setting_name;
 
         echo $this->render( $template, array('table' => $this->table, 'option' => $option ) );
     }
