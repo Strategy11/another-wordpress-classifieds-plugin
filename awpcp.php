@@ -238,9 +238,6 @@ class AWPCP {
 
 	public $flush_rewrite_rules = false;
 
-	// TODO: I want to register all plugin scripts here, enqueue on demand in each page.
-	// is that a good idea? -@wvega
-
 	public function __construct() {
 		global $awpcp_db_version;
 
