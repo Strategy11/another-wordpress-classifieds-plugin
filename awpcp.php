@@ -257,8 +257,7 @@ class AWPCP {
             awpcp_load_plugin_textdomain( __FILE__, 'AWPCP' );
         }
 
-        // TODO: replace with real store URL
-        $this->settings->set_runtime_option( 'easy-digital-downloads-store-url', 'http://awpcp.local' );
+        $this->settings->set_runtime_option( 'easy-digital-downloads-store-url', 'http://awpcp.com' );
 
         // register settings, this will define default values for settings
         // that have never been stored
