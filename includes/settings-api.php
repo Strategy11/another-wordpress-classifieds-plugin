@@ -383,11 +383,7 @@ class AWPCP_Settings_API {
 		$key = $this->add_section( $group, __( 'User Field', 'AWPCP' ), 'user', 5, array( $this, 'section' ) );
 		$options = array( 'dropdown' => __( 'Dropdown', 'AWPCP' ), 'autocomplete' => __( 'Autocomplete', 'AWPCP' ) );
 		$this->add_setting( $key, 'user-field-widget', __( 'HTML Widget for User field', 'AWPCP' ), 'radio', 'dropdown', __( 'The user field can be represented with an HTML dropdown or a text field with autocomplete capabilities. Using the dropdown is faster if you have a small number of users. If your website has a lot of registered users, however, the dropdown may take too long to render and using the autocomplete version may be a better idea.', 'AWPCP' ), array( 'options' => $options ) );
-
-		// Section: Posted By Field
-
-		$key = $this->add_section($group, __('Posted By Field', 'AWPCP'), 'posted-by', 10, array($this, 'section'));
-		$this->add_setting($key, 'displaypostedbyfield', __( 'Show Posted By field', 'AWPCP' ), 'checkbox', 1, __( 'Show Posted By field in search form?', 'AWPCP' ) );
+		$this->add_setting( $key, 'displaypostedbyfield', __( 'Show User Field on Search', 'AWPCP' ), 'checkbox', 1, __( 'Show as "Posted By" in search form?', 'AWPCP' ) );
 
 		// Section: Phone Field
 
