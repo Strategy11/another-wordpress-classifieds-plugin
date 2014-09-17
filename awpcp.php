@@ -1188,7 +1188,7 @@ function awpcp_add_rewrite_rules($rules) {
 	$view_categories = sanitize_title(get_awpcp_option('view-categories-page-name'));
 
 	if (isset($patterns['main-page-name'])) {
-		add_rewrite_rule('('.$patterns['main-page-name'].')/('.$view_categories.')',
+		add_rewrite_rule('('.$patterns['main-page-name'].')/('.$view_categories.')($|[/?])',
 						 'index.php?pagename=$matches[1]&layout=2&cid='.$view_categories,
 						 'top');
 		add_rewrite_rule('('.$patterns['main-page-name'].')/(setregion)/(.+?)/(.+?)',
