@@ -30,17 +30,17 @@ class AWPCP_ListingPaymentTransactionHandler {
         }
 
         $listing = $this->listings->find_by_id( $transaction->get( 'ad-id' ) );
-        $listing_has_accepted_payment_status = $this->listing_has_accepted_payment_status( $listing );
+        $listing_had_accepted_payment_status = $this->listing_has_accepted_payment_status( $listing );
         $trigger_actions = $transaction->get( 'ad-consolidated-at' ) ? true : false;
 
         $this->update_listing_payment_information( $listing, $transaction );
 
         if ( $transaction->was_payment_successful() ) {
-            if ( ! $listing_has_accepted_payment_status ) {
+            if ( ! $listing_had_accepted_payment_status ) {
                 $this->listings_logic->update_listing_verified_status( $listing, $transaction );
                 $this->maybe_enable_listing( $listing, $transaction, $trigger_actions );
             }
-        } else if ( $transaction->did_payment_failed() && $listing_has_accepted_payment_status ) {
+        } else if ( $transaction->did_payment_failed() && $listing_had_accepted_payment_status ) {
             $listing->disable( $trigger_actions );
         }
 
