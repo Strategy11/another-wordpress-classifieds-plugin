@@ -225,17 +225,21 @@ function awpcp_clean_up_payment_transactions() {
  * @since 3.2.3
  */
 function awpcp_clean_up_non_verified_ads_handler() {
-    return awpcp_clean_up_non_verified_ads( awpcp_listings_api() );
+    return awpcp_clean_up_non_verified_ads( awpcp_listings_api(), awpcp()->settings );
 }
 
 /**
  * @since 3.0.2
  */
-function awpcp_clean_up_non_verified_ads( /* AWPCP_ListingsAPI */ $listings ) {
+function awpcp_clean_up_non_verified_ads( /* AWPCP_ListingsAPI */ $listings, $settings ) {
     global $wpdb;
 
-    $resend_email_threshold = get_awpcp_option( 'email-verification-first-threshold' );
-    $delete_ads_threshold = get_awpcp_option( 'email-verification-second-threshold' );
+    if ( ! $settings->get_option( 'enable-email-verification' ) ) {
+        return;
+    }
+
+    $resend_email_threshold = $settings->get_option( 'email-verification-first-threshold' );
+    $delete_ads_threshold = $settings->get_option( 'email-verification-second-threshold' );
 
     // delete Ads that have been in a non-verified state for more than M days
 
