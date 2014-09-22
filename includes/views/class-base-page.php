@@ -174,7 +174,7 @@ class AWPCP_BasePage extends AWPCP_Page {
     }
 
     /**
-     * @since 3.2.3
+     * @since 3.3
      */
     private function get_request_method() {
         if ( is_null( $this->request_method ) ) {
@@ -184,7 +184,7 @@ class AWPCP_BasePage extends AWPCP_Page {
     }
 
     /**
-     * @since 3.2.3
+     * @since 3.3
      */
     private function set_request_method( $request_method ) {
         $this->request_method = $request_method;

@@ -136,7 +136,7 @@ class AWPCP_Ad {
 	}
 
 	/**
-	 * @since 3.2.3
+	 * @since 3.3
 	 */
 	public static function get_where_conditions_for_valid_ads( $conditions = array() ) {
         $conditions[] = "payment_status != 'Unpaid'";

@@ -317,7 +317,7 @@ class AWPCP_MediaAPI {
     }
 
     /**
-     * @since 3.2.3
+     * @since 3.3
      */
     public function listing_has_primary_image( $listing ) {
         $image = $this->get_ad_primary_image( $listing );

@@ -4,7 +4,7 @@
 // set_site_transient( 'update_plugins', null );
 
 /**
- * @since 3.2.3
+ * @since 3.3
  */
 function awpcp_modules_updater() {
     static $instance = null;
@@ -20,7 +20,7 @@ function awpcp_modules_updater() {
  * An adaptation of EDD_SL_Plugin_Updater to handle
  * multiple modules.
  *
- * @since 3.2.3
+ * @since 3.3
  */
 class AWPCP_ModulesUpdater {
 

@@ -94,7 +94,7 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
     }
 
     /**
-     * @since 3.2.3
+     * @since 3.3
      */
     private function overwrite_sender_information( $posted_data ) {
         $user_information = awpcp_users_collection()->find_by_id( get_current_user_id() );
