@@ -101,7 +101,6 @@ function awpcp_delete_file_ajax_handler() {
 class AWPCP_DeleteFileAjaxHandler extends AWPCP_FileActionAjaxHandker {
 
     protected function do_file_action( $file, $listing ) {
-        // return $this->media->delete( $file );
-        return true;
+        return $this->media->delete( $file );
     }
 }
