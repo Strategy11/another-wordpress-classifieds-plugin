@@ -23,9 +23,8 @@
 	<li><?php _e('Max image size', 'AWPCP') ?>: <strong><?php echo esc_html( $max_image_size / 1000 ); ?> KB</strong></li>
 </ul>
 
-<?php $fm = awpcp_file_manager_component(); ?>
-<?php $fm->configure( array( 'images_allowed' => $images_allowed ) ); ?>
-<?php echo $fm->render( $listing, $images ); ?>
+<?php $media_manager = awpcp_media_manager_component(); ?>
+<?php echo $media_manager->render( $listing, $images ); ?>
 
 <form class="awpcp-upload-images-form" method="post" enctype="multipart/form-data">
 	<h3><?php _e('Add Images', 'AWPCP') ?></h3>

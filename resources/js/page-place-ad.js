@@ -2,11 +2,11 @@
 AWPCP.run('awpcp/page-place-ads', [
     'jquery',
     'knockout',
-    'awpcp/file-manager',
+    'awpcp/media-manager',
     'awpcp/settings',
     'awpcp/jquery-userfield'
 ],
-function( $, ko, FileManager, settings ) {
+function( $, ko, MediaManager, settings ) {
     var AWPCP = jQuery.AWPCP = jQuery.extend({}, jQuery.AWPCP, AWPCP);
 
     $.AWPCP.PaymentTermsTable = function(table) {
@@ -238,8 +238,9 @@ function( $, ko, FileManager, settings ) {
             var form = container.find('.awpcp-upload-images-form');
 
             if (form.length) {
-                var data = settings.get( 'file-manager-data' );
-                ko.applyBindings( new FileManager( data.nonce, data.files, data.options ), $('.awpcp-file-manager').get( 0 ) );
+                var data = settings.get( 'media-manager-data' );
+
+                ko.applyBindings( new MediaManager( data.nonce, data.files ), $( '.awpcp-media-manager' ).get( 0 ) );
 
                 var radios = form.find('.uploadform :radio').change(function() {
                     radios.closest('li').removeClass('primary').addClass('not-primary');

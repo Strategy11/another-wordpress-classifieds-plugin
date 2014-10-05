@@ -36,6 +36,16 @@ class AWPCP_Media {
         return in_array( $this->mime_type, awpcp_get_image_mime_types() );
     }
 
+    /**
+     * Returns true if this file is a video file.
+     * TODO: implement me!
+     *
+     * @since next-release
+     */
+    public function is_video() {
+        return false;
+    }
+
     public function is_primary() {
         return (bool) $this->is_primary;
     }

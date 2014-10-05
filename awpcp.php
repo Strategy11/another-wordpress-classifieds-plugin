@@ -137,6 +137,8 @@ require_once( AWPCP_DIR . "/includes/listings/class-listing-action.php" );
 require_once( AWPCP_DIR . "/includes/listings/class-listing-action-with-confirmation.php" );
 require_once( AWPCP_DIR . "/includes/listings/class-delete-listing-action.php" );
 
+require_once( AWPCP_DIR . "/includes/media/class-media-manager-component.php" );
+
 require_once( AWPCP_DIR . "/includes/meta/class-meta-tags-generator.php" );
 require_once( AWPCP_DIR . "/includes/meta/class-tag-renderer.php" );
 

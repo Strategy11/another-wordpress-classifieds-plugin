@@ -39,7 +39,7 @@ abstract class AWPCP_FileActionAjaxHandker extends AWPCP_AjaxHandler {
     protected function verify_user_is_allowed_to_perform_file_action( $file, $listing ) {
         $nonce = $this->request->post( 'nonce' );
 
-        if ( ! wp_verify_nonce( $nonce, 'manage-listing-files-' . $listing->ad_id ) ) {
+        if ( ! wp_verify_nonce( $nonce, 'manage-listing-media-' . $listing->ad_id ) ) {
             throw new AWPCP_Exception( "You are not allowed to perform this action.", 'AWPCP' );
         }
 
