@@ -192,6 +192,12 @@ require_once( AWPCP_DIR . "/includes/views/admin/account-balance/class-account-b
 require_once( AWPCP_DIR . "/includes/views/admin/account-balance/class-account-balance-page-summary-step.php" );
 require_once( AWPCP_DIR . "/includes/views/admin/settings/class-update-license-status-request-handler.php" );
 
+require_once( AWPCP_DIR . "/includes/media/class-media-manager-component.php" );
+require_once( AWPCP_DIR . '/includes/media/class-media-uploader-component.php' );
+require_once( AWPCP_DIR . '/includes/media/class-upload-listing-media-ajax-handler.php' );
+require_once( AWPCP_DIR . '/includes/media/class-file-uploader.php' );
+require_once( AWPCP_DIR . '/includes/media/class-media-manager.php' );
+
 require_once( AWPCP_DIR . "/includes/settings/class-credit-plans-settings.php" );
 require_once( AWPCP_DIR . "/includes/settings/class-listings-moderation-settings.php" );
 require_once( AWPCP_DIR . "/includes/settings/class-payment-general-settings.php" );
@@ -472,6 +478,10 @@ class AWPCP {
             $handler = awpcp_delete_file_ajax_handler();
             add_action( 'wp_ajax_awpcp-delete-file', array( $handler, 'ajax' ) );
             add_action( 'wp_ajax_nopriv_awpcp-delete-file', array( $handler, 'ajax' ) );
+
+            $handler = awpcp_upload_listing_media_ajax_handler();
+            add_action( 'wp_ajax_awpcp-upload-listing-media', array( $handler, 'ajax' ) );
+            add_action( 'wp_ajax_nopriv_awpcp-upload-listing-media', array( $handler, 'ajax' ) );
         } else if ( is_admin() ) {
             // load resources required in admin screens only
             $controller = awpcp_user_profile_contact_information_controller();
@@ -732,6 +742,7 @@ class AWPCP {
 
 		$js = AWPCP_URL . '/resources/js';
 		$css = AWPCP_URL . '/resources/css';
+        $vendors = AWPCP_URL . '/resources/vendors';
 
 		/* vendors */
 
@@ -742,12 +753,16 @@ class AWPCP {
 		}
 
 		wp_register_style('awpcp-jquery-ui', "//ajax.googleapis.com/ajax/libs/jqueryui/$ui_version/themes/smoothness/jquery-ui.css", array(), $ui_version);
+        wp_register_style( 'awpcp-jquery-plupload-queue', "{$vendors}/jquery-plupload-queue/css/jquery.plupload.queue.css", array(), '2.1.1' );
 
 		wp_register_script('awpcp-jquery-validate', "{$js}/jquery-validate/all.js", array('jquery'), '1.10.0', true);
+        wp_register_script( 'awpcp-knockout', "{$js}/vendors/knockout-3.1.0.min.js", array(), '3.1.0', true );
+        wp_register_script( 'awpcp-jquery-plupload-queue', "{$vendors}/jquery-plupload-queue/jquery.plupload.queue.min.js", array( 'awpcp', 'plupload-all' ), '2.1.1', true );
 
 		/* helpers */
 
-		wp_register_script('awpcp', "{$js}/awpcp.min.js", array('jquery'), $awpcp_db_version, true);
+		wp_register_script( 'awpcp', "{$js}/awpcp.min.js", array( 'jquery' ), $awpcp_db_version, true );
+
 		wp_register_script( 'awpcp-billing-form', "{$js}/awpcp-billing-form.js", array( 'awpcp' ), $awpcp_db_version, true );
 		wp_register_script( 'awpcp-multiple-region-selector', "{$js}/awpcp-multiple-region-selector.js", array( 'awpcp', 'awpcp-jquery-validate' ), $awpcp_db_version, true );
 
@@ -781,8 +796,9 @@ class AWPCP {
 		wp_register_style( 'awpcp-frontend-style-lte-ie-7', "{$css}/awpcpstyle-lte-ie-7.css", array( 'awpcp-frontend-style' ), $awpcp_db_version );
 		$wp_styles->add_data( 'awpcp-frontend-style-lte-ie-7', 'conditional', 'lte IE 7' );
 
+        $dependencies = array( 'awpcp', 'awpcp-multiple-region-selector', 'awpcp-jquery-validate', 'awpcp-jquery-plupload-queue', 'jquery-ui-datepicker', 'jquery-ui-autocomplete' );
+		wp_register_script( 'awpcp-page-place-ad', "{$js}/page-place-ad.js", $dependencies, $awpcp_db_version, true );
 
-		wp_register_script('awpcp-page-place-ad', "{$js}/page-place-ad.js", array('awpcp', 'awpcp-multiple-region-selector', 'awpcp-jquery-validate', 'jquery-ui-datepicker', 'jquery-ui-autocomplete'), $awpcp_db_version, true);
 		wp_register_script('awpcp-page-reply-to-ad', "{$js}/page-reply-to-ad.js", array('awpcp', 'awpcp-jquery-validate'), $awpcp_db_version, true);
 		wp_register_script('awpcp-page-search-listings', "{$js}/page-search-listings.js", array('awpcp', 'awpcp-multiple-region-selector', 'awpcp-jquery-validate'), $awpcp_db_version, true);
 		wp_register_script('awpcp-page-show-ad', "{$js}/page-show-ad.js", array('awpcp'), $awpcp_db_version, true);
@@ -798,6 +814,8 @@ class AWPCP {
 	}
 
 	public function enqueue_scripts() {
+        wp_enqueue_style( 'awpcp-jquery-plupload-queue' );
+
 		if (is_admin()) {
 			wp_enqueue_style('awpcp-admin-style');
 			wp_enqueue_script('awpcp-admin-general');
