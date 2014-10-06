@@ -14,9 +14,7 @@ function( $, ko, FileViewModel, settings ) {
         vm.haveVideos = ko.computed( haveVideos );
         vm.haveOtherFiles = ko.computed( haveOtherFiles );
 
-        vm.updateFileEnabledStatus = updateFileEnabledStatus;
         vm.deleteFile = deleteFile;
-
         vm.setFileAsPrimary = setFileAsPrimary;
 
         vm.getFileCSSClasses = getFileCSSClasses;
@@ -24,7 +22,9 @@ function( $, ko, FileViewModel, settings ) {
 
         function prepareFiles( files ) {
             return $.map( files, function( file ) {
-                return new FileViewModel( file );
+                var model = new FileViewModel( file );
+                model.enabled.subscribe( updateFileEnabledStatus, model );
+                return model;
             } );
         }
 
@@ -73,7 +73,26 @@ function( $, ko, FileViewModel, settings ) {
         }
 
         function updateFileEnabledStatus( newStatus ) {
-            window.console.log( 'update file enabled status:', newStatus );
+            var file = this;
+
+            if ( file.isBeingModified() ) {
+                return;
+            } else {
+                file.isBeingModified( true );
+            }
+
+            $.post( settings.get( 'ajaxurl' ), {
+                nonce: nonce,
+                action: 'awpcp-update-file-enabled-status',
+                listing_id: file.listingId,
+                file_id: file.id,
+                new_status: newStatus
+            }, function( response ) {
+                if ( response.status !== 'ok' ) {
+                    file.enabled( ! newStatus );
+                }
+                file.isBeingModified( false );
+            } );
         }
 
         function deleteFile( file ) {
