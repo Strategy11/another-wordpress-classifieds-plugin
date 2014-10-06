@@ -28,6 +28,9 @@
             margin: 0 auto;
         }
     }
+    .is-disabled .awpcp-uploaded-file-thumbnail-container img {
+        opacity: 0.5;
+    }
 
     .awpcp-uploaded-file-primary-label {
         position: absolute;
@@ -73,7 +76,10 @@
 
     .awpcp-uploaded-file-action {
         float: left;
-        padding: 0 1px;
+        border: 1px solid #E2E2E2;
+        border-radius: 2px;
+        margin-right: 2px;
+        background: #FBFBFB;
 
         a, label {
             background: transparent center center no-repeat;
@@ -83,8 +89,17 @@
             line-height: 22px;
             width: 25px;
         }
-        a:hover, label:hover {
-            background-color: #C6C6C6;
+        &:hover {
+            border-color: #B3B3B3;
+            background-color: #D8D8D8;
+        }
+    }
+    .is-primary .awpcp-uploaded-file-action {
+        background: #ECF6EA;
+        border-color: #9BCE93;
+
+        &:hover {
+            background: #A5D69D;
         }
     }
 
@@ -107,6 +122,11 @@
 
     .awpcp-uploaded-file-delete-action a {
         background-image: @delete_image_icon_url;
+    }
+
+    .awpcp-uploaded-file-loading-icon {
+        background: none !important;
+        border: none !important;
     }
 
     // TODO: move this to a common modules file
