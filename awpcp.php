@@ -192,11 +192,18 @@ require_once( AWPCP_DIR . "/includes/views/admin/account-balance/class-account-b
 require_once( AWPCP_DIR . "/includes/views/admin/account-balance/class-account-balance-page-summary-step.php" );
 require_once( AWPCP_DIR . "/includes/views/admin/settings/class-update-license-status-request-handler.php" );
 
-require_once( AWPCP_DIR . "/includes/media/class-media-manager-component.php" );
-require_once( AWPCP_DIR . '/includes/media/class-media-uploader-component.php' );
-require_once( AWPCP_DIR . '/includes/media/class-upload-listing-media-ajax-handler.php' );
 require_once( AWPCP_DIR . '/includes/media/class-file-uploader.php' );
+require_once( AWPCP_DIR . '/includes/media/class-image-constraints.php' );
+require_once( AWPCP_DIR . '/includes/media/class-image-file-handler.php' );
+require_once( AWPCP_DIR . '/includes/media/class-image-file-processor.php' );
+require_once( AWPCP_DIR . '/includes/media/class-image-file-validator.php' );
+require_once( AWPCP_DIR . '/includes/media/class-listing-upload-limits.php' );
+require_once( AWPCP_DIR . "/includes/media/class-media-manager-component.php" );
 require_once( AWPCP_DIR . '/includes/media/class-media-manager.php' );
+require_once( AWPCP_DIR . '/includes/media/class-media-uploader-component.php' );
+require_once( AWPCP_DIR . '/includes/media/class-uploaded-file-logic-factory.php' );
+require_once( AWPCP_DIR . '/includes/media/class-uploaded-file-logic.php' );
+require_once( AWPCP_DIR . '/includes/media/class-upload-listing-media-ajax-handler.php' );
 
 require_once( AWPCP_DIR . "/includes/settings/class-credit-plans-settings.php" );
 require_once( AWPCP_DIR . "/includes/settings/class-listings-moderation-settings.php" );
@@ -289,11 +296,11 @@ class AWPCP {
             awpcp_load_plugin_textdomain( __FILE__, 'AWPCP' );
         }
 
-        $this->settings->set_runtime_option( 'easy-digital-downloads-store-url', 'http://awpcp.com' );
-
         // register settings, this will define default values for settings
         // that have never been stored
         $this->settings->register_settings();
+
+        $this->setup_runtime_options();
 
         $file = WP_CONTENT_DIR . '/plugins/' . basename(dirname(__FILE__)) . '/' . basename(__FILE__);
         register_activation_hook($file, array($this->installer, 'activate'));
@@ -305,6 +312,16 @@ class AWPCP {
         // too late to add rules using add_rewrite_rule function
         add_action('page_rewrite_rules', 'awpcp_add_rewrite_rules');
         add_filter('query_vars', 'awpcp_query_vars');
+    }
+
+    private function setup_runtime_options() {
+        $this->settings->set_runtime_option( 'easy-digital-downloads-store-url', 'http://awpcp.com' );
+        $this->settings->set_runtime_option( 'image-mime-types', array( 'image/png', 'image/jpeg', 'image/jpg', 'image/gif' ) );
+
+        $uploads_dir_name = $this->settings->get_option( 'uploadfoldername' );
+        $uploads_dir = implode( DIRECTORY_SEPARATOR, array( rtrim( WP_CONTENT_DIR, DIRECTORY_SEPARATOR ), $uploads_dir_name, 'awpcp' ) );
+
+        $this->settings->set_runtime_option( 'awpcp-uploads-dir', $uploads_dir );
     }
 
 	/**
@@ -462,26 +479,7 @@ class AWPCP {
         }
 
         if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
-            // load resources required to handle Ajax requests only.
-            $handler = awpcp_users_autocomplete_ajax_handler();
-            add_action( 'wp_ajax_awpcp-autocomplete-users', array( $handler, 'ajax' ) );
-            add_action( 'wp_ajax_nopriv_awpcp-autocomplete-users', array( $handler, 'ajax' ) );
-
-            $handler = awpcp_set_image_as_primary_ajax_handler();
-            add_action( 'wp_ajax_awpcp-set-image-as-primary', array( $handler, 'ajax' ) );
-            add_action( 'wp_ajax_nopriv_awpcp-set-image-as-primary', array( $handler, 'ajax' ) );
-
-            $handler = awpcp_update_file_enabled_status_ajax_handler();
-            add_action( 'wp_ajax_awpcp-update-file-enabled-status', array( $handler, 'ajax' ) );
-            add_action( 'wp_ajax_nopriv_awpcp-update-file-enabled-status', array( $handler, 'ajax' ) );
-
-            $handler = awpcp_delete_file_ajax_handler();
-            add_action( 'wp_ajax_awpcp-delete-file', array( $handler, 'ajax' ) );
-            add_action( 'wp_ajax_nopriv_awpcp-delete-file', array( $handler, 'ajax' ) );
-
-            $handler = awpcp_upload_listing_media_ajax_handler();
-            add_action( 'wp_ajax_awpcp-upload-listing-media', array( $handler, 'ajax' ) );
-            add_action( 'wp_ajax_nopriv_awpcp-upload-listing-media', array( $handler, 'ajax' ) );
+            $this->ajax_setup();
         } else if ( is_admin() ) {
             // load resources required in admin screens only
             $controller = awpcp_user_profile_contact_information_controller();
@@ -527,6 +525,32 @@ class AWPCP {
 
 		$this->register_scripts();
 	}
+
+    private function ajax_setup() {
+        // load resources required to handle Ajax requests only.
+        $handler = awpcp_users_autocomplete_ajax_handler();
+        add_action( 'wp_ajax_awpcp-autocomplete-users', array( $handler, 'ajax' ) );
+        add_action( 'wp_ajax_nopriv_awpcp-autocomplete-users', array( $handler, 'ajax' ) );
+
+        $handler = awpcp_set_image_as_primary_ajax_handler();
+        add_action( 'wp_ajax_awpcp-set-image-as-primary', array( $handler, 'ajax' ) );
+        add_action( 'wp_ajax_nopriv_awpcp-set-image-as-primary', array( $handler, 'ajax' ) );
+
+        $handler = awpcp_update_file_enabled_status_ajax_handler();
+        add_action( 'wp_ajax_awpcp-update-file-enabled-status', array( $handler, 'ajax' ) );
+        add_action( 'wp_ajax_nopriv_awpcp-update-file-enabled-status', array( $handler, 'ajax' ) );
+
+        $handler = awpcp_delete_file_ajax_handler();
+        add_action( 'wp_ajax_awpcp-delete-file', array( $handler, 'ajax' ) );
+        add_action( 'wp_ajax_nopriv_awpcp-delete-file', array( $handler, 'ajax' ) );
+
+        $handler = awpcp_upload_listing_media_ajax_handler();
+        add_action( 'wp_ajax_awpcp-upload-listing-media', array( $handler, 'ajax' ) );
+        add_action( 'wp_ajax_nopriv_awpcp-upload-listing-media', array( $handler, 'ajax' ) );
+
+        $awpcp_media_manager = awpcp_new_media_manager();
+        $awpcp_media_manager->register_file_handler( awpcp_image_file_handler() );
+    }
 
 	public function admin_notices() {
 		foreach (awpcp_get_property($this, 'errors', array()) as $error) {

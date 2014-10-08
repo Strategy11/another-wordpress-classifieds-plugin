@@ -27,7 +27,7 @@ function( $, settings) {
                     listing: options.listingId,
                     nonce: options.nonce
                 },
-                chunk_size: '100000',
+                chunk_size: '10000000',
                 runtimes: 'html5,flash,silverlight,html4',
                 multiple_queues: true
             } )

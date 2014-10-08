@@ -67,16 +67,15 @@ class AWPCP_FileUploader {
 
         if ( $posted_data['chunk'] == $posted_data['chunks'] - 1 ) {
             $this->write_uploaded_chunks_to_file( $posted_data['chunks'], $file_path );
-            return $this->get_uploaded_file_info( $file_path, 'complete' );
+            return $this->get_uploaded_file_info( $posted_data['filename'], $file_path, 'complete' );
         } else {
-            return $this->get_uploaded_file_info( $chunk_path, 'incomplete' );
+            return $this->get_uploaded_file_info( $posted_data['filename'], $chunk_path, 'incomplete' );
         }
     }
 
     private function get_temporary_file_path( $filename ) {
-        // TODO: use set_runtime_option to get path to uploads directory
-        $uploads_dir_name = $this->settings->get_option( 'uploadfoldername' );
-        $tempory_dir_path = implode( DIRECTORY_SEPARATOR, array( rtrim( WP_CONTENT_DIR, DIRECTORY_SEPARATOR ), $uploads_dir_name, 'awpcp', 'tmp' ) );
+        $uploads_dir = $this->settings->get_runtime_option( 'awpcp-uploads-dir' );
+        $tempory_dir_path = implode( DIRECTORY_SEPARATOR, array( $uploads_dir, 'tmp' ) );
 
         $pathinfo = awpcp_utf8_pathinfo( $filename );
 
@@ -149,7 +148,7 @@ class AWPCP_FileUploader {
         fclose( $output );
     }
 
-    private function get_uploaded_file_info( $file_path, $progress='incomplete' ) {
+    private function get_uploaded_file_info( $realname, $file_path, $progress='incomplete' ) {
         $pathinfo = awpcp_utf8_pathinfo( $file_path );
 
         if ( function_exists( 'mime_content_type' ) ) {
@@ -159,8 +158,10 @@ class AWPCP_FileUploader {
         }
 
         return (object) array(
-            'name' => $pathinfo['basename'],
             'path' => $file_path,
+            'realname' => $realname,
+            'name' => $pathinfo['basename'],
+            'dirname' => $pathinfo['dirname'],
             'filename' => $pathinfo['filename'],
             'extension' => $pathinfo['extension'],
             'mime_type' => $mime_type,
@@ -171,6 +172,6 @@ class AWPCP_FileUploader {
     private function write_uploaded_file( $posted_data ) {
         $file_path = $this->get_temporary_file_path( $posted_data['filename'] );
         $this->write_uploaded_data_to_file( $file_path );
-        return $this->get_uploaded_file_info( $file_path, 'complete' );
+        return $this->get_uploaded_file_info( $posted_data['filename'], $file_path, 'complete' );
     }
 }

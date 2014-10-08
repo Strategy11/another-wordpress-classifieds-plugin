@@ -523,6 +523,7 @@ function awpcp_get_image_constraints() {
 /**
  * Create thumbnails and resize original image to match image size
  * restrictions.
+ * XXX: Moved to ImageFileProcessor class.
  */
 function awpcp_create_image_versions($filename, $directory) {
 	$directory = trailingslashit($directory);
@@ -553,6 +554,7 @@ function awpcp_create_image_versions($filename, $directory) {
 }
 
 /**
+ * XXX: Moved to ImageFileProcessor class.
  * @since 3.0.2
  */
 function awpcp_fix_image_rotation( $filepath ) {
@@ -634,6 +636,9 @@ function awpcp_rotate_image_with_gd( $filepath, $mime_type, $angle ) {
     }
 }
 
+/**
+ * XXX: Moved to ImageFileProcessor class.
+ */
 function awpcp_make_intermediate_size($file, $directory, $width, $height, $crop=false, $suffix='') {
 	$path_info = awpcp_utf8_pathinfo( $file );
 	$filename = preg_replace("/\.{$path_info['extension']}/", '', $path_info['basename']);
