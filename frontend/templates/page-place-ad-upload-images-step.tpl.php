@@ -23,26 +23,8 @@
 	<li><?php _e('Max image size', 'AWPCP') ?>: <strong><?php echo esc_html( $max_image_size / 1000 ); ?> KB</strong></li>
 </ul>
 
-<?php
-    $configuration = array(
-        'listingId' => $listing->ad_id,
-        'nonce' => wp_create_nonce( 'awpcp-upload-media-for-listing-' . $listing->ad_id ),
-        'allowedFiles' => array(
-            'images' => array(
-                'title' => __( 'Images', 'AWPCP' ),
-                'mimeTypes' => array( 'image/jpeg', 'image/png', 'image/gif' ),
-                'extensions' => array( 'jpg', 'png', 'gif' ),
-                'minFileSize' => 1000,
-                'maxFileSize' => 10000000,
-                'allowedFileCount' => 10,
-                'uploadedFileCount' => 9
-            ),
-        ),
-    );
-?>
-
 <?php $media_uploader = awpcp_media_uploader_component(); ?>
-<?php echo $media_uploader->render( $configuration ); ?>
+<?php echo $media_uploader->render( $media_uploader_configuration ); ?>
 
 <?php $media_manager = awpcp_media_manager_component(); ?>
 <?php echo $media_manager->render( $listing, $images ); ?>

@@ -12,7 +12,7 @@ class AWPCP_ImageFileProcessor {
         $this->settings = $settings;
     }
 
-    public function process_file( $listing_id, $file ) {
+    public function process_file( $listing, $file ) {
         $this->try_to_fix_image_rotation( $file );
         $this->resize_original_image( $file );
         $this->create_image_versions( $file );

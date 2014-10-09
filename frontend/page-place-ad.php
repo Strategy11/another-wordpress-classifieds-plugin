@@ -1121,13 +1121,29 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             return $this->preview_step();
         } else if ( $skip ) {
             return $this->checkout_step();
+        } else {
+            return $this->show_upload_images_form( $ad, $transaction, $params, $errors );
         }
+    }
 
-        // we are still here... let's show the upload images form
+    private function show_upload_images_form( $ad, $transaction, $params, $errors ) {
+        $upload_limits_by_type = awpcp_listing_upload_limits()->get_listing_upload_limits( $ad );
 
         $params = array_merge( $params, array(
             'hidden' => array( 'transaction_id' => $transaction->id ),
             'errors' => $errors,
+            'media_uploader_configuration' => array(
+                'listing_id' => $ad->ad_id,
+                'nonce' => wp_create_nonce( 'awpcp-upload-media-for-listing-' . $ad->ad_id ),
+                'allowed_files' => array_merge_recursive(
+                    $upload_limits_by_type,
+                    array(
+                        'images' => array(
+                            'title' => __( 'Images', 'AWPCP' )
+                        )
+                    )
+                ),
+            ),
         ) );
 
         return $this->upload_images_form( $ad, $params );

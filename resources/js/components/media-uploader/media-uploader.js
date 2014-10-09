@@ -24,7 +24,7 @@ function( $, settings) {
                 },
                 multipart_params: {
                     action: 'awpcp-upload-listing-media',
-                    listing: options.listingId,
+                    listing: options.listing_id,
                     nonce: options.nonce
                 },
                 chunk_size: '10000000',
@@ -46,7 +46,7 @@ function( $, settings) {
         }
 
         function getFileTypeFilters() {
-            return $.map( self.options.allowedFiles, function( group/*, index*/ ) {
+            return $.map( self.options.allowed_files, function( group, index ) {
                 return { title: group.title, extensions: group.extensions.join( ',' ) };
             } );
         }

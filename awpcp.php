@@ -193,7 +193,6 @@ require_once( AWPCP_DIR . "/includes/views/admin/account-balance/class-account-b
 require_once( AWPCP_DIR . "/includes/views/admin/settings/class-update-license-status-request-handler.php" );
 
 require_once( AWPCP_DIR . '/includes/media/class-file-uploader.php' );
-require_once( AWPCP_DIR . '/includes/media/class-image-constraints.php' );
 require_once( AWPCP_DIR . '/includes/media/class-image-file-handler.php' );
 require_once( AWPCP_DIR . '/includes/media/class-image-file-processor.php' );
 require_once( AWPCP_DIR . '/includes/media/class-image-file-validator.php' );

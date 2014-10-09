@@ -32,13 +32,13 @@ class AWPCP_NewMediaManager {
         $this->file_handlers[] = $file_handler;
     }
 
-    public function add_file( $listing_id, $uploaded_file ) {
+    public function add_file( $listing, $uploaded_file ) {
         $file_logic = $this->upload_file_logic_factory->create_file_logic( $uploaded_file );
 
         $file_handler = $this->get_file_handler( $file_logic );
-        $file_logic = $file_handler->handle_file( $listing_id, $file_logic );
+        $file_logic = $file_handler->handle_file( $listing, $file_logic );
 
-        return $this->create_media( $listing_id, $file_logic );
+        return $this->create_media( $listing, $file_logic );
     }
 
     private function get_file_handler( $uploaded_file ) {
@@ -49,12 +49,12 @@ class AWPCP_NewMediaManager {
         }
     }
 
-    private function create_media( $listing_id, $file_logic ) {
+    private function create_media( $listing, $file_logic ) {
         $uploads_dir = $this->settings->get_runtime_option( 'awpcp-uploads-dir' );
         $relative_path = str_replace( $uploads_dir, '', $file_logic->get_path() );
 
         return $this->media_saver->create( array(
-            'ad_id' => $listing_id,
+            'ad_id' => $listing->ad_id,
             'name' => $file_logic->get_name(),
             'path' => ltrim( $relative_path, DIRECTORY_SEPARATOR ),
             'mime_type' => $file_logic->get_mime_type(),

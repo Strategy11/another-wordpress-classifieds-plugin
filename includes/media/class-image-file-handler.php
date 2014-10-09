@@ -2,7 +2,7 @@
 
 function awpcp_image_file_handler() {
     return new AWPCP_ImageFileHandler(
-        awpcp_image_file_validator(),
+        awpcp_listing_image_file_validator(),
         awpcp_image_file_processor(),
         awpcp()->settings
     );
@@ -24,10 +24,10 @@ class AWPCP_ImageFileHandler {
         return $file->is_image();
     }
 
-    public function handle_file( $listing_id, $file ) {
-        $this->validator->validate_file( $listing_id, $file );
+    public function handle_file( $listing, $file ) {
+        $this->validator->validate_file( $listing, $file );
         $this->move_file_to( $file, 'images' );
-        $this->processor->process_file( $listing_id, $file );
+        $this->processor->process_file( $listing, $file );
 
         return $file;
     }
