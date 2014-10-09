@@ -26,10 +26,14 @@ class AWPCP_UploadListingMediaAjaxHandler extends AWPCP_AjaxHandler {
     public function ajax() {
         $listing_id = $this->request->post( 'listing' );
 
-        if ( $this->is_user_authorized_to_upload_media_to_listing( $listing_id ) ) {
-            $this->process_uploaded_file( $listing_id );
-        } else {
-            $this->forbidden( __( 'You are not authorized to upload files.', 'AWPCP' ) );
+        if ( ! $this->is_user_authorized_to_upload_media_to_listing( $listing_id ) ) {
+            return $this->multiple_errors_response( __( 'You are not authorized to upload files.', 'AWPCP' ) );
+        }
+
+        try {
+            return $this->process_uploaded_file( $listing_id );
+        } catch ( AWPCP_Exception $e ) {
+            return $this->multiple_errors_response( $e->get_errors() );
         }
     }
 
@@ -47,8 +51,23 @@ class AWPCP_UploadListingMediaAjaxHandler extends AWPCP_AjaxHandler {
         $uploaded_file = $this->uploader->get_uploaded_file();
 
         if ( $uploaded_file->is_complete ) {
-            $media = $this->media_manager->add_file( $listing_id, $uploaded_file );
-            return $this->success();
+            $file = $this->media_manager->add_file( $listing_id, $uploaded_file );
+
+            return $this->success( array(
+                'file' => array(
+                    'id' => $file->id,
+                    'name' => $file->name,
+                    'listingId' => $file->ad_id,
+                    'enabled' => $file->enabled,
+                    'status' => $file->status,
+                    'isImage' => $file->is_image(),
+                    'isVideo' => $file->is_video(),
+                    'isPrimary' => $file->is_primary(),
+                    'thumbnailUrl' => $file->get_url( 'thumbnail' ),
+                    'iconUrl' => $file->get_icon_url(),
+                    'url' => $file->get_url(),
+                ),
+            ) );
         } else {
             return $this->success();
         }

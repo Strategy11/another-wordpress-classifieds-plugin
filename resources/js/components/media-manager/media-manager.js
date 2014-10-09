@@ -20,6 +20,8 @@ function( $, ko, FileViewModel, settings ) {
         vm.getFileCSSClasses = getFileCSSClasses;
         vm.getFileId = getFileId;
 
+        $.subscribe( '/file/uploaded', onFileUploaded );
+
         function prepareFiles( files ) {
             return $.map( files, function( file ) {
                 var model = new FileViewModel( file );
@@ -126,6 +128,10 @@ function( $, ko, FileViewModel, settings ) {
 
         function getFileId( file ) {
             return 'file-' + file.id;
+        }
+
+        function onFileUploaded( event, file ) {
+            vm.files.push( new FileViewModel( file ) );
         }
     };
 

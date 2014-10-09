@@ -239,11 +239,16 @@ function( $, ko, MediaManager, MediaUploader, settings ) {
             var form = container.find('.awpcp-upload-images-form');
 
             if (form.length) {
-                var mediaManagerOptions = settings.get( 'media-manager-data' );
+                var mediaManagerOptions = settings.get( 'media-manager-data' ),
+                    mediaUploaderOptions = settings.get( 'media-uploader-data' );
 
-                ko.applyBindings( new MediaManager( mediaManagerOptions.nonce, mediaManagerOptions.files ), $( '.awpcp-media-manager' ).get( 0 ) );
+                if ( mediaManagerOptions ) {
+                    ko.applyBindings( new MediaManager( mediaManagerOptions.nonce, mediaManagerOptions.files ), $( '.awpcp-media-manager' ).get( 0 ) );
+                }
 
-                $.noop( new MediaUploader( $( '#awpcp-media-uploader' ), settings.get( 'media-uploader-data' ) ) );
+                if ( mediaUploaderOptions ) {
+                    $.noop( new MediaUploader( $( '#awpcp-media-uploader' ), mediaUploaderOptions ) );
+                }
 
                 var radios = form.find('.uploadform :radio').change(function() {
                     radios.closest('li').removeClass('primary').addClass('not-primary');

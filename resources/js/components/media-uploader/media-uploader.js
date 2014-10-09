@@ -34,15 +34,14 @@ function( $, settings) {
             .pluploadQueue();
 
         self.uploader.bind( 'FileUploaded', onFileUplaoded );
-        self.uploader.bind( 'Error', onError );
 
         function filterFileBySize( enabled, file, done ) {
-            console.log( 'filterFileBySize', file );
+            window.console.log( 'filterFileBySize', file );
             done( true );
         }
 
         function filterFileByCount( enabled, file, done ) {
-            console.log( 'filterFileByCount', file );
+            window.console.log( 'filterFileByCount', file );
             done( true );
         }
 
@@ -52,13 +51,22 @@ function( $, settings) {
             } );
         }
 
-        function onFileUplaoded( uploader, file, response ) {
-            console.log( 'FileUplaoded', uploader, file, response.response, $.parseJSON( response.response ) );
-            file.status = plupload.FAILED;
+        function onFileUplaoded( uploader, file, data ) {
+            var response = $.parseJSON( data.response );
+
+            window.console.log( 'FileUplaoded', uploader, file, data, response );
+
+            if ( response.status === 'ok' && response.file ) {
+                $.publish( '/file/uploaded', response.file );
+            } else if ( response.status === 'ok' ) {
+                // upload in progress?
+            } else {
+                file.status = plupload.FAILED;
+            }
         }
 
         function onError( /*uploader, error*/ ) {
-            console.error( 'Error', arguments );
+            window.console.error( 'Error', arguments );
         }
     };
 
