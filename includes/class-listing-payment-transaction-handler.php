@@ -40,12 +40,12 @@ class AWPCP_ListingPaymentTransactionHandler {
                 $this->listings_logic->update_listing_verified_status( $listing, $transaction );
                 $this->maybe_enable_listing( $listing, $transaction, $trigger_actions );
             }
+
+            if ( ! $transaction->get( 'ad-consolidated-at' ) ) {
+                $this->listings_logic->consolidate_new_ad( $listing, $transaction );
+            }
         } else if ( $transaction->did_payment_failed() && $listing_had_accepted_payment_status ) {
             $listing->disable( $trigger_actions );
-        }
-
-        if ( ! $transaction->get( 'ad-consolidated-at' ) ) {
-            $this->listings_logic->consolidate_new_ad( $listing, $transaction );
         }
 
         $listing->save();
