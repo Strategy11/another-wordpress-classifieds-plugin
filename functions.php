@@ -407,8 +407,13 @@ function awpcp_admin_capability() {
  * AWPCP settings.
  */
 function awpcp_current_user_is_admin() {
-	$capability = awpcp_admin_capability();
-	return current_user_can($capability);
+    // If the current user is being setup before the "init" action has fired,
+    // strange (and difficult to debug) role/capability issues will occur.
+    if ( ! did_action( 'set_current_user' ) ) {
+        _doing_it_wrong( __FUNCTION__, "Trying to call awpcp_current_user_is_admin() before the current user has been set", 'next-release' );
+    }
+
+	return current_user_can( awpcp_admin_capability() );
 }
 
 
