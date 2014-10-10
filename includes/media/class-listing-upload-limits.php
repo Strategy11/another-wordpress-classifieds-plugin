@@ -33,7 +33,7 @@ class AWPCP_ListingUploadLimits {
         $payment_term = $this->payments->get_ad_payment_term( $listing );
 
         return apply_filters(
-            'awpcp-listing-upload-limits-by-file-type',
+            'awpcp-listing-upload-limits',
             array( 'images' => $this->get_upload_limits_for_images( $listing, $payment_term ) ),
             $listing,
             $payment_term
