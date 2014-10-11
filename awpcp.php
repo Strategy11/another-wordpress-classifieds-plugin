@@ -549,8 +549,8 @@ class AWPCP {
         add_action( 'wp_ajax_awpcp-upload-listing-media', array( $handler, 'ajax' ) );
         add_action( 'wp_ajax_nopriv_awpcp-upload-listing-media', array( $handler, 'ajax' ) );
 
-        $awpcp_media_manager = awpcp_new_media_manager();
-        $awpcp_media_manager->register_file_handler( awpcp_image_file_handler() );
+        $media_manager = awpcp_new_media_manager();
+        $media_manager->register_file_handler( awpcp_image_file_handler() );
     }
 
 	public function admin_notices() {
