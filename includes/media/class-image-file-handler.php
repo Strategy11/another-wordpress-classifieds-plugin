@@ -17,7 +17,7 @@ class AWPCP_ImageFileHandler extends AWPCP_ListingFileHandler {
     }
 
     public function can_handle( $file ) {
-        return $file->is_image();
+        return in_array( $file->get_mime_type(), $this->settings->get_runtime_option( 'image-mime-types' ) );
     }
 
     protected function move_file( $file ) {

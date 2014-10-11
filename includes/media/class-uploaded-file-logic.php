@@ -15,10 +15,6 @@ class AWPCP_UploadedFileLogic {
         return $this->file->mime_type;
     }
 
-    public function is_image() {
-        return in_array( $this->file->mime_type, $this->settings->get_runtime_option( 'image-mime-types' ) );
-    }
-
     public function get_path() {
         return $this->file->path;
     }
