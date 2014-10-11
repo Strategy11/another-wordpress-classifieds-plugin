@@ -47,6 +47,8 @@ class AWPCP_NewMediaManager {
                 return $handler;
             }
         }
+
+        throw new AWPCP_Exception( _x( 'There is no file handler for this kind of file. Aborting.', 'file uploads', 'AWPCP' ) );
     }
 
     private function create_media( $listing, $file_logic ) {
