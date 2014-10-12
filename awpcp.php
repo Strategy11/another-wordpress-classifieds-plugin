@@ -321,8 +321,10 @@ class AWPCP {
 
         $uploads_dir_name = $this->settings->get_option( 'uploadfoldername' );
         $uploads_dir = implode( DIRECTORY_SEPARATOR, array( rtrim( WP_CONTENT_DIR, DIRECTORY_SEPARATOR ), $uploads_dir_name, 'awpcp' ) );
+        $uploads_url = implode( '/', array( rtrim( WP_CONTENT_URL, '/' ), $uploads_dir_name, 'awpcp' ) );
 
         $this->settings->set_runtime_option( 'awpcp-uploads-dir', $uploads_dir );
+        $this->settings->set_runtime_option( 'awpcp-uploads-url', $uploads_url );
     }
 
 	/**
