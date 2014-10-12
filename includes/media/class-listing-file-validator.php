@@ -81,5 +81,7 @@ abstract class AWPCP_ListingFileValidator {
         }
     }
 
-    abstract protected function additional_verifications( $file, $upload_limits );
+    protected function additional_verifications( $file, $upload_limits ) {
+        // nothing here!
+    }
 }
