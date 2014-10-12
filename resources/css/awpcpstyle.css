@@ -1100,6 +1100,16 @@ p.ad_status_msg {
   /* Uploaded File */
   /* Uploaded File States */
   /* Uploaded File Actions */
+  /* Uploaded File Actions */
+  /* Uploaded Video Actions */
+}
+#classiwrapper .awpcp-uploaded-files-group-title {
+  background: #EEE;
+  border: 1px solid #DDD;
+  font-size: 1.2em;
+  margin: 10px 0;
+  padding: 4px;
+  text-align: center;
 }
 #classiwrapper .awpcp-uploaded-files-list {
   margin-bottom: 10px;
@@ -1109,8 +1119,8 @@ p.ad_status_msg {
   border: 1px solid #E2E2E2;
   float: left;
   list-style-type: none;
-  margin: 0 5px 30px;
-  min-width: 180px;
+  margin: 0 5px 10px;
+  width: 180px;
   padding: 3px;
   position: relative;
   text-align: center;
@@ -1155,6 +1165,24 @@ p.ad_status_msg {
 #classiwrapper .is-rejected {
   background: #ffb3b3;
   border-color: #FC9393;
+}
+#classiwrapper .awpcp-uploaded-files-table {
+  margin: 0;
+}
+#classiwrapper .awpcp-uploaded-files-table td {
+  padding: 3px;
+  vertical-align: middle;
+}
+#classiwrapper .awpcp-uploaded-files-table .awpcp-uploaded-file {
+  float: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+}
+#classiwrapper .awpcp-uploaded-files-table .awpcp-uploaded-file-name {
+  padding-left: 8px;
+  text-align: left;
 }
 #classiwrapper .awpcp-uploaded-file-actions {
   padding-top: 5px;
@@ -1214,6 +1242,9 @@ p.ad_status_msg {
 }
 #classiwrapper .awpcp-spinner-visible {
   display: block;
+}
+#classiwrapper .awpcp-uploaded-video-delete-action a {
+  background-image: url(../images/film_delete.png);
 }
 .awpcp-multiple-region-selector .add-region,
 .awpcp-multiple-region-selector .remove-region {

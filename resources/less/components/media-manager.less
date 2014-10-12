@@ -1,17 +1,26 @@
 #classiwrapper {
-    /* Uploaded File */
+    .awpcp-uploaded-files-group-title {
+        background: #EEE;
+        border: 1px solid #DDD;
+        font-size: 1.2em;
+        margin: 10px 0;
+        padding: 4px;
+        text-align: center;
+    }
 
     .awpcp-uploaded-files-list {
         margin-bottom: 10px;
     }
+
+    /* Uploaded File */
 
     .awpcp-uploaded-file {
         background: #EEE;
         border: 1px solid #E2E2E2;
         float: left;
         list-style-type: none;
-        margin: 0 5px 30px;
-        min-width: 180px;
+        margin: 0 5px 10px;
+        width: 180px;
         padding: 3px;
         position: relative;
         text-align: center;
@@ -66,6 +75,30 @@
     }
     .is-approved {
         // background: @attachment_approved_background;
+    }
+
+    /* Uploaded File Actions */
+
+    .awpcp-uploaded-files-table {
+        margin: 0;
+
+        td {
+            padding: 3px;
+            vertical-align: middle;
+        }
+
+        .awpcp-uploaded-file {
+            float: none;
+            border: none;
+            margin: 0;
+            padding: 0;
+            width: auto;
+        }
+
+        .awpcp-uploaded-file-name {
+            padding-left: 8px;
+            text-align: left;
+        }
     }
 
     /* Uploaded File Actions */
@@ -138,5 +171,11 @@
     }
     .awpcp-spinner-visible {
         display: block;
+    }
+
+    /* Uploaded Video Actions */
+
+    .awpcp-uploaded-video-delete-action a {
+        background-image: @delete_video_icon_url;
     }
 }
