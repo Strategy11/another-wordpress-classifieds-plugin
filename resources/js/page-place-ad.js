@@ -236,25 +236,27 @@ function( $, ko, MediaManager, MediaUploader, settings ) {
         /* Upload Images Form */
 
         (function() {
-            var form = container.find('.awpcp-upload-images-form');
+            var mediaManager = $( '.awpcp-media-manager' ),
+                mediaManagerOptions = settings.get( 'media-manager-data' ),
+                mediaUploader = $( '#awpcp-media-uploader' ),
+                mediaUploaderOptions = settings.get( 'media-uploader-data' );
 
-            if (form.length) {
-                var mediaManagerOptions = settings.get( 'media-manager-data' ),
-                    mediaUploaderOptions = settings.get( 'media-uploader-data' );
-
-                if ( mediaManagerOptions ) {
-                    ko.applyBindings( new MediaManager( mediaManagerOptions.nonce, mediaManagerOptions.files ), $( '.awpcp-media-manager' ).get( 0 ) );
-                }
-
-                if ( mediaUploaderOptions ) {
-                    $.noop( new MediaUploader( $( '#awpcp-media-uploader' ), mediaUploaderOptions ) );
-                }
-
-                var radios = form.find('.uploadform :radio').change(function() {
-                    radios.closest('li').removeClass('primary').addClass('not-primary');
-                    $(this).closest('li').removeClass('not-primary').addClass('primary');
-                });
+            if ( mediaManager.length && mediaManagerOptions ) {
+                ko.applyBindings( new MediaManager( mediaManagerOptions ), mediaManager.get( 0 ) );
             }
+
+            if ( mediaUploader.length && mediaUploaderOptions ) {
+                $.noop( new MediaUploader( mediaUploader, mediaUploaderOptions ) );
+            }
+            // var form = container.find('.awpcp-upload-images-form');
+
+            // if (form.length) {
+
+            //     var radios = form.find('.uploadform :radio').change(function() {
+            //         radios.closest('li').removeClass('primary').addClass('not-primary');
+            //         $(this).closest('li').removeClass('not-primary').addClass('primary');
+            //     });
+            // }
         })();
 
         /* Deleta Ad Form */

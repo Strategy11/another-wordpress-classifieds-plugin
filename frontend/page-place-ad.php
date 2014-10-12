@@ -1127,22 +1127,19 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
     }
 
     private function show_upload_images_form( $ad, $transaction, $params, $errors ) {
-        $upload_limits_by_type = awpcp_listing_upload_limits()->get_listing_upload_limits( $ad );
+        $allowed_files = awpcp_listing_upload_limits()->get_listing_upload_limits( $ad );
 
         $params = array_merge( $params, array(
             'hidden' => array( 'transaction_id' => $transaction->id ),
             'errors' => $errors,
+            'media_manager_configuration' => array(
+                'nonce' => wp_create_nonce( 'manage-listing-media-' . $ad->ad_id ),
+                'allowed_files' => $allowed_files,
+            ),
             'media_uploader_configuration' => array(
                 'listing_id' => $ad->ad_id,
                 'nonce' => wp_create_nonce( 'awpcp-upload-media-for-listing-' . $ad->ad_id ),
-                'allowed_files' => array_merge_recursive(
-                    $upload_limits_by_type,
-                    array(
-                        'images' => array(
-                            'title' => __( 'Images', 'AWPCP' )
-                        )
-                    )
-                ),
+                'allowed_files' => $allowed_files,
             ),
         ) );
 
@@ -1169,7 +1166,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
         $params = array_merge( $params, array(
             'listing' => $ad,
-            'images' => awpcp_media_api()->find_images_by_ad_id( $ad->ad_id ),
+            'files' => awpcp_media_api()->find_by_ad_id( $ad->ad_id ),
             'is_primary_set' => awpcp_media_api()->listing_has_primary_image( $ad ),
             'messages' => $this->messages,
             'actions' => array(

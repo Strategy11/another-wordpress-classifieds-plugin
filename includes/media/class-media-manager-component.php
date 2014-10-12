@@ -12,11 +12,10 @@ class AWPCP_MediaManagerComponent {
         $this->javascript = $javascript;
     }
 
-    public function render( $listing, $files = array() ) {
-        $this->javascript->set( 'media-manager-data', array(
-            'files' => $this->prepare_files( $files ),
-            'nonce' => wp_create_nonce( 'manage-listing-media-' . $listing->ad_id )
-        ) );
+    public function render( $files = array(), $options = array() ) {
+        $options['files'] = $this->prepare_files( $files );
+
+        $this->javascript->set( 'media-manager-data', $options );
 
         return $this->render_component();
     }
@@ -31,8 +30,8 @@ class AWPCP_MediaManagerComponent {
                 'listingId' => $file->ad_id,
                 'enabled' => $file->enabled,
                 'status' => $file->status,
+                'mimeType' => $file->mime_type,
                 'isImage' => $file->is_image(),
-                'isVideo' => $file->is_video(),
                 'isPrimary' => $file->is_primary(),
                 'thumbnailUrl' => $file->get_url( 'thumbnail' ),
                 'iconUrl' => $file->get_icon_url(),

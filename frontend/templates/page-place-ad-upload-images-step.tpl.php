@@ -27,7 +27,7 @@
 <?php echo $media_uploader->render( $media_uploader_configuration ); ?>
 
 <?php $media_manager = awpcp_media_manager_component(); ?>
-<?php echo $media_manager->render( $listing, $images ); ?>
+<?php echo $media_manager->render( $files, $media_manager_configuration ); ?>
 
 <form class="awpcp-upload-images-form" method="post" enctype="multipart/form-data">
 	<h3><?php _e('Add Images', 'AWPCP') ?></h3>

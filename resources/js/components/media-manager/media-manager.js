@@ -2,10 +2,10 @@
 /* global AWPCP */
 AWPCP.define( 'awpcp/media-manager', [ 'jquery', 'knockout', 'awpcp/file-view-model', 'awpcp/settings' ],
 function( $, ko, FileViewModel, settings ) {
-    var MediaManager = function( nonce, files ) {
+    var MediaManager = function( options ) {
         var vm = this;
 
-        vm.files = ko.observableArray( prepareFiles( files ) );
+        vm.files = ko.observableArray( prepareFiles( options.files ) );
         vm.images = ko.computed( filterImageFiles );
         vm.videos = ko.computed( filterVideoFiles );
         vm.others = ko.computed( filterOtherFiles );
@@ -31,15 +31,21 @@ function( $, ko, FileViewModel, settings ) {
         }
 
         function filterImageFiles() {
-            return $.grep( vm.files(), function( file ) { return file.isImage; } );
+            return $.grep( vm.files(), function( file ) {
+                return $.inArray( file.mimeType, options.allowed_files.images.mime_types ) !== -1;
+            } );
         }
 
         function filterVideoFiles() {
-            return $.grep( vm.files(), function( file ) { return file.isVideo; } );
+            return $.grep( vm.files(), function( file ) {
+                return $.inArray( file.mimeType, options.allowed_files.videos.mime_types ) !== -1;
+            } );
         }
 
         function filterOtherFiles() {
-            return $.grep( vm.files(), function( file ) { return ( ! file.isImage && ! file.isVideo ); } );
+            return $.grep( vm.files(), function( file ) {
+                return $.inArray( file.mimeType, options.allowed_files.others.mime_types ) !== -1;
+            } );
         }
 
         function haveImages() {
@@ -58,7 +64,7 @@ function( $, ko, FileViewModel, settings ) {
             file.isBeingModified( true );
 
             $.post( settings.get( 'ajaxurl' ), {
-                nonce: nonce,
+                nonce: options.nonce,
                 action: 'awpcp-set-image-as-primary',
                 listing_id: file.listingId,
                 file_id: file.id
@@ -84,7 +90,7 @@ function( $, ko, FileViewModel, settings ) {
             }
 
             $.post( settings.get( 'ajaxurl' ), {
-                nonce: nonce,
+                nonce: options.nonce,
                 action: 'awpcp-update-file-enabled-status',
                 listing_id: file.listingId,
                 file_id: file.id,
@@ -101,7 +107,7 @@ function( $, ko, FileViewModel, settings ) {
             file.isBeingModified( true );
 
             $.post( settings.get( 'ajaxurl' ), {
-                nonce: nonce,
+                nonce: options.nonce,
                 action: 'awpcp-delete-file',
                 listing_id: file.listingId,
                 file_id: file.id

@@ -1,4 +1,4 @@
-<div class="apwcp-media-manager">
+<div class="awpcp-media-manager">
     <div class="awpcp-uploaded-images" data-bind="if: haveImages">
         <h3><?php echo esc_html( __( 'Images', 'AWPCP' ) ); ?></h3>
         <ul class="awpcp-uploaded-files-list clearfix" data-bind="foreach: { data: images, as: 'image' }">

@@ -7,12 +7,11 @@ function( ko ) {
         vm.id = file.id;
         vm.name = file.name;
         vm.listingId = file.listingId;
+        vm.mimeType = file.mimeType;
 
         vm.enabled = ko.observable( !! parseInt( file.enabled, 10 ) );
         vm.status = ko.observable( file.status );
 
-        vm.isImage = !! file.isImage;
-        vm.isVideo = !! file.isVideo;
         vm.isPrimary = ko.observable( !! file.isPrimary );
         vm.isBeingModified = ko.observable( false );
 
