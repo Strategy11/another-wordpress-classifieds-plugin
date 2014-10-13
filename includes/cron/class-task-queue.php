@@ -20,8 +20,8 @@ class AWPCP_TaskQueue {
         $this->settings = $settings;
     }
 
-    public function add_task( $name, $handler, $params ) {
-        $this->tasks->create_task( $name, $handler, $params );
+    public function add_task( $name, $params ) {
+        $this->tasks->create_task( $name, $params );
         $this->schedule_next_task_queue_event();
     }
 
@@ -29,13 +29,11 @@ class AWPCP_TaskQueue {
         $next_event_timestamp = $this->get_next_scheduled_event_timestamp();
         $current_time_timestamp = time();
 
-        debugp( $next_event_timestamp, $current_time_timestamp, $next_event_timestamp - $current_time_timestamp );
-
         if ( $next_event_timestamp && ( $next_event_timestamp - $current_time_timestamp <= 60 ) ) {
             return;
         }
 
-        wp_schedule_single_event( $current_time_timestamp + 10, 'awpcp-task-queue-event', array( 'created_at' => $current_time_timestamp ) );
+        wp_schedule_single_event( $current_time_timestamp + 5, 'awpcp-task-queue-event', array( 'created_at' => $current_time_timestamp ) );
     }
 
     /**
@@ -63,13 +61,9 @@ class AWPCP_TaskQueue {
             return;
         }
 
-        $next_tasks = $this->tasks->get_next_n_tasks( 2 );
+        $this->process_next_task();
 
-        if ( $next_task = array_shift( $next_tasks ) ) {
-            $this->run_task( $next_task );
-        }
-
-        if ( $next_task = array_shift( $next_tasks ) ) {
+        if ( $this->have_more_tasks() ) {
             $this->schedule_next_task_queue_event();
         }
 
@@ -93,28 +87,60 @@ class AWPCP_TaskQueue {
         return implode( DIRECTORY_SEPARATOR, array( $this->settings->get_runtime_option( 'awpcp-uploads-dir' ), 'task-queue.lock' ) );
     }
 
+    private function process_next_task() {
+        try {
+            $next_task = $this->tasks->get_next_task();
+        } catch ( AWPCP_Exception $e ) {
+            trigger_error( $e->format_errors() );
+            return;
+        }
+
+        $this->process_task( $next_task );
+    }
+
+    private function process_task( $task ) {
+        try {
+            $task_was_executed_succesfully = $this->run_task( $task );
+
+            if ( $task_was_executed_succesfully ) {
+                $this->remove_task( $task );
+            } else {
+                $this->reschedule_task( $task  );
+            }
+        } catch ( AWPCP_Exception $e ) {
+            trigger_error( $e->format_errors() );
+        }
+    }
+
     private function run_task( $task ) {
         try {
-            $task_handler = $task->get_handler( $task );
-            $exit_code = call_user_func( array( $task_handler, 'run' ), $task->get_handler_parameters() );
+            $exit_code = apply_filters( "awpcp-task-{$task->get_name()}", false, $task->get_parameters() );
         } catch ( AWPCP_Exception $e ) {
             trigger_error( $e->format_errors() );
             $exit_code = false;
         }
 
-        if ( $exit_code ) {
-            $this->remove_task( $task );
-        } else {
-            $this->reschedule_task( $task );
-        }
+        return $exit_code;
     }
 
     private function remove_task( $task ) {
-        trigger_error( 'Trying to remove a task.' );
+        $this->tasks->delete_task( $task->get_id() );
+        trigger_error( 'Task ' . $task->get_id() . ' deleted.' );
     }
 
     private function reschedule_task( $task ) {
-        trigger_error( 'Trying to reschedule a task.' );
+        $this->tasks->update_task( $task->get_id(), current_time( 'mysql' ) );
+        trigger_error( 'Task ' . $task->get_id() . ' rescheduled.' );
+    }
+
+    private function have_more_tasks() {
+        try {
+            $next_task = $this->tasks->get_next_task();
+        } catch ( AWPCP_Exception $e ) {
+            return false;
+        }
+
+        return true;
     }
 
     private function release_lock() {
@@ -135,7 +161,12 @@ function awpcp_test_task_handler() {
 
 class AWPCP_TestTaskHandler {
 
-    public function run( $params ) {
-        throw new AWPCP_Exception( print_r( $params, true ) );
+    public function run( $exit_code, $params ) {
+        if ( mt_rand( 1, 100 ) <= 25 ) {
+            throw new AWPCP_Exception( 'Execution of test task failed. The task parameters were: ' . print_r( $params, true ) );
+        } else {
+            trigger_error( 'All good. Test task was executed successfully.' );
+            return true;
+        }
     }
 }
