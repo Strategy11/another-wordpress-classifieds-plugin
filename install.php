@@ -15,6 +15,7 @@ define('AWPCP_TABLE_PAYMENTS', $wpdb->prefix . 'awpcp_payments');
 define('AWPCP_TABLE_CREDIT_PLANS', $wpdb->prefix . 'awpcp_credit_plans');
 define('AWPCP_TABLE_PAGES', $wpdb->prefix . "awpcp_pages");
 define('AWPCP_TABLE_PAGENAME', $wpdb->prefix . "awpcp_pagename");
+define('AWPCP_TABLE_TASKS', $wpdb->prefix . "awpcp_tasks");
 
 define('AWPCP_TABLE_ADSETTINGS', $wpdb->prefix . "awpcp_adsettings");
 define('AWPCP_TABLE_ADPHOTOS', $wpdb->prefix . "awpcp_adphotos");
@@ -158,6 +159,16 @@ class AWPCP_Installer {
             `meta_value` LONGTEXT,
             PRIMARY KEY  (`meta_id`)
         ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;";
+
+        $this->create_tasks_table =
+        "CREATE TABLE IF NOT EXISTS " . AWPCP_TABLE_TASKS . " (
+            `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+            `name` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+            `metadata` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+            `executed_at` DATETIME,
+            `created_at` DATETIME NOT NULL,
+            PRIMARY KEY  (`id`)
+        ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;";
     }
 
     public static function instance() {
@@ -255,6 +266,8 @@ class AWPCP_Installer {
 
         // create Credit Plans table
         dbDelta($this->create_credit_plans_table);
+
+        dbDelta( $this->create_tasks_table );
 
 
         // insert deafult category
@@ -1085,6 +1098,7 @@ class AWPCP_Installer {
     }
 
     private function upgrade_to_3_3_2( $oldversion ) {
+        // fix media mime type
         global $wpdb;
 
         $files_with_empty_mime_type = $wpdb->get_var( 'SELECT COUNT(id) FROM ' . AWPCP_TABLE_MEDIA . " WHERE mime_type = ''" );
@@ -1092,6 +1106,9 @@ class AWPCP_Installer {
         if ( $files_with_empty_mime_type > 0 ) {
             update_option( 'awpcp-enable-fix-media-mime-type-upgrde', true );
         }
+
+        // create tasks table
+        dbDelta( $this->create_tasks_table );
     }
 
     private function upgrade_to_3_3_3( $oldversion ) {
