@@ -192,6 +192,11 @@ require_once( AWPCP_DIR . "/includes/views/admin/account-balance/class-account-b
 require_once( AWPCP_DIR . "/includes/views/admin/account-balance/class-account-balance-page-summary-step.php" );
 require_once( AWPCP_DIR . "/includes/views/admin/settings/class-update-license-status-request-handler.php" );
 
+require_once( AWPCP_DIR . '/includes/cron/class-task-queue.php' );
+require_once( AWPCP_DIR . '/includes/cron/class-task-logic-factory.php' );
+require_once( AWPCP_DIR . '/includes/cron/class-task-logic.php' );
+require_once( AWPCP_DIR . '/includes/cron/class-tasks-collection.php' );
+
 require_once( AWPCP_DIR . '/includes/media/class-listing-file-handler.php' );
 require_once( AWPCP_DIR . '/includes/media/class-listing-file-validator.php' );
 require_once( AWPCP_DIR . '/includes/media/class-file-uploader.php' );
@@ -525,6 +530,9 @@ class AWPCP {
             add_action( 'wp_loaded', 'flush_rewrite_rules' );
             update_option( 'awpcp-flush-rewrite-rules', false );
 		}
+
+        add_action( 'awpcp-task-queue-event', array( awpcp_task_queue(), 'task_queue_event' ) );
+        awpcp_task_queue()->add_task( 'test-tasks', 'awpcp_test_task_handler', array( 'foo' => current_time( 'mysql' ) ) );
 
 		$this->register_scripts();
 	}
