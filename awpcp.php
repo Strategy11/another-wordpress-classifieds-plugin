@@ -532,12 +532,6 @@ class AWPCP {
 		}
 
         add_action( 'awpcp-task-queue-event', array( awpcp_task_queue(), 'task_queue_event' ) );
-        add_filter( 'awpcp-task-test-tasks', array( awpcp_test_task_handler(), 'run' ), 10, 2 );
-
-        if ( mt_rand( 1, 100 ) < 1 ) {
-            awpcp_task_queue()->add_task( 'test-tasks', array( 'foo' => current_time( 'mysql' ) ) );
-        }
-
 		$this->register_scripts();
 	}
 

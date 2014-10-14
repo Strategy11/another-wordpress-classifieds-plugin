@@ -153,20 +153,3 @@ class AWPCP_TaskQueue {
         }
     }
 }
-
-
-function awpcp_test_task_handler() {
-    return new AWPCP_TestTaskHandler();
-}
-
-class AWPCP_TestTaskHandler {
-
-    public function run( $exit_code, $params ) {
-        if ( mt_rand( 1, 100 ) <= 25 ) {
-            throw new AWPCP_Exception( 'Execution of test task failed. The task parameters were: ' . print_r( $params, true ) );
-        } else {
-            trigger_error( 'All good. Test task was executed successfully.' );
-            return true;
-        }
-    }
-}
