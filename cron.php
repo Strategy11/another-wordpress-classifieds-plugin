@@ -243,10 +243,10 @@ function awpcp_clean_up_non_verified_ads( /* AWPCP_ListingsAPI */ $listings, $se
 
     // delete Ads that have been in a non-verified state for more than M days
 
-    $conditions = array(
+    $conditions = AWPCP_Ad::get_where_conditions_for_successfully_paid_listings( array(
         'verified = 0',
         $wpdb->prepare( 'ad_postdate < ADDDATE( NOW(), INTERVAL -%d DAY )', $delete_ads_threshold )
-    );
+    ) );
 
     foreach ( AWPCP_Ad::find( join( ' AND ', $conditions ) ) as $ad ) {
         $ad->delete();
@@ -254,10 +254,10 @@ function awpcp_clean_up_non_verified_ads( /* AWPCP_ListingsAPI */ $listings, $se
 
     // re-send verificaiton email for Ads that have been in a non-verified state for more than N days
 
-    $conditions = array(
+    $conditions = AWPCP_Ad::get_where_conditions_for_successfully_paid_listings( array(
         'verified = 0',
         $wpdb->prepare( 'ad_postdate < ADDDATE( NOW(), INTERVAL -%d DAY )', $resend_email_threshold )
-    );
+    ) );
 
     foreach ( AWPCP_Ad::find( join( ' AND ', $conditions ) ) as $ad ) {
         if ( intval( awpcp_get_ad_meta( $ad->ad_id, 'verification_emails_sent', true ) ) <= 1 ) {
