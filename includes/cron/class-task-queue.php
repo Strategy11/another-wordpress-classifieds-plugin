@@ -20,8 +20,8 @@ class AWPCP_TaskQueue {
         $this->settings = $settings;
     }
 
-    public function add_task( $name, $params ) {
-        $this->tasks->create_task( $name, $params );
+    public function add_task( $name, $metadata ) {
+        $this->tasks->create_task( $name, $metadata );
         $this->schedule_next_task_queue_event();
     }
 
@@ -89,48 +89,36 @@ class AWPCP_TaskQueue {
 
     private function process_next_task() {
         try {
-            $next_task = $this->tasks->get_next_task();
+            $this->process_task( $this->tasks->get_next_task() );
         } catch ( AWPCP_Exception $e ) {
             trigger_error( $e->format_errors() );
             return;
         }
-
-        $this->process_task( $next_task );
     }
 
     private function process_task( $task ) {
-        try {
-            $task_was_executed_succesfully = $this->run_task( $task );
+        if ( ! $this->run_task( $task ) ) {
+            $task->fail();
+        }
 
-            if ( $task_was_executed_succesfully ) {
-                $this->remove_task( $task );
-            } else {
-                $this->reschedule_task( $task  );
-            }
-        } catch ( AWPCP_Exception $e ) {
-            trigger_error( $e->format_errors() );
+        if ( $task->is_delayed() || $task->failed() ) {
+            $this->tasks->update_task( $task );
+            trigger_error( 'Task ' . $task->get_id() . ' updated.' );
+        } else if ( $task->is_complete() ) {
+            $this->tasks->delete_task( $task->get_id() );
+            trigger_error( 'Task ' . $task->get_id() . ' deleted.' );
         }
     }
 
     private function run_task( $task ) {
         try {
-            $exit_code = apply_filters( "awpcp-task-{$task->get_name()}", false, $task->get_parameters() );
+            $exit_code = apply_filters( "awpcp-task-{$task->get_name()}", false, $task );
         } catch ( AWPCP_Exception $e ) {
             trigger_error( $e->format_errors() );
             $exit_code = false;
         }
 
         return $exit_code;
-    }
-
-    private function remove_task( $task ) {
-        $this->tasks->delete_task( $task->get_id() );
-        trigger_error( 'Task ' . $task->get_id() . ' deleted.' );
-    }
-
-    private function reschedule_task( $task ) {
-        $this->tasks->update_task( $task->get_id(), current_time( 'mysql' ) );
-        trigger_error( 'Task ' . $task->get_id() . ' rescheduled.' );
     }
 
     private function have_more_tasks() {

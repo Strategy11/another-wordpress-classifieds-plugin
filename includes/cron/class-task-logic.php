@@ -6,6 +6,11 @@
  */
 class AWPCP_TaskLogic {
 
+    const TASK_STATUS_NEW = 'new';
+    const TASK_STATUS_DELAYED = 'delayed';
+    const TASK_STATUS_FAILED = 'failed';
+    const TASK_STATUS_COMPLETE = 'complete';
+
     private $task;
 
     public function __construct( $task ) {
@@ -20,27 +25,55 @@ class AWPCP_TaskLogic {
         return $this->task->name;
     }
 
-    // public function get_handler() {
-    //     $handler_constructor = $this->task->metadata['handler'];
+    public function get_priority() {
+        return $this->task->priority;
+    }
 
-    //     if ( ! function_exists( $handler_constructor ) ) {
-    //         throw new AWPCP_Exception( "The constructor function for the task handler doesn't exists." );
-    //     }
+    public function get_execute_after_date() {
+        return $this->task->execute_after;
+    }
 
-    //     $task_handler = call_user_func( $handler_constructor );
+    public function get_all_metadata() {
+        return $this->task->metadata;
+    }
 
-    //     if ( is_null( $task_handler ) ) {
-    //         throw new AWPCP_Exception( 'The constructor function for the task handler returned NULL.' );
-    //     }
+    public function get_metadata( $name ) {
+        if ( isset( $this->task->metadata[ $name ] ) ) {
+            $value = $this->task->metadata[ $name ];
+        } else {
+            $value = null;
+        }
 
-    //     if ( ! method_exists( $task_handler, 'run' ) ) {
-    //         throw new AWPCP_Exception( "The task handler doesn't have a run() method" );
-    //     }
+        return $value;
+    }
 
-    //     return $task_handler;
-    // }
+    public function set_metadata( $name, $value ) {
+        $this->task->metadata[ $name ] = $value;
+    }
 
-    public function get_parameters() {
-        return $this->task->metadata['params'];
+    public function delay( $seconds ) {
+        $this->task->status = self::TASK_STATUS_DELAYED;
+        $this->task->execute_after = awpcp_datetime( 'mysql', current_time( 'timestamp' ) + $seconds );
+    }
+
+    public function fail() {
+        $this->task->status = self::TASK_STATUS_FAILED;
+        $this->task->priority = $this->task->priority + 1;
+    }
+
+    public function complete() {
+        $this->task->status = self::TASK_STATUS_COMPLETE;
+    }
+
+    public function is_delayed() {
+        return $this->task->status === self::TASK_STATUS_DELAYED;
+    }
+
+    public function failed() {
+        return $this->task->status === self::TASK_STATUS_FAILED;
+    }
+
+    public function is_complete() {
+        return $this->task->status === self::TASK_STATUS_COMPLETE;
     }
 }

@@ -14,13 +14,12 @@ class AWPCP_TasksCollection {
         $this->db = $db;
     }
 
-    public function create_task( $name, $params = array() ) {
+    public function create_task( $name, $metadata = array() ) {
         $result = $this->db->insert( AWPCP_TABLE_TASKS, array(
             'name' => $name,
+            'execute_after' => current_time( 'mysql' ),
+            'metadata' => maybe_serialize( $metadata ),
             'created_at' => current_time( 'mysql' ),
-            'metadata' => maybe_serialize( array(
-                'params' => $params
-            ) ),
         ) );
 
         if ( $result === false ) {
@@ -32,10 +31,16 @@ class AWPCP_TasksCollection {
     }
 
     public function get_next_task() {
-        $result = $this->db->get_row( 'SELECT * FROM ' . AWPCP_TABLE_TASKS . ' ORDER BY executed_at ASC, id ASC LIMIT 1' );
+        $sql = 'SELECT * FROM ' . AWPCP_TABLE_TASKS . ' WHERE execute_after < %s ORDER BY priority ASC, created_at ASC LIMIT 1';
+
+        $result = $this->db->get_row( $this->db->prepare( $sql, current_time( 'mysql' ) ) );
 
         if ( $result === false ) {
             throw new AWPCP_Exception( 'There was an error tring to retrive the next task from the database.' );
+        }
+
+        if ( $result === null ) {
+            throw new AWPCP_Exception( 'There are no more tasks.' );
         }
 
         return $this->create_task_logic_from_result( $result );
@@ -46,12 +51,19 @@ class AWPCP_TasksCollection {
         return $this->task_logic_factory->create_task_logic( $task );
     }
 
-    public function update_task( $task_id, $executed_at ) {
-        $result = $this->db->update( AWPCP_TABLE_TASKS, array( 'executed_at' => $executed_at ), array( 'id' => $task_id ) );
+    public function update_task( $task ) {
+        $data = array(
+            'priority' => $task->get_priority(),
+            'execute_after' => $task->get_execute_after_date(),
+            'metadata' => maybe_serialize( $task->get_all_metadata() ),
+        );
+        $conditions = array( 'id' => $task->get_id() );
+
+        $result = $this->db->update( AWPCP_TABLE_TASKS, $data, $conditions );
 
         if ( $result === false ) {
             $message = 'There was an error trying to save task <task-id> to the database.';
-            throw new AWPCP_Exception( str_replace( '<task-id>', $task_id, $message ) );
+            throw new AWPCP_Exception( str_replace( '<task-id>', $task->get_id(), $message ) );
         }
 
         return $result;

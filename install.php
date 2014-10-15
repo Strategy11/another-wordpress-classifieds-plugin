@@ -164,8 +164,9 @@ class AWPCP_Installer {
         "CREATE TABLE IF NOT EXISTS " . AWPCP_TABLE_TASKS . " (
             `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
             `name` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+            `priority` INT(10) UNSIGNED NOT NULL DEFAULT 0,
+            `execute_after` DATETIME NOT NULL,
             `metadata` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-            `executed_at` DATETIME,
             `created_at` DATETIME NOT NULL,
             PRIMARY KEY  (`id`)
         ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;";
