@@ -487,7 +487,9 @@ class AWPCP {
             add_action( 'awpcp_edit_ad', array( $facebook_cache_helper, 'on_edit_ad' ) );
         }
 
-        if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+        if ( defined( 'DOING_CRON' ) && DOING_CRON ) {
+            add_action( 'awpcp-task-queue-event', array( awpcp_task_queue(), 'task_queue_event' ) );
+        } else if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
             $this->ajax_setup();
         } else if ( is_admin() ) {
             // load resources required in admin screens only
@@ -532,7 +534,6 @@ class AWPCP {
             update_option( 'awpcp-flush-rewrite-rules', false );
 		}
 
-        add_action( 'awpcp-task-queue-event', array( awpcp_task_queue(), 'task_queue_event' ) );
 		$this->register_scripts();
 	}
 
