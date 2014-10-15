@@ -19,6 +19,12 @@ class AWPCP_UploadedFileLogic {
         return $this->file->path;
     }
 
+    public function get_relative_path() {
+        $uploads_dir = $this->settings->get_runtime_option( 'awpcp-uploads-dir' );
+        $relative_path = ltrim( str_replace( $uploads_dir, '', $this->get_path() ), DIRECTORY_SEPARATOR );
+        return $relative_path;
+    }
+
     public function set_path( $new_path ) {
         $pathinfo = awpcp_utf8_pathinfo( $new_path );
 
