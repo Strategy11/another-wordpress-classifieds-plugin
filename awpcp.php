@@ -177,6 +177,8 @@ require_once( AWPCP_DIR . "/includes/settings/class-listings-moderation-settings
 require_once( AWPCP_DIR . "/includes/settings/class-payment-general-settings.php" );
 require_once( AWPCP_DIR . "/includes/settings/class-registration-settings.php" );
 
+require_once( AWPCP_DIR . "/includes/upgrade/class-fix-empty-media-mime-type-upgrade-routine.php" );
+
 require_once( AWPCP_DIR . "/includes/class-awpcp-listings-api.php" );
 require_once( AWPCP_DIR . "/includes/class-fees-collection.php" );
 require_once( AWPCP_DIR . "/includes/class-listing-payment-transaction-handler.php" );
@@ -463,6 +465,10 @@ class AWPCP {
 			awpcp_create_pages(__('AWPCP', 'AWPCP'));
 			$this->flush_rewrite_rules = true;
 		}
+
+        if ( get_option( 'awpcp-enable-fix-media-mime-type-upgrde' ) ) {
+            awpcp_fix_empty_media_mime_type_upgrade_routine()->run();
+        }
 
 		if ( $this->flush_rewrite_rules || get_option( 'awpcp-flush-rewrite-rules' ) ) {
 			flush_rewrite_rules();
