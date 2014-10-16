@@ -22,6 +22,7 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
             'show-excerpt' => 1,
             'show-images' => 1,
             'show-blank' => 1,
+            'thumbnail-position' => 'above',
             'limit' => 10,
         );
 
@@ -47,10 +48,12 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
      * @return string             HTML
      */
     protected function render($items, $instance, $html_class='') {
+        $instance = array_merge( $this->defaults(), $instance );
+
         if ( empty( $items ) ) {
             return $this->render_empty_widget( $html_class );
         } else {
-            return $this->render_widget()
+            return $this->render_widget( $items, $instance, $html_class );
         }
     }
 
@@ -59,6 +62,11 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
     }
 
     private function render_widget( $items, $instance, $html_class ) {
+        if ( $instance['thumbnail-position'] == 'left' || $instance['thumbnail-position'] == 'right' ) {
+            $html_class = sprintf( 'awpcp-listings-widget-item-with-%s-thumbnail %s', $instance['thumbnail-position'], $html_class );
+        } else {
+            $html_class = sprintf( 'awpcp-listings-widget-item-with-thumbnail-above %s', $html_class );
+        }
 
         foreach ($items as $item) {
             $html[] = $this->render_item( $item, $instance, $html_class );
@@ -114,9 +122,9 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
         }
 
         if ( $images_are_allowed ) {
-            $template = '<li class="awpcp-listings-widget-item %1$s"><div class="awpcplatestbox"><div class="awpcplatestthumb clearfix">%2$s</div>%3$s %4$s</div></li>';
+            $template = '<li class="awpcp-listings-widget-item %1$s"><div class="awpcplatestbox clearfix"><div class="awpcplatestthumb clearfix">%2$s</div>%3$s %4$s</div></li>';
         } else {
-            $template = '<li class="awpcp-listings-widget-item %1$s"><div class="awpcplatestbox">%3$s %4$s</div></li>';
+            $template = '<li class="awpcp-listings-widget-item %1$s"><div class="awpcplatestbox clearfix">%3$s %4$s</div></li>';
         }
 
         return sprintf( $template, $html_class, $html_image, $html_title, $html_excerpt );
@@ -163,6 +171,9 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
         $instance['show-excerpt'] = absint($new_instance['show-excerpt']);
         $instance['show-images'] = absint($new_instance['show-images']);
         $instance['show-blank'] = absint($new_instance['show-blank']);
+        $instance['show-blank'] = absint($new_instance['show-blank']);
+        $instance['thumbnail-position'] = sanitize_text_field( $new_instance['thumbnail-position'] );
+
         return $instance;
     }
 }

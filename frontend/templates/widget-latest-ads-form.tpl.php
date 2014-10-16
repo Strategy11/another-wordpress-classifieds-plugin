@@ -25,3 +25,16 @@
     <input type="checkbox" id="<?php echo esc_attr( $this->get_field_id( 'show-blank' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'show-blank' ) ); ?>" value="1" <?php echo $instance['show-blank'] ? 'checked="true"' : ''; ?>/>
     <label for="<?php echo esc_attr( $this->get_field_id( 'show-blank' ) ); ?>"><?php _e('Show "No Image" PNG when Ad has no picture (improves layout).', 'AWPCP'); ?></label>
 </p>
+
+<p><strong><?php echo __( "Position of the thumbnail:", 'AWPCP' ); ?></strong></p>
+
+<p>
+    <input type="radio" id="<?php echo esc_attr( $this->get_field_id( 'thumbnail-position-above' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'thumbnail-position' ) ); ?>" value="above" <?php echo $instance['thumbnail-position'] == 'above' ? 'checked="true"' : ''; ?> />
+    <label for="<?php echo esc_attr( $this->get_field_id( 'thumbnail-position-above' ) ); ?>"><?php _e( "Above the Ad's text.", 'AWPCP' ); ?></label>
+    <br/>
+    <input type="radio" id="<?php echo esc_attr( $this->get_field_id( 'thumbnail-position-left' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'thumbnail-position' ) ); ?>" value="left" <?php echo $instance['thumbnail-position'] == 'left' ? 'checked="true"' : ''; ?> />
+    <label for="<?php echo esc_attr( $this->get_field_id( 'thumbnail-position-left' ) ); ?>"><?php _e( "To the left of the Ad's text.", 'AWPCP' ); ?></label>
+    <br/>
+    <input type="radio" id="<?php echo esc_attr( $this->get_field_id( 'thumbnail-position-right' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'thumbnail-position' ) ); ?>" value="right" <?php echo $instance['thumbnail-position'] == 'right' ? 'checked="true"' : ''; ?> />
+    <label for="<?php echo esc_attr( $this->get_field_id( 'thumbnail-position-right' ) ); ?>"><?php _e( "To the right of the Ad's text.", 'AWPCP' ); ?></label>
+</p>

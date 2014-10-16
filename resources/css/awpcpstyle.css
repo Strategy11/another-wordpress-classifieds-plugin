@@ -1262,6 +1262,16 @@ p.ad_status_msg {
 .awpcp-listings-widget-items-list .awpcp-listings-widget-item .awpcp-widget-read-more {
   margin-left: 10px !important;
 }
+.awpcp-listings-widget-items-list .awpcp-listings-widget-item-with-left-thumbnail .awpcplatestthumb {
+  margin-right: 10px;
+  float: left;
+  width: 50%;
+}
+.awpcp-listings-widget-items-list .awpcp-listings-widget-item-with-right-thumbnail .awpcplatestthumb {
+  margin-left: 10px;
+  float: right;
+  width: 50%;
+}
 .awpcp-navigation .awpcp-menu-toggle {
   background: #000000 url("../images/bullet_arrow_down.png") 10px center no-repeat;
   color: #eee;
