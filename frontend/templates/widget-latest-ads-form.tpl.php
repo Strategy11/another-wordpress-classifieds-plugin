@@ -26,15 +26,29 @@
     <label for="<?php echo esc_attr( $this->get_field_id( 'show-blank' ) ); ?>"><?php _e('Show "No Image" PNG when Ad has no picture (improves layout).', 'AWPCP'); ?></label>
 </p>
 
-<p><strong><?php echo __( "Position of the thumbnail:", 'AWPCP' ); ?></strong></p>
+<p><strong><?php echo __( "Position of the thumbnail (Desktop):", 'AWPCP' ); ?></strong></p>
 
 <p>
-    <input type="radio" id="<?php echo esc_attr( $this->get_field_id( 'thumbnail-position-above' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'thumbnail-position' ) ); ?>" value="above" <?php echo $instance['thumbnail-position'] == 'above' ? 'checked="true"' : ''; ?> />
-    <label for="<?php echo esc_attr( $this->get_field_id( 'thumbnail-position-above' ) ); ?>"><?php _e( "Above the Ad's text.", 'AWPCP' ); ?></label>
+    <input type="radio" id="<?php echo esc_attr( $this->get_field_id( 'thumbnail-position-in-desktop-above' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'thumbnail-position-in-desktop' ) ); ?>" value="above" <?php echo $instance['thumbnail-position-in-desktop'] == 'above' ? 'checked="true"' : ''; ?> />
+    <label for="<?php echo esc_attr( $this->get_field_id( 'thumbnail-position-in-desktop-above' ) ); ?>"><?php _e( "Above the Ad's text.", 'AWPCP' ); ?></label>
     <br/>
-    <input type="radio" id="<?php echo esc_attr( $this->get_field_id( 'thumbnail-position-left' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'thumbnail-position' ) ); ?>" value="left" <?php echo $instance['thumbnail-position'] == 'left' ? 'checked="true"' : ''; ?> />
-    <label for="<?php echo esc_attr( $this->get_field_id( 'thumbnail-position-left' ) ); ?>"><?php _e( "To the left of the Ad's text.", 'AWPCP' ); ?></label>
+    <input type="radio" id="<?php echo esc_attr( $this->get_field_id( 'thumbnail-position-in-desktop-left' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'thumbnail-position-in-desktop' ) ); ?>" value="left" <?php echo $instance['thumbnail-position-in-desktop'] == 'left' ? 'checked="true"' : ''; ?> />
+    <label for="<?php echo esc_attr( $this->get_field_id( 'thumbnail-position-in-desktop-left' ) ); ?>"><?php _e( "To the left of the Ad's text.", 'AWPCP' ); ?></label>
     <br/>
-    <input type="radio" id="<?php echo esc_attr( $this->get_field_id( 'thumbnail-position-right' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'thumbnail-position' ) ); ?>" value="right" <?php echo $instance['thumbnail-position'] == 'right' ? 'checked="true"' : ''; ?> />
-    <label for="<?php echo esc_attr( $this->get_field_id( 'thumbnail-position-right' ) ); ?>"><?php _e( "To the right of the Ad's text.", 'AWPCP' ); ?></label>
+    <input type="radio" id="<?php echo esc_attr( $this->get_field_id( 'thumbnail-position-in-desktop-right' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'thumbnail-position-in-desktop' ) ); ?>" value="right" <?php echo $instance['thumbnail-position-in-desktop'] == 'right' ? 'checked="true"' : ''; ?> />
+    <label for="<?php echo esc_attr( $this->get_field_id( 'thumbnail-position-in-desktop-right' ) ); ?>"><?php _e( "To the right of the Ad's text.", 'AWPCP' ); ?></label>
 </p>
+
+<p><strong><?php echo __( "Position of the thumbnail (mobile):", 'AWPCP' ); ?></strong></p>
+
+<p>
+    <input type="radio" id="<?php echo esc_attr( $this->get_field_id( 'thumbnail-position-in-mobile-above' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'thumbnail-position-in-mobile' ) ); ?>" value="above" <?php echo $instance['thumbnail-position-in-mobile'] == 'above' ? 'checked="true"' : ''; ?> />
+    <label for="<?php echo esc_attr( $this->get_field_id( 'thumbnail-position-in-mobile-above' ) ); ?>"><?php _e( "Above the Ad's text.", 'AWPCP' ); ?></label>
+    <br/>
+    <input type="radio" id="<?php echo esc_attr( $this->get_field_id( 'thumbnail-position-in-mobile-left' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'thumbnail-position-in-mobile' ) ); ?>" value="left" <?php echo $instance['thumbnail-position-in-mobile'] == 'left' ? 'checked="true"' : ''; ?> />
+    <label for="<?php echo esc_attr( $this->get_field_id( 'thumbnail-position-in-mobile-left' ) ); ?>"><?php _e( "To the left of the Ad's text.", 'AWPCP' ); ?></label>
+    <br/>
+    <input type="radio" id="<?php echo esc_attr( $this->get_field_id( 'thumbnail-position-in-mobile-right' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'thumbnail-position-in-mobile' ) ); ?>" value="right" <?php echo $instance['thumbnail-position-in-mobile'] == 'right' ? 'checked="true"' : ''; ?> />
+    <label for="<?php echo esc_attr( $this->get_field_id( 'thumbnail-position-in-mobile-right' ) ); ?>"><?php _e( "To the right of the Ad's text.", 'AWPCP' ); ?></label>
+</p>
+

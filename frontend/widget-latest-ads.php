@@ -22,7 +22,8 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
             'show-excerpt' => 1,
             'show-images' => 1,
             'show-blank' => 1,
-            'thumbnail-position' => 'above',
+            'thumbnail-position-in-desktop' => 'left',
+            'thumbnail-position-in-mobile' => 'above',
             'limit' => 10,
         );
 
@@ -62,17 +63,27 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
     }
 
     private function render_widget( $items, $instance, $html_class ) {
-        if ( $instance['thumbnail-position'] == 'left' || $instance['thumbnail-position'] == 'right' ) {
-            $html_class = sprintf( 'awpcp-listings-widget-item-with-%s-thumbnail %s', $instance['thumbnail-position'], $html_class );
-        } else {
-            $html_class = sprintf( 'awpcp-listings-widget-item-with-thumbnail-above %s', $html_class );
-        }
+        $html_class = implode( ' ', array(
+            $this->get_item_thumbnail_position_css_class( $instance['thumbnail-position-in-desktop'], 'desktop' ),
+            $this->get_item_thumbnail_position_css_class( $instance['thumbnail-position-in-mobile'], 'mobile' ),
+            $html_class,
+        ) );
 
         foreach ($items as $item) {
             $html[] = $this->render_item( $item, $instance, $html_class );
         }
 
         return join("\n", $html);
+    }
+
+    private function get_item_thumbnail_position_css_class( $thumbnail_position, $version ) {
+        if ( $thumbnail_position == 'left' || $thumbnail_position == 'right' ) {
+            $css_class = sprintf( 'awpcp-listings-widget-item-with-%s-thumbnail-in-%s', $thumbnail_position, $version );
+        } else {
+            $css_class = sprintf( 'awpcp-listings-widget-item-with-thumbnail-above-in-%s', $version );
+        }
+
+        return $css_class;
     }
 
     private function render_item( $item, $instance, $html_class ) {
@@ -172,7 +183,8 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
         $instance['show-images'] = absint($new_instance['show-images']);
         $instance['show-blank'] = absint($new_instance['show-blank']);
         $instance['show-blank'] = absint($new_instance['show-blank']);
-        $instance['thumbnail-position'] = sanitize_text_field( $new_instance['thumbnail-position'] );
+        $instance['thumbnail-position-in-desktop'] = sanitize_text_field( $new_instance['thumbnail-position-in-desktop'] );
+        $instance['thumbnail-position-in-mobile'] = sanitize_text_field( $new_instance['thumbnail-position-in-mobile'] );
 
         return $instance;
     }
