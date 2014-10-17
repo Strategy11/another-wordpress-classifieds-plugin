@@ -157,8 +157,8 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
     }
 
     public function update($new_instance, $old_instance) {
-        $instance['title'] = strip_tags($new_instance['title']);
-        $instance['limit'] = strip_tags($new_instance['limit']);
+        $instance['title'] = sanitize_text_field( $new_instance['title'] );
+        $instance['limit'] = sanitize_text_field( $new_instance['limit'] );
         $instance['show-title'] = absint($new_instance['show-title']);
         $instance['show-excerpt'] = absint($new_instance['show-excerpt']);
         $instance['show-images'] = absint($new_instance['show-images']);
