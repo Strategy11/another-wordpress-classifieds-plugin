@@ -31,21 +31,29 @@ function( $, ko, FileViewModel, settings ) {
         }
 
         function filterImageFiles() {
-            return $.grep( vm.files(), function( file ) {
-                return $.inArray( file.mimeType, options.allowed_files.images.mime_types ) !== -1;
+            return filterFilesByType( 'images' );
+        }
+
+        function filterFilesByType( type ) {
+            if ( options.allowed_files[ type ] && options.allowed_files[ type ].hasOwnProperty( 'mime_types' ) ) {
+                return filterFilesByMimeType( vm.files(), options.allowed_files[ type ].mime_types );
+            } else {
+                return [];
+            }
+        }
+
+        function filterFilesByMimeType( files, mimeTypes ) {
+            return $.grep( files, function( file ) {
+                return $.inArray( file.mimeType, mimeTypes ) !== -1;
             } );
         }
 
         function filterVideoFiles() {
-            return $.grep( vm.files(), function( file ) {
-                return $.inArray( file.mimeType, options.allowed_files.videos.mime_types ) !== -1;
-            } );
+            return filterFilesByType( 'videos' );
         }
 
         function filterOtherFiles() {
-            return $.grep( vm.files(), function( file ) {
-                return $.inArray( file.mimeType, options.allowed_files.others.mime_types ) !== -1;
-            } );
+            return filterFilesByType( 'others' );
         }
 
         function haveImages() {
