@@ -164,6 +164,7 @@ class AWPCP_Installer {
         "CREATE TABLE IF NOT EXISTS " . AWPCP_TABLE_TASKS . " (
             `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
             `name` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+            `status` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'new',
             `priority` INT(10) UNSIGNED NOT NULL DEFAULT 0,
             `execute_after` DATETIME NOT NULL,
             `metadata` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
