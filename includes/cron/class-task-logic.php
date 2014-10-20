@@ -8,6 +8,7 @@ class AWPCP_TaskLogic {
 
     const TASK_STATUS_NEW = 'new';
     const TASK_STATUS_DELAYED = 'delayed';
+    const TASK_STATUS_FAILING = 'failing';
     const TASK_STATUS_FAILED = 'failed';
     const TASK_STATUS_COMPLETE = 'complete';
 
@@ -29,6 +30,10 @@ class AWPCP_TaskLogic {
         return $this->task->priority;
     }
 
+    public function get_status() {
+        return $this->task->status;
+    }
+
     public function get_execute_after_date() {
         return $this->task->execute_after;
     }
@@ -37,11 +42,11 @@ class AWPCP_TaskLogic {
         return $this->task->metadata;
     }
 
-    public function get_metadata( $name ) {
+    public function get_metadata( $name, $default = null ) {
         if ( isset( $this->task->metadata[ $name ] ) ) {
             $value = $this->task->metadata[ $name ];
         } else {
-            $value = null;
+            $value = $default;
         }
 
         return $value;
@@ -52,8 +57,24 @@ class AWPCP_TaskLogic {
     }
 
     public function delay( $seconds ) {
+        $this->set_metadata( 'delay_time', $seconds );
+
         $this->task->status = self::TASK_STATUS_DELAYED;
         $this->task->execute_after = awpcp_datetime( 'mysql', current_time( 'timestamp' ) + $seconds );
+    }
+
+    public function delay_with_decreasing_interval() {
+        $five_minutes_in_seconds = 5 * 60;
+
+        $previous_delay = $this->get_metadata( 'delay_time', $five_minutes_in_seconds );
+        $next_delay = max( $previous_delay / 2, $five_minutes_in_seconds );
+
+        $this->delay( $next_delay );
+    }
+
+    public function retry() {
+        $this->task->status = self::TASK_STATUS_FAILING;
+        $this->task->priority = $this->task->priority + 1;
     }
 
     public function fail() {
@@ -67,6 +88,10 @@ class AWPCP_TaskLogic {
 
     public function is_delayed() {
         return $this->task->status === self::TASK_STATUS_DELAYED;
+    }
+
+    public function is_failing() {
+        return $this->task->status === self::TASK_STATUS_FAILING;
     }
 
     public function failed() {

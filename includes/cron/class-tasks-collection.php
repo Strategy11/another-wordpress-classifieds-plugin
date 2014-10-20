@@ -54,6 +54,7 @@ class AWPCP_TasksCollection {
     public function update_task( $task ) {
         $data = array(
             'priority' => $task->get_priority(),
+            'status' => $task->get_status(),
             'execute_after' => $task->get_execute_after_date(),
             'metadata' => maybe_serialize( $task->get_all_metadata() ),
         );
