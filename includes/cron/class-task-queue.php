@@ -22,18 +22,22 @@ class AWPCP_TaskQueue {
 
     public function add_task( $name, $metadata ) {
         $this->tasks->create_task( $name, $metadata );
-        $this->schedule_next_task_queue_event();
+        $this->schedule_next_task_queue_event_if_necessary();
     }
 
-    private function schedule_next_task_queue_event() {
-        $next_event_timestamp = $this->get_next_scheduled_event_timestamp();
-        $current_time_timestamp = time();
+    private function schedule_next_task_queue_event_if_necessary( $next_event_timestamp = null ) {
+        $next_scheduled_event_timestamp = $this->get_next_scheduled_event_timestamp();
+        $next_event_timestamp = is_null( $next_event_timestamp ) ? time() : $next_event_timestamp;
 
-        if ( $next_event_timestamp && ( $next_event_timestamp - $current_time_timestamp <= 60 ) ) {
+        if ( $next_scheduled_event_timestamp && $next_scheduled_event_timestamp < $next_event_timestamp ) {
             return;
         }
 
-        wp_schedule_single_event( $current_time_timestamp + 5, 'awpcp-task-queue-event', array( 'created_at' => $current_time_timestamp ) );
+        if ( $next_scheduled_event_timestamp && ( $next_scheduled_event_timestamp - $next_event_timestamp <= 60 ) ) {
+            return;
+        }
+
+        wp_schedule_single_event( $next_event_timestamp, 'awpcp-task-queue-event', array( 'created_at' => $next_event_timestamp ) );
     }
 
     /**
@@ -56,18 +60,26 @@ class AWPCP_TaskQueue {
         return false;
     }
 
-    public function task_queue_event( $created_at ) {
+    public function task_queue_event() {
         if ( ! $this->get_lock() ) {
             return;
         }
 
-        $this->process_next_task();
-
-        if ( $this->have_more_tasks() ) {
-            $this->schedule_next_task_queue_event();
-        }
+        $this->process_next_active_task();
+        $this->maybe_schedule_next_task_queue_event();
 
         $this->release_lock();
+    }
+
+    private function maybe_schedule_next_task_queue_event() {
+        try {
+            $next_task = $this->tasks->get_next_task();
+        } catch ( AWPCP_Exception $e ) {
+            return;
+        }
+
+        $next_event_timestamp = strtotime( $next_task->get_execute_after_date() );
+        $this->schedule_next_task_queue_event_if_necessary( $next_event_timestamp );
     }
 
     private function get_lock() {
@@ -87,9 +99,9 @@ class AWPCP_TaskQueue {
         return implode( DIRECTORY_SEPARATOR, array( $this->settings->get_runtime_option( 'awpcp-uploads-dir' ), 'task-queue.lock' ) );
     }
 
-    private function process_next_task() {
+    private function process_next_active_task() {
         try {
-            $this->process_task( $this->tasks->get_next_task() );
+            $this->process_task( $this->tasks->get_next_active_task() );
         } catch ( AWPCP_Exception $e ) {
             trigger_error( $e->format_errors() );
             return;
@@ -98,15 +110,15 @@ class AWPCP_TaskQueue {
 
     private function process_task( $task ) {
         if ( ! $this->run_task( $task ) ) {
-            $task->fail();
+            $task->retry();
         }
 
-        if ( $task->is_delayed() || $task->failed() ) {
+        if ( $task->is_delayed() || $task->is_failing() ) {
             $this->tasks->update_task( $task );
             trigger_error( 'Task ' . $task->get_id() . ' updated.' );
-        } else if ( $task->is_complete() ) {
-            $this->tasks->delete_task( $task->get_id() );
-            trigger_error( 'Task ' . $task->get_id() . ' deleted.' );
+        } else if ( $task->failed() || $task->is_complete() ) {
+            $this->tasks->update_task( $task );
+            trigger_error( 'Task ' . $task->get_id() . ' updated.' );
         }
     }
 
@@ -119,16 +131,6 @@ class AWPCP_TaskQueue {
         }
 
         return $exit_code;
-    }
-
-    private function have_more_tasks() {
-        try {
-            $next_task = $this->tasks->get_next_task();
-        } catch ( AWPCP_Exception $e ) {
-            return false;
-        }
-
-        return true;
     }
 
     private function release_lock() {

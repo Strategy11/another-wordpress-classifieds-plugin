@@ -31,9 +31,14 @@ class AWPCP_TasksCollection {
     }
 
     public function get_next_task() {
-        $sql = 'SELECT * FROM ' . AWPCP_TABLE_TASKS . ' WHERE execute_after < %s ORDER BY priority ASC, created_at ASC LIMIT 1';
+        $sql = 'SELECT * FROM ' . AWPCP_TABLE_TASKS . " WHERE status IN ( 'new', 'delayed', 'failing' ) ";
+        $sql.= "ORDER BY priority ASC, execute_after ASC, created_at ASC LIMIT 1";
 
-        $result = $this->db->get_row( $this->db->prepare( $sql, current_time( 'mysql' ) ) );
+        return $this->get_task_from_query( $sql );
+    }
+
+    private function get_task_from_query( $query ) {
+        $result = $this->db->get_row( $query );
 
         if ( $result === false ) {
             throw new AWPCP_Exception( 'There was an error tring to retrive the next task from the database.' );
@@ -44,6 +49,13 @@ class AWPCP_TasksCollection {
         }
 
         return $this->create_task_logic_from_result( $result );
+    }
+
+    public function get_next_active_task() {
+        $sql = 'SELECT * FROM ' . AWPCP_TABLE_TASKS . " WHERE execute_after < %s AND status IN ( 'new', 'delayed', 'failing' ) ";
+        $sql.= "ORDER BY priority ASC, execute_after ASC, created_at ASC LIMIT 1";
+
+        return $this->get_task_from_query( $this->db->prepare( $sql, current_time( 'mysql' ) ) );
     }
 
     private function create_task_logic_from_result( $task ) {

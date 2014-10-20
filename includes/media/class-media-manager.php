@@ -48,7 +48,10 @@ class AWPCP_NewMediaManager {
             }
         }
 
-        throw new AWPCP_Exception( _x( 'There is no file handler for this kind of file. Aborting.', 'file uploads', 'AWPCP' ) );
+        $message = _x( 'There is no file handler for this kind of file (<mime-type>). Aborting.', 'file uploads', 'AWPCP' );
+        $message = str_replace( '<mime-type>', $uploaded_file->get_mime_type(), $message );
+
+        throw new AWPCP_Exception( $message );
     }
 
     private function create_media( $listing, $file_logic ) {
