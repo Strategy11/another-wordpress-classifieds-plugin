@@ -34,6 +34,24 @@ class AWPCP_TaskLogic {
         return $this->task->status;
     }
 
+    public function format_status() {
+        if ( $this->is_new() ) {
+            return _x( 'New', 'task status', 'AWPCP' );
+        } else if ( $this->is_delayed() ) {
+            return _x( 'Delayed', 'task status', 'AWPCP' );
+        } else if ( $this->is_failing() ) {
+            return _x( 'Failing', 'task status', 'AWPCP' );
+        } else if ( $this->failed() ) {
+            return _x( 'Failed', 'task status', 'AWPCP' );
+        } else if ( $this->is_complete() ) {
+            return _x( 'Complete', 'task status', 'AWPCP' );
+        }
+    }
+
+    public function format_created_at_date() {
+        return awpcp_datetime( 'awpcp', $this->task->created_at );
+    }
+
     public function get_execute_after_date() {
         return $this->task->execute_after;
     }
@@ -84,6 +102,10 @@ class AWPCP_TaskLogic {
 
     public function complete() {
         $this->task->status = self::TASK_STATUS_COMPLETE;
+    }
+
+    public function is_new() {
+        return $this->task->status === self::TASK_STATUS_NEW;
     }
 
     public function is_delayed() {

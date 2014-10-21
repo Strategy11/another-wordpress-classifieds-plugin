@@ -31,10 +31,22 @@ class AWPCP_TasksCollection {
     }
 
     public function get_next_task() {
-        $sql = 'SELECT * FROM ' . AWPCP_TABLE_TASKS . " WHERE status IN ( 'new', 'delayed', 'failing' ) ";
-        $sql.= "ORDER BY priority ASC, execute_after ASC, created_at ASC LIMIT 1";
+        return $this->get_task_from_query( sprintf( '%s LIMIT 1', $this->get_pending_tasks_query() ) );
+    }
 
-        return $this->get_task_from_query( $sql );
+    private function get_pending_tasks_query() {
+        return $this->get_tasks_query( array( $this->get_pending_status_condition() ) );
+    }
+
+    private function get_tasks_query( $conditions ) {
+        $sql = 'SELECT * FROM ' . AWPCP_TABLE_TASKS . ' WHERE %s ORDER BY priority ASC, execute_after ASC, created_at ASC';
+        $sql = sprintf( $sql, implode( ' AND ', $conditions ) );
+
+        return $sql;
+    }
+
+    private function get_pending_status_condition() {
+        return "status IN ( 'new', 'delayed', 'failing' )";
     }
 
     private function get_task_from_query( $query ) {
@@ -51,16 +63,75 @@ class AWPCP_TasksCollection {
         return $this->create_task_logic_from_result( $result );
     }
 
-    public function get_next_active_task() {
-        $sql = 'SELECT * FROM ' . AWPCP_TABLE_TASKS . " WHERE execute_after < %s AND status IN ( 'new', 'delayed', 'failing' ) ";
-        $sql.= "ORDER BY priority ASC, execute_after ASC, created_at ASC LIMIT 1";
-
-        return $this->get_task_from_query( $this->db->prepare( $sql, current_time( 'mysql' ) ) );
-    }
-
     private function create_task_logic_from_result( $task ) {
         $task->metadata = maybe_unserialize( $task->metadata );
         return $this->task_logic_factory->create_task_logic( $task );
+    }
+
+    public function get_next_active_task() {
+        return $this->get_task_from_query( sprintf( '%s LIMIT 1', $this->get_active_tasks_query() ) );
+    }
+
+    private function get_active_tasks_query() {
+        return $this->get_tasks_query( array(
+            $this->db->prepare( 'execute_after < %s', current_time( 'mysql' ) ),
+            $this->get_pending_status_condition(),
+        ) );
+    }
+
+    public function get_pending_tasks() {
+        return $this->get_tasks( $this->get_pending_tasks_query() );
+    }
+
+    private function get_tasks( $query ) {
+        $results = $this->db->get_results( $query );
+
+        if ( $results === false ) {
+            throw new AWPCP_Exception( __( 'There was an error trying to retrive the tasks from the database.', 'awpcp-attachments' ) );
+        }
+
+        foreach ( $results as $result ) {
+            $tasks[] = $this->create_task_logic_from_result( $result );
+        }
+
+        return isset( $tasks ) ? $tasks : array();
+    }
+
+    public function count_pending_tasks() {
+        return $this->count_tasks( $this->get_count_tasks_query( array( $this->get_pending_status_condition() ) ) );
+    }
+
+    private function count_tasks( $query ) {
+        $count = $this->db->get_var( $query );
+
+        if ( $count === false ) {
+            throw new AWPCP_Exception( __( 'There was an erroy trying to count the tasks in the database.', 'awpcp-attachments' ) );
+        }
+
+        return $count;
+    }
+
+    private function get_count_tasks_query( $conditions ) {
+        $sql = 'SELECT COUNT(*) FROM ' . AWPCP_TABLE_TASKS . ' WHERE %s';
+        $sql = sprintf( $sql, implode( ' AND ', $conditions ) );
+
+        return $sql;
+    }
+
+    public function get_failed_tasks() {
+        return $this->get_tasks( $this->get_tasks_query( array( "status = 'failed'" ) ) );
+    }
+
+    public function count_failed_tasks() {
+        return $this->count_tasks( $this->get_count_tasks_query( array( "status = 'failed'" ) ) );
+    }
+
+    public function get_complete_tasks() {
+        return $this->get_tasks( $this->get_tasks_query( array( "status = 'complete'" ) ) );
+    }
+
+    public function count_complete_tasks() {
+        return $this->count_tasks( $this->get_count_tasks_query( array( "status = 'complete'" ) ) );
     }
 
     public function update_task( $task ) {
