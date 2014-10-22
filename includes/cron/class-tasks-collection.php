@@ -30,6 +30,23 @@ class AWPCP_TasksCollection {
         return $this->db->insert_id;
     }
 
+    public function get( $task_id ) {
+        $sql = 'SELECT * FROM ' . AWPCP_TABLE_TASKS . ' WHERE id = %d';
+
+        $result = $this->db->get_row( $this->db->prepare( $sql, $task_id ) );
+
+        if ( $result === false ) {
+            throw new AWPCP_Exception( __( 'There was an error trying to find tasks in the database.', 'AWPCP' ) );
+        }
+
+        if ( is_null( $result ) ) {
+            $message = __( 'There is no task with ID %d.', 'AWPCP' );
+            throw new AWPCP_Exception( sprintf( $message, $task_id ) );
+        }
+
+        return $this->create_task_logic_from_result( $result );
+    }
+
     public function get_next_task() {
         return $this->get_task_from_query( sprintf( '%s LIMIT 1', $this->get_pending_tasks_query() ) );
     }
