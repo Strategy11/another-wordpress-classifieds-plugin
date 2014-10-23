@@ -15,7 +15,7 @@ function( ko ) {
         vm.isPrimary = ko.observable( !! file.isPrimary );
         vm.isBeingModified = ko.observable( false );
 
-        vm.thumbnailUrl = file.thumbnailUrl;
+        vm.thumbnailUrl = ko.observable( file.thumbnailUrl );
         vm.iconUrl = file.iconUrl;
         vm.url = file.url;
     };

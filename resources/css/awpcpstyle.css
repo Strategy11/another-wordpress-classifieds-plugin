@@ -1246,6 +1246,11 @@ p.ad_status_msg {
 #classiwrapper .awpcp-uploaded-video-delete-action a {
   background-image: url(../images/film_delete.png);
 }
+.awpcp-thumbnails-generator video,
+.awpcp-thumbnails-generator canvas {
+  position: absolute;
+  visibility: hidden;
+}
 .awpcp-multiple-region-selector .add-region,
 .awpcp-multiple-region-selector .remove-region {
   font-size: 0.8em;

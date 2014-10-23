@@ -21,6 +21,7 @@ function( $, ko, FileViewModel, settings ) {
         vm.getFileId = getFileId;
 
         $.subscribe( '/file/uploaded', onFileUploaded );
+        $.subscribe( '/file/thumbnail-updated', onFileThumbnailUpdated );
 
         function prepareFiles( files ) {
             return $.map( files, function( file ) {
@@ -144,8 +145,18 @@ function( $, ko, FileViewModel, settings ) {
             return 'file-' + file.id;
         }
 
-        function onFileUploaded( event, file ) {
-            vm.files.push( new FileViewModel( file ) );
+        function onFileUploaded( event, pluploadFile, fileInfo ) {
+            console.log( event, pluploadFile, fileInfo );
+            vm.files.push( new FileViewModel( fileInfo ) );
+        }
+
+        function onFileThumbnailUpdated( event, pluploadFile, fileInfo, thumbnailUrl ) {
+            console.log( 'onFileThumbnailUpdated', pluploadFile, fileInfo, thumbnailUrl );
+            $.each( vm.files(), function( index, file ) {
+                if ( file.id === fileInfo.id ) {
+                    file.thumbnailUrl( thumbnailUrl );
+                }
+            } );
         }
     };
 

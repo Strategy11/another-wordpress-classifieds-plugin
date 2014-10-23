@@ -4,10 +4,11 @@ AWPCP.run('awpcp/page-place-ads', [
     'knockout',
     'awpcp/media-manager',
     'awpcp/media-uploader',
+    'awpcp/thumbnails-generator',
     'awpcp/settings',
     'awpcp/jquery-userfield'
 ],
-function( $, ko, MediaManager, MediaUploader, settings ) {
+function( $, ko, MediaManager, MediaUploader, ThumbnailsGenerator, settings ) {
     var AWPCP = jQuery.AWPCP = jQuery.extend({}, jQuery.AWPCP, AWPCP);
 
     $.AWPCP.PaymentTermsTable = function(table) {
@@ -239,7 +240,8 @@ function( $, ko, MediaManager, MediaUploader, settings ) {
             var mediaManager = $( '.awpcp-media-manager' ),
                 mediaManagerOptions = settings.get( 'media-manager-data' ),
                 mediaUploader = $( '#awpcp-media-uploader' ),
-                mediaUploaderOptions = settings.get( 'media-uploader-data' );
+                mediaUploaderOptions = settings.get( 'media-uploader-data' ),
+                thumbnailsGenerator = $( '.awpcp-thumbnails-generator' );
 
             if ( mediaManager.length && mediaManagerOptions ) {
                 ko.applyBindings( new MediaManager( mediaManagerOptions ), mediaManager.get( 0 ) );
@@ -247,6 +249,10 @@ function( $, ko, MediaManager, MediaUploader, settings ) {
 
             if ( mediaUploader.length && mediaUploaderOptions ) {
                 $.noop( new MediaUploader( mediaUploader, mediaUploaderOptions ) );
+            }
+
+            if ( thumbnailsGenerator.length ) {
+                $.noop( new ThumbnailsGenerator( thumbnailsGenerator ) );
             }
             // var form = container.find('.awpcp-upload-images-form');
 

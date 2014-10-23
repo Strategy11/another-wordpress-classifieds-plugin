@@ -29,6 +29,12 @@
 <?php $media_manager = awpcp_media_manager_component(); ?>
 <?php echo $media_manager->render( $files, $media_manager_configuration ); ?>
 
+<div class="awpcp-thumbnails-generator">
+    <video preload="none" muted="muted" width="0" height="0"></video>
+    <canvas></canvas>
+    <img>
+</div>
+
 <form class="awpcp-upload-images-form" method="post" enctype="multipart/form-data">
 	<h3><?php _e('Add Images', 'AWPCP') ?></h3>
 

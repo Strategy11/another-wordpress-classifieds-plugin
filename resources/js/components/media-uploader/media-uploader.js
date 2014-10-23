@@ -33,6 +33,7 @@ function( $, settings) {
             } )
             .pluploadQueue();
 
+        self.uploader.bind( 'FilesAdded', onFilesAdded );
         self.uploader.bind( 'FileUploaded', onFileUplaoded );
 
         function filterFileBySize( enabled, file, done ) {
@@ -51,13 +52,17 @@ function( $, settings) {
             } );
         }
 
+        function onFilesAdded( uploader, files ) {
+            $.each( files, function( index, file ) {
+                $.publish( '/file/added', file );
+            } );
+        }
+
         function onFileUplaoded( uploader, file, data ) {
             var response = $.parseJSON( data.response );
 
-            window.console.log( 'FileUplaoded', uploader, file, data, response );
-
             if ( response.status === 'ok' && response.file ) {
-                $.publish( '/file/uploaded', response.file );
+                $.publish( '/file/uploaded', [ file, response.file ] );
             } else if ( response.status === 'ok' ) {
                 // upload in progress?
             } else {
