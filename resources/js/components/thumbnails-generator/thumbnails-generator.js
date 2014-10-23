@@ -28,7 +28,7 @@ function( $, ko, settings ) {
         function onFileAdded( event, file ) {
             window.console.log( file, file.type, file.type.match( 'video.*' ) );
             if ( file.type.match( 'video.*' ) ) {
-                self.queue.push( { video: file, thumbnail: ko.observable() } );
+                self.queue.push( { video: file, thumbnail: ko.observable( null ) } );
                 processQueue();
             }
         }
@@ -96,34 +96,32 @@ function( $, ko, settings ) {
         }
 
         function onFileUploaded( event, pluploadFile, fileInfo ) {
-            var thumbnailUrl = null;
+            var thumbnail = null;
 
             $.each( self.queue(), function( index, item ) {
                 if ( item.video.id === pluploadFile.id ) {
-                    thumbnailUrl = item.thumbnail();
+                    thumbnail = item.thumbnail();
+                    console.log( 'TG:onFileUploaded', item, thumbnail );
                 }
             } );
 
-            if ( thumbnailUrl === null ) {
+            if ( thumbnail === null ) {
                 return;
             }
 
-            setTimeout( function() {
-                $.publish( '/file/thumbnail-updated', [ pluploadFile, fileInfo, thumbnailUrl ] );
-            }, 100 );
-
-            uploadGeneratedThumbnail( fileInfo, thumbnailUrl );
+            uploadGeneratedThumbnail( pluploadFile, fileInfo, thumbnail );
         }
 
-        function uploadGeneratedThumbnail( fileInfo, thumbnailUrl ) {
-            window.console.log( 'uploadGeneratedThumbnail', arguments );
+        function uploadGeneratedThumbnail( pluploadFile, fileInfo, thumbnail ) {
             $.post( settings.get( 'ajaxurl' ), {
                 action: 'awpcp-upload-generated-thumbnail',
-                // nonce: options.nonce,
+                nonce: self.element.attr( 'data-nonce' ),
                 file: fileInfo.id,
-                thumbnail: thumbnailUrl
-            }, function() {
-                window.console.log( 'uploadGeneratedThumbnail', arguments );
+                thumbnail: thumbnail
+            }, function( response ) {
+                if ( response.status === 'ok' ) {
+                    $.publish( '/file/thumbnail-updated', [ pluploadFile, fileInfo, response.thumbnailUrl ] );
+                }
             } );
         }
     };

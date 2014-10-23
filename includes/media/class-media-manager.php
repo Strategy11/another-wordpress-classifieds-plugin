@@ -55,7 +55,6 @@ class AWPCP_NewMediaManager {
     }
 
     private function create_media( $listing, $file_logic ) {
-
         return $this->media_saver->create( array(
             'ad_id' => $listing->ad_id,
             'name' => $file_logic->get_name(),

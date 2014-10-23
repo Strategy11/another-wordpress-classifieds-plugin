@@ -91,8 +91,11 @@ class AWPCP_Media {
     }
 
     public function get_thumbnail_url() {
-        $thumbnail_url = trailingslashit( AWPCPTHUMBSUPLOADURL ) . $this->name;
-        return apply_filters( 'awpcp-get-file-thumbnail-url', $thumbnail_url, $this );
+        $alternatives = apply_filters( 'awpcp-get-file-thumbnail-url-alternatives', array(
+            trailingslashit( AWPCPTHUMBSUPLOADURL ) . $this->name,
+        ), $this );
+
+        return $this->get_url_from_alternatives( $alternatives );
     }
 
     private function get_url_with_suffix( $base_url, $suffix ) {
@@ -101,11 +104,11 @@ class AWPCP_Media {
     }
 
     private function get_url_from_alternatives( $alternatives ) {
-        $uploads_directories = awpcp_get_uploads_directories();
-        $files_dir = $uploads_directories['files_dir'];
+        // $uploads_directories = awpcp_get_uploads_directories();
+        // $files_dir = $uploads_directories['files_dir'];
 
         foreach ( $alternatives as $path ) {
-            if ( file_exists( str_replace( AWPCPUPLOADURL, $files_dir, $path ) ) ) {
+            if ( file_exists( str_replace( get_home_url(), ABSPATH, $path ) ) ) {
                 return $path;
             }
         }

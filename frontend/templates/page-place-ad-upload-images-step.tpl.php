@@ -29,7 +29,7 @@
 <?php $media_manager = awpcp_media_manager_component(); ?>
 <?php echo $media_manager->render( $files, $media_manager_configuration ); ?>
 
-<div class="awpcp-thumbnails-generator">
+<div class="awpcp-thumbnails-generator" data-nonce="<?php echo esc_attr( wp_create_nonce( 'awpcp-upload-generated-thumbnail-for-listing-' . $listing->ad_id ) ); ?>">
     <video preload="none" muted="muted" width="0" height="0"></video>
     <canvas></canvas>
     <img>

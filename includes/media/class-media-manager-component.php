@@ -1,15 +1,17 @@
 <?php
 
 function awpcp_media_manager_component() {
-    return new AWPCP_MediaManagerComponent( awpcp()->js );
+    return new AWPCP_MediaManagerComponent( awpcp()->js, awpcp()->settings );
 }
 
 class AWPCP_MediaManagerComponent {
 
     private $javascript;
+    private $settings;
 
-    public function __construct( $javascript ) {
+    public function __construct( $javascript, $settings ) {
         $this->javascript = $javascript;
+        $this->settings = $settings;
     }
 
     public function render( $files = array(), $options = array() ) {
@@ -43,6 +45,8 @@ class AWPCP_MediaManagerComponent {
     }
 
     private function render_component() {
+        $thumbnails_width = $this->settings->get_option( 'imgthumbwidth' );
+
         ob_start();
         include( AWPCP_DIR . '/templates/components/media-manager.tpl.php' );
         $output = ob_get_contents();

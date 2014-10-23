@@ -31,7 +31,7 @@
         <ul class="awpcp-uploaded-files-list clearfix" data-bind="foreach: { data: videos, as: 'video' }">
             <li data-bind="css: $root.getFileCSSClasses( video ), attr: { id: $root.getFileId( video ) }">
                 <div class="awpcp-uploaded-file-thumbnail-container">
-                    <img data-bind="attr: { src: thumbnailUrl }">
+                    <img data-bind="attr: { src: thumbnailUrl }" width="<?php echo esc_attr( $thumbnails_width ); ?>px">
                 </div>
                 <ul class="awpcp-uploaded-file-actions clearfix">
                     <li class="awpcp-uploaded-file-action awpcp-uploaded-file-change-status-action">

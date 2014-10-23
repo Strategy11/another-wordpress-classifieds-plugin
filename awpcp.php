@@ -204,6 +204,7 @@ require_once( AWPCP_DIR . '/includes/media/class-file-uploader.php' );
 require_once( AWPCP_DIR . '/includes/media/class-image-file-handler.php' );
 require_once( AWPCP_DIR . '/includes/media/class-image-file-processor.php' );
 require_once( AWPCP_DIR . '/includes/media/class-image-file-validator.php' );
+require_once( AWPCP_DIR . '/includes/media/class-image-resizer.php' );
 require_once( AWPCP_DIR . '/includes/media/class-listing-upload-limits.php' );
 require_once( AWPCP_DIR . "/includes/media/class-media-manager-component.php" );
 require_once( AWPCP_DIR . '/includes/media/class-media-manager.php' );
@@ -211,6 +212,7 @@ require_once( AWPCP_DIR . '/includes/media/class-media-uploader-component.php' )
 require_once( AWPCP_DIR . '/includes/media/class-uploaded-file-logic-factory.php' );
 require_once( AWPCP_DIR . '/includes/media/class-uploaded-file-logic.php' );
 require_once( AWPCP_DIR . '/includes/media/class-upload-listing-media-ajax-handler.php' );
+require_once( AWPCP_DIR . '/includes/media/class-upload-generated-thumbnail-ajax-handler.php' );
 
 require_once( AWPCP_DIR . "/includes/settings/class-credit-plans-settings.php" );
 require_once( AWPCP_DIR . "/includes/settings/class-listings-moderation-settings.php" );
@@ -558,6 +560,10 @@ class AWPCP {
         $handler = awpcp_upload_listing_media_ajax_handler();
         add_action( 'wp_ajax_awpcp-upload-listing-media', array( $handler, 'ajax' ) );
         add_action( 'wp_ajax_nopriv_awpcp-upload-listing-media', array( $handler, 'ajax' ) );
+
+        $handler = awpcp_upload_generated_thumbnail_ajax_handler();
+        add_action( 'wp_ajax_awpcp-upload-generated-thumbnail', array( $handler, 'ajax' ) );
+        add_action( 'wp_ajax_nopriv_awpcp-upload-generated-thumbnail', array( $handler, 'ajax' ) );
 
         $media_manager = awpcp_new_media_manager();
         $media_manager->register_file_handler( awpcp_image_file_handler() );
