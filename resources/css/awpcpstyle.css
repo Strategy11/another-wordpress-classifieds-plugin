@@ -679,6 +679,24 @@ p.ad_status_msg {
   margin-right: 0;
 }
 /* Attachments Style */
+#classiwrapper .awpcp-videos {
+  clear: both;
+  margin-top: 10px;
+}
+#classiwrapper .awpcp-videos-title {
+  font-weight: bold;
+}
+#classiwrapper .awpcp-videos-list-item {
+  float: left;
+  list-style: none;
+  margin: 10px;
+}
+#classiwrapper .awpcp-videos-list-item a {
+  background: #626262;
+  border: 1px solid #313131;
+  display: inline-block;
+  padding: 9px;
+}
 #classiwrapper .awpcp-attachments {
   clear: both;
   margin-top: 10px;

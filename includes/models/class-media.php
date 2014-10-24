@@ -62,6 +62,10 @@ class AWPCP_Media {
         }
     }
 
+    public function get_original_file_url() {
+        return trailingslashit( AWPCPUPLOADURL ) . $this->name;
+    }
+
     public function get_large_image_url() {
         $original_file_url = $this->get_original_file_url();
 
@@ -71,10 +75,6 @@ class AWPCP_Media {
         );
 
         return $this->get_url_from_alternatives( $alternatives );
-    }
-
-    private function get_original_file_url() {
-        return trailingslashit( AWPCPUPLOADURL ) . $this->name;
     }
 
     public function get_primary_thumbnail_url() {
