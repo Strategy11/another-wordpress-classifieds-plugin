@@ -10,11 +10,7 @@ class AWPCP_ImageResizer {
         $this->settings = $settings;
     }
 
-    public function create_thumbnail_from_uploaded_file( $file ) {
-        return $this->create_thumbnail( $file->get_path(), $file->get_file_name() );
-    }
-
-    private function create_thumbnail( $source, $filename ) {
+    public function create_thumbnail( $source, $filename ) {
         $thumbnails_dir = $this->get_thumbnails_dir();
 
         $width = $this->settings->get_option( 'imgthumbwidth' );
@@ -24,7 +20,7 @@ class AWPCP_ImageResizer {
         return $this->make_intermediate_image_size( $source, $filename, $thumbnails_dir, $width, $height, $crop );
     }
 
-    private function get_thumbnails_dir() {
+    public function get_thumbnails_dir() {
         return implode( DIRECTORY_SEPARATOR, array( $this->settings->get_runtime_option( 'awpcp-uploads-dir' ), 'thumbs' ) );
     }
 
@@ -52,6 +48,10 @@ class AWPCP_ImageResizer {
         chmod( $generated_image_path, 0644 );
 
         return $result;
+    }
+
+    public function create_thumbnail_from_uploaded_file( $file ) {
+        return $this->create_thumbnail( $file->get_path(), $file->get_file_name() );
     }
 
     public function create_thumbnail_for_media( $media, $source_image ) {
