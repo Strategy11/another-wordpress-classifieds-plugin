@@ -319,13 +319,39 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
 
         $params = array_merge( $params, array( 'errors' => $errors ) );
 
+        return $this->show_upload_images_form( $ad, null, $params, $errors );
+    }
+
+    /**
+     * TODO: merge with the same method from Page Place Ad.
+     */
+    protected function show_upload_images_form( $ad, $transaction, $params, $errors ) {
+        $allowed_files = awpcp_listing_upload_limits()->get_listing_upload_limits( $ad );
+
+        $params = array_merge( $params, array(
+            'hidden' => array(),
+            'errors' => $errors,
+            'media_manager_configuration' => array(
+                'nonce' => wp_create_nonce( 'manage-listing-media-' . $ad->ad_id ),
+                'allowed_files' => $allowed_files,
+            ),
+            'media_uploader_configuration' => array(
+                'listing_id' => $ad->ad_id,
+                'nonce' => wp_create_nonce( 'awpcp-upload-media-for-listing-' . $ad->ad_id ),
+                'allowed_files' => $allowed_files,
+            ),
+        ) );
+
         return $this->upload_images_form( $ad, $params );
     }
 
+    /**
+     * TODO: remove unused params.
+     */
     public function upload_images_form( $ad, $params=array() ) {
         $params = array_merge( $params, array(
             'listing' => $ad,
-            'images' => awpcp_media_api()->find_images_by_ad_id( $ad->ad_id ),
+            'files' => awpcp_media_api()->find_by_ad_id( $ad->ad_id ),
             'is_primary_set' => awpcp_media_api()->listing_has_primary_image( $ad ),
             'hidden' => array(
                 'ad_id' => $ad->ad_id,

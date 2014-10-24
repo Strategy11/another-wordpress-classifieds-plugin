@@ -37,12 +37,12 @@ function( $, settings) {
         self.uploader.bind( 'FileUploaded', onFileUplaoded );
 
         function filterFileBySize( enabled, file, done ) {
-            window.console.log( 'filterFileBySize', file );
+            // console.log( 'filterFileBySize', file );
             done( true );
         }
 
         function filterFileByCount( enabled, file, done ) {
-            window.console.log( 'filterFileByCount', file );
+            // console.log( 'filterFileByCount', file );
             done( true );
         }
 
@@ -71,7 +71,7 @@ function( $, settings) {
         }
 
         function onError( /*uploader, error*/ ) {
-            window.console.error( 'Error', arguments );
+            console.error( 'Error', arguments );
         }
     };
 

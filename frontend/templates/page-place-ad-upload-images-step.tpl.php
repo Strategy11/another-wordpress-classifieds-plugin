@@ -36,16 +36,8 @@
 </div>
 
 <form class="awpcp-upload-images-form" method="post" enctype="multipart/form-data">
-	<h3><?php _e('Add Images', 'AWPCP') ?></h3>
-
-	<p><?php _ex('Use the check icons in front of each upload field to mark the uploaded image as the primary image for the Ad.', 'upload images step', 'AWPCP'); ?></p>
-
-	<?php $files_left = max( 1, $images_left ); ?>
-    <?php include( AWPCP_DIR . '/frontend/templates/page-place-ad-upload-fields.tpl.php' ); ?>
-
 	<p class="form-submit">
 		<input class="button" type="submit" value="<?php echo esc_attr( $next ); ?>" id="submit-no-images" name="submit-no-images">
-		<input class="button" type="submit" value="<?php echo esc_attr( __( 'Upload Images', 'AWPCP' ) ); ?>" id="submit" name="submit">
 
 		<input type="hidden" name="step" value="upload-images">
 		<?php foreach ($hidden as $name => $value): ?>

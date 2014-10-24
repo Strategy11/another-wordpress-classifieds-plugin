@@ -1126,7 +1126,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         }
     }
 
-    private function show_upload_images_form( $ad, $transaction, $params, $errors ) {
+    protected function show_upload_images_form( $ad, $transaction, $params, $errors ) {
         $allowed_files = awpcp_listing_upload_limits()->get_listing_upload_limits( $ad );
 
         $params = array_merge( $params, array(
@@ -1155,9 +1155,9 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         if ( $images_uploaded > 0 && $pay_first ) {
             $next = __( 'Finish', 'AWPCP' );
         } else if ( $images_uploaded == 0 && false == $pay_first && $show_preview ) {
-            $next = __( 'Preview Ad without Images', 'AWPCP' );
+            $next = __( 'Preview Ad', 'AWPCP' );
         } else if ( $images_uploaded == 0) {
-            $next = __( 'Place Ad without Images', 'AWPCP' );
+            $next = __( 'Place Ad', 'AWPCP' );
         } else if ( $show_preview ) {
             $next = __( 'Preview Ad', 'AWPCP' );
         } else {

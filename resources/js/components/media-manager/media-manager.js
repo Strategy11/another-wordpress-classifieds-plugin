@@ -1,5 +1,6 @@
 /* jshint latedef: false */
 /* global AWPCP */
+
 AWPCP.define( 'awpcp/media-manager', [ 'jquery', 'knockout', 'awpcp/file-view-model', 'awpcp/settings' ],
 function( $, ko, FileViewModel, settings ) {
     var MediaManager = function( options ) {
@@ -146,12 +147,10 @@ function( $, ko, FileViewModel, settings ) {
         }
 
         function onFileUploaded( event, pluploadFile, fileInfo ) {
-            console.log( event, pluploadFile, fileInfo );
             vm.files.push( new FileViewModel( fileInfo ) );
         }
 
         function onFileThumbnailUpdated( event, pluploadFile, fileInfo, thumbnailUrl ) {
-            console.log( 'onFileThumbnailUpdated', pluploadFile, fileInfo, thumbnailUrl );
             $.each( vm.files(), function( index, file ) {
                 if ( file.id === fileInfo.id ) {
                     file.thumbnailUrl( thumbnailUrl );

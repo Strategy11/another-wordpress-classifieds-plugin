@@ -26,7 +26,6 @@ function( $, ko, settings ) {
         self.video.bind( 'seeked', onVideoSeeked );
 
         function onFileAdded( event, file ) {
-            window.console.log( file, file.type, file.type.match( 'video.*' ) );
             if ( file.type.match( 'video.*' ) ) {
                 self.queue.push( { video: file, thumbnail: ko.observable( null ) } );
                 processQueue();
@@ -41,7 +40,6 @@ function( $, ko, settings ) {
         }
 
         function processNextFile() {
-            window.console.log( 'processNextFile' );
             var video = self.video.get(0);
 
             if ( self.index < self.queue().length ) {
@@ -101,7 +99,6 @@ function( $, ko, settings ) {
             $.each( self.queue(), function( index, item ) {
                 if ( item.video.id === pluploadFile.id ) {
                     thumbnail = item.thumbnail();
-                    console.log( 'TG:onFileUploaded', item, thumbnail );
                 }
             } );
 
