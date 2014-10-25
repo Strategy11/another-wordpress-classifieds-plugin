@@ -467,7 +467,6 @@ function awpcp_admin_categories_render_category_item($category, $level, $start, 
 
 
 function awpcp_opsconfig_categories() {
-    print_r('ops categories'); exit;
 	global $wpdb, $message, $awpcp_imagesurl, $clearform, $hascaticonsmodule;
 
 	$cpagename_awpcp = get_awpcp_option('main-page-name');
