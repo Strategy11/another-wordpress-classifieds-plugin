@@ -104,15 +104,22 @@ class AWPCP_MediaAPI {
     public function delete( $media ) {
         global $wpdb;
 
-        $info = awpcp_utf8_pathinfo( AWPCPUPLOADDIR . $media->name );
-        $filename = preg_replace( "/\.{$info['extension']}/", '', $info['basename'] );
+        $query = 'DELETE FROM ' . AWPCP_TABLE_MEDIA . ' WHERE id = %d';
+        $result = $wpdb->query( $wpdb->prepare( $query, $media->id ) );
 
-        $filenames = array(
+        if ( $result === false ) {
+            return false;
+        }
+
+        $info = awpcp_utf8_pathinfo( AWPCPUPLOADDIR . $media->name );
+
+        $filenames = apply_filters( 'awpcp-file-associated-paths', array(
+            AWPCPUPLOADDIR . "{$media->path}",
             AWPCPUPLOADDIR . "{$info['basename']}",
-            AWPCPUPLOADDIR . "{$filename}-large.{$info['extension']}",
+            AWPCPUPLOADDIR . "{$info['filename']}-large.{$info['extension']}",
             AWPCPTHUMBSUPLOADDIR . "{$info['basename']}",
-            AWPCPTHUMBSUPLOADDIR . "{$filename}-primary.{$info['extension']}",
-        );
+            AWPCPTHUMBSUPLOADDIR . "{$info['filename']}-primary.{$info['extension']}",
+        ), $media );
 
         foreach ( $filenames as $filename ) {
             if ( file_exists( $filename ) ) {
@@ -120,10 +127,7 @@ class AWPCP_MediaAPI {
             }
         }
 
-        $query = 'DELETE FROM ' . AWPCP_TABLE_MEDIA . ' WHERE id = %d';
-        $result = $wpdb->query( $wpdb->prepare( $query, $media->id ) );
-
-        return $result === false ? false : true;
+        return true;
     }
 
     public function enable( $media ) {
