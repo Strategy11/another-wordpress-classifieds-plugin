@@ -545,9 +545,9 @@ class AWPCP {
         add_action( 'wp_ajax_awpcp-autocomplete-users', array( $handler, 'ajax' ) );
         add_action( 'wp_ajax_nopriv_awpcp-autocomplete-users', array( $handler, 'ajax' ) );
 
-        $handler = awpcp_set_image_as_primary_ajax_handler();
-        add_action( 'wp_ajax_awpcp-set-image-as-primary', array( $handler, 'ajax' ) );
-        add_action( 'wp_ajax_nopriv_awpcp-set-image-as-primary', array( $handler, 'ajax' ) );
+        $handler = awpcp_set_file_as_primary_ajax_handler();
+        add_action( 'wp_ajax_awpcp-set-file-as-primary', array( $handler, 'ajax' ) );
+        add_action( 'wp_ajax_nopriv_awpcp-set-file-as-primary', array( $handler, 'ajax' ) );
 
         $handler = awpcp_update_file_enabled_status_ajax_handler();
         add_action( 'wp_ajax_awpcp-update-file-enabled-status', array( $handler, 'ajax' ) );

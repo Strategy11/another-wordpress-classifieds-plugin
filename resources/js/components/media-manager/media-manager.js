@@ -75,19 +75,32 @@ function( $, ko, FileViewModel, settings ) {
 
             $.post( settings.get( 'ajaxurl' ), {
                 nonce: options.nonce,
-                action: 'awpcp-set-image-as-primary',
+                action: 'awpcp-set-file-as-primary',
                 listing_id: file.listingId,
                 file_id: file.id
             }, function( response ) {
                 if ( response.status === 'ok' ) {
-                    $.each( vm.files(), function( index, file ) {
-                        file.isPrimary( false );
+                    $.each( getFilesOfTheSameType( file ), function( index, currentFile ) {
+                        currentFile.isPrimary( false );
                     } );
 
                     file.isPrimary( true );
                     file.isBeingModified( false );
                 }
             } );
+        }
+
+        function getFilesOfTheSameType( file ) {
+            var mimeTypes = null;
+
+            $.each( options.allowed_files, function( index, config ) {
+                if ( $.inArray( file.mimeType, config.mime_types ) !== -1 ) {
+                    mimeTypes = config.mime_types;
+                    return false;
+                }
+            } );
+
+            return mimeTypes === null ? [] : filterFilesByMimeType( vm.files(), mimeTypes );
         }
 
         function updateFileEnabledStatus( newStatus ) {

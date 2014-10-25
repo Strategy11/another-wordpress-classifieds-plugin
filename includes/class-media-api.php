@@ -152,19 +152,26 @@ class AWPCP_MediaAPI {
         return $this->save( $media );
     }
 
-    public function set_ad_primary_image( $ad, $media ) {
+    public function set_media_as_primary( $listing, $media, $mime_types ) {
         global $wpdb;
 
-        $query = 'UPDATE ' . AWPCP_TABLE_MEDIA . ' SET is_primary = 0 WHERE ad_id = %d';
+        $mime_types_list = "'" . implode( "', '", $mime_types ) . "'";
 
-        if ( $wpdb->query( $wpdb->prepare( $query, $ad->ad_id ) ) === false ) {
+        $query = 'UPDATE ' . AWPCP_TABLE_MEDIA . ' SET is_primary = 0 ';
+        $query.= "WHERE ad_id = %d AND mime_type IN (" . $mime_types_list . ")";
+
+        if ( $wpdb->query( $wpdb->prepare( $query, $listing->ad_id ) ) === false ) {
             return false;
         }
 
         $query = 'UPDATE ' . AWPCP_TABLE_MEDIA . ' SET is_primary = 1 WHERE ad_id = %d AND id = %d';
-        $query = $wpdb->prepare( $query, $ad->ad_id, $media->id );
+        $query = $wpdb->prepare( $query, $listing->ad_id, $media->id );
 
         return $wpdb->query( $query ) !== false;
+    }
+
+    public function set_ad_primary_image( $ad, $media ) {
+        return $this->set_media_as_primary( $ad, $media, awpcp_get_image_mime_types() );
     }
 
     public function get_ad_primary_image( $ad ) {
