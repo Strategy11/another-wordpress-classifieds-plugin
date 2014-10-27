@@ -3,7 +3,7 @@
 
 AWPCP.define( 'awpcp/media-uploader', [ 'jquery', 'awpcp/settings' ],
 function( $, settings) {
-    var MediaUplaoder = function( element, options ) {
+    var MediaUploader = function( element, options ) {
         var self = this;
 
         self.element = $( element );
@@ -29,12 +29,13 @@ function( $, settings) {
                 },
                 chunk_size: '10000000',
                 runtimes: 'html5,flash,silverlight,html4',
-                multiple_queues: true
+                multiple_queues: true,
+                init: {
+                    FilesAdded: onFilesAdded,
+                    FileUploaded: onFileUplaoded
+                }
             } )
             .pluploadQueue();
-
-        self.uploader.bind( 'FilesAdded', onFilesAdded );
-        self.uploader.bind( 'FileUploaded', onFileUplaoded );
 
         function filterFileBySize( enabled, file, done ) {
             // console.log( 'filterFileBySize', file );
@@ -47,7 +48,7 @@ function( $, settings) {
         }
 
         function getFileTypeFilters() {
-            return $.map( self.options.allowed_files, function( group, index ) {
+            return $.map( self.options.allowed_files, function( group/*, index*/ ) {
                 return { title: group.title, extensions: group.extensions.join( ',' ) };
             } );
         }
@@ -63,17 +64,21 @@ function( $, settings) {
 
             if ( response.status === 'ok' && response.file ) {
                 $.publish( '/file/uploaded', [ file, response.file ] );
-            } else if ( response.status === 'ok' ) {
+            } /*else if ( response.status === 'ok' ) {
                 // upload in progress?
-            } else {
+            } */else {
                 file.status = plupload.FAILED;
+                // to force the queue widget to update the icon and the uploaded files count
+                self.uploader.trigger( 'UploadProgress', file );
+
+                $.publish( '/messages/media-uploader', { type: 'error', 'content': response.errors.join( ' ' ) } );
             }
         }
 
-        function onError( /*uploader, error*/ ) {
-            console.error( 'Error', arguments );
-        }
+        // function onError( /*uploader, error*/ ) {
+        //     console.error( 'Error', arguments );
+        // }
     };
 
-    return MediaUplaoder;
+    return MediaUploader;
 } );

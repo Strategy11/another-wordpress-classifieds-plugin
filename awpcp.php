@@ -209,6 +209,7 @@ require_once( AWPCP_DIR . '/includes/media/class-listing-upload-limits.php' );
 require_once( AWPCP_DIR . "/includes/media/class-media-manager-component.php" );
 require_once( AWPCP_DIR . '/includes/media/class-media-manager.php' );
 require_once( AWPCP_DIR . '/includes/media/class-media-uploader-component.php' );
+require_once( AWPCP_DIR . "/includes/media/class-messages-component.php" );
 require_once( AWPCP_DIR . '/includes/media/class-uploaded-file-logic-factory.php' );
 require_once( AWPCP_DIR . '/includes/media/class-uploaded-file-logic.php' );
 require_once( AWPCP_DIR . '/includes/media/class-upload-listing-media-ajax-handler.php' );

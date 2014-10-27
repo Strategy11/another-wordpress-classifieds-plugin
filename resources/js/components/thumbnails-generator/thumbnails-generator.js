@@ -6,7 +6,7 @@ function( $, ko, settings ) {
     var QUEUE_STOPPED = 0;
     var QUEUE_ACTIVE = 1;
 
-    var ThumbnailsGenerator = function( element, options ) {
+    var ThumbnailsGenerator = function( element/*, options*/ ) {
         var self = this;
 
         self.element = $( element );

@@ -6,7 +6,8 @@ AWPCP.run('awpcp/page-place-ads', [
     'awpcp/media-uploader',
     'awpcp/thumbnails-generator',
     'awpcp/settings',
-    'awpcp/jquery-userfield'
+    'awpcp/jquery-userfield',
+    'awpcp/jquery-messages',
 ],
 function( $, ko, MediaManager, MediaUploader, ThumbnailsGenerator, settings ) {
     var AWPCP = jQuery.AWPCP = jQuery.extend({}, jQuery.AWPCP, AWPCP);
@@ -242,6 +243,8 @@ function( $, ko, MediaManager, MediaUploader, ThumbnailsGenerator, settings ) {
                 mediaUploader = $( '#awpcp-media-uploader' ),
                 mediaUploaderOptions = settings.get( 'media-uploader-data' ),
                 thumbnailsGenerator = $( '.awpcp-thumbnails-generator' );
+
+            $( '.awpcp-messages' ).AWPCPMessages();
 
             if ( mediaManager.length && mediaManagerOptions ) {
                 ko.applyBindings( new MediaManager( mediaManagerOptions ), mediaManager.get( 0 ) );
