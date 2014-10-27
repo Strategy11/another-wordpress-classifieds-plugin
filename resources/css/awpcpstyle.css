@@ -1220,17 +1220,6 @@ p.ad_status_msg {
     width: auto;
   }
 }
-/*.awpcplatestbox {
-    margin-bottom:5px;
-}
-.awpcplatestbox .awpcp-listing-title {
-    clear: both;
-    font-weight: bold;
-    margin: 4px 0 8px;
-}
-.awpcplatestspacer {
-    clear:both;
-}*/
 /* Using !important because theme authors love to use IDs in their
    CSS selectors. My rules won't be applied unless I know the exact
    selector or use !important. */
@@ -1244,8 +1233,7 @@ p.ad_status_msg {
 }
 .awpcp-listings-widget-items-list .awpcp-listings-widget-item .awpcplatestthumb {
   box-sizing: border-box;
-  margin: 0 0 5px;
-  width: 100%;
+  margin-bottom: 5px;
 }
 .awpcp-listings-widget-items-list .awpcp-listings-widget-item .awpcplatestthumb a {
   display: block !important;
@@ -1261,6 +1249,44 @@ p.ad_status_msg {
 }
 .awpcp-listings-widget-items-list .awpcp-listings-widget-item .awpcp-widget-read-more {
   margin-left: 10px !important;
+}
+.awpcp-listings-widget-items-list .awpcp-listings-widget-item-with-thumbnail-above-in-desktop .awpcplatestthumb {
+  margin-right: 0;
+  margin-left: 0;
+  float: none;
+  width: 100%;
+}
+.awpcp-listings-widget-items-list .awpcp-listings-widget-item-with-left-thumbnail-in-desktop .awpcplatestthumb {
+  margin-right: 10px;
+  margin-left: 0;
+  float: left;
+  width: 50%;
+}
+.awpcp-listings-widget-items-list .awpcp-listings-widget-item-with-right-thumbnail-in-desktop .awpcplatestthumb {
+  margin-right: 0;
+  margin-left: 10px;
+  float: right;
+  width: 50%;
+}
+@media screen and (max-width: 44em) {
+  .awpcp-listings-widget-items-list .awpcp-listings-widget-item-with-left-thumbnail-in-mobile .awpcplatestthumb {
+    margin-right: 10px;
+    margin-left: 0;
+    float: left;
+    width: 50%;
+  }
+  .awpcp-listings-widget-items-list .awpcp-listings-widget-item-with-right-thumbnail-in-mobile .awpcplatestthumb {
+    margin-right: 0;
+    margin-left: 10px;
+    float: right;
+    width: 50%;
+  }
+  .awpcp-listings-widget-items-list .awpcp-listings-widget-item-with-thumbnail-above-in-mobile .awpcplatestthumb {
+    margin-right: 0;
+    margin-left: 0;
+    float: none;
+    width: 100%;
+  }
 }
 .awpcp-navigation .awpcp-menu-toggle {
   background: #000000 url("../images/bullet_arrow_down.png") 10px center no-repeat;

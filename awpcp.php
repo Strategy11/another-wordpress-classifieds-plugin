@@ -3,7 +3,7 @@
  Plugin Name: Another Wordpress Classifieds Plugin (AWPCP)
  Plugin URI: http://www.awpcp.com
  Description: AWPCP - A plugin that provides the ability to run a free or paid classified ads service on your wordpress blog. <strong>!!!IMPORTANT!!!</strong> Whether updating a previous installation of Another Wordpress Classifieds Plugin or installing Another Wordpress Classifieds Plugin for the first time, please backup your wordpress database before you install/uninstall/activate/deactivate/upgrade Another Wordpress Classifieds Plugin.
- Version: 3.3.1
+ Version: 3.3.2-dev-1
  Author: D. Rodenbaugh
  License: GPLv2 or any later version
  Author URI: http://www.skylineconsult.com
@@ -176,6 +176,8 @@ require_once( AWPCP_DIR . "/includes/settings/class-credit-plans-settings.php" )
 require_once( AWPCP_DIR . "/includes/settings/class-listings-moderation-settings.php" );
 require_once( AWPCP_DIR . "/includes/settings/class-payment-general-settings.php" );
 require_once( AWPCP_DIR . "/includes/settings/class-registration-settings.php" );
+
+require_once( AWPCP_DIR . "/includes/upgrade/class-fix-empty-media-mime-type-upgrade-routine.php" );
 
 require_once( AWPCP_DIR . "/includes/class-awpcp-listings-api.php" );
 require_once( AWPCP_DIR . "/includes/class-fees-collection.php" );
@@ -463,6 +465,10 @@ class AWPCP {
 			awpcp_create_pages(__('AWPCP', 'AWPCP'));
 			$this->flush_rewrite_rules = true;
 		}
+
+        if ( get_option( 'awpcp-enable-fix-media-mime-type-upgrde' ) ) {
+            awpcp_fix_empty_media_mime_type_upgrade_routine()->run();
+        }
 
 		if ( $this->flush_rewrite_rules || get_option( 'awpcp-flush-rewrite-rules' ) ) {
 			flush_rewrite_rules();
