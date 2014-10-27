@@ -45,7 +45,7 @@ class AWPCP_Settings_API {
 
 		$key = $this->add_section( $group, __( 'User Ad Management Panel', 'AWPCP' ), 'user-panel', 5, array( $this, 'section' ) );
 
-		$help_text = __( 'You must have registered users to use this setting. Turning it on will automatically enable "Require Registration" for AWPCP. Make sure you site allows users to register under <wp-settings-link>Settings->General</a>.' );
+		$help_text = __( 'You must have registered users to use this setting. Turning it on will automatically enable "Require Registration" for AWPCP. Make sure you site allows users to register under <wp-settings-link>Settings->General</a>.', 'AWPCP' );
 		$help_text = str_replace( '<wp-settings-link>', sprintf( '<a href="%s">', admin_url( 'options-general.php' ) ), $help_text );
 		$this->add_setting( $key, 'enable-user-panel', __( 'Enable User Ad Management Panel', 'AWPCP' ), 'checkbox', 0, $help_text );
 
@@ -146,7 +146,7 @@ class AWPCP_Settings_API {
 
 		$this->add_setting( $key, 'main-page-name', __( 'AWPCP Main page', 'AWPCP' ), 'textfield', 'AWPCP', __( 'Name for Classifieds page.', 'AWPCP' ) );
 		$this->add_setting( $key, 'show-ads-page-name', __( 'Show Ad page', 'AWPCP' ), 'textfield', 'Show Ad', __( 'Name for Show Ads page.', 'AWPCP' ) );
-		$this->add_setting( $key, 'place-ad-page-name', __( 'Place Ad page', 'AWPCP' ), 'textfield', 'Place Ad', __( 'Name for Place Ads page.' ) );
+		$this->add_setting( $key, 'place-ad-page-name', __( 'Place Ad page', 'AWPCP' ), 'textfield', 'Place Ad', __( 'Name for Place Ads page.', 'AWPCP' ) );
 		$this->add_setting( $key, 'edit-ad-page-name', __( 'Edit Ad page', 'AWPCP' ), 'textfield', 'Edit Ad', __( 'Name for edit ad page.', 'AWPCP' ) );
 		$this->add_setting( $key, 'renew-ad-page-name', __( 'Renew Ad page', 'AWPCP' ), 'textfield', 'Renew Ad', __( 'Name for Renew Ad page.', 'AWPCP' ) );
 		$this->add_setting( $key, 'reply-to-ad-page-name', __( 'Reply to Ad page', 'AWPCP' ), 'textfield', 'Reply To Ad', __( 'Name for Reply to Ad page.', 'AWPCP' ) );
@@ -272,7 +272,7 @@ class AWPCP_Settings_API {
 		$this->add_setting( $key, 'buildsearchdropdownlists', __( 'Limits search to available locations.', 'AWPCP' ), 'checkbox', 0, __( 'The search form can attempt to build drop down country, state, city and county lists if data is available in the system. Note that with the regions module installed the value for this option is overridden.', 'AWPCP' ) );
 		$this->add_setting( $key, 'showadcount', __( 'Show Ad count in categories', 'AWPCP' ), 'checkbox', 1, __( 'Show how many ads a category contains.', 'AWPCP' ) );
 		$this->add_setting( $key, 'hide-empty-categories', __( 'Hide empty categories?', 'AWPCP' ), 'checkbox', 0, __( "If checked, categories with 0 listings in it won't be shown.", 'AWPCP' ) );
-		$this->add_setting( $key, 'displayadviews', __( 'Show Ad views', 'AWPCP' ), 'checkbox', 1, __( 'Show Ad views' ) );
+		$this->add_setting( $key, 'displayadviews', __( 'Show Ad views', 'AWPCP' ), 'checkbox', 1, __( 'Show Ad views', 'AWPCP' ) );
 		$this->add_setting( $key, 'hyperlinkurlsinadtext', __( 'Make URLs in ad text clickable', 'AWPCP' ), 'checkbox', 0, '' );
 		$this->add_setting( $key, 'visitwebsitelinknofollow', __( 'Add no follow to links in Ads', 'AWPCP' ), 'checkbox', 1, '' );
 
