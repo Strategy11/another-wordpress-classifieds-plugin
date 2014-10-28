@@ -2,31 +2,25 @@
 
 // ensure we get the expiration hooks scheduled properly:
 function awpcp_schedule_activation() {
+    $cron_jobs = array(
+        'doadexpirations_hook' => 'hourly',
+        'doadcleanup_hook' => 'daily',
+        'awpcp_ad_renewal_email_hook' => 'hourly',
+        'awpcp-clean-up-payment-transactions' => 'daily',
+        'awpcp-clean-up-non-verified-ads' => 'daily',
+    );
+
+    foreach ( $cron_jobs as $cron_job => $frequency ) {
+        if ( ! wp_next_scheduled( $cron_job ) ) {
+            wp_schedule_event( time(), $frequency, $cron_job );
+        }
+    }
+
     add_action('doadexpirations_hook', 'doadexpirations');
     add_action('doadcleanup_hook', 'doadcleanup');
     add_action('awpcp_ad_renewal_email_hook', 'awpcp_ad_renewal_email');
     add_action('awpcp-clean-up-payment-transactions', 'awpcp_clean_up_payment_transactions');
     add_action( 'awpcp-clean-up-payment-transactions', 'awpcp_clean_up_non_verified_ads_handler' );
-
-    if (!wp_next_scheduled('doadexpirations_hook')) {
-        wp_schedule_event( time(), 'hourly', 'doadexpirations_hook' );
-    }
-
-    if (!wp_next_scheduled('doadcleanup_hook')) {
-        wp_schedule_event( time(), 'daily', 'doadcleanup_hook' );
-    }
-
-    if (!wp_next_scheduled('awpcp_ad_renewal_email_hook')) {
-        wp_schedule_event( time(), 'hourly', 'awpcp_ad_renewal_email_hook' );
-    }
-
-    if (!wp_next_scheduled('awpcp-clean-up-payment-transactions')) {
-        wp_schedule_event( time(), 'daily', 'awpcp-clean-up-payment-transactions' );
-    }
-
-    if ( ! wp_next_scheduled( 'awpcp-clean-up-non-verified-ads' ) ) {
-        wp_schedule_event( time(), 'daily', 'awpcp-clean-up-non-verified-ads' );
-    }
 
     // if ( awpcp_current_user_is_admin() ) {
     //     wp_clear_scheduled_hook( 'doadexpirations_hook' );
