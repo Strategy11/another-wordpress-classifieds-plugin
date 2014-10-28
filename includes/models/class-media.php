@@ -63,7 +63,7 @@ class AWPCP_Media {
     }
 
     public function get_original_file_url() {
-        return trailingslashit( AWPCPUPLOADURL ) . $this->name;
+        return trailingslashit( AWPCPUPLOADURL ) . $this->path;
     }
 
     public function get_large_image_url() {
@@ -104,11 +104,11 @@ class AWPCP_Media {
     }
 
     private function get_url_from_alternatives( $alternatives ) {
-        // $uploads_directories = awpcp_get_uploads_directories();
-        // $files_dir = $uploads_directories['files_dir'];
+        $home_url = get_home_url();
+        $abs_path = rtrim( ABSPATH, '/' );
 
         foreach ( $alternatives as $path ) {
-            if ( file_exists( str_replace( get_home_url(), ABSPATH, $path ) ) ) {
+            if ( file_exists( str_replace( $home_url, $abs_path, $path ) ) ) {
                 return $path;
             }
         }

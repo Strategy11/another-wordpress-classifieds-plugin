@@ -495,8 +495,8 @@ function awpcp_do_placeholder_images($ad, $placeholder) {
         $primary_image = awpcp_media_api()->get_ad_primary_image( $ad );
 
         if ($primary_image) {
-            $large_image = $primary_image->get_url( 'large' );
-            $thumbnail = $primary_image->get_url( 'primary' );
+            $large_image = $primary_image->get_large_image_url( 'large' );
+            $thumbnail = $primary_image->get_primary_thumbnail_url( 'primary' );
 
             if (get_awpcp_option('show-click-to-enlarge-link', 1)) {
                 $link = '<a class="thickbox enlarge" href="%s">%s</a>';
