@@ -50,8 +50,8 @@ function( $, settings) {
         }
 
         function getFileTypeFilters() {
-            return $.map( self.options.allowed_files, function( group/*, index*/ ) {
-                return { title: group.title, extensions: group.extensions.join( ',' ) };
+            return $.map( self.options.allowed_files, function( group, title ) {
+                return { title: title.substr( 0, 1 ).toUpperCase() + title.substr( 1 ), extensions: group.extensions.join( ',' ) };
             } );
         }
 
