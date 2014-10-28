@@ -1,23 +1,27 @@
 /* jshint latedef: false */
 /* global AWPCP */
 
-AWPCP.define( 'awpcp/thumbnails-generator', [ 'jquery', 'knockout', 'awpcp/settings' ],
-function( $, ko, settings ) {
+AWPCP.define( 'awpcp/thumbnails-generator', [ 'jquery', 'awpcp/settings' ],
+function( $, settings ) {
     var QUEUE_STOPPED = 0;
     var QUEUE_ACTIVE = 1;
 
-    var ThumbnailsGenerator = function( element/*, options*/ ) {
+    var ThumbnailsGenerator = function( element ) {
         var self = this;
 
         self.element = $( element );
         self.video = self.element.find( 'video' );
         self.canvas = self.element.find( 'canvas' );
-        self.image = self.element.find( 'img' );
 
-        self.queue = ko.observableArray( [] );
+        self.queue = [];
 
         self.index = 0;
         self.status = QUEUE_STOPPED;
+
+        if ( typeof self.video.get(0).canPlayType === 'undefined' || typeof URL === 'undefined' || typeof URL.createObjectURL === 'undefined' ) {
+            // cannot generate thumbnails in this browser
+            return;
+        }
 
         $.subscribe( '/file/added', onFileAdded );
         $.subscribe( '/file/uploaded', onFileUploaded );
@@ -27,7 +31,7 @@ function( $, ko, settings ) {
 
         function onFileAdded( event, file ) {
             if ( file.type.match( 'video.*' ) ) {
-                self.queue.push( { video: file, thumbnail: ko.observable( null ) } );
+                self.queue.push( { video: file, thumbnail: null } );
                 processQueue();
             }
         }
@@ -42,14 +46,14 @@ function( $, ko, settings ) {
         function processNextFile() {
             var video = self.video.get(0);
 
-            if ( self.index < self.queue().length ) {
-                self.currentItem = self.queue()[ self.index ];
+            if ( self.index < self.queue.length ) {
+                self.currentItem = self.queue[ self.index ];
                 self.index = self.index + 1;
 
                 if ( ! video.canPlayType( self.currentItem.video.type ) ) {
                     var message = 'This video file format is not supported.';
                     message = message.replace( '<video-format>', self.currentItem.video.type );
-                    return $.publish( '/errors/thumbnails-generator', message );
+                    return $.publish( '/messages/thumbnails-generator', { type: 'error', content: message } );
                 }
 
                 video.src = URL.createObjectURL( self.currentItem.video.getNative() );
@@ -75,7 +79,7 @@ function( $, ko, settings ) {
         }
 
         function onVideoSeeked() {
-            self.currentItem.thumbnail( generateThumbnailForCurrentVideo() );
+            self.currentItem.thumbnail = generateThumbnailForCurrentVideo();
             setTimeout( processNextFile, 100 );
         }
 
@@ -96,9 +100,9 @@ function( $, ko, settings ) {
         function onFileUploaded( event, pluploadFile, fileInfo ) {
             var thumbnail = null;
 
-            $.each( self.queue(), function( index, item ) {
+            $.each( self.queue, function( index, item ) {
                 if ( item.video.id === pluploadFile.id ) {
-                    thumbnail = item.thumbnail();
+                    thumbnail = item.thumbnail;
                 }
             } );
 

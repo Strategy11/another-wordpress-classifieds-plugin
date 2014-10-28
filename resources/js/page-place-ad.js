@@ -7,7 +7,7 @@ AWPCP.run('awpcp/page-place-ads', [
     'awpcp/thumbnails-generator',
     'awpcp/settings',
     'awpcp/jquery-userfield',
-    'awpcp/jquery-messages',
+    'awpcp/jquery-messages'
 ],
 function( $, ko, MediaManager, MediaUploader, ThumbnailsGenerator, settings ) {
     var AWPCP = jQuery.AWPCP = jQuery.extend({}, jQuery.AWPCP, AWPCP);
@@ -257,15 +257,6 @@ function( $, ko, MediaManager, MediaUploader, ThumbnailsGenerator, settings ) {
             if ( thumbnailsGenerator.length ) {
                 $.noop( new ThumbnailsGenerator( thumbnailsGenerator ) );
             }
-            // var form = container.find('.awpcp-upload-images-form');
-
-            // if (form.length) {
-
-            //     var radios = form.find('.uploadform :radio').change(function() {
-            //         radios.closest('li').removeClass('primary').addClass('not-primary');
-            //         $(this).closest('li').removeClass('not-primary').addClass('primary');
-            //     });
-            // }
         })();
 
         /* Deleta Ad Form */

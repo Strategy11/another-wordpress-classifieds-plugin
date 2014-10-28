@@ -13,6 +13,11 @@ class AWPCP_MediaUploaderComponent {
     }
 
     public function render( $configuration ) {
+        $configuration = wp_parse_args( $configuration, array(
+            'flash_swf_url'       => includes_url( 'js/plupload/plupload.flash.swf' ),
+            'silverlight_xap_url' => includes_url( 'js/plupload/plupload.silverlight.xap' ),
+        ) );
+
         $this->javascript->set( 'media-uploader-data', $configuration );
         return $this->render_component();
     }

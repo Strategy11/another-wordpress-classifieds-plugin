@@ -13,10 +13,10 @@ function( $, ko ) {
 
         function onNewMessage( event, message ) {
             self.messages.push( message );
-            pruneMessagesQueue( message );
+            scheduleMessageQueueCleanUp();
         }
 
-        function pruneMessagesQueue( /*message*/ ) {
+        function scheduleMessageQueueCleanUp() {
             setTimeout( function() {
                 var messagesCount = self.messages().length;
                 if ( messagesCount > 10 ) {

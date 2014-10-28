@@ -1,4 +1,5 @@
 /* global AWPCP */
+
 AWPCP.define( 'awpcp/file-view-model', [ 'knockout' ],
 function( ko ) {
     var FileViewModel = function( file ) {

@@ -20,7 +20,7 @@ function( $, settings) {
                 filters: {
                     mime_types: getFileTypeFilters(),
                     restrict_file_size: true,
-                    restrict_file_count: true,
+                    restrict_file_count: true
                 },
                 multipart_params: {
                     action: 'awpcp-upload-listing-media',
@@ -30,6 +30,8 @@ function( $, settings) {
                 chunk_size: '10000000',
                 runtimes: 'html5,flash,silverlight,html4',
                 multiple_queues: true,
+                flash_swf_url : options.flash_swf_url,
+                silverlight_xap_url : options.silverlight_xap_url,
                 init: {
                     FilesAdded: onFilesAdded,
                     FileUploaded: onFileUplaoded
@@ -64,9 +66,7 @@ function( $, settings) {
 
             if ( response.status === 'ok' && response.file ) {
                 $.publish( '/file/uploaded', [ file, response.file ] );
-            } /*else if ( response.status === 'ok' ) {
-                // upload in progress?
-            } */else {
+            } else if ( response.status !== 'ok' ) {
                 file.status = plupload.FAILED;
                 // to force the queue widget to update the icon and the uploaded files count
                 self.uploader.trigger( 'UploadProgress', file );
