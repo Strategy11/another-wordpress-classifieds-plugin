@@ -8,6 +8,7 @@ function awpcp_schedule_activation() {
         'awpcp_ad_renewal_email_hook' => 'hourly',
         'awpcp-clean-up-payment-transactions' => 'daily',
         'awpcp-clean-up-non-verified-ads' => 'daily',
+        'awpcp-task-queue-cron' => 'hourly',
     );
 
     foreach ( $cron_jobs as $cron_job => $frequency ) {

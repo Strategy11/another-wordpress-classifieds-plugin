@@ -491,7 +491,9 @@ class AWPCP {
         }
 
         if ( defined( 'DOING_CRON' ) && DOING_CRON ) {
-            add_action( 'awpcp-task-queue-event', array( awpcp_task_queue(), 'task_queue_event' ) );
+            $task_queue = awpcp_task_queue();
+            add_action( 'awpcp-task-queue-event', array( $task_queue, 'task_queue_event' ) );
+            add_action( 'awpcp-task-queue-cron', array( $task_queue, 'task_queue_event' ) );
         } else if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
             $this->ajax_setup();
         } else if ( is_admin() ) {
