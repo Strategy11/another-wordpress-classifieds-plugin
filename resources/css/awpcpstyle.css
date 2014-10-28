@@ -686,16 +686,20 @@ p.ad_status_msg {
 #classiwrapper .awpcp-videos-title {
   font-weight: bold;
 }
-#classiwrapper .awpcp-videos-list-item {
+#classiwrapper .awpcp-videos-grid-item {
   float: left;
   list-style: none;
   margin: 10px;
 }
-#classiwrapper .awpcp-videos-list-item a {
+#classiwrapper .awpcp-videos-grid-item a {
   background: #626262;
   border: 1px solid #313131;
   display: inline-block;
   padding: 9px;
+}
+#classiwrapper .awpcp-videos-list-item {
+  list-style: none;
+  margin: 10px 0;
 }
 #classiwrapper .awpcp-attachments {
   clear: both;
