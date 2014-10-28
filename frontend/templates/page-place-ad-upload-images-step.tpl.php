@@ -35,7 +35,6 @@
 <div class="awpcp-thumbnails-generator" data-nonce="<?php echo esc_attr( wp_create_nonce( 'awpcp-upload-generated-thumbnail-for-listing-' . $listing->ad_id ) ); ?>">
     <video preload="none" muted="muted" width="0" height="0"></video>
     <canvas></canvas>
-    <img>
 </div>
 
 <form class="awpcp-upload-images-form" method="post" enctype="multipart/form-data">
