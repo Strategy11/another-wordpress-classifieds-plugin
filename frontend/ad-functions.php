@@ -254,12 +254,36 @@ function deletead($adid, $adkey, $editemail, $force=false, &$errors=array()) {
 function awpcp_ad_posted_user_email( $ad, $transaction = null, $message='' ) {
 	$admin_email = awpcp_admin_recipient_email_address();
 
+	$payments_api = awpcp_payments_api();
+	$show_total_amount = $payments_api->payments_enabled();
+	$show_total_credits = $payments_api->credit_system_enabled();
+	$currency_code = $payments_api->get_currency();
+
+	if ( ! is_null( $transaction ) ) {
+		$transaction_totals = $transaction->get_totals();
+		$total_amount = $transaction_totals['money'];
+		$total_credits = $transaction_totals['credits'];
+	} else {
+		$total_amount = 0;
+		$total_credits = 0;
+	}
+
+	$params = compact(
+		'ad',
+		'admin_email',
+		'transaction',
+		'currency_code',
+		'show_total_amount',
+		'show_total_credits',
+		'total_amount',
+		'total_credits',
+		'message'
+	);
+
 	$email = new AWPCP_Email;
 	$email->to[] = "{$ad->ad_contact_name} <{$ad->ad_contact_email}>";
 	$email->subject = get_awpcp_option('listingaddedsubject');
-
-	$template = AWPCP_DIR . '/frontend/templates/email-place-ad-success-user.tpl.php';
-	$email->prepare($template, compact('ad', 'transaction', 'message', 'admin_email'));
+	$email->prepare( AWPCP_DIR . '/frontend/templates/email-place-ad-success-user.tpl.php', $params );
 
 	return $email;
 }
