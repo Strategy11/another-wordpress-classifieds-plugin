@@ -1301,11 +1301,12 @@ function awpcp_rel_canonical() {
 function awpcp_redirect_canonical($redirect_url, $requested_url) {
 	global $wp_query;
 
+    $awpcp_rewrite = false;
 	$ids = awpcp_get_page_ids_by_ref(awpcp_pages_with_rewrite_rules());
 
 	// do not redirect requests to AWPCP pages with rewrite rules
 	if (is_page() && in_array(awpcp_request_param('page_id', 0), $ids)) {
-		$redirect_url = $requested_url;
+        $awpcp_rewrite = true;
 
 	// do not redirect requests to the front page, if any of the AWPCP pages
 	// with rewrite rules is the front page
@@ -1313,8 +1314,24 @@ function awpcp_redirect_canonical($redirect_url, $requested_url) {
 			  'page' == get_option('show_on_front') && in_array($wp_query->queried_object->ID, $ids) &&
 			   $wp_query->queried_object->ID == get_option('page_on_front'))
 	{
-		$redirect_url = $requested_url;
+        $awpcp_rewrite = true;
 	}
+
+    if ( $awpcp_rewrite ) {
+        // Fix for #943.
+        $requested_host = parse_url( $requested_url, PHP_URL_HOST );
+        $redirect_host = parse_url( $redirect_url, PHP_URL_HOST );
+
+        if ( $requested_host != $redirect_host ) {
+            if ( strtolower( $redirect_host ) == ( 'www.' . $requested_host ) ) {
+                return str_replace( $requested_host, 'www.' . $requested_host, $requested_url );
+            } elseif ( strtolower( $requested_host ) == ( 'www.' . $redirect_host ) ) {
+                return str_replace( 'www.', '', $requested_url );
+            }
+        }
+
+        return $requested_url;
+    }
 
 	// $id = awpcp_get_page_id_by_ref('main-page-name');
 
