@@ -527,6 +527,13 @@ class AWPCP {
 					'version' => 'AWPCP_BUDDYPRESS_LISTINGS_MODULE_DB_VERSION',
 					'required' => '1.0.3',
 				),
+                'campaign-manager' => array(
+                    'name' => __( 'Campaign Manager', 'AWPCP' ),
+                    'url' => 'http://www.awpcp.com/',
+                    'installed' => defined( 'AWPCP_CAMPAIGN_MANAGER_MODULE' ),
+                    'version' => 'AWPCP_CAMPAIGN_MANAGER_MODULE_DB_VERSION',
+                    'required' => '1.0.0-RC3',
+                ),
 				'category-icons' => array(
 					'name' => __( 'Category Icons', 'AWPCP' ),
 					'url' => 'http://www.awpcp.com/premium-modules/category-icons-module?ref=panel',
