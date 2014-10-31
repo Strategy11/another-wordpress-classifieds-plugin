@@ -512,9 +512,7 @@ function awpcp_do_placeholder_images($ad, $placeholder) {
             $content.= '</a>%s';
             $content.= '</div>';
 
-            $placeholders['featureimg'] = sprintf($content, esc_attr($large_image),
-                                                            esc_attr($thumbnail),
-                                                            $link);
+            $placeholders['featureimg'] = sprintf( $content, esc_attr( $large_image ), esc_attr( $thumbnail ), $link );
 
             // listings
             $content = '<a class="awpcp-listing-primary-image-listing-link" href="%s"><img src="%s" width="%spx" border="0" alt="%s" /></a>';
@@ -569,6 +567,9 @@ function awpcp_do_placeholder_images($ad, $placeholder) {
 
         $placeholders['awpcp_image_name_srccode'] = $content;
     }
+
+    $placeholders['featureimg'] = apply_filters( 'awpcp-featured-image-placeholder', $placeholders['featureimg'], 'single', $ad );
+    $placeholders['awpcp_image_name_srccode'] = apply_filters( 'awpcp-featured-image-placeholder', $placeholders['awpcp_image_name_srccode'], 'listings', $ad );
 
     $placeholders['featured_image'] = $placeholders['featureimg'];
     $placeholders['imgblockwidth'] = "{$thumbnail_width}px";
