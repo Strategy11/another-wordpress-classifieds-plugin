@@ -50,11 +50,11 @@ function( $, settings ) {
                 self.currentItem = self.queue[ self.index ];
                 self.index = self.index + 1;
 
-                if ( ! video.canPlayType( self.currentItem.video.type ) ) {
-                    var message = 'This video file format is not supported.';
-                    message = message.replace( '<video-format>', self.currentItem.video.type );
-                    return $.publish( '/messages/thumbnails-generator', { type: 'error', content: message } );
-                }
+                // if ( ! video.canPlayType( self.currentItem.video.type ) ) {
+                //     var message = 'A thumbnail cannot be generated for <video-format> files. We will try to generate a thumbnail on the server after the file is uploaded.';
+                //     message = message.replace( '<video-format>', self.currentItem.video.type );
+                //     return $.publish( '/messages/thumbnails-generator', { type: 'error', content: message } );
+                // }
 
                 video.src = URL.createObjectURL( self.currentItem.video.getNative() );
                 video.play();
