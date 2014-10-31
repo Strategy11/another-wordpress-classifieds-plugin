@@ -269,6 +269,10 @@ class AWPCP_Settings_API {
 		$this->add_setting( $key, 'search-results-order', __( 'Order Ad Listings in Search results by', 'AWPCP' ), 'select', 1, '', array('options' => $radio_options));
 		// $this->add_setting($key, 'groupsearchresultsby', 'Group Ad Listings search results by', 'radio', 1, '', array('options' => $radio_options));
 		$this->add_setting( $key, 'adresultsperpage', __( 'Default number of Ads per page', 'AWPCP' ), 'textfield', 10, '');
+
+		$pagination_options = array( 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 500 );
+		$this->add_setting( $key, 'pagination-options', __( 'Pagination Options', 'AWPCP' ), 'choice', $pagination_options, '', array( 'choices' => array_combine( $pagination_options, $pagination_options ) ) );
+
 		$this->add_setting( $key, 'buildsearchdropdownlists', __( 'Limits search to available locations.', 'AWPCP' ), 'checkbox', 0, __( 'The search form can attempt to build drop down country, state, city and county lists if data is available in the system. Note that with the regions module installed the value for this option is overridden.', 'AWPCP' ) );
 		$this->add_setting( $key, 'showadcount', __( 'Show Ad count in categories', 'AWPCP' ), 'checkbox', 1, __( 'Show how many ads a category contains.', 'AWPCP' ) );
 		$this->add_setting( $key, 'hide-empty-categories', __( 'Hide empty categories?', 'AWPCP' ), 'checkbox', 0, __( "If checked, categories with 0 listings in it won't be shown.", 'AWPCP' ) );
@@ -303,6 +307,7 @@ class AWPCP_Settings_API {
 
 		$this->add_setting( $key, 'activate2checkout', __( 'Activate 2Checkout', 'AWPCP' ), 'checkbox', 1, __( 'Activate 2Checkout?', 'AWPCP' ) );
 		$this->add_setting( $key, '2checkout', __( '2Checkout account', 'AWPCP' ), 'textfield', 'xxxxxxx', __( 'Account for 2Checkout payments (if running in pay mode and if 2Checkout is activated)', 'AWPCP' ) );
+		$this->add_setting($key, '2checkoutcurrencycode', __( '2Checkout currency code', 'AWPCP' ), 'textfield', 'USD', __( 'The currency in which you would like to receive your 2Checkout payments', 'AWPCP' ) );
 		// $this->add_setting($key, 'twocheckoutpaymentsrecurring', 'Use 2Checkout recurring payments?', 'checkbox', 0, 'Use recurring payments 2Checkout (this feature is not fully automated or fully integrated. For more reliable results do not use recurring).');
 
 		// Group: Image
@@ -1082,7 +1087,7 @@ class AWPCP_Settings_API {
 		$field_type = $args['multiple'] ? 'checkbox' : 'radio';
 		$selected = $this->get_option( $setting->name );
 
-		$html = array();
+		$html = array( '<input type="hidden" name="awpcp-options[' . $setting->name . '][]" value="0">' );
 
 		foreach ( $args['choices'] as $value => $label ) {
 			$id = "{$setting->name}-$value";
