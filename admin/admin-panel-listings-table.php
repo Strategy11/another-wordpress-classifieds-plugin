@@ -331,7 +331,7 @@ class AWPCP_Listings_Table extends WP_List_Table {
         $template = '<option %3$s value="%1$s">%2$s</option>';
         $selected = 'selected="selected"';
 
-        foreach ( awpcp_pagination_options( $this->items_per_page ) as $value ) {
+        foreach ( awpcp_default_pagination_options( $this->items_per_page ) as $value ) {
             $attributes = $value == $this->items_per_page ? $selected : '';
             $options[] = sprintf( $template, esc_attr( $value ), esc_html( $value ), $attributes );
         }
