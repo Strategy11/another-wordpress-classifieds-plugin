@@ -29,7 +29,7 @@ class AWPCP_TaskQueue {
         $next_scheduled_event_timestamp = $this->get_next_scheduled_event_timestamp();
         $next_event_timestamp = is_null( $next_event_timestamp ) ? time() : $next_event_timestamp;
 
-        if ( $next_scheduled_event_timestamp && $next_scheduled_event_timestamp < $next_event_timestamp ) {
+        if ( $next_scheduled_event_timestamp && ( $next_scheduled_event_timestamp < $next_event_timestamp ) ) {
             return;
         }
 
