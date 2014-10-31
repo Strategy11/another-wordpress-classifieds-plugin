@@ -69,10 +69,6 @@ class AWPCP_AdminPageWithTable extends AWPCP_AdminPage {
         return $url;
     }
 
-    /**
-     * XXX: Use AdminPageLinksBuilder->build_links whenever possible so that
-     * this method can be removed.
-     */
     public function links($blueprints, $selected=null) {
         return awpcp_admin_page_links_builder()->build_links( $blueprints, $selected );
     }
