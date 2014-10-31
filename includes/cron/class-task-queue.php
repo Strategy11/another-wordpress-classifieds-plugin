@@ -115,10 +115,8 @@ class AWPCP_TaskQueue {
 
         if ( $task->is_delayed() || $task->is_failing() ) {
             $this->tasks->update_task( $task );
-            trigger_error( 'Task ' . $task->get_id() . ' updated.' );
         } else if ( $task->failed() || $task->is_complete() ) {
             $this->tasks->update_task( $task );
-            trigger_error( 'Task ' . $task->get_id() . ' updated.' );
         }
     }
 
@@ -126,7 +124,6 @@ class AWPCP_TaskQueue {
         try {
             $exit_code = apply_filters( "awpcp-task-{$task->get_name()}", false, $task );
         } catch ( AWPCP_Exception $e ) {
-            trigger_error( $e->format_errors() );
             $exit_code = false;
         }
 
