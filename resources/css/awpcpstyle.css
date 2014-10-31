@@ -758,6 +758,15 @@ p.ad_status_msg {
   font-weight: normal;
   font-size: 14px;
 }
+.wrap div.awpcp-inline-form-error {
+  background: #FFF;
+  border-radius: 3px;
+  border-color: #D15151;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+  color: #555;
+  margin: 0.5em;
+  padding: 0.5em 0.7em;
+}
 .awpcp-textarea,
 .textareainput {
   width: 80%;

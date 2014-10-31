@@ -69,6 +69,7 @@ $awpcp_imagesurl = $awpcp_plugin_url .'/resources/images';
 // common
 require_once(AWPCP_DIR . "/debug.php");
 require_once(AWPCP_DIR . "/functions.php");
+require_once( AWPCP_DIR . "/includes/functions/format.php" );
 
 $nameofsite = awpcp_get_blog_name();
 
@@ -94,6 +95,7 @@ require_once( AWPCP_DIR . '/includes/helpers/class-module.php' );
 require_once( AWPCP_DIR . "/includes/helpers/class-modules-manager.php" );
 require_once( AWPCP_DIR . "/includes/helpers/class-modules-updater.php" );
 
+require_once( AWPCP_DIR . '/includes/helpers/class-admin-page-links-builder.php' );
 require_once(AWPCP_DIR . "/includes/helpers/class-akismet-wrapper-base.php");
 require_once(AWPCP_DIR . "/includes/helpers/class-akismet-wrapper.php");
 require_once(AWPCP_DIR . "/includes/helpers/class-akismet-wrapper-factory.php");

@@ -69,27 +69,11 @@ class AWPCP_AdminPageWithTable extends AWPCP_AdminPage {
         return $url;
     }
 
+    /**
+     * XXX: Use AdminPageLinksBuilder->build_links whenever possible so that
+     * this method can be removed.
+     */
     public function links($blueprints, $selected=null) {
-        $link = '<a href="%1$s">%2$s</a>';
-        $links = array();
-
-        foreach ($blueprints as $key => $href) {
-            // to make it work with the array returned by $this->actions();
-            if (is_array($href) && count($href) === 2) {
-                list($label, $href) = (array) $href;
-            } else {
-                $label = $key;
-            }
-
-            $label = $key == $selected ? "<strong>$label</strong>" : $label;
-
-            if (is_array($href)) {
-                $links[$key] = $href[0] . sprintf($link, $href[1], $label) . $href[2];
-            } else {
-                $links[$key] = sprintf($link, $href, $label);
-            }
-        }
-
-        return $links;
+        return awpcp_admin_page_links_builder()->build_links( $blueprints, $selected );
     }
 }
