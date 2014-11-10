@@ -24,6 +24,14 @@ class AWPCP_BackgroundProccess {
         $this->pid = $pid;
     }
 
+    public function get_command() {
+        return $this->command;
+    }
+
+    public function get_log_file() {
+        return $this->log_file;
+    }
+
     /**
      * How to run a non-blocking command in Windows: proc_close( proc_open( 'start /B ' . $command, array(), $pipes ) );
      */
