@@ -1012,8 +1012,7 @@ class AWPCP_Settings_API {
 
 		$html = '<input id="'. $setting->name . '" class="regular-text" ';
 		$html.= 'value="' . $value . '" type="' . $type . '" ';
-		$html.= 'name="awpcp-options[' . $setting->name . ']" />';
-		$html.= strlen($setting->helptext) > 60 ? '<br/>' : '';
+		$html.= 'name="awpcp-options[' . $setting->name . ']" /><br/>';
 		$html.= '<span class="description">' . $setting->helptext . '</span>';
 
 		echo $html;
