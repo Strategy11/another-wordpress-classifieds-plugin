@@ -532,7 +532,7 @@ class AWPCP {
                     'url' => 'http://www.awpcp.com/',
                     'installed' => defined( 'AWPCP_CAMPAIGN_MANAGER_MODULE' ),
                     'version' => 'AWPCP_CAMPAIGN_MANAGER_MODULE_DB_VERSION',
-                    'required' => '1.0.0-RC3',
+                    'required' => '1.0.0-RC4',
                 ),
 				'category-icons' => array(
 					'name' => __( 'Category Icons', 'AWPCP' ),
