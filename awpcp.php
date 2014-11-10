@@ -216,6 +216,7 @@ require_once( AWPCP_DIR . '/includes/media/class-upload-listing-media-ajax-handl
 require_once( AWPCP_DIR . '/includes/media/class-upload-generated-thumbnail-ajax-handler.php' );
 
 require_once( AWPCP_DIR . "/includes/settings/class-credit-plans-settings.php" );
+require_once( AWPCP_DIR . "/includes/settings/class-files-settings.php" );
 require_once( AWPCP_DIR . "/includes/settings/class-listings-moderation-settings.php" );
 require_once( AWPCP_DIR . "/includes/settings/class-payment-general-settings.php" );
 require_once( AWPCP_DIR . "/includes/settings/class-registration-settings.php" );
@@ -455,6 +456,9 @@ class AWPCP {
 		$payment_general_settings = new AWPCP_PaymentGeneralSettings;
 		add_action( 'awpcp_register_settings', array( $payment_general_settings, 'register_settings' ) );
 		add_filter( 'awpcp_validate_settings_payment-settings', array( $payment_general_settings, 'validate_group_settings' ), 10, 2 );
+
+        $files_settings = awpcp_files_settings();
+        add_action( 'awpcp_register_settings', array( $files_settings, 'register_settings') );
 	}
 
 	public function init() {
