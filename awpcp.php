@@ -201,6 +201,7 @@ require_once( AWPCP_DIR . '/includes/cron/class-background-process.php' );
 require_once( AWPCP_DIR . '/includes/media/class-listing-file-handler.php' );
 require_once( AWPCP_DIR . '/includes/media/class-listing-file-validator.php' );
 require_once( AWPCP_DIR . '/includes/media/class-file-uploader.php' );
+require_once( AWPCP_DIR . '/includes/media/class-file-validation-errors.php' );
 require_once( AWPCP_DIR . '/includes/media/class-image-file-handler.php' );
 require_once( AWPCP_DIR . '/includes/media/class-image-file-processor.php' );
 require_once( AWPCP_DIR . '/includes/media/class-image-file-validator.php' );

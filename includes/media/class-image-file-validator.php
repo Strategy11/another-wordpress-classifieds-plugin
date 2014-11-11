@@ -1,7 +1,7 @@
 <?php
 
 function awpcp_listing_image_file_validator() {
-    return new AWPCP_ListingImageFileValidator( awpcp_listing_upload_limits() );
+    return new AWPCP_ListingImageFileValidator( awpcp_listing_upload_limits(), awpcp_file_validation_errors() );
 }
 
 class AWPCP_ListingImageFileValidator extends AWPCP_ListingFileValidator {

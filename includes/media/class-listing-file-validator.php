@@ -3,9 +3,11 @@
 abstract class AWPCP_ListingFileValidator {
 
     protected $upload_limits;
+    protected $validation_errors;
 
-    public function __construct( $upload_limits ) {
+    public function __construct( $upload_limits, $validation_errors ) {
         $this->upload_limits = $upload_limits;
+        $this->validation_errors = $validation_errors;
     }
 
     public function validate_file( $listing, $file ) {
@@ -47,7 +49,7 @@ abstract class AWPCP_ListingFileValidator {
         }
 
         if ( $filesize > $upload_limits['max_file_size'] ) {
-            $message = _x( 'The file %s was larger than the maximum allowed file size of %s bytes. The file was not uploaded.', 'upload files', 'AWPCP' );
+            $message = $this->validation_errors->get_file_is_too_large_error_message();
             $message = sprintf( $message, '<strong>' . $file->get_real_name() . '</strong>', $upload_limits['max_file_size'] );
             throw new AWPCP_Exception( $message );
         }
