@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2014-10-31 23:17:50+00:00\n"
+"POT-Creation-Date: 2014-11-11 15:40:36+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -549,12 +549,14 @@ msgid "The specified Ad doesn't exists."
 msgstr ""
 
 #: admin/admin-panel-settings.php:156
-msgid "AWPCP could not obtain a valid access token from Facebook: %s"
+msgid ""
+"We could not obtain a valid access token from Facebook. The API returned the "
+"following error: %s"
 msgstr ""
 
 #: admin/admin-panel-settings.php:158
 msgid ""
-"AWPCP could not obtain a valid access token from Facebook. Please try again."
+"We could not obtain a valid access token from Facebook. Please try again."
 msgstr ""
 
 #: admin/admin-panel-settings.php:166
