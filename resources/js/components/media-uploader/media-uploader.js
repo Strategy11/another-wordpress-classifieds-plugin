@@ -40,8 +40,29 @@ function( $, settings) {
             .pluploadQueue();
 
         function filterFileBySize( enabled, file, done ) {
-            // console.log( 'filterFileBySize', file );
-            done( true );
+            var isFileAllowed = false, message;
+
+            $.each( self.options.allowed_files, function( title, group ) {
+                if ( $.inArray( file.type, group.mime_types ) === -1 ) {
+                    return true; // continue
+                }
+
+                if ( file.size > group.max_file_size ) {
+                    message = settings.l10n( 'media-uploader-validation-errors', 'file-is-too-large' );
+                    message = message.replace( '<filename>', '<strong>' + file.name + '</strong>' );
+                    message = message.replace( '<bytes-count>', '<strong>' + group.max_file_size + '</strong>' );
+
+                    $.publish( '/messages/media-uploader', { type: 'error', 'content': message } );
+
+                    isFileAllowed = false;
+                } else {
+                    isFileAllowed = true;
+                }
+
+                return false; // break
+            } );
+
+            done( isFileAllowed );
         }
 
         function filterFileByCount( enabled, file, done ) {

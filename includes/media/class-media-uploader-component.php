@@ -1,14 +1,16 @@
 <?php
 
 function awpcp_media_uploader_component() {
-    return new AWPCP_MediaUploaderComponent( awpcp()->js );
+    return new AWPCP_MediaUploaderComponent( awpcp_file_validation_errors(), awpcp()->js );
 }
 
 class AWPCP_MediaUploaderComponent {
 
+    private $validation_errors;
     private $javascript;
 
-    public function __construct( $javascript ) {
+    public function __construct( $validation_errors, $javascript ) {
+        $this->validation_errors = $validation_errors;
         $this->javascript = $javascript;
     }
 
@@ -19,6 +21,11 @@ class AWPCP_MediaUploaderComponent {
         ) );
 
         $this->javascript->set( 'media-uploader-data', $configuration );
+
+        $this->javascript->localize( 'media-uploader-validation-errors', array(
+            'file-is-too-large' => $this->validation_errors->get_file_is_too_large_error_message(),
+        ) );
+
         return $this->render_component();
     }
 
