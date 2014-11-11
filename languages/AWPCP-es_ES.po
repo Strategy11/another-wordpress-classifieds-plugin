@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: AWPCP\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2014-10-31 23:17:50+00:00\n"
+"POT-Creation-Date: 2014-11-11 15:40:36+00:00\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: \n"
@@ -409,17 +409,6 @@ msgstr "Configuración AWPCP"
 #: admin/templates/admin-panel-home.tpl.php:8
 msgid "AWPCP Support Website"
 msgstr "sitio soporte de AWPCP"
-
-#: admin/admin-panel-settings.php:158
-msgid ""
-"AWPCP could not obtain a valid access token from Facebook. Please try again."
-msgstr ""
-"AWPCP no pudo obtener un token de acceso válido para Facebook. Por favor "
-"intente de nuevo."
-
-#: admin/admin-panel-settings.php:156
-msgid "AWPCP could not obtain a valid access token from Facebook: %s"
-msgstr "AWPCP no pudo obtener un token de acceso válido de Facebook: %s"
 
 #: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:35
 msgid ""
@@ -6891,6 +6880,21 @@ msgstr ""
 "administrador del sitio e incluya el siguiente número de transacción en el "
 "mensaje: %s"
 
+#: admin/admin-panel-settings.php:158
+msgid ""
+"We could not obtain a valid access token from Facebook. Please try again."
+msgstr ""
+"No pudimos obtener un token de acceso válido para Facebook. Por favor "
+"intente de nuevo."
+
+#: admin/admin-panel-settings.php:156
+msgid ""
+"We could not obtain a valid access token from Facebook. The API returned the "
+"following error: %s"
+msgstr ""
+"No pudimos obtener un token de acceso válido para Facebook. La API respondió "
+"con el siguiente error: %s"
+
 #: includes/payment-gateway-paypal-standard.php:278
 msgid ""
 "We couldn't determine the payment status for your transaction. Please "
@@ -7979,6 +7983,9 @@ msgstr "viste los foros!"
 #~ "verifique la <a>configuración</a>. Si su token expiró, por favor intente "
 #~ "obtener un token de acceso nuevo, usando el link en el paso 2 de la "
 #~ "configuración."
+
+#~ msgid "AWPCP could not obtain a valid access token from Facebook: %s"
+#~ msgstr "AWPCP no pudo obtener un token de acceso válido de Facebook: %s"
 
 #~ msgid "AWPCP not installed, cannot generate sitemap."
 #~ msgstr "AWPCP no está instalado, no se puede generar el sitemap."
