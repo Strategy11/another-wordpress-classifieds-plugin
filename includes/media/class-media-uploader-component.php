@@ -23,6 +23,7 @@ class AWPCP_MediaUploaderComponent {
         $this->javascript->set( 'media-uploader-data', $configuration );
 
         $this->javascript->localize( 'media-uploader-validation-errors', array(
+            'cannot-add-more-files' => $this->validation_errors->get_cannot_add_more_files_of_type_error_message(),
             'file-is-too-large' => $this->validation_errors->get_file_is_too_large_error_message(),
         ) );
 

@@ -10,10 +10,6 @@ class AWPCP_ListingImageFileValidator extends AWPCP_ListingFileValidator {
         return $this->upload_limits->get_listing_upload_limits_by_file_type( $listing, 'images' );
     }
 
-    protected function throw_cannot_add_more_files_of_this_type_exception() {
-        throw new AWPCP_Exception( _x( "You can't add more images to this Ad. There are not remaining images slots.", 'upload files', 'AWPCP' ) );
-    }
-
     protected function additional_verifications( $file, $upload_limits ) {
         $this->validate_image_dimensions( $file, $upload_limits );
     }

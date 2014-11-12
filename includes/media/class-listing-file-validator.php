@@ -14,7 +14,8 @@ abstract class AWPCP_ListingFileValidator {
         $upload_limits = $this->get_listing_upload_limits( $listing );
 
         if ( ! $this->upload_limits->can_add_file_to_listing( $listing, $file ) ) {
-            $this->throw_cannot_add_more_files_of_this_type_exception();
+            $message = $this->validation_errors->get_cannot_add_more_files_of_type_error_message();
+            $this->throw_file_validation_exception( $file, $message );
         }
 
         if ( ! file_exists( $file->get_path() ) ) {
@@ -32,8 +33,6 @@ abstract class AWPCP_ListingFileValidator {
     }
 
     abstract protected function get_listing_upload_limits( $listing );
-
-    abstract protected function throw_cannot_add_more_files_of_this_type_exception();
 
     private function throw_file_validation_exception( $file, $message ) {
         $message = str_replace( '<filename>', '<strong>' . $file->get_real_name() . '</strong>', $message );

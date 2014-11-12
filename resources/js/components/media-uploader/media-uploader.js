@@ -34,40 +34,64 @@ function( $, settings) {
                 silverlight_xap_url : options.silverlight_xap_url,
                 init: {
                     FilesAdded: onFilesAdded,
-                    FileUploaded: onFileUplaoded
+                    FileUploaded: onFileUplaoded,
+                    FilesRemoved: onFilesRemoved
                 }
             } )
             .pluploadQueue();
 
         function filterFileBySize( enabled, file, done ) {
-            var isFileAllowed = false, message;
+            var group = getFileGroup( file ), message;
+
+            if ( group === null ) {
+                return done( false );
+            }
+
+            if ( file.size > group.max_file_size ) {
+                message = settings.l10n( 'media-uploader-validation-errors', 'file-is-too-large' );
+                message = message.replace( '<filename>', '<strong>' + file.name + '</strong>' );
+                message = message.replace( '<bytes-count>', '<strong>' + group.max_file_size + '</strong>' );
+
+                $.publish( '/messages/media-uploader', { type: 'error', 'content': message } );
+
+                return done( false );
+            }
+
+            return done( true );
+        }
+
+        function getFileGroup( file ) {
+            var fileGroup = null;
 
             $.each( self.options.allowed_files, function( title, group ) {
-                if ( $.inArray( file.type, group.mime_types ) === -1 ) {
-                    return true; // continue
+                if ( $.inArray( file.type, group.mime_types ) !== -1 ) {
+                    fileGroup = group;
+                    return false; // break
                 }
-
-                if ( file.size > group.max_file_size ) {
-                    message = settings.l10n( 'media-uploader-validation-errors', 'file-is-too-large' );
-                    message = message.replace( '<filename>', '<strong>' + file.name + '</strong>' );
-                    message = message.replace( '<bytes-count>', '<strong>' + group.max_file_size + '</strong>' );
-
-                    $.publish( '/messages/media-uploader', { type: 'error', 'content': message } );
-
-                    isFileAllowed = false;
-                } else {
-                    isFileAllowed = true;
-                }
-
-                return false; // break
             } );
 
-            done( isFileAllowed );
+            return fileGroup;
         }
 
         function filterFileByCount( enabled, file, done ) {
-            // console.log( 'filterFileByCount', file );
-            done( true );
+            var group = getFileGroup( file ), message;
+
+            if ( group === null ) {
+                return done( false );
+            }
+
+            if ( group.uploaded_file_count >= group.allowed_file_count ) {
+                message = settings.l10n('media-uploader-validation-errors', 'cannot-add-more-files' );
+                message = message.replace( '<filename>', '<strong>' + file.name + '</strong>' );
+
+                $.publish( '/messages/media-uploader', { type: 'error', 'content': message } );
+
+                return done( false );
+            }
+
+            group.uploaded_file_count = group.uploaded_file_count + 1;
+
+            return done( true );
         }
 
         function getFileTypeFilters() {
@@ -96,9 +120,17 @@ function( $, settings) {
             }
         }
 
-        // function onError( /*uploader, error*/ ) {
-        //     console.error( 'Error', arguments );
-        // }
+        function onFilesRemoved( uploader, files ) {
+            $.each( files, function( index, file ) {
+                var group = getFileGroup( file );
+
+                if ( group === null ) {
+                    return;
+                }
+
+                group.uploaded_file_count = group.uploaded_file_count - 1;
+            } );
+        }
     };
 
     return MediaUploader;
