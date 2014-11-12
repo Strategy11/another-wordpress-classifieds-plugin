@@ -23,10 +23,13 @@ class AWPCP_Compatibility {
         add_filter( 'awpcp-should-generate-opengraph-tags', array( $all_in_one_seo_pack_plugin_integration, 'should_generate_opengraph_tags' ), 10, 2 );
         add_filter( 'awpcp-should-generate-rel-canonical', array( $all_in_one_seo_pack_plugin_integration, 'should_generate_rel_canonical' ), 10, 2 );
 
-        $yoast_wordpress_seo_plugin_integration = new AWPCP_YoastWordPressSEOPluginIntegration();
-        add_filter( 'awpcp-should-generate-opengraph-tags', array( $yoast_wordpress_seo_plugin_integration, 'should_generate_opengraph_tags' ), 10, 2 );
-        add_filter( 'awpcp-should-generate-rel-canonical', array( $yoast_wordpress_seo_plugin_integration, 'should_generate_rel_canonical' ), 10, 2 );
-        add_filter( 'awpcp-should-generate-title', array( $yoast_wordpress_seo_plugin_integration, 'should_generate_title' ), 10, 2 );
+        $integration = awpcp_yoast_wordpress_seo_plugin_integration();
+        add_filter( 'awpcp-should-generate-opengraph-tags', array( $integration, 'should_generate_opengraph_tags' ), 10, 2 );
+        add_filter( 'awpcp-should-generate-rel-canonical', array( $integration, 'should_generate_rel_canonical' ), 10, 2 );
+        add_filter( 'awpcp-should-generate-title', array( $integration, 'should_generate_title' ), 10, 2 );
+
+        $integration = awpcp_add_meta_tags_plugin_integration();
+        add_filter( 'awpcp-should-generate-opengraph-tags', array( $integration, 'should_generate_opengraph_tags' ), 10, 2 );
     }
 
     private function load_content_aware_sidebars_integration() {

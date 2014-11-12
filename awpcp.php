@@ -85,6 +85,7 @@ require_once(AWPCP_DIR . "/upload_awpcp.php");
 require_once(AWPCP_DIR . "/includes/exceptions.php");
 
 require_once(AWPCP_DIR . "/includes/compatibility/compatibility.php");
+require_once( AWPCP_DIR . "/includes/compatibility/class-add-meta-tags-plugin-integration.php" );
 require_once(AWPCP_DIR . "/includes/compatibility/class-all-in-one-seo-pack-plugin-integration.php");
 require_once(AWPCP_DIR . "/includes/compatibility/class-facebook-plugin-integration.php");
 require_once( AWPCP_DIR . "/includes/compatibility/class-yoast-wordpress-seo-plugin-integration.php" );
@@ -123,6 +124,9 @@ require_once(AWPCP_DIR . "/includes/helpers/widgets/class-asynchronous-tasks-com
 require_once(AWPCP_DIR . "/includes/helpers/widgets/class-file-manager-component.php");
 require_once(AWPCP_DIR . "/includes/helpers/widgets/class-users-dropdown.php");
 require_once(AWPCP_DIR . "/includes/helpers/widgets/class-users-autocomplete.php");
+
+require_once( AWPCP_DIR . "/includes/meta/class-meta-tags-generator.php" );
+require_once( AWPCP_DIR . "/includes/meta/class-tag-renderer.php" );
 
 require_once(AWPCP_DIR . "/includes/models/class-media.php");
 require_once(AWPCP_DIR . "/includes/models/ad.php");
