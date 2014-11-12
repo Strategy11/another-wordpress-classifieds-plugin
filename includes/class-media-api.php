@@ -268,7 +268,7 @@ class AWPCP_MediaAPI {
 
 
         if ( $fields == 'COUNT(*)' ) {
-            return $wpdb->get_var( $query );
+            return intval( $wpdb->get_var( $query ) );
         } else {
             $media = array();
             foreach ( $wpdb->get_results( $query ) as $item ) {
