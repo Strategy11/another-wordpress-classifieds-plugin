@@ -1,4 +1,4 @@
-<h3><?php _e('Classifieds Profile Info', 'AWPCP') ?></h3>
+<h3><?php echo esc_html( __( 'Classifieds Contact Information', 'AWPCP' ) ); ?></h3>
 <table class="form-table">
 	<tbody>
 		<?php /*<tr valign="top">
