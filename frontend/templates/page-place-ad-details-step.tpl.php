@@ -138,7 +138,7 @@
             'disabled' => !$ui['allow-regions-modification'],
         );
 
-        $selector = new AWPCP_MultipleRegionSelector( $form['regions'], $options );
+        $selector = awpcp_multiple_region_selector( $form['regions'], $options );
         echo $selector->render('details', array(), $errors);
         ?>
 

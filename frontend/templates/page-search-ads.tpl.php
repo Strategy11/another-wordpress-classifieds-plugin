@@ -63,7 +63,7 @@
         'maxRegions' => ($ui['allow-user-to-search-in-multiple-regions'] ? 10 : 1),
     );
 
-    $selector = new AWPCP_MultipleRegionSelector( $form['regions'], $options );
+    $selector = awpcp_multiple_region_selector( $form['regions'], $options );
     echo $selector->render( 'search', array(), $errors );
     ?>
 
