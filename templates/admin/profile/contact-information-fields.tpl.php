@@ -1,24 +1,7 @@
 <h3><?php echo esc_html( __( 'Classifieds Contact Information', 'AWPCP' ) ); ?></h3>
+
 <table class="form-table">
 	<tbody>
-		<?php /*<tr valign="top">
-			<th scope="row">
-				<label for="awpcp-profile-username"><?php _e('Username', 'AWPCP') ?></label>
-			</th>
-			<td>
-				<input id="awpcp-profile-username" class="regular-text" type="text" name="awpcp-profile[username]" value="<?php echo $profile['username'] ?>" />
-				<span class="description"><?php _e('If not empty will override your WordPress username.', 'AWPCP') ?></span>
-			</td>
-		</tr>
-		<tr valign="top">
-			<th scope="row">
-				<label for="awpcp-profile-email"><?php _e('Email Adress', 'AWPCP') ?></label>
-			</th>
-			<td>
-				<input id="awpcp-profile-email" class="regular-text" type="text" name="awpcp-profile[email]" value="<?php echo $profile['email'] ?>" />
-				<span class="description"><?php _e('If not empty will override your WordPress email address.', 'AWPCP') ?></span>
-			</td>
-		</tr> */ ?>
 		<tr valign="top">
 			<th scope="row">
 				<label for="awpcp-profile-phone"><?php _e('Phone Number', 'AWPCP') ?></label>
@@ -37,23 +20,22 @@
 				<span class="description"></span>
 			</td>
 		</tr>
-		<tr valign="top">
-			<th scope="row">
-				<label for="awpcp-profile-state"><?php _e('State', 'AWPCP') ?></label>
-			</th>
-			<td>
-				<input id="awpcp-profile-state" class="regular-text" type="text" name="awpcp-profile[state]" value="<?php echo esc_attr(awpcp_array_data('state', '', $profile)) ?>" />
-				<span class="description"></span>
-			</td>
-		</tr>
-		<tr valign="top">
-			<th scope="row">
-				<label for="awpcp-profile-city"><?php _e('City', 'AWPCP') ?></label>
-			</th>
-			<td>
-				<input id="awpcp-profile-city" class="regular-text" type="text" name="awpcp-profile[city]" value="<?php echo esc_attr(awpcp_array_data('city', '', $profile)) ?>" />
-				<span class="description"></span>
-			</td>
-		</tr>
 	</tbody>
 </table>
+
+<?php
+	$selector_options = array(
+		'showTextField' => true,
+		'maxRegions' => 1,
+	);
+
+	$selected_region = array( array(
+		'country' => awpcp_array_data( 'country', '', $profile ),
+		'state' => awpcp_array_data( 'state', '', $profile ),
+		'city' => awpcp_array_data( 'city', '', $profile ),
+		'county' => awpcp_array_data( 'county', '', $profile ),
+	) );
+
+	$selector = new AWPCP_MultipleRegionSelector( $selected_region, $selector_options );
+	echo $selector->render( 'user-profile', array(), array() );
+?>
