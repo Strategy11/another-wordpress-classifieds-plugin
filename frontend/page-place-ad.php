@@ -504,8 +504,10 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             'ad_contact_email' => 'user_email',
             'ad_contact_phone' => 'phone',
             'websiteurl' => 'user_url',
-            'ad_city' => 'city',
+            'ad_country' => 'country',
             'ad_state' => 'state',
+            'ad_city' => 'city',
+            'ad_county_village' => 'county',
         );
 
         $info = array();
@@ -524,15 +526,12 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             $info['ad_contact_name'] = trim( $data->first_name . " " . $data->last_name );
         }
 
-        $info['regions'] = array();
-
-        if ( isset( $info['ad_city'] ) && isset( $info['ad_state'] ) ) {
-            $info['regions'][] = array( 'state' => $info['ad_state'], 'city' => $info['ad_city'] );
-        } else if ( isset( $info['ad_state'] ) ) {
-            $info['regions'][] = array( 'state' => $info['ad_state'] );
-        } else if ( isset( $info['ad_city'] ) ) {
-            $info['regions'][] = array( 'city' => $info['ad_city'] );
-        }
+        $info['regions'][] = array_filter( array(
+            'country' => awpcp_array_data( 'ad_country', '', $info ),
+            'state' => awpcp_array_data( 'ad_state', '', $info ),
+            'city' => awpcp_array_data( 'ad_city', '', $info ),
+            'county' => awpcp_array_data( 'ad_county_village', '', $info ),
+        ), 'strlen' );
 
         return $info;
     }
