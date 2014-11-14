@@ -402,7 +402,7 @@ function awpcp_admin_capability() {
 }
 
 /**
- * @since next-release
+ * @since 3.3.2
  */
 function awpcp_admin_roles_names() {
     $configured_roles = explode( ',', get_awpcp_option( 'awpcpadminaccesslevel' ) );

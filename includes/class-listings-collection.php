@@ -167,7 +167,7 @@ class AWPCP_ListingsCollection {
     }
 
     /**
-     * @since next-release
+     * @since 3.3.2
      */
     public function count_enabled_listings_in_category( $category_id ) {
         $category_condition = '( ad_category_id = %1$d OR ad_category_parent_id = %1$d )';

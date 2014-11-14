@@ -353,7 +353,7 @@ function awpcp_render_ads($ads, $context='listings', $config=array(), $paginatio
  * Renders each listing using the layout configured in the plugin
  * settings.
  *
- * @since next-release
+ * @since 3.3.2
  *
  * @param Array $listings An array of AWPCP_Ad objects.
  * @param string $context The context where the listings will be shown: listings, ?.

@@ -16,7 +16,7 @@ class AWPCP_UsersCollection {
     }
 
     /**
-     * @since next-release
+     * @since 3.3.2
      */
     public function get( $user_id ) {
         $user = $this->find_by_id( $user_id );
