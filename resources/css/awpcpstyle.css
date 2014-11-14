@@ -694,6 +694,12 @@ p.ad_status_msg {
   list-style-type: circle;
   list-style-position: inside;
 }
+.is-hidden {
+  display: none;
+}
+.is-visible-inline-block {
+  display: inline-block !important;
+}
 /* new clearfix */
 .clearfix:after {
   visibility: hidden;
