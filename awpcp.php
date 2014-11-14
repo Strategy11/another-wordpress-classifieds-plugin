@@ -362,8 +362,8 @@ class AWPCP {
 
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 1000 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ), 1000 );
-		add_action( 'wp_footer', array( $this, 'localize_scripts' ) );
-		add_action( 'admin_footer', array( $this, 'localize_scripts' ) );
+		add_action( 'wp_footer', array( $this, 'localize_scripts' ), 15000 );
+		add_action( 'admin_footer', array( $this, 'localize_scripts' ), 15000 );
 
 		// some upgrade operations can't be done in background.
 		// if one those is pending, we will disable all other features
@@ -824,8 +824,9 @@ class AWPCP {
 			'money' => __( 'Please enter a valid amount.', 'AWPCP' ),
 		) );
 
-		wp_localize_script('awpcp', '__awpcp_js_data', $this->js->get_data());
-		wp_localize_script('awpcp', '__awpcp_js_l10n', $this->js->get_l10n());
+        if ( wp_script_is( 'awpcp', 'queue' ) || wp_script_is( 'awpcp', 'done' ) || wp_script_is( 'awpcp', 'to_od' ) ) {
+            $this->js->print_data();
+        }
 	}
 
     public function register_content_placeholders( $placeholders ) {
