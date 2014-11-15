@@ -45,18 +45,18 @@ class AWPCP_JavaScript {
         echo "\n";
         echo "<script type=\"text/javascript\">\n";
         echo "/* <![CDATA[ */\n";
-        echo "(function($){\n";
+        echo "(function($, window){\n";
 
         $this->print_variable( 'options', '__awpcp_js_data', $this->data );
         $this->print_variable( 'localization', '__awpcp_js_l10n', $this->l10n );
 
-        echo "})(jQuery);";
+        echo "})(jQuery, window);";
         echo "/* ]]> */\n";
         echo "</script>\n";
     }
 
     private function print_variable( $property_name, $variable_name, $content ) {
-        echo "\tvar $variable_name = " . json_encode( $this->encode_scalar_values( $content ) ) . ";\n";
+        echo "\twindow.$variable_name = " . json_encode( $this->encode_scalar_values( $content ) ) . ";\n";
         echo "\tif ( typeof $.AWPCP !== 'undefined' ) {\n";
         echo "\t\t$.extend( $.AWPCP.$property_name, $variable_name );\n";
         echo "\t}\n";
