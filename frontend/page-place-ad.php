@@ -533,6 +533,8 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             'county' => awpcp_array_data( 'ad_county_village', '', $info ),
         ), 'strlen' );
 
+        $info = apply_filters( 'awpcp-listing-details-user-info', $info, $user_id );
+
         return $info;
     }
 
