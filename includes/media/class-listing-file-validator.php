@@ -13,6 +13,11 @@ abstract class AWPCP_ListingFileValidator {
     public function validate_file( $listing, $file ) {
         $upload_limits = $this->get_listing_upload_limits( $listing );
 
+        if ( ! in_array( $file->get_mime_type(), $upload_limits['mime_types'] ) ) {
+            $message = __( 'The type of the uploaded file <filename> is not allowed.', 'AWPCP' );
+            $this->throw_file_validation_exception( $file, $message );
+        }
+
         if ( ! $this->upload_limits->can_add_file_to_listing( $listing, $file ) ) {
             $message = $this->validation_errors->get_cannot_add_more_files_of_type_error_message();
             $this->throw_file_validation_exception( $file, $message );
@@ -20,11 +25,6 @@ abstract class AWPCP_ListingFileValidator {
 
         if ( ! file_exists( $file->get_path() ) ) {
             $message = __( 'The file <filename> was not found in the temporary uploads directory.', 'AWPCP' );
-            $this->throw_file_validation_exception( $file, $message );
-        }
-
-        if ( ! in_array( $file->get_mime_type(), $upload_limits['mime_types'] ) ) {
-            $message = __( 'The type of the uploaded file <filename> is not allowed.', 'AWPCP' );
             $this->throw_file_validation_exception( $file, $message );
         }
 
