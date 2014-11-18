@@ -1,15 +1,17 @@
 <?php
 
 function awpcp_file_uploader() {
-    return new AWPCP_FileUploader( awpcp_request(), awpcp()->settings );
+    return new AWPCP_FileUploader( awpcp_mime_types(), awpcp_request(), awpcp()->settings );
 }
 
 class AWPCP_FileUploader {
 
+    private $mime_types;
     private $request;
     private $settings;
 
-    public function __construct( $request, $settings ) {
+    public function __construct( $mime_types, $request, $settings ) {
+        $this->mime_types = $mime_types;
         $this->request = $request;
         $this->settings = $settings;
     }
@@ -149,13 +151,8 @@ class AWPCP_FileUploader {
     }
 
     private function get_uploaded_file_info( $realname, $file_path, $progress='incomplete' ) {
+        $mime_type = $this->mime_types->get_file_mime_type( $file_path );
         $pathinfo = awpcp_utf8_pathinfo( $file_path );
-
-        if ( function_exists( 'mime_content_type' ) ) {
-            $mime_type = mime_content_type( $file_path );
-        } else {
-            $mime_type = sprintf( 'image/%s', $pathinfo['extension'] );
-        }
 
         return (object) array(
             'path' => $file_path,
