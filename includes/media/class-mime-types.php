@@ -19,11 +19,12 @@ class AWPCP_MimeTypes {
     }
 
     private function get_file_mime_type_with_fileinfo( $filepath ) {
-        $fileinfo = finfo_open( FILEINFO_MIME );
+        $fileinfo = finfo_open( defined( 'FILEINFO_MIME_TYPE' ) ? FILEINFO_MIME_TYPE : FILEINFO_MIME );
         $mime_type = finfo_file( $fileinfo, $filepath );
+        $mime_type_parts = explode( ';', $mime_type );
         finfo_close( $fileinfo );
 
-        return $mime_type;
+        return array_shift( $mime_type_parts );
     }
 
     private function get_file_mime_type_with_mime_content_type( $filepath ) {
