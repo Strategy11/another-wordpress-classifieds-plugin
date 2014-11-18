@@ -1,12 +1,16 @@
 <?php
 
 function awpcp_image_resizer() {
-    return new AWPCP_ImageResizer( awpcp()->settings );
+    return new AWPCP_ImageResizer( awpcp_filesystem(), awpcp()->settings );
 }
 
 class AWPCP_ImageResizer {
 
-    public function __construct( $settings ) {
+    private $filesystem;
+    private $settings;
+
+    public function __construct( $filesystem, $settings ) {
+        $this->filesystem = $filesystem;
         $this->settings = $settings;
     }
 
@@ -21,7 +25,7 @@ class AWPCP_ImageResizer {
     }
 
     public function get_thumbnails_dir() {
-        return implode( DIRECTORY_SEPARATOR, array( $this->settings->get_runtime_option( 'awpcp-uploads-dir' ), 'thumbs' ) );
+        return $this->filesystem->get_thumbnails_dir();
     }
 
     private function make_intermediate_image_size( $source, $filename, $dest_dir, $width, $height, $crop = false, $suffix='' ) {
