@@ -1348,6 +1348,34 @@ function awpcp_get_view_categories_url() {
     return $url;
 }
 
+/**
+ * @since next-release
+ */
+function awpcp_get_edit_listing_url( $listing ) {
+    $settings = awpcp()->settings;
+    $authorization = awpcp_listing_authorization();
+
+    if ( $settings->get_option( 'enable-user-panel' ) ) {
+        return add_query_arg( array( 'action' => 'edit', 'id' => $listing->ad_id ), awpcp_get_user_panel_url() );
+    } else if ( $authorization->is_current_user_allowed_to_edit_listing( $listing ) ) {
+        return add_query_arg( 'id', $listing->ad_id, awpcp_get_page_url( 'edit-ad-page-name' ) );
+    } else {
+        return awpcp_get_page_url( 'edit-ad-page-name' );
+    }
+}
+
+/**
+ * @since next-release
+ */
+function awpcp_get_edit_listing_generic_url() {
+    $settings = awpcp()->settings;
+
+    if ( $settings->get_option( 'enable-user-panel' ) ) {
+        return awpcp_get_user_panel_url();
+    } else {
+        return awpcp_get_page_url( 'edit-ad-page-name' );
+    }
+}
 
 /**
  * Returns a link that can be used to initiate the Ad Renewal process.
