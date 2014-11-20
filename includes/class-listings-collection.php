@@ -22,14 +22,22 @@ class AWPCP_ListingsCollection {
      * @since 3.3
      */
     public function get( $listing_id ) {
+        if ( $listing_id <= 0 ) {
+            $this->throw_no_listing_was_found_with_id_exception( $listing_id );
+        }
+
         $listing = AWPCP_Ad::find_by_id( $listing_id );
 
         if ( is_null( $listing ) ) {
-            $message = __( 'No Ad was found with id: %d', 'AWPCP' );
-            throw new AWPCP_Exception( sprintf( $message, $listing_id ) );
+            $this->throw_no_listing_was_found_with_id_exception( $listing_id );
         }
 
         return $listing;
+    }
+
+    private function throw_no_listing_was_found_with_id_exception( $listing_id ) {
+        $message = __( 'No Listing was found with id: %d.', 'AWPCP' );
+        throw new AWPCP_Exception( sprintf( $message, $listing_id ) );
     }
 
     /**
