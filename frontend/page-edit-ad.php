@@ -31,18 +31,8 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
         return wp_create_nonce("edit-ad-{$ad->ad_id}");
     }
 
-    protected function verify_edit_hash($ad) {
+    protected function request_includes_authorized_hash( $ad ) {
         return wp_verify_nonce(awpcp_request_param('edit-hash'), "edit-ad-{$ad->ad_id}");
-    }
-
-    protected function is_user_allowed_to_edit($ad) {
-        if (awpcp_current_user_is_admin())
-            return true;
-        if ($ad->user_id == wp_get_current_user()->ID)
-            return true;
-        if ($this->verify_edit_hash($ad))
-            return true;
-        return false;
     }
 
     protected function _dispatch($default=null) {
