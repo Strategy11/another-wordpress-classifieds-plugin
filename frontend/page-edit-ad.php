@@ -19,7 +19,7 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
 
     public function get_ad() {
         if (is_null($this->ad)) {
-            if ($id = awpcp_request_param('ad_id', awpcp_request_param('id', false))) {
+            if ( $id = awpcp_request_param( 'ad_id', awpcp_request_param( 'id', get_query_var( 'id' ) ) ) ) {
                 $this->ad = AWPCP_Ad::find_by_id($id);
             }
         }
