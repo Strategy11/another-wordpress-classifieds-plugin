@@ -157,8 +157,8 @@ class AWPCP_Admin {
 			$duplicated_pages = '<strong>' . join( '</strong>, <strong>', $wp_pages ) . '</strong>';
 
 			$message = _n( count( $wp_pages),
-						  'Page %1$s has the same name as the %2$s. That will cause page %1$s to become unreachable. Please make sure you don\'t have duplicate page names.',
-						  'Pages %1$s have the same name as the %2$s. That will cause pages %1$s to become unreachable. Please make sure you don\'t have duplicate page names.',
+						  'Page %1$s has the same name as the AWPCP %2$s. That will cause WordPress page %1$s to become unreachable. The %2$s is dynamic; you don\'t need to create a real WordPress page to show the list of cateogries, the plugin will generate it for you. If the WordPress page was created to show the default list of AWPCP categories, you can delete it and this error message will go away. Otherwise, please make sure you don\'t have duplicate page names.',
+						  'Pages %1$s have the same name as the AWPCP %2$s. That will cause WordPress pages %1$s to become unreachable. The %2$s is dynamic; you don\'t need to create a real WordPress page to show the list of cateogries, the plugin will generate it for you. If the WordPress pages were created to show the default list of AWPCP categories, you can delete them and this error message will go away. Otherwise, please make sure you don\'t have duplicate page names.',
 						  'AWPCP' );
 			$message = sprintf( $message, $duplicated_pages, $view_categories_label );
 
