@@ -1355,10 +1355,17 @@ function awpcp_get_edit_listing_url( $listing ) {
     $settings = awpcp()->settings;
     $authorization = awpcp_listing_authorization();
 
-    if ( $settings->get_option( 'enable-user-panel' ) ) {
-        return add_query_arg( array( 'action' => 'edit', 'id' => $listing->ad_id ), awpcp_get_user_panel_url() );
-    } else if ( $authorization->is_current_user_allowed_to_edit_listing( $listing ) ) {
-        return add_query_arg( 'id', $listing->ad_id, awpcp_get_page_url( 'edit-ad-page-name' ) );
+    $is_user_authorized = $authorization->is_current_user_allowed_to_edit_listing( $listing );
+    $is_user_panel_enabled = $settings->get_option( 'enable-user-panel' );
+
+    if ( $is_user_authorized ) {
+        if ( $is_user_panel_enabled ) {
+            return add_query_arg( array( 'action' => 'edit', 'id' => $listing->ad_id ), awpcp_get_user_panel_url() );
+        } else {
+            return add_query_arg( 'id', $listing->ad_id, awpcp_get_page_url( 'edit-ad-page-name' ) );
+        }
+    } else if ( $is_user_panel_enabled ) {
+        return awpcp_get_user_panel_url();
     } else {
         return awpcp_get_page_url( 'edit-ad-page-name' );
     }
