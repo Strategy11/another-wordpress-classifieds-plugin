@@ -185,6 +185,8 @@ require_once( AWPCP_DIR . "/includes/settings/class-registration-settings.php" )
 
 require_once( AWPCP_DIR . "/includes/upgrade/class-fix-empty-media-mime-type-upgrade-routine.php" );
 
+require_once( AWPCP_DIR . '/includes/class-edit-listing-url-placeholder.php' );
+
 require_once( AWPCP_DIR . "/includes/class-awpcp-listings-api.php" );
 require_once( AWPCP_DIR . "/includes/class-fees-collection.php" );
 require_once( AWPCP_DIR . "/includes/class-listing-authorization.php" );
@@ -466,6 +468,8 @@ class AWPCP {
             // load resources required in frontend screens only.
             add_action( 'template_redirect', array( new AWPCP_SecureURLRedirectionHandler(), 'dispatch' ) );
         }
+
+        add_filter( 'awpcp-content-placeholders', array( $this, 'register_content_placeholders' ) );
 
 		if (!get_option('awpcp_installationcomplete', 0)) {
 			update_option('awpcp_installationcomplete', 1);
@@ -811,6 +815,13 @@ class AWPCP {
 		wp_localize_script('awpcp', '__awpcp_js_data', $this->js->get_data());
 		wp_localize_script('awpcp', '__awpcp_js_l10n', $this->js->get_l10n());
 	}
+
+    public function register_content_placeholders( $placeholders ) {
+        $handler = awpcp_edit_listing_url_placeholder();
+        $placeholders['edit_listing_url'] = array( 'callback' => array( $handler, 'do_placeholder' ) );
+
+        return $placeholders;
+    }
 
 	/**
 	 * Register other AWPCP settings, normally for private use.
