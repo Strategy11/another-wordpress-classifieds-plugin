@@ -1165,6 +1165,7 @@ function awpcp_pages_with_rewrite_rules() {
 		'main-page-name',
 		'show-ads-page-name',
 		'reply-to-ad-page-name',
+        'edit-ad-page-name',
 		'browse-categories-page-name',
 		'payment-thankyou-page-name',
 		'payment-cancel-page-name'
@@ -1204,6 +1205,14 @@ function awpcp_add_rewrite_rules($rules) {
 		add_rewrite_rule('('.$patterns['reply-to-ad-page-name'].')/(.+?)/(.+?)',
 						 'index.php?pagename=$matches[1]&id=$matches[2]', 'top');
 	}
+
+    if ( isset( $patterns['edit-ad-page-name'] ) ) {
+        add_rewrite_rule(
+            '(' . $patterns['edit-ad-page-name'] . ')(?:/([0-9]+))?/?$',
+            'index.php?pagename=$matches[1]&id=$matches[2]',
+            'top'
+        );
+    }
 
 	if (isset($patterns['browse-categories-page-name'])) {
 		add_rewrite_rule('('.$patterns['browse-categories-page-name'].')/(.+?)/(.+?)',
