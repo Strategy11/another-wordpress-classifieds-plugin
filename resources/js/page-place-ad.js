@@ -20,10 +20,12 @@ function( $, ko, FileManager, settings ) {
 
         $.subscribe('/category/updated', function(event, dropdown, category) {
             if ($.contains(dropdown.closest('form').get(0), self.table.get(0))) {
-                if (category) {
-                    self.category = category;
-                    self.update();
+                if ( category === null && ! settings.get( 'hide-all-payment-terms-if-no-category-is-selected' ) ) {
+                    return;
                 }
+
+                self.category = category;
+                self.update();
             }
         });
 
@@ -46,7 +48,9 @@ function( $, ko, FileManager, settings ) {
                 }
 
                 // filter by category
-                if (self.category) {
+                if ( self.category === null && settings.get( 'hide-all-payment-terms-if-no-category-is-selected' ) ) {
+                    return true;
+                } else if (self.category) {
                     categories = $.parseJSON(term.attr('data-categories'));
                     if ($.isArray(categories)) {
                         categories = $.map(categories, function(category) {

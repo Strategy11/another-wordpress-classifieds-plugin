@@ -24,6 +24,16 @@ class AWPCP_PaymentGeneralSettings {
         $settings->add_setting( $key, 'freepay', __( 'Charge Listing Fee?', 'AWPCP' ), 'checkbox', 0, $helptext );
         $settings->add_setting( $key, 'fee-order', __( 'Fee Plan sort order', 'AWPCP' ), 'select', 1, __( 'The order used to sort Fees in the payment screens.', 'AWPCP' ), array( 'options' => $order_options ) );
         $settings->add_setting( $key, 'fee-order-direction', __( 'Fee Plan sort direction', 'AWPCP' ), 'select', 'ASC', __( 'The direction used to sort Fees in the payment screens.', 'AWPCP' ), array( 'options' => $direction_options ) );
+
+        $settings->add_setting(
+            $key,
+            'hide-all-payment-terms-if-no-category-is-selected',
+            __( 'Hide all fee plans if no category is selected', 'AWPCP' ),
+            'checkbox',
+            false,
+            ''
+        );
+
         $settings->add_setting( $key, 'pay-before-place-ad', _x( 'Pay before entering Ad details', 'settings', 'AWPCP' ), 'checkbox', 1, _x( 'Check to ask for payment before entering Ad details. Uncheck if you want users to pay for Ads at the end of the process, after images have been uploaded.', 'settings', 'AWPCP' ) );
         $settings->add_setting( $key, 'displaycurrencycode', __( 'Currency used in payment pages', 'AWPCP' ), 'textfield', 'USD', __( 'The display currency for your payment pages', 'AWPCP' ) );
         $settings->add_setting( $key, 'paylivetestmode', __( 'Put payment gateways in test mode?', 'AWPCP' ), 'checkbox', 0, __( 'Leave this OFF to accept real payments, turn it on to perform payment tests.', 'AWPCP' ) );
