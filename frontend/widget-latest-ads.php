@@ -145,7 +145,6 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
         return array(
             'conditions' => array( "ad_title <> ''" ),
             'args' => array(
-                'order' => array( 'ad_postdate DESC', 'ad_id DESC' ),
                 'limit' => $instance['limit']
             )
         );
