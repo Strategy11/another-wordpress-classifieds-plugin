@@ -483,7 +483,8 @@ class AWPCP {
         }
 
 		if ( $this->flush_rewrite_rules || get_option( 'awpcp-flush-rewrite-rules' ) ) {
-			flush_rewrite_rules();
+            add_action( 'wp_loaded', 'flush_rewrite_rules' );
+            update_option( 'awpcp-flush-rewrite-rules', false );
 		}
 
 		$this->register_scripts();
