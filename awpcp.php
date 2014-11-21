@@ -186,6 +186,7 @@ require_once( AWPCP_DIR . "/includes/settings/class-registration-settings.php" )
 require_once( AWPCP_DIR . "/includes/upgrade/class-fix-empty-media-mime-type-upgrade-routine.php" );
 
 require_once( AWPCP_DIR . '/includes/class-edit-listing-url-placeholder.php' );
+require_once( AWPCP_DIR . '/includes/class-edit-listing-link-placeholder.php' );
 
 require_once( AWPCP_DIR . "/includes/class-awpcp-listings-api.php" );
 require_once( AWPCP_DIR . "/includes/class-fees-collection.php" );
@@ -819,6 +820,9 @@ class AWPCP {
     public function register_content_placeholders( $placeholders ) {
         $handler = awpcp_edit_listing_url_placeholder();
         $placeholders['edit_listing_url'] = array( 'callback' => array( $handler, 'do_placeholder' ) );
+
+        $handler = awpcp_edit_listing_link_placeholder();
+        $placeholders['edit_listing_link'] = array( 'callback' => array( $handler, 'do_placeholder' ) );
 
         return $placeholders;
     }
