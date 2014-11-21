@@ -42,7 +42,7 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
             $message = sprintf('%s <a href="%s">%s</a>.', $message, $url, __('Click here', 'AWPCP'));
             return $this->render('content', awpcp_print_message($message));
         } else {
-            return $this->render_page( $default );
+            return $this->handle_request( $default );
         }
     }
 
@@ -62,15 +62,23 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
         return true;
     }
 
-    protected function render_page( $default = null ) {
+    protected function handle_request( $default_action = null ) {
         $ad = $this->get_ad();
 
-        if (!is_null($ad) && !$this->is_user_allowed_to_edit($ad)) {
-            $message = __('You are not allowed to edit the specified Ad.', 'AWPCP');
-            return $this->render('content', awpcp_print_error($message));
+        if ( ! is_null( $ad ) ) {
+            if ( $this->is_user_allowed_to_edit( $ad ) ) {
+                return $this->render_page( 'details' );
+            } else {
+                $message = __( 'You are not allowed to edit the specified Ad.', 'AWPCP' );
+                return $this->render( 'content', awpcp_print_error( $message ) );
+            }
+        } else {
+            return $this->render_page( $default_action );
         }
+    }
 
-        $action = $this->get_current_action($default);
+    protected function render_page( $default_action = null ) {
+        $action = $this->get_current_action( $default_action );
 
         switch ($action) {
             case 'details':
