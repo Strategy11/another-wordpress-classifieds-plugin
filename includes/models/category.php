@@ -249,7 +249,7 @@ class AWPCP_CategoriesCollection {
 
     /**
      * @throws AWPCP_Exception if no category is found.
-     * @since next-release
+     * @since 3.3.2
      */
     public function get( $category_id ) {
         $results = AWPCP_Category::query( array(

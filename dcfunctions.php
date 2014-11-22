@@ -453,7 +453,7 @@ function awpcp_pagination_options( $selected=10 ) {
 }
 
 /**
- * @since next-release
+ * @since 3.3.2
  */
 function awpcp_build_pagination_options( $options, $selected ) {
 	array_unshift( $options, 0 );
@@ -471,7 +471,7 @@ function awpcp_build_pagination_options( $options, $selected ) {
 }
 
 /**
- * @since next-release
+ * @since 3.3.2
  */
 function awpcp_default_pagination_options( $selected = 10 ) {
 	$default_options = awpcp()->settings->get_option_default_value( 'pagination-options' );

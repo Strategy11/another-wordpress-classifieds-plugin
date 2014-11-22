@@ -3,7 +3,7 @@
  Plugin Name: Another Wordpress Classifieds Plugin (AWPCP)
  Plugin URI: http://www.awpcp.com
  Description: AWPCP - A plugin that provides the ability to run a free or paid classified ads service on your wordpress blog. <strong>!!!IMPORTANT!!!</strong> Whether updating a previous installation of Another Wordpress Classifieds Plugin or installing Another Wordpress Classifieds Plugin for the first time, please backup your wordpress database before you install/uninstall/activate/deactivate/upgrade Another Wordpress Classifieds Plugin.
- Version: 3.3.3-dev-1
+ Version: 3.3.3-dev-2
  Author: D. Rodenbaugh
  License: GPLv2 or any later version
  Author URI: http://www.skylineconsult.com
@@ -185,8 +185,12 @@ require_once( AWPCP_DIR . "/includes/settings/class-registration-settings.php" )
 
 require_once( AWPCP_DIR . "/includes/upgrade/class-fix-empty-media-mime-type-upgrade-routine.php" );
 
+require_once( AWPCP_DIR . '/includes/class-edit-listing-url-placeholder.php' );
+require_once( AWPCP_DIR . '/includes/class-edit-listing-link-placeholder.php' );
+
 require_once( AWPCP_DIR . "/includes/class-awpcp-listings-api.php" );
 require_once( AWPCP_DIR . "/includes/class-fees-collection.php" );
+require_once( AWPCP_DIR . "/includes/class-listing-authorization.php" );
 require_once( AWPCP_DIR . "/includes/class-listing-payment-transaction-handler.php" );
 require_once( AWPCP_DIR . "/includes/class-listing-is-about-to-expire-notification.php" );
 require_once( AWPCP_DIR . "/includes/class-listings-collection.php" );
@@ -466,6 +470,8 @@ class AWPCP {
             add_action( 'template_redirect', array( new AWPCP_SecureURLRedirectionHandler(), 'dispatch' ) );
         }
 
+        add_filter( 'awpcp-content-placeholders', array( $this, 'register_content_placeholders' ) );
+
 		if (!get_option('awpcp_installationcomplete', 0)) {
 			update_option('awpcp_installationcomplete', 1);
 			awpcp_create_pages(__('AWPCP', 'AWPCP'));
@@ -477,7 +483,8 @@ class AWPCP {
         }
 
 		if ( $this->flush_rewrite_rules || get_option( 'awpcp-flush-rewrite-rules' ) ) {
-			flush_rewrite_rules();
+            add_action( 'wp_loaded', 'flush_rewrite_rules' );
+            update_option( 'awpcp-flush-rewrite-rules', false );
 		}
 
 		$this->register_scripts();
@@ -529,7 +536,7 @@ class AWPCP {
 					'url' => 'http://www.awpcp.com/premium-modules/?ref=panel',
 					'installed' => defined( 'AWPCP_BUDDYPRESS_LISTINGS_MODULE_DB_VERSION' ),
 					'version' => 'AWPCP_BUDDYPRESS_LISTINGS_MODULE_DB_VERSION',
-					'required' => '1.0.3',
+					'required' => '1.0.7',
 				),
                 'campaign-manager' => array(
                     'name' => __( 'Campaign Manager', 'AWPCP' ),
@@ -810,6 +817,16 @@ class AWPCP {
 		wp_localize_script('awpcp', '__awpcp_js_data', $this->js->get_data());
 		wp_localize_script('awpcp', '__awpcp_js_l10n', $this->js->get_l10n());
 	}
+
+    public function register_content_placeholders( $placeholders ) {
+        $handler = awpcp_edit_listing_url_placeholder();
+        $placeholders['edit_listing_url'] = array( 'callback' => array( $handler, 'do_placeholder' ) );
+
+        $handler = awpcp_edit_listing_link_placeholder();
+        $placeholders['edit_listing_link'] = array( 'callback' => array( $handler, 'do_placeholder' ) );
+
+        return $placeholders;
+    }
 
 	/**
 	 * Register other AWPCP settings, normally for private use.
@@ -1148,6 +1165,7 @@ function awpcp_pages_with_rewrite_rules() {
 		'main-page-name',
 		'show-ads-page-name',
 		'reply-to-ad-page-name',
+        'edit-ad-page-name',
 		'browse-categories-page-name',
 		'payment-thankyou-page-name',
 		'payment-cancel-page-name'
@@ -1187,6 +1205,14 @@ function awpcp_add_rewrite_rules($rules) {
 		add_rewrite_rule('('.$patterns['reply-to-ad-page-name'].')/(.+?)/(.+?)',
 						 'index.php?pagename=$matches[1]&id=$matches[2]', 'top');
 	}
+
+    if ( isset( $patterns['edit-ad-page-name'] ) ) {
+        add_rewrite_rule(
+            '(' . $patterns['edit-ad-page-name'] . ')(?:/([0-9]+))?/?$',
+            'index.php?pagename=$matches[1]&id=$matches[2]',
+            'top'
+        );
+    }
 
 	if (isset($patterns['browse-categories-page-name'])) {
 		add_rewrite_rule('('.$patterns['browse-categories-page-name'].')/(.+?)/(.+?)',

@@ -3,7 +3,7 @@
 /**
  * Copied from http://gistpages.com/2013/06/30/generate_ordinal_numbers_1st_2nd_3rd_in_php
  *
- * @since next-release
+ * @since 3.3.2
  */
 function awpcp_ordinalize($num) {
     $suff = 'th';

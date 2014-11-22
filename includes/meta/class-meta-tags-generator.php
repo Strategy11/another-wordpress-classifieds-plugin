@@ -12,6 +12,13 @@ class AWPCP_MetaTagsGenerator {
         $this->tag_renderer = $tag_renderer;
     }
 
+    public function generate_meta_tags( $metadata ) {
+        return array_merge(
+            $this->generate_basic_meta_tags( $metadata ),
+            $this->generate_opengraph_meta_tags( $metadata )
+        );
+    }
+
     public function generate_opengraph_meta_tags( $metadata ) {
         $meta_tags['og:type'] = $this->tag_renderer->render_tag( 'meta', array( 'property' => 'og:type', 'content' => $metadata['http://ogp.me/ns#type'] ) );
         $meta_tags['og:url'] = $this->tag_renderer->render_tag( 'meta', array( 'property' => 'og:url', 'content' => $metadata['http://ogp.me/ns#url'] ) );

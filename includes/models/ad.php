@@ -167,7 +167,12 @@ class AWPCP_Ad {
 	 * @since 3.0
 	 */
 	public static function get_enabled_ads($args=array(), $conditions=array()) {
+        if ( ! isset( $args['order'] ) ) {
+            $args['order'] = self::get_order_conditions( get_awpcp_option( 'groupbrowseadsby' ) );
+        }
+
         $conditions = self::get_where_conditions($conditions);
+
         return self::query(array_merge($args, array('where' => join(' AND ', $conditions))));
 	}
 

@@ -13,20 +13,23 @@ class AWPCP_AddMetaTagsPluginIntegration {
     }
 
     public function should_generate_opengraph_tags( $should, AWPCP_Meta $meta ) {
-        if ( ! function_exists( 'amt_add_opengraph_metadata_head' ) ) {
+        if ( ! function_exists( 'amt_get_metadata_head' ) ) {
             return $should;
         }
 
         $options = get_option( 'add_meta_tags_opts' );
 
-        if ( $options['auto_opengraph'] != '1' ) {
+        if ( $options['auto_opengraph'] == '1' ) {
+            $this->metadata = $meta->get_listing_metadata();
+            add_filter( 'amt_opengraph_metadata_head', array( $this, 'overwrite_opengraph_metadata' ) );
+            return false;
+        } else if ( ! empty( $options['site_wide_meta'] ) ) {
+            $this->metadata = $meta->get_listing_metadata();
+            add_filter( 'amt_basic_metadata_head', array( $this, 'remove_opengraph_metadata' ) );
             return $should;
         }
 
-        $this->metadata = $meta->get_listing_metadata();
-        add_filter( 'amt_opengraph_metadata_head', array( $this, 'overwrite_opengraph_metadata' ) );
-
-        return false;
+        return $should;
     }
 
     public function overwrite_opengraph_metadata( $meta_tags ) {
@@ -50,6 +53,23 @@ class AWPCP_AddMetaTagsPluginIntegration {
 
         foreach ( $meta_tags_not_included as $property ) {
             $meta_tags[] = $opengraph_meta_tags[ $property ];
+        }
+
+        return $meta_tags;
+    }
+
+    public function remove_opengraph_metadata( $meta_tags ) {
+        $opengraph_meta_tags = $this->meta_tags_generator->generate_meta_tags( $this->metadata );
+
+        $regex_partials = array();
+        foreach ( array_keys( $opengraph_meta_tags ) as $property ) {
+            $regex_partials[] = '(?:<[^>]+=(?:"|\')' . preg_quote( $property ) . '(?:"|\')[^>]+>)';
+        }
+
+        $pattern = '/' . implode( '|', $regex_partials ) . '/';
+
+        foreach ( $meta_tags as $index => $tag ) {
+            $meta_tags[ $index ] = preg_replace( $pattern, '', $tag );
         }
 
         return $meta_tags;

@@ -359,14 +359,7 @@ function awpcp_get_menu_items() {
     }
 
     if ( $show_edit_ad_item ) {
-        if ( get_awpcp_option('enable-user-panel') ) {
-            $edit_ad_url = awpcp_get_user_panel_url();
-        } else {
-            $edit_ad_url = awpcp_get_page_url( 'edit-ad-page-name' );
-        }
-
-        $edit_ad_page_name = get_awpcp_option( 'edit-ad-page-name' );
-        $items['edit-listing'] = array( 'url' => $edit_ad_url, 'title' => esc_html( $edit_ad_page_name ) );
+        $items['edit-listing'] = awpcp_get_edit_listing_menu_item();
     }
 
     if ( $show_browse_ads_item ) {
@@ -407,4 +400,21 @@ function awpcp_get_menu_items() {
     $items = apply_filters( 'awpcp_menu_items', $items );
 
     return $items;
+}
+
+function awpcp_get_edit_listing_menu_item() {
+    $listings = awpcp_listings_collection();
+    $request = awpcp_request();
+    $settings = awpcp()->settings;
+
+    try {
+        $listing = $listings->get( $request->get_ad_id() );
+        $edit_ad_url = awpcp_get_edit_listing_url( $listing );
+    } catch( AWPCP_Exception $e ) {
+        $edit_ad_url = awpcp_get_edit_listing_generic_url();
+    }
+
+    $edit_ad_page_name = $settings->get_option( 'edit-ad-page-name' );
+
+    return array( 'url' => $edit_ad_url, 'title' => esc_html( $edit_ad_page_name ) );
 }

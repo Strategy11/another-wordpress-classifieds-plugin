@@ -12,8 +12,12 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
     public $messages = array();
 
+    protected $authorization;
+
     public function __construct($page='awpcp-place-ad', $title=null) {
         parent::__construct($page, $title);
+
+        $this->authorization = awpcp_listing_authorization();
     }
 
     public function get_current_action($default=null) {
@@ -63,13 +67,19 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
     }
 
     protected function is_user_allowed_to_edit($ad) {
-        if (awpcp_current_user_is_admin())
+        if ( $this->authorization->is_current_user_allowed_to_edit_listing( $ad ) ) {
             return true;
-        if ($ad->user_id == wp_get_current_user()->ID)
+        }
+
+        if ( $this->request_includes_authorized_hash( $ad ) ) {
             return true;
-        if ($this->verify_preview_hash($ad))
-            return true;
+        }
+
         return false;
+    }
+
+    protected function request_includes_authorized_hash( $ad ) {
+        return $this->verify_preview_hash( $ad );
     }
 
     public function dispatch($default=null) {
