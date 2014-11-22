@@ -249,6 +249,7 @@ class AWPCP_Settings_API {
 								<span class="fixfloat">$tweetbtn $sharebtn $flagad</span>
 								$awpcpadviews
 								$showadsense3
+								$edit_listing_link
 							</div>', __( 'Modify as needed to control layout of single ad view page. Maintain code formatted as \$somecodetitle. Changing the code keys will prevent the elements they represent from displaying.', 'AWPCP' ) );
 
 		$radio_options = array(1 => __( 'Date (newest first)', 'AWPCP' ),

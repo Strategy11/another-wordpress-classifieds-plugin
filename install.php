@@ -1090,6 +1090,10 @@ class AWPCP_Installer {
             update_option( 'awpcp-enable-fix-media-mime-type-upgrde', true );
         }
     }
+
+    private function upgrade_to_3_3_3( $oldversion ) {
+        update_option( 'awpcp-flush-rewrite-rules', true );
+    }
 }
 
 
