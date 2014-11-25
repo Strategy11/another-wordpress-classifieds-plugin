@@ -1246,6 +1246,23 @@ function awpcp_insert_submenu_item_after($menu, $slug, $after) {
     }
 }
 
+if ( ! function_exists( 'is_awpcp_page' ) ) {
+
+/**
+ * Check if the current page is one of the AWPCP pages.
+ *
+ * @since next-release
+ */
+function is_awpcp_page() {
+    global $wpdb, $wp_the_query;
+
+    $page_names = implode( "', '", array_keys( awpcp_pages() ) );
+    $page_ids = $wpdb->get_col( sprintf( 'SELECT id FROM ' . AWPCP_TABLE_PAGES . " WHERE page IN ('%s')", $page_names ) );
+
+    return $wp_the_query && in_array( $wp_the_query->get_queried_object_id(), $page_ids );
+}
+
+}
 
 /**
  * Check if the page identified by $refname exists.

@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: AWPCP\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2014-11-22 01:56:06+00:00\n"
+"POT-Creation-Date: 2014-11-25 01:31:03+00:00\n"
 "PO-Revision-Date: 2014-09-09 20:44-0600\n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: \n"
@@ -84,7 +84,7 @@ msgid_plural "%d Ads were enabled"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/user-panel.php:43
+#: admin/user-panel.php:38
 msgid "%s Ad Management Panel"
 msgstr ""
 
@@ -247,7 +247,7 @@ msgid ""
 "row %d."
 msgstr ""
 
-#: awpcp.php:477
+#: awpcp.php:487
 msgid "AWPCP"
 msgstr ""
 
@@ -325,7 +325,7 @@ msgctxt "awpcp admin menu"
 msgid "AWPCP Classifieds Management System - Manual Upgrade"
 msgstr ""
 
-#: admin/admin-panel.php:543 admin/admin-panel.php:739
+#: admin/admin-panel.php:549 admin/admin-panel.php:745
 msgid "AWPCP Classifieds Management System Categories Management"
 msgstr ""
 
@@ -392,7 +392,7 @@ msgid ""
 "any personal information from your profile."
 msgstr ""
 
-#: awpcp.php:504
+#: awpcp.php:514
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
@@ -437,7 +437,7 @@ msgid ""
 "activated)"
 msgstr ""
 
-#: admin/admin-panel.php:859 admin/admin-panel.php:871
+#: admin/admin-panel.php:865 admin/admin-panel.php:877
 msgid "Action"
 msgstr ""
 
@@ -461,7 +461,7 @@ msgstr ""
 msgid "Activate PayPal?"
 msgstr ""
 
-#: admin/admin-panel.php:597
+#: admin/admin-panel.php:603
 msgid "Ad A New Category"
 msgstr ""
 
@@ -506,7 +506,7 @@ msgstr ""
 msgid "Ad Listings page layout"
 msgstr ""
 
-#: admin/user-panel.php:44
+#: admin/user-panel.php:39
 msgid "Ad Management"
 msgstr ""
 
@@ -597,19 +597,19 @@ msgstr ""
 msgid "Add Images"
 msgstr ""
 
-#: admin/admin-panel.php:682
+#: admin/admin-panel.php:688
 msgid "Add New Category"
 msgstr ""
 
-#: includes/helpers/widgets/multiple-region-selector.php:103
+#: includes/helpers/widgets/multiple-region-selector.php:126
 msgid "Add Region"
 msgstr ""
 
-#: includes/helpers/widgets/multiple-region-selector.php:103
+#: includes/helpers/widgets/multiple-region-selector.php:126
 msgid "Add Search Region"
 msgstr ""
 
-#: admin/admin-panel.php:681
+#: admin/admin-panel.php:687
 msgid "Add a New Category"
 msgstr ""
 
@@ -621,7 +621,7 @@ msgstr ""
 msgid "Add to Group"
 msgstr ""
 
-#: admin/admin-panel.php:248
+#: admin/admin-panel.php:254
 msgid "Add/Edit Categories"
 msgstr ""
 
@@ -630,14 +630,14 @@ msgstr ""
 msgid "Additional Details"
 msgstr ""
 
-#: functions.php:2182
+#: functions.php:2199
 msgid ""
 "Additionally, You can approve the images going to the Manage Images sections "
 "for that Ad and clicking the \"Enable\" button below each image. Click here "
 "to continue: %s."
 msgstr ""
 
-#: admin/templates/user-panel-profile-fields.tpl.php:33
+#: templates/admin/profile/contact-information-fields.tpl.php:16
 msgid "Address"
 msgstr ""
 
@@ -885,11 +885,11 @@ msgid ""
 "fees:"
 msgstr ""
 
-#: awpcp.php:521
+#: awpcp.php:531
 msgid "Attachments"
 msgstr ""
 
-#: awpcp.php:528
+#: awpcp.php:538
 msgid "Authorize.Net"
 msgstr ""
 
@@ -972,7 +972,7 @@ msgctxt "Browse the <a>Quick Start Guide</a>"
 msgid "Browse the %s."
 msgstr ""
 
-#: awpcp.php:535
+#: awpcp.php:545
 msgid "BuddyPress Listings"
 msgstr ""
 
@@ -996,11 +996,11 @@ msgstr ""
 msgid "CSV file"
 msgstr ""
 
-#: awpcp.php:542
+#: awpcp.php:552
 msgid "Campaign Manager"
 msgstr ""
 
-#: functions.php:1980
+#: functions.php:1997
 msgid "Can't write file to disk."
 msgstr ""
 
@@ -1024,7 +1024,7 @@ msgstr ""
 msgid "Card Type"
 msgstr ""
 
-#: admin/admin-panel-fees-table.php:113 admin/admin-panel.php:248
+#: admin/admin-panel-fees-table.php:113 admin/admin-panel.php:254
 #: admin/templates/admin-panel-fees-entry-form.tpl.php:91
 msgid "Categories"
 msgstr ""
@@ -1041,7 +1041,7 @@ msgstr ""
 msgid "Category Handling on Import"
 msgstr ""
 
-#: admin/admin-panel.php:851 admin/admin-panel.php:863
+#: admin/admin-panel.php:857 admin/admin-panel.php:869
 msgid "Category ID"
 msgstr ""
 
@@ -1049,7 +1049,7 @@ msgstr ""
 msgid "Category ID must be valid for Ads to display."
 msgstr ""
 
-#: awpcp.php:549
+#: awpcp.php:559
 msgid "Category Icons"
 msgstr ""
 
@@ -1057,11 +1057,11 @@ msgstr ""
 msgid "Category Icons Premium Module"
 msgstr ""
 
-#: admin/admin-panel.php:607 admin/admin-panel.php:684
+#: admin/admin-panel.php:613 admin/admin-panel.php:690
 msgid "Category List Order"
 msgstr ""
 
-#: admin/admin-panel.php:853 admin/admin-panel.php:865
+#: admin/admin-panel.php:859 admin/admin-panel.php:871
 msgid "Category Name (Total Ads)"
 msgstr ""
 
@@ -1069,11 +1069,11 @@ msgstr ""
 msgid "Category columns in View Categories page"
 msgstr ""
 
-#: admin/admin-panel.php:698
+#: admin/admin-panel.php:704
 msgid "Category to Delete"
 msgstr ""
 
-#: admin/admin-panel.php:709
+#: admin/admin-panel.php:715
 msgid "Category to Edit"
 msgstr ""
 
@@ -1144,11 +1144,10 @@ msgstr ""
 msgid "Check to disable."
 msgstr ""
 
-#: frontend/page-place-ad.php:1159
+#: frontend/page-place-ad.php:1160
 msgid "Checkout"
 msgstr ""
 
-#: admin/templates/user-panel-profile-fields.tpl.php:51
 #: frontend/templates/payments-billing-form.tpl.php:101 functions.php:629
 msgid "City"
 msgstr ""
@@ -1166,6 +1165,10 @@ msgctxt "awpcp admin menu"
 msgid "Classifieds"
 msgstr ""
 
+#: templates/admin/profile/contact-information-fields.tpl.php:1
+msgid "Classifieds Contact Information"
+msgstr ""
+
 #: frontend/templates/main-menu.tpl.php:3
 msgid "Classifieds Menu"
 msgstr ""
@@ -1174,11 +1177,7 @@ msgstr ""
 msgid "Classifieds Pages"
 msgstr ""
 
-#: admin/templates/user-panel-profile-fields.tpl.php:1
-msgid "Classifieds Profile Info"
-msgstr ""
-
-#: functions.php:1605
+#: functions.php:1622
 msgctxt "default blog title"
 msgid "Classifieds Website"
 msgstr ""
@@ -1205,7 +1204,7 @@ msgstr ""
 msgid "Collapse Categories"
 msgstr ""
 
-#: awpcp.php:556
+#: awpcp.php:566
 msgid "Comments & Ratings"
 msgstr ""
 
@@ -1236,7 +1235,7 @@ msgstr ""
 msgid "Configure AWPCP"
 msgstr ""
 
-#: admin/admin-panel.php:228
+#: admin/admin-panel.php:234
 msgid "Configure General Options"
 msgstr ""
 
@@ -1341,7 +1340,7 @@ msgstr ""
 msgid "Coupon/Discount Module"
 msgstr ""
 
-#: awpcp.php:563
+#: awpcp.php:573
 msgid "Coupons/Discount"
 msgstr ""
 
@@ -1492,12 +1491,12 @@ msgstr ""
 msgid "Delete Ad"
 msgstr ""
 
-#: admin/admin-panel.php:839
+#: admin/admin-panel.php:845
 msgid "Delete Ads too"
 msgstr ""
 
-#: admin/admin-panel.php:442 admin/admin-panel.php:614
-#: admin/admin-panel.php:762 admin/admin-panel.php:764
+#: admin/admin-panel.php:448 admin/admin-panel.php:620
+#: admin/admin-panel.php:768 admin/admin-panel.php:770
 msgid "Delete Category"
 msgstr ""
 
@@ -1509,15 +1508,15 @@ msgstr ""
 msgid "Delete Image"
 msgstr ""
 
-#: includes/helpers/widgets/multiple-region-selector.php:104
+#: includes/helpers/widgets/multiple-region-selector.php:127
 msgid "Delete Search Region"
 msgstr ""
 
-#: admin/admin-panel.php:826
+#: admin/admin-panel.php:832
 msgid "Delete Selected Categories"
 msgstr ""
 
-#: admin/admin-panel.php:837
+#: admin/admin-panel.php:843
 msgid "Delete categories should do this with existing Ads"
 msgstr ""
 
@@ -1635,8 +1634,8 @@ msgstr ""
 msgid "Edit Ad page"
 msgstr ""
 
-#: admin/admin-panel.php:441 admin/admin-panel.php:758
-#: admin/admin-panel.php:760
+#: admin/admin-panel.php:447 admin/admin-panel.php:764
+#: admin/admin-panel.php:766
 msgid "Edit Category"
 msgstr ""
 
@@ -1772,7 +1771,7 @@ msgstr ""
 msgid "Enter Ad Details"
 msgstr ""
 
-#: admin/admin-panel.php:725
+#: admin/admin-panel.php:731
 msgid "Enter the category name"
 msgstr ""
 
@@ -1790,7 +1789,7 @@ msgstr ""
 msgid "Enter your email address"
 msgstr ""
 
-#: functions.php:1955 includes/helpers/class-modules-manager.php:158
+#: functions.php:1972 includes/helpers/class-modules-manager.php:158
 msgid "Error"
 msgstr ""
 
@@ -1856,7 +1855,7 @@ msgid ""
 "Extra Field %s's value is not allowed in row %d. Allowed values are: %%s"
 msgstr ""
 
-#: admin/admin-panel.php:259 awpcp.php:570
+#: admin/admin-panel.php:265 awpcp.php:580
 msgid "Extra Fields"
 msgstr ""
 
@@ -1903,7 +1902,7 @@ msgstr ""
 msgid "Featured"
 msgstr ""
 
-#: admin/admin-panel-fees-table.php:116 awpcp.php:577
+#: admin/admin-panel-fees-table.php:116 awpcp.php:587
 msgid "Featured Ads"
 msgstr ""
 
@@ -1928,7 +1927,7 @@ msgstr ""
 msgid "Fee Plan sort order"
 msgstr ""
 
-#: awpcp.php:584
+#: awpcp.php:594
 msgid "Fee per Category"
 msgstr ""
 
@@ -1954,7 +1953,7 @@ msgstr ""
 msgid "File permissions for uploads directory"
 msgstr ""
 
-#: frontend/page-place-ad.php:668
+#: frontend/page-place-ad.php:669
 msgid "Fill out the form below to post your classified Ad."
 msgstr ""
 
@@ -1971,7 +1970,7 @@ msgstr ""
 msgid "Find ads by Contact Name"
 msgstr ""
 
-#: frontend/page-edit-ad.php:323 frontend/page-place-ad.php:1151
+#: frontend/page-edit-ad.php:323 frontend/page-place-ad.php:1152
 #: frontend/templates/page-place-ad-preview-step.tpl.php:17
 msgid "Finish"
 msgstr ""
@@ -2084,7 +2083,7 @@ msgstr ""
 msgid "Go to the previous page"
 msgstr ""
 
-#: awpcp.php:591
+#: awpcp.php:601
 msgid "Google Checkout"
 msgstr ""
 
@@ -2133,7 +2132,7 @@ msgstr ""
 msgid "Hi admin, you need to go to your dashboard and setup your classifieds."
 msgstr ""
 
-#: frontend/page-place-ad.php:755
+#: frontend/page-place-ad.php:756
 msgid ""
 "Hi, Payment is required for posting Ads in this website and we couldn't find "
 "a Payment Transaction asssigned to you. You can't post Ads this time. If you "
@@ -2191,7 +2190,7 @@ msgctxt "Quick Start Guide"
 msgid "I'll figure it out on my own."
 msgstr ""
 
-#: admin/admin-panel.php:756
+#: admin/admin-panel.php:762
 msgid "Icon Meanings"
 msgstr ""
 
@@ -2332,7 +2331,7 @@ msgid ""
 "from your mysql database before clicking the uninstall link."
 msgstr ""
 
-#: admin/admin-panel.php:613
+#: admin/admin-panel.php:619
 msgid ""
 "If you're sure that you want to delete this category please press the delete "
 "button"
@@ -2383,23 +2382,23 @@ msgstr ""
 msgid "Images Awaiting Approval"
 msgstr ""
 
-#: functions.php:2168
+#: functions.php:2185
 msgid "Images on Ad \"%s\" are awaiting approval"
 msgstr ""
 
-#: functions.php:2170
+#: functions.php:2187
 msgid ""
 "Images on Ad \"%s\" are awaiting approval. You can approve the images going "
 "to the Manage Images sections for that Ad and clicking the \"Enable\" button "
 "below each image. Click here to continue: %s."
 msgstr ""
 
-#: admin/admin-panel.php:262
+#: admin/admin-panel.php:268
 #: admin/templates/admin-panel-csv-importer.tpl.php:173
 msgid "Import"
 msgstr ""
 
-#: admin/admin-panel.php:262
+#: admin/admin-panel.php:268
 msgid "Import Ad"
 msgstr ""
 
@@ -2550,7 +2549,7 @@ msgstr ""
 msgid "Limits search to available locations."
 msgstr ""
 
-#: admin/admin-panel.php:683
+#: admin/admin-panel.php:689
 msgid "List Category Under"
 msgstr ""
 
@@ -2600,7 +2599,7 @@ msgstr ""
 msgid "Listing URL"
 msgstr ""
 
-#: admin/admin-panel-listings.php:21 admin/user-panel.php:49
+#: admin/admin-panel-listings.php:21 admin/user-panel.php:44
 msgid "Listings"
 msgstr ""
 
@@ -2643,7 +2642,7 @@ msgstr ""
 msgid "Make Price restricted?"
 msgstr ""
 
-#: admin/admin-panel.php:713 admin/admin-panel.php:728
+#: admin/admin-panel.php:719 admin/admin-panel.php:734
 msgid "Make This a Top Level Category"
 msgstr ""
 
@@ -2675,7 +2674,7 @@ msgstr ""
 msgid "Manage Ad"
 msgstr ""
 
-#: admin/user-panel.php:48
+#: admin/user-panel.php:43
 msgid "Manage Ad Listings"
 msgstr ""
 
@@ -2688,16 +2687,16 @@ msgstr ""
 msgid "Manage Categories"
 msgstr ""
 
-#: admin/admin-panel.php:435 admin/admin-panel.php:436
-#: admin/admin-panel.php:768
+#: admin/admin-panel.php:441 admin/admin-panel.php:442
+#: admin/admin-panel.php:774
 msgid "Manage Category Icon"
 msgstr ""
 
-#: admin/admin-panel.php:237
+#: admin/admin-panel.php:243
 msgid "Manage Credit"
 msgstr ""
 
-#: admin/admin-panel.php:259
+#: admin/admin-panel.php:265
 msgid "Manage Extra Fields"
 msgstr ""
 
@@ -2879,7 +2878,7 @@ msgstr ""
 msgid "Missing app ID/secret."
 msgstr ""
 
-#: functions.php:1979
+#: functions.php:1996
 msgid "Missing temporary directory."
 msgstr ""
 
@@ -2912,11 +2911,11 @@ msgstr[1] ""
 msgid "More Information"
 msgstr ""
 
-#: admin/admin-panel.php:838
+#: admin/admin-panel.php:844
 msgid "Move Ads to new category"
 msgstr ""
 
-#: admin/admin-panel.php:829
+#: admin/admin-panel.php:835
 msgid "Move Selected Categories"
 msgstr ""
 
@@ -3062,7 +3061,7 @@ msgstr ""
 msgid "No category was found with ID: %d"
 msgstr ""
 
-#: admin/admin-panel.php:1183
+#: admin/admin-panel.php:1189
 msgid "No changes made to categories."
 msgstr ""
 
@@ -3081,7 +3080,7 @@ msgstr ""
 msgid "No credit plans available."
 msgstr ""
 
-#: functions.php:1974
+#: functions.php:1991
 msgid "No errors."
 msgstr ""
 
@@ -3093,11 +3092,11 @@ msgstr ""
 msgid "No file was selected."
 msgstr ""
 
-#: functions.php:1978
+#: functions.php:1995
 msgid "No file was uploaded."
 msgstr ""
 
-#: frontend/page-place-ad.php:1240
+#: frontend/page-place-ad.php:1241
 msgctxt "upload files"
 msgid "No files were uploaded"
 msgstr ""
@@ -3161,7 +3160,7 @@ msgctxt "debug page"
 msgid "Not Working"
 msgstr ""
 
-#: admin/admin-panel.php:650
+#: admin/admin-panel.php:656
 msgid "Note"
 msgstr ""
 
@@ -3275,7 +3274,7 @@ msgstr ""
 msgid "Option Value"
 msgstr ""
 
-#: admin/admin-panel.php:857 admin/admin-panel.php:869
+#: admin/admin-panel.php:863 admin/admin-panel.php:875
 msgid "Order"
 msgstr ""
 
@@ -3333,11 +3332,11 @@ msgstr ""
 msgid "Paid status and title (paid first, then by title)"
 msgstr ""
 
-#: admin/admin-panel.php:855 admin/admin-panel.php:867
+#: admin/admin-panel.php:861 admin/admin-panel.php:873
 msgid "Parent"
 msgstr ""
 
-#: admin/admin-panel.php:606 admin/admin-panel.php:615
+#: admin/admin-panel.php:612 admin/admin-panel.php:621
 msgid "Parent Category"
 msgstr ""
 
@@ -3373,7 +3372,7 @@ msgctxt "debug page"
 msgid "PayPal Connection"
 msgstr ""
 
-#: awpcp.php:598
+#: awpcp.php:608
 msgid "PayPal Pro"
 msgstr ""
 
@@ -3508,7 +3507,7 @@ msgstr ""
 msgid "Phone Field"
 msgstr ""
 
-#: admin/templates/user-panel-profile-fields.tpl.php:24
+#: templates/admin/profile/contact-information-fields.tpl.php:7
 msgid "Phone Number"
 msgstr ""
 
@@ -3524,7 +3523,7 @@ msgstr ""
 msgid "Place Ad requires user registration"
 msgstr ""
 
-#: frontend/page-place-ad.php:1155
+#: frontend/page-place-ad.php:1156
 msgid "Place Ad without Images"
 msgstr ""
 
@@ -3559,27 +3558,27 @@ msgid ""
 "disregarded."
 msgstr ""
 
-#: frontend/page-place-ad.php:787
+#: frontend/page-place-ad.php:788
 msgid "Please enter a start date for the Ad."
 msgstr ""
 
-#: awpcp.php:812
+#: awpcp.php:822
 msgid "Please enter a valid URL."
 msgstr ""
 
-#: awpcp.php:814
+#: awpcp.php:824
 msgid "Please enter a valid amount."
 msgstr ""
 
-#: awpcp.php:811 frontend/page-edit-ad.php:126 frontend/page-edit-ad.php:395
+#: awpcp.php:821 frontend/page-edit-ad.php:126 frontend/page-edit-ad.php:395
 msgid "Please enter a valid email address."
 msgstr ""
 
-#: awpcp.php:813
+#: awpcp.php:823
 msgid "Please enter a valid number."
 msgstr ""
 
-#: frontend/page-place-ad.php:792
+#: frontend/page-place-ad.php:793
 msgid "Please enter an end date for the Ad."
 msgstr ""
 
@@ -3634,7 +3633,7 @@ msgctxt "place ad order step"
 msgid "Please select a Category for your Ad"
 msgstr ""
 
-#: admin/admin-panel.php:656
+#: admin/admin-panel.php:662
 msgid "Please select a Move-To category"
 msgstr ""
 
@@ -3736,12 +3735,12 @@ msgstr ""
 msgid "Prevent ads from being posted to top level categories?"
 msgstr ""
 
-#: frontend/page-place-ad.php:1157
+#: frontend/page-place-ad.php:1158
 #: frontend/templates/page-place-ad-details-step.tpl.php:210
 msgid "Preview Ad"
 msgstr ""
 
-#: frontend/page-place-ad.php:1153
+#: frontend/page-place-ad.php:1154
 msgid "Preview Ad without Images"
 msgstr ""
 
@@ -3813,7 +3812,7 @@ msgstr ""
 msgid "Quick Start Guide"
 msgstr ""
 
-#: awpcp.php:619
+#: awpcp.php:629
 msgid "RSS"
 msgstr ""
 
@@ -3842,7 +3841,7 @@ msgstr ""
 msgid "Reference"
 msgstr ""
 
-#: awpcp.php:605
+#: awpcp.php:615
 msgid "Regions Control"
 msgstr ""
 
@@ -3884,7 +3883,7 @@ msgstr ""
 msgid "Remove Featured"
 msgstr ""
 
-#: includes/helpers/widgets/multiple-region-selector.php:104
+#: includes/helpers/widgets/multiple-region-selector.php:127
 msgid "Remove Region"
 msgstr ""
 
@@ -4039,7 +4038,7 @@ msgstr ""
 msgid "Restore the Classifieds pages to fix the conflict."
 msgstr ""
 
-#: awpcp.php:612
+#: awpcp.php:622
 msgid "Restricted Categories"
 msgstr ""
 
@@ -4114,7 +4113,7 @@ msgstr ""
 msgid "Save App Settings"
 msgstr ""
 
-#: admin/admin-panel.php:605
+#: admin/admin-panel.php:611
 msgid "Save Category Changes"
 msgstr ""
 
@@ -4157,7 +4156,7 @@ msgstr ""
 msgid "Search for Ads containing this word or phrase"
 msgstr ""
 
-#: includes/helpers/widgets/multiple-region-selector.php:101
+#: includes/helpers/widgets/multiple-region-selector.php:124
 msgctxt "Select <Region Type> in Multiple Region Selector"
 msgid "Select %s"
 msgstr ""
@@ -4167,7 +4166,7 @@ msgctxt "place ad order step"
 msgid "Select Category"
 msgstr ""
 
-#: admin/admin-panel.php:832
+#: admin/admin-panel.php:838
 msgid "Select Move-To category"
 msgstr ""
 
@@ -4252,7 +4251,7 @@ msgctxt "media manager"
 msgid "Set as primary"
 msgstr ""
 
-#: admin/admin-panel.php:228
+#: admin/admin-panel.php:234
 msgid "Settings"
 msgstr ""
 
@@ -4490,13 +4489,13 @@ msgstr ""
 msgid "Someone responded to one of the Ads in your website."
 msgstr ""
 
-#: admin/admin-panel.php:666
+#: admin/admin-panel.php:672
 msgid ""
 "Sorry but you cannot delete %s. It is the default category and the default "
 "category cannot be deleted."
 msgstr ""
 
-#: admin/admin-panel.php:1096
+#: admin/admin-panel.php:1102
 msgid ""
 "Sorry but you cannot delete the default category. The default category can "
 "only be renamed"
@@ -4536,7 +4535,6 @@ msgid ""
 "row number %s"
 msgstr ""
 
-#: admin/templates/user-panel-profile-fields.tpl.php:42
 #: frontend/templates/payments-billing-form.tpl.php:92
 msgid "State"
 msgstr ""
@@ -4616,7 +4614,7 @@ msgid ""
 "Subject line for email sent out when the payment processing does not complete"
 msgstr ""
 
-#: awpcp.php:626
+#: awpcp.php:636
 msgid "Subscriptions"
 msgstr ""
 
@@ -4694,7 +4692,7 @@ msgstr ""
 msgid "Thank you for your business"
 msgstr ""
 
-#: awpcp.php:680
+#: awpcp.php:690
 msgid ""
 "The %1$s module you have installed is outdated and not compatible with this "
 "version of AWPCP. Please get %1$s %2$s or newer."
@@ -4708,11 +4706,11 @@ msgid ""
 "your license."
 msgstr ""
 
-#: functions.php:2173
+#: functions.php:2190
 msgid "The Ad \"%s\" is awaiting approval"
 msgstr ""
 
-#: functions.php:2175
+#: functions.php:2192
 msgid ""
 "The Ad \"%s\" is awaiting approval. You can approve the Ad going to the "
 "Manage Listings section and clicking the \"Enable\" action shown on top. "
@@ -4725,7 +4723,7 @@ msgid ""
 "share it, Facebook servers and users won't be able to access it."
 msgstr ""
 
-#: frontend/page-place-ad.php:1255 frontend/page-place-ad.php:1302
+#: frontend/page-place-ad.php:1256 frontend/page-place-ad.php:1303
 #: frontend/page-renew-ad.php:334
 msgid "The Ad associated with this transaction doesn't exists."
 msgstr ""
@@ -4927,29 +4925,29 @@ msgstr ""
 msgid "The available currency codes are"
 msgstr ""
 
-#: admin/admin-panel.php:1321
+#: admin/admin-panel.php:1327
 msgid "The categories have been deleted"
 msgstr ""
 
-#: admin/admin-panel.php:1226
+#: admin/admin-panel.php:1232
 msgid ""
 "The categories have not been moved because you did not indicate where you "
 "want the categories to be moved to"
 msgstr ""
 
-#: admin/admin-panel.php:648
+#: admin/admin-panel.php:654
 msgid ""
 "The category also has children. If you do not specify a move-to category the "
 "children will be adopted by"
 msgstr ""
 
-#: admin/admin-panel.php:635
+#: admin/admin-panel.php:641
 msgid ""
 "The category contains ads. If you do not select a category to move them to "
 "the ads will be moved to:"
 msgstr ""
 
-#: admin/admin-panel.php:1164
+#: admin/admin-panel.php:1170
 msgid "The category has been deleted"
 msgstr ""
 
@@ -5028,13 +5026,13 @@ msgid ""
 "The email address you entered does not match any of the Ads in our system."
 msgstr ""
 
-#: frontend/page-place-ad.php:854
+#: frontend/page-place-ad.php:855
 msgid ""
 "The email address you entered is not allowed in this website. Please use an "
 "email address from one of the following domains: %s."
 msgstr ""
 
-#: frontend/page-place-ad.php:850 frontend/page-reply-to-ad.php:123
+#: frontend/page-place-ad.php:851 frontend/page-reply-to-ad.php:123
 msgid ""
 "The email address you entered was not a valid email address. Please check "
 "for errors and try again."
@@ -5111,19 +5109,19 @@ msgctxt "media manager"
 msgid "The file has been rejected."
 msgstr ""
 
-#: functions.php:1976
+#: functions.php:1993
 msgid "The file is larger than form MAX_FILE_SIZE."
 msgstr ""
 
-#: functions.php:1975
+#: functions.php:1992
 msgid "The file is larger than upload_max_filesize."
 msgstr ""
 
-#: functions.php:1981
+#: functions.php:1998
 msgid "The file upload was stopped by extension."
 msgstr ""
 
-#: functions.php:1977
+#: functions.php:1994
 msgid "The file was only partially uploaded."
 msgstr ""
 
@@ -5172,7 +5170,7 @@ msgctxt "media manager"
 msgid "The image has been set as primary image."
 msgstr ""
 
-#: functions.php:1936
+#: functions.php:1953
 msgid ""
 "The images or files with pale red background have been rejected by an "
 "administrator user. Likewise, files with a pale yellow background are "
@@ -5198,7 +5196,7 @@ msgstr ""
 msgid "The message cannot be empty."
 msgstr ""
 
-#: admin/admin-panel.php:652
+#: admin/admin-panel.php:658
 msgid "The move-to category specified applies to both ads and categories"
 msgstr ""
 
@@ -5210,7 +5208,7 @@ msgstr ""
 msgid "The name of the plan is required."
 msgstr ""
 
-#: admin/admin-panel.php:1077
+#: admin/admin-panel.php:1083
 msgid "The new category was successfully added."
 msgstr ""
 
@@ -5341,7 +5339,7 @@ msgctxt "ajax delete ad"
 msgid "The specified Ad doesn't exists."
 msgstr ""
 
-#: frontend/page-edit-ad.php:281 frontend/page-place-ad.php:1108
+#: frontend/page-edit-ad.php:281 frontend/page-place-ad.php:1109
 msgid "The specified Ad doesn't exists. No images can be added at this time."
 msgstr ""
 
@@ -5405,7 +5403,7 @@ msgid ""
 "payment."
 msgstr ""
 
-#: frontend/page-place-ad.php:796
+#: frontend/page-place-ad.php:797
 msgid "The start date must occur before the end date."
 msgstr ""
 
@@ -5638,7 +5636,7 @@ msgstr ""
 msgid "There was an error with your ZIP file: %s"
 msgstr ""
 
-#: frontend/page-edit-ad.php:259 frontend/page-place-ad.php:1050
+#: frontend/page-edit-ad.php:259 frontend/page-place-ad.php:1051
 msgid ""
 "There was an unexpected error trying to save your Ad details. Please try "
 "again or contact an administrator."
@@ -5699,7 +5697,7 @@ msgid ""
 "and Configure a Facebook Application.</a>"
 msgstr ""
 
-#: awpcp.php:810
+#: awpcp.php:820
 msgid "This field is required."
 msgstr ""
 
@@ -5741,7 +5739,7 @@ msgid ""
 "in email notifications sent when a new Ad is posted."
 msgstr ""
 
-#: includes/helpers/widgets/multiple-region-selector.php:102
+#: includes/helpers/widgets/multiple-region-selector.php:125
 msgid ""
 "This particular region is already selected in another field. Please choose "
 "one or more sub-regions, to make the selection more specific, or change the "
@@ -5755,7 +5753,7 @@ msgid ""
 "above and save your settings."
 msgstr ""
 
-#: functions.php:1953 includes/helpers/class-modules-manager.php:156
+#: functions.php:1970 includes/helpers/class-modules-manager.php:156
 msgid ""
 "This version of AWPCP %1$s module is not compatible with AWPCP version %2$s. "
 "Please get AWPCP %1$s %3$s or newer!"
@@ -5981,7 +5979,7 @@ msgctxt "ad payment status"
 msgid "Unpaid"
 msgstr ""
 
-#: admin/admin-panel.php:631 admin/admin-panel.php:642
+#: admin/admin-panel.php:637 admin/admin-panel.php:648
 msgid "Untitled"
 msgstr ""
 
@@ -6170,7 +6168,7 @@ msgstr ""
 msgid "Visit Website"
 msgstr ""
 
-#: awpcp.php:505
+#: awpcp.php:515
 msgid "Warning"
 msgstr ""
 
@@ -6206,7 +6204,7 @@ msgstr ""
 msgid "We couldn't find a valid payment term associated with this Ad."
 msgstr ""
 
-#: frontend/page-place-ad.php:672
+#: frontend/page-place-ad.php:673
 msgid ""
 "We found errors in the details you submitted. A detailed error message is "
 "shown in front or below each invalid field. Please fix the errors and submit "
@@ -6220,12 +6218,12 @@ msgid ""
 "\"%s\">%s</a> in 30 seconds to continue placing your Ad."
 msgstr ""
 
-#: frontend/page-place-ad.php:1248 frontend/page-place-ad.php:1295
+#: frontend/page-place-ad.php:1249 frontend/page-place-ad.php:1296
 msgid ""
 "We were unable to find a Payment Transaction assigned to this operation."
 msgstr ""
 
-#: frontend/page-place-ad.php:1101
+#: frontend/page-place-ad.php:1102
 msgid ""
 "We were unable to find a Payment Transaction assigned to this operation. No "
 "images can be added at this time."
@@ -6282,7 +6280,7 @@ msgstr ""
 msgid "Window title separator"
 msgstr ""
 
-#: admin/admin-panel.php:1222
+#: admin/admin-panel.php:1228
 msgid ""
 "With the exception of any category that was being moved to itself, the "
 "categories have been moved"
@@ -6297,7 +6295,7 @@ msgstr ""
 msgid "Would you like some help getting started?"
 msgstr ""
 
-#: awpcp.php:633
+#: awpcp.php:643
 msgid "XML Sitemap"
 msgstr ""
 
@@ -6337,7 +6335,7 @@ msgid ""
 "choose a payment method."
 msgstr ""
 
-#: admin/admin-panel.php:604
+#: admin/admin-panel.php:610
 msgid "You are currently editing the category shown below"
 msgstr ""
 
@@ -6347,7 +6345,7 @@ msgid ""
 "can log in and go to the Ad Management panel to edit your Ads."
 msgstr ""
 
-#: frontend/page-place-ad.php:343 frontend/page-place-ad.php:666
+#: frontend/page-place-ad.php:343 frontend/page-place-ad.php:667
 #: frontend/page-renew-ad.php:226
 msgid ""
 "You are logged in as an administrator. Any payment steps will be skipped."
@@ -6493,7 +6491,7 @@ msgid ""
 "Mode).'"
 msgstr ""
 
-#: frontend/page-place-ad.php:942
+#: frontend/page-place-ad.php:943
 msgid "You did not accept the terms of service"
 msgstr ""
 
@@ -6503,58 +6501,58 @@ msgid ""
 "least provide a keyword or phrase to search for."
 msgstr ""
 
-#: frontend/page-place-ad.php:801
+#: frontend/page-place-ad.php:802
 msgid "You did not enter a title for your Ad"
 msgstr ""
 
-#: frontend/page-place-ad.php:806
+#: frontend/page-place-ad.php:807
 msgid ""
 "You did not enter any text for your Ad. Please enter some text for your Ad."
 msgstr ""
 
-#: frontend/page-place-ad.php:918
+#: frontend/page-place-ad.php:919
 msgid "You did not enter the price of your item. The item price is required."
 msgstr ""
 
-#: frontend/page-place-ad.php:902
+#: frontend/page-place-ad.php:903
 msgid "You did not enter your city. Your city is required."
 msgstr ""
 
-#: frontend/page-place-ad.php:884
+#: frontend/page-place-ad.php:885
 msgid "You did not enter your country. Your country is required."
 msgstr ""
 
-#: frontend/page-place-ad.php:911
+#: frontend/page-place-ad.php:912
 msgid "You did not enter your county/village. Your county/village is required."
 msgstr ""
 
-#: frontend/page-place-ad.php:835
+#: frontend/page-place-ad.php:836
 msgid "You did not enter your email. Your email is required."
 msgstr ""
 
-#: frontend/page-place-ad.php:830
+#: frontend/page-place-ad.php:831
 msgid "You did not enter your name. Your name is required."
 msgstr ""
 
-#: frontend/page-place-ad.php:866
+#: frontend/page-place-ad.php:867
 msgid "You did not enter your phone number. Your phone number is required."
 msgstr ""
 
-#: frontend/page-place-ad.php:893
+#: frontend/page-place-ad.php:894
 msgid "You did not enter your state. Your state is required."
 msgstr ""
 
-#: frontend/page-place-ad.php:819
+#: frontend/page-place-ad.php:820
 msgid ""
 "You did not enter your website address. Your website address is required."
 msgstr ""
 
-#: frontend/page-place-ad.php:782
+#: frontend/page-place-ad.php:783
 msgid ""
 "You did not select a Payment Term. Please select a Payment Term for this Ad."
 msgstr ""
 
-#: frontend/page-place-ad.php:811
+#: frontend/page-place-ad.php:812
 msgid ""
 "You did not select a category for your Ad. Please select a category for your "
 "Ad."
@@ -6593,7 +6591,7 @@ msgid ""
 "must be at least 3 letters in length. Please try another term."
 msgstr ""
 
-#: frontend/page-place-ad.php:924
+#: frontend/page-place-ad.php:925
 msgid ""
 "You have entered an invalid item price. Make sure your price contains "
 "numbers only. Please do not include currency symbols."
@@ -6661,11 +6659,11 @@ msgstr ""
 msgid "You should select an owner for this Ad."
 msgstr ""
 
-#: functions.php:2131
+#: functions.php:2148
 msgid "Your Ad \"%s\" has been approved"
 msgstr ""
 
-#: functions.php:2147
+#: functions.php:2164
 msgid "Your Ad \"%s\" has been successfully updated"
 msgstr ""
 
@@ -6681,7 +6679,7 @@ msgid ""
 "system"
 msgstr ""
 
-#: frontend/page-place-ad.php:664
+#: frontend/page-place-ad.php:665
 msgid ""
 "Your Ad details have been filled out in the form below. Make any changes "
 "needed and then resubmit the Ad to update it."
@@ -6703,7 +6701,7 @@ msgstr ""
 msgid "Your Ad has been successfully updated. Ad information is shown below."
 msgstr ""
 
-#: frontend/page-place-ad.php:958
+#: frontend/page-place-ad.php:959
 msgid ""
 "Your Ad was flagged as spam. Please contact the administrator of this site."
 msgstr ""
@@ -6736,7 +6734,7 @@ msgid ""
 "to continue with the process."
 msgstr ""
 
-#: admin/admin-panel.php:1176
+#: admin/admin-panel.php:1182
 msgid "Your category changes have been saved."
 msgstr ""
 
@@ -6816,7 +6814,7 @@ msgstr ""
 msgid "Your solution to the math problem was incorrect. Please try again."
 msgstr ""
 
-#: frontend/page-place-ad.php:825
+#: frontend/page-place-ad.php:826
 msgid ""
 "Your website address is not properly formatted. Please make sure you have "
 "included the http:// part of your website address"
@@ -6872,6 +6870,7 @@ msgid "less than 1"
 msgstr ""
 
 #: frontend/templates/html-widget-multiple-region-selector.tpl.php:14
+#: templates/admin/profile/contact-information-region-selector.tpl.php:15
 msgctxt "loading region options"
 msgid "loading..."
 msgstr ""

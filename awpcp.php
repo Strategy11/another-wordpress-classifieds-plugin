@@ -3,7 +3,7 @@
  Plugin Name: Another Wordpress Classifieds Plugin (AWPCP)
  Plugin URI: http://www.awpcp.com
  Description: AWPCP - A plugin that provides the ability to run a free or paid classified ads service on your wordpress blog. <strong>!!!IMPORTANT!!!</strong> Whether updating a previous installation of Another Wordpress Classifieds Plugin or installing Another Wordpress Classifieds Plugin for the first time, please backup your wordpress database before you install/uninstall/activate/deactivate/upgrade Another Wordpress Classifieds Plugin.
- Version: 3.3.3-dev-2
+ Version: 3.3.3-dev-3
  Author: D. Rodenbaugh
  License: GPLv2 or any later version
  Author URI: http://www.skylineconsult.com
@@ -221,6 +221,7 @@ require_once(AWPCP_DIR . "/install.php");
 // admin functions
 require_once(AWPCP_DIR . "/admin/admin-panel.php");
 require_once(AWPCP_DIR . "/admin/user-panel.php");
+require_once( AWPCP_DIR . '/admin/profile/class-user-profile-contact-information-controller.php' );
 
 // frontend functions
 require_once(AWPCP_DIR . "/frontend/placeholders.php");
@@ -361,8 +362,8 @@ class AWPCP {
 
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 1000 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ), 1000 );
-		add_action( 'wp_footer', array( $this, 'localize_scripts' ) );
-		add_action( 'admin_footer', array( $this, 'localize_scripts' ) );
+		add_action( 'wp_footer', array( $this, 'localize_scripts' ), 15000 );
+		add_action( 'admin_footer', array( $this, 'localize_scripts' ), 15000 );
 
 		// some upgrade operations can't be done in background.
 		// if one those is pending, we will disable all other features
@@ -456,15 +457,24 @@ class AWPCP {
             $handler = awpcp_delete_file_ajax_handler();
             add_action( 'wp_ajax_awpcp-delete-file', array( $handler, 'ajax' ) );
             add_action( 'wp_ajax_nopriv_awpcp-delete-file', array( $handler, 'ajax' ) );
-        } else if ( is_admin() && awpcp_current_user_is_admin() ) {
-            // load resources required in admin screens only, visible to admin users only.
-            add_action( 'admin_notices', array( awpcp_fee_payment_terms_notices(), 'dispatch' ) );
-            add_action( 'admin_notices', array( awpcp_credit_plans_notices(), 'dispatch' ) );
-
-            $handler = awpcp_update_license_status_request_handler();
-            add_action( 'admin_init', array( $handler, 'dispatch' ) );
         } else if ( is_admin() ) {
             // load resources required in admin screens only
+            $controller = awpcp_user_profile_contact_information_controller();
+            add_action( 'show_user_profile', array( $controller, 'show_contact_information_fields' ) );
+            add_action( 'edit_user_profile', array( $controller, 'show_contact_information_fields' ) );
+            add_action( 'personal_options_update', array( $controller, 'save_contact_information' ) );
+            add_action( 'edit_user_profile_update', array( $controller, 'save_contact_information' ) );
+
+            if ( awpcp_current_user_is_admin() ) {
+                // load resources required in admin screens only, visible to admin users only.
+                add_action( 'admin_notices', array( awpcp_fee_payment_terms_notices(), 'dispatch' ) );
+                add_action( 'admin_notices', array( awpcp_credit_plans_notices(), 'dispatch' ) );
+
+                $handler = awpcp_update_license_status_request_handler();
+                add_action( 'admin_init', array( $handler, 'dispatch' ) );
+            } else {
+                // load resources required in admin screens only, visible to non-admin users only.
+            }
         } else {
             // load resources required in frontend screens only.
             add_action( 'template_redirect', array( new AWPCP_SecureURLRedirectionHandler(), 'dispatch' ) );
@@ -814,8 +824,9 @@ class AWPCP {
 			'money' => __( 'Please enter a valid amount.', 'AWPCP' ),
 		) );
 
-		wp_localize_script('awpcp', '__awpcp_js_data', $this->js->get_data());
-		wp_localize_script('awpcp', '__awpcp_js_l10n', $this->js->get_l10n());
+        if ( wp_script_is( 'awpcp', 'queue' ) || wp_script_is( 'awpcp', 'done' ) || wp_script_is( 'awpcp', 'to_od' ) ) {
+            $this->js->print_data();
+        }
 	}
 
     public function register_content_placeholders( $placeholders ) {

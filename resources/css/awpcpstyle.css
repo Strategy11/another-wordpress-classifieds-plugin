@@ -694,6 +694,12 @@ p.ad_status_msg {
   list-style-type: circle;
   list-style-position: inside;
 }
+.is-hidden {
+  display: none;
+}
+.is-visible-inline-block {
+  display: inline-block !important;
+}
 /* new clearfix */
 .clearfix:after {
   visibility: hidden;
@@ -1405,6 +1411,19 @@ p.ad_status_msg {
 #classiwrapper .awpcp-region-selector:last-of-type,
 .awpcp-multiple-region-selector .awpcp-region-selector:last-of-type {
   margin-bottom: 0;
+}
+.awpcp-multiple-region-selector-form-table table {
+  border-top: 1px solid #DDD;
+}
+.awpcp-multiple-region-selector-form-table tfoot td {
+  text-align: right;
+}
+.awpcp-multiple-region-selector-form-table .awpcp-region-selector {
+  background: transparent;
+}
+.awpcp-multiple-region-selector-form-table .add-region {
+  margin-left: 0;
+  margin-top: 10px;
 }
 .widget_awpcp_search_widget form label {
   display: block;
