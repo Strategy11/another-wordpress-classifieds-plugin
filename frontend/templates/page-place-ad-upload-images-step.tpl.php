@@ -18,11 +18,6 @@
 	}
 ?>
 
-<ul class="upload-conditions clearfix">
-	<li><?php _e('Image slots available', 'AWPCP') ?>: <strong><?php echo esc_html( $images_left ); ?></strong></li>
-	<li><?php _e('Max image size', 'AWPCP') ?>: <strong><?php echo esc_html( $max_image_size / 1000 ); ?> KB</strong></li>
-</ul>
-
 <?php $media_uploader = awpcp_media_uploader_component(); ?>
 <?php echo $media_uploader->render( $media_uploader_configuration ); ?>
 

@@ -1069,24 +1069,16 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
     public function get_images_config( $ad ) {
         $payment_term = awpcp_payments_api()->get_ad_payment_term($ad);
 
-        $images_allowed = get_awpcp_option( 'imagesallowedfree', 0 );
-        $images_allowed = awpcp_get_property( $payment_term, 'images', $images_allowed );
+        $images_allowed = awpcp_get_property( $payment_term, 'images', get_awpcp_option( 'imagesallowedfree', 0 ) );
         $images_uploaded = $ad->count_image_files();
-        $images_left = max($images_allowed - $images_uploaded, 0);
 
         return array(
             'images_allowed' => $images_allowed,
             'images_uploaded' => $images_uploaded,
-            'images_left' => $images_left,
-            'max_image_size' => get_awpcp_option('maximagesize'),
         );
     }
 
     public function upload_images_step() {
-        $output = apply_filters( 'awpcp-place-ad-upload-files-step', false, $this );
-
-        if ( false !== $output ) return $output;
-
         $transaction = $this->get_transaction();
 
         if (is_null($transaction)) {
@@ -1101,15 +1093,11 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             return $this->render('content', awpcp_print_error($message));
         }
 
-        $errors = array();
-        $this->handle_file_actions($ad, $errors);
-
         extract( $params = $this->get_images_config( $ad ) );
 
         // see if we can move to the next step
         $skip = !get_awpcp_option('imagesallowdisallow');
-        $skip = $skip || (empty($errors) && awpcp_post_param('submit-no-images', false));
-        // $skip = $skip || ($images_left == 0 && empty($errors));
+        $skip = $skip || awpcp_post_param( 'submit-no-images', false );
         $skip = $skip || $images_allowed == 0;
 
         $show_preview = (bool) get_awpcp_option('show-ad-preview-before-payment');
@@ -1122,7 +1110,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         } else if ( $skip ) {
             return $this->checkout_step();
         } else {
-            return $this->show_upload_images_form( $ad, $transaction, $params, $errors );
+            return $this->show_upload_images_form( $ad, $transaction, $params, array() );
         }
     }
 
@@ -1167,83 +1155,13 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $params = array_merge( $params, array(
             'listing' => $ad,
             'files' => awpcp_media_api()->find_by_ad_id( $ad->ad_id ),
-            'is_primary_set' => awpcp_media_api()->listing_has_primary_image( $ad ),
             'messages' => $this->messages,
-            'actions' => array(
-                'enable' => true,
-                'disable' => true,
-            ),
             'next' => $next,
         ) );
 
         $template = AWPCP_DIR . '/frontend/templates/page-place-ad-upload-images-step.tpl.php';
 
         return $this->render( $template, $params );
-    }
-
-    public function handle_file_actions($ad, &$errors=array()) {
-        if ($this->get_current_action() != 'upload-images') return;
-
-        // attempt to upload images
-        if ( isset( $_POST['submit'] ) ) {
-            $this->upload_files( $ad, $errors );
-        } else {
-            $image_id = (int) awpcp_request_param('image');
-            $image = awpcp_media_api()->find_by_id( $image_id );
-
-            if ( is_null( $image ) || $image->ad_id != $ad->ad_id ) {
-                return;
-            }
-
-            $action = awpcp_request_param('a');
-            switch ($action) {
-                case 'make-primary':
-                    awpcp_media_api()->set_ad_primary_image( $ad, $image );
-                    break;
-
-                case 'make-not-primary':
-                    $image->is_primary = false;
-                    awpcp_media_api()->save( $image );
-                    break;
-
-                case 'enable-picture':
-                    $image->enabled = true;
-                    awpcp_media_api()->save( $image );
-                    break;
-
-                case 'disable-picture':
-                    $image->enabled = false;
-                    awpcp_media_api()->save( $image );
-                    break;
-
-                case 'delete-picture':
-                    awpcp_media_api()->delete( $image );
-                    break;
-            }
-        }
-    }
-
-    public function upload_files( $ad, &$errors=array() ) {
-        $primary_image = awpcp_post_param( 'primary-image' );
-
-        $files = array();
-        foreach ( $_FILES as $name => $file ) {
-            if ( $file['error'] !== 0 ) {
-                continue;
-            }
-
-            if ( preg_match( '/AWPCPfileToUpload(\d+)/', $name, $matches ) ) {
-                $files[ $name ] = array_merge( $file, array(
-                    'is_primary' => $primary_image == "field-{$matches[1]}",
-                ) );
-            }
-        }
-
-        $uploaded = awpcp_upload_files( $ad, $files, $errors );
-
-        if ( empty( $errors ) && empty( $uploaded ) ) {
-            $errors[] = _x( 'No files were uploaded', 'upload files', 'AWPCP' );
-        }
     }
 
     public function preview_step() {

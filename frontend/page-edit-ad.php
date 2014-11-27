@@ -297,19 +297,12 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
             return $this->render('content', awpcp_print_error($message));
         }
 
-        $output =  apply_filters( 'awpcp-edit-ad-upload-files-step', false, $this );
-
-        if ( false !== $output ) return $output;
-
-        $errors = array();
-        $this->handle_file_actions($ad, $errors);
-
         extract( $params = $this->get_images_config( $ad ) );
 
         // see if we can move to the next step
         if (!get_awpcp_option('imagesallowdisallow')) {
             return $this->finish_step();
-        } else if (empty($errors) && awpcp_post_param('submit-no-images', false)) {
+        } else if ( awpcp_post_param( 'submit-no-images', false ) ) {
             return $this->finish_step();
         } else if (($images_uploaded == 0 && $images_allowed == 0)) {
             return $this->finish_step();
@@ -317,9 +310,7 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
 
         // we are still here... let's show the upload images form
 
-        $params = array_merge( $params, array( 'errors' => $errors ) );
-
-        return $this->show_upload_images_form( $ad, null, $params, $errors );
+        return $this->show_upload_images_form( $ad, null, $params, array() );
     }
 
     /**
@@ -345,22 +336,14 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
         return $this->upload_images_form( $ad, $params );
     }
 
-    /**
-     * TODO: remove unused params.
-     */
     public function upload_images_form( $ad, $params=array() ) {
         $params = array_merge( $params, array(
             'listing' => $ad,
             'files' => awpcp_media_api()->find_by_ad_id( $ad->ad_id ),
-            'is_primary_set' => awpcp_media_api()->listing_has_primary_image( $ad ),
             'hidden' => array(
                 'ad_id' => $ad->ad_id,
                 'edit-hash' => $this->get_edit_hash( $ad ) ),
             'messages' => $this->messages,
-            'actions' => array(
-                'enable' => true,
-                'disable' => true,
-            ),
             'next' => __( 'Finish', 'AWPCP' ),
         ) );
 
