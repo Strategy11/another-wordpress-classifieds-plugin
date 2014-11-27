@@ -36,8 +36,8 @@ class AWPCP_FilesSettings {
 
         $key = $settings->add_section($group, __('Image File Size', 'AWPCP'), 'image-file-size', 30, array($settings, 'section'));
 
-        $settings->add_setting( $key, 'maximagesize', __( 'Maximum file size per image', 'AWPCP' ), 'textfield', '1048576', __( 'Maximum file size, in bytes, for files user can upload to system. 1 MB = 1048576 bytes. You can google "x MB to bytes" to get an accurate conversion.', 'AWPCP' ) );
-        $settings->add_setting( $key, 'minimagesize', __( 'Minimum file size per image', 'AWPCP' ), 'textfield', '300', __( 'Minimum file size, in bytes, for files user can upload to system. 1 MB = 1048576 bytes. You can google "x MB to bytes" to get an accurate conversion.', 'AWPCP' ) );
+        $settings->add_setting( $key, 'maximagesize', __( 'Maximum file size per image', 'AWPCP' ), 'textfield', '1000000', __( 'Maximum file size, in bytes, for files user can upload to system. 1 MB = 1000000 bytes. You can google "x MB to bytes" to get an accurate conversion.', 'AWPCP' ) );
+        $settings->add_setting( $key, 'minimagesize', __( 'Minimum file size per image', 'AWPCP' ), 'textfield', '300', __( 'Minimum file size, in bytes, for files user can upload to system. 1 MB = 1000000 bytes. You can google "x MB to bytes" to get an accurate conversion.', 'AWPCP' ) );
         $settings->add_setting( $key, 'imgminwidth', __( 'Minimum image width', 'AWPCP' ), 'textfield', '640', __( 'Minimum width for images.', 'AWPCP' ) );
         $settings->add_setting( $key, 'imgminheight', __( 'Minimum image height', 'AWPCP' ), 'textfield', '480', __( 'Minimum height for images.', 'AWPCP' ) );
         $settings->add_setting( $key, 'imgmaxwidth', __( 'Maximum image width', 'AWPCP' ), 'textfield', '640', __( 'Maximum width for images. Images wider than settings are automatically resized upon upload.', 'AWPCP' ) );
