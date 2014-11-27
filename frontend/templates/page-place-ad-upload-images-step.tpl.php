@@ -1,4 +1,4 @@
-<h2><?php _e('Upload Images', 'AWPCP') ?></h2>
+<h2><?php _e('Upload Files', 'AWPCP') ?></h2>
 
 <?php
     if (get_awpcp_option('imagesapprove') == 1) {

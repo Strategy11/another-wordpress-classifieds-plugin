@@ -9,36 +9,56 @@ function( $, settings) {
         self.element = $( element );
         self.options = options;
 
-        plupload.addFileFilter( 'restrict_file_size', filterFileBySize );
-        plupload.addFileFilter( 'restrict_file_count', filterFileByCount );
+        insertUploadRestrictionsMessage();
+        configurePluploadQueue();
 
-        // the second call to pluploadQueue is to retrieve a reference to
-        // the plupload.Uploader object.
-        self.uploader = self.element
-            .pluploadQueue( {
-                url: settings.get( 'ajaxurl' ),
-                filters: {
-                    mime_types: getFileTypeFilters(),
-                    restrict_file_size: true,
-                    restrict_file_count: true
-                },
-                multipart_params: {
-                    action: 'awpcp-upload-listing-media',
-                    listing: options.listing_id,
-                    nonce: options.nonce
-                },
-                chunk_size: '10000000',
-                runtimes: 'html5,flash,silverlight,html4',
-                multiple_queues: true,
-                flash_swf_url : options.flash_swf_url,
-                silverlight_xap_url : options.silverlight_xap_url,
-                init: {
-                    FilesAdded: onFilesAdded,
-                    FileUploaded: onFileUplaoded,
-                    FilesRemoved: onFilesRemoved
-                }
-            } )
-            .pluploadQueue();
+        function insertUploadRestrictionsMessage() {
+            var message = settings.l10n( 'media-uploader-strings', 'upload-restrictions' ),
+                max_file_size = 0;
+
+            $.each( self.options.allowed_files, function( title, group ) {
+                max_file_size = group.max_file_size / 1000000; // max file size in MB
+                max_file_size = Math.round( max_file_size * 10 ) / 10; // max file size rounded to one decimal place
+
+                message = message.replace( '<' + title + '-left>', '<strong>' + ( group.allowed_file_count - group.uploaded_file_count ) + '</strong>' );
+                message = message.replace( '<' + title + '-max-file-size>', '<strong>' + max_file_size + ' MB</strong>' );
+            } );
+
+            self.element.find( '.awpcp-media-uploader-upload-restrictions' ).html( message );
+        }
+
+        function configurePluploadQueue() {
+            plupload.addFileFilter( 'restrict_file_size', filterFileBySize );
+            plupload.addFileFilter( 'restrict_file_count', filterFileByCount );
+
+            // the second call to pluploadQueue is to retrieve a reference to
+            // the plupload.Uploader object.
+            self.uploader = self.element.find( '.awpcp-media-uploader-queue' )
+                .pluploadQueue( {
+                    url: settings.get( 'ajaxurl' ),
+                    filters: {
+                        mime_types: getFileTypeFilters(),
+                        restrict_file_size: true,
+                        restrict_file_count: true
+                    },
+                    multipart_params: {
+                        action: 'awpcp-upload-listing-media',
+                        listing: options.listing_id,
+                        nonce: options.nonce
+                    },
+                    chunk_size: '10000000',
+                    runtimes: 'html5,flash,silverlight,html4',
+                    multiple_queues: true,
+                    flash_swf_url : options.flash_swf_url,
+                    silverlight_xap_url : options.silverlight_xap_url,
+                    init: {
+                        FilesAdded: onFilesAdded,
+                        FileUploaded: onFileUplaoded,
+                        FilesRemoved: onFilesRemoved
+                    }
+                } )
+                .pluploadQueue();
+        }
 
         function filterFileBySize( enabled, file, done ) {
             var group = getFileGroup( file ), message;
@@ -48,7 +68,7 @@ function( $, settings) {
             }
 
             if ( file.size > group.max_file_size ) {
-                message = settings.l10n( 'media-uploader-validation-errors', 'file-is-too-large' );
+                message = settings.l10n( 'media-uploader-strings', 'file-is-too-large' );
                 message = message.replace( '<filename>', '<strong>' + file.name + '</strong>' );
                 message = message.replace( '<bytes-count>', '<strong>' + group.max_file_size + '</strong>' );
 
@@ -81,7 +101,7 @@ function( $, settings) {
             }
 
             if ( group.uploaded_file_count >= group.allowed_file_count ) {
-                message = settings.l10n('media-uploader-validation-errors', 'cannot-add-more-files' );
+                message = settings.l10n('media-uploader-strings', 'cannot-add-more-files' );
                 message = message.replace( '<filename>', '<strong>' + file.name + '</strong>' );
 
                 $.publish( '/messages/media-uploader', { type: 'error', 'content': message } );

@@ -1268,6 +1268,12 @@ p.ad_status_msg {
 #classiwrapper .awpcp-uploaded-video-delete-action a {
   background-image: url(../images/film_delete.png);
 }
+.awpcp-media-uploader-upload-restrictions {
+  margin: 10px 0;
+}
+.awpcp-media-uploader-queue .plupload_container {
+  padding: 0;
+}
 .awpcp-thumbnails-generator video,
 .awpcp-thumbnails-generator canvas {
   position: absolute;
