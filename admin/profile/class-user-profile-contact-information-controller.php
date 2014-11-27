@@ -45,5 +45,7 @@ class AWPCP_UserProfileContactInformationController {
         $profile['county'] = awpcp_array_data( 'county', '', $location );
 
         update_user_meta( $user_id, 'awpcp-profile', $profile );
+
+        do_action( 'awpcp-user-profile-updated', $profile, $user_id );
     }
 }
