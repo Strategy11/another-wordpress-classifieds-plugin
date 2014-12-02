@@ -67,7 +67,7 @@ function awpcp_upload_files( $ad, $files, &$errors=array() ) {
  * @since 3.0.2
  */
 function awpcp_upload_file( $file, $constraints, &$error=false, $action='upload' ) {
-	$filename = sanitize_file_name( $file['name'] );
+	$filename = sanitize_file_name( strtolower( $file['name'] ) );
 	$tmpname = $file['tmp_name'];
 
 	$mime_type = $file[ 'type' ];
@@ -140,7 +140,7 @@ function awpcp_upload_file( $file, $constraints, &$error=false, $action='upload'
 		}
 	}
 
-	$newname = wp_unique_filename( $paths['files_dir'], $filename );
+	$newname = awpcp_unique_filename( $path, $filename, array( $paths['files_dir'], $paths['thumbnails_dir'] ) );
 	$newpath = trailingslashit( $paths['files_dir'] ) . $newname;
 
 	if ( $action == 'upload' && ! @move_uploaded_file( $tmpname, $newpath ) ) {
