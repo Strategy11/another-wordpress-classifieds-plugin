@@ -67,7 +67,7 @@ function awpcp_upload_files( $ad, $files, &$errors=array() ) {
  * @since 3.0.2
  */
 function awpcp_upload_file( $file, $constraints, &$error=false, $action='upload' ) {
-	$filename = sanitize_file_name( $file['name'] );
+	$filename = sanitize_file_name( strtolower( $file['name'] ) );
 	$tmpname = $file['tmp_name'];
 
 	$mime_type = $file[ 'type' ];
