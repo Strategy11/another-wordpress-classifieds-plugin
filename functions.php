@@ -2329,6 +2329,44 @@ function awpcp_utf8_basename( $path, $suffix = null ) {
 }
 
 /**
+ * @param string    $path           Path to the file whose unique filename needs to be generated.
+ * @param string    $filename       Target filename. The unique filename will be as similar as
+ *                                  possible to this name.
+ * @param array     $directories    The generated name must be unique in all directories in this array.
+ * @since next-release
+ */
+function awpcp_unique_filename( $path, $filename, $directories ) {
+    $pathinfo = awpcp_utf8_pathinfo( $filename );
+
+    $name = $pathinfo['filename'];
+    $extension = $pathinfo['extension'];
+    $file_size = filesize( $path );
+    $timestamp = microtime();
+    $counter = 0;
+
+    do {
+        $hash = hash( 'crc32b', "$name-$extension-$file_size-$timestamp-$counter" );
+        $new_filename = "$name-$hash.$extension";
+        $counter = $counter + 1;
+    } while ( awpcp_is_filename_already_used( $new_filename, $directories ) );
+
+    return $new_filename;
+}
+
+/**
+ * @since next-release
+ */
+function awpcp_is_filename_already_used( $filename, $directories ) {
+    foreach ( $directories as $directory ) {
+        if ( file_exists( "$directory/$filename" ) ) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+/**
  * @since 3.3
  */
 function awpcp_register_activation_hook( $__FILE__, $callback ) {
