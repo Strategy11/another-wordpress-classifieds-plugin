@@ -155,7 +155,7 @@ class AWPCP_Search_Widget extends WP_Widget {
             ) );
 		}
 
-		echo '<div class="submit"><input class="button" type="submit" value="Search"></div>';
+		echo '<div class="submit"><input class="button" type="submit" value="' . __( 'Search', 'AWPCP' ) . '"></div>';
         echo '</form></div>';
         echo '</div>';
 		echo $after_widget;

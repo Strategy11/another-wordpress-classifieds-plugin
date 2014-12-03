@@ -308,25 +308,7 @@ function awpcp_get_datetime_format() {
 	return $format;
 }
 
-
-
 /**
- * TODO: consider using date_i18n
- * Returns the given date as MySQL date string, Unix timestamp or
- * using a custom format.
- *
- * @since 2.0.7
- * @param $format 	'mysql', 'timestamp', or first arguemnt for date() function.
- * @deprecated	since 3.0.2, use awpcp_datetime()
- */
-function awpcp_time($date=null, $format='mysql') {
-	_deprecated_function( __FUNCTION__, '3.0.2', 'awpcp_datetime()' );
-	return awpcp_datetime( $format, $date );
-}
-
-
-/**
- * TODO: consider using date_i18n
  * Returns the given date as MySQL date string, Unix timestamp or
  * using a custom format.
  *
@@ -349,13 +331,13 @@ function awpcp_datetime( $format='mysql', $date=null ) {
 		case 'timestamp':
 			return $timestamp;
 		case 'awpcp':
-			return date( awpcp_get_datetime_format(), $timestamp) ;
+			return date_i18n( awpcp_get_datetime_format(), $timestamp) ;
 		case 'awpcp-date':
-			return date( awpcp_get_date_format(), $timestamp );
+			return date_i18n( awpcp_get_date_format(), $timestamp );
 		case 'awpcp-time':
-			return date( awpcp_get_time_format(), $timestamp );
+			return date_i18n( awpcp_get_time_format(), $timestamp );
 		default:
-			return date( $format, $timestamp );
+			return date_i18n( $format, $timestamp );
 	}
 }
 

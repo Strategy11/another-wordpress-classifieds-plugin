@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: AWPCP\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2014-11-25 01:31:03+00:00\n"
+"POT-Creation-Date: 2014-12-03 04:35:28+00:00\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: \n"
@@ -2373,6 +2373,7 @@ msgid "Highest number used in aithmetic operation."
 msgstr "Número máximo usado en la operación aritmética."
 
 #: frontend/templates/page-place-ad-details-step.tpl.php:196
+msgctxt "ad details form"
 msgid "I agree to the terms of service"
 msgstr "Estoy de acuerdo con los términos del servicio"
 
@@ -4203,6 +4204,7 @@ msgid "Read more"
 msgstr "Leer Más"
 
 #: frontend/templates/page-place-ad-details-step.tpl.php:189
+msgctxt "ad details form"
 msgid "Read our Terms of Service"
 msgstr "Lea nuestros Términos de Servicio"
 
@@ -4524,6 +4526,10 @@ msgstr "Guardar Selección de Grupo y Página"
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:103
 msgid "Save Token Value"
 msgstr "Guardar el valor del token"
+
+#: frontend/widget-search.php:158
+msgid "Search"
+msgstr "Buscar"
 
 #: admin/templates/admin-panel-listings.tpl.php:14
 #: frontend/page-search-ads.php:14

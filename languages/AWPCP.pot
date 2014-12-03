@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2014-11-25 01:31:03+00:00\n"
+"POT-Creation-Date: 2014-12-03 04:35:28+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -3146,6 +3146,7 @@ msgid "Ad Details"
 msgstr ""
 
 #: frontend/templates/page-place-ad-details-step.tpl.php:189
+msgctxt "ad details form"
 msgid "Read our Terms of Service"
 msgstr ""
 
@@ -3154,6 +3155,7 @@ msgid "Terms of service:"
 msgstr ""
 
 #: frontend/templates/page-place-ad-details-step.tpl.php:196
+msgctxt "ad details form"
 msgid "I agree to the terms of service"
 msgstr ""
 
@@ -3597,6 +3599,10 @@ msgstr ""
 
 #: frontend/widget-search.php:144
 msgid "Search by Category"
+msgstr ""
+
+#: frontend/widget-search.php:158
+msgid "Search"
 msgstr ""
 
 #: functions.php:82
