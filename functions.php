@@ -2044,20 +2044,34 @@ function awpcp_column_exists($table, $column) {
 /**
  * Extracted from class-phpmailer.php (PHPMailer::EncodeHeader).
  *
+ * XXX: This may be necessary only for email addresses used in the Reply-To header.
+ *
  * @since 3.0.2
  */
 function awpcp_encode_address_name($str) {
-	if ( !preg_match('/[\200-\377]/', $str ) ) {
-		// Can't use addslashes as we don't know what value has magic_quotes_sybase
-		$encoded = addcslashes( $str, "\0..\37\177\\\"" );
-		if ( ( $str == $encoded) && !preg_match( '/[^A-Za-z0-9!#$%&\'*+\/=?^_`{|}~ -]/', $str ) ) {
-			return $encoded;
-		} else {
-			return "\"$encoded\"";
-		}
-	}
+    return awpcp_phpmailer()->encodeHeader( $str, 'phrase' );
+}
 
-	return $str;
+/**
+ * Returns or creates an instance of PHPMailer.
+ *
+ * Extracted from wp_mail()'s code.
+ *
+ * @since next-release
+ */
+function awpcp_phpmailer() {
+    global $phpmailer;
+
+    // (Re)create it, if it's gone missing
+    if ( !is_object( $phpmailer ) || !is_a( $phpmailer, 'PHPMailer' ) ) {
+        require_once ABSPATH . WPINC . '/class-phpmailer.php';
+        require_once ABSPATH . WPINC . '/class-smtp.php';
+        $phpmailer = new PHPMailer( true );
+    }
+
+    $phpmailer->CharSet = apply_filters( 'wp_mail_charset', get_bloginfo( 'charset' ) );
+
+    return $phpmailer;
 }
 
 /**
