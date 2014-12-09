@@ -412,6 +412,9 @@ class AWPCP_Installer {
         if ( version_compare( $oldversion, '3.3.2' ) < 0 ) {
             $this->upgrade_to_3_3_2( $oldversion );
         }
+        if ( version_compare( $oldversion, '3.3.3' ) < 0 ) {
+            $this->upgrade_to_3_3_3( $oldversion );
+        }
 
         do_action('awpcp_upgrade', $oldversion, $newversion);
 

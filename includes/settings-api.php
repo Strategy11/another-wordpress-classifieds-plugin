@@ -287,6 +287,24 @@ class AWPCP_Settings_API {
 
         $this->add_setting(
             $key,
+            'include-title-in-listing-url',
+            __( 'Include the title in the listing URL', 'AWPCP' ),
+            'checkbox',
+            1,
+            __( 'Include the title in the URL that points to the page of an individual listing.', 'AWPCP' )
+        );
+
+        $this->add_setting(
+            $key,
+            'include-category-in-listing-url',
+            __( 'Include the name of the category in the listing URL', 'AWPCP' ),
+            'checkbox',
+            $this->get_option( 'showcategoryinpagetitle' ),
+            __( 'Include the name of the category in the URL that points to the page of an individual listing.', 'AWPCP' )
+        );
+
+        $this->add_setting(
+            $key,
             'include-country-in-listing-url',
             __( 'Include the name of the country in the listing URL', 'AWPCP' ),
             'checkbox',
@@ -319,15 +337,6 @@ class AWPCP_Settings_API {
             'checkbox',
             $this->get_option( 'showcountyvillageinpagetitle' ),
             __( 'Include the name of the county in the URL that points to the page of an individual listing.', 'AWPCP' )
-        );
-
-        $this->add_setting(
-            $key,
-            'include-category-in-the-listing-url',
-            __( 'Include the name of the category in the listing URL', 'AWPCP' ),
-            'checkbox',
-            $this->get_option( 'showcategoryinpagetitle' ),
-            __( 'Include the name of the category in the URL that points to the page of an individual listing.', 'AWPCP' )
         );
 
 

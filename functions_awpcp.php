@@ -585,7 +585,6 @@ function url_showad($ad_id) {
 
 	if ( is_null( $ad ) ) return false;
 
-	$modtitle = sanitize_title( $ad->get_title() );
 	$seoFriendlyUrls = get_awpcp_option('seofriendlyurls');
 	$permastruc = get_option('permalink_structure');
 
@@ -596,11 +595,16 @@ function url_showad($ad_id) {
 	$params = array('id' => $ad_id);
 
 	if($seoFriendlyUrls && isset($permastruc) && !empty($permastruc)) {
-		$url = sprintf('%s/%s/%s', trim($base_url, '/'), $ad_id, $modtitle);
+		$url = sprintf( '%s/%s', trim( $base_url, '/' ), $ad_id );
 
 		$region = $ad->get_first_region();
 
 		$parts = array();
+
+		if ( get_awpcp_option( 'include-title-in-listing-url' ) ) {
+			$parts[] = sanitize_title( $ad->get_title() );
+		}
+
 		if( get_awpcp_option( 'include-city-in-listing-url' ) && $region ) {
 			$parts[] = sanitize_title( awpcp_array_data( 'city', '', $region ) );
 		}
