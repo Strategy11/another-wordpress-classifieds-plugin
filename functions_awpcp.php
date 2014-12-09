@@ -601,19 +601,19 @@ function url_showad($ad_id) {
 		$region = $ad->get_first_region();
 
 		$parts = array();
-		if( get_awpcp_option( 'showcityinpagetitle' ) && $region ) {
+		if( get_awpcp_option( 'include-city-in-the-listing-url' ) && $region ) {
 			$parts[] = sanitize_title( awpcp_array_data( 'city', '', $region ) );
 		}
-		if( get_awpcp_option( 'showstateinpagetitle' ) && $region ) {
+		if( get_awpcp_option( 'include-state-in-the-listing-url' ) && $region ) {
 			$parts[] = sanitize_title( awpcp_array_data( 'state', '', $region ) );
 		}
-		if( get_awpcp_option( 'showcountryinpagetitle' ) && $region ) {
+		if( get_awpcp_option( 'include-country-in-the-listing-url' ) && $region ) {
 			$parts[] = sanitize_title( awpcp_array_data( 'country', '', $region ) );
 		}
-		if( get_awpcp_option( 'showcountyvillageinpagetitle' ) && $region ) {
+		if( get_awpcp_option( 'include-county-in-the-listing-url' ) && $region ) {
 			$parts[] = sanitize_title( awpcp_array_data( 'county', '', $region ) );
 		}
-		if( get_awpcp_option('showcategoryinpagetitle') ) {
+		if( get_awpcp_option( 'include-category-in-the-listing-url' ) ) {
 			$awpcp_ad_category_id = $ad->ad_category_id;
 			$parts[] = sanitize_title(get_adcatname($awpcp_ad_category_id));
 		}

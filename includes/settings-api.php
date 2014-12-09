@@ -281,9 +281,59 @@ class AWPCP_Settings_API {
 		$this->add_setting( $key, 'hyperlinkurlsinadtext', __( 'Make URLs in ad text clickable', 'AWPCP' ), 'checkbox', 0, '' );
 		$this->add_setting( $key, 'visitwebsitelinknofollow', __( 'Add no follow to links in Ads', 'AWPCP' ), 'checkbox', 1, '' );
 
+        // Section: Ad/Listings - Listing URL
+
+        $key = $this->add_section( $group, 'Listing URL', 'listing-url', 50, array( $this, 'section' ) );
+
+        $this->add_setting(
+            $key,
+            'include-country-in-listing-url',
+            __( 'Include the name of the country in the listing URL', 'AWPCP' ),
+            'checkbox',
+            $this->get_option( 'showcountryinpagetitle' ),
+            __( 'Include the name of the country in the URL that points to the page of an individual listing.', 'AWPCP' )
+        );
+
+        $this->add_setting(
+            $key,
+            'include-state-in-listing-url',
+            __( 'Include the name of the state in the listing URL', 'AWPCP' ),
+            'checkbox',
+            $this->get_option( 'showstateinpagetitle' ),
+            __( 'Include the name of the state in the URL that points to the page of an individual listing.', 'AWPCP' )
+        );
+
+        $this->add_setting(
+            $key,
+            'include-city-in-listing-url',
+            __( 'Include the name of the city in the listing URL', 'AWPCP' ),
+            'checkbox',
+            $this->get_option( 'showcityinpagetitle' ),
+            __( 'Include the name of the city in the URL that points to the page of an individual listing.', 'AWPCP' )
+        );
+
+        $this->add_setting(
+            $key,
+            'include-county-in-listing-url',
+            __( 'Include the name of the county in the listing URL', 'AWPCP' ),
+            'checkbox',
+            $this->get_option( 'showcountyvillageinpagetitle' ),
+            __( 'Include the name of the county in the URL that points to the page of an individual listing.', 'AWPCP' )
+        );
+
+        $this->add_setting(
+            $key,
+            'include-category-in-the-listing-url',
+            __( 'Include the name of the category in the listing URL', 'AWPCP' ),
+            'checkbox',
+            $this->get_option( 'showcategoryinpagetitle' ),
+            __( 'Include the name of the category in the URL that points to the page of an individual listing.', 'AWPCP' )
+        );
+
+
 		// Section: Ad/Listings - Menu Items
 
-		$key = $this->add_section( $group, __( 'Menu Items', 'AWPCP' ), 'menu-items', 40, array( $this, 'section' ) );
+		$key = $this->add_section( $group, __( 'Menu Items', 'AWPCP' ), 'menu-items', 60, array( $this, 'section' ) );
 
 		$this->add_setting( $key, 'show-menu-item-place-ad', __( 'Show Place Ad menu item', 'AWPCP' ), 'checkbox', 1, '' );
 		$this->add_setting( $key, 'show-menu-item-edit-ad', __( 'Show Edit Ad menu item', 'AWPCP' ), 'checkbox', 1, '' );
