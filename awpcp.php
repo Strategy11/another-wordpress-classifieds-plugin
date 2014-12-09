@@ -222,6 +222,7 @@ require_once(AWPCP_DIR . "/install.php");
 require_once(AWPCP_DIR . "/admin/admin-panel.php");
 require_once(AWPCP_DIR . "/admin/user-panel.php");
 require_once( AWPCP_DIR . '/admin/profile/class-user-profile-contact-information-controller.php' );
+require_once( AWPCP_DIR . '/admin/class-page-name-monitor.php' );
 
 // frontend functions
 require_once(AWPCP_DIR . "/frontend/placeholders.php");
@@ -464,6 +465,9 @@ class AWPCP {
             add_action( 'edit_user_profile', array( $controller, 'show_contact_information_fields' ) );
             add_action( 'personal_options_update', array( $controller, 'save_contact_information' ) );
             add_action( 'edit_user_profile_update', array( $controller, 'save_contact_information' ) );
+
+            $monitor = awpcp_page_name_monitor();
+            add_action( 'post_updated', array( $monitor, 'flush_rewrite_rules_if_plugin_pages_name_changes' ), 10, 3 );
 
             if ( awpcp_current_user_is_admin() ) {
                 // load resources required in admin screens only, visible to admin users only.
