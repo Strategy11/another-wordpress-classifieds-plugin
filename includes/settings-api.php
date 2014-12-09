@@ -956,15 +956,26 @@ class AWPCP_Settings_API {
 		foreach ($pages as $key => $data) {
 			$id = intval($pageids[$key]->id);
 
-			if ($id <= 0 || is_null(get_post($id))) {
+			if ( $id <= 0 ) {
 				continue;
 			}
 
-			$title = add_slashes_recursive($options[$key]);
+			$page = get_post( $id );
+
+			if ( is_null( $page ) ) {
+				continue;
+			}
+
+			if ( sanitize_title( $page->post_title ) != $page->post_name ) {
+				$post_name = $page->post_name;
+			} else {
+				$post_name = sanitize_title( $options[ $key ] );
+			}
+
 			$page = array(
 				'ID' => $id,
-				'post_title' => $title,
-				'post_name' => sanitize_title($options[$key])
+				'post_title' => add_slashes_recursive( $options[ $key ] ),
+				'post_name' => $post_name,
 			);
 
 			wp_update_post($page);
