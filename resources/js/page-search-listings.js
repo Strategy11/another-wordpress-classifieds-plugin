@@ -2,9 +2,9 @@
 
     var AWPCP = jQuery.AWPCP = jQuery.extend({}, jQuery.AWPCP, AWPCP);
 
-    $.AWPCP.validate();
-
     $(function() {
+        $.AWPCP.validate();
+
         var container = $('.awpcp-search-ads'), form, fields;
 
         /* Search Ads Form */

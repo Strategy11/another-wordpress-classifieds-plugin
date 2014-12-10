@@ -168,9 +168,9 @@ function( $, ko, FileManager, settings ) {
         }).trigger('keyup');
     };
 
-    $.AWPCP.validate();
-
     $(function() {
+        $.AWPCP.validate();
+
         var pages = [], container, form;
 
         pages.push('.awpcp-buy-subscription');
