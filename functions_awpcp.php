@@ -585,7 +585,6 @@ function url_showad($ad_id) {
 
 	if ( is_null( $ad ) ) return false;
 
-	$modtitle = sanitize_title( $ad->get_title() );
 	$seoFriendlyUrls = get_awpcp_option('seofriendlyurls');
 	$permastruc = get_option('permalink_structure');
 
@@ -596,24 +595,29 @@ function url_showad($ad_id) {
 	$params = array('id' => $ad_id);
 
 	if($seoFriendlyUrls && isset($permastruc) && !empty($permastruc)) {
-		$url = sprintf('%s/%s/%s', trim($base_url, '/'), $ad_id, $modtitle);
+		$url = sprintf( '%s/%s', trim( $base_url, '/' ), $ad_id );
 
 		$region = $ad->get_first_region();
 
 		$parts = array();
-		if( get_awpcp_option( 'showcityinpagetitle' ) && $region ) {
+
+		if ( get_awpcp_option( 'include-title-in-listing-url' ) ) {
+			$parts[] = sanitize_title( $ad->get_title() );
+		}
+
+		if( get_awpcp_option( 'include-city-in-listing-url' ) && $region ) {
 			$parts[] = sanitize_title( awpcp_array_data( 'city', '', $region ) );
 		}
-		if( get_awpcp_option( 'showstateinpagetitle' ) && $region ) {
+		if( get_awpcp_option( 'include-state-in-listing-url' ) && $region ) {
 			$parts[] = sanitize_title( awpcp_array_data( 'state', '', $region ) );
 		}
-		if( get_awpcp_option( 'showcountryinpagetitle' ) && $region ) {
+		if( get_awpcp_option( 'include-country-in-listing-url' ) && $region ) {
 			$parts[] = sanitize_title( awpcp_array_data( 'country', '', $region ) );
 		}
-		if( get_awpcp_option( 'showcountyvillageinpagetitle' ) && $region ) {
+		if( get_awpcp_option( 'include-county-in-listing-url' ) && $region ) {
 			$parts[] = sanitize_title( awpcp_array_data( 'county', '', $region ) );
 		}
-		if( get_awpcp_option('showcategoryinpagetitle') ) {
+		if( get_awpcp_option( 'include-category-in-listing-url' ) ) {
 			$awpcp_ad_category_id = $ad->ad_category_id;
 			$parts[] = sanitize_title(get_adcatname($awpcp_ad_category_id));
 		}

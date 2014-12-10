@@ -3,7 +3,7 @@
  Plugin Name: Another Wordpress Classifieds Plugin (AWPCP)
  Plugin URI: http://www.awpcp.com
  Description: AWPCP - A plugin that provides the ability to run a free or paid classified ads service on your wordpress blog. <strong>!!!IMPORTANT!!!</strong> Whether updating a previous installation of Another Wordpress Classifieds Plugin or installing Another Wordpress Classifieds Plugin for the first time, please backup your wordpress database before you install/uninstall/activate/deactivate/upgrade Another Wordpress Classifieds Plugin.
- Version: 3.3.3-dev-10
+ Version: 3.3.3-dev-11
  Author: D. Rodenbaugh
  License: GPLv2 or any later version
  Author URI: http://www.skylineconsult.com
@@ -222,6 +222,7 @@ require_once(AWPCP_DIR . "/install.php");
 require_once(AWPCP_DIR . "/admin/admin-panel.php");
 require_once(AWPCP_DIR . "/admin/user-panel.php");
 require_once( AWPCP_DIR . '/admin/profile/class-user-profile-contact-information-controller.php' );
+require_once( AWPCP_DIR . '/admin/class-page-name-monitor.php' );
 
 // frontend functions
 require_once(AWPCP_DIR . "/frontend/placeholders.php");
@@ -464,6 +465,9 @@ class AWPCP {
             add_action( 'edit_user_profile', array( $controller, 'show_contact_information_fields' ) );
             add_action( 'personal_options_update', array( $controller, 'save_contact_information' ) );
             add_action( 'edit_user_profile_update', array( $controller, 'save_contact_information' ) );
+
+            $monitor = awpcp_page_name_monitor();
+            add_action( 'post_updated', array( $monitor, 'flush_rewrite_rules_if_plugin_pages_name_changes' ), 10, 3 );
 
             if ( awpcp_current_user_is_admin() ) {
                 // load resources required in admin screens only, visible to admin users only.
@@ -1208,8 +1212,11 @@ function awpcp_add_rewrite_rules($rules) {
 		'index.php?awpcpx=1&awpcp-module=listings&awpcp-action=verify&awpcp-ad=$matches[1]&awpcp-hash=$matches[2]', 'top' );
 
 	if (isset($patterns['show-ads-page-name'])) {
-		add_rewrite_rule('('.$patterns['show-ads-page-name'].')/(.+?)/(.+?)',
-						 'index.php?pagename=$matches[1]&id=$matches[2]', 'top');
+        add_rewrite_rule(
+            '(' . $patterns['show-ads-page-name'] . ')/(\d+)',
+            'index.php?pagename=$matches[1]&id=$matches[2]',
+            'top'
+        );
 	}
 
 	if (isset($patterns['reply-to-ad-page-name'])) {

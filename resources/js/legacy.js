@@ -94,6 +94,7 @@
                 var decimal = $.AWPCP.get('decimal-separator'),
                     thousands = $.AWPCP.get('thousands-separator'),
                     pattern = new RegExp('^-?(?:\\d+|\\d{1,3}(?:\\' + thousands + '\\d{3})+)?(?:\\' + decimal + '\\d+)?$');
+
                 return function(value, element) {
                     return this.optional(element) || pattern.test(value);
                 };

@@ -118,17 +118,6 @@ class AWPCP_Settings_API {
 		$this->add_setting( $key, 'recaptcha-public-key', __( 'reCAPTCHA Public Key', 'AWPCP' ), 'textfield', '', $help_text );
 		$this->add_setting( $key, 'recaptcha-private-key', __( 'reCAPTCHA Private Key', 'AWPCP' ), 'textfield', '',$help_text );
 
-		// Section: General - Window Title
-
-		$key = $this->add_section($group, 'Window Title', 'window-title', 10, array($this, 'section'));
-
-		$this->add_setting( $key, 'awpcptitleseparator', __( 'Window title separator', 'AWPCP' ), 'textfield', '-', __( 'The character to use to separate ad details used in browser page title. Example: | / -', 'AWPCP' ) );
-		$this->add_setting( $key, 'showcityinpagetitle', __( 'Show city in window title', 'AWPCP' ), 'checkbox', 1, __( 'Show city in browser page title when viewing individual Ad', 'AWPCP' ) );
-		$this->add_setting( $key, 'showstateinpagetitle', __( 'Show state in window title', 'AWPCP' ), 'checkbox', 1, __('Show state in browser page title when viewing individual Ad', 'AWPCP' ) );
-		$this->add_setting( $key, 'showcountryinpagetitle', __( 'Show country in window title', 'AWPCP' ), 'checkbox', 1, __( 'Show country in browser page title when viewing individual Ad', 'AWPCP' ) );
-		$this->add_setting( $key, 'showcountyvillageinpagetitle', __( 'Show county/village/other in window title', 'AWPCP' ), 'checkbox', 1, __( 'Show county/village/other setting in browser page title when viewing individual Ad', 'AWPCP' ) );
-		$this->add_setting( $key, 'showcategoryinpagetitle', __( 'Show category in title', 'AWPCP' ), 'checkbox', 1, __( 'Show category in browser page title when viewing individual Ad', 'AWPCP' ) );
-
 		// Section: SEO Settings
 
 		$key = $this->add_section($group, __('SEO Settings', 'AWPCP'), 'seo-settings', 10, array($this, 'section'));
@@ -281,9 +270,79 @@ class AWPCP_Settings_API {
 		$this->add_setting( $key, 'hyperlinkurlsinadtext', __( 'Make URLs in ad text clickable', 'AWPCP' ), 'checkbox', 0, '' );
 		$this->add_setting( $key, 'visitwebsitelinknofollow', __( 'Add no follow to links in Ads', 'AWPCP' ), 'checkbox', 1, '' );
 
+		// Section: Ad/Listings - Window Title
+
+		$key = $this->add_section( $group, 'Window Title', 'window-title', 40, array( $this, 'section' ) );
+
+		$this->add_setting( $key, 'awpcptitleseparator', __( 'Window title separator', 'AWPCP' ), 'textfield', '-', __( 'The character to use to separate ad details used in browser page title. Example: | / -', 'AWPCP' ) );
+		$this->add_setting( $key, 'showcityinpagetitle', __( 'Show city in window title', 'AWPCP' ), 'checkbox', 1, __( 'Show city in browser page title when viewing individual Ad', 'AWPCP' ) );
+		$this->add_setting( $key, 'showstateinpagetitle', __( 'Show state in window title', 'AWPCP' ), 'checkbox', 1, __('Show state in browser page title when viewing individual Ad', 'AWPCP' ) );
+		$this->add_setting( $key, 'showcountryinpagetitle', __( 'Show country in window title', 'AWPCP' ), 'checkbox', 1, __( 'Show country in browser page title when viewing individual Ad', 'AWPCP' ) );
+		$this->add_setting( $key, 'showcountyvillageinpagetitle', __( 'Show county/village/other in window title', 'AWPCP' ), 'checkbox', 1, __( 'Show county/village/other setting in browser page title when viewing individual Ad', 'AWPCP' ) );
+		$this->add_setting( $key, 'showcategoryinpagetitle', __( 'Show category in title', 'AWPCP' ), 'checkbox', 1, __( 'Show category in browser page title when viewing individual Ad', 'AWPCP' ) );
+
+        // Section: Ad/Listings - Listing URL
+
+        $key = $this->add_section( $group, 'Listing URL', 'listing-url', 50, array( $this, 'section' ) );
+
+        $this->add_setting(
+            $key,
+            'include-title-in-listing-url',
+            __( 'Include the title in the listing URL', 'AWPCP' ),
+            'checkbox',
+            1,
+            __( 'Include the title in the URL that points to the page of an individual listing.', 'AWPCP' )
+        );
+
+        $this->add_setting(
+            $key,
+            'include-category-in-listing-url',
+            __( 'Include the name of the category in the listing URL', 'AWPCP' ),
+            'checkbox',
+            $this->get_option( 'showcategoryinpagetitle' ),
+            __( 'Include the name of the category in the URL that points to the page of an individual listing.', 'AWPCP' )
+        );
+
+        $this->add_setting(
+            $key,
+            'include-country-in-listing-url',
+            __( 'Include the name of the country in the listing URL', 'AWPCP' ),
+            'checkbox',
+            $this->get_option( 'showcountryinpagetitle' ),
+            __( 'Include the name of the country in the URL that points to the page of an individual listing.', 'AWPCP' )
+        );
+
+        $this->add_setting(
+            $key,
+            'include-state-in-listing-url',
+            __( 'Include the name of the state in the listing URL', 'AWPCP' ),
+            'checkbox',
+            $this->get_option( 'showstateinpagetitle' ),
+            __( 'Include the name of the state in the URL that points to the page of an individual listing.', 'AWPCP' )
+        );
+
+        $this->add_setting(
+            $key,
+            'include-city-in-listing-url',
+            __( 'Include the name of the city in the listing URL', 'AWPCP' ),
+            'checkbox',
+            $this->get_option( 'showcityinpagetitle' ),
+            __( 'Include the name of the city in the URL that points to the page of an individual listing.', 'AWPCP' )
+        );
+
+        $this->add_setting(
+            $key,
+            'include-county-in-listing-url',
+            __( 'Include the name of the county in the listing URL', 'AWPCP' ),
+            'checkbox',
+            $this->get_option( 'showcountyvillageinpagetitle' ),
+            __( 'Include the name of the county in the URL that points to the page of an individual listing.', 'AWPCP' )
+        );
+
+
 		// Section: Ad/Listings - Menu Items
 
-		$key = $this->add_section( $group, __( 'Menu Items', 'AWPCP' ), 'menu-items', 40, array( $this, 'section' ) );
+		$key = $this->add_section( $group, __( 'Menu Items', 'AWPCP' ), 'menu-items', 60, array( $this, 'section' ) );
 
 		$this->add_setting( $key, 'show-menu-item-place-ad', __( 'Show Place Ad menu item', 'AWPCP' ), 'checkbox', 1, '' );
 		$this->add_setting( $key, 'show-menu-item-edit-ad', __( 'Show Edit Ad menu item', 'AWPCP' ), 'checkbox', 1, '' );
@@ -956,15 +1015,26 @@ class AWPCP_Settings_API {
 		foreach ($pages as $key => $data) {
 			$id = intval($pageids[$key]->id);
 
-			if ($id <= 0 || is_null(get_post($id))) {
+			if ( $id <= 0 ) {
 				continue;
 			}
 
-			$title = add_slashes_recursive($options[$key]);
+			$page = get_post( $id );
+
+			if ( is_null( $page ) ) {
+				continue;
+			}
+
+			if ( sanitize_title( $page->post_title ) != $page->post_name ) {
+				$post_name = $page->post_name;
+			} else {
+				$post_name = sanitize_title( $options[ $key ] );
+			}
+
 			$page = array(
 				'ID' => $id,
-				'post_title' => $title,
-				'post_name' => sanitize_title($options[$key])
+				'post_title' => add_slashes_recursive( $options[ $key ] ),
+				'post_name' => $post_name,
 			);
 
 			wp_update_post($page);
