@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: AWPCP\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2014-12-10 21:29:49+00:00\n"
+"POT-Creation-Date: 2014-12-11 17:23:35+00:00\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: \n"
@@ -88,7 +88,7 @@ msgstr[1] "%d anuncios fueron aprobados"
 msgid "%s Ad Management Panel"
 msgstr "%s Panel de Administración de Anuncios"
 
-#: frontend/templates/email-place-ad-success-user.tpl.php:14
+#: frontend/templates/email-place-ad-success-user.tpl.php:12
 msgid "%s Transaction"
 msgstr "Transacción %s"
 
@@ -272,7 +272,7 @@ msgstr ""
 "Un nuevo usuario '%s' con dirección de correo electrónico '%s' y contraseña "
 "'% s' fue creado para la fila %d."
 
-#: awpcp.php:491
+#: awpcp.php:492
 msgid "AWPCP"
 msgstr "AWPCP"
 
@@ -444,7 +444,7 @@ msgstr ""
 "correctamente. Usted será redirigido a Facebook para iniciar sesión. AWPCP "
 "no almacena u obtiene información personal de su perfil."
 
-#: awpcp.php:518
+#: awpcp.php:519
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
@@ -683,7 +683,7 @@ msgid "Add/Edit Categories"
 msgstr "Agregar/Editar Categorías"
 
 #: frontend/templates/email-abort-payment-user.tpl.php:4
-#: frontend/templates/email-place-ad-success-user.tpl.php:28
+#: frontend/templates/email-place-ad-success-user.tpl.php:31
 msgid "Additional Details"
 msgstr "Detalles Adicionales"
 
@@ -974,11 +974,11 @@ msgstr ""
 "Elija uno de los siguientes planes de pago para asociarlo con los anuncios "
 "que actualmente están asociados al plan de pagos %s:"
 
-#: awpcp.php:535
+#: awpcp.php:536
 msgid "Attachments"
 msgstr "Adjuntos"
 
-#: awpcp.php:542
+#: awpcp.php:543
 msgid "Authorize.Net"
 msgstr "Authorize.Net"
 
@@ -1067,7 +1067,7 @@ msgctxt "Browse the <a>Quick Start Guide</a>"
 msgid "Browse the %s."
 msgstr "Explore la %s."
 
-#: awpcp.php:549
+#: awpcp.php:550
 msgid "BuddyPress Listings"
 msgstr "BuddyPress Anuncios"
 
@@ -1091,7 +1091,7 @@ msgstr "CSC"
 msgid "CSV file"
 msgstr "Archivo CVS"
 
-#: awpcp.php:556
+#: awpcp.php:557
 msgid "Campaign Manager"
 msgstr "Administrador de Campañas"
 
@@ -1144,7 +1144,7 @@ msgstr "ID  de Categoría"
 msgid "Category ID must be valid for Ads to display."
 msgstr "El ID de la categoría debe ser válido para poder mostrar anuncios."
 
-#: awpcp.php:563
+#: awpcp.php:564
 msgid "Category Icons"
 msgstr "Íconos para Categorías"
 
@@ -1172,11 +1172,11 @@ msgstr "Categoría para eliminar"
 msgid "Category to Edit"
 msgstr "Categoría para editar"
 
-#: frontend/ad-functions.php:567
+#: frontend/ad-functions.php:579
 msgid "Category: "
 msgstr "Categoría: "
 
-#: frontend/ad-functions.php:559
+#: frontend/ad-functions.php:571
 msgid "Change Category"
 msgstr "Cambiar Categoría"
 
@@ -1316,7 +1316,7 @@ msgstr "Cerrar, revisaré la configuration de mis Widgets."
 msgid "Collapse Categories"
 msgstr "Cerra categorías"
 
-#: awpcp.php:570
+#: awpcp.php:571
 msgid "Comments & Ratings"
 msgstr "Comentarios y Calificaciones"
 
@@ -1456,7 +1456,7 @@ msgstr "Distrito/Otro"
 msgid "Coupon/Discount Module"
 msgstr "Módulo de Cupones/Descuentos"
 
-#: awpcp.php:577
+#: awpcp.php:578
 msgid "Coupons/Discount"
 msgstr "Cupones/Descuentos"
 
@@ -2006,7 +2006,7 @@ msgstr ""
 "En la fila %d, el valor para el campo extra %s no está permitido. Los "
 "valores permitidos son: %s"
 
-#: admin/admin-panel.php:265 awpcp.php:584
+#: admin/admin-panel.php:265 awpcp.php:585
 msgid "Extra Fields"
 msgstr "Campos Extras"
 
@@ -2057,7 +2057,7 @@ msgstr "Página de Facebook"
 msgid "Featured"
 msgstr "Destacado"
 
-#: admin/admin-panel-fees-table.php:116 awpcp.php:591
+#: admin/admin-panel-fees-table.php:116 awpcp.php:592
 msgid "Featured Ads"
 msgstr "Anuncios destacados"
 
@@ -2082,7 +2082,7 @@ msgstr "Dirección del orden de los Planes de Pago"
 msgid "Fee Plan sort order"
 msgstr "Orden de los Planes de Pago"
 
-#: awpcp.php:598
+#: awpcp.php:599
 msgid "Fee per Category"
 msgstr "Precio por Categoría"
 
@@ -2256,7 +2256,7 @@ msgstr "Ir a la página siguiente"
 msgid "Go to the previous page"
 msgstr "Ir a la página anterior"
 
-#: awpcp.php:605
+#: awpcp.php:606
 msgid "Google Checkout"
 msgstr "Google Checkout"
 
@@ -2550,7 +2550,7 @@ msgid ""
 msgstr "Si tiene más preguntas, por favor contactate con el administrador"
 
 #: frontend/templates/email-ad-updated-user.tpl.php:18
-#: frontend/templates/email-place-ad-success-user.tpl.php:34
+#: frontend/templates/email-place-ad-success-user.tpl.php:36
 msgid ""
 "If you have questions about your listing contact %s. Thank you for your "
 "business."
@@ -3400,7 +3400,7 @@ msgstr "Detalles del nuevo Plan de Crédito"
 msgid "New Fee Plan Details"
 msgstr "Detalles del nuevo plan de pagos"
 
-#: frontend/ad-functions.php:311
+#: frontend/ad-functions.php:323
 msgid "New classified Ad listing posted."
 msgstr "Un nuevo anuncio ha sido publicado."
 
@@ -3708,11 +3708,11 @@ msgstr "Order anuncios por"
 msgid "Order Ad Listings in Search results by"
 msgstr "Ordernar los anuncios en los resultados de búsqueda por"
 
-#: frontend/templates/email-place-ad-success-user.tpl.php:19
+#: frontend/templates/email-place-ad-success-user.tpl.php:17
 msgid "Order Total"
 msgstr "Total"
 
-#: frontend/templates/email-place-ad-success-user.tpl.php:22
+#: frontend/templates/email-place-ad-success-user.tpl.php:20
 msgid "Order Total (credits)"
 msgstr "Total (crédito)"
 
@@ -3794,7 +3794,7 @@ msgctxt "debug page"
 msgid "PayPal Connection"
 msgstr "Conexión PayPal"
 
-#: awpcp.php:612
+#: awpcp.php:613
 msgid "PayPal Pro"
 msgstr "PayPal Pro"
 
@@ -3904,7 +3904,7 @@ msgstr "Términos de pago"
 msgid "Payment Thank You page"
 msgstr "Página de agradecimiento por el pago"
 
-#: frontend/templates/email-place-ad-success-user.tpl.php:16
+#: frontend/templates/email-place-ad-success-user.tpl.php:14
 msgid "Payment Transaction"
 msgstr "Transacción de Pago"
 
@@ -3993,19 +3993,19 @@ msgstr ""
 msgid "Please enter a start date for the Ad."
 msgstr "Por favor ingrese una fecha de inicio para el anuncio."
 
-#: awpcp.php:826
+#: awpcp.php:827
 msgid "Please enter a valid URL."
 msgstr "Por favor ingrese una URL válida."
 
-#: awpcp.php:828
+#: awpcp.php:829
 msgid "Please enter a valid amount."
 msgstr "Por favor ingresa una cantidad válida."
 
-#: awpcp.php:825 frontend/page-edit-ad.php:126 frontend/page-edit-ad.php:395
+#: awpcp.php:826 frontend/page-edit-ad.php:126 frontend/page-edit-ad.php:395
 msgid "Please enter a valid email address."
 msgstr "Por favor ingrese una dirección de correo electrónico válida."
 
-#: awpcp.php:827
+#: awpcp.php:828
 msgid "Please enter a valid number."
 msgstr "Por favor ingrese un número."
 
@@ -4164,7 +4164,7 @@ msgstr "Publicado:"
 msgid "Posted:"
 msgstr "Publicado: "
 
-#: frontend/ad-functions.php:583
+#: frontend/ad-functions.php:595
 msgid "Powered by "
 msgstr "Desarrollado por "
 
@@ -4256,7 +4256,7 @@ msgstr "Configurar las pasarelas de pago en modo prueba?"
 msgid "Quick Start Guide"
 msgstr "Guía de incio rápido"
 
-#: awpcp.php:633
+#: awpcp.php:634
 msgid "RSS"
 msgstr "RSS"
 
@@ -4286,7 +4286,7 @@ msgstr "Lea la %s completa."
 msgid "Reference"
 msgstr "Referencia"
 
-#: awpcp.php:619
+#: awpcp.php:620
 msgid "Regions Control"
 msgstr "Control de Regiones"
 
@@ -4501,7 +4501,7 @@ msgstr "Restaurar páginas AWPCP"
 msgid "Restore the Classifieds pages to fix the conflict."
 msgstr "Restaurar las páginas de Clasificados para resolver el conflicto."
 
-#: awpcp.php:626
+#: awpcp.php:627
 msgid "Restricted Categories"
 msgstr "Categorías Restringidas"
 
@@ -4670,7 +4670,7 @@ msgstr "Seleccionar una sub categoría"
 msgid "Select a Sub-category (optional)"
 msgstr "Seleccionar una sub categoría (opcional)"
 
-#: includes/helpers/widgets/class-users-dropdown.php:41
+#: includes/helpers/widgets/class-user-field.php:37
 msgid "Select an User"
 msgstr "Seleccione un usuario"
 
@@ -5112,7 +5112,7 @@ msgid ""
 msgstr ""
 "Asunto para el mensaje enviado cuando el proceso de un pago no se completa"
 
-#: awpcp.php:640
+#: awpcp.php:641
 msgid "Subscriptions"
 msgstr "Suscripciones"
 
@@ -5205,7 +5205,7 @@ msgstr ""
 msgid "Thank you for your business"
 msgstr "Gracias por tu operación"
 
-#: awpcp.php:694
+#: awpcp.php:695
 msgid ""
 "The %1$s module you have installed is outdated and not compatible with this "
 "version of AWPCP. Please get %1$s %2$s or newer."
@@ -5824,6 +5824,12 @@ msgstr "El nombre del plan es necesario."
 msgid "The new category was successfully added."
 msgstr "La nueva categoría fue agregada satisfactoriamente."
 
+#: frontend/templates/email-place-ad-success-user.tpl.php:25
+msgid "The next link will take you to a page where you can edit the listing:"
+msgstr ""
+"Use el siguiente enlace para acceder a una página donde podrá editar el "
+"anuncio."
+
 #: includes/payment-term.php:139
 msgid ""
 "The number of characters allowed in the title must be equal or greater than "
@@ -6110,7 +6116,7 @@ msgstr ""
 msgid "There are currently no Ads to show."
 msgstr "Actualmente no hay ningún aviso para mostrar."
 
-#: frontend/ad-functions.php:476
+#: frontend/ad-functions.php:488
 msgid "There are currently no ads in the system"
 msgstr "No hay actualmente ningún Aviso en el Sistema"
 
@@ -6356,7 +6362,7 @@ msgstr ""
 "<a>configuración</a>. Si su token expiró, por favor intente obtener un token "
 "de acceso nuevo, usando el link en el paso 2 de la configuración."
 
-#: frontend/ad-functions.php:532
+#: frontend/ad-functions.php:544
 msgid "There were no ads found"
 msgstr "No se han encontrado Avisos"
 
@@ -6409,7 +6415,7 @@ msgstr ""
 "tener creada una Aplicación de Facebook para usar esta característica. Lea "
 "<a>Cómo registrar y configurar una aplicación de Facebook (inglés)</a>."
 
-#: awpcp.php:824
+#: awpcp.php:825
 msgid "This field is required."
 msgstr "Este campo es obligatorio."
 
@@ -6953,7 +6959,7 @@ msgstr "Visitas (los más vistos primero, luego por título)"
 msgid "Visit Website"
 msgstr "Visitar el Sitio Web"
 
-#: awpcp.php:519
+#: awpcp.php:520
 msgid "Warning"
 msgstr "Adevertencia"
 
@@ -7110,7 +7116,7 @@ msgstr "Trabajando"
 msgid "Would you like some help getting started?"
 msgstr "¿Te gustaría un poco de ayuda para empezar?"
 
-#: awpcp.php:647
+#: awpcp.php:648
 msgid "XML Sitemap"
 msgstr "XML Sitemap"
 

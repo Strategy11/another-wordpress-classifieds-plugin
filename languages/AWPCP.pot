@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2014-12-10 21:29:49+00:00\n"
+"POT-Creation-Date: 2014-12-11 17:23:35+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -137,7 +137,7 @@ msgstr ""
 msgid "Categories"
 msgstr ""
 
-#: admin/admin-panel-fees-table.php:116 awpcp.php:591
+#: admin/admin-panel-fees-table.php:116 awpcp.php:592
 msgid "Featured Ads"
 msgstr ""
 
@@ -655,7 +655,7 @@ msgstr ""
 msgid "Manage Extra Fields"
 msgstr ""
 
-#: admin/admin-panel.php:265 awpcp.php:584
+#: admin/admin-panel.php:265 awpcp.php:585
 msgid "Extra Fields"
 msgstr ""
 
@@ -1963,103 +1963,103 @@ msgstr ""
 msgid "Manage Ad Listings"
 msgstr ""
 
-#: awpcp.php:491
+#: awpcp.php:492
 msgid "AWPCP"
 msgstr ""
 
-#: awpcp.php:518
+#: awpcp.php:519
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
 msgstr ""
 
-#: awpcp.php:519
+#: awpcp.php:520
 msgid "Warning"
 msgstr ""
 
-#: awpcp.php:535
+#: awpcp.php:536
 msgid "Attachments"
 msgstr ""
 
-#: awpcp.php:542
+#: awpcp.php:543
 msgid "Authorize.Net"
 msgstr ""
 
-#: awpcp.php:549
+#: awpcp.php:550
 msgid "BuddyPress Listings"
 msgstr ""
 
-#: awpcp.php:556
+#: awpcp.php:557
 msgid "Campaign Manager"
 msgstr ""
 
-#: awpcp.php:563
+#: awpcp.php:564
 msgid "Category Icons"
 msgstr ""
 
-#: awpcp.php:570
+#: awpcp.php:571
 msgid "Comments & Ratings"
 msgstr ""
 
-#: awpcp.php:577
+#: awpcp.php:578
 msgid "Coupons/Discount"
 msgstr ""
 
-#: awpcp.php:598
+#: awpcp.php:599
 msgid "Fee per Category"
 msgstr ""
 
-#: awpcp.php:605
+#: awpcp.php:606
 msgid "Google Checkout"
 msgstr ""
 
-#: awpcp.php:612
+#: awpcp.php:613
 msgid "PayPal Pro"
 msgstr ""
 
-#: awpcp.php:619
+#: awpcp.php:620
 msgid "Regions Control"
 msgstr ""
 
-#: awpcp.php:626
+#: awpcp.php:627
 msgid "Restricted Categories"
 msgstr ""
 
-#: awpcp.php:633
+#: awpcp.php:634
 msgid "RSS"
 msgstr ""
 
-#: awpcp.php:640
+#: awpcp.php:641
 msgid "Subscriptions"
 msgstr ""
 
-#: awpcp.php:647
+#: awpcp.php:648
 msgid "XML Sitemap"
 msgstr ""
 
-#: awpcp.php:694
+#: awpcp.php:695
 msgid ""
 "The %1$s module you have installed is outdated and not compatible with this "
 "version of AWPCP. Please get %1$s %2$s or newer."
 msgstr ""
 
-#: awpcp.php:824
+#: awpcp.php:825
 msgid "This field is required."
 msgstr ""
 
-#: awpcp.php:825 frontend/page-edit-ad.php:126 frontend/page-edit-ad.php:395
+#: awpcp.php:826 frontend/page-edit-ad.php:126 frontend/page-edit-ad.php:395
 msgid "Please enter a valid email address."
 msgstr ""
 
-#: awpcp.php:826
+#: awpcp.php:827
 msgid "Please enter a valid URL."
 msgstr ""
 
-#: awpcp.php:827
+#: awpcp.php:828
 msgid "Please enter a valid number."
 msgstr ""
 
-#: awpcp.php:828
+#: awpcp.php:829
 msgid "Please enter a valid amount."
 msgstr ""
 
@@ -2119,27 +2119,27 @@ msgstr ""
 msgid "Problem encountered. Cannot complete  request"
 msgstr ""
 
-#: frontend/ad-functions.php:311
+#: frontend/ad-functions.php:323
 msgid "New classified Ad listing posted."
 msgstr ""
 
-#: frontend/ad-functions.php:476
+#: frontend/ad-functions.php:488
 msgid "There are currently no ads in the system"
 msgstr ""
 
-#: frontend/ad-functions.php:532
+#: frontend/ad-functions.php:544
 msgid "There were no ads found"
 msgstr ""
 
-#: frontend/ad-functions.php:559
+#: frontend/ad-functions.php:571
 msgid "Change Category"
 msgstr ""
 
-#: frontend/ad-functions.php:567
+#: frontend/ad-functions.php:579
 msgid "Category: "
 msgstr ""
 
-#: frontend/ad-functions.php:583
+#: frontend/ad-functions.php:595
 msgid "Powered by "
 msgstr ""
 
@@ -2809,7 +2809,7 @@ msgid "Payment transaction ID"
 msgstr ""
 
 #: frontend/templates/email-abort-payment-user.tpl.php:4
-#: frontend/templates/email-place-ad-success-user.tpl.php:28
+#: frontend/templates/email-place-ad-success-user.tpl.php:31
 msgid "Additional Details"
 msgstr ""
 
@@ -2897,7 +2897,7 @@ msgid "Ad Information"
 msgstr ""
 
 #: frontend/templates/email-ad-updated-user.tpl.php:18
-#: frontend/templates/email-place-ad-success-user.tpl.php:34
+#: frontend/templates/email-place-ad-success-user.tpl.php:36
 msgid ""
 "If you have questions about your listing contact %s. Thank you for your "
 "business."
@@ -2911,20 +2911,24 @@ msgid ""
 "the Ad."
 msgstr ""
 
-#: frontend/templates/email-place-ad-success-user.tpl.php:14
+#: frontend/templates/email-place-ad-success-user.tpl.php:12
 msgid "%s Transaction"
 msgstr ""
 
-#: frontend/templates/email-place-ad-success-user.tpl.php:16
+#: frontend/templates/email-place-ad-success-user.tpl.php:14
 msgid "Payment Transaction"
 msgstr ""
 
-#: frontend/templates/email-place-ad-success-user.tpl.php:19
+#: frontend/templates/email-place-ad-success-user.tpl.php:17
 msgid "Order Total"
 msgstr ""
 
-#: frontend/templates/email-place-ad-success-user.tpl.php:22
+#: frontend/templates/email-place-ad-success-user.tpl.php:20
 msgid "Order Total (credits)"
+msgstr ""
+
+#: frontend/templates/email-place-ad-success-user.tpl.php:25
+msgid "The next link will take you to a page where you can edit the listing:"
 msgstr ""
 
 #: frontend/templates/email-reply-to-ad-admin.tpl.php:3
@@ -4070,7 +4074,7 @@ msgstr ""
 msgid "File Manager component is not properly configured"
 msgstr ""
 
-#: includes/helpers/widgets/class-users-dropdown.php:41
+#: includes/helpers/widgets/class-user-field.php:37
 msgid "Select an User"
 msgstr ""
 

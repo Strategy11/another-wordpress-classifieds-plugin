@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: AWPCP\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2014-12-10 21:29:49+00:00\n"
+"POT-Creation-Date: 2014-12-11 17:23:35+00:00\n"
 "PO-Revision-Date: 2014-09-09 20:44-0600\n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: \n"
@@ -88,7 +88,7 @@ msgstr[1] ""
 msgid "%s Ad Management Panel"
 msgstr ""
 
-#: frontend/templates/email-place-ad-success-user.tpl.php:14
+#: frontend/templates/email-place-ad-success-user.tpl.php:12
 msgid "%s Transaction"
 msgstr ""
 
@@ -247,7 +247,7 @@ msgid ""
 "row %d."
 msgstr ""
 
-#: awpcp.php:491
+#: awpcp.php:492
 msgid "AWPCP"
 msgstr ""
 
@@ -392,7 +392,7 @@ msgid ""
 "any personal information from your profile."
 msgstr ""
 
-#: awpcp.php:518
+#: awpcp.php:519
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
@@ -626,7 +626,7 @@ msgid "Add/Edit Categories"
 msgstr ""
 
 #: frontend/templates/email-abort-payment-user.tpl.php:4
-#: frontend/templates/email-place-ad-success-user.tpl.php:28
+#: frontend/templates/email-place-ad-success-user.tpl.php:31
 msgid "Additional Details"
 msgstr ""
 
@@ -885,11 +885,11 @@ msgid ""
 "fees:"
 msgstr ""
 
-#: awpcp.php:535
+#: awpcp.php:536
 msgid "Attachments"
 msgstr ""
 
-#: awpcp.php:542
+#: awpcp.php:543
 msgid "Authorize.Net"
 msgstr ""
 
@@ -972,7 +972,7 @@ msgctxt "Browse the <a>Quick Start Guide</a>"
 msgid "Browse the %s."
 msgstr ""
 
-#: awpcp.php:549
+#: awpcp.php:550
 msgid "BuddyPress Listings"
 msgstr ""
 
@@ -996,7 +996,7 @@ msgstr ""
 msgid "CSV file"
 msgstr ""
 
-#: awpcp.php:556
+#: awpcp.php:557
 msgid "Campaign Manager"
 msgstr ""
 
@@ -1049,7 +1049,7 @@ msgstr ""
 msgid "Category ID must be valid for Ads to display."
 msgstr ""
 
-#: awpcp.php:563
+#: awpcp.php:564
 msgid "Category Icons"
 msgstr ""
 
@@ -1077,11 +1077,11 @@ msgstr ""
 msgid "Category to Edit"
 msgstr ""
 
-#: frontend/ad-functions.php:567
+#: frontend/ad-functions.php:579
 msgid "Category: "
 msgstr ""
 
-#: frontend/ad-functions.php:559
+#: frontend/ad-functions.php:571
 msgid "Change Category"
 msgstr ""
 
@@ -1204,7 +1204,7 @@ msgstr ""
 msgid "Collapse Categories"
 msgstr ""
 
-#: awpcp.php:570
+#: awpcp.php:571
 msgid "Comments & Ratings"
 msgstr ""
 
@@ -1340,7 +1340,7 @@ msgstr ""
 msgid "Coupon/Discount Module"
 msgstr ""
 
-#: awpcp.php:577
+#: awpcp.php:578
 msgid "Coupons/Discount"
 msgstr ""
 
@@ -1855,7 +1855,7 @@ msgid ""
 "Extra Field %s's value is not allowed in row %d. Allowed values are: %%s"
 msgstr ""
 
-#: admin/admin-panel.php:265 awpcp.php:584
+#: admin/admin-panel.php:265 awpcp.php:585
 msgid "Extra Fields"
 msgstr ""
 
@@ -1902,7 +1902,7 @@ msgstr ""
 msgid "Featured"
 msgstr ""
 
-#: admin/admin-panel-fees-table.php:116 awpcp.php:591
+#: admin/admin-panel-fees-table.php:116 awpcp.php:592
 msgid "Featured Ads"
 msgstr ""
 
@@ -1927,7 +1927,7 @@ msgstr ""
 msgid "Fee Plan sort order"
 msgstr ""
 
-#: awpcp.php:598
+#: awpcp.php:599
 msgid "Fee per Category"
 msgstr ""
 
@@ -2083,7 +2083,7 @@ msgstr ""
 msgid "Go to the previous page"
 msgstr ""
 
-#: awpcp.php:605
+#: awpcp.php:606
 msgid "Google Checkout"
 msgstr ""
 
@@ -2310,7 +2310,7 @@ msgid ""
 msgstr ""
 
 #: frontend/templates/email-ad-updated-user.tpl.php:18
-#: frontend/templates/email-place-ad-success-user.tpl.php:34
+#: frontend/templates/email-place-ad-success-user.tpl.php:36
 msgid ""
 "If you have questions about your listing contact %s. Thank you for your "
 "business."
@@ -3069,7 +3069,7 @@ msgstr ""
 msgid "New Fee Plan Details"
 msgstr ""
 
-#: frontend/ad-functions.php:311
+#: frontend/ad-functions.php:323
 msgid "New classified Ad listing posted."
 msgstr ""
 
@@ -3347,11 +3347,11 @@ msgstr ""
 msgid "Order Ad Listings in Search results by"
 msgstr ""
 
-#: frontend/templates/email-place-ad-success-user.tpl.php:19
+#: frontend/templates/email-place-ad-success-user.tpl.php:17
 msgid "Order Total"
 msgstr ""
 
-#: frontend/templates/email-place-ad-success-user.tpl.php:22
+#: frontend/templates/email-place-ad-success-user.tpl.php:20
 msgid "Order Total (credits)"
 msgstr ""
 
@@ -3433,7 +3433,7 @@ msgctxt "debug page"
 msgid "PayPal Connection"
 msgstr ""
 
-#: awpcp.php:612
+#: awpcp.php:613
 msgid "PayPal Pro"
 msgstr ""
 
@@ -3541,7 +3541,7 @@ msgstr ""
 msgid "Payment Thank You page"
 msgstr ""
 
-#: frontend/templates/email-place-ad-success-user.tpl.php:16
+#: frontend/templates/email-place-ad-success-user.tpl.php:14
 msgid "Payment Transaction"
 msgstr ""
 
@@ -3623,19 +3623,19 @@ msgstr ""
 msgid "Please enter a start date for the Ad."
 msgstr ""
 
-#: awpcp.php:826
+#: awpcp.php:827
 msgid "Please enter a valid URL."
 msgstr ""
 
-#: awpcp.php:828
+#: awpcp.php:829
 msgid "Please enter a valid amount."
 msgstr ""
 
-#: awpcp.php:825 frontend/page-edit-ad.php:126 frontend/page-edit-ad.php:395
+#: awpcp.php:826 frontend/page-edit-ad.php:126 frontend/page-edit-ad.php:395
 msgid "Please enter a valid email address."
 msgstr ""
 
-#: awpcp.php:827
+#: awpcp.php:828
 msgid "Please enter a valid number."
 msgstr ""
 
@@ -3784,7 +3784,7 @@ msgstr ""
 msgid "Posted:"
 msgstr ""
 
-#: frontend/ad-functions.php:583
+#: frontend/ad-functions.php:595
 msgid "Powered by "
 msgstr ""
 
@@ -3873,7 +3873,7 @@ msgstr ""
 msgid "Quick Start Guide"
 msgstr ""
 
-#: awpcp.php:633
+#: awpcp.php:634
 msgid "RSS"
 msgstr ""
 
@@ -3903,7 +3903,7 @@ msgstr ""
 msgid "Reference"
 msgstr ""
 
-#: awpcp.php:619
+#: awpcp.php:620
 msgid "Regions Control"
 msgstr ""
 
@@ -4100,7 +4100,7 @@ msgstr ""
 msgid "Restore the Classifieds pages to fix the conflict."
 msgstr ""
 
-#: awpcp.php:626
+#: awpcp.php:627
 msgid "Restricted Categories"
 msgstr ""
 
@@ -4267,7 +4267,7 @@ msgstr ""
 msgid "Select a Sub-category (optional)"
 msgstr ""
 
-#: includes/helpers/widgets/class-users-dropdown.php:41
+#: includes/helpers/widgets/class-user-field.php:37
 msgid "Select an User"
 msgstr ""
 
@@ -4680,7 +4680,7 @@ msgid ""
 "Subject line for email sent out when the payment processing does not complete"
 msgstr ""
 
-#: awpcp.php:640
+#: awpcp.php:641
 msgid "Subscriptions"
 msgstr ""
 
@@ -4758,7 +4758,7 @@ msgstr ""
 msgid "Thank you for your business"
 msgstr ""
 
-#: awpcp.php:694
+#: awpcp.php:695
 msgid ""
 "The %1$s module you have installed is outdated and not compatible with this "
 "version of AWPCP. Please get %1$s %2$s or newer."
@@ -5278,6 +5278,10 @@ msgstr ""
 msgid "The new category was successfully added."
 msgstr ""
 
+#: frontend/templates/email-place-ad-success-user.tpl.php:25
+msgid "The next link will take you to a page where you can edit the listing:"
+msgstr ""
+
 #: includes/payment-term.php:139
 msgid ""
 "The number of characters allowed in the title must be equal or greater than "
@@ -5522,7 +5526,7 @@ msgstr ""
 msgid "There are currently no Ads to show."
 msgstr ""
 
-#: frontend/ad-functions.php:476
+#: frontend/ad-functions.php:488
 msgid "There are currently no ads in the system"
 msgstr ""
 
@@ -5720,7 +5724,7 @@ msgid ""
 "link in step 2 of the settings."
 msgstr ""
 
-#: frontend/ad-functions.php:532
+#: frontend/ad-functions.php:544
 msgid "There were no ads found"
 msgstr ""
 
@@ -5763,7 +5767,7 @@ msgid ""
 "and Configure a Facebook Application.</a>"
 msgstr ""
 
-#: awpcp.php:824
+#: awpcp.php:825
 msgid "This field is required."
 msgstr ""
 
@@ -6234,7 +6238,7 @@ msgstr ""
 msgid "Visit Website"
 msgstr ""
 
-#: awpcp.php:519
+#: awpcp.php:520
 msgid "Warning"
 msgstr ""
 
@@ -6361,7 +6365,7 @@ msgstr ""
 msgid "Would you like some help getting started?"
 msgstr ""
 
-#: awpcp.php:647
+#: awpcp.php:648
 msgid "XML Sitemap"
 msgstr ""
 
