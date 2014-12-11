@@ -13,6 +13,10 @@ class AWPCP_ListingAuthorization {
     }
 
     public function is_current_user_allowed_to_edit_listing( $listing ) {
+        if ( ! is_user_logged_in() ) {
+            return false;
+        }
+
         if ( awpcp_current_user_is_admin() ) {
             return true;
         }
