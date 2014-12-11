@@ -258,6 +258,7 @@ function awpcp_ad_posted_user_email( $ad, $transaction = null, $message='' ) {
 	$show_total_amount = $payments_api->payments_enabled();
 	$show_total_credits = $payments_api->credit_system_enabled();
 	$currency_code = $payments_api->get_currency();
+	$blog_name = awpcp_get_blog_name();
 
 	if ( ! is_null( $transaction ) ) {
 		$transaction_totals = $transaction->get_totals();
@@ -268,6 +269,14 @@ function awpcp_ad_posted_user_email( $ad, $transaction = null, $message='' ) {
 		$total_credits = 0;
 	}
 
+	if ( get_awpcp_option( 'requireuserregistration' ) ) {
+		$include_listing_access_key = false;
+		$include_edit_listing_url = true;
+	} else {
+		$include_listing_access_key = get_awpcp_option( 'include-ad-access-key' );
+		$include_edit_listing_url = false;
+	}
+
 	$params = compact(
 		'ad',
 		'admin_email',
@@ -275,9 +284,12 @@ function awpcp_ad_posted_user_email( $ad, $transaction = null, $message='' ) {
 		'currency_code',
 		'show_total_amount',
 		'show_total_credits',
+		'include_listing_access_key',
+		'include_edit_listing_url',
 		'total_amount',
 		'total_credits',
-		'message'
+		'message',
+		'blog_name'
 	);
 
 	$email = new AWPCP_Email;
