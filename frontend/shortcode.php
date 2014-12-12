@@ -404,17 +404,30 @@ function awpcp_get_menu_items() {
 
 function awpcp_get_edit_listing_menu_item() {
     $listings = awpcp_listings_collection();
+    $authorization = awpcp_listing_authorization();
     $request = awpcp_request();
     $settings = awpcp()->settings;
 
-    try {
-        $listing = $listings->get( $request->get_ad_id() );
-        $edit_ad_url = awpcp_get_edit_listing_url( $listing );
-    } catch( AWPCP_Exception $e ) {
+    if ( ! $settings->get_option( 'requireuserregistration' ) ) {
         $edit_ad_url = awpcp_get_edit_listing_generic_url();
+    } else {
+        try {
+            $listing = $listings->get( $request->get_ad_id() );
+        } catch( AWPCP_Exception $e ) {
+            $listing = null;
+        }
+
+        if ( $listing && $authorization->is_current_user_allowed_to_edit_listing( $listing ) ) {
+            $edit_ad_url = awpcp_get_edit_listing_url( $listing );
+        } else {
+            $edit_ad_url = null;
+        }
     }
 
-    $edit_ad_page_name = $settings->get_option( 'edit-ad-page-name' );
-
-    return array( 'url' => $edit_ad_url, 'title' => esc_html( $edit_ad_page_name ) );
+    if ( is_null( $edit_ad_url ) ) {
+        return null;
+    } else {
+        $edit_ad_page_name = $settings->get_option( 'edit-ad-page-name' );
+        return array( 'url' => $edit_ad_url, 'title' => esc_html( $edit_ad_page_name ) );
+    }
 }
