@@ -364,12 +364,16 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
             return $this->render('content', awpcp_print_error($message));
         }
 
-        if ( awpcp_post_param( 'confirm', false ) && $ad->delete() ) {
-            $this->messages[] = __('Your Ad has been successfully deleted.', 'AWPCP');
-            return $this->enter_email_and_key_step();
-        } else {
+        if ( ! awpcp_post_param( 'confirm', false ) || ! $ad->delete() ) {
             $this->messages[] = __('There was a problem trying to delete your Ad. The Ad was not deleted.', 'AWPCP');
             return $this->details_step();
+        }
+
+        if ( get_awpcp_option( 'requireuserregistration' ) ) {
+            $message = __( 'Your Ad has been successfully deleted.', 'AWPCP' );
+            return $this->render( 'content', awpcp_print_message( $message ) );
+        } else {
+            return $this->enter_email_and_key_step();
         }
     }
 
