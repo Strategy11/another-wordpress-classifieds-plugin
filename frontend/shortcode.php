@@ -333,7 +333,7 @@ function awpcp_display_the_classifieds_page_body($awpcppagename) {
 
 
 function awpcp_menu_items() {
-    $menu_items = awpcp_get_menu_items();
+    $menu_items = array_filter( awpcp_get_menu_items(), 'is_array' );
 
     ob_start();
         include ( AWPCP_DIR . '/frontend/templates/main-menu.tpl.php' );
