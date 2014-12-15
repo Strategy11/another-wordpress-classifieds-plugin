@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2014-12-11 17:23:35+00:00\n"
+"POT-Creation-Date: 2014-12-15 17:16:53+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -531,7 +531,7 @@ msgstr ""
 msgid "The access key was sent to %s."
 msgstr ""
 
-#: admin/admin-panel-listings.php:512 frontend/page-edit-ad.php:448
+#: admin/admin-panel-listings.php:512 frontend/page-edit-ad.php:461
 msgid "There was an error trying to send the email to %s."
 msgstr ""
 
@@ -2047,7 +2047,7 @@ msgstr ""
 msgid "This field is required."
 msgstr ""
 
-#: awpcp.php:826 frontend/page-edit-ad.php:126 frontend/page-edit-ad.php:395
+#: awpcp.php:826 frontend/page-edit-ad.php:126 frontend/page-edit-ad.php:408
 msgid "Please enter a valid email address."
 msgstr ""
 
@@ -2162,7 +2162,7 @@ msgid "Please go to the Ad Management panel to edit your Ads."
 msgstr ""
 
 #: frontend/page-edit-ad.php:42 frontend/page-edit-ad.php:117
-#: frontend/page-edit-ad.php:388
+#: frontend/page-edit-ad.php:401
 msgid "Click here"
 msgstr ""
 
@@ -2170,7 +2170,7 @@ msgstr ""
 msgid "You are not allowed to edit the specified Ad."
 msgstr ""
 
-#: frontend/page-edit-ad.php:116 frontend/page-edit-ad.php:387
+#: frontend/page-edit-ad.php:116 frontend/page-edit-ad.php:400
 msgid ""
 "You are currently not logged in, if you have an account in this website you "
 "can log in and go to the Ad Management panel to edit your Ads."
@@ -2222,23 +2222,23 @@ msgid ""
 msgstr ""
 
 #: frontend/page-edit-ad.php:368
-msgid "Your Ad has been successfully deleted."
-msgstr ""
-
-#: frontend/page-edit-ad.php:371
 msgid "There was a problem trying to delete your Ad. The Ad was not deleted."
 msgstr ""
 
-#: frontend/page-edit-ad.php:393
+#: frontend/page-edit-ad.php:380
+msgid "Your Ad has been successfully deleted."
+msgstr ""
+
+#: frontend/page-edit-ad.php:406
 msgid "Please enter the email address you used when you created your Ad."
 msgstr ""
 
-#: frontend/page-edit-ad.php:402
+#: frontend/page-edit-ad.php:415
 msgid ""
 "The email address you entered does not match any of the Ads in our system."
 msgstr ""
 
-#: frontend/page-edit-ad.php:445
+#: frontend/page-edit-ad.php:458
 msgid "The access keys were sent to %s."
 msgstr ""
 
@@ -3564,7 +3564,7 @@ msgstr ""
 msgid "There are currently no Ads to show."
 msgstr ""
 
-#: frontend/widget-latest-ads.php:131
+#: frontend/widget-latest-ads.php:132
 msgid "Read more"
 msgstr ""
 
@@ -3650,12 +3650,12 @@ msgstr ""
 msgid "-- Choose a Country --"
 msgstr ""
 
-#: functions.php:1604
+#: functions.php:1598
 msgctxt "default blog title"
 msgid "Classifieds Website"
 msgstr ""
 
-#: functions.php:1935
+#: functions.php:1929
 msgid ""
 "The images or files with pale red background have been rejected by an "
 "administrator user. Likewise, files with a pale yellow background are "
@@ -3663,79 +3663,79 @@ msgid ""
 "cannot be shown in the frontend."
 msgstr ""
 
-#: functions.php:1952 includes/helpers/class-modules-manager.php:156
+#: functions.php:1946 includes/helpers/class-modules-manager.php:156
 msgid ""
 "This version of AWPCP %1$s module is not compatible with AWPCP version %2$s. "
 "Please get AWPCP %1$s %3$s or newer!"
 msgstr ""
 
-#: functions.php:1954 includes/helpers/class-modules-manager.php:158
+#: functions.php:1948 includes/helpers/class-modules-manager.php:158
 msgid "Error"
 msgstr ""
 
-#: functions.php:1973
+#: functions.php:1967
 msgid "No errors."
 msgstr ""
 
-#: functions.php:1974
+#: functions.php:1968
 msgid "The file is larger than upload_max_filesize."
 msgstr ""
 
-#: functions.php:1975
+#: functions.php:1969
 msgid "The file is larger than form MAX_FILE_SIZE."
 msgstr ""
 
-#: functions.php:1976
+#: functions.php:1970
 msgid "The file was only partially uploaded."
 msgstr ""
 
-#: functions.php:1977
+#: functions.php:1971
 msgid "No file was uploaded."
 msgstr ""
 
-#: functions.php:1978
+#: functions.php:1972
 msgid "Missing temporary directory."
 msgstr ""
 
-#: functions.php:1979
+#: functions.php:1973
 msgid "Can't write file to disk."
 msgstr ""
 
-#: functions.php:1980
+#: functions.php:1974
 msgid "The file upload was stopped by extension."
 msgstr ""
 
-#: functions.php:2130
+#: functions.php:2124
 msgid "Your Ad \"%s\" has been approved"
 msgstr ""
 
-#: functions.php:2146
+#: functions.php:2140
 msgid "Your Ad \"%s\" has been successfully updated"
 msgstr ""
 
-#: functions.php:2167
+#: functions.php:2161
 msgid "Images on Ad \"%s\" are awaiting approval"
 msgstr ""
 
-#: functions.php:2169
+#: functions.php:2163
 msgid ""
 "Images on Ad \"%s\" are awaiting approval. You can approve the images going "
 "to the Manage Images sections for that Ad and clicking the \"Enable\" button "
 "below each image. Click here to continue: %s."
 msgstr ""
 
-#: functions.php:2172
+#: functions.php:2166
 msgid "The Ad \"%s\" is awaiting approval"
 msgstr ""
 
-#: functions.php:2174
+#: functions.php:2168
 msgid ""
 "The Ad \"%s\" is awaiting approval. You can approve the Ad going to the "
 "Manage Listings section and clicking the \"Enable\" action shown on top. "
 "Click here to continue: %s."
 msgstr ""
 
-#: functions.php:2181
+#: functions.php:2175
 msgid ""
 "Additionally, You can approve the images going to the Manage Images sections "
 "for that Ad and clicking the \"Enable\" button below each image. Click here "
@@ -6896,6 +6896,10 @@ msgstr ""
 
 #: templates/email/listing-is-about-to-expire-notification.plain.tpl.php:9
 msgid "You can renew your Ad visiting this link: %s"
+msgstr ""
+
+#: templates/frontend/edit-listing-page-delete-listing-confirmation.tpl.php:7
+msgid "Return to main classifieds"
 msgstr ""
 
 #: upload_awpcp.php:22
