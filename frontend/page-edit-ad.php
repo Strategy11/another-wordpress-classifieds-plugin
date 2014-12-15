@@ -364,13 +364,26 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
             return $this->render('content', awpcp_print_error($message));
         }
 
-        if ( awpcp_post_param( 'confirm', false ) && $ad->delete() ) {
-            $this->messages[] = __('Your Ad has been successfully deleted.', 'AWPCP');
-            return $this->enter_email_and_key_step();
-        } else {
+        if ( ! awpcp_post_param( 'confirm', false ) || ! $ad->delete() ) {
             $this->messages[] = __('There was a problem trying to delete your Ad. The Ad was not deleted.', 'AWPCP');
             return $this->details_step();
         }
+
+        if ( get_awpcp_option( 'requireuserregistration' ) ) {
+            return $this->render_delete_listing_confirmation();
+        } else {
+            return $this->enter_email_and_key_step();
+        }
+    }
+
+    private function render_delete_listing_confirmation() {
+        $this->messages[] = __( 'Your Ad has been successfully deleted.', 'AWPCP' );
+        $template = AWPCP_DIR . '/templates/frontend/edit-listing-page-delete-listing-confirmation.tpl.php';
+
+        return $this->render( $template, array(
+            'messages' => $this->messages,
+            'main_page_url' => awpcp_get_main_page_url()
+        ) );
     }
 
     public function send_access_key_step() {
