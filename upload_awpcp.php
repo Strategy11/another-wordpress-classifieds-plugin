@@ -140,7 +140,7 @@ function awpcp_upload_file( $file, $constraints, &$error=false, $action='upload'
 		}
 	}
 
-	$newname = awpcp_unique_filename( $path, $filename, array( $paths['files_dir'], $paths['thumbnails_dir'] ) );
+	$newname = awpcp_unique_filename( $tmpname, $filename, array( $paths['files_dir'], $paths['thumbnails_dir'] ) );
 	$newpath = trailingslashit( $paths['files_dir'] ) . $newname;
 
 	if ( $action == 'upload' && ! @move_uploaded_file( $tmpname, $newpath ) ) {
