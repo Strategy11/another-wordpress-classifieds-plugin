@@ -1,4 +1,8 @@
-<div class="awpcp-file-manager">
+<!-- Using template binding as workaround for conflict with imagesLoaded plugin
+from Paul Irish. See https://github.com/drodenbaugh/awpcp/issues/979. -->
+<div class="awpcp-file-manager" data-bind="{ template: 'awpcp-file-manager-template' }"></div>
+
+<script type="text/html" id="awpcp-file-manager-template">
     <div data-bind="if: haveFiles">
         <?php echo awpcp_attachment_background_color_explanation(); ?>
     </div>
@@ -53,4 +57,4 @@
             </ul>
         </form>
     </div>
-</div>
+</script>
