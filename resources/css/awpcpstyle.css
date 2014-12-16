@@ -968,6 +968,7 @@ p.ad_status_msg {
   box-shadow: none;
   display: block;
   margin: 0 auto;
+  max-width: 125px;
 }
 #classiwrapper .awpcp-uploaded-files li .image-actions,
 .awpcp-uploaded-files li .image-actions,
@@ -1021,6 +1022,14 @@ p.ad_status_msg {
 #classiwrapper .awpcp-uploaded-images li .image-actions li label:hover,
 .awpcp-uploaded-images li .image-actions li label:hover {
   background-color: #C6C6C6;
+}
+#classiwrapper .awpcp-uploaded-files li .image-actions li input,
+.awpcp-uploaded-files li .image-actions li input,
+#classiwrapper .uploaded-images li .image-actions li input,
+.uploaded-images li .image-actions li input,
+#classiwrapper .awpcp-uploaded-images li .image-actions li input,
+.awpcp-uploaded-images li .image-actions li input {
+  display: inline-block;
 }
 #classiwrapper .awpcp-uploaded-files li .image-actions .spinner,
 .awpcp-uploaded-files li .image-actions .spinner,
