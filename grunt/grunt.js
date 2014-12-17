@@ -18,6 +18,7 @@ module.exports = function(grunt) {
           '<%= path.awpcp %>/js/components/file-manager/*.js',
           '<%= path.awpcp %>/js/components/media-manager/*.js',
           '<%= path.awpcp %>/js/components/media-uploader/*.js',
+          '<%= path.awpcp %>/js/components/media-center.js',
           '<%= path.awpcp %>/js/components/messages/*.js',
           '<%= path.awpcp %>/js/components/thumbnails-generator/*.js',
           '<%= path.awpcp %>/js/asynchronous-tasks.js',

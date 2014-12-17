@@ -1,15 +1,10 @@
 /*global AWPCP*/
 AWPCP.run('awpcp/page-place-ads', [
     'jquery',
-    'knockout',
-    'awpcp/media-manager',
-    'awpcp/media-uploader',
-    'awpcp/thumbnails-generator',
+    'awpcp/media-center',
     'awpcp/settings',
-    'awpcp/jquery-userfield',
-    'awpcp/jquery-messages'
-],
-function( $, ko, MediaManager, MediaUploader, ThumbnailsGenerator, settings ) {
+    'awpcp/jquery-userfield'
+], function( $, MediaCenter, settings ) {
     var AWPCP = jQuery.AWPCP = jQuery.extend({}, jQuery.AWPCP, AWPCP);
 
     $.AWPCP.PaymentTermsTable = function(table) {
@@ -238,25 +233,10 @@ function( $, ko, MediaManager, MediaUploader, ThumbnailsGenerator, settings ) {
         /* Upload Images Form */
 
         (function() {
-            var mediaManager = $( '.awpcp-media-manager' ),
-                mediaManagerOptions = settings.get( 'media-manager-data' ),
-                mediaUploader = $( '#awpcp-media-uploader' ),
-                mediaUploaderOptions = settings.get( 'media-uploader-data' ),
-                thumbnailsGenerator = $( '.awpcp-thumbnails-generator' );
-
-            $( '.awpcp-messages' ).AWPCPMessages();
-
-            if ( mediaManager.length && mediaManagerOptions ) {
-                ko.applyBindings( new MediaManager( mediaManagerOptions ), mediaManager.get( 0 ) );
-            }
-
-            if ( mediaUploader.length && mediaUploaderOptions ) {
-                $.noop( new MediaUploader( mediaUploader, mediaUploaderOptions ) );
-            }
-
-            if ( thumbnailsGenerator.length ) {
-                $.noop( new ThumbnailsGenerator( thumbnailsGenerator ) );
-            }
+            $( '.awpcp-media-center' ).StartMediaCenter( {
+                mediaManagerOptions: settings.get( 'media-manager-data' ),
+                mediaUploaderOptions: settings.get( 'media-uploader-data' )
+            } );
         })();
 
         /* Deleta Ad Form */
