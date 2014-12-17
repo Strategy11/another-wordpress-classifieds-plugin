@@ -363,8 +363,7 @@ function awpcp_get_menu_items() {
     }
 
     if ( $show_browse_ads_item ) {
-        $browse_ads_page_name = get_awpcp_option('browse-ads-page-name');
-        if ( is_page( sanitize_title( $browse_ads_page_name ) ) ) {
+        if ( is_page( awpcp_get_page_id_by_ref( 'browse-ads-page-name' ) ) ) {
             if ( get_awpcp_option( 'main_page_display' ) ) {
                 $browse_cats_url = awpcp_get_view_categories_url();
             } else {
@@ -386,6 +385,7 @@ function awpcp_get_menu_items() {
             $view_categories_page_name = get_awpcp_option( 'view-categories-page-name' );
             $items['browse-listings'] = array( 'url' => $browse_cats_url, 'title' => esc_html( $view_categories_page_name ) );
         } else {
+            $browse_ads_page_name = get_awpcp_option('browse-ads-page-name');
             $browse_ads_url = awpcp_get_page_url( 'browse-ads-page-name' );
             $items['browse-listings'] = array( 'url' => $browse_ads_url, 'title' => esc_html( $browse_ads_page_name  ) );
         }
