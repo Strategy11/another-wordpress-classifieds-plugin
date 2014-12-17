@@ -252,7 +252,7 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
             case 'approvepic':
             case 'approve-file':
             case 'reject-file':
-                return $this->manage_images();
+                return $this->listing_action( 'manage_images' );
                 break;
 
             case 'bulk-delete':
@@ -525,9 +525,29 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
         return $this->redirect('index');
     }
 
-    public function manage_images() {
-        wp_enqueue_script( 'awpcp-admin-attachments' );
-        echo awpcp_media_manager()->dispatch( $this );
+    public function manage_images( $listing ) {
+        $allowed_files = awpcp_listing_upload_limits()->get_listing_upload_limits( $listing );
+
+        $params = array(
+            'listing' => $listing,
+            'files' => awpcp_media_api()->find_by_ad_id( $listing->ad_id ),
+            'media_manager_configuration' => array(
+                'nonce' => wp_create_nonce( 'awpcp-manage-listing-media-' . $listing->ad_id ),
+                'allowed_files' => $allowed_files,
+                'show_admin_actions' => awpcp_current_user_is_admin(),
+            ),
+            'media_uploader_configuration' => array(
+                'listing_id' => $listing->ad_id,
+                'nonce' => wp_create_nonce( 'awpcp-upload-media-for-listing-' . $listing->ad_id ),
+                'allowed_files' => $allowed_files,
+            ),
+            'urls' => array(
+                'view-listing' => $this->url( array( 'action' => 'view', 'id' => $listing->ad_id ) ),
+                'listings' => $this->url( array( 'id' => null ) ),
+            ),
+        );
+
+        echo $this->render( AWPCP_DIR . '/templates/admin/listings-media-center.tpl.php', $params );
     }
 
     public function delete_ad() {
