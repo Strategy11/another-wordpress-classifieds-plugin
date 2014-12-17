@@ -1121,7 +1121,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             'hidden' => array( 'transaction_id' => $transaction->id ),
             'errors' => $errors,
             'media_manager_configuration' => array(
-                'nonce' => wp_create_nonce( 'manage-listing-media-' . $ad->ad_id ),
+                'nonce' => wp_create_nonce( 'awpcp-manage-listing-media-' . $ad->ad_id ),
                 'allowed_files' => $allowed_files,
                 'show_admin_actions' => awpcp_current_user_is_admin(),
             ),
