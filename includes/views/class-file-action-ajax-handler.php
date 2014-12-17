@@ -98,3 +98,24 @@ class AWPCP_DeleteFileAjaxHandler extends AWPCP_FileActionAjaxHandker {
         return $this->media->delete( $file );
     }
 }
+
+function awpcp_update_file_status_ajax_handler() {
+    return new AWPCP_UpdateFileStatusAjaxHandler(
+        awpcp_media_api(),
+        awpcp_files_collection(),
+        awpcp_listings_collection(),
+        awpcp_request(),
+        awpcp_ajax_response()
+    );
+}
+
+class AWPCP_UpdateFileStatusAjaxHandler extends AWPCP_FileActionAjaxHandker {
+
+    protected function do_file_action( $file, $listing ) {
+        if ( $this->request->param( 'action' ) == 'awpcp-approve-file' ) {
+            return $this->media->approve( $file );
+        } else {
+            return $this->media->reject( $file );
+        }
+    }
+}

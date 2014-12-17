@@ -567,6 +567,12 @@ class AWPCP {
         add_action( 'wp_ajax_awpcp-delete-file', array( $handler, 'ajax' ) );
         add_action( 'wp_ajax_nopriv_awpcp-delete-file', array( $handler, 'ajax' ) );
 
+        $handler = awpcp_update_file_status_ajax_handler();
+        add_action( 'wp_ajax_awpcp-approve-file', array( $handler, 'ajax' ) );
+        add_action( 'wp_ajax_nopriv_awpcp-approve-file', array( $handler, 'ajax' ) );
+        add_action( 'wp_ajax_awpcp-reject-file', array( $handler, 'ajax' ) );
+        add_action( 'wp_ajax_nopriv_awpcp-reject-file', array( $handler, 'ajax' ) );
+
         $handler = awpcp_upload_listing_media_ajax_handler();
         add_action( 'wp_ajax_awpcp-upload-listing-media', array( $handler, 'ajax' ) );
         add_action( 'wp_ajax_nopriv_awpcp-upload-listing-media', array( $handler, 'ajax' ) );

@@ -19,8 +19,10 @@
                         </span>
                     </li>
                     <li class="awpcp-uploaded-file-action awpcp-uploaded-file-delete-action"><a title="<?php echo esc_attr( __( 'Delete Image', 'AWPCP' ) ); ?>" data-bind="click: $root.deleteFile"></a></li>
-                    <li class="awpcp-uploaded-file-action awpcp-uploaded-file-loading-icon" data-bind="visible: isBeingModified"><span class="awpcp-spinner awpcp-spinner-visible"></span></li>
+                    <li class="awpcp-uploaded-file-action awpcp-uploaded-file-approve-action" data-bind="visible: $root.showAdminActions() &amp;&amp; !isApproved()"><a title="<?php echo esc_attr( __( 'Approve Image', 'AWPCP' ) ); ?>" data-bind="click: $root.approveFile"></a></li>
+                    <li class="awpcp-uploaded-file-action awpcp-uploaded-file-reject-action" data-bind="visible: $root.showAdminActions() &amp;&amp; isApproved()"><a title="<?php echo esc_attr( __( 'Reject Image', 'AWPCP' ) ); ?>" data-bind="click: $root.rejectFile"></a></li>
                 </ul>
+                <span class="awpcp-spinner awpcp-spinner-visible awpcp-uploaded-file-spinner" data-bind="visible: isBeingModified"></span>
                 <div class="awpcp-uploaded-file-primary-label" data-bind="visible: isPrimary"><?php echo esc_html(  __( 'Primary Image', 'AWPCP' ) ); ?></div>
             </li>
         </ul>
@@ -45,10 +47,12 @@
                             <a href="#" title="<?php echo esc_attr( __( 'Set as Primary Image', 'AWPCP' ) ); ?>" data-bind="visible: !isPrimary(), click: $root.setFileAsPrimary"></a>
                         </span>
                     </li>
-                    <li class="awpcp-uploaded-video-delete-action awpcp-uploaded-file-delete-action awpcp-uploaded-file-action"><a title="<?php echo esc_attr( __( 'Delete Image', 'AWPCP' ) ); ?>" data-bind="click: $root.deleteFile"></a></li>
-                    <li class="awpcp-uploaded-file-action awpcp-uploaded-file-loading-icon" data-bind="visible: isBeingModified"><span class="awpcp-spinner awpcp-spinner-visible"></span></li>
+                    <li class="awpcp-uploaded-video-delete-action awpcp-uploaded-file-delete-action awpcp-uploaded-file-action"><a title="<?php echo esc_attr( __( 'Delete Video', 'AWPCP' ) ); ?>" data-bind="click: $root.deleteFile"></a></li>
+                    <li class="awpcp-uploaded-file-action awpcp-uploaded-file-approve-action" data-bind="visible: $root.showAdminActions() &amp;&amp; !isApproved()"><a title="<?php echo esc_attr( __( 'Approve Video', 'AWPCP' ) ); ?>" data-bind="click: $root.approveFile"></a></li>
+                    <li class="awpcp-uploaded-file-action awpcp-uploaded-file-reject-action" data-bind="visible: $root.showAdminActions() &amp;&amp; isApproved()"><a title="<?php echo esc_attr( __( 'Reject Video', 'AWPCP' ) ); ?>" data-bind="click: $root.rejectFile"></a></li>
                 </ul>
-                <div class="awpcp-uploaded-file-primary-label" data-bind="visible: isPrimary"><?php echo esc_html(  __( 'Primary Image', 'AWPCP' ) ); ?></div>
+                <span class="awpcp-spinner awpcp-spinner-visible awpcp-uploaded-file-spinner" data-bind="visible: isBeingModified"></span>
+                <div class="awpcp-uploaded-file-primary-label" data-bind="visible: isPrimary"><?php echo esc_html(  __( 'Primary Video', 'AWPCP' ) ); ?></div>
             </li>
         </ul>
     </div>
@@ -71,7 +75,9 @@
                                     <input type="checkbox" data-bind="checked: enabled"> <?php echo esc_html( __( 'Enabled', 'AWPCP' ) ); ?>
                                 </label>
                             </li>
-                            <li class="awpcp-uploaded-file-action awpcp-uploaded-file-delete-action"><a title="<?php echo esc_attr( __( 'Delete Image', 'AWPCP' ) ); ?>" data-bind="click: $root.deleteFile"></a></li>
+                            <li class="awpcp-uploaded-file-action awpcp-uploaded-file-delete-action"><a title="<?php echo esc_attr( __( 'Delete File', 'AWPCP' ) ); ?>" data-bind="click: $root.deleteFile"></a></li>
+                            <li class="awpcp-uploaded-file-action awpcp-uploaded-file-approve-action" data-bind="visible: $root.showAdminActions() &amp;&amp; !isApproved()"><a title="<?php echo esc_attr( __( 'Approve File', 'AWPCP' ) ); ?>" data-bind="click: $root.approveFile"></a></li>
+                            <li class="awpcp-uploaded-file-action awpcp-uploaded-file-reject-action" data-bind="visible: $root.showAdminActions() &amp;&amp; isApproved()"><a title="<?php echo esc_attr( __( 'Reject File', 'AWPCP' ) ); ?>" data-bind="click: $root.rejectFile"></a></li>
                             <li class="awpcp-uploaded-file-action awpcp-uploaded-file-loading-icon" data-bind="visible: isBeingModified"><span class="awpcp-spinner awpcp-spinner-visible"></span></li>
                         </ul>
                     </td>

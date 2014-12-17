@@ -1,4 +1,4 @@
-#classiwrapper {
+#classiwrapper, .awpcp-media-center {
     .awpcp-uploaded-files-group-title {
         background: #EEE;
         border: 1px solid #DDD;
@@ -157,6 +157,14 @@
         background-image: @delete_image_icon_url;
     }
 
+    .awpcp-uploaded-file-approve-action a {
+        background-image: @approve_attachment_icon_url;
+    }
+
+    .awpcp-uploaded-file-reject-action a {
+        background-image: @reject_attachment_icon_url;
+    }
+
     .awpcp-uploaded-file-loading-icon {
         background: none !important;
         border: none !important;
@@ -171,6 +179,16 @@
     }
     .awpcp-spinner-visible {
         display: block;
+    }
+
+    .awpcp-uploaded-file-spinner {
+        background-color: #fff;
+        margin: -25px -10px;
+        padding: 1px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        border-radius: 12px;
     }
 
     /* Uploaded Video Actions */

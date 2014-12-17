@@ -14,9 +14,12 @@ function( $, ko, FileViewModel, settings ) {
         vm.haveImages = ko.computed( haveImages );
         vm.haveVideos = ko.computed( haveVideos );
         vm.haveOtherFiles = ko.computed( haveOtherFiles );
+        vm.showAdminActions = ko.observable( !! options.show_admin_actions );
 
         vm.deleteFile = deleteFile;
         vm.setFileAsPrimary = setFileAsPrimary;
+        vm.approveFile = approveFile;
+        vm.rejectFile = rejectFile;
 
         vm.getFileCSSClasses = getFileCSSClasses;
         vm.getFileId = getFileId;
@@ -137,6 +140,38 @@ function( $, ko, FileViewModel, settings ) {
             }, function( response ) {
                 if ( response.status === 'ok' ) {
                     vm.files.remove( file );
+                    file.isBeingModified( false );
+                }
+            } );
+        }
+
+        function approveFile( file ) {
+            file.isBeingModified( true );
+
+            $.post( settings.get( 'ajaxurl' ), {
+                nonce: options.nonce,
+                action: 'awpcp-approve-file',
+                listing_id: file.listingId,
+                file_id: file.id
+            }, function( response ) {
+                if ( response.status === 'ok' ) {
+                    file.status( 'Approved' );
+                    file.isBeingModified( false );
+                }
+            } );
+        }
+
+        function rejectFile( file ) {
+            file.isBeingModified( true );
+
+            $.post( settings.get( 'ajaxurl' ), {
+                nonce: options.nonce,
+                action: 'awpcp-reject-file',
+                listing_id: file.listingId,
+                file_id: file.id
+            }, function( response ) {
+                if ( response.status === 'ok' ) {
+                    file.status( 'Rejected' );
                     file.isBeingModified( false );
                 }
             } );

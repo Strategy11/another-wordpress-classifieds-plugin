@@ -1118,14 +1118,16 @@ p.ad_status_msg {
     display: block;
   }
 }
-#classiwrapper {
+#classiwrapper,
+.awpcp-media-center {
   /* Uploaded File */
   /* Uploaded File States */
   /* Uploaded File Actions */
   /* Uploaded File Actions */
   /* Uploaded Video Actions */
 }
-#classiwrapper .awpcp-uploaded-files-group-title {
+#classiwrapper .awpcp-uploaded-files-group-title,
+.awpcp-media-center .awpcp-uploaded-files-group-title {
   background: #EEE;
   border: 1px solid #DDD;
   font-size: 1.2em;
@@ -1133,10 +1135,12 @@ p.ad_status_msg {
   padding: 4px;
   text-align: center;
 }
-#classiwrapper .awpcp-uploaded-files-list {
+#classiwrapper .awpcp-uploaded-files-list,
+.awpcp-media-center .awpcp-uploaded-files-list {
   margin-bottom: 10px;
 }
-#classiwrapper .awpcp-uploaded-file {
+#classiwrapper .awpcp-uploaded-file,
+.awpcp-media-center .awpcp-uploaded-file {
   background: #EEE;
   border: 1px solid #E2E2E2;
   float: left;
@@ -1147,20 +1151,24 @@ p.ad_status_msg {
   position: relative;
   text-align: center;
 }
-#classiwrapper .awpcp-uploaded-file-thumbnail-container {
+#classiwrapper .awpcp-uploaded-file-thumbnail-container,
+.awpcp-media-center .awpcp-uploaded-file-thumbnail-container {
   background: #E2E2E2;
   margin-bottom: 10px;
 }
-#classiwrapper .awpcp-uploaded-file-thumbnail-container img {
+#classiwrapper .awpcp-uploaded-file-thumbnail-container img,
+.awpcp-media-center .awpcp-uploaded-file-thumbnail-container img {
   border-radius: 0;
   box-shadow: none;
   display: block;
   margin: 0 auto;
 }
-#classiwrapper .is-disabled .awpcp-uploaded-file-thumbnail-container img {
+#classiwrapper .is-disabled .awpcp-uploaded-file-thumbnail-container img,
+.awpcp-media-center .is-disabled .awpcp-uploaded-file-thumbnail-container img {
   opacity: 0.5;
 }
-#classiwrapper .awpcp-uploaded-file-primary-label {
+#classiwrapper .awpcp-uploaded-file-primary-label,
+.awpcp-media-center .awpcp-uploaded-file-primary-label {
   position: absolute;
   bottom: -23px;
   height: 20px;
@@ -1175,41 +1183,50 @@ p.ad_status_msg {
   left: 50%;
   margin-left: -72px;
 }
-#classiwrapper .is-primary {
+#classiwrapper .is-primary,
+.awpcp-media-center .is-primary {
   background: #B6E2AF;
   border: 3px solid #86CC7C;
   padding: 1px;
 }
-#classiwrapper .is-awaiting-approval {
+#classiwrapper .is-awaiting-approval,
+.awpcp-media-center .is-awaiting-approval {
   background: #fff6db;
   border-color: #E6E6C8;
 }
-#classiwrapper .is-rejected {
+#classiwrapper .is-rejected,
+.awpcp-media-center .is-rejected {
   background: #ffb3b3;
   border-color: #FC9393;
 }
-#classiwrapper .awpcp-uploaded-files-table {
+#classiwrapper .awpcp-uploaded-files-table,
+.awpcp-media-center .awpcp-uploaded-files-table {
   margin: 0;
 }
-#classiwrapper .awpcp-uploaded-files-table td {
+#classiwrapper .awpcp-uploaded-files-table td,
+.awpcp-media-center .awpcp-uploaded-files-table td {
   padding: 3px;
   vertical-align: middle;
 }
-#classiwrapper .awpcp-uploaded-files-table .awpcp-uploaded-file {
+#classiwrapper .awpcp-uploaded-files-table .awpcp-uploaded-file,
+.awpcp-media-center .awpcp-uploaded-files-table .awpcp-uploaded-file {
   float: none;
   border: none;
   margin: 0;
   padding: 0;
   width: auto;
 }
-#classiwrapper .awpcp-uploaded-files-table .awpcp-uploaded-file-name {
+#classiwrapper .awpcp-uploaded-files-table .awpcp-uploaded-file-name,
+.awpcp-media-center .awpcp-uploaded-files-table .awpcp-uploaded-file-name {
   padding-left: 8px;
   text-align: left;
 }
-#classiwrapper .awpcp-uploaded-file-actions {
+#classiwrapper .awpcp-uploaded-file-actions,
+.awpcp-media-center .awpcp-uploaded-file-actions {
   padding-top: 5px;
 }
-#classiwrapper .awpcp-uploaded-file-action {
+#classiwrapper .awpcp-uploaded-file-action,
+.awpcp-media-center .awpcp-uploaded-file-action {
   float: left;
   border: 1px solid #E2E2E2;
   border-radius: 2px;
@@ -1217,7 +1234,9 @@ p.ad_status_msg {
   background: #FBFBFB;
 }
 #classiwrapper .awpcp-uploaded-file-action a,
-#classiwrapper .awpcp-uploaded-file-action label {
+.awpcp-media-center .awpcp-uploaded-file-action a,
+#classiwrapper .awpcp-uploaded-file-action label,
+.awpcp-media-center .awpcp-uploaded-file-action label {
   background: transparent center center no-repeat;
   cursor: pointer;
   display: block;
@@ -1225,47 +1244,77 @@ p.ad_status_msg {
   line-height: 22px;
   width: 25px;
 }
-#classiwrapper .awpcp-uploaded-file-action:hover {
+#classiwrapper .awpcp-uploaded-file-action:hover,
+.awpcp-media-center .awpcp-uploaded-file-action:hover {
   border-color: #B3B3B3;
   background-color: #D8D8D8;
 }
-#classiwrapper .is-primary .awpcp-uploaded-file-action {
+#classiwrapper .is-primary .awpcp-uploaded-file-action,
+.awpcp-media-center .is-primary .awpcp-uploaded-file-action {
   background: #ECF6EA;
   border-color: #9BCE93;
 }
-#classiwrapper .is-primary .awpcp-uploaded-file-action:hover {
+#classiwrapper .is-primary .awpcp-uploaded-file-action:hover,
+.awpcp-media-center .is-primary .awpcp-uploaded-file-action:hover {
   background: #A5D69D;
 }
-#classiwrapper .awpcp-uploaded-file-change-status-action label {
+#classiwrapper .awpcp-uploaded-file-change-status-action label,
+.awpcp-media-center .awpcp-uploaded-file-change-status-action label {
   padding: 0 4px;
   width: auto;
 }
-#classiwrapper .awpcp-uploaded-file-set-as-primary-action span {
+#classiwrapper .awpcp-uploaded-file-set-as-primary-action span,
+.awpcp-media-center .awpcp-uploaded-file-set-as-primary-action span {
   display: block;
 }
-#classiwrapper .awpcp-uploaded-file-set-as-primary-action a {
+#classiwrapper .awpcp-uploaded-file-set-as-primary-action a,
+.awpcp-media-center .awpcp-uploaded-file-set-as-primary-action a {
   background-image: url(../images/image-not-primary.png);
 }
-#classiwrapper .is-primary .awpcp-uploaded-file-set-as-primary-action a {
+#classiwrapper .is-primary .awpcp-uploaded-file-set-as-primary-action a,
+.awpcp-media-center .is-primary .awpcp-uploaded-file-set-as-primary-action a {
   background-image: url(../images/image-primary.png);
 }
-#classiwrapper .awpcp-uploaded-file-delete-action a {
+#classiwrapper .awpcp-uploaded-file-delete-action a,
+.awpcp-media-center .awpcp-uploaded-file-delete-action a {
   background-image: url(../images/image-delete.png);
 }
-#classiwrapper .awpcp-uploaded-file-loading-icon {
+#classiwrapper .awpcp-uploaded-file-approve-action a,
+.awpcp-media-center .awpcp-uploaded-file-approve-action a {
+  background-image: url(../images/approve-attachment.png);
+}
+#classiwrapper .awpcp-uploaded-file-reject-action a,
+.awpcp-media-center .awpcp-uploaded-file-reject-action a {
+  background-image: url(../images/reject-attachment.png);
+}
+#classiwrapper .awpcp-uploaded-file-loading-icon,
+.awpcp-media-center .awpcp-uploaded-file-loading-icon {
   background: none !important;
   border: none !important;
 }
-#classiwrapper .awpcp-spinner {
+#classiwrapper .awpcp-spinner,
+.awpcp-media-center .awpcp-spinner {
   background: url('/wp-admin/images/spinner.gif') center center no-repeat;
   display: none;
   height: 20px;
   width: 20px;
 }
-#classiwrapper .awpcp-spinner-visible {
+#classiwrapper .awpcp-spinner-visible,
+.awpcp-media-center .awpcp-spinner-visible {
   display: block;
 }
-#classiwrapper .awpcp-uploaded-video-delete-action a {
+#classiwrapper .awpcp-uploaded-file-spinner,
+.awpcp-media-center .awpcp-uploaded-file-spinner {
+  background-color: #fff;
+  margin: -25px -10px;
+  padding: 1px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 12px;
+}
+#classiwrapper .awpcp-uploaded-video-delete-action a,
+.awpcp-media-center .awpcp-uploaded-video-delete-action a {
   background-image: url(../images/film_delete.png);
 }
 .awpcp-media-uploader-upload-restrictions {

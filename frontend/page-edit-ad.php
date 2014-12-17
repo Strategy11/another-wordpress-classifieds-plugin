@@ -323,8 +323,9 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
             'hidden' => array(),
             'errors' => $errors,
             'media_manager_configuration' => array(
-                'nonce' => wp_create_nonce( 'manage-listing-media-' . $ad->ad_id ),
+                'nonce' => wp_create_nonce( 'awpcp-manage-listing-media-' . $ad->ad_id ),
                 'allowed_files' => $allowed_files,
+                'show_admin_actions' => awpcp_current_user_is_admin(),
             ),
             'media_uploader_configuration' => array(
                 'listing_id' => $ad->ad_id,

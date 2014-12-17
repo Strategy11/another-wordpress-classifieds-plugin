@@ -14,11 +14,27 @@ function( ko ) {
         vm.status = ko.observable( file.status );
 
         vm.isPrimary = ko.observable( !! file.isPrimary );
+        vm.isApproved = ko.computed( isApproved );
+        vm.isRejected = ko.computed( isRejected );
+        vm.isAwaitingApproval = ko.computed( isAwaitingApproval );
+
         vm.isBeingModified = ko.observable( false );
 
         vm.thumbnailUrl = ko.observable( file.thumbnailUrl );
         vm.iconUrl = file.iconUrl;
         vm.url = file.url;
+
+        function isApproved() {
+            return vm.status() === 'Approved';
+        }
+
+        function isRejected() {
+            return vm.status() === 'Rejected';
+        }
+
+        function isAwaitingApproval() {
+            return vm.status() === 'Awaiting-Approval';
+        }
     };
 
     return FileViewModel;
