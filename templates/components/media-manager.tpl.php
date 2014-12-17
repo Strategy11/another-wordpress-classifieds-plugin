@@ -1,5 +1,5 @@
 <div class="awpcp-media-manager">
-    <div class="awpcp-uploaded-images" data-bind="if: haveImages">
+    <div class="awpcp-uploaded-files-group awpcp-uploaded-images" data-bind="if: haveImages">
         <h3 class="awpcp-uploaded-files-group-title"><?php echo esc_html( __( 'Images', 'AWPCP' ) ); ?></h3>
         <ul class="awpcp-uploaded-files-list clearfix" data-bind="foreach: { data: images, as: 'image' }">
             <li data-bind="css: $root.getFileCSSClasses( image ), attr: { id: $root.getFileId( image ) }">
@@ -28,7 +28,7 @@
         </ul>
     </div>
 
-    <div class="awpcp-uploaded-videos" data-bind="if: haveVideos">
+    <div class="awpcp-uploaded-files-group awpcp-uploaded-videos" data-bind="if: haveVideos">
         <h3 class="awpcp-uploaded-files-group-title"><?php echo esc_html( __( 'Videos', 'AWPCP' ) ); ?></h3>
         <ul class="awpcp-uploaded-files-list clearfix" data-bind="foreach: { data: videos, as: 'video' }">
             <li data-bind="css: $root.getFileCSSClasses( video ), attr: { id: $root.getFileId( video ) }">
@@ -57,7 +57,7 @@
         </ul>
     </div>
 
-    <div class="awpcp-uploaded-files" data-bind="if: haveOtherFiles">
+    <div class="awpcp-uploaded-files-group awpcp-uploaded-files" data-bind="if: haveOtherFiles">
         <h3 class="awpcp-uploaded-files-group-title"><?php echo esc_html( __( 'Other Files', 'AWPCP' ) ); ?></h3>
         <table class="awpcp-uploaded-files-table">
             <tbody data-bind="foreach: { data: others, as: 'file' }">

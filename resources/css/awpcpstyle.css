@@ -1126,6 +1126,10 @@ p.ad_status_msg {
   /* Uploaded File Actions */
   /* Uploaded Video Actions */
 }
+#classiwrapper .awpcp-uploaded-files-group,
+.awpcp-media-center .awpcp-uploaded-files-group {
+  padding-bottom: 1px;
+}
 #classiwrapper .awpcp-uploaded-files-group-title,
 .awpcp-media-center .awpcp-uploaded-files-group-title {
   background: #EEE;
