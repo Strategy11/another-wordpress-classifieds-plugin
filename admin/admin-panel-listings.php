@@ -183,7 +183,7 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
     private function render_page( $action ) {
         switch ($action) {
             case 'view':
-                return $this->view_ad();
+                return $this->listing_action( 'view_ad' );
                 break;
 
             case 'place-ad':
@@ -274,18 +274,25 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
         }
     }
 
-    public function view_ad() {
-        $ad = AWPCP_Ad::find_by_id($this->id);
+    private function listing_action( $callback ) {
+        $listing_id = awpcp_request()->get_ad_id();
 
-        if (is_null($ad)) {
-            if ($this->id)
-                $message = __("The specified Ad doesn't exists.", 'AWPCP');
-            else
-                $message = __("No Ad ID was specified.", 'AWPCP');
-            awpcp_flash($message, 'error');
-            return $this->redirect('index');
+        if ( empty( $listing_id ) ) {
+            awpcp_flash( __( 'No Ad ID was specified.', 'AWPCP' ), 'error' );
+            return $this->redirect( 'index' );
         }
 
+        try {
+            $listing = awpcp_listings_collection()->get( $listing_id );
+        } catch ( AWPCP_Exception $e ) {
+            awpcp_flash( __( "The specified Ad doesn't exists.", 'AWPCP' ), 'error' );
+            return $this->redirect( 'index' );
+        }
+
+        return call_user_func( array( $this, $callback ), $listing );
+    }
+
+    public function view_ad( $ad ) {
         $category_id = get_adcategory($ad->ad_id);
         $category_url = $this->url(array('showadsfromcat_id' => $category_id));
         $content = showad($ad->ad_id, $omitmenu=1);
