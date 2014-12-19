@@ -10,14 +10,10 @@ class AWPCP_RandomAdWidget extends AWPCP_LatestAdsWidget {
     }
 
     protected function defaults() {
-        return array(
+        return wp_parse_args( array(
             'title' => __('Random Ads', 'AWPCP'),
-            'show-title' => 1,
-            'show-excerpt' => 1,
-            'show-images' => 1,
-            'show-blank' => 1,
             'limit' => 1,
-        );
+        ), parent::defaults() );
     }
 
     protected function query($instance) {
