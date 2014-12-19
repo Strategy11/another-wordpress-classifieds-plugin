@@ -28,14 +28,4 @@ class AWPCP_RandomAdWidget extends AWPCP_LatestAdsWidget {
         $instance = array_merge($this->defaults(), $instance);
         include(AWPCP_DIR . '/frontend/templates/widget-latest-ads-form.tpl.php');
     }
-
-    public function update($new_instance, $old_instance) {
-        $instance['title'] = strip_tags($new_instance['title']);
-        $instance['limit'] = strip_tags($new_instance['limit']);
-        $instance['show-title'] = absint($new_instance['show-title']);
-        $instance['show-excerpt'] = absint($new_instance['show-excerpt']);
-        $instance['show-images'] = absint($new_instance['show-images']);
-        $instance['show-blank'] = absint($new_instance['show-blank']);
-        return $instance;
-    }
 }
