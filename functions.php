@@ -2174,7 +2174,7 @@ function awpcp_ad_awaiting_approval_email($ad, $ad_approve, $images_approve) {
 	if ( false == $ad_approve && $images_approve ) {
 		$subject = __( 'Images on Ad "%s" are awaiting approval', 'AWPCP' );
 
-		$message = __( 'Images on Ad "%s" are awaiting approval. You can approve the images going to the Manage Images sections for that Ad and clicking the "Enable" button below each image. Click here to continue: %s.', 'AWPCP');
+		$message = __( 'Images on Ad "%s" are awaiting approval. You can approve the images going to the Manage Images section for that Ad and clicking the "Enable" button below each image. Click here to continue: %s.', 'AWPCP');
 		$messages = array( sprintf( $message, $ad->get_title(), $manage_images_url ) );
 	} else {
 		$subject = __( 'The Ad "%s" is awaiting approval', 'AWPCP' );
@@ -2186,7 +2186,7 @@ function awpcp_ad_awaiting_approval_email($ad, $ad_approve, $images_approve) {
 	    $messages[] = sprintf( $message, $ad->get_title(), $url );
 
 	    if ( $images_approve ) {
-		    $message = __( 'Additionally, You can approve the images going to the Manage Images sections for that Ad and clicking the "Enable" button below each image. Click here to continue: %s.', 'AWPCP' );
+		    $message = __( 'Additionally, You can approve the images going to the Manage Images section for that Ad and clicking the "Enable" button below each image. Click here to continue: %s.', 'AWPCP' );
 		    $messages[] = sprintf( $message, $manage_images_url );
 		}
 	}

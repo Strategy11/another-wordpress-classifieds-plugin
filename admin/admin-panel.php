@@ -600,7 +600,7 @@ function awpcp_opsconfig_categories() {
 		$category_order = ($category_order != 0 ? $category_order : 0);
 		$cat_parent_ID=get_cat_parent_ID($cat_ID);
 
-		$add_label = __( 'Ad A New Category', 'AWPCP' );
+		$add_label = __( 'Add A New Category', 'AWPCP' );
 		$add_url = awpcp_get_admin_categories_url();
 		$addnewlink = '<a class="" title="%1$s" href="%2$s"" accesskey="s">%1$s</a>';
 		$addnewlink = sprintf( $addnewlink, $add_label, $add_url );

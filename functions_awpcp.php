@@ -475,14 +475,9 @@ function total_ads_in_cat($catid) {
     // TODO: ideally there would be a function to get all visible Ads,
     // and modules, like Regions, would use hooks to include their own
     // conditions.
-    if ($hasregionsmodule == 1) {
-        if (isset($_SESSION['theactiveregionid'])) {
-            $theactiveregionid = $_SESSION['theactiveregionid'];
-
-            if (function_exists('awpcp_regions_api')) {
-            	$regions = awpcp_regions_api();
-            	$conditions[] = $regions->sql_where( $theactiveregionid );
-            }
+    if ( function_exists( 'awpcp_regions' ) && function_exists( 'awpcp_regions_api' ) ) {
+        if ( $active_region = awpcp_regions()->get_active_region() ) {
+            $conditions[] = awpcp_regions_api()->sql_where( $active_region->region_id );
         }
     }
 

@@ -578,7 +578,7 @@ class AWPCP_PaymentsAPI {
                 $html = $this->render_checkout_payment_template($result['output'], $message, $transaction);
             } else if ($integration === AWPCP_PaymentGateway::INTEGRATION_CUSTOM_FORM) {
                 $html = $result['output'];
-            } else if ($integration === AWPCP_PaymentGateway::INTEGRATINO_REDIRECT) {
+            } else if ($integration === AWPCP_PaymentGateway::INTEGRATION_REDIRECT) {
                 $html = $result['output'];
             }
         }

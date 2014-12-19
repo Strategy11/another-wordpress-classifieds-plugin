@@ -236,12 +236,7 @@ function awpcpui_process($awpcppagename) {
 			}
 		}
 
-	} elseif ($action == 'unsetregion') {
-		if (isset($_SESSION['theactiveregionid'])) {
-			unset($_SESSION['theactiveregionid']);
-		}
 	}
-
 
 	$categoriesviewpagename = sanitize_title(get_awpcp_option('view-categories-page-name'));
 	$browsestat='';
@@ -304,10 +299,6 @@ function awpcp_display_the_classifieds_page_body($awpcppagename) {
 	$output .= awpcp_menu_items();
 
 	if ($hasregionsmodule ==  1) {
-		if (isset($_SESSION['theactiveregionid'])) {
-			$theactiveregionid = $_SESSION['theactiveregionid'];
-			$theactiveregionname = get_theawpcpregionname($theactiveregionid);
-		}
 		$output .= awpcp_region_control_selector();
 	}
 
@@ -363,8 +354,7 @@ function awpcp_get_menu_items() {
     }
 
     if ( $show_browse_ads_item ) {
-        $browse_ads_page_name = get_awpcp_option('browse-ads-page-name');
-        if ( is_page( sanitize_title( $browse_ads_page_name ) ) ) {
+        if ( is_page( awpcp_get_page_id_by_ref( 'browse-ads-page-name' ) ) ) {
             if ( get_awpcp_option( 'main_page_display' ) ) {
                 $browse_cats_url = awpcp_get_view_categories_url();
             } else {
@@ -386,6 +376,7 @@ function awpcp_get_menu_items() {
             $view_categories_page_name = get_awpcp_option( 'view-categories-page-name' );
             $items['browse-listings'] = array( 'url' => $browse_cats_url, 'title' => esc_html( $view_categories_page_name ) );
         } else {
+            $browse_ads_page_name = get_awpcp_option('browse-ads-page-name');
             $browse_ads_url = awpcp_get_page_url( 'browse-ads-page-name' );
             $items['browse-listings'] = array( 'url' => $browse_ads_url, 'title' => esc_html( $browse_ads_page_name  ) );
         }

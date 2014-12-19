@@ -456,18 +456,10 @@ function awpcp_display_ads($where, $byl, $hidepager, $grouporderby, $adorcat, $b
 		$output .= awpcp_menu_items();
 
 		if ($hasregionsmodule ==  1) {
-			if (isset($_SESSION['theactiveregionid'])) {
-				$theactiveregionid=$_SESSION['theactiveregionid'];
-				$theactiveregionname = addslashes(get_theawpcpregionname($theactiveregionid));
-			}
-
 			// Do not show Region Control form when showing Search Ads page
 			// search result. Changing the current location will redirect the user
 			// to the form instead of a filterd version of the form and that's confusing
-			global $post;
-			// this is a poor test to see if we are in Search Ads page
-			if ($post->post_name == sanitize_title(get_awpcp_option('search-ads-page-name')) &&
-				isset($_POST['a']) && $_POST['a'] == 'dosearch') {
+			if ( is_page( awpcp_get_page_id_by_ref( 'search-ads-page-name' ) ) && isset( $_POST['a']) && $_POST['a'] == 'dosearch' ) {
 				// do nothing
 			} else {
 				$output .= awpcp_region_control_selector();
