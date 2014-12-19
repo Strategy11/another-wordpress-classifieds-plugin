@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2014-12-15 17:16:53+00:00\n"
+"POT-Creation-Date: 2014-12-19 15:26:17+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -137,7 +137,7 @@ msgstr ""
 msgid "Categories"
 msgstr ""
 
-#: admin/admin-panel-fees-table.php:116 awpcp.php:592
+#: admin/admin-panel-fees-table.php:116 awpcp.php:593
 msgid "Featured Ads"
 msgstr ""
 
@@ -368,8 +368,8 @@ msgid "Disabled"
 msgstr ""
 
 #: admin/admin-panel-listings-table.php:403
-#: templates/components/file-manager.tpl.php:22
-#: templates/components/file-manager.tpl.php:49
+#: templates/components/file-manager.tpl.php:26
+#: templates/components/file-manager.tpl.php:53
 msgid "Enabled"
 msgstr ""
 
@@ -655,7 +655,7 @@ msgstr ""
 msgid "Manage Extra Fields"
 msgstr ""
 
-#: admin/admin-panel.php:265 awpcp.php:585
+#: admin/admin-panel.php:265 awpcp.php:586
 msgid "Extra Fields"
 msgstr ""
 
@@ -688,7 +688,7 @@ msgid "AWPCP Classifieds Management System Categories Management"
 msgstr ""
 
 #: admin/admin-panel.php:603
-msgid "Ad A New Category"
+msgid "Add A New Category"
 msgstr ""
 
 #: admin/admin-panel.php:610
@@ -1963,103 +1963,103 @@ msgstr ""
 msgid "Manage Ad Listings"
 msgstr ""
 
-#: awpcp.php:492
+#: awpcp.php:493
 msgid "AWPCP"
 msgstr ""
 
-#: awpcp.php:519
+#: awpcp.php:520
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
 msgstr ""
 
-#: awpcp.php:520
+#: awpcp.php:521
 msgid "Warning"
 msgstr ""
 
-#: awpcp.php:536
+#: awpcp.php:537
 msgid "Attachments"
 msgstr ""
 
-#: awpcp.php:543
+#: awpcp.php:544
 msgid "Authorize.Net"
 msgstr ""
 
-#: awpcp.php:550
+#: awpcp.php:551
 msgid "BuddyPress Listings"
 msgstr ""
 
-#: awpcp.php:557
+#: awpcp.php:558
 msgid "Campaign Manager"
 msgstr ""
 
-#: awpcp.php:564
+#: awpcp.php:565
 msgid "Category Icons"
 msgstr ""
 
-#: awpcp.php:571
+#: awpcp.php:572
 msgid "Comments & Ratings"
 msgstr ""
 
-#: awpcp.php:578
+#: awpcp.php:579
 msgid "Coupons/Discount"
 msgstr ""
 
-#: awpcp.php:599
+#: awpcp.php:600
 msgid "Fee per Category"
 msgstr ""
 
-#: awpcp.php:606
+#: awpcp.php:607
 msgid "Google Checkout"
 msgstr ""
 
-#: awpcp.php:613
+#: awpcp.php:614
 msgid "PayPal Pro"
 msgstr ""
 
-#: awpcp.php:620
+#: awpcp.php:621
 msgid "Regions Control"
 msgstr ""
 
-#: awpcp.php:627
+#: awpcp.php:628
 msgid "Restricted Categories"
 msgstr ""
 
-#: awpcp.php:634
+#: awpcp.php:635
 msgid "RSS"
 msgstr ""
 
-#: awpcp.php:641
+#: awpcp.php:642
 msgid "Subscriptions"
 msgstr ""
 
-#: awpcp.php:648
+#: awpcp.php:649
 msgid "XML Sitemap"
 msgstr ""
 
-#: awpcp.php:695
+#: awpcp.php:696
 msgid ""
 "The %1$s module you have installed is outdated and not compatible with this "
 "version of AWPCP. Please get %1$s %2$s or newer."
 msgstr ""
 
-#: awpcp.php:825
+#: awpcp.php:826
 msgid "This field is required."
 msgstr ""
 
-#: awpcp.php:826 frontend/page-edit-ad.php:126 frontend/page-edit-ad.php:408
+#: awpcp.php:827 frontend/page-edit-ad.php:126 frontend/page-edit-ad.php:408
 msgid "Please enter a valid email address."
 msgstr ""
 
-#: awpcp.php:827
+#: awpcp.php:828
 msgid "Please enter a valid URL."
 msgstr ""
 
-#: awpcp.php:828
+#: awpcp.php:829
 msgid "Please enter a valid number."
 msgstr ""
 
-#: awpcp.php:829
+#: awpcp.php:830
 msgid "Please enter a valid amount."
 msgstr ""
 
@@ -2123,23 +2123,23 @@ msgstr ""
 msgid "New classified Ad listing posted."
 msgstr ""
 
-#: frontend/ad-functions.php:488
+#: frontend/ad-functions.php:480
 msgid "There are currently no ads in the system"
 msgstr ""
 
-#: frontend/ad-functions.php:544
+#: frontend/ad-functions.php:536
 msgid "There were no ads found"
 msgstr ""
 
-#: frontend/ad-functions.php:571
+#: frontend/ad-functions.php:563
 msgid "Change Category"
 msgstr ""
 
-#: frontend/ad-functions.php:579
+#: frontend/ad-functions.php:571
 msgid "Category: "
 msgstr ""
 
-#: frontend/ad-functions.php:595
+#: frontend/ad-functions.php:587
 msgid "Powered by "
 msgstr ""
 
@@ -2755,11 +2755,11 @@ msgstr ""
 msgid "Share on Facebook"
 msgstr ""
 
-#: frontend/shortcode.php:256
+#: frontend/shortcode.php:251
 msgid "Hi admin, you need to go to your dashboard and setup your classifieds."
 msgstr ""
 
-#: frontend/shortcode.php:259
+#: frontend/shortcode.php:254
 msgid "You currently have no classifieds"
 msgstr ""
 
@@ -3564,7 +3564,7 @@ msgstr ""
 msgid "There are currently no Ads to show."
 msgstr ""
 
-#: frontend/widget-latest-ads.php:132
+#: frontend/widget-latest-ads.php:131
 msgid "Read more"
 msgstr ""
 
@@ -3720,7 +3720,7 @@ msgstr ""
 #: functions.php:2163
 msgid ""
 "Images on Ad \"%s\" are awaiting approval. You can approve the images going "
-"to the Manage Images sections for that Ad and clicking the \"Enable\" button "
+"to the Manage Images section for that Ad and clicking the \"Enable\" button "
 "below each image. Click here to continue: %s."
 msgstr ""
 
@@ -3737,7 +3737,7 @@ msgstr ""
 
 #: functions.php:2175
 msgid ""
-"Additionally, You can approve the images going to the Manage Images sections "
+"Additionally, You can approve the images going to the Manage Images section "
 "for that Ad and clicking the \"Enable\" button below each image. Click here "
 "to continue: %s."
 msgstr ""
@@ -3746,7 +3746,7 @@ msgstr ""
 msgid "Top Level Category"
 msgstr ""
 
-#: functions_awpcp.php:928
+#: functions_awpcp.php:923
 msgid "Email sent %s."
 msgstr ""
 
@@ -6841,11 +6841,11 @@ msgstr ""
 msgid "Address"
 msgstr ""
 
-#: templates/components/file-manager.tpl.php:7
+#: templates/components/file-manager.tpl.php:11
 msgid "Existing Images"
 msgstr ""
 
-#: templates/components/file-manager.tpl.php:10
+#: templates/components/file-manager.tpl.php:14
 msgid ""
 "Use the green check mark icon to set an image as the primary image for this "
 "Ad. The primary image is shown with a green background and border. The "
@@ -6853,32 +6853,32 @@ msgid ""
 "(see above)."
 msgstr ""
 
-#: templates/components/file-manager.tpl.php:12
+#: templates/components/file-manager.tpl.php:16
 msgid ""
 "You can upload a new image and mark it as primary using the fields below."
 msgstr ""
 
-#: templates/components/file-manager.tpl.php:23
+#: templates/components/file-manager.tpl.php:27
 msgid "Delete Image"
 msgstr ""
 
-#: templates/components/file-manager.tpl.php:26
+#: templates/components/file-manager.tpl.php:30
 msgid "This is the Primary Image"
 msgstr ""
 
-#: templates/components/file-manager.tpl.php:27
+#: templates/components/file-manager.tpl.php:31
 msgid "Set as Primary Image"
 msgstr ""
 
-#: templates/components/file-manager.tpl.php:31
+#: templates/components/file-manager.tpl.php:35
 msgid "Primary Image"
 msgstr ""
 
-#: templates/components/file-manager.tpl.php:38
+#: templates/components/file-manager.tpl.php:42
 msgid "Existing Files"
 msgstr ""
 
-#: templates/components/file-manager.tpl.php:50
+#: templates/components/file-manager.tpl.php:54
 msgid "Delete File"
 msgstr ""
 
