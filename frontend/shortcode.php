@@ -236,12 +236,7 @@ function awpcpui_process($awpcppagename) {
 			}
 		}
 
-	} elseif ($action == 'unsetregion') {
-		if (isset($_SESSION['theactiveregionid'])) {
-			unset($_SESSION['theactiveregionid']);
-		}
 	}
-
 
 	$categoriesviewpagename = sanitize_title(get_awpcp_option('view-categories-page-name'));
 	$browsestat='';
@@ -304,10 +299,6 @@ function awpcp_display_the_classifieds_page_body($awpcppagename) {
 	$output .= awpcp_menu_items();
 
 	if ($hasregionsmodule ==  1) {
-		if (isset($_SESSION['theactiveregionid'])) {
-			$theactiveregionid = $_SESSION['theactiveregionid'];
-			$theactiveregionname = get_theawpcpregionname($theactiveregionid);
-		}
 		$output .= awpcp_region_control_selector();
 	}
 
