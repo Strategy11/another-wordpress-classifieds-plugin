@@ -246,6 +246,8 @@ function awpcpui_process($awpcppagename) {
 
 	$isadmin=checkifisadmin();
 
+    awpcp_enqueue_main_script();
+
 	$isclassifiedpage = checkifclassifiedpage($awpcppage);
 	if (($isclassifiedpage == false) && ($isadmin == 1)) {
 		$output .= __("Hi admin, you need to go to your dashboard and setup your classifieds.","AWPCP");

@@ -181,7 +181,6 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
         $instance['show-excerpt'] = absint($new_instance['show-excerpt']);
         $instance['show-images'] = absint($new_instance['show-images']);
         $instance['show-blank'] = absint($new_instance['show-blank']);
-        $instance['show-blank'] = absint($new_instance['show-blank']);
         $instance['thumbnail-position-in-desktop'] = sanitize_text_field( $new_instance['thumbnail-position-in-desktop'] );
         $instance['thumbnail-position-in-mobile'] = sanitize_text_field( $new_instance['thumbnail-position-in-mobile'] );
 
