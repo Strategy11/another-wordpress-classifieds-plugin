@@ -43,7 +43,7 @@ abstract class AWPCP_Module {
             return;
         }
 
-        $this->module_setup();
+        add_action( 'init', array( $this, 'module_setup' ) );
     }
 
     protected function is_up_to_date() {
@@ -59,7 +59,7 @@ abstract class AWPCP_Module {
         // overwrite in children classes if necessary
     }
 
-    protected function module_setup() {
+    public function module_setup() {
         if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
             $this->ajax_setup();
         } else if ( is_admin() ) {
