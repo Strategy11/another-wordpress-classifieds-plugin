@@ -411,28 +411,14 @@ function awpcp_render_listings_items( $listings, $context ) {
  */
 function awpcp_display_ads($where, $byl, $hidepager, $grouporderby, $adorcat, $before_content='') {
 	global $wpdb;
-	global $awpcp_imagesurl, $awpcp_plugin_path;
-	global $hasregionsmodule, $hasextrafieldsmodule;
+	global $awpcp_plugin_path;
+	global $hasregionsmodule;
 
 	$output = '';
-	$awpcppage=get_currentpagename();
-	$awpcppagename = sanitize_title($awpcppage);
-	$quers=setup_url_structure($awpcppagename);
-	$permastruc=get_option('permalink_structure');
-
-	$showadspagename=sanitize_title(get_awpcp_option('show-ads-page-name'));
-	$browseadspagename = sanitize_title(get_awpcp_option('browse-ads-page-name'));
-	$browsecatspagename=sanitize_title(get_awpcp_option('browse-categories-page-name'));
 
 	$awpcp_browsecats_pageid=awpcp_get_page_id_by_ref('browse-categories-page-name');
-	$awpcpwppostpageid=awpcp_get_page_id_by_ref('main-page-name');
 	$browseadspageid=awpcp_get_page_id_by_ref('browse-ads-page-name');
-
 	$searchadspageid=awpcp_get_page_id_by_ref('search-ads-page-name');
-
-	$displayadthumbwidth = get_awpcp_option('displayadthumbwidth');
-
-	$url_browsecats='';
 
 	// filters to provide alternative method of storing custom layouts (e.g. can be outside of this plugin's directory)
 	if ( has_action('awpcp_browse_ads_template_action') || has_filter('awpcp_browse_ads_template_filter') ) {
@@ -448,7 +434,6 @@ function awpcp_display_ads($where, $byl, $hidepager, $grouporderby, $adorcat, $b
 	} else {
 		$output .= "<div id=\"classiwrapper\">";
 
-		$isadmin = checkifisadmin();
 		$uiwelcome=stripslashes_deep(get_awpcp_option('uiwelcome'));
 
 		$output .= apply_filters( 'awpcp-content-before-listings-page', '' );
@@ -469,7 +454,6 @@ function awpcp_display_ads($where, $byl, $hidepager, $grouporderby, $adorcat, $b
 		$output .= $before_content;
 
 		$tbl_ads = $wpdb->prefix . "awpcp_ads";
-		$tbl_ad_photos = $wpdb->prefix . "awpcp_adphotos";
 
 		$from="$tbl_ads";
 
