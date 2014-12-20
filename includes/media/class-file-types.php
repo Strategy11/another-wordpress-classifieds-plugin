@@ -1,13 +1,13 @@
 <?php
 
-function awpcp_attachments_file_types() {
-    return new AWPCP_AttachmentsFileTypes( awpcp()->settings );
+function awpcp_file_types() {
+    return new AWPCP_FileTypes( awpcp()->settings );
 }
 
 /**
- * TODO: move this class into core, and allow modules to register file types.
+ * TODO: allow modules to register file types.
  */
-class AWPCP_AttachmentsFileTypes {
+class AWPCP_FileTypes {
 
     private $file_types;
 
