@@ -219,6 +219,8 @@ require_once( AWPCP_DIR . '/includes/media/class-uploaded-file-logic.php' );
 require_once( AWPCP_DIR . '/includes/media/class-upload-listing-media-ajax-handler.php' );
 require_once( AWPCP_DIR . '/includes/media/class-upload-generated-thumbnail-ajax-handler.php' );
 
+require_once( AWPCP_DIR . '/includes/placeholders/class-placeholders-installation-verifier.php' );
+
 require_once( AWPCP_DIR . "/includes/settings/class-credit-plans-settings.php" );
 require_once( AWPCP_DIR . "/includes/settings/class-files-settings.php" );
 require_once( AWPCP_DIR . "/includes/settings/class-listings-moderation-settings.php" );
