@@ -810,9 +810,6 @@ p.ad_status_msg {
   .awpcp-table {
     /* Force table to not be like tables anymore */
     /* Hide table headers (but not display: none;, for accessibility) */
-    /*
-        Label the data
-        */
   }
   .awpcp-table table,
   .awpcp-table thead,
@@ -832,19 +829,22 @@ p.ad_status_msg {
   }
   .awpcp-table tr {
     border: 1px solid #ccc;
+    /*
+            Label the data
+            */
   }
-  .awpcp-table td {
+  .awpcp-table tr td {
     /* Behave  like a "row" */
     border: none;
     border-bottom: 1px solid #eee;
     position: relative;
     padding-top: 3px;
     padding-bottom: 3px;
-    padding-left: 50%;
+    padding-left: 70%;
     white-space: normal;
     text-align: left;
   }
-  .awpcp-table td:before {
+  .awpcp-table tr td:before {
     /* Now like a table header */
     position: absolute;
     /* Top/left values mimic padding */
@@ -856,7 +856,7 @@ p.ad_status_msg {
     text-align: left;
     font-weight: bold;
   }
-  .awpcp-table td:before {
+  .awpcp-table tr td:before {
     content: attr(data-title);
   }
 }
