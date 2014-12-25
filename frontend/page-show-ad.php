@@ -153,7 +153,7 @@ function showad( $adid=null, $omitmenu=false, $preview=false, $send_email=true, 
 			}
 
 			if (is_null($ad)) {
-				$message = __("Sorry, that Ad is no available. Please try browsing or searching existing ads.", "AWPCP");
+				$message = __( 'Sorry, that listing is not available. Please try browsing or searching existing listings.', 'AWPCP' );
 				return '<div id="classiwrapper">' . awpcp_print_error($message) . '</div><!--close classiwrapper-->';
 			}
 
