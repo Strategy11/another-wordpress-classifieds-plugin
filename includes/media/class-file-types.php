@@ -4,45 +4,15 @@ function awpcp_file_types() {
     static $instance = null;
 
     if ( is_null( $instance ) ) {
-        $instance = awpcp_file_types_builder()->create_instance();
+        $instance = new AWPCP_FileTypes( awpcp()->settings );
     }
 
     return $instance;
 }
 
-function awpcp_file_types_builder() {
-    return new AWPCP_FileTypesBuilder;
-}
-
-class AWPCP_FileTypesBuilder {
-
-    public function create_instance() {
-        $instance = new AWPCP_FileTypes( awpcp()->settings );
-
-        $instance->add_file_types( 'image', array(
-            'png' => array(
-                'name' => 'PNG',
-                'mime_types' => array( 'image/png' ),
-            ),
-            'jpg' => array(
-                'name' => 'JPG',
-                'mime_types' => array( 'image/jpg', 'image/jpeg', 'image/pjpeg' ),
-            ),
-            'gif' => array(
-                'name' => 'GIF',
-                'mime_types' => array( 'image/gif' ),
-            ),
-        ) );
-
-        do_action( 'awpcp-register-file-types', $instance );
-
-        return $instance;
-    }
-}
-
 class AWPCP_FileTypes {
 
-    private $file_types = array();
+    private $file_types = null;
 
     private $settings;
 
@@ -50,12 +20,39 @@ class AWPCP_FileTypes {
         $this->settings = $settings;
     }
 
-    public function add_file_types( $group, $file_types ) {
-        $this->file_types[ $group ] = $file_types;
+    public function get_file_types() {
+        if ( is_null( $this->file_types ) ) {
+            $this->file_types = apply_filters( 'awpcp-file-types', $this->get_default_file_types() );
+        }
+
+        return $this->file_types;
+    }
+
+    private function get_default_file_types() {
+        return array(
+            'image' => array(
+                'png' => array(
+                    'name' => 'PNG',
+                    'mime_types' => array( 'image/png' ),
+                ),
+                'jpg' => array(
+                    'name' => 'JPG',
+                    'mime_types' => array( 'image/jpg', 'image/jpeg', 'image/pjpeg' ),
+                ),
+                'gif' => array(
+                    'name' => 'GIF',
+                    'mime_types' => array( 'image/gif' ),
+                ),
+            )
+        );
+    }
+
+    public function get_file_types_in_group( $group ) {
+        return awpcp_array_data( $group, array(), $this->get_file_types() );
     }
 
     public function get_video_mime_types() {
-        return $this->get_mime_types( $this->file_types['video'] );
+        return $this->get_mime_types( $this->get_file_types_in_group( 'video' ) );
     }
 
     private function get_mime_types( $file_types ) {
@@ -71,7 +68,7 @@ class AWPCP_FileTypes {
     }
 
     public function get_allowed_video_mime_types() {
-        return $this->get_allowed_mime_types( $this->file_types['video'], $this->get_allowed_video_extensions() );
+        return $this->get_allowed_mime_types( $this->get_file_types_in_group( 'video' ), $this->get_allowed_video_extensions() );
     }
 
     private function get_allowed_mime_types( $file_types, $allowed_extensions ) {
@@ -87,7 +84,7 @@ class AWPCP_FileTypes {
     }
 
     public function get_video_extensions() {
-        return array_keys( $this->file_types['video'] );
+        return array_keys( $this->get_file_types_in_group( 'video' ) );
     }
 
     public function get_allowed_video_extensions() {
@@ -95,15 +92,15 @@ class AWPCP_FileTypes {
     }
 
     public function get_other_files_mime_types() {
-        return $this->get_mime_types( $this->file_types['others'] );
+        return $this->get_mime_types( $this->get_file_types_in_group( 'others' ) );
     }
 
     public function get_other_allowed_files_mime_types() {
-        return $this->get_allowed_mime_types( $this->file_types['others'], $this->get_other_allowed_files_extensions() );
+        return $this->get_allowed_mime_types( $this->get_file_types_in_group( 'others' ), $this->get_other_allowed_files_extensions() );
     }
 
     public function get_other_files_extensions() {
-        return array_keys( $this->file_types['others'] );
+        return array_keys( $this->get_file_types_in_group( 'others' ) );
     }
 
     public function get_other_allowed_files_extensions() {
