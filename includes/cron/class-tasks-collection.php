@@ -48,16 +48,13 @@ class AWPCP_TasksCollection {
     }
 
     public function get_next_task() {
-        return $this->get_task_from_query( sprintf( '%s LIMIT 1', $this->get_pending_tasks_query() ) );
+        $pending_tasks_query = $this->get_tasks_query( array( $this->get_pending_status_condition() ) );
+        return $this->get_task_from_query( sprintf( '%s LIMIT 1', $pending_tasks_query ) );
     }
 
-    private function get_pending_tasks_query() {
-        return $this->get_tasks_query( array( $this->get_pending_status_condition() ) );
-    }
-
-    private function get_tasks_query( $conditions ) {
-        $sql = 'SELECT * FROM ' . AWPCP_TABLE_TASKS . ' WHERE %s ORDER BY priority ASC, execute_after ASC, created_at ASC';
-        $sql = sprintf( $sql, implode( ' AND ', $conditions ) );
+    private function get_tasks_query( $conditions, $order = 'ASC' ) {
+        $sql = 'SELECT * FROM ' . AWPCP_TABLE_TASKS . ' WHERE %1$s ORDER BY priority %2$s, execute_after %2$s, created_at %2$s';
+        $sql = sprintf( $sql, implode( ' AND ', $conditions ), $order );
 
         return $sql;
     }
@@ -97,7 +94,8 @@ class AWPCP_TasksCollection {
     }
 
     public function get_pending_tasks() {
-        return $this->get_tasks( $this->get_pending_tasks_query() );
+        $pending_tasks_query = $this->get_tasks_query( array( $this->get_pending_status_condition() ), 'DESC' );
+        return $this->get_tasks( $pending_tasks_query );
     }
 
     private function get_tasks( $query ) {
@@ -136,7 +134,7 @@ class AWPCP_TasksCollection {
     }
 
     public function get_failed_tasks() {
-        return $this->get_tasks( $this->get_tasks_query( array( "status = 'failed'" ) ) );
+        return $this->get_tasks( $this->get_tasks_query( array( "status = 'failed'" ), 'DESC' ) );
     }
 
     public function count_failed_tasks() {
@@ -144,7 +142,7 @@ class AWPCP_TasksCollection {
     }
 
     public function get_complete_tasks() {
-        return $this->get_tasks( $this->get_tasks_query( array( "status = 'complete'" ) ) );
+        return $this->get_tasks( $this->get_tasks_query( array( "status = 'complete'" ), 'DESC' ) );
     }
 
     public function count_complete_tasks() {
