@@ -12,7 +12,7 @@
     }
 ?>
 
-<form class="awpcp-search-ads-form" method="post" action="<?php echo esc_attr( $page->url() ); ?>"name="myform">
+<form class="awpcp-search-ads-form" method="get" action="<?php echo esc_attr( $page->url() ); ?>"name="myform">
     <?php foreach($hidden as $name => $value): ?>
     <input type="hidden" name="<?php echo esc_attr($name); ?>" value="<?php echo esc_attr($value); ?>" />
     <?php endforeach ?>
