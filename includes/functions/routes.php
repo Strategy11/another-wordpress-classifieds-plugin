@@ -109,6 +109,30 @@ if ( ! function_exists( 'is_awpcp_page' ) ) {
     }
 }
 
+function is_awpcp_browse_listings_page() {
+    return awpcp_queried_object_is_page_that_has_shortcode( 'AWPCPBROWSEADS' );
+}
+
+function awpcp_queried_object_is_page_that_has_shortcode( $shortcode ) {
+    global $wp_the_query;
+
+    if ( ! $wp_the_query || ! $wp_the_query->is_page() ) {
+        return false;
+    }
+
+    $page = $wp_the_query->get_queried_object();
+
+    if ( ! $page || ! has_shortcode( $page->post_content, $shortcode ) ) {
+        return false;
+    }
+
+    return true;
+}
+
+function is_awpcp_browse_categories_page() {
+    return awpcp_queried_object_is_page_that_has_shortcode( 'AWPCPBROWSECATS' );
+}
+
 function url_showad($ad_id) {
     $ad = AWPCP_Ad::find_by_id( $ad_id );
 
