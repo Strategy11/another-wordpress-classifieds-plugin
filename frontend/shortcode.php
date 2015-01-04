@@ -360,19 +360,7 @@ function awpcp_get_menu_items() {
             if ( get_awpcp_option( 'main_page_display' ) ) {
                 $browse_cats_url = awpcp_get_view_categories_url();
             } else {
-                $awpcp_page_id = awpcp_get_page_id_by_ref( 'main-page-name' );
-
-                // we don't use get_permalink because it will return the homepage URL
-                // if the main AWPCP page happens to be also the front page, and that
-                // will break our rewrite rules
-                $permalink_structure = get_option( 'permalink_structure' );
-                if ( ! empty( $permalink_structure ) ) {
-                    $base_url = home_url( get_page_uri( $awpcp_page_id ) );
-                } else {
-                    $base_url = add_query_arg( 'page_id', $awpcp_page_id, home_url() );
-                }
-
-                $browse_cats_url = user_trailingslashit( $base_url );
+                $browse_cats_url = awpcp_get_main_page_url();
             }
 
             $view_categories_page_name = get_awpcp_option( 'view-categories-page-name' );
