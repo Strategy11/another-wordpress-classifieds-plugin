@@ -356,7 +356,7 @@ function awpcp_get_menu_items() {
     }
 
     if ( $show_browse_ads_item ) {
-        if ( is_page( awpcp_get_page_id_by_ref( 'browse-ads-page-name' ) ) ) {
+        if ( is_awpcp_browse_listings_page() || is_awpcp_browse_categories_page() ) {
             if ( get_awpcp_option( 'main_page_display' ) ) {
                 $browse_cats_url = awpcp_get_view_categories_url();
             } else {
