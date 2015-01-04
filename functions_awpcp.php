@@ -21,17 +21,6 @@ if(!function_exists('_log')){
 	}
 }
 
-
-
-function sqlerrorhandler($ERROR, $QUERY, $PHPFILE, $LINE) {
-	define("SQLQUERY", $QUERY);
-	define("SQLMESSAGE", $ERROR);
-	define("SQLERRORLINE", $LINE);
-	define("SQLERRORFILE", $PHPFILE);
-	trigger_error("(SQL) $ERROR", E_USER_ERROR);
-}
-
-//Error handler installed in main awpcp.php file, after this file is included.
 function add_slashes_recursive( $variable ) {
 	if (is_string($variable)) {
 		return addslashes($variable);
@@ -152,15 +141,6 @@ function categoriesexist(){
 	$myreturn=!awpcpistableempty($tbl_categories);
 	return $myreturn;
 }
-// END FUNCTION
-function adtermidinuse($adterm_id)
-{
-	global $wpdb;
-	$tbl_ads = $wpdb->prefix . "awpcp_ads";
-
-	$myreturn=!awpcpisqueryempty($tbl_ads, " WHERE adterm_id='$adterm_id'");
-	return $myreturn;
-}
 
 function countlistings($is_active) {
 	global $wpdb;
@@ -204,44 +184,6 @@ function get_total_imagesuploaded($ad_id) {
 	return $images;
 }
 // END FUNCTION
-
-
-
-function awpcp_get_term_duration($adtermid) {
-	global $wpdb;
-
-	$query = 'SELECT rec_period, rec_increment FROM ' . AWPCP_TABLE_ADFEES . ' ';
-	$query.= 'WHERE adterm_id = %d';
-
-	$term = $wpdb->get_row($wpdb->prepare($query, $adtermid));
-
-	if (is_null($term)) {
-		return array();
-	}
-
-	$duration = $term->rec_period;
-	$increment = $term->rec_increment;
-
-	// a value of zero or less means "never expires" or in AWPCP
-	// terms: it will expire in 10 years
-	if ($duration <= 0) {
-		if ($increment == 'D') {
-			$duration = 3650;
-		} else if ($increment == 'W') {
-			$duration = 520;
-		} else if ($increment == 'M') {
-			$duration = 120;
-		} else if ($increment == 'Y') {
-			$duration = 10;
-		}
-	}
-
-	return array('duration' => $duration, 'increment' => $increment);
-}
-
-function get_adpostername($adid) {
-	return get_adfield_by_pk('ad_contact_name', $adid);
-}
 
 function get_adposteremail($adid) {
 	return get_adfield_by_pk('ad_contact_email', $adid);
@@ -496,7 +438,6 @@ function clean_field($foo) {
 	return add_slashes_recursive($foo);
 }
 
-
 // END FUNCTION: replace underscores with dashes for search engine friendly urls
 // START FUNCTION: get the page ID when the page name is known
 // Get the id of a page by its name
@@ -545,35 +486,6 @@ function awpcp_get_page_ids_by_ref($refnames) {
 	return $wpdb->get_col($query);
 }
 
-/**
- * Setup the structure of the URLs based on if permalinks are on and SEO urls
- * are turned on.
- *
- * Actually it doesn't take into account if SEO urls are on. It also takes an
- * argument that is expected to have the same value ALWAYS.
- *
- * Is easier to get the URL for a given page using:
- * get_permalink(awpcp_get_page_id(sanitize-title($human-readable-pagename)));
- * or
- * get_permalink(awpcp_get_page_id_by_ref(<setting that stores that pages name>))
- */
-function setup_url_structure($awpcpthepagename) {
-	$quers = '';
-	$theblogurl = get_bloginfo('url');
-	$permastruc = get_option('permalink_structure');
-
-	if(strstr($permastruc,'index.php')) {
-		$theblogurl.="/index.php";
-	}
-
-	if(isset($permastruc) && !empty($permastruc)) {
-		$quers="$theblogurl/$awpcpthepagename";
-	} else {
-		$quers="$theblogurl";
-	}
-
-	return $quers;
-}
 
 function url_showad($ad_id) {
 	$ad = AWPCP_Ad::find_by_id( $ad_id );

@@ -1032,21 +1032,6 @@ function awpcp_get_ad_number_allowed_images($ad_id) {
 	return $allowed;
 }
 
-
-/**
- * @deprecated since 3.0.2 - use awpcp_media_api()->find_images_by_ad_id() instead
- */
-function awpcp_get_ad_images( $ad_id ) {
-	_deprecated_function( __FUNCTION__, '3.0.2', 'awpcp_media_api()->find_images_by_ad_id()' );
-
-	global $wpdb;
-
-	$query = "SELECT * FROM " . AWPCP_TABLE_ADPHOTOS . " ";
-	$query.= "WHERE ad_id=%d ORDER BY image_name ASC";
-
-	return $wpdb->get_results($wpdb->prepare($query, $ad_id));
-}
-
 /**
  * @deprecated 3.0.2 use $media->get_url()
  */

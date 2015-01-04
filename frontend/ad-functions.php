@@ -15,30 +15,6 @@ function awpcp_get_fees() {
 	return is_array($results) ? $results : array();
 }
 
-
-function awpcp_get_ad_images_information($ad_id) {
-	if ($ad_id <= 0) {
-		return __('An unexpected error ocurred. No Ad was specified.', 'AWPCP');
-	}
-
-	if (get_awpcp_option('imagesallowdisallow') != 1) {
-		$images_allowed = 0;
-	} else {
-		$images_allowed = awpcp_get_ad_number_allowed_images($ad_id);
-	}
-
-	if ($images_allowed > 0) {
-		$images_uploaded = get_total_imagesuploaded($ad_id);
-		$images_left = max($images_allowed - $images_uploaded, 0);
-	} else {
-		$images_uploaded = 0;
-		$images_left = 0;
-	}
-
-	return array($images_allowed, $images_uploaded, $images_left);
-}
-
-
 /**
  * Generic function to calculate an date relative to a given start date.
  *
@@ -201,7 +177,6 @@ function deletead($adid, $adkey, $editemail, $force=false, &$errors=array()) {
 	$output = '';
 	$awpcppage = get_currentpagename();
 	$awpcppagename = sanitize_title($awpcppage, $post_ID='');
-	$quers = setup_url_structure($awpcppagename);
 
 	$isadmin = checkifisadmin() || $force;
 
