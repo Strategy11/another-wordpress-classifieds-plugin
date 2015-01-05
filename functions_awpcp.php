@@ -21,17 +21,6 @@ if(!function_exists('_log')){
 	}
 }
 
-
-
-function sqlerrorhandler($ERROR, $QUERY, $PHPFILE, $LINE) {
-	define("SQLQUERY", $QUERY);
-	define("SQLMESSAGE", $ERROR);
-	define("SQLERRORLINE", $LINE);
-	define("SQLERRORFILE", $PHPFILE);
-	trigger_error("(SQL) $ERROR", E_USER_ERROR);
-}
-
-//Error handler installed in main awpcp.php file, after this file is included.
 function add_slashes_recursive( $variable ) {
 	if (is_string($variable)) {
 		return addslashes($variable);
@@ -152,15 +141,6 @@ function categoriesexist(){
 	$myreturn=!awpcpistableempty($tbl_categories);
 	return $myreturn;
 }
-// END FUNCTION
-function adtermidinuse($adterm_id)
-{
-	global $wpdb;
-	$tbl_ads = $wpdb->prefix . "awpcp_ads";
-
-	$myreturn=!awpcpisqueryempty($tbl_ads, " WHERE adterm_id='$adterm_id'");
-	return $myreturn;
-}
 
 function countlistings($is_active) {
 	global $wpdb;
@@ -204,44 +184,6 @@ function get_total_imagesuploaded($ad_id) {
 	return $images;
 }
 // END FUNCTION
-
-
-
-function awpcp_get_term_duration($adtermid) {
-	global $wpdb;
-
-	$query = 'SELECT rec_period, rec_increment FROM ' . AWPCP_TABLE_ADFEES . ' ';
-	$query.= 'WHERE adterm_id = %d';
-
-	$term = $wpdb->get_row($wpdb->prepare($query, $adtermid));
-
-	if (is_null($term)) {
-		return array();
-	}
-
-	$duration = $term->rec_period;
-	$increment = $term->rec_increment;
-
-	// a value of zero or less means "never expires" or in AWPCP
-	// terms: it will expire in 10 years
-	if ($duration <= 0) {
-		if ($increment == 'D') {
-			$duration = 3650;
-		} else if ($increment == 'W') {
-			$duration = 520;
-		} else if ($increment == 'M') {
-			$duration = 120;
-		} else if ($increment == 'Y') {
-			$duration = 10;
-		}
-	}
-
-	return array('duration' => $duration, 'increment' => $increment);
-}
-
-function get_adpostername($adid) {
-	return get_adfield_by_pk('ad_contact_name', $adid);
-}
 
 function get_adposteremail($adid) {
 	return get_adfield_by_pk('ad_contact_email', $adid);
@@ -495,183 +437,7 @@ function total_ads_in_cat($catid) {
 function clean_field($foo) {
 	return add_slashes_recursive($foo);
 }
-
-
 // END FUNCTION: replace underscores with dashes for search engine friendly urls
-// START FUNCTION: get the page ID when the page name is known
-// Get the id of a page by its name
-function awpcp_get_page_id($name) {
-	global $wpdb;
-	if (!empty($name)) {
-		$sql = "SELECT ID FROM {$wpdb->posts} WHERE post_name = '$name'";
-		$id = $wpdb->get_var($sql);
-		return $id;
-	}
-	return 0;
-}
-
-/**
- * Returns the ID of WP Page associated to a page-name setting.
- *
- * TOOD: get all page entries in one query an cache the result during the request
- *
- * @param $refname the name of the setting that holds the name of the page
- */
-function awpcp_get_page_id_by_ref($refname) {
-	global $wpdb;
-	$query = 'SELECT page, id FROM ' . AWPCP_TABLE_PAGES . ' WHERE page = %s';
-	$page = $wpdb->get_results($wpdb->prepare($query, $refname));
-	if (!empty($page)) {
-		return array_shift($page)->id;
-	} else {
-		return false;
-	}
-}
-
-/**
- * Return the IDs of WP pages associated with AWPCP pages.
- *
- * @return array Array of Page IDs
- */
-function awpcp_get_page_ids_by_ref($refnames) {
-	global $wpdb;
-
-	$refnames = (array) $refnames;
-	$query = 'SELECT id FROM ' . AWPCP_TABLE_PAGES . ' ';
-
-	if (!empty($refnames))
-		$query = sprintf("%s WHERE page IN ('%s')", $query, join("','", $refnames));
-
-	return $wpdb->get_col($query);
-}
-
-/**
- * Setup the structure of the URLs based on if permalinks are on and SEO urls
- * are turned on.
- *
- * Actually it doesn't take into account if SEO urls are on. It also takes an
- * argument that is expected to have the same value ALWAYS.
- *
- * Is easier to get the URL for a given page using:
- * get_permalink(awpcp_get_page_id(sanitize-title($human-readable-pagename)));
- * or
- * get_permalink(awpcp_get_page_id_by_ref(<setting that stores that pages name>))
- */
-function setup_url_structure($awpcpthepagename) {
-	$quers = '';
-	$theblogurl = get_bloginfo('url');
-	$permastruc = get_option('permalink_structure');
-
-	if(strstr($permastruc,'index.php')) {
-		$theblogurl.="/index.php";
-	}
-
-	if(isset($permastruc) && !empty($permastruc)) {
-		$quers="$theblogurl/$awpcpthepagename";
-	} else {
-		$quers="$theblogurl";
-	}
-
-	return $quers;
-}
-
-function url_showad($ad_id) {
-	$ad = AWPCP_Ad::find_by_id( $ad_id );
-
-	if ( is_null( $ad ) ) return false;
-
-	$seoFriendlyUrls = get_awpcp_option('seofriendlyurls');
-	$permastruc = get_option('permalink_structure');
-
-	$awpcp_showad_pageid = awpcp_get_page_id_by_ref('show-ads-page-name');
-	$base_url = get_permalink($awpcp_showad_pageid);
-	$url = false;
-
-	$params = array('id' => $ad_id);
-
-	if($seoFriendlyUrls && isset($permastruc) && !empty($permastruc)) {
-		$url = sprintf( '%s/%s', trim( $base_url, '/' ), $ad_id );
-
-		$region = $ad->get_first_region();
-
-		$parts = array();
-
-		if ( get_awpcp_option( 'include-title-in-listing-url' ) ) {
-			$parts[] = sanitize_title( $ad->get_title() );
-		}
-
-		if( get_awpcp_option( 'include-city-in-listing-url' ) && $region ) {
-			$parts[] = sanitize_title( awpcp_array_data( 'city', '', $region ) );
-		}
-		if( get_awpcp_option( 'include-state-in-listing-url' ) && $region ) {
-			$parts[] = sanitize_title( awpcp_array_data( 'state', '', $region ) );
-		}
-		if( get_awpcp_option( 'include-country-in-listing-url' ) && $region ) {
-			$parts[] = sanitize_title( awpcp_array_data( 'country', '', $region ) );
-		}
-		if( get_awpcp_option( 'include-county-in-listing-url' ) && $region ) {
-			$parts[] = sanitize_title( awpcp_array_data( 'county', '', $region ) );
-		}
-		if( get_awpcp_option( 'include-category-in-listing-url' ) ) {
-			$awpcp_ad_category_id = $ad->ad_category_id;
-			$parts[] = sanitize_title(get_adcatname($awpcp_ad_category_id));
-		}
-
-		// always append a slash (RSS module issue)
-		$url = sprintf( "%s%s", trailingslashit( $url ), join( '/', array_filter( $parts ) ) );
-		$url = user_trailingslashit($url);
-	} else {
-		$base_url = user_trailingslashit($base_url);
-		$url = add_query_arg($params, $base_url);
-	}
-
-	return $url;
-}
-
-function url_browsecategory($cat_id) {
-	$permalinks = get_option('permalink_structure');
-	$base_url = awpcp_get_page_url('browse-categories-page-name');
-
-	$cat_name = get_adcatname($cat_id);
-	$cat_slug = sanitize_title($cat_name);
-
-	if (get_awpcp_option('seofriendlyurls')) {
-		if (!empty($permalinks)) {
-			$url_browsecats = sprintf('%s/%s/%s', trim($base_url, '/'), $cat_id, $cat_slug);
-		} else {
-			$params = array('a' => 'browsecat', 'category_id' => $cat_id);
-			$url_browsecats = add_query_arg($params, $base_url);
-		}
-	} else {
-		if (!empty($permalinks)) {
-			$params = array('category_id' => "$cat_id/$cat_slug");
-		} else {
-			$params = array('a' => 'browsecat', 'category_id' => $cat_id);
-		}
-		$url_browsecats = add_query_arg($params, $base_url);
-	}
-
-	return user_trailingslashit($url_browsecats);
-}
-
-function url_placead() {
-	return user_trailingslashit(awpcp_get_page_url('place-ad-page-name'));
-}
-
-/**
- * @deprecated deprecated since 2.0.6.
- */
-function url_classifiedspage() {
-	return awpcp_get_main_page_url();
-}
-
-function url_searchads() {
-	return user_trailingslashit(awpcp_get_page_url('search-ads-page-name'));
-}
-
-function url_editad() {
-	return user_trailingslashit(awpcp_get_page_url('edit-ad-page-name'));
-}
 
 /**
  * @deprecated since 2.0.7
@@ -687,13 +453,6 @@ function add_config_group_id($cvalue,$coption) {
 	$query = $wpdb->prepare( $query, $cvalue, $coption );
 
 	$wpdb->query( $query );
-}
-
-/**
- * Returns the current name of the AWPCP main page.
- */
-function get_currentpagename() {
-	return get_awpcp_option('main-page-name');
 }
 
 function field_exists($field) {
@@ -772,26 +531,7 @@ function massdeleteadsfromcategory($catid) {
 		$ad->delete();
 	}
 }
-
-
-// END FUNCTION: sidebar widget
-// START FUNCTION: make sure there's not more than one page with the name of the classifieds page
-function checkforduplicate($cpagename_awpcp) {
-	global $wpdb;
-
-	$awpcppagename = sanitize_title( $cpagename_awpcp );
-
-	$query = "SELECT ID FROM {$wpdb->posts} WHERE post_name = %s AND post_type = %s";
-	$query = $wpdb->prepare( $query, $awpcppagename, 'post' );
-
-	$post_ids = $wpdb->get_col( $query );
-
-	if ( $post_ids !== false ) {
-		return count( $post_ids );
-	} else {
-		return '';
-	}
-}
+// END FUNCTION
 
 function create_ad_postedby_list($name) {
 	global $wpdb;
