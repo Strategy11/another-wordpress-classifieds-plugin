@@ -863,6 +863,10 @@ p.ad_status_msg {
     content: attr(data-title);
   }
 }
+.awpcp-listing-primary-image-listing-link {
+  display: inline-block;
+  position: relative;
+}
 .awpcp-category-dropdown {
   margin-right: 5px;
 }
@@ -1647,6 +1651,10 @@ body .awpcp-ad-primary-image .thumbnail,
 body .awpcp-ad-primary-image .enlarge,
 #showawpcpadpage .awpcp-ad-primary-image .enlarge {
   display: block;
+}
+body .awpcp-listing-primary-image-thickbox-link,
+#showawpcpadpage .awpcp-listing-primary-image-thickbox-link {
+  position: relative;
 }
 .awpcp-subtitle {
   font-weight: bold;
