@@ -1,7 +1,13 @@
 <?php
 
 function awpcp_listings_metadata() {
-    return new AWPCP_ListingsMetadata();
+    static $instance = null;
+
+    if ( is_null( $instance ) ) {
+        $instance = new AWPCP_ListingsMetadata();
+    }
+
+    return $instance;
 }
 
 class AWPCP_ListingsMetadata {
