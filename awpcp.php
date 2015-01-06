@@ -618,6 +618,13 @@ class AWPCP {
 					'version' => 'AWPCP_GOOGLE_CHECKOUT_MODULE_DB_VERSION',
 					'required' => '3.0.1',
 				),
+                'mark-as-sold' => array(
+                    'name' => __( 'Mark as Sold', 'AWPCP' ),
+                    'url' => 'http://www.awpcp.com/premium-modules/mark-as-sold-module/?ref=panel',
+                    'installed' => defined( 'AWPCP_MARK_AS_SOLD_MODULE' ),
+                    'version' => 'AWPCP_MARK_AS_SOLD_MODULE_DB_VERSION',
+                    'required' => '1.0',
+                ),
 				'paypal-pro' => array(
 					'name' => __(  'PayPal Pro', 'AWPCP'  ),
 					'url' => 'http://www.awpcp.com/premium-modules/paypalpro-payment-module/?ref=user-panel',
