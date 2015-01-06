@@ -123,9 +123,13 @@ require_once(AWPCP_DIR . "/includes/helpers/widgets/categories-dropdown.php");
 require_once(AWPCP_DIR . "/includes/helpers/widgets/multiple-region-selector.php");
 require_once(AWPCP_DIR . "/includes/helpers/widgets/class-asynchronous-tasks-component.php");
 require_once(AWPCP_DIR . "/includes/helpers/widgets/class-file-manager-component.php");
+require_once(AWPCP_DIR . "/includes/helpers/widgets/class-listing-actions-component.php");
 require_once(AWPCP_DIR . "/includes/helpers/widgets/class-user-field.php");
 require_once(AWPCP_DIR . "/includes/helpers/widgets/class-users-dropdown.php");
 require_once(AWPCP_DIR . "/includes/helpers/widgets/class-users-autocomplete.php");
+
+require_once( AWPCP_DIR . "/includes/listings/class-listing-action.php" );
+require_once( AWPCP_DIR . "/includes/listings/class-listing-action-with-confirmation.php" );
 
 require_once( AWPCP_DIR . "/includes/meta/class-meta-tags-generator.php" );
 require_once( AWPCP_DIR . "/includes/meta/class-tag-renderer.php" );

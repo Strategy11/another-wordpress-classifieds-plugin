@@ -492,7 +492,10 @@
 #awpcp-admin-settings form.facebook-integration-settings .section.disabled {
   color: #ccc;
 }
-.is-hidden {
+.is-hidden,
+.is-hidden[type="reset"],
+.is-hidden[type="button"],
+.is-hidden[type="submit"] {
   display: none;
 }
 .is-visible-inline-block {
