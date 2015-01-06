@@ -130,6 +130,7 @@ require_once(AWPCP_DIR . "/includes/helpers/widgets/class-users-autocomplete.php
 
 require_once( AWPCP_DIR . "/includes/listings/class-listing-action.php" );
 require_once( AWPCP_DIR . "/includes/listings/class-listing-action-with-confirmation.php" );
+require_once( AWPCP_DIR . "/includes/listings/class-delete-listing-action.php" );
 
 require_once( AWPCP_DIR . "/includes/meta/class-meta-tags-generator.php" );
 require_once( AWPCP_DIR . "/includes/meta/class-tag-renderer.php" );
@@ -436,6 +437,8 @@ class AWPCP {
         add_action( 'awpcp-category-edited', array( $this, 'clear_categories_list_cache' ) );
         add_action( 'awpcp-category-deleted', array( $this, 'clear_categories_list_cache' ) );
         add_action( 'awpcp-pages-updated', array( $this, 'clear_categories_list_cache' ) );
+
+        add_filter( 'awpcp-listing-actions', array( $this, 'register_listing_actions' ), 10, 2 );
 
         // load resources required both in front end and admin screens, but not during ajax calls.
         if ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) {
@@ -1071,6 +1074,18 @@ class AWPCP {
 		}
 		delete_option( 'awpcp-categories-list-cache-keys' );
 	}
+
+    public function register_listing_actions( $actions, $listing ) {
+        $this->maybe_add_listing_action( $actions, $listing, new AWPCP_DeleteListingAction() );
+
+        return $actions;
+    }
+
+    private function maybe_add_listing_action( &$actions, $listing, $action ) {
+        if ( $action->is_enabled_for_listing( $listing ) ) {
+            $actions[ $action->get_slug() ] = $action;
+        }
+    }
 }
 
 function awpcp() {

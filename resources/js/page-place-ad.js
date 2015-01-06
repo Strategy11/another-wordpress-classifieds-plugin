@@ -251,19 +251,25 @@ function( $, ko, FileManager, settings ) {
         /* Deleta Ad Form */
 
         (function() {
-            var form = container.find('.awpcp-delete-ad-form'),
+            var form = container.find('.awpcp-listing-action-delete-ad-form'),
                 submit = form.find(':submit'),
-                confirmation = form.find('.confirm');
+                confirmationMessage = form.find('.awpcp-listing-action-form-confirmation'),
+                cancelButton = form.find('.awpcp-listing-action-form-cancel-button'),
+                hiddenElements = $().add(confirmationMessage).add(cancelButton);
+
             if (form.length) {
                 form.submit(function(event) {
                     if (!submit.data('submit')) {
                         event.preventDefault();
-                        confirmation.show();
+                        form.addClass( 'is-active' );
+                        hiddenElements.removeClass( 'is-hidden' );
                         form.append($('<input type="hidden" name="confirm" value="true">'));
                         submit.data('submit', true);
                     }
-                }).find('.confirm:button').click(function() {
-                    confirmation.hide();
+                });
+                cancelButton.click(function() {
+                    form.removeClass( 'is-active' );
+                    hiddenElements.addClass( 'is-hidden' );
                     form.find('[name="confirm"]').remove();
                     submit.data('submit', false);
                 });
