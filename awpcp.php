@@ -395,8 +395,6 @@ class AWPCP {
     			add_filter('wp_list_pages_excludes', 'exclude_awpcp_child_pages');
     		}
 
-    		add_filter('cron_schedules', 'awpcp_cron_schedules');
-
     		awpcp_schedule_activation();
 
     		$this->modules_manager->load_modules();
