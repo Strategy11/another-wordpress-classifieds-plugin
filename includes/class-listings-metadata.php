@@ -19,6 +19,10 @@ class AWPCP_ListingsMetadata {
     public function set( $listing_id, $name, $value ) {
         return awpcp_update_ad_meta( $listing_id, $name, $value );
     }
+
+    public function delete( $listing_id, $name, $value = null ) {
+        return awpcp_delete_ad_meta( $listing_id, $name, $value );
+    }
 }
 
 //
