@@ -19,12 +19,16 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
 
     public function get_ad() {
         if (is_null($this->ad)) {
-            if ( $id = awpcp_request_param( 'ad_id', awpcp_request_param( 'id', get_query_var( 'id' ) ) ) ) {
+            if ( $id = $this->get_listing_id() ) {
                 $this->ad = AWPCP_Ad::find_by_id($id);
             }
         }
 
         return $this->ad;
+    }
+
+    private function get_listing_id() {
+        return awpcp_request_param( 'ad_id', awpcp_request_param( 'id', get_query_var( 'id' ) ) );
     }
 
     public function get_edit_hash($ad) {
@@ -462,11 +466,14 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
     }
 
     private function handle_custom_listing_actions( $action ) {
+        $listing_id = $this->get_listing_id();
         $listing = $this->get_ad();
 
-        if ( is_null( $listing ) ) {
+        if ( $listing_id && is_null( $listing ) ) {
             $message = __( 'The specified Ad doesn\'t exists.', 'AWPCP' );
             return $this->render( 'content', awpcp_print_error( $message ) );
+        } else if ( is_null( $listing ) ) {
+            return $this->enter_email_and_key_step();
         }
 
         $output = apply_filters( "awpcp-custom-listing-action-$action", null, $listing );
