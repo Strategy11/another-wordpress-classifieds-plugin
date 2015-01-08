@@ -313,16 +313,21 @@ function awpcp_get_view_categories_url() {
  * @since next-release
  */
 function awpcp_get_edit_listing_url( $listing ) {
-    $settings = awpcp()->settings;
-
-    if ( $settings->get_option( 'requireuserregistration' ) ) {
-        if ( $settings->get_option( 'enable-user-panel' ) ) {
-            return add_query_arg( array( 'action' => 'edit', 'id' => $listing->ad_id ), awpcp_get_user_panel_url() );
-        } else {
-            return awpcp_get_edit_listing_page_url_with_listing_id( $listing );
-        }
+    if ( awpcp()->settings->get_option( 'requireuserregistration' ) ) {
+        return awpcp_get_edit_listing_direct_url( $listing );
     } else {
-        return awpcp_get_page_url( 'edit-ad-page-name' );
+        return awpcp_get_edit_listing_generic_url();
+    }
+}
+
+/**
+ * @since next-release
+ */
+function awpcp_get_edit_listing_direct_url( $listing ) {
+    if ( awpcp()->settings->get_option( 'enable-user-panel' ) ) {
+        return add_query_arg( array( 'action' => 'edit', 'id' => $listing->ad_id ), awpcp_get_user_panel_url() );
+    } else {
+        return awpcp_get_edit_listing_page_url_with_listing_id( $listing );
     }
 }
 
@@ -346,9 +351,7 @@ function awpcp_get_edit_listing_page_url_with_listing_id( $listing ) {
  * @since next-release
  */
 function awpcp_get_edit_listing_generic_url() {
-    $settings = awpcp()->settings;
-
-    if ( $settings->get_option( 'enable-user-panel' ) ) {
+    if ( awpcp()->settings->get_option( 'enable-user-panel' ) ) {
         return awpcp_get_user_panel_url();
     } else {
         return awpcp_get_page_url( 'edit-ad-page-name' );
