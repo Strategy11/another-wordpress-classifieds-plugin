@@ -840,27 +840,14 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             $errors['ad_contact_email'] = __("You did not enter your email. Your email is required.", "AWPCP");
         }
 
-        $wildcard = 'BCCsyfxU6HMXyyasic6t';
-        $pattern = '[a-zA-Z0-9-]*';
-
-        $domains_whitelist = str_replace( '*', $wildcard, get_awpcp_option( 'ad-poster-email-address-whitelist' ) );
-        $domains_whitelist = preg_quote( $domains_whitelist );
-        $domains_whitelist = str_replace( $wildcard, $pattern, $domains_whitelist );
-        $domains_whitelist = str_replace( "{$pattern}\.", "(?:{$pattern}\.)?", $domains_whitelist );
-        $domains_whitelist = array_filter( explode( "\n", $domains_whitelist ) );
-        $domains_pattern = '/' . implode( '|', $domains_whitelist ) . '/';
-
         // Check if email address entered is in a valid email address format
-        if (!isValidEmailAddress($data['ad_contact_email'])) {
+        if ( ! awpcp_is_valid_email_address( $data['ad_contact_email'] ) ) {
             $errors['ad_contact_email'] = __("The email address you entered was not a valid email address. Please check for errors and try again.", "AWPCP");
-        } else if ( ! empty( $domains_whitelist ) ) {
-            $domain = substr( $data['ad_contact_email'], strpos( $data['ad_contact_email'], '@' ) + 1 );
-            if ( ! preg_match( $domains_pattern, 'wvega.com' ) ) {
-                $message = __( 'The email address you entered is not allowed in this website. Please use an email address from one of the following domains: %s.', 'AWPCP' );
-                $domains_whitelist = explode( "\n", get_awpcp_option( 'ad-poster-email-address-whitelist' ) );
-                $domains_list = '<strong>' . implode( '</strong>, <strong>', $domains_whitelist ) . '</strong>';
-                $errors['ad_contact_email'] = sprintf( $message, $domains_list );
-            }
+        } else if ( ! awpcp_is_email_address_allowed( $data['ad_contact_email'] ) ) {
+            $message = __( 'The email address you entered is not allowed in this website. Please use an email address from one of the following domains: %s.', 'AWPCP' );
+            $domains_whitelist = explode( "\n", get_awpcp_option( 'ad-poster-email-address-whitelist' ) );
+            $domains_list = '<strong>' . implode( '</strong>, <strong>', $domains_whitelist ) . '</strong>';
+            $errors['ad_contact_email'] = sprintf( $message, $domains_list );
         }
 
         // If phone field is checked and required make sure phone value was entered
