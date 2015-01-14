@@ -37,8 +37,8 @@ class AWPCP_ListingsAPI {
      */
     public function dispatch() {
         $awpcpx = $this->request->get_query_var( 'awpcpx' );
-        $module = $this->request->get_query_var( 'awpcp-module' );
-        $action = $this->request->get_query_var( 'awpcp-action' );
+        $module = $this->request->get_query_var( 'awpcp-module', $this->request->get_query_var( 'module' ) );
+        $action = $this->request->get_query_var( 'awpcp-action', $this->request->get_query_var( 'action' ) );
 
         if ( $awpcpx && $module == 'listings' ) {
             switch ( $action ) {
