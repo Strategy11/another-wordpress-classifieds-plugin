@@ -2023,3 +2023,8 @@ function awpcp_register_activation_hook( $__FILE__, $callback ) {
     $file = WP_CONTENT_DIR . '/plugins/' . basename( dirname( $__FILE__ ) ) . '/' . basename( $__FILE__ );
     register_activation_hook( $file, $callback );
 }
+
+function awpcp_register_deactivation_hook( $__FILE__, $callback ) {
+    $file = WP_CONTENT_DIR . '/plugins/' . basename( dirname( $__FILE__ ) ) . '/' . basename( $__FILE__ );
+    register_deactivation_hook( $file, $callback );
+}

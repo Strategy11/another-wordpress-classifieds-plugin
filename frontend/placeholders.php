@@ -507,7 +507,7 @@ function awpcp_do_placeholder_images($ad, $placeholder) {
 
             // single ad
             $content = '<div class="awpcp-ad-primary-image">';
-            $content.= '<a class="thickbox thumbnail" href="%s">';
+            $content.= '<a class="awpcp-listing-primary-image-thickbox-link thickbox thumbnail" href="%s">';
             $content.= '<img class="thumbshow" src="%s"/>';
             $content.= '</a>%s';
             $content.= '</div>';
@@ -517,7 +517,7 @@ function awpcp_do_placeholder_images($ad, $placeholder) {
                                                             $link);
 
             // listings
-            $content = '<a href="%s"><img src="%s" width="%spx" border="0" alt="%s" /></a>';
+            $content = '<a class="awpcp-listing-primary-image-listing-link" href="%s"><img src="%s" width="%spx" border="0" alt="%s" /></a>';
             $content = sprintf($content, $url, $thumbnail, $thumbnail_width, awpcp_esc_attr($ad->ad_title));
 
             $placeholders['awpcp_image_name_srccode'] = $content;
@@ -564,7 +564,7 @@ function awpcp_do_placeholder_images($ad, $placeholder) {
     // fallback thumbnail
     if ( get_awpcp_option( 'imagesallowdisallow' ) == 1 && empty( $placeholders['awpcp_image_name_srccode'] ) ) {
         $thumbnail = sprintf('%s/adhasnoimage.png', $awpcp_imagesurl);
-        $content = '<a href="%s"><img src="%s" width="%spx" border="0" alt="%s" /></a>';
+        $content = '<a class="awpcp-listing-primary-image-listing-link" href="%s"><img src="%s" width="%spx" border="0" alt="%s" /></a>';
         $content = sprintf($content, $url, $thumbnail, $thumbnail_width, awpcp_esc_attr($ad->ad_title));
 
         $placeholders['awpcp_image_name_srccode'] = $content;
@@ -574,7 +574,7 @@ function awpcp_do_placeholder_images($ad, $placeholder) {
     $placeholders['imgblockwidth'] = "{$thumbnail_width}px";
     $placeholders['thumbnail_width'] = "{$thumbnail_width}px";
 
-    $replacements[$ad->ad_id] = $placeholders;
+    $replacements[ $ad->ad_id ] = apply_filters( 'awpcp-placeholders-image', $placeholders, $ad );
 
     return $replacements[$ad->ad_id][$placeholder];
 }

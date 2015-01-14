@@ -677,7 +677,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $ui = array();
         // TODO: add form validation
         // TODO: strip slashes from title, details
-        $ui['delete-button'] = !is_admin() && $edit;
+        $ui['listing-actions'] = !is_admin() && $edit;
         // show categories dropdown if $category is not set
         $ui['category-field'] = ( $edit || empty( $form['ad_category'] ) ) && $is_admin_user;
         $ui['user-dropdown'] = $edit && $is_admin_user;
@@ -716,6 +716,10 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
         $template = AWPCP_DIR . '/frontend/templates/page-place-ad-details-step.tpl.php';
         $params = compact('page', 'ui', 'messages', 'form', 'hidden', 'required', 'url', 'edit', 'preview', 'errors');
+
+        if ( isset( $this->ad ) && is_object( $this->ad ) ) {
+            $params['listing'] = $this->ad;
+        }
 
         return $this->render($template, $params);
     }
