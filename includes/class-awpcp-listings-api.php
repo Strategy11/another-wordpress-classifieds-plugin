@@ -4,13 +4,14 @@
  * @since 3.0.2
  */
 function awpcp_listings_api() {
-    return new AWPCP_ListingsAPI( awpcp_request(), awpcp()->settings );
+    if ( ! isset( $GLOBALS['awpcp-listings-api'] ) ) {
+        $GLOBALS['awpcp-listings-api'] = new AWPCP_ListingsAPI( awpcp_request(), awpcp()->settings );
+    }
+
+    return $GLOBALS['awpcp-listings-api'];
 }
 
-
 class AWPCP_ListingsAPI {
-    private static $instance = null;
-
     private $request = null;
     private $settings = null;
 
@@ -23,12 +24,11 @@ class AWPCP_ListingsAPI {
 
     /**
      * @since 3.0.2
+     * @deprecated next-release
      */
     public static function instance() {
-        if ( is_null( self::$instance ) ) {
-            self::$instance = new AWPCP_ListingsAPI();
-        }
-        return self::$instance;
+        _deprecated_function( __FUNCTION__, 'next-release', 'awpcp_listings_api' );
+        return awpcp_listings_api();
     }
 
     /**
