@@ -19,12 +19,16 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
 
     public function get_ad() {
         if (is_null($this->ad)) {
-            if ( $id = awpcp_request_param( 'ad_id', awpcp_request_param( 'id', get_query_var( 'id' ) ) ) ) {
+            if ( $id = $this->get_listing_id() ) {
                 $this->ad = AWPCP_Ad::find_by_id($id);
             }
         }
 
         return $this->ad;
+    }
+
+    private function get_listing_id() {
+        return awpcp_request_param( 'ad_id', awpcp_request_param( 'id', get_query_var( 'id' ) ) );
     }
 
     public function get_edit_hash($ad) {
@@ -67,19 +71,17 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
 
         if ( ! is_null( $ad ) ) {
             if ( $this->is_user_allowed_to_edit( $ad ) ) {
-                return $this->render_page( 'details' );
+                return $this->render_page( $this->get_current_action( 'details' ) );
             } else {
                 $message = __( 'You are not allowed to edit the specified Ad.', 'AWPCP' );
                 return $this->render( 'content', awpcp_print_error( $message ) );
             }
         } else {
-            return $this->render_page( $default_action );
+            return $this->render_page( $this->get_current_action( $default_action ) );
         }
     }
 
-    protected function render_page( $default_action = null ) {
-        $action = $this->get_current_action( $default_action );
-
+    protected function render_page( $action ) {
         switch ($action) {
             case 'details':
             case 'save-details':
@@ -95,7 +97,7 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
                 return $this->send_access_key_step();
                 break;
             default:
-                return $this->enter_email_and_key_step();
+                return $this->handle_custom_listing_actions( $action );
                 break;
         }
     }
@@ -460,6 +462,32 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
         } else {
             $errors[] = sprintf( __( 'There was an error trying to send the email to %s.', 'AWPCP' ), esc_html( $recipient ) );
             return false;
+        }
+    }
+
+    private function handle_custom_listing_actions( $action ) {
+        $listing_id = $this->get_listing_id();
+        $listing = $this->get_ad();
+
+        if ( $listing_id && is_null( $listing ) ) {
+            $message = __( 'The specified Ad doesn\'t exists.', 'AWPCP' );
+            return $this->render( 'content', awpcp_print_error( $message ) );
+        } else if ( is_null( $listing ) ) {
+            return $this->enter_email_and_key_step();
+        }
+
+        $output = apply_filters( "awpcp-custom-listing-action-$action", null, $listing );
+
+        if ( is_null( $output ) ) {
+            if ( $this->is_user_allowed_to_edit( $listing ) ) {
+                return $this->details_step();
+            } else {
+                return $this->enter_email_and_key_step();
+            }
+        } else if ( is_array( $output ) && isset( $output['redirect'] ) ) {
+            return $this->render_page( $output['redirect'] );
+        } else {
+            return $output;
         }
     }
 }

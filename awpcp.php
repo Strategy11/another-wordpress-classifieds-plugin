@@ -123,9 +123,14 @@ require_once(AWPCP_DIR . "/includes/helpers/widgets/categories-dropdown.php");
 require_once(AWPCP_DIR . "/includes/helpers/widgets/multiple-region-selector.php");
 require_once(AWPCP_DIR . "/includes/helpers/widgets/class-asynchronous-tasks-component.php");
 require_once(AWPCP_DIR . "/includes/helpers/widgets/class-file-manager-component.php");
+require_once(AWPCP_DIR . "/includes/helpers/widgets/class-listing-actions-component.php");
 require_once(AWPCP_DIR . "/includes/helpers/widgets/class-user-field.php");
 require_once(AWPCP_DIR . "/includes/helpers/widgets/class-users-dropdown.php");
 require_once(AWPCP_DIR . "/includes/helpers/widgets/class-users-autocomplete.php");
+
+require_once( AWPCP_DIR . "/includes/listings/class-listing-action.php" );
+require_once( AWPCP_DIR . "/includes/listings/class-listing-action-with-confirmation.php" );
+require_once( AWPCP_DIR . "/includes/listings/class-delete-listing-action.php" );
 
 require_once( AWPCP_DIR . "/includes/meta/class-meta-tags-generator.php" );
 require_once( AWPCP_DIR . "/includes/meta/class-tag-renderer.php" );
@@ -390,8 +395,6 @@ class AWPCP {
     			add_filter('wp_list_pages_excludes', 'exclude_awpcp_child_pages');
     		}
 
-    		add_filter('cron_schedules', 'awpcp_cron_schedules');
-
     		awpcp_schedule_activation();
 
     		$this->modules_manager->load_modules();
@@ -432,6 +435,8 @@ class AWPCP {
         add_action( 'awpcp-category-edited', array( $this, 'clear_categories_list_cache' ) );
         add_action( 'awpcp-category-deleted', array( $this, 'clear_categories_list_cache' ) );
         add_action( 'awpcp-pages-updated', array( $this, 'clear_categories_list_cache' ) );
+
+        add_filter( 'awpcp-listing-actions', array( $this, 'register_listing_actions' ), 10, 2 );
 
         // load resources required both in front end and admin screens, but not during ajax calls.
         if ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) {
@@ -611,6 +616,13 @@ class AWPCP {
 					'version' => 'AWPCP_GOOGLE_CHECKOUT_MODULE_DB_VERSION',
 					'required' => '3.0.1',
 				),
+                'mark-as-sold' => array(
+                    'name' => __( 'Mark as Sold', 'AWPCP' ),
+                    'url' => 'http://www.awpcp.com/premium-modules/mark-as-sold-module/?ref=panel',
+                    'installed' => defined( 'AWPCP_MARK_AS_SOLD_MODULE' ),
+                    'version' => 'AWPCP_MARK_AS_SOLD_MODULE_DB_VERSION',
+                    'required' => '1.0',
+                ),
 				'paypal-pro' => array(
 					'name' => __(  'PayPal Pro', 'AWPCP'  ),
 					'url' => 'http://www.awpcp.com/premium-modules/paypalpro-payment-module/?ref=user-panel',
@@ -1067,6 +1079,18 @@ class AWPCP {
 		}
 		delete_option( 'awpcp-categories-list-cache-keys' );
 	}
+
+    public function register_listing_actions( $actions, $listing ) {
+        $this->maybe_add_listing_action( $actions, $listing, new AWPCP_DeleteListingAction() );
+
+        return $actions;
+    }
+
+    private function maybe_add_listing_action( &$actions, $listing, $action ) {
+        if ( $action->is_enabled_for_listing( $listing ) ) {
+            $actions[ $action->get_slug() ] = $action;
+        }
+    }
 }
 
 function awpcp() {

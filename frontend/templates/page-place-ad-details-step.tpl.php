@@ -8,18 +8,8 @@
     awpcp_print_form_errors( $errors );
 ?>
 
-<?php if ($ui['delete-button']): ?>
-<form class="awpcp-delete-ad-form" action="<?php echo esc_attr( $this->url() ); ?>" method="post">
-    <?php foreach($hidden as $name => $value): ?>
-    <input type="hidden" name="<?php echo esc_attr($name) ?>" value="<?php echo esc_attr($value) ?>" />
-    <?php endforeach ?>
-    <input type="hidden" name="step" value="delete-ad" />
-
-    <span><?php echo esc_html( __( 'You can use this button to delete your Ad.', 'AWPCP' ) ); ?></span>
-    <span class="confirm">&nbsp;<?php echo esc_html( _x( 'Are you sure?', 'delete ad form in frontend edit ad screen', 'AWPCP' ) ); ?></span>
-    <input class="button confirm" type="button" value="<?php echo esc_attr( __( "Cancel", "AWPCP" ) ); ?>" />
-    <input class="button button-primary" type="submit" value="<?php echo esc_attr( __( "Delete Ad", "AWPCP" ) ); ?>" />
-</form>
+<?php if ($ui['listing-actions']): ?>
+<?php echo awpcp_listing_actions_component()->render( $listing, array( 'hidden-params' => $hidden, 'current_url' => $this->url() ) ); ?>
 <?php endif ?>
 
 <!-- TODO: check where is used $formdisplayvalue -->

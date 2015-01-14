@@ -177,6 +177,10 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
             $action = 'index';
         }
 
+        return $this->render_page( $action );
+    }
+
+    private function render_page( $action ) {
         switch ($action) {
             case 'view':
                 return $this->view_ad();
@@ -265,8 +269,7 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
                 break;
 
             default:
-                awpcp_flash("Unknown action: $action", 'error');
-                return $this->index();
+                return $this->handle_custom_listing_actions( $action );
                 break;
         }
     }
@@ -612,5 +615,25 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
         header('Content-Type: application/json');
         echo $response;
         exit();
+    }
+
+    private function handle_custom_listing_actions( $action ) {
+        try {
+            $listing = awpcp_listings_collection()->get( $this->id );
+        } catch ( AWPCP_Exception $e ) {
+            awpcp_flash( __( "The specified listing doesn't exists.", 'AWPCP' ), 'error' );
+            return $this->index();
+        }
+
+        $output = apply_filters( "awpcp-custom-admin-listings-table-action-$action", null, $listing );
+
+        if ( is_null( $output ) ) {
+            awpcp_flash("Unknown action: $action", 'error');
+            return $this->index();
+        } else if ( is_array( $output ) && isset( $output['redirect'] ) ) {
+            return $this->render_page( $output['redirect'] );
+        } else {
+            return $output;
+        }
     }
 }

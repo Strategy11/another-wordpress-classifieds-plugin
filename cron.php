@@ -1,13 +1,5 @@
 <?php
 
-function awpcp_cron_schedules($schedules) {
-	$schedules['monthly'] = array(
-		'interval'=> 2592000,
-		'display'=>  __('Once Every 30 Days', 'AWPCP')
-	);
-	return $schedules;
-}
-
 // ensure we get the expiration hooks scheduled properly:
 function awpcp_schedule_activation() {
     add_action('doadexpirations_hook', 'doadexpirations');
