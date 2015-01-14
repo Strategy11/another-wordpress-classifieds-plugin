@@ -384,8 +384,8 @@ function awpcp_get_email_verification_url( $ad_id ) {
     } else {
         $params = array(
             'awpcpx' => true,
-            'module' => 'listings',
-            'action' => 'verify',
+            'awpcp-module' => 'listings',
+            'awpcp-action' => 'verify',
             'awpcp-ad' => $ad_id,
             'awpcp-hash' => $hash,
         );
