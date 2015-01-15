@@ -492,6 +492,35 @@ function isValidEmailAddress($email) {
 	return awpcp_is_valid_email_address( $email );
 }
 
+/**
+ * @since next-release
+ */
+function awpcp_is_email_address_allowed( $email_address ) {
+    $wildcard = 'BCCsyfxU6HMXyyasic6t';
+    $pattern = '[a-zA-Z0-9-]*';
+
+    $domains_whitelist = str_replace( '*', $wildcard, get_awpcp_option( 'ad-poster-email-address-whitelist' ) );
+    $domains_whitelist = preg_quote( $domains_whitelist );
+    $domains_whitelist = str_replace( $wildcard, $pattern, $domains_whitelist );
+    $domains_whitelist = str_replace( "{$pattern}\.", "(?:{$pattern}\.)?", $domains_whitelist );
+    $domains_whitelist = array_filter( explode( "\n", $domains_whitelist ) );
+    $domains_whitelist = array_map( 'trim', $domains_whitelist );
+
+    $domains_pattern = '/' . implode( '|', $domains_whitelist ) . '/';
+
+    if ( empty( $domains_whitelist ) ) {
+		return true;
+    }
+
+    $domain = substr( $email_address, strpos( $email_address, '@' ) + 1 );
+
+    if ( preg_match( $domains_pattern, $domain ) ) {
+		return true;
+    }
+
+    return false;
+}
+
 function defaultcatexists($defid) {
 	global $wpdb;
 
