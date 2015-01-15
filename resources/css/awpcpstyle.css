@@ -810,32 +810,43 @@ p.ad_status_msg {
 }
 /* copied from http://elvery.net/demo/responsive-tables/#flip-scroll */
 @media only screen and (max-width: 800px) {
+  table.awpcp-table,
   .awpcp-table {
     /* Force table to not be like tables anymore */
     /* Hide table headers (but not display: none;, for accessibility) */
   }
+  table.awpcp-table table,
   .awpcp-table table,
+  table.awpcp-table thead,
   .awpcp-table thead,
+  table.awpcp-table tbody,
   .awpcp-table tbody,
+  table.awpcp-table th,
   .awpcp-table th,
+  table.awpcp-table td,
   .awpcp-table td,
+  table.awpcp-table tr,
   .awpcp-table tr {
     display: block;
   }
+  table.awpcp-table thead tr,
   .awpcp-table thead tr {
     position: absolute;
     top: -9999px;
     left: -9999px;
   }
+  table.awpcp-table tbody tr th,
   .awpcp-table tbody tr th {
     padding-left: 10px;
   }
+  table.awpcp-table tr,
   .awpcp-table tr {
     border: 1px solid #ccc;
     /*
             Label the data
             */
   }
+  table.awpcp-table tr td,
   .awpcp-table tr td {
     /* Behave  like a "row" */
     border: none;
@@ -843,10 +854,11 @@ p.ad_status_msg {
     position: relative;
     padding-top: 3px;
     padding-bottom: 3px;
-    padding-left: 70%;
+    padding-left: 70% !important;
     white-space: normal;
     text-align: left;
   }
+  table.awpcp-table tr td:before,
   .awpcp-table tr td:before {
     /* Now like a table header */
     position: absolute;
@@ -859,6 +871,7 @@ p.ad_status_msg {
     text-align: left;
     font-weight: bold;
   }
+  table.awpcp-table tr td:before,
   .awpcp-table tr td:before {
     content: attr(data-title);
   }
