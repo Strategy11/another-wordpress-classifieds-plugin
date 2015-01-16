@@ -87,30 +87,8 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
     }
 
     private function render_item( $item, $instance, $html_class ) {
-        global $awpcp_imagesurl;
-
         $item_url = url_showad( $item->ad_id );
         $item_title = sprintf( '<a href="%s">%s</a>', $item_url, stripslashes( $item->ad_title ) );
-
-        $show_images = $instance['show-images'] && get_awpcp_option( 'imagesallowdisallow' ) == 1;
-        $image = awpcp_media_api()->get_ad_primary_image( $item );
-
-        if ( ! is_null( $image ) && $show_images ) {
-            $image_url = $image->get_url();
-        } else if ( $instance['show-blank'] && $show_images ) {
-            $image_url = "$awpcp_imagesurl/adhasnoimage.png";
-        } else {
-            $image_url = '';
-        }
-
-        if ( empty( $image_url ) ) {
-            $html_image = '';
-        } else {
-            $html_image = sprintf( '<a class="self" href="%1$s"><img src="%2$s" alt="%3$s" /></a>',
-                                   $item_url,
-                                   $image_url,
-                                   esc_attr( $item->ad_title ) );
-        }
 
         if ($instance['show-title']) {
             $html_title = sprintf( '<div class="awpcp-listing-title">%s</div>', $item_title );
@@ -126,13 +104,41 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
             $html_excerpt = '';
         }
 
-        if ( $show_images && ! empty( $html_image ) ) {
+        $html_image = $this->render_item_image( $item, $instance );
+
+        if ( ! empty( $html_image ) ) {
             $template = '<li class="awpcp-listings-widget-item %1$s"><div class="awpcplatestbox clearfix"><div class="awpcplatestthumb clearfix">%2$s</div>%3$s %4$s</div></li>';
         } else {
             $template = '<li class="awpcp-listings-widget-item %1$s"><div class="awpcplatestbox clearfix">%3$s %4$s</div></li>';
         }
 
         return sprintf( $template, $html_class, $html_image, $html_title, $html_excerpt );
+    }
+
+    protected function render_item_image( $item, $instance ) {
+        global $awpcp_imagesurl;
+
+        $show_images = $instance['show-images'] && get_awpcp_option( 'imagesallowdisallow' ) == 1;
+        $image = awpcp_media_api()->get_ad_primary_image( $item );
+
+        if ( ! is_null( $image ) && $show_images ) {
+            $image_url = $image->get_url();
+        } else if ( $instance['show-blank'] && $show_images ) {
+            $image_url = "$awpcp_imagesurl/adhasnoimage.png";
+        } else {
+            $image_url = '';
+        }
+
+        if ( empty( $image_url ) ) {
+            $html_image = '';
+        } else {
+            $html_image = sprintf( '<a class="awpcp-listings-widget-item-listing-link self" href="%1$s"><img src="%2$s" alt="%3$s" /></a>',
+                                   url_showad( $item->ad_id ),
+                                   $image_url,
+                                   esc_attr( $item->ad_title ) );
+        }
+
+        return apply_filters( 'awpcp-listings-widget-listing-thumbnail', $html_image, $item );
     }
 
     protected function query($instance) {
