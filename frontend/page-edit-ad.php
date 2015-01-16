@@ -153,12 +153,25 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
     public function details_step() {
         $ad = $this->get_ad();
 
-        if (is_null($ad)) return $this->enter_email_and_key_step();
+        if ( is_null( $ad ) ) {
+            return $this->handle_missing_listing_exception();
+        }
 
         if (strcmp($this->get_current_action(), 'save-details') === 0) {
             return $this->save_details_step();
         } else {
             return $this->details_step_form($ad, array());
+        }
+    }
+
+    private function handle_missing_listing_exception() {
+        $listing_id = $this->get_listing_id();
+
+        if ( $listing_id ) {
+            $message = __( 'The specified Ad doesn\'t exists.', 'AWPCP' );
+            return $this->render( 'content', awpcp_print_error( $message ) );
+        } else {
+            return $this->enter_email_and_key_step();
         }
     }
 
@@ -466,14 +479,10 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
     }
 
     private function handle_custom_listing_actions( $action ) {
-        $listing_id = $this->get_listing_id();
         $listing = $this->get_ad();
 
-        if ( $listing_id && is_null( $listing ) ) {
-            $message = __( 'The specified Ad doesn\'t exists.', 'AWPCP' );
-            return $this->render( 'content', awpcp_print_error( $message ) );
-        } else if ( is_null( $listing ) ) {
-            return $this->enter_email_and_key_step();
+        if ( is_null( $listing ) ) {
+            return $this->handle_missing_listing_exception();
         }
 
         $output = apply_filters( "awpcp-custom-listing-action-$action", null, $listing );
