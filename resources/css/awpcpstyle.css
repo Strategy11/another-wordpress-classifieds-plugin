@@ -1312,6 +1312,9 @@ p.ad_status_msg {
   float: right;
   width: 50%;
 }
+.awpcp-listings-widget-items-list .awpcp-listings-widget-item-listing-link {
+  position: relative;
+}
 @media screen and (max-width: 44em) {
   .awpcp-listings-widget-items-list .awpcp-listings-widget-item-with-left-thumbnail-in-mobile .awpcplatestthumb {
     margin-right: 10px;
