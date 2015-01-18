@@ -66,8 +66,10 @@ class AWPCP_PaymentGeneralSettings {
             return false;
         }
 
-        if ( false === strpos( $response->errors['http_request_failed'], 'Connection refused' ) ) {
-            return false;
+        foreach ( (array) $response->errors['http_request_failed'] as $error ) {
+            if ( false === strpos( $error, 'Connection refused' ) ) {
+                return false;
+            }
         }
 
         return true;
