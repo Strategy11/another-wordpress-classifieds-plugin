@@ -90,6 +90,7 @@ require_once( AWPCP_DIR . "/includes/compatibility/class-add-meta-tags-plugin-in
 require_once(AWPCP_DIR . "/includes/compatibility/class-all-in-one-seo-pack-plugin-integration.php");
 require_once(AWPCP_DIR . "/includes/compatibility/class-facebook-plugin-integration.php");
 require_once( AWPCP_DIR . "/includes/compatibility/class-yoast-wordpress-seo-plugin-integration.php" );
+require_once( AWPCP_DIR . "/includes/compatibility/class-woocommerce-plugin-integration.php" );
 
 require_once( AWPCP_DIR . "/includes/helpers/class-easy-digital-downloads.php" );
 require_once( AWPCP_DIR . "/includes/helpers/class-licenses-manager.php" );
