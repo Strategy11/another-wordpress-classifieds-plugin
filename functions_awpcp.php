@@ -623,7 +623,7 @@ function awpcp_phpmailer_init_smtp( $phpmailer ) {
 	$enabled = get_awpcp_option('usesmtp');
 	if ( !$enabled || 0 == $enabled ) return; 
 
-	$host = get_awpcp_option('smtphost');
+	$hostname = get_awpcp_option('smtphost');
 	$port = get_awpcp_option('smtpport');
 	$username = get_awpcp_option('smtpusername');
 	$password = get_awpcp_option('smtppassword');
@@ -637,7 +637,7 @@ function awpcp_phpmailer_init_smtp( $phpmailer ) {
 	if ( 'smtp_username' == trim( $username ) ) return;
 
 	$phpmailer->Mailer = 'smtp';
-	$phpmailer->Host = $host;
+	$phpmailer->Host = $hostname;
 	$phpmailer->Port = $port;
 
 	// If there's a username and password then assume SMTP Auth is necessary and set the vars: 
