@@ -12,7 +12,7 @@ class AWPCP_FacebookCacheHelper {
 
     private function schedule_clear_cache_action( $ad ) {
         if ( ! wp_next_scheduled( 'awpcp-clear-ad-facebook-cache', array( $ad->ad_id ) ) ) {
-            wp_schedule_single_event( time() + 10, 'awpcp-clear-ad-facebook-cache', array( $ad->ad_id ) );
+            wp_schedule_single_event( time() + 5 * MINUTE_IN_SECONDS, 'awpcp-clear-ad-facebook-cache', array( $ad->ad_id ) );
         }
     }
 
