@@ -150,30 +150,6 @@ class AWPCP_Meta {
         return true;
     }
 
-    private function remove_filter( $filter, $class ) {
-        global $wp_filter;
-
-        if ( !isset( $wp_filter[ $filter ] ) ) return;
-
-        if ( !class_exists( $class ) ) return;
-
-        $id = false;
-        foreach ( $wp_filter[ $filter ] as $priority => $functions ) {
-            foreach ( $functions as  $idx => $item ) {
-                if ( is_array( $item['function'] ) && $item['function'][0] instanceof $class) {
-                    $id = $idx;
-                    break;
-                }
-            }
-
-            if ($id) break;
-        }
-
-        if ($id) {
-            unset( $wp_filter[ $filter ][ $priority ][ $id ] );
-        }
-    }
-
     private function remove_wp_title_filter() {
         remove_filter( 'wp_title', array( $this->title_builder, 'build_title' ), 10, 3 );
     }
@@ -239,7 +215,7 @@ class AWPCP_Meta {
 
         // disable OpenGraph meta tags in Show Ad page
         if ($this->doing_opengraph) {
-            $this->remove_filter( 'su_head', 'SU_OpenGraph' );
+            awpcp_remove_filter( 'su_head', 'SU_OpenGraph' );
         }
     }
 
