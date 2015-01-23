@@ -143,7 +143,7 @@ class AWPCP_ListingsFinder {
 
         if ( $query['category_id'] ) {
             $sql = '( listings.`ad_category_id` = %1$d OR listings.`ad_category_parent_id` = %1$d )';
-            $conditions[] = $this->db->prepare( $sql, $query['category'] );
+            $conditions[] = $this->db->prepare( $sql, $query['category_id'] );
         }
 
         return $conditions;

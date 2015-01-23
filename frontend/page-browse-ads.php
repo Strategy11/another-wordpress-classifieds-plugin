@@ -48,30 +48,39 @@ class AWPCP_BrowseAdsPage extends AWPCP_Page {
     }
 
     private function render_listings_from_category( $category_id ) {
-        global $wpdb;
-
-        if ($category_id == -1 || empty($category_id)) {
-            $conditions = array();
-        } else {
-            $sql = '( ad_category_id = %1$d OR ad_category_parent_id = %1$d )';
-            $conditions[] = $wpdb->prepare( $sql,  $category_id );
-            $conditions[] = 'disabled = 0';
-        }
-
-        $order = get_awpcp_option('groupbrowseadsby');
+        $query = array(
+            'category_id' => $category_id,
+            'order' => get_awpcp_option( 'groupbrowseadsby' ),
+        );
 
         if ( $category_id == -1 ) {
             $message = __( "No specific category was selected for browsing so you are viewing listings from all categories." , "AWPCP" );
-            $output = awpcp_print_message( $message ) . awpcp_display_ads( join( ' AND ', $conditions ), '', '', $order, 'cat');
+
+            $output = awpcp_print_message( $message );
+            $output.= $this->render_listings( $query );
         } else {
-            $output = awpcp_display_ads( join( ' AND ', $conditions ), '', '', $order, 'cat');
+            $output = $this->render_listings( $query );
         }
 
         return $output;
     }
 
+    protected function render_listings( $query ) {
+        $options = array(
+            'show_intro_message' => true,
+            'show_menu_items' => true,
+            'show_category_selector' => true,
+            'show_pagination' => true,
+        );
+
+        return awpcp_display_listings( $query, 'browse', $options );
+    }
+
     protected function render_all_listings() {
-        $order = get_awpcp_option( 'groupbrowseadsby' );
-        return awpcp_display_ads( '', '', '', $order, 'ad');
+        $query = array(
+            'order' => get_awpcp_option( 'groupbrowseadsby' ),
+        );
+
+        return $this->render_listings( $query );
     }
 }
