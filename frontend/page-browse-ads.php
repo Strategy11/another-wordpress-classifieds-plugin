@@ -57,23 +57,12 @@ class AWPCP_BrowseAdsPage extends AWPCP_Page {
             $message = __( "No specific category was selected for browsing so you are viewing listings from all categories." , "AWPCP" );
 
             $output = awpcp_print_message( $message );
-            $output.= $this->render_listings( $query );
+            $output.= awpcp_display_listings_in_page( $query, 'browse-listings' );
         } else {
-            $output = $this->render_listings( $query );
+            $output = awpcp_display_listings_in_page( $query, 'browse-listings' );
         }
 
         return $output;
-    }
-
-    protected function render_listings( $query ) {
-        $options = array(
-            'show_intro_message' => true,
-            'show_menu_items' => true,
-            'show_category_selector' => true,
-            'show_pagination' => true,
-        );
-
-        return awpcp_display_listings( $query, 'browse', $options );
     }
 
     protected function render_all_listings() {
@@ -81,6 +70,6 @@ class AWPCP_BrowseAdsPage extends AWPCP_Page {
             'order' => get_awpcp_option( 'groupbrowseadsby' ),
         );
 
-        return $this->render_listings( $query );
+        return awpcp_display_listings_in_page( $query, 'browse-listings' );
     }
 }

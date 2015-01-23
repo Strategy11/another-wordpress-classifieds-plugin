@@ -97,3 +97,17 @@ function awpcp_display_listings( $query, $context, $options ) {
 
     return $content;
 }
+
+/**
+ * @since next-release
+ */
+function awpcp_display_listings_in_page( $query, $context, $options = array() ) {
+    $options = wp_parse_args( $options, array(
+        'show_intro_message' => true,
+        'show_menu_items' => true,
+        'show_category_selector' => true,
+        'show_pagination' => true,
+    ) );
+
+    return awpcp_display_listings( $query, $context, $options );
+}
