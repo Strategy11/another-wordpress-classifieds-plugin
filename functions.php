@@ -1291,6 +1291,23 @@ function awpcp_array_data($name, $default, $from=array()) {
 	return $default;
 }
 
+/**
+ * Taken and adapted from: http://stackoverflow.com/a/6795671/201354
+ */
+function awpcp_array_filter_recursive( $input, $callback = null ) {
+    foreach ( $input as &$value ) {
+        if ( is_array( $value ) ) {
+            $value = awpcp_array_filter_recursive( $value, $callback );
+        }
+    }
+
+    if ( is_callable( $callback ) ) {
+        return array_filter( $input, $callback );
+    } else {
+        return array_filter( $input );
+    }
+}
+
 function awpcp_get_property($object, $property, $default='') {
     if (is_object($object) && (isset($object->$property) ||
     	array_key_exists($property, get_object_vars($object)))) {
