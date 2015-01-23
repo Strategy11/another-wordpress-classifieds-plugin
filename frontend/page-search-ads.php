@@ -133,6 +133,8 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
             'max_price' => $form['max_price'],
             'regions' => $form['regions'],
             'disabled' => false,
+            'limit' => absint( awpcp_request_param( 'results', get_awpcp_option( 'adresultsperpage', 10 ) ) ),
+            'offset' => absint( awpcp_request_param( 'offset', 0 ) ),
             'order' => get_awpcp_option( 'search-results-order' ),
         ) );
 
