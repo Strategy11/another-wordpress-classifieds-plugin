@@ -205,6 +205,8 @@ function showad( $adid=null, $omitmenu=false, $preview=false, $send_email=true, 
 		}
 	} else {
 		$query = array(
+            'limit' => absint( awpcp_request_param( 'results', get_awpcp_option( 'adresultsperpage', 10 ) ) ),
+            'offset' => absint( awpcp_request_param( 'offset', 0 ) ),
 			'order' => get_awpcp_option( 'groupbrowseadsby' ),
 		);
 
