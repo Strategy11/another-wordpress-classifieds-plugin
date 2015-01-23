@@ -473,6 +473,8 @@ function awpcp_pagination($config, $url) {
 	$pages = ceil($total / $results);
 	$page = floor($offset / $results) + 1;
 
+    $items = array();
+
 	for ($i=1; $i <= $pages; $i++) {
 		if ($page == $i) {
 			$items[] = sprintf('%d', $i);
@@ -483,7 +485,7 @@ function awpcp_pagination($config, $url) {
 		}
 	}
 
-	$pagination = join('', $items);
+	$pagination = implode( '', $items );
 	$options = awpcp_pagination_options( $results );
 
 	ob_start();
