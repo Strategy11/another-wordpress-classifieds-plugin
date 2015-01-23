@@ -271,9 +271,11 @@ function awpcpui_process($awpcppagename) {
 
 function awpcp_load_classifieds($awpcppagename) {
 	if (get_awpcp_option('main_page_display') == 1) {
-		// display latest ads on mainpage
-		$order = get_awpcp_option( 'groupbrowseadsby' );
-		$output = awpcp_display_ads( '', 1, '', $order, $adorcat='ad' );
+        $query = array(
+            'order' => get_awpcp_option( 'groupbrowseadsby' ),
+        );
+
+        $output = awpcp_display_listings_in_page( $query, 'main-page' );
 	} else {
 		$output = awpcp_display_the_classifieds_page_body( $awpcppagename );
 	}
