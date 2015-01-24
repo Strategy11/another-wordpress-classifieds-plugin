@@ -35,6 +35,8 @@ class AWPCP_ListingsFinder {
             'fields' => '*',
             'raw' => false,
 
+            'id' => null,
+
             'category_id' => null,
             'include_listings_in_children_categories' => true,
 
@@ -104,6 +106,7 @@ class AWPCP_ListingsFinder {
 
     private function build_where_clause( $query ) {
         $conditions = array(
+            $this->build_id_condition( $query ),
             $this->build_keyword_condition( $query ),
             $this->build_category_condition( $query ),
             $this->build_contact_condition( $query ),
@@ -118,6 +121,24 @@ class AWPCP_ListingsFinder {
         $where_conditions = $this->group_conditions( $flattened_conditions, 'AND' );
 
         return sprintf( 'WHERE %s', $where_conditions );
+    }
+
+    private function build_id_condition( $query ) {
+        $conditions = array();
+
+        if ( is_array( $query['id'] ) && count( $query['id'] ) >= 1 ) {
+            if ( count( $query['id'] ) == 1 ) {
+                $listing_id = array_shift( $query['id'] );
+                $conditions[] = $this->db->prepare( 'listings.`ad_id` = %d', $listing_id );
+            } else {
+                $listings_ids = array_map( 'absint', $query['id'] );
+                $conditions[] = 'listings.`ad_id` IN ( ' . implode( ', ', $listings_ids ) . ' )';
+            }
+        } else if ( is_numeric( $query['id'] ) ) {
+            $conditions[] = $this->db->prepare( 'listings.`ad_id` = %d', $query['id'] );
+        }
+
+        return $conditions;
     }
 
     private function build_keyword_condition( $query ) {
