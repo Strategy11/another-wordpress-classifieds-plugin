@@ -26,8 +26,11 @@ function awpcp_display_listings( $query, $context, $options ) {
     $results_per_page = absint( awpcp_request_param( 'results', get_awpcp_option( 'adresultsperpage', 10 ) ) );
     $results_offset = absint( awpcp_request_param( 'offset', 0 ) );
 
-    if ( $results_per_page ) {
+    if ( empty( $query['limit'] ) && $results_per_page ) {
         $query['limit'] = $results_per_page;
+    }
+
+    if ( empty( $query['offset'] ) && $query['limit'] ) {
         $query['offset'] = $results_offset;
     }
 
