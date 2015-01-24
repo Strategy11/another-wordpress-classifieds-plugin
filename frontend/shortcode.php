@@ -141,28 +141,38 @@ class AWPCP_Pages {
         );
 
         $options = array(
-            'show_intro_message' => false,
             'show_menu_items' => $show_menu,
-            'show_pagination' => false,
         );
 
         return awpcp_display_listings( $query, 'latest-listings-shortcode', $options );
     }
 
     public function random_listings_shortcode($attrs) {
-        global $wpdb;
-
         wp_enqueue_script('awpcp');
 
         $attrs = shortcode_atts(array('menu' => true, 'limit' => 10), $attrs);
         $show_menu = awpcp_parse_bool($attrs['menu']);
         $limit = absint($attrs['limit']);
 
-        $ads = AWPCP_Ad::get_random_ads($limit);
+        $random_query = array(
+            'fields' => 'ad_id',
+            'raw' => true,
+        );
 
-        $config = array('show_menu' => $show_menu, 'show_intro' => false);
+        $random_listings = awpcp_listings_collection()->find_enabled_listings_with_query( $random_query );
+        $random_listings_ids = awpcp_get_properties( $random_listings, 'ad_id' );
+        shuffle( $random_listings_ids );
 
-        return awpcp_render_ads($ads, 'ramdom-listings-shortcode', $config, false);
+        $query = array(
+            'id' => array_slice( $random_listings_ids, 0, $limit ),
+            'limit' => $limit,
+        );
+
+        $options = array(
+            'show_menu_items' => $show_menu,
+        );
+
+        return awpcp_display_listings( $query, 'random-listings-shortcode', $options );
     }
 
     public function category_shortcode( $attrs ) {
