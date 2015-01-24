@@ -130,19 +130,23 @@ class AWPCP_Pages {
     /* Shortcodes */
 
     public function listings_shortcode($attrs) {
-        global $wpdb;
-
         wp_enqueue_script('awpcp');
 
         $attrs = shortcode_atts(array('menu' => true, 'limit' => 10), $attrs);
         $show_menu = awpcp_parse_bool($attrs['menu']);
         $limit = absint($attrs['limit']);
 
-        $ads = AWPCP_Ad::get_enabled_ads(array('limit' => $limit));
+        $query = array(
+            'limit' => $limit,
+        );
 
-        $config = array('show_menu' => $show_menu, 'show_intro' => false);
+        $options = array(
+            'show_intro_message' => false,
+            'show_menu_items' => $show_menu,
+            'show_pagination' => false,
+        );
 
-        return awpcp_render_ads($ads, 'latest-listings-shortcode', $config, false);
+        return awpcp_display_listings( $query, 'latest-listings-shortcode', $options );
     }
 
     public function random_listings_shortcode($attrs) {
