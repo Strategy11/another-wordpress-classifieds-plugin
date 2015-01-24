@@ -38,6 +38,7 @@ class AWPCP_ListingsFinder {
             'id' => null,
 
             'category_id' => null,
+            'exclude_category_id' => null,
             'include_listings_in_children_categories' => true,
 
             'contact_name' => null,
@@ -157,15 +158,47 @@ class AWPCP_ListingsFinder {
 
         if ( $query['category_id'] ) {
             if ( $query['include_listings_in_children_categories'] ) {
-                $sql = '( listings.`ad_category_id` = %1$d OR listings.`ad_category_parent_id` = %1$d )';
-            } else {
-                $sql = 'listings.`ad_category_id` = %1$d';
-            }
+                $category_conditions = array(
+                    $this->build_condition_with_in_clause( 'listings.`ad_category_id`', $query['category_id'], 'IN' ),
+                    $this->build_condition_with_in_clause( 'listings.`ad_category_parent_id`', $query['category_id'], 'IN' ),
+                );
 
-            $conditions[] = $this->db->prepare( $sql, $query['category_id'] );
+                $conditions[] = $this->group_conditions( $category_conditions, 'OR' );
+            } else {
+                $conditions[] = $this->build_condition_with_in_clause( 'listings.`ad_category_id`', $query['category_id'], 'IN' );
+            }
         }
 
-        return $conditions;
+        if ( $query['exclude_category_id'] ) {
+            if ( $query['include_listings_in_children_categories'] ) {
+                $category_conditions = array(
+                    $this->build_condition_with_in_clause( 'listings.`ad_category_id`', $query['exclude_category_id'], 'NOT IN' ),
+                    $this->build_condition_with_in_clause( 'listings.`ad_category_parent_id`', $query['exclude_category_id'], 'NOT IN' ),
+                );
+
+                $conditions[] = $this->group_conditions( $category_conditions, 'AND' );
+            } else {
+                $conditions[] = $this->build_condition_with_in_clause( 'listings.`ad_category_id`', $query['exclude_category_id'], 'NOT IN' );
+            }
+        }
+
+        return $this->group_conditions( $conditions, 'AND' );
+    }
+
+    private function build_condition_with_in_clause( $column, $value, $operator = 'IN' ) {
+        if ( is_array( $value ) && ! empty( $value ) ) {
+            if ( count( $value ) == 1 ) {
+                $single_value = array_shift( $value );
+                return $this->db->prepare( "$column != %d", $single_value );
+            } else {
+                $multiple_values = array_map( 'absint', $value );
+                return "$column $operator ( " . implode( ', ', $multiple_values ) . ' )';
+            }
+        } else if ( is_numeric( $value ) ) {
+            return $this->db->prepare( "$column != %d", $value );
+        } else {
+            return '';
+        }
     }
 
     private function build_contact_condition( $query ) {
