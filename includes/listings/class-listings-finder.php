@@ -13,7 +13,7 @@ class AWPCP_ListingsFinder {
     }
 
     public function find( $user_query ) {
-        $query = $this->normalize_query( $user_query );
+        $query = apply_filters( 'awpcp-find-listings-query', $this->normalize_query( $user_query ) );
 
         $select = $this->build_select_clause( $query );
         $where = $this->build_where_clause( $query );
