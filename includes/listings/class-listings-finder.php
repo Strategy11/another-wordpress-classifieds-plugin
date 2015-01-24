@@ -22,21 +22,18 @@ class AWPCP_ListingsFinder {
 
         if ( $query['fields'] == 'count' ) {
             return $this->db->get_var( $this->prepare_query( "$select $where $order" ) );
+        } else if ( $query['raw'] ) {
+            return $this->db->get_results( $this->prepare_query( "$select $where $order $limit" ) );
         } else {
             $items = $this->db->get_results( $this->prepare_query( "$select $where $order $limit" ) );
-
-            $results = array();
-            foreach( $items as $item ) {
-                $results[] = AWPCP_Ad::from_object($item);
-            }
-
-            return $results;
+            return array_map( array( 'AWPCP_Ad', 'from_object' ), $items );
         }
     }
 
     private function normalize_query( $user_query ) {
         $query = wp_parse_args( $user_query, array(
             'fields' => '*',
+            'raw' => false,
 
             'category_id' => null,
             'include_listings_in_children_categories' => true,
