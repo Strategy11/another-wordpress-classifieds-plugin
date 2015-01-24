@@ -55,12 +55,16 @@ function awpcp_display_listings( $query, $context, $options ) {
 
     // DONE?: apply filters for content before listings page and show that content.
     $before_content = apply_filters( 'awpcp-content-before-listings-page', $options['before_content'], $context );
-    $before_pagination = array(
-        10 => array(
-            'category-selector' => awpcp_render_category_selector(),
-            'user-content' => $options['before_pagination'],
-        ),
-    );
+
+    $before_pagination = array();
+    if ( $options['show_category_selector'] ) {
+        $before_pagination[15]['category-selector'] = awpcp_render_category_selector();
+    }
+    if ( is_array( $options['before_pagination'] ) ) {
+        $before_pagination = awpcp_array_merge_recursive( $before_pagination, $options['before_pagination'] );
+    } else {
+        $before_pagination[20]['user-content'] = $options['before_pagination'];
+    }
     $before_pagination = apply_filters( 'awpcp-listings-before-content', $before_pagination, $context );
     ksort( $before_pagination );
     $before_pagination = awpcp_flatten_array( $before_pagination );

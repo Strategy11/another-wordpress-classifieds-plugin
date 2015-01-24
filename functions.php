@@ -1310,6 +1310,25 @@ function awpcp_array_filter_recursive( $input, $callback = null ) {
     }
 }
 
+/**
+ * Alternative to array_merge_recursive that keeps numeric keys.
+ *
+ * @since next-release
+ */
+function awpcp_array_merge_recursive( $a, $b ) {
+    $merged = $a;
+
+    foreach ( $b as $key => $value ) {
+        if ( isset( $merged[ $key ] ) && is_array( $merged[$key] ) && is_array( $value ) ) {
+            $merged[ $key ] = awpcp_array_merge_recursive( $merged[ $key ], $value );
+        } else {
+            $merged[ $key ] = $value;
+        }
+    }
+
+    return $merged;
+}
+
 function awpcp_get_property($object, $property, $default='') {
     if (is_object($object) && (isset($object->$property) ||
     	array_key_exists($property, get_object_vars($object)))) {
