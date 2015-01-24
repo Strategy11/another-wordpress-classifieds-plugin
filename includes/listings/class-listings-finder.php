@@ -20,15 +20,10 @@ class AWPCP_ListingsFinder {
         $limit = $this->build_limit_clause( $query );
         $order = $this->build_order_clause( $query );
 
-        $sql = "$select $where $order";
-        $sql = str_replace( '<listings-table>', AWPCP_TABLE_ADS, $sql );
-        $sql = str_replace( '<listing-regions-table>', AWPCP_TABLE_AD_REGIONS, $sql );
-
         if ( $query['fields'] == 'count' ) {
-            // debugp( $sql, $this->db->get_var( $sql ) );
-            return $this->db->get_var( $sql );
+            return $this->db->get_var( $this->prepare_query( "$select $where $order" ) );
         } else {
-            $items = $this->db->get_results( $sql );
+            $items = $this->db->get_results( $this->prepare_query( "$select $where $order $limit" ) );
 
             $results = array();
             foreach( $items as $item ) {
@@ -301,6 +296,12 @@ class AWPCP_ListingsFinder {
         $parts = array_filter( apply_filters( 'awpcp-ad-order-conditions', $parts, $query['order'] ) );
 
         return sprintf( 'ORDER BY %s', implode( ', ', $parts ) );
+    }
+
+    private function prepare_query( $query ) {
+        $query = str_replace( '<listings-table>', AWPCP_TABLE_ADS, $query );
+        $query = str_replace( '<listing-regions-table>', AWPCP_TABLE_AD_REGIONS, $query );
+        return $query;
     }
 
     public function count( $query ) {
