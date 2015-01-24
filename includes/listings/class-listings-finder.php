@@ -39,6 +39,7 @@ class AWPCP_ListingsFinder {
             'fields' => '*',
 
             'category_id' => null,
+            'include_listings_in_children_categories' => true,
 
             'contact_name' => null,
 
@@ -137,7 +138,12 @@ class AWPCP_ListingsFinder {
         $conditions = array();
 
         if ( $query['category_id'] ) {
-            $sql = '( listings.`ad_category_id` = %1$d OR listings.`ad_category_parent_id` = %1$d )';
+            if ( $query['include_listings_in_children_categories'] ) {
+                $sql = '( listings.`ad_category_id` = %1$d OR listings.`ad_category_parent_id` = %1$d )';
+            } else {
+                $sql = 'listings.`ad_category_id` = %1$d';
+            }
+
             $conditions[] = $this->db->prepare( $sql, $query['category_id'] );
         }
 
