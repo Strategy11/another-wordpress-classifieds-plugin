@@ -69,6 +69,7 @@ $awpcp_imagesurl = $awpcp_plugin_url .'/resources/images';
 // common
 require_once(AWPCP_DIR . "/debug.php");
 require_once(AWPCP_DIR . "/functions.php");
+require_once( AWPCP_DIR . "/includes/functions/deprecated.php" );
 require_once( AWPCP_DIR . "/includes/functions/format.php" );
 require_once( AWPCP_DIR . "/includes/functions/hooks.php" );
 require_once( AWPCP_DIR . "/includes/functions/listings.php" );
