@@ -127,16 +127,8 @@ class AWPCP_ListingsFinder {
     private function build_id_condition( $query ) {
         $conditions = array();
 
-        if ( is_array( $query['id'] ) && count( $query['id'] ) >= 1 ) {
-            if ( count( $query['id'] ) == 1 ) {
-                $listing_id = array_shift( $query['id'] );
-                $conditions[] = $this->db->prepare( 'listings.`ad_id` = %d', $listing_id );
-            } else {
-                $listings_ids = array_map( 'absint', $query['id'] );
-                $conditions[] = 'listings.`ad_id` IN ( ' . implode( ', ', $listings_ids ) . ' )';
-            }
-        } else if ( is_numeric( $query['id'] ) ) {
-            $conditions[] = $this->db->prepare( 'listings.`ad_id` = %d', $query['id'] );
+        if ( $query['id'] ) {
+            $conditions[] = $this->build_condition_with_in_clause( 'listings.`ad_id`', $query['id'] );
         }
 
         return $conditions;
