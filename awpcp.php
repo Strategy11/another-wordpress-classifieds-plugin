@@ -1057,14 +1057,17 @@ class AWPCP {
 		if ( $options === false ) {
 		    $options = array();
 
-			if ( $context === 'search' && get_awpcp_option( 'buildsearchdropdownlists' ) ) {
-				$regions = awpcp_basic_regions_api()->find_by_parent_name( $parent, $parent_type, $type );
-				$regions = array_filter( $regions, 'strlen' );
+            if ( $context === 'search' && get_awpcp_option( 'buildsearchdropdownlists' ) ) {
+                $regions = awpcp_basic_regions_api()->find_by_parent_name( $parent, $parent_type, $type );
+            } else {
+                $regions = awpcp_basic_regions_api()->find_by_type( $type );
+            }
 
-		        foreach ( $regions as $key => $option ) {
-		            $options[] = array( 'id' => $option, 'name' => $option );
-		        }
-		    }
+            $regions = array_filter( $regions, 'strlen' );
+
+            foreach ( $regions as $key => $option ) {
+                $options[] = array( 'id' => $option, 'name' => $option );
+            }
 		}
 
         $response = array( 'status' => 'ok', 'options' => $options );
