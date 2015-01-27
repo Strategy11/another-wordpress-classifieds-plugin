@@ -13,15 +13,24 @@ function( $, settings) {
         configurePluploadQueue();
 
         function insertUploadRestrictionsMessage() {
-            var message = settings.l10n( 'media-uploader-strings', 'upload-restrictions' ),
-                max_file_size = 0;
+            var message = '', titles = [], replacements = {}, max_file_size = 0;
+
+            settings.l10n( 'media-uploader-strings', 'upload-restrictions' );
 
             $.each( self.options.allowed_files, function( title, group ) {
+                titles.push( title );
+
                 max_file_size = group.max_file_size / 1000000; // max file size in MB
                 max_file_size = Math.round( max_file_size * 10 ) / 10; // max file size rounded to one decimal place
 
-                message = message.replace( '<' + title + '-left>', '<strong>' + ( group.allowed_file_count - group.uploaded_file_count ) + '</strong>' );
-                message = message.replace( '<' + title + '-max-file-size>', '<strong>' + max_file_size + ' MB</strong>' );
+                replacements['<' + title + '-left>'] = '<strong>' + ( group.allowed_file_count - group.uploaded_file_count ) + '</strong>';
+                replacements['<' + title + '-max-file-size>'] = '<strong>' + max_file_size + ' MB</strong>';
+            } );
+
+            message = settings.l10n( 'media-uploader-strings', 'upload-restrictions-' + titles.join( '-' ) );
+
+            $.each( replacements, function( search, replacement ) {
+                message = message.replace( search, replacement );
             } );
 
             self.element.find( '.awpcp-media-uploader-upload-restrictions' ).html( message );
