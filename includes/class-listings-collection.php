@@ -123,10 +123,10 @@ class AWPCP_ListingsCollection {
     }
 
     private function make_valid_listings_query( $query ) {
-        return $this->make_successfully_paid_listings_with_query( array_merge( $query, array( 'verified' => true ) ) );
+        return $this->make_successfully_paid_listings_query( array_merge( $query, array( 'verified' => true ) ) );
     }
 
-    private function make_successfully_paid_listings_with_query( $query ) {
+    private function make_successfully_paid_listings_query( $query ) {
         $enable_listings_pending_payment = $this->settings->get_option( 'enable-ads-pending-payment' );
         $payments_are_enabled = $this->settings->get_option( 'freepay' ) == 1;
 
