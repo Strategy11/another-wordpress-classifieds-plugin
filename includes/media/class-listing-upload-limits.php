@@ -1,7 +1,11 @@
 <?php
 
 function awpcp_listing_upload_limits() {
-    return new AWPCP_ListingUploadLimits( awpcp_payments_api(), awpcp()->settings );
+    if ( ! isset( $GLOBALS['awpcp-listing-upload-limits'] ) ) {
+        $GLOBALS['awpcp-listing-upload-limits'] = new AWPCP_ListingUploadLimits( awpcp_payments_api(), awpcp()->settings );
+    }
+
+    return $GLOBALS['awpcp-listing-upload-limits'];
 }
 
 class AWPCP_ListingUploadLimits {
