@@ -88,7 +88,7 @@ class AWPCP_FileTypes {
     }
 
     public function get_allowed_video_extensions() {
-        return $this->settings->get_option( 'attachments-allowed-video-extensions', array() );
+        return array_values( array_filter( $this->settings->get_option( 'attachments-allowed-video-extensions', array() ) ) );
     }
 
     public function get_other_files_mime_types() {
@@ -104,7 +104,7 @@ class AWPCP_FileTypes {
     }
 
     public function get_other_allowed_files_extensions() {
-        return $this->settings->get_option( 'attachments-allowed-other-files-extensions', array() );
+        return array_values( array_filter( $this->settings->get_option( 'attachments-allowed-other-files-extensions', array() ) ) );
     }
 
     public function get_extension_names() {
