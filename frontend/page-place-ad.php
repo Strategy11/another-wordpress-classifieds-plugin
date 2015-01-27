@@ -1055,7 +1055,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
         if ( awpcp_post_param('preview-hash', false) ) {
             return $this->preview_step();
-        } else if (get_awpcp_option('imagesallowdisallow')) {
+        } else if ( $this->should_show_upload_files_step( $ad ) ) {
             return $this->upload_images_step();
         } else if ((bool) get_awpcp_option('pay-before-place-ad')) {
             return $this->finish_step();
@@ -1064,6 +1064,18 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         } else {
             return $this->checkout_step();
         }
+    }
+
+    private function should_show_upload_files_step( $listing ) {
+        $allowed_files = awpcp_listing_upload_limits()->get_listing_upload_limits( $listing );
+
+        foreach ( $allowed_files as $file_type => $limits ) {
+            if ( $limits['allowed_file_count'] > $limits['uploaded_file_count'] ) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public function get_images_config( $ad ) {
@@ -1096,7 +1108,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         extract( $params = $this->get_images_config( $ad ) );
 
         // see if we can move to the next step
-        $skip = !get_awpcp_option('imagesallowdisallow');
+        $skip = ! $this->should_show_upload_files_step( $ad );
         $skip = $skip || awpcp_post_param( 'submit-no-images', false );
         $skip = $skip || $images_allowed == 0;
 
