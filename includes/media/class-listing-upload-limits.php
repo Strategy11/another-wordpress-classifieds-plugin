@@ -36,12 +36,13 @@ class AWPCP_ListingUploadLimits {
     public function get_listing_upload_limits( $listing ) {
         $payment_term = $this->payments->get_ad_payment_term( $listing );
 
-        return apply_filters(
-            'awpcp-listing-upload-limits',
-            array( 'images' => $this->get_upload_limits_for_images( $listing, $payment_term ) ),
-            $listing,
-            $payment_term
-        );
+        if ( ! $this->settings->get_option('imagesallowdisallow') ) {
+            $upload_limits = array();
+        } else {
+            $upload_limits = array( 'images' => $this->get_upload_limits_for_images( $listing, $payment_term ) );
+        }
+
+        return apply_filters( 'awpcp-listing-upload-limits', $upload_limits, $listing, $payment_term );
     }
 
     public function get_listing_upload_limits_by_file_type( $listing, $file_type ) {
