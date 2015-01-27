@@ -1106,18 +1106,18 @@ class AWPCP_Settings_API {
 
 		$setting = $args['setting'];
 
+		$field_name = 'awpcp-options[' . $setting->name . '][]';
 		$field_type = $args['multiple'] ? 'checkbox' : 'radio';
-		$selected = $this->get_option( $setting->name );
+		$selected = array_filter( $this->get_option( $setting->name ), 'strlen' );
 
-		$html = array( '<input type="hidden" name="awpcp-options[' . $setting->name . '][]" value="0">' );
+		$html = array( sprintf( '<input type="hidden" name="%s" value="">', $field_name ) );
 
 		foreach ( $args['choices'] as $value => $label ) {
 			$id = "{$setting->name}-$value";
-			$name = 'awpcp-options[' . $setting->name . '][]';
 			$checked = in_array( $value, $selected ) ? 'checked="checked"' : '';
 
 			$html_field = '<input id="%s" type="%s" name="%s" value="%s" %s />';
-			$html_field = sprintf( $html_field, $id, $field_type, $name, $value, $checked );
+			$html_field = sprintf( $html_field, $id, $field_type, $field_name, $value, $checked );
 			$html_label = '<label for="' . $id . '">' . $label . '</label><br/>';
 
 			$html[] = $html_field . '&nbsp;' . $html_label;
