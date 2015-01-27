@@ -56,7 +56,7 @@ class AWPCP_CategoryShortcode {
 
         $query = array(
             'category_id' => $category->id,
-            'include_listings_in_children_category' => $children,
+            'include_listings_in_children_categories' => $children,
             'limit' => absint( $this->request->param( 'results', $items_per_page ) ),
             'offset' => absint( $this->request->param( 'offset', 0 ) ),
             'order' => get_awpcp_option( 'groupbrowseadsby' ),
