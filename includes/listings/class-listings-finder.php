@@ -151,26 +151,26 @@ class AWPCP_ListingsFinder {
         if ( $query['category_id'] ) {
             if ( $query['include_listings_in_children_categories'] ) {
                 $category_conditions = array(
-                    $this->build_condition_with_in_clause( 'listings.`ad_category_id`', $query['category_id'], 'IN' ),
-                    $this->build_condition_with_in_clause( 'listings.`ad_category_parent_id`', $query['category_id'], 'IN' ),
+                    $this->build_condition_with_in_clause( 'listings.`ad_category_id`', $query['category_id'] ),
+                    $this->build_condition_with_in_clause( 'listings.`ad_category_parent_id`', $query['category_id'] ),
                 );
 
                 $conditions[] = $this->group_conditions( $category_conditions, 'OR' );
             } else {
-                $conditions[] = $this->build_condition_with_in_clause( 'listings.`ad_category_id`', $query['category_id'], 'IN' );
+                $conditions[] = $this->build_condition_with_in_clause( 'listings.`ad_category_id`', $query['category_id'] );
             }
         }
 
         if ( $query['exclude_category_id'] ) {
             if ( $query['include_listings_in_children_categories'] ) {
                 $category_conditions = array(
-                    $this->build_condition_with_in_clause( 'listings.`ad_category_id`', $query['exclude_category_id'], 'NOT IN' ),
-                    $this->build_condition_with_in_clause( 'listings.`ad_category_parent_id`', $query['exclude_category_id'], 'NOT IN' ),
+                    $this->build_condition_with_not_in_clause( 'listings.`ad_category_id`', $query['exclude_category_id'] ),
+                    $this->build_condition_with_not_in_clause( 'listings.`ad_category_parent_id`', $query['exclude_category_id'] ),
                 );
 
                 $conditions[] = $this->group_conditions( $category_conditions, 'AND' );
             } else {
-                $conditions[] = $this->build_condition_with_in_clause( 'listings.`ad_category_id`', $query['exclude_category_id'], 'NOT IN' );
+                $conditions[] = $this->build_condition_with_not_in_clause( 'listings.`ad_category_id`', $query['exclude_category_id'] );
             }
         }
 
@@ -178,19 +178,27 @@ class AWPCP_ListingsFinder {
     }
 
     private function build_condition_with_in_clause( $column, $value, $operator = 'IN' ) {
+        return $this->build_condition_with_inclusion_operators( $column, $value, 'IN', '=' );
+    }
+
+    private function build_condition_with_inclusion_operators( $column, $value, $inclusion_operator, $comparison_operator ) {
         if ( is_array( $value ) && ! empty( $value ) ) {
             if ( count( $value ) == 1 ) {
                 $single_value = array_shift( $value );
-                return $this->db->prepare( "$column != %d", $single_value );
+                return $this->db->prepare( "$column $comparison_operator %d", $single_value );
             } else {
                 $multiple_values = array_map( 'absint', $value );
-                return "$column $operator ( " . implode( ', ', $multiple_values ) . ' )';
+                return "$column $inclusion_operator ( " . implode( ', ', $multiple_values ) . ' )';
             }
         } else if ( is_numeric( $value ) ) {
-            return $this->db->prepare( "$column != %d", $value );
+            return $this->db->prepare( "$column $comparison_operator %d", $value );
         } else {
             return '';
         }
+    }
+
+    private function build_condition_with_not_in_clause( $colum, $value ) {
+        $this->build_condition_with_inclusion_operators( $colum, $value, 'NOT IN', '!=' );
     }
 
     private function build_contact_condition( $query ) {
