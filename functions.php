@@ -473,6 +473,8 @@ function awpcp_pagination($config, $url) {
 	$pages = ceil($total / $results);
 	$page = floor($offset / $results) + 1;
 
+    $items = array();
+
 	for ($i=1; $i <= $pages; $i++) {
 		if ($page == $i) {
 			$items[] = sprintf('%d', $i);
@@ -483,7 +485,7 @@ function awpcp_pagination($config, $url) {
 		}
 	}
 
-	$pagination = join('', $items);
+	$pagination = implode( '', $items );
 	$options = awpcp_pagination_options( $results );
 
 	ob_start();
@@ -1289,6 +1291,42 @@ function awpcp_array_data($name, $default, $from=array()) {
 	}
 
 	return $default;
+}
+
+/**
+ * Taken and adapted from: http://stackoverflow.com/a/6795671/201354
+ */
+function awpcp_array_filter_recursive( $input, $callback = null ) {
+    foreach ( $input as &$value ) {
+        if ( is_array( $value ) ) {
+            $value = awpcp_array_filter_recursive( $value, $callback );
+        }
+    }
+
+    if ( is_callable( $callback ) ) {
+        return array_filter( $input, $callback );
+    } else {
+        return array_filter( $input );
+    }
+}
+
+/**
+ * Alternative to array_merge_recursive that keeps numeric keys.
+ *
+ * @since next-release
+ */
+function awpcp_array_merge_recursive( $a, $b ) {
+    $merged = $a;
+
+    foreach ( $b as $key => $value ) {
+        if ( isset( $merged[ $key ] ) && is_array( $merged[$key] ) && is_array( $value ) ) {
+            $merged[ $key ] = awpcp_array_merge_recursive( $merged[ $key ], $value );
+        } else {
+            $merged[ $key ] = $value;
+        }
+    }
+
+    return $merged;
 }
 
 function awpcp_get_property($object, $property, $default='') {

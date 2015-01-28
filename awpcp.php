@@ -69,8 +69,10 @@ $awpcp_imagesurl = $awpcp_plugin_url .'/resources/images';
 // common
 require_once(AWPCP_DIR . "/debug.php");
 require_once(AWPCP_DIR . "/functions.php");
+require_once( AWPCP_DIR . "/includes/functions/deprecated.php" );
 require_once( AWPCP_DIR . "/includes/functions/format.php" );
 require_once( AWPCP_DIR . "/includes/functions/hooks.php" );
+require_once( AWPCP_DIR . "/includes/functions/listings.php" );
 require_once( AWPCP_DIR . "/includes/functions/routes.php" );
 
 $nameofsite = awpcp_get_blog_name();
@@ -130,6 +132,7 @@ require_once(AWPCP_DIR . "/includes/helpers/widgets/class-user-field.php");
 require_once(AWPCP_DIR . "/includes/helpers/widgets/class-users-dropdown.php");
 require_once(AWPCP_DIR . "/includes/helpers/widgets/class-users-autocomplete.php");
 
+require_once( AWPCP_DIR . "/includes/listings/class-listings-finder.php" );
 require_once( AWPCP_DIR . "/includes/listings/class-listing-action.php" );
 require_once( AWPCP_DIR . "/includes/listings/class-listing-action-with-confirmation.php" );
 require_once( AWPCP_DIR . "/includes/listings/class-delete-listing-action.php" );
