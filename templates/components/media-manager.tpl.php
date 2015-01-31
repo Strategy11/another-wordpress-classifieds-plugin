@@ -43,8 +43,8 @@
                     </li>
                     <li class="awpcp-uploaded-file-action awpcp-uploaded-file-set-as-primary-action">
                         <span>
-                            <a href="#" title="<?php echo esc_attr( __( 'This is the Primary Image', 'AWPCP' ) ); ?>" data-bind="visible: isPrimary(), click: function() {}"></a>
-                            <a href="#" title="<?php echo esc_attr( __( 'Set as Primary Image', 'AWPCP' ) ); ?>" data-bind="visible: !isPrimary(), click: $root.setFileAsPrimary"></a>
+                            <a href="#" title="<?php echo esc_attr( __( 'This is the Primary Video', 'AWPCP' ) ); ?>" data-bind="visible: isPrimary(), click: function() {}"></a>
+                            <a href="#" title="<?php echo esc_attr( __( 'Set as Primary Video', 'AWPCP' ) ); ?>" data-bind="visible: !isPrimary(), click: $root.setFileAsPrimary"></a>
                         </span>
                     </li>
                     <li class="awpcp-uploaded-video-delete-action awpcp-uploaded-file-delete-action awpcp-uploaded-file-action"><a title="<?php echo esc_attr( __( 'Delete Video', 'AWPCP' ) ); ?>" data-bind="click: $root.deleteFile"></a></li>
