@@ -27,7 +27,7 @@ class AWPCP_TaskQueue {
 
     private function schedule_next_task_queue_event_if_necessary( $next_event_timestamp = null ) {
         $next_scheduled_event_timestamp = $this->get_next_scheduled_event_timestamp();
-        $next_event_timestamp = is_null( $next_event_timestamp ) ? time() : $next_event_timestamp;
+        $next_event_timestamp = is_null( $next_event_timestamp ) ? time() + 5 : $next_event_timestamp;
 
         if ( $next_scheduled_event_timestamp && ( $next_scheduled_event_timestamp < $next_event_timestamp ) ) {
             return;
