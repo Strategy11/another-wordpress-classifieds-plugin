@@ -26,7 +26,7 @@ abstract class AWPCP_Module {
     public abstract function required_awpcp_version_notice();
 
     public function load_textdomain() {
-        load_plugin_textdomain( $this->textdomain, false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+        awpcp_load_plugin_textdomain( $this->file, $this->textdomain );
     }
 
     /**
