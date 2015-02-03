@@ -1934,17 +1934,26 @@ function awpcp_maybe_add_thickbox() {
  * @since 3.2.1
  */
 function awpcp_load_plugin_textdomain( $__file__, $text_domain ) {
-	$basename = dirname( plugin_basename( $__file__ ) );
+    $basename = dirname( plugin_basename( $__file__ ) );
+    $locale = apply_filters( 'plugin_locale', get_locale(), $text_domain );
 
-	if ( load_plugin_textdomain( $text_domain, false, $basename . '/languages/' ) ) {
-		return true;
-	}
+    // Load user translation first.
+    $mofile = trailingslashit( WP_LANG_DIR ) . $basename . '/' . $text_domain . '-' . $locale . '.mo';
+    load_textdomain( $text_domain, $mofile );
 
-	// main l10n MO file can be in the top level directory or inside the
-	// languages directory. A file inside the languages directory is prefered.
-	if ( $text_domain == 'AWPCP' ) {
-		return load_plugin_textdomain( $text_domain, false, $basename );
-	}
+    // Load translation included in plugin's languages directory. Stop if the file is loaded.
+    $mofile = trailingslashit( WP_PLUGIN_DIR ) . $basename . '/languages/' . $text_domain . '-' . $locale . '.mo';
+    if ( load_textdomain( $text_domain, $mofile ) ) {
+        return true;
+    }
+
+    // Try loading the translations from the plugin's root directory. WordPress will also
+    // look for a file in wp-content/languages/plugins/$domain-$locale.mo.
+    if ( load_plugin_textdomain( $text_domain, false, $basename ) ) {
+        return true;
+    }
+
+    return false;
 }
 
 function awpcp_utf8_strlen( $string ) {
