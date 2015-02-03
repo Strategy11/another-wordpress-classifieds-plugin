@@ -49,7 +49,7 @@ class AWPCP_ModulesManager {
             // $this->verify_license_status( $module );
         }
 
-        $this->handle_module_updates( $module );
+        // $this->handle_module_updates( $module );
         $module->setup( $this->plugin );
     }
 
@@ -107,6 +107,8 @@ class AWPCP_ModulesManager {
     }
 
     private function handle_module_updates( $module ) {
+        // TODO: maybe we don't need to pass the license.
+        // Maybe we can have the Modules Updater fetch it when necessary.
         $license = $this->licenses_manager->get_module_license( $module->slug );
         $this->modules_updater->watch( $module, $license );
     }
