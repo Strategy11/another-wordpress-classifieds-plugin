@@ -421,8 +421,6 @@ class AWPCP {
 	}
 
 	public function init() {
-		$this->initialize_session();
-
         // load resources always required
         $facebook_cache_helper = awpcp_facebook_cache_helper();
         add_action( 'awpcp-clear-ad-facebook-cache', array( $facebook_cache_helper, 'handle_clear_cache_event_hook' ), 10, 1 );
@@ -716,29 +714,6 @@ class AWPCP {
 				$required = "<strong>{$params['required']}</strong>";
 				$this->errors[] = sprintf($message, $name, $required);
 			}
-		}
-	}
-
-	/**
-	 * Conditionally start session if not already active.
-	 *
-	 * @since  2.1.4
-	 */
-	public function initialize_session() {
-		$session_id = session_id();
-
-		if (empty($session_id)) {
-			$request = awpcp_request();
-			// if we are in a subdomain, let PHP choose the right domain
-			if ( strcmp( $request->domain(), $request->domain( false ) ) == 0 ) {
-				$domain = '';
-			// otherwise strip the www part
-			} else {
-				$domain = $request->domain( false, '.' );
-			}
-
-			@session_set_cookie_params(0, '/', $domain, false, true);
-			@session_start();
 		}
 	}
 
