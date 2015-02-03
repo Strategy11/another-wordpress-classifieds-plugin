@@ -183,7 +183,7 @@ function url_showad($ad_id) {
         $url = add_query_arg($params, $base_url);
     }
 
-    return $url;
+    return apply_filters( 'awpcp-listing-url', $url, $ad );
 }
 
 function url_browsecategory($cat_id) {
