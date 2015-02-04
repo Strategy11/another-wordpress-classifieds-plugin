@@ -382,6 +382,10 @@ class AWPCP_CSV_Importer {
 		if ( $import_dir ) {
 			$this->remove_images( $import_dir, $images_created );
 		}
+
+		if ( $this->ads_imported > 0 && ! $test_import ) {
+			do_action( 'awpcp-listings-imported' );
+		}
 	}
 
 	private function extract_images($filename, &$errors=array(), &$messages=array()) {

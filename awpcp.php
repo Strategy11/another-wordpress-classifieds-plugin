@@ -438,6 +438,7 @@ class AWPCP {
         add_action( 'awpcp-category-edited', array( $this, 'clear_categories_list_cache' ) );
         add_action( 'awpcp-category-deleted', array( $this, 'clear_categories_list_cache' ) );
         add_action( 'awpcp-pages-updated', array( $this, 'clear_categories_list_cache' ) );
+        add_action( 'awpcp-listings-imported', array( $this, 'clear_categories_list_cache' ) );
 
         add_filter( 'awpcp-listing-actions', array( $this, 'register_listing_actions' ), 10, 2 );
 
