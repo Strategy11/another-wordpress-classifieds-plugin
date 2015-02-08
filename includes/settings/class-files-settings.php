@@ -52,7 +52,7 @@ class AWPCP_FilesSettings {
         $settings->add_setting( $key, 'imagesapprove', __( 'Hide images until admin approves them', 'AWPCP' ), 'checkbox', 0, '');
         $settings->add_setting( $key, 'awpcp_thickbox_disabled', __( 'Disable AWPCP Lightbox feature', 'AWPCP' ), 'checkbox', 0, __( 'Turn off the lightbox/thickbox element used by AWPCP. Some themes cannot handle it and a conflict results.', 'AWPCP' ) );
         $settings->add_setting( $key, 'show-click-to-enlarge-link', __( 'Show click to enlarge link?', 'AWPCP' ), 'checkbox', 1, '' );
-        $settings->add_setting( $key, 'imagesallowedfree', __( 'Number of images allowed in Free mode', 'AWPCP' ), 'textfield', 4, __( 'Number of Image Uploads Allowed (Free Mode)', 'AWPCP' ) );
+        $settings->add_setting( $key, 'imagesallowedfree', __( 'Number of images allowed if payments are disabled (Free Mode)', 'AWPCP' ), 'textfield', 4, __( 'If images are allowed and payments are disabled, users will be allowed upload this amount of images.', 'AWPCP' ) );
 
         $options = array(0 => 0, 1 => 1, 2 => 2, 3 => 3, 4 => 4);
 
