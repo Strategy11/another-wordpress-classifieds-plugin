@@ -1,10 +1,16 @@
 <?php
 
 function awpcp_files_settings() {
-    return new AWPCP_FilesSettings();
+    return new AWPCP_FilesSettings( awpcp_file_types() );
 }
 
 class AWPCP_FilesSettings {
+
+    private $file_types;
+
+    public function __construct( $file_types ) {
+        $this->file_types = $file_types;
+    }
 
     public function register_settings( $settings ) {
         $group = $settings->add_group( _x( 'Files', 'name of Files settings section', 'AWPCP' ), 'files-settings', 50 );
@@ -21,6 +27,26 @@ class AWPCP_FilesSettings {
         // Section: Image Settings
 
         $key = $settings->add_section( $group, __( 'Images', 'AWPCP' ), 'image', 20, array( $settings, 'section' ) );
+
+        $image_extensions = $this->file_types->get_file_extensions_in_group( 'image' );
+        $legacy_allow_images_setting = $settings->get_option( 'imagesallowdisallow', 'NOT-REGISTERED' );
+
+        if ( $legacy_allow_images_setting && $legacy_allow_images_setting != 'NOT-REGISTERED' ) {
+            $default_image_extenstions = $image_extensions;
+        } else {
+            $default_image_extenstions = array();
+        }
+
+        awpcp_register_allowed_extensions_setting(
+            $settings,
+            $key,
+            array(
+                'name' => 'allowed-image-extensions',
+                'label' => __( 'Allowed image extensions', 'AWPCP' ),
+                'choices' => $image_extensions,
+                'default' => $default_image_extenstions,
+            )
+        );
 
         $settings->add_setting( $key, 'imagesallowdisallow', __( 'Allow images in Ads?', 'AWPCP' ), 'checkbox', 1, __( 'Allow images in ads? (affects both free and pay mode)', 'AWPCP' ) );
         $settings->add_setting( $key, 'imagesapprove', __( 'Hide images until admin approves them', 'AWPCP' ), 'checkbox', 0, '');
