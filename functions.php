@@ -395,7 +395,6 @@ function awpcp_admin_roles_names() {
     }
 }
 
-
 /**
  * Check if current user is an Administrator according to
  * AWPCP settings.
@@ -2074,4 +2073,12 @@ function awpcp_register_activation_hook( $__FILE__, $callback ) {
 function awpcp_register_deactivation_hook( $__FILE__, $callback ) {
     $file = WP_CONTENT_DIR . '/plugins/' . basename( dirname( $__FILE__ ) ) . '/' . basename( $__FILE__ );
     register_deactivation_hook( $file, $callback );
+}
+
+/**
+ * @since next-release
+ */
+function awpcp_are_images_allowed() {
+    $allowed_image_extensions = array_filter( awpcp_get_option( 'allowed-image-extensions', array() ) );
+    return count( $allowed_image_extensions ) > 0;
 }

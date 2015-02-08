@@ -490,7 +490,7 @@ function awpcp_do_placeholder_images($ad, $placeholder) {
     $url = awpcp_get_listing_renderer()->get_view_listing_url( $ad );
     $thumbnail_width = get_awpcp_option('displayadthumbwidth');
 
-    if (get_awpcp_option('imagesallowdisallow') == 1) {
+    if ( awpcp_are_images_allowed() ) {
         $images_uploaded = $ad->count_image_files();
         $primary_image = awpcp_media_api()->get_ad_primary_image( $ad );
 
@@ -560,7 +560,7 @@ function awpcp_do_placeholder_images($ad, $placeholder) {
     }
 
     // fallback thumbnail
-    if ( get_awpcp_option( 'imagesallowdisallow' ) == 1 && empty( $placeholders['awpcp_image_name_srccode'] ) ) {
+    if ( awpcp_are_images_allowed() && empty( $placeholders['awpcp_image_name_srccode'] ) ) {
         $thumbnail = sprintf('%s/adhasnoimage.png', $awpcp_imagesurl);
         $content = '<a class="awpcp-listing-primary-image-listing-link" href="%s"><img src="%s" width="%spx" border="0" alt="%s" /></a>';
         $content = sprintf($content, $url, $thumbnail, $thumbnail_width, awpcp_esc_attr($ad->ad_title));

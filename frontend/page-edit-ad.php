@@ -282,7 +282,7 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
 
         do_action('awpcp_edit_ad', $ad);
 
-        if (is_admin() || !get_awpcp_option('imagesallowdisallow')) {
+        if ( is_admin() || ! awpcp_are_images_allowed() ) {
             return $this->finish_step();
         } else {
             return $this->upload_images_step();
@@ -300,7 +300,7 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
         extract( $params = $this->get_images_config( $ad ) );
 
         // see if we can move to the next step
-        if (!get_awpcp_option('imagesallowdisallow')) {
+        if ( ! awpcp_are_images_allowed() ) {
             return $this->finish_step();
         } else if ( awpcp_post_param( 'submit-no-images', false ) ) {
             return $this->finish_step();

@@ -118,7 +118,7 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
             $label = __( 'Manage Images', 'AWPCP' );
             $url = $this->url(array('action' => 'manage-images', 'id' => $ad->ad_id));
             $actions['manage-images'] = array($label, array('', $url, " ($images)"));
-        } else if (get_awpcp_option('imagesallowdisallow') == 1) {
+        } else if ( awpcp_are_images_allowed() ) {
             $actions['add-image'] = array(__('Add Images', 'AWPCP'), $this->url(array('action' => 'add-image', 'id' => $ad->ad_id)));
         }
 

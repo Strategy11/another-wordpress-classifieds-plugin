@@ -118,7 +118,7 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
     protected function render_item_image( $item, $instance ) {
         global $awpcp_imagesurl;
 
-        $show_images = $instance['show-images'] && get_awpcp_option( 'imagesallowdisallow' ) == 1;
+        $show_images = $instance['show-images'] && awpcp_are_images_allowed();
         $image = awpcp_media_api()->get_ad_primary_image( $item );
 
         if ( ! is_null( $image ) && $show_images ) {

@@ -1200,7 +1200,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             return $this->checkout_step();
         } else {
             $payment_term = awpcp_payments_api()->get_ad_payment_term($ad);
-            $manage_images = get_awpcp_option('imagesallowdisallow') && $payment_term->images > 0;
+            $manage_images = awpcp_are_images_allowed() && $payment_term->images > 0;
 
             $params = array(
                 'ad' => $ad,

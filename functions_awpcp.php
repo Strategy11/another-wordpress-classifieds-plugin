@@ -80,6 +80,13 @@ function get_awpcp_setting($column, $option) {
 	return $myreturn;
 }
 
+/**
+ * @since new-release
+ */
+function awpcp_get_option( $option, $default = '', $reload = false ) {
+	return get_awpcp_option( $option, $default, $reload );
+}
+
 function get_awpcp_option($option, $default='', $reload=false) {
 	return awpcp()->settings->get_option( $option, $default, $reload );
 }
