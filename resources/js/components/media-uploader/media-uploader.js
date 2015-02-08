@@ -13,18 +13,22 @@ function( $, settings) {
         configurePluploadQueue();
 
         function insertUploadRestrictionsMessage() {
-            var message = '', titles = [], replacements = {}, max_file_size = 0;
+            var message = '', titles = [], replacements = {}, files_left = 0, max_file_size = 0;
 
             settings.l10n( 'media-uploader-strings', 'upload-restrictions' );
 
             $.each( self.options.allowed_files, function( title, group ) {
-                titles.push( title );
+                files_left = ( group.allowed_file_count - group.uploaded_file_count );
 
-                max_file_size = group.max_file_size / 1000000; // max file size in MB
-                max_file_size = Math.round( max_file_size * 10 ) / 10; // max file size rounded to one decimal place
+                if ( files_left > 0 ) {
+                    titles.push( title );
 
-                replacements['<' + title + '-left>'] = '<strong>' + ( group.allowed_file_count - group.uploaded_file_count ) + '</strong>';
-                replacements['<' + title + '-max-file-size>'] = '<strong>' + max_file_size + ' MB</strong>';
+                    max_file_size = group.max_file_size / 1000000; // max file size in MB
+                    max_file_size = Math.round( max_file_size * 10 ) / 10; // max file size rounded to one decimal place
+
+                    replacements['<' + title + '-left>'] = '<strong>' + files_left + '</strong>';
+                    replacements['<' + title + '-max-file-size>'] = '<strong>' + max_file_size + ' MB</strong>';
+                }
             } );
 
             message = settings.l10n( 'media-uploader-strings', 'upload-restrictions-' + titles.join( '-' ) );
