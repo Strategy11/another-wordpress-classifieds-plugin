@@ -1108,7 +1108,7 @@ class AWPCP_Settings_API {
 
 		$field_name = 'awpcp-options[' . $setting->name . '][]';
 		$field_type = $args['multiple'] ? 'checkbox' : 'radio';
-		$selected = array_filter( $this->get_option( $setting->name ), 'strlen' );
+		$selected = array_filter( $this->get_option( $setting->name, array() ), 'strlen' );
 
 		$html = array( sprintf( '<input type="hidden" name="%s" value="">', $field_name ) );
 
