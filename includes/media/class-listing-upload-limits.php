@@ -2,7 +2,11 @@
 
 function awpcp_listing_upload_limits() {
     if ( ! isset( $GLOBALS['awpcp-listing-upload-limits'] ) ) {
-        $GLOBALS['awpcp-listing-upload-limits'] = new AWPCP_ListingUploadLimits( awpcp_payments_api(), awpcp()->settings );
+        $GLOBALS['awpcp-listing-upload-limits'] = new AWPCP_ListingUploadLimits(
+            awpcp_file_types(),
+            awpcp_payments_api(),
+            awpcp()->settings
+        );
     }
 
     return $GLOBALS['awpcp-listing-upload-limits'];
@@ -10,10 +14,12 @@ function awpcp_listing_upload_limits() {
 
 class AWPCP_ListingUploadLimits {
 
+    private $file_types;
     private $payments;
     private $settings;
 
-    public function __construct( $payments, $settings ) {
+    public function __construct( $file_types, $payments, $settings ) {
+        $this->file_types = $file_types;
         $this->payments = $payments;
         $this->settings = $settings;
     }
@@ -69,12 +75,8 @@ class AWPCP_ListingUploadLimits {
             $images_allowed = $this->settings->get_option( 'imagesallowedfree', 0 );
         }
 
-        $mime_types = $this->settings->get_runtime_option( 'image-mime-types' );
-        $extensions = array();
-
-        foreach ( $mime_types as $mime_type ) {
-            $extensions[] = str_replace( 'image/', '', $mime_type );
-        }
+        $mime_types = $this->file_types->get_file_mime_types_in_group( 'image' );
+        $extensions = $this->file_types->get_file_extensions_in_group( 'image' );
 
         return array(
             'mime_types' => $mime_types,
