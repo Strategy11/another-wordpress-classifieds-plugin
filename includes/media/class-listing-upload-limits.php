@@ -75,8 +75,8 @@ class AWPCP_ListingUploadLimits {
             $images_allowed = $this->settings->get_option( 'imagesallowedfree', 0 );
         }
 
-        $mime_types = $this->file_types->get_file_mime_types_in_group( 'image' );
-        $extensions = $this->file_types->get_file_extensions_in_group( 'image' );
+        $mime_types = $this->file_types->get_allowed_file_mime_types_in_group( 'image' );
+        $extensions = $this->file_types->get_allowed_file_extesions_in_group( 'image' );
 
         return array(
             'mime_types' => $mime_types,

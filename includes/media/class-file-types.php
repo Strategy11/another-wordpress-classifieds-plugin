@@ -20,6 +20,7 @@ class AWPCP_FileTypes {
         $this->settings = $settings;
     }
 
+
     public function get_file_types() {
         if ( is_null( $this->file_types ) ) {
             $this->file_types = apply_filters( 'awpcp-file-types', $this->get_default_file_types() );
@@ -47,6 +48,7 @@ class AWPCP_FileTypes {
         );
     }
 
+
     public function get_file_types_in_group( $group ) {
         return awpcp_array_data( $group, array(), $this->get_file_types() );
     }
@@ -55,28 +57,11 @@ class AWPCP_FileTypes {
         return array_keys( $this->get_file_types_in_group( $group ) );
     }
 
-    public function get_file_mime_types_in_group( $group ) {
-        return $this->get_mime_types( $this->get_file_types_in_group( $group ) );
-    }
+    public function get_allowed_file_mime_types_in_group( $group ) {
+        $file_types = $this->get_file_types_in_group( $group );
+        $allowed_extensions = $this->get_allowed_file_extesions_in_group( $group );
 
-    public function get_video_mime_types() {
-        return $this->get_mime_types( $this->get_file_types_in_group( 'video' ) );
-    }
-
-    private function get_mime_types( $file_types ) {
-        $mime_types = array();
-
-        foreach ( $file_types as $extension => $file_type ) {
-            foreach ( $file_type['mime_types'] as $mime_type ) {
-                $mime_types[] = $mime_type;
-            }
-        }
-
-        return $mime_types;
-    }
-
-    public function get_allowed_video_mime_types() {
-        return $this->get_allowed_mime_types( $this->get_file_types_in_group( 'video' ), $this->get_allowed_video_extensions() );
+        return $this->get_allowed_mime_types( $file_types, $allowed_extensions );
     }
 
     private function get_allowed_mime_types( $file_types, $allowed_extensions ) {
@@ -91,6 +76,47 @@ class AWPCP_FileTypes {
         return $this->get_mime_types( $allowed_file_types );
     }
 
+    private function get_mime_types( $file_types ) {
+        $mime_types = array();
+
+        foreach ( $file_types as $extension => $file_type ) {
+            foreach ( $file_type['mime_types'] as $mime_type ) {
+                $mime_types[] = $mime_type;
+            }
+        }
+
+        return $mime_types;
+    }
+
+    public function get_allowed_file_extesions_in_group( $group ) {
+        switch ( $group ) {
+            case 'image':
+                $option = 'allowed-image-extensions';
+                break;
+            case 'video':
+                $option = 'attachments-allowed-video-extensions';
+                break;
+            case 'others':
+                $option = 'attachments-allowed-other-files-extensions';
+                break;
+        }
+
+        return array_values( array_filter( $this->settings->get_option( $option, array() ) ) );
+    }
+
+    public function get_file_mime_types_in_group( $group ) {
+        return $this->get_mime_types( $this->get_file_types_in_group( $group ) );
+    }
+
+
+    public function get_video_mime_types() {
+        return $this->get_mime_types( $this->get_file_types_in_group( 'video' ) );
+    }
+
+    public function get_allowed_video_mime_types() {
+        return $this->get_allowed_mime_types( $this->get_file_types_in_group( 'video' ), $this->get_allowed_video_extensions() );
+    }
+
     public function get_video_extensions() {
         return array_keys( $this->get_file_types_in_group( 'video' ) );
     }
@@ -98,6 +124,7 @@ class AWPCP_FileTypes {
     public function get_allowed_video_extensions() {
         return array_values( array_filter( $this->settings->get_option( 'attachments-allowed-video-extensions', array() ) ) );
     }
+
 
     public function get_other_files_mime_types() {
         return $this->get_mime_types( $this->get_file_types_in_group( 'others' ) );
@@ -114,6 +141,7 @@ class AWPCP_FileTypes {
     public function get_other_allowed_files_extensions() {
         return array_values( array_filter( $this->settings->get_option( 'attachments-allowed-other-files-extensions', array() ) ) );
     }
+
 
     public function get_extension_names() {
         $extension_names = array();
