@@ -239,7 +239,9 @@ class AWPCP_CSV_Importer {
 			// }
 
 			foreach ($this->columns as $key => $column) {
-				$value = awpcp_array_data($key, '', $data);
+				// DO NOT USE awpcp_array_data BECAUSE IT WILL TREAT '0' AS
+				// AN EMPTY VALUE
+				$value = isset( $data[ $key ] ) ? $data[ $key ] : '';
 
 				$_errors = array();
 				if ($key == 'username') {
