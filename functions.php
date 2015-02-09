@@ -380,7 +380,7 @@ function awpcp_admin_capability() {
 	if (in_array('editor', $roles))
 		return 'edit_pages';
 	// default to: only WP administrator users are AWPCP admins
-	return 'install_plugins';
+	return 'activate_plugins';
 }
 
 /**
