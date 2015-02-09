@@ -48,7 +48,6 @@ class AWPCP_FilesSettings {
             )
         );
 
-        $settings->add_setting( $key, 'imagesallowdisallow', __( 'Allow images in Ads?', 'AWPCP' ), 'checkbox', 1, __( 'Allow images in ads? (affects both free and pay mode)', 'AWPCP' ) );
         $settings->add_setting( $key, 'imagesapprove', __( 'Hide images until admin approves them', 'AWPCP' ), 'checkbox', 0, '');
         $settings->add_setting( $key, 'awpcp_thickbox_disabled', __( 'Disable AWPCP Lightbox feature', 'AWPCP' ), 'checkbox', 0, __( 'Turn off the lightbox/thickbox element used by AWPCP. Some themes cannot handle it and a conflict results.', 'AWPCP' ) );
         $settings->add_setting( $key, 'show-click-to-enlarge-link', __( 'Show click to enlarge link?', 'AWPCP' ), 'checkbox', 1, '' );
