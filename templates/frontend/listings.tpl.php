@@ -13,7 +13,7 @@
     <?php echo $pagination; ?>
     <?php echo $before_list; ?>
 
-    <div class="awpcp-listings clearboth">
+    <div class="awpcp-listings awpcp-clearboth">
         <?php if ( count( $items ) ): ?>
             <?php echo implode( '', $items ); ?>
         <?php else: ?>

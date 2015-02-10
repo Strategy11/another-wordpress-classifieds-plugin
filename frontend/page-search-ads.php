@@ -153,7 +153,7 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
     public function build_return_link() {
         $params = array_merge(stripslashes_deep($_REQUEST), array('a' => 'searchads'));
         $href = add_query_arg(urlencode_deep($params), awpcp_current_url());
-        $return_link = '<div class="awpcp-return-to-search-link clearboth"><a href="' . esc_attr($href) . '">' . __('Return to Search', 'AWPCP') . '</a></div>';
+        $return_link = '<div class="awpcp-return-to-search-link awpcp-clearboth"><a href="' . esc_attr($href) . '">' . __('Return to Search', 'AWPCP') . '</a></div>';
 
         return $return_link;
     }
