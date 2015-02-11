@@ -395,7 +395,6 @@ function awpcp_admin_roles_names() {
     }
 }
 
-
 /**
  * Check if current user is an Administrator according to
  * AWPCP settings.
@@ -2039,10 +2038,11 @@ function awpcp_unique_filename( $path, $filename, $directories ) {
     $extension = $pathinfo['extension'];
     $file_size = filesize( $path );
     $timestamp = microtime();
+    $salt = wp_salt();
     $counter = 0;
 
     do {
-        $hash = hash( 'crc32b', "$name-$extension-$file_size-$timestamp-$counter" );
+        $hash = hash( 'crc32b', "$name-$extension-$file_size-$timestamp-$salt-$counter" );
         $new_filename = "$name-$hash.$extension";
         $counter = $counter + 1;
     } while ( awpcp_is_filename_already_used( $new_filename, $directories ) );
@@ -2074,4 +2074,12 @@ function awpcp_register_activation_hook( $__FILE__, $callback ) {
 function awpcp_register_deactivation_hook( $__FILE__, $callback ) {
     $file = WP_CONTENT_DIR . '/plugins/' . basename( dirname( $__FILE__ ) ) . '/' . basename( $__FILE__ );
     register_deactivation_hook( $file, $callback );
+}
+
+/**
+ * @since next-release
+ */
+function awpcp_are_images_allowed() {
+    $allowed_image_extensions = array_filter( awpcp_get_option( 'allowed-image-extensions', array() ) );
+    return count( $allowed_image_extensions ) > 0;
 }

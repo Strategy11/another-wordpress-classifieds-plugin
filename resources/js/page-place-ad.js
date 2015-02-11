@@ -1,12 +1,10 @@
 /*global AWPCP*/
 AWPCP.run('awpcp/page-place-ads', [
     'jquery',
-    'knockout',
-    'awpcp/file-manager',
+    'awpcp/media-center',
     'awpcp/settings',
     'awpcp/jquery-userfield'
-],
-function( $, ko, FileManager, settings ) {
+], function( $, MediaCenter, settings ) {
     var AWPCP = jQuery.AWPCP = jQuery.extend({}, jQuery.AWPCP, AWPCP);
 
     $.AWPCP.PaymentTermsTable = function(table) {
@@ -235,17 +233,10 @@ function( $, ko, FileManager, settings ) {
         /* Upload Images Form */
 
         (function() {
-            var form = container.find('.awpcp-upload-images-form');
-
-            if (form.length) {
-                var data = settings.get( 'file-manager-data' );
-                ko.applyBindings( new FileManager( data.nonce, data.files, data.options ), $('.awpcp-file-manager').get( 0 ) );
-
-                var radios = form.find('.uploadform :radio').change(function() {
-                    radios.closest('li').removeClass('primary').addClass('not-primary');
-                    $(this).closest('li').removeClass('not-primary').addClass('primary');
-                });
-            }
+            $( '.awpcp-media-center' ).StartMediaCenter( {
+                mediaManagerOptions: settings.get( 'media-manager-data' ),
+                mediaUploaderOptions: settings.get( 'media-uploader-data' )
+            } );
         })();
 
         /* Deleta Ad Form */

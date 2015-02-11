@@ -282,7 +282,7 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
 
         do_action('awpcp_edit_ad', $ad);
 
-        if (is_admin() || !get_awpcp_option('imagesallowdisallow')) {
+        if ( is_admin() || ! awpcp_are_images_allowed() ) {
             return $this->finish_step();
         } else {
             return $this->upload_images_step();
@@ -297,19 +297,12 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
             return $this->render('content', awpcp_print_error($message));
         }
 
-        $output =  apply_filters( 'awpcp-edit-ad-upload-files-step', false, $this );
-
-        if ( false !== $output ) return $output;
-
-        $errors = array();
-        $this->handle_file_actions($ad, $errors);
-
         extract( $params = $this->get_images_config( $ad ) );
 
         // see if we can move to the next step
-        if (!get_awpcp_option('imagesallowdisallow')) {
+        if ( ! awpcp_are_images_allowed() ) {
             return $this->finish_step();
-        } else if (empty($errors) && awpcp_post_param('submit-no-images', false)) {
+        } else if ( awpcp_post_param( 'submit-no-images', false ) ) {
             return $this->finish_step();
         } else if (($images_uploaded == 0 && $images_allowed == 0)) {
             return $this->finish_step();
@@ -317,7 +310,29 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
 
         // we are still here... let's show the upload images form
 
-        $params = array_merge( $params, array( 'errors' => $errors ) );
+        return $this->show_upload_images_form( $ad, null, $params, array() );
+    }
+
+    /**
+     * TODO: merge with the same method from Page Place Ad.
+     */
+    protected function show_upload_images_form( $ad, $transaction, $params, $errors ) {
+        $allowed_files = awpcp_listing_upload_limits()->get_listing_upload_limits( $ad );
+
+        $params = array_merge( $params, array(
+            'hidden' => array(),
+            'errors' => $errors,
+            'media_manager_configuration' => array(
+                'nonce' => wp_create_nonce( 'awpcp-manage-listing-media-' . $ad->ad_id ),
+                'allowed_files' => $allowed_files,
+                'show_admin_actions' => awpcp_current_user_is_admin(),
+            ),
+            'media_uploader_configuration' => array(
+                'listing_id' => $ad->ad_id,
+                'nonce' => wp_create_nonce( 'awpcp-upload-media-for-listing-' . $ad->ad_id ),
+                'allowed_files' => $allowed_files,
+            ),
+        ) );
 
         return $this->upload_images_form( $ad, $params );
     }
@@ -325,16 +340,11 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
     public function upload_images_form( $ad, $params=array() ) {
         $params = array_merge( $params, array(
             'listing' => $ad,
-            'images' => awpcp_media_api()->find_images_by_ad_id( $ad->ad_id ),
-            'is_primary_set' => awpcp_media_api()->listing_has_primary_image( $ad ),
+            'files' => awpcp_media_api()->find_by_ad_id( $ad->ad_id ),
             'hidden' => array(
                 'ad_id' => $ad->ad_id,
                 'edit-hash' => $this->get_edit_hash( $ad ) ),
             'messages' => $this->messages,
-            'actions' => array(
-                'enable' => true,
-                'disable' => true,
-            ),
             'next' => __( 'Finish', 'AWPCP' ),
         ) );
 

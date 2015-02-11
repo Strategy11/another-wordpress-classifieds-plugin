@@ -679,6 +679,28 @@ p.ad_status_msg {
   margin-right: 0;
 }
 /* Attachments Style */
+#classiwrapper .awpcp-videos {
+  clear: both;
+  margin-top: 10px;
+}
+#classiwrapper .awpcp-videos-title {
+  font-weight: bold;
+}
+#classiwrapper .awpcp-videos-grid-item {
+  float: left;
+  list-style: none;
+  margin: 10px;
+}
+#classiwrapper .awpcp-videos-grid-item a {
+  background: #626262;
+  border: 1px solid #313131;
+  display: inline-block;
+  padding: 9px;
+}
+#classiwrapper .awpcp-videos-list-item {
+  list-style: none;
+  margin: 10px 0;
+}
 #classiwrapper .awpcp-attachments {
   clear: both;
   margin-top: 10px;
@@ -947,323 +969,6 @@ p.ad_status_msg {
     width: 100%;
   }
 }
-#classiwrapper .awpcp-uploaded-files,
-.awpcp-uploaded-files,
-#classiwrapper .uploaded-images,
-.uploaded-images,
-#classiwrapper .awpcp-uploaded-images,
-.awpcp-uploaded-images {
-  margin-bottom: 10px;
-}
-#classiwrapper .awpcp-uploaded-files li,
-.awpcp-uploaded-files li,
-#classiwrapper .uploaded-images li,
-.uploaded-images li,
-#classiwrapper .awpcp-uploaded-images li,
-.awpcp-uploaded-images li {
-  background: #EEE;
-  border: 1px solid #E2E2E2;
-  float: left;
-  list-style-type: none;
-  margin: 0 10px 30px;
-  min-width: 180px;
-  padding: 3px;
-  text-align: center;
-}
-#classiwrapper .awpcp-uploaded-files li .image-container,
-.awpcp-uploaded-files li .image-container,
-#classiwrapper .uploaded-images li .image-container,
-.uploaded-images li .image-container,
-#classiwrapper .awpcp-uploaded-images li .image-container,
-.awpcp-uploaded-images li .image-container {
-  background: #E2E2E2;
-}
-#classiwrapper .awpcp-uploaded-files li .image-container img,
-.awpcp-uploaded-files li .image-container img,
-#classiwrapper .uploaded-images li .image-container img,
-.uploaded-images li .image-container img,
-#classiwrapper .awpcp-uploaded-images li .image-container img,
-.awpcp-uploaded-images li .image-container img {
-  border-radius: 0;
-  box-shadow: none;
-  display: block;
-  margin: 0 auto;
-  max-width: 125px;
-}
-#classiwrapper .awpcp-uploaded-files li .image-actions,
-.awpcp-uploaded-files li .image-actions,
-#classiwrapper .uploaded-images li .image-actions,
-.uploaded-images li .image-actions,
-#classiwrapper .awpcp-uploaded-images li .image-actions,
-.awpcp-uploaded-images li .image-actions {
-  padding-top: 5px;
-}
-#classiwrapper .awpcp-uploaded-files li .image-actions li,
-.awpcp-uploaded-files li .image-actions li,
-#classiwrapper .uploaded-images li .image-actions li,
-.uploaded-images li .image-actions li,
-#classiwrapper .awpcp-uploaded-images li .image-actions li,
-.awpcp-uploaded-images li .image-actions li {
-  background: transparent;
-  border: none;
-  margin: 0;
-  padding: 0 1px;
-  min-width: 0;
-  width: auto;
-}
-#classiwrapper .awpcp-uploaded-files li .image-actions li a,
-.awpcp-uploaded-files li .image-actions li a,
-#classiwrapper .uploaded-images li .image-actions li a,
-.uploaded-images li .image-actions li a,
-#classiwrapper .awpcp-uploaded-images li .image-actions li a,
-.awpcp-uploaded-images li .image-actions li a,
-#classiwrapper .awpcp-uploaded-files li .image-actions li label,
-.awpcp-uploaded-files li .image-actions li label,
-#classiwrapper .uploaded-images li .image-actions li label,
-.uploaded-images li .image-actions li label,
-#classiwrapper .awpcp-uploaded-images li .image-actions li label,
-.awpcp-uploaded-images li .image-actions li label {
-  background: url(../images/image-enable.png) center center no-repeat;
-  cursor: pointer;
-  display: block;
-  height: 22px;
-  width: 25px;
-}
-#classiwrapper .awpcp-uploaded-files li .image-actions li a:hover,
-.awpcp-uploaded-files li .image-actions li a:hover,
-#classiwrapper .uploaded-images li .image-actions li a:hover,
-.uploaded-images li .image-actions li a:hover,
-#classiwrapper .awpcp-uploaded-images li .image-actions li a:hover,
-.awpcp-uploaded-images li .image-actions li a:hover,
-#classiwrapper .awpcp-uploaded-files li .image-actions li label:hover,
-.awpcp-uploaded-files li .image-actions li label:hover,
-#classiwrapper .uploaded-images li .image-actions li label:hover,
-.uploaded-images li .image-actions li label:hover,
-#classiwrapper .awpcp-uploaded-images li .image-actions li label:hover,
-.awpcp-uploaded-images li .image-actions li label:hover {
-  background-color: #C6C6C6;
-}
-#classiwrapper .awpcp-uploaded-files li .image-actions li input,
-.awpcp-uploaded-files li .image-actions li input,
-#classiwrapper .uploaded-images li .image-actions li input,
-.uploaded-images li .image-actions li input,
-#classiwrapper .awpcp-uploaded-images li .image-actions li input,
-.awpcp-uploaded-images li .image-actions li input {
-  display: inline-block;
-}
-#classiwrapper .awpcp-uploaded-files li .image-actions .spinner,
-.awpcp-uploaded-files li .image-actions .spinner,
-#classiwrapper .uploaded-images li .image-actions .spinner,
-.uploaded-images li .image-actions .spinner,
-#classiwrapper .awpcp-uploaded-images li .image-actions .spinner,
-.awpcp-uploaded-images li .image-actions .spinner {
-  background: url('/wp-admin/images/spinner.gif') center center no-repeat;
-  display: block;
-  height: 20px;
-  width: 20px;
-}
-#classiwrapper .awpcp-uploaded-files li .image-actions .spinner-hidden,
-.awpcp-uploaded-files li .image-actions .spinner-hidden,
-#classiwrapper .uploaded-images li .image-actions .spinner-hidden,
-.uploaded-images li .image-actions .spinner-hidden,
-#classiwrapper .awpcp-uploaded-images li .image-actions .spinner-hidden,
-.awpcp-uploaded-images li .image-actions .spinner-hidden {
-  display: none;
-}
-#classiwrapper .awpcp-uploaded-files li .image-actions .enable a,
-.awpcp-uploaded-files li .image-actions .enable a,
-#classiwrapper .uploaded-images li .image-actions .enable a,
-.uploaded-images li .image-actions .enable a,
-#classiwrapper .awpcp-uploaded-images li .image-actions .enable a,
-.awpcp-uploaded-images li .image-actions .enable a {
-  background-image: url(../images/image-enable.png);
-}
-#classiwrapper .awpcp-uploaded-files li .image-actions .disable a,
-.awpcp-uploaded-files li .image-actions .disable a,
-#classiwrapper .uploaded-images li .image-actions .disable a,
-.uploaded-images li .image-actions .disable a,
-#classiwrapper .awpcp-uploaded-images li .image-actions .disable a,
-.awpcp-uploaded-images li .image-actions .disable a {
-  background-image: url(../images/image-disable.png);
-}
-#classiwrapper .awpcp-uploaded-files li .image-actions .delete a,
-.awpcp-uploaded-files li .image-actions .delete a,
-#classiwrapper .uploaded-images li .image-actions .delete a,
-.uploaded-images li .image-actions .delete a,
-#classiwrapper .awpcp-uploaded-images li .image-actions .delete a,
-.awpcp-uploaded-images li .image-actions .delete a {
-  background-image: url(../images/image-delete.png);
-}
-#classiwrapper .awpcp-uploaded-files li .image-actions .status label,
-.awpcp-uploaded-files li .image-actions .status label,
-#classiwrapper .uploaded-images li .image-actions .status label,
-.uploaded-images li .image-actions .status label,
-#classiwrapper .awpcp-uploaded-images li .image-actions .status label,
-.awpcp-uploaded-images li .image-actions .status label {
-  background: none;
-  font-size: 0.9em;
-  padding: 0 3px;
-  width: auto;
-}
-#classiwrapper .awpcp-uploaded-files li .image-actions .primary-status span,
-.awpcp-uploaded-files li .image-actions .primary-status span,
-#classiwrapper .uploaded-images li .image-actions .primary-status span,
-.uploaded-images li .image-actions .primary-status span,
-#classiwrapper .awpcp-uploaded-images li .image-actions .primary-status span,
-.awpcp-uploaded-images li .image-actions .primary-status span {
-  display: block;
-}
-#classiwrapper .awpcp-uploaded-files li .image-actions .primary-status span.primary a,
-.awpcp-uploaded-files li .image-actions .primary-status span.primary a,
-#classiwrapper .uploaded-images li .image-actions .primary-status span.primary a,
-.uploaded-images li .image-actions .primary-status span.primary a,
-#classiwrapper .awpcp-uploaded-images li .image-actions .primary-status span.primary a,
-.awpcp-uploaded-images li .image-actions .primary-status span.primary a,
-#classiwrapper .awpcp-uploaded-files li .image-actions .primary-status span.primary label,
-.awpcp-uploaded-files li .image-actions .primary-status span.primary label,
-#classiwrapper .uploaded-images li .image-actions .primary-status span.primary label,
-.uploaded-images li .image-actions .primary-status span.primary label,
-#classiwrapper .awpcp-uploaded-images li .image-actions .primary-status span.primary label,
-.awpcp-uploaded-images li .image-actions .primary-status span.primary label {
-  background-image: url(../images/image-primary.png);
-}
-#classiwrapper .awpcp-uploaded-files li .image-actions .primary-status span.not-primary a,
-.awpcp-uploaded-files li .image-actions .primary-status span.not-primary a,
-#classiwrapper .uploaded-images li .image-actions .primary-status span.not-primary a,
-.uploaded-images li .image-actions .primary-status span.not-primary a,
-#classiwrapper .awpcp-uploaded-images li .image-actions .primary-status span.not-primary a,
-.awpcp-uploaded-images li .image-actions .primary-status span.not-primary a,
-#classiwrapper .awpcp-uploaded-files li .image-actions .primary-status span.not-primary label,
-.awpcp-uploaded-files li .image-actions .primary-status span.not-primary label,
-#classiwrapper .uploaded-images li .image-actions .primary-status span.not-primary label,
-.uploaded-images li .image-actions .primary-status span.not-primary label,
-#classiwrapper .awpcp-uploaded-images li .image-actions .primary-status span.not-primary label,
-.awpcp-uploaded-images li .image-actions .primary-status span.not-primary label {
-  background-image: url(../images/image-not-primary.png);
-}
-#classiwrapper .awpcp-uploaded-files li .image-actions .primary-status span.primary input,
-.awpcp-uploaded-files li .image-actions .primary-status span.primary input,
-#classiwrapper .uploaded-images li .image-actions .primary-status span.primary input,
-.uploaded-images li .image-actions .primary-status span.primary input,
-#classiwrapper .awpcp-uploaded-images li .image-actions .primary-status span.primary input,
-.awpcp-uploaded-images li .image-actions .primary-status span.primary input,
-#classiwrapper .awpcp-uploaded-files li .image-actions .primary-status span.not-primary input,
-.awpcp-uploaded-files li .image-actions .primary-status span.not-primary input,
-#classiwrapper .uploaded-images li .image-actions .primary-status span.not-primary input,
-.uploaded-images li .image-actions .primary-status span.not-primary input,
-#classiwrapper .awpcp-uploaded-images li .image-actions .primary-status span.not-primary input,
-.awpcp-uploaded-images li .image-actions .primary-status span.not-primary input {
-  display: none;
-}
-#classiwrapper .awpcp-uploaded-files .primary-image,
-.awpcp-uploaded-files .primary-image,
-#classiwrapper .uploaded-images .primary-image,
-.uploaded-images .primary-image,
-#classiwrapper .awpcp-uploaded-images .primary-image,
-.awpcp-uploaded-images .primary-image {
-  background: #B6E2AF;
-  border: 3px solid #86CC7C;
-  padding: 1px;
-}
-#classiwrapper .awpcp-uploaded-files .awaiting-approval,
-.awpcp-uploaded-files .awaiting-approval,
-#classiwrapper .uploaded-images .awaiting-approval,
-.uploaded-images .awaiting-approval,
-#classiwrapper .awpcp-uploaded-images .awaiting-approval,
-.awpcp-uploaded-images .awaiting-approval {
-  background: #fff6db;
-  border-color: #E6E6C8;
-}
-#classiwrapper .awpcp-uploaded-files .rejected,
-.awpcp-uploaded-files .rejected,
-#classiwrapper .uploaded-images .rejected,
-.uploaded-images .rejected,
-#classiwrapper .awpcp-uploaded-images .rejected,
-.awpcp-uploaded-images .rejected {
-  background: #ffb3b3;
-  border-color: #FC9393;
-}
-#classiwrapper .awpcp-uploaded-files .disabled img,
-.awpcp-uploaded-files .disabled img,
-#classiwrapper .uploaded-images .disabled img,
-.uploaded-images .disabled img,
-#classiwrapper .awpcp-uploaded-images .disabled img,
-.awpcp-uploaded-images .disabled img {
-  opacity: 0.5;
-}
-#classiwrapper .awpcp-uploaded-images li,
-.awpcp-uploaded-images li {
-  position: relative;
-}
-#classiwrapper .awpcp-uploaded-images li .primary-image-label,
-.awpcp-uploaded-images li .primary-image-label {
-  position: absolute;
-  bottom: -23px;
-  height: 20px;
-  background: #B6E2AF;
-  font-size: 11px;
-  padding: 0 6px;
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
-  width: 144px;
-  box-sizing: border-box;
-  line-height: 18px;
-  left: 50%;
-  margin-left: -72px;
-}
-#classiwrapper .awpcp-uploaded-attachments li,
-.awpcp-uploaded-attachments li {
-  margin: 0 0 4px;
-  min-width: 100%;
-  padding: 6px 10px 3px;
-}
-#classiwrapper .awpcp-uploaded-attachments li > a,
-.awpcp-uploaded-attachments li > a {
-  float: left;
-}
-#classiwrapper .awpcp-uploaded-attachments li img,
-.awpcp-uploaded-attachments li img {
-  display: inline;
-}
-#classiwrapper .awpcp-uploaded-attachments li .image-actions,
-.awpcp-uploaded-attachments li .image-actions {
-  float: right;
-  padding-top: 0px;
-}
-#classiwrapper .awpcp-uploaded-attachments li .image-actions .delete a,
-.awpcp-uploaded-attachments li .image-actions .delete a {
-  background-image: url(../images/file-delete.png);
-}
-#classiwrapper .awpcp-uploaded-attachments li .image-actions .enable a,
-.awpcp-uploaded-attachments li .image-actions .enable a {
-  background-image: url(../images/enable-attachment.png);
-}
-#classiwrapper .awpcp-uploaded-attachments li .image-actions .disable a,
-.awpcp-uploaded-attachments li .image-actions .disable a {
-  background-image: url(../images/disable-attachment.png);
-}
-#classiwrapper .awpcp-uploaded-attachments li.disabled,
-.awpcp-uploaded-attachments li.disabled {
-  background: #F3F3F3;
-}
-#classiwrapper .awpcp-uploaded-attachments li.disabled > a,
-.awpcp-uploaded-attachments li.disabled > a {
-  opacity: 0.5;
-}
-@media only screen and (max-width: 480px) {
-  #classiwrapper .uploaded-images li,
-  .uploaded-images li,
-  #classiwrapper .awpcp-uploaded-images li,
-  .awpcp-uploaded-images li {
-    width: 100%;
-  }
-  #classiwrapper .uploaded-images li .image-actions li,
-  .uploaded-images li .image-actions li,
-  #classiwrapper .awpcp-uploaded-images li .image-actions li,
-  .awpcp-uploaded-images li .image-actions li {
-    width: auto;
-  }
-}
 /* Using !important because theme authors love to use IDs in their
    CSS selectors. My rules won't be applied unless I know the exact
    selector or use !important. */
@@ -1412,6 +1117,220 @@ p.ad_status_msg {
   .awpcp-navigation.toggle-on .awpcp-nav-menu {
     display: block;
   }
+}
+#classiwrapper,
+.awpcp-media-center {
+  /* Uploaded File */
+  /* Uploaded File States */
+  /* Uploaded File Actions */
+  /* Uploaded File Actions */
+  /* Uploaded Video Actions */
+}
+#classiwrapper .awpcp-uploaded-files-group,
+.awpcp-media-center .awpcp-uploaded-files-group {
+  padding-bottom: 1px;
+}
+#classiwrapper .awpcp-uploaded-files-group-title,
+.awpcp-media-center .awpcp-uploaded-files-group-title {
+  background: #EEE;
+  border: 1px solid #DDD;
+  font-size: 1.2em;
+  margin: 10px 0;
+  padding: 4px;
+  text-align: center;
+}
+#classiwrapper .awpcp-uploaded-files-list,
+.awpcp-media-center .awpcp-uploaded-files-list {
+  margin-bottom: 10px;
+}
+#classiwrapper .awpcp-uploaded-file,
+.awpcp-media-center .awpcp-uploaded-file {
+  background: #EEE;
+  border: 1px solid #E2E2E2;
+  float: left;
+  list-style-type: none;
+  margin: 0 5px 10px;
+  width: 180px;
+  padding: 3px;
+  position: relative;
+  text-align: center;
+}
+#classiwrapper .awpcp-uploaded-file-thumbnail-container,
+.awpcp-media-center .awpcp-uploaded-file-thumbnail-container {
+  background: #E2E2E2;
+  margin-bottom: 10px;
+}
+#classiwrapper .awpcp-uploaded-file-thumbnail-container img,
+.awpcp-media-center .awpcp-uploaded-file-thumbnail-container img {
+  border-radius: 0;
+  box-shadow: none;
+  display: block;
+  margin: 0 auto;
+}
+#classiwrapper .is-disabled .awpcp-uploaded-file-thumbnail-container img,
+.awpcp-media-center .is-disabled .awpcp-uploaded-file-thumbnail-container img {
+  opacity: 0.5;
+}
+#classiwrapper .awpcp-uploaded-file-primary-label,
+.awpcp-media-center .awpcp-uploaded-file-primary-label {
+  position: absolute;
+  bottom: -23px;
+  height: 20px;
+  background: #B6E2AF;
+  font-size: 11px;
+  padding: 0 6px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  width: 144px;
+  box-sizing: border-box;
+  line-height: 18px;
+  left: 50%;
+  margin-left: -72px;
+}
+#classiwrapper .is-primary,
+.awpcp-media-center .is-primary {
+  background: #B6E2AF;
+  border: 3px solid #86CC7C;
+  padding: 1px;
+}
+#classiwrapper .is-awaiting-approval,
+.awpcp-media-center .is-awaiting-approval {
+  background: #fff6db;
+  border-color: #E6E6C8;
+}
+#classiwrapper .is-rejected,
+.awpcp-media-center .is-rejected {
+  background: #ffb3b3;
+  border-color: #FC9393;
+}
+#classiwrapper .awpcp-uploaded-files-table,
+.awpcp-media-center .awpcp-uploaded-files-table {
+  margin: 0;
+}
+#classiwrapper .awpcp-uploaded-files-table td,
+.awpcp-media-center .awpcp-uploaded-files-table td {
+  padding: 3px;
+  vertical-align: middle;
+}
+#classiwrapper .awpcp-uploaded-files-table .awpcp-uploaded-file,
+.awpcp-media-center .awpcp-uploaded-files-table .awpcp-uploaded-file {
+  float: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+}
+#classiwrapper .awpcp-uploaded-files-table .awpcp-uploaded-file-name,
+.awpcp-media-center .awpcp-uploaded-files-table .awpcp-uploaded-file-name {
+  padding-left: 8px;
+  text-align: left;
+}
+#classiwrapper .awpcp-uploaded-file-actions,
+.awpcp-media-center .awpcp-uploaded-file-actions {
+  padding-top: 5px;
+}
+#classiwrapper .awpcp-uploaded-file-action,
+.awpcp-media-center .awpcp-uploaded-file-action {
+  float: left;
+  border: 1px solid #E2E2E2;
+  border-radius: 2px;
+  margin-right: 2px;
+  background: #FBFBFB;
+}
+#classiwrapper .awpcp-uploaded-file-action a,
+.awpcp-media-center .awpcp-uploaded-file-action a,
+#classiwrapper .awpcp-uploaded-file-action label,
+.awpcp-media-center .awpcp-uploaded-file-action label {
+  background: transparent center center no-repeat;
+  cursor: pointer;
+  display: block;
+  height: 22px;
+  line-height: 22px;
+  width: 25px;
+}
+#classiwrapper .awpcp-uploaded-file-action:hover,
+.awpcp-media-center .awpcp-uploaded-file-action:hover {
+  border-color: #B3B3B3;
+  background-color: #D8D8D8;
+}
+#classiwrapper .is-primary .awpcp-uploaded-file-action,
+.awpcp-media-center .is-primary .awpcp-uploaded-file-action {
+  background: #ECF6EA;
+  border-color: #9BCE93;
+}
+#classiwrapper .is-primary .awpcp-uploaded-file-action:hover,
+.awpcp-media-center .is-primary .awpcp-uploaded-file-action:hover {
+  background: #A5D69D;
+}
+#classiwrapper .awpcp-uploaded-file-change-status-action label,
+.awpcp-media-center .awpcp-uploaded-file-change-status-action label {
+  padding: 0 4px;
+  width: auto;
+}
+#classiwrapper .awpcp-uploaded-file-set-as-primary-action span,
+.awpcp-media-center .awpcp-uploaded-file-set-as-primary-action span {
+  display: block;
+}
+#classiwrapper .awpcp-uploaded-file-set-as-primary-action a,
+.awpcp-media-center .awpcp-uploaded-file-set-as-primary-action a {
+  background-image: url(../images/image-not-primary.png);
+}
+#classiwrapper .is-primary .awpcp-uploaded-file-set-as-primary-action a,
+.awpcp-media-center .is-primary .awpcp-uploaded-file-set-as-primary-action a {
+  background-image: url(../images/image-primary.png);
+}
+#classiwrapper .awpcp-uploaded-file-delete-action a,
+.awpcp-media-center .awpcp-uploaded-file-delete-action a {
+  background-image: url(../images/image-delete.png);
+}
+#classiwrapper .awpcp-uploaded-file-approve-action a,
+.awpcp-media-center .awpcp-uploaded-file-approve-action a {
+  background-image: url(../images/approve-attachment.png);
+}
+#classiwrapper .awpcp-uploaded-file-reject-action a,
+.awpcp-media-center .awpcp-uploaded-file-reject-action a {
+  background-image: url(../images/reject-attachment.png);
+}
+#classiwrapper .awpcp-uploaded-file-loading-icon,
+.awpcp-media-center .awpcp-uploaded-file-loading-icon {
+  background: none !important;
+  border: none !important;
+}
+#classiwrapper .awpcp-spinner,
+.awpcp-media-center .awpcp-spinner {
+  background: url('/wp-admin/images/spinner.gif') center center no-repeat;
+  display: none;
+  height: 20px;
+  width: 20px;
+}
+#classiwrapper .awpcp-spinner-visible,
+.awpcp-media-center .awpcp-spinner-visible {
+  display: block;
+}
+#classiwrapper .awpcp-uploaded-file-spinner,
+.awpcp-media-center .awpcp-uploaded-file-spinner {
+  background-color: #fff;
+  margin: -25px -10px;
+  padding: 1px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 12px;
+}
+#classiwrapper .awpcp-uploaded-video-delete-action a,
+.awpcp-media-center .awpcp-uploaded-video-delete-action a {
+  background-image: url(../images/film_delete.png);
+}
+.awpcp-media-uploader-upload-restrictions {
+  margin: 10px 0;
+}
+.awpcp-media-uploader-queue .plupload_container {
+  padding: 0;
+}
+.awpcp-thumbnails-generator video,
+.awpcp-thumbnails-generator canvas {
+  position: absolute;
+  visibility: hidden;
 }
 .awpcp-multiple-region-selector .add-region,
 .awpcp-multiple-region-selector .remove-region {

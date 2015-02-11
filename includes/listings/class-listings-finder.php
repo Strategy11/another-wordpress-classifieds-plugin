@@ -198,7 +198,7 @@ class AWPCP_ListingsFinder {
     }
 
     private function build_condition_with_not_in_clause( $colum, $value ) {
-        $this->build_condition_with_inclusion_operators( $colum, $value, 'NOT IN', '!=' );
+        return $this->build_condition_with_inclusion_operators( $colum, $value, 'NOT IN', '!=' );
     }
 
     private function build_contact_condition( $query ) {

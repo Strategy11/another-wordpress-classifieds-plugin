@@ -370,55 +370,6 @@ class AWPCP_Settings_API {
 		$this->add_setting($key, '2checkoutcurrencycode', __( '2Checkout currency code', 'AWPCP' ), 'textfield', 'USD', __( 'The currency in which you would like to receive your 2Checkout payments', 'AWPCP' ) );
 		// $this->add_setting($key, 'twocheckoutpaymentsrecurring', 'Use 2Checkout recurring payments?', 'checkbox', 0, 'Use recurring payments 2Checkout (this feature is not fully automated or fully integrated. For more reliable results do not use recurring).');
 
-		// Group: Image
-
-		$group = $this->add_group( __( 'Image', 'AWPCP' ), 'image-settings', 50);
-
-		// Section: Image Settings - Default
-
-		$key = $this->add_section($group, __('Image Settings', 'AWPCP'), 'default', 10, array($this, 'section'));
-
-		$this->add_setting( $key, 'imagesallowdisallow', __( 'Allow images in Ads?', 'AWPCP' ), 'checkbox', 1, __( 'Allow images in ads? (affects both free and pay mode)', 'AWPCP' ) );
-		$this->add_setting( $key, 'imagesapprove', __( 'Hide images until admin approves them', 'AWPCP' ), 'checkbox', 0, '');
-		$this->add_setting( $key, 'awpcp_thickbox_disabled', __( 'Disable AWPCP Lightbox feature', 'AWPCP' ), 'checkbox', 0, __( 'Turn off the lightbox/thickbox element used by AWPCP. Some themes cannot handle it and a conflict results.', 'AWPCP' ) );
-		$this->add_setting( $key, 'show-click-to-enlarge-link', __( 'Show click to enlarge link?', 'AWPCP' ), 'checkbox', 1, '' );
-		$this->add_setting( $key, 'imagesallowedfree', __( 'Number of images allowed in Free mode', 'AWPCP' ), 'textfield', 4, __( 'Number of Image Uploads Allowed (Free Mode)', 'AWPCP' ) );
-
-		// Section: Image Settings - File Settings
-
-		$key = $this->add_section($group, __('Image File Settings', 'AWPCP'), 'image-file', 10, array($this, 'section'));
-
-		$this->add_setting( $key, 'uploadfoldername', __( 'Uploads folder name', 'AWPCP' ), 'textfield', 'uploads', __( 'Upload folder name. (Folder must exist and be located in your wp-content directory)', 'AWPCP' ) );
-
-		$options = array( '0755' => '0755', '0777' => '0777' );
-		$this->add_setting( $key, 'upload-directory-permissions', __( 'File permissions for uploads directory', 'AWPCP' ), 'select', '0755', __( 'File permissions applied to the uploads directory and sub-directories so that the plugin is allowed to write to those directories.', 'AWPCP' ), array( 'options' => $options ) );
-
-		$this->add_setting( $key, 'maximagesize', __( 'Maximum file size per image', 'AWPCP' ), 'textfield', '1048576', __( 'Maximum file size, in bytes, for files user can upload to system. 1 MB = 1048576 bytes. You can google "x MB to bytes" to get an accurate conversion.', 'AWPCP' ) );
-		$this->add_setting( $key, 'minimagesize', __( 'Minimum file size per image', 'AWPCP' ), 'textfield', '300', __( 'Minimum file size, in bytes, for files user can upload to system. 1 MB = 1048576 bytes. You can google "x MB to bytes" to get an accurate conversion.', 'AWPCP' ) );
-		$this->add_setting( $key, 'imgminwidth', __( 'Minimum image width', 'AWPCP' ), 'textfield', '640', __( 'Minimum width for images.', 'AWPCP' ) );
-		$this->add_setting( $key, 'imgminheight', __( 'Minimum image height', 'AWPCP' ), 'textfield', '480', __( 'Minimum height for images.', 'AWPCP' ) );
-		$this->add_setting( $key, 'imgmaxwidth', __( 'Maximum image width', 'AWPCP' ), 'textfield', '640', __( 'Maximum width for images. Images wider than this are automatically resized upon upload.', 'AWPCP' ) );
-		$this->add_setting( $key, 'imgmaxheight', __( 'Maximum image height', 'AWPCP' ), 'textfield', '480', __( 'Maximum height for images. Images taller than this are automatically resized upon upload.', 'AWPCP' ) );
-
-		// Section: Image Settings - Primary Images
-
-		$key = $this->add_section($group, __('Primary Image Settings', 'AWPCP'), 'primary-image', 10, array($this, 'section'));
-
-		$this->add_setting( $key, 'displayadthumbwidth', __( 'Thumbnail width (Ad Listings page)', 'AWPCP' ), 'textfield', '80', __( 'Width of the thumbnail for the primary image shown in Ad Listings view.', 'AWPCP' ) );
-		$this->add_setting( $key, 'primary-image-thumbnail-width', __( 'Thumbnail width (Primary Image)', 'AWPCP' ), 'textfield', '200', __( 'Width of the thumbnail for the primary image shown in Single Ad view.', 'AWPCP' ) );
-		$this->add_setting( $key, 'primary-image-thumbnail-height', __( 'Thumbnail height (Primary Image)', 'AWPCP' ), 'textfield', '200', __( 'Height of the thumbnail for the primary image shown in Single Ad view.', 'AWPCP' ) );
-		$this->add_setting( $key, 'crop-primary-image-thumbnails', __( 'Crop primary image thumbnails?', 'AWPCP' ), 'checkbox', 1, _x('If you decide to crop thumbnails, images will match exactly the dimensions in the settings above but part of the image may be cropped out. If you decide to resize, image thumbnails will be resized to match the specified width and their height will be adjusted proportionally; depending on the uploaded images, thumbnails may have different heights.', 'settings', 'AWPCP' ) );
-		// Section: Image Settings - Thumbnails
-
-		$key = $this->add_section( $group, __( 'Thumbnail Settings', 'AWPCP' ), 'thumbnails', 10, array( $this, 'section' ) );
-
-		$options = array(0 => 0, 1 => 1, 2 => 2, 3 => 3, 4 => 4);
-		$this->add_setting( $key, 'display-thumbnails-in-columns', __( 'Number of columns of thumbnails to show in Show Ad page.', 'AWPCP' ), 'select', 0, __( 'Zero means there will be as many thumbnails as possible per row.', 'AWPCP' ), array( 'options' => $options ) );
-		$this->add_setting( $key, 'imgthumbwidth', __( 'Thumbnail width', 'AWPCP' ), 'textfield', '125', __( 'Width of the thumbnail images.', 'AWPCP' ) );
-		$this->add_setting( $key, 'imgthumbheight', __( 'Thumbnail height', 'AWPCP' ), 'textfield', '125', __( 'Height of the thumbnail images.', 'AWPCP' ) );
-		$this->add_setting( $key, 'crop-thumbnails', __( 'Crop thumbnail images?', 'AWPCP' ), 'checkbox', 1, _x( 'If you decide to crop thumbnails, images will match exactly the dimensions in the settings above but part of the image may be cropped out. If you decide to resize, image thumbnails will be resized to match the specified width and their height will be adjusted proportionally; depending on the uploaded images, thumbnails may have different heights.', 'settings', 'AWPCP' ) );
-
-
 		// Group: AdSense
 
 		$group = $this->add_group( __( 'AdSense', 'AWPCP' ), 'adsense-settings', 60 );
@@ -1062,7 +1013,7 @@ class AWPCP_Settings_API {
 		$html = '<input id="'. $setting->name . '" class="regular-text" ';
 		$html.= 'value="' . $value . '" type="' . $type . '" ';
 		$html.= 'name="awpcp-options[' . $setting->name . ']" />';
-		$html.= strlen($setting->helptext) > 60 ? '<br/>' : '';
+		$html.= strlen($setting->helptext) > 45 ? '<br/>' : '';
 		$html.= '<span class="description">' . $setting->helptext . '</span>';
 
 		echo $html;
@@ -1155,18 +1106,18 @@ class AWPCP_Settings_API {
 
 		$setting = $args['setting'];
 
+		$field_name = 'awpcp-options[' . $setting->name . '][]';
 		$field_type = $args['multiple'] ? 'checkbox' : 'radio';
-		$selected = $this->get_option( $setting->name );
+		$selected = array_filter( $this->get_option( $setting->name, array() ), 'strlen' );
 
-		$html = array( '<input type="hidden" name="awpcp-options[' . $setting->name . '][]" value="0">' );
+		$html = array( sprintf( '<input type="hidden" name="%s" value="">', $field_name ) );
 
 		foreach ( $args['choices'] as $value => $label ) {
 			$id = "{$setting->name}-$value";
-			$name = 'awpcp-options[' . $setting->name . '][]';
 			$checked = in_array( $value, $selected ) ? 'checked="checked"' : '';
 
 			$html_field = '<input id="%s" type="%s" name="%s" value="%s" %s />';
-			$html_field = sprintf( $html_field, $id, $field_type, $name, $value, $checked );
+			$html_field = sprintf( $html_field, $id, $field_type, $field_name, $value, $checked );
 			$html_label = '<label for="' . $id . '">' . $label . '</label><br/>';
 
 			$html[] = $html_field . '&nbsp;' . $html_label;

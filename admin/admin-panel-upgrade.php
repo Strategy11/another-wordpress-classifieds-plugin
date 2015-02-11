@@ -2,7 +2,6 @@
 
 require_once(AWPCP_DIR . '/includes/helpers/admin-page.php');
 
-
 /**
  * @since 2.1.4
  */
@@ -290,6 +289,8 @@ class AWPCP_AdminUpgrade extends AWPCP_AdminPage {
     public function ajax_migrate_media_information() {
         global $wpdb;
 
+        $mime_types = awpcp_mime_types();
+
         if ( ! awpcp_table_exists( AWPCP_TABLE_ADPHOTOS ) ) {
             return $this->ajax_response( 0, 0 );
         }
@@ -312,17 +313,8 @@ class AWPCP_AdminUpgrade extends AWPCP_AdminPage {
 
             if ( empty( $filename ) ) continue;
 
-            $mime_type = '';
-
-            if ( function_exists( 'mime_content_type' ) ) {
-                $path = str_replace( AWPCPUPLOADURL, $uploads, $filename );
-                $mime_type = mime_content_type( $path );
-            }
-
-            if ( empty( $mime_type ) ) {
-                $extension = awpcp_get_file_extension( $image->image_name );
-                $mime_type = sprintf( 'image/%s', $extension );
-            }
+            $path = str_replace( AWPCPUPLOADURL, $uploads, $filename );
+            $mime_type = $mime_types->get_file_mime_type( $path );
 
             $entry = array(
                 'ad_id' => $image->ad_id,

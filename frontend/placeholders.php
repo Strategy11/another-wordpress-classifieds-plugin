@@ -490,13 +490,13 @@ function awpcp_do_placeholder_images($ad, $placeholder) {
     $url = awpcp_get_listing_renderer()->get_view_listing_url( $ad );
     $thumbnail_width = get_awpcp_option('displayadthumbwidth');
 
-    if (get_awpcp_option('imagesallowdisallow') == 1) {
+    if ( awpcp_are_images_allowed() ) {
         $images_uploaded = $ad->count_image_files();
         $primary_image = awpcp_media_api()->get_ad_primary_image( $ad );
 
         if ($primary_image) {
-            $large_image = $primary_image->get_url( 'large' );
-            $thumbnail = $primary_image->get_url( 'primary' );
+            $large_image = $primary_image->get_large_image_url( 'large' );
+            $thumbnail = $primary_image->get_primary_thumbnail_url( 'primary' );
 
             if (get_awpcp_option('show-click-to-enlarge-link', 1)) {
                 $link = '<a class="thickbox enlarge" href="%s">%s</a>';
@@ -512,9 +512,7 @@ function awpcp_do_placeholder_images($ad, $placeholder) {
             $content.= '</a>%s';
             $content.= '</div>';
 
-            $placeholders['featureimg'] = sprintf($content, esc_attr($large_image),
-                                                            esc_attr($thumbnail),
-                                                            $link);
+            $placeholders['featureimg'] = sprintf( $content, esc_attr( $large_image ), esc_attr( $thumbnail ), $link );
 
             // listings
             $content = '<a class="awpcp-listing-primary-image-listing-link" href="%s"><img src="%s" width="%spx" border="0" alt="%s" /></a>';
@@ -562,13 +560,16 @@ function awpcp_do_placeholder_images($ad, $placeholder) {
     }
 
     // fallback thumbnail
-    if ( get_awpcp_option( 'imagesallowdisallow' ) == 1 && empty( $placeholders['awpcp_image_name_srccode'] ) ) {
+    if ( awpcp_are_images_allowed() && empty( $placeholders['awpcp_image_name_srccode'] ) ) {
         $thumbnail = sprintf('%s/adhasnoimage.png', $awpcp_imagesurl);
         $content = '<a class="awpcp-listing-primary-image-listing-link" href="%s"><img src="%s" width="%spx" border="0" alt="%s" /></a>';
         $content = sprintf($content, $url, $thumbnail, $thumbnail_width, awpcp_esc_attr($ad->ad_title));
 
         $placeholders['awpcp_image_name_srccode'] = $content;
     }
+
+    $placeholders['featureimg'] = apply_filters( 'awpcp-featured-image-placeholder', $placeholders['featureimg'], 'single', $ad );
+    $placeholders['awpcp_image_name_srccode'] = apply_filters( 'awpcp-featured-image-placeholder', $placeholders['awpcp_image_name_srccode'], 'listings', $ad );
 
     $placeholders['featured_image'] = $placeholders['featureimg'];
     $placeholders['imgblockwidth'] = "{$thumbnail_width}px";

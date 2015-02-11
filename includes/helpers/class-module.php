@@ -29,11 +29,6 @@ abstract class AWPCP_Module {
         awpcp_load_plugin_textdomain( $this->file, $this->textdomain );
     }
 
-    /**
-     * TODO: run module_setup() on init, instead of plugins_loaded.
-     *  Let's try to move all initialization code to run on init, we'll
-     *  figure out later if we need to execute anything before that.
-     */
     public function setup() {
         if ( ! $this->is_up_to_date() ) {
             $this->install_or_upgrade();
@@ -43,7 +38,10 @@ abstract class AWPCP_Module {
             return;
         }
 
-        $this->module_setup();
+        // run before module_setup() in new modules and init() in old modules
+        add_action( 'init', array( $this, 'load_dependencies' ), 9 );
+        // run before load_dependencies() in new modules and init() in old modules
+        add_action( 'init', array( $this, 'module_setup' ), 11 );
     }
 
     protected function is_up_to_date() {
@@ -59,7 +57,11 @@ abstract class AWPCP_Module {
         // overwrite in children classes if necessary
     }
 
-    protected function module_setup() {
+    public function load_dependencies() {
+        // overwrite in children classes if necessary
+    }
+
+    public function module_setup() {
         if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
             $this->ajax_setup();
         } else if ( is_admin() ) {

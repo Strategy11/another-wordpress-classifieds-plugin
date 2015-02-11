@@ -118,7 +118,7 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
             $label = __( 'Manage Images', 'AWPCP' );
             $url = $this->url(array('action' => 'manage-images', 'id' => $ad->ad_id));
             $actions['manage-images'] = array($label, array('', $url, " ($images)"));
-        } else if (get_awpcp_option('imagesallowdisallow') == 1) {
+        } else if ( awpcp_are_images_allowed() ) {
             $actions['add-image'] = array(__('Add Images', 'AWPCP'), $this->url(array('action' => 'add-image', 'id' => $ad->ad_id)));
         }
 
@@ -183,7 +183,7 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
     private function render_page( $action ) {
         switch ($action) {
             case 'view':
-                return $this->view_ad();
+                return $this->listing_action( 'view_ad' );
                 break;
 
             case 'place-ad':
@@ -252,7 +252,7 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
             case 'approvepic':
             case 'approve-file':
             case 'reject-file':
-                return $this->manage_images();
+                return $this->listing_action( 'manage_images' );
                 break;
 
             case 'bulk-delete':
@@ -274,18 +274,25 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
         }
     }
 
-    public function view_ad() {
-        $ad = AWPCP_Ad::find_by_id($this->id);
+    private function listing_action( $callback ) {
+        $listing_id = awpcp_request()->get_ad_id();
 
-        if (is_null($ad)) {
-            if ($this->id)
-                $message = __("The specified Ad doesn't exists.", 'AWPCP');
-            else
-                $message = __("No Ad ID was specified.", 'AWPCP');
-            awpcp_flash($message, 'error');
-            return $this->redirect('index');
+        if ( empty( $listing_id ) ) {
+            awpcp_flash( __( 'No Ad ID was specified.', 'AWPCP' ), 'error' );
+            return $this->redirect( 'index' );
         }
 
+        try {
+            $listing = awpcp_listings_collection()->get( $listing_id );
+        } catch ( AWPCP_Exception $e ) {
+            awpcp_flash( __( "The specified Ad doesn't exists.", 'AWPCP' ), 'error' );
+            return $this->redirect( 'index' );
+        }
+
+        return call_user_func( array( $this, $callback ), $listing );
+    }
+
+    public function view_ad( $ad ) {
         $category_id = get_adcategory($ad->ad_id);
         $category_url = $this->url(array('showadsfromcat_id' => $category_id));
         $content = showad($ad->ad_id, $omitmenu=1);
@@ -518,9 +525,29 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
         return $this->redirect('index');
     }
 
-    public function manage_images() {
-        wp_enqueue_script( 'awpcp-admin-attachments' );
-        echo awpcp_media_manager()->dispatch( $this );
+    public function manage_images( $listing ) {
+        $allowed_files = awpcp_listing_upload_limits()->get_listing_upload_limits( $listing );
+
+        $params = array(
+            'listing' => $listing,
+            'files' => awpcp_media_api()->find_by_ad_id( $listing->ad_id ),
+            'media_manager_configuration' => array(
+                'nonce' => wp_create_nonce( 'awpcp-manage-listing-media-' . $listing->ad_id ),
+                'allowed_files' => $allowed_files,
+                'show_admin_actions' => awpcp_current_user_is_admin(),
+            ),
+            'media_uploader_configuration' => array(
+                'listing_id' => $listing->ad_id,
+                'nonce' => wp_create_nonce( 'awpcp-upload-media-for-listing-' . $listing->ad_id ),
+                'allowed_files' => $allowed_files,
+            ),
+            'urls' => array(
+                'view-listing' => $this->url( array( 'action' => 'view', 'id' => $listing->ad_id ) ),
+                'listings' => $this->url( array( 'id' => null ) ),
+            ),
+        );
+
+        echo $this->render( AWPCP_DIR . '/templates/admin/listings-media-center.tpl.php', $params );
     }
 
     public function delete_ad() {

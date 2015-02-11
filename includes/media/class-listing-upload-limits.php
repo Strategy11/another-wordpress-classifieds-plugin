@@ -1,0 +1,92 @@
+<?php
+
+function awpcp_listing_upload_limits() {
+    if ( ! isset( $GLOBALS['awpcp-listing-upload-limits'] ) ) {
+        $GLOBALS['awpcp-listing-upload-limits'] = new AWPCP_ListingUploadLimits(
+            awpcp_file_types(),
+            awpcp_payments_api(),
+            awpcp()->settings
+        );
+    }
+
+    return $GLOBALS['awpcp-listing-upload-limits'];
+}
+
+class AWPCP_ListingUploadLimits {
+
+    private $file_types;
+    private $payments;
+    private $settings;
+
+    public function __construct( $file_types, $payments, $settings ) {
+        $this->file_types = $file_types;
+        $this->payments = $payments;
+        $this->settings = $settings;
+    }
+
+    public function can_add_file_to_listing( $listing, $file ) {
+        $limits = $this->get_listing_upload_limits( $listing );
+
+        $can_add_file = false;
+        foreach ( $limits as $file_type => $type_limits ) {
+            if ( in_array( $file->get_mime_type(), $type_limits['mime_types'] ) ) {
+                $can_add_file = $type_limits['allowed_file_count'] > $type_limits['uploaded_file_count'];
+                break;
+            }
+        }
+
+        // TODO: do we really need this filter?
+        return apply_filters( 'awpcp-can-add-file-to-listing', $can_add_file, $listing, $limits );
+    }
+
+    public function get_listing_upload_limits( $listing ) {
+        $payment_term = $this->payments->get_ad_payment_term( $listing );
+
+        if ( ! awpcp_are_images_allowed() ) {
+            $upload_limits = array();
+        } else {
+            $upload_limits = array( 'images' => $this->get_upload_limits_for_images( $listing, $payment_term ) );
+        }
+
+        return apply_filters( 'awpcp-listing-upload-limits', $upload_limits, $listing, $payment_term );
+    }
+
+    public function get_listing_upload_limits_by_file_type( $listing, $file_type ) {
+        $upload_limits = $this->get_listing_upload_limits( $listing );
+
+        if ( isset( $upload_limits[ $file_type ] ) ) {
+            return $upload_limits[ $file_type ];
+        } else {
+            return array(
+                'mime_types' => array(),
+                'extensions' => array(),
+                'allowed_file_count' => 0,
+                'uploaded_file_count' => 0,
+                'min_file_size' => 0,
+                'max_file_size' => 0,
+            );
+        }
+    }
+
+    private function get_upload_limits_for_images( $listing, $payment_term ) {
+        if ( $payment_term && $payment_term->images ) {
+            $images_allowed = $payment_term->images;
+        } else {
+            $images_allowed = $this->settings->get_option( 'imagesallowedfree', 0 );
+        }
+
+        $mime_types = $this->file_types->get_allowed_file_mime_types_in_group( 'image' );
+        $extensions = $this->file_types->get_allowed_file_extesions_in_group( 'image' );
+
+        return array(
+            'mime_types' => $mime_types,
+            'extensions' => $extensions,
+            'allowed_file_count' => $images_allowed,
+            'uploaded_file_count' => $listing->count_image_files(),
+            'min_file_size' => $this->settings->get_option( 'minimagesize' ),
+            'max_file_size' => $this->settings->get_option( 'maximagesize' ),
+            'min_image_width' => $this->settings->get_option( 'imgminwidth' ),
+            'min_image_height' => $this->settings->get_option( 'imgminheight' ),
+        );
+    }
+}
