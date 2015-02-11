@@ -2038,10 +2038,11 @@ function awpcp_unique_filename( $path, $filename, $directories ) {
     $extension = $pathinfo['extension'];
     $file_size = filesize( $path );
     $timestamp = microtime();
+    $salt = wp_salt();
     $counter = 0;
 
     do {
-        $hash = hash( 'crc32b', "$name-$extension-$file_size-$timestamp-$counter" );
+        $hash = hash( 'crc32b', "$name-$extension-$file_size-$timestamp-$salt-$counter" );
         $new_filename = "$name-$hash.$extension";
         $counter = $counter + 1;
     } while ( awpcp_is_filename_already_used( $new_filename, $directories ) );
