@@ -156,7 +156,7 @@ class AWPCP_FileUploader {
 
         return (object) array(
             'path' => $file_path,
-            'realname' => $realname,
+            'realname' => strtolower( $realname ),
             'name' => $pathinfo['basename'],
             'dirname' => $pathinfo['dirname'],
             'filename' => $pathinfo['filename'],

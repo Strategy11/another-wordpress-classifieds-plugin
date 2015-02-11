@@ -20,13 +20,15 @@ abstract class AWPCP_ListingFileHandler {
 
     protected function move_file_to( $file, $relative_path ) {
         $uploads_dir = $this->settings->get_runtime_option( 'awpcp-uploads-dir' );
+
+        $thumbnails_dir = implode( DIRECTORY_SEPARATOR, array( $uploads_dir, 'thumbs' ) );
         $destination_dir = implode( DIRECTORY_SEPARATOR, array( $uploads_dir, $relative_path ) );
 
         if ( ! file_exists( $destination_dir ) && ! mkdir( $destination_dir, awpcp_directory_permissions(), true ) ) {
             throw new AWPCP_Exception( __( "Destination directory doesn't exists and couldn't be created.", 'AWPCP' ) );
         }
 
-        $unique_filename = wp_unique_filename( $destination_dir, $file->get_real_name() );
+        $unique_filename = awpcp_unique_filename( $file->get_path(), $file->get_real_name(), array( $destination_dir, $thumbnails_dir ) );
         $destination_path = implode( DIRECTORY_SEPARATOR, array( $destination_dir, $unique_filename ) );
 
         if ( rename( $file->get_path(), $destination_path ) ) {
