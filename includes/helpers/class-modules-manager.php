@@ -190,7 +190,7 @@ class AWPCP_ModulesManager {
     }
 
     private function show_module_no_registered_notice( $module_name ) {
-        $message = __( 'Yikes, there has been a mistake. It looks like you have an outdated version of AWPCP <module-name> module. Please contact customer support and ask for a newer version. Please also include a reference to this error in your message.', 'AWPCP' );
+        $message = __( 'Yikes, there has been a mistake. It looks like you have an outdated version of AWPCP <module-name> module or you need a newer version of AWPCP to use that module. Please contact customer support and ask for an update. Please also include a reference to this error in your message.', 'AWPCP' );
         $message = str_replace( '<module-name>', '<strong>' . $module_name . '</strong>', $message );
 
         return awpcp_print_error( $message );
