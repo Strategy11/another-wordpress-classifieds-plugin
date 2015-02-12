@@ -30,13 +30,13 @@ class AWPCP_ListingsCollection {
             $this->throw_no_listing_was_found_with_id_exception( $listing_id );
         }
 
-        $listing = AWPCP_Ad::find_by_id( $listing_id );
+        $listings = $this->finder->find( array( 'id' => $listing_id, 'limit' => null, 'order' => null ) );
 
-        if ( is_null( $listing ) ) {
+        if ( empty( $listings ) ) {
             $this->throw_no_listing_was_found_with_id_exception( $listing_id );
         }
 
-        return $listing;
+        return array_shift( $listings );
     }
 
     private function throw_no_listing_was_found_with_id_exception( $listing_id ) {
