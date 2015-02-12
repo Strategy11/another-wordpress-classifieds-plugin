@@ -305,10 +305,18 @@ class AWPCP_ListingsFinder {
     }
 
     private function build_order_clause( $query ) {
+        if ( ! is_null( $query['order'] ) ) {
+            return $this->build_order_by_clause( $query['order'] );
+        } else {
+            return '';
+        }
+    }
+
+    private function build_order_by_clause( $order ) {
         $basedate = 'CASE WHEN renewed_date IS NULL THEN ad_startdate ELSE GREATEST(ad_startdate, renewed_date) END';
         $is_paid = 'CASE WHEN ad_fee_paid > 0 THEN 1 ELSE 0 END';
 
-        switch ( $query['order'] ) {
+        switch ( $order ) {
             case 1:
                 $parts = array( "$basedate DESC" );
                 break;
@@ -350,7 +358,7 @@ class AWPCP_ListingsFinder {
                 break;
         }
 
-        $parts = array_filter( apply_filters( 'awpcp-ad-order-conditions', $parts, $query['order'] ) );
+        $parts = array_filter( apply_filters( 'awpcp-ad-order-conditions', $parts, $order ) );
 
         return sprintf( 'ORDER BY %s', implode( ', ', $parts ) );
     }
