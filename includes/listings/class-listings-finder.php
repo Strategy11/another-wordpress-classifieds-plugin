@@ -63,7 +63,7 @@ class AWPCP_ListingsFinder {
         ) );
 
         $query['regions'] = $this->normalize_regions_query( $query );
-        $query['limit'] = $query['limit'] > 0 ? $query['limit'] : get_awpcp_option( 'adresultsperpage', 10 );
+        $query['limit'] = $query['limit'] === 0 ? get_awpcp_option( 'adresultsperpage', 10 ) : $query['limit'];
 
         return $query;
     }
