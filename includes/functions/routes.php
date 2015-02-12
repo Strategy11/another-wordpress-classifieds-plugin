@@ -134,9 +134,11 @@ function is_awpcp_browse_categories_page() {
 }
 
 function url_showad($ad_id) {
-    $ad = AWPCP_Ad::find_by_id( $ad_id );
-
-    if ( is_null( $ad ) ) return false;
+    try {
+        $ad = awpcp_listings_collection()->get( $ad_id );
+    } catch( AWPCP_Exception $e ) {
+        return false;
+    }
 
     $seoFriendlyUrls = get_awpcp_option('seofriendlyurls');
     $permastruc = get_option('permalink_structure');
