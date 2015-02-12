@@ -37,12 +37,14 @@ class AWPCP_CategoriesDropdown {
             ), $placeholders );
         }
 
-        // export categories list to JavaScript, but don't replace an existing categories list
         $categories = $this->get_all_categories();
-        awpcp()->js->set( 'categories', $categories, false );
+        $categories_hierarchy = $this->get_categories_hierarchy( $categories );
+        $chain = $this->get_category_parents( $selected, $categories );
 
-        $chain = $this->get_category_parents( $selected );
         $use_multiple_dropdowns = get_awpcp_option( 'use-multiple-category-dropdowns' );
+
+        // export categories list to JavaScript, but don't replace an existing categories list
+        awpcp()->js->set( 'categories', $categories, false );
 
         ob_start();
         include( AWPCP_DIR . '/frontend/templates/html-widget-category-dropdown.tpl.php' );
@@ -53,46 +55,46 @@ class AWPCP_CategoriesDropdown {
     }
 
     private function get_all_categories() {
-        $categories['root'] = $this->get_categories();
-
-        foreach ( $categories['root'] as $category ) {
-            $categories[ $category->id ] = $this->get_categories( $category->id );
-        }
-
-        return $categories;
-    }
-
-    private function get_categories($parent_id=0) {
-        global $wpdb;
-
-        $categories = AWPCP_Category::query( array(
-            'where' => $wpdb->prepare( "category_parent_id = %d AND category_name <> ''", $parent_id ),
-            'orderby' => 'category_order ASC, category_name',
-            'order' => 'ASC',
+        return AWPCP_Category::query( array(
+            'orderby' => 'category_parent_id ASC, category_order ASC, category_name',
+            'order' => 'ASC'
         ) );
-
-        return $categories;
     }
 
-    private function get_category_parents( $category ) {
-        if ( empty($category) ) return array();
-
-        $categories = AWPCP_Category::query();
+    private function get_categories_hierarchy( &$categories ) {
         $hierarchy = array();
 
-        foreach ( $categories as $item ) {
-            $hierarchy[ $item->id ] = $item->parent;
+        foreach ( $categories as $category ) {
+            if ( $category->parent == 0 ) {
+                $hierarchy['root'] = $category;
+            } else {
+                $hierarchy[ $category->parent ][] = $category;
+            }
         }
 
-        $parent = $category;
-        $chain = array();
+        return $hierarchy;
+    }
+
+    private function get_category_parents( $category_id, &$categories ) {
+        if ( empty( $category_id ) ) {
+            return array();
+        }
+
+        $categories_parents = array();
+
+        foreach ( $categories as $item ) {
+            $categories_parents[ $item->id ] = $item->parent;
+        }
+
+        $category_ancestors = array();
+        $parent_id = $category_id;
 
         do {
-            $chain[] = $parent;
-            $parent = $hierarchy[ $parent ];
-        } while ( $parent != 0 );
+            $category_ancestors[] = $parent_id;
+            $parent_id = $categories_parents[ $parent_id ];
+        } while ( $parent_id != 0 );
 
-        return array_reverse( $chain );
+        return array_reverse( $category_ancestors );
     }
 }
 
