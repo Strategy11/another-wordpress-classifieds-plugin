@@ -595,10 +595,17 @@ function awpcp_opsconfig_categories() {
 			$action = $aeaction = null;
 		}
 
-		$category_name=get_adcatname($cat_ID);
-		$category_order=get_adcatorder($cat_ID);
-		$category_order = ($category_order != 0 ? $category_order : 0);
-		$cat_parent_ID=get_cat_parent_ID($cat_ID);
+		try {
+			$category = awpcp_categories_collection()->get( $cat_ID );
+
+			$category_name = $category->name;
+			$category_order = $category->category_order;
+			$cat_parent_ID = $category->parent;
+		} catch ( AWPCP_Exception $e ) {
+			$category_name = $category->name;
+			$category_order = $category->category_order;
+			$cat_parent_ID = $category->parent;
+		}
 
 		$add_label = __( 'Add A New Category', 'AWPCP' );
 		$add_url = awpcp_get_admin_categories_url();
@@ -631,21 +638,22 @@ function awpcp_opsconfig_categories() {
 						$movetocat=1;
 					}
 
-					$movetoname=get_adcatname($movetocat);
-					if ( empty($movetoname) )
-					{
-						$movetoname=__("Untitled","AWPCP");
+					try {
+						$move_to_category = awpcp_categories_collection()->get( $movetocat );
+						$movetoname = $move_to_category->name;
+					} catch ( AWPCP_Exception $e ) {
+						$movetoname = __( 'Untitled', 'AWPCP' );
 					}
 
 					$promptmovetocat="<p>";
 					$promptmovetocat.=__("The category contains ads. If you do not select a category to move them to the ads will be moved to:","AWPCP");
 					$promptmovetocat.="<b>$movetoname</b></p>";
 
-					$defaultcatname=get_adcatname($catid=1);
-
-					if ( empty($defaultcatname) )
-					{
-						$defaultcatname=__("Untitled","AWPCP");
+					try {
+						$move_to_category = awpcp_categories_collection()->get( 1 );
+						$defaultcatname = $move_to_category->name;
+					} catch ( AWPCP_Exception $e ) {
+						$defaultcatname = __( 'Untitled', 'AWPCP' );
 					}
 
 					if (category_has_children($cat_ID))

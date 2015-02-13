@@ -293,19 +293,26 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
     }
 
     public function view_ad( $ad ) {
-        $category_id = get_adcategory($ad->ad_id);
-        $category_url = $this->url(array('showadsfromcat_id' => $category_id));
+        $category_name = get_adcatname( $ad->ad_category_id );
+        $category_url = $this->url( array( 'showadsfromcat_id' => $ad->ad_category_id ) );
+
         $content = showad($ad->ad_id, $omitmenu=1);
-        $links = $this->links($this->actions($ad, array('edit', 'enable', 'disable',
-                                                        'spam', 'make-featured', 'remove-featured')));
+        $links = $this->links(
+            $this->actions(
+                $ad,
+                array( 'edit', 'enable', 'disable', 'spam', 'make-featured', 'remove-featured' )
+            )
+        );
 
         $params = array(
             'ad' => $ad,
             'category' => array(
-                'name' => get_adcatname($category_id),
-                'url' => $category_url),
+                'name' => $category_name,
+                'url' => $category_url,
+            ),
             'links' => $links,
-            'content' => $content);
+            'content' => $content,
+        );
 
         $template = AWPCP_DIR . '/admin/templates/admin-panel-listings-view.tpl.php';
 

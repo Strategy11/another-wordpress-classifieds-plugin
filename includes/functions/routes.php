@@ -211,12 +211,26 @@ function url_showad($ad_id) {
     return apply_filters( 'awpcp-listing-url', $url, $ad );
 }
 
-function url_browsecategory($cat_id) {
+/**
+ * @since next-release
+ */
+function awpcp_get_browse_category_url_from_id( $category_id ) {
+    try {
+        $category = awpcp_listings_collection()->get( $category_id );
+        $category_url = url_browsecategory( $category );
+    } catch ( AWPCP_Exception $ex ) {
+        $category_url = '';
+    }
+
+    return $category_url;
+}
+
+function url_browsecategory( $category ) {
     $permalinks = get_option('permalink_structure');
     $base_url = awpcp_get_page_url('browse-categories-page-name');
 
-    $cat_name = get_adcatname($cat_id);
-    $cat_slug = sanitize_title($cat_name);
+    $cat_id = $category->id;
+    $cat_slug = sanitize_title( $category->name );
 
     if (get_awpcp_option('seofriendlyurls')) {
         if (!empty($permalinks)) {

@@ -246,20 +246,14 @@ function get_categorynameid($cat_id = 0,$cat_parent_id= 0,$exclude)
 
 // START FUNCTION: Retrieve the category name
 function get_adcatname($cat_ID) {
-	global $wpdb;
-
-	$cname='';
-	$tbl_categories = $wpdb->prefix . "awpcp_categories";
-
-	if(isset($cat_ID) && (!empty($cat_ID))){
-		$query="SELECT category_name from " . AWPCP_TABLE_CATEGORIES . " WHERE category_id='$cat_ID'";
-		$cname = $wpdb->get_results($query, ARRAY_A);
-		foreach($cname as $cn) {
-			$cname = $cn['category_name'];
-		}
+	try {
+		$category = awpcp_categories_collection()->get( $cat_ID );
+		$category_name = stripslashes_deep( $category->name );
+	} catch( AWPCP_Exception $e ) {
+		$category_name = '';
 	}
 
-	return empty($cname) ? '' : stripslashes_deep($cname);
+	return $category_name;
 }
 
 function get_adcatorder($cat_ID){

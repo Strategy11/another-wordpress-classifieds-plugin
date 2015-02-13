@@ -280,28 +280,21 @@ function awpcp_do_placeholder_category_name($ad, $placeholder) {
  * @since 3.0
  */
 function awpcp_do_placeholder_category_url($ad, $placeholder) {
-    return url_browsecategory($ad->ad_category_id);
+    return awpcp_get_browse_category_url_from_id( $ad->ad_category_id );
 }
 
 /**
  * @since 3.2
  */
 function awpcp_do_placeholder_parent_category_name( $ad, $placeholder ) {
-    if ( $ad->ad_category_parent_id > 0 ) {
-        $parent_category_name = stripslashes( get_adcatname( $ad->ad_category_parent_id ) );
-        $parent_category_name = esc_html( $parent_category_name );
-    } else {
-        $parent_category_name = '';
-    }
-
-    return $parent_category_name;
+    return esc_html( stripslashes( get_adcatname( $ad->ad_category_parent_id ) ) );
 }
 
 /**
  * @since 3.2
  */
 function awpcp_do_placeholder_parent_category_url( $ad, $placeholder ) {
-    return $ad->ad_category_parent_id > 0 ? url_browsecategory( $ad->ad_category_parent_id ) : '';
+    return awpcp_get_browse_category_url_from_id( $ad->ad_category_parent_id );
 }
 
 /**
@@ -321,7 +314,7 @@ function awpcp_do_placeholder_categories( $listing, $placeholder ) {
         }
 
         $link = '<a href="<category-url>"><category-name></a>';
-        $link = str_replace( '<category-url>', esc_attr( url_browsecategory( $category->id ), $link ) );
+        $link = str_replace( '<category-url>', esc_attr( url_browsecategory( $category ), $link ) );
         $link = str_replace( '<category-name>', esc_html( $category->name ), $link );
 
         $links[ $category_type ] = $link;

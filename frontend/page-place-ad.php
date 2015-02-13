@@ -220,9 +220,16 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             $errors['category'] = __('Ad Category field is required', 'AWPCP');
         }
 
+        try {
+            $category = awpcp_categories_collection()->get( $data['category'] );
+            $category_name = $category->name;
+        } catch ( AWPCP_Exception $e ) {
+            $category_name = 'Unknown';
+        }
+
         if (get_awpcp_option('noadsinparentcat') && !category_is_child($data['category'])) {
             $message = __("You cannot list your Ad in top level categories. You need to select a sub-category of category %s.", "AWPCP");
-            $errors['category'] = sprintf($message, get_adcatname($data['category']));
+            $errors['category'] = sprintf( $message, $category_name );
         }
 
         if (awpcp_current_user_is_admin() && empty($data['user'])) {
@@ -235,7 +242,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
         if (!empty($data['term']->categories) && !in_array($data['category'], $data['term']->categories)) {
             $message = __('The Payment Term you selected is not valid for the category %s', 'AWPCP');
-            $errors['payment-term'] = sprintf($message, get_adcatname($data['category']));
+            $errors['payment-term'] = sprintf( $message, $category_name );
         }
 
         if ( ! awpcp_current_user_is_admin() && ! is_null( $data['term'] ) && $data['term']->private ) {
