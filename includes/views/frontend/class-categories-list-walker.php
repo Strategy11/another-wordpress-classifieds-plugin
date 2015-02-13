@@ -163,11 +163,11 @@ class AWPCP_CategoriesListWalker extends Walker {
     }
 
     private function render_category_icon( $category ) {
-        if ( ! function_exists( 'get_category_icon' ) || ! function_exists( 'awpcp_category_icon_url' ) ) {
+        if ( ! function_exists( 'awpcp_get_category_icon' ) || ! function_exists( 'awpcp_category_icon_url' ) ) {
             return '';
         }
 
-        $category_icon_filename = get_category_icon( $category->id );
+        $category_icon_filename = awpcp_get_category_icon( $category );
 
         if ( empty( $category_icon_filename ) ) {
             return '';

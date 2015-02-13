@@ -407,8 +407,8 @@ function awpcp_admin_categories_render_category_items($categories, &$children, $
 function awpcp_admin_categories_render_category_item($category, $level, $start, $per_page) {
 	global $hascaticonsmodule, $awpcp_imagesurl;
 
-	if ( function_exists('get_category_icon') ) {
-		$category_icon = get_category_icon( $category->id );
+	if ( function_exists( 'awpcp_get_category_icon' ) ) {
+		$category_icon = awpcp_get_category_icon( $category );
 	}
 
 	if ( isset( $category_icon ) && !empty( $category_icon ) && function_exists( 'awpcp_category_icon_url' )  ) {
