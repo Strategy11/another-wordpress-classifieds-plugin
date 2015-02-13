@@ -1721,10 +1721,26 @@ function awpcp_table_exists($table) {
  * @since  2.1.4
  */
 function awpcp_column_exists($table, $column) {
+    $column_exists = wp_cache_get( "awpcp-$table-$column", 'awpcp', false, $found );
+
+    if ( $found === false ) {
+        $column_exists = awpcp_check_if_column_exists( $table, $column );
+        wp_cache_set( "awpcp-$table-$column", $column_exists, 'awpcp', MINUTE_IN_SECONDS );
+    }
+
+    return $column_exists;
+}
+
+/**
+ * @since next-release
+ */
+function awpcp_check_if_column_exists( $table, $column ) {
     global $wpdb;
+
     $suppress_errors = $wpdb->suppress_errors();
     $result = $wpdb->query("SELECT `$column` FROM $table");
     $wpdb->suppress_errors( $suppress_errors );
+
     return $result !== false;
 }
 
