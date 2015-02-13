@@ -1566,7 +1566,7 @@ function awpcp_clear_flash_messages() {
 	return true;
 }
 
-function awpcp_flash($message, $class='updated') {
+function awpcp_flash( $message, $class = array( 'awpcp-updated', 'updated') ) {
 	$messages = awpcp_get_flash_messages();
 	$messages[] = array('message' => $message, 'class' => (array) $class);
 	awpcp_update_flash_messages($messages);
@@ -1601,7 +1601,7 @@ function awpcp_print_form_errors( $errors ) {
     }
 }
 
-function awpcp_print_message($message, $class=array('updated')) {
+function awpcp_print_message( $message, $class = array( 'awpcp-updated', 'updated' ) ) {
 	$class = array_merge(array('awpcp-message'), $class);
 	return '<div class="' . join(' ', $class) . '"><p>' . $message . '</p></div>';
 }
