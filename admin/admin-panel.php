@@ -1189,7 +1189,7 @@ function awpcp_handle_admin_requests() {
 			$themessagetoprint=__("No changes made to categories.","AWPCP");
 		}
 
-		$message="<div style=\"background-color: rgb(255, 251, 204);\" id=\"message\" class=\"updated fade\">$themessagetoprint</div>";
+		$message="<div style=\"background-color: rgb(255, 251, 204);\" id=\"message\" class=\"awpcp-updated updated fade\">$themessagetoprint</div>";
 		$clearform=1;
 	}
 
@@ -1232,7 +1232,7 @@ function awpcp_handle_admin_requests() {
 			$themessagetoprint=__("The categories have not been moved because you did not indicate where you want the categories to be moved to","AWPCP");
 		}
 
-		$message="<div style=\"background-color: rgb(255, 251, 204);\" id=\"message\" class=\"updated fade\">$themessagetoprint</div>";
+		$message="<div style=\"background-color: rgb(255, 251, 204);\" id=\"message\" class=\"awpcp-updated updated fade\">$themessagetoprint</div>";
 	}
 
 	// Delete multiple categories
@@ -1329,7 +1329,7 @@ function awpcp_handle_admin_requests() {
 
 		}
 
-		$message="<div style=\"background-color: rgb(255, 251, 204);\" id=\"message\" class=\"updated fade\">$themessagetoprint</div>";
+		$message="<div style=\"background-color: rgb(255, 251, 204);\" id=\"message\" class=\"awpcp-updated updated fade\">$themessagetoprint</div>";
 	}
 }
 

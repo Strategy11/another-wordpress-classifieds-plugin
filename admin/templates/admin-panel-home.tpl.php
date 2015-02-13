@@ -1,6 +1,6 @@
 <?php echo $message; ?>
 
-<div class="updated">
+<div class="awpcp-updated updated">
     <p>
         <?php $msg = _x("Thank you for using Another Wordpress Classifieds Plugin, the #1 Wordpress Classifieds Plugin.  Please direct support requests, enhancement ideas and bug reports to the %s.",
                             '... to the <a>AWPCP Support Website link</a>',
@@ -10,7 +10,7 @@
 </div>
 
 <?php if ($hasextrafieldsmodule == 1 && !($extrafieldsversioncompatibility == 1)): ?>
-<div id="message" class="updated fade">
+<div id="message" class="awpcp-updated updated fade">
     <p>
         <?php _e("The version of the extra fields module that you are using is not compatible with this version of Another Wordpress Classifieds Plugin.", "AWPCP"); ?>
         <a href="http://www.awpcp.com/contact/"><?php _e("Please request updated Extra Fields module files", "AWPCP"); ?></a>.
