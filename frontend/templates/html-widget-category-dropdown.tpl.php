@@ -18,7 +18,7 @@
 
 <select class="awpcp-category-dropdown  awpcp-dropdown <?php echo $required ? 'required' : ''; ?>" id="awpcp-category-dropdown" name="<?php echo esc_attr( $name ); ?>">
     <option value=""><?php echo esc_html( $placeholders['default-option-first-level'] ); ?></option>
-    <?php echo get_categorynameidall( $selected ); ?>
+    <?php echo awpcp_render_categories_dropdown_options( $categories_hierarchy['root'], $categories_hierarchy, $selected ); ?>
 </select>
 
 <?php endif; ?>

@@ -37,8 +37,8 @@ class AWPCP_CategoriesDropdown {
             ), $placeholders );
         }
 
-        $categories = $this->get_all_categories();
-        $categories_hierarchy = $this->get_categories_hierarchy( $categories );
+        $categories = awpcp_categories_collection()->get_all();
+        $categories_hierarchy = awpcp_build_categories_hierarchy( $categories );
         $chain = $this->get_category_parents( $selected, $categories );
 
         $use_multiple_dropdowns = get_awpcp_option( 'use-multiple-category-dropdowns' );
@@ -59,20 +59,6 @@ class AWPCP_CategoriesDropdown {
             'orderby' => 'category_parent_id ASC, category_order ASC, category_name',
             'order' => 'ASC'
         ) );
-    }
-
-    private function get_categories_hierarchy( &$categories ) {
-        $hierarchy = array();
-
-        foreach ( $categories as $category ) {
-            if ( $category->parent == 0 ) {
-                $hierarchy['root'] = $category;
-            } else {
-                $hierarchy[ $category->parent ][] = $category;
-            }
-        }
-
-        return $hierarchy;
     }
 
     private function get_category_parents( $category_id, &$categories ) {
