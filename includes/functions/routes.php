@@ -61,19 +61,11 @@ function awpcp_get_page_id( $name ) {
 /**
  * Returns the ID of WP Page associated to a page-name setting.
  *
- * TOOD: get all page entries in one query an cache the result during the request
- *
  * @param $refname the name of the setting that holds the name of the page
  */
-function awpcp_get_page_id_by_ref($refname) {
-    global $wpdb;
-    $query = 'SELECT page, id FROM ' . AWPCP_TABLE_PAGES . ' WHERE page = %s';
-    $page = $wpdb->get_results($wpdb->prepare($query, $refname));
-    if (!empty($page)) {
-        return array_shift($page)->id;
-    } else {
-        return false;
-    }
+function awpcp_get_page_id_by_ref( $refname ) {
+    $all_pages_ids = awppc_get_pages_ids();
+    return isset( $all_pages_ids[ $refname ] ) ? $all_pages_ids[ $refname ] : false;
 }
 
 /**
@@ -81,16 +73,47 @@ function awpcp_get_page_id_by_ref($refname) {
  *
  * @return array Array of Page IDs
  */
-function awpcp_get_page_ids_by_ref($refnames) {
+function awpcp_get_page_ids_by_ref( $refnames ) {
+    $all_pages_ids = awppc_get_pages_ids();
+
+    $pages_ids = array();
+    foreach ( $refnames as $refname ) {
+        if ( isset( $all_pages_ids[ $refname ] ) ) {
+            $pages_ids[] = $all_pages_ids[ $refname ];
+        }
+    }
+
+    return $pages_ids;
+}
+
+/**
+ * @since next-release
+ */
+function awppc_get_pages_ids() {
+    static $pages_ids;
+
+    if ( is_null( $pages_ids ) ) {
+        $pages_ids = awpcp_get_pages_ids_from_db();
+    }
+
+    return $pages_ids;
+}
+
+/**
+ * @since next-release
+ */
+function awpcp_get_pages_ids_from_db() {
     global $wpdb;
 
-    $refnames = (array) $refnames;
-    $query = 'SELECT id FROM ' . AWPCP_TABLE_PAGES . ' ';
+    $query = 'SELECT page, id FROM ' . AWPCP_TABLE_PAGES;
+    $results = $wpdb->get_results( $query );
 
-    if (!empty($refnames))
-        $query = sprintf("%s WHERE page IN ('%s')", $query, join("','", $refnames));
+    $pages_ids = array();
+    foreach ( $results as $row ) {
+        $pages_ids[ $row->page ] = $row->id;
+    }
 
-    return $wpdb->get_col($query);
+    return $pages_ids;
 }
 
 if ( ! function_exists( 'is_awpcp_page' ) ) {
