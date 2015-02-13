@@ -349,39 +349,6 @@ function category_is_child($catid) {
 	}
 }
 
-// TODO: cache the results of this function
-function total_ads_in_cat($catid) {
-    global $wpdb, $hasregionsmodule;
-
-    $totaladsincat = '';
-
-    // never allow Unpaid, Unverified or Disabled Ads
-    $conditions[] = "payment_status != 'Unpaid'";
-    $conditions[] = 'verified = 1';
-    $conditions[] = 'disabled = 0';
-
-    if( ( get_awpcp_option( 'enable-ads-pending-payment' ) == 0 ) && ( get_awpcp_option( 'freepay' ) == 1 ) ) {
-        $conditions[] = "payment_status != 'Pending'";
-    }
-
-    // TODO: ideally there would be a function to get all visible Ads,
-    // and modules, like Regions, would use hooks to include their own
-    // conditions.
-    if ( function_exists( 'awpcp_regions' ) && function_exists( 'awpcp_regions_api' ) ) {
-        if ( $active_region = awpcp_regions()->get_active_region() ) {
-            $conditions[] = awpcp_regions_api()->sql_where( $active_region->region_id );
-        }
-    }
-
-    $conditions[] = "(ad_category_id='$catid' OR ad_category_parent_id='$catid')";
-
-    // TODO: at some point we should start using the Category model.
-    $query = 'SELECT count(*) FROM ' . AWPCP_TABLE_ADS;
-    $query = sprintf( '%s WHERE %s', $query, implode( ' AND ', $conditions ) );
-
-    return $wpdb->get_var( $query );
-}
-
 //Function to replace addslashes_mq, which is causing major grief.  Stripping of undesireable characters now done
 // through above strip_slashes_recursive_gpc.
 function clean_field($foo) {

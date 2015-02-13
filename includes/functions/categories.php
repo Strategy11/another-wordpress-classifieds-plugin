@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @since next-release
+ */
 function awpcp_build_categories_hierarchy( &$categories ) {
     $hierarchy = array();
 
@@ -14,6 +17,9 @@ function awpcp_build_categories_hierarchy( &$categories ) {
     return $hierarchy;
 }
 
+/**
+ * @since next-release
+ */
 function awpcp_render_categories_dropdown_options( &$categories, &$hierarchy, $selected_category ) {
     $output = '';
 
@@ -38,6 +44,9 @@ function awpcp_render_categories_dropdown_options( &$categories, &$hierarchy, $s
     return $output;
 }
 
+/**
+ * @since next-release
+ */
 function awpcp_render_categories_dropdown_option( $category, $selected_category ) {
     if ( $selected_category == $category->id ) {
         $selected_attribute = 'selected="selected"';
@@ -60,4 +69,74 @@ function awpcp_render_categories_dropdown_option( $category, $selected_category 
         esc_attr( $category->id ),
         $category_name
     );
+}
+
+/**
+ * @since next-release
+ */
+function awpcp_get_count_of_listings_in_categories() {
+    static $listings_count;
+
+    if ( is_null( $listings_count ) ) {
+        $listings_count = awpcp_count_listings_in_categories();
+    }
+
+    return $listings_count;
+}
+
+/**
+ * @since next-release
+ */
+function awpcp_count_listings_in_categories() {
+    global $wpdb;
+
+    // never allow Unpaid, Unverified or Disabled Ads
+    $conditions[] = "payment_status != 'Unpaid'";
+    $conditions[] = 'verified = 1';
+    $conditions[] = 'disabled = 0';
+
+    if( ( get_awpcp_option( 'enable-ads-pending-payment' ) == 0 ) && ( get_awpcp_option( 'freepay' ) == 1 ) ) {
+        $conditions[] = "payment_status != 'Pending'";
+    }
+
+    // TODO: ideally there would be a function to get all visible Ads,
+    // and modules, like Regions, would use hooks to include their own
+    // conditions.
+    if ( function_exists( 'awpcp_regions' ) && function_exists( 'awpcp_regions_api' ) ) {
+        if ( $active_region = awpcp_regions()->get_active_region() ) {
+            $conditions[] = awpcp_regions_api()->sql_where( $active_region->region_id );
+        }
+    }
+
+    // TODO: at some point we should start using the Category model.
+    $query = 'SELECT ad_category_parent_id AS parent_category_id, ad_category_id AS category_id, count(*) AS count ';
+    $query.= 'FROM ' . AWPCP_TABLE_ADS;
+    $query = sprintf( '%s WHERE %s', $query, implode( ' AND ', $conditions ) );
+    $query.= ' GROUP BY ad_category_id, ad_category_parent_id';
+    $query.= ' ORDER BY ad_category_parent_id, ad_category_id';
+
+    $listings_count = array();
+
+    foreach ( $wpdb->get_results( $query ) as $row ) {
+        if ( $row->parent_category_id > 0 ) {
+            if ( isset( $listings_count[ $row->parent_category_id ] ) ) {
+                $listings_count[ $row->parent_category_id ] = $listings_count[ $row->parent_category_id ] + $row->count;
+            } else {
+                $listings_count[ $row->parent_category_id ] = $row->count;
+            }
+        }
+
+        if ( isset( $listings_count[ $row->category_id ] ) ) {
+            $listings_count[ $row->category_id ] = $listings_count[ $row->category_id ] + $row->count;
+        } else {
+            $listings_count[ $row->category_id ] = $row->count;
+        }
+    }
+
+    return $listings_count;
+}
+
+function total_ads_in_cat( $category_id ) {
+    $listings_count = awpcp_get_count_of_listings_in_categories();
+    return isset( $listings_count[ $category_id ] ) ? $listings_count[ $category_id ] : 0;
 }
