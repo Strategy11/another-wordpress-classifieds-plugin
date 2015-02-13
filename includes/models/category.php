@@ -252,16 +252,24 @@ class AWPCP_CategoriesCollection {
      * @since 3.3.2
      */
     public function get( $category_id ) {
+        if ( $category_id <= 0 ) {
+            $this->throw_no_category_was_found_with_id_exception( $category_id );
+        }
+
         $results = AWPCP_Category::query( array(
             'where' => $this->db->prepare( 'category_id = %d', $category_id )
         ) );
 
         if ( empty( $results ) ) {
-            $message = __( 'No category was found with ID: %d', 'AWPCP' );
-            throw new AWPCP_Exception( sprintf( $message, $category_id ) );
+            $this->throw_no_category_was_found_with_id_exception( $category_id );
         }
 
         return array_shift( $results );
+    }
+
+    private function throw_no_category_was_found_with_id_exception( $category_id ) {
+        $message = __( 'No category was found with ID: %d', 'AWPCP' );
+        throw new AWPCP_Exception( sprintf( $message, $category_id ) );
     }
 
     /**
