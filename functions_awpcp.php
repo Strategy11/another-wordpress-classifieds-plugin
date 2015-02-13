@@ -244,63 +244,6 @@ function get_categorynameid($cat_id = 0,$cat_parent_id= 0,$exclude)
 }
 // END FUNCTION: create list of top level categories for admin category management
 
-// START FUNCTION: Create the list with both parent and child categories selection for ad post form
-function get_categorynameidall($cat_id = 0) {
-	global $wpdb;
-
-	$optionitem='';
-
-	// Start with the main categories
-	$query = "SELECT category_id,category_name FROM " . AWPCP_TABLE_CATEGORIES . " ";
-	$query.= "WHERE category_parent_id=0 AND category_name <> '' ";
-	$query.= "ORDER BY category_order, category_name ASC";
-
-	$query_results = $wpdb->get_results( $query, ARRAY_N );
-
-	foreach ( $query_results as $rsrow ) {
-		$cat_ID = $rsrow[0];
-		$cat_name = stripslashes(stripslashes($rsrow[1]));
-
-		$opstyle = "class=\"dropdownparentcategory\"";
-
-		if($cat_ID == $cat_id) {
-			$maincatoptionitem = "<option $opstyle selected='selected' value='$cat_ID'>$cat_name</option>";
-		} else {
-			$maincatoptionitem = "<option $opstyle value='$cat_ID'>$cat_name</option>";
-		}
-
-		$optionitem.="$maincatoptionitem";
-
-		// While still looping through main categories get any sub categories of the main category
-
-		$maincatid = $cat_ID;
-
-		$query = "SELECT category_id,category_name FROM " . AWPCP_TABLE_CATEGORIES . " ";
-		$query.= "WHERE category_parent_id=%d ";
-		$query.= "ORDER BY category_order, category_name ASC";
-
-		$query = $wpdb->prepare( $query, $maincatid );
-
-		$sub_query_results = $wpdb->get_results( $query, ARRAY_N );
-
-		foreach ( $sub_query_results as $rsrow2) {
-			$subcat_ID = $rsrow2[0];
-			$subcat_name = stripslashes(stripslashes($rsrow2[1]));
-
-			if($subcat_ID == $cat_id) {
-				$subcatoptionitem = "<option selected='selected' value='$subcat_ID'>- $subcat_name</option>";
-			} else {
-				$subcatoptionitem = "<option  value='$subcat_ID'>- $subcat_name</option>";
-			}
-
-			$optionitem.="$subcatoptionitem";
-		}
-	}
-
-	return $optionitem;
-}
-
-// END FUNCTION: create drop down list of categories for ad post form
 // START FUNCTION: Retrieve the category name
 function get_adcatname($cat_ID) {
 	global $wpdb;
