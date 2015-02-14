@@ -33,7 +33,7 @@ function( $, settings) {
                 }
             } );
 
-            message = settings.l10n( 'media-uploader-strings', 'upload-restrictions-' + titles.join( '-' ) );
+            message = settings.l10n( 'media-uploader-strings', 'upload-restrictions-' + titles.sort().join( '-' ) );
 
             $.each( replacements, function( search, replacement ) {
                 message = message.replace( search, replacement );
