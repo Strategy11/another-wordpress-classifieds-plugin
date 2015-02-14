@@ -9,10 +9,12 @@ function( $, settings) {
         self.element = $( element );
         self.options = options;
 
-        insertUploadRestrictionsMessage();
+        insertOrUpdateUploadRestrictionsMessage();
         configurePluploadQueue();
 
-        function insertUploadRestrictionsMessage() {
+        $.subscribe( '/file/deleted', onFileDeleted );
+
+        function insertOrUpdateUploadRestrictionsMessage() {
             var message = '', titles = [], replacements = {}, files_left = 0, max_file_size = 0;
 
             settings.l10n( 'media-uploader-strings', 'upload-restrictions' );
@@ -144,6 +146,7 @@ function( $, settings) {
 
             if ( response.status === 'ok' && response.file ) {
                 $.publish( '/file/uploaded', [ file, response.file ] );
+                insertOrUpdateUploadRestrictionsMessage();
             } else if ( response.status !== 'ok' ) {
                 file.status = plupload.FAILED;
                 // to force the queue widget to update the icon and the uploaded files count
@@ -155,14 +158,23 @@ function( $, settings) {
 
         function onFilesRemoved( uploader, files ) {
             $.each( files, function( index, file ) {
-                var group = getFileGroup( file );
-
-                if ( group === null ) {
-                    return;
-                }
-
-                group.uploaded_file_count = group.uploaded_file_count - 1;
+                decreaseFileCountInGroup( file );
             } );
+
+            insertOrUpdateUploadRestrictionsMessage();
+        }
+
+        function onFileDeleted( event, file ) {
+            decreaseFileCountInGroup( file );
+            insertOrUpdateUploadRestrictionsMessage();
+        }
+
+        function decreaseFileCountInGroup( file ) {
+            var group = getFileGroup( file );
+
+            if ( group !== null ) {
+                group.uploaded_file_count = group.uploaded_file_count - 1;
+            }
         }
     };
 

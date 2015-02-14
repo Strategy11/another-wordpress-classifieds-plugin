@@ -139,6 +139,8 @@ function( $, ko, FileViewModel, settings ) {
                 file_id: file.id
             }, function( response ) {
                 if ( response.status === 'ok' ) {
+                    $.publish( '/file/deleted', { type: file.mimeType } );
+
                     vm.files.remove( file );
                     file.isBeingModified( false );
                 }
