@@ -130,7 +130,7 @@ class AWPCP_CSV_Importer {
 			}
 		}
 
-		$header = $parsed[0];
+		$header = array_map( 'trim', $parsed[0] );
 
 		if (in_array('images', $header) && empty($zip)) {
 			$errors[] = __( 'Image file names were found but no ZIP was provided.', 'AWPCP' );
