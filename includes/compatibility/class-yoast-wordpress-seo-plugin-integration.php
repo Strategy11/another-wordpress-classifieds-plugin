@@ -130,7 +130,14 @@ class AWPCP_YoastWordPressSEOPluginIntegration {
     }
 
     public function build_title( $title ) {
-        global $sep;
-        return $this->meta->title_builder->build_title( $title, $sep, '' );
+        if ( function_exists( 'wpseo_replace_vars' ) ) {
+            $separator = wpseo_replace_vars( '%%sep%%', array() );
+        } else if ( isset( $GLOBALS['sep'] ) ) {
+            $separator = $GLOBALS['sep'];
+        } else {
+            $separator = '';
+        }
+
+        return $this->meta->title_builder->build_title( $title, $separator, '' );
     }
 }
