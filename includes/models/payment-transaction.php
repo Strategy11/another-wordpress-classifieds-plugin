@@ -114,7 +114,7 @@ class AWPCP_Payment_Transaction {
         $query = sprintf("%s ORDER BY id ASC", $query);
 
         if ($fields == 'count') {
-            return $wpdb->get_var($query, ARRAY_A);
+            return $wpdb->get_var( $query );
         } else {
             $results = array();
             foreach ($wpdb->get_results($query, ARRAY_A) as $item) {
