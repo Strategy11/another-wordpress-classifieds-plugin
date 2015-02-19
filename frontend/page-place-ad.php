@@ -721,8 +721,10 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $page = $this;
         $url = $this->url();
 
+        $transaction = $this->get_transaction();
         $template = AWPCP_DIR . '/frontend/templates/page-place-ad-details-step.tpl.php';
-        $params = compact('page', 'ui', 'messages', 'form', 'hidden', 'required', 'url', 'edit', 'preview', 'errors');
+
+        $params = compact('transaction', 'page', 'ui', 'messages', 'form', 'hidden', 'required', 'url', 'edit', 'preview', 'errors');
 
         if ( isset( $this->ad ) && is_object( $this->ad ) ) {
             $params['listing'] = $this->ad;
@@ -1137,6 +1139,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $allowed_files = awpcp_listing_upload_limits()->get_listing_upload_limits( $ad );
 
         $params = array_merge( $params, array(
+            'transaction' => $transaction,
             'hidden' => array( 'transaction_id' => $transaction->id ),
             'errors' => $errors,
             'media_manager_configuration' => array(
@@ -1264,6 +1267,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             'edit' => false,
             'ad' => $ad,
             'messages' => array_merge( $messages, awpcp_listings_api()->get_ad_alerts( $ad ) ),
+            'transaction' => $transaction,
             'transaction_id' => $transaction->id
         );
 
