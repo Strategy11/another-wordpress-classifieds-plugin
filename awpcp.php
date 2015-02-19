@@ -131,6 +131,7 @@ require_once(AWPCP_DIR . "/includes/helpers/widgets/multiple-region-selector.php
 require_once(AWPCP_DIR . "/includes/helpers/widgets/class-asynchronous-tasks-component.php");
 require_once(AWPCP_DIR . "/includes/helpers/widgets/class-file-manager-component.php");
 require_once(AWPCP_DIR . "/includes/helpers/widgets/class-listing-actions-component.php");
+require_once( AWPCP_DIR . "/includes/helpers/widgets/class-listing-form-steps-component.php" );
 require_once(AWPCP_DIR . "/includes/helpers/widgets/class-user-field.php");
 require_once(AWPCP_DIR . "/includes/helpers/widgets/class-users-dropdown.php");
 require_once(AWPCP_DIR . "/includes/helpers/widgets/class-users-autocomplete.php");
