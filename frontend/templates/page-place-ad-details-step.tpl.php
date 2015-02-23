@@ -63,24 +63,6 @@
 
         <h3><?php echo esc_html( __( 'Add Details and Contact Information', 'AWPCP' ) ); ?></h3>
 
-        <p class="awpcp-form-spacer awpcp-form-spacer-title">
-            <label for="ad-title"><?php echo esc_html( __( 'Ad Title', 'AWPCP' ) ); ?><?php echo $required['ad-title'] ? '*' : ''; ?></label>
-
-            <?php
-            if ($form['characters_allowed_in_title'] == 0) {
-                $text = _x('No characters limit.', 'ad details form', 'AWPCP');
-                $characters = '';
-            } else {
-                $text = _x('characters left.', 'ad details form', 'AWPCP');
-                $characters = $form['remaining_characters_in_title'];
-            }
-            ?>
-
-            <input class="inputbox required" id="ad-title" type="text" size="50" name="ad_title" value="<?php echo awpcp_esc_attr($form['ad_title']) ?>" data-max-characters="<?php echo esc_attr( $form['characters_allowed_in_title'] ); ?>" data-remaining-characters="<?php echo esc_attr( $form['remaining_characters_in_title'] ); ?>"/>
-            <br/><label for="ad-title" class="characters-left"><span class="characters-left-placeholder"><?php echo esc_html( $characters ); ?></span>&nbsp;<?php echo esc_html( $text ); ?></label>
-            <?php echo awpcp_form_error('ad_title', $errors) ?>
-        </p>
-
         <?php if ($ui['category-field']): ?>
         <p class="awpcp-form-spacer">
             <?php $dropdown = new AWPCP_CategoriesDropdown(); ?>
@@ -89,78 +71,14 @@
         </p>
         <?php endif ?>
 
-        <?php if ($ui['website-field']): ?>
-        <p class="awpcp-form-spacer">
-            <?php $validator = $ui['website-field-required'] ? 'required url' : 'url' ?>
-            <label for="website-url"><?php echo esc_html( _x( 'Website URL', 'ad details form', 'AWPCP' ) ); ?><?php echo $required['website-url'] ? '*' : ''; ?></label>
-            <input class="inputbox <?php echo $validator ?>" id="website-url" type="text" size="50" name="websiteurl" value="<?php echo awpcp_esc_attr($form['websiteurl']) ?>" />
-            <?php echo awpcp_form_error('websiteurl', $errors) ?>
-        </p>
-        <?php endif ?>
-
-        <p class="awpcp-form-spacer">
-            <?php $readonly = $ui['contact-name-field-readonly'] ? 'readonly="readonly"' : ''; ?>
-            <label for="ad-contact-name"><?php echo esc_html( _x( 'Name of Person to Contact', 'ad details form', 'AWPCP' ) ); ?><?php echo $required['ad-contact-name'] ? '*' : ''; ?></label>
-            <input class="inputbox required" id="ad-contact-name" <?php echo $readonly; ?> type="text"  size="50" name="ad_contact_name" value="<?php echo awpcp_esc_attr($form['ad_contact_name']) ?>" />
-            <?php echo awpcp_form_error('ad_contact_name', $errors) ?>
-        </p>
-
-        <p class="awpcp-form-spacer">
-            <?php $readonly = $ui['contact-email-field-readonly'] ? 'readonly="readonly"' : ''; ?>
-            <label for="ad-contact-email"><?php echo esc_html( _x( "Contact Person's Email", 'ad details form', 'AWPCP' ) ); ?><?php echo $required['ad-contact-email'] ? '*' : ''; ?>&nbsp;<span class="helptext"><?php echo esc_html( _x( '(Please enter a valid email. The codes needed to edit your Ad will be sent to your email address)', 'ad details form', 'AWPCP' ) ); ?></span></label>
-            <input class="inputbox required email" id="ad-contact-email" <?php echo $readonly; ?> type="text" size="50" name="ad_contact_email" value="<?php echo awpcp_esc_attr($form['ad_contact_email']) ?>" />
-            <?php echo awpcp_form_error('ad_contact_email', $errors) ?>
-        </p>
-
-        <?php if ($ui['contact-phone-field']): ?>
-        <p class="awpcp-form-spacer">
-            <?php $validator = $ui['contact-phone-field-required'] ? 'required' : '' ?>
-            <label for="ad-contact-phone"><?php echo esc_html( _x( "Contact Person's Phone Number", 'ad details form', 'AWPCP' ) ); ?><?php echo $required['ad-contact-phone'] ? '*' : ''; ?></label>
-            <input class="inputbox <?php echo $validator ?>" id="ad-contact-phone" type="text" size="50" name="ad_contact_phone" value="<?php echo awpcp_esc_attr($form['ad_contact_phone']) ?>" />
-            <?php echo awpcp_form_error('ad_contact_phone', $errors); ?>
-        </p>
-        <?php endif ?>
-
         <?php
-        $options = array(
-            'showTextField' => true,
-            'maxRegions' => $form['regions-allowed'],
-            'disabled' => !$ui['allow-regions-modification'],
-        );
-
-        $selector = awpcp_multiple_region_selector( $form['regions'], $options );
-        echo $selector->render('details', array(), $errors);
+            echo awpcp_form_fields()->render_fields(
+                $form,
+                $errors,
+                isset( $listing ) ? $listing : null,
+                array( 'category' => $form['ad_category'], 'action' => 'normal' )
+            );
         ?>
-
-        <?php if ($ui['price-field']): ?>
-        <p class="awpcp-form-spacer">
-            <?php $validator = $ui['price-field-required'] ? 'required money' : 'money' ?>
-            <?php $price = $form['ad_item_price'] ? awpcp_format_money( $form['ad_item_price'], false ) : ''; ?>
-            <label for="ad-item-price"><?php echo esc_html( _x( 'Item Price', 'ad details form', 'AWPCP' ) ); ?><?php echo $required['ad-item-price'] ? '*' : ''; ?></label>
-            <input class="<?php echo $validator ?>" id="ad-item-price" type="text" size="50" name="ad_item_price" value="<?php echo esc_attr( $price ); ?>" />
-            <?php echo awpcp_form_error('ad_item_price', $errors) ?>
-        </p>
-        <?php endif ?>
-
-        <p class="awpcp-form-spacer">
-            <label for="ad-details"><?php echo esc_html( _x( 'Ad Details', 'ad details form', 'AWPCP' ) ); ?><?php echo $required['ad-details'] ? '*' : ''; ?></label>
-
-            <?php
-            if ($form['characters_allowed'] == 0) {
-                $text = _x('No characters limit.', 'ad details form', 'AWPCP');
-                $characters = '';
-            } else {
-                $text = _x('characters left.', 'ad details form', 'AWPCP');
-                $characters = $form['remaining_characters'];
-            }
-            ?>
-
-            <?php echo awpcp_form_error('ad_details', $errors) ?>
-            <label for="ad-details" class="helptext"><?php echo nl2br(get_awpcp_option('htmlstatustext')) ?></label>
-            <label for="ad-details" class="characters-left"><span class="characters-left-placeholder"><?php echo $characters ?></span>&nbsp;<?php echo esc_html( $text ); ?></label>
-
-            <textarea class="awpcp-textarea textareainput required" id="ad-details" name="ad_details" rows="10" cols="50" data-max-characters="<?php echo esc_attr( $form['characters_allowed'] ); ?>" data-remaining-characters="<?php echo esc_attr( $form['remaining_characters'] ); ?>"><?php /* Content alerady escaped if necessary. Do not escape again here! */ echo $form['ad_details']; ?></textarea>
-        </p>
 
         <?php
         if ($ui['extra-fields']) {

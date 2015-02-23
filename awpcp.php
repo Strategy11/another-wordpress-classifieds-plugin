@@ -98,6 +98,18 @@ require_once( AWPCP_DIR . "/includes/compatibility/class-woocommerce-plugin-inte
 
 require_once( AWPCP_DIR . "/includes/functions/settings.php" );
 
+require_once( AWPCP_DIR . "/includes/form-fields/class-form-field.php" );
+require_once( AWPCP_DIR . "/includes/form-fields/class-form-fields.php" );
+require_once( AWPCP_DIR . "/includes/form-fields/class-listing-form-fields.php" );
+require_once( AWPCP_DIR . "/includes/form-fields/class-listing-contact-name-form-field.php" );
+require_once( AWPCP_DIR . "/includes/form-fields/class-listing-contact-email-form-field.php" );
+require_once( AWPCP_DIR . "/includes/form-fields/class-listing-contact-phone-form-field.php" );
+require_once( AWPCP_DIR . "/includes/form-fields/class-listing-details-form-field.php" );
+require_once( AWPCP_DIR . "/includes/form-fields/class-listing-price-form-field.php" );
+require_once( AWPCP_DIR . "/includes/form-fields/class-listing-regions-form-field.php" );
+require_once( AWPCP_DIR . "/includes/form-fields/class-listing-title-form-field.php" );
+require_once( AWPCP_DIR . "/includes/form-fields/class-listing-website-form-field.php" );
+
 require_once( AWPCP_DIR . "/includes/helpers/class-easy-digital-downloads.php" );
 require_once( AWPCP_DIR . "/includes/helpers/class-licenses-manager.php" );
 require_once( AWPCP_DIR . '/includes/helpers/class-module.php' );
@@ -536,6 +548,9 @@ class AWPCP {
         }
 
         add_filter( 'awpcp-content-placeholders', array( $this, 'register_content_placeholders' ) );
+
+        $listing_form_fields = awpcp_listing_form_fields();
+        add_filter(  'awpcp-form-fields', array( $listing_form_fields, 'register_listing_form_fields' ), 5, 1 );
 
 		if (!get_option('awpcp_installationcomplete', 0)) {
 			update_option('awpcp_installationcomplete', 1);
