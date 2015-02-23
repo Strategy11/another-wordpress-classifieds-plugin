@@ -38,15 +38,11 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
     }
 
     public function get_transaction($create=false) {
-        if (!isset($this->transaction))
-            $this->transaction = null;
-
-        $id = awpcp_request_param('transaction_id');
-
-        if (is_null($this->transaction) && $create)
-            $this->transaction = AWPCP_Payment_Transaction::find_or_create($id);
-        else if (is_null($this->transaction))
-            $this->transaction = AWPCP_Payment_Transaction::find_by_id($id);
+        if ( $create ) {
+            $this->transaction = awpcp_payments_api()->get_or_create_transaction();
+        } else {
+            $this->transaction = awpcp_payments_api()->get_transaction();
+        }
 
         if (!is_null($this->transaction) && $this->transaction->is_new()) {
             $this->transaction->user_id = wp_get_current_user()->ID;
