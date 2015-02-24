@@ -471,18 +471,36 @@ function awpcp_pagination($config, $url) {
 
 	$pages = ceil($total / $results);
 	$page = floor($offset / $results) + 1;
-
     $items = array();
+    $radius = 5;
+
+    if ( ( $page - $radius ) > 2 ) {
+        $items[] = awpcp_render_pagination_item( '&laquo;&laquo;', 1, $results, $params, $url );
+    }
+
+    if ( ( $page - $radius ) > 1 ) {
+        $items[] = awpcp_render_pagination_item( '&laquo;', $page - $radius - 1, $results, $params, $url );
+    }
 
 	for ($i=1; $i <= $pages; $i++) {
-		if ($page == $i) {
-			$items[] = sprintf('%d', $i);
-		} else {
-			$href_params = array_merge($params, array('offset' => ($i-1) * $results, 'results' => $results));
-			$href = add_query_arg($href_params, $url);
-			$items[] = sprintf('<a href="%s">%d</a>', esc_attr($href), esc_attr($i));
-		}
+        if ( $page == $i ) {
+            $items[] = sprintf('%d', $i);
+        } else if ( $i < ( $page - $radius ) ) {
+            // pass
+        } else if ( $i > ( $page + $radius ) ) {
+            // pass
+        } else {
+            $items[] = awpcp_render_pagination_item( $i, $i, $results, $params, $url );
+        }
 	}
+
+    if ( $page < ( $pages - $radius ) ) {
+        $items[] = awpcp_render_pagination_item( '&raquo;', $page + $radius + 1, $results, $params, $url );
+    }
+
+    if ( ( $page + $radius ) < ( $pages - 1 ) ) {
+        $items[] = awpcp_render_pagination_item( '&raquo;&raquo;', $pages, $results, $params, $url );
+    }
 
 	$pagination = implode( '', $items );
 	$options = awpcp_pagination_options( $results );
@@ -495,6 +513,17 @@ function awpcp_pagination($config, $url) {
 	return $html;
 }
 
+function awpcp_render_pagination_item( $label, $page, $results_per_page, $params, $url ) {
+    $params = array_merge(
+        $params,
+        array(
+            'offset' => ( $page - 1 ) * $results_per_page,
+            'results' => $results_per_page,
+        )
+    );
+
+    return sprintf( '<a href="%s">%s</a>', esc_attr( add_query_arg( $params, $url ) ), $label );
+}
 
 function awpcp_get_categories() {
 	global $wpdb;
