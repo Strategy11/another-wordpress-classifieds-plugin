@@ -80,15 +80,6 @@
             );
         ?>
 
-        <?php
-        if ($ui['extra-fields']) {
-            echo awpcp_extra_fields_render_form(array('category' => $form['ad_category'], 'ad' => $form['ad_id']),
-                                                $form,
-                                                'normal',
-                                                $errors);
-        }
-        ?>
-
         <?php if ($ui['terms-of-service']): ?>
         <p class="awpcp-form-spacer">
         <?php $text = get_awpcp_option('tos') ?>
