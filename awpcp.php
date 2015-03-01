@@ -283,6 +283,10 @@ require_once(AWPCP_DIR . "/admin/admin-panel.php");
 require_once(AWPCP_DIR . "/admin/user-panel.php");
 require_once( AWPCP_DIR . '/admin/profile/class-user-profile-contact-information-controller.php' );
 require_once( AWPCP_DIR . '/admin/class-page-name-monitor.php' );
+require_once( AWPCP_DIR . '/admin/form-fields/class-form-fields-admin-page.php' );
+require_once( AWPCP_DIR . '/admin/form-fields/class-form-fields-table-factory.php' );
+require_once( AWPCP_DIR . '/admin/form-fields/class-form-fields-table.php' );
+require_once( AWPCP_DIR . '/admin/form-fields/class-update-form-fields-order-ajax-handler.php' );
 
 // frontend functions
 require_once(AWPCP_DIR . "/frontend/placeholders.php");
@@ -602,6 +606,9 @@ class AWPCP {
         add_action( 'wp_ajax_awpcp-upload-generated-thumbnail', array( $handler, 'ajax' ) );
         add_action( 'wp_ajax_nopriv_awpcp-upload-generated-thumbnail', array( $handler, 'ajax' ) );
 
+        $handler = awpcp_update_form_fields_order_ajax_handler();
+        add_action( 'wp_ajax_awpcp-update-form-fields-order', array( $handler, 'ajax' ) );
+
         $media_manager = awpcp_new_media_manager();
         $media_manager->register_file_handler( awpcp_image_file_handler() );
     }
@@ -870,6 +877,7 @@ class AWPCP {
 		wp_register_script('awpcp-admin-users', "{$js}/admin-users.js", array('awpcp-admin-wp-table-ajax'), $awpcp_db_version, true);
 		wp_register_script( 'awpcp-admin-attachments', "{$js}/admin-attachments.js", array( 'awpcp' ), $awpcp_db_version, true );
 		wp_register_script( 'awpcp-admin-import', "{$js}/admin-import.js", array( 'awpcp', 'jquery-ui-datepicker', 'jquery-ui-autocomplete' ), $awpcp_db_version, true );
+        wp_register_script( 'awpcp-admin-form-fields', "{$js}/admin-form-fields.js", array( 'awpcp', 'jquery-ui-sortable', 'jquery-effects-highlight', 'jquery-effects-core' ), $awpcp_db_version, true );
 
 		/* frontend */
 

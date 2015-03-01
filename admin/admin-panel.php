@@ -247,16 +247,16 @@ class AWPCP_Admin {
 			$page = add_submenu_page($parent, $parts[0], $parts[1], $capability, $parts[2], array($this->fees, 'dispatch'));
 			add_action('admin_print_styles-' . $page, array($this->fees, 'scripts'));
 
-			// $parts = array($this->categories->title, $this->categories->menu, $this->categories->page);
-			// $page = add_submenu_page($parent, $parts[0], $parts[1], $capability, $parts[2], array($this->categories, 'dispatch'));
-			// add_action('admin_print_styles-' . $page, array($this->categories, 'scripts'));
-
 			add_submenu_page($parent, __('Add/Edit Categories', 'AWPCP'), __('Categories', 'AWPCP'), $capability, 'awpcp-admin-categories', 'awpcp_opsconfig_categories');
 
 			$parts = array($this->listings->title, $this->listings->menu, $this->listings->page);
 			$page = add_submenu_page($parent, $parts[0], $parts[1], $capability, 'awpcp-listings', array($this->listings, 'dispatch'));
 			add_action('admin_print_styles-' . $page, array($this->listings, 'scripts'));
-			// add_submenu_page($parent, 'Manage Ad Listings', 'Listings', $capability, 'Manage1', 'awpcp_manage_viewlistings');
+
+			$this->form_fields = awpcp_form_fields_admin_page();
+			$parts = array( $this->form_fields->title, $this->form_fields->menu, $this->form_fields->page );
+			$page = add_submenu_page( $parent, $parts[0], $parts[1], $capability, 'awpcp-form-fields', array( $this->form_fields, 'dispatch' ) );
+			add_action( 'admin_print_styles-' . $page, array( $this->form_fields, 'scripts' ) );
 
 			// allow plugins to define additional sub menu entries
 			do_action('awpcp_admin_add_submenu_page', $parent, $capability);

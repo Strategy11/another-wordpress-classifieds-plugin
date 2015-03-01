@@ -31,15 +31,24 @@ class AWPCP_FormFields {
             }
         }
 
-        return $fields;
+        $sorted_fields = array();
+
+        foreach ( $this->get_fields_order() as $field_slug ) {
+            if ( isset( $fields[ $field_slug ] ) ) {
+                $sorted_fields[ $field_slug ] = $fields[ $field_slug ];
+                unset( $fields[ $field_slug ] );
+            }
+        }
+
+        return array_merge( $sorted_fields, $fields );
     }
 
     public function get_fields_order() {
-        return get_option( 'awpcp-form-fields', $order );
+        return get_option( 'awpcp-form-fields-order', array() );
     }
 
     public function update_fields_order( $order ) {
-        update_option( 'awpcp-form-fields-order', $order );
+        return update_option( 'awpcp-form-fields-order', $order );
     }
 
     public function render_fields( $form_values, $form_errors, $listing, $context ) {
