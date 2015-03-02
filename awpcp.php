@@ -892,8 +892,10 @@ class AWPCP {
         $dependencies = array( 'awpcp', 'awpcp-multiple-region-selector', 'awpcp-jquery-validate', 'awpcp-jquery-plupload-queue', 'jquery-ui-datepicker', 'jquery-ui-autocomplete' );
 		wp_register_script( 'awpcp-page-place-ad', "{$js}/page-place-ad.js", $dependencies, $awpcp_db_version, true );
 
-		wp_register_script('awpcp-page-reply-to-ad', "{$js}/page-reply-to-ad.js", array('awpcp', 'awpcp-jquery-validate'), $awpcp_db_version, true);
-		wp_register_script('awpcp-page-search-listings', "{$js}/page-search-listings.js", array('awpcp', 'awpcp-multiple-region-selector', 'awpcp-jquery-validate'), $awpcp_db_version, true);
+        $dependencies = array('awpcp', 'awpcp-multiple-region-selector', 'awpcp-jquery-validate', 'jquery-ui-datepicker');
+		wp_register_script('awpcp-page-search-listings', "{$js}/page-search-listings.js", $dependencies, $awpcp_db_version, true);
+
+        wp_register_script('awpcp-page-reply-to-ad', "{$js}/page-reply-to-ad.js", array('awpcp', 'awpcp-jquery-validate'), $awpcp_db_version, true);
 		wp_register_script('awpcp-page-show-ad', "{$js}/page-show-ad.js", array('awpcp'), $awpcp_db_version, true);
 	}
 
