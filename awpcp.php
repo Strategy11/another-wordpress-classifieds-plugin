@@ -98,6 +98,18 @@ require_once( AWPCP_DIR . "/includes/compatibility/class-woocommerce-plugin-inte
 
 require_once( AWPCP_DIR . "/includes/functions/settings.php" );
 
+require_once( AWPCP_DIR . "/includes/form-fields/class-form-field.php" );
+require_once( AWPCP_DIR . "/includes/form-fields/class-form-fields.php" );
+require_once( AWPCP_DIR . "/includes/form-fields/class-listing-form-fields.php" );
+require_once( AWPCP_DIR . "/includes/form-fields/class-listing-contact-name-form-field.php" );
+require_once( AWPCP_DIR . "/includes/form-fields/class-listing-contact-email-form-field.php" );
+require_once( AWPCP_DIR . "/includes/form-fields/class-listing-contact-phone-form-field.php" );
+require_once( AWPCP_DIR . "/includes/form-fields/class-listing-details-form-field.php" );
+require_once( AWPCP_DIR . "/includes/form-fields/class-listing-price-form-field.php" );
+require_once( AWPCP_DIR . "/includes/form-fields/class-listing-regions-form-field.php" );
+require_once( AWPCP_DIR . "/includes/form-fields/class-listing-title-form-field.php" );
+require_once( AWPCP_DIR . "/includes/form-fields/class-listing-website-form-field.php" );
+
 require_once( AWPCP_DIR . "/includes/helpers/class-easy-digital-downloads.php" );
 require_once( AWPCP_DIR . "/includes/helpers/class-licenses-manager.php" );
 require_once( AWPCP_DIR . '/includes/helpers/class-module.php' );
@@ -272,6 +284,10 @@ require_once(AWPCP_DIR . "/admin/admin-panel.php");
 require_once(AWPCP_DIR . "/admin/user-panel.php");
 require_once( AWPCP_DIR . '/admin/profile/class-user-profile-contact-information-controller.php' );
 require_once( AWPCP_DIR . '/admin/class-page-name-monitor.php' );
+require_once( AWPCP_DIR . '/admin/form-fields/class-form-fields-admin-page.php' );
+require_once( AWPCP_DIR . '/admin/form-fields/class-form-fields-table-factory.php' );
+require_once( AWPCP_DIR . '/admin/form-fields/class-form-fields-table.php' );
+require_once( AWPCP_DIR . '/admin/form-fields/class-update-form-fields-order-ajax-handler.php' );
 
 // frontend functions
 require_once(AWPCP_DIR . "/frontend/placeholders.php");
@@ -541,6 +557,9 @@ class AWPCP {
 
         add_filter( 'awpcp-content-placeholders', array( $this, 'register_content_placeholders' ) );
 
+        $listing_form_fields = awpcp_listing_form_fields();
+        add_filter(  'awpcp-form-fields', array( $listing_form_fields, 'register_listing_form_fields' ), 5, 1 );
+
 		if (!get_option('awpcp_installationcomplete', 0)) {
 			update_option('awpcp_installationcomplete', 1);
 			awpcp_create_pages(__('AWPCP', 'AWPCP'));
@@ -590,6 +609,9 @@ class AWPCP {
         $handler = awpcp_upload_generated_thumbnail_ajax_handler();
         add_action( 'wp_ajax_awpcp-upload-generated-thumbnail', array( $handler, 'ajax' ) );
         add_action( 'wp_ajax_nopriv_awpcp-upload-generated-thumbnail', array( $handler, 'ajax' ) );
+
+        $handler = awpcp_update_form_fields_order_ajax_handler();
+        add_action( 'wp_ajax_awpcp-update-form-fields-order', array( $handler, 'ajax' ) );
 
         $media_manager = awpcp_new_media_manager();
         $media_manager->register_file_handler( awpcp_image_file_handler() );
@@ -859,6 +881,7 @@ class AWPCP {
 		wp_register_script('awpcp-admin-users', "{$js}/admin-users.js", array('awpcp-admin-wp-table-ajax'), $awpcp_db_version, true);
 		wp_register_script( 'awpcp-admin-attachments', "{$js}/admin-attachments.js", array( 'awpcp' ), $awpcp_db_version, true );
 		wp_register_script( 'awpcp-admin-import', "{$js}/admin-import.js", array( 'awpcp', 'jquery-ui-datepicker', 'jquery-ui-autocomplete' ), $awpcp_db_version, true );
+        wp_register_script( 'awpcp-admin-form-fields', "{$js}/admin-form-fields.js", array( 'awpcp', 'jquery-ui-sortable', 'jquery-effects-highlight', 'jquery-effects-core' ), $awpcp_db_version, true );
 
 		/* frontend */
 
@@ -873,8 +896,10 @@ class AWPCP {
         $dependencies = array( 'awpcp', 'awpcp-multiple-region-selector', 'awpcp-jquery-validate', 'awpcp-jquery-plupload-queue', 'jquery-ui-datepicker', 'jquery-ui-autocomplete' );
 		wp_register_script( 'awpcp-page-place-ad', "{$js}/page-place-ad.js", $dependencies, $awpcp_db_version, true );
 
-		wp_register_script('awpcp-page-reply-to-ad', "{$js}/page-reply-to-ad.js", array('awpcp', 'awpcp-jquery-validate'), $awpcp_db_version, true);
-		wp_register_script('awpcp-page-search-listings', "{$js}/page-search-listings.js", array('awpcp', 'awpcp-multiple-region-selector', 'awpcp-jquery-validate'), $awpcp_db_version, true);
+        $dependencies = array('awpcp', 'awpcp-multiple-region-selector', 'awpcp-jquery-validate', 'jquery-ui-datepicker');
+		wp_register_script('awpcp-page-search-listings', "{$js}/page-search-listings.js", $dependencies, $awpcp_db_version, true);
+
+        wp_register_script('awpcp-page-reply-to-ad', "{$js}/page-reply-to-ad.js", array('awpcp', 'awpcp-jquery-validate'), $awpcp_db_version, true);
 		wp_register_script('awpcp-page-show-ad', "{$js}/page-show-ad.js", array('awpcp'), $awpcp_db_version, true);
 	}
 

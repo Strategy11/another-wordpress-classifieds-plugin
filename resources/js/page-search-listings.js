@@ -39,6 +39,10 @@
                 messages: $.AWPCP.l10n('page-search-ads'),
                 onfocusout: false
             });
+
+            $( '[datepicker-placeholder]' ).each( function() {
+                $.noop( new $.AWPCP.DatepickerField( $(this).siblings('[name]:hidden') ) );
+            } );
         }
     });
 })(jQuery);

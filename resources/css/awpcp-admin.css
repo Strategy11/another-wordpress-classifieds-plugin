@@ -552,6 +552,16 @@
   float: none;
   vertical-align: sub;
 }
+.awpcp-sortable-handle {
+  background: url(../images/drag-handle.png) center center no-repeat;
+  cursor: move;
+  float: right;
+  width: 20px;
+  height: 20px;
+}
+.awpcp-form-fields-table-spinner {
+  margin: 0;
+}
 .awpcp-admin-sidebar .postbox {
   min-width: 200px;
 }

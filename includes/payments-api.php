@@ -261,6 +261,27 @@ class AWPCP_PaymentsAPI {
 
     /* Transactions Management */
 
+    public function get_transaction() {
+        return $this->get_transaction_with_method( 'find_or_create' );
+    }
+
+    private function get_transaction_with_method( $method_name ) {
+        if ( ! isset( $this->current_transaction ) ) {
+            $this->current_transaction = null;
+        }
+
+        if ( is_null( $this->current_transaction ) ) {
+            $transaction_id = $this->request->param( 'transaction_id' );
+            $this->current_transaction = call_user_func( array( 'AWPCP_Payment_Transaction', $method_name ), $transaction_id );
+        }
+
+        return $this->current_transaction;
+    }
+
+    public function get_or_create_transaction() {
+        return $this->get_transaction_with_method( 'find_by_id' );
+    }
+
     /**
      * TODO: should throw an exception if the status can't be set
      */

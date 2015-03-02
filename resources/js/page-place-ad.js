@@ -214,8 +214,9 @@ AWPCP.run('awpcp/page-place-ads', [
 
                 container.find('[autocomplete-field], [dropdown-field]').userfield();
 
-                $.noop(new $.AWPCP.DatepickerField(container.find('[name="start_date"]')));
-                $.noop(new $.AWPCP.DatepickerField(container.find('[name="end_date"]')));
+                $( '[datepicker-placeholder]' ).each( function() {
+                    $.noop( new $.AWPCP.DatepickerField( $(this).siblings('[name]:hidden') ) );
+                } );
 
                 // display and control characters allowed for the Ad title
                 $.noop(new $.AWPCP.RestrictedLengthField(container.find('[name="ad_title"]')));

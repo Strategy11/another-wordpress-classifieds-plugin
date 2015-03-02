@@ -24,6 +24,7 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
     }
 
     public function dispatch() {
+        wp_enqueue_style('awpcp-jquery-ui');
         wp_enqueue_script('awpcp-page-search-listings');
         wp_enqueue_script('awpcp-extra-fields');
 
@@ -137,8 +138,6 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
             'offset' => absint( awpcp_request_param( 'offset', 0 ) ),
             'order' => get_awpcp_option( 'search-results-order' ),
         ) );
-
-        awpcp_listings_collection()->find_enabled_listings();
 
         return awpcp_display_listings( $query, 'search', array(
             'show_intro_message' => true,
