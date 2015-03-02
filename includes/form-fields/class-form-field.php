@@ -22,6 +22,14 @@ abstract class AWPCP_FormField {
         return false;
     }
 
+    public function is_allowed_in_context( $context ) {
+        if ( $context['action'] == 'search' ) {
+            return false;
+        }
+
+        return true;
+    }
+
     protected function format_value( $value ) {
         return $value;
     }

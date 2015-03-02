@@ -55,6 +55,10 @@ class AWPCP_FormFields {
         $output = array();
 
         foreach( $this->get_fields() as $field_slug => $field ) {
+            if ( ! $field->is_allowed_in_context( $context ) ) {
+                continue;
+            }
+
             $output[ $field_slug ] = $field->render(
                 isset( $form_values[ $field_slug ] ) ? $form_values[ $field_slug ] : '',
                 isset( $form_errors[ $field_slug ] ) ? $form_errors[ $field_slug ] : '',
