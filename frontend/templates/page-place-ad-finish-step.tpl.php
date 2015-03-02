@@ -1,3 +1,9 @@
+<?php
+    if ( isset( $transaction ) ) {
+        echo awpcp_render_listing_form_steps_with_transaction( 'finish', $transaction );
+    }
+?>
+
 <?php if (!is_admin()): ?>
     <?php if ($edit): ?>
     <?php echo awpcp_print_message(__("Your changes have been saved.", 'AWPCP')); ?>

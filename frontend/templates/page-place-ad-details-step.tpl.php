@@ -1,6 +1,12 @@
 <h2><?php echo esc_html( __( 'Enter Ad Details', 'AWPCP' ) ); ?></h2>
 
 <?php
+    if ( isset( $transaction ) ) {
+        echo awpcp_render_listing_form_steps_with_transaction( 'listing-details', $transaction );
+    }
+?>
+
+<?php
     foreach ($messages as $message) {
         echo awpcp_print_message($message);
     }

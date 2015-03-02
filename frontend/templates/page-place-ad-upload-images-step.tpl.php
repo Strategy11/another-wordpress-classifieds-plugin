@@ -1,6 +1,12 @@
 <h2><?php _e('Upload Files', 'AWPCP') ?></h2>
 
 <?php
+    if ( isset( $transaction ) ) {
+        echo awpcp_render_listing_form_steps_with_transaction( 'upload-files', $transaction );
+    }
+?>
+
+<?php
     if (get_awpcp_option('imagesapprove') == 1) {
         $messages[] = __('Image approval is in effect so any new images you upload will not be visible to viewers until an admin approves them.', 'AWPCP');
     }

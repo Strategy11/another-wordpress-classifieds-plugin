@@ -29,9 +29,9 @@ class AWPCP_FilesSettings {
         $key = $settings->add_section( $group, __( 'Images', 'AWPCP' ), 'image', 20, array( $settings, 'section' ) );
 
         $image_extensions = $this->file_types->get_file_extensions_in_group( 'image' );
-        $legacy_allow_images_setting = $settings->get_option( 'imagesallowdisallow', 'NOT-REGISTERED' );
+        $legacy_allow_images_setting = $settings->get_option( 'imagesallowdisallow', true );
 
-        if ( $legacy_allow_images_setting && $legacy_allow_images_setting != 'NOT-REGISTERED' ) {
+        if ( $legacy_allow_images_setting ) {
             $default_image_extenstions = $image_extensions;
         } else {
             $default_image_extenstions = array();
