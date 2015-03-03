@@ -376,11 +376,7 @@ function awpcp_is_mysql_date( $date ) {
  * @since 2.0.7
  */
 function awpcp_admin_capability() {
-	$roles = explode(',', get_awpcp_option('awpcpadminaccesslevel'));
-	if (in_array('editor', $roles))
-		return 'edit_pages';
-	// default to: only WP administrator users are AWPCP admins
-	return 'activate_plugins';
+    return 'manage_classifieds';
 }
 
 /**
@@ -395,19 +391,19 @@ function awpcp_admin_roles_names() {
  * AWPCP settings.
  */
 function awpcp_current_user_is_admin() {
-    // If the current user is being setup before the "init" action has fired,
-    // strange (and difficult to debug) role/capability issues will occur.
-    if ( ! did_action( 'set_current_user' ) ) {
-        _doing_it_wrong( __FUNCTION__, "Trying to call awpcp_current_user_is_admin() before the current user has been set.", '3.3.1' );
-    }
+    return awpcp_roles_and_capabilities()->current_user_is_administrator();
+}
 
-	return current_user_can( awpcp_admin_capability() );
+/**
+ * @since next-release
+ */
+function awpcp_current_user_is_moderator() {
+    return awpcp_roles_and_capabilities()->current_user_is_moderator();
 }
 
 
 function awpcp_user_is_admin($id) {
-	$capability = awpcp_admin_capability();
-	return user_can($id, $capability);
+    return awpcp_roles_and_capabilities()->user_is_administrator( $id );
 }
 
 

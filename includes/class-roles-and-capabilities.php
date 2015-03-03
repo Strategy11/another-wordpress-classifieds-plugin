@@ -1,15 +1,17 @@
 <?php
 
 function awpcp_roles_and_capabilities() {
-    return new AWPCP_RolesAndCapabilities( awpcp()->settings );
+    return new AWPCP_RolesAndCapabilities( awpcp()->settings, awpcp_request() );
 }
 
 class AWPCP_RolesAndCapabilities {
 
     private $settings;
+    private $request;
 
-    public function __construct( $settings ) {
+    public function __construct( $settings, $request ) {
         $this->settings = $settings;
+        $this->request = $request;
     }
 
     public function setup_roles_capabilities() {
@@ -37,12 +39,11 @@ class AWPCP_RolesAndCapabilities {
     }
 
     public function get_administrator_capabilities() {
-        return array(
-            'manage_classifieds',
-            'manage_classifieds_listings',
-            'edit_classifieds_listings',
-            'edit_others_classifieds_listings'
-        );
+        return array_merge( array( 'manage_classifieds' ), $this->get_moderator_capabilities() );
+    }
+
+    public function get_moderator_capabilities() {
+        return array( 'manage_classifieds_listings'/*, 'edit_classifieds_listings'*/ );
     }
 
     public function add_administrator_capabilities_to_role( $role_name ) {
@@ -61,17 +62,50 @@ class AWPCP_RolesAndCapabilities {
 
     private function create_moderator_role() {
         $role = get_role( 'awpcp-moderator' );
-        $capabilities = array(
-            'read' => true,
-            'manage_classifieds_listings' => true,
-            'edit_classifieds_listings' => true,
-            'edit_others_classifieds_listings' => true,
-        );
+
+        $capabilities = array_merge( array( 'read' ), $this->get_moderator_capabilities() );
+        $capabilities = array_combine( $capabilities, array_pad( array(), count( $capabilities ), true ) );
 
         if ( is_null( $role ) ) {
             $role = add_role( 'awpcp-moderator', __( 'Classifieds Moderator', 'AWPCP' ), $capabilities );
         } else {
             $this->add_capabilities_to_role( $role, array_keys( $capabilities ) );
         }
+    }
+
+    public function current_user_is_administrator() {
+        return $this->current_user_can( $this->get_administrator_capabilities() );
+    }
+
+    private function current_user_can( $capabilities ) {
+        // If the current user is being setup before the "init" action has fired,
+        // strange (and difficult to debug) role/capability issues will occur.
+        if ( ! did_action( 'set_current_user' ) ) {
+            _doing_it_wrong( __FUNCTION__, "Trying to call current_user_is_*() before the current user has been set.", '3.3.1' );
+        }
+
+        return $this->user_can( $this->request->get_current_user(), $capabilities );
+    }
+
+    private function user_can( $user, $capabilities ) {
+        if ( ! is_object( $user ) || empty( $capabilities ) ) {
+            return false;
+        }
+
+        foreach ( $capabilities as $capability ) {
+            if ( ! user_can( $user, $capability ) ) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public function current_user_is_moderator() {
+        return $this->current_user_can( $this->get_moderator_capabilities() );
+    }
+
+    public function user_is_administrator( $user_id ) {
+        $this->user_can( get_userdata( $user_id ), $this->get_administrator_capabilities() );
     }
 }
