@@ -18,7 +18,12 @@ class AWPCP_RolesAndCapabilities {
     }
 
     public function get_administrator_roles_names() {
-        $configured_roles = explode( ',', $this->settings->get_option( 'awpcpadminaccesslevel' ) );
+        $selected_roles = $this->settings->get_option( 'awpcpadminaccesslevel' );
+        return $this->get_administrator_roles_names_from_string( $selected_roles );
+    }
+
+    public function get_administrator_roles_names_from_string( $string ) {
+        $configured_roles = explode( ',', $string );
 
         if ( in_array( 'editor', $configured_roles ) ) {
             $roles_names = array( 'administrator', 'editor' );

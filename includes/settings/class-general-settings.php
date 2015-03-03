@@ -1,10 +1,16 @@
 <?php
 
 function awpcp_general_settings() {
-    return new AWPCP_GeneralSettings();
+    return new AWPCP_GeneralSettings( awpcp_roles_and_capabilities() );
 }
 
 class AWPCP_GeneralSettings {
+
+    private $roles;
+
+    public function __construct( $roles ) {
+        $this->roles = $roles;
+    }
 
     public function register_settings( $settings ) {
         $group = $settings->add_group( __( 'General', 'AWPCP' ), 'general-settings', 5 );
@@ -91,5 +97,22 @@ class AWPCP_GeneralSettings {
         $key = $settings->add_section($group, __('SEO Settings', 'AWPCP'), 'seo-settings', 10, array( $settings, 'section' ) );
 
         $settings->add_setting( $key, 'seofriendlyurls', __( 'Turn on Search Engine Friendly URLs', 'AWPCP' ), 'checkbox', 0, __( 'Turn on Search Engine Friendly URLs? (SEO Mode)', 'AWPCP' ) );
+    }
+
+    public function validate_group_settings( $options, $group ) {
+        $current_roles = $this->roles->get_administrator_roles_names();
+        $selected_roles = $this->roles->get_administrator_roles_names_from_string( $options['awpcpadminaccesslevel'] );
+        $removed_roles = array_diff( $current_roles, $selected_roles );
+        $new_roles = array_diff( $selected_roles, $current_roles );
+
+        if ( ! empty( $removed_roles ) ) {
+            array_walk( $removed_roles, array( $this->roles, 'remove_administrator_capabilities_from_role' ) );
+        }
+
+        if ( ! empty( $new_roles ) ) {
+            array_walk( $new_roles, array( $this->roles, 'add_administrator_capabilities_to_role' ) );
+        }
+
+        return $options;
     }
 }
