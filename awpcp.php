@@ -258,6 +258,7 @@ require_once( AWPCP_DIR . "/includes/class-listings-collection.php" );
 require_once( AWPCP_DIR . "/includes/class-listings-metadata.php" );
 require_once( AWPCP_DIR . "/includes/class-media-api.php" );
 require_once( AWPCP_DIR . "/includes/class-secure-url-redirection-handler.php" );
+require_once( AWPCP_DIR . "/includes/class-roles-and-capabilities.php" );
 require_once( AWPCP_DIR . "/includes/class-users-collection.php" );
 require_once(AWPCP_DIR . "/includes/payments-api.php");
 require_once(AWPCP_DIR . "/includes/regions-api.php");
@@ -573,6 +574,13 @@ class AWPCP {
             add_action( 'wp_loaded', 'flush_rewrite_rules' );
             update_option( 'awpcp-flush-rewrite-rules', false );
 		}
+
+        if ( get_option( 'awpcp-installed-or-upgraded' ) ) {
+            $roles_and_capabilities = awpcp_roles_and_capabilities();
+            add_action( 'wp_loaded', array( $roles_and_capabilities, 'setup_roles_capabilities' ) );
+
+            delete_option( 'awpcp-installed-or-upgraded' );
+        }
 
 		$this->register_scripts();
 	}

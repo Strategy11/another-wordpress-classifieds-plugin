@@ -387,12 +387,7 @@ function awpcp_admin_capability() {
  * @since 3.3.2
  */
 function awpcp_admin_roles_names() {
-    $configured_roles = explode( ',', get_awpcp_option( 'awpcpadminaccesslevel' ) );
-    if ( in_array( 'editor', $configured_roles ) ) {
-        return array( 'administrator', 'editor' );
-    } else {
-        return array( 'administrator' );
-    }
+    return awpcp_roles_and_capabilities()->get_administrator_roles_names();
 }
 
 /**
