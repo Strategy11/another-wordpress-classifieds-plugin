@@ -239,6 +239,7 @@ require_once( AWPCP_DIR . '/includes/placeholders/class-placeholders-installatio
 
 require_once( AWPCP_DIR . "/includes/settings/class-credit-system-settings.php" );
 require_once( AWPCP_DIR . "/includes/settings/class-files-settings.php" );
+require_once( AWPCP_DIR . "/includes/settings/class-general-settings.php" );
 require_once( AWPCP_DIR . "/includes/settings/class-listings-moderation-settings.php" );
 require_once( AWPCP_DIR . "/includes/settings/class-payment-general-settings.php" );
 require_once( AWPCP_DIR . "/includes/settings/class-registration-settings.php" );
@@ -472,6 +473,9 @@ class AWPCP {
 
 	public function setup_register_settings_handlers() {
 		add_action( 'awpcp_register_settings', array( new AWPCP_RegistrationSettings, 'register_settings' ) );
+
+        $general_settings = awpcp_general_settings();
+        add_action( 'awpcp_register_settings', array( $general_settings, 'register_settings' ) );
 
 		$listings_moderation_settings = new AWPCP_ListingsModerationSettings;
 		add_action( 'awpcp_register_settings', array( $listings_moderation_settings, 'register_settings' ) );
