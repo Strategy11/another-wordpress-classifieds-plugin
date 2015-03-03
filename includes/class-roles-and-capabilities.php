@@ -14,7 +14,9 @@ class AWPCP_RolesAndCapabilities {
 
     public function setup_roles_capabilities() {
         $administrator_roles = $this->get_administrator_roles_names();
-        return array_map( array( $this, 'add_administrator_capabilities_to_role' ), $administrator_roles );
+        array_walk( $administrator_roles, array( $this, 'add_administrator_capabilities_to_role' ) );
+
+        $this->create_moderator_role();
     }
 
     public function get_administrator_roles_names() {
@@ -45,11 +47,31 @@ class AWPCP_RolesAndCapabilities {
 
     public function add_administrator_capabilities_to_role( $role_name ) {
         $role = get_role( $role_name );
-        return array_map( array( $role, 'add_cap' ), $this->get_administrator_capabilities() );
+        return $this->add_capabilities_to_role( $role, $this->get_administrator_capabilities() );
+    }
+
+    private function add_capabilities_to_role( $role, $capabilities ) {
+        return array_map( array( $role, 'add_cap' ), $capabilities );
     }
 
     public function remove_administrator_capabilities_from_role( $role_name ) {
         $role = get_role( $role_name );
         return array_map( array( $role, 'remove_cap' ), $this->get_administrator_capabilities() );
+    }
+
+    private function create_moderator_role() {
+        $role = get_role( 'awpcp-moderator' );
+        $capabilities = array(
+            'read' => true,
+            'manage_classifieds_listings' => true,
+            'edit_classifieds_listings' => true,
+            'edit_others_classifieds_listings' => true,
+        );
+
+        if ( is_null( $role ) ) {
+            $role = add_role( 'awpcp-moderator', __( 'Classifieds Moderator', 'AWPCP' ), $capabilities );
+        } else {
+            $this->add_capabilities_to_role( $role, array_keys( $capabilities ) );
+        }
     }
 }
