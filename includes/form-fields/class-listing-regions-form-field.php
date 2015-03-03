@@ -26,7 +26,7 @@ class AWPCP_ListingRegionsFormField extends AWPCP_FormField {
     }
 
     protected function is_read_only() {
-        if ( awpcp_current_user_is_admin() ) {
+        if ( awpcp_current_user_is_moderator() ) {
             return false;
         }
 

@@ -118,7 +118,7 @@ function showad( $adid=null, $omitmenu=false, $preview=false, $send_email=true, 
     ) );
 
 	$preview = $preview === true || 'preview' == awpcp_array_data('adstatus', '', $_GET);
-	$isadmin = awpcp_current_user_is_admin();
+	$is_moderator = awpcp_current_user_is_moderator();
 	$messages = array();
 
 	$permastruc = get_option('permalink_structure');
@@ -169,7 +169,7 @@ function showad( $adid=null, $omitmenu=false, $preview=false, $send_email=true, 
 			$output = '<div id="classiwrapper">%s%s<!--awpcp-single-ad-layout-->%s</div><!--close classiwrapper-->';
 			$output = sprintf( $output, $content_before_page, $omitmenu ? '' : awpcp_menu_items(), $content_after_page );
 
-			if (!$isadmin && !$is_ad_owner && !$preview && $ad->disabled == 1) {
+			if (!$is_moderator && !$is_ad_owner && !$preview && $ad->disabled == 1) {
 				$message = __('The Ad you are trying to view is pending approval. Once the Administrator approves it, it will be active and visible.', 'AWPCP');
 				return str_replace( '<!--awpcp-single-ad-layout-->', awpcp_print_error( $message ), $output );
 			}
@@ -178,7 +178,7 @@ function showad( $adid=null, $omitmenu=false, $preview=false, $send_email=true, 
 				$messages[] = awpcp_print_message( __( 'Your email address was successfully verified.', 'AWPCP' ) );
 			}
 
-			if ($show_messages && $isadmin && $ad->disabled == 1) {
+			if ($show_messages && $is_moderator && $ad->disabled == 1) {
 				$message = __('This Ad is currently disabled until the Administrator approves it. Only you (the Administrator) and the author can see it.', 'AWPCP');
 				$messages[] = awpcp_print_error($message);
 			} else if ( $show_messages && ( $is_ad_owner || $preview ) && ! $ad->verified ) {

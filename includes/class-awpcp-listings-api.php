@@ -196,7 +196,7 @@ class AWPCP_ListingsAPI {
         $messages = array_merge( $messages, $this->get_ad_alerts( $ad ) );
 
         // send user notification
-        if ( ! awpcp_current_user_is_admin() || AWPCP_Ad::belongs_to_user( $ad->ad_id, wp_get_current_user()->ID ) ) {
+        if ( ! awpcp_current_user_is_moderator() || AWPCP_Ad::belongs_to_user( $ad->ad_id, wp_get_current_user()->ID ) ) {
             awpcp_ad_updated_email( $ad, join( "\n\n", $messages ) );
         }
 

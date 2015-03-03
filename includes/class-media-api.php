@@ -48,7 +48,7 @@ class AWPCP_MediaAPI {
         $image_mime_types = awpcp_get_image_mime_types();
 
         if ( is_null( $status ) ) {
-            if ( ! awpcp_current_user_is_admin() && in_array( $mime_type, $image_mime_types ) && get_awpcp_option( 'imagesapprove' ) ) {
+            if ( ! awpcp_current_user_is_moderator() && in_array( $mime_type, $image_mime_types ) && get_awpcp_option( 'imagesapprove' ) ) {
                 $status = AWPCP_Media::STATUS_AWAITING_APPROVAL;
             } else {
                 $status = AWPCP_Media::STATUS_APPROVED;

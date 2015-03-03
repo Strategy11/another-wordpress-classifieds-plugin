@@ -34,7 +34,7 @@ class AWPCP_Listings_Table extends WP_List_Table {
         $conditions = array('1 = 1');
         $join = array();
 
-        if (!awpcp_current_user_is_admin()) {
+        if ( ! awpcp_current_user_is_moderator() ) {
             $conditions[] = sprintf('user_id = %d', wp_get_current_user()->ID);
         }
 
@@ -191,7 +191,7 @@ class AWPCP_Listings_Table extends WP_List_Table {
             $columns['featured'] = __( 'Featured', 'AWPCP' );
         }
 
-        if ( awpcp_current_user_is_admin() ) {
+        if ( awpcp_current_user_is_moderator() ) {
             $columns['owner'] = __('Owner', 'AWPCP');
         }
 

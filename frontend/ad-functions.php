@@ -77,7 +77,7 @@ function awpcp_calculate_ad_disabled_state($id=null, $transaction=null, $payment
 
     $payment_is_pending = $payment_status == AWPCP_Payment_Transaction::PAYMENT_STATUS_PENDING;
 
-    if ( awpcp_current_user_is_admin() ) {
+    if ( awpcp_current_user_is_moderator() ) {
         $disabled = 0;
     } else if ( get_awpcp_option( 'adapprove' ) == 1 ) {
         $disabled = 1;

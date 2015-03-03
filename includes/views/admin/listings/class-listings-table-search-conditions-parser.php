@@ -27,7 +27,7 @@ function awpcp_listings_table_search_by_condition_parser() {
         new AWPCP_ListingsTableSearchByUserCondition(),
     );
 
-    if ( awpcp_current_user_is_admin() ) {
+    if ( awpcp_current_user_is_moderator() ) {
         $conditions[] = new AWPCP_ListingsTableSearchByPayerEmailCondition();
     }
 

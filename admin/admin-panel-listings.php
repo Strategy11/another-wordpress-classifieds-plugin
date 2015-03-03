@@ -80,14 +80,15 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
     }
 
     public function actions($ad, $filter=false) {
-        $admin = awpcp_current_user_is_admin();
+        $is_moderator = awpcp_current_user_is_moderator();
+
         $actions = array();
 
         $actions['view'] = array(__('View', 'AWPCP'), $this->url(array('action' => 'view', 'id' => $ad->ad_id)));
         $actions['edit'] = array(__('Edit', 'AWPCP'), $this->url(array('action' => 'edit', 'id' => $ad->ad_id)));
         $actions['trash'] = array(__('Delete', 'AWPCP'), $this->url(array('action' => 'delete', 'id' => $ad->ad_id)));
 
-        if ($admin) {
+        if ( $is_moderator ) {
             if ($ad->disabled)
                 $actions['enable'] = array(__('Enable', 'AWPCP'), $this->url(array('action' => 'enable', 'id' => $ad->ad_id)));
             else
@@ -122,7 +123,7 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
             $actions['add-image'] = array(__('Add Images', 'AWPCP'), $this->url(array('action' => 'add-image', 'id' => $ad->ad_id)));
         }
 
-        if ( $admin && ! $ad->disabled ) {
+        if ( $is_moderator && ! $ad->disabled ) {
             $fb = AWPCP_Facebook::instance();
             if ( ! awpcp_get_ad_meta( $ad->ad_id, 'sent-to-facebook' ) && $fb->get( 'page_id' ) ) {
                 $actions['send-to-facebook'] = array(
@@ -156,7 +157,7 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
         $this->id = awpcp_request_param('id', false);
         $action = $this->get_current_action();
 
-        $protected_actions = array(
+        $moderator_actions = array(
             'enable', 'approvead', 'bulk-enable',
             'disable', 'rejectad', 'bulk-disable',
             'remove-featured', 'bulk-remove-featured',
@@ -541,7 +542,7 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
             'media_manager_configuration' => array(
                 'nonce' => wp_create_nonce( 'awpcp-manage-listing-media-' . $listing->ad_id ),
                 'allowed_files' => $allowed_files,
-                'show_admin_actions' => awpcp_current_user_is_admin(),
+                'show_admin_actions' => awpcp_current_user_is_moderator(),
             ),
             'media_uploader_configuration' => array(
                 'listing_id' => $listing->ad_id,
