@@ -339,8 +339,7 @@ class AWPCP {
 
         $this->setup_runtime_options();
 
-        $file = WP_CONTENT_DIR . '/plugins/' . basename(dirname(__FILE__)) . '/' . basename(__FILE__);
-        register_activation_hook($file, array($this->installer, 'activate'));
+        awpcp_register_activation_hook( __FILE__, array( $this->installer, 'install_or_upgrade' ) );
 
         add_action('plugins_loaded', array($this, 'setup'), 10);
 
@@ -393,7 +392,7 @@ class AWPCP {
 		global $wpdb;
 
 		if (!$this->is_up_to_date()) {
-			$this->installer->install();
+			$this->installer->install_or_upgrade();
 			// we can't call flush_rewrite_rules() because
 			// $wp_rewrite is not available yet. It is initialized
 			// after plugins_load hook is executed.
