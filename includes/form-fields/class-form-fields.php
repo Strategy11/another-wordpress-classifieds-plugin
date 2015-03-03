@@ -61,7 +61,7 @@ class AWPCP_FormFields {
 
             $output[ $field_slug ] = $field->render(
                 isset( $form_values[ $field_slug ] ) ? $form_values[ $field_slug ] : '',
-                isset( $form_errors[ $field_slug ] ) ? $form_errors[ $field_slug ] : '',
+                $form_errors,
                 $listing,
                 $context
             );
