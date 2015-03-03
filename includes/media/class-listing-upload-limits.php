@@ -26,7 +26,7 @@ class AWPCP_ListingUploadLimits {
 
     public function get_upload_limits_for_payment_term( $payment_term ) {
         if ( awpcp_are_images_allowed() ) {
-            $upload_limits = array( 'images' => $this->get_listing_upload_limits_for_images( $listing, $payment_term ) );
+            $upload_limits = array( 'images' => $this->get_upload_limits_for_images_in_payment_term( $payment_term ) );
         } else {
             $upload_limits = array();
         }
