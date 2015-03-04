@@ -249,8 +249,14 @@ class AWPCP_Admin {
 
 			add_submenu_page($parent, __('Add/Edit Categories', 'AWPCP'), __('Categories', 'AWPCP'), $capability, 'awpcp-admin-categories', 'awpcp_opsconfig_categories');
 
-			$parts = array($this->listings->title, $this->listings->menu, $this->listings->page);
-			$page = add_submenu_page($parent, $parts[0], $parts[1], $capability, 'awpcp-listings', array($this->listings, 'dispatch'));
+			$page = add_submenu_page(
+				$parent,
+				$this->listings->title,
+				$this->listings->menu,
+				'manage_classifieds_listings',
+				'awpcp-listings',
+				array( $this->listings, 'dispatch' )
+			);
 			add_action('admin_print_styles-' . $page, array($this->listings, 'scripts'));
 
 			$this->form_fields = awpcp_form_fields_admin_page();
