@@ -61,7 +61,7 @@ class AWPCP_ListingUploadLimits {
             $upload_limits = array();
         }
 
-        return apply_fitlers( 'awpcp-upload-limits-for-free-board', $upload_limits );
+        return apply_filters( 'awpcp-upload-limits-for-free-board', $upload_limits );
     }
 
     private function get_upload_limits_for_images_in_free_board() {

@@ -262,7 +262,7 @@ class AWPCP_PaymentsAPI {
     /* Transactions Management */
 
     public function get_transaction() {
-        return $this->get_transaction_with_method( 'find_or_create' );
+        return $this->get_transaction_with_method( 'find_by_id' );
     }
 
     private function get_transaction_with_method( $method_name ) {
@@ -279,7 +279,7 @@ class AWPCP_PaymentsAPI {
     }
 
     public function get_or_create_transaction() {
-        return $this->get_transaction_with_method( 'find_by_id' );
+        return $this->get_transaction_with_method( 'find_or_create' );
     }
 
     /**
