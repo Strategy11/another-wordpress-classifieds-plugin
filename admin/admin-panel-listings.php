@@ -173,7 +173,7 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
             'approve-file', 'reject-file',
         );
 
-        if (!awpcp_current_user_is_admin() && in_array($action, $protected_actions)) {
+        if ( ! awpcp_current_user_is_moderator() && in_array( $action, $moderator_actions ) ) {
             awpcp_flash(_x('You do not have sufficient permissions to perform that action.', 'admin listings', 'AWPCP'), 'error');
             $action = 'index';
         }
@@ -570,31 +570,60 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
         if (!wp_verify_nonce(awpcp_request_param('_wpnonce'), 'bulk-awpcp-listings'))
             return $this->index();
 
-        $current_user_is_admin = awpcp_current_user_is_admin();
         $user = wp_get_current_user();
         $selected = awpcp_request_param('selected');
 
         $deleted = 0;
         $failed = 0;
+        $non_existent = 0;
+        $unauthorized = 0;
+        $not_allowed_for_moderators = 0;
         $total = count( $selected );
 
         foreach ($selected as $id) {
-            if ( AWPCP_Ad::belongs_to_user($id, $user->ID) || $current_user_is_admin ) {
-                $errors = array();
-                deletead($id, '', '', $force=true, $errors);
+            try {
+                $listing = awpcp_listings_collection()->get( $id );
+            } catch ( AWPCP_Exception $e ) {
+                $non_existent = $non_existent + 1;
+                continue;
+            }
 
-                if (empty($errors)) {
-                    $deleted = $deleted + 1;
-                } else {
-                    $failed = $failed + 1;
-                }
+            if ( ! awpcp_listing_authorization()->is_current_user_allowed_to_edit_listing( $listing ) ) {
+                $unauthorized = $unauthorized + 1;
+                continue;
+            }
+
+            if ( awpcp_current_user_is_moderator() && $listing->user_id != $user->ID ) {
+                $not_allowed_for_moderators = $not_allowed_for_moderators + 1;
+                continue;
+            }
+
+            $errors = array();
+            deletead( $id, '', '', $force=true, $errors );
+
+            if ( empty( $errors ) ) {
+                $deleted = $deleted + 1;
+            } else {
+                $failed = $failed + 1;
             }
         }
 
         if ( $deleted > 0 && $failed > 0 ) {
             awpcp_flash( sprintf( __( '%d of %d Ads were deleted. %d generated errors.', 'AWPCP' ), $deleted,$total, $failed ) );
-        } else {
+        } else if ( $deleted > 0 ) {
             awpcp_flash( sprintf( __( '%d of %d Ads were deleted.', 'AWPCP' ), $deleted, $total ) );
+        }
+
+        if ( $non_existent > 0 ) {
+            awpcp_flash( sprintf( __( "%d of %d Ads don't exist.", 'AWPCP' ), $non_existent, $total ), 'error' );
+        }
+
+        if ( $unauthorized > 0 ) {
+            awpcp_flash( sprintf( __( "%d of %d Ads weren't deleted because you are not authorized.", 'AWPCP' ), $non_existent, $total ), 'error' );
+        }
+
+        if ( $not_allowed_for_moderators > 0 ) {
+            awpcp_flash( sprintf( __( "%d of %d Ads weren't deleted because Moderator uses are not allowed to use Bulk Delete operation to remove other users listings.", 'AWPCP' ), $not_allowed_for_moderators, $total ), 'error' );
         }
 
         return $this->redirect('index');
@@ -614,23 +643,23 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
     }
 
     public function ajax() {
-        global $current_user;
-        get_currentuserinfo();
-
         $id = awpcp_post_param('id', 0);
-        $is_admin_user = awpcp_current_user_is_admin();
 
-        // if user can't modify this Ad, do nothing and show list of ads
-        if (!$is_admin_user && !AWPCP_Ad::belongs_to_user($id, $current_user->ID)) {
+        try {
+            $listing = awpcp_listings_collection()->get( $id );
+        } catch ( AWPCP_Exception $e ) {
+            $message = _x( "The specified Ad doesn't exists.", 'ajax delete ad', 'AWPCP' );
+            $response = json_encode( array( 'status' => 'error', 'message' => $message ) );
+            return $this->ajax_response( $response );
+        }
+
+        if ( ! awpcp_listing_authorization()->is_current_user_allowed_to_edit_listing( $listing ) ) {
             return false;
         }
 
         $errors = array();
 
-        if (is_null(AWPCP_Ad::find_by_id($id))) {
-            $message = _x("The specified Ad doesn't exists.", 'ajax delete ad', 'AWPCP');
-            $response = json_encode(array('status' => 'error', 'message' => $message));
-        } else if (isset($_POST['remove'])) {
+        if ( isset( $_POST['remove'] ) ) {
             $result = deletead($id, $adkey='', $editemail='', $force=true, $errors);
 
             if (empty($errors)) {
@@ -639,7 +668,7 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
                 $response = json_encode(array('status' => 'error', 'message' => join('<br/>', $errors)));
             }
         } else {
-            $columns = $is_admin_user ? 10 : 10;
+            $columns = 10;
             ob_start();
                 include(AWPCP_DIR . '/admin/templates/delete_form.tpl.php');
                 $html = ob_get_contents();
@@ -647,6 +676,10 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
             $response = json_encode(array('status' => 'success', 'html' => $html));
         }
 
+        return $this->ajax_response( $response );
+    }
+
+    private function ajax_response( $response ) {
         header('Content-Type: application/json');
         echo $response;
         exit();
