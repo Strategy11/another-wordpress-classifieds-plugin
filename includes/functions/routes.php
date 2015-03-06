@@ -314,10 +314,12 @@ function awpcp_get_view_categories_url() {
  */
 function awpcp_get_edit_listing_url( $listing ) {
     if ( awpcp()->settings->get_option( 'requireuserregistration' ) ) {
-        return awpcp_get_edit_listing_direct_url( $listing );
+        $url = awpcp_get_edit_listing_direct_url( $listing );
     } else {
-        return awpcp_get_edit_listing_generic_url();
+        $url = awpcp_get_edit_listing_generic_url();
     }
+
+    return apply_filters( 'awpcp-edit-listing-url', $url, $listing );
 }
 
 /**

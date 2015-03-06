@@ -253,14 +253,14 @@ function awpcp_do_placeholders($ad, $content, $context) {
  * @since 3.0
  */
 function awpcp_do_placeholder_url($ad, $placeholder) {
-    return esc_url( awpcp_get_listing_renderer()->get_view_listing_url( $ad ) );
+    return esc_url( awpcp_listing_renderer()->get_view_listing_url( $ad ) );
 }
 
 /**
  * @since 3.0
  */
 function awpcp_do_placeholder_title($ad, $placeholder) {
-    $url = awpcp_get_listing_renderer()->get_view_listing_url( $ad );
+    $url = awpcp_listing_renderer()->get_view_listing_url( $ad );
 
     $replacements['ad_title'] = sprintf( '<a href="%s">%s</a>', esc_attr( $url ), esc_html( $ad->get_title() ) );
     $replacements['title'] = esc_html( $ad->get_title() );
@@ -487,7 +487,7 @@ function awpcp_do_placeholder_images($ad, $placeholder) {
         'awpcp_image_name_srccode' => '',
     );
 
-    $url = awpcp_get_listing_renderer()->get_view_listing_url( $ad );
+    $url = awpcp_listing_renderer()->get_view_listing_url( $ad );
     $thumbnail_width = get_awpcp_option('displayadthumbwidth');
 
     if (get_awpcp_option('imagesallowdisallow') == 1) {
@@ -838,7 +838,7 @@ function awpcp_do_placeholder_twitter_button($ad, $placeholder) {
  * @since 3.2.2
  */
 function awpcp_do_placeholder_twitter_button_url( $ad, $placeholder ) {
-    $url = awpcp_get_listing_renderer()->get_view_listing_url( $ad );
+    $url = awpcp_listing_renderer()->get_view_listing_url( $ad );
 
     return add_query_arg(array(
         'url' => urlencode( $url ),
