@@ -3,7 +3,7 @@
  Plugin Name: Another Wordpress Classifieds Plugin (AWPCP)
  Plugin URI: http://www.awpcp.com
  Description: AWPCP - A plugin that provides the ability to run a free or paid classified ads service on your wordpress blog. <strong>!!!IMPORTANT!!!</strong> Whether updating a previous installation of Another Wordpress Classifieds Plugin or installing Another Wordpress Classifieds Plugin for the first time, please backup your wordpress database before you install/uninstall/activate/deactivate/upgrade Another Wordpress Classifieds Plugin.
- Version: 3.3.3-dev-33
+ Version: 3.4-beta-1
  Author: D. Rodenbaugh
  License: GPLv2 or any later version
  Author URI: http://www.skylineconsult.com
@@ -562,7 +562,7 @@ class AWPCP {
 					'url' => 'http://www.awpcp.com/premium-modules/?ref=panel',
 					'installed' => defined( 'AWPCP_BUDDYPRESS_LISTINGS_MODULE_DB_VERSION' ),
 					'version' => 'AWPCP_BUDDYPRESS_LISTINGS_MODULE_DB_VERSION',
-					'required' => '1.0.7',
+					'required' => '3.4',
 				),
                 'campaign-manager' => array(
                     'name' => __( 'Campaign Manager', 'AWPCP' ),
@@ -597,14 +597,14 @@ class AWPCP {
 					'url' => 'http://www.awpcp.com/premium-modules/extra-fields-module?ref=panel',
 					'installed' => defined( 'AWPCP_EXTRA_FIELDS_MODULE' ),
 					'version' => 'AWPCP_EXTRA_FIELDS_MODULE_DB_VERSION',
-					'required' => '3.2.14',
+					'required' => '3.4',
 				),
 				'featured-ads' => array(
 					'name' => __( 'Featured Ads', 'AWPCP' ),
 					'url' => 'http://www.awpcp.com/premium-modules/featured-ads-module?ref=panel',
 					'installed' => defined( 'AWPCP_FEATURED_ADS_MODULE' ),
 					'version' => 'AWPCP_FEATURED_ADS_MODULE_DB_VERSION',
-					'required' => '3.0.2',
+					'required' => '3.4',
 				),
 				'fee-per-category' => array(
 					'name' => __( 'Fee per Category', 'AWPCP' ),
@@ -639,14 +639,14 @@ class AWPCP {
 					'url' => 'http://www.awpcp.com/premium-modules/regions-control-module?ref=panel',
 					'installed' => defined( 'AWPCP_REGION_CONTROL_MODULE' ),
 					'version' => 'AWPCP_REGION_CONTROL_MODULE_DB_VERSION',
-					'required' => '3.2.17',
+					'required' => '3.4',
 				),
 				'restricted-categories' => array(
 					'name' => __( 'Restricted Categories', 'AWPCP' ),
 					'url' => 'http://www.awpcp.com/premium-modules/',
 					'installed' => defined( 'AWPCP_RESTRICTED_CATEGORIES_MODULE' ),
 					'version' => 'AWPCP_RESTRICTED_CATEGORIES_MODULE_DB_VERSION',
-					'required' => '1.0',
+					'required' => '3.4',
 				),
 				'rss' => array(
 					'name' => __( 'RSS', 'AWPCP' ),
@@ -660,7 +660,7 @@ class AWPCP {
 					'url' => 'http://www.awpcp.com/premium-modules/subscriptions-module/?ref=panel',
 					'installed' => defined( 'AWPCP_SUBSCRIPTIONS_MODULE' ),
 					'version' => 'AWPCP_SUBSCRIPTIONS_MODULE_DB_VERSION',
-					'required' => '3.2.8',
+					'required' => '3.4',
 				),
 				'xml-sitemap' => array(
 					'name' => __(  'XML Sitemap', 'AWPCP'  ),
