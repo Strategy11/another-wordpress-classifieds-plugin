@@ -3,7 +3,7 @@
 function awpcp_form_fields_admin_page() {
     return new AWPCP_FormFieldsAdminPage(
         'awpcp-form-fields',
-        __( 'Form Fields - AWPCP Classifieds Management System', 'AWPCP' ),
+        awpcp_admin_page_title( __( 'Form Fields', 'AWPCP' ) ),
         awpcp_form_fields(),
         awpcp_form_fields_table_factory()
     );

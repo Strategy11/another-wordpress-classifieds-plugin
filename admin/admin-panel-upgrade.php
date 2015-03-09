@@ -9,7 +9,8 @@ class AWPCP_AdminUpgrade extends AWPCP_AdminPage {
 
     public function __construct($page=false, $title=false, $menu=false) {
         $page = $page ? $page : 'awpcp-admin-upgrade';
-        $title = $title ? $title : _x('AWPCP Classifieds Management System - Manual Upgrade', 'awpcp admin menu', 'AWPCP');
+        $title = $title ? $title : awpcp_admin_page_title( _x( 'Manual Upgrade', 'awpcp admin menu', 'AWPCP' ) );
+
         parent::__construct($page, $title, $menu);
 
         $this->upgrades = array(

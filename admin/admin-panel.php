@@ -19,7 +19,7 @@ require_once(AWPCP_DIR . '/admin/admin-panel-users.php');
 class AWPCP_Admin {
 
 	public function __construct() {
-		$this->title = _x('AWPCP Classifieds Management System', 'awpcp admin menu', 'AWPCP');
+		$this->title = awpcp_admin_page_title();
 		$this->menu = _x('Classifieds', 'awpcp admin menu', 'AWPCP');
 
 		// not a page, but an extension to the Users table
@@ -231,7 +231,14 @@ class AWPCP_Admin {
 			$parts = array($this->title, $this->menu, $this->upgrade->page);
 			$page = add_submenu_page('awpcp-admin-uninstall', $parts[0], $parts[1], $capability, $parts[2], array($this->home, 'dispatch'), MENUICO);
 
-			$page = add_submenu_page($parent, __('Configure General Options', 'AWPCP'), __('Settings', 'AWPCP'), $capability, 'awpcp-admin-settings', array($this->settings, 'dispatch'));
+			$page = add_submenu_page(
+				$parent,
+				awpcp_admin_page_title( __( 'Settings', 'AWPCP' ) ),
+				__( 'Settings', 'AWPCP' ),
+				$capability,
+				'awpcp-admin-settings',
+				array( $this->settings, 'dispatch' )
+			);
 			add_action('admin_print_styles-' . $page, array($this->settings, 'scripts'));
 
 			$parts = array($this->credit_plans->title, $this->credit_plans->menu, $this->credit_plans->page);
@@ -247,7 +254,14 @@ class AWPCP_Admin {
 			$page = add_submenu_page($parent, $parts[0], $parts[1], $capability, $parts[2], array($this->fees, 'dispatch'));
 			add_action('admin_print_styles-' . $page, array($this->fees, 'scripts'));
 
-			add_submenu_page($parent, __('Add/Edit Categories', 'AWPCP'), __('Categories', 'AWPCP'), $capability, 'awpcp-admin-categories', 'awpcp_opsconfig_categories');
+			add_submenu_page(
+				$parent,
+				awpcp_admin_page_title( __( 'Manage Categories', 'AWPCP' ) ),
+				__( 'Categories', 'AWPCP' ),
+				$capability,
+				'awpcp-admin-categories',
+				'awpcp_opsconfig_categories'
+			);
 
 			$page = add_submenu_page(
 				$parent,
@@ -552,7 +566,7 @@ function awpcp_opsconfig_categories() {
 
 		if ( $action == 'managecaticon' ) {
 			$output .= "<div class=\"wrap\"><h2>";
-			$output .= __("AWPCP Classifieds Management System Categories Management","AWPCP");
+			$output .= awpcp_admin_page_title( __( 'Manage Categories', 'AWPCP' ) );
 			$output .= "</h2>
 			";
 
@@ -756,7 +770,7 @@ function awpcp_opsconfig_categories() {
 
 		// Start the page display
 		$output .= "<div class=\"wrap\"><h2>";
-		$output .= __("AWPCP Classifieds Management System Categories Management","AWPCP");
+		$output .= awpcp_admin_page_title( __( 'Manage Categories', 'AWPCP' ) );
 		$output .= "</h2>";
 		if (isset($message) && !empty($message))
 		{

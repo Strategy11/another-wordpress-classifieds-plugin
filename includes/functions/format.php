@@ -39,3 +39,8 @@ function awpcp_render_template( $template, $params ) {
 
     return $output;
 }
+
+function awpcp_admin_page_title() {
+    $sections = array_merge( func_get_args(), array( __( 'Classifieds Management System', 'AWPCP' ) ) );
+    return implode( ' &ndash; ', $sections );
+}

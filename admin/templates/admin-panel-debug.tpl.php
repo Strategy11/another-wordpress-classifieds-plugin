@@ -1,6 +1,6 @@
 <?php if (!$download): ?>
 	<?php $page_id = 'awpcp-admin-debug' ?>
-	<?php $page_title = __('AWPCP Debug', 'AWPCP') ?>
+	<?php $page_title = awpcp_admin_page_title( __( 'Debug', 'AWPCP' ) ); ?>
 
 	<?php include(AWPCP_DIR . '/admin/templates/admin-panel-header.tpl.php') ?>
 <?php endif ?>
