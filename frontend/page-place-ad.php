@@ -684,7 +684,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $ui['listing-actions'] = !is_admin() && $edit;
         // show categories dropdown if $category is not set
         $ui['category-field'] = ( $edit || empty( $form['ad_category'] ) ) && $is_moderator;
-        $ui['user-dropdown'] = $edit && $is_moderator;
+        $ui['user-dropdown'] = $edit && $is_admin_user;
         $ui['start-end-date'] = $edit && $is_moderator;
         // $ui['payment-term-dropdown'] = !$pay_first || ($is_admin_user && !$edit && $payments_enabled);
         $ui['website-field'] = get_awpcp_option('displaywebsitefield') == 1;
