@@ -135,7 +135,7 @@ class AWPCP_ListingsFinder {
             $this->build_price_condition( $query ),
             $this->build_regions_condition( $query ),
             $this->build_payment_condition( $query ),
-            $this->build_date_condition( $query ),
+            $this->build_dates_condition( $query ),
             $this->build_status_condition( $query ),
             $this->build_media_conditions( $query ),
             $this->build_meta_conditions( $query ),
@@ -364,16 +364,25 @@ class AWPCP_ListingsFinder {
         return $conditions;
     }
 
-    private function build_date_condition( $query ) {
+    private function build_dates_condition( $query ) {
         $conditions = array();
 
-        if ( $query['disabled_date'] == 'NULL' ) {
-            $conditions[] = 'disabled_date IS NULL';
-        } /*else if ( isset( $query['disabled_date']['compare'] ) ) {
-            if ( $query['disabled_date']['compare'] == '>=' ) {
+        $conditions = array_merge( $this->build_date_condition( 'disabled_date', $query['disabled_date'] ) );
+        $conditions = array_merge( $this->build_date_condition( 'ad_enddate', $query['end_date'] ) );
 
+        return $conditions;
+    }
+
+    private function build_date_condition( $column_name, $sub_query ) {
+        $conditions = array();
+
+        if ( $sub_query == 'NULL' ) {
+            $conditions[] = "$column_name IS NULL";
+        } else if ( isset( $sub_query['compare'] ) ) {
+            if ( $sub_query['compare'] == '<' ) {
+                $conditions[] = $this->db->prepare( "$column_name < %s", $sub_query['value'] );
             }
-        }*/
+        }
 
         return $conditions;
     }

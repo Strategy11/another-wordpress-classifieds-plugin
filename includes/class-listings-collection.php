@@ -139,6 +139,15 @@ class AWPCP_ListingsCollection {
         return $query;
     }
 
+    public function find_expired_listings_with_query( $query ) {
+        return $this->finder->find( $this->make_expired_listings_query( $query ) );
+    }
+
+    private function make_expired_listings_query( $query ) {
+        $query['end_date'] = array( 'compare' => '<', 'value' => current_time( 'mysql' ) );
+        return $this->make_valid_listings_query( $query );
+    }
+
     public function find_listings_awaiting_approval_with_query( $query ) {
         return $this->finder->find( $this->make_listings_awaiting_approval_query( $query ) );
     }
@@ -169,6 +178,10 @@ class AWPCP_ListingsCollection {
 
     public function count_enabled_listings_with_query( $query ) {
         return $this->finder->count( $this->make_enabled_listings_query( $query ) );
+    }
+
+    public function count_expired_listings_with_query( $query ) {
+        return $this->finder->count( $this->make_expired_listings_query( $query ) );
     }
 
     public function count_listings_awaiting_approval_with_query( $query ) {

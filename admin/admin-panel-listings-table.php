@@ -83,6 +83,10 @@ class AWPCP_Listings_Table extends WP_List_Table {
                 $query['seen'] = false;
                 break;
 
+            case 'expired':
+                $show_expired = true;
+                break;
+
             case 'completed':
             default:
                 break;
@@ -112,7 +116,10 @@ class AWPCP_Listings_Table extends WP_List_Table {
 
         $listings = awpcp_listings_collection();
 
-        if ( $show_awaiting_approval ) {
+        if ( $show_expired ) {
+            $this->total_items = $listings->count_expired_listings_with_query( $query );
+            $this->items = $listings->find_expired_listings_with_query( $query );
+        } else if ( $show_awaiting_approval ) {
             $this->total_items = $listings->count_listings_awaiting_approval_with_query( $query );
             $this->items = $listings->find_listings_awaiting_approval_with_query( $query );
         } else if ( $show_non_verified ) {
@@ -216,6 +223,7 @@ class AWPCP_Listings_Table extends WP_List_Table {
             'images-awaiting-approval' => 'images-awaiting-approval',
             'completed' => 'completed',
             'new' => 'new',
+            'expired' => 'expired',
         );
 
         $selected = awpcp_array_data($this->params['filterby'], 'completed', $filters);
@@ -229,6 +237,7 @@ class AWPCP_Listings_Table extends WP_List_Table {
             'images-awaiting-approval' => array( __( 'Images Awaiting Approval', 'AWPCP' ), $this->page->url( array( 'filterby' => 'images-awaiting-approval', 'filter' => true ) ) ),
             'completed' => array( __( 'Completed', 'AWPCP' ), $this->page->url( array( 'filterby' => 'completed', 'filter' => false ) ) ),
             'new' => array( __( 'New', 'AWPCP' ), $this->page->url( array( 'filterby' => 'new', 'filter' => true ) ) ),
+            'expired' => array( __( 'Expired', 'AWPCP' ), $this->page->url( array( 'filterby' => 'expired', 'filter' => true ) ) ),
         );
 
         return $this->page->links($views, $selected);
