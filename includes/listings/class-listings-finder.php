@@ -44,10 +44,15 @@ class AWPCP_ListingsFinder {
             'raw' => false,
 
             'id' => null,
+            'title' => null,
+            'keyword' => null,
 
             'category_id' => null,
             'exclude_category_id' => null,
             'include_listings_in_children_categories' => true,
+
+            'user' => null,
+            'user_id' => null,
 
             'contact_name' => null,
 
@@ -62,8 +67,20 @@ class AWPCP_ListingsFinder {
             'county' => '',
             'regions' => array(),
 
+            'payment_status' => null,
+            'payer_email' => null,
+
+            'disabled_date' => null,
+
             'disabled' => null,
             'verified' => null,
+            'featured' => null,
+            'flagged' => null,
+            'awaiting_approval' => null,
+
+            'have_media_awaiting_approval' => null,
+
+            'seen' => null,
 
             'limit' => 0,
             'offset' => 0,
@@ -109,12 +126,18 @@ class AWPCP_ListingsFinder {
     private function build_where_clause( $query ) {
         $conditions = array(
             $this->build_id_condition( $query ),
+            $this->build_title_condition( $query ),
             $this->build_keyword_condition( $query ),
             $this->build_category_condition( $query ),
+            $this->build_user_condition( $query ),
             $this->build_contact_condition( $query ),
             $this->build_price_condition( $query ),
             $this->build_regions_condition( $query ),
-            $this->build_status_condition( $query )
+            $this->build_payment_condition( $query ),
+            $this->build_date_condition( $query ),
+            $this->build_status_condition( $query ),
+            $this->build_media_conditions( $query ),
+            $this->build_meta_conditions( $query ),
         );
 
         $conditions = apply_filters( 'awpcp-find-listings-conditions', $conditions, $query );
@@ -130,6 +153,16 @@ class AWPCP_ListingsFinder {
 
         if ( $query['id'] ) {
             $conditions[] = $this->build_condition_with_in_clause( 'listings.`ad_id`', $query['id'] );
+        }
+
+        return $conditions;
+    }
+
+    private function build_title_condition( $query ) {
+        $conditions = array();
+
+        if ( ! empty( $query['title'] ) ) {
+            $conditions[] = $this->db->prepare( "listings.`ad_title` LIKE '%%%s%%'" );
         }
 
         return $conditions;
@@ -202,6 +235,55 @@ class AWPCP_ListingsFinder {
         return $this->build_condition_with_inclusion_operators( $colum, $value, 'NOT IN', '!=', $placeholder );
     }
 
+    private function build_user_condition( $query ) {
+        $conditions = array();
+
+        if ( ! empty( $query['user_id'] ) ) {
+            $conditions[] = $this->db->prepare( 'listings.`user_id` = %d', $query['user_id'] );
+        }
+
+        if ( ! empty( $query['user'] ) ) {
+            $users_join = 'INNER JOIN ' . $this->db->users . ' ON ( listings.`user_id` = ID )';
+            $this->add_join_clause( $users_join );
+            $user_conditions[] = sprintf( "user_login LIKE '%%%s%%'", esc_sql( $query['user'] ) );
+
+            $meta_query = get_meta_sql(
+                array(
+                    'relation' => 'OR',
+                    array(
+                        'key' => 'first_name',
+                        'value' => esc_sql( $query['user'] ),
+                        'compare' => 'LIKE',
+                        'type' => 'CHAR',
+                    ),
+                    array(
+                        'key' => 'last_name',
+                        'value' => esc_sql( $query['user'] ),
+                        'compare' => 'LIKE',
+                        'type' => 'CHAR',
+                    ),
+                ),
+                'post',
+                $this->db->users,
+                'ID'
+            );
+            $this->add_join_clause( $meta_query['join'] );
+            $user_conditions[] = $this->clean_meta_query_condition( $meta_query['where'] );
+
+            $conditions[] = $this->group_conditions( $user_conditions, 'OR' );
+        }
+
+        return $conditions;
+    }
+
+    private function clean_meta_query_condition( $condition ) {
+        $condition = preg_replace( "/(?:^ AND )|\n|\t/", '', $condition );
+        $condition = preg_replace( '/\(\s*\(/', '(', $condition );
+        $condition = preg_replace( '/\)\s*\)/', ')', $condition );
+
+        return $condition;
+    }
+
     private function build_contact_condition( $query ) {
         $conditions = array();
 
@@ -263,6 +345,38 @@ class AWPCP_ListingsFinder {
         $this->clauses['join'][] = $clause;
     }
 
+    private function build_payment_condition( $query ) {
+        $conditions = array();
+
+        if ( ! empty( $query['payment_status'] ) ) {
+            if ( isset( $query['payment_status']['compare'] ) && $query['payment_status']['compare'] == 'not' ) {
+                $conditions[] = $this->build_condition_with_not_in_clause( 'payment_status', $query['payment_status']['values'], '%s' );
+            } else {
+                $conditions[] = $this->build_condition_with_in_clause( 'payment_status', $query['payment_status'], '%s' );
+            }
+        }
+
+        if ( ! empty( $query['payer_email'] ) ) {
+            $conditions[] = $this->db->prepare( 'listings.`payer_email` = %s', $query['payer_email'] );
+        }
+
+        return $conditions;
+    }
+
+    private function build_date_condition( $query ) {
+        $conditions = array();
+
+        if ( $query['disabled_date'] == 'NULL' ) {
+            $conditions[] = 'disabled_date IS NULL';
+        } /*else if ( isset( $query['disabled_date']['compare'] ) ) {
+            if ( $query['disabled_date']['compare'] == '>=' ) {
+
+            }
+        }*/
+
+        return $conditions;
+    }
+
     private function build_status_condition( $query ) {
         $conditions = array();
 
@@ -278,7 +392,56 @@ class AWPCP_ListingsFinder {
             $conditions[] = 'verified = 0';
         }
 
+        if ( $query['featured'] ) {
+            $conditions[] = 'listings.`is_featured_ad` = 1';
+        } else if ( ! is_null( $query['featured'] ) ) {
+            $conditions[] = 'listings.`is_featured_ad` = 0';
+        }
+
+        if ( $query['flagged'] ) {
+            $conditions[] = 'listings.`flagged` = 1';
+        } else if ( ! is_null( $query['flagged'] ) ) {
+            $conditions[] = 'listings.`flagged` = 0';
+        }
+
         return $this->group_conditions( $conditions, 'AND' );
+    }
+
+    private function build_media_conditions( $query ) {
+        $conditions = array();
+
+        if ( ! is_null( $query['have_media_awaiting_approval'] ) ) {
+            $sql = 'INNER JOIN <media-table> AS listing_media ON ( listing_media.`ad_id` = listings.`ad_id` AND listing_media.`status` = %s )';
+            $sql = $this->db->prepare( $sql, AWPCP_Media::STATUS_AWAITING_APPROVAL );
+            $this->add_join_clause( $sql );
+        }
+
+        return $conditions;
+    }
+
+    private function build_meta_conditions( $query ) {
+        if ( ! is_null( $query['seen'] ) ) {
+            $meta_query = get_meta_sql(
+                array(
+                    'meta_query' => array(
+                        'key' => 'seen',
+                        'value' => 0,
+                        'type' => 'BINARY',
+                        'compare' => '=',
+                    ),
+                ),
+                'awpcp_ad',
+                'listings',
+                'ad_id'
+            );
+            $this->add_join_clause( $meta_query['join'] );
+
+            $conditions[] = $this->clean_meta_query_condition( $meta_query['where'] );
+        } else {
+            $conditions = array();
+        }
+
+        return $conditions;
     }
 
     private function flatten_conditions( $conditions, $connector = 'OR' ) {
