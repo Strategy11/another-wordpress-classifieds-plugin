@@ -80,7 +80,7 @@ class AWPCP_Listings_Table extends WP_List_Table {
                 break;
 
             case 'new':
-                $query['seen'] = false;
+                $query['reviewed'] = false;
                 break;
 
             case 'expired':

@@ -5,17 +5,24 @@
  */
 function awpcp_listings_api() {
     if ( ! isset( $GLOBALS['awpcp-listings-api'] ) ) {
-        $GLOBALS['awpcp-listings-api'] = new AWPCP_ListingsAPI( awpcp_request(), awpcp()->settings );
+        $GLOBALS['awpcp-listings-api'] = new AWPCP_ListingsAPI(
+            awpcp_listings_metadata(),
+            awpcp_request(),
+            awpcp()->settings
+        );
     }
 
     return $GLOBALS['awpcp-listings-api'];
 }
 
 class AWPCP_ListingsAPI {
+
+    private $metadata = null;
     private $request = null;
     private $settings = null;
 
-    public function __construct( /*AWPCP_Request*/ $request = null, $settings ) {
+    public function __construct( $metadata, /*AWPCP_Request*/ $request = null, $settings ) {
+        $this->metadata = $metadata;
         $this->request = $request;
         $this->settings = $settings;
 
@@ -80,6 +87,8 @@ class AWPCP_ListingsAPI {
      */
     public function consolidate_new_ad( $ad, $transaction ) {
         do_action( 'awpcp-place-ad', $ad, $transaction );
+
+        $this->metadata->set( $ad->ad_id, 'reviewed', false );
 
         if ( $ad->verified ) {
             $this->send_ad_posted_email_notifications( $ad, array(), $transaction );

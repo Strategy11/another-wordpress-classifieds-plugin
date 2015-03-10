@@ -80,7 +80,7 @@ class AWPCP_ListingsFinder {
 
             'have_media_awaiting_approval' => null,
 
-            'seen' => null,
+            'reviewed' => null,
 
             'limit' => 0,
             'offset' => 0,
@@ -430,13 +430,13 @@ class AWPCP_ListingsFinder {
     }
 
     private function build_meta_conditions( $query ) {
-        if ( ! is_null( $query['seen'] ) ) {
+        if ( ! is_null( $query['reviewed'] ) ) {
             $meta_query = get_meta_sql(
                 array(
                     'meta_query' => array(
-                        'key' => 'seen',
+                        'key' => 'reviewed',
                         'value' => 0,
-                        'type' => 'BINARY',
+                        'type' => 'UNSIGNED',
                         'compare' => '=',
                     ),
                 ),
