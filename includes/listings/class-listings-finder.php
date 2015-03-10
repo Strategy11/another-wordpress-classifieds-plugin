@@ -8,11 +8,15 @@ class AWPCP_ListingsFinder {
 
     private $db;
 
+    private $clauses = array();
+
     public function __construct( $db ) {
         $this->db = $db;
     }
 
     public function find( $user_query ) {
+        $this->reset_query();
+
         $query = apply_filters( 'awpcp-find-listings-query', $this->normalize_query( $user_query ) );
 
         $select = $this->build_select_clause( $query );
@@ -28,6 +32,10 @@ class AWPCP_ListingsFinder {
             $items = $this->db->get_results( $this->prepare_query( "$select $where $order $limit" ) );
             return array_map( array( 'AWPCP_Ad', 'from_object' ), $items );
         }
+    }
+
+    private function reset_query() {
+        $this->clauses = array();
     }
 
     private function normalize_query( $user_query ) {
@@ -95,14 +103,7 @@ class AWPCP_ListingsFinder {
             $fields = $query['fields'];
         }
 
-        if ( ! empty( $query['regions'] ) ) {
-            $tables = '<listings-table> AS listings INNER JOIN <listing-regions-table> AS listing_regions ';
-            $tables.= 'ON listings.`ad_id` = listing_regions.`ad_id`';
-        } else {
-            $tables = '<listings-table> AS listings';
-        }
-
-        return "SELECT $fields FROM $tables";
+        return "SELECT $fields FROM <listings-table> AS listings <join>";
     }
 
     private function build_where_clause( $query ) {
@@ -232,6 +233,14 @@ class AWPCP_ListingsFinder {
     private function build_regions_condition( $query ) {
         $conditions = array();
 
+        if ( empty( $query['regions'] ) ) {
+            return $conditions;
+        }
+
+        $this->add_join_clause(
+            'INNER JOIN <listing-regions-table> AS listing_regions ON listings.`ad_id` = listing_regions.`ad_id`'
+        );
+
         foreach ( $query['regions'] as $region ) {
             $region_conditions = array();
 
@@ -248,6 +257,10 @@ class AWPCP_ListingsFinder {
         }
 
         return $this->flatten_conditions( $conditions, 'AND' );
+    }
+
+    private function add_join_clause( $clause ) {
+        $this->clauses['join'][] = $clause;
     }
 
     private function build_status_condition( $query ) {
@@ -364,8 +377,16 @@ class AWPCP_ListingsFinder {
     }
 
     private function prepare_query( $query ) {
+        if ( ! empty( $this->clauses['join'] ) ) {
+            $query = str_replace( '<join>', implode( ' ', $this->clauses['join'] ), $query );
+        } else {
+            $query = str_replace( '<join>', '', $query );
+        }
+
         $query = str_replace( '<listings-table>', AWPCP_TABLE_ADS, $query );
         $query = str_replace( '<listing-regions-table>', AWPCP_TABLE_AD_REGIONS, $query );
+        $query = str_replace( '<media-table>', AWPCP_TABLE_MEDIA, $query );
+
         return $query;
     }
 
