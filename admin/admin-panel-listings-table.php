@@ -215,6 +215,7 @@ class AWPCP_Listings_Table extends WP_List_Table {
             'awaiting-approval' => 'awaiting-approval',
             'images-awaiting-approval' => 'images-awaiting-approval',
             'completed' => 'completed',
+            'new' => 'new',
         );
 
         $selected = awpcp_array_data($this->params['filterby'], 'completed', $filters);
@@ -227,6 +228,7 @@ class AWPCP_Listings_Table extends WP_List_Table {
             'awaiting-approval' => array( __( 'Ads Awaiting Approval', 'AWPCP' ), $this->page->url( array( 'filterby' => 'awaiting-approval', 'filter' => true ) ) ),
             'images-awaiting-approval' => array( __( 'Images Awaiting Approval', 'AWPCP' ), $this->page->url( array( 'filterby' => 'images-awaiting-approval', 'filter' => true ) ) ),
             'completed' => array( __( 'Completed', 'AWPCP' ), $this->page->url( array( 'filterby' => 'completed', 'filter' => false ) ) ),
+            'new' => array( __( 'New', 'AWPCP' ), $this->page->url( array( 'filterby' => 'new', 'filter' => true ) ) ),
         );
 
         return $this->page->links($views, $selected);
