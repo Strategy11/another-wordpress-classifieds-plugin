@@ -178,28 +178,28 @@ class AWPCP_ListingsFinder {
         return $this->group_conditions( $conditions, 'AND' );
     }
 
-    private function build_condition_with_in_clause( $column, $value, $operator = 'IN' ) {
-        return $this->build_condition_with_inclusion_operators( $column, $value, 'IN', '=' );
+    private function build_condition_with_in_clause( $column, $value, $placeholder = '%d' ) {
+        return $this->build_condition_with_inclusion_operators( $column, $value, 'IN', '=', $placeholder );
     }
 
-    private function build_condition_with_inclusion_operators( $column, $value, $inclusion_operator, $comparison_operator ) {
+    private function build_condition_with_inclusion_operators( $column, $value, $inclusion_operator, $comparison_operator, $placeholder ) {
         if ( is_array( $value ) && ! empty( $value ) ) {
             if ( count( $value ) == 1 ) {
                 $single_value = array_shift( $value );
-                return $this->db->prepare( "$column $comparison_operator %d", $single_value );
+                return $this->db->prepare( "$column $comparison_operator $placeholder", $single_value );
             } else {
                 $multiple_values = array_map( 'absint', $value );
                 return "$column $inclusion_operator ( " . implode( ', ', $multiple_values ) . ' )';
             }
-        } else if ( is_numeric( $value ) ) {
-            return $this->db->prepare( "$column $comparison_operator %d", $value );
+        } else if ( ! empty( $value ) ) {
+            return $this->db->prepare( "$column $comparison_operator $placeholder", $value );
         } else {
             return '';
         }
     }
 
-    private function build_condition_with_not_in_clause( $colum, $value ) {
-        return $this->build_condition_with_inclusion_operators( $colum, $value, 'NOT IN', '!=' );
+    private function build_condition_with_not_in_clause( $colum, $value, $placeholder = '%d' ) {
+        return $this->build_condition_with_inclusion_operators( $colum, $value, 'NOT IN', '!=', $placeholder );
     }
 
     private function build_contact_condition( $query ) {
