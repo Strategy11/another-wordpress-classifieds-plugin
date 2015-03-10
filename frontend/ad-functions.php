@@ -92,6 +92,43 @@ function awpcp_calculate_ad_disabled_state($id=null, $transaction=null, $payment
     return $disabled;
 }
 
+function awpcp_should_disable_new_listing_with_payment_status( $listing, $payment_status ) {
+    $payment_is_pending = $payment_status == AWPCP_Payment_Transaction::PAYMENT_STATUS_PENDING;
+
+    if ( awpcp_current_user_is_moderator() ) {
+        $should_disable = false;
+    } else if ( get_awpcp_option( 'adapprove' ) == 1 ) {
+        $should_disable = true;
+    } else if ( $payment_is_pending && get_awpcp_option( 'enable-ads-pending-payment' ) == 1 ) {
+        $should_disable = false;
+    } else if ( $payment_is_pending ) {
+        $should_disable = true;
+    } else {
+        $should_disable = false;
+    }
+
+    return $should_disable;
+}
+
+function awpcp_should_enable_new_listing_with_payment_status( $listing, $payment_status ) {
+    return awpcp_should_disable_new_listing_with_payment_status( $listing, $payment_status ) ? false : true;
+}
+
+function awpcp_should_disable_existing_listing( $listing ) {
+    if ( awpcp_current_user_is_moderator() ) {
+        $should_disable = false;
+    } else if ( get_awpcp_option( 'disable-edited-listings-until-admin-approves' ) ) {
+        $should_disable = true;
+    } else {
+        $should_disable = false;
+    }
+
+    return $should_disable;
+}
+
+function awpcp_should_enable_existing_listing( $listing ) {
+    return awpcp_should_disable_existing_listing( $listing ) ? false : true;
+}
 
 /**
  * @since 3.0.2

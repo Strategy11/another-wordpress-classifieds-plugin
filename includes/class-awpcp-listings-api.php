@@ -109,7 +109,7 @@ class AWPCP_ListingsAPI {
     public function consolidate_existing_ad( $ad ) {
         // if Ad is enabled and should be disabled, then disable it, otherwise
         // do not alter the Ad disabled status.
-        if ( ! $ad->disabled && $ad->should_be_disabled() ) {
+        if ( ! $ad->disabled && awpcp_should_disable_existing_listing( $ad ) ) {
             $ad->disable();
             $ad->clear_disabled_date();
         } else if ( $ad->disabled ) {
@@ -159,8 +159,7 @@ class AWPCP_ListingsAPI {
         $ad->set_start_date( $now );
         $ad->set_end_date( $ad->get_payment_term()->calculate_end_date( $timestamp ) );
 
-        // TODO: move awpcp_calculate_ad_disabled_state() function to Ad model
-        if ( $ad->disabled && ! awpcp_calculate_ad_disabled_state( null, null, $ad->payment_status ) ) {
+        if ( $ad->disabled && awpcp_should_enable_new_listing_with_payment_status( $ad, $ad->payment_status ) ) {
             $ad->enable( /*approve images?*/ ! get_awpcp_option( 'imagesapprove', false ) );
         }
 

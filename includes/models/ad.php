@@ -634,27 +634,13 @@ class AWPCP_Ad {
 		$this->renewed_date = current_time('mysql');
 
 		// if Ad is disabled lets see if we can enable it
-		if ($this->disabled && $this->should_be_enabled() ) {
+		if ($this->disabled && awpcp_should_enable_existing_listing( $this ) ) {
 			$this->enable();
 		} else if ( $this->disabled ) {
 			$this->clear_disabled_date();
 		}
 
 		return true;
-	}
-
-	/**
-	 * @since 3.2.2
-	 */
-	public function should_be_enabled() {
-		return awpcp_calculate_ad_disabled_state( $this->ad_id ) ? false : true;
-	}
-
-	/**
-	 * @since 3.2.2
-	 */
-	public function should_be_disabled() {
-		return ! $this->should_be_enabled();
 	}
 
 	public function clear_disabled_date() {
