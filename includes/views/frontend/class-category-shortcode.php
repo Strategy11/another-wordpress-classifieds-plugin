@@ -59,7 +59,7 @@ class AWPCP_CategoryShortcode {
             'include_listings_in_children_categories' => $children,
             'limit' => absint( $this->request->param( 'results', $items_per_page ) ),
             'offset' => absint( $this->request->param( 'offset', 0 ) ),
-            'order' => get_awpcp_option( 'groupbrowseadsby' ),
+            'orderby' => get_awpcp_option( 'groupbrowseadsby' ),
         );
 
         // required so awpcp_display_ads shows the name of the current category

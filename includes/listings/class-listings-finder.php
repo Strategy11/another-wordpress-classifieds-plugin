@@ -84,7 +84,8 @@ class AWPCP_ListingsFinder {
 
             'limit' => 0,
             'offset' => 0,
-            'order' => 'default'
+            'orderby' => 'default',
+            'order' => 'DESC',
         ) );
 
         $query['regions'] = $this->normalize_regions_query( $query );
@@ -481,18 +482,18 @@ class AWPCP_ListingsFinder {
     }
 
     private function build_order_clause( $query ) {
-        if ( ! is_null( $query['order'] ) ) {
-            return $this->build_order_by_clause( $query['order'] );
+        if ( ! is_null( $query['orderby'] ) ) {
+            return $this->build_order_by_clause( $query['orderby'], $query['order'] );
         } else {
             return '';
         }
     }
 
-    private function build_order_by_clause( $order ) {
+    private function build_order_by_clause( $orderby, $order ) {
         $basedate = 'CASE WHEN renewed_date IS NULL THEN ad_startdate ELSE GREATEST(ad_startdate, renewed_date) END';
         $is_paid = 'CASE WHEN ad_fee_paid > 0 THEN 1 ELSE 0 END';
 
-        switch ( $order ) {
+        switch ( $orderby ) {
             case 1:
                 $parts = array( "$basedate DESC" );
                 break;
@@ -529,14 +530,41 @@ class AWPCP_ListingsFinder {
             case 12:
                 $parts = array( 'ad_views ASC', "$basedate ASC" );
                 break;
+            case 'title':
+                $parts = array( 'ad_title %1$s' );
+                break;
+            case 'start-date':
+                $parts = array( 'ad_startdate %1$s' );
+                break;
+            case 'end-date':
+                $parts = array( 'ad_enddate %1$s' );
+                break;
+            case 'renewed-date':
+                $parts = array( $basedate . ' %1$s', 'ad_startdate %1$s', 'ad_id %1$s' );
+                break;
+            case 'status':
+                $parts = array( 'disabled %1$s', 'ad_startdate %1$s', 'ad_id %1$s' );
+                break;
+            case 'payment-term':
+                $parts = array( 'adterm_id %1$s', 'ad_startdate %1$s', 'ad_id %1$s' );
+                break;
+            case 'payment-status':
+                $parts = array( 'payment_status %1$s', 'ad_startdate %1$s', 'ad_id %1$s' );
+                break;
+            case 'featured-ad':
+                $parts = array( 'is_featured_ad %1$s', 'ad_startdate %1$s', 'ad_id %1$s' );
+                break;
+            case 'owner':
+                $parts = array( 'user_id %1$s', 'ad_startdate %1$s', 'ad_id %1$s' );
+                break;
             default:
                 $parts = array( 'ad_postdate DESC', 'ad_title ASC' );
                 break;
         }
 
-        $parts = array_filter( apply_filters( 'awpcp-ad-order-conditions', $parts, $order ) );
+        $parts = array_filter( apply_filters( 'awpcp-ad-order-conditions', $parts, $orderby, $order ) );
 
-        return sprintf( 'ORDER BY %s', implode( ', ', $parts ) );
+        return sprintf( 'ORDER BY %s', sprintf( implode( ', ', $parts ), $order ) );
     }
 
     private function prepare_query( $query ) {
