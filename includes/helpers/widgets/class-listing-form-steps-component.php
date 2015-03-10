@@ -95,7 +95,6 @@ class AWPCP_ListingFormStepsComponent {
 
     private function render( $selected_step, $steps ) {
         $form_steps = $this->prepare_steps( $steps, $selected_step );
-        debug( $selected_step, $steps, $form_steps );
 
         ob_start();
         include( AWPCP_DIR . '/templates/components/listing-form-steps.tpl.php' );
