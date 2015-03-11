@@ -147,6 +147,13 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
 
         $actions = apply_filters( 'awpcp-admin-listings-table-actions', $actions, $ad, $this );
 
+        if ( $is_moderator && isset( $_REQUEST['filterby'] ) && $_REQUEST['filterby'] == 'new' ) {
+            $actions['mark-reviewed'] = array(
+                __( 'Mark Reviewed', 'AWPCP' ),
+                $this->url( array( 'action' => 'mark-reviewed', 'id' => $ad->ad_id ) ),
+            );
+        }
+
         if (is_array($filter)) {
             $actions = array_intersect_key($actions, array_combine($filter, $filter));
         }
@@ -166,6 +173,7 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
             'mark-verified',
             'mark-paid',
             'send-key',
+            'mark-reviewed',
             'bulk-renew',
             'send-to-facebook', 'bulk-send-to-facebook',
             'unflag',
@@ -240,6 +248,10 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
             case 'bulk-remove-featured':
             case 'remove-featured':
                 return $this->make_non_featured_ad();
+                break;
+
+            case 'mark-reviewed':
+                return $this->listing_action( 'mark_reviewed' );
                 break;
 
             case 'send-key':
@@ -506,6 +518,15 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
             array( $this, 'make_non_featured_ad_success' ),
             array( $this, 'make_non_featured_ad_failure' )
         );
+    }
+
+    public function mark_reviewed( $listing ) {
+        if ( awpcp_update_ad_meta( $listing->ad_id, 'reviewed', true ) ) {
+            awpcp_flash( sprintf( __( 'The listing was marked as reviewed.', 'AWPCP' ), esc_html( $recipient ) ) );
+        } else {
+            awpcp_flash( sprintf( __( "The listing couldn't marked as reviewed.", 'AWPCP' ), esc_html( $recipient ) ) );
+        }
+        return $this->redirect( 'index' );
     }
 
     public function send_access_key() {

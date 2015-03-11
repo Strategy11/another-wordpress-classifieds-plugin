@@ -1364,6 +1364,20 @@ function awpcp_get_properties($objects, $property, $default='') {
 	return $results;
 }
 
+function awpcp_get_object_property_from_alternatives( $object, $alternatives, $default = '' ) {
+    foreach ( (array) $alternatives as $key ) {
+        $value = awpcp_get_property( $object, $key );
+
+        if ( strlen( $value ) == 0 ) {
+            continue;
+        }
+
+        return $value;
+    }
+
+    return $default;
+}
+
 /**
  * Input:
  *  Array
@@ -1859,6 +1873,21 @@ function awpcp_admin_email_from() {
  */
 function awpcp_admin_email_to() {
 	return awpcp_format_email_address( awpcp_admin_recipient_email_address(), awpcp_get_blog_name() );
+}
+
+function awpcp_moderators_email_to() {
+    $users = get_users( array( 'role' => 'awpcp-moderator' ) );
+    $email_addresses = array();
+
+    foreach ( $users as $user ) {
+        $properties = array( 'display_name', 'user_login', 'username' );
+        $user_name = awpcp_get_object_property_from_alternatives( $user->data, $properties );
+        $user_email = $user->data->user_email;
+
+        $email_addresses[] = awpcp_format_email_address( $user_email, $user_name );
+    }
+
+    return $email_addresses;
 }
 
 /**
