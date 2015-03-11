@@ -516,12 +516,14 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $info = array();
 
         foreach ($translations as $field => $keys) {
-            foreach ( (array) $keys as $key ) {
-                $value = awpcp_get_property( $data, $key );
-                if ( empty( $info[ $field ] ) && !empty( $value ) ) {
-                    $info[ $field ] = $value;
-                    break;
-                }
+            if ( ! empty( $info[ $field ] ) ) {
+                continue;
+            }
+
+            $value = awpcp_get_object_property_from_alternatives( $data, $keys );
+
+            if ( ! empty( $value ) ) {
+                $info[ $field ] = $value;
             }
         }
 
