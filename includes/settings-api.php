@@ -61,23 +61,6 @@ class AWPCP_Settings_API {
 
 		$group = $this->add_group(__('Ad/Listings', 'AWPCP'), 'listings-settings', 30);
 
-		// Section: Ad/Listings - Notifications
-
-		$key = $this->add_section($group, __('User Notifications', 'AWPCP'), 'user-notifications', 5, array($this, 'section'));
-
-		$this->add_setting( $key, 'send-user-ad-posted-notification', __( 'Ad Posted', 'AWPCP' ), 'checkbox', 1, __( 'An email will be sent when an Ad is posted.', 'AWPCP' ) );
-		$this->add_setting( $key, 'send-ad-enabled-email', __( 'Ad Enabled', 'AWPCP' ), 'checkbox', 1, __( 'Notify Ad owner when the Ad is enabled.', 'AWPCP' ) );
-		$this->add_setting( $key, 'sent-ad-renew-email', __( 'Ad Renew', 'AWPCP' ), 'checkbox', 1, __( 'An email will be sent to remind the user to Renew the Ad when the Ad is about to expire.', 'AWPCP' ) );
-		$this->add_setting( $key, 'ad-renew-email-threshold', __( 'Ad Renew email threshold', 'AWPCP' ), 'textfield', 5, __( 'The email is sent the specified number of days before the Ad expires.', 'AWPCP' ) );
-		$this->add_setting( $key, 'notifyofadexpiring', __( 'Ad Expired', 'AWPCP' ), 'checkbox', 1, __( 'An email will be sent when the Ad expires.', 'AWPCP' ) );
-
-		// Section: Ad/Listings - Admin Notifications
-
-		$key = $this->add_section($group, __('Admin Notifications', 'AWPCP'), 'admin-notifications', 5, array($this, 'section'));
-
-		$this->add_setting( $key, 'notifyofadposted', __( 'Ad Posted', 'AWPCP' ), 'checkbox', 1, __( 'An email will be sent when an Ad is posted.', 'AWPCP' ) );
-		$this->add_setting( $key, 'notifyofadexpired', __( 'Ad Expired', 'AWPCP' ), 'checkbox', 1, __( 'An email will be sent when the Ad expires.', 'AWPCP' ) );
-
 		// Section: Ad/Listings - Regions
 
 		$key = $this->add_section( $group, __( 'Regions Settings', 'AWPCP' ), 'regions-settings', 20, array( $this, 'section' ) );
