@@ -74,6 +74,7 @@ require_once( AWPCP_DIR . "/includes/functions/deprecated.php" );
 require_once( AWPCP_DIR . "/includes/functions/format.php" );
 require_once( AWPCP_DIR . "/includes/functions/hooks.php" );
 require_once( AWPCP_DIR . "/includes/functions/listings.php" );
+require_once( AWPCP_DIR . "/includes/functions/notifications.php" );
 require_once( AWPCP_DIR . "/includes/functions/routes.php" );
 
 $nameofsite = awpcp_get_blog_name();

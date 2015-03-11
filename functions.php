@@ -1364,6 +1364,20 @@ function awpcp_get_properties($objects, $property, $default='') {
 	return $results;
 }
 
+function awpcp_get_object_property_from_alternatives( $object, $alternatives, $default = '' ) {
+    foreach ( (array) $alternatives as $key ) {
+        $value = awpcp_get_property( $object, $key );
+
+        if ( strlen( $value ) == 0 ) {
+            continue;
+        }
+
+        return $value;
+    }
+
+    return $default;
+}
+
 /**
  * Input:
  *  Array
