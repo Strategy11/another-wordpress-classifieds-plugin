@@ -161,22 +161,6 @@ function awpcp_display_ads($where, $byl, $hidepager, $grouporderby, $adorcat, $b
             $output .= "&nbsp;<div class=\"pager\">$pager2</div>";
         }
 
-        if ($byl) {
-            if (field_exists($field='removepoweredbysign') && !(get_awpcp_option('removepoweredbysign'))) {
-                $output .= "<p><font style=\"font-size:smaller\">";
-                $output .= __("Powered by ","AWPCP");
-                $output .= "<a href=\"http://www.awpcp.com\">Another Wordpress Classifieds Plugin</a> </font></p>";
-
-            } elseif (field_exists($field='removepoweredbysign') && (get_awpcp_option('removepoweredbysign'))) {
-                // ...
-
-            } else {
-                // $output .= "<p><font style=\"font-size:smaller\">";
-                // $output .= __("Powered by ","AWPCP");
-                // $output .= "<a href=\"http://www.awpcp.com\">Another Wordpress Classifieds Plugin</a> </font></p>";
-            }
-        }
-
         $output .= apply_filters( 'awpcp-content-after-listings-page', '' );
         $output .= "</div>";
 

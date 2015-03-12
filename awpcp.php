@@ -640,7 +640,7 @@ class AWPCP {
 					'url' => 'http://www.awpcp.com/premium-modules/?ref=panel',
 					'installed' => defined( 'AWPCP_BUDDYPRESS_LISTINGS_MODULE_DB_VERSION' ),
 					'version' => 'AWPCP_BUDDYPRESS_LISTINGS_MODULE_DB_VERSION',
-					'required' => '1.1.4',
+					'required' => '3.4',
 				),
                 'campaign-manager' => array(
                     'name' => __( 'Campaign Manager', 'AWPCP' ),
@@ -675,14 +675,14 @@ class AWPCP {
 					'url' => 'http://www.awpcp.com/premium-modules/extra-fields-module?ref=panel',
 					'installed' => defined( 'AWPCP_EXTRA_FIELDS_MODULE' ),
 					'version' => 'AWPCP_EXTRA_FIELDS_MODULE_DB_VERSION',
-					'required' => '3.3.2',
+					'required' => '3.4',
 				),
 				'featured-ads' => array(
 					'name' => __( 'Featured Ads', 'AWPCP' ),
 					'url' => 'http://www.awpcp.com/premium-modules/featured-ads-module?ref=panel',
 					'installed' => defined( 'AWPCP_FEATURED_ADS_MODULE' ),
 					'version' => 'AWPCP_FEATURED_ADS_MODULE_DB_VERSION',
-					'required' => '3.2.2',
+					'required' => '3.4',
 				),
 				'fee-per-category' => array(
 					'name' => __( 'Fee per Category', 'AWPCP' ),
@@ -717,14 +717,14 @@ class AWPCP {
 					'url' => 'http://www.awpcp.com/premium-modules/regions-control-module?ref=panel',
 					'installed' => defined( 'AWPCP_REGION_CONTROL_MODULE' ),
 					'version' => 'AWPCP_REGION_CONTROL_MODULE_DB_VERSION',
-					'required' => '3.3.8',
+					'required' => '3.4',
 				),
 				'restricted-categories' => array(
 					'name' => __( 'Restricted Categories', 'AWPCP' ),
 					'url' => 'http://www.awpcp.com/premium-modules/',
 					'installed' => defined( 'AWPCP_RESTRICTED_CATEGORIES_MODULE' ),
 					'version' => 'AWPCP_RESTRICTED_CATEGORIES_MODULE_DB_VERSION',
-					'required' => '1.0.4',
+					'required' => '3.4',
 				),
 				'rss' => array(
 					'name' => __( 'RSS', 'AWPCP' ),
@@ -738,7 +738,7 @@ class AWPCP {
 					'url' => 'http://www.awpcp.com/premium-modules/subscriptions-module/?ref=panel',
 					'installed' => defined( 'AWPCP_SUBSCRIPTIONS_MODULE' ),
 					'version' => 'AWPCP_SUBSCRIPTIONS_MODULE_DB_VERSION',
-					'required' => '3.2.8',
+					'required' => '3.4',
 				),
                 'videos' => array(
                     'name' => __( 'Videos', 'AWPCP' ),
