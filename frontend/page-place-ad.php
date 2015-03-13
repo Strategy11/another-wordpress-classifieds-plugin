@@ -125,8 +125,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
         // only registered users are allowed to place Ads
         if (get_awpcp_option('requireuserregistration') && !is_user_logged_in()) {
-            $message = __('Hi, You need to be a registered user to post Ads in this website. Please use the form below to login or click the link to register.', 'AWPCP');
-            return $this->render( 'content', awpcp_login_form( $message, awpcp_get_page_url( 'place-ad-page-name' ) ) );
+            return $this->login_step();
         }
 
         $transaction = $this->get_transaction();
@@ -249,6 +248,19 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $additional_errors = apply_filters( 'awpcp-validate-post-listing-order', array(), $data );
 
         array_splice( $errors, count( $errors ), 0, $additional_errors );
+    }
+
+    public function login_step() {
+        $message = __('Hi, You need to be a registered user to post Ads in this website. Please use the form below to login or click the link to register.', 'AWPCP');
+
+        $params = array(
+            'message' => $message,
+            'page_url' => awpcp_get_page_url( 'place-ad-page-name' ),
+        );
+
+        $template = AWPCP_DIR . '/frontend/templates/page-place-ad-login-step.tpl.php';
+
+        return $this->render( $template, $params );
     }
 
     public function order_step() {

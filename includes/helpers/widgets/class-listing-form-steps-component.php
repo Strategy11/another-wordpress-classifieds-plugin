@@ -31,6 +31,8 @@ class AWPCP_ListingFormStepsComponent {
     private function get_steps( $transaction ) {
         $steps = array();
 
+        $steps['login'] = __( 'Login/Registration', 'AWPCP' );
+
         if ( $this->payments->payments_enabled() && $this->payments->credit_system_enabled() ) {
             $steps['select-category'] = __( 'Select Category, Payment Term and Credit Plan', 'AWPCP' );
         } else if ( $this->payments->payments_enabled() ) {
