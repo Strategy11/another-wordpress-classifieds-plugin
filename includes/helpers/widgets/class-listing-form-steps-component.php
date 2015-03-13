@@ -1,11 +1,7 @@
 <?php
 
-function awpcp_render_listing_form_steps_with_transaction( $selected_step, $transaction ) {
-    return awpcp_listing_form_steps_componponent()->render_with_transaction( $selected_step, $transaction );
-}
-
-function awpcp_render_listing_form_steps_without_transaction( $selected_step ) {
-    return awpcp_listing_form_steps_componponent()->render_without_transaction( $selected_step );
+function awpcp_render_listing_form_steps( $selected_step, $transaction = null ) {
+    return awpcp_listing_form_steps_componponent()->render( $selected_step, $transaction );
 }
 
 function awpcp_listing_form_steps_componponent() {
@@ -28,12 +24,20 @@ class AWPCP_ListingFormStepsComponent {
         $this->settings = $settings;
     }
 
-    public function render_with_transaction( $selected_step, $transaction ) {
-        return $this->render( $selected_step, $this->get_steps_for_transaction( $transaction ) );
+    public function render( $selected_step, $transaction ) {
+        return $this->render_steps( $selected_step, $this->get_steps( $transaction ) );
     }
 
-    private function get_steps_for_transaction( $transaction ) {
-        $steps = $this->get_first_steps();
+    private function get_steps( $transaction ) {
+        $steps = array();
+
+        if ( $this->payments->payments_enabled() && $this->payments->credit_system_enabled() ) {
+            $steps['select-category'] = __( 'Select Category, Payment Term and Credit Plan', 'AWPCP' );
+        } else if ( $this->payments->payments_enabled() ) {
+            $steps['select-category'] = __( 'Select Category and Payment Term', 'AWPCP' );
+        } else {
+            $steps['select-category'] = __( 'Select Category', 'AWPCP' );
+        }
 
         if ( $this->payments->payments_enabled() && $this->settings->get_option( 'pay-before-place-ad' ) ) {
             $steps['checkout'] = __( 'Checkout', 'AWPCP' );
@@ -60,23 +64,15 @@ class AWPCP_ListingFormStepsComponent {
         return $steps;
     }
 
-    private function get_first_steps() {
-        if ( $this->payments->payments_enabled() && $this->payments->credit_system_enabled() ) {
-            $step_name = __( 'Select Category, Payment Term and Credit Plan', 'AWPCP' );
-        } else if ( $this->payments->payments_enabled() ) {
-            $step_name = __( 'Select Category and Payment Term', 'AWPCP' );
-        } else {
-            $step_name = __( 'Select Category', 'AWPCP' );
-        }
-
-        return array( 'select-category' => $step_name );
-    }
-
     /**
      * TODO: merge with similar method in Place Ad page? or move to UploadLimits class.
      */
     private function should_show_upload_files_step( $transaction ) {
-        $payment_term = $this->payments->get_transaction_payment_term( $transaction );
+        if ( is_null( $transaction ) ) {
+            $payment_term = null;
+        } else {
+            $payment_term = $this->payments->get_transaction_payment_term( $transaction );
+        }
 
         if ( is_null( $payment_term ) ) {
             $upload_limits = $this->upload_limits->get_upload_limits_for_free_board();
@@ -93,7 +89,7 @@ class AWPCP_ListingFormStepsComponent {
         return false;
     }
 
-    private function render( $selected_step, $steps ) {
+    private function render_steps( $selected_step, $steps ) {
         $form_steps = $this->prepare_steps( $steps, $selected_step );
 
         ob_start();
@@ -127,9 +123,5 @@ class AWPCP_ListingFormStepsComponent {
         }
 
         return $form_steps;
-    }
-
-    public function render_without_transaction( $selected_step ) {
-        return $this->render( $selected_step, $this->get_first_steps() );
     }
 }

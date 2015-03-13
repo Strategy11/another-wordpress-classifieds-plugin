@@ -4,7 +4,7 @@
 <h2><?php echo esc_html( _x( 'Select Category', 'place ad order step', 'AWPCP' ) ); ?></h2>
 <?php endif; ?>
 
-<?php echo awpcp_render_listing_form_steps_without_transaction( 'select-category' ); ?>
+<?php echo awpcp_render_listing_form_steps( 'select-category' ); ?>
 
 <?php foreach ($messages as $message): ?>
     <?php echo awpcp_print_message($message); ?>

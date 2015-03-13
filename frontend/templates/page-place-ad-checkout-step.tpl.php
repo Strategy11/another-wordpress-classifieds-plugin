@@ -3,9 +3,9 @@
 <?php
     if ( isset( $transaction ) ) {
         if ( $transaction->is_doing_checkout() ) {
-            echo awpcp_render_listing_form_steps_with_transaction( 'checkout', $transaction );
+            echo awpcp_render_listing_form_steps( 'checkout', $transaction );
         } else if ( $transaction->is_processing_payment() ) {
-            echo awpcp_render_listing_form_steps_with_transaction( 'payment', $transaction );
+            echo awpcp_render_listing_form_steps( 'payment', $transaction );
         }
     }
 ?>

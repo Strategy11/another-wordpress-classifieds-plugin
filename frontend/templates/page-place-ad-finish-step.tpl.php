@@ -1,6 +1,6 @@
 <?php
     if ( isset( $transaction ) ) {
-        echo awpcp_render_listing_form_steps_with_transaction( 'finish', $transaction );
+        echo awpcp_render_listing_form_steps( 'finish', $transaction );
     }
 ?>
 

@@ -2,7 +2,7 @@
 
 <?php
     if ( isset( $transaction ) ) {
-        echo awpcp_render_listing_form_steps_with_transaction( 'listing-details', $transaction );
+        echo awpcp_render_listing_form_steps( 'listing-details', $transaction );
     }
 ?>
 
