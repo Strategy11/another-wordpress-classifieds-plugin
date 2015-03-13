@@ -65,7 +65,7 @@ class AWPCP_ListingUploadLimits {
     }
 
     private function get_upload_limits_for_images_in_free_board() {
-        return build_upload_limits_for_images( $this->settings->get_option( 'imagesallowedfree', 0 ) );
+        return $this->build_upload_limits_for_images( $this->settings->get_option( 'imagesallowedfree', 0 ) );
     }
 
     public function can_add_file_to_listing( $listing, $file ) {
