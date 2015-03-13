@@ -769,6 +769,14 @@ class AWPCP {
 		wp_register_script( 'awpcp-admin-attachments', "{$js}/admin-attachments.js", array( 'awpcp' ), $awpcp_db_version, true );
 		wp_register_script( 'awpcp-admin-import', "{$js}/admin-import.js", array( 'awpcp', 'jquery-ui-datepicker', 'jquery-ui-autocomplete' ), $awpcp_db_version, true );
 
+        wp_register_script(
+            'awpcp-admin-pointers',
+            "{$js}/admin-pointers.min.js",
+            array( 'awpcp', 'wp-pointer' ),
+            $awpcp_db_version,
+            true
+        );
+
 		/* frontend */
 
 		wp_register_style('awpcp-frontend-style', "{$css}/awpcpstyle.css", array(), $awpcp_db_version);
@@ -800,6 +808,9 @@ class AWPCP {
 			wp_enqueue_style('awpcp-admin-style');
 			wp_enqueue_script('awpcp-admin-general');
 			wp_enqueue_script('awpcp-toggle-checkboxes');
+
+            wp_enqueue_style( 'wp-pointer' );
+            wp_enqueue_script( 'awpcp-admin-pointers' );
 		} else {
 			wp_enqueue_style('awpcp-frontend-style');
 			wp_enqueue_style('awpcp-frontend-style-ie-6');
