@@ -1250,7 +1250,7 @@ function awpcp_handle_admin_requests() {
 		$tbl_ads = $wpdb->prefix . "awpcp_ads";
 
 		// First get the array of categories to be deleted
-		$categoriestodelete=clean_field($_REQUEST['category_to_delete_or_move']);
+		$categoriestodelete = (array) clean_field($_REQUEST['category_to_delete_or_move']);
 
 		// Next get the value of move/delete ads
 		if ( isset($_REQUEST['movedeleteads']) && !empty($_REQUEST['movedeleteads']) )
@@ -1337,7 +1337,9 @@ function awpcp_handle_admin_requests() {
 
 		}
 
-		$message="<div style=\"background-color: rgb(255, 251, 204);\" id=\"message\" class=\"awpcp-updated updated fade\">$themessagetoprint</div>";
+		if ( isset( $themessagetoprint ) ) {
+			$message= "<div style=\"background-color: rgb(255, 251, 204);\" id=\"message\" class=\"awpcp-updated updated fade\">$themessagetoprint</div>";
+		}
 	}
 }
 

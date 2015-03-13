@@ -30,6 +30,7 @@ module.exports = function(grunt) {
           '<%= path.awpcp %>/js/jquery-userfield.js',
           '<%= path.awpcp %>/js/jquery-collapsible.js',
           '<%= path.awpcp %>/js/main.js',
+          '<%= path.awpcp %>/js/recaptcha.js',
         ]
       }
     },

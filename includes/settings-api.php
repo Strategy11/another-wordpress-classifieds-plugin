@@ -113,10 +113,10 @@ class AWPCP_Settings_API {
 
 		$this->add_setting( $key, 'math-captcha-max-number', __( 'Max number used in Math CAPTCHA', 'AWPCP' ), 'textfield', $this->get_option( 'contactformcheckhumanhighnumval', 10 ), __( 'Highest number used in aithmetic operation.', 'AWPCP') );
 
-        $link = sprintf( '<a href="%1$s">%1$s</a>', 'https://www.google.com/recaptcha/admin/create' );
+        $link = sprintf( '<a href="%1$s">%1$s</a>', 'https://www.google.com/recaptcha/admin' );
 		$help_text = sprintf( __( 'You can get an API key from %s.', 'AWPCP' ), $link );
-		$this->add_setting( $key, 'recaptcha-public-key', __( 'reCAPTCHA Public Key', 'AWPCP' ), 'textfield', '', $help_text );
-		$this->add_setting( $key, 'recaptcha-private-key', __( 'reCAPTCHA Private Key', 'AWPCP' ), 'textfield', '',$help_text );
+		$this->add_setting( $key, 'recaptcha-public-key', __( 'reCAPTCHA Site Key', 'AWPCP' ), 'textfield', '', $help_text );
+		$this->add_setting( $key, 'recaptcha-private-key', __( 'reCAPTCHA Secret Key', 'AWPCP' ), 'textfield', '',$help_text );
 
 		// Section: SEO Settings
 
