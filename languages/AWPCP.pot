@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2015-01-28 20:53:35+00:00\n"
+"POT-Creation-Date: 2015-03-13 14:59:38+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -137,7 +137,7 @@ msgstr ""
 msgid "Categories"
 msgstr ""
 
-#: admin/admin-panel-fees-table.php:116 awpcp.php:604
+#: admin/admin-panel-fees-table.php:116 awpcp.php:603
 msgid "Featured Ads"
 msgstr ""
 
@@ -659,7 +659,7 @@ msgstr ""
 msgid "Manage Extra Fields"
 msgstr ""
 
-#: admin/admin-panel.php:265 awpcp.php:597
+#: admin/admin-panel.php:265 awpcp.php:596
 msgid "Extra Fields"
 msgstr ""
 
@@ -1967,107 +1967,107 @@ msgstr ""
 msgid "Manage Ad Listings"
 msgstr ""
 
-#: awpcp.php:504
+#: awpcp.php:503
 msgid "AWPCP"
 msgstr ""
 
-#: awpcp.php:531
+#: awpcp.php:530
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
 msgstr ""
 
-#: awpcp.php:532
+#: awpcp.php:531
 msgid "Warning"
 msgstr ""
 
-#: awpcp.php:548
+#: awpcp.php:547
 msgid "Attachments"
 msgstr ""
 
-#: awpcp.php:555
+#: awpcp.php:554
 msgid "Authorize.Net"
 msgstr ""
 
-#: awpcp.php:562
+#: awpcp.php:561
 msgid "BuddyPress Listings"
 msgstr ""
 
-#: awpcp.php:569
+#: awpcp.php:568
 msgid "Campaign Manager"
 msgstr ""
 
-#: awpcp.php:576
+#: awpcp.php:575
 msgid "Category Icons"
 msgstr ""
 
-#: awpcp.php:583
+#: awpcp.php:582
 msgid "Comments & Ratings"
 msgstr ""
 
-#: awpcp.php:590
+#: awpcp.php:589
 msgid "Coupons/Discount"
 msgstr ""
 
-#: awpcp.php:611
+#: awpcp.php:610
 msgid "Fee per Category"
 msgstr ""
 
-#: awpcp.php:618
+#: awpcp.php:617
 msgid "Google Checkout"
 msgstr ""
 
-#: awpcp.php:625
+#: awpcp.php:624
 msgid "Mark as Sold"
 msgstr ""
 
-#: awpcp.php:632
+#: awpcp.php:631
 msgid "PayPal Pro"
 msgstr ""
 
-#: awpcp.php:639
+#: awpcp.php:638
 msgid "Regions Control"
 msgstr ""
 
-#: awpcp.php:646
+#: awpcp.php:645
 msgid "Restricted Categories"
 msgstr ""
 
-#: awpcp.php:653
+#: awpcp.php:652
 msgid "RSS"
 msgstr ""
 
-#: awpcp.php:660
+#: awpcp.php:659
 msgid "Subscriptions"
 msgstr ""
 
-#: awpcp.php:667
+#: awpcp.php:666
 msgid "XML Sitemap"
 msgstr ""
 
-#: awpcp.php:714
+#: awpcp.php:713
 msgid ""
 "The %1$s module you have installed is outdated and not compatible with this "
 "version of AWPCP. Please get %1$s %2$s or newer."
 msgstr ""
 
-#: awpcp.php:844
+#: awpcp.php:820
 msgid "This field is required."
 msgstr ""
 
-#: awpcp.php:845 frontend/page-edit-ad.php:128 frontend/page-edit-ad.php:423
+#: awpcp.php:821 frontend/page-edit-ad.php:128 frontend/page-edit-ad.php:423
 msgid "Please enter a valid email address."
 msgstr ""
 
-#: awpcp.php:846
+#: awpcp.php:822
 msgid "Please enter a valid URL."
 msgstr ""
 
-#: awpcp.php:847
+#: awpcp.php:823
 msgid "Please enter a valid number."
 msgstr ""
 
-#: awpcp.php:848
+#: awpcp.php:824
 msgid "Please enter a valid amount."
 msgstr ""
 
@@ -3271,7 +3271,7 @@ msgid ""
 "payment."
 msgstr ""
 
-#: frontend/templates/payments-billing-form.tpl.php:6 functions.php:593
+#: frontend/templates/payments-billing-form.tpl.php:6 functions.php:622
 msgid "Country"
 msgstr ""
 
@@ -3311,7 +3311,7 @@ msgstr ""
 msgid "State"
 msgstr ""
 
-#: frontend/templates/payments-billing-form.tpl.php:101 functions.php:613
+#: frontend/templates/payments-billing-form.tpl.php:101 functions.php:642
 msgid "City"
 msgstr ""
 
@@ -3560,7 +3560,7 @@ msgid "All Contact Names"
 msgstr ""
 
 #: frontend/widget-search.php:92 frontend/widget-search.php:107
-#: functions.php:711
+#: functions.php:740
 msgid "Select Option"
 msgstr ""
 
@@ -3580,49 +3580,49 @@ msgstr ""
 msgid "&hellip;"
 msgstr ""
 
-#: functions.php:524
+#: functions.php:553
 msgid "None"
 msgstr ""
 
-#: functions.php:535
+#: functions.php:564
 msgctxt "comma separated list of things"
 msgid "%s and %d more."
 msgstr ""
 
-#: functions.php:594
+#: functions.php:623
 msgid "separate countries by commas"
 msgstr ""
 
-#: functions.php:603
+#: functions.php:632
 msgid "State/Province"
 msgstr ""
 
-#: functions.php:604
+#: functions.php:633
 msgid "separate states by commas"
 msgstr ""
 
-#: functions.php:614
+#: functions.php:643
 msgid "separate cities by commas"
 msgstr ""
 
-#: functions.php:623
+#: functions.php:652
 msgid "County/Village/Other"
 msgstr ""
 
-#: functions.php:624
+#: functions.php:653
 msgid "separate counties by commas"
 msgstr ""
 
-#: functions.php:987
+#: functions.php:1016
 msgid "-- Choose a Country --"
 msgstr ""
 
-#: functions.php:1260
+#: functions.php:1289
 msgctxt "default blog title"
 msgid "Classifieds Website"
 msgstr ""
 
-#: functions.php:1627
+#: functions.php:1656
 msgid ""
 "The images or files with pale red background have been rejected by an "
 "administrator user. Likewise, files with a pale yellow background are "
@@ -3630,79 +3630,79 @@ msgid ""
 "cannot be shown in the frontend."
 msgstr ""
 
-#: functions.php:1644 includes/helpers/class-modules-manager.php:156
+#: functions.php:1673 includes/helpers/class-modules-manager.php:158
 msgid ""
 "This version of AWPCP %1$s module is not compatible with AWPCP version %2$s. "
 "Please get AWPCP %1$s %3$s or newer!"
 msgstr ""
 
-#: functions.php:1646 includes/helpers/class-modules-manager.php:158
+#: functions.php:1675 includes/helpers/class-modules-manager.php:160
 msgid "Error"
 msgstr ""
 
-#: functions.php:1665
+#: functions.php:1694
 msgid "No errors."
 msgstr ""
 
-#: functions.php:1666
+#: functions.php:1695
 msgid "The file is larger than upload_max_filesize."
 msgstr ""
 
-#: functions.php:1667
+#: functions.php:1696
 msgid "The file is larger than form MAX_FILE_SIZE."
 msgstr ""
 
-#: functions.php:1668
+#: functions.php:1697
 msgid "The file was only partially uploaded."
 msgstr ""
 
-#: functions.php:1669
+#: functions.php:1698
 msgid "No file was uploaded."
 msgstr ""
 
-#: functions.php:1670
+#: functions.php:1699
 msgid "Missing temporary directory."
 msgstr ""
 
-#: functions.php:1671
+#: functions.php:1700
 msgid "Can't write file to disk."
 msgstr ""
 
-#: functions.php:1672
+#: functions.php:1701
 msgid "The file upload was stopped by extension."
 msgstr ""
 
-#: functions.php:1836
+#: functions.php:1865
 msgid "Your Ad \"%s\" has been approved"
 msgstr ""
 
-#: functions.php:1852
+#: functions.php:1881
 msgid "Your Ad \"%s\" has been successfully updated"
 msgstr ""
 
-#: functions.php:1873
+#: functions.php:1902
 msgid "Images on Ad \"%s\" are awaiting approval"
 msgstr ""
 
-#: functions.php:1875
+#: functions.php:1904
 msgid ""
 "Images on Ad \"%s\" are awaiting approval. You can approve the images going "
 "to the Manage Images section for that Ad and clicking the \"Enable\" button "
 "below each image. Click here to continue: %s."
 msgstr ""
 
-#: functions.php:1878
+#: functions.php:1907
 msgid "The Ad \"%s\" is awaiting approval"
 msgstr ""
 
-#: functions.php:1880
+#: functions.php:1909
 msgid ""
 "The Ad \"%s\" is awaiting approval. You can approve the Ad going to the "
 "Manage Listings section and clicking the \"Enable\" action shown on top. "
 "Click here to continue: %s."
 msgstr ""
 
-#: functions.php:1887
+#: functions.php:1916
 msgid ""
 "Additionally, You can approve the images going to the Manage Images section "
 "for that Ad and clicking the \"Enable\" button below each image. Click here "
@@ -3733,79 +3733,79 @@ msgstr ""
 msgid "Import can't continue. Unknown column(s) specified(s):"
 msgstr ""
 
-#: import.php:273
+#: import.php:275
 msgid "Required value <em>%s</em> missing at row number: %d"
 msgstr ""
 
-#: import.php:412 import.php:483
+#: import.php:418 import.php:489
 msgid "Incompatible ZIP Archive"
 msgstr ""
 
-#: import.php:417 import.php:488
+#: import.php:423 import.php:494
 msgid "Empty ZIP Archive"
 msgstr ""
 
-#: import.php:434 import.php:515
+#: import.php:440 import.php:521
 msgid "Could not write temporary file %s"
 msgstr ""
 
-#: import.php:463
+#: import.php:469
 msgid "File %s does not exists."
 msgstr ""
 
-#: import.php:471
+#: import.php:477
 msgid "Import directory %s does not exists."
 msgstr ""
 
-#: import.php:550
+#: import.php:556
 msgid "Row %d. %s"
 msgstr ""
 
-#: import.php:587
+#: import.php:593
 msgid "Could not save the information to the database for %s in row %d"
 msgstr ""
 
-#: import.php:719
+#: import.php:725
 msgid "Item price non numeric at row number %s"
 msgstr ""
 
-#: import.php:735
+#: import.php:741
 msgid ""
 "Start date missing (alternately you can specify the default start date) at "
 "row number %s"
 msgstr ""
 
-#: import.php:747
+#: import.php:753
 msgid "Invalid End date at row number: %s"
 msgstr ""
 
-#: import.php:755
+#: import.php:761
 msgid ""
 "End date missing (alternately you can specify the default end date) at row "
 "number %s"
 msgstr ""
 
-#: import.php:866
+#: import.php:872
 msgid ""
 "Extra Field %s's value is not allowed in row %d. Allowed values are: %%s"
 msgstr ""
 
-#: import.php:875
+#: import.php:881
 msgid ""
 "Extra Field %s's value is not allowed in row %d. Allowed value is one of: %%s"
 msgstr ""
 
-#: import.php:1003
+#: import.php:1009
 msgid ""
 "Username is required in row %s. Please include a username or selected a "
 "default user."
 msgstr ""
 
-#: import.php:1006
+#: import.php:1012
 msgid "Contact email is required in row %s."
 msgstr ""
 
-#: import.php:1024
+#: import.php:1030
 msgid ""
 "A new user '%s' with email address '%s' and password '%s' was created for "
 "row %d."
@@ -3892,10 +3892,6 @@ msgstr ""
 msgid "Category: "
 msgstr ""
 
-#: includes/functions/deprecated.php:167
-msgid "Powered by "
-msgstr ""
-
 #: includes/helpers/captcha.php:39
 msgctxt "CAPTCHA"
 msgid "Enter the value of the following sum: %d + %d"
@@ -3910,17 +3906,37 @@ msgstr ""
 msgid "Your solution to the math problem was incorrect. Please try again."
 msgstr ""
 
-#: includes/helpers/captcha.php:81
+#: includes/helpers/captcha.php:97
 msgid "To use reCAPTCHA you must get an API key from %s."
 msgstr ""
 
-#: includes/helpers/captcha.php:87
-msgid "For security reasons, you must pass the remote ip to reCAPTCHA."
+#: includes/helpers/captcha.php:121
+msgid ""
+"There was an error trying to verify the reCAPTCHA answer. <reCAPTCHA-error>"
 msgstr ""
 
-#: includes/helpers/captcha.php:110
-msgid ""
-"The characters in the image weren't entered correctly. Please try it again."
+#: includes/helpers/captcha.php:134
+msgid "Your answers couldn't be verified by the reCAPTCHA server."
+msgstr ""
+
+#: includes/helpers/captcha.php:145
+msgctxt "recaptcha-error"
+msgid "The secret parameter is missing"
+msgstr ""
+
+#: includes/helpers/captcha.php:148
+msgctxt "recaptcha-error"
+msgid "The secret parameter is invalid or malformed."
+msgstr ""
+
+#: includes/helpers/captcha.php:151
+msgctxt "recaptcha-error"
+msgid "The response parameter is missing."
+msgstr ""
+
+#: includes/helpers/captcha.php:155
+msgctxt "recaptcha-error"
+msgid "The response parameter is invalid or malformed."
 msgstr ""
 
 #: includes/helpers/class-easy-digital-downloads.php:27
@@ -3941,7 +3957,7 @@ msgstr ""
 msgid "There was an error trying to deactivate your <module-name> license."
 msgstr ""
 
-#: includes/helpers/class-modules-manager.php:166
+#: includes/helpers/class-modules-manager.php:168
 msgid ""
 "The AWPCP <module-name> module requires a license to be used. All features "
 "will remain disabled until a valid license is entered. Please go to the "
@@ -3949,28 +3965,29 @@ msgid ""
 "your license."
 msgstr ""
 
-#: includes/helpers/class-modules-manager.php:176
+#: includes/helpers/class-modules-manager.php:178
 msgid ""
 "The license for AWPCP <module-name> module is inactive. All features will "
 "remain disabled until you activate the license. Please go to the <license-"
 "settings-link>License Settings</a> section to acivate your license."
 msgstr ""
 
-#: includes/helpers/class-modules-manager.php:184
+#: includes/helpers/class-modules-manager.php:186
 msgid ""
 "The license for AWPCP <module-name> module expired. The module will continue "
 "to work but you will not receive automatic updates when a new version is "
 "available."
 msgstr ""
 
-#: includes/helpers/class-modules-manager.php:191
+#: includes/helpers/class-modules-manager.php:193
 msgid ""
 "Yikes, there has been a mistake. It looks like you have an outdated version "
-"of AWPCP <module-name> module. Please contact customer support and ask for a "
-"newer version. Please also include a reference to this error in your message."
+"of AWPCP <module-name> module or you need a newer version of AWPCP to use "
+"that module. Please contact customer support and ask for an update. Please "
+"also include a reference to this error in your message."
 msgstr ""
 
-#: includes/helpers/class-modules-manager.php:199
+#: includes/helpers/class-modules-manager.php:201
 msgid "The specified module does not exists!."
 msgstr ""
 
@@ -5175,11 +5192,11 @@ msgid "You can get an API key from %s."
 msgstr ""
 
 #: includes/settings-api.php:118
-msgid "reCAPTCHA Public Key"
+msgid "reCAPTCHA Site Key"
 msgstr ""
 
 #: includes/settings-api.php:119
-msgid "reCAPTCHA Private Key"
+msgid "reCAPTCHA Secret Key"
 msgstr ""
 
 #: includes/settings-api.php:123
@@ -6925,123 +6942,128 @@ msgctxt "upload files"
 msgid "The type of the uplaoded file %s is not allowed."
 msgstr ""
 
-#: upload_awpcp.php:84
+#: upload_awpcp.php:85
+msgctxt "upload files"
+msgid "The file %s has an invalid extension and was rejected."
+msgstr ""
+
+#: upload_awpcp.php:93
 msgctxt "upload files"
 msgid "The specified file does not exists: %s."
 msgstr ""
 
-#: upload_awpcp.php:90
+#: upload_awpcp.php:99
 msgctxt "upload files"
 msgid "Unknown error encountered while uploading the image."
 msgstr ""
 
-#: upload_awpcp.php:98
+#: upload_awpcp.php:107
 msgctxt "upload files"
 msgid "There was an error trying to find out the file size of the image %s."
 msgstr ""
 
-#: upload_awpcp.php:105 upload_awpcp.php:137
+#: upload_awpcp.php:114 upload_awpcp.php:146
 msgctxt "upload files"
 msgid ""
 "The file %s was larger than the maximum allowed file size of %s bytes. The "
 "file was not uploaded."
 msgstr ""
 
-#: upload_awpcp.php:111
+#: upload_awpcp.php:120
 msgctxt "upload files"
 msgid ""
 "The size of %1$s was too small. The file was not uploaded. File size must be "
 "greater than %2$d bytes."
 msgstr ""
 
-#: upload_awpcp.php:119
+#: upload_awpcp.php:128
 msgctxt "upload files"
 msgid "The file %s does not appear to be a valid image file."
 msgstr ""
 
-#: upload_awpcp.php:125
+#: upload_awpcp.php:134
 msgctxt "upload files"
 msgid ""
 "The image %s did not meet the minimum width of %s pixels. The file was not "
 "uploaded."
 msgstr ""
 
-#: upload_awpcp.php:131
+#: upload_awpcp.php:140
 msgctxt "upload files"
 msgid ""
 "The image %s did not meet the minimum height of %s pixels. The file was not "
 "uploaded."
 msgstr ""
 
-#: upload_awpcp.php:147
+#: upload_awpcp.php:156
 msgctxt "upload files"
 msgid "The file %s could not be moved to the destination directory."
 msgstr ""
 
-#: upload_awpcp.php:151
+#: upload_awpcp.php:160
 msgctxt "upload files"
 msgid "The file %s could not be copied to the destination directory."
 msgstr ""
 
-#: upload_awpcp.php:158
+#: upload_awpcp.php:167
 msgctxt "upload files"
 msgid "Could not create resized versions of image %s."
 msgstr ""
 
-#: upload_awpcp.php:253
+#: upload_awpcp.php:262
 msgctxt "upload files"
 msgid ""
 "You can't add more images to this Ad. There are not remaining images slots."
 msgstr ""
 
-#: upload_awpcp.php:334
+#: upload_awpcp.php:343
 msgid "The specified image file does not exists: %s."
 msgstr ""
 
-#: upload_awpcp.php:344
+#: upload_awpcp.php:353
 msgid "No file was selected."
 msgstr ""
 
-#: upload_awpcp.php:348
+#: upload_awpcp.php:357
 msgid "Unknown error encountered while uploading the image."
 msgstr ""
 
-#: upload_awpcp.php:357
+#: upload_awpcp.php:366
 msgid "The file %s has an invalid extension and was rejected."
 msgstr ""
 
-#: upload_awpcp.php:360
+#: upload_awpcp.php:369
 msgid ""
 "The size of %1$s was too small. The file was not uploaded. File size must be "
 "greater than %2$d bytes."
 msgstr ""
 
-#: upload_awpcp.php:364
+#: upload_awpcp.php:373
 msgid ""
 "The file %s was larger than the maximum allowed file size of %s bytes. The "
 "file was not uploaded."
 msgstr ""
 
-#: upload_awpcp.php:368
+#: upload_awpcp.php:377
 msgid "The file %s does not appear to be a valid image file."
 msgstr ""
 
-#: upload_awpcp.php:371
+#: upload_awpcp.php:380
 msgid ""
 "The image %s did not meet the minimum width of %s pixels. The file was not "
 "uploaded."
 msgstr ""
 
-#: upload_awpcp.php:375
+#: upload_awpcp.php:384
 msgid ""
 "The image %s did not meet the minimum height of %s pixels. The file was not "
 "uploaded."
 msgstr ""
 
-#: upload_awpcp.php:380 upload_awpcp.php:384
+#: upload_awpcp.php:389 upload_awpcp.php:393
 msgid "The file %s could not be moved to the destination directory."
 msgstr ""
 
-#: upload_awpcp.php:389
+#: upload_awpcp.php:398
 msgid "Could not create resized versions of image %s."
 msgstr ""
