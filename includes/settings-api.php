@@ -91,6 +91,22 @@ class AWPCP_Settings_API {
 		$this->add_setting($key, 'decimal-separator', __('Separator for the decimal point', 'AWPCP'), 'textfield', _x('.', 'This translation is deprecated. Please go to the Settings section to change the decimal separator.', 'AWPCP'), '');
 		$this->add_setting($key, 'show-decimals', __('Show decimals in price', 'AWPCP'), 'checkbox', 1, _x('Uncheck to show prices without decimals. The value will be rounded.', 'settings', 'AWPCP'));
 
+		$payment_settings_name = __( 'Payment', 'AWPCP' ) .' ' . __( 'Settings', 'AWPCP' );
+		$payment_settings_url = awpcp_get_admin_settings_url( 'payment-settings' );
+		$payment_settings_link = sprintf( '<a href="%s">%s</a>', $payment_settings_url, $payment_settings_name );
+
+		$helptext = __( 'If checked, the price is shown with the currency symbol on the left. Uncheck if you want to hide it. The currency symbol can be configured by changing the currency used for payments in <payment-settings-link>.', 'AWPCP' );
+		$helptext = str_replace( '<payment-settings-link>', $payment_settings_link, $helptext);
+
+		$this->add_setting(
+			$key,
+			'show-currency-symbol',
+			__( 'Show currency symbol', 'AWPCP' ),
+			'checkbox',
+			1,
+			$helptext
+		);
+
 		// Section: General - Terms of Service
 
 		$key = $this->add_section( $group, __( 'Terms of Service', 'AWPCP' ), 'terms-of-service', 11, array( $this, 'section' ) );

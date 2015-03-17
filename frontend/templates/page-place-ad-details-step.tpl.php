@@ -135,7 +135,7 @@
         <?php if ($ui['price-field']): ?>
         <p class="awpcp-form-spacer">
             <?php $validator = $ui['price-field-required'] ? 'required money' : 'money' ?>
-            <?php $price = $form['ad_item_price'] ? awpcp_format_money( $form['ad_item_price'], false ) : ''; ?>
+            <?php $price = $form['ad_item_price'] ? awpcp_format_money_without_currency_symbol( $form['ad_item_price'] ) : ''; ?>
             <label for="ad-item-price"><?php echo esc_html( _x( 'Item Price', 'ad details form', 'AWPCP' ) ); ?><?php echo $required['ad-item-price'] ? '*' : ''; ?></label>
             <input class="<?php echo $validator ?>" id="ad-item-price" type="text" size="50" name="ad_item_price" value="<?php echo esc_attr( $price ); ?>" />
             <?php echo awpcp_form_error('ad_item_price', $errors) ?>
