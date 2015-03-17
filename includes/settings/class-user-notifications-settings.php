@@ -15,7 +15,15 @@ class AWPCP_UserNotificationsSettings {
     private function register_subscriber_notifications_settings( $settings ) {
         $key = $settings->add_section( 'listings-settings', __( 'User Notifications', 'AWPCP' ), 'user-notifications', 3, array( $settings, 'section' ) );
 
-        $settings->add_setting( $key, 'send-user-ad-posted-notification', __( 'Listing Posted', 'AWPCP' ), 'checkbox', 1, __( 'An email will be sent when an Ad is posted.', 'AWPCP' ) );
+        $settings->add_setting(
+            $key,
+            'send-user-ad-posted-notification',
+            __( 'Listing Created', 'AWPCP' ),
+            'checkbox',
+            1,
+            __( 'An email will be sent when a listing is created.', 'AWPCP' )
+        );
+
         $settings->add_setting( $key, 'send-ad-enabled-email', __( 'Listing Enabled', 'AWPCP' ), 'checkbox', 1, __( 'Notify Ad owner when the Ad is enabled.', 'AWPCP' ) );
         $settings->add_setting( $key, 'sent-ad-renew-email', __( 'Listing Needs to be Renewed', 'AWPCP' ), 'checkbox', 1, __( 'An email will be sent to remind the user to Renew the Ad when the Ad is about to expire.', 'AWPCP' ) );
 
@@ -37,19 +45,19 @@ class AWPCP_UserNotificationsSettings {
         $settings->add_setting(
             $key,
             'send-listing-posted-notification-to-moderators',
-            __( 'Listing Posted', 'AWPCP' ),
+            __( 'Listing Created', 'AWPCP' ),
             'checkbox',
             $settings->get_option( 'notifyofadposted' ),
-            __( 'An email will be sent to moderators when a listing is posted.', 'AWPCP' )
+            __( 'An email will be sent to moderators when a listing is created.', 'AWPCP' )
         );
 
         $settings->add_setting(
             $key,
             'send-listing-updated-notification-to-moderators',
-            __( 'Listing Modified', 'AWPCP' ),
+            __( 'Listing Edited', 'AWPCP' ),
             'checkbox',
             $settings->get_option( 'notifyofadposted' ),
-            __( 'An email will be sent to moderators when a listing is modified.', 'AWPCP' )
+            __( 'An email will be sent to moderators when a listing is edited.', 'AWPCP' )
         );
 
         $settings->add_setting(
@@ -65,16 +73,24 @@ class AWPCP_UserNotificationsSettings {
     private function register_administrator_notifications_settings( $settings ) {
         $key = $settings->add_section( 'listings-settings', __( 'Admin Notifications', 'AWPCP' ), 'admin-notifications', 5, array( $settings, 'section' ) );
 
-        $settings->add_setting( $key, 'notifyofadposted', __( 'Listing Posted', 'AWPCP' ), 'checkbox', 1, __( 'An email will be sent when an Ad is posted.', 'AWPCP' ) );
+        $settings->add_setting(
+            $key,
+            'notifyofadposted',
+            __( 'Listing Created', 'AWPCP' ),
+            'checkbox',
+            1,
+            __( 'An email will be sent when a listing is created.', 'AWPCP' )
+        );
+
         $settings->add_setting( $key, 'notifyofadexpired', __( 'Listing Expired', 'AWPCP' ), 'checkbox', 1, __( 'An email will be sent when the Ad expires.', 'AWPCP' ) );
 
         $settings->add_setting(
             $key,
             'send-listing-updated-notification-to-administrators',
-            __( 'Listing Modified', 'AWPCP' ),
+            __( 'Listing Edited', 'AWPCP' ),
             'checkbox',
             $settings->get_option( 'notifyofadposted' ),
-            __( 'An email will be sent to administrator when a listing is modified.', 'AWPCP' )
+            __( 'An email will be sent to administrator when a listing is edited.', 'AWPCP' )
         );
 
         $settings->add_setting(

@@ -332,7 +332,7 @@ function awpcp_ad_posted_email( $ad, $transaction = null, $message = '', $notify
 
 		$admin_message = new AWPCP_Email;
 		$admin_message->to[] = awpcp_admin_email_to();
-		$admin_message->subject = __("New classified Ad listing posted.", "AWPCP");
+		$admin_message->subject = __( 'New classified listing created', 'AWPCP' );
 
 		$params = array('page' => 'awpcp-listings',  'action' => 'view', 'id' => $ad->ad_id);
 		$url = add_query_arg($params, admin_url('admin.php'));
