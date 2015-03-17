@@ -242,6 +242,7 @@ require_once( AWPCP_DIR . "/includes/settings/class-credit-system-settings.php" 
 require_once( AWPCP_DIR . "/includes/settings/class-files-settings.php" );
 require_once( AWPCP_DIR . "/includes/settings/class-general-settings.php" );
 require_once( AWPCP_DIR . "/includes/settings/class-listings-moderation-settings.php" );
+require_once( AWPCP_DIR . '/includes/settings/class-listing-url-settings.php' );
 require_once( AWPCP_DIR . "/includes/settings/class-payment-general-settings.php" );
 require_once( AWPCP_DIR . "/includes/settings/class-registration-settings.php" );
 require_once( AWPCP_DIR . "/includes/settings/class-user-notifications-settings.php" );
@@ -487,6 +488,9 @@ class AWPCP {
 		add_action( 'awpcp_register_settings', array( $listings_moderation_settings, 'register_settings' ) );
 		add_filter( 'awpcp_validate_settings', array( $listings_moderation_settings, 'validate_all_settings' ), 10, 2 );
 		add_filter( 'awpcp_validate_settings_listings-settings', array( $listings_moderation_settings, 'validate_group_settings' ), 10, 2 );
+
+        $listing_url_settings = awpcp_listing_url_settings();
+        add_action( 'awpcp_register_settings', array( $listing_url_settings, 'register_settings' ) );
 
         $credit_system_settings = awpcp_credit_system_settings();
         add_action( 'awpcp_register_settings', array( $credit_system_settings, 'register_settings' ) );

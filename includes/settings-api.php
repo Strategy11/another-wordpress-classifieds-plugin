@@ -184,65 +184,6 @@ class AWPCP_Settings_API {
 		$this->add_setting( $key, 'showcountyvillageinpagetitle', __( 'Show county/village/other in window title', 'AWPCP' ), 'checkbox', 1, __( 'Show county/village/other setting in browser page title when viewing individual Ad', 'AWPCP' ) );
 		$this->add_setting( $key, 'showcategoryinpagetitle', __( 'Show category in title', 'AWPCP' ), 'checkbox', 1, __( 'Show category in browser page title when viewing individual Ad', 'AWPCP' ) );
 
-        // Section: Ad/Listings - Listing URL
-
-        $key = $this->add_section( $group, 'Listing URL', 'listing-url', 50, array( $this, 'section' ) );
-
-        $this->add_setting(
-            $key,
-            'include-title-in-listing-url',
-            __( 'Include the title in the listing URL', 'AWPCP' ),
-            'checkbox',
-            1,
-            __( 'Include the title in the URL that points to the page of an individual listing.', 'AWPCP' )
-        );
-
-        $this->add_setting(
-            $key,
-            'include-category-in-listing-url',
-            __( 'Include the name of the category in the listing URL', 'AWPCP' ),
-            'checkbox',
-            $this->get_option( 'showcategoryinpagetitle' ),
-            __( 'Include the name of the category in the URL that points to the page of an individual listing.', 'AWPCP' )
-        );
-
-        $this->add_setting(
-            $key,
-            'include-country-in-listing-url',
-            __( 'Include the name of the country in the listing URL', 'AWPCP' ),
-            'checkbox',
-            $this->get_option( 'showcountryinpagetitle' ),
-            __( 'Include the name of the country in the URL that points to the page of an individual listing.', 'AWPCP' )
-        );
-
-        $this->add_setting(
-            $key,
-            'include-state-in-listing-url',
-            __( 'Include the name of the state in the listing URL', 'AWPCP' ),
-            'checkbox',
-            $this->get_option( 'showstateinpagetitle' ),
-            __( 'Include the name of the state in the URL that points to the page of an individual listing.', 'AWPCP' )
-        );
-
-        $this->add_setting(
-            $key,
-            'include-city-in-listing-url',
-            __( 'Include the name of the city in the listing URL', 'AWPCP' ),
-            'checkbox',
-            $this->get_option( 'showcityinpagetitle' ),
-            __( 'Include the name of the city in the URL that points to the page of an individual listing.', 'AWPCP' )
-        );
-
-        $this->add_setting(
-            $key,
-            'include-county-in-listing-url',
-            __( 'Include the name of the county in the listing URL', 'AWPCP' ),
-            'checkbox',
-            $this->get_option( 'showcountyvillageinpagetitle' ),
-            __( 'Include the name of the county in the URL that points to the page of an individual listing.', 'AWPCP' )
-        );
-
-
 		// Section: Ad/Listings - Menu Items
 
 		$key = $this->add_section( $group, __( 'Menu Items', 'AWPCP' ), 'menu-items', 60, array( $this, 'section' ) );
