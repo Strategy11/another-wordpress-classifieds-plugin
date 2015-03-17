@@ -173,17 +173,6 @@ class AWPCP_Settings_API {
 		$this->add_setting( $key, 'hyperlinkurlsinadtext', __( 'Make URLs in ad text clickable', 'AWPCP' ), 'checkbox', 0, '' );
 		$this->add_setting( $key, 'visitwebsitelinknofollow', __( 'Add no follow to links in Ads', 'AWPCP' ), 'checkbox', 1, '' );
 
-		// Section: Ad/Listings - Window Title
-
-		$key = $this->add_section( $group, 'Window Title', 'window-title', 40, array( $this, 'section' ) );
-
-		$this->add_setting( $key, 'awpcptitleseparator', __( 'Window title separator', 'AWPCP' ), 'textfield', '-', __( 'The character to use to separate ad details used in browser page title. Example: | / -', 'AWPCP' ) );
-		$this->add_setting( $key, 'showcityinpagetitle', __( 'Show city in window title', 'AWPCP' ), 'checkbox', 1, __( 'Show city in browser page title when viewing individual Ad', 'AWPCP' ) );
-		$this->add_setting( $key, 'showstateinpagetitle', __( 'Show state in window title', 'AWPCP' ), 'checkbox', 1, __('Show state in browser page title when viewing individual Ad', 'AWPCP' ) );
-		$this->add_setting( $key, 'showcountryinpagetitle', __( 'Show country in window title', 'AWPCP' ), 'checkbox', 1, __( 'Show country in browser page title when viewing individual Ad', 'AWPCP' ) );
-		$this->add_setting( $key, 'showcountyvillageinpagetitle', __( 'Show county/village/other in window title', 'AWPCP' ), 'checkbox', 1, __( 'Show county/village/other setting in browser page title when viewing individual Ad', 'AWPCP' ) );
-		$this->add_setting( $key, 'showcategoryinpagetitle', __( 'Show category in title', 'AWPCP' ), 'checkbox', 1, __( 'Show category in browser page title when viewing individual Ad', 'AWPCP' ) );
-
 		// Section: Ad/Listings - Menu Items
 
 		$key = $this->add_section( $group, __( 'Menu Items', 'AWPCP' ), 'menu-items', 60, array( $this, 'section' ) );

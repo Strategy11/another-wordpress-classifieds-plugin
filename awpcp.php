@@ -246,6 +246,7 @@ require_once( AWPCP_DIR . '/includes/settings/class-listing-url-settings.php' );
 require_once( AWPCP_DIR . "/includes/settings/class-payment-general-settings.php" );
 require_once( AWPCP_DIR . "/includes/settings/class-registration-settings.php" );
 require_once( AWPCP_DIR . "/includes/settings/class-user-notifications-settings.php" );
+require_once( AWPCP_DIR . "/includes/settings/class-window-title-settings.php" );
 
 require_once( AWPCP_DIR . "/includes/upgrade/class-fix-empty-media-mime-type-upgrade-routine.php" );
 
@@ -488,6 +489,9 @@ class AWPCP {
 		add_action( 'awpcp_register_settings', array( $listings_moderation_settings, 'register_settings' ) );
 		add_filter( 'awpcp_validate_settings', array( $listings_moderation_settings, 'validate_all_settings' ), 10, 2 );
 		add_filter( 'awpcp_validate_settings_listings-settings', array( $listings_moderation_settings, 'validate_group_settings' ), 10, 2 );
+
+        $window_title_settings = awpcp_window_title_settings();
+        add_action( 'awpcp_register_settings', array( $window_title_settings, 'register_settings' ) );
 
         $listing_url_settings = awpcp_listing_url_settings();
         add_action( 'awpcp_register_settings', array( $listing_url_settings, 'register_settings' ) );
