@@ -658,10 +658,12 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
     }
 
     public function index() {
-        $template = AWPCP_DIR . '/admin/templates/admin-panel-listings.tpl.php';
-        $this->table->prepare_items();
+        $table = $this->get_table();
 
-        echo $this->render($template, array('table' => $this->table));
+        $table->prepare_items();
+        $template = AWPCP_DIR . '/admin/templates/admin-panel-listings.tpl.php';
+
+        echo $this->render( $template, array( 'table' => $table ) );
     }
 
     public function ajax() {

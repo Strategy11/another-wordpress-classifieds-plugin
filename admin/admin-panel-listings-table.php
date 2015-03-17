@@ -4,8 +4,10 @@ class AWPCP_Listings_Table extends WP_List_Table {
 
     private $selected_category_id;
 
-    public function __construct($page) {
-        parent::__construct(array('plural' => 'awpcp-listings'));
+    private $page;
+
+    public function __construct( $page, $params = array() ) {
+        parent::__construct( array_merge( array( 'plural' => 'awpcp-listings' ), $params ) );
         $this->page = $page;
     }
 
