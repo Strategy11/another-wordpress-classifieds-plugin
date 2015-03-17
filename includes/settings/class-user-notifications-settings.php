@@ -18,7 +18,16 @@ class AWPCP_UserNotificationsSettings {
         $settings->add_setting( $key, 'send-user-ad-posted-notification', __( 'Listing Posted', 'AWPCP' ), 'checkbox', 1, __( 'An email will be sent when an Ad is posted.', 'AWPCP' ) );
         $settings->add_setting( $key, 'send-ad-enabled-email', __( 'Listing Enabled', 'AWPCP' ), 'checkbox', 1, __( 'Notify Ad owner when the Ad is enabled.', 'AWPCP' ) );
         $settings->add_setting( $key, 'sent-ad-renew-email', __( 'Listing Needs to be Renewed', 'AWPCP' ), 'checkbox', 1, __( 'An email will be sent to remind the user to Renew the Ad when the Ad is about to expire.', 'AWPCP' ) );
-        $settings->add_setting( $key, 'ad-renew-email-threshold', __( 'Send Renew Listing email N days before listing expires', 'AWPCP' ), 'textfield', 5, __( 'The email is sent the specified number of days before the Ad expires.', 'AWPCP' ) );
+
+        $settings->add_setting(
+            $key,
+            'ad-renew-email-threshold',
+            __( 'When should AWPCP send the expiration notice?', 'AWPCP' ),
+            'textfield',
+            5,
+            __( 'Enter the number of days before the ad expires to send the email.', 'AWPCP' )
+        );
+
         $settings->add_setting( $key, 'notifyofadexpiring', __( 'Listing Expired', 'AWPCP' ), 'checkbox', 1, __( 'An email will be sent when the Ad expires.', 'AWPCP' ) );
     }
 
