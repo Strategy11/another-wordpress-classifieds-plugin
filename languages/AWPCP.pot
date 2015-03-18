@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2015-03-13 14:59:38+00:00\n"
+"POT-Creation-Date: 2015-03-18 15:45:53+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -643,7 +643,7 @@ msgstr ""
 msgid "Configure General Options"
 msgstr ""
 
-#: admin/admin-panel.php:234
+#: admin/admin-panel.php:234 includes/settings-api.php:94
 msgid "Settings"
 msgstr ""
 
@@ -1497,6 +1497,21 @@ msgstr ""
 #: admin/templates/admin-panel-listings.tpl.php:14
 #: frontend/page-search-ads.php:14
 msgid "Search Ads"
+msgstr ""
+
+#: admin/templates/admin-panel-media-manager.tpl.php:4
+msgctxt "media-manager"
+msgid "Manage Links"
+msgstr ""
+
+#: admin/templates/admin-panel-media-manager.tpl.php:5
+msgctxt "media-manager"
+msgid "View Listing"
+msgstr ""
+
+#: admin/templates/admin-panel-media-manager.tpl.php:6
+msgctxt "media-manager"
+msgid "Return to Listings"
 msgstr ""
 
 #: admin/templates/admin-panel-media-manager.tpl.php:14
@@ -3622,7 +3637,7 @@ msgctxt "default blog title"
 msgid "Classifieds Website"
 msgstr ""
 
-#: functions.php:1656
+#: functions.php:1666
 msgid ""
 "The images or files with pale red background have been rejected by an "
 "administrator user. Likewise, files with a pale yellow background are "
@@ -3630,79 +3645,79 @@ msgid ""
 "cannot be shown in the frontend."
 msgstr ""
 
-#: functions.php:1673 includes/helpers/class-modules-manager.php:158
+#: functions.php:1683 includes/helpers/class-modules-manager.php:158
 msgid ""
 "This version of AWPCP %1$s module is not compatible with AWPCP version %2$s. "
 "Please get AWPCP %1$s %3$s or newer!"
 msgstr ""
 
-#: functions.php:1675 includes/helpers/class-modules-manager.php:160
+#: functions.php:1685 includes/helpers/class-modules-manager.php:160
 msgid "Error"
 msgstr ""
 
-#: functions.php:1694
+#: functions.php:1704
 msgid "No errors."
 msgstr ""
 
-#: functions.php:1695
+#: functions.php:1705
 msgid "The file is larger than upload_max_filesize."
 msgstr ""
 
-#: functions.php:1696
+#: functions.php:1706
 msgid "The file is larger than form MAX_FILE_SIZE."
 msgstr ""
 
-#: functions.php:1697
+#: functions.php:1707
 msgid "The file was only partially uploaded."
 msgstr ""
 
-#: functions.php:1698
+#: functions.php:1708
 msgid "No file was uploaded."
 msgstr ""
 
-#: functions.php:1699
+#: functions.php:1709
 msgid "Missing temporary directory."
 msgstr ""
 
-#: functions.php:1700
+#: functions.php:1710
 msgid "Can't write file to disk."
 msgstr ""
 
-#: functions.php:1701
+#: functions.php:1711
 msgid "The file upload was stopped by extension."
 msgstr ""
 
-#: functions.php:1865
+#: functions.php:1875
 msgid "Your Ad \"%s\" has been approved"
 msgstr ""
 
-#: functions.php:1881
+#: functions.php:1891
 msgid "Your Ad \"%s\" has been successfully updated"
 msgstr ""
 
-#: functions.php:1902
+#: functions.php:1912
 msgid "Images on Ad \"%s\" are awaiting approval"
 msgstr ""
 
-#: functions.php:1904
+#: functions.php:1914
 msgid ""
 "Images on Ad \"%s\" are awaiting approval. You can approve the images going "
 "to the Manage Images section for that Ad and clicking the \"Enable\" button "
 "below each image. Click here to continue: %s."
 msgstr ""
 
-#: functions.php:1907
+#: functions.php:1917
 msgid "The Ad \"%s\" is awaiting approval"
 msgstr ""
 
-#: functions.php:1909
+#: functions.php:1919
 msgid ""
 "The Ad \"%s\" is awaiting approval. You can approve the Ad going to the "
 "Manage Listings section and clicking the \"Enable\" action shown on top. "
 "Click here to continue: %s."
 msgstr ""
 
-#: functions.php:1916
+#: functions.php:1926
 msgid ""
 "Additionally, You can approve the images going to the Manage Images section "
 "for that Ad and clicking the \"Enable\" button below each image. Click here "
@@ -4945,7 +4960,7 @@ msgstr ""
 msgid "Enable User Ad Management Panel"
 msgstr ""
 
-#: includes/settings-api.php:54 includes/settings-api.php:583
+#: includes/settings-api.php:54 includes/settings-api.php:599
 msgid "General Settings"
 msgstr ""
 
@@ -5114,50 +5129,65 @@ msgctxt "settings"
 msgid "Uncheck to show prices without decimals. The value will be rounded."
 msgstr ""
 
-#: includes/settings-api.php:96 includes/settings-api.php:99
-msgid "Terms of Service"
+#: includes/settings-api.php:94 includes/settings-api.php:370
+msgid "Payment"
 msgstr ""
 
 #: includes/settings-api.php:98
+msgid ""
+"If checked, the price is shown with the currency symbol on the left. Uncheck "
+"if you want to hide it. The currency symbol can be configured by changing "
+"the currency used for payments in <payment-settings-link>."
+msgstr ""
+
+#: includes/settings-api.php:104
+msgid "Show currency symbol"
+msgstr ""
+
+#: includes/settings-api.php:112 includes/settings-api.php:115
+msgid "Terms of Service"
+msgstr ""
+
+#: includes/settings-api.php:114
 msgid "Display and require Terms of Service"
 msgstr ""
 
-#: includes/settings-api.php:99
+#: includes/settings-api.php:115
 msgid "Terms of service go here..."
 msgstr ""
 
-#: includes/settings-api.php:99
+#: includes/settings-api.php:115
 msgid ""
 "Terms of Service for posting Ads. Put in text or an URL starting with http. "
 "If you use an URL, the text box will be replaced by a link to the "
 "appropriate Terms of Service page"
 msgstr ""
 
-#: includes/settings-api.php:103
+#: includes/settings-api.php:119
 msgid "Anti-SPAM"
 msgstr ""
 
-#: includes/settings-api.php:106
+#: includes/settings-api.php:122
 msgid "reCAPTCHA (recommended)"
 msgstr ""
 
-#: includes/settings-api.php:107
+#: includes/settings-api.php:123
 msgid "Math"
 msgstr ""
 
-#: includes/settings-api.php:110
+#: includes/settings-api.php:126
 msgid "Use Akismet"
 msgstr ""
 
-#: includes/settings-api.php:110
+#: includes/settings-api.php:126
 msgid "Use Akismet for Posting Ads/Contact Responses (strong anti-spam)."
 msgstr ""
 
-#: includes/settings-api.php:111
+#: includes/settings-api.php:127
 msgid "Enable CAPTCHA"
 msgstr ""
 
-#: includes/settings-api.php:111
+#: includes/settings-api.php:127
 msgid ""
 "A CAPTCHA is a program to ensure only humans are posting Ads to your "
 "website. Using a CAPTCHA will reduce the SPAM and prevent bots from posting "
@@ -5165,237 +5195,237 @@ msgid ""
 "Place Ad and Reply to Ad forms."
 msgstr ""
 
-#: includes/settings-api.php:112
+#: includes/settings-api.php:128
 msgid "Type of CAPTCHA"
 msgstr ""
 
-#: includes/settings-api.php:112
+#: includes/settings-api.php:128
 msgid ""
 "reCAPTCHA: Uses distorted images that only humans should be able to read "
 "(recommended)."
 msgstr ""
 
-#: includes/settings-api.php:112
+#: includes/settings-api.php:128
 msgid "Math: Asks user to solve a simple arithmetic operation."
 msgstr ""
 
-#: includes/settings-api.php:114
+#: includes/settings-api.php:130
 msgid "Max number used in Math CAPTCHA"
 msgstr ""
 
-#: includes/settings-api.php:114
+#: includes/settings-api.php:130
 msgid "Highest number used in aithmetic operation."
 msgstr ""
 
-#: includes/settings-api.php:117
+#: includes/settings-api.php:133
 msgid "You can get an API key from %s."
 msgstr ""
 
-#: includes/settings-api.php:118
+#: includes/settings-api.php:134
 msgid "reCAPTCHA Site Key"
 msgstr ""
 
-#: includes/settings-api.php:119
+#: includes/settings-api.php:135
 msgid "reCAPTCHA Secret Key"
 msgstr ""
 
-#: includes/settings-api.php:123
+#: includes/settings-api.php:139
 msgid "SEO Settings"
 msgstr ""
 
-#: includes/settings-api.php:125
+#: includes/settings-api.php:141
 msgid "Turn on Search Engine Friendly URLs"
 msgstr ""
 
-#: includes/settings-api.php:125
+#: includes/settings-api.php:141
 msgid "Turn on Search Engine Friendly URLs? (SEO Mode)"
 msgstr ""
 
-#: includes/settings-api.php:130 includes/settings-api.php:134
+#: includes/settings-api.php:146 includes/settings-api.php:150
 msgid "Classifieds Pages"
 msgstr ""
 
-#: includes/settings-api.php:136
+#: includes/settings-api.php:152
 msgid "AWPCP Main page"
 msgstr ""
 
-#: includes/settings-api.php:136
+#: includes/settings-api.php:152
 msgid "Name for Classifieds page."
 msgstr ""
 
-#: includes/settings-api.php:137
+#: includes/settings-api.php:153
 msgid "Show Ad page"
 msgstr ""
 
-#: includes/settings-api.php:137
+#: includes/settings-api.php:153
 msgid "Name for Show Ads page."
 msgstr ""
 
-#: includes/settings-api.php:138
+#: includes/settings-api.php:154
 msgid "Place Ad page"
 msgstr ""
 
-#: includes/settings-api.php:138
+#: includes/settings-api.php:154
 msgid "Name for Place Ads page."
 msgstr ""
 
-#: includes/settings-api.php:139
+#: includes/settings-api.php:155
 msgid "Edit Ad page"
 msgstr ""
 
-#: includes/settings-api.php:139
+#: includes/settings-api.php:155
 msgid "Name for edit ad page."
 msgstr ""
 
-#: includes/settings-api.php:140
+#: includes/settings-api.php:156
 msgid "Renew Ad page"
 msgstr ""
 
-#: includes/settings-api.php:140
+#: includes/settings-api.php:156
 msgid "Name for Renew Ad page."
 msgstr ""
 
-#: includes/settings-api.php:141
+#: includes/settings-api.php:157
 msgid "Reply to Ad page"
 msgstr ""
 
-#: includes/settings-api.php:141
+#: includes/settings-api.php:157
 msgid "Name for Reply to Ad page."
 msgstr ""
 
-#: includes/settings-api.php:142
+#: includes/settings-api.php:158
 msgid "Browse Ads page"
 msgstr ""
 
-#: includes/settings-api.php:142
+#: includes/settings-api.php:158
 msgid "Name for Browse Ads page."
 msgstr ""
 
-#: includes/settings-api.php:143
+#: includes/settings-api.php:159
 msgid "Search Ads page"
 msgstr ""
 
-#: includes/settings-api.php:143
+#: includes/settings-api.php:159
 msgid "Name for Search Ads page."
 msgstr ""
 
-#: includes/settings-api.php:144
+#: includes/settings-api.php:160
 msgid "Browse Categories page"
 msgstr ""
 
-#: includes/settings-api.php:144
+#: includes/settings-api.php:160
 msgid "Name for Browse Categories page."
 msgstr ""
 
-#: includes/settings-api.php:145
+#: includes/settings-api.php:161
 msgid "View Categories page"
 msgstr ""
 
-#: includes/settings-api.php:145
+#: includes/settings-api.php:161
 msgid "Name for categories view page. (Dynamic Page)"
 msgstr ""
 
-#: includes/settings-api.php:146
+#: includes/settings-api.php:162
 msgid "Payment Thank You page"
 msgstr ""
 
-#: includes/settings-api.php:146
+#: includes/settings-api.php:162
 msgid "Name for Payment Thank You page."
 msgstr ""
 
-#: includes/settings-api.php:147
+#: includes/settings-api.php:163
 msgid "Payment Cancel page"
 msgstr ""
 
-#: includes/settings-api.php:147
+#: includes/settings-api.php:163
 msgid "Name for Payment Cancel page."
 msgstr ""
 
-#: includes/settings-api.php:151
+#: includes/settings-api.php:167
 msgid "Ad/Listings"
 msgstr ""
 
-#: includes/settings-api.php:155
+#: includes/settings-api.php:171
 msgid "User Notifications"
 msgstr ""
 
-#: includes/settings-api.php:157 includes/settings-api.php:167
+#: includes/settings-api.php:173 includes/settings-api.php:183
 msgid "Ad Posted"
 msgstr ""
 
-#: includes/settings-api.php:157 includes/settings-api.php:167
+#: includes/settings-api.php:173 includes/settings-api.php:183
 msgid "An email will be sent when an Ad is posted."
 msgstr ""
 
-#: includes/settings-api.php:158
+#: includes/settings-api.php:174
 msgid "Ad Enabled"
 msgstr ""
 
-#: includes/settings-api.php:158
+#: includes/settings-api.php:174
 msgid "Notify Ad owner when the Ad is enabled."
 msgstr ""
 
-#: includes/settings-api.php:159
+#: includes/settings-api.php:175
 msgid "Ad Renew"
 msgstr ""
 
-#: includes/settings-api.php:159
+#: includes/settings-api.php:175
 msgid ""
 "An email will be sent to remind the user to Renew the Ad when the Ad is "
 "about to expire."
 msgstr ""
 
-#: includes/settings-api.php:160
+#: includes/settings-api.php:176
 msgid "Ad Renew email threshold"
 msgstr ""
 
-#: includes/settings-api.php:160
+#: includes/settings-api.php:176
 msgid "The email is sent the specified number of days before the Ad expires."
 msgstr ""
 
-#: includes/settings-api.php:161 includes/settings-api.php:168
+#: includes/settings-api.php:177 includes/settings-api.php:184
 msgid "Ad Expired"
 msgstr ""
 
-#: includes/settings-api.php:161 includes/settings-api.php:168
+#: includes/settings-api.php:177 includes/settings-api.php:184
 msgid "An email will be sent when the Ad expires."
 msgstr ""
 
-#: includes/settings-api.php:165
+#: includes/settings-api.php:181
 msgid "Admin Notifications"
 msgstr ""
 
-#: includes/settings-api.php:172
+#: includes/settings-api.php:188
 msgid "Regions Settings"
 msgstr ""
 
-#: includes/settings-api.php:174
+#: includes/settings-api.php:190
 msgid "Allow Regions modification"
 msgstr ""
 
-#: includes/settings-api.php:174
+#: includes/settings-api.php:190
 msgid ""
 "If enabled, users will be allowed to change the region information "
 "associated with their Ads."
 msgstr ""
 
-#: includes/settings-api.php:175
+#: includes/settings-api.php:191
 msgid "Allow users to search Ads in multiple regions"
 msgstr ""
 
-#: includes/settings-api.php:175
+#: includes/settings-api.php:191
 msgid "If enabled, users will be allowed to search Ads in multiple regions."
 msgstr ""
 
-#: includes/settings-api.php:179
+#: includes/settings-api.php:195
 msgid "Layout and Presentation"
 msgstr ""
 
-#: includes/settings-api.php:181
+#: includes/settings-api.php:197
 msgid "Show Ad preview before payment."
 msgstr ""
 
-#: includes/settings-api.php:181
+#: includes/settings-api.php:197
 msgid ""
 "If enabled, a preview of the Ad being posted will be shown after the images "
 "have been uploaded and before the user is asked to pay. The user is allowed "
@@ -5403,544 +5433,540 @@ msgid ""
 "posting process."
 msgstr ""
 
-#: includes/settings-api.php:182
+#: includes/settings-api.php:198
 msgid "Allow HTML in Ad text"
 msgstr ""
 
-#: includes/settings-api.php:182
+#: includes/settings-api.php:198
 msgid "Allow HTML in ad text (Not recommended)."
 msgstr ""
 
-#: includes/settings-api.php:183
+#: includes/settings-api.php:199
 msgid "Display this text above ad detail text input box on ad post page"
 msgstr ""
 
-#: includes/settings-api.php:183
+#: includes/settings-api.php:199
 msgid "No HTML Allowed"
 msgstr ""
 
-#: includes/settings-api.php:184
+#: includes/settings-api.php:200
 msgid "Maximum Ad title length"
 msgstr ""
 
-#: includes/settings-api.php:184
+#: includes/settings-api.php:200
 msgid ""
 "Number of characters allowed in Ad title. Please note this is the default "
 "value and can be overwritten in Fees and Subscription Plans."
 msgstr ""
 
-#: includes/settings-api.php:185
+#: includes/settings-api.php:201
 msgid "Maximum Ad details length"
 msgstr ""
 
-#: includes/settings-api.php:185
+#: includes/settings-api.php:201
 msgid ""
 "Number of characters allowed in Ad details. Please note this is the default "
 "value and can be overwritten in Fees and Subscription Plans."
 msgstr ""
 
-#: includes/settings-api.php:186
+#: includes/settings-api.php:202
 msgid "Number of words in Ad excerpt"
 msgstr ""
 
-#: includes/settings-api.php:186
+#: includes/settings-api.php:202
 msgid "Number of words shown by the Ad excerpt placeholder."
 msgstr ""
 
-#: includes/settings-api.php:187
+#: includes/settings-api.php:203
 msgid "Hide contact name to anonymous users?"
 msgstr ""
 
-#: includes/settings-api.php:187
+#: includes/settings-api.php:203
 msgid "Hide listing contact name to anonymous (non logged in) users."
 msgstr ""
 
-#: includes/settings-api.php:188
+#: includes/settings-api.php:204
 msgid "Ad Listings page layout"
 msgstr ""
 
-#: includes/settings-api.php:208
+#: includes/settings-api.php:224
 msgid ""
 "Modify as needed to control layout of ad listings page. Maintain code "
 "formatted as \\$somecodetitle. Changing the code keys will prevent the "
 "elements they represent from displaying."
 msgstr ""
 
-#: includes/settings-api.php:209
+#: includes/settings-api.php:225
 msgid "Single Ad page layout"
 msgstr ""
 
-#: includes/settings-api.php:215
+#: includes/settings-api.php:231
 msgid "Contact Information"
 msgstr ""
 
-#: includes/settings-api.php:216
+#: includes/settings-api.php:232
 msgid "Contact"
 msgstr ""
 
-#: includes/settings-api.php:226
+#: includes/settings-api.php:242
 msgid "More Information"
 msgstr ""
 
-#: includes/settings-api.php:242
+#: includes/settings-api.php:258
 msgid ""
 "Modify as needed to control layout of single ad view page. Maintain code "
 "formatted as \\$somecodetitle. Changing the code keys will prevent the "
 "elements they represent from displaying."
 msgstr ""
 
-#: includes/settings-api.php:244
+#: includes/settings-api.php:260
 msgid "Date (newest first)"
 msgstr ""
 
-#: includes/settings-api.php:245
+#: includes/settings-api.php:261
 msgid "Date (oldest first)"
 msgstr ""
 
-#: includes/settings-api.php:246
+#: includes/settings-api.php:262
 msgid "Title (ascending)"
 msgstr ""
 
-#: includes/settings-api.php:247
+#: includes/settings-api.php:263
 msgid "Title (descending)"
 msgstr ""
 
-#: includes/settings-api.php:248
+#: includes/settings-api.php:264
 msgid "Paid status and date (paid first, then most recent)"
 msgstr ""
 
-#: includes/settings-api.php:249
+#: includes/settings-api.php:265
 msgid "Paid status and title (paid first, then by title)"
 msgstr ""
 
-#: includes/settings-api.php:250
+#: includes/settings-api.php:266
 msgid "Views (most viewed first, then by title)"
 msgstr ""
 
-#: includes/settings-api.php:251
+#: includes/settings-api.php:267
 msgid "Views (most viewed first, then by date)"
 msgstr ""
 
-#: includes/settings-api.php:252
+#: includes/settings-api.php:268
 msgid "Views (least viewed first, then by title)"
 msgstr ""
 
-#: includes/settings-api.php:253
+#: includes/settings-api.php:269
 msgid "Views (least viewed first, then by date)"
 msgstr ""
 
-#: includes/settings-api.php:254
+#: includes/settings-api.php:270
 msgid "Price (high to low, then by date)"
 msgstr ""
 
-#: includes/settings-api.php:255
+#: includes/settings-api.php:271
 msgid "Price (low to high, then by date)"
 msgstr ""
 
-#: includes/settings-api.php:258
+#: includes/settings-api.php:274
 msgid "Order Ad Listings by"
 msgstr ""
 
-#: includes/settings-api.php:259
+#: includes/settings-api.php:275
 msgid "Order Ad Listings in Search results by"
 msgstr ""
 
-#: includes/settings-api.php:261
+#: includes/settings-api.php:277
 msgid "Default number of Ads per page"
 msgstr ""
 
-#: includes/settings-api.php:264
+#: includes/settings-api.php:280
 msgid "Pagination Options"
 msgstr ""
 
-#: includes/settings-api.php:266
+#: includes/settings-api.php:282
 msgid "Limits search to available locations."
 msgstr ""
 
-#: includes/settings-api.php:266
+#: includes/settings-api.php:282
 msgid ""
 "The search form can attempt to build drop down country, state, city and "
 "county lists if data is available in the system. Note that with the regions "
 "module installed the value for this option is overridden."
 msgstr ""
 
-#: includes/settings-api.php:267
+#: includes/settings-api.php:283
 msgid "Show Ad count in categories"
 msgstr ""
 
-#: includes/settings-api.php:267
+#: includes/settings-api.php:283
 msgid "Show how many ads a category contains."
 msgstr ""
 
-#: includes/settings-api.php:268
+#: includes/settings-api.php:284
 msgid "Hide empty categories?"
 msgstr ""
 
-#: includes/settings-api.php:268
+#: includes/settings-api.php:284
 msgid "If checked, categories with 0 listings in it won't be shown."
 msgstr ""
 
-#: includes/settings-api.php:269
+#: includes/settings-api.php:285
 msgid "Show Ad views"
 msgstr ""
 
-#: includes/settings-api.php:270
+#: includes/settings-api.php:286
 msgid "Make URLs in ad text clickable"
 msgstr ""
 
-#: includes/settings-api.php:271
+#: includes/settings-api.php:287
 msgid "Add no follow to links in Ads"
 msgstr ""
 
-#: includes/settings-api.php:277
+#: includes/settings-api.php:293
 msgid "Window title separator"
 msgstr ""
 
-#: includes/settings-api.php:277
+#: includes/settings-api.php:293
 msgid ""
 "The character to use to separate ad details used in browser page title. "
 "Example: | / -"
 msgstr ""
 
-#: includes/settings-api.php:278
+#: includes/settings-api.php:294
 msgid "Show city in window title"
 msgstr ""
 
-#: includes/settings-api.php:278
+#: includes/settings-api.php:294
 msgid "Show city in browser page title when viewing individual Ad"
 msgstr ""
 
-#: includes/settings-api.php:279
+#: includes/settings-api.php:295
 msgid "Show state in window title"
 msgstr ""
 
-#: includes/settings-api.php:279
+#: includes/settings-api.php:295
 msgid "Show state in browser page title when viewing individual Ad"
 msgstr ""
 
-#: includes/settings-api.php:280
+#: includes/settings-api.php:296
 msgid "Show country in window title"
 msgstr ""
 
-#: includes/settings-api.php:280
+#: includes/settings-api.php:296
 msgid "Show country in browser page title when viewing individual Ad"
 msgstr ""
 
-#: includes/settings-api.php:281
+#: includes/settings-api.php:297
 msgid "Show county/village/other in window title"
 msgstr ""
 
-#: includes/settings-api.php:281
+#: includes/settings-api.php:297
 msgid ""
 "Show county/village/other setting in browser page title when viewing "
 "individual Ad"
 msgstr ""
 
-#: includes/settings-api.php:282
+#: includes/settings-api.php:298
 msgid "Show category in title"
 msgstr ""
 
-#: includes/settings-api.php:282
+#: includes/settings-api.php:298
 msgid "Show category in browser page title when viewing individual Ad"
 msgstr ""
 
-#: includes/settings-api.php:291
+#: includes/settings-api.php:307
 msgid "Include the title in the listing URL"
 msgstr ""
 
-#: includes/settings-api.php:294
+#: includes/settings-api.php:310
 msgid ""
 "Include the title in the URL that points to the page of an individual "
 "listing."
 msgstr ""
 
-#: includes/settings-api.php:300
+#: includes/settings-api.php:316
 msgid "Include the name of the category in the listing URL"
 msgstr ""
 
-#: includes/settings-api.php:303
+#: includes/settings-api.php:319
 msgid ""
 "Include the name of the category in the URL that points to the page of an "
 "individual listing."
 msgstr ""
 
-#: includes/settings-api.php:309
+#: includes/settings-api.php:325
 msgid "Include the name of the country in the listing URL"
 msgstr ""
 
-#: includes/settings-api.php:312
+#: includes/settings-api.php:328
 msgid ""
 "Include the name of the country in the URL that points to the page of an "
 "individual listing."
 msgstr ""
 
-#: includes/settings-api.php:318
+#: includes/settings-api.php:334
 msgid "Include the name of the state in the listing URL"
 msgstr ""
 
-#: includes/settings-api.php:321
+#: includes/settings-api.php:337
 msgid ""
 "Include the name of the state in the URL that points to the page of an "
 "individual listing."
 msgstr ""
 
-#: includes/settings-api.php:327
+#: includes/settings-api.php:343
 msgid "Include the name of the city in the listing URL"
 msgstr ""
 
-#: includes/settings-api.php:330
+#: includes/settings-api.php:346
 msgid ""
 "Include the name of the city in the URL that points to the page of an "
 "individual listing."
 msgstr ""
 
-#: includes/settings-api.php:336
+#: includes/settings-api.php:352
 msgid "Include the name of the county in the listing URL"
 msgstr ""
 
-#: includes/settings-api.php:339
+#: includes/settings-api.php:355
 msgid ""
 "Include the name of the county in the URL that points to the page of an "
 "individual listing."
 msgstr ""
 
-#: includes/settings-api.php:345
+#: includes/settings-api.php:361
 msgid "Menu Items"
 msgstr ""
 
-#: includes/settings-api.php:347
+#: includes/settings-api.php:363
 msgid "Show Place Ad menu item"
 msgstr ""
 
-#: includes/settings-api.php:348
+#: includes/settings-api.php:364
 msgid "Show Edit Ad menu item"
 msgstr ""
 
-#: includes/settings-api.php:349
+#: includes/settings-api.php:365
 msgid "Show Browse Ads menu item"
 msgstr ""
 
-#: includes/settings-api.php:350
+#: includes/settings-api.php:366
 msgid "Show Search Ads menu item"
 msgstr ""
 
-#: includes/settings-api.php:354
-msgid "Payment"
-msgstr ""
-
-#: includes/settings-api.php:358
+#: includes/settings-api.php:374
 msgid "PayPal Settings"
 msgstr ""
 
-#: includes/settings-api.php:359
+#: includes/settings-api.php:375
 msgid "Activate PayPal?"
 msgstr ""
 
-#: includes/settings-api.php:360
+#: includes/settings-api.php:376
 msgid "PayPal receiver email"
 msgstr ""
 
-#: includes/settings-api.php:360
+#: includes/settings-api.php:376
 msgid ""
 "Email address for PayPal payments (if running in pay mode and if PayPal is "
 "activated)."
 msgstr ""
 
-#: includes/settings-api.php:361
+#: includes/settings-api.php:377
 msgid "PayPal currency code"
 msgstr ""
 
-#: includes/settings-api.php:361
+#: includes/settings-api.php:377
 msgid "The currency in which you would like to receive your PayPal payments"
 msgstr ""
 
-#: includes/settings-api.php:366
+#: includes/settings-api.php:382
 msgid "2Checkout Settings"
 msgstr ""
 
-#: includes/settings-api.php:368
+#: includes/settings-api.php:384
 msgid "Activate 2Checkout"
 msgstr ""
 
-#: includes/settings-api.php:368
+#: includes/settings-api.php:384
 msgid "Activate 2Checkout?"
 msgstr ""
 
-#: includes/settings-api.php:369
+#: includes/settings-api.php:385
 msgid "2Checkout account"
 msgstr ""
 
-#: includes/settings-api.php:369
+#: includes/settings-api.php:385
 msgid ""
 "Account for 2Checkout payments (if running in pay mode and if 2Checkout is "
 "activated)"
 msgstr ""
 
-#: includes/settings-api.php:370
+#: includes/settings-api.php:386
 msgid "2Checkout currency code"
 msgstr ""
 
-#: includes/settings-api.php:370
+#: includes/settings-api.php:386
 msgid "The currency in which you would like to receive your 2Checkout payments"
 msgstr ""
 
-#: includes/settings-api.php:375
+#: includes/settings-api.php:391
 msgid "Image"
 msgstr ""
 
-#: includes/settings-api.php:379
+#: includes/settings-api.php:395
 msgid "Image Settings"
 msgstr ""
 
-#: includes/settings-api.php:381
+#: includes/settings-api.php:397
 msgid "Allow images in Ads?"
 msgstr ""
 
-#: includes/settings-api.php:381
+#: includes/settings-api.php:397
 msgid "Allow images in ads? (affects both free and pay mode)"
 msgstr ""
 
-#: includes/settings-api.php:382
+#: includes/settings-api.php:398
 msgid "Hide images until admin approves them"
 msgstr ""
 
-#: includes/settings-api.php:383
+#: includes/settings-api.php:399
 msgid "Disable AWPCP Lightbox feature"
 msgstr ""
 
-#: includes/settings-api.php:383
+#: includes/settings-api.php:399
 msgid ""
 "Turn off the lightbox/thickbox element used by AWPCP. Some themes cannot "
 "handle it and a conflict results."
 msgstr ""
 
-#: includes/settings-api.php:384
+#: includes/settings-api.php:400
 msgid "Show click to enlarge link?"
 msgstr ""
 
-#: includes/settings-api.php:385
+#: includes/settings-api.php:401
 msgid "Number of images allowed in Free mode"
 msgstr ""
 
-#: includes/settings-api.php:385
+#: includes/settings-api.php:401
 msgid "Number of Image Uploads Allowed (Free Mode)"
 msgstr ""
 
-#: includes/settings-api.php:389
+#: includes/settings-api.php:405
 msgid "Image File Settings"
 msgstr ""
 
-#: includes/settings-api.php:391
+#: includes/settings-api.php:407
 msgid "Uploads folder name"
 msgstr ""
 
-#: includes/settings-api.php:391
+#: includes/settings-api.php:407
 msgid ""
 "Upload folder name. (Folder must exist and be located in your wp-content "
 "directory)"
 msgstr ""
 
-#: includes/settings-api.php:394
+#: includes/settings-api.php:410
 msgid "File permissions for uploads directory"
 msgstr ""
 
-#: includes/settings-api.php:394
+#: includes/settings-api.php:410
 msgid ""
 "File permissions applied to the uploads directory and sub-directories so "
 "that the plugin is allowed to write to those directories."
 msgstr ""
 
-#: includes/settings-api.php:396
+#: includes/settings-api.php:412
 msgid "Maximum file size per image"
 msgstr ""
 
-#: includes/settings-api.php:396
+#: includes/settings-api.php:412
 msgid ""
 "Maximum file size, in bytes, for files user can upload to system. 1 MB = "
 "1048576 bytes. You can google \"x MB to bytes\" to get an accurate "
 "conversion."
 msgstr ""
 
-#: includes/settings-api.php:397
+#: includes/settings-api.php:413
 msgid "Minimum file size per image"
 msgstr ""
 
-#: includes/settings-api.php:397
+#: includes/settings-api.php:413
 msgid ""
 "Minimum file size, in bytes, for files user can upload to system. 1 MB = "
 "1048576 bytes. You can google \"x MB to bytes\" to get an accurate "
 "conversion."
 msgstr ""
 
-#: includes/settings-api.php:398
+#: includes/settings-api.php:414
 msgid "Minimum image width"
 msgstr ""
 
-#: includes/settings-api.php:398
+#: includes/settings-api.php:414
 msgid "Minimum width for images."
 msgstr ""
 
-#: includes/settings-api.php:399
+#: includes/settings-api.php:415
 msgid "Minimum image height"
 msgstr ""
 
-#: includes/settings-api.php:399
+#: includes/settings-api.php:415
 msgid "Minimum height for images."
 msgstr ""
 
-#: includes/settings-api.php:400
+#: includes/settings-api.php:416
 msgid "Maximum image width"
 msgstr ""
 
-#: includes/settings-api.php:400
+#: includes/settings-api.php:416
 msgid ""
 "Maximum width for images. Images wider than this are automatically resized "
 "upon upload."
 msgstr ""
 
-#: includes/settings-api.php:401
+#: includes/settings-api.php:417
 msgid "Maximum image height"
 msgstr ""
 
-#: includes/settings-api.php:401
+#: includes/settings-api.php:417
 msgid ""
 "Maximum height for images. Images taller than this are automatically resized "
 "upon upload."
 msgstr ""
 
-#: includes/settings-api.php:405
+#: includes/settings-api.php:421
 msgid "Primary Image Settings"
 msgstr ""
 
-#: includes/settings-api.php:407
+#: includes/settings-api.php:423
 msgid "Thumbnail width (Ad Listings page)"
 msgstr ""
 
-#: includes/settings-api.php:407
+#: includes/settings-api.php:423
 msgid "Width of the thumbnail for the primary image shown in Ad Listings view."
 msgstr ""
 
-#: includes/settings-api.php:408
+#: includes/settings-api.php:424
 msgid "Thumbnail width (Primary Image)"
 msgstr ""
 
-#: includes/settings-api.php:408
+#: includes/settings-api.php:424
 msgid "Width of the thumbnail for the primary image shown in Single Ad view."
 msgstr ""
 
-#: includes/settings-api.php:409
+#: includes/settings-api.php:425
 msgid "Thumbnail height (Primary Image)"
 msgstr ""
 
-#: includes/settings-api.php:409
+#: includes/settings-api.php:425
 msgid "Height of the thumbnail for the primary image shown in Single Ad view."
 msgstr ""
 
-#: includes/settings-api.php:410
+#: includes/settings-api.php:426
 msgid "Crop primary image thumbnails?"
 msgstr ""
 
-#: includes/settings-api.php:410 includes/settings-api.php:419
+#: includes/settings-api.php:426 includes/settings-api.php:435
 msgctxt "settings"
 msgid ""
 "If you decide to crop thumbnails, images will match exactly the dimensions "
@@ -5950,95 +5976,95 @@ msgid ""
 "uploaded images, thumbnails may have different heights."
 msgstr ""
 
-#: includes/settings-api.php:413
+#: includes/settings-api.php:429
 msgid "Thumbnail Settings"
 msgstr ""
 
-#: includes/settings-api.php:416
+#: includes/settings-api.php:432
 msgid "Number of columns of thumbnails to show in Show Ad page."
 msgstr ""
 
-#: includes/settings-api.php:416
+#: includes/settings-api.php:432
 msgid "Zero means there will be as many thumbnails as possible per row."
 msgstr ""
 
-#: includes/settings-api.php:417
+#: includes/settings-api.php:433
 msgid "Thumbnail width"
 msgstr ""
 
-#: includes/settings-api.php:417
+#: includes/settings-api.php:433
 msgid "Width of the thumbnail images."
 msgstr ""
 
-#: includes/settings-api.php:418
+#: includes/settings-api.php:434
 msgid "Thumbnail height"
 msgstr ""
 
-#: includes/settings-api.php:418
+#: includes/settings-api.php:434
 msgid "Height of the thumbnail images."
 msgstr ""
 
-#: includes/settings-api.php:419
+#: includes/settings-api.php:435
 msgid "Crop thumbnail images?"
 msgstr ""
 
-#: includes/settings-api.php:424
+#: includes/settings-api.php:440
 msgid "AdSense"
 msgstr ""
 
-#: includes/settings-api.php:428
+#: includes/settings-api.php:444
 msgid "AdSense Settings"
 msgstr ""
 
-#: includes/settings-api.php:431
+#: includes/settings-api.php:447
 msgid "Above Ad text."
 msgstr ""
 
-#: includes/settings-api.php:432
+#: includes/settings-api.php:448
 msgid "Under Ad text."
 msgstr ""
 
-#: includes/settings-api.php:433
+#: includes/settings-api.php:449
 msgid "Below Ad images."
 msgstr ""
 
-#: includes/settings-api.php:436
+#: includes/settings-api.php:452
 msgid "Activate AdSense"
 msgstr ""
 
-#: includes/settings-api.php:437
+#: includes/settings-api.php:453
 msgid "AdSense code"
 msgstr ""
 
-#: includes/settings-api.php:437
+#: includes/settings-api.php:453
 msgid "Your AdSense code (Best if 468x60 text or banner.)"
 msgstr ""
 
-#: includes/settings-api.php:438
+#: includes/settings-api.php:454
 msgid "Show AdSense at position"
 msgstr ""
 
-#: includes/settings-api.php:443
+#: includes/settings-api.php:459
 msgid "Form"
 msgstr ""
 
-#: includes/settings-api.php:448
+#: includes/settings-api.php:464
 msgid "User Field"
 msgstr ""
 
-#: includes/settings-api.php:449
+#: includes/settings-api.php:465
 msgid "Dropdown"
 msgstr ""
 
-#: includes/settings-api.php:449
+#: includes/settings-api.php:465
 msgid "Autocomplete"
 msgstr ""
 
-#: includes/settings-api.php:450
+#: includes/settings-api.php:466
 msgid "HTML Widget for User field"
 msgstr ""
 
-#: includes/settings-api.php:450
+#: includes/settings-api.php:466
 msgid ""
 "The user field can be represented with an HTML dropdown or a text field with "
 "autocomplete capabilities. Using the dropdown is faster if you have a small "
@@ -6047,231 +6073,231 @@ msgid ""
 "be a better idea."
 msgstr ""
 
-#: includes/settings-api.php:451
+#: includes/settings-api.php:467
 msgid "Show User Field on Search"
 msgstr ""
 
-#: includes/settings-api.php:451
+#: includes/settings-api.php:467
 msgid "Show as \"Posted By\" in search form?"
 msgstr ""
 
-#: includes/settings-api.php:455
+#: includes/settings-api.php:471
 msgid "Phone Field"
 msgstr ""
 
-#: includes/settings-api.php:457
+#: includes/settings-api.php:473
 msgid "Show Phone field"
 msgstr ""
 
-#: includes/settings-api.php:457
+#: includes/settings-api.php:473
 msgid "Show phone field?"
 msgstr ""
 
-#: includes/settings-api.php:458
+#: includes/settings-api.php:474
 msgid "Require Phone"
 msgstr ""
 
-#: includes/settings-api.php:458
+#: includes/settings-api.php:474
 msgid "Require phone on Place Ad and Edit Ad forms?"
 msgstr ""
 
-#: includes/settings-api.php:459
+#: includes/settings-api.php:475
 msgid "Make Phone restricted?"
 msgstr ""
 
-#: includes/settings-api.php:459
+#: includes/settings-api.php:475
 msgid "Make phone restricted (only visible to logged in users)."
 msgstr ""
 
-#: includes/settings-api.php:463
+#: includes/settings-api.php:479
 msgid "Website Field"
 msgstr ""
 
-#: includes/settings-api.php:464
+#: includes/settings-api.php:480
 msgid "Show Website field"
 msgstr ""
 
-#: includes/settings-api.php:464
+#: includes/settings-api.php:480
 msgid "Show website field?"
 msgstr ""
 
-#: includes/settings-api.php:465
+#: includes/settings-api.php:481
 msgid "Require Website"
 msgstr ""
 
-#: includes/settings-api.php:465
+#: includes/settings-api.php:481
 msgid "Require website on Place Ad and Edit Ad forms?"
 msgstr ""
 
-#: includes/settings-api.php:466
+#: includes/settings-api.php:482
 msgid "Make Website restricted?"
 msgstr ""
 
-#: includes/settings-api.php:466
+#: includes/settings-api.php:482
 msgid "Make website restricted (only visible to logged in users)."
 msgstr ""
 
-#: includes/settings-api.php:470
+#: includes/settings-api.php:486
 msgid "Price Field"
 msgstr ""
 
-#: includes/settings-api.php:471
+#: includes/settings-api.php:487
 msgid "Show Price field"
 msgstr ""
 
-#: includes/settings-api.php:471
+#: includes/settings-api.php:487
 msgid "Show price field?"
 msgstr ""
 
-#: includes/settings-api.php:472
+#: includes/settings-api.php:488
 msgid "Require Price"
 msgstr ""
 
-#: includes/settings-api.php:472
+#: includes/settings-api.php:488
 msgid "Require price on Place Ad and Edit Ad forms?"
 msgstr ""
 
-#: includes/settings-api.php:473
+#: includes/settings-api.php:489
 msgid "Make Price restricted?"
 msgstr ""
 
-#: includes/settings-api.php:473
+#: includes/settings-api.php:489
 msgid "Make price restricted (only visible to logged in users)."
 msgstr ""
 
-#: includes/settings-api.php:474
+#: includes/settings-api.php:490
 msgid "Hide price field if empty or zero"
 msgstr ""
 
-#: includes/settings-api.php:474
+#: includes/settings-api.php:490
 msgid ""
 "If checked all price placeholders will be replaced with an empty string when "
 "the price of the Ad is zero or was not set."
 msgstr ""
 
-#: includes/settings-api.php:478
+#: includes/settings-api.php:494
 msgid "Country Field"
 msgstr ""
 
-#: includes/settings-api.php:479
+#: includes/settings-api.php:495
 msgid "Show Country field"
 msgstr ""
 
-#: includes/settings-api.php:479
+#: includes/settings-api.php:495
 msgid "Show country field?"
 msgstr ""
 
-#: includes/settings-api.php:480
+#: includes/settings-api.php:496
 msgid "Require Country"
 msgstr ""
 
-#: includes/settings-api.php:480
+#: includes/settings-api.php:496
 msgid "Require country on Place Ad and Edit Ad forms?"
 msgstr ""
 
-#: includes/settings-api.php:484
+#: includes/settings-api.php:500
 msgid "State Field"
 msgstr ""
 
-#: includes/settings-api.php:485
+#: includes/settings-api.php:501
 msgid "Show State field"
 msgstr ""
 
-#: includes/settings-api.php:485
+#: includes/settings-api.php:501
 msgid "Show state field?"
 msgstr ""
 
-#: includes/settings-api.php:486
+#: includes/settings-api.php:502
 msgid "Require State"
 msgstr ""
 
-#: includes/settings-api.php:486
+#: includes/settings-api.php:502
 msgid "Require state on Place Ad and Edit Ad forms?"
 msgstr ""
 
-#: includes/settings-api.php:490
+#: includes/settings-api.php:506
 msgid "County Field"
 msgstr ""
 
-#: includes/settings-api.php:491
+#: includes/settings-api.php:507
 msgid "Show County/Village/other"
 msgstr ""
 
-#: includes/settings-api.php:491
+#: includes/settings-api.php:507
 msgid "Show County/village/other?"
 msgstr ""
 
-#: includes/settings-api.php:492
+#: includes/settings-api.php:508
 msgid "Require County/Village/other"
 msgstr ""
 
-#: includes/settings-api.php:492
+#: includes/settings-api.php:508
 msgid "Require county/village/other on Place Ad and Edit Ad forms?"
 msgstr ""
 
-#: includes/settings-api.php:496
+#: includes/settings-api.php:512
 msgid "City Field"
 msgstr ""
 
-#: includes/settings-api.php:497
+#: includes/settings-api.php:513
 msgid "Show City field"
 msgstr ""
 
-#: includes/settings-api.php:497
+#: includes/settings-api.php:513
 msgid "Show city field?"
 msgstr ""
 
-#: includes/settings-api.php:498
+#: includes/settings-api.php:514
 msgid "Show City field before County field"
 msgstr ""
 
-#: includes/settings-api.php:498
+#: includes/settings-api.php:514
 msgid ""
 "If checked the city field will be shown before the county field. This "
 "setting may be overwritten if Region Control module is installed."
 msgstr ""
 
-#: includes/settings-api.php:499
+#: includes/settings-api.php:515
 msgid "Require City"
 msgstr ""
 
-#: includes/settings-api.php:499
+#: includes/settings-api.php:515
 msgid "Require city on Place Ad and Edit Ad forms?"
 msgstr ""
 
-#: includes/settings-api.php:504
+#: includes/settings-api.php:520
 msgid "Registration"
 msgstr ""
 
-#: includes/settings-api.php:512
+#: includes/settings-api.php:528
 msgid "General Email Settings"
 msgstr ""
 
-#: includes/settings-api.php:514
+#: includes/settings-api.php:530
 msgid "TO email address for outgoing emails"
 msgstr ""
 
-#: includes/settings-api.php:514
+#: includes/settings-api.php:530
 msgid ""
 "Emails are sent to your WordPress admin email. If you prefere to receive "
 "emails in a different address, please enter it here."
 msgstr ""
 
-#: includes/settings-api.php:515
+#: includes/settings-api.php:531
 msgid "FROM email address for outgoing emails"
 msgstr ""
 
-#: includes/settings-api.php:515
+#: includes/settings-api.php:531
 msgid ""
 "Emails go out using your WordPress admin email. If you prefer to use a "
 "different email enter it here."
 msgstr ""
 
-#: includes/settings-api.php:516
+#: includes/settings-api.php:532
 msgid "Use sender email for reply messages"
 msgstr ""
 
-#: includes/settings-api.php:516
+#: includes/settings-api.php:532
 msgid ""
 "Check this to use the name and email of the sender in the FROM field when "
 "someone replies to an ad. When unchecked the messages go out with the "
@@ -6284,140 +6310,140 @@ msgid ""
 "sure your WordPress admin email address is tied to your hosting account."
 msgstr ""
 
-#: includes/settings-api.php:517
+#: includes/settings-api.php:533
 msgid "Include Ad access key in email messages"
 msgstr ""
 
-#: includes/settings-api.php:517
+#: includes/settings-api.php:533
 msgid ""
 "Include Ad access key in email notifications. You may want to uncheck this "
 "option if you are using the Ad Management panel, but is not necessary."
 msgstr ""
 
-#: includes/settings-api.php:521
+#: includes/settings-api.php:537
 msgid "Ad Posted Message"
 msgstr ""
 
-#: includes/settings-api.php:523
+#: includes/settings-api.php:539
 msgid "Subject for Ad posted notification email"
 msgstr ""
 
-#: includes/settings-api.php:523
+#: includes/settings-api.php:539
 msgid "Your Classified Ad listing has been submitted"
 msgstr ""
 
-#: includes/settings-api.php:523
+#: includes/settings-api.php:539
 msgid "Subject line for email sent out when someone posts an Ad"
 msgstr ""
 
-#: includes/settings-api.php:524
+#: includes/settings-api.php:540
 msgid "Body for Ad posted notification email"
 msgstr ""
 
-#: includes/settings-api.php:524
+#: includes/settings-api.php:540
 msgid ""
 "Thank you for submitting your Classified Ad. The details of your ad are "
 "shown below."
 msgstr ""
 
-#: includes/settings-api.php:524
+#: includes/settings-api.php:540
 msgid "Message body text for email sent out when someone posts an Ad"
 msgstr ""
 
-#: includes/settings-api.php:528
+#: includes/settings-api.php:544
 msgid "Reply to Ad Message"
 msgstr ""
 
-#: includes/settings-api.php:530
+#: includes/settings-api.php:546
 msgid "Subject for Reply to Ad email"
 msgstr ""
 
-#: includes/settings-api.php:530
+#: includes/settings-api.php:546
 msgid "Response to your AWPCP Demo Ad"
 msgstr ""
 
-#: includes/settings-api.php:530
+#: includes/settings-api.php:546
 msgid "Subject line for email sent out when someone replies to Ad"
 msgstr ""
 
-#: includes/settings-api.php:531
+#: includes/settings-api.php:547
 msgid "Body for Reply to Ad email"
 msgstr ""
 
-#: includes/settings-api.php:531
+#: includes/settings-api.php:547
 msgid "Someone has responded to your AWPCP Demo Ad"
 msgstr ""
 
-#: includes/settings-api.php:531
+#: includes/settings-api.php:547
 msgid "Message body text for email sent out when someone replies to Ad"
 msgstr ""
 
-#: includes/settings-api.php:532
+#: includes/settings-api.php:548
 msgid "Notify admin about contact message"
 msgstr ""
 
-#: includes/settings-api.php:532
+#: includes/settings-api.php:548
 msgid ""
 "An email will be sent to the administrator every time a visitor sends a "
 "message to one of the Ad posters through the Reply to Ad page."
 msgstr ""
 
-#: includes/settings-api.php:536
+#: includes/settings-api.php:552
 msgid "Resend Access Key Message"
 msgstr ""
 
-#: includes/settings-api.php:538
+#: includes/settings-api.php:554
 msgid "Subject for Request Ad Access Key email"
 msgstr ""
 
-#: includes/settings-api.php:538
+#: includes/settings-api.php:554
 msgid "The Classified Ad's ad access key you requested"
 msgstr ""
 
-#: includes/settings-api.php:538
+#: includes/settings-api.php:554
 msgid ""
 "Subject line for email sent out when someone requests their ad access key "
 "resent"
 msgstr ""
 
-#: includes/settings-api.php:539
+#: includes/settings-api.php:555
 msgid "Body for Request Ad Access Key email"
 msgstr ""
 
-#: includes/settings-api.php:539
+#: includes/settings-api.php:555
 msgid ""
 "You asked to have your Classified Ad's access key resent. Below are all the "
 "Ad access keys in the system that are tied to the email address you provided"
 msgstr ""
 
-#: includes/settings-api.php:539
+#: includes/settings-api.php:555
 msgid ""
 "Message body text for email sent out when someone requests their ad access "
 "key resent"
 msgstr ""
 
-#: includes/settings-api.php:543
+#: includes/settings-api.php:559
 msgid "Incomplete Payment Message"
 msgstr ""
 
-#: includes/settings-api.php:545
+#: includes/settings-api.php:561
 msgid "Subject for Incomplete Payment email"
 msgstr ""
 
-#: includes/settings-api.php:545
+#: includes/settings-api.php:561
 msgid "There was a problem processing your payment"
 msgstr ""
 
-#: includes/settings-api.php:545
+#: includes/settings-api.php:561
 msgid ""
 "Subject line for email sent out when the payment processing does not complete"
 msgstr ""
 
-#: includes/settings-api.php:546
+#: includes/settings-api.php:562
 msgid "Body for Incomplete Payment email"
 msgstr ""
 
-#: includes/settings-api.php:546
+#: includes/settings-api.php:562
 msgid ""
 "There was a problem encountered during your attempt to submit payment. If "
 "funds were removed from the account you tried to use to make a payment "
@@ -6425,268 +6451,268 @@ msgid ""
 "assistance."
 msgstr ""
 
-#: includes/settings-api.php:546
+#: includes/settings-api.php:562
 msgid ""
 "Message body text for email sent out when the payment processing does not "
 "complete"
 msgstr ""
 
-#: includes/settings-api.php:550
+#: includes/settings-api.php:566
 msgid "Renew Ad Message"
 msgstr ""
 
-#: includes/settings-api.php:552
+#: includes/settings-api.php:568
 msgid "Subject for Renew Ad email"
 msgstr ""
 
-#: includes/settings-api.php:552
+#: includes/settings-api.php:568
 msgid "Your classifieds listing Ad will expire in %d days."
 msgstr ""
 
-#: includes/settings-api.php:552
+#: includes/settings-api.php:568
 msgid "Subject line for email sent out when an Ad is about to expire."
 msgstr ""
 
-#: includes/settings-api.php:553 includes/settings-api.php:560
+#: includes/settings-api.php:569 includes/settings-api.php:576
 msgid "Body for Renew Ad email"
 msgstr ""
 
-#: includes/settings-api.php:553
+#: includes/settings-api.php:569
 msgid ""
 "This is an automated notification that your Classified Ad will expire in %d "
 "days."
 msgstr ""
 
-#: includes/settings-api.php:553
+#: includes/settings-api.php:569
 msgid ""
 "Message body text for email sent out when an Ad is about to expire. Use %d "
 "as placeholder for the number of days before the Ad expires."
 msgstr ""
 
-#: includes/settings-api.php:557
+#: includes/settings-api.php:573
 msgid "Ad Renewed Message"
 msgstr ""
 
-#: includes/settings-api.php:559
+#: includes/settings-api.php:575
 msgid "Subject for Ad Renewed email"
 msgstr ""
 
-#: includes/settings-api.php:559
+#: includes/settings-api.php:575
 msgid "Your classifieds listing \"%s\" has been successfully renewed."
 msgstr ""
 
-#: includes/settings-api.php:559
+#: includes/settings-api.php:575
 msgid "Subject line for email sent out when an Ad is successfully renewed."
 msgstr ""
 
-#: includes/settings-api.php:560
+#: includes/settings-api.php:576
 msgid ""
 "Your classifieds listing Ad has been successfully renewed. More information "
 "below:"
 msgstr ""
 
-#: includes/settings-api.php:560
+#: includes/settings-api.php:576
 msgid ""
 "Message body text for email sent out when an Ad is successfully renewed. "
 msgstr ""
 
-#: includes/settings-api.php:564
+#: includes/settings-api.php:580
 msgid "Ad Expired Message"
 msgstr ""
 
-#: includes/settings-api.php:566
+#: includes/settings-api.php:582
 msgid "Subject for Ad Expired email"
 msgstr ""
 
-#: includes/settings-api.php:566
+#: includes/settings-api.php:582
 msgid "Your classifieds listing at %s has expired"
 msgstr ""
 
-#: includes/settings-api.php:566
+#: includes/settings-api.php:582
 msgid "Subject line for email sent out when an ad has auto-expired"
 msgstr ""
 
-#: includes/settings-api.php:567
+#: includes/settings-api.php:583
 msgid "Body for Ad Expired email"
 msgstr ""
 
-#: includes/settings-api.php:567
+#: includes/settings-api.php:583
 msgid "This is an automated notification that your Classified Ad has expired."
 msgstr ""
 
-#: includes/settings-api.php:567
+#: includes/settings-api.php:583
 msgid "Message body text for email sent out when an ad has auto-expired"
 msgstr ""
 
-#: includes/settings-api.php:571
+#: includes/settings-api.php:587
 msgid "Advanced Email Configuration"
 msgstr ""
 
-#: includes/settings-api.php:573
+#: includes/settings-api.php:589
 msgid "Enable external SMTP server"
 msgstr ""
 
-#: includes/settings-api.php:573
+#: includes/settings-api.php:589
 msgid "Enabled external SMTP server (if emails not processing normally)."
 msgstr ""
 
-#: includes/settings-api.php:574
+#: includes/settings-api.php:590
 msgid "SMTP host"
 msgstr ""
 
-#: includes/settings-api.php:574
+#: includes/settings-api.php:590
 msgid "SMTP host (if emails not processing normally)."
 msgstr ""
 
-#: includes/settings-api.php:575
+#: includes/settings-api.php:591
 msgid "SMTP port"
 msgstr ""
 
-#: includes/settings-api.php:575
+#: includes/settings-api.php:591
 msgid "SMTP port (if emails not processing normally)."
 msgstr ""
 
-#: includes/settings-api.php:576
+#: includes/settings-api.php:592
 msgid "SMTP username"
 msgstr ""
 
-#: includes/settings-api.php:576
+#: includes/settings-api.php:592
 msgid "SMTP username (if emails not processing normally)."
 msgstr ""
 
-#: includes/settings-api.php:577
+#: includes/settings-api.php:593
 msgid "SMTP password"
 msgstr ""
 
-#: includes/settings-api.php:577
+#: includes/settings-api.php:593
 msgid "SMTP password (if emails not processing normally)."
 msgstr ""
 
-#: includes/settings-api.php:585
+#: includes/settings-api.php:601
 msgid "Send Ads to Facebook Automatically"
 msgstr ""
 
-#: includes/settings-api.php:585
+#: includes/settings-api.php:601
 msgid ""
 "If checked, Ads will be posted to Facebook shortly after they are posted, "
 "enabled or edited, whichever occurs first. Ads will be posted only once. "
 "Please note that disabled Ads cannot be posted to Facebook."
 msgstr ""
 
-#: includes/settings-api.php:736
+#: includes/settings-api.php:752
 msgid "<module-name> License Key"
 msgstr ""
 
-#: includes/settings-api.php:745
+#: includes/settings-api.php:761
 msgid "Licenses"
 msgstr ""
 
-#: includes/settings-api.php:882
+#: includes/settings-api.php:898
 msgid ""
 "You cannot enable Akismet SPAM control because you do not have Akismet "
 "installed/activated"
 msgstr ""
 
-#: includes/settings-api.php:885
+#: includes/settings-api.php:901
 msgid ""
 "You cannot enable Akismet SPAM control because you have not configured "
 "Akismet properly"
 msgstr ""
 
-#: includes/settings-api.php:897
+#: includes/settings-api.php:913
 msgid ""
 "reCAPTCHA can't be used because the public key and private key settings are "
 "required for reCAPTCHA to work properly."
 msgstr ""
 
-#: includes/settings-api.php:899
+#: includes/settings-api.php:915
 msgid ""
 "reCAPTCHA can't be used because the public key setting is required for "
 "reCAPTCHA to work properly."
 msgstr ""
 
-#: includes/settings-api.php:901
+#: includes/settings-api.php:917
 msgid ""
 "reCAPTCHA can't be used because the private key setting is required for "
 "reCAPTCHA to work properly."
 msgstr ""
 
-#: includes/settings-api.php:910
+#: includes/settings-api.php:926
 msgid ""
 "Require Registration setting was enabled automatically because you activated "
 "the User Ad Management panel."
 msgstr ""
 
-#: includes/settings-api.php:925
+#: includes/settings-api.php:941
 msgid ""
 "User Ad Management panel was automatically deactivated because you disabled "
 "Require Registration setting."
 msgstr ""
 
-#: includes/settings-api.php:930
+#: includes/settings-api.php:946
 msgid ""
 "Credit System was automatically disabled because you disabled Require "
 "Registration setting."
 msgstr ""
 
-#: includes/settings-api.php:951 includes/settings-api.php:963
+#: includes/settings-api.php:967 includes/settings-api.php:979
 msgid ""
 "There is a problem with the currency code you have entered. It does not "
 "match any of the codes in the list of available currencies provided by "
 "PayPal."
 msgstr ""
 
-#: includes/settings-api.php:952 includes/settings-api.php:964
+#: includes/settings-api.php:968 includes/settings-api.php:980
 msgid "The available currency codes are"
 msgstr ""
 
-#: includes/settings-api.php:973
+#: includes/settings-api.php:989
 msgid ""
 "Require Registration setting was enabled automatically because you activated "
 "the Credit System."
 msgstr ""
 
-#: includes/settings-api.php:978
+#: includes/settings-api.php:994
 msgid ""
 "Charge Listing Fee setting was enabled automatically because you activated "
 "the Credit System."
 msgstr ""
 
-#: includes/settings-api.php:984
+#: includes/settings-api.php:1000
 msgid ""
 "Credit System was disabled automatically because you disabled Charge Listing "
 "Fee."
 msgstr ""
 
-#: includes/settings-api.php:1210
+#: includes/settings-api.php:1226
 msgid "Deactivate License"
 msgstr ""
 
-#: includes/settings-api.php:1211
+#: includes/settings-api.php:1227
 msgid "active"
 msgstr ""
 
-#: includes/settings-api.php:1213
+#: includes/settings-api.php:1229
 msgid "Activate License"
 msgstr ""
 
-#: includes/settings-api.php:1214
+#: includes/settings-api.php:1230
 msgid "inactive"
 msgstr ""
 
-#: includes/settings-api.php:1216
+#: includes/settings-api.php:1232
 msgid "Check License"
 msgstr ""
 
-#: includes/settings-api.php:1217
+#: includes/settings-api.php:1233
 msgid "expired"
 msgstr ""
 
-#: includes/settings-api.php:1219
+#: includes/settings-api.php:1235
 msgid "invalid"
 msgstr ""
 
-#: includes/settings-api.php:1234
+#: includes/settings-api.php:1250
 msgid "Documentation on date and time formatting"
 msgstr ""
 
