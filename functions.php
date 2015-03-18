@@ -1516,18 +1516,28 @@ function awpcp_get_currency_symbol() {
  * @since 3.0
  */
 function awpcp_format_money($value, $include_symbol=true) {
-	$thousands_separator = get_awpcp_option('thousands-separator');
-	$decimal_separator = get_awpcp_option('decimal-separator');
-	$decimals = get_awpcp_option('show-decimals') ? 2 : 0;
-	$symbol = $include_symbol ? awpcp_get_currency_symbol() : '';
+    return awpcp_get_formmatted_amount( $value, get_awpcp_option( 'show-currency-symbol' ) );
+}
 
-	if ($value >= 0) {
-		$number = number_format($value, $decimals, $decimal_separator, $thousands_separator);
-		return sprintf('%s%s', $symbol, $number);
-	} else {
-		$number = number_format(- $value, $decimals, $decimal_separator, $thousands_separator);
-		return sprintf('(%s%s)', $symbol, $number);
-	}
+function awpcp_format_money_without_currency_symbol( $value ) {
+    return awpcp_get_formmatted_amount( $value, true );
+}
+
+function awpcp_get_formmatted_amount( $value, $include_symbol ) {
+    $thousands_separator = get_awpcp_option('thousands-separator');
+    $decimal_separator = get_awpcp_option('decimal-separator');
+    $decimals = get_awpcp_option('show-decimals') ? 2 : 0;
+    $symbol = $include_symbol ? awpcp_get_currency_symbol() : '';
+
+    if ($value >= 0) {
+        $number = number_format($value, $decimals, $decimal_separator, $thousands_separator);
+        $formatted = sprintf('%s%s', $symbol, $number);
+    } else {
+        $number = number_format(- $value, $decimals, $decimal_separator, $thousands_separator);
+        $formatted = sprintf('(%s%s)', $symbol, $number);
+    }
+
+    return $formatted;
 }
 
 /**
