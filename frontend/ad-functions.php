@@ -269,7 +269,7 @@ function awpcp_ad_posted_user_email( $ad, $transaction = null, $message='' ) {
 	$payments_api = awpcp_payments_api();
 	$show_total_amount = $payments_api->payments_enabled();
 	$show_total_credits = $payments_api->credit_system_enabled();
-	$currency_code = $payments_api->get_currency();
+	$currency_code = awpcp_get_currency_code();
 	$blog_name = awpcp_get_blog_name();
 
 	if ( ! is_null( $transaction ) ) {

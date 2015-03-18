@@ -1489,13 +1489,17 @@ function awpcp_parse_bool($value) {
 	return $value ? true : false;
 }
 
+function awpcp_get_currency_code() {
+    return strtoupper( get_awpcp_option( ''. 'currency-code' ) );
+}
+
 
 /**
  * XXX: Referenced in FAQ: http://awpcp.com/forum/faq/why-doesnt-my-currency-code-change-when-i-set-it/
  */
 function awpcp_get_currency_symbol() {
 	$dollar = array('CAD', 'AUD', 'NZD', 'SGD', 'HKD', 'USD');
-	$code = get_awpcp_option('displaycurrencycode');
+	$code = awpcp_get_currency_code();
 
 	if (in_array($code, $dollar)) {
 		$symbol = "$";

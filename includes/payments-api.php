@@ -73,10 +73,6 @@ class AWPCP_PaymentsAPI {
         return $this->get_url('cancel', $transaction);
     }
 
-    public function get_currency() {
-        return strtoupper(get_awpcp_option('displaycurrencycode'));
-    }
-
     public function payments_enabled() {
         return get_awpcp_option('freepay') == 1;
     }

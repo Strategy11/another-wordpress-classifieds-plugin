@@ -61,6 +61,15 @@ class AWPCP_GeneralSettings {
 
         $key = $settings->add_section($group, __('Currency Format', 'AWPCP'), 'currency-format', 10, array( $settings, 'section' ) );
 
+        $settings->add_setting(
+            $key,
+            'currency-code',
+            __( 'Currency code', 'AWPCP' ),
+            'textfield',
+            $settings->get_option( 'displaycurrencycode' ),
+            __( "Prices in listings pages and payment pages will be displayed using this currency. The currency symbol will be generated based on this code, but if the plugin doesn't know the symbol for your currency, it will use an uppercase version of the code itself.", 'AWPCP' )
+        );
+
         $settings->add_setting($key, 'thousands-separator', __('Thousands separator', 'AWPCP'), 'textfield', _x(',', 'This translation is deprecated. Please go to the Settings section to change the thousands separator.', 'AWPCP'), '');
         $settings->add_setting($key, 'decimal-separator', __('Separator for the decimal point', 'AWPCP'), 'textfield', _x('.', 'This translation is deprecated. Please go to the Settings section to change the decimal separator.', 'AWPCP'), '');
         $settings->add_setting($key, 'show-decimals', __('Show decimals in price', 'AWPCP'), 'checkbox', 1, _x('Uncheck to show prices without decimals. The value will be rounded.', 'settings', 'AWPCP'));
@@ -102,6 +111,7 @@ class AWPCP_GeneralSettings {
     public function validate_group_settings( $options, $group ) {
         $current_roles = $this->roles->get_administrator_roles_names();
         $selected_roles = $this->roles->get_administrator_roles_names_from_string( $options['awpcpadminaccesslevel'] );
+
         $removed_roles = array_diff( $current_roles, $selected_roles );
         $new_roles = array_diff( $selected_roles, $current_roles );
 

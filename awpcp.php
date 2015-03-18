@@ -75,6 +75,7 @@ require_once( AWPCP_DIR . "/includes/functions/format.php" );
 require_once( AWPCP_DIR . "/includes/functions/hooks.php" );
 require_once( AWPCP_DIR . "/includes/functions/listings.php" );
 require_once( AWPCP_DIR . "/includes/functions/notifications.php" );
+require_once( AWPCP_DIR . "/includes/functions/payments.php" );
 require_once( AWPCP_DIR . "/includes/functions/routes.php" );
 
 $nameofsite = awpcp_get_blog_name();
@@ -498,7 +499,7 @@ class AWPCP {
 
         $credit_system_settings = awpcp_credit_system_settings();
         add_action( 'awpcp_register_settings', array( $credit_system_settings, 'register_settings' ) );
-        add_filter( 'awpcp_validate_settings_payment-settings', array( $credit_system_settings, 'validate_credit_system_settings' ) );
+        add_filter( 'awpcp_validate_settings_payment-settings', array( $credit_system_settings, 'validate_credit_system_settings' ), 10, 2 );
 
 		$payment_general_settings = new AWPCP_PaymentGeneralSettings;
 		add_action( 'awpcp_register_settings', array( $payment_general_settings, 'register_settings' ) );

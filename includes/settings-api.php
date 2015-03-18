@@ -723,30 +723,13 @@ class AWPCP_Settings_API {
 	 * XXX: Referenced in FAQ: http://awpcp.com/forum/faq/why-doesnt-my-currency-code-change-when-i-set-it/
 	 */
 	public function validate_payment_settings($options, $group) {
-		$currency_codes = array('AUD','BRL','CAD','CZK','DKK','EUR',
-								'HKD','HUF','ILS','JPY','MYR','MXN',
-								'NOK','NZD','PHP','PLN','GBP','SGD',
-								'SEK','CHF','TWD','THB','USD');
-
 		$setting = 'paypalcurrencycode';
-		if (isset($options[$setting]) &&
-			!in_array($options[$setting], $currency_codes)) {
 
-			$message = __("There is a problem with the currency code you have entered. It does not match any of the codes in the list of available currencies provided by PayPal.","AWPCP");
-			$message.= "<br/>" . __("The available currency codes are","AWPCP");
-			$message.= ":<br/>" . join(' | ', $currency_codes);
-			awpcp_flash($message);
-
-			$options[$setting] = 'USD';
-		}
-
-		$setting = 'displaycurrencycode';
-		if (isset($options[$setting]) &&
-			!in_array($options[$setting], $currency_codes)) {
-
-			$message = __("There is a problem with the currency code you have entered. It does not match any of the codes in the list of available currencies provided by PayPal.","AWPCP");
-			$message.= "<br/>" . __("The available currency codes are","AWPCP");
-			$message.= ":<br/>" . join(' | ', $currency_codes);
+		if ( isset( $options[ $setting ] ) && ! awpcp_paypal_supports_currency( $options[ $setting ] ) ) {
+			$currency_codes = awpcp_paypal_supported_currencies();
+			$message = __( 'There is a problem with the PayPal Currency Code you have entered. It does not match any of the codes in our list of curencies supported by PayPal.', 'AWPCP' );
+			$message.= '<br/><br/><strong>' . __( 'The available currency codes are', 'AWPCP' ) . '</strong>:<br/>';
+			$message.= join(' | ', $currency_codes);
 			awpcp_flash($message);
 
 			$options[$setting] = 'USD';
