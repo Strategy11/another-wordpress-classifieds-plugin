@@ -482,9 +482,9 @@ class AWPCP_Ad {
 
 		do_action('awpcp_before_delete_ad', $this);
 
-		$images = awpcp_media_api()->find_images_by_ad_id( $this->ad_id );
-		foreach ($images as $image) {
-			awpcp_media_api()->delete( $image );
+		$media = awpcp_media_api()->find_by_ad_id( $this->ad_id );
+		foreach ( $media as $file ) {
+			awpcp_media_api()->delete( $file );
 		}
 
 		$query = 'DELETE FROM ' . AWPCP_TABLE_AD_REGIONS . ' WHERE ad_id = %d';
