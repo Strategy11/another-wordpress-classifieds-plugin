@@ -2,7 +2,12 @@
 
 class AWPCP_Listings_Table extends WP_List_Table {
 
+    private $params;
     private $selected_category_id;
+    private $items_per_page;
+    private $total_items;
+
+    private $page;
 
     public function __construct($page) {
         parent::__construct(array('plural' => 'awpcp-listings'));
