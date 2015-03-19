@@ -1520,7 +1520,7 @@ function awpcp_format_money($value, $include_symbol=true) {
 }
 
 function awpcp_format_money_without_currency_symbol( $value ) {
-    return awpcp_get_formmatted_amount( $value, true );
+    return awpcp_get_formmatted_amount( $value, false );
 }
 
 function awpcp_get_formmatted_amount( $value, $include_symbol ) {
