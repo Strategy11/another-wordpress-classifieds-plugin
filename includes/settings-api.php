@@ -275,21 +275,46 @@ class AWPCP_Settings_API {
 
 		$this->add_setting( $key, 'displayphonefield', __( 'Show Phone field', 'AWPCP' ), 'checkbox', 1, __( 'Show phone field?', 'AWPCP' ) );
 		$this->add_setting( $key, 'displayphonefieldreqop', __( 'Require Phone', 'AWPCP' ), 'checkbox', 0, __( 'Require phone on Place Ad and Edit Ad forms?', 'AWPCP' ) );
-		$this->add_setting( $key, 'displayphonefieldpriv', __( 'Make Phone restricted?', 'AWPCP' ), 'checkbox', 0, __( 'Make phone restricted (only visible to logged in users).', 'AWPCP' ) );
+
+		$this->add_setting(
+			$key,
+			'displayphonefieldpriv',
+			__( 'Show Phone Field only to registered users', 'AWPCP' ),
+			'checkbox',
+			0,
+			__( 'This setting restricts viewing of this field so that only registered users that are logged in can see it.', 'AWPCP' )
+		);
 
 		// Section: Website Field
 
 		$key = $this->add_section($group, __('Website Field', 'AWPCP'), 'website', 15, array($this, 'section'));
 		$this->add_setting( $key, 'displaywebsitefield', __( 'Show Website field', 'AWPCP' ), 'checkbox', 1, __( 'Show website field?', 'AWPCP' ) );
 		$this->add_setting( $key, 'displaywebsitefieldreqop', __( 'Require Website', 'AWPCP' ), 'checkbox', 0, __( 'Require website on Place Ad and Edit Ad forms?', 'AWPCP' ) );
-		$this->add_setting( $key, 'displaywebsitefieldreqpriv', __( 'Make Website restricted?', 'AWPCP' ), 'checkbox', 0, __( 'Make website restricted (only visible to logged in users).', 'AWPCP' ) );
+
+		$this->add_setting(
+			$key,
+			'displaywebsitefieldreqpriv',
+			__( 'Show Website Field only to registered users', 'AWPCP' ),
+			'checkbox',
+			0,
+			__( 'This setting restricts viewing of this field so that only registered users that are logged in can see it.', 'AWPCP' )
+		);
 
 		// Section: Price Field
 
 		$key = $this->add_section($group, __('Price Field', 'AWPCP'), 'price', 15, array($this, 'section'));
 		$this->add_setting( $key, 'displaypricefield', __( 'Show Price field', 'AWPCP' ), 'checkbox', 1, __( 'Show price field?', 'AWPCP' ) );
 		$this->add_setting( $key, 'displaypricefieldreqop', __( 'Require Price', 'AWPCP' ), 'checkbox', 0, __( 'Require price on Place Ad and Edit Ad forms?', 'AWPCP' ) );
-		$this->add_setting( $key, 'price-field-is-restricted', __( 'Make Price restricted?', 'AWPCP' ), 'checkbox', 0, __( 'Make price restricted (only visible to logged in users).', 'AWPCP' ) );
+
+		$this->add_setting(
+			$key,
+			'price-field-is-restricted',
+			__( 'Show Price Field only to registered users', 'AWPCP' ),
+			'checkbox',
+			0,
+			__( 'This setting restricts viewing of this field so that only registered users that are logged in can see it.', 'AWPCP' )
+		);
+
 		$this->add_setting( $key, 'hide-price-field-if-empty', __( 'Hide price field if empty or zero', 'AWPCP' ), 'checkbox', 0, __( 'If checked all price placeholders will be replaced with an empty string when the price of the Ad is zero or was not set.', 'AWPCP' ) );
 
 		// Section: Country Field
