@@ -188,11 +188,65 @@ class AWPCP_Settings_API {
 
 		// Section: Payment Settings - PayPal
 
-		$key = $this->add_section($group, __('PayPal Settings', 'AWPCP'), 'paypal', 20, array($this, 'section'));
+		$key = $this->add_section( $group, __( 'PayPal Settings', 'AWPCP' ), 'paypal', 20, array( $this, 'section' ) );
+
 		$this->add_setting($key, 'activatepaypal', __( 'Activate PayPal?', 'AWPCP' ), 'checkbox', 1, __( 'Activate PayPal?', 'AWPCP' ) );
-		$this->add_setting($key, 'paypalemail', __( 'PayPal receiver email', 'AWPCP' ), 'textfield', 'xxx@xxxxxx.xxx', __( 'Email address for PayPal payments (if running in pay mode and if PayPal is activated).', 'AWPCP' ) );
-		$this->add_setting($key, 'paypalcurrencycode', __( 'PayPal currency code', 'AWPCP' ), 'textfield', 'USD', __( 'The currency in which you would like to receive your PayPal payments', 'AWPCP' ) );
-		// $this->add_setting($key, 'paypalpaymentsrecurring', 'Use PayPal recurring payments?', 'checkbox', 0, Use recurring payments PayPal (this feature is not fully automated or fully integrated. For more reliable results do not use recurring).');
+
+		$this->add_setting(
+			$key,
+			'paypalemail',
+			__( 'PayPal receiver email', 'AWPCP' ),
+			'textfield',
+			'',
+			__( 'Email address for PayPal payments (if running in pay mode and if PayPal is activated).', 'AWPCP' ),
+			array(
+				'behavior' => array(
+					'validation' => array(
+						'rules' => array(
+							'required' => array(
+								'depends' => 'activatepaypal',
+							),
+							'email' => true,
+						),
+						'messages' => array(
+							'email' => __( 'Please enter a valid email address.', 'AWPCP' ),
+						),
+					),
+					'behavior' => array(
+						'enabledIf' => 'activatepaypal',
+					)
+				),
+			)
+		);
+
+		$this->add_setting(
+			$key,
+			'paypalcurrencycode',
+			__( 'PayPal currency code', 'AWPCP' ),
+			'textfield',
+			'USD',
+			__( 'The currency in which you would like to receive your PayPal payments', 'AWPCP' ),
+			array(
+				'behavior' => array(
+					'validation' => array(
+						'rules' => array(
+							'required' => array(
+								'depends' => 'activatepaypal',
+							),
+							'oneof' => array(
+								'param' => awpcp_paypal_supported_currencies(),
+							),
+						),
+						'messages' => array(
+							'oneof' => str_replace( '<currency-codes>', implode( ', ', awpcp_paypal_supported_currencies() ), __( 'The PayPal Currency Code must be one of <currency-codes>.', 'AWPCP' ) ),
+						),
+					),
+					'behavior' => array(
+						'enabledIf' => 'activatepaypal',
+					)
+				),
+			)
+		);
 
 		// Section: Payment Settings - 2Checkout
 
@@ -498,7 +552,7 @@ class AWPCP_Settings_API {
 			$setting->helptext = $helptext;
 			$setting->default = $default;
 			$setting->type = $type;
-			$setting->args = $args;
+			$setting->args = wp_parse_args( $args, array( 'behavior' => array(), ) );
 
 			$this->groups[$group]->sections[$section]->settings[$name] = $setting;
 		}
@@ -828,7 +882,14 @@ class AWPCP_Settings_API {
 
 		$html = '<input id="'. $setting->name . '" class="regular-text" ';
 		$html.= 'value="' . $value . '" type="' . $type . '" ';
-		$html.= 'name="awpcp-options[' . $setting->name . ']" />';
+		$html.= 'name="awpcp-options[' . $setting->name . ']" ';
+
+		if ( ! empty( $setting->args['behavior'] ) ) {
+			$html.= 'awpcp-setting="' . esc_attr( json_encode( $setting->args['behavior'] ) ) . '" />';
+		} else {
+			$html.= '/>';
+		}
+
 		$html.= strlen($setting->helptext) > 45 ? '<br/>' : '';
 		$html.= '<span class="description">' . $setting->helptext . '</span>';
 

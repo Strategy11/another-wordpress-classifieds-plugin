@@ -30,6 +30,10 @@ module.exports = function(grunt) {
           '<%= path.awpcp %>/js/jquery-userfield.js',
           '<%= path.awpcp %>/js/jquery-collapsible.js',
           '<%= path.awpcp %>/js/main.js',
+        ],
+        '<%= path.awpcp %>/js/awpcp-admin.src.js': [
+          '<%= path.awpcp %>/js/components/settings-validator.js',
+          '<%= path.awpcp %>/js/custom-validators.js'
         ]
       }
     },
