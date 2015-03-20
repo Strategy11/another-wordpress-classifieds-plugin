@@ -70,7 +70,7 @@ class AWPCP_FilesSettings {
 
         // Section: Image Settings - Primary Images
 
-        $key = $settings->add_section($group, __('Primary Image', 'AWPCP'), 'primary-image', 40, array($settings, 'section'));
+        $key = $settings->add_section( $group, __( 'Primary Image', 'AWPCP'), 'primary-image', 40, array( $this, 'primary_image_section_header' ) );
 
         $settings->add_setting( $key, 'displayadthumbwidth', __( 'Thumbnail width (Ad Listings page)', 'AWPCP' ), 'textfield', '80', __( 'Width of the thumbnail for the primary image shown in Ad Listings view.', 'AWPCP' ) );
         $settings->add_setting( $key, 'primary-image-thumbnail-width', __( 'Thumbnail width (Primary Image)', 'AWPCP' ), 'textfield', '200', __( 'Width of the thumbnail for the primary image shown in Single Ad view.', 'AWPCP' ) );
@@ -79,10 +79,18 @@ class AWPCP_FilesSettings {
 
         // Section: Image Settings - Thumbnails
 
-        $key = $settings->add_section( $group, __( 'Thumbnails', 'AWPCP' ), 'thumbnails', 50, array( $settings, 'section' ) );
+        $key = $settings->add_section( $group, __( 'Thumbnails', 'AWPCP' ), 'thumbnails', 50, array( $this, 'thumbnails_section_header' ) );
 
         $settings->add_setting( $key, 'imgthumbwidth', __( 'Thumbnail width', 'AWPCP' ), 'textfield', '125', __( 'Width of the thumbnail images.', 'AWPCP' ) );
         $settings->add_setting( $key, 'imgthumbheight', __( 'Thumbnail height', 'AWPCP' ), 'textfield', '125', __( 'Height of the thumbnail images.', 'AWPCP' ) );
         $settings->add_setting( $key, 'crop-thumbnails', __( 'Crop thumbnail images?', 'AWPCP' ), 'checkbox', 1, _x( 'If you decide to crop thumbnails, images will match exactly the dimensions in the settings above but part of the image may be cropped out. If you decide to resize, image thumbnails will be resized to match the specified width and their height will be adjusted proportionally; depending on the uploaded images, thumbnails may have different heights.', 'settings', 'AWPCP' ) );
+    }
+
+    public function primary_image_section_header() {
+        echo __( 'The primary image is the one displayed as the thumbnail in the list view and the largest one shown when the detail view of the listing is clicked.', 'AWPCP' );
+    }
+
+    public function thumbnails_section_header() {
+        echo __( 'These are the remaining images that are not primary ones, if you have more than one image allowed per listing.', 'AWPCP' );
     }
 }
