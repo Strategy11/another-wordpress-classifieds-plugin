@@ -969,7 +969,7 @@ class AWPCP_Settings_API {
 
 		$current = esc_html(stripslashes($this->get_option($setting->name)));
 
-		$html = '<select name="awpcp-options['. $setting->name .']">';
+		$html = '<select id="' . $setting->name . '" name="awpcp-options['. $setting->name .']">';
 		foreach ($options as $value => $label) {
 			if ($value == $current) {
 				$html.= '<option value="' . $value . '" selected="selected">' . $label . '</option>';
