@@ -198,26 +198,12 @@ class AWPCP_Settings_API {
 			__( 'PayPal receiver email', 'AWPCP' ),
 			'textfield',
 			'',
-			__( 'Email address for PayPal payments (if running in pay mode and if PayPal is activated).', 'AWPCP' ),
-			array(
-				'behavior' => array(
-					'validation' => array(
-						'rules' => array(
-							'required' => array(
-								'depends' => 'activatepaypal',
-							),
-							'email' => true,
-						),
-						'messages' => array(
-							'email' => __( 'Please enter a valid email address.', 'AWPCP' ),
-						),
-					),
-					'behavior' => array(
-						'enabledIf' => 'activatepaypal',
-					)
-				),
-			)
+			__( 'Email address for PayPal payments (if running in pay mode and if PayPal is activated).', 'AWPCP' )
 		);
+
+		$this->add_validation_rule( $key, 'paypalemail', 'required', array( 'depends' => 'activatepaypal' ) );
+		$this->add_validation_rule( $key, 'paypalemail', 'email', true, __( 'Please enter a valid email address.', 'AWPCP' ) );
+		$this->add_behavior( $key, 'paypalemail', 'enabledIf', 'activatepaypal' );
 
 		$this->add_setting(
 			$key,
@@ -225,28 +211,16 @@ class AWPCP_Settings_API {
 			__( 'PayPal currency code', 'AWPCP' ),
 			'textfield',
 			'USD',
-			__( 'The currency in which you would like to receive your PayPal payments', 'AWPCP' ),
-			array(
-				'behavior' => array(
-					'validation' => array(
-						'rules' => array(
-							'required' => array(
-								'depends' => 'activatepaypal',
-							),
-							'oneof' => array(
-								'param' => awpcp_paypal_supported_currencies(),
-							),
-						),
-						'messages' => array(
-							'oneof' => str_replace( '<currency-codes>', implode( ', ', awpcp_paypal_supported_currencies() ), __( 'The PayPal Currency Code must be one of <currency-codes>.', 'AWPCP' ) ),
-						),
-					),
-					'behavior' => array(
-						'enabledIf' => 'activatepaypal',
-					)
-				),
-			)
+			__( 'The currency in which you would like to receive your PayPal payments', 'AWPCP' )
 		);
+
+		$supported_currencies = awpcp_paypal_supported_currencies();
+		$message = __( 'The PayPal Currency Code must be one of <currency-codes>.', 'AWPCP' );
+		$message = str_replace( '<currency-codes>', implode( ', ', $supported_currencies ), $message );
+
+		$this->add_validation_rule( $key, 'paypalcurrencycode', 'required', array( 'depends' => 'activatepaypal' ) );
+		$this->add_validation_rule( $key, 'paypalcurrencycode', 'oneof', array( 'param' => $supported_currencies ), $message );
+		$this->add_behavior( $key, 'paypalcurrencycode', 'enabledIf', 'activatepaypal' );
 
 		// Section: Payment Settings - 2Checkout
 
@@ -566,6 +540,33 @@ class AWPCP_Settings_API {
 		$this->defaults[$name] = $default;
 
 		return true;
+	}
+
+	public function add_validation_rule( $key, $setting_name, $validator, $definition, $message = null ) {
+		list( $group, $section ) = explode( ':', $key );
+
+		if ( ! isset( $this->groups[ $group ]->sections[ $section ]->settings[ $setting_name ] ) ) {
+			return;
+		}
+
+		$setting = $this->groups[ $group ]->sections[ $section ]->settings[ $setting_name ];
+
+		if ( ! is_null( $message ) ) {
+			$setting->args['behavior']['validation']['messages'][ $validator ] = $message;
+		}
+
+		$setting->args['behavior']['validation']['rules'][ $validator ] = $definition;
+	}
+
+	public function add_behavior( $key, $setting_name, $behavior, $definition ) {
+		list( $group, $section ) = explode( ':', $key );
+
+		if ( ! isset( $this->groups[ $group ]->sections[ $section ]->settings[ $setting_name ] ) ) {
+			return;
+		}
+
+		$setting = $this->groups[ $group ]->sections[ $section ]->settings[ $setting_name ];
+		$setting->args['behavior']['behavior'][ $behavior ] = $definition;
 	}
 
 	public function add_license_setting( $module_name, $module_slug ) {
