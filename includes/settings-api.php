@@ -227,9 +227,16 @@ class AWPCP_Settings_API {
 		$key = $this->add_section($group, __('2Checkout Settings', 'AWPCP'), '2checkout', 30, array($this, 'section'));
 
 		$this->add_setting( $key, 'activate2checkout', __( 'Activate 2Checkout', 'AWPCP' ), 'checkbox', 1, __( 'Activate 2Checkout?', 'AWPCP' ) );
-		$this->add_setting( $key, '2checkout', __( '2Checkout account', 'AWPCP' ), 'textfield', 'xxxxxxx', __( 'Account for 2Checkout payments (if running in pay mode and if 2Checkout is activated)', 'AWPCP' ) );
-		$this->add_setting($key, '2checkoutcurrencycode', __( '2Checkout currency code', 'AWPCP' ), 'textfield', 'USD', __( 'The currency in which you would like to receive your 2Checkout payments', 'AWPCP' ) );
-		// $this->add_setting($key, 'twocheckoutpaymentsrecurring', 'Use 2Checkout recurring payments?', 'checkbox', 0, 'Use recurring payments 2Checkout (this feature is not fully automated or fully integrated. For more reliable results do not use recurring).');
+
+		$this->add_setting( $key, '2checkout', __( '2Checkout account', 'AWPCP' ), 'textfield', '', __( 'Account for 2Checkout payments.', 'AWPCP' ) );
+
+		$this->add_validation_rule( $key, '2checkout', 'required', array( 'depends' => 'activate2checkout' ) );
+		$this->add_behavior( $key, '2checkout', 'enabledIf', 'activate2checkout' );
+
+		$this->add_setting( $key, '2checkoutcurrencycode', __( '2Checkout Currency Code', 'AWPCP' ), 'textfield', 'USD', __( 'The currency in which you would like to receive your 2Checkout payments', 'AWPCP' ) );
+
+		$this->add_validation_rule( $key, '2checkoutcurrencycode', 'required', array( 'depends' => 'activate2checkout' ) );
+		$this->add_behavior( $key, '2checkoutcurrencycode', 'enabledIf', 'activate2checkout' );
 
 		// Group: AdSense
 

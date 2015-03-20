@@ -16,6 +16,8 @@ function( $ ) {
                 options.messages[ fieldName ] = setting.validation.messages;
                 options.rules[ fieldName ] = self.getSettingRules( setting );
 
+                console.log( 'WTF', options );
+
                 self.setupSettingBehavior( field, setting );
             } );
 
@@ -42,9 +44,9 @@ function( $ ) {
 
         getRuleForValidator: function( validator, setting ) {
             var rule = setting.validation.rules[ validator ],
-                selector = '#' + rule.depends;
+                selector = this.getEscapedSelector( rule.depends );
 
-            if ( typeof rule.depends === 'undefined' || $( selector ).length === 0 ) {
+            if ( $( selector ).length === 0 ) {
                 return rule;
             } else {
                 return $.extend( {}, rule, {
@@ -53,6 +55,18 @@ function( $ ) {
                     }
                 } );
             }
+        },
+
+        getEscapedSelector: function ( selector ) {
+            if ( typeof selector === 'undefined' ) {
+                return false;
+            }
+
+            var escapedSelectorParts = $.map( selector.split( ',' ), function( part ) {
+                return '#' + part.trim().replace( /(:|\.|\[|\]|,)/g, "\\$1" );
+            } );
+
+            return escapedSelectorParts.join( ',' );
         },
 
         setupSettingBehavior: function( field, setting ) {
@@ -68,7 +82,7 @@ function( $ ) {
         },
 
         enabledIf: function( field, element ) {
-            $( '#' + element ).change( function() {
+            $( this.getEscapedSelector( element ) ).change( function() {
                 if ( $(this).is(':checked') ) {
                     field.removeAttr( 'disabled' );
                 } else {
