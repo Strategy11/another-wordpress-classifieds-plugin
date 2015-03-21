@@ -728,9 +728,9 @@ function awpcp_opsconfig_categories() {
 			}
 			else
 			{
-				$categorynameinput="<p style=\"background:transparent url($awpcp_imagesurl/delete_ico.png) left center no-repeat;padding-left:20px;\">";
+				$categorynameinput="<span style=\"background:transparent url($awpcp_imagesurl/delete_ico.png) left center no-repeat;padding-left:20px;\">";
 				$categorynameinput.=__("Category to Delete","AWPCP");
-				$categorynameinput.=": $category_name</p>";
+				$categorynameinput.=": $category_name</span>";
 				$selectinput="<p style=\"background:#D54E21;padding:3px;color:#ffffff;\">$thecategoryparentname</p>";
 				$submitbuttoncode="<input type=\"submit\" class=\"button-primary button\" name=\"createeditadcategory\" value=\"$aeword2\" />";
 			}
@@ -739,10 +739,9 @@ function awpcp_opsconfig_categories() {
 		{
 			$section_icon_style = "background:transparent url($awpcp_imagesurl/edit_ico.png) left center no-repeat;padding-left:20px;";
 
-			$categorynameinput = "<p>";
-			$categorynameinput.=__("Category to Edit","AWPCP");
+			$categorynameinput = __("Category to Edit","AWPCP");
 			$categorynameinput.=": $category_name ";
-			$categorynamefield = "<input name=\"category_name\" id=\"cat_name\" type=\"text\" class=\"inputbox\" value=\"$category_name\" size=\"40\" style=\"width: 220px\"/>";
+			$categorynamefield = "<input name=\"category_name\" id=\"cat_name\" type=\"text\" class=\"inputbox\" value=\"$category_name\" size=\"40\" style=\"width: 90%\"/>";
 			$selectinput="<select name=\"category_parent_id\"><option value=\"0\">";
 			$selectinput.=__("Make This a Top Level Category","AWPCP");
 			$selectinput.="</option>";
@@ -755,9 +754,8 @@ function awpcp_opsconfig_categories() {
 		else {
 			$section_icon_style = "background:transparent url($awpcp_imagesurl/post_ico.png) left center no-repeat;padding-left:20px;";
 
-			$categorynameinput="<p>";
-			$categorynameinput .= __( 'Enter the category name', 'AWPCP' );
-			$categorynamefield ="<input name=\"category_name\" id=\"cat_name\" type=\"text\" class=\"inputbox\" value=\"$category_name\" size=\"40\" style=\"width: 220px\"/>";
+			$categorynameinput = __( 'Enter the category name', 'AWPCP' );
+			$categorynamefield ="<input name=\"category_name\" id=\"cat_name\" type=\"text\" class=\"inputbox\" value=\"$category_name\" size=\"40\" style=\"width: 90%\"/>";
 			$selectinput="<select name=\"category_parent_id\"><option value=\"0\">";
 			$selectinput.=__("Make This a Top Level Category","AWPCP");
 			$selectinput.="</option>";
@@ -781,9 +779,9 @@ function awpcp_opsconfig_categories() {
 		$output .= $sidebar;
 
 		if (empty($sidebar)) {
-			$output .= "<div style=\"padding:10px;\"><p>";
+			$output .= "<div style=\"padding:10px;\">";
 		} else {
-			$output .= "<div style=\"padding:10px; width: 75%\"><p>";
+			$output .= "<div style=\"padding:10px; width: 75%\">";
 		}
 
 		$output .= "<b>";
@@ -821,22 +819,23 @@ function awpcp_opsconfig_categories() {
 			  <input type=\"hidden\" name=\"offset\" value=\"$offset\" />
 			  <input type=\"hidden\" name=\"results\" value=\"$results\" />
 
-			<p style=\"line-height: 1.3em; $section_icon_style\"> $aeword1</p>
-			<table width=\"75%\" cellpadding=\"5\"><tr>
-			<td>$categorynameinput</td>
-			<td>$aeword3</td>
-			<td>$aeword4</td>
-			</tr>
-			<tr>
-			<td>$categorynamefield</td>
-			<td>$selectinput</td>
-			<td>$orderinput</td>
-			</tr>
+			<span style=\"line-height: 1.3em; $section_icon_style\"> $aeword1</span>
+			<table cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" style=\"margin: 15px 0 12px\">
+				<tr>
+					<th style=\"text-align: left; padding-bottom: 4px; width: 40%\">$categorynameinput</th>
+					<th style=\"text-align: left; padding-bottom: 4px; width: 25%\">$aeword3</th>
+					<th style=\"text-align: left; padding-bottom: 4px; width: 20%\">$aeword4</th>
+				</tr>
+				<tr>
+					<td>$categorynamefield</td>
+					<td>$selectinput</td>
+					<td>$orderinput</td>
+				</tr>
 			</table>
 
 			$promptmovetocat
 
-			<p style=\"margin-top:5px;\" class=\"submit\">$submitbuttoncode $addnewlink</p>
+			<div style=\"margin-top:5px;\">$submitbuttoncode $addnewlink</div>
 			 </form>
 			 </div>";
 
