@@ -20,8 +20,6 @@ class AWPCP_UpdateFormFieldsOrderAjaxHandler extends AWPCP_AjaxHandler {
         $fields = $this->form_fields->get_fields();
         $fields_order = array();
 
-        debugf( 'Request param', $this->request->post( 'awpcp-form-fields-order' ), array_keys( $fields ) );
-
         foreach ( $this->request->post( 'awpcp-form-fields-order' ) as $element_id ) {
             $field_slug = str_replace( 'field-', '', $element_id );
 
