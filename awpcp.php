@@ -241,6 +241,7 @@ require_once( AWPCP_DIR . '/includes/placeholders/class-placeholders-installatio
 
 require_once( AWPCP_DIR . "/includes/settings/class-credit-system-settings.php" );
 require_once( AWPCP_DIR . "/includes/settings/class-files-settings.php" );
+require_once( AWPCP_DIR . "/includes/settings/class-form-fields-settings.php" );
 require_once( AWPCP_DIR . "/includes/settings/class-general-settings.php" );
 require_once( AWPCP_DIR . "/includes/settings/class-listings-moderation-settings.php" );
 require_once( AWPCP_DIR . '/includes/settings/class-listing-url-settings.php' );
@@ -507,6 +508,10 @@ class AWPCP {
 
         $files_settings = awpcp_files_settings();
         add_action( 'awpcp_register_settings', array( $files_settings, 'register_settings') );
+
+        $form_fields_settings = awpcp_form_fields_settings();
+        add_action( 'awpcp_register_settings', array( $form_fields_settings, 'register_settings' ) );
+        add_action( 'awpcp-admin-settings-page--form-field-settings', array( $form_fields_settings, 'settings_header' ) );
 	}
 
 	public function init() {
