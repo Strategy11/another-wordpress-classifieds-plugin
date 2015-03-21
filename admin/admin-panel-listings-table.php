@@ -217,29 +217,29 @@ class AWPCP_Listings_Table extends WP_List_Table {
 
     public function get_views() {
         $filters = array(
+            'new' => 'new',
+            'expired' => 'expired',
+            'awaiting-approval' => 'awaiting-approval',
+            'images-awaiting-approval' => 'images-awaiting-approval',
             'is-featured' => 'featured-ads',
             'flagged' => 'flagged-ads',
             'unpaid' => 'unpaid-ads',
             'non-verified' => 'non-verified-ads',
-            'awaiting-approval' => 'awaiting-approval',
-            'images-awaiting-approval' => 'images-awaiting-approval',
             'completed' => 'completed',
-            'new' => 'new',
-            'expired' => 'expired',
         );
 
         $selected = awpcp_array_data($this->params['filterby'], 'completed', $filters);
 
         $views = array(
+            'new' => array( __( 'New', 'AWPCP' ), $this->page->url( array( 'filterby' => 'new', 'filter' => true ) ) ),
+            'expired' => array( __( 'Expired', 'AWPCP' ), $this->page->url( array( 'filterby' => 'expired', 'filter' => true ) ) ),
+            'awaiting-approval' => array( __( 'Ads Awaiting Approval', 'AWPCP' ), $this->page->url( array( 'filterby' => 'awaiting-approval', 'filter' => true ) ) ),
+            'images-awaiting-approval' => array( __( 'Images Awaiting Approval', 'AWPCP' ), $this->page->url( array( 'filterby' => 'images-awaiting-approval', 'filter' => true ) ) ),
             'featured-ads' => array(__('Featured', 'AWPCP'), $this->page->url(array('filterby' => 'is-featured', 'filter' => true))),
             'flagged-ads'  => array(__('Flagged', 'AWPCP'), $this->page->url(array('filterby' => 'flagged', 'filter' => true))),
             'unpaid-ads' => array(__('Unpaid', 'AWPCP'), $this->page->url(array('filterby' => 'unpaid', 'filter' => true))),
             'non-verified-ads' => array( __( 'Unverified', 'AWPCP' ), $this->page->url( array( 'filterby' => 'non-verified', 'filter' => true ) ) ),
-            'awaiting-approval' => array( __( 'Ads Awaiting Approval', 'AWPCP' ), $this->page->url( array( 'filterby' => 'awaiting-approval', 'filter' => true ) ) ),
-            'images-awaiting-approval' => array( __( 'Images Awaiting Approval', 'AWPCP' ), $this->page->url( array( 'filterby' => 'images-awaiting-approval', 'filter' => true ) ) ),
             'completed' => array( __( 'Completed', 'AWPCP' ), $this->page->url( array( 'filterby' => 'completed', 'filter' => false ) ) ),
-            'new' => array( __( 'New', 'AWPCP' ), $this->page->url( array( 'filterby' => 'new', 'filter' => true ) ) ),
-            'expired' => array( __( 'Expired', 'AWPCP' ), $this->page->url( array( 'filterby' => 'expired', 'filter' => true ) ) ),
         );
 
         return $this->page->links($views, $selected);
