@@ -56,9 +56,13 @@ class AWPCP_Admin {
 
 
 	public function notices() {
-		if ( ! awpcp_current_user_is_admin() ) return;
+		if ( ! awpcp_current_user_is_admin() ) {
+			return;
+		}
 
-		if ( awpcp_request_param( 'page', false ) == 'awpcp-admin-upgrade' ) return;
+		if ( awpcp_request_param( 'page', false ) == 'awpcp-admin-upgrade' ) {
+			return;
+		}
 
 		if ( get_option( 'awpcp-pending-manual-upgrade' ) ) {
 			ob_start();
@@ -71,7 +75,10 @@ class AWPCP_Admin {
 			return;
 		}
 
-		if (get_awpcp_option('show-quick-start-guide-notice')) {
+		$show_quick_start_quide_notice = get_awpcp_option( 'show-quick-start-guide-notice' );
+		$show_drip_autoresponder = get_awpcp_option( 'show-drip-autoresponder' );
+
+		if ( $show_quick_start_quide_notice && is_awpcp_admin_page() && ! $show_drip_autoresponder ) {
 			ob_start();
 				include(AWPCP_DIR . '/admin/templates/admin-quick-start-guide-notice.tpl.php');
 				$html = ob_get_contents();
