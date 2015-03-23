@@ -269,6 +269,9 @@ require_once(AWPCP_DIR . "/install.php");
 // admin functions
 require_once(AWPCP_DIR . "/admin/admin-panel.php");
 require_once(AWPCP_DIR . "/admin/user-panel.php");
+require_once( AWPCP_DIR . '/admin/pointers/class-drip-autoresponder-ajax-handler.php' );
+require_once( AWPCP_DIR . '/admin/pointers/class-drip-autoresponder.php' );
+require_once( AWPCP_DIR . '/admin/pointers/class-pointers-manager.php' );
 require_once( AWPCP_DIR . '/admin/profile/class-user-profile-contact-information-controller.php' );
 require_once( AWPCP_DIR . '/admin/class-page-name-monitor.php' );
 
@@ -523,6 +526,10 @@ class AWPCP {
             $monitor = awpcp_page_name_monitor();
             add_action( 'post_updated', array( $monitor, 'flush_rewrite_rules_if_plugin_pages_name_changes' ), 10, 3 );
 
+            $pointers_manager = awpcp_pointers_manager();
+            add_action( 'admin_enqueue_scripts', array( $pointers_manager, 'register_pointers' ) );
+            add_action( 'admin_enqueue_scripts', array( $pointers_manager, 'setup_pointers' ) );
+
             if ( awpcp_current_user_is_admin() ) {
                 // load resources required in admin screens only, visible to admin users only.
                 add_action( 'admin_notices', array( awpcp_fee_payment_terms_notices(), 'dispatch' ) );
@@ -592,6 +599,10 @@ class AWPCP {
 
         $media_manager = awpcp_new_media_manager();
         $media_manager->register_file_handler( awpcp_image_file_handler() );
+
+        $handler = awpcp_drip_autoresponder_ajax_handler();
+        add_action( 'wp_ajax_awpcp-autoresponder-user-subscribed', array( $handler, 'ajax' ) );
+        add_action( 'wp_ajax_awpcp-autoresponder-dismissed', array( $handler, 'ajax' ) );
     }
 
 	public function admin_notices() {
@@ -858,6 +869,14 @@ class AWPCP {
 		wp_register_script('awpcp-admin-users', "{$js}/admin-users.js", array('awpcp-admin-wp-table-ajax'), $awpcp_db_version, true);
 		wp_register_script( 'awpcp-admin-attachments', "{$js}/admin-attachments.js", array( 'awpcp' ), $awpcp_db_version, true );
 		wp_register_script( 'awpcp-admin-import', "{$js}/admin-import.js", array( 'awpcp', 'jquery-ui-datepicker', 'jquery-ui-autocomplete' ), $awpcp_db_version, true );
+
+        wp_register_script(
+            'awpcp-admin-pointers',
+            "{$js}/admin-pointers.min.js",
+            array( 'awpcp', 'wp-pointer' ),
+            $awpcp_db_version,
+            true
+        );
 
 		/* frontend */
 

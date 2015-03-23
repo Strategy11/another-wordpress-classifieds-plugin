@@ -302,9 +302,9 @@ class AWPCP_Installer {
             $wpdb->insert(AWPCP_TABLE_ADFEES, $data);
         }
 
-
         $result = update_option('awpcp_db_version', $awpcp_db_version);
         $awpcp->settings->update_option('show-quick-start-guide-notice', true, true);
+        $awpcp->settings->update_option( 'show-drip-autoresponder', true, true );
 
         do_action('awpcp_install');
 
