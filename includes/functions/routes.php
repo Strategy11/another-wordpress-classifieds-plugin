@@ -109,6 +109,25 @@ if ( ! function_exists( 'is_awpcp_page' ) ) {
     }
 }
 
+/**
+ * @since next-release
+ */
+function is_awpcp_admin_page() {
+    if ( ! is_admin() || empty( $_REQUEST['page'] ) ) {
+        return false;
+    }
+
+    if ( string_starts_with( $_REQUEST['page'], 'awpcp' ) ) {
+        return true;
+    }
+
+    if ( in_array( $_REQUEST['page'], array( 'Configure4', 'Configure5' ) ) ) {
+        return true;
+    }
+
+    return false;
+}
+
 function is_awpcp_browse_listings_page() {
     return awpcp_queried_object_is_page_that_has_shortcode( 'AWPCPBROWSEADS' );
 }
