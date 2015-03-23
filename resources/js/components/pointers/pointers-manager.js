@@ -18,6 +18,7 @@ function( $ ) {
 
             model.element = $( '#wpadminbar' ).pointer( {
                 pointerClass: 'wp-pointer awpcp-pointer',
+                pointerWidth: 470,
                 position: model.position,
                 content: model.content,
                 buttons: self.createPointerButtons( model )

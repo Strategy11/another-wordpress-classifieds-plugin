@@ -21,7 +21,7 @@ class AWPCP_DripAutoresponder {
             'content' => $this->render_content(),
             'buttons' => array(
                 array(
-                    'label' => _x( 'Yes, please!', 'drip-autoresponder', 'AWPCP' ),
+                    'label' => _x( "Yes, I'd like my free module and course, please", 'drip-autoresponder', 'AWPCP' ),
                     'event' => 'awpcp-autoresponder-user-subscribed',
                     'data' => array( $nonce ),
                     'elementClass' => 'button-primary',
@@ -59,10 +59,10 @@ class AWPCP_DripAutoresponder {
     }
 
     private function render_content() {
-        $template = '<h3><title></h3><p><content></p><p><label for="awpcp-autoresponder-email"><b><label>:</b></label><br><input style="min-width: 95%" id="awpcp-autoresponder-email" type="text" name="awpcp-user-email" value="<user-email>" /></p><div class="awpcp-message error is-hidden"></div>';
+        $template = '<h3><title></h3><p><content></p><p><label for="awpcp-autoresponder-email"><b><label>:</b></label><br><input style="min-width: 100%" id="awpcp-autoresponder-email" type="text" name="awpcp-user-email" value="<user-email>" /></p><div class="awpcp-message error is-hidden"></div>';
 
         $title = _x( 'Want to know the Secrets of Building an Awesome Classifieds Website?', 'drip-autoresponder', 'AWPCP' );
-        $content = _x( 'Find out how to create a compelling, thriving classifieds website from scratch in this ridiculously actionable (and FREE) 5-part email course. Get a FREE premium module just for signing up.', 'drip-autoresponder', 'AWPCP' );
+        $content = _x( 'Find out how to create a compelling, thriving classifieds site from scratch in this ridiculously actionable (and free) 5-part email course. Get a premium module (AWPCP XML Sitemap) for free just for signing up.', 'drip-autoresponder', 'AWPCP' );
 
         $template = str_replace( '<title>', $title, $template );
         $template = str_replace( '<content>', $content, $template );
