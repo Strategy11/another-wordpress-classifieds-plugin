@@ -38,15 +38,11 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
     }
 
     public function get_transaction($create=false) {
-        if (!isset($this->transaction))
-            $this->transaction = null;
-
-        $id = awpcp_request_param('transaction_id');
-
-        if (is_null($this->transaction) && $create)
-            $this->transaction = AWPCP_Payment_Transaction::find_or_create($id);
-        else if (is_null($this->transaction))
-            $this->transaction = AWPCP_Payment_Transaction::find_by_id($id);
+        if ( $create ) {
+            $this->transaction = awpcp_payments_api()->get_or_create_transaction();
+        } else {
+            $this->transaction = awpcp_payments_api()->get_transaction();
+        }
 
         if (!is_null($this->transaction) && $this->transaction->is_new()) {
             $this->transaction->user_id = wp_get_current_user()->ID;
@@ -129,8 +125,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
         // only registered users are allowed to place Ads
         if (get_awpcp_option('requireuserregistration') && !is_user_logged_in()) {
-            $message = __('Hi, You need to be a registered user to post Ads in this website. Please use the form below to login or click the link to register.', 'AWPCP');
-            return $this->render( 'content', awpcp_login_form( $message, awpcp_get_page_url( 'place-ad-page-name' ) ) );
+            return $this->login_step();
         }
 
         $transaction = $this->get_transaction();
@@ -232,7 +227,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             $errors['category'] = sprintf( $message, $category_name );
         }
 
-        if (awpcp_current_user_is_admin() && empty($data['user'])) {
+        if (awpcp_current_user_is_moderator() && empty($data['user'])) {
             $errors['user'] = __('You should select an owner for this Ad.', 'AWPCP');
         }
 
@@ -253,6 +248,19 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $additional_errors = apply_filters( 'awpcp-validate-post-listing-order', array(), $data );
 
         array_splice( $errors, count( $errors ), 0, $additional_errors );
+    }
+
+    public function login_step() {
+        $message = __('Hi, You need to be a registered user to post Ads in this website. Please use the form below to login or click the link to register.', 'AWPCP');
+
+        $params = array(
+            'message' => $message,
+            'page_url' => awpcp_get_page_url( 'place-ad-page-name' ),
+        );
+
+        $template = AWPCP_DIR . '/frontend/templates/page-place-ad-login-step.tpl.php';
+
+        return $this->render( $template, $params );
     }
 
     public function order_step() {
@@ -520,12 +528,14 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $info = array();
 
         foreach ($translations as $field => $keys) {
-            foreach ( (array) $keys as $key ) {
-                $value = awpcp_get_property( $data, $key );
-                if ( empty( $info[ $field ] ) && !empty( $value ) ) {
-                    $info[ $field ] = $value;
-                    break;
-                }
+            if ( ! empty( $info[ $field ] ) ) {
+                continue;
+            }
+
+            $value = awpcp_get_object_property_from_alternatives( $data, $keys );
+
+            if ( ! empty( $value ) ) {
+                $info[ $field ] = $value;
             }
         }
 
@@ -663,6 +673,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         global $hasregionsmodule, $hasextrafieldsmodule;
 
         $is_admin_user = awpcp_current_user_is_admin();
+        $is_moderator = awpcp_current_user_is_moderator();
         $payments_enabled = get_awpcp_option('freepay') == 1;
         $pay_first = get_awpcp_option('pay-before-place-ad');
 
@@ -686,22 +697,22 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         // TODO: strip slashes from title, details
         $ui['listing-actions'] = !is_admin() && $edit;
         // show categories dropdown if $category is not set
-        $ui['category-field'] = ( $edit || empty( $form['ad_category'] ) ) && $is_admin_user;
+        $ui['category-field'] = ( $edit || empty( $form['ad_category'] ) ) && $is_moderator;
         $ui['user-dropdown'] = $edit && $is_admin_user;
-        $ui['start-end-date'] = $edit && $is_admin_user;
+        $ui['start-end-date'] = $edit && $is_moderator;
         // $ui['payment-term-dropdown'] = !$pay_first || ($is_admin_user && !$edit && $payments_enabled);
         $ui['website-field'] = get_awpcp_option('displaywebsitefield') == 1;
         $ui['website-field-required'] = get_awpcp_option('displaywebsitefieldreqop') == 1;
-        $ui['contact-name-field-readonly'] = !empty( $form['ad_contact_name'] ) && !$is_admin_user;
-        $ui['contact-email-field-readonly'] = !empty( $form['ad_contact_email'] ) && !$is_admin_user;
+        $ui['contact-name-field-readonly'] = !empty( $form['ad_contact_name'] ) && !$is_moderator;
+        $ui['contact-email-field-readonly'] = !empty( $form['ad_contact_email'] ) && !$is_moderator;
         $ui['contact-phone-field'] = get_awpcp_option('displayphonefield') == 1;
         $ui['contact-phone-field-required'] = get_awpcp_option('displayphonefieldreqop') == 1;
         $ui['price-field'] = get_awpcp_option('displaypricefield') == 1;
         $ui['price-field-required'] = get_awpcp_option('displaypricefieldreqop') == 1;
-        $ui['allow-regions-modification'] = $is_admin_user || !$edit || get_awpcp_option( 'allow-regions-modification' );
+        $ui['allow-regions-modification'] = $is_moderator || !$edit || get_awpcp_option( 'allow-regions-modification' );
         $ui['price-field'] = get_awpcp_option('displaypricefield') == 1;
         $ui['extra-fields'] = $hasextrafieldsmodule && function_exists('awpcp_extra_fields_render_form');
-        $ui['terms-of-service'] = !$edit && !$is_admin_user && get_awpcp_option('requiredtos');
+        $ui['terms-of-service'] = !$edit && !$is_moderator && get_awpcp_option('requiredtos');
         $ui['captcha'] = !$edit && !is_admin() && ( get_awpcp_option( 'captcha-enabled' ) == 1 );
 
         $hidden['step'] = 'save-details';
@@ -721,8 +732,10 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $page = $this;
         $url = $this->url();
 
+        $transaction = $this->get_transaction();
         $template = AWPCP_DIR . '/frontend/templates/page-place-ad-details-step.tpl.php';
-        $params = compact('page', 'ui', 'messages', 'form', 'hidden', 'required', 'url', 'edit', 'preview', 'errors');
+
+        $params = compact('transaction', 'page', 'ui', 'messages', 'form', 'hidden', 'required', 'url', 'edit', 'preview', 'errors');
 
         if ( isset( $this->ad ) && is_object( $this->ad ) ) {
             $params['listing'] = $this->ad;
@@ -786,7 +799,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
         // $edit = !empty($data['ad_id']);
 
-        $is_admin_user = awpcp_current_user_is_admin();
+        $is_moderator = awpcp_current_user_is_moderator();
 
         $user_id = awpcp_array_data('user_id', 0, $data);
         $user_payment_term = awpcp_array_data('user_payment_term', '', $data);
@@ -795,16 +808,16 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         }
 
         $start_date = strtotime($data['start_date']);
-        if ($edit && $is_admin_user && empty($data['start_date'])) {
+        if ($edit && $is_moderator && empty($data['start_date'])) {
             $errors['start_date'] = __('Please enter a start date for the Ad.', 'AWPCP');
         }
 
         $end_date = strtotime($data['end_date']);
-        if ($edit && $is_admin_user && empty($data['end_date'])) {
+        if ($edit && $is_moderator && empty($data['end_date'])) {
             $errors['end_date'] = __('Please enter an end date for the Ad.', 'AWPCP');
         }
 
-        if ($edit && $is_admin_user && $start_date > $end_date) {
+        if ($edit && $is_moderator && $start_date > $end_date) {
             $errors['start_date'] = __('The start date must occur before the end date.', 'AWPCP');
         }
 
@@ -937,7 +950,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         }
 
         // Terms of service required and accepted?
-        if (!$edit && !$is_admin_user && get_awpcp_option('requiredtos') && empty($data['terms-of-service'])) {
+        if (!$edit && !$is_moderator && get_awpcp_option('requiredtos') && empty($data['terms-of-service'])) {
             $errors['terms-of-service'] = __("You did not accept the terms of service", "AWPCP");
         }
 
@@ -1137,12 +1150,13 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $allowed_files = awpcp_listing_upload_limits()->get_listing_upload_limits( $ad );
 
         $params = array_merge( $params, array(
+            'transaction' => $transaction,
             'hidden' => array( 'transaction_id' => $transaction->id ),
             'errors' => $errors,
             'media_manager_configuration' => array(
                 'nonce' => wp_create_nonce( 'awpcp-manage-listing-media-' . $ad->ad_id ),
                 'allowed_files' => $allowed_files,
-                'show_admin_actions' => awpcp_current_user_is_admin(),
+                'show_admin_actions' => awpcp_current_user_is_moderator(),
             ),
             'media_uploader_configuration' => array(
                 'listing_id' => $ad->ad_id,
@@ -1264,6 +1278,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             'edit' => false,
             'ad' => $ad,
             'messages' => array_merge( $messages, awpcp_listings_api()->get_ad_alerts( $ad ) ),
+            'transaction' => $transaction,
             'transaction_id' => $transaction->id
         );
 

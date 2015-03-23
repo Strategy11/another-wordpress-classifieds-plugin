@@ -19,7 +19,7 @@ require_once(AWPCP_DIR . '/admin/admin-panel-users.php');
 class AWPCP_Admin {
 
 	public function __construct() {
-		$this->title = _x('AWPCP Classifieds Management System', 'awpcp admin menu', 'AWPCP');
+		$this->title = awpcp_admin_page_title();
 		$this->menu = _x('Classifieds', 'awpcp admin menu', 'AWPCP');
 
 		// not a page, but an extension to the Users table
@@ -238,7 +238,14 @@ class AWPCP_Admin {
 			$parts = array($this->title, $this->menu, $this->upgrade->page);
 			$page = add_submenu_page('awpcp-admin-uninstall', $parts[0], $parts[1], $capability, $parts[2], array($this->home, 'dispatch'), MENUICO);
 
-			$page = add_submenu_page($parent, __('Configure General Options', 'AWPCP'), __('Settings', 'AWPCP'), $capability, 'awpcp-admin-settings', array($this->settings, 'dispatch'));
+			$page = add_submenu_page(
+				$parent,
+				awpcp_admin_page_title( __( 'Settings', 'AWPCP' ) ),
+				__( 'Settings', 'AWPCP' ),
+				$capability,
+				'awpcp-admin-settings',
+				array( $this->settings, 'dispatch' )
+			);
 			add_action('admin_print_styles-' . $page, array($this->settings, 'scripts'));
 
 			$parts = array($this->credit_plans->title, $this->credit_plans->menu, $this->credit_plans->page);
@@ -254,16 +261,29 @@ class AWPCP_Admin {
 			$page = add_submenu_page($parent, $parts[0], $parts[1], $capability, $parts[2], array($this->fees, 'dispatch'));
 			add_action('admin_print_styles-' . $page, array($this->fees, 'scripts'));
 
-			// $parts = array($this->categories->title, $this->categories->menu, $this->categories->page);
-			// $page = add_submenu_page($parent, $parts[0], $parts[1], $capability, $parts[2], array($this->categories, 'dispatch'));
-			// add_action('admin_print_styles-' . $page, array($this->categories, 'scripts'));
+			add_submenu_page(
+				$parent,
+				awpcp_admin_page_title( __( 'Manage Categories', 'AWPCP' ) ),
+				__( 'Categories', 'AWPCP' ),
+				$capability,
+				'awpcp-admin-categories',
+				'awpcp_opsconfig_categories'
+			);
 
-			add_submenu_page($parent, __('Add/Edit Categories', 'AWPCP'), __('Categories', 'AWPCP'), $capability, 'awpcp-admin-categories', 'awpcp_opsconfig_categories');
-
-			$parts = array($this->listings->title, $this->listings->menu, $this->listings->page);
-			$page = add_submenu_page($parent, $parts[0], $parts[1], $capability, 'awpcp-listings', array($this->listings, 'dispatch'));
+			$page = add_submenu_page(
+				$parent,
+				$this->listings->title,
+				$this->listings->menu,
+				'manage_classifieds_listings',
+				'awpcp-listings',
+				array( $this->listings, 'dispatch' )
+			);
 			add_action('admin_print_styles-' . $page, array($this->listings, 'scripts'));
-			// add_submenu_page($parent, 'Manage Ad Listings', 'Listings', $capability, 'Manage1', 'awpcp_manage_viewlistings');
+
+			$this->form_fields = awpcp_form_fields_admin_page();
+			$parts = array( $this->form_fields->title, $this->form_fields->menu, $this->form_fields->page );
+			$page = add_submenu_page( $parent, $parts[0], $parts[1], $capability, 'awpcp-form-fields', array( $this->form_fields, 'dispatch' ) );
+			add_action( 'admin_print_styles-' . $page, array( $this->form_fields, 'scripts' ) );
 
 			// allow plugins to define additional sub menu entries
 			do_action('awpcp_admin_add_submenu_page', $parent, $capability);
@@ -553,7 +573,7 @@ function awpcp_opsconfig_categories() {
 
 		if ( $action == 'managecaticon' ) {
 			$output .= "<div class=\"wrap\"><h2>";
-			$output .= __("AWPCP Classifieds Management System Categories Management","AWPCP");
+			$output .= awpcp_admin_page_title( __( 'Manage Categories', 'AWPCP' ) );
 			$output .= "</h2>
 			";
 
@@ -715,9 +735,9 @@ function awpcp_opsconfig_categories() {
 			}
 			else
 			{
-				$categorynameinput="<p style=\"background:transparent url($awpcp_imagesurl/delete_ico.png) left center no-repeat;padding-left:20px;\">";
+				$categorynameinput="<span style=\"background:transparent url($awpcp_imagesurl/delete_ico.png) left center no-repeat;padding-left:20px;\">";
 				$categorynameinput.=__("Category to Delete","AWPCP");
-				$categorynameinput.=": $category_name</p>";
+				$categorynameinput.=": $category_name</span>";
 				$selectinput="<p style=\"background:#D54E21;padding:3px;color:#ffffff;\">$thecategoryparentname</p>";
 				$submitbuttoncode="<input type=\"submit\" class=\"button-primary button\" name=\"createeditadcategory\" value=\"$aeword2\" />";
 			}
@@ -726,10 +746,9 @@ function awpcp_opsconfig_categories() {
 		{
 			$section_icon_style = "background:transparent url($awpcp_imagesurl/edit_ico.png) left center no-repeat;padding-left:20px;";
 
-			$categorynameinput = "<p>";
-			$categorynameinput.=__("Category to Edit","AWPCP");
+			$categorynameinput = __("Category to Edit","AWPCP");
 			$categorynameinput.=": $category_name ";
-			$categorynamefield = "<input name=\"category_name\" id=\"cat_name\" type=\"text\" class=\"inputbox\" value=\"$category_name\" size=\"40\" style=\"width: 220px\"/>";
+			$categorynamefield = "<input name=\"category_name\" id=\"cat_name\" type=\"text\" class=\"inputbox\" value=\"$category_name\" size=\"40\" style=\"width: 90%\"/>";
 			$selectinput="<select name=\"category_parent_id\"><option value=\"0\">";
 			$selectinput.=__("Make This a Top Level Category","AWPCP");
 			$selectinput.="</option>";
@@ -742,9 +761,8 @@ function awpcp_opsconfig_categories() {
 		else {
 			$section_icon_style = "background:transparent url($awpcp_imagesurl/post_ico.png) left center no-repeat;padding-left:20px;";
 
-			$categorynameinput="<p>";
-			$categorynameinput .= __( 'Enter the category name', 'AWPCP' );
-			$categorynamefield ="<input name=\"category_name\" id=\"cat_name\" type=\"text\" class=\"inputbox\" value=\"$category_name\" size=\"40\" style=\"width: 220px\"/>";
+			$categorynameinput = __( 'Enter the category name', 'AWPCP' );
+			$categorynamefield ="<input name=\"category_name\" id=\"cat_name\" type=\"text\" class=\"inputbox\" value=\"$category_name\" size=\"40\" style=\"width: 90%\"/>";
 			$selectinput="<select name=\"category_parent_id\"><option value=\"0\">";
 			$selectinput.=__("Make This a Top Level Category","AWPCP");
 			$selectinput.="</option>";
@@ -757,7 +775,7 @@ function awpcp_opsconfig_categories() {
 
 		// Start the page display
 		$output .= "<div class=\"wrap\"><h2>";
-		$output .= __("AWPCP Classifieds Management System Categories Management","AWPCP");
+		$output .= awpcp_admin_page_title( __( 'Manage Categories', 'AWPCP' ) );
 		$output .= "</h2>";
 		if (isset($message) && !empty($message))
 		{
@@ -768,9 +786,9 @@ function awpcp_opsconfig_categories() {
 		$output .= $sidebar;
 
 		if (empty($sidebar)) {
-			$output .= "<div style=\"padding:10px;\"><p>";
+			$output .= "<div style=\"padding:10px;\">";
 		} else {
-			$output .= "<div style=\"padding:10px; width: 75%\"><p>";
+			$output .= "<div style=\"padding:10px; width: 75%\">";
 		}
 
 		$output .= "<b>";
@@ -808,22 +826,23 @@ function awpcp_opsconfig_categories() {
 			  <input type=\"hidden\" name=\"offset\" value=\"$offset\" />
 			  <input type=\"hidden\" name=\"results\" value=\"$results\" />
 
-			<p style=\"line-height: 1.3em; $section_icon_style\"> $aeword1</p>
-			<table width=\"75%\" cellpadding=\"5\"><tr>
-			<td>$categorynameinput</td>
-			<td>$aeword3</td>
-			<td>$aeword4</td>
-			</tr>
-			<tr>
-			<td>$categorynamefield</td>
-			<td>$selectinput</td>
-			<td>$orderinput</td>
-			</tr>
+			<span style=\"line-height: 1.3em; $section_icon_style\"> $aeword1</span>
+			<table cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" style=\"margin: 15px 0 12px\">
+				<tr>
+					<th style=\"text-align: left; padding-bottom: 4px; width: 40%\">$categorynameinput</th>
+					<th style=\"text-align: left; padding-bottom: 4px; width: 25%\">$aeword3</th>
+					<th style=\"text-align: left; padding-bottom: 4px; width: 20%\">$aeword4</th>
+				</tr>
+				<tr>
+					<td>$categorynamefield</td>
+					<td>$selectinput</td>
+					<td>$orderinput</td>
+				</tr>
 			</table>
 
 			$promptmovetocat
 
-			<p style=\"margin-top:5px;\" class=\"submit\">$submitbuttoncode $addnewlink</p>
+			<div style=\"margin-top:5px;\">$submitbuttoncode $addnewlink</div>
 			 </form>
 			 </div>";
 

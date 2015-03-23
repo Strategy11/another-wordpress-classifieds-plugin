@@ -52,7 +52,7 @@ class AWPCP_BrowseAdsPage extends AWPCP_Page {
             'category_id' => $category_id,
             'limit' => absint( awpcp_request_param( 'results', get_awpcp_option( 'adresultsperpage', 10 ) ) ),
             'offset' => absint( awpcp_request_param( 'offset', 0 ) ),
-            'order' => get_awpcp_option( 'groupbrowseadsby' ),
+            'orderby' => get_awpcp_option( 'groupbrowseadsby' ),
         );
 
         if ( $category_id == -1 ) {
@@ -71,7 +71,7 @@ class AWPCP_BrowseAdsPage extends AWPCP_Page {
         $query = array(
             'limit' => absint( awpcp_request_param( 'results', get_awpcp_option( 'adresultsperpage', 10 ) ) ),
             'offset' => absint( awpcp_request_param( 'offset', 0 ) ),
-            'order' => get_awpcp_option( 'groupbrowseadsby' ),
+            'orderby' => get_awpcp_option( 'groupbrowseadsby' ),
         );
 
         return awpcp_display_listings_in_page( $query, 'browse-listings' );

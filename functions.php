@@ -376,23 +376,14 @@ function awpcp_is_mysql_date( $date ) {
  * @since 2.0.7
  */
 function awpcp_admin_capability() {
-	$roles = explode(',', get_awpcp_option('awpcpadminaccesslevel'));
-	if (in_array('editor', $roles))
-		return 'edit_pages';
-	// default to: only WP administrator users are AWPCP admins
-	return 'activate_plugins';
+    return 'manage_classifieds';
 }
 
 /**
  * @since 3.3.2
  */
 function awpcp_admin_roles_names() {
-    $configured_roles = explode( ',', get_awpcp_option( 'awpcpadminaccesslevel' ) );
-    if ( in_array( 'editor', $configured_roles ) ) {
-        return array( 'administrator', 'editor' );
-    } else {
-        return array( 'administrator' );
-    }
+    return awpcp_roles_and_capabilities()->get_administrator_roles_names();
 }
 
 /**
@@ -400,19 +391,19 @@ function awpcp_admin_roles_names() {
  * AWPCP settings.
  */
 function awpcp_current_user_is_admin() {
-    // If the current user is being setup before the "init" action has fired,
-    // strange (and difficult to debug) role/capability issues will occur.
-    if ( ! did_action( 'set_current_user' ) ) {
-        _doing_it_wrong( __FUNCTION__, "Trying to call awpcp_current_user_is_admin() before the current user has been set.", '3.3.1' );
-    }
+    return awpcp_roles_and_capabilities()->current_user_is_administrator();
+}
 
-	return current_user_can( awpcp_admin_capability() );
+/**
+ * @since next-release
+ */
+function awpcp_current_user_is_moderator() {
+    return awpcp_roles_and_capabilities()->current_user_is_moderator();
 }
 
 
 function awpcp_user_is_admin($id) {
-	$capability = awpcp_admin_capability();
-	return user_can($id, $capability);
+    return awpcp_roles_and_capabilities()->user_is_administrator( $id );
 }
 
 
@@ -1498,13 +1489,17 @@ function awpcp_parse_bool($value) {
 	return $value ? true : false;
 }
 
+function awpcp_get_currency_code() {
+    return strtoupper( get_awpcp_option( ''. 'currency-code' ) );
+}
+
 
 /**
  * XXX: Referenced in FAQ: http://awpcp.com/forum/faq/why-doesnt-my-currency-code-change-when-i-set-it/
  */
 function awpcp_get_currency_symbol() {
 	$dollar = array('CAD', 'AUD', 'NZD', 'SGD', 'HKD', 'USD');
-	$code = get_awpcp_option('displaycurrencycode');
+	$code = awpcp_get_currency_code();
 
 	if (in_array($code, $dollar)) {
 		$symbol = "$";
@@ -1892,6 +1887,21 @@ function awpcp_admin_email_from() {
  */
 function awpcp_admin_email_to() {
 	return awpcp_format_email_address( awpcp_admin_recipient_email_address(), awpcp_get_blog_name() );
+}
+
+function awpcp_moderators_email_to() {
+    $users = get_users( array( 'role' => 'awpcp-moderator' ) );
+    $email_addresses = array();
+
+    foreach ( $users as $user ) {
+        $properties = array( 'display_name', 'user_login', 'username' );
+        $user_name = awpcp_get_object_property_from_alternatives( $user->data, $properties );
+        $user_email = $user->data->user_email;
+
+        $email_addresses[] = awpcp_format_email_address( $user_email, $user_name );
+    }
+
+    return $email_addresses;
 }
 
 /**

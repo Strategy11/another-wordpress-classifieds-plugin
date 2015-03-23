@@ -36,6 +36,10 @@ module.exports = function(grunt) {
           '<%= path.awpcp %>/js/components/pointers/pointers-manager.js',
           '<%= path.awpcp %>/js/admin/pointers.js',
           '<%= path.awpcp %>/js/admin/drip-autoresponder.js'
+        ],
+        '<%= path.awpcp %>/js/awpcp-admin.src.js': [
+          '<%= path.awpcp %>/js/components/settings-validator.js',
+          '<%= path.awpcp %>/js/custom-validators.js'
         ]
       }
     },

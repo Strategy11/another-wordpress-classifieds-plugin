@@ -77,7 +77,7 @@ function awpcp_calculate_ad_disabled_state($id=null, $transaction=null, $payment
 
     $payment_is_pending = $payment_status == AWPCP_Payment_Transaction::PAYMENT_STATUS_PENDING;
 
-    if ( awpcp_current_user_is_admin() ) {
+    if ( awpcp_current_user_is_moderator() ) {
         $disabled = 0;
     } else if ( get_awpcp_option( 'adapprove' ) == 1 ) {
         $disabled = 1;
@@ -92,6 +92,43 @@ function awpcp_calculate_ad_disabled_state($id=null, $transaction=null, $payment
     return $disabled;
 }
 
+function awpcp_should_disable_new_listing_with_payment_status( $listing, $payment_status ) {
+    $payment_is_pending = $payment_status == AWPCP_Payment_Transaction::PAYMENT_STATUS_PENDING;
+
+    if ( awpcp_current_user_is_moderator() ) {
+        $should_disable = false;
+    } else if ( get_awpcp_option( 'adapprove' ) == 1 ) {
+        $should_disable = true;
+    } else if ( $payment_is_pending && get_awpcp_option( 'enable-ads-pending-payment' ) == 1 ) {
+        $should_disable = false;
+    } else if ( $payment_is_pending ) {
+        $should_disable = true;
+    } else {
+        $should_disable = false;
+    }
+
+    return $should_disable;
+}
+
+function awpcp_should_enable_new_listing_with_payment_status( $listing, $payment_status ) {
+    return awpcp_should_disable_new_listing_with_payment_status( $listing, $payment_status ) ? false : true;
+}
+
+function awpcp_should_disable_existing_listing( $listing ) {
+    if ( awpcp_current_user_is_moderator() ) {
+        $should_disable = false;
+    } else if ( get_awpcp_option( 'disable-edited-listings-until-admin-approves' ) ) {
+        $should_disable = true;
+    } else {
+        $should_disable = false;
+    }
+
+    return $should_disable;
+}
+
+function awpcp_should_enable_existing_listing( $listing ) {
+    return awpcp_should_disable_existing_listing( $listing ) ? false : true;
+}
 
 /**
  * @since 3.0.2
@@ -232,7 +269,7 @@ function awpcp_ad_posted_user_email( $ad, $transaction = null, $message='' ) {
 	$payments_api = awpcp_payments_api();
 	$show_total_amount = $payments_api->payments_enabled();
 	$show_total_credits = $payments_api->credit_system_enabled();
-	$currency_code = $payments_api->get_currency();
+	$currency_code = awpcp_get_currency_code();
 	$blog_name = awpcp_get_blog_name();
 
 	if ( ! is_null( $transaction ) ) {
@@ -295,7 +332,7 @@ function awpcp_ad_posted_email( $ad, $transaction = null, $message = '', $notify
 
 		$admin_message = new AWPCP_Email;
 		$admin_message->to[] = awpcp_admin_email_to();
-		$admin_message->subject = __("New classified Ad listing posted.", "AWPCP");
+		$admin_message->subject = __( 'New classified listing created', 'AWPCP' );
 
 		$params = array('page' => 'awpcp-listings',  'action' => 'view', 'id' => $ad->ad_id);
 		$url = add_query_arg($params, admin_url('admin.php'));

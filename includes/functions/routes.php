@@ -542,6 +542,13 @@ function awpcp_get_admin_listings_url() {
 }
 
 /**
+ * @since next-release
+ */
+function awpcp_get_admin_form_fields_url() {
+    return add_query_arg( 'page', 'awpcp-form-fields', admin_url( 'admin.php' ) );
+}
+
+/**
  * Returns a link to Ad Management (a.k.a User Panel).
  *
  * @since 2.0.7

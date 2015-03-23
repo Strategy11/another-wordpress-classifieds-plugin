@@ -184,7 +184,7 @@ class AWPCP_MediaManager {
     }
 
     public function show_images( $ad ) {
-        $title = __( 'AWPCP Classifieds Management System - Manage Images', 'AWPCP' );
+        $title = awpcp_admin_page_title( __( 'Manage Images', 'AWPCP' ) );
 
         $this->page->title = apply_filters( 'awpcp-media-manager-page-title', $title );
         $this->page->page = 'awpcp-admin-images';

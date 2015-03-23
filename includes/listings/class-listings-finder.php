@@ -8,11 +8,15 @@ class AWPCP_ListingsFinder {
 
     private $db;
 
+    private $clauses = array();
+
     public function __construct( $db ) {
         $this->db = $db;
     }
 
     public function find( $user_query ) {
+        $this->reset_query();
+
         $query = apply_filters( 'awpcp-find-listings-query', $this->normalize_query( $user_query ) );
 
         $select = $this->build_select_clause( $query );
@@ -30,16 +34,25 @@ class AWPCP_ListingsFinder {
         }
     }
 
+    private function reset_query() {
+        $this->clauses = array();
+    }
+
     private function normalize_query( $user_query ) {
         $query = wp_parse_args( $user_query, array(
             'fields' => '*',
             'raw' => false,
 
             'id' => null,
+            'title' => null,
+            'keyword' => null,
 
             'category_id' => null,
             'exclude_category_id' => null,
             'include_listings_in_children_categories' => true,
+
+            'user' => null,
+            'user_id' => null,
 
             'contact_name' => null,
 
@@ -54,12 +67,25 @@ class AWPCP_ListingsFinder {
             'county' => '',
             'regions' => array(),
 
+            'payment_status' => null,
+            'payer_email' => null,
+
+            'disabled_date' => null,
+
             'disabled' => null,
             'verified' => null,
+            'featured' => null,
+            'flagged' => null,
+            'awaiting_approval' => null,
+
+            'have_media_awaiting_approval' => null,
+
+            'reviewed' => null,
 
             'limit' => 0,
             'offset' => 0,
-            'order' => 'default'
+            'orderby' => 'default',
+            'order' => 'DESC',
         ) );
 
         $query['regions'] = $this->normalize_regions_query( $query );
@@ -95,25 +121,24 @@ class AWPCP_ListingsFinder {
             $fields = $query['fields'];
         }
 
-        if ( ! empty( $query['regions'] ) ) {
-            $tables = '<listings-table> AS listings INNER JOIN <listing-regions-table> AS listing_regions ';
-            $tables.= 'ON listings.`ad_id` = listing_regions.`ad_id`';
-        } else {
-            $tables = '<listings-table> AS listings';
-        }
-
-        return "SELECT $fields FROM $tables";
+        return "SELECT $fields FROM <listings-table> AS listings <join>";
     }
 
     private function build_where_clause( $query ) {
         $conditions = array(
             $this->build_id_condition( $query ),
+            $this->build_title_condition( $query ),
             $this->build_keyword_condition( $query ),
             $this->build_category_condition( $query ),
+            $this->build_user_condition( $query ),
             $this->build_contact_condition( $query ),
             $this->build_price_condition( $query ),
             $this->build_regions_condition( $query ),
-            $this->build_status_condition( $query )
+            $this->build_payment_condition( $query ),
+            $this->build_dates_condition( $query ),
+            $this->build_status_condition( $query ),
+            $this->build_media_conditions( $query ),
+            $this->build_meta_conditions( $query ),
         );
 
         $conditions = apply_filters( 'awpcp-find-listings-conditions', $conditions, $query );
@@ -129,6 +154,16 @@ class AWPCP_ListingsFinder {
 
         if ( $query['id'] ) {
             $conditions[] = $this->build_condition_with_in_clause( 'listings.`ad_id`', $query['id'] );
+        }
+
+        return $conditions;
+    }
+
+    private function build_title_condition( $query ) {
+        $conditions = array();
+
+        if ( ! empty( $query['title'] ) ) {
+            $conditions[] = $this->db->prepare( "listings.`ad_title` LIKE '%%%s%%'" );
         }
 
         return $conditions;
@@ -177,28 +212,77 @@ class AWPCP_ListingsFinder {
         return $this->group_conditions( $conditions, 'AND' );
     }
 
-    private function build_condition_with_in_clause( $column, $value, $operator = 'IN' ) {
-        return $this->build_condition_with_inclusion_operators( $column, $value, 'IN', '=' );
+    private function build_condition_with_in_clause( $column, $value, $placeholder = '%d' ) {
+        return $this->build_condition_with_inclusion_operators( $column, $value, 'IN', '=', $placeholder );
     }
 
-    private function build_condition_with_inclusion_operators( $column, $value, $inclusion_operator, $comparison_operator ) {
+    private function build_condition_with_inclusion_operators( $column, $value, $inclusion_operator, $comparison_operator, $placeholder ) {
         if ( is_array( $value ) && ! empty( $value ) ) {
             if ( count( $value ) == 1 ) {
                 $single_value = array_shift( $value );
-                return $this->db->prepare( "$column $comparison_operator %d", $single_value );
+                return $this->db->prepare( "$column $comparison_operator $placeholder", $single_value );
             } else {
                 $multiple_values = array_map( 'absint', $value );
                 return "$column $inclusion_operator ( " . implode( ', ', $multiple_values ) . ' )';
             }
-        } else if ( is_numeric( $value ) ) {
-            return $this->db->prepare( "$column $comparison_operator %d", $value );
+        } else if ( ! empty( $value ) ) {
+            return $this->db->prepare( "$column $comparison_operator $placeholder", $value );
         } else {
             return '';
         }
     }
 
-    private function build_condition_with_not_in_clause( $colum, $value ) {
-        return $this->build_condition_with_inclusion_operators( $colum, $value, 'NOT IN', '!=' );
+    private function build_condition_with_not_in_clause( $colum, $value, $placeholder = '%d' ) {
+        return $this->build_condition_with_inclusion_operators( $colum, $value, 'NOT IN', '!=', $placeholder );
+    }
+
+    private function build_user_condition( $query ) {
+        $conditions = array();
+
+        if ( ! empty( $query['user_id'] ) ) {
+            $conditions[] = $this->db->prepare( 'listings.`user_id` = %d', $query['user_id'] );
+        }
+
+        if ( ! empty( $query['user'] ) ) {
+            $users_join = 'INNER JOIN ' . $this->db->users . ' ON ( listings.`user_id` = ID )';
+            $this->add_join_clause( $users_join );
+            $user_conditions[] = sprintf( "user_login LIKE '%%%s%%'", esc_sql( $query['user'] ) );
+
+            $meta_query = get_meta_sql(
+                array(
+                    'relation' => 'OR',
+                    array(
+                        'key' => 'first_name',
+                        'value' => esc_sql( $query['user'] ),
+                        'compare' => 'LIKE',
+                        'type' => 'CHAR',
+                    ),
+                    array(
+                        'key' => 'last_name',
+                        'value' => esc_sql( $query['user'] ),
+                        'compare' => 'LIKE',
+                        'type' => 'CHAR',
+                    ),
+                ),
+                'post',
+                $this->db->users,
+                'ID'
+            );
+            $this->add_join_clause( $meta_query['join'] );
+            $user_conditions[] = $this->clean_meta_query_condition( $meta_query['where'] );
+
+            $conditions[] = $this->group_conditions( $user_conditions, 'OR' );
+        }
+
+        return $conditions;
+    }
+
+    private function clean_meta_query_condition( $condition ) {
+        $condition = preg_replace( "/(?:^ AND )|\n|\t/", '', $condition );
+        $condition = preg_replace( '/\(\s*\(/', '(', $condition );
+        $condition = preg_replace( '/\)\s*\)/', ')', $condition );
+
+        return $condition;
     }
 
     private function build_contact_condition( $query ) {
@@ -232,6 +316,14 @@ class AWPCP_ListingsFinder {
     private function build_regions_condition( $query ) {
         $conditions = array();
 
+        if ( empty( $query['regions'] ) ) {
+            return $conditions;
+        }
+
+        $this->add_join_clause(
+            'INNER JOIN <listing-regions-table> AS listing_regions ON listings.`ad_id` = listing_regions.`ad_id`'
+        );
+
         foreach ( $query['regions'] as $region ) {
             $region_conditions = array();
 
@@ -250,6 +342,51 @@ class AWPCP_ListingsFinder {
         return $this->flatten_conditions( $conditions, 'AND' );
     }
 
+    private function add_join_clause( $clause ) {
+        $this->clauses['join'][] = $clause;
+    }
+
+    private function build_payment_condition( $query ) {
+        $conditions = array();
+
+        if ( ! empty( $query['payment_status'] ) ) {
+            if ( isset( $query['payment_status']['compare'] ) && $query['payment_status']['compare'] == 'not' ) {
+                $conditions[] = $this->build_condition_with_not_in_clause( 'payment_status', $query['payment_status']['values'], '%s' );
+            } else {
+                $conditions[] = $this->build_condition_with_in_clause( 'payment_status', $query['payment_status'], '%s' );
+            }
+        }
+
+        if ( ! empty( $query['payer_email'] ) ) {
+            $conditions[] = $this->db->prepare( 'listings.`payer_email` = %s', $query['payer_email'] );
+        }
+
+        return $conditions;
+    }
+
+    private function build_dates_condition( $query ) {
+        $conditions = array();
+
+        $conditions = array_merge( $this->build_date_condition( 'disabled_date', $query['disabled_date'] ) );
+        $conditions = array_merge( $this->build_date_condition( 'ad_enddate', $query['end_date'] ) );
+
+        return $conditions;
+    }
+
+    private function build_date_condition( $column_name, $sub_query ) {
+        $conditions = array();
+
+        if ( $sub_query == 'NULL' ) {
+            $conditions[] = "$column_name IS NULL";
+        } else if ( isset( $sub_query['compare'] ) ) {
+            if ( $sub_query['compare'] == '<' ) {
+                $conditions[] = $this->db->prepare( "$column_name < %s", $sub_query['value'] );
+            }
+        }
+
+        return $conditions;
+    }
+
     private function build_status_condition( $query ) {
         $conditions = array();
 
@@ -265,7 +402,56 @@ class AWPCP_ListingsFinder {
             $conditions[] = 'verified = 0';
         }
 
+        if ( $query['featured'] ) {
+            $conditions[] = 'listings.`is_featured_ad` = 1';
+        } else if ( ! is_null( $query['featured'] ) ) {
+            $conditions[] = 'listings.`is_featured_ad` = 0';
+        }
+
+        if ( $query['flagged'] ) {
+            $conditions[] = 'listings.`flagged` = 1';
+        } else if ( ! is_null( $query['flagged'] ) ) {
+            $conditions[] = 'listings.`flagged` = 0';
+        }
+
         return $this->group_conditions( $conditions, 'AND' );
+    }
+
+    private function build_media_conditions( $query ) {
+        $conditions = array();
+
+        if ( ! is_null( $query['have_media_awaiting_approval'] ) ) {
+            $sql = 'INNER JOIN <media-table> AS listing_media ON ( listing_media.`ad_id` = listings.`ad_id` AND listing_media.`status` = %s )';
+            $sql = $this->db->prepare( $sql, AWPCP_Media::STATUS_AWAITING_APPROVAL );
+            $this->add_join_clause( $sql );
+        }
+
+        return $conditions;
+    }
+
+    private function build_meta_conditions( $query ) {
+        if ( ! is_null( $query['reviewed'] ) ) {
+            $meta_query = get_meta_sql(
+                array(
+                    'meta_query' => array(
+                        'key' => 'reviewed',
+                        'value' => 0,
+                        'type' => 'UNSIGNED',
+                        'compare' => '=',
+                    ),
+                ),
+                'awpcp_ad',
+                'listings',
+                'ad_id'
+            );
+            $this->add_join_clause( $meta_query['join'] );
+
+            $conditions[] = $this->clean_meta_query_condition( $meta_query['where'] );
+        } else {
+            $conditions = array();
+        }
+
+        return $conditions;
     }
 
     private function flatten_conditions( $conditions, $connector = 'OR' ) {
@@ -305,18 +491,18 @@ class AWPCP_ListingsFinder {
     }
 
     private function build_order_clause( $query ) {
-        if ( ! is_null( $query['order'] ) ) {
-            return $this->build_order_by_clause( $query['order'] );
+        if ( ! is_null( $query['orderby'] ) ) {
+            return $this->build_order_by_clause( $query['orderby'], $query['order'] );
         } else {
             return '';
         }
     }
 
-    private function build_order_by_clause( $order ) {
+    private function build_order_by_clause( $orderby, $order ) {
         $basedate = 'CASE WHEN renewed_date IS NULL THEN ad_startdate ELSE GREATEST(ad_startdate, renewed_date) END';
         $is_paid = 'CASE WHEN ad_fee_paid > 0 THEN 1 ELSE 0 END';
 
-        switch ( $order ) {
+        switch ( $orderby ) {
             case 1:
                 $parts = array( "$basedate DESC" );
                 break;
@@ -353,19 +539,54 @@ class AWPCP_ListingsFinder {
             case 12:
                 $parts = array( 'ad_views ASC', "$basedate ASC" );
                 break;
+            case 'title':
+                $parts = array( 'ad_title %1$s' );
+                break;
+            case 'start-date':
+                $parts = array( 'ad_startdate %1$s' );
+                break;
+            case 'end-date':
+                $parts = array( 'ad_enddate %1$s' );
+                break;
+            case 'renewed-date':
+                $parts = array( $basedate . ' %1$s', 'ad_startdate %1$s', 'ad_id %1$s' );
+                break;
+            case 'status':
+                $parts = array( 'disabled %1$s', 'ad_startdate %1$s', 'ad_id %1$s' );
+                break;
+            case 'payment-term':
+                $parts = array( 'adterm_id %1$s', 'ad_startdate %1$s', 'ad_id %1$s' );
+                break;
+            case 'payment-status':
+                $parts = array( 'payment_status %1$s', 'ad_startdate %1$s', 'ad_id %1$s' );
+                break;
+            case 'featured-ad':
+                $parts = array( 'is_featured_ad %1$s', 'ad_startdate %1$s', 'ad_id %1$s' );
+                break;
+            case 'owner':
+                $parts = array( 'user_id %1$s', 'ad_startdate %1$s', 'ad_id %1$s' );
+                break;
             default:
                 $parts = array( 'ad_postdate DESC', 'ad_title ASC' );
                 break;
         }
 
-        $parts = array_filter( apply_filters( 'awpcp-ad-order-conditions', $parts, $order ) );
+        $parts = array_filter( apply_filters( 'awpcp-ad-order-conditions', $parts, $orderby, $order ) );
 
-        return sprintf( 'ORDER BY %s', implode( ', ', $parts ) );
+        return sprintf( 'ORDER BY %s', sprintf( implode( ', ', $parts ), $order ) );
     }
 
     private function prepare_query( $query ) {
+        if ( ! empty( $this->clauses['join'] ) ) {
+            $query = str_replace( '<join>', implode( ' ', $this->clauses['join'] ), $query );
+        } else {
+            $query = str_replace( '<join>', '', $query );
+        }
+
         $query = str_replace( '<listings-table>', AWPCP_TABLE_ADS, $query );
         $query = str_replace( '<listing-regions-table>', AWPCP_TABLE_AD_REGIONS, $query );
+        $query = str_replace( '<media-table>', AWPCP_TABLE_MEDIA, $query );
+
         return $query;
     }
 

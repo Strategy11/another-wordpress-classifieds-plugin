@@ -131,12 +131,42 @@ class AWPCP_ListingsCollection {
         $payments_are_enabled = $this->settings->get_option( 'freepay' ) == 1;
 
         if ( ! $enable_listings_pending_payment && $payments_are_enabled ) {
-            $query['payment_status'] = array( 'not', array( 'Pending', 'Unpaid' ) );
+            $query['payment_status'] = array( 'compare' => 'not', 'values' => array( 'Pending', 'Unpaid' ) );
         } else {
-            $query['payment_status'] = array( 'not', 'Unpaid' );
+            $query['payment_status'] = array( 'compare' => 'not', 'values' => 'Unpaid' );
         }
 
         return $query;
+    }
+
+    public function find_expired_listings_with_query( $query ) {
+        return $this->finder->find( $this->make_expired_listings_query( $query ) );
+    }
+
+    private function make_expired_listings_query( $query ) {
+        $query['end_date'] = array( 'compare' => '<', 'value' => current_time( 'mysql' ) );
+        return $this->make_valid_listings_query( $query );
+    }
+
+    public function find_listings_awaiting_approval_with_query( $query ) {
+        return $this->finder->find( $this->make_listings_awaiting_approval_query( $query ) );
+    }
+
+    private function make_listings_awaiting_approval_query( $query ) {
+        $query = array_merge( $query, array( 'disabled' => true, 'disabled_date' => 'NULL' ) );
+        return $this->make_valid_listings_query( $query );
+    }
+
+    public function find_valid_listings_with_query( $query ) {
+        return $this->finder->find( $this->make_valid_listings_query( $query ) );
+    }
+
+    public function find_successfully_paid_listings_with_query( $query ) {
+        return $this->finder->find( $this->make_successfully_paid_listings_query( $query ) );
+    }
+
+    public function find_listings_with_query( $query ) {
+        return $this->finder->find( $query );
     }
 
     /**
@@ -148,6 +178,26 @@ class AWPCP_ListingsCollection {
 
     public function count_enabled_listings_with_query( $query ) {
         return $this->finder->count( $this->make_enabled_listings_query( $query ) );
+    }
+
+    public function count_expired_listings_with_query( $query ) {
+        return $this->finder->count( $this->make_expired_listings_query( $query ) );
+    }
+
+    public function count_listings_awaiting_approval_with_query( $query ) {
+        return $this->finder->count( $this->make_listings_awaiting_approval_query( $query ) );
+    }
+
+    public function count_valid_listings_with_query( $query ) {
+        return $this->finder->count( $this->make_valid_listings_query( $query ) );
+    }
+
+    public function count_successfully_paid_listings_with_query( $query ) {
+        return $this->finder->count( $this->make_successfully_paid_listings_query( $query ) );
+    }
+
+    public function count_listings_with_query( $query ) {
+        return $this->finder->count( $query );
     }
 
     /**

@@ -243,7 +243,7 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
         do_action('awpcp_before_edit_ad', $ad);
 
         // only admins can change the owner of an Ad
-        if (!awpcp_current_user_is_admin() || empty($data['user_id'])) {
+        if ( ! awpcp_current_user_is_moderator() || empty( $data['user_id'] ) ) {
             $data['user_id'] = $ad->user_id;
         }
 
@@ -257,12 +257,12 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
         $ad->ad_item_price = $data['ad_item_price'] * 100;
         $ad->ad_last_updated = current_time('mysql');
 
-        if (awpcp_current_user_is_admin()) {
+        if ( awpcp_current_user_is_moderator() ) {
             $ad->ad_startdate = awpcp_set_datetime_date( $ad->ad_startdate, $data['start_date'] );
             $ad->ad_enddate = awpcp_set_datetime_date( $ad->ad_enddate, $data['end_date'] );
         }
 
-        if (awpcp_current_user_is_admin() && !empty($data['ad_category'])) {
+        if ( awpcp_current_user_is_moderator() && ! empty( $data['ad_category'] ) ) {
             $category = AWPCP_Category::find_by_id( $data['ad_category'] );
             if ( ! is_null( $category ) ) {
                 $ad->ad_category_id = $category->id;
@@ -275,7 +275,7 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
             return $this->details_step_form($ad, $data, $errors);
         }
 
-        if ( awpcp_current_user_is_admin() || get_awpcp_option( 'allow-regions-modification' ) ) {
+        if ( awpcp_current_user_is_moderator() || get_awpcp_option( 'allow-regions-modification' ) ) {
             $regions_allowed = $this->get_regions_allowed( $ad->ad_id );
             awpcp_basic_regions_api()->update_ad_regions( $ad, $data['regions'], $regions_allowed );
         }
@@ -325,7 +325,7 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
             'media_manager_configuration' => array(
                 'nonce' => wp_create_nonce( 'awpcp-manage-listing-media-' . $ad->ad_id ),
                 'allowed_files' => $allowed_files,
-                'show_admin_actions' => awpcp_current_user_is_admin(),
+                'show_admin_actions' => awpcp_current_user_is_moderator(),
             ),
             'media_uploader_configuration' => array(
                 'listing_id' => $ad->ad_id,
@@ -365,7 +365,7 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
 
         if (is_admin()) {
             $message = __('The Ad has been edited successfully. <a href="%s">Go back to view listings</a>.', 'AWPCP');
-            $page = awpcp_current_user_is_admin() ? 'awpcp-listings' : 'awpcp-panel';
+            $page = awpcp_current_user_is_moderator() ? 'awpcp-listings' : 'awpcp-panel';
             $url = add_query_arg('page', $page, admin_url('admin.php'));
 
             $this->messages[] = sprintf($message, $url);

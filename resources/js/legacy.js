@@ -85,9 +85,6 @@
          * @return {[type]} [description]
          */
         validate: function(defaults) {
-            // if there are reCAPTCHA fields in the page, make them required
-            $('[name="recaptcha_response_field"]').addClass('required');
-
             $.extend($.validator.messages, $.AWPCP.get('default-validation-messages'));
 
             $.validator.addMethod('money', (function() {

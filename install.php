@@ -180,28 +180,37 @@ class AWPCP_Installer {
         return AWPCP_Installer::$instance;
     }
 
+    /**
+     * @deprecated next-release
+     */
     public function activate() {
-        $this->install();
-        flush_rewrite_rules();
+        _deprecated_function( __FUNCTION__, 'next-release', 'install_or_upgrade' );
+        return $this->install_or_upgrade();
     }
 
-    /**
-     * Creates AWPCP tables.
-     *
-     * If is not a fresh install it calls $this->upgrade().
-     */
-    public function install() {
-        global $awpcp, $wpdb, $awpcp_db_version;
-
-        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+    public function install_or_upgrade() {
+        global $awpcp_db_version;
 
         $installed_version = get_option( 'awpcp_db_version' );
 
         // if table exists, this is an upgrade
         if ( $installed_version !== false && awpcp_table_exists( AWPCP_TABLE_CATEGORIES ) ) {
-            return $this->upgrade( $installed_version, $awpcp_db_version );
+            $this->upgrade( $installed_version, $awpcp_db_version );
+        } else {
+            $this->install( $awpcp_db_version );
         }
 
+        update_option( 'awpcp-installed-or-upgraded', true );
+        update_option( 'awpcp-flush-rewrite-rules', true );
+    }
+
+    /**
+     * Creates AWPCP tables.
+     */
+    public function install( $version ) {
+        global $awpcp, $wpdb;
+
+        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
         // create Categories table
         $sql = "CREATE TABLE IF NOT EXISTS " . AWPCP_TABLE_CATEGORIES . " (
@@ -302,7 +311,8 @@ class AWPCP_Installer {
             $wpdb->insert(AWPCP_TABLE_ADFEES, $data);
         }
 
-        $result = update_option('awpcp_db_version', $awpcp_db_version);
+        $result = update_option( 'awpcp_db_version', $version );
+
         $awpcp->settings->update_option('show-quick-start-guide-notice', true, true);
         $awpcp->settings->update_option( 'show-drip-autoresponder', true, true );
 

@@ -21,6 +21,8 @@ class AWPCP_User_Panel {
 	public function menu() {
         /* Profile Menu */
 
+        // We are using read as an alias for edit_classifieds_listings. If a user can `read`,
+        // he or she can `edit_classifieds_listings`.
         $capability = 'read';
 
         // Account Balance
@@ -30,7 +32,9 @@ class AWPCP_User_Panel {
             add_action("admin_print_styles-{$hook}", array($this->account, 'scripts'));
         }
 
-		if (get_awpcp_option('enable-user-panel') != 1) return;
+		if ( get_awpcp_option( 'enable-user-panel' ) != 1 || awpcp_current_user_is_moderator() ) {
+            return;
+        }
 
 		/* Ad Management Menu */
 

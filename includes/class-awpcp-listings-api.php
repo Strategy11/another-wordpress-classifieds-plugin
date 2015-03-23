@@ -5,17 +5,24 @@
  */
 function awpcp_listings_api() {
     if ( ! isset( $GLOBALS['awpcp-listings-api'] ) ) {
-        $GLOBALS['awpcp-listings-api'] = new AWPCP_ListingsAPI( awpcp_request(), awpcp()->settings );
+        $GLOBALS['awpcp-listings-api'] = new AWPCP_ListingsAPI(
+            awpcp_listings_metadata(),
+            awpcp_request(),
+            awpcp()->settings
+        );
     }
 
     return $GLOBALS['awpcp-listings-api'];
 }
 
 class AWPCP_ListingsAPI {
+
+    private $metadata = null;
     private $request = null;
     private $settings = null;
 
-    public function __construct( /*AWPCP_Request*/ $request = null, $settings ) {
+    public function __construct( $metadata, /*AWPCP_Request*/ $request = null, $settings ) {
+        $this->metadata = $metadata;
         $this->request = $request;
         $this->settings = $settings;
 
@@ -81,7 +88,9 @@ class AWPCP_ListingsAPI {
     public function consolidate_new_ad( $ad, $transaction ) {
         do_action( 'awpcp-place-ad', $ad, $transaction );
 
-        if ( $ad->verified ) {
+        $this->metadata->set( $ad->ad_id, 'reviewed', false );
+
+        if ( $ad->verified && ! awpcp_current_user_is_moderator() ) {
             $this->send_ad_posted_email_notifications( $ad, array(), $transaction );
         } else {
             $this->send_verification_email( $ad );
@@ -100,14 +109,14 @@ class AWPCP_ListingsAPI {
     public function consolidate_existing_ad( $ad ) {
         // if Ad is enabled and should be disabled, then disable it, otherwise
         // do not alter the Ad disabled status.
-        if ( ! $ad->disabled && $ad->should_be_disabled() ) {
+        if ( ! $ad->disabled && awpcp_should_disable_existing_listing( $ad ) ) {
             $ad->disable();
             $ad->clear_disabled_date();
         } else if ( $ad->disabled ) {
             $ad->clear_disabled_date();
         }
 
-        if ( $ad->verified ) {
+        if ( $ad->verified && ! awpcp_current_user_is_moderator() ) {
             $this->send_ad_updated_email_notifications( $ad );
         }
     }
@@ -150,12 +159,13 @@ class AWPCP_ListingsAPI {
         $ad->set_start_date( $now );
         $ad->set_end_date( $ad->get_payment_term()->calculate_end_date( $timestamp ) );
 
-        // TODO: move awpcp_calculate_ad_disabled_state() function to Ad model
-        if ( $ad->disabled && ! awpcp_calculate_ad_disabled_state( null, null, $ad->payment_status ) ) {
+        if ( $ad->disabled && awpcp_should_enable_new_listing_with_payment_status( $ad, $ad->payment_status ) ) {
             $ad->enable( /*approve images?*/ ! get_awpcp_option( 'imagesapprove', false ) );
         }
 
-        $this->send_ad_posted_email_notifications( $ad );
+        if ( ! awpcp_current_user_is_moderator() ) {
+            $this->send_ad_posted_email_notifications( $ad );
+        }
 
         $ad->save();
     }
@@ -186,7 +196,23 @@ class AWPCP_ListingsAPI {
      */
     public function send_ad_posted_email_notifications( $ad, $messages = array(), $transaction = null ) {
         $messages = array_merge( $messages, $this->get_ad_alerts( $ad ) );
-        return awpcp_ad_posted_email( $ad, $transaction, join( "\n\n", $messages ) );
+
+        awpcp_send_listing_posted_notification_to_user( $ad, $transaction, join( "\n\n", $messages ) );
+
+        $moderate_listings = get_awpcp_option( 'adapprove' );
+        $moderate_images = get_awpcp_option('imagesapprove') == 1;
+
+        if ( ( $moderate_listings || $moderate_images ) && $ad->disabled ) {
+            $notification_sent = awpcp_send_listing_awaiting_approval_notification_to_moderators(
+                $ad, $moderate_listings, $moderate_images
+            );
+        } else {
+            $notification_sent = false;
+        }
+
+        if ( ! $notification_sent ) {
+            awpcp_send_listing_posted_notification_to_moderators( $ad, $transaction, join( "\n\n", $messages ) );
+        }
     }
 
     /**
@@ -195,17 +221,21 @@ class AWPCP_ListingsAPI {
     public function send_ad_updated_email_notifications( $ad, $messages = array() ) {
         $messages = array_merge( $messages, $this->get_ad_alerts( $ad ) );
 
-        // send user notification
-        if ( ! awpcp_current_user_is_admin() || AWPCP_Ad::belongs_to_user( $ad->ad_id, wp_get_current_user()->ID ) ) {
-            awpcp_ad_updated_email( $ad, join( "\n\n", $messages ) );
+        awpcp_send_listing_updated_notification_to_user( $ad, join( "\n\n", $messages ) );
+
+        $moderate_modifications = get_awpcp_option( 'disable-edited-listings-until-admin-approves' );
+        $moderate_images = get_awpcp_option('imagesapprove') == 1;
+
+        if ( ( $moderate_modifications || $moderate_images ) && $ad->disabled ) {
+            $notification_sent = awpcp_send_listing_awaiting_approval_notification_to_moderators(
+                $ad, $moderate_modifications, $moderate_images
+            );
+        } else {
+            $notification_sent = false;
         }
 
-        $ad_approve = get_awpcp_option('adapprove') == 1;
-        $images_approve = get_awpcp_option('imagesapprove') == 1;
-
-        // send admin notification
-        if ( ( $ad_approve || $images_approve ) && $ad->disabled ) {
-            awpcp_ad_awaiting_approval_email( $ad, $ad_approve, $images_approve );
+        if ( ! $notification_sent ) {
+            awpcp_send_listing_updated_notification_to_moderators( $ad, join( "\n\n", $messages ) );
         }
     }
 

@@ -17,3 +17,30 @@ function awpcp_ordinalize($num) {
     }
     return "{$num}{$suff}";
 }
+
+function awpcp_render_template( $template, $params ) {
+    if ( file_exists( $template ) ) {
+        $template_file = $template;
+    } else if ( file_exists( AWPCP_DIR . '/templates/' . $template ) ) {
+        $template_file = AWPCP_DIR . '/templates/' . $template;
+    } else {
+        $template_file = null;
+    }
+
+    if ( ! is_null( $template_file ) ) {
+        ob_start();
+        extract( $params );
+        include( $template_file );
+        $output = ob_get_contents();
+        ob_end_clean();
+    } else {
+        $output = sprintf( 'Template %s not found!', str_replace( AWPCP_DIR, '', $template ) );
+    }
+
+    return $output;
+}
+
+function awpcp_admin_page_title() {
+    $sections = array_merge( func_get_args(), array( __( 'Classifieds Management System', 'AWPCP' ) ) );
+    return implode( ' &ndash; ', $sections );
+}

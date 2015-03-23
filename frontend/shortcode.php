@@ -288,7 +288,7 @@ function awpcp_load_classifieds($awpcppagename) {
         $query = array(
             'limit' => absint( awpcp_request_param( 'results', get_awpcp_option( 'adresultsperpage', 10 ) ) ),
             'offset' => absint( awpcp_request_param( 'offset', 0 ) ),
-            'order' => get_awpcp_option( 'groupbrowseadsby' ),
+            'orderby' => get_awpcp_option( 'groupbrowseadsby' ),
         );
 
         $output = awpcp_display_listings_in_page( $query, 'main-page' );

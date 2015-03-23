@@ -67,9 +67,14 @@
     echo $selector->render( 'search', array(), $errors );
     ?>
 
-    <?php if ($ui['module-extra-fields']): ?>
-    <?php echo awpcp_extra_fields_render_form(array(), $form, 'search', $errors); ?>
-    <?php endif ?>
+    <?php
+        echo awpcp_form_fields()->render_fields(
+            $form,
+            $errors,
+            null,
+            array( 'category' => 0, 'action' => 'search' )
+        );
+    ?>
 
     <input type="submit" class="button" value="<?php echo esc_attr( _x( 'Start Search', 'ad search form', "AWPCP" ) ); ?>" />
 </form>
