@@ -2,15 +2,13 @@
 AWPCP.define( 'awpcp/pointers-manager', [ 'jquery' ],
 function( $ ) {
 
-    var PointersManager = function( pointers ) {
-        this.pointers = pointers;
-    };
+    var PointersManager = function() {};
 
     $.extend( PointersManager.prototype, {
-        createPointers: function() {
+        createPointers: function( pointers ) {
             var self = this;
 
-            $.each( self.pointers, function( index, model ) {
+            $.each( pointers, function( index, model ) {
                 self.createPointer( model );
             } );
         },
@@ -55,12 +53,17 @@ function( $ ) {
 
             var data;
 
-            data = button.data ? button.data : [];
+            if ( button.data && button.data.slice ) {
+                data = button.data.slice();
+            } else {
+                data = [];
+            }
+
             data.splice( 0, 0, button.event, model );
 
             $.publish( '/pointer/' + button.event, data );
         }
     } );
 
-    return PointersManager;
+    return new PointersManager();
 } );

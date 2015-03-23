@@ -29,7 +29,8 @@ module.exports = function(grunt) {
         ],
         '<%= path.awpcp %>/js/admin-pointers.src.js': [
           '<%= path.awpcp %>/js/components/pointers/pointers-manager.js',
-          '<%= path.awpcp %>/js/admin/pointers.js'
+          '<%= path.awpcp %>/js/admin/pointers.js',
+          '<%= path.awpcp %>/js/admin/drip-autoresponder.js'
         ]
       }
     },
