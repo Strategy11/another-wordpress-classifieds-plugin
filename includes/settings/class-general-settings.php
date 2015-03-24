@@ -81,7 +81,7 @@ class AWPCP_GeneralSettings {
         $helptext = __( 'If checked, the price is shown with the currency symbol on the left. Uncheck if you want to hide it. The currency symbol can be configured by changing the currency used for payments in <payment-settings-link>.', 'AWPCP' );
         $helptext = str_replace( '<payment-settings-link>', $payment_settings_link, $helptext );
 
-        $this->add_setting(
+        $settings->add_setting(
             $key,
             'show-currency-symbol',
             __( 'Show currency symbol', 'AWPCP' ),
@@ -114,8 +114,9 @@ class AWPCP_GeneralSettings {
 
         $link = sprintf( '<a href="%1$s">%1$s</a>', 'https://www.google.com/recaptcha/admin' );
         $help_text = sprintf( __( 'You can get an API key from %s.', 'AWPCP' ), $link );
-        $this->add_setting( $key, 'recaptcha-public-key', __( 'reCAPTCHA Site Key', 'AWPCP' ), 'textfield', '', $help_text );
-        $this->add_setting( $key, 'recaptcha-private-key', __( 'reCAPTCHA Secret Key', 'AWPCP' ), 'textfield', '',$help_text );
+
+        $settings->add_setting( $key, 'recaptcha-public-key', __( 'reCAPTCHA Site Key', 'AWPCP' ), 'textfield', '', $help_text );
+        $settings->add_setting( $key, 'recaptcha-private-key', __( 'reCAPTCHA Secret Key', 'AWPCP' ), 'textfield', '',$help_text );
 
         // Section: SEO Settings
 
