@@ -13,7 +13,7 @@ class AWPCP_FilesSettings {
     }
 
     public function register_settings( $settings ) {
-        $group = $settings->add_group( _x( 'Files', 'name of Files settings section', 'AWPCP' ), 'files-settings', 50 );
+        $group = $settings->add_group( _x( 'Images/Attachments', 'name of Files settings section', 'AWPCP' ), 'attachments-settings', 50 );
 
         // Section: Uploads Directory
 
