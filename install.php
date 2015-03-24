@@ -191,6 +191,8 @@ class AWPCP_Installer {
     public function install_or_upgrade() {
         global $awpcp_db_version;
 
+        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+
         $installed_version = get_option( 'awpcp_db_version' );
 
         // if table exists, this is an upgrade
@@ -209,8 +211,6 @@ class AWPCP_Installer {
      */
     public function install( $version ) {
         global $awpcp, $wpdb;
-
-        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
         // create Categories table
         $sql = "CREATE TABLE IF NOT EXISTS " . AWPCP_TABLE_CATEGORIES . " (
