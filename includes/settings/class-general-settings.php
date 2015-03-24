@@ -74,6 +74,22 @@ class AWPCP_GeneralSettings {
         $settings->add_setting($key, 'decimal-separator', __('Separator for the decimal point', 'AWPCP'), 'textfield', _x('.', 'This translation is deprecated. Please go to the Settings section to change the decimal separator.', 'AWPCP'), '');
         $settings->add_setting($key, 'show-decimals', __('Show decimals in price', 'AWPCP'), 'checkbox', 1, _x('Uncheck to show prices without decimals. The value will be rounded.', 'settings', 'AWPCP'));
 
+        $payment_settings_name = __( 'Payment', 'AWPCP' ) .' ' . __( 'Settings', 'AWPCP' );
+        $payment_settings_url = awpcp_get_admin_settings_url( 'payment-settings' );
+        $payment_settings_link = sprintf( '<a href="%s">%s</a>', $payment_settings_url, $payment_settings_name );
+
+        $helptext = __( 'If checked, the price is shown with the currency symbol on the left. Uncheck if you want to hide it. The currency symbol can be configured by changing the currency used for payments in <payment-settings-link>.', 'AWPCP' );
+        $helptext = str_replace( '<payment-settings-link>', $payment_settings_link, $helptext );
+
+        $this->add_setting(
+            $key,
+            'show-currency-symbol',
+            __( 'Show currency symbol', 'AWPCP' ),
+            'checkbox',
+            1,
+            $helptext
+        );
+
         // Section: General - Terms of Service
 
         $key = $settings->add_section( $group, __( 'Terms of Service', 'AWPCP' ), 'terms-of-service', 11, array( $settings, 'section' ) );
@@ -96,10 +112,10 @@ class AWPCP_GeneralSettings {
 
         $settings->add_setting( $key, 'math-captcha-max-number', __( 'Max number used in Math CAPTCHA', 'AWPCP' ), 'textfield', $settings->get_option( 'contactformcheckhumanhighnumval', 10 ), __( 'Highest number used in aithmetic operation.', 'AWPCP') );
 
-        $link = sprintf( '<a href="%1$s">%1$s</a>', 'https://www.google.com/recaptcha/admin/create' );
+        $link = sprintf( '<a href="%1$s">%1$s</a>', 'https://www.google.com/recaptcha/admin' );
         $help_text = sprintf( __( 'You can get an API key from %s.', 'AWPCP' ), $link );
-        $settings->add_setting( $key, 'recaptcha-public-key', __( 'reCAPTCHA Public Key', 'AWPCP' ), 'textfield', '', $help_text );
-        $settings->add_setting( $key, 'recaptcha-private-key', __( 'reCAPTCHA Private Key', 'AWPCP' ), 'textfield', '',$help_text );
+        $this->add_setting( $key, 'recaptcha-public-key', __( 'reCAPTCHA Site Key', 'AWPCP' ), 'textfield', '', $help_text );
+        $this->add_setting( $key, 'recaptcha-private-key', __( 'reCAPTCHA Secret Key', 'AWPCP' ), 'textfield', '',$help_text );
 
         // Section: SEO Settings
 
