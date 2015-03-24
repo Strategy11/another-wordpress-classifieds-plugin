@@ -2,6 +2,8 @@
 
 class AWPCP_Ad {
 
+	public $ad_id;
+
 	static function from_object($object) {
 		$ad = new AWPCP_Ad;
 
