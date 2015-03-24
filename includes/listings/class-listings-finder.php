@@ -71,6 +71,7 @@ class AWPCP_ListingsFinder {
             'payer_email' => null,
 
             'disabled_date' => null,
+            'end_date' => null,
 
             'disabled' => null,
             'verified' => null,
