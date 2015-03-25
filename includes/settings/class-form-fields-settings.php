@@ -9,6 +9,17 @@ class AWPCP_FormFieldsSettings {
     public function register_settings( $settings ) {
         $group = $settings->add_group( __( 'Form', 'AWPCP' ), 'form-field-settings', 70 );
 
+        $key = $settings->add_section( $group, __( 'Form Steps', 'AWPCP' ), 'form-steps', 3, array( $settings, 'section' ) );
+
+        $settings->add_setting(
+            $key,
+            'show-create-listing-form-steps',
+            __( 'Show Form Steps', 'AWPCP' ),
+            'checkbox',
+            1,
+            __( 'If checked, when a user is creating a new listing, a list of steps will be shown at the top of the forms.', 'AWPCP' )
+        );
+
         // Section: User Field
 
         // TODO: Is this the right place to put this setting?

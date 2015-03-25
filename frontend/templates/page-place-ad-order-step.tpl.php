@@ -4,7 +4,11 @@
 <h2><?php echo esc_html( _x( 'Select Category', 'place ad order step', 'AWPCP' ) ); ?></h2>
 <?php endif; ?>
 
-<?php echo awpcp_render_listing_form_steps( 'select-category' ); ?>
+<?php
+    if ( get_awpcp_option( 'show-create-listing-form-steps' ) ) {
+        echo awpcp_render_listing_form_steps( 'select-category' );
+    }
+?>
 
 <?php foreach ($messages as $message): ?>
     <?php echo awpcp_print_message($message); ?>

@@ -1,7 +1,7 @@
 <h2><?php _e('Upload Files', 'AWPCP') ?></h2>
 
 <?php
-    if ( isset( $transaction ) ) {
+    if ( isset( $transaction ) && get_awpcp_option( 'show-create-listing-form-steps' ) ) {
         echo awpcp_render_listing_form_steps( 'upload-files', $transaction );
     }
 ?>
