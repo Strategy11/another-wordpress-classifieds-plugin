@@ -245,11 +245,14 @@ class AWPCP_ListingsFinder {
         }
 
         if ( ! empty( $query['user'] ) ) {
+            $user_conditions = array();
+
             $users_join = 'INNER JOIN ' . $this->db->users . ' ON ( listings.`user_id` = ID )';
             $this->add_join_clause( $users_join );
             $user_conditions[] = sprintf( "user_login LIKE '%%%s%%'", esc_sql( $query['user'] ) );
 
-            $meta_query = get_meta_sql(
+            $meta_query = $this->get_meta_sql(
+                'user_name_meta',
                 array(
                     'relation' => 'OR',
                     array(
@@ -270,12 +273,30 @@ class AWPCP_ListingsFinder {
                 'ID'
             );
             $this->add_join_clause( $meta_query['join'] );
-            $user_conditions[] = $this->clean_meta_query_condition( $meta_query['where'] );
+            $user_conditions[] = $meta_query['where'];
 
             $conditions[] = $this->group_conditions( $user_conditions, 'OR' );
         }
 
         return $conditions;
+    }
+
+    private function get_meta_sql( $name, $meta_query, $type, $primary_table, $primary_id_column ) {
+        $query = get_meta_sql( $meta_query, $type, $primary_table, $primary_id_column );
+
+        if ( function_exists( '_get_meta_table' ) ) {
+            $meta_table = _get_meta_table( $type );
+
+            $query['join'] = str_replace( $meta_table, $name, $query['join'] );
+            $query['where'] = str_replace( $meta_table, $name, $query['where'] );
+
+            $query['join'] = str_replace( "JOIN $name ON" , "JOIN $meta_table AS $name ON", $query['join'] );
+        }
+
+        return array(
+            'join' => $query['join'],
+            'where' => $this->clean_meta_query_condition( $query['where'] ),
+        );
     }
 
     private function clean_meta_query_condition( $condition ) {
@@ -432,11 +453,12 @@ class AWPCP_ListingsFinder {
 
     private function build_meta_conditions( $query ) {
         if ( ! is_null( $query['reviewed'] ) ) {
-            $meta_query = get_meta_sql(
+            $meta_query = $this->get_meta_sql(
+                'reviewed_meta',
                 array(
                     'meta_query' => array(
                         'key' => 'reviewed',
-                        'value' => 0,
+                        'value' => $query['reviewed'],
                         'type' => 'UNSIGNED',
                         'compare' => '=',
                     ),
@@ -447,7 +469,7 @@ class AWPCP_ListingsFinder {
             );
             $this->add_join_clause( $meta_query['join'] );
 
-            $conditions[] = $this->clean_meta_query_condition( $meta_query['where'] );
+            $conditions[] = $meta_query['where'];
         } else {
             $conditions = array();
         }
