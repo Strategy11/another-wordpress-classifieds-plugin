@@ -9,7 +9,6 @@ module.exports = function(grunt) {
     concat: {
       files: {
         '<%= path.awpcp %>/js/awpcp.src.js': [
-          '<%= path.awpcp %>/js/knockout-3.1.0.min.js',
           '<%= path.awpcp %>/js/legacy.js',
           '<%= path.awpcp %>/js/awpcp.js',
           '<%= path.awpcp %>/js/jquery.js',

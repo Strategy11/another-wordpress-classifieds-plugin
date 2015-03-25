@@ -894,12 +894,12 @@ class AWPCP {
         wp_register_style( 'awpcp-jquery-plupload-queue', "{$vendors}/jquery-plupload-queue/css/jquery.plupload.queue.css", array(), '2.1.1' );
 
 		wp_register_script('awpcp-jquery-validate', "{$js}/jquery-validate/all.js", array('jquery'), '1.10.0', true);
-        wp_register_script( 'awpcp-knockout', "{$js}/vendors/knockout-3.1.0.min.js", array(), '3.1.0', true );
+        wp_register_script( 'awpcp-knockout', "//ajax.aspnetcdn.com/ajax/knockout/knockout-3.1.0.js", array(), '3.1.0', true );
         wp_register_script( 'awpcp-jquery-plupload-queue', "{$vendors}/jquery-plupload-queue/jquery.plupload.queue.min.js", array( 'awpcp', 'plupload-all' ), '2.1.1', true );
 
 		/* helpers */
 
-		wp_register_script( 'awpcp', "{$js}/awpcp.min.js", array( 'jquery' ), $awpcp_db_version, true );
+		wp_register_script( 'awpcp', "{$js}/awpcp.min.js", array( 'awpcp-knockout', 'jquery' ), $awpcp_db_version, true );
         wp_register_script( 'awpcp-admin', "{$js}/awpcp-admin.min.js", array( 'awpcp', 'awpcp-jquery-validate' ), $awpcp_db_version, true );
 
 		wp_register_script( 'awpcp-billing-form', "{$js}/awpcp-billing-form.js", array( 'awpcp' ), $awpcp_db_version, true );
