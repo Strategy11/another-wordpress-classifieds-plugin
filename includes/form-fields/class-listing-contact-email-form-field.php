@@ -21,6 +21,18 @@ class AWPCP_ListingContactEmailFormField extends AWPCP_FormField {
         return true;
     }
 
+    public function is_readonly( $value ) {
+        if ( empty( $value ) ) {
+            return false;
+        }
+
+        if ( awpcp_current_user_is_moderator() ) {
+            return false;
+        }
+
+        return true;
+    }
+
     public function render( $value, $errors, $listing, $context ) {
         if ( $this->is_required() ) {
             $validators = 'required email';
@@ -40,7 +52,7 @@ class AWPCP_ListingContactEmailFormField extends AWPCP_FormField {
             'html' => array(
                 'id' => str_replace( '_', '-', $this->get_slug() ),
                 'name' => $this->get_slug(),
-                'readonly' => true,
+                'readonly' => $this->is_readonly( $value ),
             ),
         );
 

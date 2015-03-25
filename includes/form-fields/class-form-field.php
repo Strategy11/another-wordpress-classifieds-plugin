@@ -22,6 +22,10 @@ abstract class AWPCP_FormField {
         return false;
     }
 
+    public function is_readonly() {
+        return false;
+    }
+
     public function is_allowed_in_context( $context ) {
         if ( $context['action'] == 'search' ) {
             return false;
