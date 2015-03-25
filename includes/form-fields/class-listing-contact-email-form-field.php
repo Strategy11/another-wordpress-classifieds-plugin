@@ -22,11 +22,7 @@ class AWPCP_ListingContactEmailFormField extends AWPCP_FormField {
     }
 
     public function is_readonly( $value ) {
-        if ( empty( $value ) ) {
-            return false;
-        }
-
-        if ( awpcp_current_user_is_moderator() ) {
+        if ( ! is_user_logged_in() || awpcp_current_user_is_moderator() || empty( $value ) ) {
             return false;
         }
 
