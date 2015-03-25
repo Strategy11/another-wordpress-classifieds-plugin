@@ -24,6 +24,14 @@ class AWPCP_ListingWebsiteFormField extends AWPCP_FormField {
         return $this->settings->get_option( 'displaywebsitefieldreqop' );
     }
 
+    public function is_allowed_in_context( $context ) {
+        if ( ! $this->settings->get_option( 'displaywebsitefield' ) ) {
+            return false;
+        }
+
+        return parent::is_allowed_in_context( $context );
+    }
+
     public function render( $value, $errors, $listing, $context ) {
         $params = array(
             'required' => $this->is_required(),

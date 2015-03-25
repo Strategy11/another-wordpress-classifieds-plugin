@@ -24,6 +24,14 @@ class AWPCP_ListingPriceFormField extends AWPCP_FormField {
         return $this->settings->get_option( 'displaypricefieldreqop' );
     }
 
+    public function is_allowed_in_context( $context ) {
+        if ( ! $this->settings->get_option( 'displaypricefield' ) ) {
+            return false;
+        }
+
+        return parent::is_allowed_in_context( $context );
+    }
+
     protected function format_value( $value ) {
         return $value ? awpcp_format_money( $value, false ) : '';
     }

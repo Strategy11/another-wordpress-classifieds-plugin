@@ -24,6 +24,14 @@ class AWPCP_ListingContactPhoneFormField extends AWPCP_FormField {
         return $this->settings->get_option( 'displayphonefieldreqop' );
     }
 
+    public function is_allowed_in_context( $context ) {
+        if ( ! $this->settings->get_option( 'displayphonefield' ) ) {
+            return false;
+        }
+
+        return parent::is_allowed_in_context( $context );
+    }
+
     public function render( $value, $errors, $listing, $context ) {
         if ( $this->is_required() ) {
             $validators = 'required';
