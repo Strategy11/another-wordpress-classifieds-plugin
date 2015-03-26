@@ -20,7 +20,6 @@ class AWPCP_FileTypes {
         $this->settings = $settings;
     }
 
-
     public function get_file_types() {
         if ( is_null( $this->file_types ) ) {
             $this->file_types = apply_filters( 'awpcp-file-types', $this->get_default_file_types() );
@@ -48,6 +47,15 @@ class AWPCP_FileTypes {
         );
     }
 
+    public function get_allowed_file_extensions() {
+        $extensions = array();
+
+        foreach ( $this->get_file_types() as $group => $_ ) {
+            $extensions = array_merge( $extensions, $this->get_allowed_file_extesions_in_group( $group ) );
+        }
+
+        return $extensions;
+    }
 
     public function get_file_types_in_group( $group ) {
         return awpcp_array_data( $group, array(), $this->get_file_types() );

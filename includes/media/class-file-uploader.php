@@ -1,17 +1,24 @@
 <?php
 
 function awpcp_file_uploader() {
-    return new AWPCP_FileUploader( awpcp_mime_types(), awpcp_request(), awpcp()->settings );
+    return new AWPCP_FileUploader(
+        awpcp_mime_types(),
+        awpcp_file_types(),
+        awpcp_request(),
+        awpcp()->settings
+    );
 }
 
 class AWPCP_FileUploader {
 
     private $mime_types;
+    private $file_types;
     private $request;
     private $settings;
 
-    public function __construct( $mime_types, $request, $settings ) {
+    public function __construct( $mime_types, $file_types, $request, $settings ) {
         $this->mime_types = $mime_types;
+        $this->file_types = $file_types;
         $this->request = $request;
         $this->settings = $settings;
     }
@@ -54,11 +61,9 @@ class AWPCP_FileUploader {
         return $uploaded_file;
     }
 
-    /**
-     * TODO: implement me!
-     */
     private function is_filename_extension_allowed( $filename ) {
-        return true;
+        $extensions = $this->file_types->get_allowed_file_extensions();
+        return in_array( awpcp_get_file_extension( $filename ), $extensions );
     }
 
     private function write_uploaded_chunk( $posted_data ) {
