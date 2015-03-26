@@ -102,7 +102,7 @@ class AWPCP_ListingUploadLimits {
             $upload_limits = $this->get_upload_limits_for_images_in_free_board();
         }
 
-        $upload_limits['images']['uploaded_file_count'] = $listing->count_image_files();
+        $upload_limits['uploaded_file_count'] = $listing->count_image_files();
 
         return $upload_limits;
     }
