@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: AWPCP\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2015-03-24 14:36:29+00:00\n"
+"POT-Creation-Date: 2015-03-26 22:35:23+00:00\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: \n"
@@ -421,7 +421,7 @@ msgstr "Sobre el texto del anuncio."
 msgid "Accepted payment type"
 msgstr "Tipo de pago aceptado"
 
-#: admin/admin-panel-listings-table.php:354
+#: admin/admin-panel-listings-table.php:352
 #: admin/templates/admin-panel-listings-view.tpl.php:5
 #: frontend/templates/email-send-ad-access-key.tpl.php:6
 #: frontend/templates/email-send-all-ad-access-keys.tpl.php:8
@@ -486,7 +486,7 @@ msgstr "Detalles del Anuncio"
 msgid "Ad Expired Message"
 msgstr "Mensaje de Anuncio expirado"
 
-#: admin/admin-panel-listings-table.php:260
+#: admin/admin-panel-listings-table.php:258
 msgid "Ad ID"
 msgstr "ID del Anuncio"
 
@@ -514,7 +514,7 @@ msgstr "Mensaje del Anuncio publicado"
 msgid "Ad Renewed Message"
 msgstr "Mensaje de Renovación de Anuncio"
 
-#: admin/admin-panel-listings-table.php:261
+#: admin/admin-panel-listings-table.php:259
 msgid "Ad Title"
 msgstr "Título de Aviso"
 
@@ -612,7 +612,7 @@ msgstr "Agregar al Grupo"
 msgid "Additional Details"
 msgstr "Detalles Adicionales"
 
-#: functions.php:1965 includes/functions/notifications.php:188
+#: functions.php:1966 includes/functions/notifications.php:188
 msgid ""
 "Additionally, You can approve the images going to the Manage Images section "
 "for that Ad and clicking the \"Enable\" button below each image. Click here "
@@ -659,7 +659,7 @@ msgctxt "place ad payment terms column headers"
 msgid "Ads Allowed"
 msgstr "Anuncios permitidos"
 
-#: admin/admin-panel-listings-table.php:241
+#: admin/admin-panel-listings-table.php:239
 msgid "Ads Awaiting Approval"
 msgstr "Anuncios Esperando Aprobación"
 
@@ -958,7 +958,7 @@ msgstr "Modulo Authorize.Net"
 msgid "Auto create Categories"
 msgstr "Auto-crear categorías"
 
-#: includes/settings/class-form-fields-settings.php:16
+#: includes/settings/class-form-fields-settings.php:27
 msgid "Autocomplete"
 msgstr "Autocompletado"
 
@@ -1071,7 +1071,7 @@ msgstr "Archivo CVS"
 msgid "Campaign Manager"
 msgstr "Administrador de Campañas"
 
-#: functions.php:1718
+#: functions.php:1719
 msgid "Can't write file to disk."
 msgstr "No se puede escribir el archivo en disco."
 
@@ -1244,7 +1244,7 @@ msgstr "Pagar"
 msgid "City"
 msgstr "Ciudad"
 
-#: includes/settings/class-form-fields-settings.php:88
+#: includes/settings/class-form-fields-settings.php:99
 msgid "City Field"
 msgstr "Ciudad"
 
@@ -1327,11 +1327,11 @@ msgctxt "place ad checkout step"
 msgid "Complete Payment"
 msgstr "Completar Pago"
 
-#: admin/admin-panel-listings-table.php:247
+#: admin/admin-panel-listings-table.php:245
 msgid "Completed"
 msgstr "Completado"
 
-#: includes/models/ad.php:676
+#: includes/models/ad.php:678
 msgctxt "ad payment status"
 msgid "Completed"
 msgstr "Completado"
@@ -1382,7 +1382,7 @@ msgstr "Contacto acerca de"
 
 #: frontend/templates/page-buy-credits-select-credit-plan-step.tpl.php:18
 #: frontend/templates/page-place-ad-details-step.tpl.php:117
-#: frontend/templates/page-place-ad-order-step.tpl.php:55
+#: frontend/templates/page-place-ad-order-step.tpl.php:59
 #: frontend/templates/page-renew-ad-order-step.tpl.php:19
 #: frontend/templates/page-reply-to-ad.tpl.php:43
 #: frontend/templates/payments-billing-form.tpl.php:124
@@ -1429,11 +1429,11 @@ msgstr "No se pudo crear el archivo temporal de %s"
 msgid "Country"
 msgstr "País"
 
-#: includes/settings/class-form-fields-settings.php:70
+#: includes/settings/class-form-fields-settings.php:81
 msgid "Country Field"
 msgstr "País"
 
-#: includes/settings/class-form-fields-settings.php:82
+#: includes/settings/class-form-fields-settings.php:93
 msgid "County Field"
 msgstr "Pueblo"
 
@@ -1594,7 +1594,7 @@ msgid "Delayed"
 msgstr "Retrasada"
 
 #: admin/admin-panel-credit-plans.php:43 admin/admin-panel-fees.php:46
-#: admin/admin-panel-listings-table.php:218 admin/admin-panel-listings.php:90
+#: admin/admin-panel-listings-table.php:216 admin/admin-panel-listings.php:90
 #: admin/templates/admin-panel-fees-delete-form.tpl.php:13
 #: admin/templates/delete_form.tpl.php:12
 msgid "Delete"
@@ -1667,7 +1667,7 @@ msgstr "El directorio de destino no existe y no pudo ser creado."
 msgid "Diagnostics"
 msgstr "Diagnósticos"
 
-#: admin/admin-panel-listings-table.php:206 admin/admin-panel-listings.php:96
+#: admin/admin-panel-listings-table.php:204 admin/admin-panel-listings.php:96
 msgid "Disable"
 msgstr "Desaprobar"
 
@@ -1694,7 +1694,7 @@ msgstr ""
 "Deshabilitar los anuncios hasta que el administrador apruebe las "
 "modificaciones"
 
-#: admin/admin-panel-listings-table.php:393
+#: admin/admin-panel-listings-table.php:391
 msgid "Disabled"
 msgstr "Deshabilitar"
 
@@ -1732,7 +1732,7 @@ msgstr "Documentación sobre el formato de fecha y hora"
 msgid "Donate to Support AWPCP"
 msgstr "Haga una donación para apoyar AWPCP"
 
-#: includes/settings/class-form-fields-settings.php:16
+#: includes/settings/class-form-fields-settings.php:27
 msgid "Dropdown"
 msgstr "Desplegable"
 
@@ -1854,7 +1854,7 @@ msgstr ""
 msgid "Empty ZIP Archive"
 msgstr "Archivo ZIP vacío"
 
-#: admin/admin-panel-listings-table.php:205 admin/admin-panel-listings.php:94
+#: admin/admin-panel-listings-table.php:203 admin/admin-panel-listings.php:94
 msgid "Enable"
 msgstr "Aprobar"
 
@@ -1901,7 +1901,7 @@ msgstr ""
 "Usted puede generar archivos .mo usando POEdit y los archivos AWPCP.pot o "
 "AWPCP-en_EN.po incluidos con el plugin."
 
-#: admin/admin-panel-listings-table.php:393
+#: admin/admin-panel-listings-table.php:391
 #: templates/components/file-manager.tpl.php:26
 #: templates/components/file-manager.tpl.php:53
 #: templates/components/media-manager.tpl.php:12
@@ -1916,7 +1916,7 @@ msgstr ""
 "Usar un servidor SMTP externo (si los mensajes no se están procesando "
 "normalmente)."
 
-#: admin/admin-panel-listings-table.php:170
+#: admin/admin-panel-listings-table.php:168
 msgid "End Date"
 msgstr "Fecha de finalización"
 
@@ -1969,7 +1969,7 @@ msgstr "Ingreso su clave de acceso"
 msgid "Enter your email address"
 msgstr "Ingrese su dirección de correo electrónico"
 
-#: functions.php:1693 includes/helpers/class-modules-manager.php:160
+#: functions.php:1694 includes/helpers/class-modules-manager.php:160
 msgid "Error"
 msgstr "Error"
 
@@ -2028,7 +2028,7 @@ msgstr ""
 "Después de cuantos días expiran los anuncios gratuitos? (Use 0 para que no "
 "expiren)."
 
-#: admin/admin-panel-listings-table.php:240
+#: admin/admin-panel-listings-table.php:238
 msgid "Expired"
 msgstr "Vencido"
 
@@ -2097,9 +2097,9 @@ msgctxt "task status"
 msgid "Failing"
 msgstr "Fallando"
 
-#: admin/admin-panel-listings-table.php:177
-#: admin/admin-panel-listings-table.php:243
-#: admin/admin-panel-listings-table.php:420
+#: admin/admin-panel-listings-table.php:175
+#: admin/admin-panel-listings-table.php:241
+#: admin/admin-panel-listings-table.php:418
 msgid "Featured"
 msgstr "Destacado"
 
@@ -2148,7 +2148,7 @@ msgstr "El archivo %s no existe."
 msgid "File Manager component is not properly configured"
 msgstr "El Administrador de Archivos no esta configurado adecuadamente"
 
-#: includes/media/class-file-uploader.php:45
+#: includes/media/class-file-uploader.php:52
 msgid "File extension not allowed."
 msgstr "Extensión de archivo no permitida."
 
@@ -2167,17 +2167,12 @@ msgstr ""
 "Permisos para el directorio de donde se almacenan los archivos de los "
 "anuncios"
 
-#: includes/settings/class-files-settings.php:16
-msgctxt "name of Files settings section"
-msgid "Files"
-msgstr "Archivos"
-
 #: frontend/page-place-ad.php:687
 msgid "Fill out the form below to post your classified Ad."
 msgstr ""
 "Complete el formulario que aparece a continuación para publicar tu anuncio."
 
-#: admin/admin-panel-listings-table.php:308
+#: admin/admin-panel-listings-table.php:306
 msgctxt "admin listings table"
 msgid "Filter"
 msgstr "Filtrar"
@@ -2216,7 +2211,7 @@ msgstr "Primer Nombre"
 msgid "Flag Ad"
 msgstr "Marcar anuncio"
 
-#: admin/admin-panel-listings-table.php:244
+#: admin/admin-panel-listings-table.php:242
 msgid "Flagged"
 msgstr "Reportado"
 
@@ -2242,7 +2237,7 @@ msgid "Form"
 msgstr "Formulario"
 
 #: admin/form-fields/class-form-fields-admin-page.php:6
-#: includes/settings/class-form-fields-settings.php:96
+#: includes/settings/class-form-fields-settings.php:107
 msgid "Form Fields"
 msgstr "Campos del Formulario"
 
@@ -2250,6 +2245,10 @@ msgstr "Campos del Formulario"
 msgctxt "sub menu title"
 msgid "Form Fields"
 msgstr "Campos del Formulario"
+
+#: includes/settings/class-form-fields-settings.php:12
+msgid "Form Steps"
+msgstr "Lista de Pasos del Formulario"
 
 #: admin/templates/admin-sidebar.tpl.php:108
 msgid "Found a bug?"
@@ -2324,7 +2323,7 @@ msgstr ""
 "Dirijase a la %s para cambiar la plantilla de la vista sencilla del los "
 "anuncios."
 
-#: includes/settings/class-form-fields-settings.php:98
+#: includes/settings/class-form-fields-settings.php:109
 msgid ""
 "Go to the <form-fields-section> admin section to change the order in which "
 "the fields mentioned below are shown to users in the Ad Details form."
@@ -2370,7 +2369,7 @@ msgstr "Google Checkout"
 msgid "Google Checkout Payment Module"
 msgstr "Módulo de Pagos con Google Checkout"
 
-#: includes/settings/class-form-fields-settings.php:17
+#: includes/settings/class-form-fields-settings.php:28
 msgid "HTML Widget for User field"
 msgstr "Widget HTML usado para el campo de usuario"
 
@@ -2380,7 +2379,7 @@ msgstr ""
 "Hacer que los usuarios no registrados verifiquen la dirección de correo "
 "utilizada para publicar nuevos anuncios."
 
-#: admin/admin-panel-listings-table.php:167
+#: admin/admin-panel-listings-table.php:165
 msgid "Headline"
 msgstr "Título"
 
@@ -2470,7 +2469,7 @@ msgstr ""
 "Esconder nombre de contacto del anuncio a usuarios anónimos (que no han "
 "iniciado sesión)."
 
-#: includes/settings/class-form-fields-settings.php:66
+#: includes/settings/class-form-fields-settings.php:77
 msgid "Hide price field if empty or zero"
 msgstr "No mostrar el precio si está vacío o es cero."
 
@@ -2502,7 +2501,7 @@ msgstr ""
 "accesadas a través de URLs seguras (HTTPS). No habilite esta característica "
 "si su servidor no soporta HTTPS."
 
-#: includes/settings/class-form-fields-settings.php:66
+#: includes/settings/class-form-fields-settings.php:77
 msgid ""
 "If checked all price placeholders will be replaced with an empty string when "
 "the price of the Ad is zero or was not set."
@@ -2517,7 +2516,7 @@ msgstr ""
 "Si está seleccionado, solo los usuarios administradores podrán publicar "
 "anuncios."
 
-#: includes/settings/class-form-fields-settings.php:90
+#: includes/settings/class-form-fields-settings.php:101
 msgid ""
 "If checked the city field will be shown before the county field. This "
 "setting may be overwritten if Region Control module is installed."
@@ -2580,6 +2579,14 @@ msgstr ""
 "del precio del anuncio. Deseleccione esta opción para no mostrar el símbolo. "
 "El símbolo de la moneda puede ser configurado cambiando la moneda usada para "
 "pagos en <payment-settings-link>."
+
+#: includes/settings/class-form-fields-settings.php:20
+msgid ""
+"If checked, when a user is creating a new listing, a list of steps will be "
+"shown at the top of the forms."
+msgstr ""
+"Si está chequeada, una lista de pasos será mostrada sobre el formulario que "
+"el usuario debe llenar cuando esté creando un anuncio."
 
 #: includes/settings-api.php:75
 msgid ""
@@ -2759,15 +2766,15 @@ msgctxt "place ad payment terms column headers"
 msgid "Images Allowed"
 msgstr "Imágenes Permitidas"
 
-#: admin/admin-panel-listings-table.php:242
+#: admin/admin-panel-listings-table.php:240
 msgid "Images Awaiting Approval"
 msgstr "Imágenes Esperando Aprobación."
 
-#: functions.php:1951
+#: functions.php:1952
 msgid "Images on Ad \"%s\" are awaiting approval"
 msgstr "Las imágenes en el anuncio \"%s\" está esperando aprobación"
 
-#: functions.php:1953 includes/functions/notifications.php:176
+#: functions.php:1954 includes/functions/notifications.php:176
 msgid ""
 "Images on Ad \"%s\" are awaiting approval. You can approve the images going "
 "to the Manage Images section for that Ad and clicking the \"Enable\" button "
@@ -2781,6 +2788,11 @@ msgstr ""
 #: includes/functions/notifications.php:174
 msgid "Images on listing \"%s\" are awaiting approval"
 msgstr "Las imágenes en el anuncio \"%s\" están esperando aprobación"
+
+#: includes/settings/class-files-settings.php:16
+msgctxt "name of Files settings section"
+msgid "Images/Attachments"
+msgstr "Imágenes/Archivos Adjuntos"
 
 #: admin/admin-panel.php:295
 #: admin/templates/admin-panel-csv-importer.tpl.php:173
@@ -2992,7 +3004,7 @@ msgid "Item price non numeric at row number %s"
 msgstr ""
 "Se encontró un valor no numérico para el campo precio en la fila número %s"
 
-#: admin/admin-panel-listings-table.php:262
+#: admin/admin-panel-listings-table.php:260
 msgid "Keyword"
 msgstr "Palabra clave"
 
@@ -3133,7 +3145,7 @@ msgstr ""
 "después de ser modificados por sus propietarios y hasta que el administrador "
 "los apruebe."
 
-#: admin/admin-panel-listings-table.php:263 frontend/page-show-ad.php:83
+#: admin/admin-panel-listings-table.php:261 frontend/page-show-ad.php:83
 #: frontend/placeholders.php:660
 msgid "Location"
 msgstr "Ubicación"
@@ -3171,11 +3183,11 @@ msgstr ""
 msgid "Lost your password?"
 msgstr "¿Perdió su contraseña?"
 
-#: admin/admin-panel-listings-table.php:207 admin/admin-panel-listings.php:108
+#: admin/admin-panel-listings-table.php:205 admin/admin-panel-listings.php:108
 msgid "Make Featured"
 msgstr "Destacar"
 
-#: admin/admin-panel-listings-table.php:208
+#: admin/admin-panel-listings-table.php:206
 msgid "Make Non Featured"
 msgstr "Marcar como no destacado"
 
@@ -3191,7 +3203,7 @@ msgstr "Convertirs las URLs en enlaces clickables."
 msgid "Make payments with PayPal - it's fast, free and secure!"
 msgstr "Realizá tu pago con PayPal - Es rápido, gratis y seguro!"
 
-#: admin/admin-panel-listings-table.php:168
+#: admin/admin-panel-listings-table.php:166
 msgid "Manage Ad"
 msgstr "Administrar Aviso"
 
@@ -3268,11 +3280,11 @@ msgstr "Es necesario realizar una actualización manual"
 msgid "Mark Reviewed"
 msgstr "Marcar como Revisado"
 
-#: admin/admin-panel-listings-table.php:407
+#: admin/admin-panel-listings-table.php:405
 msgid "Mark as Paid"
 msgstr "Marcar como pagada"
 
-#: admin/admin-panel-listings-table.php:210
+#: admin/admin-panel-listings-table.php:208
 msgid "Mark as SPAM"
 msgstr "Marcar como SPAM"
 
@@ -3280,7 +3292,7 @@ msgstr "Marcar como SPAM"
 msgid "Mark as Sold"
 msgstr "Marcar como Vendido"
 
-#: admin/admin-panel-listings-table.php:384
+#: admin/admin-panel-listings-table.php:382
 msgid "Mark as Verified"
 msgstr "Marcar como verificado"
 
@@ -3451,11 +3463,11 @@ msgstr "Falta un token de acceso de usuario (User Access Token) válido."
 msgid "Missing app ID/secret."
 msgstr "Falta app ID/secret."
 
-#: includes/media/class-file-uploader.php:135
+#: includes/media/class-file-uploader.php:140
 msgid "Missing chunk."
 msgstr "Parte faltante."
 
-#: functions.php:1717
+#: functions.php:1718
 msgid "Missing temporary directory."
 msgstr "El directorio temporarl no existe."
 
@@ -3508,11 +3520,11 @@ msgstr "Mover anuncios a una nueva categoría"
 msgid "Move Selected Categories"
 msgstr "Mover las Categorías Seleccionadas"
 
-#: includes/models/ad.php:528
+#: includes/models/ad.php:530
 msgid "N/A"
 msgstr "N/A"
 
-#: includes/models/ad.php:669
+#: includes/models/ad.php:671
 msgctxt "ad payment status"
 msgid "N/A"
 msgstr "N/A"
@@ -3587,7 +3599,7 @@ msgstr "Nombre de la persona de contacto"
 msgid "Need Support?"
 msgstr "Necesita soporte?"
 
-#: admin/admin-panel-listings-table.php:239
+#: admin/admin-panel-listings-table.php:237
 msgid "New"
 msgstr "Nueva"
 
@@ -3691,7 +3703,7 @@ msgstr ""
 msgid "No credit plans available."
 msgstr "No hay planes de crédito disponibles."
 
-#: functions.php:1712
+#: functions.php:1713
 msgid "No errors."
 msgstr "Sin errores."
 
@@ -3703,7 +3715,7 @@ msgstr "No se encontró un archivo con ID: %d"
 msgid "No file was selected."
 msgstr "Ningún archivo fue seleccionado"
 
-#: functions.php:1716
+#: functions.php:1717
 msgid "No file was uploaded."
 msgstr "Ningún archivo fue cargado."
 
@@ -3757,7 +3769,7 @@ msgstr "Ninguno (No envíe los anuncios a un Grupo de Facebook)"
 msgid "None (Do not sent Ads to a Facebook Page)"
 msgstr "Ninguna (No envíe los anuncios a una Página de Facebook)"
 
-#: admin/admin-panel-listings-table.php:420
+#: admin/admin-panel-listings-table.php:418
 msgid "Not Featured"
 msgstr "No destacado"
 
@@ -3767,7 +3779,7 @@ msgstr "No destacado"
 msgid "Not Installed"
 msgstr "No Instalado"
 
-#: includes/models/ad.php:678
+#: includes/models/ad.php:680
 msgctxt "ad payment status"
 msgid "Not Required"
 msgstr "No require pago"
@@ -3935,7 +3947,7 @@ msgstr "Otros Archivos"
 msgid "Other Modules"
 msgstr "Otros Módulos"
 
-#: admin/admin-panel-listings-table.php:181
+#: admin/admin-panel-listings-table.php:179
 msgid "Owner"
 msgstr "Propietario"
 
@@ -4047,7 +4059,7 @@ msgstr ""
 "PayPal le devolvió el siguiente estado de su pago:% s. % D variables de pago "
 "fueron publicadas."
 
-#: admin/admin-panel-listings-table.php:266
+#: admin/admin-panel-listings-table.php:264
 msgid "Payer Email"
 msgstr "Email del Pagador"
 
@@ -4096,11 +4108,11 @@ msgstr "Configuración de Pagos"
 msgid "Payment Settings"
 msgstr "Configuración de Pagos"
 
-#: admin/admin-panel-listings-table.php:174
+#: admin/admin-panel-listings-table.php:172
 msgid "Payment Status"
 msgstr "Estado del Pago"
 
-#: admin/admin-panel-listings-table.php:173
+#: admin/admin-panel-listings-table.php:171
 msgid "Payment Term"
 msgstr "Plan de Pagos"
 
@@ -4141,7 +4153,7 @@ msgstr "Transacción de Pago"
 msgid "Payment transaction ID"
 msgstr "ID de la transacción del pago"
 
-#: includes/models/ad.php:674
+#: includes/models/ad.php:676
 msgctxt "ad payment status"
 msgid "Pending"
 msgstr "Pendiente"
@@ -4155,7 +4167,7 @@ msgstr "Tareas Pendientes"
 msgid "Phone"
 msgstr "Teléfono"
 
-#: includes/settings/class-form-fields-settings.php:22
+#: includes/settings/class-form-fields-settings.php:33
 msgid "Phone Field"
 msgstr "Teléfono"
 
@@ -4305,7 +4317,7 @@ msgstr ""
 "Por favor solicita los archivos actualizados del modelo Campos Extra (Extra "
 "Fields)"
 
-#: frontend/templates/page-place-ad-order-step.tpl.php:24
+#: frontend/templates/page-place-ad-order-step.tpl.php:28
 msgctxt "place ad order step"
 msgid "Please select a Category for your Ad"
 msgstr "Por favor seleccione una categoría para el anuncio"
@@ -4330,7 +4342,7 @@ msgstr "Por favor selección un término de pago."
 msgid "Please select the Ad's owner."
 msgstr "Por favor seleccione el propietario del anuncio."
 
-#: frontend/templates/page-place-ad-order-step.tpl.php:33
+#: frontend/templates/page-place-ad-order-step.tpl.php:37
 msgctxt "place ad order step"
 msgid "Please select the owner for this Ad"
 msgstr "Selecione un autor para este anuncio"
@@ -4450,7 +4462,7 @@ msgstr "Precio (más alto al más bajo, luego por fecha)"
 msgid "Price (low to high, then by date)"
 msgstr "Precio (más bajo al más alto, luego por fecha)"
 
-#: includes/settings/class-form-fields-settings.php:53
+#: includes/settings/class-form-fields-settings.php:64
 msgid "Price Field"
 msgstr "Precio"
 
@@ -4590,7 +4602,7 @@ msgstr "Retirar de destacados"
 msgid "Remove Region"
 msgstr "Remover region"
 
-#: admin/admin-panel-listings-table.php:209
+#: admin/admin-panel-listings-table.php:207
 msgid "Renew"
 msgstr "Renovar"
 
@@ -4612,7 +4624,7 @@ msgstr "Página Renovar Anuncio"
 msgid "Renew your ad by visiting:"
 msgstr "Renová tu Aviso visitando:"
 
-#: admin/admin-panel-listings-table.php:171
+#: admin/admin-panel-listings-table.php:169
 msgid "Renewed Date"
 msgstr "Fecha de Renovación"
 
@@ -4646,23 +4658,23 @@ msgctxt "Report bugs or get more help: <a>visit the forums!</a>"
 msgid "Report bugs or get more help: %s."
 msgstr "Reporte errores o obtenga más ayuda: %s."
 
-#: includes/settings/class-form-fields-settings.php:91
+#: includes/settings/class-form-fields-settings.php:102
 msgid "Require City"
 msgstr "Requerir el campo Ciudad"
 
-#: includes/settings/class-form-fields-settings.php:72
+#: includes/settings/class-form-fields-settings.php:83
 msgid "Require Country"
 msgstr "Requerir País"
 
-#: includes/settings/class-form-fields-settings.php:84
+#: includes/settings/class-form-fields-settings.php:95
 msgid "Require County/Village/other"
 msgstr "Requerir el campo Condado"
 
-#: includes/settings/class-form-fields-settings.php:25
+#: includes/settings/class-form-fields-settings.php:36
 msgid "Require Phone"
 msgstr "Requerir Teléfono"
 
-#: includes/settings/class-form-fields-settings.php:55
+#: includes/settings/class-form-fields-settings.php:66
 msgid "Require Price"
 msgstr "Requerir el campo Precio"
 
@@ -4682,45 +4694,45 @@ msgstr ""
 "Opción Requerir registro se habilita automáticamente porque se ha activado "
 "el panel de Administración de Anuncios de Usuarios.\t"
 
-#: includes/settings/class-form-fields-settings.php:78
+#: includes/settings/class-form-fields-settings.php:89
 msgid "Require State"
 msgstr "Requerir Estado"
 
-#: includes/settings/class-form-fields-settings.php:40
+#: includes/settings/class-form-fields-settings.php:51
 msgid "Require Website"
 msgstr "Requerir el campo Sitio Web"
 
-#: includes/settings/class-form-fields-settings.php:91
+#: includes/settings/class-form-fields-settings.php:102
 msgid "Require city on Place Ad and Edit Ad forms?"
 msgstr ""
 "¿Quiere marcar el campo ciudad como requerido en los formularios para editar "
 "y publicar anuncios?"
 
-#: includes/settings/class-form-fields-settings.php:72
+#: includes/settings/class-form-fields-settings.php:83
 msgid "Require country on Place Ad and Edit Ad forms?"
 msgstr ""
 "¿Quiere marcar el campo país como requerido en los formularios para editar y "
 "publicar anuncios?"
 
-#: includes/settings/class-form-fields-settings.php:84
+#: includes/settings/class-form-fields-settings.php:95
 msgid "Require county/village/other on Place Ad and Edit Ad forms?"
 msgstr ""
 "¿Quiere marcar el campo condado como requerido en los formularios para "
 "editar y publicar anuncios?"
 
-#: includes/settings/class-form-fields-settings.php:25
+#: includes/settings/class-form-fields-settings.php:36
 msgid "Require phone on Place Ad and Edit Ad forms?"
 msgstr ""
 "¿Quiere marcar el campo teléfono como requerido en los formularios para "
 "editar y publicar anuncios?"
 
-#: includes/settings/class-form-fields-settings.php:55
+#: includes/settings/class-form-fields-settings.php:66
 msgid "Require price on Place Ad and Edit Ad forms?"
 msgstr ""
 "¿Quiere marcar el campo precio como requerido en los formularios para editar "
 "y publicar anuncios?"
 
-#: includes/settings/class-form-fields-settings.php:78
+#: includes/settings/class-form-fields-settings.php:89
 msgid "Require state on Place Ad and Edit Ad forms?"
 msgstr ""
 "¿Quiere marcar el campo estado como requerido en los formularios para editar "
@@ -4730,7 +4742,7 @@ msgstr ""
 msgid "Require user registration for replying to an Ad?"
 msgstr "Es necesario ser un usuario registrad para responder a un anuncio?"
 
-#: includes/settings/class-form-fields-settings.php:40
+#: includes/settings/class-form-fields-settings.php:51
 msgid "Require website on Place Ad and Edit Ad forms?"
 msgstr ""
 "¿Quiere marcar el campo sitio web como requerido en los formularios para "
@@ -4807,7 +4819,7 @@ msgstr ""
 msgid "Row %d. %s"
 msgstr "Fila %d %s\t"
 
-#: includes/settings/class-general-settings.php:122
+#: includes/settings/class-general-settings.php:123
 msgid "SEO Settings"
 msgstr "Configuración SEO"
 
@@ -4878,7 +4890,7 @@ msgstr "Buscar anuncios"
 msgid "Search Ads page"
 msgstr "Página Buscar Anuncios"
 
-#: admin/admin-panel-listings-table.php:258
+#: admin/admin-panel-listings-table.php:256
 msgid "Search by"
 msgstr "Buscar por"
 
@@ -4956,7 +4968,7 @@ msgid "Select an User"
 msgstr "Seleccione un usuario"
 
 #: frontend/templates/page-place-ad-details-step.tpl.php:37
-#: frontend/templates/page-place-ad-order-step.tpl.php:40
+#: frontend/templates/page-place-ad-order-step.tpl.php:44
 msgid "Select an User owner for this Ad"
 msgstr "Selecione un autor para este anuncio"
 
@@ -4976,7 +4988,7 @@ msgstr "Enviar clave de acceso"
 msgid "Send Ads to Facebook Automatically"
 msgstr "Enviar anuncios a Facebook automáticamente"
 
-#: admin/admin-panel-listings-table.php:215 admin/admin-panel-listings.php:131
+#: admin/admin-panel-listings-table.php:213 admin/admin-panel-listings.php:131
 msgid "Send to Facebook"
 msgstr "Enviar a Facebook"
 
@@ -5065,11 +5077,11 @@ msgstr "Mostrar el item de menú Explorar Anuncios"
 msgid "Show Category field?"
 msgstr "¿Mostrar campo de Categoría?"
 
-#: includes/settings/class-form-fields-settings.php:89
+#: includes/settings/class-form-fields-settings.php:100
 msgid "Show City field"
 msgstr "Mostrar campo de Ciudad"
 
-#: includes/settings/class-form-fields-settings.php:90
+#: includes/settings/class-form-fields-settings.php:101
 msgid "Show City field before County field"
 msgstr "Mostrar campo de Ciudad antes del campo de Condado"
 
@@ -5077,7 +5089,7 @@ msgstr "Mostrar campo de Ciudad antes del campo de Condado"
 msgid "Show City field?"
 msgstr "Mostrar campo de Ciudad?"
 
-#: includes/settings/class-form-fields-settings.php:71
+#: includes/settings/class-form-fields-settings.php:82
 msgid "Show Country field"
 msgstr "Mostrar el campo País"
 
@@ -5085,11 +5097,11 @@ msgstr "Mostrar el campo País"
 msgid "Show Country field?"
 msgstr "Mostrar campo de País?"
 
-#: includes/settings/class-form-fields-settings.php:83
+#: includes/settings/class-form-fields-settings.php:94
 msgid "Show County/Village/other"
 msgstr "Mostra el campo Condado"
 
-#: includes/settings/class-form-fields-settings.php:83
+#: includes/settings/class-form-fields-settings.php:94
 msgid "Show County/village/other?"
 msgstr "¿Mostrar el campo Condado?"
 
@@ -5097,11 +5109,15 @@ msgstr "¿Mostrar el campo Condado?"
 msgid "Show Edit Ad menu item"
 msgstr "Mostrar el item de menú Editar Anuncio"
 
-#: includes/settings/class-form-fields-settings.php:30
+#: includes/settings/class-form-fields-settings.php:17
+msgid "Show Form Steps"
+msgstr "Mostrar Lista de Pasos del Formulario"
+
+#: includes/settings/class-form-fields-settings.php:41
 msgid "Show Phone Field only to registered users"
 msgstr "Mostra el campo Teléfono solo a usuarios registrados"
 
-#: includes/settings/class-form-fields-settings.php:24
+#: includes/settings/class-form-fields-settings.php:35
 msgid "Show Phone field"
 msgstr "Mostrar el campo Teléfono"
 
@@ -5113,11 +5129,11 @@ msgstr "Mostrar el item de menú Publicar Anuncio"
 msgid "Show Posted By field?"
 msgstr "Mostrar campo Publicado por?"
 
-#: includes/settings/class-form-fields-settings.php:60
+#: includes/settings/class-form-fields-settings.php:71
 msgid "Show Price Field only to registered users"
 msgstr "Mostra el campo Precio solo a usuarios registrados"
 
-#: includes/settings/class-form-fields-settings.php:54
+#: includes/settings/class-form-fields-settings.php:65
 msgid "Show Price field"
 msgstr "Mostrar el campo Precio"
 
@@ -5125,7 +5141,7 @@ msgstr "Mostrar el campo Precio"
 msgid "Show Search Ads menu item"
 msgstr "Mostrar el item de menú Buscar Anuncios"
 
-#: includes/settings/class-form-fields-settings.php:77
+#: includes/settings/class-form-fields-settings.php:88
 msgid "Show State field"
 msgstr "Mostrar el campo Estado/Provincia"
 
@@ -5133,15 +5149,15 @@ msgstr "Mostrar el campo Estado/Provincia"
 msgid "Show State field?"
 msgstr "Mostrar campo de Estado/Provincia?"
 
-#: includes/settings/class-form-fields-settings.php:18
+#: includes/settings/class-form-fields-settings.php:29
 msgid "Show User Field on Search"
 msgstr "Mostrar campo de usuario en el formulario de búsqueda"
 
-#: includes/settings/class-form-fields-settings.php:45
+#: includes/settings/class-form-fields-settings.php:56
 msgid "Show Website Field only to registered users"
 msgstr "Mostra el campo Sitio Web solo a usuarios registrados"
 
-#: includes/settings/class-form-fields-settings.php:39
+#: includes/settings/class-form-fields-settings.php:50
 msgid "Show Website field"
 msgstr "Mostrar el campo Sitio Web"
 
@@ -5149,7 +5165,7 @@ msgstr "Mostrar el campo Sitio Web"
 msgid "Show all dates"
 msgstr "Mostrar todas las fechas"
 
-#: includes/settings/class-form-fields-settings.php:18
+#: includes/settings/class-form-fields-settings.php:29
 msgid "Show as \"Posted By\" in search form?"
 msgstr ""
 "¿Quiere mostrar el campo de usuario en el formulario de búsqueda con la "
@@ -5165,7 +5181,7 @@ msgstr ""
 msgid "Show category in title"
 msgstr "Mostrar la categoría en el título"
 
-#: includes/settings/class-form-fields-settings.php:89
+#: includes/settings/class-form-fields-settings.php:100
 msgid "Show city field?"
 msgstr "¿Mostrar campo de ciudad?"
 
@@ -5183,7 +5199,7 @@ msgstr "Mostrar la ciudad en el título de la ventana"
 msgid "Show click to enlarge link?"
 msgstr "Mostrar el enlace \"click para agrandar\"?"
 
-#: includes/settings/class-form-fields-settings.php:71
+#: includes/settings/class-form-fields-settings.php:82
 msgid "Show country field?"
 msgstr "¿Mostrar el campo País?"
 
@@ -5229,15 +5245,15 @@ msgstr "Mostrar campo Palabra Clave?"
 msgid "Show parent categories only."
 msgstr "Solo mostrar categorías de primer nivel."
 
-#: includes/settings/class-form-fields-settings.php:24
+#: includes/settings/class-form-fields-settings.php:35
 msgid "Show phone field?"
 msgstr "¿Mostrar el campo Teléfono?"
 
-#: includes/settings/class-form-fields-settings.php:54
+#: includes/settings/class-form-fields-settings.php:65
 msgid "Show price field?"
 msgstr "¿Mostrar el campo precio?"
 
-#: includes/settings/class-form-fields-settings.php:77
+#: includes/settings/class-form-fields-settings.php:88
 msgid "Show state field?"
 msgstr "¿Desea mostrar el campo de estado/provincia?"
 
@@ -5263,11 +5279,11 @@ msgstr ""
 msgid "Show thumbnails in widget."
 msgstr "Mostrar miniaturas en el widget."
 
-#: includes/settings/class-form-fields-settings.php:39
+#: includes/settings/class-form-fields-settings.php:50
 msgid "Show website field?"
 msgstr "¿Mostrar el campo Sitio Web?"
 
-#: admin/admin-panel-listings-table.php:152
+#: admin/admin-panel-listings-table.php:150
 msgid "Showing Ads from %s category."
 msgstr "Mostrando anuncios en la categoría %s."
 
@@ -5316,7 +5332,7 @@ msgstr ""
 msgid "Start & End Date"
 msgstr "Fecha de inicio y fecha de finalización"
 
-#: admin/admin-panel-listings-table.php:169
+#: admin/admin-panel-listings-table.php:167
 msgid "Start Date"
 msgstr "Fecha de inicio"
 
@@ -5346,7 +5362,7 @@ msgstr ""
 msgid "State"
 msgstr "Estado"
 
-#: includes/settings/class-form-fields-settings.php:76
+#: includes/settings/class-form-fields-settings.php:87
 msgid "State Field"
 msgstr "Estado"
 
@@ -5354,7 +5370,7 @@ msgstr "Estado"
 msgid "State/Province"
 msgstr "Estado/Provincia"
 
-#: admin/admin-panel-listings-table.php:172
+#: admin/admin-panel-listings-table.php:170
 msgid "Status"
 msgstr "Estado"
 
@@ -5454,7 +5470,7 @@ msgstr ""
 msgid "Template not found."
 msgstr "Plantilla no encontrada."
 
-#: includes/media/class-file-uploader.php:94
+#: includes/media/class-file-uploader.php:99
 msgid "Temporary directory doesn't exists and couldn't be created."
 msgstr "El directorio temporal no existe y no pudo ser creado."
 
@@ -5547,11 +5563,11 @@ msgstr ""
 "válida sea ingresada. Por favor vaya a la sección <license-settings-"
 "link>Opciones de Licencias</a> para ingresar o actualizar su licencia."
 
-#: functions.php:1956
+#: functions.php:1957
 msgid "The Ad \"%s\" is awaiting approval"
 msgstr "El anuncio \"%s\" está esperando aprobación"
 
-#: functions.php:1958 includes/functions/notifications.php:181
+#: functions.php:1959 includes/functions/notifications.php:181
 msgid ""
 "The Ad \"%s\" is awaiting approval. You can approve the Ad going to the "
 "Manage Listings section and clicking the \"Enable\" action shown on top. "
@@ -6046,19 +6062,19 @@ msgctxt "media manager"
 msgid "The file has been rejected."
 msgstr "El archivo ha sido rechazado."
 
-#: functions.php:1714
+#: functions.php:1715
 msgid "The file is larger than form MAX_FILE_SIZE."
 msgstr "ElEl tamaño del archivo es mayor que MAX_FILE_SIZE."
 
-#: functions.php:1713
+#: functions.php:1714
 msgid "The file is larger than upload_max_filesize."
 msgstr "El tamaño del archivo es mayor que upload_max_filesize."
 
-#: functions.php:1719
+#: functions.php:1720
 msgid "The file upload was stopped by extension."
 msgstr "La carga del archivo fue detenida por una extensión."
 
-#: functions.php:1715
+#: functions.php:1716
 msgid "The file was only partially uploaded."
 msgstr "El archivo fue cargado parcialmente."
 
@@ -6119,7 +6135,7 @@ msgctxt "media manager"
 msgid "The image has been set as primary image."
 msgstr "La imagen ha sido asignada como imagen primaria."
 
-#: functions.php:1674
+#: functions.php:1675
 msgid ""
 "The images or files with pale red background have been rejected by an "
 "administrator user. Likewise, files with a pale yellow background are "
@@ -6478,7 +6494,7 @@ msgstr "El tipo del archivo %s no está permitido."
 msgid "The type of the uploaded file <filename> is not allowed."
 msgstr "El tipo del archivo <filename> no está permitido."
 
-#: includes/settings/class-form-fields-settings.php:17
+#: includes/settings/class-form-fields-settings.php:28
 msgid ""
 "The user field can be represented with an HTML dropdown or a text field with "
 "autocomplete capabilities. Using the dropdown is faster if you have a small "
@@ -6714,22 +6730,22 @@ msgstr ""
 msgid "There was an error trying to find tasks in the database."
 msgstr "Ocurrió un error tratando de buscar las tareas en la base de datos."
 
-#: includes/media/class-file-uploader.php:104
+#: includes/media/class-file-uploader.php:109
 msgid ""
 "There was an error trying to move the uploaded file to a temporary location."
 msgstr ""
 "Ocurrió un error tratando de mover el nuevo archivo a una ubicación temporal."
 
-#: includes/media/class-file-uploader.php:110
+#: includes/media/class-file-uploader.php:115
 msgid "There was an error trying to open PHP's input stream."
 msgstr "Ocurrió un error tratando abrir el archivo de entrada de PHP."
 
-#: includes/media/class-file-uploader.php:139
+#: includes/media/class-file-uploader.php:144
 msgid "There was an error trying to open the input stream."
 msgstr "Ocurrió un error tratando abrir el archivo de entrada."
 
-#: includes/media/class-file-uploader.php:114
-#: includes/media/class-file-uploader.php:128
+#: includes/media/class-file-uploader.php:119
+#: includes/media/class-file-uploader.php:133
 msgid "There was an error trying to open the output stream."
 msgstr "Ocurrió un error tratando abrir el archivo de salida."
 
@@ -7016,9 +7032,9 @@ msgstr ""
 "uno o más sub-regiones, para hacer la selección más específica, o cambie la "
 "región seleccionada."
 
-#: includes/settings/class-form-fields-settings.php:33
-#: includes/settings/class-form-fields-settings.php:48
-#: includes/settings/class-form-fields-settings.php:63
+#: includes/settings/class-form-fields-settings.php:44
+#: includes/settings/class-form-fields-settings.php:59
+#: includes/settings/class-form-fields-settings.php:74
 msgid ""
 "This setting restricts viewing of this field so that only registered users "
 "that are logged in can see it."
@@ -7035,7 +7051,7 @@ msgstr ""
 "Las opciones en esta sección no están disponibles todavía. Por favor llene "
 "los campos requeridos arriba y guarde la configuración."
 
-#: functions.php:1691 includes/helpers/class-modules-manager.php:158
+#: functions.php:1692 includes/helpers/class-modules-manager.php:158
 msgid ""
 "This version of AWPCP %1$s module is not compatible with AWPCP version %2$s. "
 "Please get AWPCP %1$s %3$s or newer!"
@@ -7162,11 +7178,11 @@ msgstr ""
 "Desactive las funciones de lightbox/thickbox en AWPCP. Algunos temas no "
 "pueden manejarlas adecuadamente y se producen conflictos."
 
-#: includes/settings/class-general-settings.php:124
+#: includes/settings/class-general-settings.php:125
 msgid "Turn on Search Engine Friendly URLs"
 msgstr "Activar URLs amigables con los motores de búsqueda (SEO URLs)"
 
-#: includes/settings/class-general-settings.php:124
+#: includes/settings/class-general-settings.php:125
 msgid "Turn on Search Engine Friendly URLs? (SEO Mode)"
 msgstr "Activar URLs amigables con los motores de búsqueda (modo SEO) ?"
 
@@ -7204,7 +7220,7 @@ msgid "Unable to delete your file, please contact the administrator."
 msgstr ""
 "No fue posible eliminar el archivo, por favor contactate el administrador."
 
-#: includes/media/class-file-uploader.php:37
+#: includes/media/class-file-uploader.php:44
 msgid "Unable to findout uploaded file name."
 msgstr "No fue posible encontrar el nombre del archivo cargado."
 
@@ -7278,11 +7294,11 @@ msgstr ""
 "Paso desconocido \"%s\". Por favor contacte el administrador acerca de este "
 "error."
 
-#: admin/admin-panel-listings-table.php:245
+#: admin/admin-panel-listings-table.php:243
 msgid "Unpaid"
 msgstr "No pagada."
 
-#: includes/models/ad.php:680
+#: includes/models/ad.php:682
 msgctxt "ad payment status"
 msgid "Unpaid"
 msgstr "No pagada"
@@ -7291,7 +7307,7 @@ msgstr "No pagada"
 msgid "Untitled"
 msgstr "Sin Título"
 
-#: admin/admin-panel-listings-table.php:246
+#: admin/admin-panel-listings-table.php:244
 msgid "Unverified"
 msgstr "No Verificados"
 
@@ -7379,9 +7395,9 @@ msgstr ""
 "la imagen está pendiente de ser aprobada o fue rechazada (ver explicación "
 "más arriba)."
 
-#: admin/admin-panel-listings-table.php:269
+#: admin/admin-panel-listings-table.php:267
 #: frontend/templates/page-place-ad-details-step.tpl.php:36
-#: frontend/templates/page-place-ad-order-step.tpl.php:39
+#: frontend/templates/page-place-ad-order-step.tpl.php:43
 msgid "User"
 msgstr "Usuario"
 
@@ -7430,7 +7446,7 @@ msgstr ""
 msgid "User Email"
 msgstr "Email de usuario"
 
-#: includes/settings/class-form-fields-settings.php:15
+#: includes/settings/class-form-fields-settings.php:26
 msgid "User Field"
 msgstr "Campo de Usuario"
 
@@ -7467,8 +7483,8 @@ msgstr "Videos"
 msgid "View"
 msgstr "Ver"
 
-#: admin/admin-panel-listings-table.php:354
-#: admin/admin-panel-listings-table.php:357
+#: admin/admin-panel-listings-table.php:352
+#: admin/admin-panel-listings-table.php:355
 msgid "View Ad."
 msgstr "Ver anuncio."
 
@@ -7605,7 +7621,7 @@ msgstr ""
 "No pudimos encontrar una transacción de pago asignada a esta operación. No "
 "se puede agregar imagenes esta vez."
 
-#: includes/settings/class-form-fields-settings.php:38
+#: includes/settings/class-form-fields-settings.php:49
 msgid "Website Field"
 msgstr "Web"
 
@@ -8248,11 +8264,11 @@ msgstr "Debe seleccionar one de los términos de pago disponibles."
 msgid "You should select an owner for this Ad."
 msgstr "Debe seleccionar un autor para este anuncio."
 
-#: functions.php:1914
+#: functions.php:1915
 msgid "Your Ad \"%s\" has been approved"
 msgstr "Su anuncio \"%s\" ha sido aprobado"
 
-#: functions.php:1930
+#: functions.php:1931
 msgid "Your Ad \"%s\" has been successfully updated"
 msgstr "Su anuncio \"%s\" ha sido actualizado exitosamente"
 
@@ -8511,11 +8527,11 @@ msgstr "cargando..."
 msgid "reCAPTCHA (recommended)"
 msgstr "reCAPTCHA (recomendado)"
 
-#: includes/settings/class-general-settings.php:118
+#: includes/settings/class-general-settings.php:119
 msgid "reCAPTCHA Secret Key"
 msgstr "Clave secreta para reCAPTCHA"
 
-#: includes/settings/class-general-settings.php:117
+#: includes/settings/class-general-settings.php:118
 msgid "reCAPTCHA Site Key"
 msgstr "Clave del sitio para reCAPTCHA"
 
@@ -9482,6 +9498,10 @@ msgstr "viste los foros!"
 #~ msgid "Field View Label"
 #~ msgstr "Nombre Visible del Campo"
 
+#~ msgctxt "name of Files settings section"
+#~ msgid "Files"
+#~ msgstr "Archivos"
+
 #~ msgctxt "comment actions"
 #~ msgid "Flag"
 #~ msgstr "Reportar"
@@ -9624,10 +9644,6 @@ msgstr "viste los foros!"
 
 #~ msgid "Image slots available"
 #~ msgstr "Lugares disponibles para imágenes"
-
-#~ msgctxt "AWPCP"
-#~ msgid "Images/Attachments"
-#~ msgstr "Imágenes/Archivos Adjuntos"
 
 #~ msgid "Important Information"
 #~ msgstr "Información Importante"
