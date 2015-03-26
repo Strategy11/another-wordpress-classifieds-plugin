@@ -1498,28 +1498,29 @@ function awpcp_get_currency_code() {
  * XXX: Referenced in FAQ: http://awpcp.com/forum/faq/why-doesnt-my-currency-code-change-when-i-set-it/
  */
 function awpcp_get_currency_symbol() {
-	$dollar = array('CAD', 'AUD', 'NZD', 'SGD', 'HKD', 'USD');
-	$code = awpcp_get_currency_code();
+	$currency_symbols = awpcp_currency_symbols();
+	$currency_code = awpcp_get_currency_code();
 
-	if (in_array($code, $dollar)) {
-		$symbol = "$";
-	}
+    foreach (  $currency_symbols as $currency_symbol => $currency_codes ) {
+        if ( in_array( $currency_code, $currency_codes ) ) {
+            return $currency_symbol;
+        }
+    }
 
-	if (($code == 'JPY')) {
-		$symbol = "&yen;";
-	}
-
-	if (($code == 'EUR')) {
-		$symbol = "&euro;";
-	}
-
-	if (($code == 'GBP')) {
-		$symbol = "&pound;";
-	}
-
-	return empty($symbol) ? $code : $symbol;
+    return $currency_code;
 }
 
+/**
+ * @since next-release
+ */
+function awpcp_currency_symbols() {
+    return array(
+        '$' => array( 'CAD', 'AUD', 'NZD', 'SGD', 'HKD', 'USD' ),
+        '&yen;' => array( 'JPY' ),
+        '&euro;' => array( 'EUR' ),
+        '&pound;' => array( 'GBP' ),
+    );
+}
 
 /**
  * @since 3.0
