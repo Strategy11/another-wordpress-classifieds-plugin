@@ -200,7 +200,10 @@ function showad( $adid=null, $omitmenu=false, $preview=false, $send_email=true, 
 			$output = str_replace( '<!--awpcp-single-ad-layout-->', join('', $messages) . $layout, $output );
 			$output = apply_filters('awpcp-show-ad', $output, $adid);
 
-			$ad->visit();
+			if ( ! awpcp_request()->is_bot() ) {
+				$ad->visit();
+			}
+
 			$ad->save();
 		}
 	} else {
