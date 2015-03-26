@@ -22,7 +22,7 @@ abstract class AWPCP_FormField {
         return false;
     }
 
-    public function is_readonly() {
+    public function is_readonly( $value ) {
         return false;
     }
 
