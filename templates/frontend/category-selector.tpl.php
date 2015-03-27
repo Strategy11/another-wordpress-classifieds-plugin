@@ -2,7 +2,7 @@
     <form method="post" action="<?php echo esc_attr( $browse_categories_page_url ); ?>">
         <div class="awpcp-category-dropdown-container">
         <?php $dropdown = new AWPCP_CategoriesDropdown(); ?>
-        <?php echo $dropdown->render( array( 'context' => 'search', 'name' => 'category_id', 'selected' => $category_id ) ); ?>
+        <?php echo $dropdown->render( $category_dropdown_params ); ?>
         </div>
 
         <input type="hidden" name="a" value="browsecat" />
