@@ -70,14 +70,19 @@ if (typeof jQuery !== 'undefined') {
                 var options = this.options,
                     link = this.link,
                     parent = link.closest('div'),
-                    tbody = parent.find('table:last tbody'),
-                    first = tbody.find('tr:first'), inline;
+                    tbody, first, inline;
+
+                if ( parent.find( 'table:last tbody' ).length == 0 ) {
+                    parent = link.closest( '.awpcp-inner-content' );
+                }
+
+                tbody = parent.find( 'table:last tbody' );
+                first = tbody.find( 'tr:first' );
 
                 $.post(options.ajaxurl, $.extend({}, options.data, {
                     'action': options.actions.add,
                     'columns': tbody.closest('table').find('thead th').length
                 }), function(response) {
-
                     if ( first.length ) {
                         inline = $(response.html).insertBefore( first );
                     } else {
