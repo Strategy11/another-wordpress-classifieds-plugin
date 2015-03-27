@@ -117,7 +117,7 @@ if (typeof jQuery !== 'undefined') {
                                     }
 
                                     if ( $.isFunction( options.onSuccess ) ) {
-                                        options.onSuccess.apply( this, [ options.actions.add, row ] );
+                                        options.onSuccess.apply( this, [ options.actions.add, row, response ] );
                                     }
                                 } else {
                                     loadingIcon.hide().removeClass( 'is-visible-inline-block' );
@@ -174,7 +174,7 @@ if (typeof jQuery !== 'undefined') {
                                     inline.remove();
 
                                     if ( $.isFunction( options.onSuccess ) ) {
-                                        options.onSuccess.apply( this, [ options.actions.edit, newRow ] );
+                                        options.onSuccess.apply( this, [ options.actions.edit, newRow, response ] );
                                     }
                                 } else {
                                     loadingIcon.hide().removeClass( 'is-visible-inline-block' );
