@@ -106,7 +106,23 @@ class AWPCP_GeneralSettings {
             'math' => __( 'Math', 'AWPCP' ),
         );
 
-        $settings->add_setting( $key, 'useakismet', __( 'Use Akismet', 'AWPCP' ), 'checkbox', 1, __( 'Use Akismet for Posting Ads/Contact Responses (strong anti-spam).', 'AWPCP' ) );
+        if ( ! $settings->option_exists( 'useakismet' ) ) {
+            $is_akismet_installed = function_exists( 'akismet_init' );
+            $is_akismet_key_set = strlen( get_option( 'wordpress_api_key' ) ) > 0;
+            $use_akismet_default_value = $is_akismet_installed && $is_akismet_key_set;
+        } else {
+            $use_akismet_default_value = $settings->get_option( 'useakismet' );
+        }
+
+        $settings->add_setting(
+            $key,
+            'useakismet',
+            __( 'Use Akismet', 'AWPCP' ),
+            'checkbox',
+            $use_akismet_default_value,
+            __( 'Use Akismet for Posting Ads/Contact Responses (strong anti-spam).', 'AWPCP' )
+        );
+
         $settings->add_setting( $key, 'captcha-enabled', __( 'Enable CAPTCHA', 'AWPCP' ), 'checkbox', $settings->get_option( 'contactformcheckhuman', 1 ), __( 'A CAPTCHA is a program to ensure only humans are posting Ads to your website. Using a CAPTCHA will reduce the SPAM and prevent bots from posting on your website. If checked, an additional form field will be added to the Place Ad and Reply to Ad forms.', 'AWPCP' ) );
         $settings->add_setting( $key, 'captcha-provider', __( 'Type of CAPTCHA', 'AWPCP' ), 'select', 'math', __( 'reCAPTCHA: Uses distorted images that only humans should be able to read (recommended).', 'AWPCP' ) . '<br/>' . __( 'Math: Asks user to solve a simple arithmetic operation.', 'AWPCP' ), array( 'options' => $options ) );
 
