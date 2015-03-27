@@ -142,7 +142,7 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
         return awpcp_display_listings( $query, 'search', array(
             'show_intro_message' => true,
             'show_menu_items' => true,
-            'show_category_selector' => true,
+            'show_category_selector' => false,
             'show_pagination' => true,
 
             'before_list' => $this->build_return_link(),
