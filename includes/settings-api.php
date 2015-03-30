@@ -135,6 +135,15 @@ class AWPCP_Settings_API {
 								$edit_listing_link
 							</div>', __( 'Modify as needed to control layout of single ad view page. Maintain code formatted as \$somecodetitle. Changing the code keys will prevent the elements they represent from displaying.', 'AWPCP' ) );
 
+        $this->add_setting(
+            $key,
+            'allow-wordpress-shortcodes-in-single-template',
+            __( 'Allow WordPress Shortcodes in Single Ad page layout' ),
+            'checkbox',
+            0,
+            __( 'Shortcodes executed this way will be executed as if they were entered in the content of the WordPress page showing the listing (normally the Show Ad page, but in general any page that has the AWPCPSHOWAD shortcode).', 'AWPCP' )
+        );
+
 		$radio_options = array(1 => __( 'Date (newest first)', 'AWPCP' ),
 							   9 => __( 'Date (oldest first)', 'AWPCP' ),
 							   2 => __( 'Title (ascending)', 'AWPCP' ),

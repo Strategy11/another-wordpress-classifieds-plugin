@@ -360,7 +360,7 @@ function awpcp_render_listings_items( $listings, $context ) {
 	$parity = array( 'displayaditemseven', 'displayaditemsodd' );
 	$layout = get_awpcp_option('displayadlayoutcode');
 
-	if ( empty( $layout) ) {
+	if ( empty( $layout ) ) {
 		$layout = awpcp()->settings->get_option_default_value( 'displayadlayoutcode' );
 	}
 

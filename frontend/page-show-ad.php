@@ -189,12 +189,7 @@ function showad( $adid=null, $omitmenu=false, $preview=false, $send_email=true, 
 				$messages[] = awpcp_print_error($message);
 			}
 
-			$layout = get_awpcp_option('awpcpshowtheadlayout');
-			if (empty($layout)) {
-				$layout = awpcp()->settings->get_option_default_value('awpcpshowtheadlayout');
-			}
-			$layout = apply_filters('awpcp-single-ad-layout', $layout, $ad);
-
+            $layout = awpcp_get_listing_single_view_layout( $ad );
 			$layout = awpcp_do_placeholders( $ad, $layout, 'single' );
 
 			$output = str_replace( '<!--awpcp-single-ad-layout-->', join('', $messages) . $layout, $output );
@@ -217,4 +212,20 @@ function showad( $adid=null, $omitmenu=false, $preview=false, $send_email=true, 
 	}
 
 	return $output;
+}
+
+function awpcp_get_listing_single_view_layout( $listing ) {
+    $layout = get_awpcp_option( 'awpcpshowtheadlayout' );
+
+    if ( empty( $layout ) ) {
+        $layout = awpcp()->settings->get_option_default_value( 'awpcpshowtheadlayout' );
+    }
+
+    $layout = apply_filters( 'awpcp-single-ad-layout', $layout, $listing );
+
+    if ( get_awpcp_option( 'allow-wordpress-shortcodes-in-single-template' ) ) {
+        $layout = do_shortcode( $layout );
+    }
+
+    return $layout;
 }
