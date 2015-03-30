@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2015-03-26 22:35:23+00:00\n"
+"POT-Creation-Date: 2015-03-30 15:44:20+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1771,10 +1771,14 @@ msgstr ""
 msgid "<strong>%s</strong> (%s page)."
 msgstr ""
 
-#: admin/templates/admin-panel-settings-pages-settings.tpl.php:33
+#: admin/templates/admin-panel-settings-pages-settings.tpl.php:32
 msgid ""
 "If you are having problems with your plugin pages, you can delete them and "
 "use the Restore button to have the plugin create them again."
+msgstr ""
+
+#: admin/templates/admin-panel-settings-pages-settings.tpl.php:33
+msgid "Restore Pages"
 msgstr ""
 
 #: admin/templates/admin-panel-settings.tpl.php:3
@@ -5821,19 +5825,19 @@ msgstr ""
 msgid "Math"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:109
+#: includes/settings/class-general-settings.php:120
 msgid "Use Akismet"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:109
+#: includes/settings/class-general-settings.php:123
 msgid "Use Akismet for Posting Ads/Contact Responses (strong anti-spam)."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:110
+#: includes/settings/class-general-settings.php:126
 msgid "Enable CAPTCHA"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:110
+#: includes/settings/class-general-settings.php:126
 msgid ""
 "A CAPTCHA is a program to ensure only humans are posting Ads to your "
 "website. Using a CAPTCHA will reduce the SPAM and prevent bots from posting "
@@ -5841,49 +5845,49 @@ msgid ""
 "Place Ad and Reply to Ad forms."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:111
+#: includes/settings/class-general-settings.php:127
 msgid "Type of CAPTCHA"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:111
+#: includes/settings/class-general-settings.php:127
 msgid ""
 "reCAPTCHA: Uses distorted images that only humans should be able to read "
 "(recommended)."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:111
+#: includes/settings/class-general-settings.php:127
 msgid "Math: Asks user to solve a simple arithmetic operation."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:113
+#: includes/settings/class-general-settings.php:129
 msgid "Max number used in Math CAPTCHA"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:113
+#: includes/settings/class-general-settings.php:129
 msgid "Highest number used in aithmetic operation."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:116
+#: includes/settings/class-general-settings.php:132
 msgid "You can get an API key from %s."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:118
+#: includes/settings/class-general-settings.php:134
 msgid "reCAPTCHA Site Key"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:119
+#: includes/settings/class-general-settings.php:135
 msgid "reCAPTCHA Secret Key"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:123
+#: includes/settings/class-general-settings.php:139
 msgid "SEO Settings"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:125
+#: includes/settings/class-general-settings.php:141
 msgid "Turn on Search Engine Friendly URLs"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:125
+#: includes/settings/class-general-settings.php:141
 msgid "Turn on Search Engine Friendly URLs? (SEO Mode)"
 msgstr ""
 
@@ -7159,14 +7163,14 @@ msgstr ""
 
 #: includes/settings-api.php:666
 msgid ""
-"You cannot enable Akismet SPAM control because you do not have Akismet "
-"installed/activated"
+"Akismet SPAM control cannot be enabled because Akismet plugin is not "
+"installed or activated."
 msgstr ""
 
 #: includes/settings-api.php:669
 msgid ""
-"You cannot enable Akismet SPAM control because you have not configured "
-"Akismet properly"
+"Akismet SPAM control cannot be enabled because Akismet is not properly "
+"configured."
 msgstr ""
 
 #: includes/settings-api.php:681

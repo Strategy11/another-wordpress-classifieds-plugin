@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: AWPCP\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2015-03-26 22:35:23+00:00\n"
+"POT-Creation-Date: 2015-03-30 15:23:57+00:00\n"
 "PO-Revision-Date: 2014-09-09 20:44-0600\n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: \n"
@@ -230,7 +230,7 @@ msgid ""
 "<strong>%s</strong> (%s page): The plugin is looking for a page with ID = %d."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:110
+#: includes/settings/class-general-settings.php:126
 msgid ""
 "A CAPTCHA is a program to ensure only humans are posting Ads to your "
 "website. Using a CAPTCHA will reduce the SPAM and prevent bots from posting "
@@ -621,6 +621,18 @@ msgid ""
 "After you verify your email address, the administrator will be notified "
 "about the new Ad. If moderation is enabled, your Ad will remain in a "
 "disabled status until the administrator approves it."
+msgstr ""
+
+#: includes/settings-api.php:669
+msgid ""
+"Akismet SPAM control cannot be enabled because Akismet is not properly "
+"configured."
+msgstr ""
+
+#: includes/settings-api.php:666
+msgid ""
+"Akismet SPAM control cannot be enabled because Akismet plugin is not "
+"installed or activated."
 msgstr ""
 
 #: admin/templates/admin-panel-fees-entry-form.tpl.php:92
@@ -1725,7 +1737,7 @@ msgctxt "media manager"
 msgid "Enable"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:110
+#: includes/settings/class-general-settings.php:126
 msgid "Enable CAPTCHA"
 msgstr ""
 
@@ -2268,7 +2280,7 @@ msgstr ""
 msgid "Hide price field if empty or zero"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:113
+#: includes/settings/class-general-settings.php:129
 msgid "Highest number used in aithmetic operation."
 msgstr ""
 
@@ -2398,7 +2410,7 @@ msgstr ""
 msgid "If unchecked only categories will be displayed"
 msgstr ""
 
-#: admin/templates/admin-panel-settings-pages-settings.tpl.php:33
+#: admin/templates/admin-panel-settings-pages-settings.tpl.php:32
 msgid ""
 "If you are having problems with your plugin pages, you can delete them and "
 "use the Restore button to have the plugin create them again."
@@ -2976,7 +2988,7 @@ msgstr ""
 msgid "Math"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:111
+#: includes/settings/class-general-settings.php:127
 msgid "Math: Asks user to solve a simple arithmetic operation."
 msgstr ""
 
@@ -2984,7 +2996,7 @@ msgstr ""
 msgid "Max"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:113
+#: includes/settings/class-general-settings.php:129
 msgid "Max number used in Math CAPTCHA"
 msgstr ""
 
@@ -4335,6 +4347,10 @@ msgstr ""
 msgid "Restore AWPCP Pages"
 msgstr ""
 
+#: admin/templates/admin-panel-settings-pages-settings.tpl.php:33
+msgid "Restore Pages"
+msgstr ""
+
 #: admin/templates/admin-panel-home.tpl.php:37
 msgid "Restore the Classifieds pages to fix the conflict."
 msgstr ""
@@ -4384,7 +4400,7 @@ msgstr ""
 msgid "Row %d. %s"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:123
+#: includes/settings/class-general-settings.php:139
 msgid "SEO Settings"
 msgstr ""
 
@@ -6438,11 +6454,11 @@ msgid ""
 "handle it and a conflict results."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:125
+#: includes/settings/class-general-settings.php:141
 msgid "Turn on Search Engine Friendly URLs"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:125
+#: includes/settings/class-general-settings.php:141
 msgid "Turn on Search Engine Friendly URLs? (SEO Mode)"
 msgstr ""
 
@@ -6454,7 +6470,7 @@ msgstr ""
 msgid "Tweet This"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:111
+#: includes/settings/class-general-settings.php:127
 msgid "Type of CAPTCHA"
 msgstr ""
 
@@ -6592,11 +6608,11 @@ msgstr ""
 msgid "Uploads folder name"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:109
+#: includes/settings/class-general-settings.php:120
 msgid "Use Akismet"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:109
+#: includes/settings/class-general-settings.php:123
 msgid "Use Akismet for Posting Ads/Contact Responses (strong anti-spam)."
 msgstr ""
 
@@ -7010,7 +7026,7 @@ msgid ""
 "a> page."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:116
+#: includes/settings/class-general-settings.php:132
 msgid "You can get an API key from %s."
 msgstr ""
 
@@ -7107,18 +7123,6 @@ msgid ""
 "You cannot configure Credits as the only accepted payment type unless you "
 "unable the Credit System as well. The setting was set to accept both "
 "Currency and Credits."
-msgstr ""
-
-#: includes/settings-api.php:666
-msgid ""
-"You cannot enable Akismet SPAM control because you do not have Akismet "
-"installed/activated"
-msgstr ""
-
-#: includes/settings-api.php:669
-msgid ""
-"You cannot enable Akismet SPAM control because you have not configured "
-"Akismet properly"
 msgstr ""
 
 #: frontend/page-place-ad.php:226
@@ -7545,11 +7549,11 @@ msgstr ""
 msgid "reCAPTCHA (recommended)"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:119
+#: includes/settings/class-general-settings.php:135
 msgid "reCAPTCHA Secret Key"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:118
+#: includes/settings/class-general-settings.php:134
 msgid "reCAPTCHA Site Key"
 msgstr ""
 
@@ -7571,7 +7575,7 @@ msgid ""
 "reCAPTCHA to work properly."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:111
+#: includes/settings/class-general-settings.php:127
 msgid ""
 "reCAPTCHA: Uses distorted images that only humans should be able to read "
 "(recommended)."

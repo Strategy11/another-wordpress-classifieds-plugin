@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: AWPCP\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2015-03-26 22:35:23+00:00\n"
+"POT-Creation-Date: 2015-03-30 15:23:57+00:00\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: \n"
@@ -242,7 +242,7 @@ msgstr ""
 "<strong>%s</strong> (%s page): El plugin está buscando una página con el ID "
 "= %d."
 
-#: includes/settings/class-general-settings.php:110
+#: includes/settings/class-general-settings.php:126
 msgid ""
 "A CAPTCHA is a program to ensure only humans are posting Ads to your "
 "website. Using a CAPTCHA will reduce the SPAM and prevent bots from posting "
@@ -676,6 +676,22 @@ msgstr ""
 "Después de verificar la dirección de correo electrónico, el administrador "
 "será notificado sobre el nuevo anuncio. Si la publicación es moderada, el "
 "anuncio permanecerá deshabilitado hasta que un adminstrador la apruebe."
+
+#: includes/settings-api.php:669
+msgid ""
+"Akismet SPAM control cannot be enabled because Akismet is not properly "
+"configured."
+msgstr ""
+"No se puede activar el control de SPAM Askimet porque el plugin Askimet no "
+"ha sido configurado adecuadamente."
+
+#: includes/settings-api.php:666
+msgid ""
+"Akismet SPAM control cannot be enabled because Akismet plugin is not "
+"installed or activated."
+msgstr ""
+"No se puede activar el control de SPAM Askimet porque el plugin Askimet no "
+"está instalado o activado."
 
 #: admin/templates/admin-panel-fees-entry-form.tpl.php:92
 msgctxt "all categories"
@@ -1863,7 +1879,7 @@ msgctxt "media manager"
 msgid "Enable"
 msgstr "Aprobar"
 
-#: includes/settings/class-general-settings.php:110
+#: includes/settings/class-general-settings.php:126
 msgid "Enable CAPTCHA"
 msgstr "Habilitar CAPTCHA"
 
@@ -2473,7 +2489,7 @@ msgstr ""
 msgid "Hide price field if empty or zero"
 msgstr "No mostrar el precio si está vacío o es cero."
 
-#: includes/settings/class-general-settings.php:113
+#: includes/settings/class-general-settings.php:129
 msgid "Highest number used in aithmetic operation."
 msgstr "Número máximo usado en la operación aritmética."
 
@@ -2652,7 +2668,7 @@ msgstr ""
 msgid "If unchecked only categories will be displayed"
 msgstr "Si no está seleccionado, solo se mostraran las categorías"
 
-#: admin/templates/admin-panel-settings-pages-settings.tpl.php:33
+#: admin/templates/admin-panel-settings-pages-settings.tpl.php:32
 msgid ""
 "If you are having problems with your plugin pages, you can delete them and "
 "use the Restore button to have the plugin create them again."
@@ -3300,7 +3316,7 @@ msgstr "Marcar como verificado"
 msgid "Math"
 msgstr "Aritmético"
 
-#: includes/settings/class-general-settings.php:111
+#: includes/settings/class-general-settings.php:127
 msgid "Math: Asks user to solve a simple arithmetic operation."
 msgstr ""
 "Aritmético: Le pide al usuario que resuleva una operación aritmética simple."
@@ -3309,7 +3325,7 @@ msgstr ""
 msgid "Max"
 msgstr "Máximo"
 
-#: includes/settings/class-general-settings.php:113
+#: includes/settings/class-general-settings.php:129
 msgid "Max number used in Math CAPTCHA"
 msgstr "Máximo número usado en el CAPTCHA aritmético."
 
@@ -4768,6 +4784,10 @@ msgstr "Respuesta a su anuncio de prueba"
 msgid "Restore AWPCP Pages"
 msgstr "Restaurar páginas AWPCP"
 
+#: admin/templates/admin-panel-settings-pages-settings.tpl.php:33
+msgid "Restore Pages"
+msgstr "Restaurar Páginas"
+
 #: admin/templates/admin-panel-home.tpl.php:37
 msgid "Restore the Classifieds pages to fix the conflict."
 msgstr "Restaurar las páginas de Clasificados para resolver el conflicto."
@@ -4819,7 +4839,7 @@ msgstr ""
 msgid "Row %d. %s"
 msgstr "Fila %d %s\t"
 
-#: includes/settings/class-general-settings.php:123
+#: includes/settings/class-general-settings.php:139
 msgid "SEO Settings"
 msgstr "Configuración SEO"
 
@@ -7178,11 +7198,11 @@ msgstr ""
 "Desactive las funciones de lightbox/thickbox en AWPCP. Algunos temas no "
 "pueden manejarlas adecuadamente y se producen conflictos."
 
-#: includes/settings/class-general-settings.php:125
+#: includes/settings/class-general-settings.php:141
 msgid "Turn on Search Engine Friendly URLs"
 msgstr "Activar URLs amigables con los motores de búsqueda (SEO URLs)"
 
-#: includes/settings/class-general-settings.php:125
+#: includes/settings/class-general-settings.php:141
 msgid "Turn on Search Engine Friendly URLs? (SEO Mode)"
 msgstr "Activar URLs amigables con los motores de búsqueda (modo SEO) ?"
 
@@ -7194,7 +7214,7 @@ msgstr "Actiar el archivo de traducción (POT)"
 msgid "Tweet This"
 msgstr "Twitear esto"
 
-#: includes/settings/class-general-settings.php:111
+#: includes/settings/class-general-settings.php:127
 msgid "Type of CAPTCHA"
 msgstr "Tipo de CAPTCHA"
 
@@ -7351,11 +7371,11 @@ msgstr "Directorio de Archivos"
 msgid "Uploads folder name"
 msgstr "Nombre de la carpeta para subir archivos"
 
-#: includes/settings/class-general-settings.php:109
+#: includes/settings/class-general-settings.php:120
 msgid "Use Akismet"
 msgstr "Usar Akismet"
 
-#: includes/settings/class-general-settings.php:109
+#: includes/settings/class-general-settings.php:123
 msgid "Use Akismet for Posting Ads/Contact Responses (strong anti-spam)."
 msgstr ""
 "Usar Akismer cuando se publiquen anuncios y respuestas a los anuncios (anti-"
@@ -7859,7 +7879,7 @@ msgstr ""
 "Puede encontrar la información de su aplicación en la página <a>Facebook "
 "Developer Apps</a>."
 
-#: includes/settings/class-general-settings.php:116
+#: includes/settings/class-general-settings.php:132
 msgid "You can get an API key from %s."
 msgstr "Usted puede obtener una clave para la API en  %s."
 
@@ -7989,22 +8009,6 @@ msgstr ""
 "No puede configurar Créditos como el único tipo de pago aceptado, a menos "
 "que también habilite el Sistema de Créditos. La opción fue configurada para "
 "aceptar Moneda y Créditos."
-
-#: includes/settings-api.php:666
-msgid ""
-"You cannot enable Akismet SPAM control because you do not have Akismet "
-"installed/activated"
-msgstr ""
-"No se puede activar el control de SPAM Askimet porque no tiene el Plugin "
-"Askimet Instalado/activado"
-
-#: includes/settings-api.php:669
-msgid ""
-"You cannot enable Akismet SPAM control because you have not configured "
-"Akismet properly"
-msgstr ""
-"No puedes habilitar el control de SPAM Askimet porque no tenés configurado "
-"adecuadamente el Plugin Askimet"
 
 #: frontend/page-place-ad.php:226
 msgid ""
@@ -8527,11 +8531,11 @@ msgstr "cargando..."
 msgid "reCAPTCHA (recommended)"
 msgstr "reCAPTCHA (recomendado)"
 
-#: includes/settings/class-general-settings.php:119
+#: includes/settings/class-general-settings.php:135
 msgid "reCAPTCHA Secret Key"
 msgstr "Clave secreta para reCAPTCHA"
 
-#: includes/settings/class-general-settings.php:118
+#: includes/settings/class-general-settings.php:134
 msgid "reCAPTCHA Site Key"
 msgstr "Clave del sitio para reCAPTCHA"
 
@@ -8559,7 +8563,7 @@ msgstr ""
 "reCAPTCHA no puede user usado por la opción clave pública es necesaria para "
 "que reCAPTCHA funcione adecuadamente."
 
-#: includes/settings/class-general-settings.php:111
+#: includes/settings/class-general-settings.php:127
 msgid ""
 "reCAPTCHA: Uses distorted images that only humans should be able to read "
 "(recommended)."
@@ -10924,6 +10928,13 @@ msgstr "viste los foros!"
 #~ msgstr ""
 #~ "No puede usar <strong>%s</strong> como el nombre del campo. Es una "
 #~ "palabra reservada de WordPress."
+
+#~ msgid ""
+#~ "You cannot enable Akismet SPAM control because you have not configured "
+#~ "Akismet properly"
+#~ msgstr ""
+#~ "No puedes habilitar el control de SPAM Askimet porque no tenés "
+#~ "configurado adecuadamente el Plugin Askimet"
 
 #~ msgid "You did not indicate the field MYSQL data type."
 #~ msgstr "No indicaste el tipo de entrada MYSQL"
