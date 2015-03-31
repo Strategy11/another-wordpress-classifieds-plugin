@@ -99,7 +99,9 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
         $ui['allow-user-to-search-in-multiple-regions'] = get_awpcp_option('allow-user-to-search-in-multiple-regions');
 
         $messages = $this->messages;
-        $hidden = array('a' => 'dosearch');
+
+        $url_params = wp_parse_args( parse_url( awpcp_current_url(), PHP_URL_QUERY ) );
+        $hidden = array_merge( $url_params, array( 'a' => 'dosearch' ) );
 
         $page = $this;
         $template = AWPCP_DIR . '/frontend/templates/page-search-ads.tpl.php';
