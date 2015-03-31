@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: AWPCP\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2015-03-30 15:23:57+00:00\n"
+"POT-Creation-Date: 2015-03-31 00:01:38+00:00\n"
 "PO-Revision-Date: 2015-01-13 23:50-0500\n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: Daniel MENGONI <contact@ulm-actualite.info>\n"
@@ -202,16 +202,16 @@ msgctxt "payment gateways"
 msgid "2Checkout"
 msgstr "2Checkout"
 
-#: includes/settings-api.php:236
+#: includes/settings-api.php:245
 #, fuzzy
 msgid "2Checkout Currency Code"
 msgstr "Code devises PayPal"
 
-#: includes/settings-api.php:227
+#: includes/settings-api.php:236
 msgid "2Checkout Settings"
 msgstr "2Checkout Réglages"
 
-#: includes/settings-api.php:231
+#: includes/settings-api.php:240
 msgid "2Checkout account"
 msgstr "Compte 2Checkout"
 
@@ -223,7 +223,7 @@ msgstr ""
 msgid "30 Day Listing"
 msgstr "Annonce 30 jours"
 
-#: includes/settings-api.php:520
+#: includes/settings-api.php:529
 msgid "<module-name> License Key"
 msgstr ""
 
@@ -402,7 +402,7 @@ msgstr ""
 msgid "AWPCP version"
 msgstr "Version de AWPCP"
 
-#: includes/settings-api.php:250
+#: includes/settings-api.php:259
 msgid "Above Ad text."
 msgstr "Au dessus du texte de l'annonce."
 
@@ -432,7 +432,7 @@ msgctxt "credit system on users table"
 msgid "Account Balance"
 msgstr "Solde du Compte"
 
-#: includes/settings-api.php:231
+#: includes/settings-api.php:240
 msgid "Account for 2Checkout payments."
 msgstr ""
 
@@ -440,24 +440,24 @@ msgstr ""
 msgid "Action"
 msgstr "Action"
 
-#: includes/settings-api.php:229
+#: includes/settings-api.php:238
 msgid "Activate 2Checkout"
 msgstr "Activer 2Checkout"
 
-#: includes/settings-api.php:229
+#: includes/settings-api.php:238
 msgid "Activate 2Checkout?"
 msgstr "Activer 2Checkout?"
 
-#: includes/settings-api.php:255
+#: includes/settings-api.php:264
 msgid "Activate AdSense"
 msgstr "Activer AdSense"
 
-#: includes/settings-api.php:987
+#: includes/settings-api.php:996
 #, fuzzy
 msgid "Activate License"
 msgstr "Activer AdSense"
 
-#: includes/settings-api.php:193
+#: includes/settings-api.php:202
 msgid "Activate PayPal?"
 msgstr "Activer PayPal?"
 
@@ -478,7 +478,7 @@ msgctxt "ad details form"
 msgid "Ad Details"
 msgstr "Détail de l'Annonce"
 
-#: includes/settings-api.php:321
+#: includes/settings-api.php:330
 msgid "Ad Expired Message"
 msgstr "Message d'Expiration d'Annonce"
 
@@ -502,11 +502,11 @@ msgstr "Gestion Annonce"
 msgid "Ad Owner"
 msgstr "Propriétaire de l'annonce"
 
-#: includes/settings-api.php:278
+#: includes/settings-api.php:287
 msgid "Ad Posted Message"
 msgstr "Message d'annonce envoyé"
 
-#: includes/settings-api.php:314
+#: includes/settings-api.php:323
 msgid "Ad Renewed Message"
 msgstr "Message d'annonce renouvelée"
 
@@ -531,15 +531,15 @@ msgstr "Annonce/Listes"
 msgid "Ad/Listings settings page"
 msgstr "Affichage d'Annonces"
 
-#: includes/settings-api.php:243
+#: includes/settings-api.php:252
 msgid "AdSense"
 msgstr "AdSense"
 
-#: includes/settings-api.php:247
+#: includes/settings-api.php:256
 msgid "AdSense Settings"
 msgstr "Réglages AdSense"
 
-#: includes/settings-api.php:256
+#: includes/settings-api.php:265
 msgid "AdSense code"
 msgstr "Code AdSense"
 
@@ -599,7 +599,7 @@ msgstr ""
 msgid "Add a New Category"
 msgstr "Ajouter une Nouvelle Catégorie"
 
-#: includes/settings-api.php:174
+#: includes/settings-api.php:183
 msgid "Add no follow to links in Ads"
 msgstr "Ajouter ne pas suivre les liens dans les annonces"
 
@@ -665,7 +665,7 @@ msgstr "Annonces Admises"
 msgid "Ads Awaiting Approval"
 msgstr "Attente d'Approbation"
 
-#: includes/settings-api.php:328
+#: includes/settings-api.php:337
 msgid "Advanced Email Configuration"
 msgstr "Email Configuration avancée"
 
@@ -676,13 +676,13 @@ msgid ""
 "disabled status until the administrator approves it."
 msgstr ""
 
-#: includes/settings-api.php:669
+#: includes/settings-api.php:678
 msgid ""
 "Akismet SPAM control cannot be enabled because Akismet is not properly "
 "configured."
 msgstr ""
 
-#: includes/settings-api.php:666
+#: includes/settings-api.php:675
 #, fuzzy
 msgid ""
 "Akismet SPAM control cannot be enabled because Akismet plugin is not "
@@ -752,6 +752,10 @@ msgstr "Autoriser le HTML dans le texte d'annonce (non recommandé)."
 #, fuzzy
 msgid "Allow Regions modification"
 msgstr "Notifications admin"
+
+#: includes/settings-api.php:141
+msgid "Allow WordPress Shortcodes in Single Ad page layout"
+msgstr ""
 
 #: includes/settings-api.php:69
 msgid "Allow users to search Ads in multiple regions"
@@ -836,7 +840,7 @@ msgstr ""
 "Un e-mail sera envoyé pour rappeler à l'utilisateur de renouveler l'annonce "
 "lorsque son annonce est sur ​​le point d'expirer."
 
-#: includes/settings-api.php:289
+#: includes/settings-api.php:298
 msgid ""
 "An email will be sent to the administrator every time a visitor sends a "
 "message to one of the Ad posters through the Reply to Ad page."
@@ -1007,7 +1011,7 @@ msgstr ""
 "quantité d'informations stockées. Appuyez sur le bouton de mise à jour ci-"
 "dessous pour démarrer le processus."
 
-#: includes/settings-api.php:252
+#: includes/settings-api.php:261
 msgid "Below Ad images."
 msgstr "Ci-dessous des images d'annonces."
 
@@ -1019,27 +1023,27 @@ msgstr ""
 "Ci-dessous vous trouverez la clé d'accès à votre annonce \"%s\" associée à "
 "l'adresse email %s."
 
-#: includes/settings-api.php:324
+#: includes/settings-api.php:333
 msgid "Body for Ad Expired email"
 msgstr "Corps du texte d'email d'annonce expirée"
 
-#: includes/settings-api.php:281
+#: includes/settings-api.php:290
 msgid "Body for Ad posted notification email"
 msgstr "Corps du texte de l'annonce envoyée par email de notification"
 
-#: includes/settings-api.php:303
+#: includes/settings-api.php:312
 msgid "Body for Incomplete Payment email"
 msgstr "Corps de texte du message paiement incomplet"
 
-#: includes/settings-api.php:310 includes/settings-api.php:317
+#: includes/settings-api.php:319 includes/settings-api.php:326
 msgid "Body for Renew Ad email"
 msgstr "Corps du texte de l'email de renouvellement annonce"
 
-#: includes/settings-api.php:288
+#: includes/settings-api.php:297
 msgid "Body for Reply to Ad email"
 msgstr "Corps de texte de l'email de réponse à l'annonce"
 
-#: includes/settings-api.php:296
+#: includes/settings-api.php:305
 msgid "Body for Request Ad Access Key email"
 msgstr "Corps de texte du message de demande de clé d'accès"
 
@@ -1198,7 +1202,7 @@ msgctxt "place ad payment terms column headers"
 msgid "Characters in Title"
 msgstr "Caractères dans le Titre"
 
-#: includes/settings-api.php:745
+#: includes/settings-api.php:754
 msgid ""
 "Charge Listing Fee setting was enabled automatically because you activated "
 "the Credit System."
@@ -1216,12 +1220,12 @@ msgctxt "place ad payment terms column headers"
 msgid "Chars in Description"
 msgstr "Caractères dans la Description"
 
-#: includes/settings-api.php:990
+#: includes/settings-api.php:999
 #, fuzzy
 msgid "Check License"
 msgstr "Vérifiez la désactivation."
 
-#: includes/settings-api.php:273
+#: includes/settings-api.php:282
 msgid ""
 "Check this to use the name and email of the sender in the FROM field when "
 "someone replies to an ad. When unchecked the messages go out with the "
@@ -1503,7 +1507,7 @@ msgstr "Système de Crédit"
 msgid "Credit System Settings"
 msgstr "Réglages du Système de Crédits"
 
-#: includes/settings-api.php:714
+#: includes/settings-api.php:723
 msgid ""
 "Credit System was automatically disabled because you disabled Require "
 "Registration setting."
@@ -1511,7 +1515,7 @@ msgstr ""
 "Le Système de Crédit a été automatiquement désactivé car vous avez désactivé "
 "l'obligation d'enregistrement."
 
-#: includes/settings-api.php:751
+#: includes/settings-api.php:760
 msgid ""
 "Credit System was disabled automatically because you disabled Charge Listing "
 "Fee."
@@ -1579,11 +1583,11 @@ msgctxt "settings"
 msgid "Date & Time Format"
 msgstr "Format de Date Temps"
 
-#: includes/settings-api.php:138
+#: includes/settings-api.php:147
 msgid "Date (newest first)"
 msgstr "Date (plus récent)"
 
-#: includes/settings-api.php:139
+#: includes/settings-api.php:148
 msgid "Date (oldest first)"
 msgstr "Date (plus ancien)"
 
@@ -1611,7 +1615,7 @@ msgid_plural "Days"
 msgstr[0] "Jour"
 msgstr[1] "Jours"
 
-#: includes/settings-api.php:984
+#: includes/settings-api.php:993
 #, fuzzy
 msgid "Deactivate License"
 msgstr "Activer AdSense"
@@ -1625,7 +1629,7 @@ msgstr "Cher Administrateur"
 msgid "Debug"
 msgstr "AWPCP Débogueur"
 
-#: includes/settings-api.php:155
+#: includes/settings-api.php:164
 msgid "Default number of Ads per page"
 msgstr "Nombre d'annonces par défaut par page"
 
@@ -1777,7 +1781,7 @@ msgstr "Affiche la liste des annonces aléatoires"
 msgid "Documentation"
 msgstr "Documentation"
 
-#: includes/settings-api.php:1008
+#: includes/settings-api.php:1017
 msgid "Documentation on date and time formatting"
 msgstr "Documentation sur les formats de dates et heures"
 
@@ -1860,7 +1864,7 @@ msgstr "Email"
 msgid "Email Address"
 msgstr "Votre Adresse Email"
 
-#: includes/settings-api.php:201
+#: includes/settings-api.php:210
 msgid ""
 "Email address for PayPal payments (if running in pay mode and if PayPal is "
 "activated)."
@@ -1889,7 +1893,7 @@ msgid ""
 "information."
 msgstr ""
 
-#: includes/settings-api.php:271
+#: includes/settings-api.php:280
 msgid ""
 "Emails are sent to your WordPress admin email. If you prefere to receive "
 "emails in a different address, please enter it here."
@@ -1898,7 +1902,7 @@ msgstr ""
 "préférez recevoir les courriels à une adresse différente, entrez la nouvelle "
 "adresse ici."
 
-#: includes/settings-api.php:272
+#: includes/settings-api.php:281
 msgid ""
 "Emails go out using your WordPress admin email. If you prefer to use a "
 "different email enter it here."
@@ -1932,7 +1936,7 @@ msgstr "Activer le Système de Crédit"
 msgid "Enable User Ad Management Panel"
 msgstr "Activer Utilisateur du Panneau de Gestion d'Annonce"
 
-#: includes/settings-api.php:330
+#: includes/settings-api.php:339
 msgid "Enable external SMTP server"
 msgstr "Activer le serveur SMTP externe"
 
@@ -1968,7 +1972,7 @@ msgstr ""
 msgid "Enabled"
 msgstr "Activé"
 
-#: includes/settings-api.php:330
+#: includes/settings-api.php:339
 msgid "Enabled external SMTP server (if emails not processing normally)."
 msgstr ""
 "Serveur SMTP externe activé (si les emails ne sont pas traités normalement)."
@@ -2121,7 +2125,7 @@ msgstr "Champs Supplémentaires"
 msgid "Extra Fields Module"
 msgstr "Champs Supplémentaires Module"
 
-#: includes/settings-api.php:272
+#: includes/settings-api.php:281
 msgid "FROM email address for outgoing emails"
 msgstr "FROM adresse e-mail pour les emails sortants"
 
@@ -2344,12 +2348,12 @@ msgstr ""
 msgid "General"
 msgstr "Général"
 
-#: includes/settings-api.php:269
+#: includes/settings-api.php:278
 msgid "General Email Settings"
 msgstr "Paramètres Généraux de Messagerie"
 
 #: includes/settings/class-general-settings.php:28
-#: includes/settings-api.php:340
+#: includes/settings-api.php:349
 msgid "General Settings"
 msgstr "Paramètres Généraux"
 
@@ -2500,7 +2504,7 @@ msgstr ""
 msgid "Hide empty categories."
 msgstr "Cacher les catégories vides."
 
-#: includes/settings-api.php:162
+#: includes/settings-api.php:171
 msgid "Hide empty categories?"
 msgstr "Cacher les catégories vides?"
 
@@ -2565,7 +2569,7 @@ msgid ""
 "categories."
 msgstr ""
 
-#: includes/settings-api.php:342
+#: includes/settings-api.php:351
 msgid ""
 "If checked, Ads will be posted to Facebook shortly after they are posted, "
 "enabled or edited, whichever occurs first. Ads will be posted only once. "
@@ -2580,7 +2584,7 @@ msgid ""
 "a high number of categories."
 msgstr ""
 
-#: includes/settings-api.php:162
+#: includes/settings-api.php:171
 msgid "If checked, categories with 0 listings in it won't be shown."
 msgstr ""
 "Si elle est cochée, les catégories avec 0 annonces ne seront pas affichées."
@@ -2842,11 +2846,11 @@ msgstr "Importé nombre d'Images:"
 msgid "Imported rows:"
 msgstr "Lignes importées:"
 
-#: includes/settings-api.php:274
+#: includes/settings-api.php:283
 msgid "Include Ad access key in email messages"
 msgstr ""
 
-#: includes/settings-api.php:274
+#: includes/settings-api.php:283
 msgid ""
 "Include Ad access key in email notifications. You may want to uncheck this "
 "option if you are using the Ad Management panel, but is not necessary."
@@ -2916,7 +2920,7 @@ msgstr ""
 msgid "Incompatible ZIP Archive"
 msgstr "Archive ZIP incompatible"
 
-#: includes/settings-api.php:300
+#: includes/settings-api.php:309
 msgid "Incomplete Payment Message"
 msgstr "Message de paiement incomplet"
 
@@ -3034,7 +3038,7 @@ msgstr ""
 "Faites que les gens sachent que cela fonctionne avec votre installation "
 "WordPress."
 
-#: includes/settings-api.php:529
+#: includes/settings-api.php:538
 msgid "Licenses"
 msgstr ""
 
@@ -3042,7 +3046,7 @@ msgstr ""
 msgid "Like this plugin?"
 msgstr "Aimez-vous ce plugin?"
 
-#: includes/settings-api.php:160
+#: includes/settings-api.php:169
 msgid "Limits search to available locations."
 msgstr "Limites de recherche à des emplacements disponibles."
 
@@ -3205,7 +3209,7 @@ msgstr "Ne pas mettre en Vedette"
 msgid "Make This a Top Level Category"
 msgstr "Faites-en un niveau supérieur de Catégorie"
 
-#: includes/settings-api.php:173
+#: includes/settings-api.php:182
 msgid "Make URLs in ad text clickable"
 msgstr "Faire que les URLs dans le texte d'annonce soient cliquables"
 
@@ -3384,7 +3388,7 @@ msgstr ""
 "Largeur maximun pour les images. Images les plus larges qui seront "
 "automatiquement redimensionnées au téléchargement."
 
-#: includes/settings-api.php:178
+#: includes/settings-api.php:187
 msgid "Menu Items"
 msgstr "Menu Eléments"
 
@@ -3394,7 +3398,7 @@ msgctxt "reply email"
 msgid "Message"
 msgstr "Message"
 
-#: includes/settings-api.php:310
+#: includes/settings-api.php:319
 msgid ""
 "Message body text for email sent out when an Ad is about to expire. Use %d "
 "as placeholder for the number of days before the Ad expires."
@@ -3403,39 +3407,39 @@ msgstr ""
 "sur le point d'expirer. Utilisez %d comme espace réservé pour le nombre de "
 "jours avant l'expiration de l'annonce."
 
-#: includes/settings-api.php:317
+#: includes/settings-api.php:326
 msgid ""
 "Message body text for email sent out when an Ad is successfully renewed. "
 msgstr ""
 "Corps du texte pour le courrier électronique envoyé quand une annonce est "
 "renouvelée avec succès."
 
-#: includes/settings-api.php:324
+#: includes/settings-api.php:333
 msgid "Message body text for email sent out when an ad has auto-expired"
 msgstr ""
 "Corps du texte pour le courrier électronique envoyé quand une annonce a "
 "automatiquement expiré"
 
-#: includes/settings-api.php:281
+#: includes/settings-api.php:290
 msgid "Message body text for email sent out when someone posts an Ad"
 msgstr ""
 "Corps du texte du message envoyé par courrier électronique lorsque quelqu'un "
 "poste une annonce"
 
-#: includes/settings-api.php:288
+#: includes/settings-api.php:297
 msgid "Message body text for email sent out when someone replies to Ad"
 msgstr ""
 "Corps du texte du message envoyé par e-mail lorsque quelqu'un répond à "
 "l'annonce"
 
-#: includes/settings-api.php:296
+#: includes/settings-api.php:305
 msgid ""
 "Message body text for email sent out when someone requests their ad access "
 "key resent"
 msgstr ""
 "Corps du texte du message envoyé lorsqu'une personne demande sa clé d'accès"
 
-#: includes/settings-api.php:303
+#: includes/settings-api.php:312
 msgid ""
 "Message body text for email sent out when the payment processing does not "
 "complete"
@@ -3835,7 +3839,7 @@ msgstr "Avis sur une réponse concernant l'annonce: %s"
 msgid "Notify Ad owner when the Ad is enabled."
 msgstr "Prévenir l'utilisateur lorsque son annonce est activée."
 
-#: includes/settings-api.php:289
+#: includes/settings-api.php:298
 msgid "Notify admin about contact message"
 msgstr "Notifier à l'administrateur lors d'un message de contact"
 
@@ -3944,11 +3948,11 @@ msgstr "Valeur de l'option"
 msgid "Order"
 msgstr "Ordre"
 
-#: includes/settings-api.php:152
+#: includes/settings-api.php:161
 msgid "Order Ad Listings by"
 msgstr "Ordre des petites annonces donné par"
 
-#: includes/settings-api.php:153
+#: includes/settings-api.php:162
 msgid "Order Ad Listings in Search results by"
 msgstr "Ordre des petites annonces dans les résultats de recherche donné par"
 
@@ -4000,16 +4004,16 @@ msgstr "ID de Page"
 msgid "Page Token (not editable)"
 msgstr ""
 
-#: includes/settings-api.php:158
+#: includes/settings-api.php:167
 #, fuzzy
 msgid "Pagination Options"
 msgstr "Options de Paiement"
 
-#: includes/settings-api.php:142
+#: includes/settings-api.php:151
 msgid "Paid status and date (paid first, then most recent)"
 msgstr "Etat de paiement et date (payé d'abord, puis plus récente)"
 
-#: includes/settings-api.php:143
+#: includes/settings-api.php:152
 msgid "Paid status and title (paid first, then by title)"
 msgstr "Etat de paiement et titre (payé d'abord, puis par titre)"
 
@@ -4062,15 +4066,15 @@ msgstr "PayPal Pro"
 msgid "PayPal Pro Module"
 msgstr "PayPal Pro Module"
 
-#: includes/settings-api.php:191
+#: includes/settings-api.php:200
 msgid "PayPal Settings"
 msgstr "PayPal Réglages"
 
-#: includes/settings-api.php:211
+#: includes/settings-api.php:220
 msgid "PayPal currency code"
 msgstr "Code devises PayPal"
 
-#: includes/settings-api.php:198
+#: includes/settings-api.php:207
 msgid "PayPal receiver email"
 msgstr "PayPal Réception d'email"
 
@@ -4090,7 +4094,7 @@ msgstr "Email Utisateur"
 #: includes/helpers/widgets/class-listing-form-steps-component.php:46
 #: includes/helpers/widgets/class-listing-form-steps-component.php:61
 #: includes/settings/class-general-settings.php:77
-#: includes/settings-api.php:187
+#: includes/settings-api.php:196
 msgid "Payment"
 msgstr "Paiement"
 
@@ -4277,7 +4281,7 @@ msgid "Please enter a valid amount."
 msgstr "Entrez un montant valide."
 
 #: awpcp.php:991 frontend/page-edit-ad.php:128 frontend/page-edit-ad.php:433
-#: includes/settings-api.php:205
+#: includes/settings-api.php:214
 msgid "Please enter a valid email address."
 msgstr "Entrez une adresse email valide."
 
@@ -4486,11 +4490,11 @@ msgctxt "place ad payment terms column headers"
 msgid "Price (currency)"
 msgstr ""
 
-#: includes/settings-api.php:148
+#: includes/settings-api.php:157
 msgid "Price (high to low, then by date)"
 msgstr "Prix ​​(plus élevé vers moins élevé, puis par date)"
 
-#: includes/settings-api.php:149
+#: includes/settings-api.php:158
 msgid "Price (low to high, then by date)"
 msgstr "Prix ​​(moins élevé vers plus élevé, puis par date)"
 
@@ -4590,7 +4594,7 @@ msgstr "Inscription Réglages"
 msgid "Register"
 msgstr "Inscrivez-vous"
 
-#: includes/settings-api.php:261
+#: includes/settings-api.php:270
 msgid "Registration"
 msgstr "Inscription"
 
@@ -4647,7 +4651,7 @@ msgstr "Renouveler"
 msgid "Renew Ad"
 msgstr "Renouveler l'Annonce"
 
-#: includes/settings-api.php:307
+#: includes/settings-api.php:316
 msgid "Renew Ad Message"
 msgstr "Message de Renouvellement Annonce"
 
@@ -4676,7 +4680,7 @@ msgstr "Répondre à"
 msgid "Reply to Ad"
 msgstr "Répondre à l'annonce"
 
-#: includes/settings-api.php:285
+#: includes/settings-api.php:294
 msgid "Reply to Ad Message"
 msgstr "Répondre au message de l'annonce"
 
@@ -4713,7 +4717,7 @@ msgstr "Téléphone exigé"
 msgid "Require Price"
 msgstr "Prix exigé"
 
-#: includes/settings-api.php:740
+#: includes/settings-api.php:749
 msgid ""
 "Require Registration setting was enabled automatically because you activated "
 "the Credit System."
@@ -4721,7 +4725,7 @@ msgstr ""
 "L'obligation d'enregistrement a été activée automatiquement parce que vous "
 "avez activé le Système de Crédit."
 
-#: includes/settings-api.php:694
+#: includes/settings-api.php:703
 msgid ""
 "Require Registration setting was enabled automatically because you activated "
 "the User Ad Management panel."
@@ -4774,7 +4778,7 @@ msgstr ""
 msgid "Required value <em>%s</em> missing at row number: %d"
 msgstr "Valeur requise <em>%s</em> manquante au numéro de ligne: %d"
 
-#: includes/settings-api.php:293
+#: includes/settings-api.php:302
 msgid "Resend Access Key Message"
 msgstr "Message Recevoir à nouveau une clé d'accès"
 
@@ -4782,7 +4786,7 @@ msgstr "Message Recevoir à nouveau une clé d'accès"
 msgid "Resend Ad access key"
 msgstr "Renvoyer la clé d'accès de l'annonce"
 
-#: includes/settings-api.php:287
+#: includes/settings-api.php:296
 msgid "Response to your AWPCP Demo Ad"
 msgstr "Réponse à votre AWPCP Démo annonce"
 
@@ -4853,35 +4857,35 @@ msgstr "Ligne %d. %s"
 msgid "SEO Settings"
 msgstr "Réglages SEO"
 
-#: includes/settings-api.php:331
+#: includes/settings-api.php:340
 msgid "SMTP host"
 msgstr "Hôte SMTP"
 
-#: includes/settings-api.php:331
+#: includes/settings-api.php:340
 msgid "SMTP host (if emails not processing normally)."
 msgstr "Hôte SMTP (si les emails ne sont pas traités normalement)"
 
-#: includes/settings-api.php:334
+#: includes/settings-api.php:343
 msgid "SMTP password"
 msgstr "Mot de passe SMTP"
 
-#: includes/settings-api.php:334
+#: includes/settings-api.php:343
 msgid "SMTP password (if emails not processing normally)."
 msgstr "Mot de passe SMTP (si les emails ne sont pas traités normalement)"
 
-#: includes/settings-api.php:332
+#: includes/settings-api.php:341
 msgid "SMTP port"
 msgstr "Port SMTP"
 
-#: includes/settings-api.php:332
+#: includes/settings-api.php:341
 msgid "SMTP port (if emails not processing normally)."
 msgstr "Port SMTP (si les emails ne sont pas traités normalement)"
 
-#: includes/settings-api.php:333
+#: includes/settings-api.php:342
 msgid "SMTP username"
 msgstr "Nom d'utilisateur SMTP"
 
-#: includes/settings-api.php:333
+#: includes/settings-api.php:342
 msgid "SMTP username (if emails not processing normally)."
 msgstr "Nom d'utilisateur SMTP (si les emails ne sont pas traités normalement)"
 
@@ -5026,7 +5030,7 @@ msgstr ""
 msgid "Send Access Key"
 msgstr "Envoyer clé d'accès"
 
-#: includes/settings-api.php:342
+#: includes/settings-api.php:351
 msgid "Send Ads to Facebook Automatically"
 msgstr ""
 
@@ -5074,6 +5078,13 @@ msgstr "Réglages"
 msgid "Share on Facebook"
 msgstr "Partager sur Facebook"
 
+#: includes/settings-api.php:144
+msgid ""
+"Shortcodes executed this way will be executed as if they were entered in the "
+"content of the WordPress page showing the listing (normally the Show Ad "
+"page, but in general any page that has the AWPCPSHOWAD shortcode)."
+msgstr ""
+
 #: frontend/templates/widget-latest-ads-form.tpl.php:26
 #, fuzzy
 msgid "Show \"No Image\" PNG when Ad has no picture (improves layout)."
@@ -5081,7 +5092,7 @@ msgstr ""
 "Afficher \"No image\" PNG lorsque l'annonce n'a pas de photo. Améliore la "
 "mise en page."
 
-#: includes/settings-api.php:161
+#: includes/settings-api.php:170
 msgid "Show Ad count in categories"
 msgstr "Montrez le nombre d'annonces dans les catégories"
 
@@ -5111,15 +5122,15 @@ msgstr ""
 msgid "Show Ad title."
 msgstr "Afficher le titre de l'annonce"
 
-#: includes/settings-api.php:167
+#: includes/settings-api.php:176
 msgid "Show Ad views"
 msgstr "Voir le nombre de fois qu'une annonce a été consultée"
 
-#: includes/settings-api.php:257
+#: includes/settings-api.php:266
 msgid "Show AdSense at position"
 msgstr "Afficher AdSense à la position"
 
-#: includes/settings-api.php:182
+#: includes/settings-api.php:191
 msgid "Show Browse Ads menu item"
 msgstr "Voir menu Parcourir les Annonces"
 
@@ -5157,7 +5168,7 @@ msgstr "Afficher Département"
 msgid "Show County/village/other?"
 msgstr "Afficher Département?"
 
-#: includes/settings-api.php:181
+#: includes/settings-api.php:190
 msgid "Show Edit Ad menu item"
 msgstr "Voir menu Modifier une Annonce"
 
@@ -5175,7 +5186,7 @@ msgstr "Limiter les commentaires aux utilisateurs enregistrés"
 msgid "Show Phone field"
 msgstr "Afficher champ Téléphone"
 
-#: includes/settings-api.php:180
+#: includes/settings-api.php:189
 msgid "Show Place Ad menu item"
 msgstr "Voir menu Déposer une Annonce"
 
@@ -5192,7 +5203,7 @@ msgstr "Limiter les commentaires aux utilisateurs enregistrés"
 msgid "Show Price field"
 msgstr "Afficher champ Prix"
 
-#: includes/settings-api.php:183
+#: includes/settings-api.php:192
 msgid "Show Search Ads menu item"
 msgstr "Voir menu Chercher une Annonce"
 
@@ -5289,7 +5300,7 @@ msgstr "Code devises PayPal"
 msgid "Show decimals in price"
 msgstr "Afficher décimales de prix"
 
-#: includes/settings-api.php:161
+#: includes/settings-api.php:170
 msgid "Show how many ads a category contains."
 msgstr "Montrez combien d'annonces contient une catégorie."
 
@@ -5324,7 +5335,7 @@ msgstr ""
 msgid "Show state in window title"
 msgstr "Afficher l'Etat en titre de la fenêtre"
 
-#: includes/settings-api.php:170
+#: includes/settings-api.php:179
 msgid ""
 "Show the number of times the ad has been viewed (simple count made by AWPCP "
 "&endash; warning, may not be accurate!)"
@@ -5352,7 +5363,7 @@ msgctxt "form field slug"
 msgid "Slug"
 msgstr ""
 
-#: includes/settings-api.php:288
+#: includes/settings-api.php:297
 msgid "Someone has responded to your AWPCP Demo Ad"
 msgstr "Quelqu'un a répondu à votre AWPCP Démo annonce"
 
@@ -5436,65 +5447,65 @@ msgstr "Statut"
 msgid "Stored ID"
 msgstr "ID Stockée"
 
-#: includes/settings-api.php:323
+#: includes/settings-api.php:332
 msgid "Subject for Ad Expired email"
 msgstr "Objet de l'email d'annonce expirée"
 
-#: includes/settings-api.php:316
+#: includes/settings-api.php:325
 msgid "Subject for Ad Renewed email"
 msgstr "Objet de l'email d'annonce renouvelée"
 
-#: includes/settings-api.php:280
+#: includes/settings-api.php:289
 msgid "Subject for Ad posted notification email"
 msgstr "Sujet de l'Annonce envoyé par email de notification"
 
-#: includes/settings-api.php:302
+#: includes/settings-api.php:311
 msgid "Subject for Incomplete Payment email"
 msgstr "Objet pour l'email de paiement incomplet"
 
-#: includes/settings-api.php:309
+#: includes/settings-api.php:318
 msgid "Subject for Renew Ad email"
 msgstr "Objet pour l'email de renouvellement annonce"
 
-#: includes/settings-api.php:287
+#: includes/settings-api.php:296
 msgid "Subject for Reply to Ad email"
 msgstr "Objet de l'email de réponse à l'annonce"
 
-#: includes/settings-api.php:295
+#: includes/settings-api.php:304
 msgid "Subject for Request Ad Access Key email"
 msgstr "Objet pour l'email de demande de clé d'accès"
 
-#: includes/settings-api.php:309
+#: includes/settings-api.php:318
 msgid "Subject line for email sent out when an Ad is about to expire."
 msgstr ""
 "Objet pour le courrier électronique envoyé quand une annonce est sur le "
 "point d'expirer."
 
-#: includes/settings-api.php:316
+#: includes/settings-api.php:325
 msgid "Subject line for email sent out when an Ad is successfully renewed."
 msgstr ""
 "Objet pour le courrier électronique envoyé quand une annonce est renouvelée "
 "avec succès."
 
-#: includes/settings-api.php:323
+#: includes/settings-api.php:332
 msgid "Subject line for email sent out when an ad has auto-expired"
 msgstr ""
 "Objet pour le courrier électronique envoyé quand une annonce a "
 "automatiquement expiré"
 
-#: includes/settings-api.php:280
+#: includes/settings-api.php:289
 msgid "Subject line for email sent out when someone posts an Ad"
 msgstr ""
 "Ligne d'objet pour le courrier électronique envoyé lorsque quelqu'un poste "
 "une annonce"
 
-#: includes/settings-api.php:287
+#: includes/settings-api.php:296
 msgid "Subject line for email sent out when someone replies to Ad"
 msgstr ""
 "Ligne d'objet pour le courrier électronique envoyé lorsque quelqu'un répond "
 "à l'annonce"
 
-#: includes/settings-api.php:295
+#: includes/settings-api.php:304
 msgid ""
 "Subject line for email sent out when someone requests their ad access key "
 "resent"
@@ -5502,7 +5513,7 @@ msgstr ""
 "Ligne d'objet pour le courrier électronique envoyé lorsqu'une personne "
 "demande sa clé d'accès"
 
-#: includes/settings-api.php:302
+#: includes/settings-api.php:311
 msgid ""
 "Subject line for email sent out when the payment processing does not complete"
 msgstr ""
@@ -5525,7 +5536,7 @@ msgstr "Sous-titre:"
 msgid "Switch"
 msgstr "Commutateur"
 
-#: includes/settings-api.php:271
+#: includes/settings-api.php:280
 msgid "TO email address for outgoing emails"
 msgstr "TO adresse email pour les emails sortants"
 
@@ -5573,7 +5584,7 @@ msgctxt "drip-autoresponder"
 msgid "Thank you for signing up!"
 msgstr "Nous vous remercions pour votre confiance"
 
-#: includes/settings-api.php:281
+#: includes/settings-api.php:290
 #, fuzzy
 msgid ""
 "Thank you for submitting your Classified Ad. The details of your ad are "
@@ -5735,7 +5746,7 @@ msgstr "Le Code de sécurité de la Carte est nécessaire."
 msgid "The City is required."
 msgstr "La Ville est nécessaire."
 
-#: includes/settings-api.php:295
+#: includes/settings-api.php:304
 #, fuzzy
 msgid "The Classified Ad's ad access key you requested"
 msgstr "La clé d'accès de l'annonce que vous avez demandé"
@@ -5832,7 +5843,7 @@ msgstr "L'image a été activée et peut maintenant être vue."
 msgid "The Last Name is required."
 msgstr "Le Nom est requis"
 
-#: includes/settings-api.php:218
+#: includes/settings-api.php:227
 msgid "The PayPal Currency Code must be one of <currency-codes>."
 msgstr ""
 
@@ -5893,7 +5904,7 @@ msgstr ""
 "Le montant que vous avez payé ne correspond pas au montant requis pour cette "
 "transaction. S'il vous plaît nous contacter pour clarifier le problème."
 
-#: includes/settings-api.php:731
+#: includes/settings-api.php:740
 msgid "The available currency codes are"
 msgstr "Les codes de devises disponibles sont"
 
@@ -5986,13 +5997,13 @@ msgstr ""
 "annonces. Vous pouvez ajouter du crédit lors de la publication d'une "
 "nouvelle annonce ou en utilisant le bouton \"Ajouter du Crédit\" ci-dessous."
 
-#: includes/settings-api.php:236
+#: includes/settings-api.php:245
 #, fuzzy
 msgid "The currency in which you would like to receive your 2Checkout payments"
 msgstr ""
 "La devise dans laquelle vous souhaitez recevoir vos paiements par PayPal"
 
-#: includes/settings-api.php:214
+#: includes/settings-api.php:223
 msgid "The currency in which you would like to receive your PayPal payments"
 msgstr ""
 "La devise dans laquelle vous souhaitez recevoir vos paiements par PayPal"
@@ -6391,7 +6402,7 @@ msgctxt "recaptcha-error"
 msgid "The response parameter is missing."
 msgstr ""
 
-#: includes/settings-api.php:160
+#: includes/settings-api.php:169
 msgid ""
 "The search form can attempt to build drop down country, state, city and "
 "county lists if data is available in the system. Note that with the regions "
@@ -6655,7 +6666,7 @@ msgid ""
 "the correct permissions. Click \"Diagnostics\" if you are in doubt."
 msgstr ""
 
-#: includes/settings-api.php:730
+#: includes/settings-api.php:739
 #, fuzzy
 msgid ""
 "There is a problem with the PayPal Currency Code you have entered. It does "
@@ -6692,7 +6703,7 @@ msgstr ""
 "Veuillez essayer de nouveau et si le problème persiste, veuillez contacter "
 "l'Administrateur du site."
 
-#: includes/settings-api.php:303
+#: includes/settings-api.php:312
 msgid ""
 "There was a problem encountered during your attempt to submit payment. If "
 "funds were removed from the account you tried to use to make a payment "
@@ -6704,7 +6715,7 @@ msgstr ""
 "paiement, veuillez contacter l'administration du site ou son service client "
 "pour réclamer de l'aide."
 
-#: includes/settings-api.php:302
+#: includes/settings-api.php:311
 msgid "There was a problem processing your payment"
 msgstr "Il y a eu un problème lors du traitement de votre paiement"
 
@@ -7078,13 +7089,13 @@ msgid ""
 "Ad, manage the uploaded images or finish the posting process."
 msgstr ""
 
-#: includes/settings-api.php:324
+#: includes/settings-api.php:333
 #, fuzzy
 msgid "This is an automated notification that your Classified Ad has expired."
 msgstr ""
 "Il s'agit d'une notification automatique que votre petite annonce a expiré."
 
-#: includes/settings-api.php:310
+#: includes/settings-api.php:319
 #, fuzzy
 msgid ""
 "This is an automated notification that your Classified Ad will expire in %d "
@@ -7193,11 +7204,11 @@ msgstr "Séparateur de Temps"
 msgid "Title"
 msgstr "Titre"
 
-#: includes/settings-api.php:140
+#: includes/settings-api.php:149
 msgid "Title (ascending)"
 msgstr "Titre (croissant)"
 
-#: includes/settings-api.php:141
+#: includes/settings-api.php:150
 msgid "Title (descending)"
 msgstr "Titre (décroissant)"
 
@@ -7331,7 +7342,7 @@ msgstr ""
 "Décochez cette case pour montrer les prix sans décimales. La valeur sera "
 "arrondie."
 
-#: includes/settings-api.php:251
+#: includes/settings-api.php:260
 msgid "Under Ad text."
 msgstr "Au dessous du texte de l'annonce."
 
@@ -7452,7 +7463,7 @@ msgstr ""
 msgid "Use multiple dropdowns to choose categories"
 msgstr ""
 
-#: includes/settings-api.php:273
+#: includes/settings-api.php:282
 msgid "Use sender email for reply messages"
 msgstr ""
 
@@ -7507,7 +7518,7 @@ msgstr ""
 msgid "User Ad Management Panel"
 msgstr "Utilisateur du Panneau de Gestion d'Annonce"
 
-#: includes/settings-api.php:709
+#: includes/settings-api.php:718
 msgid ""
 "User Ad Management panel was automatically deactivated because you disabled "
 "Require Registration setting."
@@ -7579,19 +7590,19 @@ msgctxt "media-manager"
 msgid "View Listing"
 msgstr "Annonces gratuites"
 
-#: includes/settings-api.php:147
+#: includes/settings-api.php:156
 msgid "Views (least viewed first, then by date)"
 msgstr "Vues (moins vues d'abord, puis par date)"
 
-#: includes/settings-api.php:146
+#: includes/settings-api.php:155
 msgid "Views (least viewed first, then by title)"
 msgstr "Vues (moins vues d'abord, puis par titre)"
 
-#: includes/settings-api.php:145
+#: includes/settings-api.php:154
 msgid "Views (most viewed first, then by date)"
 msgstr "Vues (plus consultées d'abord, puis par date)"
 
-#: includes/settings-api.php:144
+#: includes/settings-api.php:153
 msgid "Views (most viewed first, then by title)"
 msgstr "Vues (plus consultées d'abord, puis par titre)"
 
@@ -7893,7 +7904,7 @@ msgstr ""
 "Vous essayez de renouveler votre annonce avec un autre Terme de Paiement. Ce "
 "n'est pas permis."
 
-#: includes/settings-api.php:296
+#: includes/settings-api.php:305
 #, fuzzy
 msgid ""
 "You asked to have your Classified Ad's access key resent. Below are all the "
@@ -8338,12 +8349,12 @@ msgstr ""
 "Votre annonce a été marquée comme spam. S'il y a erreur contactez "
 "l'Administrateur de ce site."
 
-#: includes/settings-api.php:256
+#: includes/settings-api.php:265
 msgid "Your AdSense code (Best if 468x60 text or banner.)"
 msgstr ""
 "Votre code AdSense (meilleur si le texte est de 468x60 ou une bannière.)"
 
-#: includes/settings-api.php:280
+#: includes/settings-api.php:289
 #, fuzzy
 msgid "Your Classified Ad listing has been submitted"
 msgstr "Votre Petite Annonce a été soumise"
@@ -8393,22 +8404,22 @@ msgstr "Vos modifications de catégorie ont été enregistrées."
 msgid "Your changes have been saved."
 msgstr "Vos modifications ont été enregistrées."
 
-#: includes/settings-api.php:316
+#: includes/settings-api.php:325
 msgid "Your classifieds listing \"%s\" has been successfully renewed."
 msgstr "Votre annonce \"%s\" a été renouvelée avec succès."
 
-#: includes/settings-api.php:317
+#: includes/settings-api.php:326
 msgid ""
 "Your classifieds listing Ad has been successfully renewed. More information "
 "below:"
 msgstr ""
 "Votre annonce a été renouvelée avec succès. Plus d'informations ci-dessous:"
 
-#: includes/settings-api.php:309
+#: includes/settings-api.php:318
 msgid "Your classifieds listing Ad will expire in %d days."
 msgstr "Votre annonce expire dans %d jours."
 
-#: includes/settings-api.php:323
+#: includes/settings-api.php:332
 msgid "Your classifieds listing at %s has expired"
 msgstr "Votre annonce à %s a expiré"
 
@@ -8493,7 +8504,7 @@ msgstr "Zéro signifie qu'il y aura autant de vignettes que possible par ligne."
 msgid "Zip file containing images"
 msgstr "fichier Zip contenant des images"
 
-#: includes/settings-api.php:985
+#: includes/settings-api.php:994
 #, fuzzy
 msgid "active"
 msgstr "Actif"
@@ -8521,17 +8532,17 @@ msgctxt "credit plans table"
 msgid "clear selection"
 msgstr "Supprimer la sélection"
 
-#: includes/settings-api.php:991
+#: includes/settings-api.php:1000
 #, fuzzy
 msgid "expired"
 msgstr "Annonce Axpirée"
 
-#: includes/settings-api.php:988
+#: includes/settings-api.php:997
 #, fuzzy
 msgid "inactive"
 msgstr "Actif"
 
-#: includes/settings-api.php:993
+#: includes/settings-api.php:1002
 msgid "invalid"
 msgstr ""
 
@@ -8559,7 +8570,7 @@ msgstr "Clé Privée pour reCAPTCHA"
 msgid "reCAPTCHA Site Key"
 msgstr "Clé Privée pour reCAPTCHA"
 
-#: includes/settings-api.php:685
+#: includes/settings-api.php:694
 msgid ""
 "reCAPTCHA can't be used because the private key setting is required for "
 "reCAPTCHA to work properly."
@@ -8567,7 +8578,7 @@ msgstr ""
 "reCAPTCHA ne peut pas être utilisé car les paramètres de clé privée sont "
 "nécessaires pour que reCAPTCHA fonctionne correctement."
 
-#: includes/settings-api.php:681
+#: includes/settings-api.php:690
 msgid ""
 "reCAPTCHA can't be used because the public key and private key settings are "
 "required for reCAPTCHA to work properly."
@@ -8575,7 +8586,7 @@ msgstr ""
 "reCAPTCHA ne peut pas être utilisé car les paramètres de clé publique et de "
 "clé privée sont nécessaires pour que reCAPTCHA fonctionne correctement."
 
-#: includes/settings-api.php:683
+#: includes/settings-api.php:692
 msgid ""
 "reCAPTCHA can't be used because the public key setting is required for "
 "reCAPTCHA to work properly."
