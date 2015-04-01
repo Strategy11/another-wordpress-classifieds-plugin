@@ -126,6 +126,12 @@ class AWPCP_Search_Widget extends WP_Widget {
         echo '<div class="awpcp-search-listings-widget">';
 		echo $before_widget . $before_title . $title . $after_title;
 		echo '<div align="center"><form method=\'get\' action="'.url_searchads().'">';
+
+        $url_params = wp_parse_args( parse_url( url_searchads(), PHP_URL_QUERY ) );
+        foreach ( $url_params as $param => $value ) {
+            echo '<input type="hidden" name="' . esc_attr( $param ) . '" value="' . esc_attr( $value ) . '" />';
+        }
+
         echo '<input type="hidden" name="a" value="dosearch"/>';
 
 		$keywordphrase = stripslashes_deep( awpcp_request_param( 'keywordphrase' ) );
