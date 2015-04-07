@@ -487,7 +487,13 @@ class AWPCP_Payment_Transaction {
     }
 
     public function user_has_enough_credit(&$balance=null) {
-        if ( awpcp_user_is_admin( $this->user_id ) ) return true;
+        if ( awpcp_current_user_is_admin() ) {
+            return true;
+        }
+
+        if ( awpcp_user_is_admin( $this->user_id ) ) {
+            return true;
+        }
 
         $totals = $this->get_totals();
         $credits = $totals['credits'];
