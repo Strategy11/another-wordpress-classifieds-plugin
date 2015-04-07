@@ -93,7 +93,7 @@
         <?php if (string_starts_with($text, 'http://', false) || string_starts_with($text, 'https://', false)): ?>
             <a href="<?php echo esc_attr( $text ); ?>" target="_blank"><?php echo esc_html( _x( "Read our Terms of Service", 'ad details form', "AWPCP" ) ); ?></a>
         <?php else: ?>
-            <label><?php echo esc_html( __( "Terms of service:", 'ad details form', "AWPCP" ) ); ?><?php echo $required['terms-of-service'] ? '*' : ''; ?></label>
+            <label><?php echo esc_html( _x( 'Terms of service:', 'ad details form', 'AWPCP' ) ); ?><?php echo $required['terms-of-service'] ? '*' : ''; ?></label>
             <textarea readonly="readonly" rows="5" cols="50"><?php echo esc_textarea( $text ); ?></textarea>
         <?php endif ?>
             <br>

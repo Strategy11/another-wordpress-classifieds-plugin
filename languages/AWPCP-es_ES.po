@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: AWPCP\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2015-03-31 00:01:38+00:00\n"
+"POT-Creation-Date: 2015-04-07 22:32:48+00:00\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: \n"
@@ -4822,7 +4822,7 @@ msgctxt "media-manager"
 msgid "Return to Listings"
 msgstr "Regresar a la lista de anuncios"
 
-#: frontend/page-search-ads.php:155
+#: frontend/page-search-ads.php:157
 msgid "Return to Search"
 msgstr "Volver a la búsqueda"
 
@@ -4903,7 +4903,7 @@ msgstr "Guardar Selección de Grupo y Página"
 msgid "Save Token Value"
 msgstr "Guardar el valor del token"
 
-#: frontend/widget-search.php:158
+#: frontend/widget-search.php:164
 msgid "Search"
 msgstr "Buscar"
 
@@ -4920,11 +4920,11 @@ msgstr "Página Buscar Anuncios"
 msgid "Search by"
 msgstr "Buscar por"
 
-#: frontend/widget-search.php:144
+#: frontend/widget-search.php:150
 msgid "Search by Category"
 msgstr "Buscar por Categoría"
 
-#: frontend/widget-search.php:134
+#: frontend/widget-search.php:140
 msgid "Search by keyword"
 msgstr "Buscar por palabra clave"
 
@@ -5531,6 +5531,7 @@ msgid "Terms of service go here..."
 msgstr "Los términos de servicio van aquí..."
 
 #: frontend/templates/page-place-ad-details-step.tpl.php:96
+msgctxt "ad details form"
 msgid "Terms of service:"
 msgstr "Términos de servicio:"
 
