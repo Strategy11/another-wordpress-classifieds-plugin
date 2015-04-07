@@ -1209,7 +1209,7 @@ class AWPCP {
             if ( $context === 'search' && get_awpcp_option( 'buildsearchdropdownlists' ) ) {
                 $regions = awpcp_basic_regions_api()->find_by_parent_name( $parent, $parent_type, $type );
             } else {
-                $regions = awpcp_basic_regions_api()->find_by_type( $type );
+                $regions = array();
             }
 
             $regions = array_filter( $regions, 'strlen' );
