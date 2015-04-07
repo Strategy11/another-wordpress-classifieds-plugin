@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2015-03-31 00:01:38+00:00\n"
+"POT-Creation-Date: 2015-04-07 23:05:56+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2752,7 +2752,7 @@ msgid ""
 "needed to limit your search to a specific criteria."
 msgstr ""
 
-#: frontend/page-search-ads.php:155
+#: frontend/page-search-ads.php:157
 msgid "Return to Search"
 msgstr ""
 
@@ -3183,6 +3183,7 @@ msgid "Read our Terms of Service"
 msgstr ""
 
 #: frontend/templates/page-place-ad-details-step.tpl.php:96
+msgctxt "ad details form"
 msgid "Terms of service:"
 msgstr ""
 
@@ -3610,15 +3611,15 @@ msgstr ""
 msgid "Select Option"
 msgstr ""
 
-#: frontend/widget-search.php:134
+#: frontend/widget-search.php:140
 msgid "Search by keyword"
 msgstr ""
 
-#: frontend/widget-search.php:144
+#: frontend/widget-search.php:150
 msgid "Search by Category"
 msgstr ""
 
-#: frontend/widget-search.php:158
+#: frontend/widget-search.php:164
 msgid "Search"
 msgstr ""
 
