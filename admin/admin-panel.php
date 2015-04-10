@@ -440,7 +440,7 @@ function awpcp_admin_categories_render_category_item($category, $level, $start, 
 
 	if ( isset( $category_icon ) && !empty( $category_icon ) && function_exists( 'awpcp_category_icon_url' )  ) {
 		$caticonsurl = awpcp_category_icon_url( $category_icon );
-		$thecategoryicon = '<img style="vertical-align:middle;margin-right:5px;" src="%s" alt="%s" border="0" />';
+		$thecategoryicon = '<img style="vertical-align:middle;margin-right:5px;max-height:16px" src="%s" alt="%s" border="0" />';
 		$thecategoryicon = sprintf( $thecategoryicon, esc_url( $caticonsurl ), esc_attr( $category->name ) );
 	} else {
 		$thecategoryicon = '';
@@ -572,21 +572,11 @@ function awpcp_opsconfig_categories() {
 		}
 
 		if ( $action == 'managecaticon' ) {
-			$output .= "<div class=\"wrap\"><h2>";
-			$output .= awpcp_admin_page_title( __( 'Manage Categories', 'AWPCP' ) );
-			$output .= "</h2>
-			";
+			$return = apply_filters( 'awpcp-custom-manage-categories-action', '', $cat_ID );
 
-			global $awpcp_plugin_path;
-
-			if ($hascaticonsmodule == 1) {
-				if (is_installed_category_icon_module()) {
-					$output .= load_category_icon_management_page($defaultid=$cat_ID,$offset,$results);
-				}
+			if ( $return ) {
+				return;
 			}
-
-			$output .= "</div>";
-			return $output;
 		}
 
 		if ( $action == 'setcategoryicon' ) {

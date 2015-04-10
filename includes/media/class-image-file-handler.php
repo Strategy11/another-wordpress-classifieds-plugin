@@ -4,15 +4,19 @@ function awpcp_image_file_handler() {
     return new AWPCP_ImageFileHandler(
         awpcp_listing_image_file_validator(),
         awpcp_image_file_processor(),
+        awpcp_uploads_manager(),
         awpcp()->settings
     );
 }
 
 class AWPCP_ImageFileHandler extends AWPCP_ListingFileHandler {
 
-    public function __construct( $validator, $processor, $settings ) {
+    private $settings;
+
+    public function __construct( $validator, $processor, $uploads_manager, $settings ) {
         $this->validator = $validator;
         $this->processor = $processor;
+        $this->uploads_manager = $uploads_manager;
         $this->settings = $settings;
     }
 
@@ -21,6 +25,6 @@ class AWPCP_ImageFileHandler extends AWPCP_ListingFileHandler {
     }
 
     protected function move_file( $file ) {
-        $this->move_file_to( $file, 'images' );
+        $this->uploads_manager->move_file_with_thumbnail_to( $file, 'images' );
     }
 }

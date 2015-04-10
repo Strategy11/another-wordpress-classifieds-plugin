@@ -164,11 +164,13 @@ class AWPCP_CategoriesCollection {
     }
 
     private function get_category_data( $category ) {
-        return array(
+        $category_data = array(
             'category_name' => $category->name,
             'category_parent_id' => $category->parent,
             'category_order' => $category->order,
         );
+
+        return apply_filters( 'awpcp-category-data', $category_data, $category );
     }
 
     private function throw_database_exception( $message ) {
