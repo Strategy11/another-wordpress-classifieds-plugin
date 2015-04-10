@@ -2,8 +2,8 @@
 
 function awpcp_file_uploader() {
     return new AWPCP_FileUploader(
-        awpcp_mime_types(),
         awpcp_file_types(),
+        awpcp_mime_types(),
         awpcp_request(),
         awpcp()->settings
     );
@@ -12,13 +12,13 @@ function awpcp_file_uploader() {
 class AWPCP_FileUploader {
 
     private $mime_types;
-    private $file_types;
+    private $config;
     private $request;
     private $settings;
 
-    public function __construct( $mime_types, $file_types, $request, $settings ) {
+    public function __construct( $config, $mime_types, $request, $settings ) {
+        $this->config = $config;
         $this->mime_types = $mime_types;
-        $this->file_types = $file_types;
         $this->request = $request;
         $this->settings = $settings;
     }
@@ -62,7 +62,7 @@ class AWPCP_FileUploader {
     }
 
     private function is_filename_extension_allowed( $filename ) {
-        $extensions = $this->file_types->get_allowed_file_extensions();
+        $extensions = $this->config->get_allowed_file_extensions();
         return in_array( awpcp_get_file_extension( $filename ), $extensions );
     }
 

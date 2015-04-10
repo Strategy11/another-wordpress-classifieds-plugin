@@ -19,12 +19,12 @@ class AWPCP_NewMediaManager {
     private $file_handlers;
 
     private $media_saver;
-    private $upload_file_logic_factory;
+    private $uploaded_file_logic_factory;
     private $settings;
 
-    public function __construct( $media_saver, $upload_file_logic_factory, $settings ) {
+    public function __construct( $media_saver, $uploaded_file_logic_factory, $settings ) {
         $this->media_saver = $media_saver;
-        $this->upload_file_logic_factory = $upload_file_logic_factory;
+        $this->uploaded_file_logic_factory = $uploaded_file_logic_factory;
         $this->settings = $settings;
     }
 
@@ -33,7 +33,7 @@ class AWPCP_NewMediaManager {
     }
 
     public function add_file( $listing, $uploaded_file ) {
-        $file_logic = $this->upload_file_logic_factory->create_file_logic( $uploaded_file );
+        $file_logic = $this->uploaded_file_logic_factory->create_file_logic( $uploaded_file );
 
         $file_handler = $this->get_file_handler( $file_logic );
         $file_logic = $file_handler->handle_file( $listing, $file_logic );
