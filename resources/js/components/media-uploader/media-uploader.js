@@ -61,6 +61,7 @@ function( $, settings) {
                         listing: options.listing_id,
                         nonce: options.nonce
                     },
+                    multi_selection: false,
                     chunk_size: '10000000',
                     runtimes: 'html5,flash,silverlight,html4',
                     multiple_queues: true,
