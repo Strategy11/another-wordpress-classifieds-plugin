@@ -1724,7 +1724,7 @@ function awpcp_uploaded_file_error($file) {
 }
 
 function awpcp_get_file_extension( $filename ) {
-	return awpcp_utf8_pathinfo( $filename, PATHINFO_EXTENSION );
+	return strtolower( awpcp_utf8_pathinfo( $filename, PATHINFO_EXTENSION ) );
 }
 
 /**
