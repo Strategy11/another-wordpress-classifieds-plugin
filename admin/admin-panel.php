@@ -440,7 +440,7 @@ function awpcp_admin_categories_render_category_item($category, $level, $start, 
 
 	if ( isset( $category_icon ) && !empty( $category_icon ) && function_exists( 'awpcp_category_icon_url' )  ) {
 		$caticonsurl = awpcp_category_icon_url( $category_icon );
-		$thecategoryicon = '<img style="vertical-align:middle;margin-right:5px;" src="%s" alt="%s" border="0" />';
+		$thecategoryicon = '<img style="vertical-align:middle;margin-right:5px;max-height:16px" src="%s" alt="%s" border="0" />';
 		$thecategoryicon = sprintf( $thecategoryicon, esc_url( $caticonsurl ), esc_attr( $category->name ) );
 	} else {
 		$thecategoryicon = '';
