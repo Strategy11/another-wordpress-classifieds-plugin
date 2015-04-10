@@ -1724,7 +1724,7 @@ function awpcp_uploaded_file_error($file) {
 }
 
 function awpcp_get_file_extension( $filename ) {
-	return awpcp_utf8_pathinfo( $filename, PATHINFO_EXTENSION );
+	return strtolower( awpcp_utf8_pathinfo( $filename, PATHINFO_EXTENSION ) );
 }
 
 /**
@@ -1767,17 +1767,18 @@ function awpcp_table_exists($table) {
 }
 
 /**
+ * TODO: move memoization to where the information is needed. Having it here is the perfect
+ *          scenarion for hard to track bugs.
  * @since  2.1.4
  */
 function awpcp_column_exists($table, $column) {
-    $column_exists = wp_cache_get( "awpcp-$table-$column", 'awpcp', false, $found );
+    static $column_exists = array();
 
-    if ( $found === false ) {
-        $column_exists = awpcp_check_if_column_exists( $table, $column );
-        wp_cache_set( "awpcp-$table-$column", $column_exists, 'awpcp', MINUTE_IN_SECONDS );
+    if ( ! isset( $column_exists[ "$table-$column" ] ) ) {
+        $column_exists[ "$table-$column" ] = awpcp_check_if_column_exists( $table, $column );
     }
 
-    return $column_exists;
+    return $column_exists[ "$table-$column" ];
 }
 
 /**
