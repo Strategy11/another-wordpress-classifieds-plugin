@@ -3,7 +3,7 @@
  Plugin Name: Another Wordpress Classifieds Plugin (AWPCP)
  Plugin URI: http://www.awpcp.com
  Description: AWPCP - A plugin that provides the ability to run a free or paid classified ads service on your wordpress blog. <strong>!!!IMPORTANT!!!</strong> Whether updating a previous installation of Another Wordpress Classifieds Plugin or installing Another Wordpress Classifieds Plugin for the first time, please backup your wordpress database before you install/uninstall/activate/deactivate/upgrade Another Wordpress Classifieds Plugin.
- Version: 3.4-beta-10
+ Version: 3.4-beta-11
  Author: D. Rodenbaugh
  License: GPLv2 or any later version
  Author URI: http://www.skylineconsult.com
@@ -692,7 +692,7 @@ class AWPCP {
 					'url' => 'http://awpcp.com/premium-modules/attachments-module/?ref=panel',
 					'installed' => defined( 'AWPCP_ATTACHMENTS_MODULE' ),
 					'version' => 'AWPCP_ATTACHMENTS_MODULE_DB_VERSION',
-					'required' => '3.2.7',
+					'required' => '3.4.1',
 				),
 				'authorize.net' => array(
 					'name' => __(  'Authorize.Net', 'AWPCP'  ),
@@ -720,7 +720,7 @@ class AWPCP {
 					'url' => 'http://www.awpcp.com/premium-modules/category-icons-module?ref=panel',
 					'installed' => defined( 'AWPCP_CATEGORY_ICONS_MODULE_DB_VERSION' ),
 					'version' => 'AWPCP_CATEGORY_ICONS_MODULE_DB_VERSION',
-					'required' => '3.2.4',
+					'required' => '3.4.1',
 				),
 				'comments' => array(
 					'name' => __(  'Comments & Ratings', 'AWPCP'  ),
@@ -811,7 +811,7 @@ class AWPCP {
                     'url' => 'http://www.awpcp.com/',
                     'installed' => defined( 'AWPCP_VIDEOS_MODULE' ),
                     'version' => 'AWPCP_VIDEOS_MODULE_DB_VERSION',
-                    'required' => '1.0.1',
+                    'required' => '1.0.2',
                 ),
 				'xml-sitemap' => array(
 					'name' => __(  'XML Sitemap', 'AWPCP'  ),
