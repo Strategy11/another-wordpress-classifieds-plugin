@@ -26,7 +26,7 @@ class AWPCP_ListingTitleFormField extends AWPCP_FormField {
             $remaining_characters_text = '';
         } else {
             $characters_allowed_text = _x('characters left.', 'ad details form', 'AWPCP');
-            $remaining_characters_text = $remaining_characters;
+            $remaining_characters_text = $characters_limit['remaining_characters'];
         }
 
         $params = array(
