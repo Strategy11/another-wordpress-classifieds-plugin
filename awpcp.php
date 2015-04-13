@@ -896,7 +896,7 @@ class AWPCP {
 
 		wp_register_script('awpcp-jquery-validate', "{$js}/jquery-validate/all.js", array('jquery'), '1.10.0', true);
         wp_register_script( 'awpcp-knockout', "//ajax.aspnetcdn.com/ajax/knockout/knockout-3.1.0.js", array(), '3.1.0', true );
-        wp_register_script( 'awpcp-jquery-plupload-queue', "{$vendors}/jquery-plupload-queue/jquery.plupload.queue.min.js", array( 'awpcp', 'plupload-all' ), '2.1.1', true );
+        wp_register_script( 'awpcp-jquery-plupload-queue', "{$js}/components/plupload-queue/jquery-plupload-queue.min.js", array( 'awpcp', 'plupload-all' ), '2.1.1', true );
 
 		/* helpers */
 
@@ -995,7 +995,47 @@ class AWPCP {
 			'money' => __( 'Please enter a valid amount.', 'AWPCP' ),
 		) );
 
-        if ( wp_script_is( 'awpcp', 'queue' ) || wp_script_is( 'awpcp', 'done' ) || wp_script_is( 'awpcp', 'to_od' ) ) {
+        $script = 'awpcp-jquery-plupload-queue';
+        if ( wp_script_is( $script, 'queue' ) || wp_script_is( $script, 'done' ) || wp_script_is( $script, 'to_od' ) ) {
+            $this->js->localize( 'plupload-queue', array(
+                'Stop Upload' => _x( 'Stop Upload', 'uploader queue', 'AWPCP' ),
+                "Upload URL might be wrong or doesn't exist." => _x( "Upload URL might be wrong or doesn't exist.", 'uploader queue', 'AWPCP' ),
+                'tb' => _x( 'tb', 'uploader queue', 'AWPCP' ),
+                'Size' => _x( 'Size', 'uploader queue', 'AWPCP' ),
+                'Close' => _x( 'Close', 'uploader queue', 'AWPCP' ),
+                'Init error.' => _x( 'Init error.', 'uploader queue', 'AWPCP' ),
+                'Add files to the upload queue and click the start button.' => _x( 'Add files to the upload queue and click the start button.', 'uploader queue', 'AWPCP' ),
+                'Filename' => _x( 'Filename', 'uploader queue', 'AWPCP' ),
+                'Image format either wrong or not supported.' => _x( 'Image format either wrong or not supported.', 'uploader queue', 'AWPCP' ),
+                'Status' => _x( 'Status', 'uploader queue', 'AWPCP' ),
+                'HTTP Error.' => _x( 'HTTP Error.', 'uploader queue', 'AWPCP' ),
+                'Start Upload' => _x( 'Start Upload', 'uploader queue', 'AWPCP' ),
+                'mb' => _x( 'mb', 'uploader queue', 'AWPCP' ),
+                'kb' => _x( 'kb', 'uploader queue', 'AWPCP' ),
+                'Duplicate file error.' => _x( 'Duplicate file error.', 'uploader queue', 'AWPCP' ),
+                'File size error.' => _x( 'File size error.', 'uploader queue', 'AWPCP' ),
+                'N/A' => _x( 'N/A', 'uploader queue', 'AWPCP' ),
+                'gb' => _x( 'gb', 'uploader queue', 'AWPCP' ),
+                'Error: Invalid file extension:' => _x( 'Error: Invalid file extension:', 'uploader queue', 'AWPCP' ),
+                'Select files' => _x( 'Select files', 'uploader queue', 'AWPCP' ),
+                '%s already present in the queue.' => _x( '%s already present in the queue.', 'uploader queue', 'AWPCP' ),
+                'File: %s' => _x( 'File: %s', 'uploader queue', 'AWPCP' ),
+                'b' => _x( 'b', 'uploader queue', 'AWPCP' ),
+                'Uploaded %d/%d files' => _x( 'Uploaded %d/%d files', 'uploader queue', 'AWPCP' ),
+                'Upload element accepts only %d file(s) at a time. Extra files were stripped.' => _x( 'Upload element accepts only %d file(s) at a time. Extra files were stripped.', 'uploader queue', 'AWPCP' ),
+                '%d files queued' => _x( '%d files queued', 'uploader queue', 'AWPCP' ),
+                'File: %s, size: %d, max file size: %d' => _x( 'File: %s, size: %d, max file size: %d', 'uploader queue', 'AWPCP' ),
+                'Drag files here.' => _x( 'Drag files here.', 'uploader queue', 'AWPCP' ),
+                'Runtime ran out of available memory.' => _x( 'Runtime ran out of available memory.', 'uploader queue', 'AWPCP' ),
+                'File count error.' => _x( 'File count error.', 'uploader queue', 'AWPCP' ),
+                'File extension error.' => _x( 'File extension error.', 'uploader queue', 'AWPCP' ),
+                'Error: File too large:' => _x( 'Error: File too large:', 'uploader queue', 'AWPCP' ),
+                'Add Files' => _x( 'Add Files', 'uploader queue', 'AWPCP' ),
+            ) );
+        }
+
+        $script = 'awpcp';
+        if ( wp_script_is( $script, 'queue' ) || wp_script_is( $script, 'done' ) || wp_script_is( $script, 'to_od' ) ) {
             $this->js->print_data();
         }
 	}
