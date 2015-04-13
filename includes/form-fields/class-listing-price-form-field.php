@@ -33,7 +33,7 @@ class AWPCP_ListingPriceFormField extends AWPCP_FormField {
     }
 
     protected function format_value( $value ) {
-        return $value ? awpcp_format_money( $value, false ) : '';
+        return $value ? awpcp_format_money_without_currency_symbol( $value ) : '';
     }
 
     public function render( $value, $errors, $listing, $context ) {
