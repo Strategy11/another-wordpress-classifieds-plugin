@@ -440,6 +440,9 @@ class AWPCP_Installer {
         if ( version_compare( $oldversion, '3.3.3' ) < 0 ) {
             $this->upgrade_to_3_3_3( $oldversion );
         }
+        if ( version_compare( $oldversion, '3.4' ) < 0 ) {
+            $this->upgrade_to_3_4( $oldversion );
+        }
 
         do_action('awpcp_upgrade', $oldversion, $newversion);
 
@@ -1125,6 +1128,15 @@ class AWPCP_Installer {
 
     private function upgrade_to_3_3_3( $oldversion ) {
         update_option( 'awpcp-flush-rewrite-rules', true );
+    }
+
+    private function upgrade_to_3_4( $oldversion ) {
+        $show_currency_symbol = awpcp()->settings->get_option( 'show-currency-symbol' );
+        if ( is_numeric( $show_currency_symbol ) && $show_currency_symbol ) {
+            awpcp()->settings->update_option( 'show-currency-symbol', 'show-currency-symbol-on-left' );
+        } else if ( is_numeric( $show_currency_symbol ) ) {
+            awpcp()->settings->update_option( 'show-currency-symbol', 'do-not-show-currency-symbol' );
+        }
     }
 }
 

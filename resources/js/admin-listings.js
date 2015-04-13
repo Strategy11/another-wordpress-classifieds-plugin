@@ -12,7 +12,7 @@ AWPCP.run( 'awpcp/listing-admin-page', [
      */
 
     $(function() {
-        $( '.awpcp-media-center' ).StartMediaCenter( {
+        $( '.awpcp-admin-listings .awpcp-media-center' ).StartMediaCenter( {
             mediaManagerOptions: settings.get( 'media-manager-data' ),
             mediaUploaderOptions: settings.get( 'media-uploader-data' )
         } );

@@ -1525,8 +1525,14 @@ function awpcp_currency_symbols() {
 /**
  * @since 3.0
  */
-function awpcp_format_money($value, $include_symbol=true) {
-    return awpcp_get_formmatted_amount( $value, get_awpcp_option( 'show-currency-symbol' ) );
+function awpcp_format_money($value) {
+    if ( get_awpcp_option( 'show-currency-symbol' ) != 'do-not-show-currency-symbol' ) {
+        $show_currency_symbol = true;
+    } else {
+        $show_currency_symbol = false;
+    }
+
+    return awpcp_get_formmatted_amount( $value, $show_currency_symbol );
 }
 
 function awpcp_format_money_without_currency_symbol( $value ) {
@@ -1537,15 +1543,35 @@ function awpcp_get_formmatted_amount( $value, $include_symbol ) {
     $thousands_separator = get_awpcp_option('thousands-separator');
     $decimal_separator = get_awpcp_option('decimal-separator');
     $decimals = get_awpcp_option('show-decimals') ? 2 : 0;
+
+    $symbol_position = get_awpcp_option( 'show-currency-symbol' );
     $symbol = $include_symbol ? awpcp_get_currency_symbol() : '';
+
+    if ( $include_symbol && $symbol_position == 'show-currency-symbol-on-left' ) {
+        $template = '<currenct-symbol><separator><amount>';
+    } else if ( $include_symbol && $symbol_position == 'show-currency-symbol-on-right' ) {
+        $template = '<amount><separator><currenct-symbol>';
+    } else {
+        $template = '<amount>';
+    }
+
+    if ( get_awpcp_option( 'include-space-between-currency-symbol-and-amount' ) ) {
+        $separator = '&nbsp;';
+    } else {
+        $separator = '';
+    }
 
     if ($value >= 0) {
         $number = number_format($value, $decimals, $decimal_separator, $thousands_separator);
-        $formatted = sprintf('%s%s', $symbol, $number);
+        $formatted = $template;
     } else {
         $number = number_format(- $value, $decimals, $decimal_separator, $thousands_separator);
-        $formatted = sprintf('(%s%s)', $symbol, $number);
+        $formatted = '(' . $template . ')';
     }
+
+    $formatted = str_replace( '<currenct-symbol>', $symbol, $formatted );
+    $formatted = str_replace( '<amount>', $number, $formatted );
+    $formatted = str_replace( '<separator>', $separator, $formatted );
 
     return $formatted;
 }

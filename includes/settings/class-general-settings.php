@@ -66,7 +66,7 @@ class AWPCP_GeneralSettings {
             'currency-code',
             __( 'Currency code', 'AWPCP' ),
             'textfield',
-            $settings->get_option( 'displaycurrencycode' ),
+            $settings->get_option( 'displaycurrencycode', 'USD' ),
             __( "Prices in listings pages and payment pages will be displayed using this currency. The currency symbol will be generated based on this code, but if the plugin doesn't know the symbol for your currency, it will use an uppercase version of the code itself.", 'AWPCP' )
         );
 
@@ -74,20 +74,29 @@ class AWPCP_GeneralSettings {
         $settings->add_setting($key, 'decimal-separator', __('Separator for the decimal point', 'AWPCP'), 'textfield', _x('.', 'This translation is deprecated. Please go to the Settings section to change the decimal separator.', 'AWPCP'), '');
         $settings->add_setting($key, 'show-decimals', __('Show decimals in price', 'AWPCP'), 'checkbox', 1, _x('Uncheck to show prices without decimals. The value will be rounded.', 'settings', 'AWPCP'));
 
-        $payment_settings_name = __( 'Payment', 'AWPCP' ) .' ' . __( 'Settings', 'AWPCP' );
-        $payment_settings_url = awpcp_get_admin_settings_url( 'payment-settings' );
-        $payment_settings_link = sprintf( '<a href="%s">%s</a>', $payment_settings_url, $payment_settings_name );
-
-        $helptext = __( 'If checked, the price is shown with the currency symbol on the left. Uncheck if you want to hide it. The currency symbol can be configured by changing the currency used for payments in <payment-settings-link>.', 'AWPCP' );
-        $helptext = str_replace( '<payment-settings-link>', $payment_settings_link, $helptext );
-
         $settings->add_setting(
             $key,
             'show-currency-symbol',
             __( 'Show currency symbol', 'AWPCP' ),
+            'radio',
+            'show-currency-symbol-on-left',
+            __( 'The currency symbol can be configured by changing the currency code in the settings above.', 'AWPCP' ),
+            array(
+                'options' => array(
+                    'show-currency-symbol-on-left' => __( 'Show currency symbol on left', 'AWPCP' ),
+                    'show-currency-symbol-on-right' => __( 'Show currency symbol on right', 'AWPCP' ),
+                    'do-not-show-currency-symbol' => __( "Don't show currency symbol", 'AWPCP' ),
+                ),
+            )
+        );
+
+        $settings->add_setting(
+            $key,
+            'include-space-between-currency-symbol-and-amount',
+            __( 'Include a space between the currency symbol and the amount', 'AWPCP' ),
             'checkbox',
             1,
-            $helptext
+            ''
         );
 
         // Section: General - Terms of Service

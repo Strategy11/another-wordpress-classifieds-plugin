@@ -20,6 +20,34 @@ function awpcp_build_categories_hierarchy( &$categories ) {
 /**
  * @since next-release
  */
+function awpcp_organize_categories_by_id( &$categories ) {
+    $organized = array();
+
+    foreach ( $categories as $category ) {
+        $organized[ $category->id ] = $category;
+    }
+
+    return $organized;
+}
+
+/**
+ * @param $categories   Array of categories index by Category ID.
+ * @since next-release
+ */
+function awpcp_get_category_hierarchy( $category_id, &$categories ) {
+    $category_parents = array();
+
+    while ( $category_id > 0 && isset( $categories[ $category_id ] ) ) {
+        $category_parents[] = $categories[ $category_id ];
+        $category_id = $categories[ $category_id ]->parent;
+    }
+
+    return $category_parents;
+}
+
+/**
+ * @since next-release
+ */
 function awpcp_render_categories_dropdown_options( &$categories, &$hierarchy, $selected_category ) {
     $output = '';
 

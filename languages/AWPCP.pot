@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2015-04-10 00:26:16+00:00\n"
+"POT-Creation-Date: 2015-04-13 20:49:22+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -664,7 +664,6 @@ msgid "Classifieds"
 msgstr ""
 
 #: admin/admin-panel.php:243 admin/admin-panel.php:244
-#: includes/settings/class-general-settings.php:77
 msgid "Settings"
 msgstr ""
 
@@ -2190,6 +2189,172 @@ msgstr ""
 msgid "Please enter a valid amount."
 msgstr ""
 
+#: awpcp.php:1001
+msgctxt "uploader queue"
+msgid "Stop Upload"
+msgstr ""
+
+#: awpcp.php:1002
+msgctxt "uploader queue"
+msgid "Upload URL might be wrong or doesn't exist."
+msgstr ""
+
+#: awpcp.php:1003
+msgctxt "uploader queue"
+msgid "tb"
+msgstr ""
+
+#: awpcp.php:1004
+msgctxt "uploader queue"
+msgid "Size"
+msgstr ""
+
+#: awpcp.php:1005
+msgctxt "uploader queue"
+msgid "Close"
+msgstr ""
+
+#: awpcp.php:1006
+msgctxt "uploader queue"
+msgid "Init error."
+msgstr ""
+
+#: awpcp.php:1007
+msgctxt "uploader queue"
+msgid "Add files to the upload queue and click the start button."
+msgstr ""
+
+#: awpcp.php:1008
+msgctxt "uploader queue"
+msgid "Filename"
+msgstr ""
+
+#: awpcp.php:1009
+msgctxt "uploader queue"
+msgid "Image format either wrong or not supported."
+msgstr ""
+
+#: awpcp.php:1010
+msgctxt "uploader queue"
+msgid "Status"
+msgstr ""
+
+#: awpcp.php:1011
+msgctxt "uploader queue"
+msgid "HTTP Error."
+msgstr ""
+
+#: awpcp.php:1012
+msgctxt "uploader queue"
+msgid "Start Upload"
+msgstr ""
+
+#: awpcp.php:1013
+msgctxt "uploader queue"
+msgid "mb"
+msgstr ""
+
+#: awpcp.php:1014
+msgctxt "uploader queue"
+msgid "kb"
+msgstr ""
+
+#: awpcp.php:1015
+msgctxt "uploader queue"
+msgid "Duplicate file error."
+msgstr ""
+
+#: awpcp.php:1016
+msgctxt "uploader queue"
+msgid "File size error."
+msgstr ""
+
+#: awpcp.php:1017
+msgctxt "uploader queue"
+msgid "N/A"
+msgstr ""
+
+#: awpcp.php:1018
+msgctxt "uploader queue"
+msgid "gb"
+msgstr ""
+
+#: awpcp.php:1019
+msgctxt "uploader queue"
+msgid "Error: Invalid file extension:"
+msgstr ""
+
+#: awpcp.php:1020
+msgctxt "uploader queue"
+msgid "Select files"
+msgstr ""
+
+#: awpcp.php:1021
+msgctxt "uploader queue"
+msgid "%s already present in the queue."
+msgstr ""
+
+#: awpcp.php:1022
+msgctxt "uploader queue"
+msgid "File: %s"
+msgstr ""
+
+#: awpcp.php:1023
+msgctxt "uploader queue"
+msgid "b"
+msgstr ""
+
+#: awpcp.php:1024
+msgctxt "uploader queue"
+msgid "Uploaded %d/%d files"
+msgstr ""
+
+#: awpcp.php:1025
+msgctxt "uploader queue"
+msgid ""
+"Upload element accepts only %d file(s) at a time. Extra files were stripped."
+msgstr ""
+
+#: awpcp.php:1026
+msgctxt "uploader queue"
+msgid "%d files queued"
+msgstr ""
+
+#: awpcp.php:1027
+msgctxt "uploader queue"
+msgid "File: %s, size: %d, max file size: %d"
+msgstr ""
+
+#: awpcp.php:1028
+msgctxt "uploader queue"
+msgid "Drag files here."
+msgstr ""
+
+#: awpcp.php:1029
+msgctxt "uploader queue"
+msgid "Runtime ran out of available memory."
+msgstr ""
+
+#: awpcp.php:1030
+msgctxt "uploader queue"
+msgid "File count error."
+msgstr ""
+
+#: awpcp.php:1031
+msgctxt "uploader queue"
+msgid "File extension error."
+msgstr ""
+
+#: awpcp.php:1032
+msgctxt "uploader queue"
+msgid "Error: File too large:"
+msgstr ""
+
+#: awpcp.php:1033
+msgctxt "uploader queue"
+msgid "Add Files"
+msgstr ""
+
 #: cron.php:86
 msgid "Listing Details"
 msgstr ""
@@ -3669,7 +3834,7 @@ msgctxt "default blog title"
 msgid "Classifieds Website"
 msgstr ""
 
-#: functions.php:1675
+#: functions.php:1701
 msgid ""
 "The images or files with pale red background have been rejected by an "
 "administrator user. Likewise, files with a pale yellow background are "
@@ -3677,79 +3842,79 @@ msgid ""
 "cannot be shown in the frontend."
 msgstr ""
 
-#: functions.php:1692 includes/helpers/class-modules-manager.php:158
+#: functions.php:1718 includes/helpers/class-modules-manager.php:158
 msgid ""
 "This version of AWPCP %1$s module is not compatible with AWPCP version %2$s. "
 "Please get AWPCP %1$s %3$s or newer!"
 msgstr ""
 
-#: functions.php:1694 includes/helpers/class-modules-manager.php:160
+#: functions.php:1720 includes/helpers/class-modules-manager.php:160
 msgid "Error"
 msgstr ""
 
-#: functions.php:1713
+#: functions.php:1739
 msgid "No errors."
 msgstr ""
 
-#: functions.php:1714
+#: functions.php:1740
 msgid "The file is larger than upload_max_filesize."
 msgstr ""
 
-#: functions.php:1715
+#: functions.php:1741
 msgid "The file is larger than form MAX_FILE_SIZE."
 msgstr ""
 
-#: functions.php:1716
+#: functions.php:1742
 msgid "The file was only partially uploaded."
 msgstr ""
 
-#: functions.php:1717
+#: functions.php:1743
 msgid "No file was uploaded."
 msgstr ""
 
-#: functions.php:1718
+#: functions.php:1744
 msgid "Missing temporary directory."
 msgstr ""
 
-#: functions.php:1719
+#: functions.php:1745
 msgid "Can't write file to disk."
 msgstr ""
 
-#: functions.php:1720
+#: functions.php:1746
 msgid "The file upload was stopped by extension."
 msgstr ""
 
-#: functions.php:1915
+#: functions.php:1942
 msgid "Your Ad \"%s\" has been approved"
 msgstr ""
 
-#: functions.php:1931
+#: functions.php:1958
 msgid "Your Ad \"%s\" has been successfully updated"
 msgstr ""
 
-#: functions.php:1952
+#: functions.php:1979
 msgid "Images on Ad \"%s\" are awaiting approval"
 msgstr ""
 
-#: functions.php:1954 includes/functions/notifications.php:176
+#: functions.php:1981 includes/functions/notifications.php:176
 msgid ""
 "Images on Ad \"%s\" are awaiting approval. You can approve the images going "
 "to the Manage Images section for that Ad and clicking the \"Enable\" button "
 "below each image. Click here to continue: %s."
 msgstr ""
 
-#: functions.php:1957
+#: functions.php:1984
 msgid "The Ad \"%s\" is awaiting approval"
 msgstr ""
 
-#: functions.php:1959 includes/functions/notifications.php:181
+#: functions.php:1986 includes/functions/notifications.php:181
 msgid ""
 "The Ad \"%s\" is awaiting approval. You can approve the Ad going to the "
 "Manage Listings section and clicking the \"Enable\" action shown on top. "
 "Click here to continue: %s."
 msgstr ""
 
-#: functions.php:1966 includes/functions/notifications.php:188
+#: functions.php:1993 includes/functions/notifications.php:188
 msgid ""
 "Additionally, You can approve the images going to the Manage Images section "
 "for that Ad and clicking the \"Enable\" button below each image. Click here "
@@ -4348,7 +4513,6 @@ msgstr ""
 
 #: includes/helpers/widgets/class-listing-form-steps-component.php:46
 #: includes/helpers/widgets/class-listing-form-steps-component.php:61
-#: includes/settings/class-general-settings.php:77
 #: includes/settings-api.php:196
 msgid "Payment"
 msgstr ""
@@ -4524,6 +4688,11 @@ msgstr ""
 msgid "There was a problem trying to make directory <directory-name> writable."
 msgstr ""
 
+#: includes/media/class-image-file-processor.php:56
+#: includes/media/class-uploads-manager.php:29
+msgid "Destination directory doesn't exists and couldn't be created."
+msgstr ""
+
 #: includes/media/class-image-file-validator.php:21
 msgctxt "upload files"
 msgid ""
@@ -4616,10 +4785,6 @@ msgstr ""
 
 #: includes/media/class-upload-listing-media-ajax-handler.php:41
 msgid "You are not authorized to upload files."
-msgstr ""
-
-#: includes/media/class-uploads-manager.php:29
-msgid "Destination directory doesn't exists and couldn't be created."
 msgstr ""
 
 #: includes/models/ad.php:530
@@ -5783,62 +5948,77 @@ msgctxt "settings"
 msgid "Uncheck to show prices without decimals. The value will be rounded."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:81
-msgid ""
-"If checked, the price is shown with the currency symbol on the left. Uncheck "
-"if you want to hide it. The currency symbol can be configured by changing "
-"the currency used for payments in <payment-settings-link>."
-msgstr ""
-
-#: includes/settings/class-general-settings.php:87
+#: includes/settings/class-general-settings.php:80
 msgid "Show currency symbol"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:95
-#: includes/settings/class-general-settings.php:98
+#: includes/settings/class-general-settings.php:83
+msgid ""
+"The currency symbol can be configured by changing the currency code in the "
+"settings above."
+msgstr ""
+
+#: includes/settings/class-general-settings.php:86
+msgid "Show currency symbol on left"
+msgstr ""
+
+#: includes/settings/class-general-settings.php:87
+msgid "Show currency symbol on right"
+msgstr ""
+
+#: includes/settings/class-general-settings.php:88
+msgid "Don't show currency symbol"
+msgstr ""
+
+#: includes/settings/class-general-settings.php:96
+msgid "Include a space between the currency symbol and the amount"
+msgstr ""
+
+#: includes/settings/class-general-settings.php:104
+#: includes/settings/class-general-settings.php:107
 msgid "Terms of Service"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:97
+#: includes/settings/class-general-settings.php:106
 msgid "Display and require Terms of Service"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:98
+#: includes/settings/class-general-settings.php:107
 msgid "Terms of service go here..."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:98
+#: includes/settings/class-general-settings.php:107
 msgid ""
 "Terms of Service for posting Ads. Put in text or an URL starting with http. "
 "If you use an URL, the text box will be replaced by a link to the "
 "appropriate Terms of Service page"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:102
+#: includes/settings/class-general-settings.php:111
 msgid "Anti-SPAM"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:105
+#: includes/settings/class-general-settings.php:114
 msgid "reCAPTCHA (recommended)"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:106
+#: includes/settings/class-general-settings.php:115
 msgid "Math"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:120
+#: includes/settings/class-general-settings.php:129
 msgid "Use Akismet"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:123
+#: includes/settings/class-general-settings.php:132
 msgid "Use Akismet for Posting Ads/Contact Responses (strong anti-spam)."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:126
+#: includes/settings/class-general-settings.php:135
 msgid "Enable CAPTCHA"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:126
+#: includes/settings/class-general-settings.php:135
 msgid ""
 "A CAPTCHA is a program to ensure only humans are posting Ads to your "
 "website. Using a CAPTCHA will reduce the SPAM and prevent bots from posting "
@@ -5846,49 +6026,49 @@ msgid ""
 "Place Ad and Reply to Ad forms."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:127
+#: includes/settings/class-general-settings.php:136
 msgid "Type of CAPTCHA"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:127
+#: includes/settings/class-general-settings.php:136
 msgid ""
 "reCAPTCHA: Uses distorted images that only humans should be able to read "
 "(recommended)."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:127
+#: includes/settings/class-general-settings.php:136
 msgid "Math: Asks user to solve a simple arithmetic operation."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:129
+#: includes/settings/class-general-settings.php:138
 msgid "Max number used in Math CAPTCHA"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:129
+#: includes/settings/class-general-settings.php:138
 msgid "Highest number used in aithmetic operation."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:132
+#: includes/settings/class-general-settings.php:141
 msgid "You can get an API key from %s."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:134
+#: includes/settings/class-general-settings.php:143
 msgid "reCAPTCHA Site Key"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:135
+#: includes/settings/class-general-settings.php:144
 msgid "reCAPTCHA Secret Key"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:139
+#: includes/settings/class-general-settings.php:148
 msgid "SEO Settings"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:141
+#: includes/settings/class-general-settings.php:150
 msgid "Turn on Search Engine Friendly URLs"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:141
+#: includes/settings/class-general-settings.php:150
 msgid "Turn on Search Engine Friendly URLs? (SEO Mode)"
 msgstr ""
 
