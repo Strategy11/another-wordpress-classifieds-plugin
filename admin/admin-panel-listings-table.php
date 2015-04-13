@@ -121,10 +121,10 @@ class AWPCP_Listings_Table extends WP_List_Table {
 
         $listings = awpcp_listings_collection();
 
-        if ( $show_expired ) {
+        if ( isset( $show_expired ) && $show_expired ) {
             $this->total_items = $listings->count_expired_listings_with_query( $query );
             $this->items = $listings->find_expired_listings_with_query( $query );
-        } else if ( $show_awaiting_approval ) {
+        } else if ( isset( $show_awaiting_approval ) && $show_awaiting_approval ) {
             $this->total_items = $listings->count_listings_awaiting_approval_with_query( $query );
             $this->items = $listings->find_listings_awaiting_approval_with_query( $query );
         } else if ( $show_non_verified ) {
