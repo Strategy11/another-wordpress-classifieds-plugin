@@ -896,7 +896,22 @@ class AWPCP {
 
 		wp_register_script('awpcp-jquery-validate', "{$js}/jquery-validate/all.js", array('jquery'), '1.10.0', true);
         wp_register_script( 'awpcp-knockout', "//ajax.aspnetcdn.com/ajax/knockout/knockout-3.1.0.js", array(), '3.1.0', true );
-        wp_register_script( 'awpcp-jquery-plupload-queue', "{$js}/components/plupload-queue/jquery-plupload-queue.min.js", array( 'awpcp', 'plupload-all' ), '2.1.1', true );
+
+        wp_register_script(
+            'awpcp-jquery-plupload-queue-source',
+            "{$vendors}/jquery-plupload-queue/jquery.plupload.queue.min.js",
+            array( 'jquery', 'plupload-all' ),
+            '2.1.1',
+            true
+        );
+
+        wp_register_script(
+            'awpcp-jquery-plupload-queue',
+            "{$js}/components/plupload-queue/jquery-plupload-queue.min.js",
+            array( 'awpcp', 'awpcp-jquery-plupload-queue-source' ),
+            $awpcp_db_version,
+            true
+        );
 
 		/* helpers */
 
