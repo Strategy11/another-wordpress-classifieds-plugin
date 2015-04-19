@@ -33,14 +33,17 @@ class AWPCP_FileTypes {
             'image' => array(
                 'png' => array(
                     'name' => 'PNG',
+                    'extensions' => array( 'png' ),
                     'mime_types' => array( 'image/png' ),
                 ),
                 'jpg' => array(
                     'name' => 'JPG',
+                    'extensions' => array( 'jpg', 'jpeg', 'pjpeg' ),
                     'mime_types' => array( 'image/jpg', 'image/jpeg', 'image/pjpeg' ),
                 ),
                 'gif' => array(
                     'name' => 'GIF',
+                    'extensions' => array( 'gif' ),
                     'mime_types' => array( 'image/gif' ),
                 ),
             )
@@ -62,7 +65,13 @@ class AWPCP_FileTypes {
     }
 
     public function get_file_extensions_in_group( $group ) {
-        return array_keys( $this->get_file_types_in_group( $group ) );
+        $extensions = array();
+
+        foreach ( $this->get_file_types_in_group( $group ) as $file_type ) {
+            $extensions = array_merge( $extensions, $file_type['extensions'] );
+        }
+
+        return $extensions;
     }
 
     public function get_allowed_file_mime_types_in_group( $group ) {
@@ -75,8 +84,10 @@ class AWPCP_FileTypes {
     private function get_allowed_mime_types( $file_types, $allowed_extensions ) {
         $allowed_file_types = array();
 
-        foreach ( $file_types as $extension => $file_type ) {
-            if ( in_array( $extension, $allowed_extensions ) ) {
+        foreach ( $file_types as $file_type ) {
+            $common_extensions = array_intersect( $file_type['extensions'], $allowed_extensions );
+
+            if ( ! empty( $common_extensions ) ) {
                 $allowed_file_types[] = $file_type;
             }
         }
@@ -88,9 +99,7 @@ class AWPCP_FileTypes {
         $mime_types = array();
 
         foreach ( $file_types as $extension => $file_type ) {
-            foreach ( $file_type['mime_types'] as $mime_type ) {
-                $mime_types[] = $mime_type;
-            }
+            $mime_types = array_merge( $mime_types, $file_type['mime_types'] );
         }
 
         return $mime_types;
@@ -126,13 +135,12 @@ class AWPCP_FileTypes {
     }
 
     public function get_video_extensions() {
-        return array_keys( $this->get_file_types_in_group( 'video' ) );
+        return $this->get_file_extensions_in_group( 'video' );
     }
 
     public function get_allowed_video_extensions() {
-        return array_values( array_filter( $this->settings->get_option( 'attachments-allowed-video-extensions', array() ) ) );
+        return $this->get_allowed_file_extesions_in_group( 'video' );
     }
-
 
     public function get_other_files_mime_types() {
         return $this->get_mime_types( $this->get_file_types_in_group( 'others' ) );
@@ -143,21 +151,10 @@ class AWPCP_FileTypes {
     }
 
     public function get_other_files_extensions() {
-        return array_keys( $this->get_file_types_in_group( 'others' ) );
+        return $this->get_file_extensions_in_group( 'others' );
     }
 
     public function get_other_allowed_files_extensions() {
-        return array_values( array_filter( $this->settings->get_option( 'attachments-allowed-other-files-extensions', array() ) ) );
-    }
-
-
-    public function get_extension_names() {
-        $extension_names = array();
-
-        foreach ( $this->file_types as $extension => $file_type ) {
-            $extension_names[ $extension ] = $file_type['name'];
-        }
-
-        return $extension_names;
+        return $this->get_allowed_file_extesions_in_group( 'others' );
     }
 }
