@@ -1011,7 +1011,7 @@ class AWPCP {
 		) );
 
         $script = 'awpcp-jquery-plupload-queue';
-        if ( wp_script_is( $script, 'queue' ) || wp_script_is( $script, 'done' ) || wp_script_is( $script, 'to_od' ) ) {
+        if ( wp_script_is( $script, 'queue' ) || wp_script_is( $script, 'done' ) || wp_script_is( $script, 'to_do' ) ) {
             $this->js->localize( 'plupload-queue', array(
                 'Stop Upload' => _x( 'Stop Upload', 'uploader queue', 'AWPCP' ),
                 "Upload URL might be wrong or doesn't exist." => _x( "Upload URL might be wrong or doesn't exist.", 'uploader queue', 'AWPCP' ),
@@ -1050,7 +1050,7 @@ class AWPCP {
         }
 
         $script = 'awpcp';
-        if ( wp_script_is( $script, 'queue' ) || wp_script_is( $script, 'done' ) || wp_script_is( $script, 'to_od' ) ) {
+        if ( wp_script_is( $script, 'queue' ) || wp_script_is( $script, 'done' ) || wp_script_is( $script, 'to_do' ) ) {
             $this->js->print_data();
         }
 	}
