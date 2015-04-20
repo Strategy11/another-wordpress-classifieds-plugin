@@ -41,8 +41,7 @@ module.exports = function(grunt) {
           '<%= path.awpcp %>/js/custom-validators.js'
         ],
         '<%= path.awpcp %>/js/components/plupload-queue/jquery-plupload-queue.src.js': [
-          '<%= path.awpcp %>/js/components/plupload-queue/i18n.js',
-          '<%= path.awpcp %>/vendors/jquery-plupload-queue/jquery.plupload.queue.js'
+          '<%= path.awpcp %>/js/components/plupload-queue/i18n.js'
         ]
       }
     },
