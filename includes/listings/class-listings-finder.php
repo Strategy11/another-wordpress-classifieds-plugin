@@ -223,7 +223,12 @@ class AWPCP_ListingsFinder {
                 $single_value = array_shift( $value );
                 return $this->db->prepare( "$column $comparison_operator $placeholder", $single_value );
             } else {
-                $multiple_values = array_map( 'absint', $value );
+                $multiple_values = array();
+
+                foreach ( $value as $v ) {
+                    $multiple_values[] = $this->db->prepare( "$placeholder", $v );
+                }
+
                 return "$column $inclusion_operator ( " . implode( ', ', $multiple_values ) . ' )';
             }
         } else if ( ! empty( $value ) ) {
