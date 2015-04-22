@@ -146,7 +146,7 @@ function awpcp_ad_renewal_email() {
 	}
 
     $notification = awpcp_listing_is_about_to_expire_notification();
-    $admin_sender_email = awpcp_admin_sender_email_address();
+    $admin_sender_email = awpcp_admin_email_from();
 
 	foreach ( awpcp_get_listings_about_to_expire() as $listing ) {
         // When the user clicks the renew ad link, AWPCP uses
