@@ -2,9 +2,9 @@
 
 class AWPCP_FeesTable extends WP_List_Table {
 
-    private $items_per_page;
-
     private $page;
+    private $items_per_page;
+    private $total_items;
 
     public function __construct($page, $args=array()) {
         parent::__construct(wp_parse_args($args, array('plural' => 'awpcp-fees')));

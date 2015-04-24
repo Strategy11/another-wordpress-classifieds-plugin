@@ -25,7 +25,7 @@ function awpcp_send_listing_posted_notification_to_moderators( $listing, $transa
         return false;
     }
 
-    $user_message = awpcp_ad_posted_user_email( $listing, $transaction, $message );
+    $user_message = awpcp_ad_posted_user_email( $listing, $transaction, $messages );
     $content = $user_message->body;
 
     $admin_message = new AWPCP_Email;
@@ -38,9 +38,9 @@ function awpcp_send_listing_posted_notification_to_moderators( $listing, $transa
     $template = AWPCP_DIR . '/frontend/templates/email-place-ad-success-admin.tpl.php';
     $admin_message->prepare($template, compact('content', 'url'));
 
-    $admin_message->send();
+    $message_sent = $admin_message->send();
 
-    return $result;
+    return $message_sent;
 }
 
 function awpcp_send_listing_updated_notification_to_user( $listing, $messages ) {
@@ -84,9 +84,9 @@ function awpcp_send_listing_updated_notification_to_moderators( $listing, $messa
     $template = AWPCP_DIR . '/templates/email/listing-updated-nofitication-moderators.plain.tpl.php';
     $admin_message->prepare( $template, compact( 'listing', 'manage_listing_url', 'content' ) );
 
-    $admin_message->send();
+    $message_sent = $admin_message->send();
 
-    return $result;
+    return $message_sent;
 }
 
 function awpcp_listing_updated_user_message( $listing, $messages ) {

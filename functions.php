@@ -1164,11 +1164,10 @@ function awpcp_array_insert($array, $index, $key, $item, $where='before') {
 			array_splice($keys, min($p+1, count($keys)), 0, $key);
 
 		$array = array();
-		// create items array in proper order.
-		// the code below was the only way I find to insert an
-		// item in an arbitrary position of an array preserving
-		// keys. array_splice dropped the key of the inserted
-		// value.
+        // Create items array in proper order. The code below was the only
+        // way I found to insert an item in an arbitrary position of an
+        // array preserving keys. array_splice dropped the key of the inserted
+        // value.
 		foreach($keys as $key) {
 			$array[$key] = $all[$key];
 		}
