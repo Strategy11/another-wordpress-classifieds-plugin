@@ -32,7 +32,9 @@ class AWPCP_User_Panel {
             add_action("admin_print_styles-{$hook}", array($this->account, 'scripts'));
         }
 
-		if ( get_awpcp_option( 'enable-user-panel' ) != 1 || awpcp_current_user_is_moderator() ) {
+        $current_user_is_non_admin_moderator = awpcp_current_user_is_moderator() && ! awpcp_current_user_is_admin();
+
+		if ( get_awpcp_option( 'enable-user-panel' ) != 1 || $current_user_is_non_admin_moderator ) {
             return;
         }
 
