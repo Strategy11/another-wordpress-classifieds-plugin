@@ -71,7 +71,7 @@ class AWPCP_ListingsAPI {
 
         $this->verify_ad( $ad );
 
-        wp_redirect( add_query_arg( 'verified', true, url_showad( $ad->ad_id ) ) );
+        wp_redirect( esc_url_raw( add_query_arg( 'verified', true, url_showad( $ad->ad_id ) ) ) );
         return;
     }
 

@@ -447,23 +447,23 @@ function awpcp_admin_categories_render_category_item($category, $level, $start, 
 	}
 
 	$params = array( 'page' => 'awpcp-admin-categories', 'cat_ID' => $category->id );
-	$admin_listings_url = add_query_arg( $params, admin_url( 'admin.php' ) );
+	$admin_listings_url = add_query_arg( urlencode_deep( $params ), admin_url( 'admin.php' ) );
 
 	$thecategory_parent_id = $category->parent;
 	$thecategory_parent_name = stripslashes(get_adparentcatname($thecategory_parent_id));
 	$thecategory_order = $category->order ? $category->order : 0;
 	$thecategory_name = sprintf( '%s%s<a href="%s">%s</a>', str_repeat( '&mdash;&nbsp;', $level ),
 															$thecategoryicon,
-															$admin_listings_url,
+															esc_url( $admin_listings_url ),
 															esc_attr( stripslashes( $category->name ) ) );
 
 	$totaladsincat = total_ads_in_cat( $category->id );
 
 	$params = array( 'cat_ID' => $category->id, 'offset' => $start, 'results' => $per_page );
-	$admin_categories_url = add_query_arg( $params, awpcp_get_admin_categories_url() );
+	$admin_categories_url = add_query_arg( urlencode_deep( $params ), awpcp_get_admin_categories_url() );
 
 	if ($hascaticonsmodule == 1 && is_installed_category_icon_module()) {
-		$url = add_query_arg( 'action', 'managecaticon', $admin_categories_url );
+		$url = esc_url( add_query_arg( 'action', 'managecaticon', $admin_categories_url ) );
 		$managecaticon = "<a href=\"$url\"><img src=\"$awpcp_imagesurl/icon_manage_ico.png\" alt=\"";
 		$managecaticon.= __("Manage Category Icon", "AWPCP");
 		$managecaticon.= "\" title=\"" . __("Manage Category Icon", "AWPCP") . "\" border=\"0\"/></a>";
@@ -481,9 +481,9 @@ function awpcp_admin_categories_render_category_item($category, $level, $start, 
 	$row.= "<td style=\"border-bottom:1px dotted #dddddd;font-weight:normal;\">$thecategory_parent_name</td>";
 	$row.= "<td style=\"border-bottom:1px dotted #dddddd;font-weight:normal;\">$thecategory_order</td>";
 	$row.= "<td style=\"border-bottom:1px dotted #dddddd;font-size:smaller;font-weight:normal;\">";
-	$url = add_query_arg( 'action', 'editcat', $admin_categories_url );
+	$url = esc_url( add_query_arg( 'action', 'editcat', $admin_categories_url ) );
 	$row.= "<a href=\"$url\"><img src=\"$awpcp_imagesurl/edit_ico.png\" alt=\"$awpcpeditcategoryword\" title=\"$awpcpeditcategoryword\" border=\"0\"/></a>";
-	$url = add_query_arg( 'action', 'delcat', $admin_categories_url );
+	$url = esc_url( add_query_arg( 'action', 'delcat', $admin_categories_url ) );
 	$row.= "<a href=\"$url\"><img src=\"$awpcp_imagesurl/delete_ico.png\" alt=\"$awpcpdeletecategoryword\" title=\"$awpcpdeletecategoryword\" border=\"0\"/></a>";
 	$row.= $managecaticon;
 	$row.= "</td>";

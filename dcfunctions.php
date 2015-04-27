@@ -386,8 +386,8 @@ function _create_pager( $item_count, $offset, $results, $tpname ) {
 			}
 		} else {
 			$href_params = array_merge($params, array('offset' => ($i-1) * $results, 'results' => $results));
-			$href = add_query_arg($href_params, $tpname);
-			$myreturn.= sprintf('<a href="%s">%d</a>&nbsp;', esc_attr($href), esc_attr($i));
+			$href = add_query_arg( urlencode_deep( $href_params ), $tpname );
+			$myreturn.= sprintf( '<a href="%s">%d</a>&nbsp;', esc_url( $href ), esc_attr( $i ) );
 		}
 	}
 
@@ -395,20 +395,20 @@ function _create_pager( $item_count, $offset, $results, $tpname ) {
 		//Subtract 2, page is 1-based index, results is 0-based, must compensate for 2 pages here
 		if ( (($current_page-2) * $results) < $results) {
 			$href_params = array_merge($params, array('offset' => 0, 'results' => $results));
-			$href = add_query_arg($href_params, $tpname);
+			$href = add_query_arg( urlencode_deep( $href_params ), $tpname );
 		} else {
 			$href_params = array_merge($params, array('offset' => ($current_page-2) * $results, 'results' => $results));
-			$href = add_query_arg($href_params, $tpname);
+			$href = add_query_arg( urlencode_deep( $href_params ), $tpname );
 		}
-		$prev = sprintf('<a href="%s">&laquo;</a>&nbsp;', esc_attr($href));
+		$prev = sprintf( '<a href="%s">&laquo;</a>&nbsp;', esc_url( $href ) );
 	} else {
 		$prev = '';
 	}
 
 	if ( $offset != (($total_pages-1)*$results) ) {
 		$href_params = array_merge($params, array('offset' => $current_page * $results, 'results' => $results));
-		$href = add_query_arg($href_params, $tpname);
-		$next = sprintf('<a href="%s">&raquo;</a>&nbsp;', esc_attr($href));
+		$href = add_query_arg( urlencode_deep( $href_params ), $tpname );
+		$next = sprintf( '<a href="%s">&raquo;</a>&nbsp;', esc_url( $href ) );
 	} else {
 		$next = '';
 	}

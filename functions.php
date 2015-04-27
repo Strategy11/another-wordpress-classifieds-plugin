@@ -513,7 +513,9 @@ function awpcp_render_pagination_item( $label, $page, $results_per_page, $params
         )
     );
 
-    return sprintf( '<a href="%s">%s</a>', esc_attr( add_query_arg( $params, $url ) ), $label );
+    $url = add_query_arg( urlencode_deep( $params ), $url );
+
+    return sprintf( '<a href="%s">%s</a>', esc_url( $url ), $label );
 }
 
 function awpcp_get_categories() {
@@ -1972,7 +1974,7 @@ function awpcp_ad_updated_email( $ad, $message ) {
 function awpcp_ad_awaiting_approval_email($ad, $ad_approve, $images_approve) {
 	// admin email
 	$params = array( 'page' => 'awpcp-listings',  'action' => 'manage-images', 'id' => $ad->ad_id );
-    $manage_images_url = add_query_arg( $params, admin_url( 'admin.php' ) );
+    $manage_images_url = add_query_arg( urlencode_deep( $params ), admin_url( 'admin.php' ) );
 
 	if ( false == $ad_approve && $images_approve ) {
 		$subject = __( 'Images on Ad "%s" are awaiting approval', 'AWPCP' );
@@ -1984,7 +1986,7 @@ function awpcp_ad_awaiting_approval_email($ad, $ad_approve, $images_approve) {
 
 		$message = __('The Ad "%s" is awaiting approval. You can approve the Ad going to the Manage Listings section and clicking the "Enable" action shown on top. Click here to continue: %s.', 'AWPCP');
 		$params = array('page' => 'awpcp-listings',  'action' => 'view', 'id' => $ad->ad_id);
-	    $url = add_query_arg( $params, admin_url( 'admin.php' ) );
+	    $url = add_query_arg( urlencode_deep( $params ), admin_url( 'admin.php' ) );
 
 	    $messages[] = sprintf( $message, $ad->get_title(), $url );
 
