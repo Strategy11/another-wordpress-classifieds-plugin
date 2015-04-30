@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: AWPCP\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2015-04-13 20:49:22+00:00\n"
+"POT-Creation-Date: 2015-04-30 13:15:29+00:00\n"
 "PO-Revision-Date: 2014-09-09 20:44-0600\n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: \n"
@@ -70,7 +70,7 @@ msgid_plural "%d Ads were marked as SPAM and removed"
 msgstr[0] ""
 msgstr[1] ""
 
-#: awpcp.php:1026
+#: awpcp.php:1041
 msgctxt "uploader queue"
 msgid "%d files queued"
 msgstr ""
@@ -103,7 +103,7 @@ msgid_plural "%d Ads were enabled"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/user-panel.php:42
+#: admin/user-panel.php:44
 msgid "%s Ad Management Panel"
 msgstr ""
 
@@ -115,12 +115,12 @@ msgstr ""
 msgid "%s Transaction"
 msgstr ""
 
-#: awpcp.php:1021
+#: awpcp.php:1036
 msgctxt "uploader queue"
 msgid "%s already present in the queue."
 msgstr ""
 
-#: functions.php:554
+#: functions.php:556
 msgctxt "comma separated list of things"
 msgid "%s and %d more."
 msgstr ""
@@ -167,7 +167,7 @@ msgctxt ""
 msgid ","
 msgstr ""
 
-#: functions.php:1006
+#: functions.php:1008
 msgid "-- Choose a Country --"
 msgstr ""
 
@@ -462,7 +462,7 @@ msgstr ""
 msgid "Ad Listings page layout"
 msgstr ""
 
-#: admin/user-panel.php:43
+#: admin/user-panel.php:45
 msgid "Ad Management"
 msgstr ""
 
@@ -543,7 +543,7 @@ msgctxt "media manager"
 msgid "Add File"
 msgstr ""
 
-#: awpcp.php:1033
+#: awpcp.php:1048
 msgctxt "uploader queue"
 msgid "Add Files"
 msgstr ""
@@ -568,7 +568,7 @@ msgstr ""
 msgid "Add a New Category"
 msgstr ""
 
-#: awpcp.php:1007
+#: awpcp.php:1022
 msgctxt "uploader queue"
 msgid "Add files to the upload queue and click the start button."
 msgstr ""
@@ -586,7 +586,7 @@ msgstr ""
 msgid "Additional Details"
 msgstr ""
 
-#: functions.php:1993 includes/functions/notifications.php:188
+#: functions.php:1994 includes/functions/notifications.php:188
 msgid ""
 "Additionally, You can approve the images going to the Manage Images section "
 "for that Ad and clicking the \"Enable\" button below each image. Click here "
@@ -687,11 +687,11 @@ msgid ""
 "become visible in the system. Thank you for your business."
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:188
+#: admin/templates/admin-sidebar.tpl.php:194
 msgid "All other modules installed!"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:147
+#: admin/templates/admin-sidebar.tpl.php:153
 msgid "All premium modules installed!"
 msgstr ""
 
@@ -899,7 +899,7 @@ msgstr ""
 msgid "Authorize.Net"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:44
+#: admin/templates/admin-sidebar.tpl.php:50
 msgid "Authorize.Net Module"
 msgstr ""
 
@@ -979,13 +979,17 @@ msgstr ""
 msgid "Browse Categories page"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:113
+#: admin/templates/admin-sidebar.tpl.php:119
 msgctxt "Browse the <a>Quick Start Guide</a>"
 msgid "Browse the %s."
 msgstr ""
 
 #: awpcp.php:705
 msgid "BuddyPress Listings"
+msgstr ""
+
+#: admin/templates/admin-sidebar.tpl.php:38
+msgid "BuddyPress Listings Module"
 msgstr ""
 
 #: includes/helpers/wp-list-table.php:287
@@ -1012,7 +1016,7 @@ msgstr ""
 msgid "Campaign Manager"
 msgstr ""
 
-#: functions.php:1745
+#: functions.php:1746
 msgid "Can't write file to disk."
 msgstr ""
 
@@ -1065,7 +1069,7 @@ msgstr ""
 msgid "Category Icons"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:80
+#: admin/templates/admin-sidebar.tpl.php:86
 msgid "Category Icons Premium Module"
 msgstr ""
 
@@ -1164,7 +1168,7 @@ msgstr ""
 msgid "Checkout"
 msgstr ""
 
-#: frontend/templates/payments-billing-form.tpl.php:101 functions.php:632
+#: frontend/templates/payments-billing-form.tpl.php:101 functions.php:634
 msgid "City"
 msgstr ""
 
@@ -1201,7 +1205,7 @@ msgstr ""
 msgid "Classifieds Pages"
 msgstr ""
 
-#: functions.php:1279
+#: functions.php:1280
 msgctxt "default blog title"
 msgid "Classifieds Website"
 msgstr ""
@@ -1219,7 +1223,7 @@ msgstr ""
 msgid "Click to enlarge image."
 msgstr ""
 
-#: awpcp.php:1005
+#: awpcp.php:1020
 msgctxt "uploader queue"
 msgid "Close"
 msgstr ""
@@ -1237,7 +1241,7 @@ msgstr ""
 msgid "Comments & Ratings"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:38
+#: admin/templates/admin-sidebar.tpl.php:44
 msgid "Comments/Ratings Module"
 msgstr ""
 
@@ -1350,7 +1354,7 @@ msgstr ""
 msgid "Could not write temporary file %s"
 msgstr ""
 
-#: frontend/templates/payments-billing-form.tpl.php:6 functions.php:612
+#: frontend/templates/payments-billing-form.tpl.php:6 functions.php:614
 msgid "Country"
 msgstr ""
 
@@ -1362,11 +1366,11 @@ msgstr ""
 msgid "County Field"
 msgstr ""
 
-#: functions.php:642
+#: functions.php:644
 msgid "County/Village/Other"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:55
+#: admin/templates/admin-sidebar.tpl.php:61
 msgid "Coupon/Discount Module"
 msgstr ""
 
@@ -1403,7 +1407,7 @@ msgid ""
 "Fee."
 msgstr ""
 
-#: admin/admin-panel-credit-plans-table.php:71
+#: admin/admin-panel-credit-plans-table.php:75
 #: admin/admin-panel-fees-table.php:115
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:14
 #: admin/templates/admin-panel-fees-entry-form.tpl.php:27
@@ -1569,7 +1573,7 @@ msgstr ""
 msgid "Descending"
 msgstr ""
 
-#: admin/admin-panel-credit-plans-table.php:70
+#: admin/admin-panel-credit-plans-table.php:74
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:25
 msgid "Description"
 msgstr ""
@@ -1638,7 +1642,7 @@ msgstr ""
 msgid "Displays a list of random Ads"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:114
+#: admin/templates/admin-sidebar.tpl.php:120
 msgid "Documentation"
 msgstr ""
 
@@ -1650,11 +1654,11 @@ msgstr ""
 msgid "Don't show currency symbol"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:100
+#: admin/templates/admin-sidebar.tpl.php:106
 msgid "Donate to Support AWPCP"
 msgstr ""
 
-#: awpcp.php:1028
+#: awpcp.php:1043
 msgctxt "uploader queue"
 msgid "Drag files here."
 msgstr ""
@@ -1663,7 +1667,7 @@ msgstr ""
 msgid "Dropdown"
 msgstr ""
 
-#: awpcp.php:1015
+#: awpcp.php:1030
 msgctxt "uploader queue"
 msgid "Duplicate file error."
 msgstr ""
@@ -1876,16 +1880,16 @@ msgstr ""
 msgid "Enter your email address"
 msgstr ""
 
-#: functions.php:1720 includes/helpers/class-modules-manager.php:160
+#: functions.php:1721 includes/helpers/class-modules-manager.php:160
 msgid "Error"
 msgstr ""
 
-#: awpcp.php:1032
+#: awpcp.php:1047
 msgctxt "uploader queue"
 msgid "Error: File too large:"
 msgstr ""
 
-#: awpcp.php:1019
+#: awpcp.php:1034
 msgctxt "uploader queue"
 msgid "Error: Invalid file extension:"
 msgstr ""
@@ -1965,7 +1969,7 @@ msgstr ""
 msgid "Extra Fields"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:75
+#: admin/templates/admin-sidebar.tpl.php:81
 msgid "Extra Fields Module"
 msgstr ""
 
@@ -1973,7 +1977,7 @@ msgstr ""
 msgid "FROM email address for outgoing emails"
 msgstr ""
 
-#: includes/helpers/class-send-to-facebook-helper.php:54
+#: includes/helpers/class-send-to-facebook-helper.php:57
 msgid "Facebook API returned the following errors: %s."
 msgstr ""
 
@@ -2016,7 +2020,7 @@ msgstr ""
 msgid "Featured Ads"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:70
+#: admin/templates/admin-sidebar.tpl.php:76
 msgid "Featured Ads Module"
 msgstr ""
 
@@ -2025,7 +2029,7 @@ msgctxt "payment term type"
 msgid "Fee"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:65
+#: admin/templates/admin-sidebar.tpl.php:71
 msgid "Fee Per Category Module"
 msgstr ""
 
@@ -2057,12 +2061,12 @@ msgstr ""
 msgid "File Manager component is not properly configured"
 msgstr ""
 
-#: awpcp.php:1030
+#: awpcp.php:1045
 msgctxt "uploader queue"
 msgid "File count error."
 msgstr ""
 
-#: awpcp.php:1031
+#: awpcp.php:1046
 msgctxt "uploader queue"
 msgid "File extension error."
 msgstr ""
@@ -2081,22 +2085,22 @@ msgstr ""
 msgid "File permissions for uploads directory"
 msgstr ""
 
-#: awpcp.php:1016
+#: awpcp.php:1031
 msgctxt "uploader queue"
 msgid "File size error."
 msgstr ""
 
-#: awpcp.php:1022
+#: awpcp.php:1037
 msgctxt "uploader queue"
 msgid "File: %s"
 msgstr ""
 
-#: awpcp.php:1027
+#: awpcp.php:1042
 msgctxt "uploader queue"
 msgid "File: %s, size: %d, max file size: %d"
 msgstr ""
 
-#: awpcp.php:1008
+#: awpcp.php:1023
 msgctxt "uploader queue"
 msgid "Filename"
 msgstr ""
@@ -2177,7 +2181,7 @@ msgstr ""
 msgid "Form Steps"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:108
+#: admin/templates/admin-sidebar.tpl.php:114
 msgid "Found a bug?"
 msgstr ""
 
@@ -2274,7 +2278,7 @@ msgstr ""
 msgid "Google Checkout"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:90
+#: admin/templates/admin-sidebar.tpl.php:96
 msgid "Google Checkout Payment Module"
 msgstr ""
 
@@ -2282,7 +2286,7 @@ msgstr ""
 msgid "HTML Widget for User field"
 msgstr ""
 
-#: awpcp.php:1011
+#: awpcp.php:1026
 msgctxt "uploader queue"
 msgid "HTTP Error."
 msgstr ""
@@ -2567,7 +2571,7 @@ msgstr ""
 msgid "Image file names were found but no ZIP was provided."
 msgstr ""
 
-#: awpcp.php:1009
+#: awpcp.php:1024
 msgctxt "uploader queue"
 msgid "Image format either wrong or not supported."
 msgstr ""
@@ -2592,11 +2596,11 @@ msgstr ""
 msgid "Images Awaiting Approval"
 msgstr ""
 
-#: functions.php:1979
+#: functions.php:1980
 msgid "Images on Ad \"%s\" are awaiting approval"
 msgstr ""
 
-#: functions.php:1981 includes/functions/notifications.php:176
+#: functions.php:1982 includes/functions/notifications.php:176
 msgid ""
 "Images on Ad \"%s\" are awaiting approval. You can approve the images going "
 "to the Manage Images section for that Ad and clicking the \"Enable\" button "
@@ -2727,14 +2731,14 @@ msgstr ""
 msgid "Incomplete Payment Message"
 msgstr ""
 
-#: awpcp.php:1006
+#: awpcp.php:1021
 msgctxt "uploader queue"
 msgid "Init error."
 msgstr ""
 
 #: admin/templates/admin-panel-debug.tpl.php:108
-#: admin/templates/admin-sidebar.tpl.php:126
-#: admin/templates/admin-sidebar.tpl.php:167
+#: admin/templates/admin-sidebar.tpl.php:132
+#: admin/templates/admin-sidebar.tpl.php:173
 msgid "Installed"
 msgstr ""
 
@@ -2925,7 +2929,7 @@ msgstr ""
 msgid "Listing URL"
 msgstr ""
 
-#: admin/admin-panel-listings.php:22 admin/user-panel.php:48
+#: admin/admin-panel-listings.php:22 admin/user-panel.php:50
 msgid "Listings"
 msgstr ""
 
@@ -2991,7 +2995,7 @@ msgstr ""
 msgid "Manage Ad"
 msgstr ""
 
-#: admin/user-panel.php:47
+#: admin/user-panel.php:49
 msgid "Manage Ad Listings"
 msgstr ""
 
@@ -3233,7 +3237,7 @@ msgstr ""
 msgid "Missing chunk."
 msgstr ""
 
-#: functions.php:1744
+#: functions.php:1745
 msgid "Missing temporary directory."
 msgstr ""
 
@@ -3287,12 +3291,12 @@ msgctxt "ad payment status"
 msgid "N/A"
 msgstr ""
 
-#: awpcp.php:1017
+#: awpcp.php:1032
 msgctxt "uploader queue"
 msgid "N/A"
 msgstr ""
 
-#: admin/admin-panel-credit-plans-table.php:69
+#: admin/admin-panel-credit-plans-table.php:73
 #: admin/admin-panel-fees-table.php:108
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:9
 #: admin/templates/admin-panel-fees-entry-form.tpl.php:17
@@ -3358,7 +3362,7 @@ msgctxt "ad details form"
 msgid "Name of Person to Contact"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:108
+#: admin/templates/admin-sidebar.tpl.php:114
 msgid "Need Support?"
 msgstr ""
 
@@ -3458,7 +3462,7 @@ msgstr ""
 msgid "No credit plans available."
 msgstr ""
 
-#: functions.php:1739
+#: functions.php:1740
 msgid "No errors."
 msgstr ""
 
@@ -3470,7 +3474,7 @@ msgstr ""
 msgid "No file was selected."
 msgstr ""
 
-#: functions.php:1743
+#: functions.php:1744
 msgid "No file was uploaded."
 msgstr ""
 
@@ -3478,7 +3482,7 @@ msgstr ""
 msgid "No items found."
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:171
+#: admin/templates/admin-sidebar.tpl.php:177
 msgid "No other modules installed"
 msgstr ""
 
@@ -3486,7 +3490,7 @@ msgstr ""
 msgid "No payment methods available."
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:130
+#: admin/templates/admin-sidebar.tpl.php:136
 msgid "No premium modules installed."
 msgstr ""
 
@@ -3505,7 +3509,7 @@ msgctxt "drip-autoresponder"
 msgid "No, thanks"
 msgstr ""
 
-#: functions.php:543
+#: functions.php:545
 msgid "None"
 msgstr ""
 
@@ -3527,8 +3531,8 @@ msgid "Not Featured"
 msgstr ""
 
 #: admin/templates/admin-panel-debug.tpl.php:108
-#: admin/templates/admin-sidebar.tpl.php:143
-#: admin/templates/admin-sidebar.tpl.php:184
+#: admin/templates/admin-sidebar.tpl.php:149
+#: admin/templates/admin-sidebar.tpl.php:190
 msgid "Not Installed"
 msgstr ""
 
@@ -3672,7 +3676,7 @@ msgstr ""
 msgid "Other Files"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:163
+#: admin/templates/admin-sidebar.tpl.php:169
 msgid "Other Modules"
 msgstr ""
 
@@ -3761,7 +3765,7 @@ msgstr ""
 msgid "PayPal Pro"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:50
+#: admin/templates/admin-sidebar.tpl.php:56
 msgid "PayPal Pro Module"
 msgstr ""
 
@@ -3954,20 +3958,20 @@ msgstr ""
 msgid "Please enter a start date for the Ad."
 msgstr ""
 
-#: awpcp.php:993
+#: awpcp.php:1008
 msgid "Please enter a valid URL."
 msgstr ""
 
-#: awpcp.php:995
+#: awpcp.php:1010
 msgid "Please enter a valid amount."
 msgstr ""
 
-#: awpcp.php:992 frontend/page-edit-ad.php:128 frontend/page-edit-ad.php:433
+#: awpcp.php:1007 frontend/page-edit-ad.php:128 frontend/page-edit-ad.php:433
 #: includes/settings-api.php:214
 msgid "Please enter a valid email address."
 msgstr ""
 
-#: awpcp.php:994
+#: awpcp.php:1009
 msgid "Please enter a valid number."
 msgstr ""
 
@@ -4116,7 +4120,7 @@ msgstr ""
 msgid "Posted:"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:123
+#: admin/templates/admin-sidebar.tpl.php:129
 msgid "Premium Modules"
 msgstr ""
 
@@ -4133,7 +4137,7 @@ msgstr ""
 msgid "Preview Listing"
 msgstr ""
 
-#: admin/admin-panel-credit-plans-table.php:72
+#: admin/admin-panel-credit-plans-table.php:76
 #: admin/admin-panel-fees-table.php:114
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:19
 #: admin/templates/admin-panel-fees-entry-form.tpl.php:22
@@ -4207,7 +4211,7 @@ msgstr ""
 msgid "Put payment gateways in test mode?"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:112
+#: admin/templates/admin-sidebar.tpl.php:118
 msgid "Quick Start Guide"
 msgstr ""
 
@@ -4215,7 +4219,7 @@ msgstr ""
 msgid "RSS"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:95
+#: admin/templates/admin-sidebar.tpl.php:101
 msgid "RSS Module"
 msgstr ""
 
@@ -4232,7 +4236,7 @@ msgctxt "ad details form"
 msgid "Read our Terms of Service"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:115
+#: admin/templates/admin-sidebar.tpl.php:121
 msgctxt "Read the full <a>Documentation</a>"
 msgid "Read the full %s."
 msgstr ""
@@ -4245,7 +4249,7 @@ msgstr ""
 msgid "Regions Control"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:85
+#: admin/templates/admin-sidebar.tpl.php:91
 msgid "Regions Control Module"
 msgstr ""
 
@@ -4350,7 +4354,7 @@ msgstr ""
 msgid "Reply to Ad requires user registration"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:117
+#: admin/templates/admin-sidebar.tpl.php:123
 msgctxt "Report bugs or get more help: <a>visit the forums!</a>"
 msgid "Report bugs or get more help: %s."
 msgstr ""
@@ -4500,7 +4504,7 @@ msgstr ""
 msgid "Row %d. %s"
 msgstr ""
 
-#: awpcp.php:1029
+#: awpcp.php:1044
 msgctxt "uploader queue"
 msgid "Runtime ran out of available memory."
 msgstr ""
@@ -4624,7 +4628,7 @@ msgid "Select Move-To category"
 msgstr ""
 
 #: frontend/widget-search.php:92 frontend/widget-search.php:107
-#: functions.php:730
+#: functions.php:732
 msgid "Select Option"
 msgstr ""
 
@@ -4658,7 +4662,7 @@ msgstr ""
 msgid "Select an User owner for this Ad"
 msgstr ""
 
-#: awpcp.php:1020
+#: awpcp.php:1035
 msgctxt "uploader queue"
 msgid "Select files"
 msgstr ""
@@ -4980,7 +4984,7 @@ msgstr ""
 msgid "Single Ad page layout"
 msgstr ""
 
-#: awpcp.php:1004
+#: awpcp.php:1019
 msgctxt "uploader queue"
 msgid "Size"
 msgstr ""
@@ -5038,7 +5042,7 @@ msgctxt "ad search form"
 msgid "Start Search"
 msgstr ""
 
-#: awpcp.php:1012
+#: awpcp.php:1027
 msgctxt "uploader queue"
 msgid "Start Upload"
 msgstr ""
@@ -5057,7 +5061,7 @@ msgstr ""
 msgid "State Field"
 msgstr ""
 
-#: functions.php:622
+#: functions.php:624
 msgid "State/Province"
 msgstr ""
 
@@ -5065,12 +5069,12 @@ msgstr ""
 msgid "Status"
 msgstr ""
 
-#: awpcp.php:1010
+#: awpcp.php:1025
 msgctxt "uploader queue"
 msgid "Status"
 msgstr ""
 
-#: awpcp.php:1001
+#: awpcp.php:1016
 msgctxt "uploader queue"
 msgid "Stop Upload"
 msgstr ""
@@ -5142,7 +5146,7 @@ msgstr ""
 msgid "Subscriptions"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:60
+#: admin/templates/admin-sidebar.tpl.php:66
 msgid "Subscriptions Module"
 msgstr ""
 
@@ -5158,7 +5162,7 @@ msgstr ""
 msgid "TO email address for outgoing emails"
 msgstr ""
 
-#: includes/helpers/page.php:47
+#: includes/helpers/page.php:50
 msgid "Template not found."
 msgstr ""
 
@@ -5239,11 +5243,11 @@ msgid ""
 "your license."
 msgstr ""
 
-#: functions.php:1984
+#: functions.php:1985
 msgid "The Ad \"%s\" is awaiting approval"
 msgstr ""
 
-#: functions.php:1986 includes/functions/notifications.php:181
+#: functions.php:1987 includes/functions/notifications.php:181
 msgid ""
 "The Ad \"%s\" is awaiting approval. You can approve the Ad going to the "
 "Manage Listings section and clicking the \"Enable\" action shown on top. "
@@ -5287,18 +5291,18 @@ msgstr ""
 msgid "The Ad hasn't expired yet and is not about to expire."
 msgstr ""
 
-#: includes/helpers/class-send-to-facebook-helper.php:27
-#: includes/helpers/class-send-to-facebook-helper.php:68
+#: includes/helpers/class-send-to-facebook-helper.php:30
+#: includes/helpers/class-send-to-facebook-helper.php:71
 msgid ""
 "The Ad is currently disabled. If you share it, Facebook servers and users "
 "won't be able to access it."
 msgstr ""
 
-#: includes/helpers/class-send-to-facebook-helper.php:64
+#: includes/helpers/class-send-to-facebook-helper.php:67
 msgid "The Ad was already sent to Facebook Group."
 msgstr ""
 
-#: includes/helpers/class-send-to-facebook-helper.php:23
+#: includes/helpers/class-send-to-facebook-helper.php:26
 msgid "The Ad was already sent to Facebook Page."
 msgstr ""
 
@@ -5669,19 +5673,19 @@ msgctxt "media manager"
 msgid "The file has been rejected."
 msgstr ""
 
-#: functions.php:1741
+#: functions.php:1742
 msgid "The file is larger than form MAX_FILE_SIZE."
 msgstr ""
 
-#: functions.php:1740
+#: functions.php:1741
 msgid "The file is larger than upload_max_filesize."
 msgstr ""
 
-#: functions.php:1746
+#: functions.php:1747
 msgid "The file upload was stopped by extension."
 msgstr ""
 
-#: functions.php:1742
+#: functions.php:1743
 msgid "The file was only partially uploaded."
 msgstr ""
 
@@ -5732,7 +5736,7 @@ msgctxt "media manager"
 msgid "The image has been set as primary image."
 msgstr ""
 
-#: functions.php:1701
+#: functions.php:1702
 msgid ""
 "The images or files with pale red background have been rejected by an "
 "administrator user. Likewise, files with a pale yellow background are "
@@ -6180,7 +6184,7 @@ msgstr ""
 msgid "There was an error trying to contact Facebook servers: \"%s\"."
 msgstr ""
 
-#: includes/helpers/class-send-to-facebook-helper.php:48
+#: includes/helpers/class-send-to-facebook-helper.php:51
 msgid "There was an error trying to contact Facebook servers: %s."
 msgstr ""
 
@@ -6414,7 +6418,7 @@ msgid ""
 "and Configure a Facebook Application.</a>"
 msgstr ""
 
-#: awpcp.php:991
+#: awpcp.php:1006
 msgid "This field is required."
 msgstr ""
 
@@ -6483,7 +6487,7 @@ msgid ""
 "above and save your settings."
 msgstr ""
 
-#: functions.php:1718 includes/helpers/class-modules-manager.php:158
+#: functions.php:1719 includes/helpers/class-modules-manager.php:158
 msgid ""
 "This version of AWPCP %1$s module is not compatible with AWPCP version %2$s. "
 "Please get AWPCP %1$s %3$s or newer!"
@@ -6740,12 +6744,12 @@ msgstr ""
 msgid "Upload Files"
 msgstr ""
 
-#: awpcp.php:1002
+#: awpcp.php:1017
 msgctxt "uploader queue"
 msgid "Upload URL might be wrong or doesn't exist."
 msgstr ""
 
-#: awpcp.php:1025
+#: awpcp.php:1040
 msgctxt "uploader queue"
 msgid ""
 "Upload element accepts only %d file(s) at a time. Extra files were stripped."
@@ -6762,7 +6766,7 @@ msgid ""
 "directory)"
 msgstr ""
 
-#: awpcp.php:1024
+#: awpcp.php:1039
 msgctxt "uploader queue"
 msgid "Uploaded %d/%d files"
 msgstr ""
@@ -7488,11 +7492,11 @@ msgstr ""
 msgid "You should select an owner for this Ad."
 msgstr ""
 
-#: functions.php:1942
+#: functions.php:1943
 msgid "Your Ad \"%s\" has been approved"
 msgstr ""
 
-#: functions.php:1958
+#: functions.php:1959
 msgid "Your Ad \"%s\" has been successfully updated"
 msgstr ""
 
@@ -7669,7 +7673,7 @@ msgstr ""
 msgid "active"
 msgstr ""
 
-#: awpcp.php:1023
+#: awpcp.php:1038
 msgctxt "uploader queue"
 msgid "b"
 msgstr ""
@@ -7699,7 +7703,7 @@ msgstr ""
 msgid "expired"
 msgstr ""
 
-#: awpcp.php:1018
+#: awpcp.php:1033
 msgctxt "uploader queue"
 msgid "gb"
 msgstr ""
@@ -7712,7 +7716,7 @@ msgstr ""
 msgid "invalid"
 msgstr ""
 
-#: awpcp.php:1014
+#: awpcp.php:1029
 msgctxt "uploader queue"
 msgid "kb"
 msgstr ""
@@ -7727,7 +7731,7 @@ msgctxt "loading region options"
 msgid "loading..."
 msgstr ""
 
-#: awpcp.php:1013
+#: awpcp.php:1028
 msgctxt "uploader queue"
 msgid "mb"
 msgstr ""
@@ -7773,23 +7777,23 @@ msgctxt "reply email"
 msgid "regarding"
 msgstr ""
 
-#: functions.php:633
+#: functions.php:635
 msgid "separate cities by commas"
 msgstr ""
 
-#: functions.php:643
+#: functions.php:645
 msgid "separate counties by commas"
 msgstr ""
 
-#: functions.php:613
+#: functions.php:615
 msgid "separate countries by commas"
 msgstr ""
 
-#: functions.php:623
+#: functions.php:625
 msgid "separate states by commas"
 msgstr ""
 
-#: awpcp.php:1003
+#: awpcp.php:1018
 msgctxt "uploader queue"
 msgid "tb"
 msgstr ""
@@ -7830,6 +7834,6 @@ msgstr ""
 msgid "use spreadsheet information"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:116
+#: admin/templates/admin-sidebar.tpl.php:122
 msgid "visit the forums!"
 msgstr ""
