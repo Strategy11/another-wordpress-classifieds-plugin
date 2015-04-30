@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: AWPCP\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2015-04-30 13:15:29+00:00\n"
-"PO-Revision-Date: 2015-01-13 23:50-0500\n"
+"POT-Creation-Date: 2015-04-30 17:18:35+00:00\n"
+"PO-Revision-Date: 2015-04-29 17:54+0100\n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: Daniel MENGONI <contact@ulm-actualite.info>\n"
 "Language: fr_FR\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:93
 msgid " or <a>obtain an access token from Facebook</a>."
-msgstr ""
+msgstr "ou <a>obtenir une numéro d'authentification de Facebook</a>."
 
 #: includes/helpers/wp-list-table.php:523
 msgctxt "paging"
@@ -41,18 +41,16 @@ msgstr[0] "L'Annonce %d est renouvelée"
 msgstr[1] "%d Annonces sont renouvelées"
 
 #: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:106
-#, fuzzy
 msgid "%d Ad was sent to a Facebook Group"
 msgid_plural "%d Ads were sent to a Facebook Group"
-msgstr[0] "L'annonce %d a été mise en vedette"
-msgstr[1] "Les annonces %d ont été mises en vedette"
+msgstr[0] "%d Annonce a été envoyée à un Groupe Facebook"
+msgstr[1] "%d Annonces ont été envoyées à un Groupe Facebook"
 
 #: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:98
-#, fuzzy
 msgid "%d Ad was sent to a Facebook Page"
 msgid_plural "%d Ads were sent to a Facebook Page"
-msgstr[0] "L'annonce %d a été mise en vedette"
-msgstr[1] "Les annonces %d ont été mises en vedette"
+msgstr[0] "%d annonces ont été envoyées à a page Facebook"
+msgstr[1] "%d annonces ont été envoyées à a page Facebook"
 
 #: admin/admin-panel-listings.php:488
 msgid "%d Ad was set as fatured"
@@ -75,12 +73,11 @@ msgstr[1] "Les Annonces %d ont été marquées comme SPAM et retirées"
 #: awpcp.php:1041
 msgctxt "uploader queue"
 msgid "%d files queued"
-msgstr ""
+msgstr "%d fichiers mis en attente"
 
 #: admin/admin-panel-listings.php:640
-#, fuzzy
 msgid "%d of %d Ads don't exist."
-msgstr "%d de %d Annonces ont été supprimées."
+msgstr "%d Annonces sur %d n'existent pas."
 
 #: admin/admin-panel-listings.php:636
 msgid "%d of %d Ads were deleted."
@@ -95,11 +92,14 @@ msgid ""
 "%d of %d Ads weren't deleted because Moderator uses are not allowed to use "
 "Bulk Delete operation to remove other users listings."
 msgstr ""
+"%d Annonces sur %d n'ont pas été supprimés car un utilisateur Modérateur "
+"n'est pas autorisé à utiliser les opérations de masse pour effacer les "
+"Annonces d'autres utilisateurs."
 
 #: admin/admin-panel-listings.php:644
-#, fuzzy
 msgid "%d of %d Ads weren't deleted because you are not authorized."
-msgstr "%d de %d Annonces ont été supprimés. %d générait des erreurs."
+msgstr ""
+"%d Annonces sur %d n'ont pas été supprimés car vous n'y êtes pas autorisé."
 
 #: admin/admin-panel-listings.php:412
 msgid "%d was enabled"
@@ -112,9 +112,8 @@ msgid "%s Ad Management Panel"
 msgstr "%s Panneau de Gestion Annonce"
 
 #: admin/templates/admin-panel-settings.tpl.php:3
-#, fuzzy
 msgid "%s Settings"
-msgstr "Réglages"
+msgstr "%s Réglages"
 
 #: frontend/templates/email-place-ad-success-user.tpl.php:12
 msgid "%s Transaction"
@@ -123,7 +122,7 @@ msgstr "Transaction %s"
 #: awpcp.php:1036
 msgctxt "uploader queue"
 msgid "%s already present in the queue."
-msgstr ""
+msgstr "%s déjà présent dans la liste de fichiers en cours"
 
 #: functions.php:556
 msgctxt "comma separated list of things"
@@ -155,7 +154,7 @@ msgstr ""
 
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:125
 msgid "(Your own profile page)"
-msgstr ""
+msgstr "(votre page de profil personnel)"
 
 #: admin/templates/admin-panel-csv-importer.tpl.php:122
 msgid "(semi-colon)"
@@ -166,6 +165,8 @@ msgid ""
 "**Only change this setting when using a membership plugin with custom login "
 "pages or similar scenarios."
 msgstr ""
+"**Modifier ce réglage seulement si vous utilisez un plugin de gestion des "
+"utilisateurs avec des pages de login personnalisées, ou équivalent."
 
 #: includes/settings/class-general-settings.php:73
 msgctxt ""
@@ -198,14 +199,12 @@ msgstr[0] "1 élément"
 msgstr[1] "%s élements"
 
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:41
-#, fuzzy
 msgid "1. Application Information"
-msgstr "Informations sur l'annonce"
+msgstr "1. Informations sur l'Application"
 
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:81
-#, fuzzy
 msgid "2. User Authorization"
-msgstr "Notifications de l'utilisateur"
+msgstr "2. Autorisations de l'utilisateur"
 
 #: includes/payment-gateway-2checkout.php:7
 msgctxt "payment gateways"
@@ -213,9 +212,8 @@ msgid "2Checkout"
 msgstr "2Checkout"
 
 #: includes/settings-api.php:245
-#, fuzzy
 msgid "2Checkout Currency Code"
-msgstr "Code devises PayPal"
+msgstr "Code devises 2Checkout"
 
 #: includes/settings-api.php:236
 msgid "2Checkout Settings"
@@ -227,7 +225,7 @@ msgstr "Compte 2Checkout"
 
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:109
 msgid "3. Page and Group Selection"
-msgstr ""
+msgstr "3. Sélection d'un Groupe et d'une Page"
 
 #: install.php:302
 msgid "30 Day Listing"
@@ -235,11 +233,12 @@ msgstr "Annonce 30 jours"
 
 #: includes/settings-api.php:529
 msgid "<module-name> License Key"
-msgstr ""
+msgstr "Clé de licence <module-name>"
 
 #: includes/helpers/class-easy-digital-downloads.php:83
 msgid "<specific-message> The error was: %s. Please contact customer support."
 msgstr ""
+"<specific-message> l'erreur était : %s. Veuillez contacter le support client."
 
 #: admin/templates/admin-panel-settings-pages-settings.tpl.php:19
 msgid "<strong>%s</strong> (%s page)."
@@ -279,6 +278,10 @@ msgid ""
 "used in the contact information. New Ads will remain disabled until the user "
 "clicks the verification link."
 msgstr ""
+"Un message comportant un lien de vérification de l'adresse mail  sera envoyé "
+"à l'adresse mentionnée pour le contact. Les nouvelles annonce postées "
+"resteront désactivées jusqu'à ce que l'utilisateur clique sur le lien "
+"contenu dans le message adressé."
 
 #: frontend/templates/email-place-ad-success-admin.tpl.php:1
 msgid ""
@@ -375,6 +378,8 @@ msgid ""
 "AWPCP could not post to Facebook because you haven't selected a Page or a "
 "Group."
 msgstr ""
+"AWPCP n' pas pu poster sur Facebook car vous n'avez pas sélectionné de Page "
+"ou de Groupe"
 
 #: admin/templates/admin-pending-manual-upgrade-notice.tpl.php:6
 msgid ""
@@ -399,6 +404,9 @@ msgid ""
 "You'll be redirected to Facebook to login. AWPCP does not store or obtain "
 "any personal information from your profile."
 msgstr ""
+"AWPCP doit obtenir un numéro d'authentification de Facebook pour "
+"fonctionner. Vous allez être redirigé sur Facebook pour vous connecter. "
+"AWPCP n'obtient ni n'enregistre aucune information de votre profil."
 
 #: awpcp.php:674
 msgid ""
@@ -418,13 +426,12 @@ msgstr "Au dessus du texte de l'annonce."
 
 #: frontend/templates/widget-latest-ads-form.tpl.php:33
 #: frontend/templates/widget-latest-ads-form.tpl.php:46
-#, fuzzy
 msgid "Above the Ad's text."
-msgstr "Au dessus du texte de l'annonce."
+msgstr "Au-dessus du texte de l'annonce."
 
 #: includes/settings/class-credit-system-settings.php:25
 msgid "Accepted payment type"
-msgstr ""
+msgstr "Type de paiement accepté"
 
 #: admin/admin-panel-listings-table.php:352
 #: admin/templates/admin-panel-listings-view.tpl.php:5
@@ -444,7 +451,7 @@ msgstr "Solde du Compte"
 
 #: includes/settings-api.php:240
 msgid "Account for 2Checkout payments."
-msgstr ""
+msgstr "Compte pour les paiements 2Checkout"
 
 #: admin/admin-panel.php:889 admin/admin-panel.php:901
 msgid "Action"
@@ -463,9 +470,8 @@ msgid "Activate AdSense"
 msgstr "Activer AdSense"
 
 #: includes/settings-api.php:996
-#, fuzzy
 msgid "Activate License"
-msgstr "Activer AdSense"
+msgstr "Licence activée"
 
 #: includes/settings-api.php:202
 msgid "Activate PayPal?"
@@ -494,7 +500,7 @@ msgstr "Message d'Expiration d'Annonce"
 
 #: admin/admin-panel-listings-table.php:258
 msgid "Ad ID"
-msgstr ""
+msgstr "ID de l'Annonce"
 
 #: frontend/templates/email-ad-updated-user.tpl.php:7
 msgid "Ad Information"
@@ -537,9 +543,8 @@ msgid "Ad/Listings"
 msgstr "Annonce/Listes"
 
 #: includes/placeholders/class-placeholders-installation-verifier.php:22
-#, fuzzy
 msgid "Ad/Listings settings page"
-msgstr "Affichage d'Annonces"
+msgstr "Page de réglage des Annonces"
 
 #: includes/settings-api.php:252
 msgid "AdSense"
@@ -559,9 +564,8 @@ msgid "Add"
 msgstr "Ajouter"
 
 #: admin/admin-panel.php:627
-#, fuzzy
 msgid "Add A New Category"
-msgstr "Annonce dans une Nouvelle Catégorie"
+msgstr "Ajouter une Nouvelle Catégorie"
 
 #: admin/admin-panel-users.php:51
 #: admin/templates/admin-panel-users-balance-form.tpl.php:5
@@ -580,19 +584,17 @@ msgstr "Ajouter les Détails et Coordonnées"
 
 #: admin/templates/admin-panel-fees.tpl.php:7
 msgid "Add Fee Plan"
-msgstr "Ajouter régime d'honoraires"
+msgstr "Ajouter un Plan d'Honoraires"
 
 #: admin/templates/admin-panel-media-manager.tpl.php:22
-#, fuzzy
 msgctxt "media manager"
 msgid "Add File"
-msgstr "Ajouter un Nouveau Champ"
+msgstr "Ajouter un fichier"
 
 #: awpcp.php:1048
-#, fuzzy
 msgctxt "uploader queue"
 msgid "Add Files"
-msgstr "Ajouter un Nouveau Champ"
+msgstr "Ajouter des fichiers"
 
 #: admin/admin-panel-listings.php:124
 msgid "Add Images"
@@ -603,13 +605,12 @@ msgid "Add New Category"
 msgstr "Ajouter une Nouvelle Catégorie"
 
 #: includes/helpers/widgets/multiple-region-selector.php:126
-#, fuzzy
 msgid "Add Region"
-msgstr "Régions"
+msgstr "Ajouter une Région"
 
 #: includes/helpers/widgets/multiple-region-selector.php:126
 msgid "Add Search Region"
-msgstr ""
+msgstr "Ajouter une recherche sur région"
 
 #: admin/admin-panel.php:712
 msgid "Add a New Category"
@@ -619,15 +620,16 @@ msgstr "Ajouter une Nouvelle Catégorie"
 msgctxt "uploader queue"
 msgid "Add files to the upload queue and click the start button."
 msgstr ""
+"Ajouter des fichiers dans la liste des chargements et cliquer sur le bouton "
+"Démarrer"
 
 #: includes/settings-api.php:183
 msgid "Add no follow to links in Ads"
 msgstr "Ajouter ne pas suivre les liens dans les annonces"
 
 #: includes/compatibility/class-content-aware-sidebars-listings-categories-module.php:117
-#, fuzzy
 msgid "Add to Group"
-msgstr "Ajouter Coupon"
+msgstr "Ajouter un Groupe"
 
 #: frontend/templates/email-abort-payment-user.tpl.php:4
 #: frontend/templates/email-place-ad-success-user.tpl.php:31
@@ -635,16 +637,14 @@ msgid "Additional Details"
 msgstr "Détails supplémentaires"
 
 #: functions.php:1994 includes/functions/notifications.php:188
-#, fuzzy
 msgid ""
 "Additionally, You can approve the images going to the Manage Images section "
 "for that Ad and clicking the \"Enable\" button below each image. Click here "
 "to continue: %s."
 msgstr ""
-"L'annonce \"%s\" est en attente d'approbation. Vous pouvez approuver "
-"l'annonce en se rendant dans la section Gestion des Inscriptions et en "
-"cliquant sur \"Enable\" l'action s'affiche au dessus. Cliquez ici pour "
-"continuer: %s"
+"De plus, vous pouvez approuver les images en vous rendant dans la section "
+"Gestion des Images et en cliquant sur le bouton \"Activer\" présent sous "
+"chaque image. Cliquez ici pour continuer: %s"
 
 #: templates/admin/profile/contact-information-fields.tpl.php:16
 msgid "Address"
@@ -660,7 +660,7 @@ msgstr "Adresse Ligne 2"
 
 #: includes/settings/class-user-notifications-settings.php:74
 msgid "Admin Notifications"
-msgstr "Notifications admin"
+msgstr "Notifications de l'Administrateur"
 
 #: includes/settings/class-general-settings.php:36
 msgid "Administrator"
@@ -675,6 +675,8 @@ msgid ""
 "Administrator users are not allowed to access this page. They can't add or "
 "remove credits to their accounts."
 msgstr ""
+"Les utilisateurs administrateurs ne sont pas autorisés à accéder à cette "
+"page. Ils ne peuvent pas ajouter ou retirer du crédit sur leurs comptes."
 
 #: includes/payment-terms-table.php:34
 msgctxt "place ad payment terms column headers"
@@ -682,9 +684,8 @@ msgid "Ads Allowed"
 msgstr "Annonces Admises"
 
 #: admin/admin-panel-listings-table.php:239
-#, fuzzy
 msgid "Ads Awaiting Approval"
-msgstr "Attente d'Approbation"
+msgstr "Annonces en attente d'Approbation"
 
 #: includes/settings-api.php:337
 msgid "Advanced Email Configuration"
@@ -696,21 +697,25 @@ msgid ""
 "about the new Ad. If moderation is enabled, your Ad will remain in a "
 "disabled status until the administrator approves it."
 msgstr ""
+"Après avoir validé votre adresse email, l'Administrateur sera averti de "
+"cette nouvelle annonce postée. Si la modération est activée, votre annonce "
+"ne sera activée qu'après que l'Administrateur l'ait approuvée."
 
 #: includes/settings-api.php:678
 msgid ""
 "Akismet SPAM control cannot be enabled because Akismet is not properly "
 "configured."
 msgstr ""
+"Vous ne pouvez pas activer le contrôle de SPAM Akismet parce que Akismet "
+"n'est pas correctement configuré."
 
 #: includes/settings-api.php:675
-#, fuzzy
 msgid ""
 "Akismet SPAM control cannot be enabled because Akismet plugin is not "
 "installed or activated."
 msgstr ""
 "Vous ne pouvez pas activer le contrôle de SPAM Akismet parce que vous n'avez "
-"pas installé Akismet / activé"
+"pas installé ou activé le plugin Akismet"
 
 #: admin/templates/admin-panel-fees-entry-form.tpl.php:92
 msgctxt "all categories"
@@ -724,23 +729,20 @@ msgstr ""
 "Honoraires %s."
 
 #: includes/helpers/widgets/categories-dropdown.php:24
-#, fuzzy
 msgid "All Categories"
-msgstr "Catégories d'annonces"
+msgstr "Toutes Catégories"
 
 #: frontend/widget-search.php:45
 msgid "All Contact Names"
-msgstr ""
+msgstr "Tous les noms d'annonceurs"
 
 #: includes/helpers/widgets/categories-dropdown.php:25
-#, fuzzy
 msgid "All Sub-categories"
-msgstr "Catégories d'annonces"
+msgstr "Toutes Sous-Catégories"
 
 #: frontend/templates/page-search-ads.tpl.php:40
-#, fuzzy
 msgid "All Users"
-msgstr "Utilisateur"
+msgstr "Tous Utilisateurs"
 
 #: includes/settings/class-listings-moderation-settings.php:34
 msgid ""
@@ -770,26 +772,24 @@ msgid "Allow HTML in ad text (Not recommended)."
 msgstr "Autoriser le HTML dans le texte d'annonce (non recommandé)."
 
 #: includes/settings-api.php:68
-#, fuzzy
 msgid "Allow Regions modification"
-msgstr "Notifications admin"
+msgstr "Autoriser les modifications de Région"
 
 #: includes/settings-api.php:141
 msgid "Allow WordPress Shortcodes in Single Ad page layout"
-msgstr ""
+msgstr "Autoriser les Shortcodes WordPress dans la mise en page d'une Annonce"
 
 #: includes/settings-api.php:69
 msgid "Allow users to search Ads in multiple regions"
-msgstr ""
+msgstr "Autoriser les utilisateurs à rechercher des annonces en multi-régions"
 
 #: includes/settings/class-listings-moderation-settings.php:36
 msgid "Allowed domains in Ad poster email"
-msgstr ""
+msgstr "Domaine autorisé dans l'adresse mail de l'annonceur"
 
 #: includes/settings/class-files-settings.php:45
-#, fuzzy
 msgid "Allowed image extensions"
-msgstr "Images Admises"
+msgstr "Extension d'Images acceptées"
 
 #: admin/templates/admin-panel-uninstall.tpl.php:25
 msgid "Almost done... one more step!"
@@ -813,53 +813,51 @@ msgid ""
 "An application identifier associates your site, its pages, and visitor "
 "actions with a registered Facebook application."
 msgstr ""
+"Un identifiant d'Applcation associe votre site, ses pages, et les actions "
+"des visiteurs avec une Application Facebook répertoriée."
 
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:68
 msgid ""
 "An application secret is a secret shared between Facebook and your "
 "application, similar to a password."
 msgstr ""
+"Un Secret d'Application est un secret partagé entre Facebook et votre "
+"Application, similaire à un mot de passe."
 
 #: includes/settings/class-user-notifications-settings.php:102
-#, fuzzy
 msgid ""
 "An email will be sent to administrator users every time a listing needs to "
 "be approved."
 msgstr ""
-"Un e-mail sera envoyé à l'Administrateur chaque fois qu'un visiteur envoie "
-"un message à l'une des annonces à travers la page répondre à l'annonce."
+"Un e-mail sera envoyé à l'Administrateur chaque fois qu'une Annonce doit "
+"être approuvée."
 
 #: includes/settings/class-user-notifications-settings.php:93
-#, fuzzy
 msgid "An email will be sent to administrator when a listing is edited."
-msgstr "Un e-mail vous sera envoyé quand une annonce est publiée."
+msgstr "Un e-mail sera envoyé à l'Administrateur quand une annonce est éditée."
 
 #: includes/settings/class-user-notifications-settings.php:69
-#, fuzzy
 msgid ""
 "An email will be sent to moderator users every time a listing needs to be "
 "approved."
 msgstr ""
-"Un e-mail sera envoyé pour rappeler à l'utilisateur de renouveler l'annonce "
-"lorsque son annonce est sur ​​le point d'expirer."
+"Un e-mail sera envoyé au Modérateur quand une annonce doit être approuvée."
 
 #: includes/settings/class-user-notifications-settings.php:51
-#, fuzzy
 msgid "An email will be sent to moderators when a listing is created."
-msgstr "Un e-mail vous sera envoyé quand une annonce est publiée."
+msgstr "Un e-mail sera envoyé au Modérateur quand une annonce est créée."
 
 #: includes/settings/class-user-notifications-settings.php:60
-#, fuzzy
 msgid "An email will be sent to moderators when a listing is edited."
-msgstr "Un e-mail vous sera envoyé quand une annonce est publiée."
+msgstr "Un e-mail sera envoyé au Modérateur quand une annonce est éditée."
 
 #: includes/settings/class-user-notifications-settings.php:28
 msgid ""
 "An email will be sent to remind the user to Renew the Ad when the Ad is "
 "about to expire."
 msgstr ""
-"Un e-mail sera envoyé pour rappeler à l'utilisateur de renouveler l'annonce "
-"lorsque son annonce est sur ​​le point d'expirer."
+"Un e-mail sera envoyé pour rappeler à l'utilisateur pour renouveler "
+"l'annonce lorsqu'elle est sur ​​e point d'expirer."
 
 #: includes/settings-api.php:298
 msgid ""
@@ -871,9 +869,8 @@ msgstr ""
 
 #: includes/settings/class-user-notifications-settings.php:24
 #: includes/settings/class-user-notifications-settings.php:82
-#, fuzzy
 msgid "An email will be sent when a listing is created."
-msgstr "Un e-mail vous sera envoyé quand une annonce est publiée."
+msgstr "Un e-mail vous sera envoyé quand une Annonce est créée."
 
 #: includes/settings/class-user-notifications-settings.php:39
 #: includes/settings/class-user-notifications-settings.php:85
@@ -881,19 +878,17 @@ msgid "An email will be sent when the Ad expires."
 msgstr "Un e-mail sera envoyé lorsque l'Annonce expire."
 
 #: includes/functions/deprecated.php:222
-#, fuzzy
 msgctxt "upload files"
 msgid "An error occurred trying to upload the file %s."
-msgstr "Une erreur s'est produite en essayant de marquer l'annonce."
+msgstr "Une erreur s'est produite en essayant de charger le fichier %s."
 
 #: frontend/page-show-ad.php:117
 msgid "An error occurred while trying to flag the Ad."
 msgstr "Une erreur s'est produite en essayant de marquer l'annonce."
 
 #: admin/pointers/class-drip-autoresponder-ajax-handler.php:144
-#, fuzzy
 msgid "An unexpected error ocurred."
-msgstr "Erreur inattendue. Aucune annonce n'a été spécifiée."
+msgstr "Une erreur inattendue est survenue."
 
 #: admin/templates/admin-panel-home.tpl.php:47
 msgid "Another Wordpress Classifieds Plugin Stats"
@@ -904,7 +899,6 @@ msgid "Anti-SPAM"
 msgstr "Anti-SPAM"
 
 #: admin/templates/admin-panel-csv-importer.tpl.php:164
-#, fuzzy
 msgctxt "csv-importer"
 msgid ""
 "Any value other than 'use spreadsheet information' means the Ads will be "
@@ -912,43 +906,40 @@ msgid ""
 "the CSV file, there is no user with that username and we couldn't find a "
 "user with the contact_email address specified in the CSV file."
 msgstr ""
-"Les annonces seront associées à cet utilisateur si la colonne de nom "
-"d'utilisateur n'est pas présente dans le fichier CSV, il n'y a pas "
-"l'utilisateur avec ce nom d'utilisateur et nous ne pouvions pas trouver un "
-"utilisateur avec l'adresse contact_email spécifié dans le fichier CSV."
+"Tout autre choix que 'utiliser les infos de la feuilles de calcul' "
+"entrainera l'association de l'Annonce à l'utilisateur sélectionné si : la "
+"colonne nom d'utilisateur n'est pas présente dans le fichier CSV, il n'y a "
+"pas d'utilisateur avec ce nom d'utilisateur et nous ne pouvons pas trouver "
+"un utilisateur avec l'adresse mail de contact spécifiée dans le fichier CSV."
 
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:52
 msgid "App Id"
-msgstr ""
+msgstr "ID de l'Application"
 
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:63
 msgid "App Secret"
-msgstr ""
+msgstr "Secret d'Application"
 
 #: includes/helpers/wp-list-table.php:297
 msgid "Apply"
 msgstr "Appliquer"
 
 #: admin/class-media-manager.php:205
-#, fuzzy
 msgctxt "media manager"
 msgid "Approve"
 msgstr "Approuver"
 
 #: templates/components/media-manager.tpl.php:79
-#, fuzzy
 msgid "Approve File"
-msgstr "Approuver"
+msgstr "Approuver le Fichier"
 
 #: templates/components/media-manager.tpl.php:22
-#, fuzzy
 msgid "Approve Image"
-msgstr "Approuver"
+msgstr "Approuver l'Image"
 
 #: templates/components/media-manager.tpl.php:51
-#, fuzzy
 msgid "Approve Video"
-msgstr "Approuver"
+msgstr "Approuver la Vidéo"
 
 #: admin/admin-panel-listings.php:41
 msgid "Are you sure you want to delete the selected Ads?"
@@ -974,23 +965,21 @@ msgstr "Croissant"
 
 #: admin/templates/admin-panel-csv-importer.tpl.php:140
 #: admin/templates/admin-panel-csv-importer.tpl.php:144
-#, fuzzy
 msgctxt "csv-importer"
 msgid "Assign Ads to a user?"
-msgstr "Attribuer une annonce à un utilisateur?"
+msgstr "Attribuer une annonce à un utilisateur ?"
 
 #: admin/templates/admin-panel-fees-delete.tpl.php:1
-#, fuzzy
 msgid ""
 "Associate Ads currently associated with Fee plan %s to one of the following "
 "fees:"
 msgstr ""
-"Changer les annonces associées à un plan de Frais %s à l'un des frais "
+"Associer les annonces associées au Plan de Frais %s à l'un des frais "
 "suivants."
 
 #: awpcp.php:691
 msgid "Attachments"
-msgstr ""
+msgstr "Pièces jointes"
 
 #: awpcp.php:698
 msgid "Authorize.Net"
@@ -1005,20 +994,20 @@ msgid "Auto create Categories"
 msgstr "Auto créer des catégories"
 
 #: includes/settings/class-form-fields-settings.php:27
-#, fuzzy
 msgid "Autocomplete"
-msgstr "compléter"
+msgstr "Autocomplete"
 
 #: includes/settings/class-listings-moderation-settings.php:34
-#, fuzzy
 msgid "Awaiting approval message"
-msgstr "Message en attente d'approbation"
+msgstr "Message d'attente d'approbation"
 
 #: admin/templates/admin-panel-uninstall.tpl.php:11
 msgid ""
 "BEFORE YOU CLICK THE BUTTON BELOW &mdash; read carefully in case you want to "
 "extract your data first!"
 msgstr ""
+"AVANT DE CLIQUER SUR LE BOUTON CI-DESSOUS &mdash; lisez attentivement au cas "
+"où vous souhaiteriez exporter d'abord toutes vos données. "
 
 #: admin/admin-panel-upgrade.php:82
 msgctxt "awpcp upgrade"
@@ -1090,23 +1079,21 @@ msgid "Browse the %s."
 msgstr "Parcourir le %s."
 
 #: awpcp.php:705
-#, fuzzy
 msgid "BuddyPress Listings"
-msgstr "Annonces gratuites"
+msgstr "Annonces BuddyPress"
 
 #: admin/templates/admin-sidebar.tpl.php:38
 #, fuzzy
 msgid "BuddyPress Listings Module"
-msgstr "Annonces gratuites"
+msgstr "Annonces BuddyPress"
 
 #: includes/helpers/wp-list-table.php:287
 msgid "Bulk Actions"
 msgstr "Actions en vrac"
 
 #: includes/views/frontend/buy-credits/class-buy-credits-page.php:12
-#, fuzzy
 msgid "Buy Credits"
-msgstr "Credits"
+msgstr "Acheter du Credit"
 
 #: admin/templates/admin-sidebar.tpl.php:20
 msgid "Buy a Premium Module"
@@ -1122,7 +1109,7 @@ msgstr "fichier CSV"
 
 #: awpcp.php:712
 msgid "Campaign Manager"
-msgstr ""
+msgstr "Gestionnaire de Campagne"
 
 #: functions.php:1746
 msgid "Can't write file to disk."
@@ -1154,9 +1141,8 @@ msgid "Categories"
 msgstr "Catégories"
 
 #: includes/compatibility/class-content-aware-sidebars-listings-categories-module.php:20
-#, fuzzy
 msgid "Categories (AWPCP)"
-msgstr "Catégories"
+msgstr "Catégories (AWPCP)"
 
 #: admin/templates/admin-panel-listings-view.tpl.php:14
 msgid "Category"
@@ -1184,7 +1170,7 @@ msgstr "Icônes de Catégorie Premium Module"
 
 #: admin/admin-panel.php:637 admin/admin-panel.php:715
 msgid "Category List Order"
-msgstr "Liste de l'Ordre des Catégories"
+msgstr "Ordre des Catégories d'Annonces"
 
 #: admin/admin-panel.php:883 admin/admin-panel.php:895
 msgid "Category Name (Total Ads)"
@@ -1223,10 +1209,9 @@ msgid "Characters in Title"
 msgstr "Caractères dans le Titre"
 
 #: includes/payment-terms-table.php:36
-#, fuzzy
 msgctxt "place ad payment terms column headers"
 msgid "Characters in Title"
-msgstr "Caractères dans le Titre"
+msgstr "Nombre de caractères dans le Titre"
 
 #: includes/settings-api.php:754
 msgid ""
@@ -1241,15 +1226,13 @@ msgid "Charge Listing Fee?"
 msgstr "Chargez les Droits d'Inscription?"
 
 #: includes/payment-terms-table.php:37
-#, fuzzy
 msgctxt "place ad payment terms column headers"
 msgid "Chars in Description"
-msgstr "Caractères dans la Description"
+msgstr "Nombre de caractères dans la Description"
 
 #: includes/settings-api.php:999
-#, fuzzy
 msgid "Check License"
-msgstr "Vérifiez la désactivation."
+msgstr "Vérifiez la licence"
 
 #: includes/settings-api.php:282
 msgid ""
@@ -1289,14 +1272,13 @@ msgstr ""
 
 #: includes/settings/class-listings-moderation-settings.php:42
 msgid "Check to disable."
-msgstr "Vérifiez la désactivation."
+msgstr "Cocher pour désactiver."
 
 #: frontend/page-place-ad.php:1186
 #: includes/helpers/widgets/class-listing-form-steps-component.php:45
 #: includes/helpers/widgets/class-listing-form-steps-component.php:60
-#, fuzzy
 msgid "Checkout"
-msgstr "2Checkout"
+msgstr "Contrôle"
 
 #: frontend/templates/payments-billing-form.tpl.php:101 functions.php:634
 msgid "City"
@@ -1316,24 +1298,20 @@ msgid "Classifieds"
 msgstr "Petites Annonces"
 
 #: templates/admin/profile/contact-information-fields.tpl.php:1
-#, fuzzy
 msgid "Classifieds Contact Information"
 msgstr "Coordonnées de contact"
 
 #: includes/functions/format.php:44
-#, fuzzy
 msgid "Classifieds Management System"
-msgstr "AWPCP Système de Gestion de Petites Annonces"
+msgstr "Système de Gestion de Petites Annonces"
 
 #: frontend/templates/main-menu.tpl.php:3
-#, fuzzy
 msgid "Classifieds Menu"
-msgstr "Annonces"
+msgstr "Menu Annonces"
 
 #: includes/class-roles-and-capabilities.php:70
-#, fuzzy
 msgid "Classifieds Moderator"
-msgstr "Annonces"
+msgstr "Modérateur d'Annonces"
 
 #: includes/settings-api.php:41 includes/settings-api.php:45
 msgid "Classifieds Pages"
@@ -1360,7 +1338,7 @@ msgstr "Cliquez pour agrandir l'image."
 #: awpcp.php:1020
 msgctxt "uploader queue"
 msgid "Close"
-msgstr ""
+msgstr "Fermer"
 
 #: admin/templates/admin-widget-modification-notice.tpl.php:7
 msgctxt "widget modification notice"
@@ -1368,9 +1346,8 @@ msgid "Close this, I'll check my Widget configuration."
 msgstr "Fermer ceci, je vais vérifier la configuration de mon widget."
 
 #: includes/settings/class-general-settings.php:33
-#, fuzzy
 msgid "Collapse Categories"
-msgstr "Parcourir les catégories"
+msgstr "Dérouler les catégories"
 
 #: awpcp.php:726
 msgid "Comments & Ratings"
@@ -1381,7 +1358,6 @@ msgid "Comments/Ratings Module"
 msgstr "Commentaires/Notes Module"
 
 #: includes/cron/class-task-logic.php:47
-#, fuzzy
 msgctxt "task status"
 msgid "Complete"
 msgstr "Terminé"
@@ -1397,7 +1373,6 @@ msgid "Complete Payment"
 msgstr "Paiement Complet"
 
 #: admin/admin-panel-listings-table.php:245
-#, fuzzy
 msgid "Completed"
 msgstr "Terminé"
 
@@ -1477,7 +1452,6 @@ msgid "Could not create resized versions of image %s."
 msgstr "Impossible de créer des versions redimensionnées de l'image %s."
 
 #: includes/functions/deprecated.php:358
-#, fuzzy
 msgctxt "upload files"
 msgid "Could not create resized versions of image %s."
 msgstr "Impossible de créer des versions redimensionnées de l'image %s."
@@ -1492,6 +1466,8 @@ msgstr ""
 msgid ""
 "Could not validate User Access Token. Are you connected to the internet?"
 msgstr ""
+"Nous n'avons pas pu valider votre code d'accès utilisateur. Etes-vous bien "
+"connecté à l'Internet?"
 
 #: import.php:440 import.php:521
 msgid "Could not write temporary file %s"
@@ -1572,47 +1548,41 @@ msgid "Crop primary image thumbnails?"
 msgstr "Recadrer les vignettes des images principales?"
 
 #: includes/settings/class-files-settings.php:86
-#, fuzzy
 msgid "Crop thumbnail images?"
-msgstr "Redimensionner vignettes?"
+msgstr "Redimensionner les Vignettes?"
 
 #: includes/settings/class-credit-system-settings.php:19
-#, fuzzy
 msgid "Currency"
-msgstr "Devise de Format"
+msgstr "Devise"
 
 #: includes/settings/class-credit-system-settings.php:21
-#, fuzzy
 msgid "Currency & Credits"
-msgstr "Devise de Format"
+msgstr "Devise & Crédits"
 
 #: includes/settings/class-general-settings.php:62
 msgid "Currency Format"
 msgstr "Devise de Format"
 
 #: includes/settings/class-general-settings.php:67
-#, fuzzy
 msgid "Currency code"
-msgstr "Devise de Format"
+msgstr "Format de Devise"
 
 #: includes/helpers/wp-list-table.php:516
 msgid "Current page"
 msgstr "Page actuelle"
 
 #: includes/settings/class-registration-settings.php:10
-#, fuzzy
 msgid "Custom Registration Page URL"
-msgstr "Lieu de la page d'inscription"
+msgstr "URL personnalisée de la page d'inscription"
 
 #: frontend/payment-functions.php:148
 msgid "Customer attempt to pay has failed"
 msgstr "La tentative du client à payer a échoué"
 
 #: includes/settings/class-general-settings.php:42
-#, fuzzy
 msgctxt "settings"
 msgid "Date & Time Format"
-msgstr "Format de Date Temps"
+msgstr "Format de Date et d'Heure"
 
 #: includes/settings-api.php:147
 msgid "Date (newest first)"
@@ -1647,18 +1617,16 @@ msgstr[0] "Jour"
 msgstr[1] "Jours"
 
 #: includes/settings-api.php:993
-#, fuzzy
 msgid "Deactivate License"
-msgstr "Activer AdSense"
+msgstr "Licence désactivée"
 
 #: frontend/templates/email-abort-payment-admin.tpl.php:2
 msgid "Dear Administrator"
 msgstr "Cher Administrateur"
 
 #: admin/templates/admin-panel-debug.tpl.php:3
-#, fuzzy
 msgid "Debug"
-msgstr "AWPCP Débogueur"
+msgstr "Débogueur"
 
 #: includes/settings-api.php:164
 msgid "Default number of Ads per page"
@@ -1671,7 +1639,7 @@ msgstr "Utilisateur par défaut"
 #: includes/cron/class-task-logic.php:41
 msgctxt "task status"
 msgid "Delayed"
-msgstr ""
+msgstr "Effacée"
 
 #: admin/admin-panel-credit-plans.php:43 admin/admin-panel-fees.php:46
 #: admin/admin-panel-listings-table.php:216 admin/admin-panel-listings.php:90
@@ -1681,15 +1649,13 @@ msgid "Delete"
 msgstr "Effacer"
 
 #: admin/class-media-manager.php:204
-#, fuzzy
 msgctxt "media manager"
 msgid "Delete"
 msgstr "Effacer"
 
 #: admin/admin-panel.php:869
-#, fuzzy
 msgid "Delete Ads too"
-msgstr "Supprimer l'annonce"
+msgstr "Supprimer aussi les Annonces"
 
 #: admin/admin-panel.php:475 admin/admin-panel.php:644
 #: admin/admin-panel.php:791 admin/admin-panel.php:793
@@ -1698,38 +1664,34 @@ msgstr "Supprimer Catégorie"
 
 #: templates/components/file-manager.tpl.php:54
 #: templates/components/media-manager.tpl.php:78
-#, fuzzy
 msgid "Delete File"
-msgstr "Effacer"
+msgstr "Effacer le Fichier"
 
 #: templates/components/file-manager.tpl.php:27
 #: templates/components/media-manager.tpl.php:21
-#, fuzzy
 msgid "Delete Image"
-msgstr "Supprimer un commentaire"
+msgstr "Supprimer l'Image"
 
 #: includes/listings/class-delete-listing-action.php:6
-#, fuzzy
 msgid "Delete Listing"
-msgstr "Annonces gratuites"
+msgstr "Supprimer l'annonce"
 
 #: includes/helpers/widgets/multiple-region-selector.php:127
-#, fuzzy
 msgid "Delete Search Region"
-msgstr "Supprimer Catégorie"
+msgstr "Effacer la région recherchée"
 
 #: admin/admin-panel.php:856
 msgid "Delete Selected Categories"
 msgstr "Supprimer les Catégories sélectionnées"
 
 #: templates/components/media-manager.tpl.php:50
-#, fuzzy
 msgid "Delete Video"
-msgstr "Effacer"
+msgstr "Effacer la Vidéo"
 
 #: admin/admin-panel.php:867
 msgid "Delete categories should do this with existing Ads"
 msgstr ""
+"Effacer des catégories devraient être effectué avec des Annonces existantes"
 
 #: includes/settings/class-payment-general-settings.php:17
 msgid "Descending"
@@ -1748,38 +1710,35 @@ msgstr "Description"
 #: includes/media/class-image-file-processor.php:56
 #: includes/media/class-uploads-manager.php:29
 msgid "Destination directory doesn't exists and couldn't be created."
-msgstr ""
+msgstr "Le répertoire de destination n'existe pas et n'a pas pu être créé."
 
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:17
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:22
 msgid "Diagnostics"
-msgstr ""
+msgstr "Diagnostics"
 
 #: admin/admin-panel-listings-table.php:204 admin/admin-panel-listings.php:96
 msgid "Disable"
 msgstr "Désactiver"
 
 #: admin/class-media-manager.php:203
-#, fuzzy
 msgctxt "media manager"
 msgid "Disable"
 msgstr "Désactiver"
 
 #: includes/settings/class-files-settings.php:52
 msgid "Disable AWPCP Lightbox feature"
-msgstr ""
+msgstr "Désactiver la Lightbox AWPCP"
 
 #: includes/settings/class-listings-moderation-settings.php:42
 msgid "Disable expired ads instead of deleting them?"
 msgstr "Désactiver les annonces expirées au lieu de les supprimer?"
 
 #: includes/settings/class-listings-moderation-settings.php:15
-#, fuzzy
 msgid "Disable listings until administrator approves"
 msgstr "Désactiver l'annonce jusqu'à ce que l'Administration l'approuve"
 
 #: includes/settings/class-listings-moderation-settings.php:24
-#, fuzzy
 msgid "Disable listings until administrator approves modifications"
 msgstr "Désactiver l'annonce jusqu'à ce que l'Administration l'approuve"
 
@@ -1818,9 +1777,8 @@ msgid "Documentation on date and time formatting"
 msgstr "Documentation sur les formats de dates et heures"
 
 #: includes/settings/class-general-settings.php:88
-#, fuzzy
 msgid "Don't show currency symbol"
-msgstr "Code devises PayPal"
+msgstr "Ne pas afficher le symbole de la Devise"
 
 #: admin/templates/admin-sidebar.tpl.php:106
 msgid "Donate to Support AWPCP"
@@ -1829,16 +1787,16 @@ msgstr "Faites un don pour soutenir AWPCP"
 #: awpcp.php:1043
 msgctxt "uploader queue"
 msgid "Drag files here."
-msgstr ""
+msgstr "Déposer les fichiers ici."
 
 #: includes/settings/class-form-fields-settings.php:27
 msgid "Dropdown"
-msgstr ""
+msgstr "Liste déroulante"
 
 #: awpcp.php:1030
 msgctxt "uploader queue"
 msgid "Duplicate file error."
-msgstr ""
+msgstr "Erreur de recopie de fichier"
 
 #: admin/templates/admin-panel-home.tpl.php:32
 msgid "Duplicated post name"
@@ -1861,21 +1819,18 @@ msgid "Edit"
 msgstr "Editer"
 
 #: includes/class-edit-listing-link-placeholder.php:38
-#, fuzzy
 msgctxt "title attribute for edit listing link"
 msgid "Edit <listing-title>"
-msgstr "Listing Titre"
+msgstr "Editer <listing-title>"
 
 #: admin/admin-panel-listings-edit-ad-page.php:15
-#, fuzzy
 msgid "Edit Ad"
-msgstr "Page Modifier une Annonce"
+msgstr "Editer l'Annonce"
 
 #: includes/class-edit-listing-link-placeholder.php:32
-#, fuzzy
 msgctxt "text for edit listing link"
 msgid "Edit Ad"
-msgstr "Page Modifier une Annonce"
+msgstr "Editer une Annonce"
 
 #: includes/settings-api.php:50
 msgid "Edit Ad page"
@@ -1887,29 +1842,25 @@ msgid "Edit Category"
 msgstr "Modifier Catégorie"
 
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:6
-#, fuzzy
 msgctxt "credit plans form"
 msgid "Edit Credit Plan Details"
-msgstr "Ajouter un Crédit Plan"
+msgstr "Editer les détails du Plan de Crédit"
 
 #: frontend/templates/page-place-ad-preview-step.tpl.php:13
-#, fuzzy
 msgid "Edit Details"
-msgstr "Détail de l'Annonce"
+msgstr "Editer les Détails"
 
 #: admin/templates/admin-panel-fees-entry-form.tpl.php:14
-#, fuzzy
 msgid "Edit Fee Plan Details"
-msgstr "Entrez les Détails de l'annonce"
+msgstr "Editer les détails du Plan d'Honoraires"
 
 #: frontend/templates/payments-billing-form.tpl.php:113
 msgid "Email"
 msgstr "Email"
 
 #: admin/pointers/class-drip-autoresponder.php:69
-#, fuzzy
 msgid "Email Address"
-msgstr "Votre Adresse Email"
+msgstr "Adresse Email"
 
 #: includes/settings-api.php:210
 msgid ""
@@ -1920,11 +1871,8 @@ msgstr ""
 "rémunération et si PayPal est activé)."
 
 #: functions_awpcp.php:603
-#, fuzzy
 msgid "Email sent %s."
-msgstr ""
-"Courriel envoyé le: %s\n"
-"\n"
+msgstr "Courriel envoyé le : %s"
 
 #: includes/settings/class-listings-moderation-settings.php:47
 msgid ""
@@ -1932,6 +1880,9 @@ msgid ""
 "Registered users don't need to verify the email address used for contact "
 "information."
 msgstr ""
+"La vérification d'Email est désactivée car vous avez exigé que les "
+"utilisateurs soient enregistrés. Les utilisateurs enregistrés n'ont pas "
+"besoin de vérification de leur adresse mail pour être contactés."
 
 #: includes/settings/class-listings-moderation-settings.php:58
 msgid ""
@@ -1939,6 +1890,9 @@ msgid ""
 "Registered users don't need to verify the email address used for contact "
 "information."
 msgstr ""
+"La vérification d'Email n'a pas été activée car il est exigé que les "
+"utilisateurs soient enregistrés. Les utilisateurs enregistrés n'ont pas "
+"besoin de vérification de leur adresse mail pour être contactés."
 
 #: includes/settings-api.php:280
 msgid ""
@@ -1966,7 +1920,6 @@ msgid "Enable"
 msgstr "Activer"
 
 #: admin/class-media-manager.php:202
-#, fuzzy
 msgctxt "media manager"
 msgid "Enable"
 msgstr "Activer"
@@ -1996,7 +1949,6 @@ msgid "Enable paid ads that are pending payment."
 msgstr "Activer annonces payées ou qui sont en attente de paiement."
 
 #: includes/settings/class-general-settings.php:30
-#, fuzzy
 msgid ""
 "Enable translations. WordPress will look for an AWPCP-&lt;language&gt;.mo "
 "file in AWPCP's languages/ directory of the main plugin and premium modules. "
@@ -2050,23 +2002,20 @@ msgid "Enter Ad Details"
 msgstr "Entrez les Détails de l'annonce"
 
 #: includes/helpers/widgets/class-listing-form-steps-component.php:49
-#, fuzzy
 msgid "Enter Listing Details"
-msgstr "Détails de l'Annonce"
+msgstr "Saisir les Détails de l'Annonce"
 
 #: admin/admin-panel.php:754
 msgid "Enter the category name"
 msgstr "Entrez le nom de la catégorie"
 
 #: includes/settings/class-user-notifications-settings.php:36
-#, fuzzy
 msgid "Enter the number of days before the ad expires to send the email."
 msgstr ""
-"Le courriel est envoyé avec le nombre spécifié de jours avant l'expiration "
-"de l'annonce."
+"Entrez le nombre de jours précédant l'expiration de l'annonce pour envoyer "
+"l'email."
 
 #: includes/helpers/captcha.php:39
-#, fuzzy
 msgctxt "CAPTCHA"
 msgid "Enter the value of the following sum: %d + %d"
 msgstr "Entrez la valeur de la somme suivante: %d + %d"
@@ -2081,19 +2030,18 @@ msgid "Enter your email address"
 msgstr "Entrez votre adresse email"
 
 #: functions.php:1721 includes/helpers/class-modules-manager.php:160
-#, fuzzy
 msgid "Error"
-msgstr "Erreurs"
+msgstr "Erreur"
 
 #: awpcp.php:1047
 msgctxt "uploader queue"
 msgid "Error: File too large:"
-msgstr ""
+msgstr "Erreur : fichier trop volumineux :"
 
 #: awpcp.php:1034
 msgctxt "uploader queue"
 msgid "Error: Invalid file extension:"
-msgstr ""
+msgstr "Erreur : extension de fichier erronée"
 
 #: admin/templates/admin-panel-csv-importer.tpl.php:30
 msgctxt "csv importer"
@@ -2106,7 +2054,7 @@ msgstr "Européen"
 
 #: admin/admin-panel-settings.php:173
 msgid "Everything looks OK."
-msgstr ""
+msgstr "Tout semble OK."
 
 #: includes/settings/class-general-settings.php:56
 msgctxt "settings"
@@ -2116,16 +2064,15 @@ msgstr "Exemple de sortie"
 #: includes/settings/class-listing-url-settings.php:71
 msgctxt "listing url settings section"
 msgid "Example: <example-path>."
-msgstr ""
+msgstr "Exemple : <example-path>."
 
 #: includes/helpers/wp-list-table.php:400
 msgid "Excerpt View"
 msgstr "Voir Extrait"
 
 #: templates/components/file-manager.tpl.php:42
-#, fuzzy
 msgid "Existing Files"
-msgstr "Images Existantes"
+msgstr "Fichiers Existants"
 
 #: templates/components/file-manager.tpl.php:11
 msgid "Existing Images"
@@ -2134,7 +2081,7 @@ msgstr "Images Existantes"
 #: admin/templates/admin-panel-media-manager.tpl.php:31
 msgctxt "media manager"
 msgid "Existing files for Ad %s."
-msgstr ""
+msgstr "Fichiers existants pour l'Annonce %s."
 
 #: admin/templates/admin-panel-debug.tpl.php:112
 msgctxt "alternate CA info for cURL"
@@ -2152,9 +2099,8 @@ msgstr ""
 "d'expiration)."
 
 #: admin/admin-panel-listings-table.php:238
-#, fuzzy
 msgid "Expired"
-msgstr "Annonce Axpirée"
+msgstr "Annonce expirée"
 
 #: templates/email/listing-is-about-to-expire-notification.plain.tpl.php:7
 msgid "Expires on"
@@ -2188,37 +2134,36 @@ msgstr "FROM adresse e-mail pour les emails sortants"
 
 #: includes/helpers/class-send-to-facebook-helper.php:57
 msgid "Facebook API returned the following errors: %s."
-msgstr ""
+msgstr "L'API Facebook a retourné l'erreur suivante :%s."
 
 #: admin/admin-panel-settings.php:166
 msgid "Facebook Config Diagnostics"
-msgstr ""
+msgstr "Diagnostics de Configuration Facebook"
 
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:135
 #: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:31
 msgid "Facebook Group"
-msgstr ""
+msgstr "Groupe Facebook"
 
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:4
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:29
 msgid "Facebook Integration"
-msgstr ""
+msgstr "Intégration Facebook"
 
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:116
 #: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:27
 msgid "Facebook Page"
-msgstr ""
+msgstr "Page Facebook"
 
 #: includes/cron/class-task-logic.php:45
-#, fuzzy
 msgctxt "task status"
 msgid "Failed"
-msgstr "Paiement Echoué"
+msgstr "Echec"
 
 #: includes/cron/class-task-logic.php:43
 msgctxt "task status"
 msgid "Failing"
-msgstr ""
+msgstr "Echec"
 
 #: admin/admin-panel-listings-table.php:175
 #: admin/admin-panel-listings-table.php:241
@@ -2244,19 +2189,16 @@ msgid "Fee Per Category Module"
 msgstr "Frais par catégorie Module"
 
 #: admin/templates/admin-panel-fees.tpl.php:11
-#, fuzzy
 msgid "Fee Plan Settings"
-msgstr "Paramètres Généraux"
+msgstr "Réglages du Plan d'Honoraires"
 
 #: includes/settings/class-payment-general-settings.php:26
-#, fuzzy
 msgid "Fee Plan sort direction"
-msgstr "Direction des frais de commande"
+msgstr "Sens du tri des Plans de Paiement"
 
 #: includes/settings/class-payment-general-settings.php:25
-#, fuzzy
 msgid "Fee Plan sort order"
-msgstr "Frais de commande"
+msgstr "Ordre de tri des Plans de Paiement"
 
 #: awpcp.php:754
 msgid "Fee per Category"
@@ -2267,59 +2209,59 @@ msgid "Fees"
 msgstr "Honoraires"
 
 #: import.php:469
-#, fuzzy
 msgid "File %s does not exists."
-msgstr "L'annonce n'existe pas."
+msgstr "Le fichier %s n'existe pas."
 
 #: includes/helpers/widgets/class-file-manager-component.php:26
 msgid "File Manager component is not properly configured"
 msgstr ""
+"Le composant Gestionnaire de fichiers n'est pas correctement configuré."
 
 #: awpcp.php:1045
 msgctxt "uploader queue"
 msgid "File count error."
-msgstr ""
+msgstr "Erreur de comptage de fichier."
 
 #: awpcp.php:1046
 msgctxt "uploader queue"
 msgid "File extension error."
-msgstr ""
+msgstr "Erreur d'extension de fichier."
 
 #: includes/media/class-file-uploader.php:52
 msgid "File extension not allowed."
-msgstr ""
+msgstr "extension de fichier non autorisée."
 
 #: includes/settings/class-files-settings.php:25
 msgid ""
 "File permissions applied to the uploads directory and sub-directories so "
 "that the plugin is allowed to write to those directories."
 msgstr ""
+"Permissions de fichier appliquées au répertoire et sous-répertoire de "
+"chargement afin que le plugin puisse y écrire."
 
 #: includes/settings/class-files-settings.php:25
 msgid "File permissions for uploads directory"
-msgstr ""
+msgstr "Permissions de fichier pour le répertoire de chargement"
 
 #: awpcp.php:1031
 msgctxt "uploader queue"
 msgid "File size error."
-msgstr ""
+msgstr "Erreur de taille de fichier."
 
 #: awpcp.php:1037
-#, fuzzy
 msgctxt "uploader queue"
 msgid "File: %s"
-msgstr "Ajouter un Nouveau Champ"
+msgstr "Fichier : %s"
 
 #: awpcp.php:1042
 msgctxt "uploader queue"
 msgid "File: %s, size: %d, max file size: %d"
-msgstr ""
+msgstr "Fichier : %s, Taille : %d, Taille maxi de fichier : %d"
 
 #: awpcp.php:1023
-#, fuzzy
 msgctxt "uploader queue"
 msgid "Filename"
-msgstr "Ajouter un Nouveau Champ"
+msgstr "Nom de fichier"
 
 #: frontend/page-place-ad.php:687
 msgid "Fill out the form below to post your classified Ad."
@@ -2329,16 +2271,15 @@ msgstr ""
 #: admin/admin-panel-listings-table.php:306
 msgctxt "admin listings table"
 msgid "Filter"
-msgstr ""
+msgstr "Filtre"
 
 #: admin/templates/admin-panel-csv-importer.tpl.php:10
 msgid "Final Import Results"
 msgstr "Importer les Résultats définitifs"
 
 #: frontend/widget-search.php:45
-#, fuzzy
 msgid "Find ads by Contact Name"
-msgstr "Trouver annonces par"
+msgstr "Trouver des annonces par le Nom de l'annonceur"
 
 #: admin/pointers/class-drip-autoresponder.php:65
 msgctxt "drip-autoresponder"
@@ -2347,6 +2288,9 @@ msgid ""
 "in this ridiculously actionable (and free) 5-part email course. Get a "
 "premium module (AWPCP XML Sitemap) for free just for signing up."
 msgstr ""
+"Découvrez comment créer un sites de petites annonces irrésistible et "
+"rentable avec ce modeste cours par email en 5 parties. Obtenez gratuitement "
+"ce module premium (AWPCP XML Sitemap) en vous enregistrant."
 
 #: frontend/page-edit-ad.php:348 frontend/page-place-ad.php:1178
 #: frontend/templates/page-place-ad-preview-step.tpl.php:17
@@ -2375,11 +2319,12 @@ msgid ""
 "Force Secure URLs was not enabled because your website couldn't be accessed "
 "using a secure connection."
 msgstr ""
+"Les URL sécurisées n'ont pas été activées car votre site web est "
+"inaccessible par une connexion sécurisée."
 
 #: includes/settings/class-payment-general-settings.php:39
-#, fuzzy
 msgid "Force secure URLs on payment pages"
-msgstr "Monnaie utilisée dans les pages de paiement"
+msgstr "URL sécurisées pour les pages de paiement"
 
 #: includes/settings/class-form-fields-settings.php:10
 #: templates/admin/form-fields-admin-page.tpl.php:5
@@ -2388,20 +2333,17 @@ msgstr "Formulaire"
 
 #: admin/form-fields/class-form-fields-admin-page.php:6
 #: includes/settings/class-form-fields-settings.php:107
-#, fuzzy
 msgid "Form Fields"
-msgstr "Champs Supplémentaires"
+msgstr "Champs du Formulaire"
 
 #: admin/form-fields/class-form-fields-admin-page.php:18
-#, fuzzy
 msgctxt "sub menu title"
 msgid "Form Fields"
-msgstr "Champs Supplémentaires"
+msgstr "Champs du Formulaire"
 
 #: includes/settings/class-form-fields-settings.php:12
-#, fuzzy
 msgid "Form Steps"
-msgstr "Champs Supplémentaires"
+msgstr "Etapes du Formulaire"
 
 #: admin/templates/admin-sidebar.tpl.php:114
 msgid "Found a bug?"
@@ -2416,7 +2358,6 @@ msgid "Free Listing"
 msgstr "Annonces gratuites"
 
 #: includes/settings/class-general-settings.php:58
-#, fuzzy
 msgctxt "settings"
 msgid "Full Display String"
 msgstr "Affichage complet"
@@ -2468,16 +2409,21 @@ msgstr ""
 #: frontend/page-edit-ad.php:211
 msgid "Go to the %s section to manage the Images and Attachments for this Ad."
 msgstr ""
+"Allez à la section %s pour gérer les images et pièces jointes de cette "
+"Annonce."
 
 #: includes/placeholders/class-placeholders-installation-verifier.php:23
 msgid "Go to the %s to change the Single Ad layout."
-msgstr ""
+msgstr "Aller à %s pour changer la mise en page d'une Annonce."
 
 #: includes/settings/class-form-fields-settings.php:109
 msgid ""
 "Go to the <form-fields-section> admin section to change the order in which "
 "the fields mentioned below are shown to users in the Ad Details form."
 msgstr ""
+"Rendez-vous à la section <form-fields-section>du panneau d'administration "
+"pour changer l'ordre dans lequel les champs mentionnés ci-dessous "
+"s'afficheront à la lecture de l'Annonce."
 
 #: templates/admin/form-fields-admin-page.tpl.php:7
 msgid ""
@@ -2486,6 +2432,10 @@ msgid ""
 "you have the Extra Fields module, the rest of the fields can be configured "
 "from the Extra Fields admin section."
 msgstr ""
+"Aller à la section des Réglages <form-fields-settings-link> pour vérifier "
+"quels sont les champs standards affichés et si l'utilisateur doit y entrer "
+"une valeur. Si vus disposez du module Champs Supplémentaires, le reste des "
+"champs peut être configuré à partir du panneau d'administration de ce module."
 
 #: includes/helpers/wp-list-table.php:500
 msgid "Go to the first page"
@@ -2513,17 +2463,18 @@ msgstr "Contrôle Paiement Google Module"
 
 #: includes/settings/class-form-fields-settings.php:28
 msgid "HTML Widget for User field"
-msgstr ""
+msgstr "Widget HTML pour les Champs Utilisateur"
 
 #: awpcp.php:1026
-#, fuzzy
 msgctxt "uploader queue"
 msgid "HTTP Error."
-msgstr "Erreurs"
+msgstr "Erreur HTTP."
 
 #: includes/settings/class-listings-moderation-settings.php:31
 msgid "Have non-registered users verify the email address used to post new Ads"
 msgstr ""
+"Oblige les utilisateurs non-enregistrés à valider leur adresse email "
+"utilisée pour poster une nouvelle annonce;"
 
 #: admin/admin-panel-listings-table.php:165
 msgid "Headline"
@@ -2590,10 +2541,12 @@ msgstr "Cacher le régime d'honoraires du public?"
 #: includes/settings/class-payment-general-settings.php:31
 msgid "Hide all fee plans if no category is selected"
 msgstr ""
+"Masquer tous les Plans de Paiement si aucune catégorie n'est sélectionnée."
 
 #: includes/settings-api.php:81
 msgid "Hide contact name to anonymous users?"
 msgstr ""
+"Masquer le nom de contact pour les utilisateurs anonymes (non loggés) ?"
 
 #: frontend/templates/widget-categories-form.tpl.php:9
 msgid "Hide empty categories."
@@ -2610,10 +2563,12 @@ msgstr "Cacher les images jusqu'à ce que l'Administrateur les approuve"
 #: includes/settings-api.php:81
 msgid "Hide listing contact name to anonymous (non logged in) users."
 msgstr ""
+"Masquer les listes de noms de contact pour les utilisateurs anonymes (non "
+"loggés) ?"
 
 #: includes/settings/class-form-fields-settings.php:77
 msgid "Hide price field if empty or zero"
-msgstr ""
+msgstr "Masquer le champ Prix si sa valeur est vide ou à zéro"
 
 #: includes/settings/class-general-settings.php:138
 msgid "Highest number used in aithmetic operation."
@@ -2639,23 +2594,29 @@ msgid ""
 "through a secure (HTTPS) URL. Do not enable this feature if your server does "
 "not support HTTPS."
 msgstr ""
+"Si coché, toutes les pages d'Annonces impliquant des paiements seront "
+"accessibles par une URL sécurisée (HTTPS). Ne pas activer cette option si "
+"vos serveurs ne supportent pas le HTTPS."
 
 #: includes/settings/class-form-fields-settings.php:77
 msgid ""
 "If checked all price placeholders will be replaced with an empty string when "
 "the price of the Ad is zero or was not set."
 msgstr ""
+"Si sélectionné, tous les prix seront remplacés par une chaîne de caractère "
+"vide lors que le prix de l'annonce est de zéro ou n'a pas été renseigné."
 
 #: includes/settings/class-listings-moderation-settings.php:10
-#, fuzzy
 msgid "If checked only administrator users will be allowed to post Ads."
-msgstr "S'il n'y a pas d'Annonces, seules les catégories seront affichées"
+msgstr "Si coché, seul l'Administrateur sera autorisé à poster des Annonces."
 
 #: includes/settings/class-form-fields-settings.php:101
 msgid ""
 "If checked the city field will be shown before the county field. This "
 "setting may be overwritten if Region Control module is installed."
 msgstr ""
+"Si sélectionné, le champ ville sera affiché avant le département. Ce réglage "
+"peut être modifié si le module de Contrôle des Régions est installé."
 
 #: includes/settings/class-general-settings.php:33
 msgid ""
@@ -2663,6 +2624,9 @@ msgid ""
 "would have to click the down arrow icon to expand the list and see the sub-"
 "categories."
 msgstr ""
+"Si coché, la liste des sous-catégories sera déroulée par défaut. Les "
+"utilisateurs devront cliquer sur la flèche Bas pour dérouler la liste et "
+"voir les sous-catégories."
 
 #: includes/settings-api.php:351
 msgid ""
@@ -2670,6 +2634,10 @@ msgid ""
 "enabled or edited, whichever occurs first. Ads will be posted only once. "
 "Please note that disabled Ads cannot be posted to Facebook."
 msgstr ""
+"Si coché, les Annonces seront postées sur Facebook juste après avoir été "
+"créées, activées ou éditées. Les Annonces ne seront postées qu'une seule "
+"fois. Veuillez noter que les Annonces désactivées ne peuvent pas être "
+"postées sur Facebook."
 
 #: includes/settings/class-listings-moderation-settings.php:39
 msgid ""
@@ -2678,6 +2646,10 @@ msgid ""
 "categories of the selected category, if any. Useful if your website supports "
 "a high number of categories."
 msgstr ""
+"Si coché, un menu déroulant  comportant les catégories supérieures sera "
+"affiché. Lorsque l'utilisateur choisit une catégorie, un nouveau menu "
+"déroulant apparaît affichant les sous-catégories correspondant à cette "
+"catégorie. Très utile si votre site comporte un grand nombre de catégories."
 
 #: includes/settings-api.php:171
 msgid "If checked, categories with 0 listings in it won't be shown."
@@ -2686,13 +2658,15 @@ msgstr ""
 
 #: admin/templates/admin-panel-csv-importer.tpl.php:145
 msgid "If checked, the Ads will belong to the user specified below."
-msgstr ""
+msgstr "Si coché, l'annonce appartiendra à l'utilisateur ci-dessous."
 
 #: includes/settings/class-form-fields-settings.php:20
 msgid ""
 "If checked, when a user is creating a new listing, a list of steps will be "
 "shown at the top of the forms."
 msgstr ""
+"Si coché, lorsqu'un utilisateur crée une nouvelle annonce, une liste des "
+"étapes s'affichera en haut du Formulaire."
 
 #: includes/settings-api.php:75
 msgid ""
@@ -2701,28 +2675,38 @@ msgid ""
 "to go back and edit the Ad details and uploaded images or proceed with the "
 "posting process."
 msgstr ""
+"Si activé, un Aperçu de l'Annonce postée sera affiché après le chargement "
+"des images et avant la demande de paiement. L'utilisateur pourra revenir en "
+"arrière et éditer les détails de l'annonce, charger des images et reprendre "
+"le processus de création d'une Annonce."
 
 #: includes/settings-api.php:68
 msgid ""
 "If enabled, users will be allowed to change the region information "
 "associated with their Ads."
 msgstr ""
+"Si activé, les utilisateurs pourront modifier les informations de la Région "
+"associée à leur Annonce."
 
 #: includes/settings-api.php:69
-#, fuzzy
 msgid "If enabled, users will be allowed to search Ads in multiple regions."
-msgstr "Le commentateur sera autorisé à modifier ses commentaires."
+msgstr ""
+"Si activé, les utilisateurs pourront rechercher des annonces en multi-régions"
 
 #: includes/settings/class-files-settings.php:54
 msgid ""
 "If images are allowed and payments are disabled, users will be allowed "
 "upload this amount of images."
 msgstr ""
+"Si les images sont autorisées et que le paiement est désactivé, les "
+"utilisateurs pourront charger ce nombre d'images."
 
 #: admin/templates/admin-panel-csv-importer.tpl.php:62
 msgctxt "csv-importer"
 msgid "If the CSV does not contain start/end dates, use these by default:"
 msgstr ""
+"Si le CSV ne contient pas les dates de début et de fin, utilisez ceci par "
+"défaut :"
 
 #: admin/templates/admin-panel-fees-entry-form.tpl.php:7
 msgid ""
@@ -2758,7 +2742,6 @@ msgstr ""
 
 #: includes/settings/class-files-settings.php:78
 #: includes/settings/class-files-settings.php:86
-#, fuzzy
 msgctxt "settings"
 msgid ""
 "If you decide to crop thumbnails, images will match exactly the dimensions "
@@ -2816,6 +2799,8 @@ msgid ""
 "If you wish to change the sorting of your fee plans, you can change the <fee-"
 "settings-link>."
 msgstr ""
+"Si vous souhaitez changer l'ordre de vos Plans d'Honoraires, vous pouvez "
+"modifier le <fee-settings-link>."
 
 #: admin/admin-panel.php:643
 msgid ""
@@ -2826,9 +2811,8 @@ msgstr ""
 "bouton Supprimer"
 
 #: includes/settings/class-files-settings.php:62
-#, fuzzy
 msgid "Image File Size"
-msgstr "Réglages Fichier Image"
+msgstr "Taille de Fichier Image"
 
 #: admin/templates/admin-panel-csv-importer.tpl.php:121
 msgid "Image Separator"
@@ -2851,13 +2835,12 @@ msgstr ""
 #: awpcp.php:1024
 msgctxt "uploader queue"
 msgid "Image format either wrong or not supported."
-msgstr ""
+msgstr "Le format de l'image est soit erroné soit non reconnu."
 
 #: includes/settings/class-files-settings.php:29
 #: templates/components/media-manager.tpl.php:3
-#, fuzzy
 msgid "Images"
-msgstr "Image"
+msgstr "Images"
 
 #: admin/admin-panel-fees-table.php:111
 #: admin/templates/admin-panel-fees-entry-form.tpl.php:56
@@ -2871,37 +2854,31 @@ msgid "Images Allowed"
 msgstr "Images Admises"
 
 #: admin/admin-panel-listings-table.php:240
-#, fuzzy
 msgid "Images Awaiting Approval"
-msgstr "Attente d'Approbation"
+msgstr "Images en attente d'Approbation"
 
 #: functions.php:1980
-#, fuzzy
 msgid "Images on Ad \"%s\" are awaiting approval"
 msgstr "L'annonce \"%s\" est en attente d'approbation"
 
 #: functions.php:1982 includes/functions/notifications.php:176
-#, fuzzy
 msgid ""
 "Images on Ad \"%s\" are awaiting approval. You can approve the images going "
 "to the Manage Images section for that Ad and clicking the \"Enable\" button "
 "below each image. Click here to continue: %s."
 msgstr ""
-"L'annonce \"%s\" est en attente d'approbation. Vous pouvez approuver "
-"l'annonce en se rendant dans la section Gestion des Inscriptions et en "
-"cliquant sur \"Enable\" l'action s'affiche au dessus. Cliquez ici pour "
-"continuer: %s"
+"Les images de l'Annonce \"%s\" sont en attente d'approbation. Vous pouvez "
+"approuver les images en vous rendant dans la section Gestion des Images et "
+"en cliquant sur \"Activer\". Cliquez ici pour continuer: %s"
 
 #: includes/functions/notifications.php:174
-#, fuzzy
 msgid "Images on listing \"%s\" are awaiting approval"
-msgstr "L'annonce \"%s\" est en attente d'approbation"
+msgstr "Les images de l'Annonce \"%s\" sont en attente d'approbation"
 
 #: includes/settings/class-files-settings.php:16
-#, fuzzy
 msgctxt "name of Files settings section"
 msgid "Images/Attachments"
-msgstr "Gérer les Images"
+msgstr "Images / Pièces jointes"
 
 #: admin/admin-panel.php:295
 #: admin/templates/admin-panel-csv-importer.tpl.php:173
@@ -2913,9 +2890,8 @@ msgid "Import Ad"
 msgstr "Importer Annonce"
 
 #: admin/templates/admin-panel-csv-importer.tpl.php:2
-#, fuzzy
 msgid "Import Listings"
-msgstr "Importer les Résultats des Tests"
+msgstr "Importer les Annonces"
 
 #: admin/templates/admin-panel-csv-importer.tpl.php:8
 msgid "Import Testing Results"
@@ -2927,9 +2903,8 @@ msgstr ""
 "L'importation ne peut pas continuer. Colonne(s) spécifiée(s) inconnue(s):"
 
 #: import.php:477
-#, fuzzy
 msgid "Import directory %s does not exists."
-msgstr "Les frais de destinataire n'existent pas."
+msgstr "Le répertoire d'importation %s n'existe pas."
 
 #: admin/templates/admin-panel-csv-importer.tpl.php:15
 msgid "Imported Picture count:"
@@ -2941,77 +2916,84 @@ msgstr "Lignes importées:"
 
 #: includes/settings-api.php:283
 msgid "Include Ad access key in email messages"
-msgstr ""
+msgstr "nclure la clé d'accès à l'annonce dans les messages emails"
 
 #: includes/settings-api.php:283
 msgid ""
 "Include Ad access key in email notifications. You may want to uncheck this "
 "option if you are using the Ad Management panel, but is not necessary."
 msgstr ""
+"Inclure la clé d'accès à l'annonce dans les emails de notification. Vous "
+"pouvez désactiver cette option si vous utilisez le tableau de bord des "
+"annonces, mais ce n'est pas nécessaire"
 
 #: includes/settings/class-general-settings.php:96
 msgid "Include a space between the currency symbol and the amount"
-msgstr ""
+msgstr "Inclure un espace entre le symbole de la devise et le montant"
 
 #: includes/settings/class-listing-url-settings.php:27
 msgid ""
 "Include the name of the category in the URL that points to the page of an "
 "individual listing."
 msgstr ""
+"Inclure le nom de la catégorie dans l'URL pointant vers la page de l'Annonce"
 
 #: includes/settings/class-listing-url-settings.php:24
 msgid "Include the name of the category in the listing URL"
-msgstr ""
+msgstr "Inclure le nom de la catégorie dans l'URL de l'Annonce"
 
 #: includes/settings/class-listing-url-settings.php:54
 msgid ""
 "Include the name of the city in the URL that points to the page of an "
 "individual listing."
 msgstr ""
+"Inclure le nom de la ville dans l'URL pointant vers la page de l'Annonce"
 
 #: includes/settings/class-listing-url-settings.php:51
 msgid "Include the name of the city in the listing URL"
-msgstr ""
+msgstr "Inclure le nom de la ville dans l'URL de l'Annonce"
 
 #: includes/settings/class-listing-url-settings.php:36
 msgid ""
 "Include the name of the country in the URL that points to the page of an "
 "individual listing."
-msgstr ""
+msgstr "Inclure le nom du pays dans l'URL pointant vers la page de l'Annonce"
 
 #: includes/settings/class-listing-url-settings.php:33
 msgid "Include the name of the country in the listing URL"
-msgstr ""
+msgstr "Inclure le nom du pays dans l'URL de l'Annonce"
 
 #: includes/settings/class-listing-url-settings.php:63
 msgid ""
 "Include the name of the county in the URL that points to the page of an "
 "individual listing."
 msgstr ""
+"Inclure le nom du département dans l'URL pointant vers la page de l'Annonce"
 
 #: includes/settings/class-listing-url-settings.php:60
 msgid "Include the name of the county in the listing URL"
-msgstr ""
+msgstr "Inclure le nom du département dans l'URL de l'Annonce"
 
 #: includes/settings/class-listing-url-settings.php:45
 msgid ""
 "Include the name of the state in the URL that points to the page of an "
 "individual listing."
 msgstr ""
+"Inclure le nom de la région dans l'URL pointant vers la page de l'Annonce"
 
 #: includes/settings/class-listing-url-settings.php:42
 msgid "Include the name of the state in the listing URL"
-msgstr ""
+msgstr "Inclure le nom de la région dans l'URL de l'Annonce"
 
 #: includes/settings/class-listing-url-settings.php:18
 msgid ""
 "Include the title in the URL that points to the page of an individual "
 "listing."
-msgstr ""
+msgstr "Inclure le titre dans l'URL pointant vers la page de l'Annonce"
 
 #: includes/settings/class-listing-url-settings.php:15
 msgid "Include the title in the listing URL"
-msgstr ""
+msgstr "Inclure le titre dans l'URL de l'Annonce"
 
 #: import.php:418 import.php:489
 msgid "Incompatible ZIP Archive"
@@ -3022,10 +3004,9 @@ msgid "Incomplete Payment Message"
 msgstr "Message de paiement incomplet"
 
 #: awpcp.php:1021
-#, fuzzy
 msgctxt "uploader queue"
 msgid "Init error."
-msgstr "Aucune erreur."
+msgstr "Init Erreur."
 
 #: admin/templates/admin-panel-debug.tpl.php:108
 #: admin/templates/admin-sidebar.tpl.php:132
@@ -3134,6 +3115,8 @@ msgstr "Mise en page et Présentation"
 msgid ""
 "Leave this OFF to accept real payments, turn it on to perform payment tests."
 msgstr ""
+"Laisser ceci sur OFF pour accepter les paiements en ligne, mettre sur ON "
+"pour effectuer vos tests de paiement."
 
 #: admin/templates/admin-sidebar.tpl.php:17
 msgid "Let other people know that it works with your WordPress setup."
@@ -3143,7 +3126,7 @@ msgstr ""
 
 #: includes/settings-api.php:538
 msgid "Licenses"
-msgstr ""
+msgstr "Licences"
 
 #: admin/templates/admin-sidebar.tpl.php:6
 msgid "Like this plugin?"
@@ -3155,34 +3138,30 @@ msgstr "Limites de recherche à des emplacements disponibles."
 
 #: admin/admin-panel.php:714
 msgid "List Category Under"
-msgstr "Liste de Sous Catégorie"
+msgstr "Catégorie d'Annonce sous"
 
 #: includes/helpers/wp-list-table.php:399
 msgid "List View"
 msgstr "Voir Liste"
 
 #: includes/functions/notifications.php:179
-#, fuzzy
 msgid "Listing \"%s\" is awaiting approval"
-msgstr "L'annonce \"%s\" est en attente d'approbation"
+msgstr "L'annonce \"%s\" est en attente d'approbation."
 
 #: includes/functions/notifications.php:71
-#, fuzzy
 msgid "Listing \"%s\" was updated"
-msgstr "Listing Date de Fin"
+msgstr "L'Annonce  \"%s\" a été mise à jour."
 
 #: includes/settings/class-user-notifications-settings.php:66
 #: includes/settings/class-user-notifications-settings.php:99
-#, fuzzy
 msgid "Listing Awaiting Approval"
-msgstr "Attente d'Approbation"
+msgstr "Annonce en attente d'Approbation"
 
 #: includes/settings/class-user-notifications-settings.php:21
 #: includes/settings/class-user-notifications-settings.php:48
 #: includes/settings/class-user-notifications-settings.php:79
-#, fuzzy
 msgid "Listing Created"
-msgstr "Listing Titre"
+msgstr "Annonce créée"
 
 #: cron.php:86
 msgid "Listing Details"
@@ -3206,14 +3185,12 @@ msgstr "Listing Codes Clés"
 
 #: includes/settings/class-user-notifications-settings.php:57
 #: includes/settings/class-user-notifications-settings.php:90
-#, fuzzy
 msgid "Listing Edited"
-msgstr "Listing Codes Clés"
+msgstr "Annonce éditée"
 
 #: includes/settings/class-user-notifications-settings.php:27
-#, fuzzy
 msgid "Listing Enabled"
-msgstr "Listing Date de Fin"
+msgstr "Annonce désactivée"
 
 #: frontend/templates/email-ad-renewed-success-user.tpl.php:17
 msgid "Listing End Date"
@@ -3221,9 +3198,8 @@ msgstr "Listing Date de Fin"
 
 #: includes/settings/class-user-notifications-settings.php:39
 #: includes/settings/class-user-notifications-settings.php:85
-#, fuzzy
 msgid "Listing Expired"
-msgstr "Listing Titre"
+msgstr "Annonce expirée"
 
 #: frontend/templates/email-ad-renewed-success-user.tpl.php:9
 #: frontend/templates/email-ad-updated-user.tpl.php:11
@@ -3233,7 +3209,7 @@ msgstr "Listing ID"
 
 #: includes/settings/class-user-notifications-settings.php:28
 msgid "Listing Needs to be Renewed"
-msgstr ""
+msgstr "L'Annonce doit être renouvelée"
 
 #: frontend/templates/email-ad-renewed-success-user.tpl.php:5
 #: frontend/templates/email-ad-updated-user.tpl.php:9
@@ -3250,13 +3226,15 @@ msgstr "Listing URL"
 
 #: admin/admin-panel-listings.php:22 admin/user-panel.php:50
 msgid "Listings"
-msgstr "Listes d'Annonces"
+msgstr "Liste d'Annonces"
 
 #: includes/settings/class-listings-moderation-settings.php:27
 msgid ""
 "Listings will be in a disabled status after the owners modifies them and "
 "until the administrator approves them."
 msgstr ""
+"Les Annonces seront désactivées après que leur propriétaire les aient "
+"modifiées, jusqu'à ce que l'Administrateur les approuve."
 
 #: admin/admin-panel-listings-table.php:261 frontend/page-show-ad.php:83
 #: frontend/placeholders.php:660
@@ -3264,7 +3242,6 @@ msgid "Location"
 msgstr "Emplacement"
 
 #: includes/settings/class-registration-settings.php:10
-#, fuzzy
 msgid ""
 "Location of registration page. Value should be the full URL to the WordPress "
 "registration page (e.g. http://www.awpcp.com/wp-login.php?action=register)."
@@ -3274,26 +3251,23 @@ msgstr ""
 "action=register)."
 
 #: includes/helpers/widgets/class-listing-form-steps-component.php:34
-#, fuzzy
 msgid "Login/Registration"
-msgstr "Inscription"
+msgstr "Connexion / Inscription"
 
 #: frontend/templates/page-place-ad-login-step.tpl.php:1
-#, fuzzy
 msgctxt "place ad login step"
 msgid "Login/Registration"
-msgstr "Inscription"
+msgstr "Connexion / Inscription"
 
 #: includes/settings/class-general-settings.php:34
-#, fuzzy
 msgid ""
 "Looking for a job? Trying to find a date? Looking for an apartment? Browse "
 "our classifieds. Have a job to advertise? An apartment to rent? Post a "
 "Classified Ad."
 msgstr ""
-"Vous cherchez un emploi? Essayez de trouver une date? Vous cherchez un "
-"appartement? Consultez nos petites annonces. Avoir un travail à faire de la "
-"publicité? Un appartement à louer? Afficher une petite annonce."
+"Vous cherchez un emploi? Essayez d'obtenir un rendez-vous ? Vous cherchez un "
+"logement? Consultez nos petites annonces. Proposer un travail ? Un "
+"appartement à louer ? Affichez une petite annonce."
 
 #: frontend/templates/login-form.tpl.php:17
 #: frontend/templates/login-form.tpl.php:19
@@ -3330,9 +3304,8 @@ msgid "Manage Ad Listings"
 msgstr "Gérer les Petites Annonces"
 
 #: frontend/page-edit-ad.php:208
-#, fuzzy
 msgid "Manage Attachments"
-msgstr "Gérer les Images"
+msgstr "Gérer les Pièces jointes"
 
 #: admin/admin-panel.php:266 admin/admin-panel.php:768
 #: admin/templates/admin-panel-home.tpl.php:80
@@ -3350,9 +3323,8 @@ msgid "Manage Credit"
 msgstr "Gérer Crédit"
 
 #: admin/admin-panel-credit-plans.php:14
-#, fuzzy
 msgid "Manage Credit Plans"
-msgstr "Gérer Crédit"
+msgstr "Gérer les Plans de Crédit"
 
 #: admin/admin-panel.php:292
 msgid "Manage Extra Fields"
@@ -3364,47 +3336,41 @@ msgid "Manage Images"
 msgstr "Gérer les Images"
 
 #: templates/admin/listings-media-center.tpl.php:4
-#, fuzzy
 msgid "Manage Links"
-msgstr "Gérer Liste d'annonces"
+msgstr "Gérer les Liens"
 
 #: admin/templates/admin-panel-media-manager.tpl.php:4
-#, fuzzy
 msgctxt "media-manager"
 msgid "Manage Links"
-msgstr "Gérer Liste d'annonces"
+msgstr "Gérer les Liens"
 
 #: admin/templates/admin-panel-listings-view.tpl.php:17
 msgid "Manage Listing"
-msgstr "Gérer Liste d'annonces"
+msgstr "Gérer Les Annonces"
 
 #: admin/admin-panel-fees.php:14
-#, fuzzy
 msgid "Manage Listing Fees"
-msgstr "Gérer Liste d'annonces"
+msgstr "Gérer les Honoraires"
 
 #: admin/admin-panel-listings-edit-ad-page.php:15
 #: admin/admin-panel-listings-place-ad-page.php:15
 #: admin/admin-panel-listings-renew-ad-page.php:15
 #: admin/admin-panel-listings.php:20
-#, fuzzy
 msgid "Manage Listings"
-msgstr "Gérer Liste d'annonces"
+msgstr "Gérer les Liste d'annonces"
 
 #: admin/admin-panel-upgrade.php:12
-#, fuzzy
 msgctxt "awpcp admin menu"
 msgid "Manual Upgrade"
-msgstr "Mise à jour manuelle requise"
+msgstr "Mise à jour manuelle"
 
 #: admin/templates/admin-pending-manual-upgrade-notice.tpl.php:4
 msgid "Manual Upgrade Required"
 msgstr "Mise à jour manuelle requise"
 
 #: admin/admin-panel-listings.php:152
-#, fuzzy
 msgid "Mark Reviewed"
-msgstr "Marqué comme Payé"
+msgstr "Marqué comme Revu"
 
 #: admin/admin-panel-listings-table.php:405
 msgid "Mark as Paid"
@@ -3415,14 +3381,12 @@ msgid "Mark as SPAM"
 msgstr "Marqué SPAM"
 
 #: awpcp.php:768
-#, fuzzy
 msgid "Mark as Sold"
-msgstr "Marqué SPAM"
+msgstr "Marqué comme Vendu"
 
 #: admin/admin-panel-listings-table.php:382
-#, fuzzy
 msgid "Mark as Verified"
-msgstr "Marqué comme Payé"
+msgstr "Marqué comme Vérifié"
 
 #: includes/settings/class-general-settings.php:115
 msgid "Math"
@@ -3443,14 +3407,12 @@ msgid "Max number used in Math CAPTCHA"
 msgstr "Nombre maximum utilisé dans le Calcul de CAPTCHA"
 
 #: includes/settings-api.php:79
-#, fuzzy
 msgid "Maximum Ad details length"
-msgstr "Maximun de longueur de détails de l'annonce"
+msgstr "Longueur Maximum du texte de l'Annonce"
 
 #: includes/settings-api.php:78
-#, fuzzy
 msgid "Maximum Ad title length"
-msgstr "Longueur maximun du titre d'annonce"
+msgstr "Longueur maximum du titre de l'Annonce"
 
 #: includes/settings/class-files-settings.php:64
 msgid "Maximum file size per image"
@@ -3462,33 +3424,31 @@ msgid ""
 "1000000 bytes. You can google \"x MB to bytes\" to get an accurate "
 "conversion."
 msgstr ""
+"Taille maximum d'un fichier téléchargeable, en octets. 1 Mo = 1048576 "
+"octets. Voir sur Google \"x Mo en octets\" pour une valeur précise."
 
 #: includes/settings/class-files-settings.php:69
-#, fuzzy
 msgid ""
 "Maximum height for images. Images taller than settings are automatically "
 "resized upon upload."
 msgstr ""
-"Hauteur maximun pour les images. Images les plus hautes qui seront "
+"Hauteur maximum pour les images. Images les plus hautes qui seront "
 "automatiquement redimensionnées au téléchargement."
 
 #: includes/settings/class-files-settings.php:69
-#, fuzzy
 msgid "Maximum image height"
-msgstr "Hauteur maximun de l'image"
+msgstr "Hauteur maximum de l'image"
 
 #: includes/settings/class-files-settings.php:68
-#, fuzzy
 msgid "Maximum image width"
-msgstr "Largeur maximun de l'image"
+msgstr "Largeur maximum de l'image"
 
 #: includes/settings/class-files-settings.php:68
-#, fuzzy
 msgid ""
 "Maximum width for images. Images wider than settings are automatically "
 "resized upon upload."
 msgstr ""
-"Largeur maximun pour les images. Images les plus larges qui seront "
+"Largeur maximum pour les images. Images les plus larges qui seront "
 "automatiquement redimensionnées au téléchargement."
 
 #: includes/settings-api.php:187
@@ -3569,6 +3529,8 @@ msgid ""
 "1000000 bytes. You can google \"x MB to bytes\" to get an accurate "
 "conversion."
 msgstr ""
+"Taille minimum d'un fichier téléchargeable, en octets. 1 Mo = 1048576 "
+"octets. Voir sur Google \"x Mo en octets\" pour une valeur précise."
 
 #: includes/settings/class-files-settings.php:67
 msgid "Minimum height for images."
@@ -3593,16 +3555,15 @@ msgstr "Manquant"
 
 #: includes/helpers/facebook.php:52
 msgid "Missing a valid User Access Token."
-msgstr ""
+msgstr "Il manque un code d'accès utilisateur valide."
 
 #: includes/helpers/facebook.php:31
 msgid "Missing app ID/secret."
-msgstr ""
+msgstr "L'ID/secret de l'Application est déclaré manquant"
 
 #: includes/media/class-file-uploader.php:140
-#, fuzzy
 msgid "Missing chunk."
-msgstr "Valeur Manquante"
+msgstr "Valeur Manquante."
 
 #: functions.php:1745
 msgid "Missing temporary directory."
@@ -3613,9 +3574,8 @@ msgid "Moderation"
 msgstr "Modération"
 
 #: includes/settings/class-user-notifications-settings.php:43
-#, fuzzy
 msgid "Moderator Notifications"
-msgstr "Notifications de l'utilisateur"
+msgstr "Notifications du Modérateur"
 
 #: includes/settings-api.php:102
 msgid ""
@@ -3651,9 +3611,8 @@ msgid "More Information"
 msgstr "Plus d'informations"
 
 #: admin/admin-panel.php:868
-#, fuzzy
 msgid "Move Ads to new category"
-msgstr "Annonce dans une Nouvelle Catégorie"
+msgstr "Déplacer l'Annonce dans une Nouvelle Catégorie"
 
 #: admin/admin-panel.php:859
 msgid "Move Selected Categories"
@@ -3669,7 +3628,6 @@ msgid "N/A"
 msgstr "N/A"
 
 #: awpcp.php:1032
-#, fuzzy
 msgctxt "uploader queue"
 msgid "N/A"
 msgstr "N/A"
@@ -3683,7 +3641,6 @@ msgid "Name"
 msgstr "Nom"
 
 #: admin/form-fields/class-form-fields-table.php:40
-#, fuzzy
 msgctxt "form field name"
 msgid "Name"
 msgstr "Nom"
@@ -3747,33 +3704,33 @@ msgstr "Besoin d'assistance?"
 
 #: admin/admin-panel-listings-table.php:237
 msgid "New"
-msgstr ""
+msgstr "Nouveau"
 
 #: includes/cron/class-task-logic.php:39
 msgctxt "task status"
 msgid "New"
-msgstr ""
+msgstr "Nouveau"
 
 #: includes/settings/class-listings-moderation-settings.php:18
 msgid ""
 "New Ads will be in a disabled status, not visible to visitors, until the "
 "administrator approves them."
 msgstr ""
+"Les nouvelles Annonces seront désactivées, non visibles des visiteurs, "
+"jusqu'à ce que l'Administrateur les approuve."
 
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:6
-#, fuzzy
 msgctxt "credit plans form"
 msgid "New Credit Plan Details"
-msgstr "Plans de Crédit"
+msgstr "Nouveaux détails du Plan de Crédit"
 
 #: admin/templates/admin-panel-fees-entry-form.tpl.php:14
 msgid "New Fee Plan Details"
-msgstr ""
+msgstr "Nouveaux détail de Plan d'Honoraires"
 
 #: frontend/ad-functions.php:335 includes/functions/notifications.php:33
-#, fuzzy
 msgid "New classified listing created"
-msgstr "Nouvelle annonce postée"
+msgstr "Nouvelle Annonce créée"
 
 #: admin/admin-panel-fees-table.php:202 admin/admin-panel-fees-table.php:206
 msgid "No"
@@ -3785,9 +3742,8 @@ msgstr "Aucune ID de l'annonce n'a été spécifiée."
 
 #: includes/views/admin/listings/class-renew-listings-admin-page.php:68
 #: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:80
-#, fuzzy
 msgid "No Ads were selected"
-msgstr "Aucune annonce n'a été sélectionnée."
+msgstr "Aucune Annonce n'a été sélectionnée."
 
 #: admin/admin-panel-listings.php:362
 msgid "No Ads were selected."
@@ -3796,6 +3752,8 @@ msgstr "Aucune annonce n'a été sélectionnée."
 #: includes/helpers/facebook.php:77
 msgid "No Facebook page is selected (missing page id or token)."
 msgstr ""
+"Aucune page Facebook n'est sélectionnée (référence de page ou code d'accès "
+"manquant)."
 
 #: includes/settings-api.php:77
 msgid "No HTML Allowed"
@@ -3808,7 +3766,7 @@ msgstr "Pas de Limite"
 
 #: includes/class-listings-collection.php:43
 msgid "No Listing was found with id: %d."
-msgstr ""
+msgstr "Aucune annonce trouvée avec l'ID : %d."
 
 #: includes/payments-api.php:621
 msgid ""
@@ -3825,7 +3783,7 @@ msgstr "Non Merci"
 
 #: includes/models/category.php:273
 msgid "No category was found with ID: %d"
-msgstr ""
+msgstr "Aucune Catégorie trouvée pour l'ID : %d."
 
 #: admin/admin-panel.php:1213
 msgid "No changes made to categories."
@@ -3838,10 +3796,10 @@ msgid "No characters limit."
 msgstr "Pas de limites de caractères."
 
 #: includes/views/class-verify-credit-plan-was-set-step-decorator.php:21
-#, fuzzy
 msgid ""
 "No credit plan was set. You should choose one of the available Credit Plans"
-msgstr "Vous devez choisir l'un des Plans de Crédit disponibles"
+msgstr ""
+"Aucun Plan de Crédit. Vous devez choisir l'un des Plans de Crédit disponibles"
 
 #: frontend/templates/payments-credit-plans-table.tpl.php:20
 msgid "No credit plans available."
@@ -3852,9 +3810,8 @@ msgid "No errors."
 msgstr "Aucune erreur."
 
 #: includes/models/class-media.php:146
-#, fuzzy
 msgid "No file was found with id: %d"
-msgstr "Aucun fichier n'a été téléchargé."
+msgstr "Aucun fichier n'a été trouvé pour l'ID : %d."
 
 #: upload_awpcp.php:35
 msgid "No file was selected."
@@ -3889,12 +3846,10 @@ msgstr ""
 "visualisez les annonces de toutes les catégories."
 
 #: includes/media/class-upload-generated-thumbnail-ajax-handler.php:82
-#, fuzzy
 msgid "No thumbnail data found."
-msgstr "Aucun élément trouvé."
+msgstr "Aucune donnée trouvée pour les Vignettes."
 
 #: admin/pointers/class-drip-autoresponder.php:33
-#, fuzzy
 msgctxt "drip-autoresponder"
 msgid "No, thanks"
 msgstr "Non Merci"
@@ -3910,11 +3865,11 @@ msgstr "Aucune"
 
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:141
 msgid "None (Do not sent Ads to a Facebook Group)"
-msgstr ""
+msgstr "Aucun ( Ne pas envoyer d'Annonce à un Groupe Facebook)"
 
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:121
 msgid "None (Do not sent Ads to a Facebook Page)"
-msgstr ""
+msgstr "Aucun ( Ne pas envoyer d'Annonce à une Page Facebook)"
 
 #: admin/admin-panel-listings-table.php:418
 msgid "Not Featured"
@@ -3946,7 +3901,7 @@ msgstr "Avis sur une réponse concernant l'annonce: %s"
 
 #: includes/settings/class-user-notifications-settings.php:27
 msgid "Notify Ad owner when the Ad is enabled."
-msgstr "Prévenir l'utilisateur lorsque son annonce est activée."
+msgstr "Prévenir le propriétaire lorsque son annonce est activée."
 
 #: includes/settings-api.php:298
 msgid "Notify admin about contact message"
@@ -3969,12 +3924,18 @@ msgid ""
 "Number of characters allowed in Ad details. Please note this is the default "
 "value and can be overwritten in Fees and Subscription Plans."
 msgstr ""
+"Nombre de caractères autorisés dans le détail de l'annonce. SVP, veuillez "
+"noter qu'il s'agit d'une valeur par défaut qui peut être modifiée dans les "
+"plans de paiement ou de souscription."
 
 #: includes/settings-api.php:78
 msgid ""
 "Number of characters allowed in Ad title. Please note this is the default "
 "value and can be overwritten in Fees and Subscription Plans."
 msgstr ""
+"Nombre de caractères autorisés dans le titre de l'annonce. SVP, veuillez "
+"noter qu'il s'agit d'une valeur par défaut qui peut être modifiée dans les "
+"plans de paiement ou de souscription."
 
 #: includes/settings/class-files-settings.php:58
 msgid "Number of columns of thumbnails to show in Show Ad page."
@@ -3986,19 +3947,19 @@ msgstr ""
 msgid ""
 "Number of days before Ads that remain in a unverified status will be deleted"
 msgstr ""
+"Nombre de jours avant que l'annonce restée au statut non vérifié soit effacée"
 
 #: includes/settings/class-listings-moderation-settings.php:32
 msgid "Number of days before the verification email is sent again"
-msgstr ""
+msgstr "Nombre de jours avant que l'email de vérification soit renvoyé"
 
 #: admin/templates/admin-panel-home.tpl.php:31
 msgid "Number of duplicate pages"
 msgstr "Nombre de pages doublons"
 
 #: includes/settings/class-files-settings.php:54
-#, fuzzy
 msgid "Number of images allowed if payments are disabled (Free Mode)"
-msgstr "Nombre d'images autorisées en mode gratuit"
+msgstr "Nombre d'images autorisées en mode gratuit."
 
 #: admin/templates/admin-panel-home.tpl.php:56
 msgid "Number of inactive/expired/disabled listings currently in the system"
@@ -4012,11 +3973,11 @@ msgstr "Nombre de catégories enfant de Bas niveau"
 
 #: includes/settings-api.php:80
 msgid "Number of words in Ad excerpt"
-msgstr ""
+msgstr "Nombre de mot affichés dans l'extrait d'annonce."
 
 #: includes/settings-api.php:80
 msgid "Number of words shown by the Ad excerpt placeholder."
-msgstr ""
+msgstr "Nombre de mot affichés dans l'extrait d'annonce."
 
 #: includes/settings/class-listings-moderation-settings.php:10
 msgid "Only admin can post Ads"
@@ -4028,6 +3989,9 @@ msgid ""
 "com will match a.foo.com, b.foo.com, etc. but foo.com will match foo.com "
 "only. Please type a domain per line."
 msgstr ""
+"Seule les adresses mail comportant un domaine dans la liste ci-dessus seront "
+"autorisées. *.foo.com sera valable pour les domaines a.foo.com, b.foo.com, "
+"etc. mais foo.com ne sera avlable que pour le domaine foo.com. "
 
 #: frontend/page-reply-to-ad.php:62
 msgid ""
@@ -4039,11 +4003,8 @@ msgstr ""
 "l'annonce."
 
 #: includes/settings/class-registration-settings.php:8
-#, fuzzy
 msgid "Only registered users will be allowed to post Ads."
-msgstr ""
-"Seuls les utilisateurs enregistrés peuvent placer des commentaires "
-"d'annonces."
+msgstr "Seuls les utilisateurs enregistrés peuvent poster des Annonces."
 
 #: admin/templates/admin-panel-debug.tpl.php:57
 msgid "Option Name"
@@ -4066,19 +4027,16 @@ msgid "Order Ad Listings in Search results by"
 msgstr "Ordre des petites annonces dans les résultats de recherche donné par"
 
 #: frontend/templates/email-place-ad-success-user.tpl.php:17
-#, fuzzy
 msgid "Order Total"
-msgstr "Ordre"
+msgstr "Montant total de la commande"
 
 #: frontend/templates/email-place-ad-success-user.tpl.php:20
-#, fuzzy
 msgid "Order Total (credits)"
-msgstr "Montant Total (crédit)"
+msgstr "Montant total de la commande (crédit)"
 
 #: templates/components/media-manager.tpl.php:61
-#, fuzzy
 msgid "Other Files"
-msgstr "Autres Modules"
+msgstr "Autres Fichiers"
 
 #: admin/templates/admin-sidebar.tpl.php:169
 msgid "Other Modules"
@@ -4104,6 +4062,9 @@ msgid ""
 "plugin including your ads, images and everything else created by the plugin "
 "will be permanently deleted."
 msgstr ""
+"VEUILLEZ NOTER : En cliquant sur le bouton ci-dessous, TOUTES les données "
+"liées au plugin, vos annonces, images et tout le reste précédemment créé par "
+"le plugin seront irréversiblement détruits."
 
 #: admin/templates/admin-panel-debug.tpl.php:31
 msgid "Page ID"
@@ -4111,12 +4072,11 @@ msgstr "ID de Page"
 
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:156
 msgid "Page Token (not editable)"
-msgstr ""
+msgstr "Numéro d'authentification de la Page (non éditable)"
 
 #: includes/settings-api.php:167
-#, fuzzy
 msgid "Pagination Options"
-msgstr "Options de Paiement"
+msgstr "Options de Pagination"
 
 #: includes/settings-api.php:151
 msgid "Paid status and date (paid first, then most recent)"
@@ -4162,7 +4122,6 @@ msgid "PayPal"
 msgstr "PayPal"
 
 #: admin/templates/admin-panel-debug.tpl.php:115
-#, fuzzy
 msgctxt "debug page"
 msgid "PayPal Connection"
 msgstr "Connection PayPal"
@@ -4196,9 +4155,8 @@ msgstr ""
 "paiement ont été publiés."
 
 #: admin/admin-panel-listings-table.php:264
-#, fuzzy
 msgid "Payer Email"
-msgstr "Email Utisateur"
+msgstr "Email du payeur"
 
 #: includes/helpers/widgets/class-listing-form-steps-component.php:46
 #: includes/helpers/widgets/class-listing-form-steps-component.php:61
@@ -4277,9 +4235,8 @@ msgid "Payment Terms"
 msgstr "Conditions de Paiement"
 
 #: includes/settings-api.php:57
-#, fuzzy
 msgid "Payment Thank You page"
-msgstr "Page Paiement Merci"
+msgstr "Page de remerciement pour le Paiement"
 
 #: frontend/templates/email-place-ad-success-user.tpl.php:14
 msgid "Payment Transaction"
@@ -4296,10 +4253,9 @@ msgid "Pending"
 msgstr "En attendant"
 
 #: admin/templates/asynchronous-tasks.tpl.php:10
-#, fuzzy
 msgctxt "asynchrounous tasks screen"
 msgid "Pending Tasks"
-msgstr "En attendant"
+msgstr "Tâches en attente"
 
 #: frontend/placeholders.php:751
 msgid "Phone"
@@ -4324,9 +4280,8 @@ msgid "Place Ad page"
 msgstr "Page Insérer une Annonce"
 
 #: includes/settings/class-registration-settings.php:8
-#, fuzzy
 msgid "Place Ad requires user registration"
-msgstr "Répondre à l'annonce exige l'enregistrement des utilisateurs"
+msgstr "Poster une Annonce requiert l'enregistrement des utilisateurs"
 
 #: includes/payments-api.php:515
 msgctxt "credit plans table"
@@ -4334,12 +4289,13 @@ msgid "Plan"
 msgstr "Plan"
 
 #: admin/pointers/class-drip-autoresponder-ajax-handler.php:115
-#, fuzzy
 msgctxt "drip-autoresponder"
 msgid ""
 "Please check your email and click the link provided to confirm your "
 "subscription."
-msgstr "Veuillez vérifier vos courriels pour réinitialiser votre mot de passe."
+msgstr ""
+"Veuillez vérifier vos courriels et cliquer sur le lien fourni pour confirmer "
+"votre souscription."
 
 #: frontend/templates/login-form.tpl.php:2
 msgid "Please check your email for the password and then return to log in."
@@ -4532,14 +4488,12 @@ msgid "Please use the button below to complete your payment."
 msgstr "Veuillez utiliser le bouton ci-dessous pour effectuer votre paiement."
 
 #: frontend/templates/widget-latest-ads-form.tpl.php:29
-#, fuzzy
 msgid "Position of the thumbnail (Desktop):"
-msgstr "Largeur des images miniature."
+msgstr "Position des Vignettes (Bureau PC) :"
 
 #: frontend/templates/widget-latest-ads-form.tpl.php:42
-#, fuzzy
 msgid "Position of the thumbnail (mobile):"
-msgstr "Largeur des images miniature."
+msgstr "Position des Vignettes (Mobile) :"
 
 #: frontend/templates/payments-billing-form.tpl.php:107
 msgid "Postal Code"
@@ -4564,14 +4518,12 @@ msgstr ""
 
 #: frontend/page-place-ad.php:1180 frontend/page-place-ad.php:1184
 #: frontend/templates/page-place-ad-details-step.tpl.php:115
-#, fuzzy
 msgid "Preview Ad"
-msgstr "Voir l'annonce"
+msgstr "Prévisualiser l'Annonce"
 
 #: includes/helpers/widgets/class-listing-form-steps-component.php:56
-#, fuzzy
 msgid "Preview Listing"
-msgstr "Annonces gratuites"
+msgstr "Aperçu de l'Annonce"
 
 #: admin/admin-panel-credit-plans-table.php:76
 #: admin/admin-panel-fees-table.php:114
@@ -4588,15 +4540,14 @@ msgid "Price"
 msgstr "Prix"
 
 #: includes/payment-terms-table.php:49
-#, fuzzy
 msgctxt "place ad payment terms column headers"
 msgid "Price (credits)"
-msgstr "Champ Prix"
+msgstr "Prix (crédits)"
 
 #: includes/payment-terms-table.php:44
 msgctxt "place ad payment terms column headers"
 msgid "Price (currency)"
-msgstr ""
+msgstr "Prix (devise)"
 
 #: includes/settings-api.php:157
 msgid "Price (high to low, then by date)"
@@ -4617,18 +4568,20 @@ msgid ""
 "the plugin doesn't know the symbol for your currency, it will use an "
 "uppercase version of the code itself."
 msgstr ""
+"Les prix seront affichés avec cette devise dans les annonces et les pages de "
+"paiement. Le symbole de la devise sera généré à partir de c code, mais si le "
+"plugin ne le reconnaît pas pour votre devise, il utilisera le code lui-même "
+"en Majuscules."
 
 #: includes/settings/class-files-settings.php:73
 #: templates/components/file-manager.tpl.php:35
 #: templates/components/media-manager.tpl.php:26
-#, fuzzy
 msgid "Primary Image"
-msgstr "Définir comme Image Principale"
+msgstr "Image Principale"
 
 #: templates/components/media-manager.tpl.php:55
-#, fuzzy
 msgid "Primary Video"
-msgstr "Définir comme Image Principale"
+msgstr "Vidéo Principale"
 
 #: admin/admin-panel-fees-table.php:123
 msgid "Private"
@@ -4694,9 +4647,8 @@ msgid "Regions Control Module"
 msgstr "Regions Control Module"
 
 #: includes/settings-api.php:66
-#, fuzzy
 msgid "Regions Settings"
-msgstr "Inscription Réglages"
+msgstr "Réglages des Régions"
 
 #: frontend/templates/login-form.tpl.php:16
 msgid "Register"
@@ -4708,28 +4660,24 @@ msgstr "Inscription"
 
 #: includes/settings/class-registration-settings.php:6
 msgid "Registration Settings"
-msgstr "Inscription Réglages"
+msgstr "Réglages d'Inscription"
 
 #: admin/class-media-manager.php:206
-#, fuzzy
 msgctxt "media manager"
 msgid "Reject"
-msgstr "Lignes rejetées:"
+msgstr "Rejeter"
 
 #: templates/components/media-manager.tpl.php:80
-#, fuzzy
 msgid "Reject File"
-msgstr "Effacer"
+msgstr "Rejeter le Fichier"
 
 #: templates/components/media-manager.tpl.php:23
-#, fuzzy
 msgid "Reject Image"
-msgstr "Supprimer un commentaire"
+msgstr "Rejeter l'Image"
 
 #: templates/components/media-manager.tpl.php:52
-#, fuzzy
 msgid "Reject Video"
-msgstr "Lignes rejetées:"
+msgstr "Rejeter  la Vidéo"
 
 #: admin/templates/admin-panel-csv-importer.tpl.php:16
 msgid "Rejected rows:"
@@ -4745,9 +4693,8 @@ msgid "Remove Featured"
 msgstr "Retirer la mise en vedette de l'annonce"
 
 #: includes/helpers/widgets/multiple-region-selector.php:127
-#, fuzzy
 msgid "Remove Region"
-msgstr "Retirer Crédit"
+msgstr "Retirer la région"
 
 #: admin/admin-panel-listings-table.php:207
 msgid "Renew"
@@ -4852,35 +4799,48 @@ msgstr "Website exigé"
 #: includes/settings/class-form-fields-settings.php:102
 msgid "Require city on Place Ad and Edit Ad forms?"
 msgstr ""
+"Exiger la ville sur les formulaires d'enregistrement et d'édition des "
+"annonces ?"
 
 #: includes/settings/class-form-fields-settings.php:83
 msgid "Require country on Place Ad and Edit Ad forms?"
 msgstr ""
+"Exiger la Région sur les formulaires d'enregistrement et d'édition des "
+"annonces ?"
 
 #: includes/settings/class-form-fields-settings.php:95
-#, fuzzy
 msgid "Require county/village/other on Place Ad and Edit Ad forms?"
-msgstr "Exiger Département?"
+msgstr ""
+"Exiger le département et la ville sur les formulaires d'enregistrement et "
+"d'édition des annonces ?"
 
 #: includes/settings/class-form-fields-settings.php:36
 msgid "Require phone on Place Ad and Edit Ad forms?"
 msgstr ""
+"Exiger le n° de téléphone sur les formulaires d'enregistrement et d'édition "
+"des annonces?"
 
 #: includes/settings/class-form-fields-settings.php:66
 msgid "Require price on Place Ad and Edit Ad forms?"
 msgstr ""
+"Exiger un prix sur les formulaires d'enregistrement et d'édition des "
+"annonces ?"
 
 #: includes/settings/class-form-fields-settings.php:89
 msgid "Require state on Place Ad and Edit Ad forms?"
 msgstr ""
+"Exiger l'Etat sur les formulaires d'enregistrement et d'édition des "
+"annonces ?"
 
 #: includes/settings/class-registration-settings.php:9
 msgid "Require user registration for replying to an Ad?"
-msgstr "Exiger l'enregistrement des utilisateurs pour répondre à une annonce?"
+msgstr "Exiger l'enregistrement des utilisateurs pour répondre à une annonce ?"
 
 #: includes/settings/class-form-fields-settings.php:51
 msgid "Require website on Place Ad and Edit Ad forms?"
 msgstr ""
+"Exiger un site web sur les formulaires d'enregistrement et d'édition des "
+"annonces ?"
 
 #: import.php:275
 msgid "Required value <em>%s</em> missing at row number: %d"
@@ -4903,7 +4863,6 @@ msgid "Restore AWPCP Pages"
 msgstr "Restaurer les Pages AWPCP"
 
 #: admin/templates/admin-panel-settings-pages-settings.tpl.php:33
-#, fuzzy
 msgid "Restore Pages"
 msgstr "Restaurer les Pages AWPCP"
 
@@ -4912,9 +4871,8 @@ msgid "Restore the Classifieds pages to fix the conflict."
 msgstr "Restaurer les Pages Annonces pour résoudre le conflit."
 
 #: awpcp.php:789
-#, fuzzy
 msgid "Restricted Categories"
-msgstr "Supprimer les Catégories sélectionnées"
+msgstr "Catégories restreintes"
 
 #: frontend/templates/payments-paypal-payment-button.tpl.php:27
 msgctxt "paypal-checkout-form"
@@ -4929,22 +4887,20 @@ msgstr "Retour vers <a href=\"%s\">Accueil</a>."
 #: frontend/ad-functions.php:188 frontend/page-renew-ad.php:121
 #: templates/admin/listings-media-center.tpl.php:6
 msgid "Return to Listings"
-msgstr "Retour aux Listes"
+msgstr "Retour aux Annonces"
 
 #: admin/templates/admin-panel-media-manager.tpl.php:6
-#, fuzzy
 msgctxt "media-manager"
 msgid "Return to Listings"
-msgstr "Retour aux Listes"
+msgstr "Retour aux Annonces"
 
 #: frontend/page-search-ads.php:157
 msgid "Return to Search"
 msgstr "Retour à la recherche"
 
 #: templates/frontend/edit-listing-page-delete-listing-confirmation.tpl.php:7
-#, fuzzy
 msgid "Return to main classifieds"
-msgstr "Vous n'avez actuellement aucune annonce"
+msgstr "Retour aux Annonces principales"
 
 #: admin/templates/admin-panel-debug.tpl.php:14
 msgctxt "debug page"
@@ -4964,7 +4920,7 @@ msgstr "Ligne %d. %s"
 #: awpcp.php:1044
 msgctxt "uploader queue"
 msgid "Runtime ran out of available memory."
-msgstr ""
+msgstr "Le programme s'est interrompu pur manque de mémoire disponible."
 
 #: includes/settings/class-general-settings.php:148
 msgid "SEO Settings"
@@ -5003,9 +4959,8 @@ msgid "SMTP username (if emails not processing normally)."
 msgstr "Nom d'utilisateur SMTP (si les emails ne sont pas traités normalement)"
 
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:74
-#, fuzzy
 msgid "Save App Settings"
-msgstr "Image Réglages"
+msgstr "Enregistrer les Réglages d'Application"
 
 #: admin/admin-panel.php:635
 msgid "Save Category Changes"
@@ -5019,16 +4974,15 @@ msgstr "Enregistrer les Modifications"
 
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:165
 msgid "Save Page and Group Selection"
-msgstr ""
+msgstr "Enregistrer la sélection de Page et de Groupe"
 
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:101
 msgid "Save Token Value"
-msgstr ""
+msgstr "Enregistrer le numéro d'authentification"
 
 #: frontend/widget-search.php:164
-#, fuzzy
 msgid "Search"
-msgstr "Recherche par"
+msgstr "Recherche"
 
 #: admin/templates/admin-panel-listings.tpl.php:14
 #: frontend/page-search-ads.php:14
@@ -5056,37 +5010,31 @@ msgid "Search for Ads containing this word or phrase"
 msgstr "Rechercher des annonces contenant ce mot ou phrase"
 
 #: includes/helpers/widgets/multiple-region-selector.php:124
-#, fuzzy
 msgctxt "Select <Region Type> in Multiple Region Selector"
 msgid "Select %s"
-msgstr "Liste de Sélection"
+msgstr "Sélectionner %s"
 
 #: includes/helpers/widgets/class-listing-form-steps-component.php:41
-#, fuzzy
 msgid "Select Category"
 msgstr "Choisir une catégorie"
 
 #: frontend/templates/page-place-ad-order-step.tpl.php:4
-#, fuzzy
 msgctxt "place ad order step"
 msgid "Select Category"
-msgstr "Choisir une catégorie"
+msgstr "Choisir une catégorie "
 
 #: includes/helpers/widgets/class-listing-form-steps-component.php:39
-#, fuzzy
 msgid "Select Category and Payment Term"
-msgstr "Sélectionnez Mode de Paiement"
+msgstr "Sélectionnez une Catégorie, Un Terme de Paiement"
 
 #: frontend/templates/page-place-ad-order-step.tpl.php:2
-#, fuzzy
 msgctxt "place ad order step"
 msgid "Select Category and Payment Term"
-msgstr "Sélectionnez Mode de Paiement"
+msgstr "Sélectionnez la Catégorie et le Terme de Paiement"
 
 #: includes/helpers/widgets/class-listing-form-steps-component.php:37
-#, fuzzy
 msgid "Select Category, Payment Term and Credit Plan"
-msgstr "Sélectionnez un Plan de Crédit"
+msgstr "Sélectionnez une Catégorie, Un Terme de Paiement et un Plan de Crédit"
 
 #: admin/admin-panel.php:862
 msgid "Select Move-To category"
@@ -5103,24 +5051,20 @@ msgid "Select Payment Term"
 msgstr "Sélectionnez Mode de Paiement"
 
 #: includes/helpers/widgets/categories-dropdown.php:35
-#, fuzzy
 msgid "Select a Category"
 msgstr "Choisissez une catégorie"
 
 #: frontend/templates/page-buy-credits-select-credit-plan-step.tpl.php:11
-#, fuzzy
 msgid "Select a Credit Plan"
 msgstr "Sélectionnez un Plan de Crédit"
 
 #: includes/helpers/widgets/categories-dropdown.php:29
-#, fuzzy
 msgid "Select a Sub-category"
-msgstr "Choisissez une catégorie"
+msgstr "Choisissez une sous-catégorie"
 
 #: includes/helpers/widgets/categories-dropdown.php:31
-#, fuzzy
 msgid "Select a Sub-category (optional)"
-msgstr "Sélectionner un Plan de Souscription"
+msgstr "Choisissez une sous-catégorie (optionnel)"
 
 #: includes/helpers/widgets/class-user-field.php:37
 msgid "Select an User"
@@ -5132,18 +5076,17 @@ msgid "Select an User owner for this Ad"
 msgstr "Choisissez un Utilisateur propriétaire pour cette annonce"
 
 #: awpcp.php:1035
-#, fuzzy
 msgctxt "uploader queue"
 msgid "Select files"
-msgstr "Liste de Sélection"
+msgstr "Sélectionner des fichiers"
 
 #: includes/settings/class-credit-system-settings.php:25
 msgid "Select the type of payment that can be used to purchase Ads."
-msgstr ""
+msgstr "Sélectionner un Type de paiement utilisable pour régler votre Annonce."
 
 #: frontend/placeholders.php:376
 msgid "Seller"
-msgstr ""
+msgstr "Vendeur"
 
 #: admin/admin-panel-listings.php:110
 msgid "Send Access Key"
@@ -5151,17 +5094,15 @@ msgstr "Envoyer clé d'accès"
 
 #: includes/settings-api.php:351
 msgid "Send Ads to Facebook Automatically"
-msgstr ""
+msgstr "Envoyer automatiquement les Annonces sur Facebook"
 
 #: admin/admin-panel-listings-table.php:213 admin/admin-panel-listings.php:131
-#, fuzzy
 msgid "Send to Facebook"
-msgstr "Partager sur Facebook"
+msgstr "Envoyer sur Facebook"
 
 #: admin/admin-panel-listings.php:139
-#, fuzzy
 msgid "Send to Facebook Group"
-msgstr "Partager sur Facebook"
+msgstr "Envoyer sur un Groupe Facebook"
 
 #: includes/settings/class-general-settings.php:74
 msgid "Separator for the decimal point"
@@ -5173,20 +5114,17 @@ msgstr "Séparateurs Utilisés en CSV"
 
 #: templates/components/file-manager.tpl.php:31
 #: templates/components/media-manager.tpl.php:18
-#, fuzzy
 msgid "Set as Primary Image"
 msgstr "Définir comme Image Principale"
 
 #: templates/components/media-manager.tpl.php:47
-#, fuzzy
 msgid "Set as Primary Video"
-msgstr "Définir comme Image Principale"
+msgstr "Définir comme Vidéo Principale"
 
 #: admin/class-media-manager.php:207
-#, fuzzy
 msgctxt "media manager"
 msgid "Set as primary"
-msgstr "Définir comme principale"
+msgstr "Définir comme image principale"
 
 #: admin/admin-panel.php:243 admin/admin-panel.php:244
 msgid "Settings"
@@ -5202,13 +5140,16 @@ msgid ""
 "content of the WordPress page showing the listing (normally the Show Ad "
 "page, but in general any page that has the AWPCPSHOWAD shortcode)."
 msgstr ""
+"Les Shortcodes ainsi exécutés le seront comme s'ils étaient placés dans le "
+"contenu de la page WordPress affichant l'annonce (normalement la page "
+"Afficher l'Annonce, mais plus généralement toute page comportant le "
+"Shortcode AWPCPSHOWAD)"
 
 #: frontend/templates/widget-latest-ads-form.tpl.php:26
-#, fuzzy
 msgid "Show \"No Image\" PNG when Ad has no picture (improves layout)."
 msgstr ""
-"Afficher \"No image\" PNG lorsque l'annonce n'a pas de photo. Améliore la "
-"mise en page."
+"Afficher \"Pas d'image\" PNG lorsque l'Annonce ne comporte pas de photo "
+"(Améliore la mise en page)."
 
 #: includes/settings-api.php:170
 msgid "Show Ad count in categories"
@@ -5219,9 +5160,8 @@ msgid "Show Ad count."
 msgstr "Afficher nombre d'annonces."
 
 #: frontend/templates/widget-latest-ads-form.tpl.php:18
-#, fuzzy
 msgid "Show Ad excerpt."
-msgstr "Afficher extrait d'annonce"
+msgstr "Afficher extrait d'annonce."
 
 #: includes/settings/class-general-settings.php:31
 msgid "Show Ad listings on main page"
@@ -5233,10 +5173,9 @@ msgstr "Page Affichage de l'Annonce"
 
 #: includes/settings-api.php:75
 msgid "Show Ad preview before payment."
-msgstr ""
+msgstr "Afficher l'aperçu de l'Annonce avant le paiement"
 
 #: frontend/templates/widget-latest-ads-form.tpl.php:14
-#, fuzzy
 msgid "Show Ad title."
 msgstr "Afficher le titre de l'annonce"
 
@@ -5253,18 +5192,16 @@ msgid "Show Browse Ads menu item"
 msgstr "Voir menu Parcourir les Annonces"
 
 #: frontend/templates/widget-search-form.tpl.php:28
-#, fuzzy
 msgid "Show Category field?"
-msgstr "Afficher champ Ville?"
+msgstr "Afficher champ Catégorie ?"
 
 #: includes/settings/class-form-fields-settings.php:100
 msgid "Show City field"
 msgstr "Afficher champ Ville"
 
 #: includes/settings/class-form-fields-settings.php:101
-#, fuzzy
 msgid "Show City field before County field"
-msgstr "Afficher champ Pays"
+msgstr "Afficher le champ Ville avant le champ Département"
 
 #: frontend/templates/widget-search-form.tpl.php:19
 msgid "Show City field?"
@@ -5291,14 +5228,12 @@ msgid "Show Edit Ad menu item"
 msgstr "Voir menu Modifier une Annonce"
 
 #: includes/settings/class-form-fields-settings.php:17
-#, fuzzy
 msgid "Show Form Steps"
-msgstr "Afficher toutes les dates"
+msgstr "Afficher les Etapes du Formulaire"
 
 #: includes/settings/class-form-fields-settings.php:41
-#, fuzzy
 msgid "Show Phone Field only to registered users"
-msgstr "Limiter les commentaires aux utilisateurs enregistrés"
+msgstr "Afficher champ Téléphone seulement aux utilisateurs enregistrés"
 
 #: includes/settings/class-form-fields-settings.php:35
 msgid "Show Phone field"
@@ -5313,9 +5248,8 @@ msgid "Show Posted By field?"
 msgstr "Afficher champ Posté par?"
 
 #: includes/settings/class-form-fields-settings.php:71
-#, fuzzy
 msgid "Show Price Field only to registered users"
-msgstr "Limiter les commentaires aux utilisateurs enregistrés"
+msgstr "Afficher champ Prix aux seuls utilisateurs enregistrés"
 
 #: includes/settings/class-form-fields-settings.php:65
 msgid "Show Price field"
@@ -5335,12 +5269,11 @@ msgstr "Afficher champ Etat?"
 
 #: includes/settings/class-form-fields-settings.php:29
 msgid "Show User Field on Search"
-msgstr ""
+msgstr "Afficher le champ utilisateur dans la recherche"
 
 #: includes/settings/class-form-fields-settings.php:56
-#, fuzzy
 msgid "Show Website Field only to registered users"
-msgstr "Limiter les commentaires aux utilisateurs enregistrés"
+msgstr "Afficher le champ Website aux seuls utilisateurs enregistrés"
 
 #: includes/settings/class-form-fields-settings.php:50
 msgid "Show Website field"
@@ -5351,9 +5284,8 @@ msgid "Show all dates"
 msgstr "Afficher toutes les dates"
 
 #: includes/settings/class-form-fields-settings.php:29
-#, fuzzy
 msgid "Show as \"Posted By\" in search form?"
-msgstr "Afficher champ Posté par?"
+msgstr "Affiché comme \"Postée par\" dans le formulaire de recherche ?"
 
 #: includes/settings/class-window-title-settings.php:63
 msgid "Show category in browser page title when viewing individual Ad"
@@ -5410,19 +5342,16 @@ msgstr ""
 "l'affichage d'une Annonce individuelle"
 
 #: includes/settings/class-general-settings.php:80
-#, fuzzy
 msgid "Show currency symbol"
-msgstr "Code devises PayPal"
+msgstr "Afficher le symbole de la Devise"
 
 #: includes/settings/class-general-settings.php:86
-#, fuzzy
 msgid "Show currency symbol on left"
-msgstr "Code devises PayPal"
+msgstr "Afficher le symbole de la Devise à gauche"
 
 #: includes/settings/class-general-settings.php:87
-#, fuzzy
 msgid "Show currency symbol on right"
-msgstr "Code devises PayPal"
+msgstr "Afficher le symbole de la Devise à droite"
 
 #: includes/settings/class-general-settings.php:75
 msgid "Show decimals in price"
@@ -5449,7 +5378,6 @@ msgid "Show price field?"
 msgstr "Afficher champ Prix?"
 
 #: includes/settings/class-form-fields-settings.php:88
-#, fuzzy
 msgid "Show state field?"
 msgstr "Afficher champ Etat?"
 
@@ -5468,11 +5396,12 @@ msgid ""
 "Show the number of times the ad has been viewed (simple count made by AWPCP "
 "&endash; warning, may not be accurate!)"
 msgstr ""
+"Afficher le nombre de fois que l'Annonce a été vue (comptage simple fait par "
+"AWPCP &endash; Attention, pas forcément précis!)"
 
 #: frontend/templates/widget-latest-ads-form.tpl.php:22
-#, fuzzy
 msgid "Show thumbnails in widget."
-msgstr "Afficher miniatures dans Widget"
+msgstr "Afficher les Vignettes dans le Widget"
 
 #: includes/settings/class-form-fields-settings.php:50
 msgid "Show website field?"
@@ -5489,12 +5418,12 @@ msgstr "Mise en page d'une annonce unique"
 #: awpcp.php:1019
 msgctxt "uploader queue"
 msgid "Size"
-msgstr ""
+msgstr "Taille"
 
 #: admin/form-fields/class-form-fields-table.php:39
 msgctxt "form field slug"
 msgid "Slug"
-msgstr ""
+msgstr "Label court"
 
 #: includes/settings-api.php:297
 msgid "Someone has responded to your AWPCP Demo Ad"
@@ -5505,13 +5434,12 @@ msgid "Someone responded to one of the Ads in your website."
 msgstr "Quelqu'un a répondu à l'une des annonces sur votre site."
 
 #: admin/admin-panel.php:697
-#, fuzzy
 msgid ""
 "Sorry but you cannot delete %s. It is the default category and the default "
 "category cannot be deleted."
 msgstr ""
-"Désolé, mais vous ne pouvez pas supprimer la catégorie par défaut. La "
-"catégorie par défaut ne peut être renommée"
+"Désolé, mais vous ne pouvez pas supprimer la catégorie par défaut %s. Une "
+"catégorie par défaut ne peut être supprimée."
 
 #: admin/admin-panel.php:1126
 msgid ""
@@ -5522,7 +5450,6 @@ msgstr ""
 "catégorie par défaut ne peut être renommée"
 
 #: frontend/page-show-ad.php:156
-#, fuzzy
 msgid ""
 "Sorry, that listing is not available. Please try browsing or searching "
 "existing listings."
@@ -5553,10 +5480,9 @@ msgid "Start Search"
 msgstr "Lancer la Recherche"
 
 #: awpcp.php:1027
-#, fuzzy
 msgctxt "uploader queue"
 msgid "Start Upload"
-msgstr "Date de début"
+msgstr "Démarrer le chargement"
 
 #: import.php:741
 msgid ""
@@ -5583,15 +5509,14 @@ msgid "Status"
 msgstr "Statut"
 
 #: awpcp.php:1025
-#, fuzzy
 msgctxt "uploader queue"
 msgid "Status"
-msgstr "Statut"
+msgstr "Statuts"
 
 #: awpcp.php:1016
 msgctxt "uploader queue"
 msgid "Stop Upload"
-msgstr ""
+msgstr "Arrêter le chargement"
 
 #: admin/templates/admin-panel-debug.tpl.php:34
 msgid "Stored ID"
@@ -5695,9 +5620,8 @@ msgid "Template not found."
 msgstr "Modèle introuvable."
 
 #: includes/media/class-file-uploader.php:99
-#, fuzzy
 msgid "Temporary directory doesn't exists and couldn't be created."
-msgstr "Les frais de destinataire n'existent pas."
+msgstr "Le répertoire temporaire n'existe pas et n'a pas pu être créé"
 
 #: includes/settings/class-general-settings.php:104
 #: includes/settings/class-general-settings.php:107
@@ -5720,23 +5644,20 @@ msgid "Terms of service go here..."
 msgstr "Les Conditions d'Utilisation vont ici ..."
 
 #: frontend/templates/page-place-ad-details-step.tpl.php:96
-#, fuzzy
 msgctxt "ad details form"
 msgid "Terms of service:"
-msgstr "Conditions d'Utilisation:"
+msgstr "Conditions d'Utilisation :"
 
 #: admin/templates/admin-panel-csv-importer.tpl.php:172
 msgid "Test Import"
 msgstr "Importation d'essai"
 
 #: admin/pointers/class-drip-autoresponder-ajax-handler.php:114
-#, fuzzy
 msgctxt "drip-autoresponder"
 msgid "Thank you for signing up!"
 msgstr "Nous vous remercions pour votre confiance"
 
 #: includes/settings-api.php:290
-#, fuzzy
 msgid ""
 "Thank you for submitting your Classified Ad. The details of your ad are "
 "shown below."
@@ -5745,7 +5666,6 @@ msgstr ""
 "sont indiqués ci-dessous."
 
 #: admin/templates/admin-panel-uninstall.tpl.php:6
-#, fuzzy
 msgid ""
 "Thank you for using AWPCP. You have arrived at this page by clicking the "
 "Uninstall link. If you are certain you wish to uninstall the plugin, please "
@@ -5753,9 +5673,7 @@ msgid ""
 msgstr ""
 "Merci d'utiliser AWPCP. Vous êtes arrivé à cette page en cliquant sur le "
 "lien Désinstaller. Si vous êtes certain que vous souhaitez désinstaller le "
-"plugin, cliquez sur le lien ci-dessous pour continuer. Veuillez noter que "
-"toutes les données liées au plugin, vos annonces, images et tout le reste "
-"créé par le plugin seront détruits."
+"plugin, cliquez sur le lien ci-dessous pour continuer. "
 
 #: admin/templates/admin-widget-modification-notice.tpl.php:2
 msgid "Thank you for using Another WordPress Classifieds Plugin."
@@ -5792,28 +5710,33 @@ msgid ""
 "<licenses-settings-link>Licenses Settings</a> section to enter or update "
 "your license."
 msgstr ""
+"Le module <module-name>  AWPCP requiert une licence pour être utilisé. Ses "
+"fonctionnalités seront désactivées jusqu'à la saisie d'un numéro de licence "
+"valide. Veuillez vous rendre à la section <licenses-settings-link>Réglages "
+"de licence</a> pour saisir ou actualiser votre numéro de licence."
 
 #: functions.php:1985
 msgid "The Ad \"%s\" is awaiting approval"
 msgstr "L'annonce \"%s\" est en attente d'approbation"
 
 #: functions.php:1987 includes/functions/notifications.php:181
-#, fuzzy
 msgid ""
 "The Ad \"%s\" is awaiting approval. You can approve the Ad going to the "
 "Manage Listings section and clicking the \"Enable\" action shown on top. "
 "Click here to continue: %s."
 msgstr ""
 "L'annonce \"%s\" est en attente d'approbation. Vous pouvez approuver "
-"l'annonce en se rendant dans la section Gestion des Inscriptions et en "
-"cliquant sur \"Enable\" l'action s'affiche au dessus. Cliquez ici pour "
-"continuer: %s"
+"l'annonce en vous rendant dans la section Gestion des Annonces et en "
+"cliquant sur \"Activer\". Cliquez ici pour continuer: %s"
 
 #: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:47
 msgid ""
 "The Ad %s was not sent to Facebook because is currently disabled. If you "
 "share it, Facebook servers and users won't be able to access it."
 msgstr ""
+"L'Annonce %s n'a pas été envoyée à Facebook car elle est désactivée. Si vous "
+"la partagez, les serveurs de Facebook et les utilisateurs ne pourront pas y "
+"accéder."
 
 #: frontend/page-place-ad.php:1212 frontend/page-place-ad.php:1259
 #: frontend/page-renew-ad.php:334
@@ -5847,7 +5770,7 @@ msgstr "L'Annonce n'est plus marquée par drapeau"
 
 #: includes/views/admin/listings/class-renew-listings-admin-page.php:43
 msgid "The Ad hasn't expired yet and is not about to expire."
-msgstr ""
+msgstr "L'Annonce n'a pas encore expirée et n'est pas sur le point de l'être."
 
 #: includes/helpers/class-send-to-facebook-helper.php:30
 #: includes/helpers/class-send-to-facebook-helper.php:71
@@ -5855,19 +5778,20 @@ msgid ""
 "The Ad is currently disabled. If you share it, Facebook servers and users "
 "won't be able to access it."
 msgstr ""
+"L'annonce est actuellement désactivée. Si vos la partagez, Les serveurs de "
+"Facebook ne pourront pas y accéder."
 
 #: includes/helpers/class-send-to-facebook-helper.php:67
 msgid "The Ad was already sent to Facebook Group."
-msgstr ""
+msgstr "L'Annonce a déjà été envoyée au Groupe Facebook."
 
 #: includes/helpers/class-send-to-facebook-helper.php:26
 msgid "The Ad was already sent to Facebook Page."
-msgstr ""
+msgstr "L'Annonce a déjà été "
 
 #: admin/admin-panel-listings.php:441
-#, fuzzy
 msgid "The Ad was marked as verified."
-msgstr "L'annonce a été marquée comme payée."
+msgstr "L'annonce a été marquée comme vérifiée."
 
 #: frontend/page-renew-ad.php:86
 msgid ""
@@ -5898,7 +5822,6 @@ msgid "The City is required."
 msgstr "La Ville est nécessaire."
 
 #: includes/settings-api.php:304
-#, fuzzy
 msgid "The Classified Ad's ad access key you requested"
 msgstr "La clé d'accès de l'annonce que vous avez demandé"
 
@@ -5977,15 +5900,12 @@ msgid "The First Name is required."
 msgstr "Le Prénom est requis."
 
 #: includes/models/category.php:161
-#, fuzzy
 msgid ""
 "The ID of the parent category and the ID of the category must be different."
 msgstr ""
-"Il s'agit de la catégorie par défaut. La catégorie par défaut ne peut être "
-"supprimée"
+"L'ID de la Catégorie parent et l'ID de la Catégorie doivent être différents."
 
 #: admin/class-media-manager.php:88
-#, fuzzy
 msgctxt "media manager"
 msgid "The Image has been enabled and can now be viewed."
 msgstr "L'image a été activée et peut maintenant être vue."
@@ -5997,6 +5917,7 @@ msgstr "Le Nom est requis"
 #: includes/settings-api.php:227
 msgid "The PayPal Currency Code must be one of <currency-codes>."
 msgstr ""
+"Le code de Devise de Paypal doit être un des codes suivants <currency-codes>."
 
 #: frontend/page-place-ad.php:244
 msgid ""
@@ -6104,17 +6025,16 @@ msgid "The city is a required field."
 msgstr "La Ville est un champ obligatoire."
 
 #: templates/email/listing-updated-nofitication-moderators.plain.tpl.php:2
-#, fuzzy
 msgid ""
 "The classified listing \"<listing-title>\" was modified. A copy of the "
 "details sent to the customer can be found below. You can follow this link "
 "<manage-listing-link> to go to the Manage Ad Listing section to approve/"
 "reject/spam and see the full version of the Ad."
 msgstr ""
-"Une nouvelle annonce a été soumise. Une copie des informations transmises au "
-"client est ci-dessous. Vous pouvez suivre ce lien %s pour aller à la section "
-"Gestion des Annonces pour l'approuver/rejeter/spam et voir la version "
-"complète de l'annonce."
+"L'Annonce \"<listing-title>\" a été modifiée. Une copie des informations "
+"transmises au propriétaire figure ci-dessous. Vous pouvez suivre ce lien "
+"<manage-listing-link> pour aller à la section Gestion des Annonces pour "
+"l'approuver/rejeter/marquer spam et voir la version complète de l'Annonce."
 
 #: frontend/ad-functions.php:156
 msgid "The classifieds listing \"%s\" has been successfully renewed."
@@ -6138,21 +6058,19 @@ msgstr ""
 "nouvelle annonce ou en utilisant le bouton \"Ajouter du Crédit\" ci-dessous."
 
 #: frontend/templates/page-buy-credits-final-step.tpl.php:7
-#, fuzzy
 msgid ""
 "The credit in your account can be used to pay for posting your Ads. You can "
 "add more credit when posting a new Ad or using the \"Add Credit\" button "
 "below."
 msgstr ""
-"Le crédit de votre compte peut être utilisé pour payer l'affichage de vos "
+"Le crédit de votre compte peut être utilisé pour payer la publication de vos "
 "annonces. Vous pouvez ajouter du crédit lors de la publication d'une "
 "nouvelle annonce ou en utilisant le bouton \"Ajouter du Crédit\" ci-dessous."
 
 #: includes/settings-api.php:245
-#, fuzzy
 msgid "The currency in which you would like to receive your 2Checkout payments"
 msgstr ""
-"La devise dans laquelle vous souhaitez recevoir vos paiements par PayPal"
+"La devise dans laquelle vous souhaitez recevoir vos paiements par 2Checkout"
 
 #: includes/settings-api.php:223
 msgid "The currency in which you would like to receive your PayPal payments"
@@ -6164,6 +6082,8 @@ msgid ""
 "The currency symbol can be configured by changing the currency code in the "
 "settings above."
 msgstr ""
+"Le symbole de la devise peut être configuré en modifiant le code de devise "
+"dans les réglages ci-dessus."
 
 #: includes/settings/class-payment-general-settings.php:26
 msgid "The direction used to sort Fees in the payment screens."
@@ -6187,12 +6107,9 @@ msgstr ""
 "aucune des annonces dans notre système."
 
 #: admin/pointers/class-drip-autoresponder-ajax-handler.php:39
-#, fuzzy
 msgctxt "drip-autoresponder"
 msgid "The email address entered is not valid."
-msgstr ""
-"L'adresse email que vous avez saisi ne correspond à aucune des annonces dans "
-"notre système."
+msgstr "L'adresse email que vous avez saisie n'est pas valide."
 
 #: frontend/page-edit-ad.php:440
 msgid ""
@@ -6202,13 +6119,13 @@ msgstr ""
 "notre système."
 
 #: frontend/page-place-ad.php:867
-#, fuzzy
 msgid ""
 "The email address you entered is not allowed in this website. Please use an "
 "email address from one of the following domains: %s."
 msgstr ""
-"L'adresse e-mail que vous avez entré n'est pas une adresse de courriel "
-"valide. Veuillez vérifier les erreurs et essayez à nouveau."
+"L'adresse e-mail que vous avez entrée n'est pas autorisée sur ce site web. "
+"Veuillez utiliser une adresse e-mail à partir d'un des domaines suivants : "
+"%s."
 
 #: frontend/page-place-ad.php:865 frontend/page-reply-to-ad.php:123
 msgid ""
@@ -6220,7 +6137,6 @@ msgstr ""
 
 #: includes/functions/deprecated.php:351
 #: includes/media/class-uploads-manager.php:42
-#, fuzzy
 msgctxt "upload files"
 msgid "The file %s could not be copied to the destination directory."
 msgstr ""
@@ -6232,38 +6148,33 @@ msgstr ""
 "Le fichier %s n'a pas pu être déplacé dans le répertoire de destination."
 
 #: includes/functions/deprecated.php:347
-#, fuzzy
 msgctxt "upload files"
 msgid "The file %s could not be moved to the destination directory."
 msgstr ""
 "Le fichier %s n'a pas pu être déplacé dans le répertoire de destination."
 
 #: upload_awpcp.php:59
-#, fuzzy
 msgid "The file %s does not appear to be a valid image file."
-msgstr "Le fichier ne semble pas être un fichier image valide."
+msgstr "Le fichier %s ne semble pas être un fichier image valide."
 
 #: includes/functions/deprecated.php:319
-#, fuzzy
 msgctxt "upload files"
 msgid "The file %s does not appear to be a valid image file."
 msgstr "Le fichier ne semble pas être un fichier image valide."
 
 #: upload_awpcp.php:48
-#, fuzzy
 msgid "The file %s has an invalid extension and was rejected."
-msgstr "La fichier a une extension invalide et a été rejeté."
+msgstr "La fichier %s a une extension invalide et a été rejeté."
 
 #: upload_awpcp.php:55
 msgid ""
 "The file %s was larger than the maximum allowed file size of %s bytes. The "
 "file was not uploaded."
 msgstr ""
-"Le fichier %s était plus grande que la taille maximale de fichier autorisé "
-"de %s octets. Le fichier n'a pas été téléchargé."
+"Le fichier %s était plus grand que la taille maximale de fichier autorisée "
+"de %s octets. Le fichier n'a pas été chargé."
 
 #: includes/functions/deprecated.php:305 includes/functions/deprecated.php:337
-#, fuzzy
 msgctxt "upload files"
 msgid ""
 "The file %s was larger than the maximum allowed file size of %s bytes. The "
@@ -6278,52 +6189,50 @@ msgid ""
 "The file %s was properly uploaded but there was a problem trying to save the "
 "information to the database."
 msgstr ""
+"Le fichier %s a bien été chargé mais un problème est survenu dans la "
+"sauvegarde de l'information dans la base de données."
 
 #: includes/media/class-listing-file-validator.php:57
-#, fuzzy
 msgid ""
 "The file <filename> is smaller than the minimum allowed file size of <bytes-"
 "count> bytes. The file was not uploaded."
 msgstr ""
-"Le fichier %s était plus grande que la taille maximale de fichier autorisé "
-"de %s octets. Le fichier n'a pas été téléchargé."
+"Le fichier <filename> est plus petit que la taille minimale de fichier "
+"autorisé de <bytes-count> octets. Le fichier n'a pas été téléchargé."
 
 #: includes/media/class-file-validation-errors.php:14
-#, fuzzy
 msgid ""
 "The file <filename> was larger than the maximum allowed file size of <bytes-"
 "count> bytes. The file cannot be uploaded."
 msgstr ""
-"Le fichier %s était plus grande que la taille maximale de fichier autorisé "
-"de %s octets. Le fichier n'a pas été téléchargé."
+"Le fichier <filename>  était plus grand que la taille maximale de fichier "
+"autorisé de <bytes-count> octets. Le fichier n'a pas été téléchargé."
 
 #: includes/media/class-listing-file-validator.php:27
 msgid "The file <filename> was not found in the temporary uploads directory."
 msgstr ""
+"Le fichier <filename> n'a pas été trouvé dans le répertoire temporaire de "
+"chargement."
 
 #: admin/class-media-manager.php:97
-#, fuzzy
 msgctxt "media manager"
 msgid "The file has been approved."
-msgstr "L'image a été supprimée"
+msgstr "Le fichier a été approuvé."
 
 #: admin/class-media-manager.php:70
-#, fuzzy
 msgctxt "media manager"
 msgid "The file has been deleted."
-msgstr "L'image a été supprimée"
+msgstr "Le fichier a été supprimé."
 
 #: admin/class-media-manager.php:79
-#, fuzzy
 msgctxt "media manager"
 msgid "The file has been disabled and can no longer be viewed."
-msgstr "L'image a été désactivée et ne peut plus être affichée."
+msgstr "Le fichier a été désactivé et ne peut plus être affiché."
 
 #: admin/class-media-manager.php:107
-#, fuzzy
 msgctxt "media manager"
 msgid "The file has been rejected."
-msgstr "L'image a été supprimée"
+msgstr "Le fichier a été rejeté."
 
 #: functions.php:1742
 msgid "The file is larger than form MAX_FILE_SIZE."
@@ -6342,13 +6251,11 @@ msgid "The file was only partially uploaded."
 msgstr "Le fichier n'a été que partiellement téléchargé."
 
 #: admin/class-media-manager.php:154
-#, fuzzy
 msgctxt "media manager"
 msgid "The file was properly uploaded."
-msgstr "Le fichier n'a été que partiellement téléchargé."
+msgstr "Le fichier a été correctement téléchargé."
 
 #: admin/templates/admin-panel-settings-pages-settings.tpl.php:9
-#, fuzzy
 msgid ""
 "The following pages are missing, not published or the plugin can't find them."
 msgstr ""
@@ -6359,17 +6266,15 @@ msgid "The form has errors"
 msgstr "Le formulaire a des erreurs"
 
 #: upload_awpcp.php:66
-#, fuzzy
 msgid ""
 "The image %s did not meet the minimum height of %s pixels. The file was not "
 "uploaded."
 msgstr ""
-"L'image ne correspond pas à la hauteur minimale de %s pixels. Le fichier n'a "
-"pas été téléchargé."
+"L'image %s ne correspond pas à la hauteur minimale de %s pixels. Le fichier "
+"n'a pas été chargé."
 
 #: includes/functions/deprecated.php:331
 #: includes/media/class-image-file-validator.php:33
-#, fuzzy
 msgctxt "upload files"
 msgid ""
 "The image %s did not meet the minimum height of %s pixels. The file was not "
@@ -6379,17 +6284,15 @@ msgstr ""
 "pas été téléchargé."
 
 #: upload_awpcp.php:62
-#, fuzzy
 msgid ""
 "The image %s did not meet the minimum width of %s pixels. The file was not "
 "uploaded."
 msgstr ""
-"L'image ne ​​correspond pas à la largeur minimale de %s pixels. Le fichier n'a "
-"pas été téléchargé."
+"L'image %s ne ​​correspond pas à la largeur minimale de %s pixels. Le fichier "
+"n'a pas été chargé."
 
 #: includes/functions/deprecated.php:325
 #: includes/media/class-image-file-validator.php:27
-#, fuzzy
 msgctxt "upload files"
 msgid ""
 "The image %s did not meet the minimum width of %s pixels. The file was not "
@@ -6399,10 +6302,9 @@ msgstr ""
 "pas été téléchargé."
 
 #: admin/class-media-manager.php:120
-#, fuzzy
 msgctxt "media manager"
 msgid "The image has been set as primary image."
-msgstr "L'image a été supprimée"
+msgstr "L'image a été identifiée comme image principale."
 
 #: functions.php:1702
 msgid ""
@@ -6411,6 +6313,9 @@ msgid ""
 "awaiting approval. Files that are awaiting approval and rejected files, "
 "cannot be shown in the frontend."
 msgstr ""
+"Les images ou fichiers avec un fond de couleur rouge pale ont été rejetées "
+"par l'administrateur. Celles de fond jaune pale sont en attente "
+"d'approbation. Ces fichiers ne peuvent pas être vus du public."
 
 #: includes/helpers/class-modules-manager.php:186
 msgid ""
@@ -6418,6 +6323,8 @@ msgid ""
 "to work but you will not receive automatic updates when a new version is "
 "available."
 msgstr ""
+"La licence du module <module-name>  AWPCP est expirée. Le module continuera "
+"de fonctionner mais vous ne recevrez plus les mises à jour automatiques."
 
 #: includes/helpers/class-modules-manager.php:178
 msgid ""
@@ -6425,16 +6332,18 @@ msgid ""
 "remain disabled until you activate the license. Please go to the <license-"
 "settings-link>License Settings</a> section to acivate your license."
 msgstr ""
+"La licence du module <module-name>  AWPCP est inactive. Ses fonctionnalités "
+"seront désactivées jusqu'à la saisie d'un numéro de licence valide. Veuillez "
+"vous rendre à la section <licenses-settings-link>Réglages de licence</a> "
+"pour saisir ou actualiser votre numéro de licence."
 
 #: admin/admin-panel-listings.php:527
-#, fuzzy
 msgid "The listing couldn't marked as reviewed."
-msgstr "L'élément n'a pas pu être supprimé."
+msgstr "L'Annonce pas pu être marquée comme vérifiée."
 
 #: admin/admin-panel-listings.php:525
-#, fuzzy
 msgid "The listing was marked as reviewed."
-msgstr "L'annonce a été marquée comme payée."
+msgstr "L'annonce a été marquée comme revue."
 
 #: frontend/page-reply-to-ad.php:51
 msgid "The message cannot be empty."
@@ -6447,22 +6356,21 @@ msgstr ""
 "à la fois"
 
 #: includes/models/category.php:158
-#, fuzzy
 msgid "The name of the Category is required."
-msgstr "Le nom du plan est nécessaire."
+msgstr "Le nom de la Catégorie est requis."
 
 #: includes/credit-plan.php:95 includes/payment-term.php:121
 msgid "The name of the plan is required."
 msgstr "Le nom du plan est nécessaire."
 
 #: admin/admin-panel.php:1107
-#, fuzzy
 msgid "The new category was successfully added."
 msgstr "La nouvelle catégorie a été ajoutée avec succès"
 
 #: frontend/templates/email-place-ad-success-user.tpl.php:25
 msgid "The next link will take you to a page where you can edit the listing:"
 msgstr ""
+"Le lien suivant vous dirigera sur la page permettant d'éditer l'Annonce :"
 
 #: includes/payment-term.php:139
 msgid ""
@@ -6485,9 +6393,8 @@ msgid "The number of images allowed must be equal or greater than zero."
 msgstr "Le nombre d'images permis doit être égal ou supérieur à zéro."
 
 #: includes/payment-term.php:133
-#, fuzzy
 msgid "The number of regions allowed must be equal or greater than zero."
-msgstr "Le nombre d'images permis doit être égal ou supérieur à zéro."
+msgstr "Le nombre de Régions permis doit être égal ou supérieur à zéro."
 
 #: includes/settings/class-payment-general-settings.php:25
 msgid "The order used to sort Fees in the payment screens."
@@ -6495,7 +6402,6 @@ msgstr ""
 "L'ordre utilisé pour trier les frais imposés par les écrans de paiement."
 
 #: includes/views/class-payment-step-decorator.php:55
-#, fuzzy
 msgid ""
 "The payment associated with the current transaction failed (see reasons "
 "below)."
@@ -6539,6 +6445,8 @@ msgid ""
 "The primary image is the one displayed as the thumbnail in the list view and "
 "the largest one shown when the detail view of the listing is clicked."
 msgstr ""
+"L'image principale est celle affichée dans la liste d'Annonces et vue dans "
+"le plus grand format à l'affichage de l'Annonce."
 
 #: includes/payment-term-fee.php:207
 msgid "The recipient Fee doesn't exists."
@@ -6552,12 +6460,12 @@ msgstr ""
 #: includes/helpers/captcha.php:155
 msgctxt "recaptcha-error"
 msgid "The response parameter is invalid or malformed."
-msgstr ""
+msgstr "Le paramètre réponse reCAPTCHA est invalide ou mal renseigné;"
 
 #: includes/helpers/captcha.php:151
 msgctxt "recaptcha-error"
 msgid "The response parameter is missing."
-msgstr ""
+msgstr "Le paramètre réponse reCAPTCHA est manquant"
 
 #: includes/settings-api.php:169
 msgid ""
@@ -6573,12 +6481,12 @@ msgstr ""
 #: includes/helpers/captcha.php:148
 msgctxt "recaptcha-error"
 msgid "The secret parameter is invalid or malformed."
-msgstr ""
+msgstr "Le paramètre secret est invalide ou mal renseigné."
 
 #: includes/helpers/captcha.php:145
 msgctxt "recaptcha-error"
 msgid "The secret parameter is missing"
-msgstr ""
+msgstr "Le paramètre secret est manquant"
 
 #: includes/models/payment-transaction.php:222
 msgid ""
@@ -6602,10 +6510,9 @@ msgstr ""
 "transaction."
 
 #: includes/payment-terms-table.php:152
-#, fuzzy
 msgid "The selected payment type can't be used in this kind of transaction."
 msgstr ""
-"Le délai de paiement sélectionné ne peut pas être utilisé dans ce genre de "
+"Le type de paiement sélectionné ne peut pas être utilisé dans ce genre de "
 "transaction."
 
 #: upload_awpcp.php:51
@@ -6617,7 +6524,6 @@ msgstr ""
 "taille du fichier doit être supérieure à %2$d octets."
 
 #: includes/functions/deprecated.php:311
-#, fuzzy
 msgctxt "upload files"
 msgid ""
 "The size of %1$s was too small. The file was not uploaded. File size must be "
@@ -6680,48 +6586,42 @@ msgid ""
 "The specified file does not belongs to the specified Ad. No action will be "
 "performed."
 msgstr ""
+"Le fichier spécifié n'appartient pas à l'Annonce indiquée. Aucune action ne "
+"sera réalisée."
 
 #: admin/class-media-manager.php:35
-#, fuzzy
 msgctxt "media managear"
 msgid "The specified file does not exists. No action will be performed."
-msgstr ""
-"L'annonce spécifiée n'existe pas. Aucune image ne peut être ajoutée à cet "
-"instant."
+msgstr "Le fichier spécifié n'existe pas. Aucune action ne sera réalisée."
 
 #: includes/functions/deprecated.php:284
-#, fuzzy
 msgctxt "upload files"
 msgid "The specified file does not exists: %s."
 msgstr "Le fichier image spécifié n'existe pas: %s."
 
 #: admin/class-media-manager.php:117
-#, fuzzy
 msgctxt "media manager"
 msgid ""
 "The specified file is not an image. It cannot be set as the primary image."
 msgstr ""
-"L'annonce spécifiée n'existe pas. Aucune image ne peut être ajoutée à cet "
-"instant."
+"Le fichier spécifié n'est pas une image. Il ne peut pas être choisi comme "
+"image principale."
 
 #: includes/views/class-file-action-ajax-handler.php:47
-#, fuzzy
 msgid "The specified file is not associated with Listing with ID %d."
-msgstr "Le fichier image spécifié n'existe pas: %s."
+msgstr "Le fichier spécifié n'est pas associé à la liste avec l'ID %d."
 
 #: upload_awpcp.php:25
 msgid "The specified image file does not exists: %s."
 msgstr "Le fichier image spécifié n'existe pas: %s."
 
 #: admin/admin-panel-listings.php:716
-#, fuzzy
 msgid "The specified listing doesn't exists."
-msgstr "L'utilisateur spécifié n'existe pas."
+msgstr "La lise spécifiée n'existe pas."
 
 #: includes/helpers/class-modules-manager.php:201
-#, fuzzy
 msgid "The specified module does not exists!."
-msgstr "L'annonce spécifiée n'existe pas."
+msgstr "Le module indiqué n'existe pas."
 
 #: includes/payments-api.php:354
 msgid ""
@@ -6746,6 +6646,10 @@ msgid ""
 "form fields around and modify the order in which those fields appear in the "
 "Ad Details form."
 msgstr ""
+"La table ci-dessous présente tous les champs du formulaire à la disposition "
+"des utilisateurs pur créer une Annonce. Utilisez l'icône à la fin de chaque "
+"ligne pour déposer les champs sur le formulaire en choisissant leur ordre "
+"d'affichage."
 
 #: includes/models/payment-transaction.php:208
 msgid "The transaction has no items."
@@ -6758,11 +6662,11 @@ msgstr "La transaction doit être affectée à un utilisateur de WordPress."
 #: includes/functions/deprecated.php:276
 msgctxt "upload files"
 msgid "The type of the uplaoded file %s is not allowed."
-msgstr ""
+msgstr "Le type du fichier chargé %s n'est pas autorisé."
 
 #: includes/media/class-listing-file-validator.php:17
 msgid "The type of the uploaded file <filename> is not allowed."
-msgstr ""
+msgstr "Le type du fichier chargé <filename> n'est pas autorisé."
 
 #: includes/settings/class-form-fields-settings.php:28
 msgid ""
@@ -6772,6 +6676,10 @@ msgid ""
 "dropdown may take too long to render and using the autocomplete version may "
 "be a better idea."
 msgstr ""
+"Le champ utilisateur peut être renseigné par une liste déroulante ou un "
+"champ texte en Autocomplete. Utiliser la liste déroulante est plus rapide "
+"s'il y a peu d'utilisateurs ; dans le cas contraire, utilisez la saisie "
+"Texte en Autocomplete."
 
 #: admin/templates/admin-panel-home.tpl.php:15
 msgid ""
@@ -6801,9 +6709,8 @@ msgstr ""
 "doit être ignoré."
 
 #: frontend/widget-latest-ads.php:62
-#, fuzzy
 msgid "There are currently no Ads to show."
-msgstr "Il n'y a aucune annonce dans le système"
+msgstr "Il n'y a aucune Annonce à afficher."
 
 #: includes/functions/deprecated.php:60
 msgid "There are currently no ads in the system"
@@ -6815,6 +6722,10 @@ msgid ""
 "you are connected to the internet and have granted the Facebook application "
 "the correct permissions. Click \"Diagnostics\" if you are in doubt."
 msgstr ""
+"Il n'y a pas de Groupe Facebook que vous pourriez sélectionner. Veuillez "
+"vérifier que vous êtes bien connecté à Internet et que vous avez accordé à "
+"l'Application Facebook les bonnes permissions. Cliquer sur \"Diagnostics\" "
+"en cas de doute."
 
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:129
 msgid ""
@@ -6822,25 +6733,30 @@ msgid ""
 "you are connected to the internet and have granted the Facebook application "
 "the correct permissions. Click \"Diagnostics\" if you are in doubt."
 msgstr ""
+"Il n'y a pas de Page Facebook que vous pourriez sélectionner. Veuillez "
+"vérifier que vous êtes bien connecté à Internet et que vous avez accordé à "
+"l'Application Facebook les bonnes permissions. Cliquer sur \"Diagnostics\" "
+"en cas de doute."
 
 #: includes/settings-api.php:739
-#, fuzzy
 msgid ""
 "There is a problem with the PayPal Currency Code you have entered. It does "
 "not match any of the codes in our list of curencies supported by PayPal."
 msgstr ""
-"Il y a un problème avec le code de la devise que vous avez entré. Il ne "
-"correspond à aucun des codes dans la liste des devises disponibles fournies "
-"par PayPal."
+"Il y a un problème avec le code de la devise Paypal que vous avez entré. Il "
+"ne correspond à aucun des codes dans la liste des devises disponibles "
+"fournies par PayPal."
 
 #: includes/media/class-media-manager.php:51
 msgctxt "file uploads"
 msgid "There is no file handler for this kind of file (<mime-type>). Aborting."
 msgstr ""
+"Il n'y a pas de description de fichier pour le type de fichier <mime-type>. "
+"Interruption."
 
 #: includes/cron/class-tasks-collection.php:43
 msgid "There is no task with ID %d."
-msgstr ""
+msgstr "Il n'y a pas de tâche pour l'ID : %d."
 
 #: frontend/templates/email-abort-payment-admin.tpl.php:4
 msgid ""
@@ -6877,14 +6793,15 @@ msgid "There was a problem processing your payment"
 msgstr "Il y a eu un problème lors du traitement de votre paiement"
 
 #: includes/media/class-filesystem.php:40
-#, fuzzy
 msgid "There was a problem trying to change the owner of <directory-name>."
-msgstr "Il y a eu une erreur en essayant d'ajouter le nouveau champ."
+msgstr ""
+"Une erreur est intervenue lors de la tentative de changement de propriétaire "
+"pour <directory-name>."
 
 #: includes/media/class-filesystem.php:34
-#, fuzzy
 msgid "There was a problem trying to create directory <directory-name>."
-msgstr "Il y a eu une erreur en essayant d'ajouter le nouveau champ."
+msgstr ""
+"Une erreur est intervenue lors de la création du répertoire <directory-name>."
 
 #: frontend/page-edit-ad.php:393
 msgid "There was a problem trying to delete your Ad. The Ad was not deleted."
@@ -6893,9 +6810,10 @@ msgstr ""
 "pas été supprimée."
 
 #: includes/media/class-filesystem.php:62
-#, fuzzy
 msgid "There was a problem trying to make directory <directory-name> writable."
-msgstr "Il y a eu une erreur en essayant d'envoyer le mail à %s."
+msgstr ""
+"Une erreur est intervenue lors de l'ouverture en écriture du répertoire "
+"<directory-name>."
 
 #: frontend/page-place-ad.php:37
 #: includes/views/class-verify-transaction-exists-step-decorator.php:17
@@ -6927,30 +6845,29 @@ msgstr ""
 "Vous devrez contacter PayPal sur la question."
 
 #: includes/helpers/class-easy-digital-downloads.php:65
-#, fuzzy
 msgid "There was an error trying to activate your <module-name> license."
-msgstr "Il y a eu une erreur en essayant d'ajouter le nouveau champ."
+msgstr ""
+"Une erreur est intervenue dans l'activation de votre licence <module-name>."
 
 #: admin/class-media-manager.php:99
-#, fuzzy
 msgctxt "media manager"
 msgid "There was an error trying to approve the file."
-msgstr "Il y a eu une erreur en essayant d'ajouter le nouveau champ."
+msgstr "Il y a eu une erreur en essayant d'approuver le fichier."
 
 #: admin/admin-panel-settings.php:221
-#, fuzzy
 msgid "There was an error trying to contact Facebook servers: \"%s\"."
-msgstr "Il y a eu une erreur en essayant d'envoyer le mail à %s."
+msgstr "Il y a eu une erreur en essayant de contacter les serveurs : \"%s\"."
 
 #: includes/helpers/class-send-to-facebook-helper.php:51
-#, fuzzy
 msgid "There was an error trying to contact Facebook servers: %s."
-msgstr "Il y a eu une erreur en essayant d'envoyer le mail à %s."
+msgstr ""
+"Une erreur est intervenue en tentant de contacter les serveurs de Facebook."
 
 #: includes/helpers/class-easy-digital-downloads.php:93
-#, fuzzy
 msgid "There was an error trying to deactivate your <module-name> license."
-msgstr "Il y a eu une erreur en essayant de mettre à jour le nouveau champ."
+msgstr ""
+"Une erreur est intervenue dans la désactivation de votre licence <module-"
+"name>."
 
 #: frontend/ad-functions.php:244
 msgid "There was an error trying to delete the Ad. The Ad was not deleted."
@@ -6959,156 +6876,156 @@ msgstr ""
 "été supprimée."
 
 #: admin/class-media-manager.php:81
-#, fuzzy
 msgctxt "media manager"
 msgid "There was an error trying to disable the file."
-msgstr "Il y a eu une erreur en essayant de mettre à jour le nouveau champ."
+msgstr "Il y a eu une erreur en essayant de désactiver le fichier."
 
 #: admin/class-media-manager.php:90
-#, fuzzy
 msgctxt "media manager"
 msgid "There was an error trying to enable the file."
-msgstr "Il y a eu une erreur en essayant d'ajouter le nouveau champ."
+msgstr "Il y a eu une erreur en essayant d'activer le fichier."
 
 #: includes/media/class-image-file-validator.php:21
-#, fuzzy
 msgctxt "upload files"
 msgid ""
 "There was an error trying to find out the dimension of <filename>. The file "
 "was not uploaded."
-msgstr "Il y a eu une erreur en essayant d'envoyer le mail à %s."
+msgstr ""
+"Une erreur est intervenue lors de la recherche de la taille du fichier "
+"<filename>. Le fichier n'a pas été chargé."
 
 #: includes/media/class-listing-file-validator.php:46
-#, fuzzy
 msgid ""
 "There was an error trying to find out the file size of the file <filename>."
-msgstr "Il y a eu une erreur en essayant d'envoyer le mail à %s."
+msgstr ""
+"Une erreur est intervenue lors de la recherche de la taille du fichier "
+"<filename>. "
 
 #: includes/functions/deprecated.php:298
-#, fuzzy
 msgctxt "upload files"
 msgid "There was an error trying to find out the file size of the image %s."
-msgstr "Il y a eu une erreur en essayant d'envoyer le mail à %s."
+msgstr ""
+"Il y a eu une erreur en essayant de déterminer la taille de l'image %s."
 
 #: includes/cron/class-tasks-collection.php:39
-#, fuzzy
 msgid "There was an error trying to find tasks in the database."
-msgstr "Il y a eu une erreur en essayant de mettre à jour le nouveau champ."
+msgstr ""
+"Il y a eu une erreur en recherchant des tâches dans la Base de Données."
 
 #: includes/media/class-file-uploader.php:109
-#, fuzzy
 msgid ""
 "There was an error trying to move the uploaded file to a temporary location."
-msgstr "Il y a eu une erreur en essayant d'envoyer le mail à %s."
+msgstr ""
+"Une erreur est intervenue en tentant de déplacer le fichier chargé dans le "
+"répertoire temporaire."
 
 #: includes/media/class-file-uploader.php:115
-#, fuzzy
 msgid "There was an error trying to open PHP's input stream."
-msgstr "il y a eu une erreur en essayant de renouveler les Annonces %d"
+msgstr "Une erreur est intervenue en tentant d'ouvrir le flux d'entrée PHP."
 
 #: includes/media/class-file-uploader.php:144
-#, fuzzy
 msgid "There was an error trying to open the input stream."
-msgstr "Il y a eu une erreur en essayant d'ajouter le nouveau champ."
+msgstr "Une erreur est intervenue en tentant d'ouvrir le flux d'entrée."
 
 #: includes/media/class-file-uploader.php:119
 #: includes/media/class-file-uploader.php:133
-#, fuzzy
 msgid "There was an error trying to open the output stream."
-msgstr "Il y a eu une erreur en essayant de mettre à jour le nouveau champ."
+msgstr "Une erreur est intervenue en tentant d'ouvrir le flux de sortie."
 
 #: admin/class-media-manager.php:109
-#, fuzzy
 msgctxt "media manager"
 msgid "There was an error trying to reject the file."
-msgstr "Il y a eu une erreur en essayant d'ajouter le nouveau champ."
+msgstr "Il y a eu une erreur en essayant de rejeter le fichier."
 
 #: includes/views/admin/listings/class-renew-listings-admin-page.php:33
-#, fuzzy
 msgid "There was an error trying to renew Ad %s."
-msgstr "il y a eu une erreur en essayant de renouveler les Annonces %d"
+msgstr "Une erreur est survenue dans le renouvellement de l'Annonce %s."
 
 #: frontend/page-renew-ad.php:49
-#, fuzzy
 msgid ""
 "There was an error trying to renew your Ad. The URL is not valid. Please "
 "contact the Administrator of this site for further assistance."
 msgstr ""
-"Il y a eu une erreur inattendue en essayant de sauvegarder vos détails de "
-"l'annonce. Veuillez essayer de nouveau ou contactez un Administrateur."
+"Une erreur est survenue en tentant de renouveler votre Annonce. Veuillez "
+"contactez l'Administrateur de ce site pour plus amples renseignements."
 
 #: includes/models/category.php:210
-#, fuzzy
 msgid "There was an error trying to retrieve existing category information."
-msgstr "Il y a eu une erreur en essayant de supprimer ce commentaire."
+msgstr ""
+"Une erreur est intervenue lors de la recherche d'information pour la "
+"Catégorie existante;"
 
 #: includes/helpers/class-easy-digital-downloads.php:27
-#, fuzzy
 msgid ""
 "There was an error trying to retrieve information about your <module-name> "
 "license."
-msgstr "Il y a eu une erreur en essayant de supprimer ce commentaire."
+msgstr ""
+"Une erreur est intervenue dans la recherche d'information de votre licence "
+"<module-name>."
 
 #: includes/cron/class-tasks-collection.php:105
-#, fuzzy
 msgid "There was an error trying to retrive the tasks from the database."
-msgstr "Il y a eu une erreur en essayant d'envoyer le mail à %s."
+msgstr ""
+"Il y a eu une erreur en recherchant les tâches dans la Base de Données."
 
 #: includes/models/category.php:140 includes/models/category.php:225
-#, fuzzy
 msgid "There was an error trying to save the category to the database."
-msgstr "Il y a eu une erreur en essayant d'envoyer le mail à %s."
+msgstr ""
+"Une erreur est intervenue lors de l'enregistrement de la catégorie dans la "
+"Base de Données."
 
 #: includes/cron/class-tasks-collection.php:26
-#, fuzzy
 msgid "There was an error trying to save the task to the database."
-msgstr "Il y a eu une erreur en essayant d'envoyer le mail à %s."
+msgstr ""
+"Il y a eu une erreur en essayant d'enregistrer la tâche dans la Base de "
+"Données."
 
 #: admin/admin-panel-listings.php:552 frontend/page-edit-ad.php:486
 msgid "There was an error trying to send the email to %s."
 msgstr "Il y a eu une erreur en essayant d'envoyer le mail à %s."
 
 #: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:56
-#, fuzzy
 msgctxt "... <listing-title> to a <Facebook Group/Page>"
 msgid "There was an error trying to send the listing %s to a %s."
-msgstr "Il y a eu une erreur en essayant d'envoyer le mail à %s."
+msgstr "Une erreur est intervenue en essayant d'envoyer l'Annonce %s à un %s.."
 
 #: admin/class-media-manager.php:122
-#, fuzzy
 msgctxt "media manager"
 msgid "There was an error trying to set the image as the primary image."
-msgstr "Il y a eu une erreur en essayant d'envoyer le mail à %s."
+msgstr ""
+"Il y a eu une erreur en essayant d'identifier l'image comme image principale."
 
 #: includes/media/class-upload-generated-thumbnail-ajax-handler.php:72
-#, fuzzy
 msgid ""
 "There was an error trying to store the uploaded thumbnail for file "
 "<filename>."
-msgstr "Il y a eu une erreur en essayant d'ajouter le nouveau champ."
+msgstr ""
+"Une erreur est intervenue lors de l'enregistrement de la Vignette chargée "
+"pour le fichier <filename>."
 
 #: includes/models/category.php:240
-#, fuzzy
 msgid ""
 "There was an error trying to update category parent information in Ads table."
-msgstr "Il y a eu une erreur en essayant de mettre à jour le nouveau champ."
+msgstr ""
+"Une erreur est intervenue lors de la mise à jour de la Catégorie parent dans "
+"la table des Annonces."
 
 #: includes/views/class-file-action-ajax-handler.php:32
-#, fuzzy
 msgid "There was an error trying to update the database."
-msgstr "Il y a eu une erreur en essayant de mettre à jour le nouveau champ."
+msgstr ""
+"Une erreur est intervenue en tentant de mettre à jour la Base de Données."
 
 #: admin/class-media-manager.php:144
-#, fuzzy
 msgctxt "media manager"
 msgid "There was an error trying to upload your file."
-msgstr "Il y a eu une erreur en essayant d'ajouter le nouveau champ."
+msgstr "Il y a eu une erreur en essayant de charger le fichier."
 
 #: includes/helpers/captcha.php:121
-#, fuzzy
 msgid ""
 "There was an error trying to verify the reCAPTCHA answer. <reCAPTCHA-error>"
-msgstr "Il y a eu une erreur en essayant de mettre à jour le nouveau champ."
+msgstr ""
+"Une erreur est survenue durant la validation de la réponse reCAPTCHA. "
+"<reCAPTCHA-error>"
 
 #: admin/admin-panel-csv-importer.php:55
 msgid "There was an error with your CSV file: %s"
@@ -7119,9 +7036,8 @@ msgid "There was an error with your ZIP file: %s"
 msgstr "Il y a eu une erreur avec votre fichier ZIP : %s"
 
 #: includes/cron/class-tasks-collection.php:123
-#, fuzzy
 msgid "There was an erroy trying to count the tasks in the database."
-msgstr "Il y a eu une erreur en essayant de mettre à jour le nouveau champ."
+msgstr "Il y a eu une erreur en comptant les tâches dans la Base de Données."
 
 #: frontend/page-edit-ad.php:274 frontend/page-place-ad.php:1062
 msgid ""
@@ -7143,21 +7059,26 @@ msgid ""
 "token expired, please try to get a new access token from Facebook using the "
 "link in step 2 of the settings."
 msgstr ""
+"Une erreur est intervenue en tentant d'envoyer des annonces sur Facebook, "
+"vos droits d'accès sont peut-être expirés. Veuillez vérifier vos "
+"<a>settings</a>. Si vos droits sont expirés, renouvelez les sur Facebook en "
+"utilisant le lien dans l'étape 2 des réglages."
 
 #: includes/functions/deprecated.php:116
 msgid "There were no ads found"
 msgstr "Il n'y a aucune annonce trouvée"
 
 #: templates/frontend/listings.tpl.php:20
-#, fuzzy
 msgid "There were no listings found."
-msgstr "Aucune image n'a été trouvée"
+msgstr "Aucune Annonce n'a été trouvée."
 
 #: includes/settings/class-files-settings.php:94
 msgid ""
 "These are the remaining images that are not primary ones, if you have more "
 "than one image allowed per listing."
 msgstr ""
+"Ce sont les images restantes qui ne sont pas principales, si vous avez "
+"choisi d'autoriser plus d'une image par annonce."
 
 #: includes/settings/class-listing-url-settings.php:68
 msgctxt "listing url settings section"
@@ -7165,6 +7086,8 @@ msgid ""
 "These settings affect the URL path shown for the listing. You can include or "
 "remove certain elements for SEO purposes"
 msgstr ""
+"Ces réglages modifient le chemin de l'URL de cette annonce. Vous pouvez "
+"ajouter ou enlever certain éléments pour le SEO"
 
 #: includes/settings/class-window-title-settings.php:68
 msgctxt "window title settings section"
@@ -7172,6 +7095,9 @@ msgid ""
 "These settings affect the title shown in the title bar of the browser for "
 "the listing. You can include or remove certain elements if you wish."
 msgstr ""
+"Ces réglages modifient le titre affiché dans la barre de titre du navigateur "
+"pour l'Annonce. Vous pouvez ajouter ou retrancher certains éléments si vous "
+"le souhaitez."
 
 #: frontend/page-show-ad.php:116
 msgid "This Ad has been flagged."
@@ -7200,7 +7126,6 @@ msgstr ""
 "Seulement vous (l'auteur) pouvez la voir."
 
 #: frontend/page-show-ad.php:185
-#, fuzzy
 msgid ""
 "This Ad is currently disabled until you verify the email address used for "
 "the contact information. Only you (the author) can see it."
@@ -7218,6 +7143,10 @@ msgid ""
 "Facebook Application created to use this feature. Read <a>How to Register "
 "and Configure a Facebook Application.</a>"
 msgstr ""
+"Cette configuration vous permet de poster des Annonces sur Facebook. Vous "
+"devez disposer d'une Application Facebook pour utiliser cette "
+"fonctionnalité. Lisez  <a>Comment s'enregistrer et Configurer une "
+"Application Facebook.</a>"
 
 #: awpcp.php:1006
 msgid "This field is required."
@@ -7245,32 +7174,31 @@ msgid ""
 "This is a preview of your Ad. Use the buttons below to go back and edit your "
 "Ad, manage the uploaded images or finish the posting process."
 msgstr ""
+"Ceci est un aperçu de votre Annonce. Utilisez les boutons ci-dessous pour "
+"retourner à l'édition de votre annonce, gérer les images chargées ou achever "
+"la publication."
 
 #: includes/settings-api.php:333
-#, fuzzy
 msgid "This is an automated notification that your Classified Ad has expired."
 msgstr ""
-"Il s'agit d'une notification automatique que votre petite annonce a expiré."
+"Ceci est un email automatique pour vous prévenir que votre annonce a expiré."
 
 #: includes/settings-api.php:319
-#, fuzzy
 msgid ""
 "This is an automated notification that your Classified Ad will expire in %d "
 "days."
 msgstr ""
-"Il s'agit d'une notification automatique que votre annonce gratuite expire "
+"Ceci est un email automatique pour vous prévenir que votre annonce expire "
 "dans %d jours."
 
 #: templates/components/file-manager.tpl.php:30
 #: templates/components/media-manager.tpl.php:17
-#, fuzzy
 msgid "This is the Primary Image"
-msgstr "Largeur des vignettes (Image Principale)"
+msgstr "Ceci est l'Image Principale"
 
 #: templates/components/media-manager.tpl.php:46
-#, fuzzy
 msgid "This is the Primary Video"
-msgstr "Largeur des vignettes (Image Principale)"
+msgstr "Ceci est la Vidéo Principale"
 
 #: includes/settings/class-listings-moderation-settings.php:34
 msgid ""
@@ -7278,6 +7206,10 @@ msgid ""
 "awaiting approval from the administrator. The message may also be included "
 "in email notifications sent when a new Ad is posted."
 msgstr ""
+"Ce message est affiché aux utilisateurs juste après l'enregistrement d'une "
+"annonce, si cette annonce est en attente d'approbation par l'Administrateur. "
+"Le message peut aussi être inclus dans le mail envoyé lorsqu'une nouvelle "
+"annonce est postée."
 
 #: includes/helpers/widgets/multiple-region-selector.php:125
 msgid ""
@@ -7285,6 +7217,9 @@ msgid ""
 "one or more sub-regions, to make the selection more specific, or change the "
 "selected region."
 msgstr ""
+"Cette région particulière est déjà sélectionnée dans un autre champ. SVP, "
+"choisissez une ou plus des sous-régions pour effectuer une sélection pus "
+"précise, ou sélectionnez une autre région."
 
 #: includes/settings/class-form-fields-settings.php:44
 #: includes/settings/class-form-fields-settings.php:59
@@ -7293,6 +7228,8 @@ msgid ""
 "This setting restricts viewing of this field so that only registered users "
 "that are logged in can see it."
 msgstr ""
+"Ce réglage limite l'affichage de ce champ aux seuls utilisateurs enregistrés "
+"et connectés."
 
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:83
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:111
@@ -7300,16 +7237,16 @@ msgid ""
 "This settings section is not available yet. Please fill out required fields "
 "above and save your settings."
 msgstr ""
+"Cette section des réglages n'est plus disponible. Svp, renseignez les champs "
+"exigés ci-dessus et enregistrer vos réglages."
 
 #: functions.php:1719 includes/helpers/class-modules-manager.php:158
-#, fuzzy
 msgid ""
 "This version of AWPCP %1$s module is not compatible with AWPCP version %2$s. "
 "Please get AWPCP %1$s %3$s or newer!"
 msgstr ""
-"Le module %1$s que vous avez installé n'est pas à jour et n'est pas "
-"compatible avec cette version de AWPCP. Veuillez obtenir %1$s %2$s ou plus "
-"récent."
+"Le module %1$s que vous avez installé n'est pas compatible avec la version "
+"%2$s de AWPCP. Veuillez vous procurer %1$s %3$s ou plus récent."
 
 #: includes/settings/class-general-settings.php:73
 msgid "Thousands separator"
@@ -7336,9 +7273,8 @@ msgid "Thumbnail width (Primary Image)"
 msgstr "Largeur des vignettes (Image Principale)"
 
 #: includes/settings/class-files-settings.php:82
-#, fuzzy
 msgid "Thumbnails"
-msgstr "Largeur des vignettes"
+msgstr "Vignettes"
 
 #: frontend/templates/page-place-ad-upload-images-step.tpl.php:15
 msgctxt "images upload step"
@@ -7376,12 +7312,12 @@ msgstr "Titre:"
 #: frontend/templates/widget-latest-ads-form.tpl.php:36
 #: frontend/templates/widget-latest-ads-form.tpl.php:49
 msgid "To the left of the Ad's text."
-msgstr ""
+msgstr "A gauche du texte de l'annonce."
 
 #: frontend/templates/widget-latest-ads-form.tpl.php:39
 #: frontend/templates/widget-latest-ads-form.tpl.php:52
 msgid "To the right of the Ad's text."
-msgstr ""
+msgstr "A droite du texte de l'annonce."
 
 #: includes/helpers/captcha.php:97
 msgid "To use reCAPTCHA you must get an API key from %s."
@@ -7392,10 +7328,9 @@ msgid "Top Level Category"
 msgstr "Catégorie de Haut Niveau"
 
 #: frontend/templates/payments-transaction-items-table.tpl.php:40
-#, fuzzy
 msgctxt "transaction items"
 msgid "Total Amount"
-msgstr "Montant Total ($)"
+msgstr "Montant Total"
 
 #: frontend/templates/payments-transaction-items-table.tpl.php:34
 msgctxt "transaction items"
@@ -7421,13 +7356,15 @@ msgstr "Détails de la transaction"
 
 #: includes/media/class-upload-generated-thumbnail-ajax-handler.php:44
 msgid "Trying to upload a thumbnail for an unknown file."
-msgstr ""
+msgstr "Tentative de chargement d'une vignette pour un fichier inconnu."
 
 #: includes/settings/class-files-settings.php:52
 msgid ""
 "Turn off the lightbox/thickbox element used by AWPCP. Some themes cannot "
 "handle it and a conflict results."
 msgstr ""
+"Désactiver le composant utilisé par AWPCP pour la Lightbox/Thockbox. "
+"Certains thèmes ne la supportent pas et des conflits peuvent en résulter."
 
 #: includes/settings/class-general-settings.php:150
 msgid "Turn on Search Engine Friendly URLs"
@@ -7466,14 +7403,13 @@ msgid "US Date and Time (mm/dd/year hh:mm:ss)"
 msgstr "US Date et Temps (mm/jj/aaaa hh:mm:ss)"
 
 #: admin/class-media-manager.php:72
-#, fuzzy
 msgctxt "media manager"
 msgid "Unable to delete your file, please contact the administrator."
-msgstr "Impossible de supprimer l'image, contactez l'Administrateur."
+msgstr "Impossible de supprimer le fichier, svp contactez l'Administrateur."
 
 #: includes/media/class-file-uploader.php:44
 msgid "Unable to findout uploaded file name."
-msgstr ""
+msgstr "Impossible de trouver le nom du fichier chargé."
 
 #: includes/settings/class-general-settings.php:38
 msgid ""
@@ -7532,20 +7468,16 @@ msgstr "Unités"
 
 #: upload_awpcp.php:39
 msgid "Unknown error encountered while uploading the image."
-msgstr "Erreur inconnue rencontrée lors du téléchargement de l'image."
+msgstr "Erreur inconnue rencontrée lors du chargement de l'image."
 
 #: includes/functions/deprecated.php:290
-#, fuzzy
 msgctxt "upload files"
 msgid "Unknown error encountered while uploading the image."
-msgstr "Erreur inconnue rencontrée lors du téléchargement de l'image."
+msgstr "Erreur inconnue rencontrée lors du chargement de l'image."
 
 #: includes/views/class-base-page.php:79
-#, fuzzy
 msgid "Unkown step \"%s\". Please contact the administrator about this error."
-msgstr ""
-"Votre annonce a été marquée comme spam. S'il y a erreur contactez "
-"l'Administrateur de ce site."
+msgstr "Etape inconnue  \"%s\". SVP contacter l'administrateur à ce sujet."
 
 #: admin/admin-panel-listings-table.php:243
 msgid "Unpaid"
@@ -7562,7 +7494,7 @@ msgstr "Pas de Titre"
 
 #: admin/admin-panel-listings-table.php:244
 msgid "Unverified"
-msgstr ""
+msgstr "Non vérifiées"
 
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:30
 #: admin/templates/admin-panel-fees-entry-form.tpl.php:116
@@ -7574,32 +7506,32 @@ msgid "Upgrade"
 msgstr "Mise à jour"
 
 #: admin/admin-panel-upgrade.php:84
-#, fuzzy
 msgctxt "awpcp upgrade"
 msgid "Upgrade"
 msgstr "Mise à jour"
 
 #: frontend/templates/page-place-ad-upload-images-step.tpl.php:1
 #: includes/helpers/widgets/class-listing-form-steps-component.php:52
-#, fuzzy
 msgid "Upload Files"
-msgstr "Télécharger les fichiers sélectionnés"
+msgstr "Charger les fichiers sélectionnés"
 
 #: awpcp.php:1017
 msgctxt "uploader queue"
 msgid "Upload URL might be wrong or doesn't exist."
-msgstr ""
+msgstr "L'URL chargée est erronée ou n'existe pas"
 
 #: awpcp.php:1040
 msgctxt "uploader queue"
 msgid ""
 "Upload element accepts only %d file(s) at a time. Extra files were stripped."
 msgstr ""
+"Le composant de chargement n'accepte que %d fichiers à la fois. Les autres "
+"fichiers ont été omis."
 
 #: admin/templates/admin-panel-media-manager.tpl.php:14
 msgctxt "media manager"
 msgid "Upload files for Ad %s."
-msgstr ""
+msgstr "Charger des fichiers pour l'Annonce %s."
 
 #: includes/settings/class-files-settings.php:24
 msgid ""
@@ -7610,14 +7542,13 @@ msgstr ""
 "répertoire wp-content)"
 
 #: awpcp.php:1039
-#, fuzzy
 msgctxt "uploader queue"
 msgid "Uploaded %d/%d files"
-msgstr "Télécharger les fichiers sélectionnés"
+msgstr "%d/%d fichiers chargés"
 
 #: includes/settings/class-files-settings.php:20
 msgid "Uploads Directory"
-msgstr ""
+msgstr "Répertoire de chargement"
 
 #: includes/settings/class-files-settings.php:24
 msgid "Uploads folder name"
@@ -7635,11 +7566,11 @@ msgstr ""
 
 #: includes/settings/class-listings-moderation-settings.php:39
 msgid "Use multiple dropdowns to choose categories"
-msgstr ""
+msgstr "Utiliser plusieurs menus déroulants pour choisir une catégorie"
 
 #: includes/settings-api.php:282
 msgid "Use sender email for reply messages"
-msgstr ""
+msgstr "Utiliser l'email de l'envoyeur pour les mails de réponse"
 
 #: frontend/page-search-ads.php:89
 msgid ""
@@ -7659,6 +7590,9 @@ msgid ""
 "background may be different if the image is awaiting approval or rejected "
 "(see above)."
 msgstr ""
+"Utilisez la coche verte pour définir l'image principale. cette image "
+"principale s'affiche avec un contour vert. L'arrière plan peut varier si "
+"l'Annonce est en attente d'approbation ou rejetée (voir ci-dessous)."
 
 #: admin/admin-panel-listings-table.php:267
 #: frontend/templates/page-place-ad-details-step.tpl.php:36
@@ -7667,9 +7601,8 @@ msgid "User"
 msgstr "Utilisateur"
 
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:90
-#, fuzzy
 msgid "User Access Token"
-msgstr "Renvoyer la clé d'accès de l'annonce"
+msgstr "Numéro d'authentification d'utilisateur"
 
 #: includes/helpers/facebook.php:65
 msgid ""
@@ -7677,16 +7610,24 @@ msgid ""
 "app or the token expired? Try clicking \"Obtain an access token from Facebook"
 "\" again."
 msgstr ""
+"Le code d'accès utilisateur n'est pas valide pour l'app courante. Peut-être "
+"avez-vous supprimé l'autorisation de cette Application ou le code d'accès "
+"est expiré ? Essayez de cliquer encore une fois sur  \"Obtenir un code "
+"d'accès de Facebook\"."
 
 #: includes/helpers/facebook.php:68
 msgid ""
 "User Access Token is valid but doesn't have the permissions required for "
 "AWPCP integration (publish_stream and manage_pages)."
 msgstr ""
+"Le code d'accès utilisateur est bien valide mais n'a pas les permissions "
+"requises pour l'intégration AWPCP (publish_stream and manage_pages)."
 
 #: includes/helpers/facebook.php:72
 msgid "User Access Token user id does not match stored user id."
 msgstr ""
+"La référence du code d'accès utilisateur ne correspond pas à celle "
+"enregistrée."
 
 #: includes/settings/class-general-settings.php:20
 msgid "User Ad Management Panel"
@@ -7705,9 +7646,8 @@ msgid "User Email"
 msgstr "Email Utisateur"
 
 #: includes/settings/class-form-fields-settings.php:26
-#, fuzzy
 msgid "User Field"
-msgstr "Mise à jour du Champ"
+msgstr "Champ Utilisateur"
 
 #: frontend/templates/email-abort-payment-admin.tpl.php:10
 msgid "User Login"
@@ -7726,14 +7666,16 @@ msgid ""
 "Username is required in row %s. Please include a username or selected a "
 "default user."
 msgstr ""
+"Le nom d'utilisateur est requis en ligne %s. Veuillez saisir un nom "
+"d'utilisateur ou sélectionner un utilisateur par défaut."
 
 #: includes/class-awpcp-listings-api.php:248
 msgid "Verify the email address used for Ad \"%s\""
-msgstr ""
+msgstr "Valider l'adresse email utilisée pour l'annonce  \"%s\""
 
 #: awpcp.php:810 templates/components/media-manager.tpl.php:32
 msgid "Videos"
-msgstr ""
+msgstr "Vidéos"
 
 #: admin/admin-panel-listings.php:88
 msgid "View"
@@ -7745,24 +7687,21 @@ msgid "View Ad."
 msgstr "Voir une Annonce"
 
 #: includes/compatibility/class-content-aware-sidebars-listings-categories-module.php:107
-#, fuzzy
 msgid "View All"
-msgstr "Voir l'annonce"
+msgstr "Voir tout"
 
 #: includes/settings-api.php:56
 msgid "View Categories page"
 msgstr "Page Voir les Catégories"
 
 #: templates/admin/listings-media-center.tpl.php:5
-#, fuzzy
 msgid "View Listing"
-msgstr "Annonces gratuites"
+msgstr "Voir les Annonces"
 
 #: admin/templates/admin-panel-media-manager.tpl.php:5
-#, fuzzy
 msgctxt "media-manager"
 msgid "View Listing"
-msgstr "Annonces gratuites"
+msgstr "Voir les Annonces"
 
 #: includes/settings-api.php:156
 msgid "Views (least viewed first, then by date)"
@@ -7788,6 +7727,8 @@ msgstr "Visitez le site web"
 msgctxt "drip-autoresponder"
 msgid "Want to know the Secrets of Building an Awesome Classifieds Website?"
 msgstr ""
+"Voulez-vous connaître les secrets pour construire un superbe site web de "
+"petites annonces ?"
 
 #: awpcp.php:675
 #: includes/placeholders/class-placeholders-installation-verifier.php:19
@@ -7807,18 +7748,22 @@ msgstr ""
 
 #: admin/templates/admin-panel-uninstall.tpl.php:8
 msgid "We cannot recover the data after you click this."
-msgstr ""
+msgstr "Nous ne pourrons pas récupérer es données après avoir cliqué."
 
 #: admin/admin-panel-settings.php:158
 msgid ""
 "We could not obtain a valid access token from Facebook. Please try again."
 msgstr ""
+"Nous n'avons pas pu obtenir d'autorisation d'accès de Facebook. Veuillez ré-"
+"essayer"
 
 #: admin/admin-panel-settings.php:156
 msgid ""
 "We could not obtain a valid access token from Facebook. The API returned the "
 "following error: %s"
 msgstr ""
+"Nous n'avons pas pu obtenir d'autorisation d'accès de Facebook. L'API a "
+"retourné l'erreur suivant : %s"
 
 #: includes/payment-gateway-paypal-standard.php:278
 msgid ""
@@ -7837,6 +7782,7 @@ msgstr ""
 #: includes/views/admin/listings/class-renew-listings-admin-page.php:49
 msgid "We couldn't find a valid payment term associated with this Ad."
 msgstr ""
+"Nous n'avons pas trouvé de Terme de paiement valide pour cette Annonce."
 
 #: frontend/page-place-ad.php:691
 msgid ""
@@ -7844,6 +7790,9 @@ msgid ""
 "shown in front or below each invalid field. Please fix the errors and submit "
 "the form again."
 msgstr ""
+"Nous avons détecté des erreurs dans les détails transmis. Un message "
+"d'erreur détaillé figure près de chaque champ invalide. Svp, corriger ces "
+"erreurs et renvoyer le formulaire."
 
 #: includes/payment-gateway-paypal-standard.php:157
 msgid ""
@@ -7893,7 +7842,7 @@ msgstr "Message de bienvenue à la page Petites Annonces"
 
 #: includes/settings/class-user-notifications-settings.php:33
 msgid "When should AWPCP send the expiration notice?"
-msgstr ""
+msgstr "Quand AWPCP doit-il envoyer le message d'expiration ?"
 
 #: includes/settings/class-payment-general-settings.php:21
 msgid ""
@@ -7901,10 +7850,13 @@ msgid ""
 "pay for your classifieds. Leave it off if you never want to charge for any "
 "ads."
 msgstr ""
+"Lorsque ceci est activé, les personnes utiliseront <manage-fees-link>Plans "
+"de paiement</a> pour payer leur annonce. Si vous souhaitez la gratuité des "
+"annonces, ne sélectionnez pas cette fonction."
 
 #: includes/settings/class-general-settings.php:37
 msgid "Who can access AWPCP Admin Dashboard"
-msgstr ""
+msgstr "Qui a accès au panneau d'administration d'AWPCP"
 
 #: admin/templates/admin-sidebar.tpl.php:8
 msgid "Why not do any or all of the following:"
@@ -7969,7 +7921,7 @@ msgstr "Oui S'il vous plait!"
 #: admin/pointers/class-drip-autoresponder.php:24
 msgctxt "drip-autoresponder"
 msgid "Yes, I'd like my free module and course, please"
-msgstr ""
+msgstr "Oui, je souhaiterais disposer de mon module et du cours gratuit svp."
 
 #: includes/helpers/class-modules-manager.php:193
 msgid ""
@@ -7978,6 +7930,11 @@ msgid ""
 "that module. Please contact customer support and ask for an update. Please "
 "also include a reference to this error in your message."
 msgstr ""
+"Oups, une erreur est survenue. Il semblerait que la version de votre module "
+"<module-name> AWPCP soit obsolète ou vous avez besoin d'une nouvelle version "
+"d'AWPCP pour utiliser ce module. Veuillez contacter le support client pour "
+"obtenir une mise à jour. Veuillez inclure la référence de cette erreur dans "
+"votre message."
 
 #: frontend/templates/payments-checkout-payment-page.tpl.php:3
 #: frontend/templates/payments-payment-page.tpl.php:3
@@ -8016,29 +7973,24 @@ msgstr ""
 "seront ignorées."
 
 #: includes/views/frontend/buy-credits/class-buy-credits-page.php:116
-#, fuzzy
 msgid "You are not allowed to buy credits."
-msgstr "Vous n'êtes pas autorisé à modifier ce commentaire."
+msgstr "Vous n'êtes pas autorisé à acheter du Crédit."
 
 #: frontend/page-edit-ad.php:76
-#, fuzzy
 msgid "You are not allowed to edit the specified Ad."
-msgstr "Vous n'êtes pas autorisé à modifier l'annonce specifiée."
+msgstr "Vous n'êtes pas autorisé à modifier l'annonce spécifiée."
 
 #: includes/media/class-upload-listing-media-ajax-handler.php:41
-#, fuzzy
 msgid "You are not authorized to upload files."
-msgstr "Vous n'êtes pas autorisé à modifier ce commentaire."
+msgstr "Vous n'êtes pas autorisé à charger des fichiers."
 
 #: includes/media/class-upload-generated-thumbnail-ajax-handler.php:50
-#, fuzzy
 msgid "You are not authorized to upload thumbnails."
-msgstr "Vous n'êtes pas autorisé à modifier ce commentaire."
+msgstr "Vous n'êtes pas autorisé à charger des Vignettes."
 
 #: admin/pointers/class-drip-autoresponder-ajax-handler.php:23
-#, fuzzy
 msgid "You are not authorizred to perform this action."
-msgstr "Vous n'êtes pas autorisé à modifier ce commentaire."
+msgstr "Vous n'êtes pas autorisé à effectuer cette action."
 
 #: frontend/templates/page-reply-to-ad.tpl.php:7
 msgid "You are responding to Ad: %s."
@@ -8046,7 +7998,6 @@ msgstr "Vous répondez à l'annonce: %s."
 
 #: includes/views/class-payment-step-decorator.php:40
 #: includes/views/frontend/buy-credits/class-buy-credits-page.php:74
-#, fuzzy
 msgid ""
 "You are trying to buy credits using a transaction created for a different "
 "purpose. Pelase go back to the <a href=\"%s\">%s</a> page.<br>If you think "
@@ -8079,14 +8030,13 @@ msgstr ""
 "n'est pas permis."
 
 #: includes/settings-api.php:305
-#, fuzzy
 msgid ""
 "You asked to have your Classified Ad's access key resent. Below are all the "
 "Ad access keys in the system that are tied to the email address you provided"
 msgstr ""
 "Vous avez demandé à avoir la clé d'accès de votre annonce gratuite. Voici "
 "toutes les clés d'accès d'annonces qui sont liées à l'adresse courriel "
-"fournie"
+"fournie."
 
 #: frontend/templates/payments-credit-plans-table.tpl.php:2
 msgctxt "credit plans table"
@@ -8105,6 +8055,8 @@ msgid ""
 "You can find your application information in the <a>Facebook Developer Apps</"
 "a> page."
 msgstr ""
+"Vous pouvez trouver les informations de votre Application sur la page "
+"<a>Facebook Developer Apps</a>"
 
 #: includes/settings/class-general-settings.php:141
 msgid "You can get an API key from %s."
@@ -8115,6 +8067,8 @@ msgid ""
 "You can manually enter your user access token (if you know it) or log in to "
 "Facebook to get one."
 msgstr ""
+"Vous pouvez saisir manuellement votre numéro d'authentification  (si vous le "
+"connaissez) ou vous connecter à Facebook pour en obtenir un."
 
 #: templates/email/listing-is-about-to-expire-notification.plain.tpl.php:9
 msgid "You can renew your Ad visiting this link: %s"
@@ -8129,12 +8083,17 @@ msgid ""
 "You can upload <images-left> images of up to <images-max-file-size> each and "
 "<others-left> other files (no videos) of up to <others-max-file-size> each."
 msgstr ""
+"Vous pouvez charger <images-left> images de <images-max-file-size> maxi "
+"chacune, et <others-left> autres fichiers de <others-max-file-size> maxi "
+"chacun (pas de vidéo)."
 
 #: includes/media/class-media-uploader-component.php:28
 msgid ""
 "You can upload <images-left> images of up to <images-max-file-size> each and "
 "<videos-left> videos of up to <videos-max-file-size> each."
 msgstr ""
+"Vous pouvez charger <images-left> images de <images-max-file-size> maxi "
+"chacune et <videos-left> videos de <videos-max-file-size> maxi chacune."
 
 #: includes/media/class-media-uploader-component.php:26
 msgid ""
@@ -8142,59 +8101,67 @@ msgid ""
 "<videos-left> videos of up to <videos-max-file-size> each and <others-left> "
 "other files of up to <others-max-file-size> each."
 msgstr ""
+"Vous pouvez charger <images-left> images de <images-max-file-size> maxi "
+"chacune, <videos-left> videos de <videos-max-file-size> maxi chacune et "
+"<others-left> autres fichiers de <others-max-file-size> maxi chacun."
 
 #: includes/media/class-media-uploader-component.php:30
 msgid ""
 "You can upload <images-left> images of up to <images-max-file-size> each."
 msgstr ""
+"Vous pouvez charger <images-left> images de <images-max-file-size> maxi "
+"chacune."
 
 #: includes/media/class-media-uploader-component.php:31
 msgid ""
 "You can upload <others-left> files (no videos or images) of up to <others-"
 "max-file-size> each."
 msgstr ""
+"Vous pouvez charger <others-left> fichiers de <others-max-file-size> maxi "
+"chacun (pas de vidéo ni d'image)."
 
 #: includes/media/class-media-uploader-component.php:29
 msgid ""
 "You can upload <videos-left> videos of up to <videos-max-file-size> each and "
 "<others-left> other files (no images) of up to <others-max-file-size> each."
 msgstr ""
+"Vous pouvez charger <videos-left> videos de <videos-max-file-size> maxi "
+"chacune et <others-left> autres fichiers de <others-max-file-size> maxi "
+"chacun (pas d'image)."
 
 #: includes/media/class-media-uploader-component.php:32
 msgid ""
 "You can upload <videos-left> videos of up to <videos-max-file-size> each."
 msgstr ""
+"Vous pouvez charger <videos-left> videos de <videos-max-file-size> maxi "
+"chacune."
 
 #: templates/components/file-manager.tpl.php:16
-#, fuzzy
 msgid ""
 "You can upload a new image and mark it as primary using the fields below."
 msgstr ""
-"Vous pouvez également télécharger une nouvelle image et la marquer comme "
+"Vous pouvez également charger une nouvelle image et la marquer comme "
 "principale en utilisant les champs ci-dessous."
 
 #: includes/listings/class-delete-listing-action.php:14
-#, fuzzy
 msgid "You can use this button to delete your listing."
 msgstr "Vous pouvez utiliser ce bouton pour supprimer votre annonce."
 
 #: includes/media/class-file-validation-errors.php:10
-#, fuzzy
 msgid ""
 "You can't add <filename> because there are not remaining slots for files of "
 "that type."
 msgstr ""
-"Vous ne pouvez pas ajouter plus d'images pour cette annonce. Il n'y a pas "
-"encore d'emplacements d'images."
+"Vous ne pouvez pas ajouter <filename>. Il n'y a plus d'emplacements "
+"disponibles pour ce type de fichier."
 
 #: includes/functions/deprecated.php:422
-#, fuzzy
 msgctxt "upload files"
 msgid ""
 "You can't add more images to this Ad. There are not remaining images slots."
 msgstr ""
-"Vous ne pouvez pas ajouter plus d'images pour cette annonce. Il n'y a pas "
-"encore d'emplacements d'images."
+"Vous ne pouvez pas ajouter plus d'images pour cette annonce. Il n'y a plus "
+"d'emplacement disponible."
 
 #: frontend/page-place-ad.php:145
 msgid ""
@@ -8218,6 +8185,9 @@ msgid ""
 "unable the Credit System as well. The setting was set to accept both "
 "Currency and Credits."
 msgstr ""
+"Vous ne pouvez pas configurer Crédits comme seul moyen de paiement accepté ; "
+"à moins que vous activiez le Système de Crédits. Le réglage retenu accepte "
+"et les Devisse et le Crédits."
 
 #: frontend/page-place-ad.php:226
 msgid ""
@@ -8228,7 +8198,6 @@ msgstr ""
 "niveau. Vous devez sélectionner une sous-catégorie de la catégorie %s."
 
 #: includes/payments-api.php:473
-#, fuzzy
 msgid "You currently have %s credits in your account."
 msgstr "Vous avez actuellement %d au crédit sur ​​votre compte."
 
@@ -8353,24 +8322,26 @@ msgstr ""
 "d'accomplir. L'accès à cette page a été refusé"
 
 #: admin/admin-panel-listings.php:186
-#, fuzzy
 msgctxt "admin listings"
 msgid "You do not have sufficient permissions to perform that action."
 msgstr ""
 "Vous n'avez pas les autorisations suffisantes pour effectuer cette action."
 
 #: admin/class-media-manager.php:22
-#, fuzzy
 msgctxt "media manager"
 msgid "You don't have sufficient permissions to modify that Ad's media"
 msgstr ""
-"Vous n'avez pas les autorisations suffisantes pour effectuer cette action."
+"Vous n'avez pas les autorisations suffisantes pour modifier ce média de "
+"l'annonce"
 
 #: includes/views/admin/class-credit-plans-notices.php:28
 msgid ""
 "You enabled the Credit System, but there are no credit plans defined. Please "
 "<credits-section-link>add credit plans or disable the Credit System</a>."
 msgstr ""
+"Vous avez activé le système de crédit, mais aucun plan de crédit n'est "
+"défini. SVP <credits-section-link>ajouter un plan de crédit ou désactivez le "
+"système de crédit</a>."
 
 #: frontend/page-search-ads.php:74
 msgid ""
@@ -8430,6 +8401,10 @@ msgid ""
 "won't be able to post Ads. Please <fee-section-link>add payment terms</a> or "
 "<payments-settings-link>configure the website as a free board</a>."
 msgstr ""
+"Vous avez activé le paiement, mais aucun terme de paiement n'est défini. Les "
+"utilisateurs ne pourront pas poster d'annonce. SVP <fee-section-link>ajouter "
+"un terme de paiement </a> ou <payments-settings-link>configurer le site web "
+"en mode gratuit</a>."
 
 #: admin/templates/admin-panel-home.tpl.php:62
 msgid "You have setup your listing fees. To edit your fees go to %s."
@@ -8443,6 +8418,10 @@ msgid ""
 "automatically enable \"Require Registration\" for AWPCP. Make sure you site "
 "allows users to register under <wp-settings-link>Settings->General</a>."
 msgstr ""
+"Vous devez avoir enregistré les utilisateurs pour utiliser ce réglage. Ce "
+"choix activera automatiquement \"Exiger l'Enregisrement\" pour AWPCP. "
+"Assurez-vous que votre site autorise les utilisateurs à s'enregistrer sous "
+"<wp-settings-link>Settings->General</a>."
 
 #: includes/models/payment-transaction.php:249
 msgid "You must select a payment method."
@@ -8454,6 +8433,9 @@ msgid ""
 "this Ad. The Ad will remain in a disabled status until you verify you "
 "address. A verification email has been sent to you."
 msgstr ""
+" Vous devez vérifier l'adresse mail utilisée comme contact pour cette "
+"annonce. En attendant, l'annonce ne sera pas activée. Un mail de "
+"vérification vous a été adressé."
 
 #: frontend/page-place-ad.php:235 frontend/page-renew-ad.php:150
 msgid "You should choose one of the available Payment Terms."
@@ -8488,12 +8470,11 @@ msgstr ""
 "supprimés du système"
 
 #: frontend/page-place-ad.php:683
-#, fuzzy
 msgid ""
 "Your Ad details have been filled out in the form below. Make any changes "
 "needed and then resubmit the Ad to update it."
 msgstr ""
-"Vos détails de l'annonce ont été remplis dans le formulaire ci-dessous. "
+"Les détails de votre annonce ont été remplis dans le formulaire ci-dessous. "
 "Apportez toutes les modifications nécessaires puis renvoyez l'annonce pour "
 "mise à jour."
 
@@ -8516,12 +8497,11 @@ msgstr ""
 "sont ci-dessous."
 
 #: frontend/page-place-ad.php:970
-#, fuzzy
 msgid ""
 "Your Ad was flagged as spam. Please contact the administrator of this site."
 msgstr ""
-"Votre annonce a été marquée comme spam. S'il y a erreur contactez "
-"l'Administrateur de ce site."
+"Votre annonce a été marquée comme spam. Veuillez contactez l'Administrateur "
+"de ce site."
 
 #: includes/settings-api.php:265
 msgid "Your AdSense code (Best if 468x60 text or banner.)"
@@ -8529,7 +8509,6 @@ msgstr ""
 "Votre code AdSense (meilleur si le texte est de 468x60 ou une bannière.)"
 
 #: includes/settings-api.php:289
-#, fuzzy
 msgid "Your Classified Ad listing has been submitted"
 msgstr "Votre Petite Annonce a été soumise"
 
@@ -8564,11 +8543,13 @@ msgstr ""
 
 #: includes/helpers/captcha.php:134
 msgid "Your answers couldn't be verified by the reCAPTCHA server."
-msgstr ""
+msgstr "Votre réponse n'a pas pu être validée par le serveur reCAPTCHA."
 
 #: templates/components/media-uploader.tpl.php:4
 msgid "Your browser doesn't have Flash, Silverlight or HTML5 support."
 msgstr ""
+"Votre navigateur ne dispose pas de Flash Player, Silverlight ou ne supporte "
+"pas le HTML5."
 
 #: admin/admin-panel.php:1206
 msgid "Your category changes have been saved."
@@ -8602,9 +8583,8 @@ msgid "Your email address"
 msgstr "Votre Adresse Email"
 
 #: frontend/page-show-ad.php:178
-#, fuzzy
 msgid "Your email address was successfully verified."
-msgstr "Votre annonce a été supprimée avec succès."
+msgstr "Votre annonce a été vérifiée avec succès."
 
 #: frontend/templates/checkout-form-google-checkout.tpl.php:8
 msgid ""
@@ -8623,7 +8603,6 @@ msgid "Your message has been sent."
 msgstr "Votre message a été envoyé."
 
 #: frontend/page-reply-to-ad.php:134
-#, fuzzy
 msgid ""
 "Your message was flagged as spam. Please contact the administrator of this "
 "site."
@@ -8646,15 +8625,18 @@ msgid ""
 "to complete the verification process. You will be redirected to the website "
 "where you can see your Ad."
 msgstr ""
+"Vous avez récemment posté l'Annonce \"%s\" à %s. Afin de finaliser sa "
+"publication, vous devez valider votre adresse email. Veuillez cliquer sur le "
+"lien ci-dessous pour effectuer cette validation. Vous serez ensuite redirigé "
+"vers le site web pour voir votre Annonce."
 
 #: includes/views/class-base-page.php:132
-#, fuzzy
 msgid ""
 "Your request cannot be processed at this time. Please try again or contact "
 "the administrator about the incident."
 msgstr ""
-"Votre message a été marqué comme spam. Veuillez contacter l'Administrateur "
-"de ce site."
+"Votre demande ne peut être actuellement traitée. Veuillez reessayer ou "
+"contacter l'Administrateur de ce site."
 
 #: includes/helpers/captcha.php:58
 msgid "Your solution to the math problem was incorrect. Please try again."
@@ -8679,26 +8661,23 @@ msgid "Zip file containing images"
 msgstr "fichier Zip contenant des images"
 
 #: includes/settings-api.php:994
-#, fuzzy
 msgid "active"
-msgstr "Actif"
+msgstr "Active"
 
 #: awpcp.php:1038
 msgctxt "uploader queue"
 msgid "b"
-msgstr ""
+msgstr "b"
 
 #: admin/templates/admin-panel-debug.tpl.php:107
-#, fuzzy
 msgctxt "debug page"
 msgid "cURL"
 msgstr "cURL"
 
 #: admin/templates/admin-panel-debug.tpl.php:111
-#, fuzzy
 msgctxt "debug page"
 msgid "cURL's alternate CA info (cacert.pem)"
-msgstr "cURL's suppléant informations CA (cacert.pem)"
+msgstr "cURL information alternative CA (cacert.pem)"
 
 #: includes/form-fields/class-listing-details-form-field.php:34
 #: includes/form-fields/class-listing-title-form-field.php:28
@@ -8712,57 +8691,53 @@ msgid "clear selection"
 msgstr "Supprimer la sélection"
 
 #: includes/settings-api.php:1000
-#, fuzzy
 msgid "expired"
-msgstr "Annonce Axpirée"
+msgstr "Expirée"
 
 #: awpcp.php:1033
 msgctxt "uploader queue"
 msgid "gb"
-msgstr ""
+msgstr "gb"
 
 #: includes/settings-api.php:997
-#, fuzzy
 msgid "inactive"
-msgstr "Actif"
+msgstr "Désactivée"
 
 #: includes/settings-api.php:1002
 msgid "invalid"
-msgstr ""
+msgstr "Invalide"
 
 #: awpcp.php:1029
 msgctxt "uploader queue"
 msgid "kb"
-msgstr ""
+msgstr "kb"
 
 #: includes/class-listing-is-about-to-expire-notification.php:38
 msgid "less than 1"
-msgstr ""
+msgstr "Inférieur à 1"
 
 #: frontend/templates/html-widget-multiple-region-selector.tpl.php:14
 #: templates/admin/profile/contact-information-region-selector.tpl.php:15
 msgctxt "loading region options"
 msgid "loading..."
-msgstr ""
+msgstr "Chargement..."
 
 #: awpcp.php:1028
 msgctxt "uploader queue"
 msgid "mb"
-msgstr ""
+msgstr "mb"
 
 #: includes/settings/class-general-settings.php:114
 msgid "reCAPTCHA (recommended)"
 msgstr "reCAPTCHA (recommandé)"
 
 #: includes/settings/class-general-settings.php:144
-#, fuzzy
 msgid "reCAPTCHA Secret Key"
-msgstr "Clé Privée pour reCAPTCHA"
+msgstr "Clé secrète reCAPTCHA"
 
 #: includes/settings/class-general-settings.php:143
-#, fuzzy
 msgid "reCAPTCHA Site Key"
-msgstr "Clé Privée pour reCAPTCHA"
+msgstr "Clé du site reCAPTCHA"
 
 #: includes/settings-api.php:694
 msgid ""
@@ -8820,7 +8795,7 @@ msgstr "Etats (Pour les Pays Confédérés)"
 #: awpcp.php:1018
 msgctxt "uploader queue"
 msgid "tb"
-msgstr ""
+msgstr "tb"
 
 #: admin/admin-panel-listings.php:389
 msgid "there was an error trying to disable %d Ads"
@@ -8836,17 +8811,19 @@ msgstr "il y a eu une erreur en essayant de marquer l'annonce %d comme SPAM"
 
 #: includes/views/admin/listings/class-renew-listings-admin-page.php:72
 msgid "there was an error trying to renew %d Ads"
-msgstr "il y a eu une erreur en essayant de renouveler les Annonces %d"
+msgstr "Une erreur est survenue dans le renouvellement des Annonces %d."
 
 #: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:108
-#, fuzzy
 msgid "there was an error trying to send %d Ads to a Facebook Group"
-msgstr "il y a eu une erreur en essayant de mettre en vedette les Annonces %d"
+msgstr ""
+"Une erreur est intervenue en tentant d'envoyer %d Annonces à un Groupe "
+"Facebook"
 
 #: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:100
-#, fuzzy
 msgid "there was an error trying to send %d Ads to a Facebook Page"
-msgstr "il y a eu une erreur en essayant de mettre en vedette les Annonces %d"
+msgstr ""
+"Une erreur est intervenue en tentant d'envoyer %d Annonces à une Page "
+"Facebook"
 
 #: admin/admin-panel-listings.php:492
 msgid "there was an error trying to set %d Ads as featured"
