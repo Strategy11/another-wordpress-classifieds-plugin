@@ -4,6 +4,9 @@ function awpcp_send_to_facebook_helper() {
     return new AWPCP_SendToFacebookHelper( AWPCP_Facebook::instance(), awpcp_listings_metadata(), awpcp_media_api() );
 }
 
+/**
+ * TODO: use new /page-id/feed API endpoint (See https://developers.facebook.com/docs/graph-api/reference/v2.3/page/feed).
+ */
 class AWPCP_SendToFacebookHelper {
 
     private $facebook_config;
