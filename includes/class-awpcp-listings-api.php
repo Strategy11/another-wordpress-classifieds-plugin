@@ -92,7 +92,7 @@ class AWPCP_ListingsAPI {
 
         if ( $ad->verified && ! awpcp_current_user_is_moderator() ) {
             $this->send_ad_posted_email_notifications( $ad, array(), $transaction );
-        } else {
+        } else if ( ! $ad->verified ) {
             $this->send_verification_email( $ad );
         }
 
