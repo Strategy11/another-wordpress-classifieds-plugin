@@ -101,7 +101,7 @@ class AWPCP_Facebook_Page_Settings {
 	private function redirect_with_error( $error_code, $error_message ) {
 		$params = array( 'code_error' => $error_code, 'error_message' => $error_message );
 		$settings_url = admin_url( 'admin.php?page=awpcp-admin-settings&g=facebook-settings' );
-		wp_redirect( add_query_arg( $params, $settings_url ) );
+		wp_redirect( add_query_arg( urlencode_deep( $params ), $settings_url ) );
 		die();
 	}
 

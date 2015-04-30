@@ -17,7 +17,7 @@
 
 <p>
     <?php $href = add_query_arg(array('action' => 'uninstall'), $url); ?>
-    <a class="button button-primary" href="<?php echo $href ?>"><?php _e("Proceed with Uninstalling Another Wordpress Classifieds Plugin", "AWPCP"); ?></a>
+    <a class="button button-primary" href="<?php echo esc_url( $href ); ?>"><?php _e( 'Proceed with Uninstalling Another Wordpress Classifieds Plugin', 'AWPCP' ); ?></a>
 </p>
 
 <?php elseif ($action == 'uninstall'): ?>

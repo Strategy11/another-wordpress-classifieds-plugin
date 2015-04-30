@@ -15,7 +15,7 @@ class AWPCP_BrowseAdsPage extends AWPCP_Page {
 
     public function url($params=array()) {
         $url = awpcp_get_page_url('browse-ads-page-name');
-        return add_query_arg($params, $url);
+        return add_query_arg( urlencode_deep( $params ), $url );
     }
 
     public function dispatch() {

@@ -57,7 +57,7 @@ class AWPCP_PaymentsAPI {
                 'action' => $action,
                 'awpcp-txn' => $transaction->id
             );
-            return add_query_arg($params, home_url('index.php'));
+            return add_query_arg( urlencode_deep( $params ), home_url('index.php'));
         }
     }
 
@@ -404,7 +404,7 @@ class AWPCP_PaymentsAPI {
             $url = $transaction->get('redirect', $transaction->get('success-redirect'));
             $url = add_query_arg('step', 'payment-completed', $url);
             $url = add_query_arg('transaction_id', $transaction->id, $url);
-            wp_redirect($url);
+            wp_redirect( esc_url_raw( $url ) );
         }
 
         exit();

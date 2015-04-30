@@ -224,7 +224,7 @@ function url_showad($ad_id) {
         $url = user_trailingslashit($url);
     } else {
         $base_url = user_trailingslashit($base_url);
-        $url = add_query_arg($params, $base_url);
+        $url = add_query_arg( urlencode_deep( $params ), $base_url );
     }
 
     return apply_filters( 'awpcp-listing-url', $url, $ad );
@@ -256,7 +256,7 @@ function url_browsecategory( $category ) {
             $url_browsecats = sprintf('%s/%s/%s', trim($base_url, '/'), $cat_id, $cat_slug);
         } else {
             $params = array('a' => 'browsecat', 'category_id' => $cat_id);
-            $url_browsecats = add_query_arg($params, $base_url);
+            $url_browsecats = add_query_arg( urlencode_deep( $params ), $base_url );
         }
     } else {
         if (!empty($permalinks)) {
@@ -264,7 +264,7 @@ function url_browsecategory( $category ) {
         } else {
             $params = array('a' => 'browsecat', 'category_id' => $cat_id);
         }
-        $url_browsecats = add_query_arg($params, $base_url);
+        $url_browsecats = add_query_arg( urlencode_deep( $params ), $base_url );
     }
 
     return user_trailingslashit($url_browsecats);
@@ -425,15 +425,16 @@ function awpcp_get_edit_listing_generic_url() {
  */
 function awpcp_get_renew_ad_url($ad_id) {
     $hash = awpcp_get_renew_ad_hash( $ad_id );
+
     if ( get_awpcp_option( 'enable-user-panel' ) == 1 ) {
         $url = awpcp_get_user_panel_url();
-        $url = add_query_arg( array( 'id' => $ad_id, 'action' => 'renew', 'awpcprah' => $hash ), $url );
+        $params = array( 'id' => $ad_id, 'action' => 'renew', 'awpcprah' => $hash );
     } else {
         $url = awpcp_get_page_url('renew-ad-page-name');
-        $url = add_query_arg( array( 'ad_id' => $ad_id, 'awpcprah' => $hash ), $url );
+        $params = array( 'ad_id' => $ad_id, 'awpcprah' => $hash );
     }
 
-    return $url;
+    return add_query_arg( urlencode_deep( $params ), $url );
 }
 
 /**
@@ -453,7 +454,7 @@ function awpcp_get_email_verification_url( $ad_id ) {
             'awpcp-hash' => $hash,
         );
 
-        return add_query_arg( $params, home_url( 'index.php' ) );
+        return add_query_arg( urlencode_deep( $params ), home_url( 'index.php' ) );
     }
 
     return user_trailingslashit( $url );
@@ -484,7 +485,7 @@ function awpcp_get_reply_to_ad_url($ad_id, $ad_title=null) {
 
     if ($url === false) {
         $base_url = user_trailingslashit($base_url);
-        $url = add_query_arg(array('i' => $ad_id), $base_url);
+        $url = add_query_arg( array('i' => urlencode( $ad_id ) ), $base_url );
     }
 
     return $url;
@@ -501,7 +502,7 @@ function awpcp_get_admin_panel_url() {
  * @since 3.0.2
  */
 function awpcp_get_admin_settings_url( $group = false ) {
-    return add_query_arg( array( 'page' => 'awpcp-admin-settings', 'g' => $group ), admin_url( 'admin.php' ) );
+    return add_query_arg( array( 'page' => 'awpcp-admin-settings', 'g' => urlencode( $group ) ), admin_url( 'admin.php' ) );
 }
 
 /**
@@ -554,7 +555,7 @@ function awpcp_get_admin_form_fields_url() {
  * @since 2.0.7
  */
 function awpcp_get_user_panel_url( $params=array() ) {
-    return add_query_arg( $params, admin_url( 'admin.php?page=awpcp-panel' ) );
+    return add_query_arg( urlencode_deep( $params ), admin_url( 'admin.php?page=awpcp-panel' ) );
 }
 
 

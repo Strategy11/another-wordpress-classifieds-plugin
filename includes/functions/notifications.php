@@ -33,7 +33,7 @@ function awpcp_send_listing_posted_notification_to_moderators( $listing, $transa
     $admin_message->subject = __( 'New classified listing created', 'AWPCP' );
 
     $params = array('page' => 'awpcp-listings',  'action' => 'view', 'id' => $listing->ad_id);
-    $url = add_query_arg($params, admin_url('admin.php'));
+    $url = add_query_arg( urlencode_deep( $params ), admin_url( 'admin.php' ) );
 
     $template = AWPCP_DIR . '/frontend/templates/email-place-ad-success-admin.tpl.php';
     $admin_message->prepare($template, compact('content', 'url'));
@@ -79,7 +79,7 @@ function awpcp_send_listing_updated_notification_to_moderators( $listing, $messa
     $admin_message->subject = $subject;
 
     $params = array('page' => 'awpcp-listings',  'action' => 'view', 'id' => $listing->ad_id);
-    $manage_listing_url = add_query_arg( $params, admin_url( 'admin.php' ) );
+    $manage_listing_url = add_query_arg( urlencode_deep( $params ), admin_url( 'admin.php' ) );
 
     $template = AWPCP_DIR . '/templates/email/listing-updated-nofitication-moderators.plain.tpl.php';
     $admin_message->prepare( $template, compact( 'listing', 'manage_listing_url', 'content' ) );
@@ -168,7 +168,7 @@ function awpcp_send_listing_awaiting_approval_notification_to_moderators(
 
 function awpcp_get_messages_for_listing_awaiting_approval_notification( $listing, $moderate_listings, $moderate_images ) {
     $params = array( 'page' => 'awpcp-listings',  'action' => 'manage-images', 'id' => $listing->ad_id );
-    $manage_images_url = add_query_arg( $params, admin_url( 'admin.php' ) );
+    $manage_images_url = add_query_arg( urlencode_deep( $params ), admin_url( 'admin.php' ) );
 
     if ( $moderate_images && ! $moderate_listings ) {
         $subject = __( 'Images on listing "%s" are awaiting approval', 'AWPCP' );
@@ -180,13 +180,13 @@ function awpcp_get_messages_for_listing_awaiting_approval_notification( $listing
 
         $message = __('The Ad "%s" is awaiting approval. You can approve the Ad going to the Manage Listings section and clicking the "Enable" action shown on top. Click here to continue: %s.', 'AWPCP');
         $params = array('page' => 'awpcp-listings',  'action' => 'view', 'id' => $listing->ad_id);
-        $url = add_query_arg( $params, admin_url( 'admin.php' ) );
+        $url = add_query_arg( urlencode_deep( $params ), admin_url( 'admin.php' ) );
 
-        $messages[] = sprintf( $message, $listing->get_title(), $url );
+        $messages[] = sprintf( $message, $listing->get_title(), esc_url( $url ) );
 
         if ( $moderate_images ) {
             $message = __( 'Additionally, You can approve the images going to the Manage Images section for that Ad and clicking the "Enable" button below each image. Click here to continue: %s.', 'AWPCP' );
-            $messages[] = sprintf( $message, $manage_images_url );
+            $messages[] = sprintf( $message, esc_url( $manage_images_url ) );
         }
     }
 

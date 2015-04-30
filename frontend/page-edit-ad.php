@@ -207,7 +207,7 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
         if ( is_admin() ) {
             $manage_attachments = __( 'Manage Attachments', 'AWPCP' );
             $url = add_query_arg( array( 'action' => 'manage-images', 'id' => $ad->ad_id ), $this->url() );
-            $link = sprintf( '<strong><a href="%s" title="%s">%s</a></strong>', $url, esc_attr( $manage_attachments ), esc_html( $manage_attachments ) );
+            $link = sprintf( '<strong><a href="%s" title="%s">%s</a></strong>', esc_url( $url ), esc_attr( $manage_attachments ), esc_html( $manage_attachments ) );
             $message = __( "Go to the %s section to manage the Images and Attachments for this Ad.", "AWPCP");
 
             $this->messages[] = sprintf( $message, $link );
@@ -368,7 +368,7 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
             $page = awpcp_current_user_is_moderator() ? 'awpcp-listings' : 'awpcp-panel';
             $url = add_query_arg('page', $page, admin_url('admin.php'));
 
-            $this->messages[] = sprintf($message, $url);
+            $this->messages[] = sprintf( $message, esc_url( $url) );
         }
 
         $template = AWPCP_DIR . '/frontend/templates/page-place-ad-finish-step.tpl.php';

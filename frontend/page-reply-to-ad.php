@@ -38,7 +38,7 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
 
     public function url($params=array()) {
         $url = awpcp_get_page_url('reply-to-ad-page-name');
-        return add_query_arg($params, $url);
+        return add_query_arg( urlencode_deep( $params ), $url );
     }
 
     public function dispatch() {

@@ -34,6 +34,12 @@
                     <ul>
                         <li class="li_link">
                             <img style="align:left" src="<?php echo $url; ?>/resources/images/new.gif"/>
+                            <a style="color:#145200;" href="http://awpcp.com/premium-modules/buddypress-module/?ref=panel" target="_blank">
+                                <?php _e( 'BuddyPress Listings Module', 'AWPCP' ); ?>
+                            </a>
+                        </li>
+                        <li class="li_link">
+                            <img style="align:left" src="<?php echo $url; ?>/resources/images/new.gif"/>
                             <a style="color:#145200;" href="http://awpcp.com/premium-modules/comments-ratings-module/?ref=panel" target="_blank">
                                 <?php _e('Comments/Ratings Module', 'AWPCP'); ?>
                             </a>

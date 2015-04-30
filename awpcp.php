@@ -3,7 +3,7 @@
  Plugin Name: Another Wordpress Classifieds Plugin (AWPCP)
  Plugin URI: http://www.awpcp.com
  Description: AWPCP - A plugin that provides the ability to run a free or paid classified ads service on your wordpress blog. <strong>!!!IMPORTANT!!!</strong> Whether updating a previous installation of Another Wordpress Classifieds Plugin or installing Another Wordpress Classifieds Plugin for the first time, please backup your wordpress database before you install/uninstall/activate/deactivate/upgrade Another Wordpress Classifieds Plugin.
- Version: 3.4-beta-17
+ Version: 3.4-beta-18
  Author: D. Rodenbaugh
  License: GPLv2 or any later version
  Author URI: http://www.skylineconsult.com
@@ -696,14 +696,14 @@ class AWPCP {
 				),
 				'authorize.net' => array(
 					'name' => __(  'Authorize.Net', 'AWPCP'  ),
-					'url' => 'http://www.awpcp.com/premium-modules/authorizenet-payment-module/?ref=user-panel',
+					'url' => 'http://awpcp.com/premium-modules/authorizenet-payment-module/?ref=user-panel',
 					'installed' => defined( 'AWPCP_AUTHORIZE_NET_MODULE' ),
 					'version' => 'AWPCP_AUTHORIZE_NET_MODULE_DB_VERSION',
 					'required' => '3.0.3',
 				),
 				'buddypress-listings' => array(
 					'name' => __( 'BuddyPress Listings', 'AWPCP' ),
-					'url' => 'http://www.awpcp.com/premium-modules/?ref=panel',
+					'url' => 'http://awpcp.com/premium-modules/buddypress-module/?ref=panel',
 					'installed' => defined( 'AWPCP_BUDDYPRESS_LISTINGS_MODULE_DB_VERSION' ),
 					'version' => 'AWPCP_BUDDYPRESS_LISTINGS_MODULE_DB_VERSION',
 					'required' => '3.4',

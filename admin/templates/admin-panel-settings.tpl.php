@@ -10,7 +10,7 @@
 			<?php foreach ($groups as $g): ?>
 				<?php $href = add_query_arg(array('g' => $g->slug), awpcp_current_url()); ?>
 				<?php $active = $group->slug == $g->slug ? 'nav-tab nav-tab-active' : 'nav-tab'; ?>
-				<a href="<?php echo $href ?>" class="<?php echo $active ?>"><?php echo $g->name ?></a>
+				<a href="<?php echo esc_url( $href ); ?>" class="<?php echo esc_attr( $active ) ?>"><?php echo $g->name ?></a>
 			<?php endforeach ?>
 			</h2>
 
