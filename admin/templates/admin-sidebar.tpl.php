@@ -90,7 +90,7 @@
                         </li>
                         <li class="li_link">
                             <a style="color:#145200;" href="http://www.awpcp.com/premium-modules/google-checkout-module/?ref=panel" target="_blank">
-                                <?php _e('Google Checkout Payment', 'AWPCP'); ?>
+                                <?php _e('Google Checkout Payments', 'AWPCP'); ?>
                             </a>
                         </li>
                         <li class="li_link">
