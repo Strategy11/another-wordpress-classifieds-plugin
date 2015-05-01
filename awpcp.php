@@ -714,6 +714,7 @@ class AWPCP {
                     'installed' => defined( 'AWPCP_CAMPAIGN_MANAGER_MODULE' ),
                     'version' => 'AWPCP_CAMPAIGN_MANAGER_MODULE_DB_VERSION',
                     'required' => '1.0.2',
+                    'private' => true,
                 ),
 				'category-icons' => array(
 					'name' => __( 'Category Icons', 'AWPCP' ),
@@ -770,6 +771,7 @@ class AWPCP {
                     'installed' => defined( 'AWPCP_MARK_AS_SOLD_MODULE' ),
                     'version' => 'AWPCP_MARK_AS_SOLD_MODULE_DB_VERSION',
                     'required' => '1.0.1',
+                    'private' => true,
                 ),
 				'paypal-pro' => array(
 					'name' => __(  'PayPal Pro', 'AWPCP'  ),
@@ -791,6 +793,7 @@ class AWPCP {
 					'installed' => defined( 'AWPCP_RESTRICTED_CATEGORIES_MODULE' ),
 					'version' => 'AWPCP_RESTRICTED_CATEGORIES_MODULE_DB_VERSION',
 					'required' => '3.4',
+                    'private' => true,
 				),
 				'rss' => array(
 					'name' => __( 'RSS', 'AWPCP' ),
@@ -812,6 +815,7 @@ class AWPCP {
                     'installed' => defined( 'AWPCP_VIDEOS_MODULE' ),
                     'version' => 'AWPCP_VIDEOS_MODULE_DB_VERSION',
                     'required' => '1.0.3',
+                    'private' => true,
                 ),
 				'xml-sitemap' => array(
 					'name' => __(  'XML Sitemap', 'AWPCP'  ),
