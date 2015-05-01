@@ -31,8 +31,8 @@
         <p class="awpcp-form-spacer">
             <?php
                 echo awpcp_users_field()->render( array(
-                    'required' => true,
-                    'selected' => awpcp_array_data( 'user_id', '', $form ),
+                    'required' => awpcp_get_option( 'requireuserregistration' ),
+                    'selected' => awpcp_array_data( 'user_id', $edit ? null : '', $form ),
                     'label' => __( 'User', 'AWPCP' ),
                     'default' => __( 'Select an User owner for this Ad', 'AWPCP' ),
                     'id' => 'ad-user-id',

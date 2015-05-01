@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2015-04-30 13:15:29+00:00\n"
+"POT-Creation-Date: 2015-05-01 01:31:42+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -137,7 +137,8 @@ msgstr ""
 msgid "Categories"
 msgstr ""
 
-#: admin/admin-panel-fees-table.php:121 awpcp.php:747
+#: admin/admin-panel-fees-table.php:121
+#: admin/templates/admin-sidebar.tpl.php:73 awpcp.php:748
 msgid "Featured Ads"
 msgstr ""
 
@@ -681,7 +682,8 @@ msgstr ""
 msgid "Manage Extra Fields"
 msgstr ""
 
-#: admin/admin-panel.php:292 awpcp.php:740
+#: admin/admin-panel.php:292 admin/templates/admin-sidebar.tpl.php:78
+#: awpcp.php:741
 msgid "Extra Fields"
 msgstr ""
 
@@ -1331,14 +1333,14 @@ msgid "cURL"
 msgstr ""
 
 #: admin/templates/admin-panel-debug.tpl.php:108
-#: admin/templates/admin-sidebar.tpl.php:132
-#: admin/templates/admin-sidebar.tpl.php:173
+#: admin/templates/admin-sidebar.tpl.php:129
+#: admin/templates/admin-sidebar.tpl.php:170
 msgid "Installed"
 msgstr ""
 
 #: admin/templates/admin-panel-debug.tpl.php:108
-#: admin/templates/admin-sidebar.tpl.php:149
-#: admin/templates/admin-sidebar.tpl.php:190
+#: admin/templates/admin-sidebar.tpl.php:146
+#: admin/templates/admin-sidebar.tpl.php:187
 msgid "Not Installed"
 msgstr ""
 
@@ -1903,118 +1905,110 @@ msgstr ""
 msgid "Get a Premium Module!"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:38
-msgid "BuddyPress Listings Module"
+#: admin/templates/admin-sidebar.tpl.php:38 awpcp.php:705
+msgid "BuddyPress Listings"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:44
-msgid "Comments/Ratings Module"
+#: admin/templates/admin-sidebar.tpl.php:43
+msgid "Comments/Ratings"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:50
-msgid "Authorize.Net Module"
+#: admin/templates/admin-sidebar.tpl.php:48 awpcp.php:698
+msgid "Authorize.Net"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:56
-msgid "PayPal Pro Module"
+#: admin/templates/admin-sidebar.tpl.php:53 awpcp.php:777
+msgid "PayPal Pro"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:61
-msgid "Coupon/Discount Module"
+#: admin/templates/admin-sidebar.tpl.php:58
+msgid "Coupon/Discount"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:66
-msgid "Subscriptions Module"
+#: admin/templates/admin-sidebar.tpl.php:63 awpcp.php:806
+msgid "Subscriptions"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:71
-msgid "Fee Per Category Module"
+#: admin/templates/admin-sidebar.tpl.php:68
+msgid "Fee Per Category"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:76
-msgid "Featured Ads Module"
+#: admin/templates/admin-sidebar.tpl.php:83 awpcp.php:720
+msgid "Category Icons"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:81
-msgid "Extra Fields Module"
+#: admin/templates/admin-sidebar.tpl.php:88 awpcp.php:784
+msgid "Regions Control"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:86
-msgid "Category Icons Premium Module"
+#: admin/templates/admin-sidebar.tpl.php:93
+msgid "Google Checkout Payments"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:91
-msgid "Regions Control Module"
+#: admin/templates/admin-sidebar.tpl.php:98 awpcp.php:799
+msgid "RSS"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:96
-msgid "Google Checkout Payment Module"
-msgstr ""
-
-#: admin/templates/admin-sidebar.tpl.php:101
-msgid "RSS Module"
-msgstr ""
-
-#: admin/templates/admin-sidebar.tpl.php:106
+#: admin/templates/admin-sidebar.tpl.php:103
 msgid "Donate to Support AWPCP"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:114
+#: admin/templates/admin-sidebar.tpl.php:111
 msgid "Found a bug?"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:114
+#: admin/templates/admin-sidebar.tpl.php:111
 msgid "Need Support?"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:118
+#: admin/templates/admin-sidebar.tpl.php:115
 msgid "Quick Start Guide"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:119
+#: admin/templates/admin-sidebar.tpl.php:116
 msgctxt "Browse the <a>Quick Start Guide</a>"
 msgid "Browse the %s."
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:120
+#: admin/templates/admin-sidebar.tpl.php:117
 msgid "Documentation"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:121
+#: admin/templates/admin-sidebar.tpl.php:118
 msgctxt "Read the full <a>Documentation</a>"
 msgid "Read the full %s."
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:122
+#: admin/templates/admin-sidebar.tpl.php:119
 msgid "visit the forums!"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:123
+#: admin/templates/admin-sidebar.tpl.php:120
 msgctxt "Report bugs or get more help: <a>visit the forums!</a>"
 msgid "Report bugs or get more help: %s."
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:129
+#: admin/templates/admin-sidebar.tpl.php:126
 msgid "Premium Modules"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:136
+#: admin/templates/admin-sidebar.tpl.php:133
 msgid "No premium modules installed."
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:153
+#: admin/templates/admin-sidebar.tpl.php:150
 msgid "All premium modules installed!"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:169
+#: admin/templates/admin-sidebar.tpl.php:166
 msgid "Other Modules"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:177
+#: admin/templates/admin-sidebar.tpl.php:174
 msgid "No other modules installed"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:194
+#: admin/templates/admin-sidebar.tpl.php:191
 msgid "All other modules installed!"
 msgstr ""
 
@@ -2102,259 +2096,231 @@ msgstr ""
 msgid "Attachments"
 msgstr ""
 
-#: awpcp.php:698
-msgid "Authorize.Net"
-msgstr ""
-
-#: awpcp.php:705
-msgid "BuddyPress Listings"
-msgstr ""
-
 #: awpcp.php:712
 msgid "Campaign Manager"
 msgstr ""
 
-#: awpcp.php:719
-msgid "Category Icons"
-msgstr ""
-
-#: awpcp.php:726
+#: awpcp.php:727
 msgid "Comments & Ratings"
 msgstr ""
 
-#: awpcp.php:733
+#: awpcp.php:734
 msgid "Coupons/Discount"
 msgstr ""
 
-#: awpcp.php:754
+#: awpcp.php:755
 msgid "Fee per Category"
 msgstr ""
 
-#: awpcp.php:761
+#: awpcp.php:762
 msgid "Google Checkout"
 msgstr ""
 
-#: awpcp.php:768
+#: awpcp.php:769
 msgid "Mark as Sold"
 msgstr ""
 
-#: awpcp.php:775
-msgid "PayPal Pro"
-msgstr ""
-
-#: awpcp.php:782
-msgid "Regions Control"
-msgstr ""
-
-#: awpcp.php:789
+#: awpcp.php:791
 msgid "Restricted Categories"
 msgstr ""
 
-#: awpcp.php:796
-msgid "RSS"
-msgstr ""
-
-#: awpcp.php:803
-msgid "Subscriptions"
-msgstr ""
-
-#: awpcp.php:810 templates/components/media-manager.tpl.php:32
+#: awpcp.php:813 templates/components/media-manager.tpl.php:32
 msgid "Videos"
 msgstr ""
 
-#: awpcp.php:817
+#: awpcp.php:821
 msgid "XML Sitemap"
 msgstr ""
 
-#: awpcp.php:864
+#: awpcp.php:868
 msgid ""
 "The %1$s module you have installed is outdated and not compatible with this "
 "version of AWPCP. Please get %1$s %2$s or newer."
 msgstr ""
 
-#: awpcp.php:1006
+#: awpcp.php:1010
 msgid "This field is required."
 msgstr ""
 
-#: awpcp.php:1007 frontend/page-edit-ad.php:128 frontend/page-edit-ad.php:433
+#: awpcp.php:1011 frontend/page-edit-ad.php:128 frontend/page-edit-ad.php:433
 #: includes/settings-api.php:214
 msgid "Please enter a valid email address."
 msgstr ""
 
-#: awpcp.php:1008
+#: awpcp.php:1012
 msgid "Please enter a valid URL."
 msgstr ""
 
-#: awpcp.php:1009
+#: awpcp.php:1013
 msgid "Please enter a valid number."
 msgstr ""
 
-#: awpcp.php:1010
+#: awpcp.php:1014
 msgid "Please enter a valid amount."
-msgstr ""
-
-#: awpcp.php:1016
-msgctxt "uploader queue"
-msgid "Stop Upload"
-msgstr ""
-
-#: awpcp.php:1017
-msgctxt "uploader queue"
-msgid "Upload URL might be wrong or doesn't exist."
-msgstr ""
-
-#: awpcp.php:1018
-msgctxt "uploader queue"
-msgid "tb"
-msgstr ""
-
-#: awpcp.php:1019
-msgctxt "uploader queue"
-msgid "Size"
 msgstr ""
 
 #: awpcp.php:1020
 msgctxt "uploader queue"
-msgid "Close"
+msgid "Stop Upload"
 msgstr ""
 
 #: awpcp.php:1021
 msgctxt "uploader queue"
-msgid "Init error."
+msgid "Upload URL might be wrong or doesn't exist."
 msgstr ""
 
 #: awpcp.php:1022
 msgctxt "uploader queue"
-msgid "Add files to the upload queue and click the start button."
+msgid "tb"
 msgstr ""
 
 #: awpcp.php:1023
 msgctxt "uploader queue"
-msgid "Filename"
+msgid "Size"
 msgstr ""
 
 #: awpcp.php:1024
 msgctxt "uploader queue"
-msgid "Image format either wrong or not supported."
+msgid "Close"
 msgstr ""
 
 #: awpcp.php:1025
 msgctxt "uploader queue"
-msgid "Status"
+msgid "Init error."
 msgstr ""
 
 #: awpcp.php:1026
 msgctxt "uploader queue"
-msgid "HTTP Error."
+msgid "Add files to the upload queue and click the start button."
 msgstr ""
 
 #: awpcp.php:1027
 msgctxt "uploader queue"
-msgid "Start Upload"
+msgid "Filename"
 msgstr ""
 
 #: awpcp.php:1028
 msgctxt "uploader queue"
-msgid "mb"
+msgid "Image format either wrong or not supported."
 msgstr ""
 
 #: awpcp.php:1029
 msgctxt "uploader queue"
-msgid "kb"
+msgid "Status"
 msgstr ""
 
 #: awpcp.php:1030
 msgctxt "uploader queue"
-msgid "Duplicate file error."
+msgid "HTTP Error."
 msgstr ""
 
 #: awpcp.php:1031
 msgctxt "uploader queue"
-msgid "File size error."
+msgid "Start Upload"
 msgstr ""
 
 #: awpcp.php:1032
 msgctxt "uploader queue"
-msgid "N/A"
+msgid "mb"
 msgstr ""
 
 #: awpcp.php:1033
 msgctxt "uploader queue"
-msgid "gb"
+msgid "kb"
 msgstr ""
 
 #: awpcp.php:1034
 msgctxt "uploader queue"
-msgid "Error: Invalid file extension:"
+msgid "Duplicate file error."
 msgstr ""
 
 #: awpcp.php:1035
 msgctxt "uploader queue"
-msgid "Select files"
+msgid "File size error."
 msgstr ""
 
 #: awpcp.php:1036
 msgctxt "uploader queue"
-msgid "%s already present in the queue."
+msgid "N/A"
 msgstr ""
 
 #: awpcp.php:1037
 msgctxt "uploader queue"
-msgid "File: %s"
+msgid "gb"
 msgstr ""
 
 #: awpcp.php:1038
 msgctxt "uploader queue"
-msgid "b"
+msgid "Error: Invalid file extension:"
 msgstr ""
 
 #: awpcp.php:1039
 msgctxt "uploader queue"
-msgid "Uploaded %d/%d files"
+msgid "Select files"
 msgstr ""
 
 #: awpcp.php:1040
+msgctxt "uploader queue"
+msgid "%s already present in the queue."
+msgstr ""
+
+#: awpcp.php:1041
+msgctxt "uploader queue"
+msgid "File: %s"
+msgstr ""
+
+#: awpcp.php:1042
+msgctxt "uploader queue"
+msgid "b"
+msgstr ""
+
+#: awpcp.php:1043
+msgctxt "uploader queue"
+msgid "Uploaded %d/%d files"
+msgstr ""
+
+#: awpcp.php:1044
 msgctxt "uploader queue"
 msgid ""
 "Upload element accepts only %d file(s) at a time. Extra files were stripped."
 msgstr ""
 
-#: awpcp.php:1041
+#: awpcp.php:1045
 msgctxt "uploader queue"
 msgid "%d files queued"
 msgstr ""
 
-#: awpcp.php:1042
+#: awpcp.php:1046
 msgctxt "uploader queue"
 msgid "File: %s, size: %d, max file size: %d"
 msgstr ""
 
-#: awpcp.php:1043
+#: awpcp.php:1047
 msgctxt "uploader queue"
 msgid "Drag files here."
 msgstr ""
 
-#: awpcp.php:1044
+#: awpcp.php:1048
 msgctxt "uploader queue"
 msgid "Runtime ran out of available memory."
 msgstr ""
 
-#: awpcp.php:1045
+#: awpcp.php:1049
 msgctxt "uploader queue"
 msgid "File count error."
 msgstr ""
 
-#: awpcp.php:1046
+#: awpcp.php:1050
 msgctxt "uploader queue"
 msgid "File extension error."
 msgstr ""
 
-#: awpcp.php:1047
+#: awpcp.php:1051
 msgctxt "uploader queue"
 msgid "Error: File too large:"
 msgstr ""
 
-#: awpcp.php:1048
+#: awpcp.php:1052
 msgctxt "uploader queue"
 msgid "Add Files"
 msgstr ""

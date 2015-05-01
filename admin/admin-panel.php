@@ -1392,7 +1392,11 @@ function awpcp_admin_sidebar_output($html, $float) {
 
 	$premium_modules = $awpcp->get_premium_modules_information();
 	foreach ($premium_modules as $module) {
-		if ($module['installed']) {
+		if ( isset( $module['private'] ) && $module['private'] ) {
+			continue;
+		}
+
+		if ( $module['installed'] ) {
 			$modules['premium']['installed'][] = $module;
 		} else {
 			$modules['premium']['not-installed'][] = $module;

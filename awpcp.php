@@ -3,7 +3,7 @@
  Plugin Name: Another Wordpress Classifieds Plugin (AWPCP)
  Plugin URI: http://www.awpcp.com
  Description: AWPCP - A plugin that provides the ability to run a free or paid classified ads service on your wordpress blog. <strong>!!!IMPORTANT!!!</strong> Whether updating a previous installation of Another Wordpress Classifieds Plugin or installing Another Wordpress Classifieds Plugin for the first time, please backup your wordpress database before you install/uninstall/activate/deactivate/upgrade Another Wordpress Classifieds Plugin.
- Version: 3.4-beta-18
+ Version: 3.4-beta-19
  Author: D. Rodenbaugh
  License: GPLv2 or any later version
  Author URI: http://www.skylineconsult.com
@@ -714,6 +714,7 @@ class AWPCP {
                     'installed' => defined( 'AWPCP_CAMPAIGN_MANAGER_MODULE' ),
                     'version' => 'AWPCP_CAMPAIGN_MANAGER_MODULE_DB_VERSION',
                     'required' => '1.0.2',
+                    'private' => true,
                 ),
 				'category-icons' => array(
 					'name' => __( 'Category Icons', 'AWPCP' ),
@@ -770,6 +771,7 @@ class AWPCP {
                     'installed' => defined( 'AWPCP_MARK_AS_SOLD_MODULE' ),
                     'version' => 'AWPCP_MARK_AS_SOLD_MODULE_DB_VERSION',
                     'required' => '1.0.1',
+                    'private' => true,
                 ),
 				'paypal-pro' => array(
 					'name' => __(  'PayPal Pro', 'AWPCP'  ),
@@ -791,6 +793,7 @@ class AWPCP {
 					'installed' => defined( 'AWPCP_RESTRICTED_CATEGORIES_MODULE' ),
 					'version' => 'AWPCP_RESTRICTED_CATEGORIES_MODULE_DB_VERSION',
 					'required' => '3.4',
+                    'private' => true,
 				),
 				'rss' => array(
 					'name' => __( 'RSS', 'AWPCP' ),
@@ -812,6 +815,7 @@ class AWPCP {
                     'installed' => defined( 'AWPCP_VIDEOS_MODULE' ),
                     'version' => 'AWPCP_VIDEOS_MODULE_DB_VERSION',
                     'required' => '1.0.3',
+                    'private' => true,
                 ),
 				'xml-sitemap' => array(
 					'name' => __(  'XML Sitemap', 'AWPCP'  ),
