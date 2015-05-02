@@ -138,7 +138,7 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
             'disabled' => false,
             'limit' => absint( awpcp_request_param( 'results', get_awpcp_option( 'adresultsperpage', 10 ) ) ),
             'offset' => absint( awpcp_request_param( 'offset', 0 ) ),
-            'order' => get_awpcp_option( 'search-results-order' ),
+            'orderby' => get_awpcp_option( 'search-results-order' ),
         ) );
 
         return awpcp_display_listings( $query, 'search', array(
