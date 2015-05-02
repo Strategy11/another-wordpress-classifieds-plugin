@@ -20,7 +20,7 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
 
     public function url($params=array()) {
         $page_url = awpcp_get_page_url( 'search-ads-page-name', true );
-        return add_query_arg( urlencode_deep( $params ), $url );
+        return add_query_arg( urlencode_deep( $params ), $page_url );
     }
 
     public function dispatch() {
