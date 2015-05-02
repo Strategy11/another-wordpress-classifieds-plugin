@@ -20,7 +20,7 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
 
     public function url($params=array()) {
         $page_url = awpcp_get_page_url( 'search-ads-page-name', true );
-        return add_query_arg( urlencode_deep( $params ), $url );
+        return add_query_arg( urlencode_deep( $params ), $page_url );
     }
 
     public function dispatch() {
@@ -138,7 +138,7 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
             'disabled' => false,
             'limit' => absint( awpcp_request_param( 'results', get_awpcp_option( 'adresultsperpage', 10 ) ) ),
             'offset' => absint( awpcp_request_param( 'offset', 0 ) ),
-            'order' => get_awpcp_option( 'search-results-order' ),
+            'orderby' => get_awpcp_option( 'search-results-order' ),
         ) );
 
         return awpcp_display_listings( $query, 'search', array(
