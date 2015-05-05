@@ -6,7 +6,7 @@
  */
 class AWPCP_Facebook {
 
-    const GRAPH_URL = 'https://graph.facebook.com/v2.0';
+    const GRAPH_API_VERSION = 'v2.3';
 
 	private static $instance = null;
     private $access_token = '';
@@ -38,11 +38,15 @@ class AWPCP_Facebook {
                                               'grant_type' => 'client_credentials' ),
                                        true,
                                        false );
-            parse_str( $res, $parts );
+
+            $parts = json_decode( $res, true );
 
             if ( !array_key_exists( 'access_token', $parts ) ) {
                 $res = json_decode( $res );
-                $errors[] = $res->error->message;
+
+                if ( isset( $parts['error'] ) ) {
+                    $errors[] = $parts['error']['message'];
+                }
             } else {
                 $app_access_token = $parts['access_token'];
             }
@@ -226,7 +230,7 @@ class AWPCP_Facebook {
     }
 
     public function get_login_url( $redirect_uri = '', $scope = '' ) {
-        return sprintf( 'https://www.facebook.com/v2.0/dialog/oauth?client_id=%s&redirect_uri=%s&scope=%s',
+        return sprintf( 'https://www.facebook.com/' . self::GRAPH_API_VERSION . '/dialog/oauth?client_id=%s&redirect_uri=%s&scope=%s',
                         $this->get( 'app_id' ),
                         urlencode( $redirect_uri ),
                         urlencode( $scope )
@@ -250,21 +254,20 @@ class AWPCP_Facebook {
                                         'GET',
                                         array( 'redirect_uri' => $redirect_uri,
                                                'code' => $code ),
-                                        true,
-                                        false );
+            true
+        );
 
-        if ( $response ) {
-            parse_str( $response, $parts );
-            return isset( $parts['access_token'] ) ? $parts['access_token'] : '';
+        if ( $response && isset( $response->access_token ) ) {
+            return $response->access_token;
+        } else {
+            return '';
         }
-
-        return '';
     }
 
     public function api_request( $path, $method = 'GET', $args = array(), $notoken=false, $json_decode=true ) {
         $this->last_error = '';
 
-        $url = self::GRAPH_URL . '/' . ltrim( $path, '/' );
+        $url = 'https://graph.facebook.com/' . self::GRAPH_API_VERSION . '/' . ltrim( $path, '/' );
         $url .= '?client_id=' . $this->get( 'app_id' );
         $url .= '&client_secret=' . $this->get( 'app_secret' );
 
