@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: AWPCP\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2015-05-01 01:31:42+00:00\n"
+"POT-Creation-Date: 2015-05-06 00:20:19+00:00\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: \n"
@@ -1454,7 +1454,7 @@ msgid "Could not save the information to the database for %s in row %d"
 msgstr ""
 "No se pudo guardar información para %s en la fila %d de la base de datos"
 
-#: includes/helpers/facebook.php:60
+#: includes/helpers/facebook.php:49
 msgid ""
 "Could not validate User Access Token. Are you connected to the internet?"
 msgstr ""
@@ -2125,7 +2125,7 @@ msgstr ""
 "Dirección de correo electrónico utilizada en el campo DE de los mensajes "
 "salientes"
 
-#: includes/helpers/class-send-to-facebook-helper.php:57
+#: includes/helpers/class-send-to-facebook-helper.php:54
 msgid "Facebook API returned the following errors: %s."
 msgstr "La API de Facebook respondió con los siguientes errores: %s."
 
@@ -3551,13 +3551,13 @@ msgctxt "alternate CA info for cURL"
 msgid "Missing"
 msgstr "No se encontró"
 
-#: includes/helpers/facebook.php:52
+#: includes/helpers/facebook.php:31
+msgid "Missing App ID an Secret."
+msgstr "Falta App ID/secret."
+
+#: includes/helpers/facebook.php:36
 msgid "Missing a valid User Access Token."
 msgstr "Falta un token de acceso de usuario (User Access Token) válido."
-
-#: includes/helpers/facebook.php:31
-msgid "Missing app ID/secret."
-msgstr "Falta app ID/secret."
 
 #: includes/media/class-file-uploader.php:140
 msgid "Missing chunk."
@@ -3747,7 +3747,7 @@ msgstr "No seleccionó anuncios"
 msgid "No Ads were selected."
 msgstr "No seleccionó anuncios."
 
-#: includes/helpers/facebook.php:77
+#: includes/helpers/facebook.php:67
 msgid "No Facebook page is selected (missing page id or token)."
 msgstr ""
 "No se ha seleccionado ninguna página de Facebook (falta el ID de la página o "
@@ -5755,8 +5755,8 @@ msgstr "El anuncio ha sido marcado como no reportado."
 msgid "The Ad hasn't expired yet and is not about to expire."
 msgstr "El anuncio no ha expirado aún y no está a punto de expirar."
 
-#: includes/helpers/class-send-to-facebook-helper.php:30
-#: includes/helpers/class-send-to-facebook-helper.php:71
+#: includes/helpers/class-send-to-facebook-helper.php:27
+#: includes/helpers/class-send-to-facebook-helper.php:76
 msgid ""
 "The Ad is currently disabled. If you share it, Facebook servers and users "
 "won't be able to access it."
@@ -5764,11 +5764,11 @@ msgstr ""
 "El anuncio está deshabitado. Si lo publica, ni los servidores de Facebook ni "
 "sus usuarios podrán verlo."
 
-#: includes/helpers/class-send-to-facebook-helper.php:67
+#: includes/helpers/class-send-to-facebook-helper.php:72
 msgid "The Ad was already sent to Facebook Group."
 msgstr "El anuncio ya fue publicado a un Grupo de Facebook."
 
-#: includes/helpers/class-send-to-facebook-helper.php:26
+#: includes/helpers/class-send-to-facebook-helper.php:23
 msgid "The Ad was already sent to Facebook Page."
 msgstr "El anuncio ya fue publicado a una Página de Facebook."
 
@@ -6825,7 +6825,7 @@ msgid "There was an error trying to contact Facebook servers: \"%s\"."
 msgstr ""
 "Ocurrió un error tratando de contactar los servidores de Facebook. \"%s\"."
 
-#: includes/helpers/class-send-to-facebook-helper.php:51
+#: includes/helpers/class-send-to-facebook-helper.php:48
 msgid "There was an error trying to contact Facebook servers: %s."
 msgstr "Ocurrió un error tratando de contactar los servidores de Facebook: %s."
 
@@ -7568,30 +7568,14 @@ msgstr "Usuario"
 msgid "User Access Token"
 msgstr "Token de Acceso de Usuario"
 
-#: includes/helpers/facebook.php:65
-msgid ""
-"User Access Token is not valid for current app. Maybe you de-authorized the "
-"app or the token expired? Try clicking \"Obtain an access token from Facebook"
-"\" again."
-msgstr ""
-"El token de acceso de usuario no es válido para la aplicción actual. Es "
-"posible que usted haya desautorizado la aplicación o que el token haya "
-"expirado? Intengo haciendo click en \"Obtener un token de acceso de Facebook"
-"\" de nuevo."
-
-#: includes/helpers/facebook.php:68
+#: includes/helpers/facebook.php:62
 msgid ""
 "User Access Token is valid but doesn't have the permissions required for "
-"AWPCP integration (publish_stream and manage_pages)."
+"AWPCP integration (publish_pages, publis_actions and manage_pages)."
 msgstr ""
 "El token de acceso de usuario es válido pero no tiene los permisos "
-"requeridos para la integración con AWPCP (publish_stream y manage_pages)."
-
-#: includes/helpers/facebook.php:72
-msgid "User Access Token user id does not match stored user id."
-msgstr ""
-"El ID de usuario asociado con el token de acceso de usuario no corresponde "
-"con el ID de usuario almacenado."
+"requeridos para la integración con AWPCP (publish_pages, publish_actions y "
+"manage_pages)."
 
 #: includes/settings/class-general-settings.php:20
 msgid "User Ad Management Panel"
@@ -11018,6 +11002,21 @@ msgstr "viste los foros!"
 
 #~ msgid "User %s has %d Ads still active for this Subscription."
 #~ msgstr "El usuario %s tiene %d Anuncios activos para esta suscripción."
+
+#~ msgid ""
+#~ "User Access Token is not valid for current app. Maybe you de-authorized "
+#~ "the app or the token expired? Try clicking \"Obtain an access token from "
+#~ "Facebook\" again."
+#~ msgstr ""
+#~ "El token de acceso de usuario no es válido para la aplicción actual. Es "
+#~ "posible que usted haya desautorizado la aplicación o que el token haya "
+#~ "expirado? Intengo haciendo click en \"Obtener un token de acceso de "
+#~ "Facebook\" de nuevo."
+
+#~ msgid "User Access Token user id does not match stored user id."
+#~ msgstr ""
+#~ "El ID de usuario asociado con el token de acceso de usuario no "
+#~ "corresponde con el ID de usuario almacenado."
 
 #~ msgid "User Ratings"
 #~ msgstr "Calificaciones de Usuario"

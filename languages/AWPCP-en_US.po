@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: AWPCP\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2015-05-01 01:31:42+00:00\n"
+"POT-Creation-Date: 2015-05-06 00:20:19+00:00\n"
 "PO-Revision-Date: 2014-09-09 20:44-0600\n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: \n"
@@ -1333,7 +1333,7 @@ msgstr ""
 msgid "Could not save the information to the database for %s in row %d"
 msgstr ""
 
-#: includes/helpers/facebook.php:60
+#: includes/helpers/facebook.php:49
 msgid ""
 "Could not validate User Access Token. Are you connected to the internet?"
 msgstr ""
@@ -1962,7 +1962,7 @@ msgstr ""
 msgid "FROM email address for outgoing emails"
 msgstr ""
 
-#: includes/helpers/class-send-to-facebook-helper.php:57
+#: includes/helpers/class-send-to-facebook-helper.php:54
 msgid "Facebook API returned the following errors: %s."
 msgstr ""
 
@@ -3207,12 +3207,12 @@ msgctxt "alternate CA info for cURL"
 msgid "Missing"
 msgstr ""
 
-#: includes/helpers/facebook.php:52
-msgid "Missing a valid User Access Token."
+#: includes/helpers/facebook.php:31
+msgid "Missing App ID an Secret."
 msgstr ""
 
-#: includes/helpers/facebook.php:31
-msgid "Missing app ID/secret."
+#: includes/helpers/facebook.php:36
+msgid "Missing a valid User Access Token."
 msgstr ""
 
 #: includes/media/class-file-uploader.php:140
@@ -3393,7 +3393,7 @@ msgstr ""
 msgid "No Ads were selected."
 msgstr ""
 
-#: includes/helpers/facebook.php:77
+#: includes/helpers/facebook.php:67
 msgid "No Facebook page is selected (missing page id or token)."
 msgstr ""
 
@@ -5257,18 +5257,18 @@ msgstr ""
 msgid "The Ad hasn't expired yet and is not about to expire."
 msgstr ""
 
-#: includes/helpers/class-send-to-facebook-helper.php:30
-#: includes/helpers/class-send-to-facebook-helper.php:71
+#: includes/helpers/class-send-to-facebook-helper.php:27
+#: includes/helpers/class-send-to-facebook-helper.php:76
 msgid ""
 "The Ad is currently disabled. If you share it, Facebook servers and users "
 "won't be able to access it."
 msgstr ""
 
-#: includes/helpers/class-send-to-facebook-helper.php:67
+#: includes/helpers/class-send-to-facebook-helper.php:72
 msgid "The Ad was already sent to Facebook Group."
 msgstr ""
 
-#: includes/helpers/class-send-to-facebook-helper.php:26
+#: includes/helpers/class-send-to-facebook-helper.php:23
 msgid "The Ad was already sent to Facebook Page."
 msgstr ""
 
@@ -6150,7 +6150,7 @@ msgstr ""
 msgid "There was an error trying to contact Facebook servers: \"%s\"."
 msgstr ""
 
-#: includes/helpers/class-send-to-facebook-helper.php:51
+#: includes/helpers/class-send-to-facebook-helper.php:48
 msgid "There was an error trying to contact Facebook servers: %s."
 msgstr ""
 
@@ -6786,21 +6786,10 @@ msgstr ""
 msgid "User Access Token"
 msgstr ""
 
-#: includes/helpers/facebook.php:65
-msgid ""
-"User Access Token is not valid for current app. Maybe you de-authorized the "
-"app or the token expired? Try clicking \"Obtain an access token from Facebook"
-"\" again."
-msgstr ""
-
-#: includes/helpers/facebook.php:68
+#: includes/helpers/facebook.php:62
 msgid ""
 "User Access Token is valid but doesn't have the permissions required for "
-"AWPCP integration (publish_stream and manage_pages)."
-msgstr ""
-
-#: includes/helpers/facebook.php:72
-msgid "User Access Token user id does not match stored user id."
+"AWPCP integration (publish_pages, publis_actions and manage_pages)."
 msgstr ""
 
 #: includes/settings/class-general-settings.php:20
