@@ -28,53 +28,39 @@ class AWPCP_Facebook {
         $app_access_token = '';
 
         if ( !$app_id || !$app_secret ) {
-            $errors[] = __( 'Missing app ID/secret.', 'AWPCP' );
-        } else {
-            // Check App ID + secret.
-            $res = $this->api_request( '/oauth/access_token',
-                                       'GET',
-                                       array( 'client_id' => $app_id,
-                                              'client_secret' => $app_secret,
-                                              'grant_type' => 'client_credentials' ),
-                                       true,
-                                       false );
+            $errors[] = __( 'Missing App ID an Secret.', 'AWPCP' );
+            return;
+        }
 
-            $parts = json_decode( $res, true );
+        if ( ! $user_id || ! $user_token ) {
+            $errors[] = __( 'Missing a valid User Access Token.', 'AWPCP' );
+            return;
+        }
 
-            if ( !array_key_exists( 'access_token', $parts ) ) {
-                $res = json_decode( $res );
+        $this->set_access_token( 'user_token' );
+        $response = $this->api_request( '/me/permissions', 'GET', array() );
 
-                if ( isset( $parts['error'] ) ) {
-                    $errors[] = $parts['error']['message'];
-                }
-            } else {
-                $app_access_token = $parts['access_token'];
+        if ( ! $response && is_object( $response->last_error ) ) {
+            $errors[] = $this->last_error->message;
+            return;
+        }
+
+        if ( ! $response || ! isset( $response->data ) ) {
+            $errors[] = __( 'Could not validate User Access Token. Are you connected to the internet?', 'AWPCP' );
+            return;
+        }
+
+        $permissions = array();
+
+        foreach ( $response->data as $entry ) {
+            if ( $entry->status == 'granted' ) {
+                $permissions[] = $entry->permission;
             }
         }
 
-        if ( !$user_id || !$user_token ) {
-            $errors[] = __( 'Missing a valid User Access Token.', 'AWPCP' );
-        } else {
-            $this->set_access_token( $app_access_token );
-            $res = $this->api_request( '/debug_token',
-                                       'GET',
-                                       array( 'input_token' => $user_token ) );
-
-            if ( !$res || !isset( $res->data ) ) {
-                $errors[] = __( 'Could not validate User Access Token. Are you connected to the internet?', 'AWPCP' );
-            } else {
-                $token_info = $res->data;
-
-                if ( !$token_info->is_valid ) {
-                    $errors[] = __( 'User Access Token is not valid for current app. Maybe you de-authorized the app or the token expired? Try clicking "Obtain an access token from Facebook" again.', 'AWPCP' );
-                } else {
-                    if ( !in_array( 'manage_pages', $token_info->scopes ) || ( !in_array( 'publish_stream', $token_info->scopes ) && !in_array( 'publish_actions', $token_info->scopes ) ) )
-                        $errors[] = __( 'User Access Token is valid but doesn\'t have the permissions required for AWPCP integration (publish_stream and manage_pages).', 'AWPCP' );
-                }
-
-                if ( $token_info->user_id != $user_id )
-                    $errors[] = __( 'User Access Token user id does not match stored user id.', 'AWPCP' );
-            }
+        if ( ! in_array( 'manage_pages', $permissions ) || ( ! in_array( 'publish_pages', $permissions ) && ! in_array( 'publish_actions', $permissions ) ) ) {
+            $errors[] = __( 'User Access Token is valid but doesn\'t have the permissions required for AWPCP integration (publish_pages, publis_actions and manage_pages).', 'AWPCP' );
+            return;
         }
 
         if ( !$page_token || !$page_id ) {
