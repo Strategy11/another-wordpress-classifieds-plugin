@@ -101,7 +101,7 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
         $messages = $this->messages;
 
         $url_params = wp_parse_args( parse_url( awpcp_current_url(), PHP_URL_QUERY ) );
-        $hidden = array_merge( $url_params, array( 'a' => 'dosearch' ) );
+        $hidden = awpcp_flatten_array( array_merge( $url_params, array( 'a' => 'dosearch' ) ) );
 
         $page = $this;
         $template = AWPCP_DIR . '/frontend/templates/page-search-ads.tpl.php';
@@ -154,7 +154,10 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
     public function build_return_link() {
         $params = array_merge(stripslashes_deep($_REQUEST), array('a' => 'searchads'));
         $href = add_query_arg(urlencode_deep($params), awpcp_current_url());
-        $return_link = '<div class="awpcp-return-to-search-link awpcp-clearboth"><a href="' . esc_attr($href) . '">' . __('Return to Search', 'AWPCP') . '</a></div>';
+
+        $return_link = '<div class="awpcp-return-to-search-link awpcp-clearboth"><a href="<link-url>"><link-text></a></div>';
+        $return_link = str_replace( '<link-url>', esc_url( $href ), $return_link );
+        $return_link = str_replace( '<link-text>', __( 'Return to Search', 'AWPCP' ), $return_link );
 
         return $return_link;
     }
