@@ -41,7 +41,7 @@ abstract class AWPCP_Module {
         // run before module_setup() in new modules and init() in old modules
         add_action( 'init', array( $this, 'load_dependencies' ), 9 );
         // run before load_dependencies() in new modules and init() in old modules
-        add_action( 'init', array( $this, 'module_setup' ), 11 );
+        add_action( 'init', array( $this, 'setup_module' ), 11 );
     }
 
     protected function is_up_to_date() {
@@ -61,7 +61,19 @@ abstract class AWPCP_Module {
         // overwrite in children classes if necessary
     }
 
-    public function module_setup() {
+    /**
+     * Released versions of some modules define module_setup() as a protected method.
+     * We now need that method to be public to run it on init using add_action(), but
+     * changing the access level in this class causes Fatal errors if those modules
+     * are activated. This method is just a workaround.
+     *
+     * @since next-release
+     */
+    public function setup_module() {
+        return $this->module_setup();
+    }
+
+    protected function module_setup() {
         if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
             $this->ajax_setup();
         } else if ( is_admin() ) {
