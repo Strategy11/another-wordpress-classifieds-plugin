@@ -484,7 +484,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
         if ($hasextrafieldsmodule) {
             foreach (x_fields_fetch_fields() as $field) {
-                $fields[] = "`$field`";
+                $fields[] = "`$field` AS `awpcp-$field`";
             }
         }
 
