@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2015-05-06 00:20:19+00:00\n"
+"POT-Creation-Date: 2015-05-14 04:23:51+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -383,11 +383,9 @@ msgid "Disabled"
 msgstr ""
 
 #: admin/admin-panel-listings-table.php:391
-#: templates/components/file-manager.tpl.php:26
-#: templates/components/file-manager.tpl.php:53
-#: templates/components/media-manager.tpl.php:12
-#: templates/components/media-manager.tpl.php:41
-#: templates/components/media-manager.tpl.php:75
+#: templates/components/media-manager.tpl.php:16
+#: templates/components/media-manager.tpl.php:45
+#: templates/components/media-manager.tpl.php:79
 msgid "Enabled"
 msgstr ""
 
@@ -2124,7 +2122,7 @@ msgstr ""
 msgid "Restricted Categories"
 msgstr ""
 
-#: awpcp.php:813 templates/components/media-manager.tpl.php:32
+#: awpcp.php:813 templates/components/media-manager.tpl.php:36
 msgid "Videos"
 msgstr ""
 
@@ -2887,7 +2885,7 @@ msgid ""
 "needed to limit your search to a specific criteria."
 msgstr ""
 
-#: frontend/page-search-ads.php:157
+#: frontend/page-search-ads.php:160
 msgid "Return to Search"
 msgstr ""
 
@@ -4450,10 +4448,6 @@ msgstr ""
 msgid "Select a Category"
 msgstr ""
 
-#: includes/helpers/widgets/class-file-manager-component.php:26
-msgid "File Manager component is not properly configured"
-msgstr ""
-
 #: includes/helpers/widgets/class-listing-form-steps-component.php:34
 msgid "Login/Registration"
 msgstr ""
@@ -5281,7 +5275,7 @@ msgid ""
 msgstr ""
 
 #: includes/settings/class-files-settings.php:29
-#: templates/components/media-manager.tpl.php:3
+#: templates/components/media-manager.tpl.php:7
 msgid "Images"
 msgstr ""
 
@@ -5388,8 +5382,7 @@ msgid ""
 msgstr ""
 
 #: includes/settings/class-files-settings.php:73
-#: templates/components/file-manager.tpl.php:35
-#: templates/components/media-manager.tpl.php:26
+#: templates/components/media-manager.tpl.php:30
 msgid "Primary Image"
 msgstr ""
 
@@ -7614,88 +7607,63 @@ msgstr ""
 msgid "Address"
 msgstr ""
 
-#: templates/components/file-manager.tpl.php:11
-msgid "Existing Images"
-msgstr ""
-
-#: templates/components/file-manager.tpl.php:14
-msgid ""
-"Use the green check mark icon to set an image as the primary image for this "
-"Ad. The primary image is shown with a green background and border. The "
-"background may be different if the image is awaiting approval or rejected "
-"(see above)."
-msgstr ""
-
-#: templates/components/file-manager.tpl.php:16
-msgid ""
-"You can upload a new image and mark it as primary using the fields below."
-msgstr ""
-
-#: templates/components/file-manager.tpl.php:27
 #: templates/components/media-manager.tpl.php:21
-msgid "Delete Image"
-msgstr ""
-
-#: templates/components/file-manager.tpl.php:30
-#: templates/components/media-manager.tpl.php:17
 msgid "This is the Primary Image"
 msgstr ""
 
-#: templates/components/file-manager.tpl.php:31
-#: templates/components/media-manager.tpl.php:18
+#: templates/components/media-manager.tpl.php:22
 msgid "Set as Primary Image"
 msgstr ""
 
-#: templates/components/file-manager.tpl.php:42
-msgid "Existing Files"
+#: templates/components/media-manager.tpl.php:25
+msgid "Delete Image"
 msgstr ""
 
-#: templates/components/file-manager.tpl.php:54
-#: templates/components/media-manager.tpl.php:78
-msgid "Delete File"
-msgstr ""
-
-#: templates/components/media-manager.tpl.php:22
+#: templates/components/media-manager.tpl.php:26
 msgid "Approve Image"
 msgstr ""
 
-#: templates/components/media-manager.tpl.php:23
+#: templates/components/media-manager.tpl.php:27
 msgid "Reject Image"
 msgstr ""
 
-#: templates/components/media-manager.tpl.php:46
+#: templates/components/media-manager.tpl.php:50
 msgid "This is the Primary Video"
 msgstr ""
 
-#: templates/components/media-manager.tpl.php:47
+#: templates/components/media-manager.tpl.php:51
 msgid "Set as Primary Video"
 msgstr ""
 
-#: templates/components/media-manager.tpl.php:50
+#: templates/components/media-manager.tpl.php:54
 msgid "Delete Video"
 msgstr ""
 
-#: templates/components/media-manager.tpl.php:51
+#: templates/components/media-manager.tpl.php:55
 msgid "Approve Video"
 msgstr ""
 
-#: templates/components/media-manager.tpl.php:52
+#: templates/components/media-manager.tpl.php:56
 msgid "Reject Video"
 msgstr ""
 
-#: templates/components/media-manager.tpl.php:55
+#: templates/components/media-manager.tpl.php:59
 msgid "Primary Video"
 msgstr ""
 
-#: templates/components/media-manager.tpl.php:61
+#: templates/components/media-manager.tpl.php:65
 msgid "Other Files"
 msgstr ""
 
-#: templates/components/media-manager.tpl.php:79
+#: templates/components/media-manager.tpl.php:82
+msgid "Delete File"
+msgstr ""
+
+#: templates/components/media-manager.tpl.php:83
 msgid "Approve File"
 msgstr ""
 
-#: templates/components/media-manager.tpl.php:80
+#: templates/components/media-manager.tpl.php:84
 msgid "Reject File"
 msgstr ""
 
