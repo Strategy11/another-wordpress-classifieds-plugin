@@ -1,4 +1,8 @@
-<div class="awpcp-media-manager">
+<!-- Using template binding as workaround for conflict with imagesLoaded plugin
+from Paul Irish. See https://github.com/drodenbaugh/awpcp/issues/979. -->
+<div class="awpcp-media-manager" data-bind="{ template: 'awpcp-media-manager-template' }"></div>
+
+<script type="text/html" id="awpcp-media-manager-template">
     <div class="awpcp-uploaded-files-group awpcp-uploaded-images" data-bind="if: haveImages">
         <h3 class="awpcp-uploaded-files-group-title"><?php echo esc_html( __( 'Images', 'AWPCP' ) ); ?></h3>
         <ul class="awpcp-uploaded-files-list clearfix" data-bind="foreach: { data: images, as: 'image' }">
@@ -85,8 +89,4 @@
             </tbody>
         </table>
     </div>
-</div>
-
-
-
-
+</script>
