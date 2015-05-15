@@ -507,8 +507,8 @@ function unix2dos($mystring) {
  * TODO: move to AWPCP_Email?
  */
 function awpcp_send_email($from,$to,$subject,$message, $html=false, $attachments=array(), $bcc='') {
-	$separator='Next.Part.331925654896717'.mktime();
-	$att_separator='NextPart.is_a_file9817298743'.mktime();
+	$separator='Next.Part.331925654896717'.time();
+	$att_separator='NextPart.is_a_file9817298743'.time();
 	$headers="From: $from\n";
 	$headers.="MIME-Version: 1.0\n";
 	if (!empty($bcc)) {
