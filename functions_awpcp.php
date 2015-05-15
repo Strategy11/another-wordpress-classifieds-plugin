@@ -527,9 +527,7 @@ function awpcp_strip_html_tags( $text )
 
 
 // Override the SMTP settings built into WP if the admin has enabled that feature 
-// add_action('phpmailer_init','awpcp_phpmailer_init_smtp');
 function awpcp_phpmailer_init_smtp( $phpmailer ) { 
-
 	// smtp not enabled? 
 	$enabled = get_awpcp_option('usesmtp');
 	if ( !$enabled || 0 == $enabled ) return; 
