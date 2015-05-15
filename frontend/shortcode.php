@@ -194,7 +194,7 @@ class AWPCP_Pages {
             $ad = AWPCP_Ad::find_by_id( intval( awpcp_request_param( 'ad', 0 ) ) );
 
             if ( ! is_null( $ad ) ) {
-                $response = $ad->flag();
+                $response = awpcp_listings_api()->flag_listing( $ad );
             }
         }
 

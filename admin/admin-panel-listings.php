@@ -427,7 +427,7 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
     public function unflag_ad() {
         $ad = AWPCP_Ad::find_by_id($this->id);
 
-        if ($result = $ad->unflag()) {
+        if ( $result = awpcp_listings_api()->unflag_listing( $ad ) ) {
             awpcp_flash(__('The Ad has been unflagged.', 'AWPCP'));
         }
 

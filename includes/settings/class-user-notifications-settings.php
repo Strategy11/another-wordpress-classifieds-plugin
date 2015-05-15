@@ -101,5 +101,14 @@ class AWPCP_UserNotificationsSettings {
             $settings->get_option( 'notifyofadposted' ),
             __( 'An email will be sent to administrator users every time a listing needs to be approved.', 'AWPCP' )
         );
+
+        $settings->add_setting(
+            $key,
+            'send-listing-flagged-notification-to-administrators',
+            __( 'Listing Was Flagged', 'AWPCP' ),
+            'checkbox',
+            true,
+            __( 'An email will be sent to administrator users when a listing is flagged.', 'AWPCP' )
+        );
     }
 }

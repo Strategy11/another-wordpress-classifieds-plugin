@@ -262,4 +262,25 @@ class AWPCP_ListingsAPI {
             awpcp_update_ad_meta( $ad->ad_id, 'verification_emails_sent', $emails_sent + 1 );
         }
     }
+
+    /**
+     * @since next-release
+     */
+    public function flag_listing( $listing ) {
+        $listing->flagged = true;
+
+        if ( $result = $listing->save() ) {
+            awpcp_send_listing_was_flagged_notification( $listing );
+        }
+
+        return $result;
+    }
+
+    /**
+     * @since next-release
+     */
+    public function unflag_listing( $listing ) {
+        $listing->flagged = false;
+        return $listing->save();
+    }
 }
