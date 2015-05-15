@@ -255,7 +255,7 @@ require_once( AWPCP_DIR . "/includes/upgrade/class-fix-empty-media-mime-type-upg
 require_once( AWPCP_DIR . '/includes/class-edit-listing-url-placeholder.php' );
 require_once( AWPCP_DIR . '/includes/class-edit-listing-link-placeholder.php' );
 
-require_once( AWPCP_DIR . "/includes/class-awpcp-listings-api.php" );
+require_once( AWPCP_DIR . "/includes/class-listings-api.php" );
 require_once( AWPCP_DIR . "/includes/class-cookie-manager.php" );
 require_once( AWPCP_DIR . "/includes/class-fees-collection.php" );
 require_once( AWPCP_DIR . "/includes/class-listing-authorization.php" );
