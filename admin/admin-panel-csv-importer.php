@@ -27,7 +27,14 @@ class AWPCP_Admin_CSV_Importer {
 
 		global $import_errors;
 
-		$import_type = awpcp_post_param('import_type', '');
+		if ( ! empty( awpcp_post_param( 'do_import' ) ) ) {
+			$import_type = 'Import';
+		} else if ( ! empty( awpcp_post_param( 'do_test_import' ) ) ) {
+			$import_type = 'Test Import';
+		} else {
+			$import_type = false;
+		}
+
 		$test_import = strcmp($import_type, "Test Import") === 0;
 
 		$start_date = awpcp_post_param("startDate", '');
