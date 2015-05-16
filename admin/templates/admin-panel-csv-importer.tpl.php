@@ -169,8 +169,8 @@
 				</table>
 
 				<p class="submit">
-					<input type="submit" class="button" name="import_type" value="<?php echo esc_html( __( 'Test Import', 'AWPCP' ) ); ?>"></input>
-					<input type="submit" class="button-primary button" name="import_type" value="<?php echo esc_html( __( 'Import', 'AWPCP' ) ); ?>"></input>
+					<input type="submit" class="button" name="do_test_import" value="<?php echo esc_html( __( 'Test Import', 'AWPCP' ) ); ?>"></input>
+					<input type="submit" class="button-primary button" name="do_import" value="<?php echo esc_html( __( 'Import', 'AWPCP' ) ); ?>"></input>
 				</p>
 			</form>
 		</div><!-- end of .awpcp-main-content -->

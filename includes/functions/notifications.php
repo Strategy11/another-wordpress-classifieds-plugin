@@ -192,3 +192,30 @@ function awpcp_get_messages_for_listing_awaiting_approval_notification( $listing
 
     return array( 'subject' => $subject, 'messages' => $messages );
 }
+
+/**
+ * @since next-release
+ */
+function awpcp_send_listing_was_flagged_notification( $listing ) {
+    if ( ! get_awpcp_option( 'send-listing-flagged-notification-to-administrators' ) ) {
+        return false;
+    }
+
+    $query_args = array( 'page' => 'awpcp-listings', 'filterby' => 'flagged', 'filter' => 1 );
+    $flagged_listings_url = add_query_arg( $query_args, awpcp_get_admin_panel_url() );
+
+    $params = array(
+        'site_name' => get_bloginfo( 'name' ),
+        'flagged_listings_url' => $flagged_listings_url,
+    );
+
+    $template = AWPCP_DIR . '/templates/email/listing-was-flagged.plain.tpl.php';
+
+    $mail = new AWPCP_Email;
+    $mail->to = awpcp_admin_email_to();
+    $mail->subject = str_replace( '<listing-title>', $listing->get_title(), __( 'Listing <listing-title> was flagged', 'AWPCP' ) );
+
+    $mail->prepare( $template, $params );
+
+    return $mail->send();
+}
