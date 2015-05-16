@@ -28,6 +28,7 @@ module.exports = function(grunt) {
           '<%= path.awpcp %>/js/users-dropdown.js',
           '<%= path.awpcp %>/js/jquery-userfield.js',
           '<%= path.awpcp %>/js/jquery-collapsible.js',
+          '<%= path.awpcp %>/js/jquery-validate-methods.js',
           '<%= path.awpcp %>/js/main.js',
           '<%= path.awpcp %>/js/recaptcha.js',
         ],
@@ -38,7 +39,6 @@ module.exports = function(grunt) {
         ],
         '<%= path.awpcp %>/js/awpcp-admin.src.js': [
           '<%= path.awpcp %>/js/components/settings-validator.js',
-          '<%= path.awpcp %>/js/custom-validators.js'
         ],
         '<%= path.awpcp %>/js/components/plupload-queue/jquery-plupload-queue.src.js': [
           '<%= path.awpcp %>/js/components/plupload-queue/i18n.js'

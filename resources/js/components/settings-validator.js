@@ -1,6 +1,8 @@
 /*global AWPCP*/
-AWPCP.define( 'awpcp/settings-validator', [ 'jquery' ],
-function( $ ) {
+AWPCP.define( 'awpcp/settings-validator', [
+    'jquery',
+    'awpcp/jquery-validate-methods'
+], function( $ ) {
     var SettingsValidator = function() {
     };
 
