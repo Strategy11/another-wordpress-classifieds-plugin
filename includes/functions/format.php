@@ -1,6 +1,21 @@
 <?php
 
 /**
+ * @since next-release
+ */
+function awpcp_maybe_add_http_to_url( $url ) {
+    if ( empty( $url ) ) {
+        return $url;
+    }
+
+    if ( ! preg_match( '#^(https?|s?ftp)://#', $url ) ) {
+        return sprintf( 'http://%s', $url );
+    }
+
+    return $url;
+}
+
+/**
  * Copied from http://gistpages.com/2013/06/30/generate_ordinal_numbers_1st_2nd_3rd_in_php
  *
  * @since 3.3.2
