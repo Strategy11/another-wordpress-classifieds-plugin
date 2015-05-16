@@ -1009,6 +1009,7 @@ class AWPCP {
 			'required' => __( 'This field is required.', 'AWPCP' ),
 			'email' => __( 'Please enter a valid email address.', 'AWPCP' ),
 			'url' => __( 'Please enter a valid URL.', 'AWPCP' ),
+            'classifiedsurl' => __( 'Please enter a valid URL.', 'AWPCP' ),
 			'number' => __( 'Please enter a valid number.', 'AWPCP' ),
 			'money' => __( 'Please enter a valid amount.', 'AWPCP' ),
 		) );
