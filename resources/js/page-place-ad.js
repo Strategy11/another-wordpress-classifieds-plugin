@@ -3,7 +3,8 @@ AWPCP.run('awpcp/page-place-ads', [
     'jquery',
     'awpcp/media-center',
     'awpcp/settings',
-    'awpcp/jquery-userfield'
+    'awpcp/jquery-userfield',
+    'awpcp/jquery-validate-methods'
 ], function( $, MediaCenter, settings ) {
     var AWPCP = jQuery.AWPCP = jQuery.extend({}, jQuery.AWPCP, AWPCP);
 
