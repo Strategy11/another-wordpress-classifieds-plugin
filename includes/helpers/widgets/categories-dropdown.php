@@ -96,6 +96,12 @@ function awpcp_render_category_selector( $params = array() ) {
         'selected' => $category_id,
     ) );
 
+    $hidden = array(
+        'a' => 'browsecat',
+        'results' => awpcp_request_param( 'results' ),
+        'offset' => awpcp_request_param( 'offset' ),
+    );
+
     ob_start();
     include( AWPCP_DIR . '/templates/frontend/category-selector.tpl.php' );
     $output = ob_get_contents();

@@ -432,7 +432,6 @@ function awpcp_pagination($config, $url) {
 					   'results',
 					   'PHPSESSID',
 					   'aeaction',
-					   'category_id',
 					   'cat_ID',
 					   'action',
 					   'aeaction',
