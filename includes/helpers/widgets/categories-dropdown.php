@@ -44,7 +44,7 @@ class AWPCP_CategoriesDropdown {
         $use_multiple_dropdowns = get_awpcp_option( 'use-multiple-category-dropdowns' );
 
         // export categories list to JavaScript, but don't replace an existing categories list
-        awpcp()->js->set( 'categories', $categories, false );
+        awpcp()->js->set( 'categories', $categories_hierarchy, false );
 
         ob_start();
         include( AWPCP_DIR . '/frontend/templates/html-widget-category-dropdown.tpl.php' );
@@ -95,6 +95,12 @@ function awpcp_render_category_selector( $params = array() ) {
         'name' => 'category_id',
         'selected' => $category_id,
     ) );
+
+    $hidden = array(
+        'a' => 'browsecat',
+        'results' => awpcp_request_param( 'results' ),
+        'offset' => awpcp_request_param( 'offset' ),
+    );
 
     ob_start();
     include( AWPCP_DIR . '/templates/frontend/category-selector.tpl.php' );

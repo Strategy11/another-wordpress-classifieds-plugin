@@ -5,7 +5,10 @@
         <?php echo $dropdown->render( $category_dropdown_params ); ?>
         </div>
 
-        <input type="hidden" name="a" value="browsecat" />
+        <?php foreach ( $hidden as $field_name => $value ): ?>
+        <input type="hidden" name="<?php echo esc_attr( $field_name ); ?>" value="<?php echo esc_attr( $value ); ?>" />
+        <?php endforeach; ?>
+
         <input class="button" type="submit" value="<?php echo esc_attr( __( 'Change Category', 'AWPCP' ) ); ?>" />
     </form>
 
