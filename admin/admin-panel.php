@@ -616,12 +616,12 @@ function awpcp_opsconfig_categories() {
 			$category = awpcp_categories_collection()->get( $cat_ID );
 
 			$category_name = $category->name;
-			$category_order = $category->category_order;
+			$category_order = $category->order;
 			$cat_parent_ID = $category->parent;
 		} catch ( AWPCP_Exception $e ) {
-			$category_name = $category->name;
-			$category_order = $category->category_order;
-			$cat_parent_ID = $category->parent;
+			$category_name = null;
+			$category_order = null;
+			$cat_parent_ID = null;
 		}
 
 		$add_label = __( 'Add A New Category', 'AWPCP' );
