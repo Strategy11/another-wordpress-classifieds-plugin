@@ -614,6 +614,7 @@ class AWPCP {
         }
 
 		$this->register_scripts();
+        $this->register_notification_handlers();
 	}
 
     private function ajax_setup() {
@@ -1104,6 +1105,10 @@ class AWPCP {
 	    register_widget('AWPCP_Search_Widget');
 	    register_widget( 'AWPCP_CategoriesWidget' );
 	}
+
+    public function register_notification_handlers() {
+        add_action( 'awpcp-media-uploaded', 'awpcp_send_listing_media_uploaded_notifications', 10, 2 );
+    }
 
 
 	/**------------------------------------------------------------------------

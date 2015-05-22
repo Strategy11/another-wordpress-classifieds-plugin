@@ -60,6 +60,8 @@ class AWPCP_UploadListingMediaAjaxHandler extends AWPCP_AjaxHandler {
         if ( $uploaded_file->is_complete ) {
             $file = $this->media_manager->add_file( $listing, $uploaded_file );
 
+            do_action( 'awpcp-media-uploaded', $file, $listing );
+
             return $this->success( array(
                 'file' => array(
                     'id' => $file->id,

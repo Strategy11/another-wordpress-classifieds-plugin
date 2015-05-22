@@ -141,16 +141,9 @@ function awpcp_listing_updated_user_message( $listing, $messages ) {
 function awpcp_send_listing_awaiting_approval_notification_to_moderators(
         $listing, $moderate_listings, $moderate_images ) {
 
-    $send_notification_to_administrators = get_awpcp_option( 'send-listing-awaiting-approval-notification-to-administrators' );
-    $send_notification_to_moderators = get_awpcp_option( 'send-listing-awaiting-approval-notification-to-moderators' );
+    $email_recipients = awpcp_get_recipients_for_listing_awaiting_approval_notification();
 
-    if ( $send_notification_to_administrators && $send_notification_to_moderators ) {
-        $email_recipients = array_merge( array( awpcp_admin_email_to() ), awpcp_moderators_email_to() );
-    } else if ( $send_notification_to_administrators ) {
-        $email_recipients = array( awpcp_admin_email_to() );
-    } else if ( $send_notification_to_moderators ) {
-        $email_recipients = awpcp_moderators_email_to();
-    } else {
+    if ( empty( $email_recipients ) ) {
         return false;
     }
 
@@ -164,6 +157,26 @@ function awpcp_send_listing_awaiting_approval_notification_to_moderators(
     $mail->prepare( $template, compact( 'messages' ) );
 
     return $mail->send();
+}
+
+/**
+ * @since next-release
+ */
+function awpcp_get_recipients_for_listing_awaiting_approval_notification() {
+    $send_notification_to_administrators = get_awpcp_option( 'send-listing-awaiting-approval-notification-to-administrators' );
+    $send_notification_to_moderators = get_awpcp_option( 'send-listing-awaiting-approval-notification-to-moderators' );
+
+    if ( $send_notification_to_administrators && $send_notification_to_moderators ) {
+        $email_recipients = array_merge( array( awpcp_admin_email_to() ), awpcp_moderators_email_to() );
+    } else if ( $send_notification_to_administrators ) {
+        $email_recipients = array( awpcp_admin_email_to() );
+    } else if ( $send_notification_to_moderators ) {
+        $email_recipients = awpcp_moderators_email_to();
+    } else {
+        $email_recipients = array();
+    }
+
+    return $email_recipients;
 }
 
 function awpcp_get_messages_for_listing_awaiting_approval_notification( $listing, $moderate_listings, $moderate_images ) {
@@ -191,6 +204,43 @@ function awpcp_get_messages_for_listing_awaiting_approval_notification( $listing
     }
 
     return array( 'subject' => $subject, 'messages' => $messages );
+}
+
+/**
+ * @since next-release
+ */
+function awpcp_send_listing_media_uploaded_notifications( $file, $listing ) {
+    if ( ! $file->is_awaiting_approval() ) {
+        return false;
+    }
+
+    $referer = parse_url( $_SERVER['HTTP_REFERER'] );
+    $referer_vars = wp_parse_args( awpcp_array_data( 'query', '', $referer ) );
+
+    if ( ! isset( $referer_vars['page'] ) || ! in_array( $referer_vars['page'], array( 'awpcp-listings', 'awpcp-panel' ) ) ) {
+        return false;
+    }
+
+    if ( ! isset( $referer_vars['action'] ) || $referer_vars['action'] != 'manage-images' ) {
+        return false;
+    }
+
+    $subject = __( 'There are images awaiting approval in listing <listing-title>', 'AWPCP' );
+    $subject = str_replace( '<listing-title>', $listing->get_title(), $subject );
+
+    $message = __( 'The file <<file-name>> was added to listing "<listing-title>" and is awaiting administrator approval.', 'AWPCP' );
+    $message = str_replace( '<file-name>', $file->name, $message );
+    $message = str_replace( '<listing-title>', $listing->get_title(), $message );
+
+    $mail = new AWPCP_Email;
+    $mail->to = array( awpcp_admin_email_to() );
+    $mail->subject = $subject;
+
+    $template = AWPCP_DIR . '/templates/email/listing-media-awaiting-approval.plain.tpl.php';
+
+    $mail->prepare( $template, compact( 'listing', 'file', 'message' ) );
+
+    return $mail->send();
 }
 
 /**

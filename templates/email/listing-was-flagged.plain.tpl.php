@@ -1,4 +1,4 @@
-Hello,
+<?php _e( 'Hello', 'AWPCP' ) ?>,
 
 <?php
 $text = __( 'You have pending flagged listings to review at <site-name>. Please check them out here <flagged-listings-url>.', 'AWPCP' );
