@@ -4,15 +4,17 @@
  * @since next-release
  */
 function awpcp_maybe_add_http_to_url( $url ) {
-    if ( empty( $url ) ) {
+    if ( empty( $url ) || preg_match( '#^(https?|s?ftp)://#', $url ) ) {
         return $url;
     }
 
-    if ( ! preg_match( '#^(https?|s?ftp)://#', $url ) ) {
-        return sprintf( 'http://%s', $url );
-    }
+    $new_url = sprintf( 'http://%s', $url );
 
-    return $url;
+    if ( isValidURL( $new_url ) ) {
+        return $new_url;
+    } else {
+        return $url;
+    }
 }
 
 /**
