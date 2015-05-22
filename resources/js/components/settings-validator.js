@@ -80,13 +80,17 @@ function( $ ) {
         },
 
         enabledIf: function( field, element ) {
-            $( this.getEscapedSelector( element ) ).change( function() {
-                if ( $(this).is(':checked') ) {
+            var dependencies = $( this.getEscapedSelector( element ) );
+
+            dependencies.change( function() {
+                if ( dependencies.is(':checked') ) {
                     field.removeAttr( 'disabled' );
                 } else {
                     field.attr( 'disabled', 'disabled' );
                 }
-            } ).change();
+            } );
+
+            dependencies.change();
         }
     } );
 
