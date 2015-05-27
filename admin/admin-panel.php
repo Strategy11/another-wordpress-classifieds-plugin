@@ -188,7 +188,10 @@ class AWPCP_Admin {
 	}
 
 	private function get_manage_credits_section_url() {
-		return add_query_arg( 'action', 'awpcp-manage-credits', admin_url( 'users.php' ) );
+		$full_url = add_query_arg( 'action', 'awpcp-manage-credits', admin_url( 'users.php' ) );
+		$relative_url = str_replace( get_site_url(), '', $full_url );
+
+		return $relative_url;
 	}
 
 	/**
