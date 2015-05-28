@@ -486,6 +486,7 @@ function awpcp_do_placeholder_images($ad, $placeholder) {
     if ( awpcp_are_images_allowed() ) {
         $images_uploaded = $ad->count_image_files();
         $primary_image = awpcp_media_api()->get_ad_primary_image( $ad );
+        $gallery_name = 'awpcp-gallery-' . $ad->ad_id;
 
         if ($primary_image) {
             $large_image = $primary_image->get_large_image_url( 'large' );
@@ -500,12 +501,12 @@ function awpcp_do_placeholder_images($ad, $placeholder) {
 
             // single ad
             $content = '<div class="awpcp-ad-primary-image">';
-            $content.= '<a class="awpcp-listing-primary-image-thickbox-link thickbox thumbnail" href="%s">';
+            $content.= '<a class="awpcp-listing-primary-image-thickbox-link thickbox thumbnail" href="%s" rel="%s">';
             $content.= '<img class="thumbshow" src="%s"/>';
             $content.= '</a>%s';
             $content.= '</div>';
 
-            $placeholders['featureimg'] = sprintf( $content, esc_attr( $large_image ), esc_attr( $thumbnail ), $link );
+            $placeholders['featureimg'] = sprintf( $content, esc_attr( $large_image ), $gallery_name, esc_attr( $thumbnail ), $link );
 
             // listings
             $content = '<a class="awpcp-listing-primary-image-listing-link" href="%s"><img src="%s" width="%spx" border="0" alt="%s" /></a>';
@@ -533,14 +534,18 @@ function awpcp_do_placeholder_images($ad, $placeholder) {
                 }
 
                 $content = '<li class="%s">';
-                $content.= '<a class="thickbox" href="%s">';
+                $content.= '<a class="thickbox" href="%s" rel="%s">';
                 $content.= '<img class="thumbshow" src="%s" />';
                 $content.= '</a>';
                 $content.= '</li>';
 
-                $images[] = sprintf($content, esc_attr($css),
-                                              esc_attr($large_image),
-                                              esc_attr($thumbnail));
+                $images[] = sprintf(
+                    $content,
+                    esc_attr( $css ),
+                    esc_attr( $large_image ),
+                    esc_attr( $gallery_name ),
+                    esc_attr( $thumbnail )
+                );
 
                 $shown = $shown + 1;
             }
