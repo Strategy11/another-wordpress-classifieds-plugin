@@ -9,13 +9,21 @@ class AWPCP_MimeTypes {
     public function get_file_mime_type( $filepath ) {
         $file_exists = file_exists( $filepath );
 
+        $mime_type = '';
+
         if ( $file_exists && function_exists( 'finfo_open' ) && function_exists( 'finfo_file' ) && function_exists( 'finfo_close' ) ) {
-            return $this->get_file_mime_type_with_fileinfo( $filepath );
-        } else if ( $file_exists && function_exists( 'mime_content_type' ) ) {
-            return $this->get_file_mime_type_with_mime_content_type( $filepath );
-        } else {
-            return $this->get_file_mime_type_from_array( $filepath );
+            $mime_type = $this->get_file_mime_type_with_fileinfo( $filepath );
         }
+
+        if ( empty( $mime_type ) && $file_exists && function_exists( 'mime_content_type' ) ) {
+            $mime_type = $this->get_file_mime_type_with_mime_content_type( $filepath );
+        }
+
+        if ( empty( $mime_type ) ) {
+            $mime_type = $this->get_file_mime_type_from_array( $filepath );
+        }
+
+        return $mime_type;
     }
 
     private function get_file_mime_type_with_fileinfo( $filepath ) {
