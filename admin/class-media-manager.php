@@ -2,7 +2,7 @@
 
 /**
  * @since 3.0.2
- * @deprecated next-release
+ * @deprecated 3.4
  */
 class AWPCP_MediaManager {
 

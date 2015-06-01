@@ -780,7 +780,7 @@ class AWPCP_Ad {
 
 	/**
 	 * @since  3.0-beta22
-	 * @deprecated next-release. Use awpcp_listings_api()->flag().
+	 * @deprecated 3.4. Use awpcp_listings_api()->flag().
 	 */
 	public function flag() {
 		$this->flagged = 1;
@@ -788,7 +788,7 @@ class AWPCP_Ad {
 	}
 
 	/**
-	 * @deprecated next-release. Use awpcp_listings_api()->unflag().
+	 * @deprecated 3.4. Use awpcp_listings_api()->unflag().
 	 */
 	public function unflag() {
 		$this->flagged = 0;
