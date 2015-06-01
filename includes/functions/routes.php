@@ -87,7 +87,7 @@ function awpcp_get_page_ids_by_ref( $refnames ) {
 }
 
 /**
- * @since next-release
+ * @since 3.4
  */
 function awppc_get_pages_ids() {
     static $pages_ids;
@@ -100,7 +100,7 @@ function awppc_get_pages_ids() {
 }
 
 /**
- * @since next-release
+ * @since 3.4
  */
 function awpcp_get_pages_ids_from_db() {
     global $wpdb;
@@ -120,7 +120,7 @@ if ( ! function_exists( 'is_awpcp_page' ) ) {
     /**
      * Check if the current page is one of the AWPCP pages.
      *
-     * @since next-release
+     * @since 3.4
      */
     function is_awpcp_page() {
         global $wpdb, $wp_the_query;
@@ -133,7 +133,7 @@ if ( ! function_exists( 'is_awpcp_page' ) ) {
 }
 
 /**
- * @since next-release
+ * @since 3.4
  */
 function is_awpcp_admin_page() {
     if ( ! is_admin() || empty( $_REQUEST['page'] ) ) {
@@ -231,7 +231,7 @@ function url_showad($ad_id) {
 }
 
 /**
- * @since next-release
+ * @since 3.4
  */
 function awpcp_get_browse_category_url_from_id( $category_id ) {
     try {
@@ -368,7 +368,7 @@ function awpcp_get_view_categories_url() {
 }
 
 /**
- * @since next-release
+ * @since 3.4
  */
 function awpcp_get_edit_listing_url( $listing ) {
     if ( awpcp()->settings->get_option( 'requireuserregistration' ) ) {
@@ -381,7 +381,7 @@ function awpcp_get_edit_listing_url( $listing ) {
 }
 
 /**
- * @since next-release
+ * @since 3.4
  */
 function awpcp_get_edit_listing_direct_url( $listing ) {
     if ( awpcp()->settings->get_option( 'enable-user-panel' ) ) {
@@ -392,7 +392,7 @@ function awpcp_get_edit_listing_direct_url( $listing ) {
 }
 
 /**
- * @since next-release
+ * @since 3.4
  */
 function awpcp_get_edit_listing_page_url_with_listing_id( $listing ) {
     $permalinks = get_option( 'permalink_structure' );
@@ -408,7 +408,7 @@ function awpcp_get_edit_listing_page_url_with_listing_id( $listing ) {
 }
 
 /**
- * @since next-release
+ * @since 3.4
  */
 function awpcp_get_edit_listing_generic_url() {
     if ( awpcp()->settings->get_option( 'enable-user-panel' ) ) {
@@ -543,7 +543,7 @@ function awpcp_get_admin_listings_url() {
 }
 
 /**
- * @since next-release
+ * @since 3.4
  */
 function awpcp_get_admin_form_fields_url() {
     return add_query_arg( 'page', 'awpcp-form-fields', admin_url( 'admin.php' ) );

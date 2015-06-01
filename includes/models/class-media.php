@@ -40,7 +40,7 @@ class AWPCP_Media {
      * Returns true if this file is a video file.
      * TODO: implement me!
      *
-     * @since next-release
+     * @since 3.4
      */
     public function is_video() {
         return false;

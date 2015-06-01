@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @since next-release
+ * @since 3.4
  */
 function awpcp_remove_filter( $filter, $class ) {
     global $wp_filter;

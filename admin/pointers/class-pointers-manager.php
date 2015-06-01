@@ -1,14 +1,14 @@
 <?php
 
 /**
- * @since next-release
+ * @since 3.4
  */
 function awpcp_pointers_manager() {
     return new AWPCP_PointersManager( awpcp()->js, awpcp()->settings, awpcp_request() );
 }
 
 /**
- * @since next-release
+ * @since 3.4
  */
 class AWPCP_PointersManager {
 

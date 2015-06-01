@@ -395,7 +395,7 @@ function awpcp_current_user_is_admin() {
 }
 
 /**
- * @since next-release
+ * @since 3.4
  */
 function awpcp_current_user_is_moderator() {
     return awpcp_roles_and_capabilities()->current_user_is_moderator();
@@ -1332,7 +1332,7 @@ function awpcp_array_filter_recursive( $input, $callback = null ) {
 /**
  * Alternative to array_merge_recursive that keeps numeric keys.
  *
- * @since next-release
+ * @since 3.4
  */
 function awpcp_array_merge_recursive( $a, $b ) {
     $merged = $a;
@@ -1511,7 +1511,7 @@ function awpcp_get_currency_symbol() {
 }
 
 /**
- * @since next-release
+ * @since 3.4
  */
 function awpcp_currency_symbols() {
     return array(
@@ -1808,7 +1808,7 @@ function awpcp_column_exists($table, $column) {
 }
 
 /**
- * @since next-release
+ * @since 3.4
  */
 function awpcp_check_if_column_exists( $table, $column ) {
     global $wpdb;
@@ -1840,7 +1840,7 @@ function awpcp_encode_address_name($str) {
  *
  * Extracted from wp_mail()'s code.
  *
- * @since next-release
+ * @since 3.4
  */
 function awpcp_phpmailer() {
     global $phpmailer;
@@ -2136,7 +2136,7 @@ function awpcp_utf8_basename( $path, $suffix = null ) {
  * @param string    $filename       Target filename. The unique filename will be as similar as
  *                                  possible to this name.
  * @param array     $directories    The generated name must be unique in all directories in this array.
- * @since next-release
+ * @since 3.4
  */
 function awpcp_unique_filename( $path, $filename, $directories ) {
     $pathinfo = awpcp_utf8_pathinfo( $filename );
@@ -2158,7 +2158,7 @@ function awpcp_unique_filename( $path, $filename, $directories ) {
 }
 
 /**
- * @since next-release
+ * @since 3.4
  */
 function awpcp_is_filename_already_used( $filename, $directories ) {
     foreach ( $directories as $directory ) {
@@ -2184,7 +2184,7 @@ function awpcp_register_deactivation_hook( $__FILE__, $callback ) {
 }
 
 /**
- * @since next-release
+ * @since 3.4
  */
 function awpcp_are_images_allowed() {
     $allowed_image_extensions = array_filter( awpcp_get_option( 'allowed-image-extensions', array() ) );

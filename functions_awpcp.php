@@ -404,7 +404,7 @@ function isValidEmailAddress($email) {
 }
 
 /**
- * @since next-release
+ * @since 3.4
  */
 function awpcp_is_email_address_allowed( $email_address ) {
     $wildcard = 'BCCsyfxU6HMXyyasic6t';

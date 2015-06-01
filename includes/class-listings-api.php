@@ -264,7 +264,7 @@ class AWPCP_ListingsAPI {
     }
 
     /**
-     * @since next-release
+     * @since 3.4
      */
     public function flag_listing( $listing ) {
         $listing->flagged = true;
@@ -277,7 +277,7 @@ class AWPCP_ListingsAPI {
     }
 
     /**
-     * @since next-release
+     * @since 3.4
      */
     public function unflag_listing( $listing ) {
         $listing->flagged = false;

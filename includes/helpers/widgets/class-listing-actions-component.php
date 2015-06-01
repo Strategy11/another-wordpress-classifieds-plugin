@@ -11,7 +11,7 @@ function awpcp_listing_actions_component() {
  * The main plugin uses the component to show the Delete Ad button, and modules
  * can enter additional actions as necessary.
  *
- * @since next-release
+ * @since 3.4
  */
 class AWPCP_ListingActionsComponent {
 

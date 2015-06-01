@@ -67,7 +67,7 @@ abstract class AWPCP_Module {
      * changing the access level in this class causes Fatal errors if those modules
      * are activated. This method is just a workaround.
      *
-     * @since next-release
+     * @since 3.4
      */
     public function setup_module() {
         return $this->module_setup();
