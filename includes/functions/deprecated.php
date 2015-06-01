@@ -1,10 +1,10 @@
 <?php
 
 /**
- * @deprecated next-release
+ * @deprecated 3.4
  */
 function awpcp_display_ads($where, $byl, $hidepager, $grouporderby, $adorcat, $before_content='') {
-    _deprecated_function( __FUNCTION__, 'next-release', 'awpcp_display_listings' );
+    _deprecated_function( __FUNCTION__, '3.4', 'awpcp_display_listings' );
 
     global $wpdb;
     global $awpcp_plugin_path;
@@ -169,10 +169,10 @@ function awpcp_display_ads($where, $byl, $hidepager, $grouporderby, $adorcat, $b
 }
 
 /**
- * @deprecated next-release
+ * @deprecated 3.4
  */
 function awpcp_render_ads($ads, $context='listings', $config=array(), $pagination=array()) {
-    _deprecated_function( __FUNCTION__, 'next-release', 'awpcp_display_listings' );
+    _deprecated_function( __FUNCTION__, '3.4', 'awpcp_display_listings' );
 
     $config = shortcode_atts(array('show_menu' => true, 'show_intro' => true), $config);
 
@@ -204,7 +204,7 @@ function awpcp_render_ads($ads, $context='listings', $config=array(), $paginatio
  *
  * @param $files    An array of elements of $_FILES.
  * @since 3.0.2
- * @deprecated next-release
+ * @deprecated 3.4
  */
 function awpcp_upload_files( $ad, $files, &$errors=array() ) {
     $media = awpcp_media_api();
@@ -264,7 +264,7 @@ function awpcp_upload_files( $ad, $files, &$errors=array() ) {
  * @return          false if an error occurs or an array with the upload file information
  *                  on success.
  * @since 3.0.2
- * @deprecated  next-release
+ * @deprecated  3.4
  */
 function awpcp_upload_file( $file, $constraints, &$error=false, $action='upload' ) {
     $filename = sanitize_file_name( strtolower( $file['name'] ) );
@@ -377,7 +377,7 @@ function awpcp_upload_file( $file, $constraints, &$error=false, $action='upload'
 
 /**
  * @since 3.0.2
- * @deprecated next-release
+ * @deprecated 3.4
  */
 function awpcp_get_allowed_mime_types() {
     return awpcp_array_data( 'mime_types', array(), awpcp_get_upload_file_constraints() );
@@ -387,7 +387,7 @@ function awpcp_get_allowed_mime_types() {
  * File type, size and dimension constraints for uplaoded files.
  *
  * @since 3.0.2
- * @deprecated next-release
+ * @deprecated 3.4
  */
 function awpcp_get_upload_file_constraints( ) {
     return apply_filters( 'awpcp-upload-file-constraints', array(
@@ -406,7 +406,7 @@ function awpcp_get_upload_file_constraints( ) {
  * the Ad.
  *
  * @since 3.0.2
- * @deprecated next-release
+ * @deprecated 3.4
  */
 function awpcp_can_upload_file_to_ad( $file, $ad ) {
     $stats = awpcp_get_ad_uploaded_files_stats( $ad );
@@ -431,7 +431,7 @@ function awpcp_can_upload_file_to_ad( $file, $ad ) {
  * the number of files that can still be added to that same Ad.
  *
  * @since 3.0.2
- * @deprecated next-release
+ * @deprecated 3.4
  */
 function awpcp_get_ad_uploaded_files_stats( $ad ) {
     $payment_term = awpcp_payments_api()->get_ad_payment_term( $ad );
@@ -453,7 +453,7 @@ function awpcp_get_ad_uploaded_files_stats( $ad ) {
  * returns the path to the directories to store raw files and image thumbnails.
  *
  * @since 3.0.2
- * @deprecated next-release
+ * @deprecated 3.4
  */
 function awpcp_get_uploads_directories() {
     static $uploads_directories = null;
@@ -513,7 +513,7 @@ function awpcp_get_uploads_directories() {
  * takes place. If the image exceeds either max width or max height then the 
  * image is resized proportionally.
  *
- * @deprecated next-release
+ * @deprecated 3.4
  */
 function awpcp_resizer($filename, $dir) {
     $maxwidth = get_awpcp_option('imgmaxwidth');
@@ -578,7 +578,7 @@ function awpcp_resizer($filename, $dir) {
 }
 
 /**
- * @deprecated next-release
+ * @deprecated 3.4
  */
 function get_categorynameidall($cat_id = 0) {
     global $wpdb;

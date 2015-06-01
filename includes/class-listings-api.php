@@ -31,10 +31,10 @@ class AWPCP_ListingsAPI {
 
     /**
      * @since 3.0.2
-     * @deprecated next-release
+     * @deprecated 3.4
      */
     public static function instance() {
-        _deprecated_function( __FUNCTION__, 'next-release', 'awpcp_listings_api' );
+        _deprecated_function( __FUNCTION__, '3.4', 'awpcp_listings_api' );
         return awpcp_listings_api();
     }
 
@@ -264,7 +264,7 @@ class AWPCP_ListingsAPI {
     }
 
     /**
-     * @since next-release
+     * @since 3.4
      */
     public function flag_listing( $listing ) {
         $listing->flagged = true;
@@ -277,7 +277,7 @@ class AWPCP_ListingsAPI {
     }
 
     /**
-     * @since next-release
+     * @since 3.4
      */
     public function unflag_listing( $listing ) {
         $listing->flagged = false;

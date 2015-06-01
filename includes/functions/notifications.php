@@ -160,7 +160,7 @@ function awpcp_send_listing_awaiting_approval_notification_to_moderators(
 }
 
 /**
- * @since next-release
+ * @since 3.4
  */
 function awpcp_get_recipients_for_listing_awaiting_approval_notification() {
     $send_notification_to_administrators = get_awpcp_option( 'send-listing-awaiting-approval-notification-to-administrators' );
@@ -207,7 +207,7 @@ function awpcp_get_messages_for_listing_awaiting_approval_notification( $listing
 }
 
 /**
- * @since next-release
+ * @since 3.4
  */
 function awpcp_send_listing_media_uploaded_notifications( $file, $listing ) {
     if ( ! $file->is_awaiting_approval() ) {
@@ -244,7 +244,7 @@ function awpcp_send_listing_media_uploaded_notifications( $file, $listing ) {
 }
 
 /**
- * @since next-release
+ * @since 3.4
  */
 function awpcp_send_listing_was_flagged_notification( $listing ) {
     if ( ! get_awpcp_option( 'send-listing-flagged-notification-to-administrators' ) ) {

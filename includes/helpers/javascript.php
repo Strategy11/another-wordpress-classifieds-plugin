@@ -39,7 +39,7 @@ class AWPCP_JavaScript {
     }
 
     /**
-     * @since next-release
+     * @since 3.4
      */
     public function print_data() {
         echo "\n";

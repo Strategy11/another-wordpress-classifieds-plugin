@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @since next-release
+ * @since 3.4
  */
 function awpcp_display_listings( $query, $context, $options ) {
     $options = wp_parse_args( $options, array(
@@ -82,7 +82,7 @@ function awpcp_display_listings( $query, $context, $options ) {
 }
 
 /**
- * @since next-release
+ * @since 3.4
  */
 function awpcp_display_listings_in_page( $query, $context, $options = array() ) {
     $options = wp_parse_args( $options, array(

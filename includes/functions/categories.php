@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @since next-release
+ * @since 3.4
  */
 function awpcp_build_categories_hierarchy( &$categories ) {
     $hierarchy = array();
@@ -18,7 +18,7 @@ function awpcp_build_categories_hierarchy( &$categories ) {
 }
 
 /**
- * @since next-release
+ * @since 3.4
  */
 function awpcp_organize_categories_by_id( &$categories ) {
     $organized = array();
@@ -32,7 +32,7 @@ function awpcp_organize_categories_by_id( &$categories ) {
 
 /**
  * @param $categories   Array of categories index by Category ID.
- * @since next-release
+ * @since 3.4
  */
 function awpcp_get_category_hierarchy( $category_id, &$categories ) {
     $category_parents = array();
@@ -46,7 +46,7 @@ function awpcp_get_category_hierarchy( $category_id, &$categories ) {
 }
 
 /**
- * @since next-release
+ * @since 3.4
  */
 function awpcp_render_categories_dropdown_options( &$categories, &$hierarchy, $selected_category ) {
     $output = '';
@@ -73,7 +73,7 @@ function awpcp_render_categories_dropdown_options( &$categories, &$hierarchy, $s
 }
 
 /**
- * @since next-release
+ * @since 3.4
  */
 function awpcp_render_categories_dropdown_option( $category, $selected_category ) {
     if ( $selected_category == $category->id ) {
@@ -100,7 +100,7 @@ function awpcp_render_categories_dropdown_option( $category, $selected_category 
 }
 
 /**
- * @since next-release
+ * @since 3.4
  */
 function awpcp_get_count_of_listings_in_categories() {
     static $listings_count;
@@ -113,7 +113,7 @@ function awpcp_get_count_of_listings_in_categories() {
 }
 
 /**
- * @since next-release
+ * @since 3.4
  */
 function awpcp_count_listings_in_categories() {
     global $wpdb;
