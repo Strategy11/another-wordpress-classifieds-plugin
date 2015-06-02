@@ -34,6 +34,23 @@
                     <ul>
                         <li class="li_link">
                             <img style="align:left" src="<?php echo $url; ?>/resources/images/new.gif"/>
+                            <a style="color:#145200;" href="http://awpcp.com/premium-modules/campaign-manager-module/?ref=panel" target="_blank">
+                                <?php _e( 'Campaign Manager', 'AWPCP' ); ?>
+                            </a>
+                        </li>
+                        <li class="li_link">
+                            <img style="align:left" src="<?php echo $url; ?>/resources/images/new.gif"/>
+                            <a style="color:#145200;" href="http://awpcp.com/premium-modules/mark-as-sold-module/?ref=panel" target="_blank">
+                                <?php _e( 'Mark as Sold', 'AWPCP' ); ?>
+                            </a>
+                        </li>
+                        <li class="li_link">
+                            <img style="align:left" src="<?php echo $url; ?>/resources/images/new.gif"/>
+                            <a style="color:#145200;" href="http://awpcp.com/premium-modules/restricted-categories-module/?ref=panel" target="_blank">
+                                <?php _e( 'Restricted Categories', 'AWPCP' ); ?>
+                            </a>
+                        </li>
+                        <li class="li_link">
                             <a style="color:#145200;" href="http://awpcp.com/premium-modules/buddypress-module/?ref=panel" target="_blank">
                                 <?php _e( 'BuddyPress Listings', 'AWPCP' ); ?>
                             </a>

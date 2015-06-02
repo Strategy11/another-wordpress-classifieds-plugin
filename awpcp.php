@@ -710,11 +710,10 @@ class AWPCP {
 				),
                 'campaign-manager' => array(
                     'name' => __( 'Campaign Manager', 'AWPCP' ),
-                    'url' => 'http://www.awpcp.com/',
+                    'url' => 'http://awpcp.com/premium-modules/campaign-manager-module/?ref=panel',
                     'installed' => defined( 'AWPCP_CAMPAIGN_MANAGER_MODULE' ),
                     'version' => 'AWPCP_CAMPAIGN_MANAGER_MODULE_DB_VERSION',
                     'required' => '1.0.2',
-                    'private' => true,
                 ),
 				'category-icons' => array(
 					'name' => __( 'Category Icons', 'AWPCP' ),
@@ -771,7 +770,6 @@ class AWPCP {
                     'installed' => defined( 'AWPCP_MARK_AS_SOLD_MODULE' ),
                     'version' => 'AWPCP_MARK_AS_SOLD_MODULE_DB_VERSION',
                     'required' => '1.0.1',
-                    'private' => true,
                 ),
 				'paypal-pro' => array(
 					'name' => __(  'PayPal Pro', 'AWPCP'  ),
@@ -789,11 +787,10 @@ class AWPCP {
 				),
 				'restricted-categories' => array(
 					'name' => __( 'Restricted Categories', 'AWPCP' ),
-					'url' => 'http://www.awpcp.com/premium-modules/',
+					'url' => 'http://awpcp.com/premium-modules/restricted-categories-module?ref=panel',
 					'installed' => defined( 'AWPCP_RESTRICTED_CATEGORIES_MODULE' ),
 					'version' => 'AWPCP_RESTRICTED_CATEGORIES_MODULE_DB_VERSION',
 					'required' => '3.4',
-                    'private' => true,
 				),
 				'rss' => array(
 					'name' => __( 'RSS', 'AWPCP' ),
