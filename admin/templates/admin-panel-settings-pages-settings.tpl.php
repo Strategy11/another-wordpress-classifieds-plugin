@@ -7,12 +7,12 @@
 
 			<div class="error">
 			<?php if ( ! empty( $missing['not-found'] ) ): ?>
-				<p><?php _e( "The following pages are missing; the plugin is looking for a particular page but it can no longer found.", 'AWPCP' ); ?></p>
+				<p><?php _e( "The following pages are missing; the plugin is looking for a page with a particular ID but it can no longer found.", 'AWPCP' ); ?></p>
 
 				<ul>
 				<?php foreach ( $missing['not-found'] as $page ): ?>
 				<?php $default = $awpcp->settings->get_option_default_value( $page->page ); ?>
-				<?php $message = __( "%s (%s page): The plugin is looking for a page with ID = %d.", 'AWPCP' ); ?>
+				<?php $message = __( "Page: %s (Default name: %s, Stored page ID = %d).", 'AWPCP' ); ?>
 				<?php $message = sprintf( $message, '<strong>' . get_awpcp_option( $page->page ) . '</strong>', $default, $page->id );  ?>
 				<li><?php echo $message; ?></li>
 				<?php endforeach ?>
@@ -38,7 +38,7 @@
 				<ul>
 				<?php foreach ( $missing['not-referenced'] as $page ): ?>
 				<?php $default = $awpcp->settings->get_option_default_value( $page->page ); ?>
-				<?php $message = __( "%s (%s page).", 'AWPCP' ); ?>
+				<?php $message = __( "Page: %s (Default name: %s).", 'AWPCP' ); ?>
 				<?php $message = sprintf( $message, '<strong>' . get_awpcp_option( $page->page ) . '</strong>', $default );  ?>
 				<li><?php echo $message; ?></li>
 				<?php endforeach ?>
