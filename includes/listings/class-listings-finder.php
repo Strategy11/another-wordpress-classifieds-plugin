@@ -166,7 +166,7 @@ class AWPCP_ListingsFinder {
         $conditions = array();
 
         if ( ! empty( $query['title'] ) ) {
-            $conditions[] = $this->db->prepare( "listings.`ad_title` LIKE '%%%s%%'" );
+            $conditions[] = $this->db->prepare( "listings.`ad_title` LIKE '%%%s%%'", $query['title'] );
         }
 
         return $conditions;
