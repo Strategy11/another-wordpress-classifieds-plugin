@@ -394,10 +394,10 @@ class AWPCP_ListingsFinder {
     }
 
     private function build_dates_condition( $query ) {
-        $conditions = array();
-
-        $conditions = array_merge( $this->build_date_condition( 'disabled_date', $query['disabled_date'] ) );
-        $conditions = array_merge( $this->build_date_condition( 'ad_enddate', $query['end_date'] ) );
+        $conditions = array_merge(
+            $this->build_date_condition( 'disabled_date', $query['disabled_date'] ),
+            $this->build_date_condition( 'ad_enddate', $query['end_date'] )
+        );
 
         return $conditions;
     }
