@@ -219,7 +219,9 @@ class AWPCP_Facebook_Page_Settings {
 			$config['page_token'] = $page_token;
 		}
 
-		if ( $group ) {
+		if ( $group == 'none' ) {
+			$config['group_id'] = '';
+		} else if ( ! empty( $group ) ) {
 			$config['group_id'] = $group;
 		}
 
