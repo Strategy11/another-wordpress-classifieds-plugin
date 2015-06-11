@@ -602,6 +602,9 @@ class AWPCP_ListingsFinder {
             case 'owner':
                 $parts = array( 'user_id %1$s', 'ad_startdate %1$s', 'ad_id %1$s' );
                 break;
+            case 'random':
+                $parts = array( 'RAND() %1$s' );
+                break;
             default:
                 $parts = array( 'ad_postdate DESC', 'ad_title ASC' );
                 break;
