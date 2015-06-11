@@ -4448,7 +4448,7 @@ msgstr "Por favor seleccione el propietario del anuncio."
 #: frontend/templates/page-place-ad-order-step.tpl.php:37
 msgctxt "place ad order step"
 msgid "Please select the owner for this Ad"
-msgstr "Selecione un autor para este anuncio"
+msgstr "Seleccione un autor para este anuncio"
 
 #: frontend/page-place-ad.php:105
 msgid "Please type in a price for your Ad."
@@ -5073,7 +5073,7 @@ msgstr "Seleccione un usuario"
 #: frontend/templates/page-place-ad-details-step.tpl.php:37
 #: frontend/templates/page-place-ad-order-step.tpl.php:44
 msgid "Select an User owner for this Ad"
-msgstr "Selecione un autor para este anuncio"
+msgstr "Seleccione un autor para este anuncio"
 
 #: awpcp.php:1038
 msgctxt "uploader queue"
