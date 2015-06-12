@@ -203,6 +203,8 @@ function awpcp_get_messages_for_listing_awaiting_approval_notification( $listing
         }
     }
 
+    $subject = sprintf( $subject, $listing->get_title() );
+
     return array( 'subject' => $subject, 'messages' => $messages );
 }
 
