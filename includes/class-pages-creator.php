@@ -46,7 +46,7 @@ class AWPCP_Pages_Creator {
             $restored_pages[] = $page;
         }
 
-        flush_rewrite_rules();
+        update_option( 'awpcp-flush-rewrite-rules', true );
 
         return $restored_pages;
     }
