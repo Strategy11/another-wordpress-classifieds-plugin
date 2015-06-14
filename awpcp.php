@@ -3,7 +3,7 @@
  Plugin Name: Another Wordpress Classifieds Plugin (AWPCP)
  Plugin URI: http://www.awpcp.com
  Description: AWPCP - A plugin that provides the ability to run a free or paid classified ads service on your wordpress blog. <strong>!!!IMPORTANT!!!</strong> Whether updating a previous installation of Another Wordpress Classifieds Plugin or installing Another Wordpress Classifieds Plugin for the first time, please backup your wordpress database before you install/uninstall/activate/deactivate/upgrade Another Wordpress Classifieds Plugin.
-Version: 3.5.3-dev-1
+Version: 3.5.3-dev-2
  Author: D. Rodenbaugh
  License: GPLv2 or any later version
  Author URI: http://www.skylineconsult.com
@@ -265,8 +265,9 @@ require_once( AWPCP_DIR . "/includes/class-listings-collection.php" );
 require_once( AWPCP_DIR . "/includes/class-listings-metadata.php" );
 require_once( AWPCP_DIR . "/includes/class-media-api.php" );
 require_once( AWPCP_DIR . "/includes/class-missing-pages-finder.php" );
-require_once( AWPCP_DIR . "/includes/class-secure-url-redirection-handler.php" );
+require_once( AWPCP_DIR . "/includes/class-pages-creator.php" );
 require_once( AWPCP_DIR . "/includes/class-roles-and-capabilities.php" );
+require_once( AWPCP_DIR . "/includes/class-secure-url-redirection-handler.php" );
 require_once( AWPCP_DIR . "/includes/class-users-collection.php" );
 require_once(AWPCP_DIR . "/includes/payments-api.php");
 require_once(AWPCP_DIR . "/includes/regions-api.php");
@@ -812,7 +813,7 @@ class AWPCP {
                     'url' => 'http://www.awpcp.com/',
                     'installed' => defined( 'AWPCP_VIDEOS_MODULE' ),
                     'version' => 'AWPCP_VIDEOS_MODULE_DB_VERSION',
-                    'required' => '3.5.1',
+                    'required' => '3.5.2',
                     'private' => true,
                 ),
 				'xml-sitemap' => array(
@@ -1185,33 +1186,6 @@ class AWPCP {
 		);
 
 		do_action( 'wp_affiliate_process_cart_commission', $data );
-	}
-
-	public function restore_pages() {
-		global $wpdb;
-
-		$shortcodes = awpcp_pages();
-		$missing = $this->get_missing_pages();
-		$pages = awpcp_get_properties($missing, 'page');
-
-		// If we are restoring the main page, let's do it first!
-		if (($p = array_search('main-page-name', $pages)) !== FALSE) {
-			// put the main page as the first page to restore
-			array_splice($missing, 0, 0, array($missing[$p]));
-			array_splice($missing, $p + 1, 1);
-		}
-
-		foreach($missing as $page) {
-			$refname = $page->page;
-			$name = get_awpcp_option($refname);
-			if (strcmp($refname, 'main-page-name') == 0) {
-				awpcp_create_pages($name, $subpages=false);
-			} else {
-				awpcp_create_subpage($refname, $name, $shortcodes[$refname][1]);
-			}
-		}
-
-		flush_rewrite_rules();
 	}
 
 	/**

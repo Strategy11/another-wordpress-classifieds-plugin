@@ -30,7 +30,7 @@ class AWPCP_Missing_Pages_Finder {
         $query.= "WHERE posts.ID IS NULL OR posts.post_status != 'publish' ";
         $query.= "AND pages.page NOT IN ('" . join( "','", $excluded_pages ) . "')";
 
-        $missing_pages = array();
+        $missing_pages = array( 'not-found' => array(), 'not-published' => array(), 'not-referenced' => array() );
 
         foreach ( $this->db->get_results( $query ) as $page ) {
             if ( is_null( $page->status ) ) {
