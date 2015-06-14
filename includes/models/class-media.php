@@ -83,12 +83,12 @@ class AWPCP_Media {
     }
 
     private function get_url_from_alternatives( $alternatives ) {
-        $home_url = get_site_url();
+        $site_url = get_site_url();
         $abs_path = rtrim( ABSPATH, '/' );
 
         foreach ( $alternatives as $path ) {
-            if ( file_exists( str_replace( $home_url, $abs_path, $path ) ) ) {
-                return $path;
+            if ( file_exists( $path ) ) {
+                return str_replace( $abs_path, $site_url, $path );
             }
         }
 
@@ -109,7 +109,7 @@ class AWPCP_Media {
 
     public function get_thumbnail_url() {
         $alternatives = apply_filters( 'awpcp-get-file-thumbnail-url-alternatives', array(
-            trailingslashit( AWPCPTHUMBSUPLOADURL ) . $this->name,
+            trailingslashit( AWPCPTHUMBSUPLOADDIR ) . $this->name,
         ), $this );
 
         return $this->get_url_from_alternatives( $alternatives );
