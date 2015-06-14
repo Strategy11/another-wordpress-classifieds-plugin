@@ -813,7 +813,7 @@ class AWPCP {
                     'url' => 'http://www.awpcp.com/',
                     'installed' => defined( 'AWPCP_VIDEOS_MODULE' ),
                     'version' => 'AWPCP_VIDEOS_MODULE_DB_VERSION',
-                    'required' => '3.5.1',
+                    'required' => '3.5.2',
                     'private' => true,
                 ),
 				'xml-sitemap' => array(
