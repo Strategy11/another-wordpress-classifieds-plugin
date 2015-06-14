@@ -16,7 +16,7 @@
 
 			<div class="error">
 			<?php if ( ! empty( $missing['not-found'] ) ): ?>
-				<p><?php _e( "The following pages are missing; the plugin is looking for a page with a particular ID but it can no longer found.", 'AWPCP' ); ?></p>
+				<p><?php _e( "The following pages are missing; the plugin is looking for a page with a particular ID but it seems that the page was permanently deleted.", 'AWPCP' ); ?></p>
 
 				<ul>
 				<?php foreach ( $missing['not-found'] as $page ): ?>
