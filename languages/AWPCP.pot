@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2015-06-07 22:45:59+00:00\n"
+"POT-Creation-Date: 2015-06-14 20:48:07+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -57,7 +57,7 @@ msgid "Edit"
 msgstr ""
 
 #: admin/admin-panel-credit-plans.php:43 admin/admin-panel-fees.php:46
-#: admin/admin-panel-listings-table.php:216 admin/admin-panel-listings.php:90
+#: admin/admin-panel-listings-table.php:225 admin/admin-panel-listings.php:90
 #: admin/templates/admin-panel-fees-delete-form.tpl.php:13
 #: admin/templates/delete_form.tpl.php:12
 msgid "Delete"
@@ -138,7 +138,7 @@ msgid "Categories"
 msgstr ""
 
 #: admin/admin-panel-fees-table.php:121
-#: admin/templates/admin-sidebar.tpl.php:90 awpcp.php:748
+#: admin/templates/admin-sidebar.tpl.php:90 awpcp.php:749
 msgid "Featured Ads"
 msgstr ""
 
@@ -220,180 +220,180 @@ msgstr ""
 msgid "Renew Ad"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:150
+#: admin/admin-panel-listings-table.php:25
 msgid "Showing Ads from %s category."
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:165
+#: admin/admin-panel-listings-table.php:174
 msgid "Headline"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:166
+#: admin/admin-panel-listings-table.php:175
 msgid "Manage Ad"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:167
+#: admin/admin-panel-listings-table.php:176
 msgid "Start Date"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:168
+#: admin/admin-panel-listings-table.php:177
 msgid "End Date"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:169
+#: admin/admin-panel-listings-table.php:178
 msgid "Renewed Date"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:170
+#: admin/admin-panel-listings-table.php:179
 msgid "Status"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:171
+#: admin/admin-panel-listings-table.php:180
 msgid "Payment Term"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:172
+#: admin/admin-panel-listings-table.php:181
 msgid "Payment Status"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:175
-#: admin/admin-panel-listings-table.php:241
-#: admin/admin-panel-listings-table.php:418
+#: admin/admin-panel-listings-table.php:184
+#: admin/admin-panel-listings-table.php:250
+#: admin/admin-panel-listings-table.php:427
 msgid "Featured"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:179
+#: admin/admin-panel-listings-table.php:188
 msgid "Owner"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:203 admin/admin-panel-listings.php:94
+#: admin/admin-panel-listings-table.php:212 admin/admin-panel-listings.php:94
 msgid "Enable"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:204 admin/admin-panel-listings.php:96
+#: admin/admin-panel-listings-table.php:213 admin/admin-panel-listings.php:96
 msgid "Disable"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:205 admin/admin-panel-listings.php:108
+#: admin/admin-panel-listings-table.php:214 admin/admin-panel-listings.php:108
 msgid "Make Featured"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:206
+#: admin/admin-panel-listings-table.php:215
 msgid "Make Non Featured"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:207
+#: admin/admin-panel-listings-table.php:216
 msgid "Renew"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:208
+#: admin/admin-panel-listings-table.php:217
 msgid "Mark as SPAM"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:213 admin/admin-panel-listings.php:131
+#: admin/admin-panel-listings-table.php:222 admin/admin-panel-listings.php:131
 msgid "Send to Facebook"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:237
+#: admin/admin-panel-listings-table.php:246
 msgid "New"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:238
+#: admin/admin-panel-listings-table.php:247
 msgid "Expired"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:239
+#: admin/admin-panel-listings-table.php:248
 msgid "Ads Awaiting Approval"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:240
+#: admin/admin-panel-listings-table.php:249
 msgid "Images Awaiting Approval"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:242
+#: admin/admin-panel-listings-table.php:251
 msgid "Flagged"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:243
+#: admin/admin-panel-listings-table.php:252
 msgid "Unpaid"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:244
+#: admin/admin-panel-listings-table.php:253
 msgid "Unverified"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:245
+#: admin/admin-panel-listings-table.php:254
 msgid "Completed"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:256
+#: admin/admin-panel-listings-table.php:265
 msgid "Search by"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:258
+#: admin/admin-panel-listings-table.php:267
 msgid "Ad ID"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:259
+#: admin/admin-panel-listings-table.php:268
 msgid "Ad Title"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:260
+#: admin/admin-panel-listings-table.php:269
 msgid "Keyword"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:261 frontend/page-show-ad.php:83
+#: admin/admin-panel-listings-table.php:270 frontend/page-show-ad.php:83
 #: frontend/placeholders.php:665
 msgid "Location"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:264
+#: admin/admin-panel-listings-table.php:273
 msgid "Payer Email"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:267
+#: admin/admin-panel-listings-table.php:276
 #: frontend/templates/page-place-ad-details-step.tpl.php:36
 #: frontend/templates/page-place-ad-order-step.tpl.php:43
 msgid "User"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:306
+#: admin/admin-panel-listings-table.php:315
 msgctxt "admin listings table"
 msgid "Filter"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:352
-#: admin/admin-panel-listings-table.php:355
+#: admin/admin-panel-listings-table.php:361
+#: admin/admin-panel-listings-table.php:364
 msgid "View Ad."
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:352
+#: admin/admin-panel-listings-table.php:361
 #: admin/templates/admin-panel-listings-view.tpl.php:5
 #: frontend/templates/email-send-ad-access-key.tpl.php:6
 #: frontend/templates/email-send-all-ad-access-keys.tpl.php:8
 msgid "Access Key"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:382
+#: admin/admin-panel-listings-table.php:391
 msgid "Mark as Verified"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:391
+#: admin/admin-panel-listings-table.php:400
 msgid "Disabled"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:391
+#: admin/admin-panel-listings-table.php:400
 #: templates/components/media-manager.tpl.php:16
 #: templates/components/media-manager.tpl.php:45
 #: templates/components/media-manager.tpl.php:79
 msgid "Enabled"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:405
+#: admin/admin-panel-listings-table.php:414
 msgid "Mark as Paid"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:418
+#: admin/admin-panel-listings-table.php:427
 msgid "Not Featured"
 msgstr ""
 
@@ -553,57 +553,51 @@ msgstr ""
 msgid "There was an error trying to send the email to %s."
 msgstr ""
 
-#: admin/admin-panel-listings.php:634
+#: admin/admin-panel-listings.php:628
 msgid "%d of %d Ads were deleted. %d generated errors."
 msgstr ""
 
-#: admin/admin-panel-listings.php:636
+#: admin/admin-panel-listings.php:630
 msgid "%d of %d Ads were deleted."
 msgstr ""
 
-#: admin/admin-panel-listings.php:640
+#: admin/admin-panel-listings.php:634
 msgid "%d of %d Ads don't exist."
 msgstr ""
 
-#: admin/admin-panel-listings.php:644
+#: admin/admin-panel-listings.php:638
 msgid "%d of %d Ads weren't deleted because you are not authorized."
 msgstr ""
 
-#: admin/admin-panel-listings.php:648
-msgid ""
-"%d of %d Ads weren't deleted because Moderator uses are not allowed to use "
-"Bulk Delete operation to remove other users listings."
-msgstr ""
-
-#: admin/admin-panel-listings.php:675
+#: admin/admin-panel-listings.php:665
 msgctxt "ajax delete ad"
 msgid "The specified Ad doesn't exists."
 msgstr ""
 
-#: admin/admin-panel-listings.php:716
+#: admin/admin-panel-listings.php:706
 msgid "The specified listing doesn't exists."
 msgstr ""
 
-#: admin/admin-panel-settings.php:164
+#: admin/admin-panel-settings.php:171
 msgid ""
 "We could not obtain a valid access token from Facebook. The API returned the "
 "following error: %s"
 msgstr ""
 
-#: admin/admin-panel-settings.php:166
+#: admin/admin-panel-settings.php:173
 msgid ""
 "We could not obtain a valid access token from Facebook. Please try again."
 msgstr ""
 
-#: admin/admin-panel-settings.php:174
+#: admin/admin-panel-settings.php:181
 msgid "Facebook Config Diagnostics"
 msgstr ""
 
-#: admin/admin-panel-settings.php:181
+#: admin/admin-panel-settings.php:188
 msgid "Everything looks OK."
 msgstr ""
 
-#: admin/admin-panel-settings.php:229
+#: admin/admin-panel-settings.php:238
 msgid "There was an error trying to contact Facebook servers: \"%s\"."
 msgstr ""
 
@@ -681,7 +675,7 @@ msgid "Manage Extra Fields"
 msgstr ""
 
 #: admin/admin-panel.php:295 admin/templates/admin-sidebar.tpl.php:95
-#: awpcp.php:741
+#: awpcp.php:742
 msgid "Extra Fields"
 msgstr ""
 
@@ -1756,44 +1750,48 @@ msgstr ""
 msgid "Restore AWPCP Pages"
 msgstr ""
 
-#: admin/templates/admin-panel-settings-pages-settings.tpl.php:10
-msgid ""
-"The following pages are missing; the plugin is looking for a page with a "
-"particular ID but it can no longer found."
+#: admin/templates/admin-panel-settings-pages-settings.tpl.php:8
+msgid "The following pages were restored: <pages-list>."
 msgstr ""
 
-#: admin/templates/admin-panel-settings-pages-settings.tpl.php:15
+#: admin/templates/admin-panel-settings-pages-settings.tpl.php:19
+msgid ""
+"The following pages are missing; the plugin is looking for a page with a "
+"particular ID but it seems that the page was permanently deleted."
+msgstr ""
+
+#: admin/templates/admin-panel-settings-pages-settings.tpl.php:24
 msgid "Page: %s (Default name: %s, Stored page ID = %d)."
 msgstr ""
 
-#: admin/templates/admin-panel-settings-pages-settings.tpl.php:23
+#: admin/templates/admin-panel-settings-pages-settings.tpl.php:32
 msgid ""
 "The following pages are not published (did you move them to the Trash by "
 "accident?)."
 msgstr ""
 
-#: admin/templates/admin-panel-settings-pages-settings.tpl.php:28
+#: admin/templates/admin-panel-settings-pages-settings.tpl.php:37
 msgid ""
 "Page: %s (Default name: %s, Stored page ID = %d, Current post status: %s)."
 msgstr ""
 
-#: admin/templates/admin-panel-settings-pages-settings.tpl.php:36
+#: admin/templates/admin-panel-settings-pages-settings.tpl.php:45
 msgid ""
 "The plugin has no associated page ID for the following pages. Please contact "
 "customer support."
 msgstr ""
 
-#: admin/templates/admin-panel-settings-pages-settings.tpl.php:41
+#: admin/templates/admin-panel-settings-pages-settings.tpl.php:50
 msgid "Page: %s (Default name: %s)."
 msgstr ""
 
-#: admin/templates/admin-panel-settings-pages-settings.tpl.php:53
+#: admin/templates/admin-panel-settings-pages-settings.tpl.php:62
 msgid ""
 "If you are having problems with your plugin pages, you can delete them and "
 "use the Restore button to have the plugin create them again."
 msgstr ""
 
-#: admin/templates/admin-panel-settings-pages-settings.tpl.php:54
+#: admin/templates/admin-panel-settings-pages-settings.tpl.php:63
 msgid "Restore Pages"
 msgstr ""
 
@@ -1920,19 +1918,19 @@ msgstr ""
 msgid "Get a Premium Module!"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:38 awpcp.php:713
+#: admin/templates/admin-sidebar.tpl.php:38 awpcp.php:714
 msgid "Campaign Manager"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:44 awpcp.php:769
+#: admin/templates/admin-sidebar.tpl.php:44 awpcp.php:770
 msgid "Mark as Sold"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:50 awpcp.php:790
+#: admin/templates/admin-sidebar.tpl.php:50 awpcp.php:791
 msgid "Restricted Categories"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:55 awpcp.php:706
+#: admin/templates/admin-sidebar.tpl.php:55 awpcp.php:707
 msgid "BuddyPress Listings"
 msgstr ""
 
@@ -1940,11 +1938,11 @@ msgstr ""
 msgid "Comments/Ratings"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:65 awpcp.php:699
+#: admin/templates/admin-sidebar.tpl.php:65 awpcp.php:700
 msgid "Authorize.Net"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:70 awpcp.php:776
+#: admin/templates/admin-sidebar.tpl.php:70 awpcp.php:777
 msgid "PayPal Pro"
 msgstr ""
 
@@ -1952,7 +1950,7 @@ msgstr ""
 msgid "Coupon/Discount"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:80 awpcp.php:804
+#: admin/templates/admin-sidebar.tpl.php:80 awpcp.php:805
 msgid "Subscriptions"
 msgstr ""
 
@@ -1960,11 +1958,11 @@ msgstr ""
 msgid "Fee Per Category"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:100 awpcp.php:720
+#: admin/templates/admin-sidebar.tpl.php:100 awpcp.php:721
 msgid "Category Icons"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:105 awpcp.php:783
+#: admin/templates/admin-sidebar.tpl.php:105 awpcp.php:784
 msgid "Regions Control"
 msgstr ""
 
@@ -1972,7 +1970,7 @@ msgstr ""
 msgid "Google Checkout Payments"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:115 awpcp.php:797
+#: admin/templates/admin-sidebar.tpl.php:115 awpcp.php:798
 msgid "RSS"
 msgstr ""
 
@@ -2104,238 +2102,238 @@ msgstr ""
 msgid "Manage Ad Listings"
 msgstr ""
 
-#: awpcp.php:597
+#: awpcp.php:598
 msgid "AWPCP"
 msgstr ""
 
-#: awpcp.php:675
+#: awpcp.php:676
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
 msgstr ""
 
-#: awpcp.php:676
+#: awpcp.php:677
 #: includes/placeholders/class-placeholders-installation-verifier.php:19
 msgid "Warning"
 msgstr ""
 
-#: awpcp.php:692
+#: awpcp.php:693
 msgid "Attachments"
 msgstr ""
 
-#: awpcp.php:727
+#: awpcp.php:728
 msgid "Comments & Ratings"
 msgstr ""
 
-#: awpcp.php:734
+#: awpcp.php:735
 msgid "Coupons/Discount"
 msgstr ""
 
-#: awpcp.php:755
+#: awpcp.php:756
 msgid "Fee per Category"
 msgstr ""
 
-#: awpcp.php:762
+#: awpcp.php:763
 msgid "Google Checkout"
 msgstr ""
 
-#: awpcp.php:811 templates/components/media-manager.tpl.php:36
+#: awpcp.php:812 templates/components/media-manager.tpl.php:36
 msgid "Videos"
 msgstr ""
 
-#: awpcp.php:819
+#: awpcp.php:820
 msgid "XML Sitemap"
 msgstr ""
 
-#: awpcp.php:866
+#: awpcp.php:867
 msgid ""
 "The %1$s module you have installed is outdated and not compatible with this "
 "version of AWPCP. Please get %1$s %2$s or newer."
 msgstr ""
 
-#: awpcp.php:1008
+#: awpcp.php:1009
 msgid "This field is required."
 msgstr ""
 
-#: awpcp.php:1009 frontend/page-edit-ad.php:128 frontend/page-edit-ad.php:433
+#: awpcp.php:1010 frontend/page-edit-ad.php:128 frontend/page-edit-ad.php:433
 #: includes/settings-api.php:214
 msgid "Please enter a valid email address."
 msgstr ""
 
-#: awpcp.php:1010 awpcp.php:1011
+#: awpcp.php:1011 awpcp.php:1012
 msgid "Please enter a valid URL."
 msgstr ""
 
-#: awpcp.php:1012
+#: awpcp.php:1013
 msgid "Please enter a valid number."
 msgstr ""
 
-#: awpcp.php:1013
+#: awpcp.php:1014
 msgid "Please enter a valid amount."
-msgstr ""
-
-#: awpcp.php:1019
-msgctxt "uploader queue"
-msgid "Stop Upload"
 msgstr ""
 
 #: awpcp.php:1020
 msgctxt "uploader queue"
-msgid "Upload URL might be wrong or doesn't exist."
+msgid "Stop Upload"
 msgstr ""
 
 #: awpcp.php:1021
 msgctxt "uploader queue"
-msgid "tb"
+msgid "Upload URL might be wrong or doesn't exist."
 msgstr ""
 
 #: awpcp.php:1022
 msgctxt "uploader queue"
-msgid "Size"
+msgid "tb"
 msgstr ""
 
 #: awpcp.php:1023
 msgctxt "uploader queue"
-msgid "Close"
+msgid "Size"
 msgstr ""
 
 #: awpcp.php:1024
 msgctxt "uploader queue"
-msgid "Init error."
+msgid "Close"
 msgstr ""
 
 #: awpcp.php:1025
 msgctxt "uploader queue"
-msgid "Add files to the upload queue and click the start button."
+msgid "Init error."
 msgstr ""
 
 #: awpcp.php:1026
 msgctxt "uploader queue"
-msgid "Filename"
+msgid "Add files to the upload queue and click the start button."
 msgstr ""
 
 #: awpcp.php:1027
 msgctxt "uploader queue"
-msgid "Image format either wrong or not supported."
+msgid "Filename"
 msgstr ""
 
 #: awpcp.php:1028
 msgctxt "uploader queue"
-msgid "Status"
+msgid "Image format either wrong or not supported."
 msgstr ""
 
 #: awpcp.php:1029
 msgctxt "uploader queue"
-msgid "HTTP Error."
+msgid "Status"
 msgstr ""
 
 #: awpcp.php:1030
 msgctxt "uploader queue"
-msgid "Start Upload"
+msgid "HTTP Error."
 msgstr ""
 
 #: awpcp.php:1031
 msgctxt "uploader queue"
-msgid "mb"
+msgid "Start Upload"
 msgstr ""
 
 #: awpcp.php:1032
 msgctxt "uploader queue"
-msgid "kb"
+msgid "mb"
 msgstr ""
 
 #: awpcp.php:1033
 msgctxt "uploader queue"
-msgid "Duplicate file error."
+msgid "kb"
 msgstr ""
 
 #: awpcp.php:1034
 msgctxt "uploader queue"
-msgid "File size error."
+msgid "Duplicate file error."
 msgstr ""
 
 #: awpcp.php:1035
 msgctxt "uploader queue"
-msgid "N/A"
+msgid "File size error."
 msgstr ""
 
 #: awpcp.php:1036
 msgctxt "uploader queue"
-msgid "gb"
+msgid "N/A"
 msgstr ""
 
 #: awpcp.php:1037
 msgctxt "uploader queue"
-msgid "Error: Invalid file extension:"
+msgid "gb"
 msgstr ""
 
 #: awpcp.php:1038
 msgctxt "uploader queue"
-msgid "Select files"
+msgid "Error: Invalid file extension:"
 msgstr ""
 
 #: awpcp.php:1039
 msgctxt "uploader queue"
-msgid "%s already present in the queue."
+msgid "Select files"
 msgstr ""
 
 #: awpcp.php:1040
 msgctxt "uploader queue"
-msgid "File: %s"
+msgid "%s already present in the queue."
 msgstr ""
 
 #: awpcp.php:1041
 msgctxt "uploader queue"
-msgid "b"
+msgid "File: %s"
 msgstr ""
 
 #: awpcp.php:1042
 msgctxt "uploader queue"
-msgid "Uploaded %d/%d files"
+msgid "b"
 msgstr ""
 
 #: awpcp.php:1043
+msgctxt "uploader queue"
+msgid "Uploaded %d/%d files"
+msgstr ""
+
+#: awpcp.php:1044
 msgctxt "uploader queue"
 msgid ""
 "Upload element accepts only %d file(s) at a time. Extra files were stripped."
 msgstr ""
 
-#: awpcp.php:1044
+#: awpcp.php:1045
 msgctxt "uploader queue"
 msgid "%d files queued"
 msgstr ""
 
-#: awpcp.php:1045
+#: awpcp.php:1046
 msgctxt "uploader queue"
 msgid "File: %s, size: %d, max file size: %d"
 msgstr ""
 
-#: awpcp.php:1046
+#: awpcp.php:1047
 msgctxt "uploader queue"
 msgid "Drag files here."
 msgstr ""
 
-#: awpcp.php:1047
+#: awpcp.php:1048
 msgctxt "uploader queue"
 msgid "Runtime ran out of available memory."
 msgstr ""
 
-#: awpcp.php:1048
+#: awpcp.php:1049
 msgctxt "uploader queue"
 msgid "File count error."
 msgstr ""
 
-#: awpcp.php:1049
+#: awpcp.php:1050
 msgctxt "uploader queue"
 msgid "File extension error."
 msgstr ""
 
-#: awpcp.php:1050
+#: awpcp.php:1051
 msgctxt "uploader queue"
 msgid "Error: File too large:"
 msgstr ""
 
-#: awpcp.php:1051
+#: awpcp.php:1052
 msgctxt "uploader queue"
 msgid "Add Files"
 msgstr ""
@@ -2396,7 +2394,7 @@ msgstr ""
 msgid "Browse Ads"
 msgstr ""
 
-#: frontend/page-browse-ads.php:59
+#: frontend/page-browse-ads.php:60
 msgid ""
 "No specific category was selected for browsing so you are viewing listings "
 "from all categories."
@@ -2994,11 +2992,11 @@ msgstr ""
 msgid "Share on Facebook"
 msgstr ""
 
-#: frontend/shortcode.php:267
+#: frontend/shortcode.php:269
 msgid "Hi admin, you need to go to your dashboard and setup your classifieds."
 msgstr ""
 
-#: frontend/shortcode.php:270
+#: frontend/shortcode.php:272
 msgid "You currently have no classifieds"
 msgstr ""
 
@@ -4292,17 +4290,17 @@ msgstr ""
 msgid "Listing \"%s\" is awaiting approval"
 msgstr ""
 
-#: includes/functions/notifications.php:228
+#: includes/functions/notifications.php:230
 msgid "There are images awaiting approval in listing <listing-title>"
 msgstr ""
 
-#: includes/functions/notifications.php:231
+#: includes/functions/notifications.php:233
 msgid ""
 "The file <<file-name>> was added to listing \"<listing-title>\" and is "
 "awaiting administrator approval."
 msgstr ""
 
-#: includes/functions/notifications.php:266
+#: includes/functions/notifications.php:268
 msgid "Listing <listing-title> was flagged"
 msgstr ""
 
@@ -4405,26 +4403,26 @@ msgstr ""
 msgid "The specified module does not exists!."
 msgstr ""
 
-#: includes/helpers/class-send-to-facebook-helper.php:23
+#: includes/helpers/class-send-to-facebook-helper.php:27
 msgid "The Ad was already sent to Facebook Page."
 msgstr ""
 
-#: includes/helpers/class-send-to-facebook-helper.php:27
-#: includes/helpers/class-send-to-facebook-helper.php:76
+#: includes/helpers/class-send-to-facebook-helper.php:31
+#: includes/helpers/class-send-to-facebook-helper.php:84
 msgid ""
 "The Ad is currently disabled. If you share it, Facebook servers and users "
 "won't be able to access it."
 msgstr ""
 
-#: includes/helpers/class-send-to-facebook-helper.php:48
+#: includes/helpers/class-send-to-facebook-helper.php:52
 msgid "There was an error trying to contact Facebook servers: %s."
 msgstr ""
 
-#: includes/helpers/class-send-to-facebook-helper.php:54
+#: includes/helpers/class-send-to-facebook-helper.php:58
 msgid "Facebook API returned the following errors: %s."
 msgstr ""
 
-#: includes/helpers/class-send-to-facebook-helper.php:72
+#: includes/helpers/class-send-to-facebook-helper.php:80
 msgid "The Ad was already sent to Facebook Group."
 msgstr ""
 
