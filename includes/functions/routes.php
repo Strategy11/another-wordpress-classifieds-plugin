@@ -116,6 +116,10 @@ function awpcp_get_pages_ids_from_db() {
     return $pages_ids;
 }
 
+function awpcp_get_plugin_pages_info() {
+    return get_option( 'awpcp-plugin-pages', array() );
+}
+
 if ( ! function_exists( 'is_awpcp_page' ) ) {
     /**
      * Check if the current page is one of the AWPCP pages.
