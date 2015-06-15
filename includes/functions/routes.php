@@ -31,16 +31,8 @@ function checkforduplicate($cpagename_awpcp) {
  * Check if the page identified by $refname exists.
  */
 function awpcp_find_page($refname) {
-    global $wpdb;
-
-    $query = 'SELECT posts.ID, page FROM ' . $wpdb->posts . ' AS posts ';
-    $query.= 'LEFT JOIN ' . AWPCP_TABLE_PAGES . ' AS pages ';
-    $query.= 'ON (posts.ID = pages.id) WHERE pages.page = %s';
-
-    $query = $wpdb->prepare($query, $refname);
-    $pages = $wpdb->get_results($query);
-
-    return $pages !== false && !empty($pages);
+    $page = get_page( awpcp_get_page_id_by_ref( $refname ) );
+    return is_object( $page );
 }
 
 /**
