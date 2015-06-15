@@ -116,8 +116,25 @@ function awpcp_get_pages_ids_from_db() {
     return $pages_ids;
 }
 
+/**
+ * @since next-release
+ */
 function awpcp_get_plugin_pages_info() {
     return get_option( 'awpcp-plugin-pages', array() );
+}
+
+/**
+ * @since next-release
+ */
+function awpcp_get_plugin_pages_refs() {
+    $plugin_pages_info = awpcp_get_plugin_pages_info();
+    $plugin_pages = array();
+
+    foreach ( $plugin_pages_info as $page_ref => $page_info ) {
+        $plugin_pages[ $page_info['page_id'] ] = $page_ref;
+    }
+
+    return $plugin_pages;
 }
 
 if ( ! function_exists( 'is_awpcp_page' ) ) {
