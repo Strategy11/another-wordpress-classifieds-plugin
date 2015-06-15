@@ -944,7 +944,7 @@ function awpcp_subpages() {
 
 function awpcp_create_pages($awpcp_page_name, $subpages=true) {
 	global $wpdb;
-	
+
 	$refname = 'main-page-name';
 	$date = date("Y-m-d");
 
@@ -967,13 +967,7 @@ function awpcp_create_pages($awpcp_page_name, $subpages=true) {
 		);
 		$id = wp_insert_post($awpcp_page);
 
-		$previous = awpcp_get_page_id_by_ref($refname);
-		if ($previous === false) {
-			$wpdb->insert(AWPCP_TABLE_PAGES, array('page' => $refname, 'id' => $id));
-		} else {
-			$wpdb->update(AWPCP_TABLE_PAGES, array('page' => $refname, 'id' => $id), 
-					  array('page' => $refname));	
-		}
+		awpcp_update_plugin_page_id( $refname, $id );
 	} else {
 		$id = awpcp_get_page_id_by_ref($refname);
 	}
@@ -1020,13 +1014,7 @@ function awpcp_create_subpage($refname, $name, $shortcode, $awpcp_page_id=null) 
 	}
 
 	if ($id > 0) {
-		$previous = awpcp_get_page_id_by_ref($refname);
-		if ($previous === false) {
-			$wpdb->insert(AWPCP_TABLE_PAGES, array('page' => $refname, 'id' => $id));
-		} else {
-			$wpdb->update(AWPCP_TABLE_PAGES, array('page' => $refname, 'id' => $id), 
-					  array('page' => $refname));	
-		}
+		awpcp_update_plugin_page_id( $refname, $id );
 	}
 
 	return $id;

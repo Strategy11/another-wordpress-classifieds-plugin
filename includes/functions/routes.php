@@ -130,6 +130,15 @@ function awpcp_get_plugin_pages_refs() {
     return $plugin_pages;
 }
 
+/**
+ * @since next-release
+ */
+function awpcp_update_plugin_page_id( $page_ref, $page_id ) {
+    $plugin_pages_info = awpcp_get_plugin_pages_info();
+    $plugin_pages_info[ $page_ref ] = array( 'page_id' => $page_id );
+    update_option( 'awpcp-plugin-pages', $plugin_pages_info );
+}
+
 if ( ! function_exists( 'is_awpcp_page' ) ) {
     /**
      * Check if the current page is one of the AWPCP pages.
