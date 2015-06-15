@@ -145,13 +145,20 @@ if ( ! function_exists( 'is_awpcp_page' ) ) {
      *
      * @since 3.4
      */
-    function is_awpcp_page() {
-        global $wpdb, $wp_the_query;
+    function is_awpcp_page( $page_id = null ) {
+        global $wp_the_query;
 
-        $page_names = implode( "', '", array_keys( awpcp_pages() ) );
-        $page_ids = $wpdb->get_col( sprintf( 'SELECT id FROM ' . AWPCP_TABLE_PAGES . " WHERE page IN ('%s')", $page_names ) );
+        if ( ! $wp_the_query ) {
+            return false;
+        }
 
-        return $wp_the_query && in_array( $wp_the_query->get_queried_object_id(), $page_ids );
+        $pages_refs = awpcp_get_plugin_pages_refs();
+
+        if ( is_null( $page_id ) ) {
+            $page_id = $wp_the_query->get_queried_object_id();
+        }
+
+        return isset( $pages_refs[ $page_id ] );
     }
 }
 
