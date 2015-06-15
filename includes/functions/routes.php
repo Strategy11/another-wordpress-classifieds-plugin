@@ -64,8 +64,8 @@ function awpcp_get_page_id( $name ) {
  * @param $refname the name of the setting that holds the name of the page
  */
 function awpcp_get_page_id_by_ref( $refname ) {
-    $all_pages_ids = awppc_get_pages_ids();
-    return isset( $all_pages_ids[ $refname ] ) ? $all_pages_ids[ $refname ] : false;
+    $plugin_pages_info = awpcp_get_plugin_pages_info();
+    return isset( $plugin_pages_info[ $refname ] ) ? $plugin_pages_info[ $refname ]['page_id'] : false;
 }
 
 /**
@@ -74,12 +74,12 @@ function awpcp_get_page_id_by_ref( $refname ) {
  * @return array Array of Page IDs
  */
 function awpcp_get_page_ids_by_ref( $refnames ) {
-    $all_pages_ids = awppc_get_pages_ids();
-
+    $plugin_pages_info = awpcp_get_plugin_pages_info();
     $pages_ids = array();
+
     foreach ( $refnames as $refname ) {
-        if ( isset( $all_pages_ids[ $refname ] ) ) {
-            $pages_ids[] = $all_pages_ids[ $refname ];
+        if ( isset( $plugin_pages_info[ $refname ] ) ) {
+            $pages_ids[] = $plugin_pages_info[ $refname ]['page_id'];
         }
     }
 
@@ -88,32 +88,25 @@ function awpcp_get_page_ids_by_ref( $refnames ) {
 
 /**
  * @since 3.4
+ * @deprecated next-release
  */
 function awppc_get_pages_ids() {
-    static $pages_ids;
-
-    if ( is_null( $pages_ids ) ) {
-        $pages_ids = awpcp_get_pages_ids_from_db();
-    }
-
-    return $pages_ids;
+    return awpcp_get_pages_ids_from_db();
 }
 
 /**
  * @since 3.4
+ * @deprecated next-release
  */
 function awpcp_get_pages_ids_from_db() {
-    global $wpdb;
+    $plugin_pages_info = awpcp_get_plugin_pages_info();
+    $plugin_pages = array();
 
-    $query = 'SELECT page, id FROM ' . AWPCP_TABLE_PAGES;
-    $results = $wpdb->get_results( $query );
-
-    $pages_ids = array();
-    foreach ( $results as $row ) {
-        $pages_ids[ $row->page ] = $row->id;
+    foreach ( $plugin_pages_info as $page_ref => $page_info ) {
+        $plugin_pages[ $page_ref ] = $page_info['page_id'];
     }
 
-    return $pages_ids;
+    return $plugin_pages;
 }
 
 /**
