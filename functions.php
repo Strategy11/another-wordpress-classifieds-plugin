@@ -1349,9 +1349,10 @@ function awpcp_array_merge_recursive( $a, $b ) {
 }
 
 function awpcp_get_property($object, $property, $default='') {
-    if (is_object($object) && (isset($object->$property) ||
-    	array_key_exists($property, get_object_vars($object)))) {
+    if ( is_object( $object ) && ( isset( $object->$property ) || array_key_exists( $property, get_object_vars( $object ) ) ) ) {
         return $object->$property;
+    } else if ( is_array( $object ) && isset( $object[ $property ] ) ) {
+        return $object[ $property ];
     }
     return $default;
 }
@@ -1562,7 +1563,7 @@ function awpcp_get_formmatted_amount( $value, $include_symbol ) {
     }
 
     if ( get_awpcp_option( 'include-space-between-currency-symbol-and-amount' ) ) {
-        $separator = '&nbsp;';
+        $separator = ' ';
     } else {
         $separator = '';
     }
