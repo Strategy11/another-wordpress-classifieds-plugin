@@ -1563,7 +1563,7 @@ function awpcp_get_formmatted_amount( $value, $include_symbol ) {
     }
 
     if ( get_awpcp_option( 'include-space-between-currency-symbol-and-amount' ) ) {
-        $separator = '&nbsp;';
+        $separator = ' ';
     } else {
         $separator = '';
     }
