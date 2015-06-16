@@ -21,7 +21,7 @@ define('AWPCP_TABLE_TASKS', $wpdb->prefix . "awpcp_tasks");
 define('AWPCP_TABLE_ADSETTINGS', $wpdb->prefix . "awpcp_adsettings");
 define('AWPCP_TABLE_ADPHOTOS', $wpdb->prefix . "awpcp_adphotos");
 
-// TODO: remove these constants after another major release (Added in next-release)
+// TODO: remove these constants after another major release (Added in 3.5.3)
 define( 'AWPCP_TABLE_PAGENAME', $wpdb->prefix . 'awpcp_pagename' );
 
 
@@ -385,7 +385,7 @@ class AWPCP_Installer {
     }
 
     // TODO: remove settings table after another major release
-    // TODO: remove pages table after another major release (Added in next-release)
+    // TODO: remove pages table after another major release (Added in 3.5.3)
     public function upgrade($oldversion, $newversion) {
         global $wpdb;
 

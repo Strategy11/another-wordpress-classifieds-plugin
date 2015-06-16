@@ -1,14 +1,14 @@
 <?php
 
 /**
- * @since next-release
+ * @since 3.5.3
  */
 function awpcp_pages_creator() {
     return new AWPCP_Pages_Creator( awpcp_missing_pages_finder() );
 }
 
 /**
- * @since next-release
+ * @since 3.5.3
  */
 class AWPCP_Pages_Creator {
 
