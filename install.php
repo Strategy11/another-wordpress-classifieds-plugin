@@ -14,11 +14,15 @@ define('AWPCP_TABLE_CATEGORIES', $wpdb->prefix . "awpcp_categories");
 define('AWPCP_TABLE_PAYMENTS', $wpdb->prefix . 'awpcp_payments');
 define('AWPCP_TABLE_CREDIT_PLANS', $wpdb->prefix . 'awpcp_credit_plans');
 define('AWPCP_TABLE_PAGES', $wpdb->prefix . "awpcp_pages");
-define('AWPCP_TABLE_PAGENAME', $wpdb->prefix . "awpcp_pagename");
 define('AWPCP_TABLE_TASKS', $wpdb->prefix . "awpcp_tasks");
 
+// TODO: remove references to these constants in plugin's code, then plan to
+//  remove the tables and finally the constants.
 define('AWPCP_TABLE_ADSETTINGS', $wpdb->prefix . "awpcp_adsettings");
 define('AWPCP_TABLE_ADPHOTOS', $wpdb->prefix . "awpcp_adphotos");
+
+// TODO: remove these constants after another major release (Added in next-release)
+define( 'AWPCP_TABLE_PAGENAME', $wpdb->prefix . 'awpcp_pagename' );
 
 
 class AWPCP_Installer {
@@ -337,7 +341,6 @@ class AWPCP_Installer {
         $wpdb->query( "DROP TABLE IF EXISTS " . AWPCP_TABLE_CREDIT_PLANS );
         $wpdb->query( "DROP TABLE IF EXISTS " . AWPCP_TABLE_MEDIA );
         $wpdb->query( "DROP TABLE IF EXISTS " . AWPCP_TABLE_PAGES );
-        $wpdb->query( "DROP TABLE IF EXISTS " . AWPCP_TABLE_PAGENAME );
         $wpdb->query( "DROP TABLE IF EXISTS " . AWPCP_TABLE_PAYMENTS );
 
         // TODO: implement uninstall methods in other modules
@@ -382,7 +385,7 @@ class AWPCP_Installer {
     }
 
     // TODO: remove settings table after another major release
-    // TODO: remove pagename table after another major release
+    // TODO: remove pages table after another major release (Added in next-release)
     public function upgrade($oldversion, $newversion) {
         global $wpdb;
 
@@ -430,6 +433,9 @@ class AWPCP_Installer {
         }
         if ( version_compare( $oldversion, '3.4' ) < 0 ) {
             $this->upgrade_to_3_4( $oldversion );
+        }
+        if ( version_compare( $oldversion, '3.5.3' ) < 0 ) {
+            $this->upgrade_to_3_5_3( $oldversion );
         }
 
         do_action('awpcp_upgrade', $oldversion, $newversion);
@@ -1114,6 +1120,17 @@ class AWPCP_Installer {
         } else if ( is_numeric( $show_currency_symbol ) ) {
             awpcp()->settings->update_option( 'show-currency-symbol', 'do-not-show-currency-symbol' );
         }
+    }
+
+    private function upgrade_to_3_5_3( $oldversion ) {
+        global $wpdb;
+
+        $pages = $wpdb->get_results( 'SELECT page, id FROM ' . AWPCP_TABLE_PAGES, OBJECT_K );
+        foreach ( $pages as $page_ref => $page_info ) {
+            awpcp_update_plugin_page_id( $page_ref, $page_info->id );
+        }
+
+        $wpdb->query( 'DROP TABLE IF EXISTS ' . AWPCP_TABLE_PAGENAME );
     }
 }
 
