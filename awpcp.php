@@ -3,7 +3,7 @@
  Plugin Name: Another Wordpress Classifieds Plugin (AWPCP)
  Plugin URI: http://www.awpcp.com
  Description: AWPCP - A plugin that provides the ability to run a free or paid classified ads service on your wordpress blog. <strong>!!!IMPORTANT!!!</strong> Whether updating a previous installation of Another Wordpress Classifieds Plugin or installing Another Wordpress Classifieds Plugin for the first time, please backup your wordpress database before you install/uninstall/activate/deactivate/upgrade Another Wordpress Classifieds Plugin.
-Version: 3.5.3
+Version: 3.5.3-dev-5
  Author: D. Rodenbaugh
  License: GPLv2 or any later version
  Author URI: http://www.skylineconsult.com
@@ -95,6 +95,7 @@ require_once(AWPCP_DIR . "/includes/compatibility/compatibility.php");
 require_once( AWPCP_DIR . "/includes/compatibility/class-add-meta-tags-plugin-integration.php" );
 require_once(AWPCP_DIR . "/includes/compatibility/class-all-in-one-seo-pack-plugin-integration.php");
 require_once(AWPCP_DIR . "/includes/compatibility/class-facebook-plugin-integration.php");
+require_once( AWPCP_DIR . '/includes/compatibility/class-facebook-all-plugin-integration.php' );
 require_once( AWPCP_DIR . "/includes/compatibility/class-yoast-wordpress-seo-plugin-integration.php" );
 require_once( AWPCP_DIR . "/includes/compatibility/class-woocommerce-plugin-integration.php" );
 
@@ -367,7 +368,8 @@ class AWPCP {
         $this->settings->set_runtime_option( 'easy-digital-downloads-store-url', 'http://awpcp.com' );
         $this->settings->set_runtime_option( 'image-mime-types', array( 'image/png', 'image/jpeg', 'image/jpg', 'image/gif' ) );
 
-        $uploads_dir_name = $this->settings->get_option( 'uploadfoldername' );
+        // TODO: see if we can call setup_runtime_options after awpcp_register_settings action has fired!
+        $uploads_dir_name = $this->settings->get_option( 'uploadfoldername', 'uploads' );
         $uploads_dir = implode( DIRECTORY_SEPARATOR, array( rtrim( WP_CONTENT_DIR, DIRECTORY_SEPARATOR ), $uploads_dir_name, 'awpcp' ) );
         $uploads_url = implode( '/', array( rtrim( WP_CONTENT_URL, '/' ), $uploads_dir_name, 'awpcp' ) );
 

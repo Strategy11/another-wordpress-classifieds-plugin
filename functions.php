@@ -1505,10 +1505,15 @@ function awpcp_get_currency_code() {
  * XXX: Referenced in FAQ: http://awpcp.com/forum/faq/why-doesnt-my-currency-code-change-when-i-set-it/
  */
 function awpcp_get_currency_symbol() {
-	$currency_symbols = awpcp_currency_symbols();
+    $currency_symbol = get_awpcp_option( 'currency-symbol' );
+
+    if ( ! empty( $currency_symbol ) ) {
+        return $currency_symbol;
+    }
+
 	$currency_code = awpcp_get_currency_code();
 
-    foreach (  $currency_symbols as $currency_symbol => $currency_codes ) {
+    foreach ( awpcp_currency_symbols() as $currency_symbol => $currency_codes ) {
         if ( in_array( $currency_code, $currency_codes ) ) {
             return $currency_symbol;
         }
