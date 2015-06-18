@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: AWPCP\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2015-06-16 17:13:49+00:00\n"
+"POT-Creation-Date: 2015-06-18 21:47:18+00:00\n"
 "PO-Revision-Date: 2015-06-11 10:23-0500\n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: Daniel MENGONI <contact@ulm-actualite.info>\n"
@@ -70,7 +70,7 @@ msgid_plural "%d Ads were marked as SPAM and removed"
 msgstr[0] "L'Annonce %d a été marquée comme SPAM et retirée"
 msgstr[1] "Les Annonces %d ont été marquées comme SPAM et retirées"
 
-#: awpcp.php:1045
+#: awpcp.php:1047
 msgctxt "uploader queue"
 msgid "%d files queued"
 msgstr "%d fichiers mis en attente"
@@ -110,7 +110,7 @@ msgstr "%s Réglages"
 msgid "%s Transaction"
 msgstr "Transaction %s"
 
-#: awpcp.php:1040
+#: awpcp.php:1042
 msgctxt "uploader queue"
 msgid "%s already present in the queue."
 msgstr "%s déjà présent dans la liste de fichiers en cours"
@@ -159,7 +159,7 @@ msgstr ""
 "**Modifier ce réglage seulement si vous utilisez un plugin de gestion des "
 "utilisateurs avec des pages de login personnalisées, ou équivalent."
 
-#: includes/settings/class-general-settings.php:73
+#: includes/settings/class-general-settings.php:82
 msgctxt ""
 "This translation is deprecated. Please go to the Settings section to change "
 "the thousands separator."
@@ -170,7 +170,7 @@ msgstr ","
 msgid "-- Choose a Country --"
 msgstr "-- Choisir un Pays --"
 
-#: includes/settings/class-general-settings.php:74
+#: includes/settings/class-general-settings.php:83
 msgctxt ""
 "This translation is deprecated. Please go to the Settings section to change "
 "the decimal separator."
@@ -231,7 +231,7 @@ msgid "<specific-message> The error was: %s. Please contact customer support."
 msgstr ""
 "<specific-message> l'erreur était : %s. Veuillez contacter le support client."
 
-#: includes/settings/class-general-settings.php:135
+#: includes/settings/class-general-settings.php:144
 msgid ""
 "A CAPTCHA is a program to ensure only humans are posting Ads to your "
 "website. Using a CAPTCHA will reduce the SPAM and prevent bots from posting "
@@ -283,7 +283,7 @@ msgstr ""
 "Un nouvel utilisateur '%s' avec l'adresse email '%s' et le mot de passe '%s' "
 "a été créé pour la ligne %d."
 
-#: awpcp.php:598
+#: awpcp.php:600
 msgid "AWPCP"
 msgstr "AWPCP"
 
@@ -388,7 +388,7 @@ msgstr ""
 "fonctionner. Vous allez être redirigé sur Facebook pour vous connecter. "
 "AWPCP n'obtient ni n'enregistre aucune information de votre profil."
 
-#: awpcp.php:676
+#: awpcp.php:678
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
@@ -571,7 +571,7 @@ msgctxt "media manager"
 msgid "Add File"
 msgstr "Ajouter un fichier"
 
-#: awpcp.php:1052
+#: awpcp.php:1054
 msgctxt "uploader queue"
 msgid "Add Files"
 msgstr "Ajouter des fichiers"
@@ -596,7 +596,7 @@ msgstr "Ajouter une recherche sur région"
 msgid "Add a New Category"
 msgstr "Ajouter une Nouvelle Catégorie"
 
-#: awpcp.php:1026
+#: awpcp.php:1028
 msgctxt "uploader queue"
 msgid "Add files to the upload queue and click the start button."
 msgstr ""
@@ -616,7 +616,7 @@ msgstr "Ajouter un Groupe"
 msgid "Additional Details"
 msgstr "Détails supplémentaires"
 
-#: functions.php:2000 includes/functions/notifications.php:201
+#: functions.php:2005 includes/functions/notifications.php:201
 msgid ""
 "Additionally, You can approve the images going to the Manage Images section "
 "for that Ad and clicking the \"Enable\" button below each image. Click here "
@@ -883,7 +883,7 @@ msgstr "Une erreur inattendue est survenue."
 msgid "Another Wordpress Classifieds Plugin Stats"
 msgstr "Statistiques de AWPCP"
 
-#: includes/settings/class-general-settings.php:111
+#: includes/settings/class-general-settings.php:120
 msgid "Anti-SPAM"
 msgstr "Anti-SPAM"
 
@@ -966,11 +966,11 @@ msgstr ""
 "Associer les annonces associées au Plan de Frais %s à l'un des frais "
 "suivants."
 
-#: awpcp.php:693
+#: awpcp.php:695
 msgid "Attachments"
 msgstr "Pièces jointes"
 
-#: admin/templates/admin-sidebar.tpl.php:65 awpcp.php:700
+#: admin/templates/admin-sidebar.tpl.php:65 awpcp.php:702
 msgid "Authorize.Net"
 msgstr "Authorize.Net"
 
@@ -1063,7 +1063,7 @@ msgctxt "Browse the <a>Quick Start Guide</a>"
 msgid "Browse the %s."
 msgstr "Parcourir le %s."
 
-#: admin/templates/admin-sidebar.tpl.php:55 awpcp.php:707
+#: admin/templates/admin-sidebar.tpl.php:55 awpcp.php:709
 msgid "BuddyPress Listings"
 msgstr "Annonces BuddyPress"
 
@@ -1087,11 +1087,11 @@ msgstr "CSC"
 msgid "CSV file"
 msgstr "fichier CSV"
 
-#: admin/templates/admin-sidebar.tpl.php:38 awpcp.php:714
+#: admin/templates/admin-sidebar.tpl.php:38 awpcp.php:716
 msgid "Campaign Manager"
 msgstr "Gestionnaire de Campagne"
 
-#: functions.php:1752
+#: functions.php:1757
 msgid "Can't write file to disk."
 msgstr "Impossible d'écrire le fichier sur le disque."
 
@@ -1140,7 +1140,7 @@ msgstr "ID de Catégorie"
 msgid "Category ID must be valid for Ads to display."
 msgstr "L'ID de catégorie doit être valide pour afficher une annonce."
 
-#: admin/templates/admin-sidebar.tpl.php:100 awpcp.php:721
+#: admin/templates/admin-sidebar.tpl.php:100 awpcp.php:723
 msgid "Category Icons"
 msgstr "Icones de Catégorie"
 
@@ -1311,7 +1311,7 @@ msgstr "Cliquez ici pour avoir vos clés d'accès d'annonces envoyées."
 msgid "Click to enlarge image."
 msgstr "Cliquez pour agrandir l'image."
 
-#: awpcp.php:1024
+#: awpcp.php:1026
 msgctxt "uploader queue"
 msgid "Close"
 msgstr "Fermer"
@@ -1325,7 +1325,7 @@ msgstr "Fermer ceci, je vais vérifier la configuration de mon widget."
 msgid "Collapse Categories"
 msgstr "Dérouler les catégories"
 
-#: awpcp.php:728
+#: awpcp.php:730
 msgid "Comments & Ratings"
 msgstr "Commentaires & Notes"
 
@@ -1474,7 +1474,7 @@ msgstr "Département (En toutes lettres)"
 msgid "Coupon/Discount"
 msgstr "Coupon/Remise"
 
-#: awpcp.php:735
+#: awpcp.php:737
 msgid "Coupons/Discount"
 msgstr "Coupons/Remises"
 
@@ -1547,6 +1547,11 @@ msgstr "Devise de Format"
 #: includes/settings/class-general-settings.php:67
 msgid "Currency code"
 msgstr "Format de Devise"
+
+#: includes/settings/class-general-settings.php:76
+#, fuzzy
+msgid "Currency symbol"
+msgstr "Afficher le symbole de la Devise"
 
 #: includes/helpers/wp-list-table.php:516
 msgid "Current page"
@@ -1725,7 +1730,7 @@ msgstr "Désactiver l'annonce jusqu'à ce que l'Administration l'approuve"
 msgid "Disabled"
 msgstr "Désactivé"
 
-#: includes/settings/class-general-settings.php:106
+#: includes/settings/class-general-settings.php:115
 msgid "Display and require Terms of Service"
 msgstr "Afficher et exiger Conditions Générales d'Utilisation"
 
@@ -1755,7 +1760,7 @@ msgstr "Documentation"
 msgid "Documentation on date and time formatting"
 msgstr "Documentation sur les formats de dates et heures"
 
-#: includes/settings/class-general-settings.php:88
+#: includes/settings/class-general-settings.php:97
 msgid "Don't show currency symbol"
 msgstr "Ne pas afficher le symbole de la Devise"
 
@@ -1763,7 +1768,7 @@ msgstr "Ne pas afficher le symbole de la Devise"
 msgid "Donate to Support AWPCP"
 msgstr "Faites un don pour soutenir AWPCP"
 
-#: awpcp.php:1047
+#: awpcp.php:1049
 msgctxt "uploader queue"
 msgid "Drag files here."
 msgstr "Déposer les fichiers ici."
@@ -1772,7 +1777,7 @@ msgstr "Déposer les fichiers ici."
 msgid "Dropdown"
 msgstr "Liste déroulante"
 
-#: awpcp.php:1034
+#: awpcp.php:1036
 msgctxt "uploader queue"
 msgid "Duplicate file error."
 msgstr "Erreur de recopie de fichier"
@@ -1903,7 +1908,7 @@ msgctxt "media manager"
 msgid "Enable"
 msgstr "Activer"
 
-#: includes/settings/class-general-settings.php:135
+#: includes/settings/class-general-settings.php:144
 msgid "Enable CAPTCHA"
 msgstr "Activer CAPTCHA"
 
@@ -2006,16 +2011,16 @@ msgstr "Entrez votre clé d'accès d'annonce"
 msgid "Enter your email address"
 msgstr "Entrez votre adresse email"
 
-#: functions.php:1727 includes/helpers/class-modules-manager.php:160
+#: functions.php:1732 includes/helpers/class-modules-manager.php:160
 msgid "Error"
 msgstr "Erreur"
 
-#: awpcp.php:1051
+#: awpcp.php:1053
 msgctxt "uploader queue"
 msgid "Error: File too large:"
 msgstr "Erreur : fichier trop volumineux :"
 
-#: awpcp.php:1038
+#: awpcp.php:1040
 msgctxt "uploader queue"
 msgid "Error: Invalid file extension:"
 msgstr "Erreur : extension de fichier erronée"
@@ -2090,7 +2095,7 @@ msgstr ""
 "Les valeurs autorisées sont: %%s"
 
 #: admin/admin-panel.php:289 admin/templates/admin-sidebar.tpl.php:95
-#: awpcp.php:742
+#: awpcp.php:744
 msgid "Extra Fields"
 msgstr "Champs Supplémentaires"
 
@@ -2138,7 +2143,7 @@ msgid "Featured"
 msgstr "Disposition"
 
 #: admin/admin-panel-fees-table.php:121
-#: admin/templates/admin-sidebar.tpl.php:90 awpcp.php:749
+#: admin/templates/admin-sidebar.tpl.php:90 awpcp.php:751
 msgid "Featured Ads"
 msgstr "annonces en vedette"
 
@@ -2163,7 +2168,7 @@ msgstr "Sens du tri des Plans de Paiement"
 msgid "Fee Plan sort order"
 msgstr "Ordre de tri des Plans de Paiement"
 
-#: awpcp.php:756
+#: awpcp.php:758
 msgid "Fee per Category"
 msgstr "Tarif par Catégorie"
 
@@ -2175,12 +2180,12 @@ msgstr "Honoraires"
 msgid "File %s does not exists."
 msgstr "Le fichier %s n'existe pas."
 
-#: awpcp.php:1049
+#: awpcp.php:1051
 msgctxt "uploader queue"
 msgid "File count error."
 msgstr "Erreur de comptage de fichier."
 
-#: awpcp.php:1050
+#: awpcp.php:1052
 msgctxt "uploader queue"
 msgid "File extension error."
 msgstr "Erreur d'extension de fichier."
@@ -2201,22 +2206,22 @@ msgstr ""
 msgid "File permissions for uploads directory"
 msgstr "Permissions de fichier pour le répertoire de chargement"
 
-#: awpcp.php:1035
+#: awpcp.php:1037
 msgctxt "uploader queue"
 msgid "File size error."
 msgstr "Erreur de taille de fichier."
 
-#: awpcp.php:1041
+#: awpcp.php:1043
 msgctxt "uploader queue"
 msgid "File: %s"
 msgstr "Fichier : %s"
 
-#: awpcp.php:1046
+#: awpcp.php:1048
 msgctxt "uploader queue"
 msgid "File: %s, size: %d, max file size: %d"
 msgstr "Fichier : %s, Taille : %d, Taille maxi de fichier : %d"
 
-#: awpcp.php:1027
+#: awpcp.php:1029
 msgctxt "uploader queue"
 msgid "Filename"
 msgstr "Nom de fichier"
@@ -2411,7 +2416,7 @@ msgstr "Aller à la page suivante"
 msgid "Go to the previous page"
 msgstr "Aller à la page précédente"
 
-#: awpcp.php:763
+#: awpcp.php:765
 msgid "Google Checkout"
 msgstr "Google Contrôle"
 
@@ -2423,7 +2428,7 @@ msgstr "Contrôle Paiement Google"
 msgid "HTML Widget for User field"
 msgstr "Widget HTML pour les Champs Utilisateur"
 
-#: awpcp.php:1030
+#: awpcp.php:1032
 msgctxt "uploader queue"
 msgid "HTTP Error."
 msgstr "Erreur HTTP."
@@ -2533,7 +2538,7 @@ msgstr ""
 msgid "Hide price field if empty or zero"
 msgstr "Masquer le champ Prix si sa valeur est vide ou à zéro"
 
-#: includes/settings/class-general-settings.php:138
+#: includes/settings/class-general-settings.php:147
 msgid "Highest number used in aithmetic operation."
 msgstr "Le plus grand nombre utilisé dans l'opération arithmetique."
 
@@ -2795,7 +2800,7 @@ msgid "Image file names were found but no ZIP was provided."
 msgstr ""
 "Les noms des fichiers d'image ont été trouvés mais aucun ZIP a été fourni."
 
-#: awpcp.php:1028
+#: awpcp.php:1030
 msgctxt "uploader queue"
 msgid "Image format either wrong or not supported."
 msgstr "Le format de l'image est soit erroné soit non reconnu."
@@ -2820,11 +2825,11 @@ msgstr "Images Admises"
 msgid "Images Awaiting Approval"
 msgstr "Images en attente d'Approbation"
 
-#: functions.php:1986
+#: functions.php:1991
 msgid "Images on Ad \"%s\" are awaiting approval"
 msgstr "L'annonce \"%s\" est en attente d'approbation"
 
-#: functions.php:1988 includes/functions/notifications.php:189
+#: functions.php:1993 includes/functions/notifications.php:189
 msgid ""
 "Images on Ad \"%s\" are awaiting approval. You can approve the images going "
 "to the Manage Images section for that Ad and clicking the \"Enable\" button "
@@ -2890,7 +2895,7 @@ msgstr ""
 "pouvez désactiver cette option si vous utilisez le tableau de bord des "
 "annonces, mais ce n'est pas nécessaire"
 
-#: includes/settings/class-general-settings.php:96
+#: includes/settings/class-general-settings.php:105
 msgid "Include a space between the currency symbol and the amount"
 msgstr "Inclure un espace entre le symbole de la devise et le montant"
 
@@ -2966,7 +2971,7 @@ msgstr "Archive ZIP incompatible"
 msgid "Incomplete Payment Message"
 msgstr "Message de paiement incomplet"
 
-#: awpcp.php:1025
+#: awpcp.php:1027
 msgctxt "uploader queue"
 msgid "Init error."
 msgstr "Init Erreur."
@@ -3351,7 +3356,7 @@ msgstr "Marqué comme Payé"
 msgid "Mark as SPAM"
 msgstr "Marqué SPAM"
 
-#: admin/templates/admin-sidebar.tpl.php:44 awpcp.php:770
+#: admin/templates/admin-sidebar.tpl.php:44 awpcp.php:772
 msgid "Mark as Sold"
 msgstr "Marqué comme Vendu"
 
@@ -3359,11 +3364,11 @@ msgstr "Marqué comme Vendu"
 msgid "Mark as Verified"
 msgstr "Marqué comme Vérifié"
 
-#: includes/settings/class-general-settings.php:115
+#: includes/settings/class-general-settings.php:124
 msgid "Math"
 msgstr "Calcul"
 
-#: includes/settings/class-general-settings.php:136
+#: includes/settings/class-general-settings.php:145
 msgid "Math: Asks user to solve a simple arithmetic operation."
 msgstr ""
 "Calcul: Demande à l'utilisateur de résoudre une simple opération "
@@ -3373,7 +3378,7 @@ msgstr ""
 msgid "Max"
 msgstr "Maximum"
 
-#: includes/settings/class-general-settings.php:138
+#: includes/settings/class-general-settings.php:147
 msgid "Max number used in Math CAPTCHA"
 msgstr "Nombre maximum utilisé dans le Calcul de CAPTCHA"
 
@@ -3536,7 +3541,7 @@ msgstr "Il manque un code d'accès utilisateur valide."
 msgid "Missing chunk."
 msgstr "Valeur Manquante."
 
-#: functions.php:1751
+#: functions.php:1756
 msgid "Missing temporary directory."
 msgstr "Répertoire temporaire manquant."
 
@@ -3598,7 +3603,7 @@ msgctxt "ad payment status"
 msgid "N/A"
 msgstr "N/A"
 
-#: awpcp.php:1036
+#: awpcp.php:1038
 msgctxt "uploader queue"
 msgid "N/A"
 msgstr "N/A"
@@ -3776,11 +3781,11 @@ msgstr ""
 msgid "No credit plans available."
 msgstr "Pas de crédit disponible."
 
-#: functions.php:1746
+#: functions.php:1751
 msgid "No errors."
 msgstr "Aucune erreur."
 
-#: includes/models/class-media.php:146
+#: includes/models/class-media.php:160
 msgid "No file was found with id: %d"
 msgstr "Aucun fichier n'a été trouvé pour l'ID : %d."
 
@@ -3788,7 +3793,7 @@ msgstr "Aucun fichier n'a été trouvé pour l'ID : %d."
 msgid "No file was selected."
 msgstr "Aucun fichier n'a été sélectionné."
 
-#: functions.php:1750
+#: functions.php:1755
 msgid "No file was uploaded."
 msgstr "Aucun fichier n'a été téléchargé."
 
@@ -4120,7 +4125,7 @@ msgctxt "debug page"
 msgid "PayPal Connection"
 msgstr "Connection PayPal"
 
-#: admin/templates/admin-sidebar.tpl.php:70 awpcp.php:777
+#: admin/templates/admin-sidebar.tpl.php:70 awpcp.php:779
 msgid "PayPal Pro"
 msgstr "PayPal Pro"
 
@@ -4326,20 +4331,20 @@ msgstr ""
 msgid "Please enter a start date for the Ad."
 msgstr "Veuillez entrer une date de début pour l'annonce."
 
-#: awpcp.php:1011 awpcp.php:1012
+#: awpcp.php:1013 awpcp.php:1014
 msgid "Please enter a valid URL."
 msgstr "Entrez un URL valide."
 
-#: awpcp.php:1014
+#: awpcp.php:1016
 msgid "Please enter a valid amount."
 msgstr "Entrez un montant valide."
 
-#: awpcp.php:1010 frontend/page-edit-ad.php:128 frontend/page-edit-ad.php:433
+#: awpcp.php:1012 frontend/page-edit-ad.php:128 frontend/page-edit-ad.php:433
 #: includes/settings-api.php:214
 msgid "Please enter a valid email address."
 msgstr "Entrez une adresse email valide."
 
-#: awpcp.php:1013
+#: awpcp.php:1015
 msgid "Please enter a valid number."
 msgstr "Entrez un nombre valide."
 
@@ -4597,7 +4602,7 @@ msgstr "Mettez les passerelles de paiement en mode test?"
 msgid "Quick Start Guide"
 msgstr "Guide de démarrage rapide"
 
-#: admin/templates/admin-sidebar.tpl.php:115 awpcp.php:798
+#: admin/templates/admin-sidebar.tpl.php:115 awpcp.php:800
 msgid "RSS"
 msgstr "RSS"
 
@@ -4623,7 +4628,7 @@ msgstr "Lire l'intégralité %s."
 msgid "Reference"
 msgstr "Référence"
 
-#: admin/templates/admin-sidebar.tpl.php:105 awpcp.php:784
+#: admin/templates/admin-sidebar.tpl.php:105 awpcp.php:786
 msgid "Regions Control"
 msgstr "Contrôle de Régions"
 
@@ -4851,7 +4856,7 @@ msgstr "Restaurer les Pages AWPCP"
 msgid "Restore the Classifieds pages to fix the conflict."
 msgstr "Restaurer les Pages Annonces pour résoudre le conflit."
 
-#: admin/templates/admin-sidebar.tpl.php:50 awpcp.php:791
+#: admin/templates/admin-sidebar.tpl.php:50 awpcp.php:793
 msgid "Restricted Categories"
 msgstr "Catégories restreintes"
 
@@ -4898,12 +4903,12 @@ msgstr ""
 msgid "Row %d. %s"
 msgstr "Ligne %d. %s"
 
-#: awpcp.php:1048
+#: awpcp.php:1050
 msgctxt "uploader queue"
 msgid "Runtime ran out of available memory."
 msgstr "Le programme s'est interrompu pur manque de mémoire disponible."
 
-#: includes/settings/class-general-settings.php:148
+#: includes/settings/class-general-settings.php:157
 msgid "SEO Settings"
 msgstr "Réglages SEO"
 
@@ -5056,7 +5061,7 @@ msgstr "Sélectionner un Utilisateur"
 msgid "Select an User owner for this Ad"
 msgstr "Choisissez un Utilisateur propriétaire pour cette annonce"
 
-#: awpcp.php:1039
+#: awpcp.php:1041
 msgctxt "uploader queue"
 msgid "Select files"
 msgstr "Sélectionner des fichiers"
@@ -5085,7 +5090,7 @@ msgstr "Envoyer sur Facebook"
 msgid "Send to Facebook Group"
 msgstr "Envoyer sur un Groupe Facebook"
 
-#: includes/settings/class-general-settings.php:74
+#: includes/settings/class-general-settings.php:83
 msgid "Separator for the decimal point"
 msgstr "Séparateur pour les décimales"
 
@@ -5321,19 +5326,19 @@ msgstr ""
 "Afficher le Département dans le titre de la page navigateur lors de "
 "l'affichage d'une Annonce individuelle"
 
-#: includes/settings/class-general-settings.php:80
+#: includes/settings/class-general-settings.php:89
 msgid "Show currency symbol"
 msgstr "Afficher le symbole de la Devise"
 
-#: includes/settings/class-general-settings.php:86
+#: includes/settings/class-general-settings.php:95
 msgid "Show currency symbol on left"
 msgstr "Afficher le symbole de la Devise à gauche"
 
-#: includes/settings/class-general-settings.php:87
+#: includes/settings/class-general-settings.php:96
 msgid "Show currency symbol on right"
 msgstr "Afficher le symbole de la Devise à droite"
 
-#: includes/settings/class-general-settings.php:75
+#: includes/settings/class-general-settings.php:84
 msgid "Show decimals in price"
 msgstr "Afficher décimales de prix"
 
@@ -5395,7 +5400,7 @@ msgstr "Voir les Annonces de la catégorie %s."
 msgid "Single Ad page layout"
 msgstr "Mise en page d'une annonce unique"
 
-#: awpcp.php:1023
+#: awpcp.php:1025
 msgctxt "uploader queue"
 msgid "Size"
 msgstr "Taille"
@@ -5459,7 +5464,7 @@ msgctxt "ad search form"
 msgid "Start Search"
 msgstr "Lancer la Recherche"
 
-#: awpcp.php:1031
+#: awpcp.php:1033
 msgctxt "uploader queue"
 msgid "Start Upload"
 msgstr "Démarrer le chargement"
@@ -5488,12 +5493,12 @@ msgstr "Etat/Province"
 msgid "Status"
 msgstr "Statut"
 
-#: awpcp.php:1029
+#: awpcp.php:1031
 msgctxt "uploader queue"
 msgid "Status"
 msgstr "Statuts"
 
-#: awpcp.php:1020
+#: awpcp.php:1022
 msgctxt "uploader queue"
 msgid "Stop Upload"
 msgstr "Arrêter le chargement"
@@ -5575,7 +5580,7 @@ msgstr ""
 "Ligne d'objet pour le courrier électronique envoyé lorsque le traitement des "
 "paiements est incomplet"
 
-#: admin/templates/admin-sidebar.tpl.php:80 awpcp.php:805
+#: admin/templates/admin-sidebar.tpl.php:80 awpcp.php:807
 msgid "Subscriptions"
 msgstr "Abonnements"
 
@@ -5599,12 +5604,12 @@ msgstr "Modèle introuvable."
 msgid "Temporary directory doesn't exists and couldn't be created."
 msgstr "Le répertoire temporaire n'existe pas et n'a pas pu être créé"
 
-#: includes/settings/class-general-settings.php:104
-#: includes/settings/class-general-settings.php:107
+#: includes/settings/class-general-settings.php:113
+#: includes/settings/class-general-settings.php:116
 msgid "Terms of Service"
 msgstr "Conditions d'Utilisation"
 
-#: includes/settings/class-general-settings.php:107
+#: includes/settings/class-general-settings.php:116
 msgid ""
 "Terms of Service for posting Ads. Put in text or an URL starting with http. "
 "If you use an URL, the text box will be replaced by a link to the "
@@ -5615,7 +5620,7 @@ msgstr ""
 "remplacée par un lien vers les modalités appropriées de la page Conditions "
 "Générales d'Utilisation"
 
-#: includes/settings/class-general-settings.php:107
+#: includes/settings/class-general-settings.php:116
 msgid "Terms of service go here..."
 msgstr "Les Conditions d'Utilisation vont ici ..."
 
@@ -5670,7 +5675,7 @@ msgstr ""
 msgid "Thank you for your business"
 msgstr "Nous vous remercions pour votre confiance"
 
-#: awpcp.php:867
+#: awpcp.php:869
 msgid ""
 "The %1$s module you have installed is outdated and not compatible with this "
 "version of AWPCP. Please get %1$s %2$s or newer."
@@ -5691,11 +5696,11 @@ msgstr ""
 "valide. Veuillez vous rendre à la section <licenses-settings-link>Réglages "
 "de licence</a> pour saisir ou actualiser votre numéro de licence."
 
-#: functions.php:1991
+#: functions.php:1996
 msgid "The Ad \"%s\" is awaiting approval"
 msgstr "L'annonce \"%s\" est en attente d'approbation"
 
-#: functions.php:1993 includes/functions/notifications.php:194
+#: functions.php:1998 includes/functions/notifications.php:194
 msgid ""
 "The Ad \"%s\" is awaiting approval. You can approve the Ad going to the "
 "Manage Listings section and clicking the \"Enable\" action shown on top. "
@@ -6053,7 +6058,7 @@ msgid "The currency in which you would like to receive your PayPal payments"
 msgstr ""
 "La devise dans laquelle vous souhaitez recevoir vos paiements par PayPal"
 
-#: includes/settings/class-general-settings.php:83
+#: includes/settings/class-general-settings.php:92
 msgid ""
 "The currency symbol can be configured by changing the currency code in the "
 "settings above."
@@ -6218,19 +6223,19 @@ msgctxt "media manager"
 msgid "The file has been rejected."
 msgstr "Le fichier a été rejeté."
 
-#: functions.php:1748
+#: functions.php:1753
 msgid "The file is larger than form MAX_FILE_SIZE."
 msgstr "Le fichier est plus grand que la forme MAX_FILE_SIZE."
 
-#: functions.php:1747
+#: functions.php:1752
 msgid "The file is larger than upload_max_filesize."
 msgstr "Le fichier est plus grand que upload_max_filesize."
 
-#: functions.php:1753
+#: functions.php:1758
 msgid "The file upload was stopped by extension."
 msgstr "Le téléchargement du fichier a été arrêté par extension."
 
-#: functions.php:1749
+#: functions.php:1754
 msgid "The file was only partially uploaded."
 msgstr "Le fichier n'a été que partiellement téléchargé."
 
@@ -6304,7 +6309,7 @@ msgctxt "media manager"
 msgid "The image has been set as primary image."
 msgstr "L'image a été identifiée comme image principale."
 
-#: functions.php:1708
+#: functions.php:1713
 msgid ""
 "The images or files with pale red background have been rejected by an "
 "administrator user. Likewise, files with a pale yellow background are "
@@ -7157,7 +7162,7 @@ msgstr ""
 "fonctionnalité. Lisez  <a>Comment s'enregistrer et Configurer une "
 "Application Facebook.</a>"
 
-#: awpcp.php:1009
+#: awpcp.php:1011
 msgid "This field is required."
 msgstr "Ce champ est obligatoire."
 
@@ -7248,7 +7253,7 @@ msgstr ""
 "Cette section des réglages n'est plus disponible. Svp, renseignez les champs "
 "exigés ci-dessus et enregistrer vos réglages."
 
-#: functions.php:1725 includes/helpers/class-modules-manager.php:158
+#: functions.php:1730 includes/helpers/class-modules-manager.php:158
 msgid ""
 "This version of AWPCP %1$s module is not compatible with AWPCP version %2$s. "
 "Please get AWPCP %1$s %3$s or newer!"
@@ -7256,7 +7261,7 @@ msgstr ""
 "Le module %1$s que vous avez installé n'est pas compatible avec la version "
 "%2$s de AWPCP. Veuillez vous procurer %1$s %3$s ou plus récent."
 
-#: includes/settings/class-general-settings.php:73
+#: includes/settings/class-general-settings.php:82
 msgid "Thousands separator"
 msgstr "Séparateur de milliers"
 
@@ -7374,11 +7379,11 @@ msgstr ""
 "Désactiver le composant utilisé par AWPCP pour la Lightbox/Thockbox. "
 "Certains thèmes ne la supportent pas et des conflits peuvent en résulter."
 
-#: includes/settings/class-general-settings.php:150
+#: includes/settings/class-general-settings.php:159
 msgid "Turn on Search Engine Friendly URLs"
 msgstr "Activez Search Engine Friendly URLs"
 
-#: includes/settings/class-general-settings.php:150
+#: includes/settings/class-general-settings.php:159
 msgid "Turn on Search Engine Friendly URLs? (SEO Mode)"
 msgstr "Activez Search Engine Friendly URLs? (Mode SEO)"
 
@@ -7390,7 +7395,7 @@ msgstr "Activez le fichier transalation (POT)"
 msgid "Tweet This"
 msgstr "Tweet"
 
-#: includes/settings/class-general-settings.php:136
+#: includes/settings/class-general-settings.php:145
 msgid "Type of CAPTCHA"
 msgstr "Type de CAPTCHA"
 
@@ -7436,7 +7441,7 @@ msgstr ""
 "page. Certaines pages ne devraient vraiment pas être visibles pour le "
 "public)."
 
-#: includes/settings/class-general-settings.php:75
+#: includes/settings/class-general-settings.php:84
 msgctxt "settings"
 msgid "Uncheck to show prices without decimals. The value will be rounded."
 msgstr ""
@@ -7523,12 +7528,12 @@ msgstr "Mise à jour"
 msgid "Upload Files"
 msgstr "Charger les fichiers sélectionnés"
 
-#: awpcp.php:1021
+#: awpcp.php:1023
 msgctxt "uploader queue"
 msgid "Upload URL might be wrong or doesn't exist."
 msgstr "L'URL chargée est erronée ou n'existe pas"
 
-#: awpcp.php:1044
+#: awpcp.php:1046
 msgctxt "uploader queue"
 msgid ""
 "Upload element accepts only %d file(s) at a time. Extra files were stripped."
@@ -7549,7 +7554,7 @@ msgstr ""
 "Téléchargez nom du dossier. (Le dossier doit exister et être situé dans le "
 "répertoire wp-content)"
 
-#: awpcp.php:1043
+#: awpcp.php:1045
 msgctxt "uploader queue"
 msgid "Uploaded %d/%d files"
 msgstr "%d/%d fichiers chargés"
@@ -7562,11 +7567,11 @@ msgstr "Répertoire de chargement"
 msgid "Uploads folder name"
 msgstr "Nom du dossier Téléchargements"
 
-#: includes/settings/class-general-settings.php:129
+#: includes/settings/class-general-settings.php:138
 msgid "Use Akismet"
 msgstr "Utiliser Akismet"
 
-#: includes/settings/class-general-settings.php:132
+#: includes/settings/class-general-settings.php:141
 msgid "Use Akismet for Posting Ads/Contact Responses (strong anti-spam)."
 msgstr ""
 "Utilisez Akismet pour l'affichage des Annonces/Réponses de contact (puissant "
@@ -7590,6 +7595,19 @@ msgstr ""
 "étroite. Pour une recherche plus vaste entrer moins de paramètres. Pour une "
 "recherche plus étroite entrer autant de paramètres que nécessaire pour "
 "limiter votre recherche à des critères spécifiques."
+
+#: includes/settings/class-general-settings.php:79
+#, fuzzy
+msgid ""
+"Use this setting to overwrite the currency symbol shown in listings pages. "
+"If empty, the plugin will attempt to show one of the standard symbols for "
+"the selected currency code, but if the plugin doesn't know the symbol for "
+"your currency, it will use an uppercase version of the currency code."
+msgstr ""
+"Les prix seront affichés avec cette devise dans les annonces et les pages de "
+"paiement. Le symbole de la devise sera généré à partir de c code, mais si le "
+"plugin ne le reconnaît pas pour votre devise, il utilisera le code lui-même "
+"en Majuscules."
 
 #: admin/admin-panel-listings-table.php:276
 #: frontend/templates/page-place-ad-details-step.tpl.php:36
@@ -7654,7 +7672,7 @@ msgstr ""
 msgid "Verify the email address used for Ad \"%s\""
 msgstr "Valider l'adresse email utilisée pour l'annonce  \"%s\""
 
-#: awpcp.php:812 templates/components/media-manager.tpl.php:36
+#: awpcp.php:814 templates/components/media-manager.tpl.php:36
 msgid "Videos"
 msgstr "Vidéos"
 
@@ -7711,7 +7729,7 @@ msgstr ""
 "Voulez-vous connaître les secrets pour construire un superbe site web de "
 "petites annonces ?"
 
-#: awpcp.php:677
+#: awpcp.php:679
 #: includes/placeholders/class-placeholders-installation-verifier.php:19
 msgid "Warning"
 msgstr "Avertissement"
@@ -7879,7 +7897,7 @@ msgstr "De travail"
 msgid "Would you like some help getting started?"
 msgstr "Voulez-vous un peu d'aide pour commencer?"
 
-#: awpcp.php:820
+#: awpcp.php:822
 msgid "XML Sitemap"
 msgstr "XML Sitemap"
 
@@ -8039,7 +8057,7 @@ msgstr ""
 "Vous pouvez trouver les informations de votre Application sur la page "
 "<a>Facebook Developer Apps</a>"
 
-#: includes/settings/class-general-settings.php:141
+#: includes/settings/class-general-settings.php:150
 msgid "You can get an API key from %s."
 msgstr "Vous pouvez obtenir une clé API à partir de %s."
 
@@ -8427,11 +8445,11 @@ msgstr "Vous devez choisir l'un des Termes de Paiement disponibles."
 msgid "You should select an owner for this Ad."
 msgstr "Vous devez sélectionner un propriétaire pour cette annonce."
 
-#: functions.php:1949
+#: functions.php:1954
 msgid "Your Ad \"%s\" has been approved"
 msgstr "Votre annonce \"%s\" a été approuvée"
 
-#: functions.php:1965
+#: functions.php:1970
 msgid "Your Ad \"%s\" has been successfully updated"
 msgstr "Votre annonce \"%s\" a été mise à jour"
 
@@ -8646,7 +8664,7 @@ msgstr "fichier Zip contenant des images"
 msgid "active"
 msgstr "Active"
 
-#: awpcp.php:1042
+#: awpcp.php:1044
 msgctxt "uploader queue"
 msgid "b"
 msgstr "b"
@@ -8676,7 +8694,7 @@ msgstr "Supprimer la sélection"
 msgid "expired"
 msgstr "Expirée"
 
-#: awpcp.php:1037
+#: awpcp.php:1039
 msgctxt "uploader queue"
 msgid "gb"
 msgstr "gb"
@@ -8689,7 +8707,7 @@ msgstr "Désactivée"
 msgid "invalid"
 msgstr "Invalide"
 
-#: awpcp.php:1033
+#: awpcp.php:1035
 msgctxt "uploader queue"
 msgid "kb"
 msgstr "kb"
@@ -8704,20 +8722,20 @@ msgctxt "loading region options"
 msgid "loading..."
 msgstr "Chargement..."
 
-#: awpcp.php:1032
+#: awpcp.php:1034
 msgctxt "uploader queue"
 msgid "mb"
 msgstr "mb"
 
-#: includes/settings/class-general-settings.php:114
+#: includes/settings/class-general-settings.php:123
 msgid "reCAPTCHA (recommended)"
 msgstr "reCAPTCHA (recommandé)"
 
-#: includes/settings/class-general-settings.php:144
+#: includes/settings/class-general-settings.php:153
 msgid "reCAPTCHA Secret Key"
 msgstr "Clé secrète reCAPTCHA"
 
-#: includes/settings/class-general-settings.php:143
+#: includes/settings/class-general-settings.php:152
 msgid "reCAPTCHA Site Key"
 msgstr "Clé du site reCAPTCHA"
 
@@ -8745,7 +8763,7 @@ msgstr ""
 "reCAPTCHA ne peut pas être utilisé car les paramètres de clé publique sont "
 "nécessaires pour que reCAPTCHA fonctionne correctement."
 
-#: includes/settings/class-general-settings.php:136
+#: includes/settings/class-general-settings.php:145
 msgid ""
 "reCAPTCHA: Uses distorted images that only humans should be able to read "
 "(recommended)."
@@ -8774,7 +8792,7 @@ msgstr "Pays"
 msgid "separate states by commas"
 msgstr "Etats (Pour les Pays Confédérés)"
 
-#: awpcp.php:1022
+#: awpcp.php:1024
 msgctxt "uploader queue"
 msgid "tb"
 msgstr "tb"
