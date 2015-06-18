@@ -368,7 +368,8 @@ class AWPCP {
         $this->settings->set_runtime_option( 'easy-digital-downloads-store-url', 'http://awpcp.com' );
         $this->settings->set_runtime_option( 'image-mime-types', array( 'image/png', 'image/jpeg', 'image/jpg', 'image/gif' ) );
 
-        $uploads_dir_name = $this->settings->get_option( 'uploadfoldername' );
+        // TODO: see if we can call setup_runtime_options after awpcp_register_settings action has fired!
+        $uploads_dir_name = $this->settings->get_option( 'uploadfoldername', 'uploads' );
         $uploads_dir = implode( DIRECTORY_SEPARATOR, array( rtrim( WP_CONTENT_DIR, DIRECTORY_SEPARATOR ), $uploads_dir_name, 'awpcp' ) );
         $uploads_url = implode( '/', array( rtrim( WP_CONTENT_URL, '/' ), $uploads_dir_name, 'awpcp' ) );
 
