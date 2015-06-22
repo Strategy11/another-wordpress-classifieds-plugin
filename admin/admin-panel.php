@@ -352,11 +352,11 @@ class AWPCP_Admin {
 
 
 function checkifclassifiedpage($pagename) {
-	global $wpdb, $table_prefix;
+	global $wpdb;
 
-	$id = awpcp_get_page_id_by_ref('main-page-name');
+	$id = awpcp_get_page_id_by_ref( 'main-page-name' );
 	$query = 'SELECT ID FROM ' . $wpdb->posts . ' WHERE ID = %d';
-	$page_id = $wpdb->get_var($wpdb->prepare($query, $id));
+	$page_id = intval( $wpdb->get_var( $wpdb->prepare( $query, $id ) ) );
 
 	return $page_id === $id;
 }

@@ -57,7 +57,12 @@ function awpcp_get_page_id( $name ) {
  */
 function awpcp_get_page_id_by_ref( $refname ) {
     $plugin_pages_info = awpcp_get_plugin_pages_info();
-    return isset( $plugin_pages_info[ $refname ] ) ? $plugin_pages_info[ $refname ]['page_id'] : false;
+
+    if ( isset( $plugin_pages_info[ $refname ] ) ) {
+        return intval( $plugin_pages_info[ $refname ]['page_id'] );
+    } else {
+        return false;
+    }
 }
 
 /**
@@ -71,7 +76,7 @@ function awpcp_get_page_ids_by_ref( $refnames ) {
 
     foreach ( $refnames as $refname ) {
         if ( isset( $plugin_pages_info[ $refname ] ) ) {
-            $pages_ids[] = $plugin_pages_info[ $refname ]['page_id'];
+            $pages_ids[] = intval( $plugin_pages_info[ $refname ]['page_id'] );
         }
     }
 
