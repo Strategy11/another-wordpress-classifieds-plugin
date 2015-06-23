@@ -1745,6 +1745,19 @@ function awpcp_render_attributes($attrs) {
     return join(' ', $attributes);
 }
 
+function awpcp_html_hidden_fields( $fields ) {
+    $output = array();
+
+    foreach ( array_filter( awpcp_flatten_array( $fields ) ) as $name => $value ) {
+        if ( is_object( $value ) ) {
+            continue;
+        }
+
+        $output[] = '<input type="hidden" name="' . esc_attr( $name ) . '" value="' . esc_attr( $value ) . '" />';
+    }
+
+    return implode( "\n", $output );
+}
 
 function awpcp_uploaded_file_error($file) {
 	$upload_errors = array(
