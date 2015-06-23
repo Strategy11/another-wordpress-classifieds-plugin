@@ -1055,6 +1055,35 @@ class AWPCP {
             ) );
         }
 
+        global $wp_locale;
+
+        $this->js->localize( 'datepicker', array(
+            // 'clearText' => _x( 'Clear', '[UI Datepicker] Display text for clear link', 'AWPCP' ),
+            // 'clearStatus' => _x( 'Erase the current date', '[UI Datepicker] Status text for clear link', 'AWPCP' ),
+            // 'closeText' => _x( 'Close', '[UI Datepicker] Display text for close link', 'AWPCP' ),
+            // 'closeStatus' => _x( 'Close without change', '[UI Datepicker] Status text for close link', 'AWPCP' ),
+            'prevText' => _x( '&#x3c;Prev', '[UI Datepicker] Display text for previous month link', 'AWPCP' ),
+            // 'prevStatus' => _x( 'Show the previous month', '[UI Datepicker] Status text for previous month link', 'AWPCP' ),
+            'nextText' => _x( 'Next&#x3e;', '[UI Datepicker] Display text for next month link', 'AWPCP' ),
+            // 'nextStatus' => _x( 'Show the next month', '[UI Datepicker] Status text for next month link', 'AWPCP' ),
+            // 'currentText' => _x( 'Today', '[UI Datepicker] Display text for current month link', 'AWPCP' ),
+            // 'currentStatus' => _x( 'Show the current month', '[UI Datepicker] Status text for current month link', 'AWPCP' ),
+            'monthNames' => array_values( $wp_locale->month ), // Names of months for drop-down and formatting
+            'monthNamesShort' => array_values( $wp_locale->month_abbrev ), // For formatting
+            // 'monthStatus' => _x( 'Show a different month', '[UI Datepicker] Status text for selecting a month', 'AWPCP' ),
+            // 'yearStatus' => _x( 'Show a different year', '[UI Datepicker] Status text for selecting a year', 'AWPCP' ),
+            // 'weekHeader' => _x( 'Wk', '[UI Datepicker] Header for the week of the year column', 'AWPCP' ),
+            // 'weekStatus' => _x( 'Week of the year', '[UI Datepicker] Status text for the week of the year column', 'AWPCP' ),
+            'dayNames' => array_values( $wp_locale->weekday ),
+            'dayNamesShort' => array_values( $wp_locale->weekday_abbrev ), // For formatting
+            'dayNamesMin' => array_values( $wp_locale->weekday_initial ), // Column headings for days starting at Sunday
+            // 'dayStatus' => _x( 'Set DD as first week day', '[UI Datepicker] Status text for the day of the week selection', 'AWPCP' ),
+            // 'dateStatus' => _x( 'Select DD, M d', '[UI Datepicker] Status text for the date selection', 'AWPCP' ),
+            'firstDay' => intval( _x( '0', '[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ...', 'AWPCP' ) ),
+            // 'initStatus' => _x( 'Select a date', '[UI Datepicker] Initial Status text on opening', 'AWPCP' ),
+            'isRTL' => $wp_locale->text_direction == 'ltr' ? false : true // True if right-to-left language, false if left-to-right
+        ) );
+
         $script = 'awpcp';
         if ( wp_script_is( $script, 'queue' ) || wp_script_is( $script, 'done' ) || wp_script_is( $script, 'to_do' ) ) {
             $this->js->print_data();
