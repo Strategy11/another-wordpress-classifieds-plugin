@@ -1125,11 +1125,25 @@ class AWPCP_Installer {
     private function upgrade_to_3_5_3( $oldversion ) {
         global $wpdb;
 
-        $pages = $wpdb->get_results( 'SELECT page, id FROM ' . AWPCP_TABLE_PAGES, OBJECT_K );
-        foreach ( $pages as $page_ref => $page_info ) {
-            awpcp_update_plugin_page_id( $page_ref, $page_info->id );
+        $plugin_pages = awpcp_get_plugin_pages_info();
+
+        if ( empty( $plugin_pages ) ) {
+            // move plugin pages info from PAGES table to awpcp-plugin-pages option
+            $pages = $wpdb->get_results( 'SELECT page, id FROM ' . AWPCP_TABLE_PAGES, OBJECT_K );
+            foreach ( $pages as $page_ref => $page_info ) {
+                awpcp_update_plugin_page_id( $page_ref, $page_info->id );
+            }
         }
 
+        // make sure there are entries for 'view-categories-page-name' in the plugin pages info
+        $plugin_pages = awpcp_get_plugin_pages_info();
+
+        if ( isset( $plugin_pages['view-categories-page-name'] ) ) {
+            unset( $plugin_pages['view-categories-page-name'] );
+            awpcp_update_plugin_pages_info( $plugin_pages );
+        }
+
+        // drop no longer used PAGENAME table
         $wpdb->query( 'DROP TABLE IF EXISTS ' . AWPCP_TABLE_PAGENAME );
     }
 }

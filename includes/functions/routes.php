@@ -57,7 +57,12 @@ function awpcp_get_page_id( $name ) {
  */
 function awpcp_get_page_id_by_ref( $refname ) {
     $plugin_pages_info = awpcp_get_plugin_pages_info();
-    return isset( $plugin_pages_info[ $refname ] ) ? $plugin_pages_info[ $refname ]['page_id'] : false;
+
+    if ( isset( $plugin_pages_info[ $refname ] ) ) {
+        return intval( $plugin_pages_info[ $refname ]['page_id'] );
+    } else {
+        return false;
+    }
 }
 
 /**
@@ -71,7 +76,7 @@ function awpcp_get_page_ids_by_ref( $refnames ) {
 
     foreach ( $refnames as $refname ) {
         if ( isset( $plugin_pages_info[ $refname ] ) ) {
-            $pages_ids[] = $plugin_pages_info[ $refname ]['page_id'];
+            $pages_ids[] = intval( $plugin_pages_info[ $refname ]['page_id'] );
         }
     }
 
@@ -99,6 +104,13 @@ function awpcp_get_pages_ids_from_db() {
  */
 function awpcp_get_plugin_pages_info() {
     return get_option( 'awpcp-plugin-pages', array() );
+}
+
+/**
+ * @since 3.5.3
+ */
+function awpcp_update_plugin_pages_info( $plugin_pages ) {
+    return update_option( 'awpcp-plugin-pages', $plugin_pages );
 }
 
 /**
@@ -135,7 +147,8 @@ function awpcp_get_plugin_pages_ids() {
 function awpcp_update_plugin_page_id( $page_ref, $page_id ) {
     $plugin_pages_info = awpcp_get_plugin_pages_info();
     $plugin_pages_info[ $page_ref ] = array( 'page_id' => $page_id );
-    update_option( 'awpcp-plugin-pages', $plugin_pages_info );
+
+    return awpcp_update_plugin_pages_info( $plugin_pages_info );
 }
 
 if ( ! function_exists( 'is_awpcp_page' ) ) {
