@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2015-06-18 21:47:18+00:00\n"
+"POT-Creation-Date: 2015-06-23 20:14:49+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2338,6 +2338,21 @@ msgctxt "uploader queue"
 msgid "Add Files"
 msgstr ""
 
+#: awpcp.php:1065
+msgctxt "[UI Datepicker] Display text for previous month link"
+msgid "&#x3c;Prev"
+msgstr ""
+
+#: awpcp.php:1067
+msgctxt "[UI Datepicker] Display text for next month link"
+msgid "Next&#x3e;"
+msgstr ""
+
+#: awpcp.php:1082
+msgctxt "[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ..."
+msgid "0"
+msgstr ""
+
 #: cron.php:86
 msgid "Listing Details"
 msgstr ""
@@ -3835,69 +3850,69 @@ msgstr ""
 msgid "Error"
 msgstr ""
 
-#: functions.php:1751
+#: functions.php:1764
 msgid "No errors."
 msgstr ""
 
-#: functions.php:1752
+#: functions.php:1765
 msgid "The file is larger than upload_max_filesize."
 msgstr ""
 
-#: functions.php:1753
+#: functions.php:1766
 msgid "The file is larger than form MAX_FILE_SIZE."
 msgstr ""
 
-#: functions.php:1754
+#: functions.php:1767
 msgid "The file was only partially uploaded."
 msgstr ""
 
-#: functions.php:1755
+#: functions.php:1768
 msgid "No file was uploaded."
 msgstr ""
 
-#: functions.php:1756
+#: functions.php:1769
 msgid "Missing temporary directory."
 msgstr ""
 
-#: functions.php:1757
+#: functions.php:1770
 msgid "Can't write file to disk."
 msgstr ""
 
-#: functions.php:1758
+#: functions.php:1771
 msgid "The file upload was stopped by extension."
 msgstr ""
 
-#: functions.php:1954
+#: functions.php:1967
 msgid "Your Ad \"%s\" has been approved"
 msgstr ""
 
-#: functions.php:1970
+#: functions.php:1983
 msgid "Your Ad \"%s\" has been successfully updated"
 msgstr ""
 
-#: functions.php:1991
+#: functions.php:2004
 msgid "Images on Ad \"%s\" are awaiting approval"
 msgstr ""
 
-#: functions.php:1993 includes/functions/notifications.php:189
+#: functions.php:2006 includes/functions/notifications.php:189
 msgid ""
 "Images on Ad \"%s\" are awaiting approval. You can approve the images going "
 "to the Manage Images section for that Ad and clicking the \"Enable\" button "
 "below each image. Click here to continue: %s."
 msgstr ""
 
-#: functions.php:1996
+#: functions.php:2009
 msgid "The Ad \"%s\" is awaiting approval"
 msgstr ""
 
-#: functions.php:1998 includes/functions/notifications.php:194
+#: functions.php:2011 includes/functions/notifications.php:194
 msgid ""
 "The Ad \"%s\" is awaiting approval. You can approve the Ad going to the "
 "Manage Listings section and clicking the \"Enable\" action shown on top. "
 "Click here to continue: %s."
 msgstr ""
 
-#: functions.php:2005 includes/functions/notifications.php:201
+#: functions.php:2018 includes/functions/notifications.php:201
 msgid ""
 "Additionally, You can approve the images going to the Manage Images section "
 "for that Ad and clicking the \"Enable\" button below each image. Click here "
@@ -5120,13 +5135,13 @@ msgstr ""
 msgid "The selected payment term can't be used in this kind of transaction."
 msgstr ""
 
-#: includes/payments-api.php:354
+#: includes/payments-api.php:378
 msgid ""
 "The specified payment transaction doesn't exists. We can't process your "
 "payment."
 msgstr ""
 
-#: includes/payments-api.php:355 includes/payments-api.php:364
+#: includes/payments-api.php:379 includes/payments-api.php:388
 msgid ""
 "Please contact customer service if you are viewing this message after having "
 "made a payment. If you have not tried to make a payment and you are viewing "
@@ -5134,96 +5149,96 @@ msgid ""
 "disregarded."
 msgstr ""
 
-#: includes/payments-api.php:356 includes/payments-api.php:365
+#: includes/payments-api.php:380 includes/payments-api.php:389
 msgid "Return to <a href=\"%s\">home page</a>."
 msgstr ""
 
-#: includes/payments-api.php:363
+#: includes/payments-api.php:387
 msgid ""
 "The payment method associated with this transaction is not available at this "
 "time. We can't process your payment."
 msgstr ""
 
-#: includes/payments-api.php:473
+#: includes/payments-api.php:497
 msgid "You currently have %s credits in your account."
 msgstr ""
 
-#: includes/payments-api.php:515
+#: includes/payments-api.php:539
 msgctxt "credit plans table"
 msgid "Plan"
 msgstr ""
 
-#: includes/payments-api.php:516
+#: includes/payments-api.php:540
 msgctxt "credit plans table"
 msgid "Description"
 msgstr ""
 
-#: includes/payments-api.php:517
+#: includes/payments-api.php:541
 msgctxt "credit plans table"
 msgid "Credits"
 msgstr ""
 
-#: includes/payments-api.php:518
+#: includes/payments-api.php:542
 msgctxt "credit plans table"
 msgid "Price"
 msgstr ""
 
-#: includes/payments-api.php:594
+#: includes/payments-api.php:618
 msgctxt "checkout-payment page"
 msgid "Please use the button below to complete your payment."
 msgstr ""
 
-#: includes/payments-api.php:610 includes/payments-api.php:652
+#: includes/payments-api.php:634 includes/payments-api.php:676
 msgid "Payment Completed"
 msgstr ""
 
-#: includes/payments-api.php:613
+#: includes/payments-api.php:637
 msgid ""
 "Your Payment has been processed successfully. Please press the button below "
 "to continue with the process."
 msgstr ""
 
-#: includes/payments-api.php:615
+#: includes/payments-api.php:639
 msgid ""
 "Your Payment has been processed successfully. However is still pending "
 "approvation from the payment gateway. Please press the button below to "
 "continue with the process."
 msgstr ""
 
-#: includes/payments-api.php:620
+#: includes/payments-api.php:644
 msgid "Payment Not Required"
 msgstr ""
 
-#: includes/payments-api.php:621
+#: includes/payments-api.php:645
 msgid ""
 "No Payment is required for this transaction. Please press the button below "
 "to continue with the process."
 msgstr ""
 
-#: includes/payments-api.php:626 includes/payments-api.php:656
+#: includes/payments-api.php:650 includes/payments-api.php:680
 msgid "Payment Failed"
 msgstr ""
 
-#: includes/payments-api.php:627
+#: includes/payments-api.php:651
 msgid ""
 "Your Payment has been processed successfully. However, the payment gateway "
 "didn't return a payment status that allows us to continue with the process. "
 "Please contact the website administrator to solve this issue."
 msgstr ""
 
-#: includes/payments-api.php:630 includes/payments-api.php:654
+#: includes/payments-api.php:654 includes/payments-api.php:678
 msgid "Payment Canceled"
 msgstr ""
 
-#: includes/payments-api.php:631
+#: includes/payments-api.php:655
 msgid "The Payment transaction was canceled. You can't post an Ad this time."
 msgstr ""
 
-#: includes/payments-api.php:635
+#: includes/payments-api.php:659
 msgid "Payment Error"
 msgstr ""
 
-#: includes/payments-api.php:636
+#: includes/payments-api.php:660
 msgid ""
 "There was an error processing your payment. The payment status couldn't be "
 "found. Please contact the website admin to solve this issue."

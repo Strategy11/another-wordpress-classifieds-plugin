@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: AWPCP\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2015-06-18 21:47:18+00:00\n"
+"POT-Creation-Date: 2015-06-23 20:14:49+00:00\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: \n"
@@ -131,6 +131,11 @@ msgstr "%s y %s."
 msgid "%s pending"
 msgstr "%s pendientes"
 
+#: awpcp.php:1065
+msgctxt "[UI Datepicker] Display text for previous month link"
+msgid "&#x3c;Prev"
+msgstr "&#x3c;Anterior"
+
 #: functions.php:82
 msgid "&hellip;"
 msgstr "&hellip;"
@@ -177,6 +182,11 @@ msgctxt ""
 "the decimal separator."
 msgid "."
 msgstr "."
+
+#: awpcp.php:1082
+msgctxt "[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ..."
+msgid "0"
+msgstr "1"
 
 #: admin/templates/admin-panel-fees-entry-form.tpl.php:64
 #: admin/templates/admin-panel-fees-entry-form.tpl.php:71
@@ -613,7 +623,7 @@ msgstr "Agregar al Grupo"
 msgid "Additional Details"
 msgstr "Detalles Adicionales"
 
-#: functions.php:2005 includes/functions/notifications.php:201
+#: functions.php:2018 includes/functions/notifications.php:201
 msgid ""
 "Additionally, You can approve the images going to the Manage Images section "
 "for that Ad and clicking the \"Enable\" button below each image. Click here "
@@ -1102,7 +1112,7 @@ msgstr "Archivo CVS"
 msgid "Campaign Manager"
 msgstr "Administrador de Campañas"
 
-#: functions.php:1757
+#: functions.php:1770
 msgid "Can't write file to disk."
 msgstr "No se puede escribir el archivo en disco."
 
@@ -1526,7 +1536,7 @@ msgstr ""
 msgid "Credits"
 msgstr "Créditos"
 
-#: includes/payments-api.php:517
+#: includes/payments-api.php:541
 msgctxt "credit plans table"
 msgid "Credits"
 msgstr "Créditos"
@@ -1691,7 +1701,7 @@ msgstr "Descendente"
 msgid "Description"
 msgstr "Descripción"
 
-#: includes/payments-api.php:516
+#: includes/payments-api.php:540
 msgctxt "credit plans table"
 msgid "Description"
 msgstr "Descripción"
@@ -2847,11 +2857,11 @@ msgstr "Imágenes Permitidas"
 msgid "Images Awaiting Approval"
 msgstr "Imágenes Esperando Aprobación."
 
-#: functions.php:1991
+#: functions.php:2004
 msgid "Images on Ad \"%s\" are awaiting approval"
 msgstr "Las imágenes en el anuncio \"%s\" está esperando aprobación"
 
-#: functions.php:1993 includes/functions/notifications.php:189
+#: functions.php:2006 includes/functions/notifications.php:189
 msgid ""
 "Images on Ad \"%s\" are awaiting approval. You can approve the images going "
 "to the Manage Images section for that Ad and clicking the \"Enable\" button "
@@ -3561,7 +3571,7 @@ msgstr "Falta un token de acceso de usuario (User Access Token) válido."
 msgid "Missing chunk."
 msgstr "Parte faltante."
 
-#: functions.php:1756
+#: functions.php:1769
 msgid "Missing temporary directory."
 msgstr "El directorio temporarl no existe."
 
@@ -3728,6 +3738,11 @@ msgstr "Detalles del nuevo plan de pagos"
 msgid "New classified listing created"
 msgstr "Nuevo anuncio clasificado creado"
 
+#: awpcp.php:1067
+msgctxt "[UI Datepicker] Display text for next month link"
+msgid "Next&#x3e;"
+msgstr "Siguiente&#x3e;"
+
 #: admin/admin-panel-fees-table.php:202 admin/admin-panel-fees-table.php:206
 msgid "No"
 msgstr "No"
@@ -3764,7 +3779,7 @@ msgstr "Sin límite"
 msgid "No Listing was found with id: %d."
 msgstr "No se encontró un anuncio con ID: %d."
 
-#: includes/payments-api.php:621
+#: includes/payments-api.php:645
 msgid ""
 "No Payment is required for this transaction. Please press the button below "
 "to continue with the process."
@@ -3802,7 +3817,7 @@ msgstr ""
 msgid "No credit plans available."
 msgstr "No hay planes de crédito disponibles."
 
-#: functions.php:1751
+#: functions.php:1764
 msgid "No errors."
 msgstr "Sin errores."
 
@@ -3814,7 +3829,7 @@ msgstr "No se encontró un archivo con ID: %d"
 msgid "No file was selected."
 msgstr "Ningún archivo fue seleccionado"
 
-#: functions.php:1755
+#: functions.php:1768
 msgid "No file was uploaded."
 msgstr "Ningún archivo fue cargado."
 
@@ -4197,19 +4212,19 @@ msgstr "Pago"
 msgid "Payment Cancel page"
 msgstr "Página Pago Cancelado"
 
-#: includes/payments-api.php:630 includes/payments-api.php:654
+#: includes/payments-api.php:654 includes/payments-api.php:678
 msgid "Payment Canceled"
 msgstr "Pago cancelado"
 
-#: includes/payments-api.php:610 includes/payments-api.php:652
+#: includes/payments-api.php:634 includes/payments-api.php:676
 msgid "Payment Completed"
 msgstr "Pago completado"
 
-#: includes/payments-api.php:635
+#: includes/payments-api.php:659
 msgid "Payment Error"
 msgstr "Error de pago"
 
-#: includes/payments-api.php:626 includes/payments-api.php:656
+#: includes/payments-api.php:650 includes/payments-api.php:680
 msgid "Payment Failed"
 msgstr "Error en el pago"
 
@@ -4218,7 +4233,7 @@ msgctxt "checkout step"
 msgid "Payment Method"
 msgstr "Método de pago"
 
-#: includes/payments-api.php:620
+#: includes/payments-api.php:644
 msgid "Payment Not Required"
 msgstr "No require pago"
 
@@ -4312,7 +4327,7 @@ msgstr "Página Publicar Anuncio"
 msgid "Place Ad requires user registration"
 msgstr "Publicar un anuncio requiere que el usuario esté registrado"
 
-#: includes/payments-api.php:515
+#: includes/payments-api.php:539
 msgctxt "credit plans table"
 msgid "Plan"
 msgstr "Plan"
@@ -4348,7 +4363,7 @@ msgstr ""
 "Por favor, haz click en el botón que aparece para enviar el pago de %s por "
 "la Renovación de su anuncio."
 
-#: includes/payments-api.php:355 includes/payments-api.php:364
+#: includes/payments-api.php:379 includes/payments-api.php:388
 msgid ""
 "Please contact customer service if you are viewing this message after having "
 "made a payment. If you have not tried to make a payment and you are viewing "
@@ -4510,7 +4525,7 @@ msgstr "Por favor, suba un archivo CSV válido."
 msgid "Please upload a valid ZIP file."
 msgstr "Por favor, suba un archivo ZIP válido."
 
-#: includes/payments-api.php:594
+#: includes/payments-api.php:618
 msgctxt "checkout-payment page"
 msgid "Please use the button below to complete your payment."
 msgstr "Por favor utilice el botón que aparece debajo para completar su pago."
@@ -4562,7 +4577,7 @@ msgstr "Pre-visualizar Anuncio"
 msgid "Price"
 msgstr "Precio"
 
-#: includes/payments-api.php:518
+#: includes/payments-api.php:542
 msgctxt "credit plans table"
 msgid "Price"
 msgstr "Precio"
@@ -4899,7 +4914,7 @@ msgctxt "paypal-checkout-form"
 msgid "Return to %s"
 msgstr "Regresar a %s"
 
-#: includes/payments-api.php:356 includes/payments-api.php:365
+#: includes/payments-api.php:380 includes/payments-api.php:389
 msgid "Return to <a href=\"%s\">home page</a>."
 msgstr "Regrese a la <a href=\"%s\">página principal</a>."
 
@@ -5725,11 +5740,11 @@ msgstr ""
 "válida sea ingresada. Por favor vaya a la sección <license-settings-"
 "link>Opciones de Licencias</a> para ingresar o actualizar su licencia."
 
-#: functions.php:1996
+#: functions.php:2009
 msgid "The Ad \"%s\" is awaiting approval"
 msgstr "El anuncio \"%s\" está esperando aprobación"
 
-#: functions.php:1998 includes/functions/notifications.php:194
+#: functions.php:2011 includes/functions/notifications.php:194
 msgid ""
 "The Ad \"%s\" is awaiting approval. You can approve the Ad going to the "
 "Manage Listings section and clicking the \"Enable\" action shown on top. "
@@ -5936,7 +5951,7 @@ msgstr ""
 msgid "The Payment Term you selected is not valid for the category %s"
 msgstr "El término de pago que seleccionó no es válido para la categoría %s"
 
-#: includes/payments-api.php:631
+#: includes/payments-api.php:655
 msgid "The Payment transaction was canceled. You can't post an Ad this time."
 msgstr ""
 "La transacción de pago fue cancelada. Usted no puede publicar un anuncio en "
@@ -6240,19 +6255,19 @@ msgctxt "media manager"
 msgid "The file has been rejected."
 msgstr "El archivo ha sido rechazado."
 
-#: functions.php:1753
+#: functions.php:1766
 msgid "The file is larger than form MAX_FILE_SIZE."
 msgstr "ElEl tamaño del archivo es mayor que MAX_FILE_SIZE."
 
-#: functions.php:1752
+#: functions.php:1765
 msgid "The file is larger than upload_max_filesize."
 msgstr "El tamaño del archivo es mayor que upload_max_filesize."
 
-#: functions.php:1758
+#: functions.php:1771
 msgid "The file upload was stopped by extension."
 msgstr "La carga del archivo fue detenida por una extensión."
 
-#: functions.php:1754
+#: functions.php:1767
 msgid "The file was only partially uploaded."
 msgstr "El archivo fue cargado parcialmente."
 
@@ -6435,7 +6450,7 @@ msgid ""
 "The payment associated with this transaction failed (see reasons below)."
 msgstr "El pago asociado con esta transacción falló (más detalles abajo)."
 
-#: includes/payments-api.php:363
+#: includes/payments-api.php:387
 msgid ""
 "The payment method associated with this transaction is not available at this "
 "time. We can't process your payment."
@@ -6650,7 +6665,7 @@ msgstr "El anuncio especificado no existe."
 msgid "The specified module does not exists!."
 msgstr "El módulo especificado no existe!."
 
-#: includes/payments-api.php:354
+#: includes/payments-api.php:378
 msgid ""
 "The specified payment transaction doesn't exists. We can't process your "
 "payment."
@@ -6849,7 +6864,7 @@ msgstr ""
 "Se ha producido un error al procesar su solicitud de pago. Inténtelo de "
 "nuevo o póngase en contacto con y Administrador."
 
-#: includes/payments-api.php:636
+#: includes/payments-api.php:660
 msgid ""
 "There was an error processing your payment. The payment status couldn't be "
 "found. Please contact the website admin to solve this issue."
@@ -8195,7 +8210,7 @@ msgstr ""
 "No puede listar su anuncio en categorías de nivel superior. Es necesario "
 "seleccionar una subcategoría de la categoría %s."
 
-#: includes/payments-api.php:473
+#: includes/payments-api.php:497
 msgid "You currently have %s credits in your account."
 msgstr "Usted tiene actualmente %s créditos en su cuenta."
 
@@ -8453,11 +8468,11 @@ msgstr "Debe seleccionar one de los términos de pago disponibles."
 msgid "You should select an owner for this Ad."
 msgstr "Debe seleccionar un autor para este anuncio."
 
-#: functions.php:1954
+#: functions.php:1967
 msgid "Your Ad \"%s\" has been approved"
 msgstr "Su anuncio \"%s\" ha sido aprobado"
 
-#: functions.php:1970
+#: functions.php:1983
 msgid "Your Ad \"%s\" has been successfully updated"
 msgstr "Su anuncio \"%s\" ha sido actualizado exitosamente"
 
@@ -8519,7 +8534,7 @@ msgstr "Código AdSense (mejor si es un texto o banner 468x60)"
 msgid "Your Classified Ad listing has been submitted"
 msgstr "Tu anuncio clasificado ha sido enviado"
 
-#: includes/payments-api.php:615
+#: includes/payments-api.php:639
 msgid ""
 "Your Payment has been processed successfully. However is still pending "
 "approvation from the payment gateway. Please press the button below to "
@@ -8529,7 +8544,7 @@ msgstr ""
 "pendiente de aprobación por parte de la pasarela de pagos. Por favor presion "
 "el botón que aparece debajo para continuar con el proceso."
 
-#: includes/payments-api.php:627
+#: includes/payments-api.php:651
 msgid ""
 "Your Payment has been processed successfully. However, the payment gateway "
 "didn't return a payment status that allows us to continue with the process. "
@@ -8540,7 +8555,7 @@ msgstr ""
 "compra. Por favor, póngase en contacto con el administrador del sitio para "
 "resolver este problema."
 
-#: includes/payments-api.php:613
+#: includes/payments-api.php:637
 msgid ""
 "Your Payment has been processed successfully. Please press the button below "
 "to continue with the process."
