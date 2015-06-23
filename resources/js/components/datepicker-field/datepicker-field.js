@@ -12,8 +12,6 @@ function( $, settings ) {
             altFormat: 'yy/mm/dd'
         } );
 
-        console.log( options );
-
         self.element.parent().find( '[datepicker-placeholder]' ).datepicker( options );
     };
 
