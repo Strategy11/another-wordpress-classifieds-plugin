@@ -844,7 +844,7 @@ class AWPCP_Settings_API {
 			$html.= '/>';
 		}
 
-		$html.= strlen($setting->helptext) > 45 ? '<br/>' : '';
+		$html.= strlen($setting->helptext) > 20 ? '<br/>' : '&nbsp;';
 		$html.= '<span class="description">' . $setting->helptext . '</span>';
 
 		echo $html;
