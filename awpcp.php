@@ -155,8 +155,6 @@ require_once( AWPCP_DIR . "/includes/listings/class-listing-action.php" );
 require_once( AWPCP_DIR . "/includes/listings/class-listing-action-with-confirmation.php" );
 require_once( AWPCP_DIR . "/includes/listings/class-delete-listing-action.php" );
 
-require_once( AWPCP_DIR . "/includes/media/class-media-manager-component.php" );
-
 require_once( AWPCP_DIR . "/includes/meta/class-meta-tags-generator.php" );
 require_once( AWPCP_DIR . "/includes/meta/class-tag-renderer.php" );
 
@@ -228,6 +226,7 @@ require_once( AWPCP_DIR . '/includes/media/class-image-file-validator.php' );
 require_once( AWPCP_DIR . '/includes/media/class-image-resizer.php' );
 require_once( AWPCP_DIR . '/includes/media/class-listing-upload-limits.php' );
 require_once( AWPCP_DIR . "/includes/media/class-media-manager-component.php" );
+require_once( AWPCP_DIR . "/includes/media/class-media-manager.php" );
 require_once( AWPCP_DIR . '/includes/media/class-media-uploader-component.php' );
 require_once( AWPCP_DIR . "/includes/media/class-messages-component.php" );
 require_once( AWPCP_DIR . '/includes/media/class-mime-types.php' );
