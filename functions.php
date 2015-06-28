@@ -1527,10 +1527,22 @@ function awpcp_get_currency_symbol() {
  */
 function awpcp_currency_symbols() {
     return array(
-        '$' => array( 'CAD', 'AUD', 'NZD', 'SGD', 'HKD', 'USD' ),
+        '$' => array( 'CAD', 'AUD', 'NZD', 'SGD', 'HKD', 'USD', 'MXN' ),
         '&yen;' => array( 'JPY' ),
         '&euro;' => array( 'EUR' ),
         '&pound;' => array( 'GBP' ),
+        '&#8381;' => array( 'RUB' ),
+        'R$' => array( 'BRL' ),
+        'K&#269;' => array( 'CZK' ),
+        'kr.' => array( 'DKK' ),
+        '&#8362;' => array( 'ILS' ),
+        'RM' => array( 'MYR' ),
+        'kr' => array( 'NOK', 'SEK' ),
+        '&#8369;' => array( 'PHP' ),
+        'CHF' => array( 'CHF' ),
+        'NT$' => array( 'TWD' ),
+        '&#3647;' => array( 'THB' ),
+        '&#8378;' => array( 'TRY' ),
     );
 }
 

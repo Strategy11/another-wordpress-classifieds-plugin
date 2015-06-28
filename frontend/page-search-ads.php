@@ -101,7 +101,14 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
         $messages = $this->messages;
 
         $url_params = wp_parse_args( parse_url( awpcp_current_url(), PHP_URL_QUERY ) );
-        $hidden = awpcp_flatten_array( array_merge( $url_params, array( 'a' => 'dosearch' ) ) );
+
+        foreach ( $form as $name => $value ) {
+            if ( isset( $url_params[ $name ] ) ) {
+                unset( $url_params[ $name ] );
+            }
+        }
+
+        $hidden = array_merge( $url_params, array( 'a' => 'dosearch' ) );
 
         $page = $this;
         $template = AWPCP_DIR . '/frontend/templates/page-search-ads.tpl.php';

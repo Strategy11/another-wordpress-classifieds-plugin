@@ -13,9 +13,7 @@
 ?>
 
 <form class="awpcp-search-ads-form" method="get" action="<?php echo esc_attr( $page->url() ); ?>"name="myform">
-    <?php foreach($hidden as $name => $value): ?>
-    <input type="hidden" name="<?php echo esc_attr($name); ?>" value="<?php echo esc_attr($value); ?>" />
-    <?php endforeach ?>
+    <?php echo awpcp_html_hidden_fields( $hidden ); ?>
 
     <p class='awpcp-form-spacer'>
         <label for="query"><?php _e("Search for Ads containing this word or phrase", "AWPCP"); ?>:</label>

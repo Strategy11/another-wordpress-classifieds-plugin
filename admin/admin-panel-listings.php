@@ -2,8 +2,6 @@
 
 require_once( AWPCP_DIR . '/includes/helpers/admin-page.php' );
 
-require_once( AWPCP_DIR . '/admin/class-media-manager.php' );
-
 require_once( AWPCP_DIR . '/admin/admin-panel-listings-place-ad-page.php' );
 require_once( AWPCP_DIR . '/admin/admin-panel-listings-edit-ad-page.php' );
 require_once( AWPCP_DIR . '/admin/admin-panel-listings-renew-ad-page.php' );
