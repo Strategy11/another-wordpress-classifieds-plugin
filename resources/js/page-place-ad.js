@@ -3,10 +3,11 @@ AWPCP.run('awpcp/page-place-ads', [
     'jquery',
     'awpcp/media-center',
     'awpcp/datepicker-field',
+    'awpcp/user-information-updater',
     'awpcp/settings',
     'awpcp/jquery-userfield',
     'awpcp/jquery-validate-methods'
-], function( $, MediaCenter, DatepickerField, settings ) {
+], function( $, MediaCenter, DatepickerField, UserInformationUpdater, settings ) {
     var AWPCP = jQuery.AWPCP = jQuery.extend({}, jQuery.AWPCP, AWPCP);
 
     $.AWPCP.PaymentTermsTable = function(table) {
@@ -211,8 +212,10 @@ AWPCP.run('awpcp/page-place-ads', [
         (function() {
             form = container.find('.awpcp-details-form');
             if (form.length) {
-                // update profile information everytime the selected user changes
-                $.noop(new $.AWPCP.UserInformation(container));
+                if ( settings.get( 'overwrite-contact-information-on-user-change' ) ) {
+                    var updater = new UserInformationUpdater( container );
+                    updater.watch();
+                }
 
                 container.find('[autocomplete-field], [dropdown-field]').userfield();
 
