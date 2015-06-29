@@ -28,6 +28,15 @@ class AWPCP_FormFieldsSettings {
         $settings->add_setting( $key, 'user-field-widget', __( 'HTML Widget for User field', 'AWPCP' ), 'radio', 'dropdown', __( 'The user field can be represented with an HTML dropdown or a text field with autocomplete capabilities. Using the dropdown is faster if you have a small number of users. If your website has a lot of registered users, however, the dropdown may take too long to render and using the autocomplete version may be a better idea.', 'AWPCP' ), array( 'options' => $options ) );
         $settings->add_setting( $key, 'displaypostedbyfield', __( 'Show User Field on Search', 'AWPCP' ), 'checkbox', 1, __( 'Show as "Posted By" in search form?', 'AWPCP' ) );
 
+        $settings->add_setting(
+            $key,
+            'overwrite-contact-information-on-user-change',
+            __( 'Overwrite information in contact fields when a different listing owner is selected', 'AWPCP' ),
+            'checkbox',
+            1,
+            __( 'If this setting is enabled, when an administrator is editing a listing and he changes the selected value in the User/Owner field, the information in the contact fields (Contact Name, Contact Email and Contact Phone Number) will be updated (overwriting the information already entered in those fields) using the infromation of the user just selected. The modifications will not be persisted until you click the Continue button.', 'AWPCP' )
+        );
+
         $key = $settings->add_section( $group, __( 'Contact Fields', 'AWPCP' ), 'contact', 10, array( $settings, 'section' ) );
 
         $settings->add_setting(
