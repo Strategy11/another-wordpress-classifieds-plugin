@@ -34,7 +34,7 @@ class AWPCP_FormFieldsSettings {
             __( 'Overwrite information in contact fields when a different listing owner is selected', 'AWPCP' ),
             'checkbox',
             1,
-            __( 'If this setting is enabled, when an administrator is editing a listing and he changes the selected value in the User/Owner field, the information in the contact fields (Contact Name, Contact Email and Contact Phone Number) will be updated (overwriting the information already entered in those fields) using the infromation of the user just selected. The modifications will not be persisted until you click the Save Changes button.', 'AWPCP' )
+            __( 'If this setting is enabled, when an administrator is editing a listing and he changes the selected value in the User/Owner field, the information in the contact fields (Contact Name, Contact Email and Contact Phone Number) will be updated (overwriting the information already entered in those fields) using the infromation of the user just selected. The modifications will not be persisted until you click the Continue button.', 'AWPCP' )
         );
 
         $key = $settings->add_section( $group, __( 'Contact Fields', 'AWPCP' ), 'contact', 10, array( $settings, 'section' ) );
