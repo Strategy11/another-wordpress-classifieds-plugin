@@ -458,7 +458,7 @@ function awpcp_do_placeholder_dates($ad, $placeholder) {
     if ( ! empty( $ad->renewed_date ) ) {
         $replacements['renewed_date'] = awpcp_datetime( 'awpcp-date', $ad->renewed_date );
     } else {
-        $replacements['renewed_date'] = awpcp_datetime( 'awpcp-date', $ad->posted_date );
+        $replacements['renewed_date'] = awpcp_datetime( 'awpcp-date', $ad->ad_postdate );
     }
 
     return $replacements[$placeholder];
