@@ -2183,7 +2183,7 @@ function awpcp_utf8_basename( $path, $suffix = null ) {
 function awpcp_unique_filename( $path, $filename, $directories ) {
     $pathinfo = awpcp_utf8_pathinfo( $filename );
 
-    $name = $pathinfo['filename'];
+    $name = sanitize_file_name( $pathinfo['filename'] );
     $extension = $pathinfo['extension'];
     $file_size = filesize( $path );
     $timestamp = microtime();
