@@ -67,7 +67,11 @@ class AWPCP_Media {
     }
 
     public function get_original_file_url() {
-        return trailingslashit( AWPCPUPLOADURL ) . $this->path;
+        return $this->sanitize_url( trailingslashit( AWPCPUPLOADURL ) . $this->path );
+    }
+
+    private function sanitize_url( $url ) {
+        return str_replace( ' ', '%20', $url );
     }
 
     public function get_large_image_url() {
@@ -126,7 +130,8 @@ class AWPCP_Media {
     }
 
     private function get_url_from_path( $path ) {
-        return $path ? str_replace( rtrim( ABSPATH, '/' ), get_site_url(), $path ) : false;
+        // TODO: write upgrade routine to fix file names that include whitespaces?
+        return $path ? $this->sanitize_url( str_replace( rtrim( ABSPATH, '/' ), get_site_url(), $path ) ) : false;
     }
 
     public function get_icon_url() {
