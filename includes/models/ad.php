@@ -505,8 +505,9 @@ class AWPCP_Ad {
 	}
 
 	public function get_category_name() {
-		if (!isset($this->category_name))
-			$this->category_name = get_adcatname($object->category_id);
+		if ( ! isset( $this->category_name ) ) {
+			$this->category_name = get_adcatname( $this->ad_category_id );
+		}
 		return $this->category_name;
 	}
 
