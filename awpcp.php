@@ -750,7 +750,7 @@ class AWPCP {
 					'url' => 'http://www.awpcp.com/premium-modules/featured-ads-module?ref=panel',
 					'installed' => defined( 'AWPCP_FEATURED_ADS_MODULE' ),
 					'version' => 'AWPCP_FEATURED_ADS_MODULE_DB_VERSION',
-					'required' => '3.4',
+					'required' => '3.5.1',
 				),
 				'fee-per-category' => array(
 					'name' => __( 'Fee per Category', 'AWPCP' ),
