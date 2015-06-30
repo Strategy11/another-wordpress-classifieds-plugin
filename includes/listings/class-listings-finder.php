@@ -528,13 +528,13 @@ class AWPCP_ListingsFinder {
 
     private function build_order_clause( $query ) {
         if ( ! is_null( $query['orderby'] ) ) {
-            return $this->build_order_by_clause( $query['orderby'], $query['order'] );
+            return $this->build_order_by_clause( $query['orderby'], $query['order'], $query );
         } else {
             return '';
         }
     }
 
-    private function build_order_by_clause( $orderby, $order ) {
+    private function build_order_by_clause( $orderby, $order, $query ) {
         $basedate = 'CASE WHEN renewed_date IS NULL THEN ad_startdate ELSE GREATEST(ad_startdate, renewed_date) END';
         $is_paid = 'CASE WHEN ad_fee_paid > 0 THEN 1 ELSE 0 END';
 
@@ -611,6 +611,7 @@ class AWPCP_ListingsFinder {
         }
 
         $parts = array_filter( apply_filters( 'awpcp-ad-order-conditions', $parts, $orderby, $order ) );
+        $parts = array_filter( apply_filters( 'awpcp-find-listings-order-conditions', $parts, $orderby, $order, $query ) );
 
         return sprintf( 'ORDER BY %s', sprintf( implode( ', ', $parts ), $order ) );
     }

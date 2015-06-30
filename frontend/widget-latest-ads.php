@@ -143,7 +143,7 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
 
     protected function query($instance) {
         return array(
-            'context' => 'public-listings',
+            'context' => array( 'public-listings', 'latest-listings-widget' ),
             'limit' => $instance['limit'],
         );
     }
