@@ -90,11 +90,6 @@ class AWPCP_Media {
         return str_replace( ".{$extension}", "-{$suffix}.{$extension}", $path );
     }
 
-    private function get_url_with_suffix( $base_url, $suffix ) {
-        $extension = awpcp_get_file_extension( $this->get_original_file_url() );
-        return str_replace( ".{$extension}", "-{$suffix}.{$extension}", $base_url );
-    }
-
     public function get_primary_thumbnail_url() {
         $thumbnail_path = $this->get_thumbnail_path();
 
