@@ -224,34 +224,10 @@ function awpcpui_process($awpcppagename) {
 	global $hasrssmodule, $hasregionsmodule, $awpcp_plugin_url;
 
 	$output = '';
-	$action = '';
 
 	$awpcppage = get_currentpagename();
 	if (!isset($awpcppagename) || empty($awpcppagename)) {
 		$awpcppagename = sanitize_title($awpcppage, $post_ID='');
-	}
-
-	if (isset($_REQUEST['a']) && !empty($_REQUEST['a'])) {
-		$action=$_REQUEST['a'];
-	}
-
-	// TODO: this kind of requests should be handled in Region Control's own code
-	if (($action == 'setregion') || '' != get_query_var('regionid')) {
-		if ($hasregionsmodule ==  1) {
-			if (isset($_REQUEST['regionid']) && !empty($_REQUEST['regionid'])) {
-				$region_id = $_REQUEST['regionid'];
-			} else {
-				$region_id = get_query_var('regionid');
-			}
-
-			// double check module existence :\
-			if (method_exists('AWPCP_Region_Control_Module', 'set_location')) {
-				$region = awpcp_region_control_get_entry(array('id' => $region_id));
-				$regions = AWPCP_Region_Control_Module::instance();
-				$regions->set_location($region);
-			}
-		}
-
 	}
 
 	$categoriesviewpagename = sanitize_title(get_awpcp_option('view-categories-page-name'));
