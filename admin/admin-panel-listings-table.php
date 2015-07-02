@@ -126,7 +126,7 @@ class AWPCP_Listings_Table extends WP_List_Table {
                 break;
 
             default:
-                $query['orderby'] = 'start-date';
+                $query['orderby'] = 'renewed-date';
                 break;
         }
 

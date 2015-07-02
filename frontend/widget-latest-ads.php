@@ -144,6 +144,7 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
     protected function query($instance) {
         return array(
             'context' => array( 'public-listings', 'latest-listings-widget' ),
+            'orderby' => 'renewed-date',
             'limit' => $instance['limit'],
         );
     }
