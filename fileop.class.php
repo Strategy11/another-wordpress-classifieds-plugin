@@ -11,7 +11,7 @@ class fileop {
 	var $op_mode='disk';	// 'disk' or 'ftp'
 	var $ftp_id=null;
 
-	function fileop() {
+	function __construct() {
 		$ftp_error=false;
 		if (defined('_FILEOP_MODE_') && _FILEOP_MODE_=='ftp' && defined('_FTPHOST_') && defined('_FTPUSER_') && defined('_FTPPASS_') && function_exists('ftp_connect')) {
 			$this->ftp_id=ftp_connect(_FTPHOST_);

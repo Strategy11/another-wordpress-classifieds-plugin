@@ -5,7 +5,7 @@ require_once(AWPCP_DIR . '/includes/helpers/admin-page.php');
 
 class AWPCP_Admin_Uninstall extends AWPCP_AdminPage {
 
-    public function AWPCP_Admin_Uninstall() {
+    public function __construct() {
         parent::__construct(
             'awpcp-admin-uninstall',
             awpcp_admin_page_title( __( 'Uninstall', 'AWPCP' ) ),

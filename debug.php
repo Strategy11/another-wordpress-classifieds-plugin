@@ -3,7 +3,7 @@
 class WP_Skeleton_Logger {
     static $instance = null;
 
-    private function WP_Skeleton_Logger() {
+    private function __construct() {
         $this->html = true;
         $this->from = true;
         $this->context = 3;
