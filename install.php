@@ -29,7 +29,7 @@ class AWPCP_Installer {
 
     private static $instance = null;
 
-    private function AWPCP_Installer() {
+    private function __construct() {
         $this->columns = awpcp_database_column_creator();
 
         $this->create_ads_table =

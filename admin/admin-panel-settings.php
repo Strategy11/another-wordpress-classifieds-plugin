@@ -2,7 +2,7 @@
 
 class AWPCP_Admin_Settings {
 
-	public function AWPCP_Admin_Settings() {
+	public function __construct() {
 		// TODO: avoid instatiation of this class until is necessary
 		$pages = awpcp_classfieds_pages_settings();
 		$facebook = new AWPCP_Facebook_Page_Settings();
