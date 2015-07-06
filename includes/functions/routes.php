@@ -31,8 +31,19 @@ function checkforduplicate($cpagename_awpcp) {
  * Check if the page identified by $refname exists.
  */
 function awpcp_find_page($refname) {
-    $page = get_page( awpcp_get_page_id_by_ref( $refname ) );
-    return is_object( $page );
+    $page_id = awpcp_get_page_id_by_ref( $refname );
+
+    if ( empty( $page_id ) ) {
+        return false;
+    }
+
+    $page = get_page( $page_id );
+
+    if ( ! is_object( $page ) || $page->ID != $page_id ) {
+        return false;
+    }
+
+    return true;
 }
 
 /**
