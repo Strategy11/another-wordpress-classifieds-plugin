@@ -297,7 +297,7 @@ function awpcp_display_the_classifieds_page_body($awpcppagename) {
 	// Place the menu items
 	$output .= awpcp_menu_items();
 
-	if ($hasregionsmodule ==  1) {
+	if ( function_exists( 'awpcp_region_control_selector' ) && get_awpcp_option( 'show-region-selector', true ) ) {
 		$output .= awpcp_region_control_selector();
 	}
 
