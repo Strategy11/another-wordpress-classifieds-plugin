@@ -2200,6 +2200,20 @@ function awpcp_unique_filename( $path, $filename, $directories ) {
 }
 
 /**
+ * Remove characters not removed by sanitize_file_name, that are not invalid in OS,
+ * but cause problems with URLs.
+ *
+ * See: https://github.com/drodenbaugh/awpcp/issues/1222#issuecomment-119742743
+ *
+ * @since next-release
+ */
+function awpcp_sanitize_file_name( $filename ) {
+    $sanitize_file_name = sanitize_file_name( $filename );
+    $sanitize_file_name = str_replace( '^', '', $sanitize_file_name );
+    return $sanitize_file_name;
+}
+
+/**
  * @since 3.4
  */
 function awpcp_is_filename_already_used( $filename, $directories ) {
