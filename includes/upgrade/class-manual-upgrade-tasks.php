@@ -37,6 +37,11 @@ class AWPCP_Manual_Upgrade_Tasks {
             'awpcp-update-media-status', __( 'Update Image/Attachments Status', 'AWPCP' ),
             array( $this, 'ajax_update_media_status' )
         );
+
+        $this->upgrade_tasks->register_upgrade_task(
+            'awpcp-sanitize-media-filenames',  __( 'Remove invalid characters from media filenames', 'AWPCP' ),
+            'awpcp_sanitize_media_filenames_upgrade_task_handler'
+        );
     }
 
     public function register_upgrade_task_handlers() {
