@@ -12,7 +12,7 @@
     }
 ?>
 
-<form class="awpcp-search-ads-form" method="get" action="<?php echo esc_attr( $page->url() ); ?>"name="myform">
+<form class="awpcp-search-ads-form" method="get" action="<?php echo esc_url( $action_url ); ?>"name="myform">
     <?php echo awpcp_html_hidden_fields( $hidden ); ?>
 
     <p class='awpcp-form-spacer'>
