@@ -343,6 +343,7 @@ class AWPCP {
 		$this->settings = AWPCP_Settings_API::instance();
 		$this->js = AWPCP_JavaScript::instance();
         $this->installer = AWPCP_Installer::instance();
+        $this->manual_upgrades = awpcp_manual_upgrade_tasks();
 	}
 
     public function bootstrap() {
@@ -432,6 +433,8 @@ class AWPCP {
 		$this->payments = awpcp_payments_api();
 		$this->listings = awpcp_listings_api();
 
+        $this->manual_upgrades->register_upgrade_tasks();
+
 		$this->admin = new AWPCP_Admin();
 		$this->panel = new AWPCP_User_Panel();
 
@@ -463,7 +466,7 @@ class AWPCP {
 		// some upgrade operations can't be done in background.
 		// if one those is pending, we will disable all other features
 		// until the user executes the upgrade operaton
-		if ( ! get_option( 'awpcp-pending-manual-upgrade' ) ) {
+		if ( ! $this->manual_upgrades->has_pending_tasks() ) {
     		$this->pages = new AWPCP_Pages();
 
             add_action( 'awpcp-process-payment-transaction', array( $this, 'process_transaction_update_payment_status' ) );
@@ -625,6 +628,8 @@ class AWPCP {
 	}
 
     private function ajax_setup() {
+        $this->manual_upgrades->register_upgrade_task_handlers();
+
         // load resources required to handle Ajax requests only.
         $handler = awpcp_users_autocomplete_ajax_handler();
         add_action( 'wp_ajax_awpcp-autocomplete-users', array( $handler, 'ajax' ) );

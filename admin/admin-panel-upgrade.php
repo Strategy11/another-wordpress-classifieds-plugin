@@ -12,58 +12,6 @@ class AWPCP_AdminUpgrade extends AWPCP_AdminPage {
         $title = $title ? $title : awpcp_admin_page_title( _x( 'Manual Upgrade', 'awpcp admin menu', 'AWPCP' ) );
 
         parent::__construct($page, $title, $menu);
-
-        $this->upgrades = array(
-            'awpcp-import-payment-transactions' => array(
-                'name' => 'Import Payment Transactions',
-            ),
-            'awpcp-migrate-regions-information' => array(
-                'name' => 'Migrate Regions Information',
-            ),
-            'awpcp-migrate-media-information' => array(
-                'name' => 'Migrate Media Information',
-            ),
-            'awpcp-update-media-status' => array(
-                'name' => 'Update Image/Attachments Status',
-            ),
-        );
-
-        add_action( 'wp_ajax_awpcp-import-payment-transactions', array( $this, 'ajax_import_payment_transactions' ) );
-        add_action('wp_ajax_awpcp-migrate-regions-information', array($this, 'ajax_migrate_regions_information'));
-        add_action( 'wp_ajax_awpcp-migrate-media-information', array( $this, 'ajax_migrate_media_information' ) );
-        add_action( 'wp_ajax_awpcp-update-media-status', array( $this, 'ajax_update_media_status' ) );
-    }
-
-    private function has_pending_upgrades() {
-        foreach ($this->upgrades as $upgrade => $data) {
-            if (get_option($upgrade)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    private function count_pending_upgrades() {
-        return count( $this->get_pending_upgrades() );
-    }
-
-    private function get_pending_upgrades() {
-        $pending_upgrades = array();
-
-        foreach ($this->upgrades as $upgrade => $data) {
-            if (get_option($upgrade)) {
-                $pending_upgrades[$upgrade] = $data;
-            }
-        }
-
-        return $pending_upgrades;
-    }
-
-    private function update_pending_upgrades_status() {
-        if (!$this->has_pending_upgrades()) {
-            delete_option('awpcp-pending-manual-upgrade');
-        }
     }
 
     public function dispatch() {
@@ -71,7 +19,7 @@ class AWPCP_AdminUpgrade extends AWPCP_AdminPage {
     }
 
     private function _dispatch() {
-        $pending_upgrades = $this->get_pending_upgrades();
+        $pending_upgrades = awpcp()->manual_upgrades->get_pending_tasks();
 
         $tasks = array();
         foreach ( $pending_upgrades as $action => $data ) {
