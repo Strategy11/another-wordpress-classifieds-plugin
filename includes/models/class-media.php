@@ -50,6 +50,20 @@ class AWPCP_Media {
         return (bool) $this->is_primary;
     }
 
+    public function get_associated_paths() {
+        $info = awpcp_utf8_pathinfo( AWPCPUPLOADDIR . $this->name );
+
+        $filenames = apply_filters( 'awpcp-file-associated-paths', array(
+            AWPCPUPLOADDIR . "{$this->path}",
+            AWPCPUPLOADDIR . "{$info['basename']}",
+            AWPCPUPLOADDIR . "{$info['filename']}-large.{$info['extension']}",
+            AWPCPTHUMBSUPLOADDIR . "{$info['basename']}",
+            AWPCPTHUMBSUPLOADDIR . "{$info['filename']}-primary.{$info['extension']}",
+        ), $this );
+
+        return $filenames;
+    }
+
     public function get_original_file_path() {
         return trailingslashit( AWPCPUPLOADDIR ) . $this->path;
     }

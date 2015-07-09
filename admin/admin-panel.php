@@ -64,7 +64,7 @@ class AWPCP_Admin {
 			return;
 		}
 
-		if ( get_option( 'awpcp-pending-manual-upgrade' ) ) {
+		if ( awpcp()->manual_upgrades->has_pending_tasks() ) {
 			ob_start();
 				include( AWPCP_DIR . '/admin/templates/admin-pending-manual-upgrade-notice.tpl.php' );
 				$html = ob_get_contents();
@@ -219,7 +219,7 @@ class AWPCP_Admin {
 
 		$capability = awpcp_admin_capability();
 
-		if (get_option('awpcp-pending-manual-upgrade')) {
+		if ( awpcp()->manual_upgrades->has_pending_tasks() ) {
 			$parts = array($this->upgrade->title, $this->upgrade->menu, $this->upgrade->page);
 			$page = add_menu_page($parts[0], $parts[1], $capability, $parts[2], array($this->upgrade, 'dispatch'), MENUICO);
 

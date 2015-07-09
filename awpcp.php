@@ -4,7 +4,7 @@
  * Plugin Name: Another Wordpress Classifieds Plugin (AWPCP)
  * Plugin URI: http://www.awpcp.com
  * Description: AWPCP - A plugin that provides the ability to run a free or paid classified ads service on your wordpress blog. <strong>!!!IMPORTANT!!!</strong> Whether updating a previous installation of Another Wordpress Classifieds Plugin or installing Another Wordpress Classifieds Plugin for the first time, please backup your wordpress database before you install/uninstall/activate/deactivate/upgrade Another Wordpress Classifieds Plugin.
- * Version: 3.5.4-dev-8
+ * Version: 3.5.4-dev-9
  * Author: D. Rodenbaugh
  * License: GPLv2 or any later version
  * Author URI: http://www.skylineconsult.com
@@ -251,6 +251,16 @@ require_once( AWPCP_DIR . "/includes/settings/class-user-notifications-settings.
 require_once( AWPCP_DIR . "/includes/settings/class-window-title-settings.php" );
 
 require_once( AWPCP_DIR . "/includes/upgrade/class-fix-empty-media-mime-type-upgrade-routine.php" );
+require_once( AWPCP_DIR . "/includes/upgrade/class-manual-upgrade-tasks-manager.php" );
+require_once( AWPCP_DIR . "/includes/upgrade/class-manual-upgrade-tasks.php" );
+require_once( AWPCP_DIR . "/includes/upgrade/class-sanitize-media-filenames-upgrade-task-handler.php" );
+require_once( AWPCP_DIR . "/includes/upgrade/class-upgrade-task-ajax-handler-factory.php" );
+require_once( AWPCP_DIR . "/includes/upgrade/class-upgrade-task-ajax-handler.php" );
+
+require_once( AWPCP_DIR . "/includes/upgrade/class-import-payment-transactions-task-handler.php" );
+require_once( AWPCP_DIR . "/includes/upgrade/class-migrate-media-information-task-handler.php" );
+require_once( AWPCP_DIR . "/includes/upgrade/class-migrate-regions-information-task-handler.php" );
+require_once( AWPCP_DIR . "/includes/upgrade/class-update-media-status-task-handler.php" );
 
 require_once( AWPCP_DIR . '/includes/class-edit-listing-url-placeholder.php' );
 require_once( AWPCP_DIR . '/includes/class-edit-listing-link-placeholder.php' );
@@ -339,6 +349,7 @@ class AWPCP {
 		$this->settings = AWPCP_Settings_API::instance();
 		$this->js = AWPCP_JavaScript::instance();
         $this->installer = AWPCP_Installer::instance();
+        $this->manual_upgrades = awpcp_manual_upgrade_tasks();
 	}
 
     public function bootstrap() {
@@ -428,6 +439,8 @@ class AWPCP {
 		$this->payments = awpcp_payments_api();
 		$this->listings = awpcp_listings_api();
 
+        $this->manual_upgrades->register_upgrade_tasks();
+
 		$this->admin = new AWPCP_Admin();
 		$this->panel = new AWPCP_User_Panel();
 
@@ -459,7 +472,7 @@ class AWPCP {
 		// some upgrade operations can't be done in background.
 		// if one those is pending, we will disable all other features
 		// until the user executes the upgrade operaton
-		if ( ! get_option( 'awpcp-pending-manual-upgrade' ) ) {
+		if ( ! $this->manual_upgrades->has_pending_tasks() ) {
     		$this->pages = new AWPCP_Pages();
 
             add_action( 'awpcp-process-payment-transaction', array( $this, 'process_transaction_update_payment_status' ) );
@@ -621,6 +634,8 @@ class AWPCP {
 	}
 
     private function ajax_setup() {
+        $this->manual_upgrades->register_upgrade_task_handlers();
+
         // load resources required to handle Ajax requests only.
         $handler = awpcp_users_autocomplete_ajax_handler();
         add_action( 'wp_ajax_awpcp-autocomplete-users', array( $handler, 'ajax' ) );
