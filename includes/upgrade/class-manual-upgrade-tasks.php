@@ -20,22 +20,22 @@ class AWPCP_Manual_Upgrade_Tasks {
     public function register_upgrade_tasks() {
         $this->upgrade_tasks->register_upgrade_task(
             'awpcp-import-payment-transactions', __( 'Import Payment Transactions', 'AWPCP' ),
-            array( $this, 'ajax_import_payment_transactions' )
+            'awpcp_import_payment_transactions_task_handler'
         );
 
         $this->upgrade_tasks->register_upgrade_task(
             'awpcp-migrate-regions-information', __( 'Migrate Regions Information', 'AWPCP' ),
-            array( $this, 'ajax_migrate_regions_information' )
+            'awpcp_migrate_regions_information_task_handler'
         );
 
         $this->upgrade_tasks->register_upgrade_task(
             'awpcp-migrate-media-information', __( 'Migrate Media Information', 'AWPCP' ),
-            array( $this, 'ajax_migrate_media_information' )
+            'awpcp_migrate_media_information_task_handler'
         );
 
         $this->upgrade_tasks->register_upgrade_task(
             'awpcp-update-media-status', __( 'Update Image/Attachments Status', 'AWPCP' ),
-            array( $this, 'ajax_update_media_status' )
+            'awpcp_update_media_status_task_handler'
         );
 
         $this->upgrade_tasks->register_upgrade_task(
