@@ -108,11 +108,12 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
             }
         }
 
+        $action_url = awpcp_current_url();
         $hidden = array_merge( $url_params, array( 'a' => 'dosearch' ) );
 
-        $page = $this;
+        $params = compact( 'action_url', 'ui', 'form', 'hidden', 'messages', 'errors' );
+
         $template = AWPCP_DIR . '/frontend/templates/page-search-ads.tpl.php';
-        $params = compact('page', 'ui', 'form', 'hidden', 'messages', 'errors');
 
         return $this->render($template, $params);
     }
