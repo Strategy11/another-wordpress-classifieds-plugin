@@ -85,7 +85,7 @@ class AWPCP_CategoriesDropdown {
 }
 
 function awpcp_render_category_selector( $params = array() ) {
-    $browse_categories_page_url = get_permalink( awpcp_get_page_id_by_ref( 'browse-categories-page-name' ) );
+    $action_url = awpcp_current_url();
 
     $category_id = (int) awpcp_request_param( 'category_id', -1 );
     $category_id = $category_id === -1 ? (int) get_query_var( 'cid' ) : $category_id;
