@@ -468,8 +468,8 @@ function awpcp_pagination($config, $url) {
         $items[] = awpcp_render_pagination_item( '&laquo;&laquo;', 1, $results, $params, $url );
     }
 
-    if ( ( $page - $radius ) > 1 ) {
-        $items[] = awpcp_render_pagination_item( '&laquo;', $page - $radius - 1, $results, $params, $url );
+    if ( $page > 1 ) {
+        $items[] = awpcp_render_pagination_item( '&laquo;', $page - 1, $results, $params, $url );
     }
 
 	for ($i=1; $i <= $pages; $i++) {
@@ -484,8 +484,8 @@ function awpcp_pagination($config, $url) {
         }
 	}
 
-    if ( $page < ( $pages - $radius ) ) {
-        $items[] = awpcp_render_pagination_item( '&raquo;', $page + $radius + 1, $results, $params, $url );
+    if ( $page < ( $pages - 1 ) ) {
+        $items[] = awpcp_render_pagination_item( '&raquo;', $page + 1, $results, $params, $url );
     }
 
     if ( ( $page + $radius ) < ( $pages - 1 ) ) {
