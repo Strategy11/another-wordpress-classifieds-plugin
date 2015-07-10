@@ -477,7 +477,7 @@ function create_ad_postedby_list($name) {
 	global $wpdb;
 
 	$output = '';
-	$query = 'SELECT DISTINCT ad_contact_name FROM ' . AWPCP_TABLE_ADS . ' WHERE disabled = 0';
+	$query = 'SELECT DISTINCT ad_contact_name FROM ' . AWPCP_TABLE_ADS . ' WHERE disabled = 0 ORDER BY ad_contact_name ASC';
 
 	$results = $wpdb->get_col( $query );
 
