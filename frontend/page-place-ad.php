@@ -1092,7 +1092,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $allowed_files = awpcp_listing_upload_limits()->get_listing_upload_limits( $listing );
 
         foreach ( $allowed_files as $file_type => $limits ) {
-            if ( $limits['allowed_file_count'] > $limits['uploaded_file_count'] ) {
+            if ( $limits['allowed_file_count'] >= $limits['uploaded_file_count'] ) {
                 return true;
             }
         }

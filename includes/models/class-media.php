@@ -85,7 +85,12 @@ class AWPCP_Media {
     }
 
     private function sanitize_url( $url ) {
-        return str_replace( ' ', '%20', $url );
+        $windows_directory_separator = '\\';
+
+        $url = str_replace( ' ', '%20', $url );
+        $url = str_replace( $windows_directory_separator, '/', $url );
+
+        return $url;
     }
 
     public function get_large_image_url() {
