@@ -81,8 +81,8 @@ class AWPCP_Sanitize_Media_Filenames_Upgrade_Task_Handler {
             }
         }
 
-        $media->path = str_replace( $media->name, $sanitized_filename, $media->path );
-        $media->name = $sanitized_filename;
+        $media->path = str_replace( $original_filename, $sanitized_filename, $media->path );
+        $media->name = str_replace( $original_filename, $sanitized_filename, $media->name );
 
         $this->media_api->save( $media );
     }

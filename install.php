@@ -437,8 +437,8 @@ class AWPCP_Installer {
         if ( version_compare( $oldversion, '3.5.3' ) < 0 ) {
             $this->upgrade_to_3_5_3( $oldversion );
         }
-        if ( version_compare( $oldversion, '3.5.4' ) < 0 ) {
-            $this->upgrade_to_3_5_4( $oldversion );
+        if ( version_compare( $oldversion, '3.5.4-dev-15' ) < 0 ) {
+            $this->upgrade_to_3_5_4_dev_15( $oldversion );
         }
 
         do_action('awpcp_upgrade', $oldversion, $newversion);
@@ -1150,8 +1150,8 @@ class AWPCP_Installer {
         $wpdb->query( 'DROP TABLE IF EXISTS ' . AWPCP_TABLE_PAGENAME );
     }
 
-    private function upgrade_to_3_5_4( $oldversion ) {
-        // awpcp()->manual_upgrades->enable_upgrade_task( 'awpcp-sanitize-media-filenames' );
+    private function upgrade_to_3_5_4_dev_15( $oldversion ) {
+        awpcp()->manual_upgrades->enable_upgrade_task( 'awpcp-sanitize-media-filenames' );
     }
 }
 
