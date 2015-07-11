@@ -54,9 +54,10 @@ class AWPCP_Media {
         $info = awpcp_utf8_pathinfo( AWPCPUPLOADDIR . $this->name );
 
         $filenames = apply_filters( 'awpcp-file-associated-paths', array(
-            AWPCPUPLOADDIR . "{$this->path}",
             AWPCPUPLOADDIR . "{$info['basename']}",
             AWPCPUPLOADDIR . "{$info['filename']}-large.{$info['extension']}",
+            AWPCPUPLOADDIR . "{$this->path}",
+            AWPCPUPLOADDIR . str_replace( $info['filename'], "{$info['filename']}-large", $this->path ),
             AWPCPTHUMBSUPLOADDIR . "{$info['basename']}",
             AWPCPTHUMBSUPLOADDIR . "{$info['filename']}-primary.{$info['extension']}",
         ), $this );
