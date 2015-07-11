@@ -1151,7 +1151,7 @@ class AWPCP_Installer {
     }
 
     private function upgrade_to_3_5_4( $oldversion ) {
-        // awpcp()->manual_upgrades->enable_upgrade_task( 'awpcp-sanitize-media-filenames' );
+        awpcp()->manual_upgrades->enable_upgrade_task( 'awpcp-sanitize-media-filenames' );
     }
 }
 
