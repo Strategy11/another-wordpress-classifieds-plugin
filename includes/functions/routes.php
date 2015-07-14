@@ -288,7 +288,7 @@ function url_showad($ad_id) {
  */
 function awpcp_get_browse_category_url_from_id( $category_id ) {
     try {
-        $category = awpcp_listings_collection()->get( $category_id );
+        $category = awpcp_categories_collection()->get( $category_id );
         $category_url = url_browsecategory( $category );
     } catch ( AWPCP_Exception $ex ) {
         $category_url = '';
