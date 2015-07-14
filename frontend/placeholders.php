@@ -529,6 +529,10 @@ function awpcp_do_placeholder_images($ad, $placeholder) {
 
             $images = array();
             foreach ($results as $image) {
+                if ( $primary_image->id == $image->id ) {
+                    continue;
+                }
+
                 $large_image = $image->get_url( 'large' );
                 $thumbnail = $image->get_url( 'thumbnail' );
 
