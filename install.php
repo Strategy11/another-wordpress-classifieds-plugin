@@ -387,58 +387,35 @@ class AWPCP_Installer {
     // TODO: remove settings table after another major release
     // TODO: remove pages table after another major release (Added in 3.5.3)
     public function upgrade($oldversion, $newversion) {
-        global $wpdb;
+        $upgrade_routines = array(
+            '1.8.9.4' => 'upgrade_to_1_8_9_4',
+            '1.9.9' => 'upgrade_to_1_9_9',
+            '2.0.0' => 'upgrade_to_2_0_0',
+            '2.0.1' => 'upgrade_to_2_0_1',
+            '2.0.5' => 'upgrade_to_2_0_5',
+            '2.0.6' => 'upgrade_to_2_0_6',
+            '2.0.7' => 'upgrade_to_2_0_7',
+            '2.1.3' => 'upgrade_to_2_1_3',
+            '2.2.1' => 'upgrade_to_2_2_1',
+            '3.0-beta23' => 'upgrade_to_3_0_0',
+            '3.0.2' => 'upgrade_to_3_0_2',
+            '3.2.2' => 'upgrade_to_3_2_2',
+            '3.3.2' => 'upgrade_to_3_3_2',
+            '3.3.3' => 'upgrade_to_3_3_3',
+            '3.4' => 'upgrade_to_3_4',
+            '3.5.3' => 'upgrade_to_3_5_3',
+            '3.5.4-dev-15' => 'upgrade_to_3_5_4_dev_15',
+            '3.5.4-dev-17' => 'upgrade_to_3_5_4_dev_17',
+        );
 
-        if (version_compare($oldversion, '1.8.9.4') < 0) {
-            $this->upgrade_to_1_8_9_4($oldversion);
-        }
-        if (version_compare($oldversion, '1.9.9') < 0) {
-            $this->upgrade_to_1_9_9($oldversion);
-        }
-        if (version_compare($oldversion, '2.0.0') < 0) {
-            $this->upgrade_to_2_0_0($oldversion);
-        }
-        if (version_compare($oldversion, '2.0.1') < 0) {
-            $this->upgrade_to_2_0_1($oldversion);
-        }
-        if (version_compare($oldversion, '2.0.5') < 0) {
-            $this->upgrade_to_2_0_5($oldversion);
-        }
-        if (version_compare($oldversion, '2.0.6') < 0) {
-            $this->upgrade_to_2_0_6($oldversion);
-        }
-        if (version_compare($oldversion, '2.0.7') < 0) {
-            $this->upgrade_to_2_0_7($oldversion);
-        }
-        if (version_compare($oldversion, '2.1.3') < 0) {
-            $this->upgrade_to_2_1_3($oldversion);
-        }
-        if (version_compare($oldversion, '2.2.1') < 0) {
-            $this->upgrade_to_2_2_1($oldversion);
-        }
-        if (version_compare($oldversion, '3.0-beta23') < 0) {
-            $this->upgrade_to_3_0_0($oldversion);
-        }
-        if ( version_compare( $oldversion, '3.0.2' ) < 0 ) {
-            $this->upgrade_to_3_0_2( $oldversion );
-        }
-        if ( version_compare( $oldversion, '3.2.2' ) < 0 ) {
-            $this->upgrade_to_3_2_2( $oldversion );
-        }
-        if ( version_compare( $oldversion, '3.3.2' ) < 0 ) {
-            $this->upgrade_to_3_3_2( $oldversion );
-        }
-        if ( version_compare( $oldversion, '3.3.3' ) < 0 ) {
-            $this->upgrade_to_3_3_3( $oldversion );
-        }
-        if ( version_compare( $oldversion, '3.4' ) < 0 ) {
-            $this->upgrade_to_3_4( $oldversion );
-        }
-        if ( version_compare( $oldversion, '3.5.3' ) < 0 ) {
-            $this->upgrade_to_3_5_3( $oldversion );
-        }
-        if ( version_compare( $oldversion, '3.5.4-dev-15' ) < 0 ) {
-            $this->upgrade_to_3_5_4_dev_15( $oldversion );
+        foreach ( $upgrade_routines as $version => $routine ) {
+            if ( version_compare( $oldversion, $version ) >= 0 ) {
+                continue;
+            }
+
+            if ( method_exists( $this, $routine ) ) {
+                $this->{$routine}( $oldversion );
+            }
         }
 
         do_action('awpcp_upgrade', $oldversion, $newversion);
@@ -1152,6 +1129,12 @@ class AWPCP_Installer {
 
     private function upgrade_to_3_5_4_dev_15( $oldversion ) {
         awpcp()->manual_upgrades->enable_upgrade_task( 'awpcp-sanitize-media-filenames' );
+    }
+
+    private function upgrade_to_3_5_4_dev_17( $oldversion ) {
+        // create tasks table if missing
+        // https://github.com/drodenbaugh/awpcp/issues/1246
+        dbDelta( $this->create_tasks_table );
     }
 }
 
