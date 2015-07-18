@@ -4,7 +4,7 @@
  * Plugin Name: Another Wordpress Classifieds Plugin (AWPCP)
  * Plugin URI: http://www.awpcp.com
  * Description: AWPCP - A plugin that provides the ability to run a free or paid classified ads service on your wordpress blog. <strong>!!!IMPORTANT!!!</strong> Whether updating a previous installation of Another Wordpress Classifieds Plugin or installing Another Wordpress Classifieds Plugin for the first time, please backup your wordpress database before you install/uninstall/activate/deactivate/upgrade Another Wordpress Classifieds Plugin.
- * Version: 3.5.4-dev-17
+ * Version: 3.5.4-dev-18
  * Author: D. Rodenbaugh
  * License: GPLv2 or any later version
  * Author URI: http://www.skylineconsult.com
@@ -363,7 +363,7 @@ class AWPCP {
 
         $this->setup_runtime_options();
 
-        awpcp_register_activation_hook( __FILE__, array( $this->installer, 'install_or_upgrade' ) );
+        awpcp_register_activation_hook( __FILE__, array( $this->installer, 'activate' ) );
 
         add_action('plugins_loaded', array($this, 'setup'), 10);
 
@@ -472,7 +472,9 @@ class AWPCP {
 		// some upgrade operations can't be done in background.
 		// if one those is pending, we will disable all other features
 		// until the user executes the upgrade operaton
-		if ( ! $this->manual_upgrades->has_pending_tasks() ) {
+        $has_pending_manual_upgrades = $this->manual_upgrades->has_pending_tasks();
+
+		if ( ! $has_pending_manual_upgrades ) {
     		$this->pages = new AWPCP_Pages();
 
             add_action( 'awpcp-process-payment-transaction', array( $this, 'process_transaction_update_payment_status' ) );
@@ -493,6 +495,10 @@ class AWPCP {
     		awpcp_schedule_activation();
 
     		$this->modules_manager->load_modules();
+        } else if ( $has_pending_manual_upgrades && get_option( 'awpcp-activated' ) ) {
+            delete_option( 'awpcp-activated' );
+            wp_redirect( awpcp_get_admin_upgrade_url() );
+            exit;
         }
 	}
 
