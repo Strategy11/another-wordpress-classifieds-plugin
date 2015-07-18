@@ -12,7 +12,8 @@
 
 <ol>
     <li><?php _e("If you plan to use the data created by the plugin please export the data from your mysql database before clicking the uninstall link.", "AWPCP"); ?></li>
-    <li><?php _e("If you want to keep your user uploaded images, please download $dirname to your local drive for later use or rename the folder to something else so the uninstaller can bypass it.", "AWPCP"); ?></li>
+    <?php $message = __( 'If you want to keep your user uploaded images, please download <dirname> to your local drive for later use or rename the folder to something else so the uninstaller can bypass it.', 'AWPCP' ); ?>
+    <li><?php echo str_replace( '<dirname>', '<code>' . $dirname . '</code>', $message ); ?></li>
 </ol>
 
 <p>
