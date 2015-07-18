@@ -49,11 +49,11 @@ class AWPCP_Manual_Upgrade_Tasks_Manager {
         return $pending_tasks;
     }
 
-    public function enable_upgrade_task( $name ) {
-        return update_option( $name, true );
+    public function enable_upgrade_task( $slug ) {
+        return update_option( $slug, true );
     }
 
-    public function disable_upgrade_task( $name ) {
-        return delete_option( $name );
+    public function disable_upgrade_task( $slug ) {
+        return delete_option( $slug );
     }
 }
