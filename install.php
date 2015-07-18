@@ -184,12 +184,9 @@ class AWPCP_Installer {
         return AWPCP_Installer::$instance;
     }
 
-    /**
-     * @deprecated 3.4
-     */
     public function activate() {
-        _deprecated_function( __FUNCTION__, '3.4', 'install_or_upgrade' );
-        return $this->install_or_upgrade();
+        $this->install_or_upgrade();
+        update_option( 'awpcp-activated', true );
     }
 
     public function install_or_upgrade() {
