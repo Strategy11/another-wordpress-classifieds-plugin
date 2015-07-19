@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2015-07-18 12:58:55+00:00\n"
+"POT-Creation-Date: 2015-07-19 15:00:04+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -4634,31 +4634,31 @@ msgstr ""
 msgid "You are not authorized to upload files."
 msgstr ""
 
-#: includes/models/ad.php:531
+#: includes/models/ad.php:532
 msgid "N/A"
 msgstr ""
 
-#: includes/models/ad.php:672
+#: includes/models/ad.php:673
 msgctxt "ad payment status"
 msgid "N/A"
 msgstr ""
 
-#: includes/models/ad.php:677
+#: includes/models/ad.php:678
 msgctxt "ad payment status"
 msgid "Pending"
 msgstr ""
 
-#: includes/models/ad.php:679
+#: includes/models/ad.php:680
 msgctxt "ad payment status"
 msgid "Completed"
 msgstr ""
 
-#: includes/models/ad.php:681
+#: includes/models/ad.php:682
 msgctxt "ad payment status"
 msgid "Not Required"
 msgstr ""
 
-#: includes/models/ad.php:683
+#: includes/models/ad.php:684
 msgctxt "ad payment status"
 msgid "Unpaid"
 msgstr ""
@@ -5419,7 +5419,7 @@ msgid ""
 "he changes the selected value in the User/Owner field, the information in "
 "the contact fields (Contact Name, Contact Email and Contact Phone Number) "
 "will be updated (overwriting the information already entered in those "
-"fields) using the infromation of the user just selected. The modifications "
+"fields) using the information of the user just selected. The modifications "
 "will not be persisted until you click the Continue button."
 msgstr ""
 
