@@ -236,40 +236,6 @@ function _create_pager( $item_count, $offset, $results, $tpname ) {
 	return $form;
 }
 
-/**
- * @since 3.2.1
- */
-function awpcp_pagination_options( $selected=10 ) {
-	$options = get_awpcp_option( 'pagination-options' );
-	return awpcp_build_pagination_options( $options, $selected );
-}
-
-/**
- * @since 3.3.2
- */
-function awpcp_build_pagination_options( $options, $selected ) {
-	array_unshift( $options, 0 );
-
-	for ( $i = count( $options ) - 1; $i >= 0; $i-- ) {
-		if ( $options[ $i ] < $selected ) {
-			array_splice( $options, $i + 1, 0, $selected );
-			break;
-		}
-	}
-
-	$options_without_zero = array_filter( $options, 'intval' );
-
-	return array_combine( $options_without_zero , $options_without_zero );
-}
-
-/**
- * @since 3.3.2
- */
-function awpcp_default_pagination_options( $selected = 10 ) {
-	$default_options = awpcp()->settings->get_option_default_value( 'pagination-options' );
-	return awpcp_build_pagination_options( $default_options, $selected );
-}
-
 function unix2dos($mystring) {
 	$mystring=preg_replace("/\r/m",'',$mystring);
 	$mystring=preg_replace("/\n/m","\r\n",$mystring);
