@@ -147,14 +147,17 @@ function( $, settings) {
 
             if ( response.status === 'ok' && response.file ) {
                 $.publish( '/file/uploaded', [ file, response.file ] );
-                insertOrUpdateUploadRestrictionsMessage();
             } else if ( response.status !== 'ok' ) {
+                decreaseFileCountInGroup( file );
                 file.status = plupload.FAILED;
+
                 // to force the queue widget to update the icon and the uploaded files count
                 self.uploader.trigger( 'UploadProgress', file );
 
                 $.publish( '/messages/media-uploader', { type: 'error', 'content': response.errors.join( ' ' ) } );
             }
+
+            insertOrUpdateUploadRestrictionsMessage();
         }
 
         function onFilesRemoved( uploader, files ) {
