@@ -628,55 +628,6 @@ class AWPCP_CSV_Importer {
 		ini_set('auto_detect_line_endings', $ini);
 
 		return $data;
-
-		// $csvData = file_get_contents($fileName);
-		// $order   = array("\r\n", "\n", "\r");
-		// $csvData = str_replace($order, "\n", $csvData);
-		// $rows = split ("[\n]", $csvData);
-		// $i=0;
-
-		// for($i=0; $i<count($rows) && $i<$maxLimit; $i++) {
-		// 	$row = $rows[$i] . "\n";
-		// 	$len = strlen($row);
-		// 	$cell = '';
-		// 	$col=0;
-		// 	$escaped = false;
-
-		// 	for ($j=0; $j<$len; $j++) {
-		// 		if ($row[$j] == '"') {
-		// 			if ($j+1<$len && $row[$j+1] == '"') {
-		// 				$cell .= $row[$j];
-		// 				$j++;
-		// 				continue;
-		// 			}
-		// 			$escaped = !$escaped;
-		// 			continue;
-		// 		}
-
-		// 		if(!$escaped) {
-		// 			// if($row[$j] == ',' || $row[$j] == ';' || $row[$j] == '\r' || $row[$j] == '\n' || $j==$len-1) {
-		// 			if($row[$j] == ',' || $row[$j] == '\r' || $row[$j] == '\n' || $j==$len-1) {
-		// 				if($j==$len-1) {
-		// 					$cell .= $row[$j];
-		// 				}
-		// 				$data[$i][$col] = trim($cell, "\r\n");
-		// 				$cell = '';
-		// 				$col++;
-		// 				$escaped = false;
-		// 				continue;
-		// 			}
-		// 		}
-
-		// 		$cell .= $row[$j];
-		// 	}
-
-		// 	// $cols = split ("[,|;]", $rows[$i]);
-		// 	// for($j=0; $j<count($cols); $j++) {
-		// 	//   $data[$i][$j] = $cols[$j];
-		// 	// }
-		// }
-
-		// return $data;
 	}
 
 	private function get_category_id($name) {
