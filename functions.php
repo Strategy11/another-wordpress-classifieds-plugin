@@ -1,100 +1,5 @@
 <?php
 
-// for PHP4 users, even though it's not technically supported:
-if (!function_exists('array_walk_recursive')) {
-	function array_walk_recursive(&$input, $funcname, $userdata = "") {
-	    if (!is_callable($funcname)) {
-	        return false;
-	    }
-	    if (!is_array($input)) {
-	        return false;
-	    }
-
-	    foreach ($input AS $key => $value) {
-	        if (is_array($input[$key])) {
-	            array_walk_recursive($input[$key], $funcname, $userdata);
-	        } else {
-	            $saved_value = $value;
-	            if (!empty($userdata)) {
-	                $funcname($value, $key, $userdata);
-	            } else {
-	                $funcname($value, $key);
-	            }
-	            if ($value != $saved_value) {
-	                $input[$key] = $value;
-	            }
-	        }
-	    }
-	    return true;
-	}
-}
-
-
-if (!function_exists('wp_strip_all_tags')) {
-	/**
-	 * Properly strip all HTML tags including script and style
-	 *
-	 * @since 2.9.0
-	 *
-	 * @param string $string String containing HTML tags
-	 * @param bool $remove_breaks optional Whether to remove left over line breaks and white space chars
-	 * @return string The processed string.
-	 */
-	function wp_strip_all_tags($string, $remove_breaks = false) {
-		$string = preg_replace( '@<(script|style)[^>]*?>.*?</\\1>@si', '', $string );
-		$string = strip_tags($string);
-
-		if ( $remove_breaks )
-			$string = preg_replace('/[\r\n\t ]+/', ' ', $string);
-
-		return trim($string);
-	}
-}
-
-
-if (!function_exists('esc_textarea')) {
-	/**
-	 * Escaping for textarea values.
-	 *
-	 * @since 3.1
-	 *
-	 * @param string $text
-	 * @return string
-	 */
-	function esc_textarea( $text ) {
-		$safe_text = htmlspecialchars( $text, ENT_QUOTES );
-		return apply_filters( 'esc_textarea', $safe_text, $text );
-	}
-}
-
-
-if (!function_exists('wp_trim_words')) {
-	/**
-	 * Trims text to a certain number of words.
-	 *
-	 * @param string $text Text to trim.
-	 * @param int $num_words Number of words. Default 55.
-	 * @param string $more What to append if $text needs to be trimmed. Default '&hellip;'.
-	 * @return string Trimmed text.
-	 */
-	function wp_trim_words( $text, $num_words = 55, $more = null ) {
-		if ( null === $more )
-			$more = __( '&hellip;', 'AWPCP' );
-		$original_text = $text;
-		$text = wp_strip_all_tags( $text );
-		$words_array = preg_split( "/[\n\r\t ]+/", $text, $num_words + 1, PREG_SPLIT_NO_EMPTY );
-		if ( count( $words_array ) > $num_words ) {
-			array_pop( $words_array );
-			$text = implode( ' ', $words_array );
-			$text = $text . $more;
-		} else {
-			$text = implode( ' ', $words_array );
-		}
-		return apply_filters( 'wp_trim_words', $text, $num_words, $more, $original_text );
-	}
-}
-
-
 function awpcp_esc_attr($text) {
 	// WP adds slashes to all request variables
 	$text = stripslashes($text);
@@ -1028,32 +933,6 @@ function awpcp_country_list_options($value=false, $use_names=true) {
  * as needed.
  */
 
-
-/**
- * Return number of allowed images for an Ad, according to its
- * Ad ID or Fee Term ID.
- *
- * @param $ad_id 		int 	Ad ID.
- * @param $ad_term_id 	int 	Ad Term ID.
- */
-function awpcp_get_ad_number_allowed_images($ad_id) {
-	$ad = AWPCP_Ad::find_by_id($ad_id);
-
-	if (is_null($ad)) {
-		return 0;
-	}
-
-	$payment_term = $ad->get_payment_term();
-
-	if ( ! is_null( $payment_term ) ) {
-		$allowed = $payment_term->images;
-	} else {
-		$allowed = get_awpcp_option('imagesallowedfree');
-	}
-
-	return $allowed;
-}
-
 /**
  * @deprecated 3.0.2 use $media->get_url()
  */
@@ -1104,28 +983,6 @@ function awpcp_get_image_url($image, $suffix='') {
 
 	return false;
 }
-
-
-/**
- *
- * @deprecated use awpcp_media_api()->set_ad_primary_image()
- */
-function awpcp_set_ad_primary_image($ad_id, $image_id) {
-	global $wpdb;
-
-	$query = 'UPDATE ' . AWPCP_TABLE_ADPHOTOS . ' ';
-	$query.= "SET is_primary = 0 WHERE ad_id = %d";
-
-	if ($wpdb->query($wpdb->prepare($query, $ad_id)) === false)
-		return false;
-
-	$query = 'UPDATE ' . AWPCP_TABLE_ADPHOTOS . ' ';
-	$query.= 'SET is_primary = 1 WHERE ad_id = %d AND key_id = %d';
-	$query = $wpdb->prepare($query, $ad_id, $image_id);
-
-	return $wpdb->query($query) !== false;
-}
-
 
 /**
  * Get the primary image of the given Ad.
