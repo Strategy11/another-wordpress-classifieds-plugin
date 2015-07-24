@@ -298,7 +298,7 @@ require_once(AWPCP_DIR . "/includes/payment-gateway-2checkout.php");
 require_once(AWPCP_DIR . "/includes/payment-terms-table.php");
 
 // installation functions
-require_once(AWPCP_DIR . "/install.php");
+require( AWPCP_DIR . "/installer.php" );
 
 // admin functions
 require_once(AWPCP_DIR . "/admin/admin-panel.php");
