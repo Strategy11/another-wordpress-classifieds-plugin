@@ -261,6 +261,8 @@ require_once( AWPCP_DIR . "/includes/upgrade/class-migrate-media-information-tas
 require_once( AWPCP_DIR . "/includes/upgrade/class-migrate-regions-information-task-handler.php" );
 require_once( AWPCP_DIR . "/includes/upgrade/class-update-media-status-task-handler.php" );
 
+require( AWPCP_DIR . '/includes/class-csv-importer.php' );
+
 require_once( AWPCP_DIR . '/includes/class-edit-listing-url-placeholder.php' );
 require_once( AWPCP_DIR . '/includes/class-edit-listing-link-placeholder.php' );
 
