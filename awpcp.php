@@ -78,6 +78,7 @@ require_once( AWPCP_DIR . "/includes/functions/listings.php" );
 require_once( AWPCP_DIR . "/includes/functions/notifications.php" );
 require_once( AWPCP_DIR . "/includes/functions/payments.php" );
 require_once( AWPCP_DIR . "/includes/functions/routes.php" );
+require( AWPCP_DIR . "/includes/functions/legacy.php" );
 
 $nameofsite = awpcp_get_blog_name();
 
@@ -85,8 +86,6 @@ $nameofsite = awpcp_get_blog_name();
 require_once(AWPCP_DIR . "/cron.php");
 
 // other resources
-require_once(AWPCP_DIR . "/dcfunctions.php");
-require_once(AWPCP_DIR . "/functions_awpcp.php");
 require_once(AWPCP_DIR . "/upload_awpcp.php");
 
 // API & Classes
