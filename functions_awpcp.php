@@ -4,23 +4,6 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) {
 	die('You are not allowed to call this page directly.');
 }
 
-///
-///
-// Another Wordpress Classifieds Plugin: This file: functions_awpcp.php
-///
-//Debugger helper:
-if(!function_exists('_log')){
-	function _log( $message ) {
-		if( WP_DEBUG === true ){
-			if( is_array( $message ) || is_object( $message ) ){
-				error_log( print_r( $message, true ) );
-			} else {
-				error_log( $message );
-			}
-		}
-	}
-}
-
 function add_slashes_recursive( $variable ) {
 	if (is_string($variable)) {
 		return addslashes($variable);
@@ -562,22 +545,16 @@ function awpcp_process_mail($senderemail='', $receiveremail='',  $subject='',
 	$subject = $subject;
 	$message = "$body\n\n" . awpcp_format_email_sent_datetime() . "\n\n";
 
-	_log("Processing email");
-
 	if (wp_mail($receiveremail, $subject, $message, $headers )) {
-		_log("Sent via WP");
 		return 1;
 
 	} elseif (awpcp_send_email($senderemail, $receiveremail, $subject, $body,true)) {
-		_log("Sent via send_email");
 		return 1;
 
 	} elseif (@mail($receiveremail, $subject, $body, $headers)) {
-		_log("Sent via mail");
 		return 1;
 
 	} else {
-	    _log("SMTP not configured properly, all attempts failed");
 	    return 0;
 	}
 }
