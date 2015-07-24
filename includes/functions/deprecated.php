@@ -634,3 +634,10 @@ function get_categorynameidall($cat_id = 0) {
 
     return $optionitem;
 }
+
+/**
+ * @deprecated since 2.0.7
+ */
+function checkfortable($table) {
+    return awpcp_table_exists($table);
+}
