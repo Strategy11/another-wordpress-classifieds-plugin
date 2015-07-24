@@ -291,7 +291,7 @@ function awpcp_display_the_classifieds_page_body($awpcppagename) {
 	}
 
 	$output .= "<div id=\"classiwrapper\">";
-	$uiwelcome=strip_slashes_recursive(get_awpcp_option('uiwelcome'));
+	$uiwelcome=stripslashes_deep(get_awpcp_option('uiwelcome'));
 	$output .= "<div class=\"uiwelcome\">$uiwelcome</div>";
 
 	// Place the menu items

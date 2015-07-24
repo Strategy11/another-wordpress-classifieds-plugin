@@ -563,7 +563,7 @@ class AWPCP_Settings_API {
 								    'displayadlayoutcode');
 
 		if (in_array($name, $strip_slashes_from)) {
-			$value = strip_slashes_recursive($value);
+			$value = stripslashes_deep($value);
 		}
 
         if ( ! is_array( $value ) ) {

@@ -33,20 +33,6 @@ function add_slashes_recursive( $variable ) {
 	return $variable ;
 }
 
-/**
- * @deprecated Use WP's stripslashes_deep()
- */
-function strip_slashes_recursive( $variable )
-{
-	if ( is_string( $variable ) )
-	return stripslashes( $variable ) ;
-	if ( is_array( $variable ) )
-	foreach( $variable as $i => $value )
-	$variable[ $i ] = strip_slashes_recursive( $value ) ;
-
-	return $variable ;
-}
-
 function string_contains_string_at_position($haystack, $needle, $pos = 0, $case=true) {
 	if ($case) {
 		$result = (strpos($haystack, $needle, 0) === $pos);
