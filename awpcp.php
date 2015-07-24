@@ -85,9 +85,6 @@ $nameofsite = awpcp_get_blog_name();
 // cron
 require_once(AWPCP_DIR . "/cron.php");
 
-// other resources
-require_once(AWPCP_DIR . "/upload_awpcp.php");
-
 // API & Classes
 require_once(AWPCP_DIR . "/includes/exceptions.php");
 
