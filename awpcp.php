@@ -312,7 +312,6 @@ require_once( AWPCP_DIR . '/admin/form-fields/class-update-form-fields-order-aja
 
 // frontend functions
 require_once(AWPCP_DIR . "/frontend/placeholders.php");
-require_once(AWPCP_DIR . "/frontend/payment-functions.php");
 require_once(AWPCP_DIR . "/frontend/ad-functions.php");
 require_once(AWPCP_DIR . "/frontend/shortcode.php");
 
