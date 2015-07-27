@@ -67,7 +67,7 @@ class AWPCP_Listings_Table extends WP_List_Table {
             $query['include_listings_in_children_categories'] = true;
         }
 
-        $show_unpaid = false;
+        $show_incomplete = false;
         $show_non_verified = false;
         $show_expired = false;
         $show_awaiting_approval = false;
@@ -81,9 +81,9 @@ class AWPCP_Listings_Table extends WP_List_Table {
                 $query['flagged'] = true;
                 break;
 
-            case 'unpaid':
+            case 'incomplete':
                 $query['payment_status'] = 'Unpaid';
-                $show_unpaid = true;
+                $show_incomplete = true;
                 break;
 
             case 'non-verified':
@@ -136,7 +136,7 @@ class AWPCP_Listings_Table extends WP_List_Table {
 
         return array(
             'query' => $query,
-            'filters' => compact( 'show_unpaid', 'show_expired', 'show_non_verified', 'show_awaiting_approval' ),
+            'filters' => compact( 'show_incomplete', 'show_expired', 'show_non_verified', 'show_awaiting_approval' ),
         );
     }
 
@@ -152,7 +152,7 @@ class AWPCP_Listings_Table extends WP_List_Table {
         } else if ( $filters['show_non_verified'] ) {
             $this->total_items = $listings->count_successfully_paid_listings_with_query( $query );
             $this->items = $listings->find_successfully_paid_listings_with_query( $query );
-        } else if ( $filters['show_unpaid'] ) {
+        } else if ( $filters['show_incomplete'] ) {
             $this->total_items = $listings->count_listings_with_query( $query );
             $this->items = $listings->find_listings_with_query( $query );
         } else {
@@ -235,7 +235,7 @@ class AWPCP_Listings_Table extends WP_List_Table {
             'images-awaiting-approval' => 'images-awaiting-approval',
             'is-featured' => 'featured-ads',
             'flagged' => 'flagged-ads',
-            'unpaid' => 'unpaid-ads',
+            'incomplete' => 'incomplete-listings',
             'non-verified' => 'non-verified-ads',
             'completed' => 'completed',
         );
@@ -249,7 +249,7 @@ class AWPCP_Listings_Table extends WP_List_Table {
             'images-awaiting-approval' => array( __( 'Images Awaiting Approval', 'AWPCP' ), $this->page->url( array( 'filterby' => 'images-awaiting-approval', 'filter' => true ) ) ),
             'featured-ads' => array(__('Featured', 'AWPCP'), $this->page->url(array('filterby' => 'is-featured', 'filter' => true))),
             'flagged-ads'  => array(__('Flagged', 'AWPCP'), $this->page->url(array('filterby' => 'flagged', 'filter' => true))),
-            'unpaid-ads' => array(__('Unpaid', 'AWPCP'), $this->page->url(array('filterby' => 'unpaid', 'filter' => true))),
+            'incomplete-listings' => array( __( 'Incomplete', 'AWPCP' ), $this->page->url( array( 'filterby' => 'incomplete', 'filter' => true ) ) ),
             'non-verified-ads' => array( __( 'Unverified', 'AWPCP' ), $this->page->url( array( 'filterby' => 'non-verified', 'filter' => true ) ) ),
             'completed' => array( __( 'Completed', 'AWPCP' ), $this->page->url( array( 'filterby' => 'completed', 'filter' => false ) ) ),
         );
