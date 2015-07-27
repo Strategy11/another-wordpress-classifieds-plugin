@@ -199,7 +199,7 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
             $sender = awpcp_strip_html_tags($sender_name);
             $from = $sender_email;
         } else {
-            $sender = $nameofsite;
+            $sender = awpcp_admin_sender_name();
             $from = awpcp_admin_sender_email_address();
         }
 

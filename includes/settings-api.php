@@ -278,7 +278,28 @@ class AWPCP_Settings_API {
 		$key = $this->add_section($group, __('General Email Settings', 'AWPCP'), 'default', 20, array($this, 'section'));
 
 		$this->add_setting( $key, 'admin-recipient-email', __( 'TO email address for outgoing emails', 'AWPCP' ), 'textfield', '', __( 'Emails are sent to your WordPress admin email. If you prefere to receive emails in a different address, please enter it here.', 'AWPCP' ) );
-		$this->add_setting( $key, 'awpcpadminemail', __( 'FROM email address for outgoing emails', 'AWPCP' ), 'textfield', '', __( 'Emails go out using your WordPress admin email. If you prefer to use a different email enter it here.', 'AWPCP' ) );
+
+		$this->add_setting(
+			$key,
+			'awpcpadminemail',
+			__( 'FROM email address for outgoing emails', 'AWPCP' ),
+			'textfield',
+			'',
+			__( 'Emails go out using your WordPress admin email. If you prefer to use a different email enter it here. Some servers will not process outgoing emails that have an email address from gmail, yahoo, hotmail and other free email services in the FROM field. Some servers will also not process emails that have an email address that is different from the email address associated with your hosting account in the FROM field. If you are with such a webhost you need to make sure your WordPress admin email address is tied to your hosting account.', 'AWPCP' )
+		);
+
+		$setting_label = __( 'Use wordpress@<website-domain> as the FROM email address for outgoing emails.', 'AWPCP' );
+		$setting_label = str_replace( '<website-domain>', awpcp_request()->domain( false ), $setting_label );
+
+		$this->add_setting(
+			$key,
+			'sent-emails-using-wordpress-email-address',
+			$setting_label,
+			'checkbox',
+			0,
+			__( "That's the address WordPress uses to send its emails. If you are receiving the registration emails and other WordPress notifications succesfully, then you may want to enable this setting to use the same email address for all the outgoing messages. If enabled, the FROM email address for outgoing emails setting is ignored.", 'AWPCP' )
+		);
+
 		$this->add_setting( $key, 'usesenderemailinsteadofadmin', __( 'Use sender email for reply messages', 'AWPCP' ), 'checkbox', 0, __( 'Check this to use the name and email of the sender in the FROM field when someone replies to an ad. When unchecked the messages go out with the website name and WP admin email address in the from field. Some servers will not process outgoing emails that have an email address from gmail, yahoo, hotmail and other free email services in the FROM field. Some servers will also not process emails that have an email address that is different from the email address associated with your hosting account in the FROM field. If you are with such a webhost you need to leave this option unchecked and make sure your WordPress admin email address is tied to your hosting account.', 'AWPCP' ) );
 		$this->add_setting( $key, 'include-ad-access-key', __( 'Include Ad access key in email messages', 'AWPCP' ), 'checkbox', 1, __( "Include Ad access key in email notifications. You may want to uncheck this option if you are using the Ad Management panel, but is not necessary.", 'AWPCP' ) );
 

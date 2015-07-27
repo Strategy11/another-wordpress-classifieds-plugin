@@ -1666,12 +1666,28 @@ function awpcp_admin_recipient_email_address() {
  * @return	string	email address
  */
 function awpcp_admin_sender_email_address($include_contact_name=false) {
-	$email_address = get_awpcp_option( 'awpcpadminemail' );
-	if ( empty( $email_address ) ) {
-		$email_address = get_option( 'admin_email' );
-	}
+    if ( awpcp_get_option( 'sent-emails-using-wordpress-email-address' ) ) {
+        $email_address = sprintf( 'wordpress@%s', awpcp_request()->domain( false ) );
+    } else if ( strlen( get_awpcp_option( 'awpcpadminemail' ) ) > 0 ) {
+        $email_address = get_awpcp_option( 'awpcpadminemail' );
+    } else {
+        $email_address = get_option( 'admin_email' );
+    }
 
 	return $email_address;
+}
+
+/**
+ * @since next-release
+ */
+function awpcp_admin_sender_name() {
+    if ( awpcp_get_option( 'sent-emails-using-wordpress-email-address' ) ) {
+        $sender_name = 'WordPress';
+    } else {
+        $sender_name = awpcp_get_blog_name();
+    }
+
+    return $sender_name;
 }
 
 /**
@@ -1682,7 +1698,10 @@ function awpcp_admin_sender_email_address($include_contact_name=false) {
  * @return	string	name <email@address>
  */
 function awpcp_admin_email_from() {
-	return awpcp_format_email_address( awpcp_admin_sender_email_address(), awpcp_get_blog_name() );
+    $email_address = awpcp_admin_sender_email_address();
+    $sender_name = awpcp_admin_sender_name();
+
+    return awpcp_format_email_address( $email_address, $sender_name );
 }
 
 /**
