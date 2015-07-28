@@ -69,10 +69,6 @@ class AWPCP_Media {
         return $filenames;
     }
 
-    public function get_original_file_path() {
-        return trailingslashit( AWPCPUPLOADDIR ) . $this->path;
-    }
-
     public function get_url( $size = 'thumbnail' ) {
         if ( $size == 'original' ) {
             return $this->get_original_file_url();
@@ -86,7 +82,12 @@ class AWPCP_Media {
     }
 
     public function get_original_file_url() {
-        return $this->sanitize_url( trailingslashit( AWPCPUPLOADURL ) . $this->path );
+        return $this->get_url_from_path( $this->get_original_file_path() );
+    }
+
+    private function get_url_from_path( $path ) {
+        // TODO: write upgrade routine to fix file names that include whitespaces?
+        return $path ? $this->sanitize_url( str_replace( rtrim( ABSPATH, '/' ), get_site_url(), $path ) ) : false;
     }
 
     private function sanitize_url( $url ) {
@@ -98,7 +99,15 @@ class AWPCP_Media {
         return $url;
     }
 
+    public function get_original_file_path() {
+        return trailingslashit( AWPCPUPLOADDIR ) . $this->path;
+    }
+
     public function get_large_image_url() {
+        return $this->get_url_from_path( $this->get_large_image_path() );
+    }
+
+    public function get_large_image_path() {
         $file_path = $this->get_original_file_path();
 
         $alternatives = array(
@@ -106,36 +115,12 @@ class AWPCP_Media {
             $file_path
         );
 
-        return $this->get_url_from_path( $this->get_path_from_alternatives( $alternatives ) );
+        return $this->get_path_from_alternatives( $alternatives );
     }
 
     private function get_path_with_suffix( $path, $suffix ) {
         $extension = awpcp_get_file_extension( $path );
         return str_replace( ".{$extension}", "-{$suffix}.{$extension}", $path );
-    }
-
-    public function get_primary_thumbnail_url() {
-        $thumbnail_path = $this->get_thumbnail_path();
-
-        $alternatives = array(
-            $this->get_path_with_suffix( $thumbnail_path, 'primary' ),
-            $thumbnail_path,
-            $this->get_original_file_path(),
-        );
-
-        return $this->get_url_from_path( $this->get_path_from_alternatives( $alternatives ) );
-    }
-
-    public function get_thumbnail_url() {
-        return $this->get_url_from_path( $this->get_thumbnail_path() );
-    }
-
-    public function get_thumbnail_path() {
-        $alternatives = apply_filters( 'awpcp-get-file-thumbnail-url-alternatives', array(
-            trailingslashit( AWPCPTHUMBSUPLOADDIR ) . $this->name,
-        ), $this );
-
-        return $this->get_path_from_alternatives( $alternatives );
     }
 
     private function get_path_from_alternatives( $alternatives ) {
@@ -148,9 +133,32 @@ class AWPCP_Media {
         return false;
     }
 
-    private function get_url_from_path( $path ) {
-        // TODO: write upgrade routine to fix file names that include whitespaces?
-        return $path ? $this->sanitize_url( str_replace( rtrim( ABSPATH, '/' ), get_site_url(), $path ) ) : false;
+    public function get_primary_thumbnail_url() {
+        return $this->get_url_from_path( $this->get_primary_thumbnail_path() );
+    }
+
+    public function get_primary_thumbnail_path() {
+        $thumbnail_path = $this->get_thumbnail_path();
+
+        $alternatives = array(
+            $this->get_path_with_suffix( $thumbnail_path, 'primary' ),
+            $thumbnail_path,
+            $this->get_original_file_path(),
+        );
+
+        return $this->get_path_from_alternatives( $alternatives );
+    }
+
+    public function get_thumbnail_url() {
+        return $this->get_url_from_path( $this->get_thumbnail_path() );
+    }
+
+    public function get_thumbnail_path() {
+        $alternatives = apply_filters( 'awpcp-get-file-thumbnail-url-alternatives', array(
+            trailingslashit( AWPCPTHUMBSUPLOADDIR ) . $this->name,
+        ), $this );
+
+        return $this->get_path_from_alternatives( $alternatives );
     }
 
     public function get_icon_url() {
