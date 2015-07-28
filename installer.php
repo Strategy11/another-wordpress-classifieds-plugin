@@ -151,6 +151,7 @@ class AWPCP_Installer {
             `enabled` TINYINT(1) NOT NULL DEFAULT 0,
             `status` VARCHAR(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '" . AWPCP_Media::STATUS_APPROVED . "',
             `is_primary` TINYINT(1) NOT NULL DEFAULT 0,
+            `metadata` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
             `created` DATETIME NOT NULL,
             PRIMARY KEY  (`id`)
         ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;";
@@ -402,7 +403,7 @@ class AWPCP_Installer {
             '3.4' => 'upgrade_to_3_4',
             '3.5.3' => 'upgrade_to_3_5_3',
             '3.5.4-dev-15' => 'upgrade_to_3_5_4_dev_15',
-            '3.5.4-dev-17' => 'upgrade_to_3_5_4_dev_17',
+            '3.5.4-dev-20' => 'upgrade_to_3_5_4_dev_20',
         );
 
         foreach ( $upgrade_routines as $version => $routine ) {
@@ -1128,10 +1129,17 @@ class AWPCP_Installer {
         awpcp()->manual_upgrades->enable_upgrade_task( 'awpcp-sanitize-media-filenames' );
     }
 
-    private function upgrade_to_3_5_4_dev_17( $oldversion ) {
+    private function upgrade_to_3_5_4_dev_20( $oldversion ) {
+        global $wpdb;
+
         // create tasks table if missing
         // https://github.com/drodenbaugh/awpcp/issues/1246
         dbDelta( $this->create_tasks_table );
+
+        if ( ! awpcp_column_exists( AWPCP_TABLE_MEDIA, 'metadata' ) ) {
+            $query = 'ALTER TABLE ' . AWPCP_TABLE_MEDIA . " ADD `metadata` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' AFTER `is_primary`";
+            $wpdb->query( $query );
+        }
     }
 }
 

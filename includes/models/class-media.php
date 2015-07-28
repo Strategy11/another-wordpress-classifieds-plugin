@@ -2,11 +2,13 @@
 
 class AWPCP_Media {
 
+    public $metadata;
+
     const STATUS_AWAITING_APPROVAL = 'Awaiting-Approval';
     const STATUS_APPROVED = 'Approved';
     const STATUS_REJECTED = 'Rejected';
 
-    public function __construct( $id, $ad_id, $name, $path, $mime_type, $enabled, $status, $is_primary, $created ) {
+    public function __construct( $id, $ad_id, $name, $path, $mime_type, $enabled, $status, $is_primary, $metadata, $created ) {
         $this->id = $id;
         $this->ad_id = $ad_id;
         $this->name = $name;
@@ -15,6 +17,7 @@ class AWPCP_Media {
         $this->enabled = $enabled;
         $this->status = $status;
         $this->is_primary = $is_primary;
+        $this->metadata = $metadata;
         $this->created = $created;
     }
 
@@ -28,6 +31,7 @@ class AWPCP_Media {
             $object->enabled,
             $object->status,
             $object->is_primary,
+            isset( $object->metadata ) ? maybe_unserialize( $object->metadata ) : array(),
             $object->created
         );
     }

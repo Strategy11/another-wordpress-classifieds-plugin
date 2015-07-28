@@ -25,6 +25,7 @@ class AWPCP_MediaAPI {
             'mime_type' => awpcp_get_property( $object, 'mime_type', null ),
             'enabled' => awpcp_get_property( $object, 'enabled', null ),
             'status' => awpcp_get_property( $object, 'status', null ),
+            'metadata' => maybe_serialize( awpcp_get_property( $object, 'metadata', null ) ),
             'is_primary' => awpcp_get_property( $object, 'is_primary', null ),
         );
 
