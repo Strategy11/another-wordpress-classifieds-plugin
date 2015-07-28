@@ -340,4 +340,16 @@ class AWPCP_MediaAPI {
             return false;
         }
     }
+
+    public function get_metadata( $image, $name, $default = false ) {
+        if ( isset( $image->metadata[ $name ] ) ) {
+            return $image->metadata[ $name ];
+        } else {
+            return $default;
+        }
+    }
+
+    public function set_metadata( $image, $name, $value ) {
+        $image->metadata[ $name ] = $value;
+    }
 }
