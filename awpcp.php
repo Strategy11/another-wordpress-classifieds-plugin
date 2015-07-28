@@ -252,6 +252,7 @@ require_once( AWPCP_DIR . "/includes/settings/class-registration-settings.php" )
 require_once( AWPCP_DIR . "/includes/settings/class-user-notifications-settings.php" );
 require_once( AWPCP_DIR . "/includes/settings/class-window-title-settings.php" );
 
+require( AWPCP_DIR . "/includes/upgrade/class-calculate-image-dimensions-upgrade-task-handler.php" );
 require_once( AWPCP_DIR . "/includes/upgrade/class-fix-empty-media-mime-type-upgrade-routine.php" );
 require_once( AWPCP_DIR . "/includes/upgrade/class-manual-upgrade-tasks-manager.php" );
 require_once( AWPCP_DIR . "/includes/upgrade/class-manual-upgrade-tasks.php" );

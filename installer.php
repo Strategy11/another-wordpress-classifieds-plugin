@@ -1140,6 +1140,8 @@ class AWPCP_Installer {
             $query = 'ALTER TABLE ' . AWPCP_TABLE_MEDIA . " ADD `metadata` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' AFTER `is_primary`";
             $wpdb->query( $query );
         }
+
+        awpcp()->manual_upgrades->enable_upgrade_task( 'awpcp-calculate-image-dimensions' );
     }
 }
 
