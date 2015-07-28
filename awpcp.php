@@ -679,8 +679,7 @@ class AWPCP {
         $handler = awpcp_update_form_fields_order_ajax_handler();
         add_action( 'wp_ajax_awpcp-update-form-fields-order', array( $handler, 'ajax' ) );
 
-        $media_manager = awpcp_new_media_manager();
-        $media_manager->register_file_handler( awpcp_image_file_handler() );
+        add_action( 'awpcp-file-handlers', array( $this, 'register_file_handlers' ) );
 
         $handler = awpcp_drip_autoresponder_ajax_handler();
         add_action( 'wp_ajax_awpcp-autoresponder-user-subscribed', array( $handler, 'ajax' ) );
@@ -1162,6 +1161,15 @@ class AWPCP {
 
     public function register_notification_handlers() {
         add_action( 'awpcp-media-uploaded', 'awpcp_send_listing_media_uploaded_notifications', 10, 2 );
+    }
+
+    public function register_file_handlers( $file_handlers ) {
+        $file_handlers['image'] = array(
+            'mime_types' => $this->settings->get_runtime_option( 'image-mime-types' ),
+            'constructor' => 'awpcp_image_file_handler',
+        );
+
+        return $file_handlers;
     }
 
 

@@ -1,10 +1,10 @@
 <?php
 
-function awpcp_listing_image_file_validator() {
-    return new AWPCP_ListingImageFileValidator( awpcp_listing_upload_limits(), awpcp_file_validation_errors() );
+function awpcp_image_file_validator() {
+    return new AWPCP_Image_File_Validator( awpcp_listing_upload_limits(), awpcp_file_validation_errors() );
 }
 
-class AWPCP_ListingImageFileValidator extends AWPCP_ListingFileValidator {
+class AWPCP_Image_File_Validator extends AWPCP_ListingFileValidator {
 
     protected function get_listing_upload_limits( $listing ) {
         return $this->upload_limits->get_listing_upload_limits_by_file_type( $listing, 'images' );
