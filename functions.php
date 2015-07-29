@@ -1513,11 +1513,12 @@ function awpcp_html_hidden_fields( $fields ) {
 function awpcp_html_image( $params ) {
     $params = wp_parse_args( $params, array(
         'attributes' => array(
-            'src' => null,
-            'title' => null,
             'alt' => null,
+            'title' => null,
+            'src' => null,
             'width' => null,
             'height' => null,
+            'style' => null,
         ),
     ) );
 

@@ -132,10 +132,23 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
         if ( empty( $image_url ) ) {
             $html_image = '';
         } else {
-            $html_image = sprintf( '<a class="awpcp-listings-widget-item-listing-link self" href="%1$s"><img src="%2$s" alt="%3$s" /></a>',
-                                   url_showad( $item->ad_id ),
-                                   $image_url,
-                                   esc_attr( $item->ad_title ) );
+            $image_dimensions = awpcp_media_api()->get_metadata( $image, 'image-dimensions', array() );
+            $image_dimensions = awpcp_array_data( 'thumbnail', array(), $image_dimensions );
+
+            $image_attributes = array(
+                'attributes' => array(
+                    'alt' => esc_attr( $item->get_title() ),
+                    'src' => $image_url,
+                    'width' => awpcp_array_data( 'width', null, $image_dimensions ),
+                    'height' => awpcp_array_data( 'height', null, $image_dimensions ),
+                ),
+            );
+
+            $html_image = sprintf(
+                '<a class="awpcp-listings-widget-item-listing-link self" href="%s">%s</a>',
+                url_showad( $item->ad_id ),
+                awpcp_html_image( $image_attributes )
+            );
         }
 
         return apply_filters( 'awpcp-listings-widget-listing-thumbnail', $html_image, $item );
