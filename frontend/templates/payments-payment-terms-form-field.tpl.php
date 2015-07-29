@@ -9,5 +9,5 @@
     <?php $items = $table->get_items(); ?>
     <?php $value = $table->item_id( $items[0], array_shift( $accepted_payment_types ) ); ?>
     <?php $attrs = array( 'type' => 'hidden', 'name' => 'payment_term', 'value' => $value ); ?>
-    <?php echo sprintf( '<input %s>', awpcp_render_attributes( $attrs ) ); ?>
+    <?php echo sprintf( '<input %s>', awpcp_html_attributes( $attrs ) ); ?>
 <?php endif; ?>

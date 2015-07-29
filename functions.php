@@ -1488,15 +1488,12 @@ function awpcp_module_not_compatible_notice( $module, $installed_version ) {
     return awpcp_print_error( $message );
 }
 
-
-function awpcp_render_attributes($attrs) {
-    $attributes = array();
-    foreach ($attrs as $name => $value) {
-        if (is_array($value))
-            $value = join(' ', array_filter($value, 'strlen'));
-        $attributes[] = sprintf('%s="%s"', $name, esc_attr($value));
+function awpcp_html_attributes( $attributes ) {
+    $output = array();
+    foreach ( $attributes as $name => $value ) {
+        $output[] = sprintf( '%s="%s"', $name, $value );
     }
-    return join(' ', $attributes);
+    return implode( ' ', $output );
 }
 
 function awpcp_html_hidden_fields( $fields ) {
