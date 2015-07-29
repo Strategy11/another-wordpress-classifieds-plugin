@@ -504,18 +504,38 @@ function awpcp_do_placeholder_images($ad, $placeholder) {
                 $link = '';
             }
 
+            $image_dimensions = awpcp_media_api()->get_metadata( $primary_image, 'image-dimensions', array() );
+            $image_dimensions = awpcp_array_data( 'primary', array(), $image_dimensions );
+
             // single ad
+            $image_attributes = array(
+                'attributes' => array(
+                    'class' => 'thumbshow',
+                    'src' => esc_attr( $thumbnail ),
+                    'width' => awpcp_array_data( 'width', null, $image_dimensions ),
+                    'height' => awpcp_array_data( 'height', null, $image_dimensions ),
+                )
+            );
+
             $content = '<div class="awpcp-ad-primary-image">';
             $content.= '<a class="awpcp-listing-primary-image-thickbox-link thickbox thumbnail" href="%s" rel="%s">';
-            $content.= '<img class="thumbshow" src="%s"/>';
+            $content.= awpcp_html_image( $image_attributes );
             $content.= '</a>%s';
             $content.= '</div>';
 
-            $placeholders['featureimg'] = sprintf( $content, esc_attr( $large_image ), $gallery_name, esc_attr( $thumbnail ), $link );
+            $placeholders['featureimg'] = sprintf( $content, esc_attr( $large_image ), $gallery_name, $link );
 
             // listings
-            $content = '<a class="awpcp-listing-primary-image-listing-link" href="%s"><img src="%s" width="%spx" border="0" alt="%s" /></a>';
-            $content = sprintf($content, $url, $thumbnail, $thumbnail_width, awpcp_esc_attr($ad->ad_title));
+            $image_attributes = array(
+                'attributes' => array(
+                    'alt' => awpcp_esc_attr( $ad->ad_title ),
+                    'src' => esc_attr( $thumbnail ),
+                    'width' => $thumbnail_width,
+                )
+            );
+
+            $content = '<a class="awpcp-listing-primary-image-listing-link" href="%s">%s</a>';
+            $content = sprintf( $content, $url, awpcp_html_image( $image_attributes ) );
 
             $placeholders['awpcp_image_name_srccode'] = $content;
         }
@@ -542,9 +562,21 @@ function awpcp_do_placeholder_images($ad, $placeholder) {
                     $css = '';
                 }
 
+                $image_dimensions = awpcp_media_api()->get_metadata( $image, 'image-dimensions', array() );
+                $image_dimensions = awpcp_array_data( 'thumbnail', array(), $image_dimensions );
+
+                $image_attributes = array(
+                    'attributes' => array(
+                        'class' => 'thumbshow',
+                        'src' => esc_attr( $thumbnail ),
+                        'width' => awpcp_array_data( 'width', null, $image_dimensions ),
+                        'height' => awpcp_array_data( 'height', null, $image_dimensions ),
+                    )
+                );
+
                 $content = '<li class="%s">';
                 $content.= '<a class="thickbox" href="%s" rel="%s">';
-                $content.= '<img class="thumbshow" src="%s" />';
+                $content.= awpcp_html_image( $image_attributes );
                 $content.= '</a>';
                 $content.= '</li>';
 
@@ -552,8 +584,7 @@ function awpcp_do_placeholder_images($ad, $placeholder) {
                     $content,
                     esc_attr( $css ),
                     esc_attr( $large_image ),
-                    esc_attr( $gallery_name ),
-                    esc_attr( $thumbnail )
+                    esc_attr( $gallery_name )
                 );
 
                 $shown = $shown + 1;
@@ -569,8 +600,17 @@ function awpcp_do_placeholder_images($ad, $placeholder) {
     // fallback thumbnail
     if ( awpcp_are_images_allowed() && empty( $placeholders['awpcp_image_name_srccode'] ) ) {
         $thumbnail = sprintf('%s/adhasnoimage.png', $awpcp_imagesurl);
-        $content = '<a class="awpcp-listing-primary-image-listing-link" href="%s"><img src="%s" width="%spx" border="0" alt="%s" /></a>';
-        $content = sprintf($content, $url, $thumbnail, $thumbnail_width, awpcp_esc_attr($ad->ad_title));
+
+        $image_attributes = array(
+            'attributes' => array(
+                'alt' => awpcp_esc_attr( $ad->ad_title ),
+                'src' => esc_attr( $thumbnail ),
+                'width' => esc_attr( $thumbnail_width ),
+            )
+        );
+
+        $content = '<a class="awpcp-listing-primary-image-listing-link" href="%s">%s</a>';
+        $content = sprintf($content, $url, awpcp_html_image( $image_attributes ) );
 
         $placeholders['awpcp_image_name_srccode'] = $content;
     }
