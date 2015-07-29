@@ -1510,6 +1510,23 @@ function awpcp_html_hidden_fields( $fields ) {
     return implode( "\n", $output );
 }
 
+function awpcp_html_image( $params ) {
+    $params = wp_parse_args( $params, array(
+        'attributes' => array(
+            'src' => null,
+            'title' => null,
+            'alt' => null,
+            'width' => null,
+            'height' => null,
+        ),
+    ) );
+
+    $attributes = rtrim( ' ' . awpcp_html_attributes( $params['attributes'] ) );
+    $element = str_replace( '<attributes>', $attributes, '<img<attributes>/>' );
+
+    return $element;
+}
+
 function awpcp_uploaded_file_error($file) {
 	$upload_errors = array(
 		UPLOAD_ERR_OK        	=> __("No errors.", 'AWPCP'),
