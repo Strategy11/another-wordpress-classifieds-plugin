@@ -96,6 +96,10 @@ class AWPCP_MediaAPI {
             $data['created'] = awpcp_datetime();
         }
 
+        if ( ! isset( $data['metadata'] ) || ! is_array( $data['metadata'] ) ) {
+            $data['metadata'] = '';
+        }
+
         $data['enabled'] = absint( $data['enabled'] );
         $data['is_primary'] = absint( $data['is_primary'] );
 
