@@ -363,9 +363,9 @@ class AWPCP_Installer {
         array_map('delete_option', $wpdb->get_col($sql));
 
         // remove widgets
-        unregister_widget("AWPCP_LatestAdsWidget");
-        unregister_widget('AWPCP_RandomAdWidget');
-        unregister_widget('AWPCP_Search_Widget');
+        awpcp_unregister_widget_if_exists( 'AWPCP_LatestAdsWidget' );
+        awpcp_unregister_widget_if_exists( 'AWPCP_RandomAdWidget' );
+        awpcp_unregister_widget_if_exists( 'AWPCP_Search_Widget' );
 
         // Clear the ad expiration schedule
         wp_clear_scheduled_hook('doadexpirations_hook');

@@ -2016,6 +2016,21 @@ function awpcp_register_deactivation_hook( $__FILE__, $callback ) {
 }
 
 /**
+ * @since next-release
+ */
+function awpcp_unregister_widget_if_exists( $widget_class ) {
+    global $wp_widget_factory;
+
+    if ( ! is_object( $wp_widget_factory ) ) {
+        return;
+    }
+
+    if ( isset( $wp_widget_factory->widgets[ 'AWPCP_LatestAdsWidget' ] ) ) {
+        unregister_widget("AWPCP_LatestAdsWidget");
+    }
+}
+
+/**
  * @since 3.4
  */
 function awpcp_are_images_allowed() {
