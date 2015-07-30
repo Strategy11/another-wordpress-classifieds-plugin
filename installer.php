@@ -317,7 +317,7 @@ class AWPCP_Installer {
         // Remove the upload folders with uploaded images
         $dirname = AWPCPUPLOADDIR;
         if (file_exists($dirname)) {
-            require_once $awpcp_plugin_path.'/fileop.class.php';
+            require_once( AWPCP_DIR . '/includes/class-fileop.php' );
             $fileop = new fileop();
             $fileop->delete($dirname);
         }
