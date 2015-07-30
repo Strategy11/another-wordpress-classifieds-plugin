@@ -796,7 +796,7 @@ class AWPCP {
                     'url' => 'http://www.awpcp.com/premium-modules/mark-as-sold-module/?ref=panel',
                     'installed' => defined( 'AWPCP_MARK_AS_SOLD_MODULE' ),
                     'version' => 'AWPCP_MARK_AS_SOLD_MODULE_DB_VERSION',
-                    'required' => '1.0.1',
+                    'required' => '3.5.1',
                 ),
 				'paypal-pro' => array(
 					'name' => __(  'PayPal Pro', 'AWPCP'  ),
