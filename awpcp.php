@@ -4,7 +4,7 @@
  * Plugin Name: Another Wordpress Classifieds Plugin (AWPCP)
  * Plugin URI: http://www.awpcp.com
  * Description: AWPCP - A plugin that provides the ability to run a free or paid classified ads service on your wordpress blog. <strong>!!!IMPORTANT!!!</strong> Whether updating a previous installation of Another Wordpress Classifieds Plugin or installing Another Wordpress Classifieds Plugin for the first time, please backup your wordpress database before you install/uninstall/activate/deactivate/upgrade Another Wordpress Classifieds Plugin.
- * Version: 3.5.4-dev-19
+ * Version: 3.5.4-dev-20
  * Author: D. Rodenbaugh
  * License: GPLv2 or any later version
  * Author URI: http://www.skylineconsult.com
@@ -72,22 +72,19 @@ require_once(AWPCP_DIR . "/debug.php");
 require_once(AWPCP_DIR . "/functions.php");
 require_once( AWPCP_DIR . "/includes/functions/categories.php" );
 require_once( AWPCP_DIR . "/includes/functions/deprecated.php" );
+require( AWPCP_DIR . '/includes/functions/file-upload.php' );
 require_once( AWPCP_DIR . "/includes/functions/format.php" );
 require_once( AWPCP_DIR . "/includes/functions/hooks.php" );
 require_once( AWPCP_DIR . "/includes/functions/listings.php" );
 require_once( AWPCP_DIR . "/includes/functions/notifications.php" );
 require_once( AWPCP_DIR . "/includes/functions/payments.php" );
 require_once( AWPCP_DIR . "/includes/functions/routes.php" );
+require( AWPCP_DIR . "/includes/functions/legacy.php" );
 
 $nameofsite = awpcp_get_blog_name();
 
 // cron
 require_once(AWPCP_DIR . "/cron.php");
-
-// other resources
-require_once(AWPCP_DIR . "/dcfunctions.php");
-require_once(AWPCP_DIR . "/functions_awpcp.php");
-require_once(AWPCP_DIR . "/upload_awpcp.php");
 
 // API & Classes
 require_once(AWPCP_DIR . "/includes/exceptions.php");
@@ -215,17 +212,22 @@ require_once( AWPCP_DIR . '/includes/cron/class-task-logic.php' );
 require_once( AWPCP_DIR . '/includes/cron/class-tasks-collection.php' );
 require_once( AWPCP_DIR . '/includes/cron/class-background-process.php' );
 
-require_once( AWPCP_DIR . '/includes/media/class-file-types.php' );
-require_once( AWPCP_DIR . '/includes/media/class-listing-file-handler.php' );
 require_once( AWPCP_DIR . '/includes/media/class-listing-file-validator.php' );
+
+require( AWPCP_DIR . '/includes/media/class-file-handlers-manager.php' );
+require_once( AWPCP_DIR . '/includes/media/class-file-types.php' );
 require_once( AWPCP_DIR . '/includes/media/class-file-uploader.php' );
 require_once( AWPCP_DIR . '/includes/media/class-file-validation-errors.php' );
 require_once( AWPCP_DIR . '/includes/media/class-filesystem.php' );
+require( AWPCP_DIR . '/includes/media/class-image-dimensions-generator.php' );
 require_once( AWPCP_DIR . '/includes/media/class-image-file-handler.php' );
+require( AWPCP_DIR . '/includes/media/class-image-file-mover.php' );
 require_once( AWPCP_DIR . '/includes/media/class-image-file-processor.php' );
 require_once( AWPCP_DIR . '/includes/media/class-image-file-validator.php' );
+require( AWPCP_DIR . '/includes/media/class-image-media-creator.php' );
 require_once( AWPCP_DIR . '/includes/media/class-image-resizer.php' );
 require_once( AWPCP_DIR . '/includes/media/class-listing-upload-limits.php' );
+require( AWPCP_DIR . '/includes/media/class-listing-media-creator.php' );
 require_once( AWPCP_DIR . "/includes/media/class-media-manager-component.php" );
 require_once( AWPCP_DIR . "/includes/media/class-media-manager.php" );
 require_once( AWPCP_DIR . '/includes/media/class-media-uploader-component.php' );
@@ -250,6 +252,7 @@ require_once( AWPCP_DIR . "/includes/settings/class-registration-settings.php" )
 require_once( AWPCP_DIR . "/includes/settings/class-user-notifications-settings.php" );
 require_once( AWPCP_DIR . "/includes/settings/class-window-title-settings.php" );
 
+require( AWPCP_DIR . "/includes/upgrade/class-calculate-image-dimensions-upgrade-task-handler.php" );
 require_once( AWPCP_DIR . "/includes/upgrade/class-fix-empty-media-mime-type-upgrade-routine.php" );
 require_once( AWPCP_DIR . "/includes/upgrade/class-manual-upgrade-tasks-manager.php" );
 require_once( AWPCP_DIR . "/includes/upgrade/class-manual-upgrade-tasks.php" );
@@ -261,6 +264,8 @@ require_once( AWPCP_DIR . "/includes/upgrade/class-import-payment-transactions-t
 require_once( AWPCP_DIR . "/includes/upgrade/class-migrate-media-information-task-handler.php" );
 require_once( AWPCP_DIR . "/includes/upgrade/class-migrate-regions-information-task-handler.php" );
 require_once( AWPCP_DIR . "/includes/upgrade/class-update-media-status-task-handler.php" );
+
+require( AWPCP_DIR . '/includes/class-csv-importer.php' );
 
 require_once( AWPCP_DIR . '/includes/class-edit-listing-url-placeholder.php' );
 require_once( AWPCP_DIR . '/includes/class-edit-listing-link-placeholder.php' );
@@ -297,7 +302,7 @@ require_once(AWPCP_DIR . "/includes/payment-gateway-2checkout.php");
 require_once(AWPCP_DIR . "/includes/payment-terms-table.php");
 
 // installation functions
-require_once(AWPCP_DIR . "/install.php");
+require( AWPCP_DIR . "/installer.php" );
 
 // admin functions
 require_once(AWPCP_DIR . "/admin/admin-panel.php");
@@ -314,7 +319,6 @@ require_once( AWPCP_DIR . '/admin/form-fields/class-update-form-fields-order-aja
 
 // frontend functions
 require_once(AWPCP_DIR . "/frontend/placeholders.php");
-require_once(AWPCP_DIR . "/frontend/payment-functions.php");
 require_once(AWPCP_DIR . "/frontend/ad-functions.php");
 require_once(AWPCP_DIR . "/frontend/shortcode.php");
 
@@ -676,8 +680,7 @@ class AWPCP {
         $handler = awpcp_update_form_fields_order_ajax_handler();
         add_action( 'wp_ajax_awpcp-update-form-fields-order', array( $handler, 'ajax' ) );
 
-        $media_manager = awpcp_new_media_manager();
-        $media_manager->register_file_handler( awpcp_image_file_handler() );
+        add_action( 'awpcp-file-handlers', array( $this, 'register_file_handlers' ) );
 
         $handler = awpcp_drip_autoresponder_ajax_handler();
         add_action( 'wp_ajax_awpcp-autoresponder-user-subscribed', array( $handler, 'ajax' ) );
@@ -716,7 +719,7 @@ class AWPCP {
 					'url' => 'http://awpcp.com/premium-modules/attachments-module/?ref=panel',
 					'installed' => defined( 'AWPCP_ATTACHMENTS_MODULE' ),
 					'version' => 'AWPCP_ATTACHMENTS_MODULE_DB_VERSION',
-					'required' => '3.5.1',
+					'required' => '3.5.2',
 				),
 				'authorize.net' => array(
 					'name' => __(  'Authorize.Net', 'AWPCP'  ),
@@ -793,7 +796,7 @@ class AWPCP {
                     'url' => 'http://www.awpcp.com/premium-modules/mark-as-sold-module/?ref=panel',
                     'installed' => defined( 'AWPCP_MARK_AS_SOLD_MODULE' ),
                     'version' => 'AWPCP_MARK_AS_SOLD_MODULE_DB_VERSION',
-                    'required' => '1.0.1',
+                    'required' => '3.5.1',
                 ),
 				'paypal-pro' => array(
 					'name' => __(  'PayPal Pro', 'AWPCP'  ),
@@ -835,7 +838,7 @@ class AWPCP {
                     'url' => 'http://www.awpcp.com/',
                     'installed' => defined( 'AWPCP_VIDEOS_MODULE' ),
                     'version' => 'AWPCP_VIDEOS_MODULE_DB_VERSION',
-                    'required' => '3.5.2',
+                    'required' => '3.5.3',
                     'private' => true,
                 ),
 				'xml-sitemap' => array(
@@ -1159,6 +1162,15 @@ class AWPCP {
 
     public function register_notification_handlers() {
         add_action( 'awpcp-media-uploaded', 'awpcp_send_listing_media_uploaded_notifications', 10, 2 );
+    }
+
+    public function register_file_handlers( $file_handlers ) {
+        $file_handlers['image'] = array(
+            'mime_types' => $this->settings->get_runtime_option( 'image-mime-types' ),
+            'constructor' => 'awpcp_image_file_handler',
+        );
+
+        return $file_handlers;
     }
 
 

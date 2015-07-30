@@ -1,7 +1,5 @@
 <?php
 
-require_once(AWPCP_DIR . '/import.php');
-
 class AWPCP_Admin_CSV_Importer {
 
 	public function scripts() {

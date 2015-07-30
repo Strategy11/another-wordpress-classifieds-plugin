@@ -42,6 +42,12 @@ class AWPCP_Manual_Upgrade_Tasks {
             'awpcp-sanitize-media-filenames',  __( 'Remove invalid characters from media filenames', 'AWPCP' ),
             'awpcp_sanitize_media_filenames_upgrade_task_handler'
         );
+
+        $this->upgrade_tasks->register_upgrade_task(
+            'awpcp-calculate-image-dimensions',
+            __( 'Calculate image dimensions', 'AWPCP' ),
+            'awpcp_calculate_image_dimensions_upgrade_task_handler'
+        );
     }
 
     public function register_upgrade_task_handlers() {

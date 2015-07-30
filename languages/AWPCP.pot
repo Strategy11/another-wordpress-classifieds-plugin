@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2015-07-19 15:00:04+00:00\n"
+"POT-Creation-Date: 2015-07-30 01:28:05+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -73,35 +73,35 @@ msgctxt "credit plans ajax"
 msgid "The specified Credit Plan doesn't exists."
 msgstr ""
 
-#: admin/admin-panel-csv-importer.php:65
+#: admin/admin-panel-csv-importer.php:63
 msgid "There was an error with your CSV file: %s"
 msgstr ""
 
-#: admin/admin-panel-csv-importer.php:73
+#: admin/admin-panel-csv-importer.php:71
 msgid "Please upload a valid CSV file."
 msgstr ""
 
-#: admin/admin-panel-csv-importer.php:77
+#: admin/admin-panel-csv-importer.php:75
 msgid "There was an error with your ZIP file: %s"
 msgstr ""
 
-#: admin/admin-panel-csv-importer.php:85
+#: admin/admin-panel-csv-importer.php:83
 msgid "Please upload a valid ZIP file."
 msgstr ""
 
-#: admin/admin-panel-csv-importer.php:92
+#: admin/admin-panel-csv-importer.php:90
 msgid "Invalid Start Date."
 msgstr ""
 
-#: admin/admin-panel-csv-importer.php:94
+#: admin/admin-panel-csv-importer.php:92
 msgid "Invalid Start Date -- Year Must be of Four Digit."
 msgstr ""
 
-#: admin/admin-panel-csv-importer.php:101
+#: admin/admin-panel-csv-importer.php:99
 msgid "Invalid End Date."
 msgstr ""
 
-#: admin/admin-panel-csv-importer.php:103
+#: admin/admin-panel-csv-importer.php:101
 msgid "Invalid End Date -- Year Must be of Four Digit."
 msgstr ""
 
@@ -138,7 +138,7 @@ msgid "Categories"
 msgstr ""
 
 #: admin/admin-panel-fees-table.php:121
-#: admin/templates/admin-sidebar.tpl.php:90 awpcp.php:771
+#: admin/templates/admin-sidebar.tpl.php:90 awpcp.php:774
 msgid "Featured Ads"
 msgstr ""
 
@@ -315,7 +315,7 @@ msgid "Flagged"
 msgstr ""
 
 #: admin/admin-panel-listings-table.php:252
-msgid "Unpaid"
+msgid "Incomplete"
 msgstr ""
 
 #: admin/admin-panel-listings-table.php:253
@@ -343,7 +343,7 @@ msgid "Keyword"
 msgstr ""
 
 #: admin/admin-panel-listings-table.php:270 frontend/page-show-ad.php:83
-#: frontend/placeholders.php:674
+#: frontend/placeholders.php:714
 msgid "Location"
 msgstr ""
 
@@ -675,7 +675,7 @@ msgid "Manage Extra Fields"
 msgstr ""
 
 #: admin/admin-panel.php:289 admin/templates/admin-sidebar.tpl.php:95
-#: awpcp.php:764
+#: awpcp.php:767
 msgid "Extra Fields"
 msgstr ""
 
@@ -1768,19 +1768,19 @@ msgstr ""
 msgid "Get a Premium Module!"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:38 awpcp.php:736
+#: admin/templates/admin-sidebar.tpl.php:38 awpcp.php:739
 msgid "Campaign Manager"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:44 awpcp.php:792
+#: admin/templates/admin-sidebar.tpl.php:44 awpcp.php:795
 msgid "Mark as Sold"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:50 awpcp.php:813
+#: admin/templates/admin-sidebar.tpl.php:50 awpcp.php:816
 msgid "Restricted Categories"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:55 awpcp.php:729
+#: admin/templates/admin-sidebar.tpl.php:55 awpcp.php:732
 msgid "BuddyPress Listings"
 msgstr ""
 
@@ -1788,11 +1788,11 @@ msgstr ""
 msgid "Comments/Ratings"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:65 awpcp.php:722
+#: admin/templates/admin-sidebar.tpl.php:65 awpcp.php:725
 msgid "Authorize.Net"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:70 awpcp.php:799
+#: admin/templates/admin-sidebar.tpl.php:70 awpcp.php:802
 msgid "PayPal Pro"
 msgstr ""
 
@@ -1800,7 +1800,7 @@ msgstr ""
 msgid "Coupon/Discount"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:80 awpcp.php:827
+#: admin/templates/admin-sidebar.tpl.php:80 awpcp.php:830
 msgid "Subscriptions"
 msgstr ""
 
@@ -1808,11 +1808,11 @@ msgstr ""
 msgid "Fee Per Category"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:100 awpcp.php:743
+#: admin/templates/admin-sidebar.tpl.php:100 awpcp.php:746
 msgid "Category Icons"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:105 awpcp.php:806
+#: admin/templates/admin-sidebar.tpl.php:105 awpcp.php:809
 msgid "Regions Control"
 msgstr ""
 
@@ -1820,7 +1820,7 @@ msgstr ""
 msgid "Google Checkout Payments"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:115 awpcp.php:820
+#: admin/templates/admin-sidebar.tpl.php:115 awpcp.php:823
 msgid "RSS"
 msgstr ""
 
@@ -1952,253 +1952,253 @@ msgstr ""
 msgid "Manage Ad Listings"
 msgstr ""
 
-#: awpcp.php:618
+#: awpcp.php:622
 msgid "AWPCP"
 msgstr ""
 
-#: awpcp.php:698
+#: awpcp.php:701
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
 msgstr ""
 
-#: awpcp.php:699
+#: awpcp.php:702
 #: includes/placeholders/class-placeholders-installation-verifier.php:19
 msgid "Warning"
 msgstr ""
 
-#: awpcp.php:715
+#: awpcp.php:718
 msgid "Attachments"
 msgstr ""
 
-#: awpcp.php:750
+#: awpcp.php:753
 msgid "Comments & Ratings"
 msgstr ""
 
-#: awpcp.php:757
+#: awpcp.php:760
 msgid "Coupons/Discount"
 msgstr ""
 
-#: awpcp.php:778
+#: awpcp.php:781
 msgid "Fee per Category"
 msgstr ""
 
-#: awpcp.php:785
+#: awpcp.php:788
 msgid "Google Checkout"
 msgstr ""
 
-#: awpcp.php:834 templates/components/media-manager.tpl.php:36
+#: awpcp.php:837 templates/components/media-manager.tpl.php:36
 msgid "Videos"
 msgstr ""
 
-#: awpcp.php:842
+#: awpcp.php:845
 msgid "XML Sitemap"
 msgstr ""
 
-#: awpcp.php:889
+#: awpcp.php:892
 msgid ""
 "The %1$s module you have installed is outdated and not compatible with this "
 "version of AWPCP. Please get %1$s %2$s or newer."
 msgstr ""
 
-#: awpcp.php:1031
+#: awpcp.php:1034
 msgid "This field is required."
 msgstr ""
 
-#: awpcp.php:1032 frontend/page-edit-ad.php:128 frontend/page-edit-ad.php:433
+#: awpcp.php:1035 frontend/page-edit-ad.php:128 frontend/page-edit-ad.php:433
 #: includes/settings-api.php:214
 msgid "Please enter a valid email address."
 msgstr ""
 
-#: awpcp.php:1033 awpcp.php:1034
+#: awpcp.php:1036 awpcp.php:1037
 msgid "Please enter a valid URL."
 msgstr ""
 
-#: awpcp.php:1035
+#: awpcp.php:1038
 msgid "Please enter a valid number."
 msgstr ""
 
-#: awpcp.php:1036
+#: awpcp.php:1039
 msgid "Please enter a valid amount."
-msgstr ""
-
-#: awpcp.php:1042
-msgctxt "uploader queue"
-msgid "Stop Upload"
-msgstr ""
-
-#: awpcp.php:1043
-msgctxt "uploader queue"
-msgid "Upload URL might be wrong or doesn't exist."
-msgstr ""
-
-#: awpcp.php:1044
-msgctxt "uploader queue"
-msgid "tb"
 msgstr ""
 
 #: awpcp.php:1045
 msgctxt "uploader queue"
-msgid "Size"
+msgid "Stop Upload"
 msgstr ""
 
 #: awpcp.php:1046
 msgctxt "uploader queue"
-msgid "Close"
+msgid "Upload URL might be wrong or doesn't exist."
 msgstr ""
 
 #: awpcp.php:1047
 msgctxt "uploader queue"
-msgid "Init error."
+msgid "tb"
 msgstr ""
 
 #: awpcp.php:1048
 msgctxt "uploader queue"
-msgid "Add files to the upload queue and click the start button."
+msgid "Size"
 msgstr ""
 
 #: awpcp.php:1049
 msgctxt "uploader queue"
-msgid "Filename"
+msgid "Close"
 msgstr ""
 
 #: awpcp.php:1050
 msgctxt "uploader queue"
-msgid "Image format either wrong or not supported."
+msgid "Init error."
 msgstr ""
 
 #: awpcp.php:1051
 msgctxt "uploader queue"
-msgid "Status"
+msgid "Add files to the upload queue and click the start button."
 msgstr ""
 
 #: awpcp.php:1052
 msgctxt "uploader queue"
-msgid "HTTP Error."
+msgid "Filename"
 msgstr ""
 
 #: awpcp.php:1053
 msgctxt "uploader queue"
-msgid "Start Upload"
+msgid "Image format either wrong or not supported."
 msgstr ""
 
 #: awpcp.php:1054
 msgctxt "uploader queue"
-msgid "mb"
+msgid "Status"
 msgstr ""
 
 #: awpcp.php:1055
 msgctxt "uploader queue"
-msgid "kb"
+msgid "HTTP Error."
 msgstr ""
 
 #: awpcp.php:1056
 msgctxt "uploader queue"
-msgid "Duplicate file error."
+msgid "Start Upload"
 msgstr ""
 
 #: awpcp.php:1057
 msgctxt "uploader queue"
-msgid "File size error."
+msgid "mb"
 msgstr ""
 
 #: awpcp.php:1058
 msgctxt "uploader queue"
-msgid "N/A"
+msgid "kb"
 msgstr ""
 
 #: awpcp.php:1059
 msgctxt "uploader queue"
-msgid "gb"
+msgid "Duplicate file error."
 msgstr ""
 
 #: awpcp.php:1060
 msgctxt "uploader queue"
-msgid "Error: Invalid file extension:"
+msgid "File size error."
 msgstr ""
 
 #: awpcp.php:1061
 msgctxt "uploader queue"
-msgid "Select files"
+msgid "N/A"
 msgstr ""
 
 #: awpcp.php:1062
 msgctxt "uploader queue"
-msgid "%s already present in the queue."
+msgid "gb"
 msgstr ""
 
 #: awpcp.php:1063
 msgctxt "uploader queue"
-msgid "File: %s"
+msgid "Error: Invalid file extension:"
 msgstr ""
 
 #: awpcp.php:1064
 msgctxt "uploader queue"
-msgid "b"
+msgid "Select files"
 msgstr ""
 
 #: awpcp.php:1065
 msgctxt "uploader queue"
-msgid "Uploaded %d/%d files"
+msgid "%s already present in the queue."
 msgstr ""
 
 #: awpcp.php:1066
+msgctxt "uploader queue"
+msgid "File: %s"
+msgstr ""
+
+#: awpcp.php:1067
+msgctxt "uploader queue"
+msgid "b"
+msgstr ""
+
+#: awpcp.php:1068
+msgctxt "uploader queue"
+msgid "Uploaded %d/%d files"
+msgstr ""
+
+#: awpcp.php:1069
 msgctxt "uploader queue"
 msgid ""
 "Upload element accepts only %d file(s) at a time. Extra files were stripped."
 msgstr ""
 
-#: awpcp.php:1067
+#: awpcp.php:1070
 msgctxt "uploader queue"
 msgid "%d files queued"
 msgstr ""
 
-#: awpcp.php:1068
+#: awpcp.php:1071
 msgctxt "uploader queue"
 msgid "File: %s, size: %d, max file size: %d"
 msgstr ""
 
-#: awpcp.php:1069
+#: awpcp.php:1072
 msgctxt "uploader queue"
 msgid "Drag files here."
 msgstr ""
 
-#: awpcp.php:1070
+#: awpcp.php:1073
 msgctxt "uploader queue"
 msgid "Runtime ran out of available memory."
 msgstr ""
 
-#: awpcp.php:1071
+#: awpcp.php:1074
 msgctxt "uploader queue"
 msgid "File count error."
 msgstr ""
 
-#: awpcp.php:1072
+#: awpcp.php:1075
 msgctxt "uploader queue"
 msgid "File extension error."
 msgstr ""
 
-#: awpcp.php:1073
+#: awpcp.php:1076
 msgctxt "uploader queue"
 msgid "Error: File too large:"
 msgstr ""
 
-#: awpcp.php:1074
+#: awpcp.php:1077
 msgctxt "uploader queue"
 msgid "Add Files"
 msgstr ""
 
-#: awpcp.php:1085
+#: awpcp.php:1088
 msgctxt "[UI Datepicker] Display text for previous month link"
 msgid "&#x3c;Prev"
 msgstr ""
 
-#: awpcp.php:1087
+#: awpcp.php:1090
 msgctxt "[UI Datepicker] Display text for next month link"
 msgid "Next&#x3e;"
 msgstr ""
 
-#: awpcp.php:1102
+#: awpcp.php:1105
 msgctxt "[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ..."
 msgid "0"
 msgstr ""
@@ -2815,10 +2815,6 @@ msgid ""
 "(the author) can see it."
 msgstr ""
 
-#: frontend/payment-functions.php:148
-msgid "Customer attempt to pay has failed"
-msgstr ""
-
 #: frontend/placeholders.php:376
 msgid "Seller"
 msgstr ""
@@ -2831,29 +2827,29 @@ msgstr ""
 msgid "Click to enlarge image."
 msgstr ""
 
-#: frontend/placeholders.php:710
+#: frontend/placeholders.php:750
 msgid "This Ad has been viewed %d time."
 msgid_plural "This Ad has been viewed %d times."
 msgstr[0] ""
 msgstr[1] ""
 
-#: frontend/placeholders.php:714
+#: frontend/placeholders.php:754
 msgid "Total views: %d"
 msgstr ""
 
-#: frontend/placeholders.php:765
+#: frontend/placeholders.php:805
 msgid "Phone"
 msgstr ""
 
-#: frontend/placeholders.php:822
+#: frontend/placeholders.php:862
 msgid "Flag Ad"
 msgstr ""
 
-#: frontend/placeholders.php:837
+#: frontend/placeholders.php:877
 msgid "Tweet This"
 msgstr ""
 
-#: frontend/placeholders.php:868
+#: frontend/placeholders.php:908
 msgid "Share on Facebook"
 msgstr ""
 
@@ -3331,7 +3327,7 @@ msgid ""
 "payment."
 msgstr ""
 
-#: frontend/templates/payments-billing-form.tpl.php:6 functions.php:613
+#: frontend/templates/payments-billing-form.tpl.php:6 functions.php:552
 msgid "Country"
 msgstr ""
 
@@ -3371,7 +3367,7 @@ msgstr ""
 msgid "State"
 msgstr ""
 
-#: frontend/templates/payments-billing-form.tpl.php:101 functions.php:633
+#: frontend/templates/payments-billing-form.tpl.php:101 functions.php:572
 msgid "City"
 msgstr ""
 
@@ -3620,7 +3616,6 @@ msgid "All Contact Names"
 msgstr ""
 
 #: frontend/widget-search.php:92 frontend/widget-search.php:107
-#: functions.php:731
 msgid "Select Option"
 msgstr ""
 
@@ -3636,53 +3631,49 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: functions.php:82
-msgid "&hellip;"
-msgstr ""
-
-#: functions.php:544
+#: functions.php:483
 msgid "None"
 msgstr ""
 
-#: functions.php:555
+#: functions.php:494
 msgctxt "comma separated list of things"
 msgid "%s and %d more."
 msgstr ""
 
-#: functions.php:614
+#: functions.php:553
 msgid "separate countries by commas"
 msgstr ""
 
-#: functions.php:623
+#: functions.php:562
 msgid "State/Province"
 msgstr ""
 
-#: functions.php:624
+#: functions.php:563
 msgid "separate states by commas"
 msgstr ""
 
-#: functions.php:634
+#: functions.php:573
 msgid "separate cities by commas"
 msgstr ""
 
-#: functions.php:643
+#: functions.php:582
 msgid "County/Village/Other"
 msgstr ""
 
-#: functions.php:644
+#: functions.php:583
 msgid "separate counties by commas"
 msgstr ""
 
-#: functions.php:1007
+#: functions.php:797
 msgid "-- Choose a Country --"
 msgstr ""
 
-#: functions.php:1279
+#: functions.php:1021
 msgctxt "default blog title"
 msgid "Classifieds Website"
 msgstr ""
 
-#: functions.php:1725
+#: functions.php:1467
 msgid ""
 "The images or files with pale red background have been rejected by an "
 "administrator user. Likewise, files with a pale yellow background are "
@@ -3690,182 +3681,178 @@ msgid ""
 "cannot be shown in the frontend."
 msgstr ""
 
-#: functions.php:1742 includes/helpers/class-modules-manager.php:158
+#: functions.php:1484 includes/helpers/class-modules-manager.php:158
 msgid ""
 "This version of AWPCP %1$s module is not compatible with AWPCP version %2$s. "
 "Please get AWPCP %1$s %3$s or newer!"
 msgstr ""
 
-#: functions.php:1744 includes/helpers/class-modules-manager.php:160
+#: functions.php:1486 includes/helpers/class-modules-manager.php:160
 msgid "Error"
 msgstr ""
 
-#: functions.php:1776
+#: functions.php:1554
 msgid "No errors."
 msgstr ""
 
-#: functions.php:1777
+#: functions.php:1555
 msgid "The file is larger than upload_max_filesize."
 msgstr ""
 
-#: functions.php:1778
+#: functions.php:1556
 msgid "The file is larger than form MAX_FILE_SIZE."
 msgstr ""
 
-#: functions.php:1779
+#: functions.php:1557
 msgid "The file was only partially uploaded."
 msgstr ""
 
-#: functions.php:1780
+#: functions.php:1558
 msgid "No file was uploaded."
 msgstr ""
 
-#: functions.php:1781
+#: functions.php:1559
 msgid "Missing temporary directory."
 msgstr ""
 
-#: functions.php:1782
+#: functions.php:1560
 msgid "Can't write file to disk."
 msgstr ""
 
-#: functions.php:1783
+#: functions.php:1561
 msgid "The file upload was stopped by extension."
 msgstr ""
 
-#: functions.php:1979
+#: functions.php:1776
 msgid "Your Ad \"%s\" has been approved"
 msgstr ""
 
-#: functions.php:1995
+#: functions.php:1792
 msgid "Your Ad \"%s\" has been successfully updated"
 msgstr ""
 
-#: functions.php:2016
+#: functions.php:1813
 msgid "Images on Ad \"%s\" are awaiting approval"
 msgstr ""
 
-#: functions.php:2018 includes/functions/notifications.php:189
+#: functions.php:1815 includes/functions/notifications.php:189
 msgid ""
 "Images on Ad \"%s\" are awaiting approval. You can approve the images going "
 "to the Manage Images section for that Ad and clicking the \"Enable\" button "
 "below each image. Click here to continue: %s."
 msgstr ""
 
-#: functions.php:2021
+#: functions.php:1818
 msgid "The Ad \"%s\" is awaiting approval"
 msgstr ""
 
-#: functions.php:2023 includes/functions/notifications.php:194
+#: functions.php:1820 includes/functions/notifications.php:194
 msgid ""
 "The Ad \"%s\" is awaiting approval. You can approve the Ad going to the "
 "Manage Listings section and clicking the \"Enable\" action shown on top. "
 "Click here to continue: %s."
 msgstr ""
 
-#: functions.php:2030 includes/functions/notifications.php:201
+#: functions.php:1827 includes/functions/notifications.php:201
 msgid ""
 "Additionally, You can approve the images going to the Manage Images section "
 "for that Ad and clicking the \"Enable\" button below each image. Click here "
 "to continue: %s."
 msgstr ""
 
-#: functions_awpcp.php:291
-msgid "Top Level Category"
-msgstr ""
-
-#: functions_awpcp.php:601
+#: functions.php:2309
 msgid "Email sent %s."
 msgstr ""
 
-#: import.php:118
+#: includes/class-csv-importer.php:118
 msgid "Invalid CSV file."
 msgstr ""
 
-#: import.php:136
+#: includes/class-csv-importer.php:136
 msgid "Image file names were found but no ZIP was provided."
 msgstr ""
 
-#: import.php:187
+#: includes/class-csv-importer.php:187
 msgid "The required column %s is missing. Import can't continue."
 msgstr ""
 
-#: import.php:199
+#: includes/class-csv-importer.php:199
 msgid "Import can't continue. Unknown column(s) specified(s):"
 msgstr ""
 
-#: import.php:275
+#: includes/class-csv-importer.php:275
 msgid "Required value <em>%s</em> missing at row number: %d"
 msgstr ""
 
-#: import.php:418 import.php:489
+#: includes/class-csv-importer.php:418 includes/class-csv-importer.php:489
 msgid "Incompatible ZIP Archive"
 msgstr ""
 
-#: import.php:423 import.php:494
+#: includes/class-csv-importer.php:423 includes/class-csv-importer.php:494
 msgid "Empty ZIP Archive"
 msgstr ""
 
-#: import.php:440 import.php:521
+#: includes/class-csv-importer.php:440 includes/class-csv-importer.php:521
 msgid "Could not write temporary file %s"
 msgstr ""
 
-#: import.php:469
+#: includes/class-csv-importer.php:469
 msgid "File %s does not exists."
 msgstr ""
 
-#: import.php:477
+#: includes/class-csv-importer.php:477
 msgid "Import directory %s does not exists."
 msgstr ""
 
-#: import.php:556
+#: includes/class-csv-importer.php:556
 msgid "Row %d. %s"
 msgstr ""
 
-#: import.php:593
+#: includes/class-csv-importer.php:593
 msgid "Could not save the information to the database for %s in row %d"
 msgstr ""
 
-#: import.php:725
+#: includes/class-csv-importer.php:676
 msgid "Item price non numeric at row number %s"
 msgstr ""
 
-#: import.php:741
+#: includes/class-csv-importer.php:692
 msgid ""
 "Start date missing (alternately you can specify the default start date) at "
 "row number %s"
 msgstr ""
 
-#: import.php:753
+#: includes/class-csv-importer.php:704
 msgid "Invalid End date at row number: %s"
 msgstr ""
 
-#: import.php:761
+#: includes/class-csv-importer.php:712
 msgid ""
 "End date missing (alternately you can specify the default end date) at row "
 "number %s"
 msgstr ""
 
-#: import.php:872
+#: includes/class-csv-importer.php:823
 msgid ""
 "Extra Field %s's value is not allowed in row %d. Allowed values are: %%s"
 msgstr ""
 
-#: import.php:881
+#: includes/class-csv-importer.php:832
 msgid ""
 "Extra Field %s's value is not allowed in row %d. Allowed value is one of: %%s"
 msgstr ""
 
-#: import.php:1009
+#: includes/class-csv-importer.php:960
 msgid ""
 "Username is required in row %s. Please include a username or selected a "
 "default user."
 msgstr ""
 
-#: import.php:1012
+#: includes/class-csv-importer.php:963
 msgid "Contact email is required in row %s."
 msgstr ""
 
-#: import.php:1030
+#: includes/class-csv-importer.php:981
 msgid ""
 "A new user '%s' with email address '%s' and password '%s' was created for "
 "row %d."
@@ -4139,8 +4126,64 @@ msgid ""
 "You can't add more images to this Ad. There are not remaining images slots."
 msgstr ""
 
+#: includes/functions/file-upload.php:25
+msgid "The specified image file does not exists: %s."
+msgstr ""
+
+#: includes/functions/file-upload.php:35
+msgid "No file was selected."
+msgstr ""
+
+#: includes/functions/file-upload.php:39
+msgid "Unknown error encountered while uploading the image."
+msgstr ""
+
+#: includes/functions/file-upload.php:48
+msgid "The file %s has an invalid extension and was rejected."
+msgstr ""
+
+#: includes/functions/file-upload.php:51
+msgid ""
+"The size of %1$s was too small. The file was not uploaded. File size must be "
+"greater than %2$d bytes."
+msgstr ""
+
+#: includes/functions/file-upload.php:55
+msgid ""
+"The file %s was larger than the maximum allowed file size of %s bytes. The "
+"file was not uploaded."
+msgstr ""
+
+#: includes/functions/file-upload.php:59
+msgid "The file %s does not appear to be a valid image file."
+msgstr ""
+
+#: includes/functions/file-upload.php:62
+msgid ""
+"The image %s did not meet the minimum width of %s pixels. The file was not "
+"uploaded."
+msgstr ""
+
+#: includes/functions/file-upload.php:66
+msgid ""
+"The image %s did not meet the minimum height of %s pixels. The file was not "
+"uploaded."
+msgstr ""
+
+#: includes/functions/file-upload.php:71 includes/functions/file-upload.php:75
+msgid "The file %s could not be moved to the destination directory."
+msgstr ""
+
+#: includes/functions/file-upload.php:80
+msgid "Could not create resized versions of image %s."
+msgstr ""
+
 #: includes/functions/format.php:61
 msgid "Classifieds Management System"
+msgstr ""
+
+#: includes/functions/legacy.php:188
+msgid "Top Level Category"
 msgstr ""
 
 #: includes/functions/notifications.php:71
@@ -4167,6 +4210,10 @@ msgstr ""
 
 #: includes/functions/notifications.php:268
 msgid "Listing <listing-title> was flagged"
+msgstr ""
+
+#: includes/functions/payments.php:148
+msgid "Customer attempt to pay has failed"
 msgstr ""
 
 #: includes/helpers/captcha.php:39
@@ -4477,6 +4524,11 @@ msgctxt "delete ad form in frontend edit ad screen"
 msgid "Are you sure?"
 msgstr ""
 
+#: includes/media/class-file-handlers-manager.php:30
+msgctxt "file uploads"
+msgid "There is no file handler for this kind of file (<mime-type>). Aborting."
+msgstr ""
+
 #: includes/media/class-file-uploader.php:44
 msgid "Unable to findout uploaded file name."
 msgstr ""
@@ -4564,11 +4616,6 @@ msgstr ""
 msgid ""
 "The file <filename> is smaller than the minimum allowed file size of <bytes-"
 "count> bytes. The file was not uploaded."
-msgstr ""
-
-#: includes/media/class-media-manager.php:51
-msgctxt "file uploads"
-msgid "There is no file handler for this kind of file (<mime-type>). Aborting."
 msgstr ""
 
 #: includes/media/class-media-uploader-component.php:26
@@ -4689,7 +4736,7 @@ msgstr ""
 msgid "No category was found with ID: %d"
 msgstr ""
 
-#: includes/models/class-media.php:180
+#: includes/models/class-media.php:192
 msgid "No file was found with id: %d"
 msgstr ""
 
@@ -5626,7 +5673,7 @@ msgid ""
 "the fields mentioned below are shown to users in the Ad Details form."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:16 install.php:279
+#: includes/settings/class-general-settings.php:16 installer.php:280
 msgid "General"
 msgstr ""
 
@@ -5646,7 +5693,7 @@ msgid "Enable User Ad Management Panel"
 msgstr ""
 
 #: includes/settings/class-general-settings.php:28
-#: includes/settings-api.php:349
+#: includes/settings-api.php:370
 msgid "General Settings"
 msgstr ""
 
@@ -6928,21 +6975,41 @@ msgid ""
 "emails in a different address, please enter it here."
 msgstr ""
 
-#: includes/settings-api.php:281
+#: includes/settings-api.php:285
 msgid "FROM email address for outgoing emails"
 msgstr ""
 
-#: includes/settings-api.php:281
+#: includes/settings-api.php:288
 msgid ""
 "Emails go out using your WordPress admin email. If you prefer to use a "
-"different email enter it here."
+"different email enter it here. Some servers will not process outgoing emails "
+"that have an email address from gmail, yahoo, hotmail and other free email "
+"services in the FROM field. Some servers will also not process emails that "
+"have an email address that is different from the email address associated "
+"with your hosting account in the FROM field. If you are with such a webhost "
+"you need to make sure your WordPress admin email address is tied to your "
+"hosting account."
 msgstr ""
 
-#: includes/settings-api.php:282
+#: includes/settings-api.php:291
+msgid ""
+"Use wordpress@<website-domain> as the FROM email address for outgoing emails."
+msgstr ""
+
+#: includes/settings-api.php:300
+msgid ""
+"That's the address WordPress uses to send its emails. If you are receiving "
+"the registration emails and other WordPress notifications succesfully, then "
+"you may want to enable this setting to use the same email address for all "
+"the outgoing messages. If enabled, the FROM email address for outgoing "
+"emails setting is ignored."
+msgstr ""
+
+#: includes/settings-api.php:303
 msgid "Use sender email for reply messages"
 msgstr ""
 
-#: includes/settings-api.php:282
+#: includes/settings-api.php:303
 msgid ""
 "Check this to use the name and email of the sender in the FROM field when "
 "someone replies to an ad. When unchecked the messages go out with the "
@@ -6955,140 +7022,140 @@ msgid ""
 "sure your WordPress admin email address is tied to your hosting account."
 msgstr ""
 
-#: includes/settings-api.php:283
+#: includes/settings-api.php:304
 msgid "Include Ad access key in email messages"
 msgstr ""
 
-#: includes/settings-api.php:283
+#: includes/settings-api.php:304
 msgid ""
 "Include Ad access key in email notifications. You may want to uncheck this "
 "option if you are using the Ad Management panel, but is not necessary."
 msgstr ""
 
-#: includes/settings-api.php:287
+#: includes/settings-api.php:308
 msgid "Ad Posted Message"
 msgstr ""
 
-#: includes/settings-api.php:289
+#: includes/settings-api.php:310
 msgid "Subject for Ad posted notification email"
 msgstr ""
 
-#: includes/settings-api.php:289
+#: includes/settings-api.php:310
 msgid "Your Classified Ad listing has been submitted"
 msgstr ""
 
-#: includes/settings-api.php:289
+#: includes/settings-api.php:310
 msgid "Subject line for email sent out when someone posts an Ad"
 msgstr ""
 
-#: includes/settings-api.php:290
+#: includes/settings-api.php:311
 msgid "Body for Ad posted notification email"
 msgstr ""
 
-#: includes/settings-api.php:290
+#: includes/settings-api.php:311
 msgid ""
 "Thank you for submitting your Classified Ad. The details of your ad are "
 "shown below."
 msgstr ""
 
-#: includes/settings-api.php:290
+#: includes/settings-api.php:311
 msgid "Message body text for email sent out when someone posts an Ad"
 msgstr ""
 
-#: includes/settings-api.php:294
+#: includes/settings-api.php:315
 msgid "Reply to Ad Message"
 msgstr ""
 
-#: includes/settings-api.php:296
+#: includes/settings-api.php:317
 msgid "Subject for Reply to Ad email"
 msgstr ""
 
-#: includes/settings-api.php:296
+#: includes/settings-api.php:317
 msgid "Response to your AWPCP Demo Ad"
 msgstr ""
 
-#: includes/settings-api.php:296
+#: includes/settings-api.php:317
 msgid "Subject line for email sent out when someone replies to Ad"
 msgstr ""
 
-#: includes/settings-api.php:297
+#: includes/settings-api.php:318
 msgid "Body for Reply to Ad email"
 msgstr ""
 
-#: includes/settings-api.php:297
+#: includes/settings-api.php:318
 msgid "Someone has responded to your AWPCP Demo Ad"
 msgstr ""
 
-#: includes/settings-api.php:297
+#: includes/settings-api.php:318
 msgid "Message body text for email sent out when someone replies to Ad"
 msgstr ""
 
-#: includes/settings-api.php:298
+#: includes/settings-api.php:319
 msgid "Notify admin about contact message"
 msgstr ""
 
-#: includes/settings-api.php:298
+#: includes/settings-api.php:319
 msgid ""
 "An email will be sent to the administrator every time a visitor sends a "
 "message to one of the Ad posters through the Reply to Ad page."
 msgstr ""
 
-#: includes/settings-api.php:302
+#: includes/settings-api.php:323
 msgid "Resend Access Key Message"
 msgstr ""
 
-#: includes/settings-api.php:304
+#: includes/settings-api.php:325
 msgid "Subject for Request Ad Access Key email"
 msgstr ""
 
-#: includes/settings-api.php:304
+#: includes/settings-api.php:325
 msgid "The Classified Ad's ad access key you requested"
 msgstr ""
 
-#: includes/settings-api.php:304
+#: includes/settings-api.php:325
 msgid ""
 "Subject line for email sent out when someone requests their ad access key "
 "resent"
 msgstr ""
 
-#: includes/settings-api.php:305
+#: includes/settings-api.php:326
 msgid "Body for Request Ad Access Key email"
 msgstr ""
 
-#: includes/settings-api.php:305
+#: includes/settings-api.php:326
 msgid ""
 "You asked to have your Classified Ad's access key resent. Below are all the "
 "Ad access keys in the system that are tied to the email address you provided"
 msgstr ""
 
-#: includes/settings-api.php:305
+#: includes/settings-api.php:326
 msgid ""
 "Message body text for email sent out when someone requests their ad access "
 "key resent"
 msgstr ""
 
-#: includes/settings-api.php:309
+#: includes/settings-api.php:330
 msgid "Incomplete Payment Message"
 msgstr ""
 
-#: includes/settings-api.php:311
+#: includes/settings-api.php:332
 msgid "Subject for Incomplete Payment email"
 msgstr ""
 
-#: includes/settings-api.php:311
+#: includes/settings-api.php:332
 msgid "There was a problem processing your payment"
 msgstr ""
 
-#: includes/settings-api.php:311
+#: includes/settings-api.php:332
 msgid ""
 "Subject line for email sent out when the payment processing does not complete"
 msgstr ""
 
-#: includes/settings-api.php:312
+#: includes/settings-api.php:333
 msgid "Body for Incomplete Payment email"
 msgstr ""
 
-#: includes/settings-api.php:312
+#: includes/settings-api.php:333
 msgid ""
 "There was a problem encountered during your attempt to submit payment. If "
 "funds were removed from the account you tried to use to make a payment "
@@ -7096,267 +7163,267 @@ msgid ""
 "assistance."
 msgstr ""
 
-#: includes/settings-api.php:312
+#: includes/settings-api.php:333
 msgid ""
 "Message body text for email sent out when the payment processing does not "
 "complete"
 msgstr ""
 
-#: includes/settings-api.php:316
+#: includes/settings-api.php:337
 msgid "Renew Ad Message"
 msgstr ""
 
-#: includes/settings-api.php:318
+#: includes/settings-api.php:339
 msgid "Subject for Renew Ad email"
 msgstr ""
 
-#: includes/settings-api.php:318
+#: includes/settings-api.php:339
 msgid "Your classifieds listing Ad will expire in %d days."
 msgstr ""
 
-#: includes/settings-api.php:318
+#: includes/settings-api.php:339
 msgid "Subject line for email sent out when an Ad is about to expire."
 msgstr ""
 
-#: includes/settings-api.php:319 includes/settings-api.php:326
+#: includes/settings-api.php:340 includes/settings-api.php:347
 msgid "Body for Renew Ad email"
 msgstr ""
 
-#: includes/settings-api.php:319
+#: includes/settings-api.php:340
 msgid ""
 "This is an automated notification that your Classified Ad will expire in %d "
 "days."
 msgstr ""
 
-#: includes/settings-api.php:319
+#: includes/settings-api.php:340
 msgid ""
 "Message body text for email sent out when an Ad is about to expire. Use %d "
 "as placeholder for the number of days before the Ad expires."
 msgstr ""
 
-#: includes/settings-api.php:323
+#: includes/settings-api.php:344
 msgid "Ad Renewed Message"
 msgstr ""
 
-#: includes/settings-api.php:325
+#: includes/settings-api.php:346
 msgid "Subject for Ad Renewed email"
 msgstr ""
 
-#: includes/settings-api.php:325
+#: includes/settings-api.php:346
 msgid "Your classifieds listing \"%s\" has been successfully renewed."
 msgstr ""
 
-#: includes/settings-api.php:325
+#: includes/settings-api.php:346
 msgid "Subject line for email sent out when an Ad is successfully renewed."
 msgstr ""
 
-#: includes/settings-api.php:326
+#: includes/settings-api.php:347
 msgid ""
 "Your classifieds listing Ad has been successfully renewed. More information "
 "below:"
 msgstr ""
 
-#: includes/settings-api.php:326
+#: includes/settings-api.php:347
 msgid ""
 "Message body text for email sent out when an Ad is successfully renewed. "
 msgstr ""
 
-#: includes/settings-api.php:330
+#: includes/settings-api.php:351
 msgid "Ad Expired Message"
 msgstr ""
 
-#: includes/settings-api.php:332
+#: includes/settings-api.php:353
 msgid "Subject for Ad Expired email"
 msgstr ""
 
-#: includes/settings-api.php:332
+#: includes/settings-api.php:353
 msgid "Your classifieds listing at %s has expired"
 msgstr ""
 
-#: includes/settings-api.php:332
+#: includes/settings-api.php:353
 msgid "Subject line for email sent out when an ad has auto-expired"
 msgstr ""
 
-#: includes/settings-api.php:333
+#: includes/settings-api.php:354
 msgid "Body for Ad Expired email"
 msgstr ""
 
-#: includes/settings-api.php:333
+#: includes/settings-api.php:354
 msgid "This is an automated notification that your Classified Ad has expired."
 msgstr ""
 
-#: includes/settings-api.php:333
+#: includes/settings-api.php:354
 msgid "Message body text for email sent out when an ad has auto-expired"
 msgstr ""
 
-#: includes/settings-api.php:337
+#: includes/settings-api.php:358
 msgid "Advanced Email Configuration"
 msgstr ""
 
-#: includes/settings-api.php:339
+#: includes/settings-api.php:360
 msgid "Enable external SMTP server"
 msgstr ""
 
-#: includes/settings-api.php:339
+#: includes/settings-api.php:360
 msgid "Enabled external SMTP server (if emails not processing normally)."
 msgstr ""
 
-#: includes/settings-api.php:340
+#: includes/settings-api.php:361
 msgid "SMTP host"
 msgstr ""
 
-#: includes/settings-api.php:340
+#: includes/settings-api.php:361
 msgid "SMTP host (if emails not processing normally)."
 msgstr ""
 
-#: includes/settings-api.php:341
+#: includes/settings-api.php:362
 msgid "SMTP port"
 msgstr ""
 
-#: includes/settings-api.php:341
+#: includes/settings-api.php:362
 msgid "SMTP port (if emails not processing normally)."
 msgstr ""
 
-#: includes/settings-api.php:342
+#: includes/settings-api.php:363
 msgid "SMTP username"
 msgstr ""
 
-#: includes/settings-api.php:342
+#: includes/settings-api.php:363
 msgid "SMTP username (if emails not processing normally)."
 msgstr ""
 
-#: includes/settings-api.php:343
+#: includes/settings-api.php:364
 msgid "SMTP password"
 msgstr ""
 
-#: includes/settings-api.php:343
+#: includes/settings-api.php:364
 msgid "SMTP password (if emails not processing normally)."
 msgstr ""
 
-#: includes/settings-api.php:351
+#: includes/settings-api.php:372
 msgid "Send Ads to Facebook Automatically"
 msgstr ""
 
-#: includes/settings-api.php:351
+#: includes/settings-api.php:372
 msgid ""
 "If checked, Ads will be posted to Facebook shortly after they are posted, "
 "enabled or edited, whichever occurs first. Ads will be posted only once. "
 "Please note that disabled Ads cannot be posted to Facebook."
 msgstr ""
 
-#: includes/settings-api.php:530
+#: includes/settings-api.php:551
 msgid "<module-name> License Key"
 msgstr ""
 
-#: includes/settings-api.php:539
+#: includes/settings-api.php:560
 msgid "Licenses"
 msgstr ""
 
-#: includes/settings-api.php:676
+#: includes/settings-api.php:697
 msgid ""
 "Akismet SPAM control cannot be enabled because Akismet plugin is not "
 "installed or activated."
 msgstr ""
 
-#: includes/settings-api.php:679
+#: includes/settings-api.php:700
 msgid ""
 "Akismet SPAM control cannot be enabled because Akismet is not properly "
 "configured."
 msgstr ""
 
-#: includes/settings-api.php:691
+#: includes/settings-api.php:712
 msgid ""
 "reCAPTCHA can't be used because the public key and private key settings are "
 "required for reCAPTCHA to work properly."
 msgstr ""
 
-#: includes/settings-api.php:693
+#: includes/settings-api.php:714
 msgid ""
 "reCAPTCHA can't be used because the public key setting is required for "
 "reCAPTCHA to work properly."
 msgstr ""
 
-#: includes/settings-api.php:695
+#: includes/settings-api.php:716
 msgid ""
 "reCAPTCHA can't be used because the private key setting is required for "
 "reCAPTCHA to work properly."
 msgstr ""
 
-#: includes/settings-api.php:704
+#: includes/settings-api.php:725
 msgid ""
 "Require Registration setting was enabled automatically because you activated "
 "the User Ad Management panel."
 msgstr ""
 
-#: includes/settings-api.php:719
+#: includes/settings-api.php:740
 msgid ""
 "User Ad Management panel was automatically deactivated because you disabled "
 "Require Registration setting."
 msgstr ""
 
-#: includes/settings-api.php:724
+#: includes/settings-api.php:745
 msgid ""
 "Credit System was automatically disabled because you disabled Require "
 "Registration setting."
 msgstr ""
 
-#: includes/settings-api.php:740
+#: includes/settings-api.php:761
 msgid ""
 "There is a problem with the PayPal Currency Code you have entered. It does "
 "not match any of the codes in our list of curencies supported by PayPal."
 msgstr ""
 
-#: includes/settings-api.php:741
+#: includes/settings-api.php:762
 msgid "The available currency codes are"
 msgstr ""
 
-#: includes/settings-api.php:750
+#: includes/settings-api.php:771
 msgid ""
 "Require Registration setting was enabled automatically because you activated "
 "the Credit System."
 msgstr ""
 
-#: includes/settings-api.php:755
+#: includes/settings-api.php:776
 msgid ""
 "Charge Listing Fee setting was enabled automatically because you activated "
 "the Credit System."
 msgstr ""
 
-#: includes/settings-api.php:761
+#: includes/settings-api.php:782
 msgid ""
 "Credit System was disabled automatically because you disabled Charge Listing "
 "Fee."
 msgstr ""
 
-#: includes/settings-api.php:993
+#: includes/settings-api.php:1014
 msgid "Deactivate License"
 msgstr ""
 
-#: includes/settings-api.php:994
+#: includes/settings-api.php:1015
 msgid "active"
 msgstr ""
 
-#: includes/settings-api.php:996
+#: includes/settings-api.php:1017
 msgid "Activate License"
 msgstr ""
 
-#: includes/settings-api.php:997
+#: includes/settings-api.php:1018
 msgid "inactive"
 msgstr ""
 
-#: includes/settings-api.php:999
+#: includes/settings-api.php:1020
 msgid "Check License"
 msgstr ""
 
-#: includes/settings-api.php:1000
+#: includes/settings-api.php:1021
 msgid "expired"
 msgstr ""
 
-#: includes/settings-api.php:1002
+#: includes/settings-api.php:1023
 msgid "invalid"
 msgstr ""
 
-#: includes/settings-api.php:1017
+#: includes/settings-api.php:1038
 msgid "Documentation on date and time formatting"
 msgstr ""
 
@@ -7378,6 +7445,10 @@ msgstr ""
 
 #: includes/upgrade/class-manual-upgrade-tasks.php:42
 msgid "Remove invalid characters from media filenames"
+msgstr ""
+
+#: includes/upgrade/class-manual-upgrade-tasks.php:48
+msgid "Calculate image dimensions"
 msgstr ""
 
 #: includes/views/admin/account-balance/class-account-balance-page.php:16
@@ -7534,7 +7605,7 @@ msgstr ""
 msgid "Category ID must be valid for Ads to display."
 msgstr ""
 
-#: install.php:291
+#: installer.php:292
 msgid "30 Day Listing"
 msgstr ""
 
@@ -7679,56 +7750,4 @@ msgstr ""
 
 #: templates/frontend/listings.tpl.php:20
 msgid "There were no listings found."
-msgstr ""
-
-#: upload_awpcp.php:25
-msgid "The specified image file does not exists: %s."
-msgstr ""
-
-#: upload_awpcp.php:35
-msgid "No file was selected."
-msgstr ""
-
-#: upload_awpcp.php:39
-msgid "Unknown error encountered while uploading the image."
-msgstr ""
-
-#: upload_awpcp.php:48
-msgid "The file %s has an invalid extension and was rejected."
-msgstr ""
-
-#: upload_awpcp.php:51
-msgid ""
-"The size of %1$s was too small. The file was not uploaded. File size must be "
-"greater than %2$d bytes."
-msgstr ""
-
-#: upload_awpcp.php:55
-msgid ""
-"The file %s was larger than the maximum allowed file size of %s bytes. The "
-"file was not uploaded."
-msgstr ""
-
-#: upload_awpcp.php:59
-msgid "The file %s does not appear to be a valid image file."
-msgstr ""
-
-#: upload_awpcp.php:62
-msgid ""
-"The image %s did not meet the minimum width of %s pixels. The file was not "
-"uploaded."
-msgstr ""
-
-#: upload_awpcp.php:66
-msgid ""
-"The image %s did not meet the minimum height of %s pixels. The file was not "
-"uploaded."
-msgstr ""
-
-#: upload_awpcp.php:71 upload_awpcp.php:75
-msgid "The file %s could not be moved to the destination directory."
-msgstr ""
-
-#: upload_awpcp.php:80
-msgid "Could not create resized versions of image %s."
 msgstr ""

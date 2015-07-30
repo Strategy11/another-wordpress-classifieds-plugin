@@ -82,7 +82,7 @@ class AWPCP_PaymentTermsTable {
             'data-categories' => json_encode($item->categories)
         );
 
-        return awpcp_render_attributes($attrs);
+        return awpcp_html_attributes($attrs);
     }
 
     public function item_column($item, $column) {
@@ -174,7 +174,7 @@ class AWPCP_PaymentTermsTable {
         if ($value == $selected)
             $attrs['checked'] = 'checked';
 
-        $html = sprintf('<input %s>', awpcp_render_attributes($attrs));
+        $html = sprintf( '<input %s>', awpcp_html_attributes( $attrs ) );
         $html.= sprintf( '&nbsp;<label for="%s">%s</label>', esc_attr( $value ), esc_html( $amount ) );
 
         return $html;

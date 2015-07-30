@@ -1,100 +1,5 @@
 <?php
 
-// for PHP4 users, even though it's not technically supported:
-if (!function_exists('array_walk_recursive')) {
-	function array_walk_recursive(&$input, $funcname, $userdata = "") {
-	    if (!is_callable($funcname)) {
-	        return false;
-	    }
-	    if (!is_array($input)) {
-	        return false;
-	    }
-
-	    foreach ($input AS $key => $value) {
-	        if (is_array($input[$key])) {
-	            array_walk_recursive($input[$key], $funcname, $userdata);
-	        } else {
-	            $saved_value = $value;
-	            if (!empty($userdata)) {
-	                $funcname($value, $key, $userdata);
-	            } else {
-	                $funcname($value, $key);
-	            }
-	            if ($value != $saved_value) {
-	                $input[$key] = $value;
-	            }
-	        }
-	    }
-	    return true;
-	}
-}
-
-
-if (!function_exists('wp_strip_all_tags')) {
-	/**
-	 * Properly strip all HTML tags including script and style
-	 *
-	 * @since 2.9.0
-	 *
-	 * @param string $string String containing HTML tags
-	 * @param bool $remove_breaks optional Whether to remove left over line breaks and white space chars
-	 * @return string The processed string.
-	 */
-	function wp_strip_all_tags($string, $remove_breaks = false) {
-		$string = preg_replace( '@<(script|style)[^>]*?>.*?</\\1>@si', '', $string );
-		$string = strip_tags($string);
-
-		if ( $remove_breaks )
-			$string = preg_replace('/[\r\n\t ]+/', ' ', $string);
-
-		return trim($string);
-	}
-}
-
-
-if (!function_exists('esc_textarea')) {
-	/**
-	 * Escaping for textarea values.
-	 *
-	 * @since 3.1
-	 *
-	 * @param string $text
-	 * @return string
-	 */
-	function esc_textarea( $text ) {
-		$safe_text = htmlspecialchars( $text, ENT_QUOTES );
-		return apply_filters( 'esc_textarea', $safe_text, $text );
-	}
-}
-
-
-if (!function_exists('wp_trim_words')) {
-	/**
-	 * Trims text to a certain number of words.
-	 *
-	 * @param string $text Text to trim.
-	 * @param int $num_words Number of words. Default 55.
-	 * @param string $more What to append if $text needs to be trimmed. Default '&hellip;'.
-	 * @return string Trimmed text.
-	 */
-	function wp_trim_words( $text, $num_words = 55, $more = null ) {
-		if ( null === $more )
-			$more = __( '&hellip;', 'AWPCP' );
-		$original_text = $text;
-		$text = wp_strip_all_tags( $text );
-		$words_array = preg_split( "/[\n\r\t ]+/", $text, $num_words + 1, PREG_SPLIT_NO_EMPTY );
-		if ( count( $words_array ) > $num_words ) {
-			array_pop( $words_array );
-			$text = implode( ' ', $words_array );
-			$text = $text . $more;
-		} else {
-			$text = implode( ' ', $words_array );
-		}
-		return apply_filters( 'wp_trim_words', $text, $num_words, $more, $original_text );
-	}
-}
-
-
 function awpcp_esc_attr($text) {
 	// WP adds slashes to all request variables
 	$text = stripslashes($text);
@@ -517,6 +422,40 @@ function awpcp_render_pagination_item( $label, $page, $results_per_page, $params
     return sprintf( '<a href="%s">%s</a>', esc_url( $url ), $label );
 }
 
+/**
+ * @since 3.2.1
+ */
+function awpcp_pagination_options( $selected=10 ) {
+    $options = get_awpcp_option( 'pagination-options' );
+    return awpcp_build_pagination_options( $options, $selected );
+}
+
+/**
+ * @since 3.3.2
+ */
+function awpcp_build_pagination_options( $options, $selected ) {
+    array_unshift( $options, 0 );
+
+    for ( $i = count( $options ) - 1; $i >= 0; $i-- ) {
+        if ( $options[ $i ] < $selected ) {
+            array_splice( $options, $i + 1, 0, $selected );
+            break;
+        }
+    }
+
+    $options_without_zero = array_filter( $options, 'intval' );
+
+    return array_combine( $options_without_zero , $options_without_zero );
+}
+
+/**
+ * @since 3.3.2
+ */
+function awpcp_default_pagination_options( $selected = 10 ) {
+    $default_options = awpcp()->settings->get_option_default_value( 'pagination-options' );
+    return awpcp_build_pagination_options( $default_options, $selected );
+}
+
 function awpcp_get_categories() {
 	global $wpdb;
 
@@ -660,155 +599,6 @@ function awpcp_default_region_fields( $context='details', $enabled_fields = null
 
     return $fields;
 }
-
-
-/**
- * TODO: this belongs to an Ads API.
- * @since 3.0.2
- */
-function awpcp_regions_search_conditions($regions=array()) {
-	global $wpdb;
-
-	if ( empty( $regions ) ) return array();
-
-	$conditions = array();
-	$fields = null;
-
-	foreach ( $regions as $region ) {
-		if ( $fields === null ) {
-			$fields = array_reverse( array_keys( awpcp_region_fields() ) );
-		}
-
-		foreach ( $fields as $column ) {
-			$value = isset( $region[ $column ] ) ? trim( $region[ $column ] ) : '';
-			if ( ! empty( $value ) ) {
-                $conditions[] = $wpdb->prepare( "{$column} LIKE '%%%s%%'", trim( $value ) );
-				break;
-			}
-		}
-	}
-
-	if ( empty( $conditions ) ) return array();
-
-	$sql = 'SELECT ad_id FROM ' . AWPCP_TABLE_AD_REGIONS . ' ';
-	$sql.= 'WHERE ' . join( ' OR ', $conditions );
-
-	return array( AWPCP_TABLE_ADS . '.`ad_id` IN ( ' . $sql . ' )' );
-}
-
-
-/**
- * @since 3.0
- */
-function awpcp_get_region_field_entries($field) {
-	global $wpdb;
-
-	$columns = array(
-		'country' => 'ad_country',
-		'county' => 'ad_county_village',
-		'state' => 'ad_state',
-		'city' => 'ad_city'
-	);
-
-	// TODO: shouldn't this conditions be the default behavior in AWPCP_Ad::query?
-	$conditions[] = "disabled = 0";
-	$conditions[] = "verified = 1";
-	$conditions[] = "payment_status != 'Unpaid'";
-
-    if ( get_awpcp_option( 'enable-ads-pending-payment' ) == 0 && get_awpcp_option( 'freepay' ) == 1 ) {
-        $conditions[] = "payment_status != 'Pending'";
-    }
-
-	$args = array(
-		'fields' => sprintf('%1$s region_name, COUNT(ad_id) AS count_enabled', $columns[$field]),
-		'where' => join(' AND ', $conditions),
-		'order' => array( "{$columns[$field]} ASC" ),
-		'groupby' => $columns[$field],
-	);
-
-	if ($entries = AWPCP_Ad::query($args, true)) {
-		$empty = new stdClass;
-		$empty->region_name = __('Select Option', 'AWPCP');
-		$empty->count_enabled = false;
-		$empty->dummy = true;
-		array_unshift($entries, $empty);
-	} else {
-		$entries = array();
-	}
-
-	return $entries;
-}
-
-/**
- * @since  3.0
- */
-function awpcp_render_region_form_field_options($entries, $selected=false) {
-	$selected = count($entries) == 1 ? $entries[0]->region_name : $selected;
-	$template = '<option value="%1$s" %2$s>%3$s</option>';
-
-	$options = array();
-	foreach ($entries as $entry) {
-		$attribute = $entry->region_name == $selected ? 'selected="selected"' : '';
-		if (awpcp_get_property($entry, 'dummy', false)) {
-			$label = $entry->region_name;
-			$value = "";
-		} else {
-			$label = sprintf('%1$s (%2$d)', $entry->region_name, $entry->count_enabled);
-			$value = $entry->region_name;
-		}
-		$options[] = sprintf($template, esc_attr($value), $attribute, stripslashes($label));
-	}
-
-	return join('', $options);
-}
-
-
-/**
- * Generates HTML for Region fields. Only those fields enabled
- * in the settings will be returned.
- *
- * @param $query array 			Default or selected values for form fields.
- * @param $translations array 	Allow developers to change the name
- * 								attribute of the form field associated
- *								to this Region Field.
- * @deprecated since 3.2.3
- */
-function awpcp_region_form_fields($query, $translations=null, $context='details', $errors=array()) {
-	if (is_null($translations)) {
-		$translations = array('country', 'state', 'city', 'county');
-		$translations = array_combine($translations, $translations);
-	}
-
-	$fields = array();
-	foreach (awpcp_region_fields($translations) as $key => $field) {
-		$field['value'] = awpcp_array_data($key, '', $query);
-		if ($context === 'search' && get_awpcp_option('buildsearchdropdownlists')) {
-			$field['entries'] = awpcp_get_region_field_entries($key);
-			$field['options'] = awpcp_render_region_form_field_options($field['entries'], $field['value']);
-		} else {
-			$field['entries'] = array();
-			$field['options'] = '';
-		}
-		$fields[$key] = $field;
-	}
-
-	// no field is required in Search Ads screen
-	if ( $context == 'search' ) {
-		foreach ( $fields as $key => $field ) {
-			$fields[$key]['required'] = false;
-		}
-	}
-
-	$ordered = array('country', 'state', 'city', 'county');
-
-	ob_start();
-		include(AWPCP_DIR . '/frontend/templates/region-control-form-fields.tpl.php');
-		$html = ob_get_contents();
-	ob_end_clean();
-
-	return $html;
-}
-
 
 function awpcp_country_list_options($value=false, $use_names=true) {
 	$countries = array(
@@ -1028,32 +818,6 @@ function awpcp_country_list_options($value=false, $use_names=true) {
  * as needed.
  */
 
-
-/**
- * Return number of allowed images for an Ad, according to its
- * Ad ID or Fee Term ID.
- *
- * @param $ad_id 		int 	Ad ID.
- * @param $ad_term_id 	int 	Ad Term ID.
- */
-function awpcp_get_ad_number_allowed_images($ad_id) {
-	$ad = AWPCP_Ad::find_by_id($ad_id);
-
-	if (is_null($ad)) {
-		return 0;
-	}
-
-	$payment_term = $ad->get_payment_term();
-
-	if ( ! is_null( $payment_term ) ) {
-		$allowed = $payment_term->images;
-	} else {
-		$allowed = get_awpcp_option('imagesallowedfree');
-	}
-
-	return $allowed;
-}
-
 /**
  * @deprecated 3.0.2 use $media->get_url()
  */
@@ -1104,28 +868,6 @@ function awpcp_get_image_url($image, $suffix='') {
 
 	return false;
 }
-
-
-/**
- *
- * @deprecated use awpcp_media_api()->set_ad_primary_image()
- */
-function awpcp_set_ad_primary_image($ad_id, $image_id) {
-	global $wpdb;
-
-	$query = 'UPDATE ' . AWPCP_TABLE_ADPHOTOS . ' ';
-	$query.= "SET is_primary = 0 WHERE ad_id = %d";
-
-	if ($wpdb->query($wpdb->prepare($query, $ad_id)) === false)
-		return false;
-
-	$query = 'UPDATE ' . AWPCP_TABLE_ADPHOTOS . ' ';
-	$query.= 'SET is_primary = 1 WHERE ad_id = %d AND key_id = %d';
-	$query = $wpdb->prepare($query, $ad_id, $image_id);
-
-	return $wpdb->query($query) !== false;
-}
-
 
 /**
  * Get the primary image of the given Ad.
@@ -1746,7 +1488,11 @@ function awpcp_module_not_compatible_notice( $module, $installed_version ) {
     return awpcp_print_error( $message );
 }
 
-
+/**
+ * Use awpcp_html_attributes instead.
+ *
+ * @deprecated since next-release
+ */
 function awpcp_render_attributes($attrs) {
     $attributes = array();
     foreach ($attrs as $name => $value) {
@@ -1755,6 +1501,17 @@ function awpcp_render_attributes($attrs) {
         $attributes[] = sprintf('%s="%s"', $name, esc_attr($value));
     }
     return join(' ', $attributes);
+}
+
+/**
+ * @since next-release
+ */
+function awpcp_html_attributes( $attributes ) {
+    $output = array();
+    foreach ( $attributes as $name => $value ) {
+        $output[] = sprintf( '%s="%s"', $name, $value );
+    }
+    return implode( ' ', $output );
 }
 
 function awpcp_html_hidden_fields( $fields ) {
@@ -1769,6 +1526,27 @@ function awpcp_html_hidden_fields( $fields ) {
     }
 
     return implode( "\n", $output );
+}
+
+/**
+ * @since next-release
+ */
+function awpcp_html_image( $params ) {
+    $params = wp_parse_args( $params, array(
+        'attributes' => array(
+            'alt' => null,
+            'title' => null,
+            'src' => null,
+            'width' => null,
+            'height' => null,
+            'style' => null,
+        ),
+    ) );
+
+    $attributes = rtrim( ' ' . awpcp_html_attributes( $params['attributes'] ) );
+    $element = str_replace( '<attributes>', $attributes, '<img<attributes>/>' );
+
+    return $element;
 }
 
 function awpcp_uploaded_file_error($file) {
@@ -1924,12 +1702,28 @@ function awpcp_admin_recipient_email_address() {
  * @return	string	email address
  */
 function awpcp_admin_sender_email_address($include_contact_name=false) {
-	$email_address = get_awpcp_option( 'awpcpadminemail' );
-	if ( empty( $email_address ) ) {
-		$email_address = get_option( 'admin_email' );
-	}
+    if ( awpcp_get_option( 'sent-emails-using-wordpress-email-address' ) ) {
+        $email_address = sprintf( 'wordpress@%s', awpcp_request()->domain( false ) );
+    } else if ( strlen( get_awpcp_option( 'awpcpadminemail' ) ) > 0 ) {
+        $email_address = get_awpcp_option( 'awpcpadminemail' );
+    } else {
+        $email_address = get_option( 'admin_email' );
+    }
 
 	return $email_address;
+}
+
+/**
+ * @since next-release
+ */
+function awpcp_admin_sender_name() {
+    if ( awpcp_get_option( 'sent-emails-using-wordpress-email-address' ) ) {
+        $sender_name = 'WordPress';
+    } else {
+        $sender_name = awpcp_get_blog_name();
+    }
+
+    return $sender_name;
 }
 
 /**
@@ -1940,7 +1734,10 @@ function awpcp_admin_sender_email_address($include_contact_name=false) {
  * @return	string	name <email@address>
  */
 function awpcp_admin_email_from() {
-	return awpcp_format_email_address( awpcp_admin_sender_email_address(), awpcp_get_blog_name() );
+    $email_address = awpcp_admin_sender_email_address();
+    $sender_name = awpcp_admin_sender_name();
+
+    return awpcp_format_email_address( $email_address, $sender_name );
 }
 
 /**
@@ -2240,9 +2037,417 @@ function awpcp_register_deactivation_hook( $__FILE__, $callback ) {
 }
 
 /**
+ * @since next-release
+ */
+function awpcp_unregister_widget_if_exists( $widget_class ) {
+    global $wp_widget_factory;
+
+    if ( ! is_object( $wp_widget_factory ) ) {
+        return;
+    }
+
+    if ( isset( $wp_widget_factory->widgets[ 'AWPCP_LatestAdsWidget' ] ) ) {
+        unregister_widget("AWPCP_LatestAdsWidget");
+    }
+}
+
+/**
  * @since 3.4
  */
 function awpcp_are_images_allowed() {
     $allowed_image_extensions = array_filter( awpcp_get_option( 'allowed-image-extensions', array() ) );
     return count( $allowed_image_extensions ) > 0;
+}
+
+
+function add_slashes_recursive( $variable ) {
+    if (is_string($variable)) {
+        return addslashes($variable);
+    } elseif (is_array($variable)) {
+        foreach($variable as $i => $value) {
+            $variable[$i] = add_slashes_recursive($value);
+        }
+    }
+
+    return $variable ;
+}
+
+function string_contains_string_at_position($haystack, $needle, $pos = 0, $case=true) {
+    if ($case) {
+        $result = (strpos($haystack, $needle, 0) === $pos);
+    } else {
+        $result = (stripos($haystack, $needle, 0) === $pos);
+    }
+    return $result;
+}
+
+function string_starts_with($haystack, $needle, $case=true) {
+    return string_contains_string_at_position($haystack, $needle, 0, $case);
+}
+
+function string_ends_with($haystack, $needle, $case=true) {
+    return string_contains_string_at_position($haystack, $needle, (strlen($haystack) - strlen($needle)), $case);
+}
+
+/**
+ * @since new-release
+ */
+function awpcp_get_option( $option, $default = '', $reload = false ) {
+    return get_awpcp_option( $option, $default, $reload );
+}
+
+function get_awpcp_option($option, $default='', $reload=false) {
+    return awpcp()->settings->get_option( $option, $default, $reload );
+}
+
+//Function to replace addslashes_mq, which is causing major grief.  Stripping of undesireable characters now done
+// through above stripslashes_deep_gpc.
+function clean_field($foo) {
+    return add_slashes_recursive($foo);
+}
+// END FUNCTION: replace underscores with dashes for search engine friendly urls
+
+
+function isValidURL($url) {
+    return preg_match('|^http(s)?://[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(/.*)?$|i', $url);
+}
+
+/**
+ * @since 3.0.2
+ */
+function awpcp_is_valid_email_address($email) {
+    return filter_var( $email, FILTER_VALIDATE_EMAIL ) !== false;
+}
+
+/**
+ * @deprecated since 3.0.2. @see awpcp_is_valid_email_address()
+ */
+function isValidEmailAddress($email) {
+    return awpcp_is_valid_email_address( $email );
+}
+
+/**
+ * @since 3.4
+ */
+function awpcp_is_email_address_allowed( $email_address ) {
+    $wildcard = 'BCCsyfxU6HMXyyasic6t';
+    $pattern = '[a-zA-Z0-9-]*';
+
+    $domains_whitelist = str_replace( '*', $wildcard, get_awpcp_option( 'ad-poster-email-address-whitelist' ) );
+    $domains_whitelist = preg_quote( $domains_whitelist );
+    $domains_whitelist = str_replace( $wildcard, $pattern, $domains_whitelist );
+    $domains_whitelist = str_replace( "{$pattern}\.", "(?:{$pattern}\.)?", $domains_whitelist );
+    $domains_whitelist = array_filter( explode( "\n", $domains_whitelist ) );
+    $domains_whitelist = array_map( 'trim', $domains_whitelist );
+
+    $domains_pattern = '/' . implode( '|', $domains_whitelist ) . '/';
+
+    if ( empty( $domains_whitelist ) ) {
+        return true;
+    }
+
+    $domain = substr( $email_address, strpos( $email_address, '@' ) + 1 );
+
+    if ( preg_match( $domains_pattern, $domain ) ) {
+        return true;
+    }
+
+    return false;
+}
+
+function defaultcatexists($defid) {
+    global $wpdb;
+
+    $query = 'SELECT COUNT(*) FROM ' . AWPCP_TABLE_CATEGORIES . ' WHERE category_id = %d';
+    $query = $wpdb->prepare( $query, $defid );
+
+    $count = $wpdb->get_var( $query );
+
+    if ( $count !== false && $count > 0 ) {
+        return true;
+    } else {
+        return false;
+    }
+
+}
+
+// START FUNCTION: function to create a default category with an ID of  1 in the event a default category with ID 1 does not exist
+function createdefaultcategory($idtomake,$titletocallit) {
+    global $wpdb;
+
+    $wpdb->insert( AWPCP_TABLE_CATEGORIES, array( 'category_name' => $titletocallit, 'category_parent_id' => 0 ) );
+
+    $query = 'UPDATE ' . AWPCP_TABLE_CATEGORIES . ' SET category_id = 1 WHERE category_id = %d';
+    $query = $wpdb->prepare( $query, $wpdb->insert_id );
+
+    $wpdb->query( $query );
+}
+// END FUNCTION: create default category
+
+
+//////////////////////
+// START FUNCTION: function to delete multiple ads at once used when admin deletes a category that contains ads but does not move the ads to a new category
+//////////////////////
+function massdeleteadsfromcategory($catid) {
+    $ads = AWPCP_Ad::find_by_category_id($catid);
+    foreach ($ads as $ad) {
+        $ad->delete();
+    }
+}
+// END FUNCTION
+
+function create_ad_postedby_list($name) {
+    global $wpdb;
+
+    $output = '';
+    $query = 'SELECT DISTINCT ad_contact_name FROM ' . AWPCP_TABLE_ADS . ' WHERE disabled = 0 ORDER BY ad_contact_name ASC';
+
+    $results = $wpdb->get_col( $query );
+
+    foreach ( $results as $contact_name ) {
+        if ( strcmp( $contact_name, $name ) === 0 ) {
+            $output .= "<option value=\"$contact_name\" selected=\"selected\">$contact_name</option>";
+        } else {
+            $output .= "<option value=\"$contact_name\">$contact_name</option>";
+        }
+    }
+
+    return $output;
+}
+
+function awpcp_strip_html_tags( $text )
+{
+    // Remove invisible content
+    $text = preg_replace(
+    array(
+            '@<head[^>]*?>.*?</head>@siu',
+            '@<style[^>]*?>.*?</style>@siu',
+            '@<script[^>]*?.*?</script>@siu',
+            '@<object[^>]*?.*?</object>@siu',
+            '@<embed[^>]*?.*?</embed>@siu',
+            '@<applet[^>]*?.*?</applet>@siu',
+            '@<noframes[^>]*?.*?</noframes>@siu',
+            '@<noscript[^>]*?.*?</noscript>@siu',
+            '@<noembed[^>]*?.*?</noembed>@siu',
+    // Add line breaks before and after blocks
+            '@</?((address)|(blockquote)|(center)|(del))@iu',
+            '@</?((div)|(h[1-9])|(ins)|(isindex)|(p)|(pre))@iu',
+            '@</?((dir)|(dl)|(dt)|(dd)|(li)|(menu)|(ol)|(ul))@iu',
+            '@</?((table)|(th)|(td)|(caption))@iu',
+            '@</?((form)|(button)|(fieldset)|(legend)|(input))@iu',
+            '@</?((label)|(select)|(optgroup)|(option)|(textarea))@iu',
+            '@</?((frameset)|(frame)|(iframe))@iu',
+    ),
+    array(
+            ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
+            "\n\$0", "\n\$0", "\n\$0", "\n\$0", "\n\$0", "\n\$0",
+            "\n\$0", "\n\$0",
+    ),
+    $text );
+    return strip_tags( $text );
+}
+// END FUNCTION
+
+// Override the SMTP settings built into WP if the admin has enabled that feature
+function awpcp_phpmailer_init_smtp( $phpmailer ) {
+    // smtp not enabled?
+    $enabled = get_awpcp_option('usesmtp');
+    if ( !$enabled || 0 == $enabled ) return;
+    $hostname = get_awpcp_option('smtphost');
+    $port = get_awpcp_option('smtpport');
+    $username = get_awpcp_option('smtpusername');
+    $password = get_awpcp_option('smtppassword');
+    // host and port not set? gotta have both.
+    if ( '' == trim( $hostname ) || '' == trim( $port ) )
+        return;
+    // still got defaults set? can't use those.
+    if ( 'mail.example.com' == trim( $hostname ) ) return;
+    if ( 'smtp_username' == trim( $username ) ) return;
+    $phpmailer->Mailer = 'smtp';
+    $phpmailer->Host = $hostname;
+    $phpmailer->Port = $port;
+    // If there's a username and password then assume SMTP Auth is necessary and set the vars:
+    if ( '' != trim( $username )  && '' != trim( $password ) ) {
+        $phpmailer->SMTPAuth = true;
+        $phpmailer->Username = $username;
+        $phpmailer->Password = $password;
+    }
+    // that's it!
+}
+function awpcp_process_mail($senderemail='', $receiveremail='',  $subject='',
+                            $body='', $sendername='', $replytoemail='', $html=false)
+{
+    $headers =  "MIME-Version: 1.0\n" .
+    "From: $sendername <$senderemail>\n" .
+    "Reply-To: $replytoemail\n";
+
+    if ($html) {
+        $headers .= "Content-Type: text/html; charset=\"" . get_option('blog_charset') . "\"\n";
+    } else {
+        $headers .= "Content-Type: text/plain; charset=\"" . get_option('blog_charset') . "\"\n";
+    }
+
+    $subject = $subject;
+    $message = "$body\n\n" . awpcp_format_email_sent_datetime() . "\n\n";
+
+    if (wp_mail($receiveremail, $subject, $message, $headers )) {
+        return 1;
+
+    } elseif (awpcp_send_email($senderemail, $receiveremail, $subject, $body,true)) {
+        return 1;
+
+    } elseif (@mail($receiveremail, $subject, $body, $headers)) {
+        return 1;
+
+    } else {
+        return 0;
+    }
+}
+
+function awpcp_format_email_sent_datetime() {
+    $time = date_i18n( awpcp_get_datetime_format(), current_time( 'timestamp' ) );
+    return sprintf( __( 'Email sent %s.', 'AWPCP' ), $time );
+}
+
+// make sure the IP isn't a reserved IP address
+function awpcp_validip($ip) {
+
+    if (!empty($ip) && ip2long($ip)!=-1) {
+
+        $reserved_ips = array (
+        array('0.0.0.0','2.255.255.255'),
+        array('10.0.0.0','10.255.255.255'),
+        array('127.0.0.0','127.255.255.255'),
+        array('169.254.0.0','169.254.255.255'),
+        array('172.16.0.0','172.31.255.255'),
+        array('192.0.2.0','192.0.2.255'),
+        array('192.168.0.0','192.168.255.255'),
+        array('255.255.255.0','255.255.255.255')
+        );
+
+        foreach ($reserved_ips as $r) {
+            $min = ip2long($r[0]);
+            $max = ip2long($r[1]);
+            if ((ip2long($ip) >= $min) && (ip2long($ip) <= $max))
+            return false;
+        }
+
+        return true;
+
+    } else {
+
+        return false;
+
+    }
+}
+
+// retrieve the ad poster's IP if possible
+function awpcp_getip() {
+    if ( awpcp_validip(awpcp_array_data("HTTP_CLIENT_IP", '', $_SERVER)) ) {
+        return $_SERVER["HTTP_CLIENT_IP"];
+    }
+
+    foreach ( explode(",", awpcp_array_data("HTTP_X_FORWARDED_FOR", '', $_SERVER)) as $ip ) {
+        if ( awpcp_validip(trim($ip) ) ) {
+            return $ip;
+        }
+    }
+
+    if (awpcp_validip(awpcp_array_data("HTTP_X_FORWARDED", '', $_SERVER))) {
+        return $_SERVER["HTTP_X_FORWARDED"];
+
+    } elseif (awpcp_validip(awpcp_array_data('HTTP_FORWARDED_FOR', '', $_SERVER))) {
+        return $_SERVER["HTTP_FORWARDED_FOR"];
+
+    } elseif (awpcp_validip(awpcp_array_data("HTTP_FORWARDED", '', $_SERVER))) {
+        return $_SERVER["HTTP_FORWARDED"];
+
+    } else {
+        return awpcp_array_data("REMOTE_ADDR", '', $_SERVER);
+    }
+}
+
+function awpcp_get_ad_share_info($id) {
+    global $wpdb;
+
+    $ad = AWPCP_Ad::find_by_id($id);
+    $info = array();
+
+    if (is_null($ad)) {
+        return null;
+    }
+
+    $info['url'] = url_showad($id);
+    $info['title'] = stripslashes($ad->ad_title);
+    $info['description'] = strip_tags(stripslashes($ad->ad_details));
+    $info['description'] = str_replace("\n", " ", $info['description']);
+
+    if ( awpcp_utf8_strlen( $info['description'] ) > 300 ) {
+        $info['description'] = awpcp_utf8_substr( $info['description'], 0, 300 ) . '...';
+    }
+
+    $info['images'] = array();
+
+    $info['published-time'] = awpcp_datetime( 'Y-m-d', $ad->ad_postdate );
+    $info['modified-time'] = awpcp_datetime( 'Y-m-d', $ad->ad_last_updated );
+
+    $images = awpcp_media_api()->find_by_ad_id( $ad->ad_id, array( 'enabled' => true ) );
+
+    foreach ( $images as $image ) {
+        $info[ 'images' ][] = $image->get_url( 'large' );
+    }
+
+    return $info;
+}
+
+/**
+ * TODO: move to AWPCP_Email?
+ */
+function awpcp_send_email($from,$to,$subject,$message, $html=false, $attachments=array(), $bcc='') {
+    $separator='Next.Part.331925654896717'.time();
+    $att_separator='NextPart.is_a_file9817298743'.time();
+    $headers="From: $from\n";
+    $headers.="MIME-Version: 1.0\n";
+    if (!empty($bcc)) {
+        $headers.="Bcc: $bcc\n";
+    }
+    $text_header="Content-Type: text/plain; charset=\"iso-8859-1\"\nContent-Transfer-Encoding: 8bit\n\n";
+    $html_header="Content-Type: text/html; charset=\"iso-8859-1\"\nContent-Transfer-Encoding: 8bit\n\n";
+    $html_message=$message;
+    $text_message=$message;
+    $text_message=str_replace('&nbsp;',' ',$text_message);
+    $text_message=trim(strip_tags(stripslashes($text_message)));
+    // Bring down number of empty lines to 2 max
+    $text_message=preg_replace("/\n[\s]+\n/","\n",$text_message);
+    $text_message=preg_replace("/[\n]{3,}/", "\n\n",$text_message);
+    $text_message=wordwrap($text_message,72);
+    $message="\n\n--$separator\n".$text_header.$text_message;
+
+    if ($html) {
+        $message.="\n\n--$separator\n".$html_header.$html_message;
+    }
+
+    $message.="\n\n--$separator--\n";
+
+    if (!empty($attachments)) {
+        $headers.="Content-Type: multipart/mixed; boundary=\"$att_separator\";\n";
+        $message="\n\n--$att_separator\nContent-Type: multipart/alternative; boundary=\"$separator\";\n".$message;
+        while (list(,$file)=each($attachments)) {
+            $message.="\n\n--$att_separator\n";
+            $message.="Content-Type: application/octet-stream; name=\"".basename($file)."\"\n";
+            $message.="Content-Transfer-Encoding: base64\n";
+            $message.='Content-Disposition: attachment; filename="'.basename($file)."\"\n\n";
+            $message.=wordwrap(base64_encode(fread(fopen($file,'rb'),filesize($file))),72,"\n",1);
+        }
+        $message.="\n\n--$att_separator--\n";
+    } else {
+        $headers.="Content-Type: multipart/alternative;\n\tboundary=\"$separator\";\n";
+    }
+    $message='This is a multi-part message in MIME format.'.$message;
+    if (isset($_SERVER['WINDIR']) || isset($_SERVER['windir']) || isset($_ENV['WINDIR']) || isset($_ENV['windir'])) {
+        $message=unix2dos($message);
+    }
+    //  $headers=unix2dos($headers);
+    $sentok=@mail($to,$subject,$message,$headers,"-f$from");
+    return $sentok;
 }

@@ -25,6 +25,7 @@ class AWPCP_MediaAPI {
             'mime_type' => awpcp_get_property( $object, 'mime_type', null ),
             'enabled' => awpcp_get_property( $object, 'enabled', null ),
             'status' => awpcp_get_property( $object, 'status', null ),
+            'metadata' => maybe_serialize( awpcp_get_property( $object, 'metadata', null ) ),
             'is_primary' => awpcp_get_property( $object, 'is_primary', null ),
         );
 
@@ -93,6 +94,10 @@ class AWPCP_MediaAPI {
     private function sanitize( $data ) {
         if ( ! isset( $data['created'] ) || ! awpcp_is_mysql_date( $data['created'] ) ) {
             $data['created'] = awpcp_datetime();
+        }
+
+        if ( ! isset( $data['metadata'] ) || ! is_array( $data['metadata'] ) ) {
+            $data['metadata'] = '';
         }
 
         $data['enabled'] = absint( $data['enabled'] );
@@ -338,5 +343,17 @@ class AWPCP_MediaAPI {
         } else {
             return false;
         }
+    }
+
+    public function get_metadata( $image, $name, $default = false ) {
+        if ( isset( $image->metadata[ $name ] ) ) {
+            return $image->metadata[ $name ];
+        } else {
+            return $default;
+        }
+    }
+
+    public function set_metadata( $image, $name, $value ) {
+        $image->metadata[ $name ] = $value;
     }
 }

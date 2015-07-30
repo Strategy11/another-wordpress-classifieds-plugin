@@ -17,11 +17,11 @@ class AWPCP_Upgrade_Task_Ajax_Handler extends AWPCP_AjaxHandler {
         $task = $this->tasks_manager->get_upgrade_task( $task_slug );
 
         if ( is_null( $task ) ) {
-            return $this->error();
+            return $this->error_response( sprintf( "No task was found with identifier: %s.", $task_slug ) );
         }
 
         if ( ! is_callable( $task['handler'] ) ) {
-            return $this->error();
+            return $this->error_response( sprintf( "The handler for task '%s' couldn't be instantiated.", $task_slug ) );
         }
 
         $task_handler = call_user_func( $task['handler'] );
