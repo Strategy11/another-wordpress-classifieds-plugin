@@ -1503,6 +1503,9 @@ function awpcp_render_attributes($attrs) {
     return join(' ', $attributes);
 }
 
+/**
+ * @since next-release
+ */
 function awpcp_html_attributes( $attributes ) {
     $output = array();
     foreach ( $attributes as $name => $value ) {
@@ -1525,6 +1528,9 @@ function awpcp_html_hidden_fields( $fields ) {
     return implode( "\n", $output );
 }
 
+/**
+ * @since next-release
+ */
 function awpcp_html_image( $params ) {
     $params = wp_parse_args( $params, array(
         'attributes' => array(
