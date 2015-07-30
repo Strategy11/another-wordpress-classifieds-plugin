@@ -86,8 +86,8 @@ class AWPCP_Media {
     }
 
     private function get_url_from_path( $path ) {
-        // TODO: write upgrade routine to fix file names that include whitespaces?
-        return $path ? $this->sanitize_url( str_replace( rtrim( ABSPATH, '/' ), get_site_url(), $path ) ) : false;
+        $url = $path ? $this->sanitize_url( str_replace( rtrim( ABSPATH, '/' ), get_site_url(), $path ) ) : false;
+        return apply_filters( 'awpcp-media-url-from-path', $url, $path, $this );
     }
 
     private function sanitize_url( $url ) {
