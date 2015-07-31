@@ -53,4 +53,25 @@ class AWPCP_User_Panel {
 
 		do_action('awpcp_panel_add_submenu_page', $slug, $capability);
 	}
+
+    public function configure_routes( $router ) {
+        if ( awpcp_payments_api()->credit_system_enabled() && ! awpcp_current_user_is_admin() ) {
+            $this->add_users_page( $router );
+        }
+
+        $user_is_not_a_moderator = awpcp_current_user_is_admin() || ! awpcp_current_user_is_moderator();
+
+        if ( get_awpcp_option( 'enable-user-panel' ) && $user_is_not_a_moderator ) {
+            $this->configure_user_panel_routes( $router );
+        }
+    }
+
+    private function add_users_page( $router ) {
+    }
+
+    /**
+     * Register Ad Management Panel menu
+     */
+    public function configure_user_panel_routes( $router ) {
+    }
 }

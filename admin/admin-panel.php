@@ -43,6 +43,9 @@ class AWPCP_Admin {
 		add_action('admin_enqueue_scripts', array($this, 'scripts'));
 		add_action('admin_menu', array($this, 'menu'));
 
+        $admin_menu_builder = new AWPCP_AdminMenuBuilder( awpcp()->router );
+        add_action( 'admin_menu', array( $admin_menu_builder, 'build_menu' ) );
+
 		add_action('admin_notices', array($this, 'notices'));
 		add_action( 'awpcp-admin-notices', array( $this, 'check_duplicate_page_names' ) );
 
@@ -54,6 +57,19 @@ class AWPCP_Admin {
 		add_filter('awpcp-admin-sidebar', 'awpcp_admin_sidebar_output', 10, 2);
 	}
 
+	public function configure_routes( $router ) {
+        if ( get_option( 'awpcp-pending-manual-upgrade' ) ) {
+            $this->configure_manual_upgrade_routes( 'awpcp-admin-upgrade', $router );
+        } else {
+            $this->configure_regular_routes( 'awpcp.php', $router );
+        }
+    }
+
+    private function configure_manual_upgrade_routes( $parent_menu, $router ) {
+    }
+
+    private function add_manual_upgrade_admin_page( $parent_page, $menu_title, $menu_slug, $router ) {
+    }
 
 	public function notices() {
 		if ( ! awpcp_current_user_is_admin() ) {

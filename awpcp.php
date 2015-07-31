@@ -481,6 +481,7 @@ class AWPCP {
 
 		$this->settings->setup();
         $this->modules_updater = awpcp_modules_updater();
+        $this->router = awpcp_router();
 		$this->payments = awpcp_payments_api();
 		$this->listings = awpcp_listings_api();
 
@@ -493,6 +494,9 @@ class AWPCP {
 		$this->compatibility->load_plugin_integrations();
 
         add_action( 'generate_rewrite_rules', array( $this, 'clear_categories_list_cache' ) );
+
+        add_action( 'awpcp-configure-routes', array( $this->admin, 'configure_routes' ) );
+        add_action( 'awpcp-configure-routes', array( $this->panel, 'configure_routes' ) );
 
         add_action( 'init', array( $this->compatibility, 'load_plugin_integrations_on_init' ) );
 		add_action( 'init', array($this, 'init' ));
@@ -684,6 +688,7 @@ class AWPCP {
             delete_option( 'awpcp-installed-or-upgraded' );
         }
 
+        $this->router->configure_routes();
 		$this->register_scripts();
         $this->register_notification_handlers();
 	}
