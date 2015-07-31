@@ -325,6 +325,7 @@ require_once(AWPCP_DIR . "/admin/admin-panel.php");
 require_once(AWPCP_DIR . "/admin/user-panel.php");
 require_once( AWPCP_DIR . '/admin/class-categories-admin-page.php' );
 require_once( AWPCP_DIR . '/admin/class-main-classifieds-admin-page.php' );
+require_once( AWPCP_DIR . '/admin/class-settings-admin-page.php' );
 require_once( AWPCP_DIR . '/admin/pointers/class-drip-autoresponder-ajax-handler.php' );
 require_once( AWPCP_DIR . '/admin/pointers/class-drip-autoresponder.php' );
 require_once( AWPCP_DIR . '/admin/pointers/class-pointers-manager.php' );
