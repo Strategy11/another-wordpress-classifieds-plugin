@@ -336,6 +336,8 @@ require_once( AWPCP_DIR . '/admin/fees/class-add-fee-ajax-handler.php' );
 require_once( AWPCP_DIR . '/admin/fees/class-delete-fee-ajax-handler.php' );
 require_once( AWPCP_DIR . '/admin/fees/class-edit-fee-ajax-handler.php' );
 require_once( AWPCP_DIR . '/admin/fees/class-fees-admin-page.php' );
+require_once( AWPCP_DIR . '/admin/listings/class-delete-listing-ajax-handler.php' );
+require_once( AWPCP_DIR . '/admin/listings/class-manage-listings-admin-page.php' );
 require_once( AWPCP_DIR . '/admin/pointers/class-drip-autoresponder-ajax-handler.php' );
 require_once( AWPCP_DIR . '/admin/pointers/class-drip-autoresponder.php' );
 require_once( AWPCP_DIR . '/admin/pointers/class-pointers-manager.php' );
