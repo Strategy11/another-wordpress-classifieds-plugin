@@ -9,7 +9,7 @@ require_once(AWPCP_DIR . '/admin/admin-panel-csv-importer.php');
 require_once(AWPCP_DIR . '/admin/admin-panel-debug.php');
 // require_once(AWPCP_DIR . '/admin/admin-panel-categories.php');
 require_once(AWPCP_DIR . '/admin/admin-panel-fees.php');
-require_once(AWPCP_DIR . '/admin/admin-panel-credit-plans.php');
+// require_once(AWPCP_DIR . '/admin/admin-panel-credit-plans.php');
 require_once(AWPCP_DIR . '/admin/admin-panel-listings.php');
 require_once(AWPCP_DIR . '/admin/admin-panel-settings.php');
 require_once(AWPCP_DIR . '/admin/admin-panel-uninstall.php');
@@ -28,7 +28,7 @@ class AWPCP_Admin {
 		$this->home = new AWPCP_AdminHome();
 		$this->upgrade = new AWPCP_AdminUpgrade(false, false, $this->menu);
 		$this->settings = new AWPCP_Admin_Settings();
-		$this->credit_plans = new AWPCP_AdminCreditPlans();
+		// $this->credit_plans = new AWPCP_AdminCreditPlans();
 		// $this->categories = new AWPCP_AdminCategories();
 		$this->fees = new AWPCP_AdminFees();
 		$this->listings = new AWPCP_Admin_Listings();
@@ -70,6 +70,29 @@ class AWPCP_Admin {
 
     private function add_manual_upgrade_admin_page( $parent_page, $menu_title, $menu_slug, $router ) {
     }
+
+    private function configure_regular_routes( $parent_menu, $router ) {
+        $admin_capability = awpcp_admin_capability();
+
+        $parent_page = $router->add_admin_page(
+            __( 'Classifieds', 'AWPCP' ),
+            awpcp_admin_page_title( __( 'AWPCP', 'AWPCP' ) ),
+            'awpcp.php',
+            'awpcp_main_classifieds_admin_page',
+            $admin_capability,
+            MENUICO
+        );
+
+        $router->add_admin_subpage(
+            $parent_page,
+            __( 'Credit Plans', 'AWPCP' ),
+            awpcp_admin_page_title( __( 'Manage Credit Plans', 'AWPCP' ) ),
+            'awpcp-admin-credit-plans',
+            'awpcp_credit_plans_admin_page',
+            $admin_capability,
+            60
+        );
+	}
 
 	public function notices() {
 		if ( ! awpcp_current_user_is_admin() ) {
@@ -244,7 +267,8 @@ class AWPCP_Admin {
 		if ( awpcp()->manual_upgrades->has_pending_tasks() ) {
 			$parts = array($this->upgrade->title, $this->upgrade->menu, $this->upgrade->page);
 			$page = add_menu_page($parts[0], $parts[1], $capability, $parts[2], array($this->upgrade, 'dispatch'), MENUICO);
-			add_action('admin_print_styles-' . $page, array($this->upgrade, 'scripts'));
+			// $parts = array($this->upgrade->title, $this->upgrade->menu, $this->upgrade->page);
+			// $page = add_menu_page($parts[0], $parts[1], $capability, $parts[2], array($this->upgrade, 'dispatch'), MENUICO);
 
 		} else {
 			$parent = $this->home->page;
@@ -267,10 +291,6 @@ class AWPCP_Admin {
 				array( $this->settings, 'dispatch' )
 			);
 			add_action('admin_print_styles-' . $page, array($this->settings, 'scripts'));
-
-			$parts = array($this->credit_plans->title, $this->credit_plans->menu, $this->credit_plans->page);
-			$page = add_submenu_page($parent, $parts[0], $parts[1], $capability, $parts[2], array($this->credit_plans, 'dispatch'));
-			add_action('admin_print_styles-' . $page, array($this->credit_plans, 'scripts'));
 
 			if ( current_user_can( $capability ) ) {
 				$url = $this->get_manage_credits_section_url();

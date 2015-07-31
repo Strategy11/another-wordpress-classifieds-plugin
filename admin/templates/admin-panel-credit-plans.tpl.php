@@ -17,13 +17,13 @@
     </div>
 </div>
 
-<form method="get" action="<?php echo esc_attr( $this->url( array( 'action' => false ) ) ); ?>">
-    <?php foreach ($this->params as $name => $value): ?>
+<form method="get" action="<?php echo esc_attr( $page->url( array( 'action' => false ) ) ); ?>">
+    <?php foreach ($page->params as $name => $value): ?>
     <input type="hidden" name="<?php echo esc_attr( $name ); ?>" value="<?php echo esc_attr( $value ); ?>" />
     <?php endforeach ?>
 
-    <?php $url = $this->url( array( 'action' => 'add-credit-plan' ) ); ?>
-    <?php $label = __( 'Add Credit Plan', 'another-wordpress-classifieds-plugin' ); ?>
+    <?php $url = $page->url( array( 'action' => 'add-credit-plan' ) ); ?>
+    <?php $label = __( 'Add Credit Plan', 'AWPCP' ); ?>
     <a class="add button-primary" title="<?php echo esc_attr( $label ); ?>" href="<?php echo esc_attr( $url ); ?>" accesskey="s"><?php echo esc_html( $label ); ?></a>
 
     <?php echo $table->display(); ?>
