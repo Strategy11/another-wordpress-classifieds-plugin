@@ -250,6 +250,8 @@ require( AWPCP_DIR . "/includes/modules/class-license-settings-actions-request-h
 
 require_once( AWPCP_DIR . '/includes/placeholders/class-placeholders-installation-verifier.php' );
 
+require_once( AWPCP_DIR . '/includes/routes/class-router.php' );
+
 require_once( AWPCP_DIR . "/includes/settings/class-credit-system-settings.php" );
 require_once( AWPCP_DIR . "/includes/settings/class-files-settings.php" );
 require_once( AWPCP_DIR . "/includes/settings/class-form-fields-settings.php" );
