@@ -5,7 +5,7 @@
 
 require_once(AWPCP_DIR . '/admin/admin-panel-home.php');
 require_once(AWPCP_DIR . '/admin/admin-panel-upgrade.php');
-require_once(AWPCP_DIR . '/admin/admin-panel-csv-importer.php');
+// require_once(AWPCP_DIR . '/admin/admin-panel-csv-importer.php');
 require_once(AWPCP_DIR . '/admin/admin-panel-debug.php');
 // require_once(AWPCP_DIR . '/admin/admin-panel-categories.php');
 require_once(AWPCP_DIR . '/admin/admin-panel-fees.php');
@@ -32,7 +32,7 @@ class AWPCP_Admin {
 		// $this->categories = new AWPCP_AdminCategories();
 		$this->fees = new AWPCP_AdminFees();
 		$this->listings = new AWPCP_Admin_Listings();
-		$this->importer = new AWPCP_Admin_CSV_Importer();
+		// $this->importer = new AWPCP_Admin_CSV_Importer();
 		$this->debug = new AWPCP_Admin_Debug();
 		$this->uninstall = new AWPCP_Admin_Uninstall();
 
@@ -81,6 +81,16 @@ class AWPCP_Admin {
             'awpcp_main_classifieds_admin_page',
             $admin_capability,
             MENUICO
+        );
+
+        $router->add_admin_subpage(
+            $parent_page,
+            __( 'Import Listings', 'AWPCP' ),
+            awpcp_admin_page_title( __( 'Import Listings', 'AWPCP' ) ),
+            'awpcp-import',
+            'awpcp_import_listings_admin_page',
+            $admin_capability,
+            30
         );
 
         $router->add_admin_subpage(
@@ -332,8 +342,8 @@ class AWPCP_Admin {
 				add_submenu_page($parent, __('Manage Extra Fields', 'another-wordpress-classifieds-plugin'), __('Extra Fields', 'another-wordpress-classifieds-plugin'), $capability, 'Configure5', 'awpcp_add_new_field');
 			}
 
-			$hook = add_submenu_page($parent, __('Import Ad', 'another-wordpress-classifieds-plugin'), __('Import', 'another-wordpress-classifieds-plugin'), $capability, 'awpcp-import', array($this->importer, 'dispatch'));
-			add_action("load-{$hook}", array($this->importer, 'scripts'));
+			// $hook = add_submenu_page($parent, __('Import Ad', 'AWPCP'), __('Import', 'AWPCP'), $capability, 'awpcp-import', array($this->importer, 'dispatch'));
+			// add_action("load-{$hook}", array($this->importer, 'scripts'));
 
 			add_submenu_page($parent, 'Debug', 'Debug', $capability, 'awpcp-debug', array($this->debug, 'dispatch'));
 

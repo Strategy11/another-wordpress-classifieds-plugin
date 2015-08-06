@@ -327,6 +327,7 @@ require_once(AWPCP_DIR . "/admin/admin-panel.php");
 require_once(AWPCP_DIR . "/admin/user-panel.php");
 require_once( AWPCP_DIR . '/admin/class-admin-menu-builder.php' );
 require_once( AWPCP_DIR . '/admin/class-categories-admin-page.php' );
+require( AWPCP_DIR . '/admin/class-import-listings-admin-page.php' );
 require_once( AWPCP_DIR . '/admin/class-main-classifieds-admin-page.php' );
 require_once( AWPCP_DIR . '/admin/class-settings-admin-page.php' );
 require_once( AWPCP_DIR . '/admin/class-table-entry-action-ajax-handler.php' );

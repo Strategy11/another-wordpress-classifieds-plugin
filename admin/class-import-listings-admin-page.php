@@ -1,8 +1,15 @@
 <?php
 
-class AWPCP_Admin_CSV_Importer {
+function awpcp_import_listings_admin_page() {
+	return new AWPCP_ImportListingsAdminPage();
+}
 
-	public function scripts() {
+/**
+ * TODO: rename to admin/class-import-listings-admin-page.php
+ */
+class AWPCP_ImportListingsAdminPage {
+
+	public function enqueue_scripts() {
 		wp_enqueue_style('awpcp-jquery-ui');
   		wp_enqueue_script( 'awpcp-admin-import' );
 	}
@@ -123,11 +130,26 @@ class AWPCP_Admin_CSV_Importer {
 			}
 		}
 
-		ob_start();
-			include(AWPCP_DIR . '/admin/templates/admin-panel-csv-importer.tpl.php');
-			$html = ob_get_contents();
-		ob_end_clean();
+		$params = array(
+			'importer' => isset( $importer ) ? $importer : null,
+			'test_import' => $test_import,
 
-		echo $html;
+			'messages' => $messages,
+			'errors' => $errors,
+
+			'form_errors' => $form_errors,
+			'start_date' => $start_date,
+			'end_date' => $end_date,
+			'import_date_format' => $import_date_format,
+			'date_sep' => $date_sep,
+			'time_sep' => $time_sep,
+			'auto_cat' => $auto_cat,
+			'assign_user' => $assign_user,
+			'assigned_user' => $assigned_user,
+		);
+
+		$template = AWPCP_DIR . '/admin/templates/admin-panel-csv-importer.tpl.php';
+
+		return awpcp_render_template( $template, $params );
 	}
 }

@@ -1,8 +1,3 @@
-<?php $page_id = 'awpcp-admin-csv-importer' ?>
-<?php $page_title = awpcp_admin_page_title( __( 'Import Listings', 'another-wordpress-classifieds-plugin' ) ); ?>
-
-<?php include(AWPCP_DIR . '/admin/templates/admin-panel-header.tpl.php') ?>
-
 <?php if (!is_null($importer) && ($importer->ads_imported > 0 || $importer->ads_rejected > 0)): ?>
 	<?php if ($test_import): ?>
 			<h3><?php echo esc_html( __( 'Import Testing Results', 'another-wordpress-classifieds-plugin' ) ); ?></h3>
@@ -173,6 +168,3 @@
 					<input type="submit" class="button-primary button" name="do_import" value="<?php echo esc_html( __( 'Import', 'another-wordpress-classifieds-plugin' ) ); ?>"></input>
 				</p>
 			</form>
-		</div><!-- end of .awpcp-main-content -->
-	</div><!-- end of .page-content -->
-</div><!-- end of #page_id -->
