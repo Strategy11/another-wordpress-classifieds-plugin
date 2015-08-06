@@ -32,7 +32,8 @@ class AWPCP_CreditSystemSettings {
         if ( $credits_is_the_only_accepted_payment_type && ! $credit_system_will_be_enabled ) {
             $options['accepted-payment-type'] = 'both';
 
-            $message = __( 'You cannot configure Credits as the only accepted payment type unless you unable the Credit System as well. The setting was set to accept both Currency and Credits.', 'AWPCP' );
+            $message = __( 'You cannot configure Credits as the only accepted payment type unless you e
+                nable the Credit System as well. The setting was set to accept both Currency and Credits.', 'AWPCP' );
             awpcp_flash( $message, array( 'error' ) );
         }
 
