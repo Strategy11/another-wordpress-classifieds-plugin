@@ -6,7 +6,7 @@
 require_once(AWPCP_DIR . '/admin/admin-panel-home.php');
 require_once(AWPCP_DIR . '/admin/admin-panel-upgrade.php');
 // require_once(AWPCP_DIR . '/admin/admin-panel-csv-importer.php');
-require_once(AWPCP_DIR . '/admin/admin-panel-debug.php');
+// require_once(AWPCP_DIR . '/admin/admin-panel-debug.php');
 // require_once(AWPCP_DIR . '/admin/admin-panel-categories.php');
 require_once(AWPCP_DIR . '/admin/admin-panel-fees.php');
 // require_once(AWPCP_DIR . '/admin/admin-panel-credit-plans.php');
@@ -33,7 +33,7 @@ class AWPCP_Admin {
 		$this->fees = new AWPCP_AdminFees();
 		$this->listings = new AWPCP_Admin_Listings();
 		// $this->importer = new AWPCP_Admin_CSV_Importer();
-		$this->debug = new AWPCP_Admin_Debug();
+		// $this->debug = new AWPCP_Admin_Debug();
 		$this->uninstall = new AWPCP_Admin_Uninstall();
 
 		add_action('wp_ajax_disable-quick-start-guide-notice', array($this, 'disable_quick_start_guide_notice'));
@@ -101,6 +101,16 @@ class AWPCP_Admin {
             'awpcp_credit_plans_admin_page',
             $admin_capability,
             60
+        );
+
+        $router->add_admin_subpage(
+            $parent_page,
+            __( 'Debug', 'AWPCP' ),
+            awpcp_admin_page_title( __( 'Debug Information', 'AWPCP' ) ),
+            'awpcp-debug',
+            'awpcp_debug_admin_page',
+            $admin_capability,
+            9000
         );
 	}
 
@@ -345,7 +355,7 @@ class AWPCP_Admin {
 			// $hook = add_submenu_page($parent, __('Import Ad', 'AWPCP'), __('Import', 'AWPCP'), $capability, 'awpcp-import', array($this->importer, 'dispatch'));
 			// add_action("load-{$hook}", array($this->importer, 'scripts'));
 
-			add_submenu_page($parent, 'Debug', 'Debug', $capability, 'awpcp-debug', array($this->debug, 'dispatch'));
+			// add_submenu_page($parent, 'Debug', 'Debug', $capability, 'awpcp-debug', array($this->debug, 'dispatch'));
 
 			$parts = array($this->uninstall->title, $this->uninstall->menu, $this->uninstall->page);
 			add_submenu_page($parent, $parts[0], $parts[1], $capability, $parts[2], array($this->uninstall, 'dispatch'));
