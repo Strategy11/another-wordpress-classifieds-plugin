@@ -33,6 +33,12 @@ class AWPCP_PageTitleBuilder {
             return $title;
         }
 
+        $default_page_title = $this->get_page_title();
+
+        if ( $this->title_already_includes_page_title( $original_title, $default_page_title ) ) {
+            return $original_title;
+        }
+
         // We want to strip separators characters from each side of
         // the title. WordPress uses wptexturize to replace some characters
         // with HTML entities, we need to do the same in case the separator
