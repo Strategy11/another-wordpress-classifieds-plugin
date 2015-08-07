@@ -73,5 +73,16 @@ class AWPCP_User_Panel {
      * Register Ad Management Panel menu
      */
     public function configure_user_panel_routes( $router ) {
+        $parent_page = $router->add_admin_page(
+            __( 'Ad Management', 'AWPCP' ),
+            sprintf( "%s - %s", __( 'Manage Listings', 'AWPCP' ), get_bloginfo() ),
+            'awpcp-panel',
+            'awpcp_manage_listings_user_panel_page',
+            awpcp_user_capability(),
+            MENUICO,
+            array(
+                'show_sidebar' => false,
+            )
+        );
     }
 }

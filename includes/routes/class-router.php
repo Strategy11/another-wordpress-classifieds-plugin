@@ -23,7 +23,7 @@ class AWPCP_Router {
         do_action( 'awpcp-configure-routes', $this );
     }
 
-    public function add_admin_page( $menu_title, $page_title, $slug, $handler, $capability, $menu_icon = null ) {
+    public function add_admin_page( $menu_title, $page_title, $slug, $handler, $capability, $menu_icon = null, $options = array() ) {
         $admin_page = $this->get_or_create_admin_page( $slug );
 
         $admin_page->menu_title = $menu_title;
@@ -32,6 +32,7 @@ class AWPCP_Router {
         $admin_page->handler = $handler;
         $admin_page->capability = $capability;
         $admin_page->menu_icon = $menu_icon;
+        $admin_page->options = $options;
 
         return $slug;
     }
@@ -119,7 +120,6 @@ class AWPCP_Router {
         global $plugin_page;
 
         $admin_page_slug = get_admin_page_parent();
-        // debugp( $plugin_page, $admin_page_slug );
 
         if ( ! isset( $this->admin_pages[ $admin_page_slug ] ) ) {
             return;
@@ -182,7 +182,11 @@ class AWPCP_Router {
         return $this->current_page->title;
     }
 
-    private function show_sidebar() {
-        return awpcp_current_user_is_admin();
+    private function show_sidebar( $current_page ) {
+        if ( isset( $current_page->options['show_sidebar'] ) ) {
+            return $current_page->options['show_sidebar'];
+        } else {
+            return awpcp_current_user_is_admin();
+        }
     }
 }

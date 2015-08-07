@@ -13,7 +13,7 @@
             echo awpcp_html_admin_first_level_heading( $heading_params );
         ?>
 
-        <?php $sidebar = $this->show_sidebar() ? awpcp_admin_sidebar() : ''; ?>
+        <?php $sidebar = $this->show_sidebar( $this->current_page ) ? awpcp_admin_sidebar() : ''; ?>
         <?php echo $sidebar; ?>
 
 		<div class="awpcp-main-content <?php echo empty( $sidebar ) ? 'without-sidebar' : 'with-sidebar'; ?>">

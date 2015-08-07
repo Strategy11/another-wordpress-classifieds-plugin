@@ -324,7 +324,6 @@ require( AWPCP_DIR . "/installer.php" );
 
 // admin functions
 require_once(AWPCP_DIR . "/admin/admin-panel.php");
-require_once(AWPCP_DIR . "/admin/user-panel.php");
 require_once( AWPCP_DIR . '/admin/class-admin-menu-builder.php' );
 require_once( AWPCP_DIR . '/admin/class-categories-admin-page.php' );
 require( AWPCP_DIR . '/admin/class-import-listings-admin-page.php' );
@@ -354,6 +353,7 @@ require_once( AWPCP_DIR . '/admin/form-fields/class-form-fields-table-factory.ph
 require_once( AWPCP_DIR . '/admin/form-fields/class-form-fields-table.php' );
 require_once( AWPCP_DIR . '/admin/form-fields/class-update-form-fields-order-ajax-handler.php' );
 require_once( AWPCP_DIR . "/admin/upgrade/class-manual-upgrade-admin-page.php" );
+require_once( AWPCP_DIR . '/admin/user-panel.php' );
 
 // frontend functions
 require_once(AWPCP_DIR . "/frontend/placeholders.php");
