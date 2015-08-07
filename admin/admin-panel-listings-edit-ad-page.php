@@ -5,7 +5,7 @@ require_once(AWPCP_DIR . '/frontend/page-edit-ad.php');
 
 class AWPCP_AdminListingsEditAd extends AWPCP_EditAdPage {
 
-    protected $template = 'admin/templates/admin-page.tpl.php';
+    protected $template = 'templates/admin/empty-page.tpl.php';
 
     public $menu;
 
@@ -19,6 +19,6 @@ class AWPCP_AdminListingsEditAd extends AWPCP_EditAdPage {
     }
 
     public function show_sidebar() {
-        return awpcp_current_user_is_admin();;
+        return false;
     }
 }

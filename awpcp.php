@@ -757,6 +757,10 @@ class AWPCP {
 
         $handler = awpcp_delete_fee_ajax_handler();
         add_action( 'wp_ajax_awpcp-fees-delete', array( $handler, 'ajax' ) );
+
+        // listings admin
+        $handler = awpcp_delete_listing_ajax_handler();
+        add_action( 'wp_ajax_awpcp-listings-delete-ad', array( $handler, 'ajax' ) );
     }
 
 	public function admin_notices() {

@@ -19,6 +19,6 @@ class AWPCP_AdminListingsPlaceAd extends AWPCP_Place_Ad_Page {
     }
 
     public function show_sidebar() {
-        return awpcp_current_user_is_admin();;
+        return false;
     }
 }

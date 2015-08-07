@@ -10,7 +10,7 @@ require_once(AWPCP_DIR . '/admin/admin-panel-upgrade.php');
 // require_once(AWPCP_DIR . '/admin/admin-panel-categories.php');
 // require_once(AWPCP_DIR . '/admin/admin-panel-fees.php');
 // require_once(AWPCP_DIR . '/admin/admin-panel-credit-plans.php');
-require_once(AWPCP_DIR . '/admin/admin-panel-listings.php');
+// require_once(AWPCP_DIR . '/admin/admin-panel-listings.php');
 require_once(AWPCP_DIR . '/admin/admin-panel-settings.php');
 require_once(AWPCP_DIR . '/admin/admin-panel-uninstall.php');
 require_once(AWPCP_DIR . '/admin/admin-panel-users.php');
@@ -31,7 +31,7 @@ class AWPCP_Admin {
 		// $this->credit_plans = new AWPCP_AdminCreditPlans();
 		// $this->categories = new AWPCP_AdminCategories();
 		// $this->fees = new AWPCP_AdminFees();
-		$this->listings = new AWPCP_Admin_Listings();
+		// $this->listings = new AWPCP_Admin_Listings();
 		// $this->importer = new AWPCP_Admin_CSV_Importer();
 		// $this->debug = new AWPCP_Admin_Debug();
 		$this->uninstall = new AWPCP_Admin_Uninstall();
@@ -81,6 +81,16 @@ class AWPCP_Admin {
             'awpcp_main_classifieds_admin_page',
             $admin_capability,
             MENUICO
+        );
+
+        $router->add_admin_subpage(
+            $parent_page,
+            __( 'Listings', 'AWPCP' ),
+            awpcp_admin_page_title( __( 'Manage Listings', 'AWPCP' ) ),
+            'awpcp-listings',
+            'awpcp_manage_listings_admin_page',
+            $admin_capability,
+            20
         );
 
         $router->add_admin_subpage(
@@ -340,15 +350,15 @@ class AWPCP_Admin {
 				'awpcp_opsconfig_categories'
 			);
 
-			$page = add_submenu_page(
-				$parent,
-				$this->listings->title,
-				$this->listings->menu,
-				'manage_classifieds_listings',
-				'awpcp-listings',
-				array( $this->listings, 'dispatch' )
-			);
-			add_action('admin_print_styles-' . $page, array($this->listings, 'scripts'));
+			// $page = add_submenu_page(
+			// 	$parent,
+			// 	$this->listings->title,
+			// 	$this->listings->menu,
+			// 	'manage_classifieds_listings',
+			// 	'awpcp-listings',
+			// 	array( $this->listings, 'dispatch' )
+			// );
+			// add_action('admin_print_styles-' . $page, array($this->listings, 'scripts'));
 
 			$this->form_fields = awpcp_form_fields_admin_page();
 			$parts = array( $this->form_fields->title, $this->form_fields->menu, $this->form_fields->page );

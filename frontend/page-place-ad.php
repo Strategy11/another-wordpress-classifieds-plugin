@@ -108,11 +108,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             'captcha' => __( 'Please type in the result of the operation.', 'another-wordpress-classifieds-plugin' ),
         ) );
 
-        if (is_admin()) {
-            echo $this->_dispatch($default);
-        } else {
-            return $this->_dispatch($default);
-        }
+        return $this->_dispatch( $default );
     }
 
     protected function _dispatch($default=null) {
