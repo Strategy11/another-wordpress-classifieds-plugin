@@ -8,7 +8,7 @@ require_once(AWPCP_DIR . '/admin/admin-panel-upgrade.php');
 // require_once(AWPCP_DIR . '/admin/admin-panel-csv-importer.php');
 // require_once(AWPCP_DIR . '/admin/admin-panel-debug.php');
 // require_once(AWPCP_DIR . '/admin/admin-panel-categories.php');
-require_once(AWPCP_DIR . '/admin/admin-panel-fees.php');
+// require_once(AWPCP_DIR . '/admin/admin-panel-fees.php');
 // require_once(AWPCP_DIR . '/admin/admin-panel-credit-plans.php');
 require_once(AWPCP_DIR . '/admin/admin-panel-listings.php');
 require_once(AWPCP_DIR . '/admin/admin-panel-settings.php');
@@ -30,7 +30,7 @@ class AWPCP_Admin {
 		$this->settings = new AWPCP_Admin_Settings();
 		// $this->credit_plans = new AWPCP_AdminCreditPlans();
 		// $this->categories = new AWPCP_AdminCategories();
-		$this->fees = new AWPCP_AdminFees();
+		// $this->fees = new AWPCP_AdminFees();
 		$this->listings = new AWPCP_Admin_Listings();
 		// $this->importer = new AWPCP_Admin_CSV_Importer();
 		// $this->debug = new AWPCP_Admin_Debug();
@@ -101,6 +101,16 @@ class AWPCP_Admin {
             'awpcp_credit_plans_admin_page',
             $admin_capability,
             60
+        );
+
+        $router->add_admin_subpage(
+            $parent_page,
+            __( 'Fees', 'AWPCP' ),
+            awpcp_admin_page_title( __( 'Manage Listings Fees', 'AWPCP' ) ),
+            'awpcp-admin-fees',
+            'awpcp_fees_admin_page',
+            $admin_capability,
+            80
         );
 
         $router->add_admin_subpage(
@@ -317,9 +327,9 @@ class AWPCP_Admin {
 				$submenu['awpcp.php'][] = array( __( 'Manage Credit', 'another-wordpress-classifieds-plugin' ), $capability, $url );
 			}
 
-			$parts = array($this->fees->title, $this->fees->menu, $this->fees->page);
-			$page = add_submenu_page($parent, $parts[0], $parts[1], $capability, $parts[2], array($this->fees, 'dispatch'));
-			add_action('admin_print_styles-' . $page, array($this->fees, 'scripts'));
+			// $parts = array($this->fees->title, $this->fees->menu, $this->fees->page);
+			// $page = add_submenu_page($parent, $parts[0], $parts[1], $capability, $parts[2], array($this->fees, 'dispatch'));
+			// add_action('admin_print_styles-' . $page, array($this->fees, 'scripts'));
 
 			add_submenu_page(
 				$parent,

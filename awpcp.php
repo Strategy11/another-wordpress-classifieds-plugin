@@ -747,6 +747,16 @@ class AWPCP {
 
         $handler = awpcp_delete_credit_plan_ajax_handler();
         add_action( 'wp_ajax_awpcp-credit-plans-delete', array( $handler, 'ajax' ) );
+
+        // fees admin
+        $handler = awpcp_add_fee_ajax_handler();
+        add_action( 'wp_ajax_awpcp-fees-add', array( $handler, 'ajax') );
+
+        $handler = awpcp_edit_fee_ajax_handler();
+        add_action( 'wp_ajax_awpcp-fees-edit', array( $handler, 'ajax' ) );
+
+        $handler = awpcp_delete_fee_ajax_handler();
+        add_action( 'wp_ajax_awpcp-fees-delete', array( $handler, 'ajax' ) );
     }
 
 	public function admin_notices() {

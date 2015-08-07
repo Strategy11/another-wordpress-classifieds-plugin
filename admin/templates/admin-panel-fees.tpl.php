@@ -1,9 +1,9 @@
-<form method="get" action="<?php echo esc_attr($this->url(array('action' => false))) ?>">
-    <?php foreach ($this->params as $name => $value): ?>
+<form method="get" action="<?php echo esc_attr($page->url(array('action' => false))) ?>">
+    <?php foreach ($page->params as $name => $value): ?>
     <input type="hidden" name="<?php echo esc_attr($name) ?>" value="<?php echo esc_attr($value) ?>" />
     <?php endforeach ?>
 
-    <?php $url = $this->url( array( 'action' => 'add-fee' ) ); ?>
+    <?php $url = $page->url( array( 'action' => 'add-fee' ) ); ?>
     <?php $label = __( 'Add Fee Plan', 'another-wordpress-classifieds-plugin' ); ?>
     <a class="add button-primary" title="<?php echo esc_attr( $label ); ?>" href="<?php echo esc_attr( $url ); ?>" accesskey="s"><?php echo $label; ?></a>
     <span><?php

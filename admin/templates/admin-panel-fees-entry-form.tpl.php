@@ -1,6 +1,6 @@
 <tr style="" class="inline-edit-row quick-edit-row alternate inline-editor" id="edit-1">
     <td class="colspanchange" colspan="<?php echo $columns ?>">
-        <?php $id = awpcp_get_property($fee, 'id', false); ?>
+        <?php $id = awpcp_get_property($entry, 'id', false); ?>
         <form action="<?php echo admin_url('admin-ajax.php'); ?>" method="post">
 
         <?php if ( function_exists( 'awpcp_price_cats' ) ): ?>
@@ -15,7 +15,7 @@
 
                 <label>
                     <span class="title"><?php _e('Name', 'another-wordpress-classifieds-plugin'); ?></span>
-                    <span class="input-text-wrap"><input type="text" value="<?php echo esc_attr( awpcp_get_property( $fee, 'name' ) ); ?>" name="name"></span>
+                    <span class="input-text-wrap"><input type="text" value="<?php echo esc_attr( awpcp_get_property( $entry, 'name' ) ); ?>" name="name"></span>
                 </label>
 
                 <label><span class="title"><?php _e('Description', 'awpcp-subscriptions' ); ?></span></label>
@@ -23,22 +23,22 @@
 
                 <label>
                     <span class="title"><?php _e('Price', 'another-wordpress-classifieds-plugin'); ?></span>
-                    <span class="input-text-wrap formatted-field"><input type="text" value="<?php echo esc_attr( $fee ? $fee->price : number_format( 0, 2 ) ); ?>" name="price"></span>
+                    <span class="input-text-wrap formatted-field"><input type="text" value="<?php echo esc_attr( $entry ? $entry->price : number_format( 0, 2 ) ); ?>" name="price"></span>
                 </label>
 
                 <label>
                     <span class="title"><?php _e('Credits', 'another-wordpress-classifieds-plugin'); ?></span>
-                    <span class="input-text-wrap formatted-field"><input type="text" value="<?php echo esc_attr( $fee ? $fee->credits : number_format( 0, 0 ) ); ?>" name="credits"></span>
+                    <span class="input-text-wrap formatted-field"><input type="text" value="<?php echo esc_attr( $entry ? $entry->credits : number_format( 0, 0 ) ); ?>" name="credits"></span>
                 </label>
 
                 <label>
                     <span class="title"><?php _e('Duration', 'another-wordpress-classifieds-plugin'); ?></span>
-                    <span class="input-text-wrap"><input type="text" value="<?php echo esc_attr( awpcp_get_property( $fee, 'duration_amount', 30 ) ); ?>" name="duration_amount"></span>
+                    <span class="input-text-wrap"><input type="text" value="<?php echo esc_attr( awpcp_get_property( $entry, 'duration_amount', 30 ) ); ?>" name="duration_amount"></span>
                 </label>
 
                 <label>
                     <span class="title"><?php _e('Units', 'another-wordpress-classifieds-plugin'); ?></span>
-                    <?php $selected = awpcp_get_property($fee, 'duration_interval'); ?>
+                    <?php $selected = awpcp_get_property( $entry, 'duration_interval' ); ?>
                     <?php $intervals = AWPCP_Fee::get_duration_intervals(); ?>
                     <select name="duration_interval">
                         <?php foreach ($intervals as $interval): ?>
@@ -61,23 +61,30 @@
 
                 <label class="clearfix">
                     <span class="title"><?php _e( 'Regions Allowed', 'another-wordpress-classifieds-plugin' ); ?></span>
-                    <span class="input-text-wrap"><input type="text" value="<?php echo esc_attr( awpcp_get_property( $fee, 'regions', 1 ) ); ?>" name="regions"></span>
+                    <span class="input-text-wrap"><input type="text" value="<?php echo esc_attr( awpcp_get_property( $entry, 'regions', 1 ) ); ?>" name="regions"></span>
                 </label>
 
                 <label class="clearfix">
                     <span class="title"><?php _e( 'Characters in Title', 'another-wordpress-classifieds-plugin' ); ?></span>
-                    <?php $value = $fee ? $fee->get_characters_allowed_in_title() : get_awpcp_option( 'characters-allowed-in-title', 0 ); ?>
+                    <?php $value = $entry ? $entry->get_characters_allowed_in_title() : get_awpcp_option( 'characters-allowed-in-title', 0 ); ?>
                     <span class="input-text-wrap"><input type="text" value="<?php echo esc_attr( $value ); ?>" name="title_characters"></span>
                     <span class="helptext"><?php _e( '0 means no limit.', 'another-wordpress-classifieds-plugin' ); ?></span>
                 </label>
 
                 <label class="clearfix">
                     <span class="title"><?php _e('Characters in Description', 'another-wordpress-classifieds-plugin'); ?></span>
-                    <?php $value = $fee ? $fee->get_characters_allowed() : get_awpcp_option( 'maxcharactersallowed', 0 ); ?>
+                    <?php $value = $entry ? $entry->get_characters_allowed() : get_awpcp_option( 'maxcharactersallowed', 0 ); ?>
                     <span class="input-text-wrap"><input type="text" value="<?php echo esc_attr( $value ); ?>" name="characters"></span>
                     <span class="helptext"><?php _e( '0 means no limit.', 'another-wordpress-classifieds-plugin' ); ?></span>
                 </label>
-        <?php if ( function_exists( 'awpcp_price_cats' ) ): ?>
+
+                <?php if (function_exists('awpcp_featured_ads')): ?>
+                <label class="alignleft">
+                    <?php $checked = awpcp_get_property($entry, 'featured', 0); ?>
+                    <input type="checkbox" value="1" <?php echo $checked ? 'checked="checked"' : '' ?> name="featured">
+                    <span class="checkbox-title"><?php _e('This Plan is for Featured Ads.', 'AWPCP'); ?></span>
+                </label>
+                <?php endif ?>
             </div>
         </fieldset>
         <fieldset class="inline-edit-col-right inline-edit-categories">
@@ -94,23 +101,15 @@
                 <div class="cat-checklist category-checklist">
                 <?php
                     $params = array(
-                        'selected' => awpcp_get_property( $fee, 'categories', array() ),
+                        'selected' => awpcp_get_property( $entry, 'categories', array() ),
                     );
                     echo awpcp_categories_checkbox_list_renderer()->render( $params );
                 ?>
                 </div>
         <?php endif; ?>
 
-                <?php if (function_exists('awpcp_featured_ads')): ?>
                 <label class="alignleft">
-                    <?php $checked = awpcp_get_property($fee, 'featured', 0); ?>
-                    <input type="checkbox" value="1" <?php echo $checked ? 'checked="checked"' : '' ?> name="featured">
-                    <span class="checkbox-title"><?php _e('This Plan is for Featured Ads.', 'another-wordpress-classifieds-plugin'); ?></span>
-                </label>
-                <?php endif ?>
-
-                <label class="alignleft">
-                    <?php $private = awpcp_get_property( $fee, 'private', 0 ); ?>
+                    <?php $private = awpcp_get_property( $entry, 'private', 0 ); ?>
                     <input type="checkbox" value="1" <?php echo $private ? 'checked="checked"' : '' ?> name="private">
                     <span class="checkbox-title"><?php _e( 'Hide Fee Plan from public?', 'another-wordpress-classifieds-plugin' ); ?></span>
                 </label>
