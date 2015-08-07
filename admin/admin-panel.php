@@ -114,6 +114,16 @@ class AWPCP_Admin {
 
         $router->add_admin_subpage(
             $parent_page,
+            __( 'Form Fields', 'AWPCP' ),
+            awpcp_admin_page_title( __( 'Form Fields', 'AWPCP' ) ),
+            'awpcp-form-fields',
+            'awpcp_form_fields_admin_page',
+            $admin_capability,
+            50
+        );
+
+        $router->add_admin_subpage(
+            $parent_page,
             __( 'Credit Plans', 'AWPCP' ),
             awpcp_admin_page_title( __( 'Manage Credit Plans', 'AWPCP' ) ),
             'awpcp-admin-credit-plans',

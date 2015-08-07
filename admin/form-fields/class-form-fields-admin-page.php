@@ -29,7 +29,7 @@ class AWPCP_FormFieldsAdminPage extends AWPCP_AdminPageWithTable {
         return $this->table;
     }
 
-    public function scripts() {
+    public function enqueue_scripts() {
         wp_enqueue_script( 'awpcp-admin-form-fields' );
     }
 
@@ -39,16 +39,13 @@ class AWPCP_FormFieldsAdminPage extends AWPCP_AdminPageWithTable {
         $table = $this->get_table();
         $table->prepare( $form_fields, count( $form_fields ) );
 
-        return $this->render_page();
-    }
-
-    public function render_page() {
         $params = array(
-            'table' => $this->get_table(),
+            'page' => $this,
+            'table' => $table,
         );
 
         $template = AWPCP_DIR . '/templates/admin/form-fields-admin-page.tpl.php';
 
-        echo $this->render( $template, $params );
+        return awpcp_render_template( $template, $params );
     }
 }
