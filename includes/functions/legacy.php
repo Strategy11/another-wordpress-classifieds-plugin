@@ -501,6 +501,20 @@ function _create_pager( $item_count, $offset, $results, $tpname ) {
     return $form;
 }
 
+function vector2options($show_vector,$selected_map_val,$exclusion_vector=array()) {
+   $myreturn='';
+   while (list($k,$v)=each($show_vector)) {
+       if (!in_array($k,$exclusion_vector)) {
+           $myreturn.="<option value=\"".$k."\"";
+           if ($k==$selected_map_val) {
+               $myreturn.=" selected='selected'";
+           }
+           $myreturn.=">".$v."</option>\n";
+       }
+   }
+   return $myreturn;
+}
+
 function unix2dos($mystring) {
     $mystring=preg_replace("/\r/m",'',$mystring);
     $mystring=preg_replace("/\n/m","\r\n",$mystring);
