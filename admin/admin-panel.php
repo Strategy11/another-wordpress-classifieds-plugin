@@ -3,8 +3,7 @@
  * AWPCP Classifieds Management Panel functions
  */
 
-require_once(AWPCP_DIR . '/admin/admin-panel-home.php');
-require_once(AWPCP_DIR . '/admin/admin-panel-upgrade.php');
+// require_once(AWPCP_DIR . '/admin/admin-panel-upgrade.php');
 // require_once(AWPCP_DIR . '/admin/admin-panel-csv-importer.php');
 // require_once(AWPCP_DIR . '/admin/admin-panel-debug.php');
 // require_once(AWPCP_DIR . '/admin/admin-panel-categories.php');
@@ -14,18 +13,24 @@ require_once(AWPCP_DIR . '/admin/admin-panel-upgrade.php');
 // require_once(AWPCP_DIR . '/admin/admin-panel-uninstall.php');
 require_once(AWPCP_DIR . '/admin/admin-panel-users.php');
 
+function awpcp_admin_panel() {
+    return new AWPCP_Admin( awpcp()->manual_upgrades );
+}
 
 class AWPCP_Admin {
 
-	public function __construct() {
+    private $manual_upgrades;
+
+	public function __construct( $manual_upgrades ) {
+        $this->manual_upgrades = $manual_upgrades;
+
 		$this->title = awpcp_admin_page_title();
 		$this->menu = _x('Classifieds', 'awpcp admin menu', 'another-wordpress-classifieds-plugin');
 
 		// not a page, but an extension to the Users table
 		$this->users = new AWPCP_AdminUsers();
 
-		$this->home = new AWPCP_AdminHome();
-		$this->upgrade = new AWPCP_AdminUpgrade(false, false, $this->menu);
+		// $this->upgrade = new AWPCP_AdminUpgrade(false, false, $this->menu);
 		// $this->settings = new AWPCP_Admin_Settings();
 		// $this->credit_plans = new AWPCP_AdminCreditPlans();
 		// $this->categories = new AWPCP_AdminCategories();
@@ -57,7 +62,7 @@ class AWPCP_Admin {
 	}
 
 	public function configure_routes( $router ) {
-        if ( get_option( 'awpcp-pending-manual-upgrade' ) ) {
+        if ( $this->manual_upgrades->has_pending_tasks() ) {
             $this->configure_manual_upgrade_routes( 'awpcp-admin-upgrade', $router );
         } else {
             $this->configure_regular_routes( 'awpcp.php', $router );
@@ -65,22 +70,50 @@ class AWPCP_Admin {
     }
 
     private function configure_manual_upgrade_routes( $parent_menu, $router ) {
+        $parent_page = $this->add_main_classifieds_admin_page(
+            $parent_menu,
+            'awpcp_manual_upgrade_admin_page',
+            $router
+        );
+
+        $this->add_manual_upgrade_admin_page( $parent_page, __( 'Classifieds', 'AWPCP' ), $parent_menu, $router );
+    }
+
+    private function add_main_classifieds_admin_page( $parent_menu, $handler_constructor, $router ) {
+        return $router->add_admin_page(
+            __( 'Classifieds', 'AWPCP' ),
+            awpcp_admin_page_title( __( 'AWPCP', 'AWPCP' ) ),
+            $parent_menu,
+            $handler_constructor,
+            awpcp_admin_capability(),
+            MENUICO
+        );
     }
 
     private function add_manual_upgrade_admin_page( $parent_page, $menu_title, $menu_slug, $router ) {
+        $router->add_admin_subpage(
+            $parent_page,
+            $menu_title,
+            awpcp_admin_page_title( __( 'Manual Upgrade', 'AWPCP' ) ),
+            $parent_page,
+            'awpcp_manual_upgrade_admin_page',
+            awpcp_admin_capability(),
+            0
+        );
     }
 
     private function configure_regular_routes( $parent_menu, $router ) {
         $admin_capability = awpcp_admin_capability();
 
-        $parent_page = $router->add_admin_page(
-            __( 'Classifieds', 'AWPCP' ),
-            awpcp_admin_page_title( __( 'AWPCP', 'AWPCP' ) ),
-            'awpcp.php',
+        $parent_page = $this->add_main_classifieds_admin_page(
+            $parent_menu,
             'awpcp_main_classifieds_admin_page',
-            $admin_capability,
-            MENUICO
+            $router
         );
+
+        if ( isset( $_REQUEST['page'] ) && $_REQUEST['page'] == 'awpcp-admin-upgrade' ) {
+            $this->add_manual_upgrade_admin_page( $parent_page, __( 'Manual Upgrade', 'AWPCP' ), 'awpcp-admin-upgrade', $router );
+        }
 
         $router->add_admin_subpage(
             $parent_page,
@@ -334,16 +367,14 @@ class AWPCP_Admin {
 		$capability = awpcp_admin_capability();
 
 		if ( awpcp()->manual_upgrades->has_pending_tasks() ) {
-			$parts = array($this->upgrade->title, $this->upgrade->menu, $this->upgrade->page);
-			$page = add_menu_page($parts[0], $parts[1], $capability, $parts[2], array($this->upgrade, 'dispatch'), MENUICO);
 			// $parts = array($this->upgrade->title, $this->upgrade->menu, $this->upgrade->page);
 			// $page = add_menu_page($parts[0], $parts[1], $capability, $parts[2], array($this->upgrade, 'dispatch'), MENUICO);
 
 		} else {
-			$parent = $this->home->page;
+			$parent = 'awpcp.php';
 
-			$parts = array($this->home->title, $this->home->menu, $this->home->page);
-			$page = add_menu_page($parts[0], $parts[1], $capability, $parts[2], array($this->home, 'dispatch'), MENUICO);
+			$parts = array( 'Classifieds', 'Classifieds', 'awpcp.php' );
+			$page = add_menu_page($parts[0], $parts[1], $capability, $parts[2], array($this, 'dispatch'), MENUICO);
 
 			// add hidden upgrade page, so the URL works even if there are no
 			// pending manual upgrades please note that this is a hack and
@@ -413,6 +444,9 @@ class AWPCP_Admin {
 			do_action('awpcp_add_menu_page');
 		}
 	}
+
+    public function dispatch() {
+    }
 
 	public function upgrade() {
 		global $plugin_page;
