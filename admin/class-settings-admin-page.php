@@ -36,7 +36,7 @@ class AWPCP_SettingsAdminPage {
 	}
 
 	private function instantiate_auxiliar_pages() {
-		$pages = new AWPCP_Classified_Pages_Settings();
+		$pages = awpcp_classfieds_pages_settings();
 		$facebook = new AWPCP_Facebook_Page_Settings();
 	}
 }

@@ -11,7 +11,6 @@ require_once(AWPCP_DIR . '/admin/admin-panel-upgrade.php');
 // require_once(AWPCP_DIR . '/admin/admin-panel-fees.php');
 // require_once(AWPCP_DIR . '/admin/admin-panel-credit-plans.php');
 // require_once(AWPCP_DIR . '/admin/admin-panel-listings.php');
-require_once(AWPCP_DIR . '/admin/admin-panel-settings.php');
 require_once(AWPCP_DIR . '/admin/admin-panel-uninstall.php');
 require_once(AWPCP_DIR . '/admin/admin-panel-users.php');
 
@@ -27,7 +26,7 @@ class AWPCP_Admin {
 
 		$this->home = new AWPCP_AdminHome();
 		$this->upgrade = new AWPCP_AdminUpgrade(false, false, $this->menu);
-		$this->settings = new AWPCP_Admin_Settings();
+		// $this->settings = new AWPCP_Admin_Settings();
 		// $this->credit_plans = new AWPCP_AdminCreditPlans();
 		// $this->categories = new AWPCP_AdminCategories();
 		// $this->fees = new AWPCP_AdminFees();
@@ -81,6 +80,16 @@ class AWPCP_Admin {
             'awpcp_main_classifieds_admin_page',
             $admin_capability,
             MENUICO
+        );
+
+        $router->add_admin_subpage(
+            $parent_page,
+            __( 'Settings', 'AWPCP' ),
+            awpcp_admin_page_title( __( 'Settings', 'AWPCP' ) ),
+            'awpcp-admin-settings',
+            'awpcp_settings_admin_page',
+            $admin_capability,
+            10
         );
 
         $router->add_admin_subpage(
@@ -322,15 +331,15 @@ class AWPCP_Admin {
 			$parts = array($this->title, $this->menu, $this->upgrade->page);
 			$page = add_submenu_page('awpcp-admin-uninstall', $parts[0], $parts[1], $capability, $parts[2], array($this->home, 'dispatch'), MENUICO);
 
-			$page = add_submenu_page(
-				$parent,
-				awpcp_admin_page_title( __( 'Settings', 'another-wordpress-classifieds-plugin' ) ),
-				__( 'Settings', 'another-wordpress-classifieds-plugin' ),
-				$capability,
-				'awpcp-admin-settings',
-				array( $this->settings, 'dispatch' )
-			);
-			add_action('admin_print_styles-' . $page, array($this->settings, 'scripts'));
+			// $page = add_submenu_page(
+			// 	$parent,
+			// 	awpcp_admin_page_title( __( 'Settings', 'AWPCP' ) ),
+			// 	__( 'Settings', 'AWPCP' ),
+			// 	$capability,
+			// 	'awpcp-admin-settings',
+			// 	array( $this->settings, 'dispatch' )
+			// );
+			// add_action('admin_print_styles-' . $page, array($this->settings, 'scripts'));
 
 			if ( current_user_can( $capability ) ) {
 				$url = $this->get_manage_credits_section_url();
