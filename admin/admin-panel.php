@@ -147,6 +147,16 @@ class AWPCP_Admin {
 
         $router->add_admin_subpage(
             $parent_page,
+            __( 'Categories', 'AWPCP' ),
+            awpcp_admin_page_title( __( 'Manage Categories', 'AWPCP' ) ),
+            'awpcp-admin-categories',
+            'awpcp_categories_admin_page',
+            $admin_capability,
+            40
+        );
+
+        $router->add_admin_subpage(
+            $parent_page,
             __( 'Form Fields', 'AWPCP' ),
             awpcp_admin_page_title( __( 'Form Fields', 'AWPCP' ) ),
             'awpcp-form-fields',
@@ -401,14 +411,14 @@ class AWPCP_Admin {
 			// $page = add_submenu_page($parent, $parts[0], $parts[1], $capability, $parts[2], array($this->fees, 'dispatch'));
 			// add_action('admin_print_styles-' . $page, array($this->fees, 'scripts'));
 
-			add_submenu_page(
-				$parent,
-				awpcp_admin_page_title( __( 'Manage Categories', 'another-wordpress-classifieds-plugin' ) ),
-				__( 'Categories', 'another-wordpress-classifieds-plugin' ),
-				$capability,
-				'awpcp-admin-categories',
-				'awpcp_opsconfig_categories'
-			);
+			// add_submenu_page(
+			// 	$parent,
+			// 	awpcp_admin_page_title( __( 'Manage Categories', 'AWPCP' ) ),
+			// 	__( 'Categories', 'AWPCP' ),
+			// 	$capability,
+			// 	'awpcp-admin-categories',
+			// 	'awpcp_opsconfig_categories'
+			// );
 
 			// $page = add_submenu_page(
 			// 	$parent,
@@ -907,21 +917,9 @@ function awpcp_opsconfig_categories() {
 		}
 
 		// Start the page display
-		$output .= "<div class=\"wrap\"><h2>";
-		$output .= awpcp_admin_page_title( __( 'Manage Categories', 'another-wordpress-classifieds-plugin' ) );
-		$output .= "</h2>";
 		if (isset($message) && !empty($message))
 		{
 			$output .= $message;
-		}
-
-		$sidebar = awpcp_admin_sidebar();
-		$output .= $sidebar;
-
-		if (empty($sidebar)) {
-			$output .= "<div style=\"padding:10px;\">";
-		} else {
-			$output .= "<div style=\"padding:10px; width: 75%\">";
 		}
 
 		$output .= "<b>";
@@ -943,9 +941,6 @@ function awpcp_opsconfig_categories() {
 			$output .= "\" border=\"0\"/>";
 			$output .= $label;
 		}
-
-		$output .= "
-			 </div>";
 
 		if (empty($sidebar)) {
 			$output .= "<div class=\"postbox\" style=\"padding:10px;\"><p>";
@@ -1004,7 +999,7 @@ function awpcp_opsconfig_categories() {
 		 <select name=\"moveadstocategory\"><option value=\"0\">";
 		$output .= __("Select Move-To category",'another-wordpress-classifieds-plugin');
 		$output .= "</option>";
-		$movetocategories=  get_categorynameid($cat_id = 0,$cat_parent_id= 0,$exclude);
+		$movetocategories=  get_categorynameid($cat_id = 0,$cat_parent_id= 0,$exclude='');
 		$output .= "$movetocategories</select></p>
 		<p>";
 		$output .= __( 'Delete categories should do this with existing Ads', 'another-wordpress-classifieds-plugin' );
@@ -1061,7 +1056,7 @@ function awpcp_opsconfig_categories() {
 		$showcategories
 		</form>$pager2</div>";
 
-	echo $output;
+	return $output;
 }
 
 function awpcp_pages() {
@@ -1356,7 +1351,11 @@ function awpcp_handle_admin_requests() {
 		$tbl_ads = $wpdb->prefix . "awpcp_ads";
 
 		// First get the array of categories to be deleted
-		$categoriestomove=clean_field($_REQUEST['category_to_delete_or_move']);
+		if ( isset( $_REQUEST['category_to_delete_or_move'] ) ) {
+			$categoriestomove = clean_field( $_REQUEST['category_to_delete_or_move'] );
+		} else {
+			$categoriestomove = array();
+		}
 
 		// Next get the value for where the admin wants to move the ads
 		if ( isset($_REQUEST['moveadstocategory']) && !empty($_REQUEST['moveadstocategory'])  && ($_REQUEST['moveadstocategory'] != 0) )
