@@ -11,7 +11,7 @@ require_once(AWPCP_DIR . '/admin/admin-panel-upgrade.php');
 // require_once(AWPCP_DIR . '/admin/admin-panel-fees.php');
 // require_once(AWPCP_DIR . '/admin/admin-panel-credit-plans.php');
 // require_once(AWPCP_DIR . '/admin/admin-panel-listings.php');
-require_once(AWPCP_DIR . '/admin/admin-panel-uninstall.php');
+// require_once(AWPCP_DIR . '/admin/admin-panel-uninstall.php');
 require_once(AWPCP_DIR . '/admin/admin-panel-users.php');
 
 
@@ -33,7 +33,7 @@ class AWPCP_Admin {
 		// $this->listings = new AWPCP_Admin_Listings();
 		// $this->importer = new AWPCP_Admin_CSV_Importer();
 		// $this->debug = new AWPCP_Admin_Debug();
-		$this->uninstall = new AWPCP_Admin_Uninstall();
+		// $this->uninstall = new AWPCP_Admin_Uninstall();
 
 		add_action('wp_ajax_disable-quick-start-guide-notice', array($this, 'disable_quick_start_guide_notice'));
 		add_action('wp_ajax_disable-widget-modification-notice', array($this, 'disable_widget_modification_notice'));
@@ -140,6 +140,16 @@ class AWPCP_Admin {
             'awpcp_debug_admin_page',
             $admin_capability,
             9000
+        );
+
+        $router->add_admin_subpage(
+            $parent_page,
+            __( 'Uninstall', 'AWPCP' ),
+            awpcp_admin_page_title( __( 'Uninstall', 'AWPCP' ) ),
+            'awpcp-admin-uninstall',
+            'awpcp_uninstall_admin_page',
+            $admin_capability,
+            9900
         );
 	}
 
@@ -386,8 +396,8 @@ class AWPCP_Admin {
 
 			// add_submenu_page($parent, 'Debug', 'Debug', $capability, 'awpcp-debug', array($this->debug, 'dispatch'));
 
-			$parts = array($this->uninstall->title, $this->uninstall->menu, $this->uninstall->page);
-			add_submenu_page($parent, $parts[0], $parts[1], $capability, $parts[2], array($this->uninstall, 'dispatch'));
+			// $parts = array($this->uninstall->title, $this->uninstall->menu, $this->uninstall->page);
+			// add_submenu_page($parent, $parts[0], $parts[1], $capability, $parts[2], array($this->uninstall, 'dispatch'));
 
 			// allow plugins to define additional menu entries
 			do_action('awpcp_add_menu_page');

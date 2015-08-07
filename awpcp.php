@@ -332,6 +332,7 @@ require( AWPCP_DIR . '/admin/class-debug-admin-page.php' );
 require_once( AWPCP_DIR . '/admin/class-main-classifieds-admin-page.php' );
 require_once( AWPCP_DIR . '/admin/class-settings-admin-page.php' );
 require_once( AWPCP_DIR . '/admin/class-table-entry-action-ajax-handler.php' );
+require( AWPCP_DIR . '/admin/class-uninstall-admin-page.php' );
 require_once( AWPCP_DIR . '/admin/class-add-edit-table-entry-ajax-handler.php' );
 require_once( AWPCP_DIR . '/admin/credit-plans/class-credit-plans-admin-page.php' );
 require_once( AWPCP_DIR . '/admin/credit-plans/class-add-credit-plan-ajax-handler.php' );
