@@ -43,7 +43,7 @@ class AWPCP_Sanitize_Media_Filenames_Upgrade_Task_Handler {
     }
 
     private function get_pending_files( $last_file_id ) {
-        $query = 'SELECT * FROM ' . AWPCP_TABLE_MEDIA . ' WHERE id > %d LIMIT 0, 50';
+        $query = 'SELECT * FROM ' . AWPCP_TABLE_MEDIA . ' WHERE id > %d LIMIT 0, 100';
         return $this->db->get_results( $this->db->prepare( $query, intval( $last_file_id ) ) );
     }
 
