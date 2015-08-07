@@ -517,28 +517,6 @@ function checkifclassifiedpage($pagename) {
 	return $page_id === $id;
 }
 
-
-function awpcp_home_screen() {
-	global $awpcp_db_version;
-	global $awpcp_imagesurl;
-
-	global $hasextrafieldsmodule, $extrafieldsversioncompatibility;
-
-	global $message;
-
-	// check if there is a duplicate page conflict
-	$main_page_name = get_awpcp_option('main-page-name');
-    $page_conflict = checkforduplicate(add_slashes_recursive(sanitize_title($main_page_name)));
-
-	ob_start();
-		include(AWPCP_DIR . '/admin/templates/admin-panel-home.tpl.php');
-		$content = ob_get_contents();
-	ob_end_clean();
-
-	echo $content;
-}
-
-
 function awpcp_get_categories_hierarchy() {
 	$categories = AWPCP_Category::query();
 
