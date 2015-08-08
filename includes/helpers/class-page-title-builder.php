@@ -56,8 +56,6 @@ class AWPCP_PageTitleBuilder {
 
         $sep = $this->get_separator( $separator );
 
-        debugp( compact( 'title', 'separator', 'seplocation' ) );
-
         // if $seplocation is empty we are probably being called from one of
         // the SEO plugin's integration functions. We need to strip the
         // blog's name from the title and add it again at the end of the proceess
@@ -67,8 +65,6 @@ class AWPCP_PageTitleBuilder {
             $title = $result['page_title'];
             $name = $result['blog_name'];
             $seplocation = $result['seplocation'];
-
-            debugp( $result );
         } else {
             $name = '';
         }
@@ -86,8 +82,6 @@ class AWPCP_PageTitleBuilder {
         } else {
             $title = sprintf( "%s%s%s %s %s", $appendix, $name, $title, $sep, $page_title );
         }
-
-        debugp( $title );
 
         return $title;
     }
