@@ -395,11 +395,11 @@ class AWPCP_Admin {
 			$parts = array( 'Classifieds', 'Classifieds', 'awpcp.php' );
 			$page = add_menu_page($parts[0], $parts[1], $capability, $parts[2], array($this, 'dispatch'), MENUICO);
 
-			// add hidden upgrade page, so the URL works even if there are no
-			// pending manual upgrades please note that this is a hack and
-			// it is important to use a subpage as parent page for it to work
-			$parts = array($this->title, $this->menu, $this->upgrade->page);
-			$page = add_submenu_page('awpcp-admin-uninstall', $parts[0], $parts[1], $capability, $parts[2], array($this->home, 'dispatch'), MENUICO);
+			// // add hidden upgrade page, so the URL works even if there are no
+			// // pending manual upgrades please note that this is a hack and
+			// // it is important to use a subpage as parent page for it to work
+			// $parts = array($this->title, $this->menu, $this->upgrade->page);
+			// $page = add_submenu_page('awpcp-admin-uninstall', $parts[0], $parts[1], $capability, $parts[2], array($this->home, 'dispatch'), MENUICO);
 
 			// $page = add_submenu_page(
 			// 	$parent,
