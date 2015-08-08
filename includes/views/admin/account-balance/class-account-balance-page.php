@@ -16,16 +16,16 @@ class AWPCP_AccountBalancePage extends AWPCP_BuyCreditsPage {
         $this->menu = $this->title = __( 'Account Balance', 'another-wordpress-classifieds-plugin' );
     }
 
+    public function enqueue_scripts() {
+        wp_enqueue_style( 'awpcp-frontend-style' );
+    }
+
     public function show_sidebar() {
         return awpcp_current_user_is_admin();
     }
 
-    public function scripts() {
-        wp_enqueue_style( 'awpcp-frontend-style' );
-    }
-
     public function dispatch() {
-        echo parent::dispatch();
+        return parent::dispatch();
     }
 
     protected function render_user_not_allowed_error() {

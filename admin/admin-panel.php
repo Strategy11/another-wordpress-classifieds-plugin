@@ -175,6 +175,15 @@ class AWPCP_Admin {
             60
         );
 
+        $router->add_admin_custom_link(
+            $parent_page,
+            __( 'Manage Credit', 'AWPCP' ),
+            'awpcp-manage-credits',
+            $admin_capability,
+            $this->get_manage_credits_section_url(),
+            70
+        );
+
         $router->add_admin_subpage(
             $parent_page,
             __( 'Fees', 'AWPCP' ),
@@ -402,10 +411,10 @@ class AWPCP_Admin {
 			// );
 			// add_action('admin_print_styles-' . $page, array($this->settings, 'scripts'));
 
-			if ( current_user_can( $capability ) ) {
-				$url = $this->get_manage_credits_section_url();
-				$submenu['awpcp.php'][] = array( __( 'Manage Credit', 'another-wordpress-classifieds-plugin' ), $capability, $url );
-			}
+			// if ( current_user_can( $capability ) ) {
+			// 	$url = $this->get_manage_credits_section_url();
+			// 	$submenu['awpcp.php'][] = array( __( 'Manage Credit', 'AWPCP' ), $capability, $url );
+			// }
 
 			// $parts = array($this->fees->title, $this->fees->menu, $this->fees->page);
 			// $page = add_submenu_page($parent, $parts[0], $parts[1], $capability, $parts[2], array($this->fees, 'dispatch'));

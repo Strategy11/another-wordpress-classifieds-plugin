@@ -23,7 +23,8 @@ class AWPCP_BasePage extends AWPCP_Page {
     }
 
     public function render( $template, $params=array() ) {
-        $this->output = parent::render( $template, $params );
+        $this->output = awpcp_render_template( $template, $params );
+        // $this->output = parent::render( $template, $params );
     }
 
     public function dispatch() {

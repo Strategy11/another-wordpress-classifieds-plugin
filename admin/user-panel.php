@@ -25,12 +25,12 @@ class AWPCP_User_Panel {
         // he or she can `edit_classifieds_listings`.
         $capability = 'read';
 
-        // Account Balance
-        if (awpcp_payments_api()->credit_system_enabled() && !awpcp_current_user_is_admin()) {
-            $parts = array($this->account->title, $this->account->menu, $this->account->page);
-            $hook = add_users_page($parts[0], $parts[1], $capability, $parts[2], array($this->account, 'dispatch'));
-            add_action("admin_print_styles-{$hook}", array($this->account, 'scripts'));
-        }
+        // // Account Balance
+        // if (awpcp_payments_api()->credit_system_enabled() && !awpcp_current_user_is_admin()) {
+        //     $parts = array($this->account->title, $this->account->menu, $this->account->page);
+        //     $hook = add_users_page($parts[0], $parts[1], $capability, $parts[2], array($this->account, 'dispatch'));
+        //     add_action("admin_print_styles-{$hook}", array($this->account, 'scripts'));
+        // }
 
         $current_user_is_non_admin_moderator = awpcp_current_user_is_moderator() && ! awpcp_current_user_is_admin();
 
@@ -67,6 +67,13 @@ class AWPCP_User_Panel {
     }
 
     private function add_users_page( $router ) {
+        $router->add_admin_users_page(
+            __( 'Account Balance', 'AWPCP' ),
+            __( 'Account Balance', 'AWPCP' ),
+            'awpcp-user-account',
+            'awpcp_account_balance_page',
+            awpcp_user_capability()
+        );
     }
 
     /**
