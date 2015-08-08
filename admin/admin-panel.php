@@ -439,10 +439,10 @@ class AWPCP_Admin {
 			// );
 			// add_action('admin_print_styles-' . $page, array($this->listings, 'scripts'));
 
-			$this->form_fields = awpcp_form_fields_admin_page();
-			$parts = array( $this->form_fields->title, $this->form_fields->menu, $this->form_fields->page );
-			$page = add_submenu_page( $parent, $parts[0], $parts[1], $capability, 'awpcp-form-fields', array( $this->form_fields, 'dispatch' ) );
-			add_action( 'admin_print_styles-' . $page, array( $this->form_fields, 'scripts' ) );
+			// $this->form_fields = awpcp_form_fields_admin_page();
+			// $parts = array( $this->form_fields->title, $this->form_fields->menu, $this->form_fields->page );
+			// $page = add_submenu_page( $parent, $parts[0], $parts[1], $capability, 'awpcp-form-fields', array( $this->form_fields, 'dispatch' ) );
+			// add_action( 'admin_print_styles-' . $page, array( $this->form_fields, 'scripts' ) );
 
 			// allow plugins to define additional sub menu entries
 			do_action('awpcp_admin_add_submenu_page', $parent, $capability);
