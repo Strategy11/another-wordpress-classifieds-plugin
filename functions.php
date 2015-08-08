@@ -284,6 +284,17 @@ function awpcp_admin_capability() {
     return 'manage_classifieds';
 }
 
+
+/**
+ * We are using read as an alias for edit_classifieds_listings. If a user can `read`,
+ * he or she can `edit_classifieds_listings`.
+ *
+ * @since next-release
+ */
+function awpcp_user_capability() {
+    return 'read';
+}
+
 /**
  * @since 3.3.2
  */
