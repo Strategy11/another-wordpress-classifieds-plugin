@@ -222,6 +222,7 @@ class AWPCP_Admin {
 		if ( awpcp()->manual_upgrades->has_pending_tasks() ) {
 			$parts = array($this->upgrade->title, $this->upgrade->menu, $this->upgrade->page);
 			$page = add_menu_page($parts[0], $parts[1], $capability, $parts[2], array($this->upgrade, 'dispatch'), MENUICO);
+			add_action('admin_print_styles-' . $page, array($this->upgrade, 'scripts'));
 
 		} else {
 			$parent = $this->home->page;

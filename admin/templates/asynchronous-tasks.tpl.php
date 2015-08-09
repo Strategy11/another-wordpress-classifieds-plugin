@@ -9,7 +9,9 @@
         <div data-bind="if: tasks">
             <h3><?php _ex( 'Pending Tasks', 'asynchrounous tasks screen', 'AWPCP' ); ?></h3>
             <ul class="awpcp-asynchronous-tasks" data-bind="foreach: tasks">
-                <li><span data-bind="text: name"></span> (<span data-bind=" text: progress"></span>).</li>
+                <li>
+                    <span data-bind="text: name"></span> (<span data-bind="text: progress"></span> <span data-bind="text: $root.texts.percentageOfCompletion"></span><span data-bind="if: remainingTime"> &mdash; <span data-bind="text: remainingTime"></span> <span data-bind="text: $root.texts.remainingTime"></span></span>).
+                </li>
             </ul>
         </div>
 

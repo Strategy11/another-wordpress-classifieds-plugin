@@ -14,6 +14,10 @@ class AWPCP_AdminUpgrade extends AWPCP_AdminPage {
         parent::__construct($page, $title, $menu);
     }
 
+    public function scripts() {
+        wp_enqueue_script( 'awpcp-admin-manual-upgrade' );
+    }
+
     public function dispatch() {
         echo $this->_dispatch();
     }
