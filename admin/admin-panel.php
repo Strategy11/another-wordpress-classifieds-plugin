@@ -444,8 +444,8 @@ class AWPCP_Admin {
 			// $page = add_submenu_page( $parent, $parts[0], $parts[1], $capability, 'awpcp-form-fields', array( $this->form_fields, 'dispatch' ) );
 			// add_action( 'admin_print_styles-' . $page, array( $this->form_fields, 'scripts' ) );
 
-			// allow plugins to define additional sub menu entries
-			do_action('awpcp_admin_add_submenu_page', $parent, $capability);
+			// // allow plugins to define additional sub menu entries
+			// do_action('awpcp_admin_add_submenu_page', $parent, $capability);
 
 			if ($hasextrafieldsmodule) {
 				add_submenu_page($parent, __('Manage Extra Fields', 'another-wordpress-classifieds-plugin'), __('Extra Fields', 'another-wordpress-classifieds-plugin'), $capability, 'Configure5', 'awpcp_add_new_field');
@@ -459,8 +459,8 @@ class AWPCP_Admin {
 			// $parts = array($this->uninstall->title, $this->uninstall->menu, $this->uninstall->page);
 			// add_submenu_page($parent, $parts[0], $parts[1], $capability, $parts[2], array($this->uninstall, 'dispatch'));
 
-			// allow plugins to define additional menu entries
-			do_action('awpcp_add_menu_page');
+			// // allow plugins to define additional menu entries
+			// do_action('awpcp_add_menu_page');
 		}
 	}
 
