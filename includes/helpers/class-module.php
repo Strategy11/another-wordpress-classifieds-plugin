@@ -38,10 +38,11 @@ abstract class AWPCP_Module {
             return;
         }
 
-        // run before module_setup() in new modules and init() in old modules
-        add_action( 'init', array( $this, 'load_dependencies' ), 9 );
-        // run before load_dependencies() in new modules and init() in old modules
-        add_action( 'init', array( $this, 'setup_module' ), 11 );
+        // run after load_dependencies() in new modules and init() in old modules
+        add_action( 'init', array( $this, 'module_setup' ), 11 );
+
+        $this->load_dependencies();
+        $this->load_module();
     }
 
     protected function is_up_to_date() {
@@ -54,6 +55,10 @@ abstract class AWPCP_Module {
     }
 
     public function install_or_upgrade() {
+        // overwrite in children classes if necessary
+    }
+
+    public function load_module() {
         // overwrite in children classes if necessary
     }
 
