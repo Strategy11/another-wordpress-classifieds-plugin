@@ -40,18 +40,18 @@ class AWPCP_User_Panel {
 
 		/* Ad Management Menu */
 
-		$slug = 'awpcp-panel';
-		$title = sprintf(__('%s Ad Management Panel', 'another-wordpress-classifieds-plugin'), get_bloginfo());
-		$menu = __('Ad Management', 'another-wordpress-classifieds-plugin');
-		$hook = add_menu_page($title, $menu, $capability, $slug, array($this->listings, 'dispatch'), MENUICO);
-
-		// Listings
-		$title = __('Manage Ad Listings', 'another-wordpress-classifieds-plugin');
-		$menu = __('Listings', 'another-wordpress-classifieds-plugin');
-		$hook = add_submenu_page($slug, $title, $menu, $capability, $slug, array($this->listings, 'dispatch'));
-		add_action("admin_print_styles-{$hook}", array($this->listings, 'scripts'));
-
-		do_action('awpcp_panel_add_submenu_page', $slug, $capability);
+        // $slug = 'awpcp-panel';
+        // $title = sprintf(__('%s Ad Management Panel', 'another-wordpress-classifieds-plugin'), get_bloginfo());
+        // $menu = __('Ad Management', 'another-wordpress-classifieds-plugin');
+        // $hook = add_menu_page($title, $menu, $capability, $slug, array($this->listings, 'dispatch'), MENUICO);
+        // 
+        // // Listings
+        // $title = __('Manage Ad Listings', 'another-wordpress-classifieds-plugin');
+        // $menu = __('Listings', 'another-wordpress-classifieds-plugin');
+        // $hook = add_submenu_page($slug, $title, $menu, $capability, $slug, array($this->listings, 'dispatch'));
+        // add_action("admin_print_styles-{$hook}", array($this->listings, 'scripts'));
+        // 
+        // do_action('awpcp_panel_add_submenu_page', $slug, $capability);
 	}
 
     public function configure_routes( $router ) {
