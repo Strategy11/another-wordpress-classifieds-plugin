@@ -392,8 +392,8 @@ class AWPCP_Admin {
 		} else {
 			$parent = 'awpcp.php';
 
-			$parts = array( 'Classifieds', 'Classifieds', 'awpcp.php' );
-			$page = add_menu_page($parts[0], $parts[1], $capability, $parts[2], array($this, 'dispatch'), MENUICO);
+			// $parts = array( 'Classifieds', 'Classifieds', 'awpcp.php' );
+			// $page = add_menu_page($parts[0], $parts[1], $capability, $parts[2], array($this, 'dispatch'), MENUICO);
 
 			// // add hidden upgrade page, so the URL works even if there are no
 			// // pending manual upgrades please note that this is a hack and
