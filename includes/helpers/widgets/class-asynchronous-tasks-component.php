@@ -6,7 +6,13 @@ class AWPCP_AsynchronousTasksComponent {
     private $texts = array();
 
     public function __construct( $tasks, $texts ) {
-        $default_messages = array( 'introduction' => '', 'success' => '', 'button' => '' );
+        $default_messages = array(
+            'introduction' => '',
+            'success' => '',
+            'button' => '',
+            'percentageOfCompletion' => _x( 'completed', 'as in: 5% completed', 'AWPCP' ),
+            'remainingTime' => _x( 'remaining', 'as in: 2 minutes remaining', 'AWPCP' ),
+        );
 
         $this->tasks = $tasks;
         $this->texts = wp_parse_args( $texts, $default_messages );

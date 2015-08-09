@@ -13,6 +13,7 @@ module.exports = function(grunt) {
           '<%= path.awpcp %>/js/awpcp.js',
           '<%= path.awpcp %>/js/jquery.js',
           '<%= path.awpcp %>/js/knockout.js',
+          '<%= path.awpcp %>/js/moment.js',
           '<%= path.awpcp %>/js/components/category-dropdown/*.js',
           '<%= path.awpcp %>/js/components/datepicker-field/*.js',
           '<%= path.awpcp %>/js/components/file-manager/*.js',
