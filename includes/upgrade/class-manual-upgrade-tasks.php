@@ -1,10 +1,16 @@
 <?php
 
 function awpcp_manual_upgrade_tasks() {
-    return new AWPCP_Manual_Upgrade_Tasks(
-        awpcp_manual_upgrade_tasks_manager(),
-        awpcp_upgrade_task_ajax_handler_factory()
-    );
+    static $instance = null;
+
+    if ( is_null( $instance ) ) {
+        $instance = new AWPCP_Manual_Upgrade_Tasks(
+            awpcp_manual_upgrade_tasks_manager(),
+            awpcp_upgrade_task_ajax_handler_factory()
+        );
+    }
+
+    return $instance;
 }
 
 class AWPCP_Manual_Upgrade_Tasks {
