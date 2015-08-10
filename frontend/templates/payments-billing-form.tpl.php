@@ -116,7 +116,7 @@
         </div>
     </fieldset>
 
-    <p class="form-submit">
+    <p class="awpcp-form-submit">
         <?php foreach ($hidden as $name => $value): ?>
         <input type="hidden" value="<?php echo esc_attr($value) ?>" name="<?php echo esc_attr($name) ?>">
         <?php endforeach ?>

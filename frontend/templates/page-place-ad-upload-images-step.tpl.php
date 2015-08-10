@@ -27,7 +27,7 @@
 <?php include( AWPCP_DIR . '/templates/components/media-center.tpl.php' ); ?>
 
 <form class="awpcp-upload-images-form" method="post" enctype="multipart/form-data">
-	<p class="form-submit">
+	<p class="awpcp-form-submit">
 		<input class="button" type="submit" value="<?php echo esc_attr( $next ); ?>" id="submit-no-images" name="submit-no-images">
 
 		<input type="hidden" name="step" value="upload-images">
