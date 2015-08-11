@@ -9,7 +9,7 @@
     <?php echo $this->render_transaction_errors($transaction) ?>
 
     <?php if ($success): ?>
-    <p class="form-submit">
+    <p class="awpcp-form-submit">
         <input class="button" type="submit" value="<?php _e('Continue', 'AWPCP') ?>" id="submit" name="submit">
         <input type="hidden" value="<?php echo esc_attr( $transaction->id ); ?>" name="transaction_id">
         <?php foreach ($hidden as $name => $value): ?>

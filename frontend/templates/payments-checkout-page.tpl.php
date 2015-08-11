@@ -20,7 +20,7 @@
 
     <?php echo $this->render_payment_methods($transaction); ?>
 
-    <p class="form-submit">
+    <p class="awpcp-form-submit">
         <input class="button" type="submit" value="<?php _e('Continue', 'AWPCP') ?>" id="submit" name="submit">
         <input type="hidden" value="<?php echo esc_attr( $transaction->id ); ?>" name="transaction_id">
         <input type="hidden" value="<?php echo esc_attr($attempts + 1) ?>" name="attempts">

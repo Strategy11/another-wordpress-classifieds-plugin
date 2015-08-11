@@ -14,7 +14,7 @@
 
     <?php echo $payments->render_credit_plans_table( $transaction, true ); ?>
 
-    <p class="form-submit">
+    <p class="awpcp-form-submit">
         <input class="button" type="submit" value="<?php echo esc_attr( __( 'Continue', 'AWPCP' ) ); ?>" id="submit" name="submit">
         <?php if ( ! is_null( $transaction ) ): ?>
         <input type="hidden" value="<?php echo esc_attr( $transaction->id ); ?>" name="transaction_id">
