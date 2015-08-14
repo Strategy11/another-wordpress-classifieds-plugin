@@ -88,5 +88,15 @@ class AWPCP_User_Panel {
             awpcp_user_capability(),
             MENUICO
         );
+
+        $router->add_admin_subpage(
+            'awpcp-panel',
+            __( 'Listings', 'AWPCP' ),
+            awpcp_admin_page_title( __( 'Manage Listings', 'AWPCP' ) ),
+            'awpcp-panel',
+            'awpcp_manage_listings_user_panel_page',
+            awpcp_user_capability(),
+            10
+        );
     }
 }
