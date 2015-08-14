@@ -53,7 +53,7 @@ class AWPCP_Filesystem {
 
     private function make_directory_writable( $path ) {
         // provides fileop class.
-        require_once(AWPCP_DIR . '/fileop.class.php');
+        require_once(AWPCP_DIR . '/includes/class-fileop.php');
 
         $previous_umask = umask( 0 );
         $fileop = new fileop();
