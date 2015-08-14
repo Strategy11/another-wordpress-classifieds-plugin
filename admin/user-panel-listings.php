@@ -11,6 +11,12 @@ function awpcp_manage_listings_user_panel_page() {
 
 class AWPCP_UserListings extends AWPCP_Admin_Listings {
 
+    public function get_display_options() {
+        return array(
+            'show_sidebar' => false
+        );
+    }
+
     public function show_sidebar() {
         return false;
     }

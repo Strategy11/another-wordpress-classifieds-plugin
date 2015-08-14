@@ -23,7 +23,7 @@ class AWPCP_Router {
         do_action( 'awpcp-configure-routes', $this );
     }
 
-    public function add_admin_page( $menu_title, $page_title, $slug, $handler, $capability, $menu_icon = null, $options = array() ) {
+    public function add_admin_page( $menu_title, $page_title, $slug, $handler, $capability, $menu_icon = null ) {
         $admin_page = $this->get_or_create_admin_page( $slug );
 
         $admin_page->menu_title = $menu_title;
@@ -32,7 +32,6 @@ class AWPCP_Router {
         $admin_page->handler = $handler;
         $admin_page->capability = $capability;
         $admin_page->menu_icon = $menu_icon;
-        $admin_page->options = $options;
 
         return $slug;
     }
@@ -47,14 +46,22 @@ class AWPCP_Router {
         return $this->admin_pages[ $slug ];
     }
 
-    public function add_admin_subpage( $parent_page, $menu_title, $page_title, $slug, $handler = null, $capability = 'install_plugins', $priority = 10, $type = 'subpage' ) {
+    public function add_admin_subpage( $parent_page, $menu_title, $page_title, $slug, $handler = null, $capability = 'install_plugins', $priority = 10 ) {
         $admin_page = $this->get_or_create_admin_page( $parent_page );
-        $admin_page->subpages[ $slug ] = $this->create_admin_subpage( $menu_title, $page_title, $slug, $handler, $capability, $priority, $type );
+
+        $admin_page->subpages[ $slug ] = $this->create_admin_subpage(
+            $menu_title,
+            $page_title,
+            $slug,
+            $handler,
+            $capability,
+            $priority
+        );
 
         return "$parent_page,$slug";
     }
 
-    private function create_admin_subpage( $menu_title, $page_title, $slug, $handler = null, $capability = 'install_plugins', $priority = 10, $type ) {
+    private function create_admin_subpage( $menu_title, $page_title, $slug, $handler = null, $capability = 'install_plugins', $priority = 10, $type = 'subpage' ) {
         $subpage = new stdClass();
 
         $subpage->menu_title = $menu_title;
@@ -76,7 +83,16 @@ class AWPCP_Router {
             $parent = 'profile.php';
         }
 
-        return $this->add_admin_subpage( $parent, $menu_title, $page_title, $slug, $handler, $capability, $priority, 'users-page' );
+        return $this->add_admin_subpage(
+            $parent,
+            $menu_title,
+            $page_title,
+            $slug,
+            $handler,
+            $capability,
+            $priority,
+            'users-page'
+        );
     }
 
     public function add_admin_custom_link( $parent_page, $menu_title, $slug, $capability, $url, $priority ) {
@@ -141,6 +157,10 @@ class AWPCP_Router {
 
         if ( method_exists( $request_handler, 'enqueue_scripts' ) ) {
             $request_handler->enqueue_scripts();
+        }
+
+        if ( method_exists( $request_handler, 'get_display_options' ) ) {
+            $current_page->options = $request_handler->get_display_options();
         }
 
         echo $this->render_admin_page( $current_page, $request_handler->dispatch() );
