@@ -86,7 +86,7 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
     }
 
     protected function search_step() {
-        $this->messages[] = __("Use the form below to conduct a broad or narrow search. For a broader search enter fewer parameters. For a narrower search enter as many parameters as needed to limit your search to a specific criteria.", "AWPCP");
+        $this->messages[] = __( 'Use the form below to select the fields on which you want to search. Adding more fields makes for a more specific search. Using fewer fields will make for a broader search.', 'AWPCP' );
         return $this->search_form($this->get_posted_data());
     }
 
