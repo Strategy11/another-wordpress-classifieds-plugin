@@ -41,6 +41,10 @@ class AWPCP_FeesTable extends WP_List_Table {
                 $orderby = sprintf('imagesallowed %1$s, adterm_name', $params['order']);
                 break;
 
+            case 'regions':
+                $orderby = sprintf( 'regions &1$s, adterm_name', $params['order'] );
+                break;
+
             case 'title-characters':
                 $orderby = sprintf( 'title_characters %1$s, adterm_name', $params['order'] );
                 break;
@@ -109,8 +113,9 @@ class AWPCP_FeesTable extends WP_List_Table {
         $columns['duration'] = __('Duration', 'AWPCP');
         $columns['interval'] = __('Units', 'AWPCP');
         $columns['images'] = __('Images Allowed', 'AWPCP');
-        $columns['title_characters'] = __( 'Characters in Title', 'AWPCP' );
-        $columns['characters'] = __('Characters in Description', 'AWPCP');
+        $columns['regions'] = __( 'Regions', 'AWPCP' );
+        $columns['title_characters'] = __( 'Chars in Title', 'AWPCP' );
+        $columns['characters'] = __( 'Chars in Description', 'AWPCP' );
         $columns['price'] = __('Price', 'AWPCP');
         $columns['credits'] = __('Credits', 'AWPCP');
 
@@ -131,6 +136,7 @@ class AWPCP_FeesTable extends WP_List_Table {
             'duration' => array('duration', true),
             'interval' => array('interval', true),
             'images' => array('images', true),
+            'regions' => array( 'regions', true ),
             'title_characters' => array('title-characters', true),
             'characters' => array('characters', true),
             'price' => array('price', true),
@@ -170,6 +176,10 @@ class AWPCP_FeesTable extends WP_List_Table {
 
     public function column_images($item) {
         return $item->images;
+    }
+
+    public function column_regions( $item ) {
+        return $item->regions;
     }
 
     public function column_characters($item) {
