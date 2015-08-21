@@ -467,7 +467,7 @@ function awpcp_get_uploads_directories() {
         $upload_dir = $wpcontentdir . '/' . $upload_dir_name . '/';
 
         // Required to set permission on main upload directory
-        require_once(AWPCP_DIR . '/fileop.class.php');
+        require_once(AWPCP_DIR . '/includes/class-fileop.php');
 
         $fileop = new fileop();
         $owner = fileowner( $wpcontentdir );

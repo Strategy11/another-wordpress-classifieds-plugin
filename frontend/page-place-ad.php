@@ -1137,10 +1137,10 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $show_preview = (bool) get_awpcp_option('show-ad-preview-before-payment');
         $pay_first = (bool) get_awpcp_option('pay-before-place-ad');
 
-        if ( $skip && $pay_first ) {
-            return $this->finish_step();
-        } else if ( $skip && $show_preview ) {
+        if ( $skip && $show_preview ) {
             return $this->preview_step();
+        } else if ( $skip && $pay_first ) {
+            return $this->finish_step();
         } else if ( $skip ) {
             return $this->checkout_step();
         } else {
@@ -1176,14 +1176,12 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
         extract( $params );
 
-        if ( $images_uploaded > 0 && $pay_first ) {
+        if ( $pay_first && $images_uploaded > 0 ) {
             $next = __( 'Finish', 'AWPCP' );
-        } else if ( $images_uploaded == 0 && false == $pay_first && $show_preview ) {
+        } else if ( $pay_first && $show_preview ) {
             $next = __( 'Preview Ad', 'AWPCP' );
-        } else if ( $images_uploaded == 0) {
+        } else if ( $pay_first ) {
             $next = __( 'Place Ad', 'AWPCP' );
-        } else if ( $show_preview ) {
-            $next = __( 'Preview Ad', 'AWPCP' );
         } else {
             $next = __( 'Checkout', 'AWPCP' );
         }
@@ -1215,10 +1213,14 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             return $this->render('content', awpcp_print_error($message));
         }
 
+        $pay_first = (bool) get_awpcp_option('pay-before-place-ad');
+
         if ( isset( $_POST['edit-details'] ) ) {
             return $this->details_step();
         } else if ( isset( $_POST['manage-images'] ) ) {
             return $this->upload_images_step();
+        } else if ( $pay_first && isset( $_POST['finish'] ) ) {
+            return $this->finish_step();
         } else if ( isset( $_POST['finish'] ) ) {
             return $this->checkout_step();
         } else {

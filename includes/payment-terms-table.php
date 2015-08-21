@@ -79,7 +79,7 @@ class AWPCP_PaymentTermsTable {
             'id' => $this->item_id($item),
             'data-price' => $item->price,
             'data-credits' => $item->credits,
-            'data-categories' => json_encode($item->categories)
+            'data-categories' => esc_attr( json_encode( $item->categories ) ),
         );
 
         return awpcp_html_attributes($attrs);
