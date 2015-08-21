@@ -58,6 +58,11 @@
                 </label>
 
                 <label class="clearfix">
+                    <span class="title"><?php _e( 'Regions Allowed', 'AWPCP' ); ?></span>
+                    <span class="input-text-wrap"><input type="text" value="<?php echo esc_attr( awpcp_get_property( $fee, 'regions', 1 ) ); ?>" name="regions"></span>
+                </label>
+
+                <label class="clearfix">
                     <span class="title"><?php _e( 'Characters in Title', 'AWPCP' ); ?></span>
                     <?php $value = $fee ? $fee->get_characters_allowed_in_title() : get_awpcp_option( 'characters-allowed-in-title', 0 ); ?>
                     <span class="input-text-wrap"><input type="text" value="<?php echo $value; ?>" name="title_characters"></span>
