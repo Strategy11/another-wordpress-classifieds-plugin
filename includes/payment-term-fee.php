@@ -35,6 +35,7 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
             'characters' => $object->characters_allowed,
             'title_characters' => $object->title_characters,
             'images' => $object->imagesallowed,
+            'regions' => $object->regions,
             'ads' => 1,
             'private' => $object->private,
             // custom
@@ -152,6 +153,7 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
         $data['rec_period'] = absint( $_data['duration_amount'] );
         $data['rec_increment'] = $_data['duration_interval'];
         $data['imagesallowed'] = absint( $_data['images'] );
+        $data['regions'] = absint( $_data['regions'] );
         $data['title_characters'] = absint( $_data['title_characters'] );
         $data['characters_allowed'] = absint( $_data['characters'] );
         $data['categories'] = $_data['categories'];
@@ -213,5 +215,9 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
         $result = $wpdb->query($wpdb->prepare($query, $recipient->id, $this->id));
 
         return $result !== false;
+    }
+
+    public function get_regions_allowed() {
+        return $this->regions;
     }
 }
