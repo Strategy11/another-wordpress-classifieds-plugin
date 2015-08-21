@@ -103,6 +103,7 @@ class AWPCP_Installer {
             `rec_increment` VARCHAR(5) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
             `buys` INT(10) UNSIGNED NOT NULL DEFAULT 0,
             `imagesallowed` INT(5) UNSIGNED NOT NULL DEFAULT 0,
+            `regions` INT(10) NOT NULL DEFAULT 1,
             `is_featured_ad_pricing` TINYINT(1) DEFAULT NULL,
             `categories` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci,
             `characters_allowed` INT(1) NOT NULL DEFAULT 0,
@@ -404,6 +405,7 @@ class AWPCP_Installer {
             '3.5.3' => 'upgrade_to_3_5_3',
             '3.5.4-dev-15' => 'upgrade_to_3_5_4_dev_15',
             '3.5.4-dev-20' => 'upgrade_to_3_5_4_dev_20',
+            '3.5.4-dev-28' => 'upgrade_to_3_5_4_dev_28',
         );
 
         foreach ( $upgrade_routines as $version => $routine ) {
@@ -1142,6 +1144,15 @@ class AWPCP_Installer {
         }
 
         awpcp()->manual_upgrades->enable_upgrade_task( 'awpcp-calculate-image-dimensions' );
+    }
+
+    private function upgrade_to_3_5_4_dev_28( $oldversion ) {
+        global $wpdb;
+
+        if ( ! awpcp_column_exists( AWPCP_TABLE_ADFEES, 'regions' ) ) {
+            $query = 'ALTER TABLE ' . AWPCP_TABLE_ADFEES . ' ADD `regions` INT(10) NOT NULL DEFAULT 1 AFTER `imagesallowed`';
+            $wpdb->query( $query );
+        }
     }
 }
 
