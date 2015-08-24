@@ -96,6 +96,7 @@ class AWPCP_Installer {
         "CREATE TABLE IF NOT EXISTS " . AWPCP_TABLE_ADFEES . " (
             `adterm_id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
             `adterm_name` VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
+            `description` TEXT COLLATE utf8_general_ci NOT NULL,
             `credits` INT(10) NOT NULL DEFAULT 0,
             `amount` FLOAT(6,2) UNSIGNED NOT NULL DEFAULT '0.00',
             `recurring` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
@@ -406,6 +407,7 @@ class AWPCP_Installer {
             '3.5.4-dev-15' => 'upgrade_to_3_5_4_dev_15',
             '3.5.4-dev-20' => 'upgrade_to_3_5_4_dev_20',
             '3.5.4-dev-28' => 'upgrade_to_3_5_4_dev_28',
+            '3.5.4-dev-29' => 'upgrade_to_3_5_4_dev_29',
         );
 
         foreach ( $upgrade_routines as $version => $routine ) {
@@ -1151,6 +1153,15 @@ class AWPCP_Installer {
 
         if ( ! awpcp_column_exists( AWPCP_TABLE_ADFEES, 'regions' ) ) {
             $query = 'ALTER TABLE ' . AWPCP_TABLE_ADFEES . ' ADD `regions` INT(10) NOT NULL DEFAULT 1 AFTER `imagesallowed`';
+            $wpdb->query( $query );
+        }
+    }
+
+    private function upgrade_to_3_5_4_dev_29( $oldversion ) {
+        global $wpdb;
+
+        if ( ! awpcp_column_exists( AWPCP_TABLE_ADFEES, 'description' ) ) {
+            $query = 'ALTER TABLE ' . AWPCP_TABLE_ADFEES . ' ADD `description` TEXT COLLATE utf8_general_ci NOT NULL AFTER `adterm_name`';
             $wpdb->query( $query );
         }
     }
