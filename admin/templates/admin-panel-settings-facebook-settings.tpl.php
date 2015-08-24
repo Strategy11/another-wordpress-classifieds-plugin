@@ -84,6 +84,15 @@
 		<?php else: ?>
 			<p><?php _e( 'AWPCP needs to get an authorization token from Facebook to work correctly. You\'ll be redirected to Facebook to login. AWPCP does not store or obtain any personal information from your profile.', 'AWPCP' ); ?></p>
 
+			<?php
+			/*
+				Choosing Public is important because:
+
+				- http://stackoverflow.com/a/19653226/201354
+				- https://github.com/drodenbaugh/awpcp/issues/1288#issuecomment-134198377
+			*/ ?>
+			<p><?php _e( "Please choose Public as the audience for posts made by the application, even if you are just testing the integration. Facebook won't allow us to post content in some cases if you choose something else.", 'AWPCP' ); ?></p>
+
 			<table class="form-table">
 				<tr>
 					<th scope="row">
