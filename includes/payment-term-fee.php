@@ -25,7 +25,7 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
             // standard
             'id' => $object->adterm_id,
             'name' => $object->adterm_name,
-            'description' => '',
+            'description' => $object->description,
             'duration_amount' => $object->rec_period,
             'duration_interval' => $object->rec_increment,
             'price' => $object->amount,
@@ -148,6 +148,7 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
     protected function translate($_data) {
         $data['adterm_id'] = absint( $_data['id'] );
         $data['adterm_name'] = $_data['name'];
+        $data['description'] = $_data['description'];
         $data['amount'] = $_data['price'];
         $data['credits'] = absint( $_data['credits'] );
         $data['rec_period'] = absint( $_data['duration_amount'] );
