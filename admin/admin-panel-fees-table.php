@@ -110,6 +110,7 @@ class AWPCP_FeesTable extends WP_List_Table {
 
         $columns['cb'] = '<input type="checkbox" />';
         $columns['name'] = __('Name', 'AWPCP');
+        $columns['description'] = __( 'Description', 'AWPCP' );
         $columns['duration'] = __('Duration', 'AWPCP');
         $columns['interval'] = __('Units', 'AWPCP');
         $columns['images'] = __('Images Allowed', 'AWPCP');
@@ -164,6 +165,10 @@ class AWPCP_FeesTable extends WP_List_Table {
 
     public function column_name($item) {
         return $item->get_name() . $this->row_actions($this->get_row_actions($item), true);
+    }
+
+    public function column_description( $item ) {
+        return $item->description;
     }
 
     public function column_duration($item) {

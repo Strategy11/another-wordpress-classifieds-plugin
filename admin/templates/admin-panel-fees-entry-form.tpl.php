@@ -18,6 +18,9 @@
                     <span class="input-text-wrap"><input type="text" value="<?php echo awpcp_get_property($fee, 'name'); ?>" name="name"></span>
                 </label>
 
+                <label><span class="title"><?php _e('Description', 'awpcp-subscriptions' ); ?></span></label>
+                <textarea name="description" cols="54" rows="6"><?php echo esc_html( stripslashes( awpcp_get_property( $fee, 'description' ) ) ); ?></textarea>
+
                 <label>
                     <span class="title"><?php _e('Price', 'AWPCP'); ?></span>
                     <span class="input-text-wrap formatted-field"><input type="text" value="<?php echo $fee ? $fee->price : number_format(0, 2); ?>" name="price"></span>
@@ -44,14 +47,13 @@
                     </select>
                 </label>
 
-        <?php // split form in two columns of fields if the categories list is not going to be shown ?>
         <?php if ( ! function_exists( 'awpcp_price_cats' ) ): ?>
+            </div>
         </fieldset>
-        <fieldset class="inline-edit-col-center inline-edit-categories">
+        <fieldset class="inline-edit-col-right inline-edit-categories">
             <div class="inline-edit-col">
                 <h4>&nbsp;</h4>
         <?php endif; ?>
-
                 <label class="clearfix">
                     <span class="title"><?php _e('Images Allowed', 'AWPCP'); ?></span>
                     <span class="input-text-wrap"><input type="text" value="<?php echo awpcp_get_property($fee, 'images', 1); ?>" name="images"></span>
@@ -75,21 +77,12 @@
                     <span class="input-text-wrap"><input type="text" value="<?php echo $value; ?>" name="characters"></span>
                     <span class="helptext"><?php _e( '0 means no limit.', 'AWPCP' ); ?></span>
                 </label>
-
-                <?php if (function_exists('awpcp_featured_ads')): ?>
-                <label class="alignleft">
-                    <?php $checked = awpcp_get_property($fee, 'featured', 0); ?>
-                    <input type="checkbox" value="1" <?php echo $checked ? 'checked="checked"' : '' ?> name="featured">
-                    <span class="checkbox-title"><?php _e('This Plan is for Featured Ads.', 'AWPCP'); ?></span>
-                </label>
-                <?php endif ?>
-            </div>
-
-        <?php // if a list of categories has to be shown, the fields will be in the the first column ?>
         <?php if ( function_exists( 'awpcp_price_cats' ) ): ?>
+            </div>
         </fieldset>
-        <fieldset class="inline-edit-col-center inline-edit-categories">
+        <fieldset class="inline-edit-col-right inline-edit-categories">
             <div class="inline-edit-col">
+                <h4>&nbsp;</h4>
 
                 <input type="hidden" value="0" name="categories[]">
                 <span class="title inline-edit-categories-label">
@@ -106,7 +99,15 @@
                     echo awpcp_categories_checkbox_list_renderer()->render( $params );
                 ?>
                 </div>
-        <?php endif ?>
+        <?php endif; ?>
+
+                <?php if (function_exists('awpcp_featured_ads')): ?>
+                <label class="alignleft">
+                    <?php $checked = awpcp_get_property($fee, 'featured', 0); ?>
+                    <input type="checkbox" value="1" <?php echo $checked ? 'checked="checked"' : '' ?> name="featured">
+                    <span class="checkbox-title"><?php _e('This Plan is for Featured Ads.', 'AWPCP'); ?></span>
+                </label>
+                <?php endif ?>
 
                 <label class="alignleft">
                     <?php $private = awpcp_get_property( $fee, 'private', 0 ); ?>
