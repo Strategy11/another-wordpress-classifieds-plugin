@@ -147,8 +147,8 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
 
     protected function translate($_data) {
         $data['adterm_id'] = absint( $_data['id'] );
-        $data['adterm_name'] = $_data['name'];
-        $data['description'] = $_data['description'];
+        $data['adterm_name'] = stripslashes( $_data['name'] );
+        $data['description'] = stripslashes( $_data['description'] );
         $data['amount'] = $_data['price'];
         $data['credits'] = absint( $_data['credits'] );
         $data['rec_period'] = absint( $_data['duration_amount'] );

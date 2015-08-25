@@ -183,9 +183,11 @@ class AWPCP_Admin {
 
 	private function get_manage_credits_section_url() {
 		$full_url = add_query_arg( 'action', 'awpcp-manage-credits', admin_url( 'users.php' ) );
-		$relative_url = str_replace( get_site_url(), '', $full_url );
 
-		return $relative_url;
+		$domain = awpcp_request()->domain();
+		$domain_position = strpos( $full_url, $domain );
+
+		return substr( $full_url, $domain_position + strlen( $domain ) );
 	}
 
 	/**

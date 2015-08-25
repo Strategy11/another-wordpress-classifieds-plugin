@@ -15,25 +15,25 @@
 
                 <label>
                     <span class="title"><?php _e('Name', 'AWPCP'); ?></span>
-                    <span class="input-text-wrap"><input type="text" value="<?php echo awpcp_get_property($fee, 'name'); ?>" name="name"></span>
+                    <span class="input-text-wrap"><input type="text" value="<?php echo esc_attr( awpcp_get_property( $fee, 'name' ) ); ?>" name="name"></span>
                 </label>
 
                 <label><span class="title"><?php _e('Description', 'awpcp-subscriptions' ); ?></span></label>
-                <textarea name="description" cols="54" rows="6"><?php echo esc_html( stripslashes( awpcp_get_property( $fee, 'description' ) ) ); ?></textarea>
+                <textarea name="description" cols="54" rows="6"><?php echo esc_html( awpcp_get_property( $fee, 'description' ) ); ?></textarea>
 
                 <label>
                     <span class="title"><?php _e('Price', 'AWPCP'); ?></span>
-                    <span class="input-text-wrap formatted-field"><input type="text" value="<?php echo $fee ? $fee->price : number_format(0, 2); ?>" name="price"></span>
+                    <span class="input-text-wrap formatted-field"><input type="text" value="<?php echo esc_attr( $fee ? $fee->price : number_format( 0, 2 ) ); ?>" name="price"></span>
                 </label>
 
                 <label>
                     <span class="title"><?php _e('Credits', 'AWPCP'); ?></span>
-                    <span class="input-text-wrap formatted-field"><input type="text" value="<?php echo $fee ? $fee->credits : number_format(0, 0); ?>" name="credits"></span>
+                    <span class="input-text-wrap formatted-field"><input type="text" value="<?php echo esc_attr( $fee ? $fee->credits : number_format( 0, 0 ) ); ?>" name="credits"></span>
                 </label>
 
                 <label>
                     <span class="title"><?php _e('Duration', 'AWPCP'); ?></span>
-                    <span class="input-text-wrap"><input type="text" value="<?php echo awpcp_get_property($fee, 'duration_amount', 30); ?>" name="duration_amount"></span>
+                    <span class="input-text-wrap"><input type="text" value="<?php echo esc_attr( awpcp_get_property( $fee, 'duration_amount', 30 ) ); ?>" name="duration_amount"></span>
                 </label>
 
                 <label>
@@ -42,7 +42,7 @@
                     <?php $intervals = AWPCP_Fee::get_duration_intervals(); ?>
                     <select name="duration_interval">
                         <?php foreach ($intervals as $interval): ?>
-                        <option value="<?php echo $interval ?>" <?php echo $selected == $interval ? 'selected="selected"' : ''; ?>><?php echo AWPCP_Fee::get_duration_interval_label($interval); ?></option>
+                        <option value="<?php echo esc_attr( $interval ); ?>" <?php echo $selected == $interval ? 'selected="selected"' : ''; ?>><?php echo AWPCP_Fee::get_duration_interval_label($interval); ?></option>
                         <?php endforeach ?>
                     </select>
                 </label>
@@ -56,7 +56,7 @@
         <?php endif; ?>
                 <label class="clearfix">
                     <span class="title"><?php _e('Images Allowed', 'AWPCP'); ?></span>
-                    <span class="input-text-wrap"><input type="text" value="<?php echo awpcp_get_property($fee, 'images', 1); ?>" name="images"></span>
+                    <span class="input-text-wrap"><input type="text" value="<?php echo esc_attr( awpcp_get_property( $fee, 'images', 1 ) ); ?>" name="images"></span>
                 </label>
 
                 <label class="clearfix">
@@ -67,14 +67,14 @@
                 <label class="clearfix">
                     <span class="title"><?php _e( 'Characters in Title', 'AWPCP' ); ?></span>
                     <?php $value = $fee ? $fee->get_characters_allowed_in_title() : get_awpcp_option( 'characters-allowed-in-title', 0 ); ?>
-                    <span class="input-text-wrap"><input type="text" value="<?php echo $value; ?>" name="title_characters"></span>
+                    <span class="input-text-wrap"><input type="text" value="<?php echo esc_attr( $value ); ?>" name="title_characters"></span>
                     <span class="helptext"><?php _e( '0 means no limit.', 'AWPCP' ); ?></span>
                 </label>
 
                 <label class="clearfix">
                     <span class="title"><?php _e('Characters in Description', 'AWPCP'); ?></span>
                     <?php $value = $fee ? $fee->get_characters_allowed() : get_awpcp_option( 'maxcharactersallowed', 0 ); ?>
-                    <span class="input-text-wrap"><input type="text" value="<?php echo $value; ?>" name="characters"></span>
+                    <span class="input-text-wrap"><input type="text" value="<?php echo esc_attr( $value ); ?>" name="characters"></span>
                     <span class="helptext"><?php _e( '0 means no limit.', 'AWPCP' ); ?></span>
                 </label>
         <?php if ( function_exists( 'awpcp_price_cats' ) ): ?>
