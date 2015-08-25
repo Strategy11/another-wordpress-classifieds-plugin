@@ -38,8 +38,8 @@ class AWPCP_ListingsModerationSettings {
         $settings->add_setting( $key, 'noadsinparentcat', __( 'Prevent ads from being posted to top level categories?', 'AWPCP' ), 'checkbox', 0, '' );
         $settings->add_setting( $key, 'use-multiple-category-dropdowns', __( 'Use multiple dropdowns to choose categories', 'AWPCP' ), 'checkbox', 0, __( 'If checked, a dropdown with top level categories will be shown. When the user chooses a category, a new dropdown will apper showing the sub-categories of the selected category, if any. Useful if your website supports a high number of categories.', 'AWPCP' ) );
 
-        $settings->add_setting( $key, 'addurationfreemode', __( 'Free Ads expiration threshold', 'AWPCP' ), 'textfield', 0, __( 'Expire free ads after how many days? (0 for no expiration).', 'AWPCP' ) );
-        $settings->add_setting( $key, 'autoexpiredisabledelete', __( 'Disable expired ads instead of deleting them?', 'AWPCP' ), 'checkbox', 0, __( 'Check to disable.', 'AWPCP' ) );
+        $settings->add_setting( $key, 'addurationfreemode', __( 'Free ads deletion threshold', 'AWPCP' ), 'textfield', 0, __( 'Free listings will be deleted after the number of days entered in this field (0 for no deletion). Use the setting below to disable expired listings instead of deleting them.', 'AWPCP' ) );
+        $settings->add_setting( $key, 'autoexpiredisabledelete', __( 'Disable expired ads instead of deleting them?', 'AWPCP' ), 'checkbox', 0, __( 'If checked, listings will be disabled, not deleted, after the number of days set as the deletion threshold have passed.', 'AWPCP' ) );
     }
 
     public function validate_all_settings( $options, $group ) {
