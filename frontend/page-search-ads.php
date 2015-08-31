@@ -137,6 +137,7 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
 
     private function search_listings( $form ) {
         $query = array_merge( $form, array(
+            'context' => 'public-listings',
             'keyword' => $form['query'],
             'category_id' => $form['category'],
             'contact_name' => $form['name'],
