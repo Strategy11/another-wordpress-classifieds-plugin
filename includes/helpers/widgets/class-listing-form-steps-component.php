@@ -71,17 +71,43 @@ class AWPCP_ListingFormStepsComponent {
      */
     private function should_show_upload_files_step( $transaction ) {
         if ( is_null( $transaction ) ) {
-            $payment_term = null;
+            $payment_terms_by_type = $this->payments->get_payment_terms();
+            $arrays_of_payment_terms = array_values( $payment_terms_by_type );
+            $payment_terms = call_user_func_array( 'array_merge', $arrays_of_payment_terms );
         } else {
-            $payment_term = $this->payments->get_transaction_payment_term( $transaction );
+            $payment_terms = array( $this->payments->get_transaction_payment_term( $transaction ) );
         }
 
-        if ( is_null( $payment_term ) ) {
-            $upload_limits = $this->upload_limits->get_upload_limits_for_free_board();
-        } else {
-            $upload_limits = $this->upload_limits->get_upload_limits_for_payment_term( $payment_term );
+        return $this->all_payment_terms_allow_to_upload_files( $payment_terms );
+    }
+
+    private function all_payment_terms_allow_to_upload_files( $payment_terms ) {
+        $upload_limits = $this->get_upload_limits_for_payment_terms( $payment_terms );
+
+        foreach ( $upload_limits as $payment_term_limits ) {
+            if ( ! $this->payment_term_allows_to_upload_files( $payment_term_limits ) ) {
+                return false;
+            }
         }
 
+        return true;
+    }
+
+    private function get_upload_limits_for_payment_terms( $payment_terms ) {
+        $upload_limits = array();
+
+        if ( empty( $payment_terms ) ) {
+            $upload_limits = array( $this->upload_limits->get_upload_limits_for_free_board() );
+        } else {
+            foreach ( $payment_terms as $payment_term ) {
+                $upload_limits[] = $this->upload_limits->get_upload_limits_for_payment_term( $payment_term );
+            }
+        }
+
+        return $upload_limits;
+    }
+
+    private function payment_term_allows_to_upload_files( $upload_limits ) {
         foreach ( $upload_limits as $file_type => $limits ) {
             if ( $limits['allowed_file_count'] > $limits['uploaded_file_count'] ) {
                 return true;
