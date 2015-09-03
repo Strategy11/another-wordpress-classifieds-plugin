@@ -543,12 +543,16 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             $info['ad_contact_name'] = trim( $data->first_name . " " . $data->last_name );
         }
 
-        $info['regions'][] = array_filter( array(
+        $user_region = array_filter( array(
             'country' => awpcp_array_data( 'ad_country', '', $info ),
             'state' => awpcp_array_data( 'ad_state', '', $info ),
             'city' => awpcp_array_data( 'ad_city', '', $info ),
             'county' => awpcp_array_data( 'ad_county_village', '', $info ),
         ), 'strlen' );
+
+        if ( ! empty( $user_region ) ) {
+            $info['regions'][] = $user_region;
+        }
 
         $info = apply_filters( 'awpcp-listing-details-user-info', $info, $user_id );
 

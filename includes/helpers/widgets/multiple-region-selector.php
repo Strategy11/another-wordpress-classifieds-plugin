@@ -123,6 +123,10 @@ class AWPCP_MultipleRegionSelector {
         awpcp()->js->localize( 'multiple-region-selector', array(
             'select-placeholder' => _x( 'Select %s', 'Select <Region Type> in Multiple Region Selector', 'AWPCP' ),
             'duplicated-region' => __( 'This particular region is already selected in another field. Please choose one or more sub-regions, to make the selection more specific, or change the selected region.', 'AWPCP' ),
+            'missing-country' => __( 'You did not enter your country. Your country is required.', 'AWPCP' ),
+            'missing-state' => __( 'You did not enter your state. Your state is required.', 'AWPCP' ),
+            'missing-county' => __( 'You did not enter your county/village. Your county/village is required.', 'AWPCP' ),
+            'missing-city' => __( 'You did not enter your city. Your city is required.', 'AWPCP' ),
             'add-region' => ($context == "search") ? __( 'Add Search Region', 'AWPCP' ) : __( 'Add Region', 'AWPCP' ),
             'remove-region' => ($context == "search") ? __( 'Delete Search Region', 'AWPCP' ) : __( 'Remove Region', 'AWPCP' )
         ) );
