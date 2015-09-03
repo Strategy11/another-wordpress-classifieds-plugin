@@ -8,16 +8,15 @@ function( $ ) {
             var self = this,
 
                 $form = $( form ),
-                $fields = $form.find( '.multiple-region:visible' ),
 
-                multipleRegionSelector = self.getMultipleRegionSelectorInstance( $fields.first() ),
+                multipleRegionSelector = self.getMultipleRegionSelectorInstance( $form ),
                 userSelectedDuplicatedRegions = false;
 
             if ( typeof multipleRegionSelector === 'undefined' ) {
                 return false;
             }
 
-            $fields.each( function() {
+            $form.find( '.multiple-region:visible' ).each( function() {
                 if ( multipleRegionSelector.checkDuplicatedRegionsForField( $( this ).attr( 'id' ), true ) ) {
                     userSelectedDuplicatedRegions = true;
                 }
@@ -26,8 +25,41 @@ function( $ ) {
             return userSelectedDuplicatedRegions;
         },
 
-        getMultipleRegionSelectorInstance: function( $field ) {
-            return $field.closest( '.awpcp-multiple-region-selector' ).data( 'RegionSelector' );
+        getMultipleRegionSelectorInstance: function( $form ) {
+            return $form.find( '.awpcp-multiple-region-selector' ).data( 'RegionSelector' );
+        },
+
+        showErrorsIfRequiredFieldsAreEmpty: function( form ) {
+            var $form = $( form ),
+                multipleRegionSelector = this.getMultipleRegionSelectorInstance( $form ),
+                emptyRequiredField = null,
+                requiredFieldsAreEmpty = false;
+
+            $.each( multipleRegionSelector.regions(), function( index, region ) {
+                $.each( region.partials(), function( index, partial ) {
+                    if ( ! partial.config.required ) {
+                        return;
+                    }
+
+                    var selected = partial.selected();
+
+                    if ( selected === undefined || ( selected.length && selected.length === 0 ) ) {
+                        region.error( AWPCP.l10n( 'multiple-region-selector', 'missing-' + partial.type ) );
+                        emptyRequiredField = emptyRequiredField ? emptyRequiredField : partial;
+                        requiredFieldsAreEmpty = true;
+                    }
+                } );
+            } );
+
+            if ( emptyRequiredField ) {
+                $form.find( '[id="' + emptyRequiredField.id + '"]' )
+                    .closest('.awpcp-region-selector-partials')
+                        .find(':input:visible')
+                            .last()
+                                .focus();
+            }
+
+            return requiredFieldsAreEmpty;
         }
     } );
 

@@ -212,6 +212,7 @@ if (typeof jQuery !== 'undefined') {
                         data.options,
                         data.selected,
                         {
+                            required: data.required,
                             alwaysShown: data.alwaysShown || i === 0,
                             showTextField: selector.options.showTextField
                         }

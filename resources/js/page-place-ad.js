@@ -238,6 +238,10 @@ AWPCP.run('awpcp/page-place-ads', [
                             return false;
                         }
 
+                        if ( MultipleRegionsSelectorValidator.showErrorsIfRequiredFieldsAreEmpty( form ) ) {
+                            return false;
+                        }
+
                         form.submit();
                     }
                 });
