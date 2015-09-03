@@ -4,10 +4,11 @@ AWPCP.run('awpcp/page-place-ads', [
     'awpcp/media-center',
     'awpcp/datepicker-field',
     'awpcp/user-information-updater',
+    'awpcp/multiple-region-selector-validator',
     'awpcp/settings',
     'awpcp/jquery-userfield',
     'awpcp/jquery-validate-methods'
-], function( $, MediaCenter, DatepickerField, UserInformationUpdater, settings ) {
+], function( $, MediaCenter, DatepickerField, UserInformationUpdater, MultipleRegionsSelectorValidator, settings ) {
     var AWPCP = jQuery.AWPCP = jQuery.extend({}, jQuery.AWPCP, AWPCP);
 
     $.AWPCP.PaymentTermsTable = function(table) {
@@ -231,7 +232,14 @@ AWPCP.run('awpcp/page-place-ads', [
 
                 form.validate({
                     messages: $.AWPCP.l10n('page-place-ad-details'),
-                    onfocusout: false
+                    onfocusout: false,
+                    submitHandler: function( form ) {
+                        if ( MultipleRegionsSelectorValidator.showErrorsIfUserSelectedDuplicatedRegions( form ) ) {
+                            return false;
+                        }
+
+                        form.submit();
+                    }
                 });
             }
         })();

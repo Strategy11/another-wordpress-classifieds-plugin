@@ -436,30 +436,6 @@ if (typeof jQuery !== 'undefined') {
             }
         });
 
-
-        /**--------------------------------------------------------------------
-         * Validation
-         */
-
-        $.validator.addMethod('multiple-region', (function() {
-            return function(value, element) {
-                var field = $(element),
-                    selector = field.closest('.awpcp-multiple-region-selector').data('RegionSelector');
-
-                if (selector && selector.checkDuplicatedRegionsForField(field.attr('id'), true)) {
-                    return false;
-                }
-
-                return true;
-            };
-
-        })()/*, the error message is shown with Knockoout JS */);
-
-        $.validator.addClassRules('multiple-region', {
-            'multiple-region': true
-        });
-
-
         /**--------------------------------------------------------------------
          * Initialization
          */
