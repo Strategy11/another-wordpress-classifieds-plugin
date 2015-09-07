@@ -1,17 +1,19 @@
 <?php
 
 function awpcp_easy_digital_downloads() {
-    return new AWPCP_EasyDigitalDownloads( awpcp()->settings, awpcp_http() );
+    return new AWPCP_EasyDigitalDownloads( awpcp()->settings, awpcp_http(), awpcp_request() );
 }
 
 class AWPCP_EasyDigitalDownloads {
 
     private $settings;
     private $http;
+    private $request;
 
-    public function __construct( $settings, $http ) {
+    public function __construct( $settings, $http, $request ) {
         $this->settings = $settings;
         $this->http = $http;
+        $this->request = $request;
     }
 
     public function check_license( $module_name, $license ) {
@@ -45,14 +47,20 @@ class AWPCP_EasyDigitalDownloads {
     }
 
     private function request( $params ) {
+        if ( $this->request->get( 'edd_action', false ) ) {
+            throw new AWPCP_Exception( 'The request was cancelled to avoid infinite recursion.' );
+        }
+
         $params = urlencode_deep( $params );
         $url = add_query_arg( $params, $this->settings->get_runtime_option( 'easy-digital-downloads-store-url' ) );
 
         $response = $this->http->get( $url, array( 'timeout' => 15, 'sslverify' => false ) );
         $decoded_data = json_decode( wp_remote_retrieve_body( $response ) );
 
-        if ( isset( $decoded_data->error ) ) {
+        if ( isset( $decoded_data->error ) && ! empty( $decoded_data->error ) ) {
             throw new AWPCP_Exception( $decoded_data->error );
+        } else if ( isset( $decoded_data->error ) ) {
+            throw new AWPCP_Exception( "Unknown. The response didn't include a meaningful error message" );
         }
 
         return $decoded_data;
