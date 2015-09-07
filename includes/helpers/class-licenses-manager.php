@@ -118,7 +118,7 @@ class AWPCP_LicensesManager {
         }
     }
 
-    private function drop_license_status( $module_slug ) {
+    public function drop_license_status( $module_slug ) {
         delete_site_transient( $this->get_license_status_transient_key( $module_slug ) );
         $this->settings->set_or_update_option( "{$module_slug}-license-status", false );
     }
