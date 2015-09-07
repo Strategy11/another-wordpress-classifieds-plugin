@@ -20,13 +20,17 @@ class AWPCP_LicensesManager {
         $this->settings = $settings;
     }
 
+    public function get_license_setting_name( $module_slug ) {
+        return "{$module_slug}-license";
+    }
+
     public function set_module_license( $module_slug, $license ) {
-        $this->settings->set_or_update_option( "{$module_slug}-license", $license );
+        $this->settings->set_or_update_option( $this->get_license_setting_name( $module_slug ), $license );
         $this->drop_license_status( $module_slug );
     }
 
     public function get_module_license( $module_slug ) {
-        return $this->settings->get_option( "{$module_slug}-license" );
+        return $this->settings->get_option( $this->get_license_setting_name( $module_slug ) );
     }
 
     public function is_license_valid( $module_name, $module_slug ) {
