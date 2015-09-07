@@ -210,7 +210,6 @@ require_once( AWPCP_DIR . "/includes/views/admin/listings/class-listings-table-s
 require_once( AWPCP_DIR . "/includes/views/admin/listings/class-listings-table-search-conditions-parser.php" );
 require_once( AWPCP_DIR . "/includes/views/admin/account-balance/class-account-balance-page.php" );
 require_once( AWPCP_DIR . "/includes/views/admin/account-balance/class-account-balance-page-summary-step.php" );
-require_once( AWPCP_DIR . "/includes/views/admin/settings/class-update-license-status-request-handler.php" );
 
 require_once( AWPCP_DIR . '/includes/cron/class-task-queue.php' );
 require_once( AWPCP_DIR . '/includes/cron/class-task-logic-factory.php' );
@@ -245,6 +244,8 @@ require_once( AWPCP_DIR . '/includes/media/class-uploaded-file-logic.php' );
 require_once( AWPCP_DIR . '/includes/media/class-uploads-manager.php' );
 require_once( AWPCP_DIR . '/includes/media/class-upload-listing-media-ajax-handler.php' );
 require_once( AWPCP_DIR . '/includes/media/class-upload-generated-thumbnail-ajax-handler.php' );
+
+require( AWPCP_DIR . "/includes/modules/class-license-settings-update-handler.php" );
 
 require_once( AWPCP_DIR . '/includes/placeholders/class-placeholders-installation-verifier.php' );
 
