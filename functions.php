@@ -1421,8 +1421,21 @@ function awpcp_clear_flash_messages() {
 
 function awpcp_flash( $message, $class = array( 'awpcp-updated', 'updated') ) {
 	$messages = awpcp_get_flash_messages();
-	$messages[] = array('message' => $message, 'class' => (array) $class);
-	awpcp_update_flash_messages($messages);
+
+    if ( ! awpcp_is_duplicated_flash_message( $messages, $message, $class ) ) {
+        $messages[] = array( 'message' => $message, 'class' => (array) $class );
+        awpcp_update_flash_messages( $messages );
+    }
+}
+
+function awpcp_is_duplicated_flash_message( $messages, $message, $class ) {
+    foreach ( $messages as $m ) {
+        if ( strcmp( $m['message'], $message ) == 0 ) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 /**
