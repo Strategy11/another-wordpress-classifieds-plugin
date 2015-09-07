@@ -155,7 +155,7 @@ class AWPCP_ModulesManager {
         $module_name = $modules[ $module_slug ][ 'name' ];
         $required_version = $modules[ $module_slug ][ 'required' ];
 
-        $message = __( 'This version of AWPCP %1$s module is not compatible with AWPCP version %2$s. Please get AWPCP %1$s %3$s or newer!', 'another-wordpress-classifieds-plugin' );
+        $message = __( 'This version of AWPCP %1$s is not compatible with AWPCP version %2$s. Please get AWPCP %1$s %3$s or newer!', 'another-wordpress-classifieds-plugin' );
         $message = sprintf( $message, '<strong>' . $module_name . '</strong>', $this->plugin->version, '<strong>' . $required_version . '</strong>' );
         $message = sprintf( '<strong>%s:</strong> %s', __( 'Error', 'another-wordpress-classifieds-plugin' ), $message );
 
@@ -165,7 +165,7 @@ class AWPCP_ModulesManager {
     private function show_invalid_license_notice( $module_name ) {
         $link = sprintf( '<a href="%s">', awpcp_get_admin_settings_url( 'licenses-settings' ) );
 
-        $message = __( 'The AWPCP <module-name> module requires a license to be used. All features will remain disabled until a valid license is entered. Please go to the <licenses-settings-link>Licenses Settings</a> section to enter or update your license.', 'another-wordpress-classifieds-plugin' );
+        $message = __( 'The AWPCP <module-name> requires a license to be used. All features will remain disabled until a valid license is entered. Please go to the <licenses-settings-link>Licenses Settings</a> section to enter or update your license.', 'another-wordpress-classifieds-plugin' );
         $message = str_replace( '<module-name>', '<strong>' . $module_name . '</strong>', $message );
         $message = str_replace( '<licenses-settings-link>', $link, $message );
 
@@ -175,7 +175,7 @@ class AWPCP_ModulesManager {
     private function show_inactive_license_notice( $module_name ) {
         $link = sprintf( '<a href="%s">', awpcp_get_admin_settings_url( 'license-settings' ) );
 
-        $message = __( 'The license for AWPCP <module-name> module is inactive. All features will remain disabled until you activate the license. Please go to the <license-settings-link>License Settings</a> section to acivate your license.', 'another-wordpress-classifieds-plugin' );
+        $message = __( 'The license for AWPCP <module-name> is inactive. All features will remain disabled until you activate the license. Please go to the <license-settings-link>License Settings</a> section to acivate your license.', 'another-wordpress-classifieds-plugin' );
         $message = str_replace( '<module-name>', '<strong>' . $module_name . '</strong>', $message );
         $message = str_replace( '<license-settings-link>', $link, $message );
 
@@ -183,14 +183,14 @@ class AWPCP_ModulesManager {
     }
 
     private function show_expired_license_notice( $module_name ) {
-        $message = __( 'The license for AWPCP <module-name> module expired. The module will continue to work but you will not receive automatic updates when a new version is available.', 'another-wordpress-classifieds-plugin' );
+        $message = __( 'The license for AWPCP <module-name> expired. The module will continue to work but you will not receive automatic updates when a new version is available.', 'another-wordpress-classifieds-plugin' );
         $message = str_replace( '<module-name>', '<strong>' . $module_name . '</strong>', $message );
 
         return awpcp_print_error( $message );
     }
 
     private function show_module_no_registered_notice( $module_name ) {
-        $message = __( 'Yikes, there has been a mistake. It looks like you have an outdated version of AWPCP <module-name> module or you need a newer version of AWPCP to use that module. Please contact customer support and ask for an update. Please also include a reference to this error in your message.', 'another-wordpress-classifieds-plugin' );
+        $message = __( 'Yikes, there has been a mistake. It looks like you have an outdated version of AWPCP <module-name> or you need a newer version of AWPCP to use that module. Please contact customer support and ask for an update. Please also include a reference to this error in your message.', 'another-wordpress-classifieds-plugin' );
         $message = str_replace( '<module-name>', '<strong>' . $module_name . '</strong>', $message );
 
         return awpcp_print_error( $message );
