@@ -45,11 +45,11 @@ class AWPCP_ModulesManager {
         $this->verify_version_compatibility( $module );
 
         if ( $this->is_premium_module( $module ) ) {
-            // $this->settings->add_license_setting( $module->name, $module->slug );
-            // $this->verify_license_status( $module );
+            $this->settings->add_license_setting( $module->name, $module->slug );
+            $this->verify_license_status( $module );
         }
 
-        // $this->handle_module_updates( $module );
+        $this->handle_module_updates( $module );
         $module->setup( $this->plugin );
     }
 

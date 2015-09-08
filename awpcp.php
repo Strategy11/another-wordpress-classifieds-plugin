@@ -399,7 +399,7 @@ class AWPCP {
     }
 
     private function setup_runtime_options() {
-        $this->settings->set_runtime_option( 'easy-digital-downloads-store-url', 'http://awpcp.com' );
+        $this->settings->set_runtime_option( 'easy-digital-downloads-store-url', 'http://awpcp.staging.wpengine.com' );
         $this->settings->set_runtime_option( 'image-mime-types', array( 'image/png', 'image/jpeg', 'image/jpg', 'image/gif' ) );
 
         // TODO: see if we can call setup_runtime_options after awpcp_register_settings action has fired!
