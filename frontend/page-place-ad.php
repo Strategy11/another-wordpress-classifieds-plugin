@@ -672,6 +672,8 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
         $data['is_featured_ad'] = absint($data['is_featured_ad']);
 
+        $data = apply_filters( 'awpcp-get-posted-data', $data, 'details', $from );
+
         return $data;
     }
 
