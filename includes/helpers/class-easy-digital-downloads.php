@@ -43,6 +43,10 @@ class AWPCP_EasyDigitalDownloads {
             throw new AWPCP_Exception( 'License Status parameter was set to <strong>Failed</strong>' );
         }
 
+        if ( $response->license === 'item_name_mismatch' ) {
+            throw new AWPCP_Exception( 'item_name_mismatch' );
+        }
+
         return $response;
     }
 
