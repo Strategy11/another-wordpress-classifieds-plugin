@@ -73,11 +73,19 @@ class AWPCP_ModulesManager {
     }
 
     private function is_premium_module( $module ) {
-        if ( strcmp( $module->slug, 'xml-sitemap') === 0 ) {
+        $free_modules = array( 'xml-sitemap' );
+
+        if ( in_array( $module->slug, $free_modules ) ) {
             return false;
-        } else {
-            return true;
         }
+
+        $hidden_modules = array( 'videos', 'google-checkout' );
+
+        if ( in_array( $module->slug, $hidden_modules ) ) {
+            return false;
+        }
+
+        return true;
     }
 
     private function verify_license_status( $module ) {
