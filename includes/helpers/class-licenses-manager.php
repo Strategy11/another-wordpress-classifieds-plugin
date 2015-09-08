@@ -37,7 +37,7 @@ class AWPCP_LicensesManager {
         return $this->get_license_status( $module_name, $module_slug ) === self::LICENSE_STATUS_VALID;
     }
 
-    private function get_license_status( $module_name, $module_slug ) {
+    public function get_license_status( $module_name, $module_slug ) {
         static $cache = array();
 
         if ( ! isset( $cache[ $module_slug ] ) ) {
