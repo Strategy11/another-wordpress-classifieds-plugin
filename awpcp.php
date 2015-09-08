@@ -246,6 +246,7 @@ require_once( AWPCP_DIR . '/includes/media/class-upload-listing-media-ajax-handl
 require_once( AWPCP_DIR . '/includes/media/class-upload-generated-thumbnail-ajax-handler.php' );
 
 require( AWPCP_DIR . "/includes/modules/class-license-settings-update-handler.php" );
+require( AWPCP_DIR . "/includes/modules/class-license-settings-actions-request-handler.php" );
 
 require_once( AWPCP_DIR . '/includes/placeholders/class-placeholders-installation-verifier.php' );
 
@@ -624,6 +625,9 @@ class AWPCP {
 
                 $handler = awpcp_license_settings_update_handler();
                 add_action( 'update_option_' . $this->settings->setting_name, array( $handler, 'process_settings' ), 10, 3 );
+
+                $handler = awpcp_license_settings_actions_request_handler();
+                add_action( 'wp_redirect', array( $handler, 'dispatch' ) );
             } else {
                 // load resources required in admin screens only, visible to non-admin users only.
             }
