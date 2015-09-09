@@ -34,7 +34,7 @@ class AWPCP_License_Settings_Update_Handler {
 
     private function update_license_status( $module_slug, $module_name, $new_license ) {
         if ( ! empty( $new_license ) ) {
-            $this->licenses_manager->activate_license( $module->name, $module->slug );
+            $this->licenses_manager->activate_license( $module_name, $module_slug );
         } else {
             $this->licenses_manager->drop_license_status( $module_slug );
         }
