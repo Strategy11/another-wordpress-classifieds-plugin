@@ -58,7 +58,7 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
             'regions' => awpcp_request_param('regions'),
         ) );
 
-        $data = apply_filters( 'awpcp-get-posted-data', $data, 'search' );
+        $data = apply_filters( 'awpcp-get-posted-data', $data, 'search', array() );
 
         return $data;
     }

@@ -672,6 +672,8 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
         $data['is_featured_ad'] = absint($data['is_featured_ad']);
 
+        $data = apply_filters( 'awpcp-get-posted-data', $data, 'details', $from );
+
         return $data;
     }
 
@@ -1063,6 +1065,8 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             $ad->is_featured_ad = $data['is_featured_ad'];
             $ad->ad_last_updated = $now;
             $ad->posterip = awpcp_getip();
+
+            $ad = apply_filters( 'awpcp-before-save-listing', $ad, $data );
 
             if (!$ad->save()) {
                 $errors[] = __('There was an unexpected error trying to save your Ad details. Please try again or contact an administrator.', 'AWPCP');

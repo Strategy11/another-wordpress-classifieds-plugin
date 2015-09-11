@@ -51,7 +51,7 @@ class AWPCP_Ad {
 		$ad->websiteurl = $object->websiteurl;
 		$ad->posterip = $object->posterip;
 
-		return $ad;
+		return apply_filters( 'awpcp-listing-from-object', $ad, $object );
 	}
 
 	public static function find_by_category_id($id) {

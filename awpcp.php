@@ -4,7 +4,7 @@
  * Plugin Name: Another Wordpress Classifieds Plugin (AWPCP)
  * Plugin URI: http://www.awpcp.com
  * Description: AWPCP - A plugin that provides the ability to run a free or paid classified ads service on your wordpress blog. <strong>!!!IMPORTANT!!!</strong> Whether updating a previous installation of Another Wordpress Classifieds Plugin or installing Another Wordpress Classifieds Plugin for the first time, please backup your wordpress database before you install/uninstall/activate/deactivate/upgrade Another Wordpress Classifieds Plugin.
- * Version: 3.5.4-dev-35
+ * Version: 3.5.4-dev-36
  * Author: D. Rodenbaugh
  * License: GPLv2 or any later version
  * Author URI: http://www.skylineconsult.com
@@ -264,6 +264,8 @@ require_once( AWPCP_DIR . "/includes/upgrade/class-import-payment-transactions-t
 require_once( AWPCP_DIR . "/includes/upgrade/class-migrate-media-information-task-handler.php" );
 require_once( AWPCP_DIR . "/includes/upgrade/class-migrate-regions-information-task-handler.php" );
 require_once( AWPCP_DIR . "/includes/upgrade/class-update-media-status-task-handler.php" );
+
+require_once( AWPCP_DIR . "/includes/wordpress/class-wordpress-scripts.php" );
 
 require( AWPCP_DIR . '/includes/class-csv-importer.php' );
 
@@ -1031,6 +1033,8 @@ class AWPCP {
 	}
 
 	public function localize_scripts() {
+        $scripts = awpcp_wordpress_scripts();
+
 		// localize jQuery Validate messages
 		$this->js->set( 'default-validation-messages', array(
 			'required' => __( 'This field is required.', 'AWPCP' ),
@@ -1041,8 +1045,7 @@ class AWPCP {
 			'money' => __( 'Please enter a valid amount.', 'AWPCP' ),
 		) );
 
-        $script = 'awpcp-jquery-plupload-queue';
-        if ( wp_script_is( $script, 'queue' ) || wp_script_is( $script, 'done' ) || wp_script_is( $script, 'to_do' ) ) {
+        if ( $scripts->script_will_be_printed( 'awpcp-jquery-plupload-queue' ) ) {
             $this->js->localize( 'plupload-queue', array(
                 'Stop Upload' => _x( 'Stop Upload', 'uploader queue', 'AWPCP' ),
                 "Upload URL might be wrong or doesn't exist." => _x( "Upload URL might be wrong or doesn't exist.", 'uploader queue', 'AWPCP' ),
@@ -1109,8 +1112,7 @@ class AWPCP {
             'isRTL' => $wp_locale->text_direction == 'ltr' ? false : true // True if right-to-left language, false if left-to-right
         ) );
 
-        $script = 'awpcp';
-        if ( wp_script_is( $script, 'queue' ) || wp_script_is( $script, 'done' ) || wp_script_is( $script, 'to_do' ) ) {
+        if ( $scripts->script_will_be_printed( 'awpcp' ) ) {
             $this->js->print_data();
         }
 	}
