@@ -158,6 +158,7 @@ function( $, settings) {
             $.each( files, function( index, file ) {
                 $.publish( '/file/added', file );
             } );
+            uploader.start();
         }
 
         function onFileUplaoded( uploader, file, data ) {
