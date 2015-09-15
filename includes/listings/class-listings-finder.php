@@ -150,7 +150,7 @@ class AWPCP_ListingsFinder {
             $this->build_meta_conditions( $query ),
         );
 
-        $conditions = apply_filters( 'awpcp-find-listings-conditions', $conditions, $query );
+        $conditions = apply_filters( 'awpcp-find-listings-conditions', $conditions, $query, $this );
 
         $flattened_conditions = $this->flatten_conditions( $conditions, 'OR' );
         $where_conditions = $this->group_conditions( $flattened_conditions, 'AND' );
