@@ -1555,6 +1555,58 @@ function awpcp_html_image( $params ) {
     return $element;
 }
 
+/**
+ * @since 3.5.4
+ */
+function awpcp_html_label( $params ) {
+    $params = wp_parse_args( $params, array(
+        'text' => null,
+        'attributes' => array(
+            'for' => null,
+        ),
+    ) );
+
+    $attributes = rtrim( ' ' . awpcp_html_attributes( $params['attributes'] ) );
+
+    $element = '<label <attributes>><text></label>';
+    $element = str_replace( '<attributes>', $attributes, $element );
+    $element = str_replace( '<text>', $params['text'], $element );
+
+    return $element;
+}
+
+/**
+ * @since 3.5.4
+ */
+function awpcp_html_text_field( $params ) {
+    $params = wp_parse_args( $params, array(
+        'required' => null,
+        'readonly' => null,
+        'attributes' => array(),
+    ) );
+
+    $params['attributes'] = wp_parse_args( $params['attributes'], array(
+        'id' => null,
+        'class' => array(),
+        'name' => null,
+        'type' => 'text',
+        'value' => null,
+    ) );
+
+    if ( $params['required'] ) {
+        $attributes['class'][] = 'required';
+    }
+
+    if ( $params['readonly'] ) {
+        $attributes['readonly'] = 'readonly';
+    }
+
+    $attributes = rtrim( ' ' . awpcp_html_attributes( $params['attributes'] ) );
+    $element = str_replace( '<attributes>', $attributes, '<input <attributes>/>' );
+
+    return $element;
+}
+
 function awpcp_uploaded_file_error($file) {
 	$upload_errors = array(
 		UPLOAD_ERR_OK        	=> __("No errors.", 'AWPCP'),
