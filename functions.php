@@ -1508,9 +1508,15 @@ function awpcp_render_attributes($attrs) {
  */
 function awpcp_html_attributes( $attributes ) {
     $output = array();
+
+    if ( isset( $attributes['class'] ) && is_array( $attributes['class'] ) ) {
+        $attributes['class'] = implode( ' ', array_filter( $attributes['class'], 'strlen' ) );
+    }
+
     foreach ( $attributes as $name => $value ) {
         $output[] = sprintf( '%s="%s"', $name, $value );
     }
+
     return implode( ' ', $output );
 }
 
