@@ -1462,6 +1462,22 @@ function awpcp_form_error($field, $errors) {
 	return empty($error) ? '' : '<span class="awpcp-error">' . $error . '</span>';
 }
 
+function awpcp_form_help_text( $field_id, $help_text ) {
+    if ( empty( $help_text ) ) {
+        return null;
+    }
+
+    $params = wp_parse_args( $params, array(
+        'text' => $help_text,
+        'attributes' => array(
+            'for' => $field_id,
+            'class' => array( 'helptext', 'awpcp-form-helptext' ),
+        ),
+    ) );
+
+    return awpcp_html_label( $params );
+}
+
 function awpcp_attachment_background_color_explanation() {
 	if ( get_awpcp_option( 'imagesapprove' ) ) {
 		return '<p>' . __( 'The images or files with pale red background have been rejected by an administrator user. Likewise, files with a pale yellow background are awaiting approval. Files that are awaiting approval and rejected files, cannot be shown in the frontend.', 'AWPCP' ) . '</p>';
