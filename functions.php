@@ -1595,32 +1595,56 @@ function awpcp_html_label( $params ) {
  * @since 3.5.4
  */
 function awpcp_html_text_field( $params ) {
-    $params = wp_parse_args( $params, array(
-        'required' => null,
-        'readonly' => null,
-        'attributes' => array(),
-    ) );
-
-    $params['attributes'] = wp_parse_args( $params['attributes'], array(
-        'id' => null,
-        'class' => array(),
-        'name' => null,
-        'type' => 'text',
-        'value' => null,
-    ) );
-
-    if ( $params['required'] ) {
-        $attributes['class'][] = 'required';
-    }
+    $params = awpcp_parse_html_params(
+        $params,
+        array(
+            'required' => null,
+            'readonly' => null,
+        )
+    );
 
     if ( $params['readonly'] ) {
         $attributes['readonly'] = 'readonly';
     }
 
+    $params['attributes']['type'] = 'text';
+
     $attributes = rtrim( ' ' . awpcp_html_attributes( $params['attributes'] ) );
     $element = str_replace( '<attributes>', $attributes, '<input <attributes>/>' );
 
     return $element;
+}
+
+/**
+ * @since 3.5.4
+ */
+function awpcp_parse_html_params( $params, $default_params = array(), $default_attributes = array() ) {
+    $params = wp_parse_args(
+        $params,
+        wp_parse_args(
+            $default_params,
+            array(
+                'required' => null,
+                'attributes' => array(),
+            )
+        )
+    );
+
+    $params['attributes'] = wp_parse_args(
+        $params['attributes'],
+        wp_parse_args(
+            $default_attributes,
+            array(
+                'class' => array(),
+            )
+        )
+    );
+
+    if ( $params['required'] ) {
+        $attributes['class'][] = 'required';
+    }
+
+    return $params;
 }
 
 function awpcp_uploaded_file_error($file) {
