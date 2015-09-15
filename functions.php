@@ -1609,9 +1609,15 @@ function awpcp_html_text_field( $params ) {
 
     $params['attributes']['type'] = 'text';
 
+    return awpcp_html_input( $params );
+}
+
+/**
+ * @since 3.5.4
+ */
+function awpcp_html_input( $params ) {
     $attributes = rtrim( ' ' . awpcp_html_attributes( $params['attributes'] ) );
     $element = str_replace( '<attributes>', $attributes, '<input <attributes>/>' );
-
     return $element;
 }
 
