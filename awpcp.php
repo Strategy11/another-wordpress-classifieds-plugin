@@ -844,7 +844,7 @@ class AWPCP {
                     'private' => true,
                 ),
 				'xml-sitemap' => array(
-					'name' => __(  'XML Sitemap', 'AWPCP'  ),
+					'name' => __( 'XML Sitemap', 'AWPCP'  ),
 					'url' => 'http://www.awpcp.com/premium-modules/',
 					'installed' => function_exists( 'awpcp_generate_ad_entries' ),
 					'version' => 'AWPCP_XML_SITEMAP_MODULE_DB_VERSION',
