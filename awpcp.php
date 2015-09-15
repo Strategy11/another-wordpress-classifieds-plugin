@@ -850,6 +850,14 @@ class AWPCP {
 					'version' => 'AWPCP_XML_SITEMAP_MODULE_DB_VERSION',
 					'required' => '3.2.3',
 				),
+                'zip-code-search' => array(
+                    'name' => __( 'ZIP Code Search Module', 'AWPCP' ),
+                    'url' => 'http://www.awpcp.com/premium-modules/',
+                    'installed' => defined( 'AWPCP_ZIP_CODE_SEARCH_MODULE_DB_VERSION' ),
+                    'version' => 'AWPCP_ZIP_CODE_SEARCH_MODULE_DB_VERSION',
+                    'required' => '0.0.1',
+                    'private' => true,
+                ),
 			);
 		}
 
