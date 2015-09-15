@@ -1624,6 +1624,72 @@ function awpcp_html_input( $params ) {
 /**
  * @since 3.5.4
  */
+function awpcp_html_radio( $params ) {
+    $params = awpcp_parse_html_params(
+        $params,
+        array(
+            'current-value' => null,
+            'disabled' => null,
+        ),
+        array(
+            'value' => null,
+        )
+    );
+
+    if ( $params['disabled'] ) {
+        $params['attributes']['disabled'] = 'disabled';
+    }
+
+    if ( $params['current-value'] === $params['attributes']['value'] ) {
+        $params['attributes']['checked'] = 'checked';
+    }
+
+    $params['attributes']['type'] = 'radio';
+
+    return awpcp_html_input( $params );
+}
+
+/**
+ * @since 3.5.4
+ */
+function awpcp_html_select( $params ) {
+    $params = awpcp_parse_html_params( $params );
+
+    $attributes = rtrim( ' ' . awpcp_html_attributes( $params['attributes'] ) );
+
+    $element = '<select <select-attributes>><options></select>';
+    $element = str_replace( '<select-attributes>', $attributes, $element );
+    $element = str_replace( '<options>', awpcp_html_options( $params ), $element );
+
+    return $element;
+}
+
+/**
+ * @since 3.5.4
+ */
+function awpcp_html_options( $params ) {
+    $params = wp_parse_args( $params, array(
+        'current-value' => null,
+        'options' => array(),
+    ) );
+
+    $options = array();
+
+    foreach ( $params['options'] as $value => $text ) {
+        $option = '<option <attributes>><text></option>';
+
+        $option = str_replace( '<attributes>', awpcp_html_attributes( array( 'value' => $value ) ), $option );
+        $option = str_replace( '<text>', $text, $option );
+
+        $options[] = $option;
+    }
+
+    return implode( '', $options );
+}
+
+/**
+ * @since 3.5.4
+ */
 function awpcp_parse_html_params( $params, $default_params = array(), $default_attributes = array() ) {
     $params = wp_parse_args(
         $params,
