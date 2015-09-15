@@ -377,7 +377,7 @@ class AWPCP_ListingsFinder {
         return $this->flatten_conditions( $conditions, 'AND' );
     }
 
-    private function add_join_clause( $clause ) {
+    public function add_join_clause( $clause ) {
         $this->clauses['join'][] = $clause;
     }
 
@@ -502,7 +502,7 @@ class AWPCP_ListingsFinder {
         return $flattened_conditions;
     }
 
-    private function group_conditions( $conditions, $connector = 'OR' ) {
+    public function group_conditions( $conditions, $connector = 'OR' ) {
         $conditions_count = count( $conditions );
 
         if ( is_array( $conditions ) && $conditions_count >= 1 ) {
