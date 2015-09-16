@@ -447,7 +447,12 @@ class AWPCP_Settings_API {
 			foreach ($group->sections as $section) {
 				add_settings_section($section->slug, $section->name, $section->callback, $group->slug);
 				foreach ($section->settings as $setting) {
-					$callback = array($this, $setting->type);
+					if ( method_exists( $this, $setting->type ) ) {
+						$callback = array( $this, $setting->type );
+					} else {
+						$callback = array( $this, 'render_custom_setting' );
+					}
+
 					$args = array('label_for' => $setting->name, 'setting' => $setting);
 					$args = array_merge($args, $setting->args);
 
@@ -1036,5 +1041,29 @@ class AWPCP_Settings_API {
 	public function section_date_time_format($args) {
 		$link = '<a href="http://codex.wordpress.org/Formatting_Date_and_Time">%s</a>.';
 		echo sprintf( $link, __( 'Documentation on date and time formatting', 'AWPCP' ) );
+	}
+
+	/**
+	 * @since 3.5.4
+	 */
+	public function render_custom_setting( $args ) {
+		$content = apply_filters( 'awpcp-render-setting-' . $args['setting']->name, null, $args );
+
+		if ( ! empty( $content ) ) {
+			echo $content;
+			return;
+		}
+
+		$content = apply_filters( 'awpcp-render-setting-type' . $args['setting']->type, null, $args );
+
+		if ( ! empty( $content ) ) {
+			echo $content;
+			return;
+		}
+
+		$message = __( 'Setting <setting-name> not available.', 'AWPCP' );
+		$message = str_replace( '<setting-name>', '<strong>' . $args['setting']->name . '</strong>', $message );
+
+		echo $message;
 	}
 }
