@@ -26,12 +26,16 @@ class AWPCP_ListingsFinder {
 
         if ( $query['fields'] == 'count' ) {
             return $this->db->get_var( $this->prepare_query( "$select $where $order" ) );
-        } else if ( $query['raw'] ) {
-            return $this->db->get_results( $this->prepare_query( "$select $where $order $limit" ) );
+        }
+
+        if ( $query['raw'] ) {
+            $listings = $this->db->get_results( $this->prepare_query( "$select $where $order $limit" ) );
         } else {
             $items = $this->db->get_results( $this->prepare_query( "$select $where $order $limit" ) );
-            return array_map( array( 'AWPCP_Ad', 'from_object' ), $items );
+            $listings = array_map( array( 'AWPCP_Ad', 'from_object' ), $items );
         }
+
+        return apply_filters( 'awpcp-find-listings', $listings, $query );
     }
 
     private function reset_query() {
