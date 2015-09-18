@@ -43,6 +43,16 @@ class AWPCP_FormFields {
         return array_merge( $sorted_fields, $fields );
     }
 
+    public function get_field( $slug ) {
+        $form_fields = $this->get_fields();
+
+        if ( ! isset( $form_fields[ $slug ] ) ) {
+            return null;
+        }
+
+        return $form_fields[ $slug ];
+    }
+
     public function get_fields_order() {
         return get_option( 'awpcp-form-fields-order', array() );
     }

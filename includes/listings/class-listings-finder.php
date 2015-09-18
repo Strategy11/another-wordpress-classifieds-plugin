@@ -26,12 +26,16 @@ class AWPCP_ListingsFinder {
 
         if ( $query['fields'] == 'count' ) {
             return $this->db->get_var( $this->prepare_query( "$select $where $order" ) );
-        } else if ( $query['raw'] ) {
-            return $this->db->get_results( $this->prepare_query( "$select $where $order $limit" ) );
+        }
+
+        if ( $query['raw'] ) {
+            $listings = $this->db->get_results( $this->prepare_query( "$select $where $order $limit" ) );
         } else {
             $items = $this->db->get_results( $this->prepare_query( "$select $where $order $limit" ) );
-            return array_map( array( 'AWPCP_Ad', 'from_object' ), $items );
+            $listings = array_map( array( 'AWPCP_Ad', 'from_object' ), $items );
         }
+
+        return apply_filters( 'awpcp-find-listings', $listings, $query );
     }
 
     private function reset_query() {
@@ -150,7 +154,7 @@ class AWPCP_ListingsFinder {
             $this->build_meta_conditions( $query ),
         );
 
-        $conditions = apply_filters( 'awpcp-find-listings-conditions', $conditions, $query );
+        $conditions = apply_filters( 'awpcp-find-listings-conditions', $conditions, $query, $this );
 
         $flattened_conditions = $this->flatten_conditions( $conditions, 'OR' );
         $where_conditions = $this->group_conditions( $flattened_conditions, 'AND' );
@@ -377,7 +381,7 @@ class AWPCP_ListingsFinder {
         return $this->flatten_conditions( $conditions, 'AND' );
     }
 
-    private function add_join_clause( $clause ) {
+    public function add_join_clause( $clause ) {
         $this->clauses['join'][] = $clause;
     }
 
@@ -502,7 +506,7 @@ class AWPCP_ListingsFinder {
         return $flattened_conditions;
     }
 
-    private function group_conditions( $conditions, $connector = 'OR' ) {
+    public function group_conditions( $conditions, $connector = 'OR' ) {
         $conditions_count = count( $conditions );
 
         if ( is_array( $conditions ) && $conditions_count >= 1 ) {

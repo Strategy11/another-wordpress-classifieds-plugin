@@ -3,11 +3,11 @@
 AWPCP.define('awpcp/asynchronous-tasks', ['jquery', 'knockout', 'moment', 'awpcp/settings'],
 function($, ko, moment, settings) {
 
-    function AsynchronousTask(name, action) {
-        this.name = ko.observable(name);
-        this.action = action;
-        this.recordsCount = ko.observable(null);
-        this.recordsLeft = ko.observable(null);
+    function AsynchronousTask(data) {
+        this.name = ko.observable(data.name);
+        this.action = data.action;
+        this.recordsCount = ko.observable(data.recordsCount || null);
+        this.recordsLeft = ko.observable(data.recordsLeft || null);
         this.startTime = ko.observable(null);
         this.lastUpdated = ko.observable(null);
 
@@ -82,7 +82,7 @@ function($, ko, moment, settings) {
         this.tasks = ko.observableArray([]);
 
         $.each(tasks, $.proxy(function(index, task) {
-            this.tasks.push(new AsynchronousTask(task.name, task.action));
+            this.tasks.push(new AsynchronousTask(task));
         }, this));
 
         this.tasksCount = this.tasks().length;

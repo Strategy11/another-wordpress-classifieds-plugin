@@ -9,10 +9,29 @@ function( $, settings) {
         self.element = $( element );
         self.options = options;
 
+        configureBeforeUnloadEventHandler();
         insertOrUpdateUploadRestrictionsMessage();
         configurePluploadQueue();
 
         $.subscribe( '/file/deleted', onFileDeleted );
+
+        function configureBeforeUnloadEventHandler() {
+            window.onbeforeunload = function() {
+                if ( ! self.uploader ) {
+                    return false;
+                }
+
+                if ( self.uploader.state == plupload.STARTED ) {
+                    return 'There are files currently being uploaded.';
+                }
+
+                var queueProgress = self.uploader.total;
+
+                if ( queueProgress.queued > 0 ) {
+                    return 'There are files pending to be uploaded.';
+                }
+            }
+        }
 
         function insertOrUpdateUploadRestrictionsMessage() {
             var message = '', titles = [], replacements = {}, files_left = 0, max_file_size = 0;
@@ -46,9 +65,7 @@ function( $, settings) {
             plupload.addFileFilter( 'restrict_file_size', filterFileBySize );
             plupload.addFileFilter( 'restrict_file_count', filterFileByCount );
 
-            // the second call to pluploadQueue is to retrieve a reference to
-            // the plupload.Uploader object.
-            self.uploader = self.element.find( '.awpcp-media-uploader-queue' )
+            var queue = self.element.find( '.awpcp-media-uploader-queue' )
                 .pluploadQueue( {
                     url: settings.get( 'ajaxurl' ),
                     filters: {
@@ -72,8 +89,9 @@ function( $, settings) {
                         FileUploaded: onFileUplaoded,
                         FilesRemoved: onFilesRemoved
                     }
-                } )
-                .pluploadQueue();
+                } );
+
+            self.uploader = queue.pluploadQueue();
         }
 
         function filterFileBySize( enabled, file, done ) {
@@ -140,6 +158,7 @@ function( $, settings) {
             $.each( files, function( index, file ) {
                 $.publish( '/file/added', file );
             } );
+            uploader.start();
         }
 
         function onFileUplaoded( uploader, file, data ) {

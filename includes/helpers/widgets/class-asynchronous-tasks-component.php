@@ -7,8 +7,10 @@ class AWPCP_AsynchronousTasksComponent {
 
     public function __construct( $tasks, $texts ) {
         $default_messages = array(
+            'title' => _x( 'Pending Tasks', 'asynchrounous tasks title', 'AWPCP' ),
             'introduction' => '',
             'success' => '',
+            'successHtml' => null,
             'button' => '',
             'percentageOfCompletion' => _x( 'completed', 'as in: 5% completed', 'AWPCP' ),
             'remainingTime' => _x( 'remaining', 'as in: 2 minutes remaining', 'AWPCP' ),
