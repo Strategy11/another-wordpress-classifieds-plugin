@@ -855,7 +855,7 @@ class AWPCP {
                     'url' => 'http://www.awpcp.com/premium-modules/',
                     'installed' => defined( 'AWPCP_ZIP_CODE_SEARCH_MODULE_DB_VERSION' ),
                     'version' => 'AWPCP_ZIP_CODE_SEARCH_MODULE_DB_VERSION',
-                    'required' => '0.0.1',
+                    'required' => '1.0.0-RC1',
                     'private' => true,
                 ),
 			);
