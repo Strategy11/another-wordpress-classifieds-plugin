@@ -278,3 +278,18 @@ function awpcp_make_intermediate_size($file, $directory, $width, $height, $crop=
 
 	return $result;
 }
+
+/**
+ * Returns the contents of a directory (ignoring . and .. special files).
+ *
+ * @param string $path a directory.
+ * @return array list of files within the directory.
+ * @since 3.5.4
+ */
+function awpcp_scandir( $path, $args = array() ) {
+    if ( ! is_dir( $path ) ) {
+        return array();
+    }
+
+    return array_diff( scandir( $path ), array( '.', '..' ) );
+}
