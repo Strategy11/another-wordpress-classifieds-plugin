@@ -6,8 +6,8 @@ function($, ko, moment, settings) {
     function AsynchronousTask(data) {
         this.name = ko.observable(data.name);
         this.action = data.action;
-        this.recordsCount = ko.observable(null);
-        this.recordsLeft = ko.observable(null);
+        this.recordsCount = ko.observable(data.recordsCount || null);
+        this.recordsLeft = ko.observable(data.recordsLeft || null);
         this.startTime = ko.observable(null);
         this.lastUpdated = ko.observable(null);
 
