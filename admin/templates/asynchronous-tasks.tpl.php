@@ -27,6 +27,11 @@
     </div>
 
     <div data-bind="if: completed">
-        <p class="awpcp-asynchronous-tasks-completed-message" data-bind="html: texts.success"></p>
+        <div class="awpcp-asynchronous-tasks-completed-message" data-bind="if: texts.success">
+            <p data-bind="html: texts.success"></p>
+        </div>
+        <div class="awpcp-asynchronous-tasks-completed-message-container" data-bind="if: texts.successHtml">
+            <div data-bind="html: texts.successHtml"></div>
+        </div>
     </div>
 </div>
