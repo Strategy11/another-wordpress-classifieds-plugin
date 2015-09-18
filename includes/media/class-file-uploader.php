@@ -38,10 +38,10 @@ class AWPCP_FileUploader {
     private function get_uploaded_file_name() {
         $filename = $this->request->post( 'name' );
 
-        if ( empty( $filename ) && ! empty( $_FILES ) ) {
+        if ( empty( $filename ) && isset( $_FILES['file']['name'] ) ) {
             $filename = $_FILES['file']['name'];
         } else if ( empty( $filename ) ) {
-            throw new AWPCP_Exception( __( 'Unable to findout uploaded file name.', 'AWPCP' ) );
+            throw new AWPCP_Exception( __( 'Unable to find the uploaded file name.', 'AWPCP' ) );
         }
 
         return $filename;
