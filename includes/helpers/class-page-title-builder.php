@@ -30,10 +30,14 @@ class AWPCP_PageTitleBuilder {
         $original_title = $title;
 
         if ( ! $this->is_properly_configured() ) {
-            return $title;
+            return $original_title;
         }
 
         $default_page_title = $this->get_page_title();
+
+        if ( empty( $default_page_title ) ) {
+            return $default_page_title;
+        }
 
         if ( $this->title_already_includes_page_title( $original_title, $default_page_title ) ) {
             return $original_title;
@@ -70,6 +74,10 @@ class AWPCP_PageTitleBuilder {
         }
 
         $page_title = $this->get_page_title( $sep, $seplocation );
+
+        if ( empty( $page_title ) ) {
+            return $original_title;
+        }
 
         if ( $this->title_already_includes_page_title( $original_title, $page_title ) ) {
             return $original_title;
@@ -254,6 +262,10 @@ class AWPCP_PageTitleBuilder {
         }
 
         $page_title = $this->get_page_title();
+
+        if ( empty( $page_title ) ) {
+            return $post_title;
+        }
 
         if ( $this->title_already_includes_page_title( $post_title, $page_title ) ) {
             return $post_title;
