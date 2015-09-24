@@ -161,6 +161,8 @@ class AWPCP_Search_Widget extends WP_Widget {
             ) );
 		}
 
+        do_action( 'awpcp-search-listings-widget-form-field' );
+
 		echo '<div class="submit"><input class="button" type="submit" value="' . __( 'Search', 'AWPCP' ) . '"></div>';
         echo '</form></div>';
         echo '</div>';
