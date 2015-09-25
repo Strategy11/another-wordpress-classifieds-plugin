@@ -449,8 +449,10 @@ class AWPCP_Settings_API {
 				foreach ($section->settings as $setting) {
 					if ( method_exists( $this, $setting->type ) ) {
 						$callback = array( $this, $setting->type );
-					} else {
+					} else if ( has_filter( 'awpcp-render-setting-' . $setting->name ) || has_filter( 'awpcp-render-setting-type-' . $setting->type ) ) {
 						$callback = array( $this, 'render_custom_setting' );
+					} else {
+						continue;
 					}
 
 					$args = array('label_for' => $setting->name, 'setting' => $setting);
@@ -1047,14 +1049,14 @@ class AWPCP_Settings_API {
 	 * @since 3.5.4
 	 */
 	public function render_custom_setting( $args ) {
-		$content = apply_filters( 'awpcp-render-setting-' . $args['setting']->name, null, $args );
+		$content = apply_filters( 'awpcp-render-setting-' . $args['setting']->name, null, $args, $this );
 
 		if ( ! empty( $content ) ) {
 			echo $content;
 			return;
 		}
 
-		$content = apply_filters( 'awpcp-render-setting-type' . $args['setting']->type, null, $args );
+		$content = apply_filters( 'awpcp-render-setting-type-' . $args['setting']->type, null, $args, $this );
 
 		if ( ! empty( $content ) ) {
 			echo $content;
