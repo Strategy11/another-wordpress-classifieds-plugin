@@ -69,14 +69,29 @@ class AWPCP_FormFields {
                 continue;
             }
 
-            $output[ $field_slug ] = $field->render(
-                isset( $form_values[ $field_slug ] ) ? $form_values[ $field_slug ] : '',
-                $form_errors,
-                $listing,
-                $context
-            );
+            $form_value = isset( $form_values[ $field_slug ] ) ? $form_values[ $field_slug ] : '';
+
+            $output[] = $this->render_field( $field, $form_value, $form_errors, $listing, $context );
         }
 
         return implode( "\n", $output );
+    }
+
+    public function render_field( $field, $form_value, $form_errors, $listing, $context ) {
+        $output = $field->render( $form_value, $form_errors, $listing, $context );
+
+        $output = apply_filters(
+            'awpcp-render-form-field-' . $field->get_slug(),
+            $output,
+            $field, $form_value, $form_errors, $listing, $context
+        );
+
+        $output = apply_filters(
+            'awpcp-render-form-field',
+            $output,
+            $field, $form_value, $form_errors, $listing, $context
+        );
+
+        return $output;
     }
 }
