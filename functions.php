@@ -1678,7 +1678,13 @@ function awpcp_html_options( $params ) {
     foreach ( $params['options'] as $value => $text ) {
         $option = '<option <attributes>><text></option>';
 
-        $option = str_replace( '<attributes>', awpcp_html_attributes( array( 'value' => $value ) ), $option );
+        if ( strcmp( $value, $params['current-value'] ) === 0 ) {
+            $attributes = array( 'value' => $value, 'selected' => 'selected' );
+        } else {
+            $attributes = array( 'value' => $value );
+        }
+
+        $option = str_replace( '<attributes>', awpcp_html_attributes( $attributes ), $option );
         $option = str_replace( '<text>', $text, $option );
 
         $options[] = $option;
