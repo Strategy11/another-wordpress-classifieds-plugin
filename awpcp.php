@@ -954,7 +954,7 @@ class AWPCP {
 
 		/* helpers */
 
-		wp_register_script( 'awpcp', "{$js}/awpcp.min.js", array( 'awpcp-knockout', 'jquery' ), $awpcp_db_version, true );
+		wp_register_script( 'awpcp', "{$js}/awpcp.min.js", array( 'awpcp-knockout', 'backbone', 'jquery' ), $awpcp_db_version, true );
         wp_register_script( 'awpcp-admin', "{$js}/awpcp-admin.min.js", array( 'awpcp', 'awpcp-jquery-validate' ), $awpcp_db_version, true );
 
 		wp_register_script( 'awpcp-billing-form', "{$js}/awpcp-billing-form.js", array( 'awpcp' ), $awpcp_db_version, true );
