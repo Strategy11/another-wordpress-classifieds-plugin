@@ -121,27 +121,25 @@ function( $, settings) {
             if ( response.status === 'ok' && response.file ) {
                 $.publish( '/file/uploaded', [ file, response.file ] );
             } else if ( response.status !== 'ok' ) {
-                decreaseFileCountInGroup( file );
+                this.decreaseFileCountInGroup( file );
                 file.status = plupload.FAILED;
 
                 // to force the queue widget to update the icon and the uploaded files count
-                self.uploader.trigger( 'UploadProgress', file );
+                this.uploader.trigger( 'UploadProgress', file );
 
                 $.publish( '/messages/media-uploader', { type: 'error', 'content': response.errors.join( ' ' ) } );
             }
 
             this.trigger('media-uploader:file-uploaded');
-            insertOrUpdateUploadRestrictionsMessage();
         },
 
         onFileDeleted: function( event, file ) {
-            decreaseFileCountInGroup( file );
+            this.decreaseFileCountInGroup( file );
             this.trigger('media-uploader:file-deleted');
-            insertOrUpdateUploadRestrictionsMessage();
         },
 
         decreaseFileCountInGroup: function( file ) {
-            var group = getFileGroup( file );
+            var group = this.getFileGroup( file );
 
             if ( group !== null ) {
                 group.uploaded_file_count = group.uploaded_file_count - 1;

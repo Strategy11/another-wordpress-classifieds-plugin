@@ -31,17 +31,14 @@ function( $, settings) {
         },
 
         onDragOver: function( event ) {
-            console.log( 'dragover' );
             this.$dropzone.addClass( 'awpcp-media-uploader-dropzone-active' );
         },
 
         onDragLeave: function() {
-            console.log( 'dragleave' );
             this.$dropzone.removeClass( 'awpcp-media-uploader-dropzone-active' );
         },
 
         onDragStop: function() {
-            console.log( 'dragstop' );
             this.$dropzone.removeClass( 'awpcp-media-uploader-dropzone-active' );
         },
 
