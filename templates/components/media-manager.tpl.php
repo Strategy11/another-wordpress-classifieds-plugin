@@ -41,6 +41,9 @@ from Paul Irish. See https://github.com/drodenbaugh/awpcp/issues/979. -->
             <li data-bind="css: $root.getFileCSSClasses( video ), attr: { id: $root.getFileId( video ) }">
                 <div class="awpcp-uploaded-file-thumbnail-container">
                     <img data-bind="attr: { src: thumbnailUrl }" width="<?php echo esc_attr( $thumbnails_width ); ?>px">
+                    <div class="awpcp-progress-bar-container" data-bind="if: shouldShowProgressBar">
+                        <div class="awpcp-progress-bar" data-bind="style: { width: progress() + '%' }"></div>
+                    </div>
                 </div>
                 <ul class="awpcp-uploaded-file-actions clearfix">
                     <li class="awpcp-uploaded-file-action awpcp-uploaded-file-change-status-action">
@@ -74,6 +77,9 @@ from Paul Irish. See https://github.com/drodenbaugh/awpcp/issues/979. -->
                             <img data-bind="attr: { src: iconUrl }" />
                             <span data-bind="text: name"></span>
                         </a>
+                        <div class="awpcp-progress-bar-container" data-bind="if: shouldShowProgressBar">
+                            <div class="awpcp-progress-bar" data-bind="style: { width: progress() + '%' }"></div>
+                        </div>
                     </td>
                     <td>
                         <ul class="awpcp-uploaded-file-actions clearfix">
