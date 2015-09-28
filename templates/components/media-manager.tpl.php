@@ -9,6 +9,9 @@ from Paul Irish. See https://github.com/drodenbaugh/awpcp/issues/979. -->
             <li data-bind="css: $root.getFileCSSClasses( image ), attr: { id: $root.getFileId( image ) }">
                 <div class="awpcp-uploaded-file-thumbnail-container">
                     <img data-bind="attr: { src: thumbnailUrl }">
+                    <div class="awpcp-progress-bar-container" data-bind="if: shouldShowProgressBar">
+                        <div class="awpcp-progress-bar" data-bind="style: { width: progress() + '%' }"></div>
+                    </div>
                 </div>
                 <ul class="awpcp-uploaded-file-actions clearfix">
                     <li class="awpcp-uploaded-file-action awpcp-uploaded-file-change-status-action">

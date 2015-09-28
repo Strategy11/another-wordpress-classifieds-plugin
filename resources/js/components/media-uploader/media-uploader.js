@@ -39,6 +39,7 @@ function( $, settings) {
             self.uploader.init();
 
             self.uploader.bind( 'FilesAdded', self.onFilesAdded, self );
+            self.uploader.bind( 'UploadProgress', self.onUploadProgress, self );
             self.uploader.bind( 'FileUploaded', self.onFileUplaoded, self );
         },
 
@@ -115,6 +116,10 @@ function( $, settings) {
             uploader.start();
         },
 
+        onUploadProgress: function( uploader, file ) {
+            $.publish( '/file/progress', [ uploader, file ] );
+        },
+
         onFileUplaoded: function( uploader, file, data ) {
             var response = $.parseJSON( data.response );
 
@@ -127,6 +132,7 @@ function( $, settings) {
                 // to force the queue widget to update the icon and the uploaded files count
                 this.uploader.trigger( 'UploadProgress', file );
 
+                $.publish( '/file/failed', file );
                 $.publish( '/messages/media-uploader', { type: 'error', 'content': response.errors.join( ' ' ) } );
             }
 
