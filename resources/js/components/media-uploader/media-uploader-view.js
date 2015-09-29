@@ -51,11 +51,15 @@ function( $, settings) {
                 }
 
                 if ( self.model.uploader.state == plupload.STARTED ) {
-                    return 'There are files currently being uploaded.';
+                    return settings.l10n( 'media-uploader-beforeunload', 'files-are-being-uploaded' );
                 }
 
                 if ( self.model.uploader.total.queued > 0 ) {
-                    return 'There are files pending to be uploaded.';
+                    return settings.l10n( 'media-uploader-beforeunload', 'files-pending-to-be-uploaded' );
+                }
+
+                if ( self.model.uploader.total.uploaded == 0 ) {
+                    return settings.l10n( 'media-uploader-beforeunload', 'no-files-were-uploaded' );
                 }
             }
         },
