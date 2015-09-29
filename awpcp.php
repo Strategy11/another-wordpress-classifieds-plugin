@@ -1120,6 +1120,12 @@ class AWPCP {
             'isRTL' => $wp_locale->text_direction == 'ltr' ? false : true // True if right-to-left language, false if left-to-right
         ) );
 
+        $this->js->localize( 'media-uploader-beforeunload', array(
+            'files-are-being-uploaded' => __( 'There are files currently being uploaded.', 'AWPCP' ),
+            'files-pending-to-be-uploaded' => __( 'There are files pending to be uploaded.', 'AWPCP' ),
+            'no-files-were-uploaded' => __( "You haven't uploaded any images or files.", 'AWPCP' ),
+        ) );
+
         if ( $scripts->script_will_be_printed( 'awpcp' ) ) {
             $this->js->print_data();
         }
