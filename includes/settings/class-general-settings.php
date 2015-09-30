@@ -134,14 +134,42 @@ class AWPCP_GeneralSettings {
 
         $settings->add_setting(
             $key,
-            'useakismet',
-            __( 'Use Akismet', 'AWPCP' ),
+            'use-akismet-in-place-listing-form',
+            __( 'Use Akismet in Place Ad form', 'AWPCP' ),
             'checkbox',
             $use_akismet_default_value,
-            __( 'Use Akismet for Posting Ads/Contact Responses (strong anti-spam).', 'AWPCP' )
+            __( 'Use Akismet for Posting Ads (strong anti-spam).', 'AWPCP' )
         );
 
-        $settings->add_setting( $key, 'captcha-enabled', __( 'Enable CAPTCHA', 'AWPCP' ), 'checkbox', $settings->get_option( 'contactformcheckhuman', 1 ), __( 'A CAPTCHA is a program to ensure only humans are posting Ads to your website. Using a CAPTCHA will reduce the SPAM and prevent bots from posting on your website. If checked, an additional form field will be added to the Place Ad and Reply to Ad forms.', 'AWPCP' ) );
+        $settings->add_setting(
+            $key,
+            'use-akismet-in-reply-to-listing-form',
+            __( 'Use Akismet in Reply to Ad form', 'AWPCP' ),
+            'checkbox',
+            $use_akismet_default_value,
+            __( 'Use Akismet for Contact Responses (strong anti-spam).', 'AWPCP' )
+        );
+
+        $is_captcha_enabled = $settings->get_option( 'captcha-enabled', $settings->get_option( 'contactformcheckhuman', 1 ) );
+
+        $settings->add_setting(
+            $key,
+            'captcha-enabled-in-place-listing-form',
+            __( 'Enable CAPTCHA in Place Ad form', 'AWPCP' ),
+            'checkbox',
+            $is_captcha_enabled,
+            __( 'A CAPTCHA is a program to ensure only humans are posting Ads to your website. Using a CAPTCHA will reduce the SPAM and prevent bots from posting on your website. If checked, an additional form field will be added to the Place Ad form.', 'AWPCP' )
+        );
+
+        $settings->add_setting(
+            $key,
+            'captcha-enabled-in-reply-to-listing-form',
+            __( 'Enable CAPTCHA in Reply to Ad form', 'AWPCP' ),
+            'checkbox',
+            $is_captcha_enabled,
+            __( 'If checked, an additional form field will be added to the Reply to Ad form.', 'AWPCP' )
+        );
+
         $settings->add_setting( $key, 'captcha-provider', __( 'Type of CAPTCHA', 'AWPCP' ), 'select', 'math', __( 'reCAPTCHA: Uses distorted images that only humans should be able to read (recommended).', 'AWPCP' ) . '<br/>' . __( 'Math: Asks user to solve a simple arithmetic operation.', 'AWPCP' ), array( 'options' => $options ) );
 
         $settings->add_setting( $key, 'math-captcha-max-number', __( 'Max number used in Math CAPTCHA', 'AWPCP' ), 'textfield', $settings->get_option( 'contactformcheckhumanhighnumval', 10 ), __( 'Highest number used in aithmetic operation.', 'AWPCP') );

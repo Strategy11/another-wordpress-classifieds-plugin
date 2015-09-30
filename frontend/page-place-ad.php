@@ -721,7 +721,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $ui['price-field'] = get_awpcp_option('displaypricefield') == 1;
         $ui['extra-fields'] = $hasextrafieldsmodule && function_exists('awpcp_extra_fields_render_form');
         $ui['terms-of-service'] = !$edit && !$is_moderator && get_awpcp_option('requiredtos');
-        $ui['captcha'] = !$edit && !is_admin() && ( get_awpcp_option( 'captcha-enabled' ) == 1 );
+        $ui['captcha'] = !$edit && !is_admin() && ( get_awpcp_option( 'captcha-enabled-in-place-listing-form' ) == 1 );
 
         $hidden['step'] = 'save-details';
         $hidden['ad_id'] = $form['ad_id'];
@@ -962,7 +962,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             $errors['terms-of-service'] = __("You did not accept the terms of service", "AWPCP");
         }
 
-        if ( !$edit && !is_admin() && get_awpcp_option( 'captcha-enabled' ) ) {
+        if ( !$edit && !is_admin() && get_awpcp_option( 'captcha-enabled-in-place-listing-form' ) ) {
             $captcha = awpcp_create_captcha( get_awpcp_option( 'captcha-provider' ) );
 
             $error = '';
@@ -971,7 +971,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             }
         }
 
-        if (get_awpcp_option('useakismet')) {
+        if ( get_awpcp_option( 'use-akismet-in-place-listing-form' ) ) {
             $spam_filter = awpcp_listing_spam_filter();
 
             if ( $spam_filter->is_spam( $data ) ) {

@@ -696,21 +696,53 @@ class AWPCP_Settings_API {
 	 * General Settings checks
 	 */
 	public function validate_general_settings($options, $group) {
-		// Check Akismet if they enabled/configured it:
-		$setting = 'useakismet';
-		if (isset($options[$setting])) {
-			$wpcom_api_key = get_option('wordpress_api_key');
-			if ($options[$setting] == 1 && !function_exists('akismet_init')) {
-				awpcp_flash( __( 'Akismet SPAM control cannot be enabled because Akismet plugin is not installed or activated.', 'AWPCP' ), 'error' );
-				$options[$setting] = 0;
-			} else if ($options[$setting] == 1 && empty($wpcom_api_key)) {
-				awpcp_flash( __( 'Akismet SPAM control cannot be enabled because Akismet is not properly configured.', 'AWPCP' ), 'error' );
-				$options[$setting] = 0;
-			}
+		$this->validate_akismet_settings( $options );
+		$this->validate_captcha_settings( $options );
+
+		// Enabling User Ad Management Panel will automatically enable
+		// require Registration, if it isn’t enabled. Disabling this feature
+		// will not disable Require Registration.
+		$setting = 'enable-user-panel';
+		if (isset($options[$setting]) && $options[$setting] == 1 && !get_awpcp_option('requireuserregistration')) {
+			awpcp_flash(__('Require Registration setting was enabled automatically because you activated the User Ad Management panel.', 'AWPCP'));
+			$options['requireuserregistration'] = 1;
 		}
 
+		return $options;
+	}
+
+	private function validate_akismet_settings( &$options ) {
+		$setting_name = 'use-akismet-in-place-listing-form';
+		$is_akismet_enabled_in_place_listing_form = isset( $options[ $setting_name ] ) && $options[ $setting_name ];
+
+		$setting_name = 'use-akismet-in-reply-to-listing-form';
+		$is_akismet_enabled_in_reply_to_listing_form = isset( $options[ $setting_name ] ) && $options[ $setting_name ];
+
+		if ( $is_akismet_enabled_in_place_listing_form || $is_akismet_enabled_in_reply_to_listing_form ) {
+			$wpcom_api_key = get_option( 'wordpress_api_key' );
+			if ( !function_exists( 'akismet_init' ) ) {
+				awpcp_flash( __( 'Akismet SPAM control cannot be enabled because Akismet plugin is not installed or activated.', 'AWPCP' ), 'error' );
+				$options[ 'use-akismet-in-place-listing-form' ] = 0;
+				$options[ 'use-akismet-in-reply-to-listing-form' ] = 0;
+			} else if ( empty( $wpcom_api_key ) ) {
+				awpcp_flash( __( 'Akismet SPAM control cannot be enabled because Akismet is not properly configured.', 'AWPCP' ), 'error' );
+				$options[ 'use-akismet-in-place-listing-form' ] = 0;
+				$options[ 'use-akismet-in-reply-to-listing-form' ] = 0;
+			}
+		}
+	}
+
+	private function validate_captcha_settings( &$options ) {
+	$option_name = 'captcha-enabled-in-place-listing-form';
+		$captcha_enabled_in_place_listing_form = isset( $options[ $option_name ] ) && $options[ $option_name ];
+
+		$option_name = 'captcha-enabled-in-reply-to-listing-form';
+		$captcha_enabled_in_reply_to_listing_form = isset( $options[ $option_name ] ) && $options[ $option_name ];
+
+		$is_captcha_enabled = $captcha_enabled_in_place_listing_form || $captcha_enabled_in_reply_to_listing_form;
+
 		// Verify reCAPTCHA is properly configured
-		if ( isset( $options['captcha-enabled'] ) && $options['captcha-provider'] === 'recaptcha' ) {
+		if ( $is_captcha_enabled && $options['captcha-provider'] === 'recaptcha' ) {
 			if ( empty( $options[ 'recaptcha-public-key' ] ) || empty( $options[ 'recaptcha-private-key' ] ) ) {
 				$options['captcha-provider'] = 'math';
 			}
@@ -723,17 +755,6 @@ class AWPCP_Settings_API {
 				awpcp_flash( __( "reCAPTCHA can't be used because the private key setting is required for reCAPTCHA to work properly.", 'AWPCP' ), 'error' );
 			}
 		}
-
-		// Enabling User Ad Management Panel will automatically enable
-		// require Registration, if it isn’t enabled. Disabling this feature
-		// will not disable Require Registration.
-		$setting = 'enable-user-panel';
-		if (isset($options[$setting]) && $options[$setting] == 1 && !get_awpcp_option('requireuserregistration')) {
-			awpcp_flash(__('Require Registration setting was enabled automatically because you activated the User Ad Management panel.', 'AWPCP'));
-			$options['requireuserregistration'] = 1;
-		}
-
-		return $options;
 	}
 
 	/**
