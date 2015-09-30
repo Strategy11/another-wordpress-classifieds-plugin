@@ -135,7 +135,7 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
             }
         }
 
-        if ( get_awpcp_option( 'captcha-enabled' ) ) {
+        if ( get_awpcp_option( 'captcha-enabled-in-reply-to-listing-form' ) ) {
             $captcha = awpcp_create_captcha( get_awpcp_option( 'captcha-provider' ) );
 
             $error = '';
@@ -166,7 +166,7 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
             'ad_link' => $ad_link,
             'ui' => array(
                 'disable-sender-fields' => get_awpcp_option( 'reply-to-ad-requires-registration' ),
-                'captcha' => get_awpcp_option( 'captcha-enabled' ),
+                'captcha' => get_awpcp_option( 'captcha-enabled-in-reply-to-listing-form' ),
             ),
         );
 
