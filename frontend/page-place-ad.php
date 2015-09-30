@@ -971,7 +971,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             }
         }
 
-        if (get_awpcp_option('useakismet')) {
+        if ( get_awpcp_option( 'use-akismet-in-place-listing-form' ) ) {
             $spam_filter = awpcp_listing_spam_filter();
 
             if ( $spam_filter->is_spam( $data ) ) {

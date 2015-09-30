@@ -134,11 +134,20 @@ class AWPCP_GeneralSettings {
 
         $settings->add_setting(
             $key,
-            'useakismet',
-            __( 'Use Akismet', 'AWPCP' ),
+            'use-akismet-in-place-listing-form',
+            __( 'Use Akismet in Place Ad form', 'AWPCP' ),
             'checkbox',
             $use_akismet_default_value,
-            __( 'Use Akismet for Posting Ads/Contact Responses (strong anti-spam).', 'AWPCP' )
+            __( 'Use Akismet for Posting Ads (strong anti-spam).', 'AWPCP' )
+        );
+
+        $settings->add_setting(
+            $key,
+            'use-akismet-in-reply-to-listing-form',
+            __( 'Use Akismet in Reply to Ad form', 'AWPCP' ),
+            'checkbox',
+            $use_akismet_default_value,
+            __( 'Use Akismet for Contact Responses (strong anti-spam).', 'AWPCP' )
         );
 
         $settings->add_setting( $key, 'captcha-enabled', __( 'Enable CAPTCHA', 'AWPCP' ), 'checkbox', $settings->get_option( 'contactformcheckhuman', 1 ), __( 'A CAPTCHA is a program to ensure only humans are posting Ads to your website. Using a CAPTCHA will reduce the SPAM and prevent bots from posting on your website. If checked, an additional form field will be added to the Place Ad and Reply to Ad forms.', 'AWPCP' ) );

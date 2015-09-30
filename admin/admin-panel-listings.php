@@ -96,8 +96,9 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
             if ($ad->flagged)
                 $actions['unflag'] = array(__('Unflag', 'AWPCP'), $this->url(array('action' => 'unflag', 'id' => $ad->ad_id)));
 
-            if (get_awpcp_option('useakismet'))
+            if ( get_awpcp_option( 'use-akismet-in-place-listing-form' ) || get_awpcp_option( 'use-akismet-in-reply-to-listing-form' ) ) {
                 $actions['spam'] = array('SPAM', $this->url(array('action' => 'spam', 'id' => $ad->ad_id)));
+            }
 
             $has_featured_ads = function_exists('awpcp_featured_ads');
             if ($has_featured_ads && $ad->is_featured_ad)

@@ -127,7 +127,7 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
             $errors['awpcp_contact_message'] = __('There was no text in your message. Please enter a message.', 'AWPCP');
         }
 
-        if (get_awpcp_option('useakismet')) {
+        if ( get_awpcp_option( 'use-akismet-in-reply-to-listing-form' ) ) {
             $spam_filter = awpcp_listing_reply_spam_filter();
 
             if ( $spam_filter->is_spam( $data ) ) {
