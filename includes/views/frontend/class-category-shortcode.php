@@ -34,7 +34,7 @@ class AWPCP_CategoryShortcode {
         $children = awpcp_parse_bool( $children );
 
         if ( is_null( $category ) ) {
-            return __('Category ID must be valid for Ads to display.', 'category shortcode', 'AWPCP');
+            return __('Category ID must be valid for Ads to display.', 'category shortcode', 'another-wordpress-classifieds-plugin');
         }
 
         if ( $children ) {

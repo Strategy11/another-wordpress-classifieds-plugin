@@ -11,7 +11,7 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
     public $messages = array();
 
     public function __construct($page='awpcp-search-ads', $title=null) {
-        parent::__construct($page, is_null($title) ? __('Search Ads', 'AWPCP') : $title);
+        parent::__construct($page, is_null($title) ? __('Search Ads', 'another-wordpress-classifieds-plugin') : $title);
     }
 
     public function get_current_action($default='searchads') {
@@ -30,7 +30,7 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
 
         $awpcp = awpcp();
         $awpcp->js->localize( 'page-search-ads', array(
-            'keywordphrase' => __( 'You did not enter a keyword or phrase to search for. You must at the very least provide a keyword or phrase to search for.', 'AWPCP' )
+            'keywordphrase' => __( 'You did not enter a keyword or phrase to search for. You must at the very least provide a keyword or phrase to search for.', 'another-wordpress-classifieds-plugin' )
         ) );
 
         return $this->_dispatch();
@@ -67,26 +67,26 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
         $filtered = array_filter($data);
 
         if (empty($filtered)) {
-            $errors[] = __("You did not enter a keyword or phrase to search for. You must at the very least provide a keyword or phrase to search for.", "AWPCP");
+            $errors[] = __("You did not enter a keyword or phrase to search for. You must at the very least provide a keyword or phrase to search for.", 'another-wordpress-classifieds-plugin');
         }
 
         if (!empty($data['query']) && strlen($data['query']) < 3) {
-            $errors['query'] = __("You have entered a keyword that is too short to search on. Search keywords must be at least 3 letters in length. Please try another term.", "AWPCP");
+            $errors['query'] = __("You have entered a keyword that is too short to search on. Search keywords must be at least 3 letters in length. Please try another term.", 'another-wordpress-classifieds-plugin');
         }
 
         if (!empty($data['min_price']) && !is_numeric($data['min_price'])) {
-            $errors['min_price'] = __("You have entered an invalid minimum price. Make sure your price contains numbers only. Please do not include currency symbols.", "AWPCP");
+            $errors['min_price'] = __("You have entered an invalid minimum price. Make sure your price contains numbers only. Please do not include currency symbols.", 'another-wordpress-classifieds-plugin');
         }
 
         if (!empty($data['max_price']) && !is_numeric($data['max_price'])) {
-            $errors['max_price'] = __("You have entered an invalid maximum price. Make sure your price contains numbers only. Please do not include currency symbols.", "AWPCP");
+            $errors['max_price'] = __("You have entered an invalid maximum price. Make sure your price contains numbers only. Please do not include currency symbols.", 'another-wordpress-classifieds-plugin');
         }
 
         return empty($errors);
     }
 
     protected function search_step() {
-        $this->messages[] = __( 'Use the form below to select the fields on which you want to search. Adding more fields makes for a more specific search. Using fewer fields will make for a broader search.', 'AWPCP' );
+        $this->messages[] = __( 'Use the form below to select the fields on which you want to search. Adding more fields makes for a more specific search. Using fewer fields will make for a broader search.', 'another-wordpress-classifieds-plugin' );
         return $this->search_form($this->get_posted_data());
     }
 
@@ -166,7 +166,7 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
 
         $return_link = '<div class="awpcp-return-to-search-link awpcp-clearboth"><a href="<link-url>"><link-text></a></div>';
         $return_link = str_replace( '<link-url>', esc_url( $href ), $return_link );
-        $return_link = str_replace( '<link-text>', __( 'Return to Search', 'AWPCP' ), $return_link );
+        $return_link = str_replace( '<link-text>', __( 'Return to Search', 'another-wordpress-classifieds-plugin' ), $return_link );
 
         return $return_link;
     }

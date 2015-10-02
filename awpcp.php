@@ -621,7 +621,7 @@ class AWPCP {
 
 		if (!get_option('awpcp_installationcomplete', 0)) {
 			update_option('awpcp_installationcomplete', 1);
-			awpcp_create_pages(__('AWPCP', 'AWPCP'));
+			awpcp_create_pages( __( 'AWPCP', 'another-wordpress-classifieds-plugin' ) );
 			$this->flush_rewrite_rules = true;
 		}
 
@@ -700,8 +700,8 @@ class AWPCP {
 	}
 
 	private function missing_gd_library_notice() {
-        $message = __( "AWPCP requires the graphics processing library GD and it is not installed. Contact your web host to fix this.", "AWPCP" );
-        $message = sprintf( '<strong>%s</strong> %s', __( 'Warning', 'AWPCP' ), $message );
+        $message = __( "AWPCP requires the graphics processing library GD and it is not installed. Contact your web host to fix this.", 'another-wordpress-classifieds-plugin' );
+        $message = sprintf( '<strong>%s</strong> %s', __( 'Warning', 'another-wordpress-classifieds-plugin' ), $message );
         return awpcp_print_error( $message );
 	}
 
@@ -717,126 +717,126 @@ class AWPCP {
 		if ( is_null( $modules ) ) {
 			$modules = array(
 				'attachments' => array(
-					'name' => __( 'Attachments', 'AWPCP' ),
+					'name' => __( 'Attachments', 'another-wordpress-classifieds-plugin' ),
 					'url' => 'http://awpcp.com/premium-modules/attachments-module/?ref=panel',
 					'installed' => defined( 'AWPCP_ATTACHMENTS_MODULE' ),
 					'version' => 'AWPCP_ATTACHMENTS_MODULE_DB_VERSION',
 					'required' => '3.5.2',
 				),
 				'authorize.net' => array(
-					'name' => __(  'Authorize.Net', 'AWPCP'  ),
+					'name' => __(  'Authorize.Net', 'another-wordpress-classifieds-plugin'  ),
 					'url' => 'http://awpcp.com/premium-modules/authorizenet-payment-module/?ref=user-panel',
 					'installed' => defined( 'AWPCP_AUTHORIZE_NET_MODULE' ),
 					'version' => 'AWPCP_AUTHORIZE_NET_MODULE_DB_VERSION',
 					'required' => '3.0.3',
 				),
 				'buddypress-listings' => array(
-					'name' => __( 'BuddyPress Listings', 'AWPCP' ),
+					'name' => __( 'BuddyPress Listings', 'another-wordpress-classifieds-plugin' ),
 					'url' => 'http://awpcp.com/premium-modules/buddypress-module/?ref=panel',
 					'installed' => defined( 'AWPCP_BUDDYPRESS_LISTINGS_MODULE_DB_VERSION' ),
 					'version' => 'AWPCP_BUDDYPRESS_LISTINGS_MODULE_DB_VERSION',
 					'required' => '3.4',
 				),
                 'campaign-manager' => array(
-                    'name' => __( 'Campaign Manager', 'AWPCP' ),
+                    'name' => __( 'Campaign Manager', 'another-wordpress-classifieds-plugin' ),
                     'url' => 'http://awpcp.com/premium-modules/campaign-manager-module/?ref=panel',
                     'installed' => defined( 'AWPCP_CAMPAIGN_MANAGER_MODULE' ),
                     'version' => 'AWPCP_CAMPAIGN_MANAGER_MODULE_DB_VERSION',
                     'required' => '1.0.2',
                 ),
 				'category-icons' => array(
-					'name' => __( 'Category Icons', 'AWPCP' ),
+					'name' => __( 'Category Icons', 'another-wordpress-classifieds-plugin' ),
 					'url' => 'http://www.awpcp.com/premium-modules/category-icons-module?ref=panel',
 					'installed' => defined( 'AWPCP_CATEGORY_ICONS_MODULE_DB_VERSION' ),
 					'version' => 'AWPCP_CATEGORY_ICONS_MODULE_DB_VERSION',
 					'required' => '3.4.1',
 				),
 				'comments' => array(
-					'name' => __(  'Comments & Ratings', 'AWPCP'  ),
+					'name' => __(  'Comments & Ratings', 'another-wordpress-classifieds-plugin'  ),
 					'url' => 'http://www.awpcp.com/premium-modules/comments-ratings-module/?ref=panel',
 					'installed' => defined( 'AWPCP_COMMENTS_MODULE' ),
 					'version' => 'AWPCP_COMMENTS_MODULE_VERSION',
 					'required' => '3.4.1',
 				),
 				'coupons' => array(
-					'name' => __( 'Coupons/Discount', 'AWPCP' ),
+					'name' => __( 'Coupons/Discount', 'another-wordpress-classifieds-plugin' ),
 					'url' => 'http://www.awpcp.com/premium-modules/coupon-module/?ref=panel',
 					'installed' => defined( 'AWPCP_COUPONS_MODULE' ),
 					'version' => 'AWPCP_COUPONS_MODULE_DB_VERSION',
 					'required' => '3.5.2',
 				),
 				'extra-fields' => array(
-					'name' => __( 'Extra Fields', 'AWPCP' ),
+					'name' => __( 'Extra Fields', 'another-wordpress-classifieds-plugin' ),
 					'url' => 'http://www.awpcp.com/premium-modules/extra-fields-module?ref=panel',
 					'installed' => defined( 'AWPCP_EXTRA_FIELDS_MODULE' ),
 					'version' => 'AWPCP_EXTRA_FIELDS_MODULE_DB_VERSION',
 					'required' => '3.4.2',
 				),
 				'featured-ads' => array(
-					'name' => __( 'Featured Ads', 'AWPCP' ),
+					'name' => __( 'Featured Ads', 'another-wordpress-classifieds-plugin' ),
 					'url' => 'http://www.awpcp.com/premium-modules/featured-ads-module?ref=panel',
 					'installed' => defined( 'AWPCP_FEATURED_ADS_MODULE' ),
 					'version' => 'AWPCP_FEATURED_ADS_MODULE_DB_VERSION',
 					'required' => '3.5.2',
 				),
 				'fee-per-category' => array(
-					'name' => __( 'Fee per Category', 'AWPCP' ),
+					'name' => __( 'Fee per Category', 'another-wordpress-classifieds-plugin' ),
 					'url' =>'http://www.awpcp.com/premium-modules/fee-per-category-module?ref=panel',
 					'installed' => function_exists( 'awpcp_price_cats' ),
 					'version' => 'AWPCP_FPC_MODULE_DB_VERSION',
 					'required' => '3.4',
 				),
 				'google-checkout' => array(
-					'name' => __( 'Google Checkout', 'AWPCP' ),
+					'name' => __( 'Google Checkout', 'another-wordpress-classifieds-plugin' ),
 					'url' => 'http://www.awpcp.com/premium-modules/google-checkout-module/?ref=panel',
 					'installed' => defined( 'AWPCP_GOOGLE_CHECKOUT_MODULE' ),
 					'version' => 'AWPCP_GOOGLE_CHECKOUT_MODULE_DB_VERSION',
 					'required' => '3.0.1',
 				),
                 'mark-as-sold' => array(
-                    'name' => __( 'Mark as Sold', 'AWPCP' ),
+                    'name' => __( 'Mark as Sold', 'another-wordpress-classifieds-plugin' ),
                     'url' => 'http://www.awpcp.com/premium-modules/mark-as-sold-module/?ref=panel',
                     'installed' => defined( 'AWPCP_MARK_AS_SOLD_MODULE' ),
                     'version' => 'AWPCP_MARK_AS_SOLD_MODULE_DB_VERSION',
                     'required' => '3.5.1',
                 ),
 				'paypal-pro' => array(
-					'name' => __(  'PayPal Pro', 'AWPCP'  ),
+					'name' => __(  'PayPal Pro', 'another-wordpress-classifieds-plugin'  ),
 					'url' => 'http://www.awpcp.com/premium-modules/paypalpro-payment-module/?ref=user-panel',
 					'installed' => defined( 'AWPCP_PAYPAL_PRO_MODULE' ),
 					'version' => 'AWPCP_PAYPAL_PRO_MODULE_DB_VERSION',
 					'required' => '3.0.2',
 				),
 				'region-control' => array(
-					'name' => __( 'Regions Control', 'AWPCP' ),
+					'name' => __( 'Regions Control', 'another-wordpress-classifieds-plugin' ),
 					'url' => 'http://www.awpcp.com/premium-modules/regions-control-module?ref=panel',
 					'installed' => defined( 'AWPCP_REGION_CONTROL_MODULE' ),
 					'version' => 'AWPCP_REGION_CONTROL_MODULE_DB_VERSION',
 					'required' => '3.5.6',
 				),
 				'restricted-categories' => array(
-					'name' => __( 'Restricted Categories', 'AWPCP' ),
+					'name' => __( 'Restricted Categories', 'another-wordpress-classifieds-plugin' ),
 					'url' => 'http://awpcp.com/premium-modules/restricted-categories-module?ref=panel',
 					'installed' => defined( 'AWPCP_RESTRICTED_CATEGORIES_MODULE' ),
 					'version' => 'AWPCP_RESTRICTED_CATEGORIES_MODULE_DB_VERSION',
 					'required' => '3.4',
 				),
 				'rss' => array(
-					'name' => __( 'RSS', 'AWPCP' ),
+					'name' => __( 'RSS', 'another-wordpress-classifieds-plugin' ),
 					'url' => 'http://www.awpcp.com/premium-modules/rss-module?ref=panel',
 					'installed' => defined( 'AWPCP_RSS_MODULE' ),
 					'version' => 'AWPCP_RSS_MODULE_DB_VERSION',
 					'required' => '3.0.3',
 				),
 				'subscriptions' => array(
-					'name' => __( 'Subscriptions', 'AWPCP' ),
+					'name' => __( 'Subscriptions', 'another-wordpress-classifieds-plugin' ),
 					'url' => 'http://www.awpcp.com/premium-modules/subscriptions-module/?ref=panel',
 					'installed' => defined( 'AWPCP_SUBSCRIPTIONS_MODULE' ),
 					'version' => 'AWPCP_SUBSCRIPTIONS_MODULE_DB_VERSION',
 					'required' => '3.4',
 				),
                 'videos' => array(
-                    'name' => __( 'Videos', 'AWPCP' ),
+                    'name' => __( 'Videos', 'another-wordpress-classifieds-plugin' ),
                     'url' => 'http://www.awpcp.com/',
                     'installed' => defined( 'AWPCP_VIDEOS_MODULE' ),
                     'version' => 'AWPCP_VIDEOS_MODULE_DB_VERSION',
@@ -844,14 +844,14 @@ class AWPCP {
                     'private' => true,
                 ),
 				'xml-sitemap' => array(
-					'name' => __( 'XML Sitemap', 'AWPCP'  ),
+					'name' => __( 'XML Sitemap', 'another-wordpress-classifieds-plugin'  ),
 					'url' => 'http://www.awpcp.com/premium-modules/',
 					'installed' => function_exists( 'awpcp_generate_ad_entries' ),
 					'version' => 'AWPCP_XML_SITEMAP_MODULE_DB_VERSION',
 					'required' => '3.2.3',
 				),
                 'zip-code-search' => array(
-                    'name' => __( 'ZIP Code Search Module', 'AWPCP' ),
+                    'name' => __( 'ZIP Code Search Module', 'another-wordpress-classifieds-plugin' ),
                     'url' => 'http://www.awpcp.com/premium-modules/',
                     'installed' => defined( 'AWPCP_ZIP_CODE_SEARCH_MODULE_DB_VERSION' ),
                     'version' => 'AWPCP_ZIP_CODE_SEARCH_MODULE_DB_VERSION',
@@ -899,7 +899,7 @@ class AWPCP {
 			}
 
 			if (version_compare($version, $params['required']) < 0) {
-				$message = __('The %1$s module you have installed is outdated and not compatible with this version of AWPCP. Please get %1$s %2$s or newer.', 'AWPCP');
+				$message = __('The %1$s module you have installed is outdated and not compatible with this version of AWPCP. Please get %1$s %2$s or newer.', 'another-wordpress-classifieds-plugin');
 				$name = "<strong>{$params['name']}</strong>";
 				$required = "<strong>{$params['required']}</strong>";
 				$this->errors[] = sprintf($message, $name, $required);
@@ -1026,47 +1026,47 @@ class AWPCP {
 
 		// localize jQuery Validate messages
 		$this->js->set( 'default-validation-messages', array(
-			'required' => __( 'This field is required.', 'AWPCP' ),
-			'email' => __( 'Please enter a valid email address.', 'AWPCP' ),
-			'url' => __( 'Please enter a valid URL.', 'AWPCP' ),
-            'classifiedsurl' => __( 'Please enter a valid URL.', 'AWPCP' ),
-			'number' => __( 'Please enter a valid number.', 'AWPCP' ),
-			'money' => __( 'Please enter a valid amount.', 'AWPCP' ),
+			'required' => __( 'This field is required.', 'another-wordpress-classifieds-plugin' ),
+			'email' => __( 'Please enter a valid email address.', 'another-wordpress-classifieds-plugin' ),
+			'url' => __( 'Please enter a valid URL.', 'another-wordpress-classifieds-plugin' ),
+            'classifiedsurl' => __( 'Please enter a valid URL.', 'another-wordpress-classifieds-plugin' ),
+			'number' => __( 'Please enter a valid number.', 'another-wordpress-classifieds-plugin' ),
+			'money' => __( 'Please enter a valid amount.', 'another-wordpress-classifieds-plugin' ),
 		) );
 
         global $wp_locale;
 
         $this->js->localize( 'datepicker', array(
-            // 'clearText' => _x( 'Clear', '[UI Datepicker] Display text for clear link', 'AWPCP' ),
-            // 'clearStatus' => _x( 'Erase the current date', '[UI Datepicker] Status text for clear link', 'AWPCP' ),
-            // 'closeText' => _x( 'Close', '[UI Datepicker] Display text for close link', 'AWPCP' ),
-            // 'closeStatus' => _x( 'Close without change', '[UI Datepicker] Status text for close link', 'AWPCP' ),
-            'prevText' => _x( '&#x3c;Prev', '[UI Datepicker] Display text for previous month link', 'AWPCP' ),
-            // 'prevStatus' => _x( 'Show the previous month', '[UI Datepicker] Status text for previous month link', 'AWPCP' ),
-            'nextText' => _x( 'Next&#x3e;', '[UI Datepicker] Display text for next month link', 'AWPCP' ),
-            // 'nextStatus' => _x( 'Show the next month', '[UI Datepicker] Status text for next month link', 'AWPCP' ),
-            // 'currentText' => _x( 'Today', '[UI Datepicker] Display text for current month link', 'AWPCP' ),
-            // 'currentStatus' => _x( 'Show the current month', '[UI Datepicker] Status text for current month link', 'AWPCP' ),
+            // 'clearText' => _x( 'Clear', '[UI Datepicker] Display text for clear link', 'another-wordpress-classifieds-plugin' ),
+            // 'clearStatus' => _x( 'Erase the current date', '[UI Datepicker] Status text for clear link', 'another-wordpress-classifieds-plugin' ),
+            // 'closeText' => _x( 'Close', '[UI Datepicker] Display text for close link', 'another-wordpress-classifieds-plugin' ),
+            // 'closeStatus' => _x( 'Close without change', '[UI Datepicker] Status text for close link', 'another-wordpress-classifieds-plugin' ),
+            'prevText' => _x( '&#x3c;Prev', '[UI Datepicker] Display text for previous month link', 'another-wordpress-classifieds-plugin' ),
+            // 'prevStatus' => _x( 'Show the previous month', '[UI Datepicker] Status text for previous month link', 'another-wordpress-classifieds-plugin' ),
+            'nextText' => _x( 'Next&#x3e;', '[UI Datepicker] Display text for next month link', 'another-wordpress-classifieds-plugin' ),
+            // 'nextStatus' => _x( 'Show the next month', '[UI Datepicker] Status text for next month link', 'another-wordpress-classifieds-plugin' ),
+            // 'currentText' => _x( 'Today', '[UI Datepicker] Display text for current month link', 'another-wordpress-classifieds-plugin' ),
+            // 'currentStatus' => _x( 'Show the current month', '[UI Datepicker] Status text for current month link', 'another-wordpress-classifieds-plugin' ),
             'monthNames' => array_values( $wp_locale->month ), // Names of months for drop-down and formatting
             'monthNamesShort' => array_values( $wp_locale->month_abbrev ), // For formatting
-            // 'monthStatus' => _x( 'Show a different month', '[UI Datepicker] Status text for selecting a month', 'AWPCP' ),
-            // 'yearStatus' => _x( 'Show a different year', '[UI Datepicker] Status text for selecting a year', 'AWPCP' ),
-            // 'weekHeader' => _x( 'Wk', '[UI Datepicker] Header for the week of the year column', 'AWPCP' ),
-            // 'weekStatus' => _x( 'Week of the year', '[UI Datepicker] Status text for the week of the year column', 'AWPCP' ),
+            // 'monthStatus' => _x( 'Show a different month', '[UI Datepicker] Status text for selecting a month', 'another-wordpress-classifieds-plugin' ),
+            // 'yearStatus' => _x( 'Show a different year', '[UI Datepicker] Status text for selecting a year', 'another-wordpress-classifieds-plugin' ),
+            // 'weekHeader' => _x( 'Wk', '[UI Datepicker] Header for the week of the year column', 'another-wordpress-classifieds-plugin' ),
+            // 'weekStatus' => _x( 'Week of the year', '[UI Datepicker] Status text for the week of the year column', 'another-wordpress-classifieds-plugin' ),
             'dayNames' => array_values( $wp_locale->weekday ),
             'dayNamesShort' => array_values( $wp_locale->weekday_abbrev ), // For formatting
             'dayNamesMin' => array_values( $wp_locale->weekday_initial ), // Column headings for days starting at Sunday
-            // 'dayStatus' => _x( 'Set DD as first week day', '[UI Datepicker] Status text for the day of the week selection', 'AWPCP' ),
-            // 'dateStatus' => _x( 'Select DD, M d', '[UI Datepicker] Status text for the date selection', 'AWPCP' ),
-            'firstDay' => intval( _x( '0', '[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ...', 'AWPCP' ) ),
-            // 'initStatus' => _x( 'Select a date', '[UI Datepicker] Initial Status text on opening', 'AWPCP' ),
+            // 'dayStatus' => _x( 'Set DD as first week day', '[UI Datepicker] Status text for the day of the week selection', 'another-wordpress-classifieds-plugin' ),
+            // 'dateStatus' => _x( 'Select DD, M d', '[UI Datepicker] Status text for the date selection', 'another-wordpress-classifieds-plugin' ),
+            'firstDay' => intval( _x( '0', '[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ...', 'another-wordpress-classifieds-plugin' ) ),
+            // 'initStatus' => _x( 'Select a date', '[UI Datepicker] Initial Status text on opening', 'another-wordpress-classifieds-plugin' ),
             'isRTL' => $wp_locale->text_direction == 'ltr' ? false : true // True if right-to-left language, false if left-to-right
         ) );
 
         $this->js->localize( 'media-uploader-beforeunload', array(
-            'files-are-being-uploaded' => __( 'There are files currently being uploaded.', 'AWPCP' ),
-            'files-pending-to-be-uploaded' => __( 'There are files pending to be uploaded.', 'AWPCP' ),
-            'no-files-were-uploaded' => __( "You haven't uploaded any images or files.", 'AWPCP' ),
+            'files-are-being-uploaded' => __( 'There are files currently being uploaded.', 'another-wordpress-classifieds-plugin' ),
+            'files-pending-to-be-uploaded' => __( 'There are files pending to be uploaded.', 'another-wordpress-classifieds-plugin' ),
+            'no-files-were-uploaded' => __( "You haven't uploaded any images or files.", 'another-wordpress-classifieds-plugin' ),
         ) );
 
         if ( $scripts->script_will_be_printed( 'awpcp' ) ) {

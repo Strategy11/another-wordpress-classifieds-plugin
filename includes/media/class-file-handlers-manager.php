@@ -27,7 +27,7 @@ class AWPCP_File_Handlers_Manager {
             return $instance;
         }
 
-        $message = _x( 'There is no file handler for this kind of file (<mime-type>). Aborting.', 'file uploads', 'AWPCP' );
+        $message = _x( 'There is no file handler for this kind of file (<mime-type>). Aborting.', 'file uploads', 'another-wordpress-classifieds-plugin' );
         $message = str_replace( '<mime-type>', $uploaded_file->get_mime_type(), $message );
 
         throw new AWPCP_Exception( $message );

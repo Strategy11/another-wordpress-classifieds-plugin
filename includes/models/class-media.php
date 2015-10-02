@@ -189,7 +189,7 @@ class AWPCP_FilesCollection {
         $file = awpcp_media_api()->find_by_id( $file_id );
 
         if ( is_null( $file ) ) {
-            $message = __( 'No file was found with id: %d', 'AWPCP' );
+            $message = __( 'No file was found with id: %d', 'another-wordpress-classifieds-plugin' );
             throw new AWPCP_Exception( sprintf( $message, $file_id ) );
         }
 

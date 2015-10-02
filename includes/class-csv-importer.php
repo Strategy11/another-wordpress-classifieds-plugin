@@ -115,7 +115,7 @@ class AWPCP_CSV_Importer {
 		$parsed = $this->get_csv_data($csv);
 
 		if (empty($parsed)) {
-			$errors[] = __( 'Invalid CSV file.', 'AWPCP' );
+			$errors[] = __( 'Invalid CSV file.', 'another-wordpress-classifieds-plugin' );
 			return false;
 		}
 
@@ -133,7 +133,7 @@ class AWPCP_CSV_Importer {
 		$header = array_map( 'trim', $parsed[0] );
 
 		if (in_array('images', $header) && empty($zip)) {
-			$errors[] = __( 'Image file names were found but no ZIP was provided.', 'AWPCP' );
+			$errors[] = __( 'Image file names were found but no ZIP was provided.', 'another-wordpress-classifieds-plugin' );
 			return false;
 		}
 
@@ -157,7 +157,7 @@ class AWPCP_CSV_Importer {
 
 			if ($cols != $ncols) {
 				// error message
-				$errors[] = __( "Row number $i: input length mismatch", 'AWPCP' );
+				$errors[] = __( "Row number $i: input length mismatch", 'another-wordpress-classifieds-plugin' );
 				$this->rejected[$i] = true;
 				$this->ads_rejected++;
 				continue;
@@ -184,7 +184,7 @@ class AWPCP_CSV_Importer {
 	private function validate($header, $csv, &$errors, &$messages) {
 		foreach ($this->required as $required) {
 			if (!in_array($required, $header)) {
-				$msg = __( "The required column %s is missing. Import can't continue.", 'AWPCP' );
+				$msg = __( "The required column %s is missing. Import can't continue.", 'another-wordpress-classifieds-plugin' );
 				$msg = sprintf($msg, $required);
 				$errors[] = $msg;
 				return false;
@@ -196,7 +196,7 @@ class AWPCP_CSV_Importer {
 		$unknown = array_diff($header, $accepted);
 
 		if (!empty($unknown)) {
-			$msg = __( "Import can't continue. Unknown column(s) specified(s):", 'AWPCP' );
+			$msg = __( "Import can't continue. Unknown column(s) specified(s):", 'another-wordpress-classifieds-plugin' );
 			$msg.= '<br/>' . join(', ', $unknown);
 			$errors[] = $msg;
 			return false;
@@ -231,7 +231,7 @@ class AWPCP_CSV_Importer {
 			list($category_id, $category_parent_id) = $this->get_category_id($category);
 
 			// if ($category == 0) {
-			// 	$msg = __('Category name not found at row number %d', 'AWPCP');
+			// 	$msg = __('Category name not found at row number %d', 'another-wordpress-classifieds-plugin');
 			// 	$msg = sprintf($msg, $row);
 			// 	$this->rejected[$row] = true;
 			// 	$errors[] = $msg;
@@ -272,7 +272,7 @@ class AWPCP_CSV_Importer {
 
 				// missing value, mark row as bad
 				if (strlen($value) === 0 && in_array($key, $this->required)) {
-					$msg = __( 'Required value <em>%s</em> missing at row number: %d', 'AWPCP' );
+					$msg = __( 'Required value <em>%s</em> missing at row number: %d', 'another-wordpress-classifieds-plugin' );
 					$msg = sprintf($msg, $key, $row);
 					$this->rejected[$row] = true;
 					$errors[] = $msg;
@@ -415,12 +415,12 @@ class AWPCP_CSV_Importer {
 
 		// Is the archive valid?
 		if (!is_array($archive_files)) {
-			$errors[] = __('Incompatible ZIP Archive', 'AWPCP');
+			$errors[] = __('Incompatible ZIP Archive', 'another-wordpress-classifieds-plugin');
 			return false;
 		}
 
 		if (0 == count($archive_files)) {
-			$errors[] = __('Empty ZIP Archive', 'AWPCP');
+			$errors[] = __('Empty ZIP Archive', 'another-wordpress-classifieds-plugin');
 			return false;
 		}
 
@@ -437,7 +437,7 @@ class AWPCP_CSV_Importer {
 				fwrite($fh, $file['content']);
 				fclose($fh);
 			} else {
-				$msg = __('Could not write temporary file %s', 'AWPCP');
+				$msg = __('Could not write temporary file %s', 'another-wordpress-classifieds-plugin');
 				$errors[] = sprintf($msg, $file['filename']);
 				return false;
 			}
@@ -466,7 +466,7 @@ class AWPCP_CSV_Importer {
 
 	public function unzip($file, &$errors=array()) {
 		if ( !file_exists( $file ) ) {
-			$message = __( 'File %s does not exists.', 'AWPCP' );
+			$message = __( 'File %s does not exists.', 'another-wordpress-classifieds-plugin' );
 			$errors[] = sprintf( $message, $file );
 			return false;
 		}
@@ -474,7 +474,7 @@ class AWPCP_CSV_Importer {
 		$import_dir = $this->prepare_import_dir();
 
 		if ( false === $import_dir ) {
-			$message = __( 'Import directory %s does not exists.', 'AWPCP' );
+			$message = __( 'Import directory %s does not exists.', 'another-wordpress-classifieds-plugin' );
 			$errors[] = sprintf( $message, $import_dir );
 			return false;
 		}
@@ -486,12 +486,12 @@ class AWPCP_CSV_Importer {
 		$files = array();
 
 		if ( !is_array( $items ) ) {
-			$errors[] = __( 'Incompatible ZIP Archive', 'AWPCP' );
+			$errors[] = __( 'Incompatible ZIP Archive', 'another-wordpress-classifieds-plugin' );
 			return false;
 		}
 
 		if ( 0 === count( $items ) ) {
-			$errors[] = __( 'Empty ZIP Archive', 'AWPCP' );
+			$errors[] = __( 'Empty ZIP Archive', 'another-wordpress-classifieds-plugin' );
 			return false;
 		}
 
@@ -518,7 +518,7 @@ class AWPCP_CSV_Importer {
 				fwrite( $h, $item['content'] );
 				fclose( $h );
 			} else {
-				$message = __( 'Could not write temporary file %s', 'AWPCP' );
+				$message = __( 'Could not write temporary file %s', 'another-wordpress-classifieds-plugin' );
 				$errors[] = sprintf( $message, $path );
 			}
 
@@ -553,7 +553,7 @@ class AWPCP_CSV_Importer {
 			if (is_array($uploaded) && isset($uploaded['filename'])) {
 				$entries[] = $uploaded;
 			} else {
-				$errors[] = sprintf(__('Row %d. %s', 'AWPCP'), $row, $uploaded);
+				$errors[] = sprintf(__('Row %d. %s', 'another-wordpress-classifieds-plugin'), $row, $uploaded);
 				$this->rejected[$row] = true;
 			}
 		}
@@ -590,7 +590,7 @@ class AWPCP_CSV_Importer {
 			$result = $test_import || $media_api->create( $data );
 
 			if ($result === false) {
-				$msg = __("Could not save the information to the database for %s in row %d", 'AWPCP');
+				$msg = __("Could not save the information to the database for %s in row %d", 'another-wordpress-classifieds-plugin');
 				$errors[] = sprintf($msg, $entry['original'], $row);
 			}
 		}
@@ -673,7 +673,7 @@ class AWPCP_CSV_Importer {
 				// store 99.95 as 9995 and 99 as 9900.
 				return $val * 100;
 			} else {
-				$errors[] = sprintf( __( "Item price non numeric at row number %s", 'AWPCP' ), $row_num );
+				$errors[] = sprintf( __( "Item price non numeric at row number %s", 'another-wordpress-classifieds-plugin' ), $row_num );
 				$this->rejected[$row_num] = true;
 			}
 		} else if ($key == "start_date") {
@@ -689,7 +689,7 @@ class AWPCP_CSV_Importer {
 			if (empty($start_date)) {
 				// $date = new DateTime();
 				// $val = $date->format( 'Y-m-d' );
-				$errors[] = sprintf( __("Start date missing (alternately you can specify the default start date) at row number %s", 'AWPCP' ), $row_num );
+				$errors[] = sprintf( __("Start date missing (alternately you can specify the default start date) at row number %s", 'another-wordpress-classifieds-plugin' ), $row_num );
 				$this->rejected[$row_num] = true;
 			} else {
 				// TODO: validation
@@ -701,7 +701,7 @@ class AWPCP_CSV_Importer {
 			if (!empty($val)) {
 				$val = $this->parse_date($val, $import_date_format, $date_sep, $time_sep);
 				if (empty($val) || $val == null) {
-					$errors[] = sprintf( __( "Invalid End date at row number: %s", 'AWPCP' ), $row_num );
+					$errors[] = sprintf( __( "Invalid End date at row number: %s", 'another-wordpress-classifieds-plugin' ), $row_num );
 					$this->rejected[$row_num] = true;
 				}
 				return $val;
@@ -709,7 +709,7 @@ class AWPCP_CSV_Importer {
 			if (empty($end_date)) {
 				// $date = new DateTime();
 				// $val = $date->format( 'Y-m-d' );
-				$errors[] = sprintf( __( "End date missing (alternately you can specify the default end date) at row number %s", 'AWPCP' ), $row_num );
+				$errors[] = sprintf( __( "End date missing (alternately you can specify the default end date) at row number %s", 'another-wordpress-classifieds-plugin' ), $row_num );
 				$this->rejected[$row_num] = true;
 			} else {
 				// TODO: validation
@@ -820,7 +820,7 @@ function awpcp_validate_extra_field($name, $value, $row, $validate, $type, $opti
 		case 'Checkbox':
 		case 'Select Multiple':
 			// value can be any combination of items from options list
-			$msg = sprintf( __("Extra Field %s's value is not allowed in row %d. Allowed values are: %%s", 'AWPCP'), $name, $row );
+			$msg = sprintf( __("Extra Field %s's value is not allowed in row %d. Allowed values are: %%s", 'another-wordpress-classifieds-plugin'), $name, $row );
 			$list = explode( ';', $value );
 			$serialize = true;
 
@@ -829,7 +829,7 @@ function awpcp_validate_extra_field($name, $value, $row, $validate, $type, $opti
 			$list = is_array($list) ? $list : array($value);
 
 			if (!isset($msg)) {
-				$msg = sprintf( __("Extra Field %s's value is not allowed in row %d. Allowed value is one of: %%s", 'AWPCP'), $name, $row );
+				$msg = sprintf( __("Extra Field %s's value is not allowed in row %d. Allowed value is one of: %%s", 'another-wordpress-classifieds-plugin'), $name, $row );
 			}
 
 			// only attempt to validate if the field is required (has validation)
@@ -957,10 +957,10 @@ function awpcp_csv_importer_get_user_id($username, $email, $row, &$errors=array(
 	}
 
 	if (empty($username)) {
-		$errors[] = sprintf(__("Username is required in row %s. Please include a username or selected a default user.", 'AWPCP'), $row);
+		$errors[] = sprintf(__("Username is required in row %s. Please include a username or selected a default user.", 'another-wordpress-classifieds-plugin'), $row);
 		return false;
 	} else if (empty($email)) {
-		$errors[] = sprintf(__("Contact email is required in row %s.", 'AWPCP'), $row);
+		$errors[] = sprintf(__("Contact email is required in row %s.", 'another-wordpress-classifieds-plugin'), $row);
 		return false;
 	}
 
@@ -978,7 +978,7 @@ function awpcp_csv_importer_get_user_id($username, $email, $row, &$errors=array(
 	}
 	$users[$username] = $result;
 
-	$message = __("A new user '%s' with email address '%s' and password '%s' was created for row %d.", 'AWPCP');
+	$message = __("A new user '%s' with email address '%s' and password '%s' was created for row %d.", 'another-wordpress-classifieds-plugin');
 	$messages[] = sprintf($message, $username, $email, $password, $row);
 
 	return $result;

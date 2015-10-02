@@ -145,7 +145,7 @@ function awpcp_payment_failed_email($transaction, $message='') {
 
     $mail = new AWPCP_Email;
     $mail->to[] = awpcp_admin_email_to();
-    $mail->subject = __("Customer attempt to pay has failed", "AWPCP");
+    $mail->subject = __("Customer attempt to pay has failed", 'another-wordpress-classifieds-plugin');
 
     $template = AWPCP_DIR . '/frontend/templates/email-abort-payment-admin.tpl.php';
     $mail->prepare($template, compact('message', 'user', 'transaction'));

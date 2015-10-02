@@ -242,10 +242,10 @@ function awpcpui_process($awpcppagename) {
 
 	$isclassifiedpage = checkifclassifiedpage($awpcppage);
 	if (($isclassifiedpage == false) && ($isadmin == 1)) {
-		$output .= __("Hi admin, you need to go to your dashboard and setup your classifieds.","AWPCP");
+		$output .= __("Hi admin, you need to go to your dashboard and setup your classifieds.", 'another-wordpress-classifieds-plugin');
 
 	} elseif (($isclassifiedpage == false) && ($isadmin != 1)) {
-		$output .= __("You currently have no classifieds","AWPCP");
+		$output .= __("You currently have no classifieds", 'another-wordpress-classifieds-plugin');
 
 	} elseif ($browsestat == $categoriesviewpagename) {
 		$output .= awpcp_display_the_classifieds_page_body($awpcppagename);

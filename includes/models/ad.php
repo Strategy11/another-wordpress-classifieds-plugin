@@ -529,7 +529,7 @@ class AWPCP_Ad {
 	 */
 	public function get_payment_term_name() {
 		$payment_term = awpcp_payments_api()->get_ad_payment_term( $this );
-		return $payment_term ? $payment_term->name : __( 'N/A', 'AWPCP' );
+		return $payment_term ? $payment_term->name : __( 'N/A', 'another-wordpress-classifieds-plugin' );
 	}
 
 	/**
@@ -670,18 +670,18 @@ class AWPCP_Ad {
 
 	function get_payment_status() {
 		if (empty($this->payment_status)) {
-			return _x('N/A', 'ad payment status', 'AWPCP');
+			return _x('N/A', 'ad payment status', 'another-wordpress-classifieds-plugin');
 		}
 
 		switch($this->payment_status) {
 			case AWPCP_Payment_Transaction::PAYMENT_STATUS_PENDING:
-				return _x('Pending', 'ad payment status', 'AWPCP');
+				return _x('Pending', 'ad payment status', 'another-wordpress-classifieds-plugin');
 			case AWPCP_Payment_Transaction::PAYMENT_STATUS_COMPLETED:
-				return _x('Completed', 'ad payment status', 'AWPCP');
+				return _x('Completed', 'ad payment status', 'another-wordpress-classifieds-plugin');
 			case AWPCP_Payment_Transaction::PAYMENT_STATUS_NOT_REQUIRED:
-				return _x('Not Required', 'ad payment status', 'AWPCP');
+				return _x('Not Required', 'ad payment status', 'another-wordpress-classifieds-plugin');
 			case 'Unpaid':
-				return _x('Unpaid', 'ad payment status', 'AWPCP');
+				return _x('Unpaid', 'ad payment status', 'another-wordpress-classifieds-plugin');
 			default:
 				return 'Undefined';
 		}

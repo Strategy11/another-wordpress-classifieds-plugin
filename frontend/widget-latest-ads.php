@@ -4,8 +4,8 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
 
     public function __construct($id=null, $name=null, $description=null) {
         $id = is_null($id) ? 'awpcp-latest-ads': $id;
-        $name = is_null($name) ? __('AWPCP Latest Ads', 'AWPCP') : $name;
-        $description = is_null($description) ? __('Displays a list of latest Ads', 'AWPCP') : $description;
+        $name = is_null($name) ? __('AWPCP Latest Ads', 'another-wordpress-classifieds-plugin') : $name;
+        $description = is_null($description) ? __('Displays a list of latest Ads', 'another-wordpress-classifieds-plugin') : $description;
         parent::__construct($id, $name, array('description' => $description));
     }
 
@@ -17,7 +17,7 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
         );
 
         $defaults = array(
-            'title' => __('Latest Ads', 'AWPCP'),
+            'title' => __('Latest Ads', 'another-wordpress-classifieds-plugin'),
             'show-title' => 1,
             'show-excerpt' => 1,
             'show-images' => 1,
@@ -59,7 +59,7 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
     }
 
     private function render_empty_widget( $html_class ) {
-        return sprintf( '<li class="awpcp-empty-widget %s">%s</li>', $html_class, __( 'There are currently no Ads to show.', 'AWPCP' ) );
+        return sprintf( '<li class="awpcp-empty-widget %s">%s</li>', $html_class, __( 'There are currently no Ads to show.', 'another-wordpress-classifieds-plugin' ) );
     }
 
     private function render_widget( $items, $instance, $html_class ) {
@@ -98,7 +98,7 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
 
         if ($instance['show-excerpt']) {
             $excerpt = stripslashes( awpcp_utf8_substr( $item->ad_details, 0, 50 ) ) . "...";
-            $read_more = sprintf( '<a class="awpcp-widget-read-more" href="%s">[%s]</a>', $item_url, __( 'Read more', 'AWPCP' ) );
+            $read_more = sprintf( '<a class="awpcp-widget-read-more" href="%s">[%s]</a>', $item_url, __( 'Read more', 'another-wordpress-classifieds-plugin' ) );
             $html_excerpt = sprintf( '<div class="awpcp-listings-widget-item-excerpt">%s%s</div>', $excerpt, $read_more );
         } else {
             $html_excerpt = '';

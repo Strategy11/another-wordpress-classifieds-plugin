@@ -7,13 +7,13 @@ class AWPCP_AsynchronousTasksComponent {
 
     public function __construct( $tasks, $texts ) {
         $default_messages = array(
-            'title' => _x( 'Pending Tasks', 'asynchrounous tasks title', 'AWPCP' ),
+            'title' => _x( 'Pending Tasks', 'asynchrounous tasks title', 'another-wordpress-classifieds-plugin' ),
             'introduction' => '',
             'success' => '',
             'successHtml' => null,
             'button' => '',
-            'percentageOfCompletion' => _x( 'completed', 'as in: 5% completed', 'AWPCP' ),
-            'remainingTime' => _x( 'remaining', 'as in: 2 minutes remaining', 'AWPCP' ),
+            'percentageOfCompletion' => _x( 'completed', 'as in: 5% completed', 'another-wordpress-classifieds-plugin' ),
+            'remainingTime' => _x( 'remaining', 'as in: 2 minutes remaining', 'another-wordpress-classifieds-plugin' ),
         );
 
         $this->tasks = $tasks;

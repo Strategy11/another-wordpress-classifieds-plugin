@@ -480,7 +480,7 @@ function awpcp_get_categories_ids() {
  */
 function awpcp_get_comma_separated_categories_list($categories=array(), $threshold=5) {
 	$names = awpcp_get_properties( $categories, 'name' );
-	return awpcp_get_comma_separated_list( $names, $threshold, __( 'None', 'AWPCP' ) );
+	return awpcp_get_comma_separated_list( $names, $threshold, __( 'None', 'another-wordpress-classifieds-plugin' ) );
 }
 
 /**
@@ -491,7 +491,7 @@ function awpcp_get_comma_separated_list($items=array(), $threshold=5, $none='') 
 	$count = count( $items );
 
 	if ( $count > $threshold ) {
-		$message = _x( '%s and %d more.', 'comma separated list of things', 'AWPCP' );
+		$message = _x( '%s and %d more.', 'comma separated list of things', 'another-wordpress-classifieds-plugin' );
 		$items = array_splice( $items, 0, $threshold - 1 );
 		return sprintf( $message, join( ', ', $items ), $count - $threshold + 1 );
 	} else if ( $count > 0 ) {
@@ -549,8 +549,8 @@ function awpcp_default_region_fields( $context='details', $enabled_fields = null
     	$required = $can_be_required && ( (bool) get_awpcp_option( 'displaycountryfieldreqop' ) );
         $_fields['country'] = array(
             'type' => 'country',
-            'label' => __('Country', 'AWPCP') . ( $required ? '*' : '' ),
-            'help' => __('separate countries by commas', 'AWPCP'),
+            'label' => __('Country', 'another-wordpress-classifieds-plugin') . ( $required ? '*' : '' ),
+            'help' => __('separate countries by commas', 'another-wordpress-classifieds-plugin'),
             'required' => $required,
             'alwaysShown' => $always_shown,
         );
@@ -559,8 +559,8 @@ function awpcp_default_region_fields( $context='details', $enabled_fields = null
     	$required = $can_be_required && ( (bool) get_awpcp_option( 'displaystatefieldreqop' ) );
         $_fields['state'] = array(
             'type' => 'state',
-            'label' => __('State/Province', 'AWPCP') . ( $required ? '*' : '' ),
-            'help' => __('separate states by commas', 'AWPCP'),
+            'label' => __('State/Province', 'another-wordpress-classifieds-plugin') . ( $required ? '*' : '' ),
+            'help' => __('separate states by commas', 'another-wordpress-classifieds-plugin'),
             'required' => $required,
             'alwaysShown' => $always_shown,
         );
@@ -569,8 +569,8 @@ function awpcp_default_region_fields( $context='details', $enabled_fields = null
     	$required = $can_be_required && ( (bool) get_awpcp_option( 'displaycityfieldreqop' ) );
         $_fields['city'] = array(
             'type' => 'city',
-            'label' => __('City', 'AWPCP') . ( $required ? '*' : '' ),
-            'help' => __('separate cities by commas', 'AWPCP'),
+            'label' => __('City', 'another-wordpress-classifieds-plugin') . ( $required ? '*' : '' ),
+            'help' => __('separate cities by commas', 'another-wordpress-classifieds-plugin'),
             'required' => $required,
             'alwaysShown' => $always_shown,
         );
@@ -579,8 +579,8 @@ function awpcp_default_region_fields( $context='details', $enabled_fields = null
     	$required = $can_be_required && ( (bool) get_awpcp_option( 'displaycountyvillagefieldreqop' ) );
         $_fields['county'] = array(
             'type' => 'county',
-            'label' => __('County/Village/Other', 'AWPCP') . ( $required ? '*' : '' ),
-            'help' => __('separate counties by commas', 'AWPCP'),
+            'label' => __('County/Village/Other', 'another-wordpress-classifieds-plugin') . ( $required ? '*' : '' ),
+            'help' => __('separate counties by commas', 'another-wordpress-classifieds-plugin'),
             'required' => $required,
             'alwaysShown' => $always_shown,
         );
@@ -794,7 +794,7 @@ function awpcp_country_list_options($value=false, $use_names=true) {
 	    'ZM' => 'Zambia',
 	);
 
-	$options[] ='<option value="">' . __('-- Choose a Country --', 'AWPCP') . '</option>';
+	$options[] ='<option value="">' . __('-- Choose a Country --', 'another-wordpress-classifieds-plugin') . '</option>';
 
 	foreach ($countries as $code => $name) {
 		if ($use_names) {
@@ -1018,7 +1018,7 @@ function awpcp_get_blog_name($decode_html=true) {
 	$blog_name = get_option('blogname');
 
 	if (empty($blog_name)) {
-		$blog_name = _x('Classifieds Website', 'default blog title', 'AWPCP');
+		$blog_name = _x('Classifieds Website', 'default blog title', 'another-wordpress-classifieds-plugin');
 	}
 
 	if ( $decode_html ) {
@@ -1480,7 +1480,7 @@ function awpcp_form_help_text( $field_id, $help_text ) {
 
 function awpcp_attachment_background_color_explanation() {
 	if ( get_awpcp_option( 'imagesapprove' ) ) {
-		return '<p>' . __( 'The images or files with pale red background have been rejected by an administrator user. Likewise, files with a pale yellow background are awaiting approval. Files that are awaiting approval and rejected files, cannot be shown in the frontend.', 'AWPCP' ) . '</p>';
+		return '<p>' . __( 'The images or files with pale red background have been rejected by an administrator user. Likewise, files with a pale yellow background are awaiting approval. Files that are awaiting approval and rejected files, cannot be shown in the frontend.', 'another-wordpress-classifieds-plugin' ) . '</p>';
 	} else {
 		return '';
 	}
@@ -1497,9 +1497,9 @@ function awpcp_module_not_compatible_notice( $module, $installed_version ) {
 	$name = $modules[ $module ][ 'name' ];
 	$required_version = $modules[ $module ][ 'required' ];
 
-	$message = __( 'This version of AWPCP %1$s module is not compatible with AWPCP version %2$s. Please get AWPCP %1$s %3$s or newer!', 'AWPCP' );
+	$message = __( 'This version of AWPCP %1$s module is not compatible with AWPCP version %2$s. Please get AWPCP %1$s %3$s or newer!', 'another-wordpress-classifieds-plugin' );
 	$message = sprintf( $message, '<strong>' . $name . '</strong>', $awpcp_db_version, '<strong>' . $required_version . '</strong>' );
-    $message = sprintf( '<strong>%s:</strong> %s', __( 'Error', 'AWPCP' ), $message );
+    $message = sprintf( '<strong>%s:</strong> %s', __( 'Error', 'another-wordpress-classifieds-plugin' ), $message );
 
     return awpcp_print_error( $message );
 }
@@ -1727,14 +1727,14 @@ function awpcp_parse_html_params( $params, $default_params = array(), $default_a
 
 function awpcp_uploaded_file_error($file) {
 	$upload_errors = array(
-		UPLOAD_ERR_OK        	=> __("No errors.", 'AWPCP'),
-		UPLOAD_ERR_INI_SIZE    	=> __("The file is larger than upload_max_filesize.", 'AWPCP'),
-		UPLOAD_ERR_FORM_SIZE    => __("The file is larger than form MAX_FILE_SIZE.", 'AWPCP'),
-		UPLOAD_ERR_PARTIAL    	=> __("The file was only partially uploaded.", 'AWPCP'),
-		UPLOAD_ERR_NO_FILE      => __("No file was uploaded.", 'AWPCP'),
-		UPLOAD_ERR_NO_TMP_DIR   => __("Missing temporary directory.", 'AWPCP'),
-		UPLOAD_ERR_CANT_WRITE   => __("Can't write file to disk.", 'AWPCP'),
-		UPLOAD_ERR_EXTENSION    => __("The file upload was stopped by extension.", 'AWPCP')
+		UPLOAD_ERR_OK        	=> __("No errors.", 'another-wordpress-classifieds-plugin'),
+		UPLOAD_ERR_INI_SIZE    	=> __("The file is larger than upload_max_filesize.", 'another-wordpress-classifieds-plugin'),
+		UPLOAD_ERR_FORM_SIZE    => __("The file is larger than form MAX_FILE_SIZE.", 'another-wordpress-classifieds-plugin'),
+		UPLOAD_ERR_PARTIAL    	=> __("The file was only partially uploaded.", 'another-wordpress-classifieds-plugin'),
+		UPLOAD_ERR_NO_FILE      => __("No file was uploaded.", 'another-wordpress-classifieds-plugin'),
+		UPLOAD_ERR_NO_TMP_DIR   => __("Missing temporary directory.", 'another-wordpress-classifieds-plugin'),
+		UPLOAD_ERR_CANT_WRITE   => __("Can't write file to disk.", 'another-wordpress-classifieds-plugin'),
+		UPLOAD_ERR_EXTENSION    => __("The file upload was stopped by extension.", 'another-wordpress-classifieds-plugin')
 	);
 
 	return array($file['error'], $upload_errors[$file['error']]);
@@ -1949,7 +1949,7 @@ function awpcp_ad_enabled_email($ad) {
 	// user email
 	$mail = new AWPCP_Email;
 	$mail->to[] = awpcp_format_email_address( $ad->ad_contact_email, $ad->ad_contact_name );
-	$mail->subject = sprintf(__('Your Ad "%s" has been approved', 'AWPCP'), $ad->get_title());
+	$mail->subject = sprintf(__('Your Ad "%s" has been approved', 'another-wordpress-classifieds-plugin'), $ad->get_title());
 
 	$template = AWPCP_DIR . '/frontend/templates/email-ad-enabled-user.tpl.php';
 	$mail->prepare($template, compact('ad'));
@@ -1965,7 +1965,7 @@ function awpcp_ad_updated_user_email( $ad, $message ) {
 
 	$mail = new AWPCP_Email;
 	$mail->to[] = awpcp_format_email_address( $ad->ad_contact_email, $ad->ad_contact_name );
-	$mail->subject = sprintf(__('Your Ad "%s" has been successfully updated', 'AWPCP'), $ad->get_title());
+	$mail->subject = sprintf(__('Your Ad "%s" has been successfully updated', 'another-wordpress-classifieds-plugin'), $ad->get_title());
 
 	$template = AWPCP_DIR . '/frontend/templates/email-ad-updated-user.tpl.php';
 	$mail->prepare($template, compact('ad', 'message', 'admin_email'));
@@ -1986,21 +1986,21 @@ function awpcp_ad_awaiting_approval_email($ad, $ad_approve, $images_approve) {
     $manage_images_url = add_query_arg( urlencode_deep( $params ), admin_url( 'admin.php' ) );
 
 	if ( false == $ad_approve && $images_approve ) {
-		$subject = __( 'Images on Ad "%s" are awaiting approval', 'AWPCP' );
+		$subject = __( 'Images on Ad "%s" are awaiting approval', 'another-wordpress-classifieds-plugin' );
 
-		$message = __( 'Images on Ad "%s" are awaiting approval. You can approve the images going to the Manage Images section for that Ad and clicking the "Enable" button below each image. Click here to continue: %s.', 'AWPCP');
+		$message = __( 'Images on Ad "%s" are awaiting approval. You can approve the images going to the Manage Images section for that Ad and clicking the "Enable" button below each image. Click here to continue: %s.', 'another-wordpress-classifieds-plugin');
 		$messages = array( sprintf( $message, $ad->get_title(), $manage_images_url ) );
 	} else {
-		$subject = __( 'The Ad "%s" is awaiting approval', 'AWPCP' );
+		$subject = __( 'The Ad "%s" is awaiting approval', 'another-wordpress-classifieds-plugin' );
 
-		$message = __('The Ad "%s" is awaiting approval. You can approve the Ad going to the Manage Listings section and clicking the "Enable" action shown on top. Click here to continue: %s.', 'AWPCP');
+		$message = __('The Ad "%s" is awaiting approval. You can approve the Ad going to the Manage Listings section and clicking the "Enable" action shown on top. Click here to continue: %s.', 'another-wordpress-classifieds-plugin');
 		$params = array('page' => 'awpcp-listings',  'action' => 'view', 'id' => $ad->ad_id);
 	    $url = add_query_arg( urlencode_deep( $params ), admin_url( 'admin.php' ) );
 
 	    $messages[] = sprintf( $message, $ad->get_title(), $url );
 
 	    if ( $images_approve ) {
-		    $message = __( 'Additionally, You can approve the images going to the Manage Images section for that Ad and clicking the "Enable" button below each image. Click here to continue: %s.', 'AWPCP' );
+		    $message = __( 'Additionally, You can approve the images going to the Manage Images section for that Ad and clicking the "Enable" button below each image. Click here to continue: %s.', 'another-wordpress-classifieds-plugin' );
 		    $messages[] = sprintf( $message, $manage_images_url );
 		}
 	}
@@ -2482,7 +2482,7 @@ function awpcp_process_mail($senderemail='', $receiveremail='',  $subject='',
 
 function awpcp_format_email_sent_datetime() {
     $time = date_i18n( awpcp_get_datetime_format(), current_time( 'timestamp' ) );
-    return sprintf( __( 'Email sent %s.', 'AWPCP' ), $time );
+    return sprintf( __( 'Email sent %s.', 'another-wordpress-classifieds-plugin' ), $time );
 }
 
 // make sure the IP isn't a reserved IP address

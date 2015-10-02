@@ -19,33 +19,33 @@ class AWPCP_Manual_Upgrade_Tasks {
 
     public function register_upgrade_tasks() {
         $this->upgrade_tasks->register_upgrade_task(
-            'awpcp-import-payment-transactions', __( 'Import Payment Transactions', 'AWPCP' ),
+            'awpcp-import-payment-transactions', __( 'Import Payment Transactions', 'another-wordpress-classifieds-plugin' ),
             'awpcp_import_payment_transactions_task_handler'
         );
 
         $this->upgrade_tasks->register_upgrade_task(
-            'awpcp-migrate-regions-information', __( 'Migrate Regions Information', 'AWPCP' ),
+            'awpcp-migrate-regions-information', __( 'Migrate Regions Information', 'another-wordpress-classifieds-plugin' ),
             'awpcp_migrate_regions_information_task_handler'
         );
 
         $this->upgrade_tasks->register_upgrade_task(
-            'awpcp-migrate-media-information', __( 'Migrate Media Information', 'AWPCP' ),
+            'awpcp-migrate-media-information', __( 'Migrate Media Information', 'another-wordpress-classifieds-plugin' ),
             'awpcp_migrate_media_information_task_handler'
         );
 
         $this->upgrade_tasks->register_upgrade_task(
-            'awpcp-update-media-status', __( 'Update Image/Attachments Status', 'AWPCP' ),
+            'awpcp-update-media-status', __( 'Update Image/Attachments Status', 'another-wordpress-classifieds-plugin' ),
             'awpcp_update_media_status_task_handler'
         );
 
         $this->upgrade_tasks->register_upgrade_task(
-            'awpcp-sanitize-media-filenames',  __( 'Remove invalid characters from media filenames', 'AWPCP' ),
+            'awpcp-sanitize-media-filenames',  __( 'Remove invalid characters from media filenames', 'another-wordpress-classifieds-plugin' ),
             'awpcp_sanitize_media_filenames_upgrade_task_handler'
         );
 
         $this->upgrade_tasks->register_upgrade_task(
             'awpcp-calculate-image-dimensions',
-            __( 'Calculate image dimensions', 'AWPCP' ),
+            __( 'Calculate image dimensions', 'another-wordpress-classifieds-plugin' ),
             'awpcp_calculate_image_dimensions_upgrade_task_handler'
         );
     }

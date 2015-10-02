@@ -185,7 +185,7 @@ function get_adparentcatname($cat_ID){
     global $wpdb;
 
     if ( $cat_ID == 0 ) {
-        return __( 'Top Level Category', 'AWPCP' );
+        return __( 'Top Level Category', 'another-wordpress-classifieds-plugin' );
     }
 
     $query = 'SELECT category_name FROM ' . AWPCP_TABLE_CATEGORIES . ' WHERE category_id = %d';

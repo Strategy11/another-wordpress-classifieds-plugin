@@ -1,8 +1,8 @@
 <?php if (!$table_only): ?>
-<p><?php _ex('You can additionally purchase a Credit Plan to add credit to your account. If you select to pay using credits, the price of the selected payment term will be deducted from your account balance after you have completed payment.', 'credit plans table', 'AWPCP') ?></p>
+<p><?php _ex('You can additionally purchase a Credit Plan to add credit to your account. If you select to pay using credits, the price of the selected payment term will be deducted from your account balance after you have completed payment.', 'credit plans table', 'another-wordpress-classifieds-plugin') ?></p>
 
 <fieldset>
-    <h3><?php _ex('Credit Plans', 'credit plans table', 'AWPCP') ?></h3>
+    <h3><?php _ex('Credit Plans', 'credit plans table', 'another-wordpress-classifieds-plugin') ?></h3>
 <?php endif ?>
 
     <table class="awpcp-credit-plans-table awpcp-table">
@@ -17,7 +17,7 @@
         <tbody>
 
         <?php if (empty($credit_plans)): ?>
-            <tr><td colspan="4"><?php echo __('No credit plans available.', 'AWPCP') ?></td></tr>
+            <tr><td colspan="4"><?php echo __('No credit plans available.', 'another-wordpress-classifieds-plugin') ?></td></tr>
         <?php endif ?>
 
         <?php $type = '' ?>
@@ -41,7 +41,7 @@
             <tr class="clear-selection" data-price="0" data-credits="0">
                 <td colspan="4">
                     <input id="credit-plan-0" type="radio" name="credit_plan" value="0" <?php echo 0 == $selected ? 'checked="checked"' : '' ?> />
-                    <label for="credit-plan-0"><?php _ex('clear selection', 'credit plans table', 'AWPCP') ?></label></td>
+                    <label for="credit-plan-0"><?php _ex('clear selection', 'credit plans table', 'another-wordpress-classifieds-plugin') ?></label></td>
                 </td>
             </tr>
         </tfoot>

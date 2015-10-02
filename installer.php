@@ -279,7 +279,7 @@ class AWPCP_Installer {
             $data = array(
                 'category_id' => 1,
                 'category_parent_id' => 0,
-                'category_name' => __( 'General', 'AWPCP' ),
+                'category_name' => __( 'General', 'another-wordpress-classifieds-plugin' ),
                 'category_order' => 0
             );
 
@@ -291,7 +291,7 @@ class AWPCP_Installer {
         if ( empty( $fee ) ) {
             $data = array(
                 'adterm_id' => 1,
-                'adterm_name' => __( '30 Day Listing', 'AWPCP' ),
+                'adterm_name' => __( '30 Day Listing', 'another-wordpress-classifieds-plugin' ),
                 'amount' => 9.99,
                 'recurring' => 1,
                 'rec_period' => 31,
