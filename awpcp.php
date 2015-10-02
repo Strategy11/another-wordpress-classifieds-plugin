@@ -360,7 +360,7 @@ class AWPCP {
 
     public function bootstrap() {
         if ( $this->settings->get_option( 'activatelanguages' ) ) {
-            awpcp_load_plugin_textdomain( __FILE__, 'AWPCP' );
+            awpcp_load_plugin_textdomain( __FILE__, 'another-wordpress-classifieds-plugin' );
         }
 
         // register settings, this will define default values for settings

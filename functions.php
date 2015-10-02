@@ -2050,31 +2050,46 @@ function awpcp_maybe_add_thickbox() {
  * @since 3.2.1
  */
 function awpcp_load_plugin_textdomain( $__file__, $text_domain ) {
+    if ( awpcp_load_text_domain_with_file_prefix( $__file__, $text_domain, $text_domain ) ) {
+        return;
+    }
+
+    if ( $text_domain == 'another-wordpress-classifieds-plugin' ) {
+        // attempt to load translations from file using old text domain.
+        awpcp_load_text_domain_with_file_prefix( $__file__, $text_domain, 'AWPCP' );
+    }
+}
+
+/**
+ * TODO: Do we really need to load files from all those locations? Isn't all that verifications too exepensive?
+ *          Also having all that options is confusing. We should support the standard ones only.
+ * @since 3.5.3.2
+ */
+function awpcp_load_text_domain_with_file_prefix( $__file__, $text_domain, $file_prefix ) {
     $basename = dirname( plugin_basename( $__file__ ) );
     $locale = apply_filters( 'plugin_locale', get_locale(), $text_domain );
 
     // Load user translation from wp-content/languages/plugins/$domain-$locale.mo
-    $mofile = WP_LANG_DIR . '/plugins/' . $text_domain . '-' . $locale . '.mo';
-    load_textdomain( $text_domain, $mofile );
+    $mofile = WP_LANG_DIR . '/plugins/' . $file_prefix . '-' . $locale . '.mo';
+    $text_domain_loaded = load_textdomain( $text_domain, $mofile );
 
     // Load user translation from wp-content/languages/another-wordpress-classifieds-plugin/$domain-$locale.mo
-    $mofile = WP_LANG_DIR . '/' . $basename . '/' . $text_domain . '-' . $locale . '.mo';
-    load_textdomain( $text_domain, $mofile );
+    $mofile = WP_LANG_DIR . '/' . $basename . '/' . $file_prefix . '-' . $locale . '.mo';
+    $text_domain_loaded = load_textdomain( $text_domain, $mofile ) || $text_domain_loaded;
 
     // Load translation included in plugin's languages directory. Stop if the file is loaded.
-    $mofile = WP_PLUGIN_DIR . '/' . $basename . '/languages/' . $text_domain . '-' . $locale . '.mo';
+    $mofile = WP_PLUGIN_DIR . '/' . $basename . '/languages/' . $file_prefix . '-' . $locale . '.mo';
     if ( load_textdomain( $text_domain, $mofile ) ) {
         return true;
     }
 
-    // Try loading the translations from the plugin's root directory. WordPress will also
-    // look for a file in wp-content/languages/plugins/$domain-$locale.mo.
-    $mofile = WP_PLUGIN_DIR . '/' . $basename . '/' . $text_domain . '-' . $locale . '.mo';
+    // Try loading the translations from the plugin's root directory.
+    $mofile = WP_PLUGIN_DIR . '/' . $basename . '/' . $file_prefix . '-' . $locale . '.mo';
     if ( load_textdomain( $text_domain, $mofile ) ) {
         return true;
     }
 
-    return false;
+    return $text_domain_loaded;
 }
 
 function awpcp_utf8_strlen( $string ) {
