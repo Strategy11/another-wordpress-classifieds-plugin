@@ -8,6 +8,8 @@
  * Author: D. Rodenbaugh
  * License: GPLv2 or any later version
  * Author URI: http://www.skylineconsult.com
+ * Text Domain: another-wordpress-classifieds-plugin
+ * Domain Path: /languages
  */
 
 /**
