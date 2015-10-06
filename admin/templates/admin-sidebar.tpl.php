@@ -1,4 +1,4 @@
-<div class="awpcp-admin-sidebar awpcp-postbox-container postbox-container" style="<?php echo $float; ?>; width: 20%; ">
+<div class="awpcp-admin-sidebar awpcp-postbox-container postbox-container" style="<?php echo $float; ?>">
     <div class="metabox-holder">
         <div class="meta-box-sortables">
 
