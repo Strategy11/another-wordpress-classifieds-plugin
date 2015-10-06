@@ -936,10 +936,18 @@ class AWPCP {
 		wp_register_script('awpcp-jquery-validate', "{$js}/jquery-validate/all.js", array('jquery'), '1.10.0', true);
         wp_register_script( 'awpcp-knockout', "//ajax.aspnetcdn.com/ajax/knockout/knockout-3.1.0.js", array(), '3.1.0', true );
         wp_register_script( 'awpcp-momentjs-with-locales', '//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment-with-locales.min.js', array(), '2.10.6', true );
+        wp_register_script( 'awpcp-jquery-breakpoints', "{$js}/jquery-breakpoints/jquery-breakpoints.src.js", array('jquery'), $awpcp_db_version, true );
 
 		/* helpers */
 
-		wp_register_script( 'awpcp', "{$js}/awpcp.min.js", array( 'awpcp-knockout', 'backbone', 'jquery' ), $awpcp_db_version, true );
+		wp_register_script(
+            'awpcp',
+            "{$js}/awpcp.min.js",
+            array( 'jquery', 'backbone', 'awpcp-knockout', 'awpcp-jquery-breakpoints' ),
+            $awpcp_db_version,
+            true
+        );
+
         wp_register_script( 'awpcp-admin', "{$js}/awpcp-admin.min.js", array( 'awpcp', 'awpcp-jquery-validate' ), $awpcp_db_version, true );
 
 		wp_register_script( 'awpcp-billing-form', "{$js}/awpcp-billing-form.js", array( 'awpcp' ), $awpcp_db_version, true );

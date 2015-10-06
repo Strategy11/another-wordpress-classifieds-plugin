@@ -43,6 +43,9 @@ module.exports = function(grunt) {
         ],
         '<%= path.awpcp %>/js/awpcp-admin.src.js': [
           '<%= path.awpcp %>/js/components/settings-validator.js',
+        ],
+        '<%= path.awpcp %>/js/jquery-breakpoints/jquery-breakpoints.src.js': [
+          '<%= path.awpcp %>/js/jquery-breakpoints/jquery-breakpoints.js'
         ]
       }
     },
