@@ -1,5 +1,5 @@
 <?php if ( $show_payment_terms ): ?>
-    <h3><?php _e( 'Please select a payment term for your Ad', 'AWPCP' ); ?></h3>
+    <h3><?php _e( 'Please select a payment term for your Ad', 'another-wordpress-classifieds-plugin' ); ?></h3>
 
     <?php echo awpcp_form_error( 'payment-term', $form_errors ); ?>
     <?php echo $table->render(); ?>

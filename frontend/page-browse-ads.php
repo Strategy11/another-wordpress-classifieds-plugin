@@ -5,7 +5,7 @@ require_once( AWPCP_DIR . '/includes/helpers/page.php' );
 class AWPCP_BrowseAdsPage extends AWPCP_Page {
 
     public function __construct($page='awpcp-browse-ads', $title=null) {
-        $title = is_null($title) ? __( 'Browse Ads', 'AWPCP' ) : $title;
+        $title = is_null($title) ? __( 'Browse Ads', 'another-wordpress-classifieds-plugin' ) : $title;
         parent::__construct( $page, $title );
     }
 
@@ -57,7 +57,7 @@ class AWPCP_BrowseAdsPage extends AWPCP_Page {
         );
 
         if ( $category_id == -1 ) {
-            $message = __( "No specific category was selected for browsing so you are viewing listings from all categories." , "AWPCP" );
+            $message = __( "No specific category was selected for browsing so you are viewing listings from all categories." , 'another-wordpress-classifieds-plugin' );
 
             $output = awpcp_print_message( $message );
             $output.= awpcp_display_listings_in_page( $query, 'browse-listings' );

@@ -373,7 +373,7 @@ function awpcp_do_placeholder_excerpt($ad, $placeholder) {
  */
 function awpcp_do_placeholder_contact_name($ad, $placeholder) {
     if ( get_awpcp_option( 'hidelistingcontactname' ) == 1 && ! is_user_logged_in() ) {
-        $contact_name = __( 'Seller', 'AWPCP' );
+        $contact_name = __( 'Seller', 'another-wordpress-classifieds-plugin' );
     } else {
         $contact_name = $ad->ad_contact_name;
     }
@@ -396,7 +396,7 @@ function awpcp_do_placeholder_website_url($ad, $placeholder) {
 function awpcp_do_placeholder_website_link($ad, $placeholder) {
     if ( ( get_awpcp_option( 'displaywebsitefieldreqpriv' ) != 1 || is_user_logged_in() ) && !empty( $ad->websiteurl ) ) {
         $nofollow = get_awpcp_option('visitwebsitelinknofollow') ? 'rel="nofollow"' : '';
-        $escaped_label = esc_html( __( 'Visit Website', 'AWPCP' ) );
+        $escaped_label = esc_html( __( 'Visit Website', 'another-wordpress-classifieds-plugin' ) );
         $escaped_url = awpcp_esc_attr( $ad->websiteurl );
 
         $content = '<br/><a %s href="%s" target="_blank">%s</a>';
@@ -431,7 +431,7 @@ function awpcp_do_placeholder_price($ad, $placeholder) {
     $replacements = array();
 
     if ( $show_price_field && $user_can_see_price_field && $price >= 0 ) {
-        $escaped_label = esc_html( __( 'Price', 'AWPCP' ) );
+        $escaped_label = esc_html( __( 'Price', 'another-wordpress-classifieds-plugin' ) );
         $escaped_currency = esc_html( awpcp_format_money( $price ) );
         // single ad
         $content = '<div class="showawpcpadpage"><label>%s</label>: <strong>%s</strong></div>';
@@ -499,7 +499,7 @@ function awpcp_do_placeholder_images($ad, $placeholder) {
 
             if (get_awpcp_option('show-click-to-enlarge-link', 1)) {
                 $link = '<a class="thickbox enlarge" href="%s">%s</a>';
-                $link = sprintf($link, $large_image, __('Click to enlarge image.', 'AWPCP'));
+                $link = sprintf($link, $large_image, __('Click to enlarge image.', 'another-wordpress-classifieds-plugin'));
             } else {
                 $link = '';
             }
@@ -711,7 +711,7 @@ function awpcp_do_placeholder_location($ad, $placeholder) {
     $location = join( '; ', $location );
 
     if ( !empty( $location ) ) {
-        $replacements['location'] = sprintf( '<br/><label>%s</label>: %s', __( 'Location', 'AWPCP' ), $location );
+        $replacements['location'] = sprintf( '<br/><label>%s</label>: %s', __( 'Location', 'another-wordpress-classifieds-plugin' ), $location );
         $replacements['region'] = $location;
     } else {
         $replacements['location'] = '';
@@ -747,11 +747,11 @@ function awpcp_do_placeholder_legacy_views($ad, $placeholder) {
     if (get_awpcp_option('displayadviews')) {
         // single ad
         $views = get_numtimesadviewd($ad->ad_id);
-        $text = _n('This Ad has been viewed %d time.', 'This Ad has been viewed %d times.', $views, 'AWPCP');
+        $text = _n('This Ad has been viewed %d time.', 'This Ad has been viewed %d times.', $views, 'another-wordpress-classifieds-plugin');
         $replacements['awpcpadviews'] = sprintf('<div class="adviewed">%s</div>', sprintf($text, $views));
 
         // listings
-        $content = sprintf(__('Total views: %d', 'AWPCP'), $views);
+        $content = sprintf(__('Total views: %d', 'another-wordpress-classifieds-plugin'), $views);
         $replacements['awpcp_display_adviews'] = sprintf('%s<br/>', $content);
     } else {
         $replacements['awpcpadviews'] = '';
@@ -802,7 +802,7 @@ function awpcp_do_placeholder_contact_phone($ad, $placeholder) {
         }
 
         $content = sprintf( '<br/><label>%s</label>: %s',
-                            __('Phone', 'AWPCP'),
+                            __('Phone', 'another-wordpress-classifieds-plugin'),
                             $phone );
         $replacements['adcontactphone'] = $content;
         $replacements['contact_phone'] = $phone;
@@ -859,7 +859,7 @@ function awpcp_do_placeholder_adsense($ad, $placeholder) {
  */
 function awpcp_do_placeholder_flag_link($ad, $placeholder) {
     $content = '<a id="flag_ad_link" href="#" data-ad="%d">%s</a>';
-    $replacements['flagad'] = sprintf($content, $ad->ad_id, __('Flag Ad', 'AWPCP'));
+    $replacements['flagad'] = sprintf($content, $ad->ad_id, __('Flag Ad', 'another-wordpress-classifieds-plugin'));
     $replacements['flag_link'] = $replacements['flagad'];
 
     return $replacements[$placeholder];
@@ -874,7 +874,7 @@ function awpcp_do_placeholder_twitter_button($ad, $placeholder) {
 
     $button = '<div class="tw_button awpcp_tweet_button_div">';
     $button.= '<a href="' . $url . '" rel="nofollow" class="twitter-share-button" target="_blank">';
-    $button.= __('Tweet This', 'AWPCP');
+    $button.= __('Tweet This', 'another-wordpress-classifieds-plugin');
     $button.= '</a>';
     $button.= '</div>';
 
@@ -905,7 +905,7 @@ function awpcp_do_placeholder_facebook_button($ad, $placeholder) {
     $button.= '<a href="%s" class="facebook-share-button" title="%s" target="_blank"></a>';
     $button.= '</div>';
 
-    return sprintf($button, $href, __('Share on Facebook', 'AWPCP'));
+    return sprintf($button, $href, __('Share on Facebook', 'another-wordpress-classifieds-plugin'));
 }
 
 

@@ -22,7 +22,7 @@ function awpcp_upload_image_file($directory, $filename, $tmpname, $min_size, $ma
 	$newpath = trailingslashit($directory) . $newname;
 
 	if ( !file_exists( $tmpname ) ) {
-		return sprintf( __( 'The specified image file does not exists: %s.', 'AWPCP' ), $filename );
+		return sprintf( __( 'The specified image file does not exists: %s.', 'another-wordpress-classifieds-plugin' ), $filename );
 	}
 
 	$ext = strtolower( awpcp_get_file_extension( $filename ) );
@@ -32,52 +32,52 @@ function awpcp_upload_image_file($directory, $filename, $tmpname, $min_size, $ma
 	$allowed_extensions = array('gif', 'jpg', 'jpeg', 'png');
 
 	if (empty($filename)) {
-		return __('No file was selected.', 'AWPCP');
+		return __('No file was selected.', 'another-wordpress-classifieds-plugin');
 	}
 
 	if ($uploaded && !is_uploaded_file($tmpname)) {
-		return __('Unknown error encountered while uploading the image.', 'AWPCP');
+		return __('Unknown error encountered while uploading the image.', 'another-wordpress-classifieds-plugin');
 	}
 
 	if (empty($size) || $size <= 0) {
 		$message = "There was an error trying to find out the file size of the image %s.";
-		return __(sprintf($message, $filename), 'AWPCP');
+		return __(sprintf($message, $filename), 'another-wordpress-classifieds-plugin');
 	}
 
 	if (!(in_array($ext, $allowed_extensions))) {
-		return sprintf( __('The file %s has an invalid extension and was rejected.', 'AWPCP'), $filename );
+		return sprintf( __('The file %s has an invalid extension and was rejected.', 'another-wordpress-classifieds-plugin'), $filename );
 
 	} elseif ($size < $min_size) {
-		$message = __('The size of %1$s was too small. The file was not uploaded. File size must be greater than %2$d bytes.', 'AWPCP');
+		$message = __('The size of %1$s was too small. The file was not uploaded. File size must be greater than %2$d bytes.', 'another-wordpress-classifieds-plugin');
 		return sprintf($message, $filename, $min_size);
 
 	} elseif ($size > $max_size) {
-		$message = __('The file %s was larger than the maximum allowed file size of %s bytes. The file was not uploaded.', 'AWPCP');
+		$message = __('The file %s was larger than the maximum allowed file size of %s bytes. The file was not uploaded.', 'another-wordpress-classifieds-plugin');
 		return sprintf($message, $filename, $max_size);
 
 	} elseif (!isset($imginfo[0]) && !isset($imginfo[1])) {
-		return sprintf( __('The file %s does not appear to be a valid image file.', 'AWPCP' ), $filename );
+		return sprintf( __('The file %s does not appear to be a valid image file.', 'another-wordpress-classifieds-plugin' ), $filename );
 
 	} elseif ( $imginfo[0] < $min_width ) {
-		$message = __('The image %s did not meet the minimum width of %s pixels. The file was not uploaded.', 'AWPCP');
+		$message = __('The image %s did not meet the minimum width of %s pixels. The file was not uploaded.', 'another-wordpress-classifieds-plugin');
 		return sprintf($message, $filename, $min_width);
 
 	} elseif ($imginfo[1] < $min_height) {
-		$message = __('The image %s did not meet the minimum height of %s pixels. The file was not uploaded.', 'AWPCP');
+		$message = __('The image %s did not meet the minimum height of %s pixels. The file was not uploaded.', 'another-wordpress-classifieds-plugin');
 		return sprintf( $message, $filename, $min_height );
 	}
 
 	if ($uploaded && !@move_uploaded_file($tmpname, $newpath)) {
-		$message = __('The file %s could not be moved to the destination directory.', 'AWPCP');
+		$message = __('The file %s could not be moved to the destination directory.', 'another-wordpress-classifieds-plugin');
 		return sprintf($message, $filename);
 
 	} else if (!$uploaded && !@copy($tmpname, $newpath)) {
-		$message = __('The file %s could not be moved to the destination directory.', 'AWPCP');
+		$message = __('The file %s could not be moved to the destination directory.', 'another-wordpress-classifieds-plugin');
 		return sprintf($message, $filename);
 	}
 
 	if (!awpcp_create_image_versions($newname, $directory)) {
-		$message = __('Could not create resized versions of image %s.', 'AWPCP');
+		$message = __('Could not create resized versions of image %s.', 'another-wordpress-classifieds-plugin');
 		# TODO: unlink resized version, thumbnail and primary image
 		@unlink($newpath);
 		return sprintf($message, $filename);

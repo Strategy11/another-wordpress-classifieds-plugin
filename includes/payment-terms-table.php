@@ -30,23 +30,23 @@ class AWPCP_PaymentTermsTable {
 
     public function get_columns() {
         $columns = array(
-            'name' => _x('Payment Term', 'place ad payment terms column headers', 'AWPCP'),
-            'ads' => _x('Ads Allowed', 'place ad payment terms column headers', 'AWPCP'),
-            'images' => _x('Images Allowed', 'place ad payment terms column headers', 'AWPCP'),
-            'title_characters' => _x( 'Characters in Title', 'place ad payment terms column headers', 'AWPCP'),
-            'characters' => _x('Chars in Description', 'place ad payment terms column headers', 'AWPCP'),
-            'duration' => _x('Duration', 'place ad payment terms column headers', 'AWPCP'),
+            'name' => _x('Payment Term', 'place ad payment terms column headers', 'another-wordpress-classifieds-plugin'),
+            'ads' => _x('Ads Allowed', 'place ad payment terms column headers', 'another-wordpress-classifieds-plugin'),
+            'images' => _x('Images Allowed', 'place ad payment terms column headers', 'another-wordpress-classifieds-plugin'),
+            'title_characters' => _x( 'Characters in Title', 'place ad payment terms column headers', 'another-wordpress-classifieds-plugin'),
+            'characters' => _x('Chars in Description', 'place ad payment terms column headers', 'another-wordpress-classifieds-plugin'),
+            'duration' => _x('Duration', 'place ad payment terms column headers', 'another-wordpress-classifieds-plugin'),
         );
 
         $accepted_payment_types = awpcp_payments_api()->get_accepted_payment_types();
 
         if ( in_array( AWPCP_Payment_Transaction::PAYMENT_TYPE_MONEY, $accepted_payment_types ) ) {
-            $columns['price'] = _x('Price (currency)', 'place ad payment terms column headers', 'AWPCP');
+            $columns['price'] = _x('Price (currency)', 'place ad payment terms column headers', 'another-wordpress-classifieds-plugin');
         }
 
         if ( in_array( AWPCP_Payment_Transaction::PAYMENT_TYPE_CREDITS, $accepted_payment_types ) ) {
             if ( awpcp_payments_api()->credit_system_enabled() ) {
-                $columns['credits'] = _x('Price (credits)', 'place ad payment terms column headers', 'AWPCP');
+                $columns['credits'] = _x('Price (credits)', 'place ad payment terms column headers', 'another-wordpress-classifieds-plugin');
             }
         }
 
@@ -103,12 +103,12 @@ class AWPCP_PaymentTermsTable {
 
             case 'title_characters':
                 $characters = $item->get_characters_allowed_in_title();
-                $characters = empty( $characters ) ? _x( 'No Limit', 'payment term duration', 'AWPCP' ) : $characters;
+                $characters = empty( $characters ) ? _x( 'No Limit', 'payment term duration', 'another-wordpress-classifieds-plugin' ) : $characters;
                 return esc_html( $characters );
 
             case 'characters':
                 $characters = $item->get_characters_allowed();
-                $characters = empty( $characters ) ? _x( 'No Limit', 'payment term duration', 'AWPCP' ) : $characters;
+                $characters = empty( $characters ) ? _x( 'No Limit', 'payment term duration', 'another-wordpress-classifieds-plugin' ) : $characters;
                 return esc_html( $characters );
 
             case 'duration':
@@ -149,12 +149,12 @@ class AWPCP_PaymentTermsTable {
         }
 
         if ( !in_array( $payment_type, awpcp_payments_api()->get_accepted_payment_types() ) ) {
-            awpcp_flash( __( "The selected payment type can't be used in this kind of transaction.", 'AWPCP' ), 'error' );
+            awpcp_flash( __( "The selected payment type can't be used in this kind of transaction.", 'another-wordpress-classifieds-plugin' ), 'error' );
             return;
         }
 
         if (!$term->is_suitable_for_transaction($transaction)) {
-            awpcp_flash( __( "The selected payment term can't be used in this kind of transaction.", 'AWPCP' ), 'error' );
+            awpcp_flash( __( "The selected payment term can't be used in this kind of transaction.", 'another-wordpress-classifieds-plugin' ), 'error' );
             return;
         }
 

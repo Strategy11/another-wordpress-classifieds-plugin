@@ -24,7 +24,7 @@ class AWPCP_EasyDigitalDownloads {
         try {
             return $this->license_request( $params );
         } catch ( AWPCP_Exception $e ) {
-            $message = __( 'There was an error trying to retrieve information about your <module-name> license.', 'AWPCP' );
+            $message = __( 'There was an error trying to retrieve information about your <module-name> license.', 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '<module-name>', '<strong>' . $module_name . '</strong>', $message );
             throw new AWPCP_Exception( $this->build_error_message( $e, $message ) );
         }
@@ -62,7 +62,7 @@ class AWPCP_EasyDigitalDownloads {
         try {
             return $this->perform_license_action( 'activate_license', $module_name, $license );
         } catch ( AWPCP_Exception $e ) {
-            $message = __( 'There was an error trying to activate your <module-name> license.', 'AWPCP' );
+            $message = __( 'There was an error trying to activate your <module-name> license.', 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '<module-name>', '<strong>' . $module_name . '</strong>', $message );
             throw new AWPCP_Exception( $this->build_error_message( $e, $message ) );
         }
@@ -80,7 +80,7 @@ class AWPCP_EasyDigitalDownloads {
     }
 
     private function build_error_message( $exception, $message ) {
-        $template = __( '<specific-message> The error was: %s. Please contact customer support.', 'AWPCP' );
+        $template = __( '<specific-message> The error was: %s. Please contact customer support.', 'another-wordpress-classifieds-plugin' );
         $message = str_replace( '<specific-message>', $message, $template );
         $message = sprintf( $message, '<strong>' . $exception->format_errors() . '</strong>' );
         return $message;
@@ -90,7 +90,7 @@ class AWPCP_EasyDigitalDownloads {
         try {
             return $this->perform_license_action( 'deactivate_license', $module_name, $license );
         } catch ( AWPCP_Exception $e ) {
-            $message = __( 'There was an error trying to deactivate your <module-name> license.', 'AWPCP' );
+            $message = __( 'There was an error trying to deactivate your <module-name> license.', 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '<module-name>', '<strong>' . $module_name . '</strong>', $message );
             throw new AWPCP_Exception( $this->build_error_message( $e, $message ) );
         }

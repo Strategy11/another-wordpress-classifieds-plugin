@@ -31,37 +31,37 @@ class AWPCP_ListingFormStepsComponent {
     private function get_steps( $transaction ) {
         $steps = array();
 
-        $steps['login'] = __( 'Login/Registration', 'AWPCP' );
+        $steps['login'] = __( 'Login/Registration', 'another-wordpress-classifieds-plugin' );
 
         if ( $this->payments->payments_enabled() && $this->payments->credit_system_enabled() ) {
-            $steps['select-category'] = __( 'Select Category, Payment Term and Credit Plan', 'AWPCP' );
+            $steps['select-category'] = __( 'Select Category, Payment Term and Credit Plan', 'another-wordpress-classifieds-plugin' );
         } else if ( $this->payments->payments_enabled() ) {
-            $steps['select-category'] = __( 'Select Category and Payment Term', 'AWPCP' );
+            $steps['select-category'] = __( 'Select Category and Payment Term', 'another-wordpress-classifieds-plugin' );
         } else {
-            $steps['select-category'] = __( 'Select Category', 'AWPCP' );
+            $steps['select-category'] = __( 'Select Category', 'another-wordpress-classifieds-plugin' );
         }
 
         if ( $this->payments->payments_enabled() && $this->settings->get_option( 'pay-before-place-ad' ) ) {
-            $steps['checkout'] = __( 'Checkout', 'AWPCP' );
-            $steps['payment'] = __( 'Payment', 'AWPCP' );
+            $steps['checkout'] = __( 'Checkout', 'another-wordpress-classifieds-plugin' );
+            $steps['payment'] = __( 'Payment', 'another-wordpress-classifieds-plugin' );
         }
 
-        $steps['listing-details'] = __( 'Enter Listing Details', 'AWPCP' );
+        $steps['listing-details'] = __( 'Enter Listing Details', 'another-wordpress-classifieds-plugin' );
 
         if ( $this->should_show_upload_files_step( $transaction ) ) {
-            $steps['upload-files'] = __( 'Upload Files', 'AWPCP' );
+            $steps['upload-files'] = __( 'Upload Files', 'another-wordpress-classifieds-plugin' );
         }
 
         if ( $this->settings->get_option( 'show-ad-preview-before-payment' ) ) {
-            $steps['preview'] = __( 'Preview Listing', 'AWPCP' );
+            $steps['preview'] = __( 'Preview Listing', 'another-wordpress-classifieds-plugin' );
         }
 
         if ( $this->payments->payments_enabled() && ! $this->settings->get_option( 'pay-before-place-ad' ) ) {
-            $steps['checkout'] = __( 'Checkout', 'AWPCP' );
-            $steps['payment'] = __( 'Payment', 'AWPCP' );
+            $steps['checkout'] = __( 'Checkout', 'another-wordpress-classifieds-plugin' );
+            $steps['payment'] = __( 'Payment', 'another-wordpress-classifieds-plugin' );
         }
 
-        $steps['finish'] = __( 'Finish', 'AWPCP' );
+        $steps['finish'] = __( 'Finish', 'another-wordpress-classifieds-plugin' );
 
         return $steps;
     }

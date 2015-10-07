@@ -105,7 +105,7 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
 
         $plan = self::find_by_id($id);
         if (is_null($plan)) {
-            $errors[] = __("The Fee doesn't exist.", 'AWPCP');
+            $errors[] = __("The Fee doesn't exist.", 'another-wordpress-classifieds-plugin');
             return false;
         }
 
@@ -113,7 +113,7 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
         $ads = AWPCP_Ad::find( $wpdb->prepare( $where, $id ) );
 
         if (!empty($ads)) {
-            $errors[] = __("The Fee can't be deleted because there are active Ads in the system that are associated with the Fee ID.", 'AWPCP');
+            $errors[] = __("The Fee can't be deleted because there are active Ads in the system that are associated with the Fee ID.", 'another-wordpress-classifieds-plugin');
             return false;
         }
 
@@ -207,7 +207,7 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
         $recipient = self::find_by_id($id);
 
         if (is_null($recipient)) {
-            $errors[] = __("The recipient Fee doesn't exists.", 'AWPCP');
+            $errors[] = __("The recipient Fee doesn't exists.", 'another-wordpress-classifieds-plugin');
         }
 
         $query = 'UPDATE ' . AWPCP_TABLE_ADS . ' SET adterm_id = %d ';

@@ -13,7 +13,7 @@ class AWPCP_CategoriesDropdown {
         extract( $params = wp_parse_args( $params, array(
             'context' => 'default',
             'name' => 'category',
-            'label' => __( 'Ad Category', 'AWPCP' ),
+            'label' => __( 'Ad Category', 'another-wordpress-classifieds-plugin' ),
             'required' => true,
             'selected' => null,
             'placeholders' => array(),
@@ -21,18 +21,18 @@ class AWPCP_CategoriesDropdown {
 
         if ( $context == 'search' ) {
             $placeholders = array_merge( array(
-                'default-option-first-level' => __( 'All Categories', 'AWPCP' ),
-                'default-option-second-level' => __( 'All Sub-categories', 'AWPCP' ),
+                'default-option-first-level' => __( 'All Categories', 'another-wordpress-classifieds-plugin' ),
+                'default-option-second-level' => __( 'All Sub-categories', 'another-wordpress-classifieds-plugin' ),
             ), $placeholders );
         } else {
             if ( get_awpcp_option( 'noadsinparentcat' ) ) {
-                $second_level_option_placeholder = __( 'Select a Sub-category', 'AWPCP' );
+                $second_level_option_placeholder = __( 'Select a Sub-category', 'another-wordpress-classifieds-plugin' );
             } else {
-                $second_level_option_placeholder = __( 'Select a Sub-category (optional)', 'AWPCP' );
+                $second_level_option_placeholder = __( 'Select a Sub-category (optional)', 'another-wordpress-classifieds-plugin' );
             }
 
             $placeholders = array_merge( array(
-                'default-option-first-level' => __( 'Select a Category', 'AWPCP' ),
+                'default-option-first-level' => __( 'Select a Category', 'another-wordpress-classifieds-plugin' ),
                 'default-option-second-level' => $second_level_option_placeholder
             ), $placeholders );
         }

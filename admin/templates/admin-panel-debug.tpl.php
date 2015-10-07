@@ -1,17 +1,17 @@
 <?php if (!$download): ?>
 	<?php $page_id = 'awpcp-admin-debug' ?>
-	<?php $page_title = awpcp_admin_page_title( __( 'Debug', 'AWPCP' ) ); ?>
+	<?php $page_title = awpcp_admin_page_title( __( 'Debug', 'another-wordpress-classifieds-plugin' ) ); ?>
 
 	<?php include(AWPCP_DIR . '/admin/templates/admin-panel-header.tpl.php') ?>
 <?php endif ?>
 
-		<?php $msg = _x('This information can help AWPCP Developers to debug possible problems. If you are submitting a bug report please <strong><a href="%s">Download the Debug Information</a></strong> and attach it to your bug report or take a minute to copy the information below to <a href="http://fpaste.org" target="_blank">http://fpaste.org</a> and provide the resulting URL in your report.', 'debug page', 'AWPCP') ?>
+		<?php $msg = _x('This information can help AWPCP Developers to debug possible problems. If you are submitting a bug report please <strong><a href="%s">Download the Debug Information</a></strong> and attach it to your bug report or take a minute to copy the information below to <a href="http://fpaste.org" target="_blank">http://fpaste.org</a> and provide the resulting URL in your report.', 'debug page', 'another-wordpress-classifieds-plugin') ?>
 		<p><?php echo sprintf( $msg, esc_url( add_query_arg( 'download', 'debug page', awpcp_current_url() ) ) ); ?></p>
 
-		<?php $title_pages = _x('AWPCP Pages', 'debug page', 'AWPCP') ?>
-		<?php $title_php_info = _x('PHP Info', 'debug page', 'AWPCP') ?>
-		<?php $title_settings = _x('AWPCP Settings', 'debug page', 'AWPCP') ?>
-		<?php $title_rules = _x('Rewrite Rules', 'debug page', 'AWPCP') ?>
+		<?php $title_pages = _x('AWPCP Pages', 'debug page', 'another-wordpress-classifieds-plugin') ?>
+		<?php $title_php_info = _x('PHP Info', 'debug page', 'another-wordpress-classifieds-plugin') ?>
+		<?php $title_settings = _x('AWPCP Settings', 'debug page', 'another-wordpress-classifieds-plugin') ?>
+		<?php $title_rules = _x('Rewrite Rules', 'debug page', 'another-wordpress-classifieds-plugin') ?>
 
 		<h2 class="nav-tab-wrapper">
 			<a class="nav-tab" href="#awpcp-debug-awpcp-pages"><?php echo $title_pages; ?></a>
@@ -28,9 +28,9 @@
 				<table>
 					<thead>
 						<tr>
-							<th><?php _e('Stored ID', 'AWPCP') ?></th>
-							<th><?php _e('Reference', 'AWPCP') ?></th>
-							<th><?php _e('Title', 'AWPCP') ?></th>
+							<th><?php _e('Stored ID', 'another-wordpress-classifieds-plugin') ?></th>
+							<th><?php _e('Reference', 'another-wordpress-classifieds-plugin') ?></th>
+							<th><?php _e('Title', 'another-wordpress-classifieds-plugin') ?></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -39,7 +39,7 @@
 						<tr>
 							<td class="align-center"><?php echo $info['page_id']; ?></td>
 							<td class="align-center"><?php echo $page_ref; ?></td>
-							<td><?php echo $page ? $page->post_title : __( 'Page not found', 'AWPCP' ); ?></td>
+							<td><?php echo $page ? $page->post_title : __( 'Page not found', 'another-wordpress-classifieds-plugin' ); ?></td>
 						</tr>
 				<?php endforeach ?>
 					</tbody>
@@ -53,8 +53,8 @@
 		    	<table>
 					<thead>
 						<tr>
-							<th><?php _e('Option Name', 'AWPCP') ?></th>
-							<th><?php _e('Option Value', 'AWPCP') ?></th>
+							<th><?php _e('Option Name', 'another-wordpress-classifieds-plugin') ?></th>
+							<th><?php _e('Option Value', 'another-wordpress-classifieds-plugin') ?></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -77,8 +77,8 @@
 				<table>
 					<thead>
 						<tr>
-							<th><?php _e('Pattern', 'AWPCP') ?></th>
-							<th><?php _e('Replacement', 'AWPCP') ?></th>
+							<th><?php _e('Pattern', 'another-wordpress-classifieds-plugin') ?></th>
+							<th><?php _e('Replacement', 'another-wordpress-classifieds-plugin') ?></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -99,25 +99,25 @@
 				<table>
 					<tbody>
 						<tr>
-							<th scope="row"><?php _ex('PHP Version', 'debug page', 'AWPCP') ?></th>
+							<th scope="row"><?php _ex('PHP Version', 'debug page', 'another-wordpress-classifieds-plugin') ?></th>
 							<td scope="row"><?php echo phpversion() ?></td>
 						</tr>
 						<tr>
-							<th scope="row"><?php _ex('cURL', 'debug page', 'AWPCP') ?></th>
-							<td><?php echo in_array('curl', get_loaded_extensions()) ? __('Installed', 'AWPCP') : __('Not Installed', 'AWPCP') ?></td>
+							<th scope="row"><?php _ex('cURL', 'debug page', 'another-wordpress-classifieds-plugin') ?></th>
+							<td><?php echo in_array('curl', get_loaded_extensions()) ? __('Installed', 'another-wordpress-classifieds-plugin') : __('Not Installed', 'another-wordpress-classifieds-plugin') ?></td>
 						</tr>
 						<tr>
-							<th scope="row"><?php _ex("cURL's alternate CA info (cacert.pem)", 'debug page', 'AWPCP') ?></th>
-							<td><?php echo file_exists(AWPCP_DIR . '/cacert.pem') ? _x('Exists', 'alternate CA info for cURL', 'AWPCP') : _x('Missing', 'alternate CA info for cURL', 'AWPCP'); ?></td>
+							<th scope="row"><?php _ex("cURL's alternate CA info (cacert.pem)", 'debug page', 'another-wordpress-classifieds-plugin') ?></th>
+							<td><?php echo file_exists(AWPCP_DIR . '/cacert.pem') ? _x('Exists', 'alternate CA info for cURL', 'another-wordpress-classifieds-plugin') : _x('Missing', 'alternate CA info for cURL', 'another-wordpress-classifieds-plugin'); ?></td>
 						</tr>
 						<tr>
-							<th scope="row"><?php _ex('PayPal Connection', 'debug page', 'AWPCP') ?></th>
+							<th scope="row"><?php _ex('PayPal Connection', 'debug page', 'another-wordpress-classifieds-plugin') ?></th>
 							<?php $response = awpcp_paypal_verify_received_data(array(), $errors) ?>
 							<?php if ($response === 'INVALID'): ?>
-							<td><?php _ex('Working', 'debug page', 'AWPCP')	?></td>
+							<td><?php _ex('Working', 'debug page', 'another-wordpress-classifieds-plugin')	?></td>
 							<?php else: ?>
 							<td>
-								<?php _ex('Not Working', 'debug page', 'AWPCP') ?><br/>
+								<?php _ex('Not Working', 'debug page', 'another-wordpress-classifieds-plugin') ?><br/>
 								<?php foreach ($errors as $error): ?>
 								<?php echo $error ?><br/>
 								<?php endforeach ?>

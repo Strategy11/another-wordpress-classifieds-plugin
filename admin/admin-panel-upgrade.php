@@ -9,7 +9,7 @@ class AWPCP_AdminUpgrade extends AWPCP_AdminPage {
 
     public function __construct($page=false, $title=false, $menu=false) {
         $page = $page ? $page : 'awpcp-admin-upgrade';
-        $title = $title ? $title : awpcp_admin_page_title( _x( 'Manual Upgrade', 'awpcp admin menu', 'AWPCP' ) );
+        $title = $title ? $title : awpcp_admin_page_title( _x( 'Manual Upgrade', 'awpcp admin menu', 'another-wordpress-classifieds-plugin' ) );
 
         parent::__construct($page, $title, $menu);
     }
@@ -31,9 +31,9 @@ class AWPCP_AdminUpgrade extends AWPCP_AdminPage {
         }
 
         $messages = array(
-            'introduction' => _x( 'Before you can use AWPCP again we need to upgrade your database. This operation may take a few minutes, depending on the amount of information stored. Please press the Upgrade button shown below to start the process.', 'awpcp upgrade', 'AWPCP' ),
-            'success' => sprintf( _x( 'Congratulations. AWPCP has been successfully upgraded. You can now access all features. <a href="%s">Click here to Continue</a>.', 'awpcp upgrade', 'AWPCP' ), add_query_arg( 'page', 'awpcp.php' ) ),
-            'button' => _x( 'Upgrade', 'awpcp upgrade', 'AWPCP' ),
+            'introduction' => _x( 'Before you can use AWPCP again we need to upgrade your database. This operation may take a few minutes, depending on the amount of information stored. Please press the Upgrade button shown below to start the process.', 'awpcp upgrade', 'another-wordpress-classifieds-plugin' ),
+            'success' => sprintf( _x( 'Congratulations. AWPCP has been successfully upgraded. You can now access all features. <a href="%s">Click here to Continue</a>.', 'awpcp upgrade', 'another-wordpress-classifieds-plugin' ), add_query_arg( 'page', 'awpcp.php' ) ),
+            'button' => _x( 'Upgrade', 'awpcp upgrade', 'another-wordpress-classifieds-plugin' ),
         );
 
         $tasks = new AWPCP_AsynchronousTasksComponent( $tasks, $messages );
