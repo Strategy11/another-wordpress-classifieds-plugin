@@ -1184,9 +1184,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
         extract( $params );
 
-        if ( $pay_first && $images_uploaded > 0 ) {
-            $next = __( 'Finish', 'another-wordpress-classifieds-plugin' );
-        } else if ( $pay_first && $show_preview ) {
+        if ( $show_preview ) {
             $next = __( 'Preview Ad', 'another-wordpress-classifieds-plugin' );
         } else if ( $pay_first ) {
             $next = __( 'Place Ad', 'another-wordpress-classifieds-plugin' );
