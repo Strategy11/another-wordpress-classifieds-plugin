@@ -17,7 +17,7 @@ class AWPCP_License_Settings_Update_Handler {
         $this->modules_manager = $modules_manager;
     }
 
-    public function process_settings( $old_settings, $new_settings, $option_name ) {
+    public function process_settings( $old_settings, $new_settings ) {
         $modules = $this->modules_manager->get_modules();
 
         foreach ( $modules as $module_slug => $module ) {

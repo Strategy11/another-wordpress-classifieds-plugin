@@ -623,8 +623,9 @@ class AWPCP {
                 add_action( 'admin_notices', array( awpcp_fee_payment_terms_notices(), 'dispatch' ) );
                 add_action( 'admin_notices', array( awpcp_credit_plans_notices(), 'dispatch' ) );
 
+                // TODO: do we really need to execute this every time the plugin settings are saved?
                 $handler = awpcp_license_settings_update_handler();
-                add_action( 'update_option_' . $this->settings->setting_name, array( $handler, 'process_settings' ), 10, 3 );
+                add_action( 'update_option_' . $this->settings->setting_name, array( $handler, 'process_settings' ), 10, 2 );
 
                 $handler = awpcp_license_settings_actions_request_handler();
                 add_action( 'wp_redirect', array( $handler, 'dispatch' ) );
