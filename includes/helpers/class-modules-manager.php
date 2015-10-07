@@ -181,7 +181,7 @@ class AWPCP_ModulesManager {
     }
 
     private function show_inactive_license_notice( $module_name ) {
-        $link = sprintf( '<a href="%s">', awpcp_get_admin_settings_url( 'license-settings' ) );
+        $link = sprintf( '<a href="%s">', awpcp_get_admin_settings_url( 'licenses-settings' ) );
 
         $message = __( 'The license for AWPCP <module-name> is inactive. All features will remain disabled until you activate the license. Please go to the <license-settings-link>License Settings</a> section to acivate your license.', 'another-wordpress-classifieds-plugin' );
         $message = str_replace( '<module-name>', '<strong>' . $module_name . '</strong>', $message );
