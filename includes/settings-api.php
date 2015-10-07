@@ -1046,11 +1046,14 @@ class AWPCP_Settings_API {
 				echo '<br>' . str_replace( '<license-status>', '<span class="awpcp-license-status awpcp-license-inactive">' . __( 'inactive', 'another-wordpress-classifieds-plugin' ) . '</span>.', __( 'Status: <license-status>', 'another-wordpress-classifieds-plugin' ) );
 			} else {
 				echo '<input class="button-secondary" type="submit" name="awpcp-check-' . $module_slug . '-license" value="' . __( 'Check License Status', 'another-wordpress-classifieds-plugin' ) . '"/>';
+				echo '<br>' . __( "Click the button above to check the status of your license. Please contact customer support if you think this is a mistake.", 'another-wordpress-classifieds-plugin' );
+
 				if ( $this->licenses_manager->is_license_expired( $module_name, $module_slug ) ) {
 					echo '<br>' . str_replace( '<license-status>', '<span class="awpcp-license-status awpcp-license-expired">' . __( 'expired', 'another-wordpress-classifieds-plugin' ) . '</span>.', __( 'Status: <license-status>', 'another-wordpress-classifieds-plugin' ) );
+				} else if ( $this->licenses_manager->is_license_disabled( $module_name, $module_slug ) ) {
+					echo '<br>' . str_replace( '<license-status>', '<span class="awpcp-license-status awpcp-license-invalid">' . __( 'disabled', 'another-wordpress-classifieds-plugin' ) . '</span>.', __( 'Status: <license-status>', 'another-wordpress-classifieds-plugin' ) );
 				} else {
-					echo '<br>' . __( "Click the button above to check the status of your license. Please contact customer support if you think this is a mistake.", 'another-wordpress-classifieds-plugin' );
-					echo '<br>' . str_replace( '<license-status>', '<span class="awpcp-license-status awpcp-license-invalid">' . __( 'invalid', 'another-wordpress-classifieds-plugin' ) . '</span>.', __( 'Status: <license-status>', 'another-wordpress-classifieds-plugin' ) );
+					echo '<br>' . str_replace( '<license-status>', '<span class="awpcp-license-status awpcp-license-invalid">' . __( 'unknown', 'another-wordpress-classifieds-plugin' ) . '</span>.', __( 'Status: <license-status>', 'another-wordpress-classifieds-plugin' ) );
 				}
 			}
 			wp_nonce_field( 'awpcp-update-license-status-nonce', 'awpcp-update-license-status-nonce' );
