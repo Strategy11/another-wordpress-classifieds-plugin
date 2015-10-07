@@ -136,7 +136,7 @@
             display: block;
             height: 22px;
             line-height: 22px;
-            width: 25px;
+            width: 24px;
         }
         &:hover {
             border-color: #B3B3B3;
@@ -149,6 +149,26 @@
 
         &:hover {
             background: #A5D69D;
+        }
+    }
+
+    .awpcp-uploaded-file-toggle-action {
+        border-radius: 0;
+        border-right-width: 0;
+        margin: 0;
+
+        &:first-child {
+            border-top-left-radius: 2px;
+            border-bottom-left-radius: 2px;
+        }
+        &:last-child {
+            border-right-width: 1px;
+            border-top-right-radius: 2px;
+            border-bottom-right-radius: 2px;
+        }
+
+        .awpcp-toggle-button {
+            float: left;
         }
     }
 
@@ -176,9 +196,15 @@
     .awpcp-uploaded-file-approve-action a {
         background-image: @approve_attachment_icon_url;
     }
+    .awpcp-uploaded-file-approve-action .awpcp-toggle-off {
+        background-image: @approve_attachment_icon_off_url;
+    }
 
     .awpcp-uploaded-file-reject-action a {
         background-image: @reject_attachment_icon_url;
+    }
+    .awpcp-uploaded-file-reject-action .awpcp-toggle-off {
+        background-image: @reject_attachment_icon_off_url;
     }
 
     .awpcp-uploaded-file-loading-icon {

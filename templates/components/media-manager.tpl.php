@@ -26,8 +26,14 @@ from Paul Irish. See https://github.com/drodenbaugh/awpcp/issues/979. -->
                         </span>
                     </li>
                     <li class="awpcp-uploaded-file-action awpcp-uploaded-file-delete-action"><a title="<?php echo esc_attr( __( 'Delete Image', 'another-wordpress-classifieds-plugin' ) ); ?>" data-bind="click: $root.deleteFile"></a></li>
-                    <li class="awpcp-uploaded-file-action awpcp-uploaded-file-approve-action" data-bind="visible: $root.showAdminActions() &amp;&amp; !isApproved()"><a title="<?php echo esc_attr( __( 'Approve Image', 'another-wordpress-classifieds-plugin' ) ); ?>" data-bind="click: $root.approveFile"></a></li>
-                    <li class="awpcp-uploaded-file-action awpcp-uploaded-file-reject-action" data-bind="visible: $root.showAdminActions() &amp;&amp; isApproved()"><a title="<?php echo esc_attr( __( 'Reject Image', 'another-wordpress-classifieds-plugin' ) ); ?>" data-bind="click: $root.rejectFile"></a></li>
+                    <li data-bind="visible: $root.showAdminActions()">
+                        <div class="awpcp-uploaded-file-action awpcp-uploaded-file-toggle-action awpcp-uploaded-file-reject-action">
+                            <a class="awpcp-toggle-button" title="<?php echo esc_attr( __( 'Reject Image', 'another-wordpress-classifieds-plugin' ) ); ?>" data-bind="click: $root.rejectFile, css: { 'awpcp-toggle-on': !isApproved(), 'awpcp-toggle-off': isApproved() }"></a>
+                        </div>
+                        <div class="awpcp-uploaded-file-action awpcp-uploaded-file-toggle-action awpcp-uploaded-file-approve-action">
+                            <a class="awpcp-toggle-button" title="<?php echo esc_attr( __( 'Approve Image', 'another-wordpress-classifieds-plugin' ) ); ?>" data-bind="click: $root.approveFile, css: { 'awpcp-toggle-on': isApproved(), 'awpcp-toggle-off': !isApproved() }"></a>
+                        </div>
+                    </li>
                 </ul>
                 <span class="awpcp-spinner awpcp-spinner-visible awpcp-uploaded-file-spinner" data-bind="visible: isBeingModified"></span>
                 <div class="awpcp-uploaded-file-label awpcp-uploaded-file-primary-label" data-bind="visible: isPrimary"><?php echo esc_html(  __( 'Primary Image', 'another-wordpress-classifieds-plugin' ) ); ?></div>
