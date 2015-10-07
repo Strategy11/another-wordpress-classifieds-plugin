@@ -50,7 +50,7 @@
         opacity: 0.5;
     }
 
-    .awpcp-uploaded-file-primary-label {
+    .awpcp-uploaded-file-label {
         position: absolute;
         bottom: -23px;
         height: 20px;
@@ -64,6 +64,12 @@
         line-height: 18px;
         left: 50%;
         margin-left: -72px;
+    }
+    .awpcp-uploaded-file-primary-label {
+        background: #B6E2AF;
+    }
+    .awpcp-uploaded-file-rejected-label {
+        background: @attachment_rejected_background;
     }
 
     /* Uploaded File States */
@@ -80,7 +86,8 @@
     }
     .is-rejected {
         background: @attachment_rejected_background;
-        border-color: #FC9393;
+        border: 3px solid #FC9393;
+        padding: 1px;
     }
     .is-approved {
         // background: @attachment_approved_background;

@@ -30,7 +30,8 @@ from Paul Irish. See https://github.com/drodenbaugh/awpcp/issues/979. -->
                     <li class="awpcp-uploaded-file-action awpcp-uploaded-file-reject-action" data-bind="visible: $root.showAdminActions() &amp;&amp; isApproved()"><a title="<?php echo esc_attr( __( 'Reject Image', 'another-wordpress-classifieds-plugin' ) ); ?>" data-bind="click: $root.rejectFile"></a></li>
                 </ul>
                 <span class="awpcp-spinner awpcp-spinner-visible awpcp-uploaded-file-spinner" data-bind="visible: isBeingModified"></span>
-                <div class="awpcp-uploaded-file-primary-label" data-bind="visible: isPrimary"><?php echo esc_html(  __( 'Primary Image', 'another-wordpress-classifieds-plugin' ) ); ?></div>
+                <div class="awpcp-uploaded-file-label awpcp-uploaded-file-primary-label" data-bind="visible: isPrimary"><?php echo esc_html(  __( 'Primary Image', 'another-wordpress-classifieds-plugin' ) ); ?></div>
+                <div class="awpcp-uploaded-file-label awpcp-uploaded-file-rejected-label" data-bind="visible: isRejected"><?php echo esc_html(  __( 'Rejected', 'another-wordpress-classifieds-plugin' ) ); ?></div>
             </li>
         </ul>
     </div>
