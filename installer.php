@@ -155,6 +155,9 @@ class AWPCP_Installer {
         $tables = array(
             $wpdb->prefix . 'awpcp_comments',
             $wpdb->prefix . "awpcp_extra_fields",
+            $wpdb->prefix . 'awpcp_subscriptions',
+            $wpdb->prefix . 'awpcp_subscription_plans',
+            $wpdb->prefix . 'awpcp_subscription_ads',
         );
 
         foreach ($tables as $table) {
