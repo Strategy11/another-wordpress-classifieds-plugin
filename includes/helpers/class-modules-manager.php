@@ -72,7 +72,7 @@ class AWPCP_ModulesManager {
         }
     }
 
-    private function is_premium_module( $module ) {
+    protected function is_premium_module( $module ) {
         $free_modules = array( 'xml-sitemap' );
 
         if ( in_array( $module->slug, $free_modules ) ) {

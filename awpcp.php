@@ -381,6 +381,8 @@ class AWPCP {
             awpcp_load_plugin_textdomain( __FILE__, 'another-wordpress-classifieds-plugin' );
         }
 
+        $this->modules_manager = awpcp_modules_manager();
+
         // register settings, this will define default values for settings
         // that have never been stored
         $this->settings->register_settings();
@@ -458,7 +460,6 @@ class AWPCP {
         $wpdb->awpcp_admeta = AWPCP_TABLE_AD_META;
 
 		$this->settings->setup();
-		$this->modules_manager = awpcp_modules_manager();
         $this->modules_updater = awpcp_modules_updater();
 		$this->payments = awpcp_payments_api();
 		$this->listings = awpcp_listings_api();
