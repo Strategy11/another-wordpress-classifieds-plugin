@@ -58,11 +58,11 @@ class AWPCP_Payment_Transaction {
 		if (!is_array(self::$defaults)) {
 			self::$defaults = array(
 				'id' => null,
-				'user_id' => null,
+				'user_id' => 0,
 				'status' => self::STATUS_NEW,
 				'payment_status' => null,
-                'payment_gateway' => null,
-                'payer_email' => null,
+                'payment_gateway' => '',
+                'payer_email' => '',
 				'items' => array(),
 				'data' => array(),
 				'errors' => array(),
