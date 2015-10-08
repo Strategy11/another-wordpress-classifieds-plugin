@@ -28,7 +28,7 @@ class AWPCP_License_Settings_Actions_Request_Handler {
         return $location;
     }
 
-    private function process_settings_actions_for_modules( $modules, $old_settings, $new_settings ) {
+    private function process_settings_actions_for_modules( $modules ) {
         foreach ( $modules as $module_slug => $module ) {
             $license_setting_name = $this->licenses_manager->get_license_setting_name( $module_slug );
             $sanitized_setting_name = str_replace( '.', '_', $license_setting_name );
