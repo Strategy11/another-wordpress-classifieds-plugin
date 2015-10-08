@@ -87,6 +87,7 @@ class AWPCP_Media {
 
     private function get_url_from_path( $path ) {
         $url = $path ? $this->sanitize_url( str_replace( rtrim( ABSPATH, '/' ), get_site_url(), $path ) ) : false;
+        $url = $path ? $this->sanitize_url( str_replace( WP_CONTENT_DIR, WP_CONTENT_URL, $path ) ) : false;
         return apply_filters( 'awpcp-media-url-from-path', $url, $path, $this );
     }
 
