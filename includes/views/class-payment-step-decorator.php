@@ -35,9 +35,9 @@ class AWPCP_PaymentStepDecorator extends AWPCP_StepDecorator {
 
         if ( ! is_null( $transaction ) && $transaction->get( 'context' ) != $this->controller->get_transaction_context() ) {
             $page_name = $this->controller->title;
-            $page_url = $this->controller->url( array( 'page', $this->controller->page ) );
+            $page_url = $this->controller->url( array( 'page' => $this->controller->page ) );
 
-            $message = __( 'You are trying to buy credits using a transaction created for a different purpose. Pelase go back to the <a href="%s">%s</a> page.<br>If you think this is an error please contact the administrator and provide the following transaction ID: %s', 'another-wordpress-classifieds-plugin' );
+            $message = __( 'You are trying to buy credits using a transaction created for a different purpose. Please go back to the <a href="%s">%s</a> page.<br>If you think this is an error please contact the administrator and provide the following transaction ID: %s', 'another-wordpress-classifieds-plugin' );
             $message = sprintf( $message, $page_url, $page_name, $transaction->id );
 
             throw new AWPCP_Exception( $message );
