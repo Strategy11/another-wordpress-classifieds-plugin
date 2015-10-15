@@ -29,8 +29,8 @@
                     <label for="credit-plan-<?php echo esc_attr( $plan->id ); ?>"><?php echo esc_html( $plan->name ); ?></label>
                 </td>
                 <td data-title="<?php echo esc_attr( $column_names['description'] ); ?>"><?php echo esc_html( $plan->description ); ?>&nbsp;</td>
-                <td data-title="<?php echo esc_attr( $column_names['credits'] ); ?>"><?php echo esc_html( number_format( $plan->credits, 0 ) ); ?></td>
-                <td data-title="<?php echo esc_attr( $column_names['price'] ); ?>"><?php echo esc_html( number_format( $plan->price, 2 ) ); ?></td>
+                <td data-title="<?php echo esc_attr( $column_names['credits'] ); ?>"><?php echo esc_html( awpcp_format_integer( $plan->credits ) ); ?></td>
+                <td data-title="<?php echo esc_attr( $column_names['price'] ); ?>"><?php echo esc_html( awpcp_format_money( $plan->price ) ); ?></td>
             </tr>
 
         <?php endforeach ?>
