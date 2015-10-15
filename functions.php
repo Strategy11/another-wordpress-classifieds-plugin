@@ -1306,20 +1306,8 @@ function awpcp_format_money_without_currency_symbol( $value ) {
 }
 
 function awpcp_get_formmatted_amount( $value, $include_symbol ) {
-    $thousands_separator = get_awpcp_option('thousands-separator');
-    $decimal_separator = get_awpcp_option('decimal-separator');
-    $decimals = get_awpcp_option('show-decimals') ? 2 : 0;
-
     $symbol_position = get_awpcp_option( 'show-currency-symbol' );
     $symbol = $include_symbol ? awpcp_get_currency_symbol() : '';
-
-    if ( $include_symbol && $symbol_position == 'show-currency-symbol-on-left' ) {
-        $template = '<currenct-symbol><separator><amount>';
-    } else if ( $include_symbol && $symbol_position == 'show-currency-symbol-on-right' ) {
-        $template = '<amount><separator><currenct-symbol>';
-    } else {
-        $template = '<amount>';
-    }
 
     if ( get_awpcp_option( 'include-space-between-currency-symbol-and-amount' ) ) {
         $separator = ' ';
@@ -1327,19 +1315,33 @@ function awpcp_get_formmatted_amount( $value, $include_symbol ) {
         $separator = '';
     }
 
-    if ($value >= 0) {
-        $number = number_format($value, $decimals, $decimal_separator, $thousands_separator);
-        $formatted = $template;
+    if ( $include_symbol && $symbol_position == 'show-currency-symbol-on-left' ) {
+        $formatted = '<currenct-symbol><separator><amount>';
+    } else if ( $include_symbol && $symbol_position == 'show-currency-symbol-on-right' ) {
+        $formatted = '<amount><separator><currenct-symbol>';
     } else {
-        $number = number_format(- $value, $decimals, $decimal_separator, $thousands_separator);
-        $formatted = '(' . $template . ')';
+        $formatted = '<amount>';
     }
 
     $formatted = str_replace( '<currenct-symbol>', $symbol, $formatted );
-    $formatted = str_replace( '<amount>', $number, $formatted );
+    $formatted = str_replace( '<amount>', awpcp_format_number( $value ), $formatted );
     $formatted = str_replace( '<separator>', $separator, $formatted );
 
-    return $formatted;
+    return $value >= 0 ? $formatted : "($formatted)";
+}
+
+function awpcp_format_number( $value, $decimals = null ) {
+    return awpcp_get_formatted_number( $value, $decimals = get_awpcp_option( 'show-decimals' ) ? 2 : 0 );
+}
+
+function awpcp_get_formatted_number( $value, $decimals = 0 ) {
+    $thousands_separator = get_awpcp_option( 'thousands-separator' );
+    $decimal_separator = get_awpcp_option( 'decimal-separator' );
+    return number_format( abs( $value ), $decimals, $decimal_separator, $thousands_separator );
+}
+
+function awpcp_format_integer( $value ) {
+    return awpcp_get_formatted_number( $value, $decimals = 0 );
 }
 
 /**
