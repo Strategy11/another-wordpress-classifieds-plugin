@@ -25,7 +25,7 @@ class AWPCP_Database_Tables {
         return $this->database_helper->replace_charset_and_collate( $table_defintion );
     }
 
-    public function get_listings_table_defintion() {
+    public function get_listings_table_definition() {
         $table_defintion =
         "CREATE TABLE IF NOT EXISTS " . AWPCP_TABLE_ADS . " (
             `ad_id` INT(10) NOT NULL AUTO_INCREMENT,
