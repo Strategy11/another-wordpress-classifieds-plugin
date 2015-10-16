@@ -216,6 +216,7 @@ class AWPCP_Installer {
             '3.5.4-dev-20' => 'upgrade_to_3_5_4_dev_20',
             '3.5.4-dev-28' => 'upgrade_to_3_5_4_dev_28',
             '3.5.4-dev-29' => 'upgrade_to_3_5_4_dev_29',
+            '3.5.4-dev-48' => 'upgrade_tp_3_5_4_dev_48',
         );
 
         foreach ( $upgrade_routines as $version => $routine ) {
@@ -980,6 +981,24 @@ class AWPCP_Installer {
         if ( ! awpcp_column_exists( AWPCP_TABLE_ADFEES, 'description' ) ) {
             $sql = $this->database_helper->replace_charset_and_collate( 'ALTER TABLE ' . AWPCP_TABLE_ADFEES . ' ADD `description` TEXT CHARACTER SET <charset> COLLATE <collate> NOT NULL AFTER `adterm_name`' );
             $wpdb->query( $sql );
+        }
+    }
+
+    private function upgrade_tp_3_5_4_dev_48( $oldversion ) {
+        global $wpdb;
+
+        if ( $wpdb->charset !== 'utf8mb4' ) {
+            return;
+        }
+
+        if ( ! function_exists( 'maybe_convert_table_to_utf8mb4' ) ) {
+            return;
+        }
+
+        $plugin_tables = $wpdb->get_col( "SHOW TABLES LIKE '%awpcp_%'" );
+
+        foreach ( $plugin_tables as $table_name ) {
+            maybe_convert_table_to_utf8mb4( $table_name );
         }
     }
 }
