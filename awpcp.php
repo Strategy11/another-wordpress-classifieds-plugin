@@ -4,7 +4,7 @@
  * Plugin Name: Another Wordpress Classifieds Plugin (AWPCP)
  * Plugin URI: http://www.awpcp.com
  * Description: AWPCP - A plugin that provides the ability to run a free or paid classified ads service on your wordpress blog. <strong>!!!IMPORTANT!!!</strong> Whether updating a previous installation of Another Wordpress Classifieds Plugin or installing Another Wordpress Classifieds Plugin for the first time, please backup your wordpress database before you install/uninstall/activate/deactivate/upgrade Another Wordpress Classifieds Plugin.
- * Version: 3.5.4-dev-47
+ * Version: 3.5.4-dev-48
  * Author: D. Rodenbaugh
  * License: GPLv2 or any later version
  * Author URI: http://www.skylineconsult.com
@@ -165,6 +165,7 @@ require_once(AWPCP_DIR . "/includes/models/image.php");
 require_once(AWPCP_DIR . "/includes/models/payment-transaction.php");
 
 require_once( AWPCP_DIR . "/includes/db/class-database-column-creator.php" );
+require( AWPCP_DIR . "/includes/db/class-database-helper.php" );
 
 require_once( AWPCP_DIR . "/includes/views/class-ajax-handler.php" );
 require_once( AWPCP_DIR . "/includes/views/class-base-page.php" );
@@ -255,6 +256,7 @@ require_once( AWPCP_DIR . "/includes/settings/class-user-notifications-settings.
 require_once( AWPCP_DIR . "/includes/settings/class-window-title-settings.php" );
 
 require( AWPCP_DIR . "/includes/upgrade/class-calculate-image-dimensions-upgrade-task-handler.php" );
+require( AWPCP_DIR . "/includes/upgrade/class-database-tables.php" );
 require_once( AWPCP_DIR . "/includes/upgrade/class-fix-empty-media-mime-type-upgrade-routine.php" );
 require_once( AWPCP_DIR . "/includes/upgrade/class-manual-upgrade-tasks-manager.php" );
 require_once( AWPCP_DIR . "/includes/upgrade/class-manual-upgrade-tasks.php" );
