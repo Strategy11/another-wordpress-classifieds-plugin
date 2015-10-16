@@ -255,7 +255,8 @@ class AWPCP_Installer {
 
         // Upgrade for tracking poster's IP address
         if ( ! awpcp_column_exists( AWPCP_TABLE_ADS, 'posterip' ) ) {
-            $wpdb->query("ALTER TABLE " . AWPCP_TABLE_ADS . "  ADD `posterip` VARCHAR(15) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL");
+            $sql = $this->database_helper->replace_charset_and_collate( "ALTER TABLE " . AWPCP_TABLE_ADS . "  ADD `posterip` VARCHAR(15) CHARACTER SET <charset> COLLATE <collate> DEFAULT NULL" );
+            $wpdb->query( $sql );
         }
 
         if ( ! awpcp_column_exists( AWPCP_TABLE_ADS, 'flagged' ) ) {
@@ -273,7 +274,8 @@ class AWPCP_Installer {
         }
 
         if ( ! awpcp_column_exists( AWPCP_TABLE_ADFEES, 'categories' ) ) {
-            $wpdb->query("ALTER TABLE " . AWPCP_TABLE_ADFEES . "  ADD `categories` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci");
+            $sql = $this->database_helper->replace_charset_and_collate( "ALTER TABLE " . AWPCP_TABLE_ADFEES . "  ADD `categories` TEXT CHARACTER SET <charset> COLLATE <collate>" );
+            $wpdb->query( $sql );
         }
 
 
@@ -490,7 +492,8 @@ class AWPCP_Installer {
 
         // Add new field websiteurl to awpcp_ads
         if ( ! awpcp_column_exists( AWPCP_TABLE_ADS, 'websiteurl' ) ) {
-            $wpdb->query("ALTER TABLE " . AWPCP_TABLE_ADS . "  ADD `websiteurl` VARCHAR( 500 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL AFTER `ad_contact_email`");
+            $sql = $this->database_helper->replace_charset_and_collate( "ALTER TABLE " . AWPCP_TABLE_ADS . "  ADD `websiteurl` VARCHAR( 500 ) CHARACTER SET <charset> COLLATE <collate> NOT NULL AFTER `ad_contact_email`" );
+            $wpdb->query( $sql );
         }
 
         $wpdb->query("ALTER TABLE " . AWPCP_TABLE_ADS . "  DROP INDEX `titdes`");
@@ -508,7 +511,8 @@ class AWPCP_Installer {
 
         // Ad new field add_county_village to awpcp_ads
         if ( ! awpcp_column_exists( AWPCP_TABLE_ADS, 'ad_county_village' ) ) {
-            $wpdb->query("ALTER TABLE " . AWPCP_TABLE_ADS . "  ADD `ad_county_village` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL AFTER `ad_country`");
+            $sql = $this->database_helper->replace_charset_and_collate( "ALTER TABLE " . AWPCP_TABLE_ADS . "  ADD `ad_county_village` VARCHAR(255) CHARACTER SET <charset> COLLATE <collate> NOT NULL AFTER `ad_country`" );
+            $wpdb->query( $sql );
         }
 
         // Add field ad_views to table awpcp_ads to track ad views
@@ -592,12 +596,12 @@ class AWPCP_Installer {
         // create Pages table and map pagename to WP Pages IDs
         $table = $wpdb->get_var("SHOW TABLES LIKE '" . AWPCP_TABLE_PAGES . "'");
         if (strcmp($table, AWPCP_TABLE_PAGES) != 0) {
-            $sql = 'CREATE TABLE IF NOT EXISTS ' . AWPCP_TABLE_PAGES . " (
-                `page` VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+            $table_definition = 'CREATE TABLE IF NOT EXISTS ' . AWPCP_TABLE_PAGES . " (
+                `page` VARCHAR(100) CHARACTER SET <charset> COLLATE <collate> NOT NULL,
                 `id` INT(10) NOT NULL,
                 PRIMARY KEY  (`page`)
-            ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;";
-            dbDelta($sql);
+            ) ENGINE=MyISAM DEFAULT CHARSET=<charset> COLLATE=<collate>;";
+            dbDelta( $this->database_helper->replace_charset_and_collate( $table_definition ) );
         }
 
         // map pagenames to ids
@@ -739,7 +743,8 @@ class AWPCP_Installer {
 
         // Upgrade posterip for IPv6 address space
         if ( awpcp_column_exists( AWPCP_TABLE_ADS, 'posterip' ) ) {
-            $wpdb->query("ALTER TABLE " . AWPCP_TABLE_ADS . "  MODIFY `posterip` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT ''");
+            $sql = $this->database_helper->replace_charset_and_collate( "ALTER TABLE " . AWPCP_TABLE_ADS . "  MODIFY `posterip` VARCHAR(50) CHARACTER SET <charset> COLLATE <collate> NOT NULL DEFAULT ''" );
+            $wpdb->query( $sql );
         }
     }
 
@@ -751,7 +756,8 @@ class AWPCP_Installer {
         // upgrade the field again
         // https://github.com/drodenbaugh/awpcp/issues/347#issuecomment-13159975
         if ( awpcp_column_exists( AWPCP_TABLE_ADS, 'posterip' ) ) {
-            $wpdb->query("ALTER TABLE " . AWPCP_TABLE_ADS . "  MODIFY `posterip` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT ''");
+            $sql = $this->database_helper->replace_charset_and_collate( "ALTER TABLE " . AWPCP_TABLE_ADS . "  MODIFY `posterip` VARCHAR(50) CHARACTER SET <charset> COLLATE <collate> NOT NULL DEFAULT ''" );
+            $wpdb->query( $sql );
         }
     }
 
@@ -858,9 +864,10 @@ class AWPCP_Installer {
         $this->columns->create( AWPCP_TABLE_ADS, 'verified_at', "DATETIME" );
 
         // add payer email column
-        $this->columns->create( AWPCP_TABLE_ADS, 'payer_email', "VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' AFTER `payment_status`" );
-        $this->columns->create( AWPCP_TABLE_PAYMENTS, 'payment_gateway', "VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' AFTER `payment_status`" );
-        $this->columns->create( AWPCP_TABLE_PAYMENTS, 'payer_email', "VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' AFTER `payment_status`" );
+        $column_definition = $this->database_helper->replace_charset_and_collate( "VARCHAR(255) CHARACTER SET <charset> COLLATE <collate> NOT NULL DEFAULT '' AFTER `payment_status`" );
+        $this->columns->create( AWPCP_TABLE_ADS, 'payer_email', $column_definition );
+        $this->columns->create( AWPCP_TABLE_PAYMENTS, 'payment_gateway', $column_definition );
+        $this->columns->create( AWPCP_TABLE_PAYMENTS, 'payer_email', $column_definition );
 
         if ( awpcp_column_exists( AWPCP_TABLE_ADS, 'payer_email' )   ) {
             $wpdb->query( "UPDATE " . AWPCP_TABLE_ADS . " SET payer_email = ad_contact_email" );
@@ -875,8 +882,10 @@ class AWPCP_Installer {
         global $wpdb;
 
         if ( ! awpcp_column_exists( AWPCP_TABLE_MEDIA, 'status' ) ) {
-            $query = 'ALTER TABLE ' . AWPCP_TABLE_MEDIA . ' ADD `status` VARCHAR(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT %s AFTER `enabled`';
-            $wpdb->query( $wpdb->prepare( $query, AWPCP_Media::STATUS_APPROVED ) );
+            $sql = 'ALTER TABLE ' . AWPCP_TABLE_MEDIA . ' ADD `status` VARCHAR(20) CHARACTER SET <charset> COLLATE <collate> NOT NULL DEFAULT %s AFTER `enabled`';
+            $sql = $wpdb->prepare( $sql, AWPCP_Media::STATUS_APPROVED );
+            $sql = $this->database_helper->replace_charset_and_collate( $sql );
+            $wpdb->query( $sql );
         }
 
         if ( get_awpcp_option( 'imagesapprove' ) ) {
@@ -949,8 +958,8 @@ class AWPCP_Installer {
         dbDelta( $this->create_tasks_table );
 
         if ( ! awpcp_column_exists( AWPCP_TABLE_MEDIA, 'metadata' ) ) {
-            $query = 'ALTER TABLE ' . AWPCP_TABLE_MEDIA . " ADD `metadata` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' AFTER `is_primary`";
-            $wpdb->query( $query );
+            $sql = $this->database_helper->replace_charset_and_collate( 'ALTER TABLE ' . AWPCP_TABLE_MEDIA . " ADD `metadata` TEXT CHARACTER SET <charset> COLLATE <collate> NOT NULL DEFAULT '' AFTER `is_primary`" );
+            $wpdb->query( $sql );
         }
 
         awpcp()->manual_upgrades->enable_upgrade_task( 'awpcp-calculate-image-dimensions' );
@@ -969,8 +978,8 @@ class AWPCP_Installer {
         global $wpdb;
 
         if ( ! awpcp_column_exists( AWPCP_TABLE_ADFEES, 'description' ) ) {
-            $query = 'ALTER TABLE ' . AWPCP_TABLE_ADFEES . ' ADD `description` TEXT COLLATE utf8_general_ci NOT NULL AFTER `adterm_name`';
-            $wpdb->query( $query );
+            $sql = $this->database_helper->replace_charset_and_collate( 'ALTER TABLE ' . AWPCP_TABLE_ADFEES . ' ADD `description` TEXT CHARACTER SET <charset> COLLATE <collate> NOT NULL AFTER `adterm_name`' );
+            $wpdb->query( $sql );
         }
     }
 }
