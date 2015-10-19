@@ -278,6 +278,7 @@ require_once( AWPCP_DIR . '/includes/class-edit-listing-link-placeholder.php' );
 
 require_once( AWPCP_DIR . "/includes/class-listings-api.php" );
 require_once( AWPCP_DIR . "/includes/class-cookie-manager.php" );
+require_once( AWPCP_DIR . "/includes/class-default-login-form-implementation.php" );
 require_once( AWPCP_DIR . "/includes/class-fees-collection.php" );
 require_once( AWPCP_DIR . "/includes/class-listing-authorization.php" );
 require_once( AWPCP_DIR . "/includes/class-listing-payment-transaction-handler.php" );
