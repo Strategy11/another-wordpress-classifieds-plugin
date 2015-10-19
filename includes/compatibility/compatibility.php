@@ -13,6 +13,10 @@ class AWPCP_Compatibility {
             $this->load_plugin_integration_used_in_frontend_screens();
         }
 
+        if ( !is_user_logged_in() ) {
+            $this->load_plugin_integrations_for_anonymous_users();
+        }
+
         $this->load_content_aware_sidebars_integration();
         $this->load_woocommerce_integration();
     }
@@ -36,6 +40,11 @@ class AWPCP_Compatibility {
 
         $integration = awpcp_add_meta_tags_plugin_integration();
         add_filter( 'awpcp-should-generate-opengraph-tags', array( $integration, 'should_generate_opengraph_tags' ), 10, 2 );
+    }
+
+    private function load_plugin_integrations_for_anonymous_users() {
+        $integration = awpcp_wp_members_plugin_integration();
+        add_filter( 'awpcp-login-form-implementation', array( $integration, 'get_login_form_implementation' ) );
     }
 
     private function load_content_aware_sidebars_integration() {

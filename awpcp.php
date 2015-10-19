@@ -98,6 +98,8 @@ require_once(AWPCP_DIR . "/includes/compatibility/class-facebook-plugin-integrat
 require_once( AWPCP_DIR . '/includes/compatibility/class-facebook-all-plugin-integration.php' );
 require_once( AWPCP_DIR . "/includes/compatibility/class-yoast-wordpress-seo-plugin-integration.php" );
 require_once( AWPCP_DIR . "/includes/compatibility/class-woocommerce-plugin-integration.php" );
+require( AWPCP_DIR . "/includes/compatibility/class-wp-members-login-form-implementation.php");
+require( AWPCP_DIR . "/includes/compatibility/class-wp-members-plugin-integration.php");
 
 require_once( AWPCP_DIR . "/includes/functions/settings.php" );
 
