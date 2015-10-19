@@ -388,14 +388,19 @@ function awpcp_login_form($message=null, $redirect=null) {
 		$redirect = awpcp_current_url();
 	}
 
-	$registration_url = get_awpcp_option( 'registrationurl' );
-	if ( empty( $registration_url ) ) {
+	$custom_registration_url = get_awpcp_option( 'registrationurl' );
+
+	if ( empty( $custom_registration_url ) ) {
 		if ( function_exists( 'wp_registration_url' ) ) {
 			$registration_url = wp_registration_url();
 		} else {
 			$registration_url = site_url( 'wp-login.php?action=register', 'login' );
 		}
+	} else {
+		$registration_url = $custom_registration_url;
 	}
+
+	$show_register_link = !empty( $custom_registration_url ) || get_option( 'users_can_register' );
 
 	$redirect_to = urlencode( add_query_arg( 'register', true, $redirect ) );
 	$register_url = add_query_arg( array( 'redirect_to' => $redirect_to ), $registration_url );
