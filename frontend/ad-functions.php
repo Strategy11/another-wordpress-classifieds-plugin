@@ -388,27 +388,13 @@ function awpcp_login_form($message=null, $redirect=null) {
 		$redirect = awpcp_current_url();
 	}
 
-	$registration_url = get_awpcp_option( 'registrationurl' );
-	if ( empty( $registration_url ) ) {
-		if ( function_exists( 'wp_registration_url' ) ) {
-			$registration_url = wp_registration_url();
-		} else {
-			$registration_url = site_url( 'wp-login.php?action=register', 'login' );
-		}
+	$login_form = apply_filters( 'awpcp-login-form-implementation', null );
+
+	if ( ! is_object( $login_form ) || ! method_exists( $login_form, 'render' ) ) {
+		$login_form = awpcp_default_login_form_implementation();
 	}
 
-	$redirect_to = urlencode( add_query_arg( 'register', true, $redirect ) );
-	$register_url = add_query_arg( array( 'redirect_to' => $redirect_to ), $registration_url );
-
-	$redirect_to = urlencode( add_query_arg( 'reset', true, $redirect ) );
-	$lost_password_url = add_query_arg( array( 'redirect_to' => $redirect_to ), wp_lostpassword_url() );
-
-	ob_start();
-		include( AWPCP_DIR . '/frontend/templates/login-form.tpl.php' );
-		$form = ob_get_contents();
-	ob_end_clean();
-
- 	return $form;
+	return $login_form->render( $redirect, $message );
 }
 
 

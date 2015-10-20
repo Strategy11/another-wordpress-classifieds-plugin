@@ -4,7 +4,7 @@
  * Plugin Name: Another Wordpress Classifieds Plugin (AWPCP)
  * Plugin URI: http://www.awpcp.com
  * Description: AWPCP - A plugin that provides the ability to run a free or paid classified ads service on your wordpress blog. <strong>!!!IMPORTANT!!!</strong> Whether updating a previous installation of Another Wordpress Classifieds Plugin or installing Another Wordpress Classifieds Plugin for the first time, please backup your wordpress database before you install/uninstall/activate/deactivate/upgrade Another Wordpress Classifieds Plugin.
- * Version: 3.5.4-dev-49
+ * Version: 3.5.4-dev-50
  * Author: D. Rodenbaugh
  * License: GPLv2 or any later version
  * Author URI: http://www.skylineconsult.com
@@ -98,6 +98,8 @@ require_once(AWPCP_DIR . "/includes/compatibility/class-facebook-plugin-integrat
 require_once( AWPCP_DIR . '/includes/compatibility/class-facebook-all-plugin-integration.php' );
 require_once( AWPCP_DIR . "/includes/compatibility/class-yoast-wordpress-seo-plugin-integration.php" );
 require_once( AWPCP_DIR . "/includes/compatibility/class-woocommerce-plugin-integration.php" );
+require( AWPCP_DIR . "/includes/compatibility/class-wp-members-login-form-implementation.php");
+require( AWPCP_DIR . "/includes/compatibility/class-wp-members-plugin-integration.php");
 
 require_once( AWPCP_DIR . "/includes/functions/settings.php" );
 
@@ -278,6 +280,7 @@ require_once( AWPCP_DIR . '/includes/class-edit-listing-link-placeholder.php' );
 
 require_once( AWPCP_DIR . "/includes/class-listings-api.php" );
 require_once( AWPCP_DIR . "/includes/class-cookie-manager.php" );
+require_once( AWPCP_DIR . "/includes/class-default-login-form-implementation.php" );
 require_once( AWPCP_DIR . "/includes/class-fees-collection.php" );
 require_once( AWPCP_DIR . "/includes/class-listing-authorization.php" );
 require_once( AWPCP_DIR . "/includes/class-listing-payment-transaction-handler.php" );
