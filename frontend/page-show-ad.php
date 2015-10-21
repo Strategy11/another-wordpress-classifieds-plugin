@@ -139,10 +139,9 @@ function showad( $adid=null, $omitmenu=false, $preview=false, $send_email=true, 
 	if (!empty($adid)) {
 		// filters to provide alternative method of storing custom
 		// layouts (e.g. can be outside of this plugin's directory)
-		$prefix = 'awpcp_single_ad_template';
-		if (has_action("{$prefix}_action") || has_filter("{$prefix}_filter")) {
-			do_action("{$prefix}_action");
-			return apply_filters("{$prefix}_filter");
+		if ( has_action( 'awpcp_single_ad_template_action' ) || has_filter( 'awpcp_single_ad_template_filter' ) ) {
+			do_action( 'awpcp_single_ad_template_action' );
+			return apply_filters( 'awpcp_single_ad_template_filter' );
 
 		} else {
 			$results = AWPCP_Ad::query( array( 'where' => $wpdb->prepare( 'ad_id = %d', $adid ) ) );
