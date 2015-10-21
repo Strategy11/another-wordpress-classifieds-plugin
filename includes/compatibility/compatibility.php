@@ -13,10 +13,6 @@ class AWPCP_Compatibility {
             $this->load_plugin_integration_used_in_frontend_screens();
         }
 
-        if ( !is_user_logged_in() ) {
-            $this->load_plugin_integrations_for_anonymous_users();
-        }
-
         $this->load_content_aware_sidebars_integration();
         $this->load_woocommerce_integration();
     }
@@ -42,11 +38,6 @@ class AWPCP_Compatibility {
         add_filter( 'awpcp-should-generate-opengraph-tags', array( $integration, 'should_generate_opengraph_tags' ), 10, 2 );
     }
 
-    private function load_plugin_integrations_for_anonymous_users() {
-        $integration = awpcp_wp_members_plugin_integration();
-        add_filter( 'awpcp-login-form-implementation', array( $integration, 'get_login_form_implementation' ) );
-    }
-
     private function load_content_aware_sidebars_integration() {
         if ( class_exists( 'ContentAwareSidebars' ) && class_exists( 'CASModule' ) && class_exists( 'CAS_Walker_Checklist' ) ) {
             require_once( AWPCP_DIR . '/includes/compatibility/class-content-aware-sidebars-listings-categories-module.php' );
@@ -58,5 +49,16 @@ class AWPCP_Compatibility {
     private function load_woocommerce_integration() {
         $woocommerce_integration = awpcp_woocommerce_plugin_integration();
         add_filter( 'woocommerce_prevent_admin_access', array( $woocommerce_integration, 'filter_prevent_admin_access' ) );
+    }
+
+    public function load_plugin_integrations_on_init() {
+        if ( !is_user_logged_in() ) {
+            $this->load_plugin_integrations_for_anonymous_users();
+        }
+    }
+
+    private function load_plugin_integrations_for_anonymous_users() {
+        $integration = awpcp_wp_members_plugin_integration();
+        add_filter( 'awpcp-login-form-implementation', array( $integration, 'get_login_form_implementation' ) );
     }
 }

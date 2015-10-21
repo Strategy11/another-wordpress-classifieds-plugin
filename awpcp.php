@@ -462,6 +462,7 @@ class AWPCP {
 
         add_action( 'generate_rewrite_rules', array( $this, 'clear_categories_list_cache' ) );
 
+        add_action( 'init', array( $this->compatibility, 'load_plugin_integrations_on_init' ) );
 		add_action( 'init', array($this, 'init' ));
 		add_action( 'init', array($this, 'register_custom_style'), 1000000 );
 
