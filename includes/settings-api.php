@@ -1045,8 +1045,12 @@ class AWPCP_Settings_API {
 				echo '<input class="button-secondary" type="submit" name="awpcp-activate-' . $module_slug . '-license" value="' . __( 'Activate', 'another-wordpress-classifieds-plugin' ) . '"/>';
 				echo '<br>' . str_replace( '<license-status>', '<span class="awpcp-license-status awpcp-license-inactive">' . __( 'inactive', 'another-wordpress-classifieds-plugin' ) . '</span>.', __( 'Status: <license-status>', 'another-wordpress-classifieds-plugin' ) );
 			} else {
-				echo '<input class="button-secondary" type="submit" name="awpcp-check-' . $module_slug . '-license" value="' . __( 'Check License Status', 'another-wordpress-classifieds-plugin' ) . '"/>';
-				echo '<br>' . __( "Click the button above to check the status of your license. Please contact customer support if you think this is a mistake.", 'another-wordpress-classifieds-plugin' );
+				echo '<input class="button-secondary" type="submit" name="awpcp-activate-' . $module_slug . '-license" value="' . __( 'Activate', 'another-wordpress-classifieds-plugin' ) . '"/>';
+
+				$contact_url = 'http://awpcp.com/contact';
+				$contact_message = __( "Click the button above to check the status of your license. Please <contact-link>contact customer support</a> if you think the reported status is wrong.", 'another-wordpress-classifieds-plugin' );
+
+				echo '<br>' . str_replace( '<contact-link>', '<a href="' . esc_url( $contact_url ) . '" target="_blank">', $contact_message );
 
 				if ( $this->licenses_manager->is_license_expired( $module_name, $module_slug ) ) {
 					echo '<br>' . str_replace( '<license-status>', '<span class="awpcp-license-status awpcp-license-expired">' . __( 'expired', 'another-wordpress-classifieds-plugin' ) . '</span>.', __( 'Status: <license-status>', 'another-wordpress-classifieds-plugin' ) );
