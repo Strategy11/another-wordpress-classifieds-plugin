@@ -23,8 +23,8 @@ class AWPCP_License_Settings_Update_Handler {
         foreach ( $modules as $module_slug => $module ) {
             $license_setting_name = $this->licenses_manager->get_license_setting_name( $module_slug );
 
-            $old_license = $old_settings[ $license_setting_name ];
-            $new_license = $new_settings[ $license_setting_name ];
+            $old_license = isset( $old_settings[ $license_setting_name ] ) ? $old_settings[ $license_setting_name ] : '';
+            $new_license = isset( $new_settings[ $license_setting_name ] ) ? $new_settings[ $license_setting_name ] : '';
 
             if ( strcmp( $new_license, $old_license ) !== 0 ) {
                 $this->update_license_status( $module_slug, $module->name, $new_license );
