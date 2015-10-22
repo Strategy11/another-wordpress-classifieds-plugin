@@ -44,7 +44,11 @@
 
 				<?php if ( $output ): ?>
 				<p class="submit">
+					<?php if ( $group->slug == 'licenses-settings' ): ?>
+					<input type="submit" value="<?php _e('Save Keys and Activate', 'another-wordpress-classifieds-plugin') ?>" class="button-primary" id="submit-bottom" name="submit">
+					<?php else: ?>
 					<input type="submit" value="<?php _e('Save Changes', 'another-wordpress-classifieds-plugin') ?>" class="button-primary" id="submit-bottom" name="submit">
+					<?php endif; ?>
 				</p>
 				<?php endif; ?>
 			</form>
