@@ -59,9 +59,9 @@ class AWPCP_LicensesManager {
 
         try {
             $license_status = $this->get_license_status_from_store( $module_name, $module_slug );
-        } catch ( AWPCP_Exception $e ) {
+        } catch ( AWPCP_Easy_Digital_Downloads_Exception $e ) {
             $license_status = self::LICENSE_STATUS_UNKNOWN;
-            awpcp_flash( $e->format_errors() );
+            awpcp_flash( $e->getMessage() );
         }
 
         $this->update_license_status( $module_slug, $license_status );
@@ -125,9 +125,9 @@ class AWPCP_LicensesManager {
             $response = $this->edd->activate_license( $module_name, $this->get_module_license( $module_slug ) );
             $this->update_license_status( $module_slug, $response->license );
             return $response->license === self::LICENSE_STATUS_VALID;
-        } catch ( AWPCP_Exception $e ) {
+        } catch ( AWPCP_Easy_Digital_Downloads_Exception $e ) {
             $this->drop_license_status( $module_slug );
-            awpcp_flash( $e->format_errors() );
+            awpcp_flash( $e->getMessage() );
             return false;
         }
     }
@@ -142,9 +142,9 @@ class AWPCP_LicensesManager {
             $response = $this->edd->deactivate_license( $module_name, $this->get_module_license( $module_slug ) );
             $this->update_license_status( $module_slug, $response->license );
             return $response->license === self::LICENSE_STATUS_DEACTIVATED;
-        } catch ( AWPCP_Exception $e ) {
+        } catch ( AWPCP_Easy_Digital_Downloads_Exception $e ) {
             $this->drop_license_status( $module_slug );
-            awpcp_flash( $e->format_errors() );
+            awpcp_flash( $e->getMessage() );
             return false;
         }
     }
