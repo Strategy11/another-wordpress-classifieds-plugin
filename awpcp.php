@@ -231,6 +231,7 @@ require_once( AWPCP_DIR . '/includes/media/class-image-file-processor.php' );
 require_once( AWPCP_DIR . '/includes/media/class-image-file-validator.php' );
 require( AWPCP_DIR . '/includes/media/class-image-media-creator.php' );
 require_once( AWPCP_DIR . '/includes/media/class-image-resizer.php' );
+require( AWPCP_DIR . '/includes/media/class-listings-media-uploader-component.php' );
 require_once( AWPCP_DIR . '/includes/media/class-listing-upload-limits.php' );
 require( AWPCP_DIR . '/includes/media/class-listing-media-creator.php' );
 require_once( AWPCP_DIR . "/includes/media/class-media-manager-component.php" );
