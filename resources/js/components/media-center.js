@@ -4,12 +4,12 @@ AWPCP.define( 'awpcp/media-center', [
     'knockout',
     'awpcp/media-manager',
     'awpcp/media-uploader',
-    'awpcp/media-uploader-view',
+    'awpcp/listings-media-uploader-view',
     'awpcp/thumbnails-generator',
     'awpcp/settings',
     'awpcp/jquery-messages'
 ],
-function( $, ko, MediaManager, MediaUploader, MediaUploaderView, ThumbnailsGenerator ) {
+function( $, ko, MediaManager, MediaUploader, ListingsMediaUploaderView, ThumbnailsGenerator ) {
     var MediaCenter = function( container, options ) {
         var self = this;
 
@@ -27,7 +27,7 @@ function( $, ko, MediaManager, MediaUploader, MediaUploaderView, ThumbnailsGener
 
         if ( mediaUploader.length && options.mediaUploaderOptions ) {
             var model = new MediaUploader( { settings: options.mediaUploaderOptions } );
-            var uploader = new MediaUploaderView({
+            var uploader = new ListingsMediaUploaderView({
                 el: mediaUploader,
                 model: model
             });
