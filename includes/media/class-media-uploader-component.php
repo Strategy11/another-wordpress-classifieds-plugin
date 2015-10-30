@@ -1,16 +1,14 @@
 <?php
 
 function awpcp_media_uploader_component() {
-    return new AWPCP_MediaUploaderComponent( awpcp_file_validation_errors(), awpcp()->js );
+    return new AWPCP_MediaUploaderComponent( awpcp()->js );
 }
 
 class AWPCP_MediaUploaderComponent {
 
-    private $validation_errors;
     private $javascript;
 
-    public function __construct( $validation_errors, $javascript ) {
-        $this->validation_errors = $validation_errors;
+    public function __construct( $javascript ) {
         $this->javascript = $javascript;
     }
 

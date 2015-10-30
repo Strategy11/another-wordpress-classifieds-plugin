@@ -63,13 +63,17 @@ class AWPCP_Pages {
     }
 
 	public function place_ad() {
-        do_action('awpcp-shortcode', 'place-ad');
+        if ( ! isset( $this->output['place-ad'] ) ) {
+            do_action('awpcp-shortcode', 'place-ad');
 
-		if ( ! isset( $this->place_ad_page ) ) {
-			$this->place_ad_page = new AWPCP_Place_Ad_Page();
+            if ( ! isset( $this->place_ad_page ) ) {
+                $this->place_ad_page = new AWPCP_Place_Ad_Page();
+            }
+
+            $this->output['place-ad'] = $this->place_ad_page->dispatch();
         }
 
-		return $this->place_ad_page->dispatch();
+		return $this->output['place-ad'];
 	}
 
 	public function edit_ad() {
