@@ -267,6 +267,10 @@ function url_showad($ad_id) {
     return apply_filters( 'awpcp-listing-url', $url, $ad );
 }
 
+function awpcp_get_browse_categories_page_url() {
+    return awpcp_get_page_url( 'browse-categories-page-name' );
+}
+
 /**
  * @since 3.4
  */
@@ -283,7 +287,7 @@ function awpcp_get_browse_category_url_from_id( $category_id ) {
 
 function url_browsecategory( $category ) {
     $permalinks = get_option('permalink_structure');
-    $base_url = awpcp_get_page_url('browse-categories-page-name');
+    $base_url = awpcp_get_browse_categories_page_url();
 
     $cat_id = $category->id;
     $cat_slug = sanitize_title( $category->name );
