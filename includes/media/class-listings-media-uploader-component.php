@@ -3,6 +3,7 @@
 function awpcp_listings_media_uploader_component() {
     return new AWPCP_Listings_Media_Uploader_Component(
         awpcp_media_uploader_component(),
+        awpcp_file_validation_errors(),
         awpcp()->js
     );
 }
@@ -10,10 +11,12 @@ function awpcp_listings_media_uploader_component() {
 class AWPCP_Listings_Media_Uploader_Component {
 
     private $media_uploader_component;
+    private $validation_errors;
     private $javascript;
 
-    public function __construct( $media_uploader_component, $javascript ) {
+    public function __construct( $media_uploader_component, $validation_errors, $javascript ) {
         $this->media_uploader_component = $media_uploader_component;
+        $this->validation_errors = $validation_errors;
         $this->javascript = $javascript;
     }
 
