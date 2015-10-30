@@ -6,7 +6,6 @@ AWPCP.define( 'awpcp/media-center', [
     'awpcp/media-uploader',
     'awpcp/listings-media-uploader-view',
     'awpcp/thumbnails-generator',
-    'awpcp/settings',
     'awpcp/jquery-messages'
 ],
 function( $, ko, MediaManager, MediaUploader, ListingsMediaUploaderView, ThumbnailsGenerator ) {

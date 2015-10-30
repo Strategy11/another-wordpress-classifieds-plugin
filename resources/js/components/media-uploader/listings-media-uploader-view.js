@@ -42,4 +42,6 @@ function( $, MediaUploaderView, settings) {
             this.$restrictions.html( this.model.buildUploadRestrictionsMessage() );
         }
     });
+
+    return ListingsMediaUploaderView;
 } );
