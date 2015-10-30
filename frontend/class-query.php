@@ -13,10 +13,10 @@ function awpcp_query() {
 class AWPCP_Query {
 
     public function is_browse_listings_page() {
-        return $this->queried_object_is_page_that_has_shortcode( 'AWPCPBROWSEADS' );
+        return $this->is_page_that_has_shortcode( 'AWPCPBROWSEADS' );
     }
 
-    private function queried_object_is_page_that_has_shortcode( $shortcode ) {
+    public function is_page_that_has_shortcode( $shortcode ) {
         global $wp_the_query;
 
         if ( ! $wp_the_query || ! $wp_the_query->is_page() ) {
@@ -33,6 +33,6 @@ class AWPCP_Query {
     }
 
     public function is_browse_categories_page() {
-        return $this->queried_object_is_page_that_has_shortcode( 'AWPCPBROWSECATS' );
+        return $this->is_page_that_has_shortcode( 'AWPCPBROWSECATS' );
     }
 }
