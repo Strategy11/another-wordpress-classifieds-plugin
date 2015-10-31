@@ -205,27 +205,11 @@ function is_awpcp_admin_page() {
 }
 
 function is_awpcp_browse_listings_page() {
-    return awpcp_queried_object_is_page_that_has_shortcode( 'AWPCPBROWSEADS' );
-}
-
-function awpcp_queried_object_is_page_that_has_shortcode( $shortcode ) {
-    global $wp_the_query;
-
-    if ( ! $wp_the_query || ! $wp_the_query->is_page() ) {
-        return false;
-    }
-
-    $page = $wp_the_query->get_queried_object();
-
-    if ( ! $page || ! has_shortcode( $page->post_content, $shortcode ) ) {
-        return false;
-    }
-
-    return true;
+    return awpcp_query()->is_browse_listings_page();
 }
 
 function is_awpcp_browse_categories_page() {
-    return awpcp_queried_object_is_page_that_has_shortcode( 'AWPCPBROWSECATS' );
+    return awpcp_query()->is_browse_categories_page();
 }
 
 function url_showad($ad_id) {
@@ -283,6 +267,10 @@ function url_showad($ad_id) {
     return apply_filters( 'awpcp-listing-url', $url, $ad );
 }
 
+function awpcp_get_browse_categories_page_url() {
+    return awpcp_get_page_url( 'browse-categories-page-name' );
+}
+
 /**
  * @since 3.4
  */
@@ -299,7 +287,7 @@ function awpcp_get_browse_category_url_from_id( $category_id ) {
 
 function url_browsecategory( $category ) {
     $permalinks = get_option('permalink_structure');
-    $base_url = awpcp_get_page_url('browse-categories-page-name');
+    $base_url = awpcp_get_browse_categories_page_url();
 
     $cat_id = $category->id;
     $cat_slug = sanitize_title( $category->name );
