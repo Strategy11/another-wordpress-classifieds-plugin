@@ -364,10 +364,16 @@ function awpcp_pagination($config, $url) {
 
 	extract(shortcode_atts(array('offset' => 0, 'results' => 10, 'total' => 10), $config));
 
-	$pages = ceil($total / $results);
-	$page = floor($offset / $results) + 1;
     $items = array();
     $radius = 5;
+
+    if ( $results > 0 ) {
+        $pages = ceil($total / $results);
+        $page = floor($offset / $results) + 1;
+    } else {
+        $pages = 1;
+        $page = 1;
+    }
 
     if ( ( $page - $radius ) > 2 ) {
         $items[] = awpcp_render_pagination_item( '&laquo;&laquo;', 1, $results, $params, $url );
