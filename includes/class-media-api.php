@@ -116,17 +116,7 @@ class AWPCP_MediaAPI {
             return false;
         }
 
-        $info = awpcp_utf8_pathinfo( AWPCPUPLOADDIR . $media->name );
-
-        $filenames = apply_filters( 'awpcp-file-associated-paths', array(
-            AWPCPUPLOADDIR . "{$media->path}",
-            AWPCPUPLOADDIR . "{$info['basename']}",
-            AWPCPUPLOADDIR . "{$info['filename']}-large.{$info['extension']}",
-            AWPCPTHUMBSUPLOADDIR . "{$info['basename']}",
-            AWPCPTHUMBSUPLOADDIR . "{$info['filename']}-primary.{$info['extension']}",
-        ), $media );
-
-        foreach ( $filenames as $filename ) {
+        foreach ( $media->get_associated_paths() as $filename ) {
             if ( file_exists( $filename ) ) {
                 @unlink( $filename );
             }
