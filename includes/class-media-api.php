@@ -7,7 +7,7 @@ function awpcp_media_api() {
 class AWPCP_MediaAPI {
     private static $instance = null;
 
-    private function __construct() {}
+    public function __construct() {}
 
     public static function instance() {
         if ( is_null( self::$instance ) ) {
