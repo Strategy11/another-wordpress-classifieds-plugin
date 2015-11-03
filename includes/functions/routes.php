@@ -410,7 +410,7 @@ function awpcp_get_view_categories_url() {
  *
  * @since 3.5.4
  */
-function awpcp_get_page_link( $page_or_page_id ) {
+function awpcp_get_page_link( $page_or_page_id, $trailingslashit = false ) {
     global $wp_rewrite;
 
     $page = get_post( $page_or_page_id );
@@ -423,6 +423,7 @@ function awpcp_get_page_link( $page_or_page_id ) {
 
     if ( !empty( $permalink_structure ) ) {
         $link = awpcp_get_url_with_page_permastruct( get_page_uri( $page ) );
+        $link = $trailingslashit ? user_trailingslashit( $link, 'page' ) : rtrim( $link, '/' );
     } else {
         $link = home_url( '?page_id=' . $page->ID );
     }
