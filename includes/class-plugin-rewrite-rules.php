@@ -4,7 +4,7 @@
  * @since 3.5.4
  */
 function awpcp_plugin_rewrite_rules() {
-    return new AWPCP_Plugin_Rewrite_Rules();
+    return new AWPCP_Plugin_Rewrite_Rules( awpcp_rewrite_rules_helper() );
 }
 
 /**
@@ -12,13 +12,10 @@ function awpcp_plugin_rewrite_rules() {
  */
 class AWPCP_Plugin_Rewrite_Rules {
 
-    /**
-     * WP_Rewrite is not available when plugins are loaded. The dependency
-     * will be hidden in this method until the minimum supported version of
-     * WordPress guarantees that flush_rules is not executed before wp_loaded.
-     */
-    public function rewrite() {
-        return $GLOBALS['wp_rewrite'];
+    private $rewrite_rules_helper;
+
+    public function __construct( $rewrite_rules_helper ) {
+        $this->rewrite_rules_helper = $rewrite_rules_helper;
     }
 
     public function add_rewrite_rules( $rules ) {
@@ -47,39 +44,28 @@ class AWPCP_Plugin_Rewrite_Rules {
 
     private function add_api_rewrite_rules() {
         // Payments API rewrite rules
-        $this->add_rewrite_rule(
+        $this->rewrite_rules_helper->add_page_rewrite_rule(
             'awpcpx/payments/return/([a-zA-Z0-9]+)',
             'index.php?awpcpx=1&awpcp-module=payments&awpcp-action=return&awpcp-txn=$matches[1]',
             'top'
         );
-        $this->add_rewrite_rule(
+        $this->rewrite_rules_helper->add_page_rewrite_rule(
             'awpcpx/payments/notify/([a-zA-Z0-9]+)',
             'index.php?awpcpx=1&awpcp-module=payments&awpcp-action=notify&awpcp-txn=$matches[1]',
             'top'
         );
-        $this->add_rewrite_rule(
+        $this->rewrite_rules_helper->add_page_rewrite_rule(
             'awpcpx/payments/cancel/([a-zA-Z0-9]+)',
             'index.php?awpcpx=1&awpcp-module=payments&awpcp-action=cancel&awpcp-txn=$matches[1]',
             'top'
         );
 
         // Ad Email Verification rewrite rules
-        $this->add_rewrite_rule(
+        $this->rewrite_rules_helper->add_page_rewrite_rule(
             'awpcpx/listings/verify/([0-9]+)/([a-zA-Z0-9]+)',
             'index.php?awpcpx=1&awpcp-module=listings&awpcp-action=verify&awpcp-ad=$matches[1]&awpcp-hash=$matches[2]',
             'top'
         );
-    }
-
-    /**
-     * @see WP's add_rewrite_rule().
-     */
-    private function add_rewrite_rule( $pattern, $redirect, $position ) {
-        $this->rewrite()->add_rule( $this->create_rewrite_rule_regex( $pattern ), $redirect, $position );
-    }
-
-    private function create_rewrite_rule_regex( $pattern ) {
-        return str_replace( '%pagename%', $pattern, $this->rewrite()->get_page_permastruct() );
     }
 
     private function add_plugin_pages_rewrite_rules( $pages_uris ) {
@@ -92,7 +78,7 @@ class AWPCP_Plugin_Rewrite_Rules {
 
             foreach ( $rules as $rule ) {
                 $regex = str_replace( '<page-uri>', $pages_uris[ $page_ref ], $rule['regex'] );
-                $this->add_rewrite_rule( $regex, $rule['redirect'], $rule['position'] );
+                $this->rewrite_rules_helper->add_page_rewrite_rule( $regex, $rule['redirect'], $rule['position'] );
             }
         }
     }

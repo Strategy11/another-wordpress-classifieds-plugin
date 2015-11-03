@@ -292,6 +292,7 @@ require_once( AWPCP_DIR . "/includes/class-media-api.php" );
 require_once( AWPCP_DIR . "/includes/class-missing-pages-finder.php" );
 require_once( AWPCP_DIR . "/includes/class-pages-creator.php" );
 require( AWPCP_DIR . '/includes/class-plugin-rewrite-rules.php' );
+require( AWPCP_DIR . '/includes/class-rewrite-rules-helper.php' );
 require_once( AWPCP_DIR . "/includes/class-roles-and-capabilities.php" );
 require_once( AWPCP_DIR . "/includes/class-secure-url-redirection-handler.php" );
 require_once( AWPCP_DIR . "/includes/class-users-collection.php" );
