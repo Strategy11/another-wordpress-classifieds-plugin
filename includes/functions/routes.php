@@ -427,17 +427,33 @@ function awpcp_get_page_link( $page_or_page_id ) {
         return '';
     }
 
-    $link = $wp_rewrite->get_page_permastruct();
+    $permalink_structure = $wp_rewrite->get_page_permastruct();
 
-    if ( !empty( $link ) ) {
-        $link = str_replace( '%pagename%', get_page_uri( $page ), $link );
-        $link = home_url( $link );
-        $link = user_trailingslashit( $link, 'page' );
+    if ( !empty( $permalink_structure ) ) {
+        $link = awpcp_get_url_with_page_permastruct( get_page_uri( $page ) );
     } else {
         $link = home_url( '?page_id=' . $page->ID );
     }
 
     return $link;
+}
+
+/**
+ * Necessary to generate custom URLs, like those for awpcpx endpoints,
+ * that work when PATHINFO permalinks are enabled.
+ *
+ * @see https://codex.wordpress.org/Using_Permalinks#PATHINFO:_.22Almost_Pretty.22
+ * @since 3.5.4
+ */
+function awpcp_get_url_with_page_permastruct( $path ) {
+    global $wp_rewrite;
+
+    $permalink_structure = $wp_rewrite->get_page_permastruct();
+
+    $url = str_replace( '%pagename%', ltrim( $path, '/' ), $permalink_structure );
+    $url = home_url( $url );
+
+    return $url;
 }
 
 /**
@@ -517,7 +533,7 @@ function awpcp_get_email_verification_url( $ad_id ) {
     $hash = awpcp_get_email_verification_hash( $ad_id );
 
     if ( get_option( 'permalink_structure' ) ) {
-        return home_url( "/awpcpx/listings/verify/{$ad_id}/$hash" );
+        return awpcp_get_url_with_page_permastruct( "/awpcpx/listings/verify/{$ad_id}/$hash" );
     } else {
         $params = array(
             'awpcpx' => true,
