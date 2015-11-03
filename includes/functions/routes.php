@@ -345,15 +345,7 @@ function awpcp_get_main_page_name() {
  * is also the home page.
  */
 function awpcp_get_main_page_url() {
-    $id = awpcp_get_page_id_by_ref('main-page-name');
-
-    if (get_option('permalink_structure')) {
-        $url = home_url(get_page_uri($id));
-    } else {
-        $url = add_query_arg('page_id', $id, home_url());
-    }
-
-    return user_trailingslashit($url);
+    return awpcp_get_page_url( 'main-page-name', true );
 }
 
 /**
