@@ -49,7 +49,7 @@ class AWPCP_PaymentsAPI {
 
     private function get_url($action, $transaction) {
         if (get_option('permalink_structure')) {
-            return home_url("/awpcpx/payments/$action/{$transaction->id}");
+            return awpcp_get_url_with_page_permastruct( "/awpcpx/payments/$action/{$transaction->id}" );
         } else {
             $params = array(
                 'awpcpx' => true,
