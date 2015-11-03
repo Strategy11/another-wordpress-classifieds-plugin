@@ -393,19 +393,51 @@ function awpcp_get_page_url($pagename, $trailingslashit=false) {
  * @since 3.0.2
  */
 function awpcp_get_view_categories_url() {
-    $permalinks = get_option('permalink_structure');
-    $main_page_id = awpcp_get_page_id_by_ref('main-page-name');
-    $page_name = get_awpcp_option('view-categories-page-name');
-    $slug = sanitize_title($page_name);
+    global $wp_rewrite;
 
-    if ( !empty( $permalinks ) ) {
-        $url = sprintf( '%s/%s', trim( home_url( get_page_uri( $main_page_id ) ), '/' ), $slug );
-        $url = user_trailingslashit( $url );
+    $permalink_structure = $wp_rewrite->get_page_permastruct();
+    $main_page_id = awpcp_get_page_id_by_ref( 'main-page-name' );
+
+    $url = awpcp_get_page_link( $main_page_id );
+
+    if ( !empty( $permalink_structure ) ) {
+        $page_name = get_awpcp_option('view-categories-page-name');
+        $page_slug = sanitize_title( $page_name );
+
+        $url = rtrim( $url, '/' );
+        $url = user_trailingslashit( "$url/$page_slug", 'page' );
     } else {
-        $url = add_query_arg( array( 'page_id' => $main_page_id, 'layout' => 2 ), home_url('/') );
+        $url = add_query_arg( 'layout', 2, $url );
     }
 
     return $url;
+}
+
+/**
+ * Based on WP's _get_page_link().
+ *
+ * @since 3.5.4
+ */
+function awpcp_get_page_link( $page_or_page_id ) {
+    global $wp_rewrite;
+
+    $page = get_post( $page_or_page_id );
+
+    if ( ! is_a( $page, 'WP_Post' ) ) {
+        return '';
+    }
+
+    $link = $wp_rewrite->get_page_permastruct();
+
+    if ( !empty( $link ) ) {
+        $link = str_replace( '%pagename%', get_page_uri( $page ), $link );
+        $link = home_url( $link );
+        $link = user_trailingslashit( $link, 'page' );
+    } else {
+        $link = home_url( '?page_id=' . $page->ID );
+    }
+
+    return $link;
 }
 
 /**
