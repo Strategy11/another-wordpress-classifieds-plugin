@@ -1410,6 +1410,14 @@ function awpcp_pages_with_rewrite_rules() {
 	);
 }
 
+/**
+ * @since 3.5.4
+ */
+function awpcp_create_page_rewrite_rule_regex( $pattern ) {
+    global $wp_rewrite;
+    return str_replace( '%pagename%', $pattern, $wp_rewrite->get_page_permastruct() );
+}
+
 function awpcp_add_rewrite_rules($rules) {
 	$pages = awpcp_pages_with_rewrite_rules();
 	$patterns = array();
@@ -1436,56 +1444,78 @@ function awpcp_add_rewrite_rules($rules) {
 
 	if (isset($patterns['show-ads-page-name'])) {
         add_rewrite_rule(
-            '(' . $patterns['show-ads-page-name'] . ')/(\d+)',
+            awpcp_create_page_rewrite_rule_regex( '(' . $patterns['show-ads-page-name'] . ')/(\d+)' ),
             'index.php?pagename=$matches[1]&id=$matches[2]',
             'top'
         );
 	}
 
 	if (isset($patterns['reply-to-ad-page-name'])) {
-		add_rewrite_rule('('.$patterns['reply-to-ad-page-name'].')/(.+?)/(.+?)',
-						 'index.php?pagename=$matches[1]&id=$matches[2]', 'top');
+		add_rewrite_rule(
+            awpcp_create_page_rewrite_rule_regex( '('.$patterns['reply-to-ad-page-name'].')/(.+?)/(.+?)' ),
+            'index.php?pagename=$matches[1]&id=$matches[2]',
+            'top'
+        );
 	}
 
     if ( isset( $patterns['edit-ad-page-name'] ) ) {
         add_rewrite_rule(
-            '(' . $patterns['edit-ad-page-name'] . ')(?:/([0-9]+))?/?$',
+            awpcp_create_page_rewrite_rule_regex( '(' . $patterns['edit-ad-page-name'] . ')(?:/([0-9]+))?/?$' ),
             'index.php?pagename=$matches[1]&id=$matches[2]',
             'top'
         );
     }
 
 	if (isset($patterns['browse-categories-page-name'])) {
-		add_rewrite_rule('('.$patterns['browse-categories-page-name'].')/(.+?)/(.+?)',
-						 'index.php?pagename=$matches[1]&cid=$matches[2]&a=browsecat',
-						 'top');
+		add_rewrite_rule(
+            awpcp_create_page_rewrite_rule_regex( '('.$patterns['browse-categories-page-name'].')/(.+?)' ),
+            'index.php?pagename=$matches[1]&cid=$matches[2]&a=browsecat',
+            'top'
+        );
 	}
 
 	if (isset($patterns['payment-thankyou-page-name'])) {
-		add_rewrite_rule('('.$patterns['payment-thankyou-page-name'].')/([a-zA-Z0-9]+)',
-						 'index.php?pagename=$matches[1]&awpcp-txn=$matches[2]', 'top');
+		add_rewrite_rule(
+            awpcp_create_page_rewrite_rule_regex( '('.$patterns['payment-thankyou-page-name'].')/([a-zA-Z0-9]+)' ),
+            'index.php?pagename=$matches[1]&awpcp-txn=$matches[2]',
+            'top'
+        );
 	}
 
 	if (isset($patterns['payment-cancel-page-name'])) {
-		add_rewrite_rule('('.$patterns['payment-cancel-page-name'].')/([a-zA-Z0-9]+)',
-						 'index.php?pagename=$matches[1]&awpcp-txn=$matches[2]', 'top');
+		add_rewrite_rule(
+            awpcp_create_page_rewrite_rule_regex( '('.$patterns['payment-cancel-page-name'].')/([a-zA-Z0-9]+)' ),
+            'index.php?pagename=$matches[1]&awpcp-txn=$matches[2]',
+            'top'
+        );
 	}
 
 	$view_categories = sanitize_title(get_awpcp_option('view-categories-page-name'));
 
 	if (isset($patterns['main-page-name'])) {
-		add_rewrite_rule('('.$patterns['main-page-name'].')/('.$view_categories.')($|[/?])',
-						 'index.php?pagename=$matches[1]&layout=2&cid='.$view_categories,
-						 'top');
-		add_rewrite_rule('('.$patterns['main-page-name'].')/(setregion)/(.+?)/(.+?)',
-						 'index.php?pagename=$matches[1]&regionid=$matches[3]&a=setregion',
-						 'top');
-		add_rewrite_rule('('.$patterns['main-page-name'].')/(classifiedsrss)/(\d+)',
-						 'index.php?pagename=$matches[1]&awpcp-action=rss&cid=$matches[3]',
-						 'top');
-		add_rewrite_rule('('.$patterns['main-page-name'].')/(classifiedsrss)',
-						 'index.php?pagename=$matches[1]&awpcp-action=rss',
-						 'top');
+		add_rewrite_rule(
+            awpcp_create_page_rewrite_rule_regex( '('.$patterns['main-page-name'].')/('.$view_categories.')($|[/?])' ),
+            'index.php?pagename=$matches[1]&layout=2&cid='.$view_categories,
+            'top'
+        );
+
+		add_rewrite_rule(
+            awpcp_create_page_rewrite_rule_regex( '('.$patterns['main-page-name'].')/(setregion)/(.+?)/(.+?)' ),
+            'index.php?pagename=$matches[1]&regionid=$matches[3]&a=setregion',
+            'top'
+        );
+
+		add_rewrite_rule(
+            awpcp_create_page_rewrite_rule_regex( '('.$patterns['main-page-name'].')/(classifiedsrss)/(\d+)' ),
+            'index.php?pagename=$matches[1]&awpcp-action=rss&cid=$matches[3]',
+            'top'
+        );
+
+		add_rewrite_rule(
+            awpcp_create_page_rewrite_rule_regex( '('.$patterns['main-page-name'].')/(classifiedsrss)' ),
+            'index.php?pagename=$matches[1]&awpcp-action=rss',
+            'top'
+        );
 	}
 
 	return $rules;
