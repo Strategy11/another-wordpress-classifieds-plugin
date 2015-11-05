@@ -36,7 +36,7 @@ class AWPCP_Categories_Selector_Component {
         $hidden = array(
             'a' => 'browsecat',
             'results' => $this->request->param( 'results' ),
-            'offset' => $this->request->param( 'offset' ),
+            'offset' => 0,
         );
 
         ob_start();
