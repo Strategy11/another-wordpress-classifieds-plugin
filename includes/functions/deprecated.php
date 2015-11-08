@@ -154,7 +154,7 @@ function awpcp_display_ads($where, $byl, $hidepager, $grouporderby, $adorcat, $b
             $output .= "</div>";
         }
 
-        $output .= apply_filters('awpcp-display-ads-before-list', '');
+        $output .= apply_filters('awpcp-content-before-listings-list', '');
         $output .= "$showcategories";
 
         if ($ads_exist) {
@@ -187,8 +187,8 @@ function awpcp_render_ads($ads, $context='listings', $config=array(), $paginatio
 
     $items = awpcp_render_listings_items( $ads, $context );
 
-    $before_content = apply_filters('awpcp-listings-before-content', array(), $context);
-    $after_content = apply_filters('awpcp-listings-after-content', array(), $context);
+    $before_content = apply_filters('awpcp-content-before-listings-pagination', array(), $context);
+    $after_content = apply_filters('awpcp-content-after-listings-pagination', array(), $context);
     $pagination_block = is_array( $pagination ) ? awpcp_pagination( $pagination, '' ) : '';
 
     ob_start();
