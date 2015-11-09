@@ -49,6 +49,7 @@ class AWPCP_Pages {
         add_shortcode('AWPCPLATESTLISTINGS', array($this, 'listings_shortcode'));
         add_shortcode('AWPCPRANDOMLISTINGS', array($this, 'random_listings_shortcode'));
         add_shortcode('AWPCPSHOWCAT', array($this, 'category_shortcode'));
+        add_shortcode( 'AWPCPUSERLISTINGS', array( $this, 'user_listings_shortcode' ) );
 
         add_shortcode( 'AWPCPBUYCREDITS', array( $this, 'buy_credits' ) );
 
@@ -132,6 +133,34 @@ class AWPCP_Pages {
     }
 
     /* Shortcodes */
+
+    public function user_listings_shortcode( $attrs ) {
+        wp_enqueue_script( 'awpcp' );
+
+        $attrs = shortcode_atts( array(
+            'user_id' => get_current_user_id(),
+            'menu' => true,
+            'limit' => null
+        ), $attrs );
+
+        $user_id = absint( $attrs['user_id'] );
+
+        if ( $user_id === 0 ) {
+            return '';
+        }
+
+        $query = array(
+            'context' => 'public-listings',
+            'limit' => absint( $attrs['limit'] ),
+            'user_id' => $user_id,
+        );
+
+        $options = array(
+            'show_menu_items' => awpcp_parse_bool( $attrs['menu'] )
+        );
+
+        return awpcp_display_listings( $query, 'user-listings-shortcode', $options );
+    }
 
     public function listings_shortcode($attrs) {
         wp_enqueue_script('awpcp');
