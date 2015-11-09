@@ -172,7 +172,7 @@ class AWPCP_Image_Placeholders {
         $placeholders['imgblockwidth'] = "{$thumbnail_width}px";
         $placeholders['thumbnail_width'] = "{$thumbnail_width}px";
 
-        $replacements[ $ad->ad_id ] = apply_filters( 'awpcp-placeholders-image', $placeholders, $ad );
+        $replacements[ $ad->ad_id ] = apply_filters( 'awpcp-image-placeholders', $placeholders, $ad );
 
         return $replacements[$ad->ad_id][$placeholder];
     }
