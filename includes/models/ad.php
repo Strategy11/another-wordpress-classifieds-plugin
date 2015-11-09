@@ -331,7 +331,7 @@ class AWPCP_Ad {
 
 	public static function generate_key() {
 		$access_key = md5(sprintf('%s%s%d', AUTH_KEY, uniqid('', true), rand(1, 1000)));
-		return apply_filters( 'awpcp-listing-access-key', $access_key );
+		return apply_filters( 'awpcp-listing-access-key', $access_key, $this );
 	}
 
 	private static function _get_ad_regions($ad_id) {

@@ -373,7 +373,7 @@ function awpcp_render_listings_items( $listings, $context ) {
 			$rendered_listing = awpcp_featured_ad_class( $listing->ad_id, $rendered_listing );
 		}
 
-		$items[] = apply_filters( 'awpcp-render-listing-item', $rendered_listing, $i + 1 );
+		$items[] = apply_filters( 'awpcp-render-listing-item', $rendered_listing, $listing, $i + 1 );
 	}
 
 	return $items;
