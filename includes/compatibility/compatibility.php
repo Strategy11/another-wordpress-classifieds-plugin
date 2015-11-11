@@ -36,6 +36,9 @@ class AWPCP_Compatibility {
 
         $integration = awpcp_add_meta_tags_plugin_integration();
         add_filter( 'awpcp-should-generate-opengraph-tags', array( $integration, 'should_generate_opengraph_tags' ), 10, 2 );
+
+        $integration = awpcp_facebook_button_plugin_integration();
+        $integration->setup();
     }
 
     private function load_content_aware_sidebars_integration() {
