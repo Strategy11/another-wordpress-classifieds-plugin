@@ -49,6 +49,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             $this->transaction->set('context', $this->context);
             $this->transaction->set('redirect', $this->url());
             $this->transaction->set('redirect-data', array('step' => 'payment-completed'));
+            $this->transaction->set( 'user-just-logged-in', awpcp_request_param( 'loggedin', false ) );
         }
 
         return $this->transaction;
@@ -255,7 +256,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
         $params = array(
             'message' => $message,
-            'page_url' => awpcp_get_page_url( 'place-ad-page-name' ),
+            'page_url' => add_query_arg( 'loggedin', true, awpcp_get_page_url( 'place-ad-page-name' ) ),
         );
 
         $template = AWPCP_DIR . '/frontend/templates/page-place-ad-login-step.tpl.php';

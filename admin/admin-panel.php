@@ -713,10 +713,10 @@ function awpcp_opsconfig_categories() {
 				$aeaction="newcategory";
 			}
 
-			$aeword1 = __( 'Add a New Category', 'another-wordpress-classifieds-plugin' );
-			$aeword2=__("Add New Category",'another-wordpress-classifieds-plugin');
-			$aeword3=__("List Category Under",'another-wordpress-classifieds-plugin');
-			$aeword4=__("Category List Order",'another-wordpress-classifieds-plugin');
+			$aeword1 = __( 'Add a new category', 'another-wordpress-classifieds-plugin' );
+			$aeword2=__( 'Add new category', 'another-wordpress-classifieds-plugin' );
+			$aeword3=__( 'List category under', 'another-wordpress-classifieds-plugin' );
+			$aeword4=__( 'Category list order', 'another-wordpress-classifieds-plugin' );
 			$addnewlink = '';
 		}
 		if ($aeaction == 'delete')

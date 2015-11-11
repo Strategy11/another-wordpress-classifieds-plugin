@@ -8,7 +8,8 @@ function awpcp_listing_form_steps_componponent() {
     return new AWPCP_ListingFormStepsComponent(
         awpcp_payments_api(),
         awpcp_listing_upload_limits(),
-        awpcp()->settings
+        awpcp()->settings,
+        awpcp_request()
     );
 }
 
@@ -17,11 +18,13 @@ class AWPCP_ListingFormStepsComponent {
     private $payments;
     private $upload_limits;
     private $settings;
+    private $request;
 
-    public function __construct( $payments, $upload_limits, $settings ) {
+    public function __construct( $payments, $upload_limits, $settings, $request ) {
         $this->payments = $payments;
         $this->upload_limits = $upload_limits;
         $this->settings = $settings;
+        $this->request = $request;
     }
 
     public function render( $selected_step, $transaction ) {
@@ -31,7 +34,9 @@ class AWPCP_ListingFormStepsComponent {
     private function get_steps( $transaction ) {
         $steps = array();
 
-        $steps['login'] = __( 'Login/Registration', 'another-wordpress-classifieds-plugin' );
+        if ( $this->should_show_login_step( $transaction ) ) {
+            $steps['login'] = __( 'Login/Registration', 'another-wordpress-classifieds-plugin' );
+        }
 
         if ( $this->payments->payments_enabled() && $this->payments->credit_system_enabled() ) {
             $steps['select-category'] = __( 'Select Category, Payment Term and Credit Plan', 'another-wordpress-classifieds-plugin' );
@@ -41,7 +46,7 @@ class AWPCP_ListingFormStepsComponent {
             $steps['select-category'] = __( 'Select Category', 'another-wordpress-classifieds-plugin' );
         }
 
-        if ( $this->payments->payments_enabled() && $this->settings->get_option( 'pay-before-place-ad' ) ) {
+        if ( $this->should_show_payment_steps() && $this->settings->get_option( 'pay-before-place-ad' ) ) {
             $steps['checkout'] = __( 'Checkout', 'another-wordpress-classifieds-plugin' );
             $steps['payment'] = __( 'Payment', 'another-wordpress-classifieds-plugin' );
         }
@@ -56,7 +61,7 @@ class AWPCP_ListingFormStepsComponent {
             $steps['preview'] = __( 'Preview Listing', 'another-wordpress-classifieds-plugin' );
         }
 
-        if ( $this->payments->payments_enabled() && ! $this->settings->get_option( 'pay-before-place-ad' ) ) {
+        if ( $this->should_show_payment_steps() && ! $this->settings->get_option( 'pay-before-place-ad' ) ) {
             $steps['checkout'] = __( 'Checkout', 'another-wordpress-classifieds-plugin' );
             $steps['payment'] = __( 'Payment', 'another-wordpress-classifieds-plugin' );
         }
@@ -64,6 +69,16 @@ class AWPCP_ListingFormStepsComponent {
         $steps['finish'] = __( 'Finish', 'another-wordpress-classifieds-plugin' );
 
         return $steps;
+    }
+
+    private function should_show_login_step( $transaction ) {
+        if ( ! is_user_logged_in() ) {
+            return true;
+        } else if ( ! is_null( $transaction ) ) {
+            return $transaction->get( 'user-just-logged-in', false );
+        } else {
+            return $this->request->param( 'loggedin', false );
+        }
     }
 
     /**
@@ -115,6 +130,14 @@ class AWPCP_ListingFormStepsComponent {
         }
 
         return false;
+    }
+
+    private function should_show_payment_steps() {
+        if ( awpcp_current_user_is_admin() ) {
+            return false;
+        } else {
+            return $this->payments->payments_enabled();
+        }
     }
 
     private function render_steps( $selected_step, $steps ) {
