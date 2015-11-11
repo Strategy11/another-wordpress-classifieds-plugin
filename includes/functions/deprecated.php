@@ -258,8 +258,8 @@ function awpcp_upload_files( $ad, $files, &$errors=array() ) {
  *
  * @param $error    if an error occurs the error message will be returned by reference
  *                  using this variable.
- * @param $action   'upload' if the file was uplaoded using an HTML File field.
- *                  'copy' if the file was uplaoded using a different method. Images
+ * @param $action   'upload' if the file was uploaded using an HTML File field.
+ *                  'copy' if the file was uploaded using a different method. Images
  *                  extracted from a ZIP file during Ad import.
  * @return          false if an error occurs or an array with the upload file information
  *                  on success.
@@ -273,7 +273,7 @@ function awpcp_upload_file( $file, $constraints, &$error=false, $action='upload'
     $mime_type = $file[ 'type' ];
 
     if ( ! in_array( $mime_type, $constraints[ 'mime_types' ] ) ) {
-        $error = _x( 'The type of the uplaoded file %s is not allowed.', 'upload files', 'another-wordpress-classifieds-plugin' );
+        $error = _x( 'The type of the uploaded file %s is not allowed.', 'upload files', 'another-wordpress-classifieds-plugin' );
         $error = sprintf( $error, '<strong>' . $filename . '</strong>' );
         return false;
     }
@@ -384,7 +384,7 @@ function awpcp_get_allowed_mime_types() {
 }
 
 /**
- * File type, size and dimension constraints for uplaoded files.
+ * File type, size and dimension constraints for uploaded files.
  *
  * @since 3.0.2
  * @deprecated 3.4
@@ -427,7 +427,7 @@ function awpcp_can_upload_file_to_ad( $file, $ad ) {
 }
 
 /**
- * Returns information about the number of files uplaoded to an Ad, and
+ * Returns information about the number of files uploaded to an Ad, and
  * the number of files that can still be added to that same Ad.
  *
  * @since 3.0.2
