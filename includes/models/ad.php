@@ -330,8 +330,7 @@ class AWPCP_Ad {
 	}
 
 	public static function generate_key() {
-		$access_key = md5(sprintf('%s%s%d', AUTH_KEY, uniqid('', true), rand(1, 1000)));
-		return apply_filters( 'awpcp-listing-access-key', $access_key );
+		return md5( sprintf( '%s%s%d', AUTH_KEY, uniqid( '', true ), rand( 1, 1000 ) ) );
 	}
 
 	private static function _get_ad_regions($ad_id) {
@@ -517,8 +516,9 @@ class AWPCP_Ad {
 	 */
 	public function get_access_key() {
 		if ( empty( $this->ad_key ) ) {
-			$this->ad_key = AWPCP_Ad::generate_key();
-			$this->save();
+            $access_key = AWPCP_Ad::generate_key();
+            $this->ad_key = apply_filters( 'awpcp-listing-access-key', $access_key, $this );
+            $this->save();
 		}
 
 		return $this->ad_key;
