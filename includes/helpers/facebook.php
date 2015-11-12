@@ -28,7 +28,7 @@ class AWPCP_Facebook {
         $app_access_token = '';
 
         if ( !$app_id || !$app_secret ) {
-            $errors[] = __( 'Missing App ID an Secret.', 'another-wordpress-classifieds-plugin' );
+            $errors[] = __( 'Missing App ID and Secret.', 'another-wordpress-classifieds-plugin' );
             return;
         }
 

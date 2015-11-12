@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: AWPCP\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2015-11-12 04:02:20+00:00\n"
+"POT-Creation-Date: 2015-11-12 16:01:42+00:00\n"
 "PO-Revision-Date: 2015-07-18 10:42-0500\n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: Daniel MENGONI <contact@ulm-actualite.info>\n"
@@ -3377,7 +3377,8 @@ msgid "Missing"
 msgstr "Manquant"
 
 #: includes/helpers/facebook.php:31
-msgid "Missing App ID an Secret."
+#, fuzzy
+msgid "Missing App ID and Secret."
 msgstr "L'Identifiant et le secret de l'Application sont absents"
 
 #: includes/helpers/facebook.php:36
