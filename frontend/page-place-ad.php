@@ -786,7 +786,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $form = array();
 
         if (is_null($transaction)) {
-            $message = __("Hi, Payment is required for posting Ads in this website and we couldn't find a Payment Transaction asssigned to you. You can't post Ads this time. If you think this is an error please contact the website Administrator.", 'another-wordpress-classifieds-plugin');
+            $message = __("Hi, Payment is required for posting Ads in this website and we couldn't find a Payment Transaction assigned to you. You can't post Ads this time. If you think this is an error please contact the website Administrator.", 'another-wordpress-classifieds-plugin');
             return $this->render('content', awpcp_print_error($message));
         }
 
