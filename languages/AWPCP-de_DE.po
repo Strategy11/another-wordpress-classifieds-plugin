@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AWPCP\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2015-11-11 19:07:03+00:00\n"
+"POT-Creation-Date: 2015-11-12 16:01:42+00:00\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: \n"
@@ -2282,9 +2282,10 @@ msgid "Hi admin, you need to go to your dashboard and setup your classifieds."
 msgstr "Hallo Admin, Sie müssen Ihre Anzeigen im Dashboard einrichten."
 
 #: frontend/page-place-ad.php:789
+#, fuzzy
 msgid ""
 "Hi, Payment is required for posting Ads in this website and we couldn't find "
-"a Payment Transaction asssigned to you. You can't post Ads this time. If you "
+"a Payment Transaction assigned to you. You can't post Ads this time. If you "
 "think this is an error please contact the website Administrator."
 msgstr ""
 "Hallo, um eine Anzeige zu veröffentlichen ist eine Bezahlung nötig. Wir "
@@ -3302,7 +3303,8 @@ msgid "Missing"
 msgstr "Fehlender Wert"
 
 #: includes/helpers/facebook.php:31
-msgid "Missing App ID an Secret."
+#, fuzzy
+msgid "Missing App ID and Secret."
 msgstr "App ID fehlt"
 
 #: includes/helpers/facebook.php:36
