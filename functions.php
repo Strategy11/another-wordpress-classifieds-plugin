@@ -1276,21 +1276,21 @@ function awpcp_get_currency_symbol() {
 function awpcp_currency_symbols() {
     return array(
         '$' => array( 'CAD', 'AUD', 'NZD', 'SGD', 'HKD', 'USD', 'MXN' ),
-        '&yen;' => array( 'JPY' ),
-        '&euro;' => array( 'EUR' ),
-        '&pound;' => array( 'GBP' ),
-        '&#8381;' => array( 'RUB' ),
+        '¥' => array( 'JPY' ),
+        '€' => array( 'EUR' ),
+        '£' => array( 'GBP' ),
+        '₽;' => array( 'RUB' ),
         'R$' => array( 'BRL' ),
-        'K&#269;' => array( 'CZK' ),
+        'Kč' => array( 'CZK' ),
         'kr.' => array( 'DKK' ),
-        '&#8362;' => array( 'ILS' ),
+        '₪' => array( 'ILS' ),
         'RM' => array( 'MYR' ),
         'kr' => array( 'NOK', 'SEK' ),
-        '&#8369;' => array( 'PHP' ),
+        '₱' => array( 'PHP' ),
         'CHF' => array( 'CHF' ),
         'NT$' => array( 'TWD' ),
-        '&#3647;' => array( 'THB' ),
-        '&#8378;' => array( 'TRY' ),
+        '฿' => array( 'THB' ),
+        '₺' => array( 'TRY' ),
     );
 }
 
