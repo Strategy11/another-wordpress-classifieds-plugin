@@ -90,13 +90,18 @@ class AWPCP_ListingFormStepsComponent {
             $arrays_of_payment_terms = array_values( $payment_terms_by_type );
             $payment_terms = call_user_func_array( 'array_merge', $arrays_of_payment_terms );
         } else {
-            $payment_terms = array( $this->payments->get_transaction_payment_term( $transaction ) );
+            $transaction_payment_term = $this->payments->get_transaction_payment_term( $transaction );
+            $payment_terms = $transaction_payment_term ? array( $transaction_payment_term ) : array();
         }
 
         return $this->all_payment_terms_allow_to_upload_files( $payment_terms );
     }
 
     private function all_payment_terms_allow_to_upload_files( $payment_terms ) {
+        if ( empty( $payment_terms ) ) {
+            return false;
+        }
+
         $upload_limits = $this->get_upload_limits_for_payment_terms( $payment_terms );
 
         foreach ( $upload_limits as $payment_term_limits ) {
@@ -111,12 +116,8 @@ class AWPCP_ListingFormStepsComponent {
     private function get_upload_limits_for_payment_terms( $payment_terms ) {
         $upload_limits = array();
 
-        if ( empty( $payment_terms ) ) {
-            $upload_limits = array( $this->upload_limits->get_upload_limits_for_free_board() );
-        } else {
-            foreach ( $payment_terms as $payment_term ) {
-                $upload_limits[] = $this->upload_limits->get_upload_limits_for_payment_term( $payment_term );
-            }
+        foreach ( $payment_terms as $payment_term ) {
+            $upload_limits[] = $this->upload_limits->get_upload_limits_for_payment_term( $payment_term );
         }
 
         return $upload_limits;
