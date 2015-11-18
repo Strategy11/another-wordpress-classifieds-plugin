@@ -1748,6 +1748,72 @@ function awpcp_parse_html_attributes( $attributes, $default_attributes = array()
     return $attributes;
 }
 
+/**
+ * @since 3.5.4
+ */
+function awpcp_html_admin_first_level_heading( $params ) {
+    $params['tag'] = awpcp_html_admin_first_level_heading_tag();
+    return awpcp_html_heading( $params );
+}
+
+/**
+ * See:
+ * - https://make.wordpress.org/core/2015/07/31/headings-in-admin-screens-change-in-wordpress-4-3/
+ *
+ * @since 3.5.4
+ */
+function awpcp_html_admin_first_level_heading_tag() {
+    if ( version_compare( get_bloginfo('version'), '4.3-beta1', '<' ) ) {
+        return 'h2';
+    } else {
+        return 'h1';
+    }
+}
+
+/**
+ * @since 3.5.4
+ */
+function awpcp_html_admin_second_level_heading( $params ) {
+    $params['tag'] = awpcp_htmld_admin_second_level_heading_tag();
+    return awpcp_html_heading( $params );
+}
+
+/**
+ * See:
+ * - https://make.wordpress.org/core/2015/10/28/headings-hierarchy-changes-in-the-admin-screens/
+ *
+ * @since 3.5.4
+ */
+function awpcp_html_admin_second_level_heading_tag() {
+    if ( version_compare( get_bloginfo('version'), '4.4-beta1', '<' ) ) {
+        return 'h3';
+    } else {
+        return 'h2';
+    }
+}
+
+/**
+ * @access private
+ * @since 3.5.4
+ */
+function awpcp_html_heading( $params ) {
+    $default_params = array(
+        'tag' => 'h1',
+        'attributes' => array(),
+        'content' => '',
+    );
+
+    $params = wp_parse_args( $params, $default_params );
+    $params['attributes'] = awpcp_parse_html_attributes( $params['attributes'] );
+
+    $element = '<<heading-tag> <heading-attributes>><content></<heading-tag>>';
+    $element = str_replace( '<heading-tag>', $params['tag'], $element );
+    $element = str_replace( '<heading-attributes>', awpcp_html_attributes( $params['attributes'] ), $element );
+    $element = str_replace( '<content>', $params['content'], $element );
+
+    return $element;
+}
+
 function awpcp_uploaded_file_error($file) {
 	$upload_errors = array(
 		UPLOAD_ERR_OK        	=> __("No errors.", 'another-wordpress-classifieds-plugin'),
