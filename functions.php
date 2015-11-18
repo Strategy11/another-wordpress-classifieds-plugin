@@ -1343,7 +1343,12 @@ function awpcp_format_number( $value, $decimals = null ) {
 function awpcp_get_formatted_number( $value, $decimals = 0 ) {
     $thousands_separator = get_awpcp_option( 'thousands-separator' );
     $decimal_separator = get_awpcp_option( 'decimal-separator' );
-    return number_format( abs( $value ), $decimals, $decimal_separator, $thousands_separator );
+
+    $formatted = number_format( abs( $value ), $decimals, '~', '^' );
+    $formatted = str_replace( '~', $decimal_separator, $formatted );
+    $formatted = str_replace( '^', $thousands_separator, $formatted );
+
+    return $formatted;
 }
 
 function awpcp_format_integer( $value ) {
