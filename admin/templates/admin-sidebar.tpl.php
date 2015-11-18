@@ -3,7 +3,7 @@
         <div class="meta-box-sortables">
 
             <div class="postbox">
-                <h3 class="hndle"><span><?php _e('Like this plugin?', 'another-wordpress-classifieds-plugin'); ?></span></h3>
+                <?php echo awpcp_html_postbox_handle( array( 'content' => __( 'Like this plugin?', 'another-wordpress-classifieds-plugin' ) ) ); ?>
                 <div class="inside">
                 <p><?php _e('Why not do any or all of the following:', 'another-wordpress-classifieds-plugin'); ?></p>
                     <ul>
@@ -24,11 +24,19 @@
             </div>
 
             <div class="awpcp-get-a-premium-module postbox" style="background-color:#FFFFCF; border-color:#0EAD00; border-width:3px;">
-                <h3 class="hndle" style="color:#145200;">
-                    <span class="red">
-                        <strong><?php _e('Get a Premium Module!', 'another-wordpress-classifieds-plugin'); ?></strong>
-                    </span>
-                </h3>
+                <?php
+                    $params = array(
+                        'heading_attributes' => array(
+                            'style' => 'color:#145200',
+                        ),
+                        'span_attributes' => array(
+                            'class' => 'red',
+                        ),
+                        'content' => '<strong>' . __( 'Get a Premium Module!', 'another-wordpress-classifieds-plugin' ) . '</strong>',
+                    );
+
+                    echo awpcp_html_postbox_handle( $params );
+                ?>
 
                 <div class="inside">
                     <ul>
@@ -125,7 +133,7 @@
             </div>
 
             <div class="postbox">
-                <h3 class="hndle"><span><?php _e('Found a bug?', 'another-wordpress-classifieds-plugin'); ?> &nbsp; <?php _e('Need Support?', 'another-wordpress-classifieds-plugin'); ?></span></h3>
+                <?php echo awpcp_html_postbox_handle( array( 'content' => __( 'Found a bug?', 'another-wordpress-classifieds-plugin' ) . '&nbsp;' . __( 'Need Support?', 'another-wordpress-classifieds-plugin' ) ) ); ?>
                 <?php $tpl = '<a href="%s" target="_blank">%s</a>'; ?>
                 <div class="inside">
                     <ul>
@@ -140,7 +148,7 @@
             </div>
 
             <div class="postbox">
-                <h3 class="hndle"><span><?php _e("Premium Modules",'another-wordpress-classifieds-plugin'); ?></span></h3>
+                <?php echo awpcp_html_postbox_handle( array( 'content' => __( 'Premium Modules','another-wordpress-classifieds-plugin' ) ) ); ?>
                 <div class="inside">
 
                     <h4><?php _e("Installed", 'another-wordpress-classifieds-plugin'); ?></h4>
@@ -180,7 +188,7 @@
             </div>
 
             <!-- <div class="postbox">
-                <h3 class="hndle"><span><?php __("Other Modules",'another-wordpress-classifieds-plugin'); ?></span></h3>
+                <?php echo awpcp_html_postbox_handle( array( 'content' => __( 'Other Modules','another-wordpress-classifieds-plugin' ) ) ); ?>
 
                 <div class="inside">
 

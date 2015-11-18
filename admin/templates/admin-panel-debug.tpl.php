@@ -23,7 +23,7 @@
 		<div class="metabox-holder">
 
 		<div id="awpcp-debug-awpcp-pages" class="postbox">
-		    <h3 class="hndle1"><span><?php echo $title_pages ?></span></h3>
+		    <?php echo awpcp_html_postbox_handle( array( 'heading_tag' => 'h3', 'content' => $title_pages ) ); ?>
 		    <div class="inside">
 				<table>
 					<thead>
@@ -48,7 +48,7 @@
 	    </div>
 
 		<div id="awpcp-debug-awpcp-settings" class="postbox">
-		    <h3 class="hndle1"><span><?php echo $title_settings ?></span></h3>
+		    <?php echo awpcp_html_postbox_handle( array( 'heading_tag' => 'h3', 'content' => $title_settings ) ); ?>
 		    <div class="inside">
 		    	<table>
 					<thead>
@@ -72,7 +72,7 @@
 	    </div>
 
 		<div id="awpcp-debug-rewrite-rules" class="postbox">
-		    <h3 class="hndle1"><span><?php echo $title_rules ?></span></h3>
+		    <?php echo awpcp_html_postbox_handle( array( 'heading_tag' => 'h3', 'content' => $title_rules ) ); ?>
 		    <div class="inside">
 				<table>
 					<thead>
@@ -94,7 +94,7 @@
 	    </div>
 
 		<div id="awpcp-debug-php-info" class="postbox">
-		    <h3 class="hndle1"><span><?php echo $title_php_info ?></span></h3>
+		    <?php echo awpcp_html_postbox_handle( array( 'heading_tag' => 'h3', 'content' => $title_php_info ) ); ?>
 		    <div class="inside">
 				<table>
 					<tbody>
