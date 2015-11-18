@@ -1,6 +1,6 @@
 <div class="metabox-holder">
     <div class="postbox">
-        <h3 class="hndle"><span><?php echo esc_html( __( 'Credit System Settings', 'another-wordpress-classifieds-plugin' ) ); ?></span></h3>
+        <?php echo awpcp_html_postbox_handle( array( 'content' => esc_html( __( 'Credit System Settings', 'another-wordpress-classifieds-plugin' ) ) ) ); ?>
         <div class="inside">
         <form action="<?php echo esc_attr( admin_url( 'options.php' ) ); ?>" method="post">
             <table class="form-table">
