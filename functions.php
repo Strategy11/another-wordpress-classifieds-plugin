@@ -1751,6 +1751,39 @@ function awpcp_parse_html_attributes( $attributes, $default_attributes = array()
 /**
  * @since 3.5.4
  */
+function awpcp_html_postbox_handle( $params ) {
+    $default_params = array(
+        'heading_attributes' => array(),
+        'span_attributes' => array(),
+        'heading_class' => 'hndle',
+        'heading_tag' => null,
+        'content' => '',
+    );
+
+    $params = wp_parse_args( $params, $default_params );
+    $params['heading_attributes'] = awpcp_parse_html_attributes( $params['heading_attributes'] );
+    $params['span_attributes'] = awpcp_parse_html_attributes( $params['span_attributes'] );
+
+    if ( ! in_array( $params['heading_class'], $params['heading_attributes']['class'] ) ) {
+        $params['heading_attributes']['class'][] = $params['heading_class'];
+    }
+
+    if ( is_null( $params['heading_tag'] ) ) {
+        $params['heading_tag'] = awpcp_html_admin_second_level_heading_tag();
+    }
+
+    $element = '<<heading-tag> <heading-attributes>><span <span-attributes>><content></span></<heading-tag>>';
+    $element = str_replace( '<heading-tag>', $params['heading_tag'], $element );
+    $element = str_replace( '<heading-attributes>', awpcp_html_attributes( $params['heading_attributes'] ), $element );
+    $element = str_replace( '<span-attributes>', awpcp_html_attributes( $params['span_attributes'] ), $element );
+    $element = str_replace( '<content>', $params['content'], $element );
+
+    return $element;
+}
+
+/**
+ * @since 3.5.4
+ */
 function awpcp_html_admin_first_level_heading( $params ) {
     $params['tag'] = awpcp_html_admin_first_level_heading_tag();
     return awpcp_html_heading( $params );
