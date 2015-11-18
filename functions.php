@@ -1721,8 +1721,18 @@ function awpcp_parse_html_params( $params, $default_params = array(), $default_a
         )
     );
 
-    $params['attributes'] = wp_parse_args(
-        $params['attributes'],
+    $params['attributes'] = awpcp_parse_html_attributes( $params['attributes'], $default_attributes );
+
+    if ( $params['required'] ) {
+        $attributes['class'][] = 'required';
+    }
+
+    return $params;
+}
+
+function awpcp_parse_html_attributes( $attributes, $default_attributes = array() ) {
+    $attributes = wp_parse_args(
+        $attributes,
         wp_parse_args(
             $default_attributes,
             array(
@@ -1731,11 +1741,11 @@ function awpcp_parse_html_params( $params, $default_params = array(), $default_a
         )
     );
 
-    if ( $params['required'] ) {
-        $attributes['class'][] = 'required';
+    if ( ! is_array( $attributes['class'] ) ) {
+        $attributes['class'] = explode( ' ', $attributes['class'] );
     }
 
-    return $params;
+    return $attributes;
 }
 
 function awpcp_uploaded_file_error($file) {
