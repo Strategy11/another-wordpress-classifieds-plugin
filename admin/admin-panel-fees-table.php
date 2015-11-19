@@ -196,7 +196,7 @@ class AWPCP_FeesTable extends WP_List_Table {
     }
 
     public function column_price($item) {
-        return number_format($item->price, 2);
+        return awpcp_format_money( $item->price, 2 );
     }
 
     public function column_credits($item) {
