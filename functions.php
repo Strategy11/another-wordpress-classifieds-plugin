@@ -1316,7 +1316,7 @@ function awpcp_get_formmatted_amount( $value, $include_symbol ) {
     $symbol = $include_symbol ? awpcp_get_currency_symbol() : '';
 
     if ( get_awpcp_option( 'include-space-between-currency-symbol-and-amount' ) ) {
-        $separator = ' ';
+        $separator = ' ';
     } else {
         $separator = '';
     }
@@ -1421,8 +1421,21 @@ function awpcp_clear_flash_messages() {
 
 function awpcp_flash( $message, $class = array( 'awpcp-updated', 'updated') ) {
 	$messages = awpcp_get_flash_messages();
-	$messages[] = array('message' => $message, 'class' => (array) $class);
-	awpcp_update_flash_messages($messages);
+
+    if ( ! awpcp_is_duplicated_flash_message( $messages, $message, $class ) ) {
+        $messages[] = array( 'message' => $message, 'class' => (array) $class );
+        awpcp_update_flash_messages( $messages );
+    }
+}
+
+function awpcp_is_duplicated_flash_message( $messages, $message, $class ) {
+    foreach ( $messages as $m ) {
+        if ( strcmp( $m['message'], $message ) == 0 ) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 /**
@@ -1501,8 +1514,10 @@ function awpcp_attachment_background_color_explanation() {
 
 /**
  * @since 3.0.2
+ * @deprecated since 3.2.3
  */
 function awpcp_module_not_compatible_notice( $module, $installed_version ) {
+    _deprecated_function( __FUNCTION__, '3.2.3', 'ModulesManager::show_module_not_compatible_notice()' );
 	global $awpcp_db_version;
 
 	$modules = awpcp()->get_premium_modules_information();

@@ -1,17 +1,26 @@
 <?php
 
 function awpcp_easy_digital_downloads() {
-    return new AWPCP_EasyDigitalDownloads( awpcp()->settings, awpcp_http() );
+    return new AWPCP_EasyDigitalDownloads(
+        awpcp()->settings,
+        awpcp_http(),
+        awpcp_request(),
+        awpcp_exceptions()
+    );
 }
 
 class AWPCP_EasyDigitalDownloads {
 
     private $settings;
     private $http;
+    private $request;
+    private $exceptions;
 
-    public function __construct( $settings, $http ) {
+    public function __construct( $settings, $http, $request, $exceptions ) {
         $this->settings = $settings;
         $this->http = $http;
+        $this->request = $request;
+        $this->exceptions = $exceptions;
     }
 
     public function check_license( $module_name, $license ) {
@@ -23,10 +32,10 @@ class AWPCP_EasyDigitalDownloads {
 
         try {
             return $this->license_request( $params );
-        } catch ( AWPCP_Exception $e ) {
-            $message = __( 'There was an error trying to retrieve information about your <module-name> license.', 'another-wordpress-classifieds-plugin' );
-            $message = str_replace( '<module-name>', '<strong>' . $module_name . '</strong>', $message );
-            throw new AWPCP_Exception( $this->build_error_message( $e, $message ) );
+        } catch ( AWPCP_Easy_Digital_Downloads_Exception $e ) {
+            $message = __( 'There was an error trying to check the license status for <module-name>.', 'another-wordpress-classifieds-plugin' );
+            $exception = $this->exceptions->license_request_exception( $message, $module_name, $e->getMessage(), 0, $e );
+            throw $exception;
         }
     }
 
@@ -34,17 +43,29 @@ class AWPCP_EasyDigitalDownloads {
         $response = $this->request( $params );
 
         if ( ! isset( $response->license ) ) {
-            throw new AWPCP_Exception( 'Missing License Status parameter' );
+            $exception = $this->exceptions->easy_digital_downloads_exception( 'Missing License Status parameter' );
+            throw $exception;
         }
 
         if ( $response->license === 'failed' ) {
-            throw new AWPCP_Exception( 'License Status parameter was set to <strong>Failed</strong>' );
+            $exception = $this->exceptions->easy_digital_downloads_exception( 'License Status parameter was set to <strong>Failed</strong>' );
+            throw $exception;
+        }
+
+        if ( $response->license === 'item_name_mismatch' ) {
+            $exception = $this->exceptions->easy_digital_downloads_exception( 'item_name_mismatch' );
+            throw $exception;
         }
 
         return $response;
     }
 
     private function request( $params ) {
+        if ( $this->request->get( 'edd_action', false ) ) {
+            $exception = $this->exceptions->easy_digital_downloads_exception( 'The request was cancelled to avoid infinite recursion.' );
+            throw $exception;
+        }
+
         $params = urlencode_deep( $params );
         $url = add_query_arg( $params, $this->settings->get_runtime_option( 'easy-digital-downloads-store-url' ) );
 
@@ -52,7 +73,8 @@ class AWPCP_EasyDigitalDownloads {
         $decoded_data = json_decode( wp_remote_retrieve_body( $response ) );
 
         if ( isset( $decoded_data->error ) ) {
-            throw new AWPCP_Exception( $decoded_data->error );
+            $exception = $this->exceptions->easy_digital_downloads_exception( $decoded_data->error );
+            throw $exception;
         }
 
         return $decoded_data;
@@ -61,10 +83,15 @@ class AWPCP_EasyDigitalDownloads {
     public function activate_license( $module_name, $license ) {
         try {
             return $this->perform_license_action( 'activate_license', $module_name, $license );
-        } catch ( AWPCP_Exception $e ) {
-            $message = __( 'There was an error trying to activate your <module-name> license.', 'another-wordpress-classifieds-plugin' );
-            $message = str_replace( '<module-name>', '<strong>' . $module_name . '</strong>', $message );
-            throw new AWPCP_Exception( $this->build_error_message( $e, $message ) );
+        } catch ( AWPCP_Easy_Digital_Downloads_Exception $e ) {
+            if ( strcmp( $e->getMessage(), 'no_activations_left' ) === 0 ) {
+                $exception = $this->exceptions->no_activations_left_license_request_exception( $module_name, $e );
+                throw $exception;
+            } else {
+                $message = __( 'There was an error trying to activate your <module-name> license.', 'another-wordpress-classifieds-plugin' );
+                $exception = $this->exceptions->license_request_exception( $message, $module_name, $e->getMessage(), 0, $e );
+                throw $exception;
+            }
         }
     }
 
@@ -79,20 +106,13 @@ class AWPCP_EasyDigitalDownloads {
         return $this->license_request( $params );
     }
 
-    private function build_error_message( $exception, $message ) {
-        $template = __( '<specific-message> The error was: %s. Please contact customer support.', 'another-wordpress-classifieds-plugin' );
-        $message = str_replace( '<specific-message>', $message, $template );
-        $message = sprintf( $message, '<strong>' . $exception->format_errors() . '</strong>' );
-        return $message;
-    }
-
     public function deactivate_license( $module_name, $license ) {
         try {
             return $this->perform_license_action( 'deactivate_license', $module_name, $license );
-        } catch ( AWPCP_Exception $e ) {
+        } catch ( AWPCP_Easy_Digital_Downloads_Exception $e ) {
             $message = __( 'There was an error trying to deactivate your <module-name> license.', 'another-wordpress-classifieds-plugin' );
-            $message = str_replace( '<module-name>', '<strong>' . $module_name . '</strong>', $message );
-            throw new AWPCP_Exception( $this->build_error_message( $e, $message ) );
+            $exception = $this->exceptions->license_request_exception( $message, $module_name, $e->getMessage(), 0, $e );
+            throw $exception;
         }
     }
 

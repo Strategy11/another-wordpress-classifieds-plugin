@@ -4,7 +4,7 @@
  * Plugin Name: Another Wordpress Classifieds Plugin (AWPCP)
  * Plugin URI: http://www.awpcp.com
  * Description: AWPCP - A plugin that provides the ability to run a free or paid classified ads service on your wordpress blog. <strong>!!!IMPORTANT!!!</strong> Whether updating a previous installation of Another Wordpress Classifieds Plugin or installing Another Wordpress Classifieds Plugin for the first time, please backup your wordpress database before you install/uninstall/activate/deactivate/upgrade Another Wordpress Classifieds Plugin.
- * Version: 3.5.4-dev-67
+ * Version: 3.5.4-dev-68
  * Author: D. Rodenbaugh
  * License: GPLv2 or any later version
  * Author URI: http://www.skylineconsult.com
@@ -210,7 +210,6 @@ require_once( AWPCP_DIR . "/includes/views/admin/listings/class-listings-table-s
 require_once( AWPCP_DIR . "/includes/views/admin/listings/class-listings-table-search-conditions-parser.php" );
 require_once( AWPCP_DIR . "/includes/views/admin/account-balance/class-account-balance-page.php" );
 require_once( AWPCP_DIR . "/includes/views/admin/account-balance/class-account-balance-page-summary-step.php" );
-require_once( AWPCP_DIR . "/includes/views/admin/settings/class-update-license-status-request-handler.php" );
 
 require_once( AWPCP_DIR . '/includes/cron/class-task-queue.php' );
 require_once( AWPCP_DIR . '/includes/cron/class-task-logic-factory.php' );
@@ -245,6 +244,9 @@ require_once( AWPCP_DIR . '/includes/media/class-uploaded-file-logic.php' );
 require_once( AWPCP_DIR . '/includes/media/class-uploads-manager.php' );
 require_once( AWPCP_DIR . '/includes/media/class-upload-listing-media-ajax-handler.php' );
 require_once( AWPCP_DIR . '/includes/media/class-upload-generated-thumbnail-ajax-handler.php' );
+
+require( AWPCP_DIR . "/includes/modules/class-license-settings-update-handler.php" );
+require( AWPCP_DIR . "/includes/modules/class-license-settings-actions-request-handler.php" );
 
 require_once( AWPCP_DIR . '/includes/placeholders/class-placeholders-installation-verifier.php' );
 
@@ -282,7 +284,8 @@ require_once( AWPCP_DIR . '/includes/class-edit-listing-link-placeholder.php' );
 
 require_once( AWPCP_DIR . "/includes/class-listings-api.php" );
 require_once( AWPCP_DIR . "/includes/class-cookie-manager.php" );
-require_once( AWPCP_DIR . "/includes/class-default-login-form-implementation.php" );
+require( AWPCP_DIR . '/includes/class-default-login-form-implementation.php' );
+require_once( AWPCP_DIR . "/includes/class-exceptions.php" );
 require_once( AWPCP_DIR . "/includes/class-fees-collection.php" );
 require_once( AWPCP_DIR . "/includes/class-listing-authorization.php" );
 require_once( AWPCP_DIR . "/includes/class-listing-payment-transaction-handler.php" );
@@ -379,6 +382,8 @@ class AWPCP {
             awpcp_load_plugin_textdomain( __FILE__, 'another-wordpress-classifieds-plugin' );
         }
 
+        $this->modules_manager = awpcp_modules_manager();
+
         // register settings, this will define default values for settings
         // that have never been stored
         $this->settings->register_settings();
@@ -456,7 +461,6 @@ class AWPCP {
         $wpdb->awpcp_admeta = AWPCP_TABLE_AD_META;
 
 		$this->settings->setup();
-		$this->modules_manager = awpcp_modules_manager();
         $this->modules_updater = awpcp_modules_updater();
 		$this->payments = awpcp_payments_api();
 		$this->listings = awpcp_listings_api();
@@ -475,7 +479,6 @@ class AWPCP {
 		add_action( 'init', array($this, 'init' ));
 		add_action( 'init', array($this, 'register_custom_style'), 1000000 );
 
-		add_action( 'admin_init', array( $this, 'check_compatibility_with_premium_modules' ) );
 		add_action('admin_notices', array($this, 'admin_notices'));
 		add_action( 'admin_notices', array( $this->modules_manager, 'show_admin_notices' ) );
 
@@ -621,8 +624,12 @@ class AWPCP {
                 add_action( 'admin_notices', array( awpcp_fee_payment_terms_notices(), 'dispatch' ) );
                 add_action( 'admin_notices', array( awpcp_credit_plans_notices(), 'dispatch' ) );
 
-                $handler = awpcp_update_license_status_request_handler();
-                add_action( 'admin_init', array( $handler, 'dispatch' ) );
+                // TODO: do we really need to execute this every time the plugin settings are saved?
+                $handler = awpcp_license_settings_update_handler();
+                add_action( 'update_option_' . $this->settings->setting_name, array( $handler, 'process_settings' ), 10, 2 );
+
+                $handler = awpcp_license_settings_actions_request_handler();
+                add_action( 'wp_redirect', array( $handler, 'dispatch' ) );
             } else {
                 // load resources required in admin screens only, visible to non-admin users only.
             }
@@ -896,32 +903,6 @@ class AWPCP {
 		}
 
 		return true;
-	}
-
-	/**
-	 * @since 3.0.2
-	 */
-	public function check_compatibility_with_premium_modules() {
-		$this->errors = awpcp_get_property($this, 'errors', array());
-
-		$modules = $this->get_premium_modules_information();
-
-		foreach ($modules as $module => $params) {
-			if (!$params['installed']) continue;
-
-			if (defined($params['version'])) {
-				$version = constant($params['version']);
-			} else {
-				$version = '0.0.1';
-			}
-
-			if (version_compare($version, $params['required']) < 0) {
-				$message = __('The %1$s module you have installed is outdated and not compatible with this version of AWPCP. Please get %1$s %2$s or newer.', 'another-wordpress-classifieds-plugin');
-				$name = "<strong>{$params['name']}</strong>";
-				$required = "<strong>{$params['required']}</strong>";
-				$this->errors[] = sprintf($message, $name, $required);
-			}
-		}
 	}
 
 	/**
@@ -1274,6 +1255,9 @@ class AWPCP {
     	die();
 	}
 
+	/**
+	 * XXX: Used in Region Control installer.
+	 */
 	public function clear_categories_list_cache() {
 		$transient_keys = get_option( 'awpcp-categories-list-cache-keys', array() );
 		foreach ( $transient_keys as $transient_key ) {
