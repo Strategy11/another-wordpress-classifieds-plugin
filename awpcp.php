@@ -479,7 +479,6 @@ class AWPCP {
 		add_action( 'init', array($this, 'init' ));
 		add_action( 'init', array($this, 'register_custom_style'), 1000000 );
 
-		add_action( 'admin_init', array( $this, 'check_compatibility_with_premium_modules' ) );
 		add_action('admin_notices', array($this, 'admin_notices'));
 		add_action( 'admin_notices', array( $this->modules_manager, 'show_admin_notices' ) );
 
@@ -904,32 +903,6 @@ class AWPCP {
 		}
 
 		return true;
-	}
-
-	/**
-	 * @since 3.0.2
-	 */
-	public function check_compatibility_with_premium_modules() {
-		$this->errors = awpcp_get_property($this, 'errors', array());
-
-		$modules = $this->get_premium_modules_information();
-
-		foreach ($modules as $module => $params) {
-			if (!$params['installed']) continue;
-
-			if (defined($params['version'])) {
-				$version = constant($params['version']);
-			} else {
-				$version = '0.0.1';
-			}
-
-			if (version_compare($version, $params['required']) < 0) {
-				$message = __('The %1$s module you have installed is outdated and not compatible with this version of AWPCP. Please get %1$s %2$s or newer.', 'another-wordpress-classifieds-plugin');
-				$name = "<strong>{$params['name']}</strong>";
-				$required = "<strong>{$params['required']}</strong>";
-				$this->errors[] = sprintf($message, $name, $required);
-			}
-		}
 	}
 
 	/**
