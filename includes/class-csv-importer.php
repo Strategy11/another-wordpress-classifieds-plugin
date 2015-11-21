@@ -137,7 +137,9 @@ class AWPCP_CSV_Importer {
 			}
 		}
 
-		$header = array_map( 'trim', $parsed[0] );
+		foreach ( $parsed[0] as $i => $column_name ) {
+			$header[ $i ] = trim( str_replace( "\xEF\xBF\xBD", '', $column_name ) );
+		}
 
 		if ( in_array( 'images', $header ) && empty( $zip_path ) ) {
 			$errors[] = __( 'Image file names were found but no ZIP was provided.', 'another-wordpress-classifieds-plugin' );
