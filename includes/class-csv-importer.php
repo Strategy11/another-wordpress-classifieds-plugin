@@ -398,62 +398,6 @@ class AWPCP_CSV_Importer {
 		}
 	}
 
-	private function extract_images($filename, &$errors=array(), &$messages=array()) {
-		global $current_user;
-		get_currentuserinfo();
-
-		list($images_dir, $thumbs_dir) = awpcp_setup_uploads_dir();
-		$import_dir = str_replace('thumbs', 'import', $thumbs_dir);
-		$import_dir = $import_dir . $current_user->ID . '-' . time();
-
-		$owner = fileowner($images_dir);
-
-		if (!is_dir($import_dir)) {
-			umask(0);
-			mkdir($import_dir, awpcp_directory_permissions(), true);
-			chown($import_dir, $owner);
-		}
-
-		$import_dir = $this->prepare_import_dir();
-
-		require_once(ABSPATH . 'wp-admin/includes/class-pclzip.php');
-
-		$archive = new PclZip($filename);
-		$archive_files = $archive->extract(PCLZIP_OPT_EXTRACT_AS_STRING);
-
-		// Is the archive valid?
-		if (!is_array($archive_files)) {
-			$errors[] = __('Incompatible ZIP Archive', 'another-wordpress-classifieds-plugin');
-			return false;
-		}
-
-		if (0 == count($archive_files)) {
-			$errors[] = __('Empty ZIP Archive', 'another-wordpress-classifieds-plugin');
-			return false;
-		}
-
-		// Extract the files from the zip
-		foreach ($archive_files as $file) {
-			if ($file['folder'])
-				continue;
-
-			// Don't extract the OS X-created __MACOSX directory files
-			if ('__MACOSX/' === substr($file['filename'], 0, 9))
-				continue;
-
-			if ($fh = fopen(trailingslashit($import_dir) . $file['filename'], 'w')) {
-				fwrite($fh, $file['content']);
-				fclose($fh);
-			} else {
-				$msg = __('Could not write temporary file %s', 'another-wordpress-classifieds-plugin');
-				$errors[] = sprintf($msg, $file['filename']);
-				return false;
-			}
-		}
-
-		return $import_dir;
-	}
-
 	private function prepare_import_dir() {
 		$current_user = wp_get_current_user();
 
