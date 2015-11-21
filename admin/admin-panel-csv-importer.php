@@ -105,7 +105,6 @@ class AWPCP_Admin_CSV_Importer {
 			if (empty($form_errors)) {
  				if (empty($errors)) {
 					$csv = $_FILES['import']['tmp_name'];
-					$zip = $_FILES['import_zip']['tmp_name'];
 
 					$importer = new AWPCP_CSV_Importer(array(
 						'start-date' => $start_date,
@@ -119,7 +118,7 @@ class AWPCP_Admin_CSV_Importer {
 						'test-import' => $test_import)
 					);
 
-					$importer->import($csv, $zip, $errors, $messages);
+					$importer->import($csv, $_FILES['import_zip'], $errors, $messages);
  				}
 			}
 		}
