@@ -115,6 +115,7 @@ class AWPCP_CSV_Importer {
 	 */
 	public function import( $csv, $zip = '', &$errors = array(), &$messages = array() ) {
 		$parsed = $this->get_csv_data($csv);
+		$header = $this->clean_up_csv_headers( $parsed[0] );
 
 		if (empty($parsed)) {
 			$errors[] = __( 'Invalid CSV file.', 'another-wordpress-classifieds-plugin' );
@@ -135,10 +136,6 @@ class AWPCP_CSV_Importer {
 			if ( false === $images ) {
 				return false;
 			}
-		}
-
-		foreach ( $parsed[0] as $i => $column_name ) {
-			$header[ $i ] = trim( str_replace( "\xEF\xBF\xBD", '', $column_name ) );
 		}
 
 		if ( in_array( 'images', $header ) && empty( $zip_path ) ) {
@@ -184,6 +181,30 @@ class AWPCP_CSV_Importer {
 		}
 
 		$this->import_ads($header, $data, $import_dir, $errors, $messages);
+	}
+
+	public function get_csv_data( $fileName ) {
+		$ini = ini_get('auto_detect_line_endings');
+		ini_set('auto_detect_line_endings', true);
+
+		$data = array();
+		$csv = fopen($fileName, 'r');
+
+		while ($row = fgetcsv($csv)) {
+			$data[] = $row;
+		}
+
+		ini_set('auto_detect_line_endings', $ini);
+
+		return $data;
+	}
+
+	public function clean_up_csv_headers( $parsed_headers ) {
+		foreach ( $parsed_headers as $i => $column_name ) {
+			$headers[ $i ] = trim( str_replace( "\xEF\xBF\xBD", '', $column_name ) );
+		}
+
+		return $headers;
 	}
 
 	/**
@@ -569,22 +590,6 @@ class AWPCP_CSV_Importer {
 		}
 
 		awpcp_rmdir( $import_dir );
-	}
-
-	private function get_csv_data($fileName, $maxLimit=1000) {
-		$ini = ini_get('auto_detect_line_endings');
-		ini_set('auto_detect_line_endings', true);
-
-		$data = array();
-		$csv = fopen($fileName, 'r');
-
-		while ($row = fgetcsv($csv)) {
-			$data[] = $row;
-		}
-
-		ini_set('auto_detect_line_endings', $ini);
-
-		return $data;
 	}
 
 	private function get_category_id($name) {
