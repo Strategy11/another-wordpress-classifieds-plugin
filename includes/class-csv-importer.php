@@ -96,6 +96,8 @@ class AWPCP_CSV_Importer {
 	public $images_imported = 0;
 	public $ads_rejected = 0;
 
+	private $zip_file = null;
+
 	public function __construct($options=array()) {
 		$this->options = wp_parse_args($options, $this->defaults);
 
@@ -113,26 +115,30 @@ class AWPCP_CSV_Importer {
 	 */
 	public function import( $csv, $zip = '', &$errors = array(), &$messages = array() ) {
 		$parsed = $this->get_csv_data($csv);
+		$header = $this->clean_up_csv_headers( $parsed[0] );
 
 		if (empty($parsed)) {
 			$errors[] = __( 'Invalid CSV file.', 'another-wordpress-classifieds-plugin' );
 			return false;
 		}
 
-		if ( empty( $zip ) ) {
+		$zip_path = $zip['tmp_name'];
+		$zip_file = $zip['name'];
+
+		if ( empty( $zip_path ) ) {
 			$import_dir = false;
 		} else {
 			$import_dir = $this->prepare_import_dir();
-			$images = $this->unzip( $zip, $import_dir, $errors, $messages );
+			$images = $this->unzip( $zip_path, $import_dir, $errors, $messages );
+
+			$this->zip_file = $zip_file;
 
 			if ( false === $images ) {
 				return false;
 			}
 		}
 
-		$header = array_map( 'trim', $parsed[0] );
-
-		if (in_array('images', $header) && empty($zip)) {
+		if ( in_array( 'images', $header ) && empty( $zip_path ) ) {
 			$errors[] = __( 'Image file names were found but no ZIP was provided.', 'another-wordpress-classifieds-plugin' );
 			return false;
 		}
@@ -177,6 +183,30 @@ class AWPCP_CSV_Importer {
 		$this->import_ads($header, $data, $import_dir, $errors, $messages);
 	}
 
+	public function get_csv_data( $fileName ) {
+		$ini = ini_get('auto_detect_line_endings');
+		ini_set('auto_detect_line_endings', true);
+
+		$data = array();
+		$csv = fopen($fileName, 'r');
+
+		while ($row = fgetcsv($csv)) {
+			$data[] = $row;
+		}
+
+		ini_set('auto_detect_line_endings', $ini);
+
+		return $data;
+	}
+
+	public function clean_up_csv_headers( $parsed_headers ) {
+		foreach ( $parsed_headers as $i => $column_name ) {
+			$headers[ $i ] = trim( str_replace( "\xEF\xBF\xBD", '', $column_name ) );
+		}
+
+		return $headers;
+	}
+
 	/**
 	 * @param $header	array of columns in the CSV file
 	 * @param $csv		two dimensional array of data extracted from CSV file
@@ -208,7 +238,6 @@ class AWPCP_CSV_Importer {
 	/**
 	 * @param $header	array of columns in the CSV file
 	 * @param $csv		two dimensional array of data extracted from CSV file
-	 * @param $zip		true if a ZIP file with images was included
 	 */
 	private function import_ads($header, $csv, $import_dir, &$errors, &$messages) {
 		global $wpdb;
@@ -390,62 +419,6 @@ class AWPCP_CSV_Importer {
 		}
 	}
 
-	private function extract_images($filename, &$errors=array(), &$messages=array()) {
-		global $current_user;
-		get_currentuserinfo();
-
-		list($images_dir, $thumbs_dir) = awpcp_setup_uploads_dir();
-		$import_dir = str_replace('thumbs', 'import', $thumbs_dir);
-		$import_dir = $import_dir . $current_user->ID . '-' . time();
-
-		$owner = fileowner($images_dir);
-
-		if (!is_dir($import_dir)) {
-			umask(0);
-			mkdir($import_dir, awpcp_directory_permissions(), true);
-			chown($import_dir, $owner);
-		}
-
-		$import_dir = $this->prepare_import_dir();
-
-		require_once(ABSPATH . 'wp-admin/includes/class-pclzip.php');
-
-		$archive = new PclZip($filename);
-		$archive_files = $archive->extract(PCLZIP_OPT_EXTRACT_AS_STRING);
-
-		// Is the archive valid?
-		if (!is_array($archive_files)) {
-			$errors[] = __('Incompatible ZIP Archive', 'another-wordpress-classifieds-plugin');
-			return false;
-		}
-
-		if (0 == count($archive_files)) {
-			$errors[] = __('Empty ZIP Archive', 'another-wordpress-classifieds-plugin');
-			return false;
-		}
-
-		// Extract the files from the zip
-		foreach ($archive_files as $file) {
-			if ($file['folder'])
-				continue;
-
-			// Don't extract the OS X-created __MACOSX directory files
-			if ('__MACOSX/' === substr($file['filename'], 0, 9))
-				continue;
-
-			if ($fh = fopen(trailingslashit($import_dir) . $file['filename'], 'w')) {
-				fwrite($fh, $file['content']);
-				fclose($fh);
-			} else {
-				$msg = __('Could not write temporary file %s', 'another-wordpress-classifieds-plugin');
-				$errors[] = sprintf($msg, $file['filename']);
-				return false;
-			}
-		}
-
-		return $import_dir;
-	}
-
 	private function prepare_import_dir() {
 		$current_user = wp_get_current_user();
 
@@ -542,11 +515,16 @@ class AWPCP_CSV_Importer {
 		list( $images_dir, $thumbnails_dir ) = awpcp_setup_uploads_dir();
 		list( $min_width, $min_height, $min_size, $max_size ) = awpcp_get_image_constraints();
 
-		$import_dir = trailingslashit($import_dir);
+		$default_import_dir_path = trailingslashit($import_dir);
+		$extended_import_dir_path = $default_import_dir_path . basename( $this->zip_file, '.zip' ) . '/';
 
 		$entries = array();
 		foreach (array_filter($images) as $filename) {
-			$tmpname = $import_dir . $filename;
+			if ( file_exists( $default_import_dir_path . $filename ) ) {
+				$tmpname = $default_import_dir_path . $filename;
+			} else {
+				$tmpname = $extended_import_dir_path . $filename;
+			}
 
 			$uploaded = awpcp_upload_image_file($images_dir, basename($filename), $tmpname, $min_size, $max_size, $min_width, $min_height, false);
 
@@ -612,22 +590,6 @@ class AWPCP_CSV_Importer {
 		}
 
 		awpcp_rmdir( $import_dir );
-	}
-
-	private function get_csv_data($fileName, $maxLimit=1000) {
-		$ini = ini_get('auto_detect_line_endings');
-		ini_set('auto_detect_line_endings', true);
-
-		$data = array();
-		$csv = fopen($fileName, 'r');
-
-		while ($row = fgetcsv($csv)) {
-			$data[] = $row;
-		}
-
-		ini_set('auto_detect_line_endings', $ini);
-
-		return $data;
 	}
 
 	private function get_category_id($name) {
