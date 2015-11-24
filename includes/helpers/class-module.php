@@ -39,7 +39,7 @@ abstract class AWPCP_Module {
         }
 
         // run after load_dependencies() in new modules and init() in old modules
-        add_action( 'init', array( $this, 'module_setup' ), 11 );
+        add_action( 'init', array( $this, 'setup_module' ), 11 );
 
         $this->load_dependencies();
         $this->load_module();
@@ -58,11 +58,11 @@ abstract class AWPCP_Module {
         // overwrite in children classes if necessary
     }
 
-    public function load_module() {
+    public function load_dependencies() {
         // overwrite in children classes if necessary
     }
 
-    public function load_dependencies() {
+    public function load_module() {
         // overwrite in children classes if necessary
     }
 
