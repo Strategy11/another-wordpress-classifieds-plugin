@@ -61,7 +61,7 @@ class AWPCP_Router {
             $priority
         );
 
-        return "$parent_page,$slug";
+        return "$parent_page::$slug";
     }
 
     private function create_admin_subpage( $menu_title, $page_title, $slug, $handler = null, $capability = 'install_plugins', $priority = 10, $type = 'subpage' ) {
@@ -77,6 +77,38 @@ class AWPCP_Router {
         $subpage->type = $type;
 
         return $subpage;
+    }
+
+    public function add_admin_section( $page, $section_param, $section_slug, $handler = null ) {
+        $subpage = $this->get_admin_subpage( $page );
+
+        if ( ! is_null( $subpage ) ) {
+            $section = new stdClass();
+
+            $section->param = $section_param;
+            $section->slug = $section_slug;
+            $section->handler = $handler;
+
+            $subpage->sections[ $section_slug ] = $section;
+        }
+
+        return is_null( $subpage ) ? false : true;
+    }
+
+    private function get_admin_subpage( $ref ) {
+        $parts = explode( '::', $ref );
+
+        if ( count( $parts ) !== 2 ) {
+            return null;
+        }
+
+        $parent_page = $this->get_or_create_admin_page( $parts[0] );
+
+        if ( ! isset( $parent_page->subpages[ $parts[1] ] ) ) {
+            return null;
+        }
+
+        return $parent_page->subpages[ $parts[1] ];
     }
 
     public function add_admin_users_page( $menu_title, $page_title, $slug, $handler = null, $capability = 'install_plugins', $priority = 10 ) {
@@ -111,7 +143,7 @@ class AWPCP_Router {
         $admin_page = $this->get_or_create_admin_page( $parent_page );
         $admin_page->subpages[ $slug ] = $custom_page;
 
-        return "custom:$parent_page,$slug,$url";
+        return "custom:$parent_page::$slug::$url";
     }
 
     public function add_private_ajax_action( $action_name, $action_handler ) {
@@ -152,16 +184,40 @@ class AWPCP_Router {
         }
     }
 
-    private function get_request_handler( $current_page ) {
-        if ( is_null( $current_page ) || is_null( $current_page->handler ) ) {
+    private function get_request_handler( $page ) {
+        if ( is_null( $page ) ) {
             return null;
         }
 
-        if ( ! is_callable( $current_page->handler ) ) {
+        $request_handler = $this->get_request_handler_from_page_sections( $page );
+
+        if ( ! is_null( $request_handler ) ) {
+            return $request_handler;
+        } else if ( is_callable( $page->handler ) ) {
+            return call_user_func( $page->handler );
+        } else {
             return null;
         }
+    }
 
-        return call_user_func( $current_page->handler );
+    private function get_request_handler_from_page_sections( $page ) {
+        $request_handler = null;
+
+        foreach ( (array) $page->sections as $section_slug => $section ) {
+            $param_value = $this->request->param( $section->param );
+
+            if ( $param_value != $section_slug || ! is_callable( $section->handler ) ) {
+                continue;
+            }
+
+            $request_handler = call_user_func( $section->handler );
+
+            if ( ! is_null( $request_handler ) ) {
+                break;
+            }
+        }
+
+        return $request_handler;
     }
 
     public function dispatch() {
