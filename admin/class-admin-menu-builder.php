@@ -50,11 +50,15 @@ class AWPCP_AdminMenuBuilder {
     }
 
     public function register_admin_page( $admin_page ) {
-        return add_menu_page( $admin_page->title, $admin_page->menu_title, $admin_page->capability, $admin_page->slug, array( $this->router, 'dispatch' ), $admin_page->menu_icon );
+        $hook = add_menu_page( $admin_page->title, $admin_page->menu_title, $admin_page->capability, $admin_page->slug, array( $this->router, 'dispatch' ), $admin_page->menu_icon );
+        add_action( "load-{$hook}", array( $this->router, 'load' ) );
+        return $hook;
     }
 
     public function register_admin_subpage( $parent_menu, $subpage ) {
-        return add_submenu_page( $parent_menu, $subpage->title, $subpage->menu_title, $subpage->capability, $subpage->slug, array( $this->router, 'dispatch' ) );
+        $hook = add_submenu_page( $parent_menu, $subpage->title, $subpage->menu_title, $subpage->capability, $subpage->slug, array( $this->router, 'dispatch' ) );
+        add_action( "load-{$hook}", array( $this->router, 'load' ) );
+        return $hook;
     }
 
     public function register_users_page( $subpage ) {

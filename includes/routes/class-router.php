@@ -13,6 +13,9 @@ class AWPCP_Router {
 
     private $ajax_actions = array( 'private' => array(), 'public' => array() );
 
+    private $current_page = null;
+    private $request_handler = null;
+
     public function __construct( $request ) {
         $this->request = $request;
     }
@@ -126,50 +129,78 @@ class AWPCP_Router {
         return $this->admin_pages;
     }
 
-    public function dispatch() {
-        if ( is_admin() ) {
-            $this->handle_admin_request();
+    public function load() {
+        $this->current_page = $this->get_active_page();
+        $this->request_handler = $this->get_request_handler( $this->current_page );
+
+        if ( method_exists( $this->request_handler, 'on_load' ) ) {
+            $this->request_handler->on_load();
         }
     }
 
-    private function handle_admin_request() {
+    private function get_active_page() {
         global $plugin_page;
 
         $admin_page_slug = get_admin_page_parent();
 
-        if ( ! isset( $this->admin_pages[ $admin_page_slug ] ) ) {
-            return;
-        }
-
-        if ( $plugin_page == $admin_page_slug ) {
-            $this->handle_admin_page( $this->admin_pages[ $admin_page_slug ] );
+        if ( isset( $this->admin_pages[ $admin_page_slug ] ) && $plugin_page == $admin_page_slug ) {
+            return $this->admin_pages[ $admin_page_slug ];
         } else if ( isset( $this->admin_pages[ $admin_page_slug ]->subpages[ $plugin_page ] ) ) {
-            $this->handle_admin_page( $this->admin_pages[ $admin_page_slug ]->subpages[ $plugin_page ] );
+            return $this->admin_pages[ $admin_page_slug ]->subpages[ $plugin_page ];
+        } else {
+            return null;
         }
     }
 
-    private function handle_admin_page( $current_page ) {
-        if ( is_null( $current_page->handler ) || ! is_callable( $current_page->handler ) ) {
-            return;
+    private function get_request_handler( $current_page ) {
+        if ( is_null( $current_page ) || is_null( $current_page->handler ) ) {
+            return null;
         }
 
-        $request_handler = call_user_func( $current_page->handler );
+        if ( ! is_callable( $current_page->handler ) ) {
+            return null;
+        }
 
+        return call_user_func( $current_page->handler );
+    }
+
+    public function dispatch() {
+        if ( is_admin() ) {
+            $this->handle_admin_page( $this->current_page, $this->request_handler );
+        }
+    }
+
+    // private function handle_admin_request() {
+    //     global $plugin_page;
+
+    //     $admin_page_slug = get_admin_page_parent();
+
+    //     if ( ! isset( $this->admin_pages[ $admin_page_slug ] ) ) {
+    //         return;
+    //     }
+
+    //     if ( $plugin_page == $admin_page_slug ) {
+    //         $this->handle_admin_page( $this->admin_pages[ $admin_page_slug ] );
+    //     } else if ( isset( $this->admin_pages[ $admin_page_slug ]->subpages[ $plugin_page ] ) ) {
+    //         $this->handle_admin_page( $this->admin_pages[ $admin_page_slug ]->subpages[ $plugin_page ] );
+    //     }
+    // }
+
+    private function handle_admin_page( $admin_page, $request_handler ) {
         if ( method_exists( $request_handler, 'enqueue_scripts' ) ) {
             $request_handler->enqueue_scripts();
         }
 
         if ( method_exists( $request_handler, 'get_display_options' ) ) {
-            $current_page->options = $request_handler->get_display_options();
+            $admin_page->options = $request_handler->get_display_options();
         }
 
-        echo $this->render_admin_page( $current_page, $request_handler->dispatch() );
+        echo $this->render_admin_page( $admin_page, $request_handler->dispatch() );
     }
 
-    public function render_admin_page( $page, $content ) {
+    public function render_admin_page( $admin_page, $content ) {
         // necesary to use the admin-page template without having to modify it
-        $this->current_page = $page;
-        $this->page = $this->current_page->slug;
+        $this->page = $admin_page->slug;
 
         ob_start();
         include( AWPCP_DIR . '/admin/templates/admin-page.tpl.php' );
