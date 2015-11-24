@@ -1822,7 +1822,7 @@ function awpcp_html_admin_first_level_heading_tag() {
  * @since 3.5.4
  */
 function awpcp_html_admin_second_level_heading( $params ) {
-    $params['tag'] = awpcp_htmld_admin_second_level_heading_tag();
+    $params['tag'] = awpcp_html_admin_second_level_heading_tag();
     return awpcp_html_heading( $params );
 }
 
