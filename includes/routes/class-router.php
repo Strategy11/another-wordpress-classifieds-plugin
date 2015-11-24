@@ -201,6 +201,10 @@ class AWPCP_Router {
     }
 
     private function get_request_handler_from_page_sections( $page ) {
+        if ( ! isset( $page->sections ) ) {
+            return null;
+        }
+
         $request_handler = null;
 
         foreach ( (array) $page->sections as $section_slug => $section ) {
