@@ -104,6 +104,13 @@ class AWPCP_Request {
     }
 
     /**
+     * @since 3.5.4
+     */
+    public function all_post_params() {
+        return $_POST;
+    }
+
+    /**
      * @tested
      * @since 3.0.2
      */
