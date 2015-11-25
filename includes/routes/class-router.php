@@ -1,9 +1,15 @@
 <?php
 
+/**
+ * @since 3.5.4
+ */
 function awpcp_router() {
     return new AWPCP_Router( awpcp_request() );
 }
 
+/**
+ * @since 3.5.4
+ */
 class AWPCP_Router {
 
     private $request;
@@ -146,15 +152,27 @@ class AWPCP_Router {
         return "custom:$parent_page::$slug::$url";
     }
 
-    public function add_private_ajax_action( $action_name, $action_handler ) {
+    public function add_anonymous_ajax_action( $action_name, $action_handler ) {
+        return $this->add_ajax_action( 'anonymous', $action_name, $action_handler );
+    }
+
+    private function add_ajax_action( $type, $action_name, $action_handler ) {
         $action = new stdClass();
 
         $action->name = $action_name;
         $action->handler = $action_handler;
 
-        $this->ajax_actions['private'][ $action->name ] = $action;
+        $this->ajax_actions[ $type ][ $action->name ] = $action;
 
-        return add_action( "wp_ajax_awpcp-{$action->name}", array( $this, 'handle_private_ajax_request' ) );
+        if ( $type == 'anonymous' ) {
+            return add_action( "wp_ajax_nopriv_awpcp-{$action->name}", array( $this, 'handle_anonymous_ajax_request' ) );
+        } else {
+            return add_action( "wp_ajax_awpcp-{$action->name}", array( $this, 'handle_private_ajax_request' ) );
+        }
+    }
+
+    public function add_private_ajax_action( $action_name, $action_handler ) {
+        return $this->add_ajax_action( 'private', $action_name, $action_handler );
     }
 
     public function get_admin_pages() {
@@ -270,14 +288,18 @@ class AWPCP_Router {
         return $content;
     }
 
-    public function handle_private_ajax_request() {
+    public function handle_anonymous_ajax_request() {
+        return $this->handle_ajax_request( 'anonymous' );
+    }
+
+    private function handle_ajax_request( $type ) {
         $action_name = str_replace( 'awpcp-', '', $this->request->param( 'action' ) );
 
-        if ( ! isset( $this->ajax_actions['private'][ $action_name ] ) ) {
+        if ( ! isset( $this->ajax_actions[ $type ][ $action_name ] ) ) {
             return;
         }
 
-        $current_action = $this->ajax_actions['private'][ $action_name ];
+        $current_action = $this->ajax_actions[ $type ][ $action_name ];
 
         if ( is_null( $current_action->handler ) || ! function_exists( $current_action->handler ) ) {
             return;
@@ -285,6 +307,10 @@ class AWPCP_Router {
 
         $request_handler = call_user_func( $current_action->handler );
         $request_handler->ajax();
+    }
+
+    public function handle_private_ajax_request() {
+        return $this->handle_ajax_request( 'private' );
     }
 
     /* Admin Page template expects user class to have the following methods defined */
