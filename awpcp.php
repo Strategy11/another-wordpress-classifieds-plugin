@@ -1227,7 +1227,7 @@ class AWPCP {
 	public function get_regions_options() {
 		$type = awpcp_request_param( 'type', '', $_GET );
 		$parent_type = awpcp_request_param( 'parent_type', '', $_GET );
-		$parent = awpcp_request_param( 'parent', '', $_GET );
+		$parent = stripslashes( awpcp_request_param( 'parent', '', $_GET ) );
 		$context = awpcp_request_param( 'context', '', $_GET );
 
 		$options = apply_filters( 'awpcp-get-regions-options', false, $type, $parent_type, $parent, $context );
