@@ -11,7 +11,7 @@ function awpcp_edit_fee_ajax_handler() {
 class AWPCP_EditFeeAjaxHandler extends AWPCP_AddEditTableEntryAjaxHandler {
 
     public function process_entry_action() {
-        $fee = AWPCP_Fee::find_by_id( $this->request->post( 'id' ) );
+        $fee = $this->find_fee_by_id( $this->request->post( 'id' ) );
 
         if ( is_null( $fee ) ) {
             $message = __( "The specified Fee doesn't exists.", 'AWPCP' );
@@ -24,6 +24,10 @@ class AWPCP_EditFeeAjaxHandler extends AWPCP_AddEditTableEntryAjaxHandler {
             $template = AWPCP_DIR . '/admin/templates/admin-panel-fees-entry-form.tpl.php';
             $this->success( array( 'html' => $this->render_entry_form( $template, $fee ) ) );
         }
+    }
+
+    protected function find_fee_by_id( $id ) {
+        return AWPCP_Fee::find_by_id( $id );
     }
 
     private function save_existing_fee( $fee ) {
