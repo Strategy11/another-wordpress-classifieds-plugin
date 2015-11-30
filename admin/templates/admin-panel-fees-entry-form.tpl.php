@@ -19,7 +19,7 @@
                 </label>
 
                 <label><span class="title"><?php _e('Description', 'awpcp-subscriptions' ); ?></span></label>
-                <textarea name="description" cols="54" rows="6"><?php echo esc_html( awpcp_get_property( $entry, 'description' ) ); ?></textarea>
+                <textarea class="awpcp-textarea" name="description" rows="6"><?php echo esc_html( awpcp_get_property( $entry, 'description' ) ); ?></textarea>
 
                 <label>
                     <span class="title"><?php _e('Price', 'another-wordpress-classifieds-plugin'); ?></span>
@@ -88,7 +88,7 @@
             </div>
         </fieldset>
         <?php if ( function_exists( 'awpcp_price_cats' ) ): ?>
-        <fieldset class="inline-edit-col-right inline-edit-categories">
+        <fieldset class="awpcp-fee-form-categories-column  inline-edit-col-right inline-edit-categories">
             <div class="inline-edit-col">
                 <h4>&nbsp;</h4>
 
