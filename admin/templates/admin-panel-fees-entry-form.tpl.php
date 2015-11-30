@@ -19,7 +19,7 @@
                 </label>
 
                 <label><span class="title"><?php _e('Description', 'awpcp-subscriptions' ); ?></span></label>
-                <textarea name="description" cols="54" rows="6"><?php echo esc_html( awpcp_get_property( $fee, 'description' ) ); ?></textarea>
+                <textarea name="description" cols="54" rows="6"><?php echo esc_html( awpcp_get_property( $entry, 'description' ) ); ?></textarea>
 
                 <label>
                     <span class="title"><?php _e('Price', 'another-wordpress-classifieds-plugin'); ?></span>
@@ -56,7 +56,7 @@
         <?php endif; ?>
                 <label class="clearfix">
                     <span class="title"><?php _e('Images Allowed', 'another-wordpress-classifieds-plugin'); ?></span>
-                    <span class="input-text-wrap"><input type="text" value="<?php echo esc_attr( awpcp_get_property( $fee, 'images', 1 ) ); ?>" name="images"></span>
+                    <span class="input-text-wrap"><input type="text" value="<?php echo esc_attr( awpcp_get_property( $entry, 'images', 1 ) ); ?>" name="images"></span>
                 </label>
 
                 <label class="clearfix">
@@ -87,6 +87,7 @@
                 <?php endif ?>
             </div>
         </fieldset>
+        <?php if ( function_exists( 'awpcp_price_cats' ) ): ?>
         <fieldset class="inline-edit-col-right inline-edit-categories">
             <div class="inline-edit-col">
                 <h4>&nbsp;</h4>
@@ -106,7 +107,6 @@
                     echo awpcp_categories_checkbox_list_renderer()->render( $params );
                 ?>
                 </div>
-        <?php endif; ?>
 
                 <label class="alignleft">
                     <?php $private = awpcp_get_property( $entry, 'private', 0 ); ?>
@@ -116,6 +116,7 @@
 
             </div>
         </fieldset>
+        <?php endif; ?>
 
         <p class="submit inline-edit-save">
             <?php $label = $id ? __('Update', 'another-wordpress-classifieds-plugin') : __('Add', 'another-wordpress-classifieds-plugin'); ?>
