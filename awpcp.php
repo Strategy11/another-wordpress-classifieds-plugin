@@ -4,7 +4,7 @@
  * Plugin Name: Another Wordpress Classifieds Plugin (AWPCP)
  * Plugin URI: http://www.awpcp.com
  * Description: AWPCP - A plugin that provides the ability to run a free or paid classified ads service on your wordpress blog. <strong>!!!IMPORTANT!!!</strong> Whether updating a previous installation of Another Wordpress Classifieds Plugin or installing Another Wordpress Classifieds Plugin for the first time, please backup your wordpress database before you install/uninstall/activate/deactivate/upgrade Another Wordpress Classifieds Plugin.
- * Version: 3.5.4-dev-69
+ * Version: 3.5.4-dev-70
  * Author: D. Rodenbaugh
  * License: GPLv2 or any later version
  * Author URI: http://www.skylineconsult.com
@@ -1227,7 +1227,7 @@ class AWPCP {
 	public function get_regions_options() {
 		$type = awpcp_request_param( 'type', '', $_GET );
 		$parent_type = awpcp_request_param( 'parent_type', '', $_GET );
-		$parent = awpcp_request_param( 'parent', '', $_GET );
+		$parent = stripslashes( awpcp_request_param( 'parent', '', $_GET ) );
 		$context = awpcp_request_param( 'context', '', $_GET );
 
 		$options = apply_filters( 'awpcp-get-regions-options', false, $type, $parent_type, $parent, $context );
