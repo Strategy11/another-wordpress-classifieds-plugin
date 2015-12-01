@@ -447,9 +447,9 @@ class AWPCP_Admin {
 			// // allow plugins to define additional sub menu entries
 			// do_action('awpcp_admin_add_submenu_page', $parent, $capability);
 
-			if ($hasextrafieldsmodule) {
-				add_submenu_page($parent, __('Manage Extra Fields', 'another-wordpress-classifieds-plugin'), __('Extra Fields', 'another-wordpress-classifieds-plugin'), $capability, 'Configure5', 'awpcp_add_new_field');
-			}
+			// if ($hasextrafieldsmodule) {
+			// 	add_submenu_page($parent, __('Manage Extra Fields', 'another-wordpress-classifieds-plugin'), __('Extra Fields', 'another-wordpress-classifieds-plugin'), $capability, 'awpcp-admin-manual-upgrade', 'awpcp_add_new_field');
+			// }
 
 			// $hook = add_submenu_page($parent, __('Import Ad', 'AWPCP'), __('Import', 'AWPCP'), $capability, 'awpcp-import', array($this->importer, 'dispatch'));
 			// add_action("load-{$hook}", array($this->importer, 'scripts'));

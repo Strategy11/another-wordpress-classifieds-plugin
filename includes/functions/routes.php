@@ -197,7 +197,7 @@ function is_awpcp_admin_page() {
         return true;
     }
 
-    if ( in_array( $_REQUEST['page'], array( 'Configure4', 'Configure5' ) ) ) {
+    if ( $_REQUEST['page'] == 'Configure4' ) {
         return true;
     }
 
