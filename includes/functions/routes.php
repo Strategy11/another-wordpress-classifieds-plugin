@@ -608,7 +608,7 @@ function awpcp_get_admin_upgrade_url() {
  * @since 2.1.4
  */
 function awpcp_get_admin_listings_url() {
-    return admin_url('admin.php?page=awpcp-listings');
+    return add_query_arg( 'page', 'awpcp-admin-listings', admin_url( 'admin.php' ) );
 }
 
 /**

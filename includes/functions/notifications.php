@@ -32,8 +32,8 @@ function awpcp_send_listing_posted_notification_to_moderators( $listing, $transa
     $admin_message->to = $email_recipients;
     $admin_message->subject = __( 'New classified listing created', 'another-wordpress-classifieds-plugin' );
 
-    $params = array('page' => 'awpcp-listings',  'action' => 'view', 'id' => $listing->ad_id);
-    $url = add_query_arg( urlencode_deep( $params ), admin_url( 'admin.php' ) );
+    $params = array( 'action' => 'view', 'id' => $listing->ad_id );
+    $url = add_query_arg( urlencode_deep( $params ), awpcp_get_admin_listings_url() );
 
     $template = AWPCP_DIR . '/frontend/templates/email-place-ad-success-admin.tpl.php';
     $admin_message->prepare($template, compact('content', 'url'));
@@ -78,8 +78,8 @@ function awpcp_send_listing_updated_notification_to_moderators( $listing, $messa
     $admin_message->to = $email_recipients;
     $admin_message->subject = $subject;
 
-    $params = array('page' => 'awpcp-listings',  'action' => 'view', 'id' => $listing->ad_id);
-    $manage_listing_url = add_query_arg( urlencode_deep( $params ), admin_url( 'admin.php' ) );
+    $params = array( 'action' => 'view', 'id' => $listing->ad_id );
+    $manage_listing_url = add_query_arg( urlencode_deep( $params ), awpcp_get_admin_listings_url() );
 
     $template = AWPCP_DIR . '/templates/email/listing-updated-nofitication-moderators.plain.tpl.php';
     $admin_message->prepare( $template, compact( 'listing', 'manage_listing_url', 'content' ) );
@@ -180,8 +180,8 @@ function awpcp_get_recipients_for_listing_awaiting_approval_notification() {
 }
 
 function awpcp_get_messages_for_listing_awaiting_approval_notification( $listing, $moderate_listings, $moderate_images ) {
-    $params = array( 'page' => 'awpcp-listings',  'action' => 'manage-images', 'id' => $listing->ad_id );
-    $manage_images_url = add_query_arg( urlencode_deep( $params ), admin_url( 'admin.php' ) );
+    $params = array( 'action' => 'manage-images', 'id' => $listing->ad_id );
+    $manage_images_url = add_query_arg( urlencode_deep( $params ), awpcp_get_admin_listings_url() );
 
     if ( $moderate_images && ! $moderate_listings ) {
         $subject = __( 'Images on listing "%s" are awaiting approval', 'another-wordpress-classifieds-plugin' );
@@ -192,8 +192,8 @@ function awpcp_get_messages_for_listing_awaiting_approval_notification( $listing
         $subject = __( 'Listing "%s" is awaiting approval', 'another-wordpress-classifieds-plugin' );
 
         $message = __('The Ad "%s" is awaiting approval. You can approve the Ad going to the Manage Listings section and clicking the "Enable" action shown on top. Click here to continue: %s.', 'another-wordpress-classifieds-plugin');
-        $params = array('page' => 'awpcp-listings',  'action' => 'view', 'id' => $listing->ad_id);
-        $url = add_query_arg( urlencode_deep( $params ), admin_url( 'admin.php' ) );
+        $params = array( 'action' => 'view', 'id' => $listing->ad_id );
+        $url = add_query_arg( urlencode_deep( $params ), awpcp_get_admin_listings_url() );
 
         $messages[] = sprintf( $message, $listing->get_title(), $url );
 
@@ -219,7 +219,7 @@ function awpcp_send_listing_media_uploaded_notifications( $file, $listing ) {
     $referer = parse_url( $_SERVER['HTTP_REFERER'] );
     $referer_vars = wp_parse_args( awpcp_array_data( 'query', '', $referer ) );
 
-    if ( ! isset( $referer_vars['page'] ) || ! in_array( $referer_vars['page'], array( 'awpcp-listings', 'awpcp-panel' ) ) ) {
+    if ( ! isset( $referer_vars['page'] ) || ! in_array( $referer_vars['page'], array( 'awpcp-admin-listings', 'awpcp-panel' ) ) ) {
         return false;
     }
 
@@ -253,8 +253,8 @@ function awpcp_send_listing_was_flagged_notification( $listing ) {
         return false;
     }
 
-    $query_args = array( 'page' => 'awpcp-listings', 'filterby' => 'flagged', 'filter' => 1 );
-    $flagged_listings_url = add_query_arg( $query_args, awpcp_get_admin_panel_url() );
+    $query_args = array( 'filterby' => 'flagged', 'filter' => 1 );
+    $flagged_listings_url = add_query_arg( $query_args, awpcp_get_admin_listings_url() );
 
     $params = array(
         'site_name' => get_bloginfo( 'name' ),

@@ -365,8 +365,12 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
 
         if (is_admin()) {
             $message = __('The Ad has been edited successfully. <a href="%s">Go back to view listings</a>.', 'another-wordpress-classifieds-plugin');
-            $page = awpcp_current_user_is_moderator() ? 'awpcp-listings' : 'awpcp-panel';
-            $url = add_query_arg('page', $page, admin_url('admin.php'));
+
+            if ( awpcp_currency_symbols() ) {
+                $url = awpcp_get_admin_listings_url();
+            } else {
+                $url = awpcp_get_user_panel_url();
+            }
 
             $this->messages[] = sprintf( $message, esc_url( $url) );
         }

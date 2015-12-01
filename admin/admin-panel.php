@@ -129,7 +129,7 @@ class AWPCP_Admin {
             $parent_page,
             __( 'Listings', 'AWPCP' ),
             awpcp_admin_page_title( __( 'Manage Listings', 'AWPCP' ) ),
-            'awpcp-listings',
+            'awpcp-admin-listings',
             'awpcp_manage_listings_admin_page',
             $admin_capability,
             20

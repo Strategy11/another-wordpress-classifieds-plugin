@@ -2130,8 +2130,8 @@ function awpcp_ad_updated_email( $ad, $message ) {
 
 function awpcp_ad_awaiting_approval_email($ad, $ad_approve, $images_approve) {
 	// admin email
-	$params = array( 'page' => 'awpcp-listings',  'action' => 'manage-images', 'id' => $ad->ad_id );
-    $manage_images_url = add_query_arg( urlencode_deep( $params ), admin_url( 'admin.php' ) );
+	$params = array( 'action' => 'manage-images', 'id' => $ad->ad_id );
+    $manage_images_url = add_query_arg( urlencode_deep( $params ), awpcp_get_admin_listings_url() );
 
 	if ( false == $ad_approve && $images_approve ) {
 		$subject = __( 'Images on Ad "%s" are awaiting approval', 'another-wordpress-classifieds-plugin' );
@@ -2142,8 +2142,8 @@ function awpcp_ad_awaiting_approval_email($ad, $ad_approve, $images_approve) {
 		$subject = __( 'The Ad "%s" is awaiting approval', 'another-wordpress-classifieds-plugin' );
 
 		$message = __('The Ad "%s" is awaiting approval. You can approve the Ad going to the Manage Listings section and clicking the "Enable" action shown on top. Click here to continue: %s.', 'another-wordpress-classifieds-plugin');
-		$params = array('page' => 'awpcp-listings',  'action' => 'view', 'id' => $ad->ad_id);
-	    $url = add_query_arg( urlencode_deep( $params ), admin_url( 'admin.php' ) );
+		$params = array( 'action' => 'view', 'id' => $ad->ad_id );
+	    $url = add_query_arg( urlencode_deep( $params ), awpcp_get_admin_listings_url() );
 
 	    $messages[] = sprintf( $message, $ad->get_title(), $url );
 
