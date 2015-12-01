@@ -81,7 +81,7 @@ if (typeof jQuery !== 'undefined') {
 
                 $.post(options.ajaxurl, $.extend({}, options.data, {
                     'action': options.actions.add,
-                    'columns': tbody.closest('table').find('thead th').length
+                    'columns': tbody.closest('table').find('thead tr').first().children().length
                 }), function(response) {
                     if ( first.length ) {
                         inline = $(response.html).insertBefore( first );
@@ -227,7 +227,7 @@ if (typeof jQuery !== 'undefined') {
                 $.post(options.ajaxurl, $.extend({}, options.data, {
                     'id': row.data('id'),
                     'action': options.actions.remove,
-                    'columns': row.closest('tbody').closest('table').find('thead th').length
+                    'columns': row.find('th, td').length
                 }), function(response) {
                     inline = $(response.html).insertAfter(row);
                     inline.find('a.cancel').click(function() {
