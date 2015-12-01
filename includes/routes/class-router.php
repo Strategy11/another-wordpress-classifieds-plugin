@@ -273,7 +273,9 @@ class AWPCP_Router {
             $admin_page->options = $request_handler->get_display_options();
         }
 
-        echo $this->render_admin_page( $admin_page, $request_handler->dispatch() );
+        if ( method_exists( $request_handler, 'dispatch' ) ) {
+            echo $this->render_admin_page( $admin_page, $request_handler->dispatch() );
+        }
     }
 
     public function render_admin_page( $admin_page, $content ) {
@@ -306,6 +308,11 @@ class AWPCP_Router {
         }
 
         $request_handler = call_user_func( $current_action->handler );
+
+        if ( is_null( $request_handler ) ) {
+            return;
+        }
+
         $request_handler->ajax();
     }
 
