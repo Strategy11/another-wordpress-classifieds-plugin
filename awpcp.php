@@ -325,6 +325,7 @@ require( AWPCP_DIR . "/installer.php" );
 // admin functions
 require_once(AWPCP_DIR . "/admin/admin-panel.php");
 require_once( AWPCP_DIR . '/admin/class-admin-menu-builder.php' );
+require( AWPCP_DIR . "/admin/class-admin-page-url-builder.php");
 require_once( AWPCP_DIR . '/admin/class-categories-admin-page.php' );
 require( AWPCP_DIR . '/admin/class-import-listings-admin-page.php' );
 require( AWPCP_DIR . '/admin/class-debug-admin-page.php' );
