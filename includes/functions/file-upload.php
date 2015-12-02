@@ -284,7 +284,7 @@ function awpcp_make_intermediate_size($file, $directory, $width, $height, $crop=
  *
  * @param string $path a directory.
  * @return array list of files within the directory.
- * @since 3.5.4
+ * @since 3.6
  */
 function awpcp_scandir( $path, $args = array() ) {
     if ( ! is_dir( $path ) ) {

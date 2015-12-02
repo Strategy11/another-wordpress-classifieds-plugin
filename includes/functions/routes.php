@@ -395,7 +395,7 @@ function awpcp_get_view_categories_url() {
 /**
  * Based on WP's _get_page_link().
  *
- * @since 3.5.4
+ * @since 3.6
  */
 function awpcp_get_page_link( $page_or_page_id, $trailingslashit = false ) {
     global $wp_rewrite;
@@ -423,7 +423,7 @@ function awpcp_get_page_link( $page_or_page_id, $trailingslashit = false ) {
  * that work when PATHINFO permalinks are enabled.
  *
  * @see https://codex.wordpress.org/Using_Permalinks#PATHINFO:_.22Almost_Pretty.22
- * @since 3.5.4
+ * @since 3.6
  */
 function awpcp_get_url_with_page_permastruct( $path ) {
     global $wp_rewrite;

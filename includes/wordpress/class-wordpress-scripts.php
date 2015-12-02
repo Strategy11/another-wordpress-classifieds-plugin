@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @since 3.5.4
+ * @since 3.6
  */
 function awpcp_wordpress_scripts() {
     if ( ! isset( $GLOBALS['wp_scripts'] ) ) {
@@ -16,21 +16,21 @@ function awpcp_wordpress_scripts() {
  * @package AWPCP
  * @subpackage WordPress_Facade
  * @uses WP_Scripts
- * @since 3.5.4
+ * @since 3.6
  */
 class AWPCP_WordPress_Scripts {
 
     private $wp_scripts;
 
     /**
-     * @since 3.5.4
+     * @since 3.6
      */
     public function __construct( $wp_scripts ) {
         $this->wp_scripts = $wp_scripts;
     }
 
     /**
-     * @since 3.5.4
+     * @since 3.6
      */
     public function script_will_be_printed( $handle ) {
         if ( $this->query( $handle, 'queue' ) ) {
@@ -51,7 +51,7 @@ class AWPCP_WordPress_Scripts {
     /**
      * Based on WP_Dependency::query implementation in WordPress 4.3.
      *
-     * @since 3.5.4
+     * @since 3.6
      */
     public function query( $handle, $list = 'registered' ) {
         if ( version_compare( get_bloginfo( 'version' ), '4.0', '>' ) ) {
@@ -73,7 +73,7 @@ class AWPCP_WordPress_Scripts {
      * Recursively search the passed dependency tree for $handle.
      * Borrowed from WP_Dependency in WordPress 4.3.
      *
-     * @since 3.5.4
+     * @since 3.6
      *
      * @param array  $queue  An array of queued _WP_Dependency handle objects.
      * @param string $handle Name of the item. Should be unique.

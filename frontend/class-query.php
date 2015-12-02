@@ -1,14 +1,14 @@
 <?php
 
 /**
- * @since 3.5.4
+ * @since 3.6
  */
 function awpcp_query() {
     return new AWPCP_Query();
 }
 
 /**
- * @since 3.5.4
+ * @since 3.6
  */
 class AWPCP_Query {
 
