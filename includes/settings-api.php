@@ -1077,7 +1077,7 @@ class AWPCP_Settings_API {
 	}
 
 	/**
-	 * @since 3.5.4
+	 * @since 3.6
 	 */
 	public function render_custom_setting( $args ) {
 		$content = apply_filters( 'awpcp-render-setting-' . $args['setting']->name, null, $args, $this );

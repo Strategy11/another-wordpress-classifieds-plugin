@@ -1,14 +1,14 @@
 <?php
 
 /**
- * @since 3.5.4
+ * @since 3.6
  */
 function awpcp_rewrite_rules_helper() {
     return new AWPCP_Rewrite_Rules_Helper(_Helper);
 }
 
 /**
- * @since 3.5.4
+ * @since 3.6
  */
 class AWPCP_Rewrite_Rules_Helper {
 

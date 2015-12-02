@@ -1600,7 +1600,7 @@ function awpcp_html_image( $params ) {
 }
 
 /**
- * @since 3.5.4
+ * @since 3.6
  */
 function awpcp_html_label( $params ) {
     $params = wp_parse_args( $params, array(
@@ -1620,7 +1620,7 @@ function awpcp_html_label( $params ) {
 }
 
 /**
- * @since 3.5.4
+ * @since 3.6
  */
 function awpcp_html_text_field( $params ) {
     $params = awpcp_parse_html_params(
@@ -1641,7 +1641,7 @@ function awpcp_html_text_field( $params ) {
 }
 
 /**
- * @since 3.5.4
+ * @since 3.6
  */
 function awpcp_html_input( $params ) {
     $attributes = rtrim( ' ' . awpcp_html_attributes( $params['attributes'] ) );
@@ -1650,7 +1650,7 @@ function awpcp_html_input( $params ) {
 }
 
 /**
- * @since 3.5.4
+ * @since 3.6
  */
 function awpcp_html_radio( $params ) {
     $params = awpcp_parse_html_params(
@@ -1678,7 +1678,7 @@ function awpcp_html_radio( $params ) {
 }
 
 /**
- * @since 3.5.4
+ * @since 3.6
  */
 function awpcp_html_select( $params ) {
     $params = awpcp_parse_html_params( $params );
@@ -1693,7 +1693,7 @@ function awpcp_html_select( $params ) {
 }
 
 /**
- * @since 3.5.4
+ * @since 3.6
  */
 function awpcp_html_options( $params ) {
     $params = wp_parse_args( $params, array(
@@ -1722,7 +1722,7 @@ function awpcp_html_options( $params ) {
 }
 
 /**
- * @since 3.5.4
+ * @since 3.6
  */
 function awpcp_parse_html_params( $params, $default_params = array(), $default_attributes = array() ) {
     $params = wp_parse_args(
@@ -1764,7 +1764,7 @@ function awpcp_parse_html_attributes( $attributes, $default_attributes = array()
 }
 
 /**
- * @since 3.5.4
+ * @since 3.6
  */
 function awpcp_html_postbox_handle( $params ) {
     $default_params = array(
@@ -1797,7 +1797,7 @@ function awpcp_html_postbox_handle( $params ) {
 }
 
 /**
- * @since 3.5.4
+ * @since 3.6
  */
 function awpcp_html_admin_first_level_heading( $params ) {
     $params['tag'] = awpcp_html_admin_first_level_heading_tag();
@@ -1808,7 +1808,7 @@ function awpcp_html_admin_first_level_heading( $params ) {
  * See:
  * - https://make.wordpress.org/core/2015/07/31/headings-in-admin-screens-change-in-wordpress-4-3/
  *
- * @since 3.5.4
+ * @since 3.6
  */
 function awpcp_html_admin_first_level_heading_tag() {
     if ( version_compare( get_bloginfo('version'), '4.3-beta1', '<' ) ) {
@@ -1819,7 +1819,7 @@ function awpcp_html_admin_first_level_heading_tag() {
 }
 
 /**
- * @since 3.5.4
+ * @since 3.6
  */
 function awpcp_html_admin_second_level_heading( $params ) {
     $params['tag'] = awpcp_html_admin_second_level_heading_tag();
@@ -1830,7 +1830,7 @@ function awpcp_html_admin_second_level_heading( $params ) {
  * See:
  * - https://make.wordpress.org/core/2015/10/28/headings-hierarchy-changes-in-the-admin-screens/
  *
- * @since 3.5.4
+ * @since 3.6
  */
 function awpcp_html_admin_second_level_heading_tag() {
     if ( version_compare( get_bloginfo('version'), '4.4-beta1', '<' ) ) {
@@ -1842,7 +1842,7 @@ function awpcp_html_admin_second_level_heading_tag() {
 
 /**
  * @access private
- * @since 3.5.4
+ * @since 3.6
  */
 function awpcp_html_heading( $params ) {
     $default_params = array(
