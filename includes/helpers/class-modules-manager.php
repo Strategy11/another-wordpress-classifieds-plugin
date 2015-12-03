@@ -212,7 +212,7 @@ class AWPCP_ModulesManager {
     }
 
     private function show_inactive_licenses_notice( $modules ) {
-        $message = _n( 'The licenses for AWPCP <modules-names> are inactive. The features for those modules will remain disabled until you activate their licenses. Please go to the <licenses-settings-link>License Settings</a> section to acivate them.', 'The license for AWPCP <module-name> is inactive. All features will remain disabled until you activate the license. Please go to the <licenses-settings-link>License Settings</a> section to acivate it.', count( $modules ), 'another-wordpress-classifieds-plugin' );
+        $message = _n( 'The license for AWPCP <module-name> is inactive. All features will remain disabled until you activate the license. Please go to the <licenses-settings-link>License Settings</a> section to acivate it.', 'The licenses for AWPCP <modules-names> are inactive. The features for those modules will remain disabled until you activate their licenses. Please go to the <licenses-settings-link>License Settings</a> section to acivate them.', count( $modules ), 'another-wordpress-classifieds-plugin' );
         return $this->show_license_notice( $message, $modules );
     }
 
