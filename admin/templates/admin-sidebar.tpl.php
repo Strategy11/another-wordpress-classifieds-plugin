@@ -48,7 +48,7 @@
                         </li>
                         <li class="li_link">
                             <img style="align:left" src="<?php echo $url; ?>/resources/images/new.gif"/>
-                            <a style="color:#145200;" href="http://awpcp.com/premium-modules/mark-as-sold-module/?ref=panel" target="_blank">
+                            <a style="color:#145200;" href="http://awpcp.com/downloads/mark-as-sold-module/?ref=panel" target="_blank">
                                 <?php _e( 'Mark as Sold', 'another-wordpress-classifieds-plugin' ); ?>
                             </a>
                         </li>
@@ -59,57 +59,62 @@
                             </a>
                         </li>
                         <li class="li_link">
-                            <a style="color:#145200;" href="http://awpcp.com/premium-modules/buddypress-module/?ref=panel" target="_blank">
+                            <a style="color:#145200;" href="http://awpcp.com/downloads/buddypress-module/?ref=panel" target="_blank">
                                 <?php _e( 'BuddyPress Listings', 'another-wordpress-classifieds-plugin' ); ?>
                             </a>
                         </li>
                         <li class="li_link">
-                            <a style="color:#145200;" href="http://awpcp.com/premium-modules/comments-ratings-module/?ref=panel" target="_blank">
+                            <a style="color:#145200;" href="http://awpcp.com/downloads/comments-ratings-module/?ref=panel" target="_blank">
                                 <?php _e('Comments/Ratings', 'another-wordpress-classifieds-plugin'); ?>
                             </a>
                         </li>
                         <li class="li_link">
-                            <a style="color:#145200;" href="http://www.awpcp.com/premium-modules/authorizenet-payment-module/?ref=panel" target="_blank">
+                            <a style="color:#145200;" href="http://awpcp.com/downloads/attachments-module/?ref=panel" target="_blank">
+                                <?php _e('Attachments', 'another-wordpress-classifieds-plugin'); ?>
+                            </a>
+                        </li>
+                        <li class="li_link">
+                            <a style="color:#145200;" href="http://awpcp.com/downloads/authorizenet-module/?ref=panel" target="_blank">
                                 <?php _e('Authorize.Net', 'another-wordpress-classifieds-plugin'); ?>
                             </a>
                         </li>
                         <li class="li_link">
-                            <a style="color:#145200;" href="http://www.awpcp.com/premium-modules/paypalpro-payment-module/?ref=panel" target="_blank">
+                            <a style="color:#145200;" href="http://awpcp.com/downloads/paypal-pro-module/?ref=panel" target="_blank">
                                 <?php _e('PayPal Pro', 'another-wordpress-classifieds-plugin'); ?>
                             </a>
                         </li>
                         <li class="li_link">
-                            <a style="color:#145200;" href="http://www.awpcp.com/premium-modules/coupon-module/?ref=panel" target="_blank">
+                            <a style="color:#145200;" href="http://awpcp.com/downloads/coupons-module/?ref=panel" target="_blank">
                                 <?php _e('Coupon/Discount', 'another-wordpress-classifieds-plugin'); ?>
                             </a>
                         </li>
                         <li class="li_link">
-                            <a style="color:#145200;" href="http://www.awpcp.com/premium-modules/subscriptions-module/?ref=panel" target="_blank">
+                            <a style="color:#145200;" href="http://awpcp.com/downloads/subscriptions-module/?ref=panel" target="_blank">
                                 <?php _e('Subscriptions', 'another-wordpress-classifieds-plugin'); ?>
                             </a>
                         </li>
                         <li class="li_link">
-                            <a style="color:#145200;" href="http://www.awpcp.com/premium-modules/fee-per-category-module/?ref=panel" target="_blank">
+                            <a style="color:#145200;" href="http://awpcp.com/downloads/fee-category-module/?ref=panel" target="_blank">
                                 <?php _e('Fee Per Category', 'another-wordpress-classifieds-plugin'); ?>
                             </a>
                         </li>
                         <li class="li_link">
-                            <a style="color:#145200;" href="http://www.awpcp.com/premium-modules/featured-ads-module/?ref=panel" target="_blank">
+                            <a style="color:#145200;" href="http://awpcp.com/downloads/featured-ads-module/?ref=panel" target="_blank">
                                 <?php _e('Featured Ads', 'another-wordpress-classifieds-plugin'); ?>
                             </a>
                         </li>
                         <li class="li_link">
-                            <a style="color:#145200;" href="http://www.awpcp.com/premium-modules/extra-fields-module/?ref=panel" target="_blank">
+                            <a style="color:#145200;" href="http://awpcp.com/downloads/extra-fields-module/?ref=panel" target="_blank">
                                 <?php _e('Extra Fields', 'another-wordpress-classifieds-plugin'); ?>
                             </a>
                         </li>
                         <li class="li_link">
-                            <a style="color:#145200;" href="http://www.awpcp.com/premium-modules/category-icons-module/?ref=panel" target="_blank">
+                            <a style="color:#145200;" href="http://awpcp.com/downloads/category-icons-module/?ref=panel" target="_blank">
                                 <?php _e('Category Icons', 'another-wordpress-classifieds-plugin'); ?>
                             </a>
                         </li>
                         <li class="li_link">
-                            <a style="color:#145200;" href="http://www.awpcp.com/premium-modules/regions-control-module/?ref=panel" target="_blank">
+                            <a style="color:#145200;" href="http://awpcp.com/downloads/regions-module/?ref=panel" target="_blank">
                                 <?php _e('Regions Control', 'another-wordpress-classifieds-plugin'); ?>
                             </a>
                         </li>
@@ -119,7 +124,7 @@
                             </a>
                         </li>
                         <li class="li_link">
-                            <a style="color:#145200;" href="http://www.awpcp.com/premium-modules/rss-module/?ref=panel" target="_blank">
+                            <a style="color:#145200;" href="http://awpcp.com/downloads/rss-feeds-module/?ref=panel" target="_blank">
                                 <?php _e('RSS', 'another-wordpress-classifieds-plugin'); ?>
                             </a>
                         </li>
