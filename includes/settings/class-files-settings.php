@@ -15,6 +15,23 @@ class AWPCP_FilesSettings {
     public function register_settings( $settings ) {
         $group = $settings->add_group( _x( 'Images/Attachments', 'name of Files settings section', 'another-wordpress-classifieds-plugin' ), 'attachments-settings', 50 );
 
+        $key = $settings->add_section(
+            $group,
+            __( 'General', 'another-wordpress-classifieds-plugin' ),
+            'general',
+            5,
+            array( $settings, 'section' )
+        );
+
+        $settings->add_setting(
+            $key,
+            'show-popup-if-user-did-not-upload-files',
+            __( "Show popup if user didn't upload files", 'another-wordpress-classfieds-plugin' ),
+            'checkbox',
+            false,
+            __( 'If checked, a popup warning the user about leaving the page without uploading a file, will be shown when users try to navigate away from the Upload Files step without uploading at least one image or attachment.', 'another-wordpress-classifieds-plugin' )
+        );
+
         // Section: Uploads Directory
 
         $key = $settings->add_section( $group, __( 'Uploads Directory', 'another-wordpress-classifieds-plugin' ), 'uploads-directory', 10, array( $settings, 'section' ) );
