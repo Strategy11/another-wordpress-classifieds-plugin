@@ -349,9 +349,15 @@ class AWPCP_Admin {
 		$full_url = add_query_arg( 'action', 'awpcp-manage-credits', admin_url( 'users.php' ) );
 
 		$domain = awpcp_request()->domain();
-		$domain_position = strpos( $full_url, $domain );
 
-		return substr( $full_url, $domain_position + strlen( $domain ) );
+        if ( ! empty( $domain ) ) {
+    		$domain_position = strpos( $full_url, $domain );
+    		$url = substr( $full_url, $domain_position + strlen( $domain ) );
+        } else {
+            $url = $full_url;
+        }
+
+        return $url;
 	}
 
 	/**
