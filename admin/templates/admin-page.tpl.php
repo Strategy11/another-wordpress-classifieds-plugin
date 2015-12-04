@@ -1,7 +1,10 @@
 <?php awpcp_print_messages(); ?>
 
 <div id="<?php echo esc_attr( $this->page ); ?>" class="<?php echo esc_attr( $this->page ); ?> awpcp-admin-page awpcp-page wrap">
+    <?php if ( version_compare( get_bloginfo('version'), '4.4-beta4', '<' ) ): ?>
 	<div class="page-content">
+    <?php endif; ?>
+
         <?php
             $heading_params = array(
                 'attributes' => array(
@@ -21,5 +24,8 @@
             <?php echo $content; ?>
             </div>
         </div>
+
+    <?php if ( version_compare( get_bloginfo('version'), '4.4-beta4', '<' ) ): ?>
     </div>
+    <?php endif; ?>
 </div>
