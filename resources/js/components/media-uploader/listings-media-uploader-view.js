@@ -32,7 +32,7 @@ function( $, MediaUploaderView, settings) {
                     return settings.l10n( 'media-uploader-beforeunload', 'files-pending-to-be-uploaded' );
                 }
 
-                if ( self.model.uploader.total.uploaded == 0 ) {
+                if ( self.model.uploader.total.uploaded == 0 && settings.get( 'show-popup-if-user-did-not-upload-files' ) ) {
                     return settings.l10n( 'media-uploader-beforeunload', 'no-files-were-uploaded' );
                 }
             }
