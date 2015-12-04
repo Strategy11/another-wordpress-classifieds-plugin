@@ -417,6 +417,11 @@ class AWPCP_Settings_API {
 	private function set_javascript_data() {
 		$awpcp = awpcp();
 
+		$awpcp->js->set(
+			'show-popup-if-user-did-not-upload-files',
+			(bool) $this->get_option( 'show-popup-if-user-did-not-upload-files' )
+		);
+
 		$awpcp->js->set( 'overwrite-contact-information-on-user-change', (bool) get_awpcp_option( 'overwrite-contact-information-on-user-change' ) );
 		$awpcp->js->set( 'decimal-separator', get_awpcp_option( 'decimal-separator' ) );
 		$awpcp->js->set( 'thousands-separator', get_awpcp_option( 'thousands-separator' ) );
