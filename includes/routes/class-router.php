@@ -186,6 +186,8 @@ class AWPCP_Router {
         if ( method_exists( $this->request_handler, 'on_load' ) ) {
             $this->request_handler->on_load();
         }
+
+        do_action( 'awpcp-admin-load-' . $this->current_page->slug );
     }
 
     private function get_active_page() {
