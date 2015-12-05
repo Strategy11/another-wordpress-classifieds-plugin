@@ -816,6 +816,7 @@ class AWPCP {
 					'installed' => defined( 'AWPCP_GOOGLE_CHECKOUT_MODULE' ),
 					'version' => 'AWPCP_GOOGLE_CHECKOUT_MODULE_DB_VERSION',
 					'required' => '3.6',
+                    'private' => true,
 				),
                 'mark-as-sold' => array(
                     'name' => __( 'Mark as Sold', 'another-wordpress-classifieds-plugin' ),
