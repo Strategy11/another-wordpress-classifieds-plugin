@@ -183,13 +183,13 @@ class AWPCP_CSV_Importer {
 		$this->import_ads($header, $data, $import_dir, $errors, $messages);
 	}
 
-	public function get_csv_data( $fileName ) {
+	public function get_csv_data( $filename ) {
 		$ini = ini_get('auto_detect_line_endings');
 		ini_set('auto_detect_line_endings', true);
 
-		$data = array();
-		$csv = fopen($fileName, 'r');
+		$csv = $this->get_csv_file_contents( $filename );
 
+		$data = array();
 		while ($row = fgetcsv($csv)) {
 			$data[] = $row;
 		}
@@ -197,6 +197,23 @@ class AWPCP_CSV_Importer {
 		ini_set('auto_detect_line_endings', $ini);
 
 		return $data;
+	}
+
+	public function get_csv_file_contents( $filename ) {
+		$content = file_get_contents( $filename );
+		$encoding = awpcp_detect_encoding( $content );
+
+		if ( 'UTF-8' != $encoding ) {
+			$converted_content = iconv( $encoding, 'UTF-8', $content );
+		} else {
+			$converted_content = $content;
+		}
+
+		$handle = fopen( "php://memory", "rw" );
+		fwrite( $handle, $converted_content );
+		fseek( $handle, 0 );
+
+		return $handle;
 	}
 
 	public function clean_up_csv_headers( $parsed_headers ) {
