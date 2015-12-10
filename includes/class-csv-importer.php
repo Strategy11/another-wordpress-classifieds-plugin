@@ -219,10 +219,12 @@ class AWPCP_CSV_Importer {
 	public function clean_up_csv_headers( $parsed_headers ) {
 		foreach ( $parsed_headers as $i => $column_name ) {
 			//remove EFBFBD (Replacement Character)
-			$headers[ $i ] = trim( str_replace( "\xEF\xBF\xBD", '', $column_name ) );
+			$column_name = trim( str_replace( "\xEF\xBF\xBD", '', $column_name ) );
 			// remove BOM character
-			$headers[ $i ] = trim( str_replace( "\xEF\xFF", '', $column_name ) );
-			$headers[ $i ] = trim( str_replace( "\xFF\xEF", '', $column_name ) );
+			$column_name = trim( str_replace( "\xEF\xFF", '', $column_name ) );
+			$column_name = trim( str_replace( "\xFF\xEF", '', $column_name ) );
+
+			$headers[ $i ] = $column_name;
 		}
 
 		return $headers;
