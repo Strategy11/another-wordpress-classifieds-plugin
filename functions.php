@@ -2258,6 +2258,40 @@ function awpcp_utf8_substr_pcre( $string, $start, $length=null ) {
 }
 
 /**
+ * @since 3.6
+ */
+function awpcp_detect_encoding( $content ) {
+    static $encodings = array(
+        'UTF-8', 'ASCII',
+        'ISO-8859-1', 'ISO-8859-2', 'ISO-8859-3', 'ISO-8859-4', 'ISO-8859-5',
+        'ISO-8859-6', 'ISO-8859-7', 'ISO-8859-8', 'ISO-8859-9', 'ISO-8859-10',
+        'ISO-8859-13', 'ISO-8859-14', 'ISO-8859-15', 'ISO-8859-16',
+        'Windows-1251', 'Windows-1252', 'Windows-1254',
+    );
+
+    if ( function_exists( 'mb_detect_encoding' ) ) {
+        return mb_detect_encoding( $content, $encodings, true );
+    } else {
+        return awpcp_mb_detect_encoding( $content, $encodings, true );
+    }
+}
+
+/**
+ * http://php.net/manual/en/function.mb-detect-encoding.php#113983
+ * @since 3.6.0
+ */
+function awpcp_mb_detect_encoding( $conent, $encodings ) {
+   foreach ( $encodings as $encoding ) {
+        $sample = iconv( $encoding, $encoding, $string );
+        if ( md5( $sample ) == md5( $string ) ) {
+            return $encoding;
+        }
+    }
+
+    return false;
+}
+
+/**
  * from http://stackoverflow.com/a/4459219/201354.
  *
  * @since 3.3
