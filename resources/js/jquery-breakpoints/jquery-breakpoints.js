@@ -20,7 +20,7 @@ if ( typeof jQuery !== 'undefined' ) {
             function runCallbacks() {
                 var length = callbacks.length;
 
-                for (var i = 0; i < length; i++) {
+                for ( var i = 0; i < length; i = i + 1 ) {
                     callbacks[i]();
                 }
 
@@ -40,7 +40,7 @@ if ( typeof jQuery !== 'undefined' ) {
                     }
                     addCallback(callback);
                 }
-            }
+            };
         }());
 
         var LocalBreakpoints = (function(){
@@ -70,7 +70,7 @@ if ( typeof jQuery !== 'undefined' ) {
 
             function onResize() {
                 var length = targets.length;
-                for (var i = 0; i < length; i++) {
+                for ( var i = 0; i < length; i = i + 1 ) {
                     updateBreakpointsForTarget(targets[i]);
                 }
             }
@@ -80,7 +80,7 @@ if ( typeof jQuery !== 'undefined' ) {
                     breakpoints = target.options.breakpoints,
                     breakpoint = null;
 
-                for ( var i = breakpoints.length - 1; i >= 0; i-- ) {
+                for ( var i = breakpoints.length - 1; i >= 0; i = i - 1 ) {
                     if ( breakpoints[i] <= width ) {
                         breakpoint = breakpoints[i];
                         break;
@@ -95,20 +95,20 @@ if ( typeof jQuery !== 'undefined' ) {
             }
 
             function updateTargetCSS(target, breakpoint) {
-                var breakpointClass = target.options.classPrefix + "-" + breakpoint;
+                var breakpointClass = target.options.classPrefix + '-' + breakpoint;
 
                 removeBreakpointClass(target);
                 target.element.addClass(breakpointClass);
                 target.element.data('breakpoint-class', breakpointClass);
             }
 
-            function getTargetBreakpointClass(target) {
-                var cssClass = target.element.data('breakpoint-class-prefix');
+            // function getTargetBreakpointClass(target) {
+            //     var cssClass = target.element.data('breakpoint-class-prefix');
 
-                if ( typeof cssClass === 'undefined' ) {
-                    cssClass = target.element.attr('breakpoint-class-prefix');
-                }
-            }
+            //     if ( typeof cssClass === 'undefined' ) {
+            //         cssClass = target.element.attr('breakpoint-class-prefix');
+            //     }
+            // }
 
             function removeBreakpointClass(target) {
                 target.element.removeClass(target.element.data('breakpoint-class'));

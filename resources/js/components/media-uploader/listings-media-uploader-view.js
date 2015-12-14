@@ -1,5 +1,5 @@
 /* jshint latedef: false */
-/* global AWPCP, plupload */
+/* global AWPCP, plupload, _ */
 
 AWPCP.define( 'awpcp/listings-media-uploader-view', [ 'jquery', 'awpcp/media-uploader-view', 'awpcp/settings' ],
 function( $, MediaUploaderView, settings) {
@@ -9,7 +9,7 @@ function( $, MediaUploaderView, settings) {
 
             self._super('initialize');
 
-            self.listenTo( self.model, 'media-uploader:file-uploaded', _.bind( self.updateUploadRestrictionsMessage, self ) )
+            self.listenTo( self.model, 'media-uploader:file-uploaded', _.bind( self.updateUploadRestrictionsMessage, self ) );
             self.listenTo( self.model, 'media-uploader:file-deleted', _.bind( self.updateUploadRestrictionsMessage, self ) );
 
             self.configureBeforeUnloadEventHandler();
@@ -24,7 +24,7 @@ function( $, MediaUploaderView, settings) {
                     return false;
                 }
 
-                if ( self.model.uploader.state == plupload.STARTED ) {
+                if ( self.model.uploader.state === plupload.STARTED ) {
                     return settings.l10n( 'media-uploader-beforeunload', 'files-are-being-uploaded' );
                 }
 
@@ -32,10 +32,10 @@ function( $, MediaUploaderView, settings) {
                     return settings.l10n( 'media-uploader-beforeunload', 'files-pending-to-be-uploaded' );
                 }
 
-                if ( self.model.uploader.total.uploaded == 0 && settings.get( 'show-popup-if-user-did-not-upload-files' ) ) {
+                if ( self.model.uploader.total.uploaded === 0 && settings.get( 'show-popup-if-user-did-not-upload-files' ) ) {
                     return settings.l10n( 'media-uploader-beforeunload', 'no-files-were-uploaded' );
                 }
-            }
+            };
         },
 
         updateUploadRestrictionsMessage: function() {

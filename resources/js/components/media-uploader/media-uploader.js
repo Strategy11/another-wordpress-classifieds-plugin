@@ -1,5 +1,5 @@
 /* jshint latedef: false */
-/* global AWPCP, plupload */
+/* global AWPCP, plupload, Backbone, _ */
 
 AWPCP.define( 'awpcp/media-uploader', [ 'jquery', 'awpcp/settings' ],
 function( $, settings) {
@@ -33,7 +33,7 @@ function( $, settings) {
                 chunk_size: '10000000',
                 runtimes: 'html5,flash,silverlight,html4',
                 flash_swf_url : self.get('settings').flash_swf_url,
-                silverlight_xap_url : self.get('settings').silverlight_xap_url,
+                silverlight_xap_url : self.get('settings').silverlight_xap_url
             });
 
             self.uploader.init();
