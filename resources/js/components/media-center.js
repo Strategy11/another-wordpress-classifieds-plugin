@@ -26,10 +26,11 @@ function( $, ko, MediaManager, MediaUploader, ListingsMediaUploaderView, Thumbna
 
         if ( mediaUploader.length && options.mediaUploaderOptions ) {
             var model = new MediaUploader( { settings: options.mediaUploaderOptions } );
-            var uploader = new ListingsMediaUploaderView({
+
+            $.noop(new ListingsMediaUploaderView({
                 el: mediaUploader,
                 model: model
-            });
+            }));
         }
 
         if ( thumbnailsGenerator.length ) {

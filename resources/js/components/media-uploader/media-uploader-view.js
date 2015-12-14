@@ -1,17 +1,17 @@
 /* jshint latedef: false */
-/* global AWPCP, plupload */
+/* global AWPCP, Backbone, _ */
 
 Backbone.View.prototype._super = function( funcName ) {
   return this.constructor.__super__[ funcName ].apply( this, _.rest( arguments ) );
-}
+};
 
-AWPCP.define( 'awpcp/media-uploader-view', [ 'jquery', 'awpcp/settings' ],
-function( $, settings) {
+AWPCP.define( 'awpcp/media-uploader-view', [ 'jquery' ],
+function() {
     var MediaUploaderView = Backbone.View.extend({
         initialize: function() {
             var self = this.render();
 
-            self.$dropzone = self.$('.awpcp-media-uploader-dropzone'),
+            self.$dropzone = self.$('.awpcp-media-uploader-dropzone');
             self.$browseButton = self.$('.awpcp-media-uploader-browser-button');
             self.$restrictions = self.$('.awpcp-media-uploader-restrictions');
 
@@ -28,7 +28,7 @@ function( $, settings) {
             return self;
         },
 
-        onDragOver: function( event ) {
+        onDragOver: function() {
             this.$dropzone.addClass( 'awpcp-media-uploader-dropzone-active' );
         },
 
