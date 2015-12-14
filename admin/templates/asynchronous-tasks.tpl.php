@@ -21,7 +21,7 @@
             </div>
 
             <p class="submit">
-                <input id="submit" type="submit" class="button-primary" name="submit" data-bind="value: texts.button, disable: working">
+                <input id="submit" type="submit" class="button-primary" name="submit" disabled="disabled" data-bind="value: texts.button, disable: working">
             </p>
         </form>
     </div>

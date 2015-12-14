@@ -205,13 +205,13 @@ function( $, ko, FileViewModel, settings ) {
                 name: file.name,
                 mimeType: file.type,
                 status: 'Approved',
-                progress: file.percent,
+                progress: file.percent
             } ) );
         }
 
         function onUploadProgress( event, plupload, pluploadFile ) {
             $.each( vm.files(), function( index, file ) {
-                if ( file.id == pluploadFile.id ) {
+                if ( file.id === pluploadFile.id ) {
                     file.progress( pluploadFile.percent );
                 }
             } );
@@ -221,7 +221,7 @@ function( $, ko, FileViewModel, settings ) {
             var pluploadFilePosition = null;
 
             $.each( vm.files(), function( index, file ) {
-                if ( file.id == pluploadFile.id ) {
+                if ( file.id === pluploadFile.id ) {
                     pluploadFilePosition = index;
                 }
             } );
@@ -237,7 +237,7 @@ function( $, ko, FileViewModel, settings ) {
             var pluploadFilePosition = null;
 
             $.each( vm.files(), function( index, file ) {
-                if ( file.id == pluploadFile.id ) {
+                if ( file.id === pluploadFile.id ) {
                     pluploadFilePosition = index;
                 }
             } );

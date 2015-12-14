@@ -44,7 +44,7 @@
     <div class="meta-box-sortables" <?php echo empty($sidebar) ? '' : ' style="float:left;width:70%;"'; ?>>
 
         <div class="postbox">
-            <?php echo awpcp_html_postbox_handle( array( 'heading_class' => 'hndle1', 'content' => __( 'Another Wordpress Classifieds Plugin Stats', 'another-wordpress-classifieds-plugin' ) ) ); ?>
+            <?php echo awpcp_html_postbox_handle( array( 'heading_class' => 'hndle', 'content' => __( 'Another Wordpress Classifieds Plugin Stats', 'another-wordpress-classifieds-plugin' ) ) ); ?>
             <div class="inside">
                 <ul>
                     <li><?php _e("AWPCP version", 'another-wordpress-classifieds-plugin'); ?>: <strong><?php echo $awpcp_db_version; ?></strong>.</li>
