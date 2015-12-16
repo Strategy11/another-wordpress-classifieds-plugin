@@ -89,8 +89,7 @@ class AWPCP_LicensesManager {
     }
 
     private function update_license_status( $module_slug, $license_status ) {
-        // set_site_transient( $this->get_license_status_transient_key( $module_slug ), $license_status, DAY_IN_SECONDS );
-        set_site_transient( $this->get_license_status_transient_key( $module_slug ), $license_status, 10 * MINUTE_IN_SECONDS );
+        set_site_transient( $this->get_license_status_transient_key( $module_slug ), $license_status, DAY_IN_SECONDS );
         $this->settings->set_or_update_option( "{$module_slug}-license-status", $license_status );
     }
 
