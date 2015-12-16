@@ -223,7 +223,7 @@ class AWPCP_Installer {
             '3.5.4-dev-20' => 'upgrade_to_3_5_4_dev_20',
             '3.5.4-dev-28' => 'upgrade_to_3_5_4_dev_28',
             '3.5.4-dev-29' => 'upgrade_to_3_5_4_dev_29',
-            '3.5.4-dev-48' => 'upgrade_tp_3_5_4_dev_48',
+            '3.5.4-dev-48' => 'upgrade_to_3_5_4_dev_48',
         );
 
         foreach ( $upgrade_routines as $version => $routine ) {
@@ -991,7 +991,7 @@ class AWPCP_Installer {
         }
     }
 
-    private function upgrade_tp_3_5_4_dev_48( $oldversion ) {
+    private function upgrade_to_3_5_4_dev_48( $oldversion ) {
         global $wpdb;
 
         if ( $wpdb->charset !== 'utf8mb4' ) {

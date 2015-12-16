@@ -30,13 +30,19 @@ class AWPCP_Image_Dimensions_Generator {
         );
 
         foreach ( $targets as $image_type => $image_path ) {
-            $editor = wp_get_image_editor( $image_path );
+            $imagesize = getimagesize( $image_path );
 
-            if ( is_wp_error( $editor ) ) {
+            if ( is_array( $imagesize ) && isset( $imagesize[0] ) && isset( $imagesize[1] ) ) {
+                $image_dimensions[ $image_type ] = array( 'width' => $imagesize[0], 'height' => $imagesize[1] );
                 continue;
             }
 
-            $image_dimensions[ $image_type ] = $editor->get_size();
+            $editor = wp_get_image_editor( $image_path );
+
+            if ( ! is_wp_error( $editor ) ) {
+                $image_dimensions[ $image_type ] = $editor->get_size();
+                continue;
+            }
         }
 
         return $image_dimensions;
