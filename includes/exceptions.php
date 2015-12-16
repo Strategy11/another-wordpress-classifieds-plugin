@@ -64,3 +64,6 @@ class AWPCP_License_Request_Exception extends AWPCP_Easy_Digital_Downloads_Excep
 
 class AWPCP_No_Activations_Left_License_Request_Exception extends AWPCP_License_Request_Exception {
 }
+
+class AWPCP_Infinite_Loop_Detected_Exception extends AWPCP_Easy_Digital_Downloads_Exception {
+}

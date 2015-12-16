@@ -59,12 +59,19 @@ class AWPCP_LicensesManager {
 
         try {
             $license_status = $this->get_license_status_from_store( $module_name, $module_slug );
+        } catch ( AWPCP_Infinite_Loop_Detected_Exception $e ) {
+            $license_status = null;
+            awpcp_flash( $e->getMessage() );
         } catch ( AWPCP_Easy_Digital_Downloads_Exception $e ) {
             $license_status = self::LICENSE_STATUS_UNKNOWN;
             awpcp_flash( $e->getMessage() );
         }
 
-        $this->update_license_status( $module_slug, $license_status );
+        if ( ! is_null( $license_status ) ) {
+            $this->update_license_status( $module_slug, $license_status );
+        } else {
+            $license_status = self::LICENSE_STATUS_UNKNOWN;
+        }
 
         return $license_status;
     }

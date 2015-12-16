@@ -32,6 +32,8 @@ class AWPCP_EasyDigitalDownloads {
 
         try {
             return $this->license_request( $params );
+        } catch ( AWPCP_Infinite_Loop_Detected_Exception $e ) {
+            throw $e;
         } catch ( AWPCP_Easy_Digital_Downloads_Exception $e ) {
             $message = __( 'There was an error trying to check the license status for <module-name>.', 'another-wordpress-classifieds-plugin' );
             $exception = $this->exceptions->license_request_exception( $message, $module_name, $e->getMessage(), 0, $e );
@@ -62,8 +64,7 @@ class AWPCP_EasyDigitalDownloads {
 
     private function request( $params ) {
         if ( $this->request->get( 'edd_action', false ) ) {
-            $exception = $this->exceptions->easy_digital_downloads_exception( 'The request was cancelled to avoid infinite recursion.' );
-            throw $exception;
+            throw new AWPCP_Infinite_Loop_Detected_Exception( 'The request was cancelled to avoid infinite recursion.' );
         }
 
         $params = urlencode_deep( $params );
