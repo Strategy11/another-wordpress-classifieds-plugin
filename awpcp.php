@@ -39,6 +39,8 @@ define( 'AWPCP_BASENAME', basename( dirname( __FILE__ ) ) );
 define( 'AWPCP_DIR', rtrim( plugin_dir_path( __FILE__ ), '/' ) );
 define( 'AWPCP_URL', rtrim( plugin_dir_url( __FILE__ ), '/' ) );
 
+define( 'AWPCP_LOWEST_FILTER_PRIORITY', 1000000 );
+
 global $awpcp;
 
 global $awpcp_plugin_data;
@@ -477,7 +479,7 @@ class AWPCP {
 
         add_action( 'init', array( $this->compatibility, 'load_plugin_integrations_on_init' ) );
 		add_action( 'init', array($this, 'init' ));
-		add_action( 'init', array($this, 'register_custom_style'), 1000000 );
+		add_action( 'init', array($this, 'register_custom_style'), AWPCP_LOWEST_FILTER_PRIORITY );
 
 		add_action('admin_notices', array($this, 'admin_notices'));
 		add_action( 'admin_notices', array( $this->modules_manager, 'show_admin_notices' ) );
