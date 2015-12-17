@@ -4,7 +4,7 @@
  * Plugin Name: Another WordPress Classifieds Plugin (AWPCP)
  * Plugin URI: http://www.awpcp.com
  * Description: AWPCP - A plugin that provides the ability to run a free or paid classified ads service on your WP site. <strong>!!!IMPORTANT!!!</strong> It's always a good idea to do a BACKUP before you upgrade AWPCP!
- * Version: 3.6.1
+ * Version: 3.6.2
  * Author: D. Rodenbaugh
  * License: GPLv2 or any later version
  * Author URI: http://www.skylineconsult.com
@@ -38,6 +38,8 @@ if (preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) {
 define( 'AWPCP_BASENAME', basename( dirname( __FILE__ ) ) );
 define( 'AWPCP_DIR', rtrim( plugin_dir_path( __FILE__ ), '/' ) );
 define( 'AWPCP_URL', rtrim( plugin_dir_url( __FILE__ ), '/' ) );
+
+define( 'AWPCP_LOWEST_FILTER_PRIORITY', 1000000 );
 
 global $awpcp;
 
@@ -477,7 +479,7 @@ class AWPCP {
 
         add_action( 'init', array( $this->compatibility, 'load_plugin_integrations_on_init' ) );
 		add_action( 'init', array($this, 'init' ));
-		add_action( 'init', array($this, 'register_custom_style'), 1000000 );
+		add_action( 'init', array($this, 'register_custom_style'), AWPCP_LOWEST_FILTER_PRIORITY );
 
 		add_action('admin_notices', array($this, 'admin_notices'));
 		add_action( 'admin_notices', array( $this->modules_manager, 'show_admin_notices' ) );
