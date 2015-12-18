@@ -30,6 +30,10 @@ class AWPCP_Image_Dimensions_Generator {
         );
 
         foreach ( $targets as $image_type => $image_path ) {
+            if ( empty( $image_path ) || ! file_exists( $image_path ) ) {
+                continue;
+            }
+
             $imagesize = getimagesize( $image_path );
 
             if ( is_array( $imagesize ) && isset( $imagesize[0] ) && isset( $imagesize[1] ) ) {
