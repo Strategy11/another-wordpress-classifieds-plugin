@@ -106,9 +106,12 @@ class AWPCP_Pages {
     }
 
 	public function search_ads() {
-		if (!isset($this->search_ads_page))
-			$this->search_ads_page = new AWPCP_SearchAdsPage();
-		return $this->search_ads_page->dispatch();
+        if ( ! isset( $this->output['search-ads'] ) ) {
+            $page = new AWPCP_SearchAdsPage();
+            $this->output['search-ads'] = $page->dispatch();
+        }
+
+        return $this->output['search-ads'];
 	}
 
 	public function reply_to_ad() {
