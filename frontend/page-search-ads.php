@@ -8,8 +8,6 @@ require_once(AWPCP_DIR . '/includes/helpers/page.php');
  */
 class AWPCP_SearchAdsPage extends AWPCP_Page {
 
-    public $messages = array();
-
     public function __construct($page='awpcp-search-ads', $title=null) {
         parent::__construct($page, is_null($title) ? __('Search Ads', 'another-wordpress-classifieds-plugin') : $title);
     }
@@ -86,7 +84,6 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
     }
 
     protected function search_step() {
-        $this->messages[] = __( 'Use the form below to select the fields on which you want to search. Adding more fields makes for a more specific search. Using fewer fields will make for a broader search.', 'another-wordpress-classifieds-plugin' );
         return $this->search_form($this->get_posted_data());
     }
 
@@ -98,7 +95,7 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
         $ui['price-field'] = get_awpcp_option('displaypricefield');
         $ui['allow-user-to-search-in-multiple-regions'] = get_awpcp_option('allow-user-to-search-in-multiple-regions');
 
-        $messages = $this->messages;
+        $messages = array( __( 'Use the form below to select the fields on which you want to search. Adding more fields makes for a more specific search. Using fewer fields will make for a broader search.', 'another-wordpress-classifieds-plugin' ) );
 
         $url_params = wp_parse_args( parse_url( awpcp_current_url(), PHP_URL_QUERY ) );
 

@@ -106,19 +106,22 @@ class AWPCP_Pages {
     }
 
 	public function search_ads() {
-		if (!isset($this->search_ads_page))
-			$this->search_ads_page = new AWPCP_SearchAdsPage();
-		return $this->search_ads_page->dispatch();
+        if ( ! isset( $this->output['search-ads'] ) ) {
+            $page = new AWPCP_SearchAdsPage();
+            $this->output['search-ads'] = $page->dispatch();
+        }
+
+        return $this->output['search-ads'];
 	}
 
 	public function reply_to_ad() {
-        do_action('awpcp-shortcode', 'reply-to-ad');
-
-		if ( ! isset( $this->reply_to_ad_page ) ) {
-			$this->reply_to_ad_page = new AWPCP_ReplyToAdPage();
+        if ( ! isset( $this->output['reply-to-ad'] ) ) {
+            do_action('awpcp-shortcode', 'reply-to-ad');
+            $page = new AWPCP_ReplyToAdPage();
+            $this->output['reply-to-ad'] = $page->dispatch();
         }
 
-		return $this->reply_to_ad_page->dispatch();
+        return $this->output['reply-to-ad'];
 	}
 
     /**
