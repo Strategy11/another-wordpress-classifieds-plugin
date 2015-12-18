@@ -839,12 +839,15 @@ class AWPCP_Installer {
         $settings->update_option( 'displayadlayoutcode', $layout );
 
         // create awpcp_ad_regions table
+        // TODO: this is broken!
         dbDelta( $this->create_ad_regions_table );
 
         // create awpcp_media table
+        // TODO: this is broken!
         dbDelta( $this->create_media_table );
 
         // Create ad metadata table.
+        // TODO: this is broken!
         dbDelta( $this->create_ad_meta_table );
 
         // migrate old regions
