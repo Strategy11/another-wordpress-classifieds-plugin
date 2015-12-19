@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2015-11-12 16:01:42+00:00\n"
-"PO-Revision-Date: 2015-11-25 19:59+0000\n"
+"POT-Creation-Date: 2015-12-19 06:24:09+00:00\n"
+"PO-Revision-Date: 2015-12-19 06:25+0000\n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: Spanish (Spain) (http://www.transifex.com/wp-translations/another-wordpress-classifieds-plugin/language/es_ES/)\n"
 "MIME-Version: 1.0\n"
@@ -148,7 +148,7 @@ msgid "Categories"
 msgstr "Categorías"
 
 #: admin/admin-panel-fees-table.php:127
-#: admin/templates/admin-sidebar.tpl.php:90 awpcp.php:793
+#: admin/templates/admin-sidebar.tpl.php:103 awpcp.php:802
 msgid "Featured Ads"
 msgstr "Anuncios destacados"
 
@@ -235,7 +235,7 @@ msgid "Showing Ads from %s category."
 msgstr "Mostrando anuncios en la categoría %s."
 
 #: admin/admin-panel-listings-table.php:174
-#: admin/templates/admin-panel-debug.tpl.php:33
+#: admin/templates/admin-panel-debug.tpl.php:44
 #: frontend/templates/widget-categories-form.tpl.php:2
 #: frontend/templates/widget-latest-ads-form.tpl.php:2
 #: templates/email/listing-is-about-to-expire-notification.plain.tpl.php:5
@@ -484,9 +484,21 @@ msgctxt "Listing bulk operations: <message-ok> and <message-error>."
 msgid "%s and %s."
 msgstr "%s y %s."
 
+#: admin/admin-panel-listings.php:384
+msgid "%d Ad was disabled"
+msgid_plural "%d Ads were disabled"
+msgstr[0] "%d anuncio fue deshabilitado"
+msgstr[1] "%d anuncios fueron deshabilitados"
+
 #: admin/admin-panel-listings.php:388
 msgid "there was an error trying to disable %d Ads"
 msgstr "ocurrió un error tratando de deshabilitar %d anuncios"
+
+#: admin/admin-panel-listings.php:411
+msgid "%d was enabled"
+msgid_plural "%d Ads were enabled"
+msgstr[0] "%d anuncio fue aprobado"
+msgstr[1] "%d anuncios fueron aprobados"
 
 #: admin/admin-panel-listings.php:415
 msgid "there was an error trying to enable %d Ads"
@@ -504,13 +516,31 @@ msgstr "El anuncio ha sido marcado como verificado."
 msgid "The Ad has been marked as paid."
 msgstr "El anuncio ha sido marcado como pagado."
 
+#: admin/admin-panel-listings.php:467
+msgid "%d Ad were marked as SPAM and removed"
+msgid_plural "%d Ads were marked as SPAM and removed"
+msgstr[0] "%d anuncio fue marcado como SPAM y eliminado"
+msgstr[1] "%d anuncios fueron marcados como SPAM y eliminados"
+
 #: admin/admin-panel-listings.php:471
 msgid "there was an error trying to mark %d Ad as SPAM"
 msgstr "ocurrió un error tratando de marcar %d anuncio como SPAM"
 
+#: admin/admin-panel-listings.php:487
+msgid "%d Ad was set as fatured"
+msgid_plural "%d Ads were set as featured"
+msgstr[0] "%d anuncio fue marcado como destacado"
+msgstr[1] "%d anuncios fueron marcado como destacados"
+
 #: admin/admin-panel-listings.php:491
 msgid "there was an error trying to set %d Ads as featured"
 msgstr "ocurrió un error tratando de marcar %d anuncios como destacado"
+
+#: admin/admin-panel-listings.php:507
+msgid "%d Ad was set as non-fatured"
+msgid_plural "%d Ads were set as non-featured"
+msgstr[0] "%d anuncio fue marcado como no destacado"
+msgstr[1] "%d anuncios fueron marcados como no destacados"
 
 #: admin/admin-panel-listings.php:511
 msgid "there was an error trying to set %d Ads as non-featured"
@@ -635,6 +665,35 @@ msgctxt "awpcp admin menu"
 msgid "Classifieds"
 msgstr "Clasificados"
 
+#: admin/admin-panel.php:148
+msgid ""
+"%1$s has the same name as the %2$s. That will cause %1$s to become "
+"unreachable. Please make sure you don't have duplicate page names."
+msgid_plural ""
+"%1$s have the same name as the %2$s. That will cause %1$s to become "
+"unreachable. Please make sure you don't have duplicate page names."
+msgstr[0] "%1$s tiene el mismo nombre que %2$s. Eso hará que %1$s no pueda ser encontrada. Por favor verifique que no tiene páginas con nombres duplicados."
+msgstr[1] "%1$s tienen el mismo nombre que %2$s. Eso hará que %1$s no puedan ser encontradas. Por favor verifique que no tiene páginas con nombres duplicados."
+
+#: admin/admin-panel.php:162
+msgid ""
+"Page %1$s has the same name as the AWPCP %2$s. That will cause WordPress "
+"page %1$s to become unreachable. The %2$s is dynamic; you don't need to "
+"create a real WordPress page to show the list of cateogries, the plugin will"
+" generate it for you. If the WordPress page was created to show the default "
+"list of AWPCP categories, you can delete it and this error message will go "
+"away. Otherwise, please make sure you don't have duplicate page names."
+msgid_plural ""
+"Pages %1$s have the same name as the AWPCP %2$s. That will cause WordPress "
+"pages %1$s to become unreachable. The %2$s is dynamic; you don't need to "
+"create a real WordPress page to show the list of cateogries, the plugin will"
+" generate it for you. If the WordPress pages were created to show the "
+"default list of AWPCP categories, you can delete them and this error message"
+" will go away. Otherwise, please make sure you don't have duplicate page "
+"names."
+msgstr[0] "La página %1$s tiene el mismo nombre que la %2$s de AWPCP. Esto hará que la página %1$s no pueda ser encontrada. La %2$s es dinámica; no es necesario que cree una página de WordPress para mostrar la lista de categorías, el plugin la generará por usted. Si la página de WordPress fue creada para mostrar la lista por defecto de categorías, puede borrarla y este mensaje de error desaparecerá. Si no, por favor verifique que no hay páginas con nombres duplicados."
+msgstr[1] "Las páginas %1$s tienen el mismo nombre que la %2$s de AWPCP. Esto hará que las páginas %1$s no puedan ser encontradas. La %2$s es dinámica; no es necesario que cree una página de WordPress para mostrar la lista de categorías, el plugin la generará por usted. Si las páginas de WordPress fueron creadas para mostrar la lista por defecto de categorías, puede borrarlas y este mensaje de error desaparecerá. Si no, por favor verifique que no hay páginas con nombres duplicados."
+
 #: admin/admin-panel.php:247 admin/admin-panel.php:248
 msgid "Settings"
 msgstr "Configuración"
@@ -653,8 +712,8 @@ msgstr "Administrar Categorías"
 msgid "Manage Extra Fields"
 msgstr "Administrar Campos Extras"
 
-#: admin/admin-panel.php:296 admin/templates/admin-sidebar.tpl.php:95
-#: awpcp.php:786
+#: admin/admin-panel.php:296 admin/templates/admin-sidebar.tpl.php:108
+#: awpcp.php:795
 msgid "Extra Fields"
 msgstr "Campos Extras"
 
@@ -958,7 +1017,7 @@ msgstr "Opciones del Sistema de Créditos"
 
 #: admin/templates/admin-panel-credit-plans.tpl.php:13
 #: admin/templates/admin-panel-settings.tpl.php:33
-#: admin/templates/admin-panel-settings.tpl.php:47
+#: admin/templates/admin-panel-settings.tpl.php:50
 msgid "Save Changes"
 msgstr "Guardar Cambios"
 
@@ -1105,6 +1164,30 @@ msgid "Debug"
 msgstr "Debug"
 
 #: admin/templates/admin-panel-debug.tpl.php:8
+msgid "Are you seeing 404 Not Found errors?"
+msgstr "¿Su sitio está mostrando errores 404 Not Found?"
+
+#: admin/templates/admin-panel-debug.tpl.php:10
+msgid ""
+"If you are seeing multiple 404 Not Found errors in your website, it is "
+"possible that some Rewrite Rules are missing or corrupted. Please click the "
+"button bellow to navigate to the <permalinks-settings-link>Permalinks "
+"Settings</a> page. Opening that page in your browser will flush the Rewrite "
+"Rules in your site. WordPress will then ask all installed and active plugins"
+" to register their rules and those 404 Not Found errors should be gone. If "
+"that's not the case, please contact <support-link>customer support</a>."
+msgstr "Si su sitio está mostrando multiples errores 404 Not Found, es posible que  haga falta algunas reglas (Rewrite Rules) o que las existentes están dañadas. Por favor haga click en el botón que aparece abajo para navegar a la página de <permalinks-settings-link>Opciones de Enlaces Permanentes</a>. Al abrir esa página en su navegador las reglas existentes serán descartadas. Luego WordPress le permitirá a todos los plugins activos registrar sus propias reglas, con lo que esos errors 404 Not Found deberían desaparecer. Si no ocurre, por favor el <support-link>servicio al cliente</a>."
+
+#: admin/templates/admin-panel-debug.tpl.php:15
+msgctxt "debug page"
+msgid "Flush Rewrite Rules"
+msgstr "Limpiar Reglas de Reescritura"
+
+#: admin/templates/admin-panel-debug.tpl.php:17
+msgid "Debug Information"
+msgstr "Información de Depuración"
+
+#: admin/templates/admin-panel-debug.tpl.php:19
 msgctxt "debug page"
 msgid ""
 "This information can help AWPCP Developers to debug possible problems. If "
@@ -1115,102 +1198,102 @@ msgid ""
 "your report."
 msgstr "Esta información puede ayudar a los desarrolladores de AWPCP a depurar posibles problemas. Para enviar un reporte de error, por favor <strong><a href=\"%s\"> Descargue la Información de Depuración </a></strong> y adjúnte el archivo a su informe, o tómese un minuto para copiar la información a continuación en <a href=\"http://fpaste.org\" target=\"_blank\">http://fpaste.org</a> y proporcione la URL resultante en su informe."
 
-#: admin/templates/admin-panel-debug.tpl.php:11
+#: admin/templates/admin-panel-debug.tpl.php:22
 msgctxt "debug page"
 msgid "AWPCP Pages"
 msgstr "Páginas AWPCP"
 
-#: admin/templates/admin-panel-debug.tpl.php:12
+#: admin/templates/admin-panel-debug.tpl.php:23
 msgctxt "debug page"
 msgid "PHP Info"
 msgstr "PHP Info"
 
-#: admin/templates/admin-panel-debug.tpl.php:13
+#: admin/templates/admin-panel-debug.tpl.php:24
 msgctxt "debug page"
 msgid "AWPCP Settings"
 msgstr "Configuración AWPCP"
 
-#: admin/templates/admin-panel-debug.tpl.php:14
+#: admin/templates/admin-panel-debug.tpl.php:25
 msgctxt "debug page"
 msgid "Rewrite Rules"
 msgstr "Reglas de re-escritura"
 
-#: admin/templates/admin-panel-debug.tpl.php:31
+#: admin/templates/admin-panel-debug.tpl.php:42
 msgid "Stored ID"
 msgstr "ID guardado"
 
-#: admin/templates/admin-panel-debug.tpl.php:32
+#: admin/templates/admin-panel-debug.tpl.php:43
 msgid "Reference"
 msgstr "Referencia"
 
-#: admin/templates/admin-panel-debug.tpl.php:42
+#: admin/templates/admin-panel-debug.tpl.php:53
 msgid "Page not found"
 msgstr "Página no encontrada"
 
-#: admin/templates/admin-panel-debug.tpl.php:56
+#: admin/templates/admin-panel-debug.tpl.php:67
 msgid "Option Name"
 msgstr "Nombre de opción"
 
-#: admin/templates/admin-panel-debug.tpl.php:57
+#: admin/templates/admin-panel-debug.tpl.php:68
 msgid "Option Value"
 msgstr "Valor de opción"
 
-#: admin/templates/admin-panel-debug.tpl.php:80
+#: admin/templates/admin-panel-debug.tpl.php:91
 msgid "Pattern"
 msgstr "Patrón"
 
-#: admin/templates/admin-panel-debug.tpl.php:81
+#: admin/templates/admin-panel-debug.tpl.php:92
 msgid "Replacement"
 msgstr "Reemplazo"
 
-#: admin/templates/admin-panel-debug.tpl.php:102
+#: admin/templates/admin-panel-debug.tpl.php:113
 msgctxt "debug page"
 msgid "PHP Version"
 msgstr "Versión PHP"
 
-#: admin/templates/admin-panel-debug.tpl.php:106
+#: admin/templates/admin-panel-debug.tpl.php:117
 msgctxt "debug page"
 msgid "cURL"
 msgstr "cURL"
 
-#: admin/templates/admin-panel-debug.tpl.php:107
-#: admin/templates/admin-sidebar.tpl.php:146
-#: admin/templates/admin-sidebar.tpl.php:187
+#: admin/templates/admin-panel-debug.tpl.php:118
+#: admin/templates/admin-sidebar.tpl.php:154
+#: admin/templates/admin-sidebar.tpl.php:195
 msgid "Installed"
 msgstr "Instalado"
 
-#: admin/templates/admin-panel-debug.tpl.php:107
-#: admin/templates/admin-sidebar.tpl.php:163
-#: admin/templates/admin-sidebar.tpl.php:204
+#: admin/templates/admin-panel-debug.tpl.php:118
+#: admin/templates/admin-sidebar.tpl.php:171
+#: admin/templates/admin-sidebar.tpl.php:212
 msgid "Not Installed"
 msgstr "No Instalado"
 
-#: admin/templates/admin-panel-debug.tpl.php:110
+#: admin/templates/admin-panel-debug.tpl.php:121
 msgctxt "debug page"
 msgid "cURL's alternate CA info (cacert.pem)"
 msgstr "Certificados de Autoridad alternativos pra cURL (cacert.pem)"
 
-#: admin/templates/admin-panel-debug.tpl.php:111
+#: admin/templates/admin-panel-debug.tpl.php:122
 msgctxt "alternate CA info for cURL"
 msgid "Exists"
 msgstr "Existe"
 
-#: admin/templates/admin-panel-debug.tpl.php:111
+#: admin/templates/admin-panel-debug.tpl.php:122
 msgctxt "alternate CA info for cURL"
 msgid "Missing"
 msgstr "No se encontró"
 
-#: admin/templates/admin-panel-debug.tpl.php:114
+#: admin/templates/admin-panel-debug.tpl.php:125
 msgctxt "debug page"
 msgid "PayPal Connection"
 msgstr "Conexión PayPal"
 
-#: admin/templates/admin-panel-debug.tpl.php:117
+#: admin/templates/admin-panel-debug.tpl.php:128
 msgctxt "debug page"
 msgid "Working"
 msgstr "Trabajando"
 
-#: admin/templates/admin-panel-debug.tpl.php:120
+#: admin/templates/admin-panel-debug.tpl.php:131
 msgctxt "debug page"
 msgid "Not Working"
 msgstr "No trabaja"
@@ -1439,7 +1522,7 @@ msgid "Manage Listing"
 msgstr "Administrar Anuncios"
 
 #: admin/templates/admin-panel-listings.tpl.php:12
-#: frontend/page-search-ads.php:14
+#: frontend/page-search-ads.php:12
 msgid "Search Ads"
 msgstr "Buscar anuncios"
 
@@ -1638,6 +1721,10 @@ msgstr "Restaurar Páginas"
 msgid "%s Settings"
 msgstr "Configuración de %s"
 
+#: admin/templates/admin-panel-settings.tpl.php:48
+msgid "Save Keys and Activate"
+msgstr "Guardar Licencias y Activar"
+
 #: admin/templates/admin-panel-uninstall.tpl.php:6
 msgid ""
 "Thank you for using AWPCP. You have arrived at this page by clicking the "
@@ -1756,126 +1843,126 @@ msgstr "Cuente a otros que el plugin funciona con su configuración de WordPress
 msgid "Buy a Premium Module"
 msgstr "Compre un módulo premium"
 
-#: admin/templates/admin-sidebar.tpl.php:29
+#: admin/templates/admin-sidebar.tpl.php:35
 msgid "Get a Premium Module!"
 msgstr "Obtenga un módulo premium!"
 
-#: admin/templates/admin-sidebar.tpl.php:38 awpcp.php:758
+#: admin/templates/admin-sidebar.tpl.php:46 awpcp.php:767
 msgid "Campaign Manager"
 msgstr "Administrador de Campañas"
 
-#: admin/templates/admin-sidebar.tpl.php:44 awpcp.php:814
+#: admin/templates/admin-sidebar.tpl.php:52 awpcp.php:824
 msgid "Mark as Sold"
 msgstr "Marcar como Vendido"
 
-#: admin/templates/admin-sidebar.tpl.php:50 awpcp.php:835
+#: admin/templates/admin-sidebar.tpl.php:58 awpcp.php:845
 msgid "Restricted Categories"
 msgstr "Categorías Restringidas"
 
-#: admin/templates/admin-sidebar.tpl.php:55 awpcp.php:751
+#: admin/templates/admin-sidebar.tpl.php:63 awpcp.php:760
 msgid "BuddyPress Listings"
 msgstr "BuddyPress Anuncios"
 
-#: admin/templates/admin-sidebar.tpl.php:60
+#: admin/templates/admin-sidebar.tpl.php:68
 msgid "Comments/Ratings"
 msgstr "Comentarios y Calificaciones"
 
-#: admin/templates/admin-sidebar.tpl.php:65 awpcp.php:744
+#: admin/templates/admin-sidebar.tpl.php:73 awpcp.php:746
+msgid "Attachments"
+msgstr "Adjuntos"
+
+#: admin/templates/admin-sidebar.tpl.php:78 awpcp.php:753
 msgid "Authorize.Net"
 msgstr "Authorize.Net"
 
-#: admin/templates/admin-sidebar.tpl.php:70 awpcp.php:821
+#: admin/templates/admin-sidebar.tpl.php:83 awpcp.php:831
 msgid "PayPal Pro"
 msgstr "PayPal Pro"
 
-#: admin/templates/admin-sidebar.tpl.php:75
+#: admin/templates/admin-sidebar.tpl.php:88
 msgid "Coupon/Discount"
 msgstr "Cupones/Descuentos"
 
-#: admin/templates/admin-sidebar.tpl.php:80 awpcp.php:849
+#: admin/templates/admin-sidebar.tpl.php:93 awpcp.php:859
 msgid "Subscriptions"
 msgstr "Suscripciones"
 
-#: admin/templates/admin-sidebar.tpl.php:85
+#: admin/templates/admin-sidebar.tpl.php:98
 msgid "Fee Per Category"
 msgstr "Precio Por Categoría"
 
-#: admin/templates/admin-sidebar.tpl.php:100 awpcp.php:765
+#: admin/templates/admin-sidebar.tpl.php:113 awpcp.php:774
 msgid "Category Icons"
 msgstr "Íconos para Categorías"
 
-#: admin/templates/admin-sidebar.tpl.php:105 awpcp.php:828
+#: admin/templates/admin-sidebar.tpl.php:118 awpcp.php:838
 msgid "Regions Control"
 msgstr "Control de Regiones"
 
-#: admin/templates/admin-sidebar.tpl.php:110
-msgid "Google Checkout Payments"
-msgstr "Pagos con Google Checkout"
-
-#: admin/templates/admin-sidebar.tpl.php:115 awpcp.php:842
+#: admin/templates/admin-sidebar.tpl.php:123 awpcp.php:852
 msgid "RSS"
 msgstr "RSS"
 
-#: admin/templates/admin-sidebar.tpl.php:120
+#: admin/templates/admin-sidebar.tpl.php:128
 msgid "Donate to Support AWPCP"
 msgstr "Haga una donación para apoyar AWPCP"
 
-#: admin/templates/admin-sidebar.tpl.php:128
+#: admin/templates/admin-sidebar.tpl.php:136
 msgid "Found a bug?"
 msgstr "Encontró un bug?"
 
-#: admin/templates/admin-sidebar.tpl.php:128
+#: admin/templates/admin-sidebar.tpl.php:136
 msgid "Need Support?"
 msgstr "Necesita soporte?"
 
-#: admin/templates/admin-sidebar.tpl.php:132
+#: admin/templates/admin-sidebar.tpl.php:140
 msgid "Quick Start Guide"
 msgstr "Guía de incio rápido"
 
-#: admin/templates/admin-sidebar.tpl.php:133
+#: admin/templates/admin-sidebar.tpl.php:141
 msgctxt "Browse the <a>Quick Start Guide</a>"
 msgid "Browse the %s."
 msgstr "Explore la %s."
 
-#: admin/templates/admin-sidebar.tpl.php:134
+#: admin/templates/admin-sidebar.tpl.php:142
 msgid "Documentation"
 msgstr "Documentación"
 
-#: admin/templates/admin-sidebar.tpl.php:135
+#: admin/templates/admin-sidebar.tpl.php:143
 msgctxt "Read the full <a>Documentation</a>"
 msgid "Read the full %s."
 msgstr "Lea la %s completa."
 
-#: admin/templates/admin-sidebar.tpl.php:136
+#: admin/templates/admin-sidebar.tpl.php:144
 msgid "visit the forums!"
 msgstr "viste los foros!"
 
-#: admin/templates/admin-sidebar.tpl.php:137
+#: admin/templates/admin-sidebar.tpl.php:145
 msgctxt "Report bugs or get more help: <a>visit the forums!</a>"
 msgid "Report bugs or get more help: %s."
 msgstr "Reporte errores o obtenga más ayuda: %s."
 
-#: admin/templates/admin-sidebar.tpl.php:143
+#: admin/templates/admin-sidebar.tpl.php:151
 msgid "Premium Modules"
 msgstr "Módulos Premiun"
 
-#: admin/templates/admin-sidebar.tpl.php:150
+#: admin/templates/admin-sidebar.tpl.php:158
 msgid "No premium modules installed."
 msgstr "No hay módulos premiun instalados."
 
-#: admin/templates/admin-sidebar.tpl.php:167
+#: admin/templates/admin-sidebar.tpl.php:175
 msgid "All premium modules installed!"
 msgstr "Todos los Módulos Premiun Instalados!"
 
-#: admin/templates/admin-sidebar.tpl.php:183
+#: admin/templates/admin-sidebar.tpl.php:191
 msgid "Other Modules"
 msgstr "Otros Módulos"
 
-#: admin/templates/admin-sidebar.tpl.php:191
+#: admin/templates/admin-sidebar.tpl.php:199
 msgid "No other modules installed"
 msgstr "No hay otros módulos instalados"
 
-#: admin/templates/admin-sidebar.tpl.php:208
+#: admin/templates/admin-sidebar.tpl.php:216
 msgid "All other modules installed!"
 msgstr "Todos los modules están instalados."
 
@@ -1939,104 +2026,94 @@ msgstr "Administrar Anuncios"
 msgid "Manage Ad Listings"
 msgstr "Administrar Anuncios"
 
-#: awpcp.php:641
+#: awpcp.php:650
 msgid "AWPCP"
 msgstr "AWPCP"
 
-#: awpcp.php:720
+#: awpcp.php:729
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
 msgstr "AWPCP requiere el procesamiento de gráficos de la biblioteca GD y no está instalado. Comuníquese con su proveedor de alojamiento web para solucionar este problema."
 
-#: awpcp.php:721
+#: awpcp.php:730
 #: includes/placeholders/class-placeholders-installation-verifier.php:31
 msgid "Warning"
 msgstr "Adevertencia"
 
-#: awpcp.php:737
-msgid "Attachments"
-msgstr "Adjuntos"
-
-#: awpcp.php:772
+#: awpcp.php:781
 msgid "Comments & Ratings"
 msgstr "Comentarios y Calificaciones"
 
-#: awpcp.php:779
+#: awpcp.php:788
 msgid "Coupons/Discount"
 msgstr "Cupones/Descuentos"
 
-#: awpcp.php:800
+#: awpcp.php:809
 msgid "Fee per Category"
 msgstr "Precio por Categoría"
 
-#: awpcp.php:807
+#: awpcp.php:816
 msgid "Google Checkout"
 msgstr "Google Checkout"
 
-#: awpcp.php:856 templates/components/media-manager.tpl.php:46
+#: awpcp.php:866 templates/components/media-manager.tpl.php:46
 msgid "Videos"
 msgstr "Videos"
 
-#: awpcp.php:864
+#: awpcp.php:874
 msgid "XML Sitemap"
 msgstr "XML Sitemap"
 
-#: awpcp.php:871
+#: awpcp.php:881
 msgid "ZIP Code Search Module"
 msgstr "Módulo de búsqueda por código postal"
 
-#: awpcp.php:919
-msgid ""
-"The %1$s module you have installed is outdated and not compatible with this "
-"version of AWPCP. Please get %1$s %2$s or newer."
-msgstr "El módulo %1$s que usted ha instalado está desactualizado y no es compatible con esta versión de AWPCP. Por favor descargue %1$s %2$s o posterior."
-
-#: awpcp.php:1054
+#: awpcp.php:1038
 msgid "This field is required."
 msgstr "Este campo es obligatorio."
 
-#: awpcp.php:1055 frontend/page-edit-ad.php:128 frontend/page-edit-ad.php:433
+#: awpcp.php:1039 frontend/page-edit-ad.php:128 frontend/page-edit-ad.php:433
 #: includes/settings-api.php:214
 msgid "Please enter a valid email address."
 msgstr "Por favor ingrese una dirección de correo electrónico válida."
 
-#: awpcp.php:1056 awpcp.php:1057
+#: awpcp.php:1040 awpcp.php:1041
 msgid "Please enter a valid URL."
 msgstr "Por favor ingrese una URL válida."
 
-#: awpcp.php:1058
+#: awpcp.php:1042
 msgid "Please enter a valid number."
 msgstr "Por favor ingrese un número."
 
-#: awpcp.php:1059
+#: awpcp.php:1043
 msgid "Please enter a valid amount."
 msgstr "Por favor ingresa una cantidad válida."
 
-#: awpcp.php:1069
+#: awpcp.php:1053
 msgctxt "[UI Datepicker] Display text for previous month link"
 msgid "&#x3c;Prev"
 msgstr "&#x3c;Anterior"
 
-#: awpcp.php:1071
+#: awpcp.php:1055
 msgctxt "[UI Datepicker] Display text for next month link"
 msgid "Next&#x3e;"
 msgstr "Siguiente&#x3e;"
 
-#: awpcp.php:1086
+#: awpcp.php:1070
 msgctxt "[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ..."
 msgid "0"
 msgstr "1"
 
-#: awpcp.php:1092
+#: awpcp.php:1076
 msgid "There are files currently being uploaded."
 msgstr "El sistema aún está cargando algunos archivos."
 
-#: awpcp.php:1093
+#: awpcp.php:1077
 msgid "There are files pending to be uploaded."
 msgstr "Algunos archivos están esperando para ser cargados."
 
-#: awpcp.php:1094
+#: awpcp.php:1078
 msgid "You haven't uploaded any images or files."
 msgstr "Aún no ha subido imágenes o archivos."
 
@@ -2096,11 +2173,11 @@ msgstr "Nuevo anuncio clasificado creado"
 msgid "Click to enlarge image."
 msgstr "Click para ampliar la imagen."
 
-#: frontend/page-browse-ads.php:8
+#: frontend/page-browse-ads.php:10
 msgid "Browse Ads"
 msgstr "Explorar anuncios"
 
-#: frontend/page-browse-ads.php:60
+#: frontend/page-browse-ads.php:64
 msgid ""
 "No specific category was selected for browsing so you are viewing listings "
 "from all categories."
@@ -2580,38 +2657,38 @@ msgid ""
 "administrator."
 msgstr "Ocurrió un problema mientrsa estabamos enviando su mensaje. Por favor intente de nuevo y si el problema persiste, por favor contacte el administrador."
 
-#: frontend/page-search-ads.php:33 frontend/page-search-ads.php:70
+#: frontend/page-search-ads.php:31 frontend/page-search-ads.php:68
 msgid ""
 "You did not enter a keyword or phrase to search for. You must at the very "
 "least provide a keyword or phrase to search for."
 msgstr "No ingresó ninguna palabra o frase para buscar. Deberás proporcionar alguna palabra o frase para poder llevar a cabo la búsqueda."
 
-#: frontend/page-search-ads.php:74
+#: frontend/page-search-ads.php:72
 msgid ""
 "You have entered a keyword that is too short to search on. Search keywords "
 "must be at least 3 letters in length. Please try another term."
 msgstr "Has ingresado una palabra demasiado corta como para llevar a cabo la búsquea. Las palabras de búsqueda deben tener al menos 3 letras. Por favor pruebe con otra palabra."
 
-#: frontend/page-search-ads.php:78
+#: frontend/page-search-ads.php:76
 msgid ""
 "You have entered an invalid minimum price. Make sure your price contains "
 "numbers only. Please do not include currency symbols."
 msgstr "Ingresaste un precio mínimo que no es válido. Asegurese de que el precio contenga sólo valores numéricos. Por favor no incluya los símbolos de moneda (Ej: $)."
 
-#: frontend/page-search-ads.php:82
+#: frontend/page-search-ads.php:80
 msgid ""
 "You have entered an invalid maximum price. Make sure your price contains "
 "numbers only. Please do not include currency symbols."
 msgstr "Ingresaste un precio máximo que no es válido. Asegurese de que el precio contenga sólo valores numéricos. Por favor no incluya los símbolos de moneda (Ej: $)."
 
-#: frontend/page-search-ads.php:89
+#: frontend/page-search-ads.php:98
 msgid ""
 "Use the form below to select the fields on which you want to search. Adding "
 "more fields makes for a more specific search. Using fewer fields will make "
 "for a broader search."
 msgstr "Use el formulario que está debajo para seleccionar los campos sobre los que desea realizar la búsqueda. Si agrega más campos, la búsqueda será más específica. Por el contrario, si usa menos campos, la búsqueda será más general."
 
-#: frontend/page-search-ads.php:169
+#: frontend/page-search-ads.php:166
 msgid "Return to Search"
 msgstr "Volver a la búsqueda"
 
@@ -2669,6 +2746,12 @@ msgstr "Vendedor"
 msgid "Visit Website"
 msgstr "Visitar el Sitio Web"
 
+#: frontend/placeholders.php:595
+msgid "This Ad has been viewed %d time."
+msgid_plural "This Ad has been viewed %d times."
+msgstr[0] "Este anuncio ha sido visto %d vez."
+msgstr[1] "Este anuncio ha sido visto %d veces."
+
 #: frontend/placeholders.php:599
 msgid "Total views: %d"
 msgstr "Vistas totales: %d"
@@ -2689,11 +2772,11 @@ msgstr "Twitear esto"
 msgid "Share on Facebook"
 msgstr "Compartir en Facebook"
 
-#: frontend/shortcode.php:278
+#: frontend/shortcode.php:281
 msgid "Hi admin, you need to go to your dashboard and setup your classifieds."
 msgstr "Hola Administrador, tenés que ir a tu Panel de Control y configurar tus clasificados."
 
-#: frontend/shortcode.php:281
+#: frontend/shortcode.php:284
 msgid "You currently have no classifieds"
 msgstr "No tenés ningún Aviso Clasificado"
 
@@ -3505,7 +3588,7 @@ msgctxt "default blog title"
 msgid "Classifieds Website"
 msgstr "Página de Clasificados"
 
-#: functions.php:1491
+#: functions.php:1509
 msgid ""
 "The images or files with pale red background have been rejected by an "
 "administrator user. Likewise, files with a pale yellow background are "
@@ -3513,179 +3596,179 @@ msgid ""
 "cannot be shown in the frontend."
 msgstr "Las imágenes o archivos con un fondo rojo pálido han sido rechazados por un usuario administrador. De igual forma, los archivos con un fondo amarillo pálido están esperando ser aprobados. Los archivos que están esperando ser aprobados o los archivos rechazados, no pueden mostrarse en el sitio."
 
-#: functions.php:1508 includes/helpers/class-modules-manager.php:158
+#: functions.php:1528
 msgid ""
 "This version of AWPCP %1$s module is not compatible with AWPCP version %2$s."
 " Please get AWPCP %1$s %3$s or newer!"
 msgstr "La versión del módulo %1$s no es compatible con la versión %2$s de AWPCP. Por favor descargue AWPCP %1$s %3$s o posterior."
 
-#: functions.php:1510 includes/helpers/class-modules-manager.php:160
+#: functions.php:1530 includes/helpers/class-modules-manager.php:245
 msgid "Error"
 msgstr "Error"
 
-#: functions.php:1738
+#: functions.php:1867
 msgid "No errors."
 msgstr "Sin errores."
 
-#: functions.php:1739
+#: functions.php:1868
 msgid "The file is larger than upload_max_filesize."
 msgstr "El tamaño del archivo es mayor que upload_max_filesize."
 
-#: functions.php:1740
+#: functions.php:1869
 msgid "The file is larger than form MAX_FILE_SIZE."
 msgstr "ElEl tamaño del archivo es mayor que MAX_FILE_SIZE."
 
-#: functions.php:1741
+#: functions.php:1870
 msgid "The file was only partially uploaded."
 msgstr "El archivo fue cargado parcialmente."
 
-#: functions.php:1742
+#: functions.php:1871
 msgid "No file was uploaded."
 msgstr "Ningún archivo fue cargado."
 
-#: functions.php:1743
+#: functions.php:1872
 msgid "Missing temporary directory."
 msgstr "El directorio temporarl no existe."
 
-#: functions.php:1744
+#: functions.php:1873
 msgid "Can't write file to disk."
 msgstr "No se puede escribir el archivo en disco."
 
-#: functions.php:1745
+#: functions.php:1874
 msgid "The file upload was stopped by extension."
 msgstr "La carga del archivo fue detenida por una extensión."
 
-#: functions.php:1960
+#: functions.php:2089
 msgid "Your Ad \"%s\" has been approved"
 msgstr "Su anuncio \"%s\" ha sido aprobado"
 
-#: functions.php:1976
+#: functions.php:2105
 msgid "Your Ad \"%s\" has been successfully updated"
 msgstr "Su anuncio \"%s\" ha sido actualizado exitosamente"
 
-#: functions.php:1997
+#: functions.php:2126
 msgid "Images on Ad \"%s\" are awaiting approval"
 msgstr "Las imágenes en el anuncio \"%s\" está esperando aprobación"
 
-#: functions.php:1999 includes/functions/notifications.php:189
+#: functions.php:2128 includes/functions/notifications.php:189
 msgid ""
 "Images on Ad \"%s\" are awaiting approval. You can approve the images going "
 "to the Manage Images section for that Ad and clicking the \"Enable\" button "
 "below each image. Click here to continue: %s."
 msgstr "Las imágenes en el anuncio \"%s\" están esperando aprobación. Usted puede aprobar las imágenes accediendo a la sección Administrar Imágenes para ese anuncio y haciendo click en el botón \"Aprobar\" debajo de cada imagen. Haga click aquí para continuar: %s."
 
-#: functions.php:2002
+#: functions.php:2131
 msgid "The Ad \"%s\" is awaiting approval"
 msgstr "El anuncio \"%s\" está esperando aprobación"
 
-#: functions.php:2004 includes/functions/notifications.php:194
+#: functions.php:2133 includes/functions/notifications.php:194
 msgid ""
 "The Ad \"%s\" is awaiting approval. You can approve the Ad going to the "
 "Manage Listings section and clicking the \"Enable\" action shown on top. "
 "Click here to continue: %s."
 msgstr "El anuncio \"%s\" está pendiente de aprobación. Usted puede aprobar el anuncio desde la sección Adminstrar Anuncios, haciendo click en la acción \"Aprobar\". Haga click aquí para continuar: %s."
 
-#: functions.php:2011 includes/functions/notifications.php:201
+#: functions.php:2140 includes/functions/notifications.php:201
 msgid ""
 "Additionally, You can approve the images going to the Manage Images section "
 "for that Ad and clicking the \"Enable\" button below each image. Click here "
 "to continue: %s."
 msgstr "Adicionalmente, usted aprobar las imágenes accediendo a la sección Administrar Imágenes para ese anuncio y haciendo click en el botón \"Aprobar\" debajo de cada imagen. Haga click aquí para continuar: %s."
 
-#: functions.php:2508
+#: functions.php:2674
 msgid "Email sent %s."
 msgstr "Correo electrónico enviado %s."
 
-#: includes/class-csv-importer.php:118
+#: includes/class-csv-importer.php:121
 msgid "Invalid CSV file."
 msgstr "Archivo CSV inválido."
 
-#: includes/class-csv-importer.php:136
+#: includes/class-csv-importer.php:142
 msgid "Image file names were found but no ZIP was provided."
 msgstr "Los nombres de archivo de imagen se encuentra, pero no se proporcionó ZIP."
 
-#: includes/class-csv-importer.php:187
+#: includes/class-csv-importer.php:240
 msgid "The required column %s is missing. Import can't continue."
 msgstr "El requerida columna %s no se encuentra. Importar no puede continuar.\t"
 
-#: includes/class-csv-importer.php:199
+#: includes/class-csv-importer.php:252
 msgid "Import can't continue. Unknown column(s) specified(s):"
 msgstr "Importar no puede continuar. Se especifica(n) columna(s) desconocida(s):\t"
 
-#: includes/class-csv-importer.php:275
+#: includes/class-csv-importer.php:327
 msgid "Required value <em>%s</em> missing at row number: %d"
 msgstr "El valor requerido <em>%s</em> no se encontró en la fila: %d"
 
-#: includes/class-csv-importer.php:418 includes/class-csv-importer.php:489
-msgid "Incompatible ZIP Archive"
-msgstr "Archivo ZIP Incompatible"
-
-#: includes/class-csv-importer.php:423 includes/class-csv-importer.php:494
-msgid "Empty ZIP Archive"
-msgstr "Archivo ZIP vacío"
-
-#: includes/class-csv-importer.php:440 includes/class-csv-importer.php:521
-msgid "Could not write temporary file %s"
-msgstr "No se pudo crear el archivo temporal de %s"
-
-#: includes/class-csv-importer.php:469
+#: includes/class-csv-importer.php:465
 msgid "File %s does not exists."
 msgstr "El archivo %s no existe."
 
-#: includes/class-csv-importer.php:477
+#: includes/class-csv-importer.php:473
 msgid "Import directory %s does not exists."
 msgstr "El directorio para importar %s no existe."
 
-#: includes/class-csv-importer.php:556
+#: includes/class-csv-importer.php:485
+msgid "Incompatible ZIP Archive"
+msgstr "Archivo ZIP Incompatible"
+
+#: includes/class-csv-importer.php:490
+msgid "Empty ZIP Archive"
+msgstr "Archivo ZIP vacío"
+
+#: includes/class-csv-importer.php:517
+msgid "Could not write temporary file %s"
+msgstr "No se pudo crear el archivo temporal de %s"
+
+#: includes/class-csv-importer.php:557
 msgid "Row %d. %s"
 msgstr "Fila %d %s\t"
 
-#: includes/class-csv-importer.php:593
+#: includes/class-csv-importer.php:594
 msgid "Could not save the information to the database for %s in row %d"
 msgstr "No se pudo guardar información para %s en la fila %d de la base de datos"
 
-#: includes/class-csv-importer.php:676
+#: includes/class-csv-importer.php:661
 msgid "Item price non numeric at row number %s"
 msgstr "Se encontró un valor no numérico para el campo precio en la fila número %s"
 
-#: includes/class-csv-importer.php:692
+#: includes/class-csv-importer.php:677
 msgid ""
 "Start date missing (alternately you can specify the default start date) at "
 "row number %s"
 msgstr "En la fila %s no se encontró la fecha inicial (como alternativa usted puede especificar una fecha inicial por defecto)."
 
-#: includes/class-csv-importer.php:704
+#: includes/class-csv-importer.php:689
 msgid "Invalid End date at row number: %s"
 msgstr "Fecha final inválida en la fila: %s"
 
-#: includes/class-csv-importer.php:712
+#: includes/class-csv-importer.php:697
 msgid ""
 "End date missing (alternately you can specify the default end date) at row "
 "number %s"
 msgstr "En la fila %s no se encontró la fecha final (como alternativa usted puede especificar una fecha final por defecto)."
 
-#: includes/class-csv-importer.php:823
+#: includes/class-csv-importer.php:808
 msgid ""
 "Extra Field %s's value is not allowed in row %d. Allowed values are: %%s"
 msgstr "En la fila %d, el valor para el campo extra %s no está permitido. Los valores permitidos son: %s"
 
-#: includes/class-csv-importer.php:832
+#: includes/class-csv-importer.php:817
 msgid ""
 "Extra Field %s's value is not allowed in row %d. Allowed value is one of: "
 "%%s"
 msgstr "En la fila %d, el valor para el campo extra %s no está permitido. El valor permitido debe ser uno de los siguientes: %%s"
 
-#: includes/class-csv-importer.php:960
+#: includes/class-csv-importer.php:945
 msgid ""
 "Username is required in row %s. Please include a username or selected a "
 "default user."
 msgstr "El nombre de usuario es necesario en la fila %s. Por favor incluya un nombre de usuario o seleccione uno por defecto."
 
-#: includes/class-csv-importer.php:963
+#: includes/class-csv-importer.php:948
 msgid "Contact email is required in row %s."
 msgstr "Correo electrónico de contacto es necesario en fila %s."
 
-#: includes/class-csv-importer.php:981
+#: includes/class-csv-importer.php:966
 msgid ""
 "A new user '%s' with email address '%s' and password '%s' was created for "
 "row %d."
@@ -3700,6 +3783,18 @@ msgstr "Editar Anuncio"
 msgctxt "title attribute for edit listing link"
 msgid "Edit <listing-title>"
 msgstr "Editar <listing-title>"
+
+#: includes/class-exceptions.php:23
+msgid ""
+"The error was: <previous-message>. Contact <support-link>customer "
+"support</a> for further assistance."
+msgstr "El error fue: <previous-message>. Contacte el <support-link>servicio al cliente</a> para asistencia adicional."
+
+#: includes/class-exceptions.php:48
+msgid ""
+"Your license for <module-name> is valid, but is already active on another "
+"site. Contact <support-link>customer support</a> for further assistance."
+msgstr "Su licencia para <module-name> es válida, pero ya está activa en otro sitio. Contacte el <support-link>servicio al cliente</a> para asistencia adicional."
 
 #: includes/class-listing-is-about-to-expire-notification.php:38
 msgid "less than 1"
@@ -4081,55 +4176,83 @@ msgctxt "recaptcha-error"
 msgid "The response parameter is invalid or malformed."
 msgstr "La respuesta del usuario no es válida o está mal formada."
 
-#: includes/helpers/class-easy-digital-downloads.php:27
+#: includes/helpers/class-easy-digital-downloads.php:38
 msgid ""
-"There was an error trying to retrieve information about your <module-name> "
-"license."
-msgstr "Ocurrió un error tratando de obtener información acerca de la licencia para <module-name>."
+"There was an error trying to check the license status for <module-name>."
+msgstr "Ocurrió un error intentando verificar el estado la licencia para <module-name>."
 
-#: includes/helpers/class-easy-digital-downloads.php:65
+#: includes/helpers/class-easy-digital-downloads.php:96
 msgid "There was an error trying to activate your <module-name> license."
 msgstr "Ocurrió un error tratando de activar la licencia para <module-name>."
 
-#: includes/helpers/class-easy-digital-downloads.php:83
-msgid "<specific-message> The error was: %s. Please contact customer support."
-msgstr "<specific-message> El error fue: %s. Por favor contacte al soporte al cliente."
-
-#: includes/helpers/class-easy-digital-downloads.php:93
+#: includes/helpers/class-easy-digital-downloads.php:118
 msgid "There was an error trying to deactivate your <module-name> license."
 msgstr "Ocurrió un error tratando de desactivar la licencia para <module-name>."
 
-#: includes/helpers/class-modules-manager.php:168
-msgid ""
-"The AWPCP <module-name> module requires a license to be used. All features "
-"will remain disabled until a valid license is entered. Please go to the "
-"<licenses-settings-link>Licenses Settings</a> section to enter or update "
-"your license."
-msgstr "El módulo <module-name> para AWPCP requiere una licencia para ser usado. Todos las funciones permanecerán deshabilitadas hasta que una licencia válida sea ingresada. Por favor vaya a la sección <license-settings-link>Opciones de Licencias</a> para ingresar o actualizar su licencia."
-
-#: includes/helpers/class-modules-manager.php:178
-msgid ""
-"The license for AWPCP <module-name> module is inactive. All features will "
-"remain disabled until you activate the license. Please go to the <license-"
-"settings-link>License Settings</a> section to acivate your license."
-msgstr "La licencia para el módulo <module-name> para AWPCP está inactiva. Todos las funciones permanecerán deshabilitadas hasta que usted active la licencia. Por favor vaya a la sección <license-settings-link>Opciones de Licencias</a> para activar su licencia."
-
-#: includes/helpers/class-modules-manager.php:186
-msgid ""
-"The license for AWPCP <module-name> module expired. The module will continue"
-" to work but you will not receive automatic updates when a new version is "
-"available."
-msgstr "La licencia para el módulo <module-name> para AWPCP expiró. El módulo continuará funcionando pero usted no recibirá actualizaciones automáticas cuando nuevas versiones sean liberadas."
-
-#: includes/helpers/class-modules-manager.php:193
+#: includes/helpers/class-modules-manager.php:160
 msgid ""
 "Yikes, there has been a mistake. It looks like you have an outdated version "
-"of AWPCP <module-name> module or you need a newer version of AWPCP to use "
-"that module. Please contact customer support and ask for an update. Please "
-"also include a reference to this error in your message."
-msgstr "Oops, ocurrió un error. Parece que usted tiene una versión desactualizada del módulo <module-name> para AWPCP o necesita una versión más nueva de AWPCP para usar ese módulo. Por favor contacte soporte al cliente y pida una versión más reciente. Por favor incluya una referencia a este error en su mensaje."
+"of AWPCP <module-name>, or you need a newer version of AWPCP to use that "
+"module. Please contact customer support and ask for an update. Please also "
+"include a reference to this error in your message."
+msgid_plural ""
+"Yikes, there has been a mistake. It looks like you have an outdated version "
+"of AWPCP <modules-names>, or you need a newer version of AWPCP to use those "
+"modules. Please contact customer support and ask for an update. Please also "
+"include a reference to this error in your message."
+msgstr[0] "Algo anda mal. Parece que tiene una versión desactualizada de <module-name>, o necesita una versión más reciente de AWPCP para usar ese módulo. Por favor contacte al servicio al cliente y pida una actualización. Incluya una referencia a este error en su mensaje."
+msgstr[1] "Algo anda mal. Parece que tiene una versión desactualizada de <modules-names>, o necesita una versión más reciente de AWPCP para usar esos módulos. Por favor contacte al servicio al cliente y pida una actualización. Incluya una referencia a este error en su mensaje."
 
-#: includes/helpers/class-modules-manager.php:201
+#. translators: example: <Extra Fields, Featured Ads> and <Region Control>
+#: includes/helpers/class-modules-manager.php:194
+msgid "<comma-separated-names> and <single-name>"
+msgstr "<comma-separated-names> y <single-name>"
+
+#: includes/helpers/class-modules-manager.php:215
+msgid ""
+"The license for AWPCP <module-name> is inactive. All features will remain "
+"disabled until you activate the license. Please go to the <licenses-"
+"settings-link>License Settings</a> section to activate it."
+msgid_plural ""
+"The licenses for AWPCP <modules-names> are inactive. The features for those "
+"modules will remain disabled until you activate their licenses. Please go to"
+" the <licenses-settings-link>License Settings</a> section to activate them."
+msgstr[0] "La licencia para <module-name> está inactiva. Las funciones de ese módulo permanecerán deshabitadas hasta que active la licencia. Por favor navegue hasta la sección de <licenses-settings-link>Opciones de Licencia</a> para activarla."
+msgstr[1] "Las licencias para <modules-names> están inactivas. Las funciones de esos módulos permanecerán deshabitadas hasta que active las licencias. Por favor navegue hasta la sección de <licenses-settings-link>Opciones de Licencia</a> para activarlas."
+
+#: includes/helpers/class-modules-manager.php:229
+msgid ""
+"The AWPCP <module-name> requires a license to be used. All features will "
+"remain disabled until a valid license is entered. Please go to the "
+"<licenses-settings-link>Licenses Settings</a> section to enter or update "
+"your license."
+msgid_plural ""
+"The AWPCP <modules-names> require a license to be used. The features on each"
+" of those modules will remain disabled until a valid license is entered. "
+"Please go to the <licenses-settings-link>Licenses Settings</a> section to "
+"enter or update your license."
+msgstr[0] "El módulo <module-name> necesita una licencia para ser usado. Las funciones  permanecerán desahabilitadas hasta que una licencia válida sea ingresada. Por favor navegue hasta la sección <licenses-settings-link>Opciones de Licencias</a> para ingresar o actualizar su licencia."
+msgstr[1] "Los módulos <modules-names> necesitan una licencia para ser usados. Las funciones de cada uno de esos módulos permanecerán desahabilitadas hasta que una licencia válida sea ingresada. Por favor navegue hasta la sección <licenses-settings-link>Opciones de Licencias</a> para ingresar o actualizar sus licencias."
+
+#: includes/helpers/class-modules-manager.php:234
+msgid ""
+"The license for AWPCP <module-name> expired. The module will continue to "
+"work but you will not receive automatic updates when a new version is "
+"available."
+msgid_plural ""
+"The license for AWPCP <modules-names> expired. Those modules will continue "
+"to work but you will not receive automatic updates when a new version is "
+"available."
+msgstr[0] "La licencia para <module-name> expiró. El módulo continuará funcionando, pero no recibirá actualizaciones automáticas cuando una nueva versión esté disponible."
+msgstr[1] "Las licencias para <modules-names> expiraron. Los módulos continuarán funcionando, pero no recibirá actualizaciones automáticas cuando una nueva versión esté disponible."
+
+#: includes/helpers/class-modules-manager.php:243
+msgid ""
+"This version of AWPCP %1$s is not compatible with AWPCP version %2$s. Please"
+" get AWPCP %1$s %3$s or newer!"
+msgstr "Esta versión de AWPCP %1$s no es compatible con AWPCP version %2$s. Por favor instale AWPCP %1$s %3$s o más reciente!"
+
+#: includes/helpers/class-modules-manager.php:256
 msgid "The specified module does not exists!."
 msgstr "El módulo especificado no existe!."
 
@@ -4951,172 +5074,184 @@ msgid "Images/Attachments"
 msgstr "Imágenes/Archivos Adjuntos"
 
 #: includes/settings/class-files-settings.php:20
+#: includes/settings/class-general-settings.php:16 installer.php:90
+msgid "General"
+msgstr "General"
+
+#: includes/settings/class-files-settings.php:32
+msgid ""
+"If checked, a popup warning the user about leaving the page without "
+"uploading a file, will be shown when users try to navigate away from the "
+"Upload Files step without uploading at least one image or attachment."
+msgstr "Si activa esta opción, el usuario verá un mensaje de advertencia cuando intente abandonar el paso Cargar Archivos sin cargar al menos un archivo."
+
+#: includes/settings/class-files-settings.php:37
 msgid "Uploads Directory"
 msgstr "Directorio de Archivos"
 
-#: includes/settings/class-files-settings.php:24
+#: includes/settings/class-files-settings.php:41
 msgid "Uploads folder name"
 msgstr "Nombre de la carpeta para subir archivos"
 
-#: includes/settings/class-files-settings.php:24
+#: includes/settings/class-files-settings.php:41
 msgid ""
 "Upload folder name. (Folder must exist and be located in your wp-content "
 "directory)"
 msgstr "Nombre de la carpeta para subir archivos. (la carpeta debe existir dentro del directorio wp-content)"
 
-#: includes/settings/class-files-settings.php:25
+#: includes/settings/class-files-settings.php:42
 msgid "File permissions for uploads directory"
 msgstr "Permisos para el directorio de donde se almacenan los archivos de los anuncios"
 
-#: includes/settings/class-files-settings.php:25
+#: includes/settings/class-files-settings.php:42
 msgid ""
 "File permissions applied to the uploads directory and sub-directories so "
 "that the plugin is allowed to write to those directories."
 msgstr "Permisos aplicados al directorio donde se almacenan los archivos de los anuncio y sus sub-directories, de manera que el plugin pueda escribir en esos directorios."
 
-#: includes/settings/class-files-settings.php:29
+#: includes/settings/class-files-settings.php:46
 #: templates/components/media-manager.tpl.php:7
 msgid "Images"
 msgstr "Imágenes"
 
-#: includes/settings/class-files-settings.php:45
+#: includes/settings/class-files-settings.php:62
 msgid "Allowed image extensions"
 msgstr "Extensiones de Imágenes Permitidas"
 
-#: includes/settings/class-files-settings.php:51
+#: includes/settings/class-files-settings.php:68
 msgid "Hide images until admin approves them"
 msgstr "Deshabilitar imágenes hasta que el administrador las apruebe"
 
-#: includes/settings/class-files-settings.php:52
+#: includes/settings/class-files-settings.php:69
 msgid "Disable AWPCP Lightbox feature"
 msgstr "Deshabilitar la característica Lightbox de AWPCP"
 
-#: includes/settings/class-files-settings.php:52
+#: includes/settings/class-files-settings.php:69
 msgid ""
 "Turn off the lightbox/thickbox element used by AWPCP. Some themes cannot "
 "handle it and a conflict results."
 msgstr "Desactive las funciones de lightbox/thickbox en AWPCP. Algunos temas no pueden manejarlas adecuadamente y se producen conflictos."
 
-#: includes/settings/class-files-settings.php:53
+#: includes/settings/class-files-settings.php:70
 msgid "Show click to enlarge link?"
 msgstr "Mostrar el enlace \"click para agrandar\"?"
 
-#: includes/settings/class-files-settings.php:54
+#: includes/settings/class-files-settings.php:71
 msgid "Number of images allowed if payments are disabled (Free Mode)"
 msgstr "Número de imágenes permitidas si los pagos están deshabilitados (mode gratuito)"
 
-#: includes/settings/class-files-settings.php:54
+#: includes/settings/class-files-settings.php:71
 msgid ""
 "If images are allowed and payments are disabled, users will be allowed "
 "upload this amount of images."
 msgstr "Si las imágenes están habilitadas y los pagos no, los usuarios podrán subir hasta este número de imágenes."
 
-#: includes/settings/class-files-settings.php:58
+#: includes/settings/class-files-settings.php:75
 msgid "Number of columns of thumbnails to show in Show Ad page."
 msgstr "Número de columnas de imágenes para mostrar en la página Mostrar anuncio."
 
-#: includes/settings/class-files-settings.php:58
+#: includes/settings/class-files-settings.php:75
 msgid "Zero means there will be as many thumbnails as possible per row."
 msgstr "Cero significa que habrá tantas miniaturas como posibles en la fila."
 
-#: includes/settings/class-files-settings.php:62
+#: includes/settings/class-files-settings.php:79
 msgid "Image File Size"
 msgstr "Tamaño de la Imagen"
 
-#: includes/settings/class-files-settings.php:64
+#: includes/settings/class-files-settings.php:81
 msgid "Maximum file size per image"
 msgstr "Tamaño máximo de archivo por imagen"
 
-#: includes/settings/class-files-settings.php:64
+#: includes/settings/class-files-settings.php:81
 msgid ""
 "Maximum file size, in bytes, for files user can upload to system. 1 MB = "
 "1000000 bytes. You can google \"x MB to bytes\" to get an accurate "
 "conversion."
 msgstr "Tamaño máximo de archivo, en bytes, para los archivos que pueden subir los usuarios. 1MB = 1000000 bytes. Puede buscar en Google \"x MB to bytes\" para obtener una conversión precisa."
 
-#: includes/settings/class-files-settings.php:65
+#: includes/settings/class-files-settings.php:82
 msgid "Minimum file size per image"
 msgstr "Tamaño de archivo minimo por imagen"
 
-#: includes/settings/class-files-settings.php:65
+#: includes/settings/class-files-settings.php:82
 msgid ""
 "Minimum file size, in bytes, for files user can upload to system. 1 MB = "
 "1000000 bytes. You can google \"x MB to bytes\" to get an accurate "
 "conversion."
 msgstr "Tamaño mínimo de archivo, en bytes, para los archivos que pueden subir los usuarios. 1MB = 100000 bytes. Puede buscar en Google \"x MB to bytes\" para obtener una conversión precisa."
 
-#: includes/settings/class-files-settings.php:66
+#: includes/settings/class-files-settings.php:83
 msgid "Minimum image width"
 msgstr "Ancho mínimo de imagen"
 
-#: includes/settings/class-files-settings.php:66
+#: includes/settings/class-files-settings.php:83
 msgid "Minimum width for images."
 msgstr "Ancho mínimo para las imágenes."
 
-#: includes/settings/class-files-settings.php:67
+#: includes/settings/class-files-settings.php:84
 msgid "Minimum image height"
 msgstr "Alto mínimo de imagen"
 
-#: includes/settings/class-files-settings.php:67
+#: includes/settings/class-files-settings.php:84
 msgid "Minimum height for images."
 msgstr "Altura mínima para imágenes."
 
-#: includes/settings/class-files-settings.php:68
+#: includes/settings/class-files-settings.php:85
 msgid "Maximum image width"
 msgstr "Ancho máximo de la imagen"
 
-#: includes/settings/class-files-settings.php:68
+#: includes/settings/class-files-settings.php:85
 msgid ""
 "Maximum width for images. Images wider than settings are automatically "
 "resized upon upload."
 msgstr "Ancho máximo para las imágenes. Imágenes más anchas que este valor son redimensionadas automáticamente cuando se cargan en el servidor."
 
-#: includes/settings/class-files-settings.php:69
+#: includes/settings/class-files-settings.php:86
 msgid "Maximum image height"
 msgstr "Altura máxima de la imagen"
 
-#: includes/settings/class-files-settings.php:69
+#: includes/settings/class-files-settings.php:86
 msgid ""
 "Maximum height for images. Images taller than settings are automatically "
 "resized upon upload."
 msgstr "Alto máximo para las imágenes. Imágenes más altas que este valor son redimensionadas automáticamente cuando se cargan en el servidor."
 
-#: includes/settings/class-files-settings.php:73
+#: includes/settings/class-files-settings.php:90
 #: templates/components/media-manager.tpl.php:39
 msgid "Primary Image"
 msgstr "Imagen Principal"
 
-#: includes/settings/class-files-settings.php:75
+#: includes/settings/class-files-settings.php:92
 msgid "Thumbnail width (Ad Listings page)"
 msgstr "Ancho de la miniatura (página de anuncios)"
 
-#: includes/settings/class-files-settings.php:75
+#: includes/settings/class-files-settings.php:92
 msgid ""
 "Width of the thumbnail for the primary image shown in Ad Listings view."
 msgstr "Ancho de la miniatura para la imagen principal que se mostrará en la lista de anuncios."
 
-#: includes/settings/class-files-settings.php:76
+#: includes/settings/class-files-settings.php:93
 msgid "Thumbnail width (Primary Image)"
 msgstr "Ancho de la miniatura (imagen principal)"
 
-#: includes/settings/class-files-settings.php:76
+#: includes/settings/class-files-settings.php:93
 msgid "Width of the thumbnail for the primary image shown in Single Ad view."
 msgstr "Ancho de la miniatura de la imagen princial que se muestra en la página de un anuncio."
 
-#: includes/settings/class-files-settings.php:77
+#: includes/settings/class-files-settings.php:94
 msgid "Thumbnail height (Primary Image)"
 msgstr "Altura de la miniatura (imagen principal)"
 
-#: includes/settings/class-files-settings.php:77
+#: includes/settings/class-files-settings.php:94
 msgid "Height of the thumbnail for the primary image shown in Single Ad view."
 msgstr "Altura de la miniatura de la imagen princial que se muestra en la página de un anuncio."
 
-#: includes/settings/class-files-settings.php:78
+#: includes/settings/class-files-settings.php:95
 msgid "Crop primary image thumbnails?"
 msgstr "Cortar las miniaturas de la imagen principal?"
 
-#: includes/settings/class-files-settings.php:78
-#: includes/settings/class-files-settings.php:86
+#: includes/settings/class-files-settings.php:95
+#: includes/settings/class-files-settings.php:103
 msgctxt "settings"
 msgid ""
 "If you decide to crop thumbnails, images will match exactly the dimensions "
@@ -5126,37 +5261,37 @@ msgid ""
 "uploaded images, thumbnails may have different heights."
 msgstr "Si decide recortar las miniaturas, las imágenes coincidirán exactamente con las dimensiones de los ajustes anteriores, pero parte de la imagen puede ser recortado. Si decide cambiar el tamaño, las miniaturas de las imágenes serán redimensionadas para que coincida con la anchura, y la altura se ajustará proporcionalmente. Dependiendo de las características de las imágenes subidas, las miniaturas pueden tener alturas diferentes."
 
-#: includes/settings/class-files-settings.php:82
+#: includes/settings/class-files-settings.php:99
 msgid "Thumbnails"
 msgstr "Miniaturas"
 
-#: includes/settings/class-files-settings.php:84
+#: includes/settings/class-files-settings.php:101
 msgid "Thumbnail width"
 msgstr "Ancho de la miniatura"
 
-#: includes/settings/class-files-settings.php:84
+#: includes/settings/class-files-settings.php:101
 msgid "Width of the thumbnail images."
 msgstr "Ancho de las miniaturas"
 
-#: includes/settings/class-files-settings.php:85
+#: includes/settings/class-files-settings.php:102
 msgid "Thumbnail height"
 msgstr "Altura de la miniatura"
 
-#: includes/settings/class-files-settings.php:85
+#: includes/settings/class-files-settings.php:102
 msgid "Height of the thumbnail images."
 msgstr "Alto de las miniaturas"
 
-#: includes/settings/class-files-settings.php:86
+#: includes/settings/class-files-settings.php:103
 msgid "Crop thumbnail images?"
 msgstr "Cortar las miniaturas?"
 
-#: includes/settings/class-files-settings.php:90
+#: includes/settings/class-files-settings.php:107
 msgid ""
 "The primary image is the one displayed as the thumbnail in the list view and"
 " the largest one shown when the detail view of the listing is clicked."
 msgstr "La imagen principal se utiliza para mostrar la miniatura en la lista de anuncios y es la miniatura de mayor tamaño en la vista detallda del anuncio."
 
-#: includes/settings/class-files-settings.php:94
+#: includes/settings/class-files-settings.php:111
 msgid ""
 "These are the remaining images that are not primary ones, if you have more "
 "than one image allowed per listing."
@@ -5432,10 +5567,6 @@ msgid ""
 "Go to the <form-fields-section> admin section to change the order in which "
 "the fields mentioned below are shown to users in the Ad Details form."
 msgstr "Dirijase a la sección de administración de <form-fields-section> para cambiar el orden en que aparece los campos mencionados debajo en el formulario para ingresar los detalles del anuncio."
-
-#: includes/settings/class-general-settings.php:16 installer.php:90
-msgid "General"
-msgstr "General"
 
 #: includes/settings/class-general-settings.php:20
 msgid "User Ad Management Panel"
@@ -7095,123 +7226,135 @@ msgid ""
 "Please note that disabled Ads cannot be posted to Facebook."
 msgstr "Si está seleccionado, los anuncios serán enviados a Facebook poco después de que sean publicados, habilitados o editados, lo que ocurra primero. Los anuncios serán publicados solo una vez. Por favor tenga en cuenta que los anuncios deshabilitados no pueden ser enviados a Facebook."
 
-#: includes/settings-api.php:558
+#: includes/settings-api.php:563
 msgid "<module-name> License Key"
 msgstr "Licencia para <module-name>"
 
-#: includes/settings-api.php:567
+#: includes/settings-api.php:572
 msgid "Licenses"
 msgstr "Licencias"
 
-#: includes/settings-api.php:707
+#: includes/settings-api.php:712
 msgid ""
 "Require Registration setting was enabled automatically because you activated"
 " the User Ad Management panel."
 msgstr "Opción Requerir registro se habilita automáticamente porque se ha activado el panel de Administración de Anuncios de Usuarios.\t"
 
-#: includes/settings-api.php:724
+#: includes/settings-api.php:729
 msgid ""
 "Akismet SPAM control cannot be enabled because Akismet plugin is not "
 "installed or activated."
 msgstr "No se puede activar el control de SPAM Askimet porque el plugin Askimet no está instalado o activado."
 
-#: includes/settings-api.php:728
+#: includes/settings-api.php:733
 msgid ""
 "Akismet SPAM control cannot be enabled because Akismet is not properly "
 "configured."
 msgstr "No se puede activar el control de SPAM Askimet porque el plugin Askimet no ha sido configurado adecuadamente."
 
-#: includes/settings-api.php:751
+#: includes/settings-api.php:756
 msgid ""
 "reCAPTCHA can't be used because the public key and private key settings are "
 "required for reCAPTCHA to work properly."
 msgstr "reCAPTCHA no puede user usado por la opción clave pública y clave privada es necesaria para que reCAPTCHA funcione adecuadamente."
 
-#: includes/settings-api.php:753
+#: includes/settings-api.php:758
 msgid ""
 "reCAPTCHA can't be used because the public key setting is required for "
 "reCAPTCHA to work properly."
 msgstr "reCAPTCHA no puede user usado por la opción clave pública es necesaria para que reCAPTCHA funcione adecuadamente."
 
-#: includes/settings-api.php:755
+#: includes/settings-api.php:760
 msgid ""
 "reCAPTCHA can't be used because the private key setting is required for "
 "reCAPTCHA to work properly."
 msgstr "reCAPTCHA no puede user usado por la opción clave privada es necesaria para que reCAPTCHA funcione adecuadamente."
 
-#: includes/settings-api.php:768
+#: includes/settings-api.php:773
 msgid ""
 "User Ad Management panel was automatically deactivated because you disabled "
 "Require Registration setting."
 msgstr "El Panel de Administración de Anuncios de Usuarios fue desactivada automáticamente debido a que desactivó opción Requerir registro."
 
-#: includes/settings-api.php:773
+#: includes/settings-api.php:778
 msgid ""
 "Credit System was automatically disabled because you disabled Require "
 "Registration setting."
 msgstr "El Sistema de Crédito fue desactivado automáticamente porque usted desactivo la opción que requiere que todos los usuarios estén registrados."
 
-#: includes/settings-api.php:789
+#: includes/settings-api.php:794
 msgid ""
 "There is a problem with the PayPal Currency Code you have entered. It does "
 "not match any of the codes in our list of curencies supported by PayPal."
 msgstr "Hay un problema con el código de moneda para PayPal que ingresó. No coincide con ninguno de los códigos en la lista de las monedas soportadas."
 
-#: includes/settings-api.php:790
+#: includes/settings-api.php:795
 msgid "The available currency codes are"
 msgstr "Los códigos de moneda que están disponibles son"
 
-#: includes/settings-api.php:799
+#: includes/settings-api.php:804
 msgid ""
 "Require Registration setting was enabled automatically because you activated"
 " the Credit System."
 msgstr "La opción para requerir el registro de usuarios fue habilitado automáticamente porque usted activó el Sistema de Crédito."
 
-#: includes/settings-api.php:804
+#: includes/settings-api.php:809
 msgid ""
 "Charge Listing Fee setting was enabled automatically because you activated "
 "the Credit System."
 msgstr "La opción para cobrar por los anuncios fue habilitada automáticamente porque usted activó el Sistema de Crédito."
 
-#: includes/settings-api.php:810
+#: includes/settings-api.php:815
 msgid ""
 "Credit System was disabled automatically because you disabled Charge Listing"
 " Fee."
 msgstr "El Sistema de Crédito fue desactivada automáticamente porque usted desactivo la opción para cobrar por los anuncios."
 
-#: includes/settings-api.php:1042
-msgid "Deactivate License"
-msgstr "Desactivar Licencia"
+#: includes/settings-api.php:1047
+msgid "Deactivate"
+msgstr "Desactivar"
 
-#: includes/settings-api.php:1043
+#: includes/settings-api.php:1048
 msgid "active"
 msgstr "activa"
 
-#: includes/settings-api.php:1045
-msgid "Activate License"
-msgstr "Activar Licencia"
+#: includes/settings-api.php:1048 includes/settings-api.php:1051
+#: includes/settings-api.php:1061 includes/settings-api.php:1063
+#: includes/settings-api.php:1065
+msgid "Status: <license-status>"
+msgstr "Estado: <license-status>"
 
-#: includes/settings-api.php:1046
+#: includes/settings-api.php:1050 includes/settings-api.php:1053
+msgid "Activate"
+msgstr "Activar"
+
+#: includes/settings-api.php:1051
 msgid "inactive"
 msgstr "inactiva"
 
-#: includes/settings-api.php:1048
-msgid "Check License"
-msgstr "Verificar Licencia"
+#: includes/settings-api.php:1056
+msgid ""
+"Click the button above to check the status of your license. Please <contact-"
+"link>contact customer support</a> if you think the reported status is wrong."
+msgstr "Presione el botón que está arriba para verificar el estado de su licencia. Por favor <contact-link>contacte el soporte al cliente</a> si piensa que el estado reportado es incorrecto."
 
-#: includes/settings-api.php:1049
+#: includes/settings-api.php:1061
 msgid "expired"
 msgstr "expiró"
 
-#: includes/settings-api.php:1051
-msgid "invalid"
-msgstr "no válida"
+#: includes/settings-api.php:1063
+msgid "disabled"
+msgstr "desahibilitado"
 
-#: includes/settings-api.php:1066
+#: includes/settings-api.php:1065
+msgid "unknown"
+msgstr "desconocido"
+
+#: includes/settings-api.php:1081
 msgid "Documentation on date and time formatting"
 msgstr "Documentación sobre el formato de fecha y hora"
 
-#: includes/settings-api.php:1087
+#: includes/settings-api.php:1102
 msgid "Setting <setting-name> not available."
 msgstr "La opción <setting-name> no está disponible."
 
@@ -7279,6 +7422,12 @@ msgstr "No pudimos encontrar un término de pago válido asociado con este anunc
 msgid "No Ads were selected"
 msgstr "No seleccionó anuncios"
 
+#: includes/views/admin/listings/class-renew-listings-admin-page.php:70
+msgid "%d Ad was renewed"
+msgid_plural "%d Ads were renewed"
+msgstr[0] "%d anuncio fue renovado"
+msgstr[1] "%d anuncios fueron renovados"
+
 #: includes/views/admin/listings/class-renew-listings-admin-page.php:72
 msgid "there was an error trying to renew %d Ads"
 msgstr "ocurrió un error tratando de  aprobar %d anuncios"
@@ -7308,9 +7457,21 @@ msgid ""
 "link in step 2 of the settings."
 msgstr "Hubo algunos errores tratando de publicar anuncios a Facebook, tal vez sus credenciales son inválidas o expiraron. Por favor verifique la <a>configuración</a>. Si su token expiró, por favor intente obtener un token de acceso nuevo, usando el link en el paso 2 de la configuración."
 
+#: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:98
+msgid "%d Ad was sent to a Facebook Page"
+msgid_plural "%d Ads were sent to a Facebook Page"
+msgstr[0] "%d anuncio fue publicado a una Página de Facebook"
+msgstr[1] "%d anuncios fueron publicados a una Página de Facebook"
+
 #: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:100
 msgid "there was an error trying to send %d Ads to a Facebook Page"
 msgstr "ocurrió un error tratando de publicar %d anuncios a una Página de Facebook"
+
+#: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:106
+msgid "%d Ad was sent to a Facebook Group"
+msgid_plural "%d Ads were sent to a Facebook Group"
+msgstr[0] "%d anuncio fue publicado a un Grupo de Facebook"
+msgstr[1] "%d anuncios fueron publicados a un Grupo de Facebook"
 
 #: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:108
 msgid "there was an error trying to send %d Ads to a Facebook Group"
