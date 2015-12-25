@@ -18,7 +18,8 @@ class AWPCP_Import_Payment_Transactions_Task_Handler {
         $transactions = $wpdb->get_col($query);
 
         foreach ($transactions as $option_name) {
-            $hash = end(explode('-', $option_name));
+            $option_name_parts = explode( '-', $option_name );
+            $hash = end( $option_name_parts );
             $transaction_errors = array();
 
             $transaction = AWPCP_Payment_Transaction::find_by_id($hash);
