@@ -19,7 +19,7 @@ class AWPCP_Migrate_Media_Information_Task_Handler {
     public function run_task() {
         $mime_types = awpcp_mime_types();
 
-        if ( ! awpcp_table_exists( AWPCP_TABLE_ADPHOTOS ) ) {
+        if ( ! $this->photos_table_exists() ) {
             return array( 0, 0 );
         }
 
@@ -64,6 +64,10 @@ class AWPCP_Migrate_Media_Information_Task_Handler {
         $remaining = $this->count_pending_images( $cursor );
 
         return array( $total, $remaining );
+    }
+
+    protected function photos_table_exists() {
+        return awpcp_table_exists( AWPCP_TABLE_ADPHOTOS );
     }
 
     private function count_pending_images($cursor) {
