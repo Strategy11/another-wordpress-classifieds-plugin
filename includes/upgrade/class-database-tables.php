@@ -125,7 +125,7 @@ class AWPCP_Database_Tables {
             `items` TEXT,
             `data` TEXT,
             `errors` TEXT,
-            `user_id` INT(10) NOT NULL,
+            `user_id` INT(10),
             `status` VARCHAR(32) CHARACTER SET <charset> COLLATE <collate> NOT NULL DEFAULT 'open',
             `payment_status` VARCHAR(32) CHARACTER SET <charset> COLLATE <collate>,
             `payment_gateway` VARCHAR(255) CHARACTER SET <charset> COLLATE <collate> NOT NULL DEFAULT '',
