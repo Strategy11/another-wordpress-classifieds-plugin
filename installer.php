@@ -840,16 +840,13 @@ class AWPCP_Installer {
         $settings->update_option( 'displayadlayoutcode', $layout );
 
         // create awpcp_ad_regions table
-        // TODO: this is broken!
-        dbDelta( $this->create_ad_regions_table );
+        dbDelta( $this->plugin_tables->get_listing_regions_table_definition() );
 
         // create awpcp_media table
-        // TODO: this is broken!
-        dbDelta( $this->create_media_table );
+        dbDelta( $this->plugin_tables->get_media_table_definition() );
 
         // Create ad metadata table.
-        // TODO: this is broken!
-        dbDelta( $this->create_ad_meta_table );
+        dbDelta( $this->plugin_tables->get_listing_meta_table_definition() );
 
         // migrate old regions
         if ( awpcp_column_exists( AWPCP_TABLE_ADS, 'ad_country' )   ) {
@@ -917,7 +914,7 @@ class AWPCP_Installer {
         }
 
         // create tasks table
-        dbDelta( $this->create_tasks_table );
+        dbDelta( $this->get_tasks_table_definition() );
     }
 
     private function upgrade_to_3_3_3( $oldversion ) {
@@ -967,7 +964,7 @@ class AWPCP_Installer {
 
         // create tasks table if missing
         // https://github.com/drodenbaugh/awpcp/issues/1246
-        dbDelta( $this->create_tasks_table );
+        dbDelta( $this->get_tasks_table_definition() );
 
         if ( ! awpcp_column_exists( AWPCP_TABLE_MEDIA, 'metadata' ) ) {
             $sql = $this->database_helper->replace_charset_and_collate( 'ALTER TABLE ' . AWPCP_TABLE_MEDIA . " ADD `metadata` TEXT CHARACTER SET <charset> COLLATE <collate> NOT NULL DEFAULT '' AFTER `is_primary`" );
