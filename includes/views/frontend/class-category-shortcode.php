@@ -72,9 +72,10 @@ class AWPCP_CategoryShortcode {
             'orderby' => get_awpcp_option( 'groupbrowseadsby' ),
         );
 
-        // // required so awpcp_display_ads shows the name of the current category
-        // // TODO: fix title when there are multiple categories ids.
-        // $_REQUEST['category_id'] = $category->id;
+        // required so awpcp_display_ads shows the name of the current category
+        if ( count( $attrs['id'] ) === 1 ) {
+            $_REQUEST['category_id'] = $attrs['id'][0];
+        }
 
         return awpcp_display_listings_in_page( $query, 'category-shortcode', $options );
     }
