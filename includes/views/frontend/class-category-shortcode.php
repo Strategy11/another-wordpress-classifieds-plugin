@@ -15,8 +15,7 @@ class AWPCP_CategoryShortcode {
     }
 
     public function render( $attrs ) {
-        $default = array( 'id' => 0, 'children' => true, 'items_per_page' => 10 );
-        $attrs = shortcode_atts( $default, $attrs );
+        $attrs = $this->get_shortcode_attrs( $attrs );
 
         $output = apply_filters( 'awpcp-category-shortcode-content-replacement', null, $attrs );
 
@@ -25,6 +24,24 @@ class AWPCP_CategoryShortcode {
         } else {
             return $output;
         }
+    }
+
+    private function get_shortcode_attrs( $attrs ) {
+        if ( ! isset( $attrs['show_categories_list'] ) && isset( $attrs['children'] ) ) {
+            $attrs['show_categories_list'] = $attrs['children'];
+        }
+
+        $attrs = shortcode_atts( array(
+            'id' => 0,
+            'children' => true,
+            'items_per_page' => 10,
+            'show_categories_list' => true,
+        ), $attrs );
+
+        $attrs['children'] = awpcp_parse_bool( $attrs['children'] );
+        $attrs['show_categories_list'] = awpcp_parse_bool( $attrs['show_categories_list'] );
+
+        return $attrs;
     }
 
     private function render_shortcode_content( $attrs ) {
@@ -37,7 +54,7 @@ class AWPCP_CategoryShortcode {
             return __('Category ID must be valid for Ads to display.', 'category shortcode', 'another-wordpress-classifieds-plugin');
         }
 
-        if ( $children ) {
+        if ( $attrs['show_categories_list'] ) {
             $categories_list = awpcp_categories_list_renderer()->render( array(
                 'parent_category_id' => $category->id,
                 'show_listings_count' => true,
