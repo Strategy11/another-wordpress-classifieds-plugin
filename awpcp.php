@@ -341,6 +341,7 @@ require_once(AWPCP_DIR . "/frontend/ad-functions.php");
 require_once(AWPCP_DIR . "/frontend/shortcode.php");
 
 require( AWPCP_DIR . '/frontend/class-categories-selector-component.php' );
+require( AWPCP_DIR . '/frontend/class-categories-renderer-factory.php' );
 require( AWPCP_DIR . '/frontend/class-image-placeholders.php' );
 require( AWPCP_DIR . '/frontend/class-query.php' );
 require_once(AWPCP_DIR . "/frontend/widget-search.php");

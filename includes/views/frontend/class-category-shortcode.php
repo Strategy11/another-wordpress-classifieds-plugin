@@ -1,16 +1,16 @@
 <?php
 
 function awpcp_category_shortcode() {
-    return new AWPCP_CategoryShortcode( $GLOBALS['wpdb'], awpcp_request() );
+    return new AWPCP_CategoryShortcode( awpcp_categories_renderer_factory(), awpcp_request() );
 }
 
 class AWPCP_CategoryShortcode {
 
-    private $db;
+    private $categories_renderer_factory;
     private $request;
 
-    public function __construct( $db, $request ) {
-        $this->db = $db;
+    public function __construct( $categories_renderer_factory, $request ) {
+        $this->categories_renderer_factory = $categories_renderer_factory;
         $this->request = $request;
     }
 
@@ -89,6 +89,8 @@ class AWPCP_CategoryShortcode {
             $categories_list_params['category_id'] = $categories_ids;
         }
 
-        return awpcp_categories_list_renderer()->render( $categories_list_params );
+        $categories_renderer = $this->categories_renderer_factory->create_list_renderer();
+
+        return $categories_renderer->render( $categories_list_params );
     }
 }
