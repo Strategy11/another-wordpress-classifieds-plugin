@@ -52,6 +52,10 @@ class AWPCP_Compatibility {
     private function load_woocommerce_integration() {
         $woocommerce_integration = awpcp_woocommerce_plugin_integration();
         add_filter( 'woocommerce_prevent_admin_access', array( $woocommerce_integration, 'filter_prevent_admin_access' ) );
+
+        if ( ! is_admin() ) {
+            add_filter( 'woocommerce_unforce_ssl_checkout', array( $woocommerce_integration, 'filter_unforce_ssl_checkout' ) );
+        }
     }
 
     public function load_plugin_integrations_on_init() {

@@ -39,4 +39,16 @@ class AWPCP_Query {
     public function is_browse_categories_page() {
         return $this->is_page_that_has_shortcode( 'AWPCPBROWSECATS' );
     }
+
+    public function is_page_that_accepts_payments() {
+        $shortcodes_that_accept_payments = array( 'AWPCPPLACEAD', 'AWPCP-BUY-SUBSCRIPTION', 'AWPCP-RENEW-AD', 'AWPCPBUYCREDITS' );
+
+        foreach ( $shortcodes_that_accept_payments as $shortcode ) {
+            if ( $this->is_page_that_has_shortcode( $shortcode ) ) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
