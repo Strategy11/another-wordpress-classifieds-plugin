@@ -1,13 +1,7 @@
 <?php
 
 function awpcp_modules_manager() {
-    static $instance = null;
-
-    if ( is_null( $instance ) ) {
-        $instance = new AWPCP_ModulesManager( awpcp(), awpcp_licenses_manager(), awpcp_modules_updater(), awpcp()->settings );
-    }
-
-    return $instance;
+    return awpcp_modules_manager_factory()->get_modules_manager_instance();
 }
 
 class AWPCP_ModulesManager {

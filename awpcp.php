@@ -119,6 +119,7 @@ require_once( AWPCP_DIR . "/includes/form-fields/class-listing-website-form-fiel
 require_once( AWPCP_DIR . "/includes/helpers/class-easy-digital-downloads.php" );
 require_once( AWPCP_DIR . "/includes/helpers/class-licenses-manager.php" );
 require_once( AWPCP_DIR . '/includes/helpers/class-module.php' );
+require( AWPCP_DIR . "/includes/helpers/class-modules-manager-factory.php" );
 require_once( AWPCP_DIR . "/includes/helpers/class-modules-manager.php" );
 require_once( AWPCP_DIR . "/includes/helpers/class-modules-updater.php" );
 
@@ -386,9 +387,12 @@ class AWPCP {
 
 	public $flush_rewrite_rules = false;
 
-	public function __construct() {
+    private $modules_manager_factory;
+
+	public function __construct( $modules_manager_factory ) {
 		global $awpcp_db_version;
 
+        $this->modules_manager_factory = $modules_manager_factory;
 		$this->version = $awpcp_db_version;
 
 		// stored options are loaded when the settings API is instatiated
@@ -405,7 +409,7 @@ class AWPCP {
             awpcp_load_plugin_textdomain( __FILE__, 'another-wordpress-classifieds-plugin' );
         }
 
-        $this->modules_manager = awpcp_modules_manager();
+        $this->modules_manager = $this->modules_manager_factory->get_modules_manager_instance( $this );
 
         // register settings, this will define default values for settings
         // that have never been stored
@@ -1336,7 +1340,7 @@ function awpcp() {
 	global $awpcp;
 
 	if (!is_object($awpcp)) {
-		$awpcp = new AWPCP();
+		$awpcp = new AWPCP( awpcp_modules_manager_factory() );
         $awpcp->bootstrap();
 	}
 
