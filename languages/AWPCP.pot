@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2015-12-19 06:24:09+00:00\n"
+"POT-Creation-Date: 2015-12-28 17:55:52+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -142,7 +142,7 @@ msgid "Categories"
 msgstr ""
 
 #: admin/admin-panel-fees-table.php:127
-#: admin/templates/admin-sidebar.tpl.php:103 awpcp.php:802
+#: admin/templates/admin-sidebar.tpl.php:103 awpcp.php:803
 msgid "Featured Ads"
 msgstr ""
 
@@ -706,7 +706,7 @@ msgid "Manage Extra Fields"
 msgstr ""
 
 #: admin/admin-panel.php:296 admin/templates/admin-sidebar.tpl.php:108
-#: awpcp.php:795
+#: awpcp.php:796
 msgid "Extra Fields"
 msgstr ""
 
@@ -1131,6 +1131,10 @@ msgctxt "csv-importer"
 msgid "Assign Ads to a user?"
 msgstr ""
 
+#: admin/templates/admin-panel-csv-importer.tpl.php:145
+msgid "If checked, the Ads will belong to the user specified below."
+msgstr ""
+
 #: admin/templates/admin-panel-csv-importer.tpl.php:151
 msgid "Default user"
 msgstr ""
@@ -1157,7 +1161,7 @@ msgid "Debug"
 msgstr ""
 
 #: admin/templates/admin-panel-debug.tpl.php:8
-msgid "Are you seeing 404 Not Found errors?"
+msgid "Are you seeng 404 Not Found errors?"
 msgstr ""
 
 #: admin/templates/admin-panel-debug.tpl.php:10
@@ -1839,19 +1843,19 @@ msgstr ""
 msgid "Get a Premium Module!"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:46 awpcp.php:767
+#: admin/templates/admin-sidebar.tpl.php:46 awpcp.php:768
 msgid "Campaign Manager"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:52 awpcp.php:824
+#: admin/templates/admin-sidebar.tpl.php:52 awpcp.php:825
 msgid "Mark as Sold"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:58 awpcp.php:845
+#: admin/templates/admin-sidebar.tpl.php:58 awpcp.php:846
 msgid "Restricted Categories"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:63 awpcp.php:760
+#: admin/templates/admin-sidebar.tpl.php:63 awpcp.php:761
 msgid "BuddyPress Listings"
 msgstr ""
 
@@ -1859,15 +1863,15 @@ msgstr ""
 msgid "Comments/Ratings"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:73 awpcp.php:746
+#: admin/templates/admin-sidebar.tpl.php:73 awpcp.php:747
 msgid "Attachments"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:78 awpcp.php:753
+#: admin/templates/admin-sidebar.tpl.php:78 awpcp.php:754
 msgid "Authorize.Net"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:83 awpcp.php:831
+#: admin/templates/admin-sidebar.tpl.php:83 awpcp.php:832
 msgid "PayPal Pro"
 msgstr ""
 
@@ -1875,7 +1879,7 @@ msgstr ""
 msgid "Coupon/Discount"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:93 awpcp.php:859
+#: admin/templates/admin-sidebar.tpl.php:93 awpcp.php:860
 msgid "Subscriptions"
 msgstr ""
 
@@ -1883,15 +1887,15 @@ msgstr ""
 msgid "Fee Per Category"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:113 awpcp.php:774
+#: admin/templates/admin-sidebar.tpl.php:113 awpcp.php:775
 msgid "Category Icons"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:118 awpcp.php:838
+#: admin/templates/admin-sidebar.tpl.php:118 awpcp.php:839
 msgid "Regions Control"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:123 awpcp.php:852
+#: admin/templates/admin-sidebar.tpl.php:123 awpcp.php:853
 msgid "RSS"
 msgstr ""
 
@@ -2018,94 +2022,94 @@ msgstr ""
 msgid "Manage Ad Listings"
 msgstr ""
 
-#: awpcp.php:650
+#: awpcp.php:651
 msgid "AWPCP"
 msgstr ""
 
-#: awpcp.php:729
+#: awpcp.php:730
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
 msgstr ""
 
-#: awpcp.php:730
+#: awpcp.php:731
 #: includes/placeholders/class-placeholders-installation-verifier.php:31
 msgid "Warning"
 msgstr ""
 
-#: awpcp.php:781
+#: awpcp.php:782
 msgid "Comments & Ratings"
 msgstr ""
 
-#: awpcp.php:788
+#: awpcp.php:789
 msgid "Coupons/Discount"
 msgstr ""
 
-#: awpcp.php:809
+#: awpcp.php:810
 msgid "Fee per Category"
 msgstr ""
 
-#: awpcp.php:816
+#: awpcp.php:817
 msgid "Google Checkout"
 msgstr ""
 
-#: awpcp.php:866 templates/components/media-manager.tpl.php:46
+#: awpcp.php:867 templates/components/media-manager.tpl.php:46
 msgid "Videos"
 msgstr ""
 
-#: awpcp.php:874
+#: awpcp.php:875
 msgid "XML Sitemap"
 msgstr ""
 
-#: awpcp.php:881
+#: awpcp.php:882
 msgid "ZIP Code Search Module"
 msgstr ""
 
-#: awpcp.php:1038
+#: awpcp.php:1039
 msgid "This field is required."
 msgstr ""
 
-#: awpcp.php:1039 frontend/page-edit-ad.php:128 frontend/page-edit-ad.php:433
+#: awpcp.php:1040 frontend/page-edit-ad.php:128 frontend/page-edit-ad.php:433
 #: includes/settings-api.php:214
 msgid "Please enter a valid email address."
 msgstr ""
 
-#: awpcp.php:1040 awpcp.php:1041
+#: awpcp.php:1041 awpcp.php:1042
 msgid "Please enter a valid URL."
 msgstr ""
 
-#: awpcp.php:1042
+#: awpcp.php:1043
 msgid "Please enter a valid number."
 msgstr ""
 
-#: awpcp.php:1043
+#: awpcp.php:1044
 msgid "Please enter a valid amount."
 msgstr ""
 
-#: awpcp.php:1053
+#: awpcp.php:1054
 msgctxt "[UI Datepicker] Display text for previous month link"
 msgid "&#x3c;Prev"
 msgstr ""
 
-#: awpcp.php:1055
+#: awpcp.php:1056
 msgctxt "[UI Datepicker] Display text for next month link"
 msgid "Next&#x3e;"
 msgstr ""
 
-#: awpcp.php:1070
+#: awpcp.php:1071
 msgctxt "[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ..."
 msgid "0"
 msgstr ""
 
-#: awpcp.php:1076
+#: awpcp.php:1077
 msgid "There are files currently being uploaded."
 msgstr ""
 
-#: awpcp.php:1077
+#: awpcp.php:1078
 msgid "There are files pending to be uploaded."
 msgstr ""
 
-#: awpcp.php:1078
+#: awpcp.php:1079
 msgid "You haven't uploaded any images or files."
 msgstr ""
 
@@ -4170,11 +4174,11 @@ msgid ""
 "There was an error trying to check the license status for <module-name>."
 msgstr ""
 
-#: includes/helpers/class-easy-digital-downloads.php:96
+#: includes/helpers/class-easy-digital-downloads.php:103
 msgid "There was an error trying to activate your <module-name> license."
 msgstr ""
 
-#: includes/helpers/class-easy-digital-downloads.php:118
+#: includes/helpers/class-easy-digital-downloads.php:125
 msgid "There was an error trying to deactivate your <module-name> license."
 msgstr ""
 
@@ -5061,6 +5065,10 @@ msgstr ""
 #: includes/settings/class-files-settings.php:20
 #: includes/settings/class-general-settings.php:16 installer.php:90
 msgid "General"
+msgstr ""
+
+#: includes/settings/class-files-settings.php:29
+msgid "Show popup if user didn't upload files"
 msgstr ""
 
 #: includes/settings/class-files-settings.php:32
@@ -6329,59 +6337,63 @@ msgstr ""
 msgid "An email will be sent to administrator users when a listing is flagged."
 msgstr ""
 
-#: includes/settings/class-window-title-settings.php:15
+#: includes/settings/class-window-title-settings.php:12
+msgid "Window Title"
+msgstr ""
+
+#: includes/settings/class-window-title-settings.php:21
 msgid "Window title separator"
 msgstr ""
 
-#: includes/settings/class-window-title-settings.php:18
+#: includes/settings/class-window-title-settings.php:24
 msgid ""
 "The character to use to separate ad details used in browser page title. "
 "Example: | / -"
 msgstr ""
 
-#: includes/settings/class-window-title-settings.php:24
+#: includes/settings/class-window-title-settings.php:30
 msgid "Show city in window title"
 msgstr ""
 
-#: includes/settings/class-window-title-settings.php:27
+#: includes/settings/class-window-title-settings.php:33
 msgid "Show city in browser page title when viewing individual Ad"
 msgstr ""
 
-#: includes/settings/class-window-title-settings.php:33
+#: includes/settings/class-window-title-settings.php:39
 msgid "Show state in window title"
 msgstr ""
 
-#: includes/settings/class-window-title-settings.php:36
+#: includes/settings/class-window-title-settings.php:42
 msgid "Show state in browser page title when viewing individual Ad"
 msgstr ""
 
-#: includes/settings/class-window-title-settings.php:42
+#: includes/settings/class-window-title-settings.php:48
 msgid "Show country in window title"
 msgstr ""
 
-#: includes/settings/class-window-title-settings.php:45
+#: includes/settings/class-window-title-settings.php:51
 msgid "Show country in browser page title when viewing individual Ad"
 msgstr ""
 
-#: includes/settings/class-window-title-settings.php:51
+#: includes/settings/class-window-title-settings.php:57
 msgid "Show county/village/other in window title"
 msgstr ""
 
-#: includes/settings/class-window-title-settings.php:54
+#: includes/settings/class-window-title-settings.php:60
 msgid ""
 "Show county/village/other setting in browser page title when viewing "
 "individual Ad"
 msgstr ""
 
-#: includes/settings/class-window-title-settings.php:60
+#: includes/settings/class-window-title-settings.php:66
 msgid "Show category in title"
 msgstr ""
 
-#: includes/settings/class-window-title-settings.php:63
+#: includes/settings/class-window-title-settings.php:69
 msgid "Show category in browser page title when viewing individual Ad"
 msgstr ""
 
-#: includes/settings/class-window-title-settings.php:68
+#: includes/settings/class-window-title-settings.php:74
 msgctxt "window title settings section"
 msgid ""
 "These settings affect the title shown in the title bar of the browser for "
@@ -6618,6 +6630,10 @@ msgid ""
 "Modify as needed to control layout of single ad view page. Maintain code "
 "formatted as \\$somecodetitle. Changing the code keys will prevent the "
 "elements they represent from displaying."
+msgstr ""
+
+#: includes/settings-api.php:141
+msgid "Allow WordPress Shortcodes in Single Ad page layout"
 msgstr ""
 
 #: includes/settings-api.php:144

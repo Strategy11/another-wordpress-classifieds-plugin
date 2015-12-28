@@ -7,7 +7,13 @@ function awpcp_window_title_settings() {
 class AWPCP_WindowTitleSettings {
 
     public function register_settings( $settings ) {
-        $key = $settings->add_section( 'listings-settings', 'Window Title', 'window-title', 40, array( $this, 'render_section_header' ) );
+        $key = $settings->add_section(
+            'listings-settings',
+            __( 'Window Title', 'another-wordpress-classifieds-plugin' ),
+            'window-title',
+            40,
+            array( $this, 'render_section_header' )
+        );
 
         $settings->add_setting(
             $key,

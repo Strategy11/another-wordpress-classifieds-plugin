@@ -142,7 +142,7 @@
 							<td>
 								<input type="checkbox" name="assign_user" id="awpcp-importer-auto-assign-user" value="1" <?php echo $assign_user == 1 ? 'checked="checked"' : ''; ?> />
 								<label for="awpcp-importer-auto-assign-user"><?php echo esc_html( _x( 'Assign Ads to a user?', 'csv-importer', 'another-wordpress-classifieds-plugin' ) ); ?></label><br/>
-								<span class="description"><?php echo esc_html( __( "If checked, the Ads will belong to the user specified below.", 'csv-importer', 'another-wordpress-classifieds-plugin' ) ); ?></span>
+								<span class="description"><?php echo esc_html( __( 'If checked, the Ads will belong to the user specified below.', 'another-wordpress-classifieds-plugin' ) ); ?></span>
 								<br/><br/><?php echo awpcp_form_error('assign_user', $form_errors) ?>
 							</td>
 						</tr>
