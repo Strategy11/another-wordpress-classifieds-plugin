@@ -1,7 +1,7 @@
 <?php
 
 function awpcp_licenses_manager() {
-    return new AWPCP_LicensesManager( awpcp_easy_digital_downloads(), awpcp()->settings );
+    return new AWPCP_LicensesManager( awpcp_easy_digital_downloads(), awpcp_settings_api() );
 }
 
 class AWPCP_LicensesManager {

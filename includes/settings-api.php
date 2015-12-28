@@ -1,8 +1,19 @@
 <?php
 
-class AWPCP_Settings_API {
+/**
+ * @since 3.6.1
+ */
+function awpcp_settings_api() {
+	static $instance = null;
 
-	private static $instance = null;
+	if ( is_null( $instance ) ) {
+		$instance = new AWPCP_Settings_API();
+	}
+
+	return $instance;
+}
+
+class AWPCP_Settings_API {
 
 	public $setting_name = 'awpcp-options';
 
@@ -12,15 +23,8 @@ class AWPCP_Settings_API {
 	public $defaults = array();
 	public $groups = array();
 
-	private function __construct() {
+	public function __construct() {
 		$this->load();
-	}
-
-	public static function instance() {
-		if (is_null(self::$instance)) {
-			self::$instance = new AWPCP_Settings_API();
-		}
-		return self::$instance;
 	}
 
 	public function load() {

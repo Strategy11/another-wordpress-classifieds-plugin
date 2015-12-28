@@ -392,7 +392,7 @@ class AWPCP {
 		$this->version = $awpcp_db_version;
 
 		// stored options are loaded when the settings API is instatiated
-		$this->settings = AWPCP_Settings_API::instance();
+		$this->settings = awpcp_settings_api();
 		$this->js = AWPCP_JavaScript::instance();
         $this->installer = AWPCP_Installer::instance();
         $this->manual_upgrades = awpcp_manual_upgrade_tasks();
