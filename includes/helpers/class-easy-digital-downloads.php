@@ -71,7 +71,14 @@ class AWPCP_EasyDigitalDownloads {
         $url = add_query_arg( $params, $this->settings->get_runtime_option( 'easy-digital-downloads-store-url' ) );
 
         try {
-            $response = $this->http->get( $url, array( 'timeout' => 15, 'sslverify' => false ) );
+            $response = $this->http->get( $url, array(
+                'timeout' => 15,
+                'sslverify' => false,
+                'headers' => array(
+                    'user-agent' => '',
+                ),
+            ) );
+
             $decoded_data = json_decode( wp_remote_retrieve_body( $response ) );
         } catch ( AWPCP_WPError $e ) {
             throw new AWPCP_Easy_Digital_Downloads_Exception( $e->wp_error->get_error_message() );

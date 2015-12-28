@@ -285,6 +285,19 @@ class AWPCP_CategoriesCollection {
     }
 
     /**
+     * @since 3.6.5
+     */
+    public function get_categories_hierarchy( $categories_ids ) {
+        $categories_ids = array_map( 'absint', $categories_ids );
+
+        return AWPCP_Category::query( array(
+            'where' => sprintf( 'category_parent_id IN ( %1$s ) OR category_id IN ( %1$s )', implode( ',', $categories_ids ) ),
+            'orderby' => 'category_order ASC, category_name',
+            'order' => 'ASC',
+        ) );
+    }
+
+    /**
      * @since 3.3
      */
     public function find( $args = array() ) {
