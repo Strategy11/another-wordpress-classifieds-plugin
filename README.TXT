@@ -4,8 +4,8 @@ Donate link: http://awpcp.com/donate
 Tags: classifieds,ads,classified ads,classified,awpcp,classifieds script,classified script,classified theme,classifieds theme,wp classifieds,wp classified
 Requires at least: 4.0
 Tested up to: 4.4
-Last Updated: 2015-Dec-14
-Stable tag: tags/3.6
+Last Updated: 2015-Dec-29
+Stable tag: tags/3.6.3.1
 License: GPLv2 or later
 
 AWPCP Classifieds:  Great for increasing retention to your site, adding revenue for your business, and creating customer interaction.
@@ -221,6 +221,41 @@ Find the [faqs here](http://www.awpcp.com/forum/viewforum.php?f=3)
 [Plugin documentation](http://www.awpcp.com/documentation/)
 
 == Changelog ==
+
+= Version 3.6.3.1 =
+* Fixed fatal error when upgrading from 3.5.3.x on upgrade routines that were calling incorrect function
+
+= Version 3.6.3 =
+* Start using PayPal TLS Test Sandbox endpoints (for PP security update in Jan 2016).
+* Prevent REPLY-TO-AD shortcode from being executed more than once.
+* Avoid showing duplicated messages in Search Ads form.
+* Do not print empty hidden fields in Category Selector.
+* Avoid trying to process non-existing files in Image Dimensions Generator.
+* Prevent PHP Warning in awpcp_unique_filename when $path does not exists.
+* Update translation files with lost plural strings.
+* Add plugin integration to fix conflict between WooCommerce and AWPCP.
+* Use empty string as User Agent when contacting awpcp.com.
+* Allow AWPCPSHOWCAT to accept multiple categories IDs.
+* Add show_categories_list parameter to AWPCPSHOWCAT shortcode.
+* Fix layout issues when Genesis admin theme is being used.
+* Fix Strict Standards error in Import Payment Transaction Task Handler.
+* Fix references to no longer defined properties in plugin installer.
+* Prevent database errors trying to upgrade from 2.0.6..
+* Remove usage of awpcp_get_image_url in Migrate Media Information Task Handler.
+* Updated French translation to fix missing and incorrect strings
+
+= Version 3.6.2 =
+* Register premium modules widgets on load_module.
+* Add constant to hold the lowest priority value used in actions and filters.
+* Prevent race condition trying to update licenses status in main store.
+* Fix typo in notice shown when one or more licenses are inactive.
+* Add Flush Rewrite Rules button to Debug admin page.
+
+= Version 3.6.1 =
+* Increase credits balance even when payment is not required.
+* Give priority to the category_id parameter passed in $_REQUEST.
+* Update Rewrite Rules to prevent showing the wrong category.
+* Use getimagesize to calculate image dimensions.
 
 = Version 3.6 =
 * Add AWPCPUSERLISTINGS shortcode.
