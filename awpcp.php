@@ -162,6 +162,7 @@ require_once( AWPCP_DIR . "/includes/listings/class-delete-listing-action.php" )
 require_once( AWPCP_DIR . "/includes/meta/class-meta-tags-generator.php" );
 require_once( AWPCP_DIR . "/includes/meta/class-tag-renderer.php" );
 
+require( AWPCP_DIR . "/includes/models/class-custom-post-types.php" );
 require_once(AWPCP_DIR . "/includes/models/class-media.php");
 require_once(AWPCP_DIR . "/includes/models/ad.php");
 require_once(AWPCP_DIR . "/includes/models/category.php");
@@ -506,6 +507,11 @@ class AWPCP {
 
         add_action( 'awpcp-configure-routes', array( $this->admin, 'configure_routes' ) );
         add_action( 'awpcp-configure-routes', array( $this->panel, 'configure_routes' ) );
+
+        $custom_post_types = awpcp_custom_post_types();
+        add_action( 'init', array( $custom_post_types, 'register_custom_post_status' ) );
+        add_action( 'init', array( $custom_post_types, 'register_custom_post_types' ) );
+        add_action( 'init', array( $custom_post_types, 'register_custom_taxonomies' ) );
 
         add_action( 'init', array( $this->compatibility, 'load_plugin_integrations_on_init' ) );
 		add_action( 'init', array($this, 'init' ));
