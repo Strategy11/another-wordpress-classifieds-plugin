@@ -12,6 +12,10 @@ class AWPCP_ManualUpgradeAdminPage {
         $this->upgrade_tasks = $upgrade_tasks;
     }
 
+    public function enqueue_scripts() {
+        wp_enqueue_script( 'awpcp-admin-manual-upgrade' );
+    }
+
     public function dispatch() {
         $pending_upgrade_tasks = $this->upgrade_tasks->get_pending_tasks();
 
