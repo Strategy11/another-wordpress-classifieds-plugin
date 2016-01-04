@@ -761,7 +761,7 @@ class AWPCP_Installer {
         global $wpdb;
 
         // Users who installed (not upgraded) version 2.2.1 got a posterip field
-        // that doesn't not support more than 15 caharacters. We need to
+        // that does not support more than 15 caharacters. We need to
         // upgrade the field again
         // https://github.com/drodenbaugh/awpcp/issues/347#issuecomment-13159975
         if ( awpcp_column_exists( AWPCP_TABLE_ADS, 'posterip' ) ) {
