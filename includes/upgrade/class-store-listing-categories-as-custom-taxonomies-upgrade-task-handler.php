@@ -3,6 +3,7 @@
 function AWPCP_Store_Listing_Categories_As_Custom_Taxonomies_Upgrade_Task_Handler() {
     return new AWPCP_Upgrade_Task_Handler(
         new AWPCP_Store_Listing_Categories_As_Custom_Taxonomies_Upgrade_Task_Handler(
+            awpcp_categories_registry(),
             awpcp_wordpress(),
             $GLOBALS['wpdb']
         )
@@ -11,16 +12,14 @@ function AWPCP_Store_Listing_Categories_As_Custom_Taxonomies_Upgrade_Task_Handle
 
 class AWPCP_Store_Listing_Categories_As_Custom_Taxonomies_Upgrade_Task_Handler implements AWPCP_Upgrade_Task_Handler_Implementation {
 
-    private $categories = null;
-
+    private $categories;
     private $wordpress;
     private $db;
 
-    public function __construct( $wordpress, $db ) {
+    public function __construct( $categories, $wordpress, $db ) {
+        $this->categories = $categories;
         $this->wordpress = $wordpress;
         $this->db = $db;
-
-        delete_option( 'awpcp-old-categories-registry' );
     }
 
     public function get_last_item_id() {
@@ -63,7 +62,7 @@ class AWPCP_Store_Listing_Categories_As_Custom_Taxonomies_Upgrade_Task_Handler i
             throw new AWPCP_Exception( sprintf( "A custom taxonomy term coulnd't be created for listing category \"%s\".", $item->category_name ) );
         }
 
-        $this->update_categories_registry( $item->category_id, $term['term_id'] );
+        $this->categories->update_categories_registry( $item->category_id, $term['term_id'] );
 
         return $last_item_id + 1;
     }
@@ -103,7 +102,7 @@ class AWPCP_Store_Listing_Categories_As_Custom_Taxonomies_Upgrade_Task_Handler i
             return 0;
         }
 
-        $categories_registry = $this->get_categories_registry();
+        $categories_registry = $this->categories->get_categories_registry();
 
         if ( ! isset( $categories_registry[ $parent_item->category_id ] ) ) {
             return 0;
@@ -115,21 +114,5 @@ class AWPCP_Store_Listing_Categories_As_Custom_Taxonomies_Upgrade_Task_Handler i
     private function get_parent_item( $parent_id ) {
         $query = 'SELECT * FROM ' . AWPCP_TABLE_CATEGORIES . ' WHERE category_id = %d';
         return $this->db->get_row( $this->db->prepare( $query, $parent_id ) );
-    }
-
-    private function get_categories_registry() {
-        return $this->wordpress->get_option( 'awpcp-legacy-categories' );
-    }
-
-    private function update_categories_registry( $category_id, $term_id ) {
-        $categories_registry = $this->get_categories_registry();
-
-        if ( is_array( $categories_registry ) ) {
-            $categories_registry[ $category_id ] = $term_id;
-        } else {
-            $categories_registry = array( $category_id => $term_id );
-        }
-
-        $this->wordpress->update_option( 'awpcp-legacy-categories', $categories_registry, false );
     }
 }
