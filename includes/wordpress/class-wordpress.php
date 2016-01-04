@@ -43,4 +43,8 @@ class AWPCP_WordPress {
     public function get_terms( $taxonomies, $args = array() ) {
         return get_terms( $taxonomies, $args );
     }
+
+    public function add_object_terms( $object_id, $terms, $taxonomy ) {
+        return wp_add_object_terms( $object_id, $terms, $taxonomy );
+    }
 }
