@@ -6,6 +6,12 @@ function awpcp_wordpress() {
 
 class AWPCP_WordPress {
 
+    /* Users */
+
+    public function get_user_by( $field, $value ) {
+        return get_user_by( $field, $value );
+    }
+
     /* Options */
 
     public function get_option( $option, $key = false ) {
