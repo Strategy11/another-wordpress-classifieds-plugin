@@ -71,7 +71,7 @@ class AWPCP_Store_Listing_Categories_As_Custom_Taxonomies_Upgrade_Task_Handler i
         $similar_terms = $this->wordpress->get_terms(
             'awpcp_listing_category',
             array(
-                'name__like' => "{$term->name} (Copy %",
+                'name__like' => "{$term->name} (Copy ",
                 'hide_empty' => false,
             )
         );
