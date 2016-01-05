@@ -1080,6 +1080,7 @@ class AWPCP {
         ) );
 
         if ( $scripts->script_will_be_printed( 'awpcp' ) ) {
+            $this->js->set( 'ajaxurl', awpcp_ajaxurl() );
             $this->js->print_data();
         }
 	}
