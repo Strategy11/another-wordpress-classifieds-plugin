@@ -60,6 +60,12 @@ class AWPCP_Manual_Upgrade_Tasks {
             __( 'Store Listing Categories as Custom Taxonomies', 'another-wordpress-classifieds-plugin' ),
             'awpcp_store_listing_categories_as_custom_taxonomies_upgrade_task_handler'
         );
+
+        $this->upgrade_tasks->register_upgrade_task(
+            'awpcp-store-listings-as-custom-post-types',
+            __( 'Store Listings as Custom Post Types', 'another-wordpress-classifieds-plugin' ),
+            'awpcp_store_listings_as_custom_post_types_upgrade_task_handler'
+        );
     }
 
     public function register_upgrade_task_handlers() {
