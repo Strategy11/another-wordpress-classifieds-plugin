@@ -53,4 +53,10 @@ class AWPCP_WordPress {
     public function add_object_terms( $object_id, $terms, $taxonomy ) {
         return wp_add_object_terms( $object_id, $terms, $taxonomy );
     }
+
+    /* Attachments */
+
+    public function handle_media_sideload( $file_array, $parent_post_id, $description ) {
+        return media_handle_sideload( $file_array, $parent_post_id, $description );
+    }
 }
