@@ -10,7 +10,7 @@ function AWPCP_Store_Listing_Categories_As_Custom_Taxonomies_Upgrade_Task_Handle
     );
 }
 
-class AWPCP_Store_Listing_Categories_As_Custom_Taxonomies_Upgrade_Task_Handler implements AWPCP_Upgrade_Task_Handler_Implementation {
+class AWPCP_Store_Listing_Categories_As_Custom_Taxonomies_Upgrade_Task_Handler implements AWPCP_Upgrade_Task_Runner {
 
     private $categories;
     private $wordpress;

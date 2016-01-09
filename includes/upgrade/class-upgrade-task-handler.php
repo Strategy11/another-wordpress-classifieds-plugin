@@ -4,7 +4,7 @@ class AWPCP_Upgrade_Task_Handler {
 
     private $implementation;
 
-    public function __construct( AWPCP_Upgrade_Task_Handler_Implementation $implementation ) {
+    public function __construct( AWPCP_Upgrade_Task_Runner $implementation ) {
         $this->implementation = $implementation;
     }
 

@@ -11,7 +11,7 @@ function awpcp_store_listings_as_custom_post_types_upgrade_task_handler() {
     );
 }
 
-class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements AWPCP_Upgrade_Task_Handler_Implementation {
+class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements AWPCP_Upgrade_Task_Runner {
 
     private $categories;
     private $legacy_listing_metadata;

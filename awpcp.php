@@ -266,7 +266,7 @@ require_once( AWPCP_DIR . "/includes/settings/class-user-notifications-settings.
 require_once( AWPCP_DIR . "/includes/settings/class-window-title-settings.php" );
 
 require( AWPCP_DIR . "/includes/upgrade/class-upgrade-task-handler.php" );
-require( AWPCP_DIR . "/includes/upgrade/class-upgrade-task-handler-implementation.php" );
+require( AWPCP_DIR . "/includes/upgrade/interface-upgrade-task-runner.php" );
 require( AWPCP_DIR . "/includes/upgrade/class-calculate-image-dimensions-upgrade-task-handler.php" );
 require( AWPCP_DIR . "/includes/upgrade/class-categories-registry.php" );
 require( AWPCP_DIR . "/includes/upgrade/class-database-tables.php" );

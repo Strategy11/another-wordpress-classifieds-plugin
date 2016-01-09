@@ -1,6 +1,6 @@
 <?php
 
-interface AWPCP_Upgrade_Task_Handler_Implementation {
+interface AWPCP_Upgrade_Task_Runner {
 
     function get_last_item_id();
     function update_last_item_id( $last_item_id );
