@@ -1,10 +1,16 @@
 <?php
 
 function awpcp_custom_post_types() {
-    return new AWPCP_Custom_Post_Types();
+    return new AWPCP_Custom_Post_Types( awpcp_settings_api() );
 }
 
 class AWPCP_Custom_Post_Types {
+
+    private $settings;
+
+    public function __construct( $settings ) {
+        $this->settings = $settings;
+    }
 
     public function register_custom_post_status() {
         // Draft, Payment, Verification, Published, Disabled, Review
@@ -99,5 +105,28 @@ class AWPCP_Custom_Post_Types {
         // foreach ( $terms as $term ) {
         //     wp_delete_term( $term->term_id, 'awpcp_listing_category' );
         // }
+    }
+
+    public function register_custom_image_sizes() {
+        add_image_size(
+            'awpcp-thumbnail',
+            $this->settings->get_option( 'imgthumbwidth' ),
+            $this->settings->get_option( 'imgthumbheight' ),
+            $this->settings->get_option( 'crop-thumbnails' )
+        );
+
+        add_image_size(
+            'awpcp-primary',
+            $this->settings->get_option( 'primary-image-thumbnail-width' ),
+            $this->settings->get_option( 'primary-image-thumbnail-height' ),
+            $this->settings->get_option( 'crop-primary-image-thumbnails' )
+        );
+
+        add_image_size(
+            'awpcp-large',
+            $this->settings->get_option( 'imgmaxwidth' ),
+            $this->settings->get_option( 'imgmaxheight' ),
+            false
+        );
     }
 }

@@ -518,6 +518,7 @@ class AWPCP {
         add_action( 'init', array( $custom_post_types, 'register_custom_post_status' ) );
         add_action( 'init', array( $custom_post_types, 'register_custom_post_types' ) );
         add_action( 'init', array( $custom_post_types, 'register_custom_taxonomies' ) );
+        add_action( 'init', array( $custom_post_types, 'register_custom_image_sizes' ) );
 
         add_action( 'init', array( $this->compatibility, 'load_plugin_integrations_on_init' ) );
 		add_action( 'init', array($this, 'init' ));
