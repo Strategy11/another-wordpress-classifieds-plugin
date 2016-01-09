@@ -66,6 +66,12 @@ class AWPCP_Manual_Upgrade_Tasks {
             __( 'Store Listings as Custom Post Types', 'another-wordpress-classifieds-plugin' ),
             'awpcp_store_listings_as_custom_post_types_upgrade_task_handler'
         );
+
+        $this->upgrade_tasks->register_upgrade_task(
+            'awpcp-store-media-as-attachments-upgrade-task-handler',
+            __( 'Store Media as Attachments', 'another-wordpress-classifieds-plugin' ),
+            'awpcp_store_media_as_attachments_upgrade_task_handler'
+        );
     }
 
     public function register_upgrade_task_handlers() {
