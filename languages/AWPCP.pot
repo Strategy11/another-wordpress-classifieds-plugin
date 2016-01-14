@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2016-01-14 17:32:27+00:00\n"
+"POT-Creation-Date: 2016-01-14 17:52:15+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -719,6 +719,10 @@ msgstr ""
 msgid "Import"
 msgstr ""
 
+#: admin/admin-panel.php:302 admin/templates/admin-panel-debug.tpl.php:3
+msgid "Debug"
+msgstr ""
+
 #: admin/admin-panel.php:472 admin/admin-panel.php:473
 #: admin/admin-panel.php:801
 msgid "Manage Category Icon"
@@ -1156,10 +1160,6 @@ msgstr ""
 msgid "Test Import"
 msgstr ""
 
-#: admin/templates/admin-panel-debug.tpl.php:3
-msgid "Debug"
-msgstr ""
-
 #: admin/templates/admin-panel-debug.tpl.php:8
 msgid "Are you seeng 404 Not Found errors?"
 msgstr ""
@@ -1537,6 +1537,12 @@ msgstr ""
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:17
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:22
 msgid "Diagnostics"
+msgstr ""
+
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:21
+msgid ""
+"If you are having trouble with Facebook integration, click \"Diagnostics\" "
+"to check your settings."
 msgstr ""
 
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:41
@@ -3918,6 +3924,11 @@ msgstr ""
 #: includes/form-fields/class-listing-price-form-field.php:20
 msgctxt "ad details form"
 msgid "Item Price"
+msgstr ""
+
+#: includes/form-fields/class-listing-regions-form-field.php:22
+msgctxt "listing form field"
+msgid "Regions"
 msgstr ""
 
 #: includes/form-fields/class-listing-website-form-field.php:20
