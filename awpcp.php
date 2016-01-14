@@ -769,7 +769,7 @@ class AWPCP {
                     'url' => 'http://awpcp.com/premium-modules/campaign-manager-module/?ref=panel',
                     'installed' => defined( 'AWPCP_CAMPAIGN_MANAGER_MODULE' ),
                     'version' => 'AWPCP_CAMPAIGN_MANAGER_MODULE_DB_VERSION',
-                    'required' => '3.6',
+                    'required' => '3.6.4',
                 ),
 				'category-icons' => array(
 					'name' => __( 'Category Icons', 'another-wordpress-classifieds-plugin' ),
