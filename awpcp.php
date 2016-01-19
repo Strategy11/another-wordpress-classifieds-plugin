@@ -295,6 +295,7 @@ require_once( AWPCP_DIR . '/includes/class-edit-listing-link-placeholder.php' );
 
 require_once( AWPCP_DIR . "/includes/class-listings-api.php" );
 require_once( AWPCP_DIR . "/includes/class-cookie-manager.php" );
+require( AWPCP_DIR . "/includes/class-categories-collection.php" );
 require( AWPCP_DIR . '/includes/class-default-login-form-implementation.php' );
 require_once( AWPCP_DIR . "/includes/class-exceptions.php" );
 require_once( AWPCP_DIR . "/includes/class-fees-collection.php" );

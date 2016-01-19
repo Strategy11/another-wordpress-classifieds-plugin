@@ -109,11 +109,6 @@ class AWPCP_Category {
     }
 }
 
-function awpcp_categories_collection() {
-    global $wpdb;
-    return new AWPCP_CategoriesCollection( $wpdb );
-}
-
 class AWPCP_CategoriesCollection {
 
     private $db;
