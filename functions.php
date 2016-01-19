@@ -2740,19 +2740,22 @@ function awpcp_getip() {
     }
 }
 
+/**
+ * TODO: Update this to work with listing objects to reduce database queries.
+ * TODO: Test with listings that have images.
+ */
 function awpcp_get_ad_share_info($id) {
-    global $wpdb;
-
-    $ad = AWPCP_Ad::find_by_id($id);
-    $info = array();
-
-    if (is_null($ad)) {
+    try {
+        $ad = awpcp_listings_collection()->get( $id );
+    } catch ( AWPCP_Exception $e ) {
         return null;
     }
 
+    $info = array();
+
     $info['url'] = url_showad($id);
-    $info['title'] = stripslashes($ad->ad_title);
-    $info['description'] = strip_tags(stripslashes($ad->ad_details));
+    $info['title'] = stripslashes( $ad->post_title );
+    $info['description'] = strip_tags( stripslashes( $ad->post_content ) );
     $info['description'] = str_replace("\n", " ", $info['description']);
 
     if ( awpcp_utf8_strlen( $info['description'] ) > 300 ) {
@@ -2761,10 +2764,10 @@ function awpcp_get_ad_share_info($id) {
 
     $info['images'] = array();
 
-    $info['published-time'] = awpcp_datetime( 'Y-m-d', $ad->ad_postdate );
-    $info['modified-time'] = awpcp_datetime( 'Y-m-d', $ad->ad_last_updated );
+    $info['published-time'] = awpcp_datetime( 'Y-m-d', $ad->post_date );
+    $info['modified-time'] = awpcp_datetime( 'Y-m-d', $ad->post_modified );
 
-    $images = awpcp_media_api()->find_by_ad_id( $ad->ad_id, array( 'enabled' => true ) );
+    $images = awpcp_attachments_collection()->find_visible_attachments( array( 'post_parent' => $ad->ID ) );
 
     foreach ( $images as $image ) {
         $info[ 'images' ][] = $image->get_url( 'large' );
