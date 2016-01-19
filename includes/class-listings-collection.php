@@ -113,8 +113,10 @@ class AWPCP_ListingsCollection {
     /**
      * @since 3.3
      */
-    public function count_listings() {
-        return $this->count_valid_listings();
+    public function count_listings( $query = array() ) {
+        $posts = new WP_Query();
+        $posts->query( $this->prepare_listings_query( $query ) );
+        return $posts->found_posts;
     }
 
     /**
