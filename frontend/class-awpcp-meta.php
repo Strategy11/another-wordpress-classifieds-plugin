@@ -1,7 +1,12 @@
 <?php
 
 function awpcp_meta() {
-    return new AWPCP_Meta( awpcp_page_title_builder(), awpcp_meta_tags_generator(), awpcp_request() );
+    return new AWPCP_Meta(
+        awpcp_listings_collection(),
+        awpcp_page_title_builder(),
+        awpcp_meta_tags_generator(),
+        awpcp_request()
+    );
 }
 
 
@@ -11,13 +16,15 @@ class AWPCP_Meta {
     public $properties = array();
     public $category_id = null;
 
+    private $listings_collection;
     public $title_builder;
     private $meta_tags_genertor;
     private $request = null;
 
     private $doing_opengraph = false;
 
-    public function __construct( $title_builder, $meta_tags_genertor, $request ) {
+    public function __construct( $listings_collection, $title_builder, $meta_tags_genertor, $request ) {
+        $this->listings_collection = $listings_collection;
         $this->title_builder = $title_builder;
         $this->meta_tags_genertor = $meta_tags_genertor;
         $this->request = $request;
@@ -41,11 +48,12 @@ class AWPCP_Meta {
     private function find_current_listing() {
         $this->ad_id = absint( $this->request->get_ad_id() );
 
-        if ( $this->ad_id === 0 ) {
-            return null;
+        try {
+            $this->ad = $this->listings_collection->get( $this->ad_id );
+        } catch ( AWPCP_Exception $e ) {
+            $this->ad = null;
         }
 
-        $this->ad = AWPCP_Ad::find_by_id( $this->ad_id );
         $this->properties = awpcp_get_ad_share_info( $this->ad_id );
     }
 
