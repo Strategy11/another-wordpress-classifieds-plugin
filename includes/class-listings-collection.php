@@ -93,10 +93,21 @@ class AWPCP_ListingsCollection {
     }
 
     /**
-     * @since 3.3
+     * @since feature/1112
      */
-    public function find_listings( $params = array() ) {
-        return $this->find_valid_listings( $params );
+    public function find_listings( $query = array() ) {
+        $posts = new WP_Query();
+        return $posts->query( $this->prepare_listings_query( $query ) );
+    }
+
+    private function prepare_listings_query( $query ) {
+        $query['post_type'] = 'awpcp_listing';
+
+        if ( ! isset( $query['post_status'] ) ) {
+            $query['post_status'] = array( 'draft', 'pending', 'publish', 'disabled' );
+        }
+
+        return $query;
     }
 
     /**
@@ -131,9 +142,19 @@ class AWPCP_ListingsCollection {
         $payments_are_enabled = $this->settings->get_option( 'freepay' ) == 1;
 
         if ( ! $enable_listings_pending_payment && $payments_are_enabled ) {
-            $query['payment_status'] = array( 'compare' => 'not', 'values' => array( 'Pending', 'Unpaid' ) );
+            $query['meta_query'][] = array(
+                'key' => '_payment_status',
+                'value' => array( 'Pending', 'Unpaid' ),
+                'compare' => 'NOT IN',
+                'type' => 'char'
+            );
         } else {
-            $query['payment_status'] = array( 'compare' => 'not', 'values' => 'Unpaid' );
+            $query['meta_query'][] = array(
+                'key' => '_payment_status',
+                'value' => 'Unpaid',
+                'compare' => '!=',
+                'type' => 'char'
+            );
         }
 
         return $query;
@@ -163,6 +184,10 @@ class AWPCP_ListingsCollection {
 
     public function find_successfully_paid_listings_with_query( $query ) {
         return $this->finder->find( $this->make_successfully_paid_listings_query( $query ) );
+    }
+
+    public function find_successfully_paid_listings( $query ) {
+        return $this->find_listings( $this->make_successfully_paid_listings_query( $query ) );
     }
 
     public function find_listings_with_query( $query ) {
