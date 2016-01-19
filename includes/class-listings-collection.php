@@ -195,6 +195,27 @@ class AWPCP_ListingsCollection {
     }
 
     /**
+     * @since feature/1112
+     */
+    public function find_listings_awaiting_verification( $query ) {
+        return $this->find_listings( $this->make_listings_awaiting_verification_query( $query ) );
+    }
+
+    /**
+     * @since feature/1112
+     */
+    private function make_listings_awaiting_verification_query( $query ) {
+        $query['meta_query'][] = array(
+            'key' => '_verification_needed',
+            'value' => true,
+            'compare' => '=',
+            'type' => 'BINARY',
+        );
+
+        return $query;
+    }
+
+    /**
      * @since 3.3
      */
     public function count_enabled_listings() {
