@@ -212,15 +212,18 @@ function awpcp_clean_up_payment_transactions() {
  * @since 3.3
  */
 function awpcp_clean_up_non_verified_ads_handler() {
-    return awpcp_clean_up_non_verified_ads( awpcp_listings_api(), awpcp()->settings );
+    return awpcp_clean_up_non_verified_ads(
+        awpcp_listings_collection(),
+        awpcp_listings_api(),
+        awpcp()->settings
+    );
 }
 
 /**
+ * @since feature/1112  Updated to load listings using Listings Collection methods.
  * @since 3.0.2
  */
-function awpcp_clean_up_non_verified_ads( /* AWPCP_ListingsAPI */ $listings, $settings ) {
-    global $wpdb;
-
+function awpcp_clean_up_non_verified_ads( $listings_collection, /* AWPCP_ListingsAPI */ $listings, $settings ) {
     if ( ! $settings->get_option( 'enable-email-verification' ) ) {
         return;
     }
@@ -229,26 +232,39 @@ function awpcp_clean_up_non_verified_ads( /* AWPCP_ListingsAPI */ $listings, $se
     $delete_ads_threshold = $settings->get_option( 'email-verification-second-threshold' );
 
     // delete Ads that have been in a non-verified state for more than M days
-
-    $conditions = AWPCP_Ad::get_where_conditions_for_successfully_paid_listings( array(
-        'verified = 0',
-        $wpdb->prepare( 'ad_postdate < ADDDATE( NOW(), INTERVAL -%d DAY )', $delete_ads_threshold )
+    $results = $listings_collection->find_listings_awaiting_verification( array(
+        'date_query' => array(
+            'relation' => 'AND',
+            array(
+                'before' => awpcp_datetime( 'mysql', current_time( 'timestamp' ) - $delete_ads_threshold * DAY_IN_SECONDS ),
+            ),
+        ),
     ) );
 
-    foreach ( AWPCP_Ad::find( join( ' AND ', $conditions ) ) as $ad ) {
-        $ad->delete();
+    foreach ( $results as $listing ) {
+        wp_delete_post( $listing->ID );
     }
 
     // re-send verificaiton email for Ads that have been in a non-verified state for more than N days
-
-    $conditions = AWPCP_Ad::get_where_conditions_for_successfully_paid_listings( array(
-        'verified = 0',
-        $wpdb->prepare( 'ad_postdate < ADDDATE( NOW(), INTERVAL -%d DAY )', $resend_email_threshold )
+    $results = $listings_collection->find_listings_awaiting_verification( array(
+        'date_query' => array(
+            'relation' => 'AND',
+            array(
+                'before' => awpcp_datetime( 'mysql', current_time( 'timestamp' ) - $resend_email_threshold * DAY_IN_SECONDS ),
+            ),
+        ),
+        'meta_query' => array(
+            'relation' => 'AND',
+            array(
+                'key' => 'verification_emails_sent',
+                'value' => 1,
+                'compare' => '<=',
+                'type' => 'UNSIGNED'
+            ),
+        ),
     ) );
 
-    foreach ( AWPCP_Ad::find( join( ' AND ', $conditions ) ) as $ad ) {
-        if ( intval( awpcp_get_ad_meta( $ad->ad_id, 'verification_emails_sent', true ) ) <= 1 ) {
-            $listings->send_verification_email( $ad );
-        }
+    foreach ( $results as $listing ) {
+        $listings->send_verification_email( $listing );
     }
 }
