@@ -10,7 +10,7 @@
 <select class="awpcp-category-dropdown awpcp-dropdown <?php echo $required ? 'required' : ''; ?>" id="awpcp-category-dropdown" target="<?php echo esc_attr( $hash ); ?>" chain="<?php echo esc_attr( join( ',', $chain ) ); ?>" next-default-option="<?php echo esc_attr( $placeholders['default-option-second-level'] ); ?>">
     <option class="default" value=""><?php echo esc_html( $placeholders['default-option-first-level'] ); ?></option>
 <?php foreach ( $categories_hierarchy['root'] as $category ): ?>
-    <option value="<?php echo esc_attr( $category->id ); ?>"><?php echo esc_html( $category->name ); ?></option>
+    <option value="<?php echo esc_attr( $category->term_id ); ?>"><?php echo esc_html( $category->name ); ?></option>
 <?php endforeach; ?>
 </select>
 

@@ -41,6 +41,7 @@ class AWPCP_CategoriesDropdown {
         $categories_hierarchy = awpcp_build_categories_hierarchy( $categories );
         $chain = $this->get_category_parents( $selected, $categories );
 
+        // TODO: test the dropdown with multiple dropdowns enabled
         $use_multiple_dropdowns = get_awpcp_option( 'use-multiple-category-dropdowns' );
 
         // export categories list to JavaScript, but don't replace an existing categories list

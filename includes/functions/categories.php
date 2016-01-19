@@ -54,18 +54,18 @@ function awpcp_render_categories_dropdown_options( &$categories, &$hierarchy, $s
     foreach ( $categories as $category ) {
         $category_name = stripslashes( stripslashes( $category->name ) );
 
-        if( $category->id == $selected_category ) {
-            $item = '<option class="dropdownparentcategory" selected="selected" value="' . $category->id . '">' . $category_name . '</option>';
-            $item = '<option selected="selected" value="' . $category->id . '">- ' . $category_name . '</option>';
+        if( $category->term_id == $selected_category ) {
+            $item = '<option class="dropdownparentcategory" selected="selected" value="' . $category->term_id . '">' . $category_name . '</option>';
+            $item = '<option selected="selected" value="' . $category->term_id . '">- ' . $category_name . '</option>';
         } else {
-            $item = '<option class="dropdownparentcategory" value="' . $category->id . '">' . $category_name . '</option>';
-            $item = '<option value="' . $category->id . '">-' . $category_name . '</option>';
+            $item = '<option class="dropdownparentcategory" value="' . $category->term_id . '">' . $category_name . '</option>';
+            $item = '<option value="' . $category->term_id . '">-' . $category_name . '</option>';
         }
 
         $output .= awpcp_render_categories_dropdown_option( $category, $selected_category );
 
-        if ( isset( $hierarchy[ $category->id ] ) ) {
-            $output .= awpcp_render_categories_dropdown_options( $hierarchy[ $category->id ], $hierarchy, $selected_category );
+        if ( isset( $hierarchy[ $category->term_id ] ) ) {
+            $output .= awpcp_render_categories_dropdown_options( $hierarchy[ $category->term_id ], $hierarchy, $selected_category );
         }
     }
 
@@ -76,7 +76,7 @@ function awpcp_render_categories_dropdown_options( &$categories, &$hierarchy, $s
  * @since 3.4
  */
 function awpcp_render_categories_dropdown_option( $category, $selected_category ) {
-    if ( $selected_category == $category->id ) {
+    if ( $selected_category == $category->term_id ) {
         $selected_attribute = 'selected="selected"';
     } else {
         $selected_attribute = '';
@@ -94,7 +94,7 @@ function awpcp_render_categories_dropdown_option( $category, $selected_category 
         '<option %s %s value="%d">%s</option>',
         $class_attribute,
         $selected_attribute,
-        esc_attr( $category->id ),
+        esc_attr( $category->term_id ),
         $category_name
     );
 }
