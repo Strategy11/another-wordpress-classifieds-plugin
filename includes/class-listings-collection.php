@@ -4,7 +4,12 @@
  * @since 3.3
  */
 function awpcp_listings_collection() {
-    return new AWPCP_ListingsCollection( awpcp_listings_finder(), awpcp()->settings, $GLOBALS['wpdb'] );
+    return new AWPCP_ListingsCollection(
+        awpcp_listings_finder(),
+        awpcp()->settings,
+        awpcp_wordpress(),
+        $GLOBALS['wpdb']
+    );
 }
 
 /**
@@ -14,34 +19,34 @@ class AWPCP_ListingsCollection {
 
     private $finder;
     private $settings;
+    private $wordpress;
     private $db;
 
-    public function __construct( $finder, $settings, $db ) {
+    public function __construct( $finder, $settings, $wordpress, $db ) {
         $this->finder = $finder;
         $this->settings = $settings;
+        $this->wordpress = $wordpress;
         $this->db = $db;
     }
 
     /**
+     * @since feature/1112 works with custom post types.
      * @since 3.3
      */
     public function get( $listing_id ) {
         if ( $listing_id <= 0 ) {
-            $this->throw_no_listing_was_found_with_id_exception( $listing_id );
+            $message = __( 'The listing ID must be a positive integer, %d was given.', 'another-wordpress-classifieds-plugin' );
+            throw new AWPCP_Exception( sprintf( $message, $listing_id ) );
         }
 
-        $listings = $this->finder->find( array( 'id' => $listing_id, 'limit' => null, 'order' => null ) );
+        $listing = $this->wordpress->get_post( $listing_id );
 
-        if ( empty( $listings ) ) {
-            $this->throw_no_listing_was_found_with_id_exception( $listing_id );
+        if ( empty( $listing ) ) {
+            $message = __( 'No Listing was found with id: %d.', 'another-wordpress-classifieds-plugin' );
+            throw new AWPCP_Exception( sprintf( $message, $listing_id ) );
         }
 
-        return array_shift( $listings );
-    }
-
-    private function throw_no_listing_was_found_with_id_exception( $listing_id ) {
-        $message = __( 'No Listing was found with id: %d.', 'another-wordpress-classifieds-plugin' );
-        throw new AWPCP_Exception( sprintf( $message, $listing_id ) );
+        return $listing;
     }
 
     /**
