@@ -32,6 +32,10 @@ class AWPCP_WordPress {
         return wp_update_post( $post, $return_wp_error_on_failure );
     }
 
+    public function get_post( $post = null, $output = OBJECT, $filter = 'raw' ) {
+        return get_post( $post, $output, $filter );
+    }
+
     public function add_post_meta( $post_id, $meta_key, $meta_value, $unique = false ) {
         return add_post_meta( $post_id, $meta_key, $meta_value, $unique );
     }
