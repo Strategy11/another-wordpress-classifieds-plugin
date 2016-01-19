@@ -50,6 +50,10 @@ class AWPCP_WordPress {
         return get_terms( $taxonomies, $args );
     }
 
+    public function get_term_hierarchy( $taxonomy ) {
+        return _get_term_hierarchy( $taxonomy );
+    }
+
     public function add_object_terms( $object_id, $terms, $taxonomy ) {
         return wp_add_object_terms( $object_id, $terms, $taxonomy );
     }
