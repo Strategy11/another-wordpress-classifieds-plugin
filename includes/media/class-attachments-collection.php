@@ -47,10 +47,7 @@ class AWPCP_Attachments_Collection {
         return $query;
     }
 
-    /**
-     * TODO: Needs tests!
-     */
-    public function count_attachments( $query ) {
+    public function count_attachments( $query = array() ) {
         $attachments = new WP_Query( $this->prepare_attachments_query( $query ) );
         return $attachments->found_posts;
     }
