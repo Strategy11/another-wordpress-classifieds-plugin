@@ -28,10 +28,7 @@ class AWPCP_Attachments_Collection {
         return $query;
     }
 
-    /**
-     * TODO: Needs tests!
-     */
-    public function find_attachments( $query ) {
+    public function find_attachments( $query = array() ) {
         $attachments = new WP_Query();
         return $attachments->query( $this->prepare_attachments_query( $query ) );
     }
@@ -48,6 +45,14 @@ class AWPCP_Attachments_Collection {
         }
 
         return $query;
+    }
+
+    /**
+     * TODO: Needs tests!
+     */
+    public function count_attachments( $query ) {
+        $attachments = new WP_Query( $this->prepare_attachments_query( $query ) );
+        return $attachments->found_posts;
     }
 
     public function find_visible_attachments( $query ) {
