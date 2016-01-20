@@ -6,6 +6,31 @@ function awpcp_attachments_collection() {
 
 class AWPCP_Attachments_Collection {
 
+    public function get_featured_attachment_of_type( $type, $query = array() ) {
+        $query = $this->make_attachments_of_type_query( $type, $query );
+        $query = $this->make_featured_attachment_query( $query );
+
+        $attachments = $this->find_attachments( $query );
+
+        return array_shift( $attachments );
+    }
+
+    private function make_featured_attachment_query( $query ) {
+        $query['posts_per_page'] = 1;
+
+        $query['meta_query'][] = array(
+            'key' => '_featured',
+            'value' => true,
+            'comparator' => '=',
+            'type' => 'BINARY',
+        );
+
+        return $query;
+    }
+
+    /**
+     * TODO: Needs tests!
+     */
     public function find_attachments( $query ) {
         $attachments = new WP_Query();
         return $attachments->query( $this->prepare_attachments_query( $query ) );
