@@ -52,6 +52,20 @@ class AWPCP_Attachments_Collection {
         return $attachments->found_posts;
     }
 
+    public function count_attachments_of_type( $type, $query = array() ) {
+        return $this->count_attachments( $this->make_attachments_of_type_query( $type, $query ) );
+    }
+
+    private function make_attachments_of_type_query( $type, $query ) {
+        if ( $type == 'image' ) {
+            $query['post_mime_type'] = awpcp_get_image_mime_types();
+        } else {
+            throw new AWPCP_Exception( sprintf( 'Attachment type not supported: %s', $type ) );
+        }
+
+        return $query;
+    }
+
     public function find_visible_attachments( $query ) {
         return $this->find_attachments( $this->make_visible_attachments_query( $query ) );
     }
