@@ -71,4 +71,8 @@ class AWPCP_WordPress {
     public function handle_media_sideload( $file_array, $parent_post_id, $description ) {
         return media_handle_sideload( $file_array, $parent_post_id, $description );
     }
+
+    public function get_attachment_image_url( $attachment_id, $size = 'thumbnail', $icon = false ) {
+        return wp_get_attachment_image_url( $attachment_id, $size, $icon );
+    }
 }
