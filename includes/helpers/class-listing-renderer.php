@@ -40,7 +40,51 @@ class AWPCP_ListingRenderer {
     }
 
     public function get_view_listing_url( $listing ) {
-        return url_showad( $listing->ad_id );
+        $seoFriendlyUrls = get_awpcp_option('seofriendlyurls');
+        $permastruc = get_option('permalink_structure');
+
+        $awpcp_showad_pageid = awpcp_get_page_id_by_ref('show-ads-page-name');
+        $base_url = get_permalink($awpcp_showad_pageid);
+        $url = false;
+
+        $params = array( 'id' => $listing->ID );
+
+        if($seoFriendlyUrls && isset($permastruc) && !empty($permastruc)) {
+            $url = sprintf( '%s/%s', trim( $base_url, '/' ), $listing->ID );
+
+            $region = $listing->get_first_region();
+
+            $parts = array();
+
+            if ( get_awpcp_option( 'include-title-in-listing-url' ) ) {
+                $parts[] = sanitize_title( $this->get_listing_title( $listing ) );
+            }
+
+            if( get_awpcp_option( 'include-city-in-listing-url' ) && $region ) {
+                $parts[] = sanitize_title( awpcp_array_data( 'city', '', $region ) );
+            }
+            if( get_awpcp_option( 'include-state-in-listing-url' ) && $region ) {
+                $parts[] = sanitize_title( awpcp_array_data( 'state', '', $region ) );
+            }
+            if( get_awpcp_option( 'include-country-in-listing-url' ) && $region ) {
+                $parts[] = sanitize_title( awpcp_array_data( 'country', '', $region ) );
+            }
+            if( get_awpcp_option( 'include-county-in-listing-url' ) && $region ) {
+                $parts[] = sanitize_title( awpcp_array_data( 'county', '', $region ) );
+            }
+            if( get_awpcp_option( 'include-category-in-listing-url' ) ) {
+                $parts[] = sanitize_title( $this->get_category_name( $listing ) );
+            }
+
+            // always append a slash (RSS module issue)
+            $url = sprintf( "%s%s", trailingslashit( $url ), join( '/', array_filter( $parts ) ) );
+            $url = user_trailingslashit($url);
+        } else {
+            $base_url = user_trailingslashit($base_url);
+            $url = add_query_arg( urlencode_deep( $params ), $base_url );
+        }
+
+        return apply_filters( 'awpcp-listing-url', $url, $listing );
     }
 
     public function get_edit_listing_url( $listing ) {

@@ -208,6 +208,9 @@ function is_awpcp_browse_categories_page() {
     return awpcp_query()->is_browse_categories_page();
 }
 
+/**
+ * @since feature/1112  Modified to use Listing_Renderer::get_listing_title().
+ */
 function url_showad($ad_id) {
     try {
         $ad = awpcp_listings_collection()->get( $ad_id );
@@ -215,52 +218,7 @@ function url_showad($ad_id) {
         return false;
     }
 
-    $seoFriendlyUrls = get_awpcp_option('seofriendlyurls');
-    $permastruc = get_option('permalink_structure');
-
-    $awpcp_showad_pageid = awpcp_get_page_id_by_ref('show-ads-page-name');
-    $base_url = get_permalink($awpcp_showad_pageid);
-    $url = false;
-
-    $params = array('id' => $ad_id);
-
-    if($seoFriendlyUrls && isset($permastruc) && !empty($permastruc)) {
-        $url = sprintf( '%s/%s', trim( $base_url, '/' ), $ad_id );
-
-        $region = $ad->get_first_region();
-
-        $parts = array();
-
-        if ( get_awpcp_option( 'include-title-in-listing-url' ) ) {
-            $parts[] = sanitize_title( $ad->get_title() );
-        }
-
-        if( get_awpcp_option( 'include-city-in-listing-url' ) && $region ) {
-            $parts[] = sanitize_title( awpcp_array_data( 'city', '', $region ) );
-        }
-        if( get_awpcp_option( 'include-state-in-listing-url' ) && $region ) {
-            $parts[] = sanitize_title( awpcp_array_data( 'state', '', $region ) );
-        }
-        if( get_awpcp_option( 'include-country-in-listing-url' ) && $region ) {
-            $parts[] = sanitize_title( awpcp_array_data( 'country', '', $region ) );
-        }
-        if( get_awpcp_option( 'include-county-in-listing-url' ) && $region ) {
-            $parts[] = sanitize_title( awpcp_array_data( 'county', '', $region ) );
-        }
-        if( get_awpcp_option( 'include-category-in-listing-url' ) ) {
-            $awpcp_ad_category_id = $ad->ad_category_id;
-            $parts[] = sanitize_title(get_adcatname($awpcp_ad_category_id));
-        }
-
-        // always append a slash (RSS module issue)
-        $url = sprintf( "%s%s", trailingslashit( $url ), join( '/', array_filter( $parts ) ) );
-        $url = user_trailingslashit($url);
-    } else {
-        $base_url = user_trailingslashit($base_url);
-        $url = add_query_arg( urlencode_deep( $params ), $base_url );
-    }
-
-    return apply_filters( 'awpcp-listing-url', $url, $ad );
+    return awpcp_listing_renderer()->get_listing_title( $ad );
 }
 
 function awpcp_get_browse_categories_page_url() {
