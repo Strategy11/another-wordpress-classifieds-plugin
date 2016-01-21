@@ -4,13 +4,29 @@
  * @since 3.3
  */
 function awpcp_listing_renderer() {
-    return new AWPCP_ListingRenderer();
+    return new AWPCP_ListingRenderer( awpcp_categories_collection() );
 }
 
 /**
  * @since 3.3
  */
 class AWPCP_ListingRenderer {
+
+    private $categories;
+
+    public function __construct( $categories ) {
+        $this->categories = $categories;
+    }
+
+    public function get_category_name( $listing ) {
+        $categories = $this->categories->find_by_listing_id( $listing->ID );
+
+        if ( empty( $categories ) ) {
+            return null;
+        }
+
+        return $categories[0]->name;
+    }
 
     public function get_view_listing_link( $listing ) {
         $url = $this->get_view_listing_url( $listing );
