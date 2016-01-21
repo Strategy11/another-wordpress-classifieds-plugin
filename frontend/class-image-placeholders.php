@@ -1,25 +1,38 @@
 <?php
 
 function awpcp_image_placeholders() {
-    return new AWPCP_Image_Placeholders( awpcp_media_api() );
+    return new AWPCP_Image_Placeholders(
+        awpcp_media_api(),
+        awpcp_attachment_properties(),
+        awpcp_attachments_collection()
+    );
 }
 
 class AWPCP_Image_Placeholders {
 
     private $media_api;
+    private $attachment_properties;
+    private $attachments;
 
-    public function __construct( $media_api ) {
+    private $cache;
+
+    public function __construct( $media_api, $attachment_properties, $attachments ) {
         $this->media_api = $media_api;
+        $this->attachment_properties = $attachment_properties;
+        $this->attachments = $attachments;
     }
 
     public function do_image_placeholders( $ad, $placeholder ) {
-        global $awpcp_imagesurl;
-
-        static $replacements = array();
-
-        if (isset($replacements[$ad->ad_id])) {
-            return $replacements[$ad->ad_id][$placeholder];
+        if ( ! isset( $this->cache[ $ad->ID ] ) ) {
+            $placeholders = $this->render_image_placeholders( $ad, $placeholder );
+            $this->cache[ $ad->ID ] = apply_filters( 'awpcp-image-placeholders', $placeholders, $ad );
         }
+
+        return $this->cache[ $ad->ID ][ $placeholder ];
+    }
+
+    private function render_image_placeholders( $ad, $placeholder ) {
+        global $awpcp_imagesurl;
 
         $placeholders = array(
             'featureimg' => '',
@@ -32,13 +45,16 @@ class AWPCP_Image_Placeholders {
         $thumbnail_width = get_awpcp_option('displayadthumbwidth');
 
         if ( awpcp_are_images_allowed() ) {
-            $images_uploaded = $ad->count_image_files();
-            $primary_image = $this->media_api->get_ad_primary_image( $ad );
-            $gallery_name = 'awpcp-gallery-' . $ad->ad_id;
+            $primary_image = $this->attachments->get_featured_attachment_of_type(
+                'image',
+                array( 'post_parent' => $ad->ID )
+            );
+
+            $gallery_name = 'awpcp-gallery-' . $ad->ID;
 
             if ($primary_image) {
-                $large_image = $primary_image->get_large_image_url( 'large' );
-                $thumbnail = $primary_image->get_primary_thumbnail_url( 'primary' );
+                $large_image = $this->attachment_properties->get_image_url( $primary_image, 'large' );
+                $thumbnail = $this->attachment_properties->get_image_url( $primary_image, 'featured' );
 
                 if (get_awpcp_option('show-click-to-enlarge-link', 1)) {
                     $link = '<a class="thickbox enlarge" href="%s">%s</a>';
@@ -77,7 +93,7 @@ class AWPCP_Image_Placeholders {
                 // listings
                 $image_attributes = array(
                     'attributes' => array(
-                        'alt' => awpcp_esc_attr( $ad->ad_title ),
+                        'alt' => awpcp_esc_attr( awpcp_listing_renderer()->get_listing_title( $ad ) ),
                         'src' => esc_attr( $thumbnail ),
                         'width' => $thumbnail_width,
                     )
@@ -89,8 +105,10 @@ class AWPCP_Image_Placeholders {
                 $placeholders['awpcp_image_name_srccode'] = $content;
             }
 
+            $images_uploaded = $this->attachments->count_attachments_of_type( 'image', array( 'post_parent' => $ad->ID ) );
+
             if ($images_uploaded >= 1) {
-                $results = $this->media_api->find_public_images_by_ad_id( $ad->ad_id );
+                $results = $this->attachments->find_visible_attachments( array( 'post_parent' => $ad->ID ) );
 
                 $columns = get_awpcp_option('display-thumbnails-in-columns', 0);
                 $rows = $columns > 0 ? ceil(count($results) / $columns) : 0;
@@ -98,12 +116,12 @@ class AWPCP_Image_Placeholders {
 
                 $images = array();
                 foreach ($results as $image) {
-                    if ( $primary_image->id == $image->id ) {
+                    if ( $primary_image && $primary_image->ID == $image->ID ) {
                         continue;
                     }
 
-                    $large_image = $image->get_url( 'large' );
-                    $thumbnail = $image->get_url( 'thumbnail' );
+                    $large_image = $this->attachment_properties->get_image_url( $image, 'large' );
+                    $thumbnail = $this->attachment_properties->get_image_url( $image, 'thumbnail' );
 
                     $image_dimensions = awpcp_media_api()->get_metadata( $image, 'image-dimensions', array() );
                     $image_dimensions = awpcp_array_data( 'thumbnail', array(), $image_dimensions );
@@ -172,8 +190,6 @@ class AWPCP_Image_Placeholders {
         $placeholders['imgblockwidth'] = "{$thumbnail_width}px";
         $placeholders['thumbnail_width'] = "{$thumbnail_width}px";
 
-        $replacements[ $ad->ad_id ] = apply_filters( 'awpcp-image-placeholders', $placeholders, $ad );
-
-        return $replacements[$ad->ad_id][$placeholder];
+        return $placeholders;
     }
 }
