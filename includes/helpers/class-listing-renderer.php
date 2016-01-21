@@ -18,6 +18,10 @@ class AWPCP_ListingRenderer {
         $this->categories = $categories;
     }
 
+    public function get_listing_title( $listing ) {
+        return stripslashes( $listing->post_title );
+    }
+
     public function get_category_name( $listing ) {
         $categories = $this->categories->find_by_listing_id( $listing->ID );
 
