@@ -22,14 +22,24 @@ class AWPCP_ListingRenderer {
         return stripslashes( $listing->post_title );
     }
 
-    public function get_category_name( $listing ) {
+    public function get_category( $listing ) {
         $categories = $this->categories->find_by_listing_id( $listing->ID );
 
         if ( empty( $categories ) ) {
             return null;
         }
 
-        return $categories[0]->name;
+        return $categories[0];
+    }
+
+    public function get_category_name( $listing ) {
+        $category = $this->get_category();
+        return is_object( $category ) ? $category->name : null;
+    }
+
+    public function get_category_id( $listing ) {
+        $category = $this->get_category();
+        return is_object( $category ) ? $category->term_id : null;
     }
 
     public function get_view_listing_link( $listing ) {
