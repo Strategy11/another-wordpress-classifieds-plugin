@@ -36,7 +36,7 @@ class AWPCP_Store_Media_As_Attachments_Upgrade_Task_Handler implements AWPCP_Upg
     }
 
     public function get_pending_items( $last_item_id ) {
-        $query = 'SELECT * FROM ' . AWPCP_TABLE_MEDIA . ' WHERE id > %d LIMIT 0, 50';
+        $query = 'SELECT * FROM ' . AWPCP_TABLE_MEDIA . ' WHERE id > %d LIMIT 0, 10';
         return $this->db->get_results( $this->db->prepare( $query, $last_item_id ) );
     }
 
@@ -81,7 +81,16 @@ class AWPCP_Store_Media_As_Attachments_Upgrade_Task_Handler implements AWPCP_Upg
             @unlink( $tmp_name );
         }
 
-        return null;
+        if ( $item->enabled ) {
+            update_post_meta( $attachment_id, '_enabled', true );
+        }
+
+        if ( $item->is_primary ) {
+            update_post_meta( $attachment_id, '_featured', true );
+        }
+
+        update_post_meta( $attachment_id, '_allowed_status', $item->status );
+
         return $item->id;
     }
 
