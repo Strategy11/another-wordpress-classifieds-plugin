@@ -273,4 +273,8 @@ class AWPCP_ListingsAPI {
         $listing->flagged = false;
         return $listing->save();
     }
+
+    public function increase_visits_count( $listing ) {
+        update_post_meta( $listing->ID, '_views', 1 + get_post_meta( $listing->ID, '_views', true ) );
+    }
 }
