@@ -49,4 +49,8 @@ class AWPCP_Categories_Collection {
     public function get_hierarchy() {
         return $this->wordpress->get_term_hierarchy( $this->taxonomy );
     }
+
+    public function find_by_listing_id( $listing_id ) {
+        return $this->wordpress->get_object_terms( $listing_id, $this->taxonomy );
+    }
 }
