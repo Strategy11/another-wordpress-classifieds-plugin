@@ -72,21 +72,23 @@ class AWPCP_ListingsCollection {
 
     /**
      * @since 3.3
+     * @since feature/1112  Modified to work with custom post types.
      */
-    private function find_valid_listings( $params = array() ) {
-        $params = wp_parse_args( $params, array(
-            'items_per_page' => 10,
-            'page' => 1,
-            'conditions' => array(),
-        ) );
+    private function find_valid_listings( $query = array() ) {
+        return $this->find_successfully_paid_listings( $this->make_valid_listings_query( $query ) );
+    }
 
-        $params['conditions'] = AWPCP_Ad::get_where_conditions_for_valid_ads( $params['conditions'] );
+    private function make_valid_listings_query( $query ) {
+        $query = $this->make_successfully_paid_listings_query( $query );
 
-        return AWPCP_Ad::query( array(
-            'where' => implode( ' AND ', $params['conditions'] ),
-            'limit' => $params['items_per_page'],
-            'offset' => ( $params['page'] - 1 ) * $params['items_per_page']
-        ) );
+        $query['meta_query'][] = array(
+            'key' => '_verified',
+            'value' => true,
+            'compare' => '=',
+            'type' => 'BINARY',
+        );
+
+        return $query;
     }
 
     /**
@@ -101,8 +103,8 @@ class AWPCP_ListingsCollection {
      * @since feature/1112
      */
     public function find_listings( $query = array() ) {
-        $posts = new WP_Query();
-        return $posts->query( $this->prepare_listings_query( $query ) );
+        $posts = new WP_Query( $this->prepare_listings_query( $query ) );
+        return $posts->posts;
     }
 
     private function prepare_listings_query( $query ) {
@@ -126,22 +128,60 @@ class AWPCP_ListingsCollection {
 
     /**
      * @since 3.3
+     * @since feature/1112  Modified to work with custom post types.
      */
-    public function find_enabled_listings( $params = array() ) {
-        $params = array_merge( $params, array( 'conditions' => array( 'disabled = 0' ) ) );
-        return $this->find_valid_listings( $params );
-    }
-
-    public function find_enabled_listings_with_query( $query ) {
-        return $this->finder->find( $this->make_enabled_listings_query( $query ) );
+    public function find_enabled_listings( $query = array() ) {
+        return $this->find_valid_listings( $this->make_enabled_listings_query( $query ) );
     }
 
     private function make_enabled_listings_query( $query ) {
-        return $this->make_valid_listings_query( array_merge( $query, array( 'disabled' => false ) ) );
+        $query['post_status'] = 'publish';
+        return $query;
     }
 
-    private function make_valid_listings_query( $query ) {
-        return $this->make_successfully_paid_listings_query( array_merge( $query, array( 'verified' => true ) ) );
+    public function find_listings_about_to_expire( $query = array() ) {
+        return $this->find_enabled_listings( $this->make_listings_about_to_expire_query( $query ) );
+    }
+
+    private function make_listings_about_to_expire_query( $query ) {
+        $threshold = intval( get_awpcp_option( 'ad-renew-email-threshold' ) );
+        $target_date = strtotime( "+ $threshold days", current_time( 'timestamp' ) );
+
+        $query['meta_query'][] = array(
+            'key' => '_end_date',
+            'value' => awpcp_datetime( 'mysql', $target_date ),
+            'compare' => '<=',
+            'type' => 'DATE',
+        );
+
+        $query['meta_query'][] = array(
+            'key' => '_renew_email_sent',
+            'compare' => 'NOT EXISTS',
+        );
+
+        return $query;
+    }
+
+    public function find_expired_listings_with_query( $query ) {
+        return $this->finder->find( $this->make_expired_listings_query( $query ) );
+    }
+
+    private function make_expired_listings_query( $query ) {
+        $query['end_date'] = array( 'compare' => '<', 'value' => current_time( 'mysql' ) );
+        return $this->make_valid_listings_query( $query );
+    }
+
+    public function find_listings_awaiting_approval_with_query( $query ) {
+        return $this->finder->find( $this->make_listings_awaiting_approval_query( $query ) );
+    }
+
+    private function make_listings_awaiting_approval_query( $query ) {
+        $query = array_merge( $query, array( 'disabled' => true, 'disabled_date' => 'NULL' ) );
+        return $this->make_valid_listings_query( $query );
+    }
+
+    public function find_successfully_paid_listings( $query ) {
+        return $this->find_listings( $this->make_successfully_paid_listings_query( $query ) );
     }
 
     private function make_successfully_paid_listings_query( $query ) {
@@ -165,36 +205,6 @@ class AWPCP_ListingsCollection {
         }
 
         return $query;
-    }
-
-    public function find_expired_listings_with_query( $query ) {
-        return $this->finder->find( $this->make_expired_listings_query( $query ) );
-    }
-
-    private function make_expired_listings_query( $query ) {
-        $query['end_date'] = array( 'compare' => '<', 'value' => current_time( 'mysql' ) );
-        return $this->make_valid_listings_query( $query );
-    }
-
-    public function find_listings_awaiting_approval_with_query( $query ) {
-        return $this->finder->find( $this->make_listings_awaiting_approval_query( $query ) );
-    }
-
-    private function make_listings_awaiting_approval_query( $query ) {
-        $query = array_merge( $query, array( 'disabled' => true, 'disabled_date' => 'NULL' ) );
-        return $this->make_valid_listings_query( $query );
-    }
-
-    public function find_valid_listings_with_query( $query ) {
-        return $this->finder->find( $this->make_valid_listings_query( $query ) );
-    }
-
-    public function find_successfully_paid_listings_with_query( $query ) {
-        return $this->finder->find( $this->make_successfully_paid_listings_query( $query ) );
-    }
-
-    public function find_successfully_paid_listings( $query ) {
-        return $this->find_listings( $this->make_successfully_paid_listings_query( $query ) );
     }
 
     public function find_listings_with_query( $query ) {

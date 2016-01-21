@@ -169,18 +169,6 @@ function awpcp_ad_renewal_email() {
 	}
 }
 
-function awpcp_get_listings_about_to_expire() {
-    global $wpdb;
-
-    $end_of_range = awpcp_calculate_end_of_renew_email_date_range_from_now();
-
-    $conditions[] = $wpdb->prepare( 'ad_enddate <= %s', date( 'Y-m-d H:i:s', $end_of_range ) );
-    $conditions[] = 'disabled != 1';
-    $conditions[] = 'renew_email_sent != 1';
-
-    return AWPCP_Ad::find( implode( ' AND ', $conditions ) );
-}
-
 function awpcp_calculate_end_of_renew_email_date_range_from_now() {
     $threshold = intval( get_awpcp_option( 'ad-renew-email-threshold' ) );
     $target_date = strtotime( "+ $threshold days", current_time( 'timestamp' ) );
