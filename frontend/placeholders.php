@@ -734,11 +734,14 @@ function awpcp_do_placeholder_twitter_button($ad, $placeholder) {
  * @since 3.2.2
  */
 function awpcp_do_placeholder_twitter_button_url( $ad, $placeholder ) {
-    $url = awpcp_listing_renderer()->get_view_listing_url( $ad );
+    $listing_renderer = awpcp_listing_renderer();
+
+    $title = $listing_renderer->get_listing_title( $ad );
+    $url = $listing_renderer->get_view_listing_url( $ad );
 
     return add_query_arg(array(
         'url' => urlencode( $url ),
-        'text' => urlencode($ad->get_title()),
+        'text' => urlencode( $title ),
     ), 'http://twitter.com/share');
 }
 
