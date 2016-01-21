@@ -116,7 +116,7 @@ class AWPCP_Custom_Post_Types {
         );
 
         add_image_size(
-            'awpcp-primary',
+            'awpcp-featured',
             $this->settings->get_option( 'primary-image-thumbnail-width' ),
             $this->settings->get_option( 'primary-image-thumbnail-height' ),
             $this->settings->get_option( 'crop-primary-image-thumbnails' )
