@@ -144,10 +144,9 @@ function showad( $adid=null, $omitmenu=false, $preview=false, $send_email=true, 
 			return apply_filters( 'awpcp_single_ad_template_filter' );
 
 		} else {
-			$results = AWPCP_Ad::query( array( 'where' => $wpdb->prepare( 'ad_id = %d', $adid ) ) );
-			if (count($results) === 1) {
-				$ad = array_shift($results);
-			} else {
+			try {
+				$ad = awpcp_listings_collection()->get( $adid );
+			} catch ( AWPCP_Exception $e ) {
 				$ad = null;
 			}
 
@@ -195,10 +194,8 @@ function showad( $adid=null, $omitmenu=false, $preview=false, $send_email=true, 
 			$output = apply_filters('awpcp-show-ad', $output, $adid);
 
 			if ( ! awpcp_request()->is_bot() ) {
-				$ad->visit();
+				awpcp_listings_api()->increase_visits_count( $ad );
 			}
-
-			$ad->save();
 		}
 	} else {
 		$query = array(
