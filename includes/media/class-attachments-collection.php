@@ -6,6 +6,10 @@ function awpcp_attachments_collection() {
 
 class AWPCP_Attachments_Collection {
 
+    const STATUS_AWAITING_APPROVAL = 'Awaiting-Approval';
+    const STATUS_APPROVED = 'Approved';
+    const STATUS_REJECTED = 'Rejected';
+
     public function get_featured_attachment_of_type( $type, $query = array() ) {
         $query = $this->make_attachments_of_type_query( $type, $query );
         $query = $this->make_featured_attachment_query( $query );
@@ -66,7 +70,7 @@ class AWPCP_Attachments_Collection {
         return $query;
     }
 
-    public function find_visible_attachments( $query ) {
+    public function find_visible_attachments( $query = array() ) {
         return $this->find_attachments( $this->make_visible_attachments_query( $query ) );
     }
 
@@ -79,10 +83,10 @@ class AWPCP_Attachments_Collection {
         );
 
         $query['meta_query'][] = array(
-            'key' => '_approved',
-            'value' => true,
+            'key' => '_allowed_status',
+            'value' => self::STATUS_APPROVED,
             'compare' => '=',
-            'type' => 'BINARY'
+            'type' => 'CHAR'
         );
 
         return $query;
