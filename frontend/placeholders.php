@@ -260,10 +260,13 @@ function awpcp_do_placeholder_url($ad, $placeholder) {
  * @since 3.0
  */
 function awpcp_do_placeholder_title($ad, $placeholder) {
-    $url = awpcp_listing_renderer()->get_view_listing_url( $ad );
+    $listing_renderer = awpcp_listing_renderer();
 
-    $replacements['ad_title'] = sprintf( '<a href="%s">%s</a>', esc_attr( $url ), esc_html( $ad->get_title() ) );
-    $replacements['title'] = esc_html( $ad->get_title() );
+    $title = $listing_renderer->get_listing_title( $ad );
+    $url = $listing_renderer->get_view_listing_url( $ad );
+
+    $replacements['ad_title'] = sprintf( '<a href="%s">%s</a>', esc_attr( $url ), esc_html( $title ) );
+    $replacements['title'] = esc_html( $title );
     $replacements['title_link'] = $replacements['ad_title'];
 
     return $replacements[$placeholder];
