@@ -46,10 +46,12 @@
                 <ul>
                     <li><?php _e("AWPCP version", "AWPCP"); ?>: <strong><?php echo $awpcp_db_version; ?></strong>.</li>
 
-                    <?php $totallistings = countlistings(1); ?>
+                    <?php $listings_collection = awpcp_listings_collection(); ?>
+
+                    <?php $totallistings = $listings_collection->count_enabled_listings(); ?>
                     <li><?php _e("Number of active listings currently in the system", "AWPCP"); ?>: <strong><?php echo $totallistings; ?></strong></li>
 
-                    <?php $totallistings = countlistings(0); ?>
+                    <?php $totallistings = $listings_collection->count_disabled_listings(); ?>
                     <li><?php _e("Number of inactive/expired/disabled listings currently in the system", "AWPCP"); ?>: <strong><?php echo $totallistings; ?></strong></li>
                 </ul>
 

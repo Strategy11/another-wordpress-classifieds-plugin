@@ -73,15 +73,6 @@ function categoriesexist(){
     return $myreturn;
 }
 
-function countlistings($is_active) {
-    global $wpdb;
-
-    $query = 'SELECT COUNT(*) FROM ' . AWPCP_TABLE_ADS . ' WHERE disabled = %d';
-    $query = $wpdb->prepare( $query, $is_active ? false : true );
-
-    return $wpdb->get_var( $query );
-}
-
 function countcategories(){
     return AWPCP_Category::query( array( 'fields' => 'count' ) );
 }
