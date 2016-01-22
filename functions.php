@@ -2111,12 +2111,19 @@ function awpcp_ad_enabled_email($ad) {
 function awpcp_ad_updated_user_email( $ad, $message ) {
 	$admin_email = awpcp_admin_recipient_email_address();
 
+    $listing_renderer = awpcp_listing_renderer();
+
+    $listing_title = $listing_renderer->get_listing_title( $ad );
+    $access_key = $listing_renderer->get_access_key( $ad );
+    $contact_name = $listing_renderer->get_contact_name( $ad );
+    $contact_email = $listing_renderer->get_contact_email( $ad );
+
 	$mail = new AWPCP_Email;
-	$mail->to[] = awpcp_format_email_address( $ad->ad_contact_email, $ad->ad_contact_name );
-	$mail->subject = sprintf(__('Your Ad "%s" has been successfully updated', 'another-wordpress-classifieds-plugin'), $ad->get_title());
+	$mail->to[] = awpcp_format_email_address( $contact_email, $contact_name );
+	$mail->subject = sprintf( __( 'Your Ad "%s" has been successfully updated', 'another-wordpress-classifieds-plugin' ), $listing_title );
 
 	$template = AWPCP_DIR . '/frontend/templates/email-ad-updated-user.tpl.php';
-	$mail->prepare($template, compact('ad', 'message', 'admin_email'));
+	$mail->prepare( $template, compact( 'ad', 'listing_title', 'access_key', 'contact_email', 'admin_email', 'message' ) );
 
 	return $mail;
 }
