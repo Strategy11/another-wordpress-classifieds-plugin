@@ -40,6 +40,10 @@ class AWPCP_WordPress {
         return add_post_meta( $post_id, $meta_key, $meta_value, $unique );
     }
 
+    public function get_post_meta( $post_id, $key = '', $single = false ) {
+        return get_post_meta( $post_id, $key, $single );
+    }
+
     /* Taxonomies */
 
     public function insert_term( $term, $taxonomy, $args = array() ) {
