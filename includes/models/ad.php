@@ -500,10 +500,6 @@ class AWPCP_Ad {
 		return $result === false ? false : true;
 	}
 
-	public function get_title() {
-		return stripslashes($this->ad_title);
-	}
-
 	public function get_category_name() {
 		if ( ! isset( $this->category_name ) ) {
 			$this->category_name = get_adcatname( $this->ad_category_id );
@@ -560,15 +556,6 @@ class AWPCP_Ad {
 	 */
 	function set_end_date($end_date) {
 		$this->ad_enddate = awpcp_datetime( 'mysql', $end_date );
-	}
-
-	/**
-	 * @since 2.0.7
-	 */
-	function get_end_date() {
-		if (!empty($this->ad_enddate))
-			return awpcp_datetime( 'awpcp-date', strtotime( $this->ad_enddate ) );
-		return '';
 	}
 
 	/**

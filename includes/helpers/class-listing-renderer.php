@@ -4,7 +4,10 @@
  * @since 3.3
  */
 function awpcp_listing_renderer() {
-    return new AWPCP_ListingRenderer( awpcp_categories_collection() );
+    return new AWPCP_ListingRenderer(
+        awpcp_categories_collection(),
+        awpcp_wordpress()
+    );
 }
 
 /**
@@ -13,9 +16,11 @@ function awpcp_listing_renderer() {
 class AWPCP_ListingRenderer {
 
     private $categories;
+    private $wordpress;
 
-    public function __construct( $categories ) {
+    public function __construct( $categories, $wordpress ) {
         $this->categories = $categories;
+        $this->wordpress = $wordpress;
     }
 
     public function get_listing_title( $listing ) {
@@ -40,6 +45,33 @@ class AWPCP_ListingRenderer {
     public function get_category_id( $listing ) {
         $category = $this->get_category();
         return is_object( $category ) ? $category->term_id : null;
+    }
+
+    public function get_contact_name( $listing ) {
+        return $this->wordpress->get_post_meta( $listing->ID, '_contact_name', true );
+    }
+
+    public function get_contact_email( $listing ) {
+        return $this->wordpress->get_post_meta( $listing->ID, '_contact_email', true );
+    }
+
+    public function get_access_key( $listing ) {
+        return $this->wordpress->get_post_meta( $listing->ID, '_access_key', true );
+    }
+
+    /**
+     * @since feature/1112
+     */
+    public function get_end_date( $listing ) {
+        $end_date = $this->wordpress->get_post_meta( $listing->ID, '_end_date', true );
+
+        if ( ! empty( $end_date ) ) {
+            $formatted_date = awpcp_datetime( 'awpcp-date', strtotime( $end_date ) );
+        } else {
+            $formatted_date = '';
+        }
+
+        return $formatted_date;
     }
 
     public function get_view_listing_link( $listing ) {
