@@ -298,8 +298,18 @@ function awpcp_ad_posted_user_email( $ad, $transaction = null, $message='' ) {
 		$include_edit_listing_url = false;
 	}
 
+	$listing_renderer = awpcp_listing_renderer();
+
+	$listing_title = $listing_renderer->get_listing_title( $ad );
+	$contact_name = $listing_renderer->get_contact_name( $ad );
+	$contact_email = $listing_renderer->get_contact_email( $ad );
+	$access_key = $listing_renderer->get_access_key( $ad );
+
 	$params = compact(
 		'ad',
+		'listing_title',
+		'contact_email',
+		'access_key',
 		'admin_email',
 		'transaction',
 		'currency_code',
