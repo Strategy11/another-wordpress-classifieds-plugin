@@ -139,6 +139,11 @@ class AWPCP_ListingsCollection {
         return $query;
     }
 
+    private function make_disabled_listings_query( $query ) {
+        $query['post_status'] = 'disabled';
+        return $query;
+    }
+
     public function find_listings_about_to_expire( $query = array() ) {
         return $this->find_enabled_listings( $this->make_listings_about_to_expire_query( $query ) );
     }
@@ -234,13 +239,17 @@ class AWPCP_ListingsCollection {
 
     /**
      * @since 3.3
+     * @since feature/1112  Modified to work with custom post types.
      */
-    public function count_enabled_listings() {
-        return $this->count_valid_listings( array( 'disabled = 0' ) );
+    public function count_enabled_listings( $query = array() ) {
+        return $this->count_valid_listings( $this->make_enabled_listings_query( $query ) );
     }
 
-    public function count_enabled_listings_with_query( $query ) {
-        return $this->finder->count( $this->make_enabled_listings_query( $query ) );
+    /**
+     * @since feature/1112.
+     */
+    public function count_disabled_listings( $query = array() ) {
+        return $this->count_valid_listings( $this->make_disabled_listings_query( $query ) );
     }
 
     public function count_expired_listings_with_query( $query ) {
