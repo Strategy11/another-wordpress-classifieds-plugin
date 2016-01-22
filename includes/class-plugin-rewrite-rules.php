@@ -19,11 +19,8 @@ class AWPCP_Plugin_Rewrite_Rules {
     }
 
     public function add_rewrite_rules( $rules ) {
-        $pages = awpcp_pages_with_rewrite_rules();
-        $pages_uris = $this->get_pages_uris( $pages );
-
         $this->add_api_rewrite_rules();
-        $this->add_plugin_pages_rewrite_rules( $pages_uris );
+        $this->add_plugin_pages_rewrite_rules();
 
         return $rules;
     }
@@ -80,8 +77,9 @@ class AWPCP_Plugin_Rewrite_Rules {
         );
     }
 
-    private function add_plugin_pages_rewrite_rules( $pages_uris ) {
+    private function add_plugin_pages_rewrite_rules() {
         $pages_rules = $this->get_pages_rewrite_rules_definitions();
+        $pages_uris = $this->get_pages_uris( array_keys( $pages_rules ) );
 
         foreach ( $pages_rules as $page_ref => $rules ) {
             if ( ! isset( $pages_uris[ $page_ref ] ) ) {
