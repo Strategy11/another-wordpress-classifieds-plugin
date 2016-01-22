@@ -34,7 +34,19 @@ class AWPCP_Plugin_Rewrite_Rules {
         foreach ( $pages as $refname ) {
             if ( $id = awpcp_get_page_id_by_ref( $refname ) ) {
                 if ( $page = get_page( $id ) ) {
-                    $uris[ $refname ] = get_page_uri( $page->ID );
+                    $regular_page_uri = get_page_uri( $page->ID );
+
+                    $uppercase_page_uri = preg_replace_callback(
+                        '/%[0-9a-zA-Z]{2}/',
+                        create_function( '$x', 'return strtoupper( $x[0] );' ),
+                        $regular_page_uri
+                    );
+
+                    if ( strcmp( $regular_page_uri, $uppercase_page_uri ) !== 0 ) {
+                        $uris[ $refname ] = array( $regular_page_uri, $uppercase_page_uri );
+                    } else {
+                        $uris[ $refname ] = array( $regular_page_uri );
+                    }
                 }
             }
         }
@@ -77,8 +89,10 @@ class AWPCP_Plugin_Rewrite_Rules {
             }
 
             foreach ( $rules as $rule ) {
-                $regex = str_replace( '<page-uri>', $pages_uris[ $page_ref ], $rule['regex'] );
-                $this->rewrite_rules_helper->add_page_rewrite_rule( $regex, $rule['redirect'], $rule['position'] );
+                foreach ( $pages_uris[ $page_ref ] as $page_uri ) {
+                    $regex = str_replace( '<page-uri>', $page_uri, $rule['regex'] );
+                    $this->rewrite_rules_helper->add_page_rewrite_rule( $regex, $rule['redirect'], $rule['position'] );
+                }
             }
         }
     }
