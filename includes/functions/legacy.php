@@ -203,12 +203,6 @@ function get_cat_parent_ID($cat_ID){
     return $wpdb->get_var( $query );
 }
 
-function ads_exist() {
-    global $wpdb;
-    $tbl_ads = $wpdb->prefix . "awpcp_ads";
-    $myreturn=!awpcpistableempty($tbl_ads);
-    return $myreturn;
-}
 // END FUNCTION: check if any ads exist in the system
 // START FUNCTION: Check if there are any ads in a specified category
 function ads_exist_cat($catid) {
