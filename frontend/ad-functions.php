@@ -134,14 +134,23 @@ function awpcp_should_enable_existing_listing( $listing ) {
  * @since 3.0.2
  */
 function awpcp_ad_renewed_user_email( $ad ) {
-	$mail = new AWPCP_Email;
-	$mail->to[] = awpcp_format_email_address( $ad->ad_contact_email, $ad->ad_contact_name );
-	$mail->subject = sprintf( get_awpcp_option( 'ad-renewed-email-subject' ), $ad->get_title() );
+	$listing_renderer = awpcp_listing_renderer();
 
 	$introduction = get_awpcp_option( 'ad-renewed-email-body' );
+	$listing_title = $listing_renderer->get_listing_title( $ad );
+	$contact_name = $listing_renderer->get_contact_name( $ad );
+	$contact_email = $listing_renderer->get_contact_email( $ad );
+	$access_key = $listing_renderer->get_access_key( $ad );
+	$end_date = $listing_renderer->get_end_date( $ad );
+
+	$mail = new AWPCP_Email;
+	$mail->to[] = awpcp_format_email_address( $contact_email, $contact_name );
+	$mail->subject = sprintf( get_awpcp_option( 'ad-renewed-email-subject' ), $listing_title );
 
 	$template = AWPCP_DIR . '/frontend/templates/email-ad-renewed-success-user.tpl.php';
-	$mail->prepare( $template, compact( 'ad', 'introduction' ) );
+	$params = compact( 'ad', 'listing_title', 'contact_name', 'contact_email', 'access_key', 'end_date', 'introduction' );
+
+	$mail->prepare( $template, $params );
 
 	return $mail;
 }
