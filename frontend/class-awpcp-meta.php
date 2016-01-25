@@ -45,7 +45,7 @@ class AWPCP_Meta {
     }
 
     private function find_current_listing() {
-        $this->ad_id = absint( $this->request->get_ad_id() );
+        $this->ad_id = $this->request->get_current_listing_id();
 
         if ( $this->ad_id === 0 ) {
             return null;
