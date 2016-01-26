@@ -210,6 +210,13 @@ class AWPCP_ListingsCollection {
         return $query;
     }
 
+    /**
+     * @since feature/1112
+     */
+    public function count_successfully_paid_listings( $query = array() ) {
+        return $this->count_listings( $this->make_successfully_paid_listings_query( $query ) );
+    }
+
     public function find_listings_with_query( $query ) {
         return $this->finder->find( $query );
     }
@@ -260,10 +267,6 @@ class AWPCP_ListingsCollection {
 
     public function count_valid_listings_with_query( $query ) {
         return $this->finder->count( $this->make_valid_listings_query( $query ) );
-    }
-
-    public function count_successfully_paid_listings_with_query( $query ) {
-        return $this->finder->count( $this->make_successfully_paid_listings_query( $query ) );
     }
 
     public function count_listings_with_query( $query ) {
