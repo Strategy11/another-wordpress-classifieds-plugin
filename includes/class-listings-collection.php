@@ -79,8 +79,6 @@ class AWPCP_ListingsCollection {
     }
 
     private function make_valid_listings_query( $query ) {
-        $query = $this->make_successfully_paid_listings_query( $query );
-
         $query['meta_query'][] = array(
             'key' => '_verified',
             'value' => true,
