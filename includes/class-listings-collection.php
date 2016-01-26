@@ -92,9 +92,8 @@ class AWPCP_ListingsCollection {
     /**
      * @since 3.3
      */
-    private function count_valid_listings( $conditions = array() ) {
-        $conditions = AWPCP_Ad::get_where_conditions_for_valid_ads( $conditions );
-        return AWPCP_Ad::count( implode( ' AND ', $conditions ) );
+    private function count_valid_listings( $query = array() ) {
+        return $this->count_successfully_paid_listings( $this->make_valid_listings_query( $query ) );
     }
 
     /**
