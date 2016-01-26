@@ -114,52 +114,49 @@ function awpcp_get_count_of_listings_in_categories() {
 
 /**
  * @since 3.4
+ * @since feature/1112  Modified to work with custom post type and custom taxonomies.
  */
 function awpcp_count_listings_in_categories() {
-    global $wpdb;
-
-    // never allow Unpaid, Unverified or Disabled Ads
-    $conditions[] = "payment_status != 'Unpaid'";
-    $conditions[] = 'verified = 1';
-    $conditions[] = 'disabled = 0';
-
-    if( ( get_awpcp_option( 'enable-ads-pending-payment' ) == 0 ) && ( get_awpcp_option( 'freepay' ) == 1 ) ) {
-        $conditions[] = "payment_status != 'Pending'";
-    }
-
-    // TODO: ideally there would be a function to get all visible Ads,
-    // and modules, like Regions, would use hooks to include their own
-    // conditions.
-    if ( function_exists( 'awpcp_region_control_module' ) && function_exists( 'awpcp_regions_api' ) ) {
-        if ( $active_region = awpcp_region_control_module()->get_active_region() ) {
-            $conditions[] = awpcp_regions_api()->sql_where( $active_region->region_id );
-        }
-    }
-
-    // TODO: at some point we should start using the Category model.
-    $query = 'SELECT ad_category_parent_id AS parent_category_id, ad_category_id AS category_id, count(*) AS count ';
-    $query.= 'FROM ' . AWPCP_TABLE_ADS;
-    $query = sprintf( '%s WHERE %s', $query, implode( ' AND ', $conditions ) );
-    $query.= ' GROUP BY ad_category_id, ad_category_parent_id';
-    $query.= ' ORDER BY ad_category_parent_id, ad_category_id';
-
     $listings_count = array();
 
-    foreach ( $wpdb->get_results( $query ) as $row ) {
-        if ( $row->parent_category_id > 0 ) {
-            if ( isset( $listings_count[ $row->parent_category_id ] ) ) {
-                $listings_count[ $row->parent_category_id ] = $listings_count[ $row->parent_category_id ] + $row->count;
-            } else {
-                $listings_count[ $row->parent_category_id ] = $row->count;
-            }
-        }
-
-        if ( isset( $listings_count[ $row->category_id ] ) ) {
-            $listings_count[ $row->category_id ] = $listings_count[ $row->category_id ] + $row->count;
-        } else {
-            $listings_count[ $row->category_id ] = $row->count;
-        }
+    foreach ( awpcp_categories_collection()->get_all() as $category ) {
+        $listings_count[ $category->term_id ] = awpcp_count_listings_in_category( $category->term_id );
     }
+
+    return $listings_count;
+}
+
+/**
+ * TODO: Make sure other moduels (Like regions) are able to filter the query
+ *       and their own parameters.
+ *
+ *       See the old implementation of awpcp_count_listings_in_categories
+ *       (up to, at least, version 3.6.3.1).
+ *
+ * @since feature/1112
+ */
+function awpcp_count_listings_in_category( $category_id ) {
+    $cache_entry_key = 'term-padded-count-' . $category_id;
+    $cache_entry_found = false;
+
+    // $listings_count = intval( wp_cache_get( $cache_entry_key , 'awpcp', false, $cache_entry_found ) );
+
+    if ( $cache_entry_found ) {
+        return $listings_count;
+    }
+
+    $children_categories = get_term_children( $category_id , 'awpcp_listing_category' );
+
+    $listings_count = awpcp_listings_collection()->count_enabled_listings( array(
+        'tax_query' => array(
+            array(
+                'taxonomy' => 'awpcp_listing_category',
+                'field' => 'term_id',
+                'terms' => array_merge( array( $category_id ), $children_categories ),
+                'operator' => 'IN',
+            )
+        )
+    ) );
 
     return $listings_count;
 }
