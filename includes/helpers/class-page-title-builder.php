@@ -1,5 +1,12 @@
 <?php
 
+function awpcp_page_title_builder() {
+    return new AWPCP_PageTitleBuilder(
+        awpcp_listing_renderer(),
+        awpcp_categories_collection()
+    );
+}
+
 /**
  * @since 3.3
  */
@@ -7,6 +14,14 @@ class AWPCP_PageTitleBuilder {
 
     private $listing;
     private $category_id;
+
+    private $listing_renderer;
+    private $categories;
+
+    public function __construct( $listing_renderer, $categories ) {
+        $this->listing_renderer = $listing_renderer;
+        $this->categories = $categories;
+    }
 
     /**
      * @since 3.3
@@ -198,10 +213,10 @@ class AWPCP_PageTitleBuilder {
         $parts = array();
 
         if ( ! empty( $this->category_id ) ) {
-            $parts[] = get_adcatname( $this->category_id );
+            $parts[] = $this->get_category_name();
 
         } else if ( ! is_null( $this->listing ) ) {
-            $regions = $this->listing->get_regions();
+            $regions = $this->listing_renderer->get_regions( $this->listing );
             if ( count( $regions ) > 0 ) {
                 $region = $regions[0];
             } else {
@@ -209,7 +224,7 @@ class AWPCP_PageTitleBuilder {
             }
 
             if ( get_awpcp_option( 'showcategoryinpagetitle' ) ) {
-                $parts[] = get_adcatname( $this->listing->ad_category_id );
+                $parts[] = $this->listing_renderer->get_category_name( $this->listing );
             }
 
             if ( get_awpcp_option( 'showcountryinpagetitle' ) ) {
@@ -228,13 +243,23 @@ class AWPCP_PageTitleBuilder {
                 $parts[] = awpcp_array_data( 'county', '', $region );
             }
 
-            $parts[] = $this->listing->get_title();
+            $parts[] = $this->listing_renderer->get_listing_title( $this->listing );
         }
 
         $parts = array_filter( $parts );
         $parts = $seplocation === 'right' ? array_reverse( $parts ) : $parts;
 
         return implode( " $separator ", $parts );
+    }
+
+    private function get_category_name() {
+        try {
+            $category = $this->categories->get( $this->category_id );
+        } catch ( AWPCP_Exception $e ) {
+            return '';
+        }
+
+        return $category->name;
     }
 
     private function title_already_includes_page_title( $original_title, $page_title ) {

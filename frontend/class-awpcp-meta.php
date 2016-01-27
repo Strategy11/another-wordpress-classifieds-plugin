@@ -271,7 +271,3 @@ class AWPCP_Meta {
         remove_action('wp_head', 'jetpack_og_tags');
     }
 }
-
-function awpcp_page_title_builder() {
-    return new AWPCP_PageTitleBuilder();
-}
