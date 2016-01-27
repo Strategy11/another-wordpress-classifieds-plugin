@@ -333,36 +333,6 @@ class AWPCP_Ad {
 		return md5( sprintf( '%s%s%d', AUTH_KEY, uniqid( '', true ), rand( 1, 1000 ) ) );
 	}
 
-	private static function _get_ad_regions($ad_id) {
-		$results = awpcp_basic_regions_api()->find_by_ad_id( $ad_id );
-
-		$regions = array();
-		foreach ( $results as $region ) {
-			$regions[] = array(
-				'country' => $region->country,
-				'county' => $region->county,
-				'state' => $region->state,
-				'city' => $region->city
-			);
-		}
-
-		return $regions;
-	}
-
-	/**
-	 * @since 3.0.2
-	 */
-	public static function get_ad_regions($ad_id) {
-		return self::_get_ad_regions( $ad_id );
-	}
-
-	/**
-	 * @since 3.0.2
-	 */
-	public static function get_ad_regions_names($ad_id) {
-		return self::_get_ad_regions( $ad_id );
-	}
-
 	/**
 	 * Finds out if the Ad identified by $id belongs to the user
 	 * whose information is stored in $user.
@@ -593,13 +563,6 @@ class AWPCP_Ad {
 		$one_second_after_end_of_date_range = $end_of_date_range + 1;
 
 		return $this->has_expired( $one_second_after_end_of_date_range );
-	}
-
-	/**
-	 * @since 3.0.2
-	 */
-	public function get_regions() {
-		return $this->get_ad_regions( $this->ad_id );
 	}
 
 	public function get_first_region() {

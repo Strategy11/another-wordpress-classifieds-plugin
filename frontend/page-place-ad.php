@@ -502,7 +502,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $data['start_date'] = $data['ad_startdate'];
         $data['end_date'] = $data['ad_enddate'];
 
-        $data['regions'] = AWPCP_Ad::get_ad_regions( $ad_id );
+        $data['regions'] = awpcp_listing_renderer()->get_regions( (object) array( 'ID' => $ad_id ) );
 
         return $data;
     }

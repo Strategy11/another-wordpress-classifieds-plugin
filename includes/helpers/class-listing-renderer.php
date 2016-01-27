@@ -6,6 +6,7 @@
 function awpcp_listing_renderer() {
     return new AWPCP_ListingRenderer(
         awpcp_categories_collection(),
+        awpcp_basic_regions_api(),
         awpcp_wordpress()
     );
 }
@@ -16,10 +17,12 @@ function awpcp_listing_renderer() {
 class AWPCP_ListingRenderer {
 
     private $categories;
+    private $regions;
     private $wordpress;
 
-    public function __construct( $categories, $wordpress ) {
+    public function __construct( $categories, $regions, $wordpress ) {
         $this->categories = $categories;
+        $this->regions = $regions;
         $this->wordpress = $wordpress;
     }
 
@@ -72,6 +75,21 @@ class AWPCP_ListingRenderer {
         }
 
         return $formatted_date;
+    }
+
+    public function get_regions( $listing ) {
+        $regions = array();
+
+        foreach ( $this->regions->find_by_ad_id( $listing->ID ) as $region ) {
+            $regions[] = array(
+                'country' => $region->country,
+                'county' => $region->county,
+                'state' => $region->state,
+                'city' => $region->city
+            );
+        }
+
+        return $regions;
     }
 
     public function get_view_listing_link( $listing ) {

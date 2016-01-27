@@ -500,7 +500,7 @@ function awpcp_do_placeholder_legacy_dates($ad, $placeholder) {
  * @since 3.0
  */
 function awpcp_do_placeholder_location($ad, $placeholder) {
-    $regions = AWPCP_Ad::get_ad_regions_names( $ad->ad_id );
+    $regions = awpcp_listing_renderer()->get_regions( $ad );
 
     $cities = array();
     $states = array();
