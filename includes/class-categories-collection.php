@@ -25,7 +25,7 @@ class AWPCP_Categories_Collection {
 
         $category = $this->wordpress->get_term_by( 'id', $category_id, $this->taxonomy );
 
-        if ( is_null( $category ) ) {
+        if ( $category === false || is_null( $category ) ) {
             $message = __( 'No category was found with ID: %d', 'another-wordpress-classifieds-plugin' );
             throw new AWPCP_Exception( sprintf( $message, $category_id ) );
         }
