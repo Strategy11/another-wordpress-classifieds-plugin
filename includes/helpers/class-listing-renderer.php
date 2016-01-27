@@ -38,12 +38,12 @@ class AWPCP_ListingRenderer {
     }
 
     public function get_category_name( $listing ) {
-        $category = $this->get_category();
+        $category = $this->get_category( $listing );
         return is_object( $category ) ? $category->name : null;
     }
 
     public function get_category_id( $listing ) {
-        $category = $this->get_category();
+        $category = $this->get_category( $listing );
         return is_object( $category ) ? $category->term_id : null;
     }
 
