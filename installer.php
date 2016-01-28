@@ -224,7 +224,7 @@ class AWPCP_Installer {
             '3.5.4-dev-28' => 'upgrade_to_3_5_4_dev_28',
             '3.5.4-dev-29' => 'upgrade_to_3_5_4_dev_29',
             '3.5.4-dev-48' => 'upgrade_to_3_5_4_dev_48',
-            '3.6.5' => 'upgrade_to_3_6_5',
+            '3.6.4-dev-11' => 'upgrade_to_3_6_4_dev_11',
         );
 
         foreach ( $upgrade_routines as $version => $routine ) {
@@ -1010,13 +1010,16 @@ class AWPCP_Installer {
         }
     }
 
-    private function upgrade_to_3_6_5( $oldversion ) {
+    private function upgrade_to_3_6_4_dev_11( $oldversion ) {
         global $wpdb;
 
         if ( ! awpcp_column_exists( AWPCP_TABLE_PAYMENTS, 'user_id' ) ) {
-            $sql = $this->database_helper->replace_charset_and_collate();
             $wpdb->query(  'ALTER TABLE ' . AWPCP_TABLE_PAYMENTS . ' CHANGE user_id user_id INT( 10 ) NULL'  );
         }
+
+        // We need to run the Calculate Image Dimensions upgrade task again (#1474).
+        delete_option( 'awpcp-ciduth-last-file-id' );
+        awpcp()->manual_upgrades->enable_upgrade_task( 'awpcp-calculate-image-dimensions' );
     }
 }
 
