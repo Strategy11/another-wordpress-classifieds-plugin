@@ -50,6 +50,10 @@ class AWPCP_WordPress {
         return wp_insert_term( $term, $taxonomy, $args );
     }
 
+    public function update_term( $temr_id, $taxonomy, $args = array() ) {
+        return wp_update_term( $temr_id, $taxonomy, $args );
+    }
+
     public function get_term_by( $field = 'id', $value, $taxonomy, $output = OBJECT, $filter = 'raw' ) {
         return get_term_by( $field, $value, $taxonomy, $output, $filter );
     }
