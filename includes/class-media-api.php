@@ -4,14 +4,22 @@ function awpcp_media_api() {
     return AWPCP_MediaAPI::instance();
 }
 
+
+/**
+ * TODO: Is this class still needed?
+ */
 class AWPCP_MediaAPI {
     private static $instance = null;
 
-    public function __construct() {}
+    private $wordpress;
+
+    public function __construct( $wordpress ) {
+        $this->wordpress = $wordpress;
+    }
 
     public static function instance() {
         if ( is_null( self::$instance ) ) {
-            self::$instance = new AWPCP_MediaAPI();
+            self::$instance = new AWPCP_MediaAPI( awpcp_wordpress() );
         }
         return self::$instance;
     }
@@ -107,22 +115,7 @@ class AWPCP_MediaAPI {
     }
 
     public function delete( $media ) {
-        global $wpdb;
-
-        $query = 'DELETE FROM ' . AWPCP_TABLE_MEDIA . ' WHERE id = %d';
-        $result = $wpdb->query( $wpdb->prepare( $query, $media->id ) );
-
-        if ( $result === false ) {
-            return false;
-        }
-
-        foreach ( $media->get_associated_paths() as $filename ) {
-            if ( file_exists( $filename ) ) {
-                @unlink( $filename );
-            }
-        }
-
-        return true;
+        return $this->wordpress->delete_attachment( $media->ID, true ) !== false;
     }
 
     public function enable( $media ) {
