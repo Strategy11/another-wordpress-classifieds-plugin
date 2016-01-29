@@ -39,6 +39,8 @@ define( 'AWPCP_BASENAME', basename( dirname( __FILE__ ) ) );
 define( 'AWPCP_DIR', rtrim( plugin_dir_path( __FILE__ ), '/' ) );
 define( 'AWPCP_URL', rtrim( plugin_dir_url( __FILE__ ), '/' ) );
 
+define( 'AWPCP_CATEGORY_TAXONOMY', 'awpcp_listing_category' );
+
 global $awpcp;
 
 global $awpcp_plugin_data;
