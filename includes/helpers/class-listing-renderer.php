@@ -66,15 +66,36 @@ class AWPCP_ListingRenderer {
      * @since feature/1112
      */
     public function get_end_date( $listing ) {
-        $end_date = $this->wordpress->get_post_meta( $listing->ID, '_end_date', true );
+        $end_date = $this->get_end_date_raw( $listing );
+        return $this->get_formatted_date( $end_date );
+    }
 
-        if ( ! empty( $end_date ) ) {
-            $formatted_date = awpcp_datetime( 'awpcp-date', strtotime( $end_date ) );
+    /**
+     * @since feature/1112
+     */
+    private function get_end_date_raw( $listing ) {
+        return $this->wordpress->get_post_meta( $listing->ID, '_end_date', true );
+    }
+
+    /**
+     * @since feature/1112
+     */
+    private function get_formatted_date( $mysql_date ) {
+        if ( ! empty( $mysql_date ) ) {
+            $formatted_date = awpcp_datetime( 'awpcp-date', strtotime( $mysql_date ) );
         } else {
             $formatted_date = '';
         }
 
         return $formatted_date;
+    }
+
+    /**
+     * @since feature/1112
+     */
+    public function get_start_date( $listing ) {
+        $start_date = $this->wordpress->get_post_meta( $listing->ID, '_start_date', true );
+        return $this->get_formatted_date( $start_date );
     }
 
     public function get_regions( $listing ) {
@@ -90,6 +111,18 @@ class AWPCP_ListingRenderer {
         }
 
         return $regions;
+    }
+
+    public function has_expired() {
+        $end_date = $this->get_end_date_raw();
+
+        if ( ! empty( $end_date ) ) {
+            $end_date = strtotime( $end_date );
+        } else {
+            $end_date = 0;
+        }
+
+        return $end_date < current_time( 'timestamp' );
     }
 
     public function get_view_listing_link( $listing ) {

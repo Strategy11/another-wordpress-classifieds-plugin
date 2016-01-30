@@ -506,15 +506,6 @@ class AWPCP_Ad {
 	}
 
 	/**
-	 * @since 2.0.7
-	 */
-	function get_start_date() {
-		if (!empty($this->ad_startdate))
-			return awpcp_datetime( 'awpcp-date', strtotime( $this->ad_startdate ) );
-		return '';
-	}
-
-	/**
 	 * @since 3.0
 	 */
 	public function get_start_timestamp() {
@@ -545,13 +536,6 @@ class AWPCP_Ad {
 		if (!empty($this->renewed_date))
 			return awpcp_datetime( 'awpcp-date', strtotime( $this->renewed_date ) );
 		return '';
-	}
-
-	function has_expired( $target_date = null ) {
-		$target_date = is_null( $target_date ) ? current_time( 'timestamp' ) : $target_date;
-		$end_date = strtotime( $this->ad_enddate );
-
-		return $end_date < $target_date;
 	}
 
 	function is_about_to_expire() {
