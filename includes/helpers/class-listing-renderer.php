@@ -113,6 +113,18 @@ class AWPCP_ListingRenderer {
         return $regions;
     }
 
+    public function is_verified( $listing ) {
+        if ( $this->wordpress->get_post_meta( $listing->ID, '_verification_needed' ) ) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public function is_disabled( $listing ) {
+        return $listing->post_status == 'disabled';
+    }
+
     public function has_expired() {
         $end_date = $this->get_end_date_raw();
 
@@ -123,6 +135,10 @@ class AWPCP_ListingRenderer {
         }
 
         return $end_date < current_time( 'timestamp' );
+    }
+
+    public function get_payment_status( $listing ) {
+        return $this->wordpress->get_post_meta( $listing->ID, '_payment_status' );
     }
 
     public function get_view_listing_link( $listing ) {
