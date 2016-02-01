@@ -6,9 +6,11 @@
 function awpcp_listings_api() {
     if ( ! isset( $GLOBALS['awpcp-listings-api'] ) ) {
         $GLOBALS['awpcp-listings-api'] = new AWPCP_ListingsAPI(
+            awpcp_listing_renderer(),
             awpcp_listings_metadata(),
             awpcp_request(),
-            awpcp()->settings
+            awpcp()->settings,
+            awpcp_wordpress()
         );
     }
 
@@ -17,14 +19,18 @@ function awpcp_listings_api() {
 
 class AWPCP_ListingsAPI {
 
+    private $listing_renderer;
     private $metadata = null;
     private $request = null;
     private $settings = null;
+    private $wordpress;
 
-    public function __construct( $metadata, /*AWPCP_Request*/ $request = null, $settings ) {
+    public function __construct( $listing_renderer, $metadata, /*AWPCP_Request*/ $request = null, $settings, $wordpress ) {
+        $this->listing_renderer = $listing_renderer;
         $this->metadata = $metadata;
-        $this->request = $request;
         $this->settings = $settings;
+        $this->wordpress = $wordpress;
+        $this->request = $request;
 
         add_action( 'template_redirect', array( $this, 'dispatch' ) );
     }

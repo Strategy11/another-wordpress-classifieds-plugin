@@ -224,6 +224,7 @@ require_once( AWPCP_DIR . '/includes/cron/class-background-process.php' );
 require_once( AWPCP_DIR . '/includes/media/class-listing-file-validator.php' );
 
 require( AWPCP_DIR . '/includes/media/class-attachments-collection.php' );
+require( AWPCP_DIR . '/includes/media/class-attachments-logic.php' );
 require( AWPCP_DIR . '/includes/media/class-attachment-properties.php' );
 require( AWPCP_DIR . '/includes/media/class-attachment-status.php' );
 require( AWPCP_DIR . '/includes/media/class-file-handlers-manager.php' );

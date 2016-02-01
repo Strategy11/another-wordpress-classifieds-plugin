@@ -131,14 +131,6 @@ class AWPCP_MediaAPI {
     /**
      * @since 3.2.2
      */
-    public function approve( $media ) {
-        $media->status = AWPCP_Media::STATUS_APPROVED;
-        return $this->save( $media );
-    }
-
-    /**
-     * @since 3.2.2
-     */
     public function reject( $media ) {
         $media->status = AWPCP_Media::STATUS_REJECTED;
         return $this->save( $media );
