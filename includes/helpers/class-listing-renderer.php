@@ -7,6 +7,7 @@ function awpcp_listing_renderer() {
     return new AWPCP_ListingRenderer(
         awpcp_categories_collection(),
         awpcp_basic_regions_api(),
+        awpcp_payments_api(),
         awpcp_wordpress()
     );
 }
@@ -18,11 +19,13 @@ class AWPCP_ListingRenderer {
 
     private $categories;
     private $regions;
+    private $payments;
     private $wordpress;
 
-    public function __construct( $categories, $regions, $wordpress ) {
+    public function __construct( $categories, $regions, $payments, $wordpress ) {
         $this->categories = $categories;
         $this->regions = $regions;
+        $this->payments = $payments;
         $this->wordpress = $wordpress;
     }
 
@@ -139,6 +142,13 @@ class AWPCP_ListingRenderer {
 
     public function get_payment_status( $listing ) {
         return $this->wordpress->get_post_meta( $listing->ID, '_payment_status' );
+    }
+
+    public function get_payment_term( $listing ) {
+        $payment_term_id = $this->wordpress->get_post_meta( $listing->ID, '_payment_term_id' );
+        $payment_term_type = $this->wordpress->get_post_meta( $listing->ID, '_payment_term_type' );
+
+        return $this->payments->get_payment_term( $payment_term_id, $payment_term_type );
     }
 
     public function get_view_listing_link( $listing ) {

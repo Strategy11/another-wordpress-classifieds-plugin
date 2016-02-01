@@ -621,10 +621,6 @@ class AWPCP_Ad {
 		}
 	}
 
-	function get_payment_term() {
-		return awpcp_payments_api()->get_payment_term($this->adterm_id, $this->payment_term_type);
-	}
-
 	function count_image_files() {
 		return awpcp_media_api()->count_images_by_ad_id( $this->ad_id );
 	}
