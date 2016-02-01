@@ -40,8 +40,16 @@ class AWPCP_WordPress {
         return add_post_meta( $post_id, $meta_key, $meta_value, $unique );
     }
 
-    public function get_post_meta( $post_id, $key = '', $single = false ) {
-        return get_post_meta( $post_id, $key, $single );
+    public function update_post_meta( $post_id, $meta_key, $meta_value, $prev_value = '' ) {
+        return update_post_meta( $post_id, $meta_key, $meta_value, $prev_value );
+    }
+
+    public function get_post_meta( $post_id, $meta_key = '', $single = false ) {
+        return get_post_meta( $post_id, $meta_key, $single );
+    }
+
+    public function delete_post_meta( $post_id, $meta_key, $meta_value = '' ) {
+        return delete_post_meta( $post_id, $meta_key, $meta_value );
     }
 
     /* Taxonomies */
