@@ -691,25 +691,6 @@ class AWPCP_Ad {
 		return $listing_disabled;
 	}
 
-	public function enable( $approve_images = true, $trigger_actions = true ) {
-		$listing_enabled = $this->set_disabled_status( false );
-
-		if ( $listing_enabled ) {
-			if ( $approve_images ) {
-				$images = awpcp_media_api()->find_images_awaiting_approval_by_ad_id( $this->ad_id );
-				foreach ($images as $image) {
-					awpcp_media_api()->approve( $image );
-				}
-			}
-
-			if ( $trigger_actions ) {
-				do_action( 'awpcp_approve_ad', $this );
-			}
-		}
-
-		return $listing_enabled;
-	}
-
 	/**
 	 * @since  3.0-beta22
 	 * @deprecated 3.4. Use awpcp_listings_api()->flag().

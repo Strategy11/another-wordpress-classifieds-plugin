@@ -6,6 +6,8 @@
 function awpcp_listings_api() {
     if ( ! isset( $GLOBALS['awpcp-listings-api'] ) ) {
         $GLOBALS['awpcp-listings-api'] = new AWPCP_ListingsAPI(
+            awpcp_attachments_logic(),
+            awpcp_attachments_collection(),
             awpcp_listing_renderer(),
             awpcp_listings_metadata(),
             awpcp_request(),
@@ -19,13 +21,17 @@ function awpcp_listings_api() {
 
 class AWPCP_ListingsAPI {
 
+    private $attachments_logic;
+    private $attachments;
     private $listing_renderer;
     private $metadata = null;
     private $request = null;
     private $settings = null;
     private $wordpress;
 
-    public function __construct( $listing_renderer, $metadata, /*AWPCP_Request*/ $request = null, $settings, $wordpress ) {
+    public function __construct( $attachments_logic, $attachments, $listing_renderer, $metadata, /*AWPCP_Request*/ $request = null, $settings, $wordpress ) {
+        $this->attachments_logic = $attachments_logic;
+        $this->attachments = $attachments;
         $this->listing_renderer = $listing_renderer;
         $this->metadata = $metadata;
         $this->settings = $settings;
@@ -155,25 +161,60 @@ class AWPCP_ListingsAPI {
      * @tested
      */
     public function verify_ad( $ad ) {
-        if ( $ad->verified ) return;
+        if ( $this->listing_renderer->is_verified( $ad ) ) {
+            return;
+        }
+
+        $payment_term = $this->listing_renderer->get_payment_term( $ad );
+        $payment_status = $this->listing_renderer->get_payment_status( $ad );
 
         $timestamp = current_time( 'timestamp' );
-        $now = awpcp_datetime( 'mysql', $timestamp );
+        $now = current_time( 'mysql' );
 
-        $ad->verified = true;
-        $ad->verified_at = awpcp_datetime();
-        $ad->set_start_date( $now );
-        $ad->set_end_date( $ad->get_payment_term()->calculate_end_date( $timestamp ) );
+        $this->wordpress->delete_post_meta( $ad->ID, '_verification_needed' );
+        $this->wordpress->update_post_meta( $ad->ID, '_verification_date', $now );
+        $this->wordpress->update_post_meta( $ad->ID, '_start_date', $now );
+        $this->wordpress->update_post_meta( $ad->ID, '_end_date', $payment_term->calculate_end_date( $timestamp ) );
 
-        if ( $ad->disabled && awpcp_should_enable_new_listing_with_payment_status( $ad, $ad->payment_status ) ) {
-            $ad->enable( /*approve images?*/ ! get_awpcp_option( 'imagesapprove', false ) );
+        $listing_is_disabled = $this->listing_renderer->is_disabled( $ad );
+        $should_enable_listing = awpcp_should_enable_new_listing_with_payment_status( $ad, $payment_status );
+
+        if ( $listing_is_disabled && $should_enable_listing ) {
+            $this->enable_listing_without_triggering_actions( $ad );
         }
 
         if ( ! awpcp_current_user_is_moderator() ) {
             $this->send_ad_posted_email_notifications( $ad );
         }
+    }
 
-        $ad->save();
+    /**
+     * @since feature/1112
+     */
+    public function enable_listing( $listing ) {
+        $this->enable_listing_without_triggering_actions( $listing );
+
+        do_action( 'awpcp_approve_ad', $this );
+
+        return true;
+    }
+
+    /**
+     * @since feature/1112
+     */
+    private function enable_listing_without_triggering_actions( $listing ) {
+        $images_must_be_approved = $this->settings->get_option( 'imagesapprove', false );
+
+        if ( ! $images_must_be_approved ) {
+            $images = $this->attachments->find_attachments_of_type_awaiting_approval( 'image', array( 'post_parent' => $listing->ID, ) );
+
+            foreach ( $images as $image ) {
+                $this->attachments_logic->approve_attachment( $image );
+            }
+        }
+
+        $this->wordpress->update_post( array( 'ID' => $listing->ID, 'post_status' => 'publish' ) );
+        $this->wordpress->delete_post_meta( $listing->ID, '_disabled_date' );
     }
 
     /**
