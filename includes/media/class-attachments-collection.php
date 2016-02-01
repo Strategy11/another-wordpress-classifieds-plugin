@@ -91,4 +91,21 @@ class AWPCP_Attachments_Collection {
 
         return $query;
     }
+
+    public function find_attachments_awaiting_approval( $query = array() ) {
+        return $this->find_attachments( $this->make_attachments_awaiting_approval_query( $query ) );
+    }
+
+    private function make_attachments_awaiting_approval_query( $query ) {
+        $query['meta_query'][] = array(
+            'key' => '_allowed_status',
+            'value' => AWPCP_Attachment_Status::STATUS_AWAITING_APPROVAL,
+        );
+
+        return $query;
+    }
+
+    public function find_attachments_of_type_awaiting_approval( $type, $query = array() ) {
+        return $this->find_attachments_awaiting_approval( $this->make_attachments_of_type_query( $type, $query ) );
+    }
 }
