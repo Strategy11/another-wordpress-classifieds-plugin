@@ -72,14 +72,6 @@ class AWPCP_Ad {
 		return self::find_by($wpdb->prepare($where, $key, $email));
 	}
 
-	public static function find_by_user_id($id) {
-		return AWPCP_Ad::find_by("user_id = " . intval($id));
-	}
-
-	public static function find_by_id($id) {
-		return AWPCP_Ad::find_by("ad_id = " . intval($id));
-	}
-
 	public static function find_by($where) {
 		$results = AWPCP_Ad::find($where);
 		if (!empty($results)) {
@@ -163,24 +155,6 @@ class AWPCP_Ad {
 		$conditions = array_merge( $conditions, array( "disabled = 0" ) );
 
         return $conditions;
-	}
-
-	/**
-	 * @since 3.0
-	 */
-	public static function get_enabled_ads($args=array(), $conditions=array()) {
-        if ( ! isset( $args['order'] ) ) {
-            $args['order'] = self::get_order_conditions( get_awpcp_option( 'groupbrowseadsby' ) );
-        }
-
-        $conditions = self::get_where_conditions($conditions);
-
-        return self::query(array_merge($args, array('where' => join(' AND ', $conditions))));
-	}
-
-	public static function count_enabled_ads( $conditions = array() ) {
-        $conditions = self::get_where_conditions( $conditions );
-        return self::query( array( 'fields' => 'count', 'where' => join( ' AND ', $conditions ) ) );
 	}
 
 	public static function get_random_ads($limit, $args=array(), $conditions=array()) {

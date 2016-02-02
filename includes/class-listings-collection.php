@@ -117,6 +117,9 @@ class AWPCP_ListingsCollection {
     }
 
     /**
+     * TODO: Consdier order conditions (See Ad::get_order_conditions,
+     *       Ad::get_enabled_ads (origin/master) and groupbrowseadsby option).
+     *
      * @since 3.3
      * @since feature/1112  Modified to work with custom post types.
      */
@@ -127,6 +130,10 @@ class AWPCP_ListingsCollection {
     private function make_enabled_listings_query( $query ) {
         $query['post_status'] = 'publish';
         return $query;
+    }
+
+    public function find_disabled_listings( $query = array() ) {
+        return $this->find_valid_listings( $this->make_disabled_listings_query( $query ) );
     }
 
     private function make_disabled_listings_query( $query ) {
@@ -268,58 +275,53 @@ class AWPCP_ListingsCollection {
     /**
      * @since 3.3
      */
-    public function find_user_listings( $user_id, $params = array() ) {
-        $params = array_merge( $params, array(
-            'conditions' => array( $this->db->prepare( 'user_id = %d', $user_id ) )
-        ) );
+    public function find_user_listings( $user_id, $query = array() ) {
+        return $this->find_valid_listings( $this->make_user_listings_query( $user_id, $query ) );
+    }
 
-        return $this->find_valid_listings( $params );
+    private function make_user_listings_query( $user_id, $query ) {
+        $query['author'] = $user_id;
+        return $query;
     }
 
     /**
      * @since 3.3
+     * @since feature/1112  Modified to work with custom post types.
      */
-    public function count_user_listings( $user_id ) {
-        $conditions = array( $this->db->prepare( 'user_id = %d', $user_id ) );
-        return $this->count_valid_listings( $conditions );
+    public function count_user_listings( $user_id, $query = array() ) {
+        return $this->count_valid_listings( $this->make_user_listings_query( $user_id, $query ) );
     }
 
     /**
      * @since 3.3
+     * @since feature/1112  Modified to work with custom post types.
      */
-    public function find_user_enabled_listings( $user_id, $params = array() ) {
-        $params = array_merge( $params, array(
-            'conditions' => array( $this->db->prepare( 'user_id = %d', $user_id ), 'disabled = 0' )
-        ) );
-
-        return $this->find_valid_listings( $params );
+    public function find_user_enabled_listings( $user_id, $query = array() ) {
+        return $this->find_enabled_listings( $this->make_user_listings_query( $user_id, $query ) );
     }
 
     /**
      * @since 3.3
+     * @since feature/1112  Modified to work with custom post types.
      */
-    public function count_user_enabled_listings( $user_id ) {
-        $conditions = array( $this->db->prepare( 'user_id = %d', $user_id ), 'disabled = 0' );
-        return $this->count_valid_listings( $conditions );
+    public function count_user_enabled_listings( $user_id, $query = array() ) {
+        return $this->count_enabled_listings( $this->make_user_listings_query( $user_id, $query ) );
     }
 
     /**
      * @since 3.3
+     * @since feature/1112  Modified to work with custom post types.
      */
-    public function find_user_disabled_listings( $user_id, $params = array() ) {
-        $params = array_merge( $params, array(
-            'conditions' => array( $this->db->prepare( 'user_id = %d', $user_id ), 'disabled = 1' )
-        ) );
-
-        return $this->find_valid_listings( $params );
+    public function find_user_disabled_listings( $user_id, $query = array() ) {
+        return $this->find_disabled_listings( $this->make_user_listings_query( $user_id, $query ) );
     }
 
     /**
      * @since 3.3
+     * @since feature/1112  Modified to work with custom post types.
      */
-    public function count_user_disabled_listings( $user_id ) {
-        $conditions = array( $this->db->prepare( 'user_id = %d', $user_id ), 'disabled = 1' );
-        return $this->count_valid_listings( $conditions );
+    public function count_user_disabled_listings( $user_id, $query = array() ) {
+        return $this->count_disabled_listings( $this->make_user_listings_query( $user_id, $query ) );
     }
 
     /**
