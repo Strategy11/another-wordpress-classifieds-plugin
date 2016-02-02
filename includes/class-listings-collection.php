@@ -50,13 +50,6 @@ class AWPCP_ListingsCollection {
     }
 
     /**
-     * @since 3.2.2
-     */
-    public function find_by_id( $ad_id ) {
-        return AWPCP_Ad::find_by_id( $ad_id );
-    }
-
-    /**
      * @since 3.3
      */
     public function find_all_by_id( $identifiers ) {
