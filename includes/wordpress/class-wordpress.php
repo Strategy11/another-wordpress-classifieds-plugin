@@ -95,4 +95,10 @@ class AWPCP_WordPress {
     public function delete_attachment( $attachment_id, $force_delete = false ) {
         return wp_delete_attachment( $attachment_id, $force_delete );
     }
+
+    /* Misc */
+
+    public function create_posts_query( $query = array() ) {
+        return new WP_Query( $query );
+    }
 }
