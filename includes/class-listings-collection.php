@@ -100,7 +100,7 @@ class AWPCP_ListingsCollection {
      * @since feature/1112
      */
     public function find_listings( $query = array() ) {
-        $posts = new WP_Query( $this->prepare_listings_query( $query ) );
+        $posts = $this->wordpress->create_posts_query( $this->prepare_listings_query( $query ) );
         return $posts->posts;
     }
 
@@ -118,7 +118,7 @@ class AWPCP_ListingsCollection {
      * @since 3.3
      */
     public function count_listings( $query = array() ) {
-        $posts = new WP_Query();
+        $posts = $this->wordpress->create_posts_query();
         $posts->query( $this->prepare_listings_query( $query ) );
         return $posts->found_posts;
     }
