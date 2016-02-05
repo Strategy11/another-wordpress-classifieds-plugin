@@ -1,17 +1,26 @@
 <?php
 
 function awpcp_listing_payment_transaction_handler() {
-    return new AWPCP_ListingPaymentTransactionHandler( awpcp_listings_collection(), awpcp_listings_api() );
+    return new AWPCP_ListingPaymentTransactionHandler(
+        awpcp_listing_renderer(),
+        awpcp_listings_collection(),
+        awpcp_listings_api(),
+        awpcp_wordpress()
+    );
 }
 
 class AWPCP_ListingPaymentTransactionHandler {
 
+    private $listing_renderer;
     private $listings;
     private $listings_logic;
+    private $wordpress;
 
-    public function __construct( $listings, $listings_logic ) {
+    public function __construct( $listing_renderer, $listings, $listings_logic, $wordpress ) {
+        $this->listing_renderer = $listing_renderer;
         $this->listings = $listings;
         $this->listings_logic = $listings_logic;
+        $this->wordpress = $wordpress;
     }
 
     public function transaction_status_updated( $transaction, $new_status ) {
@@ -29,50 +38,63 @@ class AWPCP_ListingPaymentTransactionHandler {
             return;
         }
 
-        $listing = $this->listings->find_by_id( $transaction->get( 'ad-id' ) );
+        try {
+            $listing = $this->listings->get( $transaction->get( 'ad-id' ) );
+        } catch ( AWPCP_Exception $e ) {
+            return;
+        }
+
         $listing_had_accepted_payment_status = $this->listing_has_accepted_payment_status( $listing );
-        $trigger_actions = $transaction->get( 'ad-consolidated-at' ) ? true : false;
+        $is_transaction_consolidated = (bool) $transaction->get( 'ad-consolidated-at' );
+        $should_trigger_actions = $is_transaction_consolidated;
 
         $this->update_listing_payment_information( $listing, $transaction );
 
         if ( $transaction->was_payment_successful() ) {
             if ( ! $listing_had_accepted_payment_status ) {
                 $this->listings_logic->update_listing_verified_status( $listing, $transaction );
-                $this->maybe_enable_listing( $listing, $transaction, $trigger_actions );
+                $this->maybe_enable_listing( $listing, $transaction, $should_trigger_actions );
             }
 
-            if ( ! $transaction->get( 'ad-consolidated-at' ) ) {
+            if ( ! $is_transaction_consolidated ) {
                 $this->listings_logic->consolidate_new_ad( $listing, $transaction );
             }
         } else if ( $transaction->did_payment_failed() && $listing_had_accepted_payment_status ) {
-            $listing->disable( $trigger_actions );
+            if ( $is_transaction_consolidated ) {
+                $this->listings_logic->disable_listing( $should_trigger_actions );
+            } else {
+                $this->listings_logic->disable_listing_without_triggering_actions( $should_trigger_actions );
+            }
         }
-
-        $listing->save();
     }
 
     private function listing_has_accepted_payment_status( $listing ) {
+        $payment_status = $this->listing_renderer->get_payment_status( $listing );
+
         // TODO: how to remove dependency on AWPCP_Payment_Transaction?
-        if ( $listing->payment_status === AWPCP_Payment_Transaction::PAYMENT_STATUS_PENDING ) {
+        if ( $payment_status === AWPCP_Payment_Transaction::PAYMENT_STATUS_PENDING ) {
             return true;
-        } else if ( $listing->payment_status === AWPCP_Payment_Transaction::PAYMENT_STATUS_COMPLETED ) {
+        } else if ( $payment_status === AWPCP_Payment_Transaction::PAYMENT_STATUS_COMPLETED ) {
             return true;
-        } else if ( $listing->payment_status === AWPCP_Payment_Transaction::PAYMENT_STATUS_NOT_REQUIRED ) {
+        } else if ( $payment_status === AWPCP_Payment_Transaction::PAYMENT_STATUS_NOT_REQUIRED ) {
             return true;
         }
         return false;
     }
 
     private function update_listing_payment_information( $listing, $transaction ) {
-        $listing->payment_status = $transaction->payment_status;
-        $listing->payment_gateway = $transaction->payment_gateway;
-        $listing->payer_email = $transaction->payer_email;
+        $this->wordpress->update_post_meta( $listing->ID, '_payment_status', $transaction->payment_status );
+        $this->wordpress->update_post_meta( $listing->ID, '_payment_gateway', $transaction->payment_gateway );
+        $this->wordpress->update_post_meta( $listing->ID, '_payer_email', $transaction->payer_email );
     }
 
     private function maybe_enable_listing( $listing, $transaction, $trigger_actions ) {
-        if ( $listing->disabled && $this->should_enable_listing( $listing, $transaction ) ) {
-            $should_approve_listing_images = get_awpcp_option( 'imagesapprove' ) ? false : true;
-            $listing->enable( $should_approve_listing_images, $trigger_actions );
+        if ( $this->listing_renderer->is_disabled( $listing ) && $this->should_enable_listing( $listing, $transaction ) ) {
+            if ( $trigger_actions ) {
+                $this->listings_logic->enable_listing( $listing );
+            } else {
+                $this->listings_logic->enable_listing_without_triggering_actions( $listing );
+            }
         }
     }
 
