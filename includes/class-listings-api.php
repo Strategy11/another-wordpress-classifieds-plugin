@@ -202,9 +202,14 @@ class AWPCP_ListingsAPI {
     /**
      * @since feature/1112
      */
-    private function enable_listing_without_triggering_actions( $listing ) {
+    public function enable_listing_without_triggering_actions( $listing ) {
         $images_must_be_approved = $this->settings->get_option( 'imagesapprove', false );
 
+        // TODO: this is kind of useles... if images don't need to be approved,
+        // they are likely already enabled...
+        //
+        // Also, why don't we disable images when the
+        // listing is disabled?
         if ( ! $images_must_be_approved ) {
             $images = $this->attachments->find_attachments_of_type_awaiting_approval( 'image', array( 'post_parent' => $listing->ID, ) );
 
