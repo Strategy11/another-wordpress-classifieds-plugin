@@ -194,7 +194,7 @@ class AWPCP_ListingsAPI {
     public function enable_listing( $listing ) {
         $this->enable_listing_without_triggering_actions( $listing );
 
-        do_action( 'awpcp_approve_ad', $this );
+        do_action( 'awpcp_approve_ad', $listing );
 
         return true;
     }
