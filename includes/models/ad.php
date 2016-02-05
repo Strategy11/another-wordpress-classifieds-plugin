@@ -636,35 +636,6 @@ class AWPCP_Ad {
 		return is_object( $term ) ? $term->get_regions_allowed() : 0;
 	}
 
-	private function set_disabled_status($disabled) {
-		global $wpdb;
-
-		$this->disabled = absint($disabled);
-		$this->disabled_date = $disabled ? current_time('mysql') : null;
-
-		$query = "UPDATE  " . AWPCP_TABLE_ADS . " ";
-		if ($disabled) {
-			$query .= "SET disabled=1, disabled_date='{$this->disabled_date}' ";
-		} else {
-			$query .= "SET disabled=0, disabled_date=NULL ";
-		}
-		$query .= "WHERE ad_id=%d";
-
-		$result = $wpdb->query($wpdb->prepare($query, $this->ad_id));
-
-		return $result;
-	}
-
-	public function disable( $trigger_actions = true ) {
-		$listing_disabled = $this->set_disabled_status( true );
-
-		if ( $listing_disabled && $trigger_actions ) {
-			do_action('awpcp_disable_ad', $this);
-		}
-
-		return $listing_disabled;
-	}
-
 	/**
 	 * @since  3.0-beta22
 	 * @deprecated 3.4. Use awpcp_listings_api()->flag().

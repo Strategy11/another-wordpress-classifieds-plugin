@@ -217,6 +217,19 @@ class AWPCP_ListingsAPI {
         $this->wordpress->delete_post_meta( $listing->ID, '_disabled_date' );
     }
 
+    public function disable_listing( $listing ) {
+        $this->disable_listing_without_triggering_actions( $listing );
+
+        do_action( 'awpcp_disable_ad', $listing );
+
+        return true;
+    }
+
+    public function disable_listing_without_triggering_actions( $listing ) {
+        $this->wordpress->update_post( array( 'ID' => $listing->ID, 'post_status' => 'disabled' ) );
+        $this->wordpress->update_post_meta( $listing->ID, '_disabled_date', current_time( 'mysql' ) );
+    }
+
     /**
      * @since 3.0.2
      */
