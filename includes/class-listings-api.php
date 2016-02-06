@@ -9,7 +9,6 @@ function awpcp_listings_api() {
             awpcp_attachments_logic(),
             awpcp_attachments_collection(),
             awpcp_listing_renderer(),
-            awpcp_listings_metadata(),
             awpcp_request(),
             awpcp()->settings,
             awpcp_wordpress()
@@ -24,16 +23,14 @@ class AWPCP_ListingsAPI {
     private $attachments_logic;
     private $attachments;
     private $listing_renderer;
-    private $metadata = null;
     private $request = null;
     private $settings = null;
     private $wordpress;
 
-    public function __construct( $attachments_logic, $attachments, $listing_renderer, $metadata, /*AWPCP_Request*/ $request = null, $settings, $wordpress ) {
+    public function __construct( $attachments_logic, $attachments, $listing_renderer, /*AWPCP_Request*/ $request = null, $settings, $wordpress ) {
         $this->attachments_logic = $attachments_logic;
         $this->attachments = $attachments;
         $this->listing_renderer = $listing_renderer;
-        $this->metadata = $metadata;
         $this->settings = $settings;
         $this->wordpress = $wordpress;
         $this->request = $request;
@@ -100,35 +97,41 @@ class AWPCP_ListingsAPI {
     public function consolidate_new_ad( $ad, $transaction ) {
         do_action( 'awpcp-place-ad', $ad, $transaction );
 
-        $this->metadata->set( $ad->ad_id, 'reviewed', false );
+        $this->wordpress->update_post_meta( $ad->ID, '_content_needs_review', true );
 
-        if ( $ad->verified && ! awpcp_current_user_is_moderator() ) {
+        $is_listing_verified = $this->listing_renderer->is_verified( $ad );
+
+        if ( $is_listing_verified && ! awpcp_current_user_is_moderator() ) {
             $this->send_ad_posted_email_notifications( $ad, array(), $transaction );
-        } else if ( ! $ad->verified ) {
+        } else if ( ! $is_listing_verified ) {
             $this->send_verification_email( $ad );
         }
 
-        if ( ! $ad->verified && ! $ad->disabled ) {
-            $ad->disable();
+        if ( ! $is_listing_verified && ! $this->listing_renderer->is_disabled( $ad ) ) {
+            $this->disable_listing( $ad );
         }
 
-        $transaction->set( 'ad-consolidated-at', awpcp_datetime() );
+        $transaction->set( 'ad-consolidated-at', current_time( 'mysql' ) );
     }
 
     /**
      * @since 3.0.2
      */
     public function consolidate_existing_ad( $ad ) {
+        $is_listing_disabled = $this->listing_renderer->is_disabled( $ad );
+
         // if Ad is enabled and should be disabled, then disable it, otherwise
         // do not alter the Ad disabled status.
-        if ( ! $ad->disabled && awpcp_should_disable_existing_listing( $ad ) ) {
-            $ad->disable();
-            $ad->clear_disabled_date();
-        } else if ( $ad->disabled ) {
-            $ad->clear_disabled_date();
+        if ( ! $is_listing_disabled && awpcp_should_disable_existing_listing( $ad ) ) {
+            $this->disable_listing( $ad );
+            $this->wordpress->delete_post_meta( $ad->ID, '_disabled_date' );
+        } else if ( $is_listing_disabled ) {
+            $this->wordpress->delete_post_meta( $ad->ID, '_disabled_date' );
         }
 
-        if ( $ad->verified && ! awpcp_current_user_is_moderator() ) {
+        $is_listing_verified = $this->listing_renderer->is_verified( $ad );
+
+        if ( $is_listing_verified && ! awpcp_current_user_is_moderator() ) {
             $this->send_ad_updated_email_notifications( $ad );
         }
     }
