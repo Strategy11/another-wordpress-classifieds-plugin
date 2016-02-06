@@ -68,8 +68,10 @@ function awpcp_send_listing_updated_notification_to_moderators( $listing, $messa
         return false;
     }
 
+    $listing_title = awpcp_listing_renderer()->get_listing_title( $listing );
+
     $subject = __( 'Listing "%s" was updated', 'another-wordpress-classifieds-plugin' );
-    $subject = sprintf( $subject, $listing->get_title() );
+    $subject = sprintf( $subject, $listing_title );
 
     $user_message = awpcp_ad_updated_user_email( $listing, $messages );
     $content = $user_message->body;
@@ -78,11 +80,11 @@ function awpcp_send_listing_updated_notification_to_moderators( $listing, $messa
     $admin_message->to = $email_recipients;
     $admin_message->subject = $subject;
 
-    $params = array( 'action' => 'view', 'id' => $listing->ad_id );
+    $params = array( 'action' => 'view', 'id' => $listing->ID );
     $manage_listing_url = add_query_arg( urlencode_deep( $params ), awpcp_get_admin_listings_url() );
 
     $template = AWPCP_DIR . '/templates/email/listing-updated-nofitication-moderators.plain.tpl.php';
-    $admin_message->prepare( $template, compact( 'listing', 'manage_listing_url', 'content' ) );
+    $admin_message->prepare( $template, compact( 'listing_title', 'manage_listing_url', 'content' ) );
 
     $message_sent = $admin_message->send();
 
