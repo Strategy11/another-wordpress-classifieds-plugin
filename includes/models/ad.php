@@ -555,27 +555,6 @@ class AWPCP_Ad {
 		return true;
 	}
 
-	public function clear_disabled_date() {
-		$this->clear_property( 'disabled_date' );
-	}
-
-	protected function clear_property( $property_name ) {
-		global $wpdb;
-
-		if ( ! property_exists( $this, $property_name ) ) {
-			return false;
-		}
-
-		$query = 'UPDATE ' . AWPCP_TABLE_ADS . ' SET `%s` = NULL WHERE ad_id = %%d';
-		$query = sprintf( $query, $property_name );
-
-		$result = $wpdb->query( $wpdb->prepare( $query, $this->ad_id ) );
-
-		if ( $result !== false ) {
-			$this->$property_name = null;
-		}
-	}
-
 	function get_payment_status() {
 		if (empty($this->payment_status)) {
 			return _x('N/A', 'ad payment status', 'another-wordpress-classifieds-plugin');
