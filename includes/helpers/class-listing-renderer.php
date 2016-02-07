@@ -66,17 +66,19 @@ class AWPCP_ListingRenderer {
     }
 
     /**
+     * TODO: Rename to get_formatted_end_date
      * @since feature/1112
      */
     public function get_end_date( $listing ) {
-        $end_date = $this->get_end_date_raw( $listing );
+        $end_date = $this->get_plain_end_date( $listing );
         return $this->get_formatted_date( $end_date );
     }
 
     /**
+     * TODO: Rename to get_end_date
      * @since feature/1112
      */
-    private function get_end_date_raw( $listing ) {
+    public function get_plain_end_date( $listing ) {
         return $this->wordpress->get_post_meta( $listing->ID, '_end_date', true );
     }
 
@@ -133,7 +135,7 @@ class AWPCP_ListingRenderer {
     }
 
     private function has_expired_on_date( $listing, $timestamp ) {
-        $end_date = $this->get_end_date_raw( $listing );
+        $end_date = $this->get_plain_end_date( $listing );
 
         if ( ! empty( $end_date ) ) {
             $end_date = strtotime( $end_date );
