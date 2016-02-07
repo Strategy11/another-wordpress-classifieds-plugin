@@ -15,4 +15,8 @@ class AWPCP_Attachment_Properties {
     public function get_image_url( $attachment, $size ) {
         return $this->wordpress->get_attachment_image_url( $attachment->ID, "awpcp-$size" );
     }
+
+    public function get_image( $attachment, $size, $ah, $attributes ) {
+        return $this->wordpress->get_attachment_image( $attachment->ID, "awpcp-$size", $ah, $attributes );
+    }
 }
