@@ -5,7 +5,7 @@ function awpcp_image_file_handler() {
         awpcp_image_file_validator(),
         awpcp_image_file_mover(),
         awpcp_image_file_processor(),
-        awpcp_image_media_creator()
+        awpcp_image_attachment_creator()
     );
 }
 
@@ -28,6 +28,6 @@ class AWPCP_ListingFileHandler {
         $this->mover->move_file( $file );
         $this->processor->process_file( $listing, $file );
 
-        return $this->creator->create_media( $listing, $file );
+        return $this->creator->create_attachment( $listing, $file );
     }
 }
