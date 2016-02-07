@@ -1,20 +1,30 @@
 <?php
 
 function awpcp_renew_listings_admin_page() {
-    return new AWPCP_RenewListingsAdminPage( awpcp_listings_collection(), awpcp_payments_api(), awpcp_request() );
+    return new AWPCP_RenewListingsAdminPage(
+        awpcp_listings_api(),
+        awpcp_listing_renderer(),
+        awpcp_listings_collection(),
+        awpcp_payments_api(),
+        awpcp_request()
+    );
 }
 
 class AWPCP_RenewListingsAdminPage extends AWPCP_ListingActionAdminPage {
 
+    private $listings_logic;
+    private $listing_renderer;
     private $payments;
 
     public $successful = 0;
     public $failed = 0;
     public $errors = array();
 
-    public function __construct( $listings, $payments, $request ) {
+    public function __construct( $listings_logic, $listing_renderer, $listings, $payments, $request ) {
         parent::__construct( $listings, $request );
 
+        $this->listings_logic = $listings_logic;
+        $this->listing_renderer = $listing_renderer;
         $this->payments = $payments;
     }
 
@@ -31,7 +41,7 @@ class AWPCP_RenewListingsAdminPage extends AWPCP_ListingActionAdminPage {
             $this->renew_listing( $listing );
         } catch ( AWPCP_Exception $e ) {
             $message = __( 'There was an error trying to renew Ad %s.', 'another-wordpress-classifieds-plugin' );
-            $message = sprintf( $message, '<strong>' . $listing->get_title() . '</strong>' );
+            $message = sprintf( $message, '<strong>' . $this->listing_renderer->get_listing_title( $listing ) . '</strong>' );
 
             $this->errors[] = $message . ' ' . $e->format_errors();
             $this->failed = $this->failed + 1;
@@ -39,7 +49,10 @@ class AWPCP_RenewListingsAdminPage extends AWPCP_ListingActionAdminPage {
     }
 
     private function renew_listing( $listing ) {
-        if ( ! $listing->has_expired() && ! $listing->is_about_to_expire() ) {
+        $listing_expired = $this->listing_renderer->has_expired( $listing );
+        $listing_is_about_to_expire = $this->listing_renderer->is_about_to_expire( $listing );
+
+        if ( ! $listing_expired && ! $listing_is_about_to_expire ) {
             throw new AWPCP_Exception( __( "The Ad hasn't expired yet and is not about to expire.", 'another-wordpress-classifieds-plugin' ) );
         }
 
@@ -53,8 +66,7 @@ class AWPCP_RenewListingsAdminPage extends AWPCP_ListingActionAdminPage {
             throw new AWPCP_Exception( $term->ad_cannot_be_renewed_error( $listing ) );
         }
 
-        $listing->renew();
-        $listing->save();
+        $this->listings_logic->renew_listing( $listing );
 
         awpcp_send_ad_renewed_email( $listing );
         $this->successful = $this->successful + 1;
