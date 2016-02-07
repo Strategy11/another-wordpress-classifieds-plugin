@@ -128,8 +128,12 @@ class AWPCP_ListingRenderer {
         return $listing->post_status == 'disabled';
     }
 
-    public function has_expired() {
-        $end_date = $this->get_end_date_raw();
+    public function has_expired( $listing ) {
+        return $this->has_expired_on_date( $listing, current_time( 'timestamp' ) );
+    }
+
+    private function has_expired_on_date( $listing, $timestamp ) {
+        $end_date = $this->get_end_date_raw( $listing );
 
         if ( ! empty( $end_date ) ) {
             $end_date = strtotime( $end_date );
@@ -137,7 +141,14 @@ class AWPCP_ListingRenderer {
             $end_date = 0;
         }
 
-        return $end_date < current_time( 'timestamp' );
+        return $end_date < $timestamp;
+    }
+
+    public function is_about_to_expire( $listing ) {
+        $end_of_date_range = awpcp_calculate_end_of_renew_email_date_range_from_now();
+        $one_second_after_end_of_date_range = $end_of_date_range + 1;
+
+        return $this->has_expired_on_date( $listing, $one_second_after_end_of_date_range );
     }
 
     public function get_payment_status( $listing ) {

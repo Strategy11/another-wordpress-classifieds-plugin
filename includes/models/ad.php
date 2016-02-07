@@ -512,17 +512,6 @@ class AWPCP_Ad {
 		return '';
 	}
 
-	function is_about_to_expire() {
-		if ( $this->has_expired() ) {
-			return false;
-		}
-
-		$end_of_date_range = awpcp_calculate_end_of_renew_email_date_range_from_now();
-		$one_second_after_end_of_date_range = $end_of_date_range + 1;
-
-		return $this->has_expired( $one_second_after_end_of_date_range );
-	}
-
 	public function get_first_region() {
 		$regions = $this->get_regions();
 		return count( $regions ) > 0 ? $regions[0] : null;
