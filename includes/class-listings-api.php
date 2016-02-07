@@ -238,6 +238,36 @@ class AWPCP_ListingsAPI {
         $this->wordpress->update_post_meta( $listing->ID, '_disabled_date', current_time( 'mysql' ) );
     }
 
+    public function renew_listing( $listing, $end_date = false ) {
+        if ( $end_date === false ) {
+            // if the Ad's end date is in the future, use that as starting point
+            // for the new end date, else use current date.
+            $end_date = awpcp_datetime( 'timestamp', $this->listing_renderer->get_plain_end_date( $listing ) );
+            $now = current_time( 'timestamp' );
+            $start_date = $end_date > $now ? $end_date : $now;
+
+            $payment_term = $this->listing_renderer->get_payment_term( $listing );
+
+            $this->wordpress->update_post_meta( $listing->ID, '_end_date', $payment_term->calculate_end_date( $start_date ) );
+        } else {
+            $this->wordpress->update_post_meta( $listing->ID, '_end_date', $end_date );
+        }
+
+        $this->wordpress->delete_post_meta( $listing->ID, '_renew_email_sent' );
+        $this->wordpress->update_post_meta( $listing->ID, '_renewed_date', current_time( 'mysql' ) );
+
+        // if Ad is disabled lets see if we can enable it
+        $is_listing_disabled = $this->listing_renderer->is_disabled( $listing );
+
+        if ( $is_listing_disabled && awpcp_should_enable_existing_listing( $listing ) ) {
+            $this->enable_listing( $listing );
+        } else if ( $is_listing_disabled ) {
+            $this->wordpress->delete_post_meta( $listing->ID, '_disabled_date' );
+        }
+
+        return true;
+    }
+
     /**
      * @since 3.0.2
      */

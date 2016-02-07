@@ -517,33 +517,6 @@ class AWPCP_Ad {
 		return count( $regions ) > 0 ? $regions[0] : null;
 	}
 
-	public function renew($end_date=false) {
-		if ($end_date === false) {
-			// if the Ad's end date is in the future, use that as starting point
-			// for the new end date, else use current date.
-			$end_date = awpcp_datetime( 'timestamp', $this->ad_enddate );
-			$now = awpcp_datetime( 'timestamp' );
-			$start_date = $end_date > $now ? $end_date : $now;
-
-			$payment_term = $this->get_payment_term();
-			$this->set_end_date($payment_term->calculate_end_date($start_date));
-		} else {
-			$this->set_end_date($end_date);
-		}
-
-		$this->renew_email_sent = false;
-		$this->renewed_date = current_time('mysql');
-
-		// if Ad is disabled lets see if we can enable it
-		if ($this->disabled && awpcp_should_enable_existing_listing( $this ) ) {
-			$this->enable();
-		} else if ( $this->disabled ) {
-			$this->clear_disabled_date();
-		}
-
-		return true;
-	}
-
 	function get_payment_status() {
 		if (empty($this->payment_status)) {
 			return _x('N/A', 'ad payment status', 'another-wordpress-classifieds-plugin');
