@@ -4,7 +4,7 @@
  * @since 3.4
  */
 function awpcp_build_categories_hierarchy( &$categories ) {
-    $hierarchy = array();
+    $hierarchy = array( 'root' => array(), );
 
     foreach ( $categories as $category ) {
         if ( $category->parent == 0 ) {
