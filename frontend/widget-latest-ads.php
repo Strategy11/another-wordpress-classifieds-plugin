@@ -87,8 +87,9 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
     }
 
     private function render_item( $item, $instance, $html_class ) {
-        $item_url = url_showad( $item->ad_id );
-        $item_title = sprintf( '<a href="%s">%s</a>', $item_url, stripslashes( $item->ad_title ) );
+        $listing_title = $this->listing_renderer->get_listing_title( $item );
+        $item_url = $this->listing_renderer->get_view_listing_url( $item->ID );
+        $item_title = sprintf( '<a href="%s">%s</a>', $item_url, stripslashes( $listing_title ) );
 
         if ($instance['show-title']) {
             $html_title = sprintf( '<div class="awpcp-listing-title">%s</div>', $item_title );
@@ -97,7 +98,7 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
         }
 
         if ($instance['show-excerpt']) {
-            $excerpt = stripslashes( awpcp_utf8_substr( $item->ad_details, 0, 50 ) ) . "...";
+            $excerpt = stripslashes( awpcp_utf8_substr( $item->post_content, 0, 50 ) ) . "...";
             $read_more = sprintf( '<a class="awpcp-widget-read-more" href="%s">[%s]</a>', $item_url, __( 'Read more', 'another-wordpress-classifieds-plugin' ) );
             $html_excerpt = sprintf( '<div class="awpcp-listings-widget-item-excerpt">%s%s</div>', $excerpt, $read_more );
         } else {
@@ -119,35 +120,29 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
         global $awpcp_imagesurl;
 
         $show_images = $instance['show-images'] && awpcp_are_images_allowed();
-        $image = awpcp_media_api()->get_ad_primary_image( $item );
+        // TODO: wrap this instruction in a method. The same line is used in Image Placeholders.
+        $image = $this->attachments->get_featured_attachment_of_type(
+            'image', array( 'post_parent' => $item->ID )
+        );
 
+        // TODO: fix so that a blank image is shown if no image is available. Can we add the blank image as an attachment?
         if ( ! is_null( $image ) && $show_images ) {
-            $image_url = $image->get_url();
+            $image_url = $this->attachment_properties->get_image_url( $image, 'featured' );
         } else if ( $instance['show-blank'] && $show_images ) {
             $image_url = "$awpcp_imagesurl/adhasnoimage.png";
         } else {
             $image_url = '';
         }
 
-        if ( empty( $image_url ) ) {
-            $html_image = '';
-        } else {
-            $image_dimensions = awpcp_media_api()->get_metadata( $image, 'image-dimensions', array() );
-            $image_dimensions = awpcp_array_data( 'thumbnail', array(), $image_dimensions );
-
+        if ( ! is_null( $image ) && $show_images ) {
             $image_attributes = array(
-                'attributes' => array(
-                    'alt' => esc_attr( $item->get_title() ),
-                    'src' => $image_url,
-                    'width' => awpcp_array_data( 'width', null, $image_dimensions ),
-                    'height' => awpcp_array_data( 'height', null, $image_dimensions ),
-                ),
+                'alt' => esc_attr( $this->listing_renderer->get_listing_title( $item ) ),
             );
 
             $html_image = sprintf(
                 '<a class="awpcp-listings-widget-item-listing-link self" href="%s">%s</a>',
-                url_showad( $item->ad_id ),
-                awpcp_html_image( $image_attributes )
+                $this->listing_renderer->get_view_listing_url( $item->ID ),
+                $this->attachment_properties->get_image( $image->ID, 'featured', false, $image_attributes )
             );
         }
 
@@ -155,10 +150,12 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
     }
 
     protected function query($instance) {
+        // TODO: make sure the query can be filtered by modules
+        // TODO: make sure the orderby parameter is replaced by a proper value before passing it to WP_Query
         return array(
             'context' => array( 'public-listings', 'latest-listings-widget' ),
             'orderby' => 'renewed-date',
-            'limit' => $instance['limit'],
+            'posts_per_page' => $instance['limit'],
         );
     }
 
@@ -173,7 +170,7 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
         echo !empty( $title ) ? $before_title . $title . $after_title : '';
 
         echo '<ul class="awpcp-listings-widget-items-list">';
-        $items = awpcp_listings_collection()->find_enabled_listings_with_query( $this->query( $instance ) );
+        $items = awpcp_listings_collection()->find_enabled_listings( $this->query( $instance ) );
         echo $this->render( $items, $instance );
         echo '</ul>';
 
