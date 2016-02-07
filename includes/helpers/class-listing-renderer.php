@@ -147,6 +147,10 @@ class AWPCP_ListingRenderer {
     }
 
     public function is_about_to_expire( $listing ) {
+        if ( $this->has_expired( $listing ) ) {
+            return false;
+        }
+
         $end_of_date_range = awpcp_calculate_end_of_renew_email_date_range_from_now();
         $one_second_after_end_of_date_range = $end_of_date_range + 1;
 
