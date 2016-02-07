@@ -195,17 +195,22 @@ class AWPCP_ListingsAPI {
      * @since feature/1112
      */
     public function enable_listing( $listing ) {
-        $this->enable_listing_without_triggering_actions( $listing );
-
-        do_action( 'awpcp_approve_ad', $listing );
-
-        return true;
+        if ( $this->enable_listing_without_triggering_actions( $listing ) ) {
+            do_action( 'awpcp_approve_ad', $listing );
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
      * @since feature/1112
      */
     public function enable_listing_without_triggering_actions( $listing ) {
+        if ( ! $this->listing_renderer->is_disabled( $listing ) ) {
+            return false;
+        }
+
         $images_must_be_approved = $this->settings->get_option( 'imagesapprove', false );
 
         // TODO: this is kind of useles... if images don't need to be approved,
@@ -223,6 +228,8 @@ class AWPCP_ListingsAPI {
 
         $this->wordpress->update_post( array( 'ID' => $listing->ID, 'post_status' => 'publish' ) );
         $this->wordpress->delete_post_meta( $listing->ID, '_disabled_date' );
+
+        return true;
     }
 
     public function disable_listing( $listing ) {
