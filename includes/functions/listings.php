@@ -22,20 +22,22 @@ function awpcp_display_listings( $query, $context, $options ) {
     }
 
     $results_per_page = absint( awpcp_request_param( 'results', get_awpcp_option( 'adresultsperpage', 10 ) ) );
+    $results_per_page = max( $results_per_page, 1 );
     $results_offset = absint( awpcp_request_param( 'offset', 0 ) );
+    $results_page = ceil( $results_offset / $results_per_page );
 
-    if ( empty( $query['limit'] ) && $results_per_page ) {
-        $query['limit'] = $results_per_page;
+    if ( empty( $query['posts_per_page'] ) && $results_per_page ) {
+        $query['posts_per_page'] = $results_per_page;
     }
 
-    if ( empty( $query['offset'] ) && $query['limit'] ) {
-        $query['offset'] = $results_offset;
+    if ( empty( $query['paged'] ) && $query['posts_per_page'] ) {
+        $query['paged'] = $results_page;
     }
 
     $listings_collection = awpcp_listings_collection();
 
-    $listings = $listings_collection->find_enabled_listings_with_query( $query );
-    $listings_count = $listings_collection->count_enabled_listings_with_query( $query );
+    $listings = $listings_collection->find_enabled_listings( $query );
+    $listings_count = $listings_collection->count_enabled_listings( $query );
 
     $before_content = apply_filters( 'awpcp-content-before-listings-page', $options['before_content'], $context );
 
