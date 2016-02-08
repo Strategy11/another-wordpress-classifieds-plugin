@@ -217,6 +217,16 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
                                             _x('regarding', 'reply email', 'another-wordpress-classifieds-plugin'),
                                             $ad_title);
 
+            // TODO: Update email templates so that 1. placehoders can be used freely
+            //       and 2. modules can define what placeholders are available and when/where.
+            $placeholders = array(
+                'bp_user_profile_url', 'bp_user_listings_url', 'bp_username',
+                'bp_current_user_profile_url', 'bp_current_user_listings_url', 'bp_current_username',
+            );
+
+            $body_template = get_awpcp_option( 'contactformbodymessage' );
+            $body = awpcp_replace_placeholders( $placeholders, $ad, $body_template, 'reply-to-listing' );
+
             ob_start();
                 include(AWPCP_DIR . '/frontend/templates/email-reply-to-ad-user.tpl.php');
                 $body = ob_get_contents();

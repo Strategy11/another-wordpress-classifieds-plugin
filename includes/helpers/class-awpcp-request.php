@@ -138,7 +138,6 @@ class AWPCP_Request {
      * @since 3.0.2
      */
     public function get_ad_id() {
-        _deprecated_function( __FUNCTION__, '3.6.4', 'Request::get_current_listing_id' );
         return $this->get_current_listing_id();
     }
 
