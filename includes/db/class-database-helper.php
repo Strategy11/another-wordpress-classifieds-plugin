@@ -28,7 +28,7 @@ class AWPCP_Database_Helper {
 
     public function get_collate() {
         if ( $this->db->charset === 'utf8mb4' && $this->db->has_cap( 'utf8mb4' ) ) {
-            return $this->db->collate
+            return $this->db->collate;
         }
 
         return 'utf8_general_ci';
