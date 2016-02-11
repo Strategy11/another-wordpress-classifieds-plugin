@@ -176,7 +176,6 @@ require( AWPCP_DIR . "/includes/db/class-database-helper.php" );
 
 require_once( AWPCP_DIR . "/includes/views/class-ajax-handler.php" );
 require_once( AWPCP_DIR . "/includes/views/class-base-page.php" );
-require_once( AWPCP_DIR . "/includes/views/class-file-action-ajax-handler.php" );
 require_once( AWPCP_DIR . "/includes/views/class-step-decorator.php" );
 require_once( AWPCP_DIR . "/includes/views/class-payment-step-decorator.php" );
 require_once( AWPCP_DIR . "/includes/views/class-prepare-transaction-for-payment-step-decorator.php" );
@@ -225,6 +224,7 @@ require_once( AWPCP_DIR . '/includes/media/class-listing-file-validator.php' );
 
 require( AWPCP_DIR . '/includes/media/class-attachments-collection.php' );
 require( AWPCP_DIR . '/includes/media/class-attachments-logic.php' );
+require( AWPCP_DIR . "/includes/media/class-attachment-action-ajax-handler.php" );
 require( AWPCP_DIR . '/includes/media/class-attachment-properties.php' );
 require( AWPCP_DIR . '/includes/media/class-attachment-status.php' );
 require( AWPCP_DIR . '/includes/media/class-file-handlers-manager.php' );
