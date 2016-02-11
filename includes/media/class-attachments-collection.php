@@ -1,11 +1,20 @@
 <?php
 
 function awpcp_attachments_collection() {
-    return new AWPCP_Attachments_Collection();
+    return new AWPCP_Attachments_Collection( awpcp_wordpress() );
 }
 
 class AWPCP_Attachments_Collection {
 
+    private $wordpress;
+
+    public function __construct( $wordpress ) {
+        $this->wordpress = $wordpress;
+    }
+
+    public function get( $attachment_id ) {
+        return $this->wordpress->get_post( $attachment_id );
+    }
 
     public function get_featured_attachment_of_type( $type, $query = array() ) {
         $query = $this->make_attachments_of_type_query( $type, $query );
