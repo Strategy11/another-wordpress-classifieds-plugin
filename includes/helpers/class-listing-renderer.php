@@ -158,12 +158,12 @@ class AWPCP_ListingRenderer {
     }
 
     public function get_payment_status( $listing ) {
-        return $this->wordpress->get_post_meta( $listing->ID, '_payment_status' );
+        return $this->wordpress->get_post_meta( $listing->ID, '_payment_status', true );
     }
 
     public function get_payment_term( $listing ) {
-        $payment_term_id = $this->wordpress->get_post_meta( $listing->ID, '_payment_term_id' );
-        $payment_term_type = $this->wordpress->get_post_meta( $listing->ID, '_payment_term_type' );
+        $payment_term_id = $this->wordpress->get_post_meta( $listing->ID, '_payment_term_id', true );
+        $payment_term_type = $this->wordpress->get_post_meta( $listing->ID, '_payment_term_type', true );
 
         return $this->payments->get_payment_term( $payment_term_id, $payment_term_type );
     }
