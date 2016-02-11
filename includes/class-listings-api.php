@@ -276,6 +276,13 @@ class AWPCP_ListingsAPI {
     }
 
     /**
+     * @since feature/1112
+     */
+    public function generate_access_key() {
+        return md5( sprintf( '%s%s%d', wp_salt(), uniqid( '', true ), rand( 1, 1000 ) ) );
+    }
+
+    /**
      * @since 3.0.2
      */
     public function get_ad_alerts( $ad ) {

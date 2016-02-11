@@ -303,10 +303,6 @@ class AWPCP_Ad {
 		return $n !== FALSE ? $n : 0;
 	}
 
-	public static function generate_key() {
-		return md5( sprintf( '%s%s%d', AUTH_KEY, uniqid( '', true ), rand( 1, 1000 ) ) );
-	}
-
 	/**
 	 * Finds out if the Ad identified by $id belongs to the user
 	 * whose information is stored in $user.
