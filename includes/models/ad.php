@@ -508,11 +508,6 @@ class AWPCP_Ad {
 		return '';
 	}
 
-	public function get_first_region() {
-		$regions = $this->get_regions();
-		return count( $regions ) > 0 ? $regions[0] : null;
-	}
-
 	function get_payment_status() {
 		if (empty($this->payment_status)) {
 			return _x('N/A', 'ad payment status', 'another-wordpress-classifieds-plugin');

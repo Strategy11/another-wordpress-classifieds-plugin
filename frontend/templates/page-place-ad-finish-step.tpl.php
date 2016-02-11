@@ -16,4 +16,4 @@
     <?php echo awpcp_print_message($message); ?>
 <?php endforeach; ?>
 
-<?php echo showad($ad->ad_id, true, true, false); ?>
+<?php echo showad( $ad->ID, true, true, false ); ?>

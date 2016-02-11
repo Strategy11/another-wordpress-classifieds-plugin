@@ -118,6 +118,11 @@ class AWPCP_ListingRenderer {
         return $regions;
     }
 
+    public function get_first_region( $listing ) {
+        $regions = $this->get_regions( $listing );
+        return count( $regions ) > 0 ? $regions[0] : null;
+    }
+
     public function is_verified( $listing ) {
         if ( $this->wordpress->get_post_meta( $listing->ID, '_verification_needed' ) ) {
             return false;
@@ -188,7 +193,7 @@ class AWPCP_ListingRenderer {
         if($seoFriendlyUrls && isset($permastruc) && !empty($permastruc)) {
             $url = sprintf( '%s/%s', trim( $base_url, '/' ), $listing->ID );
 
-            $region = $listing->get_first_region();
+            $region = $this->get_first_region( $listing );
 
             $parts = array();
 
