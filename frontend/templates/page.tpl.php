@@ -1,8 +1,8 @@
 <?php awpcp_print_messages() ?>
 
-<div class="<?php echo esc_attr( $this->page ); ?> awpcp-page" id="classiwrapper">
+<div class="<?php echo esc_attr( $page->page ); ?> awpcp-page" id="classiwrapper">
 
-    <?php if ( $this->show_menu_items ): ?>
+    <?php if ( $page->show_menu_items ): ?>
         <?php echo awpcp_menu_items(); ?>
     <?php endif; ?>
 

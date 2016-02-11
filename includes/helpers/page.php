@@ -2,7 +2,7 @@
 
 class AWPCP_Page {
 
-    protected $show_menu_items = true;
+    public $show_menu_items = true;
 
     protected $template = 'frontend/templates/page.tpl.php';
     protected $action = false;
@@ -10,9 +10,17 @@ class AWPCP_Page {
     public $page;
     public $title;
 
-    public function __construct($page, $title) {
+    private $template_renderer;
+
+    public function __construct( $page, $title, $template_renderer ) {
         $this->page = $page;
         $this->title = $title;
+
+        if ( is_null( $template_renderer ) ) {
+            $this->template_renderer = awpcp_template_renderer();
+        } else {
+            $this->template_renderer = $template_renderer;
+        }
     }
 
     public function get_current_action($default=null) {
@@ -37,24 +45,14 @@ class AWPCP_Page {
         return $this->title;
     }
 
-    public function render($template, $params=array()) {
-        if ($template === 'content') {
-            $content = $params;
-        } else if (file_exists($template)) {
-            extract($params);
-            ob_start();
-                include($template);
-                $content = ob_get_contents();
-            ob_end_clean();
-        } else {
-            $content = __('Template not found.', 'another-wordpress-classifieds-plugin');
-        }
+    /**
+     * @since feature/1112 Updated to use an instance of Template Renderer.
+     */
+    public function render( $content_template, $content_params = array() ) {
+        $page_template = AWPCP_DIR . '/' . $this->template;
 
-        ob_start();
-            include(AWPCP_DIR . '/' . $this->template);
-            $output = ob_get_contents();
-        ob_end_clean();
-
-        return $output;
+        return $this->template_renderer->render_page_template(
+            $this, $page_template, $content_template, $content_params
+        );
     }
 }

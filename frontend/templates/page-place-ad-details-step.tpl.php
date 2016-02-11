@@ -15,12 +15,12 @@
 ?>
 
 <?php if ($ui['listing-actions']): ?>
-<?php echo awpcp_listing_actions_component()->render( $listing, array( 'hidden-params' => $hidden, 'current_url' => $this->url() ) ); ?>
+<?php echo awpcp_listing_actions_component()->render( $listing, array( 'hidden-params' => $hidden, 'current_url' => $page->url() ) ); ?>
 <?php endif ?>
 
 <!-- TODO: check where is used $formdisplayvalue -->
 <div>
-	<form class="awpcp-details-form" id="adpostform" name="adpostform" action="<?php echo esc_attr( $this->url() ) ?>" method="post">
+	<form class="awpcp-details-form" id="adpostform" name="adpostform" action="<?php echo esc_attr( $page->url() ) ?>" method="post">
         <?php foreach($hidden as $name => $value): ?>
         <input type="hidden" name="<?php echo esc_attr($name) ?>" value="<?php echo esc_attr($value) ?>" />
         <?php endforeach ?>

@@ -68,7 +68,7 @@ class AWPCP_Pages {
             do_action('awpcp-shortcode', 'place-ad');
 
             if ( ! isset( $this->place_ad_page ) ) {
-                $this->place_ad_page = new AWPCP_Place_Ad_Page();
+                $this->place_ad_page = awpcp_place_listing_page();
             }
 
             $this->output['place-ad'] = $this->place_ad_page->dispatch();
