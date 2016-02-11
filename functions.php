@@ -2749,7 +2749,6 @@ function awpcp_getip() {
 
 /**
  * TODO: Update this to work with listing objects to reduce database queries.
- * TODO: Test with listings that have images.
  */
 function awpcp_get_ad_share_info($id) {
     try {
@@ -2774,10 +2773,12 @@ function awpcp_get_ad_share_info($id) {
     $info['published-time'] = awpcp_datetime( 'Y-m-d', $ad->post_date );
     $info['modified-time'] = awpcp_datetime( 'Y-m-d', $ad->post_modified );
 
+    $attachment_properties = awpcp_attachment_properties();
+
     $images = awpcp_attachments_collection()->find_visible_attachments( array( 'post_parent' => $ad->ID ) );
 
     foreach ( $images as $image ) {
-        $info[ 'images' ][] = $image->get_url( 'large' );
+        $info[ 'images' ][] = $attachment_properties->get_image_url( $image, 'large' );
     }
 
     return $info;
