@@ -6,9 +6,6 @@ function awpcp_attachments_collection() {
 
 class AWPCP_Attachments_Collection {
 
-    const STATUS_AWAITING_APPROVAL = 'Awaiting-Approval';
-    const STATUS_APPROVED = 'Approved';
-    const STATUS_REJECTED = 'Rejected';
 
     public function get_featured_attachment_of_type( $type, $query = array() ) {
         $query = $this->make_attachments_of_type_query( $type, $query );
@@ -84,7 +81,7 @@ class AWPCP_Attachments_Collection {
 
         $query['meta_query'][] = array(
             'key' => '_allowed_status',
-            'value' => self::STATUS_APPROVED,
+            'value' => AWPCP_Attachment_Status::STATUS_APPROVED,
             'compare' => '=',
             'type' => 'CHAR'
         );
