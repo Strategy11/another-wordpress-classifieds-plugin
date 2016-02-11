@@ -96,6 +96,10 @@ class AWPCP_WordPress {
         return wp_get_attachment_image( $attachment_id, $size, $icon, $attr );
     }
 
+    public function get_attachment_image_src( $attachment_id, $size = 'thumbnail', $icon = false ) {
+        return wp_get_attachment_image_src( $attachment_id, $size, $icon );
+    }
+
     public function delete_attachment( $attachment_id, $force_delete = false ) {
         return wp_delete_attachment( $attachment_id, $force_delete );
     }
