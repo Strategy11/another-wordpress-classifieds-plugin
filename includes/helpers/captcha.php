@@ -25,10 +25,6 @@ class AWPCP_DefaultCAPTCHA extends AWPCP_CAPTCHA {
         $this->max_number = $max_number;
     }
 
-    private function hash($number) {
-        return md5( NONCE_SALT . $number );
-    }
-
     public function render() {
         $a = rand( 1, $this->max_number );
         $b = rand( 1, $this->max_number );
@@ -44,6 +40,10 @@ class AWPCP_DefaultCAPTCHA extends AWPCP_CAPTCHA {
         $html.= '<input id="captcha" class="required" type="text" name="captcha" value="%s" size="5" />';
 
         return sprintf( $html, $label, $hash, esc_attr( $answer ) );
+    }
+
+    private function hash($number) {
+        return wp_hash( $number );
     }
 
     public function validate(&$error='') {
