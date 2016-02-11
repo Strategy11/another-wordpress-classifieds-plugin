@@ -1,15 +1,21 @@
 <?php
 
 function awpcp_media_manager_component() {
-    return new AWPCP_MediaManagerComponent( awpcp()->js, awpcp()->settings );
+    return new AWPCP_MediaManagerComponent(
+        awpcp_attachment_properties(),
+        awpcp()->js,
+        awpcp()->settings
+    );
 }
 
 class AWPCP_MediaManagerComponent {
 
+    private $attachment_properties;
     private $javascript;
     private $settings;
 
-    public function __construct( $javascript, $settings ) {
+    public function __construct( $attachment_properties, $javascript, $settings ) {
+        $this->attachment_properties = $attachment_properties;
         $this->javascript = $javascript;
         $this->settings = $settings;
     }
@@ -27,17 +33,17 @@ class AWPCP_MediaManagerComponent {
 
         foreach ( $files as $file ) {
             $files_info[] = array(
-                'id' => $file->id,
-                'name' => $file->name,
-                'listingId' => $file->ad_id,
-                'enabled' => $file->enabled,
-                'status' => $file->status,
-                'mimeType' => $file->mime_type,
-                'isImage' => $file->is_image(),
-                'isPrimary' => $file->is_primary(),
-                'thumbnailUrl' => $file->get_url( 'thumbnail' ),
-                'iconUrl' => $file->get_icon_url(),
-                'url' => $file->get_url(),
+                'id' => $file->ID,
+                'name' => $file->post_title,
+                'listingId' => $file->post_parent,
+                'enabled' => $this->attachment_properties->is_enabled( $file ),
+                'status' => $this->attachment_properties->get_allowed_status( $file ),
+                'mimeType' => $file->post_mime_type,
+                'isImage' => $this->attachment_properties->is_image( $file ),
+                'isPrimary' => $this->attachment_properties->is_featured( $file ),
+                'thumbnailUrl' => $this->attachment_properties->get_image_url( $file, 'thumbnail' ),
+                'iconUrl' => $this->attachment_properties->get_icon_url( $file ),
+                'url' => $this->attachment_properties->get_image_url( $file, 'large' ),
             );
         }
 
