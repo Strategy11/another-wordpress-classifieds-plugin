@@ -222,11 +222,13 @@ require_once( AWPCP_DIR . '/includes/cron/class-background-process.php' );
 
 require_once( AWPCP_DIR . '/includes/media/class-listing-file-validator.php' );
 
+require( AWPCP_DIR . '/includes/media/interface-attachment-ajax-action.php' );
 require( AWPCP_DIR . '/includes/media/class-attachments-collection.php' );
 require( AWPCP_DIR . '/includes/media/class-attachments-logic.php' );
 require( AWPCP_DIR . "/includes/media/class-attachment-action-ajax-handler.php" );
 require( AWPCP_DIR . '/includes/media/class-attachment-properties.php' );
 require( AWPCP_DIR . '/includes/media/class-attachment-status.php' );
+require( AWPCP_DIR . '/includes/media/class-delete-attachment-ajax-action.php' );
 require( AWPCP_DIR . '/includes/media/class-file-handlers-manager.php' );
 require_once( AWPCP_DIR . '/includes/media/class-file-types.php' );
 require_once( AWPCP_DIR . '/includes/media/class-file-uploader.php' );
@@ -246,6 +248,9 @@ require_once( AWPCP_DIR . "/includes/media/class-media-manager.php" );
 require_once( AWPCP_DIR . '/includes/media/class-media-uploader-component.php' );
 require_once( AWPCP_DIR . "/includes/media/class-messages-component.php" );
 require_once( AWPCP_DIR . '/includes/media/class-mime-types.php' );
+require( AWPCP_DIR . '/includes/media/class-set-attachment-as-featured-ajax-action.php' );
+require( AWPCP_DIR . '/includes/media/class-update-attachment-allowed-status-ajax-action.php' );
+require( AWPCP_DIR . '/includes/media/class-update-attachment-enabled-status-ajax-action.php' );
 require_once( AWPCP_DIR . '/includes/media/class-uploaded-file-logic-factory.php' );
 require_once( AWPCP_DIR . '/includes/media/class-uploaded-file-logic.php' );
 require_once( AWPCP_DIR . '/includes/media/class-uploads-manager.php' );
@@ -731,7 +736,7 @@ class AWPCP {
         add_action( 'wp_ajax_awpcp-autocomplete-users', array( $handler, 'ajax' ) );
         add_action( 'wp_ajax_nopriv_awpcp-autocomplete-users', array( $handler, 'ajax' ) );
 
-        $handler = awpcp_set_file_as_primary_ajax_handler();
+        $handler = awpcp_set_attachment_as_featured_ajax_handler();
         add_action( 'wp_ajax_awpcp-set-file-as-primary', array( $handler, 'ajax' ) );
         add_action( 'wp_ajax_nopriv_awpcp-set-file-as-primary', array( $handler, 'ajax' ) );
 
@@ -739,11 +744,11 @@ class AWPCP {
         add_action( 'wp_ajax_awpcp-update-file-enabled-status', array( $handler, 'ajax' ) );
         add_action( 'wp_ajax_nopriv_awpcp-update-file-enabled-status', array( $handler, 'ajax' ) );
 
-        $handler = awpcp_delete_file_ajax_handler();
+        $handler = awpcp_delete_attachment_ajax_handler();
         add_action( 'wp_ajax_awpcp-delete-file', array( $handler, 'ajax' ) );
         add_action( 'wp_ajax_nopriv_awpcp-delete-file', array( $handler, 'ajax' ) );
 
-        $handler = awpcp_update_file_status_ajax_handler();
+        $handler = awpcp_update_attachment_allowed_status_ajax_handler();
         add_action( 'wp_ajax_awpcp-approve-file', array( $handler, 'ajax' ) );
         add_action( 'wp_ajax_nopriv_awpcp-approve-file', array( $handler, 'ajax' ) );
         add_action( 'wp_ajax_awpcp-reject-file', array( $handler, 'ajax' ) );
