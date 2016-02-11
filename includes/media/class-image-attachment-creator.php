@@ -2,9 +2,9 @@
 
 function awpcp_image_attachment_creator() {
     return new AWPCP_Image_Attachment_Creator(
-        // awpcp_image_dimensions_generator(),
+        awpcp_image_dimensions_generator(),
         awpcp_listing_attachment_creator(),
-        awpcp_settings()
+        awpcp()->settings
     );
 }
 
