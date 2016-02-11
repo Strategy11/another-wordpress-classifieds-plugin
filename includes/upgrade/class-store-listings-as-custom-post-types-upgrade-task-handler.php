@@ -123,6 +123,7 @@ class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements 
         $this->wordpress->add_post_meta( $post_id, '_payment_term_id', $item->adterm_id );
         $this->wordpress->add_post_meta( $post_id, '_payment_term_type', $item->payment_term_type );
         $this->wordpress->add_post_meta( $post_id, '_payment_gateway', $item->payment_gateway );
+        $this->wordpress->add_post_meta( $post_id, '_payment_amount', $item->ad_fee_paid );
         $this->wordpress->add_post_meta( $post_id, '_payment_status', $item->payment_status );
         $this->wordpress->add_post_meta( $post_id, '_payer_email', $item->payer_email );
         $this->wordpress->add_post_meta( $post_id, '_contact_name', $item->ad_contact_name );
@@ -142,6 +143,10 @@ class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements 
         $this->wordpress->add_post_meta( $post_id, '_poster_ip', $item->posterip );
         $this->wordpress->add_post_meta( $post_id, '_renew_email_sent', $item->renew_email_sent );
         $this->wordpress->add_post_meta( $post_id, '_renewed_date', $item->renewed_date );
+
+        if ( $item->ad_fee_paid > 0 ) {
+            $this->wordpress->add_post_meta( $post_id, 'is_paid', true );
+        }
     }
 
     private function update_post_metadata_with_item_metadata( $post_id, $item ) {
