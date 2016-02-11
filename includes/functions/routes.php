@@ -408,7 +408,7 @@ function awpcp_get_edit_listing_url( $listing ) {
  */
 function awpcp_get_edit_listing_direct_url( $listing ) {
     if ( awpcp()->settings->get_option( 'enable-user-panel' ) ) {
-        return add_query_arg( array( 'action' => 'edit', 'id' => $listing->ad_id ), awpcp_get_user_panel_url() );
+        return add_query_arg( array( 'action' => 'edit', 'id' => $listing->ID ), awpcp_get_user_panel_url() );
     } else {
         return awpcp_get_edit_listing_page_url_with_listing_id( $listing );
     }
@@ -421,10 +421,10 @@ function awpcp_get_edit_listing_page_url_with_listing_id( $listing ) {
     $permalinks = get_option( 'permalink_structure' );
 
     if ( ! empty( $permalinks ) && get_awpcp_option( 'seofriendlyurls' ) ) {
-        $url = sprintf( '%s/%d', trim( awpcp_get_page_url( 'edit-ad-page-name' ) ), $listing->ad_id );
+        $url = sprintf( '%s/%d', trim( awpcp_get_page_url( 'edit-ad-page-name' ) ), $listing->ID );
         $url = user_trailingslashit( $url );
     } else {
-        $url = add_query_arg( 'id', $listing->ad_id, awpcp_get_page_url( 'edit-ad-page-name' ) );
+        $url = add_query_arg( 'id', $listing->ID, awpcp_get_page_url( 'edit-ad-page-name' ) );
     }
 
     return $url;
