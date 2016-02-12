@@ -1,7 +1,12 @@
 <?php
 
 function awpcp_listing_regions_form_field( $slug ) {
-    return new AWPCP_ListingRegionsFormField( $slug, awpcp_payments_api(), awpcp()->settings );
+    return new AWPCP_ListingRegionsFormField(
+        $slug,
+        awpcp_listing_renderer(),
+        awpcp_payments_api(),
+        awpcp()->settings
+    );
 }
 
 /**
@@ -9,12 +14,17 @@ function awpcp_listing_regions_form_field( $slug ) {
  */
 class AWPCP_ListingRegionsFormField extends AWPCP_FormField {
 
+    private $region_selector;
+    private $listing_renderer;
     private $payments;
     private $settings;
 
-    public function __construct( $slug, $payments, $settings ) {
+    public function __construct( $slug, $listing_renderer, $payments, $settings ) {
         parent::__construct( $slug );
+
+        $this->listing_renderer = $listing_renderer;
         $this->payments = $payments;
+        // $this->region_selector = $region_selector;
         $this->settings = $settings;
     }
 
@@ -55,8 +65,8 @@ class AWPCP_ListingRegionsFormField extends AWPCP_FormField {
     }
 
     private function get_allowed_regions_for_listing( $listing ) {
-        if ( is_a( $listing, 'AWPCP_Ad' ) ) {
-            $payment_term = $listing->get_payment_term();
+        if ( is_object( $listing ) ) {
+            $payment_term = $this->listing_renderer->get_payment_term( $listing );
         } else if ( $transaction = $this->payments->get_transaction() ) {
             $payment_term = $this->payments->get_transaction_payment_term( $transaction );
         }
