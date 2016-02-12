@@ -1,7 +1,12 @@
 <?php
 
 function awpcp_listing_details_form_field( $slug ) {
-    return new AWPCP_ListingDetailsFormField( $slug, awpcp_payments_api() );
+    return new AWPCP_ListingDetailsFormField(
+        $slug,
+        awpcp_listing_renderer(),
+        awpcp_payments_api(),
+        awpcp_template_renderer()
+    );
 }
 
 /**
@@ -9,11 +14,16 @@ function awpcp_listing_details_form_field( $slug ) {
  */
 class AWPCP_ListingDetailsFormField extends AWPCP_FormField {
 
-    protected $payments;
+    private $listing_renderer;
+    private $payments;
+    private $template_renderer;
 
-    public function __construct( $slug, $payments ) {
+    public function __construct( $slug, $listing_renderer, $payments, $template_renderer ) {
         parent::__construct( $slug );
+
+        $this->listing_renderer = $listing_renderer;
         $this->payments = $payments;
+        $this->template_renderer = $template_renderer;
     }
 
     public function get_name() {
@@ -62,13 +72,16 @@ class AWPCP_ListingDetailsFormField extends AWPCP_FormField {
             ),
         );
 
-        return awpcp_render_template( 'frontend/form-fields/listing-details-form-field.tpl.php', $params );
+        return $this->template_renderer->render_template( 'frontend/form-fields/listing-details-form-field.tpl.php', $params );
     }
 
+    /**
+     * TODO: Move to Listing Logic or Listing Properties.
+     */
     private function get_characters_limit_for_listing( $listing ) {
-        if ( is_a( $listing, 'AWPCP_Ad' ) ) {
-            $payment_term = $listing->get_payment_term();
-            $characters_used = strlen( $listing->ad_details );
+        if ( is_object( $listing ) ) {
+            $payment_term = $this->listing_renderer->get_payment_term( $listing );
+            $characters_used = strlen( $this->listing_renderer->get_listing_title( $listing ) );
         } else if ( $transaction = $this->payments->get_transaction() ) {
             $payment_term = $this->payments->get_transaction_payment_term( $transaction );
             $characters_used = 0;
