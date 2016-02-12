@@ -4,10 +4,21 @@
  * @since 3.3
  */
 function awpcp_categories_dropdown() {
-    return new AWPCP_CategoriesDropdown();
+    return new AWPCP_CategoriesDropdown(
+        awpcp_categories_collection(),
+        awpcp_template_renderer()
+    );
 }
 
 class AWPCP_CategoriesDropdown {
+
+    private $categories;
+    private $template_renderer;
+
+    public function __construct( $categories, $template_renderer ) {
+        $this->categories = $categories;
+        $this->template_renderer = $template_renderer;
+    }
 
     public function render($params) {
         extract( $params = wp_parse_args( $params, array(
@@ -37,7 +48,7 @@ class AWPCP_CategoriesDropdown {
             ), $placeholders );
         }
 
-        $categories = awpcp_categories_collection()->get_all();
+        $categories = $this->categories->get_all();
         $categories_hierarchy = awpcp_build_categories_hierarchy( $categories );
         $chain = $this->get_category_parents( $selected, $categories );
 
@@ -47,12 +58,20 @@ class AWPCP_CategoriesDropdown {
         // export categories list to JavaScript, but don't replace an existing categories list
         awpcp()->js->set( 'categories', $categories_hierarchy, false );
 
-        ob_start();
-        include( AWPCP_DIR . '/frontend/templates/html-widget-category-dropdown.tpl.php' );
-        $content = ob_get_contents();
-        ob_end_clean();
+        $template = AWPCP_DIR . '/frontend/templates/html-widget-category-dropdown.tpl.php';
 
-        return $content;
+        $params = compact(
+            'label',
+            'required',
+            'use_multiple_dropdowns',
+            'placeholders',
+            'chain',
+            'name',
+            'selected',
+            'categories_hierarchy'
+        );
+
+        return $this->template_renderer->render_template( $template, $params );
     }
 
     private function get_all_categories() {
@@ -70,7 +89,7 @@ class AWPCP_CategoriesDropdown {
         $categories_parents = array();
 
         foreach ( $categories as $item ) {
-            $categories_parents[ $item->id ] = $item->parent;
+            $categories_parents[ $item->term_id ] = $item->parent;
         }
 
         $category_ancestors = array();
