@@ -6,7 +6,12 @@ require_once(AWPCP_DIR . '/admin/user-panel-listings-edit-ad-page.php');
 require_once(AWPCP_DIR . '/admin/user-panel-listings-renew-ad-page.php');
 
 function awpcp_manage_listings_user_panel_page() {
-    return new AWPCP_UserListings();
+    return new AWPCP_UserListings(
+        'awpcp-admin-listings',
+        awpcp_admin_page_title( __( 'Manage Listings', 'another-wordpress-classifieds-plugin' ) ),
+        awpcp_attachments_collection(),
+        awpcp_listing_renderer()
+    );
 }
 
 class AWPCP_UserListings extends AWPCP_Admin_Listings {

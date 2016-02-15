@@ -1,5 +1,15 @@
 <?php
 
+function awpcp_listings_table( $page, $params = array() ) {
+    return new AWPCP_Listings_Table(
+        $page,
+        $params,
+        awpcp_categories_collection(),
+        awpcp_listing_renderer(),
+        awpcp_listings_collection()
+    );
+}
+
 class AWPCP_Listings_Table extends WP_List_Table {
 
     private $params;
@@ -9,9 +19,17 @@ class AWPCP_Listings_Table extends WP_List_Table {
 
     private $page;
 
-    public function __construct( $page, $params = array() ) {
+    private $categories;
+    private $listing_renderer;
+    private $listings;
+
+    public function __construct( $page, $params, $categories, $listing_renderer, $listings ) {
         parent::__construct( array_merge( array( 'plural' => 'awpcp-listings' ), $params ) );
+
         $this->page = $page;
+        $this->categories = $categories;
+        $this->listing_renderer = $listing_renderer;
+        $this->listings = $listings;
     }
 
     public function prepare_items() {
@@ -20,9 +38,13 @@ class AWPCP_Listings_Table extends WP_List_Table {
         $this->load_items_from_query( $search_params['query'], $search_params['filters'] );
 
         if ( isset( $search_params['query']['category_id'] ) && $search_params['query']['category_id'] ) {
-            $category = AWPCP_Category::find_by_id( $search_params['query']['category_id'] );
-            if (!is_null($category)) {
-                awpcp_flash(sprintf(__('Showing Ads from %s category.', 'another-wordpress-classifieds-plugin'), "<strong>{$category->name}</strong>"));
+            try {
+                $category = $this->categories->get( $search_params['query']['category_id'] );
+                $message = __( 'Showing Ads from %s category.', 'another-wordpress-classifieds-plugin' );
+
+                awpcp_flash( sprintf( $message, "<strong>{$category->name}</strong>" ) );
+            } catch ( AWPCP_Exception $e ) {
+                // nothing
             }
         }
 
@@ -141,23 +163,21 @@ class AWPCP_Listings_Table extends WP_List_Table {
     }
 
     private function load_items_from_query( $query, $filters ) {
-        $listings = awpcp_listings_collection();
-
         if ( $filters['show_expired'] ) {
-            $this->total_items = $listings->count_expired_listings_with_query( $query );
-            $this->items = $listings->find_expired_listings_with_query( $query );
+            $this->total_items = $this->listings->count_expired_listings( $query );
+            $this->items = $this->listings->find_expired_listings( $query );
         } else if ( $filters['show_awaiting_approval'] ) {
-            $this->total_items = $listings->count_listings_awaiting_approval_with_query( $query );
-            $this->items = $listings->find_listings_awaiting_approval_with_query( $query );
+            $this->total_items = $this->listings->count_listings_awaiting_approval( $query );
+            $this->items = $this->listings->find_listings_awaiting_approval( $query );
         } else if ( $filters['show_non_verified'] ) {
-            $this->total_items = $listings->count_successfully_paid_listings_with_query( $query );
-            $this->items = $listings->find_successfully_paid_listings_with_query( $query );
+            $this->total_items = $this->listings->count_successfully_paid_listings( $query );
+            $this->items = $this->listings->find_successfully_paid_listings( $query );
         } else if ( $filters['show_incomplete'] ) {
-            $this->total_items = $listings->count_listings_with_query( $query );
-            $this->items = $listings->find_listings_with_query( $query );
+            $this->total_items = $this->listings->count_listings( $query );
+            $this->items = $this->listings->find_listings( $query );
         } else {
-            $this->total_items = $listings->count_valid_listings_with_query( $query );
-            $this->items = $listings->find_valid_listings_with_query( $query );
+            $this->total_items = $this->listings->count_valid_listings( $query );
+            $this->items = $this->listings->find_valid_listings( $query );
         }
 
         $this->set_pagination_args( array( 'total_items' => $this->total_items, 'per_page' => $this->items_per_page ) );
@@ -359,8 +379,8 @@ class AWPCP_Listings_Table extends WP_List_Table {
     public function column_title($item) {
         $content = sprintf(
             '<a class="awpcp-admin-listings-table-listing-title" title="%3$s" href="%2$s">%1$s</a>',
-            $item->get_title(),
-            $this->page->url( array( 'action' => 'view', 'id' => $item->ad_id ) ),
+            $this->listing_renderer->get_listing_title( $item ),
+            $this->page->url( array( 'action' => 'view', 'id' => $item->ID ) ),
             __( 'View Ad.', 'another-wordpress-classifieds-plugin' )
         );
 
@@ -368,27 +388,27 @@ class AWPCP_Listings_Table extends WP_List_Table {
     }
 
     public function column_access_key($item) {
-        return $item->get_access_key();
+        return $this->listing_renderer->get_access_key( $item );
     }
 
     public function column_start_date($item) {
-        return $item->get_start_date();
+        return $this->listing_renderer->get_start_date( $item );
     }
 
     public function column_end_date($item) {
-        return $item->get_end_date();
+        return $this->listing_renderer->get_end_date( $item );
     }
 
     public function column_renewed_date($item) {
-        $renewed_date = $item->get_renewed_date();
+        $renewed_date = $this->listing_renderer->get_renewed_date_formatted( $item );
         return empty( $renewed_date ) ? '--' : $renewed_date;
     }
 
     public function column_status($item) {
         $actions = array();
 
-        if ( $item->verified == 0 ) {
-            $url = $this->page->url( array( 'action' => 'mark-verified', 'id' => $item->ad_id ) );
+        if ( ! $this->listing_renderer->is_verified( $item ) ) {
+            $url = $this->page->url( array( 'action' => 'mark-verified', 'id' => $item->ID ) );
             $actions['mark-verified'] = array( __( 'Mark as Verified', 'another-wordpress-classifieds-plugin' ), $url );
         }
 
@@ -398,20 +418,25 @@ class AWPCP_Listings_Table extends WP_List_Table {
             $actions = '';
         }
 
-        $status = $item->disabled ? __( 'Disabled', 'another-wordpress-classifieds-plugin' ) : __( 'Enabled', 'another-wordpress-classifieds-plugin' );
+        if ( $this->listing_renderer->is_disabled( $item ) ) {
+            $status = __( 'Disabled', 'another-wordpress-classifieds-plugin' );
+        } else {
+            $status = __( 'Enabled', 'another-wordpress-classifieds-plugin' );
+        }
 
         return $status . $actions;
     }
 
     public function column_payment_term($item) {
-        return $item->get_payment_term_name();
+        $payment_term = $this->listing_renderer->get_payment_term( $item );
+        return $payment_term ? $payment_term->name : __( 'N/A', 'another-wordpress-classifieds-plugin' );
     }
 
     public function column_payment_status($item) {
         $actions = array();
 
-        if ($item->payment_status == 'Unpaid') {
-            $url = $this->page->url(array('action' => 'mark-paid', 'id' => $item->ad_id));
+        if ( $this->listing_renderer->get_payment_status( $item ) == 'Unpaid' ) {
+            $url = $this->page->url( array( 'action' => 'mark-paid', 'id' => $item->ID ) );
             $actions['mark-paid'] = array( __( 'Mark as Paid', 'another-wordpress-classifieds-plugin' ), $url );
         }
 
@@ -421,7 +446,7 @@ class AWPCP_Listings_Table extends WP_List_Table {
             $actions = '';
         }
 
-        return $item->get_payment_status() . $actions;
+        return $this->listing_renderer->get_payment_status_formatted( $item ) . $actions;
     }
 
     public function column_featured($item) {
@@ -429,8 +454,8 @@ class AWPCP_Listings_Table extends WP_List_Table {
     }
 
     public function column_owner($item) {
-        $user = get_userdata($item->user_id);
-        return is_object($user) ? $user->user_login : '-';
+        $user = $this->listing_renderer->get_user( $item );
+        return is_object($user) ? $user->user_login : '&mdash;';
     }
 
     public function single_row($item) {

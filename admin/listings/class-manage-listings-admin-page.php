@@ -8,7 +8,12 @@ require_once( AWPCP_DIR . '/admin/admin-panel-listings-renew-ad-page.php' );
 require_once( AWPCP_DIR . '/admin/admin-panel-listings-table.php' );
 
 function awpcp_manage_listings_admin_page() {
-    return new AWPCP_Admin_Listings();
+    return new AWPCP_Admin_Listings(
+        'awpcp-admin-listings',
+        awpcp_admin_page_title( __( 'Manage Listings', 'another-wordpress-classifieds-plugin' ) ),
+        awpcp_attachments_collection(),
+        awpcp_listing_renderer()
+    );
 }
 
 /**
@@ -16,13 +21,16 @@ function awpcp_manage_listings_admin_page() {
  */
 class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
 
-    public function __construct($page=false, $title=false) {
-        $page = $page ? $page : 'awpcp-admin-listings';
-        $title = $title ? $title : awpcp_admin_page_title( __( 'Manage Listings', 'AWPCP' ) );
+    private $attachments;
+    private $listing_renderer;
 
-        parent::__construct($page, $title, __('Listings', 'AWPCP'));
+    public function __construct( $page, $title, $attachments, $listing_renderer ) {
+        parent::__construct( $page, $title, __('Listings', 'another-wordpress-classifieds-plugin') );
 
         $this->table = null;
+
+        $this->attachments = $attachments;
+        $this->listing_renderer = $listing_renderer;
     }
 
     public function enqueue_scripts() {
@@ -71,7 +79,7 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
 
     public function get_table() {
         if ( is_null( $this->table ) ) {
-            $this->table = new AWPCP_Listings_Table( $this, array( 'screen' => 'classifieds_page_awpcp-admin-listings' ) );
+            $this->table = awpcp_listings_table( $this, array( 'screen' => 'classifieds_page_awpcp-admin-listings' ) );
         }
         return $this->table;
     }
@@ -81,61 +89,63 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
 
         $actions = array();
 
-        $actions['view'] = array(__('View', 'AWPCP'), $this->url(array('action' => 'view', 'id' => $ad->ad_id)));
-        $actions['edit'] = array(__('Edit', 'AWPCP'), $this->url(array('action' => 'edit', 'id' => $ad->ad_id)));
-        $actions['trash'] = array(__('Delete', 'AWPCP'), $this->url(array('action' => 'delete', 'id' => $ad->ad_id)));
+        $actions['view'] = array(__('View', 'AWPCP'), $this->url(array('action' => 'view', 'id' => $ad->ID)));
+        $actions['edit'] = array(__('Edit', 'AWPCP'), $this->url(array('action' => 'edit', 'id' => $ad->ID)));
+        $actions['trash'] = array(__('Delete', 'AWPCP'), $this->url(array('action' => 'delete', 'id' => $ad->ID)));
 
         if ( $is_moderator ) {
             if ($ad->disabled)
-                $actions['enable'] = array(__('Enable', 'AWPCP'), $this->url(array('action' => 'enable', 'id' => $ad->ad_id)));
+                $actions['enable'] = array(__('Enable', 'AWPCP'), $this->url(array('action' => 'enable', 'id' => $ad->ID)));
             else
-                $actions['disable'] = array(__('Disable', 'AWPCP'), $this->url(array('action' => 'disable', 'id' => $ad->ad_id)));
+                $actions['disable'] = array(__('Disable', 'AWPCP'), $this->url(array('action' => 'disable', 'id' => $ad->ID)));
 
             if ($ad->flagged)
-                $actions['unflag'] = array(__('Unflag', 'AWPCP'), $this->url(array('action' => 'unflag', 'id' => $ad->ad_id)));
+                $actions['unflag'] = array(__('Unflag', 'AWPCP'), $this->url(array('action' => 'unflag', 'id' => $ad->ID)));
 
             if (get_awpcp_option('useakismet'))
-                $actions['spam'] = array('SPAM', $this->url(array('action' => 'spam', 'id' => $ad->ad_id)));
+                $actions['spam'] = array('SPAM', $this->url(array('action' => 'spam', 'id' => $ad->ID)));
 
             $has_featured_ads = function_exists('awpcp_featured_ads');
             if ($has_featured_ads && $ad->is_featured_ad)
-                $actions['remove-featured'] = array(__('Remove Featured', 'AWPCP'), $this->url(array('action' => 'remove-featured', 'id' => $ad->ad_id)));
+                $actions['remove-featured'] = array(__('Remove Featured', 'AWPCP'), $this->url(array('action' => 'remove-featured', 'id' => $ad->ID)));
             else if ($has_featured_ads)
-                $actions['make-featured'] = array(__('Make Featured', 'AWPCP'), $this->url(array('action' => 'make-featured', 'id' => $ad->ad_id)));
+                $actions['make-featured'] = array(__('Make Featured', 'AWPCP'), $this->url(array('action' => 'make-featured', 'id' => $ad->ID)));
 
-            $actions['send-key'] = array(__('Send Access Key', 'AWPCP'), $this->url(array('action' => 'send-key', 'id' => $ad->ad_id)));
+            $actions['send-key'] = array(__('Send Access Key', 'AWPCP'), $this->url(array('action' => 'send-key', 'id' => $ad->ID)));
         }
 
-        if ( $ad->is_about_to_expire() || $ad->has_expired() ) {
-            $hash = awpcp_get_renew_ad_hash( $ad->ad_id );
-            $params = array( 'action' => 'renew', 'id' => $ad->ad_id, 'awpcprah' => $hash );
+        if ( $this->listing_renderer->is_about_to_expire( $ad ) || $this->listing_renderer->has_expired( $ad ) ) {
+            $hash = awpcp_get_renew_ad_hash( $ad->ID );
+            $params = array( 'action' => 'renew', 'id' => $ad->ID, 'awpcprah' => $hash );
             $actions['renwew-ad'] = array( __( 'Renew Ad', 'AWPCP' ), $this->url( $params ) );
         }
 
-        if ($images = $ad->count_image_files()) {
+        $images = $this->attachments->count_attachments_of_type( 'image', array( 'post_parent' => $ad->ID ) );
+
+        if ( $images ) {
             $label = __( 'Manage Images', 'AWPCP' );
-            $url = $this->url(array('action' => 'manage-images', 'id' => $ad->ad_id));
+            $url = $this->url(array('action' => 'manage-images', 'id' => $ad->ID));
             $actions['manage-images'] = array($label, array('', $url, " ($images)"));
         } else if ( awpcp_are_images_allowed() ) {
-            $actions['add-image'] = array(__('Add Images', 'AWPCP'), $this->url(array('action' => 'add-image', 'id' => $ad->ad_id)));
+            $actions['add-image'] = array(__('Add Images', 'AWPCP'), $this->url(array('action' => 'add-image', 'id' => $ad->ID)));
         }
 
         if ( $is_moderator && ! $ad->disabled ) {
             $fb = AWPCP_Facebook::instance();
-            if ( ! awpcp_get_ad_meta( $ad->ad_id, 'sent-to-facebook' ) && $fb->get( 'page_id' ) ) {
+            if ( ! awpcp_get_ad_meta( $ad->ID, 'sent-to-facebook' ) && $fb->get( 'page_id' ) ) {
                 $actions['send-to-facebook'] = array(
                     __( 'Send to Facebook', 'AWPCP' ),
                     $this->url( array(
                         'action' => 'send-to-facebook',
-                        'id' => $ad->ad_id
+                        'id' => $ad->ID
                     ) )
                 );
-            } else if ( ! awpcp_get_ad_meta( $ad->ad_id, 'sent-to-facebook-group' ) && $fb->get( 'group_id' ) ) {
+            } else if ( ! awpcp_get_ad_meta( $ad->ID, 'sent-to-facebook-group' ) && $fb->get( 'group_id' ) ) {
                 $actions['send-to-facebook'] = array(
                     __( 'Send to Facebook Group', 'AWPCP' ),
                     $this->url( array(
                         'action' => 'send-to-facebook',
-                        'id' => $ad->ad_id
+                        'id' => $ad->ID
                     ) )
                 );
             }
@@ -146,7 +156,7 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
         if ( $is_moderator && isset( $_REQUEST['filterby'] ) && $_REQUEST['filterby'] == 'new' ) {
             $actions['mark-reviewed'] = array(
                 __( 'Mark Reviewed', 'AWPCP' ),
-                $this->url( array( 'action' => 'mark-reviewed', 'id' => $ad->ad_id ) ),
+                $this->url( array( 'action' => 'mark-reviewed', 'id' => $ad->ID ) ),
             );
         }
 

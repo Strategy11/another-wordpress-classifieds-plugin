@@ -10,7 +10,7 @@ class AWPCP_User_Panel {
 
 	public function __construct() {
         $this->account = awpcp_account_balance_page();
-        $this->listings = new AWPCP_UserListings();
+        $this->listings = awpcp_manage_listings_user_panel_page();
 
 		add_action('awpcp_add_menu_page', array($this, 'menu'));
 	}
