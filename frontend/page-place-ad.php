@@ -1154,7 +1154,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
                 return $this->details_step_form( $transaction, $data, $errors );
             }
 
-            $this->wordpress->add_object_terms( $ad->ID, array( $data['ad_category'] ), 'awpcp_listing_category' );
+            $this->wordpress->set_object_terms( $ad->ID, array( (int) $data['ad_category'] ), 'awpcp_listing_category' );
 
             $this->wordpress->update_post_meta( $ad->ID, '_contact_name', $data['ad_contact_name'] );
             $this->wordpress->update_post_meta( $ad->ID, '_contact_phone', $data['ad_contact_phone'] );
