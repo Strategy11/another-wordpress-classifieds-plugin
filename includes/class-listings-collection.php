@@ -164,22 +164,40 @@ class AWPCP_ListingsCollection {
         return $query;
     }
 
-    public function find_expired_listings_with_query( $query ) {
-        return $this->finder->find( $this->make_expired_listings_query( $query ) );
+    public function find_expired_listings( $query = array() ) {
+        return $this->find_valid_listings( $this->make_expired_listings_query( $query ) );
     }
 
     private function make_expired_listings_query( $query ) {
-        $query['end_date'] = array( 'compare' => '<', 'value' => current_time( 'mysql' ) );
-        return $this->make_valid_listings_query( $query );
+        $query['meta_query'][] = array(
+            'key' => '_end_date',
+            'value' => current_time( 'mysql' ),
+            'compare' => '<=',
+            'type' => 'DATE',
+        );
+
+        return $query;
     }
 
-    public function find_listings_awaiting_approval_with_query( $query ) {
-        return $this->finder->find( $this->make_listings_awaiting_approval_query( $query ) );
+    public function count_expired_listings( $query = array() ) {
+        return $this->count_valid_listings( $this->make_expired_listings_query( $query ) );
+    }
+
+    public function find_listings_awaiting_approval( $query = array() ) {
+        return $this->find_valid_listings( $this->make_listings_awaiting_approval_query( $query ) );
     }
 
     private function make_listings_awaiting_approval_query( $query ) {
-        $query = array_merge( $query, array( 'disabled' => true, 'disabled_date' => 'NULL' ) );
-        return $this->make_valid_listings_query( $query );
+        $query['meta_query'][] = array(
+            'key' => '_disabled_date',
+            'compare' => 'NOT EXISTS',
+        );
+
+        return $this->make_disabled_listings_query( $query );
+    }
+
+    public function count_listings_awaiting_approval( $query = array() ) {
+        return $this->count_valid_listings( $this->make_listings_awaiting_approval_query( $query ) );
     }
 
     public function find_successfully_paid_listings( $query ) {
