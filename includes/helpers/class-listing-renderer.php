@@ -61,6 +61,10 @@ class AWPCP_ListingRenderer {
         return $this->wordpress->get_post_meta( $listing->ID, '_contact_email', true );
     }
 
+    public function get_contact_phone( $listing ) {
+        return $this->wordpress->get_post_meta( $listing->ID, '_contact_phone', true );
+    }
+
     public function get_access_key( $listing ) {
         return $this->wordpress->get_post_meta( $listing->ID, '_access_key', true );
     }
@@ -101,6 +105,14 @@ class AWPCP_ListingRenderer {
     public function get_start_date( $listing ) {
         $start_date = $this->wordpress->get_post_meta( $listing->ID, '_start_date', true );
         return $this->get_formatted_date( $start_date );
+    }
+
+    /**
+     * TODO: Rename to get_end_date
+     * @since feature/1112
+     */
+    public function get_plain_start_date( $listing ) {
+        return $this->wordpress->get_post_meta( $listing->ID, '_start_date', true );
     }
 
     public function get_regions( $listing ) {
@@ -171,6 +183,14 @@ class AWPCP_ListingRenderer {
         $payment_term_type = $this->wordpress->get_post_meta( $listing->ID, '_payment_term_type', true );
 
         return $this->payments->get_payment_term( $payment_term_id, $payment_term_type );
+    }
+
+    public function get_price( $listing ) {
+        return $this->wordpress->get_post_meta( $listing->ID, '_price', true );
+    }
+
+    public function get_website_url( $listing ) {
+        return $this->wordpress->get_post_meta( $listing->ID, '_website_url', true );
     }
 
     public function get_view_listing_link( $listing ) {
