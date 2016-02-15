@@ -493,37 +493,27 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
     }
 
     protected function get_ad_info($ad_id) {
-        global $wpdb, $hasextrafieldsmodule;
+        $listing = $this->listings->get( $ad_id );
+        $payment_term = $this->listing_renderer->get_payment_term( $listing );
 
-        $fields = array(
-            'ad_id',
-            'user_id',
-            'adterm_id',
-            'ad_title',
-            'ad_contact_name',
-            'ad_contact_email',
-            'ad_category_id',
-            'ad_contact_phone',
-            'ad_item_price',
-            'ad_details',
-            'websiteurl',
-            'ad_startdate',
-            'ad_enddate',
-            'ad_key',
+        $data = array(
+            'ad_id' => $listing->ID,
+            'user_id' => $listing->post_author,
+            'adterm_id' => $payment_term->id,
+            'ad_title' => $this->listing_renderer->get_listing_title( $listing ),
+            'ad_contact_name' => $this->listing_renderer->get_contact_name( $listing ),
+            'ad_contact_email' => $this->listing_renderer->get_contact_email( $listing ),
+            'ad_contact_phone' => $this->listing_renderer->get_contact_phone( $listing ),
+            'ad_category_id' => $this->listing_renderer->get_category_id( $listing ),
+            'ad_item_price' => $this->listing_renderer->get_price( $listing ),
+            'ad_details' => $listing->post_content,
+            'websiteurl' => $this->listing_renderer->get_website_url( $listing ),
+            'ad_startdate' => $this->listing_renderer->get_plain_start_date( $listing ),
+            'ad_enddate' => $this->listing_renderer->get_plain_end_date( $listing ),
+            'ad_key' => $this->listing_renderer->get_access_key( $listing ),
         );
 
-        if ($hasextrafieldsmodule) {
-            foreach (x_fields_fetch_fields() as $field) {
-                $fields[] = "`$field` AS `awpcp-$field`";
-            }
-        }
-
-        $query = "SELECT " . join(', ', $fields) . " ";
-        $query.= "FROM " . AWPCP_TABLE_ADS . " ";
-        $query.= "WHERE ad_id=%d";
-
-        $data = $wpdb->get_row( $wpdb->prepare( $query, (int) $ad_id ), ARRAY_A );
-
+        // TODO: allow module to modify this data
         if ( get_awpcp_option('allowhtmlinadtext') ) {
             $data['ad_details'] = awpcp_esc_textarea( $data['ad_details'] );
         }
@@ -535,7 +525,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $data['start_date'] = $data['ad_startdate'];
         $data['end_date'] = $data['ad_enddate'];
 
-        $data['regions'] = awpcp_listing_renderer()->get_regions( (object) array( 'ID' => $ad_id ) );
+        $data['regions'] = $this->listing_renderer->get_regions( $listing );
 
         return $data;
     }
