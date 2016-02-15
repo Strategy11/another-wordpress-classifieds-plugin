@@ -67,7 +67,7 @@ class AWPCP_ListingsCollection {
      * @since 3.3
      * @since feature/1112  Modified to work with custom post types.
      */
-    private function find_valid_listings( $query = array() ) {
+    public function find_valid_listings( $query = array() ) {
         return $this->find_successfully_paid_listings( $this->make_valid_listings_query( $query ) );
     }
 
@@ -85,7 +85,7 @@ class AWPCP_ListingsCollection {
     /**
      * @since 3.3
      */
-    private function count_valid_listings( $query = array() ) {
+    public function count_valid_listings( $query = array() ) {
         return $this->count_successfully_paid_listings( $this->make_valid_listings_query( $query ) );
     }
 
