@@ -15,12 +15,7 @@ class AWPCP_Page {
     public function __construct( $page, $title, $template_renderer ) {
         $this->page = $page;
         $this->title = $title;
-
-        if ( is_null( $template_renderer ) ) {
-            $this->template_renderer = awpcp_template_renderer();
-        } else {
-            $this->template_renderer = $template_renderer;
-        }
+        $this->template_renderer = $template_renderer;
     }
 
     public function get_current_action($default=null) {
