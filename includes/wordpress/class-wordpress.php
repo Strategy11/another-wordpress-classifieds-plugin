@@ -74,6 +74,10 @@ class AWPCP_WordPress {
         return _get_term_hierarchy( $taxonomy );
     }
 
+    public function set_object_terms( $object_id, $terms, $taxonomy, $append = false ) {
+        return wp_set_object_terms( $object_id, $terms, $taxonomy, $append );
+    }
+
     public function add_object_terms( $object_id, $terms, $taxonomy ) {
         return wp_add_object_terms( $object_id, $terms, $taxonomy );
     }
