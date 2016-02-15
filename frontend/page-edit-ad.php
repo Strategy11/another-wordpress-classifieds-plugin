@@ -2,6 +2,22 @@
 
 require_once(AWPCP_DIR . '/frontend/page-place-ad.php');
 
+function awpcp_edit_listing_page() {
+    return new AWPCP_EditAdPage(
+        'awpcp-edit-ad',
+        null,
+        awpcp_attachments_collection(),
+        awpcp_listing_upload_limits(),
+        awpcp_listing_authorization(),
+        awpcp_listing_renderer(),
+        awpcp_listings_api(),
+        awpcp_listings_collection(),
+        awpcp_payments_api(),
+        awpcp_template_renderer(),
+        awpcp_wordpress(),
+        awpcp_request()
+    );
+}
 
 /**
  * @since  2.1.4
@@ -13,14 +29,12 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
     public $active = false;
     public $messages = array();
 
-    public function __construct($page='awpcp-edit-ad', $title=null) {
-        parent::__construct($page, $title);
-    }
-
     public function get_ad() {
         if (is_null($this->ad)) {
-            if ( $id = $this->get_listing_id() ) {
-                $this->ad = AWPCP_Ad::find_by_id($id);
+            try {
+                $this->ad = $this->listings->get( $this->get_listing_id() );
+            } catch ( AWPCP_Exception $e ) {
+                $this->ad = null;
             }
         }
 
@@ -28,7 +42,7 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
     }
 
     private function get_listing_id() {
-        return awpcp_request_param( 'ad_id', awpcp_request_param( 'id', get_query_var( 'id' ) ) );
+        return $this->request->param( 'ad_id', $this->request->param( 'id', $this->request->get_query_var( 'id' ) ) );
     }
 
     public function get_edit_hash($ad) {
@@ -177,14 +191,14 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
 
     public function details_step_form($ad, $form=array(), $errors=array()) {
         $form = $this->get_posted_details( $form );
-        $form = array_merge( $form, $this->get_characters_allowed( $ad->ad_id ) );
+        $form = array_merge( $form, $this->get_characters_allowed( $ad->ID ) );
 
-        $form['regions-allowed'] = $this->get_regions_allowed( $ad->ad_id );
+        $form['regions-allowed'] = $this->get_regions_allowed( $ad->ID );
 
         // if there are errors then the user already sent edited information,
         // and we don't need to provide defaults from Ad object
         if (empty($errors)) {
-            foreach ($this->get_ad_info($ad->ad_id) as $field => $value) {
+            foreach ( $this->get_ad_info( $ad->ID ) as $field => $value ) {
                 $form[$field] = empty($form[$field]) ? $value : $form[$field];
             }
         }
@@ -230,11 +244,11 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
             return $this->render('content', awpcp_print_error($message));
         }
 
-        $data = $this->get_posted_details( $_POST );
-        $characters = $this->get_characters_allowed( $ad->ad_id );
+        $data = $this->get_posted_details( $this->request->all_post_params() );
+        $characters = $this->get_characters_allowed( $ad->ID );
         $errors = array();
 
-        $payment_term = awpcp_payments_api()->get_ad_payment_term( $ad );
+        $payment_term = $this->listing_renderer->get_payment_term( $ad );
 
         if ( ! $this->validate_details( $data, true, $payment_term, $errors ) ) {
             return $this->details_step_form($ad, $data, $errors);
@@ -244,35 +258,43 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
 
         // only admins can change the owner of an Ad
         if ( ! awpcp_current_user_is_moderator() || empty( $data['user_id'] ) ) {
-            $data['user_id'] = $ad->user_id;
+            $data['user_id'] = $ad->post_author;
         }
 
-        $ad->user_id = $data['user_id'];
-        $ad->ad_title = $this->prepare_ad_title( $data['ad_title'], $characters['characters_allowed_in_title']);
-        $ad->ad_details = $this->prepare_ad_details($data['ad_details'], $characters['characters_allowed']);
-        $ad->ad_contact_name = $data['ad_contact_name'];
-        $ad->ad_contact_phone = $data['ad_contact_phone'];
-        $ad->ad_contact_email = $data['ad_contact_email'];
-        $ad->websiteurl = $data['websiteurl'];
-        $ad->ad_item_price = $data['ad_item_price'] * 100;
-        $ad->ad_last_updated = current_time('mysql');
+        $current_time = current_time( 'mysql' );
+
+        $listing_id = $this->wordpress->update_post( array(
+            'ID' => $ad->ID,
+            'post_title' => $this->prepare_ad_title( $data['ad_title'], $characters['characters_allowed_in_title'] ),
+            'post_content' => $this->prepare_ad_details( $data['ad_details'], $characters['characters_allowed'] ),
+            'post_author' => $data['user_id'],
+            'post_modified' => $current_time,
+            'post_modified_gmt' => get_gmt_from_date( $current_time ),
+        ), true );
+
+        if ( is_wp_error( $listing_id ) ) {
+            $errors[] = __('There was an unexpected error trying to save your Ad details. Please try again or contact an administrator.', 'another-wordpress-classifieds-plugin');
+            return $this->details_step_form($ad, $data, $errors);
+        }
+
+        $this->wordpress->update_post_meta( $ad->ID, '_contact_name', $data['ad_contact_name'] );
+        $this->wordpress->update_post_meta( $ad->ID, '_contact_phone', $data['ad_contact_phone'] );
+        $this->wordpress->update_post_meta( $ad->ID, '_contact_email', $data['ad_contact_email'] );
+        $this->wordpress->update_post_meta( $ad->ID, '_website_url', $data['websiteurl'] );
+        $this->wordpress->update_post_meta( $ad->ID, '_price', $data['ad_item_price'] * 100 );
 
         if ( awpcp_current_user_is_moderator() ) {
-            $ad->ad_startdate = awpcp_set_datetime_date( $ad->ad_startdate, $data['start_date'] );
-            $ad->ad_enddate = awpcp_set_datetime_date( $ad->ad_enddate, $data['end_date'] );
+            $orginal_start_date = $this->listing_renderer->get_plain_start_date( $ad );
+            $start_date = awpcp_set_datetime_date( $orginal_start_date, $data['start_date'] );
+            $this->wordpress->update_post_meta( $ad->ID, '_start_date', $start_date );
+
+            $original_end_date = $this->listing_renderer->get_plain_end_date( $ad );
+            $end_date = awpcp_set_datetime_date( $original_end_date, $data['end_date'] );
+            $this->wordpress->update_post_meta( $ad->ID, '_end_date', $end_date );
         }
 
         if ( awpcp_current_user_is_moderator() && ! empty( $data['ad_category'] ) ) {
-            $category = AWPCP_Category::find_by_id( $data['ad_category'] );
-            if ( ! is_null( $category ) ) {
-                $ad->ad_category_id = $category->id;
-                $ad->ad_category_parent_id = $category->parent;
-            }
-        }
-
-        if (!$ad->save()) {
-            $errors[] = __('There was an unexpected error trying to save your Ad details. Please try again or contact an administrator.', 'another-wordpress-classifieds-plugin');
-            return $this->details_step_form($ad, $data, $errors);
+            $category = $this->wordpress->set_object_terms( $ad->ID, array( (int) $data['ad_category'] ), 'awpcp_listing_category' );
         }
 
         if ( awpcp_current_user_is_moderator() || get_awpcp_option( 'allow-regions-modification' ) ) {
