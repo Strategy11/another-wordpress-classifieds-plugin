@@ -461,14 +461,6 @@ class AWPCP_Ad {
 	}
 
 	/**
-	 * @since 2.1.4
-	 */
-	public function get_payment_term_name() {
-		$payment_term = awpcp_payments_api()->get_ad_payment_term( $this );
-		return $payment_term ? $payment_term->name : __( 'N/A', 'another-wordpress-classifieds-plugin' );
-	}
-
-	/**
 	 * @since 2.0.7
 	 */
 	function set_start_date($start_date) {
@@ -506,25 +498,6 @@ class AWPCP_Ad {
 		if (!empty($this->renewed_date))
 			return awpcp_datetime( 'awpcp-date', strtotime( $this->renewed_date ) );
 		return '';
-	}
-
-	function get_payment_status() {
-		if (empty($this->payment_status)) {
-			return _x('N/A', 'ad payment status', 'another-wordpress-classifieds-plugin');
-		}
-
-		switch($this->payment_status) {
-			case AWPCP_Payment_Transaction::PAYMENT_STATUS_PENDING:
-				return _x('Pending', 'ad payment status', 'another-wordpress-classifieds-plugin');
-			case AWPCP_Payment_Transaction::PAYMENT_STATUS_COMPLETED:
-				return _x('Completed', 'ad payment status', 'another-wordpress-classifieds-plugin');
-			case AWPCP_Payment_Transaction::PAYMENT_STATUS_NOT_REQUIRED:
-				return _x('Not Required', 'ad payment status', 'another-wordpress-classifieds-plugin');
-			case 'Unpaid':
-				return _x('Unpaid', 'ad payment status', 'another-wordpress-classifieds-plugin');
-			default:
-				return 'Undefined';
-		}
 	}
 
 	function count_image_files() {

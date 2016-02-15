@@ -115,6 +115,14 @@ class AWPCP_ListingRenderer {
         return $this->wordpress->get_post_meta( $listing->ID, '_start_date', true );
     }
 
+    /**
+     * @since feature/1112
+     */
+    public function get_renewed_date_formatted( $listing ) {
+        $renewed_date = $this->wordpress->get_post_meta( $listing->ID, '_renewed_date', true );
+        return $this->get_formatted_date( $renewed_date );
+    }
+
     public function get_regions( $listing ) {
         $regions = array();
 
@@ -178,6 +186,30 @@ class AWPCP_ListingRenderer {
         return $this->wordpress->get_post_meta( $listing->ID, '_payment_status', true );
     }
 
+    /**
+     * @since feature/1112  Moved from Ad class.
+     */
+    public function get_payment_status_formatted( $listing ) {
+        $payment_status = $this->get_payment_status( $listing );
+
+        if ( empty( $payment_status ) ) {
+            return _x( 'N/A', 'ad payment status', 'another-wordpress-classifieds-plugin' );
+        }
+
+        switch ( $payment_status ) {
+            case AWPCP_Payment_Transaction::PAYMENT_STATUS_PENDING:
+                return _x( 'Pending', 'ad payment status', 'another-wordpress-classifieds-plugin' );
+            case AWPCP_Payment_Transaction::PAYMENT_STATUS_COMPLETED:
+                return _x( 'Completed', 'ad payment status', 'another-wordpress-classifieds-plugin' );
+            case AWPCP_Payment_Transaction::PAYMENT_STATUS_NOT_REQUIRED:
+                return _x( 'Not Required', 'ad payment status', 'another-wordpress-classifieds-plugin' );
+            case 'Unpaid':
+                return _x( 'Unpaid', 'ad payment status', 'another-wordpress-classifieds-plugin' );
+            default:
+                return 'Undefined';
+        }
+    }
+
     public function get_payment_term( $listing ) {
         $payment_term_id = $this->wordpress->get_post_meta( $listing->ID, '_payment_term_id', true );
         $payment_term_type = $this->wordpress->get_post_meta( $listing->ID, '_payment_term_type', true );
@@ -191,6 +223,10 @@ class AWPCP_ListingRenderer {
 
     public function get_website_url( $listing ) {
         return $this->wordpress->get_post_meta( $listing->ID, '_website_url', true );
+    }
+
+    public function get_user( $listing ) {
+        return $this->wordpress->get_user_by( 'id', $listing->post_author );
     }
 
     public function get_view_listing_link( $listing ) {
