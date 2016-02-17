@@ -219,12 +219,14 @@ class AWPCP_Installer {
             '3.3.3' => 'upgrade_to_3_3_3',
             '3.4' => 'upgrade_to_3_4',
             '3.5.3' => 'upgrade_to_3_5_3',
-            '3.5.4-dev-15' => 'upgrade_to_3_5_4_dev_15',
-            '3.5.4-dev-20' => 'upgrade_to_3_5_4_dev_20',
-            '3.5.4-dev-28' => 'upgrade_to_3_5_4_dev_28',
-            '3.5.4-dev-29' => 'upgrade_to_3_5_4_dev_29',
-            '3.5.4-dev-48' => 'upgrade_to_3_5_4_dev_48',
-            '3.6.4-dev-11' => 'upgrade_to_3_6_4_dev_11',
+            '3.5.4-dev-15' => 'enable_sanitize_media_filenames_upgrade_task',
+            '3.6.4' => 'create_tasks_table',
+            '3.6.4' => 'create_metadata_column_in_media_table',
+            '3.6.4' => 'create_regions_column_in_fees_table',
+            '3.6.4' => 'create_description_column_in_fees_table',
+            '3.6.4' => 'try_to_convert_tables_to_utf8mb4',
+            '3.6.4' => 'allow_null_values_in_user_id_column_in_payments_table',
+            '3.6.4' => 'enable_calculate_image_dimensions_upgrade_task',
         );
 
         foreach ( $upgrade_routines as $version => $routine ) {
@@ -955,26 +957,35 @@ class AWPCP_Installer {
         $wpdb->query( 'DROP TABLE IF EXISTS ' . AWPCP_TABLE_PAGENAME );
     }
 
-    private function upgrade_to_3_5_4_dev_15( $oldversion ) {
+    private function enable_sanitize_media_filenames_upgrade_task( $oldversion ) {
         awpcp()->manual_upgrades->enable_upgrade_task( 'awpcp-sanitize-media-filenames' );
     }
 
-    private function upgrade_to_3_5_4_dev_20( $oldversion ) {
-        global $wpdb;
-
+    private function create_tasks_table( $oldversion ) {
         // create tasks table if missing
         // https://github.com/drodenbaugh/awpcp/issues/1246
         dbDelta( $this->plugin_tables->get_tasks_table_definition() );
+    }
+
+    private function create_metadata_column_in_media_table( $oldversion ) {
+        global $wpdb;
 
         if ( ! awpcp_column_exists( AWPCP_TABLE_MEDIA, 'metadata' ) ) {
             $sql = $this->database_helper->replace_charset_and_collate( 'ALTER TABLE ' . AWPCP_TABLE_MEDIA . " ADD `metadata` TEXT CHARACTER SET <charset> COLLATE <collate> NOT NULL DEFAULT '' AFTER `is_primary`" );
             $wpdb->query( $sql );
         }
+    }
 
+    /**
+     * We had to schedule this upgrade task to be run again as part of the
+     * solution for Issue 1474.
+     */
+    private function enable_calculate_image_dimensions_upgrade_task( $oldversion ) {
+        delete_option( 'awpcp-ciduth-last-file-id' );
         awpcp()->manual_upgrades->enable_upgrade_task( 'awpcp-calculate-image-dimensions' );
     }
 
-    private function upgrade_to_3_5_4_dev_28( $oldversion ) {
+    private function create_regions_column_in_fees_table( $oldversion ) {
         global $wpdb;
 
         if ( ! awpcp_column_exists( AWPCP_TABLE_ADFEES, 'regions' ) ) {
@@ -983,7 +994,7 @@ class AWPCP_Installer {
         }
     }
 
-    private function upgrade_to_3_5_4_dev_29( $oldversion ) {
+    private function create_description_column_in_fees_table( $oldversion ) {
         global $wpdb;
 
         if ( ! awpcp_column_exists( AWPCP_TABLE_ADFEES, 'description' ) ) {
@@ -992,7 +1003,7 @@ class AWPCP_Installer {
         }
     }
 
-    private function upgrade_to_3_5_4_dev_48( $oldversion ) {
+    private function try_to_convert_tables_to_utf8mb4( $oldversion ) {
         global $wpdb;
 
         if ( $wpdb->charset !== 'utf8mb4' ) {
@@ -1010,16 +1021,12 @@ class AWPCP_Installer {
         }
     }
 
-    private function upgrade_to_3_6_4_dev_11( $oldversion ) {
+    private function allow_null_values_in_user_id_column_in_payments_table( $oldversion ) {
         global $wpdb;
 
         if ( ! awpcp_column_exists( AWPCP_TABLE_PAYMENTS, 'user_id' ) ) {
             $wpdb->query(  'ALTER TABLE ' . AWPCP_TABLE_PAYMENTS . ' CHANGE user_id user_id INT( 10 ) NULL'  );
         }
-
-        // We need to run the Calculate Image Dimensions upgrade task again (#1474).
-        delete_option( 'awpcp-ciduth-last-file-id' );
-        awpcp()->manual_upgrades->enable_upgrade_task( 'awpcp-calculate-image-dimensions' );
     }
 }
 
