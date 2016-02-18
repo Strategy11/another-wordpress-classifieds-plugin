@@ -345,23 +345,27 @@ class AWPCP_ListingsAPI {
      * @since 3.0.2
      */
     public function send_verification_email( $ad ) {
-        $mail = new AWPCP_Email;
-        $mail->to[] = awpcp_format_email_address( $ad->ad_contact_email, $ad->ad_contact_name );
-        $mail->subject = sprintf( __( 'Verify the email address used for Ad "%s"', 'another-wordpress-classifieds-plugin' ), $ad->get_title() );
+        $contact_email = $this->listing_renderer->get_contact_name( $ad );
+        $contact_name = $this->listing_renderer->get_contact_email( $ad );
+        $listing_title = $this->listing_renderer->get_listing_title( $ad );
 
-        $verification_link = awpcp_get_email_verification_url( $ad->ad_id );
+        $mail = new AWPCP_Email;
+        $mail->to[] = awpcp_format_email_address( $contact_email, $contact_name );
+        $mail->subject = sprintf( __( 'Verify the email address used for Ad "%s"', 'another-wordpress-classifieds-plugin' ), $listing_title );
+
+        $verification_link = awpcp_get_email_verification_url( $ad->ID );
 
         $template = AWPCP_DIR . '/frontend/templates/email-ad-awaiting-verification.tpl.php';
         $mail->prepare( $template, array(
-            'contact_name' => $ad->ad_contact_name,
-            'ad_title' => $ad->get_title(),
+            'contact_name' => $contact_name,
+            'ad_title' => $listing_title,
             'verification_link' => $verification_link
         ) );
 
         if ( $mail->send() ) {
-            $emails_sent = intval( awpcp_get_ad_meta( $ad->ad_id, 'verification_emails_sent', true ) );
-            awpcp_update_ad_meta( $ad->ad_id, 'verification_email_sent_at', awpcp_datetime() );
-            awpcp_update_ad_meta( $ad->ad_id, 'verification_emails_sent', $emails_sent + 1 );
+            $emails_sent = intval( awpcp_get_ad_meta( $ad->ID, 'verification_emails_sent', true ) );
+            $this->wordpress->update_post_meta( $ad->ID, 'verification_email_sent_at', current_time( 'mysql' ) );
+            $this->wordpress->update_post_meta( $ad->ID, 'verification_emails_sent', $emails_sent + 1 );
         }
     }
 
