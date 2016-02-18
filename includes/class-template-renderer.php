@@ -13,7 +13,19 @@ class AWPCP_Template_Renderer {
             $content = $this->render_template( $content_template, $content_params );
         }
 
-        $params = array( 'page' => $page, 'content' => $content );
+        if ( method_exists( $page, 'show_sidebar' ) ) {
+            $show_sidebar = $page->show_sidebar();
+        } else {
+            $show_sidebar = false;
+        }
+
+        $params = array(
+            'page' => $page,
+            'page_slug' => $page->page,
+            'page_title' => $page->title(),
+            'show_sidebar' => $show_sidebar,
+            'content' => $content,
+        );
 
         return $this->render_template( $page_template, $params );
     }

@@ -4,7 +4,7 @@
  * @since 3.5.4
  */
 function awpcp_router() {
-    return new AWPCP_Router( awpcp_request() );
+    return new AWPCP_Router( awpcp_template_renderer(), awpcp_request() );
 }
 
 /**
@@ -12,6 +12,7 @@ function awpcp_router() {
  */
 class AWPCP_Router {
 
+    private $template_renderer;
     private $request;
 
     private $admin_pages = array();
@@ -22,7 +23,8 @@ class AWPCP_Router {
     private $current_page = null;
     private $request_handler = null;
 
-    public function __construct( $request ) {
+    public function __construct( $template_renderer, $request ) {
+        $this->template_renderer = $template_renderer;
         $this->request = $request;
     }
 
@@ -281,15 +283,17 @@ class AWPCP_Router {
     }
 
     public function render_admin_page( $admin_page, $content ) {
-        // necesary to use the admin-page template without having to modify it
-        $this->page = $admin_page->slug;
+        $template = AWPCP_DIR . '/admin/templates/admin-page.tpl.php';
 
-        ob_start();
-        include( AWPCP_DIR . '/admin/templates/admin-page.tpl.php' );
-        $content = ob_get_contents();
-        ob_end_clean();
+        $params = array(
+            'current_page' => $this->current_page,
+            'page_slug' => $admin_page->slug,
+            'page_title' => $this->title(),
+            'show_sidebar' => $this->show_sidebar( $this->current_page ),
+            'content' => $content,
+        );
 
-        return $content;
+        return $this->template_renderer->render_template( $template, $params );
     }
 
     public function handle_anonymous_ajax_request() {

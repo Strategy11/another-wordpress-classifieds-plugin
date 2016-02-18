@@ -157,8 +157,11 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
             $errors = array();
         }
 
+        $page = $this;
         $hidden = array('attempts' => $form['attempts'] + 1);
-        $params = compact( 'form', 'hidden', 'messages', 'errors', 'send_access_key_url' );
+
+        $params = compact( 'page', 'form', 'hidden', 'messages', 'errors', 'send_access_key_url' );
+
         $template = AWPCP_DIR . '/frontend/templates/page-edit-ad-email-key-step.tpl.php';
 
         return $this->render($template, $params);
