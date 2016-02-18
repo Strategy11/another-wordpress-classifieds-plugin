@@ -137,14 +137,14 @@ class AWPCP_ListingsAPI {
     }
 
     public function update_listing_verified_status( $listing, $transaction ) {
-        if ( $listing->verified ) {
+        if ( $this->listing_renderer->is_verified( $listing ) ) {
             return;
-        } else if ( $this->should_mark_listing_as_verified( $listing, $transaction ) ) {
-            $listing->verified = true;
-            $listing->verified_at = awpcp_datetime();
+        }
+
+        if ( $this->should_mark_listing_as_verified( $listing, $transaction ) ) {
+            $this->mark_listing_as_verified( $listing );
         } else {
-            $listing->verified = false;
-            $listing->verified_at = null;
+            $this->mark_listing_as_needs_verification( $listing );
         }
     }
 
@@ -157,6 +157,18 @@ class AWPCP_ListingsAPI {
             return true;
         }
         return false;
+    }
+
+    private function mark_listing_as_verified( $listing ) {
+        $this->wordpress->delete_post_meta( $listing->ID, '_verification_needed' );
+        $this->wordpress->update_post_meta( $listing->ID, '_verified', true );
+        $this->wordpress->update_post_meta( $listing->ID, '_verification_date', current_time( 'mysql' ) );
+    }
+
+    private function mark_listing_as_needs_verification( $listing ) {
+        $this->wordpress->update_post_meta( $listing->ID, '_verification_needed', true );
+        $this->wordpress->delete_post_meta( $listing->ID, '_verified' );
+        $this->wordpress->delete_post_meta( $listing->ID, '_verification_date' );
     }
 
     /**
@@ -174,8 +186,7 @@ class AWPCP_ListingsAPI {
         $timestamp = current_time( 'timestamp' );
         $now = current_time( 'mysql' );
 
-        $this->wordpress->delete_post_meta( $ad->ID, '_verification_needed' );
-        $this->wordpress->update_post_meta( $ad->ID, '_verification_date', $now );
+        $this->mark_listing_as_verified( $ad );
         $this->wordpress->update_post_meta( $ad->ID, '_start_date', $now );
         $this->wordpress->update_post_meta( $ad->ID, '_end_date', $payment_term->calculate_end_date( $timestamp ) );
 

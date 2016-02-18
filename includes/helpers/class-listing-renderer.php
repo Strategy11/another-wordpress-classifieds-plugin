@@ -144,11 +144,7 @@ class AWPCP_ListingRenderer {
     }
 
     public function is_verified( $listing ) {
-        if ( $this->wordpress->get_post_meta( $listing->ID, '_verification_needed' ) ) {
-            return false;
-        }
-
-        return true;
+        return $this->wordpress->get_post_meta( $listing->ID, '_verified' );
     }
 
     public function is_disabled( $listing ) {
