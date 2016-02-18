@@ -1,6 +1,6 @@
 <?php
 
-function awpcp_set_file_as_primary_ajax_handler() {
+function awpcp_set_attachment_as_featured_ajax_handler() {
     $attachment_action = new AWPCP_Set_Attachment_As_Featured_Ajax_Action(
         awpcp_attachment_properties(),
         awpcp_attachments_logic()
