@@ -28,7 +28,7 @@
     <h3><?php echo esc_html( _x( 'Please select a Category for your Ad', 'place ad order step', 'another-wordpress-classifieds-plugin' ) ); ?></h3>
 
     <p class="awpcp-form-spacer">
-        <?php $dropdown = new AWPCP_CategoriesDropdown(); ?>
+        <?php $dropdown = awpcp_categories_dropdown(); ?>
         <?php echo $dropdown->render( array( 'selected' => awpcp_array_data('category', '', $form), 'name' => 'category' ) ); ?>
         <?php echo awpcp_form_error('category', $form_errors); ?>
     </p>

@@ -1,7 +1,7 @@
 <div class="changecategoryselect">
     <form method="post" action="<?php echo esc_attr( $action_url ); ?>">
         <div class="awpcp-category-dropdown-container">
-        <?php $dropdown = new AWPCP_CategoriesDropdown(); ?>
+        <?php $dropdown = awpcp_categories_dropdown(); ?>
         <?php echo $dropdown->render( $category_dropdown_params ); ?>
         </div>
 
