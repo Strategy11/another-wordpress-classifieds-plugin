@@ -74,10 +74,11 @@ class AWPCP_Listings_Table extends WP_List_Table {
         $query = array();
 
         if ( ! awpcp_current_user_is_moderator() ) {
-            $query['user_id'] = wp_get_current_user()->ID;
+            $query['post_author'] = wp_get_current_user()->ID;
         }
 
         try {
+            // TODO: Fix those parsers.
             $conditions = awpcp_listings_table_search_by_condition_parser()->parse( $params['search-by'], $params['s']);
             $query = array_merge( $query, (array) $conditions );
         } catch (Exception $e) {
@@ -85,8 +86,12 @@ class AWPCP_Listings_Table extends WP_List_Table {
         }
 
         if ( ! empty( $this->selected_category_id ) ) {
-            $query['category_id'] = $this->selected_category_id;
-            $query['include_listings_in_children_categories'] = true;
+            $query['tax_query'][] = array(
+                'taxonomy' => AWPCP_CATEGORY_TAXONOMY,
+                'field' => 'term_id',
+                'terms' => (int) $this->selected_category_id,
+                'include_children' => true,
+            );
         }
 
         $show_incomplete = false;
@@ -96,20 +101,42 @@ class AWPCP_Listings_Table extends WP_List_Table {
 
         switch ($params['filterby']) {
             case 'is-featured':
-                $query['featured'] = true;
+                $query['meta_query'][] = array(
+                    'key' => '_featured',
+                    'value' => true,
+                    'compare' => '=',
+                    'type' => 'BINARY',
+                );
                 break;
 
             case 'flagged':
+                $query['meta_query'][] = array(
+                    'key' => '_flagged',
+                    'value' => true,
+                    'compare' => '=',
+                    'type' => 'BINARY',
+                );
                 $query['flagged'] = true;
                 break;
 
             case 'incomplete':
-                $query['payment_status'] = 'Unpaid';
+                $query['meta_query'][] = array(
+                    'key' => '_payment_status',
+                    'value' => 'Unpaid',
+                    'compare' => '=',
+                    'type' => 'char'
+                );
                 $show_incomplete = true;
                 break;
 
             case 'non-verified':
-                $query['verified'] = false;
+                // TODO: test NOT EXISTS really works!
+                $query['meta_query'][] = array(
+                    'key' => '_verification_needed',
+                    'value' => true,
+                    'compare' => '=',
+                    'type' => 'BINARY',
+                );
                 $show_non_verified = true;
                 break;
 
@@ -118,11 +145,17 @@ class AWPCP_Listings_Table extends WP_List_Table {
                 break;
 
             case 'images-awaiting-approval':
+                // TODO: fix this. Create a method in listings collection to query for this kind of posts.
                 $query['have_media_awaiting_approval'] = true;
                 break;
 
             case 'new':
-                $query['reviewed'] = false;
+                $query['meta_query'][] = array(
+                    'key' => '_content_needs_review',
+                    'value' => true,
+                    'compare' => '=',
+                    'type' => 'BINARY',
+                );
                 break;
 
             case 'expired':
@@ -134,6 +167,7 @@ class AWPCP_Listings_Table extends WP_List_Table {
                 break;
         }
 
+        // TODO: update listings collection to support order and orderby parameters
         switch($params['orderby']) {
             case 'title':
             case 'start-date':
@@ -153,8 +187,8 @@ class AWPCP_Listings_Table extends WP_List_Table {
         }
 
         $query['order'] = $params['order'];
-        $query['offset'] = $this->items_per_page * ( $params['paged'] - 1 );
-        $query['limit'] = $this->items_per_page;
+        $query['paged'] = $params['paged'];
+        $query['posts_per_page'] = $this->items_per_page;
 
         return array(
             'query' => $query,
