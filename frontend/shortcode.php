@@ -21,8 +21,8 @@ class AWPCP_Pages {
 		$this->meta = awpcp_meta();
 
 		$this->show_ad = new AWPCP_Show_Ad_Page();
-		$this->browse_ads = new AWPCP_BrowseAdsPage();
-		$this->browse_categories = new AWPCP_BrowseCategoriesPage();
+		$this->browse_ads = awpcp_browse_listings_page();
+		$this->browse_categories = awpcp_browse_categories_page();
 
 		// fix for theme conflict with ThemeForest themes.
 		new AWPCP_RawShortcode();

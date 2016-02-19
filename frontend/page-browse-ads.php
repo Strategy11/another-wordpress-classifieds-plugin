@@ -1,13 +1,14 @@
 <?php
 
-require_once( AWPCP_DIR . '/includes/helpers/page.php' );
+function awpcp_browse_listings_page() {
+    return new AWPCP_BrowseAdsPage(
+        'awpcp-browse-ads',
+        __( 'Browse Ads', 'another-wordpress-classifieds-plugin' ),
+        awpcp_template_renderer()
+    );
+}
 
 class AWPCP_BrowseAdsPage extends AWPCP_Page {
-
-    public function __construct($page='awpcp-browse-ads', $title=null) {
-        $title = is_null($title) ? __( 'Browse Ads', 'another-wordpress-classifieds-plugin' ) : $title;
-        parent::__construct( $page, $title );
-    }
 
     public function get_current_action($default='browseads') {
         return awpcp_request_param('a', $default);
