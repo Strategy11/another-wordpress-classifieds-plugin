@@ -313,10 +313,9 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
     }
 
     public function view_ad( $ad ) {
-        $category_name = get_adcatname( $ad->ad_category_id );
-        $category_url = $this->url( array( 'showadsfromcat_id' => $ad->ad_category_id ) );
+        $category_id = $this->listing_renderer->get_category_id( $ad );
+        $category_url = $this->url( array( 'showadsfromcat_id' => $category_id ) );
 
-        $content = showad($ad->ad_id, $omitmenu=1);
         $links = $this->links(
             $this->actions(
                 $ad,
@@ -324,13 +323,14 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
             )
         );
 
+        $content = showad( $ad->ID, $omitmenu = 1 );
+
         $params = array(
             'page' => $this,
             'ad' => $ad,
-            'category' => array(
-                'name' => $category_name,
-                'url' => $category_url,
-            ),
+            'listing_title' => $this->listing_renderer->get_listing_title( $ad ),
+            'category_name' => $this->listing_renderer->get_category_name( $ad ),
+            'category_url' => $category_url,
             'links' => $links,
             'content' => $content,
         );
