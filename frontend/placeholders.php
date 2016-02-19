@@ -378,7 +378,7 @@ function awpcp_do_placeholder_contact_name($ad, $placeholder) {
     if ( get_awpcp_option( 'hidelistingcontactname' ) == 1 && ! is_user_logged_in() ) {
         $contact_name = __( 'Seller', 'another-wordpress-classifieds-plugin' );
     } else {
-        $contact_name = $ad->ad_contact_name;
+        $contact_name = awpcp_listing_renderer()->get_contact_name( $ad );
     }
 
     return esc_html( stripslashes( $contact_name ) );
