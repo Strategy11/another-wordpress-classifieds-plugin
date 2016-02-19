@@ -633,7 +633,7 @@ function awpcp_do_placeholder_extra_fields($ad, $placeholder, $context) {
  * @since 3.0
  */
 function awpcp_do_placeholder_contact_url($ad, $placeholder) {
-    return awpcp_get_reply_to_ad_url($ad->ad_id, $ad->ad_title);
+    return awpcp_get_reply_to_ad_url( $ad->ID, awpcp_listing_renderer()->get_listing_title( $ad ) );
 }
 
 
