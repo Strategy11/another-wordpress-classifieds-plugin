@@ -17,17 +17,21 @@ class AWPCP_Attachments_Collection {
     }
 
     public function get_featured_attachment_of_type( $type, $query = array() ) {
-        $query = $this->make_attachments_of_type_query( $type, $query );
-        $query = $this->make_featured_attachment_query( $query );
+        $query['posts_per_page'] = 1;
 
-        $attachments = $this->find_attachments( $query );
+        $attachments_of_type_query = $this->make_attachments_of_type_query( $type, $query );
+        $featured_attachment_query = $this->make_featured_attachment_query( $attachments_of_type_query );
+
+        $attachments = $this->find_visible_attachments( $featured_attachment_query );
+
+        if ( empty( $attachments ) ) {
+            $attachments = $this->find_visible_attachments( $attachments_of_type_query );
+        }
 
         return array_shift( $attachments );
     }
 
     private function make_featured_attachment_query( $query ) {
-        $query['posts_per_page'] = 1;
-
         $query['meta_query'][] = array(
             'key' => '_featured',
             'value' => true,
@@ -39,8 +43,8 @@ class AWPCP_Attachments_Collection {
     }
 
     public function find_attachments( $query = array() ) {
-        $attachments = new WP_Query();
-        return $attachments->query( $this->prepare_attachments_query( $query ) );
+        $attachments = $this->wordpress->create_posts_query( $this->prepare_attachments_query( $query ) );
+        return $attachments->posts;
     }
 
     private function prepare_attachments_query( $query ) {
