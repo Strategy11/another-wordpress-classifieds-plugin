@@ -100,10 +100,11 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
         $actions['trash'] = array(__('Delete', 'AWPCP'), $this->url(array('action' => 'delete', 'id' => $ad->ID)));
 
         if ( $is_moderator ) {
-            if ($ad->disabled)
+            if ( $this->listing_renderer->is_disabled( $ad ) ) {
                 $actions['enable'] = array(__('Enable', 'AWPCP'), $this->url(array('action' => 'enable', 'id' => $ad->ID)));
-            else
+            } else {
                 $actions['disable'] = array(__('Disable', 'AWPCP'), $this->url(array('action' => 'disable', 'id' => $ad->ID)));
+            }
 
             if ($ad->flagged)
                 $actions['unflag'] = array(__('Unflag', 'AWPCP'), $this->url(array('action' => 'unflag', 'id' => $ad->ID)));
