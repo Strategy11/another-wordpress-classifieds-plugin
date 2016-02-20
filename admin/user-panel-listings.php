@@ -10,6 +10,7 @@ function awpcp_manage_listings_user_panel_page() {
         'awpcp-admin-listings',
         awpcp_admin_page_title( __( 'Manage Listings', 'another-wordpress-classifieds-plugin' ) ),
         awpcp_attachments_collection(),
+        awpcp_listings_api(),
         awpcp_listing_renderer(),
         awpcp_listings_collection()
     );

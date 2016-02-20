@@ -12,6 +12,7 @@ function awpcp_manage_listings_admin_page() {
         'awpcp-admin-listings',
         awpcp_admin_page_title( __( 'Manage Listings', 'another-wordpress-classifieds-plugin' ) ),
         awpcp_attachments_collection(),
+        awpcp_listings_api(),
         awpcp_listing_renderer(),
         awpcp_listings_collection()
     );
@@ -23,15 +24,17 @@ function awpcp_manage_listings_admin_page() {
 class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
 
     private $attachments;
+    private $listings_logic;
     private $listing_renderer;
     private $listings;
 
-    public function __construct( $page, $title, $attachments, $listing_renderer, $listings ) {
+    public function __construct( $page, $title, $attachments, $listings_logic, $listing_renderer, $listings ) {
         parent::__construct( $page, $title, __('Listings', 'another-wordpress-classifieds-plugin') );
 
         $this->table = null;
 
         $this->attachments = $attachments;
+        $this->listings_logic = $listings_logic;
         $this->listing_renderer = $listing_renderer;
         $this->listings = $listings;
     }
@@ -393,7 +396,11 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
     }
 
     public function disable_ad_action($ad) {
-        return !is_null( $ad ) && $ad->disable();
+        if ( is_null( $ad ) ) {
+            return false;
+        }
+
+        return $this->listings_logic->disable_listing( $ad );
     }
 
     public function disable_ad_success($n) {
