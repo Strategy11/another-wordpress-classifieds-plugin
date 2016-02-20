@@ -12,7 +12,8 @@ function awpcp_manage_listings_admin_page() {
         'awpcp-admin-listings',
         awpcp_admin_page_title( __( 'Manage Listings', 'another-wordpress-classifieds-plugin' ) ),
         awpcp_attachments_collection(),
-        awpcp_listing_renderer()
+        awpcp_listing_renderer(),
+        awpcp_listings_collection()
     );
 }
 
@@ -23,14 +24,16 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
 
     private $attachments;
     private $listing_renderer;
+    private $listings;
 
-    public function __construct( $page, $title, $attachments, $listing_renderer ) {
+    public function __construct( $page, $title, $attachments, $listing_renderer, $listings ) {
         parent::__construct( $page, $title, __('Listings', 'another-wordpress-classifieds-plugin') );
 
         $this->table = null;
 
         $this->attachments = $attachments;
         $this->listing_renderer = $listing_renderer;
+        $this->listings = $listings;
     }
 
     public function enqueue_scripts() {
@@ -354,7 +357,12 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
         $selected = awpcp_request_param( 'selected', array( $this->id ) );
 
         foreach ( array_filter( $selected ) as $id ) {
-            $ad = AWPCP_Ad::find_by_id($id);
+            try {
+                $ad = $this->listings->get( $id );
+            } catch ( AWPCP_Exception $e ) {
+                $ad = null;
+            }
+
             if ( call_user_func( $handler, $ad ) ) {
                 $processed[] = $ad;
             } else {
