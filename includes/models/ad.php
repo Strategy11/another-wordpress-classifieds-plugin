@@ -303,26 +303,6 @@ class AWPCP_Ad {
 		return $n !== FALSE ? $n : 0;
 	}
 
-	/**
-	 * Finds out if the Ad identified by $id belongs to the user
-	 * whose information is stored in $user.
-	 *
-	 * @param $id int Ad id
-	 * @param $user array See get_currentuserinfo()
-	 */
-	static function belongs_to_user($id, $user_id) {
-		global $wpdb;
-
-		if (empty($id) && empty($user_id)) {
-			return false;
-		}
-
-		$where = $wpdb->prepare("ad_id = %d AND user_id = %d", $id, $user_id);
-		$ad = AWPCP_Ad::count($where);
-
-		return $ad > 0;
-	}
-
 	protected function sanitize($data) {
 		$sanitized = $data;
 

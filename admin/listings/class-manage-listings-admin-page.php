@@ -14,7 +14,8 @@ function awpcp_manage_listings_admin_page() {
         awpcp_attachments_collection(),
         awpcp_listings_api(),
         awpcp_listing_renderer(),
-        awpcp_listings_collection()
+        awpcp_listings_collection(),
+        awpcp_settings_api()
     );
 }
 
@@ -27,8 +28,9 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
     private $listings_logic;
     private $listing_renderer;
     private $listings;
+    private $settings;
 
-    public function __construct( $page, $title, $attachments, $listings_logic, $listing_renderer, $listings ) {
+    public function __construct( $page, $title, $attachments, $listings_logic, $listing_renderer, $listings, $settings ) {
         parent::__construct( $page, $title, __('Listings', 'another-wordpress-classifieds-plugin') );
 
         $this->table = null;
@@ -37,6 +39,7 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
         $this->listings_logic = $listings_logic;
         $this->listing_renderer = $listing_renderer;
         $this->listings = $listings;
+        $this->settings = $settings;
     }
 
     public function enqueue_scripts() {
@@ -420,15 +423,26 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
         );
     }
 
+    /**
+     * @since feature/1112  Modified to work with custom post types.
+     */
     public function enable_ad_action($ad) {
-        if ( ! is_null( $ad ) && $ad->enable() ) {
-            $is_ad_owner = AWPCP_Ad::belongs_to_user( $ad->ad_id, wp_get_current_user()->ID );
-            if ( ! $is_ad_owner && get_awpcp_option( 'send-ad-enabled-email' ) ) {
-                awpcp_ad_enabled_email( $ad );
-            }
-            return true;
+        if ( is_null( $ad ) ) {
+            return false;
         }
-        return false;
+
+        if ( ! $this->listings_logic->enable_listing( $ad ) ) {
+            return false;
+        }
+
+        $current_user = wp_get_current_user();
+        $send_listing_enabled_notification = $this->settings->get_option( 'send-ad-enabled-email' );
+
+        if ( $current_user->ID == $ad->post_author && $send_listing_enabled_notification ) {
+            awpcp_ad_enabled_email( $ad );
+        }
+
+        return true;
     }
 
     public function enable_ad_success($n) {

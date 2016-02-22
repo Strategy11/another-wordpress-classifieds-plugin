@@ -12,7 +12,8 @@ function awpcp_manage_listings_user_panel_page() {
         awpcp_attachments_collection(),
         awpcp_listings_api(),
         awpcp_listing_renderer(),
-        awpcp_listings_collection()
+        awpcp_listings_collection(),
+        awpcp_settings_api()
     );
 }
 
