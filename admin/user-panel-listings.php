@@ -13,7 +13,8 @@ function awpcp_manage_listings_user_panel_page() {
         awpcp_listings_api(),
         awpcp_listing_renderer(),
         awpcp_listings_collection(),
-        awpcp_settings_api()
+        awpcp_settings_api(),
+        awpcp_template_renderer()
     );
 }
 

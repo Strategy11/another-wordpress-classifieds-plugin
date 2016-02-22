@@ -15,7 +15,8 @@ function awpcp_manage_listings_admin_page() {
         awpcp_listings_api(),
         awpcp_listing_renderer(),
         awpcp_listings_collection(),
-        awpcp_settings_api()
+        awpcp_settings_api(),
+        awpcp_template_renderer()
     );
 }
 
@@ -29,8 +30,9 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
     private $listing_renderer;
     private $listings;
     private $settings;
+    private $template_renderer;
 
-    public function __construct( $page, $title, $attachments, $listings_logic, $listing_renderer, $listings, $settings ) {
+    public function __construct( $page, $title, $attachments, $listings_logic, $listing_renderer, $listings, $settings, $template_renderer ) {
         parent::__construct( $page, $title, __('Listings', 'another-wordpress-classifieds-plugin') );
 
         $this->table = null;
@@ -40,6 +42,7 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
         $this->listing_renderer = $listing_renderer;
         $this->listings = $listings;
         $this->settings = $settings;
+        $this->template_renderer = $template_renderer;
     }
 
     public function enqueue_scripts() {
@@ -605,26 +608,30 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
     public function manage_images( $listing ) {
         $allowed_files = awpcp_listing_upload_limits()->get_listing_upload_limits( $listing );
 
+        $attachments = $this->attachments->find_attachments( array( 'post_parent' => $listing->ID ) );
+
         $params = array(
             'listing' => $listing,
-            'files' => awpcp_media_api()->find_by_ad_id( $listing->ad_id ),
+            'files' => $attachments,
             'media_manager_configuration' => array(
-                'nonce' => wp_create_nonce( 'awpcp-manage-listing-media-' . $listing->ad_id ),
+                'nonce' => wp_create_nonce( 'awpcp-manage-listing-media-' . $listing->ID ),
                 'allowed_files' => $allowed_files,
                 'show_admin_actions' => awpcp_current_user_is_moderator(),
             ),
             'media_uploader_configuration' => array(
-                'listing_id' => $listing->ad_id,
-                'nonce' => wp_create_nonce( 'awpcp-upload-media-for-listing-' . $listing->ad_id ),
+                'listing_id' => $listing->ID,
+                'nonce' => wp_create_nonce( 'awpcp-upload-media-for-listing-' . $listing->ID ),
                 'allowed_files' => $allowed_files,
             ),
             'urls' => array(
-                'view-listing' => $this->url( array( 'action' => 'view', 'id' => $listing->ad_id ) ),
+                'view-listing' => $this->url( array( 'action' => 'view', 'id' => $listing->ID ) ),
                 'listings' => $this->url( array( 'id' => null ) ),
             ),
         );
 
-        return awpcp_render_template( AWPCP_DIR . '/templates/admin/listings-media-center.tpl.php', $params );
+        $template = AWPCP_DIR . '/templates/admin/listings-media-center.tpl.php';
+
+        return $this->template_renderer->render_template( $template, $params );
     }
 
     public function delete_ad() {
