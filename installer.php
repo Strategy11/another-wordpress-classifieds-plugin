@@ -229,6 +229,14 @@ class AWPCP_Installer {
                 'allow_null_values_in_user_id_column_in_payments_table',
                 'enable_calculate_image_dimensions_upgrade_task',
             ),
+            '3.6.4.1' => array(
+                'create_tasks_table',
+                'create_metadata_column_in_media_table',
+                'create_regions_column_in_fees_table',
+                'create_description_column_in_fees_table',
+                'try_to_convert_tables_to_utf8mb4',
+                'allow_null_values_in_user_id_column_in_payments_table',
+            ),
         );
 
         foreach ( $upgrade_routines as $version => $routines ) {
