@@ -569,18 +569,28 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
     public function send_access_key() {
         global $nameofsite;
 
-        $ad = AWPCP_Ad::find_by_id($this->id);
+        try {
+            $ad = $this->listings->get( $this->id );
+        } catch ( AWPCP_Exception $e ) {
+            return;
+        }
 
-        $recipient = "{$ad->ad_contact_name} <{$ad->ad_contact_email}>";
+        $listing_title = $this->listing_renderer->get_listing_title( $ad );
+        $contact_name = $this->listing_renderer->get_contact_name( $ad );
+        $contact_email = $this->listing_renderer->get_contact_email( $ad );
+
+        $recipient = "{$contact_name} <{$contact_email}>";
         $template = AWPCP_DIR . '/frontend/templates/email-send-ad-access-key.tpl.php';
 
         $message = new AWPCP_Email;
         $message->to[] = $recipient;
-        $message->subject = sprintf('Access Key for "%s"', $ad->get_title());
+        $message->subject = sprintf( 'Access Key for "%s"', $listing_title );
 
         $message->prepare($template,  array(
-            'ad' => $ad,
-            'nameofsite' => $nameofsite,
+            'listing_title' => $listing_title,
+            'contact_name' => $contact_name,
+            'contact_email' => $contact_email,
+            'access_key' => $this->listing_renderer->get_access_key( $ad ),
         ));
 
         if ($message->send()) {
