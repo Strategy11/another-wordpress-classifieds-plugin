@@ -2093,14 +2093,20 @@ function awpcp_moderators_email_to() {
 /**
  * @since  2.1.4
  */
-function awpcp_ad_enabled_email($ad) {
+function awpcp_ad_enabled_email( $listing ) {
+    $listing_renderer = awpcp_listing_renderer();
+
+    $listing_title = $listing_renderer->get_listing_title( $listing );
+    $contact_name = $listing_renderer->get_contact_name( $listing );
+    $contact_email = $listing_renderer->get_contact_email( $listing );
+
 	// user email
 	$mail = new AWPCP_Email;
-	$mail->to[] = awpcp_format_email_address( $ad->ad_contact_email, $ad->ad_contact_name );
-	$mail->subject = sprintf(__('Your Ad "%s" has been approved', 'another-wordpress-classifieds-plugin'), $ad->get_title());
+	$mail->to[] = awpcp_format_email_address( $contact_email, $contact_name );
+	$mail->subject = sprintf( __( 'Your Ad "%s" has been approved', 'another-wordpress-classifieds-plugin'), $listing_title );
 
 	$template = AWPCP_DIR . '/frontend/templates/email-ad-enabled-user.tpl.php';
-	$mail->prepare($template, compact('ad'));
+	$mail->prepare( $template, compact( 'listing', 'listing_title', 'contact_name' ) );
 
 	$mail->send();
 }
