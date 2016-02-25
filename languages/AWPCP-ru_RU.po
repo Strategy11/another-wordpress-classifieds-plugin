@@ -5,14 +5,14 @@
 # GREEN301086 <GREEN301086@mail.ru>, 2014
 # Hartamon <hartamon1@gmail.com>, 2015
 # Pavel Golub <pavlo.golub@gmail.com>, 2015
-# Victor Bychek, 2015
+# Victor Bychek, 2015-2016
 # Willington Vega <wvega@wvega.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2016-01-14 17:52:15+00:00\n"
-"PO-Revision-Date: 2016-01-14 17:55+0000\n"
+"POT-Creation-Date: 2016-02-25 16:58:10+00:00\n"
+"PO-Revision-Date: 2016-02-25 16:59+0000\n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: Russian (Russia) (http://www.transifex.com/wp-translations/another-wordpress-classifieds-plugin/language/ru_RU/)\n"
 "MIME-Version: 1.0\n"
@@ -48,7 +48,7 @@ msgstr "Кредиты"
 #: admin/admin-panel-fees-table.php:120
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:19
 #: admin/templates/admin-panel-fees-entry-form.tpl.php:25
-#: frontend/placeholders.php:434 frontend/templates/page-search-ads.tpl.php:46
+#: frontend/placeholders.php:443 frontend/templates/page-search-ads.tpl.php:46
 #: includes/settings/class-payment-general-settings.php:10
 msgid "Price"
 msgstr "Цена"
@@ -150,7 +150,7 @@ msgid "Categories"
 msgstr "Категории"
 
 #: admin/admin-panel-fees-table.php:127
-#: admin/templates/admin-sidebar.tpl.php:103 awpcp.php:803
+#: admin/templates/admin-sidebar.tpl.php:103 awpcp.php:805
 msgid "Featured Ads"
 msgstr "Избранные объявления"
 
@@ -362,7 +362,7 @@ msgid "Keyword"
 msgstr "Ключевому слову"
 
 #: admin/admin-panel-listings-table.php:274 frontend/page-show-ad.php:83
-#: frontend/placeholders.php:559
+#: frontend/placeholders.php:568
 msgid "Location"
 msgstr "Местонахождение"
 
@@ -729,7 +729,7 @@ msgid "Manage Extra Fields"
 msgstr "Управление дополнительными полями"
 
 #: admin/admin-panel.php:296 admin/templates/admin-sidebar.tpl.php:108
-#: awpcp.php:796
+#: awpcp.php:798
 msgid "Extra Fields"
 msgstr "Дополнительные поля"
 
@@ -1184,8 +1184,8 @@ msgid "Test Import"
 msgstr "Тестовый Импорт"
 
 #: admin/templates/admin-panel-debug.tpl.php:8
-msgid "Are you seeng 404 Not Found errors?"
-msgstr ""
+msgid "Are you seeing 404 Not Found errors?"
+msgstr "Вы видите ошибки 404 Страница не найдена?"
 
 #: admin/templates/admin-panel-debug.tpl.php:10
 msgid ""
@@ -1749,7 +1749,7 @@ msgstr "Настройки %s"
 
 #: admin/templates/admin-panel-settings.tpl.php:48
 msgid "Save Keys and Activate"
-msgstr ""
+msgstr "Сохранить ключи и активировать"
 
 #: admin/templates/admin-panel-uninstall.tpl.php:6
 msgid ""
@@ -1873,19 +1873,19 @@ msgstr "Купить премиум модуль"
 msgid "Get a Premium Module!"
 msgstr "Получить Премиум-Модуль!"
 
-#: admin/templates/admin-sidebar.tpl.php:46 awpcp.php:768
+#: admin/templates/admin-sidebar.tpl.php:46 awpcp.php:770
 msgid "Campaign Manager"
 msgstr "Менеджер Кампаний"
 
-#: admin/templates/admin-sidebar.tpl.php:52 awpcp.php:825
+#: admin/templates/admin-sidebar.tpl.php:52 awpcp.php:827
 msgid "Mark as Sold"
 msgstr "Пометить как Продано"
 
-#: admin/templates/admin-sidebar.tpl.php:58 awpcp.php:846
+#: admin/templates/admin-sidebar.tpl.php:58 awpcp.php:848
 msgid "Restricted Categories"
 msgstr "Ограниченные категории"
 
-#: admin/templates/admin-sidebar.tpl.php:63 awpcp.php:761
+#: admin/templates/admin-sidebar.tpl.php:63 awpcp.php:763
 msgid "BuddyPress Listings"
 msgstr "Объявления BuddyPress"
 
@@ -1893,15 +1893,15 @@ msgstr "Объявления BuddyPress"
 msgid "Comments/Ratings"
 msgstr "Комментарии и рейтинги"
 
-#: admin/templates/admin-sidebar.tpl.php:73 awpcp.php:747
+#: admin/templates/admin-sidebar.tpl.php:73 awpcp.php:749
 msgid "Attachments"
 msgstr "Вложения"
 
-#: admin/templates/admin-sidebar.tpl.php:78 awpcp.php:754
+#: admin/templates/admin-sidebar.tpl.php:78 awpcp.php:756
 msgid "Authorize.Net"
 msgstr "Authorize.Net"
 
-#: admin/templates/admin-sidebar.tpl.php:83 awpcp.php:832
+#: admin/templates/admin-sidebar.tpl.php:83 awpcp.php:834
 msgid "PayPal Pro"
 msgstr "PayPal Pro"
 
@@ -1909,7 +1909,7 @@ msgstr "PayPal Pro"
 msgid "Coupon/Discount"
 msgstr "Купоны и скидки"
 
-#: admin/templates/admin-sidebar.tpl.php:93 awpcp.php:860
+#: admin/templates/admin-sidebar.tpl.php:93 awpcp.php:862
 msgid "Subscriptions"
 msgstr "Подписки"
 
@@ -1917,15 +1917,15 @@ msgstr "Подписки"
 msgid "Fee Per Category"
 msgstr "Тариф для категории"
 
-#: admin/templates/admin-sidebar.tpl.php:113 awpcp.php:775
+#: admin/templates/admin-sidebar.tpl.php:113 awpcp.php:777
 msgid "Category Icons"
 msgstr "Иконки категорий"
 
-#: admin/templates/admin-sidebar.tpl.php:118 awpcp.php:839
+#: admin/templates/admin-sidebar.tpl.php:118 awpcp.php:841
 msgid "Regions Control"
 msgstr "Управление Регионами"
 
-#: admin/templates/admin-sidebar.tpl.php:123 awpcp.php:853
+#: admin/templates/admin-sidebar.tpl.php:123 awpcp.php:855
 msgid "RSS"
 msgstr "RSS"
 
@@ -2024,13 +2024,13 @@ msgid ""
 "add credit when posting a new Ad or using the \"Add Credit\" button below."
 msgstr "Кредиты в вашем аккаунте предназначены для оплаты объявлений. Вы можете пополнять ваши кредиты при размещении нового объявления, либо с помощью кнопки \"Пополнить кредит\" ниже."
 
-#: admin/user-panel-listings-edit-ad-page.php:10
-msgid "AWPCP Ad Management Panel - Listings - Edit Ad"
-msgstr "Панель управления - Объявления - Редактировать объявление"
+#: admin/user-panel-listings-edit-ad-page.php:12
+msgid "<blog-name> User Ad Management Panel - Listings - Edit Ad"
+msgstr ""
 
-#: admin/user-panel-listings-place-ad-page.php:10
-msgid "AWPCP Ad Management Panel - Listings - Place Ad"
-msgstr "Панель управления - Объявления - Разместить объявление"
+#: admin/user-panel-listings-place-ad-page.php:12
+msgid "<blog-name> User Ad Management Panel - Listings - Place Ad"
+msgstr ""
 
 #: admin/user-panel-listings-renew-ad-page.php:10
 msgid "AWPCP Ad Management Panel - Listings - Renew Ad"
@@ -2052,94 +2052,94 @@ msgstr "Управление объявлениями"
 msgid "Manage Ad Listings"
 msgstr "Управление списком объявлений"
 
-#: awpcp.php:651
+#: awpcp.php:653
 msgid "AWPCP"
 msgstr "AWPCP"
 
-#: awpcp.php:730
+#: awpcp.php:732
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
 msgstr "AWPCP требуется библиотека обработки графики GD которая не установлена. Обратитесь поддержку веб-хостинга, чтобы это исправить."
 
-#: awpcp.php:731
+#: awpcp.php:733
 #: includes/placeholders/class-placeholders-installation-verifier.php:31
 msgid "Warning"
 msgstr "Предупреждение"
 
-#: awpcp.php:782
+#: awpcp.php:784
 msgid "Comments & Ratings"
 msgstr "Комментарии и рейтинги"
 
-#: awpcp.php:789
+#: awpcp.php:791
 msgid "Coupons/Discount"
 msgstr "Купоны/Скидки"
 
-#: awpcp.php:810
+#: awpcp.php:812
 msgid "Fee per Category"
 msgstr "Тариф для категории"
 
-#: awpcp.php:817
+#: awpcp.php:819
 msgid "Google Checkout"
 msgstr "Google Checkout"
 
-#: awpcp.php:867 templates/components/media-manager.tpl.php:46
+#: awpcp.php:869 templates/components/media-manager.tpl.php:46
 msgid "Videos"
 msgstr "Видео"
 
-#: awpcp.php:875
+#: awpcp.php:877
 msgid "XML Sitemap"
 msgstr "XML Карта Сайта"
 
-#: awpcp.php:882
+#: awpcp.php:884
 msgid "ZIP Code Search Module"
 msgstr "Модуль поиска по почтовому индексу"
 
-#: awpcp.php:1039
+#: awpcp.php:1041
 msgid "This field is required."
 msgstr "Это поле является обязательным."
 
-#: awpcp.php:1040 frontend/page-edit-ad.php:128 frontend/page-edit-ad.php:433
+#: awpcp.php:1042 frontend/page-edit-ad.php:128 frontend/page-edit-ad.php:433
 #: includes/settings-api.php:214
 msgid "Please enter a valid email address."
 msgstr "Пожалуйста, введите действующий адрес электронной почты."
 
-#: awpcp.php:1041 awpcp.php:1042
+#: awpcp.php:1043 awpcp.php:1044
 msgid "Please enter a valid URL."
 msgstr "Пожалуйста, введите правильный URL."
 
-#: awpcp.php:1043
+#: awpcp.php:1045
 msgid "Please enter a valid number."
 msgstr "Пожалуйста, введите правильный номер."
 
-#: awpcp.php:1044
+#: awpcp.php:1046
 msgid "Please enter a valid amount."
 msgstr "Пожалуйста, введите корректное количество."
 
-#: awpcp.php:1054
+#: awpcp.php:1056
 msgctxt "[UI Datepicker] Display text for previous month link"
 msgid "&#x3c;Prev"
 msgstr "&#x3c; Пред."
 
-#: awpcp.php:1056
+#: awpcp.php:1058
 msgctxt "[UI Datepicker] Display text for next month link"
 msgid "Next&#x3e;"
 msgstr "След. &#x3e;"
 
-#: awpcp.php:1071
+#: awpcp.php:1073
 msgctxt "[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ..."
 msgid "0"
 msgstr "4"
 
-#: awpcp.php:1077
+#: awpcp.php:1079
 msgid "There are files currently being uploaded."
 msgstr "Несолько файлов загружаются."
 
-#: awpcp.php:1078
+#: awpcp.php:1080
 msgid "There are files pending to be uploaded."
 msgstr "Несколько файлов ожидают загрузки."
 
-#: awpcp.php:1079
+#: awpcp.php:1081
 msgid "You haven't uploaded any images or files."
 msgstr "Вы не загрузили ни одного файла."
 
@@ -2672,11 +2672,11 @@ msgctxt "reply email"
 msgid "regarding"
 msgstr "касательно"
 
-#: frontend/page-reply-to-ad.php:230
+#: frontend/page-reply-to-ad.php:240
 msgid "Your message has been sent."
 msgstr "Ваше сообщение отправлено."
 
-#: frontend/page-reply-to-ad.php:233
+#: frontend/page-reply-to-ad.php:243
 msgid ""
 "There was a problem encountered during the attempt to send your message. "
 "Please try again and if the problem persists, please contact the system "
@@ -2764,15 +2764,15 @@ msgid ""
 "(the author) can see it."
 msgstr "Объявление временно отключено до тех пор, пока администратор не одобрит его. Только вы, как автор, можете его видеть."
 
-#: frontend/placeholders.php:376
+#: frontend/placeholders.php:385
 msgid "Seller"
 msgstr "Продавец"
 
-#: frontend/placeholders.php:399
+#: frontend/placeholders.php:408
 msgid "Visit Website"
 msgstr "Посетите сайт"
 
-#: frontend/placeholders.php:595
+#: frontend/placeholders.php:604
 msgid "This Ad has been viewed %d time."
 msgid_plural "This Ad has been viewed %d times."
 msgstr[0] "Это объявление было просмотрено %d раз."
@@ -2780,23 +2780,23 @@ msgstr[1] "Это объявление было просмотрено %d раз
 msgstr[2] "Это объявление было просмотрено %d раз."
 msgstr[3] "Это объявление было просмотрено %d раз."
 
-#: frontend/placeholders.php:599
+#: frontend/placeholders.php:608
 msgid "Total views: %d"
 msgstr "Всего просмотров: %d"
 
-#: frontend/placeholders.php:650
+#: frontend/placeholders.php:659
 msgid "Phone"
 msgstr "Телефон"
 
-#: frontend/placeholders.php:707
+#: frontend/placeholders.php:716
 msgid "Flag Ad"
 msgstr "Пожаловаться на объявление"
 
-#: frontend/placeholders.php:722
+#: frontend/placeholders.php:731
 msgid "Tweet This"
 msgstr "Твитнуть"
 
-#: frontend/placeholders.php:753
+#: frontend/placeholders.php:762
 msgid "Share on Facebook"
 msgstr "Поделиться на Facebook"
 
@@ -3703,7 +3703,7 @@ msgid ""
 "to continue: %s."
 msgstr "Кроме того, вы можете утвердить изображения перейдя в раздел \"Управление Изображениями\" этого объявления и нажав на \"Включить\", расположенную ниже каждого изображения. Нажмите здесь, чтобы продолжить: %s."
 
-#: functions.php:2674
+#: functions.php:2690
 msgid "Email sent %s."
 msgstr "Отправлено %s."
 
@@ -3816,7 +3816,7 @@ msgstr "Редактировать <listing-title>"
 msgid ""
 "The error was: <previous-message>. Contact <support-link>customer "
 "support</a> for further assistance."
-msgstr ""
+msgstr "Произошла ошибка: <previous-message>. Свяжитесь со <support-link>службой поддержки</a> для дальнейшей помощи."
 
 #: includes/class-exceptions.php:48
 msgid ""
@@ -4209,16 +4209,16 @@ msgctxt "recaptcha-error"
 msgid "The response parameter is invalid or malformed."
 msgstr "Ответный параметр неверен или испорчен."
 
-#: includes/helpers/class-easy-digital-downloads.php:38
+#: includes/helpers/class-easy-digital-downloads.php:39
 msgid ""
 "There was an error trying to check the license status for <module-name>."
 msgstr ""
 
-#: includes/helpers/class-easy-digital-downloads.php:100
+#: includes/helpers/class-easy-digital-downloads.php:101
 msgid "There was an error trying to activate your <module-name> license."
 msgstr "Произошла ошибка при активации вашей лицензии для модуля <module-name>."
 
-#: includes/helpers/class-easy-digital-downloads.php:122
+#: includes/helpers/class-easy-digital-downloads.php:123
 msgid "There was an error trying to deactivate your <module-name> license."
 msgstr "Произошла ошибка при деактивации лицензии для вашего модуля <module-name>."
 
@@ -4241,7 +4241,7 @@ msgstr[3] "Yikes, there has been a mistake. It looks like you have an outdated v
 #. translators: example: <Extra Fields, Featured Ads> and <Region Control>
 #: includes/helpers/class-modules-manager.php:194
 msgid "<comma-separated-names> and <single-name>"
-msgstr ""
+msgstr "<comma-separated-names> и <single-name>"
 
 #: includes/helpers/class-modules-manager.php:215
 msgid ""
@@ -5420,7 +5420,7 @@ msgstr "Если отмечено и во время редактировани�
 
 #: includes/settings/class-form-fields-settings.php:43
 msgid "User's name format"
-msgstr ""
+msgstr "Формат имени пользователя"
 
 #: includes/settings/class-form-fields-settings.php:46
 msgid ""
