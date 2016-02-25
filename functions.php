@@ -2583,22 +2583,8 @@ function massdeleteadsfromcategory($catid) {
 // END FUNCTION
 
 function create_ad_postedby_list($name) {
-    global $wpdb;
-
-    $output = '';
-    $query = 'SELECT DISTINCT ad_contact_name FROM ' . AWPCP_TABLE_ADS . ' WHERE disabled = 0 ORDER BY ad_contact_name ASC';
-
-    $results = $wpdb->get_col( $query );
-
-    foreach ( $results as $contact_name ) {
-        if ( strcmp( $contact_name, $name ) === 0 ) {
-            $output .= "<option value=\"$contact_name\" selected=\"selected\">$contact_name</option>";
-        } else {
-            $output .= "<option value=\"$contact_name\">$contact_name</option>";
-        }
-    }
-
-    return $output;
+    $names = awpcp_listings_meta()->get_meta_values( 'contact_name' );
+    return awpcp_html_options( array( 'current-value' => $name, 'options' => array_combine( $names, $names ) ) );
 }
 
 function awpcp_strip_html_tags( $text )

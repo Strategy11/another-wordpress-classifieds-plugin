@@ -26,13 +26,7 @@ class AWPCP_Search_Widget extends WP_Widget {
      * @since 3.0.2
      */
     private function render_find_by_contact_name_field() {
-        global $wpdb;
-
-        $query = 'SELECT DISTINCT ad_contact_name FROM ' . AWPCP_TABLE_ADS . ' ';
-        $query.= 'WHERE disabled = 0 AND (flagged IS NULL OR flagged = 0)';
-        $query.= 'ORDER BY ad_contact_name ASC';
-
-        $names = $wpdb->get_col( $query );
+        $names = awpcp_listings_meta()->get_meta_values( 'contact_name' );
 
         if ( empty( $names ) ) {
             $options = array();
@@ -40,9 +34,13 @@ class AWPCP_Search_Widget extends WP_Widget {
             $options = array_combine( $names, $names );
         }
 
-        $selected = stripslashes_deep( awpcp_request_param( 'searchname', null ) );
-
-        return $this->select( $options, __('Find ads by Contact Name', 'another-wordpress-classifieds-plugin'), 'searchname', $selected, __( 'All Contact Names', 'another-wordpress-classifieds-plugin' ) );
+        return $this->select(
+            $options,
+            __('Find ads by Contact Name', 'another-wordpress-classifieds-plugin'),
+            'searchname',
+            stripslashes_deep( awpcp_request_param( 'searchname', null ) ),
+            __( 'All Contact Names', 'another-wordpress-classifieds-plugin' )
+        );
     }
 
     /**
@@ -89,27 +87,29 @@ class AWPCP_Search_Widget extends WP_Widget {
 	 */
 	public function select($options, $label, $name, $selected=null, $default=null) {
 		$id = 'awpcp-search-' . sanitize_title($label);
-        $default = is_null( $default ) ? __('Select Option', 'another-wordpress-classifieds-plugin') : $default;
 
-		$html = sprintf('<label for="%s" class="awpcp-block-label">%s</label>', $id, $label);
-		$html .= sprintf('<select id="%s" name="%s">', $id, $name);
-		if (is_array($options)) {
-			$html .= sprintf( '<option value="">%s</option>', $default );
-			foreach ($options as $value => $option) {
-				$_value = esc_attr($value);
-				if ($value == $selected) {
-					$html .= sprintf('<option selected="selected" value="%s">%s</option>', $_value, $option);
-				} else {
-					$html .= sprintf('<option value="%s">%s</option>', $_value, $option);
-				}
-			}
-		} else {
-			$html .= sprintf('<option value="">%s</option>', __('Select Option', 'another-wordpress-classifieds-plugin'));
-			$html .= $options;
-		}
-		$html .= '</select>';
+        if ( is_null( $default ) ) {
+            $default = __('Select Option', 'another-wordpress-classifieds-plugin');
+        }
 
-		return $html;
+        $label = awpcp_html_label(array(
+            'text' => $label,
+            'attributes' => array(
+                'class' => 'awpcp-block-label',
+                'for' => $id,
+            ),
+        ));
+
+        $select = awpcp_html_select(array(
+            'attributes' => array(
+                'id' => $id,
+                'name' => $name,
+            ),
+            'current-value' => $selected,
+            'options' => array_merge( array( '' => $default ), $options ),
+        ));
+
+        return $label . $select;
 	}
 
 	function widget($args, $instance) {
