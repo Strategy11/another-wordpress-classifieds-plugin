@@ -39,6 +39,7 @@ define( 'AWPCP_BASENAME', basename( dirname( __FILE__ ) ) );
 define( 'AWPCP_DIR', rtrim( plugin_dir_path( __FILE__ ), '/' ) );
 define( 'AWPCP_URL', rtrim( plugin_dir_url( __FILE__ ), '/' ) );
 
+define( 'AWPCP_LISTING_POST_TYPE', 'awpcp_listing' );
 define( 'AWPCP_CATEGORY_TAXONOMY', 'awpcp_listing_category' );
 
 global $awpcp;
@@ -92,6 +93,8 @@ require_once(AWPCP_DIR . "/cron.php");
 
 // API & Classes
 require_once(AWPCP_DIR . "/includes/exceptions.php");
+
+require( AWPCP_DIR . "/includes/interface-posts-meta-configuration.php" );
 
 require_once(AWPCP_DIR . "/includes/compatibility/compatibility.php");
 require_once( AWPCP_DIR . "/includes/compatibility/class-add-meta-tags-plugin-integration.php" );
@@ -157,6 +160,7 @@ require_once(AWPCP_DIR . "/includes/helpers/widgets/class-users-dropdown.php");
 require_once(AWPCP_DIR . "/includes/helpers/widgets/class-users-autocomplete.php");
 
 require_once( AWPCP_DIR . "/includes/listings/class-listings-finder.php" );
+require( AWPCP_DIR . "/includes/listings/class-listings-meta-configuration.php" );
 require_once( AWPCP_DIR . "/includes/listings/class-listing-action.php" );
 require_once( AWPCP_DIR . "/includes/listings/class-listing-action-with-confirmation.php" );
 require_once( AWPCP_DIR . "/includes/listings/class-delete-listing-action.php" );
@@ -320,6 +324,7 @@ require_once( AWPCP_DIR . "/includes/class-media-api.php" );
 require_once( AWPCP_DIR . "/includes/class-missing-pages-finder.php" );
 require_once( AWPCP_DIR . "/includes/class-pages-creator.php" );
 require( AWPCP_DIR . '/includes/class-plugin-rewrite-rules.php' );
+require( AWPCP_DIR . '/includes/class-posts-meta.php' );
 require( AWPCP_DIR . '/includes/class-rewrite-rules-helper.php' );
 require_once( AWPCP_DIR . "/includes/class-roles-and-capabilities.php" );
 require_once( AWPCP_DIR . "/includes/class-secure-url-redirection-handler.php" );
