@@ -348,18 +348,7 @@ if (!function_exists('addslashes_mq')) {
 /**
  * TODO: replace usage of this function with awpcp_pagination()
  */
-function create_pager($from,$where,$offset,$results,$tpname) {
-    global $wpdb;
-
-    $totalrows = $wpdb->get_var( "SELECT count(*) FROM $from WHERE $where" );
-
-    return _create_pager( $totalrows, $offset, $results, $tpname );
-}
-
-/**
- * TODO: replace usage of this function with awpcp_pagination()
- */
-function _create_pager( $item_count, $offset, $results, $tpname ) {
+function create_pager( $items_count, $offset, $results, $tpname ) {
     $permastruc=get_option('permalink_structure');
 
     if (isset($permastruc) && !empty($permastruc)) {
@@ -405,7 +394,7 @@ function _create_pager( $item_count, $offset, $results, $tpname ) {
     $form.="<tr>\n";
     $form.="\t<td>\n";
 
-    $totalrows = $item_count;
+    $totalrows = $items_count;
     $total_pages=ceil($totalrows/$results);
     $dotsbefore=false;
     $dotsafter=false;

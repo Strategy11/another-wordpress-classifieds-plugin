@@ -978,9 +978,17 @@ function awpcp_opsconfig_categories() {
 		//////////////////////////
 
 		$where="category_name <> ''";
+        $children = awpcp_get_categories_hierarchy();
+        $categories = AWPCP_Category::query( array(
+            'orderby' => 'category_order, category_name',
+            'order' => 'ASC',
+        ) );
 
-		$pager1=create_pager( AWPCP_TABLE_CATEGORIES, $where,$offset,$results,$tpname='');
-		$pager2=create_pager( AWPCP_TABLE_CATEGORIES, $where,$offset,$results,$tpname='');
+        $count = 0;
+        $items = awpcp_admin_categories_render_category_items( $categories, $children, $offset, $results, $count );
+
+        $pager1 = create_pager( count( $categories ), $offset, $results, $tpname='' );
+        $pager2 = create_pager( count( $categories ), $offset, $results, $tpname='' );
 
 		$output .= "$pager1 <form name=\"mycats\" id=\"mycats\" method=\"post\">
 		 <p><input type=\"submit\" name=\"deletemultiplecategories\" class=\"button\" value=\"";
@@ -998,15 +1006,6 @@ function awpcp_opsconfig_categories() {
 		$output .= __( 'Delete categories should do this with existing Ads', 'another-wordpress-classifieds-plugin' );
 		$output .= ": <label><input type=\"radio\" name=\"movedeleteads\" value=\"1\" checked='checked' > " . __( 'Move Ads to new category', 'another-wordpress-classifieds-plugin' ) . "</label>";
 		$output .= " <label><input type=\"radio\" name=\"movedeleteads\" value=\"2\" > " . __( 'Delete Ads too', 'another-wordpress-classifieds-plugin' ) . "</label></p>";
-
-		$children = awpcp_get_categories_hierarchy();
-		$categories = AWPCP_Category::query( array(
-			'orderby' => 'category_order, category_name',
-			'order' => 'ASC',
-		) );
-
-		$count = 0;
-		$items = awpcp_admin_categories_render_category_items( $categories, $children, $offset, $results, $count );
 
 		$opentable='<table class="listcatsh"><tr>';
 		$opentable.='<td style="width:10%; text-align: center;">' . __('Category ID', 'another-wordpress-classifieds-plugin') . '</td>';
