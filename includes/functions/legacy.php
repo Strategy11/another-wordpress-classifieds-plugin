@@ -97,22 +97,43 @@ function countcategorieschildren(){
 
 
 function get_adposteremail($adid) {
-    return get_adfield_by_pk('ad_contact_email', $adid);
+    try {
+        $listing = awpcp_listings_collection()->get( $adid );
+    } catch ( AWPCP_Exception $e ) {
+        return null;
+    }
+
+    return awpcp_listing_renderer()->get_contact_email( $listing );
 }
 
 function get_adstartdate($adid) {
-    return get_adfield_by_pk('ad_startdate', $adid);
+    try {
+        $listing = awpcp_listings_collection()->get( $adid );
+    } catch ( AWPCP_Exception $e ) {
+        return null;
+    }
+
+    return awpcp_listing_renderer()->get_plain_start_date( $listing );
 }
 
-// START FUNCTION: Get the number of times an ad has been viewed
-function get_numtimesadviewd($adid)
-{
-    return get_adfield_by_pk('ad_views', $adid);
+function get_numtimesadviewd($adid) {
+    try {
+        $listing = awpcp_listings_collection()->get( $adid );
+    } catch ( AWPCP_Exception $e ) {
+        return null;
+    }
+
+    return awpcp_listing_renderer()->get_views_count( $listing );
 }
-// END FUNCTION: Get the number of times an ad has been viewed
-// START FUNCTION: Get the ad title based on having the ad ID
+
 function get_adtitle($adid) {
-    return stripslashes_deep(get_adfield_by_pk('ad_title', $adid));
+    try {
+        $listing = awpcp_listings_collection()->get( $adid );
+    } catch ( AWPCP_Exception $e ) {
+        return null;
+    }
+
+    return awpcp_listing_renderer()->get_listing_title( $listing );
 }
 
 // START FUNCTION: Create list of top level categories for admin category management
@@ -158,18 +179,6 @@ function get_adcatname($cat_ID) {
     }
 
     return $category_name;
-}
-
-//Function to retrieve ad location data:
-function get_adfield_by_pk($field, $adid) {
-    global $wpdb;
-    $tbl_ads = $wpdb->prefix . "awpcp_ads";
-    $thevalue='';
-    if(isset($adid) && (!empty($adid))){
-        $query="SELECT ".$field." from ".$tbl_ads." WHERE ad_id='$adid'";
-        $thevalue = $wpdb->get_var($query);
-    }
-    return $thevalue;
 }
 
 function get_adparentcatname($cat_ID){

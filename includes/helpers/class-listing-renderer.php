@@ -221,6 +221,10 @@ class AWPCP_ListingRenderer {
         return $this->wordpress->get_post_meta( $listing->ID, '_website_url', true );
     }
 
+    public function get_views_count( $listing ) {
+        return $this->wordpress->get_post_meta( $listing->ID, '_views', true );
+    }
+
     public function get_user( $listing ) {
         return $this->wordpress->get_user_by( 'id', $listing->post_author );
     }
