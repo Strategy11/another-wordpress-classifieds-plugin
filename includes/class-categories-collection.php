@@ -33,6 +33,22 @@ class AWPCP_Categories_Collection {
         return $category;
     }
 
+    public function get_category_by_name( $name ) {
+        if ( empty( $name ) ) {
+            $message = __( 'The category name must be a non empty string, %s was given.', 'another-wordpress-classifieds-plugin' );
+            throw new AWPCP_Exception( sprintf( $message, $name ) );
+        }
+
+        $category = $this->wordpress->get_term_by( 'name', $name, $this->taxonomy );
+
+        if ( $category === false || is_null( $category ) ) {
+            $message = __( 'No category was found with name: %s.', 'another-wordpress-classifieds-plugin' );
+            throw new AWPCP_Exception( sprintf( $message, $name ) );
+        }
+
+        return $category;
+    }
+
     /**
      * @since feature/1112
      */
