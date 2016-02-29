@@ -203,15 +203,20 @@ function get_cat_parent_ID($cat_ID){
     return $wpdb->get_var( $query );
 }
 
-// END FUNCTION: check if any ads exist in the system
-// START FUNCTION: Check if there are any ads in a specified category
-function ads_exist_cat($catid) {
-    global $wpdb;
-    $tbl_ads = $wpdb->prefix . "awpcp_ads";
-    $myreturn=!awpcpisqueryempty($tbl_ads, " WHERE ad_category_id='$catid' OR ad_category_parent_id='$catid'");
-    return $myreturn;
+function ads_exist_cat( $catid ) {
+    $listings = awpcp_listings_collection()->find_listings(array(
+        'tax_query' => array(
+            array(
+                'taxonomy' => AWPCP_CATEGORY_TAXONOMY,
+                'terms' => (int) $catid,
+                'include_children' => true,
+            ),
+        ),
+    ));
+
+    return count( $listings ) > 0;
 }
-// END FUNCTION: check if a category has ads
+
 function category_has_children($catid) {
     global $wpdb;
     $tbl_categories = $wpdb->prefix . "awpcp_categories";
