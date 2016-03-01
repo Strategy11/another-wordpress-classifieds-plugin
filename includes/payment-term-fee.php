@@ -202,20 +202,37 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
     }
 
     public function transfer_ads_to($id, &$errors) {
-        global $wpdb;
-
         $recipient = self::find_by_id($id);
 
         if (is_null($recipient)) {
             $errors[] = __("The recipient Fee doesn't exists.", 'another-wordpress-classifieds-plugin');
         }
 
-        $query = 'UPDATE ' . AWPCP_TABLE_ADS . ' SET adterm_id = %d ';
-        $query.= 'WHERE adterm_id = %d';
+        $listings = awpcp_listings_collection()->find_listings(array(
+            'meta_query' => array(
+                array(
+                    'key' => '_payment_term_id',
+                    'value' => $this->id,
+                    'compare' => '=',
+                    'type' => 'SIGNED',
+                ),
+                array(
+                    'key' => '_payment_term_id',
+                    'value' => $this->id,
+                    'compare' => '=',
+                    'type' => 'SIGNED',
+                ),
+            ),
+        ));
 
-        $result = $wpdb->query($wpdb->prepare($query, $recipient->id, $this->id));
+        $wordpress = awpcp_wordpress();
+        $success = true;
 
-        return $result !== false;
+        foreach ( $listings as $listing ) {
+            $success = $success && $wordpress->update_post_meta( $listing->ID, '_payment_term_id', $recipient->id );
+        }
+
+        return $success;
     }
 
     public function get_regions_allowed() {
