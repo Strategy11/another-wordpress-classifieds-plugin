@@ -143,10 +143,7 @@ class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements 
         $this->wordpress->add_post_meta( $post_id, '_poster_ip', $item->posterip );
         $this->wordpress->add_post_meta( $post_id, '_renew_email_sent', $item->renew_email_sent );
         $this->wordpress->add_post_meta( $post_id, '_renewed_date', $item->renewed_date );
-
-        if ( $item->ad_fee_paid > 0 ) {
-            $this->wordpress->add_post_meta( $post_id, 'is_paid', true );
-        }
+        $this->wordpress->add_post_meta( $post_id, '_is_paid', $item->ad_fee_paid > 0 );
     }
 
     private function update_post_metadata_with_item_metadata( $post_id, $item ) {

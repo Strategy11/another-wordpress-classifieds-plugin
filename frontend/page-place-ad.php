@@ -1123,10 +1123,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             $this->wordpress->update_post_meta( $listing_id, '_access_key', $this->listings_logic->generate_access_key() );
             $this->wordpress->update_post_meta( $listing_id, '_start_date', $now );
             $this->wordpress->update_post_meta( $listing_id, '_end_date', $payment_term->calculate_end_date( strtotime( $now ) ) );
-
-            if ( $amount_paid['money'] > 0 ) {
-                $this->wordpress->update_post_meta( $listing_id, '_is_paid', true );
-            }
+            $this->wordpress->update_post_meta( $listing_id, '_is_paid', $amount_paid['money'] > 0 );
         }
 
         if ( !$transaction->get('ad-id') || $this->verify_preview_hash($ad) ) {
