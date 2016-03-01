@@ -93,7 +93,27 @@ class AWPCP_ListingsCollection {
      * @since feature/1112
      */
     public function find_listings( $query = array() ) {
-        $posts = $this->wordpress->create_posts_query( $this->prepare_listings_query( $query ) );
+        $query = $this->prepare_listings_query( $query );
+        $query = $this->make_listings_query_with_orderby_paramter( $query );
+
+        if ( isset( $query['_meta_order'] ) ) {
+            add_filter( 'posts_clauses', array( $this, 'add_orderby_multiple_meta_keys_clause' ), 10, 2 );
+        }
+
+        if ( isset( $query['_custom_order'] ) ) {
+            add_filter( 'posts_clauses', array( $this, 'add_orderby_unsupported_properties_clause' ), 10, 2 );
+        }
+
+        $posts = $this->wordpress->create_posts_query( $query );
+
+        if ( isset( $query['_meta_order'] ) ) {
+            remove_filter( 'posts_clauses', array( $this, 'add_orderby_multiple_meta_keys_clause' ), 10, 2 );
+        }
+
+        if ( isset( $query['_custom_order'] ) ) {
+            remove_filter( 'posts_clauses', array( $this, 'add_orderby_unsupported_properties_clause' ), 10, 2 );
+        }
+
         return $posts->posts;
     }
 
@@ -101,10 +121,295 @@ class AWPCP_ListingsCollection {
         $query['post_type'] = 'awpcp_listing';
 
         if ( ! isset( $query['post_status'] ) ) {
-            $query['post_status'] = array( 'draft', 'pending', 'publish', 'disabled' );
+            $query['post_status'] = array(  'disabled', 'draft', 'pending', 'publish' );
         }
 
         return $query;
+    }
+
+    private function make_listings_query_with_orderby_paramter( $query ) {
+        $orderby = isset( $query['orderby'] ) ? $query['orderby'] : null;
+
+        $basedate = 'CASE WHEN renewed_date IS NULL THEN ad_startdate ELSE GREATEST(ad_startdate, renewed_date) END';
+        $is_paid = 'CASE WHEN ad_fee_paid > 0 THEN 1 ELSE 0 END';
+
+        switch ( $orderby ) {
+            case 1:
+                // TODO: populate _most_recent_start_date when listing is created.
+                $query['meta_key'] = '_most_recent_start_date';
+                $query['meta_type'] = 'DATETIME';
+                $query['orderby'] = array( 'meta_value' => 'DESC' );
+                break;
+
+            case 2:
+                $query['orderby'] = array( 'title' => 'ASC' );
+                break;
+
+            case 3:
+                $query['orderby'] = 'menu_order';
+                $query['_meta_order'] = array( '_is_paid' => 'DESC', '_most_recent_start_date' => 'DESC' );
+                $query['_meta_type'] = array( '_is_paid' => 'SIGNED', '_most_recent_start_date' => 'DATETIME' );
+
+                $query['meta_query'][] = array(
+                    'key' => '_is_paid',
+                    'compare' => 'EXISTS',
+                );
+
+                $query['meta_query'][] = array(
+                    'key' => '_most_recent_start_date',
+                    'compare' => 'EXISTS',
+                );
+                break;
+
+            case 4:
+                $query['meta_key'] = '_is_paid';
+                $query['meta_type'] = 'SIGNED';
+                $query['orderby'] = array( 'meta_value' => 'DESC', 'title' => 'ASC' );
+                break;
+
+            case 5:
+                $query['meta_key'] = '_views';
+                $query['meta_type'] = 'SIGNED';
+                $query['orderby'] = array( 'meta_value' => 'DESC', 'title' => 'ASC' );
+                break;
+
+            case 6:
+                $query['orderby'] = 'menu_order';
+                $query['_meta_order'] = array( '_views' => 'DESC', '_most_recent_start_date' => 'DESC' );
+                $query['_meta_type'] = array( '_views' => 'SIGNED', '_most_recent_start_date' => 'DATETIME' );
+
+                $query['meta_query'][] = array(
+                    'key' => '_views',
+                    'compare' => 'EXISTS',
+                );
+
+                $query['meta_query'][] = array(
+                    'key' => '_most_recent_start_date',
+                    'compare' => 'EXISTS',
+                );
+                break;
+
+            case 7:
+                $query['orderby'] = 'menu_order';
+                $query['_meta_order'] = array( '_price' => 'DESC', '_most_recent_start_date' => 'DESC' );
+                $query['_meta_type'] = array( '_price' => 'SIGNED', '_most_recent_start_date' => 'DATETIME' );
+
+                $query['meta_query'][] = array(
+                    'key' => '_price',
+                    'compare' => 'EXISTS',
+                );
+
+                $query['meta_query'][] = array(
+                    'key' => '_most_recent_start_date',
+                    'compare' => 'EXISTS',
+                );
+                break;
+
+            case 8:
+                $query['orderby'] = 'menu_order';
+                $query['_meta_order'] = array( '_price' => 'ASC', '_most_recent_start_date' => 'DESC' );
+                $query['_meta_type'] = array( '_price' => 'SIGNED', '_most_recent_start_date' => 'DATETIME' );
+
+                $query['meta_query'][] = array(
+                    'key' => '_price',
+                    'compare' => 'EXISTS',
+                );
+
+                $query['meta_query'][] = array(
+                    'key' => '_most_recent_start_date',
+                    'compare' => 'EXISTS',
+                );
+                break;
+
+            case 9:
+                // TODO: populate _most_recent_start_date when listing is created.
+                $query['meta_key'] = '_most_recent_start_date';
+                $query['meta_type'] = 'DATETIME';
+                $query['orderby'] = array( 'meta_value' => 'ASC' );
+                break;
+
+            case 10:
+                $query['orderby'] = array( 'title' => 'DESC' );
+                break;
+
+            case 11:
+                $query['meta_key'] = '_views';
+                $query['meta_type'] = 'SIGNED';
+                $query['orderby'] = array( 'meta_value' => 'ASC', 'title' => 'ASC' );
+                break;
+
+            case 12:
+                $query['orderby'] = 'menu_order';
+                $query['_meta_order'] = array( '_views' => 'ASC', '_most_recent_start_date' => 'ASC' );
+                $query['_meta_type'] = array( '_views' => 'SIGNED', '_most_recent_start_date' => 'DATETIME' );
+
+                $query['meta_query'][] = array(
+                    'key' => '_views',
+                    'compare' => 'EXISTS',
+                );
+
+                $query['meta_query'][] = array(
+                    'key' => '_most_recent_start_date',
+                    'compare' => 'EXISTS',
+                );
+                break;
+
+            case 'title':
+                $query['orderby'] = array( 'title' => $query['order'] );
+                break;
+
+            case 'start-date':
+                $query['meta_key'] = '_start_date';
+                $query['meta_type'] = 'DATETIME';
+                $query['orderby'] = array( 'meta_value' => $query['order'] );
+                break;
+
+            case 'end-date':
+                $query['meta_key'] = '_start_date';
+                $query['meta_type'] = 'DATETIME';
+                $query['orderby'] = array( 'meta_value' => $query['order'] );
+                break;
+
+            case 'renewed-date':
+                $query['orderby'] = array( 'menu_order' => 'DESC', 'ID' => $query['order'] );
+                $query['_meta_order'] = array( '_most_recent_start_date' => $query['order'], '_renewed_date' => $query['order'] );
+                $query['_meta_type'] = array( '_most_recent_start_date' => 'DATETIME', '_renewed_date' => 'DATETIME' );
+
+                $query['meta_query'][] = array(
+                    'key' => '_most_recent_start_date',
+                    'compare' => 'EXISTS',
+                );
+
+                $query['meta_query'][] = array(
+                    'key' => '_renewed_date',
+                    'compare' => 'EXISTS',
+                );
+                break;
+
+            case 'status':
+                $query['meta_key'] = '_start_date';
+                $query['orderby'] = array( 'menu_order' => 'DESC', 'meta_value' => $query['order'], 'ID' => $query['order'] );
+                $query['_custom_order'] = array( 'post_status' => $query['order'] );
+                break;
+
+            case 'payment-term':
+                $query['orderby'] = array( 'menu_order' => 'DESC', 'ID' => $query['order'] );
+                $query['_meta_order'] = array( '_payment_term_id' => $query['order'], '_start_date' => $query['order'] );
+                $query['_meta_type'] = array( '_payment_term_id' => 'DATETIME', '_start_date' => 'DATETIME' );
+
+                $query['meta_query'][] = array(
+                    'key' => '_payment_term_id',
+                    'compare' => 'EXISTS',
+                );
+
+                $query['meta_query'][] = array(
+                    'key' => '_start_date',
+                    'compare' => 'EXISTS',
+                );
+                break;
+
+            case 'payment-status':
+                $query['orderby'] = array( 'menu_order' => 'DESC', 'ID' => $query['order'] );
+                $query['_meta_order'] = array( '_payment_status' => $query['order'], '_start_date' => $query['order'] );
+                $query['_meta_type'] = array( '_payment_status' => 'DATETIME', '_start_date' => 'DATETIME' );
+
+                $query['meta_query'][] = array(
+                    'key' => '_payment_status',
+                    'compare' => 'EXISTS',
+                );
+
+                $query['meta_query'][] = array(
+                    'key' => '_start_date',
+                    'compare' => 'EXISTS',
+                );
+                break;
+
+            case 'featured-ad':
+                $query['orderby'] = array( 'menu_order' => 'DESC', 'ID' => $query['order'] );
+                $query['_meta_order'] = array( '_is_featured' => $query['order'], '_start_date' => $query['order'] );
+                $query['_meta_type'] = array( '_is_featured' => 'DATETIME', '_start_date' => 'DATETIME' );
+
+                $query['meta_query'][] = array(
+                    'key' => '_is_featured',
+                    'compare' => 'EXISTS',
+                );
+
+                $query['meta_query'][] = array(
+                    'key' => '_start_date',
+                    'compare' => 'EXISTS',
+                );
+                break;
+                break;
+
+            case 'owner':
+                $query['meta_key'] = '_start_date';
+                $query['meta_type'] = 'DATETIME';
+                $query['orderby'] = array( 'author' => $query['order'], 'meta_value' => $query['order'], 'ID' => $query['order'] );
+                break;
+
+            case 'random':
+                $query['orderby'] = 'rand';
+                break;
+
+            default:
+                $query['orderby'] = array( 'post_date' => 'DESC', 'title' => 'ASC' );
+                break;
+        }
+
+        // TODO: run 'awpcp-ad-order-conditions' and 'awpcp-find-listings-order-conditions' filters?
+        // I think is better to remove these filters and let modules filter the query before is executed.
+
+        return $query;
+    }
+
+    /**
+     * Based on code found in http://wordpress.stackexchange.com/a/67391
+     *
+     * See http://www.billerickson.net/wp-query-sort-by-meta/. This function
+     * won't be necessary when WP 4.2 becomes the minimum supported version.
+     */
+    public function add_orderby_multiple_meta_keys_clause( $clauses, $query_object) {
+        $orderby = array();
+
+        foreach ( $query_object->query['_meta_order'] as $meta_key => $order ) {
+            $regexp = "/([\w_]+)\.meta_key = '" . preg_quote( $meta_key ) . "'/";
+
+            if ( ! preg_match( $regexp, $clauses['where'], $matches ) ) {
+                continue;
+            }
+
+            $meta_type = $query_object->query['_meta_type'][ $meta_key ];
+
+            $orderby[] = "CAST({$matches[1]}.meta_value AS {$meta_type}) $order";
+        }
+
+        if ( ! empty( $orderby ) ) {
+            $clauses['orderby'] = preg_replace( '/[\w_]+\.menu_order DESC/', implode( ', ', $orderby ), $clauses['orderby'] );
+        }
+
+        return $clauses;
+    }
+
+    public function add_orderby_unsupported_properties_clause( $clauses, $query_object ) {
+        if ( ! preg_match( '/(\w+)\.menu_order DESC/', $clauses['orderby'], $matches ) ) {
+            return $clauses;
+        }
+
+        $orderby = array();
+        $posts_table = $matches[1];
+
+        foreach ( $query_object->query['_custom_order'] as $property => $order ) {
+            switch ( $property ) {
+                case 'post_status':
+                    $orderby[] = "$posts_table.post_status $order";
+            }
+        }
+
+        if ( ! empty( $orderby ) ) {
+            $clauses['orderby'] = str_replace( "$posts_table.menu_order DESC", implode( ', ', $orderby ), $clauses['orderby'] );
+        }
+
+        return $clauses;
     }
 
     /**
