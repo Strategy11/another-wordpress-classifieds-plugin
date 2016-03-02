@@ -195,6 +195,7 @@ class AWPCP_Pages {
             'context' => 'public-listings',
             'fields' => 'ad_id',
             'raw' => true,
+            'limit' => false,
         );
 
         $random_listings = awpcp_listings_collection()->find_enabled_listings_with_query( $random_query );
