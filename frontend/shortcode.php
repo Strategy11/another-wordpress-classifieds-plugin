@@ -195,6 +195,7 @@ class AWPCP_Pages {
             'context' => 'public-listings',
             'fields' => 'ad_id',
             'raw' => true,
+            'limit' => false,
         );
 
         $random_listings = awpcp_listings_collection()->find_enabled_listings_with_query( $random_query );
@@ -361,12 +362,18 @@ function awpcp_display_the_classifieds_page_body($awpcppagename) {
 function awpcp_menu_items() {
     $menu_items = array_filter( awpcp_get_menu_items(), 'is_array' );
 
-    ob_start();
-        include ( AWPCP_DIR . '/frontend/templates/main-menu.tpl.php' );
-        $output = ob_get_contents();
-    ob_end_clean();
+    $navigation_attributes = array(
+        'class' => array( 'awpcp-navigation', 'awpcp-menu-items-container', 'clearfix' ),
+    );
 
-    return $output;
+    if ( get_awpcp_option( 'show-mobile-menu-expanded' ) ) {
+        $navigation_attributes['class'][] = 'toggle-on';
+    }
+
+    $template = AWPCP_DIR . '/frontend/templates/main-menu.tpl.php';
+    $params = compact( 'menu_items', 'navigation_attributes' );
+
+    return awpcp_render_template( $template, $params );
 }
 
 function awpcp_get_menu_items() {
