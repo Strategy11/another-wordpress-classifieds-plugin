@@ -62,6 +62,10 @@ class AWPCP_WordPress {
         return wp_update_term( $temr_id, $taxonomy, $args );
     }
 
+    public function delete_term( $term_id, $taxonomy, $args = array() ) {
+        return wp_delete_term( $term_id, $taxonomy, $args );
+    }
+
     public function get_term_by( $field = 'id', $value, $taxonomy, $output = OBJECT, $filter = 'raw' ) {
         return get_term_by( $field, $value, $taxonomy, $output, $filter );
     }
