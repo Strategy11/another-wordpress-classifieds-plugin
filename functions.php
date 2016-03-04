@@ -1852,6 +1852,25 @@ function awpcp_html_admin_second_level_heading_tag() {
 }
 
 /**
+ * @since feature/1112
+ */
+function awpcp_html_admin_third_level_heading( $params ) {
+    $params['tag'] = awpcp_html_admin_third_level_heading_tag();
+    return awpcp_html_heading( $params );
+}
+
+/**
+ * @since feature/1112
+ */
+function awpcp_html_admin_third_level_heading_tag() {
+    if ( version_compare( get_bloginfo('version'), '4.4-beta1', '<' ) ) {
+        return 'h4';
+    } else {
+        return 'h3';
+    }
+}
+
+/**
  * @access private
  * @since 3.6
  */
