@@ -155,6 +155,46 @@ class AWPCP_Admin {
             40
         );
 
+        $router->add_admin_section(
+            'awpcp.php::awpcp-admin-categories',
+            'create-category',
+            'awpcp-action',
+            'create-category',
+            'awpcp_create_category_admin_page'
+        );
+
+        $router->add_admin_section(
+            'awpcp.php::awpcp-admin-categories',
+            'update-category',
+            'awpcp-action',
+            'update-category',
+            'awpcp_update_category_admin_page'
+        );
+
+        $router->add_admin_section(
+            'awpcp.php::awpcp-admin-categories',
+            'delete-category',
+            'awpcp-action',
+            'delete-category',
+            'awpcp_delete_category_admin_page'
+        );
+
+        $router->add_admin_section(
+            'awpcp.php::awpcp-admin-categories',
+            'move-multiple-categories',
+            'awpcp-move-multiple-categories',
+            null,
+            'awpcp_move_categories_admin_page'
+        );
+
+        $router->add_admin_section(
+            'awpcp.php::awpcp-admin-categories',
+            'delete-multiple-categories',
+            'awpcp-delete-multiple-categories',
+            null,
+            'awpcp_delete_categories_admin_page'
+        );
+
         $router->add_admin_subpage(
             $parent_page,
             __( 'Form Fields', 'AWPCP' ),
@@ -568,8 +608,8 @@ function awpcp_admin_categories_render_category_items($categories, &$children, $
 
 		$count++;
 
-		if ( isset( $children[ $category->id ] ) ) {
-			$_children = awpcp_admin_categories_render_category_items( $categories, $children, $start, $per_page, $count, $category->id, $level + 1 );
+		if ( isset( $children[ $category->term_id ] ) ) {
+			$_children = awpcp_admin_categories_render_category_items( $categories, $children, $start, $per_page, $count, $category->term_id, $level + 1 );
 			$items = array_merge( $items, $_children );
 		}
 	}
@@ -592,7 +632,7 @@ function awpcp_admin_categories_render_category_item($category, $level, $start, 
 		$thecategoryicon = '';
 	}
 
-	$params = array( 'page' => 'awpcp-admin-categories', 'cat_ID' => $category->id );
+	$params = array( 'page' => 'awpcp-admin-categories', 'cat_ID' => $category->term_id );
 	$admin_listings_url = add_query_arg( urlencode_deep( $params ), admin_url( 'admin.php' ) );
 
 	$thecategory_parent_id = $category->parent;
@@ -603,9 +643,9 @@ function awpcp_admin_categories_render_category_item($category, $level, $start, 
 															esc_url( $admin_listings_url ),
 															esc_attr( stripslashes( $category->name ) ) );
 
-	$totaladsincat = total_ads_in_cat( $category->id );
+	$totaladsincat = total_ads_in_cat( $category->term_id );
 
-	$params = array( 'cat_ID' => $category->id, 'offset' => $start, 'results' => $per_page );
+	$params = array( 'cat_ID' => $category->term_id, 'offset' => $start, 'results' => $per_page );
 	$admin_categories_url = add_query_arg( urlencode_deep( $params ), awpcp_get_admin_categories_url() );
 
 	if ($hascaticonsmodule == 1 && is_installed_category_icon_module()) {
@@ -622,14 +662,14 @@ function awpcp_admin_categories_render_category_item($category, $level, $start, 
 
 
 	$row = '<tr>';
-	$row.= '<td style="font-weight:normal; text-align: center;">' . $category->id . '</td>';
-	$row.= "<td style=\"border-bottom:1px dotted #dddddd;font-weight:normal;\"><label><input type=\"checkbox\" name=\"category_to_delete_or_move[]\" value=\"{$category->id}\" /> $thecategory_name ($totaladsincat)</label></td>";
+	$row.= '<td style="font-weight:normal; text-align: center;">' . $category->term_id . '</td>';
+	$row.= "<td style=\"border-bottom:1px dotted #dddddd;font-weight:normal;\"><label><input type=\"checkbox\" name=\"category_to_delete_or_move[]\" value=\"{$category->term_id}\" /> $thecategory_name ($totaladsincat)</label></td>";
 	$row.= "<td style=\"border-bottom:1px dotted #dddddd;font-weight:normal;\">$thecategory_parent_name</td>";
 	$row.= "<td style=\"border-bottom:1px dotted #dddddd;font-weight:normal;\">$thecategory_order</td>";
 	$row.= "<td style=\"border-bottom:1px dotted #dddddd;font-size:smaller;font-weight:normal;\">";
-	$url = esc_url( add_query_arg( 'action', 'editcat', $admin_categories_url ) );
+	$url = esc_url( add_query_arg( 'awpcp-action', 'edit-category', $admin_categories_url ) );
 	$row.= "<a href=\"$url\"><img src=\"$awpcp_imagesurl/edit_ico.png\" alt=\"$awpcpeditcategoryword\" title=\"$awpcpeditcategoryword\" border=\"0\"/></a>";
-	$url = esc_url( add_query_arg( 'action', 'delcat', $admin_categories_url ) );
+	$url = esc_url( add_query_arg( 'awpcp-action', 'delete-category', $admin_categories_url ) );
 	$row.= "<a href=\"$url\"><img src=\"$awpcp_imagesurl/delete_ico.png\" alt=\"$awpcpdeletecategoryword\" title=\"$awpcpdeletecategoryword\" border=\"0\"/></a>";
 	$row.= $managecaticon;
 	$row.= "</td>";
