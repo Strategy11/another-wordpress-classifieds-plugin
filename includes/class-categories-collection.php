@@ -6,7 +6,7 @@ function awpcp_categories_collection() {
 
 class AWPCP_Categories_Collection {
 
-    private $taxonomy = 'awpcp_listing_category';
+    private $taxonomy = AWPCP_CATEGORY_TAXONOMY;
 
     private $wordpress;
 
@@ -53,13 +53,22 @@ class AWPCP_Categories_Collection {
      * @since feature/1112
      */
     public function get_all() {
-        $args = array(
+        return $this->find_categories();
+    }
+
+    public function find_categories( $args = array() ) {
+        return $this->wordpress->get_terms( $this->taxonomy, $this->prepare_categories_args( $args ) );
+    }
+
+    /**
+     * @since feature/1112
+     */
+    private function prepare_categories_args( $args = array() ) {
+        return wp_parse_args( $args, array(
             'orderby' => 'name',
             'order' => 'ASC',
             'hide_empty' => false
-        );
-
-        return $this->wordpress->get_terms( $this->taxonomy, $args );
+        ) );
     }
 
     public function get_hierarchy() {
