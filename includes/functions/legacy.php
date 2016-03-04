@@ -136,37 +136,22 @@ function get_adtitle($adid) {
     return awpcp_listing_renderer()->get_listing_title( $listing );
 }
 
-// START FUNCTION: Create list of top level categories for admin category management
-function get_categorynameid($cat_id = 0,$cat_parent_id= 0,$exclude)
-{
+function get_categorynameid( $cat_id = 0, $cat_parent_id = 0, $exclude = array() ) {
+    $parent_categories = awpcp_categories_collection()->find_categories( array(
+        'fields' => 'id=>name',
+        'parent' => 0,
+        'exclude' => $exclude,
+        'hide_empty' => false,
+    ) );
 
-    global $wpdb;
-    $optionitem='';
-    $tbl_categories = $wpdb->prefix . "awpcp_categories";
+    $params = array(
+        'current-value' => $cat_parent_id,
+        'options' => $parent_categories
+    );
 
-    if(isset($exclude) && !empty($exclude))
-    {
-        $excludequery="AND category_id !='$exclude'";
-    }else{$excludequery='';}
-
-    $catnid=$wpdb->get_results("select category_id as cat_ID, category_parent_id as cat_parent_ID, category_name as cat_name from " . AWPCP_TABLE_CATEGORIES . " WHERE category_parent_id=0 AND category_name <> '' $excludequery");
-
-    foreach($catnid as $categories)
-    {
-
-        if($categories->cat_ID == $cat_parent_id)
-        {
-            $optionitem .= "<option selected='selected' value='$categories->cat_ID'>$categories->cat_name</option>";
-        }
-        else
-        {
-            $optionitem .= "<option value='$categories->cat_ID'>$categories->cat_name</option>";
-        }
-
-    }
-
-    return $optionitem;
+    return awpcp_html_options( $params );
 }
+
 // END FUNCTION: create list of top level categories for admin category management
 
 // START FUNCTION: Retrieve the category name
