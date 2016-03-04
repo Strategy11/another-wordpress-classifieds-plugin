@@ -11,7 +11,8 @@ function awpcp_listings_api() {
             awpcp_listing_renderer(),
             awpcp_request(),
             awpcp()->settings,
-            awpcp_wordpress()
+            awpcp_wordpress(),
+            $GLOBALS['wpdb']
         );
     }
 
@@ -26,14 +27,16 @@ class AWPCP_ListingsAPI {
     private $request = null;
     private $settings = null;
     private $wordpress;
+    private $db;
 
-    public function __construct( $attachments_logic, $attachments, $listing_renderer, /*AWPCP_Request*/ $request = null, $settings, $wordpress ) {
+    public function __construct( $attachments_logic, $attachments, $listing_renderer, /*AWPCP_Request*/ $request = null, $settings, $wordpress, $db ) {
         $this->attachments_logic = $attachments_logic;
         $this->attachments = $attachments;
         $this->listing_renderer = $listing_renderer;
         $this->settings = $settings;
         $this->wordpress = $wordpress;
         $this->request = $request;
+        $this->db = $db;
 
         add_action( 'template_redirect', array( $this, 'dispatch' ) );
     }
@@ -403,5 +406,29 @@ class AWPCP_ListingsAPI {
 
     public function increase_visits_count( $listing ) {
         update_post_meta( $listing->ID, '_views', 1 + get_post_meta( $listing->ID, '_views', true ) );
+    }
+
+    /**
+     * @since feature/1112
+     */
+    public function delete_listing( $listing ) {
+        global $wpdb;
+
+        do_action( 'awpcp_before_delete_ad', $listing );
+
+        $attachments = $this->attachments->find_attachments( array( 'post_parent' => $listing->ID ) );
+
+        foreach ( $attachments as $attachment ) {
+            $this->attachments_logic->delete_attachment( $attachment );
+        }
+
+        $sql = 'DELETE FROM ' . AWPCP_TABLE_AD_REGIONS . ' WHERE ad_id = %d';
+        $result = $this->db->query( $this->db->prepare( $sql, $listing->ID ) );
+
+        $this->wordpress->delete_post( $listing->ID, true );
+
+        do_action( 'awpcp_delete_ad', $listing );
+
+        return $result === false ? false : true;
     }
 }

@@ -399,27 +399,6 @@ class AWPCP_Ad {
 		return $result === false ? false : true;
 	}
 
-	public function delete() {
-		global $wpdb;
-
-		do_action('awpcp_before_delete_ad', $this);
-
-		$media = awpcp_media_api()->find_by_ad_id( $this->ad_id );
-		foreach ( $media as $file ) {
-			awpcp_media_api()->delete( $file );
-		}
-
-		$query = 'DELETE FROM ' . AWPCP_TABLE_AD_REGIONS . ' WHERE ad_id = %d';
-		$result = $wpdb->query( $wpdb->prepare( $query, $this->ad_id ) );
-
-		$query = 'DELETE FROM ' . AWPCP_TABLE_ADS . ' WHERE ad_id = %d';
-		$result = $wpdb->query($wpdb->prepare($query, $this->ad_id));
-
-		do_action('awpcp_delete_ad', $this);
-
-		return $result === false ? false : true;
-	}
-
 	public function get_category_name() {
 		if ( ! isset( $this->category_name ) ) {
 			$this->category_name = get_adcatname( $this->ad_category_id );
