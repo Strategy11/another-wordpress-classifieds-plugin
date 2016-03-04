@@ -9,7 +9,9 @@ class AWPCP_AdminMenuBuilder {
     }
 
     public function build_menu() {
-        foreach ( $this->router->get_admin_pages() as $admin_page ) {
+        $routes = $this->router->get_routes();
+
+        foreach ( $routes->get_admin_pages() as $admin_page ) {
             uasort( $admin_page->subpages, create_function( '$a, $b', 'return $a->priority - $b->priority;') );
 
             if ( isset( $admin_page->handler ) ) {
@@ -50,19 +52,19 @@ class AWPCP_AdminMenuBuilder {
     }
 
     public function register_admin_page( $admin_page ) {
-        $hook = add_menu_page( $admin_page->title, $admin_page->menu_title, $admin_page->capability, $admin_page->slug, array( $this->router, 'dispatch' ), $admin_page->menu_icon );
-        add_action( "load-{$hook}", array( $this->router, 'load' ) );
+        $hook = add_menu_page( $admin_page->title, $admin_page->menu_title, $admin_page->capability, $admin_page->slug, array( $this->router, 'on_admin_dispatch' ), $admin_page->menu_icon );
+        add_action( "load-{$hook}", array( $this->router, 'on_admin_load' ) );
         return $hook;
     }
 
     public function register_admin_subpage( $parent_menu, $subpage ) {
-        $hook = add_submenu_page( $parent_menu, $subpage->title, $subpage->menu_title, $subpage->capability, $subpage->slug, array( $this->router, 'dispatch' ) );
-        add_action( "load-{$hook}", array( $this->router, 'load' ) );
+        $hook = add_submenu_page( $parent_menu, $subpage->title, $subpage->menu_title, $subpage->capability, $subpage->slug, array( $this->router, 'on_admin_dispatch' ) );
+        add_action( "load-{$hook}", array( $this->router, 'on_admin_load' ) );
         return $hook;
     }
 
     public function register_users_page( $subpage ) {
-        return add_users_page( $subpage->title, $subpage->menu_title, $subpage->capability, $subpage->slug, array( $this->router, 'dispatch' ) );
+        return add_users_page( $subpage->title, $subpage->menu_title, $subpage->capability, $subpage->slug, array( $this->router, 'on_admin_dispatch' ) );
     }
 
     public function register_custom_link( $parent_menu, $custom_link ) {
