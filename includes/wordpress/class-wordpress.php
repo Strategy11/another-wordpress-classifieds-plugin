@@ -32,6 +32,10 @@ class AWPCP_WordPress {
         return wp_update_post( $post, $return_wp_error_on_failure );
     }
 
+    public function delete_post( $post_id, $force_delete = false ) {
+        return wp_delete_post( $post_id, $force_delete );
+    }
+
     public function get_post( $post = null, $output = OBJECT, $filter = 'raw' ) {
         return get_post( $post, $output, $filter );
     }
