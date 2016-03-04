@@ -154,29 +154,23 @@ function get_categorynameid( $cat_id = 0, $cat_parent_id = 0, $exclude = array()
 
 // END FUNCTION: create list of top level categories for admin category management
 
-// START FUNCTION: Retrieve the category name
 function get_adcatname($cat_ID) {
     try {
         $category = awpcp_categories_collection()->get( $cat_ID );
         $category_name = stripslashes_deep( $category->name );
     } catch( AWPCP_Exception $e ) {
-        $category_name = '';
+        $category_name = null;
     }
 
     return $category_name;
 }
 
-function get_adparentcatname($cat_ID){
-    global $wpdb;
-
+function get_adparentcatname( $cat_ID ) {
     if ( $cat_ID == 0 ) {
         return __( 'Top Level Category', 'another-wordpress-classifieds-plugin' );
     }
 
-    $query = 'SELECT category_name FROM ' . AWPCP_TABLE_CATEGORIES . ' WHERE category_id = %d';
-    $query = $wpdb->prepare( $query, $cat_ID );
-
-    return $wpdb->get_var( $query );
+    return get_adcatname( $cat_ID );
 }
 
 function get_cat_parent_ID($cat_ID){
