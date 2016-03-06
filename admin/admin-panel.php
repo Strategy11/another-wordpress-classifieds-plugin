@@ -62,7 +62,7 @@ class AWPCP_Admin {
 	}
 
 	public function configure_routes( $router ) {
-        if ( $this->upgrade_tasks->has_pending_tasks() ) {
+        if ( $this->upgrade_tasks->has_pending_tasks( 'plugin' ) ) {
             $this->configure_manual_upgrade_routes( 'awpcp-admin-upgrade', $router );
         } else {
             $this->configure_regular_routes( 'awpcp.php', $router );
@@ -264,7 +264,7 @@ class AWPCP_Admin {
 			return;
 		}
 
-		if ( $this->upgrade_tasks->has_pending_tasks() ) {
+		if ( $this->upgrade_tasks->has_pending_tasks( 'plugin' ) ) {
 			ob_start();
 				include( AWPCP_DIR . '/admin/templates/admin-pending-manual-upgrade-notice.tpl.php' );
 				$html = ob_get_contents();
