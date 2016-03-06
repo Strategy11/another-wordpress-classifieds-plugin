@@ -14,15 +14,15 @@
 require_once(AWPCP_DIR . '/admin/admin-panel-users.php');
 
 function awpcp_admin_panel() {
-    return new AWPCP_Admin( awpcp()->manual_upgrades );
+    return new AWPCP_Admin( awpcp_manual_upgrade_tasks_manager() );
 }
 
 class AWPCP_Admin {
 
-    private $manual_upgrades;
+    private $upgrade_tasks;
 
-	public function __construct( $manual_upgrades ) {
-        $this->manual_upgrades = $manual_upgrades;
+	public function __construct( $upgrade_tasks ) {
+        $this->upgrade_tasks = $upgrade_tasks;
 
 		$this->title = awpcp_admin_page_title();
 		$this->menu = _x('Classifieds', 'awpcp admin menu', 'another-wordpress-classifieds-plugin');
@@ -62,7 +62,7 @@ class AWPCP_Admin {
 	}
 
 	public function configure_routes( $router ) {
-        if ( $this->manual_upgrades->has_pending_tasks() ) {
+        if ( $this->upgrade_tasks->has_pending_tasks() ) {
             $this->configure_manual_upgrade_routes( 'awpcp-admin-upgrade', $router );
         } else {
             $this->configure_regular_routes( 'awpcp.php', $router );
@@ -264,7 +264,7 @@ class AWPCP_Admin {
 			return;
 		}
 
-		if ( awpcp()->manual_upgrades->has_pending_tasks() ) {
+		if ( $this->upgrade_tasks->has_pending_tasks() ) {
 			ob_start();
 				include( AWPCP_DIR . '/admin/templates/admin-pending-manual-upgrade-notice.tpl.php' );
 				$html = ob_get_contents();
@@ -425,7 +425,7 @@ class AWPCP_Admin {
 
 		$capability = awpcp_admin_capability();
 
-		if ( awpcp()->manual_upgrades->has_pending_tasks() ) {
+		if ( $this->upgrade_tasks->has_pending_tasks() ) {
 			// $parts = array($this->upgrade->title, $this->upgrade->menu, $this->upgrade->page);
 			// $page = add_menu_page($parts[0], $parts[1], $capability, $parts[2], array($this->upgrade, 'dispatch'), MENUICO);
 
