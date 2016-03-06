@@ -29,15 +29,18 @@ class AWPCP_Installer {
 
     private static $instance = null;
 
-    private function __construct() {
+    private $upgrade_tasks;
+
+    private function __construct( $upgrade_tasks ) {
+        $this->upgrade_tasks = $upgrade_tasks;
         $this->columns = awpcp_database_column_creator();
         $this->database_helper = awpcp_database_helper();
         $this->plugin_tables = awpcp_database_tables();
     }
 
-    public static function instance() {
+    public static function instance( $upgrade_tasks ) {
         if (is_null(AWPCP_Installer::$instance)) {
-            AWPCP_Installer::$instance = new AWPCP_Installer();
+            AWPCP_Installer::$instance = new AWPCP_Installer( $upgrade_tasks );
         }
         return AWPCP_Installer::$instance;
     }
@@ -955,7 +958,7 @@ class AWPCP_Installer {
     }
 
     private function upgrade_to_3_5_4_dev_15( $oldversion ) {
-        awpcp()->manual_upgrades->enable_upgrade_task( 'awpcp-sanitize-media-filenames' );
+        $this->upgrade_tasks->enable_upgrade_task( 'awpcp-sanitize-media-filenames' );
     }
 
     private function upgrade_to_3_5_4_dev_20( $oldversion ) {
@@ -970,7 +973,7 @@ class AWPCP_Installer {
             $wpdb->query( $sql );
         }
 
-        awpcp()->manual_upgrades->enable_upgrade_task( 'awpcp-calculate-image-dimensions' );
+        $this->upgrade_tasks->enable_upgrade_task( 'awpcp-calculate-image-dimensions' );
     }
 
     private function upgrade_to_3_5_4_dev_28( $oldversion ) {
