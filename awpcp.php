@@ -292,7 +292,6 @@ require_once( AWPCP_DIR . "/includes/upgrade/class-sanitize-media-filenames-upgr
 require( AWPCP_DIR . "/includes/upgrade/class-store-listings-as-custom-post-types-upgrade-task-handler.php" );
 require( AWPCP_DIR . "/includes/upgrade/class-store-listing-categories-as-custom-taxonomies-upgrade-task-handler.php" );
 require( AWPCP_DIR . "/includes/upgrade/class-store-media-as-attachments-upgrade-task-handler.php" );
-require_once( AWPCP_DIR . "/includes/upgrade/class-upgrade-task-ajax-handler-factory.php" );
 require_once( AWPCP_DIR . "/includes/upgrade/class-upgrade-task-ajax-handler.php" );
 
 require_once( AWPCP_DIR . "/includes/upgrade/class-import-payment-transactions-task-handler.php" );
@@ -744,7 +743,11 @@ class AWPCP {
 	}
 
     private function ajax_setup() {
-        $this->manual_upgrades->register_upgrade_task_handlers();
+        $task_handler = awpcp_upgrade_task_ajax_handler( $this->upgrade_tasks );
+
+        foreach ( $this->upgrade_tasks->get_pending_tasks() as $slug => $task ) {
+            add_action( "wp_ajax_$slug", array( $task_handler, 'ajax' ) );
+        }
 
         // load resources required to handle Ajax requests only.
         $handler = awpcp_users_autocomplete_ajax_handler();

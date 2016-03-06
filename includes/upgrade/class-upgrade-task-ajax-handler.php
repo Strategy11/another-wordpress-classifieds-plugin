@@ -1,5 +1,9 @@
 <?php
 
+function awpcp_upgrade_task_ajax_handler( $tasks_manager ) {
+    return new AWPCP_Upgrade_Task_Ajax_Handler( $tasks_manager, awpcp_request(), awpcp_ajax_response() );
+}
+
 class AWPCP_Upgrade_Task_Ajax_Handler extends AWPCP_AjaxHandler {
 
     private $tasks_manager;
