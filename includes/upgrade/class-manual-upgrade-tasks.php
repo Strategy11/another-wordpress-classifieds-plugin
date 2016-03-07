@@ -76,25 +76,4 @@ class AWPCP_Manual_Upgrade_Tasks {
             'plugin'
         );
     }
-    public function has_pending_tasks() {
-        if ( ! get_option( 'awpcp-pending-manual-upgrade' ) ) {
-            return false;
-        }
-
-        if ( ! $this->upgrade_tasks->has_pending_tasks() ) {
-            delete_option( 'awpcp-pending-manual-upgrade' );
-            return false;
-        }
-
-        return true;
-    }
-
-    public function get_pending_tasks() {
-        return $this->upgrade_tasks->get_pending_tasks();
-    }
-
-    public function enable_upgrade_task( $name ) {
-        $this->upgrade_tasks->enable_upgrade_task( $name );
-        update_option( 'awpcp-pending-manual-upgrade', true );
-    }
 }
