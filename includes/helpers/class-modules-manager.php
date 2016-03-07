@@ -7,18 +7,22 @@ function awpcp_modules_manager() {
 class AWPCP_ModulesManager {
 
     private $plugin;
+    private $upgrade_tasks;
     private $licenses_manager;
     private $modules_updater;
     private $settings;
+    private $request;
 
     private $modules = array();
     private $notices = array();
 
-    public function __construct( $plugin, $licenses_manager, $modules_updater, $settings ) {
+    public function __construct( $plugin, $upgrade_tasks, $licenses_manager, $modules_updater, $settings, $request ) {
         $this->plugin = $plugin;
+        $this->upgrade_tasks = $upgrade_tasks;
         $this->licenses_manager = $licenses_manager;
         $this->modules_updater = $modules_updater;
         $this->settings = $settings;
+        $this->request = $request;
     }
 
     public function load_modules() {
@@ -46,6 +50,13 @@ class AWPCP_ModulesManager {
 
         $this->handle_module_updates( $module );
         $module->setup( $this->plugin );
+
+        if ( ! $this->upgrade_tasks->has_pending_tasks( $module->slug ) ) {
+            // run after load_dependencies() in new modules and init() in old modules
+            add_action( 'init', array( $module, 'setup_module' ), 11 );
+        } else {
+            $this->notices['module-requires-manual-upgrade'][] = $module;
+        }
     }
 
     private function verify_version_compatibility( $module ) {
@@ -147,6 +158,8 @@ class AWPCP_ModulesManager {
             case 'modules-with-expired-license':
                 echo $this->show_expired_licenses_notice( $modules );
                 break;
+            case 'module-requires-manual-upgrade':
+                echo $this->show_module_requires_manual_upgrade_notice( $modules );
         }
     }
 
@@ -237,6 +250,20 @@ class AWPCP_ModulesManager {
         $message = __( 'This version of AWPCP %1$s is not compatible with AWPCP version %2$s. Please get AWPCP %1$s %3$s or newer!', 'another-wordpress-classifieds-plugin' );
         $message = sprintf( $message, '<strong>' . $module->name . '</strong>', $this->plugin->version, '<strong>' . $required_version . '</strong>' );
         $message = sprintf( '<strong>%s:</strong> %s', __( 'Error', 'another-wordpress-classifieds-plugin' ), $message );
+
+        return awpcp_print_error( $message );
+    }
+
+    private function show_module_requires_manual_upgrade_notice( $modules ) {
+        if ( $this->request->param('page') == 'awpcp-admin-upgrade' ) {
+            return;
+        }
+
+        $upgrade_url = add_query_arg( 'context', 'premium-modules', awpcp_get_admin_upgrade_url() );
+
+        $message = _n( 'The AWPCP <module-name> is currently disabled because it requires you to perform a manual upgrade before continuing. Plase <upgrade-link>go to the Classifieds admin section to Upgrade</a>.', 'The AWPCP <modules-names> are currently disabled because they require you to perform a manual upgrade before continuing. Plase <upgrade-link>go to the Classifieds admin section to Upgrade</a>.', count( $modules ), 'another-wordpress-classifieds-plugin' );
+        $message = $this->replace_modules_names_in_message( $message, $modules );
+        $message = str_replace( '<upgrade-link>', sprintf( '<a href="%s">', $upgrade_url ), $message );
 
         return awpcp_print_error( $message );
     }

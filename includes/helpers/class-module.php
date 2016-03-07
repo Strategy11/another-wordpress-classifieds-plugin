@@ -38,9 +38,6 @@ abstract class AWPCP_Module {
             return;
         }
 
-        // run after load_dependencies() in new modules and init() in old modules
-        add_action( 'init', array( $this, 'setup_module' ), 11 );
-
         $this->load_dependencies();
         $this->load_module();
     }
