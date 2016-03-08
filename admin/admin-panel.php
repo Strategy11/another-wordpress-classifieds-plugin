@@ -95,7 +95,7 @@ class AWPCP_Admin {
             $parent_page,
             $menu_title,
             awpcp_admin_page_title( __( 'Manual Upgrade', 'AWPCP' ) ),
-            $parent_page,
+            $menu_slug,
             'awpcp_manual_upgrade_admin_page',
             awpcp_admin_capability(),
             0
