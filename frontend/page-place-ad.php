@@ -1089,25 +1089,10 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             return $this->details_step_form($transaction, $data, $errors);
         }
 
-        $now = current_time('mysql');
-
         if ($transaction->get('ad-id')) {
             $ad = $this->listings->get( $transaction->get( 'ad-id' ) );
         } else {
-            $listing_id = $this->wordpress->insert_post( array(
-                'post_title' => 'Listing Draft',
-                'post_type' => 'awpcp_listing',
-                'post_status' => 'disabled',
-                'post_date' => $now,
-                'post_date_gmt' => get_gmt_from_date( $now ),
-            ), true );
-
-            if ( is_wp_error( $listing_id ) ) {
-                $errors[] = __( 'There was an unexpected error trying to save your Ad details. Please try again or contact an administrator.', 'another-wordpress-classifieds-plugin' );
-                return $this->details_step_form( $transaction, $data, $errors );
-            }
-
-            $ad = $this->listings->get( $listing_id );
+            $now = current_time('mysql');
 
             $payment_term_id = $transaction->get( 'payment-term-id' );
             $payment_term_type = $transaction->get( 'payment-term-type' );
@@ -1115,48 +1100,68 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
             $amount_paid = $transaction->get_totals();
 
-            $this->wordpress->update_post_meta( $listing_id, '_payment_term_type', $payment_term_type );
-            $this->wordpress->update_post_meta( $listing_id, '_payment_term_id', $payment_term_id );
-            $this->wordpress->update_post_meta( $listing_id, '_payment_status', 'Unpaid' );
-            $this->wordpress->update_post_meta( $listing_id, '_payment_amount', $amount_paid['money'] );
-            $this->wordpress->update_post_meta( $listing_id, '_transaction_id', $transaction->id );
-            $this->wordpress->update_post_meta( $listing_id, '_access_key', $this->listings_logic->generate_access_key() );
-            $this->wordpress->update_post_meta( $listing_id, '_start_date', $now );
-            $this->wordpress->update_post_meta( $listing_id, '_end_date', $payment_term->calculate_end_date( strtotime( $now ) ) );
-            $this->wordpress->update_post_meta( $listing_id, '_is_paid', $amount_paid['money'] > 0 );
+            $listing_data = array(
+                'post_fields' => array(
+                    'post_title' => 'Listing Draft',
+                    'post_date' => $now,
+                    'post_date_gmt' => get_gmt_from_date( $now ),
+                ),
+                'metadata' => array(
+                    '_payment_term_type' => $payment_term_type,
+                    '_payment_term_id' => $payment_term_id,
+                    '_payment_amount' => $amount_paid['money'],
+                    '_transaction_id' => $transaction->id,
+                    '_start_date' => $now,
+                    '_end_date' => $payment_term->calculate_end_date( strtotime( $now ) ),
+                    '_is_paid' => $amount_paid['money'] > 0,
+                ),
+            );
+
+            try {
+                $ad = $this->listings_logic->create_listing( $listing_data );
+            } catch ( AWPCP_Exception $e ) {
+                $errors[] = $e->getMessage();
+                return $this->details_step_form( $transaction, $data, $errors );
+            }
         }
 
         if ( !$transaction->get('ad-id') || $this->verify_preview_hash($ad) ) {
-            $listing_id = $this->wordpress->update_post( array(
-                'ID' => $ad->ID,
-                'post_author' => $data['user_id'],
-                'post_title' => $this->prepare_ad_title( $data['ad_title'], $characters['characters_allowed_in_title'] ),
-                'post_content' => $this->prepare_ad_details( $data['ad_details'], $characters['characters_allowed'] ),
-                'post_modified' => $now,
-                'post_modified_gmt' => get_gmt_from_date( $now ),
-            ), true );
+            $listing_data = array(
+                'post_fields' => array(
+                    'ID' => $ad->ID,
+                    'post_author' => $data['user_id'],
+                    'post_title' => $this->prepare_ad_title( $data['ad_title'], $characters['characters_allowed_in_title'] ),
+                    'post_content' => $this->prepare_ad_details( $data['ad_details'], $characters['characters_allowed'] ),
+                    'post_modified' => $now,
+                    'post_modified_gmt' => get_gmt_from_date( $now ),
+                ),
+                'metadata' => array(
+                    '_contact_name' => $data['ad_contact_name'],
+                    '_contact_phone' => $data['ad_contact_phone'],
+                    '_contact_email' => $data['ad_contact_email'],
+                    '_website_url' => $data['websiteurl'],
+                    '_price' => $data['ad_item_price'] * 100,
+                    '_poster_ip' => awpcp_getip(),
+                ),
+                'terms' => array(
+                    AWPCP_CATEGORY_TAXONOMY => array( (int) $data['ad_category'] ),
+                ),
+                'regions' => $data['regions'],
+                'regions-allowed' => $this->get_regions_allowed( $ad->ID, $transaction ),
+            );
 
-            if ( is_wp_error( $listing_id ) ) {
-                $errors[] = __( 'There was an unexpected error trying to save your Ad details. Please try again or contact an administrator.', 'another-wordpress-classifieds-plugin' );
-                return $this->details_step_form( $transaction, $data, $errors );
-            }
-
-            $this->wordpress->set_object_terms( $ad->ID, array( (int) $data['ad_category'] ), 'awpcp_listing_category' );
-
-            $this->wordpress->update_post_meta( $ad->ID, '_contact_name', $data['ad_contact_name'] );
-            $this->wordpress->update_post_meta( $ad->ID, '_contact_phone', $data['ad_contact_phone'] );
-            $this->wordpress->update_post_meta( $ad->ID, '_contact_email', $data['ad_contact_email'] );
-            $this->wordpress->update_post_meta( $ad->ID, '_website_url', $data['websiteurl'] );
-            $this->wordpress->update_post_meta( $ad->ID, '_price', $data['ad_item_price'] * 100 );
-            $this->wordpress->update_post_meta( $ad->ID, '_poster_ip', awpcp_getip() );
+            do_action( 'awpcp-before-save-listing', $ad, $data );
 
             // TODO: make sure the Featured Ads module sets this meta attribute properly
             $ad->is_featured_ad = $data['is_featured_ad'];
+            $listing_data = apply_filters( 'awpcp-place-listing-listing-data', $listing_data, $ad );
 
-            $ad = apply_filters( 'awpcp-before-save-listing', $ad, $data );
-
-            $regions_allowed = $this->get_regions_allowed( $ad->ID, $transaction );
-            awpcp_basic_regions_api()->update_ad_regions( $ad, $data['regions'], $regions_allowed );
+            try {
+                $this->listings_logic->update_listing( $ad, $listing_data );
+            } catch ( AWPCP_Exception $e ) {
+                $errors[] = $e->getMessage();
+                return $this->details_step_form( $transaction, $data, $errors );
+            }
 
             $transaction->set('ad-id', $ad->ID);
 
