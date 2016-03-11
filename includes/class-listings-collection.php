@@ -135,7 +135,6 @@ class AWPCP_ListingsCollection {
 
         switch ( $orderby ) {
             case 1:
-                // TODO: populate _most_recent_start_date when listing is created.
                 $query['meta_key'] = '_most_recent_start_date';
                 $query['meta_type'] = 'DATETIME';
                 $query['orderby'] = array( 'meta_value' => 'DESC' );
@@ -222,7 +221,6 @@ class AWPCP_ListingsCollection {
                 break;
 
             case 9:
-                // TODO: populate _most_recent_start_date when listing is created.
                 $query['meta_key'] = '_most_recent_start_date';
                 $query['meta_type'] = 'DATETIME';
                 $query['orderby'] = array( 'meta_value' => 'ASC' );

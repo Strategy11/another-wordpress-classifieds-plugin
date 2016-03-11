@@ -9,6 +9,7 @@ function awpcp_listings_api() {
             awpcp_attachments_logic(),
             awpcp_attachments_collection(),
             awpcp_listing_renderer(),
+            awpcp_listings_collection(),
             awpcp_request(),
             awpcp()->settings,
             awpcp_wordpress(),
@@ -24,15 +25,17 @@ class AWPCP_ListingsAPI {
     private $attachments_logic;
     private $attachments;
     private $listing_renderer;
+    private $listings;
     private $request = null;
     private $settings = null;
     private $wordpress;
     private $db;
 
-    public function __construct( $attachments_logic, $attachments, $listing_renderer, /*AWPCP_Request*/ $request = null, $settings, $wordpress, $db ) {
+    public function __construct( $attachments_logic, $attachments, $listing_renderer, $listings, /*AWPCP_Request*/ $request = null, $settings, $wordpress, $db ) {
         $this->attachments_logic = $attachments_logic;
         $this->attachments = $attachments;
         $this->listing_renderer = $listing_renderer;
+        $this->listings = $listings;
         $this->settings = $settings;
         $this->wordpress = $wordpress;
         $this->request = $request;
@@ -91,8 +94,68 @@ class AWPCP_ListingsAPI {
      * API Methods
      */
 
-    public function create_ad() {}
-    public function update_ad() {}
+    public function create_listing( $listing_data ) {
+        $now = current_time( 'mysql' );
+
+        $post_fields = wp_parse_args( $listing_data, array(
+            'post_type' => AWPCP_LISTING_POST_TYPE,
+            'post_status' => 'disabled',
+            'post_date' => $now,
+            'post_date_gmt' => get_gmt_from_date( $now ),
+        ) );
+
+        $listing_id = $this->wordpress->insert_post( $post_fields , true );
+
+        if ( is_wp_error( $listing_id ) ) {
+            $message = __( 'There was an unexpected error trying to save the listing details. Please try again or contact an administrator.', 'another-wordpress-classifieds-plugin' );
+            throw new AWPCP_Exception( $message );
+        }
+
+        $metadata = wp_parse_args( $listing_data, array(
+            '_payment_status' => 'Unpaid',
+            '_most_recent_start_date' => $now,
+            '_renewed_date' => '',
+        ) );
+
+        if ( ! isset( $metadata['_access_key'] ) || empty( $metadata['_access_key'] ) ) {
+            $metadata['_access_key'] = $this->generate_access_key();
+        }
+
+        if ( isset( $metadata['_start_date'] ) ) {
+            $metadata['_most_recent_start_date'] = $metadata['_start_date'];
+        }
+
+        foreach ( $metadata as $field_name => $field_value ) {
+            $this->wordpress->update_post_meta( $listing_id, $field_name, $field_value );
+        }
+
+        return $this->listings->get( $listing_id );
+    }
+
+    public function update_listing( $listing, $listing_data ) {
+        $post_fields = wp_parse_args( $listing_data['post_fields'], array(
+            'ID' => $listing->ID,
+        ) );
+
+        $listing_id = $this->wordpress->update_post( $post_fields, true );
+
+        if ( is_wp_error( $listing_id ) ) {
+            $message = __( 'There was an unexpected error trying to save the listing details. Please try again or contact an administrator.', 'another-wordpress-classifieds-plugin' );
+            throw new AWPCP_Exception( $message );
+        }
+
+        foreach ( $listing_data['terms'] as $taxonomy => $terms ) {
+            $this->wordpress->set_object_terms( $listing_id, $terms, $taxonomy );
+        }
+
+        foreach ( $listing_data['metadata'] as $field_name => $field_value ) {
+            $this->wordpress->update_post_meta( $listing_id, $field_name, $field_value );
+        }
+
+        if ( isset( $listing_data['regions'] ) && isset( $listing_data['regions-allowed'] ) ) {
+            awpcp_basic_regions_api()->update_ad_regions( $listing, $listing_data['regions'], $listing_data['regions-allowed'] );
+        }
+    }
 
     /**
      * @since 3.0.2
