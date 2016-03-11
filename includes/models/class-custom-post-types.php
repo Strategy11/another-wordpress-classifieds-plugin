@@ -22,7 +22,7 @@ class AWPCP_Custom_Post_Types {
                 'exclude_from_search' => true,
                 'show_in_admin_all_list' => true,
                 'show_in_admin_status_list' => true,
-                'label_count' => _n_noop( '%d listing', '%d listings', 'another-wordpress-classifieds-plugin' ),
+                'label_count' => _n_noop( 'Disabled <span class="count">(%d)</span>', 'Disabled <span class="count">(%d)</span>', 'another-wordpress-classifieds-plugin' ),
             )
         );
     }
