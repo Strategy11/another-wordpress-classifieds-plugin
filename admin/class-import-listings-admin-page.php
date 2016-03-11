@@ -113,7 +113,7 @@ class AWPCP_ImportListingsAdminPage {
  				if (empty($errors)) {
 					$csv = $_FILES['import']['tmp_name'];
 
-					$importer = new AWPCP_CSV_Importer(array(
+					$importer = awpcp_csv_importer(array(
 						'start-date' => $start_date,
 						'end-date' => $end_date,
 						'date-format' => $import_date_format,
@@ -122,8 +122,8 @@ class AWPCP_ImportListingsAdminPage {
 						'autocreate-categories' => $auto_cat,
 						'assign-user' => $assign_user,
 						'default-user' => $assigned_user,
-						'test-import' => $test_import)
-					);
+						'test-import' => $test_import
+					));
 
 					$importer->import($csv, $_FILES['import_zip'], $errors, $messages);
  				}
