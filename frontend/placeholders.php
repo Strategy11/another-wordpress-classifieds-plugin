@@ -618,7 +618,7 @@ function awpcp_do_placeholder_extra_fields($ad, $placeholder, $context) {
 
     if ($hasextrafieldsmodule == 1) {
         $single = $context === 'single' ? true : false;
-        $replacements['awpcpextrafields'] = display_x_fields_data( $ad->ad_id, $single );
+        $replacements['awpcpextrafields'] = display_x_fields_data( $ad->ID, $single );
     } else {
         $replacements['awpcpextrafields'] = '';
     }
