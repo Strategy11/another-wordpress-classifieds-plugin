@@ -63,6 +63,10 @@ abstract class AWPCP_Module {
         // overwrite in children classes if necessary
     }
 
+    public function configure_routes( $routes ) {
+        // overwrite in children classes if necessary
+    }
+
     /**
      * Released versions of some modules define module_setup() as a protected method.
      * We now need that method to be public to run it on init using add_action(), but
