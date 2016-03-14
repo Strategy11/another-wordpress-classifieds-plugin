@@ -150,6 +150,8 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
             'orderby' => get_awpcp_option( 'search-results-order' ),
         ) );
 
+        $query = apply_filters( 'awpcp-search-listings-query', $query, $form );
+
         return awpcp_display_listings( $query, 'search', array(
             'show_intro_message' => true,
             'show_menu_items' => true,
