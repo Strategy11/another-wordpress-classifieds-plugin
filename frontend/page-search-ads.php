@@ -1,7 +1,13 @@
 <?php
 
-require_once(AWPCP_DIR . '/includes/helpers/page.php');
-
+function awpcp_search_listings_page() {
+    return new AWPCP_SearchAdsPage(
+        'awpcp-search-ads',
+        __('Search Ads', 'another-wordpress-classifieds-plugin'),
+        awpcp_template_renderer(),
+        awpcp_request()
+    );
+}
 
 /**
  * @since  2.1.4
@@ -10,8 +16,11 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
 
     public $messages = array();
 
-    public function __construct($page='awpcp-search-ads', $title=null) {
-        parent::__construct($page, is_null($title) ? __('Search Ads', 'another-wordpress-classifieds-plugin') : $title);
+    private $request;
+
+    public function __construct( $slug, $title, $template_renderer, $request ) {
+        parent::__construct( $slug, $title, $template_renderer );
+        $this->request = $request;
     }
 
     public function get_current_action($default='searchads') {
@@ -50,12 +59,12 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
 
     protected function get_posted_data() {
         $data = stripslashes_deep( array(
-            'query' => awpcp_request_param('keywordphrase'),
-            'category' => awpcp_request_param('searchcategory'),
-            'name' => awpcp_request_param('searchname'),
-            'min_price' => awpcp_parse_money( awpcp_request_param( 'searchpricemin' ) ),
-            'max_price' => awpcp_parse_money( awpcp_request_param( 'searchpricemax' ) ),
-            'regions' => awpcp_request_param('regions'),
+            'query' => $this->request->param('keywordphrase'),
+            'category' => $this->request->param('searchcategory'),
+            'name' => $this->request->param('searchname'),
+            'min_price' => awpcp_parse_money( $this->request->param( 'searchpricemin' ) ),
+            'max_price' => awpcp_parse_money( $this->request->param( 'searchpricemax' ) ),
+            'regions' => $this->request->param('regions'),
         ) );
 
         $data = apply_filters( 'awpcp-get-posted-data', $data, 'search', array() );
@@ -136,19 +145,19 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
     }
 
     private function search_listings( $form ) {
-        $query = array_merge( $form, array(
+        $query = array(
             'context' => 'public-listings',
-            'keyword' => $form['query'],
-            'category_id' => $form['category'],
+            's' => $form['query'],
+            'category_id' => absint( $form['category'] ),
             'contact_name' => $form['name'],
             'min_price' => $form['min_price'],
             'max_price' => $form['max_price'],
             'regions' => $form['regions'],
             'disabled' => false,
-            'limit' => absint( awpcp_request_param( 'results', get_awpcp_option( 'adresultsperpage', 10 ) ) ),
+            'posts_per_page' => absint( awpcp_request_param( 'results', get_awpcp_option( 'adresultsperpage', 10 ) ) ),
             'offset' => absint( awpcp_request_param( 'offset', 0 ) ),
             'orderby' => get_awpcp_option( 'search-results-order' ),
-        ) );
+        );
 
         $query = apply_filters( 'awpcp-search-listings-query', $query, $form );
 

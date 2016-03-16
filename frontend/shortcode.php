@@ -107,7 +107,7 @@ class AWPCP_Pages {
 
 	public function search_ads() {
 		if (!isset($this->search_ads_page))
-			$this->search_ads_page = new AWPCP_SearchAdsPage();
+			$this->search_ads_page = awpcp_search_listings_page();
 		return $this->search_ads_page->dispatch();
 	}
 
