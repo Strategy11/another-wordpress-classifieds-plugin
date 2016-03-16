@@ -783,7 +783,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $ui['price-field-required'] = get_awpcp_option('displaypricefieldreqop') == 1;
         $ui['allow-regions-modification'] = $is_moderator || !$edit || get_awpcp_option( 'allow-regions-modification' );
         $ui['price-field'] = get_awpcp_option('displaypricefield') == 1;
-        $ui['extra-fields'] = $hasextrafieldsmodule && function_exists('awpcp_extra_fields_render_form');
+        $ui['extra-fields'] = $hasextrafieldsmodule && function_exists( 'awpcp_extra_fields_module' );
         $ui['terms-of-service'] = !$edit && !$is_moderator && get_awpcp_option('requiredtos');
         $ui['captcha'] = !$edit && !is_admin() && ( get_awpcp_option( 'captcha-enabled-in-place-listing-form' ) == 1 );
 
