@@ -93,8 +93,12 @@ class AWPCP_ListingsCollection {
      * @since feature/1112
      */
     public function find_listings( $query = array() ) {
+        $query = $this->clean_query( $query );
         $query = $this->prepare_listings_query( $query );
         $query = $this->make_listings_query_with_orderby_paramter( $query );
+        $query = $this->add_conditions_for_custom_query_parameters( $query );
+
+        $query = apply_filters( 'awpcp-find-listings-query', $query );
 
         if ( isset( $query['_meta_order'] ) ) {
             add_filter( 'posts_clauses', array( $this, 'add_orderby_multiple_meta_keys_clause' ), 10, 2 );
@@ -102,6 +106,10 @@ class AWPCP_ListingsCollection {
 
         if ( isset( $query['_custom_order'] ) ) {
             add_filter( 'posts_clauses', array( $this, 'add_orderby_unsupported_properties_clause' ), 10, 2 );
+        }
+
+        if ( isset( $query['regions'] ) ) {
+            add_filter( 'posts_clauses', array( $this, 'add_regions_clauses' ), 10, 2 );
         }
 
         $posts = $this->wordpress->create_posts_query( $query );
@@ -114,7 +122,81 @@ class AWPCP_ListingsCollection {
             remove_filter( 'posts_clauses', array( $this, 'add_orderby_unsupported_properties_clause' ), 10, 2 );
         }
 
-        return $posts->posts;
+        if ( isset( $query['regions'] ) ) {
+            remove_filter( 'posts_clauses', array( $this, 'add_regions_clauses' ), 10, 2 );
+        }
+
+        return apply_filters( 'awpcp-find-listings', $posts->posts, $query );
+    }
+
+    private function clean_query( $query ) {
+        $query = $this->normalize_regions_query( $query );
+
+        $numeric_value_required = array( 'category_id', 'category', 'category_with_no_children', 'category__not_in' );
+
+        foreach ( $numeric_value_required as $field_name ) {
+            if ( isset( $query[ $field_name ] ) && is_array( $query[ $field_name ] ) ) {
+                $query[ $field_name ] = array_map( 'intval', $query[ $field_name ] );
+            } else if ( isset( $query[ $field_name ] ) ) {
+                $query[ $field_name ] = intval( $query[ $field_name ] );
+            }
+        }
+
+        $not_allowed_empty_or_zero = array( 'category_id', 'category', 'category_with_no_children', 'category__not_in', 'regions' );
+
+        foreach ( $not_allowed_empty_or_zero as $field_name ) {
+            if ( isset( $query[ $field_name ] ) && empty( $query[ $field_name ] ) ) {
+                unset( $query[ $field_name ] );
+            }
+        }
+
+        $must_be_arrays = array( 'context' );
+
+        foreach ( $must_be_arrays as $field_name ) {
+            if ( isset( $query[ $field_name ] ) && ! is_array( $query[ $field_name ] ) ) {
+                $query[ $field_name ] = array( $query[ $field_name ] );
+            }
+        }
+
+        return $query;
+    }
+
+    private function normalize_regions_query( $query ) {
+        $regions_query = shortcode_atts( array(
+            'region' => '',
+            'country' => '',
+            'state' => '',
+            'city' => '',
+            'county' => '',
+        ), $query );
+
+        // search for a listing associated with a Region (of any kind) whose
+        // name matches the given search value.
+        if ( isset( $query['region'] ) ) {
+            $query['regions'][] = array( 'country' => $regions_query['region'] );
+            $query['regions'][] = array( 'state' => $regions_query['region'] );
+            $query['regions'][] = array( 'city' => $regions_query['region'] );
+            $query['regions'][] = array( 'county' => $regions_query['region'] );
+        }
+
+        // search for a listing associated with region hierarchy that matches
+        // the given search values.
+        $query['regions'][] = array(
+            'country' => empty( $regions_query['country'] ) ? '' : array( '=', $regions_query['country'] ),
+            'state' => empty( $regions_query['state'] ) ? '' : array( '=', $regions_query['state'] ),
+            'city' => empty( $regions_query['city'] ) ? '' : array( '=', $regions_query['city'] ),
+            'county' => empty( $regions_query['county'] ) ? '' : array( '=', $regions_query['county'] ),
+        );
+
+        $query['regions'] = awpcp_array_filter_recursive( $query['regions'] );
+
+        foreach ( array_keys( $regions_query ) as $field_name ) {
+            if ( isset( $query[ $field_name ] ) ) {
+                unset( $query[ $field_name ] );
+            }
+        }
+
+        return $query;
     }
 
     private function prepare_listings_query( $query ) {
@@ -408,6 +490,162 @@ class AWPCP_ListingsCollection {
         }
 
         return $clauses;
+    }
+
+    /**
+     * TODO: remove regions from query if all search values are empty.
+     */
+    public function add_regions_clauses( $clauses, $query_object ) {
+        $regions_conditions = array();
+
+        foreach ( $query_object->query['regions'] as $region ) {
+            $region_conditions = array();
+
+            foreach ( $region as $field => $search ) {
+                // add support for exact search, passing a search values defined as array( '=', <region-name> ).
+                if ( is_array( $search ) && count( $search ) == 2 && $search[0] == '=' ) {
+                    $region_conditions[] = $this->db->prepare( "listing_regions.`$field` = %s", trim( $search[1] ) );
+                } else if ( ! is_array( $search ) ) {
+                    $region_conditions[] = $this->db->prepare( "listing_regions.`$field` LIKE '%%%s%%'", trim( $search ) );
+                }
+            }
+
+            $regions_conditions[] = '( ' . implode( ' AND ', $region_conditions ) . ' )';
+        }
+
+        $clauses['join'] .= ' INNER JOIN ' . AWPCP_TABLE_AD_REGIONS . ' AS listing_regions ON (listing_regions.ad_id = ' . $this->db->posts . '.ID)';
+        $clauses['where'] .= ' AND ( ' . implode( ' OR ', $regions_conditions ) . ' )';
+
+        return $clauses;
+    }
+
+    private function add_conditions_for_custom_query_parameters( $query ) {
+        $query = $this->add_category_condition( $query );
+        $query = $this->add_contact_condition( $query );
+        $query = $this->add_price_condition( $query );
+        $query = $this->add_payment_status_condition( $query );
+        $query = $this->add_payment_email_condition( $query );
+        $query = $this->add_dates_condition( $query );
+        // $query = $this->add_media_conditions( $query );
+
+        return $query;
+    }
+
+    private function add_category_condition( $query ) {
+        if ( isset( $query['category_id'] ) ) {
+            $query['tax_query'][] = array(
+                'taxonomy' => AWPCP_CATEGORY_TAXONOMY,
+                'field' => 'term_id',
+                'terms' => $query['category_id'],
+                'include_children' => true,
+            );
+            unset( $query['category_id'] );
+        }
+
+        if ( isset( $query['category_with_no_children'] ) ) {
+            $query['tax_query'][] = array(
+                'taxonomy' => AWPCP_CATEGORY_TAXONOMY,
+                'field' => 'term_id',
+                'terms' => $query['category_id'],
+                'include_children' => true,
+            );
+            unset( $query['category_with_no_children'] );
+        }
+
+        if ( isset( $query['category__not_in'] ) ) {
+            $query['tax_query'][] = array(
+                'taxonomy' => AWPCP_CATEGORY_TAXONOMY,
+                'field' => 'term_id',
+                'terms' => $query['category__not_in'],
+                'include_children' => true,
+            );
+            unset( $query['category__not_in'] );
+        }
+
+        return $query;
+    }
+
+    private function add_contact_condition( $query ) {
+        if ( isset( $query['contact_name'] ) && ! empty( $query['contact_name'] ) ) {
+            $query['meta_query'][] = array(
+                'key' => '_contact_name',
+                'value' => $query['contact_name'],
+                'compare' => '=',
+                'type' => 'CHAR',
+            );
+        }
+
+        return $query;
+    }
+
+    private function add_price_condition( $query ) {
+        if ( isset( $query['price'] ) && strlen( $query['price'] ) ) {
+            $query['meta_query'][] = array(
+                'key' => '_price',
+                'value' => $query['price'] * 100,
+                'compare' => '=',
+                'type' => 'SIGNED',
+            );
+        }
+
+        if ( isset( $query['min_price'] ) && strlen( $query['min_price'] ) ) {
+            $query['meta_query'][] = array(
+                'key' => '_price',
+                'value' => $query['min_price'] * 100,
+                'compare' => '>=',
+                'type' => 'SIGNED',
+            );
+        }
+
+        if ( isset( $query['max_price'] ) && strlen( $query['max_price'] ) ) {
+            $query['meta_query'][] = array(
+                'key' => '_price',
+                'value' => $query['max_price'] * 100,
+                'compare' => '<=',
+                'type' => 'SIGNED',
+            );
+        }
+
+        return $query;
+    }
+
+    private function add_payment_status_condition( $query ) {
+        if ( isset( $query['payment_status'] ) ) {
+            $query['meta_query'] = array(
+                'key' => '_payment_status',
+                'value' => $query['payment_status'],
+                'compare' => is_array( $query['payment_status'] )  ? 'IN' : '=',
+                'type' => 'CHAR',
+            );
+        }
+
+        if ( isset( $query['payment_status__not_in'] ) ) {
+            $query['meta_query'] = array(
+                'key' => '_payment_status',
+                'value' => $query['payment_status'],
+                'compare' => 'NOT IN',
+                'type' => 'CHAR',
+            );
+        }
+
+        return $query;
+    }
+
+    private function add_payment_email_condition( $query ) {
+        if ( isset( $query['payer_email'] ) ) {
+            $query['meta_query'][] = array(
+                'key' => '_payer_email',
+                'value' => $query['payer_email'],
+                'compare' => '=',
+                'type' => 'CHAR',
+            );
+        }
+
+        return $query;
+    }
+
+    private function add_dates_condition( $query ) {
+        return $query;
     }
 
     /**
