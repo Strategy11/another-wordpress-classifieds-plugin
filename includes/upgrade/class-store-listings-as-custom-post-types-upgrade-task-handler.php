@@ -102,6 +102,8 @@ class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements 
         // update verified status
         if ( $item->verified != 1 ) {
             $this->wordpress->add_post_meta( $post_id, '_verfication_needed', true );
+        } else {
+            $this->wordpress->add_post_meta( $post_id, '_verified', true );
         }
 
         // update reviewed status
@@ -135,6 +137,7 @@ class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements 
         $this->wordpress->add_post_meta( $post_id, '_last_updated', $item->ad_last_updated );
         $this->wordpress->add_post_meta( $post_id, '_start_date', $item->ad_startdate );
         $this->wordpress->add_post_meta( $post_id, '_end_date', $item->ad_enddate );
+        $this->wordpress->add_post_meta( $post_id, '_most_recent_start_date', $item->ad_startdate );
         $this->wordpress->add_post_meta( $post_id, '_disabled_date', $item->disabled_date );
         $this->wordpress->add_post_meta( $post_id, '_flagged', $item->flagged );
         $this->wordpress->add_post_meta( $post_id, '_verification_date', $item->verified_at );
