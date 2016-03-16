@@ -1,15 +1,21 @@
 <?php
 
 function awpcp_category_shortcode() {
-    return new AWPCP_CategoryShortcode( $GLOBALS['wpdb'], awpcp_request() );
+    return new AWPCP_CategoryShortcode(
+        awpcp_categories_collection(),
+        $GLOBALS['wpdb'],
+        awpcp_request()
+    );
 }
 
 class AWPCP_CategoryShortcode {
 
+    private $categories;
     private $db;
     private $request;
 
-    public function __construct( $db, $request ) {
+    public function __construct( $categories, $db, $request ) {
+        $this->categories = $categories;
         $this->db = $db;
         $this->request = $request;
     }
@@ -30,12 +36,13 @@ class AWPCP_CategoryShortcode {
     private function render_shortcode_content( $attrs ) {
         extract( $attrs );
 
-        $category = $id > 0 ? AWPCP_Category::find_by_id( $id ) : null;
-        $children = awpcp_parse_bool( $children );
-
-        if ( is_null( $category ) ) {
-            return __('Category ID must be valid for Ads to display.', 'category shortcode', 'another-wordpress-classifieds-plugin');
+        try {
+            $category = $this->categories->get( $attrs['id'] );
+        } catch ( AWPCP_Exception $e ) {
+            return __( 'Category ID must be valid for Ads to display.', 'category shortcode', 'another-wordpress-classifieds-plugin' );
         }
+
+        $children = awpcp_parse_bool( $children );
 
         if ( $children ) {
             $categories_list = awpcp_categories_list_renderer()->render( array(
