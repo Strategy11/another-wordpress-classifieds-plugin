@@ -7,6 +7,10 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
         $name = is_null($name) ? __('AWPCP Latest Ads', 'another-wordpress-classifieds-plugin') : $name;
         $description = is_null($description) ? __('Displays a list of latest Ads', 'another-wordpress-classifieds-plugin') : $description;
         parent::__construct($id, $name, array('description' => $description));
+
+        $this->listing_renderer = awpcp_listing_renderer();
+        $this->attachment_properties = awpcp_attachment_properties();
+        $this->attachments = awpcp_attachments_collection();
     }
 
     protected function defaults() {
@@ -88,7 +92,7 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
 
     private function render_item( $item, $instance, $html_class ) {
         $listing_title = $this->listing_renderer->get_listing_title( $item );
-        $item_url = $this->listing_renderer->get_view_listing_url( $item->ID );
+        $item_url = $this->listing_renderer->get_view_listing_url( $item );
         $item_title = sprintf( '<a href="%s">%s</a>', $item_url, stripslashes( $listing_title ) );
 
         if ($instance['show-title']) {
@@ -141,8 +145,8 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
 
             $html_image = sprintf(
                 '<a class="awpcp-listings-widget-item-listing-link self" href="%s">%s</a>',
-                $this->listing_renderer->get_view_listing_url( $item->ID ),
-                $this->attachment_properties->get_image( $image->ID, 'featured', false, $image_attributes )
+                $this->listing_renderer->get_view_listing_url( $item ),
+                $this->attachment_properties->get_image( $image, 'featured', false, $image_attributes )
             );
         }
 
