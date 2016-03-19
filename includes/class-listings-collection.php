@@ -93,43 +93,32 @@ class AWPCP_ListingsCollection {
      * @since feature/1112
      */
     public function find_listings( $query = array() ) {
-        $query = $this->clean_query( $query );
-        $query = $this->prepare_listings_query( $query );
-        $query = $this->make_listings_query_with_orderby_paramter( $query );
-        $query = $this->add_conditions_for_custom_query_parameters( $query );
+        $query = $this->prepare_query( $query );
+        $query = $this->add_orderby_query_parameters( $query );
 
-        $query = apply_filters( 'awpcp-find-listings-query', $query );
+        $posts_query = $this->execute_query( apply_filters( 'awpcp-find-listings-query', $query ) );
 
-        if ( isset( $query['_meta_order'] ) ) {
-            add_filter( 'posts_clauses', array( $this, 'add_orderby_multiple_meta_keys_clause' ), 10, 2 );
-        }
-
-        if ( isset( $query['_custom_order'] ) ) {
-            add_filter( 'posts_clauses', array( $this, 'add_orderby_unsupported_properties_clause' ), 10, 2 );
-        }
-
-        if ( isset( $query['regions'] ) ) {
-            add_filter( 'posts_clauses', array( $this, 'add_regions_clauses' ), 10, 2 );
-        }
-
-        $posts = $this->wordpress->create_posts_query( $query );
-
-        if ( isset( $query['_meta_order'] ) ) {
-            remove_filter( 'posts_clauses', array( $this, 'add_orderby_multiple_meta_keys_clause' ), 10, 2 );
-        }
-
-        if ( isset( $query['_custom_order'] ) ) {
-            remove_filter( 'posts_clauses', array( $this, 'add_orderby_unsupported_properties_clause' ), 10, 2 );
-        }
-
-        if ( isset( $query['regions'] ) ) {
-            remove_filter( 'posts_clauses', array( $this, 'add_regions_clauses' ), 10, 2 );
-        }
-
-        return apply_filters( 'awpcp-find-listings', $posts->posts, $query );
+        return apply_filters( 'awpcp-find-listings', $posts_query->posts, $query );
     }
 
-    private function clean_query( $query ) {
+    private function prepare_query( $query ) {
+        $query = $this->set_default_parameters( $query );
+        $query = $this->clean_query_parameters( $query );
+        $query = $this->add_conditions_for_custom_query_parameters( $query );
+
+        return $query;
+    }
+
+    private function set_default_parameters( $query ) {
+        return wp_parse_args( $query, array(
+            'context' => 'default',
+            'post_type' => AWPCP_LISTING_POST_TYPE,
+            'post_status' => array(  'disabled', 'draft', 'pending', 'publish' ),
+        ) );
+    }
+
+    private function clean_query_parameters( $query ) {
+        $query = wp_parse_args( $query, array( 'context' => 'default' ) );
         $query = $this->normalize_regions_query( $query );
 
         $numeric_value_required = array( 'category_id', 'category', 'category_with_no_children', 'category__not_in' );
@@ -199,17 +188,7 @@ class AWPCP_ListingsCollection {
         return $query;
     }
 
-    private function prepare_listings_query( $query ) {
-        $query['post_type'] = 'awpcp_listing';
-
-        if ( ! isset( $query['post_status'] ) ) {
-            $query['post_status'] = array(  'disabled', 'draft', 'pending', 'publish' );
-        }
-
-        return $query;
-    }
-
-    private function make_listings_query_with_orderby_paramter( $query ) {
+    private function add_orderby_query_parameters( $query ) {
         $orderby = isset( $query['orderby'] ) ? $query['orderby'] : null;
 
         $basedate = 'CASE WHEN renewed_date IS NULL THEN ad_startdate ELSE GREATEST(ad_startdate, renewed_date) END';
@@ -442,6 +421,36 @@ class AWPCP_ListingsCollection {
         return $query;
     }
 
+    private function execute_query( $query ) {
+        if ( isset( $query['_meta_order'] ) ) {
+            add_filter( 'posts_clauses', array( $this, 'add_orderby_multiple_meta_keys_clause' ), 10, 2 );
+        }
+
+        if ( isset( $query['_custom_order'] ) ) {
+            add_filter( 'posts_clauses', array( $this, 'add_orderby_unsupported_properties_clause' ), 10, 2 );
+        }
+
+        if ( isset( $query['regions'] ) ) {
+            add_filter( 'posts_clauses', array( $this, 'add_regions_clauses' ), 10, 2 );
+        }
+
+        $posts_query = $this->wordpress->create_posts_query( $query );
+
+        if ( isset( $query['_meta_order'] ) ) {
+            remove_filter( 'posts_clauses', array( $this, 'add_orderby_multiple_meta_keys_clause' ), 10, 2 );
+        }
+
+        if ( isset( $query['_custom_order'] ) ) {
+            remove_filter( 'posts_clauses', array( $this, 'add_orderby_unsupported_properties_clause' ), 10, 2 );
+        }
+
+        if ( isset( $query['regions'] ) ) {
+            remove_filter( 'posts_clauses', array( $this, 'add_regions_clauses' ), 10, 2 );
+        }
+
+        return $posts_query;
+    }
+
     /**
      * Based on code found in http://wordpress.stackexchange.com/a/67391
      *
@@ -652,9 +661,9 @@ class AWPCP_ListingsCollection {
      * @since 3.3
      */
     public function count_listings( $query = array() ) {
-        $posts = $this->wordpress->create_posts_query();
-        $posts->query( $this->prepare_listings_query( $query ) );
-        return $posts->found_posts;
+        $query = $this->prepare_query( $query );
+        $posts_query = $this->execute_query( apply_filters( 'awpcp-count-listings-query', $query ) );
+        return $posts_query->found_posts;
     }
 
     /**
