@@ -400,7 +400,7 @@ class AWPCP_ListingsFinder {
             $conditions[] = $this->db->prepare( 'listings.`payer_email` = %s', $query['payer_email'] );
         }
 
-        return $conditions;
+        return $this->group_conditions( $conditions, 'AND' );
     }
 
     private function build_dates_condition( $query ) {
