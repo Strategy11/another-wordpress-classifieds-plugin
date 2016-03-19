@@ -97,7 +97,7 @@ class AWPCP_ListingsAPI {
     public function create_listing( $listing_data ) {
         $now = current_time( 'mysql' );
 
-        $post_fields = wp_parse_args( $listing_data, array(
+        $post_fields = wp_parse_args( $listing_data['post_fields'], array(
             'post_type' => AWPCP_LISTING_POST_TYPE,
             'post_status' => 'disabled',
             'post_date' => $now,
@@ -111,7 +111,7 @@ class AWPCP_ListingsAPI {
             throw new AWPCP_Exception( $message );
         }
 
-        $metadata = wp_parse_args( $listing_data, array(
+        $metadata = wp_parse_args( $listing_data['metadata'], array(
             '_payment_status' => 'Unpaid',
             '_most_recent_start_date' => $now,
             '_renewed_date' => '',
