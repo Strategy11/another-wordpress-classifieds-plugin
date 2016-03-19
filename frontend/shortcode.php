@@ -187,13 +187,16 @@ class AWPCP_Pages {
     public function random_listings_shortcode($attrs) {
         wp_enqueue_script('awpcp');
 
-        $attrs = shortcode_atts(array('menu' => true, 'limit' => 10), $attrs);
+        $attrs = shortcode_atts( array( 'categories' => null, 'menu' => true, 'limit' => 10 ), $attrs );
+
+        $categories = array_filter( array_map( 'absint', explode( ',', $attrs['categories'] ) ) );
         $show_menu = awpcp_parse_bool($attrs['menu']);
         $limit = absint($attrs['limit']);
 
         $random_query = array(
             'context' => 'public-listings',
             'fields' => 'ad_id',
+            'category_id' => $categories,
             'raw' => true,
             'limit' => false,
         );
@@ -203,7 +206,7 @@ class AWPCP_Pages {
         shuffle( $random_listings_ids );
 
         $query = array(
-            'id' => array_slice( $random_listings_ids, 0, $limit ),
+            'id' => empty( $random_listings_ids ) ? '-1' : array_slice( $random_listings_ids, 0, $limit ),
             'limit' => $limit,
         );
 
