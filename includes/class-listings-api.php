@@ -303,7 +303,9 @@ class AWPCP_ListingsAPI {
             }
         }
 
-        $this->wordpress->update_post( array( 'ID' => $listing->ID, 'post_status' => 'publish' ) );
+        $listing->post_status = 'publish';
+
+        $this->wordpress->update_post( array( 'ID' => $listing->ID, 'post_status' => $listing->post_status ) );
         $this->wordpress->delete_post_meta( $listing->ID, '_disabled_date' );
 
         return true;
@@ -318,7 +320,9 @@ class AWPCP_ListingsAPI {
     }
 
     public function disable_listing_without_triggering_actions( $listing ) {
-        $this->wordpress->update_post( array( 'ID' => $listing->ID, 'post_status' => 'disabled' ) );
+        $listing->post_status = 'disabled';
+
+        $this->wordpress->update_post( array( 'ID' => $listing->ID, 'post_status' => $listing->post_status ) );
         $this->wordpress->update_post_meta( $listing->ID, '_disabled_date', current_time( 'mysql' ) );
     }
 
