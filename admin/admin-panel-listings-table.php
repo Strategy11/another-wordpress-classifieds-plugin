@@ -407,7 +407,7 @@ class AWPCP_Listings_Table extends WP_List_Table {
     }
 
     public function column_cb($item) {
-        return '<input type="checkbox" value="' . $item->ad_id . '" name="selected[]" />';
+        return '<input type="checkbox" value="' . $item->ID . '" name="selected[]" />';
     }
 
     public function column_title($item) {
@@ -496,7 +496,7 @@ class AWPCP_Listings_Table extends WP_List_Table {
         static $row_class = '';
         $row_class = ( $row_class == '' ? ' class="alternate"' : '' );
 
-        echo '<tr id="awpcp-ad-' . $item->ad_id . '" data-id="' . $item->ad_id . '"' . $row_class . '>';
+        echo '<tr id="awpcp-ad-' . $item->ID . '" data-id="' . $item->ID . '"' . $row_class . '>';
         echo $this->single_row_columns( $item );
         echo '</tr>';
     }
