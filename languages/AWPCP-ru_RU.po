@@ -4,6 +4,7 @@
 # GREEN301086 <GREEN301086@mail.ru>, 2014
 # GREEN301086 <GREEN301086@mail.ru>, 2014
 # Hartamon <hartamon1@gmail.com>, 2015
+# Marina Moshnogorskaya <masyahihi@gmail.com>, 2016
 # Pavel Golub <pavlo.golub@gmail.com>, 2015
 # Victor Bychek, 2015-2016
 # Willington Vega <wvega@wvega.com>, 2015
@@ -11,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2016-02-25 16:58:10+00:00\n"
-"PO-Revision-Date: 2016-02-25 16:59+0000\n"
+"POT-Creation-Date: 2016-03-21 21:25:31+00:00\n"
+"PO-Revision-Date: 2016-03-21 21:41+0000\n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: Russian (Russia) (http://www.transifex.com/wp-translations/another-wordpress-classifieds-plugin/language/ru_RU/)\n"
 "MIME-Version: 1.0\n"
@@ -1196,12 +1197,12 @@ msgid ""
 "Rules in your site. WordPress will then ask all installed and active plugins"
 " to register their rules and those 404 Not Found errors should be gone. If "
 "that's not the case, please contact <support-link>customer support</a>."
-msgstr ""
+msgstr "Если вы видите множество ошибок 404 Not Found на вашем вебсайте, возможно, что некоторые Правила подстановки отсутствуют или повреждены. Пожалуйста, нажмите на кнопку внизу, чтобы перейти к странице <permalinks-settings-link>Настройки постоянных ссылок</a> . Открытие этой страницы в вашем браузере сотрет Правила подстановки на вашем сайте. Затем WordPress запросит, чтобы все установленные и активные плагины зарегистрировали свои правила, и тогда ошибки 404 Not Found должны исчезнуть. Если окажется, что это не так, пожалуйста, свяжитесь со  <support-link>службой поддержки</a>."
 
 #: admin/templates/admin-panel-debug.tpl.php:15
 msgctxt "debug page"
 msgid "Flush Rewrite Rules"
-msgstr ""
+msgstr "Стереть Правила подстановки"
 
 #: admin/templates/admin-panel-debug.tpl.php:17
 msgid "Debug Information"
@@ -2800,11 +2801,11 @@ msgstr "Твитнуть"
 msgid "Share on Facebook"
 msgstr "Поделиться на Facebook"
 
-#: frontend/shortcode.php:281
+#: frontend/shortcode.php:285
 msgid "Hi admin, you need to go to your dashboard and setup your classifieds."
 msgstr "Привет админ, тебе нужно открыть консоль и настроить отображение объявлений."
 
-#: frontend/shortcode.php:284
+#: frontend/shortcode.php:288
 msgid "You currently have no classifieds"
 msgstr "На данный момент объявлений нет"
 
@@ -5732,43 +5733,47 @@ msgid ""
 "should not be visible to your users by default)."
 msgstr "Снимите этот флажок, если Вам необходимо выключить фильтр страниц AWPCP, который мешает дочерним страницам доски объявлний AWPCP отображаться в вашем меню страниц  WP (Такая потребность может возникнуть, если, например, фильтр страниц AWPCP, портит Вашу страницу меню. Это означает, что вам придется вручную исключить дочерние страницы AWPCP из списка страниц. Некоторые страницы действительно не должны быть видны для пользователей по умолчанию)."
 
-#: includes/settings/class-general-settings.php:42
+#: includes/settings/class-general-settings.php:43
+msgid "Auto-expand the Classifieds Menu for mobile devices?"
+msgstr ""
+
+#: includes/settings/class-general-settings.php:51
 msgctxt "settings"
 msgid "Date & Time Format"
 msgstr "Формат Даты и Время"
 
-#: includes/settings/class-general-settings.php:48
+#: includes/settings/class-general-settings.php:57
 msgid "American"
 msgstr "Американский"
 
-#: includes/settings/class-general-settings.php:49
+#: includes/settings/class-general-settings.php:58
 msgid "European"
 msgstr "Европейский"
 
-#: includes/settings/class-general-settings.php:50
+#: includes/settings/class-general-settings.php:59
 msgid "Your own."
 msgstr "Ваш собственный."
 
-#: includes/settings/class-general-settings.php:53
+#: includes/settings/class-general-settings.php:62
 msgid "Date Time Format"
 msgstr "Формат Даты И Время"
 
-#: includes/settings/class-general-settings.php:54
+#: includes/settings/class-general-settings.php:63
 msgctxt "settings"
 msgid "Date Format"
 msgstr "Формат Даты"
 
-#: includes/settings/class-general-settings.php:55
+#: includes/settings/class-general-settings.php:64
 msgctxt "settings"
 msgid "Time Format"
 msgstr "Формат время"
 
-#: includes/settings/class-general-settings.php:56
+#: includes/settings/class-general-settings.php:65
 msgctxt "settings"
 msgid "Example output"
 msgstr "Пример вывода"
 
-#: includes/settings/class-general-settings.php:57
+#: includes/settings/class-general-settings.php:66
 msgctxt "settings"
 msgid ""
 "Full date/time output with any strings you wish to add. <date> and <time> "
@@ -5776,20 +5781,20 @@ msgid ""
 "the Date Format and Time Format settings above."
 msgstr "Полные дата/время выводятся с любыми строками, которые вы хотите добавить. <date> и <time>, строки даты и время с использованием форматов даты и время указанных в параметрах выше."
 
-#: includes/settings/class-general-settings.php:58
+#: includes/settings/class-general-settings.php:67
 msgctxt "settings"
 msgid "Full Display String"
 msgstr "Полная Строка Вывода"
 
-#: includes/settings/class-general-settings.php:62
+#: includes/settings/class-general-settings.php:71
 msgid "Currency Format"
 msgstr "Формат Денежных едениц"
 
-#: includes/settings/class-general-settings.php:67
+#: includes/settings/class-general-settings.php:76
 msgid "Currency code"
 msgstr "Код валюты"
 
-#: includes/settings/class-general-settings.php:70
+#: includes/settings/class-general-settings.php:79
 msgid ""
 "Prices in listings pages and payment pages will be displayed using this "
 "currency. The currency symbol will be generated based on this code, but if "
@@ -5797,11 +5802,11 @@ msgid ""
 "uppercase version of the code itself."
 msgstr "Цены объявлений и страницы оплаты будут отображены с помощью этой валюты. Символ валюты будет сгенерирован на основе кода. Если плагин не сможет найти символ валюты, будет использован код в верхнем регистре."
 
-#: includes/settings/class-general-settings.php:76
+#: includes/settings/class-general-settings.php:85
 msgid "Currency symbol"
 msgstr "Символ валюты"
 
-#: includes/settings/class-general-settings.php:79
+#: includes/settings/class-general-settings.php:88
 msgid ""
 "Use this setting to overwrite the currency symbol shown in listings pages. "
 "If empty, the plugin will attempt to show one of the standard symbols for "
@@ -5809,116 +5814,116 @@ msgid ""
 "your currency, it will use an uppercase version of the currency code."
 msgstr "Используйте эту опцию, чтобы изменить отображение символа валюты на странице объявлений. Если пусто, символ валюты будет сгенерирован на основе кода. Если плагин не сможет найти символ валюты, будет использован код в верхнем регистре."
 
-#: includes/settings/class-general-settings.php:82
+#: includes/settings/class-general-settings.php:91
 msgid "Thousands separator"
 msgstr "Разделитель тысячных"
 
-#: includes/settings/class-general-settings.php:82
+#: includes/settings/class-general-settings.php:91
 msgctxt ""
 "This translation is deprecated. Please go to the Settings section to change "
 "the thousands separator."
 msgid ","
 msgstr ", "
 
-#: includes/settings/class-general-settings.php:83
+#: includes/settings/class-general-settings.php:92
 msgid "Separator for the decimal point"
 msgstr "Разделитель десятичной точки"
 
-#: includes/settings/class-general-settings.php:83
+#: includes/settings/class-general-settings.php:92
 msgctxt ""
 "This translation is deprecated. Please go to the Settings section to change "
 "the decimal separator."
 msgid "."
 msgstr "."
 
-#: includes/settings/class-general-settings.php:84
+#: includes/settings/class-general-settings.php:93
 msgid "Show decimals in price"
 msgstr "Показывать десятичные знаки на цене"
 
-#: includes/settings/class-general-settings.php:84
+#: includes/settings/class-general-settings.php:93
 msgctxt "settings"
 msgid "Uncheck to show prices without decimals. The value will be rounded."
 msgstr "Снимите этот флажок, чтобы показывать цены без десятичных знаков. Значение будет округлено."
 
-#: includes/settings/class-general-settings.php:89
+#: includes/settings/class-general-settings.php:98
 msgid "Show currency symbol"
 msgstr "Показать символ валюты"
 
-#: includes/settings/class-general-settings.php:92
+#: includes/settings/class-general-settings.php:101
 msgid ""
 "The currency symbol can be configured by changing the currency code in the "
 "settings above."
 msgstr "Символ валюты может быть настроен изменением кода валюты в предыдущей опции."
 
-#: includes/settings/class-general-settings.php:95
+#: includes/settings/class-general-settings.php:104
 msgid "Show currency symbol on left"
 msgstr "Показывать символ валюты слева"
 
-#: includes/settings/class-general-settings.php:96
+#: includes/settings/class-general-settings.php:105
 msgid "Show currency symbol on right"
 msgstr "Показывать символ валюты справа"
 
-#: includes/settings/class-general-settings.php:97
+#: includes/settings/class-general-settings.php:106
 msgid "Don't show currency symbol"
 msgstr "Не показывать символ валюты"
 
-#: includes/settings/class-general-settings.php:105
+#: includes/settings/class-general-settings.php:114
 msgid "Include a space between the currency symbol and the amount"
 msgstr "Разделять сумму и символ валюты пробелом"
 
-#: includes/settings/class-general-settings.php:113
-#: includes/settings/class-general-settings.php:116
+#: includes/settings/class-general-settings.php:122
+#: includes/settings/class-general-settings.php:125
 msgid "Terms of Service"
 msgstr "Условия Предоставления Услуг"
 
-#: includes/settings/class-general-settings.php:115
+#: includes/settings/class-general-settings.php:124
 msgid "Display and require Terms of Service"
 msgstr "Показать и требовать принять Условия Предоставления Услуг"
 
-#: includes/settings/class-general-settings.php:116
+#: includes/settings/class-general-settings.php:125
 msgid "Terms of service go here..."
 msgstr "Введите Условия Предоставления Услуг сюда..."
 
-#: includes/settings/class-general-settings.php:116
+#: includes/settings/class-general-settings.php:125
 msgid ""
 "Terms of Service for posting Ads. Put in text or an URL starting with http. "
 "If you use an URL, the text box will be replaced by a link to the "
 "appropriate Terms of Service page"
 msgstr "Условия Предоставления Услуг для размещения объявлений. Введите текст или URL, начинающийся с http. Если используется URL адрес, то текстовое поле будет заменено на ссылку, с соответствующей страницей Условий Предоставления Услуг."
 
-#: includes/settings/class-general-settings.php:120
+#: includes/settings/class-general-settings.php:129
 msgid "Anti-SPAM"
 msgstr "Анти-Спам"
 
-#: includes/settings/class-general-settings.php:123
+#: includes/settings/class-general-settings.php:132
 msgid "reCAPTCHA (recommended)"
 msgstr "reCAPTCHA (рекомендуется)"
 
-#: includes/settings/class-general-settings.php:124
+#: includes/settings/class-general-settings.php:133
 msgid "Math"
 msgstr "Математика"
 
-#: includes/settings/class-general-settings.php:138
+#: includes/settings/class-general-settings.php:147
 msgid "Use Akismet in Place Ad form"
 msgstr "Использовать Akismet на формах \"Новое объявление\""
 
-#: includes/settings/class-general-settings.php:141
+#: includes/settings/class-general-settings.php:150
 msgid "Use Akismet for Posting Ads (strong anti-spam)."
 msgstr "Использовать Akismet для размещения объявления (хорошая анти-спам защита)."
 
-#: includes/settings/class-general-settings.php:147
+#: includes/settings/class-general-settings.php:156
 msgid "Use Akismet in Reply to Ad form"
 msgstr "Использовать Akismet на формах \"Связаться с продавцом\""
 
-#: includes/settings/class-general-settings.php:150
+#: includes/settings/class-general-settings.php:159
 msgid "Use Akismet for Contact Responses (strong anti-spam)."
 msgstr "Использовать Akismet для связи с продавцом (хорошая анти-спам защита)."
 
-#: includes/settings/class-general-settings.php:158
+#: includes/settings/class-general-settings.php:167
 msgid "Enable CAPTCHA in Place Ad form"
 msgstr "Включить CAPTCHA в форме Новое объявление"
 
-#: includes/settings/class-general-settings.php:161
+#: includes/settings/class-general-settings.php:170
 msgid ""
 "A CAPTCHA is a program to ensure only humans are posting Ads to your "
 "website. Using a CAPTCHA will reduce the SPAM and prevent bots from posting "
@@ -5926,58 +5931,58 @@ msgid ""
 "Place Ad form."
 msgstr "Капча (CAPTCHA) - это программа позволяющая размещать объявления на вашем сайте только людям. CAPTCHA предотвращает размещение спам-ботами сообщений на вашем сайте. Если отмечено, дополнительные поля формы будут добавлены в форму подачи объявлений."
 
-#: includes/settings/class-general-settings.php:167
+#: includes/settings/class-general-settings.php:176
 msgid "Enable CAPTCHA in Reply to Ad form"
 msgstr "Использовать CAPTCHA  на формах \"Связаться с продавцом\""
 
-#: includes/settings/class-general-settings.php:170
+#: includes/settings/class-general-settings.php:179
 msgid ""
 "If checked, an additional form field will be added to the Reply to Ad form."
 msgstr "Если отмечено, дополнительное поле будет добавлено к форме Связаться с продавцом."
 
-#: includes/settings/class-general-settings.php:173
+#: includes/settings/class-general-settings.php:182
 msgid "Type of CAPTCHA"
 msgstr "Тип Каптчи"
 
-#: includes/settings/class-general-settings.php:173
+#: includes/settings/class-general-settings.php:182
 msgid ""
 "reCAPTCHA: Uses distorted images that only humans should be able to read "
 "(recommended)."
 msgstr "reCAPTCHA: использует искаженные изображения, которые в состоянии прочитать только люди (рекомендуется)."
 
-#: includes/settings/class-general-settings.php:173
+#: includes/settings/class-general-settings.php:182
 msgid "Math: Asks user to solve a simple arithmetic operation."
 msgstr "Математика: Просит пользователя решить простую арифметическую задачу."
 
-#: includes/settings/class-general-settings.php:175
+#: includes/settings/class-general-settings.php:184
 msgid "Max number used in Math CAPTCHA"
 msgstr "Максимальные числа используемые в Математической КАПТЧЕ"
 
-#: includes/settings/class-general-settings.php:175
+#: includes/settings/class-general-settings.php:184
 msgid "Highest number used in aithmetic operation."
 msgstr "Наибольшие числа используемые в арифметической задаче."
 
-#: includes/settings/class-general-settings.php:178
+#: includes/settings/class-general-settings.php:187
 msgid "You can get an API key from %s."
 msgstr "Вы можете получить API-ключ на странице %s."
 
-#: includes/settings/class-general-settings.php:180
+#: includes/settings/class-general-settings.php:189
 msgid "reCAPTCHA Site Key"
 msgstr "Открытый ключ reCAPTCHA "
 
-#: includes/settings/class-general-settings.php:181
+#: includes/settings/class-general-settings.php:190
 msgid "reCAPTCHA Secret Key"
 msgstr "Секретный ключ reCAPTCHA "
 
-#: includes/settings/class-general-settings.php:185
+#: includes/settings/class-general-settings.php:194
 msgid "SEO Settings"
 msgstr "Настройки SEO"
 
-#: includes/settings/class-general-settings.php:187
+#: includes/settings/class-general-settings.php:196
 msgid "Turn on Search Engine Friendly URLs"
 msgstr "Включить Поиск Дружественных URL-адресов"
 
-#: includes/settings/class-general-settings.php:187
+#: includes/settings/class-general-settings.php:196
 msgid "Turn on Search Engine Friendly URLs? (SEO Mode)"
 msgstr "Включить Поиск Дружественных URL-адресов? (В режиме SEO)"
 
@@ -6155,35 +6160,46 @@ msgid ""
 " a high number of categories."
 msgstr "Если установлен флажок, будет показан выпадающий список категории верхнего уровня. Когда пользователь выбирет категорию, появится новый выпадающий список, показывая подкатегории выбранной категории, если таковые имеются. Это полезно, если ваш сайт содержит большое количество категорий."
 
-#: includes/settings/class-listings-moderation-settings.php:41
-msgid "Free ads deletion threshold"
-msgstr "Порог удаления бесплатных объявлений"
-
-#: includes/settings/class-listings-moderation-settings.php:41
-msgid ""
-"Free listings will be deleted after the number of days entered in this field"
-" (0 for no deletion). Use the setting below to disable expired listings "
-"instead of deleting them."
-msgstr "Бесплатные объявления будут удалены по истечению указанных дней (0 для вечного хранения). Используйте настройки ниже для отключения истекших объявлений вместо удаления."
-
-#: includes/settings/class-listings-moderation-settings.php:42
-msgid "Disable expired ads instead of deleting them?"
-msgstr "Отключать объявления с истекшим сроком, а не удалять их?"
-
-#: includes/settings/class-listings-moderation-settings.php:42
-msgid ""
-"If checked, listings will be disabled, not deleted, after the number of days"
-" set as the deletion threshold have passed."
-msgstr "Если отмечено, объявления будут отключаться, а не удаляться, по истечению дней указанного порога."
+#: includes/settings/class-listings-moderation-settings.php:44
+msgid "Duration of listings in free mode (in days)"
+msgstr ""
 
 #: includes/settings/class-listings-moderation-settings.php:47
+msgid ""
+"The end date for listings posted in free mode will be calculated using the "
+"value in this field. You can enter 0 to keep listings enabled for 10 years."
+msgstr ""
+
+#: includes/settings/class-listings-moderation-settings.php:50
+msgid "Disable expired listings instead of deleting them?"
+msgstr ""
+
+#: includes/settings/class-listings-moderation-settings.php:58
+msgid ""
+"If checked, listings will remain in disabled indefinitely after they expire."
+" If not checked, listings will be deleted after the number of days set in "
+"the next setting."
+msgstr ""
+
+#: includes/settings/class-listings-moderation-settings.php:61
+msgid ""
+"If the <setting-name> setting is NOT checked, the listings will be "
+"permanently deleted from the system, after the number of days specified in "
+"this field have passed since each listing was disabled."
+msgstr ""
+
+#: includes/settings/class-listings-moderation-settings.php:71
+msgid "Number of days before expired listings are deleted"
+msgstr ""
+
+#: includes/settings/class-listings-moderation-settings.php:80
 msgid ""
 "Email verification was disabled because you enabled Require Registration. "
 "Registered users don't need to verify the email address used for contact "
 "information."
 msgstr "Верификация почтой была отключена, поскольку активная опция \"Требовать регистрации\". Зарегистрированные пользователи не должны подтверждать свой адрес электронной почты."
 
-#: includes/settings/class-listings-moderation-settings.php:58
+#: includes/settings/class-listings-moderation-settings.php:91
 msgid ""
 "Email verification was not enabled because Require Registration is on. "
 "Registered users don't need to verify the email address used for contact "
