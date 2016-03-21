@@ -1015,21 +1015,19 @@ class AWPCP {
 	}
 
 	public function enqueue_scripts() {
-		if (is_admin()) {
+        if ( is_admin() && isset( $_REQUEST['page'] ) && strpos( $_REQUEST['page'], 'awpcp' ) === 0 ) {
 			wp_enqueue_style('awpcp-admin-style');
 			wp_enqueue_script('awpcp-admin-general');
 			wp_enqueue_script('awpcp-toggle-checkboxes');
-		} else {
+
+            // TODO: migrate the code below to use set_js_data to pass information to AWPCP scripts.
+            $options = array('ajaxurl' => awpcp_ajaxurl());
+            wp_localize_script('awpcp-admin-general', 'AWPCPAjaxOptions', $options);
+        } else if ( ! is_admin() ) {
 			wp_enqueue_style('awpcp-frontend-style');
 			wp_enqueue_style('awpcp-frontend-style-ie-6');
 			wp_enqueue_style('awpcp-frontend-style-lte-ie-7');
 	        wp_enqueue_style('awpcp-custom-css');
-		}
-
-		if (is_admin()) {
-			// TODO: migrate the code below to use set_js_data to pass information to AWPCP scripts.
-			$options = array('ajaxurl' => awpcp_ajaxurl());
-			wp_localize_script('awpcp-admin-general', 'AWPCPAjaxOptions', $options);
 		}
 	}
 
