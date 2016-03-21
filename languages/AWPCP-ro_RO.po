@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2016-02-25 16:58:10+00:00\n"
-"PO-Revision-Date: 2016-02-25 16:59+0000\n"
+"POT-Creation-Date: 2016-03-21 21:25:31+00:00\n"
+"PO-Revision-Date: 2016-03-21 21:41+0000\n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: Romanian (Romania) (http://www.transifex.com/wp-translations/another-wordpress-classifieds-plugin/language/ro_RO/)\n"
 "MIME-Version: 1.0\n"
@@ -2015,11 +2015,11 @@ msgstr "Creditul existent în contul dvs. poate fi folosit pentru a adaugă anun
 
 #: admin/user-panel-listings-edit-ad-page.php:12
 msgid "<blog-name> User Ad Management Panel - Listings - Edit Ad"
-msgstr ""
+msgstr "<blog-name> Panou Administrare Anunțuri - Anunțuri - Editare anunț"
 
 #: admin/user-panel-listings-place-ad-page.php:12
 msgid "<blog-name> User Ad Management Panel - Listings - Place Ad"
-msgstr ""
+msgstr "<blog-name> Panou Administrare Anunțuri - Anunțuri - Adăugare anunț"
 
 #: admin/user-panel-listings-renew-ad-page.php:10
 msgid "AWPCP Ad Management Panel - Listings - Renew Ad"
@@ -2788,11 +2788,11 @@ msgstr "Trimite la Twitter"
 msgid "Share on Facebook"
 msgstr "Trimite la Facebook"
 
-#: frontend/shortcode.php:281
+#: frontend/shortcode.php:285
 msgid "Hi admin, you need to go to your dashboard and setup your classifieds."
 msgstr "Bună admin, trebuie să mergi in panoul de control și să setezi anunțurile."
 
-#: frontend/shortcode.php:284
+#: frontend/shortcode.php:288
 msgid "You currently have no classifieds"
 msgstr "Nu aveți nici un anunț deocamdată."
 
@@ -5712,43 +5712,47 @@ msgid ""
 "should not be visible to your users by default)."
 msgstr "Debifați aceasta dacă aveți nevoie ca AWPCP să dezactiveze filtrul care permite paginilor de anunțuri copii să apară în paginile dvs. de meniu din Wordpress. (Ați putea avea nevoie de aceasta dacă, de exemplu, filtrul de pagină AWPCP vă strică pagina de meniuri. Această înseamnă că va trebui să excludeți manual paginile copii din lista dvs. de pagini. În mod implicit unele dintre pagini nu ar trebui să apară deloc vizibile utilizatorilor dvs.)"
 
-#: includes/settings/class-general-settings.php:42
+#: includes/settings/class-general-settings.php:43
+msgid "Auto-expand the Classifieds Menu for mobile devices?"
+msgstr ""
+
+#: includes/settings/class-general-settings.php:51
 msgctxt "settings"
 msgid "Date & Time Format"
 msgstr "Format dată și timp"
 
-#: includes/settings/class-general-settings.php:48
+#: includes/settings/class-general-settings.php:57
 msgid "American"
 msgstr "American"
 
-#: includes/settings/class-general-settings.php:49
+#: includes/settings/class-general-settings.php:58
 msgid "European"
 msgstr "European"
 
-#: includes/settings/class-general-settings.php:50
+#: includes/settings/class-general-settings.php:59
 msgid "Your own."
 msgstr "Propriu."
 
-#: includes/settings/class-general-settings.php:53
+#: includes/settings/class-general-settings.php:62
 msgid "Date Time Format"
 msgstr "Format data și timp"
 
-#: includes/settings/class-general-settings.php:54
+#: includes/settings/class-general-settings.php:63
 msgctxt "settings"
 msgid "Date Format"
 msgstr "Format dată"
 
-#: includes/settings/class-general-settings.php:55
+#: includes/settings/class-general-settings.php:64
 msgctxt "settings"
 msgid "Time Format"
 msgstr "Format timp"
 
-#: includes/settings/class-general-settings.php:56
+#: includes/settings/class-general-settings.php:65
 msgctxt "settings"
 msgid "Example output"
 msgstr "Exemplu afișat"
 
-#: includes/settings/class-general-settings.php:57
+#: includes/settings/class-general-settings.php:66
 msgctxt "settings"
 msgid ""
 "Full date/time output with any strings you wish to add. <date> and <time> "
@@ -5756,20 +5760,20 @@ msgid ""
 "the Date Format and Time Format settings above."
 msgstr "Data și timp complet cu oricare dintre textele pe care doriți să le adăugați. . <date> și <time> sunt coduri folosite pentru a afișa data și timpul folosind formatele specificate la Format dată și Format timp în setările de mai sus."
 
-#: includes/settings/class-general-settings.php:58
+#: includes/settings/class-general-settings.php:67
 msgctxt "settings"
 msgid "Full Display String"
 msgstr "Afișează întregul text"
 
-#: includes/settings/class-general-settings.php:62
+#: includes/settings/class-general-settings.php:71
 msgid "Currency Format"
 msgstr "Format valutar"
 
-#: includes/settings/class-general-settings.php:67
+#: includes/settings/class-general-settings.php:76
 msgid "Currency code"
 msgstr "Cod valută"
 
-#: includes/settings/class-general-settings.php:70
+#: includes/settings/class-general-settings.php:79
 msgid ""
 "Prices in listings pages and payment pages will be displayed using this "
 "currency. The currency symbol will be generated based on this code, but if "
@@ -5777,11 +5781,11 @@ msgid ""
 "uppercase version of the code itself."
 msgstr "Prețurile din pagina anunțurilor și din paginile de plată vor fi afișate folosind această valută. Simbolul valutar va fi generat bazat pe acest cod, dar dacă pluginul nu cunoaște simbolul pentru valuta dvs., va folosi o versiune cu litere de tipar pentru acel cod."
 
-#: includes/settings/class-general-settings.php:76
+#: includes/settings/class-general-settings.php:85
 msgid "Currency symbol"
 msgstr "Simbol valutar"
 
-#: includes/settings/class-general-settings.php:79
+#: includes/settings/class-general-settings.php:88
 msgid ""
 "Use this setting to overwrite the currency symbol shown in listings pages. "
 "If empty, the plugin will attempt to show one of the standard symbols for "
@@ -5789,116 +5793,116 @@ msgid ""
 "your currency, it will use an uppercase version of the currency code."
 msgstr "Folosiți această setare pentru a suprascrie simbolul valutar afișat în paginile anunțurilor. Dacă acesta lipsește, pluginul va încerca să folosească unul dintre simbolurile valutare standard pentru codul de valută respectivă, dar dacă pluginul nu cunoaște simbolul pentru valuta dvs., va folosi o versiune cu litere de tipar pentru acel cod."
 
-#: includes/settings/class-general-settings.php:82
+#: includes/settings/class-general-settings.php:91
 msgid "Thousands separator"
 msgstr "Separator pentru mii"
 
-#: includes/settings/class-general-settings.php:82
+#: includes/settings/class-general-settings.php:91
 msgctxt ""
 "This translation is deprecated. Please go to the Settings section to change "
 "the thousands separator."
 msgid ","
 msgstr ","
 
-#: includes/settings/class-general-settings.php:83
+#: includes/settings/class-general-settings.php:92
 msgid "Separator for the decimal point"
 msgstr "Separator pentru punctul zecimal"
 
-#: includes/settings/class-general-settings.php:83
+#: includes/settings/class-general-settings.php:92
 msgctxt ""
 "This translation is deprecated. Please go to the Settings section to change "
 "the decimal separator."
 msgid "."
 msgstr "."
 
-#: includes/settings/class-general-settings.php:84
+#: includes/settings/class-general-settings.php:93
 msgid "Show decimals in price"
 msgstr "Arată zecimale la preț"
 
-#: includes/settings/class-general-settings.php:84
+#: includes/settings/class-general-settings.php:93
 msgctxt "settings"
 msgid "Uncheck to show prices without decimals. The value will be rounded."
 msgstr "Debifați pentru a afișa prețurile fără zecimale. Valoarea va fi rotunjită."
 
-#: includes/settings/class-general-settings.php:89
+#: includes/settings/class-general-settings.php:98
 msgid "Show currency symbol"
 msgstr "Arată simbolul valutar"
 
-#: includes/settings/class-general-settings.php:92
+#: includes/settings/class-general-settings.php:101
 msgid ""
 "The currency symbol can be configured by changing the currency code in the "
 "settings above."
 msgstr "Simbolul valutar poate fi configurat prin schimbarea codului de valută în setările de mai sus."
 
-#: includes/settings/class-general-settings.php:95
+#: includes/settings/class-general-settings.php:104
 msgid "Show currency symbol on left"
 msgstr "Arată simbolul valutar în stânga"
 
-#: includes/settings/class-general-settings.php:96
+#: includes/settings/class-general-settings.php:105
 msgid "Show currency symbol on right"
 msgstr "Arată simbolul valutar în dreapta"
 
-#: includes/settings/class-general-settings.php:97
+#: includes/settings/class-general-settings.php:106
 msgid "Don't show currency symbol"
 msgstr "Nu arăta simbolul valutar"
 
-#: includes/settings/class-general-settings.php:105
+#: includes/settings/class-general-settings.php:114
 msgid "Include a space between the currency symbol and the amount"
 msgstr "Includeți un spațiu între simbolul valutar și preț"
 
-#: includes/settings/class-general-settings.php:113
-#: includes/settings/class-general-settings.php:116
+#: includes/settings/class-general-settings.php:122
+#: includes/settings/class-general-settings.php:125
 msgid "Terms of Service"
 msgstr "Termeni de folosire"
 
-#: includes/settings/class-general-settings.php:115
+#: includes/settings/class-general-settings.php:124
 msgid "Display and require Terms of Service"
 msgstr "Arată și fă obligatorii Termenii de folosire"
 
-#: includes/settings/class-general-settings.php:116
+#: includes/settings/class-general-settings.php:125
 msgid "Terms of service go here..."
 msgstr "Termenii de folosire trebuie introduși aici..."
 
-#: includes/settings/class-general-settings.php:116
+#: includes/settings/class-general-settings.php:125
 msgid ""
 "Terms of Service for posting Ads. Put in text or an URL starting with http. "
 "If you use an URL, the text box will be replaced by a link to the "
 "appropriate Terms of Service page"
 msgstr "Termenii de Serviciu pentru postarea anunțurilor. Introduceți un text sau un URL care începe cu http. Dacă folosiți un URL, cutia de text va fi înlocuită cu un link către pagina corespunzătoare cu Termenii de Serviciu"
 
-#: includes/settings/class-general-settings.php:120
+#: includes/settings/class-general-settings.php:129
 msgid "Anti-SPAM"
 msgstr "Anti-SPAM"
 
-#: includes/settings/class-general-settings.php:123
+#: includes/settings/class-general-settings.php:132
 msgid "reCAPTCHA (recommended)"
 msgstr "reCAPTCHA (recomandat)"
 
-#: includes/settings/class-general-settings.php:124
+#: includes/settings/class-general-settings.php:133
 msgid "Math"
 msgstr "Matematică"
 
-#: includes/settings/class-general-settings.php:138
+#: includes/settings/class-general-settings.php:147
 msgid "Use Akismet in Place Ad form"
 msgstr "Folosește Akismet în formularul de adăugare anunț"
 
-#: includes/settings/class-general-settings.php:141
+#: includes/settings/class-general-settings.php:150
 msgid "Use Akismet for Posting Ads (strong anti-spam)."
 msgstr "Folosește Akismet pentru postarea anunțurilor (program de anti-spam eficient)"
 
-#: includes/settings/class-general-settings.php:147
+#: includes/settings/class-general-settings.php:156
 msgid "Use Akismet in Reply to Ad form"
 msgstr "Folosește Akismet în formularul de răspuns la anunț"
 
-#: includes/settings/class-general-settings.php:150
+#: includes/settings/class-general-settings.php:159
 msgid "Use Akismet for Contact Responses (strong anti-spam)."
 msgstr "Folosește Akismet pentru răspunsuri la anunțuri (program anti-spam eficient)"
 
-#: includes/settings/class-general-settings.php:158
+#: includes/settings/class-general-settings.php:167
 msgid "Enable CAPTCHA in Place Ad form"
 msgstr "Activați CAPTCHA în formularul de adăugare anunț"
 
-#: includes/settings/class-general-settings.php:161
+#: includes/settings/class-general-settings.php:170
 msgid ""
 "A CAPTCHA is a program to ensure only humans are posting Ads to your "
 "website. Using a CAPTCHA will reduce the SPAM and prevent bots from posting "
@@ -5906,58 +5910,58 @@ msgid ""
 "Place Ad form."
 msgstr "Un program CAPTCHA va asigura că doar persoane postează anunțuri pe website-ul dvs. Folosirea CAPTCHA va reduce SPAM-ul și va preveni roboții să posteze pe website-ul dvs. Daca este bifat, un câmp suplimentar va fi adăugat în formarul de adăugare a anunțului."
 
-#: includes/settings/class-general-settings.php:167
+#: includes/settings/class-general-settings.php:176
 msgid "Enable CAPTCHA in Reply to Ad form"
 msgstr "Activează CAPTCHA în formularul de răspuns la anunț"
 
-#: includes/settings/class-general-settings.php:170
+#: includes/settings/class-general-settings.php:179
 msgid ""
 "If checked, an additional form field will be added to the Reply to Ad form."
 msgstr "Daca este bifat, un câmp suplimentar va fi adăugat în formarul de răspuns la anunț."
 
-#: includes/settings/class-general-settings.php:173
+#: includes/settings/class-general-settings.php:182
 msgid "Type of CAPTCHA"
 msgstr "Tipul CAPTCHA"
 
-#: includes/settings/class-general-settings.php:173
+#: includes/settings/class-general-settings.php:182
 msgid ""
 "reCAPTCHA: Uses distorted images that only humans should be able to read "
 "(recommended)."
 msgstr "reCAPTCHA: folosește imagini distorsionate pe care doar un om le poate citi (recomandat). Mai nou reCAPTCHA arată o casuță 'Nu sunt un robot' pe care trebuie să o bifați. Câteodată utilizatorul este solicitat să aleagă mai multe imagini de același fel dintre mai multe imagini afișate împreună. (de exemplu: seletați toate imaginile cu mașini)"
 
-#: includes/settings/class-general-settings.php:173
+#: includes/settings/class-general-settings.php:182
 msgid "Math: Asks user to solve a simple arithmetic operation."
 msgstr "Matematică: cereți utilizatorului să rezolve o problemă simplă de aritmetică."
 
-#: includes/settings/class-general-settings.php:175
+#: includes/settings/class-general-settings.php:184
 msgid "Max number used in Math CAPTCHA"
 msgstr "Numărul maxim folosit în testul de matematică"
 
-#: includes/settings/class-general-settings.php:175
+#: includes/settings/class-general-settings.php:184
 msgid "Highest number used in aithmetic operation."
 msgstr "Numărul cel mai mare folosit în operația de aritmetică."
 
-#: includes/settings/class-general-settings.php:178
+#: includes/settings/class-general-settings.php:187
 msgid "You can get an API key from %s."
 msgstr "Puteți obține o cheie API de la %s."
 
-#: includes/settings/class-general-settings.php:180
+#: includes/settings/class-general-settings.php:189
 msgid "reCAPTCHA Site Key"
 msgstr "Cheia reCAPTCHA pentru website"
 
-#: includes/settings/class-general-settings.php:181
+#: includes/settings/class-general-settings.php:190
 msgid "reCAPTCHA Secret Key"
 msgstr "Cheia secretă reCAPTCHA"
 
-#: includes/settings/class-general-settings.php:185
+#: includes/settings/class-general-settings.php:194
 msgid "SEO Settings"
 msgstr "Setări SEO"
 
-#: includes/settings/class-general-settings.php:187
+#: includes/settings/class-general-settings.php:196
 msgid "Turn on Search Engine Friendly URLs"
 msgstr "Activați URL-urile prietenoase pentru motoarele de căutare"
 
-#: includes/settings/class-general-settings.php:187
+#: includes/settings/class-general-settings.php:196
 msgid "Turn on Search Engine Friendly URLs? (SEO Mode)"
 msgstr "Activați URL-uri prietenoase pentru motoarele de căutare (Mod SEO)"
 
@@ -6135,35 +6139,46 @@ msgid ""
 " a high number of categories."
 msgstr "Dacă este bifat, va fi afișată o listă dropdown cu categoriile de prim nivel. Când utilizatorul alege o categorie, un nou dropdown va apare arătând sub-categoriile din categoria selectată, daca există vreuna. Aceasta este folositor dacă website-ul dvs. are un număr mare de categorii."
 
-#: includes/settings/class-listings-moderation-settings.php:41
-msgid "Free ads deletion threshold"
-msgstr "Pragul (limita) pentru ștergerea anunțurilor gratuite"
-
-#: includes/settings/class-listings-moderation-settings.php:41
-msgid ""
-"Free listings will be deleted after the number of days entered in this field"
-" (0 for no deletion). Use the setting below to disable expired listings "
-"instead of deleting them."
-msgstr "Anunțurile gratuite vor fi șterse după numărul de zile introdus în acest câmp (0 pentru a nu fi șterse deloc). Folosiți setarea de mai jos pentru a dezactiva anunțurile expirate în loc să le ștergeți."
-
-#: includes/settings/class-listings-moderation-settings.php:42
-msgid "Disable expired ads instead of deleting them?"
-msgstr "Dezactivează anunțurile expirate în loc de a le șterge?"
-
-#: includes/settings/class-listings-moderation-settings.php:42
-msgid ""
-"If checked, listings will be disabled, not deleted, after the number of days"
-" set as the deletion threshold have passed."
-msgstr "Dacă este bifat, anunțurile vor fi dezactivate, nu șterse, după ce a trecut numărul de zile setat ca prag pentru ștergere."
+#: includes/settings/class-listings-moderation-settings.php:44
+msgid "Duration of listings in free mode (in days)"
+msgstr ""
 
 #: includes/settings/class-listings-moderation-settings.php:47
+msgid ""
+"The end date for listings posted in free mode will be calculated using the "
+"value in this field. You can enter 0 to keep listings enabled for 10 years."
+msgstr ""
+
+#: includes/settings/class-listings-moderation-settings.php:50
+msgid "Disable expired listings instead of deleting them?"
+msgstr ""
+
+#: includes/settings/class-listings-moderation-settings.php:58
+msgid ""
+"If checked, listings will remain in disabled indefinitely after they expire."
+" If not checked, listings will be deleted after the number of days set in "
+"the next setting."
+msgstr ""
+
+#: includes/settings/class-listings-moderation-settings.php:61
+msgid ""
+"If the <setting-name> setting is NOT checked, the listings will be "
+"permanently deleted from the system, after the number of days specified in "
+"this field have passed since each listing was disabled."
+msgstr ""
+
+#: includes/settings/class-listings-moderation-settings.php:71
+msgid "Number of days before expired listings are deleted"
+msgstr ""
+
+#: includes/settings/class-listings-moderation-settings.php:80
 msgid ""
 "Email verification was disabled because you enabled Require Registration. "
 "Registered users don't need to verify the email address used for contact "
 "information."
 msgstr "Email-ul de verificare a fost dezactivat din cauză că ați activat Înregistrarea Obligatorie. Utilizatorii înregistrați nu au nevoie să verifice adresa de email folosită pentru informația de contact."
 
-#: includes/settings/class-listings-moderation-settings.php:58
+#: includes/settings/class-listings-moderation-settings.php:91
 msgid ""
 "Email verification was not enabled because Require Registration is on. "
 "Registered users don't need to verify the email address used for contact "
