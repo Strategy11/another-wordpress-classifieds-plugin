@@ -231,7 +231,7 @@ class AWPCP_ListingRenderer {
 
     public function get_view_listing_link( $listing ) {
         $url = $this->get_view_listing_url( $listing );
-        $title = $listing->get_title();
+        $title = $this->get_listing_title( $listing );
 
         return sprintf( '<a href="%s" title="%s">%s</a>', $url, esc_attr( $title ), $title );
     }
