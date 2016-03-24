@@ -1015,7 +1015,7 @@ class AWPCP {
 	}
 
 	public function enqueue_scripts() {
-        if ( is_admin() && isset( $_REQUEST['page'] ) && strpos( $_REQUEST['page'], 'awpcp' ) === 0 ) {
+        if ( is_awpcp_admin_page() ) {
 			wp_enqueue_style('awpcp-admin-style');
 			wp_enqueue_script('awpcp-admin-general');
 			wp_enqueue_script('awpcp-toggle-checkboxes');
