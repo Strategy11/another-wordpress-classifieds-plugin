@@ -187,9 +187,9 @@ class AWPCP_Pages {
     public function random_listings_shortcode($attrs) {
         wp_enqueue_script('awpcp');
 
-        $attrs = shortcode_atts( array( 'categories' => null, 'menu' => true, 'limit' => 10 ), $attrs );
+        $attrs = shortcode_atts( array( 'category' => null, 'menu' => true, 'limit' => 10 ), $attrs );
 
-        $categories = array_filter( array_map( 'absint', explode( ',', $attrs['categories'] ) ) );
+        $categories = array_filter( array_map( 'absint', explode( ',', $attrs['category'] ) ) );
         $show_menu = awpcp_parse_bool($attrs['menu']);
         $limit = absint($attrs['limit']);
 
