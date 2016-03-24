@@ -193,20 +193,10 @@ class AWPCP_Pages {
         $show_menu = awpcp_parse_bool($attrs['menu']);
         $limit = absint($attrs['limit']);
 
-        $random_query = array(
-            'context' => 'public-listings',
-            'fields' => 'ad_id',
-            'category_id' => $categories,
-            'raw' => true,
-            'limit' => false,
-        );
-
-        $random_listings = awpcp_listings_collection()->find_enabled_listings_with_query( $random_query );
-        $random_listings_ids = awpcp_get_properties( $random_listings, 'ad_id' );
-        shuffle( $random_listings_ids );
-
         $query = array(
-            'id' => empty( $random_listings_ids ) ? '-1' : array_slice( $random_listings_ids, 0, $limit ),
+            'context' => 'public-listings',
+            'category_id' => $categories,
+            'orderby' => 'random',
             'limit' => $limit,
         );
 
