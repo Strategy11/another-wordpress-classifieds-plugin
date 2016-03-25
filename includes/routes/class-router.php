@@ -25,11 +25,6 @@ class AWPCP_Router {
     private $template_renderer;
     private $request;
 
-    private $admin_pages = array();
-    private $admin_subpages = array();
-
-    private $ajax_actions = array( 'private' => array(), 'public' => array() );
-
     private $current_page = null;
     private $request_handler = null;
 

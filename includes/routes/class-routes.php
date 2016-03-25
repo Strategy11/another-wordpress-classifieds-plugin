@@ -6,6 +6,9 @@ function awpcp_routes() {
 
 class AWPCP_Routes {
 
+    private $admin_pages = array();
+    private $ajax_actions = array( 'private' => array(), 'anonymous' => array() );
+
     public function add_admin_page( $menu_title, $page_title, $slug, $handler, $capability, $menu_icon = null ) {
         $admin_page = $this->get_or_create_admin_page( $slug );
 
@@ -138,16 +141,18 @@ class AWPCP_Routes {
         $action->handler = $action_handler;
 
         $this->ajax_actions[ $type ][ $action->name ] = $action;
-
-        if ( $type == 'anonymous' ) {
-            return add_action( "wp_ajax_nopriv_awpcp-{$action->name}", array( $this, 'handle_anonymous_ajax_request' ) );
-        } else {
-            return add_action( "wp_ajax_awpcp-{$action->name}", array( $this, 'handle_private_ajax_request' ) );
-        }
     }
 
     public function add_private_ajax_action( $action_name, $action_handler ) {
         return $this->add_ajax_action( 'private', $action_name, $action_handler );
+    }
+
+    public function get_anonymous_ajax_actions() {
+        return $this->ajax_actions['anonymous'];
+    }
+
+    public function get_private_ajax_actions() {
+        return $this->ajax_actions['private'];
     }
 
     public function get_admin_pages() {
