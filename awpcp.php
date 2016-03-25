@@ -266,6 +266,7 @@ require( AWPCP_DIR . "/includes/modules/class-license-settings-actions-request-h
 
 require_once( AWPCP_DIR . '/includes/placeholders/class-placeholders-installation-verifier.php' );
 
+require_once( AWPCP_DIR . '/includes/routes/class-ajax-request-handler.php' );
 require_once( AWPCP_DIR . '/includes/routes/class-router.php' );
 require_once( AWPCP_DIR . '/includes/routes/class-routes.php' );
 
@@ -670,6 +671,8 @@ class AWPCP {
             add_action( 'awpcp_edit_ad', array( $facebook_cache_helper, 'on_edit_ad' ) );
         }
 
+        $this->router->configure_routes();
+
         if ( defined( 'DOING_CRON' ) && DOING_CRON ) {
             $task_queue = awpcp_task_queue();
             add_action( 'awpcp-task-queue-event', array( $task_queue, 'task_queue_event' ) );
@@ -737,12 +740,12 @@ class AWPCP {
             delete_option( 'awpcp-installed-or-upgraded' );
         }
 
-        $this->router->configure_routes();
 		$this->register_scripts();
         $this->register_notification_handlers();
 	}
 
     private function ajax_setup() {
+        // register ajax request handler for pending upgrade tasks
         $task_handler = awpcp_upgrade_task_ajax_handler( $this->upgrade_tasks );
 
         foreach ( $this->upgrade_tasks->get_pending_tasks() as $slug => $task ) {
@@ -812,6 +815,9 @@ class AWPCP {
         // listings admin
         $handler = awpcp_delete_listing_ajax_handler();
         add_action( 'wp_ajax_awpcp-listings-delete-ad', array( $handler, 'ajax' ) );
+
+        $ajax_request_handler = awpcp_ajax_request_handler( $this->router->get_routes() );
+        $this->router->register_ajax_request_handler( $ajax_request_handler );
     }
 
 	public function admin_notices() {
