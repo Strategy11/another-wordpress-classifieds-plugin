@@ -46,7 +46,7 @@ class AWPCP_CategoriesAdminPage {
             ),
         );
 
-        if ( $hascaticonsmodule == 1 && is_installed_category_icon_module() ) {
+        if ( $hascaticonsmodule == 1 ) {
             $icons[] = array(
                 'label' => __( 'Manage Category Icon', 'another-wordpress-classifieds-plugin' ),
                 'image' => array(

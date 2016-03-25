@@ -642,7 +642,7 @@ function awpcp_admin_categories_render_category_item($category, $level, $start, 
 	$params = array( 'cat_ID' => $category->term_id, 'offset' => $start, 'results' => $per_page );
 	$admin_categories_url = add_query_arg( urlencode_deep( $params ), awpcp_get_admin_categories_url() );
 
-	if ($hascaticonsmodule == 1 && is_installed_category_icon_module()) {
+	if ($hascaticonsmodule == 1 ) {
 		$url = esc_url( add_query_arg( 'action', 'managecaticon', $admin_categories_url ) );
 		$managecaticon = "<a href=\"$url\"><img src=\"$awpcp_imagesurl/icon_manage_ico.png\" alt=\"";
 		$managecaticon.= __("Manage Category Icon", 'another-wordpress-classifieds-plugin');
