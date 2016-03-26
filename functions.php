@@ -236,7 +236,7 @@ function awpcp_datetime( $format='mysql', $date=null ) {
 		case 'timestamp':
 			return $timestamp;
 		case 'time-elapsed':
-            return  awpcp_time_elapsed_string( $date );
+			return  awpcp_time_elapsed_string( $date );
 		case 'awpcp':
 			return date_i18n( awpcp_get_datetime_format(), $timestamp) ;
 		case 'awpcp-date':
@@ -265,7 +265,7 @@ function awpcp_time_elapsed_string( $date ) {
 	$elapsed_time = '';
 
 	if ( $interval->y ) {
-		$elapsed_time .= $interval->y . ( $interval->y > 1 ? __( ' years ago', 'another-wordpress-classifieds-plugin' ) : __(' year ago', 'another-wordpress-classifieds-plugin' ) );
+		$elapsed_time .= $interval->y . ( $interval->y > 1 ? __(' years ago', 'another-wordpress-classifieds-plugin' ) : __(' year ago', 'another-wordpress-classifieds-plugin' ) );
 	}
 	elseif ( $interval->m ) {
 		$elapsed_time .= $interval->m . ( $interval->m > 1 ? __(' months ago', 'another-wordpress-classifieds-plugin' ) : __(' month ago', 'another-wordpress-classifieds-plugin' ) );
