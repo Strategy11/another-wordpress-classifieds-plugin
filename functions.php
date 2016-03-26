@@ -235,6 +235,8 @@ function awpcp_datetime( $format='mysql', $date=null ) {
 			return date( 'Y-m-d H:i:s', $timestamp );
 		case 'timestamp':
 			return $timestamp;
+		case 'time-elapsed':
+            return  awpcp_time_elapsed_string( $date );
 		case 'awpcp':
 			return date_i18n( awpcp_get_datetime_format(), $timestamp) ;
 		case 'awpcp-date':
@@ -245,6 +247,46 @@ function awpcp_datetime( $format='mysql', $date=null ) {
 			return date_i18n( $format, $timestamp );
 	}
 }
+
+/**
+ * Return time elapsed since Ad is posted
+ *
+ * @author Aman Saini
+ * @since  3.6.5
+ * @param  $date
+ * @return string $elapsed_time
+ */
+
+function awpcp_time_elapsed_string( $date ) {
+	$datetimenow = new DateTime( "now" );
+	$datetimeposted = new DateTime( $date );
+	$interval = date_diff( $datetimeposted, $datetimenow );
+
+	$elapsed_time = '';
+
+	if ( $interval->y ) {
+		$elapsed_time .= $interval->y . ( $interval->y > 1 ? __( ' years ago', 'another-wordpress-classifieds-plugin' ) : __(' year ago', 'another-wordpress-classifieds-plugin' ) );
+	}
+	elseif ( $interval->m ) {
+		$elapsed_time .= $interval->m . ( $interval->m > 1 ? __(' months ago', 'another-wordpress-classifieds-plugin' ) : __(' month ago', 'another-wordpress-classifieds-plugin' ) );
+	}
+	elseif ( $interval->d ) {
+		$elapsed_time .= $interval->d . ( $interval->d > 1 ? __(' days ago', 'another-wordpress-classifieds-plugin' ) : __(' day ago', 'another-wordpress-classifieds-plugin' ) );
+	}
+	elseif ( $interval->h ) {
+		$elapsed_time .= $interval->h . ( $interval->h > 1 ? __(' hours ago', 'another-wordpress-classifieds-plugin' ) : __(' hour ago', 'another-wordpress-classifieds-plugin' ) );
+	}
+	elseif ( $interval->i ) {
+		$elapsed_time .= $interval->i . ( $interval->i > 1 ? __(' minutes ago', 'another-wordpress-classifieds-plugin' ) : __(' minute ago', 'another-wordpress-classifieds-plugin' ) );
+	}
+	elseif ( $interval->s ) {
+		$elapsed_time .= $interval->s . ( $interval->s > 1 ? __(' seconds ago', 'another-wordpress-classifieds-plugin' ) : __(' second ago', 'another-wordpress-classifieds-plugin' ) );
+	}
+
+	return $elapsed_time;
+
+}
+
 
 
 function awpcp_set_datetime_date( $datetime, $date ) {
