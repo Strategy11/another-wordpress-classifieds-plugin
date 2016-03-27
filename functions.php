@@ -2832,3 +2832,12 @@ function awpcp_send_email($from,$to,$subject,$message, $html=false, $attachments
     $sentok=@mail($to,$subject,$message,$headers,"-f$from");
     return $sentok;
 }
+
+/**
+ * @since 3.6.6
+ */
+function awpcp_user_agent_header() {
+    $user_agent = "WordPress %s / Another WordPress Classifieds Plugin %s";
+    $user_agent = sprintf( $user_agent, get_bloginfo( 'version' ), $GLOBALS['awpcp_db_version'] );
+    return $user_agent;
+}
