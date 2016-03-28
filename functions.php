@@ -235,8 +235,10 @@ function awpcp_datetime( $format='mysql', $date=null ) {
 			return date( 'Y-m-d H:i:s', $timestamp );
 		case 'timestamp':
 			return $timestamp;
+		case 'time-elapsed':
+			return sprintf( __( '%s ago' ), human_time_diff( strtotime( $date ) ) );
 		case 'awpcp':
-			return date_i18n( awpcp_get_datetime_format(), $timestamp) ;
+			return date_i18n( awpcp_get_datetime_format(), $timestamp ) ;
 		case 'awpcp-date':
 			return date_i18n( awpcp_get_date_format(), $timestamp );
 		case 'awpcp-time':
@@ -245,7 +247,6 @@ function awpcp_datetime( $format='mysql', $date=null ) {
 			return date_i18n( $format, $timestamp );
 	}
 }
-
 
 function awpcp_set_datetime_date( $datetime, $date ) {
     $base_timestamp = strtotime( $datetime );

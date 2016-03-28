@@ -170,6 +170,9 @@ function awpcp_content_placeholders() {
         'posted_date' => array(
             'callback' => 'awpcp_do_placeholder_dates',
         ),
+         'posted_time_elapsed' => array(
+            'callback' => 'awpcp_do_placeholder_dates',
+        ),
         'last_updated_date' => array(
             'callback' => 'awpcp_do_placeholder_dates',
         ),
@@ -462,6 +465,7 @@ function awpcp_do_placeholder_dates($ad, $placeholder) {
     $replacements['start_date'] = awpcp_datetime( 'awpcp-date', $ad->ad_startdate );
     $replacements['end_date'] = awpcp_datetime( 'awpcp-date', $ad->ad_enddate );
     $replacements['posted_date'] = awpcp_datetime( 'awpcp-date', $ad->ad_postdate );
+    $replacements['posted_time_elapsed'] = awpcp_datetime( 'time-elapsed', $ad->verified_at );
     $replacements['last_updated_date'] = awpcp_datetime( 'awpcp-date', $ad->ad_last_updated );
 
     if ( ! empty( $ad->renewed_date ) ) {
