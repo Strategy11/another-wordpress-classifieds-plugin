@@ -189,7 +189,11 @@ class AWPCP_ListingsCollection {
     }
 
     private function add_orderby_query_parameters( $query ) {
-        $orderby = isset( $query['orderby'] ) ? $query['orderby'] : null;
+		if ( isset( $query['orderby'] ) ) {
+			$orderby = $query['_orderby'] = $query['orderby'];
+		} else {
+			$orderby = null;
+		}
 
         $basedate = 'CASE WHEN renewed_date IS NULL THEN ad_startdate ELSE GREATEST(ad_startdate, renewed_date) END';
         $is_paid = 'CASE WHEN ad_fee_paid > 0 THEN 1 ELSE 0 END';
@@ -381,23 +385,6 @@ class AWPCP_ListingsCollection {
                     'key' => '_start_date',
                     'compare' => 'EXISTS',
                 );
-                break;
-
-            case 'featured-ad':
-                $query['orderby'] = array( 'menu_order' => 'DESC', 'ID' => $query['order'] );
-                $query['_meta_order'] = array( '_is_featured' => $query['order'], '_start_date' => $query['order'] );
-                $query['_meta_type'] = array( '_is_featured' => 'DATETIME', '_start_date' => 'DATETIME' );
-
-                $query['meta_query'][] = array(
-                    'key' => '_is_featured',
-                    'compare' => 'EXISTS',
-                );
-
-                $query['meta_query'][] = array(
-                    'key' => '_start_date',
-                    'compare' => 'EXISTS',
-                );
-                break;
                 break;
 
             case 'owner':
