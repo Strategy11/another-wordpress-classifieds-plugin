@@ -14,7 +14,7 @@ class AWPCP_CategoriesListWalker extends Walker {
     protected $elements_count = 0;
 
     public function __construct() {
-        $this->db_fields = array( 'id' => 'id', 'parent' => 'parent' );
+		$this->db_fields = array( 'id' => 'term_id', 'parent' => 'parent' );
     }
 
     public function configure( $options = array() ) {

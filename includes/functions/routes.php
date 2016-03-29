@@ -243,7 +243,7 @@ function url_browsecategory( $category ) {
     $permalinks = get_option('permalink_structure');
     $base_url = awpcp_get_browse_categories_page_url();
 
-    $cat_id = $category->id;
+	$cat_id = $category->term_id;
     $cat_slug = sanitize_title( $category->name );
 
     if (get_awpcp_option('seofriendlyurls')) {
