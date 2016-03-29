@@ -237,15 +237,15 @@ class AWPCP_ListingsAPI {
         $mail->to[] = awpcp_format_email_address( $ad->ad_contact_email, $ad->ad_contact_name );
         $subject = get_awpcp_option( 'verifyemailsubjectline' );
         $message = get_awpcp_option( 'verifyemailbodymessage' );
-        $mail->subject = str_replace( '[ADTITLE]', $ad->get_title(), $subject );
+        $mail->subject = str_replace( '$title', $ad->get_title(), $subject );
 
         $verification_link = awpcp_get_email_verification_url( $ad->ad_id );
 
-        $message = str_replace( '[ADTITLE]', $ad->get_title(), $message );
-        $message = str_replace( '[AUTHORNAME]', $ad->ad_contact_name, $message );
-        $message = str_replace( '[VERIFICATIONLINK]', $verification_link, $message );
-        $message = str_replace( '[BLOGNAME]', awpcp_get_blog_name(), $message );
-        $message = str_replace( '[BLOGURL]', home_url(), $message );
+        $message = str_replace( '$title', $ad->get_title(), $message );
+        $message = str_replace( '$author_name', $ad->ad_contact_name, $message );
+        $message = str_replace( '$verification_link', $verification_link, $message );
+        $message = str_replace( '$website_name', awpcp_get_blog_name(), $message );
+        $message = str_replace( '$website_url', home_url(), $message );
 
         $mail->body = $message;
 
