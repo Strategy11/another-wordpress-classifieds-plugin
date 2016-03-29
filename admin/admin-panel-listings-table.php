@@ -101,12 +101,7 @@ class AWPCP_Listings_Table extends WP_List_Table {
 
         switch ($params['filterby']) {
             case 'is-featured':
-                $query['meta_query'][] = array(
-                    'key' => '_featured',
-                    'value' => true,
-                    'compare' => '=',
-                    'type' => 'BINARY',
-                );
+                $query['fatured'] = true;
                 break;
 
             case 'flagged':
@@ -484,7 +479,11 @@ class AWPCP_Listings_Table extends WP_List_Table {
     }
 
     public function column_featured($item) {
-        return $item->is_featured_ad ? __('Featured', 'another-wordpress-classifieds-plugin') : __('Not Featured', 'another-wordpress-classifieds-plugin');
+        if ( get_post_meta( $item->ID, '_is_featured', true ) ) {
+            return __( 'Featured', 'another-wordpress-classifieds-plugin' );
+        } else {
+            return __( 'Not Featured', 'another-wordpress-classifieds-plugin' );
+        }
     }
 
     public function column_owner($item) {

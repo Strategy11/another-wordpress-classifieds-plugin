@@ -118,11 +118,12 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
             if (get_awpcp_option('useakismet'))
                 $actions['spam'] = array('SPAM', $this->url(array('action' => 'spam', 'id' => $ad->ID)));
 
-            $has_featured_ads = function_exists('awpcp_featured_ads');
-            if ($has_featured_ads && $ad->is_featured_ad)
+			$has_featured_ads = function_exists( 'awpcp_is_featured_ad' );
+			if ( $has_featured_ads && awpcp_is_featured_ad( $ad->ID ) ) {
                 $actions['remove-featured'] = array(__('Remove Featured', 'AWPCP'), $this->url(array('action' => 'remove-featured', 'id' => $ad->ID)));
-            else if ($has_featured_ads)
+			} else if ( $has_featured_ads ) {
                 $actions['make-featured'] = array(__('Make Featured', 'AWPCP'), $this->url(array('action' => 'make-featured', 'id' => $ad->ID)));
+			}
 
             $actions['send-key'] = array(__('Send Access Key', 'AWPCP'), $this->url(array('action' => 'send-key', 'id' => $ad->ID)));
         }
@@ -521,7 +522,7 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
     }
 
     public function make_featured_ad_action($ad) {
-        return ! is_null( $ad ) && $ad->set_featured_status( true );
+		return ! is_null( $ad ) && update_post_meta( $ad->ID, '_is_featured', true );
     }
 
     public function make_featured_ad_success($n) {
@@ -541,7 +542,7 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
     }
 
     public function make_non_featured_ad_action($ad) {
-        return ! is_null( $ad ) && $ad->set_featured_status( false );
+		return ! is_null( $ad ) && delete_post_meta( $ad->ID, '_is_featured' );
     }
 
     public function make_non_featured_ad_success($n) {

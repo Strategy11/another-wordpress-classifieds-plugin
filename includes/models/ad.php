@@ -480,19 +480,6 @@ class AWPCP_Ad {
 		return $this->save();
 	}
 
-	public function set_featured_status($featured) {
-		global $wpdb;
-
-		$query = 'UPDATE ' . AWPCP_TABLE_ADS . ' SET ';
-		$query.= 'is_featured_ad=' . intval($featured) . ' WHERE ad_id = %d';
-
-		if ($result = $wpdb->query($wpdb->prepare($query, $this->ad_id))) {
-			$this->is_featured_ad = $featured;
-		}
-
-		return $result;
-	}
-
 	public function mark_as_spam() {
 		// this doesn't feel right :\
 		if ($result = $this->delete()) {
