@@ -22,6 +22,10 @@ class AWPCP_WordPress {
         return update_option( $option, $new_value, $autoload );
     }
 
+    public function delete_option( $option ) {
+        return delete_option( $option );
+    }
+
     /* Custom Post Types */
 
     public function insert_post( $post, $return_wp_error_on_failure = false ) {
