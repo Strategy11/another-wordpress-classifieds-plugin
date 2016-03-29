@@ -652,6 +652,7 @@ class AWPCP {
         add_action( 'awpcp_edit_ad', array( $this, 'clear_categories_list_cache' ) );
         add_action( 'awpcp_disable_ad', array( $this, 'clear_categories_list_cache' ) );
         add_action( 'awpcp_delete_ad', array( $this, 'clear_categories_list_cache' ) );
+        // TODO: are these category events being triggered?
         add_action( 'awpcp-category-added', array( $this, 'clear_categories_list_cache' ) );
         add_action( 'awpcp-category-edited', array( $this, 'clear_categories_list_cache' ) );
         add_action( 'awpcp-category-deleted', array( $this, 'clear_categories_list_cache' ) );
