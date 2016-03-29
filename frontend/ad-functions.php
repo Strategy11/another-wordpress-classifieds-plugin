@@ -387,11 +387,6 @@ function awpcp_render_listings_items( $listings, $context ) {
 	foreach ( $listings as $i => $listing ) {
 		$rendered_listing = awpcp_do_placeholders( $listing, $layout, $context );
 		$rendered_listing = str_replace( "\$awpcpdisplayaditems", $parity[$i % 2], $rendered_listing );
-
-		if ( function_exists( 'awpcp_featured_ads' ) ) {
-			$rendered_listing = awpcp_featured_ad_class( $listing->ad_id, $rendered_listing );
-		}
-
 		$items[] = apply_filters( 'awpcp-render-listing-item', $rendered_listing, $listing, $i + 1 );
 	}
 
