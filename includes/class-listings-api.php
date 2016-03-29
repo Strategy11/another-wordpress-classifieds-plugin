@@ -235,16 +235,19 @@ class AWPCP_ListingsAPI {
     public function send_verification_email( $ad ) {
         $mail = new AWPCP_Email;
         $mail->to[] = awpcp_format_email_address( $ad->ad_contact_email, $ad->ad_contact_name );
-        $mail->subject = sprintf( __( 'Verify the email address used for Ad "%s"', 'another-wordpress-classifieds-plugin' ), $ad->get_title() );
+        $subject = get_awpcp_option( 'verifyemailsubjectline' );
+        $message = get_awpcp_option( 'verifyemailbodymessage' );
+        $mail->subject = str_replace( '[ADTITLE]', $ad->get_title(), $subject );
 
         $verification_link = awpcp_get_email_verification_url( $ad->ad_id );
 
-        $template = AWPCP_DIR . '/frontend/templates/email-ad-awaiting-verification.tpl.php';
-        $mail->prepare( $template, array(
-            'contact_name' => $ad->ad_contact_name,
-            'ad_title' => $ad->get_title(),
-            'verification_link' => $verification_link
-        ) );
+        $message = str_replace( '[ADTITLE]', $ad->get_title(), $message );
+        $message = str_replace( '[AUTHORNAME]', $ad->ad_contact_name, $message );
+        $message = str_replace( '[VERIFICATIONLINK]', $verification_link, $message );
+        $message = str_replace( '[BLOGNAME]', awpcp_get_blog_name(), $message );
+        $message = str_replace( '[BLOGURL]', home_url(), $message );
+
+        $mail->body = $message;
 
         if ( $mail->send() ) {
             $emails_sent = intval( awpcp_get_ad_meta( $ad->ad_id, 'verification_emails_sent', true ) );
