@@ -463,13 +463,17 @@ class AWPCP_ListingsCollection {
         foreach ( $query_object->query['_meta_order'] as $meta_key => $order ) {
             $regexp = "/([\w_]+)\.meta_key = '" . preg_quote( $meta_key ) . "'/";
 
-            if ( ! preg_match( $regexp, $clauses['where'], $matches ) ) {
+            if ( preg_match( $regexp, $clauses['join'], $matches ) ) {
+                $table_name = $matches[1];
+            } else if ( preg_match( $regexp, $clauses['where'], $matches ) ) {
+                $table_name = $matches[1];
+            } else {
                 continue;
             }
 
             $meta_type = $query_object->query['_meta_type'][ $meta_key ];
 
-            $orderby[] = "CAST({$matches[1]}.meta_value AS {$meta_type}) $order";
+            $orderby[] = "CAST({$table_name}.meta_value AS {$meta_type}) $order";
         }
 
         if ( ! empty( $orderby ) ) {
