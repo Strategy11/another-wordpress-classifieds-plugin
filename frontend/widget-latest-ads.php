@@ -148,6 +148,8 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
                 $this->listing_renderer->get_view_listing_url( $item ),
                 $this->attachment_properties->get_image( $image, 'featured', false, $image_attributes )
             );
+        } else {
+            $html_image = '';
         }
 
         return apply_filters( 'awpcp-listings-widget-listing-thumbnail', $html_image, $item );
