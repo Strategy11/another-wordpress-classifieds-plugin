@@ -998,7 +998,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $allow_html = (bool) get_awpcp_option('allowhtmlinadtext');
 
         if (!$allow_html) {
-            $details = esc_html( $details );
+            $details = wp_strip_all_tags( $details );
         } else {
             $details = wp_kses_post( $details );
         }
@@ -1009,6 +1009,8 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
         if ($allow_html) {
             $details = force_balance_tags($details);
+        }else{
+        	$details = esc_html( $details );
         }
 
         return $details;
