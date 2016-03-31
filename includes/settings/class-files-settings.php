@@ -13,6 +13,7 @@ class AWPCP_FilesSettings {
     }
 
     public function register_settings( $settings ) {
+        global $awpcp_imagesurl;
         $group = $settings->add_group( _x( 'Images/Attachments', 'name of Files settings section', 'another-wordpress-classifieds-plugin' ), 'attachments-settings', 50 );
 
         $key = $settings->add_section(
@@ -74,6 +75,8 @@ class AWPCP_FilesSettings {
 
         $settings->add_setting( $key, 'display-thumbnails-in-columns', __( 'Number of columns of thumbnails to show in Show Ad page.', 'another-wordpress-classifieds-plugin' ), 'select', 0, __( 'Zero means there will be as many thumbnails as possible per row.', 'another-wordpress-classifieds-plugin' ), array( 'options' => $options ) );
 
+        $settings->add_setting( $key, 'hide-noimage-placeholder', __( 'Hide No Image Placeholder ', 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, '' );
+        $settings->add_setting( $key, 'noimage-placeholder-link', __( 'No Image Placeholder Link', 'another-wordpress-classifieds-plugin' ), 'textfield', sprintf( '%s/adhasnoimage.png', $awpcp_imagesurl ), __( 'To hide placeholder image on listing pages remove the image link above', 'another-wordpress-classifieds-plugin' ) );
         // Section: Image File Size Settings
 
         $key = $settings->add_section($group, __('Image File Size', 'another-wordpress-classifieds-plugin'), 'image-file-size', 30, array($settings, 'section'));
