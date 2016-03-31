@@ -325,6 +325,13 @@ class AWPCP_Settings_API {
 		$this->add_setting( $key, 'resendakeyformsubjectline', __( 'Subject for Request Ad Access Key email', 'another-wordpress-classifieds-plugin' ), 'textfield', __( "The Classified Ad's ad access key you requested", 'another-wordpress-classifieds-plugin' ), __( 'Subject line for email sent out when someone requests their ad access key resent', 'another-wordpress-classifieds-plugin' ) );
 		$this->add_setting( $key, 'resendakeyformbodymessage', __( 'Body for Request Ad Access Key email', 'another-wordpress-classifieds-plugin' ), 'textarea', __( "You asked to have your Classified Ad's access key resent. Below are all the Ad access keys in the system that are tied to the email address you provided", 'another-wordpress-classifieds-plugin' ), __('Message body text for email sent out when someone requests their ad access key resent', 'another-wordpress-classifieds-plugin' ) );
 
+		// Section: Verify Email Message
+
+		$key = $this->add_section($group, __('Verify Email Message', 'another-wordpress-classifieds-plugin'), 'verify-email-message', 10, array($this, 'section'));
+
+		$this->add_setting( $key, 'verifyemailsubjectline', __( 'Subject for Verification email', 'another-wordpress-classifieds-plugin' ), 'textfield', __( 'Verify the email address used for Ad $title', 'another-wordpress-classifieds-plugin' ), __( 'Subject line for email sent out to verify the email address.', 'another-wordpress-classifieds-plugin' ) );
+		$this->add_setting( $key, 'verifyemailbodymessage', __( 'Body for Verification email', 'another-wordpress-classifieds-plugin' ), 'textarea', _x( "Hello \$author_name \n\nYou recently posted the Ad \$title to \$website_name. \n\nIn order to complete the posting process you have to verify your email address. Please click the link below to complete the verification process. You will be redirected to the website where you can see your Ad. \n\n\$verification_link \n\nAfter you verify your email address, the administrator will be notified about the new Ad. If moderation is enabled, your Ad will remain in a disabled status until the administrator approves it.\n\n\$website_name\n\n\$website_url", 'another-wordpress-classifieds-plugin' ), __('You can use the following placeholders to personalize the body of the email: $title, $author_name,$verification_email, $website_name, $website_url.', 'another-wordpress-classifieds-plugin' ) );
+
 		// Section: Incomplete Payment Message
 
 		$key = $this->add_section($group, __('Incomplete Payment Message', 'another-wordpress-classifieds-plugin'), 'incomplete-payment-message', 10, array($this, 'section'));

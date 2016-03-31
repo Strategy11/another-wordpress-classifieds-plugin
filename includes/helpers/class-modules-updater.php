@@ -113,10 +113,19 @@ class AWPCP_ModulesUpdater {
         return $information;
     }
 
+	public function setup_http_request_args_filter( $bail, $package, $upgrader ) {
+		if ( strpos( $package, 'edd-sl/package_download' ) !== false ) {
+			add_filter( 'http_request_args', array( $this, 'filter_http_request_args' ), 10, 2 );
+		}
+
+		return $bail;
+	}
+
     public function filter_http_request_args( $args, $url ) {
-        if ( strpos( $url, 'https://' ) !== false && strpos( $url, 'edd_action=package_download' ) ) {
-            $args['sslverify'] = false;
-        }
+		remove_filter( 'http_request_args', array( $this, 'filter_http_request_args' ), 10, 2 );
+
+		$args['user-agent'] = awpcp_user_agent_header();
+		$args['sslverify'] = false;
 
         return $args;
     }

@@ -23,7 +23,7 @@ class AWPCP_IOError extends AWPCP_Exception {
 
 class AWPCP_WPError extends AWPCP_Exception {
 
-    private $wp_error;
+    public $wp_error;
 
     public function __construct( $wp_error ) {
         $this->wp_error = $wp_error;
