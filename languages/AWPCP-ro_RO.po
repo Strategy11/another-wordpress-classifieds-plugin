@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2016-03-21 21:25:31+00:00\n"
-"PO-Revision-Date: 2016-03-24 17:34+0000\n"
-"Last-Translator: Lucian Mihailescu <lucian@intercer.net>\n"
+"POT-Creation-Date: 2016-03-31 17:01:59+00:00\n"
+"PO-Revision-Date: 2016-03-31 17:03+0000\n"
+"Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: Romanian (Romania) (http://www.transifex.com/wp-translations/another-wordpress-classifieds-plugin/language/ro_RO/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -44,7 +44,7 @@ msgstr "Credite"
 #: admin/admin-panel-fees-table.php:120
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:19
 #: admin/templates/admin-panel-fees-entry-form.tpl.php:25
-#: frontend/placeholders.php:443 frontend/templates/page-search-ads.tpl.php:46
+#: frontend/placeholders.php:446 frontend/templates/page-search-ads.tpl.php:46
 #: includes/settings/class-payment-general-settings.php:10
 msgid "Price"
 msgstr "Preț"
@@ -140,7 +140,7 @@ msgstr "Caractere in Titlu"
 msgid "Chars in Description"
 msgstr "Caractere in Descriere"
 
-#: admin/admin-panel-fees-table.php:124 admin/admin-panel.php:271
+#: admin/admin-panel-fees-table.php:124 admin/admin-panel.php:290
 #: admin/templates/admin-panel-fees-entry-form.tpl.php:89
 msgid "Categories"
 msgstr "Categorii"
@@ -358,7 +358,7 @@ msgid "Keyword"
 msgstr "Cuvânt cheie"
 
 #: admin/admin-panel-listings-table.php:274 frontend/page-show-ad.php:83
-#: frontend/placeholders.php:568
+#: frontend/placeholders.php:572
 msgid "Location"
 msgstr "Locație"
 
@@ -668,7 +668,12 @@ msgctxt "awpcp admin menu"
 msgid "Classifieds"
 msgstr "Anunțuri"
 
-#: admin/admin-panel.php:148
+#: admin/admin-panel.php:113 admin/admin-panel.php:266
+#: admin/admin-panel.php:267
+msgid "Settings"
+msgstr "Setări"
+
+#: admin/admin-panel.php:167
 msgid ""
 "%1$s has the same name as the %2$s. That will cause %1$s to become "
 "unreachable. Please make sure you don't have duplicate page names."
@@ -679,7 +684,7 @@ msgstr[0] "%1$s are același nume ca și %2$s. Aceasta va cauza %1$s să devină
 msgstr[1] "%1$s au același nume ca și %2$s. Aceasta va cauza %1$s să devină inaccesibilă. Vă rugăm să verificați că nu aveți pagini duplicate."
 msgstr[2] "%1$s au același nume ca și %2$s. Aceasta va cauza %1$s să devină inaccesibilă. Vă rugăm să verificați că nu aveți pagini duplicate."
 
-#: admin/admin-panel.php:162
+#: admin/admin-panel.php:181
 msgid ""
 "Page %1$s has the same name as the AWPCP %2$s. That will cause WordPress "
 "page %1$s to become unreachable. The %2$s is dynamic; you don't need to "
@@ -699,232 +704,228 @@ msgstr[0] "Pagina %1$s are același nume ca și AWPCP %2$s. Aceasta va cauza pag
 msgstr[1] "Paginile %1$s au același nume ca și AWPCP %2$s. Aceasta va cauza paginile WordPress %1$s să devină inaccesibile. Paginile %2$s sunt dinamice; nu e nevoie să creați pagini reale de WordPress pentru a arăta lista categoriilor, plugin-ul le va genera pentru dvs. Dacă pagina WordPress a fost creată ca să arate implicit lista categoriilor AWPCP, trebuie să o ștergeți și acest mesaj de eroare va dispare. Altfel, vă rugăm să verificați că nu aveți pagini duplicate."
 msgstr[2] "Paginile %1$s au același nume ca și AWPCP %2$s. Aceasta va cauza paginile WordPress %1$s să devină inaccesibile. Paginile %2$s sunt dinamice; nu e nevoie să creați pagini reale de WordPress pentru a arăta lista categoriilor, plugin-ul le va genera pentru dvs. Dacă pagina WordPress a fost creată ca să arate implicit lista categoriilor AWPCP, trebuie să o ștergeți și acest mesaj de eroare va dispare. Altfel, vă rugăm să verificați că nu aveți pagini duplicate."
 
-#: admin/admin-panel.php:247 admin/admin-panel.php:248
-msgid "Settings"
-msgstr "Setări"
-
-#: admin/admin-panel.php:261
+#: admin/admin-panel.php:280
 msgid "Manage Credit"
 msgstr "Administrează Credit"
 
-#: admin/admin-panel.php:270 admin/admin-panel.php:772
+#: admin/admin-panel.php:289 admin/admin-panel.php:791
 #: admin/templates/admin-panel-home.tpl.php:80
 #: admin/templates/admin-panel-home.tpl.php:108
 msgid "Manage Categories"
 msgstr "Administrează categorii"
 
-#: admin/admin-panel.php:296
+#: admin/admin-panel.php:315
 msgid "Manage Extra Fields"
 msgstr "Administrează Câmpurile Suplimentare"
 
-#: admin/admin-panel.php:296 admin/templates/admin-sidebar.tpl.php:108
+#: admin/admin-panel.php:315 admin/templates/admin-sidebar.tpl.php:108
 #: awpcp.php:798
 msgid "Extra Fields"
 msgstr "Câmpuri suplimentare"
 
-#: admin/admin-panel.php:299
+#: admin/admin-panel.php:318
 msgid "Import Ad"
 msgstr "Import Anunț"
 
-#: admin/admin-panel.php:299
+#: admin/admin-panel.php:318
 #: admin/templates/admin-panel-csv-importer.tpl.php:173
 msgid "Import"
 msgstr "Import"
 
-#: admin/admin-panel.php:302 admin/templates/admin-panel-debug.tpl.php:3
+#: admin/admin-panel.php:321 admin/templates/admin-panel-debug.tpl.php:3
 msgid "Debug"
 msgstr "Depanare"
 
-#: admin/admin-panel.php:472 admin/admin-panel.php:473
-#: admin/admin-panel.php:801
+#: admin/admin-panel.php:491 admin/admin-panel.php:492
+#: admin/admin-panel.php:820
 msgid "Manage Category Icon"
 msgstr "Administrează Icon-uri pentru categorii"
 
-#: admin/admin-panel.php:478 admin/admin-panel.php:791
-#: admin/admin-panel.php:793
+#: admin/admin-panel.php:497 admin/admin-panel.php:810
+#: admin/admin-panel.php:812
 msgid "Edit Category"
 msgstr "Editează categorie"
 
-#: admin/admin-panel.php:479 admin/admin-panel.php:648
-#: admin/admin-panel.php:795 admin/admin-panel.php:797
+#: admin/admin-panel.php:498 admin/admin-panel.php:667
+#: admin/admin-panel.php:814 admin/admin-panel.php:816
 msgid "Delete Category"
 msgstr "Șterge categorie"
 
-#: admin/admin-panel.php:631
+#: admin/admin-panel.php:650
 msgid "Add A New Category"
 msgstr "Adaugă o categorie noua"
 
-#: admin/admin-panel.php:638
+#: admin/admin-panel.php:657
 msgid "You are currently editing the category shown below"
 msgstr "Acum editați categoria indicată mai jos"
 
-#: admin/admin-panel.php:639
+#: admin/admin-panel.php:658
 msgid "Save Category Changes"
 msgstr "Salvează modificările categoriei"
 
-#: admin/admin-panel.php:640 admin/admin-panel.php:649
+#: admin/admin-panel.php:659 admin/admin-panel.php:668
 msgid "Parent Category"
 msgstr "Categorie părinte"
 
-#: admin/admin-panel.php:641
+#: admin/admin-panel.php:660
 msgid "Category List Order"
 msgstr "Ordinea în cadrul categoriei"
 
-#: admin/admin-panel.php:647
+#: admin/admin-panel.php:666
 msgid ""
 "If you're sure that you want to delete this category please press the delete"
 " button"
 msgstr "Dacă sunteți sigur că vreți să ștergeți această categorie, vă rugăm să apăsați butonul de ștergere"
 
-#: admin/admin-panel.php:666 admin/admin-panel.php:677
+#: admin/admin-panel.php:685 admin/admin-panel.php:696
 msgid "Untitled"
 msgstr "Fără titlu"
 
-#: admin/admin-panel.php:670
+#: admin/admin-panel.php:689
 msgid ""
 "The category contains ads. If you do not select a category to move them to "
 "the ads will be moved to:"
 msgstr "Categoria conține anunțuri. Dacă nu selecați o categorie pentru a le muta, anunțurile vor fi mutate în:"
 
-#: admin/admin-panel.php:683
+#: admin/admin-panel.php:702
 msgid ""
 "The category also has children. If you do not specify a move-to category the"
 " children will be adopted by"
 msgstr "Categoria are, de asemenea, copii. Dacă nu specificați o categorie în care să fie mutată, categoriile copii vor fi adoptate de"
 
-#: admin/admin-panel.php:685
+#: admin/admin-panel.php:704
 msgid "Note"
 msgstr "Notă"
 
-#: admin/admin-panel.php:687
+#: admin/admin-panel.php:706
 msgid "The move-to category specified applies to both ads and categories"
 msgstr "Categoria specificată în care va fi mutată se aplică atât la anunțuri cât și la categorii"
 
-#: admin/admin-panel.php:691
+#: admin/admin-panel.php:710
 msgid "Please select a Move-To category"
 msgstr "Vă rugăm să selectați categoria în care se face mutarea"
 
-#: admin/admin-panel.php:701
+#: admin/admin-panel.php:720
 msgid ""
 "Sorry but you cannot delete %s. It is the default category and the default "
 "category cannot be deleted."
 msgstr "Ne pare rău, nu puteți șterge %s. Este categoria implicită, iar categoria implicită nu poate fi ștearsă."
 
-#: admin/admin-panel.php:716
+#: admin/admin-panel.php:735
 msgid "Add a new category"
 msgstr "Adaugă o nouă categorie"
 
-#: admin/admin-panel.php:717
+#: admin/admin-panel.php:736
 msgid "Add new category"
 msgstr "Adaugă categorie nouă"
 
-#: admin/admin-panel.php:718
+#: admin/admin-panel.php:737
 msgid "List category under"
 msgstr "Listează categorie sub"
 
-#: admin/admin-panel.php:719
+#: admin/admin-panel.php:738
 msgid "Category list order"
 msgstr "Ordinea în cadrul categoriei"
 
-#: admin/admin-panel.php:733
+#: admin/admin-panel.php:752
 msgid "Category to Delete"
 msgstr "Categorie de șters"
 
-#: admin/admin-panel.php:743
+#: admin/admin-panel.php:762
 msgid "Category to Edit"
 msgstr "Categorie de editat"
 
-#: admin/admin-panel.php:747 admin/admin-panel.php:761
+#: admin/admin-panel.php:766 admin/admin-panel.php:780
 msgid "Make This a Top Level Category"
 msgstr "Fă această categorie de primul nivel"
 
-#: admin/admin-panel.php:758
+#: admin/admin-panel.php:777
 msgid "Enter the category name"
 msgstr "Introduceți numele categoriei"
 
-#: admin/admin-panel.php:789
+#: admin/admin-panel.php:808
 msgid "Icon Meanings"
 msgstr "Semnificația icon-urilor"
 
-#: admin/admin-panel.php:860
+#: admin/admin-panel.php:879
 msgid "Delete Selected Categories"
 msgstr "Șterge categoria selectată"
 
-#: admin/admin-panel.php:863
+#: admin/admin-panel.php:882
 msgid "Move Selected Categories"
 msgstr "Mută categoria selectată"
 
-#: admin/admin-panel.php:866
+#: admin/admin-panel.php:885
 msgid "Select Move-To category"
 msgstr "Selectează categoria în care se face mutarea"
 
-#: admin/admin-panel.php:871
+#: admin/admin-panel.php:890
 msgid "Delete categories should do this with existing Ads"
 msgstr "Categoriile șterse trebuie să facă aceasta cu anunțurile existente"
 
-#: admin/admin-panel.php:872
+#: admin/admin-panel.php:891
 msgid "Move Ads to new category"
 msgstr "Mută anunțurile în noua categorie"
 
-#: admin/admin-panel.php:873
+#: admin/admin-panel.php:892
 msgid "Delete Ads too"
 msgstr "De asemenea, sterge și anunțurile"
 
-#: admin/admin-panel.php:885 admin/admin-panel.php:897
+#: admin/admin-panel.php:904 admin/admin-panel.php:916
 msgid "Category ID"
 msgstr "ID Categorie"
 
-#: admin/admin-panel.php:887 admin/admin-panel.php:899
+#: admin/admin-panel.php:906 admin/admin-panel.php:918
 msgid "Category Name (Total Ads)"
 msgstr "Nume Categorie (Total anunțuri)"
 
-#: admin/admin-panel.php:889 admin/admin-panel.php:901
+#: admin/admin-panel.php:908 admin/admin-panel.php:920
 msgid "Parent"
 msgstr "Părinte"
 
-#: admin/admin-panel.php:891 admin/admin-panel.php:903
+#: admin/admin-panel.php:910 admin/admin-panel.php:922
 msgid "Order"
 msgstr "Ordine"
 
-#: admin/admin-panel.php:893 admin/admin-panel.php:905
+#: admin/admin-panel.php:912 admin/admin-panel.php:924
 msgid "Action"
 msgstr "Acționează"
 
-#: admin/admin-panel.php:1099
+#: admin/admin-panel.php:1118
 msgid "The new category was successfully added."
 msgstr "Noua categorie a fost adăugată cu succes."
 
-#: admin/admin-panel.php:1118
+#: admin/admin-panel.php:1137
 msgid ""
 "Sorry but you cannot delete the default category. The default category can "
 "only be renamed"
 msgstr "Ne pare rău, nu puteți șterge categoria implicită. Categoria implicită poate fi doar redenumită"
 
-#: admin/admin-panel.php:1186
+#: admin/admin-panel.php:1205
 msgid "The category has been deleted"
 msgstr "Categoria a fost ștearsă"
 
-#: admin/admin-panel.php:1198
+#: admin/admin-panel.php:1217
 msgid "Your category changes have been saved."
 msgstr "Schimbările la categorie au fost salvate."
 
-#: admin/admin-panel.php:1205
+#: admin/admin-panel.php:1224
 msgid "No changes made to categories."
 msgstr "Nu a fost efectuată nici o modificare de categorii."
 
-#: admin/admin-panel.php:1244
+#: admin/admin-panel.php:1263
 msgid ""
 "With the exception of any category that was being moved to itself, the "
 "categories have been moved"
 msgstr "Cu excepția oricărei caetgorii care a fost mutată în ea însăși, categoriile au fost mutate."
 
-#: admin/admin-panel.php:1248
+#: admin/admin-panel.php:1267
 msgid ""
 "The categories have not been moved because you did not indicate where you "
 "want the categories to be moved to"
 msgstr "Categoriile nu au fost mutate pentru că nu ați specificați unde doriți aceste categorii să fie mutate"
 
-#: admin/admin-panel.php:1343
+#: admin/admin-panel.php:1362
 msgid "The categories have been deleted"
 msgstr "Categoriile au fost șterse"
 
@@ -2084,51 +2085,51 @@ msgstr "Hartă XML"
 msgid "ZIP Code Search Module"
 msgstr "Modul de căutare după codul poștal"
 
-#: awpcp.php:1041
+#: awpcp.php:1039
 msgid "This field is required."
 msgstr "Acest câmp este obligatoriu."
 
-#: awpcp.php:1042 frontend/page-edit-ad.php:128 frontend/page-edit-ad.php:433
+#: awpcp.php:1040 frontend/page-edit-ad.php:128 frontend/page-edit-ad.php:433
 #: includes/settings-api.php:214
 msgid "Please enter a valid email address."
 msgstr "Vă rugăm să introduceți o adresă de email validă."
 
-#: awpcp.php:1043 awpcp.php:1044
+#: awpcp.php:1041 awpcp.php:1042
 msgid "Please enter a valid URL."
 msgstr "Vă rugăm să introduceți un link (URL) corect."
 
-#: awpcp.php:1045
+#: awpcp.php:1043
 msgid "Please enter a valid number."
 msgstr "Vă rugăm să introduceți un număr corect."
 
-#: awpcp.php:1046
+#: awpcp.php:1044
 msgid "Please enter a valid amount."
 msgstr "Vă rugăm să introduceți un preț valid."
 
-#: awpcp.php:1056
+#: awpcp.php:1054
 msgctxt "[UI Datepicker] Display text for previous month link"
 msgid "&#x3c;Prev"
 msgstr "&#x3c;Înapoi"
 
-#: awpcp.php:1058
+#: awpcp.php:1056
 msgctxt "[UI Datepicker] Display text for next month link"
 msgid "Next&#x3e;"
 msgstr "Înainte&#x3e;"
 
-#: awpcp.php:1073
+#: awpcp.php:1071
 msgctxt "[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ..."
 msgid "0"
 msgstr "0"
 
-#: awpcp.php:1079
+#: awpcp.php:1077
 msgid "There are files currently being uploaded."
 msgstr "Fișierele se încarcă în acest moment."
 
-#: awpcp.php:1080
+#: awpcp.php:1078
 msgid "There are files pending to be uploaded."
 msgstr "Fișierele așteaptă să fie încărcate."
 
-#: awpcp.php:1081
+#: awpcp.php:1079
 msgid "You haven't uploaded any images or files."
 msgstr "Nu ați încărcat nici o imagine sau fișier."
 
@@ -2661,11 +2662,11 @@ msgctxt "reply email"
 msgid "regarding"
 msgstr "cu privire la"
 
-#: frontend/page-reply-to-ad.php:240
-msgid "Your message has been sent."
-msgstr "Mesajul dvs. a fost trimis."
-
 #: frontend/page-reply-to-ad.php:243
+msgid "Your message has been sent. Return to <view-listing-link>."
+msgstr ""
+
+#: frontend/page-reply-to-ad.php:247
 msgid ""
 "There was a problem encountered during the attempt to send your message. "
 "Please try again and if the problem persists, please contact the system "
@@ -2753,46 +2754,46 @@ msgid ""
 "(the author) can see it."
 msgstr "Acest anunț este dezactivat până când Administratorul îl va aproba. Doar dvs. (autorul) îl puteți vedea."
 
-#: frontend/placeholders.php:385
+#: frontend/placeholders.php:388
 msgid "Seller"
 msgstr "Vânzător"
 
-#: frontend/placeholders.php:408
+#: frontend/placeholders.php:411
 msgid "Visit Website"
 msgstr "Vizitează website"
 
-#: frontend/placeholders.php:604
+#: frontend/placeholders.php:608
 msgid "This Ad has been viewed %d time."
 msgid_plural "This Ad has been viewed %d times."
 msgstr[0] "Acest anunț a fost văzut o singură dată."
 msgstr[1] "Acest anunț a fost văzut de %d ori."
 msgstr[2] "Acest anunț a fost văzut de %d ori."
 
-#: frontend/placeholders.php:608
+#: frontend/placeholders.php:612
 msgid "Total views: %d"
 msgstr "Total vederi: %s"
 
-#: frontend/placeholders.php:659
+#: frontend/placeholders.php:663
 msgid "Phone"
 msgstr "Telefon"
 
-#: frontend/placeholders.php:716
+#: frontend/placeholders.php:720
 msgid "Flag Ad"
 msgstr "Marchează anunțul ca nepotrivit"
 
-#: frontend/placeholders.php:731
+#: frontend/placeholders.php:735
 msgid "Tweet This"
 msgstr "Trimite la Twitter"
 
-#: frontend/placeholders.php:762
+#: frontend/placeholders.php:766
 msgid "Share on Facebook"
 msgstr "Trimite la Facebook"
 
-#: frontend/shortcode.php:285
+#: frontend/shortcode.php:275
 msgid "Hi admin, you need to go to your dashboard and setup your classifieds."
 msgstr "Bună admin, trebuie să mergi in panoul de control și să setezi anunțurile."
 
-#: frontend/shortcode.php:288
+#: frontend/shortcode.php:278
 msgid "You currently have no classifieds"
 msgstr "Nu aveți nici un anunț deocamdată."
 
@@ -3258,7 +3259,7 @@ msgid ""
 "payment."
 msgstr "Vă rugăm să completați informațiile de plată în formularul de mai jos pentru a efectua plată."
 
-#: frontend/templates/payments-billing-form.tpl.php:6 functions.php:558
+#: frontend/templates/payments-billing-form.tpl.php:6 functions.php:559
 msgid "Country"
 msgstr "Țara"
 
@@ -3298,7 +3299,7 @@ msgstr "Adresă linia 2"
 msgid "State"
 msgstr "Stat/Provincie/Județ"
 
-#: frontend/templates/payments-billing-form.tpl.php:101 functions.php:578
+#: frontend/templates/payments-billing-form.tpl.php:101 functions.php:579
 msgid "City"
 msgstr "Oraș"
 
@@ -3562,49 +3563,49 @@ msgstr "Caută după categorie"
 msgid "Search"
 msgstr "Caută"
 
-#: functions.php:489
+#: functions.php:490
 msgid "None"
 msgstr "Nici unul"
 
-#: functions.php:500
+#: functions.php:501
 msgctxt "comma separated list of things"
 msgid "%s and %d more."
 msgstr "%s și %d mai multe."
 
-#: functions.php:559
+#: functions.php:560
 msgid "separate countries by commas"
 msgstr "separă țările cu virgulă"
 
-#: functions.php:568
+#: functions.php:569
 msgid "State/Province"
 msgstr "Stat/Provincie/Județ"
 
-#: functions.php:569
+#: functions.php:570
 msgid "separate states by commas"
 msgstr "separă statele/provinciile/județele cu virgulă"
 
-#: functions.php:579
+#: functions.php:580
 msgid "separate cities by commas"
 msgstr "separă orașele cu virgulă"
 
-#: functions.php:588
+#: functions.php:589
 msgid "County/Village/Other"
 msgstr "Suburbie/Sat/Comună"
 
-#: functions.php:589
+#: functions.php:590
 msgid "separate counties by commas"
 msgstr "separă suburbiile/satele/comunele cu virgulă"
 
-#: functions.php:803
+#: functions.php:804
 msgid "-- Choose a Country --"
 msgstr "-- Alege o țară --"
 
-#: functions.php:1027
+#: functions.php:1028
 msgctxt "default blog title"
 msgid "Classifieds Website"
 msgstr "Website de anunțuri"
 
-#: functions.php:1509
+#: functions.php:1510
 msgid ""
 "The images or files with pale red background have been rejected by an "
 "administrator user. Likewise, files with a pale yellow background are "
@@ -3612,86 +3613,86 @@ msgid ""
 "cannot be shown in the frontend."
 msgstr "Vă rugăm să încărcați imagini care au legătură cu anunțul dvs. si respectă termenii de serviciu ai acestui website."
 
-#: functions.php:1528
+#: functions.php:1529
 msgid ""
 "This version of AWPCP %1$s module is not compatible with AWPCP version %2$s."
 " Please get AWPCP %1$s %3$s or newer!"
 msgstr "Această versiune a modulului AWPCP %1$s nu este compatibil cu versiunea AWPCP %2$s. Vă rugăm să obțineți %1$s %3$s sau mai nou!"
 
-#: functions.php:1530 includes/helpers/class-modules-manager.php:245
+#: functions.php:1531 includes/helpers/class-modules-manager.php:245
 msgid "Error"
 msgstr "Eroare"
 
-#: functions.php:1867
+#: functions.php:1868
 msgid "No errors."
 msgstr "Nici o eroare."
 
-#: functions.php:1868
+#: functions.php:1869
 msgid "The file is larger than upload_max_filesize."
 msgstr "Mărimea fișierului este mai mare decât upload_max_filesize."
 
-#: functions.php:1869
+#: functions.php:1870
 msgid "The file is larger than form MAX_FILE_SIZE."
 msgstr "Acest fișier este mai mare decât MAX_FILE_SIZE."
 
-#: functions.php:1870
+#: functions.php:1871
 msgid "The file was only partially uploaded."
 msgstr "Fișierul a fost încărcat doar parțial."
 
-#: functions.php:1871
+#: functions.php:1872
 msgid "No file was uploaded."
 msgstr "Nu a fost încărcat nici un fișier."
 
-#: functions.php:1872
+#: functions.php:1873
 msgid "Missing temporary directory."
 msgstr "Directorul temporar lipsește."
 
-#: functions.php:1873
+#: functions.php:1874
 msgid "Can't write file to disk."
 msgstr "Nu se poate scrie fișierul pe disc."
 
-#: functions.php:1874
+#: functions.php:1875
 msgid "The file upload was stopped by extension."
 msgstr "Încărcarea fișierului a fost oprită de către extensia acestuia."
 
-#: functions.php:2089
+#: functions.php:2090
 msgid "Your Ad \"%s\" has been approved"
 msgstr "Anunțul dvs. \"%s\" a fost aprobat"
 
-#: functions.php:2105
+#: functions.php:2106
 msgid "Your Ad \"%s\" has been successfully updated"
 msgstr "Anunțul dvs. \"%s\" a fost actualizat cu succes"
 
-#: functions.php:2126
+#: functions.php:2127
 msgid "Images on Ad \"%s\" are awaiting approval"
 msgstr "Imaginile anunțului \"%s\" așteaptă aprobarea"
 
-#: functions.php:2128 includes/functions/notifications.php:189
+#: functions.php:2129 includes/functions/notifications.php:189
 msgid ""
 "Images on Ad \"%s\" are awaiting approval. You can approve the images going "
 "to the Manage Images section for that Ad and clicking the \"Enable\" button "
 "below each image. Click here to continue: %s."
 msgstr "Imaginile anunțului \"%s\" așteaptă aprobarea. Puteți aproba imaginile mergând la secțiunea Administrare Imagini pentru acest anunț și dând click pe butonul \"Activează\" de sub fiecare imagine. Click aici pentru a continua: %s."
 
-#: functions.php:2131
+#: functions.php:2132
 msgid "The Ad \"%s\" is awaiting approval"
 msgstr "Anunțul \"%s\" așteaptă aprobarea"
 
-#: functions.php:2133 includes/functions/notifications.php:194
+#: functions.php:2134 includes/functions/notifications.php:194
 msgid ""
 "The Ad \"%s\" is awaiting approval. You can approve the Ad going to the "
 "Manage Listings section and clicking the \"Enable\" action shown on top. "
 "Click here to continue: %s."
 msgstr "Anunțul \"%s\" așteaptă aprobarea. Puteți aproba anunțul mergând la secțiunea Administrare anunțuri și dând click pe butonul \"Activează\" din partea de sus. Click aici pentru a continua: %s."
 
-#: functions.php:2140 includes/functions/notifications.php:201
+#: functions.php:2141 includes/functions/notifications.php:201
 msgid ""
 "Additionally, You can approve the images going to the Manage Images section "
 "for that Ad and clicking the \"Enable\" button below each image. Click here "
 "to continue: %s."
 msgstr "Suplimentar, puteți aproba imaginile mergând la secțiunea Administrare Imagini pentru acest anunț și dând click pe butonul \"Activează\" de sub fiecare imagine. Click aici pentru a continua: %s."
 
-#: functions.php:2690
+#: functions.php:2691
 msgid "Email sent %s."
 msgstr "Email trimis %s."
 
@@ -3828,10 +3829,6 @@ msgid ""
 "If you have uploaded images your images will not show up until an admin has "
 "approved them."
 msgstr "Dacă ați încărcat imagini, acestea nu vor fi disponibile până când vor fi aprobate de către administrator."
-
-#: includes/class-listings-api.php:238
-msgid "Verify the email address used for Ad \"%s\""
-msgstr "Verificați adresa de email folosită pentru anunțul \"%s\""
 
 #: includes/class-listings-collection.php:43
 msgid "No Listing was found with id: %d."
@@ -5627,7 +5624,7 @@ msgid "Enable User Ad Management Panel"
 msgstr "Activează Panoul de Administrare Anunțuri pentru Utilizator"
 
 #: includes/settings/class-general-settings.php:28
-#: includes/settings-api.php:370
+#: includes/settings-api.php:377
 msgid "General Settings"
 msgstr "Setări generale"
 
@@ -6171,14 +6168,14 @@ msgstr "Dacă setarea <setting-name> NU ESTE bifată, anunțurile vor fi permane
 msgid "Number of days before expired listings are deleted"
 msgstr "Numărul de zile înainte ca anunțurile expirate să fie șterse"
 
-#: includes/settings/class-listings-moderation-settings.php:80
+#: includes/settings/class-listings-moderation-settings.php:81
 msgid ""
 "Email verification was disabled because you enabled Require Registration. "
 "Registered users don't need to verify the email address used for contact "
 "information."
 msgstr "Email-ul de verificare a fost dezactivat din cauză că ați activat Înregistrarea Obligatorie. Utilizatorii înregistrați nu au nevoie să verifice adresa de email folosită pentru informația de contact."
 
-#: includes/settings/class-listings-moderation-settings.php:91
+#: includes/settings/class-listings-moderation-settings.php:92
 msgid ""
 "Email verification was not enabled because Require Registration is on. "
 "Registered users don't need to verify the email address used for contact "
@@ -7115,28 +7112,54 @@ msgid ""
 msgstr "Conținutul text al mesajului trimis când cineva solicită să-i fie retrimisă cheia anunțului său"
 
 #: includes/settings-api.php:330
+msgid "Verify Email Message"
+msgstr ""
+
+#: includes/settings-api.php:332
+msgid "Subject for Verification email"
+msgstr ""
+
+#: includes/settings-api.php:332
+msgid "Verify the email address used for Ad $title"
+msgstr ""
+
+#: includes/settings-api.php:332
+msgid "Subject line for email sent out to verify the email address."
+msgstr ""
+
+#: includes/settings-api.php:333
+msgid "Body for Verification email"
+msgstr ""
+
+#: includes/settings-api.php:333
+msgid ""
+"You can use the following placeholders to personalize the body of the email:"
+" $title, $author_name,$verification_email, $website_name, $website_url."
+msgstr ""
+
+#: includes/settings-api.php:337
 msgid "Incomplete Payment Message"
 msgstr "Mesaj de plată incomplet"
 
-#: includes/settings-api.php:332
+#: includes/settings-api.php:339
 msgid "Subject for Incomplete Payment email"
 msgstr "Subiect pentru email-ul pentru plată incompletă"
 
-#: includes/settings-api.php:332
+#: includes/settings-api.php:339
 msgid "There was a problem processing your payment"
 msgstr "A apărut o problemă la procesarea plății"
 
-#: includes/settings-api.php:332
+#: includes/settings-api.php:339
 msgid ""
 "Subject line for email sent out when the payment processing does not "
 "complete"
 msgstr "Subiectul email-ului trimis când procesarea plății nu a fost terminată"
 
-#: includes/settings-api.php:333
+#: includes/settings-api.php:340
 msgid "Body for Incomplete Payment email"
 msgstr "Conținutul email-ului despre plata incompletă"
 
-#: includes/settings-api.php:333
+#: includes/settings-api.php:340
 msgid ""
 "There was a problem encountered during your attempt to submit payment. If "
 "funds were removed from the account you tried to use to make a payment "
@@ -7144,283 +7167,283 @@ msgid ""
 " assistance."
 msgstr "A apărut o problemă când s-a încercat trimiterea plății. Dacă fondurile au fost înlăturate din contul cu care încercați să faceți plata, vă rugăm să contactați pentru asistență administratorul website-ului sau suportul tehnic al website-ului prin care se face plata. "
 
-#: includes/settings-api.php:333
+#: includes/settings-api.php:340
 msgid ""
 "Message body text for email sent out when the payment processing does not "
 "complete"
 msgstr "Conținutul text al mesajului pentru email-ul trimis când procesarea plății nu este completă"
 
-#: includes/settings-api.php:337
+#: includes/settings-api.php:344
 msgid "Renew Ad Message"
 msgstr "Mesaj de reînnoire al anunțului"
 
-#: includes/settings-api.php:339
+#: includes/settings-api.php:346
 msgid "Subject for Renew Ad email"
 msgstr "Subiect pentru email-ul de reînnoire a anunțului"
 
-#: includes/settings-api.php:339
+#: includes/settings-api.php:346
 msgid "Your classifieds listing Ad will expire in %d days."
 msgstr "Anunțul dvs. va expira în %d zile."
 
-#: includes/settings-api.php:339
+#: includes/settings-api.php:346
 msgid "Subject line for email sent out when an Ad is about to expire."
 msgstr "Subiectul email-ului trimis când un anunț este aproape de expirare."
 
-#: includes/settings-api.php:340 includes/settings-api.php:347
+#: includes/settings-api.php:347 includes/settings-api.php:354
 msgid "Body for Renew Ad email"
 msgstr "Conținutul email-ului pentru reînnoirea anunțului"
 
-#: includes/settings-api.php:340
+#: includes/settings-api.php:347
 msgid ""
 "This is an automated notification that your Classified Ad will expire in %d "
 "days."
 msgstr "Aceasta este o notificare automată despre faptul că anunțul dvs. va expira în %d zile."
 
-#: includes/settings-api.php:340
+#: includes/settings-api.php:347
 msgid ""
 "Message body text for email sent out when an Ad is about to expire. Use %d "
 "as placeholder for the number of days before the Ad expires."
 msgstr "Conținutul text al email-ului trimis atunci când un anunț este aproape de expirare. Folosiți %d ca loc pentru afișarea numărului de zile înainte ca anunțul să expire."
 
-#: includes/settings-api.php:344
+#: includes/settings-api.php:351
 msgid "Ad Renewed Message"
 msgstr "Mesaj anunț reînnoit"
 
-#: includes/settings-api.php:346
+#: includes/settings-api.php:353
 msgid "Subject for Ad Renewed email"
 msgstr "Subiect email pentru anunțul reînnoit"
 
-#: includes/settings-api.php:346
+#: includes/settings-api.php:353
 msgid "Your classifieds listing \"%s\" has been successfully renewed."
 msgstr "Anunțul dvs. \"%s\" a fost reînnoit cu succes."
 
-#: includes/settings-api.php:346
+#: includes/settings-api.php:353
 msgid "Subject line for email sent out when an Ad is successfully renewed."
 msgstr "Subiect pentru email-ul trimis când anunțul este reînnoit cu succes."
 
-#: includes/settings-api.php:347
+#: includes/settings-api.php:354
 msgid ""
 "Your classifieds listing Ad has been successfully renewed. More information "
 "below:"
 msgstr "Anunțul dvs. \"%s\" a fost reînnoit cu succes. Mai multe informații dedesubt:"
 
-#: includes/settings-api.php:347
+#: includes/settings-api.php:354
 msgid ""
 "Message body text for email sent out when an Ad is successfully renewed. "
 msgstr "Conținutul email-ului trimis când un anunț este reînnoit cu succes."
 
-#: includes/settings-api.php:351
+#: includes/settings-api.php:358
 msgid "Ad Expired Message"
 msgstr "Mesaj anunț expirat"
 
-#: includes/settings-api.php:353
+#: includes/settings-api.php:360
 msgid "Subject for Ad Expired email"
 msgstr "Subiect email pentru un anunț expirat"
 
-#: includes/settings-api.php:353
+#: includes/settings-api.php:360
 msgid "Your classifieds listing at %s has expired"
 msgstr "Anunțul dvs. %s a expirat"
 
-#: includes/settings-api.php:353
+#: includes/settings-api.php:360
 msgid "Subject line for email sent out when an ad has auto-expired"
 msgstr "Subiect pentru email-ul trimis când un anunț a auto-expirat"
 
-#: includes/settings-api.php:354
+#: includes/settings-api.php:361
 msgid "Body for Ad Expired email"
 msgstr "Conținut email pentru un anunț expirat"
 
-#: includes/settings-api.php:354
+#: includes/settings-api.php:361
 msgid "This is an automated notification that your Classified Ad has expired."
 msgstr "Aceasta este o notificare automată despre faptul că anunțul dvs. a expirat."
 
-#: includes/settings-api.php:354
+#: includes/settings-api.php:361
 msgid "Message body text for email sent out when an ad has auto-expired"
 msgstr "Conținutul email-ului trimis când un anunț a auto-expirat."
 
-#: includes/settings-api.php:358
+#: includes/settings-api.php:365
 msgid "Advanced Email Configuration"
 msgstr "Configurarea Avansată Email-uri"
 
-#: includes/settings-api.php:360
+#: includes/settings-api.php:367
 msgid "Enable external SMTP server"
 msgstr "Activează server-ul extern de SMTP"
 
-#: includes/settings-api.php:360
+#: includes/settings-api.php:367
 msgid "Enabled external SMTP server (if emails not processing normally)."
 msgstr "Activează server-ul extern de SMTP (dacă email-urile nu sunt procesate normal)."
 
-#: includes/settings-api.php:361
+#: includes/settings-api.php:368
 msgid "SMTP host"
 msgstr "Host SMTP"
 
-#: includes/settings-api.php:361
+#: includes/settings-api.php:368
 msgid "SMTP host (if emails not processing normally)."
 msgstr "Host SMTP (dacă email-urile nu sunt procesate normal)."
 
-#: includes/settings-api.php:362
+#: includes/settings-api.php:369
 msgid "SMTP port"
 msgstr "Port SMTP"
 
-#: includes/settings-api.php:362
+#: includes/settings-api.php:369
 msgid "SMTP port (if emails not processing normally)."
 msgstr "Port SMTP (dacă email-urile nu sunt procesate normal)."
 
-#: includes/settings-api.php:363
+#: includes/settings-api.php:370
 msgid "SMTP username"
 msgstr "Nume de utilizator SMTP"
 
-#: includes/settings-api.php:363
+#: includes/settings-api.php:370
 msgid "SMTP username (if emails not processing normally)."
 msgstr "Nume de utilizator SMTP (dacă email-urile nu sunt procesate normal)."
 
-#: includes/settings-api.php:364
+#: includes/settings-api.php:371
 msgid "SMTP password"
 msgstr "Parola SMTP"
 
-#: includes/settings-api.php:364
+#: includes/settings-api.php:371
 msgid "SMTP password (if emails not processing normally)."
 msgstr "Parola SMTP (dacă email-urile nu sunt procesate normal)."
 
-#: includes/settings-api.php:372
+#: includes/settings-api.php:379
 msgid "Send Ads to Facebook Automatically"
 msgstr "Trimiteți anunțuri la Facebook în mod automat."
 
-#: includes/settings-api.php:372
+#: includes/settings-api.php:379
 msgid ""
 "If checked, Ads will be posted to Facebook shortly after they are posted, "
 "enabled or edited, whichever occurs first. Ads will be posted only once. "
 "Please note that disabled Ads cannot be posted to Facebook."
 msgstr "Daca este bifat, anunțurile vor fi postate la Facebook la scurt timp după ce sunt postate, activate sau editate, oricare dintre aceste operații apare prima. Anunțurile vor fi postate doar o singură dată. Vă rugăm să observați că anunțurile dezactivate nu pot fi postate la Facebook."
 
-#: includes/settings-api.php:563
+#: includes/settings-api.php:570
 msgid "<module-name> License Key"
 msgstr "Cheia licenței pentru modulul <module-name>"
 
-#: includes/settings-api.php:572
+#: includes/settings-api.php:579
 msgid "Licenses"
 msgstr "Licențe"
 
-#: includes/settings-api.php:712
+#: includes/settings-api.php:719
 msgid ""
 "Require Registration setting was enabled automatically because you activated"
 " the User Ad Management panel."
 msgstr "Înregistrarea obligatorie a fost activată automat pentru că ați activat panoul de Administrare anunțuri pentru utilizator."
 
-#: includes/settings-api.php:729
+#: includes/settings-api.php:736
 msgid ""
 "Akismet SPAM control cannot be enabled because Akismet plugin is not "
 "installed or activated."
 msgstr "Programul antiSPAM Akismet nu a putut fi activat pentru că pluginul Akismet nu este instalat sau activat."
 
-#: includes/settings-api.php:733
+#: includes/settings-api.php:740
 msgid ""
 "Akismet SPAM control cannot be enabled because Akismet is not properly "
 "configured."
 msgstr "Programul antiSPAM Akismet nu a putut fi activat pentru că pluginul Akismet nu este configurat corespunzător."
 
-#: includes/settings-api.php:756
+#: includes/settings-api.php:763
 msgid ""
 "reCAPTCHA can't be used because the public key and private key settings are "
 "required for reCAPTCHA to work properly."
 msgstr "reCAPTCHA nu poate fi folosit deoarece cheia publică și cheia privată sunt necesare pentru a funcționa corect."
 
-#: includes/settings-api.php:758
+#: includes/settings-api.php:765
 msgid ""
 "reCAPTCHA can't be used because the public key setting is required for "
 "reCAPTCHA to work properly."
 msgstr "reCAPTCHA nu poate fi folosit deoarece cheia publică este necesară pentru a funcționa corect."
 
-#: includes/settings-api.php:760
+#: includes/settings-api.php:767
 msgid ""
 "reCAPTCHA can't be used because the private key setting is required for "
 "reCAPTCHA to work properly."
 msgstr "reCAPTCHA nu poate fi folosit deoarece cheia privată este necesară pentru a funcționa corect."
 
-#: includes/settings-api.php:773
+#: includes/settings-api.php:780
 msgid ""
 "User Ad Management panel was automatically deactivated because you disabled "
 "Require Registration setting."
 msgstr "Panoul de administrare anunțuri pentru utilizator a fost dezactivat automat pentru că ați dezactivat setarea de înregistrare obligatorie."
 
-#: includes/settings-api.php:778
+#: includes/settings-api.php:785
 msgid ""
 "Credit System was automatically disabled because you disabled Require "
 "Registration setting."
 msgstr "Sistemul de credit a fost dezactivat automat pentru că ați dezactivat setarea de înregistrare obligatorie."
 
-#: includes/settings-api.php:794
+#: includes/settings-api.php:801
 msgid ""
 "There is a problem with the PayPal Currency Code you have entered. It does "
 "not match any of the codes in our list of curencies supported by PayPal."
 msgstr "A apărut o problemă cu codul valutar PayPal pe care l-ați introdus. Acesta nu corespunde cu nici unul dintre codurile din lista noastră de valute acceptate de PayPal."
 
-#: includes/settings-api.php:795
+#: includes/settings-api.php:802
 msgid "The available currency codes are"
 msgstr "Codurile valutare disponibile sunt"
 
-#: includes/settings-api.php:804
+#: includes/settings-api.php:811
 msgid ""
 "Require Registration setting was enabled automatically because you activated"
 " the Credit System."
 msgstr "Înregistrarea obligatorie a fost activată automat pentru că ați activat sistemul de credit."
 
-#: includes/settings-api.php:809
+#: includes/settings-api.php:816
 msgid ""
 "Charge Listing Fee setting was enabled automatically because you activated "
 "the Credit System."
 msgstr "Setarea 'Încasați un preț pentru afișare anunț' a fost activată automat din cauză că ați activat sistemul de credit."
 
-#: includes/settings-api.php:815
+#: includes/settings-api.php:822
 msgid ""
 "Credit System was disabled automatically because you disabled Charge Listing"
 " Fee."
 msgstr "Sistemul de credit a fost dezactivat automat pentru că ați dezactivat setarea 'Încasați un preț pentru afișare anunț'"
 
-#: includes/settings-api.php:1047
+#: includes/settings-api.php:1054
 msgid "Deactivate"
 msgstr "Deactivați"
 
-#: includes/settings-api.php:1048
+#: includes/settings-api.php:1055
 msgid "active"
 msgstr "activă"
 
-#: includes/settings-api.php:1048 includes/settings-api.php:1051
-#: includes/settings-api.php:1061 includes/settings-api.php:1063
-#: includes/settings-api.php:1065
+#: includes/settings-api.php:1055 includes/settings-api.php:1058
+#: includes/settings-api.php:1068 includes/settings-api.php:1070
+#: includes/settings-api.php:1072
 msgid "Status: <license-status>"
 msgstr "Stare: <license-status>"
 
-#: includes/settings-api.php:1050 includes/settings-api.php:1053
+#: includes/settings-api.php:1057 includes/settings-api.php:1060
 msgid "Activate"
 msgstr "Activați"
 
-#: includes/settings-api.php:1051
+#: includes/settings-api.php:1058
 msgid "inactive"
 msgstr "inactivă"
 
-#: includes/settings-api.php:1056
+#: includes/settings-api.php:1063
 msgid ""
 "Click the button above to check the status of your license. Please <contact-"
 "link>contact customer support</a> if you think the reported status is wrong."
 msgstr "Click pe butonul de deasupra pentru a verifica starea licenței dvs. Vă rugăm să <contact-link>contactați suportul tehnic</a> dacă credeți că starea indicată este greșită."
 
-#: includes/settings-api.php:1061
+#: includes/settings-api.php:1068
 msgid "expired"
 msgstr "expirată"
 
-#: includes/settings-api.php:1063
+#: includes/settings-api.php:1070
 msgid "disabled"
 msgstr "deactivat"
 
-#: includes/settings-api.php:1065
+#: includes/settings-api.php:1072
 msgid "unknown"
 msgstr "necunoscută"
 
-#: includes/settings-api.php:1081
+#: includes/settings-api.php:1088
 msgid "Documentation on date and time formatting"
 msgstr "Documentație despre formatele pentru dată și timp"
 
-#: includes/settings-api.php:1102
+#: includes/settings-api.php:1109
 msgid "Setting <setting-name> not available."
 msgstr "Setarea <setting-name> nu este disponibilă."
 

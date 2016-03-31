@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2016-03-21 21:25:31+00:00\n"
-"PO-Revision-Date: 2016-03-21 21:47+0000\n"
+"POT-Creation-Date: 2016-03-31 17:01:59+00:00\n"
+"PO-Revision-Date: 2016-03-31 17:03+0000\n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: Spanish (Spain) (http://www.transifex.com/wp-translations/another-wordpress-classifieds-plugin/language/es_ES/)\n"
 "MIME-Version: 1.0\n"
@@ -46,7 +46,7 @@ msgstr "Créditos"
 #: admin/admin-panel-fees-table.php:120
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:19
 #: admin/templates/admin-panel-fees-entry-form.tpl.php:25
-#: frontend/placeholders.php:443 frontend/templates/page-search-ads.tpl.php:46
+#: frontend/placeholders.php:446 frontend/templates/page-search-ads.tpl.php:46
 #: includes/settings/class-payment-general-settings.php:10
 msgid "Price"
 msgstr "Precio"
@@ -142,7 +142,7 @@ msgstr "Caracteres en el título"
 msgid "Chars in Description"
 msgstr "Caracteres en la descripción"
 
-#: admin/admin-panel-fees-table.php:124 admin/admin-panel.php:271
+#: admin/admin-panel-fees-table.php:124 admin/admin-panel.php:290
 #: admin/templates/admin-panel-fees-entry-form.tpl.php:89
 msgid "Categories"
 msgstr "Categorías"
@@ -360,7 +360,7 @@ msgid "Keyword"
 msgstr "Palabra clave"
 
 #: admin/admin-panel-listings-table.php:274 frontend/page-show-ad.php:83
-#: frontend/placeholders.php:568
+#: frontend/placeholders.php:572
 msgid "Location"
 msgstr "Ubicación"
 
@@ -665,7 +665,12 @@ msgctxt "awpcp admin menu"
 msgid "Classifieds"
 msgstr "Clasificados"
 
-#: admin/admin-panel.php:148
+#: admin/admin-panel.php:113 admin/admin-panel.php:266
+#: admin/admin-panel.php:267
+msgid "Settings"
+msgstr "Configuración"
+
+#: admin/admin-panel.php:167
 msgid ""
 "%1$s has the same name as the %2$s. That will cause %1$s to become "
 "unreachable. Please make sure you don't have duplicate page names."
@@ -675,7 +680,7 @@ msgid_plural ""
 msgstr[0] "%1$s tiene el mismo nombre que %2$s. Eso hará que %1$s no pueda ser encontrada. Por favor verifique que no tiene páginas con nombres duplicados."
 msgstr[1] "%1$s tienen el mismo nombre que %2$s. Eso hará que %1$s no puedan ser encontradas. Por favor verifique que no tiene páginas con nombres duplicados."
 
-#: admin/admin-panel.php:162
+#: admin/admin-panel.php:181
 msgid ""
 "Page %1$s has the same name as the AWPCP %2$s. That will cause WordPress "
 "page %1$s to become unreachable. The %2$s is dynamic; you don't need to "
@@ -694,232 +699,228 @@ msgid_plural ""
 msgstr[0] "La página %1$s tiene el mismo nombre que la %2$s de AWPCP. Esto hará que la página %1$s no pueda ser encontrada. La %2$s es dinámica; no es necesario que cree una página de WordPress para mostrar la lista de categorías, el plugin la generará por usted. Si la página de WordPress fue creada para mostrar la lista por defecto de categorías, puede borrarla y este mensaje de error desaparecerá. Si no, por favor verifique que no hay páginas con nombres duplicados."
 msgstr[1] "Las páginas %1$s tienen el mismo nombre que la %2$s de AWPCP. Esto hará que las páginas %1$s no puedan ser encontradas. La %2$s es dinámica; no es necesario que cree una página de WordPress para mostrar la lista de categorías, el plugin la generará por usted. Si las páginas de WordPress fueron creadas para mostrar la lista por defecto de categorías, puede borrarlas y este mensaje de error desaparecerá. Si no, por favor verifique que no hay páginas con nombres duplicados."
 
-#: admin/admin-panel.php:247 admin/admin-panel.php:248
-msgid "Settings"
-msgstr "Configuración"
-
-#: admin/admin-panel.php:261
+#: admin/admin-panel.php:280
 msgid "Manage Credit"
 msgstr "Administrar Crédito"
 
-#: admin/admin-panel.php:270 admin/admin-panel.php:772
+#: admin/admin-panel.php:289 admin/admin-panel.php:791
 #: admin/templates/admin-panel-home.tpl.php:80
 #: admin/templates/admin-panel-home.tpl.php:108
 msgid "Manage Categories"
 msgstr "Administrar Categorías"
 
-#: admin/admin-panel.php:296
+#: admin/admin-panel.php:315
 msgid "Manage Extra Fields"
 msgstr "Administrar Campos Extras"
 
-#: admin/admin-panel.php:296 admin/templates/admin-sidebar.tpl.php:108
+#: admin/admin-panel.php:315 admin/templates/admin-sidebar.tpl.php:108
 #: awpcp.php:798
 msgid "Extra Fields"
 msgstr "Campos Extras"
 
-#: admin/admin-panel.php:299
+#: admin/admin-panel.php:318
 msgid "Import Ad"
 msgstr "Importar Anuncio"
 
-#: admin/admin-panel.php:299
+#: admin/admin-panel.php:318
 #: admin/templates/admin-panel-csv-importer.tpl.php:173
 msgid "Import"
 msgstr "Importar"
 
-#: admin/admin-panel.php:302 admin/templates/admin-panel-debug.tpl.php:3
+#: admin/admin-panel.php:321 admin/templates/admin-panel-debug.tpl.php:3
 msgid "Debug"
 msgstr "Debug"
 
-#: admin/admin-panel.php:472 admin/admin-panel.php:473
-#: admin/admin-panel.php:801
+#: admin/admin-panel.php:491 admin/admin-panel.php:492
+#: admin/admin-panel.php:820
 msgid "Manage Category Icon"
 msgstr "Configurar los íconos de la categoría"
 
-#: admin/admin-panel.php:478 admin/admin-panel.php:791
-#: admin/admin-panel.php:793
+#: admin/admin-panel.php:497 admin/admin-panel.php:810
+#: admin/admin-panel.php:812
 msgid "Edit Category"
 msgstr "Editar Categoría"
 
-#: admin/admin-panel.php:479 admin/admin-panel.php:648
-#: admin/admin-panel.php:795 admin/admin-panel.php:797
+#: admin/admin-panel.php:498 admin/admin-panel.php:667
+#: admin/admin-panel.php:814 admin/admin-panel.php:816
 msgid "Delete Category"
 msgstr "Eliminar Categoría"
 
-#: admin/admin-panel.php:631
+#: admin/admin-panel.php:650
 msgid "Add A New Category"
 msgstr "Agregar una nueva categoría"
 
-#: admin/admin-panel.php:638
+#: admin/admin-panel.php:657
 msgid "You are currently editing the category shown below"
 msgstr "Está editando la Categoría que aparece a continuación"
 
-#: admin/admin-panel.php:639
+#: admin/admin-panel.php:658
 msgid "Save Category Changes"
 msgstr "Guardar Cambios de Categorías"
 
-#: admin/admin-panel.php:640 admin/admin-panel.php:649
+#: admin/admin-panel.php:659 admin/admin-panel.php:668
 msgid "Parent Category"
 msgstr "Categoría Principal"
 
-#: admin/admin-panel.php:641
+#: admin/admin-panel.php:660
 msgid "Category List Order"
 msgstr "Orden de la lista de Categorías"
 
-#: admin/admin-panel.php:647
+#: admin/admin-panel.php:666
 msgid ""
 "If you're sure that you want to delete this category please press the delete"
 " button"
 msgstr "Si esta seguro de que quiere eliminar esta Categoría, por favor, haga click en el botón eliminar"
 
-#: admin/admin-panel.php:666 admin/admin-panel.php:677
+#: admin/admin-panel.php:685 admin/admin-panel.php:696
 msgid "Untitled"
 msgstr "Sin Título"
 
-#: admin/admin-panel.php:670
+#: admin/admin-panel.php:689
 msgid ""
 "The category contains ads. If you do not select a category to move them to "
 "the ads will be moved to:"
 msgstr "Esta Categoría contiene Avisos. Si no seleccionás una categoría a la cual moverlos, los Avisos serán movidos automáticamente a:"
 
-#: admin/admin-panel.php:683
+#: admin/admin-panel.php:702
 msgid ""
 "The category also has children. If you do not specify a move-to category the"
 " children will be adopted by"
 msgstr "La categoría también contiene una o varias sub-categorías. Si no especifica a qué categoría desea moverla, las sub-categorías serán adoptadas por"
 
-#: admin/admin-panel.php:685
+#: admin/admin-panel.php:704
 msgid "Note"
 msgstr "Nota"
 
-#: admin/admin-panel.php:687
+#: admin/admin-panel.php:706
 msgid "The move-to category specified applies to both ads and categories"
 msgstr "La categoría a la que se van a mover se aplica tanto para los avisos como para las categorías"
 
-#: admin/admin-panel.php:691
+#: admin/admin-panel.php:710
 msgid "Please select a Move-To category"
 msgstr "Por favor, selecciona una categoría a la cual se van a mover"
 
-#: admin/admin-panel.php:701
+#: admin/admin-panel.php:720
 msgid ""
 "Sorry but you cannot delete %s. It is the default category and the default "
 "category cannot be deleted."
 msgstr "Perdón pero no se puede eliminar esta Categoría. Esa categoría es la categoría por defecto y no puede ser borrada."
 
-#: admin/admin-panel.php:716
+#: admin/admin-panel.php:735
 msgid "Add a new category"
 msgstr "Agregar nueva categoría"
 
-#: admin/admin-panel.php:717
+#: admin/admin-panel.php:736
 msgid "Add new category"
 msgstr "Agregar nueva categoría"
 
-#: admin/admin-panel.php:718
+#: admin/admin-panel.php:737
 msgid "List category under"
 msgstr "Listar categoría debajo de"
 
-#: admin/admin-panel.php:719
+#: admin/admin-panel.php:738
 msgid "Category list order"
 msgstr "Orden en la lista de categorías"
 
-#: admin/admin-panel.php:733
+#: admin/admin-panel.php:752
 msgid "Category to Delete"
 msgstr "Categoría para eliminar"
 
-#: admin/admin-panel.php:743
+#: admin/admin-panel.php:762
 msgid "Category to Edit"
 msgstr "Categoría para editar"
 
-#: admin/admin-panel.php:747 admin/admin-panel.php:761
+#: admin/admin-panel.php:766 admin/admin-panel.php:780
 msgid "Make This a Top Level Category"
 msgstr "Hacer de esta Categoría una Categoría Principal"
 
-#: admin/admin-panel.php:758
+#: admin/admin-panel.php:777
 msgid "Enter the category name"
 msgstr "Ingresá un nombre para la categoría"
 
-#: admin/admin-panel.php:789
+#: admin/admin-panel.php:808
 msgid "Icon Meanings"
 msgstr "Convenciones"
 
-#: admin/admin-panel.php:860
+#: admin/admin-panel.php:879
 msgid "Delete Selected Categories"
 msgstr "Eliminar las Categorías Seleccionadas"
 
-#: admin/admin-panel.php:863
+#: admin/admin-panel.php:882
 msgid "Move Selected Categories"
 msgstr "Mover las Categorías Seleccionadas"
 
-#: admin/admin-panel.php:866
+#: admin/admin-panel.php:885
 msgid "Select Move-To category"
 msgstr "Seleccionar la Categoría a la cual se moverán"
 
-#: admin/admin-panel.php:871
+#: admin/admin-panel.php:890
 msgid "Delete categories should do this with existing Ads"
 msgstr "Eliminar categorías debe hacer esto con los anuncios existenes"
 
-#: admin/admin-panel.php:872
+#: admin/admin-panel.php:891
 msgid "Move Ads to new category"
 msgstr "Mover anuncios a una nueva categoría"
 
-#: admin/admin-panel.php:873
+#: admin/admin-panel.php:892
 msgid "Delete Ads too"
 msgstr "Eliminar Anuncios también"
 
-#: admin/admin-panel.php:885 admin/admin-panel.php:897
+#: admin/admin-panel.php:904 admin/admin-panel.php:916
 msgid "Category ID"
 msgstr "ID  de Categoría"
 
-#: admin/admin-panel.php:887 admin/admin-panel.php:899
+#: admin/admin-panel.php:906 admin/admin-panel.php:918
 msgid "Category Name (Total Ads)"
 msgstr "Nombre de la Categoría (Total de Avisos)"
 
-#: admin/admin-panel.php:889 admin/admin-panel.php:901
+#: admin/admin-panel.php:908 admin/admin-panel.php:920
 msgid "Parent"
 msgstr "Padre"
 
-#: admin/admin-panel.php:891 admin/admin-panel.php:903
+#: admin/admin-panel.php:910 admin/admin-panel.php:922
 msgid "Order"
 msgstr "Orden"
 
-#: admin/admin-panel.php:893 admin/admin-panel.php:905
+#: admin/admin-panel.php:912 admin/admin-panel.php:924
 msgid "Action"
 msgstr "Acción"
 
-#: admin/admin-panel.php:1099
+#: admin/admin-panel.php:1118
 msgid "The new category was successfully added."
 msgstr "La nueva categoría fue agregada satisfactoriamente."
 
-#: admin/admin-panel.php:1118
+#: admin/admin-panel.php:1137
 msgid ""
 "Sorry but you cannot delete the default category. The default category can "
 "only be renamed"
 msgstr "Perdón pero no se puede eliminar esta Categoría. Las Categorías por defecto sólo pueden renombrarse."
 
-#: admin/admin-panel.php:1186
+#: admin/admin-panel.php:1205
 msgid "The category has been deleted"
 msgstr "La Categoría ha sido eliminada"
 
-#: admin/admin-panel.php:1198
+#: admin/admin-panel.php:1217
 msgid "Your category changes have been saved."
 msgstr "Los cambios realizados en las Categorías han sido guardados."
 
-#: admin/admin-panel.php:1205
+#: admin/admin-panel.php:1224
 msgid "No changes made to categories."
 msgstr "No se han hecho cambios sobre las Categorías"
 
-#: admin/admin-panel.php:1244
+#: admin/admin-panel.php:1263
 msgid ""
 "With the exception of any category that was being moved to itself, the "
 "categories have been moved"
 msgstr "A excepción de cualquier categoría que haya sido movida al mismo lugar, el resto de las categorías han sido movidas"
 
-#: admin/admin-panel.php:1248
+#: admin/admin-panel.php:1267
 msgid ""
 "The categories have not been moved because you did not indicate where you "
 "want the categories to be moved to"
 msgstr "Las Categorías no han podido moverse porque no indicaste a dónde deben moverse"
 
-#: admin/admin-panel.php:1343
+#: admin/admin-panel.php:1362
 msgid "The categories have been deleted"
 msgstr "Las Categorías han sido eliminadas"
 
@@ -2079,51 +2080,51 @@ msgstr "XML Sitemap"
 msgid "ZIP Code Search Module"
 msgstr "Módulo de búsqueda por código postal"
 
-#: awpcp.php:1041
+#: awpcp.php:1039
 msgid "This field is required."
 msgstr "Este campo es obligatorio."
 
-#: awpcp.php:1042 frontend/page-edit-ad.php:128 frontend/page-edit-ad.php:433
+#: awpcp.php:1040 frontend/page-edit-ad.php:128 frontend/page-edit-ad.php:433
 #: includes/settings-api.php:214
 msgid "Please enter a valid email address."
 msgstr "Por favor ingrese una dirección de correo electrónico válida."
 
-#: awpcp.php:1043 awpcp.php:1044
+#: awpcp.php:1041 awpcp.php:1042
 msgid "Please enter a valid URL."
 msgstr "Por favor ingrese una URL válida."
 
-#: awpcp.php:1045
+#: awpcp.php:1043
 msgid "Please enter a valid number."
 msgstr "Por favor ingrese un número."
 
-#: awpcp.php:1046
+#: awpcp.php:1044
 msgid "Please enter a valid amount."
 msgstr "Por favor ingresa una cantidad válida."
 
-#: awpcp.php:1056
+#: awpcp.php:1054
 msgctxt "[UI Datepicker] Display text for previous month link"
 msgid "&#x3c;Prev"
 msgstr "&#x3c;Anterior"
 
-#: awpcp.php:1058
+#: awpcp.php:1056
 msgctxt "[UI Datepicker] Display text for next month link"
 msgid "Next&#x3e;"
 msgstr "Siguiente&#x3e;"
 
-#: awpcp.php:1073
+#: awpcp.php:1071
 msgctxt "[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ..."
 msgid "0"
 msgstr "1"
 
-#: awpcp.php:1079
+#: awpcp.php:1077
 msgid "There are files currently being uploaded."
 msgstr "El sistema aún está cargando algunos archivos."
 
-#: awpcp.php:1080
+#: awpcp.php:1078
 msgid "There are files pending to be uploaded."
 msgstr "Algunos archivos están esperando para ser cargados."
 
-#: awpcp.php:1081
+#: awpcp.php:1079
 msgid "You haven't uploaded any images or files."
 msgstr "Aún no ha subido imágenes o archivos."
 
@@ -2656,11 +2657,11 @@ msgctxt "reply email"
 msgid "regarding"
 msgstr "al respecto"
 
-#: frontend/page-reply-to-ad.php:240
-msgid "Your message has been sent."
-msgstr "Tu mensaje ha sido enviado."
-
 #: frontend/page-reply-to-ad.php:243
+msgid "Your message has been sent. Return to <view-listing-link>."
+msgstr "Su mensaje ha sido enviado. Volver a <view-listing-link>."
+
+#: frontend/page-reply-to-ad.php:247
 msgid ""
 "There was a problem encountered during the attempt to send your message. "
 "Please try again and if the problem persists, please contact the system "
@@ -2748,45 +2749,45 @@ msgid ""
 "(the author) can see it."
 msgstr "Este anuncio está actualmente deshabilitado hasta que el administrador lo apruebe. Unicamente usted (el autor) y el administrador pueden verlo."
 
-#: frontend/placeholders.php:385
+#: frontend/placeholders.php:388
 msgid "Seller"
 msgstr "Vendedor"
 
-#: frontend/placeholders.php:408
+#: frontend/placeholders.php:411
 msgid "Visit Website"
 msgstr "Visitar el Sitio Web"
 
-#: frontend/placeholders.php:604
+#: frontend/placeholders.php:608
 msgid "This Ad has been viewed %d time."
 msgid_plural "This Ad has been viewed %d times."
 msgstr[0] "Este anuncio ha sido visto %d vez."
 msgstr[1] "Este anuncio ha sido visto %d veces."
 
-#: frontend/placeholders.php:608
+#: frontend/placeholders.php:612
 msgid "Total views: %d"
 msgstr "Vistas totales: %d"
 
-#: frontend/placeholders.php:659
+#: frontend/placeholders.php:663
 msgid "Phone"
 msgstr "Teléfono"
 
-#: frontend/placeholders.php:716
+#: frontend/placeholders.php:720
 msgid "Flag Ad"
 msgstr "Marcar anuncio"
 
-#: frontend/placeholders.php:731
+#: frontend/placeholders.php:735
 msgid "Tweet This"
 msgstr "Twitear esto"
 
-#: frontend/placeholders.php:762
+#: frontend/placeholders.php:766
 msgid "Share on Facebook"
 msgstr "Compartir en Facebook"
 
-#: frontend/shortcode.php:285
+#: frontend/shortcode.php:275
 msgid "Hi admin, you need to go to your dashboard and setup your classifieds."
 msgstr "Hola Administrador, tenés que ir a tu Panel de Control y configurar tus clasificados."
 
-#: frontend/shortcode.php:288
+#: frontend/shortcode.php:278
 msgid "You currently have no classifieds"
 msgstr "No tenés ningún Aviso Clasificado"
 
@@ -3252,7 +3253,7 @@ msgid ""
 "payment."
 msgstr "Por favor ingrese la información de pago en el formulario que está a continuacion para realziar su pago."
 
-#: frontend/templates/payments-billing-form.tpl.php:6 functions.php:558
+#: frontend/templates/payments-billing-form.tpl.php:6 functions.php:559
 msgid "Country"
 msgstr "País"
 
@@ -3292,7 +3293,7 @@ msgstr "Dirección Línea 2"
 msgid "State"
 msgstr "Estado"
 
-#: frontend/templates/payments-billing-form.tpl.php:101 functions.php:578
+#: frontend/templates/payments-billing-form.tpl.php:101 functions.php:579
 msgid "City"
 msgstr "Ciudad"
 
@@ -3556,49 +3557,49 @@ msgstr "Buscar por Categoría"
 msgid "Search"
 msgstr "Buscar"
 
-#: functions.php:489
+#: functions.php:490
 msgid "None"
 msgstr "Ninguna"
 
-#: functions.php:500
+#: functions.php:501
 msgctxt "comma separated list of things"
 msgid "%s and %d more."
 msgstr "%s y %d más."
 
-#: functions.php:559
+#: functions.php:560
 msgid "separate countries by commas"
 msgstr "Separar Países por comas"
 
-#: functions.php:568
+#: functions.php:569
 msgid "State/Province"
 msgstr "Estado/Provincia"
 
-#: functions.php:569
+#: functions.php:570
 msgid "separate states by commas"
 msgstr "Separar Estados/Provincias por comas"
 
-#: functions.php:579
+#: functions.php:580
 msgid "separate cities by commas"
 msgstr "Separar Ciudades por comas"
 
-#: functions.php:588
+#: functions.php:589
 msgid "County/Village/Other"
 msgstr "Distrito/Otro"
 
-#: functions.php:589
+#: functions.php:590
 msgid "separate counties by commas"
 msgstr "Separar Distritos por comas"
 
-#: functions.php:803
+#: functions.php:804
 msgid "-- Choose a Country --"
 msgstr "Elija un país"
 
-#: functions.php:1027
+#: functions.php:1028
 msgctxt "default blog title"
 msgid "Classifieds Website"
 msgstr "Página de Clasificados"
 
-#: functions.php:1509
+#: functions.php:1510
 msgid ""
 "The images or files with pale red background have been rejected by an "
 "administrator user. Likewise, files with a pale yellow background are "
@@ -3606,86 +3607,86 @@ msgid ""
 "cannot be shown in the frontend."
 msgstr "Las imágenes o archivos con un fondo rojo pálido han sido rechazados por un usuario administrador. De igual forma, los archivos con un fondo amarillo pálido están esperando ser aprobados. Los archivos que están esperando ser aprobados o los archivos rechazados, no pueden mostrarse en el sitio."
 
-#: functions.php:1528
+#: functions.php:1529
 msgid ""
 "This version of AWPCP %1$s module is not compatible with AWPCP version %2$s."
 " Please get AWPCP %1$s %3$s or newer!"
 msgstr "La versión del módulo %1$s no es compatible con la versión %2$s de AWPCP. Por favor descargue AWPCP %1$s %3$s o posterior."
 
-#: functions.php:1530 includes/helpers/class-modules-manager.php:245
+#: functions.php:1531 includes/helpers/class-modules-manager.php:245
 msgid "Error"
 msgstr "Error"
 
-#: functions.php:1867
+#: functions.php:1868
 msgid "No errors."
 msgstr "Sin errores."
 
-#: functions.php:1868
+#: functions.php:1869
 msgid "The file is larger than upload_max_filesize."
 msgstr "El tamaño del archivo es mayor que upload_max_filesize."
 
-#: functions.php:1869
+#: functions.php:1870
 msgid "The file is larger than form MAX_FILE_SIZE."
 msgstr "ElEl tamaño del archivo es mayor que MAX_FILE_SIZE."
 
-#: functions.php:1870
+#: functions.php:1871
 msgid "The file was only partially uploaded."
 msgstr "El archivo fue cargado parcialmente."
 
-#: functions.php:1871
+#: functions.php:1872
 msgid "No file was uploaded."
 msgstr "Ningún archivo fue cargado."
 
-#: functions.php:1872
+#: functions.php:1873
 msgid "Missing temporary directory."
 msgstr "El directorio temporarl no existe."
 
-#: functions.php:1873
+#: functions.php:1874
 msgid "Can't write file to disk."
 msgstr "No se puede escribir el archivo en disco."
 
-#: functions.php:1874
+#: functions.php:1875
 msgid "The file upload was stopped by extension."
 msgstr "La carga del archivo fue detenida por una extensión."
 
-#: functions.php:2089
+#: functions.php:2090
 msgid "Your Ad \"%s\" has been approved"
 msgstr "Su anuncio \"%s\" ha sido aprobado"
 
-#: functions.php:2105
+#: functions.php:2106
 msgid "Your Ad \"%s\" has been successfully updated"
 msgstr "Su anuncio \"%s\" ha sido actualizado exitosamente"
 
-#: functions.php:2126
+#: functions.php:2127
 msgid "Images on Ad \"%s\" are awaiting approval"
 msgstr "Las imágenes en el anuncio \"%s\" está esperando aprobación"
 
-#: functions.php:2128 includes/functions/notifications.php:189
+#: functions.php:2129 includes/functions/notifications.php:189
 msgid ""
 "Images on Ad \"%s\" are awaiting approval. You can approve the images going "
 "to the Manage Images section for that Ad and clicking the \"Enable\" button "
 "below each image. Click here to continue: %s."
 msgstr "Las imágenes en el anuncio \"%s\" están esperando aprobación. Usted puede aprobar las imágenes accediendo a la sección Administrar Imágenes para ese anuncio y haciendo click en el botón \"Aprobar\" debajo de cada imagen. Haga click aquí para continuar: %s."
 
-#: functions.php:2131
+#: functions.php:2132
 msgid "The Ad \"%s\" is awaiting approval"
 msgstr "El anuncio \"%s\" está esperando aprobación"
 
-#: functions.php:2133 includes/functions/notifications.php:194
+#: functions.php:2134 includes/functions/notifications.php:194
 msgid ""
 "The Ad \"%s\" is awaiting approval. You can approve the Ad going to the "
 "Manage Listings section and clicking the \"Enable\" action shown on top. "
 "Click here to continue: %s."
 msgstr "El anuncio \"%s\" está pendiente de aprobación. Usted puede aprobar el anuncio desde la sección Adminstrar Anuncios, haciendo click en la acción \"Aprobar\". Haga click aquí para continuar: %s."
 
-#: functions.php:2140 includes/functions/notifications.php:201
+#: functions.php:2141 includes/functions/notifications.php:201
 msgid ""
 "Additionally, You can approve the images going to the Manage Images section "
 "for that Ad and clicking the \"Enable\" button below each image. Click here "
 "to continue: %s."
 msgstr "Adicionalmente, usted aprobar las imágenes accediendo a la sección Administrar Imágenes para ese anuncio y haciendo click en el botón \"Aprobar\" debajo de cada imagen. Haga click aquí para continuar: %s."
 
-#: functions.php:2690
+#: functions.php:2691
 msgid "Email sent %s."
 msgstr "Correo electrónico enviado %s."
 
@@ -3822,10 +3823,6 @@ msgid ""
 "If you have uploaded images your images will not show up until an admin has "
 "approved them."
 msgstr "Si subiste imágenes asociadas a tu Aviso, no serán visibles hasta que el Administrador las apruebe"
-
-#: includes/class-listings-api.php:238
-msgid "Verify the email address used for Ad \"%s\""
-msgstr "Verificar la dirección de correo electrónico usada para el anuncio \"%s\""
 
 #: includes/class-listings-collection.php:43
 msgid "No Listing was found with id: %d."
@@ -5613,7 +5610,7 @@ msgid "Enable User Ad Management Panel"
 msgstr "Habilitar el panel de Usuario para la Administración de Anuncios"
 
 #: includes/settings/class-general-settings.php:28
-#: includes/settings-api.php:370
+#: includes/settings-api.php:377
 msgid "General Settings"
 msgstr "Opciones Generales"
 
@@ -6157,14 +6154,14 @@ msgstr "Si la opción <setting-name> no está seleccionada, los anuncios serán 
 msgid "Number of days before expired listings are deleted"
 msgstr "Número de días que deben transcurrir antes de eliminar los anuncios que expiraron"
 
-#: includes/settings/class-listings-moderation-settings.php:80
+#: includes/settings/class-listings-moderation-settings.php:81
 msgid ""
 "Email verification was disabled because you enabled Require Registration. "
 "Registered users don't need to verify the email address used for contact "
 "information."
 msgstr "La verificación de la dirección de correo fue deshabilitada porque usted habilitó Requerir Registro. Los usuarios registrados no tienen que verificar la dirección de correo electrónico utilizada en la información de contacto."
 
-#: includes/settings/class-listings-moderation-settings.php:91
+#: includes/settings/class-listings-moderation-settings.php:92
 msgid ""
 "Email verification was not enabled because Require Registration is on. "
 "Registered users don't need to verify the email address used for contact "
@@ -7101,28 +7098,54 @@ msgid ""
 msgstr "Contenido para el mensaje de correo enviado cuando alguien solicita el reenvío de sus claves de acceso"
 
 #: includes/settings-api.php:330
+msgid "Verify Email Message"
+msgstr "Mensaje de Verificación"
+
+#: includes/settings-api.php:332
+msgid "Subject for Verification email"
+msgstr "Asunto para el mensaje de verificación"
+
+#: includes/settings-api.php:332
+msgid "Verify the email address used for Ad $title"
+msgstr "Verifique la dirección de correo usada para el anuncio $title"
+
+#: includes/settings-api.php:332
+msgid "Subject line for email sent out to verify the email address."
+msgstr "Asunto para el mensaje enviado para verificar la dirección de correo electrónico."
+
+#: includes/settings-api.php:333
+msgid "Body for Verification email"
+msgstr "Contenido para el mensaje de verificación"
+
+#: includes/settings-api.php:333
+msgid ""
+"You can use the following placeholders to personalize the body of the email:"
+" $title, $author_name,$verification_email, $website_name, $website_url."
+msgstr "Puede usar los siguientes marcadores para personalizar el contenido del correo: $title, $author_name, $verification_email, $website_name, $website_url."
+
+#: includes/settings-api.php:337
 msgid "Incomplete Payment Message"
 msgstr "Mensaje de pago incompleto"
 
-#: includes/settings-api.php:332
+#: includes/settings-api.php:339
 msgid "Subject for Incomplete Payment email"
 msgstr "Asunto para el mensaje Pago Incompleto"
 
-#: includes/settings-api.php:332
+#: includes/settings-api.php:339
 msgid "There was a problem processing your payment"
 msgstr "Ocurrió un error al procesar su pago"
 
-#: includes/settings-api.php:332
+#: includes/settings-api.php:339
 msgid ""
 "Subject line for email sent out when the payment processing does not "
 "complete"
 msgstr "Asunto para el mensaje enviado cuando el proceso de un pago no se completa"
 
-#: includes/settings-api.php:333
+#: includes/settings-api.php:340
 msgid "Body for Incomplete Payment email"
 msgstr "Contenido para el mensaje Pago Incompleto"
 
-#: includes/settings-api.php:333
+#: includes/settings-api.php:340
 msgid ""
 "There was a problem encountered during your attempt to submit payment. If "
 "funds were removed from the account you tried to use to make a payment "
@@ -7130,283 +7153,283 @@ msgid ""
 " assistance."
 msgstr "Ocurrió un problema durante su intento de enviar un pago. Si los fondos fueron removidos de la cuenta que usted uso para hacer el pago, por favor contacte al administrador del sitio o al servicio al cliente en el sitio de pagos."
 
-#: includes/settings-api.php:333
+#: includes/settings-api.php:340
 msgid ""
 "Message body text for email sent out when the payment processing does not "
 "complete"
 msgstr "Contenido para el mensaje enviado cuando el proceso de un pago no se completa"
 
-#: includes/settings-api.php:337
+#: includes/settings-api.php:344
 msgid "Renew Ad Message"
 msgstr "Mensaje de Renovación de Anuncio"
 
-#: includes/settings-api.php:339
+#: includes/settings-api.php:346
 msgid "Subject for Renew Ad email"
 msgstr "Asunto para el mensaje Renovar Anuncio"
 
-#: includes/settings-api.php:339
+#: includes/settings-api.php:346
 msgid "Your classifieds listing Ad will expire in %d days."
 msgstr "Su anuncio clasificado va a expirar en %d días."
 
-#: includes/settings-api.php:339
+#: includes/settings-api.php:346
 msgid "Subject line for email sent out when an Ad is about to expire."
 msgstr "Asunto para el mensaje enviado cuando un anuncio etá a punto de expirar."
 
-#: includes/settings-api.php:340 includes/settings-api.php:347
+#: includes/settings-api.php:347 includes/settings-api.php:354
 msgid "Body for Renew Ad email"
 msgstr "Contenido para el mensaje Renovar Anuncio"
 
-#: includes/settings-api.php:340
+#: includes/settings-api.php:347
 msgid ""
 "This is an automated notification that your Classified Ad will expire in %d "
 "days."
 msgstr "Esta es una notificación automática para informarle su anuncio clasificado va a expirar en %d días."
 
-#: includes/settings-api.php:340
+#: includes/settings-api.php:347
 msgid ""
 "Message body text for email sent out when an Ad is about to expire. Use %d "
 "as placeholder for the number of days before the Ad expires."
 msgstr "Cuerpo del mensaje para el mensaje enviado cuando un anuncio está a punto de expirar. Use %d como un marcador para mostrar el número de días antes de que un anuncio expire."
 
-#: includes/settings-api.php:344
+#: includes/settings-api.php:351
 msgid "Ad Renewed Message"
 msgstr "Mensaje de Renovación de Anuncio"
 
-#: includes/settings-api.php:346
+#: includes/settings-api.php:353
 msgid "Subject for Ad Renewed email"
 msgstr "Asunto para el mensaje Anuncio Renovado"
 
-#: includes/settings-api.php:346
+#: includes/settings-api.php:353
 msgid "Your classifieds listing \"%s\" has been successfully renewed."
 msgstr "Su anuncio clasificado \"%s\" ha sido renovado con éxito."
 
-#: includes/settings-api.php:346
+#: includes/settings-api.php:353
 msgid "Subject line for email sent out when an Ad is successfully renewed."
 msgstr "Asunto para el mensaje enviado cuando un anuncio es renovado exitosamente."
 
-#: includes/settings-api.php:347
+#: includes/settings-api.php:354
 msgid ""
 "Your classifieds listing Ad has been successfully renewed. More information "
 "below:"
 msgstr "Su anuncio clasificado ha sido renovado exitosamente. Más información debajo:"
 
-#: includes/settings-api.php:347
+#: includes/settings-api.php:354
 msgid ""
 "Message body text for email sent out when an Ad is successfully renewed. "
 msgstr "Asunto para el mensaje enviado cuando un anuncio es renovado exitosamente."
 
-#: includes/settings-api.php:351
+#: includes/settings-api.php:358
 msgid "Ad Expired Message"
 msgstr "Mensaje de Anuncio expirado"
 
-#: includes/settings-api.php:353
+#: includes/settings-api.php:360
 msgid "Subject for Ad Expired email"
 msgstr "Asunto para el mensaje Anuncio Expiró"
 
-#: includes/settings-api.php:353
+#: includes/settings-api.php:360
 msgid "Your classifieds listing at %s has expired"
 msgstr "Su anuncio clasficado \"%s\" expiró."
 
-#: includes/settings-api.php:353
+#: includes/settings-api.php:360
 msgid "Subject line for email sent out when an ad has auto-expired"
 msgstr "Asunto para el mensaje enviado cuando un anuncio expira"
 
-#: includes/settings-api.php:354
+#: includes/settings-api.php:361
 msgid "Body for Ad Expired email"
 msgstr "Contenido para el mensaje Anuncio Expiró"
 
-#: includes/settings-api.php:354
+#: includes/settings-api.php:361
 msgid "This is an automated notification that your Classified Ad has expired."
 msgstr "Esta es una notificación automática para informarle que su anuncio clasificado expiró."
 
-#: includes/settings-api.php:354
+#: includes/settings-api.php:361
 msgid "Message body text for email sent out when an ad has auto-expired"
 msgstr "Contenido para el mensaje enviado cuando un anuncio expira"
 
-#: includes/settings-api.php:358
+#: includes/settings-api.php:365
 msgid "Advanced Email Configuration"
 msgstr "Configuración de correo electrónico avanzada"
 
-#: includes/settings-api.php:360
+#: includes/settings-api.php:367
 msgid "Enable external SMTP server"
 msgstr "Usar un servidor SMTP externo"
 
-#: includes/settings-api.php:360
+#: includes/settings-api.php:367
 msgid "Enabled external SMTP server (if emails not processing normally)."
 msgstr "Usar un servidor SMTP externo (si los mensajes no se están procesando normalmente)."
 
-#: includes/settings-api.php:361
+#: includes/settings-api.php:368
 msgid "SMTP host"
 msgstr "SMTP host"
 
-#: includes/settings-api.php:361
+#: includes/settings-api.php:368
 msgid "SMTP host (if emails not processing normally)."
 msgstr "Dirección del servidor SMTP."
 
-#: includes/settings-api.php:362
+#: includes/settings-api.php:369
 msgid "SMTP port"
 msgstr "Puerto SMTP"
 
-#: includes/settings-api.php:362
+#: includes/settings-api.php:369
 msgid "SMTP port (if emails not processing normally)."
 msgstr "Puerto del servidor SMTP."
 
-#: includes/settings-api.php:363
+#: includes/settings-api.php:370
 msgid "SMTP username"
 msgstr "Usuario SMTP"
 
-#: includes/settings-api.php:363
+#: includes/settings-api.php:370
 msgid "SMTP username (if emails not processing normally)."
 msgstr "Nombre de usuario ¡paal servidor SMTP."
 
-#: includes/settings-api.php:364
+#: includes/settings-api.php:371
 msgid "SMTP password"
 msgstr "Contraseña SMTP"
 
-#: includes/settings-api.php:364
+#: includes/settings-api.php:371
 msgid "SMTP password (if emails not processing normally)."
 msgstr "Contraseña del servidor SMTP."
 
-#: includes/settings-api.php:372
+#: includes/settings-api.php:379
 msgid "Send Ads to Facebook Automatically"
 msgstr "Enviar anuncios a Facebook automáticamente"
 
-#: includes/settings-api.php:372
+#: includes/settings-api.php:379
 msgid ""
 "If checked, Ads will be posted to Facebook shortly after they are posted, "
 "enabled or edited, whichever occurs first. Ads will be posted only once. "
 "Please note that disabled Ads cannot be posted to Facebook."
 msgstr "Si está seleccionado, los anuncios serán enviados a Facebook poco después de que sean publicados, habilitados o editados, lo que ocurra primero. Los anuncios serán publicados solo una vez. Por favor tenga en cuenta que los anuncios deshabilitados no pueden ser enviados a Facebook."
 
-#: includes/settings-api.php:563
+#: includes/settings-api.php:570
 msgid "<module-name> License Key"
 msgstr "Licencia para <module-name>"
 
-#: includes/settings-api.php:572
+#: includes/settings-api.php:579
 msgid "Licenses"
 msgstr "Licencias"
 
-#: includes/settings-api.php:712
+#: includes/settings-api.php:719
 msgid ""
 "Require Registration setting was enabled automatically because you activated"
 " the User Ad Management panel."
 msgstr "Opción Requerir registro se habilita automáticamente porque se ha activado el panel de Administración de Anuncios de Usuarios.\t"
 
-#: includes/settings-api.php:729
+#: includes/settings-api.php:736
 msgid ""
 "Akismet SPAM control cannot be enabled because Akismet plugin is not "
 "installed or activated."
 msgstr "No se puede activar el control de SPAM Askimet porque el plugin Askimet no está instalado o activado."
 
-#: includes/settings-api.php:733
+#: includes/settings-api.php:740
 msgid ""
 "Akismet SPAM control cannot be enabled because Akismet is not properly "
 "configured."
 msgstr "No se puede activar el control de SPAM Askimet porque el plugin Askimet no ha sido configurado adecuadamente."
 
-#: includes/settings-api.php:756
+#: includes/settings-api.php:763
 msgid ""
 "reCAPTCHA can't be used because the public key and private key settings are "
 "required for reCAPTCHA to work properly."
 msgstr "reCAPTCHA no puede user usado por la opción clave pública y clave privada es necesaria para que reCAPTCHA funcione adecuadamente."
 
-#: includes/settings-api.php:758
+#: includes/settings-api.php:765
 msgid ""
 "reCAPTCHA can't be used because the public key setting is required for "
 "reCAPTCHA to work properly."
 msgstr "reCAPTCHA no puede user usado por la opción clave pública es necesaria para que reCAPTCHA funcione adecuadamente."
 
-#: includes/settings-api.php:760
+#: includes/settings-api.php:767
 msgid ""
 "reCAPTCHA can't be used because the private key setting is required for "
 "reCAPTCHA to work properly."
 msgstr "reCAPTCHA no puede user usado por la opción clave privada es necesaria para que reCAPTCHA funcione adecuadamente."
 
-#: includes/settings-api.php:773
+#: includes/settings-api.php:780
 msgid ""
 "User Ad Management panel was automatically deactivated because you disabled "
 "Require Registration setting."
 msgstr "El Panel de Administración de Anuncios de Usuarios fue desactivada automáticamente debido a que desactivó opción Requerir registro."
 
-#: includes/settings-api.php:778
+#: includes/settings-api.php:785
 msgid ""
 "Credit System was automatically disabled because you disabled Require "
 "Registration setting."
 msgstr "El Sistema de Crédito fue desactivado automáticamente porque usted desactivo la opción que requiere que todos los usuarios estén registrados."
 
-#: includes/settings-api.php:794
+#: includes/settings-api.php:801
 msgid ""
 "There is a problem with the PayPal Currency Code you have entered. It does "
 "not match any of the codes in our list of curencies supported by PayPal."
 msgstr "Hay un problema con el código de moneda para PayPal que ingresó. No coincide con ninguno de los códigos en la lista de las monedas soportadas."
 
-#: includes/settings-api.php:795
+#: includes/settings-api.php:802
 msgid "The available currency codes are"
 msgstr "Los códigos de moneda que están disponibles son"
 
-#: includes/settings-api.php:804
+#: includes/settings-api.php:811
 msgid ""
 "Require Registration setting was enabled automatically because you activated"
 " the Credit System."
 msgstr "La opción para requerir el registro de usuarios fue habilitado automáticamente porque usted activó el Sistema de Crédito."
 
-#: includes/settings-api.php:809
+#: includes/settings-api.php:816
 msgid ""
 "Charge Listing Fee setting was enabled automatically because you activated "
 "the Credit System."
 msgstr "La opción para cobrar por los anuncios fue habilitada automáticamente porque usted activó el Sistema de Crédito."
 
-#: includes/settings-api.php:815
+#: includes/settings-api.php:822
 msgid ""
 "Credit System was disabled automatically because you disabled Charge Listing"
 " Fee."
 msgstr "El Sistema de Crédito fue desactivada automáticamente porque usted desactivo la opción para cobrar por los anuncios."
 
-#: includes/settings-api.php:1047
+#: includes/settings-api.php:1054
 msgid "Deactivate"
 msgstr "Desactivar"
 
-#: includes/settings-api.php:1048
+#: includes/settings-api.php:1055
 msgid "active"
 msgstr "activa"
 
-#: includes/settings-api.php:1048 includes/settings-api.php:1051
-#: includes/settings-api.php:1061 includes/settings-api.php:1063
-#: includes/settings-api.php:1065
+#: includes/settings-api.php:1055 includes/settings-api.php:1058
+#: includes/settings-api.php:1068 includes/settings-api.php:1070
+#: includes/settings-api.php:1072
 msgid "Status: <license-status>"
 msgstr "Estado: <license-status>"
 
-#: includes/settings-api.php:1050 includes/settings-api.php:1053
+#: includes/settings-api.php:1057 includes/settings-api.php:1060
 msgid "Activate"
 msgstr "Activar"
 
-#: includes/settings-api.php:1051
+#: includes/settings-api.php:1058
 msgid "inactive"
 msgstr "inactiva"
 
-#: includes/settings-api.php:1056
+#: includes/settings-api.php:1063
 msgid ""
 "Click the button above to check the status of your license. Please <contact-"
 "link>contact customer support</a> if you think the reported status is wrong."
 msgstr "Presione el botón que está arriba para verificar el estado de su licencia. Por favor <contact-link>contacte el soporte al cliente</a> si piensa que el estado reportado es incorrecto."
 
-#: includes/settings-api.php:1061
+#: includes/settings-api.php:1068
 msgid "expired"
 msgstr "expiró"
 
-#: includes/settings-api.php:1063
+#: includes/settings-api.php:1070
 msgid "disabled"
 msgstr "desahibilitado"
 
-#: includes/settings-api.php:1065
+#: includes/settings-api.php:1072
 msgid "unknown"
 msgstr "desconocido"
 
-#: includes/settings-api.php:1081
+#: includes/settings-api.php:1088
 msgid "Documentation on date and time formatting"
 msgstr "Documentación sobre el formato de fecha y hora"
 
-#: includes/settings-api.php:1102
+#: includes/settings-api.php:1109
 msgid "Setting <setting-name> not available."
 msgstr "La opción <setting-name> no está disponible."
 
