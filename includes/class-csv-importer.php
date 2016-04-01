@@ -246,6 +246,8 @@ class AWPCP_CSV_Importer {
 
 		// accepted columns are standard Ads columns + extra fields columns
 		$accepted = array_merge(array_keys($this->types), array_keys($this->extra_fields), $this->ignored);
+        $accepted = apply_filters( 'awpcp-csv-importer-accepted-columns', $accepted );
+
 		$unknown = array_diff($header, $accepted);
 
 		if (!empty($unknown)) {
@@ -429,6 +431,10 @@ class AWPCP_CSV_Importer {
 			if ( !empty( $images ) ) {
 				$this->save_images( $images, $inserted_id, $row, $errors );
 			}
+
+            if ( ! $test_import ) {
+                do_action( 'awpcp-listing-imported', $inserted_id, $data );
+            }
 
 			$this->ads_imported++;
 		}
