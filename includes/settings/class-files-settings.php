@@ -75,8 +75,12 @@ class AWPCP_FilesSettings {
 
         $settings->add_setting( $key, 'display-thumbnails-in-columns', __( 'Number of columns of thumbnails to show in Show Ad page.', 'another-wordpress-classifieds-plugin' ), 'select', 0, __( 'Zero means there will be as many thumbnails as possible per row.', 'another-wordpress-classifieds-plugin' ), array( 'options' => $options ) );
 
-        $settings->add_setting( $key, 'hide-noimage-placeholder', __( 'Hide No Image Placeholder ', 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, '' );
-        $settings->add_setting( $key, 'noimage-placeholder-link', __( 'No Image Placeholder Link', 'another-wordpress-classifieds-plugin' ), 'textfield', sprintf( '%s/adhasnoimage.png', $awpcp_imagesurl ), __( 'To hide placeholder image on listing pages remove the image link above', 'another-wordpress-classifieds-plugin' ) );
+        $settings->add_setting( $key, 'hide-noimage-placeholder', __( 'Hide No Image placeholder', 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, '' );
+        $settings->add_setting( $key, 'override-noimage-placeholder', __( 'Override the No Image placeholder image with my own', 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, '' );
+        $settings->add_setting( $key, 'noimage-placeholder-link', __( 'No Image Placeholder Link', 'another-wordpress-classifieds-plugin' ), 'textfield', sprintf( '%s/adhasnoimage.png', $awpcp_imagesurl ), __( 'Put the URL of an existing image on your site to use.  The size of this image should match the thumbnail size settings on this tab', 'another-wordpress-classifieds-plugin' ) );
+
+        $settings->add_behavior( $key, 'override-noimage-placeholder', 'shownUnless', 'hide-noimage-placeholder' );
+        $settings->add_behavior( $key, 'noimage-placeholder-link', 'enabledIf', 'override-noimage-placeholder' );
         // Section: Image File Size Settings
 
         $key = $settings->add_section($group, __('Image File Size', 'another-wordpress-classifieds-plugin'), 'image-file-size', 30, array($settings, 'section'));
