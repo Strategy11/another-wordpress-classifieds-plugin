@@ -152,8 +152,8 @@ class AWPCP_Image_Placeholders {
 
 			// check if user has enabled override for no image placeholder
 			if ( get_awpcp_option( 'override-noimage-placeholder', 1 ) ) {
-				// get saved no image placeholer link
-				$thumbnail = get_awpcp_option( 'noimage-placeholder-link' );
+				// get saved no image placeholer url
+				$thumbnail = get_awpcp_option( 'noimage-placeholder-url' );
 
 			}else {
 				$thumbnail = sprintf( '%s/adhasnoimage.png', $awpcp_imagesurl );
