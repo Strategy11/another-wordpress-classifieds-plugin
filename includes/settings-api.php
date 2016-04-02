@@ -924,7 +924,17 @@ class AWPCP_Settings_API {
 		$html = '<input type="hidden" value="0" name="awpcp-options['. $setting->name .']" />';
 		$html.= '<input id="'. $setting->name . '" value="1" ';
 		$html.= 'type="checkbox" name="awpcp-options[' . $setting->name . ']" ';
-		$html.= $value ? 'checked="checked" />' : ' />';
+
+		if ( $value ) {
+			$html.= 'checked="checked" ';
+		}
+
+		if ( ! empty( $setting->args['behavior'] ) ) {
+			$html.= 'awpcp-setting="' . esc_attr( json_encode( $setting->args['behavior'] ) ) . '" />';
+		} else {
+			$html.= '/>';
+		}
+
 		$html.= '<label for="'. $setting->name . '">';
 		$html.= '&nbsp;<span class="description">' . $setting->helptext . '</span>';
 		$html.= '</label>';
