@@ -80,7 +80,9 @@ class AWPCP_FilesSettings {
         $settings->add_setting( $key, 'noimage-placeholder-url', __( 'No Image Placeholder URL', 'another-wordpress-classifieds-plugin' ), 'textfield', sprintf( '%s/adhasnoimage.png', $awpcp_imagesurl ), __( 'Put the URL of an existing image on your site to use.  The size of this image should match the thumbnail size settings on this tab', 'another-wordpress-classifieds-plugin' ) );
 
         $settings->add_behavior( $key, 'override-noimage-placeholder', 'shownUnless', 'hide-noimage-placeholder' );
+        $settings->add_behavior( $key, 'noimage-placeholder-url', 'shownUnless', 'hide-noimage-placeholder' );
         $settings->add_behavior( $key, 'noimage-placeholder-url', 'enabledIf', 'override-noimage-placeholder' );
+
         // Section: Image File Size Settings
 
         $key = $settings->add_section($group, __('Image File Size', 'another-wordpress-classifieds-plugin'), 'image-file-size', 30, array($settings, 'section'));
