@@ -6,7 +6,7 @@
 
 <?php _e("Listing URL", 'another-wordpress-classifieds-plugin') ?>: <?php echo urldecode( url_showad( $ad->ID ) ); ?>
 
-<?php _e("Listing ID", 'another-wordpress-classifieds-plugin') ?>: <?php echo $ad->I; ?>
+<?php _e("Listing ID", 'another-wordpress-classifieds-plugin') ?>: <?php echo $ad->ID; ?>
 
 <?php _e("Listing Edit Email", 'another-wordpress-classifieds-plugin') ?>: <?php echo $contact_email; ?>
 
