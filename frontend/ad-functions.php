@@ -160,9 +160,12 @@ function awpcp_ad_renewed_user_email( $ad ) {
  * @since 3.0.2
  */
 function awpcp_ad_renewed_admin_email( $ad, $body ) {
+	$subject = __( 'The classifieds listing "%s" has been successfully renewed.', 'another-wordpress-classifieds-plugin' );
+	$subject = sprintf( $subject, awpcp_listing_renderer()->get_listing_title( $ad ) );
+
 	$mail = new AWPCP_Email;
 	$mail->to[] = awpcp_admin_email_to();
-	$mail->subject = sprintf( __( 'The classifieds listing "%s" has been successfully renewed.', 'another-wordpress-classifieds-plugin' ), $ad->ad_title );
+	$mail->subject = $subject;
 
 	$template = AWPCP_DIR . '/frontend/templates/email-ad-renewed-success-admin.tpl.php';
 	$mail->prepare( $template, compact( 'body' ) );
