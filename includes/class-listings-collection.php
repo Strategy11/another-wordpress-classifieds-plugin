@@ -56,8 +56,7 @@ class AWPCP_ListingsCollection {
         $identifiers = array_filter( array_map( 'intval', $identifiers ) );
 
         if ( count( $identifiers ) > 0 ) {
-            $where = 'ad_id IN ( ' . implode( ',', $identifiers ) . ' )';
-            return AWPCP_Ad::query( array( 'where' => $where ) );
+            return $this->find_listings( array( 'post__in' => $identifiers ) );
         } else {
             return array();
         }
