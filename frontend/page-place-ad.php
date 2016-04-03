@@ -1196,7 +1196,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
     }
 
     public function get_images_config( $ad ) {
-        $payment_term = $this->payments->get_ad_payment_term($ad);
+        $payment_term = $this->listing_renderer->get_payment_term( $ad );
 
         $images_allowed = awpcp_get_property( $payment_term, 'images', get_awpcp_option( 'imagesallowedfree', 0 ) );
         $images_uploaded = $this->attachments->count_attachments_of_type( 'image', array( 'post_parent' => $ad->ID ) );

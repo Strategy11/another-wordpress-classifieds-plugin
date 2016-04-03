@@ -5,7 +5,7 @@ function awpcp_listing_upload_limits() {
         $GLOBALS['awpcp-listing-upload-limits'] = new AWPCP_ListingUploadLimits(
             awpcp_attachments_collection(),
             awpcp_file_types(),
-            awpcp_payments_api(),
+            awpcp_listing_renderer(),
             awpcp()->settings
         );
     }
@@ -17,13 +17,13 @@ class AWPCP_ListingUploadLimits {
 
     private $attachments;
     private $file_types;
-    private $payments;
+    private $listing_renderer;
     private $settings;
 
-    public function __construct( $attachments, $file_types, $payments, $settings ) {
+    public function __construct( $attachments, $file_types, $listing_renderer, $settings ) {
         $this->attachments = $attachments;
         $this->file_types = $file_types;
-        $this->payments = $payments;
+        $this->listing_renderer = $listing_renderer;
         $this->settings = $settings;
     }
 
@@ -87,7 +87,7 @@ class AWPCP_ListingUploadLimits {
     }
 
     public function get_listing_upload_limits( $listing ) {
-        $payment_term = $this->payments->get_ad_payment_term( $listing );
+        $payment_term = $this->listing_renderer->get_payment_term( $listing );
 
         if ( awpcp_are_images_allowed() ) {
             $upload_limits = array( 'images' => $this->get_listing_upload_limits_for_images( $listing, $payment_term ) );

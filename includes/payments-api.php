@@ -230,10 +230,6 @@ class AWPCP_PaymentsAPI {
         return $terms;
     }
 
-    public function get_ad_payment_term($ad) {
-        return $this->get_payment_term($ad->adterm_id, $ad->payment_term_type);
-    }
-
     public function payment_term_requires_payment($term) {
         $credits = intval($this->credit_system_enabled() ? $term->credits : 0);
         $money = floatval($term->price);
