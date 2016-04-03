@@ -133,6 +133,12 @@ class AWPCP_ListingsAPI {
     }
 
     public function update_listing( $listing, $listing_data ) {
+        $listing_data = wp_parse_args( $listing_data, array(
+            'post_fields' => array(),
+            'terms' => array(),
+            'metadata' => array(),
+        ) );
+
         $post_fields = wp_parse_args( $listing_data['post_fields'], array(
             'ID' => $listing->ID,
         ) );
