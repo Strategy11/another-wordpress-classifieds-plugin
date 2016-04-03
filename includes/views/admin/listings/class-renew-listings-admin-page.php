@@ -56,7 +56,7 @@ class AWPCP_RenewListingsAdminPage extends AWPCP_ListingActionAdminPage {
             throw new AWPCP_Exception( __( "The Ad hasn't expired yet and is not about to expire.", 'another-wordpress-classifieds-plugin' ) );
         }
 
-        $term = $this->payments->get_ad_payment_term( $listing );
+        $term = $this->listing_renderer->get_payment_term( $listing );
 
         if ( ! is_object( $term ) ) {
             throw new AWPCP_Exception( __( "We couldn't find a valid payment term associated with this Ad.", 'another-wordpress-classifieds-plugin' ) );
@@ -72,7 +72,7 @@ class AWPCP_RenewListingsAdminPage extends AWPCP_ListingActionAdminPage {
         $this->successful = $this->successful + 1;
 
         // MOVE inside Ad::renew() ?
-        do_action( 'awpcp-renew-ad', $listing->ad_id, null );
+        do_action( 'awpcp-renew-ad', $listing->ID, null );
     }
 
     private function show_results() {

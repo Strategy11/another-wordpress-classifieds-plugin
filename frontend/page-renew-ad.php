@@ -2,6 +2,22 @@
 
 require_once(AWPCP_DIR . '/frontend/page-place-ad.php');
 
+function awpcp_renew_listing_page() {
+    return new AWPCP_EditAdPage(
+        'awpcp-renew-ad',
+        null,
+        awpcp_attachments_collection(),
+        awpcp_listing_upload_limits(),
+        awpcp_listing_authorization(),
+        awpcp_listing_renderer(),
+        awpcp_listings_api(),
+        awpcp_listings_collection(),
+        awpcp_payments_api(),
+        awpcp_template_renderer(),
+        awpcp_wordpress(),
+        awpcp_request()
+    );
+}
 
 /**
  * @since  2.1.4
@@ -11,10 +27,6 @@ class AWPCP_RenewAdPage extends AWPCP_Place_Ad_Page {
     protected $context = 'renew-ad';
 
     public $messages = array();
-
-    public function __construct($page='awpcp-renew-ad', $title=null) {
-        parent::__construct($page, $title);
-    }
 
     protected function get_panel_url() {
         if (awpcp_current_user_is_moderator() || !get_awpcp_option('enable-user-panel'))
@@ -26,14 +38,21 @@ class AWPCP_RenewAdPage extends AWPCP_Place_Ad_Page {
         if (!isset($this->ad))
             $this->ad = null;
 
-        if (is_null($this->ad))
-            $this->ad = AWPCP_Ad::find_by_id(awpcp_request_param(is_admin() ? 'id' : 'ad_id'));
+        if ( ! is_null( $this->ad ) ) {
+            return $this->ad;
+        }
+
+        try {
+            $this->ad = $this->listings->get( $this->request->param( is_admin() ? 'id' : 'ad_id' ) );
+        } catch ( AWPCP_Exception $e ) {
+            $this->ad = null;
+        }
 
         return $this->ad;
     }
 
     public function verify_renew_ad_hash($ad) {
-        return awpcp_verify_renew_ad_hash( $ad->ad_id, awpcp_request_param( 'awpcprah' ) );
+        return awpcp_verify_renew_ad_hash( $ad->ID, $this->request->param( 'awpcprah' ) );
     }
 
     protected function _dispatch($default=null) {
@@ -42,7 +61,7 @@ class AWPCP_RenewAdPage extends AWPCP_Place_Ad_Page {
         if (is_null($ad)) {
             $message = __("The specified Ad doesn't exist or you reached this page directly, without specifying the Ad ID.", 'another-wordpress-classifieds-plugin');
             return $this->render('content', awpcp_print_error($message));
-        } else if (!$ad->is_about_to_expire() && !$ad->has_expired()) {
+        } else if ( ! $this->listing_renderer->is_about_to_expire( $ad ) && ! $this->listing_renderer->has_expired( $ad ) ) {
             $message = __("The specified Ad doesn't need to be renewed.", 'another-wordpress-classifieds-plugin');
             return $this->render('content', awpcp_print_error($message));
         } else if ( !$this->verify_renew_ad_hash( $ad ) ) {
@@ -54,7 +73,7 @@ class AWPCP_RenewAdPage extends AWPCP_Place_Ad_Page {
 
         if (!is_null($transaction) && $transaction->get('context') != $this->context) {
             $page_name = awpcp_get_page_name('renew-ad-page-name');
-            $page_url = awpcp_get_renew_ad_url( $ad->ad_id );
+            $page_url = awpcp_get_renew_ad_url( $ad->ID );
             $message = __('You are trying to post an Ad using a transaction created for a different purpose. Pelase go back to the <a href="%s">%s</a> page.<br>If you think this is an error please contact the administrator and provide the following transaction ID: %s', 'another-wordpress-classifieds-plugin');
             $message = sprintf($message, $page_url, $page_name, $transaction->id);
             return $this->render('content', awpcp_print_error($message));
@@ -66,7 +85,7 @@ class AWPCP_RenewAdPage extends AWPCP_Place_Ad_Page {
             if ( ! $transaction->was_payment_successful() ) {
                 $message = __('You can\'t renew your Ad at this time because the payment associated with this transaction failed (see reasons below).', 'another-wordpress-classifieds-plugin');
                 $message = awpcp_print_message($message);
-                $message = $message . awpcp_payments_api()->render_transaction_errors($transaction);
+                $message = $message . $this->payments->render_transaction_errors( $transaction );
                 return $this->render('content', $message);
             }
 
@@ -103,7 +122,7 @@ class AWPCP_RenewAdPage extends AWPCP_Place_Ad_Page {
     }
 
     protected function get_renew_ad_page_implementation($ad) {
-        $term = awpcp_payments_api()->get_ad_payment_term($ad);
+        $term = $this->listing_renderer->get_payment_term( $ad );
 
         // the payment term doesn't exists or is not available
         if (is_null($term)) return null;
@@ -120,15 +139,15 @@ class AWPCP_RenewAdPage extends AWPCP_Place_Ad_Page {
         if (is_admin()) {
             return sprintf('<a href="%1$s">%2$s</a>', $this->get_panel_url(), __('Return to Listings', 'another-wordpress-classifieds-plugin'));
         } else {
-            return sprintf('<a href="%1$s">%2$s</a>', url_showad($ad->ad_id), __('You can see your Ad here', 'another-wordpress-classifieds-plugin'));
+            $title = __( 'You can see your Ad here', 'another-wordpress-classifieds-plugin' );
+            return sprintf( '<a href="%1$s">%2$s</a>', url_showad( $ad->ID ), $title );
         }
     }
 
     public function render_finish_step($ad) {
-        $return = $this->get_return_link($ad);
-
-        $response = __("The Ad has been successfully renewed. New expiration date is %s. ", 'another-wordpress-classifieds-plugin');
-        $response = sprintf("%s %s.", sprintf($response, $ad->get_end_date()), $return);
+        $response = __( "The Ad has been successfully renewed. New expiration date is %s.", 'another-wordpress-classifieds-plugin' );
+        $response = sprintf( $response, $this->listing_renderer->get_end_date( $ad ) );
+        $response = sprintf( "%s %s.", $response, $this->get_return_link( $ad ) );
 
         $params = compact('response');
         $template = AWPCP_DIR . '/frontend/templates/page-renew-ad-finish-step.tpl.php';
@@ -159,8 +178,7 @@ class AWPCP_RenewAdPageImplementation {
         $ad = $this->page->get_ad();
         $transaction = $this->page->get_transaction(true);
 
-        $payments = awpcp_payments_api();
-        $fee = $payments->get_ad_payment_term($ad);
+        $fee = $this->payments->get_ad_payment_term( $ad );
 
         $form_errors = array();
         $transaction_errors = array();
@@ -168,14 +186,14 @@ class AWPCP_RenewAdPageImplementation {
         // verify pre-conditions
 
         if ($transaction->is_new()) {
-            $payments->set_transaction_status_to_open($transaction, $transaction_errors);
+            $this->payments->set_transaction_status_to_open( $transaction, $transaction_errors );
         }
 
         // validate submitted data and prepare transaction
 
         $payment_terms = new AWPCP_PaymentTermsTable(array($fee->type => array($fee)), $transaction->get('payment-term'));
 
-        if (awpcp_current_user_is_admin() || !$payments->payment_term_requires_payment($fee)) {
+        if ( awpcp_current_user_is_admin() || ! $this->payments->payment_term_requires_payment( $fee ) ) {
             $term = $fee;
 
             $transaction->set('payment-term-type', $term->type);
@@ -186,7 +204,7 @@ class AWPCP_RenewAdPageImplementation {
             $payment_terms->set_transaction_item($transaction, $term);
 
         } else {
-            $term = $payments->get_transaction_payment_term($transaction);
+            $term = $this->payments->get_transaction_payment_term( $transaction );
 
             if (!empty($_POST)) {
                 $term = $payment_terms->get_payment_term($payment_type, $selected);
@@ -203,17 +221,17 @@ class AWPCP_RenewAdPageImplementation {
                     $payment_terms->set_transaction_item($transaction);
 
                     // process transaction to grab Credit Plan information
-                    $payments->set_transaction_credit_plan($transaction);
+                    $this->payments->set_transaction_credit_plan( $transaction );
                 }
             }
         }
 
         // let other parts of the plugin know a transaction is being processed
-        $payments->process_transaction($transaction);
+        $this->payments->process_transaction( $transaction );
 
         // if everything is fine move onto the next step
         if (!is_null($term)) {
-            $payments->set_transaction_status_to_ready_to_checkout($transaction, $transaction_errors);
+            $this->payments->set_transaction_status_to_ready_to_checkout( $transaction, $transaction_errors );
             if (empty($transaction_errors)) {
                 return $this->checkout_step();
             }
@@ -227,7 +245,7 @@ class AWPCP_RenewAdPageImplementation {
         }
 
         $params = array(
-            'payments' => $payments,
+            'payments' => $this->payments,
             'transaction' => $transaction,
             'table' => $payment_terms,
 
@@ -243,7 +261,6 @@ class AWPCP_RenewAdPageImplementation {
 
     public function checkout_step() {
         $transaction = $this->page->get_transaction(true);
-        $payments = awpcp_payments_api();
 
         $errors = array();
 
@@ -259,11 +276,11 @@ class AWPCP_RenewAdPageImplementation {
         }
 
         if ( $transaction->is_ready_to_checkout() ) {
-            $payments->set_transaction_status_to_checkout( $transaction, $errors );
+            $this->payments->set_transaction_status_to_checkout( $transaction, $errors );
         }
 
         if ( empty($errors) && $transaction->payment_is_not_required() ) {
-            $payments->set_transaction_status_to_payment_completed($transaction, $errors);
+            $this->payments->set_transaction_status_to_payment_completed( $transaction, $errors );
 
             return $this->payment_completed_step();
         }
@@ -276,7 +293,7 @@ class AWPCP_RenewAdPageImplementation {
 
         // proceess transaction to grab Payment Method information
 
-        $payments->set_transaction_payment_method($transaction);
+        $this->payments->set_transaction_payment_method( $transaction );
 
         // show checkout page.
 
@@ -286,7 +303,7 @@ class AWPCP_RenewAdPageImplementation {
         // automatically redirect the user to the payment gateway.
 
         $params = array(
-            'payments' => $payments,
+            'payments' => $this->payments,
             'transaction' => $transaction,
             'messages' => $this->messages,
             'hidden' => array('step' => 'checkout')
@@ -300,14 +317,13 @@ class AWPCP_RenewAdPageImplementation {
 
     public function payment_completed_step() {
         $transaction = $this->page->get_transaction();
-        $payments = awpcp_payments_api();
 
         if ($transaction->payment_is_not_required()) {
             return $this->finish_step();
         }
 
         $params = array(
-            'payments' => $payments,
+            'payments' => $this->payments,
             'transaction' => $transaction,
             'messages' => $this->messages,
             'url' => $this->page->url(),
@@ -336,8 +352,7 @@ class AWPCP_RenewAdPageImplementation {
         }
 
         if (!$transaction->is_completed()) {
-            $payments = awpcp_payments_api();
-            $payments->set_transaction_status_to_completed($transaction, $errors);
+            $this->payments->set_transaction_status_to_completed( $transaction, $errors );
 
             if (!empty($errors)) {
                 return $this->page->render('content', join(',', array_map($errors, 'awpcp_print_error')));

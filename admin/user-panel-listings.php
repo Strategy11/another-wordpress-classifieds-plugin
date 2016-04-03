@@ -34,8 +34,7 @@ class AWPCP_UserListings extends AWPCP_Admin_Listings {
         if ( awpcp_current_user_is_moderator() ) {
             return parent::renew_ad();
         } else {
-            $page = new AWPCP_UserListingsRenewAd();
-            return $page->dispatch('renew');
+            return awpcp_renew_listing_subscriber_admin_page()->dispatch( 'renew' );
         }
     }
 }
