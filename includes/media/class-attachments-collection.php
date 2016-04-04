@@ -1,14 +1,16 @@
 <?php
 
 function awpcp_attachments_collection() {
-    return new AWPCP_Attachments_Collection( awpcp_wordpress() );
+    return new AWPCP_Attachments_Collection( awpcp_file_types(), awpcp_wordpress() );
 }
 
 class AWPCP_Attachments_Collection {
 
+    private $file_types;
     private $wordpress;
 
-    public function __construct( $wordpress ) {
+    public function __construct( $file_types, $wordpress ) {
+        $this->file_types = $file_types;
         $this->wordpress = $wordpress;
     }
 
@@ -70,11 +72,16 @@ class AWPCP_Attachments_Collection {
         return $this->count_attachments( $this->make_attachments_of_type_query( $type, $query ) );
     }
 
-    private function make_attachments_of_type_query( $type, $query ) {
-        if ( $type == 'image' ) {
-            $query['post_mime_type'] = awpcp_get_image_mime_types();
-        } else {
-            throw new AWPCP_Exception( sprintf( 'Attachment type not supported: %s', $type ) );
+    private function make_attachments_of_type_query( $types, $query ) {
+        $allowed_mime_types = array();
+
+        foreach ( (array) $types as $type ) {
+            $mime_types_in_group = $this->file_types->get_allowed_file_mime_types_in_group( $type );
+            $allowed_mime_types = array_merge( $allowed_mime_types, $mime_types_in_group );
+        }
+
+        if ( ! empty( $allowed_mime_types ) ) {
+            $query['post_mime_type'] = $allowed_mime_types;
         }
 
         return $query;
