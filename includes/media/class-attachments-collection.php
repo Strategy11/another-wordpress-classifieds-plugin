@@ -129,4 +129,8 @@ class AWPCP_Attachments_Collection {
     public function find_attachments_of_type_awaiting_approval( $type, $query = array() ) {
         return $this->find_attachments_awaiting_approval( $this->make_attachments_of_type_query( $type, $query ) );
     }
+
+    public function find_visible_attachments_of_type( $types, $query = array() ) {
+        return $this->find_visible_attachments( $this->make_attachments_of_type_query( $types, $query ) );
+    }
 }
