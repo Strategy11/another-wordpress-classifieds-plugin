@@ -12,7 +12,7 @@ class AWPCP_Listing_Attachment_Creator {
         $this->wordpress = $wordpress;
     }
 
-    public function create_attachment( $listing, $file_logic, $allowed_status ) {
+    public function create_attachment( $listing, $file_logic, $allowed_status = AWPCP_Attachment_Status::STATUS_APPROVED ) {
         $attachment_id = $this->wordpress->handle_media_sideload(
             array(
                 'name' => $file_logic->get_real_name(),
