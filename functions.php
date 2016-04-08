@@ -2773,7 +2773,10 @@ function awpcp_get_ad_share_info($id) {
     $info['published-time'] = awpcp_datetime( 'Y-m-d', $ad->ad_postdate );
     $info['modified-time'] = awpcp_datetime( 'Y-m-d', $ad->ad_last_updated );
 
-    $images = awpcp_media_api()->find_by_ad_id( $ad->ad_id, array( 'enabled' => true ) );
+    $images = awpcp_media_api()->find_by_ad_id( $ad->ad_id, array(
+        'enabled' => true,
+        'status' => AWPCP_Media::STATUS_APPROVED,
+    ) );
 
     foreach ( $images as $image ) {
         $info[ 'images' ][] = $image->get_url( 'large' );
