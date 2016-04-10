@@ -243,6 +243,7 @@ function awpcp_replace_placeholders( $placeholders, $listing, $content, $context
 
     $available_placeholders = awpcp_content_placeholders();
     $processed_placeholders = array();
+    rsort( $matches[0] );
 
     foreach ($matches[0] as $match) {
         if (isset($processed_placeholders[$match])) continue;
