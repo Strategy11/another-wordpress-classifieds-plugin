@@ -29,6 +29,10 @@ class AWPCP_AdminListingsEditAd extends AWPCP_EditAdPage {
 
     public $menu;
 
+    public function should_show_title() {
+        return false;
+    }
+
     public function show_sidebar() {
         return false;
     }

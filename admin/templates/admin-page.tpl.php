@@ -6,14 +6,16 @@
     <?php endif; ?>
 
         <?php
-            $heading_params = array(
-                'attributes' => array(
-                    'class' => 'awpcp-page-header',
-                ),
-                'content' => $page_title, // no need to escape; title() is allowed to output html
-            );
+            if ( $should_show_title ) {
+                $heading_params = array(
+                    'attributes' => array(
+                        'class' => 'awpcp-page-header',
+                    ),
+                    'content' => $page_title, // no need to escape; title() is allowed to output html
+                );
 
-            echo awpcp_html_admin_first_level_heading( $heading_params );
+                echo awpcp_html_admin_first_level_heading( $heading_params );
+            }
         ?>
 
         <?php $sidebar = $show_sidebar ? awpcp_admin_sidebar() : ''; ?>

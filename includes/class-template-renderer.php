@@ -13,6 +13,12 @@ class AWPCP_Template_Renderer {
             $content = $this->render_template( $content_template, $content_params );
         }
 
+        if ( method_exists( $page, 'should_show_title' ) ) {
+            $should_show_title = $page->should_show_title();
+        } else {
+            $should_show_title = true;
+        }
+
         if ( method_exists( $page, 'show_sidebar' ) ) {
             $show_sidebar = $page->show_sidebar();
         } else {
@@ -23,6 +29,7 @@ class AWPCP_Template_Renderer {
             'page' => $page,
             'page_slug' => $page->page,
             'page_title' => $page->title(),
+            'should_show_title' => $should_show_title,
             'show_sidebar' => $show_sidebar,
             'content' => $content,
         );

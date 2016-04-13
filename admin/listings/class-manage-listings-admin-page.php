@@ -355,14 +355,11 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
     }
 
     public function place_ad() {
-        $page = new AWPCP_AdminListingsPlaceAd();
+        $page = awpcp_place_listing_admin_page();
         return $page->dispatch();
     }
 
     public function edit_ad() {
-        // TODO: Register as a page action to allow styles specific to this view.
-        //       Right now the look and feel does not match previous versions
-        //       of the same view.
         return awpcp_edit_listing_admin_page()->dispatch('details');
     }
 

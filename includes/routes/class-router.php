@@ -174,6 +174,7 @@ class AWPCP_Router {
             'current_page' => $this->current_page,
             'page_slug' => $admin_page->slug,
             'page_title' => $this->title(),
+            'should_show_title' => true,
             'show_sidebar' => $this->show_sidebar( $this->current_page ),
             'content' => $content,
         );
