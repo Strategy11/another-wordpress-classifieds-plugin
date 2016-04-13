@@ -30,4 +30,4 @@
 
     <?php echo $table->display() ?>
 </form>
-<?php } ?>
+<?php }
