@@ -112,17 +112,17 @@ class AWPCP_ListingsAPI {
         }
 
         $metadata = wp_parse_args( $listing_data['metadata'], array(
-            '_payment_status' => 'Unpaid',
-            '_most_recent_start_date' => $now,
-            '_renewed_date' => '',
+            '_awpcp_payment_status' => 'Unpaid',
+            '_awpcp_most_recent_start_date' => $now,
+            '_awpcp_renewed_date' => '',
         ) );
 
-        if ( ! isset( $metadata['_access_key'] ) || empty( $metadata['_access_key'] ) ) {
-            $metadata['_access_key'] = $this->generate_access_key();
+        if ( ! isset( $metadata['_awpcp_access_key'] ) || empty( $metadata['_awpcp_access_key'] ) ) {
+            $metadata['_awpcp_access_key'] = $this->generate_access_key();
         }
 
-        if ( isset( $metadata['_start_date'] ) ) {
-            $metadata['_most_recent_start_date'] = $metadata['_start_date'];
+        if ( isset( $metadata['_awpcp_start_date'] ) ) {
+            $metadata['_awpcp_most_recent_start_date'] = $metadata['_awpcp_start_date'];
         }
 
         foreach ( $metadata as $field_name => $field_value ) {
@@ -169,7 +169,7 @@ class AWPCP_ListingsAPI {
     public function consolidate_new_ad( $ad, $transaction ) {
         do_action( 'awpcp-place-ad', $ad, $transaction );
 
-        $this->wordpress->update_post_meta( $ad->ID, '_content_needs_review', true );
+        $this->wordpress->update_post_meta( $ad->ID, '_awpcp_content_needs_review', true );
 
         $is_listing_verified = $this->listing_renderer->is_verified( $ad );
 
@@ -196,9 +196,9 @@ class AWPCP_ListingsAPI {
         // do not alter the Ad disabled status.
         if ( ! $is_listing_disabled && awpcp_should_disable_existing_listing( $ad ) ) {
             $this->disable_listing( $ad );
-            $this->wordpress->delete_post_meta( $ad->ID, '_disabled_date' );
+            $this->wordpress->delete_post_meta( $ad->ID, '_awpcp_disabled_date' );
         } else if ( $is_listing_disabled ) {
-            $this->wordpress->delete_post_meta( $ad->ID, '_disabled_date' );
+            $this->wordpress->delete_post_meta( $ad->ID, '_awpcp_disabled_date' );
         }
 
         $is_listing_verified = $this->listing_renderer->is_verified( $ad );
@@ -232,15 +232,15 @@ class AWPCP_ListingsAPI {
     }
 
     private function mark_listing_as_verified( $listing ) {
-        $this->wordpress->delete_post_meta( $listing->ID, '_verification_needed' );
-        $this->wordpress->update_post_meta( $listing->ID, '_verified', true );
-        $this->wordpress->update_post_meta( $listing->ID, '_verification_date', current_time( 'mysql' ) );
+        $this->wordpress->delete_post_meta( $listing->ID, '_awpcp_verification_needed' );
+        $this->wordpress->update_post_meta( $listing->ID, '_awpcp_verified', true );
+        $this->wordpress->update_post_meta( $listing->ID, '_awpcp_verification_date', current_time( 'mysql' ) );
     }
 
     private function mark_listing_as_needs_verification( $listing ) {
-        $this->wordpress->update_post_meta( $listing->ID, '_verification_needed', true );
-        $this->wordpress->delete_post_meta( $listing->ID, '_verified' );
-        $this->wordpress->delete_post_meta( $listing->ID, '_verification_date' );
+        $this->wordpress->update_post_meta( $listing->ID, '_awpcp_verification_needed', true );
+        $this->wordpress->delete_post_meta( $listing->ID, '_awpcp_verified' );
+        $this->wordpress->delete_post_meta( $listing->ID, '_awpcp_verification_date' );
     }
 
     /**
@@ -259,8 +259,8 @@ class AWPCP_ListingsAPI {
         $now = current_time( 'mysql' );
 
         $this->mark_listing_as_verified( $ad );
-        $this->wordpress->update_post_meta( $ad->ID, '_start_date', $now );
-        $this->wordpress->update_post_meta( $ad->ID, '_end_date', $payment_term->calculate_end_date( $timestamp ) );
+        $this->wordpress->update_post_meta( $ad->ID, '_awpcp_start_date', $now );
+        $this->wordpress->update_post_meta( $ad->ID, '_awpcp_end_date', $payment_term->calculate_end_date( $timestamp ) );
 
         $listing_is_disabled = $this->listing_renderer->is_disabled( $ad );
         $should_enable_listing = awpcp_should_enable_new_listing_with_payment_status( $ad, $payment_status );
@@ -312,7 +312,7 @@ class AWPCP_ListingsAPI {
         $listing->post_status = 'publish';
 
         $this->wordpress->update_post( array( 'ID' => $listing->ID, 'post_status' => $listing->post_status ) );
-        $this->wordpress->delete_post_meta( $listing->ID, '_disabled_date' );
+        $this->wordpress->delete_post_meta( $listing->ID, '_awpcp_disabled_date' );
 
         return true;
     }
@@ -329,7 +329,7 @@ class AWPCP_ListingsAPI {
         $listing->post_status = 'disabled';
 
         $this->wordpress->update_post( array( 'ID' => $listing->ID, 'post_status' => $listing->post_status ) );
-        $this->wordpress->update_post_meta( $listing->ID, '_disabled_date', current_time( 'mysql' ) );
+        $this->wordpress->update_post_meta( $listing->ID, '_awpcp_disabled_date', current_time( 'mysql' ) );
     }
 
     public function renew_listing( $listing, $end_date = false ) {
@@ -342,13 +342,13 @@ class AWPCP_ListingsAPI {
 
             $payment_term = $this->listing_renderer->get_payment_term( $listing );
 
-            $this->wordpress->update_post_meta( $listing->ID, '_end_date', $payment_term->calculate_end_date( $start_date ) );
+            $this->wordpress->update_post_meta( $listing->ID, '_awpcp_end_date', $payment_term->calculate_end_date( $start_date ) );
         } else {
-            $this->wordpress->update_post_meta( $listing->ID, '_end_date', $end_date );
+            $this->wordpress->update_post_meta( $listing->ID, '_awpcp_end_date', $end_date );
         }
 
-        $this->wordpress->delete_post_meta( $listing->ID, '_renew_email_sent' );
-        $this->wordpress->update_post_meta( $listing->ID, '_renewed_date', current_time( 'mysql' ) );
+        $this->wordpress->delete_post_meta( $listing->ID, '_awpcp_renew_email_sent' );
+        $this->wordpress->update_post_meta( $listing->ID, '_awpcp_renewed_date', current_time( 'mysql' ) );
 
         // if Ad is disabled lets see if we can enable it
         $is_listing_disabled = $this->listing_renderer->is_disabled( $listing );
@@ -356,7 +356,7 @@ class AWPCP_ListingsAPI {
         if ( $is_listing_disabled && awpcp_should_enable_existing_listing( $listing ) ) {
             $this->enable_listing( $listing );
         } else if ( $is_listing_disabled ) {
-            $this->wordpress->delete_post_meta( $listing->ID, '_disabled_date' );
+            $this->wordpress->delete_post_meta( $listing->ID, '_awpcp_disabled_date' );
         }
 
         return true;
@@ -450,9 +450,9 @@ class AWPCP_ListingsAPI {
         ) );
 
         if ( $mail->send() ) {
-            $emails_sent = intval( awpcp_get_ad_meta( $ad->ID, 'verification_emails_sent', true ) );
-            $this->wordpress->update_post_meta( $ad->ID, 'verification_email_sent_at', current_time( 'mysql' ) );
-            $this->wordpress->update_post_meta( $ad->ID, 'verification_emails_sent', $emails_sent + 1 );
+            $emails_sent = intval( $this->wordpress->get_post_meta( $ad->ID, '_awpcp_verification_emails_sent', true ) );
+            $this->wordpress->update_post_meta( $ad->ID, '_awpcp_verification_email_sent_at', current_time( 'mysql' ) );
+            $this->wordpress->update_post_meta( $ad->ID, '_awpcp_verification_emails_sent', $emails_sent + 1 );
         }
     }
 
@@ -478,7 +478,7 @@ class AWPCP_ListingsAPI {
     }
 
     public function increase_visits_count( $listing ) {
-        update_post_meta( $listing->ID, '_views', 1 + get_post_meta( $listing->ID, '_views', true ) );
+        update_post_meta( $listing->ID, '_awpcp_views', 1 + get_post_meta( $listing->ID, '_awpcp_views', true ) );
     }
 
     /**

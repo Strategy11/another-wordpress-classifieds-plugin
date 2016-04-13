@@ -1,19 +1,23 @@
 <?php
 
 function awpcp_send_to_facebook_helper() {
-    return new AWPCP_SendToFacebookHelper( AWPCP_Facebook::instance(), awpcp_listings_metadata(), awpcp_media_api() );
+    return new AWPCP_SendToFacebookHelper(
+        AWPCP_Facebook::instance(),
+        awpcp_media_api(),
+        awpcp_wordpress()
+    );
 }
 
 class AWPCP_SendToFacebookHelper {
 
     private $facebook_config;
-    private $listings_metadata;
     private $media;
+    private $wordpress;
 
-    public function __construct( $facebook_config, $listings_metadata, $media ) {
+    public function __construct( $facebook_config, $media, $wordpress ) {
         $this->facebook_config = $facebook_config;
-        $this->listings_metadata = $listings_metadata;
         $this->media = $media;
+        $this->wordpress = $wordpress;
     }
 
     public function send_listing_to_facebook_page( $listing ) {
@@ -23,7 +27,7 @@ class AWPCP_SendToFacebookHelper {
             throw new AWPCP_Exception( 'There is no page selected.' );
         }
 
-        if ( $this->listings_metadata->get( $listing->ad_id, 'sent-to-facebook' ) ) {
+        if ( $this->wordpress->get_post_meta( $listing->ID, '_awpcp_sent_to_facebook_page', true ) ) {
             throw new AWPCP_Exception( __( 'The Ad was already sent to Facebook Page.', 'another-wordpress-classifieds-plugin' ) );
         }
 
@@ -35,14 +39,14 @@ class AWPCP_SendToFacebookHelper {
                                     '/' . $this->facebook_config->get( 'page_id' ) . '/feed',
                                     'POST' );
 
-        $this->listings_metadata->set( $listing->ad_id, 'sent-to-facebook', true );
+        $this->wordpress->update_post_meta( $listing->ID, '_awpcp_sent_to_facebook_page', true );
     }
 
     private function do_facebook_request( $listing, $path, $method ) {
         $primary_image = $this->media->get_ad_primary_image( $listing );
         $primary_image_thumbnail_url = $primary_image ? $primary_image->get_url( 'primary' ) : '';
 
-        $params = array( 'link' => url_showad( $listing->ad_id ),
+        $params = array( 'link' => url_showad( $listing->ID ),
                          'name' => $listing->get_title(),
                          'picture' =>  $primary_image_thumbnail_url );
 
@@ -76,7 +80,7 @@ class AWPCP_SendToFacebookHelper {
             throw new AWPCP_Exception( 'There is no group selected.' );
         }
 
-        if ( $this->listings_metadata->get( $listing->ad_id, 'sent-to-facebook-group' ) ) {
+        if ( $this->wordpress->get_post_meta( $listing->ID, '_awpcp_sent_to_facebook_group', true ) ) {
             throw new AWPCP_Exception( __( 'The Ad was already sent to Facebook Group.', 'another-wordpress-classifieds-plugin' ) );
         }
 
@@ -88,6 +92,6 @@ class AWPCP_SendToFacebookHelper {
                                     '/' . $this->facebook_config->get( 'group_id' ) . '/feed',
                                     'POST' );
 
-        $this->listings_metadata->set( $listing->ad_id, 'sent-to-facebook-group', true );
+        $this->wordpress->update_post_meta( $listing->ID, '_awpcp_sent_to_facebook_group', true );
     }
 }

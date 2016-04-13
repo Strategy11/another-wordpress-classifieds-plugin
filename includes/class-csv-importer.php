@@ -26,13 +26,13 @@ class AWPCP_CSV_Importer {
 			// 'category_parent' => 'ad_category_parent_id',
 		),
 		'metadata' => array(
-			'contact_name' => '_contact_name',
-			'contact_email' => '_contact_email',
-			'contact_phone' => '_contact_phone',
-			'website_url' => '_website_url',
-			'item_price' => '_price',
-			'start_date' => '_start_date',
-			'end_date' => '_end_date',
+			'contact_name' => '_awpcp_contact_name',
+			'contact_email' => '_awpcp_contact_email',
+			'contact_phone' => '_awpcp_contact_phone',
+			'website_url' => '_awpcp_website_url',
+			'item_price' => '_awpcp_price',
+			'start_date' => '_awpcp_start_date',
+			'end_date' => '_awpcp_end_date',
 		),
 		'region_fields' => array(
 			'city' => 'ad_city',
@@ -54,10 +54,10 @@ class AWPCP_CSV_Importer {
 		'post_title',
 		'post_content',
 		'post_author',
-		'_contact_name',
-		'_contact_email',
-		'_start_date',
-		'_end_date',
+		'_awpcp_contact_name',
+		'_awpcp_contact_email',
+		'_awpcp_start_date',
+		'_awpcp_end_date',
 		'term_id',
 	);
 
@@ -716,8 +716,8 @@ class AWPCP_CSV_Importer {
 	}
 
 	private function save_imported_listing( $listing_data ) {
-		$listing_data['metadata']['_verified'] = true;
-		$listing_data['metadata']['_payment_status'] = AWPCP_Payment_Transaction::PAYMENT_STATUS_NOT_REQUIRED;
+		$listing_data['metadata']['_awpcp_verified'] = true;
+		$listing_data['metadata']['_awpcp_payment_status'] = AWPCP_Payment_Transaction::PAYMENT_STATUS_NOT_REQUIRED;
 
 		try {
 			$listing = $this->listings_logic->create_listing( array( 'post_title' => 'Imported Listing Draft' ) );

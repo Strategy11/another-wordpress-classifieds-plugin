@@ -146,7 +146,7 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
 
         if ( $is_moderator && ! $ad->disabled ) {
             $fb = AWPCP_Facebook::instance();
-            if ( ! awpcp_get_ad_meta( $ad->ID, 'sent-to-facebook' ) && $fb->get( 'page_id' ) ) {
+            if ( ! awpcp_wordpress()->get_post_meta( $ad->ID, '_awpcp_sent_to_facebook_page', true ) && $fb->get( 'page_id' ) ) {
                 $actions['send-to-facebook'] = array(
                     __( 'Send to Facebook', 'AWPCP' ),
                     $this->url( array(
@@ -154,7 +154,7 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
                         'id' => $ad->ID
                     ) )
                 );
-            } else if ( ! awpcp_get_ad_meta( $ad->ID, 'sent-to-facebook-group' ) && $fb->get( 'group_id' ) ) {
+            } else if ( ! awpcp_wordpress()->get_post_meta( $ad->ID, '_awpcp_sent_to_facebook_group', true ) && $fb->get( 'group_id' ) ) {
                 $actions['send-to-facebook'] = array(
                     __( 'Send to Facebook Group', 'AWPCP' ),
                     $this->url( array(
@@ -522,7 +522,7 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
     }
 
     public function make_featured_ad_action($ad) {
-		return ! is_null( $ad ) && update_post_meta( $ad->ID, '_is_featured', true );
+		return ! is_null( $ad ) && update_post_meta( $ad->ID, '_awpcp_is_featured', true );
     }
 
     public function make_featured_ad_success($n) {
@@ -542,7 +542,7 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
     }
 
     public function make_non_featured_ad_action($ad) {
-		return ! is_null( $ad ) && delete_post_meta( $ad->ID, '_is_featured' );
+		return ! is_null( $ad ) && delete_post_meta( $ad->ID, '_awpcp_is_featured' );
     }
 
     public function make_non_featured_ad_success($n) {
@@ -562,7 +562,7 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
     }
 
     public function mark_reviewed( $listing ) {
-        if ( awpcp_update_ad_meta( $listing->ad_id, 'reviewed', true ) ) {
+		if ( awpcp_wordpress()->update_post_meta( $listing->ID, '_awpcp_reviewed', true ) ) {
             awpcp_flash( sprintf( __( 'The listing was marked as reviewed.', 'AWPCP' ), esc_html( $recipient ) ) );
         } else {
             awpcp_flash( sprintf( __( "The listing couldn't marked as reviewed.", 'AWPCP' ), esc_html( $recipient ) ) );

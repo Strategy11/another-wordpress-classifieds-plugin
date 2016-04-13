@@ -211,13 +211,13 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
         $listings = awpcp_listings_collection()->find_listings(array(
             'meta_query' => array(
                 array(
-                    'key' => '_payment_term_id',
+                    'key' => '_awpcp_payment_term_id',
                     'value' => $this->id,
                     'compare' => '=',
                     'type' => 'SIGNED',
                 ),
                 array(
-                    'key' => '_payment_term_id',
+                    'key' => '_awpcp_payment_term_id',
                     'value' => $this->id,
                     'compare' => '=',
                     'type' => 'SIGNED',
@@ -229,7 +229,7 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
         $success = true;
 
         foreach ( $listings as $listing ) {
-            $success = $success && $wordpress->update_post_meta( $listing->ID, '_payment_term_id', $recipient->id );
+            $success = $success && $wordpress->update_post_meta( $listing->ID, '_awpcp_payment_term_id', $recipient->id );
         }
 
         return $success;

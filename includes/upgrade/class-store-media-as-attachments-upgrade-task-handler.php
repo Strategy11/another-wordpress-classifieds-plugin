@@ -82,14 +82,14 @@ class AWPCP_Store_Media_As_Attachments_Upgrade_Task_Handler implements AWPCP_Upg
         }
 
         if ( $item->enabled ) {
-            update_post_meta( $attachment_id, '_enabled', true );
+            update_post_meta( $attachment_id, '_awpcp_enabled', true );
         }
 
         if ( $item->is_primary ) {
-            update_post_meta( $attachment_id, '_featured', true );
+            update_post_meta( $attachment_id, '_awpcp_featured', true );
         }
 
-        update_post_meta( $attachment_id, '_allowed_status', $item->status );
+        update_post_meta( $attachment_id, '_awpcp_allowed_status', $item->status );
 
         return $item->id;
     }
@@ -98,7 +98,7 @@ class AWPCP_Store_Media_As_Attachments_Upgrade_Task_Handler implements AWPCP_Upg
         $listings = get_posts( array(
             'post_type' => 'awpcp_listing',
             'meta_query' => array(
-                'key' => '_old_id',
+                'key' => '_awpcp_old_id',
                 'value' => $item->ad_id,
             ),
         ) );

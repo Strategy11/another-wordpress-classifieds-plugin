@@ -244,7 +244,7 @@ function awpcp_clean_up_non_verified_ads( $listings_collection, /* AWPCP_Listing
         'meta_query' => array(
             'relation' => 'AND',
             array(
-                'key' => 'verification_emails_sent',
+                'key' => '_awpcp_verification_emails_sent',
                 'value' => 1,
                 'compare' => '<=',
                 'type' => 'UNSIGNED'

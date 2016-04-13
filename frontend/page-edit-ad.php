@@ -276,22 +276,22 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
                 'post_modified_gmt' => get_gmt_from_date( $current_time ),
             ),
             'metadata' => array(
-                '_contact_name' => $data['ad_contact_name'],
-                '_contact_phone' => $data['ad_contact_phone'],
-                '_contact_email' => $data['ad_contact_email'],
-                '_website_url' => $data['websiteurl'],
-                '_price' => $data['ad_item_price'] * 100,
+                '_awpcp_contact_name' => $data['ad_contact_name'],
+                '_awpcp_contact_phone' => $data['ad_contact_phone'],
+                '_awpcp_contact_email' => $data['ad_contact_email'],
+                '_awpcp_website_url' => $data['websiteurl'],
+                '_awpcp_price' => $data['ad_item_price'] * 100,
             )
         );
 
         if ( awpcp_current_user_is_moderator() ) {
             $orginal_start_date = $this->listing_renderer->get_plain_start_date( $ad );
             $start_date = awpcp_set_datetime_date( $orginal_start_date, $data['start_date'] );
-            $listing_data['metadata']['_start_date'] = $start_date;
+            $listing_data['metadata']['_awpcp_start_date'] = $start_date;
 
             $original_end_date = $this->listing_renderer->get_plain_end_date( $ad );
             $end_date = awpcp_set_datetime_date( $original_end_date, $data['end_date'] );
-            $listing_data['metadata']['_end_date'] = $end_date;
+            $listing_data['metadata']['_awpcp_end_date'] = $end_date;
         }
 
         if ( awpcp_current_user_is_moderator() && ! empty( $data['ad_category'] ) ) {

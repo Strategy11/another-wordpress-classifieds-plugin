@@ -35,7 +35,7 @@ class AWPCP_Attachments_Collection {
 
     private function make_featured_attachment_query( $query ) {
         $query['meta_query'][] = array(
-            'key' => '_featured',
+            'key' => '_awpcp_featured',
             'value' => true,
             'comparator' => '=',
             'type' => 'BINARY',
@@ -93,14 +93,14 @@ class AWPCP_Attachments_Collection {
 
     private function make_visible_attachments_query( $query ) {
         $query['meta_query'][] = array(
-            'key' => '_enabled',
+            'key' => '_awpcp_enabled',
             'value' => true,
             'compare' => '=',
             'type' => 'BINARY'
         );
 
         $query['meta_query'][] = array(
-            'key' => '_allowed_status',
+            'key' => '_awpcp_allowed_status',
             'value' => AWPCP_Attachment_Status::STATUS_APPROVED,
             'compare' => '=',
             'type' => 'CHAR'
@@ -115,7 +115,7 @@ class AWPCP_Attachments_Collection {
 
     private function make_attachments_awaiting_approval_query( $query ) {
         $query['meta_query'][] = array(
-            'key' => '_allowed_status',
+            'key' => '_awpcp_allowed_status',
             'value' => AWPCP_Attachment_Status::STATUS_AWAITING_APPROVAL,
         );
 

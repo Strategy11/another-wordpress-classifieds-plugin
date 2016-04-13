@@ -83,9 +83,9 @@ class AWPCP_ListingPaymentTransactionHandler {
     }
 
     private function update_listing_payment_information( $listing, $transaction ) {
-        $this->wordpress->update_post_meta( $listing->ID, '_payment_status', $transaction->payment_status );
-        $this->wordpress->update_post_meta( $listing->ID, '_payment_gateway', $transaction->payment_gateway );
-        $this->wordpress->update_post_meta( $listing->ID, '_payer_email', $transaction->payer_email );
+        $this->wordpress->update_post_meta( $listing->ID, '_awpcp_payment_status', $transaction->payment_status );
+        $this->wordpress->update_post_meta( $listing->ID, '_awpcp_payment_gateway', $transaction->payment_gateway );
+        $this->wordpress->update_post_meta( $listing->ID, '_awpcp_payer_email', $transaction->payer_email );
     }
 
     private function maybe_enable_listing( $listing, $transaction, $trigger_actions ) {

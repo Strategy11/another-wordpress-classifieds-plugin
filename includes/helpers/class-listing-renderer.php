@@ -54,19 +54,19 @@ class AWPCP_ListingRenderer {
     }
 
     public function get_contact_name( $listing ) {
-        return $this->wordpress->get_post_meta( $listing->ID, '_contact_name', true );
+        return $this->wordpress->get_post_meta( $listing->ID, '_awpcp_contact_name', true );
     }
 
     public function get_contact_email( $listing ) {
-        return $this->wordpress->get_post_meta( $listing->ID, '_contact_email', true );
+        return $this->wordpress->get_post_meta( $listing->ID, '_awpcp_contact_email', true );
     }
 
     public function get_contact_phone( $listing ) {
-        return $this->wordpress->get_post_meta( $listing->ID, '_contact_phone', true );
+        return $this->wordpress->get_post_meta( $listing->ID, '_awpcp_contact_phone', true );
     }
 
     public function get_access_key( $listing ) {
-        return $this->wordpress->get_post_meta( $listing->ID, '_access_key', true );
+        return $this->wordpress->get_post_meta( $listing->ID, '_awpcp_access_key', true );
     }
 
     /**
@@ -83,7 +83,7 @@ class AWPCP_ListingRenderer {
      * @since feature/1112
      */
     public function get_plain_end_date( $listing ) {
-        return $this->wordpress->get_post_meta( $listing->ID, '_end_date', true );
+        return $this->wordpress->get_post_meta( $listing->ID, '_awpcp_end_date', true );
     }
 
     /**
@@ -103,7 +103,7 @@ class AWPCP_ListingRenderer {
      * @since feature/1112
      */
     public function get_start_date( $listing ) {
-        $start_date = $this->wordpress->get_post_meta( $listing->ID, '_start_date', true );
+        $start_date = $this->wordpress->get_post_meta( $listing->ID, '_awpcp_start_date', true );
         return $this->get_formatted_date( $start_date );
     }
 
@@ -112,14 +112,14 @@ class AWPCP_ListingRenderer {
      * @since feature/1112
      */
     public function get_plain_start_date( $listing ) {
-        return $this->wordpress->get_post_meta( $listing->ID, '_start_date', true );
+        return $this->wordpress->get_post_meta( $listing->ID, '_awpcp_start_date', true );
     }
 
     /**
      * @since feature/1112
      */
     public function get_renewed_date_formatted( $listing ) {
-        $renewed_date = $this->wordpress->get_post_meta( $listing->ID, '_renewed_date', true );
+        $renewed_date = $this->wordpress->get_post_meta( $listing->ID, '_awpcp_renewed_date', true );
         return $this->get_formatted_date( $renewed_date );
     }
 
@@ -144,7 +144,7 @@ class AWPCP_ListingRenderer {
     }
 
     public function is_verified( $listing ) {
-        return $this->wordpress->get_post_meta( $listing->ID, '_verified' );
+        return $this->wordpress->get_post_meta( $listing->ID, '_awpcp_verified', true );
     }
 
     public function is_disabled( $listing ) {
@@ -179,7 +179,7 @@ class AWPCP_ListingRenderer {
     }
 
     public function get_payment_status( $listing ) {
-        return $this->wordpress->get_post_meta( $listing->ID, '_payment_status', true );
+        return $this->wordpress->get_post_meta( $listing->ID, '_awpcp_payment_status', true );
     }
 
     /**
@@ -207,22 +207,22 @@ class AWPCP_ListingRenderer {
     }
 
     public function get_payment_term( $listing ) {
-        $payment_term_id = $this->wordpress->get_post_meta( $listing->ID, '_payment_term_id', true );
-        $payment_term_type = $this->wordpress->get_post_meta( $listing->ID, '_payment_term_type', true );
+        $payment_term_id = $this->wordpress->get_post_meta( $listing->ID, '_awpcp_payment_term_id', true );
+        $payment_term_type = $this->wordpress->get_post_meta( $listing->ID, '_awpcp_payment_term_type', true );
 
         return $this->payments->get_payment_term( $payment_term_id, $payment_term_type );
     }
 
     public function get_price( $listing ) {
-        return $this->wordpress->get_post_meta( $listing->ID, '_price', true );
+        return $this->wordpress->get_post_meta( $listing->ID, '_awpcp_price', true );
     }
 
     public function get_website_url( $listing ) {
-        return $this->wordpress->get_post_meta( $listing->ID, '_website_url', true );
+        return $this->wordpress->get_post_meta( $listing->ID, '_awpcp_website_url', true );
     }
 
     public function get_views_count( $listing ) {
-        return $this->wordpress->get_post_meta( $listing->ID, '_views', true );
+        return $this->wordpress->get_post_meta( $listing->ID, '_awpcp_views', true );
     }
 
     public function get_user( $listing ) {

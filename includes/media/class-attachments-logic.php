@@ -23,7 +23,7 @@ class AWPCP_Attachments_Logic {
     public function approve_attachment( $attachment ) {
         return $this->wordpress->update_post_meta(
             $attachment->ID,
-            '_allowed_status',
+            '_awpcp_allowed_status',
             AWPCP_Attachment_Status::STATUS_APPROVED
         );
     }
@@ -31,17 +31,17 @@ class AWPCP_Attachments_Logic {
     public function reject_attachment( $attachment ) {
         return $this->wordpress->update_post_meta(
             $attachment->ID,
-            '_allowed_status',
+            '_awpcp_allowed_status',
             AWPCP_Attachment_Status::STATUS_REJECTED
         );
     }
 
     public function enable_attachment( $attachment ) {
-        return $this->wordpress->update_post_meta( $attachment->ID, '_enabled', true );
+        return $this->wordpress->update_post_meta( $attachment->ID, '_awpcp_enabled', true );
     }
 
     public function disable_attachment( $attachment ) {
-        return $this->wordpress->delete_post_meta( $attachment->ID, '_enabled' );
+        return $this->wordpress->delete_post_meta( $attachment->ID, '_awpcp_enabled' );
     }
 
     public function set_attachment_as_featured( $attachment ) {
@@ -52,10 +52,10 @@ class AWPCP_Attachments_Logic {
         );
 
         foreach ( $attachments as $an_attachment ) {
-            $this->wordpress->delete_post_meta( $an_attachment->ID, '_featured' );
+            $this->wordpress->delete_post_meta( $an_attachment->ID, '_awpcp_featured' );
         }
 
-        return $this->wordpress->update_post_meta( $attachment->ID, '_featured', true );
+        return $this->wordpress->update_post_meta( $attachment->ID, '_awpcp_featured', true );
     }
 
     private function get_type_of_attachment( $attachment ) {

@@ -1,23 +1,32 @@
 <?php
 
 function awpcp_send_listing_to_facebook_helper() {
-    return new AWPCP_SendListingToFacebookHelper( AWPCP_Facebook::instance(), awpcp_send_to_facebook_helper(), awpcp_listings_collection(), awpcp_listings_metadata(), awpcp()->settings );
+    return new AWPCP_SendListingToFacebookHelper(
+        AWPCP_Facebook::instance(),
+        awpcp_send_to_facebook_helper(),
+        awpcp_listing_renderer(),
+        awpcp_listings_collection(),
+        awpcp()->settings,
+        awpcp_wordpress()
+    );
 }
 
 class AWPCP_SendListingToFacebookHelper {
 
     private $facebook_config;
     private $facebook_helper;
+    private $listing_renderer;
     private $listings_collection;
-    private $listings_metadata;
     private $settings;
+    private $wordpress;
 
-    public function __construct( $facebook_config, $facebook_helper, $listings_collection, $listings_metadata, $settings ) {
+    public function __construct( $facebook_config, $facebook_helper, $listing_renderer, $listings_collection, $settings, $wordpress ) {
         $this->facebook_config = $facebook_config;
         $this->facebook_helper = $facebook_helper;
+        $this->listing_renderer = $listing_renderer;
         $this->listings_collection = $listings_collection;
-        $this->listings_metadata = $listings_metadata;
         $this->settings = $settings;
+        $this->wordpress = $wordpress;
     }
 
     public function schedule_listing_if_necessary( $listing ) {
@@ -25,12 +34,12 @@ class AWPCP_SendListingToFacebookHelper {
             return;
         }
 
-        if ( $listing->disabled ) {
+        if ( $this->listing_renderer->is_disabled( $listing ) ) {
             return;
         }
 
         $is_fb_page_configured = $this->facebook_config->is_page_set();
-        $already_sent_to_a_fb_page = $this->listings_metadata->get( $listing->ad_id, 'sent-to-facebook' );
+        $already_sent_to_a_fb_page = $this->wordpress->get_post_meta( $listing->ID, '_awpcp_sent_to_facebook_page', true );
 
         if ( $is_fb_page_configured && ! $already_sent_to_a_fb_page ) {
             $this->schedule_send_to_facebook_action( $listing );
@@ -38,7 +47,7 @@ class AWPCP_SendListingToFacebookHelper {
         }
 
         $is_fb_group_configured = $this->facebook_config->is_group_set();
-        $already_sent_to_a_fb_group = $this->listings_metadata->get( $listing->ad_id, 'sent-to-facebook-group' );
+        $already_sent_to_a_fb_group = $this->wordpress->get_post_meta( $listing->ID, '_awpcp_sent_to_facebook_group', true );
 
         if ( $is_fb_group_configured && ! $already_sent_to_a_fb_group ) {
             $this->schedule_send_to_facebook_action( $listing );
@@ -47,7 +56,7 @@ class AWPCP_SendListingToFacebookHelper {
     }
 
     private function schedule_send_to_facebook_action( $listing ) {
-        wp_schedule_single_event( time() + 10, 'awpcp-send-listing-to-facebook', array( $listing->ad_id, current_time( 'timestamp' ) ) );
+        wp_schedule_single_event( time() + 10, 'awpcp-send-listing-to-facebook', array( $listing->ID, current_time( 'timestamp' ) ) );
     }
 
     public function send_listing_to_facebook( $listing_id ) {

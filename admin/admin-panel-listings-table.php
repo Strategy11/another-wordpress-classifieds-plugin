@@ -106,7 +106,7 @@ class AWPCP_Listings_Table extends WP_List_Table {
 
             case 'flagged':
                 $query['meta_query'][] = array(
-                    'key' => '_flagged',
+                    'key' => '_awpcp_flagged',
                     'value' => true,
                     'compare' => '=',
                     'type' => 'BINARY',
@@ -116,7 +116,7 @@ class AWPCP_Listings_Table extends WP_List_Table {
 
             case 'incomplete':
                 $query['meta_query'][] = array(
-                    'key' => '_payment_status',
+                    'key' => '_awpcp_payment_status',
                     'value' => 'Unpaid',
                     'compare' => '=',
                     'type' => 'char'
@@ -127,7 +127,7 @@ class AWPCP_Listings_Table extends WP_List_Table {
             case 'non-verified':
                 // TODO: test NOT EXISTS really works!
                 $query['meta_query'][] = array(
-                    'key' => '_verification_needed',
+                    'key' => '_awpcp_verification_needed',
                     'value' => true,
                     'compare' => '=',
                     'type' => 'BINARY',
@@ -146,7 +146,7 @@ class AWPCP_Listings_Table extends WP_List_Table {
 
             case 'new':
                 $query['meta_query'][] = array(
-                    'key' => '_content_needs_review',
+                    'key' => '_awpcp_content_needs_review',
                     'value' => true,
                     'compare' => '=',
                     'type' => 'BINARY',
@@ -479,7 +479,7 @@ class AWPCP_Listings_Table extends WP_List_Table {
     }
 
     public function column_featured($item) {
-        if ( get_post_meta( $item->ID, '_is_featured', true ) ) {
+        if ( get_post_meta( $item->ID, '_awpcp_is_featured', true ) ) {
             return __( 'Featured', 'another-wordpress-classifieds-plugin' );
         } else {
             return __( 'Not Featured', 'another-wordpress-classifieds-plugin' );

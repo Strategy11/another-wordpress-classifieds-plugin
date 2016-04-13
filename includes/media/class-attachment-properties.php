@@ -13,15 +13,15 @@ class AWPCP_Attachment_Properties {
     }
 
     public function is_enabled( $attachment ) {
-        return $this->wordpress->get_post_meta( $attachment->ID, '_enabled', true );
+        return $this->wordpress->get_post_meta( $attachment->ID, '_awpcp_enabled', true );
     }
 
     public function is_featured( $attachment ) {
-        return $this->wordpress->get_post_meta( $attachment->ID, '_featured', true );
+        return $this->wordpress->get_post_meta( $attachment->ID, '_awpcp_featured', true );
     }
 
     public function get_allowed_status( $attachment ) {
-        return $this->wordpress->get_post_meta( $attachment->ID, '_allowed_status', true );
+        return $this->wordpress->get_post_meta( $attachment->ID, '_awpcp_allowed_status', true );
     }
 
     public function is_awaiting_approval( $attachment ) {

@@ -72,7 +72,7 @@ class AWPCP_ListingsCollection {
 
     private function make_valid_listings_query( $query ) {
         $query['meta_query'][] = array(
-            'key' => '_verified',
+            'key' => '_awpcp_verified',
             'value' => true,
             'compare' => '=',
             'type' => 'BINARY',
@@ -199,7 +199,7 @@ class AWPCP_ListingsCollection {
 
         switch ( $orderby ) {
             case 1:
-                $query['meta_key'] = '_most_recent_start_date';
+                $query['meta_key'] = '_awpcp_most_recent_start_date';
                 $query['meta_type'] = 'DATETIME';
                 $query['orderby'] = array( 'meta_value' => 'DESC' );
                 break;
@@ -210,82 +210,82 @@ class AWPCP_ListingsCollection {
 
             case 3:
                 $query['orderby'] = 'menu_order';
-                $query['_meta_order'] = array( '_is_paid' => 'DESC', '_most_recent_start_date' => 'DESC' );
-                $query['_meta_type'] = array( '_is_paid' => 'SIGNED', '_most_recent_start_date' => 'DATETIME' );
+                $query['_meta_order'] = array( '_awpcp_is_paid' => 'DESC', '_awpcp_most_recent_start_date' => 'DESC' );
+                $query['_meta_type'] = array( '_awpcp_is_paid' => 'SIGNED', '_awpcp_most_recent_start_date' => 'DATETIME' );
 
                 $query['meta_query'][] = array(
-                    'key' => '_is_paid',
+                    'key' => '_awpcp_is_paid',
                     'compare' => 'EXISTS',
                 );
 
                 $query['meta_query'][] = array(
-                    'key' => '_most_recent_start_date',
+                    'key' => '_awpcp_most_recent_start_date',
                     'compare' => 'EXISTS',
                 );
                 break;
 
             case 4:
-                $query['meta_key'] = '_is_paid';
+                $query['meta_key'] = '_awpcp_is_paid';
                 $query['meta_type'] = 'SIGNED';
                 $query['orderby'] = array( 'meta_value' => 'DESC', 'title' => 'ASC' );
                 break;
 
             case 5:
-                $query['meta_key'] = '_views';
+                $query['meta_key'] = '_awpcp_views';
                 $query['meta_type'] = 'SIGNED';
                 $query['orderby'] = array( 'meta_value' => 'DESC', 'title' => 'ASC' );
                 break;
 
             case 6:
                 $query['orderby'] = 'menu_order';
-                $query['_meta_order'] = array( '_views' => 'DESC', '_most_recent_start_date' => 'DESC' );
-                $query['_meta_type'] = array( '_views' => 'SIGNED', '_most_recent_start_date' => 'DATETIME' );
+                $query['_meta_order'] = array( '_awpcp_views' => 'DESC', '_awpcp_most_recent_start_date' => 'DESC' );
+                $query['_meta_type'] = array( '_awpcp_views' => 'SIGNED', '_awpcp_most_recent_start_date' => 'DATETIME' );
 
                 $query['meta_query'][] = array(
-                    'key' => '_views',
+                    'key' => '_awpcp_views',
                     'compare' => 'EXISTS',
                 );
 
                 $query['meta_query'][] = array(
-                    'key' => '_most_recent_start_date',
+                    'key' => '_awpcp_most_recent_start_date',
                     'compare' => 'EXISTS',
                 );
                 break;
 
             case 7:
                 $query['orderby'] = 'menu_order';
-                $query['_meta_order'] = array( '_price' => 'DESC', '_most_recent_start_date' => 'DESC' );
-                $query['_meta_type'] = array( '_price' => 'SIGNED', '_most_recent_start_date' => 'DATETIME' );
+                $query['_meta_order'] = array( '_awpcp_price' => 'DESC', '_awpcp_most_recent_start_date' => 'DESC' );
+                $query['_meta_type'] = array( '_awpcp_price' => 'SIGNED', '_awpcp_most_recent_start_date' => 'DATETIME' );
 
                 $query['meta_query'][] = array(
-                    'key' => '_price',
+                    'key' => '_awpcp_price',
                     'compare' => 'EXISTS',
                 );
 
                 $query['meta_query'][] = array(
-                    'key' => '_most_recent_start_date',
+                    'key' => '_awpcp_most_recent_start_date',
                     'compare' => 'EXISTS',
                 );
                 break;
 
             case 8:
                 $query['orderby'] = 'menu_order';
-                $query['_meta_order'] = array( '_price' => 'ASC', '_most_recent_start_date' => 'DESC' );
-                $query['_meta_type'] = array( '_price' => 'SIGNED', '_most_recent_start_date' => 'DATETIME' );
+                $query['_meta_order'] = array( '_awpcp_price' => 'ASC', '_awpcp_most_recent_start_date' => 'DESC' );
+                $query['_meta_type'] = array( '_awpcp_price' => 'SIGNED', '_awpcp_most_recent_start_date' => 'DATETIME' );
 
                 $query['meta_query'][] = array(
-                    'key' => '_price',
+                    'key' => '_awpcp_price',
                     'compare' => 'EXISTS',
                 );
 
                 $query['meta_query'][] = array(
-                    'key' => '_most_recent_start_date',
+                    'key' => '_awpcp_most_recent_start_date',
                     'compare' => 'EXISTS',
                 );
                 break;
 
             case 9:
-                $query['meta_key'] = '_most_recent_start_date';
+                $query['meta_key'] = '_awpcp_most_recent_start_date';
                 $query['meta_type'] = 'DATETIME';
                 $query['orderby'] = array( 'meta_value' => 'ASC' );
                 break;
@@ -295,23 +295,23 @@ class AWPCP_ListingsCollection {
                 break;
 
             case 11:
-                $query['meta_key'] = '_views';
+                $query['meta_key'] = '_awpcp_views';
                 $query['meta_type'] = 'SIGNED';
                 $query['orderby'] = array( 'meta_value' => 'ASC', 'title' => 'ASC' );
                 break;
 
             case 12:
                 $query['orderby'] = 'menu_order';
-                $query['_meta_order'] = array( '_views' => 'ASC', '_most_recent_start_date' => 'ASC' );
-                $query['_meta_type'] = array( '_views' => 'SIGNED', '_most_recent_start_date' => 'DATETIME' );
+                $query['_meta_order'] = array( '_awpcp_views' => 'ASC', '_awpcp_most_recent_start_date' => 'ASC' );
+                $query['_meta_type'] = array( '_awpcp_views' => 'SIGNED', '_awpcp_most_recent_start_date' => 'DATETIME' );
 
                 $query['meta_query'][] = array(
-                    'key' => '_views',
+                    'key' => '_awpcp_views',
                     'compare' => 'EXISTS',
                 );
 
                 $query['meta_query'][] = array(
-                    'key' => '_most_recent_start_date',
+                    'key' => '_awpcp_most_recent_start_date',
                     'compare' => 'EXISTS',
                 );
                 break;
@@ -321,73 +321,73 @@ class AWPCP_ListingsCollection {
                 break;
 
             case 'start-date':
-                $query['meta_key'] = '_start_date';
+                $query['meta_key'] = '_awpcp_start_date';
                 $query['meta_type'] = 'DATETIME';
                 $query['orderby'] = array( 'meta_value' => $query['order'] );
                 break;
 
             case 'end-date':
-                $query['meta_key'] = '_start_date';
+                $query['meta_key'] = '_awpcp_start_date';
                 $query['meta_type'] = 'DATETIME';
                 $query['orderby'] = array( 'meta_value' => $query['order'] );
                 break;
 
             case 'renewed-date':
                 $query['orderby'] = array( 'menu_order' => 'DESC', 'ID' => $query['order'] );
-                $query['_meta_order'] = array( '_most_recent_start_date' => $query['order'], '_renewed_date' => $query['order'] );
-                $query['_meta_type'] = array( '_most_recent_start_date' => 'DATETIME', '_renewed_date' => 'DATETIME' );
+                $query['_meta_order'] = array( '_awpcp_most_recent_start_date' => $query['order'], '_awpcp_renewed_date' => $query['order'] );
+                $query['_meta_type'] = array( '_awpcp_most_recent_start_date' => 'DATETIME', '_awpcp_renewed_date' => 'DATETIME' );
 
                 $query['meta_query'][] = array(
-                    'key' => '_most_recent_start_date',
+                    'key' => '_awpcp_most_recent_start_date',
                     'compare' => 'EXISTS',
                 );
 
                 $query['meta_query'][] = array(
-                    'key' => '_renewed_date',
+                    'key' => '_awpcp_renewed_date',
                     'compare' => 'EXISTS',
                 );
                 break;
 
             case 'status':
-                $query['meta_key'] = '_start_date';
+                $query['meta_key'] = '_awpcp_start_date';
                 $query['orderby'] = array( 'menu_order' => 'DESC', 'meta_value' => $query['order'], 'ID' => $query['order'] );
                 $query['_custom_order'] = array( 'post_status' => $query['order'] );
                 break;
 
             case 'payment-term':
                 $query['orderby'] = array( 'menu_order' => 'DESC', 'ID' => $query['order'] );
-                $query['_meta_order'] = array( '_payment_term_id' => $query['order'], '_start_date' => $query['order'] );
-                $query['_meta_type'] = array( '_payment_term_id' => 'DATETIME', '_start_date' => 'DATETIME' );
+                $query['_meta_order'] = array( '_awpcp_payment_term_id' => $query['order'], '_awpcp_start_date' => $query['order'] );
+                $query['_meta_type'] = array( '_awpcp_payment_term_id' => 'DATETIME', '_awpcp_start_date' => 'DATETIME' );
 
                 $query['meta_query'][] = array(
-                    'key' => '_payment_term_id',
+                    'key' => '_awpcp_payment_term_id',
                     'compare' => 'EXISTS',
                 );
 
                 $query['meta_query'][] = array(
-                    'key' => '_start_date',
+                    'key' => '_awpcp_start_date',
                     'compare' => 'EXISTS',
                 );
                 break;
 
             case 'payment-status':
                 $query['orderby'] = array( 'menu_order' => 'DESC', 'ID' => $query['order'] );
-                $query['_meta_order'] = array( '_payment_status' => $query['order'], '_start_date' => $query['order'] );
-                $query['_meta_type'] = array( '_payment_status' => 'DATETIME', '_start_date' => 'DATETIME' );
+                $query['_meta_order'] = array( '_awpcp_payment_status' => $query['order'], '_awpcp_start_date' => $query['order'] );
+                $query['_meta_type'] = array( '_awpcp_payment_status' => 'DATETIME', '_awpcp_start_date' => 'DATETIME' );
 
                 $query['meta_query'][] = array(
-                    'key' => '_payment_status',
+                    'key' => '_awpcp_payment_status',
                     'compare' => 'EXISTS',
                 );
 
                 $query['meta_query'][] = array(
-                    'key' => '_start_date',
+                    'key' => '_awpcp_start_date',
                     'compare' => 'EXISTS',
                 );
                 break;
 
             case 'owner':
-                $query['meta_key'] = '_start_date';
+                $query['meta_key'] = '_awpcp_start_date';
                 $query['meta_type'] = 'DATETIME';
                 $query['orderby'] = array( 'author' => $query['order'], 'meta_value' => $query['order'], 'ID' => $query['order'] );
                 break;
@@ -571,7 +571,7 @@ class AWPCP_ListingsCollection {
     private function add_contact_condition( $query ) {
         if ( isset( $query['contact_name'] ) && ! empty( $query['contact_name'] ) ) {
             $query['meta_query'][] = array(
-                'key' => '_contact_name',
+                'key' => '_awpcp_contact_name',
                 'value' => $query['contact_name'],
                 'compare' => '=',
                 'type' => 'CHAR',
@@ -584,7 +584,7 @@ class AWPCP_ListingsCollection {
     private function add_price_condition( $query ) {
         if ( isset( $query['price'] ) && strlen( $query['price'] ) ) {
             $query['meta_query'][] = array(
-                'key' => '_price',
+                'key' => '_awpcp_price',
                 'value' => $query['price'] * 100,
                 'compare' => '=',
                 'type' => 'SIGNED',
@@ -593,7 +593,7 @@ class AWPCP_ListingsCollection {
 
         if ( isset( $query['min_price'] ) && strlen( $query['min_price'] ) ) {
             $query['meta_query'][] = array(
-                'key' => '_price',
+                'key' => '_awpcp_price',
                 'value' => $query['min_price'] * 100,
                 'compare' => '>=',
                 'type' => 'SIGNED',
@@ -602,7 +602,7 @@ class AWPCP_ListingsCollection {
 
         if ( isset( $query['max_price'] ) && strlen( $query['max_price'] ) ) {
             $query['meta_query'][] = array(
-                'key' => '_price',
+                'key' => '_awpcp_price',
                 'value' => $query['max_price'] * 100,
                 'compare' => '<=',
                 'type' => 'SIGNED',
@@ -615,7 +615,7 @@ class AWPCP_ListingsCollection {
     private function add_payment_status_condition( $query ) {
         if ( isset( $query['payment_status'] ) ) {
             $query['meta_query'] = array(
-                'key' => '_payment_status',
+                'key' => '_awpcp_payment_status',
                 'value' => $query['payment_status'],
                 'compare' => is_array( $query['payment_status'] )  ? 'IN' : '=',
                 'type' => 'CHAR',
@@ -624,7 +624,7 @@ class AWPCP_ListingsCollection {
 
         if ( isset( $query['payment_status__not_in'] ) ) {
             $query['meta_query'] = array(
-                'key' => '_payment_status',
+                'key' => '_awpcp_payment_status',
                 'value' => $query['payment_status'],
                 'compare' => 'NOT IN',
                 'type' => 'CHAR',
@@ -637,7 +637,7 @@ class AWPCP_ListingsCollection {
     private function add_payment_email_condition( $query ) {
         if ( isset( $query['payer_email'] ) ) {
             $query['meta_query'][] = array(
-                'key' => '_payer_email',
+                'key' => '_awpcp_payer_email',
                 'value' => $query['payer_email'],
                 'compare' => '=',
                 'type' => 'CHAR',
@@ -694,14 +694,14 @@ class AWPCP_ListingsCollection {
         $target_date = strtotime( "+ $threshold days", current_time( 'timestamp' ) );
 
         $query['meta_query'][] = array(
-            'key' => '_end_date',
+            'key' => '_awpcp_end_date',
             'value' => awpcp_datetime( 'mysql', $target_date ),
             'compare' => '<=',
             'type' => 'DATE',
         );
 
         $query['meta_query'][] = array(
-            'key' => '_renew_email_sent',
+            'key' => '_awpcp_renew_email_sent',
             'compare' => 'NOT EXISTS',
         );
 
@@ -714,7 +714,7 @@ class AWPCP_ListingsCollection {
 
     private function make_expired_listings_query( $query ) {
         $query['meta_query'][] = array(
-            'key' => '_end_date',
+            'key' => '_awpcp_end_date',
             'value' => current_time( 'mysql' ),
             'compare' => '<=',
             'type' => 'DATE',
@@ -733,7 +733,7 @@ class AWPCP_ListingsCollection {
 
     private function make_listings_awaiting_approval_query( $query ) {
         $query['meta_query'][] = array(
-            'key' => '_disabled_date',
+            'key' => '_awpcp_disabled_date',
             'compare' => 'NOT EXISTS',
         );
 
@@ -754,14 +754,14 @@ class AWPCP_ListingsCollection {
 
         if ( ! $enable_listings_pending_payment && $payments_are_enabled ) {
             $query['meta_query'][] = array(
-                'key' => '_payment_status',
+                'key' => '_awpcp_payment_status',
                 'value' => array( 'Pending', 'Unpaid' ),
                 'compare' => 'NOT IN',
                 'type' => 'char'
             );
         } else {
             $query['meta_query'][] = array(
-                'key' => '_payment_status',
+                'key' => '_awpcp_payment_status',
                 'value' => 'Unpaid',
                 'compare' => '!=',
                 'type' => 'char'
@@ -794,7 +794,7 @@ class AWPCP_ListingsCollection {
      */
     private function make_listings_awaiting_verification_query( $query ) {
         $query['meta_query'][] = array(
-            'key' => '_verification_needed',
+            'key' => '_awpcp_verification_needed',
             'value' => true,
             'compare' => '=',
             'type' => 'BINARY',

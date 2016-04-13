@@ -14,6 +14,6 @@ class AWPCP_Listing_Meta_Configuration implements AWPCP_Posts_Meta_Configuration
     }
 
     public function prepare_meta_key( $meta_key ) {
-        return "_$meta_key";
+        return "_awpcp_$meta_key";
     }
 }

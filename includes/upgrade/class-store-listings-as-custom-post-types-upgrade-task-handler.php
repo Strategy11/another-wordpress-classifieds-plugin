@@ -84,7 +84,7 @@ class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements 
         $this->db->query( $this->db->prepare( $sql, $post_id, $item->ad_id ) );
 
         /* store old listing's ad_id in custom field so premium modules can rebuild relationships */
-        $this->wordpress->add_post_meta( $post_id, '_old_id', $item->ad_id );
+        $this->wordpress->update_post_meta( $post_id, '_awpcp_old_id', $item->ad_id );
 
         return $item->ad_id;
     }
@@ -92,7 +92,7 @@ class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements 
     private function update_post_status_with_item_properties( $post_id, $item ) {
         if ( $item->payment_status === 'Unpaid' ) {
             $this->wordpress->update_post( array( 'ID' => $post_id, 'post_status' => 'draft' ) );
-            $this->wordpress->add_post_meta( $post_id, '_payment_pending', true );
+            $this->wordpress->update_post_meta( $post_id, '_awpcp_payment_pending', true );
         } else if ( $item->disabled || $item->verified != 1 ) {
             $this->wordpress->update_post( array( 'ID' => $post_id, 'post_status' => 'disabled' ) );
         } else {
@@ -101,66 +101,66 @@ class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements 
 
         // update verified status
         if ( $item->verified != 1 ) {
-            $this->wordpress->add_post_meta( $post_id, '_verfication_needed', true );
+            $this->wordpress->update_post_meta( $post_id, '_awpcp_verfication_needed', true );
         } else {
-            $this->wordpress->add_post_meta( $post_id, '_verified', true );
+            $this->wordpress->update_post_meta( $post_id, '_awpcp_verified', true );
         }
 
         // update reviewed status
         $reviewed = $this->legacy_listing_metadata->get( $item->ad_id, 'reviewed' );
 
         if ( is_null( $reviewed ) || $reviewed ) {
-            $this->wordpress->add_post_meta( $post_id, '_reviewed', true );
+            $this->wordpress->update_post_meta( $post_id, '_awpcp_reviewed', true );
         } else {
-            $this->wordpress->add_post_meta( $post_id, '_content_needs_review', true );
+            $this->wordpress->update_post_meta( $post_id, '_awpcp_content_needs_review', true );
         }
 
         // update expired status
         if ( strtotime( $item->ad_enddate ) < current_time( 'timestamp' ) ) {
-            $this->wordpress->add_post_meta( $post_id, '_expired', true );
+            $this->wordpress->update_post_meta( $post_id, '_awpcp_expired', true );
         }
     }
 
     public function update_post_metadata_with_item_properties( $post_id, $item ) {
-        $this->wordpress->add_post_meta( $post_id, '_payment_term_id', $item->adterm_id );
-        $this->wordpress->add_post_meta( $post_id, '_payment_term_type', $item->payment_term_type );
-        $this->wordpress->add_post_meta( $post_id, '_payment_gateway', $item->payment_gateway );
-        $this->wordpress->add_post_meta( $post_id, '_payment_amount', $item->ad_fee_paid );
-        $this->wordpress->add_post_meta( $post_id, '_payment_status', $item->payment_status );
-        $this->wordpress->add_post_meta( $post_id, '_payer_email', $item->payer_email );
-        $this->wordpress->add_post_meta( $post_id, '_contact_name', $item->ad_contact_name );
-        $this->wordpress->add_post_meta( $post_id, '_contact_phone', $item->ad_contact_phone );
-        $this->wordpress->add_post_meta( $post_id, '_contact_email', $item->ad_contact_email );
-        $this->wordpress->add_post_meta( $post_id, '_website_url', $item->websiteurl );
-        $this->wordpress->add_post_meta( $post_id, '_price', $item->ad_item_price );
-        $this->wordpress->add_post_meta( $post_id, '_views', $item->ad_views );
-        $this->wordpress->add_post_meta( $post_id, '_last_updated', $item->ad_last_updated );
-        $this->wordpress->add_post_meta( $post_id, '_start_date', $item->ad_startdate );
-        $this->wordpress->add_post_meta( $post_id, '_end_date', $item->ad_enddate );
-        $this->wordpress->add_post_meta( $post_id, '_most_recent_start_date', $item->ad_startdate );
-        $this->wordpress->add_post_meta( $post_id, '_disabled_date', $item->disabled_date );
-        $this->wordpress->add_post_meta( $post_id, '_flagged', $item->flagged );
-        $this->wordpress->add_post_meta( $post_id, '_verification_date', $item->verified_at );
-        $this->wordpress->add_post_meta( $post_id, '_access_key', $item->ad_key );
-        $this->wordpress->add_post_meta( $post_id, '_transaction_id', $item->ad_transaction_id );
-        $this->wordpress->add_post_meta( $post_id, '_poster_ip', $item->posterip );
-        $this->wordpress->add_post_meta( $post_id, '_renew_email_sent', $item->renew_email_sent );
-        $this->wordpress->add_post_meta( $post_id, '_renewed_date', $item->renewed_date );
-        $this->wordpress->add_post_meta( $post_id, '_is_paid', $item->ad_fee_paid > 0 );
+        $this->wordpress->update_post_meta( $post_id, '_awpcp_payment_term_id', $item->adterm_id );
+        $this->wordpress->update_post_meta( $post_id, '_awpcp_payment_term_type', $item->payment_term_type );
+        $this->wordpress->update_post_meta( $post_id, '_awpcp_payment_gateway', $item->payment_gateway );
+        $this->wordpress->update_post_meta( $post_id, '_awpcp_payment_amount', $item->ad_fee_paid );
+        $this->wordpress->update_post_meta( $post_id, '_awpcp_payment_status', $item->payment_status );
+        $this->wordpress->update_post_meta( $post_id, '_awpcp_payer_email', $item->payer_email );
+        $this->wordpress->update_post_meta( $post_id, '_awpcp_contact_name', $item->ad_contact_name );
+        $this->wordpress->update_post_meta( $post_id, '_awpcp_contact_phone', $item->ad_contact_phone );
+        $this->wordpress->update_post_meta( $post_id, '_awpcp_contact_email', $item->ad_contact_email );
+        $this->wordpress->update_post_meta( $post_id, '_awpcp_website_url', $item->websiteurl );
+        $this->wordpress->update_post_meta( $post_id, '_awpcp_price', $item->ad_item_price );
+        $this->wordpress->update_post_meta( $post_id, '_awpcp_views', $item->ad_views );
+        $this->wordpress->update_post_meta( $post_id, '_awpcp_last_updated', $item->ad_last_updated );
+        $this->wordpress->update_post_meta( $post_id, '_awpcp_start_date', $item->ad_startdate );
+        $this->wordpress->update_post_meta( $post_id, '_awpcp_end_date', $item->ad_enddate );
+        $this->wordpress->update_post_meta( $post_id, '_awpcp_most_recent_start_date', $item->ad_startdate );
+        $this->wordpress->update_post_meta( $post_id, '_awpcp_disabled_date', $item->disabled_date );
+        $this->wordpress->update_post_meta( $post_id, '_awpcp_flagged', $item->flagged );
+        $this->wordpress->update_post_meta( $post_id, '_awpcp_verification_date', $item->verified_at );
+        $this->wordpress->update_post_meta( $post_id, '_awpcp_access_key', $item->ad_key );
+        $this->wordpress->update_post_meta( $post_id, '_awpcp_transaction_id', $item->ad_transaction_id );
+        $this->wordpress->update_post_meta( $post_id, '_awpcp_poster_ip', $item->posterip );
+        $this->wordpress->update_post_meta( $post_id, '_awpcp_renew_email_sent', $item->renew_email_sent );
+        $this->wordpress->update_post_meta( $post_id, '_awpcp_renewed_date', $item->renewed_date );
+        $this->wordpress->update_post_meta( $post_id, '_awpcp_is_paid', $item->ad_fee_paid > 0 );
     }
 
     private function update_post_metadata_with_item_metadata( $post_id, $item ) {
         // 'reviewed' was handled in update_post_status_with_item_properties()
         $meta_keys = array(
-            'sent-to-facebook' => 'sent_to_facebook_page',
-            'sent-to-facebook-group' => 'sent_to_facebook_group',
-            'verification_email_sent_at' => 'verification_email_sent_at',
-            'verification_emails_sent' => 'verification_emails_sent',
+            'sent-to-facebook' => '_awpcp_sent_to_facebook_page',
+            'sent-to-facebook-group' => '_awpcp_sent_to_facebook_group',
+            'verification_email_sent_at' => '_awpcp_verification_email_sent_at',
+            'verification_emails_sent' => '_awpcp_verification_emails_sent',
         );
 
         foreach ( $meta_keys as $old_key => $new_key ) {
             if ( $this->legacy_listing_metadata->get( $item->ad_id, $old_key ) ) {
-                $this->wordpress->add_post_meta( $post_id, $new_key, true );
+                $this->wordpress->update_post_meta( $post_id, $new_key, true );
             }
         }
     }
