@@ -25,7 +25,7 @@ function awpcp_edit_listing_admin_page() {
 
 class AWPCP_AdminListingsEditAd extends AWPCP_EditAdPage {
 
-    protected $template = 'templates/admin/empty-page.tpl.php';
+    protected $template = 'admin/templates/admin-page.tpl.php';
 
     public $menu;
 

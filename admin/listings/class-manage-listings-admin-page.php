@@ -360,8 +360,10 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
     }
 
     public function edit_ad() {
-        $page = new AWPCP_AdminListingsEditAd();
-        return $page->dispatch('details');
+        // TODO: Register as a page action to allow styles specific to this view.
+        //       Right now the look and feel does not match previous versions
+        //       of the same view.
+        return awpcp_edit_listing_admin_page()->dispatch('details');
     }
 
     protected function bulk_action($handler, $success, $failure) {
