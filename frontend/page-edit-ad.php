@@ -207,8 +207,8 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
         }
 
         // overwrite user email and name using Profile information
-        if ( $ad->user_id ) {
-            $info = $this->get_user_info( $ad->user_id );
+        if ( $ad->post_author ) {
+            $info = $this->get_user_info( $ad->post_author );
 
             $fields = array( 'ad_contact_name', 'ad_contact_email', 'ad_contact_phone' );
             foreach ($fields as $field) {

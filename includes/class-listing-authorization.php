@@ -19,7 +19,7 @@ class AWPCP_ListingAuthorization {
             return true;
         }
 
-        if ( is_user_logged_in() && $listing->user_id == $this->request->get_current_user()->ID ) {
+        if ( is_user_logged_in() && $listing->post_author == $this->request->get_current_user()->ID ) {
             return true;
         }
 

@@ -156,7 +156,7 @@ function showad( $adid=null, $omitmenu=false, $preview=false, $send_email=true, 
 				return '<div id="classiwrapper">' . awpcp_print_error($message) . '</div><!--close classiwrapper-->';
 			}
 
-			if ($ad->user_id > 0 && $ad->user_id == wp_get_current_user()->ID) {
+			if ( $ad->post_author > 0 && $ad->post_author == wp_get_current_user()->ID ) {
 				$is_ad_owner = true;
 			} else {
 				$is_ad_owner = false;
