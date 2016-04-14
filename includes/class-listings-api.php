@@ -379,7 +379,7 @@ class AWPCP_ListingsAPI {
             $alerts[] = __( 'You need to verify the email address used as the contact email address for this Ad. The Ad will remain in a disabled status until you verify your address. A verification email has been sent to you.', 'another-wordpress-classifieds-plugin' );
         }
 
-        if ( get_awpcp_option( 'adapprove' ) == 1 && $ad->disabled ) {
+        if ( get_awpcp_option( 'adapprove' ) == 1 && $this->listing_renderer->is_disabled( $ad ) ) {
             $alerts[] = get_awpcp_option( 'notice_awaiting_approval_ad' );
         }
 
@@ -402,7 +402,7 @@ class AWPCP_ListingsAPI {
         $moderate_listings = get_awpcp_option( 'adapprove' );
         $moderate_images = get_awpcp_option('imagesapprove') == 1;
 
-        if ( ( $moderate_listings || $moderate_images ) && $ad->disabled ) {
+        if ( ( $moderate_listings || $moderate_images ) && $this->listing_renderer->is_disabled( $ad ) ) {
             awpcp_send_listing_awaiting_approval_notification_to_moderators(
                 $ad, $moderate_listings, $moderate_images
             );
@@ -421,7 +421,7 @@ class AWPCP_ListingsAPI {
         $moderate_modifications = get_awpcp_option( 'disable-edited-listings-until-admin-approves' );
         $moderate_images = get_awpcp_option('imagesapprove') == 1;
 
-        if ( ( $moderate_modifications || $moderate_images ) && $ad->disabled ) {
+        if ( ( $moderate_modifications || $moderate_images ) && $this->listing_renderer->is_disabled( $ad ) ) {
             awpcp_send_listing_awaiting_approval_notification_to_moderators(
                 $ad, $moderate_modifications, $moderate_images
             );

@@ -3,7 +3,9 @@
 function awpcp_send_to_facebook_helper() {
     return new AWPCP_SendToFacebookHelper(
         AWPCP_Facebook::instance(),
-        awpcp_media_api(),
+        awpcp_attachment_properties(),
+        awpcp_attachments_collection(),
+        awpcp_listing_renderer(),
         awpcp_wordpress()
     );
 }
@@ -11,12 +13,16 @@ function awpcp_send_to_facebook_helper() {
 class AWPCP_SendToFacebookHelper {
 
     private $facebook_config;
-    private $media;
+    private $attachment_properties;
+    private $attachments;
+    private $listing_renderer;
     private $wordpress;
 
-    public function __construct( $facebook_config, $media, $wordpress ) {
+    public function __construct( $facebook_config, $attachment_properties, $attachments, $listing_renderer, $wordpress ) {
         $this->facebook_config = $facebook_config;
-        $this->media = $media;
+        $this->attachment_properties = $attachment_properties;
+        $this->attachments = $attachments;
+        $this->listing_renderer = $listing_renderer;
         $this->wordpress = $wordpress;
     }
 
@@ -31,7 +37,7 @@ class AWPCP_SendToFacebookHelper {
             throw new AWPCP_Exception( __( 'The Ad was already sent to Facebook Page.', 'another-wordpress-classifieds-plugin' ) );
         }
 
-        if ( $listing->disabled ) {
+        if ( $this->listing_renderer->is_disabled( $listing ) ) {
             throw new AWPCP_Exception( __( "The Ad is currently disabled. If you share it, Facebook servers and users won't be able to access it.", 'another-wordpress-classifieds-plugin' ) );
         }
 
@@ -84,7 +90,7 @@ class AWPCP_SendToFacebookHelper {
             throw new AWPCP_Exception( __( 'The Ad was already sent to Facebook Group.', 'another-wordpress-classifieds-plugin' ) );
         }
 
-        if ( $listing->disabled ) {
+        if ( $this->listing_renderer->is_disabled( $listing ) ) {
             throw new AWPCP_Exception( __( "The Ad is currently disabled. If you share it, Facebook servers and users won't be able to access it.", 'another-wordpress-classifieds-plugin' ) );
         }
 

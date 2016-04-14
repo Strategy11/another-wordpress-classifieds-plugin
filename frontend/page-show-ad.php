@@ -108,6 +108,7 @@ function showad( $adid=null, $omitmenu=false, $preview=false, $send_email=true, 
 	wp_enqueue_script('awpcp-page-show-ad');
 
     $awpcp = awpcp();
+    $listing_renderer = awpcp_listing_renderer();
 
     $awpcp->js->set( 'page-show-ad-flag-ad-nonce', wp_create_nonce('flag_ad') );
 
@@ -167,7 +168,7 @@ function showad( $adid=null, $omitmenu=false, $preview=false, $send_email=true, 
 			$output = '<div id="classiwrapper">%s%s<!--awpcp-single-ad-layout-->%s</div><!--close classiwrapper-->';
 			$output = sprintf( $output, $content_before_page, $omitmenu ? '' : awpcp_menu_items(), $content_after_page );
 
-			if (!$is_moderator && !$is_ad_owner && !$preview && $ad->disabled == 1) {
+			if (!$is_moderator && !$is_ad_owner && !$preview && $listing_renderer->is_disabled( $ad ) ) {
 				$message = __('The Ad you are trying to view is pending approval. Once the Administrator approves it, it will be active and visible.', 'another-wordpress-classifieds-plugin');
 				return str_replace( '<!--awpcp-single-ad-layout-->', awpcp_print_error( $message ), $output );
 			}
@@ -176,13 +177,13 @@ function showad( $adid=null, $omitmenu=false, $preview=false, $send_email=true, 
 				$messages[] = awpcp_print_message( __( 'Your email address was successfully verified.', 'another-wordpress-classifieds-plugin' ) );
 			}
 
-			if ($show_messages && $is_moderator && $ad->disabled == 1) {
+			if ($show_messages && $is_moderator && $listing_renderer->is_disabled( $ad ) ) {
 				$message = __('This Ad is currently disabled until the Administrator approves it. Only you (the Administrator) and the author can see it.', 'another-wordpress-classifieds-plugin');
 				$messages[] = awpcp_print_error($message);
 			} else if ( $show_messages && ( $is_ad_owner || $preview ) && ! $ad->verified ) {
 				$message = __('This Ad is currently disabled until you verify the email address used for the contact information. Only you (the author) can see it.', 'another-wordpress-classifieds-plugin');
 				$messages[] = awpcp_print_error($message);
-			} else if ( $show_messages && ( $is_ad_owner || $preview ) && $ad->disabled == 1 ) {
+			} else if ( $show_messages && ( $is_ad_owner || $preview ) && $listing_renderer->is_disabled( $ad ) ) {
 				$message = __('This Ad is currently disabled until the Administrator approves it. Only you (the author) can see it.', 'another-wordpress-classifieds-plugin');
 				$messages[] = awpcp_print_error($message);
 			}

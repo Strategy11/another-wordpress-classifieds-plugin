@@ -144,7 +144,7 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
             $actions['add-image'] = array(__('Add Images', 'AWPCP'), $this->url(array('action' => 'add-image', 'id' => $ad->ID)));
         }
 
-        if ( $is_moderator && ! $ad->disabled ) {
+        if ( $is_moderator && ! $this->listing_renderer->is_disabled( $ad ) ) {
             $fb = AWPCP_Facebook::instance();
             if ( ! awpcp_wordpress()->get_post_meta( $ad->ID, '_awpcp_sent_to_facebook_page', true ) && $fb->get( 'page_id' ) ) {
                 $actions['send-to-facebook'] = array(

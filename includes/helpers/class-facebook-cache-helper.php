@@ -1,10 +1,21 @@
 <?php
 
 function awpcp_facebook_cache_helper() {
-    return new AWPCP_FacebookCacheHelper();
+    return new AWPCP_FacebookCacheHelper(
+        awpcp_listing_renderer(),
+        awpcp_listings_collection()
+    );
 }
 
 class AWPCP_FacebookCacheHelper {
+
+    private $listing_renderer;
+    private $listings;
+
+    public function __construct( $listing_renderer, $listings ) {
+        $this->listing_renderer = $listing_renderer;
+        $this->listings = $listings;
+    }
 
     public function on_place_ad( $ad ) {
         $this->schedule_clear_cache_action( $ad );
@@ -29,11 +40,17 @@ class AWPCP_FacebookCacheHelper {
     }
 
     public function handle_clear_cache_event_hook( $ad_id ) {
-        $this->clear_ad_cache( AWPCP_Ad::find_by_id( $ad_id ) );
+        try {
+            $listing = $this->listings->get( $ad_id );
+        } catch ( AWPCP_Exception $e ) {
+            return;
+        }
+
+        $this->clear_ad_cache( $listing );
     }
 
     private function clear_ad_cache( $ad ) {
-        if (is_null( $ad ) || $ad->disabled ) {
+        if (is_null( $ad ) || $this->listing_renderer->is_disabled( $ad ) ) {
             return;
         }
 

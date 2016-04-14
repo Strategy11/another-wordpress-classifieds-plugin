@@ -1,23 +1,31 @@
 <?php
 
 function awpcp_send_listing_to_facebook_admin_page() {
-    return new AWPCP_SendListingToFacebookAdminPage( awpcp_listings_collection(), AWPCP_Facebook::instance(), awpcp_send_to_facebook_helper(), awpcp_request() );
+    return new AWPCP_SendListingToFacebookAdminPage(
+        awpcp_send_to_facebook_helper(),
+        AWPCP_Facebook::instance(),
+        awpcp_listing_renderer(),
+        awpcp_listings_collection(),
+        awpcp_request()
+    );
 }
 
 class AWPCP_SendListingToFacebookAdminPage extends AWPCP_ListingActionAdminPage {
 
-    private $facebook_config;
     private $facebook_helper;
+    private $facebook_config;
+    private $listing_renderer;
 
     public $successful = array( 'page' => 0, 'group' => 0 );
     public $failed = array( 'page' => 0, 'group' => 0 );
     public $errors = array();
 
-    public function __construct( $listings, $facebook_config, $facebook_helper, $request ) {
+    public function __construct( $facebook_helper, $facebook_config, $listing_renderer, $listings, $request ) {
         parent::__construct( $listings, $request );
 
-        $this->facebook_config = $facebook_config;
         $this->facebook_helper = $facebook_helper;
+        $this->facebook_config = $facebook_config;
+        $this->listing_renderer = $listing_renderer;
     }
 
     public function dispatch() {
@@ -43,7 +51,7 @@ class AWPCP_SendListingToFacebookAdminPage extends AWPCP_ListingActionAdminPage 
     }
 
     private function try_to_send_listing_to_facebook( $listing, $destinations ) {
-        if ( $listing->disabled ) {
+        if ( $this->listing_renderer->is_disabled( $listing ) ) {
             $message = __( "The Ad %s was not sent to Facebook because is currently disabled. If you share it, Facebook servers and users won't be able to access it.", 'another-wordpress-classifieds-plugin' );
             $this->errors[] = sprintf( $message, '<strong>' . $listing->get_title() . '</strong>' );
             return;
