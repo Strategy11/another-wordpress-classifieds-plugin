@@ -173,14 +173,14 @@ function showad( $adid=null, $omitmenu=false, $preview=false, $send_email=true, 
 				return str_replace( '<!--awpcp-single-ad-layout-->', awpcp_print_error( $message ), $output );
 			}
 
-			if ( awpcp_request_param('verified') && $ad->verified ) {
+			if ( awpcp_request_param('verified') && $listing_renderer->is_verified( $ad ) ) {
 				$messages[] = awpcp_print_message( __( 'Your email address was successfully verified.', 'another-wordpress-classifieds-plugin' ) );
 			}
 
 			if ($show_messages && $is_moderator && $listing_renderer->is_disabled( $ad ) ) {
 				$message = __('This Ad is currently disabled until the Administrator approves it. Only you (the Administrator) and the author can see it.', 'another-wordpress-classifieds-plugin');
 				$messages[] = awpcp_print_error($message);
-			} else if ( $show_messages && ( $is_ad_owner || $preview ) && ! $ad->verified ) {
+			} else if ( $show_messages && ( $is_ad_owner || $preview ) && ! $listing_renderer->is_verified( $ad ) ) {
 				$message = __('This Ad is currently disabled until you verify the email address used for the contact information. Only you (the author) can see it.', 'another-wordpress-classifieds-plugin');
 				$messages[] = awpcp_print_error($message);
 			} else if ( $show_messages && ( $is_ad_owner || $preview ) && $listing_renderer->is_disabled( $ad ) ) {
