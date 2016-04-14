@@ -53,7 +53,7 @@ class AWPCP_SendToFacebookHelper {
         $primary_image_thumbnail_url = $primary_image ? $primary_image->get_url( 'primary' ) : '';
 
         $params = array( 'link' => url_showad( $listing->ID ),
-                         'name' => $listing->get_title(),
+            'name' => $this->listing_renderer->get_listing_title( $listing ),
                          'picture' =>  $primary_image_thumbnail_url );
 
         try {

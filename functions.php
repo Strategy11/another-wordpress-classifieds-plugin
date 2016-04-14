@@ -2161,6 +2161,8 @@ function awpcp_ad_updated_email( $ad, $message ) {
 }
 
 function awpcp_ad_awaiting_approval_email($ad, $ad_approve, $images_approve) {
+    $listing_renderer = awpcp_listing_renderer();
+
 	// admin email
 	$params = array( 'action' => 'manage-images', 'id' => $ad->ad_id );
     $manage_images_url = add_query_arg( urlencode_deep( $params ), awpcp_get_admin_listings_url() );
@@ -2169,7 +2171,7 @@ function awpcp_ad_awaiting_approval_email($ad, $ad_approve, $images_approve) {
 		$subject = __( 'Images on Ad "%s" are awaiting approval', 'another-wordpress-classifieds-plugin' );
 
 		$message = __( 'Images on Ad "%s" are awaiting approval. You can approve the images going to the Manage Images section for that Ad and clicking the "Enable" button below each image. Click here to continue: %s.', 'another-wordpress-classifieds-plugin');
-		$messages = array( sprintf( $message, $ad->get_title(), $manage_images_url ) );
+		$messages = array( sprintf( $message, $listing_renderer->get_listing_title( $ad ), $manage_images_url ) );
 	} else {
 		$subject = __( 'The Ad "%s" is awaiting approval', 'another-wordpress-classifieds-plugin' );
 
@@ -2177,7 +2179,7 @@ function awpcp_ad_awaiting_approval_email($ad, $ad_approve, $images_approve) {
 		$params = array( 'action' => 'view', 'id' => $ad->ad_id );
 	    $url = add_query_arg( urlencode_deep( $params ), awpcp_get_admin_listings_url() );
 
-	    $messages[] = sprintf( $message, $ad->get_title(), $url );
+	    $messages[] = sprintf( $message, $listing_renderer->get_listing_title( $ad ), $url );
 
 	    if ( $images_approve ) {
 		    $message = __( 'Additionally, You can approve the images going to the Manage Images section for that Ad and clicking the "Enable" button below each image. Click here to continue: %s.', 'another-wordpress-classifieds-plugin' );
@@ -2187,7 +2189,7 @@ function awpcp_ad_awaiting_approval_email($ad, $ad_approve, $images_approve) {
 
 	$mail = new AWPCP_Email;
 	$mail->to[] = awpcp_admin_email_to();
-	$mail->subject = sprintf( $subject, $ad->get_title() );
+	$mail->subject = sprintf( $subject, $listing_renderer->get_listing_title( $ad ) );
 
 	$template = AWPCP_DIR . '/frontend/templates/email-ad-awaiting-approval-admin.tpl.php';
 	$mail->prepare( $template, compact( 'messages' ) );

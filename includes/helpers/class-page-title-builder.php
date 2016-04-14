@@ -125,7 +125,7 @@ class AWPCP_PageTitleBuilder {
         if ( ! empty( $this->category_id ) ) {
             return get_adcatname( $this->category_id );
         } else if ( ! is_null( $this->listing ) ) {
-            return $this->listing->get_title();
+            return $this->listing_renderer->get_listing_title( $this->listing );
         }
 
         return '';

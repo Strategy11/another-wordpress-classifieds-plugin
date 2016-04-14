@@ -2,18 +2,31 @@
 
 require_once(AWPCP_DIR . '/includes/helpers/page.php');
 
+function awpcp_reply_to_listing_page() {
+    return new AWPCP_ReplyToAdPage(
+        'awpcp-reply-to-ad',
+        __('Reply to Ad', 'another-wordpress-classifieds-plugin'),
+        awpcp_listing_renderer(),
+        awpcp_listings_collection()
+    );
+}
 
 /**
  * @since  2.1.4
  */
 class AWPCP_ReplyToAdPage extends AWPCP_Page {
 
+    private $listing_renderer;
+    private $listings;
     private $ad = null;
 
     public $messages = array();
 
-    public function __construct($page='awpcp-reply-to-ad', $title=null) {
-        parent::__construct($page, is_null($title) ? __('Reply to Ad', 'another-wordpress-classifieds-plugin') : $title);
+    public function __construct( $page, $title, $listing_renderer, $listings ) {
+        parent::__construct( $page, $title );
+
+        $this->listing_renderer = $listing_renderer;
+        $this->listings = $listings;
     }
 
     public function get_current_action($default='contact') {
@@ -30,7 +43,11 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
                 }
             }
 
-            $this->ad = AWPCP_Ad::find_by_id($ad_id);
+            try {
+                $ad = $this->listings->get( $ad_id );
+            } catch ( AWPCP_Exception $e ) {
+                $ad = null;
+            }
         }
 
         return $this->ad;
@@ -153,7 +170,11 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
 
     protected function contact_form($form, $errors=array()) {
         $ad = $this->get_ad();
-        $ad_link = sprintf('<strong><a href="%s">%s</a></strong>', url_showad($ad->ad_id), $ad->get_title());
+        $ad_link = sprintf(
+            '<strong><a href="%s">%s</a></strong>',
+            url_showad( $ad->ID ),
+            $this->listing_renderer->get_listing_title( $ad )
+        );
 
         $params = array(
             'messages' => $this->messages,
@@ -187,7 +208,7 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
             return $this->contact_form($form, $errors);
         }
 
-        $ad_title = $ad->get_title();
+        $ad_title = $this->listing_renderer->get_listing_title( $ad );
         $ad_url = url_showad($ad->ad_id);
 
         $sender_name = stripslashes($form['awpcp_sender_name']);

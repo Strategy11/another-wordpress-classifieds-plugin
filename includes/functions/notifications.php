@@ -182,6 +182,8 @@ function awpcp_get_recipients_for_listing_awaiting_approval_notification() {
 }
 
 function awpcp_get_messages_for_listing_awaiting_approval_notification( $listing, $moderate_listings, $moderate_images ) {
+    $listing_renderer = awpcp_listing_renderer();
+
     $params = array( 'action' => 'manage-images', 'id' => $listing->ad_id );
     $manage_images_url = add_query_arg( urlencode_deep( $params ), awpcp_get_admin_listings_url() );
 
@@ -189,7 +191,7 @@ function awpcp_get_messages_for_listing_awaiting_approval_notification( $listing
         $subject = __( 'Images on listing "%s" are awaiting approval', 'another-wordpress-classifieds-plugin' );
 
         $message = __( 'Images on Ad "%s" are awaiting approval. You can approve the images going to the Manage Images section for that Ad and clicking the "Enable" button below each image. Click here to continue: %s.', 'another-wordpress-classifieds-plugin');
-        $messages = array( sprintf( $message, $listing->get_title(), $manage_images_url ) );
+        $messages = array( sprintf( $message, $listing_renderer->get_listing_title( $listing ), $manage_images_url ) );
     } else {
         $subject = __( 'Listing "%s" is awaiting approval', 'another-wordpress-classifieds-plugin' );
 
@@ -197,7 +199,7 @@ function awpcp_get_messages_for_listing_awaiting_approval_notification( $listing
         $params = array( 'action' => 'view', 'id' => $listing->ad_id );
         $url = add_query_arg( urlencode_deep( $params ), awpcp_get_admin_listings_url() );
 
-        $messages[] = sprintf( $message, $listing->get_title(), $url );
+        $messages[] = sprintf( $message, $listing_renderer->get_listing_title( $listing ), $url );
 
         if ( $moderate_images ) {
             $message = __( 'Additionally, You can approve the images going to the Manage Images section for that Ad and clicking the "Enable" button below each image. Click here to continue: %s.', 'another-wordpress-classifieds-plugin' );
@@ -205,7 +207,7 @@ function awpcp_get_messages_for_listing_awaiting_approval_notification( $listing
         }
     }
 
-    $subject = sprintf( $subject, $listing->get_title() );
+    $subject = sprintf( $subject, $listing_renderer->get_listing_title( $listing ) );
 
     return array( 'subject' => $subject, 'messages' => $messages );
 }
@@ -255,6 +257,8 @@ function awpcp_send_listing_media_uploaded_notifications( $file, $listing ) {
  * @since 3.4
  */
 function awpcp_send_listing_was_flagged_notification( $listing ) {
+    $listing_renderer = awpcp_listing_renderer();
+
     if ( ! get_awpcp_option( 'send-listing-flagged-notification-to-administrators' ) ) {
         return false;
     }
@@ -271,7 +275,11 @@ function awpcp_send_listing_was_flagged_notification( $listing ) {
 
     $mail = new AWPCP_Email;
     $mail->to = awpcp_admin_email_to();
-    $mail->subject = str_replace( '<listing-title>', $listing->get_title(), __( 'Listing <listing-title> was flagged', 'another-wordpress-classifieds-plugin' ) );
+    $mail->subject = str_replace(
+        '<listing-title>',
+        $listing_renderer->get_listing_title( $listing ),
+        __( 'Listing <listing-title> was flagged', 'another-wordpress-classifieds-plugin' )
+    );
 
     $mail->prepare( $template, $params );
 

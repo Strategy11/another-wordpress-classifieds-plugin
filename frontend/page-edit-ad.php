@@ -511,6 +511,7 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
         $message->prepare($template,  array(
             'ads' => $ads,
             'introduction' => get_awpcp_option('resendakeyformbodymessage'),
+            'listing_renderer' => awpcp_listing_renderer(),
         ));
 
         if ($message->send()) {
