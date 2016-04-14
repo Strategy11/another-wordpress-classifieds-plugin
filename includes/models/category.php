@@ -58,6 +58,19 @@ class AWPCP_Category {
                 $results[] = self::create_from_object($item);
             }
 
+            // check if to hide empty categories from dropdowns
+            $hide_empty = awpcp_get_option('hide-empty-categories-dropdown');
+            if( $hide_empty ){
+                $categories = array();
+                foreach ( $results as $category ) {
+                $listings_count = total_ads_in_cat( $category->id );
+                if ( !$hide_empty || $listings_count > 0 ) {
+                    $categories[] = $category;
+                     }
+                 }
+                 $results = $categories;
+            }
+
             return $results;
         }
     }
