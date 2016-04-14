@@ -180,7 +180,7 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
             'messages' => $this->messages,
             'hidden' => array(
                 'a' => 'docontact1',
-                'ad_id' => $ad->ad_id,
+                'ad_id' => $ad->ID,
             ),
             'form' => $form,
             'errors' => $errors,
@@ -201,7 +201,7 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
 
         $ad = $this->get_ad();
 
-        $form = array_merge( $this->get_posted_data(), array( 'ad_id' => $ad->ad_id ) );
+        $form = array_merge( $this->get_posted_data(), array( 'ad_id' => $ad->ID ) );
         $errors = array();
 
         if (!$this->validate_posted_data($form, $errors)) {
@@ -209,7 +209,7 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
         }
 
         $ad_title = $this->listing_renderer->get_listing_title( $ad );
-        $ad_url = url_showad($ad->ad_id);
+        $ad_url = url_showad( $ad->ID );
 
         $sender_name = stripslashes($form['awpcp_sender_name']);
         $sender_email = stripslashes($form['awpcp_sender_email']);
@@ -248,7 +248,7 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
                 $body = ob_get_contents();
             ob_end_clean();
 
-            $sendtoemail = get_adposteremail($ad->ad_id);
+            $sendtoemail = get_adposteremail( $ad->ID );
             $result = awpcp_process_mail( $from, $sendtoemail, trim($subject), $body, $sender, $sender_email );
         }
 

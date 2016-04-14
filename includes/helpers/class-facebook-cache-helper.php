@@ -26,8 +26,8 @@ class AWPCP_FacebookCacheHelper {
     }
 
     private function schedule_clear_cache_action_seconds_from_now( $ad, $wait_time ) {
-        if ( ! wp_next_scheduled( 'awpcp-clear-ad-facebook-cache', array( $ad->ad_id ) ) ) {
-            wp_schedule_single_event( time() + $wait_time, 'awpcp-clear-ad-facebook-cache', array( $ad->ad_id ) );
+        if ( ! wp_next_scheduled( 'awpcp-clear-ad-facebook-cache', array( $ad->ID ) ) ) {
+            wp_schedule_single_event( time() + $wait_time, 'awpcp-clear-ad-facebook-cache', array( $ad->ID ) );
         }
     }
 
@@ -57,7 +57,7 @@ class AWPCP_FacebookCacheHelper {
         $args = array(
             'timeout' => 30,
             'body' => array(
-                'id' => url_showad( $ad->ad_id ),
+                'id' => url_showad( $ad->ID ),
                 'scrape' => true
             ),
         );

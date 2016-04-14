@@ -89,11 +89,11 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
     }
 
     protected function get_preview_hash($ad) {
-        return wp_create_nonce( "preview-ad-{$ad->ad_id}" );
+        return wp_create_nonce( "preview-ad-{$ad->ID}" );
     }
 
     protected function verify_preview_hash($ad) {
-        return wp_verify_nonce( awpcp_post_param( 'preview-hash' ), "preview-ad-{$ad->ad_id}" );
+        return wp_verify_nonce( awpcp_post_param( 'preview-hash' ), "preview-ad-{$ad->ID}" );
     }
 
     protected function is_user_allowed_to_edit($ad) {

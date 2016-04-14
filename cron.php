@@ -78,8 +78,8 @@ function doadexpirations() {
             continue;
         }
 
-        $adtitle = get_adtitle( $ad->ad_id );
-        $adstartdate = date( "D M j Y G:i:s", strtotime( get_adstartdate( $ad->ad_id ) ) );
+        $adtitle = get_adtitle( $ad->ID );
+        $adstartdate = date( "D M j Y G:i:s", strtotime( get_adstartdate( $ad->ID ) ) );
 
         $body = $bodybase;
         $body.= "\n\n";
@@ -93,11 +93,11 @@ function doadexpirations() {
         $body.= "\n\n";
 
         $body.= __( "Renew your ad by visiting:", 'another-wordpress-classifieds-plugin' );
-        $body.= " " . urldecode( awpcp_get_renew_ad_url( $ad->ad_id ) );
+        $body.= " " . urldecode( awpcp_get_renew_ad_url( $ad->ID ) );
         $body.= "\n\n";
 
         if ( $notify_expiring ) {
-            $user_email = get_adposteremail( $ad->ad_id );
+            $user_email = get_adposteremail( $ad->ID );
             if ( ! empty( $user_email ) ) {
                 awpcp_process_mail( $admin_sender_email, $user_email, $subject, $body, $nameofsite, $admin_recipient_email );
             }

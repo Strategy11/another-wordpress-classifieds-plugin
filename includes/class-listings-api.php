@@ -77,7 +77,11 @@ class AWPCP_ListingsAPI {
         $ad_id = $this->request->get_query_var( 'awpcp-ad' );
         $hash = $this->request->get_query_var( 'awpcp-hash' );
 
-        $ad = AWPCP_Ad::find_by_id( $ad_id );
+        try {
+            $ad = $this->listings->get( $ad_id );
+        } catch ( AWPCP_Exception $e ) {
+            $ad = null;
+        }
 
         if ( is_null( $ad ) || ! awpcp_verify_email_verification_hash( $ad_id, $hash ) ) {
             wp_redirect( awpcp_get_main_page_url() );
@@ -86,7 +90,7 @@ class AWPCP_ListingsAPI {
 
         $this->verify_ad( $ad );
 
-        wp_redirect( esc_url_raw( add_query_arg( 'verified', true, url_showad( $ad->ad_id ) ) ) );
+        wp_redirect( esc_url_raw( add_query_arg( 'verified', true, url_showad( $ad->ID ) ) ) );
         return;
     }
 

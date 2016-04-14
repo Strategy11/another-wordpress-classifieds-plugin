@@ -44,7 +44,7 @@ class AWPCP_UploadGeneratedThumbnailAjaxHandler extends AWPCP_AjaxHandler {
             throw new AWPCP_Exception( __( 'Trying to upload a thumbnail for an unknown file.', 'another-wordpress-classifieds-plugin' ) );
         }
 
-        $listing = $this->listings->get( $media->ad_id );
+        $listing = $this->listings->get( $media->post_parent );
 
         if ( ! $this->is_user_authorized_to_upload_thumbnails_to_listing( $listing ) ) {
             throw new AWPCP_Exception( __( 'You are not authorized to upload thumbnails.' ) );
@@ -54,7 +54,9 @@ class AWPCP_UploadGeneratedThumbnailAjaxHandler extends AWPCP_AjaxHandler {
     }
 
     private function is_user_authorized_to_upload_thumbnails_to_listing( $listing ) {
-        if ( ! wp_verify_nonce( $this->request->post( 'nonce' ), 'awpcp-upload-generated-thumbnail-for-listing-' . $listing->ad_id ) ) {
+        $nonce_string = 'awpcp-upload-generated-thumbnail-for-listing-' . $listing->ID;
+
+        if ( ! wp_verify_nonce( $this->request->post( 'nonce' ), $nonce_string ) ) {
             return false;
         }
 

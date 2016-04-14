@@ -198,7 +198,7 @@ class AWPCP_RenewAdPageImplementation {
 
             $transaction->set('payment-term-type', $term->type);
             $transaction->set('payment-term-id', $term->id);
-            $transaction->set('ad-id', $ad->ad_id);
+            $transaction->set( 'ad-id', $ad->ID );
 
             $transaction->remove_all_items();
             $payment_terms->set_transaction_item($transaction, $term);
@@ -215,7 +215,7 @@ class AWPCP_RenewAdPageImplementation {
                     $transaction->set('payment-term', $selected);
                     $transaction->set('payment-term-type', $term->type);
                     $transaction->set('payment-term-id', $term->id);
-                    $transaction->set('ad-id', $ad->ad_id);
+                    $transaction->set( 'ad-id', $ad->ID );
 
                     $transaction->remove_all_items();
                     $payment_terms->set_transaction_item($transaction);
@@ -364,7 +364,7 @@ class AWPCP_RenewAdPageImplementation {
             awpcp_send_ad_renewed_email($ad);
 
             // MOVE inside Ad::renew() ?
-            do_action('awpcp-renew-ad', $ad->ad_id, $transaction);
+            do_action( 'awpcp-renew-ad', $ad->ID, $transaction );
         }
 
         return $this->page->render_finish_step($ad);

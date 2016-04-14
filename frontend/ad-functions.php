@@ -356,7 +356,7 @@ function awpcp_ad_posted_email( $ad, $transaction = null, $message = '', $notify
 		$admin_message->to[] = awpcp_admin_email_to();
 		$admin_message->subject = __( 'New classified listing created', 'another-wordpress-classifieds-plugin' );
 
-		$params = urlencode_deep( array( 'action' => 'view', 'id' => $ad->ad_id) );
+		$params = urlencode_deep( array( 'action' => 'view', 'id' => $ad->ID ) );
 		$url = add_query_arg( $oarams, awpcp_get_admin_listings_url() );
 
 		$template = AWPCP_DIR . '/frontend/templates/email-place-ad-success-admin.tpl.php';

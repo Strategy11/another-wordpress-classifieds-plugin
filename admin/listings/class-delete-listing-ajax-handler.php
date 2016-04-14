@@ -3,6 +3,7 @@
 function awpcp_delete_listing_ajax_handler() {
     return new AWPCP_DeleteListingAjaxHandler(
         awpcp_manage_listings_admin_page(),
+        awpcp_listings_api(),
         awpcp_listings_collection(),
         awpcp_listing_authorization(),
         awpcp_request(),
@@ -12,12 +13,14 @@ function awpcp_delete_listing_ajax_handler() {
 
 class AWPCP_DeleteListingAjaxHandler extends AWPCP_TableEntryActionAjaxHandler {
 
+    private $listings_logic;
     private $listings;
     private $authorization;
 
-    public function __construct( $page, $listings, $authorization, $request, $response ) {
+    public function __construct( $page, $listings_logic, $listings, $authorization, $request, $response ) {
         parent::__construct( $page, $request, $response );
 
+        $this->listings_logic = $listings_logic;
         $this->listings = $listings;
         $this->authorization = $authorization;
     }
@@ -47,10 +50,7 @@ class AWPCP_DeleteListingAjaxHandler extends AWPCP_TableEntryActionAjaxHandler {
     }
 
     private function delete_listing( $listing ) {
-        $errors = array();
-        $result = deletead( $listing->ad_id, $adkey = '', $editemail = '', $force = true, $errors );
-
-        if ( empty( $errors ) ) {
+        if ( $this->listings_logic->delete_listing( $listing ) ) {
             return $this->success();
         } else {
             return $this->error( array( 'message' => implode( '<br/>', $errors ) ) );

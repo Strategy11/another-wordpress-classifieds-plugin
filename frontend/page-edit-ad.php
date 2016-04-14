@@ -46,11 +46,11 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
     }
 
     public function get_edit_hash($ad) {
-        return wp_create_nonce("edit-ad-{$ad->ad_id}");
+        return wp_create_nonce("edit-ad-{$ad->ID}");
     }
 
     protected function request_includes_authorized_hash( $ad ) {
-        return wp_verify_nonce(awpcp_request_param('edit-hash'), "edit-ad-{$ad->ad_id}");
+        return wp_verify_nonce(awpcp_request_param('edit-hash'), "edit-ad-{$ad->ID}");
     }
 
     protected function _dispatch($default=null) {
@@ -223,7 +223,7 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
 
         if ( is_admin() ) {
             $manage_attachments = __( 'Manage Attachments', 'another-wordpress-classifieds-plugin' );
-            $url = add_query_arg( array( 'action' => 'manage-images', 'id' => $ad->ad_id ), $this->url() );
+            $url = add_query_arg( array( 'action' => 'manage-images', 'id' => $ad->ID ), $this->url() );
             $link = sprintf( '<strong><a href="%s" title="%s">%s</a></strong>', esc_url( $url ), esc_attr( $manage_attachments ), esc_html( $manage_attachments ) );
             $message = __( "Go to the %s section to manage the Images and Attachments for this Ad.", 'another-wordpress-classifieds-plugin');
 
@@ -300,7 +300,7 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
 
         if ( awpcp_current_user_is_moderator() || get_awpcp_option( 'allow-regions-modification' ) ) {
             $listing_data['regions'] = $data['regions'];
-            $listing_data['regions-allowed'] = $this->get_regions_allowed( $ad->ad_id );
+            $listing_data['regions-allowed'] = $this->get_regions_allowed( $ad->ID );
         }
 
         try {
@@ -353,13 +353,13 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
             'hidden' => array(),
             'errors' => $errors,
             'media_manager_configuration' => array(
-                'nonce' => wp_create_nonce( 'awpcp-manage-listing-media-' . $ad->ad_id ),
+                'nonce' => wp_create_nonce( 'awpcp-manage-listing-media-' . $ad->ID ),
                 'allowed_files' => $allowed_files,
                 'show_admin_actions' => awpcp_current_user_is_moderator(),
             ),
             'media_uploader_configuration' => array(
-                'listing_id' => $ad->ad_id,
-                'nonce' => wp_create_nonce( 'awpcp-upload-media-for-listing-' . $ad->ad_id ),
+                'listing_id' => $ad->ID,
+                'nonce' => wp_create_nonce( 'awpcp-upload-media-for-listing-' . $ad->ID ),
                 'allowed_files' => $allowed_files,
             ),
         ) );
@@ -370,9 +370,9 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
     public function upload_images_form( $ad, $params=array() ) {
         $params = array_merge( $params, array(
             'listing' => $ad,
-            'files' => awpcp_media_api()->find_by_ad_id( $ad->ad_id ),
+            'files' => awpcp_media_api()->find_by_ad_id( $ad->ID ),
             'hidden' => array(
-                'ad_id' => $ad->ad_id,
+                'ad_id' => $ad->ID,
                 'edit-hash' => $this->get_edit_hash( $ad ) ),
             'messages' => $this->messages,
             'next' => __( 'Finish', 'another-wordpress-classifieds-plugin' ),

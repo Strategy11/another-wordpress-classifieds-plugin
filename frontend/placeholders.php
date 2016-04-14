@@ -335,8 +335,8 @@ function awpcp_do_placeholder_categories( $listing, $placeholder ) {
 function awpcp_do_placeholder_details($ad, $placeholder) {
     static $replacements = array();
 
-    if (isset($replacements[$ad->ad_id])) {
-        return $replacements[$ad->ad_id][$placeholder];
+    if (isset($replacements[ $ad->ID ])) {
+        return $replacements[ $ad->ID ][$placeholder];
     }
 
     $placeholders['addetails'] = apply_filters('awpcp-ad-details', stripslashes_deep($ad->ad_details));
@@ -351,9 +351,9 @@ function awpcp_do_placeholder_details($ad, $placeholder) {
     $placeholders['addetails'] = nl2br($placeholders['addetails']);
     $placeholders['details'] = $placeholders['addetails'];
 
-    $replacements[$ad->ad_id] = $placeholders;
+    $replacements[ $ad->ID ] = $placeholders;
 
-    return $replacements[$ad->ad_id][$placeholder];
+    return $replacements[ $ad->ID ][$placeholder];
 }
 
 
@@ -594,7 +594,7 @@ function awpcp_do_placeholder_location($ad, $placeholder) {
 function awpcp_do_placeholder_legacy_views($ad, $placeholder) {
     if (get_awpcp_option('displayadviews')) {
         // single ad
-        $views = get_numtimesadviewd($ad->ad_id);
+        $views = get_numtimesadviewd( $ad->ID );
         $text = _n('This Ad has been viewed %d time.', 'This Ad has been viewed %d times.', $views, 'another-wordpress-classifieds-plugin');
         $replacements['awpcpadviews'] = sprintf('<div class="adviewed">%s</div>', sprintf($text, $views));
 
@@ -669,8 +669,8 @@ function awpcp_do_placeholder_contact_phone($ad, $placeholder) {
 function awpcp_do_placeholder_adsense($ad, $placeholder) {
     static $replacements = array();
 
-    if (isset($replacements[$ad->ad_id])) {
-        return $replacements[$ad->ad_id][$placeholder];
+    if (isset($replacements[ $ad->ID ])) {
+        return $replacements[ $ad->ID ][$placeholder];
     }
 
     if (get_awpcp_option('useadsense')) {
@@ -696,9 +696,9 @@ function awpcp_do_placeholder_adsense($ad, $placeholder) {
             break;
     }
 
-    $replacements[$ad->ad_id] = $placeholders;
+    $replacements[ $ad->ID ] = $placeholders;
 
-    return $replacements[$ad->ad_id][$placeholder];
+    return $replacements[ $ad->ID ][$placeholder];
 }
 
 
@@ -707,7 +707,7 @@ function awpcp_do_placeholder_adsense($ad, $placeholder) {
  */
 function awpcp_do_placeholder_flag_link($ad, $placeholder) {
     $content = '<a id="flag_ad_link" href="#" data-ad="%d">%s</a>';
-    $replacements['flagad'] = sprintf($content, $ad->ad_id, __('Flag Ad', 'another-wordpress-classifieds-plugin'));
+    $replacements['flagad'] = sprintf($content, $ad->ID, __('Flag Ad', 'another-wordpress-classifieds-plugin'));
     $replacements['flag_link'] = $replacements['flagad'];
 
     return $replacements[$placeholder];
@@ -764,7 +764,7 @@ function awpcp_do_placeholder_facebook_button($ad, $placeholder) {
  * @since 3.2.2
  */
 function awpcp_do_placeholder_facebook_button_url( $ad, $placeholder ) {
-    $info = awpcp_get_ad_share_info( $ad->ad_id );
+    $info = awpcp_get_ad_share_info( $ad->ID );
     return sprintf( 'http://www.facebook.com/sharer/sharer.php?u=%s', urlencode( $info['url'] ) );
 }
 

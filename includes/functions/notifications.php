@@ -32,7 +32,7 @@ function awpcp_send_listing_posted_notification_to_moderators( $listing, $transa
     $admin_message->to = $email_recipients;
     $admin_message->subject = __( 'New classified listing created', 'another-wordpress-classifieds-plugin' );
 
-    $params = array( 'action' => 'view', 'id' => $listing->ad_id );
+    $params = array( 'action' => 'view', 'id' => $listing->ID );
     $url = add_query_arg( urlencode_deep( $params ), awpcp_get_admin_listings_url() );
 
     $template = AWPCP_DIR . '/frontend/templates/email-place-ad-success-admin.tpl.php';
@@ -184,7 +184,7 @@ function awpcp_get_recipients_for_listing_awaiting_approval_notification() {
 function awpcp_get_messages_for_listing_awaiting_approval_notification( $listing, $moderate_listings, $moderate_images ) {
     $listing_renderer = awpcp_listing_renderer();
 
-    $params = array( 'action' => 'manage-images', 'id' => $listing->ad_id );
+    $params = array( 'action' => 'manage-images', 'id' => $listing->ID );
     $manage_images_url = add_query_arg( urlencode_deep( $params ), awpcp_get_admin_listings_url() );
 
     if ( $moderate_images && ! $moderate_listings ) {
@@ -196,7 +196,7 @@ function awpcp_get_messages_for_listing_awaiting_approval_notification( $listing
         $subject = __( 'Listing "%s" is awaiting approval', 'another-wordpress-classifieds-plugin' );
 
         $message = __('The Ad "%s" is awaiting approval. You can approve the Ad going to the Manage Listings section and clicking the "Enable" action shown on top. Click here to continue: %s.', 'another-wordpress-classifieds-plugin');
-        $params = array( 'action' => 'view', 'id' => $listing->ad_id );
+        $params = array( 'action' => 'view', 'id' => $listing->ID );
         $url = add_query_arg( urlencode_deep( $params ), awpcp_get_admin_listings_url() );
 
         $messages[] = sprintf( $message, $listing_renderer->get_listing_title( $listing ), $url );
