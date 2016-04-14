@@ -276,14 +276,14 @@ function awpcp_do_placeholder_title($ad, $placeholder) {
  * @since 3.0
  */
 function awpcp_do_placeholder_category_name($ad, $placeholder) {
-    return esc_html( stripslashes( get_adcatname( $ad->ad_category_id ) ) );
+    return esc_html( stripslashes( awpcp_listing_renderer()->get_category_name( $ad ) ) );
 }
 
 /**
  * @since 3.0
  */
 function awpcp_do_placeholder_category_url($ad, $placeholder) {
-    return awpcp_get_browse_category_url_from_id( $ad->ad_category_id );
+    return awpcp_get_browse_category_url_from_id( awpcp_listing_renderer()->get_category_id( $ad ) );
 }
 
 /**
@@ -304,13 +304,11 @@ function awpcp_do_placeholder_parent_category_url( $ad, $placeholder ) {
  * @since 3.3
  */
 function awpcp_do_placeholder_categories( $listing, $placeholder ) {
-    $categories_ids = array_filter( array( $listing->ad_category_id, $listing->ad_category_parent_id ) );
-    $categories = awpcp_categories_collection()->find( array( 'id' => $categories_ids ) );
-
+    $categories = awpcp_categories_collection()->find_by_listing_id( $listing->ID );
     $links = array( 'parent-category' => '', 'category' => '' );
 
     foreach ( $categories as $category ) {
-        if ( $listing->ad_category_parent_id == $category->id ) {
+        if ( $category->parent ) {
             $category_type = 'parent-category';
         } else {
             $category_type = 'category';
