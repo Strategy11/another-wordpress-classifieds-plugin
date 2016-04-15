@@ -337,7 +337,7 @@ function awpcp_do_placeholder_details($ad, $placeholder) {
         return $replacements[ $ad->ID ][$placeholder];
     }
 
-    $placeholders['addetails'] = apply_filters('awpcp-ad-details', stripslashes_deep($ad->ad_details));
+    $placeholders['addetails'] = apply_filters( 'awpcp-ad-details', stripslashes_deep( $ad->post_content ) );
 
     if (get_awpcp_option('hyperlinkurlsinadtext')) {
         $pattern = '#(?<!")(http://[^\s]+)(?!")#';
@@ -360,7 +360,7 @@ function awpcp_do_placeholder_details($ad, $placeholder) {
  */
 function awpcp_do_placeholder_excerpt($ad, $placeholder) {
     $word_count = get_awpcp_option( 'words-in-listing-excerpt' );
-    $details = stripslashes( $ad->ad_details );
+    $details = stripslashes( $ad->post_content );
 
     $replacements['addetailssummary'] = wp_trim_words( $details, $word_count, '' );
     $replacements['excerpt'] = wp_trim_words( $details, $word_count );
