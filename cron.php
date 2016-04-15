@@ -54,6 +54,8 @@ function awpcp_schedule_activation() {
 function doadexpirations() {
     global $wpdb, $nameofsite;
 
+    $listings_logic = awpcp_listings_api();
+
     $notify_admin = get_awpcp_option('notifyofadexpired');
     $notify_expiring = get_awpcp_option('notifyofadexpiring');
     // disable the ads or delete the ads?
@@ -72,7 +74,7 @@ function doadexpirations() {
     $ads = AWPCP_Ad::find("ad_enddate <= NOW() AND disabled != 1 AND payment_status != 'Unpaid' AND verified = 1");
 
     foreach ($ads as $ad) {
-        $ad->disable();
+        $listings_logic->disable_listing( $ad );
 
         if ( $notify_expiring == false && $notify_admin == false ) {
             continue;
