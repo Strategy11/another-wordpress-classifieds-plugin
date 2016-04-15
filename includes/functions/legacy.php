@@ -74,25 +74,17 @@ function categoriesexist(){
 }
 
 function countcategories(){
-    return AWPCP_Category::query( array( 'fields' => 'count' ) );
+    return awpcp_categories_collection()->count_categories();
 }
 
 function countcategoriesparents() {
-    $params = array(
-        'fields' => 'count',
-        'where' => 'category_parent_id = 0'
-    );
-
-    return AWPCP_Category::query( $params );
+    return countcategories() - countcategorieschildren();
 }
 
 function countcategorieschildren(){
-    $params = array(
-        'fields' => 'count',
-        'where' => 'category_parent_id != 0'
-    );
-
-    return AWPCP_Category::query( $params );
+    return awpcp_categories_collection()->count_categories(array(
+        'childless' => true,
+    ));
 }
 
 

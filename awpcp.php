@@ -169,7 +169,6 @@ require_once( AWPCP_DIR . "/includes/meta/class-meta-tags-generator.php" );
 require_once( AWPCP_DIR . "/includes/meta/class-tag-renderer.php" );
 
 require( AWPCP_DIR . "/includes/models/class-custom-post-types.php" );
-require_once(AWPCP_DIR . "/includes/models/category.php");
 require_once(AWPCP_DIR . "/includes/models/payment-transaction.php");
 
 require_once( AWPCP_DIR . "/includes/db/class-database-column-creator.php" );
@@ -313,7 +312,6 @@ require_once( AWPCP_DIR . "/includes/class-listing-authorization.php" );
 require_once( AWPCP_DIR . "/includes/class-listing-payment-transaction-handler.php" );
 require_once( AWPCP_DIR . "/includes/class-listing-is-about-to-expire-notification.php" );
 require_once( AWPCP_DIR . "/includes/class-listings-collection.php" );
-require_once( AWPCP_DIR . "/includes/class-listings-metadata.php" );
 require_once( AWPCP_DIR . "/includes/class-missing-pages-finder.php" );
 require_once( AWPCP_DIR . "/includes/class-pages-creator.php" );
 require( AWPCP_DIR . '/includes/class-plugin-rewrite-rules.php' );

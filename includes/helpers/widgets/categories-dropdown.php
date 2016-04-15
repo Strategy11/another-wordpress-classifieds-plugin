@@ -74,13 +74,6 @@ class AWPCP_CategoriesDropdown {
         return $this->template_renderer->render_template( $template, $params );
     }
 
-    private function get_all_categories() {
-        return AWPCP_Category::query( array(
-            'orderby' => 'category_parent_id ASC, category_order ASC, category_name',
-            'order' => 'ASC'
-        ) );
-    }
-
     private function get_category_parents( $category_id, &$categories ) {
         if ( empty( $category_id ) ) {
             return array();

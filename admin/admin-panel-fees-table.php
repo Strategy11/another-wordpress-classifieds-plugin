@@ -205,7 +205,9 @@ class AWPCP_FeesTable extends WP_List_Table {
 
     public function column_categories($item) {
         if ( !empty( $item->categories ) ) {
-            $categories = AWPCP_Category::find( array( 'id' => $item->categories ) );
+            $categories = awpcp_categories_collection()->find_categories(array(
+                'include' => $item->categories
+            ));
         } else {
             $categories = array();
         }

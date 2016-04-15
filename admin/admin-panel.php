@@ -566,34 +566,24 @@ function checkifclassifiedpage($pagename) {
 	return $page_id === $id;
 }
 
-function awpcp_get_categories_hierarchy() {
-	$categories = AWPCP_Category::query();
-
-	$hierarchy = array();
-	foreach ( $categories as $category ) {
-		if ( $category->parent > 0 ) {
-			if ( !isset( $hierarchy[ $category->parent ] ) ) {
-				$hierarchy[ $category->parent ] = array();
-			}
-			$hierarchy[ $category->parent ][] = $category->id;
-		}
-	}
-
-	return $hierarchy;
-}
-
 function awpcp_admin_categories_render_category_items($categories, &$children, $start=0, $per_page=10, &$count, $parent=0, $level=0) {
-	$end = $start + $per_page;
+    $categories_collection = awpcp_categories_collection();
 
+	$end = $start + $per_page;
 	$items = array();
+
 	foreach ($categories as $key => $category) {
 		if ( $count >= $end ) break;
 
 		if ( $category->parent != $parent ) continue;
 
 		if ( $count == $start && $category->parent > 0 ) {
-			$category_parent = AWPCP_Category::find_by_id( $category->parent );
-			$items[] = awpcp_admin_categories_render_category_item( $category_parent, $level - 1, $start, $per_page );
+            try {
+                $category_parent = $categories_collection->get( $category->parent );
+                $items[] = awpcp_admin_categories_render_category_item( $category_parent, $level - 1, $start, $per_page );
+            } catch ( AWPCP_Exception $e ) {
+                // pass
+            }
 		}
 
 		if ( $count >= $start ) {

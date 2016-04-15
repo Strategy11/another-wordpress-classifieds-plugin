@@ -56,7 +56,7 @@ class AWPCP_ContentAwareSidebarsListingsCategoriesModule extends CASModule {
 
         $control_items = array();
         foreach ( $categories as $category ) {
-            $control_items[ $category->id ] = $category->name;
+            $control_items[ $category->term_id ] = $category->name;
         }
 
         return $control_items;
@@ -68,7 +68,7 @@ class AWPCP_ContentAwareSidebarsListingsCategoriesModule extends CASModule {
         if ( empty( $args['include'] ) ) {
             $categories = $this->categories->get_all();
         } else {
-            $categories = $this->categories->find( array( 'id' => $args['include'] ) );
+            $categories = $this->categories->find_categories( array( 'include' => $args['include'] ) );
         }
 
         return $categories;

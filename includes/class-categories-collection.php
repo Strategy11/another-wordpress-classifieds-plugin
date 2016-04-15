@@ -71,6 +71,11 @@ class AWPCP_Categories_Collection {
         ) );
     }
 
+    public function count_categories( $args = array() ) {
+        $args = array_merge( $this->prepare_categories_args( $args ), array( 'fields' => 'count' ) );
+        return $this->wordpress->get_terms( $this->taxonomy, $args );
+    }
+
     public function get_hierarchy() {
         return $this->wordpress->get_term_hierarchy( $this->taxonomy );
     }
