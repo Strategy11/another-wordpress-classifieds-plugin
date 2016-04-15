@@ -263,7 +263,7 @@ class AWPCP_ModulesManager {
 
         $upgrade_url = add_query_arg( 'context', 'premium-modules', awpcp_get_admin_upgrade_url() );
 
-        $message = _n( 'The AWPCP <module-name> is currently disabled because it requires you to perform a manual upgrade before continuing. Plase <upgrade-link>go to the Classifieds admin section to Upgrade</a>.', 'The AWPCP <modules-names> are currently disabled because they require you to perform a manual upgrade before continuing. Plase <upgrade-link>go to the Classifieds admin section to Upgrade</a>.', count( $modules ), 'another-wordpress-classifieds-plugin' );
+        $message = _n( 'The AWPCP <module-name> is currently disabled because it requires you to perform a manual upgrade before continuing. Please <upgrade-link>go to the Classifieds admin section to Upgrade</a>.', 'The AWPCP <modules-names> are currently disabled because they require you to perform a manual upgrade before continuing. Please <upgrade-link>go to the Classifieds admin section to Upgrade</a>.', count( $modules ), 'another-wordpress-classifieds-plugin' );
         $message = $this->replace_modules_names_in_message( $message, $modules );
         $message = str_replace( '<upgrade-link>', sprintf( '<a href="%s">', $upgrade_url ), $message );
 
