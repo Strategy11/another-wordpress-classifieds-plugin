@@ -296,7 +296,7 @@ function awpcp_ad_posted_user_email( $ad, $transaction = null, $message='' ) {
 	);
 
 	$email = new AWPCP_Email;
-	$email->to[] = "{$ad->ad_contact_name} <{$ad->ad_contact_email}>";
+	$email->to[] = "{$contact_name} <{$contact_email}>";
 	$email->subject = get_awpcp_option('listingaddedsubject');
 	$email->prepare( AWPCP_DIR . '/frontend/templates/email-place-ad-success-user.tpl.php', $params );
 

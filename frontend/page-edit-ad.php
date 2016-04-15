@@ -530,7 +530,10 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
     public function send_access_keys($ads, &$errors=array()) {
         $ad = reset( $ads );
 
-        $recipient = "{$ad->ad_contact_name} <{$ad->ad_contact_email}>";
+        $contact_name = $this->listing_renderer->get_contact_name( $ad );
+        $contact_email = $this->listing_renderer->get_contact_email( $ad );
+
+        $recipient = "{$contact_name} <{$contact_email}>";
         $template = AWPCP_DIR . '/frontend/templates/email-send-all-ad-access-keys.tpl.php';
 
         $message = new AWPCP_Email;
@@ -540,7 +543,7 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
         $message->prepare($template,  array(
             'ads' => $ads,
             'introduction' => get_awpcp_option('resendakeyformbodymessage'),
-            'listing_renderer' => awpcp_listing_renderer(),
+            'listing_renderer' => $this->listing_renderer,
         ));
 
         if ($message->send()) {
