@@ -396,6 +396,10 @@ class AWPCP_ListingsCollection {
                 $query['orderby'] = 'rand';
                 break;
 
+            case 'id':
+                $query['orderby'] = 'ID';
+                break;
+
             default:
                 $query['orderby'] = array( 'post_date' => 'DESC', 'title' => 'ASC' );
                 break;
