@@ -209,7 +209,7 @@ function is_awpcp_browse_categories_page() {
 }
 
 /**
- * @since feature/1112  Modified to use Listing_Renderer::get_listing_title().
+ * @since feature/1112  Modified to use Listing_Renderer::get_view_listing_url().
  */
 function url_showad($ad_id) {
     try {
@@ -218,7 +218,7 @@ function url_showad($ad_id) {
         return false;
     }
 
-    return awpcp_listing_renderer()->get_listing_title( $ad );
+    return awpcp_listing_renderer()->get_view_listing_url( $ad );
 }
 
 function awpcp_get_browse_categories_page_url() {
