@@ -49,8 +49,15 @@ class AWPCP_SendToFacebookHelper {
     }
 
     private function do_facebook_request( $listing, $path, $method ) {
-        $primary_image = $this->media->get_ad_primary_image( $listing );
-        $primary_image_thumbnail_url = $primary_image ? $primary_image->get_url( 'primary' ) : '';
+        $primary_image = $this->attachments->get_featured_attachment_of_type( 'image', array(
+            'post_parent' => $listing->ID,
+        ) );
+
+        if ( $primary_image ) {
+            $primary_image_thumbnail_url = $this->attachment_properties->get_image_url( $primary_image, 'featured' );
+        } else {
+            $primary_image_thumbnail_url = '';
+        }
 
         $params = array( 'link' => url_showad( $listing->ID ),
             'name' => $this->listing_renderer->get_listing_title( $listing ),

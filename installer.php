@@ -222,7 +222,6 @@ class AWPCP_Installer {
             '3.3.3' => 'upgrade_to_3_3_3',
             '3.4' => 'upgrade_to_3_4',
             '3.5.3' => 'upgrade_to_3_5_3',
-            '3.5.4-dev-15' => 'upgrade_to_3_5_4_dev_15',
             '3.5.4-dev-20' => 'upgrade_to_3_5_4_dev_20',
             '3.5.4-dev-28' => 'upgrade_to_3_5_4_dev_28',
             '3.5.4-dev-29' => 'upgrade_to_3_5_4_dev_29',
@@ -894,7 +893,7 @@ class AWPCP_Installer {
 
         if ( ! awpcp_column_exists( AWPCP_TABLE_MEDIA, 'status' ) ) {
             $sql = 'ALTER TABLE ' . AWPCP_TABLE_MEDIA . ' ADD `status` VARCHAR(20) CHARACTER SET <charset> COLLATE <collate> NOT NULL DEFAULT %s AFTER `enabled`';
-            $sql = $wpdb->prepare( $sql, AWPCP_Media::STATUS_APPROVED );
+            $sql = $wpdb->prepare( $sql, AWPCP_Attachment_Status::STATUS_APPROVED );
             $sql = $this->database_helper->replace_charset_and_collate( $sql );
             $wpdb->query( $sql );
         }
@@ -906,15 +905,6 @@ class AWPCP_Installer {
     }
 
     private function upgrade_to_3_3_2( $oldversion ) {
-        // fix media mime type
-        global $wpdb;
-
-        $files_with_empty_mime_type = $wpdb->get_var( 'SELECT COUNT(id) FROM ' . AWPCP_TABLE_MEDIA . " WHERE mime_type = ''" );
-
-        if ( $files_with_empty_mime_type > 0 ) {
-            update_option( 'awpcp-enable-fix-media-mime-type-upgrde', true );
-        }
-
         // create tasks table
         dbDelta( $this->create_tasks_table );
     }
@@ -957,10 +947,6 @@ class AWPCP_Installer {
         $wpdb->query( 'DROP TABLE IF EXISTS ' . AWPCP_TABLE_PAGENAME );
     }
 
-    private function upgrade_to_3_5_4_dev_15( $oldversion ) {
-        $this->upgrade_tasks->enable_upgrade_task( 'awpcp-sanitize-media-filenames' );
-    }
-
     private function upgrade_to_3_5_4_dev_20( $oldversion ) {
         global $wpdb;
 
@@ -972,8 +958,6 @@ class AWPCP_Installer {
             $sql = $this->database_helper->replace_charset_and_collate( 'ALTER TABLE ' . AWPCP_TABLE_MEDIA . " ADD `metadata` TEXT CHARACTER SET <charset> COLLATE <collate> NOT NULL DEFAULT '' AFTER `is_primary`" );
             $wpdb->query( $sql );
         }
-
-        $this->upgrade_tasks->enable_upgrade_task( 'awpcp-calculate-image-dimensions' );
     }
 
     private function upgrade_to_3_5_4_dev_28( $oldversion ) {

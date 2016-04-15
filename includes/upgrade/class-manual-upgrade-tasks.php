@@ -42,20 +42,6 @@ class AWPCP_Manual_Upgrade_Tasks {
         );
 
         $this->upgrade_tasks->register_upgrade_task(
-            'awpcp-sanitize-media-filenames',
-            __( 'Remove invalid characters from media filenames', 'another-wordpress-classifieds-plugin' ),
-            'awpcp_sanitize_media_filenames_upgrade_task_handler',
-            'plugin'
-        );
-
-        $this->upgrade_tasks->register_upgrade_task(
-            'awpcp-calculate-image-dimensions',
-            __( 'Calculate image dimensions', 'another-wordpress-classifieds-plugin' ),
-            'awpcp_calculate_image_dimensions_upgrade_task_handler',
-            'plugin'
-        );
-
-        $this->upgrade_tasks->register_upgrade_task(
             'awpcp-store-listing-categories-as-custom-taxonomies',
             __( 'Store Listing Categories as Custom Taxonomies', 'another-wordpress-classifieds-plugin' ),
             'awpcp_store_listing_categories_as_custom_taxonomies_upgrade_task_handler',

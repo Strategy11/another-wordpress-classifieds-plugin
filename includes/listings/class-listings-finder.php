@@ -461,7 +461,7 @@ class AWPCP_ListingsFinder {
 
         if ( ! is_null( $query['have_media_awaiting_approval'] ) ) {
             $sql = 'INNER JOIN <media-table> AS listing_media ON ( listing_media.`ad_id` = listings.`ad_id` AND listing_media.`status` = %s )';
-            $sql = $this->db->prepare( $sql, AWPCP_Media::STATUS_AWAITING_APPROVAL );
+            $sql = $this->db->prepare( $sql, AWPCP_Attachment_Status::STATUS_AWAITING_APPROVAL );
             $this->add_join_clause( $sql );
         }
 

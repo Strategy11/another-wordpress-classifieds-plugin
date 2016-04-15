@@ -190,21 +190,6 @@ function awpcp_renew_ad_success_message($ad, $text=null, $send_email=true) {
 	return sprintf("%s %s", sprintf($text, $ad->get_end_date()), $return);
 }
 
-
-/**
- * Deletes an image
- *
- * @param $picid int The id of the image to delete.
- * @param $adid int The id of the Ad the image belongs to.
- * @param $force boolean True if image should be deleted even if curent
- * 						 user is not admin.
- * @deprecated use awpcp_media_api()->delete()
- */
-function deletepic( $picid, $adid, $adtermid, $adkey, $editemail, $force=false ) {
-	_deprecated_function( __FUNCTION__, '3.0.2', 'awpcp_media_api()->delete()' );
-}
-
-
 function deletead($adid, $adkey, $editemail, $force=false, &$errors=array()) {
 	$output = '';
 	$awpcppage = get_currentpagename();

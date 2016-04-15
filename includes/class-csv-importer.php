@@ -872,34 +872,6 @@ class AWPCP_CSV_Importer {
 
 		return $entries;
 	}
-
-	private function save_images($entries, $adid, $row, &$errors) {
-		global $wpdb;
-
-		$test_import = $this->options['test-import'];
-		$media_api = awpcp_media_api();
-
-		foreach ($entries as $entry) {
-            $extension = awpcp_get_file_extension( $entry['filename'] );
-            $mime_type = sprintf( 'image/%s', $extension );
-
-			$data = array(
-				'ad_id' => $adid,
-				'name' => $entry['filename'],
-				'path' => $entry['filename'],
-				'mime_type' => $mime_type,
-				'enabled' => true,
-				'is_primary' => false,
-			);
-
-			$result = $test_import || $media_api->create( $data );
-
-			if ($result === false) {
-				$msg = __("Could not save the information to the database for %s in row %d", 'another-wordpress-classifieds-plugin');
-				$errors[] = sprintf($msg, $entry['original'], $row);
-			}
-		}
-	}
 }
 
 

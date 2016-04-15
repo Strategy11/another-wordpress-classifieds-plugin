@@ -169,9 +169,7 @@ require_once( AWPCP_DIR . "/includes/meta/class-meta-tags-generator.php" );
 require_once( AWPCP_DIR . "/includes/meta/class-tag-renderer.php" );
 
 require( AWPCP_DIR . "/includes/models/class-custom-post-types.php" );
-require_once(AWPCP_DIR . "/includes/models/class-media.php");
 require_once(AWPCP_DIR . "/includes/models/category.php");
-require_once(AWPCP_DIR . "/includes/models/image.php");
 require_once(AWPCP_DIR . "/includes/models/payment-transaction.php");
 
 require_once( AWPCP_DIR . "/includes/db/class-database-column-creator.php" );
@@ -238,7 +236,6 @@ require_once( AWPCP_DIR . '/includes/media/class-file-uploader.php' );
 require_once( AWPCP_DIR . '/includes/media/class-file-validation-errors.php' );
 require_once( AWPCP_DIR . '/includes/media/class-filesystem.php' );
 require( AWPCP_DIR . '/includes/media/class-image-attachment-creator.php' );
-require( AWPCP_DIR . '/includes/media/class-image-dimensions-generator.php' );
 require_once( AWPCP_DIR . '/includes/media/class-image-file-processor.php' );
 require_once( AWPCP_DIR . '/includes/media/class-image-file-validator.php' );
 require_once( AWPCP_DIR . '/includes/media/class-image-resizer.php' );
@@ -282,13 +279,10 @@ require_once( AWPCP_DIR . "/includes/settings/class-window-title-settings.php" )
 
 require( AWPCP_DIR . "/includes/upgrade/class-upgrade-task-handler.php" );
 require( AWPCP_DIR . "/includes/upgrade/interface-upgrade-task-runner.php" );
-require( AWPCP_DIR . "/includes/upgrade/class-calculate-image-dimensions-upgrade-task-handler.php" );
 require( AWPCP_DIR . "/includes/upgrade/class-categories-registry.php" );
 require( AWPCP_DIR . "/includes/upgrade/class-database-tables.php" );
-require_once( AWPCP_DIR . "/includes/upgrade/class-fix-empty-media-mime-type-upgrade-routine.php" );
 require_once( AWPCP_DIR . "/includes/upgrade/class-manual-upgrade-tasks-manager.php" );
 require_once( AWPCP_DIR . "/includes/upgrade/class-manual-upgrade-tasks.php" );
-require_once( AWPCP_DIR . "/includes/upgrade/class-sanitize-media-filenames-upgrade-task-handler.php" );
 require( AWPCP_DIR . "/includes/upgrade/class-store-listings-as-custom-post-types-upgrade-task-handler.php" );
 require( AWPCP_DIR . "/includes/upgrade/class-store-listing-categories-as-custom-taxonomies-upgrade-task-handler.php" );
 require( AWPCP_DIR . "/includes/upgrade/class-store-media-as-attachments-upgrade-task-handler.php" );
@@ -320,7 +314,6 @@ require_once( AWPCP_DIR . "/includes/class-listing-payment-transaction-handler.p
 require_once( AWPCP_DIR . "/includes/class-listing-is-about-to-expire-notification.php" );
 require_once( AWPCP_DIR . "/includes/class-listings-collection.php" );
 require_once( AWPCP_DIR . "/includes/class-listings-metadata.php" );
-require_once( AWPCP_DIR . "/includes/class-media-api.php" );
 require_once( AWPCP_DIR . "/includes/class-missing-pages-finder.php" );
 require_once( AWPCP_DIR . "/includes/class-pages-creator.php" );
 require( AWPCP_DIR . '/includes/class-plugin-rewrite-rules.php' );
@@ -518,9 +511,6 @@ class AWPCP {
 		}
 
 		$this->setup_register_settings_handlers();
-
-		// Ad metadata integration.
-        $wpdb->awpcp_admeta = AWPCP_TABLE_AD_META;
 
 		$this->settings->setup();
         $this->modules_updater = awpcp_modules_updater();
@@ -723,10 +713,6 @@ class AWPCP {
 			awpcp_create_pages( __( 'AWPCP', 'another-wordpress-classifieds-plugin' ) );
 			$this->flush_rewrite_rules = true;
 		}
-
-        if ( get_option( 'awpcp-enable-fix-media-mime-type-upgrde' ) ) {
-            awpcp_fix_empty_media_mime_type_upgrade_routine()->run();
-        }
 
 		if ( $this->flush_rewrite_rules || get_option( 'awpcp-flush-rewrite-rules' ) ) {
             add_action( 'wp_loaded', 'flush_rewrite_rules' );

@@ -390,7 +390,7 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
     public function upload_images_form( $ad, $params=array() ) {
         $params = array_merge( $params, array(
             'listing' => $ad,
-            'files' => awpcp_media_api()->find_by_ad_id( $ad->ID ),
+            'files' => $this->attachments->find_attachments( array( 'post_parent' => $ad->ID ) ),
             'hidden' => array(
                 'ad_id' => $ad->ID,
                 'edit-hash' => $this->get_edit_hash( $ad ) ),

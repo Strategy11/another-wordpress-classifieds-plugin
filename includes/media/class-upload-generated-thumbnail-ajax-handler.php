@@ -3,7 +3,7 @@
 function awpcp_upload_generated_thumbnail_ajax_handler() {
     return new AWPCP_UploadGeneratedThumbnailAjaxHandler(
         awpcp_image_resizer(),
-        awpcp_media_api(),
+        awpcp_attachments_collection(),
         awpcp_listings_collection(),
         awpcp()->settings,
         awpcp_request(),
@@ -14,17 +14,17 @@ function awpcp_upload_generated_thumbnail_ajax_handler() {
 class AWPCP_UploadGeneratedThumbnailAjaxHandler extends AWPCP_AjaxHandler {
 
     private $image_resizer;
-    private $media;
+    private $attachments;
     private $listings;
     private $settings;
     private $request;
 
-    public function __construct( $image_resizer, $media, $listings, $settings, $request, $response ) {
+    public function __construct( $image_resizer, $attachments, $listings, $settings, $request, $response ) {
         parent::__construct( $response );
 
         $this->image_resizer = $image_resizer;
         $this->listings = $listings;
-        $this->media = $media;
+        $this->attachments = $attachments;
         $this->settings = $settings;
         $this->request = $request;
     }
@@ -38,7 +38,7 @@ class AWPCP_UploadGeneratedThumbnailAjaxHandler extends AWPCP_AjaxHandler {
     }
 
     private function try_to_process_uploaded_thumbnail() {
-        $media = $this->media->find_by_id( $this->request->post( 'file' ) );
+        $media = $this->attachments->get( $this->request->post( 'file' ) );
 
         if ( is_null( $media ) ) {
             throw new AWPCP_Exception( __( 'Trying to upload a thumbnail for an unknown file.', 'another-wordpress-classifieds-plugin' ) );

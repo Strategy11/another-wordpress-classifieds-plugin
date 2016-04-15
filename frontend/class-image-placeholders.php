@@ -2,26 +2,29 @@
 
 function awpcp_image_placeholders() {
     return new AWPCP_Image_Placeholders(
-        awpcp_media_api(),
         awpcp_attachment_properties(),
-        awpcp_attachments_collection()
+        awpcp_attachments_collection(),
+        awpcp_listing_renderer()
     );
 }
 
 class AWPCP_Image_Placeholders {
 
-    private $media_api;
     private $attachment_properties;
     private $attachments;
+    private $listing_renderer;
 
     private $cache;
 
-    public function __construct( $media_api, $attachment_properties, $attachments ) {
-        $this->media_api = $media_api;
+    public function __construct( $attachment_properties, $attachments, $listing_renderer ) {
         $this->attachment_properties = $attachment_properties;
         $this->attachments = $attachments;
+        $this->listing_renderer = $listing_renderer;
     }
 
+    /**
+     * TODO: test image src, width and other properties are properly rendered.
+     */
     public function do_image_placeholders( $ad, $placeholder ) {
         if ( ! isset( $this->cache[ $ad->ID ] ) ) {
             $placeholders = $this->render_image_placeholders( $ad, $placeholder );
@@ -41,7 +44,7 @@ class AWPCP_Image_Placeholders {
             'awpcp_image_name_srccode' => '',
         );
 
-        $url = awpcp_listing_renderer()->get_view_listing_url( $ad );
+        $url = $this->listing_renderer->get_view_listing_url( $ad );
         $thumbnail_width = get_awpcp_option('displayadthumbwidth');
 
         if ( awpcp_are_images_allowed() ) {
@@ -78,7 +81,7 @@ class AWPCP_Image_Placeholders {
                 $placeholders['featureimg'] = $content;
 
                 // listings
-                $image_attributes = array( 'alt' => awpcp_esc_attr( awpcp_listing_renderer()->get_listing_title( $ad ) ) );
+                $image_attributes = array( 'alt' => awpcp_esc_attr( $this->listing_renderer->get_listing_title( $ad ) ) );
 
                 $content = '<a class="awpcp-listing-primary-image-listing-link" href="%s">%s</a>';
                 // TODO: Can we define a custom image size everytime the user changes the displayadthumbwidth setting, and regenerate
@@ -141,7 +144,7 @@ class AWPCP_Image_Placeholders {
 
             $image_attributes = array(
                 'attributes' => array(
-                    'alt' => awpcp_esc_attr( $ad->ad_title ),
+                    'alt' => awpcp_esc_attr( $this->listing_renderer->get_listing_title( $ad ) ),
                     'src' => esc_attr( $thumbnail ),
                     'width' => esc_attr( $thumbnail_width ),
                 )

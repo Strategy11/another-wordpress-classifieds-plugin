@@ -165,7 +165,7 @@ class AWPCP_Database_Tables {
             `path` VARCHAR(255) CHARACTER SET <charset> COLLATE <collate> NOT NULL DEFAULT '',
             `mime_type` VARCHAR(100) CHARACTER SET <charset> COLLATE <collate> NOT NULL DEFAULT '',
             `enabled` TINYINT(1) NOT NULL DEFAULT 0,
-            `status` VARCHAR(20) CHARACTER SET <charset> COLLATE <collate> NOT NULL DEFAULT '" . AWPCP_Media::STATUS_APPROVED . "',
+            `status` VARCHAR(20) CHARACTER SET <charset> COLLATE <collate> NOT NULL DEFAULT '" . AWPCP_Attachment_Status::STATUS_APPROVED . "',
             `is_primary` TINYINT(1) NOT NULL DEFAULT 0,
             `metadata` TEXT CHARACTER SET <charset> COLLATE <collate> NOT NULL,
             `created` DATETIME NOT NULL,

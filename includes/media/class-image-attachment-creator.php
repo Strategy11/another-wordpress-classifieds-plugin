@@ -2,7 +2,6 @@
 
 function awpcp_image_attachment_creator() {
     return new AWPCP_Image_Attachment_Creator(
-        awpcp_image_dimensions_generator(),
         awpcp_listing_attachment_creator(),
         awpcp()->settings
     );
@@ -10,12 +9,10 @@ function awpcp_image_attachment_creator() {
 
 class AWPCP_Image_Attachment_Creator {
 
-    private $image_dimensions_generator;
     private $attachment_creator;
     private $settings;
 
-    public function __construct( $image_dimensions_generator, $attachment_creator, $settings ) {
-        $this->image_dimensions_generator = $image_dimensions_generator;
+    public function __construct( $attachment_creator, $settings ) {
         $this->attachment_creator = $attachment_creator;
         $this->settings = $settings;
     }
@@ -28,9 +25,6 @@ class AWPCP_Image_Attachment_Creator {
         }
 
         $image_attachment = $this->attachment_creator->create_attachment( $listing, $file_logic, $allowed_status );
-
-        // // TODO: Do we need to calculate dimensions for attachements as well?
-        // $this->image_dimensions_generator->set_image_dimensions( $image_attachment );
 
         return $image_attachment;
     }

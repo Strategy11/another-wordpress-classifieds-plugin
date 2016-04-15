@@ -32,59 +32,6 @@ function awpcp_render_ads($ads, $context='listings', $config=array(), $paginatio
 }
 
 /**
- * Upload and associates the given files with the specified Ad.
- *
- * @param $files    An array of elements of $_FILES.
- * @since 3.0.2
- * @deprecated 3.4
- */
-function awpcp_upload_files( $ad, $files, &$errors=array() ) {
-    $media = awpcp_media_api();
-
-    $constraints = awpcp_get_upload_file_constraints();
-    $image_mime_types = awpcp_get_image_mime_types();
-
-    $uploaded = array();
-    foreach ( $files as $name => $info ) {
-        $can_upload = awpcp_can_upload_file_to_ad( $info, $ad );
-        if ( $can_upload !== true ) {
-            if ( $can_upload !== false ) {
-                $errors[ $name ] = $can_upload;
-            } else {
-                $message = _x( 'An error occurred trying to upload the file %s.', 'upload files', 'another-wordpress-classifieds-plugin' );
-                $errors[ $name ] = sprintf( $message, '<strong>' . $info['name'] . '</strong>' );
-            }
-            continue;
-        }
-
-        if ( $result = awpcp_upload_file( $info, $constraints, $error ) ) {
-            $file = $media->create( array(
-                'ad_id' => $ad->ad_id,
-                'name' => $result['filename'],
-                'path' => $result['path'],
-                'mime_type' => $result['mime_type'],
-                'is_primary' => in_array( $info['type'], $image_mime_types ) && awpcp_array_data( 'is_primary', false, $info ),
-            ) );
-
-            if ( ! is_null( $file ) ) {
-                if ( $file->is_image() && $file->is_primary() ) {
-                    $media->set_ad_primary_image( $ad, $file );
-                }
-
-                $uploaded[] = $file;
-            } else {
-                $message = _x( 'The file %s was properly uploaded but there was a problem trying to save the information to the database.', 'upload files', 'another-wordpress-classifieds-plugin' );
-                $errors[ $name ] = sprintf( $message, '<strong>' . $result['original'] . '</strong>' );
-            }
-        } else {
-            $errors[ $name ] = $error;
-        }
-    }
-
-    return $uploaded;
-}
-
-/**
  * Check that the given file meets the file size, dimensions and file type
  * constraints and moves the file to the AWPCP Uploads directory.
  *
@@ -230,32 +177,6 @@ function awpcp_get_upload_file_constraints( ) {
         'min_image_height' => get_awpcp_option( 'imgminheight' ),
         'min_image_width' => get_awpcp_option( 'imgminwidth' ),
     ) );
-}
-
-/**
- * Determines if a file of the given type can be added to an Ad based solely
- * on the number of files of the same type that are already attached to
- * the Ad.
- *
- * @since 3.0.2
- * @deprecated 3.4
- */
-function awpcp_can_upload_file_to_ad( $file, $ad ) {
-    $stats = awpcp_get_ad_uploaded_files_stats( $ad );
-
-    $image_mime_types = awpcp_get_image_mime_types();
-    $images_allowed = $stats['images_allowed'];
-    $images_uploaded = $stats['images_uploaded'];
-
-    $result = true;
-
-    if ( in_array( $file['type'], $image_mime_types ) ) {
-        if ( $images_allowed <= $images_uploaded ) {
-            $result = _x( "You can't add more images to this Ad. There are not remaining images slots.", 'upload files', 'another-wordpress-classifieds-plugin' );
-        }
-    }
-
-    return apply_filters( 'awpcp-can-upload-file-to-ad', $result, $file, $ad, $stats );
 }
 
 /**

@@ -886,32 +886,6 @@ function awpcp_get_image_url($image, $suffix='') {
 	return false;
 }
 
-/**
- * Get the primary image of the given Ad.
- *
- * @param  int	$ad_id	Ad's ID
- * @return object	an StdClass object representing an image
- * @deprecated use awpcp_media_api()->get_ad_primary_image()
- */
-function awpcp_get_ad_primary_image($ad_id) {
-	global $wpdb;
-
-	$query = 'SELECT * FROM ' . AWPCP_TABLE_ADPHOTOS . ' ';
-	$query.= 'WHERE ad_id = %d AND is_primary = 1 AND disabled = 0';
-
-	$results = $wpdb->get_results($wpdb->prepare($query, $ad_id));
-
-	if (!empty($results)) return $results[0];
-
-	$query = 'SELECT * FROM ' . AWPCP_TABLE_ADPHOTOS . ' ';
-	$query.= 'WHERE ad_id = %d AND disabled = 0 ORDER BY key_id LIMIT 0,1';
-
-	$results = $wpdb->get_results($wpdb->prepare($query, $ad_id));
-
-	return empty($results) ? null : $results[0];
-}
-
-
 function awpcp_array_insert($array, $index, $key, $item, $where='before') {
 	$all = array_merge($array, array($key => $item));
 	$keys = array_keys($array);
