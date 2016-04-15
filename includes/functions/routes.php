@@ -496,7 +496,12 @@ function awpcp_get_reply_to_ad_url($ad_id, $ad_title=null) {
     if (!is_null($ad_title)) {
         $title = sanitize_title($ad_title);
     } else {
-        $title = sanitize_title(AWPCP_Ad::find_by_id($ad_id)->ad_title);
+        try {
+            $listing = $listings->get( $ad_id );
+            $title = sanitize_title( awpcp_listing_renderer()->get_listing_title( $listing ) );
+        } catch ( AWPCP_Exception $e ) {
+            $title = '';
+        }
     }
 
     if (get_awpcp_option('seofriendlyurls')) {
