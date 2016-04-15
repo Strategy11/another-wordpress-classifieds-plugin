@@ -11,8 +11,6 @@ function awpcp_listing_title_form_field( $slug ) {
 
 class AWPCP_ListingTitleFormField extends AWPCP_FormField {
 
-    private $slug;
-
     private $listing_renderer;
     private $payments;
     private $template_renderer;
