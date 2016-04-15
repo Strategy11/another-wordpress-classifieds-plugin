@@ -41,23 +41,6 @@ function awpcp_calculate_end_date($increment, $period, $start_date) {
 }
 
 /**
- * If an Ad was passed, calculates Ad End Date from current End Date.
- * If no Ad was passed, calculates Ad End Date as if Ad would have
- * been posted at the current time.
- *
- * TODO: Use the new $ad->calculate_end_date() method.
- */
-function awpcp_calculate_ad_end_date($duration, $interval='DAY', $ad=null) {
-	$now = awpcp_datetime( 'timestamp' );
-	$end_date = is_null($ad) ? $ad->ad_enddate : 0;
-	// if the Ad's end date is in the future, use that as starting point 
-	// for the new end date, else use current date.
-	$start_date = $end_date > $now ? $end_date : $now;
-	return awpcp_calculate_end_date($duration, $interval, $start_date);
-}
-
-
-/**
  * ...
  *
  * @param $id	Ad ID.

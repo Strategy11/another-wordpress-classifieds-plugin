@@ -118,9 +118,29 @@ class AWPCP_ListingRenderer {
     /**
      * @since feature/1112
      */
+    public function get_renewed_date( $listing ) {
+        return $this->wordpress->get_post_meta( $listing->ID, '_awpcp_renewed_date', true );
+    }
+
+    /**
+     * @since feature/1112
+     */
     public function get_renewed_date_formatted( $listing ) {
-        $renewed_date = $this->wordpress->get_post_meta( $listing->ID, '_awpcp_renewed_date', true );
-        return $this->get_formatted_date( $renewed_date );
+        return $this->get_formatted_date( $this->get_renewed_date( $listing ) );
+    }
+
+    /**
+     * @since feature/1112
+     */
+    public function get_posted_date_formatted( $listing ) {
+        return $this->get_formatted_date( $listing->post_date );
+    }
+
+    /**
+     * @since feature/1112
+     */
+    public function get_last_updated_date_formatted( $listing ) {
+        return $this->get_formatted_date( $listing->post_modified );
     }
 
     public function get_regions( $listing ) {

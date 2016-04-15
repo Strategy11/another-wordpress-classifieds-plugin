@@ -451,15 +451,17 @@ function awpcp_do_placeholder_price($ad, $placeholder) {
  * @since 3.0
  */
 function awpcp_do_placeholder_dates($ad, $placeholder) {
-    $replacements['start_date'] = awpcp_datetime( 'awpcp-date', $ad->ad_startdate );
-    $replacements['end_date'] = awpcp_datetime( 'awpcp-date', $ad->ad_enddate );
-    $replacements['posted_date'] = awpcp_datetime( 'awpcp-date', $ad->ad_postdate );
-    $replacements['last_updated_date'] = awpcp_datetime( 'awpcp-date', $ad->ad_last_updated );
+    $listing_renderer = awpcp_listing_renderer();
 
-    if ( ! empty( $ad->renewed_date ) ) {
-        $replacements['renewed_date'] = awpcp_datetime( 'awpcp-date', $ad->renewed_date );
+    $replacements['start_date'] = $listing_renderer->get_start_date( $ad );
+    $replacements['end_date'] = $listing_renderer->get_end_date( $ad );
+    $replacements['posted_date'] = $listing_renderer->get_posted_date_formatted( $ad );
+    $replacements['last_updated_date'] = $listing_renderer->get_last_updated_date_formatted( $ad );
+
+     if ( ! empty( $listing_renderer->get_renewed_date( $ad ) ) ) {
+        $replacements['renewed_date'] = $listing_renderer->get_renewed_date_formatted( $ad );
     } else {
-        $replacements['renewed_date'] = awpcp_datetime( 'awpcp-date', $ad->ad_postdate );
+        $replacements['renewed_date'] = $listing_renderer->get_posted_date_formatted( $ad );
     }
 
     return $replacements[$placeholder];
@@ -486,8 +488,10 @@ function awpcp_do_placeholder_views($ad, $placeholder) {
  * @since 3.0
  */
 function awpcp_do_placeholder_legacy_dates($ad, $placeholder) {
-    $replacements['ad_startdate'] = awpcp_datetime( 'awpcp-date', $ad->ad_startdate );
-    $replacements['ad_postdate'] = awpcp_datetime( 'awpcp-date', $ad->ad_postdate );
+    $listing_renderer = awpcp_listing_renderer();
+
+    $replacements['ad_startdate'] = $listing_renderer->get_start_date();
+    $replacements['ad_postdate'] = $listing_renderer->get_posted_date_formatted();
     $replacements['awpcpadpostdate'] = sprintf('%s<br/>', $replacements['ad_postdate']);
 
     return $replacements[$placeholder];
