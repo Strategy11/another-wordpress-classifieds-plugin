@@ -465,7 +465,12 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
     }
 
     public function unflag_ad() {
-        $ad = AWPCP_Ad::find_by_id($this->id);
+        try {
+            $ad = $this->listings->get( $this->id );
+        } catch ( AWPCP_Exception $e ) {
+            awpcp_flash( __( 'The specified listing does not exists.', 'another-wordpress-classifieds-plugin' ), array( 'error' ) );
+            return $this->redirect( 'index' );
+        }
 
         if ( $result = awpcp_listings_api()->unflag_listing( $ad ) ) {
             awpcp_flash(__('The Ad has been unflagged.', 'AWPCP'));
@@ -475,7 +480,12 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
     }
 
     public function mark_as_verified() {
-        $ad = AWPCP_Ad::find_by_id( $this->id );
+        try {
+            $ad = $this->listings->get( $this->id );
+        } catch ( AWPCP_Exception $e ) {
+            awpcp_flash( __( 'The specified listing does not exists.', 'another-wordpress-classifieds-plugin' ), array( 'error' ) );
+            return $this->redirect( 'index' );
+        }
 
         awpcp_listings_api()->verify_ad( $ad );
         awpcp_flash( __( 'The Ad was marked as verified.', 'AWPCP' ) );
@@ -484,10 +494,16 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
     }
 
     public function mark_as_paid() {
-        $ad = AWPCP_Ad::find_by_id($this->id);
+        try {
+            $listing = $this->listings->get( $this->id );
+        } catch ( AWPCP_Exception $e ) {
+            awpcp_flash( __( 'The specified listing does not exists.', 'another-wordpress-classifieds-plugin' ), array( 'error' ) );
+            return $this->redirect( 'index' );
+        }
 
-        $ad->payment_status = AWPCP_Payment_Transaction::PAYMENT_STATUS_COMPLETED;
-        if ($result = $ad->save()) {
+        $metadata = array( '_awpcp_payment_status' => AWPCP_Payment_Transaction::PAYMENT_STATUS_COMPLETED );
+
+        if ( $this->listings_logic->update_listing( $listing, array( 'metadata' => $metadata ) ) ) {
             awpcp_flash(__('The Ad has been marked as paid.', 'AWPCP'));
         }
 
