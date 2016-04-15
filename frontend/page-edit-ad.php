@@ -443,7 +443,7 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
             return $this->render('content', awpcp_print_error($message));
         }
 
-        if ( ! awpcp_post_param( 'confirm', false ) || ! $ad->delete() ) {
+        if ( ! awpcp_post_param( 'confirm', false ) || ! $this->listings_logic->delete_listing( $ad ) ) {
             $this->messages[] = __('There was a problem trying to delete your Ad. The Ad was not deleted.', 'another-wordpress-classifieds-plugin');
             return $this->details_step();
         }
