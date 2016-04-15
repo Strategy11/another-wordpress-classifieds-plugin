@@ -134,7 +134,6 @@ class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements 
         $this->wordpress->update_post_meta( $post_id, '_awpcp_website_url', $item->websiteurl );
         $this->wordpress->update_post_meta( $post_id, '_awpcp_price', $item->ad_item_price );
         $this->wordpress->update_post_meta( $post_id, '_awpcp_views', $item->ad_views );
-        $this->wordpress->update_post_meta( $post_id, '_awpcp_last_updated', $item->ad_last_updated );
         $this->wordpress->update_post_meta( $post_id, '_awpcp_start_date', $item->ad_startdate );
         $this->wordpress->update_post_meta( $post_id, '_awpcp_end_date', $item->ad_enddate );
         $this->wordpress->update_post_meta( $post_id, '_awpcp_most_recent_start_date', $item->ad_startdate );
