@@ -11,7 +11,7 @@
 ?>
 
 <div>
-	<form method="post" action="<?php echo esc_attr( $this->url() ); ?>">
+	<form method="post" action="<?php echo esc_attr( $page->url() ); ?>">
         <?php foreach($hidden as $name => $value): ?>
         <input type="hidden" name="<?php echo esc_attr($name) ?>" value="<?php echo esc_attr($value) ?>" />
         <?php endforeach ?>
