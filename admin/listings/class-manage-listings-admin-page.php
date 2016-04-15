@@ -651,7 +651,6 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
     }
 
     public function delete_ad() {
-        // TODO: Use AWPCP_Ad::delete() method.
         $message = deletead($this->id, '', '');
         awpcp_flash($message);
 

@@ -147,7 +147,27 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
         }
 
         if (empty($errors)) {
-            $this->ad = AWPCP_Ad::find_by_email_and_key($form['ad_email'], $form['ad_key']);
+            $listings = $this->listings->find_listings(array(
+                'meta_query' => array(
+                    array(
+                        'key' => '_awpcp_contact_email',
+                        'value' => $form['ad_email'],
+                        'compare' => '=',
+                    ),
+                    array(
+                        'key' => '_awpcp_access_key',
+                        'value' => $form['ad_key'],
+                        'compare' => '=',
+                    ),
+                ),
+            ));
+
+            if ( ! empty( $listings ) ) {
+                $this->ad = $listings[0];
+            } else {
+                $this->ad = null;
+            }
+
             if (is_null($this->ad)) {
                 $errors[] = __('The email address and access key you entered does not match any of the Ads in our system.', 'another-wordpress-classifieds-plugin');
             } else {
@@ -469,7 +489,16 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
 
         $ads = array();
         if ( empty( $errors ) ) {
-            $ads = AWPCP_Ad::find_by_email( $form['ad_email'] );
+            $ads = $this->listings->find_listings(array(
+                'meta_query' => array(
+                    array(
+                        'key' => '_awpcp_contact_email',
+                        'value' => $form['ad_email'],
+                        'compare' => '=',
+                    ),
+                ),
+            ));
+
             if ( empty( $ads ) ) {
                 $errors[] = __('The email address you entered does not match any of the Ads in our system.', 'another-wordpress-classifieds-plugin');
             }

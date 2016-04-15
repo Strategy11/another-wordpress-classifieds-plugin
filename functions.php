@@ -2591,18 +2591,6 @@ function createdefaultcategory($idtomake,$titletocallit) {
 }
 // END FUNCTION: create default category
 
-
-//////////////////////
-// START FUNCTION: function to delete multiple ads at once used when admin deletes a category that contains ads but does not move the ads to a new category
-//////////////////////
-function massdeleteadsfromcategory($catid) {
-    $ads = AWPCP_Ad::find_by_category_id($catid);
-    foreach ($ads as $ad) {
-        $ad->delete();
-    }
-}
-// END FUNCTION
-
 function create_ad_postedby_list($name) {
     $names = awpcp_listings_meta()->get_meta_values( 'contact_name' );
     return awpcp_html_options( array( 'current-value' => $name, 'options' => array_combine( $names, $names ) ) );

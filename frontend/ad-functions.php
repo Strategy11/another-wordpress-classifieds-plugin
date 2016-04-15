@@ -217,15 +217,16 @@ function deletead($adid, $adkey, $editemail, $force=false, &$errors=array()) {
 		$errors[] = $message;
 
 	} else {
-		global $wpdb, $nameofsite;
-
-		$tbl_ads = $wpdb->prefix . "awpcp_ads";
-		$tbl_ad_photos = $wpdb->prefix . "awpcp_adphotos";
 		$savedemail=get_adposteremail($adid);
 
 		if ( $isadmin == 1 || strcasecmp( $editemail, $savedemail ) == 0 ) {
-			$ad = AWPCP_Ad::find_by_id($adid);
-			if ( $ad && $ad->delete() ) {
+			try {
+				$ad = awpcp_listings_collection()->get( $adid );
+			} catch ( AWPCP_Exception $e ) {
+				$ad = null;
+			}
+
+			if ( $ad && awpcp_listings_api()->delete_listing( $ad ) ) {
 				if (($isadmin == 1) && is_admin()) {
 					$message=__("The Ad has been deleted",'another-wordpress-classifieds-plugin');
 					return $message;

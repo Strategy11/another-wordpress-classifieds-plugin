@@ -109,8 +109,18 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
             return false;
         }
 
-        $where = "adterm_id = %d AND payment_term_type = 'fee'";
-        $ads = AWPCP_Ad::find( $wpdb->prepare( $where, $id ) );
+        $ads = awpcp_listings_collection()->find_listings(array(
+            'meta_query' => array(
+                array(
+                    'key' => '_awpcp_payment_term_id',
+                    'value' => $id,
+                ),
+                array(
+                    'key' => '_awpcp_payment_term_type',
+                    'value' => 'fee',
+                ),
+            ),
+        ));
 
         if (!empty($ads)) {
             $errors[] = __("The Fee can't be deleted because there are active Ads in the system that are associated with the Fee ID.", 'another-wordpress-classifieds-plugin');

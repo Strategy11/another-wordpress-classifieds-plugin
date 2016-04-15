@@ -226,10 +226,11 @@ class AWPCP_Pages {
         $response = 0;
 
         if ( check_ajax_referer( 'flag_ad', 'nonce' ) ) {
-            $ad = AWPCP_Ad::find_by_id( intval( awpcp_request_param( 'ad', 0 ) ) );
-
-            if ( ! is_null( $ad ) ) {
+            try {
+                $ad = awpcp_listings_collection()->get( intval( awpcp_request_param( 'ad', 0 ) ) );
                 $response = awpcp_listings_api()->flag_listing( $ad );
+            } catch ( AWPCP_Exception $e ) {
+                // pass
             }
         }
 

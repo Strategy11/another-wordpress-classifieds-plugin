@@ -1299,9 +1299,9 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             return $this->render('content', awpcp_print_error($message));
         }
 
-        $ad = AWPCP_Ad::find_by_id($transaction->get('ad-id', 0));
-
-        if ( is_null( $ad ) ) {
+        try {
+            $ad = $this->listings->get( $transaction->get( 'ad-id', 0 ) );
+        } catch ( AWPCP_Exception $e ) {
             $message = __('The Ad associated with this transaction doesn\'t exists.', 'another-wordpress-classifieds-plugin');
             return $this->render('content', awpcp_print_error($message));
         }

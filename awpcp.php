@@ -170,7 +170,6 @@ require_once( AWPCP_DIR . "/includes/meta/class-tag-renderer.php" );
 
 require( AWPCP_DIR . "/includes/models/class-custom-post-types.php" );
 require_once(AWPCP_DIR . "/includes/models/class-media.php");
-require_once(AWPCP_DIR . "/includes/models/ad.php");
 require_once(AWPCP_DIR . "/includes/models/category.php");
 require_once(AWPCP_DIR . "/includes/models/image.php");
 require_once(AWPCP_DIR . "/includes/models/payment-transaction.php");
@@ -1310,8 +1309,7 @@ class AWPCP {
 		$email = '';
 
 		if ( $transaction->get( 'ad_id' ) ) {
-			$ad = AWPCP_Ad::find_by_id( $transaction->get( 'ad_id' ) );
-			$email = $ad->ad_contact_email;
+            $email = awpcp_wordpress()->get_post_meta( $transaction->get( 'ad_id' ), '_awpcp_contact_email', true );
 		} else if ( $transaction->user_id ) {
 			$user = get_userdata( $transaction->user_id );
 			$email = $user->user_email;

@@ -4,7 +4,7 @@ require_once(AWPCP_DIR . '/includes/helpers/admin-page.php');
 require_once(AWPCP_DIR . '/admin/admin-panel-fees-table.php');
 
 function awpcp_fees_admin_page() {
-    return new AWPCP_AdminFees();
+    return new AWPCP_AdminFees( awpcp_listings_collection() );
 }
 
 /**
@@ -12,10 +12,16 @@ function awpcp_fees_admin_page() {
  */
 class AWPCP_AdminFees extends AWPCP_AdminPageWithTable {
 
+    private $listings;
+
     public function __construct() {
-        $page = 'awpcp-admin-fees';
-        $title = awpcp_admin_page_title( __( 'Manage Listing Fees', 'AWPCP' ) );
-        parent::__construct($page, $title, __('Fees', 'AWPCP'));
+        parent::__construct(
+            'awpcp-admin-fees',
+            awpcp_admin_page_title( __( 'Manage Listing Fees', 'AWPCP' ) ),
+            __('Fees', 'AWPCP')
+        );
+
+        $this->listings = $listings;
     }
 
     public function enqueue_scripts() {
@@ -116,8 +122,12 @@ class AWPCP_AdminFees extends AWPCP_AdminPageWithTable {
         if (AWPCP_Fee::delete($fee->id, $errors)) {
             awpcp_flash(__('The Fee was successfully deleted.', 'AWPCP'));
         } else {
-            $where = sprintf("adterm_id = %d AND payment_term_type = 'fee'", $fee->id);
-            $ads = AWPCP_Ad::find($where);
+            $ads = $this->listings->find_listings( array(
+                'meta_query' => array(
+                    '_awpcp_payment_term_id' => $fee->id,
+                    '_awpcp_payment_term_type' => 'fee',
+                ),
+            ) );
 
             if (empty($ads)) {
                 foreach ($errors as $error) awpcp_flash($error, 'error');

@@ -71,7 +71,16 @@ function doadexpirations() {
     $admin_recipient_email = awpcp_admin_recipient_email_address();
 
 
-    $ads = AWPCP_Ad::find("ad_enddate <= NOW() AND disabled != 1 AND payment_status != 'Unpaid' AND verified = 1");
+    $ads = awpcp_listings_collection()->find_valid_listings(array(
+        'meta_query' => array(
+            array(
+                'key' => '_awpcp_end_date',
+                'value' => current_time( 'mysql' ),
+                'compare' => '<=',
+                'type' => 'DATETIME',
+            ),
+        ),
+    ));
 
     foreach ($ads as $ad) {
         $listings_logic->disable_listing( $ad );
@@ -111,26 +120,67 @@ function doadexpirations() {
     }
 }
 
-
 /*
  * Function run once per month to cleanup disabled / deleted ads.
  */
 function doadcleanup() {
-    global $wpdb;
+    $listings_logic = awpcp_listings_api();
+    $listings = awpcp_listings_collection();
 
-    // get Unpaid Ads older than a month
-    $conditions[] = "(payment_status = 'Unpaid' AND (ad_postdate + INTERVAL 30 DAY) < CURDATE()) ";
+    $should_delete_expired_listings = get_awpcp_option('autoexpiredisabledelete') != 1;
 
-    // also, get Ads that were disabled more than a week ago, but only if the
-    // 'disable instead of delete' flag is not set.
-    if (get_awpcp_option('autoexpiredisabledelete') != 1) {
-        $conditions[] = "(disabled=1 AND (disabled_date + INTERVAL 7 DAY) < CURDATE())";
+    if ( $should_delete_expired_listings ) {
+        awpcp_delete_expired_listings( $listings_logic, $listings );
     }
 
-    $ads = AWPCP_Ad::find(join(' OR ', $conditions));
+    awpcp_delete_unpaid_listings_older_than_a_month( $listings_logic, $listings );
+}
 
-    foreach ($ads as $ad) {
-        $ad->delete();
+/**
+ * @access private
+ * @since feature/1112
+ */
+function awpcp_delete_unpaid_listings_older_than_a_month( $listings_logic, $listings ) {
+    $query = array(
+        'meta_query' => array(
+            array(
+                'key' => '_awpcp_payment_status',
+                'value' => 'Unpaid',
+                'compare' => '=',
+            ),
+        ),
+        'date_query' => array(
+            array(
+                'column' => 'post_date_gmt',
+                'before' => '30 days ago',
+            ),
+        ),
+    );
+
+    foreach ( $listings->find_listings( $query ) as $listing ) {
+        $listings_logic->delete_listing( $listing );
+    }
+}
+
+/**
+ * @access private
+ * @since feature/1112
+ */
+function awpcp_delete_expired_listings( $listings_logic, $listings ) {
+    $query = array(
+        'post_status' => 'disabled',
+        'meta_query' => array(
+            array(
+                'key' => '_awpcp_disabled_date',
+                'value' => awpcp_datetime( 'mysql', strtotime( '7 days ago' ) ),
+                'compare' => '<=',
+                'type' => 'DATETIME',
+            ),
+        ),
+    );
+
+    foreach ( $listings->find_listings( $query ) as $listing ) {
+        $listings_logic->delete_listing( $listing );
     }
 }
 
