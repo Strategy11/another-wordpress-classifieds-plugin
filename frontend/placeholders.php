@@ -420,7 +420,9 @@ function awpcp_do_placeholder_website_link($ad, $placeholder) {
  * @since 3.0
  */
 function awpcp_do_placeholder_price($ad, $placeholder) {
-    $price = empty($ad->ad_item_price) ? 0 : ($ad->ad_item_price / 100);
+    $listing_renderer = awpcp_listing_renderer();
+
+    $price = intval( $listing_renderer->get_price( $ad ) ) / 100;
 
     $show_price_field = get_awpcp_option( 'displaypricefield' ) == 1;
     $user_can_see_price_field = is_user_logged_in() || get_awpcp_option( 'price-field-is-restricted' ) == 0;
