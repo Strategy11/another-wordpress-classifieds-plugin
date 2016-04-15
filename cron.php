@@ -191,7 +191,7 @@ function awpcp_delete_expired_listings( $listings_logic, $listings ) {
  * This functions runs daily.
  */
 function awpcp_ad_renewal_email() {
-	global $wpdb;
+    $listing_renderer = awpcp_listing_renderer();
 
 	if (!(get_awpcp_option('sent-ad-renew-email') == 1)) {
 		return;
@@ -200,17 +200,19 @@ function awpcp_ad_renewal_email() {
     $notification = awpcp_listing_is_about_to_expire_notification();
     $admin_sender_email = awpcp_admin_email_from();
 
-	foreach ( awpcp_get_listings_about_to_expire() as $listing ) {
+	foreach ( awpcp_listings_collection()->find_listings_about_to_expire() as $listing ) {
         // When the user clicks the renew ad link, AWPCP uses
         // the is_about_to_expire() method to decide if the Ad
         // can be renewed. We double check here to make
         // sure users can use the link in the email immediately.
-        if ( ! $listing->is_about_to_expire() ) continue;
+        if ( ! $listing_renderer->is_about_to_expire( $listing ) ) {
+            continue;
+        }
 
         $email = new AWPCP_Email();
 
         $email->from = $admin_sender_email;
-        $email->to = $listing->ad_contact_email;
+        $email->to = $listing_renderer->get_contact_email( $listing );
         $email->subject = $notification->render_subject( $listing );
         $email->body = $notification->render_body( $listing );
 
