@@ -44,7 +44,7 @@ class AWPCP_EditFeeAjaxHandler extends AWPCP_AddEditTableEntryAjaxHandler {
             'title_characters' => $this->request->post( 'title_characters' ),
             'private' => $this->request->post( 'private', false ),
             'featured' => $this->request->post( 'featured', false ),
-            'categories' => $this->request->post( 'categories', array() ),
+            'categories' => array_filter( $this->request->post( 'categories', array() ) ),
         ) );
 
         if ( $fee->save( $errors ) === false ) {

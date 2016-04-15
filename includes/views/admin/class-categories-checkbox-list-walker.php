@@ -36,12 +36,11 @@ class AWPCP_CategoriesCheckboxListWalker extends AWPCP_CategoriesListWalker {
     protected function element( $category, $depth, $args, $current_object_id ) {
         $element = '<input type="checkbox" id="in-category-[category-id]" name="[field-name][]" value="[category-id]" [checked]> [category-name]';
 
-        $element = str_replace( '[category-id]', $category->id, $element );
-        $element = str_replace( '[category-name]', esc_attr( $category->name ), $element );
-
-        $value = $category->id;
+        $value = $category->term_id;
         $selected_values = $this->options['selected'];
 
+        $element = str_replace( '[category-id]', $value, $element );
+        $element = str_replace( '[category-name]', esc_attr( $category->name ), $element );
         $element = str_replace( '[checked]', in_array( $value, $selected_values ) ? 'checked="checked"' : '', $element );
         $element = str_replace( '[field-name]', $this->options['field_name'], $element );
 
