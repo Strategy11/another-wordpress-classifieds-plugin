@@ -189,7 +189,23 @@ class AWPCP_Installer {
     // TODO: remove settings table after another major release
     // TODO: remove pages table after another major release (Added in 3.5.3)
     public function upgrade($oldversion, $newversion) {
-        $upgrade_routines = array(
+        foreach ( $this->get_upgrade_routines() as $version => $routine ) {
+            if ( version_compare( $oldversion, $version ) >= 0 ) {
+                continue;
+            }
+
+            if ( method_exists( $this, $routine ) ) {
+                $this->{$routine}( $oldversion );
+            }
+        }
+
+        do_action( 'awpcp_upgrade', $oldversion, $newversion );
+
+        return update_option( "awpcp_db_version", $newversion );
+    }
+
+    private function get_upgrade_routines() {
+        return array(
             '1.8.9.4' => 'upgrade_to_1_8_9_4',
             '1.9.9' => 'upgrade_to_1_9_9',
             '2.0.0' => 'upgrade_to_2_0_0',
@@ -210,21 +226,11 @@ class AWPCP_Installer {
             '3.5.4-dev-28' => 'upgrade_to_3_5_4_dev_28',
             '3.5.4-dev-29' => 'upgrade_to_3_5_4_dev_29',
             '3.5.4-dev-48' => 'upgrade_tp_3_5_4_dev_48',
+            '4.0' => 'create_old_listing_id_column_in_listing_regions_table',
+            '4.0' => 'enable_upgrade_routine_to_migrate_listing_categories',
+            '4.0' => 'enable_upgrade_routine_to_migrate_listings',
+            '4.0' => 'enable_upgrade_routine_to_migrate_media',
         );
-
-        foreach ( $upgrade_routines as $version => $routine ) {
-            if ( version_compare( $oldversion, $version ) >= 0 ) {
-                continue;
-            }
-
-            if ( method_exists( $this, $routine ) ) {
-                $this->{$routine}( $oldversion );
-            }
-        }
-
-        do_action('awpcp_upgrade', $oldversion, $newversion);
-
-        return update_option("awpcp_db_version", $newversion);
     }
 
     private function upgrade_to_1_8_9_4($version) {
@@ -978,6 +984,30 @@ class AWPCP_Installer {
         foreach ( $plugin_tables as $table_name ) {
             maybe_convert_table_to_utf8mb4( $table_name );
         }
+    }
+
+    private function create_old_listing_id_column_in_listing_regions_table() {
+        global $wpdb;
+
+        if ( ! awpcp_column_exists( AWPCP_TABLE_AD_REGIONS, 'old_listing_id' ) ) {
+            $wpdb->query( 'ALTER TABLE ' . AWPCP_TABLE_AD_REGIONS . ' ADD `old_listing_id` INT(10) NOT NULL AFTER `ad_id`' );
+            $wpdb->query( 'UPDATE ' . AWPCP_TABLE_AD_REGIONS . ' SET `old_listing_id` = `ad_id`' );
+        }
+    }
+
+    private function enable_upgrade_routine_to_migrate_listing_categories() {
+        $this->upgrade_tasks->enable_upgrade_task( 'awpcp-store-listing-categories-as-custom-taxonomies' );
+        delete_option( 'awpcp-slcact-last-listing-id' );
+    }
+
+    private function enable_upgrade_routine_to_migrate_listings() {
+        $this->upgrade_tasks->enable_upgrade_task( 'awpcp-store-listings-as-custom-post-types' );
+        delete_option( 'awpcp-slacpt-last-listing-id' );
+    }
+
+    private function enable_upgrade_routine_to_migrate_media() {
+        $this->upgrade_tasks->enable_upgrade_task( 'awpcp-store-media-as-attachments-upgrade-task-handler' );
+        delete_option( 'awpcp-smaa-last-listing-id' );
     }
 }
 
