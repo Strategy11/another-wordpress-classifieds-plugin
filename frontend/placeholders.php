@@ -460,7 +460,9 @@ function awpcp_do_placeholder_dates($ad, $placeholder) {
     $replacements['posted_date'] = $listing_renderer->get_posted_date_formatted( $ad );
     $replacements['last_updated_date'] = $listing_renderer->get_last_updated_date_formatted( $ad );
 
-     if ( ! empty( $listing_renderer->get_renewed_date( $ad ) ) ) {
+    $renewed_date = $listing_renderer->get_renewed_date( $ad );
+
+     if ( ! empty( $renewed_date ) ) {
         $replacements['renewed_date'] = $listing_renderer->get_renewed_date_formatted( $ad );
     } else {
         $replacements['renewed_date'] = $listing_renderer->get_posted_date_formatted( $ad );
