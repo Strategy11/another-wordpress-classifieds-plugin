@@ -74,28 +74,12 @@ class AWPCP_Installer {
     public function install( $version ) {
         global $awpcp, $wpdb;
 
-        dbDelta( $this->plugin_tables->get_listings_table_definition() );
         dbDelta( $this->plugin_tables->get_listing_meta_table_definition() );
         dbDelta( $this->plugin_tables->get_listing_regions_table_definition() );
-        dbDelta( $this->plugin_tables->get_categories_table_definition() );
         dbDelta( $this->plugin_tables->get_fees_table_definition() );
-        dbDelta( $this->plugin_tables->get_media_table_definition() );
         dbDelta( $this->plugin_tables->get_payments_table_definition() );
         dbDelta( $this->plugin_tables->get_credit_plans_table_definition() );
         dbDelta( $this->plugin_tables->get_tasks_table_definition() );
-
-        // insert deafult category
-        $category = $wpdb->get_results( 'SELECT * FROM ' . AWPCP_TABLE_CATEGORIES . ' WHERE category_id = 1' );
-        if ( empty( $category ) ) {
-            $data = array(
-                'category_id' => 1,
-                'category_parent_id' => 0,
-                'category_name' => __( 'General', 'another-wordpress-classifieds-plugin' ),
-                'category_order' => 0
-            );
-
-            $wpdb->insert( AWPCP_TABLE_CATEGORIES, $data );
-        }
 
         // insert default Fee
         $fee = $wpdb->get_results( 'SELECT * FROM ' . AWPCP_TABLE_ADFEES . ' WHERE adterm_id = 1' );
