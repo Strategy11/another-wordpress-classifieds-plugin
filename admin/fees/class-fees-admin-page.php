@@ -14,7 +14,7 @@ class AWPCP_AdminFees extends AWPCP_AdminPageWithTable {
 
     private $listings;
 
-    public function __construct() {
+    public function __construct( $listings ) {
         parent::__construct(
             'awpcp-admin-fees',
             awpcp_admin_page_title( __( 'Manage Listing Fees', 'AWPCP' ) ),
