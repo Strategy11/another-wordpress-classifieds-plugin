@@ -494,8 +494,8 @@ function awpcp_do_placeholder_views($ad, $placeholder) {
 function awpcp_do_placeholder_legacy_dates($ad, $placeholder) {
     $listing_renderer = awpcp_listing_renderer();
 
-    $replacements['ad_startdate'] = $listing_renderer->get_start_date();
-    $replacements['ad_postdate'] = $listing_renderer->get_posted_date_formatted();
+    $replacements['ad_startdate'] = $listing_renderer->get_start_date( $ad );
+    $replacements['ad_postdate'] = $listing_renderer->get_posted_date_formatted( $ad );
     $replacements['awpcpadpostdate'] = sprintf('%s<br/>', $replacements['ad_postdate']);
 
     return $replacements[$placeholder];
