@@ -113,6 +113,7 @@ class AWPCP_ListingsCollection {
             'context' => 'default',
             'post_type' => AWPCP_LISTING_POST_TYPE,
             'post_status' => array(  'disabled', 'draft', 'pending', 'publish' ),
+            'order' => 'DESC',
         ) );
     }
 
