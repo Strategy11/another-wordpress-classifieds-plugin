@@ -51,7 +51,14 @@ class AWPCP_Store_Media_As_Attachments_Upgrade_Task_Handler implements AWPCP_Upg
         $file_name = awpcp_utf8_pathinfo( $file_path, PATHINFO_BASENAME );
 
         if ( ! file_exists( $file_path ) ) {
-            throw new AWPCP_Exception( sprintf( 'The file %s does not exists.', $file_path ) );
+            debugf(
+                sprintf( 'The file %s does not exists.', $file_path ),
+                $item,
+                $file_path,
+                $file_name
+            );
+
+            return $item->id;
         }
 
         $new_name = wp_unique_filename( '/tmp', $file_name );
