@@ -78,13 +78,13 @@ function countcategories(){
 }
 
 function countcategoriesparents() {
-    return countcategories() - countcategorieschildren();
-}
-
-function countcategorieschildren(){
     return awpcp_categories_collection()->count_categories(array(
         'childless' => true,
     ));
+}
+
+function countcategorieschildren(){
+    return countcategories() - countcategoriesparents();
 }
 
 
