@@ -103,7 +103,7 @@ class AWPCP_PaymentsAPI {
             return;
         }
 
-        if ( $transaction->payment_is_completed() || $transaction->payment_is_pending() ) {
+        if ( $transaction->was_payment_successful() ) {
             $this->maybe_increase_account_balance( $transaction );
         }
 

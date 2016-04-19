@@ -4,11 +4,20 @@ function awpcp_browse_listings_page() {
     return new AWPCP_BrowseAdsPage(
         'awpcp-browse-ads',
         __( 'Browse Ads', 'another-wordpress-classifieds-plugin' ),
-        awpcp_template_renderer()
+        awpcp_template_renderer(),
+        awpcp_request()
     );
 }
 
 class AWPCP_BrowseAdsPage extends AWPCP_Page {
+
+    private $request;
+
+    public function __construct( $page, $title, $template_renderer, $request ) {
+        parent::__construct( $page, $title, $template_renderer );
+
+        $this->request = awpcp_request();
+    }
 
     public function get_current_action($default='browseads') {
         return awpcp_request_param('a', $default);
@@ -38,7 +47,7 @@ class AWPCP_BrowseAdsPage extends AWPCP_Page {
     }
 
     protected function browse_listings( $callback ) {
-        $category_id = intval(awpcp_request_param('category_id', get_query_var('cid')));
+        $category_id = intval( $this->request->param( 'category_id', get_query_var( 'cid' ) ) );
         $output = apply_filters( 'awpcp-browse-listings-content-replacement', null, $category_id );
 
         if ( is_null( $output ) ) {

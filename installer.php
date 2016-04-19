@@ -227,7 +227,7 @@ class AWPCP_Installer {
             '3.5.4-dev-20' => 'upgrade_to_3_5_4_dev_20',
             '3.5.4-dev-28' => 'upgrade_to_3_5_4_dev_28',
             '3.5.4-dev-29' => 'upgrade_to_3_5_4_dev_29',
-            '3.5.4-dev-48' => 'upgrade_tp_3_5_4_dev_48',
+            '3.5.4-dev-48' => 'upgrade_to_3_5_4_dev_48',
             '4.0' => array(
                 'create_old_listing_id_column_in_listing_regions_table',
                 'enable_upgrade_routine_to_migrate_listing_categories',
@@ -972,7 +972,7 @@ class AWPCP_Installer {
         }
     }
 
-    private function upgrade_tp_3_5_4_dev_48( $oldversion ) {
+    private function upgrade_to_3_5_4_dev_48( $oldversion ) {
         global $wpdb;
 
         if ( $wpdb->charset !== 'utf8mb4' ) {
