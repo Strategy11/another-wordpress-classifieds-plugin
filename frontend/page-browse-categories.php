@@ -4,7 +4,8 @@ function awpcp_browse_categories_page() {
     return new AWPCP_BrowseCategoriesPage(
         'awpcp-browse-categories',
         __( 'Browse Categories', 'another-wordpress-classifieds-plugin' ),
-        awpcp_template_renderer()
+        awpcp_template_renderer(),
+        awpcp_request()
     );
 }
 
