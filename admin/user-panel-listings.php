@@ -6,9 +6,12 @@ require_once(AWPCP_DIR . '/admin/user-panel-listings-edit-ad-page.php');
 require_once(AWPCP_DIR . '/admin/user-panel-listings-renew-ad-page.php');
 
 function awpcp_manage_listings_user_panel_page() {
+    $title = __( '<blog-name> User Ad Management Panel - Listings', 'another-wordpress-classifieds-plugin' );
+    $title = str_replace( '<blog-name>', get_bloginfo( 'name' ), $title );
+        
     return new AWPCP_UserListings(
         'awpcp-admin-listings',
-        awpcp_admin_page_title( __( 'Manage Listings', 'another-wordpress-classifieds-plugin' ) ),
+        $title,
         awpcp_attachments_collection(),
         awpcp_listings_api(),
         awpcp_listing_renderer(),

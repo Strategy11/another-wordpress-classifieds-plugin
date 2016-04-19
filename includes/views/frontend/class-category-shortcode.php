@@ -80,7 +80,7 @@ class AWPCP_CategoryShortcode {
 
         $query = array(
             'context' => 'public-listings',
-            'category_id' => $category->id,
+            'category_id' => $category->term_id,
             'include_listings_in_children_categories' => $attrs['children'],
             'posts_per_page' => absint( $this->request->param( 'results', $attrs['items_per_page'] ) ),
             'offset' => absint( $this->request->param( 'offset', 0 ) ),

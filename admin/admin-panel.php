@@ -496,8 +496,7 @@ class AWPCP_Admin {
 
 			// add_submenu_page($parent, 'Debug', 'Debug', $capability, 'awpcp-debug', array($this->debug, 'dispatch'));
 
-			// $parts = array($this->uninstall->title, $this->uninstall->menu, $this->uninstall->page);
-			// add_submenu_page($parent, $parts[0], $parts[1], $capability, $parts[2], array($this->uninstall, 'dispatch'));
+			add_submenu_page($parent, __( 'Debug', 'another-wordpress-classifieds-plugin' ), __( 'Debug', 'another-wordpress-classifieds-plugin' ), $capability, 'awpcp-debug', array($this->debug, 'dispatch'));
 
 			// // allow plugins to define additional menu entries
 			// do_action('awpcp_add_menu_page');
