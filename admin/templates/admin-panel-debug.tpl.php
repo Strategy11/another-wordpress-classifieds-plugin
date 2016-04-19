@@ -1,4 +1,22 @@
-		<?php $msg = _x('This information can help AWPCP Developers to debug possible problems. If you are submitting a bug report please <strong><a href="%s">Download the Debug Information</a></strong> and attach it to your bug report or take a minute to copy the information below to <a href="http://fpaste.org" target="_blank">http://fpaste.org</a> and provide the resulting URL in your report.', 'debug page', 'AWPCP') ?>
+<?php if (!$download): ?>
+	<?php $page_id = 'awpcp-admin-debug' ?>
+	<?php $page_title = awpcp_admin_page_title( __( 'Debug', 'another-wordpress-classifieds-plugin' ) ); ?>
+
+	<?php include(AWPCP_DIR . '/admin/templates/admin-panel-header.tpl.php') ?>
+<?php endif ?>
+
+		<?php echo awpcp_html_admin_second_level_heading( array( 'content' => __( 'Are you seeng 404 Not Found errors?', 'another-wordpress-classifieds-plugin' ) ) ); ?>
+
+		<?php $message = __( "If you are seeing multiple 404 Not Found errors in your website, it is possible that some Rewrite Rules are missing or corrupted. Please click the button bellow to navigate to the <permalinks-settings-link>Permalinks Settings</a> page. Opening that page in your browser will flush the Rewrite Rules in your site. WordPress will then ask all installed and active plugins to register their rules and those 404 Not Found errors should be gone. If that's not the case, please contact <support-link>customer support</a>.", 'another-wordpress-classifieds-plugin' ); ?>
+		<?php $message = str_replace( '<support-link>', '<a href="http://awpcp.com/contact/">', $message ); ?>
+		<?php $message = str_replace( '<permalinks-settings-link>', '<a href="' . esc_url( admin_url( 'options-permalink.php' ) ) . '">', $message ); ?>
+		<p><?php echo $message ?></p>
+
+		<p><a class="button-primary" href="<?php echo esc_url( admin_url( 'options-permalink.php' ) ); ?>"><?php echo _x( 'Flush Rewrite Rules', 'debug page', 'another-wordpress-classifieds-plugin' ); ?></a></p>
+
+		<?php echo awpcp_html_admin_second_level_heading( array( 'content' => __( 'Debug Information', 'another-wordpress-classifieds-plugin' ) ) ); ?>
+
+		<?php $msg = _x('This information can help AWPCP Developers to debug possible problems. If you are submitting a bug report please <strong><a href="%s">Download the Debug Information</a></strong> and attach it to your bug report or take a minute to copy the information below to <a href="http://fpaste.org" target="_blank">http://fpaste.org</a> and provide the resulting URL in your report.', 'debug page', 'another-wordpress-classifieds-plugin') ?>
 		<p><?php echo sprintf( $msg, esc_url( add_query_arg( 'download', 'debug page', awpcp_current_url() ) ) ); ?></p>
 
 		<?php $title_pages = _x('AWPCP Pages', 'debug page', 'another-wordpress-classifieds-plugin') ?>

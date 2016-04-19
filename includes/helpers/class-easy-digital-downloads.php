@@ -32,6 +32,8 @@ class AWPCP_EasyDigitalDownloads {
 
         try {
             return $this->license_request( $params );
+        } catch ( AWPCP_Infinite_Loop_Detected_Exception $e ) {
+            throw $e;
         } catch ( AWPCP_Easy_Digital_Downloads_Exception $e ) {
             $message = __( 'There was an error trying to check the license status for <module-name>.', 'another-wordpress-classifieds-plugin' );
             $exception = $this->exceptions->license_request_exception( $message, $module_name, $e->getMessage(), 0, $e );
@@ -62,15 +64,18 @@ class AWPCP_EasyDigitalDownloads {
 
     private function request( $params ) {
         if ( $this->request->get( 'edd_action', false ) ) {
-            $exception = $this->exceptions->easy_digital_downloads_exception( 'The request was cancelled to avoid infinite recursion.' );
-            throw $exception;
+            throw new AWPCP_Infinite_Loop_Detected_Exception( 'The request was cancelled to avoid infinite recursion.' );
         }
 
         $params = urlencode_deep( $params );
         $url = add_query_arg( $params, $this->settings->get_runtime_option( 'easy-digital-downloads-store-url' ) );
 
-        $response = $this->http->get( $url, array( 'timeout' => 15, 'sslverify' => false ) );
-        $decoded_data = json_decode( wp_remote_retrieve_body( $response ) );
+        try {
+            $response = $this->http->get( $url, array( 'timeout' => 15, 'sslverify' => false ) );
+            $decoded_data = json_decode( wp_remote_retrieve_body( $response ) );
+        } catch ( AWPCP_WPError $e ) {
+            throw new AWPCP_Easy_Digital_Downloads_Exception( $e->wp_error->get_error_message() );
+        }
 
         if ( isset( $decoded_data->error ) ) {
             $exception = $this->exceptions->easy_digital_downloads_exception( $decoded_data->error );
