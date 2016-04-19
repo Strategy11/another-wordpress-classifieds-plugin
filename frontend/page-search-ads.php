@@ -14,8 +14,6 @@ function awpcp_search_listings_page() {
  */
 class AWPCP_SearchAdsPage extends AWPCP_Page {
 
-    public $messages = array();
-
     private $request;
 
     public function __construct( $slug, $title, $template_renderer, $request ) {
@@ -95,7 +93,6 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
     }
 
     protected function search_step() {
-        $this->messages[] = __( 'Use the form below to select the fields on which you want to search. Adding more fields makes for a more specific search. Using fewer fields will make for a broader search.', 'another-wordpress-classifieds-plugin' );
         return $this->search_form($this->get_posted_data());
     }
 
@@ -107,7 +104,7 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
         $ui['price-field'] = get_awpcp_option('displaypricefield');
         $ui['allow-user-to-search-in-multiple-regions'] = get_awpcp_option('allow-user-to-search-in-multiple-regions');
 
-        $messages = $this->messages;
+        $messages = array( __( 'Use the form below to select the fields on which you want to search. Adding more fields makes for a more specific search. Using fewer fields will make for a broader search.', 'another-wordpress-classifieds-plugin' ) );
 
         $url_params = wp_parse_args( parse_url( awpcp_current_url(), PHP_URL_QUERY ) );
 

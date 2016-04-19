@@ -391,6 +391,7 @@ require_once(AWPCP_DIR . "/frontend/ad-functions.php");
 require_once(AWPCP_DIR . "/frontend/shortcode.php");
 
 require( AWPCP_DIR . '/frontend/class-categories-selector-component.php' );
+require( AWPCP_DIR . '/frontend/class-categories-renderer-factory.php' );
 require( AWPCP_DIR . '/frontend/class-image-placeholders.php' );
 require( AWPCP_DIR . '/frontend/class-query.php' );
 require_once(AWPCP_DIR . "/frontend/widget-search.php");
@@ -701,7 +702,7 @@ class AWPCP {
             }
         } else {
             // load resources required in frontend screens only.
-            add_action( 'template_redirect', array( new AWPCP_SecureURLRedirectionHandler(), 'dispatch' ) );
+            add_action( 'template_redirect', array( awpcp_secure_url_redirection_handler(), 'dispatch' ) );
         }
 
         add_filter( 'awpcp-content-placeholders', array( $this, 'register_content_placeholders' ) );

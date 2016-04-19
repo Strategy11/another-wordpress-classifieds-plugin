@@ -33,11 +33,11 @@ class AWPCP_Categories_Selector_Component {
             'selected' => $category_id,
         ) );
 
-        $hidden = array(
+        $hidden = array_filter( array(
             'a' => 'browsecat',
             'results' => $this->request->param( 'results' ),
             'offset' => 0,
-        );
+        ), 'strlen' );
 
         ob_start();
         include( AWPCP_DIR . '/templates/frontend/category-selector.tpl.php' );

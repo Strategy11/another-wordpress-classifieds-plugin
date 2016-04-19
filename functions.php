@@ -2352,6 +2352,9 @@ function awpcp_utf8_basename( $path, $suffix = null ) {
 }
 
 /**
+ * TODO: provide a function that takes a path and one that doesn't. Remove
+ *      file_exists; the former should only be called with valid paths.
+ *
  * @param string    $path           Path to the file whose unique filename needs to be generated.
  * @param string    $filename       Target filename. The unique filename will be as similar as
  *                                  possible to this name.
@@ -2363,7 +2366,7 @@ function awpcp_unique_filename( $path, $filename, $directories ) {
 
     $name = awpcp_sanitize_file_name( $pathinfo['filename'] );
     $extension = $pathinfo['extension'];
-    $file_size = filesize( $path );
+    $file_size = file_exists( $path ) ? filesize( $path ) : 0;
     $timestamp = microtime();
     $salt = wp_salt();
     $counter = 0;

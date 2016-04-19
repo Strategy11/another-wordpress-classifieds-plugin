@@ -5,13 +5,14 @@
 # GREEN301086 <GREEN301086@mail.ru>, 2014
 # Hartamon <hartamon1@gmail.com>, 2015
 # Pavel Golub <pavlo.golub@gmail.com>, 2015
+# Willington Vega <wvega@wvega.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2015-11-12 16:01:42+00:00\n"
-"PO-Revision-Date: 2015-11-25 19:58+0000\n"
-"Last-Translator: Pavel Golub <pavlo.golub@gmail.com>\n"
+"POT-Creation-Date: 2015-12-19 06:24:09+00:00\n"
+"PO-Revision-Date: 2015-12-19 12:16+0000\n"
+"Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: Russian (Russia) (http://www.transifex.com/wp-translations/another-wordpress-classifieds-plugin/language/ru_RU/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -148,7 +149,7 @@ msgid "Categories"
 msgstr "Категории"
 
 #: admin/admin-panel-fees-table.php:127
-#: admin/templates/admin-sidebar.tpl.php:90 awpcp.php:793
+#: admin/templates/admin-sidebar.tpl.php:103 awpcp.php:802
 msgid "Featured Ads"
 msgstr "Избранные объявления"
 
@@ -235,7 +236,7 @@ msgid "Showing Ads from %s category."
 msgstr "Показать объявления из категории %s."
 
 #: admin/admin-panel-listings-table.php:174
-#: admin/templates/admin-panel-debug.tpl.php:33
+#: admin/templates/admin-panel-debug.tpl.php:44
 #: frontend/templates/widget-categories-form.tpl.php:2
 #: frontend/templates/widget-latest-ads-form.tpl.php:2
 #: templates/email/listing-is-about-to-expire-notification.plain.tpl.php:5
@@ -484,9 +485,25 @@ msgctxt "Listing bulk operations: <message-ok> and <message-error>."
 msgid "%s and %s."
 msgstr "%s и %s."
 
+#: admin/admin-panel-listings.php:384
+msgid "%d Ad was disabled"
+msgid_plural "%d Ads were disabled"
+msgstr[0] "%d Объявление было отклонено"
+msgstr[1] "%d Объявления было отклонено"
+msgstr[2] "%d Объявлений были отклонены"
+msgstr[3] "%d Объявлений были отклонены"
+
 #: admin/admin-panel-listings.php:388
 msgid "there was an error trying to disable %d Ads"
 msgstr "произошла ошибка при попытке отключить %d объявлений"
+
+#: admin/admin-panel-listings.php:411
+msgid "%d was enabled"
+msgid_plural "%d Ads were enabled"
+msgstr[0] "%d Объявление было включено"
+msgstr[1] "%d Объявления были включены"
+msgstr[2] "%d Объявлений были включены"
+msgstr[3] "%d Объявлений были включены"
 
 #: admin/admin-panel-listings.php:415
 msgid "there was an error trying to enable %d Ads"
@@ -504,13 +521,37 @@ msgstr "Объявление было отмечено как проверенн
 msgid "The Ad has been marked as paid."
 msgstr "Объявление было отмечено как оплаченное."
 
+#: admin/admin-panel-listings.php:467
+msgid "%d Ad were marked as SPAM and removed"
+msgid_plural "%d Ads were marked as SPAM and removed"
+msgstr[0] "%d Объявление было помечено как Спам и удалено"
+msgstr[1] "%d Объявления были помечены как Спам и удалены"
+msgstr[2] "%d Объявлений были помечены как Спам и удалены"
+msgstr[3] "%d Объявлений были помечены как Спам и удалены"
+
 #: admin/admin-panel-listings.php:471
 msgid "there was an error trying to mark %d Ad as SPAM"
 msgstr "произошла ошибка при попытке пометить %d объявлений как спам"
 
+#: admin/admin-panel-listings.php:487
+msgid "%d Ad was set as fatured"
+msgid_plural "%d Ads were set as featured"
+msgstr[0] "%d объявление было отмечено как Избранное"
+msgstr[1] "%d объявлений были отмечены как Избранные"
+msgstr[2] "%d объявлений были отмечены как Избранные"
+msgstr[3] "%d объявлений были отмечены как Избранные"
+
 #: admin/admin-panel-listings.php:491
 msgid "there was an error trying to set %d Ads as featured"
 msgstr "произошла ошибка при попытке установить %d объявлений как рекомендуемые"
+
+#: admin/admin-panel-listings.php:507
+msgid "%d Ad was set as non-fatured"
+msgid_plural "%d Ads were set as non-featured"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: admin/admin-panel-listings.php:511
 msgid "there was an error trying to set %d Ads as non-featured"
@@ -635,6 +676,39 @@ msgctxt "awpcp admin menu"
 msgid "Classifieds"
 msgstr "Доска объявлений"
 
+#: admin/admin-panel.php:148
+msgid ""
+"%1$s has the same name as the %2$s. That will cause %1$s to become "
+"unreachable. Please make sure you don't have duplicate page names."
+msgid_plural ""
+"%1$s have the same name as the %2$s. That will cause %1$s to become "
+"unreachable. Please make sure you don't have duplicate page names."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+#: admin/admin-panel.php:162
+msgid ""
+"Page %1$s has the same name as the AWPCP %2$s. That will cause WordPress "
+"page %1$s to become unreachable. The %2$s is dynamic; you don't need to "
+"create a real WordPress page to show the list of cateogries, the plugin will"
+" generate it for you. If the WordPress page was created to show the default "
+"list of AWPCP categories, you can delete it and this error message will go "
+"away. Otherwise, please make sure you don't have duplicate page names."
+msgid_plural ""
+"Pages %1$s have the same name as the AWPCP %2$s. That will cause WordPress "
+"pages %1$s to become unreachable. The %2$s is dynamic; you don't need to "
+"create a real WordPress page to show the list of cateogries, the plugin will"
+" generate it for you. If the WordPress pages were created to show the "
+"default list of AWPCP categories, you can delete them and this error message"
+" will go away. Otherwise, please make sure you don't have duplicate page "
+"names."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
 #: admin/admin-panel.php:247 admin/admin-panel.php:248
 msgid "Settings"
 msgstr "Настройки"
@@ -653,8 +727,8 @@ msgstr "Управление категориями"
 msgid "Manage Extra Fields"
 msgstr "Управление дополнительными полями"
 
-#: admin/admin-panel.php:296 admin/templates/admin-sidebar.tpl.php:95
-#: awpcp.php:786
+#: admin/admin-panel.php:296 admin/templates/admin-sidebar.tpl.php:108
+#: awpcp.php:795
 msgid "Extra Fields"
 msgstr "Дополнительные поля"
 
@@ -958,7 +1032,7 @@ msgstr "Найстроки кредитной системы"
 
 #: admin/templates/admin-panel-credit-plans.tpl.php:13
 #: admin/templates/admin-panel-settings.tpl.php:33
-#: admin/templates/admin-panel-settings.tpl.php:47
+#: admin/templates/admin-panel-settings.tpl.php:50
 msgid "Save Changes"
 msgstr "Сохранить Изменения"
 
@@ -1105,6 +1179,30 @@ msgid "Debug"
 msgstr "Отладка"
 
 #: admin/templates/admin-panel-debug.tpl.php:8
+msgid "Are you seeing 404 Not Found errors?"
+msgstr ""
+
+#: admin/templates/admin-panel-debug.tpl.php:10
+msgid ""
+"If you are seeing multiple 404 Not Found errors in your website, it is "
+"possible that some Rewrite Rules are missing or corrupted. Please click the "
+"button bellow to navigate to the <permalinks-settings-link>Permalinks "
+"Settings</a> page. Opening that page in your browser will flush the Rewrite "
+"Rules in your site. WordPress will then ask all installed and active plugins"
+" to register their rules and those 404 Not Found errors should be gone. If "
+"that's not the case, please contact <support-link>customer support</a>."
+msgstr ""
+
+#: admin/templates/admin-panel-debug.tpl.php:15
+msgctxt "debug page"
+msgid "Flush Rewrite Rules"
+msgstr ""
+
+#: admin/templates/admin-panel-debug.tpl.php:17
+msgid "Debug Information"
+msgstr ""
+
+#: admin/templates/admin-panel-debug.tpl.php:19
 msgctxt "debug page"
 msgid ""
 "This information can help AWPCP Developers to debug possible problems. If "
@@ -1115,102 +1213,102 @@ msgid ""
 "your report."
 msgstr "Эта информация может помочь разработчикам AWPCP для отладки возможных проблем. Если вы отправляете отчет об ошибке, пожалуйста, <strong><a href=\"%s\">Скачайте Отладочную Информацию</a></strong> и прикрепите её к Вашему сообщению об ошибке. Или потратте минуту, чтобы скопировать информацию ниже, <a href=\"http://fpaste.org\" target=\"_blank\">http://fpaste.org</a> и введите полученный URL-адрес в отчете."
 
-#: admin/templates/admin-panel-debug.tpl.php:11
+#: admin/templates/admin-panel-debug.tpl.php:22
 msgctxt "debug page"
 msgid "AWPCP Pages"
 msgstr "Страницы AWPCP"
 
-#: admin/templates/admin-panel-debug.tpl.php:12
+#: admin/templates/admin-panel-debug.tpl.php:23
 msgctxt "debug page"
 msgid "PHP Info"
 msgstr "PHP Info"
 
-#: admin/templates/admin-panel-debug.tpl.php:13
+#: admin/templates/admin-panel-debug.tpl.php:24
 msgctxt "debug page"
 msgid "AWPCP Settings"
 msgstr "Настройки AWPCP"
 
-#: admin/templates/admin-panel-debug.tpl.php:14
+#: admin/templates/admin-panel-debug.tpl.php:25
 msgctxt "debug page"
 msgid "Rewrite Rules"
 msgstr "Перезаписать Правила"
 
-#: admin/templates/admin-panel-debug.tpl.php:31
+#: admin/templates/admin-panel-debug.tpl.php:42
 msgid "Stored ID"
 msgstr "Сохраненный ID"
 
-#: admin/templates/admin-panel-debug.tpl.php:32
+#: admin/templates/admin-panel-debug.tpl.php:43
 msgid "Reference"
 msgstr "Ссылка"
 
-#: admin/templates/admin-panel-debug.tpl.php:42
+#: admin/templates/admin-panel-debug.tpl.php:53
 msgid "Page not found"
 msgstr "Страница не найдена"
 
-#: admin/templates/admin-panel-debug.tpl.php:56
+#: admin/templates/admin-panel-debug.tpl.php:67
 msgid "Option Name"
 msgstr "Название Опции"
 
-#: admin/templates/admin-panel-debug.tpl.php:57
+#: admin/templates/admin-panel-debug.tpl.php:68
 msgid "Option Value"
 msgstr "Значение параметра"
 
-#: admin/templates/admin-panel-debug.tpl.php:80
+#: admin/templates/admin-panel-debug.tpl.php:91
 msgid "Pattern"
 msgstr "Шаблон"
 
-#: admin/templates/admin-panel-debug.tpl.php:81
+#: admin/templates/admin-panel-debug.tpl.php:92
 msgid "Replacement"
 msgstr "Замена"
 
-#: admin/templates/admin-panel-debug.tpl.php:102
+#: admin/templates/admin-panel-debug.tpl.php:113
 msgctxt "debug page"
 msgid "PHP Version"
 msgstr "Версия PHP"
 
-#: admin/templates/admin-panel-debug.tpl.php:106
+#: admin/templates/admin-panel-debug.tpl.php:117
 msgctxt "debug page"
 msgid "cURL"
 msgstr "cURL"
 
-#: admin/templates/admin-panel-debug.tpl.php:107
-#: admin/templates/admin-sidebar.tpl.php:146
-#: admin/templates/admin-sidebar.tpl.php:187
+#: admin/templates/admin-panel-debug.tpl.php:118
+#: admin/templates/admin-sidebar.tpl.php:154
+#: admin/templates/admin-sidebar.tpl.php:195
 msgid "Installed"
 msgstr "Установлен"
 
-#: admin/templates/admin-panel-debug.tpl.php:107
-#: admin/templates/admin-sidebar.tpl.php:163
-#: admin/templates/admin-sidebar.tpl.php:204
+#: admin/templates/admin-panel-debug.tpl.php:118
+#: admin/templates/admin-sidebar.tpl.php:171
+#: admin/templates/admin-sidebar.tpl.php:212
 msgid "Not Installed"
 msgstr "Не Установленные"
 
-#: admin/templates/admin-panel-debug.tpl.php:110
+#: admin/templates/admin-panel-debug.tpl.php:121
 msgctxt "debug page"
 msgid "cURL's alternate CA info (cacert.pem)"
 msgstr "cURL's alternate CA info (cacert.pem)"
 
-#: admin/templates/admin-panel-debug.tpl.php:111
+#: admin/templates/admin-panel-debug.tpl.php:122
 msgctxt "alternate CA info for cURL"
 msgid "Exists"
 msgstr "Существует"
 
-#: admin/templates/admin-panel-debug.tpl.php:111
+#: admin/templates/admin-panel-debug.tpl.php:122
 msgctxt "alternate CA info for cURL"
 msgid "Missing"
 msgstr "Отсутсвует"
 
-#: admin/templates/admin-panel-debug.tpl.php:114
+#: admin/templates/admin-panel-debug.tpl.php:125
 msgctxt "debug page"
 msgid "PayPal Connection"
 msgstr "Соединение с PayPal"
 
-#: admin/templates/admin-panel-debug.tpl.php:117
+#: admin/templates/admin-panel-debug.tpl.php:128
 msgctxt "debug page"
 msgid "Working"
 msgstr "Рабочая"
 
-#: admin/templates/admin-panel-debug.tpl.php:120
+#: admin/templates/admin-panel-debug.tpl.php:131
 msgctxt "debug page"
 msgid "Not Working"
 msgstr "Не работает"
@@ -1439,7 +1537,7 @@ msgid "Manage Listing"
 msgstr "Управление объявлением"
 
 #: admin/templates/admin-panel-listings.tpl.php:12
-#: frontend/page-search-ads.php:14
+#: frontend/page-search-ads.php:12
 msgid "Search Ads"
 msgstr "Искать объявления"
 
@@ -1638,6 +1736,10 @@ msgstr "Восстановить страницы"
 msgid "%s Settings"
 msgstr "Настройки %s"
 
+#: admin/templates/admin-panel-settings.tpl.php:48
+msgid "Save Keys and Activate"
+msgstr ""
+
 #: admin/templates/admin-panel-uninstall.tpl.php:6
 msgid ""
 "Thank you for using AWPCP. You have arrived at this page by clicking the "
@@ -1756,126 +1858,126 @@ msgstr "Пусть другие люди знают, что он установ�
 msgid "Buy a Premium Module"
 msgstr "Купить премиум модуль"
 
-#: admin/templates/admin-sidebar.tpl.php:29
+#: admin/templates/admin-sidebar.tpl.php:35
 msgid "Get a Premium Module!"
 msgstr "Получить Премиум-Модуль!"
 
-#: admin/templates/admin-sidebar.tpl.php:38 awpcp.php:758
+#: admin/templates/admin-sidebar.tpl.php:46 awpcp.php:767
 msgid "Campaign Manager"
 msgstr "Менеджер Кампаний"
 
-#: admin/templates/admin-sidebar.tpl.php:44 awpcp.php:814
+#: admin/templates/admin-sidebar.tpl.php:52 awpcp.php:824
 msgid "Mark as Sold"
 msgstr "Пометить как Продано"
 
-#: admin/templates/admin-sidebar.tpl.php:50 awpcp.php:835
+#: admin/templates/admin-sidebar.tpl.php:58 awpcp.php:845
 msgid "Restricted Categories"
 msgstr "Ограниченные категории"
 
-#: admin/templates/admin-sidebar.tpl.php:55 awpcp.php:751
+#: admin/templates/admin-sidebar.tpl.php:63 awpcp.php:760
 msgid "BuddyPress Listings"
 msgstr "Объявления BuddyPress"
 
-#: admin/templates/admin-sidebar.tpl.php:60
+#: admin/templates/admin-sidebar.tpl.php:68
 msgid "Comments/Ratings"
 msgstr "Комментарии и рейтинги"
 
-#: admin/templates/admin-sidebar.tpl.php:65 awpcp.php:744
+#: admin/templates/admin-sidebar.tpl.php:73 awpcp.php:746
+msgid "Attachments"
+msgstr "Вложения"
+
+#: admin/templates/admin-sidebar.tpl.php:78 awpcp.php:753
 msgid "Authorize.Net"
 msgstr "Authorize.Net"
 
-#: admin/templates/admin-sidebar.tpl.php:70 awpcp.php:821
+#: admin/templates/admin-sidebar.tpl.php:83 awpcp.php:831
 msgid "PayPal Pro"
 msgstr "PayPal Pro"
 
-#: admin/templates/admin-sidebar.tpl.php:75
+#: admin/templates/admin-sidebar.tpl.php:88
 msgid "Coupon/Discount"
 msgstr "Купоны и скидки"
 
-#: admin/templates/admin-sidebar.tpl.php:80 awpcp.php:849
+#: admin/templates/admin-sidebar.tpl.php:93 awpcp.php:859
 msgid "Subscriptions"
 msgstr "Подписки"
 
-#: admin/templates/admin-sidebar.tpl.php:85
+#: admin/templates/admin-sidebar.tpl.php:98
 msgid "Fee Per Category"
 msgstr "Тариф для категории"
 
-#: admin/templates/admin-sidebar.tpl.php:100 awpcp.php:765
+#: admin/templates/admin-sidebar.tpl.php:113 awpcp.php:774
 msgid "Category Icons"
 msgstr "Иконки категорий"
 
-#: admin/templates/admin-sidebar.tpl.php:105 awpcp.php:828
+#: admin/templates/admin-sidebar.tpl.php:118 awpcp.php:838
 msgid "Regions Control"
 msgstr "Управление Регионами"
 
-#: admin/templates/admin-sidebar.tpl.php:110
-msgid "Google Checkout Payments"
-msgstr "Оплата Google Checkout"
-
-#: admin/templates/admin-sidebar.tpl.php:115 awpcp.php:842
+#: admin/templates/admin-sidebar.tpl.php:123 awpcp.php:852
 msgid "RSS"
 msgstr "RSS"
 
-#: admin/templates/admin-sidebar.tpl.php:120
+#: admin/templates/admin-sidebar.tpl.php:128
 msgid "Donate to Support AWPCP"
 msgstr "Пожертвование для поддержки AWPCP"
 
-#: admin/templates/admin-sidebar.tpl.php:128
+#: admin/templates/admin-sidebar.tpl.php:136
 msgid "Found a bug?"
 msgstr "Нашли ошибку?"
 
-#: admin/templates/admin-sidebar.tpl.php:128
+#: admin/templates/admin-sidebar.tpl.php:136
 msgid "Need Support?"
 msgstr "Нужна поддержка?"
 
-#: admin/templates/admin-sidebar.tpl.php:132
+#: admin/templates/admin-sidebar.tpl.php:140
 msgid "Quick Start Guide"
 msgstr "Краткое руководство"
 
-#: admin/templates/admin-sidebar.tpl.php:133
+#: admin/templates/admin-sidebar.tpl.php:141
 msgctxt "Browse the <a>Quick Start Guide</a>"
 msgid "Browse the %s."
 msgstr "Просмотреть %s."
 
-#: admin/templates/admin-sidebar.tpl.php:134
+#: admin/templates/admin-sidebar.tpl.php:142
 msgid "Documentation"
 msgstr "Документация"
 
-#: admin/templates/admin-sidebar.tpl.php:135
+#: admin/templates/admin-sidebar.tpl.php:143
 msgctxt "Read the full <a>Documentation</a>"
 msgid "Read the full %s."
 msgstr "Читать полную %s."
 
-#: admin/templates/admin-sidebar.tpl.php:136
+#: admin/templates/admin-sidebar.tpl.php:144
 msgid "visit the forums!"
 msgstr "посетите форум!"
 
-#: admin/templates/admin-sidebar.tpl.php:137
+#: admin/templates/admin-sidebar.tpl.php:145
 msgctxt "Report bugs or get more help: <a>visit the forums!</a>"
 msgid "Report bugs or get more help: %s."
 msgstr "Чтобы сообщить об ошибках или получить дополнительную помощь: %s."
 
-#: admin/templates/admin-sidebar.tpl.php:143
+#: admin/templates/admin-sidebar.tpl.php:151
 msgid "Premium Modules"
 msgstr "Премиум Модули"
 
-#: admin/templates/admin-sidebar.tpl.php:150
+#: admin/templates/admin-sidebar.tpl.php:158
 msgid "No premium modules installed."
 msgstr "Премиум модули не установлены"
 
-#: admin/templates/admin-sidebar.tpl.php:167
+#: admin/templates/admin-sidebar.tpl.php:175
 msgid "All premium modules installed!"
 msgstr "Все премиум-модули установлены!"
 
-#: admin/templates/admin-sidebar.tpl.php:183
+#: admin/templates/admin-sidebar.tpl.php:191
 msgid "Other Modules"
 msgstr "Другие модули"
 
-#: admin/templates/admin-sidebar.tpl.php:191
+#: admin/templates/admin-sidebar.tpl.php:199
 msgid "No other modules installed"
 msgstr "Дополнительные модули не установлены"
 
-#: admin/templates/admin-sidebar.tpl.php:208
+#: admin/templates/admin-sidebar.tpl.php:216
 msgid "All other modules installed!"
 msgstr "Все остальные модули установлены!"
 
@@ -1939,104 +2041,94 @@ msgstr "Управление объявлениями"
 msgid "Manage Ad Listings"
 msgstr "Управление списком объявлений"
 
-#: awpcp.php:641
+#: awpcp.php:650
 msgid "AWPCP"
 msgstr "AWPCP"
 
-#: awpcp.php:720
+#: awpcp.php:729
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
 msgstr "AWPCP требуется библиотека обработки графики GD которая не установлена. Обратитесь поддержку веб-хостинга, чтобы это исправить."
 
-#: awpcp.php:721
+#: awpcp.php:730
 #: includes/placeholders/class-placeholders-installation-verifier.php:31
 msgid "Warning"
 msgstr "Предупреждение"
 
-#: awpcp.php:737
-msgid "Attachments"
-msgstr "Вложения"
-
-#: awpcp.php:772
+#: awpcp.php:781
 msgid "Comments & Ratings"
 msgstr "Комментарии и рейтинги"
 
-#: awpcp.php:779
+#: awpcp.php:788
 msgid "Coupons/Discount"
 msgstr "Купоны/Скидки"
 
-#: awpcp.php:800
+#: awpcp.php:809
 msgid "Fee per Category"
 msgstr "Тариф для категории"
 
-#: awpcp.php:807
+#: awpcp.php:816
 msgid "Google Checkout"
 msgstr "Google Checkout"
 
-#: awpcp.php:856 templates/components/media-manager.tpl.php:46
+#: awpcp.php:866 templates/components/media-manager.tpl.php:46
 msgid "Videos"
 msgstr "Видео"
 
-#: awpcp.php:864
+#: awpcp.php:874
 msgid "XML Sitemap"
 msgstr "XML Карта Сайта"
 
-#: awpcp.php:871
+#: awpcp.php:881
 msgid "ZIP Code Search Module"
 msgstr "Модуль поиска по почтовому индексу"
 
-#: awpcp.php:919
-msgid ""
-"The %1$s module you have installed is outdated and not compatible with this "
-"version of AWPCP. Please get %1$s %2$s or newer."
-msgstr "Установленный у вас модуль %1$s устарел и не совместим с данной версией AWPCP. Пожалуйста, получите %1$s %2$s или обновите."
-
-#: awpcp.php:1054
+#: awpcp.php:1038
 msgid "This field is required."
 msgstr "Это поле является обязательным."
 
-#: awpcp.php:1055 frontend/page-edit-ad.php:128 frontend/page-edit-ad.php:433
+#: awpcp.php:1039 frontend/page-edit-ad.php:128 frontend/page-edit-ad.php:433
 #: includes/settings-api.php:214
 msgid "Please enter a valid email address."
 msgstr "Пожалуйста, введите действующий адрес электронной почты."
 
-#: awpcp.php:1056 awpcp.php:1057
+#: awpcp.php:1040 awpcp.php:1041
 msgid "Please enter a valid URL."
 msgstr "Пожалуйста, введите правильный URL."
 
-#: awpcp.php:1058
+#: awpcp.php:1042
 msgid "Please enter a valid number."
 msgstr "Пожалуйста, введите правильный номер."
 
-#: awpcp.php:1059
+#: awpcp.php:1043
 msgid "Please enter a valid amount."
 msgstr "Пожалуйста, введите корректное количество."
 
-#: awpcp.php:1069
+#: awpcp.php:1053
 msgctxt "[UI Datepicker] Display text for previous month link"
 msgid "&#x3c;Prev"
 msgstr "&#x3c; Пред."
 
-#: awpcp.php:1071
+#: awpcp.php:1055
 msgctxt "[UI Datepicker] Display text for next month link"
 msgid "Next&#x3e;"
 msgstr "След. &#x3e;"
 
-#: awpcp.php:1086
+#: awpcp.php:1070
 msgctxt "[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ..."
 msgid "0"
 msgstr "4"
 
-#: awpcp.php:1092
+#: awpcp.php:1076
 msgid "There are files currently being uploaded."
 msgstr "Несолько файлов загружаются."
 
-#: awpcp.php:1093
+#: awpcp.php:1077
 msgid "There are files pending to be uploaded."
 msgstr "Несколько файлов ожидают загрузки."
 
-#: awpcp.php:1094
+#: awpcp.php:1078
 msgid "You haven't uploaded any images or files."
 msgstr "Вы не загрузили ни одного файла."
 
@@ -2096,11 +2188,11 @@ msgstr "Новое объявление опубликовано"
 msgid "Click to enlarge image."
 msgstr "Нажмите, чтобы увеличить"
 
-#: frontend/page-browse-ads.php:8
+#: frontend/page-browse-ads.php:10
 msgid "Browse Ads"
 msgstr "Просмотр объявлений"
 
-#: frontend/page-browse-ads.php:60
+#: frontend/page-browse-ads.php:64
 msgid ""
 "No specific category was selected for browsing so you are viewing listings "
 "from all categories."
@@ -2580,38 +2672,38 @@ msgid ""
 "administrator."
 msgstr "Возникла проблемма при попытке отправить сообщение. Пожалуйста, попробуйте еще раз. Если проблема не устранена, пожалуйста, обратитесь к системному администратору."
 
-#: frontend/page-search-ads.php:33 frontend/page-search-ads.php:70
+#: frontend/page-search-ads.php:31 frontend/page-search-ads.php:68
 msgid ""
 "You did not enter a keyword or phrase to search for. You must at the very "
 "least provide a keyword or phrase to search for."
 msgstr "Вы не ввели ключевое слово или фразу для поиска. Вы должны ввести по крайней мере одно ключевое слово или фразу для поиска."
 
-#: frontend/page-search-ads.php:74
+#: frontend/page-search-ads.php:72
 msgid ""
 "You have entered a keyword that is too short to search on. Search keywords "
 "must be at least 3 letters in length. Please try another term."
 msgstr "Вы ввели слишком короткое ключевое слово для поиска. Ключевое слова для поиска должно быть не менее 3 букв в длину. Попробуйте, пожалуйста, еще раз."
 
-#: frontend/page-search-ads.php:78
+#: frontend/page-search-ads.php:76
 msgid ""
 "You have entered an invalid minimum price. Make sure your price contains "
 "numbers only. Please do not include currency symbols."
 msgstr "Вы ввели неккоректную минимальную цену. Убедитесь, что Ваша цена содержит только цифры. Пожалуйста, Не включайте неё символы."
 
-#: frontend/page-search-ads.php:82
+#: frontend/page-search-ads.php:80
 msgid ""
 "You have entered an invalid maximum price. Make sure your price contains "
 "numbers only. Please do not include currency symbols."
 msgstr "Вы ввели неккоректную максимальную цену. Убедитесь, что Ваша цена содержит только цифры. Пожалуйста, Не включайте неё символы."
 
-#: frontend/page-search-ads.php:89
+#: frontend/page-search-ads.php:98
 msgid ""
 "Use the form below to select the fields on which you want to search. Adding "
 "more fields makes for a more specific search. Using fewer fields will make "
 "for a broader search."
 msgstr "Используйте форму ниже для выбора полей по которым будет происходить поиск. Чем больше полей, тем более конкретными будут результаты поиска. Чем меньше полей, тем более широкими будут результаты поиска."
 
-#: frontend/page-search-ads.php:169
+#: frontend/page-search-ads.php:166
 msgid "Return to Search"
 msgstr "Вернуться к поиску"
 
@@ -2669,6 +2761,14 @@ msgstr "Продавец"
 msgid "Visit Website"
 msgstr "Посетите сайт"
 
+#: frontend/placeholders.php:595
+msgid "This Ad has been viewed %d time."
+msgid_plural "This Ad has been viewed %d times."
+msgstr[0] "Это объявление было просмотрено %d раз."
+msgstr[1] "Это объявление было просмотрено %d раза."
+msgstr[2] "Это объявление было просмотрено %d раз."
+msgstr[3] "Это объявление было просмотрено %d раз."
+
 #: frontend/placeholders.php:599
 msgid "Total views: %d"
 msgstr "Всего просмотров: %d"
@@ -2689,11 +2789,11 @@ msgstr "Твитнуть"
 msgid "Share on Facebook"
 msgstr "Поделиться на Facebook"
 
-#: frontend/shortcode.php:278
+#: frontend/shortcode.php:281
 msgid "Hi admin, you need to go to your dashboard and setup your classifieds."
 msgstr "Привет админ, тебе нужно открыть консоль и настроить отображение объявлений."
 
-#: frontend/shortcode.php:281
+#: frontend/shortcode.php:284
 msgid "You currently have no classifieds"
 msgstr "На данный момент объявлений нет"
 
@@ -3505,7 +3605,7 @@ msgctxt "default blog title"
 msgid "Classifieds Website"
 msgstr "Сайт Доски Объявлеий"
 
-#: functions.php:1491
+#: functions.php:1509
 msgid ""
 "The images or files with pale red background have been rejected by an "
 "administrator user. Likewise, files with a pale yellow background are "
@@ -3513,179 +3613,179 @@ msgid ""
 "cannot be shown in the frontend."
 msgstr "Изображения или файлы с бледно-красным фоном были отвергнуты пользователем Администратор. Так же, файлы с бледно-желтым фоном, ожидают своего утверждения. Файлы, ожидающие утверждения и отклоненные файлы не отображаются в интерфейсе."
 
-#: functions.php:1508 includes/helpers/class-modules-manager.php:158
+#: functions.php:1528
 msgid ""
 "This version of AWPCP %1$s module is not compatible with AWPCP version %2$s."
 " Please get AWPCP %1$s %3$s or newer!"
 msgstr "Эта версия модуля AWPCP %1$s не совместима с AWPCP версии %2$s. Пожалуйста, получите AWPCP %1$s %3$s или новее!"
 
-#: functions.php:1510 includes/helpers/class-modules-manager.php:160
+#: functions.php:1530 includes/helpers/class-modules-manager.php:245
 msgid "Error"
 msgstr "Ошибка"
 
-#: functions.php:1738
+#: functions.php:1867
 msgid "No errors."
 msgstr "Нет ошибок."
 
-#: functions.php:1739
+#: functions.php:1868
 msgid "The file is larger than upload_max_filesize."
 msgstr "Файл превышает размер upload_max_filesize. "
 
-#: functions.php:1740
+#: functions.php:1869
 msgid "The file is larger than form MAX_FILE_SIZE."
 msgstr "Файл превышает размер MAX_FILE_SIZE."
 
-#: functions.php:1741
+#: functions.php:1870
 msgid "The file was only partially uploaded."
 msgstr "Файл был загружен лишь частично."
 
-#: functions.php:1742
+#: functions.php:1871
 msgid "No file was uploaded."
 msgstr "Файл не был загружен."
 
-#: functions.php:1743
+#: functions.php:1872
 msgid "Missing temporary directory."
 msgstr "Отсутствет временный каталог."
 
-#: functions.php:1744
+#: functions.php:1873
 msgid "Can't write file to disk."
 msgstr "Невозможно записать файл на диск."
 
-#: functions.php:1745
+#: functions.php:1874
 msgid "The file upload was stopped by extension."
 msgstr "Загрузка файла была остановленна из-за расширения."
 
-#: functions.php:1960
+#: functions.php:2089
 msgid "Your Ad \"%s\" has been approved"
 msgstr "Ваше объявление \"%s\" было одобрено"
 
-#: functions.php:1976
+#: functions.php:2105
 msgid "Your Ad \"%s\" has been successfully updated"
 msgstr "Ваше объявление \"%s\" было успешно обновлено"
 
-#: functions.php:1997
+#: functions.php:2126
 msgid "Images on Ad \"%s\" are awaiting approval"
 msgstr "Изображения в объявлении \"%s\" ожидающие утверждения"
 
-#: functions.php:1999 includes/functions/notifications.php:189
+#: functions.php:2128 includes/functions/notifications.php:189
 msgid ""
 "Images on Ad \"%s\" are awaiting approval. You can approve the images going "
 "to the Manage Images section for that Ad and clicking the \"Enable\" button "
 "below each image. Click here to continue: %s."
 msgstr "Изображения в объявлении \"%s\" ожидающит утверждения. Вы можете одобрить изображения в разделе \"Управление изображениями\" этого объявления нажав на кнопку \"Включить\", расположенную ниже каждого изображения. Нажмите здесь, чтобы продолжить: %s."
 
-#: functions.php:2002
+#: functions.php:2131
 msgid "The Ad \"%s\" is awaiting approval"
 msgstr "Объявление \"%s\" ожидает утверждения"
 
-#: functions.php:2004 includes/functions/notifications.php:194
+#: functions.php:2133 includes/functions/notifications.php:194
 msgid ""
 "The Ad \"%s\" is awaiting approval. You can approve the Ad going to the "
 "Manage Listings section and clicking the \"Enable\" action shown on top. "
 "Click here to continue: %s."
 msgstr "Объявление \"%s\" требует подтверждения. Вы можете утвердить объявление перейдя в раздел Управление Объявлениями и нажав на \"одобрить\". Перейдите по ссылке, чтобы продолжить: %s."
 
-#: functions.php:2011 includes/functions/notifications.php:201
+#: functions.php:2140 includes/functions/notifications.php:201
 msgid ""
 "Additionally, You can approve the images going to the Manage Images section "
 "for that Ad and clicking the \"Enable\" button below each image. Click here "
 "to continue: %s."
 msgstr "Кроме того, вы можете утвердить изображения перейдя в раздел \"Управление Изображениями\" этого объявления и нажав на \"Включить\", расположенную ниже каждого изображения. Нажмите здесь, чтобы продолжить: %s."
 
-#: functions.php:2508
+#: functions.php:2674
 msgid "Email sent %s."
 msgstr "Отправлено %s."
 
-#: includes/class-csv-importer.php:118
+#: includes/class-csv-importer.php:121
 msgid "Invalid CSV file."
 msgstr "Неправильный CSV файл."
 
-#: includes/class-csv-importer.php:136
+#: includes/class-csv-importer.php:142
 msgid "Image file names were found but no ZIP was provided."
 msgstr "Были обнаружены имена файлов, но архива с фото не обнаружено."
 
-#: includes/class-csv-importer.php:187
+#: includes/class-csv-importer.php:240
 msgid "The required column %s is missing. Import can't continue."
 msgstr "Требуемый столбец %s отсутствует. Импорт не может быть продолжен."
 
-#: includes/class-csv-importer.php:199
+#: includes/class-csv-importer.php:252
 msgid "Import can't continue. Unknown column(s) specified(s):"
 msgstr "Импорт не может быть продолжен. Неизвестный столбец (столбцы), указанный (указанные):"
 
-#: includes/class-csv-importer.php:275
+#: includes/class-csv-importer.php:327
 msgid "Required value <em>%s</em> missing at row number: %d"
 msgstr "Необходимое значение <em>%s</em> не найдено в строке : %d"
 
-#: includes/class-csv-importer.php:418 includes/class-csv-importer.php:489
-msgid "Incompatible ZIP Archive"
-msgstr "Несовместимый ZIP-архив"
-
-#: includes/class-csv-importer.php:423 includes/class-csv-importer.php:494
-msgid "Empty ZIP Archive"
-msgstr "Пустой ZIP-архив"
-
-#: includes/class-csv-importer.php:440 includes/class-csv-importer.php:521
-msgid "Could not write temporary file %s"
-msgstr "Не удалось записать временный файл %s"
-
-#: includes/class-csv-importer.php:469
+#: includes/class-csv-importer.php:465
 msgid "File %s does not exists."
 msgstr "Файл %s не существует."
 
-#: includes/class-csv-importer.php:477
+#: includes/class-csv-importer.php:473
 msgid "Import directory %s does not exists."
 msgstr "Каталог импорта %s не существует."
 
-#: includes/class-csv-importer.php:556
+#: includes/class-csv-importer.php:485
+msgid "Incompatible ZIP Archive"
+msgstr "Несовместимый ZIP-архив"
+
+#: includes/class-csv-importer.php:490
+msgid "Empty ZIP Archive"
+msgstr "Пустой ZIP-архив"
+
+#: includes/class-csv-importer.php:517
+msgid "Could not write temporary file %s"
+msgstr "Не удалось записать временный файл %s"
+
+#: includes/class-csv-importer.php:557
 msgid "Row %d. %s"
 msgstr "Строка %d. %s"
 
-#: includes/class-csv-importer.php:593
+#: includes/class-csv-importer.php:594
 msgid "Could not save the information to the database for %s in row %d"
 msgstr "Не удалось сохранить информацию в базу данных для %s в строке %d"
 
-#: includes/class-csv-importer.php:676
+#: includes/class-csv-importer.php:661
 msgid "Item price non numeric at row number %s"
 msgstr "Цена товара нечисловая в номере строки %s"
 
-#: includes/class-csv-importer.php:692
+#: includes/class-csv-importer.php:677
 msgid ""
 "Start date missing (alternately you can specify the default start date) at "
 "row number %s"
 msgstr "Дата начала отсутствует (в качестве альтернативы можно указать дату начала по умолчанию) в номере строки %s"
 
-#: includes/class-csv-importer.php:704
+#: includes/class-csv-importer.php:689
 msgid "Invalid End date at row number: %s"
 msgstr "Недопустимая Дата окончания в номере строки: %s"
 
-#: includes/class-csv-importer.php:712
+#: includes/class-csv-importer.php:697
 msgid ""
 "End date missing (alternately you can specify the default end date) at row "
 "number %s"
 msgstr "Дата окончания отсутствует (в качестве альтернативы вы можете указать значение Дата окончания по умолчанию ) в строке номер %s"
 
-#: includes/class-csv-importer.php:823
+#: includes/class-csv-importer.php:808
 msgid ""
 "Extra Field %s's value is not allowed in row %d. Allowed values are: %%s"
 msgstr "Значение дополнительного поля %s  не допускается в строке %d. Допустимые значения: %%s"
 
-#: includes/class-csv-importer.php:832
+#: includes/class-csv-importer.php:817
 msgid ""
 "Extra Field %s's value is not allowed in row %d. Allowed value is one of: "
 "%%s"
 msgstr "Значение дополнительного поля %s  не допускается в строке %d. Допустимое значение: %%s"
 
-#: includes/class-csv-importer.php:960
+#: includes/class-csv-importer.php:945
 msgid ""
 "Username is required in row %s. Please include a username or selected a "
 "default user."
 msgstr "Имя пользователя необходимо для строки %s. Пожалуйста, введите имя или выберите пользователя по-умолчанию."
 
-#: includes/class-csv-importer.php:963
+#: includes/class-csv-importer.php:948
 msgid "Contact email is required in row %s."
 msgstr "Контактный адрес электронной почты требуется в строке %s."
 
-#: includes/class-csv-importer.php:981
+#: includes/class-csv-importer.php:966
 msgid ""
 "A new user '%s' with email address '%s' and password '%s' was created for "
 "row %d."
@@ -3700,6 +3800,18 @@ msgstr "Редактировать объявление"
 msgctxt "title attribute for edit listing link"
 msgid "Edit <listing-title>"
 msgstr "Редактировать <listing-title>"
+
+#: includes/class-exceptions.php:23
+msgid ""
+"The error was: <previous-message>. Contact <support-link>customer "
+"support</a> for further assistance."
+msgstr ""
+
+#: includes/class-exceptions.php:48
+msgid ""
+"Your license for <module-name> is valid, but is already active on another "
+"site. Contact <support-link>customer support</a> for further assistance."
+msgstr ""
 
 #: includes/class-listing-is-about-to-expire-notification.php:38
 msgid "less than 1"
@@ -4081,55 +4193,91 @@ msgctxt "recaptcha-error"
 msgid "The response parameter is invalid or malformed."
 msgstr "Ответный параметр неверен или испорчен."
 
-#: includes/helpers/class-easy-digital-downloads.php:27
+#: includes/helpers/class-easy-digital-downloads.php:38
 msgid ""
-"There was an error trying to retrieve information about your <module-name> "
-"license."
-msgstr "Произошла ошибка при попытке проверки лицензии для вашего модуля <module-name>."
+"There was an error trying to check the license status for <module-name>."
+msgstr ""
 
-#: includes/helpers/class-easy-digital-downloads.php:65
+#: includes/helpers/class-easy-digital-downloads.php:96
 msgid "There was an error trying to activate your <module-name> license."
 msgstr "Произошла ошибка при активации вашей лицензии для модуля <module-name>."
 
-#: includes/helpers/class-easy-digital-downloads.php:83
-msgid "<specific-message> The error was: %s. Please contact customer support."
-msgstr "<specific-message> Ошибка: %s. Свяжитесь с технической поддержкой."
-
-#: includes/helpers/class-easy-digital-downloads.php:93
+#: includes/helpers/class-easy-digital-downloads.php:118
 msgid "There was an error trying to deactivate your <module-name> license."
 msgstr "Произошла ошибка при деактивации лицензии для вашего модуля <module-name>."
 
-#: includes/helpers/class-modules-manager.php:168
-msgid ""
-"The AWPCP <module-name> module requires a license to be used. All features "
-"will remain disabled until a valid license is entered. Please go to the "
-"<licenses-settings-link>Licenses Settings</a> section to enter or update "
-"your license."
-msgstr "Модулю <module-name> необходима лицензия для работы. Все функции будут дезактивированы до момента ввода коректной лицензии. Перейдите в секцию <licenses-settings-link>Настройки лицензий</a> для ввода или обновления лицензии."
-
-#: includes/helpers/class-modules-manager.php:178
-msgid ""
-"The license for AWPCP <module-name> module is inactive. All features will "
-"remain disabled until you activate the license. Please go to the <license-"
-"settings-link>License Settings</a> section to acivate your license."
-msgstr "Лицензия для модуля <module-name> неактивна. Все функции будут дезактивированы до активации лицензии. Перейдите в секцию <licenses-settings-link>Настройки лицензий</a> для ввода или обновления лицензии."
-
-#: includes/helpers/class-modules-manager.php:186
-msgid ""
-"The license for AWPCP <module-name> module expired. The module will continue"
-" to work but you will not receive automatic updates when a new version is "
-"available."
-msgstr "Лицензия для модуля <module-name> истекла. Модуль продолжит штатную работу, но вы не сможете получать обноления до новых версий."
-
-#: includes/helpers/class-modules-manager.php:193
+#: includes/helpers/class-modules-manager.php:160
 msgid ""
 "Yikes, there has been a mistake. It looks like you have an outdated version "
-"of AWPCP <module-name> module or you need a newer version of AWPCP to use "
-"that module. Please contact customer support and ask for an update. Please "
-"also include a reference to this error in your message."
-msgstr "Опана, какая-то ошибка. Судя по всему, у вас старая версия модуля <module-name> или вам необходима более новая версия AWPCP для его использования. Пожалуйста, свяжитесь со службой поддержки и попросите об обновлении. В сообщении также укажите ссылку на этой сообщение."
+"of AWPCP <module-name>, or you need a newer version of AWPCP to use that "
+"module. Please contact customer support and ask for an update. Please also "
+"include a reference to this error in your message."
+msgid_plural ""
+"Yikes, there has been a mistake. It looks like you have an outdated version "
+"of AWPCP <modules-names>, or you need a newer version of AWPCP to use those "
+"modules. Please contact customer support and ask for an update. Please also "
+"include a reference to this error in your message."
+msgstr[0] "Yikes, there has been a mistake. It looks like you have an outdated version of AWPCP <module-name> module or you need a newer version of AWPCP to use that module. Please contact customer support and ask for an update. Please also include a reference to this error in your message."
+msgstr[1] "Yikes, there has been a mistake. It looks like you have an outdated version of AWPCP <modules-names> module or you need a newer version of AWPCP to use that module. Please contact customer support and ask for an update. Please also include a reference to this error in your message."
+msgstr[2] "Yikes, there has been a mistake. It looks like you have an outdated version of AWPCP <modules-names> module or you need a newer version of AWPCP to use that module. Please contact customer support and ask for an update. Please also include a reference to this error in your message."
+msgstr[3] "Yikes, there has been a mistake. It looks like you have an outdated version of AWPCP <modules-names> module or you need a newer version of AWPCP to use that module. Please contact customer support and ask for an update. Please also include a reference to this error in your message."
 
-#: includes/helpers/class-modules-manager.php:201
+#. translators: example: <Extra Fields, Featured Ads> and <Region Control>
+#: includes/helpers/class-modules-manager.php:194
+msgid "<comma-separated-names> and <single-name>"
+msgstr ""
+
+#: includes/helpers/class-modules-manager.php:215
+msgid ""
+"The license for AWPCP <module-name> is inactive. All features will remain "
+"disabled until you activate the license. Please go to the <licenses-"
+"settings-link>License Settings</a> section to activate it."
+msgid_plural ""
+"The licenses for AWPCP <modules-names> are inactive. The features for those "
+"modules will remain disabled until you activate their licenses. Please go to"
+" the <licenses-settings-link>License Settings</a> section to activate them."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+#: includes/helpers/class-modules-manager.php:229
+msgid ""
+"The AWPCP <module-name> requires a license to be used. All features will "
+"remain disabled until a valid license is entered. Please go to the "
+"<licenses-settings-link>Licenses Settings</a> section to enter or update "
+"your license."
+msgid_plural ""
+"The AWPCP <modules-names> require a license to be used. The features on each"
+" of those modules will remain disabled until a valid license is entered. "
+"Please go to the <licenses-settings-link>Licenses Settings</a> section to "
+"enter or update your license."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+#: includes/helpers/class-modules-manager.php:234
+msgid ""
+"The license for AWPCP <module-name> expired. The module will continue to "
+"work but you will not receive automatic updates when a new version is "
+"available."
+msgid_plural ""
+"The license for AWPCP <modules-names> expired. Those modules will continue "
+"to work but you will not receive automatic updates when a new version is "
+"available."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+#: includes/helpers/class-modules-manager.php:243
+msgid ""
+"This version of AWPCP %1$s is not compatible with AWPCP version %2$s. Please"
+" get AWPCP %1$s %3$s or newer!"
+msgstr ""
+
+#: includes/helpers/class-modules-manager.php:256
 msgid "The specified module does not exists!."
 msgstr "Указанный модуль не существует."
 
@@ -4959,172 +5107,184 @@ msgid "Images/Attachments"
 msgstr "Изображения и прикрепленные файлы"
 
 #: includes/settings/class-files-settings.php:20
+#: includes/settings/class-general-settings.php:16 installer.php:90
+msgid "General"
+msgstr "Общие"
+
+#: includes/settings/class-files-settings.php:32
+msgid ""
+"If checked, a popup warning the user about leaving the page without "
+"uploading a file, will be shown when users try to navigate away from the "
+"Upload Files step without uploading at least one image or attachment."
+msgstr ""
+
+#: includes/settings/class-files-settings.php:37
 msgid "Uploads Directory"
 msgstr "Папка для загрузок"
 
-#: includes/settings/class-files-settings.php:24
+#: includes/settings/class-files-settings.php:41
 msgid "Uploads folder name"
 msgstr "Имя папки загрузки."
 
-#: includes/settings/class-files-settings.php:24
+#: includes/settings/class-files-settings.php:41
 msgid ""
 "Upload folder name. (Folder must exist and be located in your wp-content "
 "directory)"
 msgstr "Имя папки загрузки. (Папка должна существовать и находиться в вашей папке wp-content)"
 
-#: includes/settings/class-files-settings.php:25
+#: includes/settings/class-files-settings.php:42
 msgid "File permissions for uploads directory"
 msgstr "Права доступа к файлам в папке загрузки"
 
-#: includes/settings/class-files-settings.php:25
+#: includes/settings/class-files-settings.php:42
 msgid ""
 "File permissions applied to the uploads directory and sub-directories so "
 "that the plugin is allowed to write to those directories."
 msgstr "Права доступа к файлам применяются к папке загрузки и вложенным каталогам, так что плагин разрешает запись в эти каталоги."
 
-#: includes/settings/class-files-settings.php:29
+#: includes/settings/class-files-settings.php:46
 #: templates/components/media-manager.tpl.php:7
 msgid "Images"
 msgstr "Изображения"
 
-#: includes/settings/class-files-settings.php:45
+#: includes/settings/class-files-settings.php:62
 msgid "Allowed image extensions"
 msgstr "Разрешенные расширения изображений"
 
-#: includes/settings/class-files-settings.php:51
+#: includes/settings/class-files-settings.php:68
 msgid "Hide images until admin approves them"
 msgstr "Скрыть изображения до тех пор, пока админ не одобрит их"
 
-#: includes/settings/class-files-settings.php:52
+#: includes/settings/class-files-settings.php:69
 msgid "Disable AWPCP Lightbox feature"
 msgstr "Отключить функцию AWPCP Lightbox "
 
-#: includes/settings/class-files-settings.php:52
+#: includes/settings/class-files-settings.php:69
 msgid ""
 "Turn off the lightbox/thickbox element used by AWPCP. Some themes cannot "
 "handle it and a conflict results."
 msgstr "Отключить lightbox/thickbox элемент, используемый в AWPCP. Некоторые темы не можут обработать его и это приводит к конфликту."
 
-#: includes/settings/class-files-settings.php:53
+#: includes/settings/class-files-settings.php:70
 msgid "Show click to enlarge link?"
 msgstr "Показывать ссылку для увеличения фото?"
 
-#: includes/settings/class-files-settings.php:54
+#: includes/settings/class-files-settings.php:71
 msgid "Number of images allowed if payments are disabled (Free Mode)"
 msgstr "Разрешенное количество изображений в бесплатном режиме"
 
-#: includes/settings/class-files-settings.php:54
+#: includes/settings/class-files-settings.php:71
 msgid ""
 "If images are allowed and payments are disabled, users will be allowed "
 "upload this amount of images."
 msgstr "Если изображения разрешены и оплата отключена, пользователям разрешено загружать такое количество изображений."
 
-#: includes/settings/class-files-settings.php:58
+#: includes/settings/class-files-settings.php:75
 msgid "Number of columns of thumbnails to show in Show Ad page."
 msgstr "Число столбцов миниатюр для показа на странице объявления."
 
-#: includes/settings/class-files-settings.php:58
+#: includes/settings/class-files-settings.php:75
 msgid "Zero means there will be as many thumbnails as possible per row."
 msgstr "Ноль означает, что миниатюр в строке будет столько, сколько поместится."
 
-#: includes/settings/class-files-settings.php:62
+#: includes/settings/class-files-settings.php:79
 msgid "Image File Size"
 msgstr "Размер файла изображения"
 
-#: includes/settings/class-files-settings.php:64
+#: includes/settings/class-files-settings.php:81
 msgid "Maximum file size per image"
 msgstr "Максимальный размер файла изображения"
 
-#: includes/settings/class-files-settings.php:64
+#: includes/settings/class-files-settings.php:81
 msgid ""
 "Maximum file size, in bytes, for files user can upload to system. 1 MB = "
 "1000000 bytes. You can google \"x MB to bytes\" to get an accurate "
 "conversion."
 msgstr "Максимальный размер файла в байтах, который пользователь может загрузить в систему. 1 МБ = 1048576 байт. Вы можете погуглить \"x MB to bytes\" , чтобы получить точное преобразование."
 
-#: includes/settings/class-files-settings.php:65
+#: includes/settings/class-files-settings.php:82
 msgid "Minimum file size per image"
 msgstr "Минимальный размер файла каждого изображения"
 
-#: includes/settings/class-files-settings.php:65
+#: includes/settings/class-files-settings.php:82
 msgid ""
 "Minimum file size, in bytes, for files user can upload to system. 1 MB = "
 "1000000 bytes. You can google \"x MB to bytes\" to get an accurate "
 "conversion."
 msgstr "Минимальный размер файла в байтах, который пользователь может загрузить в систему. 1 МБ = 1048576 байт. Вы можете погуглить \"x MB to bytes\" , чтобы получить точное преобразование."
 
-#: includes/settings/class-files-settings.php:66
+#: includes/settings/class-files-settings.php:83
 msgid "Minimum image width"
 msgstr "Минимальная ширина изображения"
 
-#: includes/settings/class-files-settings.php:66
+#: includes/settings/class-files-settings.php:83
 msgid "Minimum width for images."
 msgstr "Минимальная Ширина изображений."
 
-#: includes/settings/class-files-settings.php:67
+#: includes/settings/class-files-settings.php:84
 msgid "Minimum image height"
 msgstr "Минимальная высота изображения"
 
-#: includes/settings/class-files-settings.php:67
+#: includes/settings/class-files-settings.php:84
 msgid "Minimum height for images."
 msgstr "Минимальная высота изображений."
 
-#: includes/settings/class-files-settings.php:68
+#: includes/settings/class-files-settings.php:85
 msgid "Maximum image width"
 msgstr "Максимальная ширина изображения"
 
-#: includes/settings/class-files-settings.php:68
+#: includes/settings/class-files-settings.php:85
 msgid ""
 "Maximum width for images. Images wider than settings are automatically "
 "resized upon upload."
 msgstr "Максимальная ширина изображения. У изображений шире этой величины автоматически изменится размер при загрузке."
 
-#: includes/settings/class-files-settings.php:69
+#: includes/settings/class-files-settings.php:86
 msgid "Maximum image height"
 msgstr "Максимальная высота изображения"
 
-#: includes/settings/class-files-settings.php:69
+#: includes/settings/class-files-settings.php:86
 msgid ""
 "Maximum height for images. Images taller than settings are automatically "
 "resized upon upload."
 msgstr "Максимальная высота изображения. У изображений выше этой величины автоматически изменится размер при загрузке."
 
-#: includes/settings/class-files-settings.php:73
+#: includes/settings/class-files-settings.php:90
 #: templates/components/media-manager.tpl.php:39
 msgid "Primary Image"
 msgstr "Основное изображение"
 
-#: includes/settings/class-files-settings.php:75
+#: includes/settings/class-files-settings.php:92
 msgid "Thumbnail width (Ad Listings page)"
 msgstr "Ширина миниатюры (Страница списка объявлений)"
 
-#: includes/settings/class-files-settings.php:75
+#: includes/settings/class-files-settings.php:92
 msgid ""
 "Width of the thumbnail for the primary image shown in Ad Listings view."
 msgstr "Ширины миниатюры основного изображения при просмотре списка объявлений."
 
-#: includes/settings/class-files-settings.php:76
+#: includes/settings/class-files-settings.php:93
 msgid "Thumbnail width (Primary Image)"
 msgstr "Ширина миниатюры (Основное изображение)"
 
-#: includes/settings/class-files-settings.php:76
+#: includes/settings/class-files-settings.php:93
 msgid "Width of the thumbnail for the primary image shown in Single Ad view."
 msgstr "Ширины миниатюры основного изображения при просмотре Еденичного Объявления."
 
-#: includes/settings/class-files-settings.php:77
+#: includes/settings/class-files-settings.php:94
 msgid "Thumbnail height (Primary Image)"
 msgstr "Высота миниатюры (Основное изображение)"
 
-#: includes/settings/class-files-settings.php:77
+#: includes/settings/class-files-settings.php:94
 msgid "Height of the thumbnail for the primary image shown in Single Ad view."
 msgstr "Высота миниатюры основного изображения при просмотра Единичного Объявления."
 
-#: includes/settings/class-files-settings.php:78
+#: includes/settings/class-files-settings.php:95
 msgid "Crop primary image thumbnails?"
 msgstr "Обрезать миниатюры основного изображения?"
 
-#: includes/settings/class-files-settings.php:78
-#: includes/settings/class-files-settings.php:86
+#: includes/settings/class-files-settings.php:95
+#: includes/settings/class-files-settings.php:103
 msgctxt "settings"
 msgid ""
 "If you decide to crop thumbnails, images will match exactly the dimensions "
@@ -5134,37 +5294,37 @@ msgid ""
 "uploaded images, thumbnails may have different heights."
 msgstr "Если вы решили обрезать миниатюры, изображения будут в точности соответствовать размерам в настройках выше, но часть изображения может быть обрезана. Если вы решили изменить размер, миниатюры изображений будетут изменены в соответствии с указанной шириной, высота их будет корректироваться пропорционально; в зависимости от загружаемых изображений, миниатюры могут иметь различную высоту."
 
-#: includes/settings/class-files-settings.php:82
+#: includes/settings/class-files-settings.php:99
 msgid "Thumbnails"
 msgstr "Миниатюры"
 
-#: includes/settings/class-files-settings.php:84
+#: includes/settings/class-files-settings.php:101
 msgid "Thumbnail width"
 msgstr "Ширина миниатюр"
 
-#: includes/settings/class-files-settings.php:84
+#: includes/settings/class-files-settings.php:101
 msgid "Width of the thumbnail images."
 msgstr "Ширина миниатюр изображений."
 
-#: includes/settings/class-files-settings.php:85
+#: includes/settings/class-files-settings.php:102
 msgid "Thumbnail height"
 msgstr "Высота миниатюр"
 
-#: includes/settings/class-files-settings.php:85
+#: includes/settings/class-files-settings.php:102
 msgid "Height of the thumbnail images."
 msgstr "Высота миниатюр изображений."
 
-#: includes/settings/class-files-settings.php:86
+#: includes/settings/class-files-settings.php:103
 msgid "Crop thumbnail images?"
 msgstr "Обрезать миниатюры изображений?"
 
-#: includes/settings/class-files-settings.php:90
+#: includes/settings/class-files-settings.php:107
 msgid ""
 "The primary image is the one displayed as the thumbnail in the list view and"
 " the largest one shown when the detail view of the listing is clicked."
 msgstr "Основное изображение отображается как миниатюра в режиме списка и самое большое, когда объявление показываетя в режиме детализации."
 
-#: includes/settings/class-files-settings.php:94
+#: includes/settings/class-files-settings.php:111
 msgid ""
 "These are the remaining images that are not primary ones, if you have more "
 "than one image allowed per listing."
@@ -5440,10 +5600,6 @@ msgid ""
 "Go to the <form-fields-section> admin section to change the order in which "
 "the fields mentioned below are shown to users in the Ad Details form."
 msgstr "Для изменения порядка следования полей перейдите в панель <form-fields-section>."
-
-#: includes/settings/class-general-settings.php:16 installer.php:90
-msgid "General"
-msgstr "Общие"
 
 #: includes/settings/class-general-settings.php:20
 msgid "User Ad Management Panel"
@@ -7103,123 +7259,135 @@ msgid ""
 "Please note that disabled Ads cannot be posted to Facebook."
 msgstr "Если отмечено, объявления будут опубликовано на Facebook вскоре после добавления, активации или редактирования, в зависимости от очередности. Объявление публикуется единожды. Обратите внимание, что отключенные объявления не могут быть опубликованы на Facebook."
 
-#: includes/settings-api.php:558
+#: includes/settings-api.php:563
 msgid "<module-name> License Key"
 msgstr "Ключ лицензии для <module-name>"
 
-#: includes/settings-api.php:567
+#: includes/settings-api.php:572
 msgid "Licenses"
 msgstr "Лицензии"
 
-#: includes/settings-api.php:707
+#: includes/settings-api.php:712
 msgid ""
 "Require Registration setting was enabled automatically because you activated"
 " the User Ad Management panel."
 msgstr "Обязательная регистрация была включена автоматически, так как вы активировали пользовательскую панель объявлений."
 
-#: includes/settings-api.php:724
+#: includes/settings-api.php:729
 msgid ""
 "Akismet SPAM control cannot be enabled because Akismet plugin is not "
 "installed or activated."
 msgstr "Вы не можете активировать контроль спама Akismet, так как Akismet не установлен либо не активирован "
 
-#: includes/settings-api.php:728
+#: includes/settings-api.php:733
 msgid ""
 "Akismet SPAM control cannot be enabled because Akismet is not properly "
 "configured."
 msgstr "Вы не можете активировать контроль спама Akismet, так как Akismet неверно настроен."
 
-#: includes/settings-api.php:751
+#: includes/settings-api.php:756
 msgid ""
 "reCAPTCHA can't be used because the public key and private key settings are "
 "required for reCAPTCHA to work properly."
 msgstr "reCAPTCHA не может быть использован, так как настройки открытого и закрытого ключей являются обязательными для нормальной работы reCAPTCHA"
 
-#: includes/settings-api.php:753
+#: includes/settings-api.php:758
 msgid ""
 "reCAPTCHA can't be used because the public key setting is required for "
 "reCAPTCHA to work properly."
 msgstr "reCAPTCHA не может быть использован, так как настройки открытого ключа являются обязательными для нормальной работы reCAPTCHA"
 
-#: includes/settings-api.php:755
+#: includes/settings-api.php:760
 msgid ""
 "reCAPTCHA can't be used because the private key setting is required for "
 "reCAPTCHA to work properly."
 msgstr "reCAPTCHA не может быть использован, так как настройки закрытого ключа являются обязательными для нормальной работы reCAPTCHA"
 
-#: includes/settings-api.php:768
+#: includes/settings-api.php:773
 msgid ""
 "User Ad Management panel was automatically deactivated because you disabled "
 "Require Registration setting."
 msgstr "Пользовательская Панель Управления Объявлениями была автоматически отключена, потому что вы отключили настройку Обязательной Регистрации."
 
-#: includes/settings-api.php:773
+#: includes/settings-api.php:778
 msgid ""
 "Credit System was automatically disabled because you disabled Require "
 "Registration setting."
 msgstr "Кредитная система отключена, так как вы отключили обязательную регистрацию."
 
-#: includes/settings-api.php:789
+#: includes/settings-api.php:794
 msgid ""
 "There is a problem with the PayPal Currency Code you have entered. It does "
 "not match any of the codes in our list of curencies supported by PayPal."
 msgstr "Есть проблема с кодом валюты, которую вы ввели. Он не соответствует ни одному из кодов в списке доступных валют PayPal."
 
-#: includes/settings-api.php:790
+#: includes/settings-api.php:795
 msgid "The available currency codes are"
 msgstr "Доступные коды валюты"
 
-#: includes/settings-api.php:799
+#: includes/settings-api.php:804
 msgid ""
 "Require Registration setting was enabled automatically because you activated"
 " the Credit System."
 msgstr "Обязательная регистрация была включена автоматически, так как вы активировали систему кредитов."
 
-#: includes/settings-api.php:804
+#: includes/settings-api.php:809
 msgid ""
 "Charge Listing Fee setting was enabled automatically because you activated "
 "the Credit System."
 msgstr "Режим оплаты был включен автоматически, так как вы активировали систему кредитов."
 
-#: includes/settings-api.php:810
+#: includes/settings-api.php:815
 msgid ""
 "Credit System was disabled automatically because you disabled Charge Listing"
 " Fee."
 msgstr "Система кредитов была отключена, так как вы отключили обязательный режим оплаты."
 
-#: includes/settings-api.php:1042
-msgid "Deactivate License"
-msgstr "Деактивировать Лицензию"
+#: includes/settings-api.php:1047
+msgid "Deactivate"
+msgstr "Деактивировать"
 
-#: includes/settings-api.php:1043
+#: includes/settings-api.php:1048
 msgid "active"
 msgstr "активный"
 
-#: includes/settings-api.php:1045
-msgid "Activate License"
-msgstr "Активировать лицензию"
+#: includes/settings-api.php:1048 includes/settings-api.php:1051
+#: includes/settings-api.php:1061 includes/settings-api.php:1063
+#: includes/settings-api.php:1065
+msgid "Status: <license-status>"
+msgstr ""
 
-#: includes/settings-api.php:1046
+#: includes/settings-api.php:1050 includes/settings-api.php:1053
+msgid "Activate"
+msgstr "Активировать"
+
+#: includes/settings-api.php:1051
 msgid "inactive"
 msgstr "неактивный"
 
-#: includes/settings-api.php:1048
-msgid "Check License"
-msgstr "Проверить лицензию"
+#: includes/settings-api.php:1056
+msgid ""
+"Click the button above to check the status of your license. Please <contact-"
+"link>contact customer support</a> if you think the reported status is wrong."
+msgstr ""
 
-#: includes/settings-api.php:1049
+#: includes/settings-api.php:1061
 msgid "expired"
 msgstr "истек"
 
-#: includes/settings-api.php:1051
-msgid "invalid"
-msgstr "неверный"
+#: includes/settings-api.php:1063
+msgid "disabled"
+msgstr "отключено"
 
-#: includes/settings-api.php:1066
+#: includes/settings-api.php:1065
+msgid "unknown"
+msgstr "неопределено"
+
+#: includes/settings-api.php:1081
 msgid "Documentation on date and time formatting"
 msgstr "Документация по форматированию даты и время"
 
-#: includes/settings-api.php:1087
+#: includes/settings-api.php:1102
 msgid "Setting <setting-name> not available."
 msgstr "Настройка <setting-name> не доступна."
 
@@ -7287,6 +7455,14 @@ msgstr "Мы не нашли корректной оплаты, связанно
 msgid "No Ads were selected"
 msgstr "Объявления не были выбраны."
 
+#: includes/views/admin/listings/class-renew-listings-admin-page.php:70
+msgid "%d Ad was renewed"
+msgid_plural "%d Ads were renewed"
+msgstr[0] "%d Объявление было возобновлено"
+msgstr[1] "%d Объявления было возобновлено"
+msgstr[2] "%d Объявлений были возобновлены"
+msgstr[3] "%d Объявлений были возобновлены"
+
 #: includes/views/admin/listings/class-renew-listings-admin-page.php:72
 msgid "there was an error trying to renew %d Ads"
 msgstr "произошла ошибка при попытке возобновить %d объявлений"
@@ -7316,9 +7492,25 @@ msgid ""
 "link in step 2 of the settings."
 msgstr "Во время публикации объявлений на Facebook произошла ошибка, возможно учетные данные устарели или неверны. Будьте добры, проверьте ваши <a>настройки</a>. Если срок действия токена истек, получите новый токен доступа, воспользовавшись ссылкой из шага номер 2."
 
+#: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:98
+msgid "%d Ad was sent to a Facebook Page"
+msgid_plural "%d Ads were sent to a Facebook Page"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
 #: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:100
 msgid "there was an error trying to send %d Ads to a Facebook Page"
 msgstr "произошла ошибка при публикации %d объявлений на странице Facebook"
+
+#: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:106
+msgid "%d Ad was sent to a Facebook Group"
+msgid_plural "%d Ads were sent to a Facebook Group"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:108
 msgid "there was an error trying to send %d Ads to a Facebook Group"

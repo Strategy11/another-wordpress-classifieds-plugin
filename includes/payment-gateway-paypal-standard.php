@@ -24,9 +24,9 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
      */
     private function verify_recevied_data_with_curl($postfields='', $cainfo=true, &$errors=array()) {
         if (get_awpcp_option('paylivetestmode') == 1) {
-            $paypal_url = "https://www.sandbox.paypal.com/cgi-bin/webscr";
+            $paypal_url = "https://test-ipnpb.sandbox.paypal.com/cgi-bin/webscr";
         } else {
-            $paypal_url = "https://www.paypal.com/cgi-bin/webscr";
+            $paypal_url = "https://ipnpb.paypal.com/cgi-bin/webscr";
         }
 
         $ch = curl_init($paypal_url);
@@ -70,9 +70,9 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
      */
     private function verify_received_data_with_fsockopen($content, &$errors=array()) {
         if (get_awpcp_option('paylivetestmode') == 1) {
-            $host = "www.sandbox.paypal.com";
+            $host = "test-ipnpb.sandbox.paypal.com";
         } else {
-            $host = "www.paypal.com";
+            $host = "ipnpb.paypal.com";
         }
 
         $response = 'ERROR';

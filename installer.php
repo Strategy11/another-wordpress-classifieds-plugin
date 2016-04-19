@@ -228,6 +228,7 @@ class AWPCP_Installer {
             '3.5.4-dev-28' => 'upgrade_to_3_5_4_dev_28',
             '3.5.4-dev-29' => 'upgrade_to_3_5_4_dev_29',
             '3.5.4-dev-48' => 'upgrade_to_3_5_4_dev_48',
+            '3.6.5' => 'upgrade_to_3_6_5',
             '4.0' => array(
                 'create_old_listing_id_column_in_listing_regions_table',
                 'enable_upgrade_routine_to_migrate_listing_categories',
@@ -769,10 +770,10 @@ class AWPCP_Installer {
         global $wpdb, $awpcp;
 
         /* Create Credit Plans table */
-        dbDelta($this->create_credit_plans_table);
+        dbDelta( $this->plugin_tables->get_credit_plans_table_definition() );
 
         /* Create Payments table and tell AWPCP to migrate Payment Transactions information */
-        dbDelta($this->create_payments_table);
+        dbDelta( $this->plugin_tables->get_payments_table_definition() );
 
         /* Add payment_term_type columns to Ads table */
 
@@ -835,13 +836,13 @@ class AWPCP_Installer {
         $settings->update_option( 'displayadlayoutcode', $layout );
 
         // create awpcp_ad_regions table
-        dbDelta( $this->create_ad_regions_table );
+        dbDelta( $this->plugin_tables->get_listing_regions_table_definition() );
 
         // create awpcp_media table
-        dbDelta( $this->create_media_table );
+        dbDelta( $this->plugin_tables->get_media_table_definition() );
 
         // Create ad metadata table.
-        dbDelta( $this->create_ad_meta_table );
+        dbDelta( $this->plugin_tables->get_listing_meta_table_definition() );
 
         // migrate old regions
         if ( awpcp_column_exists( AWPCP_TABLE_ADS, 'ad_country' )   ) {
@@ -900,7 +901,7 @@ class AWPCP_Installer {
 
     private function upgrade_to_3_3_2( $oldversion ) {
         // create tasks table
-        dbDelta( $this->create_tasks_table );
+        dbDelta( $this->get_tasks_table_definition() );
     }
 
     private function upgrade_to_3_3_3( $oldversion ) {
@@ -946,7 +947,7 @@ class AWPCP_Installer {
 
         // create tasks table if missing
         // https://github.com/drodenbaugh/awpcp/issues/1246
-        dbDelta( $this->create_tasks_table );
+        dbDelta( $this->get_tasks_table_definition() );
 
         if ( ! awpcp_column_exists( AWPCP_TABLE_MEDIA, 'metadata' ) ) {
             $sql = $this->database_helper->replace_charset_and_collate( 'ALTER TABLE ' . AWPCP_TABLE_MEDIA . " ADD `metadata` TEXT CHARACTER SET <charset> COLLATE <collate> NOT NULL DEFAULT '' AFTER `is_primary`" );
@@ -987,6 +988,14 @@ class AWPCP_Installer {
 
         foreach ( $plugin_tables as $table_name ) {
             maybe_convert_table_to_utf8mb4( $table_name );
+        }
+    }
+
+    private function upgrade_to_3_6_5( $oldversion ) {
+        global $wpdb;
+
+        if ( ! awpcp_column_exists( AWPCP_TABLE_PAYMENTS, 'user_id' ) ) {
+            $wpdb->query(  'ALTER TABLE ' . AWPCP_TABLE_PAYMENTS . ' CHANGE user_id user_id INT( 10 ) NULL'  );
         }
     }
 
