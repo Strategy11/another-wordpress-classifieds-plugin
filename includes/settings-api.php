@@ -142,7 +142,7 @@ class AWPCP_Settings_API {
         $this->add_setting(
             $key,
             'allow-wordpress-shortcodes-in-single-template',
-            __( 'Allow WordPress Shortcodes in Single Ad page layout' ),
+            __( 'Allow WordPress Shortcodes in Single Ad page layout', 'another-wordpress-classifieds-plugin' ),
             'checkbox',
             0,
             __( 'Shortcodes executed this way will be executed as if they were entered in the content of the WordPress page showing the listing (normally the Show Ad page, but in general any page that has the AWPCPSHOWAD shortcode).', 'another-wordpress-classifieds-plugin' )

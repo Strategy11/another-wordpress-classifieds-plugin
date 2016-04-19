@@ -26,7 +26,7 @@ class AWPCP_FilesSettings {
         $settings->add_setting(
             $key,
             'show-popup-if-user-did-not-upload-files',
-            __( "Show popup if user didn't upload files", 'another-wordpress-classfieds-plugin' ),
+            __( "Show popup if user didn't upload files", 'another-wordpress-classifieds-plugin' ),
             'checkbox',
             false,
             __( 'If checked, a popup warning the user about leaving the page without uploading a file, will be shown when users try to navigate away from the Upload Files step without uploading at least one image or attachment.', 'another-wordpress-classifieds-plugin' )

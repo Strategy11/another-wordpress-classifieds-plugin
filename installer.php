@@ -901,7 +901,7 @@ class AWPCP_Installer {
 
     private function upgrade_to_3_3_2( $oldversion ) {
         // create tasks table
-        dbDelta( $this->get_tasks_table_definition() );
+        dbDelta( $this->plugin_tables->get_tasks_table_definition() );
     }
 
     private function upgrade_to_3_3_3( $oldversion ) {
@@ -947,7 +947,7 @@ class AWPCP_Installer {
 
         // create tasks table if missing
         // https://github.com/drodenbaugh/awpcp/issues/1246
-        dbDelta( $this->get_tasks_table_definition() );
+        dbDelta( $this->plugin_tables->get_tasks_table_definition() );
 
         if ( ! awpcp_column_exists( AWPCP_TABLE_MEDIA, 'metadata' ) ) {
             $sql = $this->database_helper->replace_charset_and_collate( 'ALTER TABLE ' . AWPCP_TABLE_MEDIA . " ADD `metadata` TEXT CHARACTER SET <charset> COLLATE <collate> NOT NULL DEFAULT '' AFTER `is_primary`" );

@@ -74,9 +74,6 @@ class AWPCP_EasyDigitalDownloads {
             $response = $this->http->get( $url, array(
                 'timeout' => 15,
                 'sslverify' => false,
-                'headers' => array(
-                    'user-agent' => '',
-                ),
             ) );
 
             $decoded_data = json_decode( wp_remote_retrieve_body( $response ) );
