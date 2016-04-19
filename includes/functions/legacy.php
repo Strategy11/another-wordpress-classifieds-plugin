@@ -78,13 +78,26 @@ function countcategories(){
 }
 
 function countcategoriesparents() {
-    return awpcp_categories_collection()->count_categories(array(
-        'childless' => true,
-    ));
+    $all_categories_count = countcategories();
+    $childless_categories_count = countcategorieschildren();
+
+    if ( $all_categories_count == $childless_categories_count ) {
+        return 0;
+    } else {
+        return $all_categories_count - $childless_categories_count;
+    }
 }
 
-function countcategorieschildren(){
-    return countcategories() - countcategoriesparents();
+function countcategorieschildren() {
+    $childless_categories_count = awpcp_categories_collection()->count_categories(array(
+        'childless' => true,
+    ));
+
+    if ( countcategories() == $childless_categories_count ) {
+        return 0;
+    } else {
+        return $childless_categories_count;
+    }
 }
 
 
