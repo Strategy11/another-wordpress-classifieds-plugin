@@ -190,7 +190,7 @@ class AWPCP_Installer {
     // TODO: remove pages table after another major release (Added in 3.5.3)
     public function upgrade($oldversion, $newversion) {
         foreach ( $this->get_upgrade_routines() as $version => $routines ) {
-            foreach ( $routines as $routine ) {
+            foreach ( (array) $routines as $routine ) {
                 if ( version_compare( $oldversion, $version ) >= 0 ) {
                     continue;
                 }
