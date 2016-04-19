@@ -190,11 +190,11 @@ class AWPCP_Installer {
     // TODO: remove pages table after another major release (Added in 3.5.3)
     public function upgrade($oldversion, $newversion) {
         foreach ( $this->get_upgrade_routines() as $version => $routines ) {
-            foreach ( (array) $routines as $routine ) {
-                if ( version_compare( $oldversion, $version ) >= 0 ) {
-                    continue;
-                }
+            if ( version_compare( $oldversion, $version ) >= 0 ) {
+                continue;
+            }
 
+            foreach ( (array) $routines as $routine ) {
                 if ( method_exists( $this, $routine ) ) {
                     $this->{$routine}( $oldversion );
                 }
@@ -224,12 +224,22 @@ class AWPCP_Installer {
             '3.3.3' => 'upgrade_to_3_3_3',
             '3.4' => 'upgrade_to_3_4',
             '3.5.3' => 'upgrade_to_3_5_3',
-            '3.6.4' => 'create_tasks_table',
-            '3.6.4' => 'create_metadata_column_in_media_table',
-            '3.6.4' => 'create_regions_column_in_fees_table',
-            '3.6.4' => 'create_description_column_in_fees_table',
-            '3.6.4' => 'try_to_convert_tables_to_utf8mb4',
-            '3.6.4' => 'allow_null_values_in_user_id_column_in_payments_table',
+            '3.6.4' => array(
+                'create_tasks_table',
+                'create_metadata_column_in_media_table',
+                'create_regions_column_in_fees_table',
+                'create_description_column_in_fees_table',
+                'try_to_convert_tables_to_utf8mb4',
+                'allow_null_values_in_user_id_column_in_payments_table',
+            ),
+            '3.6.4.1' => array(
+                'create_tasks_table',
+                'create_metadata_column_in_media_table',
+                'create_regions_column_in_fees_table',
+                'create_description_column_in_fees_table',
+                'try_to_convert_tables_to_utf8mb4',
+                'allow_null_values_in_user_id_column_in_payments_table',
+            ),
             '4.0' => array(
                 'create_old_listing_id_column_in_listing_regions_table',
                 'enable_upgrade_routine_to_migrate_listing_categories',
@@ -997,7 +1007,7 @@ class AWPCP_Installer {
     private function allow_null_values_in_user_id_column_in_payments_table( $oldversion ) {
         global $wpdb;
 
-        if ( ! awpcp_column_exists( AWPCP_TABLE_PAYMENTS, 'user_id' ) ) {
+        if ( awpcp_column_exists( AWPCP_TABLE_PAYMENTS, 'user_id' ) ) {
             $wpdb->query(  'ALTER TABLE ' . AWPCP_TABLE_PAYMENTS . ' CHANGE user_id user_id INT( 10 ) NULL'  );
         }
     }
