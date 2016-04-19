@@ -2,7 +2,7 @@
 
 function awpcp_category_shortcode() {
     return new AWPCP_CategoryShortcode(
-        awpcp_categories_renderer_factory()
+        awpcp_categories_renderer_factory(),
         awpcp_categories_collection(),
         $GLOBALS['wpdb'],
         awpcp_request()
