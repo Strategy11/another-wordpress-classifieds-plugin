@@ -129,8 +129,13 @@ function doadcleanup() {
 
     $should_delete_expired_listings = get_awpcp_option('autoexpiredisabledelete') != 1;
 
-    if ( $should_delete_expired_listings ) {
-        awpcp_delete_expired_listings( $listings_logic, $listings );
+    // also, get Ads that were disabled more than a week ago, but only if the
+    // 'disable instead of delete' flag is not set.
+    if (get_awpcp_option('autoexpiredisabledelete') != 1) {
+        $days_before_expired_listings_are_deleted = get_awpcp_option( 'days-before-expired-listings-are-deleted' );
+        $sql = "(disabled=1 AND (disabled_date + INTERVAL %d DAY) < CURDATE())";
+
+        $conditions[] = sprintf( $sql, $days_before_expired_listings_are_deleted );
     }
 
     awpcp_delete_unpaid_listings_older_than_a_month( $listings_logic, $listings );
@@ -167,12 +172,15 @@ function awpcp_delete_unpaid_listings_older_than_a_month( $listings_logic, $list
  * @since feature/1112
  */
 function awpcp_delete_expired_listings( $listings_logic, $listings ) {
+    $days_before_expired_listings_are_deleted = get_awpcp_option( 'days-before-expired-listings-are-deleted' );
+    $timestamp =  strtotime( "$days_before_expired_listings_are_deleted days ago" );
+
     $query = array(
         'post_status' => 'disabled',
         'meta_query' => array(
             array(
                 'key' => '_awpcp_disabled_date',
-                'value' => awpcp_datetime( 'mysql', strtotime( '7 days ago' ) ),
+                'value' => awpcp_datetime( 'mysql', $timestamp ),
                 'compare' => '<=',
                 'type' => 'DATETIME',
             ),
@@ -257,7 +265,8 @@ function awpcp_clean_up_non_verified_ads_handler() {
     return awpcp_clean_up_non_verified_ads(
         awpcp_listings_collection(),
         awpcp_listings_api(),
-        awpcp()->settings
+        awpcp()->settings,
+        awpcp_wordpress()
     );
 }
 
@@ -265,7 +274,7 @@ function awpcp_clean_up_non_verified_ads_handler() {
  * @since feature/1112  Updated to load listings using Listings Collection methods.
  * @since 3.0.2
  */
-function awpcp_clean_up_non_verified_ads( $listings_collection, /* AWPCP_ListingsAPI */ $listings, $settings ) {
+function awpcp_clean_up_non_verified_ads( $listings_collection, /* AWPCP_ListingsAPI */ $listings, $settings, $wordpress ) {
     if ( ! $settings->get_option( 'enable-email-verification' ) ) {
         return;
     }
@@ -284,7 +293,7 @@ function awpcp_clean_up_non_verified_ads( $listings_collection, /* AWPCP_Listing
     ) );
 
     foreach ( $results as $listing ) {
-        wp_delete_post( $listing->ID );
+        $listings->delete_listing( $listing );
     }
 
     // re-send verificaiton email for Ads that have been in a non-verified state for more than N days
@@ -307,6 +316,12 @@ function awpcp_clean_up_non_verified_ads( $listings_collection, /* AWPCP_Listing
     ) );
 
     foreach ( $results as $listing ) {
+        $emails_sent = intval( $wordpress->get_post_meta( $listing->ID, '_awpcp_verification_emails_sent', 1 ) );
+
+        if ( $emails_sent >= 2 ) {
+            continue;
+        }
+
         $listings->send_verification_email( $listing );
     }
 }

@@ -454,7 +454,7 @@ class AWPCP_ListingsAPI {
         ) );
 
         if ( $mail->send() ) {
-            $emails_sent = intval( $this->wordpress->get_post_meta( $ad->ID, '_awpcp_verification_emails_sent', true ) );
+            $emails_sent = intval( $this->wordpress->get_post_meta( $ad->ID, '_awpcp_verification_emails_sent', 1 ) );
             $this->wordpress->update_post_meta( $ad->ID, '_awpcp_verification_email_sent_at', current_time( 'mysql' ) );
             $this->wordpress->update_post_meta( $ad->ID, '_awpcp_verification_emails_sent', $emails_sent + 1 );
         }
