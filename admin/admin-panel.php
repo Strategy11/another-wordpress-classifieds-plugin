@@ -267,6 +267,8 @@ class AWPCP_Admin {
 		}
 
 		if ( $this->upgrade_tasks->has_pending_tasks( 'plugin' ) ) {
+            wp_enqueue_style( 'awpcp-admin-style' );
+
 			ob_start();
 				include( AWPCP_DIR . '/admin/templates/admin-pending-manual-upgrade-notice.tpl.php' );
 				$html = ob_get_contents();
@@ -281,6 +283,8 @@ class AWPCP_Admin {
 		$show_drip_autoresponder = get_awpcp_option( 'show-drip-autoresponder' );
 
 		if ( $show_quick_start_quide_notice && is_awpcp_admin_page() && ! $show_drip_autoresponder ) {
+            wp_enqueue_style( 'awpcp-admin-style' );
+
 			ob_start();
 				include(AWPCP_DIR . '/admin/templates/admin-quick-start-guide-notice.tpl.php');
 				$html = ob_get_contents();
