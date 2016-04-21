@@ -246,7 +246,7 @@ class AWPCP_Listings_Table extends WP_List_Table {
 
     public function get_sortable_columns() {
         return array(
-            'title' => array('title', true), 
+            'title' => array('title', true),
             'start_date' => array('start-date', true),
             'end_date' => array('end-date', true),
             'renewed_date' => array('renewed-date', true),

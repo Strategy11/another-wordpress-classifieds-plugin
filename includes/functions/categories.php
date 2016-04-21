@@ -3,15 +3,20 @@
 /**
  * @since 3.4
  */
-function awpcp_build_categories_hierarchy( &$categories ) {
-    $hierarchy = array( 'root' => array(), );
+function awpcp_build_categories_hierarchy( &$categories, $hide_empty ) {
+    $hierarchy = array( 'root' => array() );
 
     foreach ( $categories as $category ) {
-        if ( $category->parent == 0 ) {
-            $hierarchy['root'][] = $category;
-        } else {
-            $hierarchy[ $category->parent ][] = $category;
+        $listings_count = total_ads_in_cat( $category->term_id );
+
+        if ( !$hide_empty || $listings_count > 0 ) {
+            if ( $category->parent == 0 ) {
+                $hierarchy['root'][] = $category;
+            } else {
+                $hierarchy[ $category->parent ][] = $category;
+            }
         }
+
     }
 
     return $hierarchy;

@@ -1,5 +1,14 @@
-<form method="get" action="<?php echo esc_attr($page->url(array('action' => false))) ?>">
-    <?php foreach ($page->params as $name => $value): ?>
+    <?php
+    // If Payment are disabled
+    if ( awpcp_get_option( 'freepay' ) != '1' ){
+        $payment_tab_link = sprintf( '<a href="%s">%s</a>', admin_url('admin.php?page=awpcp-admin-settings&g=payment-settings' ), __( 'Payment Settings page', 'another-wordpress-classifieds-plugin' ) );
+        $notice = __( 'Currently your classifieds are in Free mode. Fee plans are not available or used during free mode.<br/><br/> To change this, visit the <payment-settings-tab-link> and enable Charge Listing Fee setting.', 'another-wordpress-classifieds-plugin' );
+        $notice = str_replace( '<payment-settings-tab-link>', '<strong>' . $payment_tab_link . '</strong>', $notice );
+        echo $notice;
+
+    } else { ?>
+<form method="get" action="<?php echo esc_attr( $page->url( array( 'action' => false) ) ); ?>">
+    <?php foreach ( $page->params as $name => $value ): ?>
     <input type="hidden" name="<?php echo esc_attr($name) ?>" value="<?php echo esc_attr($value) ?>" />
     <?php endforeach ?>
 
@@ -21,3 +30,4 @@
 
     <?php echo $table->display() ?>
 </form>
+<?php }
