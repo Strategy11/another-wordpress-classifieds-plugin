@@ -7,6 +7,11 @@ function( $ ) {
         self.hidden = $(hidden);
         self.dropdown = $(dropdown);
 
+        function onDropDownChange() {
+            var category_id = parseInt(self.dropdown.val(), 10);
+            $.publish('/category/updated' , [self.dropdown, isNaN(category_id) ? null : category_id]);
+        }
+
         // using multiple dropdowns
         if (self.hidden.length > 0) {
             self.identifier = self.dropdown.attr('target');
@@ -34,13 +39,7 @@ function( $ ) {
 
         // using a single dropdown
         } else {
-            function onDropDownChange() {
-                var category_id = parseInt(self.dropdown.val(), 10);
-                $.publish('/category/updated' , [self.dropdown, isNaN(category_id) ? null : category_id]);
-            }
-
             self.dropdown.change( onDropDownChange );
-
             setTimeout( onDropDownChange, 100 );
         }
     };

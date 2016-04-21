@@ -109,7 +109,7 @@ AWPCP.define( 'awpcp/settings-validator', [
                 } else {
                     field.closest('tr').fadeIn( 400 );
                 }
-            } )
+            } );
 
             dependencies.change();
         }
