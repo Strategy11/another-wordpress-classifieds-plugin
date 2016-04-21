@@ -15,7 +15,7 @@ function awpcp_csv_importer( $options = array() ) {
 
 class AWPCP_CSV_Importer {
 
-	private $supported_columns = array(
+	private $default_supported_columns = array(
 		'post_fields' => array(
 			'title' => 'post_title',
 			'details' => 'post_content',
@@ -40,6 +40,9 @@ class AWPCP_CSV_Importer {
 			'country' => 'ad_country',
 			'county_village' => 'ad_county_village',
 		),
+        'custom' => array(
+            'images' => 'images',
+        ),
 	);
 
 	private $required_columns = array(
@@ -111,7 +114,7 @@ class AWPCP_CSV_Importer {
 
 	private $rejected = array();
 
-	private $defaults = array(
+	private $default_options = array(
 		'start-date' => '',
 		'end-date' => '',
 		'date-format' => '',
@@ -132,8 +135,6 @@ class AWPCP_CSV_Importer {
 	private $zip_file = null;
 
 	public function __construct( $options, $image_attachment_creator, $mime_types, $file_logic_factory, $categories_data_mapper, $categories, $listings_logic, $wordpress ) {
-		$this->options = wp_parse_args($options, $this->defaults);
-
 		// load Extra Fields definitions
 		if (defined('AWPCPEXTRAFIELDSMOD')) {
 			foreach (awpcp_get_extra_fields() as $field) {
@@ -148,6 +149,9 @@ class AWPCP_CSV_Importer {
 		$this->categories = $categories;
 		$this->listings_logic = $listings_logic;
 		$this->wordpress = $wordpress;
+
+        $this->options = wp_parse_args( $options, $this->default_options );
+        $this->supported_columns = apply_filters( 'awpcp-csv-importer-supported-columns', $this->default_supported_columns );
 	}
 
 	/**
@@ -286,12 +290,19 @@ class AWPCP_CSV_Importer {
 		}
 
 		// accepted columns are standard Ads columns + extra fields columns
-		$accepted = array_merge(array_keys($this->types), array_keys($this->extra_fields), $this->ignored);
-		$unknown = array_diff($header, $accepted);
+        $supported_columns = array();
 
-		if (!empty($unknown)) {
+        foreach ( $this->supported_columns as $column_type => $columns ) {
+            foreach ( $columns as $column_name => $field_name ) {
+                $supported_columns[] = $column_name;
+            }
+        }
+
+		$unknown_columns = array_diff( $header, $supported_columns );
+
+		if ( ! empty( $unknown_columns ) ) {
 			$msg = __( "Import can't continue. Unknown column(s) specified(s):", 'another-wordpress-classifieds-plugin' );
-			$msg.= '<br/>' . join(', ', $unknown);
+			$msg.= '<br/>' . join( ', ', $unknown_columns );
 			$errors[] = $msg;
 			return false;
 		}
@@ -743,6 +754,8 @@ class AWPCP_CSV_Importer {
 
 			$this->image_attachment_creator->create_attachment( $listing, $file_logic );
 		}
+
+		do_action( 'awpcp-listing-imported', $listing, $listing_data );
 	}
 
 	private function remove_extracted_files( $import_dir, $images_created ) {
