@@ -53,6 +53,8 @@ class AWPCP_Admin {
 		add_action('admin_notices', array($this, 'notices'));
 		add_action( 'awpcp-admin-notices', array( $this, 'check_duplicate_page_names' ) );
 
+		add_filter( 'plugin_action_links', array( $this, 'add_settings_link' ),10, 2 );
+
 		// make sure AWPCP admins (WP Administrators and/or Editors) can edit settings
 		add_filter('option_page_capability_awpcp-options', 'awpcp_admin_capability');
 
@@ -300,6 +302,23 @@ class AWPCP_Admin {
 	}
 
 	/**
+	 * Add settings link on plugins page
+	 *
+	 * @author Aman Saini
+	 * @since  3.6.5
+	 * @param  Array  $links
+	 * @param  String $file
+	 */
+	public function add_settings_link(  $links, $file ){
+		$settings_link = '<a href="' . admin_url( 'admin.php?page=awpcp-admin-settings' ) . '">' . esc_html__( 'Settings', 'another-wordpress-classifieds-plugin' ) . '</a>';
+
+		if ( $file == 'another-wordpress-classifieds-plugin/awpcp.php' ){
+			array_unshift( $links, $settings_link );
+		}
+		return $links;
+	}
+
+	/**
 	 * Shows a notice if any of the AWPCP pages shares its name with the
 	 * dynamic page View Categories.
 	 *
@@ -530,7 +549,7 @@ class AWPCP_Admin {
 
 // // if there's a page name collision remove AWPCP menus so that nothing can be accessed
 // add_action('init', 'awpcp_pagename_warning_check', -1);
-// function awpcp_pagename_warning_check() { 
+// function awpcp_pagename_warning_check() {
 // 	if (!get_option('awpcp_pagename_warning', false)) {
 // 		return;
 // 	}
@@ -540,11 +559,11 @@ class AWPCP_Admin {
 
 // // display a warning if necessary
 // add_action('admin_notices', 'awpcp_pagename_warning', 10);
-// function awpcp_pagename_warning() { 
+// function awpcp_pagename_warning() {
 // 	if (!get_option('awpcp_pagename_warning', false)) {
 // 		return;
 // 	}
-// 	echo '<div id="message" class="error"><p><strong>';	
+// 	echo '<div id="message" class="error"><p><strong>';
 // 	echo 'WARNING: </strong>A page named AWPCP already exists. You must either delete that page and its subpages, or rename them before continuing with the plugin configuration.';
 // 	echo '</p></div>';
 // }
@@ -727,13 +746,13 @@ function awpcp_create_subpages($awpcp_page_id) {
 	foreach ($pages as $key => $page) {
 		awpcp_create_subpage($key, $page[0], $page[1], $awpcp_page_id);
 	}
-	
+
 	do_action('awpcp_create_subpage');
 }
 
 /**
  * Creates a subpage of the main AWPCP page.
- * 
+ *
  * This functions takes care of checking if the main AWPCP
  * page exists, finding its id and verifying that the new
  * page doesn't exist already. Useful for module plugins.

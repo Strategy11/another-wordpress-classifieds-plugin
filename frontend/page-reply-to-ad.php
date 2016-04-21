@@ -258,7 +258,11 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
         }
 
         if ($result) {
-            $message = __("Your message has been sent.",'another-wordpress-classifieds-plugin');
+
+            $view_listing_link = sprintf( '<a href="%s">%s</a>', $ad_url, $ad_title );
+
+            $message = __( 'Your message has been sent. Return to <view-listing-link>.', 'another-wordpress-classifieds-plugin' );
+            $message = str_replace( '<view-listing-link>', '<strong>' . $view_listing_link . '</strong>', $message );
             return $this->render('content', awpcp_print_message($message));
         } else {
             $this->messages[] = __("There was a problem encountered during the attempt to send your message. Please try again and if the problem persists, please contact the system administrator.",'another-wordpress-classifieds-plugin');

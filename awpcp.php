@@ -554,7 +554,7 @@ class AWPCP {
 
         add_filter( 'pre_set_site_transient_update_plugins', array( $this->modules_updater, 'filter_plugins_version_information' ) );
         add_filter( 'plugins_api', array( $this->modules_updater, 'filter_detailed_plugin_information' ), 10, 3 );
-        add_filter( 'http_request_args', array( $this->modules_updater, 'filter_http_request_args' ), 10, 2 );
+        add_filter( 'upgrader_pre_download', array( $this->modules_updater, 'setup_http_request_args_filter' ), 10, 3 );
 
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 1000 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ), 1000 );

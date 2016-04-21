@@ -170,6 +170,9 @@ function awpcp_content_placeholders() {
         'posted_date' => array(
             'callback' => 'awpcp_do_placeholder_dates',
         ),
+         'posted_time_elapsed' => array(
+            'callback' => 'awpcp_do_placeholder_dates',
+        ),
         'last_updated_date' => array(
             'callback' => 'awpcp_do_placeholder_dates',
         ),
@@ -468,6 +471,14 @@ function awpcp_do_placeholder_dates($ad, $placeholder) {
     $replacements['end_date'] = $listing_renderer->get_end_date( $ad );
     $replacements['posted_date'] = $listing_renderer->get_posted_date_formatted( $ad );
     $replacements['last_updated_date'] = $listing_renderer->get_last_updated_date_formatted( $ad );
+
+	$verification_date = $listing_renderer->get_verification_date( $ad );
+
+	if ( ! empty( $verification_date ) ) {
+	    $replacements['posted_time_elapsed'] = awpcp_datetime( 'time-elapsed', $verification_date );
+	} else {
+	    $replacements['posted_time_elapsed'] = '';
+	}
 
     $renewed_date = $listing_renderer->get_renewed_date( $ad );
 

@@ -143,6 +143,11 @@ class AWPCP_ListingRenderer {
         return $this->get_formatted_date( $listing->post_modified );
     }
 
+    public function get_verification_date( $listing ) {
+        $verification_date = $this->wordpress->get_post_meta( $listing->ID, '_awpcp_verification_date', true );
+        return $this->get_formatted_date( $verification_date );
+    }
+
     public function get_regions( $listing ) {
         $regions = array();
 

@@ -235,8 +235,10 @@ function awpcp_datetime( $format='mysql', $date=null ) {
 			return date( 'Y-m-d H:i:s', $timestamp );
 		case 'timestamp':
 			return $timestamp;
+		case 'time-elapsed':
+			return sprintf( __( '%s ago' ), human_time_diff( strtotime( $date ) ) );
 		case 'awpcp':
-			return date_i18n( awpcp_get_datetime_format(), $timestamp) ;
+			return date_i18n( awpcp_get_datetime_format(), $timestamp ) ;
 		case 'awpcp-date':
 			return date_i18n( awpcp_get_date_format(), $timestamp );
 		case 'awpcp-time':
@@ -245,7 +247,6 @@ function awpcp_datetime( $format='mysql', $date=null ) {
 			return date_i18n( $format, $timestamp );
 	}
 }
-
 
 function awpcp_set_datetime_date( $datetime, $date ) {
     $base_timestamp = strtotime( $datetime );
@@ -2828,4 +2829,13 @@ function awpcp_send_email($from,$to,$subject,$message, $html=false, $attachments
     //  $headers=unix2dos($headers);
     $sentok=@mail($to,$subject,$message,$headers,"-f$from");
     return $sentok;
+}
+
+/**
+ * @since 3.6.6
+ */
+function awpcp_user_agent_header() {
+    $user_agent = "WordPress %s / Another WordPress Classifieds Plugin %s";
+    $user_agent = sprintf( $user_agent, get_bloginfo( 'version' ), $GLOBALS['awpcp_db_version'] );
+    return $user_agent;
 }

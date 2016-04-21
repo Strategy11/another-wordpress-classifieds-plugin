@@ -73,6 +73,7 @@ class AWPCP_ListingsModerationSettings {
             7,
             $days_before_expired_listings_are_deleted_description
         );
+        $settings->add_behavior( $key, 'days-before-expired-listings-are-deleted', 'shownUnless', 'autoexpiredisabledelete' );
     }
 
     public function validate_all_settings( $options, $group ) {

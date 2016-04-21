@@ -442,7 +442,9 @@ class AWPCP_ListingsAPI {
 
         $mail = new AWPCP_Email;
         $mail->to[] = awpcp_format_email_address( $contact_email, $contact_name );
-        $mail->subject = sprintf( __( 'Verify the email address used for Ad "%s"', 'another-wordpress-classifieds-plugin' ), $listing_title );
+        $subject = get_awpcp_option( 'verifyemailsubjectline' );
+        $message = get_awpcp_option( 'verifyemailbodymessage' );
+        $mail->subject = str_replace( '$title', $listing_title, $subject );
 
         $verification_link = awpcp_get_email_verification_url( $ad->ID );
 
@@ -452,6 +454,8 @@ class AWPCP_ListingsAPI {
             'ad_title' => $listing_title,
             'verification_link' => $verification_link
         ) );
+
+        $mail->body = $message;
 
         if ( $mail->send() ) {
             $emails_sent = intval( $this->wordpress->get_post_meta( $ad->ID, '_awpcp_verification_emails_sent', 1 ) );
