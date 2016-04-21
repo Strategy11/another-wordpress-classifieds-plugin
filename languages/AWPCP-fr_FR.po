@@ -7,13 +7,13 @@
 # Franck, 2015-2016
 # FX Bénard <fxb@wp-translations.org>, 2016
 # FX Bénard <fxb@wp-translations.org>, 2014-2015
-# Willington Vega <wvega@wvega.com>, 2015
+# Willington Vega <wvega@wvega.com>, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-plugin\n"
 "POT-Creation-Date: 2016-03-31 17:01:59+00:00\n"
-"PO-Revision-Date: 2016-03-31 17:03+0000\n"
+"PO-Revision-Date: 2016-04-06 18:01+0000\n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: French (France) (http://www.transifex.com/wp-translations/another-wordpress-classifieds-plugin/language/fr_FR/)\n"
 "MIME-Version: 1.0\n"
@@ -680,8 +680,8 @@ msgid ""
 msgid_plural ""
 "%1$s have the same name as the %2$s. That will cause %1$s to become "
 "unreachable. Please make sure you don't have duplicate page names."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1$s a le même nom que %2$s. Cela va rendre %1$s inaccessible. S'il vous plaît vérifiez que vous ne disposez pas de noms de pages en doubles."
+msgstr[1] "%1$s a le même nom que %2$s. Cela va rendre %1$s inaccessible. S'il vous plaît vérifiez que vous ne disposez pas de noms de pages en doubles."
 
 #: admin/admin-panel.php:181
 msgid ""
@@ -699,8 +699,8 @@ msgid_plural ""
 "default list of AWPCP categories, you can delete them and this error message"
 " will go away. Otherwise, please make sure you don't have duplicate page "
 "names."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Page %1$s a le même nom que AWPCP %2$s. Cela rendra la page WordPress %1$s inaccessible. Le %2$s est dynamique; vous n'avez pas besoin de créer une véritable page de WordPress pour afficher la liste des catégories, le plugin va la générer pour vous. Si la page WordPress a été créé pour afficher la liste par défaut des catégories AWPCP, vous pouvez la supprimer et ce message d'erreur disparaîtra. Sinon, s'il vous plaît assurez-vous que vous ne disposez pas de noms de pages en double."
+msgstr[1] "Pages %1$s ont le même nom que AWPCP %2$s. Cela rendra les pages WordPress %1$s inaccessibles. Le %2$s est dynamique; vous n'avez pas besoin de créer une véritable page de WordPress pour afficher la liste des catégories, le plugin va la générer pour vous. Si les pages WordPress ont été créées pour afficher la liste par défaut des catégories AWPCP, vous pouvez les supprimer et ce message d'erreur disparaîtra. Sinon, s'il vous plaît assurez-vous que vous ne disposez pas de noms de pages en double."
 
 #: admin/admin-panel.php:280
 msgid "Manage Credit"
@@ -1184,7 +1184,7 @@ msgid ""
 "Rules in your site. WordPress will then ask all installed and active plugins"
 " to register their rules and those 404 Not Found errors should be gone. If "
 "that's not the case, please contact <support-link>customer support</a>."
-msgstr ""
+msgstr "Si vous voyez plusieurs erreurs 404 dans votre site Web, il est possible que certaines règles de réécriture sont manquantes ou endommagées. S'il vous plaît cliquer sur le bouton ci-dessous pour accéder à la <permalinks-settings-link> La page des paramètres permaliens</a>. L'ouverture de cette page dans votre navigateur forcera les règles de réécriture dans votre site. WordPress interrogera ensuite tous les plugins installés et actifs pour enregistrer leurs règles et les erreurs 404 devraient avoir disparues. Si c'est pas le cas, s'il vous plaît contacter <support-link> support client </a>."
 
 #: admin/templates/admin-panel-debug.tpl.php:15
 msgctxt "debug page"
@@ -2662,7 +2662,7 @@ msgstr "concernant"
 
 #: frontend/page-reply-to-ad.php:243
 msgid "Your message has been sent. Return to <view-listing-link>."
-msgstr ""
+msgstr "Votre message a été envoyé. Retourner à <view-listing-link>."
 
 #: frontend/page-reply-to-ad.php:247
 msgid ""
@@ -4258,8 +4258,8 @@ msgid_plural ""
 "The license for AWPCP <modules-names> expired. Those modules will continue "
 "to work but you will not receive automatic updates when a new version is "
 "available."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "La licence pour le <module-name> AWPCP est expirée. Le module continuera à fonctionner, mais vous ne recevrez pas les mises à jour automatiques quand une nouvelle version sera disponible."
+msgstr[1] "Les licences pour les <modules-names> AWPCP sont expirées. Les modules continueront à fonctionner, mais vous ne recevrez pas les mises à jour automatiques quand les nouvelles versions seront disponibles."
 
 #: includes/helpers/class-modules-manager.php:243
 msgid ""
@@ -5392,7 +5392,7 @@ msgstr "Format d'identifiant"
 msgid ""
 "The selected format will be used to show a user's name in dropdown fields, "
 "text fields and templates."
-msgstr ""
+msgstr "Le format choisi sera utilisé pour afficher le nom d'un utilisateur dans les champs déroulants, les champs texte et les modèles."
 
 #: includes/settings/class-form-fields-settings.php:59
 msgid "Contact Fields"
@@ -5700,7 +5700,7 @@ msgstr "Décochez si vous avez besoin de désactiver le filtre des pages AWPCP q
 
 #: includes/settings/class-general-settings.php:43
 msgid "Auto-expand the Classifieds Menu for mobile devices?"
-msgstr ""
+msgstr "Elargir le menu de petites annonces aux appareils mobiles?"
 
 #: includes/settings/class-general-settings.php:51
 msgctxt "settings"
@@ -6127,35 +6127,35 @@ msgstr "Si coché, une liste déroulante contenant les rubriques de niveaux sup�
 
 #: includes/settings/class-listings-moderation-settings.php:44
 msgid "Duration of listings in free mode (in days)"
-msgstr ""
+msgstr "Durée des annonces gratuites (en jours)"
 
 #: includes/settings/class-listings-moderation-settings.php:47
 msgid ""
 "The end date for listings posted in free mode will be calculated using the "
 "value in this field. You can enter 0 to keep listings enabled for 10 years."
-msgstr ""
+msgstr "La date de fin pour les annonces gratuites sera calculée en fonction de la valeur de ce champ. Vous pouvez entrer 0 pour garder les annonces actives pendant 10 ans."
 
 #: includes/settings/class-listings-moderation-settings.php:50
 msgid "Disable expired listings instead of deleting them?"
-msgstr ""
+msgstr "Désactiver les annonces expirées au lieu de les supprimer?"
 
 #: includes/settings/class-listings-moderation-settings.php:58
 msgid ""
 "If checked, listings will remain in disabled indefinitely after they expire."
 " If not checked, listings will be deleted after the number of days set in "
 "the next setting."
-msgstr ""
+msgstr "Si coché, les annonces resteront désactivées indéfiniment après leur expiration. Si pas coché, les annonces seront supprimés après le nombre de jours fixés dans le réglage suivant."
 
 #: includes/settings/class-listings-moderation-settings.php:61
 msgid ""
 "If the <setting-name> setting is NOT checked, the listings will be "
 "permanently deleted from the system, after the number of days specified in "
 "this field have passed since each listing was disabled."
-msgstr ""
+msgstr "Si le <setting-name> n'est pas cochée, les annonces seront définitivement supprimés du système, après que le nombre de jours spécifiés dans ce champ se soient écoulés depuis chaque annonce ait été désactivée."
 
 #: includes/settings/class-listings-moderation-settings.php:71
 msgid "Number of days before expired listings are deleted"
-msgstr ""
+msgstr "Nombre de jours avant les annonces expirées soient supprimées"
 
 #: includes/settings/class-listings-moderation-settings.php:81
 msgid ""
@@ -7110,7 +7110,7 @@ msgstr ""
 
 #: includes/settings-api.php:332
 msgid "Verify the email address used for Ad $title"
-msgstr ""
+msgstr "Vérifier l'adresse email utilisée pour l'annonce $title"
 
 #: includes/settings-api.php:332
 msgid "Subject line for email sent out to verify the email address."
@@ -7414,7 +7414,7 @@ msgstr "Inactive"
 msgid ""
 "Click the button above to check the status of your license. Please <contact-"
 "link>contact customer support</a> if you think the reported status is wrong."
-msgstr ""
+msgstr "Cliquez sur le bouton ci-dessus pour vérifier le statut de votre licence. S'il vous plaît <contact-link> Contactez le support client </a> si vous pensez que le statut rapporté est faux."
 
 #: includes/settings-api.php:1068
 msgid "expired"

@@ -140,7 +140,15 @@ class AWPCP_Image_Placeholders {
 
         // fallback thumbnail
         if ( awpcp_are_images_allowed() && empty( $placeholders['awpcp_image_name_srccode'] ) ) {
-            $thumbnail = sprintf('%s/adhasnoimage.png', $awpcp_imagesurl);
+
+			// check if user has enabled override for no image placeholder
+			if ( get_awpcp_option( 'override-noimage-placeholder', true ) ) {
+				// get saved no image placeholer url
+				$thumbnail = get_awpcp_option( 'noimage-placeholder-url' );
+
+			}else {
+				$thumbnail = sprintf( '%s/adhasnoimage.png', $awpcp_imagesurl );
+			}
 
             $image_attributes = array(
                 'attributes' => array(
