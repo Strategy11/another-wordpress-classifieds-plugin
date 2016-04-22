@@ -7,10 +7,16 @@ AWPCP.run('awpcp/admin-import', ['jquery', 'awpcp/jquery-userfield'], function($
         });
 
         $( '#awpcp-importer-auto-assign-user' ).change( function() {
-            if (!$(this).attr('checked') || !$(this).prop('checked')) {
-                $('#awpcp-importer-user').attr('disabled', 'disabled');
+            var autoAssignUserControl = $( this );
+            var importUserControl = $( '#awpcp-importer-user' );
+            var method = $.fn.prop ? 'prop' : 'attr';
+
+            if ( ! autoAssignUserControl[ method ]( 'checked' ) ) {
+                importUserControl[ method ]( 'disabled', $.fn.prop ? true : 'disabled' );
+            } else if ( $.fn.prop ) {
+                importUserControl.prop( 'disabled', false );
             } else {
-                $('#awpcp-importer-user').removeAttr('disabled');
+                importUserControl.removeAttr( 'disabled' );
             }
         }).change();
 

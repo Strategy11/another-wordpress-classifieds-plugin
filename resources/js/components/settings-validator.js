@@ -91,9 +91,17 @@ AWPCP.define( 'awpcp/settings-validator', [
 
             dependencies.change( function() {
                 if ( dependencies.is(':checked') ) {
-                    field.removeAttr( 'disabled' );
+                    if ( $.fn.prop ) {
+                        field.prop( 'disabled', false );
+                    } else {
+                        field.removeAttr( 'disabled' );
+                    }
                 } else {
-                    field.attr( 'disabled', 'disabled' );
+                    if ( $.fn.prop ) {
+                        field.prop( 'disabled', true );
+                    } else {
+                        field.attr( 'disabled', 'disabled' );
+                    }
                 }
             } );
 
