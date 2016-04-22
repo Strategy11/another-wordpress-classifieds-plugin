@@ -280,6 +280,7 @@ require_once( AWPCP_DIR . "/includes/upgrade/class-migrate-regions-information-t
 require_once( AWPCP_DIR . "/includes/upgrade/class-update-media-status-task-handler.php" );
 
 require_once( AWPCP_DIR . "/includes/wordpress/class-wordpress-scripts.php" );
+require_once( AWPCP_DIR . "/includes/wordpress/class-wordpress.php" );
 
 require( AWPCP_DIR . '/includes/class-csv-importer.php' );
 
