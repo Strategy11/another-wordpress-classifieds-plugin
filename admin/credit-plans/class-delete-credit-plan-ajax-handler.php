@@ -14,7 +14,7 @@ class AWPCP_DeleteCreditPlanAjaxHandler extends AWPCP_TableEntryActionAjaxHandle
         $plan = AWPCP_CreditPlan::find_by_id( $this->request->post( 'id' ) );
 
         if ( is_null( $plan ) ) {
-            $message = _x( "The specified Credit Plan doesn't exists.", 'credit plans ajax', 'AWPCP' );
+            $message = _x( "The specified Credit Plan doesn't exists.", 'credit plans ajax', 'another-wordpress-classifieds-plugin' );
             return $this->error( array( 'message' => $message ) );
         }
 

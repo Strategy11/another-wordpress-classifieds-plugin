@@ -14,7 +14,7 @@ class AWPCP_EditFeeAjaxHandler extends AWPCP_AddEditTableEntryAjaxHandler {
         $fee = $this->find_fee_by_id( $this->request->post( 'id' ) );
 
         if ( is_null( $fee ) ) {
-            $message = __( "The specified Fee doesn't exists.", 'AWPCP' );
+            $message = __( "The specified Fee doesn't exists.", 'another-wordpress-classifieds-plugin' );
             return $this->error( array( 'message' => $message ) );
         }
 
@@ -49,7 +49,7 @@ class AWPCP_EditFeeAjaxHandler extends AWPCP_AddEditTableEntryAjaxHandler {
 
         if ( $fee->save( $errors ) === false ) {
             return $this->error( array(
-                'message' => __( 'The form has errors', 'AWPCP' ),
+                'message' => __( 'The form has errors', 'another-wordpress-classifieds-plugin' ),
                 'errors' => $errors,
             ) );
         } else {

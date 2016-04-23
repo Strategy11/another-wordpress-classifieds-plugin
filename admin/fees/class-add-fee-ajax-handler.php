@@ -26,7 +26,7 @@ class AWPCP_AddFeeAjaxHandler extends AWPCP_AddEditTableEntryAjaxHandler {
 
         if ( $fee->save( $errors ) === false ) {
             return $this->error( array(
-                'message' => __( 'The form has errors', 'AWPCP' ),
+                'message' => __( 'The form has errors', 'another-wordpress-classifieds-plugin' ),
                 'errors' => $errors,
             ) );
         } else {

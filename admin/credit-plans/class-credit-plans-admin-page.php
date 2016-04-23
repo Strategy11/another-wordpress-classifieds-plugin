@@ -19,8 +19,8 @@ class AWPCP_CreditPlansAdminPage extends AWPCP_AdminPageWithTable {
 
     public function actions($plan, $filter=false) {
         $actions = array();
-        $actions['edit'] = array(__('Edit', 'AWPCP'), $this->url(array('action' => 'edit', 'id' => $plan->id)));
-        $actions['trash'] = array(__('Delete', 'AWPCP'), $this->url(array('action' => 'delete', 'id' => $plan->id)));
+        $actions['edit'] = array(__('Edit', 'another-wordpress-classifieds-plugin' ), $this->url(array('action' => 'edit', 'id' => $plan->id)));
+        $actions['trash'] = array(__('Delete', 'another-wordpress-classifieds-plugin' ), $this->url(array('action' => 'delete', 'id' => $plan->id)));
 
         if (is_array($filter))
             $actions = array_intersect_key($actions, array_combine($filter, $filter));

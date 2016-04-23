@@ -68,8 +68,8 @@ class AWPCP_User_Panel {
 
     private function add_users_page( $router ) {
         $router->add_admin_users_page(
-            __( 'Account Balance', 'AWPCP' ),
-            __( 'Account Balance', 'AWPCP' ),
+            __( 'Account Balance', 'another-wordpress-classifieds-plugin' ),
+            __( 'Account Balance', 'another-wordpress-classifieds-plugin' ),
             'awpcp-user-account',
             'awpcp_account_balance_page',
             awpcp_user_capability()
@@ -81,8 +81,8 @@ class AWPCP_User_Panel {
      */
     public function configure_user_panel_routes( $router ) {
         $parent_page = $router->add_admin_page(
-            __( 'Ad Management', 'AWPCP' ),
-            awpcp_admin_page_title( __( 'Manage Listings', 'AWPCP' ) ),
+            __( 'Ad Management', 'another-wordpress-classifieds-plugin' ),
+            awpcp_admin_page_title( __( 'Manage Listings', 'another-wordpress-classifieds-plugin' ) ),
             'awpcp-panel',
             'awpcp_manage_listings_user_panel_page',
             awpcp_user_capability(),
@@ -91,8 +91,8 @@ class AWPCP_User_Panel {
 
         $router->add_admin_subpage(
             'awpcp-panel',
-            __( 'Listings', 'AWPCP' ),
-            awpcp_admin_page_title( __( 'Manage Listings', 'AWPCP' ) ),
+            __( 'Listings', 'another-wordpress-classifieds-plugin' ),
+            awpcp_admin_page_title( __( 'Manage Listings', 'another-wordpress-classifieds-plugin' ) ),
             'awpcp-panel',
             'awpcp_manage_listings_user_panel_page',
             awpcp_user_capability(),

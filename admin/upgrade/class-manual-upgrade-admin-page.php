@@ -45,16 +45,16 @@ class AWPCP_ManualUpgradeAdminPage {
 
     private function prepare_messages( $context ) {
         if ( $context == 'plugin' ) {
-            $messages['introduction'] = _x( 'Before you can use AWPCP again we need to upgrade your database. This operation may take a few minutes, depending on the amount of information stored. Please press the Upgrade button shown below to start the process.', 'awpcp upgrade', 'AWPCP' );
+            $messages['introduction'] = _x( 'Before you can use AWPCP again we need to upgrade your database. This operation may take a few minutes, depending on the amount of information stored. Please press the Upgrade button shown below to start the process.', 'awpcp upgrade', 'another-wordpress-classifieds-plugin' );
         } else if ( $context == 'premium-modules' ) {
-            $messages['introduction'] = _x( 'Before you can use all premium modules features again, we need to upgrade your database. This operation may take a few minutes, depending on the amount of information stored. Please press the Upgrade button shown below to start the process.', 'awpcp upgrade', 'AWPCP' );
+            $messages['introduction'] = _x( 'Before you can use all premium modules features again, we need to upgrade your database. This operation may take a few minutes, depending on the amount of information stored. Please press the Upgrade button shown below to start the process.', 'awpcp upgrade', 'another-wordpress-classifieds-plugin' );
         }
 
         $continue_link = sprintf( '<a href="%s">', add_query_arg( 'page', 'awpcp.php' ) );
-        $messages['success'] = _x( 'Congratulations. All manual upgrades were completed successfully. You can now access all features. <continue-link>Click here to Continue</a>.', 'awpcp upgrade', 'AWPCP' );
+        $messages['success'] = _x( 'Congratulations. All manual upgrades were completed successfully. You can now access all features. <continue-link>Click here to Continue</a>.', 'awpcp upgrade', 'another-wordpress-classifieds-plugin' );
         $messages['success'] = str_replace( '<continue-link>', $continue_link, $messages['success'] );
 
-        $messages['button'] = _x( 'Upgrade', 'awpcp upgrade', 'AWPCP' );
+        $messages['button'] = _x( 'Upgrade', 'awpcp upgrade', 'another-wordpress-classifieds-plugin' );
 
         return $messages;
     }

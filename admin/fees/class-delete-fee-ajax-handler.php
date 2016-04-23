@@ -14,7 +14,7 @@ class AWPCP_DeleteFeeAjaxHandler extends AWPCP_TableEntryActionAjaxHandler {
         $fee = AWPCP_Fee::find_by_id( $this->request->post( 'id' ) );
 
         if ( is_null( $fee ) ) {
-            $message = __( "The specified Fee doesn't exists.", 'AWPCP' );
+            $message = __( "The specified Fee doesn't exists.", 'another-wordpress-classifieds-plugin' );
             return $this->error( array( 'message' => $message ) );
         }
 

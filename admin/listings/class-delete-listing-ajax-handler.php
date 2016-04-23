@@ -31,12 +31,12 @@ class AWPCP_DeleteListingAjaxHandler extends AWPCP_TableEntryActionAjaxHandler {
         try {
             $listing = $this->listings->get( $listing_id );
         } catch ( AWPCP_Exception $e ) {
-            $message = _x( "The specified Ad doesn't exists.", 'ajax delete ad', 'AWPCP' );
+            $message = _x( "The specified Ad doesn't exists.", 'ajax delete ad', 'another-wordpress-classifieds-plugin' );
             return $this->error( array( 'message' => $message ) );
         }
 
         if ( ! $this->authorization->is_current_user_allowed_to_edit_listing( $listing ) ) {
-            $message = _x( 'You are not authorized to edit this listing.', 'ajax delete ad', 'AWPCP' );
+            $message = _x( 'You are not authorized to edit this listing.', 'ajax delete ad', 'another-wordpress-classifieds-plugin' );
             return $this->error( array( 'message' => $message ) );
         }
 

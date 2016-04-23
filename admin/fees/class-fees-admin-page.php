@@ -17,8 +17,8 @@ class AWPCP_AdminFees extends AWPCP_AdminPageWithTable {
     public function __construct( $listings ) {
         parent::__construct(
             'awpcp-admin-fees',
-            awpcp_admin_page_title( __( 'Manage Listing Fees', 'AWPCP' ) ),
-            __('Fees', 'AWPCP')
+            awpcp_admin_page_title( __( 'Manage Listing Fees', 'another-wordpress-classifieds-plugin' ) ),
+            __('Fees', 'another-wordpress-classifieds-plugin' )
         );
 
         $this->listings = $listings;
@@ -44,8 +44,8 @@ class AWPCP_AdminFees extends AWPCP_AdminPageWithTable {
 
     public function actions($fee, $filter=false) {
         $actions = array();
-        $actions['edit'] = array(__('Edit', 'AWPCP'), $this->url(array('action' => 'edit', 'id' => $fee->id)));
-        $actions['trash'] = array(__('Delete', 'AWPCP'), $this->url(array('action' => 'delete', 'id' => $fee->id)));
+        $actions['edit'] = array(__('Edit', 'another-wordpress-classifieds-plugin' ), $this->url(array('action' => 'edit', 'id' => $fee->id)));
+        $actions['trash'] = array(__('Delete', 'another-wordpress-classifieds-plugin' ), $this->url(array('action' => 'delete', 'id' => $fee->id)));
 
         if (is_array($filter))
             $actions = array_intersect_key($actions, array_combine($filter, $filter));
@@ -77,20 +77,20 @@ class AWPCP_AdminFees extends AWPCP_AdminPageWithTable {
     public function transfer() {
         $fee = AWPCP_Fee::find_by_id(awpcp_request_param('id', 0));
         if (is_null($fee)) {
-            awpcp_flash(__("The specified Fee doesn't exists.", 'AWPCP'), 'error');
+            awpcp_flash(__("The specified Fee doesn't exists.", 'another-wordpress-classifieds-plugin' ), 'error');
             return $this->index();
         }
 
         $recipient = AWPCP_Fee::find_by_id(awpcp_request_param('payment_term', 0));
         if (is_null($recipient)) {
-            awpcp_flash(__("The selected Fee doesn't exists.", 'AWPCP'), 'error');
+            awpcp_flash(__("The selected Fee doesn't exists.", 'another-wordpress-classifieds-plugin' ), 'error');
             return $this->index();
         }
 
         if (isset($_POST['transfer'])) {
             $errors = array();
             if ($fee->transfer_ads_to($recipient->id, $errors)) {
-                $message = __('All Ads associated to Fee %s have been associated with Fee %s.', 'AWPCP');
+                $message = __('All Ads associated to Fee %s have been associated with Fee %s.', 'another-wordpress-classifieds-plugin' );
                 $message = sprintf($message, '<strong>' . $fee->name . '</strong>', '<strong>' . $recipient->name . '</strong>');
                 awpcp_flash($message);
             } else {
@@ -113,14 +113,14 @@ class AWPCP_AdminFees extends AWPCP_AdminPageWithTable {
         $fee = AWPCP_Fee::find_by_id($id);
 
         if (is_null($fee)) {
-            awpcp_flash(__("The specified Fee doesn't exists.", 'AWPCP'), 'error');
+            awpcp_flash(__("The specified Fee doesn't exists.", 'another-wordpress-classifieds-plugin' ), 'error');
             return $this->index();
         }
 
         $errors = array();
 
         if (AWPCP_Fee::delete($fee->id, $errors)) {
-            awpcp_flash(__('The Fee was successfully deleted.', 'AWPCP'));
+            awpcp_flash(__('The Fee was successfully deleted.', 'another-wordpress-classifieds-plugin' ));
         } else {
             $ads = $this->listings->find_listings( array(
                 'meta_query' => array(
@@ -135,7 +135,7 @@ class AWPCP_AdminFees extends AWPCP_AdminPageWithTable {
                 $fees = AWPCP_Fee::query();
 
                 if (count($fees) > 1) {
-                    $message = __("The Fee couldn't be deleted because there are active Ads in the system that are associated with the Fee ID. You need to switch the Ads to a different Fee before you can delete the plan.", "AWPCP");
+                    $message = __( "The Fee couldn't be deleted because there are active Ads in the system that are associated with the Fee ID. You need to switch the Ads to a different Fee before you can delete the plan.", 'another-wordpress-classifieds-plugin' );
                     awpcp_flash($message, 'error');
 
                     $params = array(
@@ -148,7 +148,7 @@ class AWPCP_AdminFees extends AWPCP_AdminPageWithTable {
                     echo $this->render($template, $params);
                     return;
                 } else {
-                    $message = __("The Fee couldn't be deleted because there are active Ads in the system that are associated with the Fee ID. Please create a new Fee and try the delete operation again. AWPCP will help you to switch existing Ads to the new fee.", "AWPCP");
+                    $message = __( "The Fee couldn't be deleted because there are active Ads in the system that are associated with the Fee ID. Please create a new Fee and try the delete operation again. AWPCP will help you to switch existing Ads to the new fee.", 'another-wordpress-classifieds-plugin' );
                     awpcp_flash($message, 'error');
                 }
             }

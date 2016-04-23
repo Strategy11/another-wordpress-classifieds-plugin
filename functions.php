@@ -2213,7 +2213,7 @@ function awpcp_load_plugin_textdomain( $__file__, $text_domain ) {
 
     if ( $text_domain == 'another-wordpress-classifieds-plugin' ) {
         // attempt to load translations from file using old text domain.
-        awpcp_load_text_domain_with_file_prefix( $__file__, $text_domain, 'AWPCP' );
+        awpcp_load_text_domain_with_file_prefix( $__file__, $text_domain, 'another-wordpress-classifieds-plugin' );
     }
 }
 

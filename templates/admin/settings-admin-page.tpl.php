@@ -24,7 +24,7 @@
 
 				<?php if ( $output ): ?>
 				<p class="submit hidden">
-					<input type="submit" value="<?php _e( 'Save Changes', 'AWPCP' ); ?>" class="button-primary" id="submit-top" name="submit">
+					<input type="submit" value="<?php _e( 'Save Changes', 'another-wordpress-classifieds-plugin' ); ?>" class="button-primary" id="submit-top" name="submit">
 				</p>
 				<?php endif; ?>
 
@@ -38,7 +38,7 @@
 
 				<?php if ( $output ): ?>
 				<p class="submit">
-					<input type="submit" value="<?php _e('Save Changes', 'AWPCP') ?>" class="button-primary" id="submit-bottom" name="submit">
+					<input type="submit" value="<?php _e( 'Save Changes', 'another-wordpress-classifieds-plugin' ) ?>" class="button-primary" id="submit-bottom" name="submit">
 				</p>
 				<?php endif; ?>
 			</form>

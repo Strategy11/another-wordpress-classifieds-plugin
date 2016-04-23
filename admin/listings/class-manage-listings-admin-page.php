@@ -50,8 +50,8 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
         wp_enqueue_style('awpcp-frontend-style');
         wp_enqueue_script('awpcp-admin-listings');
 
-        awpcp()->js->localize( 'admin-listings', 'delete-message', __( 'Are you sure you want to delete the selected Ads?', 'AWPCP' ) );
-        awpcp()->js->localize( 'admin-listings', 'cancel', __( 'Cancel', 'AWPCP' ) );
+        awpcp()->js->localize( 'admin-listings', 'delete-message', __( 'Are you sure you want to delete the selected Ads?', 'another-wordpress-classifieds-plugin' ) );
+        awpcp()->js->localize( 'admin-listings', 'cancel', __( 'Cancel', 'another-wordpress-classifieds-plugin' ) );
     }
 
     public function show_sidebar() {
@@ -101,54 +101,54 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
 
         $actions = array();
 
-        $actions['view'] = array(__('View', 'AWPCP'), $this->url(array('action' => 'view', 'id' => $ad->ID)));
-        $actions['edit'] = array(__('Edit', 'AWPCP'), $this->url(array('action' => 'edit', 'id' => $ad->ID)));
-        $actions['trash'] = array(__('Delete', 'AWPCP'), $this->url(array('action' => 'delete', 'id' => $ad->ID)));
+        $actions['view'] = array(__('View', 'another-wordpress-classifieds-plugin' ), $this->url(array('action' => 'view', 'id' => $ad->ID)));
+        $actions['edit'] = array(__('Edit', 'another-wordpress-classifieds-plugin' ), $this->url(array('action' => 'edit', 'id' => $ad->ID)));
+        $actions['trash'] = array(__('Delete', 'another-wordpress-classifieds-plugin' ), $this->url(array('action' => 'delete', 'id' => $ad->ID)));
 
         if ( $is_moderator ) {
             if ( $this->listing_renderer->is_disabled( $ad ) ) {
-                $actions['enable'] = array(__('Enable', 'AWPCP'), $this->url(array('action' => 'enable', 'id' => $ad->ID)));
+                $actions['enable'] = array(__('Enable', 'another-wordpress-classifieds-plugin' ), $this->url(array('action' => 'enable', 'id' => $ad->ID)));
             } else {
-                $actions['disable'] = array(__('Disable', 'AWPCP'), $this->url(array('action' => 'disable', 'id' => $ad->ID)));
+                $actions['disable'] = array(__('Disable', 'another-wordpress-classifieds-plugin' ), $this->url(array('action' => 'disable', 'id' => $ad->ID)));
             }
 
             if ($ad->flagged)
-                $actions['unflag'] = array(__('Unflag', 'AWPCP'), $this->url(array('action' => 'unflag', 'id' => $ad->ID)));
+                $actions['unflag'] = array(__('Unflag', 'another-wordpress-classifieds-plugin' ), $this->url(array('action' => 'unflag', 'id' => $ad->ID)));
 
             if (get_awpcp_option('useakismet'))
                 $actions['spam'] = array('SPAM', $this->url(array('action' => 'spam', 'id' => $ad->ID)));
 
 			$has_featured_ads = function_exists( 'awpcp_is_featured_ad' );
 			if ( $has_featured_ads && awpcp_is_featured_ad( $ad->ID ) ) {
-                $actions['remove-featured'] = array(__('Remove Featured', 'AWPCP'), $this->url(array('action' => 'remove-featured', 'id' => $ad->ID)));
+                $actions['remove-featured'] = array(__('Remove Featured', 'another-wordpress-classifieds-plugin' ), $this->url(array('action' => 'remove-featured', 'id' => $ad->ID)));
 			} else if ( $has_featured_ads ) {
-                $actions['make-featured'] = array(__('Make Featured', 'AWPCP'), $this->url(array('action' => 'make-featured', 'id' => $ad->ID)));
+                $actions['make-featured'] = array(__('Make Featured', 'another-wordpress-classifieds-plugin' ), $this->url(array('action' => 'make-featured', 'id' => $ad->ID)));
 			}
 
-            $actions['send-key'] = array(__('Send Access Key', 'AWPCP'), $this->url(array('action' => 'send-key', 'id' => $ad->ID)));
+            $actions['send-key'] = array(__('Send Access Key', 'another-wordpress-classifieds-plugin' ), $this->url(array('action' => 'send-key', 'id' => $ad->ID)));
         }
 
         if ( $this->listing_renderer->is_about_to_expire( $ad ) || $this->listing_renderer->has_expired( $ad ) ) {
             $hash = awpcp_get_renew_ad_hash( $ad->ID );
             $params = array( 'action' => 'renew', 'id' => $ad->ID, 'awpcprah' => $hash );
-            $actions['renwew-ad'] = array( __( 'Renew Ad', 'AWPCP' ), $this->url( $params ) );
+            $actions['renwew-ad'] = array( __( 'Renew Ad', 'another-wordpress-classifieds-plugin' ), $this->url( $params ) );
         }
 
         $images = $this->attachments->count_attachments_of_type( 'image', array( 'post_parent' => $ad->ID ) );
 
         if ( $images ) {
-            $label = __( 'Manage Images', 'AWPCP' );
+            $label = __( 'Manage Images', 'another-wordpress-classifieds-plugin' );
             $url = $this->url(array('action' => 'manage-images', 'id' => $ad->ID));
             $actions['manage-images'] = array($label, array('', $url, " ($images)"));
         } else if ( awpcp_are_images_allowed() ) {
-            $actions['add-image'] = array(__('Add Images', 'AWPCP'), $this->url(array('action' => 'add-image', 'id' => $ad->ID)));
+            $actions['add-image'] = array(__('Add Images', 'another-wordpress-classifieds-plugin' ), $this->url(array('action' => 'add-image', 'id' => $ad->ID)));
         }
 
         if ( $is_moderator && ! $this->listing_renderer->is_disabled( $ad ) ) {
             $fb = AWPCP_Facebook::instance();
             if ( ! awpcp_wordpress()->get_post_meta( $ad->ID, '_awpcp_sent_to_facebook_page', true ) && $fb->get( 'page_id' ) ) {
                 $actions['send-to-facebook'] = array(
-                    __( 'Send to Facebook', 'AWPCP' ),
+                    __( 'Send to Facebook', 'another-wordpress-classifieds-plugin' ),
                     $this->url( array(
                         'action' => 'send-to-facebook',
                         'id' => $ad->ID
@@ -156,7 +156,7 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
                 );
             } else if ( ! awpcp_wordpress()->get_post_meta( $ad->ID, '_awpcp_sent_to_facebook_group', true ) && $fb->get( 'group_id' ) ) {
                 $actions['send-to-facebook'] = array(
-                    __( 'Send to Facebook Group', 'AWPCP' ),
+                    __( 'Send to Facebook Group', 'another-wordpress-classifieds-plugin' ),
                     $this->url( array(
                         'action' => 'send-to-facebook',
                         'id' => $ad->ID
@@ -169,7 +169,7 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
 
         if ( $is_moderator && isset( $_REQUEST['filterby'] ) && $_REQUEST['filterby'] == 'new' ) {
             $actions['mark-reviewed'] = array(
-                __( 'Mark Reviewed', 'AWPCP' ),
+                __( 'Mark Reviewed', 'another-wordpress-classifieds-plugin' ),
                 $this->url( array( 'action' => 'mark-reviewed', 'id' => $ad->ID ) ),
             );
         }
@@ -203,7 +203,7 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
         );
 
         if ( ! awpcp_current_user_is_moderator() && in_array( $action, $moderator_actions ) ) {
-            awpcp_flash(_x('You do not have sufficient permissions to perform that action.', 'admin listings', 'AWPCP'), 'error');
+            awpcp_flash(_x('You do not have sufficient permissions to perform that action.', 'admin listings', 'another-wordpress-classifieds-plugin' ), 'error');
             $action = 'index';
         }
 
@@ -312,14 +312,14 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
         $listing_id = awpcp_request()->get_current_listing_id();
 
         if ( empty( $listing_id ) ) {
-            awpcp_flash( __( 'No Ad ID was specified.', 'AWPCP' ), 'error' );
+            awpcp_flash( __( 'No Ad ID was specified.', 'another-wordpress-classifieds-plugin' ), 'error' );
             return $this->redirect( 'index' );
         }
 
         try {
             $listing = awpcp_listings_collection()->get( $listing_id );
         } catch ( AWPCP_Exception $e ) {
-            awpcp_flash( __( "The specified Ad doesn't exists.", 'AWPCP' ), 'error' );
+            awpcp_flash( __( "The specified Ad doesn't exists.", 'another-wordpress-classifieds-plugin' ), 'error' );
             return $this->redirect( 'index' );
         }
 
@@ -384,13 +384,13 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
         $failed = isset( $failed ) ? count( $failed ) : 0;
 
         if ( $passed === 0 && $failed === 0 ) {
-            awpcp_flash( __( 'No Ads were selected.', 'AWPCP' ), 'error' );
+            awpcp_flash( __( 'No Ads were selected.', 'another-wordpress-classifieds-plugin' ), 'error' );
         } else {
             $message_ok = sprintf( call_user_func( $success, $passed ), $passed );
             $message_error = sprintf( call_user_func( $failure, $failed ), $failed );
 
             if ( $passed > 0 && $failed > 0) {
-                $message = _x( '%s and %s.', 'Listing bulk operations: <message-ok> and <message-error>.', 'AWPCP' );
+                $message = _x( '%s and %s.', 'Listing bulk operations: <message-ok> and <message-error>.', 'another-wordpress-classifieds-plugin' );
                 awpcp_flash( sprintf( $message, $message_ok, $message_error ), 'error' );
             } else if ( $passed > 0 ) {
                 awpcp_flash( $message_ok . '.' );
@@ -411,11 +411,11 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
     }
 
     public function disable_ad_success($n) {
-        return _n( '%d Ad was disabled', '%d Ads were disabled', $n, 'AWPCP' );
+        return _n( '%d Ad was disabled', '%d Ads were disabled', $n, 'another-wordpress-classifieds-plugin' );
     }
 
     public function disable_ad_failure($n) {
-        return __( 'there was an error trying to disable %d Ads', 'AWPCP' );
+        return __( 'there was an error trying to disable %d Ads', 'another-wordpress-classifieds-plugin' );
     }
 
     public function disable_ad() {
@@ -449,11 +449,11 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
     }
 
     public function enable_ad_success($n) {
-        return _n( '%d was enabled', '%d Ads were enabled', $n, 'AWPCP' );
+        return _n( '%d was enabled', '%d Ads were enabled', $n, 'another-wordpress-classifieds-plugin' );
     }
 
     public function enable_ad_failure($n) {
-        return __( 'there was an error trying to enable %d Ads', 'AWPCP' );
+        return __( 'there was an error trying to enable %d Ads', 'another-wordpress-classifieds-plugin' );
     }
 
     public function enable_ad() {
@@ -473,7 +473,7 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
         }
 
         if ( $result = awpcp_listings_api()->unflag_listing( $ad ) ) {
-            awpcp_flash(__('The Ad has been unflagged.', 'AWPCP'));
+            awpcp_flash(__('The Ad has been unflagged.', 'another-wordpress-classifieds-plugin' ));
         }
 
         return $this->redirect('index');
@@ -488,7 +488,7 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
         }
 
         awpcp_listings_api()->verify_ad( $ad );
-        awpcp_flash( __( 'The Ad was marked as verified.', 'AWPCP' ) );
+        awpcp_flash( __( 'The Ad was marked as verified.', 'another-wordpress-classifieds-plugin' ) );
 
         return $this->redirect( 'index' );
     }
@@ -504,7 +504,7 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
         $metadata = array( '_awpcp_payment_status' => AWPCP_Payment_Transaction::PAYMENT_STATUS_COMPLETED );
 
         if ( $this->listings_logic->update_listing( $listing, array( 'metadata' => $metadata ) ) ) {
-            awpcp_flash(__('The Ad has been marked as paid.', 'AWPCP'));
+            awpcp_flash(__('The Ad has been marked as paid.', 'another-wordpress-classifieds-plugin' ));
         }
 
         return $this->redirect('index');
@@ -521,11 +521,11 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
     }
 
     public function mark_as_spam_success($n) {
-        return _n('%d Ad were marked as SPAM and removed', '%d Ads were marked as SPAM and removed', $n, 'AWPCP');
+        return _n('%d Ad were marked as SPAM and removed', '%d Ads were marked as SPAM and removed', $n, 'another-wordpress-classifieds-plugin' );
     }
 
     public function mark_as_spam_failure($n) {
-        return __('there was an error trying to mark %d Ad as SPAM', 'AWPCP');
+        return __('there was an error trying to mark %d Ad as SPAM', 'another-wordpress-classifieds-plugin' );
     }
 
     public function mark_as_spam() {
@@ -541,11 +541,11 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
     }
 
     public function make_featured_ad_success($n) {
-        return _n( '%d Ad was set as fatured', '%d Ads were set as featured', $n, 'AWPCP' );
+        return _n( '%d Ad was set as fatured', '%d Ads were set as featured', $n, 'another-wordpress-classifieds-plugin' );
     }
 
     public function make_featured_ad_failure($n) {
-        return __( 'there was an error trying to set %d Ads as featured', 'AWPCP' );
+        return __( 'there was an error trying to set %d Ads as featured', 'another-wordpress-classifieds-plugin' );
     }
 
     public function make_featured_ad() {
@@ -561,11 +561,11 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
     }
 
     public function make_non_featured_ad_success($n) {
-        return _n( '%d Ad was set as non-fatured', '%d Ads were set as non-featured', $n, 'AWPCP' );
+        return _n( '%d Ad was set as non-fatured', '%d Ads were set as non-featured', $n, 'another-wordpress-classifieds-plugin' );
     }
 
     public function make_non_featured_ad_failure($n) {
-        return __( 'there was an error trying to set %d Ads as non-featured', 'AWPCP' );
+        return __( 'there was an error trying to set %d Ads as non-featured', 'another-wordpress-classifieds-plugin' );
     }
 
     public function make_non_featured_ad() {
@@ -578,9 +578,9 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
 
     public function mark_reviewed( $listing ) {
 		if ( awpcp_wordpress()->update_post_meta( $listing->ID, '_awpcp_reviewed', true ) ) {
-            awpcp_flash( sprintf( __( 'The listing was marked as reviewed.', 'AWPCP' ), esc_html( $recipient ) ) );
+            awpcp_flash( sprintf( __( 'The listing was marked as reviewed.', 'another-wordpress-classifieds-plugin' ), esc_html( $recipient ) ) );
         } else {
-            awpcp_flash( sprintf( __( "The listing couldn't marked as reviewed.", 'AWPCP' ), esc_html( $recipient ) ) );
+            awpcp_flash( sprintf( __( "The listing couldn't marked as reviewed.", 'another-wordpress-classifieds-plugin' ), esc_html( $recipient ) ) );
         }
         return $this->redirect( 'index' );
     }
@@ -613,9 +613,9 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
         ));
 
         if ($message->send()) {
-            awpcp_flash(sprintf(__('The access key was sent to %s.', 'AWPCP'), esc_html($recipient)));
+            awpcp_flash(sprintf(__('The access key was sent to %s.', 'another-wordpress-classifieds-plugin' ), esc_html($recipient)));
         } else {
-            awpcp_flash(sprintf(__('There was an error trying to send the email to %s.', 'AWPCP'), esc_html($recipient)));
+            awpcp_flash(sprintf(__('There was an error trying to send the email to %s.', 'another-wordpress-classifieds-plugin' ), esc_html($recipient)));
         }
 
         return $this->redirect('index');
@@ -694,17 +694,17 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
         }
 
         if ( $deleted > 0 && $failed > 0 ) {
-            awpcp_flash( sprintf( __( '%d of %d Ads were deleted. %d generated errors.', 'AWPCP' ), $deleted,$total, $failed ) );
+            awpcp_flash( sprintf( __( '%d of %d Ads were deleted. %d generated errors.', 'another-wordpress-classifieds-plugin' ), $deleted,$total, $failed ) );
         } else if ( $deleted > 0 ) {
-            awpcp_flash( sprintf( __( '%d of %d Ads were deleted.', 'AWPCP' ), $deleted, $total ) );
+            awpcp_flash( sprintf( __( '%d of %d Ads were deleted.', 'another-wordpress-classifieds-plugin' ), $deleted, $total ) );
         }
 
         if ( $non_existent > 0 ) {
-            awpcp_flash( sprintf( __( "%d of %d Ads don't exist.", 'AWPCP' ), $non_existent, $total ), 'error' );
+            awpcp_flash( sprintf( __( "%d of %d Ads don't exist.", 'another-wordpress-classifieds-plugin' ), $non_existent, $total ), 'error' );
         }
 
         if ( $unauthorized > 0 ) {
-            awpcp_flash( sprintf( __( "%d of %d Ads weren't deleted because you are not authorized.", 'AWPCP' ), $non_existent, $total ), 'error' );
+            awpcp_flash( sprintf( __( "%d of %d Ads weren't deleted because you are not authorized.", 'another-wordpress-classifieds-plugin' ), $non_existent, $total ), 'error' );
         }
 
         return $this->redirect('index');
@@ -734,7 +734,7 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
         try {
             $listing = awpcp_listings_collection()->get( $this->id );
         } catch ( AWPCP_Exception $e ) {
-            awpcp_flash( __( "The specified listing doesn't exists.", 'AWPCP' ), 'error' );
+            awpcp_flash( __( "The specified listing doesn't exists.", 'another-wordpress-classifieds-plugin' ), 'error' );
             return $this->index();
         }
 

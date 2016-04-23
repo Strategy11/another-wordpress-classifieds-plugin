@@ -14,7 +14,7 @@ class AWPCP_EditCreditPlanAjaxHandler extends AWPCP_AddEditTableEntryAjaxHandler
         $plan = AWPCP_CreditPlan::find_by_id( $this->request->post( 'id' ) );
 
         if ( is_null( $plan ) ) {
-            $message = _x( "The specified Credit Plan doesn't exists.", 'credit plans ajax', 'AWPCP' );
+            $message = _x( "The specified Credit Plan doesn't exists.", 'credit plans ajax', 'another-wordpress-classifieds-plugin' );
             return $this->error( array( 'message' => $message ) );
         }
 
@@ -36,7 +36,7 @@ class AWPCP_EditCreditPlanAjaxHandler extends AWPCP_AddEditTableEntryAjaxHandler
 
         if ( $plan->save( $errors ) === false ) {
             return $this->error( array(
-                'message' => __( 'The form has errors', 'AWPCP' ),
+                'message' => __( 'The form has errors', 'another-wordpress-classifieds-plugin' ),
                 'errors' => $errors
             ) );
         } else {

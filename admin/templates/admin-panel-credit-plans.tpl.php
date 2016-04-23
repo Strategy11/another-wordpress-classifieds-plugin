@@ -23,7 +23,7 @@
     <?php endforeach ?>
 
     <?php $url = $page->url( array( 'action' => 'add-credit-plan' ) ); ?>
-    <?php $label = __( 'Add Credit Plan', 'AWPCP' ); ?>
+    <?php $label = __( 'Add Credit Plan', 'another-wordpress-classifieds-plugin' ); ?>
     <a class="add button-primary" title="<?php echo esc_attr( $label ); ?>" href="<?php echo esc_attr( $url ); ?>" accesskey="s"><?php echo esc_html( $label ); ?></a>
 
     <?php echo $table->display(); ?>

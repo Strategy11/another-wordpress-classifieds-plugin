@@ -82,7 +82,7 @@
                 <label class="alignleft">
                     <?php $checked = awpcp_get_property($entry, 'featured', 0); ?>
                     <input type="checkbox" value="1" <?php echo $checked ? 'checked="checked"' : '' ?> name="featured">
-                    <span class="checkbox-title"><?php _e('This Plan is for Featured Ads.', 'AWPCP'); ?></span>
+                    <span class="checkbox-title"><?php _e('This Plan is for Featured Ads.', 'another-wordpress-classifieds-plugin' ); ?></span>
                 </label>
                 <?php endif ?>
             </div>

@@ -26,7 +26,7 @@ class AWPCP_AddCreditPlanAjaxHandler extends AWPCP_AddEditTableEntryAjaxHandler 
 
         if ( $plan->save( $errors ) === false ) {
             return $this->error( array(
-                'message' => __( 'The form has errors', 'AWPCP' ),
+                'message' => __( 'The form has errors', 'another-wordpress-classifieds-plugin' ),
                 'errors' => $errors
             ) );
         } else {

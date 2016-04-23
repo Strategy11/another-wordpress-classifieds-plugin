@@ -60,7 +60,7 @@ class AWPCP_DBException extends AWPCP_Exception {
 
     public function __construct( $message, $database_error = null ) {
         if ( $database_error ) {
-            $template = _x( '%s The error was: %s.', 'DBException message template', 'AWPCP' );
+            $template = _x( '%s The error was: %s.', 'DBException message template', 'another-wordpress-classifieds-plugin' );
             $message = sprintf( $template, $message, $database_error );
         }
 

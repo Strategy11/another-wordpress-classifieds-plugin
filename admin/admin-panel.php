@@ -78,13 +78,13 @@ class AWPCP_Admin {
             $router
         );
 
-        $this->add_manual_upgrade_admin_page( $parent_page, __( 'Classifieds', 'AWPCP' ), $parent_menu, $router );
+        $this->add_manual_upgrade_admin_page( $parent_page, __( 'Classifieds', 'another-wordpress-classifieds-plugin' ), $parent_menu, $router );
     }
 
     private function add_main_classifieds_admin_page( $parent_menu, $handler_constructor, $router ) {
         return $router->add_admin_page(
-            __( 'Classifieds', 'AWPCP' ),
-            awpcp_admin_page_title( __( 'AWPCP', 'AWPCP' ) ),
+            __( 'Classifieds', 'another-wordpress-classifieds-plugin' ),
+            awpcp_admin_page_title( __( 'AWPCP', 'another-wordpress-classifieds-plugin' ) ),
             $parent_menu,
             $handler_constructor,
             awpcp_admin_capability(),
@@ -96,7 +96,7 @@ class AWPCP_Admin {
         $router->add_admin_subpage(
             $parent_page,
             $menu_title,
-            awpcp_admin_page_title( __( 'Manual Upgrade', 'AWPCP' ) ),
+            awpcp_admin_page_title( __( 'Manual Upgrade', 'another-wordpress-classifieds-plugin' ) ),
             $menu_slug,
             'awpcp_manual_upgrade_admin_page',
             awpcp_admin_capability(),
@@ -114,13 +114,13 @@ class AWPCP_Admin {
         );
 
         if ( isset( $_REQUEST['page'] ) && $_REQUEST['page'] == 'awpcp-admin-upgrade' ) {
-            $this->add_manual_upgrade_admin_page( $parent_page, __( 'Manual Upgrade', 'AWPCP' ), 'awpcp-admin-upgrade', $router );
+            $this->add_manual_upgrade_admin_page( $parent_page, __( 'Manual Upgrade', 'another-wordpress-classifieds-plugin' ), 'awpcp-admin-upgrade', $router );
         }
 
         $router->add_admin_subpage(
             $parent_page,
-            __( 'Settings', 'AWPCP' ),
-            awpcp_admin_page_title( __( 'Settings', 'AWPCP' ) ),
+            __( 'Settings', 'another-wordpress-classifieds-plugin' ),
+            awpcp_admin_page_title( __( 'Settings', 'another-wordpress-classifieds-plugin' ) ),
             'awpcp-admin-settings',
             'awpcp_settings_admin_page',
             $admin_capability,
@@ -129,8 +129,8 @@ class AWPCP_Admin {
 
         $router->add_admin_subpage(
             $parent_page,
-            __( 'Listings', 'AWPCP' ),
-            awpcp_admin_page_title( __( 'Manage Listings', 'AWPCP' ) ),
+            __( 'Listings', 'another-wordpress-classifieds-plugin' ),
+            awpcp_admin_page_title( __( 'Manage Listings', 'another-wordpress-classifieds-plugin' ) ),
             'awpcp-admin-listings',
             'awpcp_manage_listings_admin_page',
             $admin_capability,
@@ -139,8 +139,8 @@ class AWPCP_Admin {
 
         $router->add_admin_subpage(
             $parent_page,
-            __( 'Import Listings', 'AWPCP' ),
-            awpcp_admin_page_title( __( 'Import Listings', 'AWPCP' ) ),
+            __( 'Import Listings', 'another-wordpress-classifieds-plugin' ),
+            awpcp_admin_page_title( __( 'Import Listings', 'another-wordpress-classifieds-plugin' ) ),
             'awpcp-import',
             'awpcp_import_listings_admin_page',
             $admin_capability,
@@ -149,8 +149,8 @@ class AWPCP_Admin {
 
         $router->add_admin_subpage(
             $parent_page,
-            __( 'Categories', 'AWPCP' ),
-            awpcp_admin_page_title( __( 'Manage Categories', 'AWPCP' ) ),
+            __( 'Categories', 'another-wordpress-classifieds-plugin' ),
+            awpcp_admin_page_title( __( 'Manage Categories', 'another-wordpress-classifieds-plugin' ) ),
             'awpcp-admin-categories',
             'awpcp_categories_admin_page',
             $admin_capability,
@@ -199,8 +199,8 @@ class AWPCP_Admin {
 
         $router->add_admin_subpage(
             $parent_page,
-            __( 'Form Fields', 'AWPCP' ),
-            awpcp_admin_page_title( __( 'Form Fields', 'AWPCP' ) ),
+            __( 'Form Fields', 'another-wordpress-classifieds-plugin' ),
+            awpcp_admin_page_title( __( 'Form Fields', 'another-wordpress-classifieds-plugin' ) ),
             'awpcp-form-fields',
             'awpcp_form_fields_admin_page',
             $admin_capability,
@@ -209,8 +209,8 @@ class AWPCP_Admin {
 
         $router->add_admin_subpage(
             $parent_page,
-            __( 'Credit Plans', 'AWPCP' ),
-            awpcp_admin_page_title( __( 'Manage Credit Plans', 'AWPCP' ) ),
+            __( 'Credit Plans', 'another-wordpress-classifieds-plugin' ),
+            awpcp_admin_page_title( __( 'Manage Credit Plans', 'another-wordpress-classifieds-plugin' ) ),
             'awpcp-admin-credit-plans',
             'awpcp_credit_plans_admin_page',
             $admin_capability,
@@ -219,7 +219,7 @@ class AWPCP_Admin {
 
         $router->add_admin_custom_link(
             $parent_page,
-            __( 'Manage Credit', 'AWPCP' ),
+            __( 'Manage Credit', 'another-wordpress-classifieds-plugin' ),
             'awpcp-manage-credits',
             $admin_capability,
             $this->get_manage_credits_section_url(),
@@ -228,8 +228,8 @@ class AWPCP_Admin {
 
         $router->add_admin_subpage(
             $parent_page,
-            __( 'Fees', 'AWPCP' ),
-            awpcp_admin_page_title( __( 'Manage Listings Fees', 'AWPCP' ) ),
+            __( 'Fees', 'another-wordpress-classifieds-plugin' ),
+            awpcp_admin_page_title( __( 'Manage Listings Fees', 'another-wordpress-classifieds-plugin' ) ),
             'awpcp-admin-fees',
             'awpcp_fees_admin_page',
             $admin_capability,
@@ -238,8 +238,8 @@ class AWPCP_Admin {
 
         $router->add_admin_subpage(
             $parent_page,
-            __( 'Debug', 'AWPCP' ),
-            awpcp_admin_page_title( __( 'Debug Information', 'AWPCP' ) ),
+            __( 'Debug', 'another-wordpress-classifieds-plugin' ),
+            awpcp_admin_page_title( __( 'Debug Information', 'another-wordpress-classifieds-plugin' ) ),
             'awpcp-debug',
             'awpcp_debug_admin_page',
             $admin_capability,
@@ -248,8 +248,8 @@ class AWPCP_Admin {
 
         $router->add_admin_subpage(
             $parent_page,
-            __( 'Uninstall', 'AWPCP' ),
-            awpcp_admin_page_title( __( 'Uninstall', 'AWPCP' ) ),
+            __( 'Uninstall', 'another-wordpress-classifieds-plugin' ),
+            awpcp_admin_page_title( __( 'Uninstall', 'another-wordpress-classifieds-plugin' ) ),
             'awpcp-admin-uninstall',
             'awpcp_uninstall_admin_page',
             $admin_capability,
