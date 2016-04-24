@@ -76,14 +76,6 @@ abstract class AWPCP_AjaxHandler {
 
     /**
      * @since 3.2.2
-     */
-    protected function response( $records_count, $records_left ) {
-        _deprecated_function( __FUNCTION__, '3.2.2', 'AWPCP_AjaxHandler::progress_response' );
-        return $this->progress_response( $records_count, $records_left );
-    }
-
-    /**
-     * @since 3.2.2
      * @since feature/1112 access changed to public.
      */
     public function error_response( $error_message ) {
