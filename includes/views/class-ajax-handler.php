@@ -52,22 +52,25 @@ abstract class AWPCP_AjaxHandler {
 
     /**
      * @since 3.2.2
+     * @since feature/1112 access changed to public.
      */
-    protected function success( $params = array() ) {
+    public function success( $params = array() ) {
         return $this->flush( array_merge( array( 'status' => 'ok' ), $params ) );
     }
 
     /**
      * @since 3.2.2
+     * @since feature/1112 access changed to public.
      */
-    protected function error( $params = array() ) {
+    public function error( $params = array() ) {
         return $this->flush( array_merge( array( 'status' => 'error' ), $params ) );
     }
 
     /**
      * @since 3.2.2
+     * @since feature/1112 access changed to public.
      */
-    protected function progress_response( $records_count, $records_left ) {
+    public function progress_response( $records_count, $records_left ) {
         return $this->success( array( 'recordsCount' => $records_count, 'recordsLeft' => $records_left ) );
     }
 
@@ -81,15 +84,17 @@ abstract class AWPCP_AjaxHandler {
 
     /**
      * @since 3.2.2
+     * @since feature/1112 access changed to public.
      */
-    protected function error_response( $error_message ) {
+    public function error_response( $error_message ) {
         return $this->error( array( 'error' => $error_message ) );
     }
 
     /**
      * @since 3.2.2
+     * @since feature/1112 access changed to public.
      */
-    protected function multiple_errors_response( $errors ) {
+    public function multiple_errors_response( $errors ) {
         return $this->error( array( 'errors' => (array) $errors ) );
     }
 
