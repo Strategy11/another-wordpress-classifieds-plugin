@@ -1,16 +1,5 @@
 <?php
-/**
- * AWPCP Classifieds Management Panel functions
- */
 
-// require_once(AWPCP_DIR . '/admin/admin-panel-upgrade.php');
-// require_once(AWPCP_DIR . '/admin/admin-panel-csv-importer.php');
-// require_once(AWPCP_DIR . '/admin/admin-panel-debug.php');
-// require_once(AWPCP_DIR . '/admin/admin-panel-categories.php');
-// require_once(AWPCP_DIR . '/admin/admin-panel-fees.php');
-// require_once(AWPCP_DIR . '/admin/admin-panel-credit-plans.php');
-// require_once(AWPCP_DIR . '/admin/admin-panel-listings.php');
-// require_once(AWPCP_DIR . '/admin/admin-panel-uninstall.php');
 require_once(AWPCP_DIR . '/admin/admin-panel-users.php');
 
 function awpcp_admin_panel() {
@@ -29,16 +18,6 @@ class AWPCP_Admin {
 
 		// not a page, but an extension to the Users table
 		$this->users = new AWPCP_AdminUsers();
-
-		// $this->upgrade = new AWPCP_AdminUpgrade(false, false, $this->menu);
-		// $this->settings = new AWPCP_Admin_Settings();
-		// $this->credit_plans = new AWPCP_AdminCreditPlans();
-		// $this->categories = new AWPCP_AdminCategories();
-		// $this->fees = new AWPCP_AdminFees();
-		// $this->listings = new AWPCP_Admin_Listings();
-		// $this->importer = new AWPCP_Admin_CSV_Importer();
-		// $this->debug = new AWPCP_Admin_Debug();
-		// $this->uninstall = new AWPCP_Admin_Uninstall();
 
 		add_action('wp_ajax_disable-quick-start-guide-notice', array($this, 'disable_quick_start_guide_notice'));
 		add_action('wp_ajax_disable-widget-modification-notice', array($this, 'disable_widget_modification_notice'));
@@ -441,89 +420,6 @@ class AWPCP_Admin {
 	}
 
 	public function menu() {
-		global $submenu;
-
-		global $hasregionsmodule;
-		global $hasextrafieldsmodule;
-
-		$capability = awpcp_admin_capability();
-
-		if ( $this->upgrade_tasks->has_pending_tasks() ) {
-			// $parts = array($this->upgrade->title, $this->upgrade->menu, $this->upgrade->page);
-			// $page = add_menu_page($parts[0], $parts[1], $capability, $parts[2], array($this->upgrade, 'dispatch'), MENUICO);
-
-		} else {
-			$parent = 'awpcp.php';
-
-			// $parts = array( 'Classifieds', 'Classifieds', 'awpcp.php' );
-			// $page = add_menu_page($parts[0], $parts[1], $capability, $parts[2], array($this, 'dispatch'), MENUICO);
-
-			// // add hidden upgrade page, so the URL works even if there are no
-			// // pending manual upgrades please note that this is a hack and
-			// // it is important to use a subpage as parent page for it to work
-			// $parts = array($this->title, $this->menu, $this->upgrade->page);
-			// $page = add_submenu_page('awpcp-admin-uninstall', $parts[0], $parts[1], $capability, $parts[2], array($this->home, 'dispatch'), MENUICO);
-
-			// $page = add_submenu_page(
-			// 	$parent,
-			// 	awpcp_admin_page_title( __( 'Settings', 'AWPCP' ) ),
-			// 	__( 'Settings', 'AWPCP' ),
-			// 	$capability,
-			// 	'awpcp-admin-settings',
-			// 	array( $this->settings, 'dispatch' )
-			// );
-			// add_action('admin_print_styles-' . $page, array($this->settings, 'scripts'));
-
-			// if ( current_user_can( $capability ) ) {
-			// 	$url = $this->get_manage_credits_section_url();
-			// 	$submenu['awpcp.php'][] = array( __( 'Manage Credit', 'AWPCP' ), $capability, $url );
-			// }
-
-			// $parts = array($this->fees->title, $this->fees->menu, $this->fees->page);
-			// $page = add_submenu_page($parent, $parts[0], $parts[1], $capability, $parts[2], array($this->fees, 'dispatch'));
-			// add_action('admin_print_styles-' . $page, array($this->fees, 'scripts'));
-
-			// add_submenu_page(
-			// 	$parent,
-			// 	awpcp_admin_page_title( __( 'Manage Categories', 'AWPCP' ) ),
-			// 	__( 'Categories', 'AWPCP' ),
-			// 	$capability,
-			// 	'awpcp-admin-categories',
-			// 	'awpcp_opsconfig_categories'
-			// );
-
-			// $page = add_submenu_page(
-			// 	$parent,
-			// 	$this->listings->title,
-			// 	$this->listings->menu,
-			// 	'manage_classifieds_listings',
-			// 	'awpcp-listings',
-			// 	array( $this->listings, 'dispatch' )
-			// );
-			// add_action('admin_print_styles-' . $page, array($this->listings, 'scripts'));
-
-			// $this->form_fields = awpcp_form_fields_admin_page();
-			// $parts = array( $this->form_fields->title, $this->form_fields->menu, $this->form_fields->page );
-			// $page = add_submenu_page( $parent, $parts[0], $parts[1], $capability, 'awpcp-form-fields', array( $this->form_fields, 'dispatch' ) );
-			// add_action( 'admin_print_styles-' . $page, array( $this->form_fields, 'scripts' ) );
-
-			// // allow plugins to define additional sub menu entries
-			// do_action('awpcp_admin_add_submenu_page', $parent, $capability);
-
-			// if ($hasextrafieldsmodule) {
-			// 	add_submenu_page($parent, __('Manage Extra Fields', 'another-wordpress-classifieds-plugin'), __('Extra Fields', 'another-wordpress-classifieds-plugin'), $capability, 'awpcp-admin-manual-upgrade', 'awpcp_add_new_field');
-			// }
-
-			// $hook = add_submenu_page($parent, __('Import Ad', 'AWPCP'), __('Import', 'AWPCP'), $capability, 'awpcp-import', array($this->importer, 'dispatch'));
-			// add_action("load-{$hook}", array($this->importer, 'scripts'));
-
-			// add_submenu_page($parent, 'Debug', 'Debug', $capability, 'awpcp-debug', array($this->debug, 'dispatch'));
-
-			add_submenu_page($parent, __( 'Debug', 'another-wordpress-classifieds-plugin' ), __( 'Debug', 'another-wordpress-classifieds-plugin' ), $capability, 'awpcp-debug', array($this->debug, 'dispatch'));
-
-			// // allow plugins to define additional menu entries
-			// do_action('awpcp_add_menu_page');
-		}
 	}
 
     public function dispatch() {
@@ -549,34 +445,6 @@ class AWPCP_Admin {
         die('Success!');
     }
 }
-
-
-// // if there's a page name collision remove AWPCP menus so that nothing can be accessed
-// add_action('init', 'awpcp_pagename_warning_check', -1);
-// function awpcp_pagename_warning_check() {
-// 	if (!get_option('awpcp_pagename_warning', false)) {
-// 		return;
-// 	}
-//     remove_action('admin_menu', 'awpcp_launch');
-// }
-
-
-// // display a warning if necessary
-// add_action('admin_notices', 'awpcp_pagename_warning', 10);
-// function awpcp_pagename_warning() {
-// 	if (!get_option('awpcp_pagename_warning', false)) {
-// 		return;
-// 	}
-// 	echo '<div id="message" class="error"><p><strong>';
-// 	echo 'WARNING: </strong>A page named AWPCP already exists. You must either delete that page and its subpages, or rename them before continuing with the plugin configuration.';
-// 	echo '</p></div>';
-// }
-
-
-
-
-// START FUNCTION: Check if the user side classified page exists
-
 
 function checkifclassifiedpage($pagename) {
 	global $wpdb;
