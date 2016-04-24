@@ -2,14 +2,12 @@
 
 class AWPCP_TableEntryActionAjaxHandler extends AWPCP_AjaxHandler {
 
-    protected $page;
-    protected $request;
+    private $action_handler;
 
-    public function __construct( $page, $request, $response ) {
+    public function __construct( $action_handler, $response ) {
         parent::__construct( $response );
 
-        $this->page = $page;
-        $this->request = $request;
+        $this->action_handler = $action_handler;
     }
 
     public function ajax() {
@@ -17,10 +15,6 @@ class AWPCP_TableEntryActionAjaxHandler extends AWPCP_AjaxHandler {
             return $this->error_response( __( 'You are not authorized to perform this action.', 'another-wordpress-classifieds-plugin' ) );
         }
 
-        return $this->process_entry_action();
-    }
-
-    protected function process_entry_action() {
-        return false;
+        return $this->action_handler->process_entry_action( $this );
     }
 }

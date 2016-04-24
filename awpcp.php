@@ -347,6 +347,7 @@ require_once(AWPCP_DIR . "/includes/payment-terms-table.php");
 require( AWPCP_DIR . "/installer.php" );
 
 // admin functions
+require( AWPCP_DIR . '/admin/interface-table-entry-action-handler.php' );
 require_once(AWPCP_DIR . "/admin/admin-panel.php");
 require_once( AWPCP_DIR . '/admin/class-admin-menu-builder.php' );
 require( AWPCP_DIR . "/admin/class-admin-page-url-builder.php");
@@ -357,7 +358,7 @@ require_once( AWPCP_DIR . '/admin/class-main-classifieds-admin-page.php' );
 require_once( AWPCP_DIR . '/admin/class-settings-admin-page.php' );
 require_once( AWPCP_DIR . '/admin/class-table-entry-action-ajax-handler.php' );
 require( AWPCP_DIR . '/admin/class-uninstall-admin-page.php' );
-require_once( AWPCP_DIR . '/admin/class-add-edit-table-entry-ajax-handler.php' );
+require( AWPCP_DIR . '/admin/class-add-edit-table-entry-rendering-helper.php' );
 
 require( AWPCP_DIR . '/admin/categories/class-create-category-admin-page.php' );
 require( AWPCP_DIR . '/admin/categories/class-delete-categories-admin-page.php' );
@@ -366,12 +367,12 @@ require( AWPCP_DIR . '/admin/categories/class-move-categories-admin-page.php' );
 require( AWPCP_DIR . '/admin/categories/class-update-category-admin-page.php' );
 
 require_once( AWPCP_DIR . '/admin/credit-plans/class-credit-plans-admin-page.php' );
-require_once( AWPCP_DIR . '/admin/credit-plans/class-add-credit-plan-ajax-handler.php' );
-require_once( AWPCP_DIR . '/admin/credit-plans/class-delete-credit-plan-ajax-handler.php' );
-require_once( AWPCP_DIR . '/admin/credit-plans/class-edit-credit-plan-ajax-handler.php' );
-require_once( AWPCP_DIR . '/admin/fees/class-add-fee-ajax-handler.php' );
-require_once( AWPCP_DIR . '/admin/fees/class-delete-fee-ajax-handler.php' );
-require_once( AWPCP_DIR . '/admin/fees/class-edit-fee-ajax-handler.php' );
+require_once( AWPCP_DIR . '/admin/credit-plans/class-add-credit-plan-action-handler.php' );
+require_once( AWPCP_DIR . '/admin/credit-plans/class-delete-credit-plan-action-handler.php' );
+require_once( AWPCP_DIR . '/admin/credit-plans/class-edit-credit-plan-action-handler.php' );
+require_once( AWPCP_DIR . '/admin/fees/class-add-fee-action-handler.php' );
+require_once( AWPCP_DIR . '/admin/fees/class-delete-fee-action-handler.php' );
+require_once( AWPCP_DIR . '/admin/fees/class-edit-fee-action-handler.php' );
 require_once( AWPCP_DIR . '/admin/fees/class-fees-admin-page.php' );
 require_once( AWPCP_DIR . '/admin/listings/class-delete-listing-ajax-handler.php' );
 require_once( AWPCP_DIR . '/admin/listings/class-manage-listings-admin-page.php' );
