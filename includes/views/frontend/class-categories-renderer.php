@@ -1,20 +1,20 @@
 <?php
 
 function awpcp_categories_list_renderer() {
-    return new AWPCP_CategoriesRenderer( awpcp_categories_collection(), new AWPCP_CategoriesListWalker() );
+    return new AWPCP_CategoriesRenderer( awpcp_categories_renderer_data_provider(), new AWPCP_CategoriesListWalker() );
 }
 
 function awpcp_categories_checkbox_list_renderer() {
-    return new AWPCP_CategoriesRenderer( awpcp_categories_collection(), new AWPCP_CategoriesCheckboxListWalker() );
+    return new AWPCP_CategoriesRenderer( awpcp_categories_renderer_data_provider(), new AWPCP_CategoriesCheckboxListWalker() );
 }
 
 class AWPCP_CategoriesRenderer {
 
-    private $categories;
+    private $data_provider;
     private $walker;
 
-    public function __construct( $categories, $walker ) {
-        $this->categories = $categories;
+    public function __construct( $data_provider, $walker ) {
+        $this->data_provider = $data_provider;
         $this->walker = $walker;
     }
 
@@ -63,7 +63,7 @@ class AWPCP_CategoriesRenderer {
     }
 
     private function render_categories_and_update_cache( $params, $transient_key ) {
-        $categories = $this->get_categories( $params );
+        $categories = $this->data_provider->get_categories( $params );
         $max_depth = $params['show_children_categories'] ? 0 : 1;
 
         if ( $this->walker->configure( $params ) ) {
@@ -74,31 +74,6 @@ class AWPCP_CategoriesRenderer {
         }
 
         return $output;
-    }
-
-    private function get_categories( $params ) {
-        $selected_categories = array();
-
-        if ( ! is_null( $params['category_id'] ) && $params['show_children_categories'] ) {
-            $categories_found = $this->categories->get_categories_hierarchy( $params['category_id'] );
-        } else if ( ! is_null( $params['category_id'] ) ) {
-            $categories_found = $this->categories->find( array( 'id' => $params['category_id'] ) );
-        } else if ( is_null( $params['parent_category_id'] ) && $params['show_children_categories'] ) {
-            $categories_found = $this->categories->get_all();
-        } else if ( is_null( $params['parent_category_id'] ) ) {
-            $categories_found = $this->categories->find_by_parent_id( 0 );
-        } else {
-            $categories_found = $this->categories->find_by_parent_id( $params['parent_category_id'] );
-        }
-
-        foreach ( $categories_found as $category ) {
-            $category->listings_count = total_ads_in_cat( $category->id );
-            if ( $params['show_empty_categories'] || $category->listings_count > 0 ) {
-                $selected_categories[] = $category;
-            }
-        }
-
-        return $selected_categories;
     }
 
     private function update_cache( $transient_key, $output ) {
