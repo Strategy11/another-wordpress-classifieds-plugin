@@ -351,6 +351,7 @@ require_once(AWPCP_DIR . "/frontend/widget-search.php");
 require_once(AWPCP_DIR . "/frontend/widget-latest-ads.php");
 require_once(AWPCP_DIR . "/frontend/widget-random-ad.php");
 require_once(AWPCP_DIR . "/frontend/widget-categories.php");
+require( AWPCP_DIR . '/frontend/class-wordpress-status-header-filter.php' );
 
 
 class AWPCP {
@@ -642,6 +643,9 @@ class AWPCP {
         } else {
             // load resources required in frontend screens only.
             add_action( 'template_redirect', array( awpcp_secure_url_redirection_handler(), 'dispatch' ) );
+
+            $filter = awpcp_wordpress_status_header_filter();
+            add_filter( 'status_header', array( $filter, 'filter_status_header' ), 10, 4 );
         }
 
         add_filter( 'awpcp-content-placeholders', array( $this, 'register_content_placeholders' ) );
