@@ -164,6 +164,9 @@ require_once(AWPCP_DIR . "/includes/helpers/widgets/class-user-field.php");
 require_once(AWPCP_DIR . "/includes/helpers/widgets/class-users-dropdown.php");
 require_once(AWPCP_DIR . "/includes/helpers/widgets/class-users-autocomplete.php");
 
+require( AWPCP_DIR . '/includes/html/class-html-renderer.php' );
+require( AWPCP_DIR . '/includes/html/interface-html-element.php' );
+
 require_once( AWPCP_DIR . "/includes/listings/class-listings-finder.php" );
 require( AWPCP_DIR . "/includes/listings/class-listings-meta-configuration.php" );
 require_once( AWPCP_DIR . "/includes/listings/class-listing-action.php" );
@@ -370,10 +373,12 @@ require_once( AWPCP_DIR . '/admin/credit-plans/class-credit-plans-admin-page.php
 require_once( AWPCP_DIR . '/admin/credit-plans/class-add-credit-plan-action-handler.php' );
 require_once( AWPCP_DIR . '/admin/credit-plans/class-delete-credit-plan-action-handler.php' );
 require_once( AWPCP_DIR . '/admin/credit-plans/class-edit-credit-plan-action-handler.php' );
+require( AWPCP_DIR . '/admin/fees/class-add-edit-fee-rendering-helper.php' );
 require_once( AWPCP_DIR . '/admin/fees/class-add-fee-action-handler.php' );
 require_once( AWPCP_DIR . '/admin/fees/class-delete-fee-action-handler.php' );
 require_once( AWPCP_DIR . '/admin/fees/class-edit-fee-action-handler.php' );
 require_once( AWPCP_DIR . '/admin/fees/class-fees-admin-page.php' );
+require_once( AWPCP_DIR . '/admin/fees/class-fee-entry-form.php' );
 require_once( AWPCP_DIR . '/admin/listings/class-delete-listing-ajax-handler.php' );
 require_once( AWPCP_DIR . '/admin/listings/class-manage-listings-admin-page.php' );
 require_once( AWPCP_DIR . '/admin/pointers/class-drip-autoresponder-ajax-handler.php' );

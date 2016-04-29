@@ -3,7 +3,8 @@
 function awpcp_add_fee_ajax_handler() {
     return new AWPCP_TableEntryActionAjaxHandler(
         new AWPCP_Add_Fee_Action_Handler(
-            awpcp_add_edit_table_entry_rendering_helper( awpcp_fees_admin_page() ),
+            awpcp_fee_entry_form(),
+            awpcp_add_edit_fee_rendering_helper(),
             awpcp_request()
         ),
         awpcp_ajax_response()
@@ -12,11 +13,13 @@ function awpcp_add_fee_ajax_handler() {
 
 class AWPCP_Add_Fee_Action_Handler implements AWPCP_Table_Entry_Action_Handler {
 
-    private $rendering_helper;
+    private $fee_entry_form;
+    private $fee_rendering_helper;
     private $request;
 
-    public function __construct( $rendering_helper, $request ) {
-        $this->rendering_helper = $rendering_helper;
+    public function __construct( $fee_entry_form, $fee_rendering_helper, $request ) {
+        $this->fee_entry_form = $fee_entry_form;
+        $this->fee_rendering_helper = $fee_rendering_helper;
         $this->request = $request;
     }
 
@@ -26,8 +29,9 @@ class AWPCP_Add_Fee_Action_Handler implements AWPCP_Table_Entry_Action_Handler {
         if ( $this->request->post( 'save' ) ) {
             $this->save_new_fee( $fee, $ajax_handler );
         } else {
-            $template = AWPCP_DIR . '/admin/templates/admin-panel-fees-entry-form.tpl.php';
-            $ajax_handler->success( array( 'html' => $this->rendering_helper->render_entry_form( $template, $fee ) ) );
+            $ajax_handler->success(array(
+                'html' => $this->fee_rendering_helper->render_entry_form( $fee, $this->fee_entry_form ),
+            ));
         }
     }
 
@@ -40,7 +44,7 @@ class AWPCP_Add_Fee_Action_Handler implements AWPCP_Table_Entry_Action_Handler {
                 'errors' => $errors,
             ) );
         } else {
-            return $ajax_handler->success( array( 'html' => $this->rendering_helper->render_entry_row( $fee ) ) );
+            return $ajax_handler->success( array( 'html' => $this->fee_rendering_helper->render_entry_row( $fee ) ) );
         }
     }
 }
