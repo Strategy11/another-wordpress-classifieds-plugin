@@ -10,6 +10,23 @@
     float: right;
 }
 
+.awpcp-admin-fees .inline-edit-col
+
+.awpcp-admin-fees .column-categories {
+    width: 17%;
+}
+.awpcp-admin-fees .column-categories .category-checklist {
+    height: 100px;
+    min-width: 100px;
+}
+.awpcp-admin-fees .column-categories .category-checklist li {
+    margin-bottom: 3px;
+}
+.awpcp-admin-fees .column-categories .category-checklist label {
+    font-size: 0.9em;
+}
+
+
 #wpbody-content .awpcp-admin-fees .inline-edit-row .awpcp-fee-form-categories-column {
     box-sizing: border-box;
     padding-left: 15px;
@@ -28,6 +45,43 @@
     .awpcp-inline-form-title {
         margin: 0.6em 0 .76em;
         text-transform: uppercase;
+    }
+
+    .category-checklist {
+        height: 400px;
+        max-height: 400px;
+
+        li {
+            margin-bottom: 0;
+        }
+        .selectit {
+            display: inline-block;
+            margin: 0;
+        }
+        input[type="text"] {
+            background: #fafafa;
+            border-width: 0;
+            float: right;
+            margin: 2px 0 0 0;
+            width: 80px;
+        }
+        input[type="text"]:focus {
+            background: #fff;
+            border-width: 1px;
+        }
+
+        ul ul {
+            padding-right: 0;
+        }
+    }
+
+    .awpcp-admin-fee-entry-form-categories-allowed-field {
+        .title {
+            width: 20em;
+        }
+        .input-text-wrap {
+            margin-left: 20em;
+        }
     }
 }
 
