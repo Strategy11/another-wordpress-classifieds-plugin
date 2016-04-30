@@ -200,9 +200,17 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
                 $result = true;
             } else if ($this->id) {
                 $result = $wpdb->update(AWPCP_TABLE_ADFEES, $data, array('adterm_id' => $this->id));
+
+                if ( $result !== false ) {
+                    do_action( 'awpcp-payment-term-fee-updated', $this );
+                }
             } else {
                 $result = $wpdb->insert(AWPCP_TABLE_ADFEES, $data);
                 $this->id = $wpdb->insert_id;
+
+                if ( $result !== false ) {
+                    do_action( 'awpcp-payment-term-fee-created', $this );
+                }
             }
         } else {
             $result = false;
