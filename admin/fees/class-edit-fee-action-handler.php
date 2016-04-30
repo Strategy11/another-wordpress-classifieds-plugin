@@ -60,6 +60,7 @@ class AWPCP_Edit_Fee_Action_Handler implements AWPCP_Table_Entry_Action_Handler 
             'private' => $this->request->post( 'private', false ),
             'featured' => $this->request->post( 'featured', false ),
             'categories' => array_filter( $this->request->post( 'categories', array() ) ),
+            'number_of_categories_allowed' => $this->request->post( 'number_of_categories_allowed' ),
         ) );
 
         if ( $fee->save( $errors ) === false ) {

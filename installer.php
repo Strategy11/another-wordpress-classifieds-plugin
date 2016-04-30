@@ -245,6 +245,7 @@ class AWPCP_Installer {
                 'enable_upgrade_routine_to_migrate_listing_categories',
                 'enable_upgrade_routine_to_migrate_listings',
                 'enable_upgrade_routine_to_migrate_media',
+                'add_number_of_categories_allowed_column_to_fees_table',
             ),
         );
     }
@@ -1034,6 +1035,14 @@ class AWPCP_Installer {
     private function enable_upgrade_routine_to_migrate_media() {
         $this->upgrade_tasks->enable_upgrade_task( 'awpcp-store-media-as-attachments-upgrade-task-handler' );
         delete_option( 'awpcp-smaa-last-listing-id' );
+    }
+
+    private function add_number_of_categories_allowed_column_to_fees_table() {
+        global $wpdb;
+
+        if ( ! awpcp_column_exists( AWPCP_TABLE_ADFEES, 'number_of_categories_allowed' ) ) {
+            $wpdb->query( 'ALTER TABLE ' . AWPCP_TABLE_ADFEES . ' ADD `number_of_categories_allowed` INT(10) NOT NULL DEFAULT 1 AFTER `regions`' );
+        }
     }
 }
 

@@ -28,6 +28,7 @@ class AWPCP_PaymentTerm {
     public $images;
     public $regions;
     public $ads;
+    public $number_of_categories_allowed;
 
     public $recurring;
 
@@ -80,6 +81,7 @@ class AWPCP_PaymentTerm {
                 'characters' => 0,
                 'images' => 0,
                 'regions' => 1,
+                'number_of_categories_allowed' => 1,
                 'ads' => 1,
                 'featured' => 0,
                 'private' => 0,
@@ -106,6 +108,7 @@ class AWPCP_PaymentTerm {
         $data['duration_amount'] = (int) $data['duration_amount'];
         $data['images'] = (int) $data['images'];
         $data['regions'] = (int) $data['regions'];
+        $data['number_of_categories_allowed'] = max( 1, absint( $data['number_of_categories_allowed'] ) );
         $data['title_characters'] = (int) $data['title_characters'];
         $data['characters'] = (int) $data['characters'];
         $data['credits'] = (int) $data['credits'];

@@ -107,6 +107,7 @@ class AWPCP_Database_Tables {
             `buys` INT(10) UNSIGNED NOT NULL DEFAULT 0,
             `imagesallowed` INT(5) UNSIGNED NOT NULL DEFAULT 0,
             `regions` INT(10) NOT NULL DEFAULT 1,
+            `number_of_categories_allowed` INT(10) NOT NULL DEFAULT 1,
             `is_featured_ad_pricing` TINYINT(1) DEFAULT NULL,
             `categories` TEXT CHARACTER SET <charset> COLLATE <collate>,
             `characters_allowed` INT(1) NOT NULL DEFAULT 0,
