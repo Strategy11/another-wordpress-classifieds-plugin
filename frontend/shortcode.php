@@ -341,7 +341,7 @@ function awpcp_display_the_classifieds_page_body($awpcppagename) {
         'show_listings_count' => get_awpcp_option( 'showadcount' ),
         'show_sidebar' => true,
     );
-    $output .= awpcp_categories_list_renderer()->render( $params );
+    $output .= awpcp_categories_renderer_factory()->create_list_renderer()->render( $params );
 
 	$output .= "</div>";
 

@@ -1,9 +1,5 @@
 <?php
 
-function awpcp_categories_list_renderer() {
-    return new AWPCP_CategoriesRenderer( awpcp_categories_renderer_data_provider(), new AWPCP_CategoriesListWalker() );
-}
-
 function awpcp_categories_checkbox_list_renderer() {
     return new AWPCP_CategoriesRenderer( awpcp_categories_renderer_data_provider(), new AWPCP_CategoriesCheckboxListWalker() );
 }

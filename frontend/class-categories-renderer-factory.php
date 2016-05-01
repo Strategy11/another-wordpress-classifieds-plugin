@@ -1,18 +1,26 @@
 <?php
 
-function AWPCP_Categories_Renderer_Factory() {
-    return new AWPCP_Categories_Renderer_Factory( awpcp_categories_collection() );
+function awpcp_categories_renderer_factory() {
+    static $instance = null;
+
+    if ( $instance == null ) {
+        $instance = new AWPCP_Categories_Renderer_Factory(
+            awpcp_categories_renderer_data_provider()
+        );
+    }
+
+    return $instance;
 }
 
 class AWPCP_Categories_Renderer_Factory {
 
-    private $categories;
+    private $data_provider;
 
-    public function __construct( $categories ) {
-        $this->categories = $categories;
+    public function __construct( $data_provider ) {
+        $this->data_provider = $data_provider;
     }
 
     public function create_list_renderer() {
-        return new AWPCP_CategoriesRenderer( $this->categories, new AWPCP_CategoriesListWalker() );
+        return new AWPCP_CategoriesRenderer( $this->data_provider, new AWPCP_CategoriesListWalker() );
     }
 }
