@@ -83,4 +83,16 @@ class AWPCP_Categories_Collection {
     public function find_by_listing_id( $listing_id ) {
         return $this->wordpress->get_object_terms( $listing_id, $this->taxonomy );
     }
+
+    public function find_top_level_categories() {
+        $categories = $this->find_categories();
+
+        foreach ( array_keys( $categories ) as $index ) {
+            if ( $categories[ $index ]->parent != 0 ) {
+                unset( $categories[ $index ] );
+            }
+        }
+
+        return $categories;
+    }
 }
