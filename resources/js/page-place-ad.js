@@ -6,9 +6,20 @@ AWPCP.run('awpcp/page-place-ads', [
     'awpcp/user-information-updater',
     'awpcp/multiple-region-selector-validator',
     'awpcp/settings',
+    'awpcp/multiple-value-selector',
+    'awpcp/multiple-value-selector-delegate',
     'awpcp/jquery-userfield',
     'awpcp/jquery-validate-methods'
-], function( $, MediaCenter, DatepickerField, UserInformationUpdater, MultipleRegionsSelectorValidator, settings ) {
+], function(
+    $,
+    MediaCenter,
+    DatepickerField,
+    UserInformationUpdater,
+    MultipleRegionsSelectorValidator,
+    settings,
+    MultipleValueSelectorViewModel,
+    MultipleValueSelectorDelegate
+) {
     var AWPCP = jQuery.AWPCP = jQuery.extend({}, jQuery.AWPCP, AWPCP);
 
     $.AWPCP.PaymentTermsTable = function(table) {
@@ -192,6 +203,16 @@ AWPCP.run('awpcp/page-place-ads', [
             if (form.length) {
                 $.noop(new $.AWPCP.PaymentTermsTable(container.find('.awpcp-payment-terms-table')));
                 container.find('[autocomplete-field], [dropdown-field]').userfield();
+
+                var selectorContainer = form.find( '.awpcp-categories-selector' );
+                var identifier = selectorContainer.attr( 'data-multiple-value-selector-id' );
+                var selector = new MultipleValueSelectorViewModel(
+                    new MultipleValueSelectorDelegate(
+                        selectorContainer,
+                        settings.get( 'CategoriesSelector-' + identifier )
+                    )
+                );
+                selector.render();
 
                 form.validate({
                     messages: $.AWPCP.l10n('page-place-ad-order')

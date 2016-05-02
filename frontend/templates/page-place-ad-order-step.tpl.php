@@ -27,11 +27,19 @@
 <form class="awpcp-order-form" method="post">
     <h3><?php echo esc_html( _x( 'Please select a Category for your Ad', 'place ad order step', 'another-wordpress-classifieds-plugin' ) ); ?></h3>
 
-    <p class="awpcp-form-spacer">
-        <?php $dropdown = awpcp_categories_dropdown(); ?>
-        <?php echo $dropdown->render( array( 'selected' => awpcp_array_data( 'category', '', $form ), 'name' => 'category', 'hide_empty' => false ) ); ?>
-        <?php echo awpcp_form_error('category', $form_errors); ?>
-    </p>
+    <div class="awpcp-form-spacer">
+        <?php
+            $categories_selector = awpcp_multiple_categories_selector();
+
+            echo $categories_selector->render(array(
+                'selected' => awpcp_array_data( 'category', '', $form ),
+                'name' => 'category',
+                'hide_empty' => false,
+            ));
+
+            echo awpcp_form_error('category', $form_errors);
+        ?>
+    </div>
 
     <?php if (awpcp_current_user_is_moderator()): ?>
     <h3><?php echo esc_html( _x( 'Please select the owner for this Ad', 'place ad order step', 'another-wordpress-classifieds-plugin' ) ); ?></h3>
