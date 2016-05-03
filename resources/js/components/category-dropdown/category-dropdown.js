@@ -109,7 +109,7 @@ function( $ ) {
 
             length = children.length;
             for (var i = 0; i < length; i = i + 1) {
-                self.dropdown.append($('<option value="' + children[i].id + '">' + children[i].name + '</option>'));
+                self.dropdown.append($('<option value="' + children[i].term_id + '">' + children[i].name + '</option>'));
             }
 
             if (length > 0) {
