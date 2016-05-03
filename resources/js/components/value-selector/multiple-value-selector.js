@@ -61,9 +61,11 @@ function( $ ) {
         },
 
         onValueChanged: function onValueChanged( event ) {
-            var elementId = $( event.target ).attr( 'id' );
+            var target = $( event.target );
+            var elementId = target.attr( 'id' );
+            var selector = elementId.substr( 0, elementId.lastIndexOf( '-' ) );
 
-            this.delegate.valueChangedInSelector( this );
+            this.delegate.valueChangedInSelector( this, selector, target, event );
             this.delegate.getContainerElement().find( '#' + elementId ).focus();
         }
     } );

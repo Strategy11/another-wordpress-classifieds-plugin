@@ -68,17 +68,9 @@ AWPCP.define( 'awpcp/multiple-value-selector-delegate', [
 
         _filterCategories: function _filterCategories( selector, allCategories ) {
             var categories = {};
-            var allSelectedValues = [];
+            var allSelectedValues = this._getAllSelectedValues();
             var selectorSelectedValues = this.selected[ selector ];
-            var selected, category;
-
-            for ( var i = 0; i < this.selectors.length; i++ ) {
-                selected = this.selected[ this.selectors[ i ] ];
-
-                if ( selected.length ) {
-                    allSelectedValues.push( selected[ selected.length - 1 ] );
-                }
-            }
+            var category;
 
             for ( var p in allCategories ) {
                 if ( ! allCategories.hasOwnProperty( p ) ) {
@@ -108,6 +100,21 @@ AWPCP.define( 'awpcp/multiple-value-selector-delegate', [
             return categories;
         },
 
+        _getAllSelectedValues: function _getAllSelectedValues() {
+            var allSelectedValues = [];
+            var selected;
+
+            for ( var i = 0; i < this.selectors.length; i++ ) {
+                selected = this.selected[ this.selectors[ i ] ];
+
+                if ( selected.length ) {
+                    allSelectedValues.push( selected[ selected.length - 1 ] );
+                }
+            }
+
+            return allSelectedValues;
+        },
+
         shouldShowAddButton: function shouldShowAddButton() {
             return this.selectors.length < this.maxNumberOfSelectors;
         },
@@ -132,8 +139,13 @@ AWPCP.define( 'awpcp/multiple-value-selector-delegate', [
             model.render();
         },
 
-        valueChangedInSelector: function valueChnagedInSelector( model ) {
+        valueChangedInSelector: function valueChnagedInSelector( model, selector, target, event ) {
+            var container = this.getContainerElement();
+            var values = this._getAllSelectedValues();
+
             model.render();
+
+            $.publish( '/category/updated', [ container, values ] );
         }
     } );
 
