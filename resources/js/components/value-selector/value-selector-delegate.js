@@ -4,8 +4,6 @@ function( $ ) {
     var ValueSelectorDelegate = function( container, options ) {
         var step = Math.max( 0, options.selected.length - 1 );
 
-        this._shouldShowRemoveButton = options.shouldShowRemoveButton;
-
         this.container = container;
 
         this.id = options.id;
@@ -15,6 +13,7 @@ function( $ ) {
         this.selected = options.selected;
         this.multistep = options.multistep;
 
+        this._shouldShowRemoveButton = options.shouldShowRemoveButton;
         this._updateSelectorSteps( step, this.selected[ step ] );
     };
 
@@ -47,13 +46,15 @@ function( $ ) {
         },
 
         getOptionsForStep: function getOptionsForStep( model, step ) {
-            var parent;
-
-            if ( step == 0 ) {
-                parent = 'root';
+            if ( this.multistep ) {
+                return this._getOptionsForStep( model, step );
             } else {
-                parent = this.selected[ step - 1 ];
+                return this._getAllOptions();
             }
+        },
+
+        _getOptionsForStep: function _getOptionsForStep( model, step ) {
+            var parent = step == 0 ? 'root' : this.selected[ step - 1 ];
 
             categories = this._getCategoryChildren( parent );
             options = [ { name: this._getPlaceholderForStep( step ), value: 0 } ];
@@ -63,6 +64,31 @@ function( $ ) {
                     name: categories[ i ].name,
                     value: categories[ i ].term_id
                 });
+            }
+
+            return options;
+        },
+
+        _getAllOptions: function _getAllOptions() {
+            categories = this._getCategoryChildren( 'root' );
+            options = [ { name: this._getPlaceholderForStep( 0 ), value: 0 } ];
+
+            return this._prepareOptions( categories, options, 0 );
+        },
+
+        _prepareOptions: function _prepareOptions( categories, options, level ) {
+            var children, name;
+
+            for ( var i = 0; i < categories.length; i++ ) {
+                children = this._getCategoryChildren( categories[ i ].term_id );
+                prefix = '&mdash;&nbsp;'.repeat( level );
+
+                options.push({
+                    name: prefix + categories[ i ].name,
+                    value: categories[ i ].term_id
+                });
+
+                this._prepareOptions( children, options, level + 1 );
             }
 
             return options;
@@ -94,7 +120,9 @@ function( $ ) {
                 this.selected.splice( step );
             }
 
-            if ( this._getCategoryChildren( this.selected[ step ] ).length ) {
+            if ( ! this.multistep ) {
+                this.steps = 1;
+            } else if ( this._getCategoryChildren( this.selected[ step ] ).length ) {
                 this.steps = this.selected.length + 1;
             } else {
                 this.steps = Math.max( 1, this.selected.length );

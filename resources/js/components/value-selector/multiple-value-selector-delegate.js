@@ -9,6 +9,7 @@ AWPCP.define( 'awpcp/multiple-value-selector-delegate', [
         this.container = container;
         this.name = options.name;
         this.categories = options.categories;
+        this.multistep = options.multistep;
         this.maxNumberOfSelectors = 3;
 
         this.init( options );
@@ -60,7 +61,7 @@ AWPCP.define( 'awpcp/multiple-value-selector-delegate', [
                     label: 'Ad Category',
                     categories: this._filterCategories( selector, this.categories ),
                     selected: this.selected[ selector ],
-                    multistep: true,
+                    multistep: this.multistep,
                     shouldShowRemoveButton: this.shouldShowRemoveButton()
                 } )
             );
