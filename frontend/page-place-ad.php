@@ -241,21 +241,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
     }
 
     protected function validate_order($data, &$errors=array()) {
-        if ($data['category'] <= 0) {
-            $errors['category'] = __('Ad Category field is required', 'another-wordpress-classifieds-plugin');
-        }
-
-        try {
-            $category = awpcp_categories_collection()->get( $data['category'] );
-            $category_name = $category->name;
-        } catch ( AWPCP_Exception $e ) {
-            $category_name = 'Unknown';
-        }
-
-        if (get_awpcp_option('noadsinparentcat') && !category_is_child($data['category'])) {
-            $message = __("You cannot list your Ad in top level categories. You need to select a sub-category of category %s.", 'another-wordpress-classifieds-plugin');
-            $errors['category'] = sprintf( $message, $category_name );
-        }
+        $this->validate_selected_category( $data, $errors );
 
         if (awpcp_current_user_is_moderator() && empty($data['user'])) {
             $errors['user'] = __('You should select an owner for this Ad.', 'another-wordpress-classifieds-plugin');
@@ -278,6 +264,34 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $additional_errors = apply_filters( 'awpcp-validate-post-listing-order', array(), $data );
 
         array_splice( $errors, count( $errors ), 0, $additional_errors );
+    }
+
+    private function validate_selected_category( $data, &$errors = array() ) {
+        if ( empty( $data['category'] ) ) {
+            $errors['category'] = __('Ad Category field is required', 'another-wordpress-classifieds-plugin');
+        }
+
+        if ( get_awpcp_option( 'noadsinparentcat' ) ) {
+            $this->verify_selected_categories_are_not_top_level(
+                $data['category'], $errors
+            );
+        }
+    }
+
+    private function verify_selected_categories_are_not_top_level( $categories, &$errors = array() ) {
+        foreach ( $categories as $category_id ) {
+            try {
+                $category = awpcp_categories_collection()->get( $category_id );
+                $category_name = $category->name;
+            } catch ( AWPCP_Exception $e ) {
+                $category_name = 'Unknown';
+            }
+
+            if ( ! category_is_child( $category_id ) ) {
+                $message = __( "You cannot list your Ad in top level categories. You need to select a sub-category of category %s.", 'another-wordpress-classifieds-plugin' );
+                $errors['category'] = sprintf( $message, $category_name );
+            }
+        }
     }
 
     public function login_step() {
@@ -314,7 +328,10 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             $skip_payment_term_selection = $transaction->get( 'skip-payment-term-selection' );
 
             $user = awpcp_post_param( 'user', intval( $transaction->user_id ) );
-            $category = awpcp_post_param( 'category', $transaction->get('category', 0) );
+            $category = $this->get_posted_categories(
+                awpcp_post_param( 'category', null ),
+                $transaction
+            );
 
             if ( $skip_payment_term_selection ) {
                 $payment_terms = null;
@@ -363,13 +380,13 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             $payment_terms = new AWPCP_PaymentTermsTable($_payment_terms);
 
             $user = wp_get_current_user()->ID;
-            $category = 0;
+            $category = array();
             $term = null;
         }
 
 
         // are we done here? what next?
-        if ($category > 0 && !is_null($term)) {
+        if ( ! empty( $category ) && ! is_null( $term ) ) {
             if (empty($form_errors) && empty($transaction_errors)) {
                 $payments->set_transaction_status_to_ready_to_checkout($transaction, $transaction_errors);
 
@@ -407,6 +424,27 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $template = AWPCP_DIR . '/frontend/templates/page-place-ad-order-step.tpl.php';
 
         return $this->render($template, $params);
+    }
+
+    private function get_posted_categories( $categories, $transaction ) {
+        if ( is_null( $categories ) ) {
+            $categories = $transaction->get( 'category', array( array() ) );
+        }
+
+        if ( ! is_array( $categories ) && $categories ) {
+            $most_specific_categories = array( $categories );
+        } else if ( ! is_array( $categories ) ) {
+            $most_specific_categories = array();
+        } else if ( isset( $categories[0] ) && is_array( $categories[0] ) ) {
+            $categories = array_map( 'array_filter', $categories );
+            $categories = array_values( $categories );
+
+            $most_specific_categories = array_map( 'end', $categories );
+        } else {
+            $most_specific_categories = array_filter( $categories );
+        }
+
+        return $most_specific_categories;
     }
 
     public function checkout_step() {
@@ -676,7 +714,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
             'ad_id' => '',
             'adterm_id' => '',
-            'ad_category' => '',
+            'ad_category' => null,
             'ad_title' => '',
             'ad_contact_name' => '',
             'ad_contact_phone' => '',
@@ -719,7 +757,10 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         }
 
         if (!is_null($transaction)) {
-            $data['ad_category'] = $transaction->get('category', $data['ad_category']);
+            $data['ad_category'] = $this->get_posted_categories(
+                $data['ad_category'],
+                $transaction
+            );
             $data['user_id'] = (int) awpcp_get_property($transaction, 'user_id', $data['user_id']);
 
             $payment_term_type = $transaction->get('payment-term-type');
@@ -1147,7 +1188,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
                     '_awpcp_poster_ip' => awpcp_getip(),
                 ),
                 'terms' => array(
-                    AWPCP_CATEGORY_TAXONOMY => array( (int) $data['ad_category'] ),
+                    AWPCP_CATEGORY_TAXONOMY => array_map( 'intval', $data['ad_category'] ),
                 ),
                 'regions' => $data['regions'],
                 'regions-allowed' => $this->get_regions_allowed( $ad->ID, $transaction ),

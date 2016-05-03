@@ -21,9 +21,7 @@
 <!-- TODO: check where is used $formdisplayvalue -->
 <div>
 	<form class="awpcp-details-form" id="adpostform" name="adpostform" action="<?php echo esc_attr( $page->url() ) ?>" method="post">
-        <?php foreach($hidden as $name => $value): ?>
-        <input type="hidden" name="<?php echo esc_attr($name) ?>" value="<?php echo esc_attr($value) ?>" />
-        <?php endforeach ?>
+        <?php echo awpcp_html_hidden_fields( $hidden ); ?>
 
         <?php if ($ui['user-dropdown']): ?>
 
