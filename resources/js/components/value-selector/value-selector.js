@@ -1,4 +1,4 @@
-/*global AWPCP*/
+/*global AWPCP, _*/
 AWPCP.define( 'awpcp/value-selector', [ 'jquery' ],
 function( $ ) {
     var ValueSelectorViewModel = function( delegate ) {
@@ -40,6 +40,13 @@ function( $ ) {
                 container.find('.awpcp-value-selector-steps-list').append( element );
             }
 
+            var errors = this.delegate.getErrorMessages(),
+                errorsList = container.find( '.awpcp-value-selector-errors' ).empty();
+
+            _.each( errors, function( message ) {
+                errorsList.append( $( '<p>' + message + '</p>' ) );
+            } );
+
             var removeButton = container.find( '.awpcp-value-selector-remove-button' );
 
             if ( removeButton.length === 0 ) {
@@ -55,7 +62,6 @@ function( $ ) {
             }
 
             container.on( 'change.vs', '.awpcp-value-selector-control', {}, function(event) {
-                console.log( 'change.vs' );
                 self.onValueChanged( event );
                 return true; // do not prevent propagation or default behaviour
             } );

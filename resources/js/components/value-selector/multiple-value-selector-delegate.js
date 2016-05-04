@@ -1,4 +1,4 @@
-/*global AWPCP*/
+/*global AWPCP, _*/
 AWPCP.define( 'awpcp/multiple-value-selector-delegate', [
     'jquery',
     'awpcp/value-selector',
@@ -6,26 +6,67 @@ AWPCP.define( 'awpcp/multiple-value-selector-delegate', [
     'awpcp/util/guid'
 ], function( $, ValueSelectorViewModel, ValueSelectorDelegate, guid ) {
     var MultipleValueSelectorDelegate = function( container, options ) {
+        var self = this;
+
         this.container = container;
         this.name = options.name;
-        this.categories = options.categories;
         this.multistep = options.multistep;
         this.maxNumberOfSelectors = 3;
+        this.messages = {
+            'selected-value-not-allowed': 'No payment terms are avaiable for the selected categories. Please change the selected category in this field to see other options.',
+        }
 
-        this.init( options );
+        this.allCategories = options.categories;
+        this.categoriesParents = this._buildCategoriesParentsHierarchy( options.categories );
+        this.availabilityMatrix = undefined;
+
+        this.prepareSelectors( options.selected );
+
+        setTimeout( function() {
+            self.broadcastSelectedValue();
+        }, 100 );
+
+        $.subscribe( '/category-selector/set-availability-matrix', function( event, matrix ) {
+            self.availabilityMatrix = matrix;
+        } );
+
+        $.publish( '/category-selector/ready' );
     };
 
     $.extend( MultipleValueSelectorDelegate.prototype, {
-        init: function init( options ) {
-            this.selectors = [];
-            this.selected = {};
+        _buildCategoriesParentsHierarchy: function _buildCategoriesParentsHierarchy( categories ) {
+            var categoriesParents = {
 
-            if ( options.selected.length == 0 ) {
-                options.selected.push( [] );
+            };
+
+            for ( var p in categories ) {
+                if ( ! categories.hasOwnProperty( p ) ) {
+                    continue;
+                }
+
+                for ( var i = 0; i < categories[ p ].length; i++ ) {
+                    if ( p == 'root' ) {
+                        categoriesParents[ categories[ p ][ i ].term_id ] = p;
+                    } else {
+                        categoriesParents[ categories[ p ][ i ].term_id ] = parseInt( p, 10 );
+                    }
+                }
             }
 
-            for ( var i = 0; i < options.selected.length; i++ ) {
-                this._addSelector( options.selected[ i ].slice() );
+            return categoriesParents;
+        },
+
+        prepareSelectors: function prepareSelectors( selected ) {
+            this.selectors = [];
+            this.selected = {};
+            this.errors = {};
+
+            if ( selected.length == 0 ) {
+                selected.push( [] );
+            }
+
+            for ( var i = 0; i < selected.length; i++ ) {
+                this._addSelector( selected[ i ].slice() );
             }
         },
 
@@ -59,19 +100,24 @@ AWPCP.define( 'awpcp/multiple-value-selector-delegate', [
                     id: selector,
                     name: this.name,
                     label: 'Ad Category',
-                    categories: this._filterCategories( selector, this.categories ),
+                    categories: this._filterCategories( this.selected[ selector ], this.allCategories ),
                     selected: this.selected[ selector ],
                     multistep: this.multistep,
-                    shouldShowRemoveButton: this.shouldShowRemoveButton()
+                    shouldShowRemoveButton: this.shouldShowRemoveButton(),
+                    errors: this.errors[ selector ]
                 } )
             );
         },
 
-        _filterCategories: function _filterCategories( selector, allCategories ) {
-            var categories = {};
+        _filterCategories: function _filterCategories( selectorSelectedValues, allCategories ) {
             var allSelectedValues = this._getAllSelectedValues();
-            var selectorSelectedValues = this.selected[ selector ];
+
+            var categories = {};
             var category;
+
+            if ( selectorSelectedValues.length == 1 ) {
+                selectorSelectedValues = this._getCategoriesHierarchy( selectorSelectedValues );
+            }
 
             for ( var p in allCategories ) {
                 if ( ! allCategories.hasOwnProperty( p ) ) {
@@ -86,7 +132,6 @@ AWPCP.define( 'awpcp/multiple-value-selector-delegate', [
                     if ( selectorSelectedValues.indexOf( category.term_id ) !== -1 ) {
                         categories[ p ].push( category );
                     } else if ( allSelectedValues.indexOf( category.term_id ) !== -1 ) {
-                        console.log( 'ignored', p, category );
                         continue;
                     } else {
                         categories[ p ].push( category );
@@ -116,8 +161,46 @@ AWPCP.define( 'awpcp/multiple-value-selector-delegate', [
             return allSelectedValues;
         },
 
+        _getCategoriesHierarchy: function _getCategoriesHierarchy( categories ) {
+            var allCategoriesInHierarchy = [];
+            var category;
+
+            for ( var i = 0; i < categories.length; i++ ) {
+                category = categories[ i ];
+
+                do {
+                    if ( allCategoriesInHierarchy.indexOf( category ) === -1 ) {
+                        allCategoriesInHierarchy.push( category );
+                    }
+                    category = this.categoriesParents[ category ];
+                } while( category && category != 'root' );
+            }
+
+            return allCategoriesInHierarchy;
+        },
+
+        _getSelectorErrors: function _getSelectorErrors( selected, allowed ) {
+            if ( typeof allowed == 'undefined' ) {
+                return [];
+            }
+
+            if ( selected.length == 0 ) {
+                return [];
+            }
+
+            if ( allowed.indexOf( selected[ selected.length - 1 ] ) !== -1 ) {
+                return [];
+            }
+
+            return [ this.messages[ 'selected-value-not-allowed' ] ];
+        },
+
         shouldShowAddButton: function shouldShowAddButton() {
-            return this.selectors.length < this.maxNumberOfSelectors;
+            if ( this.selectors.length >= this.maxNumberOfSelectors ) {
+                return false;
+            }
+
+            return true;
         },
 
         onAddButtonPressed: function onAddButtonPressed( model ) {
@@ -141,11 +224,49 @@ AWPCP.define( 'awpcp/multiple-value-selector-delegate', [
         },
 
         valueChangedInSelector: function valueChnagedInSelector( model, selector, target, event ) {
-            var container = this.getContainerElement();
-            var values = this._getAllSelectedValues();
+            this._validateSelectedValues( selector );
 
             model.render();
 
+            this.broadcastSelectedValue();
+        },
+
+        _validateSelectedValues: function _validateSelectedValues( selector ) {
+            var allSelectedValues = this._getAllSelectedValues();
+            var allowedCategories = this._getAllowedCategories( allSelectedValues, this.selected[ selector ] );
+
+            this.errors[ selector ] = this._getSelectorErrors( this.selected[ selector ], allowedCategories );
+        },
+
+        _getAllowedCategories: function _getAllowedCategories( allSelectedValues, selectorSelectedValues ) {
+            var availabilityMatrix = this.availabilityMatrix;
+            var otherSelectedValues = _.difference( allSelectedValues, selectorSelectedValues );
+            var allowedCategories, categories;
+
+            if ( otherSelectedValues.length == 0 ) {
+                return undefined;
+            }
+
+            if ( typeof availabilityMatrix == 'undefined' ) {
+                return undefined;
+            }
+
+            return _.reduce( otherSelectedValues, function( memo, id ) {
+                categories = availabilityMatrix[ id ];
+
+                if ( typeof categories == 'undefined' ) {
+                    return [];
+                } else if ( memo === null ) {
+                    return categories;
+                } else {
+                    return _.intersection( memo, categories );
+                }
+            }, null );
+        },
+
+        broadcastSelectedValue: function broadcastSelectedValue() {
+            var container = this.getContainerElement();
+            var values = this._getAllSelectedValues();
             $.publish( '/category/updated', [ container, values ] );
         }
     } );

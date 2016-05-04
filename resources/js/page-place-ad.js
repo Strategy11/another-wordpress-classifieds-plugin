@@ -1,4 +1,4 @@
-/*global AWPCP*/
+/*global AWPCP, _*/
 AWPCP.run('awpcp/page-place-ads', [
     'jquery',
     'awpcp/media-center',
@@ -28,16 +28,16 @@ AWPCP.run('awpcp/page-place-ads', [
         self.table = table;
         self.terms = table.find('.awpcp-payment-term');
 
-        self.category = null;
+        self.categories = null;
         self.user_terms = null;
 
-        $.subscribe('/category/updated', function(event, dropdown, category) {
+        $.subscribe('/category/updated', function( event, dropdown, categories ) {
             if ($.contains(dropdown.closest('form').get(0), self.table.get(0))) {
-                if ( category === null && ! settings.get( 'hide-all-payment-terms-if-no-category-is-selected' ) ) {
+                if ( categories === null && ! settings.get( 'hide-all-payment-terms-if-no-category-is-selected' ) ) {
                     return;
                 }
 
-                self.category = category;
+                self.categories = categories;
                 self.update();
             }
         });
@@ -46,42 +46,19 @@ AWPCP.run('awpcp/page-place-ads', [
             self.user_terms = user.payment_terms;
             self.update();
         });
+
+        $.subscribe( '/category-selector/ready', function() {
+            self._broadcastCategoriesMatrix();
+        } );
     };
 
     $.extend($.AWPCP.PaymentTermsTable.prototype, {
         update: function() {
             var self = this, enabled, disabled, radio, term, categories;
 
-            disabled = self.terms.filter(function() {
-                term = $(this);
-
-                // filter by user
-                if ($.isArray(self.user_terms) && $.inArray(term.attr('id'), self.user_terms) === -1) {
-                    return true;
-                }
-
-                // filter by category
-                if ( self.category === null && settings.get( 'hide-all-payment-terms-if-no-category-is-selected' ) ) {
-                    return true;
-                } else if (self.category) {
-                    categories = $.parseJSON(term.attr('data-categories'));
-                    if ($.isArray(categories)) {
-                        categories = $.map(categories, function(category) {
-                            return parseInt(category, 10);
-                        });
-                    } else {
-                        categories = [];
-                    }
-
-                    if (categories.length > 0 && $.inArray(self.category, categories) === -1) {
-                        return true;
-                    }
-                }
-
-                return false;
-            });
-
+            disabled = this._getDisabledPaymentTerms();
             enabled = self.terms.not(disabled.get());
+
             if (enabled.find(':radio:checked').length === 0) {
                 radio = enabled.eq(0).find(':radio');
                 if (radio.prop) {
@@ -93,6 +70,63 @@ AWPCP.run('awpcp/page-place-ads', [
 
             enabled.fadeIn();
             disabled.fadeOut();
+        },
+
+        _getDisabledPaymentTerms: function _getDisabledPaymentTerms() {
+            var self = this;
+
+            return self.terms.filter(function() {
+                term = $(this);
+
+                // filter by user
+                if ($.isArray(self.user_terms) && $.inArray(term.attr('id'), self.user_terms) === -1) {
+                    return true;
+                }
+
+                // filter by category
+                if ( self.categories === null && settings.get( 'hide-all-payment-terms-if-no-category-is-selected' ) ) {
+                    return true;
+                } else if ( self.categories ) {
+                    categories = $.parseJSON(term.attr('data-categories'));
+
+                    if ($.isArray(categories)) {
+                        categories = $.map(categories, function(category) {
+                            return parseInt(category, 10);
+                        });
+                    } else {
+                        categories = [];
+                    }
+
+                    if ( _.difference( self.categories, categories ).length ) {
+                        return true;
+                    }
+                }
+
+                return false;
+            });
+        },
+
+        _broadcastCategoriesMatrix: function _broadcastCategoriesMatrix() {
+            var termsCategories = this.terms.map(function() {
+                return { categories: $.parseJSON( $(this).attr( 'data-categories' ) ) };
+            });
+
+            var matrix = {}, newEntries, previousEntries;
+
+            _.each( termsCategories, function( item ) {
+                _.each( item.categories, function( id, index, list ) {
+                    newEntries = _.union( list.slice( 0, index ), list.slice( index + 1 ) );
+                    previousEntries = matrix[ id ];
+
+                    if ( previousEntries ) {
+                        matrix[ id ] = _.union( previousEntries, newEntries );
+                    } else {
+                        matrix[ id ] = newEntries;
+                    }
+                } );
+            } );
+
+            $.publish( '/category-selector/set-availability-matrix', [ matrix ] );
         }
     });
 

@@ -12,6 +12,7 @@ function( $ ) {
         this.categories = options.categories;
         this.selected = options.selected;
         this.multistep = options.multistep;
+        this.errors = options.errors;
 
         this._shouldShowRemoveButton = options.shouldShowRemoveButton;
         this._updateSelectorSteps( step, this.selected[ step ] );
@@ -30,6 +31,7 @@ function( $ ) {
                 this.container.append( $( '<label for="' + id + '" class="awpcp-value-selector-label">' + label + '</label>' ) );
                 this.container.append( $( '<span class="awpcp-value-selector-remove-button-placeholder"></span>' ) );
                 this.container.append( $( '<ul class="awpcp-value-selector-steps-list clearfix"></ul>' ) );
+                this.container.append( $( '<div class="awpcp-value-selector-errors"></div>' ) );
             }
 
             return this.container;
@@ -77,15 +79,17 @@ function( $ ) {
         },
 
         _prepareOptions: function _prepareOptions( categories, options, level ) {
-            var children, name;
+            var id, children, name;
 
             for ( var i = 0; i < categories.length; i++ ) {
-                children = this._getCategoryChildren( categories[ i ].term_id );
+                id = categories[ i ].term_id;
+
+                children = this._getCategoryChildren( id );
                 prefix = '&mdash;&nbsp;'.repeat( level );
 
                 options.push({
                     name: prefix + categories[ i ].name,
-                    value: categories[ i ].term_id
+                    value: id,
                 });
 
                 this._prepareOptions( children, options, level + 1 );
@@ -139,6 +143,10 @@ function( $ ) {
 
         shouldShowRemoveButton: function shouldShowRemoveButton( model ) {
             return this._shouldShowRemoveButton;
+        },
+
+        getErrorMessages: function getErrorMessages() {
+            return this.errors;
         }
     } );
 

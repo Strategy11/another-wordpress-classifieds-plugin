@@ -1048,8 +1048,14 @@ class AWPCP {
 
 		wp_register_script(
             'awpcp',
-            "{$js}/awpcp.min.js",
-            array( 'jquery', 'backbone', 'awpcp-knockout', 'awpcp-jquery-breakpoints' ),
+            "{$js}/awpcp.src.js",
+            array(
+                'jquery',
+                'backbone',
+                'underscore',
+                'awpcp-knockout',
+                'awpcp-jquery-breakpoints'
+            ),
             $awpcp_db_version,
             true
         );
@@ -1108,8 +1114,20 @@ class AWPCP {
 		wp_register_style( 'awpcp-frontend-style-lte-ie-7', "{$css}/awpcpstyle-lte-ie-7.css", array( 'awpcp-frontend-style' ), $awpcp_db_version );
 		$wp_styles->add_data( 'awpcp-frontend-style-lte-ie-7', 'conditional', 'lte IE 7' );
 
-        $dependencies = array( 'awpcp', 'awpcp-multiple-region-selector', 'awpcp-jquery-validate', 'jquery-ui-datepicker', 'jquery-ui-autocomplete', 'plupload-all' );
-		wp_register_script( 'awpcp-page-place-ad', "{$js}/page-place-ad.js", $dependencies, $awpcp_db_version, true );
+		wp_register_script(
+            'awpcp-page-place-ad',
+            "{$js}/page-place-ad.js",
+            array(
+                'awpcp',
+                'awpcp-multiple-region-selector',
+                'awpcp-jquery-validate',
+                'jquery-ui-datepicker',
+                'jquery-ui-autocomplete',
+                'plupload-all',
+            ),
+            $awpcp_db_version,
+            true
+        );
 
         $dependencies = array('awpcp', 'awpcp-multiple-region-selector', 'awpcp-jquery-validate', 'jquery-ui-datepicker');
 		wp_register_script('awpcp-page-search-listings', "{$js}/page-search-listings.js", $dependencies, $awpcp_db_version, true);
