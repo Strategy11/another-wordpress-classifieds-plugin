@@ -50,7 +50,7 @@ function( $ ) {
             var removeButton = container.find( '.awpcp-value-selector-remove-button' );
 
             if ( removeButton.length === 0 ) {
-                removeButton = $( '<a href="#" class="awpcp-value-selector-button awpcp-value-selector-remove-button">Remove</a>' );
+                removeButton = $( '<a href="#" class="awpcp-value-selector-button awpcp-value-selector-remove-button dashicons-before dashicons-no" title="Remove Category"></a>' );
                 container.find('.awpcp-value-selector-remove-button-placeholder')
                     .replaceWith( removeButton );
             }

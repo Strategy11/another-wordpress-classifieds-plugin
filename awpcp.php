@@ -1106,7 +1106,12 @@ class AWPCP {
 
 		/* frontend */
 
-		wp_register_style('awpcp-frontend-style', "{$css}/awpcpstyle.css", array(), $awpcp_db_version);
+        wp_register_style(
+            'awpcp-frontend-style',
+            "{$css}/awpcpstyle.css",
+            array( 'dashicons' ),
+            $awpcp_db_version
+        );
 
 		wp_register_style('awpcp-frontend-style-ie-6', "{$css}/awpcpstyle-ie-6.css", array('awpcp-frontend-style'), $awpcp_db_version);
 		$wp_styles->add_data( 'awpcp-frontend-style-ie-6', 'conditional', 'lte IE 6' );
