@@ -91,10 +91,10 @@ class AWPCP_CategoriesDropdown {
         $category_ancestors = array();
         $parent_id = $category_id;
 
-        do {
+        while ( $parent_id != 0 && isset( $categories_parents[ $parent_id ] ) ) {
             $category_ancestors[] = $parent_id;
             $parent_id = $categories_parents[ $parent_id ];
-        } while ( $parent_id != 0 );
+        }
 
         return array_reverse( $category_ancestors );
     }
