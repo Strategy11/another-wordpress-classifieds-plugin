@@ -31,7 +31,7 @@ function( $ ) {
             var addButton = container.find( '.awpcp-value-selector-add-button' );
 
             if ( addButton.length === 0 ) {
-                addButton = $( '<a href="#" class="awpcp-value-selector-button awpcp-value-selector-add-button">Add</a>' );
+                addButton = $( '<a href="#" class="awpcp-value-selector-button awpcp-value-selector-add-button" title="Add Another Category">Add Another Category</a>' );
                 container.find('.awpcp-value-selector-add-button-placeholder')
                     .replaceWith( addButton );
             }
