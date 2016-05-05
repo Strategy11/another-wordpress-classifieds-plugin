@@ -241,7 +241,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
     }
 
     protected function validate_order($data, &$errors=array()) {
-        $this->validate_selected_category( $data, $errors );
+        $this->validate_selected_categories( $data, $errors );
 
         if (awpcp_current_user_is_moderator() && empty($data['user'])) {
             $errors['user'] = __('You should select an owner for this Ad.', 'another-wordpress-classifieds-plugin');
@@ -249,11 +249,6 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
         if (is_null($data['term'])) {
             $errors['payment-term'] = __('You should choose one of the available Payment Terms.', 'another-wordpress-classifieds-plugin');
-        }
-
-        if (!empty($data['term']->categories) && !in_array($data['category'], $data['term']->categories)) {
-            $message = __('The Payment Term you selected is not valid for the category %s', 'another-wordpress-classifieds-plugin');
-            $errors['payment-term'] = sprintf( $message, $category_name );
         }
 
         if ( ! awpcp_current_user_is_admin() && ! is_null( $data['term'] ) && $data['term']->private ) {
@@ -266,32 +261,53 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         array_splice( $errors, count( $errors ), 0, $additional_errors );
     }
 
-    private function validate_selected_category( $data, &$errors = array() ) {
+    private function validate_selected_categories( $data, &$errors = array() ) {
+        $allow_categories_in_parent  = ! get_awpcp_option( 'noadsinparentcat' );
+
         if ( empty( $data['category'] ) ) {
-            $errors['category'] = __('Ad Category field is required', 'another-wordpress-classifieds-plugin');
+            $errors['category'] = __( 'Ad Category field is required', 'another-wordpress-classifieds-plugin' );
         }
 
-        if ( get_awpcp_option( 'noadsinparentcat' ) ) {
-            $this->verify_selected_categories_are_not_top_level(
-                $data['category'], $errors
-            );
-        }
-    }
+        $categories_names = $this->get_categories_names( $data['category'] );
+        $categories_not_allowed = array_diff( $data['category'], $data['term']->categories );
 
-    private function verify_selected_categories_are_not_top_level( $categories, &$errors = array() ) {
-        foreach ( $categories as $category_id ) {
-            try {
-                $category = awpcp_categories_collection()->get( $category_id );
-                $category_name = $category->name;
-            } catch ( AWPCP_Exception $e ) {
-                $category_name = 'Unknown';
+        if ( ! empty( $categories_not_allowed ) ) {
+            $not_allowed_names = array();
+
+            foreach ( $categories_not_allowed as $category_id ) {
+                $not_allowed_names[] = $categories_names[ $category_id ];
             }
 
-            if ( ! category_is_child( $category_id ) ) {
+            $message = _n( 'The Payment Term you selected is not valid for category <name>', 'The Payment Term you selected is not valid for categories: <names>', count( $categories_not_allowed ), 'another-wordpress-classifieds-plugin' );
+            $message = awpcp_replace_names_in_message( $messages, $not_allowed_names );
+
+            $errors['payment-term'] = $message;
+        }
+
+        foreach ( $data['category'] as $category_id ) {
+            $category_name = $categories_names[ $category_id ];
+
+            if ( ! $allow_categories_in_parent && ! category_is_child( $category_id ) ) {
                 $message = __( "You cannot list your Ad in top level categories. You need to select a sub-category of category %s.", 'another-wordpress-classifieds-plugin' );
                 $errors['category'] = sprintf( $message, $category_name );
             }
         }
+    }
+
+    private function get_categories_names( $categories ) {
+        $categories_collection = awpcp_categories_collection();
+        $categories_names = array();
+
+        foreach ( $categories as $category_id ) {
+            try {
+                $category = $categories_collection->get( $category_id );
+                $categories_names[ $category_id ] = $category->name;
+            } catch ( AWPCP_Exception $e ) {
+                $categories_names[ $category_id ] = 'Unknown';
+            }
+        }
+
+        return $categories_names;
     }
 
     public function login_step() {
