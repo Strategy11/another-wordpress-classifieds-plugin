@@ -63,7 +63,7 @@ function awpcp_admin_page_title() {
 }
 
 function awpcp_replace_names_in_message( $message, $names ) {
-    $placeholder = count( $modules ) === 1 ? '<name>' : '<names>';
+    $placeholder = count( $names ) === 1 ? '<name>' : '<names>';
     return str_replace( $placeholder, awpcp_string_with_names( $names ), $message );
 }
 

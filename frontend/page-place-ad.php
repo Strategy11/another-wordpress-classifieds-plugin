@@ -435,7 +435,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             $most_specific_categories = array( $categories );
         } else if ( ! is_array( $categories ) ) {
             $most_specific_categories = array();
-        } else if ( isset( $categories[0] ) && is_array( $categories[0] ) ) {
+        } else if ( awpcp_is_array_of_arrays( $categories ) ) {
             $categories = array_map( 'array_filter', $categories );
             $categories = array_values( $categories );
 

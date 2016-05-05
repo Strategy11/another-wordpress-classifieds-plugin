@@ -273,6 +273,16 @@ function awpcp_is_mysql_date( $date ) {
 	return preg_match( $regexp, $date ) === 1;
 }
 
+function awpcp_is_array_of_arrays( $array ) {
+    if ( ! is_array( $array ) ) {
+        return false;
+    }
+
+    $array_keys = array_keys( $array );
+
+    return is_array( $array[ $array_keys[ 0 ] ] );
+}
+
 
 /**
  * Returns a WP capability required to be considered an AWPCP admin.
