@@ -173,15 +173,9 @@ class AWPCP_ModulesManager {
     }
 
     private function replace_modules_names_in_message( $message, $modules ) {
-        $modules_names = $this->get_modules_names( $modules );
-
-        if ( count( $modules ) === 1 ) {
-            $message = str_replace( '<module-name>', $this->get_string_with_names( $modules_names ), $message );
-        } else {
-            $message = str_replace( '<modules-names>', $this->get_string_with_names( $modules_names ), $message );
-        }
-
-        return $message;
+        return awpcp_replace_names_in_message(
+            $message, $this->get_modules_names( $modules )
+        );
     }
 
     private function get_modules_names( $modules ) {
@@ -190,22 +184,6 @@ class AWPCP_ModulesManager {
         }
 
         return $modules_names;
-    }
-
-    private function get_string_with_names( $names ) {
-        if ( count( $names ) === 1 ) {
-            $string = '<strong>' . $names[0] . '</strong>';
-        } else {
-            $n_first_names = '<strong>' . implode( '</strong>, <strong>', array_slice( $names, 0, -1 ) ) . '</strong>';
-            $last_name = '<strong>' . end( $names ) . '</strong>';
-
-            /* translators: example: <Extra Fields, Featured Ads> and <Region Control> */
-            $string = __( '<comma-separated-names> and <single-name>', 'another-wordpress-classifieds-plugin' );
-            $string = str_replace( '<comma-separated-names>', $n_first_names, $string );
-            $string = str_replace( '<single-name>', $last_name, $string );
-        }
-
-        return $string;
     }
 
     private function show_required_awpcp_version_notice( $modules ) {
