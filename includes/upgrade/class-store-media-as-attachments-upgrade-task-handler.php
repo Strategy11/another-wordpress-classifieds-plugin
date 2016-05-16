@@ -78,6 +78,17 @@ class AWPCP_Store_Media_As_Attachments_Upgrade_Task_Handler implements AWPCP_Upg
         $parent_listing_id = $this->get_id_of_associated_listing( $item );
         $description = '';
 
+        if ( $parent_listing_id == 0 ) {
+            debugf(
+                sprintf( 'The file %s has no associated listing.', $file_path ),
+                $item,
+                $file_path,
+                $file_name
+            );
+
+            return $item->id;
+        }
+
         // do the validation and storage stuff
         $attachment_id = $this->wordpress->handle_media_sideload( $file_array, $parent_listing_id, $description );
 
