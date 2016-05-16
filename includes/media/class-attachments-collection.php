@@ -65,8 +65,16 @@ class AWPCP_Attachments_Collection {
     }
 
     public function count_attachments( $query = array() ) {
-        $attachments = new WP_Query( $this->prepare_attachments_query( $query ) );
+        $attachments = new WP_Query( $this->prepare_count_attachments_query( $query ) );
         return $attachments->found_posts;
+    }
+
+    private function prepare_count_attachments_query( $query ) {
+        $query = $this->prepare_attachments_query( $query );
+
+        $query['fields'] = 'ids';
+
+        return $query;
     }
 
     public function count_attachments_of_type( $type, $query = array() ) {

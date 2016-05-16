@@ -92,7 +92,7 @@ class AWPCP_ListingsCollection {
      * @since feature/1112
      */
     public function find_listings( $query = array() ) {
-        $query = $this->prepare_query( $query );
+        $query = $this->prepare_listings_query( $query );
         $query = $this->add_orderby_query_parameters( $query );
 
         $posts_query = $this->execute_query( apply_filters( 'awpcp-find-listings-query', $query ) );
@@ -100,7 +100,7 @@ class AWPCP_ListingsCollection {
         return apply_filters( 'awpcp-find-listings', $posts_query->posts, $query );
     }
 
-    private function prepare_query( $query ) {
+    private function prepare_listings_query( $query ) {
         $query = $this->set_default_parameters( $query );
         $query = $this->clean_query_parameters( $query );
         $query = $this->add_conditions_for_custom_query_parameters( $query );
@@ -660,9 +660,17 @@ class AWPCP_ListingsCollection {
      * @since 3.3
      */
     public function count_listings( $query = array() ) {
-        $query = $this->prepare_query( $query );
+        $query = $this->prepare_count_listings_query( $query );
         $posts_query = $this->execute_query( apply_filters( 'awpcp-count-listings-query', $query ) );
         return $posts_query->found_posts;
+    }
+
+    private function prepare_count_listings_query( $query ) {
+        $query = $this->prepare_query( $query );
+
+        $query['fields'] = 'ids';
+
+        return $query;
     }
 
     /**
