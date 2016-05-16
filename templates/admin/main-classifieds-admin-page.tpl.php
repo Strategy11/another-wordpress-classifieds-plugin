@@ -48,11 +48,14 @@
 
                     <?php $listings_collection = awpcp_listings_collection(); ?>
 
-                    <?php $totallistings = $listings_collection->count_enabled_listings(); ?>
-                    <li><?php _e("Number of active listings currently in the system", "AWPCP"); ?>: <strong><?php echo $totallistings; ?></strong></li>
+                    <?php $enabled_listings = $listings_collection->count_enabled_listings(); ?>
+                    <li><?php _e("Number of active listings currently in the system", "AWPCP"); ?>: <strong><?php echo $enabled_listings; ?></strong></li>
 
-                    <?php $totallistings = $listings_collection->count_disabled_listings(); ?>
-                    <li><?php _e("Number of inactive/expired/disabled listings currently in the system", "AWPCP"); ?>: <strong><?php echo $totallistings; ?></strong></li>
+                    <?php $disabled_listings = $listings_collection->count_disabled_listings(); ?>
+                    <li><?php _e("Number of expired/disabled listings currently in the system", "AWPCP"); ?>: <strong><?php echo $disabled_listings; ?></strong></li>
+
+                    <?php $invalid_listings = $listings_collection->count_listings() - $enabled_listings - $disabled_listings; ?>
+                    <li><?php _e("Number of invalid listings currently in the system", "AWPCP"); ?>: <strong><?php echo $invalid_listings; ?></strong></li>
                 </ul>
 
                 <div style="border-top:1px solid #dddddd;">
