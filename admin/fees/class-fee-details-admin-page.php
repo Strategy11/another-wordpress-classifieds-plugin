@@ -1,9 +1,57 @@
 <?php
 
 function awpcp_fee_details_admin_page() {
-    return new AWPCP_Fee_Details_Admin_Page();
+    return new AWPCP_Fee_Details_Admin_Page(
+        awpcp_fee_details_form(),
+        awpcp_fees_collection(),
+        awpcp_html_renderer(),
+        awpcp_router(),
+        awpcp_request()
+    );
 }
 
 class AWPCP_Fee_Details_Admin_Page {
 
+    private $fee_details_form;
+    private $fees;
+    private $html_renderer;
+    private $router;
+    private $request;
+
+    public function __construct( $fee_details_form, $fees, $html_renderer, $router, $request ) {
+        $this->fee_details_form = $fee_details_form;
+        $this->fees = $fees;
+        $this->html_renderer = $html_renderer;
+        $this->router = $router;
+        $this->request = $request;
+    }
+
+    public function dispatch() {
+        $fee_id = $this->request->param( 'id' );
+
+        if ( empty( $fee_id ) ) {
+            awpcp_flash( __( 'No Fee Plan id was specified.', 'another-wordpress-classifieds-plugin' ), 'error' );
+            return $this->redirect_to_main_page();
+        }
+
+        try {
+            $fee = $this->fees->get( $fee_id );
+        } catch ( AWPCP_Exception $e ) {
+            awpcp_flash( __( "The specified Fee Plan doesn't exist or couldn't be loaded.", 'another-wordpress-classifieds-plugin' ) );
+            return $this->redirect_to_main_page();
+        }
+
+        $params = array(
+            'form_title' => __( 'Create Fee Plan', 'another-wordpress-classifieds-plugin' ),
+            'fee' => $fee,
+            'action' => 'create-fee',
+        );
+
+        return $this->html_renderer->render( $this->fee_details_form->build( $params ) );
+    }
+
+    private function redirect_to_main_page() {
+        $this->router->serve_admin_page( array( 'parent' => 'awpcp.php', 'page' => 'awpcp-admin-fees' ) );
+        return false;
+    }
 }
