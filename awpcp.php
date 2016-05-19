@@ -182,6 +182,8 @@ require_once(AWPCP_DIR . "/includes/models/payment-transaction.php");
 require_once( AWPCP_DIR . "/includes/db/class-database-column-creator.php" );
 require( AWPCP_DIR . "/includes/db/class-database-helper.php" );
 
+require( AWPCP_DIR . "/includes/fees/class-fees-collection.php" );
+
 require_once( AWPCP_DIR . "/includes/views/class-ajax-handler.php" );
 require_once( AWPCP_DIR . "/includes/views/class-base-page.php" );
 require_once( AWPCP_DIR . "/includes/views/class-step-decorator.php" );
@@ -315,7 +317,6 @@ require( AWPCP_DIR . '/includes/class-categories-renderer-data-provider.php' );
 require( AWPCP_DIR . '/includes/class-default-login-form-implementation.php' );
 require( AWPCP_DIR . "/includes/categories/class-categories-logic.php" );
 require_once( AWPCP_DIR . "/includes/class-exceptions.php" );
-require_once( AWPCP_DIR . "/includes/class-fees-collection.php" );
 require( AWPCP_DIR . "/includes/class-legacy-listings-metadata.php" );
 require_once( AWPCP_DIR . "/includes/class-listing-authorization.php" );
 require_once( AWPCP_DIR . "/includes/class-listing-payment-transaction-handler.php" );
