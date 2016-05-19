@@ -44,7 +44,15 @@ class AWPCP_AdminFees extends AWPCP_AdminPageWithTable {
 
     public function actions($fee, $filter=false) {
         $actions = array();
-        $actions['edit'] = array(__('Edit', 'another-wordpress-classifieds-plugin' ), $this->url(array('action' => 'edit', 'id' => $fee->id)));
+
+        $actions['edit'] = array(
+            __( 'Edit', 'another-wordpress-classifieds-plugin' ),
+            $this->url( array(
+                'awpcp-action' => 'edit-fee',
+                'id' => $fee->id
+            ) )
+        );
+
         $actions['trash'] = array(__('Delete', 'another-wordpress-classifieds-plugin' ), $this->url(array('action' => 'delete', 'id' => $fee->id)));
 
         if (is_array($filter))

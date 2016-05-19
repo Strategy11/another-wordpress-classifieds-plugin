@@ -380,6 +380,7 @@ require_once( AWPCP_DIR . '/admin/fees/class-delete-fee-action-handler.php' );
 require_once( AWPCP_DIR . '/admin/fees/class-edit-fee-action-handler.php' );
 require_once( AWPCP_DIR . '/admin/fees/class-fees-admin-page.php' );
 require_once( AWPCP_DIR . '/admin/fees/class-fee-entry-form.php' );
+require( AWPCP_DIR . '/admin/fees/class-fee-details-admin-page.php' );
 require_once( AWPCP_DIR . '/admin/listings/class-delete-listing-ajax-handler.php' );
 require_once( AWPCP_DIR . '/admin/listings/class-manage-listings-admin-page.php' );
 require_once( AWPCP_DIR . '/admin/pointers/class-drip-autoresponder-ajax-handler.php' );

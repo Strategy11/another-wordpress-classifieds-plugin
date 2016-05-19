@@ -215,6 +215,14 @@ class AWPCP_Admin {
             80
         );
 
+        $router->add_admin_section(
+            'awpcp.php::awpcp-admin-fees',
+            'edit-fee',
+            'awpcp-action',
+            'edit-fee',
+            'awpcp_fee_details_admin_page'
+        );
+
         $router->add_admin_subpage(
             $parent_page,
             __( 'Debug', 'another-wordpress-classifieds-plugin' ),
