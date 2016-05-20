@@ -110,5 +110,14 @@ class AWPCP_UserNotificationsSettings {
             true,
             __( 'An email will be sent to administrator users when a listing is flagged.', 'another-wordpress-classifieds-plugin' )
         );
+
+         $settings->add_setting(
+            $key,
+            'send-images-uploaded-notification-to-administrators',
+            __( 'New Images added to listing', 'another-wordpress-classifieds-plugin' ),
+            'checkbox',
+            false,
+            __( 'An email will be sent to administrator users when new images are added to listing.', 'another-wordpress-classifieds-plugin' )
+        );
     }
 }
