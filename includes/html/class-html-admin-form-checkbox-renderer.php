@@ -9,6 +9,12 @@ class AWPCP_HTML_Admin_Form_Checkbox_Renderer implements AWPCP_HTML_Element_Rend
     public function render_element( $html_renderer, $element_definition ) {
         $form_field_id = "awpcp-admin-form-checkbox-{$element_definition['#name']}";
 
+        if ( $element_definition['#value'] ) {
+            $checbox_attributes = array( 'checked' => 'checked' );
+        } else {
+            $checbox_attributes = array();
+        }
+
         $form_field_definition = array(
             '#type' => 'div',
             '#attributes' => $this->get_form_field_attributes( $element_definition ),
@@ -27,12 +33,12 @@ class AWPCP_HTML_Admin_Form_Checkbox_Renderer implements AWPCP_HTML_Element_Rend
                         ),
                         array(
                             '#type' => 'input',
-                            '#attributes' => array(
+                            '#attributes' => array_merge( $checbox_attributes, array(
                                 'id' => $form_field_id,
                                 'type' => 'checkbox',
                                 'value' => true,
                                 'name' => "{$element_definition['#name']}",
-                            ),
+                            ) ),
                         ),
                         array(
                             '#type' => 'text',

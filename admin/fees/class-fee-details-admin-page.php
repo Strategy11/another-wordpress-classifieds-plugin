@@ -41,6 +41,62 @@ class AWPCP_Fee_Details_Admin_Page {
             return $this->redirect_to_main_page();
         }
 
+        if ( $this->request->post('save') || $this->request->post('save_and_continue') ) {
+            return $this->update_fee( $fee );
+        } else {
+            return $this->render_form( $fee );
+        }
+    }
+
+    private function redirect_to_main_page() {
+        $this->router->serve_admin_page( array( 'parent' => 'awpcp.php', 'page' => 'awpcp-admin-fees' ) );
+        return false;
+    }
+
+    private function update_fee( $fee ) {
+        $fee->update( $this->get_posted_data() );
+
+        $errors = array();
+
+        if ( $fee->save( $errors ) === false ) {
+            awpcp_flash( __( 'The form has errors', 'another-wordpress-classifieds-plugin' ), 'error' );
+            return $this->render_form( $fee );
+        } else {
+            awpcp_flash( __( 'Fee successfully updated.', 'another-wordpress-classifieds-plugin' ) );
+            return $this->redirect_to_main_page();
+        }
+    }
+
+    private function get_posted_data() {
+        $fee_data = array(
+            'name' => $this->request->post( 'name' ),
+            'description' => $this->request->post( 'description' ),
+            'price' => $this->request->post( 'price_in_currency' ),
+            'credits' => $this->request->post( 'price_in_credits' ),
+            'duration_amount' => $this->request->post( 'duration_amount' ),
+            'duration_interval' => $this->request->post( 'duration_interval' ),
+            'images' => $this->request->post( 'images_allowed' ),
+            'title_characters' => $this->request->post( 'characters_allowed_in_title' ),
+            'characters' => $this->request->post( 'characters_allowed_in_description' ),
+            'private' => $this->request->post( 'is_private', false ),
+            'featured' => $this->request->post( 'use_for_featured_listings', false ),
+
+            'categories' => array_filter( $this->request->post( 'categories', array() ) ),
+            'number_of_categories_allowed' => $this->request->post( 'number_of_categories_allowed', 1 ),
+        );
+
+        if ( ! $this->request->post( 'characters_allowed_in_title_enabled' ) ) {
+            $fee_data['characters'] = 0;
+        }
+
+        if ( ! $this->request->post( 'characters_allowed_in_description_enabled' ) ) {
+            $fee_data['title_characters'] = 0;
+        }
+
+        return $fee_data;
+    }
+
+    private function render_form( $fee ) {
         $params = array(
             'form_title' => __( 'Create Fee Plan', 'another-wordpress-classifieds-plugin' ),
             'fee' => $fee,
@@ -48,10 +104,5 @@ class AWPCP_Fee_Details_Admin_Page {
         );
 
         return $this->html_renderer->render( $this->fee_details_form->build( $params ) );
-    }
-
-    private function redirect_to_main_page() {
-        $this->router->serve_admin_page( array( 'parent' => 'awpcp.php', 'page' => 'awpcp-admin-fees' ) );
-        return false;
     }
 }
