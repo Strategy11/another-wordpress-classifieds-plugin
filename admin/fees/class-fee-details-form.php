@@ -13,15 +13,14 @@ class AWPCP_Fee_Details_Form implements AWPCP_HTML_Element {
             '#type' => 'form',
             '#attributes' => array(
                 'class' => array( 'awpcp-fee-details-form', 'awpcp-admin-form' ),
-                'action' => admin_url( 'admin-ajax.php' ),
                 'method' => 'post',
             ),
             '#content' => array(
-                array(
+                'header' => array(
                     '#type' => 'first-level-admin-heading',
                     '#content' => $params['form_title'],
                 ),
-                array(
+                'name-and-description' => array(
                     '#type' => 'fieldset',
                     '#attributes' => array( 'class' => 'awpcp-admin-form-fieldset' ),
                     '#content' => array(
@@ -41,42 +40,8 @@ class AWPCP_Fee_Details_Form implements AWPCP_HTML_Element {
                         ),
                     ),
                 ),
-                array(
-                    '#type' => 'fieldset',
-                    '#attributes' => array( 'class' => 'awpcp-admin-form-fieldset' ),
-                    '#content' => array(
-                        'duration' => $this->get_duration_field_definition( $params ),
-                        array(
-                            '#type' => 'admin-form-textfield',
-                            '#attributes' => array( 'class' => 'awpcp-admin-form-text-field-with-left-label' ),
-                            '#label' => __( 'Images allowed for this plan', 'another-wordpress-classifieds-plugin' ),
-                            '#name' => 'images_allowed',
-                            '#value' => awpcp_get_property( $params['fee'], 'images', 0 ),
-                        ),
-                        array(
-                            '#type' => 'admin-form-textfield',
-                            '#attributes' => array( 'class' => 'awpcp-admin-form-text-field-with-left-label' ),
-                            '#label' => __( 'Regions allowed for this plan', 'another-wordpress-classifieds-plugin' ),
-                            '#name' => 'regions_allowed',
-                            '#value' => awpcp_get_property( $params['fee'], 'regions', 1 ),
-                        ),
-                        array(
-                            '#type' => 'admin-form-checkbox-textfield',
-                            '#label' => __( 'Limit number of characters in title', 'another-wordpress-classifieds-plugin' ),
-                            '#name' => 'characters_allowed_in_title',
-                            '#checkbox_value' => false,
-                            '#textfield_value' => awpcp_get_property( $params['fee'], 'title_characters', 100 ),
-                        ),
-                        array(
-                            '#type' => 'admin-form-checkbox-textfield',
-                            '#label' => __( 'Limit number of characters in description', 'another-wordpress-classifieds-plugin' ),
-                            '#name' => 'characters_allowed_in_description',
-                            '#checkbox_value' => false,
-                            '#textfield_value' => awpcp_get_property( $params['fee'], 'characters', 750 ),
-                        ),
-                    ),
-                ),
-                array(
+                'features' => $this->get_features_fields_definition( $params ),
+                'featured-and-private' => array(
                     '#type' => 'fieldset',
                     '#attributes' => array( 'class' => 'awpcp-admin-form-fieldset' ),
                     '#content' => array(
@@ -95,89 +60,9 @@ class AWPCP_Fee_Details_Form implements AWPCP_HTML_Element {
                         ),
                     ),
                 ),
-                array(
-                    '#type' => 'fieldset',
-                    '#attributes' => array( 'class' => 'awpcp-admin-form-fieldset' ),
-                    '#content' => array(
-                        array(
-                            '#type' => 'admin-form-checkbox',
-                            '#label' => __( 'Offer this plan for certain categories only', 'another-wordpress-classifieds-plugin' ),
-                            '#name' => 'offer_for_certain_categories_only',
-                            '#value' => awpcp_get_property( $params['fee'], 'offer_for_certain_categories_only', false ),
-                        ),
-                        array(
-                            '#type' => 'div',
-                            '#attributes' => array(
-                                'class' => array( 'awpcp-admin-form-field', 'awpcp-admin-categories-selector' ),
-                            ),
-                            '#content' => array(
-                                array(
-                                    '#type' => 'span',
-                                    '#content' => array(
-                                        array(
-                                            '#type' => 'text',
-                                            '#content' => __( 'Categories', 'another-wordpress-classifieds-plugin' ),
-                                        ),
-                                        array(
-                                            '#type' => 'a',
-                                            '#attributes' => array(
-                                                'href' => '#',
-                                                'data-categories' => 'all',
-                                            ),
-                                            '#content_prefix' => '&nbsp;',
-                                            '#content' => _x( 'Select All', 'all categories', 'another-wordpress-classifieds-plugin' ),
-                                        ),
-                                        array(
-                                            '#type' => 'text',
-                                            '#content' => '&nbsp;|&nbsp;',
-                                        ),
-                                        array(
-                                            '#type' => 'a',
-                                            '#attributes' => array(
-                                                'href' => '#',
-                                                'data-categories' => 'none',
-                                            ),
-                                            '#content' => _x( 'Deselect All', 'no categories', 'another-wordpress-classifieds-plugin' ),
-                                        ),
-                                    ),
-                                ),
-                                array(
-                                    '#type' => 'hidden',
-                                    '#name' => 'categories[]',
-                                    '#value' => 0,
-                                ),
-                                array(
-                                    '#type' => 'div',
-                                    '#attributes' => array(
-                                        'class' => array( 'cat-checklist', 'category-checklist' ),
-                                    ),
-                                    '#content' => $this->render_categories_checkbox_list( $params ),
-                                ),
-                            ),
-                        ),
-                        array(
-                            '#type' => 'admin-form-checkbox-textfield',
-                            '#label' => __( 'Limit the number of categories to', 'another-wordpress-classifieds-plugin' ),
-                            '#name' => 'number_of_categories_allowed',
-                            '#checkbox_value' => false,
-                            '#textfield_value' => awpcp_get_property( $params['fee'], 'number_of_categories_allowed', 1 ),
-                        ),
-                    ),
-                ),
-                array(
+                'price-model' => array(
                     '#type' => 'fieldset',
                     '#content' => array(
-                        array(
-                            '#type' => 'admin-form-radio-buttons',
-                            '#label' => __( 'How do you want to charge for this plan?', 'another-wordpress-classifieds-plugin' ),
-                            '#name' => 'price_model',
-                            '#value' => 'flat-price',
-                            '#options' => array(
-                                'flat-price' => _x( 'Flat price', 'Fee Plan price model option', 'another-wordpress-classifieds-plugin' ),
-                                'price-per-category' => _x( 'Different price for different categories', 'Fee Plan price model option', 'another-wordpress-classifieds-plugin' ),
-                                'flat-price-plus-price-per-category' => _x( 'A flat price plus an extra amount for each category selected', 'Fee Plan price model option', 'another-wordpress-classifieds-plugin' ),
-                            ),
-                        ),
                         array(
                             '#type' => 'admin-form-textfield',
                             '#attributes' => array( 'class' => 'awpcp-admin-form-text-field-with-left-label' ),
@@ -192,13 +77,9 @@ class AWPCP_Fee_Details_Form implements AWPCP_HTML_Element {
                             '#name' => 'price_in_credits',
                             '#value' => intval( awpcp_get_property( $params['fee'], 'credits', 0 ) ),
                         ),
-                        array(
-                            '#type' => 'p',
-                            '#content' => __( "You'll be able to define a price for each category in the next screen. Click Save & Continue to save the plan details and go to the Pricing section.", 'another-wordpress-classifieds-plugin' ),
-                        ),
                     ),
                 ),
-                array(
+                'submit-buttons' => array(
                     '#type' => 'div',
                     '#attributes' => array(
                         'class' => 'awpcp-admin-form-submit-buttons',
@@ -236,7 +117,7 @@ class AWPCP_Fee_Details_Form implements AWPCP_HTML_Element {
             ),
         );
 
-        return apply_filters( 'awpcp-fee-entry-form-definition', $form_definition, $params );
+        return apply_filters( 'awpcp-fee-details-form-definition', $form_definition, $params );
     }
 
     private function get_duration_field_definition( $params ) {
@@ -286,18 +167,58 @@ class AWPCP_Fee_Details_Form implements AWPCP_HTML_Element {
         return array_combine( $values, $labels );
     }
 
-    private function render_categories_checkbox_list( $params ) {
-        if ( isset( $params['fee'] ) && isset( $params['fee']->id ) && $params['fee']->id ) {
-            $payment_term = $params['fee'];
+    private function get_features_fields_definition( $params ) {
+        $characters_allowed_in_title = awpcp_get_property( $params['fee'], 'title_characters' );
+        $characters_allowed_in_description = awpcp_get_property( $params['fee'], 'characters' );
+
+        if ( $characters_allowed_in_title === 0 ) {
+            $limit_number_of_characters_in_title = false;
+            $characters_allowed_in_title = 100;
         } else {
-            $payment_term = null;
+            $limit_number_of_characters_in_title = true;
         }
 
-        $renderer_params = array(
-            'payment_term' => $payment_term,
-            'selected' => awpcp_get_property( $params['fee'], 'categories', array() ),
-        );
+        if ( $characters_allowed_in_description === 0 ) {
+            $limit_number_of_characters_in_description = false;
+            $characters_allowed_in_description = 750;
+        } else {
+            $limit_number_of_characters_in_description = true;
+        }
 
-        return awpcp_fee_per_category_checkbox_list_renderer()->render( $renderer_params );
+        return array(
+            '#type' => 'fieldset',
+            '#attributes' => array( 'class' => 'awpcp-admin-form-fieldset' ),
+            '#content' => array(
+                'duration' => $this->get_duration_field_definition( $params ),
+                array(
+                    '#type' => 'admin-form-textfield',
+                    '#attributes' => array( 'class' => 'awpcp-admin-form-text-field-with-left-label' ),
+                    '#label' => __( 'Images allowed for this plan', 'another-wordpress-classifieds-plugin' ),
+                    '#name' => 'images_allowed',
+                    '#value' => awpcp_get_property( $params['fee'], 'images', 0 ),
+                ),
+                array(
+                    '#type' => 'admin-form-textfield',
+                    '#attributes' => array( 'class' => 'awpcp-admin-form-text-field-with-left-label' ),
+                    '#label' => __( 'Regions allowed for this plan', 'another-wordpress-classifieds-plugin' ),
+                    '#name' => 'regions_allowed',
+                    '#value' => awpcp_get_property( $params['fee'], 'regions', 1 ),
+                ),
+                array(
+                    '#type' => 'admin-form-checkbox-textfield',
+                    '#label' => __( 'Limit number of characters in title', 'another-wordpress-classifieds-plugin' ),
+                    '#name' => 'characters_allowed_in_title',
+                    '#checkbox_value' => $limit_number_of_characters_in_title,
+                    '#textfield_value' => $characters_allowed_in_title,
+                ),
+                array(
+                    '#type' => 'admin-form-checkbox-textfield',
+                    '#label' => __( 'Limit number of characters in description', 'another-wordpress-classifieds-plugin' ),
+                    '#name' => 'characters_allowed_in_description',
+                    '#checkbox_value' => $limit_number_of_characters_in_description,
+                    '#textfield_value' => $characters_allowed_in_description,
+                ),
+            ),
+        );
     }
 }
