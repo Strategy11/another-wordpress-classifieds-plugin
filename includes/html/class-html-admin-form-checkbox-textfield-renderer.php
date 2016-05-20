@@ -52,6 +52,7 @@ class AWPCP_HTML_Admin_Form_Checkbox_Textfield_Renderer implements AWPCP_HTML_El
                         'type' => 'text',
                         'value' => $element_definition['#textfield_value'],
                         'name' => $element_definition['#name'],
+                        'data-usableform' => "enable-if:{$element_definition['#name']}_enabled"
                     ),
                 ),
             ),

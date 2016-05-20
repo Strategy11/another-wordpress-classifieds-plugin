@@ -1044,6 +1044,14 @@ class AWPCP {
         wp_register_script( 'awpcp-momentjs-with-locales', '//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment-with-locales.min.js', array(), '2.10.6', true );
         wp_register_script( 'awpcp-jquery-breakpoints', "{$js}/jquery-breakpoints/jquery-breakpoints.min.js", array('jquery'), $awpcp_db_version, true );
 
+        wp_register_script(
+            'awpcp-jquery-usableform',
+            "{$js}/jquery-usableform/jquery-usableform.min.js",
+            array( 'jquery' ),
+            $awpcp_db_version,
+            true
+        );
+
 		/* helpers */
 
 		wp_register_script(
@@ -1073,6 +1081,15 @@ class AWPCP {
 		wp_register_script('awpcp-admin-general', "{$js}/admin-general.js", array('awpcp'), $awpcp_db_version, true);
 		wp_register_script('awpcp-admin-settings', "{$js}/admin-settings.js", array('awpcp-admin'), $awpcp_db_version, true);
 		wp_register_script('awpcp-admin-fees', "{$js}/admin-fees.js", array('awpcp-admin-wp-table-ajax'), $awpcp_db_version, true);
+
+        wp_register_script(
+            'awpcp-admin-fee-details',
+            "{$js}/admin-fee-details.min.js",
+            array( 'awpcp', 'awpcp-jquery-usableform' ),
+            $awpcp_db_version,
+            true
+        );
+
 		wp_register_script('awpcp-admin-credit-plans', "{$js}/admin-credit-plans.js", array('awpcp-admin-wp-table-ajax'), $awpcp_db_version, true);
 		wp_register_script( 'awpcp-admin-listings', "{$js}/admin-listings.js", array( 'awpcp', 'awpcp-admin-wp-table-ajax', 'plupload-all' ), $awpcp_db_version, true );
 		wp_register_script('awpcp-admin-users', "{$js}/admin-users.js", array('awpcp-admin-wp-table-ajax'), $awpcp_db_version, true);

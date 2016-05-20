@@ -26,6 +26,10 @@ class AWPCP_Fee_Details_Admin_Page {
         $this->request = $request;
     }
 
+    public function enqueue_scripts() {
+        wp_enqueue_script( 'awpcp-admin-fee-details' );
+    }
+
     public function dispatch() {
         $fee_id = $this->request->param( 'id' );
 
