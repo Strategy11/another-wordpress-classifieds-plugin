@@ -57,11 +57,18 @@ if (typeof jQuery !== 'undefined') {
         }
 
         function handleElementFulfilledCondition(element, condition) {
-            if ('enable-if' == condition) {
+            if ('enable-if' === condition) {
                 enableElement(element);
-            } else if ('show-if' == condition) {
-                element.closest('awpcp-admin-form-field').show();
+            } else if ('show-if' === condition) {
+                getFormFieldContainer(element).show();
+            } else if ('hide-if' === condition) {
+                getFormFieldContainer(element).hide();
             }
+        }
+
+        function getFormFieldContainer(element) {
+            var container = element.closest('.awpcp-admin-form-field');
+            return container.length ? container : element;
         }
 
         function enableElement(element) {
@@ -73,10 +80,12 @@ if (typeof jQuery !== 'undefined') {
         }
 
         function handleElementUnfulfilledCondition(element, condition) {
-            if ('enable-if' == condition) {
+            if ('enable-if' === condition) {
                 disableElement(element);
-            } else if ('show-if' == condition) {
-                element.closest('awpcp-admin-form-field').hide();
+            } else if ('show-if' === condition) {
+                getFormFieldContainer(element).hide();
+            } else if ('hide-if' === condition) {
+                getFormFieldContainer(element).show();
             }
         }
 

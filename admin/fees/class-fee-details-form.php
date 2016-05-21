@@ -63,14 +63,14 @@ class AWPCP_Fee_Details_Form implements AWPCP_HTML_Element {
                 'price-model' => array(
                     '#type' => 'fieldset',
                     '#content' => array(
-                        array(
+                        'currency-price' => array(
                             '#type' => 'admin-form-textfield',
                             '#attributes' => array( 'class' => 'awpcp-admin-form-text-field-with-left-label' ),
                             '#label' => __( 'Price (currency)', 'another-wordpress-classifieds-plugin' ),
                             '#name' => 'price_in_currency',
                             '#value' => awpcp_format_money_without_currency_symbol( awpcp_get_property( $params['fee'], 'price', 0 ) ),
                         ),
-                        array(
+                        'credits-price' => array(
                             '#type' => 'admin-form-textfield',
                             '#attributes' => array( 'class' => 'awpcp-admin-form-text-field-with-left-label' ),
                             '#label' => __( 'Price (credits)', 'another-wordpress-classifieds-plugin' ),
@@ -92,6 +92,7 @@ class AWPCP_Fee_Details_Form implements AWPCP_HTML_Element {
                                 'type' => 'submit',
                                 'name' => 'save',
                                 'value' => __( 'Save', 'another-wordpress-classifieds-plugin' ),
+                                'data-usableform' => 'show-if:price_model:flat-price',
                             )
                         ),
                         array(
@@ -101,6 +102,7 @@ class AWPCP_Fee_Details_Form implements AWPCP_HTML_Element {
                                 'type' => 'submit',
                                 'name' => 'save_and_continue',
                                 'value' => __( 'Save & Continue', 'another-wordpress-classifieds-plugin' ),
+                                'data-usableform' => 'hide-if:price_model:flat-price',
                             )
                         ),
                         array(
