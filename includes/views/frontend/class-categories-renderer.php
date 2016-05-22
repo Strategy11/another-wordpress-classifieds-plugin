@@ -18,6 +18,11 @@ class AWPCP_CategoriesRenderer {
         awpcp_enqueue_main_script();
 
         $params = $this->merge_params( $params );
+
+        if ( $params['ignore_cache'] ) {
+            return $this->render_categories_and_update_cache( $params, false );
+        }
+
         $transient_key = $this->generate_transient_key( $params );
 
         try {
@@ -34,6 +39,7 @@ class AWPCP_CategoriesRenderer {
             'show_empty_categories' => true,
             'show_children_categories' => true,
             'show_listings_count' => true,
+            'ignore_cache' => false,
         ) );
     }
 
@@ -73,7 +79,7 @@ class AWPCP_CategoriesRenderer {
     }
 
     private function update_cache( $transient_key, $output ) {
-        if ( set_transient( $transient_key, $output, YEAR_IN_SECONDS ) ) {
+        if ( $transient_key && set_transient( $transient_key, $output, YEAR_IN_SECONDS ) ) {
             $transient_keys = get_option( 'awpcp-categories-list-cache-keys' );
             if ( $transient_keys === false ) {
                 add_option( 'awpcp-categories-list-cache-keys', array( $transient_key ), '', 'no' );
