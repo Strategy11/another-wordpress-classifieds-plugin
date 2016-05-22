@@ -76,7 +76,7 @@ class AWPCP_PaymentTerm {
                 'duration_interval' => self::INTERVAL_DAY,
                 'price' => null,
                 'credits' => null,
-                'categories' => array(),
+                'categories' => 'no',
                 'title_characters' => 0,
                 'characters' => 0,
                 'images' => 0,
@@ -104,7 +104,12 @@ class AWPCP_PaymentTerm {
     }
 
     protected function sanitize( $data ) {
-        $data['categories'] = array_filter($data['categories']);
+        if ( is_array( $data['categories'] ) ) {
+            $data['categories'] = array_filter($data['categories']);
+        } else {
+            $data['categories'] = trim( $data['categories'] );
+        }
+
         $data['duration_amount'] = (int) $data['duration_amount'];
         $data['images'] = (int) $data['images'];
         $data['regions'] = (int) $data['regions'];
@@ -116,6 +121,7 @@ class AWPCP_PaymentTerm {
         $data['ads'] = (int) $data['ads'];
         $data['featured'] = absint( (bool) $data['featured'] );
         $data['private'] = absint( (bool) $data['private'] );
+
         return $data;
     }
 

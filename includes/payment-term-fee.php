@@ -193,7 +193,9 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
         $data = $this->sanitize($data);
 
         // categories are saved as a comma separated string, for now
-        $data['categories'] = join(',', $data['categories']);
+        if ( is_array( $data['categories'] ) ) {
+            $data['categories'] = join( ',', $data['categories'] );
+        }
 
         if ($this->validate($data, $errors)) {
             $data = $this->translate($data);

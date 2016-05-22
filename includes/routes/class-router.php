@@ -182,6 +182,11 @@ class AWPCP_Router {
         return $this->template_renderer->render_template( $template, $params );
     }
 
+    public function redirect( $redirect ) {
+        $this->serve_admin_page( $redirect );
+        return false;
+    }
+
     /* Admin Page template expects user class to have the following methods defined */
 
     private function title() {

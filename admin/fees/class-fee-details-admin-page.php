@@ -35,14 +35,14 @@ class AWPCP_Fee_Details_Admin_Page {
 
         if ( empty( $fee_id ) ) {
             awpcp_flash( __( 'No Fee Plan id was specified.', 'another-wordpress-classifieds-plugin' ), 'error' );
-            return $this->redirect_to_main_page();
+            return $this->router->redirect( array( 'parent' => 'awpcp.php', 'page' => 'awpcp-admin-fees' ) );
         }
 
         try {
             $fee = $this->fees->get( $fee_id );
         } catch ( AWPCP_Exception $e ) {
             awpcp_flash( __( "The specified Fee Plan doesn't exist or couldn't be loaded.", 'another-wordpress-classifieds-plugin' ) );
-            return $this->redirect_to_main_page();
+            return $this->router->redirect( array( 'parent' => 'awpcp.php', 'page' => 'awpcp-admin-fees' ) );
         }
 
         if ( $this->request->post('save') || $this->request->post('save_and_continue') ) {
@@ -50,11 +50,6 @@ class AWPCP_Fee_Details_Admin_Page {
         } else {
             return $this->render_form( $fee );
         }
-    }
-
-    private function redirect_to_main_page() {
-        $this->router->serve_admin_page( array( 'parent' => 'awpcp.php', 'page' => 'awpcp-admin-fees' ) );
-        return false;
     }
 
     private function update_fee( $fee ) {
@@ -67,7 +62,10 @@ class AWPCP_Fee_Details_Admin_Page {
             return $this->render_form( $fee );
         } else {
             awpcp_flash( __( 'Fee successfully updated.', 'another-wordpress-classifieds-plugin' ) );
-            return $this->redirect_to_main_page();
+
+            $redirect_target = array( 'parent' => 'awpcp.php', 'page' => 'awpcp-admin-fees' );
+
+            return $this->router->redirect( apply_filters( 'awpcp-fee-details-successful-redirect', $redirect_target, $fee ) );
         }
     }
 
@@ -85,8 +83,7 @@ class AWPCP_Fee_Details_Admin_Page {
             'private' => $this->request->post( 'is_private', false ),
             'featured' => $this->request->post( 'use_for_featured_listings', false ),
 
-            'categories' => array_filter( $this->request->post( 'categories', array() ) ),
-            'number_of_categories_allowed' => $this->request->post( 'number_of_categories_allowed', 1 ),
+            'categories' => 'no',
         );
 
         if ( ! $this->request->post( 'characters_allowed_in_title_enabled' ) ) {
@@ -97,7 +94,7 @@ class AWPCP_Fee_Details_Admin_Page {
             $fee_data['title_characters'] = 0;
         }
 
-        return $fee_data;
+        return apply_filters( 'awpcp-fee-details-posted-data', $fee_data );
     }
 
     private function render_form( $fee ) {
