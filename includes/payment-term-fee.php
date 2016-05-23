@@ -1,6 +1,5 @@
 <?php
 
-
 class AWPCP_Fee extends AWPCP_PaymentTerm {
 
     public $type = AWPCP_FeeType::TYPE;
@@ -36,7 +35,6 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
             'title_characters' => $object->title_characters,
             'images' => $object->imagesallowed,
             'regions' => $object->regions,
-            'number_of_categories_allowed' => (int) $object->number_of_categories_allowed,
             'ads' => 1,
             'private' => $object->private,
             // custom
@@ -141,14 +139,18 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
             $this->defaults['buys'] = 0;
         }
 
+        $this->defaults = apply_filters( 'awpcp-prepare-payment-term-fee-default-properties', $this->defaults );
+
         return $this->defaults;
     }
 
     protected function sanitize( $data ) {
         $data = parent::sanitize($data);
+
         $data['ads'] = 1;
         $data['buys'] = (int) $data['buys'];
-        return $data;
+
+        return apply_filters( 'awpcp-sanitize-payment-term-fee-data', $data );
     }
 
     protected function validate($data, &$errors=array()) {
@@ -166,7 +168,6 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
         $data['rec_increment'] = $_data['duration_interval'];
         $data['imagesallowed'] = absint( $_data['images'] );
         $data['regions'] = absint( $_data['regions'] );
-        $data['number_of_categories_allowed'] = absint( $_data['number_of_categories_allowed'] );
         $data['title_characters'] = absint( $_data['title_characters'] );
         $data['characters_allowed'] = absint( $_data['characters'] );
         $data['categories'] = $_data['categories'];
@@ -179,7 +180,7 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
             unset( $data[ 'adterm_id' ] );
         }
 
-        return $data;
+        return apply_filters( 'awpcp-translate-payment-term-fee-data', $data, $_data );
     }
 
     public function save(&$errors=array()) {
