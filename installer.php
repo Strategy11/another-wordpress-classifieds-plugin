@@ -25,24 +25,38 @@ define('AWPCP_TABLE_ADPHOTOS', $wpdb->prefix . "awpcp_adphotos");
 define( 'AWPCP_TABLE_PAGENAME', $wpdb->prefix . 'awpcp_pagename' );
 
 
+function awpcp_installer() {
+    static $instance = null;
+
+    if ( is_null( $instance ) ) {
+        $instance = new AWPCP_Installer(
+            awpcp_manual_upgrade_tasks_manager(),
+            awpcp_database_tables(),
+            awpcp_database_helper(),
+            awpcp_database_column_creator(),
+            $GLOBALS['wpdb']
+        );
+    }
+
+    return $instance;
+}
+
 class AWPCP_Installer {
 
     private static $instance = null;
 
     private $upgrade_tasks;
+    private $plugin_tables;
+    private $database_helper;
+    private $columns;
+    private $db;
 
-    private function __construct( $upgrade_tasks ) {
+    public function __construct( $upgrade_tasks, $plugin_tables, $database_helper, $columns, $db ) {
         $this->upgrade_tasks = $upgrade_tasks;
-        $this->columns = awpcp_database_column_creator();
-        $this->database_helper = awpcp_database_helper();
-        $this->plugin_tables = awpcp_database_tables();
-    }
-
-    public static function instance( $upgrade_tasks ) {
-        if (is_null(AWPCP_Installer::$instance)) {
-            AWPCP_Installer::$instance = new AWPCP_Installer( $upgrade_tasks );
-        }
-        return AWPCP_Installer::$instance;
+        $this->plugin_tables = $plugin_tables;
+        $this->database_helper = $database_helper;
+        $this->columns = $columns;
+        $this->db = $db;
     }
 
     public function activate() {

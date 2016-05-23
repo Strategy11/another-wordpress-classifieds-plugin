@@ -442,7 +442,7 @@ class AWPCP {
 		$this->settings = awpcp_settings_api();
 		$this->js = AWPCP_JavaScript::instance();
         $this->upgrade_tasks = awpcp_manual_upgrade_tasks_manager();
-        $this->installer = AWPCP_Installer::instance( $this->upgrade_tasks );
+        $this->installer = awpcp_installer();
         $this->manual_upgrades = awpcp_manual_upgrade_tasks();
 	}
 
