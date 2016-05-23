@@ -260,6 +260,7 @@ class AWPCP_Installer {
                 'enable_upgrade_routine_to_migrate_listings',
                 'enable_upgrade_routine_to_migrate_media',
                 'add_number_of_categories_allowed_column_to_fees_table',
+                'add_price_model_column_to_fees_table',
             ),
         );
     }
@@ -1056,6 +1057,18 @@ class AWPCP_Installer {
 
         if ( ! awpcp_column_exists( AWPCP_TABLE_ADFEES, 'number_of_categories_allowed' ) ) {
             $wpdb->query( 'ALTER TABLE ' . AWPCP_TABLE_ADFEES . ' ADD `number_of_categories_allowed` INT(10) NOT NULL DEFAULT 1 AFTER `regions`' );
+        }
+    }
+
+    private function add_price_model_column_to_fees_table() {
+        global $wpdb;
+
+        if ( ! awpcp_column_exists( AWPCP_TABLE_ADFEES, 'price_model' ) ) {
+            $sql = "ALTER TABLE " . AWPCP_TABLE_ADFEES . " ";
+            $sql.= "ADD `price_model` VARCHAR(100) CHARACTER SET <charset> COLLATE <collate> NOT NULL DEFAULT 'flat-price' ";
+            $sql.= "AFTER `description`";
+
+            $wpdb->query( $this->database_helper->replace_charset_and_collate( $sql ) );
         }
     }
 }
