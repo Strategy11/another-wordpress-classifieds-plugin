@@ -73,8 +73,8 @@ class AWPCP_Fee_Details_Admin_Page {
         $fee_data = array(
             'name' => $this->request->post( 'name' ),
             'description' => $this->request->post( 'description' ),
-            'price' => $this->request->post( 'price_in_currency' ),
-            'credits' => $this->request->post( 'price_in_credits' ),
+            'price' => awpcp_parse_money( $this->request->post( 'price_in_currency' ) ),
+            'credits' => max( 0, intval( $this->request->post( 'price_in_credits' ) ) ),
             'duration_amount' => $this->request->post( 'duration_amount' ),
             'duration_interval' => $this->request->post( 'duration_interval' ),
             'images' => $this->request->post( 'images_allowed' ),
