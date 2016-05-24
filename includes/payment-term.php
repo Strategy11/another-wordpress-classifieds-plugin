@@ -75,7 +75,7 @@ class AWPCP_PaymentTerm {
                 'duration_interval' => self::INTERVAL_DAY,
                 'price' => null,
                 'credits' => null,
-                'categories' => 'no',
+                'categories' => array(),
                 'title_characters' => 0,
                 'characters' => 0,
                 'images' => 0,

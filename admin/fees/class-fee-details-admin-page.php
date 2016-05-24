@@ -82,8 +82,6 @@ class AWPCP_Fee_Details_Admin_Page {
             'characters' => $this->request->post( 'characters_allowed_in_description' ),
             'private' => $this->request->post( 'is_private', false ),
             'featured' => $this->request->post( 'use_for_featured_listings', false ),
-
-            'categories' => 'no',
         );
 
         if ( ! $this->request->post( 'characters_allowed_in_title_enabled' ) ) {
