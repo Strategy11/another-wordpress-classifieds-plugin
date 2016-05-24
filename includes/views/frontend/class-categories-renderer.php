@@ -20,7 +20,7 @@ class AWPCP_CategoriesRenderer {
         $params = $this->merge_params( $params );
 
         if ( $params['ignore_cache'] ) {
-            return $this->render_categories_and_update_cache( $params, false );
+            return $this->render_categories( $params );
         }
 
         $transient_key = $this->generate_transient_key( $params );
@@ -64,15 +64,24 @@ class AWPCP_CategoriesRenderer {
         throw new AWPCP_Exception( 'No cache entry was found.' );
     }
 
-    private function render_categories_and_update_cache( $params, $transient_key ) {
+    private function render_categories( $params ) {
         $categories = $this->data_provider->get_categories( $params );
         $max_depth = $params['show_children_categories'] ? 0 : 1;
 
         if ( $this->walker->configure( $params ) ) {
             $output = $this->walker->walk( $categories, $max_depth );
-            $this->update_cache( $transient_key, $output );
         } else {
             $output = '';
+        }
+
+        return $output;
+    }
+
+    private function render_categories_and_update_cache( $params, $transient_key ) {
+        $output = $this->render_categories( $params );
+
+        if ( ! empty( $output ) ) {
+            $this->update_cache( $transient_key, $output );
         }
 
         return $output;
