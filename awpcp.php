@@ -378,11 +378,8 @@ require_once( AWPCP_DIR . '/admin/credit-plans/class-add-credit-plan-action-hand
 require_once( AWPCP_DIR . '/admin/credit-plans/class-delete-credit-plan-action-handler.php' );
 require_once( AWPCP_DIR . '/admin/credit-plans/class-edit-credit-plan-action-handler.php' );
 require( AWPCP_DIR . '/admin/fees/class-add-edit-fee-rendering-helper.php' );
-require_once( AWPCP_DIR . '/admin/fees/class-add-fee-action-handler.php' );
 require_once( AWPCP_DIR . '/admin/fees/class-delete-fee-action-handler.php' );
-require_once( AWPCP_DIR . '/admin/fees/class-edit-fee-action-handler.php' );
 require_once( AWPCP_DIR . '/admin/fees/class-fees-admin-page.php' );
-require_once( AWPCP_DIR . '/admin/fees/class-fee-entry-form.php' );
 require( AWPCP_DIR . '/admin/fees/class-fee-details-admin-page.php' );
 require( AWPCP_DIR . '/admin/fees/class-fee-details-form.php' );
 require_once( AWPCP_DIR . '/admin/listings/class-delete-listing-ajax-handler.php' );
@@ -805,12 +802,6 @@ class AWPCP {
         add_action( 'wp_ajax_awpcp-credit-plans-delete', array( $handler, 'ajax' ) );
 
         // fees admin
-        $handler = awpcp_add_fee_ajax_handler();
-        add_action( 'wp_ajax_awpcp-fees-add', array( $handler, 'ajax') );
-
-        $handler = awpcp_edit_fee_ajax_handler();
-        add_action( 'wp_ajax_awpcp-fees-edit', array( $handler, 'ajax' ) );
-
         $handler = awpcp_delete_fee_ajax_handler();
         add_action( 'wp_ajax_awpcp-fees-delete', array( $handler, 'ajax' ) );
 
