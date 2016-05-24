@@ -377,7 +377,6 @@ require_once( AWPCP_DIR . '/admin/credit-plans/class-credit-plans-admin-page.php
 require_once( AWPCP_DIR . '/admin/credit-plans/class-add-credit-plan-action-handler.php' );
 require_once( AWPCP_DIR . '/admin/credit-plans/class-delete-credit-plan-action-handler.php' );
 require_once( AWPCP_DIR . '/admin/credit-plans/class-edit-credit-plan-action-handler.php' );
-require( AWPCP_DIR . '/admin/fees/class-add-edit-fee-rendering-helper.php' );
 require_once( AWPCP_DIR . '/admin/fees/class-delete-fee-action-handler.php' );
 require_once( AWPCP_DIR . '/admin/fees/class-fees-admin-page.php' );
 require( AWPCP_DIR . '/admin/fees/class-fee-details-admin-page.php' );
