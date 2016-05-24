@@ -106,13 +106,12 @@ class AWPCP_Fee_Details_Form implements AWPCP_HTML_Element {
                             )
                         ),
                         array(
-                            '#type' => 'input',
+                            '#type' => 'a',
                             '#attributes' => array(
                                 'class' => array( 'button' ),
-                                'type' => 'button',
-                                'name' => 'cancel',
-                                'value' => __( 'Cancel', 'another-wordpress-classifieds-plugin' ),
-                            )
+                                'href' => awpcp_get_admin_fees_url(),
+                            ),
+                            '#content' => __( 'Cancel', 'another-wordpress-classifieds-plugin' ),
                         ),
                     ),
                 ),
