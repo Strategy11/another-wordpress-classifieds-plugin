@@ -12,9 +12,9 @@
     <input type="hidden" name="<?php echo esc_attr($name) ?>" value="<?php echo esc_attr($value) ?>" />
     <?php endforeach ?>
 
-    <?php $url = $page->url( array( 'action' => 'add-fee' ) ); ?>
+    <?php $url = $page->url( array( 'awpcp-action' => 'add-fee' ) ); ?>
     <?php $label = __( 'Add Fee Plan', 'another-wordpress-classifieds-plugin' ); ?>
-    <a class="add button-primary" title="<?php echo esc_attr( $label ); ?>" href="<?php echo esc_attr( $url ); ?>" accesskey="s"><?php echo $label; ?></a>
+    <a class="button-primary" title="<?php echo esc_attr( $label ); ?>" href="<?php echo esc_attr( $url ); ?>" accesskey="s"><?php echo $label; ?></a>
     <span><?php
         $fee_settings_url = awpcp_get_admin_settings_url( 'payment-settings' );
         $fee_settings_link = sprintf( '<a href="%s">%s</a>', $fee_settings_url, __( 'Fee Plan Settings', 'another-wordpress-classifieds-plugin' ) );

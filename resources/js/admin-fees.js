@@ -9,12 +9,11 @@ if (jQuery !== undefined) {
 
             panel.admin({
                 actions: {
-                    add: 'awpcp-fees-add',
                     remove: 'awpcp-fees-delete'
                 },
                 ajaxurl: ajaxurl,
                 base: '#fee-',
-                include: ['add', 'trash'],
+                include: ['trash'],
 
                 onFormReady: function () {
                     $('.awpcp-fees .category-checklist').each(function() {

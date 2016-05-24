@@ -31,19 +31,17 @@ class AWPCP_Fee_Details_Admin_Page {
     }
 
     public function dispatch() {
-        $fee_id = $this->request->param( 'id' );
+        $action = $this->request->get( 'awpcp-action' );
 
-        if ( empty( $fee_id ) ) {
-            awpcp_flash( __( 'No Fee Plan id was specified.', 'another-wordpress-classifieds-plugin' ), 'error' );
-            return $this->router->redirect( array( 'parent' => 'awpcp.php', 'page' => 'awpcp-admin-fees' ) );
+        if ( $action == 'add-fee' ) {
+            return $this->add_fee();
+        } else {
+            return $this->edit_fee();
         }
+    }
 
-        try {
-            $fee = $this->fees->get( $fee_id );
-        } catch ( AWPCP_Exception $e ) {
-            awpcp_flash( __( "The specified Fee Plan doesn't exist or couldn't be loaded.", 'another-wordpress-classifieds-plugin' ) );
-            return $this->router->redirect( array( 'parent' => 'awpcp.php', 'page' => 'awpcp-admin-fees' ) );
-        }
+    private function add_fee() {
+        $fee = new AWPCP_Fee();
 
         if ( $this->request->post('save') || $this->request->post('save_and_continue') ) {
             return $this->update_fee( $fee );
@@ -103,5 +101,27 @@ class AWPCP_Fee_Details_Admin_Page {
         );
 
         return $this->html_renderer->render( $this->fee_details_form->build( $params ) );
+    }
+
+    private function edit_fee() {
+        $fee_id = $this->request->param( 'id' );
+
+        if ( empty( $fee_id ) ) {
+            awpcp_flash( __( 'No Fee Plan id was specified.', 'another-wordpress-classifieds-plugin' ), 'error' );
+            return $this->router->redirect( array( 'parent' => 'awpcp.php', 'page' => 'awpcp-admin-fees' ) );
+        }
+
+        try {
+            $fee = $this->fees->get( $fee_id );
+        } catch ( AWPCP_Exception $e ) {
+            awpcp_flash( __( "The specified Fee Plan doesn't exist or couldn't be loaded.", 'another-wordpress-classifieds-plugin' ) );
+            return $this->router->redirect( array( 'parent' => 'awpcp.php', 'page' => 'awpcp-admin-fees' ) );
+        }
+
+        if ( $this->request->post('save') || $this->request->post('save_and_continue') ) {
+            return $this->update_fee( $fee );
+        } else {
+            return $this->render_form( $fee );
+        }
     }
 }

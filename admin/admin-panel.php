@@ -217,6 +217,14 @@ class AWPCP_Admin {
 
         $router->add_admin_section(
             'awpcp.php::awpcp-admin-fees',
+            'add-fee',
+            'awpcp-action',
+            'add-fee',
+            'awpcp_fee_details_admin_page'
+        );
+
+        $router->add_admin_section(
+            'awpcp.php::awpcp-admin-fees',
             'edit-fee',
             'awpcp-action',
             'edit-fee',
