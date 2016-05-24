@@ -47,16 +47,10 @@ class AWPCP_Fee_Details_Form implements AWPCP_HTML_Element {
                     ),
                 ),
                 'features' => $this->get_features_fields_definition( $params ),
-                'featured-and-private' => array(
+                'special-features' => array(
                     '#type' => 'fieldset',
                     '#attributes' => array( 'class' => 'awpcp-admin-form-fieldset' ),
                     '#content' => array(
-                        array(
-                            '#type' => 'admin-form-checkbox',
-                            '#label' => __( 'This fee is for Featured Listings', 'another-wordpress-classifieds-plugin' ),
-                            '#name' => 'use_for_featured_listings',
-                            '#value' => awpcp_get_property( $params['fee'], 'featured', false ),
-                        ),
                         array(
                             '#type' => 'admin-form-checkbox',
                             '#label' => __( 'This is a private fee plan', 'another-wordpress-classifieds-plugin' ),
