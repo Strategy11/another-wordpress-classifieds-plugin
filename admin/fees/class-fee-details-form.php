@@ -1,10 +1,16 @@
 <?php
 
 function awpcp_fee_details_form() {
-    return new AWPCP_Fee_Details_Form();
+    return new AWPCP_Fee_Details_Form( awpcp_payments_api() );
 }
 
 class AWPCP_Fee_Details_Form implements AWPCP_HTML_Element {
+
+    private $payments_api;
+
+    public function __construct( $payments_api ) {
+        $this->payments_api = $payments_api;
+    }
 
     public function build( $params = array() ) {
         $id = awpcp_get_property( $params['fee'], 'id', false );
@@ -60,25 +66,7 @@ class AWPCP_Fee_Details_Form implements AWPCP_HTML_Element {
                         ),
                     ),
                 ),
-                'price-model' => array(
-                    '#type' => 'fieldset',
-                    '#content' => array(
-                        'currency-price' => array(
-                            '#type' => 'admin-form-textfield',
-                            '#attributes' => array( 'class' => 'awpcp-admin-form-text-field-with-left-label' ),
-                            '#label' => __( 'Price (currency)', 'another-wordpress-classifieds-plugin' ),
-                            '#name' => 'price_in_currency',
-                            '#value' => awpcp_format_money_without_currency_symbol( awpcp_get_property( $params['fee'], 'price', 0 ) ),
-                        ),
-                        'credits-price' => array(
-                            '#type' => 'admin-form-textfield',
-                            '#attributes' => array( 'class' => 'awpcp-admin-form-text-field-with-left-label' ),
-                            '#label' => __( 'Price (credits)', 'another-wordpress-classifieds-plugin' ),
-                            '#name' => 'price_in_credits',
-                            '#value' => intval( awpcp_get_property( $params['fee'], 'credits', 0 ) ),
-                        ),
-                    ),
-                ),
+                'price-model' => $this->get_price_fields_definition( $params ),
                 'submit-buttons' => array(
                     '#type' => 'div',
                     '#attributes' => array(
@@ -221,5 +209,31 @@ class AWPCP_Fee_Details_Form implements AWPCP_HTML_Element {
                 ),
             ),
         );
+    }
+
+    private function get_price_fields_definition( $params ) {
+        $form_fields = array(
+            'currency-price' => array(
+                '#type' => 'admin-form-textfield',
+                '#attributes' => array( 'class' => 'awpcp-admin-form-text-field-with-left-label' ),
+                '#label' => __( 'Price', 'another-wordpress-classifieds-plugin' ),
+                '#name' => 'price_in_currency',
+                '#value' => awpcp_format_money_without_currency_symbol( awpcp_get_property( $params['fee'], 'price', 0 ) ),
+            )
+        );
+
+        if ( $this->payments_api->credit_system_enabled() ) {
+            $form_fields['currency-price']['#label'] = __( 'Price (currency)', 'another-wordpress-classifieds-plugin' );
+
+            $form_fields['credits-price'] = array(
+                '#type' => 'admin-form-textfield',
+                '#attributes' => array( 'class' => 'awpcp-admin-form-text-field-with-left-label' ),
+                '#label' => __( 'Price (credits)', 'another-wordpress-classifieds-plugin' ),
+                '#name' => 'price_in_credits',
+                '#value' => intval( awpcp_get_property( $params['fee'], 'credits', 0 ) ),
+            );
+        }
+
+        return array( '#type' => 'fieldset', '#content' => $form_fields );
     }
 }
