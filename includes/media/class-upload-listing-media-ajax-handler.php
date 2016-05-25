@@ -59,7 +59,7 @@ class AWPCP_UploadListingMediaAjaxHandler extends AWPCP_AjaxHandler {
 
         if ( $uploaded_file->is_complete ) {
             $file = $this->media_manager->add_file( $listing, $uploaded_file );
-            $notification_sent = $this->maybe_send_notification( $file->ad_id );
+            $notification_sent = $this->maybe_send_notification( $listing );
             do_action( 'awpcp-media-uploaded', $file, $listing );
 
             return $this->success( array(
@@ -82,27 +82,41 @@ class AWPCP_UploadListingMediaAjaxHandler extends AWPCP_AjaxHandler {
         }
     }
 
-    private function maybe_send_notification( $listing_id ){
+    private function maybe_send_notification( $listing ) {
+
         $send_notification_to_administrators = get_awpcp_option( 'send-images-uploaded-notification-to-administrators' );
-        if( $send_notification_to_administrators ){
-            $content = 'Test Content';
 
-            $admin_message = new AWPCP_Email;
-            $admin_message->to = array( awpcp_admin_email_to() );
-            $admin_message->subject = __( 'New Image uploaded to listing', 'another-wordpress-classifieds-plugin' );
+        if ( $send_notification_to_administrators ) {
+            $user_id = get_current_user_id();
+            $now = time();
+            $notification_time = get_user_meta( $user_id, 'media-upload-notifcation-time', true );
+            $time_diff = ( $now - $notification_time ) / 60; // in minutes
+            var_dump($time_diff);
+            if( $time_diff >= 5 ) {
+                $content = 'Test Content';
 
-            $params = array('page' => 'awpcp-listings',  'action' => 'view', 'id' => $listing_id);
-            $url = add_query_arg( urlencode_deep( $params ), admin_url( 'admin.php' ) );
+                $admin_message = new AWPCP_Email;
+                $admin_message->to = array( awpcp_admin_email_to() );
+                $admin_message->subject = __( 'Images have been added to listing', 'another-wordpress-classifieds-plugin' );
 
-            $template = AWPCP_DIR . '/frontend/templates/email-place-ad-success-admin.tpl.php';
-            $admin_message->prepare($template, compact('content', 'url'));
+                $params = array('page' => 'awpcp-listings',  'action' => 'view', 'id' => $listing->ad_id );
+                $url = add_query_arg( urlencode_deep( $params ), admin_url( 'admin.php' ) );
 
-            $message_sent = $admin_message->send();
+                $template = AWPCP_DIR . '/frontend/templates/email-place-ad-success-admin.tpl.php';
+                $admin_message->prepare($template, compact('content', 'url'));
 
-            return $message_sent;
-        }else{
+                $message_sent = $admin_message->send();
+
+                update_user_meta( $user_id, 'media-upload-notifcation-time', time() );
+
+                return $message_sent;
+            } else {
+                return false;
+            }
+
+        } else {
             return false;
         }
-
     }
+
 }
