@@ -83,30 +83,30 @@ class AWPCP_UploadListingMediaAjaxHandler extends AWPCP_AjaxHandler {
     }
 
     private function maybe_send_notification( $listing ) {
-
         $send_notification_to_administrators = get_awpcp_option( 'send-images-uploaded-notification-to-administrators' );
 
         if ( $send_notification_to_administrators ) {
             $user_id = get_current_user_id();
             $now = time();
-            $notification_time = get_user_meta( $user_id, 'media-upload-notifcation-time', true );
-            $time_diff = ( $now - $notification_time ) / 60; // in minutes
-            var_dump($time_diff);
-            if( $time_diff >= 5 ) {
-                $content = 'Test Content';
+            $notification_sent_time = get_user_meta( $user_id, 'media-upload-notifcation-time', true );
+            $time_diff = ( $now - $notification_sent_time ) / 60; // in minutes
 
+            // Send notification only if 5 mins have been passed since last notification was sent.
+            if( $time_diff > 5 ) {
                 $admin_message = new AWPCP_Email;
                 $admin_message->to = array( awpcp_admin_email_to() );
-                $admin_message->subject = __( 'Images have been added to listing', 'another-wordpress-classifieds-plugin' );
+                $title = $listing->ad_title;
 
-                $params = array('page' => 'awpcp-listings',  'action' => 'view', 'id' => $listing->ad_id );
+                $subject = __( 'Images have been added to listing', 'another-wordpress-classifieds-plugin' );
+                $admin_message->subject = sprintf( '%s %s', $subject, $title );
+
+                $params = array( 'page' => 'awpcp-listings', 'action' => 'view', 'id' => $listing->ad_id );
                 $url = add_query_arg( urlencode_deep( $params ), admin_url( 'admin.php' ) );
 
-                $template = AWPCP_DIR . '/frontend/templates/email-place-ad-success-admin.tpl.php';
-                $admin_message->prepare($template, compact('content', 'url'));
+                $template = AWPCP_DIR . '/frontend/templates/email-ad-images-updated-admin.tpl.php';
+                $admin_message->prepare( $template, compact( 'title', 'url' ) );
 
                 $message_sent = $admin_message->send();
-
                 update_user_meta( $user_id, 'media-upload-notifcation-time', time() );
 
                 return $message_sent;
