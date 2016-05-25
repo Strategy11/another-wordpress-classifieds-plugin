@@ -36,9 +36,10 @@
     <div class="awpcp-form-spacer">
         <?php
             $params = apply_filters( 'awpcp-place-listing-category-selector-params', array(
-                'selected' => awpcp_array_data( 'category', '', $form ),
                 'name' => 'category',
+                'selected' => awpcp_array_data( 'category', '', $form ),
                 'hide_empty' => false,
+                'payment_terms' => $payment_terms,
             ) );
 
             echo awpcp_multiple_categories_selector()->render( $params );

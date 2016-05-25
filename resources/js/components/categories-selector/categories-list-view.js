@@ -39,17 +39,23 @@ AWPCP.define( 'awpcp/categories-list-view', [
 
         _renderCategoriesList: function( $list, categories ) {
             var visible = this.helper.getCategoriesAncestors( categories );
+            var enabled = this._getEnabledCategories( categories );
 
             this._renderCategoryItems(
                 $list,
                 this.helper.getCategoryChildren( 'root' ),
-                categories,
+                enabled,
                 visible,
                 0
             );
 
             return this;
         },
+
+        _getEnabledCategories: function( categories ) {
+            return categories;
+        },
+
         _renderCategoryItems: function( $list, categories, enabled, visible, indentationLevel ) {
             var self = this;
 
@@ -86,7 +92,6 @@ AWPCP.define( 'awpcp/categories-list-view', [
         },
 
         _renderEmptyList: function( $list ) {
-            console.log( $ );
             $list.append( $( '<li class="awpcp-categories-selector-category-item awpcp-categories-selector-empty-category-item">' + 'No categories to show.' + '</li>' ) );
             return this;
         }

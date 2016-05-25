@@ -256,10 +256,12 @@ AWPCP.run('awpcp/page-place-ads', [
                 selector.render();
 
                 (function() {
-                    var helper, view;
+                    var helper = new CategoriesSelectorHelper(
+                        options.categories,
+                        options.selectionMatrix
+                    );
 
-                    helper = new CategoriesSelectorHelper( options.categories );
-                    view = new CategoriesSelectorView( {
+                    var view = new CategoriesSelectorView( {
                         el: $( '.awpcp-multiple-categories-selector' ).get( 0 ),
                         collection: new CategoriesCollection( helper.getAllCategories() ),
                         helper: helper

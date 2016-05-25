@@ -28,6 +28,7 @@ class AWPCP_Multiple_Categories_Selector {
         awpcp()->js->set( 'CategoriesSelector-' . $unique_id, array(
             'name' => $params['name'],
             'categories' => $categories_hierarchy,
+            'selectionMatrix' => $this->generate_selection_matrix( $params ),
             'selected' => $chain,
             'multistep' => (bool) $use_multiple_dropdowns,
         ) );
@@ -102,5 +103,37 @@ class AWPCP_Multiple_Categories_Selector {
         }
 
         return array_reverse( $category_parents );
+    }
+
+    private function generate_selection_matrix( $params ) {
+        $can_be_selected_together = array();
+
+        foreach ( $params['payment_terms'] as $payment_term_type => $payment_terms ) {
+            foreach ( $payment_terms as $payment_term ) {
+                if ( empty( $payment_term->categories ) ) {
+                    // no need to build a selection matrix, every combination of categories
+                    // can be used with at least one of the payment terms.
+                    return null;
+                }
+
+                foreach ( $payment_term->categories as $current_category ) {
+                    foreach ( $payment_term->categories as $sibling_category ) {
+                        if ( $current_category == $sibling_category ) {
+                            continue;
+                        }
+
+                        if ( ! isset( $can_be_selected_together[ $current_category ] ) ) {
+                            $can_be_selected_together[ $current_category ] = array();
+                        }
+
+                        if ( ! in_array( $sibling_category, $can_be_selected_together[ $current_category ] ) ) {
+                            $can_be_selected_together[ $current_category ][] = $sibling_category;
+                        }
+                    }
+                }
+            }
+        }
+
+        return $can_be_selected_together;
     }
 }

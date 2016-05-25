@@ -4,13 +4,15 @@ AWPCP.define( 'awpcp/categories-selector-helper', [
     'awpcp/category-item-model'
 ],
 function( $, CategoryItemModel ) {
-    var CategoriesSelectorHelper = function( hierarchy ) {
+    var CategoriesSelectorHelper = function( hierarchy, selectionMatrix ) {
         var self = this, parent, model;
 
         this.all = [];
+        this.selectedCategories = [];
         this.registry = {};
         this.hierarchy = {};
         this.parents = {};
+        this.selectionMatrix = selectionMatrix;
 
         _.each( _.keys( hierarchy ), function( key ) {
             parent = ( key == 'root' ? key : parseInt( key, 10 ) );
@@ -67,6 +69,48 @@ function( $, CategoryItemModel ) {
         getCategoryChildren: function( parent ) {
             if ( typeof this.hierarchy[ parent ] !== 'undefined' ) {
                 return this.hierarchy[ parent ];
+            } else {
+                return [];
+            }
+        },
+
+        updateSelectedCategories: function( selectedCategories ) {
+            this.selectedCategories = selectedCategories;
+        },
+
+        getCategoriesThatCanBeSelectedTogether: function( categories ) {
+            var self = this;
+
+            if ( self.selectionMatrix === null ) {
+                return categories;
+            }
+
+            if ( self.selectedCategories.length === 0 ) {
+                console.log( 'no categories selected', self.selectedCategories, self.selectionMatrix );
+                return _.map( _.keys( self.selectionMatrix ), function( key ) {
+                    return parseInt( key, 10 );
+                } );
+            } if ( self.selectedCategories.length === 1 ) {
+                console.log( 'one category selected', self.selectedCategories, self.selectionMatrix );
+                return self.getCategoriesThatCanBeCombinedWithCategory( self.selectedCategories[0] );
+            } else {
+                console.log( 'multiple categories selected', self.selectedCategories, self.selectionMatrix );
+                return _.reduce(
+                    self.selectedCategories.slice( 1 ),
+                    function( memo, category ) {
+                        return _.intersection(
+                            memo,
+                            self.getCategoriesThatCanBeCombinedWithCategory( self.selectedCategories[0] )
+                        );
+                    },
+                    categories
+                );
+            }
+        },
+
+        getCategoriesThatCanBeCombinedWithCategory: function( category ) {
+            if ( this.selectionMatrix[ category ] ) {
+                return this.selectionMatrix[ category ];
             } else {
                 return [];
             }

@@ -331,7 +331,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $skip_payment_term_selection = false;
 
         $payments = $this->payments;
-        $_payment_terms = $payments->get_payment_terms();
+        $available_payment_terms = $payments->get_payment_terms();
 
         // validate submitted data and set relevant transaction attributes
         if (!empty($_POST)) {
@@ -354,7 +354,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
                 $term = $payments->get_transaction_payment_term($transaction);
                 $payment_type = $transaction->get( 'payment-term-payment-type' );
             } else {
-                $payment_terms = new AWPCP_PaymentTermsTable( $_payment_terms, $transaction->get('payment-term') );
+                $payment_terms = new AWPCP_PaymentTermsTable( $available_payment_terms, $transaction->get('payment-term') );
                 $term = $payment_terms->get_payment_term($payment_type, $selected);
             }
 
@@ -393,7 +393,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         } else {
             $transaction = null;
 
-            $payment_terms = new AWPCP_PaymentTermsTable($_payment_terms);
+            $payment_terms = new AWPCP_PaymentTermsTable( $available_payment_terms );
 
             $user = wp_get_current_user()->ID;
             $category = array();
@@ -429,6 +429,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
             'skip_payment_term_selection' => $skip_payment_term_selection,
 
+            'payment_terms' => $available_payment_terms,
             'categories' => awpcp_get_categories(),
             'form' => compact('category', 'user'),
 

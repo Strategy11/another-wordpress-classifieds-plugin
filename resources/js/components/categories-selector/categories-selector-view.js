@@ -3,8 +3,9 @@ AWPCP.define( 'awpcp/categories-selector-view', [
     'jquery',
     'awpcp/categories-collection',
     'awpcp/categories-list-view',
+    'awpcp/available-categories-list-view',
 ],
-function( $, CategoriesCollection, CategoriesListView ) {
+function( $, CategoriesCollection, CategoriesListView, AvailableCategoriesListView ) {
     var CategoriesSelectorView = Backbone.View.extend( {
 
         initialize: function( options ) {
@@ -13,11 +14,7 @@ function( $, CategoriesCollection, CategoriesListView ) {
             this.helper = options.helper;
 
             this.listenTo( this.collection, 'change:selected', function() {
-                var selected = self.getSelectedCategories().map(function( category, index ) {
-                    return category.get( 'id' );
-                });
-
-                $.publish( '/category/updated', [ $( self.el ), selected ] );
+                self.updateSelectedCategories();
                 self.render();
             } );
         },
@@ -33,7 +30,7 @@ function( $, CategoriesCollection, CategoriesListView ) {
             } );
             $lists.append( view.render().$el );
 
-            view = new CategoriesListView( {
+            view = new AvailableCategoriesListView( {
                 collection: new CategoriesCollection( this.collection.filter( function( model ) {
                     return model.get( 'selected' ) ? false : true;
                 } ) ),
@@ -45,10 +42,23 @@ function( $, CategoriesCollection, CategoriesListView ) {
             return this;
         },
 
+        updateSelectedCategories: function() {
+            var selectedCategories = this.getSelectedCategories().map(function( category ) {
+                return category.get( 'id' );
+            });
+
+            this.publishSelectedCategories( selectedCategories );
+            this.helper.updateSelectedCategories( selectedCategories );
+        },
+
         getSelectedCategories: function() {
             return this.collection.filter( function( model ) {
                 return model.get( 'selected' ) ? true : false;
             } );
+        },
+
+        publishSelectedCategories: function( categoriesIds ) {
+            $.publish( '/category/updated', [ $( this.el ), categoriesIds ] );
         }
     } );
 
