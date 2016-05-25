@@ -1,7 +1,10 @@
-/*global AWPCP, _*/
+/*global AWPCP, _ */
 AWPCP.run('awpcp/page-place-ads', [
     'jquery',
     'awpcp/media-center',
+    'awpcp/categories-collection',
+    'awpcp/categories-selector-helper',
+    'awpcp/categories-selector-view',
     'awpcp/datepicker-field',
     'awpcp/user-information-updater',
     'awpcp/multiple-region-selector-validator',
@@ -13,6 +16,9 @@ AWPCP.run('awpcp/page-place-ads', [
 ], function(
     $,
     MediaCenter,
+    CategoriesCollection,
+    CategoriesSelectorHelper,
+    CategoriesSelectorView,
     DatepickerField,
     UserInformationUpdater,
     MultipleRegionsSelectorValidator,
@@ -240,13 +246,27 @@ AWPCP.run('awpcp/page-place-ads', [
 
                 var selectorContainer = form.find( '.awpcp-categories-selector' );
                 var identifier = selectorContainer.attr( 'data-multiple-value-selector-id' );
+                var options = settings.get( 'CategoriesSelector-' + identifier );
                 var selector = new MultipleValueSelectorViewModel(
                     new MultipleValueSelectorDelegate(
                         selectorContainer,
-                        settings.get( 'CategoriesSelector-' + identifier )
+                        options
                     )
                 );
                 selector.render();
+
+                (function() {
+                    var helper, view;
+
+                    helper = new CategoriesSelectorHelper( options.categories );
+                    view = new CategoriesSelectorView( {
+                        el: $( '.awpcp-multiple-categories-selector' ).get( 0 ),
+                        collection: new CategoriesCollection( helper.getAllCategories() ),
+                        helper: helper
+                    } );
+
+                    view.render();
+                })();
 
                 form.validate({
                     messages: $.AWPCP.l10n('page-place-ad-order')

@@ -1129,6 +1129,7 @@ class AWPCP {
                 'jquery-ui-datepicker',
                 'jquery-ui-autocomplete',
                 'plupload-all',
+                'backbone',
             ),
             $awpcp_db_version,
             true
