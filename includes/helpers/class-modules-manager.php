@@ -173,6 +173,9 @@ class AWPCP_ModulesManager {
     }
 
     private function replace_modules_names_in_message( $message, $modules ) {
+        $message = str_replace( '<module-name>', '<name>', $message );
+        $message = str_replace( '<modules-names>', '<names>', $message );
+
         return awpcp_replace_names_in_message(
             $message, $this->get_modules_names( $modules )
         );
