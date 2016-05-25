@@ -17,7 +17,10 @@ class AWPCP_Multiple_Categories_Selector {
 
         $categories = $this->categories->get_all();
         $categories_hierarchy = awpcp_build_categories_hierarchy( $categories, $params['hide_empty'] );
-        $chain = $this->get_category_parents( $params['selected'], $categories );
+        $chain = $this->get_selected_categories_parents(
+            (array) $params['selected'],
+            $categories
+        );
 
         $unique_id = uniqid();
         $use_multiple_dropdowns = get_awpcp_option( 'use-multiple-category-dropdowns' );
@@ -72,25 +75,32 @@ class AWPCP_Multiple_Categories_Selector {
         }
     }
 
-    private function get_category_parents( $category_id, &$categories ) {
-        if ( empty( $category_id ) ) {
-            return array();
+    private function get_selected_categories_parents( $categories, &$all_categories ) {
+        $selected_categories_parents = array();
+        $all_categories_parents = array();
+
+        foreach ( $all_categories as $item ) {
+            $all_categories_parents[ $item->term_id ] = $item->parent;
         }
 
-        $categories_parents = array();
-
-        foreach ( $categories as $item ) {
-            $categories_parents[ $item->term_id ] = $item->parent;
+        foreach ( $categories as $category_id ) {
+            $selected_categories_parents[] = $this->get_category_parents(
+                $category_id, $all_categories_parents
+            );
         }
 
-        $category_ancestors = array();
+        return $selected_categories_parents;
+    }
+
+    private function get_category_parents( $category_id, &$all_categories_parents ) {
+        $category_parents = array();
+
         $parent_id = $category_id;
-
-        while ( $parent_id != 0 && isset( $categories_parents[ $parent_id ] ) ) {
-            $category_ancestors[] = $parent_id;
-            $parent_id = $categories_parents[ $parent_id ];
+        while ( $parent_id != 0 && isset( $all_categories_parents[ $parent_id ] ) ) {
+            $category_parents[] = $parent_id;
+            $parent_id = $all_categories_parents[ $parent_id ];
         }
 
-        return array_reverse( $category_ancestors );
+        return array_reverse( $category_parents );
     }
 }
