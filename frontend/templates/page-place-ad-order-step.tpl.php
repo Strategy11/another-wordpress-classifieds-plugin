@@ -66,6 +66,7 @@
     <?php endif ?>
 
     <?php if ( ! $skip_payment_term_selection ): ?>
+    <?php echo $payment_terms_list->render( $payment_options ); ?>
     <?php echo $payments->render_payment_terms_form_field( $transaction, $table, $form_errors ); ?>
     <?php endif; ?>
 

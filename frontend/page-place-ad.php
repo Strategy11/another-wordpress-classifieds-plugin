@@ -350,12 +350,27 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             );
 
             if ( $skip_payment_term_selection ) {
+                $payment_terms_list = null;
+                $payment_options = null;
+
                 $payment_terms = null;
-                $term = $payments->get_transaction_payment_term($transaction);
+                $payment_term = $payments->get_transaction_payment_term($transaction);
                 $payment_type = $transaction->get( 'payment-term-payment-type' );
             } else {
+                $payment_terms_list = awpcp_payment_terms_list();
+                $payment_terms_list->handle_request( $this->request );
+                $payment_options = $payment_terms_list->get_data();
+
+                if ( ! is_null( $payment_options ) ) {
+                    $payment_term = $payment_options['payment_term'];
+                    $payment_type = $payment_options['payment_type'];
+                } else {
+                    $payment_term = null;
+                    $payment_type = '';
+                }
+
                 $payment_terms = new AWPCP_PaymentTermsTable( $available_payment_terms, $transaction->get('payment-term') );
-                $term = $payment_terms->get_payment_term($payment_type, $selected);
+                $payment_term = $payment_terms->get_payment_term($payment_type, $selected);
             }
 
             $this->validate_order(compact('user', 'category', 'term'), $form_errors);
@@ -366,8 +381,8 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
                 if ( ! $skip_payment_term_selection ) {
                     $transaction->set( 'payment-term', $selected );
-                    $transaction->set( 'payment-term-type', $term->type );
-                    $transaction->set( 'payment-term-id', $term->id );
+                    $transaction->set( 'payment-term-type', $payment_term->type );
+                    $transaction->set( 'payment-term-id', $payment_term->id );
                     $transaction->set( 'payment-term-payment-type', $payment_type );
 
                     $transaction->remove_all_items();
@@ -393,16 +408,19 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         } else {
             $transaction = null;
 
+            $payment_terms_list = awpcp_payment_terms_list();
+            $payment_options = null;
+
             $payment_terms = new AWPCP_PaymentTermsTable( $available_payment_terms );
 
             $user = wp_get_current_user()->ID;
             $category = array();
-            $term = null;
+            $payment_term = null;
         }
 
 
         // are we done here? what next?
-        if ( ! empty( $category ) && ! is_null( $term ) ) {
+        if ( ! empty( $category ) && ! is_null( $payment_term ) ) {
             if (empty($form_errors) && empty($transaction_errors)) {
                 $payments->set_transaction_status_to_ready_to_checkout($transaction, $transaction_errors);
 
@@ -425,6 +443,8 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             'page' => $this,
             'payments' => $payments,
             'table' => $payment_terms,
+            'payment_terms_list' => $payment_terms_list,
+            'payment_options' => $payment_options,
             'transaction' => $transaction,
 
             'skip_payment_term_selection' => $skip_payment_term_selection,
