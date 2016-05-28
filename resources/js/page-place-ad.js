@@ -5,6 +5,7 @@ AWPCP.run('awpcp/page-place-ads', [
     'awpcp/categories-collection',
     'awpcp/categories-selector-helper',
     'awpcp/categories-selector-view',
+    'awpcp/payment-terms-list',
     'awpcp/datepicker-field',
     'awpcp/user-information-updater',
     'awpcp/multiple-region-selector-validator',
@@ -19,6 +20,7 @@ AWPCP.run('awpcp/page-place-ads', [
     CategoriesCollection,
     CategoriesSelectorHelper,
     CategoriesSelectorView,
+    PaymentTermsList,
     DatepickerField,
     UserInformationUpdater,
     MultipleRegionsSelectorValidator,
@@ -52,10 +54,6 @@ AWPCP.run('awpcp/page-place-ads', [
             self.user_terms = user.payment_terms;
             self.update();
         });
-
-        $.subscribe( '/category-selector/ready', function() {
-            self._broadcastCategoriesMatrix();
-        } );
     };
 
     $.extend($.AWPCP.PaymentTermsTable.prototype, {
@@ -268,6 +266,8 @@ AWPCP.run('awpcp/page-place-ads', [
                 })();
 
                 container.find('[autocomplete-field], [dropdown-field]').userfield();
+
+                $.noop( new PaymentTermsList( container.find( '.awpcp-payment-terms-list' ) ) );
 
                 form.validate({
                     messages: $.AWPCP.l10n('page-place-ad-order')

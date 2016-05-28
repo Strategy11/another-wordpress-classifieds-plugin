@@ -49,7 +49,7 @@ class AWPCP_Payment_Terms_List {
 
     private function get_payment_term_definition( $payment_term ) {
         return array(
-            'id' => $payment_term->id,
+            'attributes' => $this->get_payment_term_attributes( $payment_term ),
             'name' => $payment_term->name,
             'description' => $payment_term->description,
             'duration_amount' => $payment_term->duration_amount,
@@ -57,6 +57,13 @@ class AWPCP_Payment_Terms_List {
             'features' => $this->get_payment_term_features_definition( $payment_term ),
             'price' => $this->get_payment_term_price_definition( $payment_term, awpcp_get_currency_symbol() ),
             'extra' => array(),
+        );
+    }
+
+    private function get_payment_term_attributes( $payment_term ) {
+        return array(
+            'data-id' => "{$payment_term->type}-{$payment_term->id}",
+            'data-categories' => esc_attr( json_encode( array_map( 'absint', $payment_term->categories ) ) ),
         );
     }
 

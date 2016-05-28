@@ -23,6 +23,7 @@ module.exports = function(grunt) {
           '<%= path.awpcp %>/js/components/media-center.js',
           '<%= path.awpcp %>/js/components/messages/*.js',
           '<%= path.awpcp %>/js/components/multiple-region-selector/multiple-region-selector-validator.js',
+          '<%= path.awpcp %>/js/components/payment-terms-list/*.js',
           '<%= path.awpcp %>/js/components/thumbnails-generator/*.js',
           '<%= path.awpcp %>/js/components/user-information-updater/*.js',
           '<%= path.awpcp %>/js/components/value-selector/*.js',

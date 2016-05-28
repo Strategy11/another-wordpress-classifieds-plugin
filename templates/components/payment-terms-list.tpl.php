@@ -1,6 +1,6 @@
 <ul class="awpcp-payment-terms-list">
     <?php foreach ( $payment_terms as $payment_term ): ?>
-    <li class="awpcp-payment-terms-list-payment-term awpcp-rounded-box awpcp-bordered-box awpcp-box awpcp-clearfix">
+    <li class="awpcp-payment-terms-list-payment-term awpcp-rounded-box awpcp-bordered-box awpcp-box awpcp-clearfix" <?php echo awpcp_html_attributes( $payment_term['attributes'] ); ?>>
         <div class="awpcp-payment-term-duration">
             <span class="awpcp-payment-term-duration-amount"><?php echo esc_html( $payment_term['duration_amount'] ); ?></span>
             <span class="awpcp-payment-term-duration-interval"><?php echo esc_html( $payment_term['duration_interval'] ); ?></span>
