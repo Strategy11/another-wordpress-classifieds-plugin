@@ -49,7 +49,7 @@
 
     <?php if (awpcp_current_user_is_moderator()): ?>
     <h3><?php echo esc_html( _x( 'Please select the owner for this Ad', 'place ad order step', 'another-wordpress-classifieds-plugin' ) ); ?></h3>
-    <p class="awpcp-form-spacer">
+    <div class="awpcp-form-spacer">
         <?php
             echo awpcp_users_field()->render( array(
                 'required' => true,
@@ -62,7 +62,7 @@
             ) );
         ?>
         <?php echo awpcp_form_error( 'user', $form_errors ); ?>
-    </p>
+    </div>
     <?php endif ?>
 
     <?php if ( ! $skip_payment_term_selection ): ?>
