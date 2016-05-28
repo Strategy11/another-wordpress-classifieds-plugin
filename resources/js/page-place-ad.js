@@ -241,9 +241,6 @@ AWPCP.run('awpcp/page-place-ads', [
         (function() {
             var form = container.find('.awpcp-order-form');
             if (form.length) {
-                $.noop(new $.AWPCP.PaymentTermsTable(container.find('.awpcp-payment-terms-table')));
-                container.find('[autocomplete-field], [dropdown-field]').userfield();
-
                 var selectorContainer = form.find( '.awpcp-categories-selector' );
                 var identifier = selectorContainer.attr( 'data-multiple-value-selector-id' );
                 var options = settings.get( 'CategoriesSelector-' + identifier );
@@ -269,6 +266,8 @@ AWPCP.run('awpcp/page-place-ads', [
 
                     view.render();
                 })();
+
+                container.find('[autocomplete-field], [dropdown-field]').userfield();
 
                 form.validate({
                     messages: $.AWPCP.l10n('page-place-ad-order')

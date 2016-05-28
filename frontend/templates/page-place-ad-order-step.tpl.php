@@ -66,8 +66,9 @@
     <?php endif ?>
 
     <?php if ( ! $skip_payment_term_selection ): ?>
+    <h3><?php _e( 'Please select a payment term for your Ad', 'another-wordpress-classifieds-plugin' ); ?></h3>
+    <?php echo awpcp_form_error( 'payment-term', $form_errors ); ?>
     <?php echo $payment_terms_list->render( $payment_options ); ?>
-    <?php echo $payments->render_payment_terms_form_field( $transaction, $table, $form_errors ); ?>
     <?php endif; ?>
 
     <p class="awpcp-form-submit">

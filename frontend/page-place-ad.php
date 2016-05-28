@@ -359,6 +359,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             } else {
                 $payment_terms_list = awpcp_payment_terms_list();
                 $payment_terms_list->handle_request( $this->request );
+
                 $payment_options = $payment_terms_list->get_data();
 
                 if ( ! is_null( $payment_options ) ) {
@@ -368,9 +369,6 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
                     $payment_term = null;
                     $payment_type = '';
                 }
-
-                $payment_terms = new AWPCP_PaymentTermsTable( $available_payment_terms, $transaction->get('payment-term') );
-                $payment_term = $payment_terms->get_payment_term($payment_type, $selected);
             }
 
             $this->validate_order(compact('user', 'category', 'term'), $form_errors);
@@ -384,9 +382,9 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
                     $transaction->set( 'payment-term-type', $payment_term->type );
                     $transaction->set( 'payment-term-id', $payment_term->id );
                     $transaction->set( 'payment-term-payment-type', $payment_type );
-
                     $transaction->remove_all_items();
-                    $payment_terms->set_transaction_item( $transaction );
+
+                    $this->set_transaction_item( $transaction, $payment_term, $payment_type );
 
                     // process transaction to grab Credit Plan information
                     $payments->set_transaction_credit_plan($transaction);
@@ -410,8 +408,6 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
             $payment_terms_list = awpcp_payment_terms_list();
             $payment_options = null;
-
-            $payment_terms = new AWPCP_PaymentTermsTable( $available_payment_terms );
 
             $user = wp_get_current_user()->ID;
             $category = array();
@@ -442,7 +438,6 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $params = array(
             'page' => $this,
             'payments' => $payments,
-            'table' => $payment_terms,
             'payment_terms_list' => $payment_terms_list,
             'payment_options' => $payment_options,
             'transaction' => $transaction,
