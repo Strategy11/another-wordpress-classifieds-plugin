@@ -61,10 +61,12 @@ class AWPCP_Payment_Terms_List {
     }
 
     private function get_payment_term_attributes( $payment_term ) {
-        return array(
+        $attributes = array(
             'data-id' => "{$payment_term->type}-{$payment_term->id}",
             'data-categories' => esc_attr( json_encode( array_map( 'absint', $payment_term->categories ) ) ),
         );
+
+        return apply_filters( 'awpcp-payment-terms-list-payment-term-attributes', $attributes, $payment_term );
     }
 
     private function get_payment_term_features_definition( $payment_term ) {
