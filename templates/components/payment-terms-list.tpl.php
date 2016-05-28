@@ -18,15 +18,24 @@
         </div>
         <div class="awpcp-payment-term-price">
             <div class="awpcp-payment-term-price-in-currency">
-                <!--<span><?php echo esc_html( $payment_term['price']['currency_amount'] ); ?></span>
-                <a href="#" class="button"><?php echo esc_html( $payment_term['price']['currency_button_label'] ); ?></a>-->
-                <label><input type="radio" name="payment_term" value="<?php echo esc_html( $payment_term['price']['currency_option'] ); ?>">&nbsp;<?php echo esc_html( $payment_term['price']['currency_amount'] ); ?></label>
+                <?php
+                    if ( $payment_term['price']['currency_option'] == $selected_payment_option ) {
+                        $checked = ' checked="checked"';
+                    } else {
+                        $checked = '';
+                    }
+                ?>
+                <label><input type="radio" name="payment_term" value="<?php echo esc_html( $payment_term['price']['currency_option'] ); ?>"<?php echo $checked; ?>>&nbsp;<?php echo esc_html( $payment_term['price']['currency_amount'] ); ?></label>
             </div>
             <div class="awpcp-payment-term-price-in-credits">
-                <!--<span><?php echo esc_html( $payment_term['price']['credits_amount'] ); ?></span>
-                <span><?php echo esc_html( $payment_term['price']['credits_label'] ); ?></span>
-                <a href="#" class="button"><?php echo esc_html( $payment_term['price']['credits_button_label'] ); ?></a>-->
-                <label><input type="radio" name="payment_term" value="<?php echo esc_html( $payment_term['price']['credits_option'] ); ?>">&nbsp;<?php echo esc_html( $payment_term['price']['credits_amount'] ); ?>&nbsp;<?php echo esc_html( $payment_term['price']['credits_label'] ); ?></label>
+                <?php
+                    if ( $payment_term['price']['credits_option'] == $selected_payment_option ) {
+                        $checked = ' checked="checked"';
+                    } else {
+                        $checked = '';
+                    }
+                ?>
+                <label><input type="radio" name="payment_term" value="<?php echo esc_html( $payment_term['price']['credits_option'] ); ?>"<?php echo $checked; ?>>&nbsp;<?php echo esc_html( $payment_term['price']['credits_amount'] ); ?>&nbsp;<?php echo esc_html( $payment_term['price']['credits_label'] ); ?></label>
             </div>
         </div>
         <!-- extra -->

@@ -26,7 +26,7 @@ class AWPCP_Payment_Terms_List {
     public function render( $model_data, $options = array() ) {
         $params = array(
             'payment_terms' => $this->get_payment_terms_definitions(),
-            'selected_payment_term' => $this->from_model_to_view( $model_data ),
+            'selected_payment_option' => $this->from_model_to_view( $model_data ),
         );
 
         $template = AWPCP_DIR . '/templates/components/payment-terms-list.tpl.php';
