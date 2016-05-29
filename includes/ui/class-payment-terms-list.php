@@ -55,7 +55,7 @@ class AWPCP_Payment_Terms_List {
             'duration_amount' => $payment_term->duration_amount,
             'duration_interval' => $payment_term->get_duration_interval(),
             'features' => $this->get_payment_term_features_definition( $payment_term ),
-            'price' => $this->get_payment_term_price_definition( $payment_term, awpcp_get_currency_symbol() ),
+            'price' => $this->get_payment_term_price_definition( $payment_term ),
             'extra' => array(),
         );
     }
@@ -115,7 +115,7 @@ class AWPCP_Payment_Terms_List {
         return str_replace( '<characters-count>', '<strong>' . $payment_term->characters . '</strong>', $description );
     }
 
-    private function get_payment_term_price_definition( $payment_term, $currency_symbol ) {
+    private function get_payment_term_price_definition( $payment_term ) {
         if ( $payment_term->price == 0 ) {
             $currency_button_label = __( 'Use this plan for free!', 'another-wordpress-classifieds-plugin' );
         } else {
