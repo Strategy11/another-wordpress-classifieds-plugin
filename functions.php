@@ -1244,28 +1244,6 @@ function awpcp_get_currency_code() {
     }
 }
 
-
-/**
- * XXX: Referenced in FAQ: http://awpcp.com/forum/faq/why-doesnt-my-currency-code-change-when-i-set-it/
- */
-function awpcp_get_currency_symbol() {
-    $currency_symbol = get_awpcp_option( 'currency-symbol' );
-
-    if ( ! empty( $currency_symbol ) ) {
-        return $currency_symbol;
-    }
-
-	$currency_code = awpcp_get_currency_code();
-
-    foreach ( awpcp_currency_symbols() as $currency_symbol => $currency_codes ) {
-        if ( in_array( $currency_code, $currency_codes ) ) {
-            return $currency_symbol;
-        }
-    }
-
-    return $currency_code;
-}
-
 /**
  * @since 3.4
  */
@@ -1294,22 +1272,32 @@ function awpcp_currency_symbols() {
  * @since 3.0
  */
 function awpcp_format_money($value) {
+    return awpcp_get_formmatted_amount(
+        $value,
+        awpcp_get_default_formatted_amount_template()
+    );
+}
+
+/**
+ * @since 4.0
+ */
+function awpcp_get_default_formatted_amount_template() {
     if ( get_awpcp_option( 'show-currency-symbol' ) != 'do-not-show-currency-symbol' ) {
         $show_currency_symbol = true;
     } else {
         $show_currency_symbol = false;
     }
 
-    return awpcp_get_formmatted_amount( $value, $show_currency_symbol );
+    return awpcp_get_formatted_amount_template( $show_currency_symbol );
 }
 
-function awpcp_format_money_without_currency_symbol( $value ) {
-    return awpcp_get_formmatted_amount( $value, false );
-}
-
-function awpcp_get_formmatted_amount( $value, $include_symbol ) {
+/**
+ * @access private
+ * @since 4.0
+ */
+function awpcp_get_formatted_amount_template( $show_currency_symbol ) {
     $symbol_position = get_awpcp_option( 'show-currency-symbol' );
-    $symbol = $include_symbol ? awpcp_get_currency_symbol() : '';
+    $currency_symbol = $show_currency_symbol ? awpcp_get_currency_symbol() : '';
 
     if ( get_awpcp_option( 'include-space-between-currency-symbol-and-amount' ) ) {
         $separator = ' ';
@@ -1317,25 +1305,56 @@ function awpcp_get_formmatted_amount( $value, $include_symbol ) {
         $separator = '';
     }
 
-    if ( $include_symbol && $symbol_position == 'show-currency-symbol-on-left' ) {
-        $formatted = '<currenct-symbol><separator><amount>';
-    } else if ( $include_symbol && $symbol_position == 'show-currency-symbol-on-right' ) {
-        $formatted = '<amount><separator><currenct-symbol>';
+    if ( $show_currency_symbol && $symbol_position == 'show-currency-symbol-on-left' ) {
+        $formatted = "${currency_symbol}${separator}<amount>";
+    } else if ( $show_currency_symbol && $symbol_position == 'show-currency-symbol-on-right' ) {
+        $formatted = "<amount>${separator}${currency_symbol}";
     } else {
         $formatted = '<amount>';
     }
 
-    $formatted = str_replace( '<currenct-symbol>', $symbol, $formatted );
-    $formatted = str_replace( '<amount>', awpcp_format_number( $value ), $formatted );
-    $formatted = str_replace( '<separator>', $separator, $formatted );
+    return $formatted;
+}
 
-    return $value >= 0 ? $formatted : "($formatted)";
+/**
+ * XXX: Referenced in FAQ: http://awpcp.com/forum/faq/why-doesnt-my-currency-code-change-when-i-set-it/
+ */
+function awpcp_get_currency_symbol() {
+    $currency_symbol = get_awpcp_option( 'currency-symbol' );
+
+    if ( ! empty( $currency_symbol ) ) {
+        return $currency_symbol;
+    }
+
+    $currency_code = awpcp_get_currency_code();
+
+    foreach ( awpcp_currency_symbols() as $currency_symbol => $currency_codes ) {
+        if ( in_array( $currency_code, $currency_codes ) ) {
+            return $currency_symbol;
+        }
+    }
+
+    return $currency_code;
+}
+
+/**
+ * @access private
+ */
+function awpcp_get_formmatted_amount( $value, $template ) {
+    if ( $value < 0 ) {
+        return str_replace( '(<amount>)', awpcp_format_number( $value ), $template );
+    } else {
+        return str_replace( '<amount>', awpcp_format_number( $value ), $template );
+    }
 }
 
 function awpcp_format_number( $value, $decimals = null ) {
     return awpcp_get_formatted_number( $value, $decimals = get_awpcp_option( 'show-decimals' ) ? 2 : 0 );
 }
 
+/**
+ * @access private
+ */
 function awpcp_get_formatted_number( $value, $decimals = 0 ) {
     $thousands_separator = get_awpcp_option( 'thousands-separator' );
     $decimal_separator = get_awpcp_option( 'decimal-separator' );
@@ -1345,6 +1364,20 @@ function awpcp_get_formatted_number( $value, $decimals = 0 ) {
     $formatted = str_replace( '^', $thousands_separator, $formatted );
 
     return $formatted;
+}
+
+function awpcp_format_money_without_currency_symbol( $value ) {
+    return awpcp_get_formmatted_amount(
+        $value,
+        awpcp_get_formatted_amount_template_without_currency_symbol()
+    );
+}
+
+/**
+ * @access private
+ */
+function awpcp_get_formatted_amount_template_without_currency_symbol() {
+    return awpcp_get_formatted_amount_template( false );
 }
 
 function awpcp_format_integer( $value ) {
