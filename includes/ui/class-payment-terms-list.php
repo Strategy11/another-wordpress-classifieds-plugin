@@ -23,6 +23,21 @@ class AWPCP_Payment_Terms_List {
         return $this->from_view_to_model( $this->submitted_data );
     }
 
+    private function from_view_to_model( $selected_value ) {
+        if ( ! preg_match( '/(.+)-(.+)-(money|credits)/', $selected_value, $matches ) ) {
+            return null;
+        }
+
+        $payment_term_type = $matches[1];
+        $payment_term_id   = $matches[2];
+        $payment_type      = $matches[3];
+
+        return array(
+            'payment_term' => $this->payments->get_payment_term( $payment_term_id, $payment_term_type ),
+            'payment_type' => $payment_type,
+        );
+    }
+
     public function render( $model_data, $options = array() ) {
         $params = array(
             'payment_terms' => $this->get_payment_terms_definitions(),
@@ -158,18 +173,4 @@ class AWPCP_Payment_Terms_List {
         }
     }
 
-    private function from_view_to_model( $selected_value ) {
-        if ( ! preg_match( '/(.+)-(.+)-(money|credits)/', $selected_value, $matches ) ) {
-            return null;
-        }
-
-        $payment_term_type = $matches[1];
-        $payment_term_id   = $matches[2];
-        $payment_type      = $matches[3];
-
-        return array(
-            'payment_term' => $this->payments->get_payment_term( $payment_term_id, $payment_term_type ),
-            'payment_type' => $payment_type,
-        );
-    }
 }
