@@ -25,7 +25,7 @@
                         $checked = '';
                     }
                 ?>
-                <label><input type="radio" name="payment_term" value="<?php echo esc_html( $payment_term['price']['currency_option'] ); ?>"<?php echo $checked; ?>>&nbsp;<?php echo esc_html( $payment_term['price']['currency_amount'] ); ?></label>
+                <label><input type="radio" name="payment_term" value="<?php echo esc_html( $payment_term['price']['currency_option'] ); ?>"<?php echo $checked; ?>>&nbsp;<span class="awpcp-payment-terms-list-payment-term-currency-amount"><?php echo esc_html( $payment_term['price']['currency_amount'] ); ?></span></label>
             </div>
             <div class="awpcp-payment-term-price-in-credits">
                 <?php
@@ -35,7 +35,7 @@
                         $checked = '';
                     }
                 ?>
-                <label><input type="radio" name="payment_term" value="<?php echo esc_html( $payment_term['price']['credits_option'] ); ?>"<?php echo $checked; ?>>&nbsp;<?php echo esc_html( $payment_term['price']['credits_amount'] ); ?>&nbsp;<?php echo esc_html( $payment_term['price']['credits_label'] ); ?></label>
+                <label><input type="radio" name="payment_term" value="<?php echo esc_html( $payment_term['price']['credits_option'] ); ?>"<?php echo $checked; ?>>&nbsp;<span class="awpcp-payment-terms-list-payment-term-credits-amount"><?php echo esc_html( $payment_term['price']['credits_amount'] ); ?></span>&nbsp;<?php echo esc_html( $payment_term['price']['credits_label'] ); ?></label>
             </div>
         </div>
         <!-- extra -->
