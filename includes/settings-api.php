@@ -434,8 +434,6 @@ class AWPCP_Settings_API {
 		);
 
 		$awpcp->js->set( 'overwrite-contact-information-on-user-change', (bool) get_awpcp_option( 'overwrite-contact-information-on-user-change' ) );
-		$awpcp->js->set( 'decimal-separator', get_awpcp_option( 'decimal-separator' ) );
-		$awpcp->js->set( 'thousands-separator', get_awpcp_option( 'thousands-separator' ) );
 		$awpcp->js->set( 'date-format', awpcp_datepicker_format( get_awpcp_option( 'date-format') ) );
 		$awpcp->js->set( 'datetime-formats', array(
 			'american' => array(

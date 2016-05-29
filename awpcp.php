@@ -1219,6 +1219,9 @@ class AWPCP {
 
         if ( $scripts->script_will_be_printed( 'awpcp' ) ) {
             $this->js->set( 'ajaxurl', awpcp_ajaxurl() );
+            $this->js->set( 'decimal-separator', get_awpcp_option( 'decimal-separator' ) );
+            $this->js->set( 'thousands-separator', get_awpcp_option( 'thousands-separator' ) );
+
             $this->js->print_data();
         }
 	}
