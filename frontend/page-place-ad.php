@@ -247,11 +247,11 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             $errors['user'] = __('You should select an owner for this Ad.', 'another-wordpress-classifieds-plugin');
         }
 
-        if (is_null($data['term'])) {
+        if (is_null($data['payment_term'])) {
             $errors['payment-term'] = __('You should choose one of the available Payment Terms.', 'another-wordpress-classifieds-plugin');
         }
 
-        if ( ! awpcp_current_user_is_admin() && ! is_null( $data['term'] ) && $data['term']->private ) {
+        if ( ! awpcp_current_user_is_admin() && ! is_null( $data['payment_term'] ) && $data['payment_term']->private ) {
             $message = __( 'The Payment Term you selected is not available for non-administrator users.', 'another-wordpress-classifieds-plugin' );
             $errors['payment-term'] = $message;
         }
@@ -269,7 +269,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         }
 
         $categories_names = $this->get_categories_names( $data['category'] );
-        $categories_not_allowed = array_diff( $data['category'], $data['term']->categories );
+        $categories_not_allowed = array_diff( $data['category'], $data['payment_term']->categories );
 
         if ( ! empty( $categories_not_allowed ) ) {
             $not_allowed_names = array();
@@ -371,7 +371,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
                 }
             }
 
-            $this->validate_order(compact('user', 'category', 'term'), $form_errors);
+            $this->validate_order(compact('user', 'category', 'payment_term'), $form_errors);
 
             if (empty($form_errors) && empty($transaction_errors)) {
                 $transaction->user_id = $user;
