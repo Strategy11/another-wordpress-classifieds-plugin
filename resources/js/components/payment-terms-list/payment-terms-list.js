@@ -8,12 +8,12 @@ function( $, settings ) {
             allPaymentTerms: this.container.find( '.awpcp-payment-terms-list-payment-term' )
         };
 
-        $.subscribe( '/category/updated', _.bind( this.onCategoryUpdated, this ) );
+        $.subscribe( '/category/updated', _.bind( this.onCategoriesUpdated, this ) );
         $.subscribe( '/user/updated', _.bind( this.onUserUpdated, this ) );
     };
 
     $.extend( PaymentTermsList.prototype, {
-        onCategoryUpdated: function( event, source, categories ) {
+        onCategoriesUpdated: function( event, source, categories ) {
             if ( ! $.contains( source.closest( 'form' ).get( 0 ), this.container.get( 0 ) ) ) {
                 return;
             }
