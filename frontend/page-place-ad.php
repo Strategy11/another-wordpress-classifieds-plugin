@@ -279,7 +279,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             }
 
             $message = _n( 'The Payment Term you selected is not valid for category <name>', 'The Payment Term you selected is not valid for categories: <names>', count( $categories_not_allowed ), 'another-wordpress-classifieds-plugin' );
-            $message = awpcp_replace_names_in_message( $messages, $not_allowed_names );
+            $message = awpcp_replace_names_in_message( $message, $not_allowed_names );
 
             $errors['payment-term'] = $message;
         }
