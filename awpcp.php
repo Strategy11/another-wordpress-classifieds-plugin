@@ -291,9 +291,12 @@ require_once( AWPCP_DIR . "/includes/settings/class-registration-settings.php" )
 require_once( AWPCP_DIR . "/includes/settings/class-user-notifications-settings.php" );
 require_once( AWPCP_DIR . "/includes/settings/class-window-title-settings.php" );
 
-require( AWPCP_DIR . "/includes/upgrade/class-upgrade-task-handler.php" );
 require( AWPCP_DIR . "/includes/upgrade/interface-upgrade-task-runner.php" );
+
 require( AWPCP_DIR . "/includes/upgrade/class-categories-registry.php" );
+
+require( AWPCP_DIR . "/includes/upgrade/class-update-categories-task-runner.php" );
+require( AWPCP_DIR . "/includes/upgrade/class-upgrade-task-handler.php" );
 require( AWPCP_DIR . "/includes/upgrade/class-database-tables.php" );
 require_once( AWPCP_DIR . "/includes/upgrade/class-manual-upgrade-tasks-manager.php" );
 require_once( AWPCP_DIR . "/includes/upgrade/class-manual-upgrade-tasks.php" );
