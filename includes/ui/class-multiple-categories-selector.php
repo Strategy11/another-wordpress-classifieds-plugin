@@ -33,7 +33,11 @@ class AWPCP_Multiple_Categories_Selector {
             'multistep' => (bool) $use_multiple_dropdowns,
         ) );
 
-        return '<div class="awpcp-categories-selector" data-multiple-value-selector-id="' . $unique_id . '"></div>';
+        $template = '<div class="awpcp-multiple-categories-selector" data-multiple-value-selector-id="' . $unique_id . '">';
+        $template.= '<div class="awpcp-categories-selector-categories-lists"></div>';
+        $template.= '</div>';
+
+        return $template;
     }
 
     private function parse_args( $params ) {

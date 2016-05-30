@@ -28,12 +28,6 @@
     <h3><?php echo esc_html( _x( 'Please select a Category for your Ad', 'place ad order step', 'another-wordpress-classifieds-plugin' ) ); ?></h3>
 
     <div class="awpcp-form-spacer">
-        <div class="awpcp-multiple-categories-selector">
-            <div class="awpcp-categories-selector-categories-lists"></div>
-        </div>
-    </div>
-
-    <div class="awpcp-form-spacer">
         <?php
             $params = apply_filters( 'awpcp-place-listing-category-selector-params', array(
                 'name' => 'category',

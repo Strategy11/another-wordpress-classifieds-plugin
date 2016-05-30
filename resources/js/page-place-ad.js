@@ -239,18 +239,11 @@ AWPCP.run('awpcp/page-place-ads', [
         (function() {
             var form = container.find('.awpcp-order-form');
             if (form.length) {
-                var selectorContainer = form.find( '.awpcp-categories-selector' );
-                var identifier = selectorContainer.attr( 'data-multiple-value-selector-id' );
-                var options = settings.get( 'CategoriesSelector-' + identifier );
-                var selector = new MultipleValueSelectorViewModel(
-                    new MultipleValueSelectorDelegate(
-                        selectorContainer,
-                        options
-                    )
-                );
-                selector.render();
-
                 (function() {
+                    var selectorContainer = form.find( '.awpcp-multiple-categories-selector' );
+                    var identifier = selectorContainer.attr( 'data-multiple-value-selector-id' );
+                    var options = settings.get( 'CategoriesSelector-' + identifier );
+
                     var helper = new CategoriesSelectorHelper(
                         options.categories,
                         options.selectionMatrix
