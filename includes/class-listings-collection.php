@@ -666,7 +666,7 @@ class AWPCP_ListingsCollection {
     }
 
     private function prepare_count_listings_query( $query ) {
-        $query = $this->prepare_query( $query );
+        $query = $this->prepare_listings_query( $query );
 
         $query['fields'] = 'ids';
 
