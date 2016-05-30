@@ -20,11 +20,19 @@ function( $, CategoriesCollection, CategoriesListView, AvailableCategoriesListVi
         },
 
         render: function() {
+            var $element = this.$el;
             var $lists = this.$( '.awpcp-categories-selector-categories-lists' ).empty();
+            var selectedCategories = this.getSelectedCategories();
             var view;
 
+            this.$( '.awpcp-categories-selector-hidden-values' ).remove();
+
+            _.each( selectedCategories, function( category ) {
+                $element.append( $( '<input class="awpcp-categories-selector-hidden-values" type="hidden" name="category[]" value="' + category.id + '">' ) );
+            } );
+
             view = new CategoriesListView( {
-                collection: new CategoriesCollection( this.getSelectedCategories() ),
+                collection: new CategoriesCollection( selectedCategories ),
                 title: 'Selected Categories',
                 helper: this.helper
             } );
