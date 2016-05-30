@@ -113,7 +113,7 @@ class AWPCP_Store_Media_As_Attachments_Upgrade_Task_Handler implements AWPCP_Upg
     }
 
     private function get_id_of_associated_listing( $item ) {
-        $listings = get_posts( array(
+        $listings = $this->wordpress->get_posts( array(
             'post_type' => 'awpcp_listing',
             'meta_key' => '_awpcp_old_id',
             'meta_value' => $item->ad_id,
