@@ -236,7 +236,13 @@ AWPCP.run('awpcp/page-place-ads', [
 
         (function() {
             var form = container.find('.awpcp-order-form');
+
             if (form.length) {
+                // we need to initialize the payment terms list first,
+                // so that it can respond to initial events from Categories Selector
+                // and User fields.
+                $.noop( new PaymentTermsList( container.find( '.awpcp-payment-terms-list' ) ) );
+
                 (function() {
                     var selectorContainer = form.find( '.awpcp-multiple-categories-selector' );
                     var identifier = selectorContainer.attr( 'data-multiple-value-selector-id' );
@@ -257,8 +263,6 @@ AWPCP.run('awpcp/page-place-ads', [
                 })();
 
                 container.find('[autocomplete-field], [dropdown-field]').userfield();
-
-                $.noop( new PaymentTermsList( container.find( '.awpcp-payment-terms-list' ) ) );
 
                 form.validate({
                     messages: $.AWPCP.l10n('page-place-ad-order')
