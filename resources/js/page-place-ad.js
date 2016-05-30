@@ -10,8 +10,6 @@ AWPCP.run('awpcp/page-place-ads', [
     'awpcp/user-information-updater',
     'awpcp/multiple-region-selector-validator',
     'awpcp/settings',
-    'awpcp/multiple-value-selector',
-    'awpcp/multiple-value-selector-delegate',
     'awpcp/jquery-userfield',
     'awpcp/jquery-validate-methods'
 ], function(
