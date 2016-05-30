@@ -50,6 +50,30 @@ class AWPCP_ListingsCollection {
     }
 
     /**
+     * We need to support OLD listing's IDs for a while, in order to
+     * maintain old URLs working.
+     *
+     * @since feature/1112
+     */
+    public function get_listing_with_old_id( $listing_id ) {
+        $listings = $this->find_listings( array(
+            'meta_query' => array(
+                array(
+                    'key' => '_awpcp_old_id',
+                    'value' => $listing_id,
+                ),
+            ),
+        ) );
+
+        if ( empty( $listings ) ) {
+            $message = __( 'No Listing was found with id: %d.', 'another-wordpress-classifieds-plugin' );
+            throw new AWPCP_Exception( sprintf( $message, $listing_id ) );
+        }
+
+        return $listings[0];
+    }
+
+    /**
      * @since 3.3
      */
     public function find_all_by_id( $identifiers ) {

@@ -410,6 +410,7 @@ require( AWPCP_DIR . '/frontend/class-categories-selector-component.php' );
 require( AWPCP_DIR . '/frontend/class-categories-renderer-factory.php' );
 require( AWPCP_DIR . '/frontend/class-image-placeholders.php' );
 require( AWPCP_DIR . '/frontend/class-query.php' );
+require( AWPCP_DIR . '/frontend/class-url-backwards-compatibility-redirection-helper.php' );
 require_once(AWPCP_DIR . "/frontend/widget-search.php");
 require_once(AWPCP_DIR . "/frontend/widget-latest-ads.php");
 require_once(AWPCP_DIR . "/frontend/widget-random-ad.php");
@@ -719,6 +720,9 @@ class AWPCP {
         } else {
             // load resources required in frontend screens only.
             add_action( 'template_redirect', array( awpcp_secure_url_redirection_handler(), 'dispatch' ) );
+
+            $helper = awpcp_url_backwards_compatibility_redirection_helper();
+            add_action( 'template_redirect', array( $helper, 'maybe_redirect' ) );
         }
 
         add_filter( 'awpcp-content-placeholders', array( $this, 'register_content_placeholders' ) );
