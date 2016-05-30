@@ -47,7 +47,7 @@ class AWPCP_BrowseAdsPage extends AWPCP_Page {
     }
 
     protected function browse_listings( $callback ) {
-        $category_id = intval( $this->request->param( 'category_id', get_query_var( 'cid' ) ) );
+        $category_id = $this->request->get_category_id();
         $output = apply_filters( 'awpcp-browse-listings-content-replacement', null, $category_id );
 
         if ( is_null( $output ) ) {

@@ -24,8 +24,7 @@ class AWPCP_Categories_Selector_Component {
             $action_url = awpcp_get_browse_categories_page_url();
         }
 
-        $category_id = (int) $this->request->param( 'category_id', -1 );
-        $category_id = $category_id === -1 ? (int) $this->request->get_query_var( 'cid' ) : $category_id;
+        $category_id = $this->request->get_category_id();
 
         $category_dropdown_params = wp_parse_args( $params, array(
             'context' => 'search',
