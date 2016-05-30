@@ -363,6 +363,36 @@ class AWPCP_PaymentsAPI {
         }
     }
 
+    public function set_transaction_item_from_payment_term( $transaction, $payment_term, $payment_type = null ) {
+        if ( is_null( $payment_type ) ) {
+            $payment_type = AWPCP_Payment_Transaction::PAYMENT_TYPE_MONEY;
+        }
+
+        if ( ! in_array( $payment_type, $this->get_accepted_payment_types() ) ) {
+            awpcp_flash( __( "The selected payment type can't be used in this kind of transaction.", 'another-wordpress-classifieds-plugin' ), 'error' );
+            return;
+        }
+
+        if ( ! $payment_term->is_suitable_for_transaction( $transaction ) ) {
+            awpcp_flash( __( "The selected payment term can't be used in this kind of transaction.", 'another-wordpress-classifieds-plugin' ), 'error' );
+            return;
+        }
+
+        if ( $payment_type == 'credits' ) {
+            $payment_amount = $payment_term->credits;
+        } else {
+            $payment_amount = $payment_term->price;
+        }
+
+        return $transaction->add_item(
+            "{$payment_term->type}-{$payment_term->id}-${payment_type}",
+            $payment_term->get_name(),
+            $payment_term->description,
+            $payment_type,
+            $payment_amount
+        );
+    }
+
     public function process_transaction($transaction) {
         do_action('awpcp-process-payment-transaction', $transaction);
     }

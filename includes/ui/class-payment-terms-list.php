@@ -173,4 +173,7 @@ class AWPCP_Payment_Terms_List {
         }
     }
 
+    public function handle_request( $request ) {
+        $this->submitted_data = $request->post( 'payment_term' );
+    }
 }

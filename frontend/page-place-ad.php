@@ -378,16 +378,17 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
                 $transaction->set('category', $category);
 
                 if ( ! $skip_payment_term_selection ) {
-                    $transaction->set( 'payment-term', $selected );
                     $transaction->set( 'payment-term-type', $payment_term->type );
                     $transaction->set( 'payment-term-id', $payment_term->id );
                     $transaction->set( 'payment-term-payment-type', $payment_type );
                     $transaction->remove_all_items();
 
-                    $this->set_transaction_item( $transaction, $payment_term, $payment_type );
+                    $this->payments->set_transaction_item_from_payment_term(
+                        $transaction, $payment_term, $payment_type
+                    );
 
                     // process transaction to grab Credit Plan information
-                    $payments->set_transaction_credit_plan($transaction);
+                    $this->payments->set_transaction_credit_plan($transaction);
                 }
             }
 
