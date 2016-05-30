@@ -124,6 +124,16 @@ class AWPCP_WordPress {
         return wp_delete_attachment( $attachment_id, $force_delete );
     }
 
+    /* Others */
+
+    public function schedule_single_event( $timestamp, $hook, $args ) {
+        return wp_schedule_single_event( $timestamp, $hook, $args );
+    }
+
+    public function current_time( $time, $gmt = 0 ) {
+        return current_time( $time, $gmt );
+    }
+
     /* Misc */
 
     public function create_posts_query( $query = array() ) {

@@ -56,7 +56,11 @@ class AWPCP_SendListingToFacebookHelper {
     }
 
     private function schedule_send_to_facebook_action( $listing ) {
-        wp_schedule_single_event( time() + 10, 'awpcp-send-listing-to-facebook', array( $listing->ID, current_time( 'timestamp' ) ) );
+        $this->wordpress->schedule_single_event(
+            time() + 10,
+            'awpcp-send-listing-to-facebook',
+            array( $listing->ID, $this->wordpress->current_time( 'timestamp' ) )
+        );
     }
 
     public function send_listing_to_facebook( $listing_id ) {
