@@ -86,21 +86,18 @@ function( $, CategoryItemModel ) {
             }
 
             if ( self.selectedCategories.length === 0 ) {
-                console.log( 'no categories selected', self.selectedCategories, self.selectionMatrix );
                 return _.map( _.keys( self.selectionMatrix ), function( key ) {
                     return parseInt( key, 10 );
                 } );
             } if ( self.selectedCategories.length === 1 ) {
-                console.log( 'one category selected', self.selectedCategories, self.selectionMatrix );
                 return self.getCategoriesThatCanBeCombinedWithCategory( self.selectedCategories[0] );
             } else {
-                console.log( 'multiple categories selected', self.selectedCategories, self.selectionMatrix );
                 return _.reduce(
-                    self.selectedCategories.slice( 1 ),
+                    self.selectedCategories,
                     function( memo, category ) {
                         return _.intersection(
                             memo,
-                            self.getCategoriesThatCanBeCombinedWithCategory( self.selectedCategories[0] )
+                            self.getCategoriesThatCanBeCombinedWithCategory( category )
                         );
                     },
                     categories
