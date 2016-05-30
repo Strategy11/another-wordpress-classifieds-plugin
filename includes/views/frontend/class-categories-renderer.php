@@ -66,10 +66,9 @@ class AWPCP_CategoriesRenderer {
 
     private function render_categories( $params ) {
         $categories = $this->data_provider->get_categories( $params );
-        $max_depth = $params['show_children_categories'] ? 0 : 1;
 
         if ( $this->walker->configure( $params ) ) {
-            $output = $this->walker->walk( $categories, $max_depth );
+            $output = $this->walker->walk( $categories, 0 );
         } else {
             $output = '';
         }
