@@ -17,6 +17,7 @@
             </ul>
         </div>
         <div class="awpcp-payment-term-price">
+            <?php if ( $show_currency_payment_option ): ?>
             <div class="awpcp-payment-term-price-in-currency">
                 <?php
                     if ( $payment_term['price']['currency_option'] == $selected_payment_option ) {
@@ -27,6 +28,8 @@
                 ?>
                 <label><input type="radio" name="payment_term" value="<?php echo esc_html( $payment_term['price']['currency_option'] ); ?>"<?php echo $checked; ?>>&nbsp;<span class="awpcp-payment-terms-list-payment-term-currency-amount"><?php echo esc_html( $payment_term['price']['currency_amount'] ); ?></span></label>
             </div>
+            <?php endif; ?>
+            <?php if ( $show_credits_payment_option ): ?>
             <div class="awpcp-payment-term-price-in-credits">
                 <?php
                     if ( $payment_term['price']['credits_option'] == $selected_payment_option ) {
@@ -37,6 +40,7 @@
                 ?>
                 <label><input type="radio" name="payment_term" value="<?php echo esc_html( $payment_term['price']['credits_option'] ); ?>"<?php echo $checked; ?>>&nbsp;<span class="awpcp-payment-terms-list-payment-term-credits-amount"><?php echo esc_html( $payment_term['price']['credits_amount'] ); ?></span>&nbsp;<?php echo esc_html( $payment_term['price']['credits_label'] ); ?></label>
             </div>
+            <?php endif; ?>
         </div>
         <!-- extra -->
     </li>

@@ -42,6 +42,8 @@ class AWPCP_Payment_Terms_List {
         $params = array(
             'payment_terms' => $this->get_payment_terms_definitions(),
             'selected_payment_option' => $this->from_model_to_view( $model_data ),
+            'show_currency_payment_option' => $this->payments->is_currency_accepted(),
+            'show_credits_payment_option' => $this->payments->is_credit_accepted(),
         );
 
         $template = AWPCP_DIR . '/templates/components/payment-terms-list.tpl.php';

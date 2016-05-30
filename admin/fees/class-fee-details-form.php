@@ -206,19 +206,26 @@ class AWPCP_Fee_Details_Form implements AWPCP_HTML_Element {
     }
 
     private function get_price_fields_definition( $params ) {
-        $form_fields = array(
-            'currency-price' => array(
+        $form_fields = array();
+
+        $is_currency_accepted = $this->payments_api->is_currency_accepted();
+        $is_credit_accepted = $this->payments_api->is_credit_accepted();
+
+        if ( $is_currency_accepted ) {
+            $form_fields['currency-price'] = array(
                 '#type' => 'admin-form-textfield',
                 '#attributes' => array( 'class' => 'awpcp-admin-form-text-field-with-left-label' ),
                 '#label' => __( 'Price', 'another-wordpress-classifieds-plugin' ),
                 '#name' => 'price_in_currency',
                 '#value' => awpcp_format_money_without_currency_symbol( awpcp_get_property( $params['fee'], 'price', 0 ) ),
-            )
-        );
+            );
+        }
 
-        if ( $this->payments_api->credit_system_enabled() ) {
+        if ( $is_currency_accepted && $is_credit_accepted ) {
             $form_fields['currency-price']['#label'] = __( 'Price (currency)', 'another-wordpress-classifieds-plugin' );
+        }
 
+        if ( $is_credit_accepted ) {
             $form_fields['credits-price'] = array(
                 '#type' => 'admin-form-textfield',
                 '#attributes' => array( 'class' => 'awpcp-admin-form-text-field-with-left-label' ),
