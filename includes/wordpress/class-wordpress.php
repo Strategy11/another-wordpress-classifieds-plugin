@@ -44,6 +44,10 @@ class AWPCP_WordPress {
         return get_post( $post, $output, $filter );
     }
 
+    public function get_posts( $args = array() ) {
+        return get_posts( $args );
+    }
+
     public function add_post_meta( $post_id, $meta_key, $meta_value, $unique = false ) {
         return add_post_meta( $post_id, $meta_key, $meta_value, $unique );
     }
