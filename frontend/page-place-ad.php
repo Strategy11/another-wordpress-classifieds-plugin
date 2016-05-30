@@ -269,7 +269,12 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         }
 
         $categories_names = $this->get_categories_names( $data['category'] );
-        $categories_not_allowed = array_diff( $data['category'], $data['payment_term']->categories );
+
+        if ( is_object( $data['payment_term'] ) ) {
+            $categories_not_allowed = array_diff( $data['category'], $data['payment_term']->categories );
+        } else {
+            $categories_not_allowed = array();
+        }
 
         if ( ! empty( $categories_not_allowed ) ) {
             $not_allowed_names = array();
