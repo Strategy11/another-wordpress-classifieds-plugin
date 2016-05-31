@@ -258,7 +258,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
         $errors = apply_filters(
             'awpcp-validate-post-listing-order',
-            array( $errors ), $data
+            $errors, $data
         );
 
         return $errors;
