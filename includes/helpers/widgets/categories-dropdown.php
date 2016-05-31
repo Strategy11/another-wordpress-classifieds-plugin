@@ -99,7 +99,3 @@ class AWPCP_CategoriesDropdown {
         return array_reverse( $category_ancestors );
     }
 }
-
-function awpcp_render_category_selector( $params = array() ) {
-    return awpcp_categories_switcher()->render( $params );
-}

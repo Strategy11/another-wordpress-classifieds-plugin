@@ -43,7 +43,8 @@ function awpcp_display_listings( $query, $context, $options ) {
 
     $before_pagination = array();
     if ( $options['show_category_selector'] ) {
-        $before_pagination[15]['category-selector'] = awpcp_render_category_selector( array( 'required' => false ) );
+        $before_pagination[15]['category-selector'] =
+            awpcp_categories_switcher()->render( array( 'required' => false ) );
     }
     if ( is_array( $options['before_pagination'] ) ) {
         $before_pagination = awpcp_array_merge_recursive( $before_pagination, $options['before_pagination'] );
