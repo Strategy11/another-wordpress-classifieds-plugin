@@ -101,5 +101,5 @@ class AWPCP_CategoriesDropdown {
 }
 
 function awpcp_render_category_selector( $params = array() ) {
-    return awpcp_categories_selector_component()->render( $params );
+    return awpcp_categories_switcher()->render( $params );
 }

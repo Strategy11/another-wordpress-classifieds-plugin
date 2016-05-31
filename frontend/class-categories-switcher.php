@@ -1,13 +1,13 @@
 <?php
 
-function awpcp_categories_selector_component() {
-    return new AWPCP_Categories_Selector_Component(
+function awpcp_categories_switcher() {
+    return new AWPCP_Categories_Switcher(
         awpcp_query(),
         awpcp_request()
     );
 }
 
-class AWPCP_Categories_Selector_Component {
+class AWPCP_Categories_Switcher {
 
     private $query;
     private $request;
