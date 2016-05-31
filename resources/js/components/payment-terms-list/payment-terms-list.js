@@ -22,7 +22,12 @@ function( $, settings ) {
                 return;
             }
 
-            this.state.selectedCategories = categories;
+            if ( $.isArray( categories ) ) {
+                this.state.selectedCategories = categories;
+            } else {
+                this.state.selectedCategories = [ categories ];
+            }
+
             this.update();
         },
 
