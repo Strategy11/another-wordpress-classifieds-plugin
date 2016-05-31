@@ -668,9 +668,9 @@ function awpcp_do_placeholder_contact_url($ad, $placeholder) {
  * @since 3.0
  */
 function awpcp_do_placeholder_contact_phone($ad, $placeholder) {
-    if (!empty($ad->ad_contact_phone)) {
-        $phone = $ad->ad_contact_phone;
+    $phone = awpcp_listing_renderer()->get_contact_phone( $ad );
 
+    if ( ! empty( $phone ) ) {
         if ( get_awpcp_option( 'displayphonefieldpriv') == 1 && !is_user_logged_in() ) {
             $allowed = intval( strlen( $phone ) * 0.4 );
             $phone = substr($phone, 0, $allowed) . str_repeat('X', strlen( $phone ) - $allowed );
