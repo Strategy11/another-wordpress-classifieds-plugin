@@ -41,6 +41,8 @@ class AWPCP_Update_Categories_Task_Runner implements AWPCP_Upgrade_Task_Runner {
         foreach ( $old_categories as $category ) {
             if ( isset( $categories_registry[ $category ] ) ) {
                 $new_categories[] = $categories_registry[ $category ];
+            } else {
+                $new_categories[] = $category;
             }
         }
 
