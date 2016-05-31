@@ -186,8 +186,10 @@ require( AWPCP_DIR . "/includes/db/class-database-helper.php" );
 
 require( AWPCP_DIR . "/includes/fees/class-fees-collection.php" );
 
+require( AWPCP_DIR . "/includes/ui/class-categories-selector-helper.php" );
 require( AWPCP_DIR . "/includes/ui/class-multiple-categories-selector.php" );
 require( AWPCP_DIR . "/includes/ui/class-payment-terms-list.php" );
+require( AWPCP_DIR . "/includes/ui/class-single-category-selector.php" );
 
 require_once( AWPCP_DIR . "/includes/views/class-ajax-handler.php" );
 require_once( AWPCP_DIR . "/includes/views/class-base-page.php" );

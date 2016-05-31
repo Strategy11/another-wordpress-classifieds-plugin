@@ -2,9 +2,6 @@
 AWPCP.run('awpcp/page-place-ads', [
     'jquery',
     'awpcp/media-center',
-    'awpcp/categories-collection',
-    'awpcp/categories-selector-helper',
-    'awpcp/categories-selector-view',
     'awpcp/payment-terms-list',
     'awpcp/datepicker-field',
     'awpcp/user-information-updater',
@@ -15,9 +12,6 @@ AWPCP.run('awpcp/page-place-ads', [
 ], function(
     $,
     MediaCenter,
-    CategoriesCollection,
-    CategoriesSelectorHelper,
-    CategoriesSelectorView,
     PaymentTermsList,
     DatepickerField,
     UserInformationUpdater,
@@ -243,24 +237,7 @@ AWPCP.run('awpcp/page-place-ads', [
                 // and User fields.
                 $.noop( new PaymentTermsList( container.find( '.awpcp-payment-terms-list' ) ) );
 
-                (function() {
-                    var selectorContainer = form.find( '.awpcp-multiple-categories-selector' );
-                    var identifier = selectorContainer.attr( 'data-multiple-value-selector-id' );
-                    var options = settings.get( 'CategoriesSelector-' + identifier );
-
-                    var helper = new CategoriesSelectorHelper(
-                        options.categories,
-                        options.selectionMatrix
-                    );
-
-                    var view = new CategoriesSelectorView( {
-                        el: $( '.awpcp-multiple-categories-selector' ).get( 0 ),
-                        collection: new CategoriesCollection( helper.getAllCategories() ),
-                        helper: helper
-                    } );
-
-                    view.render();
-                })();
+                $.publish( '/awpcp/post-listing-page/order-step/ready', [form] );
 
                 container.find('[autocomplete-field], [dropdown-field]').userfield();
 

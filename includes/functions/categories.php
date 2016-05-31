@@ -170,3 +170,15 @@ function total_ads_in_cat( $category_id ) {
     $listings_count = awpcp_get_count_of_listings_in_categories();
     return isset( $listings_count[ $category_id ] ) ? $listings_count[ $category_id ] : 0;
 }
+
+/**
+ * @since feature/1112
+ */
+function awpcp_categories_selector() {
+    $constructor_function = apply_filters(
+        'awpcp-categories-selector-constructor-function',
+        'awpcp_single_category_selector'
+    );
+
+    return call_user_func( $constructor_function );
+}

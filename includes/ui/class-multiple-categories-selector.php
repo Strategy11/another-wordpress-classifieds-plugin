@@ -1,23 +1,34 @@
 <?php
 
 function awpcp_multiple_categories_selector() {
-    return new AWPCP_Multiple_Categories_Selector( awpcp_categories_collection() );
+    return new AWPCP_Multiple_Categories_Selector(
+        awpcp_categories_selector_helper(),
+        awpcp_categories_collection(),
+        awpcp_template_renderer()
+    );
 }
 
 class AWPCP_Multiple_Categories_Selector {
 
+    private $helper;
     private $categories;
+    private $template_renderer;
 
-    public function __construct( $categories ) {
+    public function __construct( $helper, $categories, $template_renderer ) {
+        $this->helper = $helper;
         $this->categories = $categories;
+        $this->template_renderer = $template_renderer;
     }
 
     public function render( $params ) {
-        $params = $this->parse_args( $params );
+        $params = $this->helper->get_params( $params );
 
         $categories = $this->categories->get_all();
-        $categories_hierarchy = awpcp_build_categories_hierarchy( $categories, $params['hide_empty'] );
-        $chain = $this->get_selected_categories_parents(
+        $categories_hierarchy = $this->helper->build_categories_hierarchy(
+            $categories,
+            $params['hide_empty']
+        );
+        $chain = $this->helper->get_categories_parents(
             (array) $params['selected'],
             $categories
         );
@@ -25,7 +36,7 @@ class AWPCP_Multiple_Categories_Selector {
         $unique_id = uniqid();
         $use_multiple_dropdowns = get_awpcp_option( 'use-multiple-category-dropdowns' );
 
-        awpcp()->js->set( 'CategoriesSelector-' . $unique_id, array(
+        awpcp()->js->set( 'MultipleCategoriesSelector-' . $unique_id, array(
             'name' => $params['name'],
             'categories' => $categories_hierarchy,
             'selectionMatrix' => $this->generate_selection_matrix( $params ),
@@ -33,11 +44,15 @@ class AWPCP_Multiple_Categories_Selector {
             'multistep' => (bool) $use_multiple_dropdowns,
         ) );
 
-        $template = '<div class="awpcp-multiple-categories-selector" data-multiple-value-selector-id="' . $unique_id . '">';
-        $template.= '<div class="awpcp-categories-selector-categories-lists"></div>';
-        $template.= '</div>';
+        $template_params = array(
+            'unique_id' => $unique_id,
+            'label' => $params['label'],
+            'required' => $params['required'],
+        );
 
-        return $template;
+        $template = AWPCP_DIR . '/templates/components/multiple-categories-selector.tpl.php';
+
+        return $this->template_renderer->render_template( $template, $template_params );
     }
 
     private function parse_args( $params ) {
@@ -56,57 +71,6 @@ class AWPCP_Multiple_Categories_Selector {
         $params['placeholders'] = $this->get_placeholders( $params );
 
         return $params;
-    }
-
-    private function get_placeholders( $params ) {
-        $placeholders = $params['placeholders'];
-
-        if ( $params['context'] == 'search' ) {
-            return array_merge( array(
-                'default-option-first-level' => __( 'All Categories', 'another-wordpress-classifieds-plugin' ),
-                'default-option-second-level' => __( 'All Sub-categories', 'another-wordpress-classifieds-plugin' ),
-            ), $placeholders );
-        } else {
-            if ( get_awpcp_option( 'noadsinparentcat' ) ) {
-                $second_level_option_placeholder = __( 'Select a Sub-category', 'another-wordpress-classifieds-plugin' );
-            } else {
-                $second_level_option_placeholder = __( 'Select a Sub-category (optional)', 'another-wordpress-classifieds-plugin' );
-            }
-
-            return array_merge( array(
-                'default-option-first-level' => __( 'Select a Category', 'another-wordpress-classifieds-plugin' ),
-                'default-option-second-level' => $second_level_option_placeholder
-            ), $placeholders );
-        }
-    }
-
-    private function get_selected_categories_parents( $categories, &$all_categories ) {
-        $selected_categories_parents = array();
-        $all_categories_parents = array();
-
-        foreach ( $all_categories as $item ) {
-            $all_categories_parents[ $item->term_id ] = $item->parent;
-        }
-
-        foreach ( $categories as $category_id ) {
-            $selected_categories_parents[] = $this->get_category_parents(
-                $category_id, $all_categories_parents
-            );
-        }
-
-        return $selected_categories_parents;
-    }
-
-    private function get_category_parents( $category_id, &$all_categories_parents ) {
-        $category_parents = array();
-
-        $parent_id = $category_id;
-        while ( $parent_id != 0 && isset( $all_categories_parents[ $parent_id ] ) ) {
-            $category_parents[] = $parent_id;
-            $parent_id = $all_categories_parents[ $parent_id ];
-        }
-
-        return array_reverse( $category_parents );
     }
 
     private function generate_selection_matrix( $params ) {
