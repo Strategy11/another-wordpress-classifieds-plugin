@@ -256,9 +256,12 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             $errors['payment-term'] = $message;
         }
 
-        $additional_errors = apply_filters( 'awpcp-validate-post-listing-order', array(), $data );
+        $errors = apply_filters(
+            'awpcp-validate-post-listing-order',
+            array( $errors ), $data
+        );
 
-        array_splice( $errors, count( $errors ), 0, $additional_errors );
+        return $errors;
     }
 
     private function validate_selected_categories( $data, &$errors = array() ) {
