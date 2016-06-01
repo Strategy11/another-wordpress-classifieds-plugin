@@ -784,7 +784,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         return $data;
     }
 
-    public function details_form($form=array(), $edit=false, $hidden=array(), $required=array(), $errors=array()) {
+    public function details_form( $params = array(), $form = array(), $edit = false, $hidden = array(), $required = array(), $errors = array() ) {
         global $hasregionsmodule, $hasextrafieldsmodule;
 
         $is_admin_user = awpcp_current_user_is_admin();
@@ -850,7 +850,10 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $transaction = $this->get_transaction();
         $template = AWPCP_DIR . '/frontend/templates/page-place-ad-details-step.tpl.php';
 
-        $params = compact('transaction', 'page', 'ui', 'messages', 'form', 'hidden', 'required', 'url', 'edit', 'preview', 'errors');
+        $params = array_merge(
+            $params,
+            compact('transaction', 'page', 'ui', 'messages', 'form', 'hidden', 'required', 'url', 'edit', 'preview', 'errors')
+        );
 
         if ( isset( $this->ad ) && is_object( $this->ad ) ) {
             $params['listing'] = $this->ad;
@@ -882,7 +885,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
         $required = $this->get_required_fields();
 
-        return $this->details_form($form, false, array(), $required, $errors);
+        return $this->details_form( array(), $form, false, array(), $required, $errors);
     }
 
     public function details_step() {

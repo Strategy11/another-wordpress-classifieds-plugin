@@ -68,11 +68,17 @@
         <h3><?php echo esc_html( __( 'Add Details and Contact Information', 'another-wordpress-classifieds-plugin' ) ); ?></h3>
 
         <?php if ($ui['category-field']): ?>
-        <p class="awpcp-form-spacer">
-            <?php $dropdown = awpcp_categories_dropdown(); ?>
-            <?php echo $dropdown->render( array( 'selected' => awpcp_array_data( 'ad_category', '', $form ), 'name' => 'ad_category' ) ); ?>
-            <?php echo awpcp_form_error( 'ad_category', $errors ); ?>
-        </p>
+        <div class="awpcp-form-spacer">
+            <?php
+                echo awpcp_categories_selector()->render(array(
+                    'name' => 'ad_category',
+                    'selected' => awpcp_array_data( 'ad_category', '', $form ),
+                    'hide_empty' => false,
+                    'payment_terms' => isset( $payment_terms ) ? $payment_terms : array(),
+                ));
+                echo awpcp_form_error( 'ad_category', $errors );
+            ?>
+        </div>
         <?php endif ?>
 
         <?php

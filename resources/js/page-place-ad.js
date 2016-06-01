@@ -278,6 +278,8 @@ AWPCP.run('awpcp/page-place-ads', [
                 // display and control characters allowed for the Ad details
                 $.noop(new $.AWPCP.RestrictedLengthField(container.find('[name="ad_details"]')));
 
+                $.publish( '/awpcp/post-listing-page/details-step/ready', [form] );
+
                 form.validate({
                     messages: $.AWPCP.l10n('page-place-ad-details'),
                     onfocusout: false,

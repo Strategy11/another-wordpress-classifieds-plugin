@@ -250,7 +250,17 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
             $this->messages[] = sprintf( $message, $link );
         }
 
-        return $this->details_form($form, true, $hidden, $required, $errors);
+        $payment_term = $this->listing_renderer->get_payment_term( $ad );
+        $payment_terms = array( $payment_term->type => array( $payment_term ) );
+
+        return $this->details_form(
+            compact( 'payment_terms' ),
+            $form,
+            true,
+            $hidden,
+            $required,
+            $errors
+        );
     }
 
     /**
