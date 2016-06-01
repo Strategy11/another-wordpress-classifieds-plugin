@@ -9,7 +9,7 @@ class AWPCP_Categories_Selector_Helper {
     public function get_params( $params = array() ) {
         $hide_empty_categories = awpcp_get_option( 'hide-empty-categories-dropdown' );
 
-        return wp_parse_args( $params, array(
+        $params = wp_parse_args( $params, array(
             'context' => 'default',
             'name' => 'category',
             'label' => __( 'Ad Category', 'another-wordpress-classifieds-plugin' ),
@@ -17,6 +17,14 @@ class AWPCP_Categories_Selector_Helper {
             'selected' => null,
             'hide_empty' => awpcp_parse_bool( $hide_empty_categories ),
         ) );
+
+        if ( ! is_array( $params['selected'] ) && ! empty( $params['selected'] ) ) {
+            $params['selected'] = array( $params['selected'] );
+        } else if ( ! is_array( $params['selected'] ) ) {
+            $params['selected'] = array();
+        }
+
+        return $params;
     }
 
     public function build_categories_hierarchy( $categories, $hide_empty ) {

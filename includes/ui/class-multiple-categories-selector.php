@@ -39,8 +39,8 @@ class AWPCP_Multiple_Categories_Selector {
         awpcp()->js->set( 'MultipleCategoriesSelector-' . $unique_id, array(
             'name' => $params['name'],
             'categories' => $categories_hierarchy,
+            'selectedCategoriesIds' => $params['selected'],
             'selectionMatrix' => $this->generate_selection_matrix( $params ),
-            'selected' => $chain,
             'multistep' => (bool) $use_multiple_dropdowns,
         ) );
 

@@ -46,7 +46,7 @@ class AWPCP_Single_Category_Selector {
             'use_multiple_dropdowns' => $use_multiple_dropdowns,
             'placeholders' => $placeholders,
             'chain' => $chain,
-            'selected' => $params['selected'],
+            'selected' => array_shift( $params['selected'] ),
             'categories_hierarchy' => $categories_hierarchy,
         );
 
