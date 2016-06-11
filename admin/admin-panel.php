@@ -761,11 +761,11 @@ function awpcp_opsconfig_categories() {
 
 			$categorynameinput = __("Category to Edit",'another-wordpress-classifieds-plugin');
 			$categorynameinput.=": $category_name ";
-			$categorynamefield = "<input name=\"category_name\" id=\"cat_name\" type=\"text\" class=\"inputbox\" value=\"$category_name\" size=\"40\" style=\"width: 90%\"/>";
+			$categorynamefield = "<input name=\"category_name\" id=\"cat_name\" type=\"text\" class=\"awpcp-textfield inputbox\" value=\"$category_name\" size=\"40\" style=\"width: 90%\"/>";
 			$selectinput="<select name=\"category_parent_id\"><option value=\"0\">";
 			$selectinput.=__("Make This a Top Level Category",'another-wordpress-classifieds-plugin');
 			$selectinput.="</option>";
-			$orderinput="<input name=\"category_order\" id=\"category_order\" type=\"text\" class=\"inputbox\" value=\"$category_order\" size=\"3\"/>";
+			$orderinput="<input name=\"category_order\" id=\"category_order\" type=\"text\" class=\"awpcp-textfield inputbox\" value=\"$category_order\" size=\"3\"/>";
 			$categories=  get_categorynameid($cat_ID,$cat_parent_ID,$exclude='');
 			$selectinput.="$categories
 						</select>";
@@ -775,11 +775,11 @@ function awpcp_opsconfig_categories() {
 			$section_icon_style = "background:transparent url($awpcp_imagesurl/post_ico.png) left center no-repeat;padding-left:20px;";
 
 			$categorynameinput = __( 'Enter the category name', 'another-wordpress-classifieds-plugin' );
-			$categorynamefield ="<input name=\"category_name\" id=\"cat_name\" type=\"text\" class=\"inputbox\" value=\"$category_name\" size=\"40\" style=\"width: 90%\"/>";
+			$categorynamefield ="<input name=\"category_name\" id=\"cat_name\" type=\"text\" class=\"awpcp-textfield inputbox\" value=\"$category_name\" size=\"40\" style=\"width: 90%\"/>";
 			$selectinput="<select name=\"category_parent_id\"><option value=\"0\">";
 			$selectinput.=__("Make This a Top Level Category",'another-wordpress-classifieds-plugin');
 			$selectinput.="</option>";
-			$orderinput="<input name=\"category_order\" id=\"category_order\" type=\"text\" class=\"inputbox\" value=\"$category_order\" size=\"3\"/>";
+			$orderinput="<input name=\"category_order\" id=\"category_order\" type=\"text\" class=\"awpcp-textfield inputbox\" value=\"$category_order\" size=\"3\"/>";
 			$categories=  get_categorynameid($cat_ID,$cat_parent_ID,$exclude='');
 			$selectinput.="$categories
 					</select>";
