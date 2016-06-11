@@ -28,7 +28,7 @@
 
     <p class="awpcp-form-spacer">
         <label for="awpcp-contact-message"><?php _e("Your message", 'another-wordpress-classifieds-plugin'); ?></label>
-        <textarea id="awpcp-contact-message" class="awpcp-textarea textareainput required" name="awpcp_contact_message" rows="5" cols="90%"><?php echo esc_textarea( $form['awpcp_contact_message'] ); ?></textarea>
+        <textarea id="awpcp-contact-message" class="awpcp-textarea required" name="awpcp_contact_message" rows="5" cols="90%"><?php echo esc_textarea( $form['awpcp_contact_message'] ); ?></textarea>
         <?php echo awpcp_form_error('awpcp_contact_message', $errors) ?>
     </p>
 
