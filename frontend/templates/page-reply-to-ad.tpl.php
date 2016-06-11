@@ -16,13 +16,13 @@
 
     <p class="awpcp-form-spacer">
         <label for="awpcp-contact-sender-name"><?php _e("Your name", 'another-wordpress-classifieds-plugin'); ?></label>
-        <input id="awpcp-contact-sender-name" class="inputbox required" type="text" name="awpcp_sender_name" value="<?php echo esc_attr( $form['awpcp_sender_name'] ); ?>" <?php echo $disabled; ?> />
+        <input id="awpcp-contact-sender-name" class="awpcp-textfield inputbox required" type="text" name="awpcp_sender_name" value="<?php echo esc_attr( $form['awpcp_sender_name'] ); ?>" <?php echo $disabled; ?> />
         <?php echo awpcp_form_error('awpcp_sender_name', $errors) ?>
     </p>
 
     <p class="awpcp-form-spacer">
         <label for="awpcp-contact-sender-email"><?php _e("Your email address", 'another-wordpress-classifieds-plugin'); ?></label>
-        <input id="awpcp-contact-sender-email" class="inputbox required email" type="text" name="awpcp_sender_email" value="<?php echo esc_attr( $form['awpcp_sender_email'] ); ?>" <?php echo $disabled; ?> />
+        <input id="awpcp-contact-sender-email" class="awpcp-textfield inputbox required email" type="text" name="awpcp_sender_email" value="<?php echo esc_attr( $form['awpcp_sender_email'] ); ?>" <?php echo $disabled; ?> />
         <?php echo awpcp_form_error('awpcp_sender_email', $errors) ?>
     </p>
 

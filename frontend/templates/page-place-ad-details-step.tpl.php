@@ -52,7 +52,7 @@
         <p class="awpcp-form-spacer">
             <label for="start-date"><?php echo esc_html( _x( 'Start Date', 'ad details form', 'another-wordpress-classifieds-plugin' ) ); ?><?php echo $required['start-date'] ? '*' : ''; ?></label>
             <?php $date = awpcp_datetime( 'awpcp-date', $form['start_date'] ); ?>
-            <input class="inputbox" id="start-date" type="text" size="50" datepicker-placeholder value="<?php echo awpcp_esc_attr($date); ?>" />
+            <input class="awpcp-textfield inputbox" id="start-date" type="text" size="50" datepicker-placeholder value="<?php echo awpcp_esc_attr($date); ?>" />
             <input type="hidden" name="start_date" value="<?php echo esc_attr( awpcp_datetime( 'Y/m/d', $form['start_date'] ) ); ?>" />
             <?php echo awpcp_form_error('start_date', $errors); ?>
         </p>
@@ -60,7 +60,7 @@
         <p class="awpcp-form-spacer">
             <label for="end-date"><?php echo esc_html( _x( 'End Date', 'ad details form', 'another-wordpress-classifieds-plugin' ) ); ?><?php echo $required['end-date'] ? '*' : ''; ?></label>
             <?php $date = awpcp_datetime( 'awpcp-date', $form['end_date'] ); ?>
-            <input class="inputbox" id="end-date" type="text" size="50" datepicker-placeholder value="<?php echo awpcp_esc_attr($date); ?>" />
+            <input class="awpcp-textfield inputbox" id="end-date" type="text" size="50" datepicker-placeholder value="<?php echo awpcp_esc_attr($date); ?>" />
             <input type="hidden" name="end_date" value="<?php echo esc_attr( awpcp_datetime( 'Y/m/d', $form['end_date'] ) ); ?>" />
             <?php echo awpcp_form_error('end_date', $errors); ?>
         </p>
