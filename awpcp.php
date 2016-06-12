@@ -271,6 +271,7 @@ require_once( AWPCP_DIR . "/includes/upgrade/class-fix-empty-media-mime-type-upg
 require_once( AWPCP_DIR . "/includes/upgrade/class-manual-upgrade-tasks-manager.php" );
 require_once( AWPCP_DIR . "/includes/upgrade/class-manual-upgrade-tasks.php" );
 require_once( AWPCP_DIR . "/includes/upgrade/class-sanitize-media-filenames-upgrade-task-handler.php" );
+require( AWPCP_DIR . '/includes/upgrade/class-store-phone-number-digits-upgrade-task-handler.php' );
 require_once( AWPCP_DIR . "/includes/upgrade/class-upgrade-task-ajax-handler-factory.php" );
 require_once( AWPCP_DIR . "/includes/upgrade/class-upgrade-task-ajax-handler.php" );
 

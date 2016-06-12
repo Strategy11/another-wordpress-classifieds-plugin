@@ -239,6 +239,7 @@ class AWPCP_Installer {
             ),
             '3.6.6' => array(
                 'create_phone_number_digits_column',
+                'enable_upgrade_task_to_store_phone_number_digits',
             ),
         );
 
@@ -1052,6 +1053,11 @@ class AWPCP_Installer {
                 "VARCHAR(25) CHARACTER SET <charset> COLLATE <collate> NOT NULL DEFAULT '' AFTER `ad_contact_phone`"
             )
         );
+    }
+
+    private function enable_upgrade_task_to_store_phone_number_digits() {
+        delete_option( 'awpcp-spnd-last-file-id' );
+        awpcp()->manual_upgrades->enable_upgrade_task( 'awpcp-store-phone-number-digits' );
     }
 }
 
