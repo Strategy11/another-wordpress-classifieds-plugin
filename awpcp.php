@@ -338,6 +338,7 @@ require_once( AWPCP_DIR . '/admin/form-fields/class-form-fields-admin-page.php' 
 require_once( AWPCP_DIR . '/admin/form-fields/class-form-fields-table-factory.php' );
 require_once( AWPCP_DIR . '/admin/form-fields/class-form-fields-table.php' );
 require_once( AWPCP_DIR . '/admin/form-fields/class-update-form-fields-order-ajax-handler.php' );
+require( AWPCP_DIR . '/admin/listings/class-listings-table-search-by-phone-condition.php' );
 
 // frontend functions
 require_once(AWPCP_DIR . "/frontend/placeholders.php");
