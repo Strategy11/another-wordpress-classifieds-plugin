@@ -12,6 +12,7 @@ function( $, CategoriesCollection, CategoriesListView, AvailableCategoriesListVi
             var self = this;
 
             this.helper = options.helper;
+            this.fieldName = options.fieldName;
 
             this.listenTo( this.collection, 'change:selected', function() {
                 self.updateSelectedCategories();
@@ -20,6 +21,7 @@ function( $, CategoriesCollection, CategoriesListView, AvailableCategoriesListVi
         },
 
         render: function() {
+            var self = this;
             var $element = this.$el;
             var $lists = this.$( '.awpcp-categories-selector-categories-lists' ).empty();
             var selectedCategories = this.getSelectedCategories();
@@ -28,7 +30,7 @@ function( $, CategoriesCollection, CategoriesListView, AvailableCategoriesListVi
             this.$( '.awpcp-categories-selector-hidden-values' ).remove();
 
             _.each( selectedCategories, function( category ) {
-                $element.append( $( '<input class="awpcp-categories-selector-hidden-values" type="hidden" name="category[]" value="' + category.id + '">' ) );
+                $element.append( $( '<input class="awpcp-categories-selector-hidden-values" type="hidden" name="' + self.fieldName + '[]" value="' + category.id + '">' ) );
             } );
 
             view = new CategoriesListView( {
