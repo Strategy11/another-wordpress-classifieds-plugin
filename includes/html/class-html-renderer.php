@@ -10,6 +10,16 @@ class AWPCP_HTML_Renderer {
         return $this->render_element( $element );
     }
 
+    public function render_elements( $element_definitions ) {
+        $output = array();
+
+        foreach ( $element_definitions as $element_definition ) {
+            $output[] = $this->render_element( $element_definition );
+        }
+
+        return implode( '', $output );
+    }
+
     public function render_element( $element_definition ) {
         $element_definition = $this->normalize_element_definition( $element_definition );
         $element_renderer = $this->get_element_renderer( $element_definition );
@@ -73,16 +83,6 @@ class AWPCP_HTML_Renderer {
 
         if ( $element_definition['#content_suffix'] ) {
             $output[] = $element_definition['#content_suffix'];
-        }
-
-        return implode( '', $output );
-    }
-
-    public function render_elements( $element_definitions ) {
-        $output = array();
-
-        foreach ( $element_definitions as $element_definition ) {
-            $output[] = $this->render_element( $element_definition );
         }
 
         return implode( '', $output );
