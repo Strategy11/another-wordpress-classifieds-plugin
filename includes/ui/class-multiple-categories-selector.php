@@ -28,10 +28,6 @@ class AWPCP_Multiple_Categories_Selector {
             $categories,
             $params['hide_empty']
         );
-        $chain = $this->helper->get_categories_parents(
-            (array) $params['selected'],
-            $categories
-        );
 
         $unique_id = uniqid();
         $use_multiple_dropdowns = get_awpcp_option( 'use-multiple-category-dropdowns' );
