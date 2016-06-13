@@ -4,28 +4,28 @@ AWPCP.define( 'awpcp/categories-selector-helper', [
     'awpcp/category-item-model'
 ],
 function( $, CategoryItemModel ) {
-    var CategoriesSelectorHelper = function( hierarchy, selectionMatrix ) {
+    var CategoriesSelectorHelper = function( selectedCategoriesIds, categoriesHierarchy, selectionMatrix ) {
         var self = this, parent, model;
 
-        this.all = [];
-        this.selectedCategories = [];
+        this.allCategories = [];
+        this.selectedCategoriesIds = selectedCategoriesIds;
         this.registry = {};
         this.hierarchy = {};
         this.parents = {};
         this.selectionMatrix = selectionMatrix;
 
-        _.each( _.keys( hierarchy ), function( key ) {
+        _.each( _.keys( categoriesHierarchy ), function( key ) {
             parent = ( key == 'root' ? key : parseInt( key, 10 ) );
 
-            self.hierarchy[ parent ] = _.map( hierarchy[ key ], function( category ) {
+            self.hierarchy[ parent ] = _.map( categoriesHierarchy[ key ], function( category ) {
                 model = new CategoryItemModel( {
                     id: category.term_id,
                     name: category.name,
                     price: category.price,
-                    selected: false
+                    selected: _.contains( self.selectedCategoriesIds, category.term_id )
                 } );
 
-                self.all.push( model );
+                self.allCategories.push( model );
                 self.registry[ category.term_id ] = model;
                 self.parents[ category.term_id ] = parent;
 
@@ -36,7 +36,7 @@ function( $, CategoryItemModel ) {
 
     $.extend( CategoriesSelectorHelper.prototype, {
         getAllCategories: function() {
-            return this.all;
+            return this.allCategories;
         },
 
         getCategoriesAncestors: function( categories ) {
@@ -74,8 +74,8 @@ function( $, CategoryItemModel ) {
             }
         },
 
-        updateSelectedCategories: function( selectedCategories ) {
-            this.selectedCategories = selectedCategories;
+        updateSelectedCategories: function( selectedCategoriesIds ) {
+            this.selectedCategoriesIds = selectedCategoriesIds;
         },
 
         getCategoriesThatCanBeSelectedTogether: function( categories ) {
@@ -85,15 +85,15 @@ function( $, CategoryItemModel ) {
                 return categories;
             }
 
-            if ( self.selectedCategories.length === 0 ) {
+            if ( self.selectedCategoriesIds.length === 0 ) {
                 return _.map( _.keys( self.selectionMatrix ), function( key ) {
                     return parseInt( key, 10 );
                 } );
-            } if ( self.selectedCategories.length === 1 ) {
-                return self.getCategoriesThatCanBeCombinedWithCategory( self.selectedCategories[0] );
+            } if ( self.selectedCategoriesIds.length === 1 ) {
+                return self.getCategoriesThatCanBeCombinedWithCategory( self.selectedCategoriesIds[0] );
             } else {
                 return _.reduce(
-                    self.selectedCategories,
+                    self.selectedCategoriesIds,
                     function( memo, category ) {
                         return _.intersection(
                             memo,
