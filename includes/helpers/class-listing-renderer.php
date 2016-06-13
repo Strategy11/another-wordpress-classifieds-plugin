@@ -33,8 +33,19 @@ class AWPCP_ListingRenderer {
         return stripslashes( $listing->post_title );
     }
 
+    public function get_categories( $listing ) {
+        return $this->categories->find_by_listing_id( $listing->ID );
+    }
+
+    public function get_categories_ids( $listing ) {
+        return awpcp_get_properties(
+            $this->get_categories( $listing ),
+            'term_id'
+        );
+    }
+
     public function get_category( $listing ) {
-        $categories = $this->categories->find_by_listing_id( $listing->ID );
+        $categories = $this->get_categories( $listing );
 
         if ( empty( $categories ) ) {
             return null;

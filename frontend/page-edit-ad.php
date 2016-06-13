@@ -325,7 +325,9 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
         }
 
         if ( awpcp_current_user_is_moderator() && ! empty( $data['ad_category'] ) ) {
-            $listing_data['terms'][AWPCP_CATEGORY_TAXONOMY] = array( (int) $data['ad_category'] );
+            $listing_data['terms'][AWPCP_CATEGORY_TAXONOMY] = array_filter(
+                array_map( 'intval', $data['ad_category'] )
+            );
         }
 
         if ( awpcp_current_user_is_moderator() || get_awpcp_option( 'allow-regions-modification' ) ) {

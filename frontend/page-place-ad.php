@@ -241,7 +241,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
     }
 
     protected function validate_order($data, &$errors=array()) {
-        $this->validate_selected_categories( $data, $errors );
+        $this->validate_selected_categories( $data, 'category', $errors );
 
         if (awpcp_current_user_is_moderator() && empty($data['user'])) {
             $errors['user'] = __('You should select an owner for this Ad.', 'another-wordpress-classifieds-plugin');
@@ -264,16 +264,16 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         return $errors;
     }
 
-    private function validate_selected_categories( $data, &$errors = array() ) {
+    private function validate_selected_categories( $data, $field_name, &$errors = array() ) {
         $allow_categories_in_parent  = ! get_awpcp_option( 'noadsinparentcat' );
 
-        if ( empty( $data['category'] ) ) {
-            $errors['category'] = __( 'Ad Category field is required', 'another-wordpress-classifieds-plugin' );
+        if ( empty( $data[ $field_name ] ) ) {
+            $errors[ $field_name ] = __( 'Ad Category field is required', 'another-wordpress-classifieds-plugin' );
         }
 
-        foreach ( $data['category'] as $category_id ) {
+        foreach ( $data[ $field_name ] as $category_id ) {
             if ( ! $allow_categories_in_parent && ! category_is_child( $category_id ) ) {
-                $errors['category'] = __( "You cannot list your Ad in top level categories.", 'another-wordpress-classifieds-plugin' );
+                $errors[ $field_name ] = __( "You cannot list your Ad in top level categories.", 'another-wordpress-classifieds-plugin' );
             }
         }
     }
@@ -427,13 +427,13 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         return $this->render($template, $params);
     }
 
-    private function get_posted_categories( $categories, $transaction ) {
-        if ( is_null( $categories ) ) {
+    private function get_posted_categories( $categories, $transaction = null ) {
+        if ( is_null( $categories ) && is_object( $transaction ) ) {
             $categories = $transaction->get( 'category', array( array() ) );
         }
 
         if ( ! is_array( $categories ) && $categories ) {
-            $most_specific_categories = array( $categories );
+            $most_specific_categories = array( intval( $categories ) );
         } else if ( ! is_array( $categories ) ) {
             $most_specific_categories = array();
         } else if ( awpcp_is_array_of_arrays( $categories ) ) {
@@ -442,7 +442,9 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
             $most_specific_categories = array_map( 'end', $categories );
         } else {
-            $most_specific_categories = array_filter( $categories );
+            $most_specific_categories = array_filter(
+                array_map( 'intval', $categories )
+            );
         }
 
         return $most_specific_categories;
@@ -544,6 +546,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             'ad_contact_email' => $this->listing_renderer->get_contact_email( $listing ),
             'ad_contact_phone' => $this->listing_renderer->get_contact_phone( $listing ),
             'ad_category_id' => $this->listing_renderer->get_category_id( $listing ),
+            'categories' => $this->listing_renderer->get_categories_ids( $listing ),
             'ad_item_price' => $this->listing_renderer->get_price( $listing ),
             'ad_details' => $listing->post_content,
             'websiteurl' => $this->listing_renderer->get_website_url( $listing ),
@@ -557,9 +560,9 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             $data['ad_details'] = awpcp_esc_textarea( $data['ad_details'] );
         }
 
+        $data['ad_category'] = $data['categories'];
         // please note we are dividing the Ad price by 100
         // Ad prices have been historically stored in cents
-        $data['ad_category'] = $data['ad_category_id'];
         $data['ad_item_price'] = $data['ad_item_price'] / 100;
         $data['start_date'] = $data['ad_startdate'];
         $data['end_date'] = $data['ad_enddate'];
@@ -757,11 +760,12 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             $data['user_id'] = (int) awpcp_array_data('user', 0, $from);
         }
 
+        $data['ad_category'] = $this->get_posted_categories(
+            $data['ad_category'],
+            $transaction
+        );
+
         if (!is_null($transaction)) {
-            $data['ad_category'] = $this->get_posted_categories(
-                $data['ad_category'],
-                $transaction
-            );
             $data['user_id'] = (int) awpcp_get_property($transaction, 'user_id', $data['user_id']);
 
             $payment_term_type = $transaction->get('payment-term-type');
@@ -950,8 +954,8 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         }
 
         // Check for ad category
-        if (empty($data['ad_category']) && $edit) {
-            $errors['ad_category'] = __("You did not select a category for your Ad. Please select a category for your Ad.", 'another-wordpress-classifieds-plugin');
+        if ( $edit ) {
+            $this->validate_selected_categories( $data, 'ad_category', $errors );
         }
 
         // If website field is checked and required make sure website value was entered
@@ -1088,6 +1092,11 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
                 $errors[] = __("Your Ad was flagged as spam. Please contact the administrator of this site.", 'another-wordpress-classifieds-plugin');
             }
         }
+
+        $errors = apply_filters(
+            'awpcp-validate-post-listing-details',
+            $errors, $data, $payment_term
+        );
 
         return count(array_filter($errors)) === 0;
     }
