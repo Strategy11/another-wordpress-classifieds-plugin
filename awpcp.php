@@ -271,7 +271,6 @@ require_once( AWPCP_DIR . "/includes/upgrade/class-fix-empty-media-mime-type-upg
 require_once( AWPCP_DIR . "/includes/upgrade/class-manual-upgrade-tasks-manager.php" );
 require_once( AWPCP_DIR . "/includes/upgrade/class-manual-upgrade-tasks.php" );
 require_once( AWPCP_DIR . "/includes/upgrade/class-sanitize-media-filenames-upgrade-task-handler.php" );
-require( AWPCP_DIR . '/includes/upgrade/class-store-phone-number-digits-upgrade-task-handler.php' );
 require_once( AWPCP_DIR . "/includes/upgrade/class-upgrade-task-ajax-handler-factory.php" );
 require_once( AWPCP_DIR . "/includes/upgrade/class-upgrade-task-ajax-handler.php" );
 
@@ -338,7 +337,6 @@ require_once( AWPCP_DIR . '/admin/form-fields/class-form-fields-admin-page.php' 
 require_once( AWPCP_DIR . '/admin/form-fields/class-form-fields-table-factory.php' );
 require_once( AWPCP_DIR . '/admin/form-fields/class-form-fields-table.php' );
 require_once( AWPCP_DIR . '/admin/form-fields/class-update-form-fields-order-ajax-handler.php' );
-require( AWPCP_DIR . '/admin/listings/class-listings-table-search-by-phone-condition.php' );
 
 // frontend functions
 require_once(AWPCP_DIR . "/frontend/placeholders.php");
