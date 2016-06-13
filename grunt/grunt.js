@@ -26,7 +26,6 @@ module.exports = function(grunt) {
           '<%= path.awpcp %>/js/components/payment-terms-list/*.js',
           '<%= path.awpcp %>/js/components/thumbnails-generator/*.js',
           '<%= path.awpcp %>/js/components/user-information-updater/*.js',
-          '<%= path.awpcp %>/js/components/value-selector/*.js',
           '<%= path.awpcp %>/js/util/guid.js',
           '<%= path.awpcp %>/js/util/number-format.js',
           '<%= path.awpcp %>/js/asynchronous-tasks.js',
