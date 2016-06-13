@@ -254,6 +254,10 @@ class AWPCP_Installer {
                 'try_to_convert_tables_to_utf8mb4',
                 'allow_null_values_in_user_id_column_in_payments_table',
             ),
+            '3.6.6' => array(
+                'create_phone_number_digits_column',
+                'enable_upgrade_task_to_store_phone_number_digits',
+            ),
             '4.0' => array(
                 'create_old_listing_id_column_in_listing_regions_table',
                 'enable_upgrade_routine_to_migrate_listing_categories',
@@ -1024,6 +1028,21 @@ class AWPCP_Installer {
         if ( awpcp_column_exists( AWPCP_TABLE_PAYMENTS, 'user_id' ) ) {
             $wpdb->query(  'ALTER TABLE ' . AWPCP_TABLE_PAYMENTS . ' CHANGE user_id user_id INT( 10 ) NULL'  );
         }
+    }
+
+    private function create_phone_number_digits_column( $oldversion ) {
+        $this->columns->create(
+            AWPCP_TABLE_ADS,
+            'phone_number_digits',
+            $this->database_helper->replace_charset_and_collate(
+                "VARCHAR(25) CHARACTER SET <charset> COLLATE <collate> NOT NULL DEFAULT '' AFTER `ad_contact_phone`"
+            )
+        );
+    }
+
+    private function enable_upgrade_task_to_store_phone_number_digits() {
+        delete_option( 'awpcp-spnd-last-file-id' );
+        awpcp()->manual_upgrades->enable_upgrade_task( 'awpcp-store-phone-number-digits' );
     }
 
     private function create_old_listing_id_column_in_listing_regions_table() {

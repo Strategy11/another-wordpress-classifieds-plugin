@@ -1411,16 +1411,15 @@ function awpcp_parse_money($value, $decimal_separator=false, $thousands_separato
  * @since 2.1.4
  */
 function awpcp_get_flash_messages() {
-	if (is_user_logged_in()) {
-		if ($messages = get_user_option('awpcp-messages', get_current_user_id())) {
-			return $messages;
-		}
-		return array();
-	} else if (isset($_COOKIE['awpcp-messages'])) {
-		return get_option('awpcp-messages-' . $_COOKIE['awpcp-messages'], array());
-	} else {
-		return array();
-	}
+	if ( ! is_user_logged_in() ) {
+        return array();
+    }
+
+    if ( $messages = get_user_option( 'awpcp-messages', get_current_user_id() ) ) {
+        return $messages;
+    }
+
+    return array();
 }
 
 /**
@@ -1430,9 +1429,7 @@ function awpcp_update_flash_messages($messages) {
 	if (is_user_logged_in()) {
 		return update_user_option(get_current_user_id(), 'awpcp-messages', $messages);
 	} else {
-		if (!isset($_COOKIE['awpcp-messages']))
-			$_COOKIE['awpcp-messages'] = uniqid();
-		return update_option('awpcp-messages-' . $_COOKIE['awpcp-messages'], $messages);
+        return true;
 	}
 }
 
@@ -1440,12 +1437,11 @@ function awpcp_update_flash_messages($messages) {
  * @since 2.1.4
  */
 function awpcp_clear_flash_messages() {
-	if (is_user_logged_in()) {
-		return delete_user_option(get_current_user_id(), 'awpcp-messages');
-	} else if (isset($_COOKIE['awpcp-messages'])) {
-		return delete_option('awpcp-messages-' . $_COOKIE['awpcp-messages']);
-	}
-	return true;
+    if ( ! is_user_logged_in() ) {
+        return true;
+    }
+
+    return delete_user_option( get_current_user_id(), 'awpcp-messages' );
 }
 
 function awpcp_flash( $message, $class = array( 'awpcp-updated', 'updated') ) {

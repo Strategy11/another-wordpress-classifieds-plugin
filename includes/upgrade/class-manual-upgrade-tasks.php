@@ -42,6 +42,13 @@ class AWPCP_Manual_Upgrade_Tasks {
         );
 
         $this->upgrade_tasks->register_upgrade_task(
+            'awpcp-store-phone-number-digits',
+            __( 'Store phone number digits', 'another-wordpress-classifieds-plugin' ),
+            'awpcp_store_phone_number_digits_upgrade_task_handler',
+            'plugin'
+        );
+
+        $this->upgrade_tasks->register_upgrade_task(
             'awpcp-store-listing-categories-as-custom-taxonomies',
             __( 'Store Listing Categories as Custom Taxonomies', 'another-wordpress-classifieds-plugin' ),
             'awpcp_store_listing_categories_as_custom_taxonomies_upgrade_task_handler',

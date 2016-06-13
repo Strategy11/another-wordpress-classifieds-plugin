@@ -321,6 +321,7 @@ class AWPCP_Listings_Table extends WP_List_Table {
         $options['title'] = __('Ad Title', 'another-wordpress-classifieds-plugin');
         $options['keyword'] = __('Keyword', 'another-wordpress-classifieds-plugin');
         $options['location'] = __('Location', 'another-wordpress-classifieds-plugin');
+        $options['phone'] = __( 'Phone', 'another-wordpress-classifieds-plugin' );
 
         if ( awpcp_current_user_is_admin() ) {
             $options['payer-email'] = __('Payer Email', 'another-wordpress-classifieds-plugin');
@@ -332,14 +333,16 @@ class AWPCP_Listings_Table extends WP_List_Table {
 
         $html = '<p class="search-by-box">';
         $html.= '<label>' . $label . ':</label>&nbsp;&nbsp;';
+        $html.= '<select name="search-by">';
 
         foreach ($options as $value => $text) {
-            $id = 'search-by-' . $value;
-            $selected = $search_by == $value ? 'checked="checked"' : '';
-            $html.= '<input type="radio" id="' . $id . '" name="search-by" ' . $selected . ' value="' . $value . '" />&nbsp;';
-            $html.= '<label for="' . $id . '">' . $text . '</label>&nbsp;';
+            $selected = $search_by == $value ? 'selected="selected"' : '';
+            $html.= '<option id="search-by-' . $value . '" ' . $selected . ' value="' . $value . '" />';
+            $html.= $text;
+            $html.= '</option>';
         }
 
+        $html.= '</select>';
         $html.= '</p>';
 
         echo $html;

@@ -82,3 +82,11 @@ function awpcp_string_with_names( $names ) {
 
     return $string;
 }
+
+function awpcp_get_digits_from_string( $string ) {
+    if ( ! preg_match_all( '/\d+/', $string, $matches ) ) {
+        return '';
+    }
+
+    return implode( '', $matches[0] );
+}
