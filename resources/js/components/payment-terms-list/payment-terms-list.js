@@ -10,6 +10,8 @@ function( $, settings ) {
 
         $.subscribe( '/category/updated', _.bind( this.onCategoriesUpdated, this ) );
         $.subscribe( '/user/updated', _.bind( this.onUserUpdated, this ) );
+
+        this.update();
     };
 
     $.extend( PaymentTermsList.prototype, {
@@ -57,7 +59,7 @@ function( $, settings ) {
         _getDisabledPaymentTerms: function _getDisabledPaymentTerms() {
             var self = this;
 
-            if ( self.state.selectedCategories == null && settings.get( 'hide-all-payment-terms-if-no-category-is-selected' ) ) {
+            if ( self.state.selectedCategories === null && settings.get( 'hide-all-payment-terms-if-no-category-is-selected' ) ) {
                 return self.state.allPaymentTerms;
             }
 
