@@ -707,6 +707,9 @@ class AWPCP {
             add_action( 'admin_enqueue_scripts', array( $pointers_manager, 'register_pointers' ) );
             add_action( 'admin_enqueue_scripts', array( $pointers_manager, 'setup_pointers' ) );
 
+            $helper = awpcp_url_backwards_compatibility_redirection_helper();
+            add_action( 'wp_loaded', array( $helper, 'maybe_redirect_admin_request' ) );
+
             if ( awpcp_current_user_is_admin() ) {
                 // load resources required in admin screens only, visible to admin users only.
                 add_action( 'admin_notices', array( awpcp_fee_payment_terms_notices(), 'dispatch' ) );
@@ -726,7 +729,7 @@ class AWPCP {
             add_action( 'template_redirect', array( awpcp_secure_url_redirection_handler(), 'dispatch' ) );
 
             $helper = awpcp_url_backwards_compatibility_redirection_helper();
-            add_action( 'template_redirect', array( $helper, 'maybe_redirect' ) );
+            add_action( 'template_redirect', array( $helper, 'maybe_redirect_frontend_request' ) );
         }
 
         add_filter( 'awpcp-content-placeholders', array( $this, 'register_content_placeholders' ) );

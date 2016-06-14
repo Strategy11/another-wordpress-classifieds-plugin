@@ -26,7 +26,11 @@ class AWPCP_URL_Backwards_Compatibility_Redirection_Helper {
         $this->request = $request;
     }
 
-    public function maybe_redirect() {
+    public function maybe_redirect_frontend_request() {
+        if ( $this->request->param( 'awpcp-no-redirect' ) ) {
+            return;
+        }
+
         if ( $this->query->is_browse_listings_page() || $this->query->is_browse_categories_page() ) {
             $requested_category_id = $this->request->get_category_id();
             $equivalent_category_id = $this->get_equivalent_category_id( $requested_category_id );
@@ -45,6 +49,8 @@ class AWPCP_URL_Backwards_Compatibility_Redirection_Helper {
             }
 
             return $this->redirect( url_showad( $listing->ID ) );
+        } else if ( $this->query->is_renew_listing_page() ) {
+            $this->maybe_redirect_frontend_renew_listing_request();
         }
     }
 
@@ -59,7 +65,39 @@ class AWPCP_URL_Backwards_Compatibility_Redirection_Helper {
     }
 
     private function redirect( $redirect_url ) {
-        wp_redirect( $redirect_url, 301 );
+        wp_redirect( add_query_arg( 'awpcp-no-redirect', true, $redirect_url ), 301 );
         exit();
+    }
+
+    private function maybe_redirect_frontend_renew_listing_request() {
+         return $this->maybe_redirect_renew_listing_request( $this->request->get_current_listing_id() );
+    }
+
+    private function maybe_redirect_renew_listing_request( $old_listing_id ) {
+        $renew_hash = $this->request->param( 'awpcprah' );
+
+        if ( ! awpcp_verify_renew_ad_hash( $old_listing_id, $renew_hash ) ) {
+            return;
+        }
+
+        try {
+            $listing = $this->listings->get_listing_with_old_id( $old_listing_id );
+        } catch ( AWPCP_Exception $e ) {
+            return;
+        }
+
+        return $this->redirect( awpcp_get_renew_ad_url( $listing->ID ) );
+    }
+
+    public function maybe_redirect_admin_request() {
+        if ( $this->request->param( 'awpcp-no-redirect' ) ) {
+            return;
+        }
+
+        if ( strcmp( $this->request->param( 'action' ), 'renew' ) !== 0 ) {
+            return;
+        }
+
+        return $this->maybe_redirect_renew_listing_request( $this->request->get_current_listing_id() );
     }
 }
