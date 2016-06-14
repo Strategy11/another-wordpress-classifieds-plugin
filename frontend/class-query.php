@@ -40,6 +40,10 @@ class AWPCP_Query {
         return $this->is_page_that_has_shortcode( 'AWPCPBROWSECATS' );
     }
 
+    public function is_renew_listing_page() {
+        return $this->is_page_that_has_shortcode( 'AWPCP-RENEW-AD' );
+    }
+
     public function is_page_that_accepts_payments() {
         $shortcodes_that_accept_payments = array( 'AWPCPPLACEAD', 'AWPCP-BUY-SUBSCRIPTION', 'AWPCP-RENEW-AD', 'AWPCPBUYCREDITS' );
 
