@@ -48,11 +48,11 @@ class AWPCP_Custom_Post_Types {
                 'public' => true,
                 'exclude_from_search' => true,
                 'publicly_queryable' => false,
-                'show_ui' => true,
-                'show_in_nav_menus' => true,
+                'show_ui' => false,
+                'show_in_nav_menus' => false,
                 // 'show_in_menu' => 'admin.php?page=awpcp.php',
                 'show_in_admin_bar' => true,
-                // 'menu_position' => null, //??
+                // 'menu_position' => null,
                 'menu_icon' => MENUICO,
                 // 'capability_type' => array( 'awpcp_listing', 'awpcp_listings' ),
                 'supports' => array(
