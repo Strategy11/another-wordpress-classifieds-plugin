@@ -3,9 +3,9 @@ Contributors: awpcp
 Donate link: http://awpcp.com/donate
 Tags: classifieds,ads,classified ads,classified,awpcp,classifieds script,classified script,classified theme,classifieds theme,wp classifieds,wp classified
 Requires at least: 4.0
-Tested up to: 4.4
-Last Updated: 2015-Dec-29
-Stable tag: tags/3.6.3.1
+Tested up to: 4.5
+Last Updated: 2016-Jun-14
+Stable tag: tags/3.7
 License: GPLv2 or later
 
 AWPCP Classifieds:  Great for increasing retention to your site, adding revenue for your business, and creating customer interaction.
@@ -52,7 +52,7 @@ NEW module(s): [Mark as Sold](http://awpcp.com/premium-modules/mark-as-sold-modu
     4. Admin can (optionally) be notified of expiring ads
  = Payment Features =
     1. Allows for paid or free ads
-    2. Supports PayPal, PayPal Pro, PayFast, Authorize.net and 2Checkout for paid ads
+    2. Supports PayPal, PayPal Pro, Authorize.net and 2Checkout for paid ads
     3. Allow for image posting limits higher than free ads
     4. Multiple fee scales for posting ads (allows you to have longer ad 
        postings with higher fees)
@@ -221,6 +221,81 @@ Find the [faqs here](http://www.awpcp.com/forum/viewforum.php?f=3)
 [Plugin documentation](http://www.awpcp.com/documentation/)
 
 == Changelog ==
+
+= Version 3.7 =
+* Show return to listing link after Reply to Ad form is submitted.
+* Add placeholder to show elapsed time since listing creation.
+* Add settings for updating subject & body of ad verification email.
+* Add Settings link to plugin entry in Plugins page.
+* Hide **Number of days before expired listings are deleted** setting if not used.
+* Add French translation for Mark as Sold.
+* Add settings to hide and override the 'No Image' image.
+* Update translation for French languge in main plugin.
+* Add a global Hide empty categories from dropdowns option.
+* Disable the Classifieds > Fees area if payments are disabled.
+* Update plugin's JS to work without jQuery Migrate.
+* Fix Fatal error caused by trying to access a private property.
+* Fix missing constructor parameter notice.
+* Fix premium upgrades for websites with local blocks.
+* Fixed character count when quotes are added to ad details text.
+* Fix problem with image Open Graph metatag.
+* Allow multiple AWPCPSHOWCAT shortcodes in the same page.
+* Fix PHP Warning in Task Queue.
+* Fix pagination issue.
+* Fix translation problem in 3.6.5.
+* Media Uploader: replace href="javascript;" with href="#".
+* Fix alignment of labels on Edit Ad page in admin.
+* Fix appearance of comments & ratings in admin.
+* Update awpcp_ajaxurl() to match current request's scheme.
+* Fix description of Listing's URL settings.
+* Add workaround for mime_content_type bug.
+* Fix width of textfields in smaller screens.
+* Reduce number of HTTP requests to EDD store.
+
+= Version 3.6.5 =
+* Add category parameter to Random Listings shortcode.
+* Update integrations with SEO plugins to generate basic meta tags.
+* Add filter to prevent generation of basic meta tags.
+* Add 'days-before-expired-listings-are-deleted' setting.
+* Update name and description of 'autoexpiredisabledelete' setting.
+* Update name and description of 'addurationfreemode' setting.
+* Replace AWPCP with the blog name in Place/Edit Ad user panel pages.
+* Fix image's aspect ratio in Listings Widget.
+* Fix Random Listings shortcode to be more random.
+* Replace usages of get_currentuserinfo() with wp_get_current_user().
+* Fix width of textareas in Settings admin page.
+* Add setting to control whether the mobile menu starts expanded or closed.
+* Fix PHP errors and notices in Billing Form.
+* Fix Search By Payer Email feature.
+* Enqueue plugin scripts and styles in plugin admin pages only.
+* Fix undefined index error in Extra Fields.
+
+= Version 3.6.4.1 =
+* Missing metadata column fix for easy manual triggering
+* Updated Slovak translation.
+* Added Romanian translation.
+
+= Version 3.6.4 =
+* Show user's name using the format selected in the settings.
+* Add setting to control the format of the user's name.
+* Add plugin integration for Profile Builder
+* Start using Sandbox endpoints configured with the latest security standards.
+* Fix conflict with Polylang plugin.
+* Allow BuddyPress Listings placeholders to be used in Reply to Ad email message template.
+* Add awpcp_replace_placeholders() to replace arbitrary placeholders.
+* Add awpcp-clearfix CSS class to avoid theme conflicts.
+* Fix conflict with WordPress HTTPS.
+* Fix Category Dropdown script to run on Opera Mini.
+* Fix typo in a comment in Installer class.
+* Update Ad Management panel to remove AWPCP from the page's title.
+* Add missing translations.
+* Create uppercase and lowercase versions of rewrite rules that include escaped octets.
+* Fix problem saving media metadata.
+* Run upgrade task to calculate image dimensions again.
+* Include website's URL in license_check request.
+* Replace usages of get_ad_id() with get_current_listing_id().
+* Make sure utf8mb4 charset is supported before trying to use it.
+* Remove unwanted new line characters from email headers.
 
 = Version 3.6.3.1 =
 * Fixed fatal error when upgrading from 3.5.3.x on upgrade routines that were calling incorrect function
