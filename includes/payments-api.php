@@ -388,6 +388,14 @@ class AWPCP_PaymentsAPI {
             $payment_amount = $payment_term->price;
         }
 
+        $payment_amount = apply_filters(
+            'awpcp-payment-term-payment-amount',
+            $payment_amount,
+            $payment_term,
+            $payment_type,
+            $transaction
+        );
+
         return $transaction->add_item(
             "{$payment_term->type}-{$payment_term->id}-${payment_type}",
             $payment_term->get_name(),
