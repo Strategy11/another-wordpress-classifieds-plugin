@@ -74,7 +74,7 @@ class AWPCP_Listings_Table extends WP_List_Table {
         $query = array();
 
         if ( ! awpcp_current_user_is_moderator() ) {
-            $query['post_author'] = wp_get_current_user()->ID;
+            $query['author'] = wp_get_current_user()->ID;
         }
 
         try {
