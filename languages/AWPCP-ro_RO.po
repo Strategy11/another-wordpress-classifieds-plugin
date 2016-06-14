@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2016-03-31 17:01:59+00:00\n"
-"PO-Revision-Date: 2016-03-31 17:03+0000\n"
+"POT-Creation-Date: 2016-06-13 15:56:40+00:00\n"
+"PO-Revision-Date: 2016-06-13 15:58+0000\n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: Romanian (Romania) (http://www.transifex.com/wp-translations/another-wordpress-classifieds-plugin/language/ro_RO/)\n"
 "MIME-Version: 1.0\n"
@@ -44,7 +44,7 @@ msgstr "Credite"
 #: admin/admin-panel-fees-table.php:120
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:19
 #: admin/templates/admin-panel-fees-entry-form.tpl.php:25
-#: frontend/placeholders.php:446 frontend/templates/page-search-ads.tpl.php:46
+#: frontend/placeholders.php:447 frontend/templates/page-search-ads.tpl.php:46
 #: includes/settings/class-payment-general-settings.php:10
 msgid "Price"
 msgstr "Preț"
@@ -146,7 +146,7 @@ msgid "Categories"
 msgstr "Categorii"
 
 #: admin/admin-panel-fees-table.php:127
-#: admin/templates/admin-sidebar.tpl.php:103 awpcp.php:805
+#: admin/templates/admin-sidebar.tpl.php:103 awpcp.php:806
 msgid "Featured Ads"
 msgstr "Anunțuri speciale"
 
@@ -218,7 +218,7 @@ msgstr "Administrează anunțuri"
 
 #: admin/admin-panel-listings-place-ad-page.php:15
 #: admin/templates/admin-panel-listings.tpl.php:5
-#: frontend/page-place-ad.php:1192
+#: frontend/page-place-ad.php:1194
 msgid "Place Ad"
 msgstr "Adauga anunț"
 
@@ -358,7 +358,7 @@ msgid "Keyword"
 msgstr "Cuvânt cheie"
 
 #: admin/admin-panel-listings-table.php:274 frontend/page-show-ad.php:83
-#: frontend/placeholders.php:572
+#: frontend/placeholders.php:573
 msgid "Location"
 msgstr "Locație"
 
@@ -719,7 +719,7 @@ msgid "Manage Extra Fields"
 msgstr "Administrează Câmpurile Suplimentare"
 
 #: admin/admin-panel.php:315 admin/templates/admin-sidebar.tpl.php:108
-#: awpcp.php:798
+#: awpcp.php:799
 msgid "Extra Fields"
 msgstr "Câmpuri suplimentare"
 
@@ -1372,15 +1372,26 @@ msgstr "Acest plan este pentru anunțuri speciale"
 msgid "Hide Fee Plan from public?"
 msgstr "Ascunde planul plătit pentru public?"
 
-#: admin/templates/admin-panel-fees.tpl.php:7
+#: admin/templates/admin-panel-fees.tpl.php:4
+msgid "Payment Settings page"
+msgstr ""
+
+#: admin/templates/admin-panel-fees.tpl.php:5
+msgid ""
+"Currently your classifieds are in Free mode. Fee plans are not available or "
+"used during free mode.<br/><br/> To change this, visit the <payment-"
+"settings-tab-link> and enable Charge Listing Fee setting."
+msgstr ""
+
+#: admin/templates/admin-panel-fees.tpl.php:16
 msgid "Add Fee Plan"
 msgstr "Adaugă un plan plătit"
 
-#: admin/templates/admin-panel-fees.tpl.php:11
+#: admin/templates/admin-panel-fees.tpl.php:20
 msgid "Fee Plan Settings"
 msgstr "Setări plan plătit"
 
-#: admin/templates/admin-panel-fees.tpl.php:13
+#: admin/templates/admin-panel-fees.tpl.php:22
 msgid ""
 "If you wish to change the sorting of your fee plans, you can change the "
 "<fee-settings-link>."
@@ -1863,19 +1874,19 @@ msgstr "Cumpărați un Modul Premium"
 msgid "Get a Premium Module!"
 msgstr "Obțineți un Modul Premium!"
 
-#: admin/templates/admin-sidebar.tpl.php:46 awpcp.php:770
+#: admin/templates/admin-sidebar.tpl.php:46 awpcp.php:771
 msgid "Campaign Manager"
 msgstr "Administrator Campanii"
 
-#: admin/templates/admin-sidebar.tpl.php:52 awpcp.php:827
+#: admin/templates/admin-sidebar.tpl.php:52 awpcp.php:828
 msgid "Mark as Sold"
 msgstr "Marcaț ca vândut"
 
-#: admin/templates/admin-sidebar.tpl.php:58 awpcp.php:848
+#: admin/templates/admin-sidebar.tpl.php:58 awpcp.php:849
 msgid "Restricted Categories"
 msgstr "Categorii restricționate"
 
-#: admin/templates/admin-sidebar.tpl.php:63 awpcp.php:763
+#: admin/templates/admin-sidebar.tpl.php:63 awpcp.php:764
 msgid "BuddyPress Listings"
 msgstr "Anunțuri BuddyPress"
 
@@ -1883,15 +1894,15 @@ msgstr "Anunțuri BuddyPress"
 msgid "Comments/Ratings"
 msgstr "Comentarii/evaluări"
 
-#: admin/templates/admin-sidebar.tpl.php:73 awpcp.php:749
+#: admin/templates/admin-sidebar.tpl.php:73 awpcp.php:750
 msgid "Attachments"
 msgstr "Atașamente"
 
-#: admin/templates/admin-sidebar.tpl.php:78 awpcp.php:756
+#: admin/templates/admin-sidebar.tpl.php:78 awpcp.php:757
 msgid "Authorize.Net"
 msgstr "Authorize.net"
 
-#: admin/templates/admin-sidebar.tpl.php:83 awpcp.php:834
+#: admin/templates/admin-sidebar.tpl.php:83 awpcp.php:835
 msgid "PayPal Pro"
 msgstr "PayPal Pro"
 
@@ -1899,7 +1910,7 @@ msgstr "PayPal Pro"
 msgid "Coupon/Discount"
 msgstr "Cupon/Reducere"
 
-#: admin/templates/admin-sidebar.tpl.php:93 awpcp.php:862
+#: admin/templates/admin-sidebar.tpl.php:93 awpcp.php:863
 msgid "Subscriptions"
 msgstr "Abonamente"
 
@@ -1907,15 +1918,15 @@ msgstr "Abonamente"
 msgid "Fee Per Category"
 msgstr "Preț pe categorie"
 
-#: admin/templates/admin-sidebar.tpl.php:113 awpcp.php:777
+#: admin/templates/admin-sidebar.tpl.php:113 awpcp.php:778
 msgid "Category Icons"
 msgstr "Icon-uri pentru categorii"
 
-#: admin/templates/admin-sidebar.tpl.php:118 awpcp.php:841
+#: admin/templates/admin-sidebar.tpl.php:118 awpcp.php:842
 msgid "Regions Control"
 msgstr "Control regiuni"
 
-#: admin/templates/admin-sidebar.tpl.php:123 awpcp.php:855
+#: admin/templates/admin-sidebar.tpl.php:123 awpcp.php:856
 msgid "RSS"
 msgstr "Feed RSS"
 
@@ -2042,110 +2053,110 @@ msgstr "Administrare Anunțuri"
 msgid "Manage Ad Listings"
 msgstr "Administrează Anunțuri"
 
-#: awpcp.php:653
+#: awpcp.php:654
 msgid "AWPCP"
 msgstr "AWPCP"
 
-#: awpcp.php:732
+#: awpcp.php:733
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
 msgstr "AWPCP necesită librăria de procesare grafică GD, iar aceasta nu este instalată. Contactați administratorul hosting-ul dvs. pentru a rezolva aceasta."
 
-#: awpcp.php:733
+#: awpcp.php:734
 #: includes/placeholders/class-placeholders-installation-verifier.php:31
 msgid "Warning"
 msgstr "Atenționare"
 
-#: awpcp.php:784
+#: awpcp.php:785
 msgid "Comments & Ratings"
 msgstr "Comentarii și Evaluări"
 
-#: awpcp.php:791
+#: awpcp.php:792
 msgid "Coupons/Discount"
 msgstr "Cupoane/Reduceri"
 
-#: awpcp.php:812
+#: awpcp.php:813
 msgid "Fee per Category"
 msgstr "Preț pe categorie"
 
-#: awpcp.php:819
+#: awpcp.php:820
 msgid "Google Checkout"
 msgstr "Google Checkout"
 
-#: awpcp.php:869 templates/components/media-manager.tpl.php:46
+#: awpcp.php:870 templates/components/media-manager.tpl.php:46
 msgid "Videos"
 msgstr "Video-uri"
 
-#: awpcp.php:877
+#: awpcp.php:878
 msgid "XML Sitemap"
 msgstr "Hartă XML"
 
-#: awpcp.php:884
+#: awpcp.php:885
 msgid "ZIP Code Search Module"
 msgstr "Modul de căutare după codul poștal"
 
-#: awpcp.php:1039
+#: awpcp.php:1040
 msgid "This field is required."
 msgstr "Acest câmp este obligatoriu."
 
-#: awpcp.php:1040 frontend/page-edit-ad.php:128 frontend/page-edit-ad.php:433
+#: awpcp.php:1041 frontend/page-edit-ad.php:128 frontend/page-edit-ad.php:433
 #: includes/settings-api.php:214
 msgid "Please enter a valid email address."
 msgstr "Vă rugăm să introduceți o adresă de email validă."
 
-#: awpcp.php:1041 awpcp.php:1042
+#: awpcp.php:1042 awpcp.php:1043
 msgid "Please enter a valid URL."
 msgstr "Vă rugăm să introduceți un link (URL) corect."
 
-#: awpcp.php:1043
+#: awpcp.php:1044
 msgid "Please enter a valid number."
 msgstr "Vă rugăm să introduceți un număr corect."
 
-#: awpcp.php:1044
+#: awpcp.php:1045
 msgid "Please enter a valid amount."
 msgstr "Vă rugăm să introduceți un preț valid."
 
-#: awpcp.php:1054
+#: awpcp.php:1055
 msgctxt "[UI Datepicker] Display text for previous month link"
 msgid "&#x3c;Prev"
 msgstr "&#x3c;Înapoi"
 
-#: awpcp.php:1056
+#: awpcp.php:1057
 msgctxt "[UI Datepicker] Display text for next month link"
 msgid "Next&#x3e;"
 msgstr "Înainte&#x3e;"
 
-#: awpcp.php:1071
+#: awpcp.php:1072
 msgctxt "[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ..."
 msgid "0"
 msgstr "0"
 
-#: awpcp.php:1077
+#: awpcp.php:1078
 msgid "There are files currently being uploaded."
 msgstr "Fișierele se încarcă în acest moment."
 
-#: awpcp.php:1078
+#: awpcp.php:1079
 msgid "There are files pending to be uploaded."
 msgstr "Fișierele așteaptă să fie încărcate."
 
-#: awpcp.php:1079
+#: awpcp.php:1080
 msgid "You haven't uploaded any images or files."
 msgstr "Nu ați încărcat nici o imagine sau fișier."
 
-#: cron.php:86
+#: cron.php:106
 msgid "Listing Details"
 msgstr "Detalii anunț"
 
-#: cron.php:88
+#: cron.php:108
 msgid "Ad Title:"
 msgstr "Titlu Anunț:"
 
-#: cron.php:91
+#: cron.php:111
 msgid "Posted:"
 msgstr "Postat la:"
 
-#: cron.php:95
+#: cron.php:115
 msgid "Renew your ad by visiting:"
 msgstr "Reînnoiți anunțul dvs. vizitând:"
 
@@ -2246,13 +2257,13 @@ msgstr "Administrare Fișiere"
 msgid "Go to the %s section to manage the Images and Attachments for this Ad."
 msgstr "Mergeți la secțiunea %s pentru a administra imaginile și fișierele atașate acestui anunț."
 
-#: frontend/page-edit-ad.php:274 frontend/page-place-ad.php:1074
+#: frontend/page-edit-ad.php:274 frontend/page-place-ad.php:1076
 msgid ""
 "There was an unexpected error trying to save your Ad details. Please try "
 "again or contact an administrator."
 msgstr "A apărut o eroare neașteptată la salvarea detaliilor anunțului dvs. Vă rugăm să încercați din nou sau să contactați administratorul."
 
-#: frontend/page-edit-ad.php:296 frontend/page-place-ad.php:1136
+#: frontend/page-edit-ad.php:296 frontend/page-place-ad.php:1138
 msgid "The specified Ad doesn't exists. No images can be added at this time."
 msgstr "Anunțul specificat nu există. Nu a fost adăugată nici o imagine."
 
@@ -2548,29 +2559,29 @@ msgid ""
 "Your Ad was flagged as spam. Please contact the administrator of this site."
 msgstr "Anunțul dvs. a fost marcat ca SPAM. Vă rugăm să contactați administratorul acestui website."
 
-#: frontend/page-place-ad.php:1129
+#: frontend/page-place-ad.php:1131
 msgid ""
 "We were unable to find a Payment Transaction assigned to this operation. No "
 "images can be added at this time."
 msgstr "Nu am putut găsi o tranzacție de plată asociată cu această operație. Nici o imagine nu poate fi adăugată la acest moment."
 
-#: frontend/page-place-ad.php:1190
+#: frontend/page-place-ad.php:1192
 #: frontend/templates/page-place-ad-details-step.tpl.php:115
 msgid "Preview Ad"
 msgstr "Previzualizare anunțuri"
 
-#: frontend/page-place-ad.php:1194
+#: frontend/page-place-ad.php:1196
 #: includes/helpers/widgets/class-listing-form-steps-component.php:50
 #: includes/helpers/widgets/class-listing-form-steps-component.php:65
 msgid "Checkout"
 msgstr "Plată"
 
-#: frontend/page-place-ad.php:1213 frontend/page-place-ad.php:1264
+#: frontend/page-place-ad.php:1215 frontend/page-place-ad.php:1266
 msgid ""
 "We were unable to find a Payment Transaction assigned to this operation."
 msgstr "Nu am putut găsi o tranzacție de plată asociată cu această operație."
 
-#: frontend/page-place-ad.php:1220 frontend/page-place-ad.php:1271
+#: frontend/page-place-ad.php:1222 frontend/page-place-ad.php:1273
 #: frontend/page-renew-ad.php:334
 msgid "The Ad associated with this transaction doesn't exists."
 msgstr "Anunțul asociat cu această tranzacție nu există."
@@ -2664,7 +2675,7 @@ msgstr "cu privire la"
 
 #: frontend/page-reply-to-ad.php:243
 msgid "Your message has been sent. Return to <view-listing-link>."
-msgstr ""
+msgstr "Mesajul dvs. a fost trimis. Întoarceți-vă la <view-listing-link>."
 
 #: frontend/page-reply-to-ad.php:247
 msgid ""
@@ -2754,38 +2765,38 @@ msgid ""
 "(the author) can see it."
 msgstr "Acest anunț este dezactivat până când Administratorul îl va aproba. Doar dvs. (autorul) îl puteți vedea."
 
-#: frontend/placeholders.php:388
+#: frontend/placeholders.php:389
 msgid "Seller"
 msgstr "Vânzător"
 
-#: frontend/placeholders.php:411
+#: frontend/placeholders.php:412
 msgid "Visit Website"
 msgstr "Vizitează website"
 
-#: frontend/placeholders.php:608
+#: frontend/placeholders.php:609
 msgid "This Ad has been viewed %d time."
 msgid_plural "This Ad has been viewed %d times."
 msgstr[0] "Acest anunț a fost văzut o singură dată."
 msgstr[1] "Acest anunț a fost văzut de %d ori."
 msgstr[2] "Acest anunț a fost văzut de %d ori."
 
-#: frontend/placeholders.php:612
+#: frontend/placeholders.php:613
 msgid "Total views: %d"
 msgstr "Total vederi: %s"
 
-#: frontend/placeholders.php:663
+#: frontend/placeholders.php:664
 msgid "Phone"
 msgstr "Telefon"
 
-#: frontend/placeholders.php:720
+#: frontend/placeholders.php:721
 msgid "Flag Ad"
 msgstr "Marchează anunțul ca nepotrivit"
 
-#: frontend/placeholders.php:735
+#: frontend/placeholders.php:736
 msgid "Tweet This"
 msgstr "Trimite la Twitter"
 
-#: frontend/placeholders.php:766
+#: frontend/placeholders.php:767
 msgid "Share on Facebook"
 msgstr "Trimite la Facebook"
 
@@ -3605,7 +3616,7 @@ msgctxt "default blog title"
 msgid "Classifieds Website"
 msgstr "Website de anunțuri"
 
-#: functions.php:1510
+#: functions.php:1506
 msgid ""
 "The images or files with pale red background have been rejected by an "
 "administrator user. Likewise, files with a pale yellow background are "
@@ -3613,86 +3624,86 @@ msgid ""
 "cannot be shown in the frontend."
 msgstr "Vă rugăm să încărcați imagini care au legătură cu anunțul dvs. si respectă termenii de serviciu ai acestui website."
 
-#: functions.php:1529
+#: functions.php:1525
 msgid ""
 "This version of AWPCP %1$s module is not compatible with AWPCP version %2$s."
 " Please get AWPCP %1$s %3$s or newer!"
 msgstr "Această versiune a modulului AWPCP %1$s nu este compatibil cu versiunea AWPCP %2$s. Vă rugăm să obțineți %1$s %3$s sau mai nou!"
 
-#: functions.php:1531 includes/helpers/class-modules-manager.php:245
+#: functions.php:1527 includes/helpers/class-modules-manager.php:245
 msgid "Error"
 msgstr "Eroare"
 
-#: functions.php:1868
+#: functions.php:1864
 msgid "No errors."
 msgstr "Nici o eroare."
 
-#: functions.php:1869
+#: functions.php:1865
 msgid "The file is larger than upload_max_filesize."
 msgstr "Mărimea fișierului este mai mare decât upload_max_filesize."
 
-#: functions.php:1870
+#: functions.php:1866
 msgid "The file is larger than form MAX_FILE_SIZE."
 msgstr "Acest fișier este mai mare decât MAX_FILE_SIZE."
 
-#: functions.php:1871
+#: functions.php:1867
 msgid "The file was only partially uploaded."
 msgstr "Fișierul a fost încărcat doar parțial."
 
-#: functions.php:1872
+#: functions.php:1868
 msgid "No file was uploaded."
 msgstr "Nu a fost încărcat nici un fișier."
 
-#: functions.php:1873
+#: functions.php:1869
 msgid "Missing temporary directory."
 msgstr "Directorul temporar lipsește."
 
-#: functions.php:1874
+#: functions.php:1870
 msgid "Can't write file to disk."
 msgstr "Nu se poate scrie fișierul pe disc."
 
-#: functions.php:1875
+#: functions.php:1871
 msgid "The file upload was stopped by extension."
 msgstr "Încărcarea fișierului a fost oprită de către extensia acestuia."
 
-#: functions.php:2090
+#: functions.php:2086
 msgid "Your Ad \"%s\" has been approved"
 msgstr "Anunțul dvs. \"%s\" a fost aprobat"
 
-#: functions.php:2106
+#: functions.php:2102
 msgid "Your Ad \"%s\" has been successfully updated"
 msgstr "Anunțul dvs. \"%s\" a fost actualizat cu succes"
 
-#: functions.php:2127
+#: functions.php:2123
 msgid "Images on Ad \"%s\" are awaiting approval"
 msgstr "Imaginile anunțului \"%s\" așteaptă aprobarea"
 
-#: functions.php:2129 includes/functions/notifications.php:189
+#: functions.php:2125 includes/functions/notifications.php:189
 msgid ""
 "Images on Ad \"%s\" are awaiting approval. You can approve the images going "
 "to the Manage Images section for that Ad and clicking the \"Enable\" button "
 "below each image. Click here to continue: %s."
 msgstr "Imaginile anunțului \"%s\" așteaptă aprobarea. Puteți aproba imaginile mergând la secțiunea Administrare Imagini pentru acest anunț și dând click pe butonul \"Activează\" de sub fiecare imagine. Click aici pentru a continua: %s."
 
-#: functions.php:2132
+#: functions.php:2128
 msgid "The Ad \"%s\" is awaiting approval"
 msgstr "Anunțul \"%s\" așteaptă aprobarea"
 
-#: functions.php:2134 includes/functions/notifications.php:194
+#: functions.php:2130 includes/functions/notifications.php:194
 msgid ""
 "The Ad \"%s\" is awaiting approval. You can approve the Ad going to the "
 "Manage Listings section and clicking the \"Enable\" action shown on top. "
 "Click here to continue: %s."
 msgstr "Anunțul \"%s\" așteaptă aprobarea. Puteți aproba anunțul mergând la secțiunea Administrare anunțuri și dând click pe butonul \"Activează\" din partea de sus. Click aici pentru a continua: %s."
 
-#: functions.php:2141 includes/functions/notifications.php:201
+#: functions.php:2137 includes/functions/notifications.php:201
 msgid ""
 "Additionally, You can approve the images going to the Manage Images section "
 "for that Ad and clicking the \"Enable\" button below each image. Click here "
 "to continue: %s."
 msgstr "Suplimentar, puteți aproba imaginile mergând la secțiunea Administrare Imagini pentru acest anunț și dând click pe butonul \"Activează\" de sub fiecare imagine. Click aici pentru a continua: %s."
 
-#: functions.php:2691
+#: functions.php:2687
 msgid "Email sent %s."
 msgstr "Email trimis %s."
 
@@ -3708,84 +3719,84 @@ msgstr "Numele de fișiere ale imaginilor au fost găsite, dar nu a fost indicat
 msgid "The required column %s is missing. Import can't continue."
 msgstr "Coloana obligatorie %s lipsește. Operația de import nu poate continua."
 
-#: includes/class-csv-importer.php:252
+#: includes/class-csv-importer.php:254
 msgid "Import can't continue. Unknown column(s) specified(s):"
 msgstr "Operația de import nu poate continua. Coloana(e) necunoscuta(e) specificata(e):"
 
-#: includes/class-csv-importer.php:327
+#: includes/class-csv-importer.php:329
 msgid "Required value <em>%s</em> missing at row number: %d"
 msgstr "Valoarea obligatorie <em>%s</em> lipsește la linia numărul: %d"
 
-#: includes/class-csv-importer.php:465
+#: includes/class-csv-importer.php:471
 msgid "File %s does not exists."
 msgstr "Fișierul %s nu există."
 
-#: includes/class-csv-importer.php:473
+#: includes/class-csv-importer.php:479
 msgid "Import directory %s does not exists."
 msgstr "Directorul de import %s nu există."
 
-#: includes/class-csv-importer.php:485
+#: includes/class-csv-importer.php:491
 msgid "Incompatible ZIP Archive"
 msgstr "Arhiva ZIP necompatibilă"
 
-#: includes/class-csv-importer.php:490
+#: includes/class-csv-importer.php:496
 msgid "Empty ZIP Archive"
 msgstr "Golește arhiva ZIP"
 
-#: includes/class-csv-importer.php:517
+#: includes/class-csv-importer.php:523
 msgid "Could not write temporary file %s"
 msgstr "Nu se poate scrie fișierul temporar %s"
 
-#: includes/class-csv-importer.php:557
+#: includes/class-csv-importer.php:563
 msgid "Row %d. %s"
 msgstr "Linia %d. %s"
 
-#: includes/class-csv-importer.php:594
+#: includes/class-csv-importer.php:600
 msgid "Could not save the information to the database for %s in row %d"
 msgstr "Informația nu a putut fi salvată în baza de date pentru %s în linia %d"
 
-#: includes/class-csv-importer.php:661
+#: includes/class-csv-importer.php:667
 msgid "Item price non numeric at row number %s"
 msgstr "Preț nenumeric la linia numărul %s"
 
-#: includes/class-csv-importer.php:677
+#: includes/class-csv-importer.php:683
 msgid ""
 "Start date missing (alternately you can specify the default start date) at "
 "row number %s"
 msgstr "Data de început lipsește (alternativ, puteți specifica data de început implicită) la linia numărul %s"
 
-#: includes/class-csv-importer.php:689
+#: includes/class-csv-importer.php:695
 msgid "Invalid End date at row number: %s"
 msgstr "Dată de sfârșit invalidă la linia numărul: %s"
 
-#: includes/class-csv-importer.php:697
+#: includes/class-csv-importer.php:703
 msgid ""
 "End date missing (alternately you can specify the default end date) at row "
 "number %s"
 msgstr "Data de sfârșit lipsește (alternativ, puteți specifica data de sfârșit implicită) la linia numărul %s"
 
-#: includes/class-csv-importer.php:808
+#: includes/class-csv-importer.php:814
 msgid ""
 "Extra Field %s's value is not allowed in row %d. Allowed values are: %%s"
 msgstr "Valoarea câmpului suplimentar %s's nu este permisă în linia %d. Valorile permise sunt: %%s"
 
-#: includes/class-csv-importer.php:817
+#: includes/class-csv-importer.php:823
 msgid ""
 "Extra Field %s's value is not allowed in row %d. Allowed value is one of: "
 "%%s"
 msgstr "Valoarea câmpului suplimentar %s's nu este permisă în linia %d. Valoarea permisă este una dintre: %%s"
 
-#: includes/class-csv-importer.php:945
+#: includes/class-csv-importer.php:951
 msgid ""
 "Username is required in row %s. Please include a username or selected a "
 "default user."
 msgstr "Numele de utilizator este obligatoriu în linia %s. Vă rugăm să includeți un nume de utlizator sau să selectați un utilizator implicit."
 
-#: includes/class-csv-importer.php:948
+#: includes/class-csv-importer.php:954
 msgid "Contact email is required in row %s."
 msgstr "Email-ul de contact este obligatoriu în linia %s."
 
-#: includes/class-csv-importer.php:966
+#: includes/class-csv-importer.php:972
 msgid ""
 "A new user '%s' with email address '%s' and password '%s' was created for "
 "row %d."
@@ -4328,27 +4339,27 @@ msgstr "Nu este selectată nici o pagină Facebook (lipsește id-ul paginii sau 
 msgid "Template not found."
 msgstr "Machetă negăsită."
 
-#: includes/helpers/widgets/categories-dropdown.php:16
+#: includes/helpers/widgets/categories-dropdown.php:18
 msgid "Ad Category"
 msgstr "Categorie Anunț"
 
-#: includes/helpers/widgets/categories-dropdown.php:24
+#: includes/helpers/widgets/categories-dropdown.php:27
 msgid "All Categories"
 msgstr "Toate categoriile"
 
-#: includes/helpers/widgets/categories-dropdown.php:25
+#: includes/helpers/widgets/categories-dropdown.php:28
 msgid "All Sub-categories"
 msgstr "Toate sub-categoriile"
 
-#: includes/helpers/widgets/categories-dropdown.php:29
+#: includes/helpers/widgets/categories-dropdown.php:32
 msgid "Select a Sub-category"
 msgstr "Selectați o sub-categorie"
 
-#: includes/helpers/widgets/categories-dropdown.php:31
+#: includes/helpers/widgets/categories-dropdown.php:34
 msgid "Select a Sub-category (optional)"
 msgstr "Selectați o sub-categorie (opțional)"
 
-#: includes/helpers/widgets/categories-dropdown.php:35
+#: includes/helpers/widgets/categories-dropdown.php:38
 msgid "Select a Category"
 msgstr "Selectați o categorie"
 
@@ -5094,194 +5105,212 @@ msgid ""
 "Currency and Credits."
 msgstr "Nu puteți configura creditele ca forma unică de plată acceptată decât dacă activați și sistemul de credite. Setarea a fost făcută pentru ambele, Valute și credite."
 
-#: includes/settings/class-files-settings.php:16
+#: includes/settings/class-files-settings.php:17
 msgctxt "name of Files settings section"
 msgid "Images/Attachments"
 msgstr "Imagini/Atașamente"
 
-#: includes/settings/class-files-settings.php:20
+#: includes/settings/class-files-settings.php:21
 #: includes/settings/class-general-settings.php:16 installer.php:90
 msgid "General"
 msgstr "Generale"
 
-#: includes/settings/class-files-settings.php:29
+#: includes/settings/class-files-settings.php:30
 msgid "Show popup if user didn't upload files"
 msgstr "Arată o fereastră popup dacă utilizatorul nu a încărcat fișierele"
 
-#: includes/settings/class-files-settings.php:32
+#: includes/settings/class-files-settings.php:33
 msgid ""
 "If checked, a popup warning the user about leaving the page without "
 "uploading a file, will be shown when users try to navigate away from the "
 "Upload Files step without uploading at least one image or attachment."
 msgstr "Dacă este bifat, o fereastră popup care îl va avertiza pe utilizator că părăsește pagina fără să încarce nici un fișier, va apare atunci când utilizatorul navighează în afara pasului de încărcare fișiere, fără să încarce măcar o singură imagine sau atașament."
 
-#: includes/settings/class-files-settings.php:37
+#: includes/settings/class-files-settings.php:38
 msgid "Uploads Directory"
 msgstr "Director de încărcare"
 
-#: includes/settings/class-files-settings.php:41
+#: includes/settings/class-files-settings.php:42
 msgid "Uploads folder name"
 msgstr "Numele directorului de încărcare"
 
-#: includes/settings/class-files-settings.php:41
+#: includes/settings/class-files-settings.php:42
 msgid ""
 "Upload folder name. (Folder must exist and be located in your wp-content "
 "directory)"
 msgstr "Numele directorului de încărcare. (Acest director trebuie să existe și să fie localizat în directorul wp-content din WordPress)"
 
-#: includes/settings/class-files-settings.php:42
+#: includes/settings/class-files-settings.php:43
 msgid "File permissions for uploads directory"
 msgstr "Permisiuni fișiere pentru directorul de încărcare"
 
-#: includes/settings/class-files-settings.php:42
+#: includes/settings/class-files-settings.php:43
 msgid ""
 "File permissions applied to the uploads directory and sub-directories so "
 "that the plugin is allowed to write to those directories."
 msgstr "Permisiunea fișierelor aplicată directorului de încărcare și tuturor sub-directoarelor acestuia, așa încât plugin-ului îî este permis să scrie în aceste directoare."
 
-#: includes/settings/class-files-settings.php:46
+#: includes/settings/class-files-settings.php:47
 #: templates/components/media-manager.tpl.php:7
 msgid "Images"
 msgstr "Imagini"
 
-#: includes/settings/class-files-settings.php:62
+#: includes/settings/class-files-settings.php:63
 msgid "Allowed image extensions"
 msgstr "Extensii permise pentru imagini"
 
-#: includes/settings/class-files-settings.php:68
+#: includes/settings/class-files-settings.php:69
 msgid "Hide images until admin approves them"
 msgstr "Ascunde imaginile până când un administrator le aprobă"
 
-#: includes/settings/class-files-settings.php:69
+#: includes/settings/class-files-settings.php:70
 msgid "Disable AWPCP Lightbox feature"
 msgstr "Dezactivează funcția de cutie luminoasă AWPCP"
 
-#: includes/settings/class-files-settings.php:69
+#: includes/settings/class-files-settings.php:70
 msgid ""
 "Turn off the lightbox/thickbox element used by AWPCP. Some themes cannot "
 "handle it and a conflict results."
 msgstr "Dezactivează elementul luminos/chenar accentuat folosit de AWPCP în jurul imaginilor. Unele teme nu pot să proceseze aceasta și poate rezulta un conflict."
 
-#: includes/settings/class-files-settings.php:70
+#: includes/settings/class-files-settings.php:71
 msgid "Show click to enlarge link?"
 msgstr "Arată click pentru a lărgi imaginile?"
 
-#: includes/settings/class-files-settings.php:71
+#: includes/settings/class-files-settings.php:72
 msgid "Number of images allowed if payments are disabled (Free Mode)"
 msgstr "Numărul de imagini permise dacă plata este dezactivată (anunțuri gratuite)"
 
-#: includes/settings/class-files-settings.php:71
+#: includes/settings/class-files-settings.php:72
 msgid ""
 "If images are allowed and payments are disabled, users will be allowed "
 "upload this amount of images."
 msgstr "Dacă imaginile sunt permise și plățile sunt dezactivate, utilizatorilor li se va permite să încarce acest număr de imagini."
 
-#: includes/settings/class-files-settings.php:75
+#: includes/settings/class-files-settings.php:76
 msgid "Number of columns of thumbnails to show in Show Ad page."
 msgstr "Număr de coloane de imagini miniatură de afișat în pagina individuală a anunțului."
 
-#: includes/settings/class-files-settings.php:75
+#: includes/settings/class-files-settings.php:76
 msgid "Zero means there will be as many thumbnails as possible per row."
 msgstr "Zero înseamnă că pot fi afișate oricât de multe imagini miniatură pe linie, cât este posibil."
 
+#: includes/settings/class-files-settings.php:78
+msgid "Hide No Image placeholder"
+msgstr ""
+
 #: includes/settings/class-files-settings.php:79
+msgid "Override the No Image placeholder image with my own"
+msgstr ""
+
+#: includes/settings/class-files-settings.php:80
+msgid "No Image Placeholder URL"
+msgstr ""
+
+#: includes/settings/class-files-settings.php:80
+msgid ""
+"Put the URL of an existing image on your site to use.  The size of this "
+"image should match the thumbnail size settings on this tab"
+msgstr ""
+
+#: includes/settings/class-files-settings.php:88
 msgid "Image File Size"
 msgstr "Mărimea fișierului imagine"
 
-#: includes/settings/class-files-settings.php:81
+#: includes/settings/class-files-settings.php:90
 msgid "Maximum file size per image"
 msgstr "Mărimea maximă a fișierului imagine"
 
-#: includes/settings/class-files-settings.php:81
+#: includes/settings/class-files-settings.php:90
 msgid ""
 "Maximum file size, in bytes, for files user can upload to system. 1 MB = "
 "1000000 bytes. You can google \"x MB to bytes\" to get an accurate "
 "conversion."
 msgstr "Mărimea maximă a fișierului imagine, în bytes, pentru fișierele pe care le poate încărca utilizatorul în sistem. 1 MB = 1000000 bytes. Puteți căuta la Google \"x MB în bytes\" pentru a obține o transformare precisă."
 
-#: includes/settings/class-files-settings.php:82
+#: includes/settings/class-files-settings.php:91
 msgid "Minimum file size per image"
 msgstr "Mărimea minimă a fișierului imagine"
 
-#: includes/settings/class-files-settings.php:82
+#: includes/settings/class-files-settings.php:91
 msgid ""
 "Minimum file size, in bytes, for files user can upload to system. 1 MB = "
 "1000000 bytes. You can google \"x MB to bytes\" to get an accurate "
 "conversion."
 msgstr "Mărimea minimă a fișierului imagine, în bytes, pentru fișierele pe care le poate încărca utilizatorul în sistem. 1 MB = 1000000 bytes. Puteți căuta la Google \"x MB în bytes\" pentru a obține o transformare precisă."
 
-#: includes/settings/class-files-settings.php:83
+#: includes/settings/class-files-settings.php:92
 msgid "Minimum image width"
 msgstr "Lătimea maximă a fișierului imagine"
 
-#: includes/settings/class-files-settings.php:83
+#: includes/settings/class-files-settings.php:92
 msgid "Minimum width for images."
 msgstr "Lățimea minimă pentru imagini."
 
-#: includes/settings/class-files-settings.php:84
+#: includes/settings/class-files-settings.php:93
 msgid "Minimum image height"
 msgstr "Lățimea minimă a imaginii"
 
-#: includes/settings/class-files-settings.php:84
+#: includes/settings/class-files-settings.php:93
 msgid "Minimum height for images."
 msgstr "Înălțimea minimă pentru imagini."
 
-#: includes/settings/class-files-settings.php:85
+#: includes/settings/class-files-settings.php:94
 msgid "Maximum image width"
 msgstr "Lățimea maximă pentru imagine"
 
-#: includes/settings/class-files-settings.php:85
+#: includes/settings/class-files-settings.php:94
 msgid ""
 "Maximum width for images. Images wider than settings are automatically "
 "resized upon upload."
 msgstr "Lățimea maximă pentru imagini. Imaginile mai late vor fi redimensionate automat la încărcare."
 
-#: includes/settings/class-files-settings.php:86
+#: includes/settings/class-files-settings.php:95
 msgid "Maximum image height"
 msgstr "Înălțimea maximă pentru imagine"
 
-#: includes/settings/class-files-settings.php:86
+#: includes/settings/class-files-settings.php:95
 msgid ""
 "Maximum height for images. Images taller than settings are automatically "
 "resized upon upload."
 msgstr "Înălțimea maximă pentru imagini. Imaginile mai înalte vor fi redimensionate automat la încărcare."
 
-#: includes/settings/class-files-settings.php:90
+#: includes/settings/class-files-settings.php:99
 #: templates/components/media-manager.tpl.php:39
 msgid "Primary Image"
 msgstr "Prima imagine"
 
-#: includes/settings/class-files-settings.php:92
+#: includes/settings/class-files-settings.php:101
 msgid "Thumbnail width (Ad Listings page)"
 msgstr "Lățime thumbnail (Pagina anunțului)"
 
-#: includes/settings/class-files-settings.php:92
+#: includes/settings/class-files-settings.php:101
 msgid ""
 "Width of the thumbnail for the primary image shown in Ad Listings view."
 msgstr "Lățimea thumbnail-ului pentru prima imagine arătată în pagina anunțului."
 
-#: includes/settings/class-files-settings.php:93
+#: includes/settings/class-files-settings.php:102
 msgid "Thumbnail width (Primary Image)"
 msgstr "Lățimea imaginii miniatură (pentru imaginea principală)"
 
-#: includes/settings/class-files-settings.php:93
+#: includes/settings/class-files-settings.php:102
 msgid "Width of the thumbnail for the primary image shown in Single Ad view."
 msgstr "Lățimea imaginii miniatură pentru imaginea principală afișată în pagina individuală a anunțului."
 
-#: includes/settings/class-files-settings.php:94
+#: includes/settings/class-files-settings.php:103
 msgid "Thumbnail height (Primary Image)"
 msgstr "Înălțimea imaginii miniatură (pentru imaginea principală)"
 
-#: includes/settings/class-files-settings.php:94
+#: includes/settings/class-files-settings.php:103
 msgid "Height of the thumbnail for the primary image shown in Single Ad view."
 msgstr "Înălțimea imaginii miniatură pentru imaginea principală afișată în pagina individuală a anunțului."
 
-#: includes/settings/class-files-settings.php:95
+#: includes/settings/class-files-settings.php:104
 msgid "Crop primary image thumbnails?"
 msgstr "Tăiați imaginile miniatură ale imaginii principale?"
 
-#: includes/settings/class-files-settings.php:95
-#: includes/settings/class-files-settings.php:103
+#: includes/settings/class-files-settings.php:104
+#: includes/settings/class-files-settings.php:112
 msgctxt "settings"
 msgid ""
 "If you decide to crop thumbnails, images will match exactly the dimensions "
@@ -5291,37 +5320,37 @@ msgid ""
 "uploaded images, thumbnails may have different heights."
 msgstr "Dacă decideți să tăiați imaginile miniatură, imaginile vor corespunde cu dimensiunile din setările de mai sus, dar o parte a imaginii poate fi tăiată. Dacă decideți să redimensionați, imaginile miniatură redimensionate pentru a corespunde cu lățimea și înălțimea specificate vor fi ajustate proporțional; în funcție de imaginile încărcate, imaginile miniatură pot avea înălțimi diferite."
 
-#: includes/settings/class-files-settings.php:99
+#: includes/settings/class-files-settings.php:108
 msgid "Thumbnails"
 msgstr "Imagini miniatură"
 
-#: includes/settings/class-files-settings.php:101
+#: includes/settings/class-files-settings.php:110
 msgid "Thumbnail width"
 msgstr "Lățimea imaginii miniatură"
 
-#: includes/settings/class-files-settings.php:101
+#: includes/settings/class-files-settings.php:110
 msgid "Width of the thumbnail images."
 msgstr "Lățimea imaginilor miniatură."
 
-#: includes/settings/class-files-settings.php:102
+#: includes/settings/class-files-settings.php:111
 msgid "Thumbnail height"
 msgstr "Înălțimea imaginii miniatură"
 
-#: includes/settings/class-files-settings.php:102
+#: includes/settings/class-files-settings.php:111
 msgid "Height of the thumbnail images."
 msgstr "Înălțimea imaginilor miniatură."
 
-#: includes/settings/class-files-settings.php:103
+#: includes/settings/class-files-settings.php:112
 msgid "Crop thumbnail images?"
 msgstr "Tăiați imaginile miniatură?"
 
-#: includes/settings/class-files-settings.php:107
+#: includes/settings/class-files-settings.php:116
 msgid ""
 "The primary image is the one displayed as the thumbnail in the list view and"
 " the largest one shown when the detail view of the listing is clicked."
 msgstr "Imaginea principală este cea care va fi afișată ca imagine miniatură în pagina anunțurilor și este cea mai mare imagine afișată în pagina individuală a anunțului când se dă click pe ea."
 
-#: includes/settings/class-files-settings.php:111
+#: includes/settings/class-files-settings.php:120
 msgid ""
 "These are the remaining images that are not primary ones, if you have more "
 "than one image allowed per listing."
@@ -5665,41 +5694,61 @@ msgid ""
 msgstr "Dacă este bifat lista de sub-categorii va fi desfășurată în mod implicit. Utilizatorii vor trebui să dea click pe săgeata în jos a imaginii pentru a deschide lista și a vedea sub-categoriile."
 
 #: includes/settings/class-general-settings.php:34
+msgid "Prevent ads from being posted to top level categories?"
+msgstr "Previne anunțurile să fie adăugate în categorii de prim nivel?"
+
+#: includes/settings/class-general-settings.php:35
+msgid "Use multiple dropdowns to choose categories"
+msgstr "Folosiți drop-down-uri multiple la alegerea categoriilor"
+
+#: includes/settings/class-general-settings.php:35
+msgid ""
+"If checked, a dropdown with top level categories will be shown. When the "
+"user chooses a category, a new dropdown will apper showing the sub-"
+"categories of the selected category, if any. Useful if your website supports"
+" a high number of categories."
+msgstr "Dacă este bifat, va fi afișată o listă dropdown cu categoriile de prim nivel. Când utilizatorul alege o categorie, un nou dropdown va apare arătând sub-categoriile din categoria selectată, daca există vreuna. Aceasta este folositor dacă website-ul dvs. are un număr mare de categorii."
+
+#: includes/settings/class-general-settings.php:36
+msgid "Hide empty categories from dropdowns"
+msgstr ""
+
+#: includes/settings/class-general-settings.php:37
 msgid "Welcome message in Classified page"
 msgstr "Mesaj de bun venit în pagina principală de anunțuri"
 
-#: includes/settings/class-general-settings.php:34
+#: includes/settings/class-general-settings.php:37
 msgid ""
 "Looking for a job? Trying to find a date? Looking for an apartment? Browse "
 "our classifieds. Have a job to advertise? An apartment to rent? Post a "
 "Classified Ad."
 msgstr "Căutați de lucru? Încercați să găsiți persoana potrivită? Căutați un apartament? Explorați lista noastră de anunțuri. Aveți o ofertă de muncă? Sau un apartament de vânzare sau de închiriat? Postați un anunț acum!"
 
-#: includes/settings/class-general-settings.php:34
+#: includes/settings/class-general-settings.php:37
 msgid "The welcome text for your classified page on the user side"
 msgstr "Textul de bun venit pentru pagina de anunțuri vizibilă pentru utilizator"
 
-#: includes/settings/class-general-settings.php:36
+#: includes/settings/class-general-settings.php:39
 msgid "Administrator"
 msgstr "Administrator"
 
-#: includes/settings/class-general-settings.php:36
+#: includes/settings/class-general-settings.php:39
 msgid "Administrator & Editor"
 msgstr "Administrator și Editor"
 
-#: includes/settings/class-general-settings.php:37
+#: includes/settings/class-general-settings.php:40
 msgid "Who can access AWPCP Admin Dashboard"
 msgstr "Cine poate accesa panoul de administrare AWPCP"
 
-#: includes/settings/class-general-settings.php:37
+#: includes/settings/class-general-settings.php:40
 msgid "Role of WordPress users who can have admin access to Classifieds."
 msgstr "Rolul utilizatorilor Wordpress care au acces de administrare a anunțurilor."
 
-#: includes/settings/class-general-settings.php:38
+#: includes/settings/class-general-settings.php:41
 msgid "Enable page filter"
 msgstr "Activează pagina filtru"
 
-#: includes/settings/class-general-settings.php:38
+#: includes/settings/class-general-settings.php:41
 msgid ""
 "Uncheck this if you need to turn off the AWPCP page filter that prevents "
 "AWPCP classifieds children pages from showing up in your wp pages menu (You "
@@ -5709,47 +5758,47 @@ msgid ""
 "should not be visible to your users by default)."
 msgstr "Debifați aceasta dacă aveți nevoie ca AWPCP să dezactiveze filtrul care permite paginilor de anunțuri copii să apară în paginile dvs. de meniu din Wordpress. (Ați putea avea nevoie de aceasta dacă, de exemplu, filtrul de pagină AWPCP vă strică pagina de meniuri. Această înseamnă că va trebui să excludeți manual paginile copii din lista dvs. de pagini. În mod implicit unele dintre pagini nu ar trebui să apară deloc vizibile utilizatorilor dvs.)"
 
-#: includes/settings/class-general-settings.php:43
+#: includes/settings/class-general-settings.php:46
 msgid "Auto-expand the Classifieds Menu for mobile devices?"
 msgstr "Desfășoară automat Meniul Anunțurilor pentru dispozitivele mobile?"
 
-#: includes/settings/class-general-settings.php:51
+#: includes/settings/class-general-settings.php:54
 msgctxt "settings"
 msgid "Date & Time Format"
 msgstr "Format dată și timp"
 
-#: includes/settings/class-general-settings.php:57
+#: includes/settings/class-general-settings.php:60
 msgid "American"
 msgstr "American"
 
-#: includes/settings/class-general-settings.php:58
+#: includes/settings/class-general-settings.php:61
 msgid "European"
 msgstr "European"
 
-#: includes/settings/class-general-settings.php:59
+#: includes/settings/class-general-settings.php:62
 msgid "Your own."
 msgstr "Propriu."
 
-#: includes/settings/class-general-settings.php:62
+#: includes/settings/class-general-settings.php:65
 msgid "Date Time Format"
 msgstr "Format data și timp"
 
-#: includes/settings/class-general-settings.php:63
+#: includes/settings/class-general-settings.php:66
 msgctxt "settings"
 msgid "Date Format"
 msgstr "Format dată"
 
-#: includes/settings/class-general-settings.php:64
+#: includes/settings/class-general-settings.php:67
 msgctxt "settings"
 msgid "Time Format"
 msgstr "Format timp"
 
-#: includes/settings/class-general-settings.php:65
+#: includes/settings/class-general-settings.php:68
 msgctxt "settings"
 msgid "Example output"
 msgstr "Exemplu afișat"
 
-#: includes/settings/class-general-settings.php:66
+#: includes/settings/class-general-settings.php:69
 msgctxt "settings"
 msgid ""
 "Full date/time output with any strings you wish to add. <date> and <time> "
@@ -5757,20 +5806,20 @@ msgid ""
 "the Date Format and Time Format settings above."
 msgstr "Data și timp complet cu oricare dintre textele pe care doriți să le adăugați. . <date> și <time> sunt coduri folosite pentru a afișa data și timpul folosind formatele specificate la Format dată și Format timp în setările de mai sus."
 
-#: includes/settings/class-general-settings.php:67
+#: includes/settings/class-general-settings.php:70
 msgctxt "settings"
 msgid "Full Display String"
 msgstr "Afișează întregul text"
 
-#: includes/settings/class-general-settings.php:71
+#: includes/settings/class-general-settings.php:74
 msgid "Currency Format"
 msgstr "Format valutar"
 
-#: includes/settings/class-general-settings.php:76
+#: includes/settings/class-general-settings.php:79
 msgid "Currency code"
 msgstr "Cod valută"
 
-#: includes/settings/class-general-settings.php:79
+#: includes/settings/class-general-settings.php:82
 msgid ""
 "Prices in listings pages and payment pages will be displayed using this "
 "currency. The currency symbol will be generated based on this code, but if "
@@ -5778,11 +5827,11 @@ msgid ""
 "uppercase version of the code itself."
 msgstr "Prețurile din pagina anunțurilor și din paginile de plată vor fi afișate folosind această valută. Simbolul valutar va fi generat bazat pe acest cod, dar dacă pluginul nu cunoaște simbolul pentru valuta dvs., va folosi o versiune cu litere de tipar pentru acel cod."
 
-#: includes/settings/class-general-settings.php:85
+#: includes/settings/class-general-settings.php:88
 msgid "Currency symbol"
 msgstr "Simbol valutar"
 
-#: includes/settings/class-general-settings.php:88
+#: includes/settings/class-general-settings.php:91
 msgid ""
 "Use this setting to overwrite the currency symbol shown in listings pages. "
 "If empty, the plugin will attempt to show one of the standard symbols for "
@@ -5790,116 +5839,116 @@ msgid ""
 "your currency, it will use an uppercase version of the currency code."
 msgstr "Folosiți această setare pentru a suprascrie simbolul valutar afișat în paginile anunțurilor. Dacă acesta lipsește, pluginul va încerca să folosească unul dintre simbolurile valutare standard pentru codul de valută respectivă, dar dacă pluginul nu cunoaște simbolul pentru valuta dvs., va folosi o versiune cu litere de tipar pentru acel cod."
 
-#: includes/settings/class-general-settings.php:91
+#: includes/settings/class-general-settings.php:94
 msgid "Thousands separator"
 msgstr "Separator pentru mii"
 
-#: includes/settings/class-general-settings.php:91
+#: includes/settings/class-general-settings.php:94
 msgctxt ""
 "This translation is deprecated. Please go to the Settings section to change "
 "the thousands separator."
 msgid ","
 msgstr ","
 
-#: includes/settings/class-general-settings.php:92
+#: includes/settings/class-general-settings.php:95
 msgid "Separator for the decimal point"
 msgstr "Separator pentru punctul zecimal"
 
-#: includes/settings/class-general-settings.php:92
+#: includes/settings/class-general-settings.php:95
 msgctxt ""
 "This translation is deprecated. Please go to the Settings section to change "
 "the decimal separator."
 msgid "."
 msgstr "."
 
-#: includes/settings/class-general-settings.php:93
+#: includes/settings/class-general-settings.php:96
 msgid "Show decimals in price"
 msgstr "Arată zecimale la preț"
 
-#: includes/settings/class-general-settings.php:93
+#: includes/settings/class-general-settings.php:96
 msgctxt "settings"
 msgid "Uncheck to show prices without decimals. The value will be rounded."
 msgstr "Debifați pentru a afișa prețurile fără zecimale. Valoarea va fi rotunjită."
 
-#: includes/settings/class-general-settings.php:98
+#: includes/settings/class-general-settings.php:101
 msgid "Show currency symbol"
 msgstr "Arată simbolul valutar"
 
-#: includes/settings/class-general-settings.php:101
+#: includes/settings/class-general-settings.php:104
 msgid ""
 "The currency symbol can be configured by changing the currency code in the "
 "settings above."
 msgstr "Simbolul valutar poate fi configurat prin schimbarea codului de valută în setările de mai sus."
 
-#: includes/settings/class-general-settings.php:104
+#: includes/settings/class-general-settings.php:107
 msgid "Show currency symbol on left"
 msgstr "Arată simbolul valutar în stânga"
 
-#: includes/settings/class-general-settings.php:105
+#: includes/settings/class-general-settings.php:108
 msgid "Show currency symbol on right"
 msgstr "Arată simbolul valutar în dreapta"
 
-#: includes/settings/class-general-settings.php:106
+#: includes/settings/class-general-settings.php:109
 msgid "Don't show currency symbol"
 msgstr "Nu arăta simbolul valutar"
 
-#: includes/settings/class-general-settings.php:114
+#: includes/settings/class-general-settings.php:117
 msgid "Include a space between the currency symbol and the amount"
 msgstr "Includeți un spațiu între simbolul valutar și preț"
 
-#: includes/settings/class-general-settings.php:122
 #: includes/settings/class-general-settings.php:125
+#: includes/settings/class-general-settings.php:128
 msgid "Terms of Service"
 msgstr "Termeni de folosire"
 
-#: includes/settings/class-general-settings.php:124
+#: includes/settings/class-general-settings.php:127
 msgid "Display and require Terms of Service"
 msgstr "Arată și fă obligatorii Termenii de folosire"
 
-#: includes/settings/class-general-settings.php:125
+#: includes/settings/class-general-settings.php:128
 msgid "Terms of service go here..."
 msgstr "Termenii de folosire trebuie introduși aici..."
 
-#: includes/settings/class-general-settings.php:125
+#: includes/settings/class-general-settings.php:128
 msgid ""
 "Terms of Service for posting Ads. Put in text or an URL starting with http. "
 "If you use an URL, the text box will be replaced by a link to the "
 "appropriate Terms of Service page"
 msgstr "Termenii de Serviciu pentru postarea anunțurilor. Introduceți un text sau un URL care începe cu http. Dacă folosiți un URL, cutia de text va fi înlocuită cu un link către pagina corespunzătoare cu Termenii de Serviciu"
 
-#: includes/settings/class-general-settings.php:129
+#: includes/settings/class-general-settings.php:132
 msgid "Anti-SPAM"
 msgstr "Anti-SPAM"
 
-#: includes/settings/class-general-settings.php:132
+#: includes/settings/class-general-settings.php:135
 msgid "reCAPTCHA (recommended)"
 msgstr "reCAPTCHA (recomandat)"
 
-#: includes/settings/class-general-settings.php:133
+#: includes/settings/class-general-settings.php:136
 msgid "Math"
 msgstr "Matematică"
 
-#: includes/settings/class-general-settings.php:147
+#: includes/settings/class-general-settings.php:150
 msgid "Use Akismet in Place Ad form"
 msgstr "Folosește Akismet în formularul de adăugare anunț"
 
-#: includes/settings/class-general-settings.php:150
+#: includes/settings/class-general-settings.php:153
 msgid "Use Akismet for Posting Ads (strong anti-spam)."
 msgstr "Folosește Akismet pentru postarea anunțurilor (program de anti-spam eficient)"
 
-#: includes/settings/class-general-settings.php:156
+#: includes/settings/class-general-settings.php:159
 msgid "Use Akismet in Reply to Ad form"
 msgstr "Folosește Akismet în formularul de răspuns la anunț"
 
-#: includes/settings/class-general-settings.php:159
+#: includes/settings/class-general-settings.php:162
 msgid "Use Akismet for Contact Responses (strong anti-spam)."
 msgstr "Folosește Akismet pentru răspunsuri la anunțuri (program anti-spam eficient)"
 
-#: includes/settings/class-general-settings.php:167
+#: includes/settings/class-general-settings.php:170
 msgid "Enable CAPTCHA in Place Ad form"
 msgstr "Activați CAPTCHA în formularul de adăugare anunț"
 
-#: includes/settings/class-general-settings.php:170
+#: includes/settings/class-general-settings.php:173
 msgid ""
 "A CAPTCHA is a program to ensure only humans are posting Ads to your "
 "website. Using a CAPTCHA will reduce the SPAM and prevent bots from posting "
@@ -5907,58 +5956,58 @@ msgid ""
 "Place Ad form."
 msgstr "Un program CAPTCHA va asigura că doar persoane postează anunțuri pe website-ul dvs. Folosirea CAPTCHA va reduce SPAM-ul și va preveni roboții să posteze pe website-ul dvs. Daca este bifat, un câmp suplimentar va fi adăugat în formarul de adăugare a anunțului."
 
-#: includes/settings/class-general-settings.php:176
+#: includes/settings/class-general-settings.php:179
 msgid "Enable CAPTCHA in Reply to Ad form"
 msgstr "Activează CAPTCHA în formularul de răspuns la anunț"
 
-#: includes/settings/class-general-settings.php:179
+#: includes/settings/class-general-settings.php:182
 msgid ""
 "If checked, an additional form field will be added to the Reply to Ad form."
 msgstr "Daca este bifat, un câmp suplimentar va fi adăugat în formarul de răspuns la anunț."
 
-#: includes/settings/class-general-settings.php:182
+#: includes/settings/class-general-settings.php:185
 msgid "Type of CAPTCHA"
 msgstr "Tipul CAPTCHA"
 
-#: includes/settings/class-general-settings.php:182
+#: includes/settings/class-general-settings.php:185
 msgid ""
 "reCAPTCHA: Uses distorted images that only humans should be able to read "
 "(recommended)."
 msgstr "reCAPTCHA: folosește imagini distorsionate pe care doar un om le poate citi (recomandat). Mai nou reCAPTCHA arată o casuță 'Nu sunt un robot' pe care trebuie să o bifați. Câteodată utilizatorul este solicitat să aleagă mai multe imagini de același fel dintre mai multe imagini afișate împreună. (de exemplu: seletați toate imaginile cu mașini)"
 
-#: includes/settings/class-general-settings.php:182
+#: includes/settings/class-general-settings.php:185
 msgid "Math: Asks user to solve a simple arithmetic operation."
 msgstr "Matematică: cereți utilizatorului să rezolve o problemă simplă de aritmetică."
 
-#: includes/settings/class-general-settings.php:184
+#: includes/settings/class-general-settings.php:187
 msgid "Max number used in Math CAPTCHA"
 msgstr "Numărul maxim folosit în testul de matematică"
 
-#: includes/settings/class-general-settings.php:184
+#: includes/settings/class-general-settings.php:187
 msgid "Highest number used in aithmetic operation."
 msgstr "Numărul cel mai mare folosit în operația de aritmetică."
 
-#: includes/settings/class-general-settings.php:187
+#: includes/settings/class-general-settings.php:190
 msgid "You can get an API key from %s."
 msgstr "Puteți obține o cheie API de la %s."
 
-#: includes/settings/class-general-settings.php:189
+#: includes/settings/class-general-settings.php:192
 msgid "reCAPTCHA Site Key"
 msgstr "Cheia reCAPTCHA pentru website"
 
-#: includes/settings/class-general-settings.php:190
+#: includes/settings/class-general-settings.php:193
 msgid "reCAPTCHA Secret Key"
 msgstr "Cheia secretă reCAPTCHA"
 
-#: includes/settings/class-general-settings.php:194
+#: includes/settings/class-general-settings.php:197
 msgid "SEO Settings"
 msgstr "Setări SEO"
 
-#: includes/settings/class-general-settings.php:196
+#: includes/settings/class-general-settings.php:199
 msgid "Turn on Search Engine Friendly URLs"
 msgstr "Activați URL-urile prietenoase pentru motoarele de căutare"
 
-#: includes/settings/class-general-settings.php:196
+#: includes/settings/class-general-settings.php:199
 msgid "Turn on Search Engine Friendly URLs? (SEO Mode)"
 msgstr "Activați URL-uri prietenoase pentru motoarele de căutare (Mod SEO)"
 
@@ -6120,62 +6169,46 @@ msgid ""
 "foo.com only. Please type a domain per line."
 msgstr "Vor fi permise numai email-urile care se află într-un domeniu din lista de mai sus. *.foo.com va corespunde și cu a.foo.com, b.foo.com, etc. dar foo.com va corespunde doar cu foo.com. Vă rugăm să introduceți un domeniu pe linie."
 
-#: includes/settings/class-listings-moderation-settings.php:38
-msgid "Prevent ads from being posted to top level categories?"
-msgstr "Previne anunțurile să fie adăugate în categorii de prim nivel?"
-
-#: includes/settings/class-listings-moderation-settings.php:39
-msgid "Use multiple dropdowns to choose categories"
-msgstr "Folosiți drop-down-uri multiple la alegerea categoriilor"
-
-#: includes/settings/class-listings-moderation-settings.php:39
-msgid ""
-"If checked, a dropdown with top level categories will be shown. When the "
-"user chooses a category, a new dropdown will apper showing the sub-"
-"categories of the selected category, if any. Useful if your website supports"
-" a high number of categories."
-msgstr "Dacă este bifat, va fi afișată o listă dropdown cu categoriile de prim nivel. Când utilizatorul alege o categorie, un nou dropdown va apare arătând sub-categoriile din categoria selectată, daca există vreuna. Aceasta este folositor dacă website-ul dvs. are un număr mare de categorii."
-
-#: includes/settings/class-listings-moderation-settings.php:44
+#: includes/settings/class-listings-moderation-settings.php:42
 msgid "Duration of listings in free mode (in days)"
 msgstr "Durata anunțurilor în modul gratuit (în zile)"
 
-#: includes/settings/class-listings-moderation-settings.php:47
+#: includes/settings/class-listings-moderation-settings.php:45
 msgid ""
 "The end date for listings posted in free mode will be calculated using the "
 "value in this field. You can enter 0 to keep listings enabled for 10 years."
 msgstr "Data de sfârșit pentru anunțurile postate în modul gratuit va fi calculată folosind valoarea din acest câmp. Puteți introduce 0 pentru a păstra anunțul activ pentru 10 ani."
 
-#: includes/settings/class-listings-moderation-settings.php:50
+#: includes/settings/class-listings-moderation-settings.php:48
 msgid "Disable expired listings instead of deleting them?"
 msgstr "Dezactivează anunțurile expirate în loc de a le șterge?"
 
-#: includes/settings/class-listings-moderation-settings.php:58
+#: includes/settings/class-listings-moderation-settings.php:56
 msgid ""
 "If checked, listings will remain in disabled indefinitely after they expire."
 " If not checked, listings will be deleted after the number of days set in "
 "the next setting."
 msgstr "Dacă este bifat, anunțurile vor rămâne dezactivate indefinit, după ce expiră. Daca nu este bifat, anunțurile vor fi șterse după numărul de zile indicat în setarea următoare."
 
-#: includes/settings/class-listings-moderation-settings.php:61
+#: includes/settings/class-listings-moderation-settings.php:59
 msgid ""
 "If the <setting-name> setting is NOT checked, the listings will be "
 "permanently deleted from the system, after the number of days specified in "
 "this field have passed since each listing was disabled."
 msgstr "Dacă setarea <setting-name> NU ESTE bifată, anunțurile vor fi permanent șterse din sistem, după ce numărul de zile specificat în acest câmp va trece, considerat de la data când fiecare anunț a fost dezactivat."
 
-#: includes/settings/class-listings-moderation-settings.php:71
+#: includes/settings/class-listings-moderation-settings.php:69
 msgid "Number of days before expired listings are deleted"
 msgstr "Numărul de zile înainte ca anunțurile expirate să fie șterse"
 
-#: includes/settings/class-listings-moderation-settings.php:81
+#: includes/settings/class-listings-moderation-settings.php:79
 msgid ""
 "Email verification was disabled because you enabled Require Registration. "
 "Registered users don't need to verify the email address used for contact "
 "information."
 msgstr "Email-ul de verificare a fost dezactivat din cauză că ați activat Înregistrarea Obligatorie. Utilizatorii înregistrați nu au nevoie să verifice adresa de email folosită pentru informația de contact."
 
-#: includes/settings/class-listings-moderation-settings.php:92
+#: includes/settings/class-listings-moderation-settings.php:90
 msgid ""
 "Email verification was not enabled because Require Registration is on. "
 "Registered users don't need to verify the email address used for contact "
@@ -7113,29 +7146,29 @@ msgstr "Conținutul text al mesajului trimis când cineva solicită să-i fie re
 
 #: includes/settings-api.php:330
 msgid "Verify Email Message"
-msgstr ""
+msgstr "Mesajul email-ului de verificare."
 
 #: includes/settings-api.php:332
 msgid "Subject for Verification email"
-msgstr ""
+msgstr "Subiectul email-ului de verificare."
 
 #: includes/settings-api.php:332
 msgid "Verify the email address used for Ad $title"
-msgstr ""
+msgstr "Verificați adresa de email folosită pentru anunțul $title"
 
 #: includes/settings-api.php:332
 msgid "Subject line for email sent out to verify the email address."
-msgstr ""
+msgstr "Subiectul email-ului trimis pentru verificarea adresei de email."
 
 #: includes/settings-api.php:333
 msgid "Body for Verification email"
-msgstr ""
+msgstr "Conținutul email-ului de verificare."
 
 #: includes/settings-api.php:333
 msgid ""
 "You can use the following placeholders to personalize the body of the email:"
 " $title, $author_name,$verification_email, $website_name, $website_url."
-msgstr ""
+msgstr "Puteți folosi următoarele variabile pentru a personaliza conținutul email-ului: $title, $author_name,$verification_email, $website_name, $website_url."
 
 #: includes/settings-api.php:337
 msgid "Incomplete Payment Message"
@@ -7399,51 +7432,51 @@ msgid ""
 " Fee."
 msgstr "Sistemul de credit a fost dezactivat automat pentru că ați dezactivat setarea 'Încasați un preț pentru afișare anunț'"
 
-#: includes/settings-api.php:1054
+#: includes/settings-api.php:1064
 msgid "Deactivate"
 msgstr "Deactivați"
 
-#: includes/settings-api.php:1055
+#: includes/settings-api.php:1065
 msgid "active"
 msgstr "activă"
 
-#: includes/settings-api.php:1055 includes/settings-api.php:1058
-#: includes/settings-api.php:1068 includes/settings-api.php:1070
-#: includes/settings-api.php:1072
+#: includes/settings-api.php:1065 includes/settings-api.php:1068
+#: includes/settings-api.php:1078 includes/settings-api.php:1080
+#: includes/settings-api.php:1082
 msgid "Status: <license-status>"
 msgstr "Stare: <license-status>"
 
-#: includes/settings-api.php:1057 includes/settings-api.php:1060
+#: includes/settings-api.php:1067 includes/settings-api.php:1070
 msgid "Activate"
 msgstr "Activați"
 
-#: includes/settings-api.php:1058
+#: includes/settings-api.php:1068
 msgid "inactive"
 msgstr "inactivă"
 
-#: includes/settings-api.php:1063
+#: includes/settings-api.php:1073
 msgid ""
 "Click the button above to check the status of your license. Please <contact-"
 "link>contact customer support</a> if you think the reported status is wrong."
 msgstr "Click pe butonul de deasupra pentru a verifica starea licenței dvs. Vă rugăm să <contact-link>contactați suportul tehnic</a> dacă credeți că starea indicată este greșită."
 
-#: includes/settings-api.php:1068
+#: includes/settings-api.php:1078
 msgid "expired"
 msgstr "expirată"
 
-#: includes/settings-api.php:1070
+#: includes/settings-api.php:1080
 msgid "disabled"
 msgstr "deactivat"
 
-#: includes/settings-api.php:1072
+#: includes/settings-api.php:1082
 msgid "unknown"
 msgstr "necunoscută"
 
-#: includes/settings-api.php:1088
+#: includes/settings-api.php:1098
 msgid "Documentation on date and time formatting"
 msgstr "Documentație despre formatele pentru dată și timp"
 
-#: includes/settings-api.php:1109
+#: includes/settings-api.php:1119
 msgid "Setting <setting-name> not available."
 msgstr "Setarea <setting-name> nu este disponibilă."
 
