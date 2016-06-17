@@ -176,20 +176,52 @@ class AWPCP_Installer {
             $wpdb->query("DROP TABLE IF EXISTS " . $table);
         }
 
-        // remove AWPCP options from options table
-        array_map('delete_option', array(
+        $options_to_delete = array(
+            $awpcp->settings->setting_name,
+            'awpcp-activated',
+            'awpcp-flush-rewrite-rules',
+            'awpcp-form-fields-order',
+            'awpcp-legacy-categories',
             'awpcp-pending-manual-upgrade',
+            'awpcp-plugin-pages',
+            'awpcp-debug',
+            'awpcp-regions-children',
+            'awpcp-regions-type-hierarchy',
+            'awpcp_db_version',
             'awpcp_installationcomplete',
+            'awpcp_listing_category_children',
             'awpcp_pagename_warning',
             'widget_awpcplatestads',
-            'awpcp_db_version',
-            $awpcp->settings->setting_name,
-        ));
+        );
 
-        // delete payment transactions
-        $sql = 'SELECT option_name FROM ' . $wpdb->options . ' ';
-        $sql.= "WHERE option_name LIKE 'awpcp-payment-transaction-%%'";
-        array_map('delete_option', $wpdb->get_col($sql));
+        $option_names = $wpdb->get_col( "SELECT option_name FROM {$wpdb->options} WHERE option_name LIKE '%awpcp%'" );
+
+        foreach ( $option_names as $option_name ) {
+            if ( preg_match( '/^awpcp-category-icon/', $option_name ) ) {
+                $options_to_delete[] = $option_name;
+            } else if ( preg_match( '/^awpcp-fee-categories-prices/', $option_name ) ) {
+                $options_to_delete[] = $option_name;
+            } else if ( preg_match( '/^awpcp.*(installed|db)[_-]version$/', $option_name ) ) {
+                $options_to_delete[] = $option_name;
+            } else if ( preg_match( '/^awpcp-.*-id$/', $option_name ) ) {
+                $options_to_delete[] = $option_name;
+            } else if ( preg_match( '/^awpcp-messages/', $option_name ) ) {
+                $options_to_delete[] = $option_name;
+            } else if ( preg_match( '/^awpcp-payment-transaction-/', $option_name ) ) {
+                $options_to_delete[] = $option_name;
+            } else if ( preg_match( '/awpcp-categories-list-cache/', $option_name ) !== false ) {
+                $options_to_delete[] = $option_name;
+            } else if ( preg_match( '/awpcp-license-status-check/', $option_name ) !== false ) {
+                $options_to_delete[] = $option_name;
+            } else if ( preg_match( '/awpcp-region-control-duplicated-regions/', $option_name ) !== false ) {
+                $options_to_delete[] = $option_name;
+            }
+        }
+
+        // remove AWPCP options from options table
+        array_map( 'delete_option',  $options_to_delete );
+
+        $wpdb->query( "DELETE FROM {$wpdb->usermeta} WHERE meta_key LIKE 'awpcp-%'" );
 
         // remove widgets
         awpcp_unregister_widget_if_exists( 'AWPCP_LatestAdsWidget' );
