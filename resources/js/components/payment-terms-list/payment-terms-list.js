@@ -81,7 +81,7 @@ function( $, settings ) {
         },
 
         _isUserPaymentTerm: function( paymentTerm ) {
-            return $.inArray( paymentTerm.attr( 'data-id' ), self.state.userPaymentTerms ) !== -1;
+            return $.inArray( paymentTerm.attr( 'data-id' ), this.state.userPaymentTerms ) !== -1;
         },
 
         _isPaymentTermAvailableForCategories: function( paymentTerm ) {
