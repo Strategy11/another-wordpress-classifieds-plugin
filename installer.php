@@ -150,6 +150,8 @@ class AWPCP_Installer {
         $wpdb->query( "DROP TABLE IF EXISTS " . AWPCP_TABLE_MEDIA );
         $wpdb->query( "DROP TABLE IF EXISTS " . AWPCP_TABLE_PAGES );
         $wpdb->query( "DROP TABLE IF EXISTS " . AWPCP_TABLE_PAYMENTS );
+        $wpdb->query( "DROP TABLE IF EXISTS " . AWPCP_TABLE_TASKS );
+        $wpdb->query( "DROP TABLE IF EXISTS " . AWPCP_TABLE_PAGENAME );
 
         // TODO: implement uninstall methods in other modules
         $tables = array(
