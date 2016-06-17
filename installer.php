@@ -103,7 +103,7 @@ class AWPCP_Installer {
                 'adterm_name' => __( '30 Day Listing', 'another-wordpress-classifieds-plugin' ),
                 'amount' => 9.99,
                 'recurring' => 1,
-                'rec_period' => 31,
+                'rec_period' => 30,
                 'rec_increment' => 'D',
                 'buys' => 0,
                 'imagesallowed' => 6
