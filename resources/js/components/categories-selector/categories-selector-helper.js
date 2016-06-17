@@ -4,7 +4,7 @@ AWPCP.define( 'awpcp/categories-selector-helper', [
     'awpcp/category-item-model'
 ],
 function( $, CategoryItemModel ) {
-    var CategoriesSelectorHelper = function( selectedCategoriesIds, categoriesHierarchy, selectionMatrix ) {
+    var CategoriesSelectorHelper = function( selectedCategoriesIds, categoriesHierarchy, paymentTerms ) {
         var self = this, parent, model;
 
         this.allCategories = [];
@@ -12,7 +12,7 @@ function( $, CategoryItemModel ) {
         this.registry = {};
         this.hierarchy = {};
         this.parents = {};
-        this.selectionMatrix = selectionMatrix;
+        this.paymentTerms = paymentTerms;
 
         _.each( _.keys( categoriesHierarchy ), function( key ) {
             parent = ( key == 'root' ? key : parseInt( key, 10 ) );
@@ -81,36 +81,39 @@ function( $, CategoryItemModel ) {
         getCategoriesThatCanBeSelectedTogether: function( categories ) {
             var self = this;
 
-            if ( self.selectionMatrix === null ) {
-                return categories;
-            }
+            var allowedPaymentTerms = _.compact( _.map( _.keys( self.paymentTerms ), function( paymentTermKey ) {
+                var paymentTerm = self.paymentTerms[ paymentTermKey ];
 
-            if ( self.selectedCategoriesIds.length === 0 ) {
-                return _.map( _.keys( self.selectionMatrix ), function( key ) {
-                    return parseInt( key, 10 );
-                } );
-            } if ( self.selectedCategoriesIds.length === 1 ) {
-                return self.getCategoriesThatCanBeCombinedWithCategory( self.selectedCategoriesIds[0] );
-            } else {
-                return _.reduce(
-                    self.selectedCategoriesIds,
-                    function( memo, category ) {
-                        return _.intersection(
-                            memo,
-                            self.getCategoriesThatCanBeCombinedWithCategory( category )
-                        );
-                    },
-                    categories
+                if ( _.difference( self.selectedCategoriesIds, paymentTerm.categories ).length !== 0 ) {
+                    return null;
+                }
+
+                if ( paymentTerm.numberOfCategoriesAllowed <= self.selectedCategoriesIds.length ) {
+                    return null;
+                }
+
+                return paymentTerm;
+            } ) );
+
+            console.log( allowedPaymentTerms );
+
+            var categoriesThatCanBeSelectedTogether = [];
+
+            for ( var i = allowedPaymentTerms.length - 1; i >= 0; i-- ) {
+                if ( allowedPaymentTerms[ i ].categories.length === 0 ) {
+                    categoriesThatCanBeSelectedTogether = categories;
+                    break;
+                }
+
+                categoriesThatCanBeSelectedTogether = _.union(
+                    categoriesThatCanBeSelectedTogether,
+                    allowedPaymentTerms[ i ].categories
                 );
-            }
-        },
 
-        getCategoriesThatCanBeCombinedWithCategory: function( category ) {
-            if ( this.selectionMatrix[ category ] ) {
-                return this.selectionMatrix[ category ];
-            } else {
-                return [];
+                console.log( categoriesThatCanBeSelectedTogether );
             }
+
+            return categoriesThatCanBeSelectedTogether;
         }
     } );
 
