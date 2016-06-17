@@ -485,19 +485,14 @@ function awpcp_default_pagination_options( $selected = 10 ) {
 }
 
 function awpcp_get_categories() {
-	global $wpdb;
-
-	$sql = 'SELECT * FROM ' . AWPCP_TABLE_CATEGORIES;
-	$results = $wpdb->get_results($sql);
-
-	return $results;
+    return awpcp_categories_collection()->find_categories();
 }
 
 function awpcp_get_categories_ids() {
 	static $categories;
 
 	if (!is_array($categories)) {
-		$categories = awpcp_get_properties( awpcp_get_categories(), 'category_id' );
+		$categories = awpcp_get_properties( awpcp_get_categories(), 'term_id' );
 	}
 
 	return $categories;
