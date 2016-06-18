@@ -1,8 +1,9 @@
 /*global AWPCP, Backbone, _*/
 AWPCP.define( 'awpcp/categories-list-view', [
     'jquery',
-    'awpcp/category-item-view'
-], function( $, CategoryItemView ) {
+    'awpcp/category-item-view',
+    'awpcp/settings'
+], function( $, CategoryItemView, settings ) {
     var CategoriesListView = Backbone.View.extend( {
 
         tagName: 'div',
@@ -92,7 +93,7 @@ AWPCP.define( 'awpcp/categories-list-view', [
         },
 
         _renderEmptyList: function( $list ) {
-            $list.append( $( '<li class="awpcp-categories-selector-category-item awpcp-categories-selector-empty-category-item">' + 'No categories to show.' + '</li>' ) );
+            $list.append( $( '<li class="awpcp-categories-selector-category-item awpcp-categories-selector-empty-category-item">' + settings.l10n( 'multiple-categories-selector', 'no-categories-message' ) + '</li>' ) );
             return this;
         }
     } );

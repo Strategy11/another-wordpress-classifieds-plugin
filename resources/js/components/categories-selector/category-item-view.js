@@ -1,5 +1,5 @@
 /*global AWPCP, Backbone, _*/
-AWPCP.define( 'awpcp/category-item-view', [], function() {
+AWPCP.define( 'awpcp/category-item-view', [ 'awpcp/settings' ], function( settings ) {
     var CategoryItemView = Backbone.View.extend( {
         tagName: 'li',
         className: 'awpcp-categories-selector-category-item',
@@ -20,11 +20,17 @@ AWPCP.define( 'awpcp/category-item-view', [], function() {
         },
 
         render: function() {
+            if ( this.model.get( 'selected' ) ) {
+                actionName = settings.l10n( 'multiple-categories-selector', 'remove-category-button' );
+            } else {
+                actionName = settings.l10n( 'multiple-categories-selector', 'add-category-button' );
+            }
+
             this.$el.html( this.template( {
                 category: {
                     name: '&mdash;&nbsp;'.repeat( this.indentationLevel ) + this.model.get( 'name' ),
                 },
-                action: this.model.get( 'selected' ) ? 'Remove Category' : 'Add Category',
+                action: actionName,
                 showPriceField: this.showPriceField
             } ) );
 

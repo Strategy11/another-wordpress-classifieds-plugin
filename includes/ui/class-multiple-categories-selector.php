@@ -40,6 +40,14 @@ class AWPCP_Multiple_Categories_Selector {
             'multistep' => (bool) $use_multiple_dropdowns,
         ) );
 
+        awpcp()->js->localize( 'multiple-categories-selector', array(
+            'no-categories-message' => _x( 'No categories to show.', 'multiple-categories-selector', 'awpcp-fee-per-category' ),
+            'selected-categories-list-title' => _x( 'Selected Categories', 'multiple-categories-selector', 'awpcp-fee-per-category' ),
+            'available-categories-list-title' => _x( 'Available Categories', 'multiple-categories-selector', 'awpcp-fee-per-category' ),
+            'add-category-button' => _x( 'Add Category', 'multiple-categories-selector', 'awpcp-fee-per-category' ),
+            'remove-category-button' => _x( 'Remove Category', 'multiple-categories-selector', 'awpcp-fee-per-category' ),
+        ) );
+
         $template_params = array(
             'unique_id' => $unique_id,
             'label' => $params['label'],

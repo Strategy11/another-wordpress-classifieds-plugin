@@ -4,8 +4,9 @@ AWPCP.define( 'awpcp/categories-selector-view', [
     'awpcp/categories-collection',
     'awpcp/categories-list-view',
     'awpcp/available-categories-list-view',
+    'awpcp/settings'
 ],
-function( $, CategoriesCollection, CategoriesListView, AvailableCategoriesListView ) {
+function( $, CategoriesCollection, CategoriesListView, AvailableCategoriesListView, settings ) {
     var CategoriesSelectorView = Backbone.View.extend( {
 
         initialize: function( options ) {
@@ -35,7 +36,7 @@ function( $, CategoriesCollection, CategoriesListView, AvailableCategoriesListVi
 
             view = new CategoriesListView( {
                 collection: new CategoriesCollection( selectedCategories ),
-                title: 'Selected Categories',
+                title: settings.l10n( 'multiple-categories-selector', 'selected-categories-list-title' ),
                 helper: this.helper
             } );
             $lists.append( view.render().$el );
@@ -44,7 +45,7 @@ function( $, CategoriesCollection, CategoriesListView, AvailableCategoriesListVi
                 collection: new CategoriesCollection( this.collection.filter( function( model ) {
                     return model.get( 'selected' ) ? false : true;
                 } ) ),
-                title: 'Available Categories',
+                title: settings.l10n( 'multiple-categories-selector', 'available-categories-list-title' ),
                 helper: this.helper
             } );
             $lists.append( view.render().$el );
