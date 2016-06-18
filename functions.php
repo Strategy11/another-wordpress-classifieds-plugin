@@ -2590,22 +2590,6 @@ function awpcp_is_email_address_allowed( $email_address ) {
     return false;
 }
 
-function defaultcatexists($defid) {
-    global $wpdb;
-
-    $query = 'SELECT COUNT(*) FROM ' . AWPCP_TABLE_CATEGORIES . ' WHERE category_id = %d';
-    $query = $wpdb->prepare( $query, $defid );
-
-    $count = $wpdb->get_var( $query );
-
-    if ( $count !== false && $count > 0 ) {
-        return true;
-    } else {
-        return false;
-    }
-
-}
-
 // START FUNCTION: function to create a default category with an ID of  1 in the event a default category with ID 1 does not exist
 function createdefaultcategory($idtomake,$titletocallit) {
     global $wpdb;
