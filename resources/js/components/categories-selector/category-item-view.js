@@ -22,8 +22,10 @@ AWPCP.define( 'awpcp/category-item-view', [ 'awpcp/settings' ], function( settin
         render: function() {
             if ( this.model.get( 'selected' ) ) {
                 actionName = settings.l10n( 'multiple-categories-selector', 'remove-category-button' );
+                actionClassName = 'dashicons dashicons-no';
             } else {
                 actionName = settings.l10n( 'multiple-categories-selector', 'add-category-button' );
+                actionClassName = 'dashicons dashicons-plus';
             }
 
             this.$el.html( this.template( {
@@ -31,6 +33,7 @@ AWPCP.define( 'awpcp/category-item-view', [ 'awpcp/settings' ], function( settin
                     name: '&mdash;&nbsp;'.repeat( this.indentationLevel ) + this.model.get( 'name' ),
                 },
                 action: actionName,
+                actionClassName: actionClassName,
                 showPriceField: this.showPriceField
             } ) );
 
@@ -52,7 +55,7 @@ AWPCP.define( 'awpcp/category-item-view', [ 'awpcp/settings' ], function( settin
                 template += '</label>';
             }
 
-            template +=     '<a class="awpcp-categories-selctor-category-action" href="#" ><%= action %></a>';
+            template +=     '<a class="awpcp-categories-selctor-category-action <%= actionClassName %>" href="#" title="<%= action %>"></a>';
             template += '</span>';
 
             return _.template( template );
