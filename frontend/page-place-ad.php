@@ -342,8 +342,12 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             $this->validate_order(compact('user', 'category', 'payment_term'), $form_errors);
 
             if (empty($form_errors) && empty($transaction_errors)) {
+                $number_of_categories_allowed = apply_filters(
+                    'awpcp-number-of-categories-allowed-in-post-listing-order-step', 1, $payment_term
+                );
+
                 $transaction->user_id = $user;
-                $transaction->set('category', $category);
+                $transaction->set( 'category', array_slice( $category, 0, $number_of_categories_allowed ) );
 
                 if ( ! $skip_payment_term_selection ) {
                     $transaction->set( 'payment-term-type', $payment_term->type );
