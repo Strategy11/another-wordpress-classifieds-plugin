@@ -65,12 +65,7 @@ function adtermsset(){
 }
 
 function categoriesexist(){
-
-    global $wpdb;
-    $tbl_categories = $wpdb->prefix . "awpcp_categories";
-
-    $myreturn=!awpcpistableempty($tbl_categories);
-    return $myreturn;
+    return count( awpcp_categories_collection()->find_categories() ) > 0;
 }
 
 function countcategories(){
