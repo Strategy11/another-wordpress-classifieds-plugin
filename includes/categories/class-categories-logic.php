@@ -33,7 +33,7 @@ class AWPCP_Categories_Logic {
         $term_info = $this->wordpress->insert_term( $data['name'], $this->taxonomy, $data );
 
         if ( is_wp_error( $term_info ) ) {
-            $message = __( 'There was an error trying to create a category: <error-message>.', 'another-wordpress-classifieds-plugin' );
+            $message = __( 'There was an error trying to create a category: <error-message>', 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '<error-message>', $term_info->get_error_message(), $message );
             throw new AWPCP_Exception( $message );
         }
