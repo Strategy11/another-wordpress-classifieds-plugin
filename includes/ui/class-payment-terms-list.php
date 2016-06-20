@@ -39,8 +39,10 @@ class AWPCP_Payment_Terms_List {
     }
 
     public function render( $model_data, $options = array() ) {
+        $options = wp_parse_args( $options, array( 'payment_terms' => null ) );
+
         $params = array(
-            'payment_terms' => $this->get_payment_terms_definitions(),
+            'payment_terms' => $this->get_payment_terms_definitions( $options['payment_terms'] ),
             'selected_payment_option' => $this->from_model_to_view( $model_data ),
             'show_currency_payment_option' => $this->payments->is_currency_accepted(),
             'show_credits_payment_option' => $this->payments->is_credit_accepted(),
@@ -51,8 +53,13 @@ class AWPCP_Payment_Terms_List {
         return $this->template_renderer->render_template( $template, $params );
     }
 
-    private function get_payment_terms_definitions() {
-        $available_payment_terms = $this->payments->get_payment_terms();
+    private function get_payment_terms_definitions( $payment_terms = null ) {
+        if ( is_null( $payment_terms ) ) {
+            $available_payment_terms = $this->payments->get_payment_terms();
+        } else {
+            $available_payment_terms = $payment_terms;
+        }
+
         $payment_terms_definitions = array();
 
         foreach ( $available_payment_terms as $payment_term_type => $payment_terms ) {
