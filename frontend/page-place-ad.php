@@ -446,12 +446,10 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
             $most_specific_categories = array_map( 'end', $categories );
         } else {
-            $most_specific_categories = array_filter(
-                array_map( 'intval', $categories )
-            );
+            $most_specific_categories = array_map( 'intval', $categories );
         }
 
-        return $most_specific_categories;
+        return array_filter( $most_specific_categories );
     }
 
     public function checkout_step() {
