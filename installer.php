@@ -139,6 +139,9 @@ class AWPCP_Installer {
             wp_delete_post(awpcp_get_page_id_by_ref($page), true);
         }
 
+        $this->delete_categories_and_associated_listings();
+        $this->delete_listings();
+
         // Drop the tables
         $wpdb->query( "DROP TABLE IF EXISTS " . AWPCP_TABLE_ADFEES );
         $wpdb->query( "DROP TABLE IF EXISTS " . AWPCP_TABLE_ADPHOTOS );
@@ -177,7 +180,7 @@ class AWPCP_Installer {
             $wpdb->query("DROP TABLE IF EXISTS " . $table);
         }
 
-        $options_to_delete = array(
+		$options_to_delete = array(
             $awpcp->settings->setting_name,
             'awpcp-activated',
             'awpcp-flush-rewrite-rules',
@@ -242,6 +245,28 @@ class AWPCP_Installer {
         array_splice($current, array_search( $thepluginfile, $current), 1 );
         update_option('active_plugins', $current);
         do_action('deactivate_' . $thepluginfile );
+    }
+
+    private function delete_listings() {
+        $listings_logic = awpcp_listings_api();
+        $listings = awpcp_listings_collection()->find_listings();
+
+        foreach ( $listings as $listing ) {
+            $listings_logic->delete_listing( $listing );
+        }
+    }
+
+    private function delete_categories_and_associated_listings() {
+        $categories_logic = awpcp_categories_logic();
+        $categories = awpcp_categories_collection()->find_categories();
+
+        foreach ( $categories as $category ) {
+            try {
+                $categories_logic->delete_category_and_associated_listings( $category );
+            } catch ( AWPCP_Exception $e ) {
+                continue;
+            }
+        }
     }
 
     // TODO: remove settings table after another major release
