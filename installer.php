@@ -117,6 +117,7 @@ class AWPCP_Installer {
         $awpcp->settings->update_option('show-quick-start-guide-notice', true, true);
         $awpcp->settings->update_option( 'show-drip-autoresponder', true, true );
 
+        update_option( 'awpcp-installed', true );
         do_action('awpcp_install');
 
         return $result;

@@ -559,6 +559,7 @@ class AWPCP {
         add_action( 'init', array( $custom_post_types, 'register_custom_post_types' ) );
         add_action( 'init', array( $custom_post_types, 'register_custom_taxonomies' ) );
         add_action( 'init', array( $custom_post_types, 'register_custom_image_sizes' ) );
+        add_action( 'awpcp-installed', array( $custom_post_types, 'create_default_category' ) );
 
         add_action( 'init', array( $this->compatibility, 'load_plugin_integrations_on_init' ) );
 		add_action( 'init', array($this, 'init' ));
@@ -748,11 +749,16 @@ class AWPCP {
             update_option( 'awpcp-flush-rewrite-rules', false );
 		}
 
+        if ( get_option( 'awpcp-installed' ) ) {
+            do_action( 'awpcp-installed' );
+            update_option( 'awpcp-installed', false );
+        }
+
         if ( get_option( 'awpcp-installed-or-upgraded' ) ) {
             $roles_and_capabilities = awpcp_roles_and_capabilities();
             add_action( 'wp_loaded', array( $roles_and_capabilities, 'setup_roles_capabilities' ) );
 
-            delete_option( 'awpcp-installed-or-upgraded' );
+            update_option( 'awpcp-installed-or-upgraded', false );
         }
 
 		$this->register_scripts();

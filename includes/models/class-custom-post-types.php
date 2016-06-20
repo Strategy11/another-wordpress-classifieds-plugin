@@ -129,4 +129,16 @@ class AWPCP_Custom_Post_Types {
             false
         );
     }
+
+    public function create_default_category() {
+        try {
+            $category_id = awpcp_categories_logic()->create_category( array(
+                'name' => __( 'General', 'another-wordpress-classifieds-plugin' ),
+            ) );
+        } catch ( AWPCP_Exception $e ) {
+            return;
+        }
+
+        update_option( 'awpcp-main-category-id', $category_id );
+    }
 }
