@@ -39,10 +39,19 @@ class AWPCP_Payment_Terms_List {
     }
 
     public function render( $model_data, $options = array() ) {
-        $options = wp_parse_args( $options, array( 'payment_terms' => null ) );
+        $options = wp_parse_args( $options, array(
+            'payment_terms' => null,
+        ) );
+
+        if ( is_null( $options['payment_terms'] ) ) {
+            $available_payment_terms = $this->payments->get_payment_terms();
+        } else {
+            $available_payment_terms = $options['payment_terms'];
+        }
 
         $params = array(
-            'payment_terms' => $this->get_payment_terms_definitions( $options['payment_terms'] ),
+            'payment_terms' => $this->get_payment_terms_definitions( $available_payment_terms ),
+            'show_payment_terms' => $this->should_show_payment_terms( $available_payment_terms ),
             'selected_payment_option' => $this->from_model_to_view( $model_data ),
             'show_currency_payment_option' => $this->payments->is_currency_accepted(),
             'show_credits_payment_option' => $this->payments->is_credit_accepted(),
@@ -53,13 +62,7 @@ class AWPCP_Payment_Terms_List {
         return $this->template_renderer->render_template( $template, $params );
     }
 
-    private function get_payment_terms_definitions( $payment_terms = null ) {
-        if ( is_null( $payment_terms ) ) {
-            $available_payment_terms = $this->payments->get_payment_terms();
-        } else {
-            $available_payment_terms = $payment_terms;
-        }
-
+    private function get_payment_terms_definitions( $available_payment_terms = null ) {
         $payment_terms_definitions = array();
 
         foreach ( $available_payment_terms as $payment_term_type => $payment_terms ) {
@@ -165,6 +168,25 @@ class AWPCP_Payment_Terms_List {
 
     private function get_payment_option( $payment_term, $payment_type ) {
         return "{$payment_term->type}-{$payment_term->id}-{$payment_type}";
+    }
+
+    private function should_show_payment_terms( $payment_terms ) {
+        if ( $this->payments->payments_enabled() ) {
+            return true;
+        }
+
+        if ( count( $payment_terms ) > 1 ) {
+            return true;
+        }
+
+        $all_payment_terms = array_map( 'array_values', $payment_terms );
+        $all_payment_terms = call_user_func_array( 'array_merge', $all_payment_terms );
+
+        if ( $all_payment_terms[0]->type === AWPCP_FeeType::TYPE && $all_payment_terms[0]->id === 0 ) {
+            return false;
+        }
+
+        return true;
     }
 
     private function from_model_to_view( $payment_options ) {

@@ -1,3 +1,4 @@
+<?php if ( $show_payment_terms ): ?>
 <ul class="awpcp-payment-terms-list">
     <?php foreach ( $payment_terms as $payment_term ): ?>
     <li class="awpcp-payment-terms-list-payment-term awpcp-rounded-box awpcp-bordered-box awpcp-box awpcp-clearfix" <?php echo awpcp_html_attributes( $payment_term['attributes'] ); ?>>
@@ -46,3 +47,10 @@
     </li>
     <?php endforeach; ?>
 </ul>
+<?php else: ?>
+    <?php if ( $show_currency_payment_option ): ?>
+    <input type="hidden" name="payment_term" value="<?php echo $payment_terms[0]['price']['currency_option']; ?>">
+    <?php elseif ( $show_credits_payment_option ): ?>
+    <input type="hidden" name="payment_term" value="<?php echo $payment_terms[0]['price']['credits_option']; ?>">
+    <?php endif; ?>
+<?php endif; ?>
