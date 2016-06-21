@@ -161,7 +161,8 @@ function awpcp_renew_listing_page_implementation( $page ) {
         $page,
         awpcp_listings_api(),
         awpcp_listing_renderer(),
-        awpcp_payments_api()
+        awpcp_payments_api(),
+        awpcp_request()
     );
 }
 
@@ -172,19 +173,21 @@ class AWPCP_RenewAdPageImplementation {
     private $page;
     private $listing_renderer;
     private $payments;
+    private $request;
 
-    public function __construct( $page, $listings_logic, $listing_renderer, $payments ) {
+    public function __construct( $page, $listings_logic, $listing_renderer, $payments, $request ) {
         $this->page = $page;
         $this->listings_logic = $listings_logic;
         $this->listing_renderer = $listing_renderer;
         $this->payments = $payments;
+        $this->request = $request;
     }
 
     protected function validate_order($data, &$errors=array()) {
-        if (is_null($data['term'])) {
+        if ( is_null( $data['payment_term'] ) ) {
             $errors[] = __('You should choose one of the available Payment Terms.', 'another-wordpress-classifieds-plugin');
         } else {
-            if ($data['term']->type != $data['fee']->type || $data['term']->id != $data['fee']->id) {
+            if ( $data['payment_term']->type != $data['fee']->type || $data['payment_term']->id != $data['fee']->id ) {
                 $errors[] = __("You are trying to renew your Ad using a different Payment Term. That's not allowed.", 'another-wordpress-classifieds-plugin');
             }
         }
@@ -208,33 +211,51 @@ class AWPCP_RenewAdPageImplementation {
         // validate submitted data and prepare transaction
 
         $payment_terms = new AWPCP_PaymentTermsTable(array($fee->type => array($fee)), $transaction->get('payment-term'));
+        $payment_terms = array( $fee->type => array( $fee ) );
+        $payment_terms_list = awpcp_payment_terms_list();
 
         if ( awpcp_current_user_is_admin() || ! $this->payments->payment_term_requires_payment( $fee ) ) {
-            $term = $fee;
+            $payment_term = $fee;
 
-            $transaction->set('payment-term-type', $term->type);
-            $transaction->set('payment-term-id', $term->id);
+            $transaction->set('payment-term-type', $payment_term->type);
+            $transaction->set('payment-term-id', $payment_term->id);
             $transaction->set( 'ad-id', $ad->ID );
 
             $transaction->remove_all_items();
-            $payment_terms->set_transaction_item($transaction, $term);
+
+            $this->payments->set_transaction_item_from_payment_term(
+                $transaction, $payment_term, $payment_type
+            );
 
         } else {
-            $term = $this->payments->get_transaction_payment_term( $transaction );
+            $payment_term = $this->payments->get_transaction_payment_term( $transaction );
 
             if (!empty($_POST)) {
-                $term = $payment_terms->get_payment_term($payment_type, $selected);
+                $payment_terms_list->handle_request( $this->request );
 
-                $this->validate_order(compact('term', 'fee'), $form_errors);
+                $payment_options = $payment_terms_list->get_data();
+
+                if ( ! is_null( $payment_options ) ) {
+                    $payment_term = $payment_options['payment_term'];
+                    $payment_type = $payment_options['payment_type'];
+                } else {
+                    $payment_term = null;
+                    $payment_type = '';
+                }
+
+                $this->validate_order( compact( 'payment_term', 'fee' ), $form_errors );
 
                 if (empty($form_errors)) {
-                    $transaction->set('payment-term', $selected);
-                    $transaction->set('payment-term-type', $term->type);
-                    $transaction->set('payment-term-id', $term->id);
+                    $transaction->set( 'payment-term-type', $payment_term->type );
+                    $transaction->set( 'payment-term-id', $payment_term->id );
+                    $transaction->set( 'payment-term-payment-type', $payment_type );
                     $transaction->set( 'ad-id', $ad->ID );
 
                     $transaction->remove_all_items();
-                    $payment_terms->set_transaction_item($transaction);
+
+                    $this->payments->set_transaction_item_from_payment_term(
+                        $transaction, $payment_term, $payment_type
+                    );
 
                     // process transaction to grab Credit Plan information
                     $this->payments->set_transaction_credit_plan( $transaction );
@@ -246,7 +267,7 @@ class AWPCP_RenewAdPageImplementation {
         $this->payments->process_transaction( $transaction );
 
         // if everything is fine move onto the next step
-        if (!is_null($term)) {
+        if ( ! is_null( $payment_term ) ) {
             $this->payments->set_transaction_status_to_ready_to_checkout( $transaction, $transaction_errors );
             if (empty($transaction_errors)) {
                 return $this->checkout_step();
@@ -263,7 +284,8 @@ class AWPCP_RenewAdPageImplementation {
         $params = array(
             'payments' => $this->payments,
             'transaction' => $transaction,
-            'table' => $payment_terms,
+            'payment_terms' => $payment_terms,
+            'payment_terms_list' => $payment_terms_list,
 
             'messages' => $messages,
             'form_errors' => $form_errors,

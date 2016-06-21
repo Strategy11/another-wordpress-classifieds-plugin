@@ -13,7 +13,10 @@
 <?php endif ?>
 
 <form class="awpcp-order-form" method="post">
-    <?php echo $payments->render_payment_terms_form_field( $transaction, $table, $form_errors ); ?>
+    <?php echo awpcp_form_error( 'payment-term', $form_errors ); ?>
+    <?php echo $payment_terms_list->render( null, array( 'payment_terms' => $payment_terms ) ); ?>
+
+    <?php echo $payments->render_credit_plans_table( $transaction ); ?>
 
     <p class="awpcp-form-submit">
         <input class="button" type="submit" value="<?php echo esc_attr( __( 'Continue', 'another-wordpress-classifieds-plugin' ) ); ?>" id="submit" name="submit">
