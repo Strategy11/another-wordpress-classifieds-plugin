@@ -1376,7 +1376,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         } else if ( isset( $_POST['finish'] ) ) {
             return $this->checkout_step();
         } else {
-            $payment_term = $this->payments->get_ad_payment_term($ad);
+            $payment_term = $this->listing_renderer->get_payment_term( $ad );
             $manage_images = awpcp_are_images_allowed() && $payment_term->images > 0;
 
             $params = array(
