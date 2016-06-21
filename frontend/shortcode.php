@@ -92,8 +92,10 @@ class AWPCP_Pages {
 	}
 
 	public function renew_ad() {
-		if (!isset($this->renew_ad_page))
-			$this->renew_ad_page = new AWPCP_RenewAdPage();
+		if ( ! isset( $this->renew_ad_page ) ) {
+			$this->renew_ad_page = awpcp_renew_listing_page();
+        }
+
 		return is_null($this->renew_ad_page) ? '' : $this->renew_ad_page->dispatch();
 	}
 

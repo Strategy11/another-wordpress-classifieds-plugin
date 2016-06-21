@@ -3,7 +3,7 @@
 require_once(AWPCP_DIR . '/frontend/page-place-ad.php');
 
 function awpcp_renew_listing_page() {
-    return new AWPCP_EditAdPage(
+    return new AWPCP_RenewAdPage(
         'awpcp-renew-ad',
         null,
         awpcp_attachments_collection(),
@@ -129,7 +129,7 @@ class AWPCP_RenewAdPage extends AWPCP_Place_Ad_Page {
 
         // we handle the default implementation
         if ($term->type === AWPCP_FeeType::TYPE) {
-            return new AWPCP_RenewAdPageImplementation($this);
+            return awpcp_renew_listing_page_implementation( $this );
         } else {
             return apply_filters('awpcp-get-renew-ad-page-implementation', null, $term->type, $this);
         }
@@ -156,12 +156,28 @@ class AWPCP_RenewAdPage extends AWPCP_Place_Ad_Page {
     }
 }
 
+function awpcp_renew_listing_page_implementation( $page ) {
+    return new AWPCP_RenewAdPageImplementation(
+        $page,
+        awpcp_listings_api(),
+        awpcp_listing_renderer(),
+        awpcp_payments_api()
+    );
+}
+
 class AWPCP_RenewAdPageImplementation {
 
     public $messages = array();
 
-    public function __construct($page) {
+    private $page;
+    private $listing_renderer;
+    private $payments;
+
+    public function __construct( $page, $listings_logic, $listing_renderer, $payments ) {
         $this->page = $page;
+        $this->listings_logic = $listings_logic;
+        $this->listing_renderer = $listing_renderer;
+        $this->payments = $payments;
     }
 
     protected function validate_order($data, &$errors=array()) {
@@ -178,7 +194,7 @@ class AWPCP_RenewAdPageImplementation {
         $ad = $this->page->get_ad();
         $transaction = $this->page->get_transaction(true);
 
-        $fee = $this->payments->get_ad_payment_term( $ad );
+        $fee = $this->listing_renderer->get_payment_term( $ad );
 
         $form_errors = array();
         $transaction_errors = array();
@@ -358,8 +374,7 @@ class AWPCP_RenewAdPageImplementation {
                 return $this->page->render('content', join(',', array_map($errors, 'awpcp_print_error')));
             }
 
-            $ad->renew();
-            $ad->save();
+            $this->listings_logic->renew_listing( $ad );
 
             awpcp_send_ad_renewed_email($ad);
 
