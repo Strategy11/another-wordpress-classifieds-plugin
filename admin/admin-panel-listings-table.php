@@ -78,9 +78,7 @@ class AWPCP_Listings_Table extends WP_List_Table {
         }
 
         try {
-            // TODO: Fix those parsers.
-            $conditions = awpcp_listings_table_search_by_condition_parser()->parse( $params['search-by'], $params['s']);
-            $query = array_merge( $query, (array) $conditions );
+            $query = awpcp_listings_table_search_by_condition_parser()->parse( $params['search-by'], $params['s'], $query );
         } catch (Exception $e) {
             // ignore
         }

@@ -6,7 +6,8 @@ class AWPCP_ListingsTableSearchByUserCondition {
         return $search_by == 'user';
     }
 
-    public function create( $search_term ) {
-        return array( 'user' => $search_term );
+    public function create( $search_term, $query ) {
+        $query['author'] = $search_term;
+        return $query;
     }
 }

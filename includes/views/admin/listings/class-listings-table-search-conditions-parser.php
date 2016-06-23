@@ -24,10 +24,10 @@ class AWPCP_ListingsTableSearchConditionsParser {
         $this->conditions = $conditions;
     }
 
-    public function parse( $search_type, $search_term ) {
+    public function parse( $search_type, $search_term, $query ) {
         foreach ( $this->conditions as $condition ) {
             if ( $condition->match( $search_type ) ) {
-                return $condition->create( $search_term );
+                return $condition->create( $search_term, $query );
             }
         }
 

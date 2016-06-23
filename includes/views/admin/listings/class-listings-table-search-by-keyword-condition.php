@@ -6,7 +6,8 @@ class AWPCP_ListingsTableSearchByKeywordCondition {
         return $search_by == 'keyword';
     }
 
-    public function create( $search_term ) {
-        return array( 'keyword' => $search_term );
+    public function create( $search_term, $query ) {
+        $query['s'] = $search_term;
+        return $query;
     }
 }
