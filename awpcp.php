@@ -305,7 +305,6 @@ require_once( AWPCP_DIR . "/includes/upgrade/class-manual-upgrade-tasks.php" );
 require( AWPCP_DIR . "/includes/upgrade/class-store-listings-as-custom-post-types-upgrade-task-handler.php" );
 require( AWPCP_DIR . "/includes/upgrade/class-store-listing-categories-as-custom-taxonomies-upgrade-task-handler.php" );
 require( AWPCP_DIR . "/includes/upgrade/class-store-media-as-attachments-upgrade-task-handler.php" );
-require( AWPCP_DIR . '/includes/upgrade/class-store-phone-number-digits-upgrade-task-handler.php' );
 require_once( AWPCP_DIR . "/includes/upgrade/class-upgrade-task-ajax-handler.php" );
 
 require_once( AWPCP_DIR . "/includes/upgrade/class-import-payment-transactions-task-handler.php" );
@@ -401,7 +400,6 @@ require_once( AWPCP_DIR . '/admin/form-fields/class-form-fields-admin-page.php' 
 require_once( AWPCP_DIR . '/admin/form-fields/class-form-fields-table-factory.php' );
 require_once( AWPCP_DIR . '/admin/form-fields/class-form-fields-table.php' );
 require_once( AWPCP_DIR . '/admin/form-fields/class-update-form-fields-order-ajax-handler.php' );
-require( AWPCP_DIR . '/admin/listings/class-listings-table-search-by-phone-condition.php' );
 require_once( AWPCP_DIR . "/admin/upgrade/class-manual-upgrade-admin-page.php" );
 require_once( AWPCP_DIR . '/admin/user-panel.php' );
 
