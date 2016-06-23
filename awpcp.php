@@ -305,6 +305,7 @@ require_once( AWPCP_DIR . "/includes/upgrade/class-manual-upgrade-tasks.php" );
 require( AWPCP_DIR . "/includes/upgrade/class-store-listings-as-custom-post-types-upgrade-task-handler.php" );
 require( AWPCP_DIR . "/includes/upgrade/class-store-listing-categories-as-custom-taxonomies-upgrade-task-handler.php" );
 require( AWPCP_DIR . "/includes/upgrade/class-store-media-as-attachments-upgrade-task-handler.php" );
+require( AWPCP_DIR . '/includes/upgrade/class-store-phone-number-digits-upgrade-task-handler.php' );
 require_once( AWPCP_DIR . "/includes/upgrade/class-upgrade-task-ajax-handler.php" );
 
 require_once( AWPCP_DIR . "/includes/upgrade/class-import-payment-transactions-task-handler.php" );
@@ -402,6 +403,7 @@ require_once( AWPCP_DIR . '/admin/form-fields/class-form-fields-table.php' );
 require_once( AWPCP_DIR . '/admin/form-fields/class-update-form-fields-order-ajax-handler.php' );
 require_once( AWPCP_DIR . "/admin/upgrade/class-manual-upgrade-admin-page.php" );
 require_once( AWPCP_DIR . '/admin/user-panel.php' );
+require( AWPCP_DIR . '/admin/listings/class-listings-table-search-by-phone-condition.php' );
 
 // frontend functions
 require_once(AWPCP_DIR . "/frontend/placeholders.php");
@@ -417,6 +419,7 @@ require_once(AWPCP_DIR . "/frontend/widget-search.php");
 require_once(AWPCP_DIR . "/frontend/widget-latest-ads.php");
 require_once(AWPCP_DIR . "/frontend/widget-random-ad.php");
 require_once(AWPCP_DIR . "/frontend/widget-categories.php");
+require( AWPCP_DIR . '/frontend/class-wordpress-status-header-filter.php' );
 
 
 class AWPCP {
@@ -729,6 +732,9 @@ class AWPCP {
 
             $helper = awpcp_url_backwards_compatibility_redirection_helper();
             add_action( 'template_redirect', array( $helper, 'maybe_redirect_frontend_request' ) );
+
+            $filter = awpcp_wordpress_status_header_filter();
+            add_filter( 'status_header', array( $filter, 'filter_status_header' ), 10, 4 );
         }
 
         add_filter( 'awpcp-content-placeholders', array( $this, 'register_content_placeholders' ) );
