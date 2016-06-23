@@ -130,6 +130,7 @@ class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements 
         $this->wordpress->update_post_meta( $post_id, '_awpcp_payer_email', $item->payer_email );
         $this->wordpress->update_post_meta( $post_id, '_awpcp_contact_name', $item->ad_contact_name );
         $this->wordpress->update_post_meta( $post_id, '_awpcp_contact_phone', $item->ad_contact_phone );
+        $this->wordpress->update_post_meta( $post_id, '_awpcp_contact_phone_number_digits', $item->phone_number_digits );
         $this->wordpress->update_post_meta( $post_id, '_awpcp_contact_email', $item->ad_contact_email );
         $this->wordpress->update_post_meta( $post_id, '_awpcp_website_url', $item->websiteurl );
         $this->wordpress->update_post_meta( $post_id, '_awpcp_price', $item->ad_item_price );
