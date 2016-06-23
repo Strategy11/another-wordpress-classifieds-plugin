@@ -281,7 +281,7 @@ class AWPCP_Installer {
                 'try_to_convert_tables_to_utf8mb4',
                 'allow_null_values_in_user_id_column_in_payments_table',
             ),
-            '3.6.6' => array(
+            '3.7.1' => array(
                 'create_phone_number_digits_column',
                 'enable_upgrade_task_to_store_phone_number_digits',
             ),
