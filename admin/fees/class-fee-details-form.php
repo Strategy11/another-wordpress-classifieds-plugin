@@ -208,6 +208,15 @@ class AWPCP_Fee_Details_Form implements AWPCP_HTML_Element {
     private function get_price_fields_definition( $params ) {
         $form_fields = array();
 
+        $form_fields['price-model'] = array(
+            '#type' => 'input',
+            '#attributes' => array(
+                'type' => 'hidden',
+                'name' => 'price_model',
+                'value' => 'flat-price'
+            ),
+        );
+
         $is_currency_accepted = $this->payments_api->is_currency_accepted();
         $is_credit_accepted = $this->payments_api->is_credit_accepted();
 

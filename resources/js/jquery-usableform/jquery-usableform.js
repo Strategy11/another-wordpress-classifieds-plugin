@@ -8,13 +8,19 @@ if (typeof jQuery !== 'undefined') {
                 elements.each(function() {
                     var element = $(this);
                     var condition = element.attr('data-usableform').split(':');
-                    var target = form.find('[name="' + condition[1] + '"]').not(':hidden');
+                    var target = form.find('[name="' + condition[1] + '"]');
+
+                    if ( target.length > 1 ) {
+                        target = target.not(':hidden');
+                    }
 
                     target.change(function() {
-                        onTargetChange(target, element, condition);
+                        onTargetChange($(this), element, condition);
                     });
 
-                    onTargetChange(target, element, condition);
+                    target.each(function() {
+                        onTargetChange($(this), element, condition);
+                    });
                 });
             });
         }
