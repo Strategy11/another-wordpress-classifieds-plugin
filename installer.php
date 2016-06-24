@@ -1112,7 +1112,7 @@ class AWPCP_Installer {
 
     private function enable_upgrade_task_to_store_phone_number_digits() {
         delete_option( 'awpcp-spnd-last-file-id' );
-        awpcp()->manual_upgrades->enable_upgrade_task( 'awpcp-store-phone-number-digits' );
+        $this->upgrade_tasks->enable_upgrade_task( 'awpcp-store-phone-number-digits' );
     }
 
     private function create_old_listing_id_column_in_listing_regions_table() {
