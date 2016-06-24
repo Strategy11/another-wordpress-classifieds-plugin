@@ -1,5 +1,5 @@
 <?php if ( $show_payment_terms ): ?>
-<ul class="awpcp-payment-terms-list">
+<ul class="awpcp-payment-terms-list" data-breakpoints="520" data-breakpoint-class-prefix="awpcp-payment-terms-list" >
     <?php foreach ( $payment_terms as $payment_term ): ?>
     <li class="awpcp-payment-terms-list-payment-term awpcp-rounded-box awpcp-bordered-box awpcp-box awpcp-clearfix" <?php echo awpcp_html_attributes( $payment_term['attributes'] ); ?>>
         <div class="awpcp-payment-term-duration">
