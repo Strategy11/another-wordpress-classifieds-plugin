@@ -1073,7 +1073,7 @@ class AWPCP {
 
 		wp_register_script(
             'awpcp',
-            "{$js}/awpcp.src.js",
+            "{$js}/awpcp.min.js",
             array(
                 'jquery',
                 'backbone',
