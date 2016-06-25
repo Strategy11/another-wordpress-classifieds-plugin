@@ -285,6 +285,7 @@ require_once( AWPCP_DIR . "/includes/wordpress/class-wordpress.php" );
 
 require( AWPCP_DIR . '/includes/class-csv-importer.php' );
 
+require( AWPCP_DIR . '/includes/class-authentication-redirection-handler.php' );
 require_once( AWPCP_DIR . '/includes/class-edit-listing-url-placeholder.php' );
 require_once( AWPCP_DIR . '/includes/class-edit-listing-link-placeholder.php' );
 
@@ -645,6 +646,8 @@ class AWPCP {
         } else {
             // load resources required in frontend screens only.
             add_action( 'template_redirect', array( awpcp_secure_url_redirection_handler(), 'dispatch' ) );
+
+            add_action( 'template_redirect', array( awpcp_authentication_redirection_handler(), 'maybe_redirect' ) );
 
             $filter = awpcp_wordpress_status_header_filter();
             add_filter( 'status_header', array( $filter, 'filter_status_header' ), 10, 4 );
