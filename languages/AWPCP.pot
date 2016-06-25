@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2016-06-15 21:54:54+00:00\n"
+"POT-Creation-Date: 2016-06-25 17:44:54+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -142,7 +142,7 @@ msgid "Categories"
 msgstr ""
 
 #: admin/admin-panel-fees-table.php:127
-#: admin/templates/admin-sidebar.tpl.php:103 awpcp.php:810
+#: admin/templates/admin-sidebar.tpl.php:103 awpcp.php:815
 msgid "Featured Ads"
 msgstr ""
 
@@ -269,7 +269,7 @@ msgstr ""
 
 #: admin/admin-panel-listings-table.php:188
 #: admin/admin-panel-listings-table.php:254
-#: admin/admin-panel-listings-table.php:428
+#: admin/admin-panel-listings-table.php:431
 msgid "Featured"
 msgstr ""
 
@@ -358,45 +358,49 @@ msgstr ""
 msgid "Location"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:277
+#: admin/admin-panel-listings-table.php:275 frontend/placeholders.php:664
+msgid "Phone"
+msgstr ""
+
+#: admin/admin-panel-listings-table.php:278
 msgid "Payer Email"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:280
+#: admin/admin-panel-listings-table.php:281
 #: frontend/templates/page-place-ad-details-step.tpl.php:36
 #: frontend/templates/page-place-ad-order-step.tpl.php:43
 msgid "User"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:319
+#: admin/admin-panel-listings-table.php:322
 msgctxt "admin listings table"
 msgid "Filter"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:364
+#: admin/admin-panel-listings-table.php:367
 msgid "View Ad."
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:392
+#: admin/admin-panel-listings-table.php:395
 msgid "Mark as Verified"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:401
+#: admin/admin-panel-listings-table.php:404
 msgid "Disabled"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:401
+#: admin/admin-panel-listings-table.php:404
 #: templates/components/media-manager.tpl.php:19
 #: templates/components/media-manager.tpl.php:58
 #: templates/components/media-manager.tpl.php:100
 msgid "Enabled"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:415
+#: admin/admin-panel-listings-table.php:418
 msgid "Mark as Paid"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:428
+#: admin/admin-panel-listings-table.php:431
 msgid "Not Featured"
 msgstr ""
 
@@ -707,7 +711,7 @@ msgid "Manage Extra Fields"
 msgstr ""
 
 #: admin/admin-panel.php:315 admin/templates/admin-sidebar.tpl.php:108
-#: awpcp.php:803
+#: awpcp.php:808
 msgid "Extra Fields"
 msgstr ""
 
@@ -1529,7 +1533,7 @@ msgstr ""
 msgid "Manage Listing"
 msgstr ""
 
-#: admin/templates/admin-panel-listings.tpl.php:12
+#: admin/templates/admin-panel-listings.tpl.php:11
 #: frontend/page-search-ads.php:12
 msgid "Search Ads"
 msgstr ""
@@ -1861,19 +1865,19 @@ msgstr ""
 msgid "Get a Premium Module!"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:46 awpcp.php:775
+#: admin/templates/admin-sidebar.tpl.php:46 awpcp.php:780
 msgid "Campaign Manager"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:52 awpcp.php:832
+#: admin/templates/admin-sidebar.tpl.php:52 awpcp.php:837
 msgid "Mark as Sold"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:58 awpcp.php:853
+#: admin/templates/admin-sidebar.tpl.php:58 awpcp.php:858
 msgid "Restricted Categories"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:63 awpcp.php:768
+#: admin/templates/admin-sidebar.tpl.php:63 awpcp.php:773
 msgid "BuddyPress Listings"
 msgstr ""
 
@@ -1881,15 +1885,15 @@ msgstr ""
 msgid "Comments/Ratings"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:73 awpcp.php:754
+#: admin/templates/admin-sidebar.tpl.php:73 awpcp.php:759
 msgid "Attachments"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:78 awpcp.php:761
+#: admin/templates/admin-sidebar.tpl.php:78 awpcp.php:766
 msgid "Authorize.Net"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:83 awpcp.php:839
+#: admin/templates/admin-sidebar.tpl.php:83 awpcp.php:844
 msgid "PayPal Pro"
 msgstr ""
 
@@ -1897,7 +1901,7 @@ msgstr ""
 msgid "Coupon/Discount"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:93 awpcp.php:867
+#: admin/templates/admin-sidebar.tpl.php:93 awpcp.php:872
 msgid "Subscriptions"
 msgstr ""
 
@@ -1905,15 +1909,15 @@ msgstr ""
 msgid "Fee Per Category"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:113 awpcp.php:782
+#: admin/templates/admin-sidebar.tpl.php:113 awpcp.php:787
 msgid "Category Icons"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:118 awpcp.php:846
+#: admin/templates/admin-sidebar.tpl.php:118 awpcp.php:851
 msgid "Regions Control"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:123 awpcp.php:860
+#: admin/templates/admin-sidebar.tpl.php:123 awpcp.php:865
 msgid "RSS"
 msgstr ""
 
@@ -2040,94 +2044,94 @@ msgstr ""
 msgid "Manage Ad Listings"
 msgstr ""
 
-#: awpcp.php:658
+#: awpcp.php:663
 msgid "AWPCP"
 msgstr ""
 
-#: awpcp.php:737
+#: awpcp.php:742
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
 msgstr ""
 
-#: awpcp.php:738
+#: awpcp.php:743
 #: includes/placeholders/class-placeholders-installation-verifier.php:31
 msgid "Warning"
 msgstr ""
 
-#: awpcp.php:789
+#: awpcp.php:794
 msgid "Comments & Ratings"
 msgstr ""
 
-#: awpcp.php:796
+#: awpcp.php:801
 msgid "Coupons/Discount"
 msgstr ""
 
-#: awpcp.php:817
+#: awpcp.php:822
 msgid "Fee per Category"
 msgstr ""
 
-#: awpcp.php:824
+#: awpcp.php:829
 msgid "Google Checkout"
 msgstr ""
 
-#: awpcp.php:874 templates/components/media-manager.tpl.php:46
+#: awpcp.php:879 templates/components/media-manager.tpl.php:46
 msgid "Videos"
 msgstr ""
 
-#: awpcp.php:882
+#: awpcp.php:887
 msgid "XML Sitemap"
 msgstr ""
 
-#: awpcp.php:889
+#: awpcp.php:894
 msgid "ZIP Code Search Module"
 msgstr ""
 
-#: awpcp.php:1044
+#: awpcp.php:1049
 msgid "This field is required."
 msgstr ""
 
-#: awpcp.php:1045 frontend/page-edit-ad.php:128 frontend/page-edit-ad.php:433
+#: awpcp.php:1050 frontend/page-edit-ad.php:128 frontend/page-edit-ad.php:433
 #: includes/settings-api.php:214
 msgid "Please enter a valid email address."
 msgstr ""
 
-#: awpcp.php:1046 awpcp.php:1047
+#: awpcp.php:1051 awpcp.php:1052
 msgid "Please enter a valid URL."
 msgstr ""
 
-#: awpcp.php:1048
+#: awpcp.php:1053
 msgid "Please enter a valid number."
 msgstr ""
 
-#: awpcp.php:1049
+#: awpcp.php:1054
 msgid "Please enter a valid amount."
 msgstr ""
 
-#: awpcp.php:1059
+#: awpcp.php:1064
 msgctxt "[UI Datepicker] Display text for previous month link"
 msgid "&#x3c;Prev"
 msgstr ""
 
-#: awpcp.php:1061
+#: awpcp.php:1066
 msgctxt "[UI Datepicker] Display text for next month link"
 msgid "Next&#x3e;"
 msgstr ""
 
-#: awpcp.php:1076
+#: awpcp.php:1081
 msgctxt "[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ..."
 msgid "0"
 msgstr ""
 
-#: awpcp.php:1082
+#: awpcp.php:1087
 msgid "There are files currently being uploaded."
 msgstr ""
 
-#: awpcp.php:1083
+#: awpcp.php:1088
 msgid "There are files pending to be uploaded."
 msgstr ""
 
-#: awpcp.php:1084
+#: awpcp.php:1089
 msgid "You haven't uploaded any images or files."
 msgstr ""
 
@@ -2772,10 +2776,6 @@ msgstr[1] ""
 
 #: frontend/placeholders.php:613
 msgid "Total views: %d"
-msgstr ""
-
-#: frontend/placeholders.php:664
-msgid "Phone"
 msgstr ""
 
 #: frontend/placeholders.php:721
@@ -6291,20 +6291,31 @@ msgstr ""
 msgid "Require user registration for replying to an Ad?"
 msgstr ""
 
-#: includes/settings/class-registration-settings.php:10
+#: includes/settings/class-registration-settings.php:14
+msgid "Login URL"
+msgstr ""
+
+#: includes/settings/class-registration-settings.php:17
+msgid ""
+"Location of the login page. The value should be the full URL to the "
+"WordPress login page (e.g. http://www.awpcp.com/wp-login.php)."
+msgstr ""
+
+#: includes/settings/class-registration-settings.php:17
+#: includes/settings/class-registration-settings.php:20
+msgid ""
+"IMPORTANT: Only change this setting when using a membership plugin with "
+"custom login pages or similar scenarios."
+msgstr ""
+
+#: includes/settings/class-registration-settings.php:20
 msgid "Custom Registration Page URL"
 msgstr ""
 
-#: includes/settings/class-registration-settings.php:10
+#: includes/settings/class-registration-settings.php:20
 msgid ""
 "Location of registration page. Value should be the full URL to the WordPress "
 "registration page (e.g. http://www.awpcp.com/wp-login.php?action=register)."
-msgstr ""
-
-#: includes/settings/class-registration-settings.php:10
-msgid ""
-"**Only change this setting when using a membership plugin with custom login "
-"pages or similar scenarios."
 msgstr ""
 
 #: includes/settings/class-user-notifications-settings.php:16
@@ -7471,6 +7482,10 @@ msgstr ""
 
 #: includes/upgrade/class-manual-upgrade-tasks.php:48
 msgid "Calculate image dimensions"
+msgstr ""
+
+#: includes/upgrade/class-manual-upgrade-tasks.php:54
+msgid "Store phone number digits"
 msgstr ""
 
 #: includes/views/admin/account-balance/class-account-balance-page.php:16
