@@ -43,7 +43,7 @@ class AWPCP_Admin {
 	}
 
 	public function configure_routes( $router ) {
-        if ( $this->upgrade_tasks->has_pending_tasks( 'plugin' ) ) {
+        if ( $this->upgrade_tasks->has_pending_tasks( array( 'context' => 'plugin' ) ) ) {
             $this->configure_manual_upgrade_routes( 'awpcp-admin-upgrade', $router );
         } else {
             $this->configure_regular_routes( 'awpcp.php', $router );
@@ -261,7 +261,7 @@ class AWPCP_Admin {
 			return;
 		}
 
-		if ( $this->upgrade_tasks->has_pending_tasks( 'plugin' ) ) {
+		if ( $this->upgrade_tasks->has_pending_tasks( array( 'context' => 'plugin' ) ) ) {
             wp_enqueue_style( 'awpcp-admin-style' );
 
 			ob_start();

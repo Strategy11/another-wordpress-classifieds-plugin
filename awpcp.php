@@ -585,7 +585,7 @@ class AWPCP {
 		// some upgrade operations can't be done in background.
 		// if one those is pending, we will disable all other features
 		// until the user executes the upgrade operaton
-        $has_pending_manual_upgrades = $this->upgrade_tasks->has_pending_tasks( 'plugin' );
+        $has_pending_manual_upgrades = $this->upgrade_tasks->has_pending_tasks( array( 'context' => 'plugin' ) );
 
 		if ( ! $has_pending_manual_upgrades ) {
     		$this->pages = new AWPCP_Pages();

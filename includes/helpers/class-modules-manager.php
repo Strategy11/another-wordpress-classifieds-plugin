@@ -51,7 +51,7 @@ class AWPCP_ModulesManager {
         $this->handle_module_updates( $module );
         $module->setup( $this->plugin );
 
-        if ( ! $this->upgrade_tasks->has_pending_tasks( $module->slug ) ) {
+        if ( ! $this->upgrade_tasks->has_pending_tasks( array( 'context' => $module->slug ) ) ) {
             add_action( 'awpcp-configure-routes', array( $module, 'configure_routes' ) );
 
             // run after load_dependencies() in new modules and init() in old modules

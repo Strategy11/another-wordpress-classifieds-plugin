@@ -14,12 +14,18 @@ class AWPCP_Upgrade_Tasks_Manager {
 
     private $tasks = array();
 
-    public function register_upgrade_task( $slug, $name, $handler, $context ) {
-        $this->tasks[ $slug ] = array(
-            'name' => $name,
-            'handler' => $handler,
-            'context' => $context,
-        );
+    public function register_upgrade_task( $params ) {
+        $task = wp_parse_args( $params, array(
+            'slug' => '',
+            'name' => '',
+            'description' => '',
+            'handler' => '',
+            'context' => '',
+            'blocking' => true,
+            'type' => 'manual'
+        ) );
+
+        $this->tasks[ $task['slug'] ] = $task;
     }
 
     public function get_upgrade_task( $slug ) {
@@ -34,25 +40,25 @@ class AWPCP_Upgrade_Tasks_Manager {
         return get_option( $slug );
     }
 
-    public function has_pending_tasks( $context = null ) {
-        foreach ( $this->tasks as $slug => $task ) {
-            if ( ! is_null( $context ) && $task['context'] != $context ) {
-                continue;
-            }
-
-            if ( $this->is_upgrade_task_enabled( $slug ) ) {
-                return true;
-            }
-        }
-
-        return false;
+    public function has_pending_tasks( $query ) {
+        $pending_tasks = $this->get_pending_tasks( $query );
+        return count( $pending_tasks ) > 0;
     }
 
-    public function get_pending_tasks( $context = null ) {
+    public function get_pending_tasks( $query ) {
+        $query = wp_parse_args( $query, array(
+            'type' => null,
+            'context' => null,
+        ) );
+
         $pending_tasks = array();
 
         foreach ( $this->tasks as $slug => $task ) {
-            if ( ! is_null( $context ) && $task['context'] != $context ) {
+            if ( ! is_null( $query['context'] ) && $task['context'] != $query['context'] ) {
+                continue;
+            }
+
+            if ( ! is_null( $query['type'] ) && $task['type'] != $query['type'] ) {
                 continue;
             }
 
