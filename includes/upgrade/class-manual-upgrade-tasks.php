@@ -1,7 +1,7 @@
 <?php
 
 function awpcp_manual_upgrade_tasks() {
-    return new AWPCP_Manual_Upgrade_Tasks( awpcp_manual_upgrade_tasks_manager() );
+    return new AWPCP_Manual_Upgrade_Tasks( awpcp_upgrade_tasks_manager() );
 }
 
 class AWPCP_Manual_Upgrade_Tasks {

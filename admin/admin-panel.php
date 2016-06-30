@@ -3,7 +3,7 @@
 require_once(AWPCP_DIR . '/admin/admin-panel-users.php');
 
 function awpcp_admin_panel() {
-    return new AWPCP_Admin( awpcp_manual_upgrade_tasks_manager() );
+    return new AWPCP_Admin( awpcp_upgrade_tasks_manager() );
 }
 
 class AWPCP_Admin {

@@ -1,16 +1,16 @@
 <?php
 
-function awpcp_manual_upgrade_tasks_manager() {
+function awpcp_upgrade_tasks_manager() {
     static $instance = null;
 
     if ( is_null( $instance ) ) {
-        $instance = new AWPCP_Manual_Upgrade_Tasks_Manager();
+        $instance = new AWPCP_Upgrade_Tasks_Manager();
     }
 
     return $instance;
 }
 
-class AWPCP_Manual_Upgrade_Tasks_Manager {
+class AWPCP_Upgrade_Tasks_Manager {
 
     private $tasks = array();
 

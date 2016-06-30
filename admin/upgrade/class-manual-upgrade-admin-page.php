@@ -2,7 +2,7 @@
 
 function awpcp_manual_upgrade_admin_page() {
     return new AWPCP_ManualUpgradeAdminPage(
-        awpcp_manual_upgrade_tasks_manager(),
+        awpcp_upgrade_tasks_manager(),
         awpcp_request()
     );
 }

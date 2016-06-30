@@ -30,7 +30,7 @@ function awpcp_installer() {
 
     if ( is_null( $instance ) ) {
         $instance = new AWPCP_Installer(
-            awpcp_manual_upgrade_tasks_manager(),
+            awpcp_upgrade_tasks_manager(),
             awpcp_database_tables(),
             awpcp_database_helper(),
             awpcp_database_column_creator(),

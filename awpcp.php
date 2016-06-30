@@ -300,8 +300,8 @@ require( AWPCP_DIR . "/includes/upgrade/class-categories-registry.php" );
 require( AWPCP_DIR . "/includes/upgrade/class-update-categories-task-runner.php" );
 require( AWPCP_DIR . "/includes/upgrade/class-upgrade-task-handler.php" );
 require( AWPCP_DIR . "/includes/upgrade/class-database-tables.php" );
-require_once( AWPCP_DIR . "/includes/upgrade/class-manual-upgrade-tasks-manager.php" );
 require_once( AWPCP_DIR . "/includes/upgrade/class-manual-upgrade-tasks.php" );
+require_once( AWPCP_DIR . "/includes/upgrade/class-upgrade-tasks-manager.php" );
 require( AWPCP_DIR . "/includes/upgrade/class-store-listings-as-custom-post-types-upgrade-task-handler.php" );
 require( AWPCP_DIR . "/includes/upgrade/class-store-listing-categories-as-custom-taxonomies-upgrade-task-handler.php" );
 require( AWPCP_DIR . "/includes/upgrade/class-store-media-as-attachments-upgrade-task-handler.php" );
@@ -449,7 +449,7 @@ class AWPCP {
 		// stored options are loaded when the settings API is instatiated
 		$this->settings = awpcp_settings_api();
 		$this->js = AWPCP_JavaScript::instance();
-        $this->upgrade_tasks = awpcp_manual_upgrade_tasks_manager();
+        $this->upgrade_tasks = awpcp_upgrade_tasks_manager();
         $this->installer = awpcp_installer();
         $this->manual_upgrades = awpcp_manual_upgrade_tasks();
 	}

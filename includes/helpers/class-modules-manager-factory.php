@@ -5,7 +5,7 @@ function awpcp_modules_manager_factory() {
 
     if ( is_null( $instance ) ) {
         $instance = new AWPCP_Modules_Manager_Factory(
-            awpcp_manual_upgrade_tasks_manager(),
+            awpcp_upgrade_tasks_manager(),
             awpcp_licenses_manager(),
             awpcp_modules_updater(),
             awpcp_settings_api(),
