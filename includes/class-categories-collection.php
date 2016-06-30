@@ -57,7 +57,13 @@ class AWPCP_Categories_Collection {
     }
 
     public function find_categories( $args = array() ) {
-        return $this->wordpress->get_terms( $this->taxonomy, $this->prepare_categories_args( $args ) );
+        $results = $this->wordpress->get_terms( $this->taxonomy, $this->prepare_categories_args( $args ) );
+
+        if ( is_wp_error( $results ) ) {
+            return array();
+        }
+
+        return $results;
     }
 
     /**
