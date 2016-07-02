@@ -2,27 +2,24 @@
 
 class AWPCP_AsynchronousTasksComponent {
 
-    private $tasks = array();
-    private $texts = array();
+    private $params = array();
 
-    public function __construct( $tasks, $texts ) {
-        $default_messages = array(
+    public function __construct( $params ) {
+        $this->params = wp_parse_args( $params, array(
+            'groups' => array(),
             'title' => _x( 'Pending Tasks', 'asynchrounous tasks title', 'another-wordpress-classifieds-plugin' ),
             'introduction' => '',
-            'success' => '',
-            'successHtml' => null,
-            'button' => '',
-            'percentageOfCompletion' => _x( 'completed', 'as in: 5% completed', 'another-wordpress-classifieds-plugin' ),
-            'remainingTime' => _x( 'remaining', 'as in: 2 minutes remaining', 'another-wordpress-classifieds-plugin' ),
-        );
-
-        $this->tasks = $tasks;
-        $this->texts = wp_parse_args( $texts, $default_messages );
+            'submit' => '',
+            'templates' => array(
+                'itemsProcessed' => _x( '<number-of-items-processed> of <total-number-of-items> items processed.', 'e.g: 6 of 13 items processed', 'another-wordpress-classifieds-plugin'  ),
+                // 'percentageOfCompletion' => _x( 'completed', 'as in: 5% completed', 'another-wordpress-classifieds-plugin' ),
+                'remainingTime' => _x( 'remaining', 'as in: 2 minutes remaining', 'another-wordpress-classifieds-plugin' ),
+            ),
+        ) );
     }
 
     public function render() {
-        awpcp()->js->set( 'asynchronous-tasks', $this->tasks );
-        awpcp()->js->set( 'asynchronous-tasks-texts', $this->texts );
+        awpcp()->js->set( 'asynchronous-tasks-params', $this->params );
 
         ob_start();
         # TODO: move template to a top level templates directory

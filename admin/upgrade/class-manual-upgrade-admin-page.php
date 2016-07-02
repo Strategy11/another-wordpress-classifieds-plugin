@@ -24,38 +24,102 @@ class AWPCP_ManualUpgradeAdminPage {
     public function dispatch() {
         $context = $this->request->param( 'context', 'plugin' );
 
-        $tasks = $this->prepare_tasks( $context );
-        $messages = $this->prepare_messages( $context );
+        $params = array(
+            'introduction' => $this->get_introduction_text( $context ),
+            'groups' => $this->get_tasks_groups( $context ),
+            'submit' => _x( 'Upgrade', 'awpcp upgrade', 'another-wordpress-classifieds-plugin' ),
+        );
 
-        $tasks = new AWPCP_AsynchronousTasksComponent( $tasks, $messages );
+        $tasks = new AWPCP_AsynchronousTasksComponent( $params );
 
         return $tasks->render();
     }
 
-    private function prepare_tasks() {
-        $pending_upgrade_tasks = $this->upgrade_tasks->get_pending_tasks();
-
-        $tasks = array();
-        foreach ( $pending_upgrade_tasks as $action => $data ) {
-            $tasks[] = array('name' => $data['name'], 'action' => $action);
+    private function get_introduction_text( $context ) {
+        if ( $context == 'plugin' ) {
+            return _x( 'Another WordPress Classifieds Plugin needs to upgrade your database.  The operation may take several minutes, depending on the amount of information stored. Please press the Upgrade button shown below to start the process.', 'awpcp upgrade', 'another-wordpress-classifieds-plugin' );
+        } else {
+            return _x( "AWPCP's premium modules need to upgrade the information stored in the database.  The operation may take several minutes, depending on the amount of information stored. Please press the Upgrade button shown below to start the process.", 'awpcp upgrade', 'another-wordpress-classifieds-plugin' );
         }
-
-        return $tasks;
     }
 
-    private function prepare_messages( $context ) {
-        if ( $context == 'plugin' ) {
-            $messages['introduction'] = _x( 'Before you can use AWPCP again we need to upgrade your database. This operation may take a few minutes, depending on the amount of information stored. Please press the Upgrade button shown below to start the process.', 'awpcp upgrade', 'another-wordpress-classifieds-plugin' );
-        } else if ( $context == 'premium-modules' ) {
-            $messages['introduction'] = _x( 'Before you can use all premium modules features again, we need to upgrade your database. This operation may take a few minutes, depending on the amount of information stored. Please press the Upgrade button shown below to start the process.', 'awpcp upgrade', 'another-wordpress-classifieds-plugin' );
+    private function get_tasks_groups( $context ) {
+        $tasks = $this->prepare_tasks( $context );
+        $groups = array();
+
+        if ( count( $tasks['blocking_tasks'] ) ) {
+            if ( count( $tasks['non_blocking_tasks'] ) ) {
+                $successContent = _x( 'Congratulations. All blocking tasks were completed successfully. You can now access all features.', 'awpcp upgrade', 'another-wordpress-classifieds-plugin' );
+            } else {
+                $continue_link = sprintf( '<a href="%s">', add_query_arg( 'page', 'awpcp.php' ) );
+
+                $successContent = _x( 'Congratulations. All blocking tasks were completed successfully. You can now access all features. <continue-link>Click here to Continue</a>.', 'awpcp upgrade', 'another-wordpress-classifieds-plugin' );
+                $successContent = str_replace( '<continue-link>', $continue_link, $successContent );
+            }
+
+            $groups[] = array(
+                'title' => __( 'Blocking Tasks', 'another-wordpress-classifieds-plugin' ),
+                'content' => __( "The following tasks need to be completed before you can use the plugin's and modules features again.", 'another-wordpress-classifieds-plugin' ),
+                'successContent' => $successContent,
+                'tasks' => $tasks['blocking_tasks'],
+            );
         }
 
-        $continue_link = sprintf( '<a href="%s">', add_query_arg( 'page', 'awpcp.php' ) );
-        $messages['success'] = _x( 'Congratulations. All manual upgrades were completed successfully. You can now access all features. <continue-link>Click here to Continue</a>.', 'awpcp upgrade', 'another-wordpress-classifieds-plugin' );
-        $messages['success'] = str_replace( '<continue-link>', $continue_link, $messages['success'] );
+        if ( count( $tasks['non_blocking_tasks'] ) ) {
+            $continue_link = sprintf( '<a href="%s">', add_query_arg( 'page', 'awpcp.php' ) );
 
-        $messages['button'] = _x( 'Upgrade', 'awpcp upgrade', 'another-wordpress-classifieds-plugin' );
+            $successContent = _x( 'Congratulations. All non blocking tasks were completed successfully. <continue-link>Click here to Continue</a>.', 'awpcp upgrade', 'another-wordpress-classifieds-plugin' );
+            $successContent = str_replace( '<continue-link>', $continue_link, $successContent );
 
-        return $messages;
+            $groups[] = array(
+                'title' => __( 'Non-Blocking Tasks', 'another-wordpress-classifieds-plugin' ),
+                'content' => __( "The following tasks need to be completed, but the plugin's and modules features will continie to work while the routines are executed.", 'another-wordpress-classifieds-plugin' ),
+                'successContent' => $successContent,
+                'tasks' => $tasks['non_blocking_tasks'],
+            );
+        }
+
+        return $groups;
+    }
+
+    private function prepare_tasks( $context ) {
+        if ( $context === 'plugin' ) {
+            $pending_upgrade_tasks = $this->upgrade_tasks->get_pending_tasks( compact( 'context' ) );
+        } else {
+            $pending_upgrade_tasks = $this->upgrade_tasks->get_pending_tasks();
+        }
+
+        $last_blocking_task = null;
+        $storing_blocking_tasks = true;
+
+        foreach ( array_reverse( array_keys( $pending_upgrade_tasks ) ) as $i => $key ) {
+            if ( $pending_upgrade_tasks[ $key ]['blocking'] ) {
+                $last_blocking_task = $key;
+                break;
+            }
+        }
+
+        $blocking_tasks = array();
+        $non_blocking_tasks = array();
+
+        foreach ( $pending_upgrade_tasks as $slug => $task ) {
+            $task = array(
+                'name' => $task['name'],
+                'description' => $task['description'],
+                'action' => $slug,
+            );
+
+            if ( ! is_null( $last_blocking_task ) && $storing_blocking_tasks ) {
+                $blocking_tasks[] = array( 'name' => $task['name'], 'action' => $slug );
+            } else {
+                $non_blocking_tasks[] = array( 'name' => $task['name'], 'action' => $slug );
+            }
+
+            if ( $last_blocking_task == $slug ) {
+                $storing_blocking_tasks = false;
+            }
+        }
+
+        return compact( 'blocking_tasks', 'non_blocking_tasks' );
     }
 }
