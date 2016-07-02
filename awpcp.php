@@ -582,12 +582,20 @@ class AWPCP {
 		add_action( 'wp_footer', array( $this, 'localize_scripts' ), 15000 );
 		add_action( 'admin_footer', array( $this, 'localize_scripts' ), 15000 );
 
-		// some upgrade operations can't be done in background.
-		// if one those is pending, we will disable all other features
-		// until the user executes the upgrade operaton
-        $has_pending_manual_upgrades = $this->upgrade_tasks->has_pending_tasks( array( 'context' => 'plugin' ) );
+        if ( get_option( 'awpcp-activated' ) && $this->upgrade_tasks->has_pending_tasks( array( 'context' => 'plugin' ) ) ) {
+            delete_option( 'awpcp-activated' );
+            wp_redirect( awpcp_get_admin_upgrade_url() );
+            exit;
+        }
 
-		if ( ! $has_pending_manual_upgrades ) {
+        // some upgrade operations can't be done in background.
+        // if one those is pending, we will disable all other features
+        // until the user executes the upgrade operaton
+        $has_pending_blocking_manual_upgrades = $this->upgrade_tasks->has_pending_tasks( array(
+            'context' => 'plugin', 'blocking' => true )
+        );
+
+        if ( ! $has_pending_blocking_manual_upgrades ) {
     		$this->pages = new AWPCP_Pages();
 
             add_action( 'awpcp-process-payment-transaction', array( $this, 'process_transaction_update_payment_status' ) );
@@ -608,10 +616,6 @@ class AWPCP {
     		awpcp_schedule_activation();
 
     		$this->modules_manager->load_modules();
-        } else if ( $has_pending_manual_upgrades && get_option( 'awpcp-activated' ) ) {
-            delete_option( 'awpcp-activated' );
-            wp_redirect( awpcp_get_admin_upgrade_url() );
-            exit;
         }
 	}
 
