@@ -288,17 +288,10 @@ class AWPCP_Admin {
 			return;
 		}
 
-		if ( $this->upgrade_tasks->has_pending_tasks( array( 'context' => 'plugin' ) ) ) {
-            wp_enqueue_style( 'awpcp-admin-style' );
-
-			ob_start();
-				include( AWPCP_DIR . '/admin/templates/admin-pending-manual-upgrade-notice.tpl.php' );
-				$html = ob_get_contents();
-			ob_end_clean();
-
-			echo $html;
-
-			return;
+        if ( $this->upgrade_tasks->has_pending_tasks( array( 'context' => 'plugin', 'blocking' => true ) ) ) {
+            return $this->load_notice_for_blocking_manual_uprades();
+        } else if ( $this->upgrade_tasks->has_pending_tasks( array( 'context' => 'plugin' ) ) ) {
+            return $this->load_notice_for_non_blocking_manual_uprades();
 		}
 
 		$show_quick_start_quide_notice = get_awpcp_option( 'show-quick-start-guide-notice' );
@@ -326,6 +319,31 @@ class AWPCP_Admin {
 
 		do_action( 'awpcp-admin-notices' );
 	}
+
+    private function load_notice_for_blocking_manual_uprades() {
+        $message = __( 'AWPCP features are currently disabled because the plugin needs you to perform a manual upgrade before continuing. Please <upgrade-link>go to the Classifieds admin section section to Upgrade</a> or click the button below.', 'another-wordpress-classifieds-plugin' );
+
+        return $this->load_notice_for_manual_upgrades( $message );
+    }
+
+    private function load_notice_for_manual_upgrades( $message ) {
+        wp_enqueue_style( 'awpcp-admin-style' );
+
+        ob_start();
+            include( AWPCP_DIR . '/admin/templates/admin-pending-manual-upgrade-notice.tpl.php' );
+            $html = ob_get_contents();
+        ob_end_clean();
+
+        echo $html;
+
+        return;
+    }
+
+    private function load_notice_for_non_blocking_manual_uprades() {
+        $message = __( 'AWPCP needs you to perform a manual upgrade to update the database schema and the information stored there. All plugin features will continue to work while the upgrade routines are executed. Please <upgrade-link>go to the Classifieds admin section section to Upgrade</a> or click the button below.', 'another-wordpress-classifieds-plugin' );
+
+        return $this->load_notice_for_manual_upgrades( $message );
+    }
 
 	/**
 	 * Add settings link on plugins page
