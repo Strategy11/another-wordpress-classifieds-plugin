@@ -67,6 +67,7 @@ class AWPCP_Manual_Upgrade_Tasks {
             'name' => __( 'Store Media as Attachments', 'another-wordpress-classifieds-plugin' ),
             'handler' => 'awpcp_store_media_as_attachments_upgrade_task_handler',
             'context' => 'plugin',
+            'blocking' => false,
         ) );
     }
 }
