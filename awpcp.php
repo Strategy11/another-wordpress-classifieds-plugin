@@ -545,7 +545,7 @@ class AWPCP {
         $this->manual_upgrades->register_upgrade_tasks();
 
 		$this->admin = awpcp_admin_panel();
-		$this->panel = new AWPCP_User_Panel();
+		$this->panel = awpcp_user_panel();
 
 		$this->compatibility = new AWPCP_Compatibility();
 		$this->compatibility->load_plugin_integrations();

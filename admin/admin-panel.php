@@ -43,15 +43,18 @@ class AWPCP_Admin {
 	}
 
 	public function configure_routes( $router ) {
-        if ( $this->upgrade_tasks->has_pending_tasks( array( 'context' => 'plugin' ) ) ) {
-            $this->configure_manual_upgrade_routes( 'awpcp-admin-upgrade', $router );
+        if ( $this->upgrade_tasks->has_pending_tasks( array( 'context' => 'plugin', 'blocking' => true ) ) ) {
+            $this->configure_routes_for_blocking_manual_upgrades( 'awpcp-admin-upgrade', $router );
+        } else if ( $this->upgrade_tasks->has_pending_tasks( array( 'context' => 'plugin' ) ) ) {
+            $this->configure_routes_for_non_blocking_manual_upgrades( 'awpcp.php', $router );
         } else {
             $this->configure_regular_routes( 'awpcp.php', $router );
         }
     }
 
-    private function configure_manual_upgrade_routes( $parent_menu, $router ) {
+    private function configure_routes_for_blocking_manual_upgrades( $parent_menu, $router ) {
         $parent_page = $this->add_main_classifieds_admin_page(
+            __( 'Manual Upgrade', 'another-wordpress-classifieds-plugin' ),
             $parent_menu,
             'awpcp_manual_upgrade_admin_page',
             $router
@@ -60,14 +63,38 @@ class AWPCP_Admin {
         $this->add_manual_upgrade_admin_page( $parent_page, __( 'Classifieds', 'another-wordpress-classifieds-plugin' ), $parent_menu, $router );
     }
 
-    private function add_main_classifieds_admin_page( $parent_menu, $handler_constructor, $router ) {
+    private function configure_routes_for_non_blocking_manual_upgrades( $parent_menu, $router ) {
+        $parent_page = $this->configure_route_for_main_classifieds_admin_page( $parent_menu, $router );
+        $this->configure_route_for_manual_upgrade_admin_page( $parent_page, $router );
+        $this->configure_routes_for_admin_subpages( $parent_page, $router );
+    }
+
+    private function configure_route_for_main_classifieds_admin_page( $parent_menu, $router ) {
+        return $this->add_main_classifieds_admin_page(
+            __( 'AWPCP', 'another-wordpress-classifieds-plugin' ),
+            $parent_menu,
+            'awpcp_main_classifieds_admin_page',
+            $router
+        );
+    }
+
+    private function add_main_classifieds_admin_page( $page_title, $parent_menu, $handler_constructor, $router ) {
         return $router->add_admin_page(
             __( 'Classifieds', 'another-wordpress-classifieds-plugin' ),
-            awpcp_admin_page_title( __( 'AWPCP', 'another-wordpress-classifieds-plugin' ) ),
+            awpcp_admin_page_title( $page_title ),
             $parent_menu,
             $handler_constructor,
             awpcp_admin_capability(),
             MENUICO
+        );
+    }
+
+    private function configure_route_for_manual_upgrade_admin_page( $parent_page, $router ) {
+        $this->add_manual_upgrade_admin_page(
+            $parent_page,
+            __( 'Manual Upgrade', 'another-wordpress-classifieds-plugin' ),
+            'awpcp-admin-upgrade',
+            $router
         );
     }
 
@@ -83,18 +110,8 @@ class AWPCP_Admin {
         );
     }
 
-    private function configure_regular_routes( $parent_menu, $router ) {
+    private function configure_routes_for_admin_subpages( $parent_page, $router ) {
         $admin_capability = awpcp_admin_capability();
-
-        $parent_page = $this->add_main_classifieds_admin_page(
-            $parent_menu,
-            'awpcp_main_classifieds_admin_page',
-            $router
-        );
-
-        if ( isset( $_REQUEST['page'] ) && $_REQUEST['page'] == 'awpcp-admin-upgrade' ) {
-            $this->add_manual_upgrade_admin_page( $parent_page, __( 'Manual Upgrade', 'another-wordpress-classifieds-plugin' ), 'awpcp-admin-upgrade', $router );
-        }
 
         $router->add_admin_subpage(
             $parent_page,
@@ -250,7 +267,17 @@ class AWPCP_Admin {
             $admin_capability,
             9900
         );
-	}
+    }
+
+    private function configure_regular_routes( $parent_menu, $router ) {
+        $parent_page = $this->configure_route_for_main_classifieds_admin_page( $parent_menu, $router );
+
+        if ( isset( $_REQUEST['page'] ) && $_REQUEST['page'] == 'awpcp-admin-upgrade' ) {
+            $this->configure_route_for_manual_upgrade_admin_page( $parent_page, $router );
+        }
+
+        $this->configure_routes_for_admin_subpages( $parent_page, $router );
+    }
 
 	public function notices() {
 		if ( ! awpcp_current_user_is_admin() ) {

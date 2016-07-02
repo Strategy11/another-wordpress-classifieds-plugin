@@ -49,6 +49,7 @@ class AWPCP_Upgrade_Tasks_Manager {
         $query = wp_parse_args( $query, array(
             'type' => null,
             'context' => null,
+            'blocking' => null,
         ) );
 
         $pending_tasks = array();
@@ -59,6 +60,10 @@ class AWPCP_Upgrade_Tasks_Manager {
             }
 
             if ( ! is_null( $query['type'] ) && $task['type'] != $query['type'] ) {
+                continue;
+            }
+
+            if ( ! is_null( $query['blocking'] ) && $task['blocking'] != $query['blocking'] ) {
                 continue;
             }
 

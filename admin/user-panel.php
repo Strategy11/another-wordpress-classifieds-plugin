@@ -5,10 +5,17 @@
 
 require_once(AWPCP_DIR . '/admin/user-panel-listings.php');
 
+function awpcp_user_panel() {
+    return new AWPCP_User_Panel( awpcp_upgrade_tasks_manager() );
+}
 
 class AWPCP_User_Panel {
 
-	public function __construct() {
+    private $upgrade_tasks;
+
+	public function __construct( $upgrade_tasks ) {
+        $this->upgrade_tasks = $upgrade_tasks;
+
         $this->account = awpcp_account_balance_page();
         $this->listings = awpcp_manage_listings_user_panel_page();
 
@@ -55,6 +62,10 @@ class AWPCP_User_Panel {
 	}
 
     public function configure_routes( $router ) {
+        if ( $this->upgrade_tasks->has_pending_tasks( array( 'context' => 'plugin', 'blocking' => true ) ) ) {
+            return;
+        }
+
         if ( awpcp_payments_api()->credit_system_enabled() && ! awpcp_current_user_is_admin() ) {
             $this->add_users_page( $router );
         }
