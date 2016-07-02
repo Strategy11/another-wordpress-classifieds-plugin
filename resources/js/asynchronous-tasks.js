@@ -22,7 +22,6 @@ function($, ko, moment, AsynchronousTask, AsynchronousTasksGroup, settings) {
     };
 
     function AsynchronousTasks( params ) {
-        console.log( params );
         this.title = ko.observable( params.title );
         this.introduction = ko.observable( params.introduction );
         this.submit = ko.observable( params.submit );
@@ -50,10 +49,17 @@ function($, ko, moment, AsynchronousTask, AsynchronousTasksGroup, settings) {
         },
 
         _getTasks: function( group ) {
-            var tasks = [];
+            var self = this, tasks = [];
 
             $.each( group.tasks, function( index, task ) {
-                tasks.push( new AsynchronousTask( task ) );
+                tasks.push( new AsynchronousTask( {
+                    name: task.name,
+                    description: task.description,
+                    action: task.action,
+                    recordsCount: task.recordsCount,
+                    recordsLeft: task.recordsLeft,
+                    templates: self.templates
+                } ) );
             } );
 
             return tasks;

@@ -15,6 +15,8 @@ function($, ko, moment, settings) {
         this.recordsCount = ko.observable( params.recordsCount || null );
         this.recordsLeft = ko.observable( params.recordsLeft || null );
 
+        this.templates = params.templates;
+
         this.numberOfRecordsProcessed = ko.computed(function() {
             var recordsCount = this.recordsCount(),
                 recordsLeft = this.recordsLeft();
@@ -28,9 +30,13 @@ function($, ko, moment, settings) {
 
         this.numberOfRecordsProcessedMessage = ko.computed(function() {
             var numberOfRecordsProcessed = this.numberOfRecordsProcessed(),
-                totalNumberOfRecords = this.recordsCount();
+                totalNumberOfRecords = this.recordsCount(),
+                message = this.templates.itemsProcessed;
 
-            return numberOfRecordsProcessed + ' of ' + totalNumberOfRecords;
+                message = message.replace( '<number-of-items-processed>', numberOfRecordsProcessed );
+                message = message.replace( '<total-number-of-items>', totalNumberOfRecords );
+
+            return message;
         }, this);
 
         this.running = ko.observable( false );
@@ -48,8 +54,6 @@ function($, ko, moment, settings) {
             } else if ( recordsCount > 0 ) {
                 progress = 100 * ( recordsCount - recordsLeft ) / recordsCount;
             }
-
-            console.log( this.name(), recordsCount - recordsLeft, recordsCount, Math.round( progress * 100 ) / 100 );
 
             return Math.round( progress * 100 ) / 100;
         }, this).extend({ throttle: 1 });
