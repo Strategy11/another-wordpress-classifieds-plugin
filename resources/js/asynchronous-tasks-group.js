@@ -1,13 +1,12 @@
-/*global AWPCP, _*/
+/*global AWPCP*/
 
 AWPCP.define('awpcp/asynchronous-tasks-group', [
     'jquery',
     'knockout',
     'moment',
-    'awpcp/asynchronous-task',
-    'awpcp/settings'
+    'awpcp/asynchronous-task'
 ],
-function($, ko, moment, AsynchronousTask, settings) {
+function($, ko, moment, AsynchronousTask) {
 
     var AsynchronousTasksGroup = function( params ) {
         this.title = ko.observable( params.title );
@@ -33,7 +32,7 @@ function($, ko, moment, AsynchronousTask, settings) {
 
         this.percentageOfCompletion = ko.computed(function() {
             var tasks = this.tasks(),
-                totalPoints = 0
+                totalPoints = 0,
                 completedPoints = 0;
 
             $.each( tasks, function( index, task ) {
@@ -46,20 +45,13 @@ function($, ko, moment, AsynchronousTask, settings) {
                 }
             } );
 
-            console.log(
-                this.title(),
-                completedPoints,
-                totalPoints,
-                Math.round( ( completedPoints / totalPoints ) * 10000 ) / 100
-            );
-
             return Math.round( ( completedPoints / totalPoints ) * 10000 ) / 100;
         }, this).extend({ throttle: 1 });
 
         this.percentageOfCompletionString = ko.computed(function() {
             return this.percentageOfCompletion() + '%';
         }, this);
-    }
+    };
 
     $.extend( AsynchronousTasksGroup.prototype, AsynchronousTask.prototype, {
         getRemainingTime: function() {

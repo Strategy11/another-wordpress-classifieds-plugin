@@ -1,4 +1,4 @@
-/*global AWPCP, _*/
+/*global AWPCP*/
 
 AWPCP.define('awpcp/asynchronous-task', ['jquery', 'knockout', 'moment', 'awpcp/settings'],
 function($, ko, moment, settings) {
@@ -99,7 +99,7 @@ function($, ko, moment, settings) {
                 return remainingTime;
             };
         })(), this);
-    }
+    };
 
     $.extend( AsynchronousTask.prototype, {
         getStartTime: function() {
@@ -193,52 +193,8 @@ function($, ko, moment, settings) {
         _handleErrorResponse: function( response, done ) {
             this.setErrorMessage( response.error );
             done();
-        },
+        }
     } );
 
     return AsynchronousTask;
-    //     this.working = ko.observable(false);
-
-    //     this.texts = {};
-
-    //     $.each(texts, $.proxy(function(key, text) {
-    //         this.texts[key] = ko.observable(text);
-    //     }, this));
-
-    //     this.tasks = ko.observableArray([]);
-
-    //     $.each(tasks, $.proxy(function(index, task) {
-    //         this.tasks.push(new AsynchronousTask(task));
-    //     }, this));
-
-    //     this.tasksCount = this.tasks().length;
-    //     this.currentTaskIndex = ko.observable(0);
-    //     this.tasksCompleted = ko.observable(0);
-
-    //     this.tasksLeft = ko.computed(function() {
-    //         return this.tasksCount - this.tasksCompleted();
-    //     }, this);
-
-    //     this.completed = ko.observable(this.tasksLeft() === 0);
-
-    //     this.progress = ko.computed(function() {
-    //         var tasks = this.tasks(), task = tasks[this.currentTaskIndex()],
-    //             tasksCompleted = this.tasksCompleted(),
-    //             currentTaskProgress, progress;
-
-    //         if (task) {
-    //             currentTaskProgress = parseFloat(task.progress()) / 100;
-    //         } else {
-    //             currentTaskProgress = 0;
-    //         }
-
-    //         if (this.working()) {
-    //             progress = 100 * (tasksCompleted + currentTaskProgress) / this.tasksCount;
-    //         } else {
-    //             progress = 100 * tasksCompleted / this.tasksCount;
-    //         }
-
-    //         return progress + '%';
-    //     }, this).extend({ throttle: 1 });
-    // }
 });

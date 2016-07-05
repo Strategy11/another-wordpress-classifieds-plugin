@@ -1,14 +1,13 @@
-/*global AWPCP, _*/
+/*global AWPCP*/
 
 AWPCP.define( 'awpcp/asynchronous-tasks', [
     'jquery',
     'knockout',
     'moment',
     'awpcp/asynchronous-task',
-    'awpcp/asynchronous-tasks-group',
-    'awpcp/settings'
+    'awpcp/asynchronous-tasks-group'
 ],
-function($, ko, moment, AsynchronousTask, AsynchronousTasksGroup, settings) {
+function($, ko, moment, AsynchronousTask, AsynchronousTasksGroup) {
 
     ko.bindingHandlers.progress = {
         init: function(element, accessor) {
@@ -41,7 +40,7 @@ function($, ko, moment, AsynchronousTask, AsynchronousTasksGroup, settings) {
                     title: group.title,
                     content: group.content,
                     successContent: group.successContent,
-                    tasks: self._getTasks( group ),
+                    tasks: self._getTasks( group )
                 } ) );
             } );
 
