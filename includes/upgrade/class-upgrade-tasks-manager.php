@@ -40,12 +40,12 @@ class AWPCP_Upgrade_Tasks_Manager {
         return get_option( $slug );
     }
 
-    public function has_pending_tasks( $query ) {
+    public function has_pending_tasks( $query = array() ) {
         $pending_tasks = $this->get_pending_tasks( $query );
         return count( $pending_tasks ) > 0;
     }
 
-    public function get_pending_tasks( $query ) {
+    public function get_pending_tasks( $query = array() ) {
         $query = wp_parse_args( $query, array(
             'type' => null,
             'context' => null,
