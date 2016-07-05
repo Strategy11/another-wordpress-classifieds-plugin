@@ -58,7 +58,7 @@ class AWPCP_ManualUpgradeAdminPage {
             }
 
             $groups[] = array(
-                'title' => __( 'Blocking Tasks', 'another-wordpress-classifieds-plugin' ),
+                'title' => __( 'Upgrade Tasks that must complete immediately', 'another-wordpress-classifieds-plugin' ),
                 'content' => __( "The following tasks need to be completed before you can use the plugin's and modules features again.", 'another-wordpress-classifieds-plugin' ),
                 'successContent' => $successContent,
                 'tasks' => $tasks['blocking_tasks'],
@@ -72,7 +72,7 @@ class AWPCP_ManualUpgradeAdminPage {
             $successContent = str_replace( '<continue-link>', $continue_link, $successContent );
 
             $groups[] = array(
-                'title' => __( 'Non-Blocking Tasks', 'another-wordpress-classifieds-plugin' ),
+                'title' => __( 'Upgrade tasks that will run while the plugin continues to work', 'another-wordpress-classifieds-plugin' ),
                 'content' => __( "The following tasks need to be completed, but the plugin's and modules features will continie to work while the routines are executed.", 'another-wordpress-classifieds-plugin' ),
                 'successContent' => $successContent,
                 'tasks' => $tasks['non_blocking_tasks'],
