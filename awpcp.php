@@ -769,6 +769,8 @@ class AWPCP {
             update_option( 'awpcp-installed-or-upgraded', false );
         }
 
+        add_filter( 'post_type_link', array( $this, 'filter_post_type_link' ), 10, 4 );
+
 		$this->register_scripts();
         $this->register_notification_handlers();
 	}
@@ -1253,6 +1255,14 @@ class AWPCP {
             $this->js->print_data();
         }
 	}
+
+    public function filter_post_type_link( $post_link, $post, $leavename, $sample ) {
+        if ( $post->post_type != AWPCP_LISTING_POST_TYPE ) {
+            return $post_link;
+        }
+
+        return awpcp_listing_renderer()->get_view_listing_url( $post );
+    }
 
     public function register_content_placeholders( $placeholders ) {
         $handler = awpcp_edit_listing_url_placeholder();
