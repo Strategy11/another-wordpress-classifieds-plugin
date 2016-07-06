@@ -3,6 +3,13 @@
     <!--<div data-bind="if: error, css: { 'awpcp-updated': error, updated: error, error: error }"><p data-bind="html: error"></p></div>-->
 
     <div data-bind="ifnot: group.completed">
+        <?php
+            echo awpcp_html_admin_second_level_heading( array(
+                'attributes' => array(
+                    'data-bind' => 'html: title, visible: title',
+                ),
+            ) );
+        ?>
         <p data-bind="html: introduction"></p>
     </div>
 
@@ -10,10 +17,14 @@
         <li>
             <div data-bind="ifnot: completed">
                 <div data-bind="if: tasks">
-                    <h3 data-bind="text: title"></h3>
-                    <div data-bind="if: content">
-                        <p data-bind="text: content"></p>
-                    </div>
+                    <?php
+                        echo awpcp_html_admin_third_level_heading( array(
+                            'attributes' => array(
+                                'data-bind' => 'text: title, visible: title',
+                            ),
+                        ) );
+                    ?>
+                    <p data-bind="text: content, visible: content"></p>
                     <ol class="awpcp-asynchronous-tasks" data-bind="foreach: tasks">
                         <li>
                             <span data-bind="if: numberOfRecordsProcessed">
@@ -31,9 +42,14 @@
             </div>
 
             <div data-bind="if: completed">
-                <div class="awpcp-asynchronous-tasks-completed-message-container" data-bind="if: successContent">
-                    <div data-bind="html: successContent"></div>
-                </div>
+                <?php
+                    echo awpcp_html_admin_third_level_heading( array(
+                        'attributes' => array(
+                            'data-bind' => 'html: successTitle, visible: successTitle',
+                        ),
+                    ) );
+                ?>
+                <div data-bind="html: successContent, visible: successContent"></div>
             </div>
         </li>
     </ul>

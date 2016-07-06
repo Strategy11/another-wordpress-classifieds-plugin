@@ -12,6 +12,7 @@ function($, ko, moment, AsynchronousTask) {
         this.title = ko.observable( params.title );
         this.content = ko.observable( params.content );
 
+        this.successTitle = ko.observable( params.successTitle );
         this.successContent = ko.observable( params.successContent );
 
         this.tasks = ko.observableArray( params.tasks );

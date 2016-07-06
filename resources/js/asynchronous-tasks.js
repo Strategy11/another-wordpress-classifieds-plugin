@@ -39,6 +39,7 @@ function($, ko, moment, AsynchronousTask, AsynchronousTasksGroup) {
                 groups.push( new AsynchronousTasksGroup( {
                     title: group.title,
                     content: group.content,
+                    successTitle: group.successTitle,
                     successContent: group.successContent,
                     tasks: self._getTasks( group )
                 } ) );

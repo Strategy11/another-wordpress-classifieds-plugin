@@ -7,7 +7,7 @@ class AWPCP_AsynchronousTasksComponent {
     public function __construct( $params ) {
         $this->params = wp_parse_args( $params, array(
             'groups' => array(),
-            'title' => _x( 'Pending Tasks', 'asynchrounous tasks title', 'another-wordpress-classifieds-plugin' ),
+            'title' => false,
             'introduction' => '',
             'submit' => '',
             'templates' => array(
