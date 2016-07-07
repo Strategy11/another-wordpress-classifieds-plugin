@@ -20,6 +20,8 @@ AWPCP.define( 'awpcp/category-item-view', [ 'awpcp/settings' ], function( settin
         },
 
         render: function() {
+            var actionName, actionClassName;
+
             if ( this.model.get( 'selected' ) ) {
                 actionName = settings.l10n( 'multiple-categories-selector', 'remove-category-button' );
                 actionClassName = 'dashicons dashicons-no';
@@ -30,7 +32,7 @@ AWPCP.define( 'awpcp/category-item-view', [ 'awpcp/settings' ], function( settin
 
             this.$el.html( this.template( {
                 category: {
-                    name: '&mdash;&nbsp;'.repeat( this.indentationLevel ) + this.model.get( 'name' ),
+                    name: '&mdash;&nbsp;'.repeat( this.indentationLevel ) + this.model.get( 'name' )
                 },
                 action: actionName,
                 actionClassName: actionClassName,

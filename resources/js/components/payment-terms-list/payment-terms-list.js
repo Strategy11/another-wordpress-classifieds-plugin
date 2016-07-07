@@ -1,8 +1,7 @@
+/*global AWPCP, _*/
 AWPCP.define( 'awpcp/payment-terms-list', [ 'jquery', 'awpcp/settings' ],
 function( $, settings ) {
     var PaymentTermsList = function( container ) {
-        var self = this;
-
         this.container = container;
         this.state = {
             allPaymentTerms: this.container.find( '.awpcp-payment-terms-list-payment-term' )

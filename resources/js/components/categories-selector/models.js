@@ -12,7 +12,7 @@ AWPCP.define( 'awpcp/category-item-model', [], function() {
             id: 0,
             name: 'Default Category',
             price: 0,
-            selected: false,
+            selected: false
         }
     } );
 

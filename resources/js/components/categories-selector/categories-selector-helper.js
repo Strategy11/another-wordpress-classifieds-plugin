@@ -15,7 +15,7 @@ function( $, CategoryItemModel ) {
         this.paymentTerms = paymentTerms;
 
         _.each( _.keys( categoriesHierarchy ), function( key ) {
-            parent = ( key == 'root' ? key : parseInt( key, 10 ) );
+            parent = ( key === 'root' ? key : parseInt( key, 10 ) );
 
             self.hierarchy[ parent ] = _.map( categoriesHierarchy[ key ], function( category ) {
                 model = new CategoryItemModel( {
@@ -43,7 +43,7 @@ function( $, CategoryItemModel ) {
             var ancestors = [];
             var category;
 
-            for ( var i = 0; i < categories.length; i++ ) {
+            for ( var i = 0; i < categories.length; i = i + 1 ) {
                 category = categories[ i ];
 
                 do {
@@ -52,7 +52,7 @@ function( $, CategoryItemModel ) {
                     }
 
                     category = this.getCategoryParent( category );
-                } while( category && category != 'root' );
+                } while( category && category !== 'root' );
             }
 
             return ancestors;
@@ -95,11 +95,9 @@ function( $, CategoryItemModel ) {
                 return paymentTerm;
             } ) );
 
-            console.log( allowedPaymentTerms );
-
             var categoriesThatCanBeSelectedTogether = [];
 
-            for ( var i = allowedPaymentTerms.length - 1; i >= 0; i-- ) {
+            for ( var i = allowedPaymentTerms.length - 1; i >= 0; i = i - 1 ) {
                 if ( allowedPaymentTerms[ i ].categories.length === 0 ) {
                     categoriesThatCanBeSelectedTogether = categories;
                     break;
@@ -109,8 +107,6 @@ function( $, CategoryItemModel ) {
                     categoriesThatCanBeSelectedTogether,
                     allowedPaymentTerms[ i ].categories
                 );
-
-                console.log( categoriesThatCanBeSelectedTogether );
             }
 
             return categoriesThatCanBeSelectedTogether;

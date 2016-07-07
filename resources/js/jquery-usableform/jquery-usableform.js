@@ -23,12 +23,12 @@ if (typeof jQuery !== 'undefined') {
                     });
                 });
             });
-        }
+        };
 
         function onTargetChange(target, element, condition) {
-            if (condition.length == 3 && elementValueMatchesCondition(target, condition[2])) {
+            if (condition.length === 3 && elementValueMatchesCondition(target, condition[2])) {
                 handleElementFulfilledCondition(element, condition[0]);
-            } else if (condition.length == 2 && null !== getElementValue(target)) {
+            } else if (condition.length === 2 && null !== getElementValue(target)) {
                 handleElementFulfilledCondition(element, condition[0]);
             } else {
                 handleElementUnfulfilledCondition(element, condition[0]);
@@ -41,7 +41,7 @@ if (typeof jQuery !== 'undefined') {
             if ($.isArray(value)) {
                 return value.indexOf(condition) !== -1;
             } else {
-                return value == condition;
+                return value === condition;
             }
         }
 
@@ -49,7 +49,7 @@ if (typeof jQuery !== 'undefined') {
             var type = getElementType(element);
             var value;
 
-            if ('checkbox' == type || 'radio' == type) {
+            if ('checkbox' === type || 'radio' === type) {
                 value = element.filter(':checked').val();
             } else {
                 value = element.val();
