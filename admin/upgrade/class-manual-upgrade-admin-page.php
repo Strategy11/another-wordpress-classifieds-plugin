@@ -73,7 +73,7 @@ class AWPCP_ManualUpgradeAdminPage {
 
             $groups[] = array(
                 'title' => __( 'Upgrade tasks that will run while the plugin continues to work', 'another-wordpress-classifieds-plugin' ),
-                'content' => __( "The following tasks need to be completed, but the plugin's and modules features will continie to work while the routines are executed.", 'another-wordpress-classifieds-plugin' ),
+                'content' => __( "The following tasks need to be completed, but the plugin's and modules features will continue to work while the routines are executed.", 'another-wordpress-classifieds-plugin' ),
                 'successContent' => $successContent,
                 'tasks' => $tasks['non_blocking_tasks'],
             );
