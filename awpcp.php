@@ -46,7 +46,6 @@ define( 'AWPCP_CATEGORY_TAXONOMY', 'awpcp_listing_category' );
 
 global $awpcp;
 
-global $awpcp_plugin_data;
 global $awpcp_db_version;
 
 global $wpcontenturl;
@@ -58,13 +57,7 @@ global $awpcp_imagesurl;
 
 global $nameofsite;
 
-
-// get_plugin_data accounts for about 2% of the cost of
-// each request, defining the version manually is a less
-// expensive way --wvega
-require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-$awpcp_plugin_data = get_plugin_data(__FILE__);
-$awpcp_db_version = $awpcp_plugin_data['Version'];
+$awpcp_db_version = '4.0-dev-29';
 
 $wpcontenturl = WP_CONTENT_URL;
 $wpcontentdir = WP_CONTENT_DIR;
@@ -72,6 +65,10 @@ $awpcp_plugin_path = AWPCP_DIR;
 $awpcp_plugin_url = AWPCP_URL;
 $imagespath = $awpcp_plugin_path . '/resources/images';
 $awpcp_imagesurl = $awpcp_plugin_url .'/resources/images';
+
+// XXX: Required because Settings API attempts to use register_setting on
+//      every request.
+require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
 require_once( AWPCP_DIR . '/includes/class-container.php' );
 
