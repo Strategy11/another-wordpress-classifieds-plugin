@@ -618,7 +618,7 @@ class AWPCP {
 
     		awpcp_schedule_activation();
 
-    		$this->modules_manager->load_modules();
+            $this->modules_manager->load_modules( $this->container );
         }
 	}
 

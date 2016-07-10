@@ -25,8 +25,8 @@ class AWPCP_ModulesManager {
         $this->request = $request;
     }
 
-    public function load_modules() {
-        do_action( 'awpcp-load-modules', $this );
+    public function load_modules( $container ) {
+        do_action( 'awpcp-load-modules', $this, $container );
     }
 
     public function load( $module ) {
