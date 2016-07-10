@@ -73,6 +73,7 @@ $awpcp_plugin_url = AWPCP_URL;
 $imagespath = $awpcp_plugin_path . '/resources/images';
 $awpcp_imagesurl = $awpcp_plugin_url .'/resources/images';
 
+require_once( AWPCP_DIR . '/includes/class-container.php' );
 
 // common
 require_once(AWPCP_DIR . "/debug.php");
@@ -438,11 +439,13 @@ class AWPCP {
 
 	public $flush_rewrite_rules = false;
 
+    private $container;
     private $modules_manager_factory;
 
-	public function __construct( $modules_manager_factory ) {
+	public function __construct( $container, $modules_manager_factory ) {
 		global $awpcp_db_version;
 
+        $this->container = $container;
         $this->modules_manager_factory = $modules_manager_factory;
 		$this->version = $awpcp_db_version;
 
@@ -1466,7 +1469,11 @@ function awpcp() {
 	global $awpcp;
 
 	if (!is_object($awpcp)) {
-		$awpcp = new AWPCP( awpcp_modules_manager_factory() );
+        $container = awpcp_container();
+
+        include( AWPCP_DIR . '/includes/constructor-functions.php' );
+
+        $awpcp = new AWPCP( $container, awpcp_modules_manager_factory() );
         $awpcp->bootstrap();
 	}
 
