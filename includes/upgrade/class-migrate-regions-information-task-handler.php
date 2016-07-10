@@ -1,9 +1,5 @@
 <?php
 
-function awpcp_migrate_regions_information_task_handler() {
-    return new AWPCP_Migrate_Regions_Information_Task_Handler();
-}
-
 class AWPCP_Migrate_Regions_Information_Task_Handler {
 
     /**

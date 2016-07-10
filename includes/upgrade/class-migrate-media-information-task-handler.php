@@ -1,9 +1,5 @@
 <?php
 
-function awpcp_migrate_media_information_task_handler() {
-    return new AWPCP_Migrate_Media_Information_Task_Handler( $GLOBALS['wpdb'] );
-}
-
 class AWPCP_Migrate_Media_Information_Task_Handler {
 
     private $db;

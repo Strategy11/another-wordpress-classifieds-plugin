@@ -1,9 +1,5 @@
 <?php
 
-function awpcp_update_media_status_task_handler() {
-    return new AWPCP_Update_Media_Status_Task_Handler();
-}
-
 class AWPCP_Update_Media_Status_Task_Handler {
 
     public function run_task() {

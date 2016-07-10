@@ -1,18 +1,16 @@
 <?php
 
-function awpcp_upgrade_task_ajax_handler( $tasks_manager ) {
-    return new AWPCP_Upgrade_Task_Ajax_Handler( $tasks_manager, awpcp_request(), awpcp_ajax_response() );
-}
-
 class AWPCP_Upgrade_Task_Ajax_Handler extends AWPCP_AjaxHandler {
 
     private $tasks_manager;
+    private $task_handler_factory;
     private $request;
 
-    public function __construct( $tasks_manager, $request, $response ) {
+    public function __construct( $tasks_manager, $task_handler_factory, $request, $response ) {
         parent::__construct( $response );
 
         $this->tasks_manager = $tasks_manager;
+        $this->task_handler_factory = $task_handler_factory;
         $this->request = $request;
     }
 
@@ -24,14 +22,10 @@ class AWPCP_Upgrade_Task_Ajax_Handler extends AWPCP_AjaxHandler {
             return $this->error_response( sprintf( "No task was found with identifier: %s.", $task_slug ) );
         }
 
-        if ( ! is_callable( $task['handler'] ) ) {
+        $task_handler = $this->task_handler_factory->get_task_handler( $task['handler'] );
+
+        if ( is_null( $task_handler ) ) {
             return $this->error_response( sprintf( "The handler for task '%s' couldn't be instantiated.", $task_slug ) );
-        }
-
-        $task_handler = call_user_func( $task['handler'] );
-
-        if ( ! is_object( $task_handler ) ) {
-            return $this->error();
         }
 
         list( $records_count, $records_left ) = $task_handler->run_task();

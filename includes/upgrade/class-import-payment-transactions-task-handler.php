@@ -1,9 +1,5 @@
 <?php
 
-function awpcp_import_payment_transactions_task_handler() {
-    return new AWPCP_Import_Payment_Transactions_Task_Handler();
-}
-
 class AWPCP_Import_Payment_Transactions_Task_Handler {
 
     public function run_task() {

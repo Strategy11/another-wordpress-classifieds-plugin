@@ -40,6 +40,10 @@ class AWPCP_Upgrade_Tasks_Manager {
         return get_option( $slug );
     }
 
+    public function get_tasks() {
+        return $this->tasks;
+    }
+
     public function has_pending_tasks( $query = array() ) {
         $pending_tasks = $this->get_pending_tasks( $query );
         return count( $pending_tasks ) > 0;

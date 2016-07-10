@@ -1,15 +1,5 @@
 <?php
 
-function AWPCP_Store_Listing_Categories_As_Custom_Taxonomies_Upgrade_Task_Handler() {
-    return new AWPCP_Upgrade_Task_Handler(
-        new AWPCP_Store_Listing_Categories_As_Custom_Taxonomies_Upgrade_Task_Handler(
-            awpcp_categories_registry(),
-            awpcp_wordpress(),
-            $GLOBALS['wpdb']
-        )
-    );
-}
-
 class AWPCP_Store_Listing_Categories_As_Custom_Taxonomies_Upgrade_Task_Handler implements AWPCP_Upgrade_Task_Runner {
 
     private $categories;

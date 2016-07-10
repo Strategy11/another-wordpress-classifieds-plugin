@@ -1,11 +1,5 @@
 <?php
 
-function awpcp_store_phone_number_digits_upgrade_task_handler() {
-    return new AWPCP_Store_Phone_Number_Digits_Upgrade_Task_Handler(
-        $GLOBALS['wpdb']
-    );
-}
-
 class AWPCP_Store_Phone_Number_Digits_Upgrade_Task_Handler {
 
     public function __construct( $db ) {

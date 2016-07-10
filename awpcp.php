@@ -300,16 +300,9 @@ require( AWPCP_DIR . "/includes/upgrade/class-upgrade-task-handler.php" );
 require( AWPCP_DIR . "/includes/upgrade/class-database-tables.php" );
 require_once( AWPCP_DIR . "/includes/upgrade/class-manual-upgrade-tasks.php" );
 require_once( AWPCP_DIR . "/includes/upgrade/class-upgrade-tasks-manager.php" );
-require( AWPCP_DIR . "/includes/upgrade/class-store-listings-as-custom-post-types-upgrade-task-handler.php" );
-require( AWPCP_DIR . "/includes/upgrade/class-store-listing-categories-as-custom-taxonomies-upgrade-task-handler.php" );
-require( AWPCP_DIR . "/includes/upgrade/class-store-media-as-attachments-upgrade-task-handler.php" );
-require( AWPCP_DIR . '/includes/upgrade/class-store-phone-number-digits-upgrade-task-handler.php' );
 require_once( AWPCP_DIR . "/includes/upgrade/class-upgrade-task-ajax-handler.php" );
 
-require_once( AWPCP_DIR . "/includes/upgrade/class-import-payment-transactions-task-handler.php" );
-require_once( AWPCP_DIR . "/includes/upgrade/class-migrate-media-information-task-handler.php" );
 require_once( AWPCP_DIR . "/includes/upgrade/class-migrate-regions-information-task-handler.php" );
-require_once( AWPCP_DIR . "/includes/upgrade/class-update-media-status-task-handler.php" );
 
 require_once( AWPCP_DIR . "/includes/wordpress/class-wordpress-scripts.php" );
 require_once( AWPCP_DIR . "/includes/wordpress/class-wordpress.php" );
@@ -777,7 +770,7 @@ class AWPCP {
 
     private function ajax_setup() {
         // register ajax request handler for pending upgrade tasks
-        $task_handler = awpcp_upgrade_task_ajax_handler( $this->upgrade_tasks );
+        $task_handler = $this->container->get( 'AWPCP_Upgrade_Task_Ajax_Handler' );
 
         foreach ( $this->upgrade_tasks->get_pending_tasks() as $slug => $task ) {
             add_action( "wp_ajax_$slug", array( $task_handler, 'ajax' ) );

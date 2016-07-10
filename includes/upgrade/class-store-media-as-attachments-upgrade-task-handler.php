@@ -1,15 +1,5 @@
 <?php
 
-function awpcp_store_media_as_attachments_upgrade_task_handler() {
-    return new AWPCP_Upgrade_Task_Handler(
-        new AWPCP_Store_Media_As_Attachments_Upgrade_Task_Handler(
-            awpcp_settings_api(),
-            awpcp_wordpress(),
-            $GLOBALS['wpdb']
-        )
-    );
-}
-
 class AWPCP_Store_Media_As_Attachments_Upgrade_Task_Handler implements AWPCP_Upgrade_Task_Runner {
 
     private $settings;
