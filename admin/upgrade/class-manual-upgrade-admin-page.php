@@ -56,26 +56,34 @@ class AWPCP_ManualUpgradeAdminPage {
     }
 
     private function get_tasks_defintions( $pending_upgrade_tasks, $upgrade_session, $context ) {
-        $tasks_definitions = array();
+        $upgrade_tasks = array();
+        $asynchronous_tasks = array();
 
-        foreach ( $pending_upgrade_tasks as $task => $properties ) {
-            $items_count = $upgrade_session->get_task_metadata( $task, 'items_count' );
-            $items_processed = $upgrade_session->get_task_metadata( $task, 'items_processed' );
+        foreach ( $upgrade_session->get_tasks() as $task_slug => $_ ) {
+            // add back already completed tasks!
+            if ( ! isset( $pending_upgrade_tasks[ $task_slug ] ) ) {
+                $upgrade_tasks[ $task_slug ] = $this->upgrade_tasks->get_upgrade_task( $task_slug );
+            } else {
+                $upgrade_tasks[ $task_slug ] = $pending_upgrade_tasks[ $task_slug ];
+            }
 
-            $tasks_definitions[ $task ] = array(
-                'name' => $properties['name'],
-                'description' => $properties['description'],
-                'action' => $task,
+            $items_count = $upgrade_session->get_task_metadata( $task_slug, 'items_count', null );
+            $items_processed = $upgrade_session->get_task_metadata( $task_slug, 'items_processed', null );
+
+            $asynchronous_tasks[ $task_slug ] = array(
+                'name' => $upgrade_tasks[ $task_slug ]['name'],
+                'description' => $upgrade_tasks[ $task_slug ]['description'],
+                'action' => $task_slug,
                 'context' => $context,
                 'recordsCount' => $items_count,
-                'recordsLeft' => $items_count - $items_processed,
+                'recordsLeft' => is_null( $items_count ) ? null : $items_count - $items_processed,
             );
         }
 
-        return $this->split_tasks_defintions( $pending_upgrade_tasks, $tasks_definitions );
+        return $this->split_tasks_defintions( $upgrade_tasks, $asynchronous_tasks );
     }
 
-    private function split_tasks_defintions( $pending_upgrade_tasks, $tasks_definitions ) {
+    private function split_tasks_defintions( $pending_upgrade_tasks, $asynchronous_tasks ) {
         $last_blocking_task = null;
         $storing_blocking_tasks = true;
 
@@ -91,9 +99,9 @@ class AWPCP_ManualUpgradeAdminPage {
 
         foreach ( $pending_upgrade_tasks as $slug => $task ) {
             if ( ! is_null( $last_blocking_task ) && $storing_blocking_tasks ) {
-                $blocking_tasks[] = $tasks_definitions[ $slug ];
+                $blocking_tasks[] = $asynchronous_tasks[ $slug ];
             } else {
-                $non_blocking_tasks[] = $tasks_definitions[ $slug ];
+                $non_blocking_tasks[] = $asynchronous_tasks[ $slug ];
             }
 
             if ( $last_blocking_task == $slug ) {
@@ -104,10 +112,10 @@ class AWPCP_ManualUpgradeAdminPage {
         return compact( 'blocking_tasks', 'non_blocking_tasks' );
     }
 
-    private function render_asynchronous_tasks_component( $tasks_definitions, $context ) {
+    private function render_asynchronous_tasks_component( $asynchronous_tasks, $context ) {
         $params = array(
             'introduction' => $this->get_introduction_text( $context ),
-            'groups' => $this->get_tasks_groups( $tasks_definitions ),
+            'groups' => $this->get_tasks_groups( $asynchronous_tasks ),
             'submit' => _x( 'Upgrade', 'awpcp upgrade', 'another-wordpress-classifieds-plugin' ),
         );
 
@@ -124,11 +132,11 @@ class AWPCP_ManualUpgradeAdminPage {
         }
     }
 
-    private function get_tasks_groups( $tasks ) {
+    private function get_tasks_groups( $asynchronous_tasks ) {
         $groups = array();
 
-        if ( count( $tasks['blocking_tasks'] ) ) {
-            if ( count( $tasks['non_blocking_tasks'] ) ) {
+        if ( count( $asynchronous_tasks['blocking_tasks'] ) ) {
+            if ( count( $asynchronous_tasks['non_blocking_tasks'] ) ) {
                 $continue_link = sprintf( '<a href="%s" target="_blank">', add_query_arg( 'page', 'awpcp.php' ) );
 
                 $successContent =
@@ -147,12 +155,12 @@ class AWPCP_ManualUpgradeAdminPage {
                 'title' => __( 'Upgrade Tasks that must complete immediately', 'another-wordpress-classifieds-plugin' ),
                 'content' => '<p>' . __( "The following tasks need to be completed before you can use the plugin's and modules features again.", 'another-wordpress-classifieds-plugin' ) . '</p>',
                 'successContent' => $successContent,
-                'tasks' => $tasks['blocking_tasks'],
+                'tasks' => $asynchronous_tasks['blocking_tasks'],
             );
         }
 
-        if ( count( $tasks['non_blocking_tasks'] ) ) {
-            if ( count( $tasks['blocking_tasks'] ) ) {
+        if ( count( $asynchronous_tasks['non_blocking_tasks'] ) ) {
+            if ( count( $asynchronous_tasks['blocking_tasks'] ) ) {
                 $content = '<p>' . __( "The following tasks need to be completed, but the plugin's and modules features will continue to work while the routines are executed.", 'another-wordpress-classifieds-plugin' ) . '</p>';
             } else {
                 $continue_link = sprintf( '<a href="%s" target="_blank">', add_query_arg( 'page', 'awpcp.php' ) );
@@ -175,7 +183,7 @@ class AWPCP_ManualUpgradeAdminPage {
                 'title' => __( 'Upgrade tasks that will run while the plugin continues to work', 'another-wordpress-classifieds-plugin' ),
                 'content' => $content,
                 'successContent' => $successContent,
-                'tasks' => $tasks['non_blocking_tasks'],
+                'tasks' => $asynchronous_tasks['non_blocking_tasks'],
             );
         }
 
