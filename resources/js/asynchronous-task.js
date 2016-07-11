@@ -71,7 +71,7 @@ function($, ko, moment, settings) {
         }, this).extend({ throttle: 1 });
 
         this.percentageOfCompletionString = ko.computed(function() {
-            return this.percentageOfCompletion() + '%';
+            return Math.round( this.percentageOfCompletion() ) + '%';
         }, this);
 
         this.remainingTime = ko.computed((function() {
