@@ -13,8 +13,17 @@ function($, ko, moment, settings) {
         this.startTime = ko.observable( null );
         this.lastUpdatedTime = ko.observable( null );
 
-        this.recordsCount = ko.observable( params.recordsCount || null );
-        this.recordsLeft = ko.observable( params.recordsLeft || null );
+        if ( typeof params.recordsCount === 'undefined' ) {
+            this.recordsCount = ko.observable( null );
+        } else {
+            this.recordsCount = ko.observable( params.recordsCount );
+        }
+
+        if ( typeof params.recordsLeft === 'undefined' ) {
+            this.recordsLeft = ko.observable( null );
+        } else {
+            this.recordsLeft = ko.observable( params.recordsLeft );
+        }
 
         this.templates = params.templates;
 
@@ -41,7 +50,9 @@ function($, ko, moment, settings) {
         }, this);
 
         this.running = ko.observable( false );
-        this.completed = ko.observable( false );
+        this.completed = ko.computed( function() {
+            return this.recordsLeft() === 0;
+        }, this );
 
         this.percentageOfCompletion = ko.computed(function() {
             var recordsCount = this.recordsCount(),
@@ -185,7 +196,6 @@ function($, ko, moment, settings) {
 
             if ( task.recordsLeft() === 0 ) {
                 task.running( false );
-                task.completed( true );
                 done();
             } else {
                 setTimeout( function() { task.execute( done ); }, 1 );

@@ -50,11 +50,28 @@ function($, ko, moment, AsynchronousTask) {
         }, this).extend({ throttle: 1 });
 
         this.percentageOfCompletionString = ko.computed(function() {
-            return this.percentageOfCompletion() + '%';
+            return Math.round( this.percentageOfCompletion() ) + '%';
         }, this);
+
+        this.updateCurrentTaskIndexAndCompletedTasksCount();
     };
 
     $.extend( AsynchronousTasksGroup.prototype, AsynchronousTask.prototype, {
+        updateCurrentTaskIndexAndCompletedTasksCount: function() {
+            var currentTaskIndex = this.currentTaskIndex(),
+                tasksCompleted = this.tasksCompleted();
+
+            $.each( this.tasks(), function( index, task ) {
+                if ( task.completed() ) {
+                    currentTaskIndex = currentTaskIndex + 1;
+                    tasksCompleted = tasksCompleted + 1;
+                }
+            } );
+
+            this.currentTaskIndex( currentTaskIndex );
+            this.tasksCompleted( tasksCompleted );
+        },
+
         getRemainingTime: function() {
             return this.remainingTime;
         },
