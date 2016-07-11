@@ -49,7 +49,13 @@ class AWPCP_ManualUpgradeAdminPage {
 
         if ( count( $tasks['blocking_tasks'] ) ) {
             if ( count( $tasks['non_blocking_tasks'] ) ) {
-                $successContent = _x( 'Congratulations. All blocking tasks were completed successfully. You can now access all features.', 'awpcp upgrade', 'another-wordpress-classifieds-plugin' );
+                $continue_link = sprintf( '<a href="%s" target="_blank">', add_query_arg( 'page', 'awpcp.php' ) );
+
+                $successContent =
+                '<p>' . _x( 'Congratulations. All blocking tasks were completed successfully. You can now access all features.', 'awpcp upgrade', 'another-wordpress-classifieds-plugin' ) . '</p>' .
+                '<p><strong>' . __( 'Please keep this tab open, but you can open up another browser tab and continue working on your site while this processes in the background. <continue-link>Click here to open a new tab</a>.', 'another-wordpress-classifieds-plugin' ) . '</strong></p>';
+
+                $successContent = str_replace( '<continue-link>', $continue_link, $successContent );
             } else {
                 $continue_link = sprintf( '<a href="%s">', add_query_arg( 'page', 'awpcp.php' ) );
 
@@ -59,13 +65,27 @@ class AWPCP_ManualUpgradeAdminPage {
 
             $groups[] = array(
                 'title' => __( 'Upgrade Tasks that must complete immediately', 'another-wordpress-classifieds-plugin' ),
-                'content' => __( "The following tasks need to be completed before you can use the plugin's and modules features again.", 'another-wordpress-classifieds-plugin' ),
+                'content' => '<p>' . __( "The following tasks need to be completed before you can use the plugin's and modules features again.", 'another-wordpress-classifieds-plugin' ) . '</p>',
                 'successContent' => $successContent,
                 'tasks' => $tasks['blocking_tasks'],
             );
         }
 
         if ( count( $tasks['non_blocking_tasks'] ) ) {
+            if ( count( $tasks['blocking_tasks'] ) ) {
+                $content = '<p>' . __( "The following tasks need to be completed, but the plugin's and modules features will continue to work while the routines are executed.", 'another-wordpress-classifieds-plugin' ) . '</p>';
+            } else {
+                $continue_link = sprintf( '<a href="%s" target="_blank">', add_query_arg( 'page', 'awpcp.php' ) );
+
+                $content =
+                '<p>' . __( "The following tasks need to be completed, but the plugin's and modules features will continue to work while the routines are executed.", 'another-wordpress-classifieds-plugin' ) . '</p>' .
+
+                '<p><strong>' . __( 'Please keep this tab open, but you can open up another browser tab and continue working on your site while this processes in the background.', 'another-wordpress-classifieds-plugin' ) . '</strong></p>' .
+                '<p>' . __( 'Click the Upgrade button and then <continue-link>click here to open a new tab</a>.', 'another-wordpress-classifieds-plugin' ) . '</p>';
+
+                $content = str_replace( '<continue-link>', $continue_link, $content );
+            }
+
             $continue_link = sprintf( '<a href="%s">', add_query_arg( 'page', 'awpcp.php' ) );
 
             $successContent = _x( 'Congratulations. All non blocking tasks were completed successfully. <continue-link>Click here to Continue</a>.', 'awpcp upgrade', 'another-wordpress-classifieds-plugin' );
@@ -73,7 +93,7 @@ class AWPCP_ManualUpgradeAdminPage {
 
             $groups[] = array(
                 'title' => __( 'Upgrade tasks that will run while the plugin continues to work', 'another-wordpress-classifieds-plugin' ),
-                'content' => __( "The following tasks need to be completed, but the plugin's and modules features will continue to work while the routines are executed.", 'another-wordpress-classifieds-plugin' ),
+                'content' => $content,
                 'successContent' => $successContent,
                 'tasks' => $tasks['non_blocking_tasks'],
             );
