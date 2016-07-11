@@ -28,7 +28,7 @@
                     <ol class="awpcp-asynchronous-tasks" data-bind="foreach: tasks">
                         <li>
                             <span data-bind="if: numberOfRecordsProcessed">
-                                <span data-bind="text: name"></span> &mdash; (<span data-bind="text: percentageOfCompletionString"></span>)<span data-bind="if: numberOfRecordsProcessed"> <span data-bind="text: numberOfRecordsProcessedMessage"></span></span><span data-bind="ifnot: completed"> (<span data-bind="text: remainingTime"></span> <span data-bind="text: $root.templates.remainingTime"></span>)</span>.
+                                <span data-bind="text: name"></span> &mdash; (<span data-bind="text: percentageOfCompletionString"></span>)<span data-bind="if: numberOfRecordsProcessed"> <span data-bind="text: numberOfRecordsProcessedMessage"></span></span><span data-bind="if: !completed() && remainingTime()"> (<span data-bind="text: remainingTime"></span> <span data-bind="text: $root.templates.remainingTime"></span>)</span>.
                             </span>
                             <span data-bind="ifnot: numberOfRecordsProcessed">
                                 <span data-bind="text: name"></span>.
