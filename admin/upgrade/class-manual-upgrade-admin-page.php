@@ -3,6 +3,8 @@
 function awpcp_manual_upgrade_admin_page() {
     return new AWPCP_ManualUpgradeAdminPage(
         awpcp_upgrade_tasks_manager(),
+        // TODO: this reference to the container shouldn't be here
+        awpcp_container()->get( 'AWPCP_Upgrade_Sessions' ),
         awpcp_request()
     );
 }
@@ -10,10 +12,12 @@ function awpcp_manual_upgrade_admin_page() {
 class AWPCP_ManualUpgradeAdminPage {
 
     private $upgrade_tasks;
+    private $upgrade_sessions;
     private $request;
 
-    public function __construct( $upgrade_tasks, $request ) {
+    public function __construct( $upgrade_tasks, $upgrade_sessions, $request ) {
         $this->upgrade_tasks = $upgrade_tasks;
+        $this->upgrade_sessions = $upgrade_sessions;
         $this->request = $request;
     }
 
@@ -23,10 +27,87 @@ class AWPCP_ManualUpgradeAdminPage {
 
     public function dispatch() {
         $context = $this->request->param( 'context', 'plugin' );
+        $pending_tasks = $this->get_pending_uprade_tasks( $context );
 
+        $upgrade_session = $this->upgrade_sessions->get_or_create_session( $context );
+
+        $this->add_tasks_to_upgrade_session( $pending_tasks, $upgrade_session );
+        $tasks_definitions = $this->get_tasks_defintions( $pending_tasks, $upgrade_session, $context );
+
+        $this->upgrade_sessions->save_session( $upgrade_session );
+
+        return $this->render_asynchronous_tasks_component( $tasks_definitions, $context );
+    }
+
+    private function get_pending_uprade_tasks( $context ) {
+        if ( $context === 'plugin' ) {
+            return $this->upgrade_tasks->get_pending_tasks( compact( 'context' ) );
+        } else {
+            return $this->upgrade_tasks->get_pending_tasks();
+        }
+    }
+
+    private function add_tasks_to_upgrade_session( $pending_upgrade_tasks, $upgrade_session ) {
+        foreach ( $pending_upgrade_tasks as $task => $properties ) {
+            if ( ! $upgrade_session->has_task( $task ) ) {
+                $upgrade_session->add_task( $task );
+            }
+        }
+    }
+
+    private function get_tasks_defintions( $pending_upgrade_tasks, $upgrade_session, $context ) {
+        $tasks_definitions = array();
+
+        foreach ( $pending_upgrade_tasks as $task => $properties ) {
+            $items_count = $upgrade_session->get_task_metadata( $task, 'items_count' );
+            $items_processed = $upgrade_session->get_task_metadata( $task, 'items_processed' );
+
+            $tasks_definitions[ $task ] = array(
+                'name' => $properties['name'],
+                'description' => $properties['description'],
+                'action' => $task,
+                'context' => $context,
+                'recordsCount' => $items_count,
+                'recordsLeft' => $items_count - $items_processed,
+            );
+        }
+
+        return $this->split_tasks_defintions( $pending_upgrade_tasks, $tasks_definitions );
+    }
+
+    private function split_tasks_defintions( $pending_upgrade_tasks, $tasks_definitions ) {
+        $last_blocking_task = null;
+        $storing_blocking_tasks = true;
+
+        foreach ( array_reverse( array_keys( $pending_upgrade_tasks ) ) as $i => $key ) {
+            if ( $pending_upgrade_tasks[ $key ]['blocking'] ) {
+                $last_blocking_task = $key;
+                break;
+            }
+        }
+
+        $blocking_tasks = array();
+        $non_blocking_tasks = array();
+
+        foreach ( $pending_upgrade_tasks as $slug => $task ) {
+            if ( ! is_null( $last_blocking_task ) && $storing_blocking_tasks ) {
+                $blocking_tasks[] = $tasks_definitions[ $slug ];
+            } else {
+                $non_blocking_tasks[] = $tasks_definitions[ $slug ];
+            }
+
+            if ( $last_blocking_task == $slug ) {
+                $storing_blocking_tasks = false;
+            }
+        }
+
+        return compact( 'blocking_tasks', 'non_blocking_tasks' );
+    }
+
+    private function render_asynchronous_tasks_component( $tasks_definitions, $context ) {
         $params = array(
             'introduction' => $this->get_introduction_text( $context ),
-            'groups' => $this->get_tasks_groups( $context ),
+            'groups' => $this->get_tasks_groups( $tasks_definitions ),
             'submit' => _x( 'Upgrade', 'awpcp upgrade', 'another-wordpress-classifieds-plugin' ),
         );
 
@@ -43,8 +124,7 @@ class AWPCP_ManualUpgradeAdminPage {
         }
     }
 
-    private function get_tasks_groups( $context ) {
-        $tasks = $this->prepare_tasks( $context );
+    private function get_tasks_groups( $tasks ) {
         $groups = array();
 
         if ( count( $tasks['blocking_tasks'] ) ) {
@@ -100,46 +180,5 @@ class AWPCP_ManualUpgradeAdminPage {
         }
 
         return $groups;
-    }
-
-    private function prepare_tasks( $context ) {
-        if ( $context === 'plugin' ) {
-            $pending_upgrade_tasks = $this->upgrade_tasks->get_pending_tasks( compact( 'context' ) );
-        } else {
-            $pending_upgrade_tasks = $this->upgrade_tasks->get_pending_tasks();
-        }
-
-        $last_blocking_task = null;
-        $storing_blocking_tasks = true;
-
-        foreach ( array_reverse( array_keys( $pending_upgrade_tasks ) ) as $i => $key ) {
-            if ( $pending_upgrade_tasks[ $key ]['blocking'] ) {
-                $last_blocking_task = $key;
-                break;
-            }
-        }
-
-        $blocking_tasks = array();
-        $non_blocking_tasks = array();
-
-        foreach ( $pending_upgrade_tasks as $slug => $task ) {
-            $task = array(
-                'name' => $task['name'],
-                'description' => $task['description'],
-                'action' => $slug,
-            );
-
-            if ( ! is_null( $last_blocking_task ) && $storing_blocking_tasks ) {
-                $blocking_tasks[] = array( 'name' => $task['name'], 'action' => $slug );
-            } else {
-                $non_blocking_tasks[] = array( 'name' => $task['name'], 'action' => $slug );
-            }
-
-            if ( $last_blocking_task == $slug ) {
-                $storing_blocking_tasks = false;
-            }
-        }
-
-        return compact( 'blocking_tasks', 'non_blocking_tasks' );
     }
 }

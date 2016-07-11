@@ -56,6 +56,7 @@ function($, ko, moment, AsynchronousTask, AsynchronousTasksGroup) {
                     name: task.name,
                     description: task.description,
                     action: task.action,
+                    context: task.context,
                     recordsCount: task.recordsCount,
                     recordsLeft: task.recordsLeft,
                     templates: self.templates

@@ -3,14 +3,29 @@
 class AWPCP_Upgrade_Task_Handler {
 
     private $implementation;
+    private $upgrade_sessions;
+    private $tasks_manager;
 
-    public function __construct( AWPCP_Upgrade_Task_Runner $implementation ) {
+    public function __construct( AWPCP_Upgrade_Task_Runner $implementation, $upgrade_sessions, $tasks_manager ) {
         $this->implementation = $implementation;
+        $this->upgrade_sessions = $upgrade_sessions;
+        $this->tasks_manager = $tasks_manager;
     }
 
-    public function run_task() {
-        $last_item_id = $this->implementation->get_last_item_id();
+    public function run_task( $task, $context ) {
+        $upgrade_session = $this->upgrade_sessions->get_or_create_session( $context );
 
+        $last_item_id = $upgrade_session->get_task_metadata( $task, 'last_item_id', 0 );
+        $result = $this->run_task_step( $task, $last_item_id );
+
+        $this->update_task_metadata_with_step_result( $task, $result, $upgrade_session );
+        $this->disable_upgrade_task_if_there_are_no_more_records( $task, $result );
+        $this->archive_upgrade_session_if_there_are_no_more_tasks( $upgrade_session );
+
+        return array( $result['pending_items_count_before'], $result['pending_items_count_now'] );
+    }
+
+    private function run_task_step( $task, $last_item_id ) {
         $pending_items_count_before = $this->implementation->count_pending_items( $last_item_id );
         $pending_items = $this->implementation->get_pending_items( $last_item_id );
 
@@ -20,8 +35,38 @@ class AWPCP_Upgrade_Task_Handler {
 
         $pending_items_count_now = $this->implementation->count_pending_items( $last_item_id );
 
-        $this->implementation->update_last_item_id( $last_item_id );
+        return array(
+            'last_item_id' => $last_item_id,
+            'pending_items_count_before' => $pending_items_count_before,
+            'pending_items_count_now' => $pending_items_count_now
+        );
+    }
 
-        return array( $pending_items_count_before, $pending_items_count_now );
+    private function update_task_metadata_with_step_result( $task, $result, $upgrade_session ) {
+        $items_count = $upgrade_session->get_task_metadata( $task, 'items_count', 0 );
+
+        if ( $items_count === 0 ) {
+            $items_count = $result['pending_items_count_before'];
+            $upgrade_session->set_task_metadata( $task, 'items_count', $items_count );
+        }
+
+        $items_processed = $items_count - $result['pending_items_count_now'];
+
+        $upgrade_session->set_task_metadata( $task, 'items_processed', $items_processed );
+        $upgrade_session->set_task_metadata( $task, 'last_item_id', $result['last_item_id'] );
+
+        $this->upgrade_sessions->save_session( $upgrade_session );
+    }
+
+    private function disable_upgrade_task_if_there_are_no_more_records( $task, $result ) {
+        if ( $result['pending_items_count_now'] == 0 ) {
+            $this->tasks_manager->disable_upgrade_task( $task );
+        }
+    }
+
+    private function archive_upgrade_session_if_there_are_no_more_tasks( $upgrade_session ) {
+        if ( ! $this->upgrade_sessions->session_has_pending_tasks( $upgrade_session ) ) {
+            $this->upgrade_sessions->archive_session( $upgrade_session );
+        }
     }
 }

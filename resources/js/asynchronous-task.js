@@ -8,6 +8,7 @@ function($, ko, moment, settings) {
         this.description = ko.observable( params.description );
 
         this.action = params.action;
+        this.context = params.context;
 
         this.startTime = ko.observable( null );
         this.lastUpdatedTime = ko.observable( null );
@@ -154,7 +155,8 @@ function($, ko, moment, settings) {
             }
 
             $.getJSON( settings.get( 'ajaxurl' ), {
-                action: task.action
+                action: task.action,
+                context: task.context
             }, function( response ) {
                 task._onSuccess( response, $.isFunction( done ) ? done : $.noop );
             } );
