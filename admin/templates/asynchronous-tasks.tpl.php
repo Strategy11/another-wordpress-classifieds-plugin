@@ -24,7 +24,7 @@
                             ),
                         ) );
                     ?>
-                    <p data-bind="text: content, visible: content"></p>
+                    <div data-bind="html: content, visible: content"></div>
                     <ol class="awpcp-asynchronous-tasks" data-bind="foreach: tasks">
                         <li>
                             <span data-bind="if: numberOfRecordsProcessed">
