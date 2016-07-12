@@ -29,7 +29,9 @@ function($, ko, moment, AsynchronousTask) {
         }, this );
 
         this.running = ko.observable( false );
-        this.completed = ko.observable( this.tasksLeft() === 0 );
+        this.completed = ko.computed( function() {
+            return this.tasksLeft() === 0;
+        }, this );
 
         this.percentageOfCompletion = ko.computed(function() {
             var tasks = this.tasks(),
@@ -89,7 +91,6 @@ function($, ko, moment, AsynchronousTask) {
 
             if ( index >= group.tasksCount ) {
                 group.running( false );
-                group.completed( true );
 
                 if ( $.isFunction( done ) ) {
                     return done();
