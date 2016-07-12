@@ -116,7 +116,7 @@ class AWPCP_ManualUpgradeAdminPage {
         $params = array(
             'introduction' => $this->get_introduction_text( $context ),
             'groups' => $this->get_tasks_groups( $asynchronous_tasks ),
-            'submit' => _x( 'Upgrade', 'awpcp upgrade', 'another-wordpress-classifieds-plugin' ),
+            'submit' => $this->get_submit_button_text( $asynchronous_tasks ),
         );
 
         $tasks = new AWPCP_AsynchronousTasksComponent( $params );
@@ -188,5 +188,23 @@ class AWPCP_ManualUpgradeAdminPage {
         }
 
         return $groups;
+    }
+
+    private function get_submit_button_text( $asynchronous_tasks ) {
+        $resume_upgrade_text = _x( 'Resume Upgrade', 'button text in manual upgrade admin page', 'another-wordpress-classifieds-plugin' );
+
+        foreach ( $asynchronous_tasks['blocking_tasks'] as $task ) {
+            if ( ! is_null( $task['recordsCount'] ) ) {
+                return $resume_upgrade_text;
+            }
+        }
+
+        foreach ( $asynchronous_tasks['non_blocking_tasks'] as $task ) {
+            if ( ! is_null( $task['recordsCount'] ) ) {
+                return $resume_upgrade_text;
+            }
+        }
+
+        return _x( 'Upgrade', 'button text in manual upgrade admin page', 'another-wordpress-classifieds-plugin' );
     }
 }
