@@ -46,7 +46,8 @@ module.exports = function(grunt) {
         ],
         '<%= path.awpcp %>/js/jquery-breakpoints/jquery-breakpoints.src.js': [
           '<%= path.awpcp %>/js/jquery-breakpoints/jquery-breakpoints.js'
-        ]
+        ],
+        '<%= path.awpcp %>/js/jquery-usableform/jquery-usableform.src.js': '<%= path.awpcp %>/js/jquery-usableform/jquery-usableform.js',
       }
     },
     less: {

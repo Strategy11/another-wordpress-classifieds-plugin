@@ -950,6 +950,14 @@ class AWPCP {
         wp_register_script( 'awpcp-momentjs-with-locales', '//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment-with-locales.min.js', array(), '2.10.6', true );
         wp_register_script( 'awpcp-jquery-breakpoints', "{$js}/jquery-breakpoints/jquery-breakpoints.min.js", array('jquery'), $awpcp_db_version, true );
 
+        wp_register_script(
+            'awpcp-jquery-usableform',
+            "{$js}/jquery-usableform/jquery-usableform.min.js",
+            array( 'jquery' ),
+            $awpcp_db_version,
+            true
+        );
+
 		/* helpers */
 
 		wp_register_script(
