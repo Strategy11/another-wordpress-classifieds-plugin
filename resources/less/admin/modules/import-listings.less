@@ -1,0 +1,25 @@
+.awpcp-import-listings-rows-count {
+    dt, dd {
+        display: inline-block;
+    }
+
+    dt {
+        margin-left: 3px;
+    }
+    dt:first-child {
+        margin-left: 0;
+    }
+    dt::after {
+        content: ':';
+    }
+
+    dd {
+        margin: 0;
+    }
+    dd::after {
+        content: ',';
+    }
+    dd:last-child::after {
+        content: none;
+    }
+}

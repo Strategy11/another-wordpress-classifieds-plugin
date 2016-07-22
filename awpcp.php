@@ -283,8 +283,6 @@ require_once( AWPCP_DIR . "/includes/upgrade/class-update-media-status-task-hand
 require_once( AWPCP_DIR . "/includes/wordpress/class-wordpress-scripts.php" );
 require_once( AWPCP_DIR . "/includes/wordpress/class-wordpress.php" );
 
-require( AWPCP_DIR . '/includes/class-csv-importer.php' );
-
 require( AWPCP_DIR . '/includes/class-authentication-redirection-handler.php' );
 require_once( AWPCP_DIR . '/includes/class-edit-listing-url-placeholder.php' );
 require_once( AWPCP_DIR . '/includes/class-edit-listing-link-placeholder.php' );
@@ -339,6 +337,15 @@ require_once( AWPCP_DIR . '/admin/form-fields/class-form-fields-admin-page.php' 
 require_once( AWPCP_DIR . '/admin/form-fields/class-form-fields-table-factory.php' );
 require_once( AWPCP_DIR . '/admin/form-fields/class-form-fields-table.php' );
 require_once( AWPCP_DIR . '/admin/form-fields/class-update-form-fields-order-ajax-handler.php' );
+require_once( AWPCP_DIR . '/admin/import/class-csv-import-session.php' );
+require_once( AWPCP_DIR . '/admin/import/class-csv-import-sessions-manager.php' );
+require_once( AWPCP_DIR . '/admin/import/class-csv-importer.php' );
+require_once( AWPCP_DIR . '/admin/import/class-csv-importer-factory.php' );
+require_once( AWPCP_DIR . '/admin/import/class-csv-importer-delegate.php' );
+require_once( AWPCP_DIR . '/admin/import/class-csv-importer-delegate-factory.php' );
+require_once( AWPCP_DIR . '/admin/import/class-csv-reader-factory.php' );
+require_once( AWPCP_DIR . '/admin/import/class-csv-reader.php' );
+require_once( AWPCP_DIR . '/admin/import/class-import-listings-ajax-handler.php' );
 require( AWPCP_DIR . '/admin/listings/class-listings-table-search-by-phone-condition.php' );
 
 // frontend functions
@@ -726,6 +733,9 @@ class AWPCP {
         $handler = awpcp_drip_autoresponder_ajax_handler();
         add_action( 'wp_ajax_awpcp-autoresponder-user-subscribed', array( $handler, 'ajax' ) );
         add_action( 'wp_ajax_awpcp-autoresponder-dismissed', array( $handler, 'ajax' ) );
+
+        $handler = awpcp_import_listings_ajax_handler();
+        add_action( 'wp_ajax_awpcp-import-listings', array( $handler, 'ajax' ) );
     }
 
 	public function admin_notices() {
@@ -999,7 +1009,21 @@ class AWPCP {
 		wp_register_script( 'awpcp-admin-listings', "{$js}/admin-listings.js", array( 'awpcp', 'awpcp-admin-wp-table-ajax', 'plupload-all' ), $awpcp_db_version, true );
 		wp_register_script('awpcp-admin-users', "{$js}/admin-users.js", array('awpcp-admin-wp-table-ajax'), $awpcp_db_version, true);
 		wp_register_script( 'awpcp-admin-attachments', "{$js}/admin-attachments.js", array( 'awpcp' ), $awpcp_db_version, true );
-		wp_register_script( 'awpcp-admin-import', "{$js}/admin-import.js", array( 'awpcp', 'jquery-ui-datepicker', 'jquery-ui-autocomplete' ), $awpcp_db_version, true );
+
+        wp_register_script(
+            'awpcp-admin-import',
+            "{$js}/admin-import.js",
+            array(
+                'awpcp',
+                'awpcp-jquery-usableform',
+                'awpcp-knockout-progress',
+                'jquery-ui-datepicker',
+                'jquery-ui-autocomplete',
+            ),
+            $awpcp_db_version,
+            true
+        );
+
         wp_register_script( 'awpcp-admin-form-fields', "{$js}/admin-form-fields.js", array( 'awpcp', 'jquery-ui-sortable', 'jquery-effects-highlight', 'jquery-effects-core' ), $awpcp_db_version, true );
 
         wp_register_script(

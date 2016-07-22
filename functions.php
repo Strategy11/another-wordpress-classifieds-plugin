@@ -2270,6 +2270,28 @@ function awpcp_utf8_substr_pcre( $string, $start, $length=null ) {
 	}
 }
 
+function awpcp_remove_utf8_non_characters( $content ) {
+    //remove EFBFBD (Replacement Character)
+    $content = trim( str_replace( "\xEF\xBF\xBD", '', $content ) );
+    // remove BOM character
+    $content = trim( str_replace( "\xEF\xBB\xBF", '', $content ) );
+    $content = trim( str_replace( "\xEF\xBF\xBE", '', $content ) );
+
+    return $content;
+}
+
+function awpcp_maybe_convert_to_utf8( $content ) {
+    $encoding = awpcp_detect_encoding( $content );
+
+    if ( 'UTF-8' != $encoding ) {
+        $converted_content = iconv( $encoding, 'UTF-8', $content );
+    } else {
+        $converted_content = $content;
+    }
+
+    return $converted_content;
+}
+
 /**
  * @since 3.6
  */
