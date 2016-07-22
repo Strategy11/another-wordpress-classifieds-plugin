@@ -62,9 +62,9 @@ class AWPCP_Admin_CSV_Importer {
     }
 
     private function cancel_current_import_session() {
-        $this->import_sessions_manager->delete_current_import_session();
+        awpcp_rmdir( $this->get_import_session()->get_working_directory() );
 
-        // TODO: working directory
+        $this->import_sessions_manager->delete_current_import_session();
 
         return $this->show_upload_files_form();
     }
