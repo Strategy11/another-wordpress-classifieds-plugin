@@ -958,6 +958,14 @@ class AWPCP {
             true
         );
 
+        wp_register_script(
+            'awpcp-knockout-progress',
+            "{$js}/knockout-progress/knockout-progress.min.js",
+            array( 'awpcp' ),
+            $awpcp_db_version,
+            true
+        );
+
 		/* helpers */
 
 		wp_register_script(
@@ -993,7 +1001,18 @@ class AWPCP {
 		wp_register_script( 'awpcp-admin-attachments', "{$js}/admin-attachments.js", array( 'awpcp' ), $awpcp_db_version, true );
 		wp_register_script( 'awpcp-admin-import', "{$js}/admin-import.js", array( 'awpcp', 'jquery-ui-datepicker', 'jquery-ui-autocomplete' ), $awpcp_db_version, true );
         wp_register_script( 'awpcp-admin-form-fields', "{$js}/admin-form-fields.js", array( 'awpcp', 'jquery-ui-sortable', 'jquery-effects-highlight', 'jquery-effects-core' ), $awpcp_db_version, true );
-        wp_register_script( 'awpcp-admin-manual-upgrade', "{$js}/admin-manual-upgrade.js", array( 'awpcp', 'awpcp-momentjs-with-locales' ), $awpcp_db_version, true );
+
+        wp_register_script(
+            'awpcp-admin-manual-upgrade',
+            "{$js}/admin-manual-upgrade.js",
+            array(
+                'awpcp',
+                'awpcp-knockout-progress',
+                'awpcp-momentjs-with-locales'
+            ),
+            $awpcp_db_version,
+            true
+        );
 
         wp_register_script(
             'awpcp-admin-pointers',
