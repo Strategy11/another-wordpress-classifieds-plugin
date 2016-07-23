@@ -12,20 +12,9 @@
 
             <p data-bind="html: progressReport"></p>
 
-            <table class="awpcp-table">
-                <thead>
-                    <tr>
-                        <th><?php echo __( 'Line No.', 'another-wordpress-classifieds-plugin' ); ?></th>
-                        <th><?php echo __( 'Error Message', 'another-wordpress-classifieds-plugin' ); ?></th>
-                    </tr>
-                </thead>
-                <tbody data-bind="foreach: errors">
-                    <tr>
-                        <td data-bind="text: line"></td>
-                        <td data-bind="html: message"></td>
-                    </tr>
-                </tbody>
-            </table>
+            <ul class="awpcp-import-listings-messages-list" data-bind="visible: errors().length, foreach: errors">
+                <li><span class="message-description" data-bind="html: description"></span><span class="message-content" data-bind="html: content"></span></li>
+            </ul>
 
             <p class="submit">
                 <input type="submit" class="button" name="change_configuration" value="<?php echo esc_html( __( 'Change Configuration & Restart', 'another-wordpress-classifieds-plugin' ) ); ?>" data-bind="visible: paused() || completed()"></input>

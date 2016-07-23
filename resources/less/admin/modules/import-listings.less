@@ -1,25 +1,26 @@
-.awpcp-import-listings-rows-count {
-    dt, dd {
-        display: inline-block;
-    }
+.awpcp-import-listings-messages-list {
+    border: 1px solid #AAA;
+    height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
 
-    dt {
-        margin-left: 3px;
-    }
-    dt:first-child {
-        margin-left: 0;
-    }
-    dt::after {
-        content: ':';
-    }
-
-    dd {
+    li {
+        border-bottom: 1px solid #CCC;
         margin: 0;
-    }
-    dd::after {
-        content: ',';
-    }
-    dd:last-child::after {
-        content: none;
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        span {
+            display: inline-block;
+            padding: 4px;
+        }
+
+        .message-description {
+            background: #E2E2E2;
+            padding-left: 8px;
+            width: 150px;
+        }
     }
 }

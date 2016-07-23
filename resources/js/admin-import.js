@@ -110,18 +110,32 @@ function( $, settings ) {
                     this.rowsImported( response.rowsImported );
                     this.rowsRejected( response.rowsRejected );
 
-                    $.each( response.errors, function( index, error ) {
-                        self.errors.push( error );
-                    } );
+                    this._handleMessages( response.errors );
 
                     setTimeout( $.proxy( self._runStep, self ), 1 );
                 },
 
-                _handleErrorResponse: function( response ) {
-                    self.errors.push( {
-                        line: 0,
-                        message: response.error
+                _handleMessages: function( messages ) {
+                    var self = this, template = settings.l10n( 'csv-import-session', 'message-description' );
+
+                    $.each( messages, function( index, message ) {
+                        var description = template
+                            .replace( '<message-type>', message.type.substr( 0, 1 ).toUpperCase() + message.type.substr( 1 ) )
+                            .replace( '<message-line>', message.line );
+
+                        self.errors.push( {
+                            description: description,
+                            content: message.content
+                        } );
                     } );
+                },
+
+                _handleErrorResponse: function( response ) {
+                    this._handleMessages( [ {
+                        type: 'error',
+                        line: 0,
+                        content: response.error
+                    } ] );
                 },
 
                 pause: function( data, event ) {

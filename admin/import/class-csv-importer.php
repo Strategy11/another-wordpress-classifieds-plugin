@@ -27,7 +27,7 @@ class AWPCP_CSV_Importer {
             try {
                 $row_data = $this->csv_reader->get_row( $last_row_processed );
             } catch ( UnexpectedValueException $e ) {
-                $errors[] = array( 'line' => $last_row_processed, 'message' => $e->getMessage() );
+                $errors[] = array( 'type' => 'error', 'line' => $last_row_processed, 'content' => $e->getMessage() );
 
                 $number_of_rows_rejected = $number_of_rows_rejected + 1;
 
@@ -42,7 +42,7 @@ class AWPCP_CSV_Importer {
                 $this->delegate->import_row( $row_data );
             } catch ( AWPCP_CSV_Importer_Exception $e ) {
                 foreach ( $e->getErrors() as $error ) {
-                    $errors[] = array( 'line' => $last_row_processed, 'message' => $error );
+                    $errors[] = array( 'type' => 'error', 'line' => $last_row_processed, 'content' => $error );
                 }
 
                 $number_of_rows_rejected = $number_of_rows_rejected + 1;

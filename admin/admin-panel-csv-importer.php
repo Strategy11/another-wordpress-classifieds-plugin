@@ -341,13 +341,10 @@ class AWPCP_Admin_CSV_Importer {
             'numberOfRowsRejected' => $import_session->get_number_of_rows_rejected(),
         ) );
 
-        $this->javascript->localize(
-            'csv-import-session',
-            'progress-report',
-            __( '(<percentage>) <number-of-rows-processed> of <number-of-rows> rows processed. <number-of-rows-imported> rows imported and <number-of-rows-rejected> rows rejected.', 'another-wordpress-classifieds-plugin' )
-        );
-
-        $params = array();
+        $this->javascript->localize( 'csv-import-session', array(
+            'progress-report' => __( '(<percentage>) <number-of-rows-processed> of <number-of-rows> rows processed. <number-of-rows-imported> rows imported and <number-of-rows-rejected> rows rejected.', 'another-wordpress-classifieds-plugin' ),
+            'message-description' => _x( '<message-type> in line <message-line>', 'description for messages used to show feedback for the Import Listings operation', 'another-wordpress-classifieds-plugin' )
+        ) );
 
         $template = AWPCP_DIR . '/templates/admin/import-listings-admin-page-import-form.tpl.php';
 
