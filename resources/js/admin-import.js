@@ -42,6 +42,8 @@ function( $, settings ) {
                     return false;
                 }, this );
 
+                this.paused = ko.observable( true );
+
                 this.errors = ko.observableArray( [] );
 
                 this.progress = ko.computed( function() {
@@ -74,12 +76,18 @@ function( $, settings ) {
                         event.preventDefault();
                     }
 
+                    self.paused( false );
+
                     setTimeout( $.proxy( self._runStep, self ), 1 );
                 },
 
                 _runStep: function() {
                     if ( this.completed() ) {
-                        return // we are done!
+                        return;
+                    }
+
+                    if ( this.paused() ) {
+                        return;
                     }
 
                     $.getJSON( settings.get( 'ajaxurl' ), {
@@ -114,6 +122,14 @@ function( $, settings ) {
                         line: 0,
                         message: response.error
                     } );
+                },
+
+                pause: function( data, event ) {
+                    if ( event && event.preventDefault ) {
+                        event.preventDefault();
+                    }
+
+                    this.paused( true );
                 }
             } );
 

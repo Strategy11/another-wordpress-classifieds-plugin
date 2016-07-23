@@ -28,17 +28,21 @@
             </table>
 
             <p class="submit">
-                <input type="submit" class="button" name="change_configuration" value="<?php echo esc_html( __( 'Change Configuration & Restart', 'another-wordpress-classifieds-plugin' ) ); ?>" data-bind="visible: completed"></input>
-                <input type="submit" class="button-primary button" name="start" value="<?php echo esc_html( __( 'Start Import', 'another-wordpress-classifieds-plugin' ) ); ?>" data-bind="click: start"></input>
+                <input type="submit" class="button" name="change_configuration" value="<?php echo esc_html( __( 'Change Configuration & Restart', 'another-wordpress-classifieds-plugin' ) ); ?>" data-bind="visible: paused() || completed()"></input>
+                <input type="submit" class="button-primary button" name="start" value="<?php echo esc_html( __( 'Import', 'another-wordpress-classifieds-plugin' ) ); ?>" data-bind="visible: paused, click: start"></input>
+
+                <input type="submit" class="button-primary button" name="start" value="<?php echo esc_html( __( 'Pause', 'another-wordpress-classifieds-plugin' ) ); ?>" data-bind="visible: ! paused(), click: pause"></input>
             </p>
 
-            <hr>
+            <div data-bind="visible: paused">
+                <hr>
 
-            <p><?php echo __( "Press the button below to cancel the current import operation and discard the uploaded CSV file and ZIP file (if any). If you manually uploaded images to the directory specified in the Local Directory field, those won't be deleted.", 'another-wordpress-classifieds-plugin' ); ?></p>
+                <p><?php echo __( "Press the button below to cancel the current import operation and discard the uploaded CSV file and ZIP file (if any). If you manually uploaded images to the directory specified in the Local Directory field, those won't be deleted.", 'another-wordpress-classifieds-plugin' ); ?></p>
 
-            <p class="cancel-submit">
-                <input type="submit" class="button" name="cancel" value="<?php echo esc_html( __( 'Cancel', 'another-wordpress-classifieds-plugin' ) ); ?>"></input>
-            </p>
+                <p class="cancel-submit">
+                    <input type="submit" class="button" name="cancel" value="<?php echo esc_html( __( 'Cancel', 'another-wordpress-classifieds-plugin' ) ); ?>"></input>
+                </p>
+            </div>
         </form>
 
         </div><!-- end of .awpcp-main-content -->
