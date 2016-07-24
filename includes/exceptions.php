@@ -67,3 +67,20 @@ class AWPCP_No_Activations_Left_License_Request_Exception extends AWPCP_License_
 
 class AWPCP_Infinite_Loop_Detected_Exception extends AWPCP_Easy_Digital_Downloads_Exception {
 }
+
+class AWPCP_CSV_Importer_Exception extends Exception {
+
+    private $errors;
+
+    public function setErrors( $errors ) {
+        $this->errors = $errors;
+    }
+
+    public function getErrors( $errors ) {
+        if ( $this->errors ) {
+            return $this->errors;
+        }
+
+        return array( $this->getMessage() );
+    }
+}

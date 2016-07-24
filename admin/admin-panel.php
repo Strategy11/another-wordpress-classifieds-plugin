@@ -32,7 +32,7 @@ class AWPCP_Admin {
 		// $this->categories = new AWPCP_AdminCategories();
 		$this->fees = new AWPCP_AdminFees();
 		$this->listings = new AWPCP_Admin_Listings();
-		$this->importer = new AWPCP_Admin_CSV_Importer();
+		$this->importer = awpcp_admin_csv_importer();
 		$this->debug = new AWPCP_Admin_Debug();
 		$this->uninstall = new AWPCP_Admin_Uninstall();
 
