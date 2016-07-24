@@ -520,9 +520,9 @@ function awpcp_do_placeholder_location($ad, $placeholder) {
     $places = array();
 
     if ( get_awpcp_option( 'show-city-field-before-county-field' ) ) {
-        $order = array( 'country', 'state', 'city', 'county' );
+        $order = array( 'county', 'city', 'state', 'country' );
     } else {
-        $order = array( 'country', 'state', 'county', 'city' );
+        $order = array( 'city', 'county', 'state', 'country' );
     }
 
     foreach ( $regions as $region ) {
