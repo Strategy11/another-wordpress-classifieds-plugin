@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-plugin\n"
 "POT-Creation-Date: 2016-06-13 15:56:40+00:00\n"
-"PO-Revision-Date: 2016-06-13 15:58+0000\n"
-"Last-Translator: Willington Vega <wvega@wvega.com>\n"
+"PO-Revision-Date: 2016-07-23 14:54+0000\n"
+"Last-Translator: Claudy Galais <claudy44@gmail.com>\n"
 "Language-Team: French (France) (http://www.transifex.com/wp-translations/another-wordpress-classifieds-plugin/language/fr_FR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1372,14 +1372,14 @@ msgstr "Masquer l'offre de participation ?"
 
 #: admin/templates/admin-panel-fees.tpl.php:4
 msgid "Payment Settings page"
-msgstr ""
+msgstr "Page des paramètres de paiement"
 
 #: admin/templates/admin-panel-fees.tpl.php:5
 msgid ""
 "Currently your classifieds are in Free mode. Fee plans are not available or "
 "used during free mode.<br/><br/> To change this, visit the <payment-"
 "settings-tab-link> and enable Charge Listing Fee setting."
-msgstr ""
+msgstr "Actuellement vos annonces sont en mode gratuit. Les paramètres d'honoraires ne sont pas disponibles ou utilisables en mode gratuit.<br/><br/> Pour changer cela, visitez <payment-settings-tab-link> et activer le paramètre \"Facturer une participation ?\"."
 
 #: admin/templates/admin-panel-fees.tpl.php:16
 msgid "Add Fee Plan"
@@ -2448,7 +2448,7 @@ msgid ""
 "Hi, Payment is required for posting Ads in this website and we couldn't find"
 " a Payment Transaction assigned to you. You can't post Ads this time. If you"
 " think this is an error please contact the website Administrator."
-msgstr "Bonjour, le paiement est requis pour l'affichage des annonces sur ce site et nous ne pouvions pas trouver la transaction de paiement que vous avez specifié. Vous ne pouvez pas poster une annonce pour le moment. Si vous pensez que c'est une erreur, veuillez contacter l'Administrateur du site."
+msgstr "Bonjour, le paiement est requis pour l'affichage des annonces sur ce site et nous ne pouvons pas trouver la transaction de paiement que vous avez specifié. Vous ne pouvez pas poster une annonce pour le moment. Si vous pensez que c'est une erreur, veuillez contacter l'Administrateur du site."
 
 #: frontend/page-place-ad.php:817
 msgid ""
@@ -4307,7 +4307,7 @@ msgstr "L'annonce a été déjà envoyé au groupe Facebook."
 
 #: includes/helpers/facebook.php:31
 msgid "Missing App ID and Secret."
-msgstr "L'Identifiant et le secret de l'Application sont absents."
+msgstr "L'identifiant et la clé secrète sont absents."
 
 #: includes/helpers/facebook.php:36
 msgid "Missing a valid User Access Token."
@@ -5186,21 +5186,21 @@ msgstr "Mettez zéro pour en afficher le plus possible par ligne"
 
 #: includes/settings/class-files-settings.php:78
 msgid "Hide No Image placeholder"
-msgstr ""
+msgstr "Cacher l'espace réservé si image absente."
 
 #: includes/settings/class-files-settings.php:79
 msgid "Override the No Image placeholder image with my own"
-msgstr ""
+msgstr "Remplacer l'espace réservé (si image absente) avec ma propre image."
 
 #: includes/settings/class-files-settings.php:80
 msgid "No Image Placeholder URL"
-msgstr ""
+msgstr "URL de l'image de remplacement."
 
 #: includes/settings/class-files-settings.php:80
 msgid ""
 "Put the URL of an existing image on your site to use.  The size of this "
 "image should match the thumbnail size settings on this tab"
-msgstr ""
+msgstr "Mettez l'URL d'une image existante à utiliser sur votre site . La taille de cette image doit correspondre aux dimensions des vignettes."
 
 #: includes/settings/class-files-settings.php:88
 msgid "Image File Size"
@@ -5700,7 +5700,7 @@ msgstr "Si coché, une liste déroulante contenant les rubriques de niveaux sup�
 
 #: includes/settings/class-general-settings.php:36
 msgid "Hide empty categories from dropdowns"
-msgstr ""
+msgstr "Cacher les boutons vides des menus déroulants"
 
 #: includes/settings/class-general-settings.php:37
 msgid "Welcome message in Classified page"
@@ -6986,7 +6986,7 @@ msgid ""
 "with your hosting account in the FROM field. If you are with such a webhost "
 "you need to make sure your WordPress admin email address is tied to your "
 "hosting account."
-msgstr "Les Emails sortent en utilisant votre email administrateru de WordPress. Si vous préférez utiliser un e-mail différente entrer l'adresse ici. Certains serveurs ne sauront pas traiter les e-mails sortants,inscrit ici, qui ont une adresse e-mail à partir de Gmail, Yahoo, Hotmail et d'autres services de courrier électronique gratuit. Certains serveurs ne sauront également pas traiter les e-mails qui ont une adresse qui est différente de l'adresse de courriel associée à votre compte d'hébergement. Si vous êtes avec un tel hébergeur vous devez vous assurer que votre adresse e-mail administration de WordPress est lié à votre compte d'hébergement."
+msgstr "Les Emails sortent en utilisant votre email administrateur de WordPress. Si vous préférez utiliser un e-mail différente entrer l'adresse ici. Certains serveurs ne sauront pas traiter les e-mails sortants,inscrit ici, qui ont une adresse e-mail à partir de Gmail, Yahoo, Hotmail et d'autres services de courrier électronique gratuit. Certains serveurs ne sauront également pas traiter les e-mails qui ont une adresse qui est différente de l'adresse de courriel associée à votre compte d'hébergement. Si vous êtes avec un tel hébergeur vous devez vous assurer que votre adresse e-mail administration de WordPress est lié à votre compte d'hébergement."
 
 #: includes/settings-api.php:291
 msgid ""
@@ -7491,7 +7491,7 @@ msgstr "Retirer les caractères non autorisés dans les noms de fichier médias"
 
 #: includes/upgrade/class-manual-upgrade-tasks.php:48
 msgid "Calculate image dimensions"
-msgstr "Calculer les dimensions de l'image."
+msgstr "Calcule les dimensions de l'image."
 
 #: includes/views/admin/account-balance/class-account-balance-page.php:16
 msgid "Account Balance"
