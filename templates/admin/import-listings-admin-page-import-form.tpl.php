@@ -20,7 +20,7 @@
                 <input type="submit" class="button" name="change_configuration" value="<?php echo esc_html( __( 'Change Configuration & Restart', 'another-wordpress-classifieds-plugin' ) ); ?>" data-bind="visible: paused() || completed()"></input>
                 <input type="submit" class="button-primary button" name="start" value="<?php echo esc_html( __( 'Import', 'another-wordpress-classifieds-plugin' ) ); ?>" data-bind="visible: paused, click: start"></input>
 
-                <input type="submit" class="button-primary button" name="start" value="<?php echo esc_html( __( 'Pause', 'another-wordpress-classifieds-plugin' ) ); ?>" data-bind="visible: ! paused(), click: pause"></input>
+                <input type="submit" class="button-primary button" name="start" value="<?php echo esc_html( __( 'Pause', 'another-wordpress-classifieds-plugin' ) ); ?>" data-bind="visible: ! paused() && ! completed(), click: pause"></input>
             </p>
 
             <div data-bind="visible: paused">
