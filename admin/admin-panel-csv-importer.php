@@ -322,6 +322,7 @@ class AWPCP_Admin_CSV_Importer {
             $import_session->set_status( 'configuration' );
             $import_session->set_data( 'number_of_rows_imported', 0 );
             $import_session->set_data( 'number_of_rows_rejected', 0 );
+            $import_session->set_data( 'last_row_processed', 0 );
             $import_session->clear_errors();
 
             $this->import_sessions_manager->update_current_import_session( $import_session );
