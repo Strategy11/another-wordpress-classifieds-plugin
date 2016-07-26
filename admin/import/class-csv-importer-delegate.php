@@ -204,8 +204,13 @@ class AWPCP_CSV_Importer_Delegate {
             $values[] = $value;
         }
 
-        $image_names = explode( ';', $row_data['images'] );
-        $images = $this->import_images( $image_names );
+        $image_names = array_filter( explode( ';', $row_data['images'] ) );
+
+        if ( $image_names ) {
+            $images = $this->import_images( $image_names );
+        } else {
+            $images = array();
+        }
         // $this->images_imported += count( $images );
         // // save created images to be deleted later, if test mode is on
         // array_splice( $images_created, 0, 0, $images );
