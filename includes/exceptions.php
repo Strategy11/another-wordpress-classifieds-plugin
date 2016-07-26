@@ -76,7 +76,7 @@ class AWPCP_CSV_Importer_Exception extends Exception {
         $this->errors = $errors;
     }
 
-    public function getErrors( $errors ) {
+    public function getErrors() {
         if ( $this->errors ) {
             return $this->errors;
         }
