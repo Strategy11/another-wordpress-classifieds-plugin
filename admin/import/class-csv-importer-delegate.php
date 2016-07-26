@@ -337,7 +337,7 @@ class AWPCP_CSV_Importer_Delegate {
         $users[ $username ] = $result;
 
         $message = __( "A new user '%s' with email address '%s' and password '%s' was created for row %d.", 'another-wordpress-classifieds-plugin' );
-        $messages[] = sprintf( $message, $username, $email, $password, $row );
+        $messages[] = sprintf( $message, $username, $email, $password );
 
         return $result;
     }
