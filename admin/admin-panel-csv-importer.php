@@ -38,8 +38,8 @@ class AWPCP_Admin_CSV_Importer {
     }
 
     private function handle_request() {
-        if ( $this->request->post( 'cancel' ) ) {
-            return $this->cancel_current_import_session();
+        if ( $this->request->post( 'cancel' ) || $this->request->post( 'finish' ) ) {
+            return $this->delete_current_import_session();
         }
 
         $import_session = $this->get_import_session();
@@ -61,7 +61,7 @@ class AWPCP_Admin_CSV_Importer {
         }
     }
 
-    private function cancel_current_import_session() {
+    private function delete_current_import_session() {
         awpcp_rmdir( $this->get_import_session()->get_working_directory() );
 
         $this->import_sessions_manager->delete_current_import_session();
