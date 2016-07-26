@@ -13,15 +13,17 @@ class AWPCP_CSV_Importer {
     }
 
     public function import_rows() {
+        $number_of_rows = $this->import_session->get_number_of_rows();
         $number_of_rows_imported = $this->import_session->get_data( 'number_of_rows_imported', 0 );
         $number_of_rows_rejected = $this->import_session->get_data( 'number_of_rows_rejected', 0 );
 
         $last_row_processed = $this->import_session->get_data( 'last_row_processed', 0 );
+        $batch_size = $this->import_session->get_batch_size();
         $errors = array();
 
-        $batch_size = $this->import_session->get_batch_size();
+        $number_of_rows_to_process = min( $batch_size, $number_of_rows - $last_row_processed );
 
-        for ( $n = 0; $n < $batch_size; $n = $n + 1 ) {
+        for ( $n = 0; $n < $number_of_rows_to_process; $n = $n + 1 ) {
             $last_row_processed = $last_row_processed + 1;
 
             try {
