@@ -139,6 +139,11 @@ function( $, settings ) {
                 },
 
                 _handleFailedRequest: function( jqxhr, _, message ) {
+                    this._handleMessages( [ {
+                        type: 'error',
+                        line: 0,
+                        content: message
+                    } ] );
                     this.paused( true );
                 },
 
