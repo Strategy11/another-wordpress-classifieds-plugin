@@ -41,13 +41,14 @@ class AWPCP_CSV_Import_Sessions_Manager {
 
             'type' => null,
             'working_directory' => null,
-            'batch_size' => 50,
+            'batch_size' => 20,
             'in_progress' => false,
 
             'csv_reader' => array(),
             'csv_importer' => array(),
 
             'params' => array(),
+            'errors' => array(),
         ) );
 
         $settings['working_directory'] = $this->make_absolute_path( $settings['working_directory'] );

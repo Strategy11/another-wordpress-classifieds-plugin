@@ -204,8 +204,14 @@ class AWPCP_CSV_Importer_Delegate {
             $values[] = $value;
         }
 
-        $image_names = explode( ';', $row_data['images'] );
-        $images = $this->import_images( $image_names );
+        $image_names = array_filter( explode( ';', $row_data['images'] ) );
+
+        if ( $image_names ) {
+            $images = $this->import_images( $image_names );
+        } else {
+            $images = array();
+        }
+
         // $this->images_imported += count( $images );
         // // save created images to be deleted later, if test mode is on
         // array_splice( $images_created, 0, 0, $images );
@@ -226,7 +232,9 @@ class AWPCP_CSV_Importer_Delegate {
             $this->save_regions( $region, $inserted_id );
         }
 
-        if ( !empty( $images ) ) {
+        if ( $images && $this->import_session->is_test_mode_enabled() ) {
+            $this->delete_imported_images( $images );
+        } else if ( $images ) {
             $this->save_images( $images, $inserted_id );
         }
 
@@ -332,7 +340,7 @@ class AWPCP_CSV_Importer_Delegate {
         $users[ $username ] = $result;
 
         $message = __( "A new user '%s' with email address '%s' and password '%s' was created for row %d.", 'another-wordpress-classifieds-plugin' );
-        $messages[] = sprintf( $message, $username, $email, $password, $row );
+        $messages[] = sprintf( $message, $username, $email, $password );
 
         return $result;
     }
@@ -511,8 +519,34 @@ class AWPCP_CSV_Importer_Delegate {
         }
     }
 
+    private function delete_imported_images( $images ) {
+        list( $images_dir, $thumbs_dir ) = awpcp_setup_uploads_dir();
+
+        foreach ( $images as $image ) {
+            $basename = $image['filename'];
+
+            $filename = awpcp_utf8_pathinfo( $basename, PATHINFO_FILENAME );
+            $extension = awpcp_utf8_pathinfo( $basename, PATHINFO_EXTENSION );
+
+            if ( file_exists( $images_dir . $basename ) ) {
+                unlink( $images_dir . $basename );
+            }
+
+            if ( file_exists( $thumbs_dir . $basename ) ) {
+                unlink( $thumbs_dir . $basename );
+            }
+
+            if ( file_exists( $images_dir . $filename . '-large.' . $extension ) ) {
+                unlink( $images_dir . $filename . '-large.' . $extension );
+            }
+
+            if ( file_exists( $thumbs_dir . $filename . '-primary.' . $extension ) ) {
+                unlink( $thumbs_dir . $filename . '-primary.' . $extension );
+            }
+        }
+    }
+
     private function save_images( $entries, $adid ) {
-        $test_import = $this->import_session->is_test_mode_enabled();
         $media_api = awpcp_media_api();
 
         foreach ( $entries as $entry ) {
@@ -528,9 +562,7 @@ class AWPCP_CSV_Importer_Delegate {
                 'is_primary' => false,
             );
 
-            $result = $test_import || $media_api->create( $data );
-
-            if ( $result === false ) {
+            if ( $media_api->create( $data ) === false ) {
                 $message =__( 'Could not save the information for image <image> into the database.', 'another-wordpress-classifieds-plugin' );
                 $message = str_replace( '<image>', $entry['original'], $message );
 

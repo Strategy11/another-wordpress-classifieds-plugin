@@ -90,9 +90,9 @@ function( $, settings ) {
                         return;
                     }
 
-                    $.getJSON( settings.get( 'ajaxurl' ), {
-                        action: 'awpcp-import-listings'
-                    }, $.proxy( this._handleAjaxResponse, this ) );
+                    $.getJSON( settings.get( 'ajaxurl' ), { action: 'awpcp-import-listings' } )
+                        .done( $.proxy( this._handleAjaxResponse, this ) )
+                        .fail( $.proxy( this._handleFailedRequest, this ) );
                 },
 
                 _handleAjaxResponse: function( response ) {
@@ -136,6 +136,15 @@ function( $, settings ) {
                         line: 0,
                         content: response.error
                     } ] );
+                },
+
+                _handleFailedRequest: function( jqxhr, _, message ) {
+                    this._handleMessages( [ {
+                        type: 'error',
+                        line: 0,
+                        content: message
+                    } ] );
+                    this.paused( true );
                 },
 
                 pause: function( data, event ) {
