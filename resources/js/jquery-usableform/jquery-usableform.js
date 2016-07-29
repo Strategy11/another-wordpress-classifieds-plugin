@@ -18,9 +18,11 @@ if (typeof jQuery !== 'undefined') {
                         onTargetChange($(this), element, condition);
                     });
 
-                    target.each(function() {
-                        onTargetChange($(this), element, condition);
-                    });
+                    // target.each(function() {
+                    //     onTargetChange($(this), element, condition);
+                    // });
+
+                    onTargetChange(target, element, condition);
                 });
             });
         };

@@ -39,7 +39,9 @@ class AWPCP_Categories_Collection {
             throw new AWPCP_Exception( sprintf( $message, $name ) );
         }
 
-        $category = $this->wordpress->get_term_by( 'name', $name, $this->taxonomy );
+        // See: https://core.trac.wordpress.org/ticket/11311#comment:14
+        $sanitized_name = sanitize_term_field( 'name', $name, 0, $this->taxonomy, 'db' );
+        $category = $this->wordpress->get_term_by( 'name', $sanitized_name, $this->taxonomy );
 
         if ( $category === false || is_null( $category ) ) {
             $message = __( 'No category was found with name: %s.', 'another-wordpress-classifieds-plugin' );

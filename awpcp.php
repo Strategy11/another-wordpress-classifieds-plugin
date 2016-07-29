@@ -307,8 +307,7 @@ require_once( AWPCP_DIR . "/includes/upgrade/class-migrate-regions-information-t
 require_once( AWPCP_DIR . "/includes/wordpress/class-wordpress-scripts.php" );
 require_once( AWPCP_DIR . "/includes/wordpress/class-wordpress.php" );
 
-require( AWPCP_DIR . '/includes/class-csv-importer.php' );
-
+require( AWPCP_DIR . '/includes/class-authentication-redirection-handler.php' );
 require_once( AWPCP_DIR . '/includes/class-edit-listing-url-placeholder.php' );
 require_once( AWPCP_DIR . '/includes/class-edit-listing-link-placeholder.php' );
 
@@ -392,6 +391,15 @@ require_once( AWPCP_DIR . '/admin/form-fields/class-form-fields-admin-page.php' 
 require_once( AWPCP_DIR . '/admin/form-fields/class-form-fields-table-factory.php' );
 require_once( AWPCP_DIR . '/admin/form-fields/class-form-fields-table.php' );
 require_once( AWPCP_DIR . '/admin/form-fields/class-update-form-fields-order-ajax-handler.php' );
+require_once( AWPCP_DIR . '/admin/import/class-csv-import-session.php' );
+require_once( AWPCP_DIR . '/admin/import/class-csv-import-sessions-manager.php' );
+require_once( AWPCP_DIR . '/admin/import/class-csv-importer.php' );
+require_once( AWPCP_DIR . '/admin/import/class-csv-importer-factory.php' );
+require_once( AWPCP_DIR . '/admin/import/class-csv-importer-delegate.php' );
+require_once( AWPCP_DIR . '/admin/import/class-csv-importer-delegate-factory.php' );
+require_once( AWPCP_DIR . '/admin/import/class-csv-reader-factory.php' );
+require_once( AWPCP_DIR . '/admin/import/class-csv-reader.php' );
+require_once( AWPCP_DIR . '/admin/import/class-import-listings-ajax-handler.php' );
 require_once( AWPCP_DIR . "/admin/upgrade/class-manual-upgrade-admin-page.php" );
 require_once( AWPCP_DIR . '/admin/user-panel.php' );
 require( AWPCP_DIR . '/admin/listings/class-listings-table-search-by-phone-condition.php' );
@@ -730,6 +738,8 @@ class AWPCP {
             $helper = awpcp_url_backwards_compatibility_redirection_helper();
             add_action( 'template_redirect', array( $helper, 'maybe_redirect_frontend_request' ) );
 
+            add_action( 'template_redirect', array( awpcp_authentication_redirection_handler(), 'maybe_redirect' ) );
+
             $filter = awpcp_wordpress_status_header_filter();
             add_filter( 'status_header', array( $filter, 'filter_status_header' ), 10, 4 );
         }
@@ -816,23 +826,8 @@ class AWPCP {
         add_action( 'wp_ajax_awpcp-autoresponder-user-subscribed', array( $handler, 'ajax' ) );
         add_action( 'wp_ajax_awpcp-autoresponder-dismissed', array( $handler, 'ajax' ) );
 
-        // credit plans admin page
-        $handler = awpcp_add_credit_plan_ajax_handler();
-        add_action( 'wp_ajax_awpcp-credit-plans-add', array( $handler, 'ajax') );
-
-        $handler = awpcp_edit_credit_plan_ajax_handler();
-        add_action( 'wp_ajax_awpcp-credit-plans-edit', array( $handler, 'ajax' ) );
-
-        $handler = awpcp_delete_credit_plan_ajax_handler();
-        add_action( 'wp_ajax_awpcp-credit-plans-delete', array( $handler, 'ajax' ) );
-
-        // fees admin
-        $handler = awpcp_delete_fee_ajax_handler();
-        add_action( 'wp_ajax_awpcp-fees-delete', array( $handler, 'ajax' ) );
-
-        // listings admin
-        $handler = awpcp_delete_listing_ajax_handler();
-        add_action( 'wp_ajax_awpcp-listings-delete-ad', array( $handler, 'ajax' ) );
+        $handler = awpcp_import_listings_ajax_handler();
+        add_action( 'wp_ajax_awpcp-import-listings', array( $handler, 'ajax' ) );
 
         $ajax_request_handler = awpcp_ajax_request_handler( $this->router->get_routes() );
         $this->router->register_ajax_request_handler( $ajax_request_handler );
@@ -1068,6 +1063,14 @@ class AWPCP {
             true
         );
 
+        wp_register_script(
+            'awpcp-knockout-progress',
+            "{$js}/knockout-progress/knockout-progress.min.js",
+            array( 'awpcp' ),
+            $awpcp_db_version,
+            true
+        );
+
 		/* helpers */
 
 		wp_register_script(
@@ -1116,9 +1119,34 @@ class AWPCP {
 		wp_register_script( 'awpcp-admin-listings', "{$js}/admin-listings.js", array( 'awpcp', 'awpcp-admin-wp-table-ajax', 'plupload-all' ), $awpcp_db_version, true );
 		wp_register_script('awpcp-admin-users', "{$js}/admin-users.js", array('awpcp-admin-wp-table-ajax'), $awpcp_db_version, true);
 		wp_register_script( 'awpcp-admin-attachments', "{$js}/admin-attachments.js", array( 'awpcp' ), $awpcp_db_version, true );
-		wp_register_script( 'awpcp-admin-import', "{$js}/admin-import.js", array( 'awpcp', 'jquery-ui-datepicker', 'jquery-ui-autocomplete' ), $awpcp_db_version, true );
+
+        wp_register_script(
+            'awpcp-admin-import',
+            "{$js}/admin-import.js",
+            array(
+                'awpcp',
+                'awpcp-jquery-usableform',
+                'awpcp-knockout-progress',
+                'jquery-ui-datepicker',
+                'jquery-ui-autocomplete',
+            ),
+            $awpcp_db_version,
+            true
+        );
+
         wp_register_script( 'awpcp-admin-form-fields', "{$js}/admin-form-fields.js", array( 'awpcp', 'jquery-ui-sortable', 'jquery-effects-highlight', 'jquery-effects-core' ), $awpcp_db_version, true );
-        wp_register_script( 'awpcp-admin-manual-upgrade', "{$js}/admin-manual-upgrade.js", array( 'awpcp', 'awpcp-momentjs-with-locales' ), $awpcp_db_version, true );
+
+        wp_register_script(
+            'awpcp-admin-manual-upgrade',
+            "{$js}/admin-manual-upgrade.js",
+            array(
+                'awpcp',
+                'awpcp-knockout-progress',
+                'awpcp-momentjs-with-locales'
+            ),
+            $awpcp_db_version,
+            true
+        );
 
         wp_register_script(
             'awpcp-admin-pointers',
@@ -1719,3 +1747,32 @@ function awpcp_redirect_canonical($redirect_url, $requested_url) {
 	return $redirect_url;
 }
 add_filter('redirect_canonical', 'awpcp_redirect_canonical', 10, 2);
+
+
+function wp_debug_util_get_hook_handlers( $hook_name ) {
+    global $wp_filter;
+    $hook_handlers = array();
+    foreach ( $wp_filter[ $hook_name ] as $priority => $handlers ) {
+        foreach ( $handlers as $handler ) {
+            if ( is_array( $handler['function'] ) && is_callable( $handler['function'] ) ) {
+                $class = new ReflectionClass( get_class( $handler['function'][0] ) );
+                $method = new ReflectionMethod( $class->getName(), $handler['function'][1] );
+                $hook_handlers[] = array(
+                    'priority' => $priority,
+                    'handler' => $class->getName() . ( $method->isStatic() ? '::' : '->' ) . $method->getName(),
+                    'file' => $class->getFileName(),
+                    'line' => $method->getStartLine(),
+                );
+            } else {
+                $function = new ReflectionFunction( $handler['function'] );
+                $hook_handlers[] = array(
+                    'priority' => $priority,
+                    'handler' => $handler['function'],
+                    'file' => $function->getFileName(),
+                    'line' => $function->getStartLine(),
+                );
+            }
+        }
+    }
+    return $hook_handlers;
+}

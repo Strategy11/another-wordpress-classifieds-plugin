@@ -5,20 +5,10 @@ AWPCP.define( 'awpcp/asynchronous-tasks', [
     'knockout',
     'moment',
     'awpcp/asynchronous-task',
-    'awpcp/asynchronous-tasks-group'
+    'awpcp/asynchronous-tasks-group',
+    'awpcp/knockout-progress'
 ],
 function($, ko, moment, AsynchronousTask, AsynchronousTasksGroup) {
-
-    ko.bindingHandlers.progress = {
-        init: function(element, accessor) {
-            var observable = accessor();
-            $(element).animate({width: observable()});
-        },
-        update: function(element, accessor) {
-            var observable = accessor();
-            $(element).animate({width: observable()});
-        }
-    };
 
     function AsynchronousTasks( params ) {
         this.title = ko.observable( params.title );

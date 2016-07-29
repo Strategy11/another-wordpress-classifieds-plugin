@@ -1101,6 +1101,10 @@ class AWPCP_Installer {
     }
 
     private function create_phone_number_digits_column( $oldversion ) {
+        if ( ! awpcp_table_exists( AWPCP_TABLE_ADS ) ) {
+            return;
+        }
+
         $this->columns->create(
             AWPCP_TABLE_ADS,
             'phone_number_digits',
@@ -1111,6 +1115,10 @@ class AWPCP_Installer {
     }
 
     private function enable_upgrade_task_to_store_phone_number_digits() {
+        if ( ! awpcp_table_exists( AWPCP_TABLE_ADS ) ) {
+            return;
+        }
+
         delete_option( 'awpcp-spnd-last-file-id' );
         $this->upgrade_tasks->enable_upgrade_task( 'awpcp-store-phone-number-digits' );
     }
