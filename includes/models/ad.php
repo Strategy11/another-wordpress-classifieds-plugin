@@ -637,10 +637,12 @@ class AWPCP_Ad {
 		$this->renew_email_sent = false;
 		$this->renewed_date = current_time('mysql');
 
+        $should_enable_listing = awpcp_should_enable_existing_listing( $this );
+
 		// if Ad is disabled lets see if we can enable it
-		if ($this->disabled && awpcp_should_enable_existing_listing( $this ) ) {
+		if ( $should_enable_listing && $this->disabled ) {
 			$this->enable();
-		} else if ( $this->disabled ) {
+		} else if ( ! $should_enable_listing ) {
 			$this->clear_disabled_date();
 		}
 
