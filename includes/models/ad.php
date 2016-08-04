@@ -17,6 +17,7 @@ class AWPCP_Ad {
 		$ad->ad_details = $object->ad_details;
 		$ad->ad_contact_name = $object->ad_contact_name;
 		$ad->ad_contact_phone = $object->ad_contact_phone;
+        $ad->phone_number_digits = $object->phone_number_digits;
 		$ad->ad_contact_email = $object->ad_contact_email;
 		$ad->ad_city = $object->ad_city;
 		$ad->ad_state = $object->ad_state;
@@ -433,6 +434,7 @@ class AWPCP_Ad {
 			'ad_details' => awpcp_get_property($this, 'ad_details'),
 			'ad_contact_name' => awpcp_get_property($this, 'ad_contact_name'),
 			'ad_contact_phone' => awpcp_get_property($this, 'ad_contact_phone'),
+            'phone_number_digits' => awpcp_get_property( $this, 'phone_number_digits' ),
 			'ad_contact_email' => awpcp_get_property($this, 'ad_contact_email'),
 			'ad_city' => awpcp_get_property($this, 'ad_city'),
 			'ad_state' => awpcp_get_property($this, 'ad_state'),
