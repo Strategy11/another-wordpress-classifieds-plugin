@@ -142,6 +142,12 @@ class AWPCP_CSV_Importer_Delegate {
                 $placeholders[] = empty( $this->types[ $column_name ] ) ? '%d' : '%s';
                 $values[] = $value;
                 $columns[] = $database_column;
+
+                if ( $column_name == 'contact_phone' ) {
+                    $placeholders[] = '%s';
+                    $values[] = awpcp_get_digits_from_string( $value );
+                    $columns[] = 'phone_number_digits';
+                }
             }
         }
 
