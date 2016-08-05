@@ -159,6 +159,10 @@ class AWPCP_ListingRenderer {
         return $this->get_formatted_date( $verification_date );
     }
 
+    public function get_disabled_date( $listing ) {
+        return $this->wordpress->get_post_meta( $listing->ID, '_awpcp_disabled_date', true );
+    }
+
     public function get_regions( $listing ) {
         $regions = array();
 

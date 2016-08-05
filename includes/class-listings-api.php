@@ -194,14 +194,14 @@ class AWPCP_ListingsAPI {
      * @since 3.0.2
      */
     public function consolidate_existing_ad( $ad ) {
-        $is_listing_disabled = $this->listing_renderer->is_disabled( $ad );
+		$should_disable_listing = awpcp_should_disable_existing_listing( $ad );
 
         // if Ad is enabled and should be disabled, then disable it, otherwise
         // do not alter the Ad disabled status.
-        if ( ! $is_listing_disabled && awpcp_should_disable_existing_listing( $ad ) ) {
+        if ( $should_disable_listing && ! $this->listing_renderer->is_disabled( $ad )  ) {
             $this->disable_listing( $ad );
             $this->wordpress->delete_post_meta( $ad->ID, '_awpcp_disabled_date' );
-        } else if ( $is_listing_disabled ) {
+        } else if ( $should_disable_listing ) {
             $this->wordpress->delete_post_meta( $ad->ID, '_awpcp_disabled_date' );
         }
 
@@ -355,11 +355,11 @@ class AWPCP_ListingsAPI {
         $this->wordpress->update_post_meta( $listing->ID, '_awpcp_renewed_date', current_time( 'mysql' ) );
 
         // if Ad is disabled lets see if we can enable it
-        $is_listing_disabled = $this->listing_renderer->is_disabled( $listing );
+        $should_enable_listing = awpcp_should_enable_existing_listing( $listing );
 
-        if ( $is_listing_disabled && awpcp_should_enable_existing_listing( $listing ) ) {
+        if ( $should_enable_listing && $this->listing_renderer->is_disabled( $listing ) ) {
             $this->enable_listing( $listing );
-        } else if ( $is_listing_disabled ) {
+        } else if ( ! $should_enable_listing ) {
             $this->wordpress->delete_post_meta( $listing->ID, '_awpcp_disabled_date' );
         }
 
