@@ -236,7 +236,7 @@ class AWPCP_ListingsAPI {
      */
     public function send_verification_email( $ad ) {
         $mail = new AWPCP_Email;
-        $mail->to[] = awpcp_format_email_address( $ad->ad_contact_email, $ad->ad_contact_name );
+        $mail->to[] = awpcp_format_recipient_address( $ad->ad_contact_email, $ad->ad_contact_name );
         $subject = get_awpcp_option( 'verifyemailsubjectline' );
         $message = get_awpcp_option( 'verifyemailbodymessage' );
         $mail->subject = str_replace( '$title', $ad->get_title(), $subject );

@@ -468,7 +468,7 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
     public function send_access_keys($ads, &$errors=array()) {
         $ad = reset( $ads );
 
-        $recipient = "{$ad->ad_contact_name} <{$ad->ad_contact_email}>";
+        $recipient = awpcp_format_recipient_address( $ad->ad_contact_email, $ad->ad_contact_name );
         $template = AWPCP_DIR . '/frontend/templates/email-send-all-ad-access-keys.tpl.php';
 
         $message = new AWPCP_Email;
