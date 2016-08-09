@@ -1174,6 +1174,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             ),
             'media_uploader_configuration' => array(
                 'listing_id' => $ad->ad_id,
+                'context' => 'post-listing',
                 'nonce' => wp_create_nonce( 'awpcp-upload-media-for-listing-' . $ad->ad_id ),
                 'allowed_files' => $allowed_files,
             ),

@@ -113,11 +113,11 @@ class AWPCP_UserNotificationsSettings {
 
          $settings->add_setting(
             $key,
-            'send-images-uploaded-notification-to-administrators',
-            __( 'New Images added to listing', 'another-wordpress-classifieds-plugin' ),
+            'send-media-uploaded-notification-to-administrators',
+            __( 'New media was uploaded', 'another-wordpress-classifieds-plugin' ),
             'checkbox',
             false,
-            __( 'An email will be sent to administrator users when new images are added to listing.', 'another-wordpress-classifieds-plugin' )
+            __( 'An email will be sent to administrator users when new media is added to a listing.', 'another-wordpress-classifieds-plugin' )
         );
     }
 }
