@@ -301,6 +301,21 @@ class AWPCP_Settings_API {
 		);
 
 		$this->add_setting( $key, 'usesenderemailinsteadofadmin', __( 'Use sender email for reply messages', 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, __( 'Check this to use the name and email of the sender in the FROM field when someone replies to an ad. When unchecked the messages go out with the website name and WP admin email address in the from field. Some servers will not process outgoing emails that have an email address from gmail, yahoo, hotmail and other free email services in the FROM field. Some servers will also not process emails that have an email address that is different from the email address associated with your hosting account in the FROM field. If you are with such a webhost you need to leave this option unchecked and make sure your WordPress admin email address is tied to your hosting account.', 'another-wordpress-classifieds-plugin' ) );
+
+        /* translators: full-email-address=John Doe <john.doe@example.com>, short-email-address=john.doe@example.com */
+        $description = __( 'If checked, whenever the name of the recipient is available, emails will be sent to <full-email-address> instead of just <short-email-address>. Some email servers, however, have problems handling email address that include the name of the recipient. If emails sent by the plugin are not being delivered properly, try unchecking this settting.' );
+        $description = str_replace( '<full-email-address>', '<strong>' . esc_html( 'John Doe <john.doe@example.com>' ) . '</strong>', $description );
+        $description = str_replace( '<short-email-address>', '<strong>' . esc_html( 'john.doe@example.com' ) . '</strong>', $description );
+
+        $this->add_setting(
+            $key,
+            'include-recipient-name-in-email-address',
+            __( 'Include the name of the recipient in the email address', 'another-wordpress-classifieds-plugin' ),
+            'checkbox',
+            1,
+            $description
+        );
+
 		$this->add_setting( $key, 'include-ad-access-key', __( 'Include Ad access key in email messages', 'another-wordpress-classifieds-plugin' ), 'checkbox', 1, __( "Include Ad access key in email notifications. You may want to uncheck this option if you are using the Ad Management panel, but is not necessary.", 'another-wordpress-classifieds-plugin' ) );
 
 		// Section: Ad Posted Message
