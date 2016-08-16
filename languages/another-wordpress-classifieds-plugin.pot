@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2016-08-15 22:02:24+00:00\n"
+"POT-Creation-Date: 2016-08-16 15:46:32+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -977,14 +977,14 @@ msgstr ""
 msgid ""
 "No user could be assigned to this listing. A new user couldn't be created "
 "because the username column has an empty value. Please include a username or "
-"selected a default user."
+"select a default user."
 msgstr ""
 
 #: admin/import/class-csv-importer-delegate.php:327
 msgid ""
 "No user could be assigned to this listing. A new user couldn't be created "
 "because the contact_email column has an empty value. Please include a "
-"contact_email or selected a default user."
+"contact_email or select a default user."
 msgstr ""
 
 #: admin/import/class-csv-importer-delegate.php:340
@@ -7614,7 +7614,7 @@ msgstr ""
 
 #: templates/admin/import-listings-admin-page-configuration-form.tpl.php:93
 msgid ""
-"Define wether you want to create missing categories or generate an error "
+"Define whether you want to create missing categories or generate an error "
 "whenever a category in the CSV file is not found in the system."
 msgstr ""
 

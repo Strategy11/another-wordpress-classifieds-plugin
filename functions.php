@@ -333,8 +333,8 @@ function awpcp_get_grid_item_css_class($classes, $pos, $columns, $rows) {
  */
 function awpcp_pagination($config, $url) {
 
-	$blacklist = array('page_id',
-					   'offset',
+    $blacklist = array(
+        'offset',
 					   'results',
 					   'PHPSESSID',
 					   'aeaction',

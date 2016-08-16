@@ -321,10 +321,10 @@ class AWPCP_CSV_Importer_Delegate {
         }
 
         if ( empty( $username ) ) {
-            $message = __( "No user could be assigned to this listing. A new user couldn't be created because the username column has an empty value. Please include a username or selected a default user.", 'another-wordpress-classifieds-plugin' );
+            $message = __( "No user could be assigned to this listing. A new user couldn't be created because the username column has an empty value. Please include a username or select a default user.", 'another-wordpress-classifieds-plugin' );
             throw new AWPCP_CSV_Importer_Exception( $message );
         } else if ( empty( $email ) ) {
-            $message = __( "No user could be assigned to this listing. A new user couldn't be created because the contact_email column has an empty value. Please include a contact_email or selected a default user.", 'another-wordpress-classifieds-plugin' );
+            $message = __( "No user could be assigned to this listing. A new user couldn't be created because the contact_email column has an empty value. Please include a contact_email or select a default user.", 'another-wordpress-classifieds-plugin' );
             throw new AWPCP_CSV_Importer_Exception( $message );
         }
 
