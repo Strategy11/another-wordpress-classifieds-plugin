@@ -4,7 +4,7 @@
  * Plugin Name: Another WordPress Classifieds Plugin (AWPCP)
  * Plugin URI: http://www.awpcp.com
  * Description: AWPCP - A plugin that provides the ability to run a free or paid classified ads service on your WP site. <strong>!!!IMPORTANT!!!</strong> It's always a good idea to do a BACKUP before you upgrade AWPCP!
- * Version: 3.7.2-dev-1
+ * Version: 3.7.2-dev-2
  * Author: D. Rodenbaugh
  * License: GPLv2 or any later version
  * Author URI: http://www.skylineconsult.com
@@ -284,6 +284,7 @@ require_once( AWPCP_DIR . "/includes/wordpress/class-wordpress-scripts.php" );
 require_once( AWPCP_DIR . "/includes/wordpress/class-wordpress.php" );
 
 require( AWPCP_DIR . '/includes/class-authentication-redirection-handler.php' );
+require( AWPCP_DIR . '/includes/class-browse-categories-page-redirection-handler.php' );
 require_once( AWPCP_DIR . '/includes/class-edit-listing-url-placeholder.php' );
 require_once( AWPCP_DIR . '/includes/class-edit-listing-link-placeholder.php' );
 
@@ -328,11 +329,13 @@ require( AWPCP_DIR . "/installer.php" );
 // admin functions
 require_once(AWPCP_DIR . "/admin/admin-panel.php");
 require_once(AWPCP_DIR . "/admin/user-panel.php");
+require_once( AWPCP_DIR . '/admin/class-delete-browse-categories-page-notice.php' );
+require_once( AWPCP_DIR . '/admin/class-dismiss-notice-ajax-handler.php' );
+require_once( AWPCP_DIR . '/admin/class-page-name-monitor.php' );
 require_once( AWPCP_DIR . '/admin/pointers/class-drip-autoresponder-ajax-handler.php' );
 require_once( AWPCP_DIR . '/admin/pointers/class-drip-autoresponder.php' );
 require_once( AWPCP_DIR . '/admin/pointers/class-pointers-manager.php' );
 require_once( AWPCP_DIR . '/admin/profile/class-user-profile-contact-information-controller.php' );
-require_once( AWPCP_DIR . '/admin/class-page-name-monitor.php' );
 require_once( AWPCP_DIR . '/admin/form-fields/class-form-fields-admin-page.php' );
 require_once( AWPCP_DIR . '/admin/form-fields/class-form-fields-table-factory.php' );
 require_once( AWPCP_DIR . '/admin/form-fields/class-form-fields-table.php' );
@@ -640,6 +643,7 @@ class AWPCP {
                 // load resources required in admin screens only, visible to admin users only.
                 add_action( 'admin_notices', array( awpcp_fee_payment_terms_notices(), 'dispatch' ) );
                 add_action( 'admin_notices', array( awpcp_credit_plans_notices(), 'dispatch' ) );
+                add_action( 'admin_notices', array( awpcp_delete_browse_categories_page_notice(), 'maybe_show_notice' ) );
 
                 // TODO: do we really need to execute this every time the plugin settings are saved?
                 $handler = awpcp_license_settings_update_handler();
@@ -655,6 +659,7 @@ class AWPCP {
             add_action( 'template_redirect', array( awpcp_secure_url_redirection_handler(), 'dispatch' ) );
 
             add_action( 'template_redirect', array( awpcp_authentication_redirection_handler(), 'maybe_redirect' ) );
+            add_action( 'template_redirect', array( awpcp_browse_categories_page_redirection_handler(), 'maybe_redirect' ) );
 
             $filter = awpcp_wordpress_status_header_filter();
             add_filter( 'status_header', array( $filter, 'filter_status_header' ), 10, 4 );
@@ -673,6 +678,20 @@ class AWPCP {
 
         if ( get_option( 'awpcp-enable-fix-media-mime-type-upgrde' ) ) {
             awpcp_fix_empty_media_mime_type_upgrade_routine()->run();
+        }
+
+        if ( get_option( 'awpcp-store-browse-categories-page-information' ) ) {
+            $page_id = awpcp_get_page_id_by_ref( 'browse-categories-page-name' );
+
+            $page_info = array(
+                'page_id' => $page_id,
+                'page_uri' => get_page_uri( $page_id ),
+            );
+
+            update_option( 'awpcp-browse-categories-page-information', $page_info, false );
+            update_option( 'awpcp-show-delete-browse-categories-page-notice' , true, false );
+
+            delete_option( 'awpcp-store-browse-categories-page-information' );
         }
 
 		if ( $this->flush_rewrite_rules || get_option( 'awpcp-flush-rewrite-rules' ) ) {
@@ -736,6 +755,9 @@ class AWPCP {
 
         $handler = awpcp_import_listings_ajax_handler();
         add_action( 'wp_ajax_awpcp-import-listings', array( $handler, 'ajax' ) );
+
+        $handler = awpcp_dismiss_notice_ajax_handler();
+        add_action( 'wp_ajax_awpcp-dismiss-notice', array( $handler, 'ajax' ) );
     }
 
 	public function admin_notices() {
@@ -1460,7 +1482,7 @@ function awpcp_pages_with_rewrite_rules() {
 		'show-ads-page-name',
 		'reply-to-ad-page-name',
         'edit-ad-page-name',
-		'browse-categories-page-name',
+		'browse-ads-page-name',
 		'payment-thankyou-page-name',
 		'payment-cancel-page-name'
 	);
@@ -1486,6 +1508,7 @@ function awpcp_query_vars($query_vars) {
 		'awpcp-hash',
 
 		// misc
+        'awpcp-custom',
 		"cid",
 		"i",
 		"id",
