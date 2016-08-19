@@ -1460,7 +1460,7 @@ function awpcp_pages_with_rewrite_rules() {
 		'show-ads-page-name',
 		'reply-to-ad-page-name',
         'edit-ad-page-name',
-		'browse-categories-page-name',
+		'browse-ads-page-name',
 		'payment-thankyou-page-name',
 		'payment-cancel-page-name'
 	);

@@ -268,7 +268,7 @@ function url_showad($ad_id) {
 }
 
 function awpcp_get_browse_categories_page_url() {
-    return awpcp_get_page_url( 'browse-categories-page-name' );
+    return awpcp_get_page_url( 'browse-ads-page-name' );
 }
 
 /**

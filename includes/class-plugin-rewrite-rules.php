@@ -120,7 +120,7 @@ class AWPCP_Plugin_Rewrite_Rules {
                     'position' => 'top'
                 ),
             ),
-            'browse-categories-page-name' => array(
+            'browse-ads-page-name' => array(
                 array(
                     'regex' => '(<page-uri>)/(\d+)' ,
                     'redirect' => 'index.php?pagename=$matches[1]&cid=$matches[2]&a=browsecat',
