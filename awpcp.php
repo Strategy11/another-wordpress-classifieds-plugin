@@ -284,6 +284,7 @@ require_once( AWPCP_DIR . "/includes/wordpress/class-wordpress-scripts.php" );
 require_once( AWPCP_DIR . "/includes/wordpress/class-wordpress.php" );
 
 require( AWPCP_DIR . '/includes/class-authentication-redirection-handler.php' );
+require( AWPCP_DIR . '/includes/class-browse-categories-page-redirection-handler.php' );
 require_once( AWPCP_DIR . '/includes/class-edit-listing-url-placeholder.php' );
 require_once( AWPCP_DIR . '/includes/class-edit-listing-link-placeholder.php' );
 
@@ -655,6 +656,7 @@ class AWPCP {
             add_action( 'template_redirect', array( awpcp_secure_url_redirection_handler(), 'dispatch' ) );
 
             add_action( 'template_redirect', array( awpcp_authentication_redirection_handler(), 'maybe_redirect' ) );
+            add_action( 'template_redirect', array( awpcp_browse_categories_page_redirection_handler(), 'maybe_redirect' ) );
 
             $filter = awpcp_wordpress_status_header_filter();
             add_filter( 'status_header', array( $filter, 'filter_status_header' ), 10, 4 );
@@ -673,6 +675,19 @@ class AWPCP {
 
         if ( get_option( 'awpcp-enable-fix-media-mime-type-upgrde' ) ) {
             awpcp_fix_empty_media_mime_type_upgrade_routine()->run();
+        }
+
+        if ( get_option( 'awpcp-store-browse-categories-page-information' ) ) {
+            $page_id = awpcp_get_page_id_by_ref( 'browse-categories-page-name' );
+
+            $page_info = array(
+                'page_id' => $page_id,
+                'page_uri' => get_page_uri( $page_id ),
+            );
+
+            update_option( 'awpcp-browse-categories-page-information', $page_info, false );
+
+            delete_option( 'awpcp-store-browse-categories-page-information' );
         }
 
 		if ( $this->flush_rewrite_rules || get_option( 'awpcp-flush-rewrite-rules' ) ) {
@@ -1486,6 +1501,7 @@ function awpcp_query_vars($query_vars) {
 		'awpcp-hash',
 
 		// misc
+        'awpcp-custom',
 		"cid",
 		"i",
 		"id",

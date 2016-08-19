@@ -21,6 +21,7 @@ class AWPCP_Plugin_Rewrite_Rules {
     public function add_rewrite_rules( $rules ) {
         $this->add_api_rewrite_rules();
         $this->add_plugin_pages_rewrite_rules();
+        $this->add_legacy_plugin_pages_rewrite_rules();
 
         return $rules;
     }
@@ -29,26 +30,36 @@ class AWPCP_Plugin_Rewrite_Rules {
         $uris = array();
 
         foreach ( $pages as $refname ) {
-            if ( $id = awpcp_get_page_id_by_ref( $refname ) ) {
-                if ( $page = get_page( $id ) ) {
-                    $regular_page_uri = get_page_uri( $page->ID );
+            $page_id = awpcp_get_page_id_by_ref( $refname );
 
-                    $uppercase_page_uri = preg_replace_callback(
-                        '/%[0-9a-zA-Z]{2}/',
-                        create_function( '$x', 'return strtoupper( $x[0] );' ),
-                        $regular_page_uri
-                    );
-
-                    if ( strcmp( $regular_page_uri, $uppercase_page_uri ) !== 0 ) {
-                        $uris[ $refname ] = array( $regular_page_uri, $uppercase_page_uri );
-                    } else {
-                        $uris[ $refname ] = array( $regular_page_uri );
-                    }
-                }
+            if ( ! $page_id ) {
+                continue;
             }
+
+            $page = get_post( $page_id );
+
+            if ( is_null( $page ) ) {
+                continue;
+            }
+
+            $uris[ $refname ] = $this->get_converted_page_uris( get_page_uri( $page->ID ) );
         }
 
         return $uris;
+    }
+
+    private function get_converted_page_uris( $regular_page_uri ) {
+        $uppercase_page_uri = preg_replace_callback(
+            '/%[0-9a-zA-Z]{2}/',
+            create_function( '$x', 'return strtoupper( $x[0] );' ),
+            $regular_page_uri
+        );
+
+        if ( strcmp( $regular_page_uri, $uppercase_page_uri ) !== 0 ) {
+            return array( $regular_page_uri, $uppercase_page_uri );
+        } else {
+            return array( $regular_page_uri );
+        }
     }
 
     private function add_api_rewrite_rules() {
@@ -164,5 +175,25 @@ class AWPCP_Plugin_Rewrite_Rules {
                 ),
             ),
         );
+    }
+
+    private function add_legacy_plugin_pages_rewrite_rules() {
+        $browse_categories_page_info = get_option( 'awpcp-browse-categories-page-information', array() );
+
+        if ( ! isset( $browse_categories_page_info['page_uri'] ) ) {
+            return;
+        }
+
+        $page_uris = $this->get_converted_page_uris( $browse_categories_page_info['page_uri'] );
+        $browse_listings_page_id = awpcp_get_page_id_by_ref( 'browse-ads-page-name' );
+        $base_regex = '<page-uri>(?:$|/(\d+)?)';
+        $base_redirect = 'index.php?page_id=<browse-listings-page-id>&cid=$matches[1]&a=browsecat&awpcp-custom=redirect-browse-listings';
+
+        foreach ( $page_uris as $page_uri ) {
+            $regex = str_replace( '<page-uri>', $page_uri, $base_regex );
+            $redirect = str_replace( '<browse-listings-page-id>', $browse_listings_page_id, $base_redirect );
+
+            $this->rewrite_rules_helper->add_page_rewrite_rule( $regex, $redirect, 'top' );
+        }
     }
 }
