@@ -329,11 +329,13 @@ require( AWPCP_DIR . "/installer.php" );
 // admin functions
 require_once(AWPCP_DIR . "/admin/admin-panel.php");
 require_once(AWPCP_DIR . "/admin/user-panel.php");
+require_once( AWPCP_DIR . '/admin/class-delete-browse-categories-page-notice.php' );
+require_once( AWPCP_DIR . '/admin/class-dismiss-notice-ajax-handler.php' );
+require_once( AWPCP_DIR . '/admin/class-page-name-monitor.php' );
 require_once( AWPCP_DIR . '/admin/pointers/class-drip-autoresponder-ajax-handler.php' );
 require_once( AWPCP_DIR . '/admin/pointers/class-drip-autoresponder.php' );
 require_once( AWPCP_DIR . '/admin/pointers/class-pointers-manager.php' );
 require_once( AWPCP_DIR . '/admin/profile/class-user-profile-contact-information-controller.php' );
-require_once( AWPCP_DIR . '/admin/class-page-name-monitor.php' );
 require_once( AWPCP_DIR . '/admin/form-fields/class-form-fields-admin-page.php' );
 require_once( AWPCP_DIR . '/admin/form-fields/class-form-fields-table-factory.php' );
 require_once( AWPCP_DIR . '/admin/form-fields/class-form-fields-table.php' );
@@ -641,6 +643,7 @@ class AWPCP {
                 // load resources required in admin screens only, visible to admin users only.
                 add_action( 'admin_notices', array( awpcp_fee_payment_terms_notices(), 'dispatch' ) );
                 add_action( 'admin_notices', array( awpcp_credit_plans_notices(), 'dispatch' ) );
+                add_action( 'admin_notices', array( awpcp_delete_browse_categories_page_notice(), 'maybe_show_notice' ) );
 
                 // TODO: do we really need to execute this every time the plugin settings are saved?
                 $handler = awpcp_license_settings_update_handler();
@@ -686,6 +689,7 @@ class AWPCP {
             );
 
             update_option( 'awpcp-browse-categories-page-information', $page_info, false );
+            update_option( 'awpcp-show-delete-browse-categories-page-notice' , true, false );
 
             delete_option( 'awpcp-store-browse-categories-page-information' );
         }
@@ -751,6 +755,9 @@ class AWPCP {
 
         $handler = awpcp_import_listings_ajax_handler();
         add_action( 'wp_ajax_awpcp-import-listings', array( $handler, 'ajax' ) );
+
+        $handler = awpcp_dismiss_notice_ajax_handler();
+        add_action( 'wp_ajax_awpcp-dismiss-notice', array( $handler, 'ajax' ) );
     }
 
 	public function admin_notices() {
