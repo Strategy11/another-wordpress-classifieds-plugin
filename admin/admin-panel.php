@@ -133,6 +133,8 @@ class AWPCP_Admin {
             20
         );
 
+        $router->add_private_ajax_action( 'listings-delete-ad', 'awpcp_delete_listing_ajax_handler' );
+
         $router->add_admin_subpage(
             $parent_page,
             __( 'Import Listings', 'another-wordpress-classifieds-plugin' ),
