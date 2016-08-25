@@ -22,8 +22,6 @@ class AWPCP_Show_Ad_Page {
 	}
 
 	public function dispatch() {
-		awpcp_enqueue_main_script();
-
 		$output = apply_filters( 'awpcp-show-listing-content-replacement', null );
 
 		if ( is_null( $output ) ) {
