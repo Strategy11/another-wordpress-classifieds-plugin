@@ -82,7 +82,7 @@ class AWPCP_Pages {
             do_action('awpcp-shortcode', 'edit-ad');
 
             if ( ! isset( $this->edit_ad_page ) ) {
-                $this->edit_ad_page = new AWPCP_EditAdPage();
+                $this->edit_ad_page = awpcp_edit_listing_page();
             }
 
             $this->output['edit-ad'] = $this->edit_ad_page->dispatch();
