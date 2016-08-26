@@ -45,4 +45,50 @@
     $(function() {
         $.noop(new $.AWPCP.FlagLink($('#flag_ad_link')));
     });
+
+    $(function() {
+        var items = null;
+
+        var getGalleryItems = function() {
+            if ( items !== null ) {
+                return items;
+            }
+
+            items = $( '#showawpcpadpage [data-awpcp-gallery]' ).map( function( index, element ) {
+                var $link = $( element ), $img = $link.find( 'img' );
+
+                if ( $img.length === 0 ) {
+                    return undefined;
+                }
+
+                return {
+                    src: $link.attr( 'href' ),
+                    thumb: $img.attr( 'src' )
+                };
+            } ).get();
+
+            return items;
+        }
+
+        $( '#showawpcpadpage' ).on( 'click', '.awpcp-listing-primary-image-thickbox-link, .thickbox', function( event ) {
+            event.preventDefault();
+
+            var $link = $( this ),
+                galleryItems = getGalleryItems(),
+                currentGalleryItem = 0;
+
+            for ( var i = galleryItems.length - 1; i >= 0; i = i - 1 ) {
+                if ( galleryItems[ i ].src === $link.attr( 'href' ) ) {
+                    currentGalleryItem = i;
+                }
+            }
+
+            $link.lightGallery({
+                download: false,
+                dynamic: true,
+                dynamicEl: galleryItems,
+                index: currentGalleryItem
+            });
+        } );
+    });
 })(jQuery);

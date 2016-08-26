@@ -70,6 +70,7 @@ class AWPCP_Image_Placeholders {
                     'class' => 'awpcp-listing-primary-image-thickbox-link thickbox thumbnail',
                     'href' => esc_url( $large_image ),
                     'rel' => esc_attr( $gallery_name ),
+                    'data-awpcp-gallery' => esc_attr( $gallery_name ),
                 );
 
                 $content = '<div class="awpcp-ad-primary-image">';
@@ -117,7 +118,8 @@ class AWPCP_Image_Placeholders {
                     $link_attributes = array(
                         'class' => 'thickbox',
                         'href' => esc_url( $large_image ),
-                        'rel' => esc_attr( $gallery_name )
+                        'rel' => esc_attr( $gallery_name ),
+                        'data-awpcp-gallery' => esc_attr( $gallery_name ),
                     );
 
                     $content = '<li ' . awpcp_html_attributes( $li_attributes ) . '>';
