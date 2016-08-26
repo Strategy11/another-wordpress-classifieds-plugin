@@ -2229,11 +2229,25 @@ function awpcp_enqueue_main_script() {
  * @since 3.3
  */
 function awpcp_maybe_add_thickbox() {
-    if ( get_awpcp_option( 'awpcp_thickbox_disabled' ) ) {
-        return;
-    }
+    awpcp_maybe_include_lightbox_script();
+}
 
-    add_thickbox();
+/**
+ * @since next-release
+ */
+function awpcp_maybe_include_lightbox_script() {
+    if ( ! get_awpcp_option( 'awpcp_thickbox_disabled' ) ) {
+        wp_enqueue_script( 'awpcp-lightgallery' );
+    }
+}
+
+/**
+ * @since next-release
+ */
+function awpcp_maybe_include_lightbox_style() {
+    if ( ! get_awpcp_option( 'awpcp_thickbox_disabled' ) ) {
+        wp_enqueue_style( 'awpcp-lightgallery' );
+    }
 }
 
 

@@ -1211,7 +1211,6 @@ class AWPCP {
             "{$js}/page-show-ad.js",
             array(
                 'awpcp',
-                'awpcp-lightgallery',
             ),
             $awpcp_db_version,
             true
@@ -1238,7 +1237,7 @@ class AWPCP {
             wp_localize_script('awpcp-admin-general', 'AWPCPAjaxOptions', $options);
         } else if ( ! is_admin() ) {
             if ( awpcp_query()->is_single_listing_page() ) {
-                wp_enqueue_style( 'awpcp-lightgallery' );
+                awpcp_maybe_include_lightbox_style();
             }
 
 			wp_enqueue_style('awpcp-frontend-style');

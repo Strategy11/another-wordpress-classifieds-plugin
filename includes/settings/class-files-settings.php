@@ -67,7 +67,7 @@ class AWPCP_FilesSettings {
         );
 
         $settings->add_setting( $key, 'imagesapprove', __( 'Hide images until admin approves them', 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, '');
-        $settings->add_setting( $key, 'awpcp_thickbox_disabled', __( 'Disable AWPCP Lightbox feature', 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, __( 'Turn off the lightbox/thickbox element used by AWPCP. Some themes cannot handle it and a conflict results.', 'another-wordpress-classifieds-plugin' ) );
+        $settings->add_setting( $key, 'awpcp_thickbox_disabled', __( "Disable AWPCP's Lightbox feature", 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, __( 'Do not include the lightbox jQuery plugin used by AWPCP. Use this option to fix conflicts with themes or plugins that also offers a lightbox feature.', 'another-wordpress-classifieds-plugin' ) );
         $settings->add_setting( $key, 'show-click-to-enlarge-link', __( 'Show click to enlarge link?', 'another-wordpress-classifieds-plugin' ), 'checkbox', 1, '' );
         $settings->add_setting( $key, 'imagesallowedfree', __( 'Number of images allowed if payments are disabled (Free Mode)', 'another-wordpress-classifieds-plugin' ), 'textfield', 4, __( 'If images are allowed and payments are disabled, users will be allowed upload this amount of images.', 'another-wordpress-classifieds-plugin' ) );
 

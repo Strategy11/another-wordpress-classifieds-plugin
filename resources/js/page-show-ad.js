@@ -47,8 +47,11 @@
     });
 
     $(function() {
-        var items = null;
+        if ( typeof $.fn.lightGallery === 'undefined' ) {
+            return;
+        }
 
+        var items = null;
         var getGalleryItems = function() {
             if ( items !== null ) {
                 return items;
