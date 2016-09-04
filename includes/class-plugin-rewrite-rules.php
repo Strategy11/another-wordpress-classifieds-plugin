@@ -182,7 +182,7 @@ class AWPCP_Plugin_Rewrite_Rules {
     private function add_legacy_plugin_pages_rewrite_rules() {
         $browse_categories_page_info = get_option( 'awpcp-browse-categories-page-information', array() );
 
-        if ( ! isset( $browse_categories_page_info['page_uri'] ) ) {
+        if ( empty( $browse_categories_page_info['page_uri'] ) ) {
             return;
         }
 
