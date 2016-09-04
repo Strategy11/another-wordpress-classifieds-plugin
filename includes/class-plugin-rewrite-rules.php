@@ -112,64 +112,66 @@ class AWPCP_Plugin_Rewrite_Rules {
         return array(
             'show-ads-page-name' => array(
                 array(
-                    'regex' => '(<page-uri>)/(\d+)' ,
+                    'regex' => '(<page-uri>)/(\d+)(?:.*)',
                     'redirect' => 'index.php?pagename=$matches[1]&id=$matches[2]',
                     'position' => 'top'
                 ),
             ),
             'reply-to-ad-page-name' => array(
                 array(
-                    'regex' => '(<page-uri>)/(.+?)/(.+?)' ,
+                    'regex' => '(<page-uri>)/(\d+)(?:.*)',
                     'redirect' => 'index.php?pagename=$matches[1]&id=$matches[2]',
                     'position' => 'top'
                 ),
             ),
             'edit-ad-page-name' => array(
                 array(
-                    'regex' => '(<page-uri>)(?:/([0-9]+))?/?$' ,
+                    'regex' => '(<page-uri>)(?:/([0-9]+))?',
                     'redirect' => 'index.php?pagename=$matches[1]&id=$matches[2]',
                     'position' => 'top'
                 ),
             ),
             'browse-ads-page-name' => array(
                 array(
-                    'regex' => '(<page-uri>)/(\d+)' ,
+                    'regex' => '(<page-uri>)/(\d+)(?:.*)',
                     'redirect' => 'index.php?pagename=$matches[1]&cid=$matches[2]&a=browsecat',
                     'position' => 'top'
                 ),
             ),
+            // TODO: Unused. Remove rewrite rule.
             'payment-thankyou-page-name' => array(
                 array(
-                    'regex' => '(<page-uri>)/([a-zA-Z0-9]+)' ,
+                    'regex' => '(<page-uri>)/([a-zA-Z0-9]+)',
                     'redirect' => 'index.php?pagename=$matches[1]&awpcp-txn=$matches[2]',
                     'position' => 'top'
                 ),
             ),
+            // TODO: Unused. Remove rewrite rule.
             'payment-cancel-page-name' => array(
                 array(
-                    'regex' => '(<page-uri>)/([a-zA-Z0-9]+)' ,
+                    'regex' => '(<page-uri>)/([a-zA-Z0-9]+)',
                     'redirect' => 'index.php?pagename=$matches[1]&awpcp-txn=$matches[2]',
                     'position' => 'top'
                 ),
             ),
             'main-page-name' => array(
                 array(
-                    'regex' => '(<page-uri>)/('.$view_categories.')($|[/?])' ,
+                    'regex' => '(<page-uri>)/('.$view_categories.')',
                     'redirect' => 'index.php?pagename=$matches[1]&layout=2&cid='.$view_categories,
                     'position' => 'top'
                 ),
                 array(
-                    'regex' => '(<page-uri>)/(setregion)/(.+?)/(.+?)' ,
+                    'regex' => '(<page-uri>)/(setregion)/(.+?)/(.+?)',
                     'redirect' => 'index.php?pagename=$matches[1]&regionid=$matches[3]&a=setregion',
                     'position' => 'top'
                 ),
                 array(
-                    'regex' => '(<page-uri>)/(classifiedsrss)/(\d+)' ,
+                    'regex' => '(<page-uri>)/(classifiedsrss)/(\d+)',
                     'redirect' => 'index.php?pagename=$matches[1]&awpcp-action=rss&cid=$matches[3]',
                     'position' => 'top'
                 ),
                 array(
-                    'regex' => '(<page-uri>)/(classifiedsrss)' ,
+                    'regex' => '(<page-uri>)/(classifiedsrss)',
                     'redirect' => 'index.php?pagename=$matches[1]&awpcp-action=rss',
                     'position' => 'top'
                 ),
@@ -180,7 +182,7 @@ class AWPCP_Plugin_Rewrite_Rules {
     private function add_legacy_plugin_pages_rewrite_rules() {
         $browse_categories_page_info = get_option( 'awpcp-browse-categories-page-information', array() );
 
-        if ( ! isset( $browse_categories_page_info['page_uri'] ) ) {
+        if ( empty( $browse_categories_page_info['page_uri'] ) ) {
             return;
         }
 
