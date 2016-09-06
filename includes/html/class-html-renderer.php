@@ -55,9 +55,11 @@ class AWPCP_HTML_Renderer {
     }
 
     private function load_renderers() {
+        include_once( AWPCP_DIR . '/includes/html/class-html-admin-form-autocomplete-renderer.php' );
         include_once( AWPCP_DIR . '/includes/html/class-html-admin-form-checkbox-renderer.php' );
         include_once( AWPCP_DIR . '/includes/html/class-html-admin-form-checkbox-textfield-renderer.php' );
         include_once( AWPCP_DIR . '/includes/html/class-html-admin-form-radio-buttons-renderer.php' );
+        include_once( AWPCP_DIR . '/includes/html/class-html-admin-form-select-renderer.php' );
         include_once( AWPCP_DIR . '/includes/html/class-html-admin-form-textarea-renderer.php' );
         include_once( AWPCP_DIR . '/includes/html/class-html-admin-form-textfield-renderer.php' );
         include_once( AWPCP_DIR . '/includes/html/class-html-first-level-admin-heading-renderer.php' );

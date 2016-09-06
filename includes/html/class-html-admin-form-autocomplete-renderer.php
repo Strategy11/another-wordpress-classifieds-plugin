@@ -1,13 +1,13 @@
 <?php
 
-function awpcp_html_admin_form_textfield_renderer() {
-    return new AWPCP_HTML_Admin_Form_Textfield_Renderer();
+function awpcp_html_admin_form_Autocomplete_renderer() {
+    return new AWPCP_HTML_Admin_Form_Autocomplete_Renderer();
 }
 
-class AWPCP_HTML_Admin_Form_Textfield_Renderer implements AWPCP_HTML_Element_Renderer {
+class AWPCP_HTML_Admin_Form_Autocomplete_Renderer implements AWPCP_HTML_Element_Renderer {
 
     public function render_element( $html_renderer, $element_definition ) {
-        $form_field_id = "awpcp-admin-form-textfield-{$element_definition['#name']}";
+        $form_field_id = "awpcp-admin-form-autocomplete-{$element_definition['#name']}";
 
         $form_field_definition = array(
             '#type' => 'div',
@@ -23,9 +23,18 @@ class AWPCP_HTML_Admin_Form_Textfield_Renderer implements AWPCP_HTML_Element_Ren
                     '#attributes' => array(
                         'id' => $form_field_id,
                         'type' => 'text',
-                        'value' => $element_definition['#value'],
-                        'name' => $element_definition['#name'],
+                        'name' => $element_definition['#name'] . '_label',
                     ),
+                    '#value' => $element_definition['#value_label'],
+                ),
+                array(
+                    '#type' => 'input',
+                    '#attributes' => array(
+                        'type' => 'hidden',
+                        'name' => $element_definition['#name'],
+                        'autocomplete-selected-value' => true,
+                    ),
+                    '#value' => $element_definition['#value'],
                 )
             )
         );
@@ -37,7 +46,7 @@ class AWPCP_HTML_Admin_Form_Textfield_Renderer implements AWPCP_HTML_Element_Ren
         $form_field_attributes = awpcp_parse_html_attributes( $element_definition['#attributes'] );
 
         $form_field_attributes['class'][] = 'awpcp-admin-form-field';
-        $form_field_attributes['class'][] = 'awpcp-admin-form-textfield';
+        $form_field_attributes['class'][] = 'awpcp-admin-form-autocomplete';
 
         return $form_field_attributes;
     }

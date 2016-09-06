@@ -1,13 +1,13 @@
 <?php
 
-function awpcp_html_admin_form_textfield_renderer() {
-    return new AWPCP_HTML_Admin_Form_Textfield_Renderer();
+function awpcp_html_admin_form_Select_renderer() {
+    return new AWPCP_HTML_Admin_Form_Select_Renderer();
 }
 
-class AWPCP_HTML_Admin_Form_Textfield_Renderer implements AWPCP_HTML_Element_Renderer {
+class AWPCP_HTML_Admin_Form_Select_Renderer implements AWPCP_HTML_Element_Renderer {
 
     public function render_element( $html_renderer, $element_definition ) {
-        $form_field_id = "awpcp-admin-form-textfield-{$element_definition['#name']}";
+        $form_field_id = "awpcp-admin-form-select-{$element_definition['#name']}";
 
         $form_field_definition = array(
             '#type' => 'div',
@@ -19,13 +19,13 @@ class AWPCP_HTML_Admin_Form_Textfield_Renderer implements AWPCP_HTML_Element_Ren
                     '#content' => $element_definition['#label'],
                 ),
                 array(
-                    '#type' => 'input',
+                    '#type' => 'select',
                     '#attributes' => array(
                         'id' => $form_field_id,
-                        'type' => 'text',
-                        'value' => $element_definition['#value'],
                         'name' => $element_definition['#name'],
                     ),
+                    '#options' => $element_definition['#options'],
+                    '#value' => $element_definition['#value'],
                 )
             )
         );
@@ -35,9 +35,7 @@ class AWPCP_HTML_Admin_Form_Textfield_Renderer implements AWPCP_HTML_Element_Ren
 
     private function get_form_field_attributes( $element_definition ) {
         $form_field_attributes = awpcp_parse_html_attributes( $element_definition['#attributes'] );
-
-        $form_field_attributes['class'][] = 'awpcp-admin-form-field';
-        $form_field_attributes['class'][] = 'awpcp-admin-form-textfield';
+        $form_field_attributes['class'][] = 'awpcp-admin-form-select';
 
         return $form_field_attributes;
     }
