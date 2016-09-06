@@ -24,8 +24,8 @@ class AWPCP_HTML_Admin_Form_Autocomplete_Renderer implements AWPCP_HTML_Element_
                         'id' => $form_field_id,
                         'type' => 'text',
                         'name' => $element_definition['#name'] . '_label',
+                        'value' => $element_definition['#value_label'],
                     ),
-                    '#value' => $element_definition['#value_label'],
                 ),
                 array(
                     '#type' => 'input',
@@ -33,8 +33,8 @@ class AWPCP_HTML_Admin_Form_Autocomplete_Renderer implements AWPCP_HTML_Element_
                         'type' => 'hidden',
                         'name' => $element_definition['#name'],
                         'autocomplete-selected-value' => true,
+                        'value' => $element_definition['#value'],
                     ),
-                    '#value' => $element_definition['#value'],
                 )
             )
         );
