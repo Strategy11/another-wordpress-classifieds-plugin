@@ -14,7 +14,7 @@ class AWPCP_BrowseAdsPage extends AWPCP_Page {
     }
 
     public function get_current_action($default='browseads') {
-        return awpcp_request_param('a', $default);
+        return awpcp_request_param( 'a', get_query_var( 'a', $default ) );
     }
 
     public function url($params=array()) {
