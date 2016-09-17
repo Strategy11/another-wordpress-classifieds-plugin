@@ -113,8 +113,9 @@ class AWPCP_CSV_Reader {
     public function get_row( $row_number = null ) {
         $header = $this->get_header();
         $row_data = $this->get_row_data( $row_number );
+        $filtered_row_data = array_filter( $row_data );
 
-        if ( empty( array_filter( $row_data ) ) ) {
+        if ( empty( $filtered_row_data ) ) {
             throw new UnexpectedValueException( __( 'The row was empty.', 'another-wordpress-classifieds-plugin' ) );
         } else if ( count( $header ) != count( $row_data ) ) {
             $message = __( "The number of values in the row (<number-of-values-in-row>) does not match the number of columns in the file's header (<number-of-columns>).", 'another-wordpress-classifieds-plugin' );
