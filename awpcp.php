@@ -1197,7 +1197,7 @@ class AWPCP {
 	 */
 	public function register_payment_methods($payments) {
 		if (get_awpcp_option('activatepaypal')) {
-			$payments->register_payment_method(new AWPCP_PayPalStandardPaymentGateway);
+            $payments->register_payment_method( awpcp_paypal_standard_payment_gateway() );
 		}
 
 		if (get_awpcp_option('activate2checkout')) {
