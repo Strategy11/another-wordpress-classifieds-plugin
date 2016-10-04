@@ -342,6 +342,10 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
     }
 
     public function process_payment_completed($transaction) {
+        if ( $transaction->get( 'verified', false ) ) {
+            return;
+        }
+
         if ( ! $this->request->post( 'verify_sign' ) ) {
             $transaction->payment_status = AWPCP_Payment_Transaction::PAYMENT_STATUS_NOT_VERIFIED;
             return;
