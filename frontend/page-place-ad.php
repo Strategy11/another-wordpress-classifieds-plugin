@@ -1077,7 +1077,18 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             $ad = apply_filters( 'awpcp-before-save-listing', $ad, $data );
 
             if (!$ad->save()) {
-                $errors[] = __('There was an unexpected error trying to save your Ad details. Please try again or contact an administrator.', 'another-wordpress-classifieds-plugin');
+                global $wpdb;
+
+                if ( $wpdb->last_error && awpcp_current_user_is_admin() ) {
+                    $message = __( 'There was an error trying to save your listing details:', 'another-wordpress-classifieds-plugin' );
+                    $message.= '<br/><br/>';
+                    $message.= $wpdb->last_error;
+                } else {
+                    $message = __( 'There was an unexpected error trying to save your Ad details. Please try again or contact an administrator.', 'another-wordpress-classifieds-plugin' );
+                }
+
+                $errors[] = $message;
+
                 return $this->details_step_form($transaction, $data, $errors);
             }
 
