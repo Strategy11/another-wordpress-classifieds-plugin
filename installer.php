@@ -287,6 +287,7 @@ class AWPCP_Installer {
             ),
             '3.7.2' => array(
                 'set_flag_to_store_browse_categories_page_information',
+                'set_flag_to_maybe_fix_browse_categories_page_information',
             ),
         );
 
@@ -1109,6 +1110,10 @@ class AWPCP_Installer {
 
     private function set_flag_to_store_browse_categories_page_information() {
         update_option( 'awpcp-store-browse-categories-page-information', true, false );
+    }
+
+    private function set_flag_to_maybe_fix_browse_categories_page_information() {
+        update_option( 'awpcp-maybe-fix-browse-categories-page-information', true, false );
     }
 }
 

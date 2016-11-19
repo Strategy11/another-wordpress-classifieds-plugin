@@ -681,17 +681,11 @@ class AWPCP {
         }
 
         if ( get_option( 'awpcp-store-browse-categories-page-information' ) ) {
-            $page_id = awpcp_get_page_id_by_ref( 'browse-categories-page-name' );
+            $this->store_browse_categories_page_information();
+        }
 
-            $page_info = array(
-                'page_id' => $page_id,
-                'page_uri' => get_page_uri( $page_id ),
-            );
-
-            update_option( 'awpcp-browse-categories-page-information', $page_info, false );
-            update_option( 'awpcp-show-delete-browse-categories-page-notice' , true, false );
-
-            delete_option( 'awpcp-store-browse-categories-page-information' );
+        if ( get_option( 'awpcp-maybe-fix-browse-categories-page-information' ) ) {
+            $this->maybe_fix_browse_categories_page_information();
         }
 
 		if ( $this->flush_rewrite_rules || get_option( 'awpcp-flush-rewrite-rules' ) ) {
@@ -952,6 +946,73 @@ class AWPCP {
 
 		return true;
 	}
+
+    private function store_browse_categories_page_information() {
+        $page_info = get_option( 'awpcp-browse-categories-page-information' );
+
+        if ( isset( $page_info['page_id'] ) ) {
+            delete_option( 'awpcp-store-browse-categories-page-information' );
+            return;
+        }
+
+        $page_id = awpcp_get_page_id_by_ref( 'browse-categories-page-name' );
+        $page = get_post( $page_id );
+
+        if ( $page && $page->post_status == 'trash' ) {
+            $desired_post_slug = get_post_meta( $page_id, '_wp_desired_post_slug', true );
+            $page_uri = get_page_uri( $page_id );
+
+            if ( $desired_post_slug ) {
+                $page_uri = str_replace( $page->post_name, $desired_post_slug, $page_uri );
+            } else {
+                $page_uri = str_replace( '__trashed', '', $page_uri );
+            }
+        } elseif ( $page ) {
+            $page_uri = get_page_uri( $page_id );
+        } else {
+            $page_uri = '';
+        }
+
+        $page_info = array( 'page_id' => $page_id, 'page_uri' => $page_uri );
+
+        update_option( 'awpcp-browse-categories-page-information', $page_info, false );
+        update_option( 'awpcp-show-delete-browse-categories-page-notice' , true, false );
+
+        delete_option( 'awpcp-store-browse-categories-page-information' );
+
+    }
+
+    private function maybe_fix_browse_categories_page_information() {
+        $page_info = get_option( 'awpcp-browse-categories-page-information' );
+
+        if ( empty( $page_info['page_uri'] ) ) {
+            delete_option( 'awpcp-maybe-fix-browse-categories-page-information' );
+            return;
+        }
+
+        if ( ! string_ends_with( $page_info['page_uri'], '__trashed' ) ) {
+            delete_option( 'awpcp-maybe-fix-browse-categories-page-information' );
+            return;
+        }
+
+        $page = get_post( $page_info['page_id'] );
+
+        if ( $page && $page->post_status == 'trash' ) {
+            $desired_post_slug = get_post_meta( $page->ID, '_wp_desired_post_slug', true );
+        } else {
+            $desired_post_slug = '';
+        }
+
+        if ( $desired_post_slug ) {
+            $page_info['page_uri'] = str_replace( $page->post_name, $desired_post_slug, $page_info['page_uri'] );
+        } else {
+            $page_info['page_uri'] = str_replace( '__trashed', '', $page_info['page_uri'] );
+        }
+
+        update_option( 'awpcp-browse-categories-page-information', $page_info, false );
+
+        delete_option( 'awpcp-maybe-fix-browse-categories-page-information' );
+    }
 
 	/**
 	 * A good place to register all AWPCP standard scripts that can be
