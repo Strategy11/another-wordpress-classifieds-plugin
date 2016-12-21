@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2016-10-04 20:34:06+00:00\n"
+"POT-Creation-Date: 2016-12-21 18:43:10+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -164,7 +164,7 @@ msgid "Categories"
 msgstr ""
 
 #: admin/admin-panel-fees-table.php:127
-#: admin/templates/admin-sidebar.tpl.php:103 awpcp.php:847
+#: admin/templates/admin-sidebar.tpl.php:103 awpcp.php:841
 msgid "Featured Ads"
 msgstr ""
 
@@ -236,7 +236,7 @@ msgstr ""
 
 #: admin/admin-panel-listings-place-ad-page.php:15
 #: admin/templates/admin-panel-listings.tpl.php:5
-#: frontend/page-place-ad.php:1198
+#: frontend/page-place-ad.php:1209
 msgid "Place Ad"
 msgstr ""
 
@@ -737,7 +737,7 @@ msgid "Manage Extra Fields"
 msgstr ""
 
 #: admin/admin-panel.php:315 admin/templates/admin-sidebar.tpl.php:108
-#: awpcp.php:840
+#: awpcp.php:834
 msgid "Extra Fields"
 msgstr ""
 
@@ -1835,19 +1835,19 @@ msgstr ""
 msgid "Get a Premium Module!"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:46 awpcp.php:812
+#: admin/templates/admin-sidebar.tpl.php:46 awpcp.php:806
 msgid "Campaign Manager"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:52 awpcp.php:869
+#: admin/templates/admin-sidebar.tpl.php:52 awpcp.php:863
 msgid "Mark as Sold"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:58 awpcp.php:890
+#: admin/templates/admin-sidebar.tpl.php:58 awpcp.php:884
 msgid "Restricted Categories"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:63 awpcp.php:805
+#: admin/templates/admin-sidebar.tpl.php:63 awpcp.php:799
 msgid "BuddyPress Listings"
 msgstr ""
 
@@ -1855,15 +1855,15 @@ msgstr ""
 msgid "Comments/Ratings"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:73 awpcp.php:791
+#: admin/templates/admin-sidebar.tpl.php:73 awpcp.php:785
 msgid "Attachments"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:78 awpcp.php:798
+#: admin/templates/admin-sidebar.tpl.php:78 awpcp.php:792
 msgid "Authorize.Net"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:83 awpcp.php:876
+#: admin/templates/admin-sidebar.tpl.php:83 awpcp.php:870
 msgid "PayPal Pro"
 msgstr ""
 
@@ -1871,7 +1871,7 @@ msgstr ""
 msgid "Coupon/Discount"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:93 awpcp.php:904
+#: admin/templates/admin-sidebar.tpl.php:93 awpcp.php:898
 msgid "Subscriptions"
 msgstr ""
 
@@ -1879,15 +1879,15 @@ msgstr ""
 msgid "Fee Per Category"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:113 awpcp.php:819
+#: admin/templates/admin-sidebar.tpl.php:113 awpcp.php:813
 msgid "Category Icons"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:118 awpcp.php:883
+#: admin/templates/admin-sidebar.tpl.php:118 awpcp.php:877
 msgid "Regions Control"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:123 awpcp.php:897
+#: admin/templates/admin-sidebar.tpl.php:123 awpcp.php:891
 msgid "RSS"
 msgstr ""
 
@@ -2018,90 +2018,90 @@ msgstr ""
 msgid "AWPCP"
 msgstr ""
 
-#: awpcp.php:774
+#: awpcp.php:768
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
 msgstr ""
 
-#: awpcp.php:775
+#: awpcp.php:769
 #: includes/placeholders/class-placeholders-installation-verifier.php:31
 msgid "Warning"
 msgstr ""
 
-#: awpcp.php:826
+#: awpcp.php:820
 msgid "Comments & Ratings"
 msgstr ""
 
-#: awpcp.php:833
+#: awpcp.php:827
 msgid "Coupons/Discount"
 msgstr ""
 
-#: awpcp.php:854
+#: awpcp.php:848
 msgid "Fee per Category"
 msgstr ""
 
-#: awpcp.php:861
+#: awpcp.php:855
 msgid "Google Checkout"
 msgstr ""
 
-#: awpcp.php:911 templates/components/media-manager.tpl.php:46
+#: awpcp.php:905 templates/components/media-manager.tpl.php:46
 msgid "Videos"
 msgstr ""
 
-#: awpcp.php:919
+#: awpcp.php:913
 msgid "XML Sitemap"
 msgstr ""
 
-#: awpcp.php:926
+#: awpcp.php:920
 msgid "ZIP Code Search Module"
 msgstr ""
 
-#: awpcp.php:1122
+#: awpcp.php:1183
 msgid "This field is required."
 msgstr ""
 
-#: awpcp.php:1123 frontend/page-edit-ad.php:128 frontend/page-edit-ad.php:434
+#: awpcp.php:1184 frontend/page-edit-ad.php:128 frontend/page-edit-ad.php:434
 #: includes/settings-api.php:213
 msgid "Please enter a valid email address."
 msgstr ""
 
-#: awpcp.php:1124 awpcp.php:1125
+#: awpcp.php:1185 awpcp.php:1186
 msgid "Please enter a valid URL."
 msgstr ""
 
-#: awpcp.php:1126
+#: awpcp.php:1187
 msgid "Please enter a valid number."
 msgstr ""
 
-#: awpcp.php:1127
+#: awpcp.php:1188
 msgid "Please enter a valid amount."
 msgstr ""
 
-#: awpcp.php:1137
+#: awpcp.php:1198
 msgctxt "[UI Datepicker] Display text for previous month link"
 msgid "&#x3c;Prev"
 msgstr ""
 
-#: awpcp.php:1139
+#: awpcp.php:1200
 msgctxt "[UI Datepicker] Display text for next month link"
 msgid "Next&#x3e;"
 msgstr ""
 
-#: awpcp.php:1154
+#: awpcp.php:1215
 msgctxt "[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ..."
 msgid "0"
 msgstr ""
 
-#: awpcp.php:1160
+#: awpcp.php:1221
 msgid "There are files currently being uploaded."
 msgstr ""
 
-#: awpcp.php:1161
+#: awpcp.php:1222
 msgid "There are files pending to be uploaded."
 msgstr ""
 
-#: awpcp.php:1162
+#: awpcp.php:1223
 msgid "You haven't uploaded any images or files."
 msgstr ""
 
@@ -2166,7 +2166,7 @@ msgstr ""
 msgid "Browse Ads"
 msgstr ""
 
-#: frontend/page-browse-ads.php:64
+#: frontend/page-browse-ads.php:51
 msgid ""
 "No specific category was selected for browsing so you are viewing listings "
 "from all categories."
@@ -2215,13 +2215,13 @@ msgstr ""
 msgid "Go to the %s section to manage the Images and Attachments for this Ad."
 msgstr ""
 
-#: frontend/page-edit-ad.php:275 frontend/page-place-ad.php:1080
+#: frontend/page-edit-ad.php:275 frontend/page-place-ad.php:1087
 msgid ""
 "There was an unexpected error trying to save your Ad details. Please try "
 "again or contact an administrator."
 msgstr ""
 
-#: frontend/page-edit-ad.php:297 frontend/page-place-ad.php:1142
+#: frontend/page-edit-ad.php:297 frontend/page-place-ad.php:1153
 msgid "The specified Ad doesn't exists. No images can be added at this time."
 msgstr ""
 
@@ -2517,29 +2517,33 @@ msgid ""
 "Your Ad was flagged as spam. Please contact the administrator of this site."
 msgstr ""
 
-#: frontend/page-place-ad.php:1135
+#: frontend/page-place-ad.php:1083
+msgid "There was an error trying to save your listing details:"
+msgstr ""
+
+#: frontend/page-place-ad.php:1146
 msgid ""
 "We were unable to find a Payment Transaction assigned to this operation. No "
 "images can be added at this time."
 msgstr ""
 
-#: frontend/page-place-ad.php:1196
+#: frontend/page-place-ad.php:1207
 #: frontend/templates/page-place-ad-details-step.tpl.php:116
 msgid "Preview Ad"
 msgstr ""
 
-#: frontend/page-place-ad.php:1200
+#: frontend/page-place-ad.php:1211
 #: includes/helpers/widgets/class-listing-form-steps-component.php:50
 #: includes/helpers/widgets/class-listing-form-steps-component.php:65
 msgid "Checkout"
 msgstr ""
 
-#: frontend/page-place-ad.php:1219 frontend/page-place-ad.php:1270
+#: frontend/page-place-ad.php:1230 frontend/page-place-ad.php:1281
 msgid ""
 "We were unable to find a Payment Transaction assigned to this operation."
 msgstr ""
 
-#: frontend/page-place-ad.php:1226 frontend/page-place-ad.php:1277
+#: frontend/page-place-ad.php:1237 frontend/page-place-ad.php:1288
 #: frontend/page-renew-ad.php:338
 msgid "The Ad associated with this transaction doesn't exists."
 msgstr ""
@@ -4464,27 +4468,27 @@ msgstr ""
 msgid "N/A"
 msgstr ""
 
-#: includes/models/ad.php:677
+#: includes/models/ad.php:672
 msgctxt "ad payment status"
 msgid "N/A"
 msgstr ""
 
-#: includes/models/ad.php:682
+#: includes/models/ad.php:677
 msgctxt "ad payment status"
 msgid "Pending"
 msgstr ""
 
-#: includes/models/ad.php:684
+#: includes/models/ad.php:679
 msgctxt "ad payment status"
 msgid "Completed"
 msgstr ""
 
-#: includes/models/ad.php:686
+#: includes/models/ad.php:681
 msgctxt "ad payment status"
 msgid "Not Required"
 msgstr ""
 
-#: includes/models/ad.php:688
+#: includes/models/ad.php:683
 msgctxt "ad payment status"
 msgid "Unpaid"
 msgstr ""
