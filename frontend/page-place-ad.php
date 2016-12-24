@@ -1204,11 +1204,11 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         extract( $params );
 
         if ( $show_preview ) {
-            $next = __( 'Preview Ad', 'another-wordpress-classifieds-plugin' );
+            $next = _x( 'Preview Ad', 'upload listing images form', 'another-wordpress-classifieds-plugin' );
         } else if ( $pay_first ) {
-            $next = __( 'Place Ad', 'another-wordpress-classifieds-plugin' );
+            $next = _x( 'Place Ad', 'upload listing images form', 'another-wordpress-classifieds-plugin' );
         } else {
-            $next = __( 'Checkout', 'another-wordpress-classifieds-plugin' );
+            $next = _x( 'Checkout', 'upload listing images form', 'another-wordpress-classifieds-plugin' );
         }
 
         $params = array_merge( $params, array(
