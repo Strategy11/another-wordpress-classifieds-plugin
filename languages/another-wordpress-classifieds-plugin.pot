@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2016-12-21 18:43:10+00:00\n"
+"POT-Creation-Date: 2016-12-24 17:49:02+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -236,7 +236,6 @@ msgstr ""
 
 #: admin/admin-panel-listings-place-ad-page.php:15
 #: admin/templates/admin-panel-listings.tpl.php:5
-#: frontend/page-place-ad.php:1209
 msgid "Place Ad"
 msgstr ""
 
@@ -973,70 +972,77 @@ msgstr ""
 msgid "Missing value for required column <em>%s</em>."
 msgstr ""
 
-#: admin/import/class-csv-importer-delegate.php:324
+#: admin/import/class-csv-importer-delegate.php:321
 msgid ""
 "No user could be assigned to this listing. A new user couldn't be created "
 "because the username column has an empty value. Please include a username or "
 "select a default user."
 msgstr ""
 
-#: admin/import/class-csv-importer-delegate.php:327
+#: admin/import/class-csv-importer-delegate.php:324
 msgid ""
 "No user could be assigned to this listing. A new user couldn't be created "
 "because the contact_email column has an empty value. Please include a "
 "contact_email or select a default user."
 msgstr ""
 
-#: admin/import/class-csv-importer-delegate.php:340
+#: admin/import/class-csv-importer-delegate.php:337
 msgid ""
 "No user could be assigned to this listing. Our attempt to create a new user "
 "failed with the following error: <error-message>."
 msgstr ""
 
-#: admin/import/class-csv-importer-delegate.php:348
-msgid ""
-"A new user '%s' with email address '%s' and password '%s' was created for "
-"row %d."
+#: admin/import/class-csv-importer-delegate.php:345
+msgid "A new user '%s' with email address '%s' and password '%s' was created."
 msgstr ""
 
-#: admin/import/class-csv-importer-delegate.php:373
+#: admin/import/class-csv-importer-delegate.php:370
 msgid "Item price is not a numeric value."
 msgstr ""
 
-#: admin/import/class-csv-importer-delegate.php:381
+#: admin/import/class-csv-importer-delegate.php:378
 msgid "Invalid Start date."
 msgstr ""
 
-#: admin/import/class-csv-importer-delegate.php:389
+#: admin/import/class-csv-importer-delegate.php:386
 msgid ""
 "Start date missing. You can define a default value for this column changing "
 "the import configuration."
 msgstr ""
 
-#: admin/import/class-csv-importer-delegate.php:403
+#: admin/import/class-csv-importer-delegate.php:400
 msgid "Invalid End date."
 msgstr ""
 
-#: admin/import/class-csv-importer-delegate.php:411
+#: admin/import/class-csv-importer-delegate.php:408
 msgid ""
 "End date missing. You can define a default value for this column changing "
 "the import configuration."
 msgstr ""
 
-#: admin/import/class-csv-importer-delegate.php:488
+#: admin/import/class-csv-importer-delegate.php:485
 msgid ""
 "No images directory was configured. Are you sure you uploaded a ZIP file or "
 "defined a local directory?"
 msgstr ""
 
-#: admin/import/class-csv-importer-delegate.php:511
+#: admin/import/class-csv-importer-delegate.php:508
 msgid ""
 "An image could not be succesfully imported. The operation failed with the "
 "following error: <error-message>"
 msgstr ""
 
-#: admin/import/class-csv-importer-delegate.php:572
+#: admin/import/class-csv-importer-delegate.php:569
 msgid "Could not save the information for image <image> into the database."
+msgstr ""
+
+#: admin/import/class-csv-importer-delegate.php:624
+msgid "The value for Extra Field %s's is not allowed. Allowed values are: %%s"
+msgstr ""
+
+#: admin/import/class-csv-importer-delegate.php:633
+msgid ""
+"The value for Extra Field %s's is not allowed. Allowed value is one of: %%s"
 msgstr ""
 
 #: admin/import/class-csv-reader.php:119
@@ -2528,13 +2534,17 @@ msgid ""
 msgstr ""
 
 #: frontend/page-place-ad.php:1207
-#: frontend/templates/page-place-ad-details-step.tpl.php:116
+msgctxt "upload listing images form"
 msgid "Preview Ad"
 msgstr ""
 
+#: frontend/page-place-ad.php:1209
+msgctxt "upload listing images form"
+msgid "Place Ad"
+msgstr ""
+
 #: frontend/page-place-ad.php:1211
-#: includes/helpers/widgets/class-listing-form-steps-component.php:50
-#: includes/helpers/widgets/class-listing-form-steps-component.php:65
+msgctxt "upload listing images form"
 msgid "Checkout"
 msgstr ""
 
@@ -3009,8 +3019,6 @@ msgid ""
 msgstr ""
 
 #: frontend/templates/page-buy-credits-select-credit-plan-step.tpl.php:18
-#: frontend/templates/page-place-ad-details-step.tpl.php:118
-#: frontend/templates/page-place-ad-order-step.tpl.php:59
 #: frontend/templates/page-renew-ad-order-step.tpl.php:19
 #: frontend/templates/page-reply-to-ad.tpl.php:43
 #: frontend/templates/payments-billing-form.tpl.php:124
@@ -3037,7 +3045,7 @@ msgid "Click here to have your Ad access keys sent to you."
 msgstr ""
 
 #: frontend/templates/page-edit-ad-email-key-step.tpl.php:34
-msgctxt "ad details form"
+msgctxt "enter email and access key form"
 msgid "Continue"
 msgstr ""
 
@@ -3101,6 +3109,16 @@ msgctxt "ad details form"
 msgid "I agree to the terms of service"
 msgstr ""
 
+#: frontend/templates/page-place-ad-details-step.tpl.php:116
+msgctxt "listing details form"
+msgid "Preview Ad"
+msgstr ""
+
+#: frontend/templates/page-place-ad-details-step.tpl.php:118
+msgctxt "listing details form"
+msgid "Continue"
+msgstr ""
+
 #: frontend/templates/page-place-ad-finish-step.tpl.php:9
 msgid "Your changes have been saved."
 msgstr ""
@@ -3132,6 +3150,11 @@ msgstr ""
 #: frontend/templates/page-place-ad-order-step.tpl.php:37
 msgctxt "place ad order step"
 msgid "Please select the owner for this Ad"
+msgstr ""
+
+#: frontend/templates/page-place-ad-order-step.tpl.php:59
+msgctxt "listing order form"
+msgid "Continue"
 msgstr ""
 
 #: frontend/templates/page-place-ad-preview-step.tpl.php:11
@@ -4250,6 +4273,11 @@ msgstr ""
 
 #: includes/helpers/widgets/class-listing-form-steps-component.php:46
 msgid "Select Category"
+msgstr ""
+
+#: includes/helpers/widgets/class-listing-form-steps-component.php:50
+#: includes/helpers/widgets/class-listing-form-steps-component.php:65
+msgid "Checkout"
 msgstr ""
 
 #: includes/helpers/widgets/class-listing-form-steps-component.php:51
