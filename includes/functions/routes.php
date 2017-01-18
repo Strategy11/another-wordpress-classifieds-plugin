@@ -301,7 +301,7 @@ function url_browsecategory( $category ) {
         if (!empty($permalinks)) {
             $params = array('category_id' => "$cat_id/$cat_slug");
         } else {
-            $params = array('a' => 'browsecat', 'category_id' => $cat_id);
+            $params = array( 'category_id' => $cat_id );
         }
         $url_browsecats = add_query_arg( urlencode_deep( $params ), $base_url );
     }
