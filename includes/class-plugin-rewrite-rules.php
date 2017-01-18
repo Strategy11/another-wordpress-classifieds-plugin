@@ -162,7 +162,7 @@ class AWPCP_Plugin_Rewrite_Rules {
                 ),
                 array(
                     'regex' => '(<page-uri>)/(setregion)/(.+?)/(.+?)',
-                    'redirect' => 'index.php?pagename=$matches[1]&regionid=$matches[3]&a=setregion',
+                    'redirect' => 'index.php?pagename=$matches[1]&regionid=$matches[3]',
                     'position' => 'top'
                 ),
                 array(
