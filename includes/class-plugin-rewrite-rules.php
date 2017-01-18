@@ -134,7 +134,7 @@ class AWPCP_Plugin_Rewrite_Rules {
             'browse-ads-page-name' => array(
                 array(
                     'regex' => '(<page-uri>)/(\d+)(?:.*)',
-                    'redirect' => 'index.php?pagename=$matches[1]&cid=$matches[2]&a=browsecat',
+                    'redirect' => 'index.php?pagename=$matches[1]&cid=$matches[2]',
                     'position' => 'top'
                 ),
             ),
@@ -189,7 +189,7 @@ class AWPCP_Plugin_Rewrite_Rules {
         $page_uris = $this->get_converted_page_uris( $browse_categories_page_info['page_uri'] );
         $browse_listings_page_id = awpcp_get_page_id_by_ref( 'browse-ads-page-name' );
         $base_regex = '<page-uri>(?:$|/(\d+)?)';
-        $base_redirect = 'index.php?page_id=<browse-listings-page-id>&cid=$matches[1]&a=browsecat&awpcp-custom=redirect-browse-listings';
+        $base_redirect = 'index.php?page_id=<browse-listings-page-id>&cid=$matches[1]&awpcp-custom=redirect-browse-listings';
 
         foreach ( $page_uris as $page_uri ) {
             $regex = str_replace( '<page-uri>', $page_uri, $base_regex );

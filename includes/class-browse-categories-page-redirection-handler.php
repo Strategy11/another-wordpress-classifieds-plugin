@@ -48,6 +48,8 @@ class AWPCP_Browse_Categories_Page_Redirection_Handler {
             $category_id = intval( $params['category_id'] );
         } else if ( $this->request->get_query_var( 'cid' ) ) {
             $category_id = intval( $this->request->get_query_var( 'cid' ) );
+        } else {
+            $category_id = 0;
         }
 
         unset( $params['page_id'] );
