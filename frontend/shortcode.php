@@ -38,6 +38,8 @@ class AWPCP_Pages {
 
 		add_shortcode('AWPCPPAYMENTTHANKYOU', array($this, 'noop'));
 		add_shortcode('AWPCPCANCELPAYMENT', array($this, 'noop'));
+
+        add_shortcode( 'AWPCPBROWSECATS', array( $this->browse_ads, 'dispatch' ) );
 		add_shortcode('AWPCPBROWSEADS', array($this->browse_ads, 'dispatch'));
 
         add_shortcode('AWPCPSHOWAD', array( $this, 'show_ad' ) );
