@@ -1041,7 +1041,14 @@ class AWPCP {
 		wp_register_script('awpcp-jquery-validate', "{$js}/jquery-validate/all.js", array('jquery'), '1.10.0', true);
         wp_register_script( 'awpcp-knockout', "//ajax.aspnetcdn.com/ajax/knockout/knockout-3.1.0.js", array(), '3.1.0', true );
         wp_register_script( 'awpcp-momentjs-with-locales', '//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment-with-locales.min.js', array(), '2.10.6', true );
-        wp_register_script( 'awpcp-jquery-breakpoints', "{$js}/jquery-breakpoints/jquery-breakpoints.min.js", array('jquery'), $awpcp_db_version, true );
+
+        wp_register_script(
+            'awpcp-breakpoints.js',
+            "{$vendors}/breakpoints.js/breakpoints.min.js",
+            array( 'jquery' ),
+            $awpcp_db_version,
+            true
+        );
 
         wp_register_script(
             'awpcp-jquery-usableform',
@@ -1064,7 +1071,7 @@ class AWPCP {
 		wp_register_script(
             'awpcp',
             "{$js}/awpcp.min.js",
-            array( 'jquery', 'backbone', 'awpcp-knockout', 'awpcp-jquery-breakpoints' ),
+            array( 'jquery', 'backbone', 'awpcp-knockout', 'awpcp-breakpoints.js' ),
             $awpcp_db_version,
             true
         );
