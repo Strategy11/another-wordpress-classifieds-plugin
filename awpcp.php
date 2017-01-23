@@ -4,7 +4,7 @@
  * Plugin Name: Another WordPress Classifieds Plugin (AWPCP)
  * Plugin URI: http://www.awpcp.com
  * Description: AWPCP - A plugin that provides the ability to run a free or paid classified ads service on your WP site. <strong>!!!IMPORTANT!!!</strong> It's always a good idea to do a BACKUP before you upgrade AWPCP!
- * Version: 3.7.3
+ * Version: 3.7.4-dev-1
  * Author: D. Rodenbaugh
  * License: GPLv2 or any later version
  * Author URI: http://www.skylineconsult.com
@@ -1041,7 +1041,14 @@ class AWPCP {
 		wp_register_script('awpcp-jquery-validate', "{$js}/jquery-validate/all.js", array('jquery'), '1.10.0', true);
         wp_register_script( 'awpcp-knockout', "//ajax.aspnetcdn.com/ajax/knockout/knockout-3.1.0.js", array(), '3.1.0', true );
         wp_register_script( 'awpcp-momentjs-with-locales', '//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment-with-locales.min.js', array(), '2.10.6', true );
-        wp_register_script( 'awpcp-jquery-breakpoints', "{$js}/jquery-breakpoints/jquery-breakpoints.min.js", array('jquery'), $awpcp_db_version, true );
+
+        wp_register_script(
+            'awpcp-breakpoints.js',
+            "{$vendors}/breakpoints.js/breakpoints.min.js",
+            array( 'jquery' ),
+            $awpcp_db_version,
+            true
+        );
 
         wp_register_script(
             'awpcp-jquery-usableform',
@@ -1064,7 +1071,7 @@ class AWPCP {
 		wp_register_script(
             'awpcp',
             "{$js}/awpcp.min.js",
-            array( 'jquery', 'backbone', 'awpcp-knockout', 'awpcp-jquery-breakpoints' ),
+            array( 'jquery', 'backbone', 'awpcp-knockout', 'awpcp-breakpoints.js' ),
             $awpcp_db_version,
             true
         );
@@ -1570,9 +1577,7 @@ function awpcp_query_vars($query_vars) {
 
 		// misc
         'awpcp-custom',
-        'a',
 		"cid",
-		"i",
 		"id",
 		"layout",
 		"regionid",

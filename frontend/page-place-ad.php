@@ -761,14 +761,15 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $form = $this->get_posted_details($form, $transaction);
         $form = array_merge( $form, $this->get_characters_allowed( $form['ad_id'], $transaction ) );
 
-        $form['regions-allowed'] = $this->get_regions_allowed( $form['ad_id'], $transaction );
-
         // pre-fill user information if we are placing a new Ad
         if ($transaction->user_id) {
             foreach ($this->get_user_info($transaction->user_id) as $field => $value) {
                 $form[$field] = empty($form[$field]) ? $value : $form[$field];
             }
         }
+
+        $form['regions-allowed'] = $this->get_regions_allowed( $form['ad_id'], $transaction );
+        $form['regions'] = array_slice( $form['regions'], 0, $form['regions-allowed'] );
 
         // pref-fill ad information if we are editing a new Ad
         if ($transaction->get('ad-id', false)) {
