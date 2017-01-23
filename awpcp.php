@@ -1578,7 +1578,6 @@ function awpcp_query_vars($query_vars) {
 		// misc
         'awpcp-custom',
 		"cid",
-		"i",
 		"id",
 		"layout",
 		"regionid",
