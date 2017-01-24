@@ -70,13 +70,14 @@
 					</thead>
 					<tbody>
 				<?php foreach($options as $name => $value): ?>
-				<?php if ($debug_info->blacklisted($name)) continue ?>
-				<?php $value = $debug_info->sanitize($name, $value) ?>
+                    <?php if ( ! $debug_info->blacklisted( $name ) ): ?>
+                    <?php $value = $debug_info->sanitize( $name, $value ) ?>
 						<tr>
-							<th scope="row"><?php echo $name ?></th>
-							<td><?php echo esc_html($value) ?></td>
+                            <th scope="row"><?php echo $name; ?></th>
+                            <td><?php echo esc_html( $value ); ?></td>
 						</tr>
-				<?php endforeach ?> 
+                    <?php endif; ?>
+                <?php endforeach ?>
 					</tbody>
 				</table>
 		    </div>
