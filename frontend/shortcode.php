@@ -259,10 +259,6 @@ function awpcpui_process($awpcppagename) {
 		$awpcppagename = sanitize_title($awpcppage, $post_ID='');
 	}
 
-	$categoriesviewpagename = sanitize_title(get_awpcp_option('view-categories-page-name'));
-	$browsestat='';
-
-	$browsestat = get_query_var('cid');
 	$layout = get_query_var('layout');
 
 	$isadmin=checkifisadmin();
@@ -275,9 +271,6 @@ function awpcpui_process($awpcppagename) {
 
 	} elseif (($isclassifiedpage == false) && ($isadmin != 1)) {
 		$output .= __("You currently have no classifieds", 'another-wordpress-classifieds-plugin');
-
-	} elseif ($browsestat == $categoriesviewpagename) {
-		$output .= awpcp_display_the_classifieds_page_body($awpcppagename);
 
 	} elseif ($layout == 2) {
 		$output .= awpcp_display_the_classifieds_page_body($awpcppagename);
