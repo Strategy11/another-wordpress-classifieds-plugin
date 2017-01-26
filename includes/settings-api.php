@@ -216,9 +216,19 @@ class AWPCP_Settings_API {
 			__( 'Email address for PayPal payments (if running in pay mode and if PayPal is activated).', 'another-wordpress-classifieds-plugin' )
 		);
 
+        $this->add_setting(
+            $key,
+            'paypal_merchant_id',
+            __( 'PayPal Merchant ID', 'another-wordpress-classifieds-plugin' ),
+            'textfield',
+            '',
+            __( 'Merchant ID associated with the PayPal account that will receive the payments. Go to <a href="https://www.paypal.com/myaccount/settings/" target="_blank">https://www.paypal.com/myaccount/settings/</a> to obtain your Merchant ID.' )
+        );
+
 		$this->add_validation_rule( $key, 'paypalemail', 'required', array( 'depends' => 'activatepaypal' ) );
 		$this->add_validation_rule( $key, 'paypalemail', 'email', true, __( 'Please enter a valid email address.', 'another-wordpress-classifieds-plugin' ) );
 		$this->add_behavior( $key, 'paypalemail', 'enabledIf', 'activatepaypal' );
+        $this->add_behavior( $key, 'paypal_merchant_id', 'enabledIf', 'activatepaypal' );
 
 		$this->add_setting(
 			$key,

@@ -81,13 +81,11 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
             return $transaction->get('validated', false);
         }
 
-        $business = awpcp_post_param('business');
         $mc_gross = $mcgross = number_format((double) awpcp_post_param('mc_gross'), 2);
         $payment_gross = number_format((double) awpcp_post_param('payment_gross'), 2);
         $txn_id = awpcp_post_param('txn_id');
         $txn_type = awpcp_post_param('txn_type');
         $custom = awpcp_post_param('custom');
-        $receiver_email = awpcp_post_param('receiver_email');
         $payer_email = awpcp_post_param('payer_email');
 
         // this variables are not used for verification purposes
@@ -128,8 +126,7 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
             return false;
         }
 
-        $paypal_email = get_awpcp_option('paypalemail');
-        if (strcasecmp($receiver_email, $paypal_email) !== 0 && strcasecmp($business, $paypal_email) !== 0) {
+        if ( ! $this->funds_were_sent_to_correct_receiver() ) {
             $message = __("There was an error processing your transaction. If funds have been deducted from your account, they have not been processed to our account. You will need to contact PayPal about the matter.", 'another-wordpress-classifieds-plugin');
             $transaction->errors['validation'] = $message;
             $transaction->payment_status = AWPCP_Payment_Transaction::PAYMENT_STATUS_INVALID;
@@ -181,6 +178,32 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
         $transaction->payer_email = $payer_email;
 
         return true;
+    }
+
+    private function funds_were_sent_to_correct_receiver() {
+        $email_addresses = array( awpcp_post_param( 'receiver_email' ), awpcp_post_param( 'business' ) );
+        $email_addresses = array_filter( $email_addresses, 'awpcp_is_valid_email_address' );
+
+        $paypal_email = get_awpcp_option( 'paypalemail' );
+
+        foreach ( $email_addresses as $email_address ) {
+            if ( strcasecmp( $paypal_email, $email_address ) === 0 ) {
+                return true;
+            }
+        }
+
+        $merchant_ids = array( awpcp_post_param( 'received_id' ), awpcp_post_param( 'business' ) );
+        $merchant_ids = array_filter( $merchant_ids, 'strlen' );
+
+        $paypal_merchant_id = get_awpcp_option( 'paypal_merchant_id' );
+
+        foreach ( $merchant_ids as $merchant_id ) {
+            if ( strcasecmp( $paypal_merchant_id, $merchant_id ) === 0 ) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public function process_payment($transaction) {
