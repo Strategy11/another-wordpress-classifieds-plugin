@@ -96,7 +96,7 @@ class AWPCP_ListingUploadLimits {
     }
 
     private function get_listing_upload_limits_for_images( $listing, $payment_term ) {
-        if ( $payment_term && $payment_term->images ) {
+        if ( is_object( $payment_term ) ) {
             $upload_limits = $this->get_upload_limits_for_images_in_payment_term( $payment_term );
         } else {
             $upload_limits = $this->get_upload_limits_for_images_in_free_board();
