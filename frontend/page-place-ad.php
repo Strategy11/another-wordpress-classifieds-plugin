@@ -1117,11 +1117,11 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         }
     }
 
-    private function should_show_upload_files_step( $listing ) {
+    protected function should_show_upload_files_step( $listing ) {
         $allowed_files = $this->listing_upload_limits->get_listing_upload_limits( $listing );
 
         foreach ( $allowed_files as $file_type => $limits ) {
-            if ( $limits['allowed_file_count'] >= $limits['uploaded_file_count'] ) {
+            if ( $limits['uploaded_file_count'] || $limits['allowed_file_count'] ) {
                 return true;
             }
         }
