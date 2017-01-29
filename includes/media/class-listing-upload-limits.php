@@ -83,6 +83,18 @@ class AWPCP_ListingUploadLimits {
         return apply_filters( 'awpcp-can-add-file-to-listing', $can_add_file, $listing, $limits );
     }
 
+    public function are_uploads_allowed_for_listing( $listing ) {
+        $allowed_files = $this->get_listing_upload_limits( $listing );
+
+        foreach ( $allowed_files as $file_type => $limits ) {
+            if ( $limits['uploaded_file_count'] || $limits['allowed_file_count'] ) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public function get_listing_upload_limits( $listing ) {
         $payment_term = $this->payments->get_ad_payment_term( $listing );
 
