@@ -130,7 +130,7 @@
 							<?php else: ?>
 							<td>
 								<?php _ex('Not Working', 'debug page', 'another-wordpress-classifieds-plugin') ?><br/>
-								<?php foreach ($errors as $error): ?>
+								<?php foreach ( (array) $errors as $error ): ?>
 								<?php echo $error ?><br/>
 								<?php endforeach ?>
 							</td>
