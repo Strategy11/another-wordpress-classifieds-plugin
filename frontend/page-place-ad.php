@@ -18,6 +18,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         parent::__construct($page, $title);
 
         $this->authorization = awpcp_listing_authorization();
+        $this->listing_upload_limits = awpcp_listing_upload_limits();
     }
 
     public function get_current_action($default=null) {
@@ -1116,23 +1117,24 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         }
     }
 
-    private function should_show_upload_files_step( $listing ) {
-        $allowed_files = awpcp_listing_upload_limits()->get_listing_upload_limits( $listing );
-
-        foreach ( $allowed_files as $file_type => $limits ) {
-            if ( $limits['allowed_file_count'] >= $limits['uploaded_file_count'] ) {
-                return true;
-            }
-        }
-
-        return false;
+    protected function should_show_upload_files_step( $listing ) {
+        return $this->listing_upload_limits->are_uploads_allowed_for_listing( $listing );
     }
 
     public function get_images_config( $ad ) {
-        $payment_term = awpcp_payments_api()->get_ad_payment_term($ad);
+        $upload_limits = $this->listing_upload_limits->get_listing_upload_limits( $ad );
 
-        $images_allowed = awpcp_get_property( $payment_term, 'images', get_awpcp_option( 'imagesallowedfree', 0 ) );
-        $images_uploaded = $ad->count_image_files();
+        if ( isset( $upload_limits['images']['allowed_file_count'] ) ) {
+            $images_allowed = $upload_limits['images']['allowed_file_count'];
+        } else {
+            $images_allowed = 0;
+        }
+
+        if ( isset( $upload_limits['images']['uploaded_file_count'] ) ) {
+            $images_uploaded = $upload_limits['images']['uploaded_file_count'];
+        } else {
+            $images_uploaded = 0;
+        }
 
         return array(
             'images_allowed' => $images_allowed,
@@ -1177,7 +1179,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
     }
 
     protected function show_upload_images_form( $ad, $transaction, $params, $errors ) {
-        $allowed_files = awpcp_listing_upload_limits()->get_listing_upload_limits( $ad );
+        $allowed_files = $this->listing_upload_limits->get_listing_upload_limits( $ad );
 
         $params = array_merge( $params, array(
             'transaction' => $transaction,
