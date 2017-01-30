@@ -1201,12 +1201,13 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
     public function upload_images_form( $ad, $params=array() ) {
         $show_preview = (bool) get_awpcp_option('show-ad-preview-before-payment');
         $pay_first = (bool) get_awpcp_option('pay-before-place-ad');
+        $payments_enabled = awpcp_get_option( 'freepay' ) == 1;
 
         extract( $params );
 
         if ( $show_preview ) {
             $next = _x( 'Preview Ad', 'upload listing images form', 'another-wordpress-classifieds-plugin' );
-        } else if ( $pay_first ) {
+        } else if ( $pay_first || ! $payments_enabled ) {
             $next = _x( 'Place Ad', 'upload listing images form', 'another-wordpress-classifieds-plugin' );
         } else {
             $next = _x( 'Checkout', 'upload listing images form', 'another-wordpress-classifieds-plugin' );
