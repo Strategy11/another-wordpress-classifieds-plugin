@@ -2531,13 +2531,6 @@ function awpcp_is_valid_email_address($email) {
 }
 
 /**
- * @deprecated since 3.0.2. @see awpcp_is_valid_email_address()
- */
-function isValidEmailAddress($email) {
-    return awpcp_is_valid_email_address( $email );
-}
-
-/**
  * @since 3.4
  */
 function awpcp_is_email_address_allowed( $email_address ) {
