@@ -2784,7 +2784,10 @@ function awpcp_get_ad_share_info($id) {
     $info['url'] = url_showad($id);
     $info['title'] = stripslashes($ad->ad_title);
     $info['description'] = strip_tags(stripslashes($ad->ad_details));
-    $info['description'] = str_replace("\n", " ", $info['description']);
+
+    $info['description'] = str_replace( array( "\r", "\n", "\t" ), ' ', $info['description'] );
+    $info['description'] = preg_replace( '/ {2,}/', ' ', $info['description'] );
+    $info['description'] = trim( $info['description'] );
 
     if ( awpcp_utf8_strlen( $info['description'] ) > 300 ) {
         $info['description'] = awpcp_utf8_substr( $info['description'], 0, 300 ) . '...';
