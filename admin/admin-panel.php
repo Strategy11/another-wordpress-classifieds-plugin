@@ -740,6 +740,10 @@ function awpcp_opsconfig_categories() {
 		}
 		if ($aeaction == 'delete')
 		{
+			$section_icon_style = "background:transparent url($awpcp_imagesurl/edit_ico.png) left center no-repeat;padding-left:20px;";
+			$categorynamefield = '';
+			$exclude = '';
+
 			$orderinput='';
 			if ($cat_ID == 1)
 			{
