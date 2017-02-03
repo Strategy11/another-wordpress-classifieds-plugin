@@ -135,7 +135,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         if (!is_null($transaction) && $transaction->get('context') != $this->context) {
             $page_name = awpcp_get_page_name('place-ad-page-name');
             $page_url = awpcp_get_page_url('place-ad-page-name');
-            $message = __('You are trying to post an Ad using a transaction created for a different purpose. Pelase go back to the <a href="%s">%s</a> page.<br>If you think this is an error please contact the administrator and provide the following transaction ID: %s', 'another-wordpress-classifieds-plugin');
+            $message = __('You are trying to post an Ad using a transaction created for a different purpose. Please go back to the <a href="%s">%s</a> page.<br>If you think this is an error please contact the administrator and provide the following transaction ID: %s', 'another-wordpress-classifieds-plugin');
             $message = sprintf($message, $page_url, $page_name, $transaction->id);
             return $this->render('content', awpcp_print_error($message));
         }

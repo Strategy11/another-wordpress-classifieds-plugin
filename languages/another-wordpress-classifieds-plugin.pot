@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2017-02-03 05:40:32+00:00\n"
+"POT-Creation-Date: 2017-02-03 18:09:30+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -725,7 +725,7 @@ msgstr[1] ""
 msgid "Manage Credit"
 msgstr ""
 
-#: admin/admin-panel.php:289 admin/admin-panel.php:791
+#: admin/admin-panel.php:289 admin/admin-panel.php:795
 #: admin/templates/admin-panel-home.tpl.php:80
 #: admin/templates/admin-panel-home.tpl.php:108
 msgid "Manage Categories"
@@ -756,17 +756,17 @@ msgid "Debug"
 msgstr ""
 
 #: admin/admin-panel.php:491 admin/admin-panel.php:492
-#: admin/admin-panel.php:820
+#: admin/admin-panel.php:824
 msgid "Manage Category Icon"
 msgstr ""
 
-#: admin/admin-panel.php:497 admin/admin-panel.php:810
-#: admin/admin-panel.php:812
+#: admin/admin-panel.php:497 admin/admin-panel.php:814
+#: admin/admin-panel.php:816
 msgid "Edit Category"
 msgstr ""
 
 #: admin/admin-panel.php:498 admin/admin-panel.php:667
-#: admin/admin-panel.php:814 admin/admin-panel.php:816
+#: admin/admin-panel.php:818 admin/admin-panel.php:820
 msgid "Delete Category"
 msgstr ""
 
@@ -846,105 +846,105 @@ msgstr ""
 msgid "Category list order"
 msgstr ""
 
-#: admin/admin-panel.php:752
+#: admin/admin-panel.php:756
 msgid "Category to Delete"
 msgstr ""
 
-#: admin/admin-panel.php:762
+#: admin/admin-panel.php:766
 msgid "Category to Edit"
 msgstr ""
 
-#: admin/admin-panel.php:766 admin/admin-panel.php:780
+#: admin/admin-panel.php:770 admin/admin-panel.php:784
 msgid "Make This a Top Level Category"
 msgstr ""
 
-#: admin/admin-panel.php:777
+#: admin/admin-panel.php:781
 msgid "Enter the category name"
 msgstr ""
 
-#: admin/admin-panel.php:808
+#: admin/admin-panel.php:812
 msgid "Icon Meanings"
 msgstr ""
 
-#: admin/admin-panel.php:879
+#: admin/admin-panel.php:883
 msgid "Delete Selected Categories"
 msgstr ""
 
-#: admin/admin-panel.php:882
+#: admin/admin-panel.php:886
 msgid "Move Selected Categories"
 msgstr ""
 
-#: admin/admin-panel.php:885
+#: admin/admin-panel.php:889
 msgid "Select Move-To category"
 msgstr ""
 
-#: admin/admin-panel.php:890
+#: admin/admin-panel.php:894
 msgid "Delete categories should do this with existing Ads"
 msgstr ""
 
-#: admin/admin-panel.php:891
+#: admin/admin-panel.php:895
 msgid "Move Ads to new category"
 msgstr ""
 
-#: admin/admin-panel.php:892
+#: admin/admin-panel.php:896
 msgid "Delete Ads too"
 msgstr ""
 
-#: admin/admin-panel.php:904 admin/admin-panel.php:916
+#: admin/admin-panel.php:908 admin/admin-panel.php:920
 msgid "Category ID"
 msgstr ""
 
-#: admin/admin-panel.php:906 admin/admin-panel.php:918
+#: admin/admin-panel.php:910 admin/admin-panel.php:922
 msgid "Category Name (Total Ads)"
 msgstr ""
 
-#: admin/admin-panel.php:908 admin/admin-panel.php:920
+#: admin/admin-panel.php:912 admin/admin-panel.php:924
 msgid "Parent"
 msgstr ""
 
-#: admin/admin-panel.php:910 admin/admin-panel.php:922
+#: admin/admin-panel.php:914 admin/admin-panel.php:926
 msgid "Order"
 msgstr ""
 
-#: admin/admin-panel.php:912 admin/admin-panel.php:924
+#: admin/admin-panel.php:916 admin/admin-panel.php:928
 msgid "Action"
 msgstr ""
 
-#: admin/admin-panel.php:1117
+#: admin/admin-panel.php:1121
 msgid "The new category was successfully added."
 msgstr ""
 
-#: admin/admin-panel.php:1136
+#: admin/admin-panel.php:1140
 msgid ""
 "Sorry but you cannot delete the default category. The default category can "
 "only be renamed"
 msgstr ""
 
-#: admin/admin-panel.php:1204
+#: admin/admin-panel.php:1208
 msgid "The category has been deleted"
 msgstr ""
 
-#: admin/admin-panel.php:1216
+#: admin/admin-panel.php:1220
 msgid "Your category changes have been saved."
 msgstr ""
 
-#: admin/admin-panel.php:1223
+#: admin/admin-panel.php:1227
 msgid "No changes made to categories."
 msgstr ""
 
-#: admin/admin-panel.php:1262
+#: admin/admin-panel.php:1266
 msgid ""
 "With the exception of any category that was being moved to itself, the "
 "categories have been moved"
 msgstr ""
 
-#: admin/admin-panel.php:1266
+#: admin/admin-panel.php:1270
 msgid ""
 "The categories have not been moved because you did not indicate where you "
 "want the categories to be moved to"
 msgstr ""
 
-#: admin/admin-panel.php:1361
+#: admin/admin-panel.php:1365
 msgid "The categories have been deleted"
 msgstr ""
 
@@ -2335,7 +2335,7 @@ msgstr ""
 #: frontend/page-place-ad.php:138 frontend/page-renew-ad.php:58
 msgid ""
 "You are trying to post an Ad using a transaction created for a different "
-"purpose. Pelase go back to the <a href=\"%s\">%s</a> page.<br>If you think "
+"purpose. Please go back to the <a href=\"%s\">%s</a> page.<br>If you think "
 "this is an error please contact the administrator and provide the following "
 "transaction ID: %s"
 msgstr ""
@@ -7520,6 +7520,7 @@ msgid "The specified file is not associated with Listing with ID %d."
 msgstr ""
 
 #: includes/views/class-payment-step-decorator.php:40
+#: includes/views/frontend/buy-credits/class-buy-credits-page.php:74
 msgid ""
 "You are trying to buy credits using a transaction created for a different "
 "purpose. Please go back to the <a href=\"%s\">%s</a> page.<br>If you think "
@@ -7544,14 +7545,6 @@ msgstr ""
 
 #: includes/views/frontend/buy-credits/class-buy-credits-page.php:12
 msgid "Buy Credits"
-msgstr ""
-
-#: includes/views/frontend/buy-credits/class-buy-credits-page.php:74
-msgid ""
-"You are trying to buy credits using a transaction created for a different "
-"purpose. Pelase go back to the <a href=\"%s\">%s</a> page.<br>If you think "
-"this is an error please contact the administrator and provide the following "
-"transaction ID: %s"
 msgstr ""
 
 #: includes/views/frontend/buy-credits/class-buy-credits-page.php:87
