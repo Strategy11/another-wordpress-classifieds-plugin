@@ -167,8 +167,15 @@ class AWPCP_Pages {
     public function listings_shortcode($attrs) {
         wp_enqueue_script('awpcp');
 
-        $attrs = shortcode_atts(array('menu' => true, 'limit' => 10), $attrs);
+        $default_attrs = array(
+            'menu' => true,
+            'pagination' => false,
+            'limit' => 10,
+        );
+
+        $attrs = shortcode_atts( $default_attrs, $attrs );
         $show_menu = awpcp_parse_bool($attrs['menu']);
+        $show_pagination = awpcp_parse_bool( $attrs['pagination'] );
         $limit = absint($attrs['limit']);
 
         $query = array(
@@ -178,6 +185,7 @@ class AWPCP_Pages {
 
         $options = array(
             'show_menu_items' => $show_menu,
+            'show_pagination' => $show_pagination,
         );
 
         return awpcp_display_listings( $query, 'latest-listings-shortcode', $options );
