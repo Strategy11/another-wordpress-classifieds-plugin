@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2017-02-08 15:54:06+00:00\n"
-"PO-Revision-Date: 2017-02-08 16:08+0000\n"
+"POT-Creation-Date: 2017-02-08 23:35:08+00:00\n"
+"PO-Revision-Date: 2017-02-08 23:38+0000\n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: Spanish (Spain) (http://www.transifex.com/wp-translations/another-wordpress-classifieds-plugin/language/es_ES/)\n"
 "MIME-Version: 1.0\n"
@@ -4975,6 +4975,14 @@ msgstr "Se ha producido un error al procesar su pago. El estado de los pagos no 
 #: includes/payments-api.php:689
 msgid "Payment Not Verified"
 msgstr "Pago no verificado"
+
+#: includes/placeholders/class-placeholders-installation-verifier.php:34
+msgid "Ad/Listings settings page"
+msgstr "Página de Configuración de los Anuncios"
+
+#: includes/placeholders/class-placeholders-installation-verifier.php:35
+msgid "Go to the %s to change the Single Ad layout."
+msgstr "Dirijase a la %s para cambiar la plantilla de la vista sencilla de los anuncios."
 
 #: includes/settings/class-credit-system-settings.php:16
 msgid "Credit System"

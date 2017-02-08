@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2017-02-08 15:54:06+00:00\n"
+"POT-Creation-Date: 2017-02-08 23:35:08+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -4960,6 +4960,14 @@ msgstr ""
 
 #: includes/payments-api.php:689
 msgid "Payment Not Verified"
+msgstr ""
+
+#: includes/placeholders/class-placeholders-installation-verifier.php:34
+msgid "Ad/Listings settings page"
+msgstr ""
+
+#: includes/placeholders/class-placeholders-installation-verifier.php:35
+msgid "Go to the %s to change the Single Ad layout."
 msgstr ""
 
 #: includes/settings/class-credit-system-settings.php:16

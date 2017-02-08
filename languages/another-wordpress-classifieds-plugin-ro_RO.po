@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2017-02-08 15:54:06+00:00\n"
-"PO-Revision-Date: 2017-02-08 16:01+0000\n"
+"POT-Creation-Date: 2017-02-08 23:35:08+00:00\n"
+"PO-Revision-Date: 2017-02-08 23:36+0000\n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: Romanian (Romania) (http://www.transifex.com/wp-translations/another-wordpress-classifieds-plugin/language/ro_RO/)\n"
 "MIME-Version: 1.0\n"
@@ -4989,6 +4989,14 @@ msgstr "A apărut o eroare la procesarea plății dvs. Starea plății nu poate 
 #: includes/payments-api.php:689
 msgid "Payment Not Verified"
 msgstr "Plata nu este verificată"
+
+#: includes/placeholders/class-placeholders-installation-verifier.php:34
+msgid "Ad/Listings settings page"
+msgstr ""
+
+#: includes/placeholders/class-placeholders-installation-verifier.php:35
+msgid "Go to the %s to change the Single Ad layout."
+msgstr ""
 
 #: includes/settings/class-credit-system-settings.php:16
 msgid "Credit System"
