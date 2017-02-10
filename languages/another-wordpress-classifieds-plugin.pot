@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2017-02-08 23:35:08+00:00\n"
+"POT-Creation-Date: 2017-02-09 15:58:25+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -127,6 +127,16 @@ msgctxt ""
 "description for messages used to show feedback for the Import Listings "
 "operation"
 msgid "<message-type> in line <message-line>"
+msgstr ""
+
+#: admin/admin-panel-csv-importer.php:353
+msgctxt "text for page subtitle and submit button"
+msgid "Test Import"
+msgstr ""
+
+#: admin/admin-panel-csv-importer.php:355
+msgctxt "text for page subtitle and submit button"
+msgid "Import"
 msgstr ""
 
 #: admin/admin-panel-fees-table.php:114
@@ -445,7 +455,7 @@ msgstr ""
 #: frontend/templates/payments-billing-form.tpl.php:123
 #: includes/listings/class-listing-action-with-confirmation.php:8
 #: templates/admin/import-listings-admin-page-configuration-form.tpl.php:154
-#: templates/admin/import-listings-admin-page-import-form.tpl.php:36
+#: templates/admin/import-listings-admin-page-import-form.tpl.php:39
 msgid "Cancel"
 msgstr ""
 
@@ -746,8 +756,6 @@ msgstr ""
 
 #: admin/admin-panel.php:318
 #: templates/admin/import-listings-admin-page-configuration-form.tpl.php:146
-#: templates/admin/import-listings-admin-page-import-form.tpl.php:6
-#: templates/admin/import-listings-admin-page-import-form.tpl.php:23
 msgid "Import"
 msgstr ""
 
@@ -2234,7 +2242,7 @@ msgstr ""
 #: frontend/page-edit-ad.php:349
 #: frontend/templates/page-place-ad-preview-step.tpl.php:17
 #: includes/helpers/widgets/class-listing-form-steps-component.php:69
-#: templates/admin/import-listings-admin-page-import-form.tpl.php:27
+#: templates/admin/import-listings-admin-page-import-form.tpl.php:30
 msgid "Finish"
 msgstr ""
 
@@ -7713,7 +7721,7 @@ msgid "Test Import"
 msgstr ""
 
 #: templates/admin/import-listings-admin-page-configuration-form.tpl.php:151
-#: templates/admin/import-listings-admin-page-import-form.tpl.php:33
+#: templates/admin/import-listings-admin-page-import-form.tpl.php:36
 msgid ""
 "Press the button below to cancel the current import operation and discard "
 "the uploaded CSV file and ZIP file (if any). If you manually uploaded images "
@@ -7721,11 +7729,17 @@ msgid ""
 "deleted."
 msgstr ""
 
-#: templates/admin/import-listings-admin-page-import-form.tpl.php:22
-msgid "Change Configuration & Restart"
+#: templates/admin/import-listings-admin-page-import-form.tpl.php:8
+msgid ""
+"You're currently testing the import operation. No listings will be created "
+"or modified in the database."
 msgstr ""
 
 #: templates/admin/import-listings-admin-page-import-form.tpl.php:25
+msgid "Change Configuration & Restart"
+msgstr ""
+
+#: templates/admin/import-listings-admin-page-import-form.tpl.php:28
 msgid "Pause"
 msgstr ""
 
