@@ -15,7 +15,7 @@ Reusables.Breakpoints = (function ($) {
     var nextKey = 1;
     return function () {
       var key = 'breakpoint-' + nextKey;
-      nextKey++;
+      nextKey = nextKey + 1;
       return key;
     };
   })();
@@ -58,8 +58,6 @@ Reusables.Breakpoints = (function ($) {
         elements = function () { return $($elements.selector); };
       } else if (isJQuery) {
         elements = function () { return $elements; };
-      } else {
-        // ...
       }
 
       return elements;
@@ -145,7 +143,7 @@ Reusables.Breakpoints = (function ($) {
 
     Breakpoints.evaluate = function () {
       var length = breakpoints.length;
-      for (var i = 0; i < length; i++) {
+      for (var i = 0; i < length; i = i + 1) {
         breakpoints[i].evaluate();
       }
       enterQueue.process();
@@ -164,7 +162,7 @@ Reusables.Breakpoints = (function ($) {
 if ( typeof jQuery !== 'undefined' ) {
     jQuery(function ($) {
         $('[data-breakpoints]').each(function(){
-            var $element = $(this), breakpoints, classPrefix;
+            var $element = $(this);
             var builder = Reusables.Breakpoints.on($element);
             var prefix = $element.attr('data-breakpoints-class-prefix') || 'breakpoint';
             var breakpoints = $.parseJSON($element.attr('data-breakpoints'));
@@ -174,7 +172,7 @@ if ( typeof jQuery !== 'undefined' ) {
             }
 
             $.each(breakpoints, function(name, range) {
-                builder.define(range, { name: prefix + "-" + name });
+                builder.define(range, { name: prefix + '-' + name });
             });
         });
     });
