@@ -1,8 +1,8 @@
-<?php echo __( 'Hello,', 'another-wordpress-classifieds-plugin' ) . PHP_EOL ?>
+<?php echo _x( 'Hello,', 'listing media uploaded notification', 'another-wordpress-classifieds-plugin' ) . PHP_EOL ?>
 <?php if ( $other_attachments ): ?>
 
 <?php
-    $message = __( 'The following media files were recently uploaded to listing "<listing-title>":', 'another-wordpress-classifieds-plugin' );
+    $message = _x( 'The following media files were recently uploaded to listing "<listing-title>":', 'listing media uploaded notification', 'another-wordpress-classifieds-plugin' );
     echo str_replace( '<listing-title>', $listing_title, $message ) . PHP_EOL;
 ?>
 
@@ -13,7 +13,7 @@
 <?php if ( $attachments_awaiting_approval ): ?>
 
 <?php
-    $message = __( 'The following media files were recently uploaded to listing "<listing-title>" and are awaiting approval:', 'another-wordpress-classifieds-plugin' );
+    $message = _x( 'The following media files were recently uploaded to listing "<listing-title>" and are awaiting approval:', 'listing media uploaded notification', 'another-wordpress-classifieds-plugin' );
     echo str_replace( '<listing-title>', $listing_title, $message ) . PHP_EOL;
 ?>
 
@@ -23,12 +23,12 @@
 <?php endif; ?>
 
 <?php
-    $message = __( 'Click here to manage media uploaded to the listing: <manage-listing-media-url>.', 'another-wordpress-classifieds-plugin' );
+    $message = _x( 'Click here to manage media uploaded to the listing: <manage-listing-media-url>.', 'listing media uploaded notification', 'another-wordpress-classifieds-plugin' );
     echo str_replace( '<manage-listing-media-url>', $manage_listing_media_url, $message ) . PHP_EOL;
 ?>
 
 <?php
-    $message = __( 'Click here to view the listing: <view-listing-url>.', 'another-wordpress-classifieds-plugin' );
+    $message = _x( 'Click here to view the listing: <view-listing-url>.', 'listing media uploaded notification', 'another-wordpress-classifieds-plugin' );
     echo str_replace( '<view-listing-url>', $view_listing_url, $message ) . PHP_EOL;
 ?>
 
