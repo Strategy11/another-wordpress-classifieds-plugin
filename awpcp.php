@@ -332,6 +332,7 @@ require_once(AWPCP_DIR . "/admin/admin-panel.php");
 require_once(AWPCP_DIR . "/admin/user-panel.php");
 require_once( AWPCP_DIR . '/admin/class-delete-browse-categories-page-notice.php' );
 require_once( AWPCP_DIR . '/admin/class-dismiss-notice-ajax-handler.php' );
+require_once( AWPCP_DIR . '/admin/class-missing-paypal-merchant-id-setting-notice.php' );
 require_once( AWPCP_DIR . '/admin/class-page-name-monitor.php' );
 require_once( AWPCP_DIR . '/admin/pointers/class-drip-autoresponder-ajax-handler.php' );
 require_once( AWPCP_DIR . '/admin/pointers/class-drip-autoresponder.php' );
@@ -645,6 +646,7 @@ class AWPCP {
                 add_action( 'admin_notices', array( awpcp_fee_payment_terms_notices(), 'dispatch' ) );
                 add_action( 'admin_notices', array( awpcp_credit_plans_notices(), 'dispatch' ) );
                 add_action( 'admin_notices', array( awpcp_delete_browse_categories_page_notice(), 'maybe_show_notice' ) );
+                add_action( 'admin_notices', array( awpcp_missing_paypal_merchant_id_setting_notice(), 'maybe_show_notice' ) );
 
                 // TODO: do we really need to execute this every time the plugin settings are saved?
                 $handler = awpcp_license_settings_update_handler();
