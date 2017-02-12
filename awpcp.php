@@ -240,6 +240,7 @@ require_once( AWPCP_DIR . '/includes/media/class-listing-upload-limits.php' );
 require( AWPCP_DIR . '/includes/media/class-listing-media-creator.php' );
 require_once( AWPCP_DIR . "/includes/media/class-media-manager-component.php" );
 require_once( AWPCP_DIR . "/includes/media/class-media-manager.php" );
+require_once( AWPCP_DIR . '/includes/media/class-media-uploaded-notification.php' );
 require_once( AWPCP_DIR . '/includes/media/class-media-uploader-component.php' );
 require_once( AWPCP_DIR . "/includes/media/class-messages-component.php" );
 require_once( AWPCP_DIR . '/includes/media/class-mime-types.php' );
@@ -1284,7 +1285,9 @@ class AWPCP {
 	}
 
     public function register_notification_handlers() {
-        add_action( 'awpcp-media-uploaded', 'awpcp_send_listing_media_uploaded_notifications', 10, 2 );
+        $media_uploaded_notification = awpcp_media_uploaded_notification();
+        add_action( 'awpcp-media-uploaded', array( $media_uploaded_notification, 'maybe_schedule_notification' ), 10, 2 );
+        add_action( 'awpcp-media-uploaded-notification', array( $media_uploaded_notification, 'send_notification' ) );
     }
 
     public function register_file_handlers( $file_handlers ) {
