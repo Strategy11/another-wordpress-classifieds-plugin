@@ -23,12 +23,12 @@
 <?php endif; ?>
 
 <?php
-    $message = __( 'Click the following link to manage media uploaded to the listing: <manage-listing-media-url>.', 'another-wordpress-classifieds-plugin' );
+    $message = __( 'Click here to manage media uploaded to the listing: <manage-listing-media-url>.', 'another-wordpress-classifieds-plugin' );
     echo str_replace( '<manage-listing-media-url>', $manage_listing_media_url, $message ) . PHP_EOL;
 ?>
 
 <?php
-    $message = __( 'Click the following link to view the listing: <view-listing-url>.', 'another-wordpress-classifieds-plugin' );
+    $message = __( 'Click here to view the listing: <view-listing-url>.', 'another-wordpress-classifieds-plugin' );
     echo str_replace( '<view-listing-url>', $view_listing_url, $message ) . PHP_EOL;
 ?>
 
