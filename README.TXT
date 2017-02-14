@@ -3,9 +3,9 @@ Contributors: awpcp
 Donate link: http://awpcp.com/donate
 Tags: classifieds,ads,classified ads,classified,awpcp,classifieds script,classified theme,classifieds theme
 Requires at least: 4.2
-Tested up to: 4.7
-Last Updated: 2017-Jan-19
-Stable tag: tags/3.7.3
+Tested up to: 4.7.2
+Last Updated: 2017-Feb-14
+Stable tag: tags/3.7.4
 License: GPLv2 or later
 
 AWPCP Classifieds:  Great for increasing retention to your site, adding revenue for your business, and creating customer interaction.
@@ -221,6 +221,27 @@ Find the [faqs here](http://www.awpcp.com/forum/viewforum.php?f=3)
 [Plugin documentation](http://www.awpcp.com/documentation/)
 
 == Changelog ==
+
+= Version 3.7.4 =
+* Prevent 404 errors in BuddyPress Listings.
+* Add better responsive behaviour to List of Listings.
+* Do not show regions selector if no regions are allowed.
+* Restore AWPCPBROWSECATS shortcode but direct to AWPCPBROWSEADS.
+* Remove unused query vars 'a' and 'i'.
+* Prevent PHP Warnings and Errors in PHP 5.4 and above.
+* Do not show View Categories menu if page's name is emtpy.
+* Prevent creation of invalid rules for View Categories page.
+* Fix label for submit button in Upload Images form.
+* Fix bug that incorrectly allowed images to be allowed.
+* Strip CR characters from listing's meta description.
+* Fix typo: 'Pelase' -> 'Please'.
+* Fix problem with aposthrophes in categories names.
+* Validate PayPal payment information using Merchant ID.
+* Fix text domain for strings in Placeholder's notice.
+* Add updated translatiosn from Transifex.
+* Add notification for media uploaded to listings (#532).
+* Asks admins to enter PayPal Merchant ID to improve verification of payment information.
+* Add warning notice when testing an import operation.
 
 = Version 3.7.3 =
 * Fix PHP Warning in Browse Categories Page Redirection Handler.
