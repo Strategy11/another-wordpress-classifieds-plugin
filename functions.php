@@ -1457,20 +1457,27 @@ function awpcp_print_messages() {
 function awpcp_print_form_errors( $errors ) {
     foreach ( $errors as $index => $error ) {
         if ( is_numeric( $index ) ) {
-            echo awpcp_print_message( $error, array( 'error' ) );
+            echo awpcp_print_message( $error, array( 'awpcp-error', 'notice', 'notice-error' ) );
         } else {
-            echo awpcp_print_message( $error, array( 'error', 'ghost' ) );
+            echo awpcp_print_message( $error, array( 'awpcp-error', 'notice', 'notice-error', 'ghost' ) );
         }
     }
 }
 
-function awpcp_print_message( $message, $class = array( 'awpcp-updated', 'updated' ) ) {
+function awpcp_print_message( $message, $class = array( 'awpcp-updated', 'notice', 'notice-info' ) ) {
 	$class = array_merge(array('awpcp-message'), $class);
 	return '<div class="' . join(' ', $class) . '"><p>' . $message . '</p></div>';
 }
 
 function awpcp_print_error($message) {
 	return awpcp_print_message($message, array('error'));
+}
+
+/**
+ * @since 3.7.4
+ */
+function awpcp_render_warning( $message ) {
+    return awpcp_print_message( $message, array( 'awpcp-warning', 'notice', 'notice-warning' ) );
 }
 
 function awpcp_validate_error($field, $errors) {

@@ -571,6 +571,7 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
             ),
             'media_uploader_configuration' => array(
                 'listing_id' => $listing->ad_id,
+                'context' => 'manage-media',
                 'nonce' => wp_create_nonce( 'awpcp-upload-media-for-listing-' . $listing->ad_id ),
                 'allowed_files' => $allowed_files,
             ),

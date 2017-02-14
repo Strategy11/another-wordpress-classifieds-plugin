@@ -4,7 +4,7 @@
  * Plugin Name: Another WordPress Classifieds Plugin (AWPCP)
  * Plugin URI: http://www.awpcp.com
  * Description: AWPCP - A plugin that provides the ability to run a free or paid classified ads service on your WP site. <strong>!!!IMPORTANT!!!</strong> It's always a good idea to do a BACKUP before you upgrade AWPCP!
- * Version: 3.7.4-dev-6
+ * Version: 3.7.4
  * Author: D. Rodenbaugh
  * License: GPLv2 or any later version
  * Author URI: http://www.skylineconsult.com
@@ -240,6 +240,7 @@ require_once( AWPCP_DIR . '/includes/media/class-listing-upload-limits.php' );
 require( AWPCP_DIR . '/includes/media/class-listing-media-creator.php' );
 require_once( AWPCP_DIR . "/includes/media/class-media-manager-component.php" );
 require_once( AWPCP_DIR . "/includes/media/class-media-manager.php" );
+require_once( AWPCP_DIR . '/includes/media/class-media-uploaded-notification.php' );
 require_once( AWPCP_DIR . '/includes/media/class-media-uploader-component.php' );
 require_once( AWPCP_DIR . "/includes/media/class-messages-component.php" );
 require_once( AWPCP_DIR . '/includes/media/class-mime-types.php' );
@@ -331,6 +332,7 @@ require_once(AWPCP_DIR . "/admin/admin-panel.php");
 require_once(AWPCP_DIR . "/admin/user-panel.php");
 require_once( AWPCP_DIR . '/admin/class-delete-browse-categories-page-notice.php' );
 require_once( AWPCP_DIR . '/admin/class-dismiss-notice-ajax-handler.php' );
+require_once( AWPCP_DIR . '/admin/class-missing-paypal-merchant-id-setting-notice.php' );
 require_once( AWPCP_DIR . '/admin/class-page-name-monitor.php' );
 require_once( AWPCP_DIR . '/admin/pointers/class-drip-autoresponder-ajax-handler.php' );
 require_once( AWPCP_DIR . '/admin/pointers/class-drip-autoresponder.php' );
@@ -644,6 +646,7 @@ class AWPCP {
                 add_action( 'admin_notices', array( awpcp_fee_payment_terms_notices(), 'dispatch' ) );
                 add_action( 'admin_notices', array( awpcp_credit_plans_notices(), 'dispatch' ) );
                 add_action( 'admin_notices', array( awpcp_delete_browse_categories_page_notice(), 'maybe_show_notice' ) );
+                add_action( 'admin_notices', array( awpcp_missing_paypal_merchant_id_setting_notice(), 'maybe_show_notice' ) );
 
                 // TODO: do we really need to execute this every time the plugin settings are saved?
                 $handler = awpcp_license_settings_update_handler();
@@ -1284,7 +1287,9 @@ class AWPCP {
 	}
 
     public function register_notification_handlers() {
-        add_action( 'awpcp-media-uploaded', 'awpcp_send_listing_media_uploaded_notifications', 10, 2 );
+        $media_uploaded_notification = awpcp_media_uploaded_notification();
+        add_action( 'awpcp-media-uploaded', array( $media_uploaded_notification, 'maybe_schedule_notification' ), 10, 2 );
+        add_action( 'awpcp-media-uploaded-notification', array( $media_uploaded_notification, 'send_notification' ) );
     }
 
     public function register_file_handlers( $file_handlers ) {
