@@ -4,13 +4,13 @@
 # Christian Ludger <info@christianludger.de>, 2015-2017
 # Egli, 2015
 # Mario Huehne <mario.huehne@live.de>, 2015
-# Willington Vega <wvega@wvega.com>, 2015-2016
+# Willington Vega <wvega@wvega.com>, 2015-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-plugin\n"
 "POT-Creation-Date: 2017-02-14 02:23:54+00:00\n"
-"PO-Revision-Date: 2017-02-14 02:24+0000\n"
+"PO-Revision-Date: 2017-02-15 23:22+0000\n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: German (Germany) (http://www.transifex.com/wp-translations/another-wordpress-classifieds-plugin/language/de_DE/)\n"
 "MIME-Version: 1.0\n"
@@ -403,13 +403,13 @@ msgstr "Telefonnummer"
 
 #: admin/admin-panel-listings-table.php:278
 msgid "Payer Email"
-msgstr "Bezahl-E-Mailadresse"
+msgstr "Bezahl- e-Mail-Adresse"
 
 #: admin/admin-panel-listings-table.php:281
 #: frontend/templates/page-place-ad-details-step.tpl.php:36
 #: frontend/templates/page-place-ad-order-step.tpl.php:43
 msgid "User"
-msgstr "Benutzername"
+msgstr "Benutzer"
 
 #: admin/admin-panel-listings-table.php:322
 msgctxt "admin listings table"
@@ -515,7 +515,7 @@ msgstr "Die ausgewählte Anzeige existiert nicht."
 
 #: admin/admin-panel-listings.php:365
 msgid "No Ads were selected."
-msgstr "Es wurden keine Anzeigen ausgewählt"
+msgstr "Es wurden keine Anzeigen ausgewählt."
 
 #: admin/admin-panel-listings.php:371
 #: includes/views/admin/listings/class-listing-action-admin-page.php:24
@@ -1068,7 +1068,7 @@ msgstr "Die Spalte war leer."
 msgid ""
 "The number of values in the row (<number-of-values-in-row>) does not match "
 "the number of columns in the file's header (<number-of-columns>)."
-msgstr "Die Anzahl der Werte in der Spalte (<number-of-values-in-row>) passt nicht zur Anzahl der Werte im Dateikopf  (<number-of-columns>).\nThe number of values in the row (<number-of-values-in-row>) does not match the number of columns in the file's header (<number-of-columns>)."
+msgstr "Die Anzahl der Werte in der Spalte (<number-of-values-in-row>) passt nicht zur Anzahl der Werte im Dateikopf  (<number-of-columns>)."
 
 #: admin/pointers/class-drip-autoresponder-ajax-handler.php:23
 msgid "You are not authorizred to perform this action."
@@ -1077,7 +1077,7 @@ msgstr "Sie haben keine Freigabe um diese Aktion durchzuführen."
 #: admin/pointers/class-drip-autoresponder-ajax-handler.php:39
 msgctxt "drip-autoresponder"
 msgid "The email address entered is not valid."
-msgstr "Die E-Mailadresse die Sie eingegeben haben ist leider ungültig."
+msgstr "Die e-Mail-Adresse die Sie eingegeben haben ist leider ungültig."
 
 #: admin/pointers/class-drip-autoresponder-ajax-handler.php:114
 msgctxt "drip-autoresponder"
@@ -2760,7 +2760,7 @@ msgstr "Verkäufer"
 
 #: frontend/placeholders.php:412
 msgid "Visit Website"
-msgstr "Website öffnen"
+msgstr "Webseite des Anbieters"
 
 #: frontend/placeholders.php:609
 msgid "This Ad has been viewed %d time."
@@ -2861,7 +2861,7 @@ msgid ""
 "After you verify your email address, the administrator will be notified "
 "about the new Ad. If moderation is enabled, your Ad will remain in a "
 "disabled status until the administrator approves it."
-msgstr "Nachdem Sie Ihre E-Mailadresse bestätigt haben wird der Administrator über Ihre Anzeige benachrichtigt. Eventuell wird die Nachricht erst nach Freischaltung durch den Administrator angezeigt."
+msgstr "Nachdem Sie Ihre e-Mail-Adresse bestätigt haben wird der Administrator über Ihre Anzeige benachrichtigt. Eventuell wird die Nachricht erst nach Freischaltung durch den Administrator angezeigt."
 
 #: frontend/templates/email-ad-enabled-user.tpl.php:4
 msgid ""
@@ -3042,11 +3042,11 @@ msgstr "Der Credit in Ihrem Konto kann verwendet werden um Anzeigen zu bezahlen.
 #: frontend/templates/payments-checkout-page.tpl.php:24
 #: frontend/templates/payments-payment-completed-page.tpl.php:18
 msgid "Continue"
-msgstr "Weiter"
+msgstr "weiter"
 
 #: frontend/templates/page-edit-ad-email-key-step.tpl.php:19
 msgid "Ad email and access key"
-msgstr "Geben Sie Ihren Zugangscode und Ihre E-Mailadresse für die Anzeige ein!"
+msgstr "Geben Sie Ihren Zugangscode und Ihre e-Mail-Adresse für die Anzeige ein!"
 
 #: frontend/templates/page-edit-ad-email-key-step.tpl.php:22
 #: frontend/templates/page-edit-ad-send-access-key-step.tpl.php:22
@@ -3064,7 +3064,7 @@ msgstr "Hier klicken um eine Zugangscode zu erhalten."
 #: frontend/templates/page-edit-ad-email-key-step.tpl.php:34
 msgctxt "enter email and access key form"
 msgid "Continue"
-msgstr "Weiter"
+msgstr "weiter"
 
 #: frontend/templates/page-edit-ad-send-access-key-step.tpl.php:19
 msgid "Resend Ad access key"
@@ -3073,7 +3073,7 @@ msgstr "Zugangscode für die Anzeige erneut senden"
 #: frontend/templates/page-edit-ad-send-access-key-step.tpl.php:27
 msgctxt "send ad access key form"
 msgid "Continue"
-msgstr "Weiter"
+msgstr "weiter"
 
 #: frontend/templates/page-place-ad-checkout-step.tpl.php:1
 msgctxt "place ad checkout step"
@@ -3134,7 +3134,7 @@ msgstr "Kleinanzeige Vorschau"
 #: frontend/templates/page-place-ad-details-step.tpl.php:118
 msgctxt "listing details form"
 msgid "Continue"
-msgstr "Weiter"
+msgstr "weiter"
 
 #: frontend/templates/page-place-ad-finish-step.tpl.php:9
 msgid "Your changes have been saved."
@@ -3172,7 +3172,7 @@ msgstr "Bitte wählen Sie einen Besitzer für diese Anzeige"
 #: frontend/templates/page-place-ad-order-step.tpl.php:59
 msgctxt "listing order form"
 msgid "Continue"
-msgstr "Weiter"
+msgstr "weiter"
 
 #: frontend/templates/page-place-ad-preview-step.tpl.php:11
 msgid ""
@@ -3527,7 +3527,7 @@ msgstr "Im Moment sind keine Anzeigen vorhanden."
 
 #: frontend/widget-latest-ads.php:101
 msgid "Read more"
-msgstr "Weiterlesen"
+msgstr "weiter lesen"
 
 #: frontend/widget-random-ad.php:9
 msgid "AWPCP Random Ads"
@@ -3816,7 +3816,7 @@ msgctxt "ad details form"
 msgid ""
 "(Please enter a valid email. The codes needed to edit your Ad will be sent "
 "to your email address)"
-msgstr "Email-Adresse des Ansprechpartners. Bitte geben Sie eine gültige Email-Adresse an, denn nur so können Sie Ihre Anzeige bearbeiten und werden über Anfragen informiert. Die Email-Adresse ist nicht im Internet sichtbar."
+msgstr "Bitte geben Sie eine gültige e-Mail-Adresse an. Nur damit können Sie Ihre Anzeige bearbeiten und werden über Anfragen informiert. Die e-Mail-Adresse ist nicht in der Anzeige sichtbar."
 
 #: includes/form-fields/class-listing-contact-name-form-field.php:20
 msgctxt "ad details form"
@@ -3831,7 +3831,7 @@ msgstr "Telefonnummer des Ansprechpartners - Achtung: Diese Nummer ist dann im I
 #: includes/form-fields/class-listing-details-form-field.php:20
 msgctxt "ad details form"
 msgid "Ad Details"
-msgstr "Anzeigendetails"
+msgstr "Beschreibung des Gegenstandes"
 
 #: includes/form-fields/class-listing-details-form-field.php:31
 #: includes/form-fields/class-listing-title-form-field.php:25
@@ -3858,7 +3858,7 @@ msgstr "Regionen"
 #: includes/form-fields/class-listing-website-form-field.php:20
 msgctxt "ad details form"
 msgid "Website URL"
-msgstr "Ihre Webseite beginnend mit http://  (Optional)"
+msgstr "Ihre Webseite http(s)://  (optional)"
 
 #: includes/functions/deprecated.php:60
 msgid "There are currently no ads in the system"
@@ -3871,7 +3871,7 @@ msgstr "Es wurden keine Anzeigen gefunden"
 #: includes/functions/deprecated.php:143
 #: templates/frontend/category-selector.tpl.php:12
 msgid "Change Category"
-msgstr "Kategorie ändern"
+msgstr "Starten"
 
 #: includes/functions/deprecated.php:151
 #: templates/frontend/category-selector.tpl.php:17
@@ -4472,7 +4472,7 @@ msgstr "Sie können <videos-left> Videos mit jeweils einer maximalen Größe von
 #: includes/media/class-listings-media-uploader-component.php:29
 msgid ""
 "You can upload <images-left> images of up to <images-max-file-size> each."
-msgstr "Sie können <images-left> Bilder mit jeweils einer maximalen Größe von <images-max-file-size> hochladen."
+msgstr "Sie können <images-left> Bild(er) mit einer maximalen Größe von <images-max-file-size> hochladen."
 
 #: includes/media/class-listings-media-uploader-component.php:30
 msgid ""
@@ -4919,14 +4919,14 @@ msgstr "Der Bezahlvorgang wurde abgeschlossen"
 msgid ""
 "Your Payment has been processed successfully. Please press the button below "
 "to continue with the process."
-msgstr "Ihre Bezahlung ist erfolgreich. Bitte drücken Sie den Weiter Button."
+msgstr "Ihre Bezahlung ist erfolgreich. Bitte drücken Sie den \"weiter\" Button."
 
 #: includes/payments-api.php:639
 msgid ""
 "Your Payment has been processed successfully. However is still pending "
 "approvation from the payment gateway. Please press the button below to "
 "continue with the process."
-msgstr "Ihre Bezahlung ist erfolgreich. Bitte drücken Sie den Weiter Button."
+msgstr "Ihre Bezahlung ist erfolgreich. Bitte drücken Sie den \"weiter\" Button."
 
 #: includes/payments-api.php:644
 msgid "Payment Not Required"
@@ -4936,7 +4936,7 @@ msgstr "Keine Zahlung nötig."
 msgid ""
 "No Payment is required for this transaction. Please press the button below "
 "to continue with the process."
-msgstr "Für diesen Vorgang ist keine Zahlung nötig. Bitte drücken Sie den Weiter Button."
+msgstr "Für diesen Vorgang ist keine Zahlung nötig. Bitte drücken Sie den \"weiter\" Button."
 
 #: includes/payments-api.php:650 includes/payments-api.php:691
 msgid "Payment Failed"
@@ -5344,7 +5344,7 @@ msgid ""
 "will be updated (overwriting the information already entered in those "
 "fields) using the information of the user just selected. The modifications "
 "will not be persisted until you click the Continue button."
-msgstr "Wenn diese Einstellung aktiviert ist kann der Administrator die Kontakt-Daten beim Anzeige editieren bearbeiten. Die Einstellungen werden erst übernommen wenn auf Weiter geklickt wird."
+msgstr "Wenn diese Einstellung aktiviert ist kann der Administrator die Kontakt-Daten beim Anzeige editieren bearbeiten. Die Einstellungen werden erst übernommen wenn auf \"weiter\" geklickt wird."
 
 #: includes/settings/class-form-fields-settings.php:43
 msgid "User's name format"
@@ -5371,7 +5371,7 @@ msgid ""
 "only and pre-filled with the information from each user's profile. If this "
 "setting is enabled, logged in users will be allowed to overwrite those "
 "fields."
-msgstr "Normal registrierte Benutzer sind nicht Administratoren und daher nicht erlaubt die E-Mailadresse oder den Kontaktnamen zu ändern. Die Felder werder als schreibgeschützt verwendet. Wenn diese Einstellung aktiviert ist sind angemeldete Benutzer in der Lage die Felder zu überschreiben."
+msgstr "Normal registrierte Benutzer sind nicht Administratoren und daher nicht erlaubt die e-Mail-Adresse oder den Kontaktnamen zu ändern. Die Felder werder als schreibgeschützt verwendet. Wenn diese Einstellung aktiviert ist sind angemeldete Benutzer in der Lage die Felder zu überschreiben."
 
 #: includes/settings/class-form-fields-settings.php:72
 msgid "Phone Field"
@@ -6936,7 +6936,7 @@ msgid ""
 "with your hosting account in the FROM field. If you are with such a webhost "
 "you need to make sure your WordPress admin email address is tied to your "
 "hosting account."
-msgstr "Ausgehende E-Mails werden mit Ihrem WordPress Admin E-Mail Account verschickt. Wenn Sie eine andere E-Mail Adresse wünschen, dann geben Sie diese hier ein. Einige Server werden ausgehende E-Mails nicht weiterleiten wenn die angezeigte E-Mailadresse mit der tatsächlichen E-Mailadresse nicht übereinstimmt - SPAM-Schutz. In diesen Fällen ist es wichtig, dass Sie Ihre WordPress Admin-E-Mailadresse verwenden."
+msgstr "Ausgehende E-Mails werden mit Ihrem WordPress Admin E-Mail Account verschickt. Wenn Sie eine andere E-Mail Adresse wünschen, dann geben Sie diese hier ein. Einige Server werden ausgehende E-Mails nicht weiterleiten wenn die angezeigte e-Mail-Adresse mit der tatsächlichen e-Mail-Adresse nicht übereinstimmt - SPAM-Schutz. In diesen Fällen ist es wichtig, dass Sie Ihre WordPress Admin-e-Mail-Adresse verwenden."
 
 #: includes/settings-api.php:307
 msgid ""
@@ -7918,7 +7918,7 @@ msgstr "Ihr Browser hat keine Unterstützung für Flash, Silverlight oder HTML5.
 
 #: templates/components/media-uploader.tpl.php:8
 msgid "Drop files here to upload"
-msgstr "Dateien für den Upload hier mit Drag & Drop fallenlassen."
+msgstr "Foto-Datei(en) hier mit Drag & Drop hin ziehen"
 
 #: templates/components/media-uploader.tpl.php:9
 msgctxt "The 'or' after 'Drop files here to upload' in Media Uploader"
@@ -8005,4 +8005,4 @@ msgstr "Zurück zur Hauptseite"
 
 #: templates/frontend/listings.tpl.php:20
 msgid "There were no listings found."
-msgstr "Es wurden keine Kleinanzeigen gefunden"
+msgstr "Es wurden keine Anzeigen gefunden."
