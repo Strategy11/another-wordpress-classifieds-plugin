@@ -959,6 +959,7 @@ class AWPCP {
         }
 
         $page_id = awpcp_get_page_id_by_ref( 'browse-categories-page-name' );
+
         $page = get_post( $page_id );
 
         if ( $page && $page->post_status == 'trash' ) {
