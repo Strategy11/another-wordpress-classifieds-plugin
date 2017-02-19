@@ -960,6 +960,11 @@ class AWPCP {
 
         $page_id = awpcp_get_page_id_by_ref( 'browse-categories-page-name' );
 
+        if ( 0 == $page_id ) {
+            delete_option( 'awpcp-store-browse-categories-page-information' );
+            return;
+        }
+
         $page = get_post( $page_id );
 
         if ( $page && $page->post_status == 'trash' ) {
