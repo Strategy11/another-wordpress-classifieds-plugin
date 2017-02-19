@@ -38,7 +38,7 @@ class AWPCP_Browse_Categories_Page_Redirection_Handler {
             return;
         }
 
-        return $this->redirect( $query_args );
+        return $this->redirect();
     }
 
     private function redirect() {
