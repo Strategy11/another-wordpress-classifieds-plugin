@@ -43,7 +43,6 @@ class AWPCP_Email {
         }
 
         $headers = array_merge(array(
-            'MIME-Version' => '1.0',
             'Content-Type' => $content_type,
             'From' => $this->from,
             'Reply-To' => awpcp_admin_email_to(),
