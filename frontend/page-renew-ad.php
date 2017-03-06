@@ -37,12 +37,13 @@ class AWPCP_RenewAdPage extends AWPCP_Place_Ad_Page {
     }
 
     protected function _dispatch($default=null) {
+        $action = $this->get_current_action( $default );
         $ad = $this->get_ad();
 
         if (is_null($ad)) {
             $message = __("The specified Ad doesn't exist or you reached this page directly, without specifying the Ad ID.", 'another-wordpress-classifieds-plugin');
             return $this->render('content', awpcp_print_error($message));
-        } else if (!$ad->is_about_to_expire() && !$ad->has_expired()) {
+        } else if ( ! in_array( $action, array( 'payment-completed', 'finish', true ) ) && ! $ad->is_about_to_expire() && ! $ad->has_expired() ) {
             $message = __("The specified Ad doesn't need to be renewed.", 'another-wordpress-classifieds-plugin');
             return $this->render('content', awpcp_print_error($message));
         } else if ( !$this->verify_renew_ad_hash( $ad ) ) {
@@ -59,8 +60,6 @@ class AWPCP_RenewAdPage extends AWPCP_Place_Ad_Page {
             $message = sprintf($message, $page_url, $page_name, $transaction->id);
             return $this->render('content', awpcp_print_error($message));
         }
-
-        $action = $this->get_current_action($default);
 
         if (!is_null($transaction) && $transaction->is_payment_completed()) {
             if ( ! ( $transaction->was_payment_successful() || $transaction->payment_is_not_verified() ) ) {
@@ -346,14 +345,6 @@ class AWPCP_RenewAdPageImplementation {
             if (!empty($errors)) {
                 return $this->page->render('content', join(',', array_map($errors, 'awpcp_print_error')));
             }
-
-            $ad->renew();
-            $ad->save();
-
-            awpcp_send_ad_renewed_email($ad);
-
-            // MOVE inside Ad::renew() ?
-            do_action('awpcp-renew-ad', $ad->ad_id, $transaction);
         }
 
         return $this->page->render_finish_step($ad);
