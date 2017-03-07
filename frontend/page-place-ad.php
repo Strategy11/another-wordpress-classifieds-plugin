@@ -672,6 +672,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             $data[ $name ] = $value;
         }
 
+        $data['ad_details'] = str_replace( "\r", '', $data['ad_details'] );
         $data['websiteurl'] = awpcp_maybe_add_http_to_url( $data['websiteurl'] );
 
         if (empty($data['user_id'])) {
