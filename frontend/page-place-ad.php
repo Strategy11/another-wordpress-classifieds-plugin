@@ -12,7 +12,10 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
     public $messages = array();
 
+    protected $request;
+    protected $payments_api;
     protected $authorization;
+    protected $listing_upload_limits;
 
     public function __construct($page='awpcp-place-ad', $title=null) {
         parent::__construct($page, $title);
@@ -21,8 +24,24 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $this->listing_upload_limits = awpcp_listing_upload_limits();
     }
 
+    protected function get_payments_api() {
+        if ( ! isset( $this->payments_api ) ) {
+            $this->payments_api = awpcp_payments_api();
+        }
+
+        return $this->payments_api;
+    }
+
+    protected function get_request() {
+        if ( ! isset( $this->request ) ) {
+            $this->request = awpcp_request();
+        }
+
+        return $this->request;
+    }
+
     public function get_current_action($default=null) {
-        return awpcp_post_param('step', awpcp_request_param('step', $default));
+        return $this->get_request()->post( 'step', $this->get_request()->param( 'step', $default ) );
     }
 
     public function url($params=array()) {
@@ -40,9 +59,9 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
     public function get_transaction($create=false) {
         if ( $create ) {
-            $this->transaction = awpcp_payments_api()->get_or_create_transaction();
+            $this->transaction = $this->get_payments_api()->get_or_create_transaction();
         } else {
-            $this->transaction = awpcp_payments_api()->get_transaction();
+            $this->transaction = $this->get_payments_api()->get_transaction();
         }
 
         if (!is_null($this->transaction) && $this->transaction->is_new()) {
