@@ -418,11 +418,11 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
 
         $errors = array();
         $form = array(
-            'ad_email' => awpcp_post_param('ad_email'),
-            'attempts' => (int) awpcp_post_param('attempts', 0)
+            'ad_email' => $this->get_request()->post( 'ad_email' ),
+            'attempts' => (int) $this->get_request()->post( 'attempts', 0 ),
         );
 
-        if ($form['attempts'] == 0 && get_awpcp_option('enable-user-panel') == 1) {
+        if ( $form['attempts'] == 0 && $this->get_settings()->get_option( 'enable-user-panel' ) == 1 ) {
             $url = admin_url('admin.php?page=awpcp-panel');
             $message = __('You are currently not logged in, if you have an account in this website you can log in and go to the Ad Management panel to edit your Ads.', 'another-wordpress-classifieds-plugin');
             $message = sprintf('%s <a href="%s">%s</a>', $message, $url, __('Click here', 'another-wordpress-classifieds-plugin'));
@@ -437,7 +437,7 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
 
         $ads = array();
         if ( empty( $errors ) ) {
-            $ads = AWPCP_Ad::find_by_email( $form['ad_email'] );
+            $ads = $this->find_listings_by_email( $form['ad_email'] );
             if ( empty( $ads ) ) {
                 $errors[] = __('The email address you entered does not match any of the Ads in our system.', 'another-wordpress-classifieds-plugin');
             }
@@ -464,6 +464,10 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
         } else {
             return $this->enter_email_and_key_step(false);
         }
+    }
+
+    protected function find_listings_by_email( $email_address ) {
+        return AWPCP_Ad::find_by_email( $form['ad_email'] );
     }
 
     public function send_access_keys($ads, &$errors=array()) {
