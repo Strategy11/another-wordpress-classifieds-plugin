@@ -208,6 +208,10 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         }
     }
 
+    protected function get_settings() {
+        return awpcp()->settings;
+    }
+
     public function place_ad() {
         return $this->order_step();
     }
