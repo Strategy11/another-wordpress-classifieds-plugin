@@ -445,10 +445,37 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
             $errors = array();
         }
 
+        // TODO: define what a valid listing really looks like and use that everywhere:
+        //       - here!
+        //       - AWPCP_Ad::get_where_conditions_for_valid_ads()
+        $valid_listings = array();
+
+        $accepted_payment_statuses = array(
+            AWPCP_Payment_Transaction::PAYMENT_STATUS_COMPLETED,
+            AWPCP_Payment_Transaction::PAYMENT_STATUS_NOT_REQUIRED,
+        );
+
+        if ( get_awpcp_option( 'enable-ads-pending-payment' ) ) {
+            $accepted_payment_statuses[] = AWPCP_Payment_Transaction::PAYMENT_STATUS_PENDING;
+        }
+
+        foreach ( $ads as $listing ) {
+            if ( ! $listing->verified ) {
+                continue;
+            }
+
+            if ( ! in_array( $listing->payment_status, $accepted_payment_statuses, true ) ) {
+                continue;
+            }
+
+            array_push( $valid_listings, $listing );
+        }
+
         // if $ads is non-empty then $errors is empty
-        if ( !empty( $ads ) ) {
-            $access_keys_sent = $this->send_access_keys( $ads, $errors );
+        if ( ! empty( $valid_listings ) ) {
+            $access_keys_sent = $this->send_access_keys( $valid_listings, $errors );
         } else {
+            $errors[] = __( 'The email address you entered does not match any of the listing in our system.', 'another-wordpress-classifieds-plugin' );
             $access_keys_sent = false;
         }
 
@@ -467,7 +494,7 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
     }
 
     protected function find_listings_by_email( $email_address ) {
-        return AWPCP_Ad::find_by_email( $form['ad_email'] );
+        return AWPCP_Ad::find_by_email( $email_address );
     }
 
     public function send_access_keys($ads, &$errors=array()) {
