@@ -59,7 +59,7 @@ function awpcp_paypal_verify_received_data_with_curl($postfields='', $cainfo=tru
  */
 function awpcp_paypal_verify_received_data_with_fsockopen($content, &$errors=array()) {
     if (get_awpcp_option('paylivetestmode') == 1) {
-        $host = "test-ipnpb.sandbox.paypal.com";
+        $host = "ipnpb.sandbox.paypal.com";
     } else {
         $host = "ipnpb.paypal.com";
     }
