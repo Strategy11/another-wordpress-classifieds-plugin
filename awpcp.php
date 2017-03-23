@@ -4,7 +4,7 @@
  * Plugin Name: Another WordPress Classifieds Plugin (AWPCP)
  * Plugin URI: http://www.awpcp.com
  * Description: AWPCP - A plugin that provides the ability to run a free or paid classified ads service on your WP site. <strong>!!!IMPORTANT!!!</strong> It's always a good idea to do a BACKUP before you upgrade AWPCP!
- * Version: 3.7.5-dev-7
+ * Version: 3.7.5-dev-8
  * Author: D. Rodenbaugh
  * License: GPLv2 or any later version
  * Author URI: http://www.skylineconsult.com
@@ -94,11 +94,14 @@ require_once(AWPCP_DIR . "/cron.php");
 require_once(AWPCP_DIR . "/includes/exceptions.php");
 
 require_once(AWPCP_DIR . "/includes/compatibility/compatibility.php");
+require_once( AWPCP_DIR . '/includes/compatibility/interface-plugin-integration.php' );
 require_once( AWPCP_DIR . "/includes/compatibility/class-add-meta-tags-plugin-integration.php" );
 require_once(AWPCP_DIR . "/includes/compatibility/class-all-in-one-seo-pack-plugin-integration.php");
 require( AWPCP_DIR . "/includes/compatibility/class-facebook-button-plugin-integration.php");
 require_once(AWPCP_DIR . "/includes/compatibility/class-facebook-plugin-integration.php");
 require_once( AWPCP_DIR . '/includes/compatibility/class-facebook-all-plugin-integration.php' );
+require_once( AWPCP_DIR . '/includes/compatibility/class-mashshare-plugin-integration.php' );
+require_once( AWPCP_DIR . '/includes/compatibility/class-plugin-integrations.php' );
 require( AWPCP_DIR . "/includes/compatibility/class-profile-builder-plugin-integration.php");
 require( AWPCP_DIR . "/includes/compatibility/class-profile-builder-login-form-implementation.php");
 require_once( AWPCP_DIR . "/includes/compatibility/class-yoast-wordpress-seo-plugin-integration.php" );
@@ -496,9 +499,16 @@ class AWPCP {
 		$this->compatibility = new AWPCP_Compatibility();
 		$this->compatibility->load_plugin_integrations();
 
+        $this->plugin_integrations = new AWPCP_Plugin_Integrations();
+
+        add_action( 'activated_plugin', array( $this->plugin_integrations, 'maybe_enable_plugin_integration' ), 10, 2 );
+        add_action( 'deactivated_plugin', array( $this->plugin_integrations, 'maybe_disable_plugin_integration' ), 10, 2 );
+
         add_action( 'generate_rewrite_rules', array( $this, 'clear_categories_list_cache' ) );
 
+        add_action( 'init', array( $this, 'register_plugin_integrations' ) );
         add_action( 'init', array( $this->compatibility, 'load_plugin_integrations_on_init' ) );
+        add_action( 'init', array( $this->plugin_integrations, 'load_plugin_integrations' ), AWPCP_LOWEST_FILTER_PRIORITY );
 		add_action( 'init', array($this, 'init' ));
 		add_action( 'init', array($this, 'register_custom_style'), AWPCP_LOWEST_FILTER_PRIORITY );
 
@@ -587,6 +597,10 @@ class AWPCP {
         add_action( 'awpcp_register_settings', array( $form_fields_settings, 'register_settings' ) );
         add_action( 'awpcp-admin-settings-page--form-field-settings', array( $form_fields_settings, 'settings_header' ) );
 	}
+
+    public function register_plugin_integrations() {
+        $this->plugin_integrations->add_plugin_integration( 'mashsharer/mashshare.php', 'awpcp_mashshare_plugin_integration' );
+    }
 
 	public function init() {
         // load resources always required
@@ -702,6 +716,8 @@ class AWPCP {
 		}
 
         if ( get_option( 'awpcp-installed-or-upgraded' ) ) {
+            $this->plugin_integrations->discover_supported_plugin_integrations();
+
             $roles_and_capabilities = awpcp_roles_and_capabilities();
             add_action( 'wp_loaded', array( $roles_and_capabilities, 'setup_roles_capabilities' ) );
 
