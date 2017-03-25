@@ -2685,6 +2685,10 @@ function awpcp_phpmailer_init_smtp( $phpmailer ) {
     }
     // that's it!
 }
+
+/**
+ * @deprecated 3.7.5    Use AWPCP_Email class instead.
+ */
 function awpcp_process_mail($senderemail='', $receiveremail='',  $subject='',
                             $body='', $sendername='', $replytoemail='', $html=false)
 {
