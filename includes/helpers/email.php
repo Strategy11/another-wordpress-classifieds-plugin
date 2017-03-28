@@ -48,12 +48,13 @@ class AWPCP_Email {
             'Reply-To' => awpcp_admin_email_to(),
         ), $this->headers);
 
-        $email_headers = '';
+        $sanitized_headers = array();
+
         foreach ($headers as $k => $v) {
-            $email_headers .= sprintf( "%s: %s\r\n", $k, str_replace( "\n", '', $v ) );
+            $sanitized_headers[] = sprintf( "%s: %s", $k, str_replace( "\n", '', $v ) );
         }
 
-        return $email_headers;
+        return $sanitized_headers;
     }
 
     /**
