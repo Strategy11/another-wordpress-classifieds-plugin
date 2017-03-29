@@ -1357,25 +1357,32 @@ function awpcp_format_integer( $value ) {
 }
 
 /**
+ * @since 3.7.5
+ */
+function awpcp_parse_number( $value, $decimal_separator = false, $thousands_separator = false ) {
+    if ( strlen( $value ) === 0 ) return false;
+
+    $thousands_separator = $thousands_separator ? $thousands_separator : get_awpcp_option('thousands-separator');
+    $decimal_separator = $decimal_separator ? $decimal_separator : get_awpcp_option('decimal-separator');
+
+    $pattern = '/^-?(?:\d+|\d{1,3}(?:' . preg_quote( $thousands_separator ) . '\\d{3})+)?(?:' . preg_quote( $decimal_separator ) . '\\d+)?$/';
+
+    if ( preg_match( $pattern, $value ) ) {
+        $value = str_replace($thousands_separator, '', $value);
+        $value = str_replace($decimal_separator, '.', $value);
+        $number = floatval($value);
+    } else {
+        $number = false;
+    }
+
+    return $number;
+}
+
+/**
  * @since 3.0
  */
 function awpcp_parse_money($value, $decimal_separator=false, $thousands_separator=false) {
-	if ( strlen( $value ) === 0 ) return false;
-
-	$thousands_separator = $thousands_separator ? $thousands_separator : get_awpcp_option('thousands-separator');
-	$decimal_separator = $decimal_separator ? $decimal_separator : get_awpcp_option('decimal-separator');
-
-	$pattern = '/^-?(?:\d+|\d{1,3}(?:' . preg_quote( $thousands_separator ) . '\\d{3})+)?(?:' . preg_quote( $decimal_separator ) . '\\d+)?$/';
-
-	if ( preg_match( $pattern, $value ) ) {
-		$value = str_replace($thousands_separator, '', $value);
-		$value = str_replace($decimal_separator, '.', $value);
-		$number = floatval($value);
-	} else {
-		$number = false;
-	}
-
-	return $number;
+    return awpcp_parse_number( $value, $decimal_separator, $thousands_separator );
 }
 
 
