@@ -935,6 +935,16 @@ function awpcp_array_insert_after($array, $index, $key, $item) {
 }
 
 /**
+ * @since 3.7.6
+ */
+function awpcp_array_insert_first( $array, $item_key, $item ) {
+    $all_keys = array_keys( $array );
+    $first_key = array_shift( $all_keys );
+
+    return awpcp_array_insert( $array, $first_key, $item_key, $item, 'before' );
+}
+
+/**
  * Inserts a menu item after one of the existing items.
  *
  * This function should be used by plugins when handling
