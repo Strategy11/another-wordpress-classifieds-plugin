@@ -535,7 +535,7 @@ class AWPCP_Settings_API {
 		return "$group:$slug";
 	}
 
-	public function add_setting($key, $name, $label, $type, $default, $helptext, $args=array()) {
+	public function add_setting( $key, $name, $label, $type, $default, $helptext = '', $args = array() ) {
 		// add the setting to the right section and group
 
 		list($group, $section) = explode(':', $key);
