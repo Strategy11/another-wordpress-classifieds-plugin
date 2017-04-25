@@ -2898,3 +2898,30 @@ function awpcp_user_agent_header() {
     $user_agent = sprintf( $user_agent, get_bloginfo( 'version' ), $GLOBALS['awpcp_db_version'] );
     return $user_agent;
 }
+
+/**
+ * @since 3.7.6
+ */
+function awpcp_get_curl_info() {
+    if ( ! in_array( 'curl', get_loaded_extensions() ) ) {
+        return __( 'Not Installed', 'another-wordpress-classifieds-plugin' );
+    }
+
+    if ( ! function_exists( 'curl_version' ) ) {
+        return __( 'Installed', 'another-wordpress-classifieds-plugin' );
+    }
+
+    $curl_info = curl_version();
+
+    $output[] = "Version: {$curl_info['version']}";
+
+    if ( $curl_info['features'] & CURL_VERSION_SSL) {
+        $output[] = __( 'SSL Support: Yes.', 'another-wordpress-classifieds-plugin' );
+    } else {
+        $output[] = __( 'SSL Support: No.', 'another-wordpress-classifieds-plugin' );
+    }
+
+    $output[] = __( 'OpenSSL version:' ) . ' ' . $curl_info['ssl_version'];
+
+    return implode( '<br>', $output );
+}
