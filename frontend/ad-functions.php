@@ -127,7 +127,7 @@ function awpcp_ad_renewed_user_email( $ad ) {
 	$end_date = $listing_renderer->get_end_date( $ad );
 
 	$mail = new AWPCP_Email;
-	$mail->to[] = awpcp_format_email_address( $contact_email, $contact_name );
+	$mail->to[] = awpcp_format_recipient_address( $contact_email, $contact_name );
 	$mail->subject = sprintf( get_awpcp_option( 'ad-renewed-email-subject' ), $listing_title );
 
 	$template = AWPCP_DIR . '/frontend/templates/email-ad-renewed-success-user.tpl.php';
@@ -296,7 +296,7 @@ function awpcp_ad_posted_user_email( $ad, $transaction = null, $message='' ) {
 	);
 
 	$email = new AWPCP_Email;
-	$email->to[] = "{$contact_name} <{$contact_email}>";
+	$email->to[] = awpcp_format_recipient_address( $contact_email, $contact_name );
 	$email->subject = get_awpcp_option('listingaddedsubject');
 	$email->prepare( AWPCP_DIR . '/frontend/templates/email-place-ad-success-user.tpl.php', $params );
 

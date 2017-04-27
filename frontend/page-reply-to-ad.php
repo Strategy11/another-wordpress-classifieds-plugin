@@ -253,7 +253,7 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
                 $body = ob_get_contents();
             ob_end_clean();
 
-            $sendtoemail = get_adposteremail( $ad->ID );
+            $sendtoemail = awpcp_format_recipient_address( get_adposteremail( $ad->ad_id ) );
             $result = awpcp_process_mail( $from, $sendtoemail, trim($subject), $body, $sender, $sender_email );
         }
 

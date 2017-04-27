@@ -137,7 +137,7 @@ function awpcp_listing_updated_user_message( $listing, $messages ) {
     $contact_email = $listing_renderer->get_contact_email( $ad );
 
     $email = new AWPCP_Email;
-    $email->to[] = "{$contact_name} <{$contact_email}>";
+    $email->to[] = awpcp_format_recipient_address( $contact_email, $contact_name );
     $email->subject = get_awpcp_option('listingaddedsubject');
     $email->prepare( AWPCP_DIR . '/frontend/templates/email-place-ad-success-user.tpl.php', $params );
 

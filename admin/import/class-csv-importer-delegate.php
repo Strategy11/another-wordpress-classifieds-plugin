@@ -258,13 +258,13 @@ class AWPCP_CSV_Importer_Delegate {
      */
     private function create_user( $username, $contact_email ) {
         if ( empty( $username ) && empty( $contact_email ) ) {
-            $message = _x( "No user could be assigned to this listing. A new user couldn't be created because both the username and contact email columns are missing or have an empty value. Please include a username and contact email or selected a default user.", 'csv importer', 'another-wordpress-classifieds-plugin' );
+            $message = _x( "No user could be assigned to this listing. A new user couldn't be created because both the username and contact email columns are missing or have an empty value. Please include a username and contact email or select a default user.", 'csv importer', 'another-wordpress-classifieds-plugin' );
             throw new AWPCP_Exception( $message );
         } else if ( empty( $username ) ) {
-            $message = _x( "No user could be assigned to this listing. A new user couldn't be created because the username column is missing or has an empty value. Please include a username or selected a default user.", 'csv importer', 'another-wordpress-classifieds-plugin' );
+            $message = _x( "No user could be assigned to this listing. A new user couldn't be created because the username column is missing or has an empty value. Please include a username or select a default user.", 'csv importer', 'another-wordpress-classifieds-plugin' );
             throw new AWPCP_Exception( $message );
         } else if ( empty( $contact_email ) ) {
-            $message = _x( "No user could be assigned to this listing. A new user couldn't be created because the contact_email column is missing or has an empty value. Please include a contact_email or selected a default user.", 'csv importer', 'another-wordpress-classifieds-plugin' );
+            $message = _x( "No user could be assigned to this listing. A new user couldn't be created because the contact_email column is missing or has an empty value. Please include a contact_email or select a default user.", 'csv importer', 'another-wordpress-classifieds-plugin' );
             throw new AWPCP_Exception( $message );
         }
 

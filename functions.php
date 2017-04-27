@@ -354,8 +354,8 @@ function awpcp_get_grid_item_css_class($classes, $pos, $columns, $rows) {
  */
 function awpcp_pagination($config, $url) {
 
-	$blacklist = array('page_id',
-					   'offset',
+    $blacklist = array(
+        'offset',
 					   'results',
 					   'PHPSESSID',
 					   'aeaction',
@@ -2032,6 +2032,17 @@ function awpcp_format_email_address($address, $name) {
 }
 
 /**
+ * @since 3.7.1
+ */
+function awpcp_format_recipient_address( $email_address, $name = false ) {
+    if ( $name && get_awpcp_option( 'include-recipient-name-in-email-address' ) ) {
+        return awpcp_format_email_address( $email_address, $name );
+    }
+
+    return $email_address;
+}
+
+/**
  * Return the email address that should receive the notifications intented for
  * administrator users.
  *
@@ -2100,7 +2111,7 @@ function awpcp_admin_email_from() {
  * @return	string	name <email@address>
  */
 function awpcp_admin_email_to() {
-	return awpcp_format_email_address( awpcp_admin_recipient_email_address(), awpcp_get_blog_name() );
+	return awpcp_format_recipient_address( awpcp_admin_recipient_email_address(), awpcp_get_blog_name() );
 }
 
 function awpcp_moderators_email_to() {
@@ -2112,7 +2123,7 @@ function awpcp_moderators_email_to() {
     ) );
 
     foreach ( $users as $user ) {
-        $email_addresses[] = awpcp_format_email_address( $user->user_email, $user->public_name );
+        $email_addresses[] = awpcp_format_recipient_address( $user->user_email, $user->public_name );
     }
 
     return $email_addresses;
@@ -2130,7 +2141,7 @@ function awpcp_ad_enabled_email( $listing ) {
 
 	// user email
 	$mail = new AWPCP_Email;
-	$mail->to[] = awpcp_format_email_address( $contact_email, $contact_name );
+	$mail->to[] = awpcp_format_recipient_address( $contact_email, $contact_name );
 	$mail->subject = sprintf( __( 'Your Ad "%s" has been approved', 'another-wordpress-classifieds-plugin'), $listing_title );
 
 	$template = AWPCP_DIR . '/frontend/templates/email-ad-enabled-user.tpl.php';
@@ -2153,7 +2164,7 @@ function awpcp_ad_updated_user_email( $ad, $message ) {
     $contact_email = $listing_renderer->get_contact_email( $ad );
 
 	$mail = new AWPCP_Email;
-	$mail->to[] = awpcp_format_email_address( $contact_email, $contact_name );
+	$mail->to[] = awpcp_format_recipient_address( $contact_email, $contact_name );
 	$mail->subject = sprintf( __( 'Your Ad "%s" has been successfully updated', 'another-wordpress-classifieds-plugin' ), $listing_title );
 
 	$template = AWPCP_DIR . '/frontend/templates/email-ad-updated-user.tpl.php';

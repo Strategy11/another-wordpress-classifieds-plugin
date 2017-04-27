@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2016-06-13 15:56:40+00:00\n"
-"PO-Revision-Date: 2016-06-14 16:21+0000\n"
-"Last-Translator: Lucian Mihailescu <lucian@intercer.net>\n"
+"POT-Creation-Date: 2016-08-16 15:46:32+00:00\n"
+"PO-Revision-Date: 2016-08-16 16:09+0000\n"
+"Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: Romanian (Romania) (http://www.transifex.com/wp-translations/another-wordpress-classifieds-plugin/language/ro_RO/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -79,37 +79,59 @@ msgctxt "credit plans ajax"
 msgid "The specified Credit Plan doesn't exists."
 msgstr "Planul de credit specificat nu există"
 
-#: admin/admin-panel-csv-importer.php:63
-msgid "There was an error with your CSV file: %s"
-msgstr "A apărut o eroare cu fișierul CSV:%s"
+#: admin/admin-panel-csv-importer.php:103
+msgid ""
+"The uploaded file doesn't look like a CSV file. Please upload a valid CSV "
+"file."
+msgstr ""
 
-#: admin/admin-panel-csv-importer.php:71
-msgid "Please upload a valid CSV file."
-msgstr "Vă rugăm să încărcaţi un fişier CSV valid."
+#: admin/admin-panel-csv-importer.php:105
+msgid "There was an error moving the uploaded CSV file to a proper location."
+msgstr ""
 
-#: admin/admin-panel-csv-importer.php:75
-msgid "There was an error with your ZIP file: %s"
-msgstr "Eroare cu fişierul ZIP: %s"
+#: admin/admin-panel-csv-importer.php:117
+msgid ""
+"The uploaded file doesn't look like a ZIP file. Please upload a valid ZIP "
+"file."
+msgstr ""
 
-#: admin/admin-panel-csv-importer.php:83
-msgid "Please upload a valid ZIP file."
-msgstr "Vă rugăm să încărcaţi un fişier ZIP valid."
+#: admin/admin-panel-csv-importer.php:119
+msgid "There was an error moving the uploaded ZIP file to a proper location."
+msgstr ""
 
-#: admin/admin-panel-csv-importer.php:90
-msgid "Invalid Start Date."
-msgstr "Data de Start incorectă"
+#: admin/admin-panel-csv-importer.php:131
+msgid "Incompatible ZIP Archive"
+msgstr "Arhiva ZIP necompatibilă"
 
-#: admin/admin-panel-csv-importer.php:92
-msgid "Invalid Start Date -- Year Must be of Four Digit."
-msgstr "Data de Start incorectă - ar trebuie să fie din patru cifre."
+#: admin/admin-panel-csv-importer.php:133
+msgid "Empty ZIP Archive"
+msgstr "Golește arhiva ZIP"
 
-#: admin/admin-panel-csv-importer.php:99
-msgid "Invalid End Date."
-msgstr "Dată de sfârșit incorectă."
+#: admin/admin-panel-csv-importer.php:159
+msgid "Could not write temporary file %s"
+msgstr "Nu se poate scrie fișierul temporar %s"
 
-#: admin/admin-panel-csv-importer.php:101
-msgid "Invalid End Date -- Year Must be of Four Digit."
-msgstr "Dată de sfârșit incorectă - ar trebui să fie din patru cifre."
+#: admin/admin-panel-csv-importer.php:168
+msgid "The specified directory is not a valid path."
+msgstr ""
+
+#: admin/admin-panel-csv-importer.php:170
+msgid "The specified directory does not exists."
+msgstr ""
+
+#: admin/admin-panel-csv-importer.php:346
+msgid ""
+"(<percentage>) <number-of-rows-processed> of <number-of-rows> rows "
+"processed. <number-of-rows-imported> rows imported and <number-of-rows-"
+"rejected> rows rejected."
+msgstr ""
+
+#: admin/admin-panel-csv-importer.php:347
+msgctxt ""
+"description for messages used to show feedback for the Import Listings "
+"operation"
+msgid "<message-type> in line <message-line>"
+msgstr ""
 
 #: admin/admin-panel-fees-table.php:114
 #: admin/templates/admin-panel-fees-entry-form.tpl.php:35
@@ -146,7 +168,7 @@ msgid "Categories"
 msgstr "Categorii"
 
 #: admin/admin-panel-fees-table.php:127
-#: admin/templates/admin-sidebar.tpl.php:103 awpcp.php:806
+#: admin/templates/admin-sidebar.tpl.php:103 awpcp.php:825
 msgid "Featured Ads"
 msgstr "Anunțuri speciale"
 
@@ -218,7 +240,7 @@ msgstr "Administrează anunțuri"
 
 #: admin/admin-panel-listings-place-ad-page.php:15
 #: admin/templates/admin-panel-listings.tpl.php:5
-#: frontend/page-place-ad.php:1194
+#: frontend/page-place-ad.php:1195
 msgid "Place Ad"
 msgstr "Adauga anunț"
 
@@ -248,10 +270,12 @@ msgid "Access Key"
 msgstr "Cheie de acces"
 
 #: admin/admin-panel-listings-table.php:180
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:23
 msgid "Start Date"
 msgstr "Data de început"
 
 #: admin/admin-panel-listings-table.php:181
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:32
 msgid "End Date"
 msgstr "Data de sfârșit"
 
@@ -273,7 +297,7 @@ msgstr "Stare plată"
 
 #: admin/admin-panel-listings-table.php:188
 #: admin/admin-panel-listings-table.php:254
-#: admin/admin-panel-listings-table.php:428
+#: admin/admin-panel-listings-table.php:431
 msgid "Featured"
 msgstr "Special"
 
@@ -357,50 +381,54 @@ msgstr "Titlu anunț"
 msgid "Keyword"
 msgstr "Cuvânt cheie"
 
-#: admin/admin-panel-listings-table.php:274 frontend/page-show-ad.php:83
+#: admin/admin-panel-listings-table.php:274 frontend/page-show-ad.php:58
 #: frontend/placeholders.php:573
 msgid "Location"
 msgstr "Locație"
 
-#: admin/admin-panel-listings-table.php:277
+#: admin/admin-panel-listings-table.php:275 frontend/placeholders.php:664
+msgid "Phone"
+msgstr "Telefon"
+
+#: admin/admin-panel-listings-table.php:278
 msgid "Payer Email"
 msgstr "Email plătitor"
 
-#: admin/admin-panel-listings-table.php:280
+#: admin/admin-panel-listings-table.php:281
 #: frontend/templates/page-place-ad-details-step.tpl.php:36
 #: frontend/templates/page-place-ad-order-step.tpl.php:43
 msgid "User"
 msgstr "Utilizator"
 
-#: admin/admin-panel-listings-table.php:319
+#: admin/admin-panel-listings-table.php:322
 msgctxt "admin listings table"
 msgid "Filter"
 msgstr "Filtru"
 
-#: admin/admin-panel-listings-table.php:364
+#: admin/admin-panel-listings-table.php:367
 msgid "View Ad."
 msgstr "Vezi anunț."
 
-#: admin/admin-panel-listings-table.php:392
+#: admin/admin-panel-listings-table.php:395
 msgid "Mark as Verified"
 msgstr "Marchează ca verificat"
 
-#: admin/admin-panel-listings-table.php:401
+#: admin/admin-panel-listings-table.php:404
 msgid "Disabled"
 msgstr "Deactivat"
 
-#: admin/admin-panel-listings-table.php:401
+#: admin/admin-panel-listings-table.php:404
 #: templates/components/media-manager.tpl.php:19
 #: templates/components/media-manager.tpl.php:58
 #: templates/components/media-manager.tpl.php:100
 msgid "Enabled"
 msgstr "Activat"
 
-#: admin/admin-panel-listings-table.php:415
+#: admin/admin-panel-listings-table.php:418
 msgid "Mark as Paid"
 msgstr "Marchează ca plătit"
 
-#: admin/admin-panel-listings-table.php:428
+#: admin/admin-panel-listings-table.php:431
 msgid "Not Featured"
 msgstr "Ne-Special"
 
@@ -421,6 +449,8 @@ msgstr "Sunteți sigur că vreți să ștergeți anunțurile selectate?"
 #: admin/templates/delete_form.tpl.php:11
 #: frontend/templates/payments-billing-form.tpl.php:123
 #: includes/listings/class-listing-action-with-confirmation.php:8
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:152
+#: templates/admin/import-listings-admin-page-import-form.tpl.php:36
 msgid "Cancel"
 msgstr "Anulează"
 
@@ -468,7 +498,7 @@ msgstr "Nu a fost specificat nici un ID pentru anunț."
 
 #: admin/admin-panel-listings.php:301 frontend/ad-functions.php:242
 #: frontend/page-edit-ad.php:171 frontend/page-edit-ad.php:229
-#: frontend/page-edit-ad.php:360 frontend/page-edit-ad.php:388
+#: frontend/page-edit-ad.php:361 frontend/page-edit-ad.php:389
 msgid "The specified Ad doesn't exists."
 msgstr "Anunțul specificat nu există."
 
@@ -561,7 +591,7 @@ msgstr "Anunțul nu a putut fi marcat ca verificat."
 msgid "The access key was sent to %s."
 msgstr "Cheia de acces a fost trimisă către %s."
 
-#: admin/admin-panel-listings.php:551 frontend/page-edit-ad.php:486
+#: admin/admin-panel-listings.php:551 frontend/page-edit-ad.php:487
 msgid "There was an error trying to send the email to %s."
 msgstr "A apărut o eroare când s-a încercat trimiterea email-ului către %s."
 
@@ -719,7 +749,7 @@ msgid "Manage Extra Fields"
 msgstr "Administrează Câmpurile Suplimentare"
 
 #: admin/admin-panel.php:315 admin/templates/admin-sidebar.tpl.php:108
-#: awpcp.php:799
+#: awpcp.php:818
 msgid "Extra Fields"
 msgstr "Câmpuri suplimentare"
 
@@ -728,7 +758,9 @@ msgid "Import Ad"
 msgstr "Import Anunț"
 
 #: admin/admin-panel.php:318
-#: admin/templates/admin-panel-csv-importer.tpl.php:173
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:144
+#: templates/admin/import-listings-admin-page-import-form.tpl.php:6
+#: templates/admin/import-listings-admin-page-import-form.tpl.php:23
 msgid "Import"
 msgstr "Import"
 
@@ -949,6 +981,82 @@ msgctxt "form field slug"
 msgid "Slug"
 msgstr "Nume scurt"
 
+#: admin/import/class-csv-importer-delegate.php:122
+msgid "Missing value for required column <em>%s</em>."
+msgstr ""
+
+#: admin/import/class-csv-importer-delegate.php:324
+msgid ""
+"No user could be assigned to this listing. A new user couldn't be created "
+"because the username column has an empty value. Please include a username or"
+" select a default user."
+msgstr ""
+
+#: admin/import/class-csv-importer-delegate.php:327
+msgid ""
+"No user could be assigned to this listing. A new user couldn't be created "
+"because the contact_email column has an empty value. Please include a "
+"contact_email or select a default user."
+msgstr ""
+
+#: admin/import/class-csv-importer-delegate.php:340
+msgid ""
+"No user could be assigned to this listing. Our attempt to create a new user "
+"failed with the following error: <error-message>."
+msgstr ""
+
+#: admin/import/class-csv-importer-delegate.php:348
+msgid ""
+"A new user '%s' with email address '%s' and password '%s' was created for "
+"row %d."
+msgstr "Un nou utilizator '%s' cu adresa de email '%s' și parola '%s' a fost creat pentru linia %d."
+
+#: admin/import/class-csv-importer-delegate.php:373
+msgid "Item price is not a numeric value."
+msgstr ""
+
+#: admin/import/class-csv-importer-delegate.php:381
+msgid "Invalid Start date."
+msgstr ""
+
+#: admin/import/class-csv-importer-delegate.php:389
+msgid ""
+"Start date missing. You can define a default value for this column changing "
+"the import configuration."
+msgstr ""
+
+#: admin/import/class-csv-importer-delegate.php:403
+msgid "Invalid End date."
+msgstr ""
+
+#: admin/import/class-csv-importer-delegate.php:411
+msgid ""
+"End date missing. You can define a default value for this column changing "
+"the import configuration."
+msgstr ""
+
+#: admin/import/class-csv-importer-delegate.php:488
+msgid ""
+"No images directory was configured. Are you sure you uploaded a ZIP file or "
+"defined a local directory?"
+msgstr ""
+
+#: admin/import/class-csv-importer-delegate.php:511
+msgid ""
+"An image could not be succesfully imported. The operation failed with the "
+"following error: <error-message>"
+msgstr ""
+
+#: admin/import/class-csv-importer-delegate.php:572
+msgid "Could not save the information for image <image> into the database."
+msgstr ""
+
+#: admin/import/class-csv-reader.php:118
+msgid ""
+"The number of values in the row (<number-of-values-in-row>) does not match "
+"the number of columns in the file's header (<number-of-columns>)."
+msgstr ""
+
 #: admin/pointers/class-drip-autoresponder-ajax-handler.php:23
 msgid "You are not authorizred to perform this action."
 msgstr "Nu sunteți autorizat să executați această operație."
@@ -1034,144 +1142,6 @@ msgstr "Salvează modificări"
 #: admin/templates/admin-panel-credit-plans.tpl.php:26
 msgid "Add Credit Plan"
 msgstr "Adaugă Plan Credit"
-
-#: admin/templates/admin-panel-csv-importer.tpl.php:2
-msgid "Import Listings"
-msgstr "Importă anunțuri"
-
-#: admin/templates/admin-panel-csv-importer.tpl.php:8
-msgid "Import Testing Results"
-msgstr "Importă rezultate teste"
-
-#: admin/templates/admin-panel-csv-importer.tpl.php:10
-msgid "Final Import Results"
-msgstr "Rezultate finale import"
-
-#: admin/templates/admin-panel-csv-importer.tpl.php:14
-msgid "Imported rows:"
-msgstr "Linii importate:"
-
-#: admin/templates/admin-panel-csv-importer.tpl.php:15
-msgid "Imported Picture count:"
-msgstr "Număr de imagini importate:"
-
-#: admin/templates/admin-panel-csv-importer.tpl.php:16
-msgid "Rejected rows:"
-msgstr "Linii respinse:"
-
-#: admin/templates/admin-panel-csv-importer.tpl.php:21
-msgctxt "csv importer"
-msgid "Messages"
-msgstr "Mesaje"
-
-#: admin/templates/admin-panel-csv-importer.tpl.php:30
-msgctxt "csv importer"
-msgid "Errors"
-msgstr "Erori"
-
-#: admin/templates/admin-panel-csv-importer.tpl.php:43
-msgid "CSV file"
-msgstr "Fișier CSV"
-
-#: admin/templates/admin-panel-csv-importer.tpl.php:52
-msgid "Zip file containing images"
-msgstr "Fișier ZIP conținând imagini"
-
-#: admin/templates/admin-panel-csv-importer.tpl.php:62
-msgctxt "csv-importer"
-msgid "If the CSV does not contain start/end dates, use these by default:"
-msgstr "Dacă fișierul CSV nu conține datele de început/sfârșit, se vor folosi acestea implicit:"
-
-#: admin/templates/admin-panel-csv-importer.tpl.php:68
-msgid "Start Date (mm/dd/yyyy)"
-msgstr "Dată început (mm/dd/yyyy)"
-
-#: admin/templates/admin-panel-csv-importer.tpl.php:77
-msgid "End Date (mm/dd/yyyy)"
-msgstr "Dată sfârșit (mm/dd/yyyy)"
-
-#: admin/templates/admin-panel-csv-importer.tpl.php:86
-msgid "Date Format"
-msgstr "Format dată"
-
-#: admin/templates/admin-panel-csv-importer.tpl.php:92
-msgid "US Date Only (mm/dd/year)"
-msgstr "Doar pentru data de tip US (mm/dd/year)"
-
-#: admin/templates/admin-panel-csv-importer.tpl.php:96
-msgid "UK Date Only (dd/mm/year)"
-msgstr "Doar pentru dată de tip UK (dd/mm/year)"
-
-#: admin/templates/admin-panel-csv-importer.tpl.php:101
-msgid "US Date and Time (mm/dd/year hh:mm:ss)"
-msgstr "Dată și timp US (mm/dd/year hh:mm:ss)"
-
-#: admin/templates/admin-panel-csv-importer.tpl.php:105
-msgid "UK Date and Time (dd/mm/year hh:mm:ss)"
-msgstr "Dată și timp UK (mm/dd/year hh:mm:ss)"
-
-#: admin/templates/admin-panel-csv-importer.tpl.php:110
-msgid "Separators Used in CSV"
-msgstr "Seprator folosit în fișierul CSV"
-
-#: admin/templates/admin-panel-csv-importer.tpl.php:113
-msgid "Date Separator"
-msgstr "Separator dată"
-
-#: admin/templates/admin-panel-csv-importer.tpl.php:117
-msgid "Time Separator"
-msgstr "Separator timp"
-
-#: admin/templates/admin-panel-csv-importer.tpl.php:121
-msgid "Image Separator"
-msgstr "Separator imagine"
-
-#: admin/templates/admin-panel-csv-importer.tpl.php:122
-msgid "(semi-colon)"
-msgstr "(punct și virgulă)"
-
-#: admin/templates/admin-panel-csv-importer.tpl.php:128
-msgid "Category Handling on Import"
-msgstr "Categoria care se ocupă de import"
-
-#: admin/templates/admin-panel-csv-importer.tpl.php:132
-msgid "Auto create Categories"
-msgstr "Crează automat categorii"
-
-#: admin/templates/admin-panel-csv-importer.tpl.php:133
-msgid "Generate errors if Category not found"
-msgstr "Generează erori dacă această categorie este negăsită"
-
-#: admin/templates/admin-panel-csv-importer.tpl.php:140
-#: admin/templates/admin-panel-csv-importer.tpl.php:144
-msgctxt "csv-importer"
-msgid "Assign Ads to a user?"
-msgstr "Asociază anunțul cu un utilizator?"
-
-#: admin/templates/admin-panel-csv-importer.tpl.php:145
-msgid "If checked, the Ads will belong to the user specified below."
-msgstr "Dacă este bifat, anunțul va aparține utilizatorului specificat mai jos."
-
-#: admin/templates/admin-panel-csv-importer.tpl.php:151
-msgid "Default user"
-msgstr "Utilizator implicit"
-
-#: admin/templates/admin-panel-csv-importer.tpl.php:158
-msgid "use spreadsheet information"
-msgstr "folosește tabela cu informații"
-
-#: admin/templates/admin-panel-csv-importer.tpl.php:164
-msgctxt "csv-importer"
-msgid ""
-"Any value other than 'use spreadsheet information' means the Ads will be "
-"associated to the selected user if: the username column is not present in "
-"the CSV file, there is no user with that username and we couldn't find a "
-"user with the contact_email address specified in the CSV file."
-msgstr "Orice valoare diferită de 'folosiți informația din tabelă' înseamnă că anunțurile vor fi asociate cu utilizatorul selectat dacă: numele de utilizator nu este prezent în fișierul CSV, nu există nici un asemenea nume de utilizator și dacă nu am putut găsi un utilizator cu adresa de contact_email specificată în fișierul CSV."
-
-#: admin/templates/admin-panel-csv-importer.tpl.php:172
-msgid "Test Import"
-msgstr "Test import"
 
 #: admin/templates/admin-panel-debug.tpl.php:8
 msgid "Are you seeing 404 Not Found errors?"
@@ -1542,7 +1512,7 @@ msgstr "Categorie"
 msgid "Manage Listing"
 msgstr "Administrează Anunțuri"
 
-#: admin/templates/admin-panel-listings.tpl.php:12
+#: admin/templates/admin-panel-listings.tpl.php:11
 #: frontend/page-search-ads.php:12
 msgid "Search Ads"
 msgstr "Caută anunțuri"
@@ -1874,19 +1844,19 @@ msgstr "Cumpărați un Modul Premium"
 msgid "Get a Premium Module!"
 msgstr "Obțineți un Modul Premium!"
 
-#: admin/templates/admin-sidebar.tpl.php:46 awpcp.php:771
+#: admin/templates/admin-sidebar.tpl.php:46 awpcp.php:790
 msgid "Campaign Manager"
 msgstr "Administrator Campanii"
 
-#: admin/templates/admin-sidebar.tpl.php:52 awpcp.php:828
+#: admin/templates/admin-sidebar.tpl.php:52 awpcp.php:847
 msgid "Mark as Sold"
 msgstr "Marcaț ca vândut"
 
-#: admin/templates/admin-sidebar.tpl.php:58 awpcp.php:849
+#: admin/templates/admin-sidebar.tpl.php:58 awpcp.php:868
 msgid "Restricted Categories"
 msgstr "Categorii restricționate"
 
-#: admin/templates/admin-sidebar.tpl.php:63 awpcp.php:764
+#: admin/templates/admin-sidebar.tpl.php:63 awpcp.php:783
 msgid "BuddyPress Listings"
 msgstr "Anunțuri BuddyPress"
 
@@ -1894,15 +1864,15 @@ msgstr "Anunțuri BuddyPress"
 msgid "Comments/Ratings"
 msgstr "Comentarii/evaluări"
 
-#: admin/templates/admin-sidebar.tpl.php:73 awpcp.php:750
+#: admin/templates/admin-sidebar.tpl.php:73 awpcp.php:769
 msgid "Attachments"
 msgstr "Atașamente"
 
-#: admin/templates/admin-sidebar.tpl.php:78 awpcp.php:757
+#: admin/templates/admin-sidebar.tpl.php:78 awpcp.php:776
 msgid "Authorize.Net"
 msgstr "Authorize.net"
 
-#: admin/templates/admin-sidebar.tpl.php:83 awpcp.php:835
+#: admin/templates/admin-sidebar.tpl.php:83 awpcp.php:854
 msgid "PayPal Pro"
 msgstr "PayPal Pro"
 
@@ -1910,7 +1880,7 @@ msgstr "PayPal Pro"
 msgid "Coupon/Discount"
 msgstr "Cupon/Reducere"
 
-#: admin/templates/admin-sidebar.tpl.php:93 awpcp.php:863
+#: admin/templates/admin-sidebar.tpl.php:93 awpcp.php:882
 msgid "Subscriptions"
 msgstr "Abonamente"
 
@@ -1918,15 +1888,15 @@ msgstr "Abonamente"
 msgid "Fee Per Category"
 msgstr "Preț pe categorie"
 
-#: admin/templates/admin-sidebar.tpl.php:113 awpcp.php:778
+#: admin/templates/admin-sidebar.tpl.php:113 awpcp.php:797
 msgid "Category Icons"
 msgstr "Icon-uri pentru categorii"
 
-#: admin/templates/admin-sidebar.tpl.php:118 awpcp.php:842
+#: admin/templates/admin-sidebar.tpl.php:118 awpcp.php:861
 msgid "Regions Control"
 msgstr "Control regiuni"
 
-#: admin/templates/admin-sidebar.tpl.php:123 awpcp.php:856
+#: admin/templates/admin-sidebar.tpl.php:123 awpcp.php:875
 msgid "RSS"
 msgstr "Feed RSS"
 
@@ -2053,94 +2023,94 @@ msgstr "Administrare Anunțuri"
 msgid "Manage Ad Listings"
 msgstr "Administrează Anunțuri"
 
-#: awpcp.php:654
+#: awpcp.php:670
 msgid "AWPCP"
 msgstr "AWPCP"
 
-#: awpcp.php:733
+#: awpcp.php:752
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
 msgstr "AWPCP necesită librăria de procesare grafică GD, iar aceasta nu este instalată. Contactați administratorul hosting-ul dvs. pentru a rezolva aceasta."
 
-#: awpcp.php:734
+#: awpcp.php:753
 #: includes/placeholders/class-placeholders-installation-verifier.php:31
 msgid "Warning"
 msgstr "Atenționare"
 
-#: awpcp.php:785
+#: awpcp.php:804
 msgid "Comments & Ratings"
 msgstr "Comentarii și Evaluări"
 
-#: awpcp.php:792
+#: awpcp.php:811
 msgid "Coupons/Discount"
 msgstr "Cupoane/Reduceri"
 
-#: awpcp.php:813
+#: awpcp.php:832
 msgid "Fee per Category"
 msgstr "Preț pe categorie"
 
-#: awpcp.php:820
+#: awpcp.php:839
 msgid "Google Checkout"
 msgstr "Google Checkout"
 
-#: awpcp.php:870 templates/components/media-manager.tpl.php:46
+#: awpcp.php:889 templates/components/media-manager.tpl.php:46
 msgid "Videos"
 msgstr "Video-uri"
 
-#: awpcp.php:878
+#: awpcp.php:897
 msgid "XML Sitemap"
 msgstr "Hartă XML"
 
-#: awpcp.php:885
+#: awpcp.php:904
 msgid "ZIP Code Search Module"
 msgstr "Modul de căutare după codul poștal"
 
-#: awpcp.php:1040
+#: awpcp.php:1100
 msgid "This field is required."
 msgstr "Acest câmp este obligatoriu."
 
-#: awpcp.php:1041 frontend/page-edit-ad.php:128 frontend/page-edit-ad.php:433
+#: awpcp.php:1101 frontend/page-edit-ad.php:128 frontend/page-edit-ad.php:434
 #: includes/settings-api.php:214
 msgid "Please enter a valid email address."
 msgstr "Vă rugăm să introduceți o adresă de email validă."
 
-#: awpcp.php:1042 awpcp.php:1043
+#: awpcp.php:1102 awpcp.php:1103
 msgid "Please enter a valid URL."
 msgstr "Vă rugăm să introduceți un link (URL) corect."
 
-#: awpcp.php:1044
+#: awpcp.php:1104
 msgid "Please enter a valid number."
 msgstr "Vă rugăm să introduceți un număr corect."
 
-#: awpcp.php:1045
+#: awpcp.php:1105
 msgid "Please enter a valid amount."
 msgstr "Vă rugăm să introduceți un preț valid."
 
-#: awpcp.php:1055
+#: awpcp.php:1115
 msgctxt "[UI Datepicker] Display text for previous month link"
 msgid "&#x3c;Prev"
 msgstr "&#x3c;Înapoi"
 
-#: awpcp.php:1057
+#: awpcp.php:1117
 msgctxt "[UI Datepicker] Display text for next month link"
 msgid "Next&#x3e;"
 msgstr "Înainte&#x3e;"
 
-#: awpcp.php:1072
+#: awpcp.php:1132
 msgctxt "[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ..."
 msgid "0"
 msgstr "0"
 
-#: awpcp.php:1078
+#: awpcp.php:1138
 msgid "There are files currently being uploaded."
 msgstr "Fișierele se încarcă în acest moment."
 
-#: awpcp.php:1079
+#: awpcp.php:1139
 msgid "There are files pending to be uploaded."
 msgstr "Fișierele așteaptă să fie încărcate."
 
-#: awpcp.php:1080
+#: awpcp.php:1140
 msgid "You haven't uploaded any images or files."
 msgstr "Nu ați încărcat nici o imagine sau fișier."
 
@@ -2200,6 +2170,11 @@ msgstr "Noul anunț a fost creat"
 msgid "Click to enlarge image."
 msgstr "Click pentru a mări imaginea."
 
+#: frontend/class-wordpress-status-header-filter.php:52
+msgctxt "404 HTTP status description"
+msgid "Listing not found"
+msgstr ""
+
 #: frontend/page-browse-ads.php:10
 msgid "Browse Ads"
 msgstr "Explorează anunțuri"
@@ -2219,7 +2194,7 @@ msgid "Please go to the Ad Management panel to edit your Ads."
 msgstr "Vă rugăm să mergeți la Administrare Anunțuri pentru a edita anunțul dvs."
 
 #: frontend/page-edit-ad.php:46 frontend/page-edit-ad.php:119
-#: frontend/page-edit-ad.php:426
+#: frontend/page-edit-ad.php:427
 msgid "Click here"
 msgstr "Click aici"
 
@@ -2227,7 +2202,7 @@ msgstr "Click aici"
 msgid "You are not allowed to edit the specified Ad."
 msgstr "Nu aveți permisiunea să editați anunțul specificat."
 
-#: frontend/page-edit-ad.php:118 frontend/page-edit-ad.php:425
+#: frontend/page-edit-ad.php:118 frontend/page-edit-ad.php:426
 msgid ""
 "You are currently not logged in, if you have an account in this website you "
 "can log in and go to the Ad Management panel to edit your Ads."
@@ -2257,46 +2232,47 @@ msgstr "Administrare Fișiere"
 msgid "Go to the %s section to manage the Images and Attachments for this Ad."
 msgstr "Mergeți la secțiunea %s pentru a administra imaginile și fișierele atașate acestui anunț."
 
-#: frontend/page-edit-ad.php:274 frontend/page-place-ad.php:1076
+#: frontend/page-edit-ad.php:275 frontend/page-place-ad.php:1077
 msgid ""
 "There was an unexpected error trying to save your Ad details. Please try "
 "again or contact an administrator."
 msgstr "A apărut o eroare neașteptată la salvarea detaliilor anunțului dvs. Vă rugăm să încercați din nou sau să contactați administratorul."
 
-#: frontend/page-edit-ad.php:296 frontend/page-place-ad.php:1138
+#: frontend/page-edit-ad.php:297 frontend/page-place-ad.php:1139
 msgid "The specified Ad doesn't exists. No images can be added at this time."
 msgstr "Anunțul specificat nu există. Nu a fost adăugată nici o imagine."
 
-#: frontend/page-edit-ad.php:348
+#: frontend/page-edit-ad.php:349
 #: frontend/templates/page-place-ad-preview-step.tpl.php:17
 #: includes/helpers/widgets/class-listing-form-steps-component.php:69
+#: templates/admin/import-listings-admin-page-import-form.tpl.php:27
 msgid "Finish"
 msgstr "Termină"
 
-#: frontend/page-edit-ad.php:367
+#: frontend/page-edit-ad.php:368
 msgid ""
 "The Ad has been edited successfully. <a href=\"%s\">Go back to view "
 "listings</a>."
 msgstr "Acest anunț a fost editat cu succes. <a href=\"%s\">Mergeți înapoi la lista de anunțuri</a>."
 
-#: frontend/page-edit-ad.php:393
+#: frontend/page-edit-ad.php:394
 msgid "There was a problem trying to delete your Ad. The Ad was not deleted."
 msgstr "A apărut o eroare ștergerea anunțului. Anunțul nu a fost șters."
 
-#: frontend/page-edit-ad.php:405
+#: frontend/page-edit-ad.php:406
 msgid "Your Ad has been successfully deleted."
 msgstr "Anunțul dvs. a fost șters cu succes."
 
-#: frontend/page-edit-ad.php:431
+#: frontend/page-edit-ad.php:432
 msgid "Please enter the email address you used when you created your Ad."
 msgstr "Vă rugăm să introduceți adresa de email folosită la crearea anunțului."
 
-#: frontend/page-edit-ad.php:440
+#: frontend/page-edit-ad.php:441
 msgid ""
 "The email address you entered does not match any of the Ads in our system."
 msgstr "Adresa de email pe care ați introdus-o nu se potrivește cu nici un anunț din sistemul nostru."
 
-#: frontend/page-edit-ad.php:483
+#: frontend/page-edit-ad.php:484
 msgid "The access keys were sent to %s."
 msgstr "Cheia de acces a fost trimisă către %s."
 
@@ -2559,29 +2535,29 @@ msgid ""
 "Your Ad was flagged as spam. Please contact the administrator of this site."
 msgstr "Anunțul dvs. a fost marcat ca SPAM. Vă rugăm să contactați administratorul acestui website."
 
-#: frontend/page-place-ad.php:1131
+#: frontend/page-place-ad.php:1132
 msgid ""
 "We were unable to find a Payment Transaction assigned to this operation. No "
 "images can be added at this time."
 msgstr "Nu am putut găsi o tranzacție de plată asociată cu această operație. Nici o imagine nu poate fi adăugată la acest moment."
 
-#: frontend/page-place-ad.php:1192
-#: frontend/templates/page-place-ad-details-step.tpl.php:115
+#: frontend/page-place-ad.php:1193
+#: frontend/templates/page-place-ad-details-step.tpl.php:116
 msgid "Preview Ad"
 msgstr "Previzualizare anunțuri"
 
-#: frontend/page-place-ad.php:1196
+#: frontend/page-place-ad.php:1197
 #: includes/helpers/widgets/class-listing-form-steps-component.php:50
 #: includes/helpers/widgets/class-listing-form-steps-component.php:65
 msgid "Checkout"
 msgstr "Plată"
 
-#: frontend/page-place-ad.php:1215 frontend/page-place-ad.php:1266
+#: frontend/page-place-ad.php:1216 frontend/page-place-ad.php:1267
 msgid ""
 "We were unable to find a Payment Transaction assigned to this operation."
 msgstr "Nu am putut găsi o tranzacție de plată asociată cu această operație."
 
-#: frontend/page-place-ad.php:1222 frontend/page-place-ad.php:1273
+#: frontend/page-place-ad.php:1223 frontend/page-place-ad.php:1274
 #: frontend/page-renew-ad.php:334
 msgid "The Ad associated with this transaction doesn't exists."
 msgstr "Anunțul asociat cu această tranzacție nu există."
@@ -2719,47 +2695,47 @@ msgstr "Folosiți formularul de mai jos pentru a selecta câmpurile după care d
 msgid "Return to Search"
 msgstr "Înapoi la căutare"
 
-#: frontend/page-show-ad.php:115
+#: frontend/page-show-ad.php:90
 msgid "Are you sure you want to flag this ad?"
 msgstr "Sunteți sigur că vreți să reclamați acest anunț ca nepotrivit?"
 
-#: frontend/page-show-ad.php:116
+#: frontend/page-show-ad.php:91
 msgid "This Ad has been flagged."
 msgstr "Acest anunț a fost marcat nepotrivit."
 
-#: frontend/page-show-ad.php:117
+#: frontend/page-show-ad.php:92
 msgid "An error occurred while trying to flag the Ad."
 msgstr "A apărut o eroare în timp ce s-a încercat marcarea anunțului ca nepotrivit."
 
-#: frontend/page-show-ad.php:155
+#: frontend/page-show-ad.php:130
 msgid ""
 "Sorry, that listing is not available. Please try browsing or searching "
 "existing listings."
 msgstr "Ne pare rău, acest anunț nu este disponibil. Vă rugăm să încercați să explorați sau să căutați între anunțurile existente."
 
-#: frontend/page-show-ad.php:172
+#: frontend/page-show-ad.php:147
 msgid ""
 "The Ad you are trying to view is pending approval. Once the Administrator "
 "approves it, it will be active and visible."
 msgstr "Anunțul pe care încercați să îl vedeți se află în așteptare pentru aprobare. De îndată ce administatorul îl aproba, va deveni activ și vizibil."
 
-#: frontend/page-show-ad.php:177
+#: frontend/page-show-ad.php:152
 msgid "Your email address was successfully verified."
 msgstr "Adresa dvs. de email a fost verificată cu succes."
 
-#: frontend/page-show-ad.php:181
+#: frontend/page-show-ad.php:156
 msgid ""
 "This Ad is currently disabled until the Administrator approves it. Only you "
 "(the Administrator) and the author can see it."
 msgstr "Acest anunț este dezactivat până când administratorul îl va aproba. Doar dvs. (Administatorul) și autorul îl pot vedea."
 
-#: frontend/page-show-ad.php:184
+#: frontend/page-show-ad.php:159
 msgid ""
 "This Ad is currently disabled until you verify the email address used for "
 "the contact information. Only you (the author) can see it."
 msgstr "Acest anunț este dezactivat până când veți verifica adresa dvs. de email folosită pentru detaliile de contact. Doar dvs. (autorul) îl puteți vedea."
 
-#: frontend/page-show-ad.php:187
+#: frontend/page-show-ad.php:162
 msgid ""
 "This Ad is currently disabled until the Administrator approves it. Only you "
 "(the author) can see it."
@@ -2783,10 +2759,6 @@ msgstr[2] "Acest anunț a fost văzut de %d ori."
 #: frontend/placeholders.php:613
 msgid "Total views: %d"
 msgstr "Total vederi: %s"
-
-#: frontend/placeholders.php:664
-msgid "Phone"
-msgstr "Telefon"
 
 #: frontend/placeholders.php:721
 msgid "Flag Ad"
@@ -3052,7 +3024,7 @@ msgid ""
 msgstr "Creditul existent în contul dvs. poate fi folosit pentru a adaugă anunțuri. Puteți adăuga mai mult credit când postați un anunț nou sau folosind butonul \"Adaugă Credit\" de mai jos."
 
 #: frontend/templates/page-buy-credits-select-credit-plan-step.tpl.php:18
-#: frontend/templates/page-place-ad-details-step.tpl.php:117
+#: frontend/templates/page-place-ad-details-step.tpl.php:118
 #: frontend/templates/page-place-ad-order-step.tpl.php:59
 #: frontend/templates/page-renew-ad-order-step.tpl.php:19
 #: frontend/templates/page-reply-to-ad.tpl.php:43
@@ -3378,10 +3350,6 @@ msgctxt "payment completed page"
 msgid "Transaction Details"
 msgstr "Detalii tranzacție"
 
-#: frontend/templates/payments-payment-methods-table.tpl.php:4
-msgid "No payment methods available."
-msgstr "Nu este disponibilă nici o metodă de plată."
-
 #: frontend/templates/payments-payment-terms-form-field.tpl.php:2
 msgid "Please select a payment term for your Ad"
 msgstr "Vă rugăm să selectați un term de plată pentru anunțul dvs."
@@ -3396,11 +3364,13 @@ msgid "Make payments with PayPal - it's fast, free and secure!"
 msgstr "Faceți plăți cu PayPal - e rapid, gratuit și în siguranță!"
 
 #: frontend/templates/payments-transaction-items-table.tpl.php:4
+#: frontend/templates/payments-transaction-items-table.tpl.php:13
 msgctxt "transaction items"
 msgid "Item"
 msgstr "Anunț"
 
 #: frontend/templates/payments-transaction-items-table.tpl.php:5
+#: frontend/templates/payments-transaction-items-table.tpl.php:17
 msgctxt "transaction items"
 msgid "Amount"
 msgstr "Preț"
@@ -3666,141 +3636,46 @@ msgstr "Nu se poate scrie fișierul pe disc."
 msgid "The file upload was stopped by extension."
 msgstr "Încărcarea fișierului a fost oprită de către extensia acestuia."
 
-#: functions.php:2086
+#: functions.php:2097
 msgid "Your Ad \"%s\" has been approved"
 msgstr "Anunțul dvs. \"%s\" a fost aprobat"
 
-#: functions.php:2102
+#: functions.php:2113
 msgid "Your Ad \"%s\" has been successfully updated"
 msgstr "Anunțul dvs. \"%s\" a fost actualizat cu succes"
 
-#: functions.php:2123
+#: functions.php:2134
 msgid "Images on Ad \"%s\" are awaiting approval"
 msgstr "Imaginile anunțului \"%s\" așteaptă aprobarea"
 
-#: functions.php:2125 includes/functions/notifications.php:189
+#: functions.php:2136 includes/functions/notifications.php:189
 msgid ""
 "Images on Ad \"%s\" are awaiting approval. You can approve the images going "
 "to the Manage Images section for that Ad and clicking the \"Enable\" button "
 "below each image. Click here to continue: %s."
 msgstr "Imaginile anunțului \"%s\" așteaptă aprobarea. Puteți aproba imaginile mergând la secțiunea Administrare Imagini pentru acest anunț și dând click pe butonul \"Activează\" de sub fiecare imagine. Click aici pentru a continua: %s."
 
-#: functions.php:2128
+#: functions.php:2139
 msgid "The Ad \"%s\" is awaiting approval"
 msgstr "Anunțul \"%s\" așteaptă aprobarea"
 
-#: functions.php:2130 includes/functions/notifications.php:194
+#: functions.php:2141 includes/functions/notifications.php:194
 msgid ""
 "The Ad \"%s\" is awaiting approval. You can approve the Ad going to the "
 "Manage Listings section and clicking the \"Enable\" action shown on top. "
 "Click here to continue: %s."
 msgstr "Anunțul \"%s\" așteaptă aprobarea. Puteți aproba anunțul mergând la secțiunea Administrare anunțuri și dând click pe butonul \"Activează\" din partea de sus. Click aici pentru a continua: %s."
 
-#: functions.php:2137 includes/functions/notifications.php:201
+#: functions.php:2148 includes/functions/notifications.php:201
 msgid ""
 "Additionally, You can approve the images going to the Manage Images section "
 "for that Ad and clicking the \"Enable\" button below each image. Click here "
 "to continue: %s."
 msgstr "Suplimentar, puteți aproba imaginile mergând la secțiunea Administrare Imagini pentru acest anunț și dând click pe butonul \"Activează\" de sub fiecare imagine. Click aici pentru a continua: %s."
 
-#: functions.php:2687
+#: functions.php:2720
 msgid "Email sent %s."
 msgstr "Email trimis %s."
-
-#: includes/class-csv-importer.php:121
-msgid "Invalid CSV file."
-msgstr "Fișier CSV invalid."
-
-#: includes/class-csv-importer.php:142
-msgid "Image file names were found but no ZIP was provided."
-msgstr "Numele de fișiere ale imaginilor au fost găsite, dar nu a fost indicat nici un fișier ZIP."
-
-#: includes/class-csv-importer.php:240
-msgid "The required column %s is missing. Import can't continue."
-msgstr "Coloana obligatorie %s lipsește. Operația de import nu poate continua."
-
-#: includes/class-csv-importer.php:254
-msgid "Import can't continue. Unknown column(s) specified(s):"
-msgstr "Operația de import nu poate continua. Coloana(e) necunoscuta(e) specificata(e):"
-
-#: includes/class-csv-importer.php:329
-msgid "Required value <em>%s</em> missing at row number: %d"
-msgstr "Valoarea obligatorie <em>%s</em> lipsește la linia numărul: %d"
-
-#: includes/class-csv-importer.php:471
-msgid "File %s does not exists."
-msgstr "Fișierul %s nu există."
-
-#: includes/class-csv-importer.php:479
-msgid "Import directory %s does not exists."
-msgstr "Directorul de import %s nu există."
-
-#: includes/class-csv-importer.php:491
-msgid "Incompatible ZIP Archive"
-msgstr "Arhiva ZIP necompatibilă"
-
-#: includes/class-csv-importer.php:496
-msgid "Empty ZIP Archive"
-msgstr "Golește arhiva ZIP"
-
-#: includes/class-csv-importer.php:523
-msgid "Could not write temporary file %s"
-msgstr "Nu se poate scrie fișierul temporar %s"
-
-#: includes/class-csv-importer.php:563
-msgid "Row %d. %s"
-msgstr "Linia %d. %s"
-
-#: includes/class-csv-importer.php:600
-msgid "Could not save the information to the database for %s in row %d"
-msgstr "Informația nu a putut fi salvată în baza de date pentru %s în linia %d"
-
-#: includes/class-csv-importer.php:667
-msgid "Item price non numeric at row number %s"
-msgstr "Preț nenumeric la linia numărul %s"
-
-#: includes/class-csv-importer.php:683
-msgid ""
-"Start date missing (alternately you can specify the default start date) at "
-"row number %s"
-msgstr "Data de început lipsește (alternativ, puteți specifica data de început implicită) la linia numărul %s"
-
-#: includes/class-csv-importer.php:695
-msgid "Invalid End date at row number: %s"
-msgstr "Dată de sfârșit invalidă la linia numărul: %s"
-
-#: includes/class-csv-importer.php:703
-msgid ""
-"End date missing (alternately you can specify the default end date) at row "
-"number %s"
-msgstr "Data de sfârșit lipsește (alternativ, puteți specifica data de sfârșit implicită) la linia numărul %s"
-
-#: includes/class-csv-importer.php:814
-msgid ""
-"Extra Field %s's value is not allowed in row %d. Allowed values are: %%s"
-msgstr "Valoarea câmpului suplimentar %s's nu este permisă în linia %d. Valorile permise sunt: %%s"
-
-#: includes/class-csv-importer.php:823
-msgid ""
-"Extra Field %s's value is not allowed in row %d. Allowed value is one of: "
-"%%s"
-msgstr "Valoarea câmpului suplimentar %s's nu este permisă în linia %d. Valoarea permisă este una dintre: %%s"
-
-#: includes/class-csv-importer.php:951
-msgid ""
-"Username is required in row %s. Please include a username or selected a "
-"default user."
-msgstr "Numele de utilizator este obligatoriu în linia %s. Vă rugăm să includeți un nume de utlizator sau să selectați un utilizator implicit."
-
-#: includes/class-csv-importer.php:954
-msgid "Contact email is required in row %s."
-msgstr "Email-ul de contact este obligatoriu în linia %s."
-
-#: includes/class-csv-importer.php:972
-msgid ""
-"A new user '%s' with email address '%s' and password '%s' was created for "
-"row %d."
-msgstr "Un nou utilizator '%s' cu adresa de email '%s' și parola '%s' a fost creat pentru linia %d."
 
 #: includes/class-edit-listing-link-placeholder.php:32
 msgctxt "text for edit listing link"
@@ -3828,14 +3703,14 @@ msgstr "Licența dvs. pentru <module-name>este validă, dar este deja activată 
 msgid "less than 1"
 msgstr "mai mic decât 1"
 
-#: includes/class-listings-api.php:180
+#: includes/class-listings-api.php:182
 msgid ""
 "You need to verify the email address used as the contact email address for "
 "this Ad. The Ad will remain in a disabled status until you verify you "
 "address. A verification email has been sent to you."
 msgstr "Trebuie să verificați adresa de email folosită ca email de contact pentru acest anunț. Anunțul va rămâne dezactivat până vă veți verifica adresa de email. Un email de verificare a fost trimis către dvs."
 
-#: includes/class-listings-api.php:188
+#: includes/class-listings-api.php:190
 msgid ""
 "If you have uploaded images your images will not show up until an admin has "
 "approved them."
@@ -4608,31 +4483,31 @@ msgstr "Nu au fost găsite datele imaginii miniatură."
 msgid "You are not authorized to upload files."
 msgstr "Nu sunteți autorizat să încărcați fișiere"
 
-#: includes/models/ad.php:532
+#: includes/models/ad.php:534
 msgid "N/A"
 msgstr "Nedisponibil"
 
-#: includes/models/ad.php:673
+#: includes/models/ad.php:677
 msgctxt "ad payment status"
 msgid "N/A"
 msgstr "Nedisponibil"
 
-#: includes/models/ad.php:678
+#: includes/models/ad.php:682
 msgctxt "ad payment status"
 msgid "Pending"
 msgstr "În așteptare"
 
-#: includes/models/ad.php:680
+#: includes/models/ad.php:684
 msgctxt "ad payment status"
 msgid "Completed"
 msgstr "Complet"
 
-#: includes/models/ad.php:682
+#: includes/models/ad.php:686
 msgctxt "ad payment status"
 msgid "Not Required"
 msgstr "Nu este necesar"
 
-#: includes/models/ad.php:684
+#: includes/models/ad.php:688
 msgctxt "ad payment status"
 msgid "Unpaid"
 msgstr "Neplătit"
@@ -5653,7 +5528,7 @@ msgid "Enable User Ad Management Panel"
 msgstr "Activează Panoul de Administrare Anunțuri pentru Utilizator"
 
 #: includes/settings/class-general-settings.php:28
-#: includes/settings-api.php:377
+#: includes/settings-api.php:392
 msgid "General Settings"
 msgstr "Setări generale"
 
@@ -6317,21 +6192,32 @@ msgstr "Răspunde la anunț necesită să fiți înregistrat ca utilizator"
 msgid "Require user registration for replying to an Ad?"
 msgstr "Necesită înregistrarea utlizatorului pentru a putea răspunde la anunț?"
 
-#: includes/settings/class-registration-settings.php:10
+#: includes/settings/class-registration-settings.php:14
+msgid "Login URL"
+msgstr ""
+
+#: includes/settings/class-registration-settings.php:17
+msgid ""
+"Location of the login page. The value should be the full URL to the "
+"WordPress login page (e.g. http://www.awpcp.com/wp-login.php)."
+msgstr ""
+
+#: includes/settings/class-registration-settings.php:17
+#: includes/settings/class-registration-settings.php:20
+msgid ""
+"IMPORTANT: Only change this setting when using a membership plugin with "
+"custom login pages or similar scenarios."
+msgstr ""
+
+#: includes/settings/class-registration-settings.php:20
 msgid "Custom Registration Page URL"
 msgstr "URL-ul personalizat al paginii de înregistrare"
 
-#: includes/settings/class-registration-settings.php:10
+#: includes/settings/class-registration-settings.php:20
 msgid ""
 "Location of registration page. Value should be the full URL to the WordPress"
 " registration page (e.g. http://www.awpcp.com/wp-login.php?action=register)."
 msgstr "Locația paginii de înregistrare. Valoarea trebuie să fie URL-ul complet către pagina de înregistrare Wordpress. (exemplu: http://www.awpcp.com/wp-login.php?action=register)."
-
-#: includes/settings/class-registration-settings.php:10
-msgid ""
-"**Only change this setting when using a membership plugin with custom login "
-"pages or similar scenarios."
-msgstr "**Schimbați această setare doar dacă folosiți un plugin de abonamente/membri cu pagini de logare personalizate sau scenarii similare."
 
 #: includes/settings/class-user-notifications-settings.php:16
 msgid "User Notifications"
@@ -7032,167 +6918,171 @@ msgid ""
 "account."
 msgstr "Bifați aici pentru a folosi numele și email-ul expeditorului în câmpul FROM (DE LA) când cineva răspunde la un anunț. Dacă lăsați nebifată setarea, atunci mesajele vor fi expediate cu numele website-ului și cu email-ul administratorului WordPress în câmpul FROM. Unele servere nu procesează email-urile expediate care au o adresă de email de Gmail, Yahoo, Hotmail sau alt serviciu de email gratuit în câmpul FROM (DE LA). De asemenea, unele servere nu procesează email-urile care au la câmpul FROM (DE LA) o adresă diferită de adresa de email asociată cu contul dvs.  Dacă aveți un asemenea serviciu de hosting, trebuie să vă asigurați că adresa dvs. de administrator de WordPress este asociată cu contul dvs. de hosting."
 
-#: includes/settings-api.php:304
+#: includes/settings-api.php:313
+msgid "Include the name of the recipient in the email address"
+msgstr ""
+
+#: includes/settings-api.php:319
 msgid "Include Ad access key in email messages"
 msgstr "Include cheia de acces a anunțului în mesajele de email"
 
-#: includes/settings-api.php:304
+#: includes/settings-api.php:319
 msgid ""
 "Include Ad access key in email notifications. You may want to uncheck this "
 "option if you are using the Ad Management panel, but is not necessary."
 msgstr "Include cheia de acces a anunțului în mesajele de email. Veți dori să dezactivați această opțiune dacă folosiți Panoul de Administrare Anunțuri, dar nu este neapărat necesar."
 
-#: includes/settings-api.php:308
+#: includes/settings-api.php:323
 msgid "Ad Posted Message"
 msgstr "Mesajul adăugare anunț"
 
-#: includes/settings-api.php:310
+#: includes/settings-api.php:325
 msgid "Subject for Ad posted notification email"
 msgstr "Subiect pentru email-ul de notificare despre anunțul adăugat"
 
-#: includes/settings-api.php:310
+#: includes/settings-api.php:325
 msgid "Your Classified Ad listing has been submitted"
 msgstr "Anunțul dvs. a fost trimis"
 
-#: includes/settings-api.php:310
+#: includes/settings-api.php:325
 msgid "Subject line for email sent out when someone posts an Ad"
 msgstr "Subiectul email-ului trimis când cineva adaugă un anunț"
 
-#: includes/settings-api.php:311
+#: includes/settings-api.php:326
 msgid "Body for Ad posted notification email"
 msgstr "Conținutul email-ului pentru notificarea adăugării anunțului"
 
-#: includes/settings-api.php:311
+#: includes/settings-api.php:326
 msgid ""
 "Thank you for submitting your Classified Ad. The details of your ad are "
 "shown below."
 msgstr "Vă mulțumim pentru trimiterea anunțului. Conținutul anunțului apare mai jos."
 
-#: includes/settings-api.php:311
+#: includes/settings-api.php:326
 msgid "Message body text for email sent out when someone posts an Ad"
 msgstr "Conținutul text al mesajului pentru email-ul trimis când cineva postează un anunț"
 
-#: includes/settings-api.php:315
+#: includes/settings-api.php:330
 msgid "Reply to Ad Message"
 msgstr "Mesaj de răspuns la anunț"
 
-#: includes/settings-api.php:317
+#: includes/settings-api.php:332
 msgid "Subject for Reply to Ad email"
 msgstr "Subiect pentru email-ul de răspuns la anunț"
 
-#: includes/settings-api.php:317
+#: includes/settings-api.php:332
 msgid "Response to your AWPCP Demo Ad"
 msgstr "Răspuns la anunțul dvs. de la Adserv"
 
-#: includes/settings-api.php:317
+#: includes/settings-api.php:332
 msgid "Subject line for email sent out when someone replies to Ad"
 msgstr "Subiectul email-ului trimis când cineva răspunde la un anunț"
 
-#: includes/settings-api.php:318
+#: includes/settings-api.php:333
 msgid "Body for Reply to Ad email"
 msgstr "Conținut pentru email-ul de răspuns la anunț"
 
-#: includes/settings-api.php:318
+#: includes/settings-api.php:333
 msgid "Someone has responded to your AWPCP Demo Ad"
 msgstr "Cineva a răspuns anunțului dvs. de la Adserv"
 
-#: includes/settings-api.php:318
+#: includes/settings-api.php:333
 msgid "Message body text for email sent out when someone replies to Ad"
 msgstr "Conținutul text al mesajului pentru email-ul trimis când cineva răspunde unui anunț"
 
-#: includes/settings-api.php:319
+#: includes/settings-api.php:334
 msgid "Notify admin about contact message"
 msgstr "Notifică administratorul legat de mesajul de contact"
 
-#: includes/settings-api.php:319
+#: includes/settings-api.php:334
 msgid ""
 "An email will be sent to the administrator every time a visitor sends a "
 "message to one of the Ad posters through the Reply to Ad page."
 msgstr "Un email va fi trimis către administrator ori de câte ori un vizitator trimite un mesaj către unul dintre cei proprietarii anunțurilor, prin pagina de răspuns la anunț."
 
-#: includes/settings-api.php:323
+#: includes/settings-api.php:338
 msgid "Resend Access Key Message"
 msgstr "Retrimite mesajul cu cheia de acces"
 
-#: includes/settings-api.php:325
+#: includes/settings-api.php:340
 msgid "Subject for Request Ad Access Key email"
 msgstr "Subiectul email-ului pentru solicitarea cheii anunțului"
 
-#: includes/settings-api.php:325
+#: includes/settings-api.php:340
 msgid "The Classified Ad's ad access key you requested"
 msgstr "Cheia de acces a anunțului solicitat "
 
-#: includes/settings-api.php:325
+#: includes/settings-api.php:340
 msgid ""
 "Subject line for email sent out when someone requests their ad access key "
 "resent"
 msgstr "Subiectul pentru email-ul trimis când cineva solicită să-i fie retrimisă cheia de acces pentru anunțul său "
 
-#: includes/settings-api.php:326
+#: includes/settings-api.php:341
 msgid "Body for Request Ad Access Key email"
 msgstr "Conținutul email-ului pentru solicitarea cheii de acces a anunțului"
 
-#: includes/settings-api.php:326
+#: includes/settings-api.php:341
 msgid ""
 "You asked to have your Classified Ad's access key resent. Below are all the "
 "Ad access keys in the system that are tied to the email address you provided"
 msgstr "Ați solicitat să primiți cheia de acces pentru anunțul dvs. Mai jos sunt toate cheile de acces din sistem care au legătură cu adresa de email pe care ați indicat-o"
 
-#: includes/settings-api.php:326
+#: includes/settings-api.php:341
 msgid ""
 "Message body text for email sent out when someone requests their ad access "
 "key resent"
 msgstr "Conținutul text al mesajului trimis când cineva solicită să-i fie retrimisă cheia anunțului său"
 
-#: includes/settings-api.php:330
+#: includes/settings-api.php:345
 msgid "Verify Email Message"
 msgstr "Mesajul email-ului de verificare."
 
-#: includes/settings-api.php:332
+#: includes/settings-api.php:347
 msgid "Subject for Verification email"
 msgstr "Subiectul email-ului de verificare."
 
-#: includes/settings-api.php:332
+#: includes/settings-api.php:347
 msgid "Verify the email address used for Ad $title"
 msgstr "Verificați adresa de email folosită pentru anunțul $title"
 
-#: includes/settings-api.php:332
+#: includes/settings-api.php:347
 msgid "Subject line for email sent out to verify the email address."
 msgstr "Subiectul email-ului trimis pentru verificarea adresei de email."
 
-#: includes/settings-api.php:333
+#: includes/settings-api.php:348
 msgid "Body for Verification email"
 msgstr "Conținutul email-ului de verificare."
 
-#: includes/settings-api.php:333
+#: includes/settings-api.php:348
 msgid ""
 "You can use the following placeholders to personalize the body of the email:"
 " $title, $author_name,$verification_email, $website_name, $website_url."
 msgstr "Puteți folosi următoarele variabile pentru a personaliza conținutul email-ului: $title, $author_name,$verification_email, $website_name, $website_url."
 
-#: includes/settings-api.php:337
+#: includes/settings-api.php:352
 msgid "Incomplete Payment Message"
 msgstr "Mesaj de plată incomplet"
 
-#: includes/settings-api.php:339
+#: includes/settings-api.php:354
 msgid "Subject for Incomplete Payment email"
 msgstr "Subiect pentru email-ul pentru plată incompletă"
 
-#: includes/settings-api.php:339
+#: includes/settings-api.php:354
 msgid "There was a problem processing your payment"
 msgstr "A apărut o problemă la procesarea plății"
 
-#: includes/settings-api.php:339
+#: includes/settings-api.php:354
 msgid ""
 "Subject line for email sent out when the payment processing does not "
 "complete"
 msgstr "Subiectul email-ului trimis când procesarea plății nu a fost terminată"
 
-#: includes/settings-api.php:340
+#: includes/settings-api.php:355
 msgid "Body for Incomplete Payment email"
 msgstr "Conținutul email-ului despre plata incompletă"
 
-#: includes/settings-api.php:340
+#: includes/settings-api.php:355
 msgid ""
 "There was a problem encountered during your attempt to submit payment. If "
 "funds were removed from the account you tried to use to make a payment "
@@ -7200,283 +7090,283 @@ msgid ""
 " assistance."
 msgstr "A apărut o problemă când s-a încercat trimiterea plății. Dacă fondurile au fost înlăturate din contul cu care încercați să faceți plata, vă rugăm să contactați pentru asistență administratorul website-ului sau suportul tehnic al website-ului prin care se face plata. "
 
-#: includes/settings-api.php:340
+#: includes/settings-api.php:355
 msgid ""
 "Message body text for email sent out when the payment processing does not "
 "complete"
 msgstr "Conținutul text al mesajului pentru email-ul trimis când procesarea plății nu este completă"
 
-#: includes/settings-api.php:344
+#: includes/settings-api.php:359
 msgid "Renew Ad Message"
 msgstr "Mesaj de reînnoire al anunțului"
 
-#: includes/settings-api.php:346
+#: includes/settings-api.php:361
 msgid "Subject for Renew Ad email"
 msgstr "Subiect pentru email-ul de reînnoire a anunțului"
 
-#: includes/settings-api.php:346
+#: includes/settings-api.php:361
 msgid "Your classifieds listing Ad will expire in %d days."
 msgstr "Anunțul dvs. va expira în %d zile."
 
-#: includes/settings-api.php:346
+#: includes/settings-api.php:361
 msgid "Subject line for email sent out when an Ad is about to expire."
 msgstr "Subiectul email-ului trimis când un anunț este aproape de expirare."
 
-#: includes/settings-api.php:347 includes/settings-api.php:354
+#: includes/settings-api.php:362 includes/settings-api.php:369
 msgid "Body for Renew Ad email"
 msgstr "Conținutul email-ului pentru reînnoirea anunțului"
 
-#: includes/settings-api.php:347
+#: includes/settings-api.php:362
 msgid ""
 "This is an automated notification that your Classified Ad will expire in %d "
 "days."
 msgstr "Aceasta este o notificare automată despre faptul că anunțul dvs. va expira în %d zile."
 
-#: includes/settings-api.php:347
+#: includes/settings-api.php:362
 msgid ""
 "Message body text for email sent out when an Ad is about to expire. Use %d "
 "as placeholder for the number of days before the Ad expires."
 msgstr "Conținutul text al email-ului trimis atunci când un anunț este aproape de expirare. Folosiți %d ca loc pentru afișarea numărului de zile înainte ca anunțul să expire."
 
-#: includes/settings-api.php:351
+#: includes/settings-api.php:366
 msgid "Ad Renewed Message"
 msgstr "Mesaj anunț reînnoit"
 
-#: includes/settings-api.php:353
+#: includes/settings-api.php:368
 msgid "Subject for Ad Renewed email"
 msgstr "Subiect email pentru anunțul reînnoit"
 
-#: includes/settings-api.php:353
+#: includes/settings-api.php:368
 msgid "Your classifieds listing \"%s\" has been successfully renewed."
 msgstr "Anunțul dvs. \"%s\" a fost reînnoit cu succes."
 
-#: includes/settings-api.php:353
+#: includes/settings-api.php:368
 msgid "Subject line for email sent out when an Ad is successfully renewed."
 msgstr "Subiect pentru email-ul trimis când anunțul este reînnoit cu succes."
 
-#: includes/settings-api.php:354
+#: includes/settings-api.php:369
 msgid ""
 "Your classifieds listing Ad has been successfully renewed. More information "
 "below:"
 msgstr "Anunțul dvs. \"%s\" a fost reînnoit cu succes. Mai multe informații dedesubt:"
 
-#: includes/settings-api.php:354
+#: includes/settings-api.php:369
 msgid ""
 "Message body text for email sent out when an Ad is successfully renewed. "
 msgstr "Conținutul email-ului trimis când un anunț este reînnoit cu succes."
 
-#: includes/settings-api.php:358
+#: includes/settings-api.php:373
 msgid "Ad Expired Message"
 msgstr "Mesaj anunț expirat"
 
-#: includes/settings-api.php:360
+#: includes/settings-api.php:375
 msgid "Subject for Ad Expired email"
 msgstr "Subiect email pentru un anunț expirat"
 
-#: includes/settings-api.php:360
+#: includes/settings-api.php:375
 msgid "Your classifieds listing at %s has expired"
 msgstr "Anunțul dvs. %s a expirat"
 
-#: includes/settings-api.php:360
+#: includes/settings-api.php:375
 msgid "Subject line for email sent out when an ad has auto-expired"
 msgstr "Subiect pentru email-ul trimis când un anunț a auto-expirat"
 
-#: includes/settings-api.php:361
+#: includes/settings-api.php:376
 msgid "Body for Ad Expired email"
 msgstr "Conținut email pentru un anunț expirat"
 
-#: includes/settings-api.php:361
+#: includes/settings-api.php:376
 msgid "This is an automated notification that your Classified Ad has expired."
 msgstr "Aceasta este o notificare automată despre faptul că anunțul dvs. a expirat."
 
-#: includes/settings-api.php:361
+#: includes/settings-api.php:376
 msgid "Message body text for email sent out when an ad has auto-expired"
 msgstr "Conținutul email-ului trimis când un anunț a auto-expirat."
 
-#: includes/settings-api.php:365
+#: includes/settings-api.php:380
 msgid "Advanced Email Configuration"
 msgstr "Configurarea Avansată Email-uri"
 
-#: includes/settings-api.php:367
+#: includes/settings-api.php:382
 msgid "Enable external SMTP server"
 msgstr "Activează server-ul extern de SMTP"
 
-#: includes/settings-api.php:367
+#: includes/settings-api.php:382
 msgid "Enabled external SMTP server (if emails not processing normally)."
 msgstr "Activează server-ul extern de SMTP (dacă email-urile nu sunt procesate normal)."
 
-#: includes/settings-api.php:368
+#: includes/settings-api.php:383
 msgid "SMTP host"
 msgstr "Host SMTP"
 
-#: includes/settings-api.php:368
+#: includes/settings-api.php:383
 msgid "SMTP host (if emails not processing normally)."
 msgstr "Host SMTP (dacă email-urile nu sunt procesate normal)."
 
-#: includes/settings-api.php:369
+#: includes/settings-api.php:384
 msgid "SMTP port"
 msgstr "Port SMTP"
 
-#: includes/settings-api.php:369
+#: includes/settings-api.php:384
 msgid "SMTP port (if emails not processing normally)."
 msgstr "Port SMTP (dacă email-urile nu sunt procesate normal)."
 
-#: includes/settings-api.php:370
+#: includes/settings-api.php:385
 msgid "SMTP username"
 msgstr "Nume de utilizator SMTP"
 
-#: includes/settings-api.php:370
+#: includes/settings-api.php:385
 msgid "SMTP username (if emails not processing normally)."
 msgstr "Nume de utilizator SMTP (dacă email-urile nu sunt procesate normal)."
 
-#: includes/settings-api.php:371
+#: includes/settings-api.php:386
 msgid "SMTP password"
 msgstr "Parola SMTP"
 
-#: includes/settings-api.php:371
+#: includes/settings-api.php:386
 msgid "SMTP password (if emails not processing normally)."
 msgstr "Parola SMTP (dacă email-urile nu sunt procesate normal)."
 
-#: includes/settings-api.php:379
+#: includes/settings-api.php:394
 msgid "Send Ads to Facebook Automatically"
 msgstr "Trimiteți anunțuri la Facebook în mod automat."
 
-#: includes/settings-api.php:379
+#: includes/settings-api.php:394
 msgid ""
 "If checked, Ads will be posted to Facebook shortly after they are posted, "
 "enabled or edited, whichever occurs first. Ads will be posted only once. "
 "Please note that disabled Ads cannot be posted to Facebook."
 msgstr "Daca este bifat, anunțurile vor fi postate la Facebook la scurt timp după ce sunt postate, activate sau editate, oricare dintre aceste operații apare prima. Anunțurile vor fi postate doar o singură dată. Vă rugăm să observați că anunțurile dezactivate nu pot fi postate la Facebook."
 
-#: includes/settings-api.php:570
+#: includes/settings-api.php:585
 msgid "<module-name> License Key"
 msgstr "Cheia licenței pentru modulul <module-name>"
 
-#: includes/settings-api.php:579
+#: includes/settings-api.php:594
 msgid "Licenses"
 msgstr "Licențe"
 
-#: includes/settings-api.php:719
+#: includes/settings-api.php:734
 msgid ""
 "Require Registration setting was enabled automatically because you activated"
 " the User Ad Management panel."
 msgstr "Înregistrarea obligatorie a fost activată automat pentru că ați activat panoul de Administrare anunțuri pentru utilizator."
 
-#: includes/settings-api.php:736
+#: includes/settings-api.php:751
 msgid ""
 "Akismet SPAM control cannot be enabled because Akismet plugin is not "
 "installed or activated."
 msgstr "Programul antiSPAM Akismet nu a putut fi activat pentru că pluginul Akismet nu este instalat sau activat."
 
-#: includes/settings-api.php:740
+#: includes/settings-api.php:755
 msgid ""
 "Akismet SPAM control cannot be enabled because Akismet is not properly "
 "configured."
 msgstr "Programul antiSPAM Akismet nu a putut fi activat pentru că pluginul Akismet nu este configurat corespunzător."
 
-#: includes/settings-api.php:763
+#: includes/settings-api.php:778
 msgid ""
 "reCAPTCHA can't be used because the public key and private key settings are "
 "required for reCAPTCHA to work properly."
 msgstr "reCAPTCHA nu poate fi folosit deoarece cheia publică și cheia privată sunt necesare pentru a funcționa corect."
 
-#: includes/settings-api.php:765
+#: includes/settings-api.php:780
 msgid ""
 "reCAPTCHA can't be used because the public key setting is required for "
 "reCAPTCHA to work properly."
 msgstr "reCAPTCHA nu poate fi folosit deoarece cheia publică este necesară pentru a funcționa corect."
 
-#: includes/settings-api.php:767
+#: includes/settings-api.php:782
 msgid ""
 "reCAPTCHA can't be used because the private key setting is required for "
 "reCAPTCHA to work properly."
 msgstr "reCAPTCHA nu poate fi folosit deoarece cheia privată este necesară pentru a funcționa corect."
 
-#: includes/settings-api.php:780
+#: includes/settings-api.php:795
 msgid ""
 "User Ad Management panel was automatically deactivated because you disabled "
 "Require Registration setting."
 msgstr "Panoul de administrare anunțuri pentru utilizator a fost dezactivat automat pentru că ați dezactivat setarea de înregistrare obligatorie."
 
-#: includes/settings-api.php:785
+#: includes/settings-api.php:800
 msgid ""
 "Credit System was automatically disabled because you disabled Require "
 "Registration setting."
 msgstr "Sistemul de credit a fost dezactivat automat pentru că ați dezactivat setarea de înregistrare obligatorie."
 
-#: includes/settings-api.php:801
+#: includes/settings-api.php:816
 msgid ""
 "There is a problem with the PayPal Currency Code you have entered. It does "
 "not match any of the codes in our list of curencies supported by PayPal."
 msgstr "A apărut o problemă cu codul valutar PayPal pe care l-ați introdus. Acesta nu corespunde cu nici unul dintre codurile din lista noastră de valute acceptate de PayPal."
 
-#: includes/settings-api.php:802
+#: includes/settings-api.php:817
 msgid "The available currency codes are"
 msgstr "Codurile valutare disponibile sunt"
 
-#: includes/settings-api.php:811
+#: includes/settings-api.php:826
 msgid ""
 "Require Registration setting was enabled automatically because you activated"
 " the Credit System."
 msgstr "Înregistrarea obligatorie a fost activată automat pentru că ați activat sistemul de credit."
 
-#: includes/settings-api.php:816
+#: includes/settings-api.php:831
 msgid ""
 "Charge Listing Fee setting was enabled automatically because you activated "
 "the Credit System."
 msgstr "Setarea 'Încasați un preț pentru afișare anunț' a fost activată automat din cauză că ați activat sistemul de credit."
 
-#: includes/settings-api.php:822
+#: includes/settings-api.php:837
 msgid ""
 "Credit System was disabled automatically because you disabled Charge Listing"
 " Fee."
 msgstr "Sistemul de credit a fost dezactivat automat pentru că ați dezactivat setarea 'Încasați un preț pentru afișare anunț'"
 
-#: includes/settings-api.php:1064
+#: includes/settings-api.php:1079
 msgid "Deactivate"
 msgstr "Deactivați"
 
-#: includes/settings-api.php:1065
+#: includes/settings-api.php:1080
 msgid "active"
 msgstr "activă"
 
-#: includes/settings-api.php:1065 includes/settings-api.php:1068
-#: includes/settings-api.php:1078 includes/settings-api.php:1080
-#: includes/settings-api.php:1082
+#: includes/settings-api.php:1080 includes/settings-api.php:1083
+#: includes/settings-api.php:1093 includes/settings-api.php:1095
+#: includes/settings-api.php:1097
 msgid "Status: <license-status>"
 msgstr "Stare: <license-status>"
 
-#: includes/settings-api.php:1067 includes/settings-api.php:1070
+#: includes/settings-api.php:1082 includes/settings-api.php:1085
 msgid "Activate"
 msgstr "Activați"
 
-#: includes/settings-api.php:1068
+#: includes/settings-api.php:1083
 msgid "inactive"
 msgstr "inactivă"
 
-#: includes/settings-api.php:1073
+#: includes/settings-api.php:1088
 msgid ""
 "Click the button above to check the status of your license. Please <contact-"
 "link>contact customer support</a> if you think the reported status is wrong."
 msgstr "Click pe butonul de deasupra pentru a verifica starea licenței dvs. Vă rugăm să <contact-link>contactați suportul tehnic</a> dacă credeți că starea indicată este greșită."
 
-#: includes/settings-api.php:1078
+#: includes/settings-api.php:1093
 msgid "expired"
 msgstr "expirată"
 
-#: includes/settings-api.php:1080
+#: includes/settings-api.php:1095
 msgid "disabled"
 msgstr "deactivat"
 
-#: includes/settings-api.php:1082
+#: includes/settings-api.php:1097
 msgid "unknown"
 msgstr "necunoscută"
 
-#: includes/settings-api.php:1098
+#: includes/settings-api.php:1113
 msgid "Documentation on date and time formatting"
 msgstr "Documentație despre formatele pentru dată și timp"
 
-#: includes/settings-api.php:1119
+#: includes/settings-api.php:1134
 msgid "Setting <setting-name> not available."
 msgstr "Setarea <setting-name> nu este disponibilă."
 
@@ -7503,6 +7393,10 @@ msgstr "Înlătură caracterele invalide din numele fișierelor media"
 #: includes/upgrade/class-manual-upgrade-tasks.php:48
 msgid "Calculate image dimensions"
 msgstr "Calculează dimensiunile imaginilor"
+
+#: includes/upgrade/class-manual-upgrade-tasks.php:54
+msgid "Store phone number digits"
+msgstr ""
 
 #: includes/views/admin/account-balance/class-account-balance-page.php:16
 msgid "Account Balance"
@@ -7684,6 +7578,167 @@ msgid ""
 "from the Extra Fields admin section."
 msgstr "Mergeți la secțiunea de setări <form-fields-settings-link> pentru a controla care din câmpurile standard apar și dacă utilizatorul este obligat să introducă o valoare pentru acestea. Daca aveți modulul de câmpuri suplimentare, restul câmpurilor poate fi configurat din secțiunea de administrare a câmpurilor suplimentare."
 
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:2
+#: templates/admin/import-listings-admin-page-import-form.tpl.php:2
+#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:2
+msgid "Import Listings"
+msgstr "Importă anunțuri"
+
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:6
+msgid "Configure"
+msgstr "Configurează"
+
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:13
+msgid "Define default values for the start date and end date columns?"
+msgstr ""
+
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:18
+msgid ""
+"The default values will be used if the CSV does not contain a value for the "
+"start date or end date columns."
+msgstr ""
+
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:41
+msgid "Date Format"
+msgstr "Format dată"
+
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:47
+msgid "US Date Only (mm/dd/year)"
+msgstr "Doar pentru data de tip US (mm/dd/year)"
+
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:51
+msgid "UK Date Only (dd/mm/year)"
+msgstr "Doar pentru dată de tip UK (dd/mm/year)"
+
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:56
+msgid "US Date and Time (mm/dd/year hh:mm:ss)"
+msgstr "Dată și timp US (mm/dd/year hh:mm:ss)"
+
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:60
+msgid "UK Date and Time (dd/mm/year hh:mm:ss)"
+msgstr "Dată și timp UK (mm/dd/year hh:mm:ss)"
+
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:65
+msgid "Separators Used in CSV"
+msgstr "Seprator folosit în fișierul CSV"
+
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:68
+msgid "Date Separator"
+msgstr "Separator dată"
+
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:73
+msgid "Time Separator"
+msgstr "Separator timp"
+
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:78
+msgid "Image Separator"
+msgstr "Separator imagine"
+
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:79
+msgid "(semi-colon)"
+msgstr "(punct și virgulă)"
+
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:85
+msgid "How to handle missing categories?"
+msgstr ""
+
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:89
+msgid "Create missing categories"
+msgstr ""
+
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:90
+msgid "Generate an error"
+msgstr ""
+
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:93
+msgid ""
+"Define whether you want to create missing categories or generate an error "
+"whenever a category in the CSV file is not found in the system."
+msgstr ""
+
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:98
+msgctxt "csv-importer"
+msgid "Assign listings to a user?"
+msgstr ""
+
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:103
+msgctxt "csv-importer"
+msgid "Assign listings to a user"
+msgstr ""
+
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:104
+msgid ""
+"If checked, listings will be assigned to the user specified in the CSV file "
+"or a default user that can be defined below."
+msgstr ""
+
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:110
+msgctxt "csv-importer"
+msgid "Define a default user?"
+msgstr ""
+
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:121
+msgid "Default user"
+msgstr "Utilizator implicit"
+
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:143
+msgid "Test Import"
+msgstr "Test import"
+
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:149
+#: templates/admin/import-listings-admin-page-import-form.tpl.php:33
+msgid ""
+"Press the button below to cancel the current import operation and discard "
+"the uploaded CSV file and ZIP file (if any). If you manually uploaded images"
+" to the directory specified in the Local Directory field, those won't be "
+"deleted."
+msgstr ""
+
+#: templates/admin/import-listings-admin-page-import-form.tpl.php:22
+msgid "Change Configuration & Restart"
+msgstr ""
+
+#: templates/admin/import-listings-admin-page-import-form.tpl.php:25
+msgid "Pause"
+msgstr "Pauză"
+
+#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:6
+#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:55
+msgid "Upload Source Files"
+msgstr ""
+
+#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:13
+msgid "CSV file"
+msgstr "Fișier CSV"
+
+#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:22
+msgid "Images source"
+msgstr ""
+
+#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:25
+msgid "Don't import images"
+msgstr ""
+
+#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:27
+msgid "ZIP file"
+msgstr ""
+
+#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:29
+msgid "Local directory"
+msgstr ""
+
+#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:34
+msgid "Zip file containing images"
+msgstr "Fișier ZIP conținând imagini"
+
+#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:43
+msgid "Local directory path"
+msgstr ""
+
+#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:48
+msgid "The relative path to a directory inside <uploads-directory-path>."
+msgstr ""
+
 #: templates/admin/listings-media-center.tpl.php:4
 msgid "Manage Links"
 msgstr "Administrează link-uri"
@@ -7786,6 +7841,10 @@ msgstr "sau"
 #: templates/components/media-uploader.tpl.php:10
 msgid "Select Files"
 msgstr "Selectați fișiere (imagini)"
+
+#: templates/components/payment-methods-list.tpl.php:3
+msgid "No payment methods available."
+msgstr "Nu este disponibilă nici o metodă de plată."
 
 #: templates/email/listing-is-about-to-expire-notification.plain.tpl.php:3
 msgid "Listing Details are below:"

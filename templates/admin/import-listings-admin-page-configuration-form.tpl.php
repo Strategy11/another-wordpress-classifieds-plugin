@@ -90,7 +90,7 @@
                                     <option value="0"<?php echo $form_data['create_missing_categories'] == "0" ? ' selected="selected"' : ''; ?>><?php echo esc_html( __( 'Generate an error', 'another-wordpress-classifieds-plugin' ) ); ?></option>
                                 </select>
                                 <?php echo awpcp_form_error( 'create_missing_categories', $form_errors ); ?>
-                                <p class="helptext"><?php echo __( 'Define wether you want to create missing categories or generate an error whenever a category in the CSV file is not found in the system.', 'another-wordpress-classifieds-plugin' ); ?></p>
+                                <p class="helptext"><?php echo __( 'Define whether you want to create missing categories or generate an error whenever a category in the CSV file is not found in the system.', 'another-wordpress-classifieds-plugin' ); ?></p>
                             </td>
                         </tr>
                         <tr>

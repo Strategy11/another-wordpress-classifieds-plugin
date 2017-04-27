@@ -545,7 +545,7 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
         $contact_name = $this->listing_renderer->get_contact_name( $ad );
         $contact_email = $this->listing_renderer->get_contact_email( $ad );
 
-        $recipient = "{$contact_name} <{$contact_email}>";
+        $recipient = awpcp_format_recipient_address( $contact_email, $contact_name );
         $template = AWPCP_DIR . '/frontend/templates/email-send-all-ad-access-keys.tpl.php';
 
         $message = new AWPCP_Email;

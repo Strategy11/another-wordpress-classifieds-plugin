@@ -100,9 +100,10 @@
             <label><?php echo esc_html( _x( 'Terms of service:', 'ad details form', 'another-wordpress-classifieds-plugin' ) ); ?><?php echo $required['terms-of-service'] ? '*' : ''; ?></label>
             <textarea class="awpcp-textarea" readonly="readonly" rows="5" cols="50"><?php echo esc_textarea( $text ); ?></textarea>
         <?php endif ?>
-            <br>
-            <input class="required" id="terms-of-service" type="checkbox" name="terms-of-service" value="1" />
-            <label class="inline" for="terms-of-service"><?php echo esc_html( _x( 'I agree to the terms of service', 'ad details form', 'another-wordpress-classifieds-plugin' ) ); ?></label>
+            <label class="awpcp-terms-of-service-checkbox awpcp-button">
+                <input class="required" id="terms-of-service" type="checkbox" name="terms-of-service" value="1" />
+                <span><?php echo esc_html( _x( 'I agree to the terms of service', 'ad details form', 'another-wordpress-classifieds-plugin' ) ); ?></span>
+            </label>
             <?php echo awpcp_form_error('terms-of-service', $errors) ?>
         </p>
         <?php endif ?>

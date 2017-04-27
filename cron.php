@@ -128,7 +128,7 @@ function doadexpirations() {
         $body.= "\n\n";
 
         if ( $notify_expiring ) {
-            $user_email = get_adposteremail( $ad->ID );
+            $user_email = awpcp_format_recipient_address( get_adposteremail( $ad->ad_id ) );
             if ( ! empty( $user_email ) ) {
                 awpcp_process_mail( $admin_sender_email, $user_email, $subject, $body, $nameofsite, $admin_recipient_email );
             }
@@ -240,7 +240,7 @@ function awpcp_ad_renewal_email() {
         $email = new AWPCP_Email();
 
         $email->from = $admin_sender_email;
-        $email->to = $listing_renderer->get_contact_email( $listing );
+        $email->to = awpcp_format_recipient_address( $listing_renderer->get_contact_email( $listing ) );
         $email->subject = $notification->render_subject( $listing );
         $email->body = $notification->render_body( $listing );
 

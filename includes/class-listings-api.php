@@ -441,7 +441,7 @@ class AWPCP_ListingsAPI {
         $listing_title = $this->listing_renderer->get_listing_title( $ad );
 
         $mail = new AWPCP_Email;
-        $mail->to[] = awpcp_format_email_address( $contact_email, $contact_name );
+        $mail->to[] = awpcp_format_recipient_address( $contact_email, $contact_name );
         $subject = get_awpcp_option( 'verifyemailsubjectline' );
         $message = get_awpcp_option( 'verifyemailbodymessage' );
         $mail->subject = str_replace( '$title', $listing_title, $subject );

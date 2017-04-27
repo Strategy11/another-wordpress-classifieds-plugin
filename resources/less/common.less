@@ -80,3 +80,25 @@
 .awpcp-bordered-box {
     border: 1px solid @box-border-color;
 }
+
+.awpcp-button {
+    .awpcp-bordered-box;
+    .awpcp-rounded-box;
+
+    background: #FDFDFD;
+    border-color: #CCC;
+    cursor: pointer;
+    display: block;
+    padding: 6px 8px 6px;
+
+    &:hover {
+        background: #fff;
+        border-color: #d0d0d0;
+    }
+
+    &:active {
+        background: #BBB;
+        border-color: #999;
+        color: #FFF;
+    }
+}
