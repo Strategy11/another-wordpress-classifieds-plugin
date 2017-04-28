@@ -33,7 +33,6 @@ class AWPCP_Categories_Switcher {
         ) );
 
         $hidden = array_filter( array(
-            'a' => 'browsecat',
             'results' => $this->request->param( 'results' ),
             'offset' => 0,
         ), 'strlen' );
