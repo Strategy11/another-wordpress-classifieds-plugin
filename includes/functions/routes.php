@@ -240,25 +240,23 @@ function awpcp_get_browse_category_url_from_id( $category_id ) {
 }
 
 function url_browsecategory( $category ) {
-    $use_seo_friendly_urls = get_awpcp_option( 'seofriendlyurls' );
     $permalinks = get_option('permalink_structure');
     
     $page_id = awpcp_get_page_id_by_ref( 'browse-ads-page-name' );
-    $base_url = get_permalink( $page_id, $use_seo_friendly_urls );
-
 	$cat_id = $category->term_id;
     $cat_slug = sanitize_title( $category->name );
 
-    if ( $use_seo_friendly_urls && $permalinks ) {
-        $pagename = sprintf( '%s/%s/%s', get_page_uri( $page_id ), $cat_id, $cat_slug );
-        $url_browsecats = str_replace( '%pagename%', $pagename, $base_url );
+    if ( get_awpcp_option( 'seofriendlyurls' ) && $permalinks ) {
+        $path = sprintf( '%s/%s/%s', get_page_uri( $page_id ), $cat_id, $cat_slug );
+        $url_browsecats = awpcp_get_url_with_page_permastruct( $path );
     } else {
         if (!empty($permalinks)) {
             $params = array('category_id' => "$cat_id/$cat_slug");
         } else {
             $params = array( 'category_id' => $cat_id );
         }
-        $url_browsecats = add_query_arg( urlencode_deep( $params ), $base_url );
+
+        $url_browsecats = add_query_arg( urlencode_deep( $params ), home_url( '?page_id=' . $page_id ) );
     }
 
     return $url_browsecats;

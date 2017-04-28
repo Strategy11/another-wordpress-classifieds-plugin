@@ -98,11 +98,14 @@ require_once(AWPCP_DIR . "/includes/exceptions.php");
 require( AWPCP_DIR . "/includes/interface-posts-meta-configuration.php" );
 
 require_once(AWPCP_DIR . "/includes/compatibility/compatibility.php");
+require_once( AWPCP_DIR . '/includes/compatibility/interface-plugin-integration.php' );
 require_once( AWPCP_DIR . "/includes/compatibility/class-add-meta-tags-plugin-integration.php" );
 require_once(AWPCP_DIR . "/includes/compatibility/class-all-in-one-seo-pack-plugin-integration.php");
 require( AWPCP_DIR . "/includes/compatibility/class-facebook-button-plugin-integration.php");
 require_once(AWPCP_DIR . "/includes/compatibility/class-facebook-plugin-integration.php");
 require_once( AWPCP_DIR . '/includes/compatibility/class-facebook-all-plugin-integration.php' );
+require_once( AWPCP_DIR . '/includes/compatibility/class-mashshare-plugin-integration.php' );
+require_once( AWPCP_DIR . '/includes/compatibility/class-plugin-integrations.php' );
 require( AWPCP_DIR . "/includes/compatibility/class-profile-builder-plugin-integration.php");
 require( AWPCP_DIR . "/includes/compatibility/class-profile-builder-login-form-implementation.php");
 require_once( AWPCP_DIR . "/includes/compatibility/class-yoast-wordpress-seo-plugin-integration.php" );
@@ -322,6 +325,7 @@ require_once( AWPCP_DIR . "/includes/class-exceptions.php" );
 require( AWPCP_DIR . "/includes/class-legacy-listings-metadata.php" );
 require_once( AWPCP_DIR . "/includes/class-listing-authorization.php" );
 require_once( AWPCP_DIR . "/includes/class-listing-payment-transaction-handler.php" );
+require_once( AWPCP_DIR . "/includes/class-renew-listing-payment-transaction-handler.php" );
 require_once( AWPCP_DIR . "/includes/class-listing-is-about-to-expire-notification.php" );
 require_once( AWPCP_DIR . "/includes/class-listings-collection.php" );
 require_once( AWPCP_DIR . "/includes/class-missing-pages-finder.php" );
@@ -556,6 +560,11 @@ class AWPCP {
 		$this->compatibility = new AWPCP_Compatibility();
 		$this->compatibility->load_plugin_integrations();
 
+        $this->plugin_integrations = new AWPCP_Plugin_Integrations();
+
+        add_action( 'activated_plugin', array( $this->plugin_integrations, 'maybe_enable_plugin_integration' ), 10, 2 );
+        add_action( 'deactivated_plugin', array( $this->plugin_integrations, 'maybe_disable_plugin_integration' ), 10, 2 );
+
         add_action( 'generate_rewrite_rules', array( $this, 'clear_categories_list_cache' ) );
 
         add_action( 'awpcp-configure-routes', array( $this->admin, 'configure_routes' ) );
@@ -568,7 +577,9 @@ class AWPCP {
         add_action( 'init', array( $custom_post_types, 'register_custom_image_sizes' ) );
         add_action( 'awpcp-installed', array( $custom_post_types, 'create_default_category' ) );
 
+        add_action( 'init', array( $this, 'register_plugin_integrations' ) );
         add_action( 'init', array( $this->compatibility, 'load_plugin_integrations_on_init' ) );
+        add_action( 'init', array( $this->plugin_integrations, 'load_plugin_integrations' ), AWPCP_LOWEST_FILTER_PRIORITY );
 		add_action( 'init', array($this, 'init' ));
 		add_action( 'init', array($this, 'register_custom_style'), AWPCP_LOWEST_FILTER_PRIORITY );
 
@@ -662,6 +673,10 @@ class AWPCP {
         add_action( 'awpcp-admin-settings-page--form-field-settings', array( $form_fields_settings, 'settings_header' ) );
 	}
 
+    public function register_plugin_integrations() {
+        $this->plugin_integrations->add_plugin_integration( 'mashsharer/mashshare.php', 'awpcp_mashshare_plugin_integration' );
+    }
+
 	public function init() {
         // load resources always required
         $facebook_cache_helper = awpcp_facebook_cache_helper();
@@ -690,6 +705,10 @@ class AWPCP {
             $listing_payment_transaction_handler = awpcp_listing_payment_transaction_handler();
             add_action( 'awpcp-transaction-status-updated', array( $listing_payment_transaction_handler, 'transaction_status_updated' ), 10, 2 );
             add_filter( 'awpcp-process-payment-transaction', array( $listing_payment_transaction_handler, 'process_payment_transaction' ) );
+
+            $handler = awpcp_renew_listing_payment_transaction_handler();
+            add_action( 'awpcp-transaction-status-updated', array( $handler, 'process_payment_transaction' ) );
+            add_filter( 'awpcp-process-payment-transaction', array( $handler, 'process_payment_transaction' ) );
 
             add_action( 'awpcp-place-ad', array( $facebook_cache_helper, 'on_place_ad' ) );
             add_action( 'awpcp_approve_ad', array( $facebook_cache_helper, 'on_approve_ad' ) );
@@ -787,6 +806,8 @@ class AWPCP {
         }
 
         if ( get_option( 'awpcp-installed-or-upgraded' ) ) {
+            $this->plugin_integrations->discover_supported_plugin_integrations();
+
             $roles_and_capabilities = awpcp_roles_and_capabilities();
             add_action( 'wp_loaded', array( $roles_and_capabilities, 'setup_roles_capabilities' ) );
 
@@ -1059,6 +1080,12 @@ class AWPCP {
         }
 
         $page_id = awpcp_get_page_id_by_ref( 'browse-categories-page-name' );
+
+        if ( 0 == $page_id ) {
+            delete_option( 'awpcp-store-browse-categories-page-information' );
+            return;
+        }
+
         $page = get_post( $page_id );
 
         if ( $page && $page->post_status == 'trash' ) {

@@ -53,6 +53,22 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $this->request = $request;
     }
 
+    protected function get_payments_api() {
+        if ( ! isset( $this->payments_api ) ) {
+            $this->payments_api = awpcp_payments_api();
+        }
+
+        return $this->payments_api;
+    }
+
+    protected function get_request() {
+        if ( ! isset( $this->request ) ) {
+            $this->request = awpcp_request();
+        }
+
+        return $this->request;
+    }
+
     public function get_current_action($default=null) {
         return $this->request->post( 'step', $this->request->param( 'step', $default ) );
     }
@@ -215,6 +231,10 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             default:
                 return $this->place_ad();
         }
+    }
+
+    protected function get_settings() {
+        return awpcp()->settings;
     }
 
     public function place_ad() {
@@ -759,6 +779,8 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             $data[ $name ] = $value;
         }
 
+        $data['ad_title'] = str_replace( array( "\r", "\n" ), '', $data['ad_title'] );
+        $data['ad_details'] = str_replace( "\r", '', $data['ad_details'] );
         $data['websiteurl'] = awpcp_maybe_add_http_to_url( $data['websiteurl'] );
 
         if (empty($data['user_id'])) {

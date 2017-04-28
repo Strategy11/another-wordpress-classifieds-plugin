@@ -66,6 +66,8 @@ class AWPCP_ListingRegionsFormField extends AWPCP_FormField {
             $payment_term = $this->listing_renderer->get_payment_term( $listing );
         } else if ( $transaction = $this->payments->get_transaction() ) {
             $payment_term = $this->payments->get_transaction_payment_term( $transaction );
+        } else {
+            $payment_term = null;
         }
 
         if ( ! is_null( $payment_term ) ) {
