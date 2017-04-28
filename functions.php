@@ -925,6 +925,16 @@ function awpcp_array_insert_after($array, $index, $key, $item) {
 }
 
 /**
+ * @since 3.7.6
+ */
+function awpcp_array_insert_first( $array, $item_key, $item ) {
+    $all_keys = array_keys( $array );
+    $first_key = array_shift( $all_keys );
+
+    return awpcp_array_insert( $array, $first_key, $item_key, $item, 'before' );
+}
+
+/**
  * Inserts a menu item after one of the existing items.
  *
  * This function should be used by plugins when handling
@@ -2917,4 +2927,31 @@ function awpcp_user_agent_header() {
     $user_agent = "WordPress %s / Another WordPress Classifieds Plugin %s";
     $user_agent = sprintf( $user_agent, get_bloginfo( 'version' ), $GLOBALS['awpcp_db_version'] );
     return $user_agent;
+}
+
+/**
+ * @since 3.7.6
+ */
+function awpcp_get_curl_info() {
+    if ( ! in_array( 'curl', get_loaded_extensions() ) ) {
+        return __( 'Not Installed', 'another-wordpress-classifieds-plugin' );
+    }
+
+    if ( ! function_exists( 'curl_version' ) ) {
+        return __( 'Installed', 'another-wordpress-classifieds-plugin' );
+    }
+
+    $curl_info = curl_version();
+
+    $output[] = "Version: {$curl_info['version']}";
+
+    if ( $curl_info['features'] & CURL_VERSION_SSL) {
+        $output[] = __( 'SSL Support: Yes.', 'another-wordpress-classifieds-plugin' );
+    } else {
+        $output[] = __( 'SSL Support: No.', 'another-wordpress-classifieds-plugin' );
+    }
+
+    $output[] = __( 'OpenSSL version:' ) . ' ' . $curl_info['ssl_version'];
+
+    return implode( '<br>', $output );
 }

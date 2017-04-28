@@ -113,7 +113,7 @@
 						</tr>
 						<tr>
 							<th scope="row"><?php _ex('cURL', 'debug page', 'another-wordpress-classifieds-plugin') ?></th>
-							<td><?php echo in_array('curl', get_loaded_extensions()) ? __('Installed', 'another-wordpress-classifieds-plugin') : __('Not Installed', 'another-wordpress-classifieds-plugin') ?></td>
+							<td><?php echo awpcp_get_curl_info(); ?></td>
 						</tr>
 						<tr>
 							<th scope="row"><?php _ex("cURL's alternate CA info (cacert.pem)", 'debug page', 'another-wordpress-classifieds-plugin') ?></th>

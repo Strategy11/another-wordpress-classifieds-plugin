@@ -239,6 +239,12 @@ class AWPCP_Installer {
         wp_clear_scheduled_hook('awpcp_ad_renewal_email_hook');
         wp_clear_scheduled_hook('awpcp-clean-up-payment-transactions');
 
+        // Remove roles
+        $roles = awpcp_roles_and_capabilities();
+        $role_names = $roles->get_administrator_roles_names();
+        array_map( array( $roles, 'remove_administrator_capabilities_from_role' ), $role_names );
+        $roles->remove_moderator_role();
+
         // TODO: use deactivate_plugins function
         // http://core.trac.wordpress.org/browser/branches/3.2/wp-admin/includes/plugin.php#L548
         $current = get_option('active_plugins');
