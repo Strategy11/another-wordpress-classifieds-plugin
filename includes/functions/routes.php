@@ -132,7 +132,7 @@ function awpcp_get_plugin_pages_refs() {
     $plugin_pages = array();
 
     foreach ( $plugin_pages_info as $page_ref => $page_info ) {
-        $plugin_pages[ $page_info['page_id'] ] = $page_ref;
+        $plugin_pages[ intval( $page_info['page_id'] ) ] = $page_ref;
     }
 
     return $plugin_pages;
@@ -146,7 +146,7 @@ function awpcp_get_plugin_pages_ids() {
 
     $plugin_pages = array();
     foreach ( $plugin_pages_info as $page_ref => $page_info ) {
-        $plugin_pages[ $page_ref ] = $page_info['page_id'];
+        $plugin_pages[ $page_ref ] = intval( $page_info['page_id'] );
     }
 
     return $plugin_pages;

@@ -241,7 +241,7 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
         $hidden = array('edit-hash' => $this->get_edit_hash($ad));
         $required = $this->get_required_fields();
 
-        if ( is_admin() ) {
+        if ( is_admin() && $this->should_show_upload_files_step( $ad ) ) {
             $manage_attachments = __( 'Manage Attachments', 'another-wordpress-classifieds-plugin' );
             $url = add_query_arg( array( 'action' => 'manage-images', 'id' => $ad->ID ), $this->url() );
             $link = sprintf( '<strong><a href="%s" title="%s">%s</a></strong>', esc_url( $url ), esc_attr( $manage_attachments ), esc_html( $manage_attachments ) );
@@ -391,6 +391,7 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
             ),
             'media_uploader_configuration' => array(
                 'listing_id' => $ad->ID,
+                'context' => 'edit-listing',
                 'nonce' => wp_create_nonce( 'awpcp-upload-media-for-listing-' . $ad->ID ),
                 'allowed_files' => $allowed_files,
             ),

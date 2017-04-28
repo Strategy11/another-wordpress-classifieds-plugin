@@ -259,6 +259,7 @@ require( AWPCP_DIR . '/includes/media/class-listing-file-handler.php' );
 require_once( AWPCP_DIR . '/includes/media/class-listing-upload-limits.php' );
 require_once( AWPCP_DIR . "/includes/media/class-media-manager-component.php" );
 require_once( AWPCP_DIR . "/includes/media/class-media-manager.php" );
+require_once( AWPCP_DIR . '/includes/media/class-media-uploaded-notification.php' );
 require_once( AWPCP_DIR . '/includes/media/class-media-uploader-component.php' );
 require_once( AWPCP_DIR . "/includes/media/class-messages-component.php" );
 require_once( AWPCP_DIR . '/includes/media/class-mime-types.php' );
@@ -358,6 +359,7 @@ require_once(AWPCP_DIR . "/admin/admin-panel.php");
 require_once(AWPCP_DIR . "/admin/user-panel.php");
 require_once( AWPCP_DIR . '/admin/class-delete-browse-categories-page-notice.php' );
 require_once( AWPCP_DIR . '/admin/class-dismiss-notice-ajax-handler.php' );
+require_once( AWPCP_DIR . '/admin/class-missing-paypal-merchant-id-setting-notice.php' );
 require_once( AWPCP_DIR . '/admin/class-page-name-monitor.php' );
 require_once( AWPCP_DIR . '/admin/class-admin-menu-builder.php' );
 require( AWPCP_DIR . "/admin/class-admin-page-url-builder.php");
@@ -725,6 +727,7 @@ class AWPCP {
                 add_action( 'admin_notices', array( awpcp_fee_payment_terms_notices(), 'dispatch' ) );
                 add_action( 'admin_notices', array( awpcp_credit_plans_notices(), 'dispatch' ) );
                 add_action( 'admin_notices', array( awpcp_delete_browse_categories_page_notice(), 'maybe_show_notice' ) );
+                add_action( 'admin_notices', array( awpcp_missing_paypal_merchant_id_setting_notice(), 'maybe_show_notice' ) );
 
                 // TODO: do we really need to execute this every time the plugin settings are saved?
                 $handler = awpcp_license_settings_update_handler();
@@ -1141,7 +1144,6 @@ class AWPCP {
 		wp_register_script('awpcp-jquery-validate', "{$js}/jquery-validate/all.js", array('jquery'), '1.10.0', true);
         wp_register_script( 'awpcp-knockout', "//ajax.aspnetcdn.com/ajax/knockout/knockout-3.1.0.js", array(), '3.1.0', true );
         wp_register_script( 'awpcp-momentjs-with-locales', '//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment-with-locales.min.js', array(), '2.10.6', true );
-        wp_register_script( 'awpcp-jquery-breakpoints', "{$js}/jquery-breakpoints/jquery-breakpoints.min.js", array('jquery'), $awpcp_db_version, true );
 
         wp_register_script(
             'awpcp-lightgallery',
@@ -1156,6 +1158,14 @@ class AWPCP {
             "{$vendors}/lightgallery/css/lightgallery.min.css",
             array(),
             '1.2.22'
+        );
+
+        wp_register_script(
+            'awpcp-breakpoints.js',
+            "{$vendors}/breakpoints.js/breakpoints.min.js",
+            array( 'jquery' ),
+            $awpcp_db_version,
+            true
         );
 
         wp_register_script(
@@ -1179,13 +1189,7 @@ class AWPCP {
 		wp_register_script(
             'awpcp',
             "{$js}/awpcp.min.js",
-            array(
-                'jquery',
-                'backbone',
-                'underscore',
-                'awpcp-knockout',
-                'awpcp-jquery-breakpoints'
-            ),
+            array( 'jquery', 'backbone', 'underscore', 'awpcp-knockout', 'awpcp-breakpoints.js' ),
             $awpcp_db_version,
             true
         );
@@ -1449,7 +1453,9 @@ class AWPCP {
 	}
 
     public function register_notification_handlers() {
-        add_action( 'awpcp-media-uploaded', 'awpcp_send_listing_media_uploaded_notifications', 10, 2 );
+        $media_uploaded_notification = awpcp_media_uploaded_notification();
+        add_action( 'awpcp-media-uploaded', array( $media_uploaded_notification, 'maybe_schedule_notification' ), 10, 2 );
+        add_action( 'awpcp-media-uploaded-notification', array( $media_uploaded_notification, 'send_notification' ) );
     }
 
     public function register_file_handlers( $file_handlers ) {
@@ -1745,9 +1751,7 @@ function awpcp_query_vars($query_vars) {
 
 		// misc
         'awpcp-custom',
-        'a',
 		"cid",
-		"i",
 		"id",
 		"layout",
 		"regionid",

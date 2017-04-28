@@ -82,27 +82,34 @@ class AWPCP_Settings_API {
 		$this->add_setting( $key, 'maxcharactersallowed', __( 'Maximum Ad details length', 'another-wordpress-classifieds-plugin' ), 'textfield', 750, __( 'Number of characters allowed in Ad details. Please note this is the default value and can be overwritten in Fees and Subscription Plans.', 'another-wordpress-classifieds-plugin' ) );
 		$this->add_setting( $key, 'words-in-listing-excerpt', __( 'Number of words in Ad excerpt', 'another-wordpress-classifieds-plugin' ), 'textfield', 20, __( 'Number of words shown by the Ad excerpt placeholder.', 'another-wordpress-classifieds-plugin' ) );
 		$this->add_setting( $key, 'hidelistingcontactname', __( 'Hide contact name to anonymous users?', 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, __( 'Hide listing contact name to anonymous (non logged in) users.', 'another-wordpress-classifieds-plugin' ) );
-		$this->add_setting( $key, 'displayadlayoutcode', __( 'Ad Listings page layout', 'another-wordpress-classifieds-plugin' ),
-							'textarea', '
-							<div class="$awpcpdisplayaditems $isfeaturedclass">
-								<div style="width:$imgblockwidth; padding:5px; float:left; margin-right:20px;">
-									$awpcp_image_name_srccode
-								</div>
-								<div style="width:50%; padding:5px; float:left;">
-									<h4>$title_link</h4>
-									$excerpt
-								</div>
-								<div style="padding:5px; float:left;">
-									$awpcpadpostdate
-									$awpcp_city_display
-									$awpcp_state_display
-									$awpcp_display_adviews
-									$awpcp_display_price
-									$awpcpextrafields
-								</div>
-								<span class="fixfloat"></span>
-							</div>
-							<div class="fixfloat"></div>', __( 'Modify as needed to control layout of ad listings page. Maintain code formatted as \$somecodetitle. Changing the code keys will prevent the elements they represent from displaying.', 'another-wordpress-classifieds-plugin' ) );
+
+		$this->add_setting(
+            $key,
+            'displayadlayoutcode',
+            __( 'Ad Listings page layout', 'another-wordpress-classifieds-plugin' ),
+            'textarea', '
+<div class="awpcp-listing-excerpt $awpcpdisplayaditems $isfeaturedclass" data-breakpoints-class-prefix="awpcp-listing-excerpt" data-breakpoints=\'{"tiny": [0,328], "small": [328,600], "medium": [600,999999]}\'>
+    <div class="awpcp-listing-excerpt-thumbnail">
+        $awpcp_image_name_srccode
+    </div>
+    <div class="awpcp-listing-excerpt-inner" style="w">
+        <h4 class="awpcp-listing-title">$title_link</h4>
+        <div class="awpcp-listing-excerpt-content">$excerpt</div>
+    </div>
+    <div class="awpcp-listing-excerpt-extra">
+        $awpcpadpostdate
+        $awpcp_city_display
+        $awpcp_state_display
+        $awpcp_display_adviews
+        $awpcp_display_price
+        $awpcpextrafields
+    </div>
+    <span class="fixfloat"></span>
+</div>
+<div class="fixfloat"></div>',
+            __( 'Modify as needed to control layout of ad listings page. Maintain code formatted as \$somecodetitle. Changing the code keys will prevent the elements they represent from displaying.', 'another-wordpress-classifieds-plugin' )
+        );
+
 		$this->add_setting( $key, 'awpcpshowtheadlayout', __( 'Single Ad page layout', 'another-wordpress-classifieds-plugin' ),
 							'textarea', '
 							<div id="showawpcpadpage">
@@ -213,9 +220,19 @@ class AWPCP_Settings_API {
 			__( 'Email address for PayPal payments (if running in pay mode and if PayPal is activated).', 'another-wordpress-classifieds-plugin' )
 		);
 
+        $this->add_setting(
+            $key,
+            'paypal_merchant_id',
+            __( 'PayPal Merchant ID', 'another-wordpress-classifieds-plugin' ),
+            'textfield',
+            '',
+            __( 'Merchant ID associated with the PayPal account that will receive the payments. Go to <a href="https://www.paypal.com/myaccount/settings/" target="_blank">https://www.paypal.com/myaccount/settings/</a> to obtain your Merchant ID.' )
+        );
+
 		$this->add_validation_rule( $key, 'paypalemail', 'required', array( 'depends' => 'activatepaypal' ) );
 		$this->add_validation_rule( $key, 'paypalemail', 'email', true, __( 'Please enter a valid email address.', 'another-wordpress-classifieds-plugin' ) );
 		$this->add_behavior( $key, 'paypalemail', 'enabledIf', 'activatepaypal' );
+        $this->add_behavior( $key, 'paypal_merchant_id', 'enabledIf', 'activatepaypal' );
 
 		$this->add_setting(
 			$key,

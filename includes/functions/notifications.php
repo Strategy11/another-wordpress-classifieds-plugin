@@ -220,46 +220,6 @@ function awpcp_get_messages_for_listing_awaiting_approval_notification( $listing
  * TODO: write tests for this function.
  * @since 3.4
  */
-function awpcp_send_listing_media_uploaded_notifications( $file, $listing ) {
-    $attachment_properties = awpcp_attachment_properties();
-    $listing_renderer = awpcp_listing_renderer();
-
-    if ( ! $attachment_properties->is_awaiting_approval( $file ) ) {
-        return false;
-    }
-
-    $referer = parse_url( $_SERVER['HTTP_REFERER'] );
-    $referer_vars = wp_parse_args( awpcp_array_data( 'query', '', $referer ) );
-
-    if ( ! isset( $referer_vars['page'] ) || ! in_array( $referer_vars['page'], array( 'awpcp-admin-listings', 'awpcp-panel' ) ) ) {
-        return false;
-    }
-
-    if ( ! isset( $referer_vars['action'] ) || $referer_vars['action'] != 'manage-images' ) {
-        return false;
-    }
-
-    $subject = __( 'There are images awaiting approval in listing <listing-title>', 'another-wordpress-classifieds-plugin' );
-    $subject = str_replace( '<listing-title>', $listing_renderer->get_listing_title( $listing ), $subject );
-
-    $message = __( 'The file <<file-name>> was added to listing "<listing-title>" and is awaiting administrator approval.', 'another-wordpress-classifieds-plugin' );
-    $message = str_replace( '<file-name>', $file->name, $message );
-    $message = str_replace( '<listing-title>', $listing_renderer->get_listing_title( $listing ), $message );
-
-    $mail = new AWPCP_Email;
-    $mail->to = array( awpcp_admin_email_to() );
-    $mail->subject = $subject;
-
-    $template = AWPCP_DIR . '/templates/email/listing-media-awaiting-approval.plain.tpl.php';
-
-    $mail->prepare( $template, compact( 'listing', 'file', 'message' ) );
-
-    return $mail->send();
-}
-
-/**
- * @since 3.4
- */
 function awpcp_send_listing_was_flagged_notification( $listing ) {
     $listing_renderer = awpcp_listing_renderer();
 

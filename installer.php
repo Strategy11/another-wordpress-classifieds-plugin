@@ -332,6 +332,9 @@ class AWPCP_Installer {
                 'set_flag_to_store_browse_categories_page_information',
                 'set_flag_to_maybe_fix_browse_categories_page_information',
             ),
+            '3.7.4' => array(
+                'set_flag_to_show_missing_paypal_merchant_id_setting_notice',
+            )
             '4.0' => array(
                 'create_old_listing_id_column_in_listing_regions_table',
                 'enable_upgrade_routine_to_migrate_listing_categories',
@@ -1133,6 +1136,10 @@ class AWPCP_Installer {
 
     private function set_flag_to_maybe_fix_browse_categories_page_information() {
         update_option( 'awpcp-maybe-fix-browse-categories-page-information', true, false );
+    }
+
+    private function set_flag_to_show_missing_paypal_merchant_id_setting_notice() {
+        update_option( 'awpcp-show-missing-paypal-merchant-id-setting-notice', true, false );
     }
 
     private function create_old_listing_id_column_in_listing_regions_table() {

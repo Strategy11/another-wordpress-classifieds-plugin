@@ -131,7 +131,7 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
 
         if (empty($data['awpcp_sender_email'])) {
             $errors['awpcp_sender_email'] = __('Please enter your email.', 'another-wordpress-classifieds-plugin');
-        } else if (!isValidEmailAddress($data['awpcp_sender_email'])) {
+        } else if ( ! awpcp_is_valid_email_address( $data['awpcp_sender_email'] ) ) {
             $errors['ad_contact_email'] = __("The email address you entered was not a valid email address. Please check for errors and try again.", 'another-wordpress-classifieds-plugin');
         }
 

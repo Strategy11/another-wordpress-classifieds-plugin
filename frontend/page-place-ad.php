@@ -163,7 +163,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         if (!is_null($transaction) && $transaction->get('context') != $this->context) {
             $page_name = awpcp_get_page_name('place-ad-page-name');
             $page_url = awpcp_get_page_url('place-ad-page-name');
-            $message = __('You are trying to post an Ad using a transaction created for a different purpose. Pelase go back to the <a href="%s">%s</a> page.<br>If you think this is an error please contact the administrator and provide the following transaction ID: %s', 'another-wordpress-classifieds-plugin');
+            $message = __('You are trying to post an Ad using a transaction created for a different purpose. Please go back to the <a href="%s">%s</a> page.<br>If you think this is an error please contact the administrator and provide the following transaction ID: %s', 'another-wordpress-classifieds-plugin');
             $message = sprintf($message, $page_url, $page_name, $transaction->id);
             return $this->render('content', awpcp_print_error($message));
         }
@@ -875,14 +875,15 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $form = $this->get_posted_details($form, $transaction);
         $form = array_merge( $form, $this->get_characters_allowed( $form['ad_id'], $transaction ) );
 
-        $form['regions-allowed'] = $this->get_regions_allowed( $form['ad_id'], $transaction );
-
         // pre-fill user information if we are placing a new Ad
         if ($transaction->user_id) {
             foreach ($this->get_user_info($transaction->user_id) as $field => $value) {
                 $form[$field] = empty($form[$field]) ? $value : $form[$field];
             }
         }
+
+        $form['regions-allowed'] = $this->get_regions_allowed( $form['ad_id'], $transaction );
+        $form['regions'] = array_slice( $form['regions'], 0, $form['regions-allowed'] );
 
         // pref-fill ad information if we are editing a new Ad
         if ($transaction->get('ad-id', false)) {
@@ -1245,23 +1246,24 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         }
     }
 
-    private function should_show_upload_files_step( $listing ) {
-        $allowed_files = $this->listing_upload_limits->get_listing_upload_limits( $listing );
-
-        foreach ( $allowed_files as $file_type => $limits ) {
-            if ( $limits['allowed_file_count'] >= $limits['uploaded_file_count'] ) {
-                return true;
-            }
-        }
-
-        return false;
+    protected function should_show_upload_files_step( $listing ) {
+        return $this->listing_upload_limits->are_uploads_allowed_for_listing( $listing );
     }
 
     public function get_images_config( $ad ) {
-        $payment_term = $this->listing_renderer->get_payment_term( $ad );
+        $upload_limits = $this->listing_upload_limits->get_listing_upload_limits( $ad );
 
-        $images_allowed = awpcp_get_property( $payment_term, 'images', get_awpcp_option( 'imagesallowedfree', 0 ) );
-        $images_uploaded = $this->attachments->count_attachments_of_type( 'image', array( 'post_parent' => $ad->ID ) );
+        if ( isset( $upload_limits['images']['allowed_file_count'] ) ) {
+            $images_allowed = $upload_limits['images']['allowed_file_count'];
+        } else {
+            $images_allowed = 0;
+        }
+
+        if ( isset( $upload_limits['images']['uploaded_file_count'] ) ) {
+            $images_uploaded = $upload_limits['images']['uploaded_file_count'];
+        } else {
+            $images_uploaded = 0;
+        }
 
         return array(
             'images_allowed' => $images_allowed,
@@ -1319,6 +1321,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             ),
             'media_uploader_configuration' => array(
                 'listing_id' => $ad->ID,
+                'context' => 'post-listing',
                 'nonce' => wp_create_nonce( 'awpcp-upload-media-for-listing-' . $ad->ID ),
                 'allowed_files' => $allowed_files,
             ),
@@ -1330,12 +1333,13 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
     public function upload_images_form( $ad, $params=array() ) {
         $show_preview = (bool) get_awpcp_option('show-ad-preview-before-payment');
         $pay_first = (bool) get_awpcp_option('pay-before-place-ad');
+        $payments_enabled = awpcp_get_option( 'freepay' ) == 1;
 
         extract( $params );
 
         if ( $show_preview ) {
             $next = _x( 'Preview Ad', 'upload listing images form', 'another-wordpress-classifieds-plugin' );
-        } else if ( $pay_first ) {
+        } else if ( $pay_first || ! $payments_enabled ) {
             $next = _x( 'Place Ad', 'upload listing images form', 'another-wordpress-classifieds-plugin' );
         } else {
             $next = _x( 'Checkout', 'upload listing images form', 'another-wordpress-classifieds-plugin' );

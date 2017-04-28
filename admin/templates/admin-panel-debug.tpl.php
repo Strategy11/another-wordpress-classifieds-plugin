@@ -69,10 +69,10 @@
 						</tr>
 					</thead>
 					<tbody>
-				<?php foreach($options as $name => $value): ?>
+				<?php foreach( $options as $name => $value ): ?>
 						<tr>
-							<th scope="row"><?php echo $name ?></th>
-							<td><?php echo esc_html($value) ?></td>
+                            <th scope="row"><?php echo $name; ?></th>
+                            <td><?php echo esc_html( $value ); ?></td>
 						</tr>
 				<?php endforeach ?>
 					</tbody>
@@ -125,7 +125,7 @@
 							<?php if ($response === 'INVALID'): ?>
 							<td><?php _ex('Working', 'debug page', 'another-wordpress-classifieds-plugin')	?></td>
 							<?php else: ?>
-							<td> 
+							<td>
 								<?php _ex( 'Not Working', 'debug page', 'another-wordpress-classifieds-plugin' ) ?><br/>
 								<?php foreach ( (array) $errors as $error ): ?>
 								<?php echo $error ?><br/>

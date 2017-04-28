@@ -1480,20 +1480,27 @@ function awpcp_print_messages() {
 function awpcp_print_form_errors( $errors ) {
     foreach ( $errors as $index => $error ) {
         if ( is_numeric( $index ) ) {
-            echo awpcp_print_message( $error, array( 'error' ) );
+            echo awpcp_print_message( $error, array( 'awpcp-error', 'notice', 'notice-error' ) );
         } else {
-            echo awpcp_print_message( $error, array( 'error', 'ghost' ) );
+            echo awpcp_print_message( $error, array( 'awpcp-error', 'notice', 'notice-error', 'ghost' ) );
         }
     }
 }
 
-function awpcp_print_message( $message, $class = array( 'awpcp-updated', 'updated' ) ) {
+function awpcp_print_message( $message, $class = array( 'awpcp-updated', 'notice', 'notice-info' ) ) {
 	$class = array_merge(array('awpcp-message'), $class);
 	return '<div class="' . join(' ', $class) . '"><p>' . $message . '</p></div>';
 }
 
 function awpcp_print_error($message) {
 	return awpcp_print_message($message, array('error'));
+}
+
+/**
+ * @since 3.7.4
+ */
+function awpcp_render_warning( $message ) {
+    return awpcp_print_message( $message, array( 'awpcp-warning', 'notice', 'notice-warning' ) );
 }
 
 function awpcp_validate_error($field, $errors) {
@@ -2602,13 +2609,6 @@ function awpcp_is_valid_email_address($email) {
 }
 
 /**
- * @deprecated since 3.0.2. @see awpcp_is_valid_email_address()
- */
-function isValidEmailAddress($email) {
-    return awpcp_is_valid_email_address( $email );
-}
-
-/**
  * @since 3.4
  */
 function awpcp_is_email_address_allowed( $email_address ) {
@@ -2822,7 +2822,10 @@ function awpcp_get_ad_share_info($id) {
     $info['url'] = url_showad($id);
     $info['title'] = stripslashes( $ad->post_title );
     $info['description'] = strip_tags( stripslashes( $ad->post_content ) );
-    $info['description'] = str_replace("\n", " ", $info['description']);
+
+    $info['description'] = str_replace( array( "\r", "\n", "\t" ), ' ', $info['description'] );
+    $info['description'] = preg_replace( '/ {2,}/', ' ', $info['description'] );
+    $info['description'] = trim( $info['description'] );
 
     if ( awpcp_utf8_strlen( $info['description'] ) > 300 ) {
         $info['description'] = awpcp_utf8_substr( $info['description'], 0, 300 ) . '...';
