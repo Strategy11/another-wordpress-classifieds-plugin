@@ -328,6 +328,10 @@ class AWPCP_Installer {
                 'create_phone_number_digits_column',
                 'enable_upgrade_task_to_store_phone_number_digits',
             ),
+            '3.7.2' => array(
+                'set_flag_to_store_browse_categories_page_information',
+                'set_flag_to_maybe_fix_browse_categories_page_information',
+            ),
             '4.0' => array(
                 'create_old_listing_id_column_in_listing_regions_table',
                 'enable_upgrade_routine_to_migrate_listing_categories',
@@ -1121,6 +1125,14 @@ class AWPCP_Installer {
 
         delete_option( 'awpcp-spnd-last-file-id' );
         $this->upgrade_tasks->enable_upgrade_task( 'awpcp-store-phone-number-digits' );
+    }
+
+    private function set_flag_to_store_browse_categories_page_information() {
+        update_option( 'awpcp-store-browse-categories-page-information', true, false );
+    }
+
+    private function set_flag_to_maybe_fix_browse_categories_page_information() {
+        update_option( 'awpcp-maybe-fix-browse-categories-page-information', true, false );
     }
 
     private function create_old_listing_id_column_in_listing_regions_table() {

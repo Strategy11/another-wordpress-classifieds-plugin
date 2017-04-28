@@ -171,14 +171,17 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $action = $this->get_current_action($default);
 
         if (!is_null($transaction) && $transaction->is_payment_completed()) {
-            if (!($transaction->was_payment_successful() || $transaction->payment_is_canceled())) {
+            if ( $transaction->payment_is_unknown() || $transaction->payment_is_invalid() || $transaction->payment_is_failed() ) {
                 $message = __('You can\'t post an Ad at this time because the payment associated with this transaction failed (see reasons below).', 'another-wordpress-classifieds-plugin');
                 $message = awpcp_print_message($message);
                 $message = $message . $this->payments->render_transaction_errors($transaction);
                 return $this->render('content', $message);
             }
 
-            $pay_first = get_awpcp_option('pay-before-place-ad');
+            if ( $transaction->payment_is_not_verified() ) {
+                $action = 'payment-completed';
+            }
+
             $forbidden = in_array($action, array('order', 'checkout'));
             if ( $forbidden ) {
                 $action = 'payment-completed';
@@ -1331,11 +1334,11 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         extract( $params );
 
         if ( $show_preview ) {
-            $next = __( 'Preview Ad', 'another-wordpress-classifieds-plugin' );
+            $next = _x( 'Preview Ad', 'upload listing images form', 'another-wordpress-classifieds-plugin' );
         } else if ( $pay_first ) {
-            $next = __( 'Place Ad', 'another-wordpress-classifieds-plugin' );
+            $next = _x( 'Place Ad', 'upload listing images form', 'another-wordpress-classifieds-plugin' );
         } else {
-            $next = __( 'Checkout', 'another-wordpress-classifieds-plugin' );
+            $next = _x( 'Checkout', 'upload listing images form', 'another-wordpress-classifieds-plugin' );
         }
 
         $params = array_merge( $params, array(

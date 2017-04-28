@@ -307,6 +307,7 @@ require_once( AWPCP_DIR . "/includes/wordpress/class-wordpress-scripts.php" );
 require_once( AWPCP_DIR . "/includes/wordpress/class-wordpress.php" );
 
 require( AWPCP_DIR . '/includes/class-authentication-redirection-handler.php' );
+require( AWPCP_DIR . '/includes/class-browse-categories-page-redirection-handler.php' );
 require_once( AWPCP_DIR . '/includes/class-edit-listing-url-placeholder.php' );
 require_once( AWPCP_DIR . '/includes/class-edit-listing-link-placeholder.php' );
 
@@ -354,6 +355,10 @@ require( AWPCP_DIR . "/installer.php" );
 // admin functions
 require( AWPCP_DIR . '/admin/interface-table-entry-action-handler.php' );
 require_once(AWPCP_DIR . "/admin/admin-panel.php");
+require_once(AWPCP_DIR . "/admin/user-panel.php");
+require_once( AWPCP_DIR . '/admin/class-delete-browse-categories-page-notice.php' );
+require_once( AWPCP_DIR . '/admin/class-dismiss-notice-ajax-handler.php' );
+require_once( AWPCP_DIR . '/admin/class-page-name-monitor.php' );
 require_once( AWPCP_DIR . '/admin/class-admin-menu-builder.php' );
 require( AWPCP_DIR . "/admin/class-admin-page-url-builder.php");
 require_once( AWPCP_DIR . '/admin/class-categories-admin-page.php' );
@@ -385,7 +390,6 @@ require_once( AWPCP_DIR . '/admin/pointers/class-drip-autoresponder-ajax-handler
 require_once( AWPCP_DIR . '/admin/pointers/class-drip-autoresponder.php' );
 require_once( AWPCP_DIR . '/admin/pointers/class-pointers-manager.php' );
 require_once( AWPCP_DIR . '/admin/profile/class-user-profile-contact-information-controller.php' );
-require_once( AWPCP_DIR . '/admin/class-page-name-monitor.php' );
 require_once( AWPCP_DIR . '/admin/form-fields/class-form-fields-admin-page.php' );
 require_once( AWPCP_DIR . '/admin/form-fields/class-form-fields-table-factory.php' );
 require_once( AWPCP_DIR . '/admin/form-fields/class-form-fields-table.php' );
@@ -720,6 +724,7 @@ class AWPCP {
                 // load resources required in admin screens only, visible to admin users only.
                 add_action( 'admin_notices', array( awpcp_fee_payment_terms_notices(), 'dispatch' ) );
                 add_action( 'admin_notices', array( awpcp_credit_plans_notices(), 'dispatch' ) );
+                add_action( 'admin_notices', array( awpcp_delete_browse_categories_page_notice(), 'maybe_show_notice' ) );
 
                 // TODO: do we really need to execute this every time the plugin settings are saved?
                 $handler = awpcp_license_settings_update_handler();
@@ -738,6 +743,7 @@ class AWPCP {
             add_action( 'template_redirect', array( $helper, 'maybe_redirect_frontend_request' ) );
 
             add_action( 'template_redirect', array( awpcp_authentication_redirection_handler(), 'maybe_redirect' ) );
+            add_action( 'template_redirect', array( awpcp_browse_categories_page_redirection_handler(), 'maybe_redirect' ) );
 
             $filter = awpcp_wordpress_status_header_filter();
             add_filter( 'status_header', array( $filter, 'filter_status_header' ), 10, 4 );
@@ -753,6 +759,19 @@ class AWPCP {
 			awpcp_create_pages( __( 'AWPCP', 'another-wordpress-classifieds-plugin' ) );
 			$this->flush_rewrite_rules = true;
 		}
+
+        // TODO: Where is this option set?
+        if ( get_option( 'awpcp-enable-fix-media-mime-type-upgrde' ) ) {
+            awpcp_fix_empty_media_mime_type_upgrade_routine()->run();
+        }
+
+        if ( get_option( 'awpcp-store-browse-categories-page-information' ) ) {
+            $this->store_browse_categories_page_information();
+        }
+
+        if ( get_option( 'awpcp-maybe-fix-browse-categories-page-information' ) ) {
+            $this->maybe_fix_browse_categories_page_information();
+        }
 
 		if ( $this->flush_rewrite_rules || get_option( 'awpcp-flush-rewrite-rules' ) ) {
             add_action( 'wp_loaded', 'flush_rewrite_rules' );
@@ -827,6 +846,9 @@ class AWPCP {
 
         $handler = awpcp_import_listings_ajax_handler();
         add_action( 'wp_ajax_awpcp-import-listings', array( $handler, 'ajax' ) );
+
+        $handler = awpcp_dismiss_notice_ajax_handler();
+        add_action( 'wp_ajax_awpcp-dismiss-notice', array( $handler, 'ajax' ) );
 
         $ajax_request_handler = awpcp_ajax_request_handler( $this->router->get_routes() );
         $this->router->register_ajax_request_handler( $ajax_request_handler );
@@ -977,7 +999,7 @@ class AWPCP {
 					'url' => 'http://awpcp.com/downloads/subscriptions-module/ ?ref=panel',
 					'installed' => defined( 'AWPCP_SUBSCRIPTIONS_MODULE' ),
 					'version' => 'AWPCP_SUBSCRIPTIONS_MODULE_DB_VERSION',
-					'required' => '4.0-dev-1',
+					'required' => '3.6.4-dev-1'
 				),
                 'videos' => array(
                     'name' => __( 'Videos', 'another-wordpress-classifieds-plugin' ),
@@ -1024,6 +1046,73 @@ class AWPCP {
 
 		return true;
 	}
+
+    private function store_browse_categories_page_information() {
+        $page_info = get_option( 'awpcp-browse-categories-page-information' );
+
+        if ( isset( $page_info['page_id'] ) ) {
+            delete_option( 'awpcp-store-browse-categories-page-information' );
+            return;
+        }
+
+        $page_id = awpcp_get_page_id_by_ref( 'browse-categories-page-name' );
+        $page = get_post( $page_id );
+
+        if ( $page && $page->post_status == 'trash' ) {
+            $desired_post_slug = get_post_meta( $page_id, '_wp_desired_post_slug', true );
+            $page_uri = get_page_uri( $page_id );
+
+            if ( $desired_post_slug ) {
+                $page_uri = str_replace( $page->post_name, $desired_post_slug, $page_uri );
+            } else {
+                $page_uri = str_replace( '__trashed', '', $page_uri );
+            }
+        } elseif ( $page ) {
+            $page_uri = get_page_uri( $page_id );
+        } else {
+            $page_uri = '';
+        }
+
+        $page_info = array( 'page_id' => $page_id, 'page_uri' => $page_uri );
+
+        update_option( 'awpcp-browse-categories-page-information', $page_info, false );
+        update_option( 'awpcp-show-delete-browse-categories-page-notice' , true, false );
+
+        delete_option( 'awpcp-store-browse-categories-page-information' );
+
+    }
+
+    private function maybe_fix_browse_categories_page_information() {
+        $page_info = get_option( 'awpcp-browse-categories-page-information' );
+
+        if ( empty( $page_info['page_uri'] ) ) {
+            delete_option( 'awpcp-maybe-fix-browse-categories-page-information' );
+            return;
+        }
+
+        if ( ! string_ends_with( $page_info['page_uri'], '__trashed' ) ) {
+            delete_option( 'awpcp-maybe-fix-browse-categories-page-information' );
+            return;
+        }
+
+        $page = get_post( $page_info['page_id'] );
+
+        if ( $page && $page->post_status == 'trash' ) {
+            $desired_post_slug = get_post_meta( $page->ID, '_wp_desired_post_slug', true );
+        } else {
+            $desired_post_slug = '';
+        }
+
+        if ( $desired_post_slug ) {
+            $page_info['page_uri'] = str_replace( $page->post_name, $desired_post_slug, $page_info['page_uri'] );
+        } else {
+            $page_info['page_uri'] = str_replace( '__trashed', '', $page_info['page_uri'] );
+        }
+
+        update_option( 'awpcp-browse-categories-page-information', $page_info, false );
+
+        delete_option( 'awpcp-maybe-fix-browse-categories-page-information' );
+    }
 
 	/**
 	 * A good place to register all AWPCP standard scripts that can be
@@ -1341,7 +1430,7 @@ class AWPCP {
 	 */
 	public function register_payment_methods($payments) {
 		if (get_awpcp_option('activatepaypal')) {
-			$payments->register_payment_method(new AWPCP_PayPalStandardPaymentGateway);
+            $payments->register_payment_method( awpcp_paypal_standard_payment_gateway() );
 		}
 
 		if (get_awpcp_option('activate2checkout')) {
@@ -1629,7 +1718,7 @@ function awpcp_pages_with_rewrite_rules() {
 		'show-ads-page-name',
 		'reply-to-ad-page-name',
         'edit-ad-page-name',
-		'browse-categories-page-name',
+		'browse-ads-page-name',
 		'payment-thankyou-page-name',
 		'payment-cancel-page-name'
 	);
@@ -1655,6 +1744,8 @@ function awpcp_query_vars($query_vars) {
 		'awpcp-hash',
 
 		// misc
+        'awpcp-custom',
+        'a',
 		"cid",
 		"i",
 		"id",

@@ -150,7 +150,16 @@ class AWPCP_ListingsAPI {
         $listing_id = $this->wordpress->update_post( $post_fields, true );
 
         if ( is_wp_error( $listing_id ) ) {
-            $message = __( 'There was an unexpected error trying to save the listing details. Please try again or contact an administrator.', 'another-wordpress-classifieds-plugin' );
+            $error_message = $listing_id->get_error_message();
+
+            if ( $error_message ) {
+                $message = __( 'There was an error trying to save your listing details:', 'another-wordpress-classifieds-plugin' );
+                $message.= '<br/><br/>';
+                $message.= $error_message;
+            } else {
+                $message = __( 'There was an unexpected error trying to save your listing details. Please try again or contact an administrator.', 'another-wordpress-classifieds-plugin' );
+            }
+
             throw new AWPCP_Exception( $message );
         }
 
@@ -354,13 +363,8 @@ class AWPCP_ListingsAPI {
         $this->wordpress->delete_post_meta( $listing->ID, '_awpcp_renew_email_sent' );
         $this->wordpress->update_post_meta( $listing->ID, '_awpcp_renewed_date', current_time( 'mysql' ) );
 
-        // if Ad is disabled lets see if we can enable it
-        $should_enable_listing = awpcp_should_enable_existing_listing( $listing );
-
-        if ( $should_enable_listing && $this->listing_renderer->is_disabled( $listing ) ) {
+        if ( $this->listing_renderer->is_disabled( $listing ) ) {
             $this->enable_listing( $listing );
-        } else if ( ! $should_enable_listing ) {
-            $this->wordpress->delete_post_meta( $listing->ID, '_awpcp_disabled_date' );
         }
 
         return true;

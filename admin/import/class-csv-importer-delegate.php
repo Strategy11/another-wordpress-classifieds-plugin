@@ -143,8 +143,20 @@ class AWPCP_CSV_Importer_Delegate {
         // DO NOT USE awpcp_array_data BECAUSE IT WILL TREAT '0' AS AN EMPTY VALUE
         $raw_value = isset( $row_data[ $column_name ] ) ? $row_data[ $column_name ] : false;
 
-        if ( isset( $this->parsed_data[ $column_name ] ) ) {
-            return $this->parsed_data[ $column_name ];
+        // $this->images_imported += count( $images );
+        // // save created images to be deleted later, if test mode is on
+        // array_splice( $images_created, 0, 0, $images );
+
+        $sql = 'INSERT INTO ' . AWPCP_TABLE_ADS . ' ';
+        $sql.= '( ' . implode( ', ', $columns ) . ' ) VALUES ( ' . implode( ', ', $placeholders ) . ' ) ';
+
+        $sql = $this->db->prepare( $sql, $values);
+
+        if ( $this->import_session->is_test_mode_enabled() ) {
+            $inserted_id = 5;
+        } else {
+            $this->db->query( $sql );
+            $inserted_id = $this->db->insert_id;
         }
 
         switch ( $column_name ) {
@@ -420,13 +432,13 @@ class AWPCP_CSV_Importer_Delegate {
         $date_formats['uk_date_time'] = $date_formats['uk_date'];
 
         if (in_array($date_time_format, array('us_date_time', 'uk_date_time')))
-            $suffix = join($time_separator, array('%H', '%M', '%S'));
+            $suffix = implode($time_separator, array('%H', '%M', '%S'));
         else
             $suffix = '';
 
         $date = null;
         foreach ($date_formats[$date_time_format] as $_format) {
-            $_format = trim(sprintf("%s %s", join($date_separator, $_format), $suffix));
+            $_format = trim(sprintf("%s %s", implode($date_separator, $_format), $suffix));
             $parsed = awpcp_strptime( $val, $_format );
             if ($parsed && empty($parsed['unparsed'])) {
                 $date = $parsed;
@@ -543,4 +555,141 @@ class AWPCP_CSV_Importer_Delegate {
 
         do_action( 'awpcp-listing-imported', $listing, $listing_data );
     }
+
+    private function get_extra_fields() {
+        if ( is_array( $this->extra_fields ) ) {
+            return $this->extra_fields;
+        }
+
+        $this->extra_fields = array();
+
+        if ( function_exists( 'awpcp_get_extra_fields' ) ) {
+            foreach ( awpcp_get_extra_fields() as $field ) {
+                $this->extra_fields[ $field->field_name ] = $field;
+            }
+        }
+
+        return $this->extra_fields;
+    }
+}
+
+/**
+ * Validate extra field values and return value.
+ *
+ * @param name        field name
+ * @param value       field value in CSV file
+ * @param row         row number in CSV file
+ * @param validate    type of validation
+ * @param type        type of input field (Input Box, Textarea Input, Checkbox,
+ *                                         SelectMultiple, Select, Radio Button)
+ * @param options     list of options for fields that accept multiple values
+ * @param enforce     true if the Ad that's being imported belongs to the same category
+ *                    that the extra field was assigned to, or if the extra field was
+ *                    not assigned to any category.
+ *                    required fields may be empty if enforce is false.
+ */
+function awpcp_validate_extra_field( $name, $value, $validate, $type, $options, $enforce, &$errors ) {
+    $validation_errors = array();
+    $serialize = false;
+
+    $list = null;
+
+    switch ( $type ) {
+        case 'Input Box':
+        case 'Textarea Input':
+            // nothing special here, proceed with validation
+            break;
+
+        case 'Checkbox':
+        case 'Select Multiple':
+            // value can be any combination of items from options list
+            $msg = sprintf( __( "The value for Extra Field %s's is not allowed. Allowed values are: %%s", 'another-wordpress-classifieds-plugin' ), $name );
+            $list = explode( ';', $value );
+            $serialize = true;
+
+        case 'Select':
+        case 'Radio Button':
+            $list = is_array( $list ) ? $list : array( $value );
+
+            if ( ! isset( $msg ) ) {
+                $msg = sprintf( __( "The value for Extra Field %s's is not allowed. Allowed value is one of: %%s", 'another-wordpress-classifieds-plugin' ), $name, $row );
+            }
+
+            // only attempt to validate if the field is required (has validation)
+            foreach ( $list as $item ) {
+                if ( empty( $item ) ) {
+                    continue;
+                }
+                if ( ! in_array( $item, $options ) ) {
+                    $msg = sprintf( $msg, implode( ', ', $options ) );
+                    $validation_errors[] = $msg;
+                }
+            }
+
+            // extra fields multiple values are stored serialized
+            if ( $serialize ) {
+                $value = maybe_serialize( $list );
+            }
+
+            break;
+
+        default:
+            break;
+    }
+
+    if ( ! empty( $validation_errors ) ) {
+        array_splice( $errors, count( $errors ), 0, $validation_errors );
+        return false;
+    }
+
+    $list = is_array( $list ) ? $list : array( $value );
+
+    foreach ( $list as $k => $item ) {
+        if ( ! $enforce && empty( $item ) ) {
+            continue;
+        }
+
+        switch ( $validate ) {
+            case 'missing':
+                if ( empty( $value ) ) {
+                    $validation_errors[] = "A value for Extra Field $name is required.";
+                }
+                break;
+
+            case 'url':
+                if ( ! isValidURL( $item ) ) {
+                    $validation_errors[] = "The value for Extra Field $name must be a valid URL.";
+                }
+                break;
+
+            case 'email':
+                $regex = "^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$";
+                if ( ! eregi( $regex, $item ) ) {
+                    $validation_errors[] = "The value for Extra Field $name must be a valid email address.";
+                }
+                break;
+
+            case 'numericdeci':
+                if ( ! is_numeric( $item ) ) {
+                    $validation_errors[] = "The value for Extra Field $name must be a number.";
+                }
+                break;
+
+            case 'numericnodeci':
+                if ( ! ctype_digit( $item ) ) {
+                    $validation_errors[ $name ] = "The value for Extra Field $name must be an integer number.";
+                }
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    if ( ! empty( $validation_errors ) ) {
+        array_splice( $errors, count( $errors ), 0, $validation_errors );
+        return false;
+    }
+
+    return $value;
 }

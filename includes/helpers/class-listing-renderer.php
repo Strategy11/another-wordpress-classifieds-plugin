@@ -277,17 +277,16 @@ class AWPCP_ListingRenderer {
     }
 
     public function get_view_listing_url( $listing ) {
-        $seoFriendlyUrls = get_awpcp_option('seofriendlyurls');
-        $permastruc = get_option('permalink_structure');
+        $use_seo_friendly_urls = get_awpcp_option( 'seofriendlyurls' );
 
         $awpcp_showad_pageid = awpcp_get_page_id_by_ref('show-ads-page-name');
-        $base_url = get_permalink($awpcp_showad_pageid);
+        $base_url = get_permalink( $awpcp_showad_pageid, $use_seo_friendly_urls );
         $url = false;
 
         $params = array( 'id' => $listing->ID );
 
-        if($seoFriendlyUrls && isset($permastruc) && !empty($permastruc)) {
-            $url = sprintf( '%s/%s', trim( $base_url, '/' ), $listing->ID );
+        if ( $use_seo_friendly_urls && get_option('permalink_structure') ) {
+            $pagename = sprintf( '%s/%s', get_page_uri( $awpcp_showad_pageid ), $ad_id );
 
             $region = $this->get_first_region( $listing );
 
@@ -314,8 +313,8 @@ class AWPCP_ListingRenderer {
             }
 
             // always append a slash (RSS module issue)
-            $url = sprintf( "%s%s", trailingslashit( $url ), join( '/', array_filter( $parts ) ) );
-            $url = user_trailingslashit($url);
+            $pagename = sprintf( "%s%s", trailingslashit( $pagename ), join( '/', array_filter( $parts ) ) );
+            $url = str_replace( '%pagename%', $pagename, $base_url );
         } else {
             $base_url = user_trailingslashit($base_url);
             $url = add_query_arg( urlencode_deep( $params ), $base_url );
