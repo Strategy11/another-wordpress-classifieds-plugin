@@ -419,10 +419,9 @@ function awpcp_get_edit_listing_direct_url( $listing ) {
 function awpcp_get_edit_listing_page_url_with_listing_id( $listing ) {
     $use_seo_friendly_urls = get_awpcp_option( 'seofriendlyurls' );
 
-    $page_id = awpcp_get_page_id_by_ref( 'edit-ad-page-name' );
-    $base_url = get_permalink( $page_id, $use_seo_friendly_urls );
-
-    if ( get_option( 'permalink_structure' ) && $use_seo_friendly_urls ) {
+    if ( $use_seo_friendly_urls && get_option( 'permalink_structure' ) ) {
+        $page_id = awpcp_get_page_id_by_ref( 'edit-ad-page-name' );
+        $base_url = get_permalink( $page_id, true );
         $pagename = sprintf( '%s/%d', get_page_uri( $page_id ), $listing->ID );
         $url = str_replace( '%pagename%', $pagename, $base_url );
     } else {

@@ -286,7 +286,7 @@ class AWPCP_ListingRenderer {
         $params = array( 'id' => $listing->ID );
 
         if ( $use_seo_friendly_urls && get_option('permalink_structure') ) {
-            $pagename = sprintf( '%s/%s', get_page_uri( $awpcp_showad_pageid ), $ad_id );
+            $pagename = sprintf( '%s/%s', get_page_uri( $awpcp_showad_pageid ), $listing->ID );
 
             $region = $this->get_first_region( $listing );
 

@@ -551,6 +551,11 @@ class AWPCP_ListingsCollection {
         return $clauses;
     }
 
+    /**
+     * TODO: Add support for verified, have_media_awaiting_approval.
+     * TODO: What other parameters are missing?
+     * TODO: Remove unused methods.
+     */
     private function add_conditions_for_custom_query_parameters( $query ) {
         $query = $this->add_category_condition( $query );
         $query = $this->add_contact_condition( $query );

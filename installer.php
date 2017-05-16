@@ -340,7 +340,7 @@ class AWPCP_Installer {
             ),
             '3.7.4' => array(
                 'set_flag_to_show_missing_paypal_merchant_id_setting_notice',
-            )
+            ),
             '4.0' => array(
                 'create_old_listing_id_column_in_listing_regions_table',
                 'enable_upgrade_routine_to_migrate_listing_categories',

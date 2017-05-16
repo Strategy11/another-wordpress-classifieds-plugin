@@ -53,22 +53,6 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $this->request = $request;
     }
 
-    protected function get_payments_api() {
-        if ( ! isset( $this->payments_api ) ) {
-            $this->payments_api = awpcp_payments_api();
-        }
-
-        return $this->payments_api;
-    }
-
-    protected function get_request() {
-        if ( ! isset( $this->request ) ) {
-            $this->request = awpcp_request();
-        }
-
-        return $this->request;
-    }
-
     public function get_current_action($default=null) {
         return $this->request->post( 'step', $this->request->param( 'step', $default ) );
     }
@@ -921,7 +905,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
     }
 
     public function details_step() {
-        $transaction = $this->get_transaction(!get_awpcp_option('pay-before-place-ad'));
+        $transaction = $this->get_transaction( ! $this->get_settings()->get_option( 'pay-before-place-ad' ) );
 
         $errors = array();
         $form = array();
@@ -1181,7 +1165,6 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
             $payment_term_id = $transaction->get( 'payment-term-id' );
             $payment_term_type = $transaction->get( 'payment-term-type' );
-            $payment_term = $this->payments->get_payment_term( $payment_term_id, $payment_term_type );
 
             $amount_paid = $transaction->get_totals();
 
@@ -1312,7 +1295,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
         // see if we can move to the next step
         $skip = ! $this->should_show_upload_files_step( $ad );
-        $skip = $skip || awpcp_post_param( 'submit-no-images', false );
+        $skip = $skip || $this->request->post( 'submit-no-images', false );
         $skip = $skip || $images_allowed == 0;
 
         $show_preview = (bool) get_awpcp_option('show-ad-preview-before-payment');

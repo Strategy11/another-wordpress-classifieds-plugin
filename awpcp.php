@@ -360,7 +360,6 @@ require( AWPCP_DIR . "/installer.php" );
 // admin functions
 require( AWPCP_DIR . '/admin/interface-table-entry-action-handler.php' );
 require_once(AWPCP_DIR . "/admin/admin-panel.php");
-require_once(AWPCP_DIR . "/admin/user-panel.php");
 require_once( AWPCP_DIR . '/admin/class-delete-browse-categories-page-notice.php' );
 require_once( AWPCP_DIR . '/admin/class-dismiss-notice-ajax-handler.php' );
 require_once( AWPCP_DIR . '/admin/class-missing-paypal-merchant-id-setting-notice.php' );
@@ -412,6 +411,9 @@ require_once( AWPCP_DIR . '/admin/import/class-import-listings-ajax-handler.php'
 require_once( AWPCP_DIR . "/admin/upgrade/class-manual-upgrade-admin-page.php" );
 require_once( AWPCP_DIR . '/admin/user-panel.php' );
 require( AWPCP_DIR . '/admin/listings/class-listings-table-search-by-phone-condition.php' );
+
+// required later to make sure dependencies are already loaded
+require_once(AWPCP_DIR . "/admin/user-panel.php");
 
 // frontend functions
 require_once(AWPCP_DIR . "/frontend/placeholders.php");

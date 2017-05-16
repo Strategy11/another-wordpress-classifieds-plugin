@@ -483,8 +483,8 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
 
         $errors = array();
         $form = array(
-            'ad_email' => $this->get_request()->post( 'ad_email' ),
-            'attempts' => (int) $this->get_request()->post( 'attempts', 0 ),
+            'ad_email' => $this->request->post( 'ad_email' ),
+            'attempts' => (int) $this->request->post( 'attempts', 0 ),
         );
 
         if ( $form['attempts'] == 0 && $this->get_settings()->get_option( 'enable-user-panel' ) == 1 ) {
@@ -534,11 +534,11 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
         }
 
         foreach ( $ads as $listing ) {
-            if ( ! $listing->verified ) {
+            if ( ! $this->listing_renderer->is_verified( $listing ) ) {
                 continue;
             }
 
-            if ( ! in_array( $listing->payment_status, $accepted_payment_statuses, true ) ) {
+            if ( ! in_array( $this->listing_renderer->get_payment_status( $listing ), $accepted_payment_statuses, true ) ) {
                 continue;
             }
 
@@ -565,10 +565,6 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
         } else {
             return $this->enter_email_and_key_step(false);
         }
-    }
-
-    protected function find_listings_by_email( $email_address ) {
-        return AWPCP_Ad::find_by_email( $email_address );
     }
 
     public function send_access_keys($ads, &$errors=array()) {

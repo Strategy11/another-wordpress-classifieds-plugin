@@ -143,22 +143,6 @@ class AWPCP_CSV_Importer_Delegate {
         // DO NOT USE awpcp_array_data BECAUSE IT WILL TREAT '0' AS AN EMPTY VALUE
         $raw_value = isset( $row_data[ $column_name ] ) ? $row_data[ $column_name ] : false;
 
-        // $this->images_imported += count( $images );
-        // // save created images to be deleted later, if test mode is on
-        // array_splice( $images_created, 0, 0, $images );
-
-        $sql = 'INSERT INTO ' . AWPCP_TABLE_ADS . ' ';
-        $sql.= '( ' . implode( ', ', $columns ) . ' ) VALUES ( ' . implode( ', ', $placeholders ) . ' ) ';
-
-        $sql = $this->db->prepare( $sql, $values);
-
-        if ( $this->import_session->is_test_mode_enabled() ) {
-            $inserted_id = 5;
-        } else {
-            $this->db->query( $sql );
-            $inserted_id = $this->db->insert_id;
-        }
-
         switch ( $column_name ) {
             case 'username':
                 $parsed_value = $this->parse_username_column( $raw_value, $row_data );
