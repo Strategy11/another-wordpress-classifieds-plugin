@@ -374,7 +374,6 @@ function awpcp_get_menu_items() {
 
     $user_is_allowed_to_place_ads = ! get_awpcp_option( 'onlyadmincanplaceads' ) || awpcp_current_user_is_admin();
     $show_place_ad_item = $user_is_allowed_to_place_ads && get_awpcp_option( 'show-menu-item-place-ad' );
-    $show_edit_ad_item = $user_is_allowed_to_place_ads && get_awpcp_option( 'show-menu-item-edit-ad' );
     $show_browse_ads_item = get_awpcp_option( 'show-menu-item-browse-ads' );
     $show_search_ads_item = get_awpcp_option( 'show-menu-item-search-ads' );
 
@@ -384,7 +383,7 @@ function awpcp_get_menu_items() {
         $items['post-listing'] = array( 'url' => $place_ad_url, 'title' => esc_html( $place_ad_page_name ) );
     }
 
-    if ( $show_edit_ad_item ) {
+    if ( awpcp_should_show_edit_listing_menu() ) {
         $items['edit-listing'] = awpcp_get_edit_listing_menu_item();
     }
 
@@ -420,6 +419,22 @@ function awpcp_get_menu_items() {
     $items = apply_filters( 'awpcp_menu_items', $items );
 
     return $items;
+}
+
+function awpcp_should_show_edit_listing_menu() {
+    if ( get_awpcp_option( 'onlyadmincanplaceads' ) && ! awpcp_current_user_is_admin() ) {
+        return false;
+    }
+
+    if ( ! get_awpcp_option( 'show-menu-item-edit-ad' ) ) {
+        return false;
+    }
+
+    if ( awpcp_query()->is_edit_listing_page() && awpcp_request()->get_current_listing_id() ) {
+        return false;
+    }
+
+    return true;
 }
 
 function awpcp_get_edit_listing_menu_item() {
