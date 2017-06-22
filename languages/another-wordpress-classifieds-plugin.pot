@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2017-05-08 16:43:54+00:00\n"
+"POT-Creation-Date: 2017-06-22 01:58:48+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -301,8 +301,8 @@ msgid "Payment Status"
 msgstr ""
 
 #: admin/admin-panel-listings-table.php:188
-#: admin/admin-panel-listings-table.php:254
-#: admin/admin-panel-listings-table.php:431
+#: admin/admin-panel-listings-table.php:265
+#: admin/admin-panel-listings-table.php:441
 msgid "Featured"
 msgstr ""
 
@@ -346,94 +346,94 @@ msgstr ""
 msgid "Expired"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:252
+#: admin/admin-panel-listings-table.php:256
 msgid "Ads Awaiting Approval"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:253
+#: admin/admin-panel-listings-table.php:260
 msgid "Images Awaiting Approval"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:255
+#: admin/admin-panel-listings-table.php:266
 msgid "Flagged"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:256
+#: admin/admin-panel-listings-table.php:267
 msgid "Incomplete"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:257
+#: admin/admin-panel-listings-table.php:268
 msgid "Unverified"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:258
+#: admin/admin-panel-listings-table.php:269
 msgid "Completed"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:269
+#: admin/admin-panel-listings-table.php:279
 msgid "Search by"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:271
+#: admin/admin-panel-listings-table.php:281
 msgid "Ad ID"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:272
+#: admin/admin-panel-listings-table.php:282
 msgid "Ad Title"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:273
+#: admin/admin-panel-listings-table.php:283
 msgid "Keyword"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:274 frontend/page-show-ad.php:58
+#: admin/admin-panel-listings-table.php:284 frontend/page-show-ad.php:58
 #: frontend/placeholders.php:573
 msgid "Location"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:275 frontend/placeholders.php:664
+#: admin/admin-panel-listings-table.php:285 frontend/placeholders.php:664
 msgid "Phone"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:278
+#: admin/admin-panel-listings-table.php:288
 msgid "Payer Email"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:281
+#: admin/admin-panel-listings-table.php:291
 #: frontend/templates/page-place-ad-details-step.tpl.php:36
 #: frontend/templates/page-place-ad-order-step.tpl.php:43
 msgid "User"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:322
+#: admin/admin-panel-listings-table.php:332
 msgctxt "admin listings table"
 msgid "Filter"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:367
+#: admin/admin-panel-listings-table.php:377
 msgid "View Ad."
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:395
+#: admin/admin-panel-listings-table.php:405
 msgid "Mark as Verified"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:404
+#: admin/admin-panel-listings-table.php:414
 msgid "Disabled"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:404
+#: admin/admin-panel-listings-table.php:414
 #: templates/components/media-manager.tpl.php:19
 #: templates/components/media-manager.tpl.php:58
 #: templates/components/media-manager.tpl.php:100
 msgid "Enabled"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:418
+#: admin/admin-panel-listings-table.php:428
 msgid "Mark as Paid"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:431
+#: admin/admin-panel-listings-table.php:441
 msgid "Not Featured"
 msgstr ""
 
@@ -2966,18 +2966,23 @@ msgstr ""
 
 #: frontend/templates/email-reply-to-ad-admin.tpl.php:6
 #: frontend/templates/email-reply-to-ad-user.tpl.php:6
-msgid "Contacting about"
+msgid "Contact name: %s"
 msgstr ""
 
-#: frontend/templates/email-reply-to-ad-admin.tpl.php:9
-#: frontend/templates/email-reply-to-ad-user.tpl.php:9
-msgctxt "reply email"
-msgid "Message"
+#: frontend/templates/email-reply-to-ad-admin.tpl.php:7
+#: frontend/templates/email-reply-to-ad-user.tpl.php:7
+msgid "Contact email: %s"
+msgstr ""
+
+#: frontend/templates/email-reply-to-ad-admin.tpl.php:10
+#: frontend/templates/email-reply-to-ad-user.tpl.php:10
+msgid "Contacting about"
 msgstr ""
 
 #: frontend/templates/email-reply-to-ad-admin.tpl.php:13
 #: frontend/templates/email-reply-to-ad-user.tpl.php:13
-msgid "Reply to"
+msgctxt "reply email"
+msgid "Message"
 msgstr ""
 
 #: frontend/templates/email-send-ad-access-key.tpl.php:3
@@ -3876,12 +3881,11 @@ msgid "There were no ads found"
 msgstr ""
 
 #: includes/functions/deprecated.php:143
-#: templates/frontend/category-selector.tpl.php:12
 msgid "Change Category"
 msgstr ""
 
 #: includes/functions/deprecated.php:151
-#: templates/frontend/category-selector.tpl.php:17
+#: templates/frontend/category-selector.tpl.php:15
 msgid "Category: "
 msgstr ""
 
