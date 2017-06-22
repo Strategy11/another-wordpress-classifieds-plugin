@@ -249,14 +249,24 @@ class AWPCP_Listings_Table extends WP_List_Table {
         $views = array(
             'new' => array( __( 'New', 'another-wordpress-classifieds-plugin' ), $this->page->url( array( 'filterby' => 'new', 'filter' => true ) ) ),
             'expired' => array( __( 'Expired', 'another-wordpress-classifieds-plugin' ), $this->page->url( array( 'filterby' => 'expired', 'filter' => true ) ) ),
-            'awaiting-approval' => array( __( 'Ads Awaiting Approval', 'another-wordpress-classifieds-plugin' ), $this->page->url( array( 'filterby' => 'awaiting-approval', 'filter' => true ) ) ),
-            'images-awaiting-approval' => array( __( 'Images Awaiting Approval', 'another-wordpress-classifieds-plugin' ), $this->page->url( array( 'filterby' => 'images-awaiting-approval', 'filter' => true ) ) ),
-            'featured-ads' => array(__('Featured', 'another-wordpress-classifieds-plugin'), $this->page->url(array('filterby' => 'is-featured', 'filter' => true))),
-            'flagged-ads'  => array(__('Flagged', 'another-wordpress-classifieds-plugin'), $this->page->url(array('filterby' => 'flagged', 'filter' => true))),
-            'incomplete-listings' => array( __( 'Incomplete', 'another-wordpress-classifieds-plugin' ), $this->page->url( array( 'filterby' => 'incomplete', 'filter' => true ) ) ),
-            'non-verified-ads' => array( __( 'Unverified', 'another-wordpress-classifieds-plugin' ), $this->page->url( array( 'filterby' => 'non-verified', 'filter' => true ) ) ),
-            'completed' => array( __( 'Completed', 'another-wordpress-classifieds-plugin' ), $this->page->url( array( 'filterby' => 'completed', 'filter' => false ) ) ),
         );
+
+        if ( awpcp_current_user_is_moderator() ) {
+            $views['awaiting-approval'] = array(
+                __( 'Ads Awaiting Approval', 'another-wordpress-classifieds-plugin' ),
+                $this->page->url( array( 'filterby' => 'awaiting-approval', 'filter' => true ) )
+            );
+            $views['images-awaiting-approval'] = array(
+                __( 'Images Awaiting Approval', 'another-wordpress-classifieds-plugin' ),
+                $this->page->url( array( 'filterby' => 'images-awaiting-approval', 'filter' => true ) )
+            );
+        }
+
+        $views['featured-ads'] = array( __( 'Featured', 'another-wordpress-classifieds-plugin' ), $this->page->url( array( 'filterby' => 'is-featured', 'filter' => true ) ) );
+        $views['flagged-ads'] = array( __( 'Flagged', 'another-wordpress-classifieds-plugin' ), $this->page->url( array( 'filterby' => 'flagged', 'filter' => true ) ) );
+        $views['incomplete-listings'] = array( __( 'Incomplete', 'another-wordpress-classifieds-plugin' ), $this->page->url( array( 'filterby' => 'incomplete', 'filter' => true ) ) );
+        $views['non-verified-ads'] = array( __( 'Unverified', 'another-wordpress-classifieds-plugin' ), $this->page->url( array( 'filterby' => 'non-verified', 'filter' => true ) ) );
+        $views['completed'] = array( __( 'Completed', 'another-wordpress-classifieds-plugin' ), $this->page->url( array( 'filterby' => 'completed', 'filter' => false ) ) );
 
         return $this->page->links($views, $selected);
     }
