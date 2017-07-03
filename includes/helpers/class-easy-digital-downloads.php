@@ -46,18 +46,15 @@ class AWPCP_EasyDigitalDownloads {
         $response = $this->request( $params );
 
         if ( ! isset( $response->license ) ) {
-            $exception = $this->exceptions->easy_digital_downloads_exception( 'Missing License Status parameter' );
-            throw $exception;
+            throw new AWPCP_Easy_Digital_Downloads_Exception( __( 'Missing License Status parameter', 'another-wordpress-classifieds-plugin' ) );
         }
 
         if ( $response->license === 'failed' ) {
-            $exception = $this->exceptions->easy_digital_downloads_exception( 'License Status parameter was set to <strong>Failed</strong>' );
-            throw $exception;
+            throw new AWPCP_Easy_Digital_Downloads_Exception( __( 'License Status parameter was set to <strong>Failed</strong>', 'another-wordpress-classifieds-plugin' ) );
         }
 
         if ( $response->license === 'item_name_mismatch' ) {
-            $exception = $this->exceptions->easy_digital_downloads_exception( 'item_name_mismatch' );
-            throw $exception;
+            throw new AWPCP_Easy_Digital_Downloads_Exception( __( 'item_name_mismatch', 'another-wordpress-classifieds-plugin' ) );
         }
 
         return $response;
