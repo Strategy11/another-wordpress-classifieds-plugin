@@ -2945,10 +2945,10 @@ function awpcp_get_server_ip_address() {
     $body = json_decode( wp_remote_retrieve_body( $response ) );
 
     if ( ! isset( $body->origin ) ) {
-        return null;
+        return $ip_address;
     }
 
-    return $body->origin;
+    $ip_address = $body->origin;
 
     if ( $ip_address ) {
         set_transient( 'awpcp-server-ip-address', $ip_address, HOUR_IN_SECONDS );
