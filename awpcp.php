@@ -4,7 +4,7 @@
  * Plugin Name: Another WordPress Classifieds Plugin (AWPCP)
  * Plugin URI: http://www.awpcp.com
  * Description: AWPCP - A plugin that provides the ability to run a free or paid classified ads service on your WP site. <strong>!!!IMPORTANT!!!</strong> It's always a good idea to do a BACKUP before you upgrade AWPCP!
- * Version: 3.7.8dev1
+ * Version: 3.7.8dev2
  * Author: D. Rodenbaugh
  * License: GPLv2 or any later version
  * Author URI: http://www.skylineconsult.com
@@ -889,6 +889,13 @@ class AWPCP {
                     'installed' => defined( 'AWPCP_MARK_AS_SOLD_MODULE' ),
                     'version' => 'AWPCP_MARK_AS_SOLD_MODULE_DB_VERSION',
                     'required' => '3.6',
+                ),
+                'payfast' => array(
+                    'name' => __( 'PayFast', 'another-wordpress-classifieds-plugin' ),
+                    'url' => 'http://awpcp.com/downloads/regions-module/?ref=panel',
+                    'installed' => defined( 'AWPCP_PAYFAST_MODULE_DB_VERSION' ),
+                    'version' => 'AWPCP_PAYFAST_MODULE_DB_VERSION',
+                    'required' => '1.0',
                 ),
 				'paypal-pro' => array(
 					'name' => __(  'PayPal Pro', 'another-wordpress-classifieds-plugin'  ),
