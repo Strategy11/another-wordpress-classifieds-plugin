@@ -890,6 +890,13 @@ class AWPCP {
                     'version' => 'AWPCP_MARK_AS_SOLD_MODULE_DB_VERSION',
                     'required' => '3.6',
                 ),
+                'payfast' => array(
+                    'name' => __( 'PayFast', 'another-wordpress-classifieds-plugin' ),
+                    'url' => 'http://awpcp.com/downloads/regions-module/?ref=panel',
+                    'installed' => defined( 'AWPCP_PAYFAST_MODULE_DB_VERSION' ),
+                    'version' => 'AWPCP_PAYFAST_MODULE_DB_VERSION',
+                    'required' => '1.0',
+                ),
 				'paypal-pro' => array(
 					'name' => __(  'PayPal Pro', 'another-wordpress-classifieds-plugin'  ),
 					'url' => 'http://awpcp.com/downloads/paypal-pro-module/?ref=user-panel',
