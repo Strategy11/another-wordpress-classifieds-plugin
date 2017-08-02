@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2017-07-18 19:23:02+00:00\n"
+"POT-Creation-Date: 2017-08-02 15:07:13+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2676,38 +2676,32 @@ msgid ""
 "administrator."
 msgstr ""
 
-#: frontend/page-search-ads.php:31 frontend/page-search-ads.php:68
-msgid ""
-"You did not enter a keyword or phrase to search for. You must at the very "
-"least provide a keyword or phrase to search for."
-msgstr ""
-
-#: frontend/page-search-ads.php:72
+#: frontend/page-search-ads.php:61
 msgid ""
 "You have entered a keyword that is too short to search on. Search keywords "
 "must be at least 3 letters in length. Please try another term."
 msgstr ""
 
-#: frontend/page-search-ads.php:76
+#: frontend/page-search-ads.php:65
 msgid ""
 "You have entered an invalid minimum price. Make sure your price contains "
 "numbers only. Please do not include currency symbols."
 msgstr ""
 
-#: frontend/page-search-ads.php:80
+#: frontend/page-search-ads.php:69
 msgid ""
 "You have entered an invalid maximum price. Make sure your price contains "
 "numbers only. Please do not include currency symbols."
 msgstr ""
 
-#: frontend/page-search-ads.php:98
+#: frontend/page-search-ads.php:87
 msgid ""
 "Use the form below to select the fields on which you want to search. Adding "
 "more fields makes for a more specific search. Using fewer fields will make "
 "for a broader search."
 msgstr ""
 
-#: frontend/page-search-ads.php:166
+#: frontend/page-search-ads.php:155
 msgid "Return to Search"
 msgstr ""
 

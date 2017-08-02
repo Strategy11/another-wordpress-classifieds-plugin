@@ -26,11 +26,6 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
         wp_enqueue_script('awpcp-page-search-listings');
         wp_enqueue_script('awpcp-extra-fields');
 
-        $awpcp = awpcp();
-        $awpcp->js->localize( 'page-search-ads', array(
-            'keywordphrase' => __( 'You did not enter a keyword or phrase to search for. You must at the very least provide a keyword or phrase to search for.', 'another-wordpress-classifieds-plugin' )
-        ) );
-
         return $this->_dispatch();
     }
 
@@ -62,12 +57,6 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
     }
 
     protected function validate_posted_data($data, &$errors=array()) {
-        $filtered = array_filter($data);
-
-        if (empty($filtered)) {
-            $errors[] = __("You did not enter a keyword or phrase to search for. You must at the very least provide a keyword or phrase to search for.", 'another-wordpress-classifieds-plugin');
-        }
-
         if (!empty($data['query']) && strlen($data['query']) < 3) {
             $errors['query'] = __("You have entered a keyword that is too short to search on. Search keywords must be at least 3 letters in length. Please try another term.", 'another-wordpress-classifieds-plugin');
         }
