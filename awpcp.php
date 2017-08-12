@@ -177,6 +177,10 @@ require_once(AWPCP_DIR . "/includes/models/payment-transaction.php");
 require_once( AWPCP_DIR . "/includes/db/class-database-column-creator.php" );
 require( AWPCP_DIR . "/includes/db/class-database-helper.php" );
 
+require( AWPCP_DIR . '/includes/ui/class-classifieds-bar.php' );
+require( AWPCP_DIR . '/includes/ui/class-classifieds-search-bar-component.php' );
+require( AWPCP_DIR . '/includes/ui/class-classifieds-menu-component.php' );
+
 require_once( AWPCP_DIR . "/includes/views/class-ajax-handler.php" );
 require_once( AWPCP_DIR . "/includes/views/class-base-page.php" );
 require_once( AWPCP_DIR . "/includes/views/class-file-action-ajax-handler.php" );

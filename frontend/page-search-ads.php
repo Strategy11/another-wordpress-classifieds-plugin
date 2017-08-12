@@ -10,9 +10,17 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
 
     public function __construct($page='awpcp-search-ads', $title=null) {
         parent::__construct($page, is_null($title) ? __('Search Ads', 'another-wordpress-classifieds-plugin') : $title);
+        
+        $this->classifieds_bar_components = array( 'search_bar' => false );
     }
 
     public function get_current_action($default='searchads') {
+        $action = awpcp_request_param( 'awpcp-action', null );
+
+        if ( $action ) {
+            return $action;
+        }
+
         return awpcp_request_param('a', $default);
     }
 
@@ -95,7 +103,7 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
         }
 
         $action_url = awpcp_current_url();
-        $hidden = array_merge( $url_params, array( 'a' => 'dosearch' ) );
+        $hidden = array_merge( $url_params, array( 'awpcp-action' => 'dosearch' ) );
 
         $params = compact( 'action_url', 'ui', 'form', 'hidden', 'messages', 'errors' );
 
@@ -142,12 +150,14 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
             'show_category_selector' => false,
             'show_pagination' => true,
 
+            'classifieds_bar_components' => $this->classifieds_bar_components,
+
             'before_list' => $this->build_return_link(),
         ) );
     }
 
     public function build_return_link() {
-        $params = array_merge(stripslashes_deep($_REQUEST), array('a' => 'searchads'));
+        $params = array_merge( stripslashes_deep( $_REQUEST ), array( 'awpcp-action' => 'searchads' ) );
         $href = add_query_arg(urlencode_deep($params), awpcp_current_url());
 
         $return_link = '<div class="awpcp-return-to-search-link awpcp-clearboth"><a href="<link-url>"><link-text></a></div>';
