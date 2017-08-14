@@ -1899,31 +1899,4 @@ function awpcp_redirect_canonical($redirect_url, $requested_url) {
 }
 add_filter('redirect_canonical', 'awpcp_redirect_canonical', 10, 2);
 
-
-function wp_debug_util_get_hook_handlers( $hook_name ) {
-    global $wp_filter;
-    $hook_handlers = array();
-    foreach ( $wp_filter[ $hook_name ] as $priority => $handlers ) {
-        foreach ( $handlers as $handler ) {
-            if ( is_array( $handler['function'] ) && is_callable( $handler['function'] ) ) {
-                $class = new ReflectionClass( get_class( $handler['function'][0] ) );
-                $method = new ReflectionMethod( $class->getName(), $handler['function'][1] );
-                $hook_handlers[] = array(
-                    'priority' => $priority,
-                    'handler' => $class->getName() . ( $method->isStatic() ? '::' : '->' ) . $method->getName(),
-                    'file' => $class->getFileName(),
-                    'line' => $method->getStartLine(),
-                );
-            } else {
-                $function = new ReflectionFunction( $handler['function'] );
-                $hook_handlers[] = array(
-                    'priority' => $priority,
-                    'handler' => $handler['function'],
-                    'file' => $function->getFileName(),
-                    'line' => $function->getStartLine(),
-                );
-            }
-        }
-    }
-    return $hook_handlers;
 }

@@ -23,6 +23,7 @@ class AWPCP_Admin {
 		add_action('wp_ajax_disable-widget-modification-notice', array($this, 'disable_widget_modification_notice'));
 
 		add_action('admin_init', array($this, 'init'));
+        add_action( 'admin_init', array( awpcp()->router, 'on_admin_init' ) );
 		add_action('admin_enqueue_scripts', array($this, 'scripts'));
 		add_action('admin_menu', array($this, 'menu'));
 

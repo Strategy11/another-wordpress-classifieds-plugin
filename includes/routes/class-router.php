@@ -54,10 +54,26 @@ class AWPCP_Router {
         }
     }
 
-    public function on_admin_load() {
+    public function on_admin_init() {
         $this->current_page = $this->get_active_admin_page();
         $this->request_handler = $this->get_request_handler( $this->current_page );
 
+        $this->init_admin_page( $this->current_page, $this->request_handler );
+    }
+
+    public function init_admin_page( $admin_page, $request_handler ) {
+        if ( ! is_object( $admin_page ) ) {
+            return;
+        }
+
+        if ( method_exists( $request_handler, 'on_admin_init' ) ) {
+            $request_handler->on_admin_init();
+        }
+
+        do_action( 'awpcp-admin-init-' . $admin_page->slug );
+    }
+
+    public function on_admin_load() {
         $this->load_admin_page( $this->current_page, $this->request_handler );
     }
 
@@ -142,9 +158,7 @@ class AWPCP_Router {
     }
 
     public function on_admin_dispatch() {
-        if ( is_admin() ) {
-            $this->handle_admin_page( $this->current_page, $this->request_handler );
-        }
+        $this->handle_admin_page( $this->current_page, $this->request_handler );
     }
 
     private function handle_admin_page( $admin_page, $request_handler ) {
