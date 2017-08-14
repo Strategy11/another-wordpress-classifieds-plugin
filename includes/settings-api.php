@@ -188,9 +188,18 @@ class AWPCP_Settings_API {
 		$this->add_setting( $key, 'hyperlinkurlsinadtext', __( 'Make URLs in ad text clickable', 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, '' );
 		$this->add_setting( $key, 'visitwebsitelinknofollow', __( 'Add no follow to links in Ads', 'another-wordpress-classifieds-plugin' ), 'checkbox', 1, '' );
 
-		// Section: Ad/Listings - Menu Items
+        // Section: Ad/Listings - Classifieds Bar
 
-		$key = $this->add_section( $group, __( 'Menu Items', 'another-wordpress-classifieds-plugin' ), 'menu-items', 60, array( $this, 'section' ) );
+        $key = $this->add_section( $group, __( 'Classifieds Bar', 'another-wordpress-classifieds-plugin' ), 'classifieds-bar', 60, array( $this, 'section' ) );
+
+        $this->add_setting(
+            $key,
+            'show-classifieds-bar',
+            __( 'Show Classifieds Bar', 'another-wordpress-classifieds-plugin' ),
+            'checkbox',
+            1,
+            ''
+        );
 
 		$this->add_setting( $key, 'show-menu-item-place-ad', __( 'Show Place Ad menu item', 'another-wordpress-classifieds-plugin' ), 'checkbox', 1, '' );
 		$this->add_setting( $key, 'show-menu-item-edit-ad', __( 'Show Edit Ad menu item', 'another-wordpress-classifieds-plugin' ), 'checkbox', 1, '' );

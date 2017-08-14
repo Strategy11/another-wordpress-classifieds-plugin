@@ -119,7 +119,10 @@ class AWPCP_ListingsCollection {
     }
 
     private function make_enabled_listings_query( $query ) {
-        return $this->make_valid_listings_query( array_merge( $query, array( 'disabled' => false ) ) );
+        return $this->make_valid_listings_query( array_merge( $query, array(
+            'disabled' => false,
+            'start_date' => array( 'compare' => '<', 'value' => current_time( 'mysql' ) ),
+        ) ) );
     }
 
     private function make_valid_listings_query( $query ) {

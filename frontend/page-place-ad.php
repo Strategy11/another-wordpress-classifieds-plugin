@@ -20,6 +20,8 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
     public function __construct($page='awpcp-place-ad', $title=null) {
         parent::__construct($page, $title);
 
+        $this->show_menu_items = false;
+        
         $this->authorization = awpcp_listing_authorization();
         $this->listing_upload_limits = awpcp_listing_upload_limits();
     }
