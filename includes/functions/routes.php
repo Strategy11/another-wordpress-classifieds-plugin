@@ -241,7 +241,7 @@ function awpcp_get_browse_category_url_from_id( $category_id ) {
 
 function url_browsecategory( $category ) {
     $permalinks = get_option('permalink_structure');
-    
+
     $page_id = awpcp_get_page_id_by_ref( 'browse-ads-page-name' );
 	$cat_id = $category->term_id;
     $cat_slug = sanitize_title( $category->name );
@@ -529,7 +529,12 @@ function awpcp_get_admin_panel_url() {
  * @since 3.0.2
  */
 function awpcp_get_admin_settings_url( $group = false ) {
-    return add_query_arg( array( 'page' => 'awpcp-admin-settings', 'g' => urlencode( $group ) ), admin_url( 'admin.php' ) );
+    $params = array(
+        'page' => 'awpcp-admin-settings',
+        'g' => urlencode( $group ),
+    );
+
+    return add_query_arg( array_filter( $params, 'strlen' ), admin_url( 'admin.php' ) );
 }
 
 /**

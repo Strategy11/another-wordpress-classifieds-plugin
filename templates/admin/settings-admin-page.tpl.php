@@ -1,4 +1,11 @@
-			<?php awpcp_print_messages(); ?>
+<?php
+/**
+ * Template for the Settings admin page.
+ *
+ * @package AWPCP\Admin\Pages
+ */
+
+awpcp_print_messages(); ?>
 
 			<h2 class="nav-tab-wrapper">
 			<?php foreach ($groups as $g): ?>
@@ -42,3 +49,24 @@
 				</p>
 				<?php endif; ?>
 			</form>
+
+            <hr/>
+
+            <?php
+                $heading_params = array(
+                    'content' => esc_html__( 'Import and Export Settings', 'another-wordpress-classifieds-plugin' ),
+                );
+
+                echo awpcp_html_admin_second_level_heading( $heading_params ); // WPCS: XSS Ok.
+            ?>
+
+            <ul>
+                <li>
+                    <a href="<?php echo esc_url( $export_settings_url ); ?>"><?php echo esc_html__( 'Export Settings', 'another-wordpress-classifieds-plugin' ); ?></a>
+                    <br/><span><?php echo esc_html__( 'Download a JSON file with the values for all settings.', 'another-wordpress-classifieds-plugin' ); ?></span>
+                </li>
+                <li>
+                    <a href="<?php echo esc_url( $import_settings_url ); ?>"><?php echo esc_html__( 'Import Settings', 'another-wordpress-classifieds-plugin' ); ?></a>
+                    <br/><span><?php echo esc_html__( 'Update the plugin settings from a previously generated JSON file.', 'another-wordpress-classifieds-plugin' ); ?></span>
+                </li>
+            </ul>

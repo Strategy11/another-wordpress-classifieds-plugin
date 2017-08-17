@@ -124,6 +124,22 @@ class AWPCP_Admin {
             10
         );
 
+        $router->add_admin_section(
+            'awpcp.php::awpcp-admin-settings',
+            'export-settings',
+            'awpcp-action',
+            'export-settings',
+            'awpcp_export_settings_admin_page'
+        );
+
+        $router->add_admin_section(
+            'awpcp.php::awpcp-admin-settings',
+            'import-settings',
+            'awpcp-action',
+            'import-settings',
+            'awpcp_import_settings_admin_page'
+        );
+
         $router->add_admin_subpage(
             $parent_page,
             __( 'Listings', 'another-wordpress-classifieds-plugin' ),

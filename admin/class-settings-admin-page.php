@@ -1,23 +1,51 @@
 <?php
+/**
+ * @package AWPCP\Admin\Pages
+ */
 
+/**
+ * Constructor function for AWPCP_SettingsAdminPage
+ */
 function awpcp_settings_admin_page() {
 	return new AWPCP_SettingsAdminPage( awpcp()->settings, awpcp_request() );
 }
 
+/**
+ * Admin page that allows administrators to configure the plugin.
+ */
 class AWPCP_SettingsAdminPage {
 
+    /**
+     * @var object
+     */
 	private $settings;
+
+    /**
+     * @var object
+     */
 	private $request;
 
+    /**
+     * Constructor.
+     *
+     * @param object $settings An instance of SettingsAPI.
+     * @param object $request  An instance of Request.
+     */
 	public function __construct( $settings, $request ) {
 		$this->settings = $settings;
 		$this->request = $request;
 	}
 
+    /**
+     * Enqueue page scripts.
+     */
 	public function enqueue_scripts() {
 		wp_enqueue_script( 'awpcp-admin-settings' );
 	}
 
+    /**
+     * Renders the page.
+     */
 	public function dispatch() {
 		$this->instantiate_auxiliar_pages();
 
@@ -26,8 +54,10 @@ class AWPCP_SettingsAdminPage {
 
 		$params = array(
 			'groups' => $groups,
-			'group' => $groups[ $this->request->param( 'g', 'pages-settings') ],
+			'group' => $groups[ $this->request->param( 'g', 'pages-settings' ) ],
 			'settings' => $this->settings,
+            'import_settings_url' => add_query_arg( 'awpcp-action', 'import-settings', awpcp_get_admin_settings_url() ),
+            'export_settings_url' => add_query_arg( 'awpcp-action', 'export-settings', awpcp_get_admin_settings_url() ),
 		);
 
 		$template = AWPCP_DIR . '/templates/admin/settings-admin-page.tpl.php';
@@ -143,7 +173,7 @@ class AWPCP_Facebook_Page_Settings {
 				return 2;
 		}
 
-		return 1; 
+		return 1;
 	}
 
 	public function dispatch() {

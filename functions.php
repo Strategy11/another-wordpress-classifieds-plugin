@@ -1904,6 +1904,8 @@ function awpcp_html_admin_third_level_heading_tag() {
 }
 
 /**
+ * @param string $content The already escaped content of the heading tag.
+ *
  * @access private
  * @since 3.6
  */
