@@ -14,6 +14,7 @@ class AWPCP_Meta {
 
     public $ad = null;
     public $properties = array();
+    public $metadata = array();
     public $category_id = null;
 
     public $title_builder;
@@ -177,6 +178,14 @@ class AWPCP_Meta {
     }
 
     public function get_listing_metadata() {
+        if ( empty( $this->metadata ) ) {
+            $this->metadata = $this->generate_listing_metadata();
+        }
+
+        return $this->metadata;
+    }
+
+    private function generate_listing_metadata() {
         $metadata = array(
             'http://ogp.me/ns#type' => 'article',
             'http://ogp.me/ns#url' => $this->properties['url'],
@@ -197,6 +206,17 @@ class AWPCP_Meta {
 
         return $metadata;
     }
+
+    public function get_listing_metadata_property( $property, $default = '' ) {
+        $metadata = $this->get_listing_metadata();
+
+        if ( isset( $metadata[ $property ] ) ) {
+            return $metadata[ $property ];
+        }
+
+        return $title;
+    }
+
 
     public function generate_basic_meta_tags() {
         $metadata = $this->get_listing_metadata();
