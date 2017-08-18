@@ -104,10 +104,11 @@ require_once( AWPCP_DIR . '/includes/compatibility/class-mashshare-plugin-integr
 require_once( AWPCP_DIR . '/includes/compatibility/class-plugin-integrations.php' );
 require( AWPCP_DIR . "/includes/compatibility/class-profile-builder-plugin-integration.php");
 require( AWPCP_DIR . "/includes/compatibility/class-profile-builder-login-form-implementation.php");
-require_once( AWPCP_DIR . "/includes/compatibility/class-yoast-wordpress-seo-plugin-integration.php" );
+require( AWPCP_DIR . '/includes/compatibility/class-simple-facebook-opengrap-tags-plugin-integration.php' );
 require_once( AWPCP_DIR . "/includes/compatibility/class-woocommerce-plugin-integration.php" );
 require( AWPCP_DIR . "/includes/compatibility/class-wp-members-login-form-implementation.php");
 require( AWPCP_DIR . "/includes/compatibility/class-wp-members-plugin-integration.php");
+require_once( AWPCP_DIR . "/includes/compatibility/class-yoast-wordpress-seo-plugin-integration.php" );
 
 require_once( AWPCP_DIR . "/includes/functions/settings.php" );
 
@@ -603,7 +604,15 @@ class AWPCP {
 	}
 
     public function register_plugin_integrations() {
-        $this->plugin_integrations->add_plugin_integration( 'mashsharer/mashshare.php', 'awpcp_mashshare_plugin_integration' );
+        $this->plugin_integrations->add_plugin_integration(
+            'mashsharer/mashshare.php',
+            'awpcp_mashshare_plugin_integration'
+        );
+
+        $this->plugin_integrations->add_plugin_integration(
+            'wonderm00ns-simple-facebook-open-graph-tags/wonderm00n-open-graph.php',
+            'awpcp_simple_facebook_opengraph_tags_plugin_integration'
+        );
     }
 
 	public function init() {
