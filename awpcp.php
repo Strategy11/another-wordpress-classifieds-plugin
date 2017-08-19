@@ -1343,13 +1343,44 @@ class AWPCP {
         );
 	}
 
+    /**
+     * Finds and register a custom stylsheet to be included
+     * right after the plugin's main stylesheet.
+     */
 	public function register_custom_style() {
 		global $awpcp_db_version;
 
-		// load custom stylesheet if one exists in the wp-content/plugins directory:
-		if (file_exists(WP_PLUGIN_DIR . '/awpcp_custom_stylesheet.css')) {
-			wp_register_style('awpcp-custom-css', plugins_url('awpcp_custom_stylesheet.css'), array('awpcp-frontend-style'), $awpcp_db_version, 'all');
-		}
+        $location_alternatives = array(
+            get_stylesheet_directory() => get_stylesheet_directory_uri(),
+            get_template_directory() => get_template_directory_uri(),
+            WP_PLUGIN_DIR => plugins_url(),
+        );
+
+        $stylesheet_url = null;
+
+        foreach ( $location_alternatives as $directory_path => $directory_url ) {
+            if ( file_exists( $directory_path . '/awpcp-custom.css' ) ) {
+                $stylesheet_url = $directory_url . '/awpcp-custom.css';
+                break;
+            }
+
+            if ( file_exists( $directory_path . '/awpcp_custom_stylesheet.css' ) ) {
+                $stylesheet_url = $directory_url . '/awpcp_custom_stylesheet.css';
+                break;
+            }
+        }
+
+        if ( ! $stylesheet_url ) {
+            return;
+        }
+
+        wp_register_style(
+            'awpcp-custom-css',
+            $stylesheet_url,
+            array( 'awpcp-frontend-style' ),
+            $awpcp_db_version,
+            'all'
+        );
 	}
 
 	public function enqueue_scripts() {
