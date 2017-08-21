@@ -1903,4 +1903,3 @@ function awpcp_redirect_canonical($redirect_url, $requested_url) {
 }
 add_filter('redirect_canonical', 'awpcp_redirect_canonical', 10, 2);
 
-}
