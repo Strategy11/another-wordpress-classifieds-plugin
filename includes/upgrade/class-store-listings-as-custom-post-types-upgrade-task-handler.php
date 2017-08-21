@@ -33,6 +33,9 @@ class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements 
     }
 
     public function process_item( $item, $last_item_id ) {
+        $post_date_gmt = get_gmt_from_date( $item->ad_postdate, 'Y-m-d' );
+        $post_time_gmt = get_gmt_from_date( $item->ad_startdate, 'H:i:s' );
+
         /* create post and import standard fields as custom fields. */
         $post_id = $this->wordpress->insert_post(
             array(
@@ -42,8 +45,8 @@ class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements 
                 'post_status' => 'draft',
                 'post_type' => 'awpcp_listing',
                 // 'post_excerpt' => '',
-                'post_date' => $item->ad_postdate,
-                'post_date_gmt' => get_gmt_from_date( $item->ad_postdate ),
+                'post_date' => get_date_from_gmt( $post_date_gmt . ' ' . $post_time_gmt ),
+                'post_date_gmt' => $post_date_gmt . ' ' . $post_time_gmt,
                 'post_modified' => $item->ad_last_updated,
                 'post_modified_gmt' => get_gmt_from_date( $item->ad_last_updated ),
                 'comment_status' => 'closed',
