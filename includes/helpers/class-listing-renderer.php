@@ -100,9 +100,9 @@ class AWPCP_ListingRenderer {
     /**
      * @since feature/1112
      */
-    private function get_formatted_date( $mysql_date ) {
+    private function get_formatted_date( $mysql_date, $format = 'awpcp-date' ) {
         if ( ! empty( $mysql_date ) ) {
-            $formatted_date = awpcp_datetime( 'awpcp-date', strtotime( $mysql_date ) );
+            $formatted_date = awpcp_datetime( $format, strtotime( $mysql_date ) );
         } else {
             $formatted_date = '';
         }
@@ -145,6 +145,13 @@ class AWPCP_ListingRenderer {
      */
     public function get_posted_date_formatted( $listing ) {
         return $this->get_formatted_date( $listing->post_date );
+    }
+
+    /**
+     * @since feature/1112
+     */
+    public function get_posted_date_and_time_formatted( $listing ) {
+        return $this->get_formatted_date( $listing->post_date, 'awpcp' );
     }
 
     /**

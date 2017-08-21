@@ -170,6 +170,9 @@ function awpcp_content_placeholders() {
         'posted_date' => array(
             'callback' => 'awpcp_do_placeholder_dates',
         ),
+        'posted_date_time' => array(
+            'callback' => 'awpcp_do_placeholder_dates',
+        ),
          'posted_time_elapsed' => array(
             'callback' => 'awpcp_do_placeholder_dates',
         ),
@@ -471,6 +474,7 @@ function awpcp_do_placeholder_dates($ad, $placeholder) {
     $replacements['start_date'] = $listing_renderer->get_start_date( $ad );
     $replacements['end_date'] = $listing_renderer->get_end_date( $ad );
     $replacements['posted_date'] = $listing_renderer->get_posted_date_formatted( $ad );
+    $replacements['posted_date_time'] = $listing_renderer->get_posted_date_and_time_formatted( $ad );
     $replacements['last_updated_date'] = $listing_renderer->get_last_updated_date_formatted( $ad );
 
 	$verification_date = $listing_renderer->get_verification_date( $ad );
