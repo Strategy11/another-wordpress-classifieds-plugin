@@ -352,7 +352,7 @@ function awpcp_do_placeholder_details($ad, $placeholder) {
     $placeholders['addetails'] = apply_filters('awpcp-ad-details', stripslashes_deep($ad->ad_details));
 
     if (get_awpcp_option('hyperlinkurlsinadtext')) {
-        $pattern = '#(?<!")(http://[^\s]+)(?!")#';
+        $pattern = '#(?<!")(https?://[^\s]+)(?!")#';
         $nofollow = get_awpcp_option('visitwebsitelinknofollow') ? 'rel="nofollow"' : '';
         $link = sprintf('<a %s href="$1">$1</a>', $nofollow);
         $placeholders['addetails'] = preg_replace($pattern, $link, $placeholders['addetails']);
