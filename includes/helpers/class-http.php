@@ -23,12 +23,16 @@ class AWPCP_HTTP {
         $response_message = wp_remote_retrieve_response_message( $response );
 
         if ( 403 == $response_code ) {
+            $url_parts = wp_parse_url( $url );
+            $host = $url_parts['host'];
+
             $message = '<strong>' . __( 'The server returned a 403 Forbidden error.', 'another-wordpress-classifieds-plugin' ) . '</strong>';
             $message.= '<br/><br/>';
-            $message.= __( "It look's like your server is not authorized to make requests to Business Directory servers. Please contact support and ask them to add your IP address <ip-address> to the whitelist.", 'another-wordpress-classifieds-plugin' );
+            $message.= __( "It look's like your server is not authorized to make requests to <host>. Please contact support and ask them to add your IP address <ip-address> to the whitelist.", 'another-wordpress-classifieds-plugin' );
             $message.= '<br/><br/>';
             $message.= __( 'Include this error message with your report.', 'another-wordpress-classifieds-plugin' );
 
+            $message = str_replace( '<host>', $host, $message );
             $message = str_replace( '<ip-address>', awpcp_get_server_ip_address(), $message );
 
             throw new AWPCP_HTTP_Exception( $message );
