@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-plugin\n"
 "POT-Creation-Date: 2017-08-14 15:36:09+00:00\n"
-"PO-Revision-Date: 2017-09-01 02:01+0000\n"
+"PO-Revision-Date: 2017-09-01 23:12+0000\n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: Spanish (Spain) (http://www.transifex.com/wp-translations/another-wordpress-classifieds-plugin/language/es_ES/)\n"
 "MIME-Version: 1.0\n"
@@ -4320,7 +4320,7 @@ msgstr "Plantilla no encontrada."
 
 #: includes/helpers/widgets/categories-dropdown.php:18
 msgid "Ad Category"
-msgstr "Categoría del Aviso"
+msgstr "Categoría del anuncio"
 
 #: includes/helpers/widgets/categories-dropdown.php:27
 msgid "All Categories"
