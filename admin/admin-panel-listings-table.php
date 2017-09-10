@@ -215,11 +215,14 @@ class AWPCP_Listings_Table extends WP_List_Table {
             $actions = array(
                 'bulk-enable' => __( 'Enable', 'another-wordpress-classifieds-plugin' ),
                 'bulk-disable' => __( 'Disable', 'another-wordpress-classifieds-plugin' ),
-                'bulk-make-featured' => __( 'Make Featured', 'another-wordpress-classifieds-plugin' ),
-                'bulk-remove-featured' => __( 'Make Non Featured', 'another-wordpress-classifieds-plugin' ),
                 'bulk-renew' => __( 'Renew', 'another-wordpress-classifieds-plugin' ),
                 'bulk-spam' => __( 'Mark as SPAM', 'another-wordpress-classifieds-plugin' )
             );
+
+            if ( function_exists( 'awpcp_featured_ads' ) ) {
+                $actions['bulk-make-featured'] = __( 'Make Featured', 'another-wordpress-classifieds-plugin' );
+                $actions['bulk-remove-featured'] = __( 'Make Non Featured', 'another-wordpress-classifieds-plugin' );
+            }
 
             $fb = AWPCP_Facebook::instance();
             if ( $fb->get( 'page_token' ) )
