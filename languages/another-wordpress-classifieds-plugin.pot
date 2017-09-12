@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2017-09-08 18:43:43+00:00\n"
+"POT-Creation-Date: 2017-09-12 23:21:43+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -59,7 +59,7 @@ msgid "Edit"
 msgstr ""
 
 #: admin/admin-panel-credit-plans.php:43 admin/admin-panel-fees.php:46
-#: admin/admin-panel-listings-table.php:229 admin/admin-panel-listings.php:92
+#: admin/admin-panel-listings-table.php:232 admin/admin-panel-listings.php:92
 #: admin/templates/admin-panel-fees-delete-form.tpl.php:13
 #: admin/templates/delete_form.tpl.php:12
 msgid "Delete"
@@ -301,8 +301,8 @@ msgid "Payment Status"
 msgstr ""
 
 #: admin/admin-panel-listings-table.php:188
-#: admin/admin-panel-listings-table.php:265
-#: admin/admin-panel-listings-table.php:441
+#: admin/admin-panel-listings-table.php:268
+#: admin/admin-panel-listings-table.php:444
 msgid "Featured"
 msgstr ""
 
@@ -318,122 +318,122 @@ msgstr ""
 msgid "Disable"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:218 admin/admin-panel-listings.php:111
-msgid "Make Featured"
-msgstr ""
-
-#: admin/admin-panel-listings-table.php:219
-msgid "Make Non Featured"
-msgstr ""
-
-#: admin/admin-panel-listings-table.php:220
+#: admin/admin-panel-listings-table.php:218
 msgid "Renew"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:221
+#: admin/admin-panel-listings-table.php:219
 msgid "Mark as SPAM"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:226 admin/admin-panel-listings.php:134
+#: admin/admin-panel-listings-table.php:223 admin/admin-panel-listings.php:111
+msgid "Make Featured"
+msgstr ""
+
+#: admin/admin-panel-listings-table.php:224
+msgid "Make Non Featured"
+msgstr ""
+
+#: admin/admin-panel-listings-table.php:229 admin/admin-panel-listings.php:134
 msgid "Send to Facebook"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:250
+#: admin/admin-panel-listings-table.php:253
 msgid "New"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:251
+#: admin/admin-panel-listings-table.php:254
 msgid "Expired"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:256
+#: admin/admin-panel-listings-table.php:259
 msgid "Ads Awaiting Approval"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:260
+#: admin/admin-panel-listings-table.php:263
 msgid "Images Awaiting Approval"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:266
+#: admin/admin-panel-listings-table.php:269
 msgid "Flagged"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:267
+#: admin/admin-panel-listings-table.php:270
 msgid "Incomplete"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:268
+#: admin/admin-panel-listings-table.php:271
 msgid "Unverified"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:269
+#: admin/admin-panel-listings-table.php:272
 msgid "Completed"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:279
+#: admin/admin-panel-listings-table.php:282
 msgid "Search by"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:281
+#: admin/admin-panel-listings-table.php:284
 msgid "Ad ID"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:282
+#: admin/admin-panel-listings-table.php:285
 msgid "Ad Title"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:283
+#: admin/admin-panel-listings-table.php:286
 msgid "Keyword"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:284 frontend/page-show-ad.php:58
+#: admin/admin-panel-listings-table.php:287 frontend/page-show-ad.php:58
 #: frontend/placeholders.php:573
 msgid "Location"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:285 frontend/placeholders.php:665
+#: admin/admin-panel-listings-table.php:288 frontend/placeholders.php:665
 msgid "Phone"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:288
+#: admin/admin-panel-listings-table.php:291
 msgid "Payer Email"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:291
+#: admin/admin-panel-listings-table.php:294
 #: frontend/templates/page-place-ad-details-step.tpl.php:36
 #: frontend/templates/page-place-ad-order-step.tpl.php:43
 msgid "User"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:332
+#: admin/admin-panel-listings-table.php:335
 msgctxt "admin listings table"
 msgid "Filter"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:377
+#: admin/admin-panel-listings-table.php:380
 msgid "View Ad."
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:405
+#: admin/admin-panel-listings-table.php:408
 msgid "Mark as Verified"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:414
+#: admin/admin-panel-listings-table.php:417
 msgid "Disabled"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:414
+#: admin/admin-panel-listings-table.php:417
 #: templates/components/media-manager.tpl.php:19
 #: templates/components/media-manager.tpl.php:58
 #: templates/components/media-manager.tpl.php:100
 msgid "Enabled"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:428
+#: admin/admin-panel-listings-table.php:431
 msgid "Mark as Paid"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:441
+#: admin/admin-panel-listings-table.php:444
 msgid "Not Featured"
 msgstr ""
 
