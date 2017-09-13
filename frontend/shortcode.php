@@ -391,7 +391,11 @@ function awpcp_get_menu_items( $params ) {
     }
 
     if ( awpcp_should_show_edit_listing_menu( $params ) ) {
-        $items['edit-listing'] = awpcp_get_edit_listing_menu_item();
+        $edit_listing_menu_item = awpcp_get_edit_listing_menu_item();
+    }
+
+    if ( $edit_listing_menu_item ) {
+        $items['edit-listing'] = $edit_listing_menu_item;
     }
 
     if ( $show_browse_ads_item ) {
