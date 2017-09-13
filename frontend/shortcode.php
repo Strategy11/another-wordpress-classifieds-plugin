@@ -392,6 +392,8 @@ function awpcp_get_menu_items( $params ) {
 
     if ( awpcp_should_show_edit_listing_menu( $params ) ) {
         $edit_listing_menu_item = awpcp_get_edit_listing_menu_item();
+    } else {
+        $edit_listing_menu_item = null;
     }
 
     if ( $edit_listing_menu_item ) {
