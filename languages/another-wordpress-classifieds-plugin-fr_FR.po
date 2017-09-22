@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2017-09-08 18:43:43+00:00\n"
-"PO-Revision-Date: 2017-09-08 18:44+0000\n"
+"POT-Creation-Date: 2017-09-22 21:26:45+00:00\n"
+"PO-Revision-Date: 2017-09-22 21:27+0000\n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: French (France) (http://www.transifex.com/wp-translations/another-wordpress-classifieds-plugin/language/fr_FR/)\n"
 "MIME-Version: 1.0\n"
@@ -50,7 +50,7 @@ msgstr "Crédits"
 #: admin/admin-panel-fees-table.php:120
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:19
 #: admin/templates/admin-panel-fees-entry-form.tpl.php:25
-#: frontend/placeholders.php:447 frontend/templates/page-search-ads.tpl.php:46
+#: frontend/placeholders.php:452 frontend/templates/page-search-ads.tpl.php:46
 #: includes/settings/class-payment-general-settings.php:16
 msgid "Price"
 msgstr "Prix"
@@ -69,7 +69,7 @@ msgid "Edit"
 msgstr "Modifier"
 
 #: admin/admin-panel-credit-plans.php:43 admin/admin-panel-fees.php:46
-#: admin/admin-panel-listings-table.php:229 admin/admin-panel-listings.php:92
+#: admin/admin-panel-listings-table.php:232 admin/admin-panel-listings.php:92
 #: admin/templates/admin-panel-fees-delete-form.tpl.php:13
 #: admin/templates/delete_form.tpl.php:12
 msgid "Delete"
@@ -311,8 +311,8 @@ msgid "Payment Status"
 msgstr "État du paiement"
 
 #: admin/admin-panel-listings-table.php:188
-#: admin/admin-panel-listings-table.php:265
-#: admin/admin-panel-listings-table.php:441
+#: admin/admin-panel-listings-table.php:268
+#: admin/admin-panel-listings-table.php:444
 msgid "Featured"
 msgstr "Mis en avant"
 
@@ -328,122 +328,122 @@ msgstr "Activer"
 msgid "Disable"
 msgstr "Désactiver"
 
-#: admin/admin-panel-listings-table.php:218 admin/admin-panel-listings.php:111
-msgid "Make Featured"
-msgstr "Mettre en avant"
-
-#: admin/admin-panel-listings-table.php:219
-msgid "Make Non Featured"
-msgstr "Ne pas mettre en avant"
-
-#: admin/admin-panel-listings-table.php:220
+#: admin/admin-panel-listings-table.php:218
 msgid "Renew"
 msgstr "Renouveler"
 
-#: admin/admin-panel-listings-table.php:221
+#: admin/admin-panel-listings-table.php:219
 msgid "Mark as SPAM"
 msgstr "Signaler comme indésirable"
 
-#: admin/admin-panel-listings-table.php:226 admin/admin-panel-listings.php:134
+#: admin/admin-panel-listings-table.php:223 admin/admin-panel-listings.php:111
+msgid "Make Featured"
+msgstr "Mettre en avant"
+
+#: admin/admin-panel-listings-table.php:224
+msgid "Make Non Featured"
+msgstr "Ne pas mettre en avant"
+
+#: admin/admin-panel-listings-table.php:229 admin/admin-panel-listings.php:134
 msgid "Send to Facebook"
 msgstr "Envoyer sur Facebook"
 
-#: admin/admin-panel-listings-table.php:250
+#: admin/admin-panel-listings-table.php:253
 msgid "New"
 msgstr "Nouveau"
 
-#: admin/admin-panel-listings-table.php:251
+#: admin/admin-panel-listings-table.php:254
 msgid "Expired"
 msgstr "Expirée"
 
-#: admin/admin-panel-listings-table.php:256
+#: admin/admin-panel-listings-table.php:259
 msgid "Ads Awaiting Approval"
 msgstr "Annonces à valider"
 
-#: admin/admin-panel-listings-table.php:260
+#: admin/admin-panel-listings-table.php:263
 msgid "Images Awaiting Approval"
 msgstr "Images à valider"
 
-#: admin/admin-panel-listings-table.php:266
+#: admin/admin-panel-listings-table.php:269
 msgid "Flagged"
 msgstr "Signalées"
 
-#: admin/admin-panel-listings-table.php:267
+#: admin/admin-panel-listings-table.php:270
 msgid "Incomplete"
 msgstr "Incomplète"
 
-#: admin/admin-panel-listings-table.php:268
+#: admin/admin-panel-listings-table.php:271
 msgid "Unverified"
 msgstr "Non vérifiées"
 
-#: admin/admin-panel-listings-table.php:269
+#: admin/admin-panel-listings-table.php:272
 msgid "Completed"
 msgstr "Terminée"
 
-#: admin/admin-panel-listings-table.php:279
+#: admin/admin-panel-listings-table.php:282
 msgid "Search by"
 msgstr "Rechercher par"
 
-#: admin/admin-panel-listings-table.php:281
+#: admin/admin-panel-listings-table.php:284
 msgid "Ad ID"
 msgstr "ID de l’annonce"
 
-#: admin/admin-panel-listings-table.php:282
+#: admin/admin-panel-listings-table.php:285
 msgid "Ad Title"
 msgstr "Titre de l’annonce"
 
-#: admin/admin-panel-listings-table.php:283
+#: admin/admin-panel-listings-table.php:286
 msgid "Keyword"
 msgstr "Mot-clé"
 
-#: admin/admin-panel-listings-table.php:284 frontend/page-show-ad.php:58
-#: frontend/placeholders.php:573
+#: admin/admin-panel-listings-table.php:287 frontend/page-show-ad.php:58
+#: frontend/placeholders.php:578
 msgid "Location"
 msgstr "Adresse"
 
-#: admin/admin-panel-listings-table.php:285 frontend/placeholders.php:665
+#: admin/admin-panel-listings-table.php:288 frontend/placeholders.php:670
 msgid "Phone"
 msgstr "Téléphone"
 
-#: admin/admin-panel-listings-table.php:288
+#: admin/admin-panel-listings-table.php:291
 msgid "Payer Email"
 msgstr "E-mail"
 
-#: admin/admin-panel-listings-table.php:291
+#: admin/admin-panel-listings-table.php:294
 #: frontend/templates/page-place-ad-details-step.tpl.php:36
 #: frontend/templates/page-place-ad-order-step.tpl.php:43
 msgid "User"
 msgstr "Utilisateur"
 
-#: admin/admin-panel-listings-table.php:332
+#: admin/admin-panel-listings-table.php:335
 msgctxt "admin listings table"
 msgid "Filter"
 msgstr "Filtrer"
 
-#: admin/admin-panel-listings-table.php:377
+#: admin/admin-panel-listings-table.php:380
 msgid "View Ad."
 msgstr "Voir l’annonce"
 
-#: admin/admin-panel-listings-table.php:405
+#: admin/admin-panel-listings-table.php:408
 msgid "Mark as Verified"
 msgstr "Marquer comme vérifiée"
 
-#: admin/admin-panel-listings-table.php:414
+#: admin/admin-panel-listings-table.php:417
 msgid "Disabled"
 msgstr "Désactivé"
 
-#: admin/admin-panel-listings-table.php:414
+#: admin/admin-panel-listings-table.php:417
 #: templates/components/media-manager.tpl.php:19
 #: templates/components/media-manager.tpl.php:58
 #: templates/components/media-manager.tpl.php:100
 msgid "Enabled"
 msgstr "Activé"
 
-#: admin/admin-panel-listings-table.php:428
+#: admin/admin-panel-listings-table.php:431
 msgid "Mark as Paid"
 msgstr "Marquer comme payé"
 
-#: admin/admin-panel-listings-table.php:441
+#: admin/admin-panel-listings-table.php:444
 msgid "Not Featured"
 msgstr "Pas mise en avant"
 
@@ -596,6 +596,10 @@ msgstr "L’annonce a été marquée comme revue."
 #: admin/admin-panel-listings.php:530
 msgid "The listing couldn't marked as reviewed."
 msgstr "L’Annonce pas pu être marquée comme vérifiée."
+
+#: admin/admin-panel-listings.php:545
+msgid "Access Key for \"%s\""
+msgstr ""
 
 #: admin/admin-panel-listings.php:553
 msgid "The access key was sent to %s."
@@ -2768,33 +2772,33 @@ msgid ""
 "(the author) can see it."
 msgstr "Cette annonce en cours de validation est momentanément désactivée. En attendant son approbation, seul l’auteur (vous) peut la voir."
 
-#: frontend/placeholders.php:389
+#: frontend/placeholders.php:394
 msgid "Seller"
 msgstr "Vendeur"
 
-#: frontend/placeholders.php:412
+#: frontend/placeholders.php:417
 msgid "Visit Website"
 msgstr "Visiter le site web"
 
-#: frontend/placeholders.php:609
+#: frontend/placeholders.php:614
 msgid "This Ad has been viewed %d time."
 msgid_plural "This Ad has been viewed %d times."
 msgstr[0] "Cette annonce a été vue %d fois."
 msgstr[1] "Cette annonce a été vue %d fois."
 
-#: frontend/placeholders.php:613
+#: frontend/placeholders.php:618
 msgid "Total views: %d"
 msgstr "Total des vues&nbsp;: %d"
 
-#: frontend/placeholders.php:724
+#: frontend/placeholders.php:729
 msgid "Flag Ad"
 msgstr "Signaler comme SPAM"
 
-#: frontend/placeholders.php:739
+#: frontend/placeholders.php:744
 msgid "Tweet This"
 msgstr "Tweeter &Ccedil;a"
 
-#: frontend/placeholders.php:770
+#: frontend/placeholders.php:775
 msgid "Share on Facebook"
 msgstr "Partager sur Facebook"
 
