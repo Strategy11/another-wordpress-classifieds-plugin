@@ -374,8 +374,13 @@ function awpcp_do_placeholder_excerpt($ad, $placeholder) {
     $word_count = get_awpcp_option( 'words-in-listing-excerpt' );
     $details = stripslashes( $ad->ad_details );
 
-    $replacements['addetailssummary'] = wp_trim_words( $details, $word_count, '' );
-    $replacements['excerpt'] = wp_trim_words( $details, $word_count );
+    if ( get_awpcp_option( 'allowhtmlinadtext' ) ) {
+        $replacements['addetailssummary'] = awpcp_trim_html_content( $details, $word_count );
+        $replacements['excerpt'] = awpcp_trim_html_content( $details, $word_count );
+    } else {
+        $replacements['addetailssummary'] = wp_trim_words( $details, $word_count, '' );
+        $replacements['excerpt'] = wp_trim_words( $details, $word_count );
+    }
 
     return $replacements[$placeholder];
 }

@@ -5,7 +5,7 @@
             <input type="text" name="keywordphrase" />
         </div>
         <div class="awpcp-classifieds-search-bar--submit-button">
-            <input type="submit" value="Find Listings" />
+            <input class="button" type="submit" value="Find Listings" />
         </div>
         <div class="awpcp-classifieds-search-bar--advanced-search-link"><a href="<?php echo esc_url( $action_url ); ?>"><?php echo esc_html( __( 'Advanced Search', 'another-wordpress-classifieds-plugin' ) ); ?> </a></div>
     </form>
