@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2017-09-22 21:26:45+00:00\n"
+"POT-Creation-Date: 2017-09-24 22:29:10+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -7917,6 +7917,10 @@ msgstr ""
 
 #: templates/admin/profile/contact-information-fields.tpl.php:16
 msgid "Address"
+msgstr ""
+
+#: templates/components/classifieds-search-bar.tpl.php:8
+msgid "Find Listings"
 msgstr ""
 
 #: templates/components/classifieds-search-bar.tpl.php:10
