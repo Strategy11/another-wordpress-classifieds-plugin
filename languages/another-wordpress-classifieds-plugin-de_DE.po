@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2017-09-22 21:26:45+00:00\n"
-"PO-Revision-Date: 2017-09-22 21:27+0000\n"
+"POT-Creation-Date: 2017-09-24 22:29:10+00:00\n"
+"PO-Revision-Date: 2017-09-24 22:29+0000\n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: German (Germany) (http://www.transifex.com/wp-translations/another-wordpress-classifieds-plugin/language/de_DE/)\n"
 "MIME-Version: 1.0\n"
@@ -7939,6 +7939,10 @@ msgstr "Telefonnummer des Ansprechpartners - Achtung: Diese Nummer ist dann im I
 #: templates/admin/profile/contact-information-fields.tpl.php:16
 msgid "Address"
 msgstr "Adresse"
+
+#: templates/components/classifieds-search-bar.tpl.php:8
+msgid "Find Listings"
+msgstr ""
 
 #: templates/components/classifieds-search-bar.tpl.php:10
 msgid "Advanced Search"
