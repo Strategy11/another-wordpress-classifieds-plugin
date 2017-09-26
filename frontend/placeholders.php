@@ -375,8 +375,10 @@ function awpcp_do_placeholder_excerpt($ad, $placeholder) {
     $details = stripslashes( $ad->ad_details );
 
     if ( get_awpcp_option( 'allowhtmlinadtext' ) ) {
-        $replacements['addetailssummary'] = awpcp_trim_html_content( $details, $word_count );
-        $replacements['excerpt'] = awpcp_trim_html_content( $details, $word_count );
+        $excerpt = awpcp_trim_html_content( $details, $word_count );
+
+        $replacements['addetailssummary'] = $excerpt;
+        $replacements['excerpt'] = $excerpt;
     } else {
         $replacements['addetailssummary'] = wp_trim_words( $details, $word_count, '' );
         $replacements['excerpt'] = wp_trim_words( $details, $word_count );
