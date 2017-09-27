@@ -198,6 +198,15 @@ class AWPCP_Settings_API {
             __( 'Show Classifieds Bar', 'another-wordpress-classifieds-plugin' ),
             'checkbox',
             1,
+            __( 'The Classifieds Bar is a section shown at the top of the plugin pages, displaying a Search Bar and multiple menu items. Each element of the bar can be enabled or disabled using the settings below.', 'another-wordpress-classifieds-plugin' )
+        );
+
+        $this->add_setting(
+            $key,
+            'show-classifieds-search-bar',
+            __( 'Show Search Bar', 'another-wordpress-classifieds-plugin' ),
+            'checkbox',
+            1,
             ''
         );
 
@@ -205,6 +214,12 @@ class AWPCP_Settings_API {
 		$this->add_setting( $key, 'show-menu-item-edit-ad', __( 'Show Edit Ad menu item', 'another-wordpress-classifieds-plugin' ), 'checkbox', 1, '' );
 		$this->add_setting( $key, 'show-menu-item-browse-ads', __( 'Show Browse Ads menu item', 'another-wordpress-classifieds-plugin' ), 'checkbox', 1, '' );
 		$this->add_setting( $key, 'show-menu-item-search-ads', __( 'Show Search Ads menu item', 'another-wordpress-classifieds-plugin' ), 'checkbox', 1, '' );
+
+		$this->add_behavior( $key, 'show-classifieds-search-bar', 'enabledIf', 'show-classifieds-bar' );
+		$this->add_behavior( $key, 'show-menu-item-place-ad', 'enabledIf', 'show-classifieds-bar' );
+		$this->add_behavior( $key, 'show-menu-item-edit-ad', 'enabledIf', 'show-classifieds-bar' );
+		$this->add_behavior( $key, 'show-menu-item-browse-ads', 'enabledIf', 'show-classifieds-bar' );
+		$this->add_behavior( $key, 'show-menu-item-search-ads', 'enabledIf', 'show-classifieds-bar' );
 
 		// Group: Payment Settings
 
@@ -961,7 +976,14 @@ class AWPCP_Settings_API {
 
 		$value = intval($this->get_option($setting->name));
 
-		$html = '<input type="hidden" value="0" name="awpcp-options['. $setting->name .']" />';
+		$html = '<input type="hidden" value="0" name="awpcp-options['. $setting->name .']" ';
+
+        if ( ! empty( $setting->args['behavior'] ) ) {
+            $html.= 'awpcp-setting="' . esc_attr( json_encode( $setting->args['behavior'] ) ) . '" />';
+        } else {
+            $html.= '/>';
+        }
+
 		$html.= '<input id="'. $setting->name . '" value="1" ';
 		$html.= 'type="checkbox" name="awpcp-options[' . $setting->name . ']" ';
 

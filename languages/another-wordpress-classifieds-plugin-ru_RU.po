@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2017-09-24 22:29:10+00:00\n"
-"PO-Revision-Date: 2017-09-24 22:29+0000\n"
+"POT-Creation-Date: 2017-09-27 23:21:18+00:00\n"
+"PO-Revision-Date: 2017-09-27 23:21+0000\n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: Russian (Russia) (http://www.transifex.com/wp-translations/another-wordpress-classifieds-plugin/language/ru_RU/)\n"
 "MIME-Version: 1.0\n"
@@ -49,7 +49,7 @@ msgstr "Кредиты"
 #: admin/admin-panel-fees-table.php:120
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:19
 #: admin/templates/admin-panel-fees-entry-form.tpl.php:25
-#: frontend/placeholders.php:452 frontend/templates/page-search-ads.tpl.php:46
+#: frontend/placeholders.php:454 frontend/templates/page-search-ads.tpl.php:46
 #: includes/settings/class-payment-general-settings.php:16
 msgid "Price"
 msgstr "Цена"
@@ -152,7 +152,7 @@ msgstr "Импортировать"
 #: admin/templates/admin-panel-fees-entry-form.tpl.php:35
 #: includes/settings/class-payment-general-settings.php:18
 msgid "Duration"
-msgstr "Длительность"
+msgstr "Срок"
 
 #: admin/admin-panel-fees-table.php:115
 #: admin/templates/admin-panel-fees-entry-form.tpl.php:40
@@ -396,11 +396,11 @@ msgid "Keyword"
 msgstr "Ключевому слову"
 
 #: admin/admin-panel-listings-table.php:287 frontend/page-show-ad.php:58
-#: frontend/placeholders.php:578
+#: frontend/placeholders.php:580
 msgid "Location"
 msgstr "Местонахождение"
 
-#: admin/admin-panel-listings-table.php:288 frontend/placeholders.php:670
+#: admin/admin-panel-listings-table.php:288 frontend/placeholders.php:672
 msgid "Phone"
 msgstr "Телефон"
 
@@ -2111,7 +2111,7 @@ msgid "This field is required."
 msgstr "Это поле является обязательным."
 
 #: awpcp.php:1248 frontend/page-edit-ad.php:128 frontend/page-edit-ad.php:440
-#: includes/settings-api.php:238
+#: includes/settings-api.php:253
 msgid "Please enter a valid email address."
 msgstr "Пожалуйста, введите действующий адрес электронной почты."
 
@@ -2785,15 +2785,15 @@ msgid ""
 "(the author) can see it."
 msgstr "Объявление временно отключено до тех пор, пока администратор не одобрит его. Только вы, как автор, можете его видеть."
 
-#: frontend/placeholders.php:394
+#: frontend/placeholders.php:396
 msgid "Seller"
 msgstr "Продавец"
 
-#: frontend/placeholders.php:417
+#: frontend/placeholders.php:419
 msgid "Visit Website"
 msgstr "Посетите сайт"
 
-#: frontend/placeholders.php:614
+#: frontend/placeholders.php:616
 msgid "This Ad has been viewed %d time."
 msgid_plural "This Ad has been viewed %d times."
 msgstr[0] "Это объявление было просмотрено %d раз."
@@ -2801,19 +2801,19 @@ msgstr[1] "Это объявление было просмотрено %d раз
 msgstr[2] "Это объявление было просмотрено %d раз."
 msgstr[3] "Это объявление было просмотрено %d раз."
 
-#: frontend/placeholders.php:618
+#: frontend/placeholders.php:620
 msgid "Total views: %d"
 msgstr "Всего просмотров: %d"
 
-#: frontend/placeholders.php:729
+#: frontend/placeholders.php:731
 msgid "Flag Ad"
 msgstr "Пожаловаться на объявление"
 
-#: frontend/placeholders.php:744
+#: frontend/placeholders.php:746
 msgid "Tweet This"
 msgstr "Твитнуть"
 
-#: frontend/placeholders.php:775
+#: frontend/placeholders.php:777
 msgid "Share on Facebook"
 msgstr "Поделиться на Facebook"
 
@@ -4404,7 +4404,7 @@ msgstr "На кассу"
 
 #: includes/helpers/widgets/class-listing-form-steps-component.php:51
 #: includes/helpers/widgets/class-listing-form-steps-component.php:66
-#: includes/settings-api.php:211
+#: includes/settings-api.php:226
 msgid "Payment"
 msgstr "Оплата"
 
@@ -4954,7 +4954,7 @@ msgstr "Описание (символов)"
 #: includes/payment-terms-table.php:38
 msgctxt "place ad payment terms column headers"
 msgid "Duration"
-msgstr "Длительность"
+msgstr "Срок"
 
 #: includes/payment-terms-table.php:44
 msgctxt "place ad payment terms column headers"
@@ -5696,7 +5696,7 @@ msgid "Enable User Ad Management Panel"
 msgstr "Включить Пользовательскую Панель Управления Объявлениями"
 
 #: includes/settings/class-general-settings.php:28
-#: includes/settings-api.php:417
+#: includes/settings-api.php:432
 msgid "General Settings"
 msgstr "Основные настройки"
 
@@ -6918,144 +6918,155 @@ msgstr "Полоска объявлений"
 msgid "Show Classifieds Bar"
 msgstr "Отобразить полоску объявлений"
 
-#: includes/settings-api.php:204
+#: includes/settings-api.php:201
+msgid ""
+"The Classifieds Bar is a section shown at the top of the plugin pages, "
+"displaying a Search Bar and multiple menu items. Each element of the bar can"
+" be enabled or disabled using the settings below."
+msgstr ""
+
+#: includes/settings-api.php:207
+msgid "Show Search Bar"
+msgstr ""
+
+#: includes/settings-api.php:213
 msgid "Show Place Ad menu item"
 msgstr "Паказать пункт меню Разместить Объявление"
 
-#: includes/settings-api.php:205
+#: includes/settings-api.php:214
 msgid "Show Edit Ad menu item"
 msgstr "Показывать пункт меню Редактирвать Объявление"
 
-#: includes/settings-api.php:206
+#: includes/settings-api.php:215
 msgid "Show Browse Ads menu item"
 msgstr "Показать пунк меню Просмотр Объявлений"
 
-#: includes/settings-api.php:207
+#: includes/settings-api.php:216
 msgid "Show Search Ads menu item"
 msgstr "Показать пункт меню Поиск Объявлений"
 
-#: includes/settings-api.php:215
+#: includes/settings-api.php:230
 msgid "PayPal Settings"
 msgstr "Настройки PayPal"
 
-#: includes/settings-api.php:217
+#: includes/settings-api.php:232
 msgid "Activate PayPal?"
 msgstr "Активировать PayPal?"
 
-#: includes/settings-api.php:222
+#: includes/settings-api.php:237
 msgid "PayPal receiver email"
 msgstr "Эл. почта получателя PayPal"
 
-#: includes/settings-api.php:225
+#: includes/settings-api.php:240
 msgid ""
 "Email address for PayPal payments (if running in pay mode and if PayPal is "
 "activated)."
 msgstr "Адрес электронной почты для платежей PayPal (если работает в платном режиме и PayPal активирован)."
 
-#: includes/settings-api.php:231
+#: includes/settings-api.php:246
 msgid "PayPal Merchant ID"
 msgstr "Идентификатор продавца PayPal"
 
-#: includes/settings-api.php:245
+#: includes/settings-api.php:260
 msgid "PayPal currency code"
 msgstr "Код валюты PayPal"
 
-#: includes/settings-api.php:248
+#: includes/settings-api.php:263
 msgid "The currency in which you would like to receive your PayPal payments"
 msgstr "В какой валюте вы хотели бы получать платежи PayPal"
 
-#: includes/settings-api.php:252
+#: includes/settings-api.php:267
 msgid "The PayPal Currency Code must be one of <currency-codes>."
 msgstr "Код валюты для PayPal должен быть одним из <currency-codes>."
 
-#: includes/settings-api.php:261
+#: includes/settings-api.php:276
 msgid "2Checkout Settings"
 msgstr "Настройки 2Checkout"
 
-#: includes/settings-api.php:263
+#: includes/settings-api.php:278
 msgid "Activate 2Checkout"
 msgstr "Активировать 2Checkout"
 
-#: includes/settings-api.php:263
+#: includes/settings-api.php:278
 msgid "Activate 2Checkout?"
 msgstr "Активировать 2Checkout?"
 
-#: includes/settings-api.php:265
+#: includes/settings-api.php:280
 msgid "2Checkout account"
 msgstr "Профиль 2Checkout "
 
-#: includes/settings-api.php:265
+#: includes/settings-api.php:280
 msgid "Account for 2Checkout payments."
 msgstr "Учетная запись для платежей 2Checkout."
 
-#: includes/settings-api.php:270
+#: includes/settings-api.php:285
 msgid "2Checkout Currency Code"
 msgstr "Код валюты 2Checkout"
 
-#: includes/settings-api.php:270
+#: includes/settings-api.php:285
 msgid ""
 "The currency in which you would like to receive your 2Checkout payments"
 msgstr "В какой валюте вы хотели бы получать платежи 2Checkout"
 
-#: includes/settings-api.php:277
+#: includes/settings-api.php:292
 msgid "AdSense"
 msgstr "AdSense"
 
-#: includes/settings-api.php:281
+#: includes/settings-api.php:296
 msgid "AdSense Settings"
 msgstr "Настройки AdSense "
 
-#: includes/settings-api.php:284
+#: includes/settings-api.php:299
 msgid "Above Ad text."
 msgstr "Над текстом объявления."
 
-#: includes/settings-api.php:285
+#: includes/settings-api.php:300
 msgid "Under Ad text."
 msgstr "Под текстом объявления."
 
-#: includes/settings-api.php:286
+#: includes/settings-api.php:301
 msgid "Below Ad images."
 msgstr "Под изображениями объявления."
 
-#: includes/settings-api.php:289
+#: includes/settings-api.php:304
 msgid "Activate AdSense"
 msgstr "Активировать AdSense"
 
-#: includes/settings-api.php:290
+#: includes/settings-api.php:305
 msgid "AdSense code"
 msgstr "Код AdSense"
 
-#: includes/settings-api.php:290
+#: includes/settings-api.php:305
 msgid "Your AdSense code (Best if 468x60 text or banner.)"
 msgstr "Ваш код AdSense (Лучше всего, если Баннер  или текст 468х60.)"
 
-#: includes/settings-api.php:291
+#: includes/settings-api.php:306
 msgid "Show AdSense at position"
 msgstr "Показывать AdSense"
 
-#: includes/settings-api.php:295
+#: includes/settings-api.php:310
 msgid "Registration"
 msgstr "Регистрация"
 
-#: includes/settings-api.php:303
+#: includes/settings-api.php:318
 msgid "General Email Settings"
 msgstr "Основные настройки почты"
 
-#: includes/settings-api.php:305
+#: includes/settings-api.php:320
 msgid "TO email address for outgoing emails"
 msgstr "Адрес эл. почты для исходящих писем"
 
-#: includes/settings-api.php:305
+#: includes/settings-api.php:320
 msgid ""
 "Emails are sent to your WordPress admin email. If you prefere to receive "
 "emails in a different address, please enter it here."
 msgstr "Письма отправляются на адрес электронной почты администратора WordPress. Если вы предпочитаете получать электронную почту на другой адрес, введите его здесь."
 
-#: includes/settings-api.php:310
+#: includes/settings-api.php:325
 msgid "FROM email address for outgoing emails"
 msgstr "Адрес электронной почты для исходящих писем"
 
-#: includes/settings-api.php:313
+#: includes/settings-api.php:328
 msgid ""
 "Emails go out using your WordPress admin email. If you prefer to use a "
 "different email enter it here. Some servers will not process outgoing emails"
@@ -7067,13 +7078,13 @@ msgid ""
 "hosting account."
 msgstr "Исходящие электронные письма уходят с профиля администратора WordPress. Если вы желаете изменить адрес, введите его здесь. Некоторые серверы не будут обрабатывать исходящие письма, которые имеют адреса от gmail, yahoo, hotmail или других бесплатных служб в поле \"От\". Некоторые серверы также не обрабатывают письма, у которых адреса отличаются от электронной почты, связанной с Вашей учетной записью хостинга в поле \"От\". Если у вас такой хостинг, Вы должны оставить этот флажок отключенным и убедится, что адрес электронной почты администратора WordPress , связан с учетной записью вашего хостинга."
 
-#: includes/settings-api.php:316
+#: includes/settings-api.php:331
 msgid ""
 "Use wordpress@<website-domain> as the FROM email address for outgoing "
 "emails."
 msgstr "Использовать wordpress@<website-domain> в поле ОТ исходящих электронных писем."
 
-#: includes/settings-api.php:325
+#: includes/settings-api.php:340
 msgid ""
 "That's the address WordPress uses to send its emails. If you are receiving "
 "the registration emails and other WordPress notifications succesfully, then "
@@ -7082,11 +7093,11 @@ msgid ""
 "emails setting is ignored."
 msgstr "Этот адрес использует WordPress для отправки электронных писем. Если вы нормально получаете регистрационные и остальные письма от WordPress, то возможно вам следует применить эту опцию, чтобы использовать этот же адресс для исходящей почты. Если отмечено, поле ОТ в настройках игнорируется."
 
-#: includes/settings-api.php:328
+#: includes/settings-api.php:343
 msgid "Use sender email for reply messages"
 msgstr "Использование электронной почты отправителя для ответа на сообщения"
 
-#: includes/settings-api.php:328
+#: includes/settings-api.php:343
 msgid ""
 "Check this to use the name and email of the sender in the FROM field when "
 "someone replies to an ad. When unchecked the messages go out with the "
@@ -7100,171 +7111,171 @@ msgid ""
 "account."
 msgstr "Установите этот флажок, чтобы использовать имя и адрес отправителя в поле \"От\", когда кто-нибудь отвечает на объявление. Если флажок не установлен, сообщения уходят с именем сайта и адресом почты админа WP в поле \"От\". Некоторые серверы не будут обрабатывать исходящие сообщения электронной почты, которые имеют адреса электронной почты от gmail, yahoo, hotmail и других бесплатных служб электронной почты в поле \"От\". Некоторые серверы также не обрабатывать электронные письма, которые имеют адреса электронной почты, отличные от электронной почты, связанной с Вашей учетной записью хостинга в поле \"От\". Если у вас такой хостинг, Вы должны оставить этот флажок отключенным и убедится, что адрес электронной почтыа дминистратора WordPress , связан с учетной записью вашего хостинга."
 
-#: includes/settings-api.php:338
+#: includes/settings-api.php:353
 msgid "Include the name of the recipient in the email address"
 msgstr "Включить имя получателя в адрес электронной почты"
 
-#: includes/settings-api.php:344
+#: includes/settings-api.php:359
 msgid "Include Ad access key in email messages"
 msgstr "Включить ключ доступа объявления в сообщение электронной почты"
 
-#: includes/settings-api.php:344
+#: includes/settings-api.php:359
 msgid ""
 "Include Ad access key in email notifications. You may want to uncheck this "
 "option if you are using the Ad Management panel, but is not necessary."
 msgstr "Включите ключ доступа объявления в почтовые уведомления. Вы можете выключить эту опцию, если вы используете Панель Управления Объявлением, но это не является необходимым."
 
-#: includes/settings-api.php:348
+#: includes/settings-api.php:363
 msgid "Ad Posted Message"
 msgstr "Сообщение о Размещении Объявления"
 
-#: includes/settings-api.php:350
+#: includes/settings-api.php:365
 msgid "Subject for Ad posted notification email"
 msgstr "Тема почтового сообщения о размещении объявления"
 
-#: includes/settings-api.php:350
+#: includes/settings-api.php:365
 msgid "Your Classified Ad listing has been submitted"
 msgstr "Ваши список объявлений был размещен"
 
-#: includes/settings-api.php:350
+#: includes/settings-api.php:365
 msgid "Subject line for email sent out when someone posts an Ad"
 msgstr "Тема почтового сообщения, отправляемого, когда кто-то разместил объявление"
 
-#: includes/settings-api.php:351
+#: includes/settings-api.php:366
 msgid "Body for Ad posted notification email"
 msgstr "Текст почтового сообщения о размещении объявления"
 
-#: includes/settings-api.php:351
+#: includes/settings-api.php:366
 msgid ""
 "Thank you for submitting your Classified Ad. The details of your ad are "
 "shown below."
 msgstr "Спасибо за публикацию объявления. Детали объявления показаны ниже."
 
-#: includes/settings-api.php:351
+#: includes/settings-api.php:366
 msgid "Message body text for email sent out when someone posts an Ad"
 msgstr "Текст почтового сообщения, отправляемого, когда кто-то разместил объявление"
 
-#: includes/settings-api.php:355
+#: includes/settings-api.php:370
 msgid "Reply to Ad Message"
 msgstr "Сообщение об Ответе на Объявление"
 
-#: includes/settings-api.php:357
+#: includes/settings-api.php:372
 msgid "Subject for Reply to Ad email"
 msgstr "Тема почтового сообщения об ответе на объявление"
 
-#: includes/settings-api.php:357
+#: includes/settings-api.php:372
 msgid "Response to your AWPCP Demo Ad"
 msgstr "Ответ на ваш AWPCP демо-объявление"
 
-#: includes/settings-api.php:357
+#: includes/settings-api.php:372
 msgid "Subject line for email sent out when someone replies to Ad"
 msgstr "Тема почтового сообщения, отправляемого, когда кто-то ответил на объявление"
 
-#: includes/settings-api.php:358
+#: includes/settings-api.php:373
 msgid "Body for Reply to Ad email"
 msgstr "Текст почтового сообщения об ответе на объявление"
 
-#: includes/settings-api.php:358
+#: includes/settings-api.php:373
 msgid "Someone has responded to your AWPCP Demo Ad"
 msgstr "Кто-то ответил на ваше AWPCP демо объявление"
 
-#: includes/settings-api.php:358
+#: includes/settings-api.php:373
 msgid "Message body text for email sent out when someone replies to Ad"
 msgstr "Текст почтового сообщения, отправляемого, когда кто-то ответил на объявление"
 
-#: includes/settings-api.php:359
+#: includes/settings-api.php:374
 msgid "Notify admin about contact message"
 msgstr "Уведомлять администратора об ответах на объявления"
 
-#: includes/settings-api.php:359
+#: includes/settings-api.php:374
 msgid ""
 "An email will be sent to the administrator every time a visitor sends a "
 "message to one of the Ad posters through the Reply to Ad page."
 msgstr "Письмо будет отправляться администратору каждый раз, когда посетитель оставляет сообщение в одном из объявлений."
 
-#: includes/settings-api.php:363
+#: includes/settings-api.php:378
 msgid "Resend Access Key Message"
 msgstr "Сообщение с ключом доступа"
 
-#: includes/settings-api.php:365
+#: includes/settings-api.php:380
 msgid "Subject for Request Ad Access Key email"
 msgstr "Тема почтового сообщения о ключе доступа объявления"
 
-#: includes/settings-api.php:365
+#: includes/settings-api.php:380
 msgid "The Classified Ad's ad access key you requested"
 msgstr "Ключ доступа к объявлению, который вы запросили"
 
-#: includes/settings-api.php:365
+#: includes/settings-api.php:380
 msgid ""
 "Subject line for email sent out when someone requests their ad access key "
 "resent"
 msgstr "Тема почтового сообщения, отправляемого, когда кто-то запросил ключ доступа к объявлению"
 
-#: includes/settings-api.php:366
+#: includes/settings-api.php:381
 msgid "Body for Request Ad Access Key email"
 msgstr "Текст почтового сообщения о ключе доступа к объявлению"
 
-#: includes/settings-api.php:366
+#: includes/settings-api.php:381
 msgid ""
 "You asked to have your Classified Ad's access key resent. Below are all the "
 "Ad access keys in the system that are tied to the email address you provided"
 msgstr "Вы просили повторно выслать вам ваш ключ доступа Доски Объявлений. Ниже представлены все ключи доступа объявлений в системе, которые связаны с указанным Вами адресом электронной почты"
 
-#: includes/settings-api.php:366
+#: includes/settings-api.php:381
 msgid ""
 "Message body text for email sent out when someone requests their ad access "
 "key resent"
 msgstr "Текст почтового сообщения, отправляемого, когда кто-то запроси ключ доступа к объявлению"
 
-#: includes/settings-api.php:370
+#: includes/settings-api.php:385
 msgid "Verify Email Message"
 msgstr "Проверочное сообщение"
 
-#: includes/settings-api.php:372
+#: includes/settings-api.php:387
 msgid "Subject for Verification email"
 msgstr "Тема проверочного письма"
 
-#: includes/settings-api.php:372
+#: includes/settings-api.php:387
 msgid "Verify the email address used for Ad $title"
 msgstr "Подтвердите адрес электронной почты, используемый для объявления $title"
 
-#: includes/settings-api.php:372
+#: includes/settings-api.php:387
 msgid "Subject line for email sent out to verify the email address."
 msgstr "Тема почтового сообщения для подтверждения адреса электронной почты."
 
-#: includes/settings-api.php:373
+#: includes/settings-api.php:388
 msgid "Body for Verification email"
 msgstr "Тело письма подтверждения"
 
-#: includes/settings-api.php:373
+#: includes/settings-api.php:388
 msgid ""
 "You can use the following placeholders to personalize the body of the email:"
 " $title, $author_name,$verification_email, $website_name, $website_url."
 msgstr "Вы можете использовать такие короткие коды для персонализации тела письма: $title, $author_name,$verification_email, $website_name, $website_url."
 
-#: includes/settings-api.php:377
+#: includes/settings-api.php:392
 msgid "Incomplete Payment Message"
 msgstr "Сообщение о незавершенной оплате"
 
-#: includes/settings-api.php:379
+#: includes/settings-api.php:394
 msgid "Subject for Incomplete Payment email"
 msgstr "Тема почтового сообщения о незавершенной оплате"
 
-#: includes/settings-api.php:379
+#: includes/settings-api.php:394
 msgid "There was a problem processing your payment"
 msgstr "Возникла проблема обработки Вашего платежа"
 
-#: includes/settings-api.php:379
+#: includes/settings-api.php:394
 msgid ""
 "Subject line for email sent out when the payment processing does not "
 "complete"
 msgstr "Тема почтового сообщения, отправляемого, когда процесс оплаты не был завершен"
 
-#: includes/settings-api.php:380
+#: includes/settings-api.php:395
 msgid "Body for Incomplete Payment email"
 msgstr "Текст почтового сообщения о незавершенной оплате"
 
-#: includes/settings-api.php:380
+#: includes/settings-api.php:395
 msgid ""
 "There was a problem encountered during your attempt to submit payment. If "
 "funds were removed from the account you tried to use to make a payment "
@@ -7272,283 +7283,283 @@ msgid ""
 " assistance."
 msgstr "Во время оплаты возникла проблема. Если с вашего баланса были сняты какие-либо средства, пожалуйста, свяжитесь с администратором иди тех.поддержкой сервиса оплаты."
 
-#: includes/settings-api.php:380
+#: includes/settings-api.php:395
 msgid ""
 "Message body text for email sent out when the payment processing does not "
 "complete"
 msgstr "Текст почтового сообщения, отправляемого, когда процесс оплаты не был завершен"
 
-#: includes/settings-api.php:384
+#: includes/settings-api.php:399
 msgid "Renew Ad Message"
 msgstr "Сообщение об истекающем объявлении"
 
-#: includes/settings-api.php:386
+#: includes/settings-api.php:401
 msgid "Subject for Renew Ad email"
 msgstr "Тема почтового сообщения об истекающем сроке объявления"
 
-#: includes/settings-api.php:386
+#: includes/settings-api.php:401
 msgid "Your classifieds listing Ad will expire in %d days."
 msgstr "Публикация вашего объявления истекает через %d дней."
 
-#: includes/settings-api.php:386
+#: includes/settings-api.php:401
 msgid "Subject line for email sent out when an Ad is about to expire."
 msgstr "Тема почтового сообщения, отправляемого, когда срок объявления истекает"
 
-#: includes/settings-api.php:387 includes/settings-api.php:394
+#: includes/settings-api.php:402 includes/settings-api.php:409
 msgid "Body for Renew Ad email"
 msgstr "Текст почтового сообщения об истекающем сроке объявления"
 
-#: includes/settings-api.php:387
+#: includes/settings-api.php:402
 msgid ""
 "This is an automated notification that your Classified Ad will expire in %d "
 "days."
 msgstr "Это автоматическое уведомление о том, что срок вашего объявления истекает через %d дней."
 
-#: includes/settings-api.php:387
+#: includes/settings-api.php:402
 msgid ""
 "Message body text for email sent out when an Ad is about to expire. Use %d "
 "as placeholder for the number of days before the Ad expires."
 msgstr "Текст почтового сообщения, отправляемого, когда срока действия объявления истекает в ближайшее время. Использовать %d в качестве значения количества дней до истечения срока объявления."
 
-#: includes/settings-api.php:391
+#: includes/settings-api.php:406
 msgid "Ad Renewed Message"
 msgstr "Сообщение о возобновленном объявлении"
 
-#: includes/settings-api.php:393
+#: includes/settings-api.php:408
 msgid "Subject for Ad Renewed email"
 msgstr "Тема почтового сообщения о возобновлении объявления"
 
-#: includes/settings-api.php:393
+#: includes/settings-api.php:408
 msgid "Your classifieds listing \"%s\" has been successfully renewed."
 msgstr "Ваш список объявлений  \"%s\" был возобновлен."
 
-#: includes/settings-api.php:393
+#: includes/settings-api.php:408
 msgid "Subject line for email sent out when an Ad is successfully renewed."
 msgstr "Тема почтового сообщения, отправляемого, когда объявление успешно возобновлено."
 
-#: includes/settings-api.php:394
+#: includes/settings-api.php:409
 msgid ""
 "Your classifieds listing Ad has been successfully renewed. More information "
 "below:"
 msgstr "Ваше объявление возобновлено. Детальная информация:"
 
-#: includes/settings-api.php:394
+#: includes/settings-api.php:409
 msgid ""
 "Message body text for email sent out when an Ad is successfully renewed. "
 msgstr "Текст почтового сообщения, отправляемого, когда объявление успешно возобновлено."
 
-#: includes/settings-api.php:398
+#: includes/settings-api.php:413
 msgid "Ad Expired Message"
 msgstr "Сообщение об истекшем объявлении"
 
-#: includes/settings-api.php:400
+#: includes/settings-api.php:415
 msgid "Subject for Ad Expired email"
 msgstr "Тема почтового сообщения об истекшем сроке объявления"
 
-#: includes/settings-api.php:400
+#: includes/settings-api.php:415
 msgid "Your classifieds listing at %s has expired"
 msgstr "Публикация вашего объявления %s истекла."
 
-#: includes/settings-api.php:400
+#: includes/settings-api.php:415
 msgid "Subject line for email sent out when an ad has auto-expired"
 msgstr "Тема почтового сообщения, отправляемого, когда срок объявления истек"
 
-#: includes/settings-api.php:401
+#: includes/settings-api.php:416
 msgid "Body for Ad Expired email"
 msgstr "Текст почтового сообщения об истекшем сроке объявления"
 
-#: includes/settings-api.php:401
+#: includes/settings-api.php:416
 msgid "This is an automated notification that your Classified Ad has expired."
 msgstr "Это автоматическое уведомление о том, что срок вашего объявления истек."
 
-#: includes/settings-api.php:401
+#: includes/settings-api.php:416
 msgid "Message body text for email sent out when an ad has auto-expired"
 msgstr "Текст почтового сообщения, отправляемого, когда срок объявления истек"
 
-#: includes/settings-api.php:405
+#: includes/settings-api.php:420
 msgid "Advanced Email Configuration"
 msgstr "Расширенная настройка почты"
 
-#: includes/settings-api.php:407
+#: includes/settings-api.php:422
 msgid "Enable external SMTP server"
 msgstr "Включение внешнего SMTP-сервера"
 
-#: includes/settings-api.php:407
+#: includes/settings-api.php:422
 msgid "Enabled external SMTP server (if emails not processing normally)."
 msgstr "Подключение внешнего SMTP-сервера (если почта не обрабатывается нормально)."
 
-#: includes/settings-api.php:408
+#: includes/settings-api.php:423
 msgid "SMTP host"
 msgstr "SMTP-хост"
 
-#: includes/settings-api.php:408
+#: includes/settings-api.php:423
 msgid "SMTP host (if emails not processing normally)."
 msgstr "SMTP-хост (если почта не обрабатывается нормально)."
 
-#: includes/settings-api.php:409
+#: includes/settings-api.php:424
 msgid "SMTP port"
 msgstr "SMTP-порт"
 
-#: includes/settings-api.php:409
+#: includes/settings-api.php:424
 msgid "SMTP port (if emails not processing normally)."
 msgstr "SMTP-порт (если почта не обрабатывается нормально)."
 
-#: includes/settings-api.php:410
+#: includes/settings-api.php:425
 msgid "SMTP username"
 msgstr "Имя пользователя SMTP"
 
-#: includes/settings-api.php:410
+#: includes/settings-api.php:425
 msgid "SMTP username (if emails not processing normally)."
 msgstr "Имя пользователя SMTP (если почта не обрабатывается нормально)."
 
-#: includes/settings-api.php:411
+#: includes/settings-api.php:426
 msgid "SMTP password"
 msgstr "Пароль SMTP"
 
-#: includes/settings-api.php:411
+#: includes/settings-api.php:426
 msgid "SMTP password (if emails not processing normally)."
 msgstr "Пароль SMTP (если почта не обрабатывается нормально)."
 
-#: includes/settings-api.php:419
+#: includes/settings-api.php:434
 msgid "Send Ads to Facebook Automatically"
 msgstr "Автоматически отправлять объявления на Facebook"
 
-#: includes/settings-api.php:419
+#: includes/settings-api.php:434
 msgid ""
 "If checked, Ads will be posted to Facebook shortly after they are posted, "
 "enabled or edited, whichever occurs first. Ads will be posted only once. "
 "Please note that disabled Ads cannot be posted to Facebook."
 msgstr "Если отмечено, объявления будут опубликовано на Facebook вскоре после добавления, активации или редактирования, в зависимости от очередности. Объявление публикуется единожды. Обратите внимание, что отключенные объявления не могут быть опубликованы на Facebook."
 
-#: includes/settings-api.php:610
+#: includes/settings-api.php:625
 msgid "<module-name> License Key"
 msgstr "Ключ лицензии для <module-name>"
 
-#: includes/settings-api.php:619
+#: includes/settings-api.php:634
 msgid "Licenses"
 msgstr "Лицензии"
 
-#: includes/settings-api.php:759
+#: includes/settings-api.php:774
 msgid ""
 "Require Registration setting was enabled automatically because you activated"
 " the User Ad Management panel."
 msgstr "Обязательная регистрация была включена автоматически, так как вы активировали пользовательскую панель объявлений."
 
-#: includes/settings-api.php:776
+#: includes/settings-api.php:791
 msgid ""
 "Akismet SPAM control cannot be enabled because Akismet plugin is not "
 "installed or activated."
 msgstr "Вы не можете активировать контроль спама Akismet, так как Akismet не установлен либо не активирован "
 
-#: includes/settings-api.php:780
+#: includes/settings-api.php:795
 msgid ""
 "Akismet SPAM control cannot be enabled because Akismet is not properly "
 "configured."
 msgstr "Вы не можете активировать контроль спама Akismet, так как Akismet неверно настроен."
 
-#: includes/settings-api.php:803
+#: includes/settings-api.php:818
 msgid ""
 "reCAPTCHA can't be used because the public key and private key settings are "
 "required for reCAPTCHA to work properly."
 msgstr "reCAPTCHA не может быть использован, так как настройки открытого и закрытого ключей являются обязательными для нормальной работы reCAPTCHA"
 
-#: includes/settings-api.php:805
+#: includes/settings-api.php:820
 msgid ""
 "reCAPTCHA can't be used because the public key setting is required for "
 "reCAPTCHA to work properly."
 msgstr "reCAPTCHA не может быть использован, так как настройки открытого ключа являются обязательными для нормальной работы reCAPTCHA"
 
-#: includes/settings-api.php:807
+#: includes/settings-api.php:822
 msgid ""
 "reCAPTCHA can't be used because the private key setting is required for "
 "reCAPTCHA to work properly."
 msgstr "reCAPTCHA не может быть использован, так как настройки закрытого ключа являются обязательными для нормальной работы reCAPTCHA"
 
-#: includes/settings-api.php:820
+#: includes/settings-api.php:835
 msgid ""
 "User Ad Management panel was automatically deactivated because you disabled "
 "Require Registration setting."
 msgstr "Пользовательская Панель Управления Объявлениями была автоматически отключена, потому что вы отключили настройку Обязательной Регистрации."
 
-#: includes/settings-api.php:825
+#: includes/settings-api.php:840
 msgid ""
 "Credit System was automatically disabled because you disabled Require "
 "Registration setting."
 msgstr "Кредитная система отключена, так как вы отключили обязательную регистрацию."
 
-#: includes/settings-api.php:841
+#: includes/settings-api.php:856
 msgid ""
 "There is a problem with the PayPal Currency Code you have entered. It does "
 "not match any of the codes in our list of curencies supported by PayPal."
 msgstr "Есть проблема с кодом валюты, которую вы ввели. Он не соответствует ни одному из кодов в списке доступных валют PayPal."
 
-#: includes/settings-api.php:842
+#: includes/settings-api.php:857
 msgid "The available currency codes are"
 msgstr "Доступные коды валюты"
 
-#: includes/settings-api.php:851
+#: includes/settings-api.php:866
 msgid ""
 "Require Registration setting was enabled automatically because you activated"
 " the Credit System."
 msgstr "Обязательная регистрация была включена автоматически, так как вы активировали систему кредитов."
 
-#: includes/settings-api.php:856
+#: includes/settings-api.php:871
 msgid ""
 "Charge Listing Fee setting was enabled automatically because you activated "
 "the Credit System."
 msgstr "Режим оплаты был включен автоматически, так как вы активировали систему кредитов."
 
-#: includes/settings-api.php:862
+#: includes/settings-api.php:877
 msgid ""
 "Credit System was disabled automatically because you disabled Charge Listing"
 " Fee."
 msgstr "Система кредитов была отключена, так как вы отключили обязательный режим оплаты."
 
-#: includes/settings-api.php:1104
+#: includes/settings-api.php:1126
 msgid "Deactivate"
 msgstr "Деактивировать"
 
-#: includes/settings-api.php:1105
+#: includes/settings-api.php:1127
 msgid "active"
 msgstr "активный"
 
-#: includes/settings-api.php:1105 includes/settings-api.php:1108
-#: includes/settings-api.php:1118 includes/settings-api.php:1120
-#: includes/settings-api.php:1122
+#: includes/settings-api.php:1127 includes/settings-api.php:1130
+#: includes/settings-api.php:1140 includes/settings-api.php:1142
+#: includes/settings-api.php:1144
 msgid "Status: <license-status>"
 msgstr "Статус: <license-status>"
 
-#: includes/settings-api.php:1107 includes/settings-api.php:1110
+#: includes/settings-api.php:1129 includes/settings-api.php:1132
 msgid "Activate"
 msgstr "Активировать"
 
-#: includes/settings-api.php:1108
+#: includes/settings-api.php:1130
 msgid "inactive"
 msgstr "неактивный"
 
-#: includes/settings-api.php:1113
+#: includes/settings-api.php:1135
 msgid ""
 "Click the button above to check the status of your license. Please <contact-"
 "link>contact customer support</a> if you think the reported status is wrong."
 msgstr "Нажмите кнопку выше для проверки статуса вашей лицензии. Пожалуйста, свяжитесь с <contact-link>пользовательской поддержкой</a>, если вы считаете, что возвращенный статус неверен."
 
-#: includes/settings-api.php:1118
+#: includes/settings-api.php:1140
 msgid "expired"
 msgstr "истек"
 
-#: includes/settings-api.php:1120
+#: includes/settings-api.php:1142
 msgid "disabled"
 msgstr "отключено"
 
-#: includes/settings-api.php:1122
+#: includes/settings-api.php:1144
 msgid "unknown"
 msgstr "неопределено"
 
-#: includes/settings-api.php:1161
+#: includes/settings-api.php:1183
 msgid "Documentation on date and time formatting"
 msgstr "Документация по форматированию даты и время"
 
-#: includes/settings-api.php:1182
+#: includes/settings-api.php:1204
 msgid "Setting <setting-name> not available."
 msgstr "Настройка <setting-name> не доступна."
 
