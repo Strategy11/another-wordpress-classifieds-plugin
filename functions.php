@@ -548,7 +548,7 @@ function awpcp_default_region_fields( $context='details', $enabled_fields = null
     $enabled_fields = is_null( $enabled_fields ) ? awpcp_get_enabled_region_fields() : $enabled_fields;
     $show_city_field_before_county_field = get_awpcp_option( 'show-city-field-before-county-field' );
 
-    $always_shown = in_array( $context, array( 'details', 'search' ) );
+    $always_shown = in_array( $context, array( 'details', 'search', 'user-profile' ) );
     $can_be_required = $context !== 'search';
     $_fields = array();
 
