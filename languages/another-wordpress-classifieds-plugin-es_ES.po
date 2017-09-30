@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2017-09-27 23:21:18+00:00\n"
-"PO-Revision-Date: 2017-09-27 23:27+0000\n"
+"POT-Creation-Date: 2017-09-30 13:49:51+00:00\n"
+"PO-Revision-Date: 2017-09-30 15:06+0000\n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: Spanish (Spain) (http://www.transifex.com/wp-translations/another-wordpress-classifieds-plugin/language/es_ES/)\n"
 "MIME-Version: 1.0\n"
@@ -929,41 +929,41 @@ msgstr "Orden"
 msgid "Action"
 msgstr "Acción"
 
-#: admin/admin-panel.php:1121
+#: admin/admin-panel.php:1127
 msgid "The new category was successfully added."
 msgstr "La nueva Categoría fue agregada con éxito."
 
-#: admin/admin-panel.php:1140
+#: admin/admin-panel.php:1146
 msgid ""
 "Sorry but you cannot delete the default category. The default category can "
 "only be renamed"
 msgstr "Perdón pero no se puede eliminar esta Categoría. Las Categorías por defecto sólo pueden renombrarse."
 
-#: admin/admin-panel.php:1208
+#: admin/admin-panel.php:1214
 msgid "The category has been deleted"
 msgstr "La Categoría ha sido eliminada"
 
-#: admin/admin-panel.php:1220
+#: admin/admin-panel.php:1226
 msgid "Your category changes have been saved."
 msgstr "Los cambios realizados en las Categorías han sido guardados."
 
-#: admin/admin-panel.php:1227
+#: admin/admin-panel.php:1233
 msgid "No changes made to categories."
 msgstr "No se han hecho cambios sobre las Categorías"
 
-#: admin/admin-panel.php:1266
+#: admin/admin-panel.php:1272
 msgid ""
 "With the exception of any category that was being moved to itself, the "
 "categories have been moved"
 msgstr "A excepción de cualquier categoría que haya sido movida al mismo lugar, el resto de las categorías han sido movidas"
 
-#: admin/admin-panel.php:1270
+#: admin/admin-panel.php:1276
 msgid ""
 "The categories have not been moved because you did not indicate where you "
 "want the categories to be moved to"
 msgstr "Las Categorías no han podido moverse porque no indicó a dónde deben moverse"
 
-#: admin/admin-panel.php:1365
+#: admin/admin-panel.php:1371
 msgid "The categories have been deleted"
 msgstr "Las Categorías han sido eliminadas"
 
@@ -1711,9 +1711,11 @@ msgstr "Página: %s (Nombre por defecto: %s)."
 
 #: admin/templates/admin-panel-settings-pages-settings.tpl.php:62
 msgid ""
-"If you are having problems with your plugin pages, you can delete them and "
-"use the Restore button to have the plugin create them again."
-msgstr "Si usted está teniendo problemas con las páginas de su plug-in, puede borrar y utilizar el botón Restaurar para crearlas de nuevo."
+"Use the button below to have the plugin attempt to find the necessary pages."
+" If you continue to have problems or seeing page related warnings above, you"
+" can delete affected plugin pages and use the Restore Pages button to have "
+"the plugin create them again."
+msgstr "Use el botón que está debajo para hacer que el plugin intente encontrar las páginas. Si continua teniendo problems, o arriba todavía aparecen mensajes de advertencia relacionados con páginas, puede eliminar las páginas afectadas y usar el botón Restaurar Páginas para hacer que el plugin las cree de nuevo."
 
 #: admin/templates/admin-panel-settings-pages-settings.tpl.php:63
 msgid "Restore Pages"
@@ -8116,6 +8118,6 @@ msgstr "Usted anuncios que han sido reportados pendientes por revisar en <site-n
 msgid "Return to main classifieds"
 msgstr "Regresar a la página principal de clasificados"
 
-#: templates/frontend/listings.tpl.php:20
+#: templates/frontend/listings.tpl.php:24
 msgid "There were no listings found."
 msgstr "No se encontraron anuncios."
