@@ -25,7 +25,7 @@ class AWPCP_Missing_Pages_Finder {
 
         $query = 'SELECT posts.ID post, posts.post_status status ';
         $query.= 'FROM ' . $this->db->posts . ' AS posts ';
-        $query.= "WHERE posts.ID IN (" . join( ",", $registered_pages_ids ) . ") ";
+        $query.= "WHERE posts.ID IN (" . join( ",", $registered_pages_ids ) . ") AND posts.post_type = 'page' ";
 
         $existing_pages = $this->db->get_results( $query, OBJECT_K );
         $missing_pages = array( 'not-found' => array(), 'not-published' => array(), 'not-referenced' => array() );
