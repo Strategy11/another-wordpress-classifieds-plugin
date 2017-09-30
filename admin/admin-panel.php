@@ -949,7 +949,13 @@ function awpcp_opsconfig_categories() {
 }
 
 function awpcp_pages() {
-	$pages = array('main-page-name' => array(get_awpcp_option('main-page-name'), '[AWPCP]'));
+    $pages = array(
+        'main-page-name' => array(
+            get_awpcp_option('main-page-name'),
+            '[AWPCPCLASSIFIEDSUI]'
+        )
+    );
+
 	return $pages + awpcp_subpages();
 }
 
