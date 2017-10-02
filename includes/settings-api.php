@@ -463,6 +463,13 @@ class AWPCP_Settings_API {
 				   array($this, 'validate_registration_settings'), 10, 2);
 		add_filter('awpcp_validate_settings_smtp-settings',
 				   array($this, 'validate_smtp_settings'), 10, 2);
+
+        add_filter(
+            'awpcp_validate_settings_email-settings',
+            array( $this, 'validate_email_settings' ),
+            10,
+            2
+        );
 	}
 
 	public function init() {
@@ -894,6 +901,25 @@ class AWPCP_Settings_API {
 
 		return $options;
 	}
+
+    public function validate_email_settings( $options, $group ) {
+        if ( ! isset( $options['awpcpadminemail'] ) ) {
+            return $options;
+        }
+
+        if ( ! awpcp_is_valid_email_address( $options['awpcpadminemail' ] ) ) {
+            $new_value = '<strong>' . esc_html( $options['awpcpadminemail'] ) . '</strong>';
+
+            $message = __( '<new-value> is not a valid email address. Please the value you entered to use as the FROM email address for outgoing messages.', 'another-wordpress-classifieds-plugin' );
+            $message = str_replace( '<new-value>', $new_value, $message );
+
+            awpcp_flash( $message, 'notice notice-error' );
+
+            $options['awpcpadminemail'] = $this->get_option( 'awpcpadminemail' );
+        }
+
+        return $options;
+    }
 
 	/**
 	 * Classifieds Pages Settings checks
