@@ -317,7 +317,7 @@ class AWPCP_Settings_API {
 
 		$key = $this->add_section($group, __('General Email Settings', 'another-wordpress-classifieds-plugin'), 'default', 20, array($this, 'section'));
 
-		$this->add_setting( $key, 'admin-recipient-email', __( 'TO email address for outgoing emails', 'another-wordpress-classifieds-plugin' ), 'textfield', '', __( 'Emails are sent to your WordPress admin email. If you prefere to receive emails in a different address, please enter it here.', 'another-wordpress-classifieds-plugin' ) );
+		$this->add_setting( $key, 'admin-recipient-email', __( 'TO email address for outgoing emails', 'another-wordpress-classifieds-plugin' ), 'textfield', '', __( 'Emails are sent to your WordPress admin email. If you prefer to receive emails in a different address, please enter it here.', 'another-wordpress-classifieds-plugin' ) );
 
 		$this->add_setting(
 			$key,
@@ -903,22 +903,47 @@ class AWPCP_Settings_API {
 	}
 
     public function validate_email_settings( $options, $group ) {
-        if ( ! isset( $options['awpcpadminemail'] ) ) {
-            return $options;
+        $settings = array(
+            'awpcpadminemail' => __( '<new-value> is not a valid email address. Please check the value you entered to use as the FROM email address for outgoing messages.', 'another-wordpress-classifieds-plugin' ),
+            'admin-recipient-email' => __( '<new-value> is not a valid email address. Please check the value you entered to use as recipient email address for admin notifications.', 'another-wordpress-classifieds-plugin' ),
+        );
+
+        foreach( $settings as $setting_name => $message ) {
+            $validated_value = $this->validate_email_setting(
+                $options,
+                $setting_name,
+                $message
+            );
+
+            if ( is_null( $validated_value ) ) {
+                continue;
+            }
+
+            $options[ $setting_name ] = $validated_value;
         }
 
-        if ( ! awpcp_is_valid_email_address( $options['awpcpadminemail' ] ) ) {
-            $new_value = '<strong>' . esc_html( $options['awpcpadminemail'] ) . '</strong>';
+        return $options;
+    }
 
-            $message = __( '<new-value> is not a valid email address. Please the value you entered to use as the FROM email address for outgoing messages.', 'another-wordpress-classifieds-plugin' );
+    private function validate_email_setting( $options, $setting_name, $message ) {
+        if ( ! isset( $options[ $setting_name ] ) ) {
+            return null;
+        }
+
+        if ( empty( $options[ $setting_name ] ) ) {
+            return $options[ $setting_name ];
+        }
+
+        if ( ! awpcp_is_valid_email_address( $options[ $setting_name ] ) ) {
+            $new_value = '<strong>' . esc_html( $options[ $setting_name ] ) . '</strong>';
             $message = str_replace( '<new-value>', $new_value, $message );
 
             awpcp_flash( $message, 'notice notice-error' );
 
-            $options['awpcpadminemail'] = $this->get_option( 'awpcpadminemail' );
+            return $this->get_option( $setting_name );
         }
 
-        return $options;
+        return $options[ $setting_name ];
     }
 
 	/**
