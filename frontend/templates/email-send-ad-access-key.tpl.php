@@ -4,6 +4,7 @@
 <?php echo sprintf($message, $ad->get_title(), $ad->ad_contact_email); ?> 
 
 <?php _e('Access Key', 'another-wordpress-classifieds-plugin'); ?>: <?php echo $ad->get_access_key(); ?> 
- 
+<?php _e( 'Edit Link:', 'another-wordpress-classifieds-plugin' ); ?> <?php echo $edit_link; ?> 
+
 <?php echo awpcp_get_blog_name(); ?> 
 <?php echo home_url(); ?> 

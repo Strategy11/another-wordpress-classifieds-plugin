@@ -6,6 +6,7 @@
 <?php foreach ( $ads as $ad ): ?>
 <?php echo $ad->get_title(); ?> 
 <?php _e( 'Access Key', 'another-wordpress-classifieds-plugin' ); ?>: <?php echo $ad->get_access_key(); ?> 
+<?php _e( 'Edit Link:', 'another-wordpress-classifieds-plugin' ); ?> <?php echo awpcp_get_edit_listing_url_with_access_key( $ad ); ?> 
  
 <?php endforeach; ?>
 
