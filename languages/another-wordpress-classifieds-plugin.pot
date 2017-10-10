@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2017-10-04 20:52:05+00:00\n"
+"POT-Creation-Date: 2017-10-10 21:50:51+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2295,15 +2295,15 @@ msgstr ""
 msgid "Invalid access token."
 msgstr ""
 
-#: frontend/page-edit-ad.php:565
+#: frontend/page-edit-ad.php:566
 msgid "The sepecified listing cannot be edited using this access code."
 msgstr ""
 
-#: frontend/page-edit-ad.php:583
+#: frontend/page-edit-ad.php:584
 msgid "Edit link for listing: %s"
 msgstr ""
 
-#: frontend/page-edit-ad.php:599
+#: frontend/page-edit-ad.php:600
 msgid ""
 "The link you used already expired. Please check your email to receive a link "
 "with a new access token."
@@ -3020,6 +3020,15 @@ msgstr ""
 #: frontend/templates/email-send-ad-access-key.tpl.php:7
 #: frontend/templates/email-send-all-ad-access-keys.tpl.php:9
 msgid "Edit Link:"
+msgstr ""
+
+#: frontend/templates/email-send-ad-access-key.tpl.php:9
+#: frontend/templates/email-send-all-ad-access-keys.tpl.php:13
+#: templates/email/listing-edit-link-with-access-token.tpl.php:9
+msgctxt "edit link email"
+msgid ""
+"The edit link will expire after 24 hours. If you use the link after it has "
+"expired, a new one will be delivered to your email address automatically."
 msgstr ""
 
 #: frontend/templates/email-send-all-ad-access-keys.tpl.php:4
@@ -8060,6 +8069,41 @@ msgstr ""
 
 #: templates/components/payment-methods-list.tpl.php:3
 msgid "No payment methods available."
+msgstr ""
+
+#: templates/email/listing-edit-link-with-access-token.tpl.php:1
+msgctxt "edit link email"
+msgid "Hi <contact-name>,"
+msgstr ""
+
+#: templates/email/listing-edit-link-with-access-token.tpl.php:3
+msgctxt "edit link email"
+msgid ""
+"The access key and edit link for the listing <listing-title> are shown below:"
+msgstr ""
+
+#: templates/email/listing-edit-link-with-access-token.tpl.php:5
+msgctxt "edit link email"
+msgid "Access Key: <access-key>"
+msgstr ""
+
+#: templates/email/listing-edit-link-with-access-token.tpl.php:6
+msgctxt "edit link email"
+msgid "Email Address: <email-address>"
+msgstr ""
+
+#: templates/email/listing-edit-link-with-access-token.tpl.php:7
+msgctxt "edit link email"
+msgid "Edit Link: <edit-link>"
+msgstr ""
+
+#: templates/email/listing-edit-link-with-access-token.tpl.php:11
+msgctxt "edit link email"
+msgid ""
+"You are receiving this message because you tried to edit this listing using "
+"an expired link or because you or the administrator requested the access key "
+"to be sent. If that's not the case, please ignore this message, or contact "
+"the adiministrator if you have received similar messages today."
 msgstr ""
 
 #: templates/email/listing-is-about-to-expire-notification.plain.tpl.php:3
