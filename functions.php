@@ -2316,9 +2316,13 @@ function awpcp_remove_utf8_non_characters( $content ) {
 }
 
 function awpcp_maybe_convert_to_utf8( $content ) {
+    if ( ! function_exists( 'iconv' ) ) {
+        return $content;
+    }
+
     $encoding = awpcp_detect_encoding( $content );
 
-    if ( 'UTF-8' != $encoding ) {
+    if ( $encoding && 'UTF-8' != $encoding ) {
         $converted_content = iconv( $encoding, 'UTF-8', $content );
     } else {
         $converted_content = $content;
@@ -2351,7 +2355,11 @@ function awpcp_detect_encoding( $content ) {
  * @since 3.6.0
  */
 function awpcp_mb_detect_encoding( $conent, $encodings ) {
-   foreach ( $encodings as $encoding ) {
+    if ( ! function_exists( 'iconv' ) ) {
+        return false;
+    }
+
+    foreach ( $encodings as $encoding ) {
         $sample = iconv( $encoding, $encoding, $string );
         if ( md5( $sample ) == md5( $string ) ) {
             return $encoding;
