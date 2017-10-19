@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2017-10-10 21:50:51+00:00\n"
+"POT-Creation-Date: 2017-10-18 23:54:33+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1943,7 +1943,7 @@ msgid "Premium Modules"
 msgstr ""
 
 #: admin/templates/admin-sidebar.tpl.php:154
-#: admin/templates/admin-sidebar.tpl.php:195 functions.php:2911
+#: admin/templates/admin-sidebar.tpl.php:195 functions.php:2919
 msgid "Installed"
 msgstr ""
 
@@ -1952,7 +1952,7 @@ msgid "No premium modules installed."
 msgstr ""
 
 #: admin/templates/admin-sidebar.tpl.php:171
-#: admin/templates/admin-sidebar.tpl.php:212 functions.php:2907
+#: admin/templates/admin-sidebar.tpl.php:212 functions.php:2915
 msgid "Not Installed"
 msgstr ""
 
@@ -2179,6 +2179,16 @@ msgstr ""
 msgid "Problem encountered. Cannot complete  request"
 msgstr ""
 
+#: frontend/class-categories-selector-component.php:36
+msgctxt "multiple dropdowns category selector"
+msgid "Category: <category-name>"
+msgstr ""
+
+#: frontend/class-categories-selector-component.php:41
+msgctxt "single dropdown category selector"
+msgid "Category:"
+msgstr ""
+
 #: frontend/class-image-placeholders.php:45
 msgid "Click to enlarge image."
 msgstr ""
@@ -2295,15 +2305,15 @@ msgstr ""
 msgid "Invalid access token."
 msgstr ""
 
-#: frontend/page-edit-ad.php:566
+#: frontend/page-edit-ad.php:565
 msgid "The sepecified listing cannot be edited using this access code."
 msgstr ""
 
-#: frontend/page-edit-ad.php:584
+#: frontend/page-edit-ad.php:583
 msgid "Edit link for listing: %s"
 msgstr ""
 
-#: frontend/page-edit-ad.php:600
+#: frontend/page-edit-ad.php:599
 msgid ""
 "The link you used already expired. Please check your email to receive a link "
 "with a new access token."
@@ -3738,15 +3748,15 @@ msgid ""
 "to continue: %s."
 msgstr ""
 
-#: functions.php:2741
+#: functions.php:2749
 msgid "Email sent %s."
 msgstr ""
 
-#: functions.php:2919
+#: functions.php:2927
 msgid "SSL Support: Yes."
 msgstr ""
 
-#: functions.php:2921
+#: functions.php:2929
 msgid "SSL Support: No."
 msgstr ""
 
@@ -3917,11 +3927,11 @@ msgid "There were no ads found"
 msgstr ""
 
 #: includes/functions/deprecated.php:143
+#: templates/frontend/category-selector.tpl.php:12
 msgid "Change Category"
 msgstr ""
 
 #: includes/functions/deprecated.php:151
-#: templates/frontend/category-selector.tpl.php:15
 msgid "Category: "
 msgstr ""
 
