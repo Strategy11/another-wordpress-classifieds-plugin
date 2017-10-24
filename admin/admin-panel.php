@@ -1101,8 +1101,7 @@ function awpcp_handle_admin_requests() {
 		$tbl_ad_categories = $wpdb->prefix . "awpcp_categories";
 		$tbl_ads = $wpdb->prefix . "awpcp_ads";
 
-		$category_id=clean_field($_REQUEST['category_id']);
-
+		$category_id = intval( $_REQUEST['category_id'] );
 
 		if (isset($_REQUEST['$movetocat']) && !empty($_REQUEST['$movetocat']))
 		{
