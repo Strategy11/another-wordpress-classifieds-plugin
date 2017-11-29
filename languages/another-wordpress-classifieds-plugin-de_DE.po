@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2017-09-30 13:49:51+00:00\n"
-"PO-Revision-Date: 2017-09-30 15:01+0000\n"
+"POT-Creation-Date: 2017-10-18 23:54:33+00:00\n"
+"PO-Revision-Date: 2017-11-27 23:19+0000\n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: German (Germany) (http://www.transifex.com/wp-translations/another-wordpress-classifieds-plugin/language/de_DE/)\n"
 "MIME-Version: 1.0\n"
@@ -508,8 +508,8 @@ msgid "No Ad ID was specified."
 msgstr "Es wurde keine Anzeigen-ID angegeben"
 
 #: admin/admin-panel-listings.php:305 frontend/ad-functions.php:242
-#: frontend/page-edit-ad.php:171 frontend/page-edit-ad.php:229
-#: frontend/page-edit-ad.php:367 frontend/page-edit-ad.php:395
+#: frontend/page-edit-ad.php:173 frontend/page-edit-ad.php:231
+#: frontend/page-edit-ad.php:369 frontend/page-edit-ad.php:397
 msgid "The specified Ad doesn't exists."
 msgstr "Die ausgewählte Anzeige existiert nicht."
 
@@ -597,36 +597,36 @@ msgstr "Die Anzeige konnte nicht als überprüft markiert werden."
 msgid "Access Key for \"%s\""
 msgstr "Zugangscode für  \"%s\""
 
-#: admin/admin-panel-listings.php:553
+#: admin/admin-panel-listings.php:554
 msgid "The access key was sent to %s."
 msgstr "Die Zugangsdaten wurden an  %s gesendet."
 
-#: admin/admin-panel-listings.php:555 frontend/page-edit-ad.php:533
+#: admin/admin-panel-listings.php:556 frontend/page-edit-ad.php:535
 msgid "There was an error trying to send the email to %s."
 msgstr "Es gab einen Fehler beim Versuch eine E-Mail an %s zu senden."
 
-#: admin/admin-panel-listings.php:632
+#: admin/admin-panel-listings.php:633
 msgid "%d of %d Ads were deleted. %d generated errors."
 msgstr "%d von %d Anzeigen wurden gelöscht. %d Fehler."
 
-#: admin/admin-panel-listings.php:634
+#: admin/admin-panel-listings.php:635
 msgid "%d of %d Ads were deleted."
 msgstr "%d von %d Anzeigen wurden gelöscht."
 
-#: admin/admin-panel-listings.php:638
+#: admin/admin-panel-listings.php:639
 msgid "%d of %d Ads don't exist."
 msgstr "%d von %d Anzeigen existieren nicht."
 
-#: admin/admin-panel-listings.php:642
+#: admin/admin-panel-listings.php:643
 msgid "%d of %d Ads weren't deleted because you are not authorized."
 msgstr "%d von %d Anzeigen wurden nicht gelöscht weil Sie keine Berechtigung haben."
 
-#: admin/admin-panel-listings.php:669
+#: admin/admin-panel-listings.php:670
 msgctxt "ajax delete ad"
 msgid "The specified Ad doesn't exists."
 msgstr "Die ausgewählte Anzeige existiert nicht."
 
-#: admin/admin-panel-listings.php:710
+#: admin/admin-panel-listings.php:711 frontend/page-edit-ad.php:558
 msgid "The specified listing doesn't exists."
 msgstr "Die ausgewählte Anzeige existiert nicht."
 
@@ -1715,7 +1715,7 @@ msgid ""
 " If you continue to have problems or seeing page related warnings above, you"
 " can delete affected plugin pages and use the Restore Pages button to have "
 "the plugin create them again."
-msgstr ""
+msgstr "Verwende den Button damit das Plugin versucht die Zuordnung der notwendigen Seiten  wieder herzustellen. Wenn Sie trotzdem weiterhin Probleme haben oder die Warnung immer noch erscheint dann sollten Sie die betreffenden Seiten vom Plugin löschen und den \"Seiten Wiederherstellen\" Button verwenden damit die Seiten wieder neu angelegt werden."
 
 #: admin/templates/admin-panel-settings-pages-settings.tpl.php:63
 msgid "Restore Pages"
@@ -1951,7 +1951,7 @@ msgid "Premium Modules"
 msgstr "Premium Module"
 
 #: admin/templates/admin-sidebar.tpl.php:154
-#: admin/templates/admin-sidebar.tpl.php:195 functions.php:2911
+#: admin/templates/admin-sidebar.tpl.php:195 functions.php:2919
 msgid "Installed"
 msgstr "Instaliert"
 
@@ -1960,7 +1960,7 @@ msgid "No premium modules installed."
 msgstr "Keine Premium-Module installiert"
 
 #: admin/templates/admin-sidebar.tpl.php:171
-#: admin/templates/admin-sidebar.tpl.php:212 functions.php:2907
+#: admin/templates/admin-sidebar.tpl.php:212 functions.php:2915
 msgid "Not Installed"
 msgstr "Nicht installiert"
 
@@ -2095,7 +2095,7 @@ msgstr "ZIP Code Search Modul"
 msgid "This field is required."
 msgstr "Pflichtfeld"
 
-#: awpcp.php:1248 frontend/page-edit-ad.php:128 frontend/page-edit-ad.php:440
+#: awpcp.php:1248 frontend/page-edit-ad.php:130 frontend/page-edit-ad.php:442
 #: includes/settings-api.php:253
 msgid "Please enter a valid email address."
 msgstr "Bitte geben Sie Ihre E-Mail-Adresse ein!"
@@ -2187,6 +2187,16 @@ msgstr "Es gab einen Fehler beim Löschen der Anzeige. Die Anzeige wurde nicht g
 msgid "Problem encountered. Cannot complete  request"
 msgstr "Interner Fehler. Die Anfrage konnte nicht beendet werden."
 
+#: frontend/class-categories-selector-component.php:36
+msgctxt "multiple dropdowns category selector"
+msgid "Category: <category-name>"
+msgstr ""
+
+#: frontend/class-categories-selector-component.php:41
+msgctxt "single dropdown category selector"
+msgid "Category:"
+msgstr "Kategorie"
+
 #: frontend/class-image-placeholders.php:45
 msgid "Click to enlarge image."
 msgstr "Auf Bild klicken um zu vergrößern."
@@ -2210,8 +2220,8 @@ msgstr "Sie haben keine Kategorie zum Stöbern angegeben, also sehen Sie hier Ei
 msgid "Please go to the Ad Management panel to edit your Ads."
 msgstr "Bitte gehen Sie zur Anzeigenbearbeitung um Ihre Anzeigen zu bearbeiten."
 
-#: frontend/page-edit-ad.php:46 frontend/page-edit-ad.php:119
-#: frontend/page-edit-ad.php:496
+#: frontend/page-edit-ad.php:46 frontend/page-edit-ad.php:121
+#: frontend/page-edit-ad.php:498
 msgid "Click here"
 msgstr "Hier drücken"
 
@@ -2219,85 +2229,103 @@ msgstr "Hier drücken"
 msgid "You are not allowed to edit the specified Ad."
 msgstr "Sie haben nicht die Berechtigung um die ausgewählte Anzeige zu bearbeiten."
 
-#: frontend/page-edit-ad.php:118 frontend/page-edit-ad.php:495
+#: frontend/page-edit-ad.php:120 frontend/page-edit-ad.php:497
 msgid ""
 "You are currently not logged in, if you have an account in this website you "
 "can log in and go to the Ad Management panel to edit your Ads."
 msgstr "Sie sind im Moment nicht eingeloggt. Wenn Sie auf dieser Webseite ein Konto haben so können Sie sich in die Anzeigenverwaltung einloggen und Ihre Anzeigen editieren."
 
-#: frontend/page-edit-ad.php:126
+#: frontend/page-edit-ad.php:128
 msgid ""
 "Please enter the email address you used when you created your Ad in addition"
 " to the Ad access key that was emailed to you after your Ad was submitted."
 msgstr "Bitte geben Sie die E-Mail-Adresse ein, die Sie bei der Erstellung der Anzeige verwendet haben. Außerdem benötigen Sie den Zugangscode, der Ihnen nach der Eingabe der Anzeige zugeschickt wurde"
 
-#: frontend/page-edit-ad.php:132
+#: frontend/page-edit-ad.php:134
 msgid "Please enter your Ad access key."
 msgstr "Bitte geben Sie Ihren Zugangscode ein:"
 
-#: frontend/page-edit-ad.php:138
+#: frontend/page-edit-ad.php:140
 msgid ""
 "The email address and access key you entered does not match any of the Ads "
 "in our system."
 msgstr "Die E-Mail-Adresse und der Zugangscode passen leider nicht."
 
-#: frontend/page-edit-ad.php:208
+#: frontend/page-edit-ad.php:210
 msgid "Manage Attachments"
 msgstr "Anhänge bearbeiten"
 
-#: frontend/page-edit-ad.php:211
+#: frontend/page-edit-ad.php:213
 msgid "Go to the %s section to manage the Images and Attachments for this Ad."
 msgstr "Gehe zu %s um die Bilder und Anhänge für diese Anzeige zu bearbeiten."
 
-#: frontend/page-edit-ad.php:280 frontend/page-place-ad.php:1157
+#: frontend/page-edit-ad.php:282 frontend/page-place-ad.php:1157
 msgid ""
 "There was an unexpected error trying to save your Ad details. Please try "
 "again or contact an administrator."
 msgstr "Es gab ein Problem mit dem Speichern der Anzeige. Bitte probieren Sie es noch einmal oder kontaktieren Sie den Webseiten-Betreiber!"
 
-#: frontend/page-edit-ad.php:302 frontend/page-place-ad.php:1224
+#: frontend/page-edit-ad.php:304 frontend/page-place-ad.php:1224
 msgid "The specified Ad doesn't exists. No images can be added at this time."
 msgstr "Die Anzeige existiert nicht. Das Bild kann nicht hinzugefügt werden."
 
-#: frontend/page-edit-ad.php:355
+#: frontend/page-edit-ad.php:357
 #: frontend/templates/page-place-ad-preview-step.tpl.php:17
 #: includes/helpers/widgets/class-listing-form-steps-component.php:69
 #: templates/admin/import-listings-admin-page-import-form.tpl.php:30
 msgid "Finish"
 msgstr "Abschließen  - ANZEIGE VERÖFFENTLICHEN"
 
-#: frontend/page-edit-ad.php:374
+#: frontend/page-edit-ad.php:376
 msgid ""
 "The Ad has been edited successfully. <a href=\"%s\">Go back to view "
 "listings</a>."
 msgstr "Die Anzeige wurde erfolgreich bearbeitet. <a href=\"%s\">Zurück zu den Anzeigen</a>"
 
-#: frontend/page-edit-ad.php:400
+#: frontend/page-edit-ad.php:402
 msgid "There was a problem trying to delete your Ad. The Ad was not deleted."
 msgstr "Es gab ein Problem beim Löschen Ihrer Anzeige. Die Anzeige wurde nicht gelöscht."
 
-#: frontend/page-edit-ad.php:412
+#: frontend/page-edit-ad.php:414
 msgid "Your Ad has been successfully deleted."
 msgstr "Ihre Anzeige wurde erfolgreich gelöscht."
 
-#: frontend/page-edit-ad.php:438
+#: frontend/page-edit-ad.php:440
 msgid "Please enter the email address you used when you created your Ad."
 msgstr "Bitte geben Sie die E-Mail-Adresse ein die Sie beim Erstellen der Anzeige verwendet haben."
 
-#: frontend/page-edit-ad.php:447
+#: frontend/page-edit-ad.php:449
 msgid ""
 "The email address you entered does not match any of the Ads in our system."
 msgstr "Die E-Mail-Adresse die Sie eingegeben haben ist leider unbekannt."
 
-#: frontend/page-edit-ad.php:481
+#: frontend/page-edit-ad.php:483
 msgid ""
 "The email address you entered does not match any of the listing in our "
 "system."
 msgstr "Ihre E-Mail-Adresse ist nicht in unserem System."
 
-#: frontend/page-edit-ad.php:530
+#: frontend/page-edit-ad.php:532
 msgid "The access keys were sent to %s."
 msgstr "Die Zugangsdaten wurden an  %s gesendet."
+
+#: frontend/page-edit-ad.php:545
+msgid "Invalid access token."
+msgstr ""
+
+#: frontend/page-edit-ad.php:565
+msgid "The sepecified listing cannot be edited using this access code."
+msgstr ""
+
+#: frontend/page-edit-ad.php:583
+msgid "Edit link for listing: %s"
+msgstr ""
+
+#: frontend/page-edit-ad.php:599
+msgid ""
+"The link you used already expired. Please check your email to receive a link"
+" with a new access token."
+msgstr ""
 
 #: frontend/page-place-ad.php:59
 #: includes/views/class-verify-transaction-exists-step-decorator.php:17
@@ -2782,7 +2810,7 @@ msgstr "Webseite"
 msgid "This Ad has been viewed %d time."
 msgid_plural "This Ad has been viewed %d times."
 msgstr[0] "Anzeigenaufrufe: %d."
-msgstr[1] "Anzeigenaufrufe: %d."
+msgstr[1] "Anzeigenaufrufe: %d"
 
 #: frontend/placeholders.php:620
 msgid "Total views: %d"
@@ -3007,6 +3035,20 @@ msgid ""
 "Below you will find the access key for your Ad \"%s\" associated to the "
 "email address %s."
 msgstr "Unten finden Sie den Zugangscode für Ihre Anzeige \"%s\". Diese Anzeige ist registriert auf die E-Mail-Adresse (Login): %s."
+
+#: frontend/templates/email-send-ad-access-key.tpl.php:7
+#: frontend/templates/email-send-all-ad-access-keys.tpl.php:9
+msgid "Edit Link:"
+msgstr ""
+
+#: frontend/templates/email-send-ad-access-key.tpl.php:9
+#: frontend/templates/email-send-all-ad-access-keys.tpl.php:13
+#: templates/email/listing-edit-link-with-access-token.tpl.php:9
+msgctxt "edit link email"
+msgid ""
+"The edit link will expire after 24 hours. If you use the link after it has "
+"expired, a new one will be delivered to your email address automatically."
+msgstr ""
 
 #: frontend/templates/email-send-all-ad-access-keys.tpl.php:4
 msgid "Total ads found sharing your email address"
@@ -3715,15 +3757,15 @@ msgid ""
 "to continue: %s."
 msgstr "Zusätzlich können Sie die Bilder in der Bildverwaltung freigeben. Hier geht es weiter: %s"
 
-#: functions.php:2741
+#: functions.php:2749
 msgid "Email sent %s."
 msgstr "Diese E-Mail wurde gesendet am: %s"
 
-#: functions.php:2919
+#: functions.php:2927
 msgid "SSL Support: Yes."
 msgstr "SSL Support: Ja."
 
-#: functions.php:2921
+#: functions.php:2929
 msgid "SSL Support: No."
 msgstr "SSL Support: Nein."
 
@@ -3894,11 +3936,11 @@ msgid "There were no ads found"
 msgstr "Es wurden keine Anzeigen gefunden"
 
 #: includes/functions/deprecated.php:143
+#: templates/frontend/category-selector.tpl.php:12
 msgid "Change Category"
 msgstr "Starten"
 
 #: includes/functions/deprecated.php:151
-#: templates/frontend/category-selector.tpl.php:15
 msgid "Category: "
 msgstr "Kategorie:"
 
@@ -7025,9 +7067,9 @@ msgstr "AN E-Mail-Adresse für ausgehende E-Mails"
 
 #: includes/settings-api.php:320
 msgid ""
-"Emails are sent to your WordPress admin email. If you prefere to receive "
+"Emails are sent to your WordPress admin email. If you prefer to receive "
 "emails in a different address, please enter it here."
-msgstr "E-Mails werden an Ihre Wordpress Admin E-Mail-Adresse verschickt. Wenn Sie die E-Mails an eine andere E-Mail-Adresse verschicken möchten so geben Sie diese bitte hier ein."
+msgstr ""
 
 #: includes/settings-api.php:325
 msgid "FROM email address for outgoing emails"
@@ -7398,135 +7440,147 @@ msgid ""
 "Please note that disabled Ads cannot be posted to Facebook."
 msgstr "Wenn angewählt werden Anzeigen auf Facebook veröffentlich nachdem sie erstellt, freigeschalten oder editiert wurden. Anzeigen werden nur einmal gepostet. Bitte beachten Sie dass deaktivierte Anzeigen nicht auf Facebook gepostet werden!"
 
-#: includes/settings-api.php:625
+#: includes/settings-api.php:632
 msgid "<module-name> License Key"
 msgstr "<module-name> Lizenzschlüssel"
 
-#: includes/settings-api.php:634
+#: includes/settings-api.php:641
 msgid "Licenses"
 msgstr "Lizenzen"
 
-#: includes/settings-api.php:774
+#: includes/settings-api.php:781
 msgid ""
 "Require Registration setting was enabled automatically because you activated"
 " the User Ad Management panel."
 msgstr "Die Registrierung als Benutzer ist automatisch eingeschalten worden, weil Sie die Benutzer Anzeigen Management Info aktiviert haben."
 
-#: includes/settings-api.php:791
+#: includes/settings-api.php:798
 msgid ""
 "Akismet SPAM control cannot be enabled because Akismet plugin is not "
 "installed or activated."
 msgstr "Sie können die Akismet SPAM-Kontrolle nicht aktivieren, weil Akismet nicht installiert oder aktiviert ist."
 
-#: includes/settings-api.php:795
+#: includes/settings-api.php:802
 msgid ""
 "Akismet SPAM control cannot be enabled because Akismet is not properly "
 "configured."
 msgstr "Akismet SPAM kann nicht aktiviert werden weil Akismet nicht richtig konfiguriert ist."
 
-#: includes/settings-api.php:818
+#: includes/settings-api.php:825
 msgid ""
 "reCAPTCHA can't be used because the public key and private key settings are "
 "required for reCAPTCHA to work properly."
 msgstr "reCAPTCHA kann nicht benutzt werden weil der Öffentliche und Private Schlüssel fehlen."
 
-#: includes/settings-api.php:820
+#: includes/settings-api.php:827
 msgid ""
 "reCAPTCHA can't be used because the public key setting is required for "
 "reCAPTCHA to work properly."
 msgstr "reCAPTCHA kann nicht benutzt werden weil der Öffentliche Schlüssel fehlt."
 
-#: includes/settings-api.php:822
+#: includes/settings-api.php:829
 msgid ""
 "reCAPTCHA can't be used because the private key setting is required for "
 "reCAPTCHA to work properly."
 msgstr "reCAPTCHA kann nicht benutzt werden weil der Private Schlüssel fehlt."
 
-#: includes/settings-api.php:835
+#: includes/settings-api.php:842
 msgid ""
 "User Ad Management panel was automatically deactivated because you disabled "
 "Require Registration setting."
 msgstr "Die Registrierung als Benutzer ist automatisch ausgeschalten worden, weil Sie die Benutzer Anzeigen Management Info deaktiviert haben."
 
-#: includes/settings-api.php:840
+#: includes/settings-api.php:847
 msgid ""
 "Credit System was automatically disabled because you disabled Require "
 "Registration setting."
 msgstr "Die Registrierung als Benutzer ist automatisch ausgeschalten worden, weil Sie die Benutzer Anzeigen Management Info deaktiviert haben."
 
-#: includes/settings-api.php:856
+#: includes/settings-api.php:863
 msgid ""
 "There is a problem with the PayPal Currency Code you have entered. It does "
 "not match any of the codes in our list of curencies supported by PayPal."
 msgstr "Es gibt ein Problem mit dem von Ihnen eingegebenen Währungscode. Er passt nicht zu einer von PayPal akzeptierten Währungen."
 
-#: includes/settings-api.php:857
+#: includes/settings-api.php:864
 msgid "The available currency codes are"
 msgstr "Die gültigen Währungen sind"
 
-#: includes/settings-api.php:866
+#: includes/settings-api.php:873
 msgid ""
 "Require Registration setting was enabled automatically because you activated"
 " the Credit System."
 msgstr "Die Registrierung als Benutzer ist automatisch eingeschalten worden, weil Sie das Credit System aktiviert haben."
 
-#: includes/settings-api.php:871
+#: includes/settings-api.php:878
 msgid ""
 "Charge Listing Fee setting was enabled automatically because you activated "
 "the Credit System."
 msgstr "Die Anzeigen sind automatisch auf Bezahlung eingeschalten worden, weil Sie das Credit System aktiviert haben."
 
-#: includes/settings-api.php:877
+#: includes/settings-api.php:884
 msgid ""
 "Credit System was disabled automatically because you disabled Charge Listing"
 " Fee."
 msgstr "Das Credit System wurde automatisch deaktivert weil Sie die Bezahlung der Anzeigen abgeschaltet haben."
 
-#: includes/settings-api.php:1126
+#: includes/settings-api.php:907
+msgid ""
+"<new-value> is not a valid email address. Please check the value you entered"
+" to use as the FROM email address for outgoing messages."
+msgstr ""
+
+#: includes/settings-api.php:908
+msgid ""
+"<new-value> is not a valid email address. Please check the value you entered"
+" to use as recipient email address for admin notifications."
+msgstr ""
+
+#: includes/settings-api.php:1177
 msgid "Deactivate"
 msgstr "Deaktivieren"
 
-#: includes/settings-api.php:1127
+#: includes/settings-api.php:1178
 msgid "active"
 msgstr "aktiv"
 
-#: includes/settings-api.php:1127 includes/settings-api.php:1130
-#: includes/settings-api.php:1140 includes/settings-api.php:1142
-#: includes/settings-api.php:1144
+#: includes/settings-api.php:1178 includes/settings-api.php:1181
+#: includes/settings-api.php:1191 includes/settings-api.php:1193
+#: includes/settings-api.php:1195
 msgid "Status: <license-status>"
 msgstr "Status: <license-status>"
 
-#: includes/settings-api.php:1129 includes/settings-api.php:1132
+#: includes/settings-api.php:1180 includes/settings-api.php:1183
 msgid "Activate"
 msgstr "Aktivieren"
 
-#: includes/settings-api.php:1130
+#: includes/settings-api.php:1181
 msgid "inactive"
 msgstr "inaktiv"
 
-#: includes/settings-api.php:1135
+#: includes/settings-api.php:1186
 msgid ""
 "Click the button above to check the status of your license. Please <contact-"
 "link>contact customer support</a> if you think the reported status is wrong."
 msgstr "Drücken Sie den Button um den Status Ihrer Lizenz zu prüfen. Bitte kontaktieren Sie den <contact-link>Kundendienst</a> wenn Sie einen falschen Lizenzstatus haben."
 
-#: includes/settings-api.php:1140
+#: includes/settings-api.php:1191
 msgid "expired"
 msgstr "abgelaufen"
 
-#: includes/settings-api.php:1142
+#: includes/settings-api.php:1193
 msgid "disabled"
 msgstr "deaktiviert"
 
-#: includes/settings-api.php:1144
+#: includes/settings-api.php:1195
 msgid "unknown"
 msgstr "unbekannt"
 
-#: includes/settings-api.php:1183
+#: includes/settings-api.php:1234
 msgid "Documentation on date and time formatting"
 msgstr "Datums und Uhrzeits Formatierung"
 
-#: includes/settings-api.php:1204
+#: includes/settings-api.php:1255
 msgid "Setting <setting-name> not available."
 msgstr "Einstellung  <setting-name> ist nicht verfügbar."
 
@@ -8047,6 +8101,42 @@ msgstr "Dateien auswählen"
 #: templates/components/payment-methods-list.tpl.php:3
 msgid "No payment methods available."
 msgstr "Keine Zahlungsmethode möglich."
+
+#: templates/email/listing-edit-link-with-access-token.tpl.php:1
+msgctxt "edit link email"
+msgid "Hi <contact-name>,"
+msgstr ""
+
+#: templates/email/listing-edit-link-with-access-token.tpl.php:3
+msgctxt "edit link email"
+msgid ""
+"The access key and edit link for the listing <listing-title> are shown "
+"below:"
+msgstr ""
+
+#: templates/email/listing-edit-link-with-access-token.tpl.php:5
+msgctxt "edit link email"
+msgid "Access Key: <access-key>"
+msgstr ""
+
+#: templates/email/listing-edit-link-with-access-token.tpl.php:6
+msgctxt "edit link email"
+msgid "Email Address: <email-address>"
+msgstr ""
+
+#: templates/email/listing-edit-link-with-access-token.tpl.php:7
+msgctxt "edit link email"
+msgid "Edit Link: <edit-link>"
+msgstr ""
+
+#: templates/email/listing-edit-link-with-access-token.tpl.php:11
+msgctxt "edit link email"
+msgid ""
+"You are receiving this message because you tried to edit this listing using "
+"an expired link or because you or the administrator requested the access key"
+" to be sent. If that's not the case, please ignore this message, or contact "
+"the adiministrator if you have received similar messages today."
+msgstr ""
 
 #: templates/email/listing-is-about-to-expire-notification.plain.tpl.php:3
 msgid "Listing Details are below:"
