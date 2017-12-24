@@ -138,4 +138,10 @@
 		    </div>
 	    </div>
 
+		<?php echo awpcp_html_admin_second_level_heading( array( 'content' => __( 'Debug & Development Tools', 'another-wordpress-classifieds-plugin' ) ) ); ?>
+
+        <ul>
+            <li><a href="<?php echo admin_url( 'plugin-install.php?tab=plugin-information&plugin=query-monitor&TB_iframe=true&width=600&height=550' ); ?>">Query Monitor</a></li>
+        </ul>
+
 	    </div>
