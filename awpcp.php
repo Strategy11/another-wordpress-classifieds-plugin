@@ -1028,9 +1028,16 @@ class AWPCP {
 					'version' => 'AWPCP_RSS_MODULE_DB_VERSION',
 					'required' => '4.0-dev-1',
 				),
+                'stripe' => array(
+                    'name' => __( 'Stripe', 'another-wordpress-classifieds-plugin' ),
+                    'url' => 'http://awpcp.com/downdloads/',
+                    'installed' => defined( 'STRIPE_MODULE_DB_VERSION' ),
+                    'version' => 'AWPCP_STRIPE_MODULE_DB_VERSION',
+                    'required' => '1.0',
+                ),
 				'subscriptions' => array(
 					'name' => __( 'Subscriptions', 'another-wordpress-classifieds-plugin' ),
-					'url' => 'http://awpcp.com/downloads/subscriptions-module/ ?ref=panel',
+					'url' => 'http://awpcp.com/downloads/subscriptions-module/?ref=panel',
 					'installed' => defined( 'AWPCP_SUBSCRIPTIONS_MODULE' ),
 					'version' => 'AWPCP_SUBSCRIPTIONS_MODULE_DB_VERSION',
 					'required' => '3.6.4-dev-1'

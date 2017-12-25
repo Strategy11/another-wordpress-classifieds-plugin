@@ -481,19 +481,19 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
     public function send_access_key_step() {
         global $wpdb;
 
-        $errors = array();
         $form = array(
             'ad_email' => $this->request->post( 'ad_email' ),
             'attempts' => (int) $this->request->post( 'attempts', 0 ),
         );
 
-        if ( $form['attempts'] == 0 && $this->get_settings()->get_option( 'enable-user-panel' ) == 1 ) {
-            $url = admin_url('admin.php?page=awpcp-panel');
-            $message = __('You are currently not logged in, if you have an account in this website you can log in and go to the Ad Management panel to edit your Ads.', 'another-wordpress-classifieds-plugin');
-            $message = sprintf('%s <a href="%s">%s</a>', $message, $url, __('Click here', 'another-wordpress-classifieds-plugin'));
-            $this->messages[] = $message;
+        if ( 1 == $form['attempts'] ) {
+            return $this->process_send_access_key_form( $form );
+        } else {
+            return $this->render_send_access_key_form( $form );
         }
+    }
 
+    private function process_send_access_key_form( $form, $errors = array() ) {
         if (empty($form['ad_email'])) {
             $errors['ad_email'] = __('Please enter the email address you used when you created your Ad.', 'another-wordpress-classifieds-plugin');
         } else if (!is_email($form['ad_email'])) {
@@ -515,8 +515,6 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
             if ( empty( $ads ) ) {
                 $errors[] = __('The email address you entered does not match any of the Ads in our system.', 'another-wordpress-classifieds-plugin');
             }
-        } else if ( $form['attempts'] == 0 ) {
-            $errors = array();
         }
 
         // TODO: define what a valid listing really looks like and use that everywhere:
@@ -554,17 +552,28 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
         }
 
         if ( !$access_keys_sent ) {
-            $send_access_key_url = add_query_arg( array( 'step' => 'send-access-key' ), $this->url() );
-
-            $messages = $this->messages;
-            $hidden = array('attempts' => $form['attempts'] + 1);
-            $params = compact( 'form', 'hidden', 'messages', 'errors', 'send_access_key_url' );
-            $template = AWPCP_DIR . '/frontend/templates/page-edit-ad-send-access-key-step.tpl.php';
-
-            return $this->render($template, $params);
+            return $this->render_send_access_key_form( $form, $errors );
         } else {
             return $this->enter_email_and_key_step(false);
         }
+    }
+
+    private function render_send_access_key_form( $form, $errors = array() ) {
+        if ( 0 == $form['attempts'] && $this->get_settings()->get_option( 'enable-user-panel' ) == 1 ) {
+            $url = admin_url( 'admin.php?page=awpcp-panel' );
+            $message = __( 'You are currently not logged in, if you have an account in this website you can log in and go to the Ad Management panel to edit your Ads.', 'another-wordpress-classifieds-plugin' );
+            $message = sprintf( '%s <a href="%s">%s</a>', $message, $url, __( 'Click here', 'another-wordpress-classifieds-plugin' ) );
+            $this->messages[] = $message;
+        }
+
+        $send_access_key_url = add_query_arg( array( 'step' => 'send-access-key' ), $this->url() );
+
+        $messages = $this->messages;
+        $hidden = array( 'attempts' => $form['attempts'] + 1 );
+        $params = compact( 'form', 'hidden', 'messages', 'errors', 'send_access_key_url' );
+        $template = AWPCP_DIR . '/frontend/templates/page-edit-ad-send-access-key-step.tpl.php';
+
+        return $this->render( $template, $params );
     }
 
     public function send_access_keys($ads, &$errors=array()) {
