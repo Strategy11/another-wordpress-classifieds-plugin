@@ -96,3 +96,6 @@ class AWPCP_CSV_Importer_Exception extends Exception {
         return array( $this->getMessage() );
     }
 }
+
+class AWPCP_HTTP_Exception extends Exception {
+}

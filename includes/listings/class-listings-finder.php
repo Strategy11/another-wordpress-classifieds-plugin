@@ -77,6 +77,7 @@ class AWPCP_ListingsFinder {
             'payer_email' => null,
 
             'disabled_date' => null,
+            'start_date' => null,
             'end_date' => null,
 
             'disabled' => null,
@@ -420,6 +421,7 @@ class AWPCP_ListingsFinder {
     private function build_dates_condition( $query ) {
         $conditions = array_merge(
             $this->build_date_condition( 'disabled_date', $query['disabled_date'] ),
+            $this->build_date_condition( 'ad_startdate', $query['start_date'] ),
             $this->build_date_condition( 'ad_enddate', $query['end_date'] )
         );
 
@@ -434,6 +436,8 @@ class AWPCP_ListingsFinder {
         } else if ( isset( $sub_query['compare'] ) ) {
             if ( $sub_query['compare'] == '<' ) {
                 $conditions[] = $this->db->prepare( "$column_name < %s", $sub_query['value'] );
+            } else if ( $sub_query['compare'] == '>' ) {
+                $conditions[] = $this->db->prepare( "$column_name > %s", $sub_query['value'] );
             }
         }
 

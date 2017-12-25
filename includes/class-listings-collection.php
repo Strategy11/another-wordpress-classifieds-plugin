@@ -715,6 +715,14 @@ class AWPCP_ListingsCollection {
 
     private function make_enabled_listings_query( $query ) {
         $query['post_status'] = 'publish';
+        
+        $query['meta_query'][] = array(
+            'key' => '_awpcp_start_date',
+            'value' => current_time( 'mysql' ),
+            'compare' => '<',
+            'type' => 'DATE',
+        );
+
         return $query;
     }
 

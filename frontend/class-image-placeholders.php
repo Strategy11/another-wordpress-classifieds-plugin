@@ -82,7 +82,12 @@ class AWPCP_Image_Placeholders {
                 $placeholders['featureimg'] = $content;
 
                 // listings
-                $image_attributes = array( 'alt' => awpcp_esc_attr( $this->listing_renderer->get_listing_title( $ad ) ) );
+                $image_attributes = array(
+                    'class' => 'awpcp-listing-primary-image-thumbnail',
+                    'alt' => awpcp_esc_attr( $ad->ad_title ),
+                    'src' => esc_attr( $thumbnail ),
+                    'width' => $thumbnail_width,
+                );
 
                 $content = '<a class="awpcp-listing-primary-image-listing-link" href="%s">%s</a>';
                 // TODO: Can we define a custom image size everytime the user changes the displayadthumbwidth setting, and regenerate
@@ -154,6 +159,7 @@ class AWPCP_Image_Placeholders {
 
             $image_attributes = array(
                 'attributes' => array(
+                    'class' => 'awpcp-listing-primary-image-thumbnail',
                     'alt' => awpcp_esc_attr( $this->listing_renderer->get_listing_title( $ad ) ),
                     'src' => esc_attr( $thumbnail ),
                     'width' => esc_attr( $thumbnail_width ),

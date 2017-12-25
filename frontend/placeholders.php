@@ -356,7 +356,7 @@ function awpcp_do_placeholder_details($ad, $placeholder) {
     $placeholders['addetails'] = apply_filters( 'awpcp-ad-details', stripslashes_deep( $ad->post_content ) );
 
     if (get_awpcp_option('hyperlinkurlsinadtext')) {
-        $pattern = '#(?<!")(http://[^\s]+)(?!")#';
+        $pattern = '#(?<!")(https?://[^\s]+)(?!")#';
         $nofollow = get_awpcp_option('visitwebsitelinknofollow') ? 'rel="nofollow"' : '';
         $link = sprintf('<a %s href="$1">$1</a>', $nofollow);
         $placeholders['addetails'] = preg_replace($pattern, $link, $placeholders['addetails']);
@@ -453,7 +453,7 @@ function awpcp_do_placeholder_price($ad, $placeholder) {
         $escaped_label = esc_html( __( 'Price', 'another-wordpress-classifieds-plugin' ) );
         $escaped_currency = esc_html( awpcp_format_money( $price ) );
         // single ad
-        $content = '<div class="showawpcpadpage"><label>%s</label>: <strong>%s</strong></div>';
+        $content = '<div class="showawpcpadpage"><label>%s:</label> <strong>%s</strong></div>';
         $replacements['aditemprice'] = sprintf($content, $escaped_label, $escaped_currency);
         // listings
         $replacements['awpcp_display_price'] = sprintf('%s: %s', $escaped_label, $escaped_currency);
@@ -590,7 +590,7 @@ function awpcp_do_placeholder_location($ad, $placeholder) {
     $location = join( '; ', $location );
 
     if ( !empty( $location ) ) {
-        $replacements['location'] = sprintf( '<br/><label>%s</label>: %s', __( 'Location', 'another-wordpress-classifieds-plugin' ), $location );
+        $replacements['location'] = sprintf( '<br/><label>%s:</label> %s', __( 'Location', 'another-wordpress-classifieds-plugin' ), $location );
         $replacements['region'] = $location;
     } else {
         $replacements['location'] = '';
@@ -680,9 +680,12 @@ function awpcp_do_placeholder_contact_phone($ad, $placeholder) {
             $phone = substr($phone, 0, $allowed) . str_repeat('X', strlen( $phone ) - $allowed );
         }
 
-        $content = sprintf( '<br/><label>%s</label>: %s',
-                            __('Phone', 'another-wordpress-classifieds-plugin'),
-                            $phone );
+        $content = sprintf(
+            '<br/><label>%s:</label> %s',
+            __( 'Phone', 'another-wordpress-classifieds-plugin' ),
+            $phone
+        );
+
         $replacements['adcontactphone'] = $content;
         $replacements['contact_phone'] = $phone;
     } else {
