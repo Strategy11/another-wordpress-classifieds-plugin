@@ -940,10 +940,14 @@ class AWPCP_ListingsCollection {
      * @since 3.3.2
      */
     public function count_enabled_listings_in_category( $category_id ) {
-        $category_condition = '( ad_category_id = %1$d OR ad_category_parent_id = %1$d )';
+        $category_condition = '( ad_category_id = %d OR ad_category_parent_id = %d )';
 
         $conditions = array(
-            $this->db->prepare( $category_condition, $category_id ),
+            $this->db->prepare(
+                $category_condition,
+                $category_id,
+                $category_id
+            ),
             'disabled = 0',
         );
 

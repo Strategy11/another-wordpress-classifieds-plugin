@@ -607,7 +607,7 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
 
         $message = new AWPCP_Email;
         $message->to[] = $recipient;
-        $message->subject = sprintf( 'Access Key for "%s"', $listing_title );
+        $message->subject = sprintf( __( 'Access Key for "%s"', 'another-wordpress-classifieds-plugin' ), $listing_title );
 
         $message->prepare($template,  array(
             'listing_title' => $listing_title,

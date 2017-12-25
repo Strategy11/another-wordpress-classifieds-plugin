@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2017-09-08 18:43:43+00:00\n"
-"PO-Revision-Date: 2017-09-08 18:44+0000\n"
+"POT-Creation-Date: 2017-09-24 22:29:10+00:00\n"
+"PO-Revision-Date: 2017-09-24 22:29+0000\n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: Romanian (Romania) (http://www.transifex.com/wp-translations/another-wordpress-classifieds-plugin/language/ro_RO/)\n"
 "MIME-Version: 1.0\n"
@@ -44,7 +44,7 @@ msgstr "Credite"
 #: admin/admin-panel-fees-table.php:120
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:19
 #: admin/templates/admin-panel-fees-entry-form.tpl.php:25
-#: frontend/placeholders.php:447 frontend/templates/page-search-ads.tpl.php:46
+#: frontend/placeholders.php:452 frontend/templates/page-search-ads.tpl.php:46
 #: includes/settings/class-payment-general-settings.php:16
 msgid "Price"
 msgstr "Preț"
@@ -63,7 +63,7 @@ msgid "Edit"
 msgstr "Editează"
 
 #: admin/admin-panel-credit-plans.php:43 admin/admin-panel-fees.php:46
-#: admin/admin-panel-listings-table.php:229 admin/admin-panel-listings.php:92
+#: admin/admin-panel-listings-table.php:232 admin/admin-panel-listings.php:92
 #: admin/templates/admin-panel-fees-delete-form.tpl.php:13
 #: admin/templates/delete_form.tpl.php:12
 msgid "Delete"
@@ -305,8 +305,8 @@ msgid "Payment Status"
 msgstr "Stare plată"
 
 #: admin/admin-panel-listings-table.php:188
-#: admin/admin-panel-listings-table.php:265
-#: admin/admin-panel-listings-table.php:441
+#: admin/admin-panel-listings-table.php:268
+#: admin/admin-panel-listings-table.php:444
 msgid "Featured"
 msgstr "Special"
 
@@ -322,122 +322,122 @@ msgstr "Activează"
 msgid "Disable"
 msgstr "Dezactivează"
 
-#: admin/admin-panel-listings-table.php:218 admin/admin-panel-listings.php:111
-msgid "Make Featured"
-msgstr "Marchează ca Special"
-
-#: admin/admin-panel-listings-table.php:219
-msgid "Make Non Featured"
-msgstr "Demarchează ca Special"
-
-#: admin/admin-panel-listings-table.php:220
+#: admin/admin-panel-listings-table.php:218
 msgid "Renew"
 msgstr "Reînnoiește"
 
-#: admin/admin-panel-listings-table.php:221
+#: admin/admin-panel-listings-table.php:219
 msgid "Mark as SPAM"
 msgstr "Marchează ca SPAM"
 
-#: admin/admin-panel-listings-table.php:226 admin/admin-panel-listings.php:134
+#: admin/admin-panel-listings-table.php:223 admin/admin-panel-listings.php:111
+msgid "Make Featured"
+msgstr "Marchează ca Special"
+
+#: admin/admin-panel-listings-table.php:224
+msgid "Make Non Featured"
+msgstr "Demarchează ca Special"
+
+#: admin/admin-panel-listings-table.php:229 admin/admin-panel-listings.php:134
 msgid "Send to Facebook"
 msgstr "Trimite la Facebook"
 
-#: admin/admin-panel-listings-table.php:250
+#: admin/admin-panel-listings-table.php:253
 msgid "New"
 msgstr "Nou"
 
-#: admin/admin-panel-listings-table.php:251
+#: admin/admin-panel-listings-table.php:254
 msgid "Expired"
 msgstr "Expirat"
 
-#: admin/admin-panel-listings-table.php:256
+#: admin/admin-panel-listings-table.php:259
 msgid "Ads Awaiting Approval"
 msgstr "Anunțuri așteptând aprobare"
 
-#: admin/admin-panel-listings-table.php:260
+#: admin/admin-panel-listings-table.php:263
 msgid "Images Awaiting Approval"
 msgstr "Imagini așteptând aprobare"
 
-#: admin/admin-panel-listings-table.php:266
+#: admin/admin-panel-listings-table.php:269
 msgid "Flagged"
 msgstr "Nepotrivit"
 
-#: admin/admin-panel-listings-table.php:267
+#: admin/admin-panel-listings-table.php:270
 msgid "Incomplete"
 msgstr "Incomplet"
 
-#: admin/admin-panel-listings-table.php:268
+#: admin/admin-panel-listings-table.php:271
 msgid "Unverified"
 msgstr "Neverificat"
 
-#: admin/admin-panel-listings-table.php:269
+#: admin/admin-panel-listings-table.php:272
 msgid "Completed"
 msgstr "Complet"
 
-#: admin/admin-panel-listings-table.php:279
+#: admin/admin-panel-listings-table.php:282
 msgid "Search by"
 msgstr "Caută după"
 
-#: admin/admin-panel-listings-table.php:281
+#: admin/admin-panel-listings-table.php:284
 msgid "Ad ID"
 msgstr "ID Anunț"
 
-#: admin/admin-panel-listings-table.php:282
+#: admin/admin-panel-listings-table.php:285
 msgid "Ad Title"
 msgstr "Titlu anunț"
 
-#: admin/admin-panel-listings-table.php:283
+#: admin/admin-panel-listings-table.php:286
 msgid "Keyword"
 msgstr "Cuvânt cheie"
 
-#: admin/admin-panel-listings-table.php:284 frontend/page-show-ad.php:58
-#: frontend/placeholders.php:573
+#: admin/admin-panel-listings-table.php:287 frontend/page-show-ad.php:58
+#: frontend/placeholders.php:578
 msgid "Location"
 msgstr "Locație"
 
-#: admin/admin-panel-listings-table.php:285 frontend/placeholders.php:665
+#: admin/admin-panel-listings-table.php:288 frontend/placeholders.php:670
 msgid "Phone"
 msgstr "Telefon"
 
-#: admin/admin-panel-listings-table.php:288
+#: admin/admin-panel-listings-table.php:291
 msgid "Payer Email"
 msgstr "Email plătitor"
 
-#: admin/admin-panel-listings-table.php:291
+#: admin/admin-panel-listings-table.php:294
 #: frontend/templates/page-place-ad-details-step.tpl.php:36
 #: frontend/templates/page-place-ad-order-step.tpl.php:43
 msgid "User"
 msgstr "Utilizator"
 
-#: admin/admin-panel-listings-table.php:332
+#: admin/admin-panel-listings-table.php:335
 msgctxt "admin listings table"
 msgid "Filter"
 msgstr "Filtru"
 
-#: admin/admin-panel-listings-table.php:377
+#: admin/admin-panel-listings-table.php:380
 msgid "View Ad."
 msgstr "Vezi anunț."
 
-#: admin/admin-panel-listings-table.php:405
+#: admin/admin-panel-listings-table.php:408
 msgid "Mark as Verified"
 msgstr "Marchează ca verificat"
 
-#: admin/admin-panel-listings-table.php:414
+#: admin/admin-panel-listings-table.php:417
 msgid "Disabled"
 msgstr "Deactivat"
 
-#: admin/admin-panel-listings-table.php:414
+#: admin/admin-panel-listings-table.php:417
 #: templates/components/media-manager.tpl.php:19
 #: templates/components/media-manager.tpl.php:58
 #: templates/components/media-manager.tpl.php:100
 msgid "Enabled"
 msgstr "Activat"
 
-#: admin/admin-panel-listings-table.php:428
+#: admin/admin-panel-listings-table.php:431
 msgid "Mark as Paid"
 msgstr "Marchează ca plătit"
 
-#: admin/admin-panel-listings-table.php:441
+#: admin/admin-panel-listings-table.php:444
 msgid "Not Featured"
 msgstr "Ne-Special"
 
@@ -595,6 +595,10 @@ msgstr "Anunțul a fost marcat ca verificat."
 #: admin/admin-panel-listings.php:530
 msgid "The listing couldn't marked as reviewed."
 msgstr "Anunțul nu a putut fi marcat ca verificat."
+
+#: admin/admin-panel-listings.php:545
+msgid "Access Key for \"%s\""
+msgstr ""
 
 #: admin/admin-panel-listings.php:553
 msgid "The access key was sent to %s."
@@ -2769,34 +2773,34 @@ msgid ""
 "(the author) can see it."
 msgstr "Acest anunț este dezactivat până când Administratorul îl va aproba. Doar dvs. (autorul) îl puteți vedea."
 
-#: frontend/placeholders.php:389
+#: frontend/placeholders.php:394
 msgid "Seller"
 msgstr "Vânzător"
 
-#: frontend/placeholders.php:412
+#: frontend/placeholders.php:417
 msgid "Visit Website"
 msgstr "Vizitează website"
 
-#: frontend/placeholders.php:609
+#: frontend/placeholders.php:614
 msgid "This Ad has been viewed %d time."
 msgid_plural "This Ad has been viewed %d times."
 msgstr[0] "Acest anunț a fost văzut o singură dată."
 msgstr[1] "Acest anunț a fost văzut de %d ori."
 msgstr[2] "Acest anunț a fost văzut de %d ori."
 
-#: frontend/placeholders.php:613
+#: frontend/placeholders.php:618
 msgid "Total views: %d"
 msgstr "Total vederi: %s"
 
-#: frontend/placeholders.php:724
+#: frontend/placeholders.php:729
 msgid "Flag Ad"
 msgstr "Marchează anunțul ca nepotrivit"
 
-#: frontend/placeholders.php:739
+#: frontend/placeholders.php:744
 msgid "Tweet This"
 msgstr "Trimite la Twitter"
 
-#: frontend/placeholders.php:770
+#: frontend/placeholders.php:775
 msgid "Share on Facebook"
 msgstr "Trimite la Facebook"
 
@@ -6221,7 +6225,7 @@ msgstr "Numărul de zile înainte ca anunțurile expirate să fie șterse"
 
 #: includes/settings/class-listings-moderation-settings.php:79
 msgid "Allow users to edit the start date of their listings?"
-msgstr ""
+msgstr "Permite utilizatorilor să editeze data de început a anunțului."
 
 #: includes/settings/class-listings-moderation-settings.php:88
 msgid ""
@@ -7952,6 +7956,10 @@ msgstr "Număr de telefon"
 #: templates/admin/profile/contact-information-fields.tpl.php:16
 msgid "Address"
 msgstr "Adresă"
+
+#: templates/components/classifieds-search-bar.tpl.php:8
+msgid "Find Listings"
+msgstr ""
 
 #: templates/components/classifieds-search-bar.tpl.php:10
 msgid "Advanced Search"
