@@ -355,3 +355,4 @@ function awpcp_clean_up_non_verified_ads( $listings_collection, /* AWPCP_Listing
         $listings->send_verification_email( $listing );
     }
 }
+

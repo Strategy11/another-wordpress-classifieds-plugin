@@ -1224,11 +1224,11 @@ class AWPCP {
             '1.2.22'
         );
 
-        wp_register_script(
-            'awpcp-breakpoints.js',
+        $this->maybe_register_script(
+            'breakpoints.js',
             "{$vendors}/breakpoints.js/breakpoints.min.js",
             array( 'jquery' ),
-            $awpcp_db_version,
+            '0.0.10',
             true
         );
 
@@ -1253,7 +1253,7 @@ class AWPCP {
 		wp_register_script(
             'awpcp',
             "{$js}/awpcp.min.js",
-            array( 'jquery', 'backbone', 'underscore', 'awpcp-knockout', 'awpcp-breakpoints.js' ),
+            array( 'jquery', 'backbone', 'underscore', 'awpcp-knockout', 'breakpoints.js' ),
             $awpcp_db_version,
             true
         );
@@ -1373,6 +1373,26 @@ class AWPCP {
             true
         );
 	}
+
+    private function maybe_register_script( $handle, $src, $deps, $ver, $in_footer = false ) {
+        $scripts = wp_scripts();
+
+        if ( isset( $scripts->registered[ $handle ] ) ) {
+            $registered_script = $scripts->registered[ $handle ];
+        } else {
+            $registered_script = null;
+        }
+
+        if ( $registered_script && version_compare( $registered_script->ver, $ver, '>=' ) ) {
+            return;
+        }
+
+        if ( $registered_script ) {
+            wp_deregister_script( $handle );
+        }
+
+        wp_register_script( $handle, $src, $deps, $ver, $in_footer );
+    }
 
     /**
      * Finds and register a custom stylsheet to be included

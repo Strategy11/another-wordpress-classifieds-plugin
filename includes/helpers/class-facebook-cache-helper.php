@@ -2,6 +2,7 @@
 
 function awpcp_facebook_cache_helper() {
     return new AWPCP_FacebookCacheHelper(
+        AWPCP_Facebook::instance(),
         awpcp_listing_renderer(),
         awpcp_listings_collection()
     );
@@ -9,10 +10,12 @@ function awpcp_facebook_cache_helper() {
 
 class AWPCP_FacebookCacheHelper {
 
+    private $facebook;
     private $listing_renderer;
     private $listings;
 
-    public function __construct( $listing_renderer, $listings ) {
+    public function __construct( $facebook, $listing_renderer, $listings ) {
+        $this->facebook = $facebook;
         $this->listing_renderer = $listing_renderer;
         $this->listings = $listings;
     }
@@ -58,7 +61,8 @@ class AWPCP_FacebookCacheHelper {
             'timeout' => 30,
             'body' => array(
                 'id' => url_showad( $ad->ID ),
-                'scrape' => true
+                'scrape' => true,
+                'access_token' => $this->facebook->get( 'user_token' ),
             ),
         );
 

@@ -614,6 +614,7 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
             'contact_name' => $contact_name,
             'contact_email' => $contact_email,
             'access_key' => $this->listing_renderer->get_access_key( $ad ),
+            'edit_link' => awpcp_get_edit_listing_url_with_access_key( $ad ),
         ));
 
         if ($message->send()) {

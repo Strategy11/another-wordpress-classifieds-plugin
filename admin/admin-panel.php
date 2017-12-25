@@ -633,7 +633,13 @@ function awpcp_admin_categories_render_category_item($category, $level, $start, 
 }
 
 function awpcp_pages() {
-	$pages = array('main-page-name' => array(get_awpcp_option('main-page-name'), '[AWPCP]'));
+    $pages = array(
+        'main-page-name' => array(
+            get_awpcp_option('main-page-name'),
+            '[AWPCPCLASSIFIEDSUI]'
+        )
+    );
+
 	return $pages + awpcp_subpages();
 }
 

@@ -1,5 +1,5 @@
 /*
- * Breakpoints.js 0.0.10
+ * Breakpoints.js 0.0.11
  * https://github.com/wvega/breakpoints.js
  *
  * Copyright 2014, Joshua Stoutenburg <jehoshua02@gmail.com>
@@ -46,9 +46,16 @@ Reusables.Breakpoints = (function ($) {
     this.elements = (function () {
       var isFunction = typeof $elements === 'function';
       var isString = typeof $elements === 'string';
-      var isJQuery = $elements instanceof jQuery;
-      var hasSelector = isJQuery && !!$elements.selector;
+      var isJQuery = false;
       var elements;
+
+      if ( $elements && $elements instanceof jQuery ) {
+          isJQuery = true;
+      } else if ( $elements && $elements.constructor.prototype.jquery ) {
+          isJQuery = true;
+      }
+
+      var hasSelector = isJQuery && !!$elements.selector;
 
       if (isFunction) {
         elements = $elements;
@@ -151,8 +158,32 @@ Reusables.Breakpoints = (function ($) {
 
   })();
 
+  Breakpoints.scan = function($element) {
+    $element.find('[data-breakpoints]').each(function() {
+        Breakpoints.register($(this));
+    });
+
+    Reusables.Breakpoints.evaluate();
+  };
+
+  Breakpoints.register = function($element) {
+    var builder = Reusables.Breakpoints.on($element);
+    var prefix = $element.attr('data-breakpoints-class-prefix') || 'breakpoint';
+    var breakpoints = $.parseJSON($element.attr('data-breakpoints'));
+
+    if (!$.isPlainObject(breakpoints)) {
+        return;
+    }
+
+    $.each(breakpoints, function(name, range) {
+        builder.define(range, { name: prefix + '-' + name });
+    });
+
+    $element.removeClass( prefix + '-no-bp' );
+  };
+
   /* bind events */
-  $(document).on('ready.reusables.breakpoints', Breakpoints.evaluate);
+  // $(document).on('ready.reusables.breakpoints', Breakpoints.evaluate);
   $(window).on('resize.reusables.breakpoints', Breakpoints.evaluate);
 
   return Breakpoints;
@@ -161,19 +192,6 @@ Reusables.Breakpoints = (function ($) {
 
 if ( typeof jQuery !== 'undefined' ) {
     jQuery(function ($) {
-        $('[data-breakpoints]').each(function(){
-            var $element = $(this);
-            var builder = Reusables.Breakpoints.on($element);
-            var prefix = $element.attr('data-breakpoints-class-prefix') || 'breakpoint';
-            var breakpoints = $.parseJSON($element.attr('data-breakpoints'));
-
-            if (!$.isPlainObject(breakpoints)) {
-                return;
-            }
-
-            $.each(breakpoints, function(name, range) {
-                builder.define(range, { name: prefix + '-' + name });
-            });
-        });
+        Reusables.Breakpoints.scan($('body'));
     });
 }
