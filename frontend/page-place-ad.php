@@ -1270,6 +1270,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
             // TODO: make sure the Featured Ads module sets this meta attribute properly
             $ad->is_featured_ad = $data['is_featured_ad'];
+            // TODO: Pass $data
             $listing_data = apply_filters( 'awpcp-place-listing-listing-data', $listing_data, $ad );
 
             try {

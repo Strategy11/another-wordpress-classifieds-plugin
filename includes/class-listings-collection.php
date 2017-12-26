@@ -730,6 +730,9 @@ class AWPCP_ListingsCollection {
         return $this->find_valid_listings( $this->make_disabled_listings_query( $query ) );
     }
 
+    /**
+     * TODO: Is it really a good idea to use a custom post status?
+     */
     private function make_disabled_listings_query( $query ) {
         $query['post_status'] = 'disabled';
         return $query;
