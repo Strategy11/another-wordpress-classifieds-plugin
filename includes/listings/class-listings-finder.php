@@ -107,6 +107,10 @@ class AWPCP_ListingsFinder {
     }
 
     private function normalize_regions_query( $query ) {
+        if ( ! is_array( $query['regions'] ) ) {
+            $query['regions'] = array();
+        }
+
         // search for a listing associated with a Region (of any kind) whose
         // name matches the given search value.
         $query['regions'][] = array( 'country' => $query['region'] );
