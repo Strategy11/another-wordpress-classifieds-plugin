@@ -494,7 +494,9 @@ class AWPCP_ListingsAPI {
     }
 
     public function increase_visits_count( $listing ) {
-        update_post_meta( $listing->ID, '_awpcp_views', 1 + get_post_meta( $listing->ID, '_awpcp_views', true ) );
+        $number_of_visits = absint( get_post_meta( $listing->ID, '_awpcp_views', true ) );
+
+        return update_post_meta( $listing->ID, '_awpcp_views', 1 + $number_of_visits );
     }
 
     /**
