@@ -592,6 +592,12 @@ class AWPCP {
 
         $this->container->configure( $this->get_container_configurations() );
 
+        $listing_permalinks = $this->container['ListingsPermalinks'];
+
+        add_action( 'registered_post_type', array( $listing_permalinks, 'update_post_type_permastruct' ), 10, 2 );
+        add_action( 'parse_request', array( $listing_permalinks, 'maybe_set_current_post' ) );
+        add_action( 'post_type_link', array( $listing_permalinks, 'filter_post_type_link' ), 10, 4 );
+
         add_action( 'init', array( $this, 'register_plugin_integrations' ) );
         add_action( 'init', array( $this->compatibility, 'load_plugin_integrations_on_init' ) );
         add_action( 'init', array( $this->plugin_integrations, 'load_plugin_integrations' ), AWPCP_LOWEST_FILTER_PRIORITY );
@@ -839,8 +845,6 @@ class AWPCP {
 
             update_option( 'awpcp-installed-or-upgraded', false );
         }
-
-        add_filter( 'post_type_link', array( $this, 'filter_post_type_link' ), 10, 4 );
 
 		$this->register_scripts();
         $this->register_notification_handlers();
@@ -1515,14 +1519,6 @@ class AWPCP {
         }
 	}
 
-    public function filter_post_type_link( $post_link, $post, $leavename, $sample ) {
-        if ( $post->post_type != AWPCP_LISTING_POST_TYPE ) {
-            return $post_link;
-        }
-
-        return awpcp_listing_renderer()->get_view_listing_url( $post );
-    }
-
     public function register_content_placeholders( $placeholders ) {
         $handler = awpcp_edit_listing_url_placeholder();
         $placeholders['edit_listing_url'] = array( 'callback' => array( $handler, 'do_placeholder' ) );
@@ -1586,6 +1582,8 @@ class AWPCP {
     }
 
     public function get_container_configurations() {
+        $configurations[] = new AWPCP_ListingPostTypeContainerConfiguration();
+
         return apply_filters( 'awpcp_container_configurations', $configurations );
     }
 
