@@ -66,11 +66,12 @@ $awpcp_plugin_url = AWPCP_URL;
 $imagespath = $awpcp_plugin_path . '/resources/images';
 $awpcp_imagesurl = $awpcp_plugin_url .'/resources/images';
 
+// TODO: verify we are running on PHP 5.3 or superior
+require_once( AWPCP_DIR . '/vendor/autoload.php' );
+
 // XXX: Required because Settings API attempts to use register_setting on
 //      every request.
 require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-
-require_once( AWPCP_DIR . '/includes/class-container.php' );
 
 // common
 require_once(AWPCP_DIR . "/debug.php");
@@ -588,6 +589,8 @@ class AWPCP {
         add_action( 'init', array( $custom_post_types, 'register_custom_taxonomies' ) );
         add_action( 'init', array( $custom_post_types, 'register_custom_image_sizes' ) );
         add_action( 'awpcp-installed', array( $custom_post_types, 'create_default_category' ) );
+
+        $this->container->configure( $this->get_container_configurations() );
 
         add_action( 'init', array( $this, 'register_plugin_integrations' ) );
         add_action( 'init', array( $this->compatibility, 'load_plugin_integrations_on_init' ) );
@@ -1580,6 +1583,10 @@ class AWPCP {
         );
 
         return $file_handlers;
+    }
+
+    public function get_container_configurations() {
+        return apply_filters( 'awpcp_container_configurations', $configurations );
     }
 
 
