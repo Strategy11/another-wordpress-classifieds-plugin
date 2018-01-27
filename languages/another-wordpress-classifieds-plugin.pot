@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2018-01-09 22:45:05+00:00\n"
+"POT-Creation-Date: 2018-01-27 02:19:05+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -40,7 +40,7 @@ msgstr ""
 #: admin/admin-panel-fees-table.php:120
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:19
 #: admin/templates/admin-panel-fees-entry-form.tpl.php:25
-#: frontend/placeholders.php:454 frontend/templates/page-search-ads.tpl.php:46
+#: frontend/placeholders.php:458 frontend/templates/page-search-ads.tpl.php:46
 #: includes/settings/class-payment-general-settings.php:16
 msgid "Price"
 msgstr ""
@@ -387,11 +387,11 @@ msgid "Keyword"
 msgstr ""
 
 #: admin/admin-panel-listings-table.php:287 frontend/page-show-ad.php:58
-#: frontend/placeholders.php:580
+#: frontend/placeholders.php:584
 msgid "Location"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:288 frontend/placeholders.php:672
+#: admin/admin-panel-listings-table.php:288 frontend/placeholders.php:676
 msgid "Phone"
 msgstr ""
 
@@ -2193,6 +2193,10 @@ msgstr ""
 msgid "Click to enlarge image."
 msgstr ""
 
+#: frontend/class-image-placeholders.php:64
+msgid "Thumbnail for the listing's main image"
+msgstr ""
+
 #: frontend/class-wordpress-status-header-filter.php:52
 msgctxt "404 HTTP status description"
 msgid "Listing not found"
@@ -2789,33 +2793,33 @@ msgid ""
 "(the author) can see it."
 msgstr ""
 
-#: frontend/placeholders.php:396
+#: frontend/placeholders.php:400
 msgid "Seller"
 msgstr ""
 
-#: frontend/placeholders.php:419
+#: frontend/placeholders.php:423
 msgid "Visit Website"
 msgstr ""
 
-#: frontend/placeholders.php:616
+#: frontend/placeholders.php:620
 msgid "This Ad has been viewed %d time."
 msgid_plural "This Ad has been viewed %d times."
 msgstr[0] ""
 msgstr[1] ""
 
-#: frontend/placeholders.php:620
+#: frontend/placeholders.php:624
 msgid "Total views: %d"
 msgstr ""
 
-#: frontend/placeholders.php:731
+#: frontend/placeholders.php:735
 msgid "Flag Ad"
 msgstr ""
 
-#: frontend/placeholders.php:746
+#: frontend/placeholders.php:750
 msgid "Tweet This"
 msgstr ""
 
-#: frontend/placeholders.php:777
+#: frontend/placeholders.php:781
 msgid "Share on Facebook"
 msgstr ""
 
@@ -4188,7 +4192,7 @@ msgstr ""
 msgid "The server returned a 403 Forbidden error."
 msgstr ""
 
-#: includes/helpers/class-http.php:31
+#: includes/helpers/class-http.php:31 includes/helpers/class-http.php:68
 msgid ""
 "It look's like your server is not authorized to make requests to <host>. "
 "Please <support-link>contact Another WordPress Classifieds Plugin support</"
@@ -4206,20 +4210,13 @@ msgid ""
 "failed with the following error:"
 msgstr ""
 
-#: includes/helpers/class-http.php:68
-msgid ""
-"It look's like your server is not authorized to make requests to <host>. "
-"Please contact support and ask them to add your IP address <ip-address> to "
-"the whitelist."
-msgstr ""
-
-#: includes/helpers/class-http.php:77
+#: includes/helpers/class-http.php:79
 msgid ""
 "It was not possible to establish a connection with <host>. A problem "
 "occurred in the SSL/TSL handshake:"
 msgstr ""
 
-#: includes/helpers/class-http.php:82
+#: includes/helpers/class-http.php:84
 msgid ""
 "To ensure the security of our systems and adhere to industry best practices, "
 "we require that your server uses a recent version of cURL and a version of "
@@ -4227,14 +4224,14 @@ msgid ""
 "1.0.1c)."
 msgstr ""
 
-#: includes/helpers/class-http.php:84
+#: includes/helpers/class-http.php:86
 msgid ""
 "Upgrading your system will not only allow you to communicate with our "
 "servers but also help you prepare your website to interact with services "
 "using the latest security standards."
 msgstr ""
 
-#: includes/helpers/class-http.php:86
+#: includes/helpers/class-http.php:88
 msgid ""
 "Please contact your hosting provider and ask them to upgrade your system. "
 "Include this message if necesary."
