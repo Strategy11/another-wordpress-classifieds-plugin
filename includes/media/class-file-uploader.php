@@ -95,7 +95,7 @@ class AWPCP_FileUploader {
     private function write_uploaded_data_to_file( $file_path ) {
         $base_dir = dirname( $file_path );
 
-        if ( ! file_exists( $base_dir ) && ! mkdir( $base_dir, awpcp_directory_permissions(), true ) ) {
+        if ( ! file_exists( $base_dir ) && ! wp_mkdir_p( $base_dir ) ) {
             throw new AWPCP_Exception( __( "Temporary directory doesn't exists and couldn't be created.", 'another-wordpress-classifieds-plugin' ) );
         }
 

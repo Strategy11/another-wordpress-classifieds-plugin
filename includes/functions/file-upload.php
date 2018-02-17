@@ -104,7 +104,7 @@ function awpcp_setup_uploads_dir() {
 
 	if (!is_dir($upload_dir) && is_writable($wpcontentdir)) {
 		umask(0);
-		mkdir( $upload_dir, $permissions );
+		wp_mkdir_p( $upload_dir );
 		chown($upload_dir, $owner);
 	}
 
@@ -115,13 +115,13 @@ function awpcp_setup_uploads_dir() {
 
 	if (!is_dir($images_dir) && is_writable($upload_dir)) {
 		umask(0);
-		@mkdir( $images_dir, $permissions );
+		wp_mkdir_p( $images_dir );
 		@chown($images_dir, $owner);
 	}
 
 	if (!is_dir($thumbs_dir) && is_writable($upload_dir)) {
 		umask(0);
-		@mkdir( $thumbs_dir, $permissions );
+		wp_mkdir_p( $thumbs_dir );
 		@chown($thumbs_dir, $owner);
 	}
 

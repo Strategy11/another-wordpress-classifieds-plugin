@@ -787,7 +787,7 @@ class AWPCP_CSV_Importer {
 
 		if ( !is_dir( $import_dir ) ) {
 			umask( 0 );
-			@mkdir( $import_dir, awpcp_directory_permissions(), true );
+			wp_mkdir_p( $import_dir );
 			@chown( $import_dir, $owner );
 		}
 
@@ -838,7 +838,7 @@ class AWPCP_CSV_Importer {
 
 			// if file is inside a directory, create it first
 			if ( dirname( $item['filename'] ) !== '.' ) {
-				@mkdir( $import_dir . '/' . dirname( $item['filename'] ), awpcp_directory_permissions(), true );
+				wp_mkdir_p( $import_dir . '/' . dirname( $item['filename'] ) );
 			}
 
 			// extract file

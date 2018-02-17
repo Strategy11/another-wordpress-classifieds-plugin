@@ -151,7 +151,7 @@ class AWPCP_ImportListingsAdminPage {
 
                     // if file is inside a directory, create it first
                     if ( dirname( $item['filename'] ) !== '.' ) {
-                        @mkdir( dirname( $path ), awpcp_directory_permissions(), true );
+                        wp_mkdir_p( dirname( $path ) );
                     }
 
                     // extract file
@@ -211,7 +211,7 @@ class AWPCP_ImportListingsAdminPage {
 
         if ( ! is_dir( $directory ) ) {
             umask( 0 );
-            @mkdir( $directory, awpcp_directory_permissions(), true );
+            wp_mkdir_p( $directory );
             @chown( $directory, fileowner( $images_dir ) );
         }
 

@@ -92,7 +92,7 @@ class AWPCP_TaskQueue {
                 return touch( $lockfile );
             }
 
-            if ( mkdir( dirname( $lockfile ), awpcp_directory_permissions(), true ) ) {
+            if ( wp_mkdir_p( dirname( $lockfile ) ) ) {
                 return touch( $lockfile );
             }
 

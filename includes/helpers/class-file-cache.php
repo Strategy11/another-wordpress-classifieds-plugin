@@ -12,7 +12,7 @@ class AWPCP_FileCache {
         $this->location = $location;
 
         if ( ! is_dir( $this->location ) ) {
-            mkdir( $this->location, awpcp_directory_permissions(), true );
+            wp_mkdir_p( $this->location );
         }
     }
 
