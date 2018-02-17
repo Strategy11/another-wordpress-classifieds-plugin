@@ -214,6 +214,7 @@ function awpcp_get_uploads_directories() {
     if ( is_null( $uploads_directories ) ) {
         global $wpcontentdir;
 
+        // TODO: Remove directory permissions setting when this code is finally removed.
         $permissions = awpcp_directory_permissions();
 
         $upload_dir_name = get_awpcp_option( 'uploadfoldername', 'uploads' );
@@ -231,7 +232,10 @@ function awpcp_get_uploads_directories() {
             chown( $upload_dir, $owner );
         }
 
-        $fileop->set_permission( $upload_dir, $permissions );
+        // TODO: It is a waste of resources to check this on every request.
+        if ( ! is_writable( $upload_dir ) ) {
+            $fileop->set_permission( $upload_dir, $permissions );
+        }
 
         $files_dir = $upload_dir . 'awpcp/';
         $thumbs_dir = $upload_dir . 'awpcp/thumbs/';
@@ -248,8 +252,15 @@ function awpcp_get_uploads_directories() {
             @chown( $thumbs_dir, $owner );
         }
 
-        $fileop->set_permission( $files_dir, $permissions );
-        $fileop->set_permission( $thumbs_dir, $permissions );
+        // TODO: It is a waste of resources to check this on every request.
+        if ( ! is_writable( $files_dir ) ) {
+            $fileop->set_permission( $files_dir, $permissions );
+        }
+
+        // TODO: It is a waste of resources to check this on every request.
+        if ( ! is_writable( $thumbs_dir ) ) {
+            $fileop->set_permission( $thumbs_dir, $permissions );
+        }
 
         $uploads_directories = array(
             'files_dir' => $files_dir,

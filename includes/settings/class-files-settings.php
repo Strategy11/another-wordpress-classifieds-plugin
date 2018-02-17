@@ -39,7 +39,11 @@ class AWPCP_FilesSettings {
 
         $settings->add_setting( $key, 'uploadfoldername', __( 'Uploads folder name', 'another-wordpress-classifieds-plugin' ), 'textfield', 'uploads', __( 'Upload folder name. (Folder must exist and be located in your wp-content directory)', 'another-wordpress-classifieds-plugin' ) );
 
-        $permissions = array( '0755' => '0755', '0777' => '0777' );
+        $permissions = array(
+            '0755' => '0755',
+            '0775' => '0775',
+            '0777' => '0777',
+        );
 
         $settings->add_setting(
             $key,
