@@ -12,13 +12,9 @@ class AWPCP_MainClassifiedsAdminPage {
         global $hasextrafieldsmodule;
         global $extrafieldsversioncompatibility;
 
-        $main_page_name = get_awpcp_option('main-page-name');
-
         $params = array(
             'awpcp_db_version' => $awpcp_db_version,
             'message' => $message,
-            'main_page_name' => $main_page_name,
-            'page_conflict' => checkforduplicate( add_slashes_recursive( sanitize_title( $main_page_name ) ) ),
             'hasextrafieldsmodule' => $hasextrafieldsmodule,
             'extrafieldsversioncompatibility' => $extrafieldsversioncompatibility,
         );

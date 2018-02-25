@@ -46,8 +46,9 @@ class AWPCP_DebugAdminPage {
 	private function render($download=false) {
 		global $wp_rewrite;
 
-        $plugin_pages_info = awpcp_get_plugin_pages_info();
-        $page_objects = get_pages( array( 'include' => awpcp_get_properties( $plugin_pages_info, 'page_id', 0 ) ) );
+        $plugin_pages_ids = awpcp_get_plugin_pages_ids();
+        $page_objects = get_pages( array( 'include' => array_values( $plugin_pages_ids ) ) );
+
         $plugin_pages = array();
 
 		foreach ( $page_objects as $page ) {

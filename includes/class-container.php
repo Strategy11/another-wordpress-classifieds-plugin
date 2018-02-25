@@ -4,19 +4,6 @@
  */
 
 /**
- * TODO: Remove this function. We have autoload now.
- */
-function awpcp_container() {
-    static $instance = null;
-
-    if ( is_null( $instance ) ) {
-        $instance = new AWPCP_Container();
-    }
-
-    return $instance;
-}
-
-/**
  * A container class greatly inspired by https://carlalexander.ca/dependency-injection-wordpress/
  *
  * @since 4.0

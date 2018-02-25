@@ -394,3 +394,26 @@ function get_categorynameidall($cat_id = 0) {
 function checkfortable($table) {
     return awpcp_table_exists($table);
 }
+
+/**
+ * Return the number of pages with the given post_name.
+ *
+ * @deprecated 4.0.0    This is no longer used.
+ */
+function checkforduplicate($cpagename_awpcp) {
+    global $wpdb;
+
+    $awpcppagename = sanitize_title( $cpagename_awpcp );
+
+    $query = "SELECT ID FROM {$wpdb->posts} WHERE post_name = %s AND post_type = %s";
+    $query = $wpdb->prepare( $query, $awpcppagename, 'post' );
+
+    $post_ids = $wpdb->get_col( $query );
+
+    if ( $post_ids !== false ) {
+        return count( $post_ids );
+    } else {
+        return '';
+    }
+}
+

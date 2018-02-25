@@ -204,7 +204,14 @@ class AWPCP_GeneralSettings {
 
         $key = $settings->add_section($group, __('SEO Settings', 'another-wordpress-classifieds-plugin'), 'seo-settings', 10, array( $settings, 'section' ) );
 
-        $settings->add_setting( $key, 'seofriendlyurls', __( 'Turn on Search Engine Friendly URLs', 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, __( 'Turn on Search Engine Friendly URLs? (SEO Mode)', 'another-wordpress-classifieds-plugin' ) );
+        $settings->add_setting(
+            $key,
+            'seofriendlyurls',
+            __( 'Turn on Search Engine Friendly URLs', 'another-wordpress-classifieds-plugin' ),
+            'checkbox',
+            1,
+            __( 'Turn on Search Engine Friendly URLs? (SEO Mode)', 'another-wordpress-classifieds-plugin' )
+        );
     }
 
     public function validate_group_settings( $options, $group ) {

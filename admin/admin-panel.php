@@ -398,61 +398,52 @@ class AWPCP_Admin {
 		$view_categories_url = awpcp_get_view_categories_url();
 
 		$duplicates = array();
-		$awpcp_pages = array();
-		$wp_pages = array();
 
 		$posts = get_posts( array( 'post_type' => 'page', 'name' => $view_categories ) );
 
 		foreach ( $posts as $post ) {
-			if ( $view_categories_url == get_permalink( $post->ID ) ) {
-				$duplicates[] = $post;
-			}
-		}
+            if ( $view_categories_url != get_permalink( $post->ID ) ) {
+                continue;
+            }
 
-		$pages = empty( $duplicates ) ? array() : awpcp_get_plugin_pages_refs();
+            $duplicates[] = sprintf(
+                '<a href="%s"><strong>%s</strong></a>',
+                add_query_arg(
+                    array(
+                        'post' => $post->ID,
+                        'action' => 'edit',
+                    ),
+                    admin_url( 'post.php' )
+                ),
+                get_the_title( $post )
+            );
+        }
 
-		foreach ( $duplicates as $page ) {
-			if ( isset( $pages[ $page->ID ] ) ) {
-				$awpcp_pages[] = ucwords( awpcp()->settings->get_option_label( $pages[ $page->ID ]->page ) );
-			} else {
-				$wp_pages[] = $page->post_title;
-			}
-		}
+        if ( ! empty( $duplicates ) ) {
+            $duplicated_pages = join( ', ', $duplicates );
 
-		if ( !empty( $awpcp_pages ) || !empty( $wp_pages ) ) {
-			$view_categories_label = awpcp()->settings->get_option_label( $view_categories_option );
-			$view_categories_label = sprintf( '<strong>%s</strong>', ucwords( $view_categories_label ) );
-		}
+            $view_categories_label = awpcp()->settings->get_option_label( $view_categories_option );
+            $view_categories_label = sprintf( '<strong>%s</strong>', ucwords( $view_categories_label ) );
 
-		if ( !empty( $awpcp_pages ) ) {
-			$duplicated_pages = '<strong>' . join( '</strong>, <strong>', $awpcp_pages ) . '</strong>';
-
-            $message = _n(
-                '%1$s has the same name as the %2$s. That will cause %1$s to become unreachable. Please make sure you don\'t have duplicate page names.',
-                '%1$s have the same name as the %2$s. That will cause %1$s to become unreachable. Please make sure you don\'t have duplicate page names.',
-                count( $awpcp_pages),
+            $first_line = _n(
+                'Page %1$s has the same URL as the %2$s from AWPCP. The WordPress page %1$s is going to be unreachable until this changes.',
+                'Pages %1$s have the same URL as the %2$s from AWPCP. The WordPress pages %1$s is going to be unreachable until this changes.',
+                count( $duplicates ),
                 'another-wordpress-classifieds-plugin'
             );
-			$message = sprintf( $message, $duplicated_pages, $view_categories_label );
+			$first_line = sprintf( $first_line, $duplicated_pages, $view_categories_label );
 
-			echo awpcp_print_error( $message );
-		}
-
-		if ( !empty( $wp_pages ) ) {
-			$duplicated_pages = '<strong>' . join( '</strong>, <strong>', $wp_pages ) . '</strong>';
-
-            $message = _n(
-                'Page %1$s has the same name as the AWPCP %2$s. That will cause WordPress page %1$s to become unreachable. The %2$s is dynamic; you don\'t need to create a real WordPress page to show the list of cateogries, the plugin will generate it for you. If the WordPress page was created to show the default list of AWPCP categories, you can delete it and this error message will go away. Otherwise, please make sure you don\'t have duplicate page names.',
-                'Pages %1$s have the same name as the AWPCP %2$s. That will cause WordPress pages %1$s to become unreachable. The %2$s is dynamic; you don\'t need to create a real WordPress page to show the list of cateogries, the plugin will generate it for you. If the WordPress pages were created to show the default list of AWPCP categories, you can delete them and this error message will go away. Otherwise, please make sure you don\'t have duplicate page names.',
-                count( $wp_pages),
+            $second_line = _n(
+                'The %1$s is dynamic; you don\'t need to create a real WordPress page to show the list of categories, the plugin will generate it for you. If the WordPress page was created to show the default list of AWPCP categories, you can delete it and this error message will go away. Otherwise, please make sure you don\'t have duplicate page names.',
+                'The %1$s is dynamic; you don\'t need to create a real WordPress page to show the list of categories, the plugin will generate it for you. If the WordPress pages were created to show the default list of AWPCP categories, you can delete them and this error message will go away. Otherwise, please make sure you don\'t have duplicate page names.',
+                count( $duplicates ),
                 'another-wordpress-classifieds-plugin'
             );
-			$message = sprintf( $message, $duplicated_pages, $view_categories_label );
+            $second_line = sprintf( $second_line, $view_categories_label );
 
-			echo awpcp_print_error( $message );
+            echo awpcp_print_error( $first_line . '<br/><br/>' . $second_line );
 		}
 	}
-
 
 	public function init() {
 		add_filter( 'parent_file', array( $this, 'parent_file' ) );
@@ -635,7 +626,7 @@ function awpcp_admin_categories_render_category_item($category, $level, $start, 
 function awpcp_pages() {
     $pages = array(
         'main-page-name' => array(
-            get_awpcp_option('main-page-name'),
+            __( 'Classifieds', 'another-wordpress-classifieds-plugin' ),
             '[AWPCPCLASSIFIEDSUI]'
         )
     );
@@ -645,15 +636,34 @@ function awpcp_pages() {
 
 function awpcp_subpages() {
 	$pages = array(
-		'show-ads-page-name' => array(get_awpcp_option('show-ads-page-name'), '[AWPCPSHOWAD]'),
-		'reply-to-ad-page-name' => array(get_awpcp_option('reply-to-ad-page-name'), '[AWPCPREPLYTOAD]'),
-		'edit-ad-page-name' => array(get_awpcp_option('edit-ad-page-name'), '[AWPCPEDITAD]'),
-		'place-ad-page-name' => array(get_awpcp_option('place-ad-page-name'), '[AWPCPPLACEAD]'),
-		'renew-ad-page-name' => array(get_awpcp_option('renew-ad-page-name'), '[AWPCP-RENEW-AD]'),
-		'browse-ads-page-name' => array(get_awpcp_option('browse-ads-page-name'), '[AWPCPBROWSEADS]'),
-		'search-ads-page-name' => array(get_awpcp_option('search-ads-page-name'), '[AWPCPSEARCHADS]'),
-		'payment-thankyou-page-name' => array(get_awpcp_option('payment-thankyou-page-name'), '[AWPCPPAYMENTTHANKYOU]'),
-		'payment-cancel-page-name' => array(get_awpcp_option('payment-cancel-page-name'), '[AWPCPCANCELPAYMENT]')
+        'show-ads-page-name' => array(
+            _x( 'Show Ad', 'page name', 'another-wordpress-classifieds-plugin' ),
+            '[AWPCPSHOWAD]',
+        ),
+        'reply-to-ad-page-name' => array(
+            _x( 'Reply to Ad', 'page name', 'another-wordpress-classifieds-plugin' ),
+            '[AWPCPREPLYTOAD]',
+        ),
+        'edit-ad-page-name' => array(
+            _x( 'Edit Ad', 'page name', 'another-wordpress-classifieds-plugin' ),
+            '[AWPCPEDITAD]',
+        ),
+        'place-ad-page-name' => array(
+            _x( 'Place Ad', 'page name', 'another-wordpress-classifieds-plugin' ),
+            '[AWPCPPLACEAD]',
+        ),
+        'renew-ad-page-name' => array(
+            _x( 'Renew Ad', 'page name', 'another-wordpress-classifieds-plugin' ),
+            '[AWPCP-RENEW-AD]',
+        ),
+        'browse-ads-page-name' => array(
+            _x( 'Browse Ads', 'page name', 'another-wordpress-classifieds-plugin' ),
+            '[AWPCPBROWSEADS]',
+        ),
+        'search-ads-page-name' => array(
+            _x( 'Search Ads', 'page name', 'another-wordpress-classifieds-plugin' ),
+            '[AWPCPSEARCHADS]',
+        ),
 	);
 
 	$pages = apply_filters('awpcp_subpages', $pages);
@@ -665,21 +675,27 @@ function awpcp_create_pages($awpcp_page_name, $subpages=true) {
 	global $wpdb;
 
 	$refname = 'main-page-name';
-	$date = date("Y-m-d");
+    $shortcode = '[AWPCPCLASSIFIEDSUI]';
+    $date = date( 'Y-m-d', current_time( 'timestamp' ) );
+    $date_gmt = get_gmt_from_date( $date, 'Y-m-d' );
+
+    if ( awpcp_find_page( $refname ) ) {
+        return awpcp_get_page_id_by_ref( $refname );
+    }
 
 	// create AWPCP main page if it does not exist
 	if (!awpcp_find_page($refname)) {
 		$awpcp_page = array(
 			'post_author' => 1,
 			'post_date' => $date,
-			'post_date_gmt' => $date,
-			'post_content' => '[AWPCPCLASSIFIEDSUI]',
+			'post_date_gmt' => $date_gmt,
+			'post_content' => $shortcode,
 			'post_title' => add_slashes_recursive($awpcp_page_name),
 			'post_status' => 'publish',
 			'post_name' => sanitize_title($awpcp_page_name),
 			'post_modified' => $date,
 			'comments_status' => 'closed',
-			'post_content_filtered' => '[AWPCPCLASSIFIEDSUI]',
+			'post_content_filtered' => $shortcode,
 			'post_parent' => 0,
 			'post_type' => 'page',
 			'menu_order' => 0

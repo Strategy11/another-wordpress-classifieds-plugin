@@ -46,19 +46,7 @@ class AWPCP_Settings_API {
 
 		// Section: Classifieds Pages - Default
 
-		$key = $this->add_section($group, __('Classifieds Pages', 'another-wordpress-classifieds-plugin'), 'default', 10, array($this, 'section'));
-
-		$this->add_setting( $key, 'main-page-name', __( 'AWPCP Main page', 'another-wordpress-classifieds-plugin' ), 'textfield', 'another-wordpress-classifieds-plugin', __( 'Name for Classifieds page.', 'another-wordpress-classifieds-plugin' ) );
-		$this->add_setting( $key, 'show-ads-page-name', __( 'Show Ad page', 'another-wordpress-classifieds-plugin' ), 'textfield', 'Show Ad', __( 'Name for Show Ads page.', 'another-wordpress-classifieds-plugin' ) );
-		$this->add_setting( $key, 'place-ad-page-name', __( 'Place Ad page', 'another-wordpress-classifieds-plugin' ), 'textfield', 'Place Ad', __( 'Name for Place Ads page.', 'another-wordpress-classifieds-plugin' ) );
-		$this->add_setting( $key, 'edit-ad-page-name', __( 'Edit Ad page', 'another-wordpress-classifieds-plugin' ), 'textfield', 'Edit Ad', __( 'Name for edit ad page.', 'another-wordpress-classifieds-plugin' ) );
-		$this->add_setting( $key, 'renew-ad-page-name', __( 'Renew Ad page', 'another-wordpress-classifieds-plugin' ), 'textfield', 'Renew Ad', __( 'Name for Renew Ad page.', 'another-wordpress-classifieds-plugin' ) );
-		$this->add_setting( $key, 'reply-to-ad-page-name', __( 'Reply to Ad page', 'another-wordpress-classifieds-plugin' ), 'textfield', 'Reply To Ad', __( 'Name for Reply to Ad page.', 'another-wordpress-classifieds-plugin' ) );
-		$this->add_setting( $key, 'browse-ads-page-name', __( 'Browse Ads page', 'another-wordpress-classifieds-plugin' ), 'textfield', 'Browse Ads', __( 'Name for Browse Ads page.', 'another-wordpress-classifieds-plugin' ) );
-		$this->add_setting( $key, 'search-ads-page-name', __( 'Search Ads page', 'another-wordpress-classifieds-plugin' ), 'textfield', 'Search Ads', __( 'Name for Search Ads page.', 'another-wordpress-classifieds-plugin' ) );
-		$this->add_setting( $key, 'view-categories-page-name', __( 'View Categories page', 'another-wordpress-classifieds-plugin' ), 'textfield', 'View Categories', __( 'Name for categories view page. (Dynamic Page)', 'another-wordpress-classifieds-plugin' ) );
-		$this->add_setting( $key, 'payment-thankyou-page-name', __( 'Payment Thank You page', 'another-wordpress-classifieds-plugin' ), 'textfield', 'Payment Thank You', __( 'Name for Payment Thank You page.', 'another-wordpress-classifieds-plugin' ) );
-		$this->add_setting( $key, 'payment-cancel-page-name', __( 'Payment Cancel page', 'another-wordpress-classifieds-plugin' ), 'textfield', 'Cancel Payment', __( 'Name for Payment Cancel page.', 'another-wordpress-classifieds-plugin' ) );
+        $this->register_wordpress_pages_settings( $group );
 
 		// Group: Ad/Listings
 
@@ -444,6 +432,108 @@ class AWPCP_Settings_API {
 		$this->skip = false;
 	}
 
+    /**
+     * @since 4.0.0
+     */
+    private function register_wordpress_pages_settings( $group ) {
+        $section = $this->add_section(
+            $group,
+            __( 'Classifieds Pages', 'another-wordpress-classifieds-plugin' ),
+            'default',
+            10,
+            array( $this, 'section' )
+        );
+
+        $this->add_setting(
+            $section,
+            'main-plugin-page',
+            __( 'Classifieds page', 'another-wordpress-classifieds-plugin' ),
+            'wordpress-page',
+            null,
+            __( "Plugin's main page.", 'another-wordpress-classifieds-plugin' )
+        );
+
+        $this->add_setting(
+            $section,
+            'show-listings-page',
+            __( 'Show Listing page', 'another-wordpress-classifieds-plugin' ),
+            'wordpress-page',
+            null,
+            __( 'Page used to display individual listings.', 'another-wordpress-classifieds-plugin' )
+        );
+
+        $this->add_setting(
+            $section,
+            'submit-listing-page',
+            __( 'Submit Listing page', 'another-wordpress-classifieds-plugin' ),
+            'wordpress-page',
+            null,
+            __( 'Page used to submit new listings.', 'another-wordpress-classifieds-plugin' )
+        );
+
+        $this->add_setting(
+            $section,
+            'edit-listing-page',
+            __( 'Edit Listing page', 'another-wordpress-classifieds-plugin' ),
+            'wordpress-page',
+            null,
+            __( 'Page used to edit listings.', 'another-wordpress-classifieds-plugin' )
+        );
+
+        $this->add_setting(
+            $section,
+            'reply-to-listing-page',
+            __( 'Reply to listing page', 'another-wordpress-classifieds-plugin' ),
+            'wordpress-page',
+            null,
+            __( 'Page used to contact the owner of a listing.', 'another-wordpress-classifieds-plugin' )
+        );
+
+        $this->add_setting(
+            $section,
+            'renew-listing-page',
+            __( 'Renew listing page', 'another-wordpress-classifieds-plugin' ),
+            'wordpress-page',
+            null,
+            __( 'Page used to renew listings.', 'another-wordpress-classifieds-plugin' )
+        );
+
+        $this->add_setting(
+            $section,
+            'browse-listings-page',
+            __( 'Browse listings page', 'another-wordpress-classifieds-plugin' ),
+            'wordpress-page',
+            null,
+            __( 'Page used to explore listings.', 'another-wordpress-classifieds-plugin' )
+        );
+
+        $this->add_setting(
+            $section,
+            'search-listings-page',
+            __( 'Search listings page', 'another-wordpress-classifieds-plugin' ),
+            'wordpress-page',
+            null,
+            __( 'Page used to search listings.', 'another-wordpress-classifieds-plugin' )
+        );
+
+        $section = $this->add_section(
+            $group,
+            __( 'Dynamic Pages', 'another-wordpress-classifieds-plugin' ),
+            'dynamic-pages',
+            10,
+            array( $this, 'section' )
+        );
+
+        $this->add_setting(
+            $section,
+            'view-categories-page-name',
+            __( 'View Categories page', 'another-wordpress-classifieds-plugin' ),
+            'textfield',
+            'View Categories',
+            __( 'Name for categories view page. (Dynamic Page)', 'another-wordpress-classifieds-plugin' )
+        );
+    }
+
 	private function save_settings() {
 		update_option( $this->setting_name, $this->options );
 	}
@@ -459,8 +549,7 @@ class AWPCP_Settings_API {
 		// setup validate functions
 		add_filter('awpcp_validate_settings_general-settings',
 				   array($this, 'validate_general_settings'), 10, 2);
-		add_filter('awpcp_validate_settings_pages-settings',
-				   array($this, 'validate_classifieds_pages_settings'), 10, 2);
+        add_filter( 'awpcp_validate_settings_pages-settings', array( $this, 'validate_view_categories_page_name_setting' ), 10, 2 );
 		add_filter('awpcp_validate_settings_payment-settings',
 				   array($this, 'validate_payment_settings'), 10, 2);
 		add_filter('awpcp_validate_settings_registration-settings',
@@ -706,7 +795,7 @@ class AWPCP_Settings_API {
 	 * @param $force boolean - true to update unregistered options
 	 */
 	public function update_option($name, $value, $force=false) {
-		if (isset($this->options[$name]) || $force) {
+		if ( array_key_exists( $name, $this->options ) || $force ) {
 			$this->options[$name] = $value;
 			$this->save_settings();
 			return true;
@@ -948,54 +1037,20 @@ class AWPCP_Settings_API {
         return $options[ $setting_name ];
     }
 
-	/**
-	 * Classifieds Pages Settings checks
-	 */
-	public function validate_classifieds_pages_settings($options, $group) {
-		global $wpdb, $wp_rewrite;
+    /**
+     * Flush rewrite rules when Page settings change.
+     *
+     * TODO: We are not doing any validation here. This should be attached
+     *       to a settings saved action.
+     * TODO: On the other hand, we should check that the selected page has the
+     *       corresponding shortcode and/or update the plugin to show that page's
+     *       content even if the shortcode is not set.
+     */
+    public function validate_view_categories_page_name_setting( $options, $group ) {
+        flush_rewrite_rules();
 
-		$pageids = awpcp_get_plugin_pages_ids();
-		$pages_updated = 0;
-
-		foreach ( awpcp_pages() as $key => $data ) {
-			$id = intval( $pageids[ $key ] );
-
-			if ( $id <= 0 ) {
-				continue;
-			}
-
-			$page = get_post( $id );
-
-			if ( is_null( $page ) ) {
-				continue;
-			}
-
-			if ( sanitize_title( $page->post_title ) != $page->post_name ) {
-				$post_name = $page->post_name;
-			} else {
-				$post_name = sanitize_title( $options[ $key ] );
-			}
-
-			$page = array(
-				'ID' => $id,
-				'post_title' => add_slashes_recursive( $options[ $key ] ),
-				'post_name' => $post_name,
-			);
-
-			wp_update_post($page);
-
-			$pages_updated = $pages_updated + 1;
-		}
-
-		if ( $pages_updated ) {
-			do_action( 'awpcp-pages-updated' );
-		}
-
-		flush_rewrite_rules();
-
-		return $options;
-	}
-
+        return $options;
+    }
 
 	/* Auxiliar methods to render settings forms */
 

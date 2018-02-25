@@ -136,22 +136,6 @@ class AWPCP_Plugin_Rewrite_Rules {
                     'position' => 'top'
                 ),
             ),
-            // TODO: Unused. Remove rewrite rule.
-            'payment-thankyou-page-name' => array(
-                array(
-                    'regex' => '(<page-uri>)/([a-zA-Z0-9]+)',
-                    'redirect' => 'index.php?pagename=$matches[1]&awpcp-txn=$matches[2]',
-                    'position' => 'top'
-                ),
-            ),
-            // TODO: Unused. Remove rewrite rule.
-            'payment-cancel-page-name' => array(
-                array(
-                    'regex' => '(<page-uri>)/([a-zA-Z0-9]+)',
-                    'redirect' => 'index.php?pagename=$matches[1]&awpcp-txn=$matches[2]',
-                    'position' => 'top'
-                ),
-            ),
             'main-page-name' => array(
                 array(
                     'regex' => '(<page-uri>)/(setregion)/(.+?)/(.+?)',

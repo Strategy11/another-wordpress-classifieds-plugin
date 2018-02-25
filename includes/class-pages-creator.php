@@ -25,19 +25,25 @@ class AWPCP_Pages_Creator {
 
     public function restore_missing_pages() {
         $shortcodes = awpcp_pages();
+        $multiple_pages = array();
 
+        // Attempt to find existing plugin pages that haven't been assigned in the
+        // Page Settings.
         foreach( $shortcodes as $refname => $properties ) {
-            $page = $this->missing_pages_finder->find_page_with_shortcode( $properties[1] );
+            $pages = $this->missing_pages_finder->get_pages_with_shortcode( $properties[1] );
 
-            if ( ! is_object( $page ) ) {
+            if ( empty( $pages ) ) {
                 continue;
             }
 
-            $this->settings->update_option( $refname, $page->post_title );
+            if ( count( $pages ) > 1 ) {
+                $multiple_pages[ $refname ] = $pages;
+            }
 
-            awpcp_update_plugin_page_id( $refname, $page->ID );
+            awpcp_update_plugin_page_id( $refname, $pages[0]->ID );
         }
 
+        // Find out which pages we need to create.
         $missing_pages = $this->missing_pages_finder->find_broken_page_id_references();
         $pages_to_restore = array_merge( $missing_pages['not-found'], $missing_pages['not-referenced'] );
         $page_refs = awpcp_get_properties( $pages_to_restore, 'page' );
@@ -53,7 +59,12 @@ class AWPCP_Pages_Creator {
 
         foreach( $pages_to_restore as $page ) {
             $refname = $page->page;
-            $name = get_awpcp_option($refname);
+            $name = $shortcodes[ $refname ][0];
+
+            if ( isset( $multiple_pages[ $refname ] ) ) {
+                continue;
+            }
+
             if (strcmp($refname, 'main-page-name') == 0) {
                 awpcp_create_pages($name, $subpages=false);
             } else {

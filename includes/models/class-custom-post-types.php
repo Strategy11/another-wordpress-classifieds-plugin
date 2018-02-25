@@ -1,17 +1,27 @@
 <?php
 
 function awpcp_custom_post_types() {
-    return new AWPCP_Custom_Post_Types( awpcp_settings_api() );
+    return new AWPCP_Custom_Post_Types(
+        'awpcp_listing',
+        'awpcp_listing_category',
+        awpcp_settings_api()
+    );
 }
 
 class AWPCP_Custom_Post_Types {
 
     private $settings;
 
-    public function __construct( $settings ) {
+    public function __construct( $listings_post_type, $listings_category_taxonomy, $settings ) {
+        $this->listings_post_type = $listings_post_type;
+        $this->listings_category_taxonomy = $listings_category_taxonomy;
+
         $this->settings = $settings;
     }
 
+    /**
+     * TODO: Do we really want to do this?
+     */
     public function register_custom_post_status() {
         // Draft, Payment, Verification, Published, Disabled, Review
         register_post_status(
@@ -29,7 +39,7 @@ class AWPCP_Custom_Post_Types {
 
     public function register_custom_post_types() {
         $registered_post_type = register_post_type(
-            'awpcp_listing',
+            $this->listings_post_type,
             array(
                 'labels' => array(
                     'name' => __( 'Listings', 'another-wordpress-classifieds-plugin' ),
@@ -65,7 +75,7 @@ class AWPCP_Custom_Post_Types {
                 ),
                 'register_meta_box_cb' => null,
                 'taxonomies' => array(
-                    'awpcp_listing_category',
+                    $this->listings_category_taxonomy,
                 ),
                 'has_archive' => false,
                 'rewrite' => array(
@@ -78,8 +88,8 @@ class AWPCP_Custom_Post_Types {
 
     public function register_custom_taxonomies() {
         register_taxonomy(
-            'awpcp_listing_category',
-             'awpcp_listing',
+            $this->listings_category_taxonomy,
+            $this->listings_post_type,
              array(
                 'labels' => array(
                     'name' => _x( 'Categories', 'taxonomy general name', 'another-wordpress-classifieds-plugin' ),
@@ -130,6 +140,10 @@ class AWPCP_Custom_Post_Types {
         );
     }
 
+    /**
+     * TODO: This method probably belongs somewhere else. A class where we create
+     * default categories and fee plans, maybe.
+     */
     public function create_default_category() {
         try {
             $category_id = awpcp_categories_logic()->create_category( array(
