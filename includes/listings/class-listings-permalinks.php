@@ -39,16 +39,16 @@ class AWPCP_ListingsPermalinks {
             return;
         }
 
+        $struct = $this->get_post_type_permastruct( $post_type_object );
+
+        if ( is_null( $struct ) ) {
+            return;
+        }
+
         add_rewrite_tag( '%awpcp_listing_id%', '([0-9]+)', "post_type={$this->post_type}&p=" );
         add_rewrite_tag( '%awpcp_optional_listing_id%', '?(.*)', '_=' );
         add_rewrite_tag( '%awpcp_category%', '([^/]+)', "{$this->category_taxonomy}=" );
         add_rewrite_tag( '%awpcp_location%', '(.+?)', '_=' );
-
-        $classifieds_slug = 'awpcp';
-        $post_type_name = $this->post_type;
-        $post_type_slug = $post_type_object->rewrite['slug'];
-
-        $struct = $this->get_post_type_permastruct( $post_type_object );
 
         add_permastruct( $this->post_type, $struct, array() );
     }
@@ -65,17 +65,16 @@ class AWPCP_ListingsPermalinks {
         $permalink_structure = get_option( 'permalink_structure' );
 
         if ( ! $permalink_structure ) {
-            return '';
+            return null;
         }
 
-        $classifieds_slug = 'awpcp';
         $post_type_slug = $post_type_object->rewrite['slug'];
 
         if ( ! $this->settings->get_option( 'seofriendlyurls' ) ) {
-            return "{$classifieds_slug}/{$post_type_slug}/%awpcp_optional_listing_id%";
+            return "{$post_type_slug}/%awpcp_optional_listing_id%";
         }
 
-        $parts = array( $classifieds_slug, $post_type_slug, '%awpcp_listing_id%' );
+        $parts = array( $post_type_slug, '%awpcp_listing_id%' );
 
         if ( get_awpcp_option( 'include-title-in-listing-url' ) ) {
             $parts[] = "%{$this->post_type}%";
@@ -125,21 +124,24 @@ class AWPCP_ListingsPermalinks {
         );
 
         $post_link = str_replace( array_keys( $rewrite_tags ), array_values( $rewrite_tags ), $post_link );
+        $post_link = str_replace( ':!!', '://', str_replace( '//', '/', str_replace( '://', ':!!', $post_link ) ) );
 
         if ( ! $this->settings->get_option( 'seofriendlyurls' ) ) {
-            return add_query_arg( 'id', $post->ID, str_replace( '//', '/', $post_link ) );
+            return add_query_arg( 'id', $post->ID, $post_link );
         }
 
         return $post_link;
     }
 
     /**
-     * TODO: This method probabl belongs somewhere else.
+     * TODO: This method probably belongs somewhere else.
      *
      * @since 4.0
      */
     public function get_listing_location( $listing ) {
         $region = $this->listing_renderer->get_first_region( $listing );
+
+        $parts = array();
 
         if( $this->settings->get_option( 'include-city-in-listing-url' ) && $region ) {
             $parts[] = sanitize_title( awpcp_array_data( 'city', '', $region ) );

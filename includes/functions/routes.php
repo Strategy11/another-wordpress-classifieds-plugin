@@ -164,7 +164,7 @@ function awpcp_update_plugin_page_id( $page_ref, $page_id ) {
         return false;
     }
 
-    return awpcp()->settings->update_option( $setting_name, $page_id );
+    return awpcp()->settings->update_option( $setting_name, $page_id, true );
 }
 
 /**
