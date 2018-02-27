@@ -144,4 +144,15 @@ class AWPCP_ListingsURLSettings {
 
         echo '<p>' . $introduction . '<br/><br/>' . $example_text . '</p>';
     }
+
+    /**
+     * TODO: Refactor register_settings() to store a list of settings that need to
+     *       be monitored.
+     *
+     *       Alternatively, we could add filters and actions for sections and
+     *       invidiual settings.
+     */
+    public function settings_validated( $options, $group ) {
+        update_option( 'awpcp-flush-rewrite-rules', true );
+    }
 }

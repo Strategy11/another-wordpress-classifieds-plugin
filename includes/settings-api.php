@@ -549,7 +549,6 @@ class AWPCP_Settings_API {
 		// setup validate functions
 		add_filter('awpcp_validate_settings_general-settings',
 				   array($this, 'validate_general_settings'), 10, 2);
-        add_filter( 'awpcp_validate_settings_pages-settings', array( $this, 'validate_view_categories_page_name_setting' ), 10, 2 );
 		add_filter('awpcp_validate_settings_payment-settings',
 				   array($this, 'validate_payment_settings'), 10, 2);
 		add_filter('awpcp_validate_settings_registration-settings',
@@ -563,6 +562,8 @@ class AWPCP_Settings_API {
             10,
             2
         );
+
+        add_action( 'awpcp_settings_validated_pages-settings', array( $this, 'page_settings_validated' ), 10, 2 );
 	}
 
 	public function init() {
@@ -844,14 +845,21 @@ class AWPCP_Settings_API {
 		$this->load();
 		$options = array_merge($this->options, $options);
 
-		$filters = array('awpcp_validate_settings_' . $group, 'awpcp_validate_settings');
+        if ( $group ) {
+            $options = apply_filters( 'awpcp_validate_settings_' . $group, $options, $group );
+        }
 
-		foreach ($filters as $filter) {
-			$_options = apply_filters($filter, $options, $group);
-			$options = is_array($_options) ? $_options : $options;
-		}
+        $options = apply_filters( 'awpcp_validate_settings', $options, $group );
 
-		// make sure we have the updated and validated options
+        if ( $group ) {
+            do_action( 'awpcp_settings_validated_' . $group, $options, $group );
+        }
+
+        do_action( 'awpcp_settings_validated', $options, $group );
+
+        // Filters and actions need to be executed before we update the in-memory
+        // options to allow handlers to compare existing values with the ones that
+        // are about to be saved.
 		$this->options = $options;
 
 		return $this->options;
@@ -1040,16 +1048,12 @@ class AWPCP_Settings_API {
     /**
      * Flush rewrite rules when Page settings change.
      *
-     * TODO: We are not doing any validation here. This should be attached
-     *       to a settings saved action.
-     * TODO: On the other hand, we should check that the selected page has the
-     *       corresponding shortcode and/or update the plugin to show that page's
-     *       content even if the shortcode is not set.
+     * TODO: We should check that the selected page has the corresponding shortcode
+     *       and/or update the plugin to show that page's content even if the
+     *       shortcode is not set.
      */
-    public function validate_view_categories_page_name_setting( $options, $group ) {
-        flush_rewrite_rules();
-
-        return $options;
+    public function page_settings_validated( $options, $group ) {
+        update_option( 'awpcp-flush-rewrite-rules', true );
     }
 
 	/* Auxiliar methods to render settings forms */

@@ -683,6 +683,7 @@ class AWPCP {
 
         $listing_url_settings = awpcp_listing_url_settings();
         add_action( 'awpcp_register_settings', array( $listing_url_settings, 'register_settings' ) );
+        add_action( 'awpcp_settings_validated_listings-settings', array( $listing_url_settings, 'settings_validated' ), 10, 2 );
 
         $credit_system_settings = awpcp_credit_system_settings();
         add_action( 'awpcp_register_settings', array( $credit_system_settings, 'register_settings' ) );
