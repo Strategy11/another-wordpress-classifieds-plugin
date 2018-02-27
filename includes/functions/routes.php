@@ -42,6 +42,19 @@ function awpcp_get_page_id( $name ) {
 }
 
 /**
+ * @since 4.0.0
+ */
+function awpcp_get_page_by_ref( $ref ) {
+    $page_id = awpcp_get_page_id_by_ref( $ref );
+
+    if ( ! $page_id ) {
+        return null;
+    }
+
+    return get_post( $page_id );
+}
+
+/**
  * Returns the ID of WP Page associated to a page-name setting.
  * TODO: remove usage of awpcp_get_plugin_pages_ids().
  *

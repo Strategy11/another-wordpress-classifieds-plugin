@@ -38,6 +38,8 @@ class AWPCP_Custom_Post_Types {
     }
 
     public function register_custom_post_types() {
+        $post_type_slug = $this->get_post_type_slug();
+
         $registered_post_type = register_post_type(
             $this->listings_post_type,
             array(
@@ -50,21 +52,19 @@ class AWPCP_Custom_Post_Types {
                     'edit_item' => __( 'Edit Listing', 'another-wordpress-classifieds-plugin' ),
                     'new_item' => __( 'New Listing', 'another-wordpress-classifieds-plugin' ),
                     'view_item' => __( 'View Listing', 'another-wordpress-classifieds-plugin' ),
-                    'search_items' => __( 'Search Listing', 'another-wordpress-classifieds-plugin' ),
+                    'search_items' => __( 'Search Listings', 'another-wordpress-classifieds-plugin' ),
                     'not_found' => __( 'No listings found', 'another-wordpress-classifieds-plugin' ),
                     'not_found_in_trash' => __( 'No listings found in Trash', 'another-wordpress-classifieds-plugin' ),
                 ),
-                'description' => 'A classified entry.',
+                'description' => __( 'A classifieds listing.', 'another-wordpress-classifieds-plugin' ),
                 'public' => true,
                 'exclude_from_search' => true,
-                'publicly_queryable' => false,
-                'show_ui' => false,
-                'show_in_nav_menus' => false,
-                // 'show_in_menu' => 'admin.php?page=awpcp.php',
+                'publicly_queryable' => true,
+                'show_ui' => true,
+                'show_in_nav_menus' => true,
+                'show_in_menu' => true,
                 'show_in_admin_bar' => true,
-                // 'menu_position' => null,
                 'menu_icon' => MENUICO,
-                // 'capability_type' => array( 'awpcp_listing', 'awpcp_listings' ),
                 'supports' => array(
                     'title',
                     'editor',
@@ -79,11 +79,36 @@ class AWPCP_Custom_Post_Types {
                 ),
                 'has_archive' => false,
                 'rewrite' => array(
-                    'slug' => 'listings',
+                    'slug' => $post_type_slug,
+                    'with_front' => false,
                 ),
                 'query_var' => 'listing',
             )
         );
+    }
+
+    private function get_post_type_slug() {
+        $default_slug = _x( 'listings', 'listing post type slug', 'another-wordpress-classifieds-plugin' );
+
+        if ( ! $this->settings->get_option( 'display-listings-as-single-posts' ) ) {
+            $show_listings_page = awpcp_get_page_by_ref( 'show-ads-page-name' );
+
+            return $show_listings_page ? get_page_uri( $show_listings_page ) : $default_slug;
+        }
+
+        $post_type_slug = $this->settings->get_option( 'listings-slug', $default_slug );
+
+        if ( ! $this->settings->get_option( 'include-main-page-slug-in-listing-url' ) ) {
+            return $post_type_slug;
+        }
+
+        $main_listings_page = awpcp_get_page_by_ref( 'main-page-name' );
+
+        if ( ! $main_listings_page ) {
+            return $post_type_slug;
+        }
+
+        return get_page_uri( $main_listings_page ) . '/' . $post_type_slug;
     }
 
     public function register_custom_taxonomies() {

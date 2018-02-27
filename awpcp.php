@@ -582,11 +582,20 @@ class AWPCP {
         add_action( 'awpcp-configure-routes', array( $this->admin, 'configure_routes' ) );
         add_action( 'awpcp-configure-routes', array( $this->panel, 'configure_routes' ) );
 
+        // TODO: Make sure to update permastruct for custom post types before generating rewrite rules.
+        //
+        //       If the slug of a page, the permalink structure or anything else
+        //       that affects the permastruct for the custom post type changes
+        //       after 'init', calling flush_rewrite_rules will generate the wrong
+        //       set of rules unless we update the permalinks accordingly.
+        //
+        //       Perhaps delaying rewrite rules generation until next request makes
+        //       makes more sense.
         $custom_post_types = awpcp_custom_post_types();
-        add_action( 'init', array( $custom_post_types, 'register_custom_post_status' ) );
-        add_action( 'init', array( $custom_post_types, 'register_custom_post_types' ) );
-        add_action( 'init', array( $custom_post_types, 'register_custom_taxonomies' ) );
-        add_action( 'init', array( $custom_post_types, 'register_custom_image_sizes' ) );
+        add_action( 'init', array( $custom_post_types, 'register_custom_post_status' ), 9999 );
+        add_action( 'init', array( $custom_post_types, 'register_custom_post_types' ), 9999 );
+        add_action( 'init', array( $custom_post_types, 'register_custom_taxonomies' ), 9999 );
+        add_action( 'init', array( $custom_post_types, 'register_custom_image_sizes' ), 9999 );
         add_action( 'awpcp-installed', array( $custom_post_types, 'create_default_category' ) );
 
         $this->container->configure( $this->get_container_configurations() );
