@@ -61,6 +61,7 @@ class AWPCP_Installer {
 
     public function activate() {
         $this->install_or_upgrade();
+
         update_option( 'awpcp-activated', true );
     }
 
