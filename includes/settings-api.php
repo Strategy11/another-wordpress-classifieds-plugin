@@ -166,7 +166,18 @@ class AWPCP_Settings_API {
 
 		$this->add_setting( $key, 'groupbrowseadsby', __( 'Order Ad Listings by', 'another-wordpress-classifieds-plugin' ), 'select', 1, '', array('options' => $radio_options));
 		$this->add_setting( $key, 'search-results-order', __( 'Order Ad Listings in Search results by', 'another-wordpress-classifieds-plugin' ), 'select', 1, '', array('options' => $radio_options));
-		// $this->add_setting($key, 'groupsearchresultsby', 'Group Ad Listings search results by', 'radio', 1, '', array('options' => $radio_options));
+        $this->add_setting(
+            $key,
+            'search-form-in-results',
+            __(  'Search form display', 'another-wordpress-classifieds-plugin' ),
+            'radio',
+            'none',
+            '',
+            array( 'options' => array(
+                'above' => __( 'Above results', 'another-wordpress-classifieds-plugin' ),
+                'below' => __( 'Below results', 'another-wordpress-classifieds-plugin' ),
+                'none'  => __( 'Don\'t show with results', 'another-wordpress-classifieds-plugin' ),
+            ) ) );
 		$this->add_setting( $key, 'adresultsperpage', __( 'Default number of Ads per page', 'another-wordpress-classifieds-plugin' ), 'textfield', 10, '');
 
 		$pagination_options = array( 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 500 );
