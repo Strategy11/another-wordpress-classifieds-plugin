@@ -50,11 +50,19 @@ class AWPCP_Installer {
     public function install_or_upgrade() {
         global $awpcp_db_version;
 
-        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-
         $installed_version = get_option( 'awpcp_db_version' );
 
-        if ( $installed_version !== false && ! preg_match( '/^\d[\d.]*/', $installed_version ) ) {
+        if ( ! $this->is_version_number( $awpcp_db_version ) ) {
+            // Something is wrong. The version extracted from the plugin's headers
+            // is not a valid version number.
+
+            // We create a log entry for debug purposes, but abort the operation.
+            $this->log_upgrade( $installed_version, $awpcp_db_version );
+
+            return;
+        }
+
+        if ( $installed_version !== false && ! $this->is_version_number( $installed_version ) ) {
             // Something is wrong. The installed version should always be false
             // or a valid version number.
 
@@ -63,6 +71,8 @@ class AWPCP_Installer {
 
             return;
         }
+
+        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
         // if table exists, this is an upgrade
         if ( $installed_version !== false && awpcp_table_exists( AWPCP_TABLE_CATEGORIES ) ) {
@@ -73,6 +83,13 @@ class AWPCP_Installer {
 
         update_option( 'awpcp-installed-or-upgraded', true );
         update_option( 'awpcp-flush-rewrite-rules', true );
+    }
+
+    /**
+     * @since 3.8.4
+     */
+    private function is_version_number( $version_string ) {
+        return preg_match( '/^\d[\d.]*/', $version_string );
     }
 
     private function log_upgrade( $oldversion, $newversion ) {
