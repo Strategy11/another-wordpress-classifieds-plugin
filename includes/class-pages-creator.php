@@ -30,6 +30,10 @@ class AWPCP_Pages_Creator {
         // Attempt to find existing plugin pages that haven't been assigned in the
         // Page Settings.
         foreach( $shortcodes as $refname => $properties ) {
+            if ( awpcp_get_page_id_by_ref( $refname ) ) {
+                continue;
+            }
+
             $pages = $this->missing_pages_finder->get_pages_with_shortcode( $properties[1] );
 
             if ( empty( $pages ) ) {
