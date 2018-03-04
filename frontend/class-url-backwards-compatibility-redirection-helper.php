@@ -2,6 +2,7 @@
 
 function awpcp_url_backwards_compatibility_redirection_helper() {
     return new AWPCP_URL_Backwards_Compatibility_Redirection_Helper(
+        'awpcp_listing', // TODO: Get value from container.
         awpcp_categories_registry(),
         awpcp_categories_collection(),
         awpcp_listings_collection(),
@@ -12,13 +13,15 @@ function awpcp_url_backwards_compatibility_redirection_helper() {
 
 class AWPCP_URL_Backwards_Compatibility_Redirection_Helper {
 
+    private $post_type;
     private $categories_registry;
     private $categories;
     private $listings;
     private $query;
     private $request;
 
-    public function __construct( $categories_registry, $categories, $listings, $query, $request ) {
+    public function __construct( $post_type, $categories_registry, $categories, $listings, $query, $request ) {
+        $this->post_type = $post_type;
         $this->categories_registry = $categories_registry;
         $this->categories = $categories;
         $this->listings = $listings;
@@ -26,6 +29,42 @@ class AWPCP_URL_Backwards_Compatibility_Redirection_Helper {
         $this->request = $request;
     }
 
+    /**
+     * TODO: Find out if this query will show a single listing.
+     *
+     * @since 4.0.0
+     */
+    public function maybe_redirect_from_old_listing_url( $query ) {
+        $vars = $query->query_vars;
+
+        if ( ! empty( $vars['post_type'] ) && $this->post_type == $vars['post_type'] && ! empty( $vars['p'] ) ) {
+            $requested_listing_id = $vars['p'];
+        } elseif ( ! empty( $vars['id'] ) && ! empty( $vars['page_id'] ) && $this->get_show_listing_page_id() == $vars['page_id'] ) {
+            $requested_listing_id = $vars['id'];
+        } else {
+            return;
+        }
+
+        try {
+            $listing = $this->listings->get_listing_with_old_id( $requested_listing_id );
+        } catch ( AWPCP_Exception $e ) {
+            return;
+        }
+
+        return $this->redirect( get_permalink( $listing ) );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function get_show_listing_page_id() {
+        return awpcp_get_page_id_by_ref( 'show-ads-page-name' );
+    }
+
+    /**
+     * TODO: Remove this method when maybe_redirect_from_old_listing_url() handles
+     *       all necessary cases.
+     */
     public function maybe_redirect_frontend_request() {
         if ( $this->request->param( 'awpcp-no-redirect' ) ) {
             return;
@@ -39,16 +78,16 @@ class AWPCP_URL_Backwards_Compatibility_Redirection_Helper {
                 $category = $this->categories->get( $equivalent_category_id );
                 return $this->redirect( url_browsecategory( $category ) );
             }
-        } else if ( $this->query->is_single_listing_page() ) {
-            $requested_listing_id = $this->request->get_current_listing_id();
+        // } else if ( $this->query->is_single_listing_page() ) {
+        //     $requested_listing_id = $this->request->get_current_listing_id();
 
-            try {
-                $listing = $this->listings->get_listing_with_old_id( $requested_listing_id );
-            } catch ( AWPCP_Exception $e ) {
-                return;
-            }
+        //     try {
+        //         $listing = $this->listings->get_listing_with_old_id( $requested_listing_id );
+        //     } catch ( AWPCP_Exception $e ) {
+        //         return;
+        //     }
 
-            return $this->redirect( url_showad( $listing->ID ) );
+        //     return $this->redirect( url_showad( $listing->ID ) );
         } else if ( $this->query->is_renew_listing_page() ) {
             $this->maybe_redirect_frontend_renew_listing_request();
         }
@@ -65,7 +104,7 @@ class AWPCP_URL_Backwards_Compatibility_Redirection_Helper {
     }
 
     private function redirect( $redirect_url ) {
-        wp_redirect( add_query_arg( 'awpcp-no-redirect', true, $redirect_url ), 301 );
+        wp_redirect( $redirect_url, 301 );
         exit();
     }
 

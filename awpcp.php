@@ -803,7 +803,9 @@ class AWPCP {
 
             add_action( 'template_redirect', array( awpcp_secure_url_redirection_handler(), 'dispatch' ) );
 
+            // TODO: This is not necessary for new installations
             $helper = awpcp_url_backwards_compatibility_redirection_helper();
+            add_action( 'parse_request', array( $helper, 'maybe_redirect_from_old_listing_url' ) );
             add_action( 'template_redirect', array( $helper, 'maybe_redirect_frontend_request' ) );
 
             add_action( 'template_redirect', array( awpcp_authentication_redirection_handler(), 'maybe_redirect' ) );

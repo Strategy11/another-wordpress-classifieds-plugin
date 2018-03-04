@@ -153,7 +153,7 @@ class AWPCP_Plugin_Rewrite_Rules {
             ),
         );
 
-        if ( ! $this->settings->get_option( 'display-listings-as-single-posts' ) ) {
+        if ( ! $this->settings->get_option( 'display-listings-as-single-posts' ) && $this->settings->get_option( 'seofriendlyurls' ) ) {
             $rewrite_rules['show-ads-page-name'] = array(
                 array(
                     'regex' => '(<page-uri>)/(\d+)(?:.*)',

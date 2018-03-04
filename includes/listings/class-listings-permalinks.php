@@ -39,18 +39,39 @@ class AWPCP_ListingsPermalinks {
             return;
         }
 
-        $struct = $this->get_post_type_permastruct( $post_type_object );
+        $permastruct = $this->get_post_type_permastruct( $post_type_object );
+        $permastruct_args = array(
+            'with_front' => $post_type_object->rewrite['with_front'],
+            'ep_mask' => $post_type_object->rewrite['ep_mask'],
+            'paged' => $post_type_object->rewrite['pages'],
+            'feed' => $post_type_object->rewrite['feeds'],
+        );
 
-        if ( is_null( $struct ) ) {
+        if ( is_null( $permastruct ) ) {
             return;
         }
 
         add_rewrite_tag( '%awpcp_listing_id%', '([0-9]+)', "post_type={$this->post_type}&p=" );
-        add_rewrite_tag( '%awpcp_optional_listing_id%', '?(.*)', '_=' );
         add_rewrite_tag( '%awpcp_category%', '([^/]+)', "{$this->category_taxonomy}=" );
         add_rewrite_tag( '%awpcp_location%', '(.+?)', '_=' );
 
-        add_permastruct( $this->post_type, $struct, array() );
+        if ( $this->settings->get_option( 'display-listings-as-single-posts' ) ) {
+            add_rewrite_tag( '%awpcp_optional_listing_id%', '?(.*)', "_=" );
+        } else {
+            $show_listing_page_id = awpcp_get_page_id_by_ref( 'show-ads-page-name' );
+
+            if ( $show_listing_page_id ) {
+                add_rewrite_tag( '%awpcp_optional_listing_id%', '?(.*)', "page_id={$show_listing_page_id}&_=" );
+            } else {
+                add_rewrite_tag( '%awpcp_optional_listing_id%', '?(.*)', "page_id=-1&_=" );
+            }
+
+            $permastruct_args['ep_mask'] = EP_NONE;
+            $permastruct_args['paged'] = false;
+            $permastruct_args['feed'] = false;
+        }
+
+        add_permastruct( $this->post_type, $permastruct, $permastruct_args );
     }
 
     /**
@@ -93,19 +114,27 @@ class AWPCP_ListingsPermalinks {
     }
 
     /**
+     * Necessary to support non SEO friendly URLs when permalinks are enabled:
+     *
+     * http://next.awpcp.test/awpcp/show-ads/?id=1
+     *
+     * TODO: Do this on Show Listings page only.
      * @since 4.0
      */
     public function maybe_set_current_post( $query ) {
-        // if ( ! isset( $query->query_vars['id'] ) ) {
-        //     return;
-        // }
+        if ( ! $this->settings->get_option( 'display-listings-as-single-posts' ) ) {
+            return;
+        }
 
-        // // TODO: Do this on Show Listings page only.
-        // if ( preg_match( '/([0-9]+)/', $query->query_vars['id'], $matches ) ) {
-        //     $query->query_vars['p'] = intval( $matches[1] );
-        //     $query->query_vars['post_type'] = $this->post_type;
-        //     unset( $query->query_vars[ 'pagename' ] );
-        // }
+        if ( ! isset( $query->query_vars['id'] ) ) {
+            return;
+        }
+
+        if ( preg_match( '/([0-9]+)/', $query->query_vars['id'], $matches ) ) {
+            $query->query_vars['p'] = intval( $matches[1] );
+            $query->query_vars['post_type'] = $this->post_type;
+            unset( $query->query_vars[ 'pagename' ] );
+        }
     }
 
     /**
