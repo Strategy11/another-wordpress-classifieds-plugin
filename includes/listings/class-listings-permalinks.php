@@ -42,9 +42,10 @@ class AWPCP_ListingsPermalinks {
         $permastruct = $this->get_post_type_permastruct( $post_type_object );
         $permastruct_args = array(
             'with_front' => $post_type_object->rewrite['with_front'],
-            'ep_mask' => $post_type_object->rewrite['ep_mask'],
-            'paged' => $post_type_object->rewrite['pages'],
-            'feed' => $post_type_object->rewrite['feeds'],
+            // If the permalinks are disabled ep_mask, pages and feeds keys are not defined.
+            'ep_mask' => isset( $post_type_object->rewrite['ep_mask'] ) ? $post_type_object->rewrite['ep_mask'] : EP_PAGES,
+            'paged' => ! empty( $post_type_object->rewrite['pages'] ),
+            'feed' => ! empty( $post_type_object->rewrite['feeds'] ),
         );
 
         if ( is_null( $permastruct ) ) {
