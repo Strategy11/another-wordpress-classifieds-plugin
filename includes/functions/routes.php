@@ -155,7 +155,7 @@ function awpcp_get_plugin_pages_ids() {
 function awpcp_get_wordpress_pages_settings_translations() {
     return array(
         'main-plugin-page' => 'main-page-name',
-        'show-listings-page' => 'show-ads-page-name',
+        'show-listing-page' => 'show-ads-page-name',
         'submit-listing-page' => 'place-ad-page-name',
         'edit-listing-page' => 'edit-ad-page-name',
         'renew-listing-page' => 'renew-ad-page-name',

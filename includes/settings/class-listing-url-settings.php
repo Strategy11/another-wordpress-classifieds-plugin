@@ -18,8 +18,8 @@ class AWPCP_ListingsURLSettings {
             $show_listings_link = _x( 'Show Ad', 'page name', 'another-wordpress-classifieds-plugin' );
         }
 
-        $description = __( "Enable this setting to display each listing on its own page, instead of showing the listing's content inside the <show-listings-page> page." );
-        $description = str_replace( '<show-listings-page>', $show_listings_link, $description );
+        $description = __( "Enable this setting to display each listing on its own page, instead of showing the listing's content inside the <show-listing-page> page." );
+        $description = str_replace( '<show-listing-page>', $show_listings_link, $description );
 
         $settings->add_setting(
             $key,

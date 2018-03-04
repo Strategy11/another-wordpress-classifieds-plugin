@@ -455,7 +455,7 @@ class AWPCP_Settings_API {
 
         $this->add_setting(
             $section,
-            'show-listings-page',
+            'show-listing-page',
             __( 'Show Listing page', 'another-wordpress-classifieds-plugin' ),
             'wordpress-page',
             null,
