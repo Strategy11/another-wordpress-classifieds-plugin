@@ -236,7 +236,8 @@ function is_awpcp_browse_categories_page() {
 }
 
 /**
- * @since feature/1112  Modified to use Listing_Renderer::get_view_listing_url().
+ * @since 4.0.0         Modified to use Listing_Renderer::get_view_listing_url().
+ * @deprecated 4.0.0    Use Listing_Renderer::get_view_listing_url() or get_permalink().
  */
 function url_showad($ad_id) {
     try {

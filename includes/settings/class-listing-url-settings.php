@@ -36,6 +36,8 @@ class AWPCP_ListingsURLSettings {
         $description = str_replace( '<example-slug>', '<code>' . $default_slug . '</code>', $description );
         $description = str_replace( '<example-url>', '<code>https://example.com/' . $default_slug . '/id/listing-title/city/state/category/</code>', $description );
 
+        // TODO: Update the slug if the show listing page's uri changes and
+        //       listings are not being displayed on their own page.
         $settings->add_setting(
             $key,
             'listings-slug',
