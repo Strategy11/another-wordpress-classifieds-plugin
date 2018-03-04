@@ -59,20 +59,28 @@ class AWPCP_ListingsPermalinks {
         if ( $this->settings->get_option( 'display-listings-as-single-posts' ) ) {
             add_rewrite_tag( '%awpcp_optional_listing_id%', '?(.*)', "_=" );
         } else {
-            $show_listing_page_id = awpcp_get_page_id_by_ref( 'show-ads-page-name' );
+            $show_listing_page_id = $this->get_show_listing_page_id();
 
-            if ( $show_listing_page_id ) {
-                add_rewrite_tag( '%awpcp_optional_listing_id%', '?(.*)', "page_id={$show_listing_page_id}&_=" );
-            } else {
-                add_rewrite_tag( '%awpcp_optional_listing_id%', '?(.*)', "page_id=-1&_=" );
-            }
+            add_rewrite_tag( '%awpcp_optional_listing_id%', '?(.*)', "page_id={$show_listing_page_id}&_=" );
 
-            $permastruct_args['ep_mask'] = EP_NONE;
             $permastruct_args['paged'] = false;
             $permastruct_args['feed'] = false;
         }
 
         add_permastruct( $this->post_type, $permastruct, $permastruct_args );
+    }
+
+    /**
+     * TODO: Take this as a constructor argument. Define it on the container and pass it
+     *       to all classes that need it.
+     *
+     *       Watch out for race conditions between container initialziation and defininf or storing settings.
+     *
+     * @since 4.0.0
+     */
+    private function get_show_listing_page_id() {
+        $show_listing_page_id = awpcp_get_page_id_by_ref( 'show-ads-page-name' );
+        return $show_listing_page_id ? $show_listing_page_id : -1;
     }
 
     /**
@@ -146,6 +154,25 @@ class AWPCP_ListingsPermalinks {
             return $post_link;
         }
 
+        if ( ! get_option( 'permalink_structure' ) ) {
+            $post_type_object = get_post_type_object( $this->post_type );
+
+            if ( $post_type_object ) {
+                $post_link = remove_query_arg( $post_type_object->query_var, $post_link );
+            }
+
+            $params = array(
+                'page_id' => $this->get_show_listing_page_id(),
+                'id' => $post->ID,
+            );
+
+            return add_query_arg( $params, $post_link );
+        }
+
+        if ( ! $this->settings->get_option( 'seofriendlyurls' ) ) {
+            return add_query_arg( 'id', $post->ID, $post_link );
+        }
+
         $rewrite_tags = array(
             '%awpcp_listing_id%' => $post->ID,
             '%awpcp_optional_listing_id%' => '',
@@ -155,10 +182,6 @@ class AWPCP_ListingsPermalinks {
 
         $post_link = str_replace( array_keys( $rewrite_tags ), array_values( $rewrite_tags ), $post_link );
         $post_link = str_replace( ':!!', '://', str_replace( '//', '/', str_replace( '://', ':!!', $post_link ) ) );
-
-        if ( ! $this->settings->get_option( 'seofriendlyurls' ) ) {
-            return add_query_arg( 'id', $post->ID, $post_link );
-        }
 
         return $post_link;
     }
