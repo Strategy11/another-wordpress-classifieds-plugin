@@ -7,6 +7,7 @@ function awpcp_url_backwards_compatibility_redirection_helper() {
         awpcp_categories_collection(),
         awpcp_listings_collection(),
         awpcp_query(),
+        awpcp_settings_api(),
         awpcp_request()
     );
 }
@@ -18,14 +19,16 @@ class AWPCP_URL_Backwards_Compatibility_Redirection_Helper {
     private $categories;
     private $listings;
     private $query;
+    private $settings;
     private $request;
 
-    public function __construct( $post_type, $categories_registry, $categories, $listings, $query, $request ) {
+    public function __construct( $post_type, $categories_registry, $categories, $listings, $query, $settings, $request ) {
         $this->post_type = $post_type;
         $this->categories_registry = $categories_registry;
         $this->categories = $categories;
         $this->listings = $listings;
         $this->query = $query;
+        $this->settings = $settings;
         $this->request = $request;
     }
 
@@ -40,6 +43,8 @@ class AWPCP_URL_Backwards_Compatibility_Redirection_Helper {
         if ( ! empty( $vars['post_type'] ) && $this->post_type == $vars['post_type'] && ! empty( $vars['p'] ) ) {
             $requested_listing_id = $vars['p'];
         } elseif ( ! empty( $vars['id'] ) && ! empty( $vars['page_id'] ) && $this->get_show_listing_page_id() == $vars['page_id'] ) {
+            $requested_listing_id = $vars['id'];
+        } elseif ( ! empty( $vars['id'] ) && ! empty( $vars['pagename'] ) && $this->get_show_listing_page_uri() == $vars['pagename'] ) {
             $requested_listing_id = $vars['id'];
         } else {
             return;
@@ -58,7 +63,16 @@ class AWPCP_URL_Backwards_Compatibility_Redirection_Helper {
      * @since 4.0.0
      */
     private function get_show_listing_page_id() {
-        return awpcp_get_page_id_by_ref( 'show-ads-page-name' );
+        return $this->settings->get_option( 'show-listing-page' );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function get_show_listing_page_uri() {
+        $page_id = $this->get_show_listing_page_id();
+
+        return $page_id ? get_page_uri( $page_id ) : null;
     }
 
     /**
@@ -104,8 +118,9 @@ class AWPCP_URL_Backwards_Compatibility_Redirection_Helper {
     }
 
     private function redirect( $redirect_url ) {
-        wp_redirect( $redirect_url, 301 );
-        exit();
+        if ( wp_redirect( $redirect_url, 301 ) ) {
+            exit();
+        }
     }
 
     private function maybe_redirect_frontend_renew_listing_request() {
