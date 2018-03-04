@@ -44,6 +44,7 @@ class AWPCP_ListingsURLSettings {
             $default_slug,
             $description
         );
+        $settings->add_behavior( $key, 'listings-slug', 'enabledIf', 'display-listings-as-single-posts' );
 
         $main_page_slug = $this->get_main_page_slug();
 
@@ -62,6 +63,7 @@ class AWPCP_ListingsURLSettings {
             0,
             $description
         );
+        $settings->add_behavior( $key, 'include-main-page-slug-in-listing-url', 'enabledIf', 'display-listings-as-single-posts' );
 
         $settings->add_setting(
             $key,
