@@ -106,20 +106,39 @@ class AWPCP_ListingsPermalinks {
 
         $parts = array( $post_type_slug, '%awpcp_listing_id%' );
 
-        if ( get_awpcp_option( 'include-title-in-listing-url' ) ) {
+        if ( $this->settings->get_option( 'include-title-in-listing-url' ) ) {
             $parts[] = "%{$this->post_type}%";
         }
 
-        // TODO: Check if any of the location parts is enabled.
-        if( get_awpcp_option( 'include-city-in-listing-url' ) ) {
+        if( $this->should_include_location_in_listing_url() ) {
             $parts[] = '%awpcp_location%';
         }
 
-        if( get_awpcp_option( 'include-category-in-listing-url' ) ) {
+        if( $this->settings->get_option( 'include-category-in-listing-url' ) ) {
             $parts[] = '%awpcp_category%';
         }
 
         return implode( '/', $parts );
+    }
+
+    private function should_include_location_in_listing_url() {
+        if ( $this->settings->get_option( 'include-country-in-listing-url' ) ) {
+            return true;
+        }
+
+        if ( $this->settings->get_option( 'include-state-in-listing-url' ) ) {
+            return true;
+        }
+
+        if ( $this->settings->get_option( 'include-city-in-listing-url' ) ) {
+            return true;
+        }
+
+        if ( $this->settings->get_option( 'include-county-in-listing-url' ) ) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
