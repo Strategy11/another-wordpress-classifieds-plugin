@@ -170,6 +170,12 @@ class AWPCP_ListingsPermalinks {
         }
 
         if ( ! $this->settings->get_option( 'seofriendlyurls' ) ) {
+            $rewrite_tags = array(
+                '%awpcp_optional_listing_id%' => '',
+            );
+
+            $post_link = $this->replace_rewrite_tags( $rewrite_tags, $post_link );
+
             return add_query_arg( 'id', $post->ID, $post_link );
         }
 
@@ -180,6 +186,10 @@ class AWPCP_ListingsPermalinks {
             '%awpcp_location%' => $this->get_listing_location( $post ),
         );
 
+        return $this->replace_rewrite_tags( $rewrite_tags, $post_link );
+    }
+
+    private function replace_rewrite_tags( $rewrite_tags, $post_link ) {
         $post_link = str_replace( array_keys( $rewrite_tags ), array_values( $rewrite_tags ), $post_link );
         $post_link = str_replace( ':!!', '://', str_replace( '//', '/', str_replace( '://', ':!!', $post_link ) ) );
 
