@@ -40,6 +40,11 @@ class AWPCP_ListingsPermalinks {
         }
 
         $permastruct = $this->get_post_type_permastruct( $post_type_object );
+
+        if ( is_null( $permastruct ) ) {
+            return;
+        }
+
         $permastruct_args = array(
             'with_front' => $post_type_object->rewrite['with_front'],
             // If the permalinks are disabled ep_mask, pages and feeds keys are not defined.
@@ -48,26 +53,32 @@ class AWPCP_ListingsPermalinks {
             'feed' => ! empty( $post_type_object->rewrite['feeds'] ),
         );
 
-        if ( is_null( $permastruct ) ) {
-            return;
-        }
-
         add_rewrite_tag( '%awpcp_listing_id%', '([0-9]+)', "post_type={$this->post_type}&p=" );
         add_rewrite_tag( '%awpcp_category%', '([^/]+)', "{$this->category_taxonomy}=" );
         add_rewrite_tag( '%awpcp_location%', '(.+?)', '_=' );
 
-        if ( $this->settings->get_option( 'display-listings-as-single-posts' ) ) {
-            add_rewrite_tag( '%awpcp_optional_listing_id%', '?(.*)', "_=" );
-        } else {
-            $show_listing_page_id = $this->get_show_listing_page_id();
-
-            add_rewrite_tag( '%awpcp_optional_listing_id%', '?(.*)', "page_id={$show_listing_page_id}&_=" );
-
-            $permastruct_args['paged'] = false;
-            $permastruct_args['feed'] = false;
+        if ( ! $this->settings->get_option( 'display-listings-as-single-posts' ) ) {
+            return $this->update_post_type_permastruct_for_inline_listings( $permastruct, $permastruct_args );
         }
 
+        return $this->update_post_type_permastruct_for_listings_as_single_posts( $permastruct, $permastruct_args );
+    }
+
+    private function update_post_type_permastruct_for_inline_listings( $permastruct, $permastruct_args ) {
+        $show_listing_page_id = $this->get_show_listing_page_id();
+
+        add_rewrite_tag( '%awpcp_optional_listing_id%', '?(.*)', "page_id={$show_listing_page_id}&_=" );
+
+        $permastruct_args['paged'] = false;
+        $permastruct_args['feed'] = false;
+
         add_permastruct( $this->post_type, $permastruct, $permastruct_args );
+    }
+
+    private function update_post_type_permastruct_for_listings_as_single_posts( $permastruct, $permastruct_args ) {
+        add_rewrite_tag( '%awpcp_optional_listing_id%', '?(.*)', "_=" );
+
+        return $this->add_permastruct( $permastruct, $permastruct_args );
     }
 
     /**
@@ -168,51 +179,84 @@ class AWPCP_ListingsPermalinks {
     /**
      * @since 4.0
      */
-    public function filter_post_type_link( $post_link, $post, $leavename, $sample ) {
+    public function filter_post_type_link( $post_link, $post ) {
         if ( $this->post_type != $post->post_type ) {
             return $post_link;
         }
 
-        if ( ! get_option( 'permalink_structure' ) ) {
-            $post_type_object = get_post_type_object( $this->post_type );
-
-            if ( $post_type_object ) {
-                $post_link = remove_query_arg( $post_type_object->query_var, $post_link );
-            }
-
-            $params = array(
-                'page_id' => $this->get_show_listing_page_id(),
-                'id' => $post->ID,
-            );
-
-            $post_link = add_query_arg( $params, $post_link );
-        } elseif ( ! $this->settings->get_option( 'seofriendlyurls' ) ) {
-            $rewrite_tags = array(
-                '%awpcp_optional_listing_id%' => '',
-            );
-
-            $post_link = $this->replace_rewrite_tags( $rewrite_tags, $post_link );
-            $post_link = add_query_arg( 'id', $post->ID, $post_link );
-        } else {
-            $rewrite_tags = array(
-                '%awpcp_listing_id%' => $post->ID,
-                '%awpcp_optional_listing_id%' => '',
-                '%awpcp_category%' => strtolower( $this->listing_renderer->get_category_name( $post ) ),
-                '%awpcp_location%' => $this->get_listing_location( $post ),
-            );
-
-            $post_link = $this->replace_rewrite_tags( $rewrite_tags, $post_link );
-        }
-
         // TODO: Make sure all handlers of this filter are still working on 4.0.
-        return apply_filters( 'awpcp-listing-url', $post_link, $post );
+        return apply_filters( 'awpcp-listing-url', $this->get_post_link( $post_link, $post ), $post );
     }
 
+    /**
+     * @since 4.0
+     */
+    private function get_post_link( $post_link, $post ) {
+        if ( ! get_option( 'permalink_structure' ) ) {
+            return $this->get_plain_post_link( $post_link, $post );
+        }
+
+        if ( ! $this->settings->get_option( 'seofriendlyurls' ) ) {
+            return $this->get_less_seo_friendly_post_link( $post_link, $post );
+        }
+
+        return $this->get_seo_friendly_post_link( $post_link, $post );
+    }
+
+    /**
+     * @since 4.0
+     */
+    private function get_plain_post_link( $post_link, $post ) {
+        $post_type_object = get_post_type_object( $this->post_type );
+
+        if ( $post_type_object ) {
+            $post_link = remove_query_arg( $post_type_object->query_var, $post_link );
+        }
+
+        $params = array(
+            'page_id' => $this->get_show_listing_page_id(),
+            'id' => $post->ID,
+        );
+
+        return add_query_arg( $params, $post_link );
+    }
+
+    /**
+     * @since 4.0
+     */
+    private function get_less_seo_friendly_post_link( $post_link, $post ) {
+        $rewrite_tags = array(
+            '%awpcp_optional_listing_id%' => '',
+        );
+
+        $post_link = $this->replace_rewrite_tags( $rewrite_tags, $post_link );
+        $post_link = add_query_arg( 'id', $post->ID, $post_link );
+
+        return $post_link;
+    }
+
+    /**
+     * @since 4.0
+     */
     private function replace_rewrite_tags( $rewrite_tags, $post_link ) {
         $post_link = str_replace( array_keys( $rewrite_tags ), array_values( $rewrite_tags ), $post_link );
         $post_link = str_replace( ':!!', '://', str_replace( '//', '/', str_replace( '://', ':!!', $post_link ) ) );
 
         return $post_link;
+    }
+
+    /**
+     * @since 4.0
+     */
+    private function get_seo_friendly_post_link( $post_link, $post ) {
+        $rewrite_tags = array(
+            '%awpcp_listing_id%' => $post->ID,
+            '%awpcp_optional_listing_id%' => '',
+            '%awpcp_category%' => strtolower( $this->listing_renderer->get_category_name( $post ) ),
+            '%awpcp_location%' => $this->get_listing_location( $post ),
+        );
+
+        return $this->replace_rewrite_tags( $rewrite_tags, $post_link );
     }
 
     /**
