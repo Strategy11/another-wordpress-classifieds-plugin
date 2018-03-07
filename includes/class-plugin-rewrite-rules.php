@@ -56,7 +56,7 @@ class AWPCP_Plugin_Rewrite_Rules {
     private function get_converted_page_uris( $regular_page_uri ) {
         $uppercase_page_uri = preg_replace_callback(
             '/%[0-9a-zA-Z]{2}/',
-            create_function( '$x', 'return strtoupper( $x[0] );' ),
+            function( $x ) { return strtoupper( $x[0] ); },
             $regular_page_uri
         );
 
