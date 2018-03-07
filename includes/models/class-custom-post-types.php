@@ -88,7 +88,7 @@ class AWPCP_Custom_Post_Types {
     }
 
     private function get_post_type_slug() {
-        $default_slug = _x( 'listings', 'listing post type slug', 'another-wordpress-classifieds-plugin' );
+        $default_slug = _x( 'classifieds', 'listing post type slug', 'another-wordpress-classifieds-plugin' );
 
         if ( ! $this->settings->get_option( 'display-listings-as-single-posts' ) ) {
             $show_listings_page = awpcp_get_page_by_ref( 'show-ads-page-name' );

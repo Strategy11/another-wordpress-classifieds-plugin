@@ -133,7 +133,7 @@ class AWPCP_ListingsURLSettings {
     }
 
     private function get_default_listings_slug() {
-        return _x( 'listings', 'listing post type slug', 'another-wordpress-classifieds-plugin' );
+        return _x( 'classifieds', 'listing post type slug', 'another-wordpress-classifieds-plugin' );
     }
 
     public function render_section_header() {
