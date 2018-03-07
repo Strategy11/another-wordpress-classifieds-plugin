@@ -607,9 +607,16 @@ class AWPCP_Settings_API {
 	}
 
 	public function register() {
-		uasort( $this->groups, create_function( '$a, $b', 'return $a->priority - $b->priority;') );
+        $sort_callback = function( $a, $b ) {
+            return $a->priority - $b->priority;
+        };
+
+        uasort( $this->groups, $sort_callback );
+
 		foreach ($this->groups as $group) {
-			uasort( $group->sections, create_function( '$a, $b', 'return $a->priority - $b->priority;') );
+
+            uasort( $group->sections, $sort_callback );
+
 			foreach ($group->sections as $section) {
 				add_settings_section($section->slug, $section->name, $section->callback, $group->slug);
 				foreach ($section->settings as $setting) {

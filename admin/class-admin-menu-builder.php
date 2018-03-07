@@ -12,7 +12,9 @@ class AWPCP_AdminMenuBuilder {
         $routes = $this->router->get_routes();
 
         foreach ( $routes->get_admin_pages() as $admin_page ) {
-            uasort( $admin_page->subpages, create_function( '$a, $b', 'return $a->priority - $b->priority;') );
+            uasort( $admin_page->subpages, function( $a, $b ) {
+                return $a->priority - $b->priority;
+            } );
 
             if ( isset( $admin_page->handler ) ) {
                 $this->register_admin_page( $admin_page );
