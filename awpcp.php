@@ -362,6 +362,7 @@ require_once( AWPCP_DIR . '/admin/import/class-csv-reader-factory.php' );
 require_once( AWPCP_DIR . '/admin/import/class-csv-reader.php' );
 require_once( AWPCP_DIR . '/admin/import/class-import-listings-ajax-handler.php' );
 require( AWPCP_DIR . '/admin/listings/class-listings-table-search-by-phone-condition.php' );
+require( AWPCP_DIR . '/admin/listings/class-listings-table-search-by-contact-email-condition.php' );
 
 // frontend functions
 require_once(AWPCP_DIR . "/frontend/placeholders.php");
