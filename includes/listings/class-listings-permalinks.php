@@ -218,7 +218,13 @@ class AWPCP_ListingsPermalinks {
      * @since 4.0
      */
     private function get_post_link( $post_link, $post ) {
-        if ( ! get_option( 'permalink_structure' ) ) {
+        $permalink_structure = get_option( 'permalink_structure' );
+
+        if ( ! $permalink_structure && $this->settings->get_option( 'display-listings-as-single-posts' ) ) {
+            return $post_link;
+        }
+
+        if ( ! $permalink_structure ) {
             return $this->get_plain_post_link( $post_link, $post );
         }
 
