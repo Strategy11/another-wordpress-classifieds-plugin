@@ -71,8 +71,8 @@ class AWPCP_ListingsPermalinks {
     }
 
     /**
-     * @param string $permastruct    Permalink structure for listing post type.
-     * @param array  $permastruct_args   Additional arguments for add_permastruct().
+     * @param string $permastruct       Permalink structure for listing post type.
+     * @param array  $permastruct_args  Additional arguments for add_permastruct().
      * @since 4.0.0
      */
     private function update_post_type_permastruct_for_inline_listings( $permastruct, $permastruct_args ) {
@@ -83,12 +83,21 @@ class AWPCP_ListingsPermalinks {
         $permastruct_args['paged'] = false;
         $permastruct_args['feed']  = false;
 
+        $this->add_permastruct( $permastruct, $permastruct_args );
+    }
+
+    /**
+     * @param string $permastruct       Permalink structure for listing post type.
+     * @param array  $permastruct_args  Additional arguments for add_permastruct().
+     * @since 4.0.0
+     */
+    private function add_permastruct( $permastruct, $permastruct_args ) {
         add_permastruct( $this->post_type, $permastruct, $permastruct_args );
     }
 
     /**
-     * @param string $permastruct    Permalink structure for listing post type.
-     * @param array  $permastruct_args   Additional arguments for add_permastruct().
+     * @param string $permastruct       Permalink structure for listing post type.
+     * @param array  $permastruct_args  Additional arguments for add_permastruct().
      * @since 4.0.0
      */
     private function update_post_type_permastruct_for_listings_as_single_posts( $permastruct, $permastruct_args ) {
