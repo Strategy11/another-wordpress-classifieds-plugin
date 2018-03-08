@@ -10,6 +10,7 @@
 class AWPCP_WordPressContainerConfiguration implements AWPCP_ContainerConfigurationInterface {
 
     /**
+     * @param object $container An instance of Container.
      * @since 4.0.0
      */
     public function modify( $container ) {

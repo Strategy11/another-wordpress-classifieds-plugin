@@ -21,14 +21,18 @@ class AWPCP_Show_Ad_Page {
 		return $content;
 	}
 
+    /**
+     * TODO: Get instances of all necessary objects as constructor arguments.
+     */
 	public function dispatch() {
-		$output = apply_filters( 'awpcp-show-listing-content-replacement', null );
+        $listings_content_renderer = awpcp()->container['ListingsContentRenderer'];
 
-		if ( is_null( $output ) ) {
-			return showad();
-		} else {
-			return $output;
-		}
+        $post = awpcp_listings_collection()->get( awpcp_request()->get_current_listing_id() );
+
+        return $listings_content_renderer->render(
+            apply_filters( 'the_content', $post->post_content ),
+            $post
+        );
 	}
 }
 

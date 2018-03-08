@@ -456,7 +456,7 @@ class AWPCP {
 	public $payments = null;
 	public $js = null;
 
-    private $container;
+    public $container;
     private $modules_manager_factory;
 
 	public function __construct( $container, $modules_manager_factory ) {
@@ -813,6 +813,9 @@ class AWPCP {
 
             $filter = awpcp_wordpress_status_header_filter();
             add_filter( 'status_header', array( $filter, 'filter_status_header' ), 10, 4 );
+
+            $listings_content = $this->container['ListingsContent'];
+            add_filter( 'the_content', array( $listings_content, 'filter_content' ) );
         }
 
         add_filter( 'awpcp-content-placeholders', array( $this, 'register_content_placeholders' ) );

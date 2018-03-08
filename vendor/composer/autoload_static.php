@@ -324,6 +324,8 @@ class ComposerStaticInit0c941298ee85d9f811507700372c60a3
         'AWPCP_Listing_Meta_Configuration' => __DIR__ . '/../../..' . '/another-wordpress-classifieds-plugin/includes/listings/class-listings-meta-configuration.php',
         'AWPCP_ListingsAPI' => __DIR__ . '/../../..' . '/another-wordpress-classifieds-plugin/includes/class-listings-api.php',
         'AWPCP_ListingsCollection' => __DIR__ . '/../../..' . '/another-wordpress-classifieds-plugin/includes/class-listings-collection.php',
+        'AWPCP_ListingsContent' => __DIR__ . '/../../..' . '/another-wordpress-classifieds-plugin/includes/listings/class-listings-content.php',
+        'AWPCP_ListingsContentRenderer' => __DIR__ . '/../../..' . '/another-wordpress-classifieds-plugin/includes/listings/class-listings-content-renderer.php',
         'AWPCP_ListingsFinder' => __DIR__ . '/../../..' . '/another-wordpress-classifieds-plugin/includes/listings/class-listings-finder.php',
         'AWPCP_ListingsModerationSettings' => __DIR__ . '/../../..' . '/another-wordpress-classifieds-plugin/includes/settings/class-listings-moderation-settings.php',
         'AWPCP_ListingsPermalinks' => __DIR__ . '/../../..' . '/another-wordpress-classifieds-plugin/includes/listings/class-listings-permalinks.php',

@@ -17,4 +17,5 @@
     <input class="button button-primary" type="submit" name="finish" value="<?php echo esc_attr( __( "Finish", 'another-wordpress-classifieds-plugin' ) ); ?>" />
 </form>
 
-<?php echo showad( $ad->ID, true, true, false, false ); ?>
+<?php // TODO: Use ListingRendererContent... ?>
+<?php echo showad( $ad->ID, true, true, null, false ); ?>

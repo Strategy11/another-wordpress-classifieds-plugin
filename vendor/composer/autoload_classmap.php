@@ -212,6 +212,8 @@ return array(
     'AWPCP_Listing_Meta_Configuration' => $baseDir . '/another-wordpress-classifieds-plugin/includes/listings/class-listings-meta-configuration.php',
     'AWPCP_ListingsAPI' => $baseDir . '/another-wordpress-classifieds-plugin/includes/class-listings-api.php',
     'AWPCP_ListingsCollection' => $baseDir . '/another-wordpress-classifieds-plugin/includes/class-listings-collection.php',
+    'AWPCP_ListingsContent' => $baseDir . '/another-wordpress-classifieds-plugin/includes/listings/class-listings-content.php',
+    'AWPCP_ListingsContentRenderer' => $baseDir . '/another-wordpress-classifieds-plugin/includes/listings/class-listings-content-renderer.php',
     'AWPCP_ListingsFinder' => $baseDir . '/another-wordpress-classifieds-plugin/includes/listings/class-listings-finder.php',
     'AWPCP_ListingsModerationSettings' => $baseDir . '/another-wordpress-classifieds-plugin/includes/settings/class-listings-moderation-settings.php',
     'AWPCP_ListingsPermalinks' => $baseDir . '/another-wordpress-classifieds-plugin/includes/listings/class-listings-permalinks.php',

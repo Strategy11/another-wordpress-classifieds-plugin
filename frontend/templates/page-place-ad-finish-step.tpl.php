@@ -16,4 +16,5 @@
     <?php echo awpcp_print_message($message); ?>
 <?php endforeach; ?>
 
-<?php echo showad( $ad->ID, true, true, false ); ?>
+<?php // TODO: Use ListingRendererContent... ?>
+<?php echo showad( $ad->ID, true, true, null ); ?>
