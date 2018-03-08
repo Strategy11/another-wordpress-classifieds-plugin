@@ -1,0 +1,20 @@
+<?php
+/**
+ * @package AWPCP\WordPress
+ */
+
+/**
+ * Register constructor for classes that wrap or extend WordPress classes and
+ * functions.
+ */
+class AWPCP_WordPressContainerConfiguration implements AWPCP_ContainerConfigurationInterface {
+
+    /**
+     * @since 4.0.0
+     */
+    public function modify( $container ) {
+        $container['WordPress'] = $container->service( function( $container ) {
+            return new AWPCP_WordPress();
+        } );
+    }
+}

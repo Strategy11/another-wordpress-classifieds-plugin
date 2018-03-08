@@ -369,6 +369,7 @@ return array(
     'AWPCP_WindowTitleSettings' => $baseDir . '/another-wordpress-classifieds-plugin/includes/settings/class-window-title-settings.php',
     'AWPCP_WooCommercePluginIntegration' => $baseDir . '/another-wordpress-classifieds-plugin/includes/compatibility/class-woocommerce-plugin-integration.php',
     'AWPCP_WordPress' => $baseDir . '/another-wordpress-classifieds-plugin/includes/wordpress/class-wordpress.php',
+    'AWPCP_WordPressContainerConfiguration' => $baseDir . '/another-wordpress-classifieds-plugin/includes/wordpress/class-wordpress-container-configuration.php',
     'AWPCP_WordPressPageEvents' => $baseDir . '/another-wordpress-classifieds-plugin/admin/wordpress/class-page-events.php',
     'AWPCP_WordPressPageSettingsType' => $baseDir . '/another-wordpress-classifieds-plugin/includes/settings/class-wordpress-page-settings-type.php',
     'AWPCP_WordPress_Scripts' => $baseDir . '/another-wordpress-classifieds-plugin/includes/wordpress/class-wordpress-scripts.php',

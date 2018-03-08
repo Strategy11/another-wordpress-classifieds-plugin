@@ -481,6 +481,7 @@ class ComposerStaticInit0c941298ee85d9f811507700372c60a3
         'AWPCP_WindowTitleSettings' => __DIR__ . '/../../..' . '/another-wordpress-classifieds-plugin/includes/settings/class-window-title-settings.php',
         'AWPCP_WooCommercePluginIntegration' => __DIR__ . '/../../..' . '/another-wordpress-classifieds-plugin/includes/compatibility/class-woocommerce-plugin-integration.php',
         'AWPCP_WordPress' => __DIR__ . '/../../..' . '/another-wordpress-classifieds-plugin/includes/wordpress/class-wordpress.php',
+        'AWPCP_WordPressContainerConfiguration' => __DIR__ . '/../../..' . '/another-wordpress-classifieds-plugin/includes/wordpress/class-wordpress-container-configuration.php',
         'AWPCP_WordPressPageEvents' => __DIR__ . '/../../..' . '/another-wordpress-classifieds-plugin/admin/wordpress/class-page-events.php',
         'AWPCP_WordPressPageSettingsType' => __DIR__ . '/../../..' . '/another-wordpress-classifieds-plugin/includes/settings/class-wordpress-page-settings-type.php',
         'AWPCP_WordPress_Scripts' => __DIR__ . '/../../..' . '/another-wordpress-classifieds-plugin/includes/wordpress/class-wordpress-scripts.php',
