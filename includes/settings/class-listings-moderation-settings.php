@@ -31,7 +31,15 @@ class AWPCP_ListingsModerationSettings {
         $settings->add_setting( $key, 'enable-email-verification', __( 'Have non-registered users verify the email address used to post new Ads', 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, __( 'A message with an email verification link will be sent to the email address used in the contact information. New Ads will remain disabled until the user clicks the verification link.', 'another-wordpress-classifieds-plugin' ) );
         $settings->add_setting( $key, 'email-verification-first-threshold', __( 'Number of days before the verification email is sent again', 'another-wordpress-classifieds-plugin' ), 'textfield', 5, '' );
         $settings->add_setting( $key, 'email-verification-second-threshold', __( 'Number of days before Ads that remain in a unverified status will be deleted', 'another-wordpress-classifieds-plugin' ), 'textfield', 30, '' );
-        $settings->add_setting( $key, 'notice_awaiting_approval_ad', __( 'Awaiting approval message', 'another-wordpress-classifieds-plugin' ), 'textarea', __( 'All ads must first be approved by the administrator before they are activated in the system. As soon as an admin has approved your ad it will become visible in the system. Thank you for your business.', 'another-wordpress-classifieds-plugin' ), __( 'This message is shown to users right after they post an Ad, if that Ad is awaiting approval from the administrator. The message may also be included in email notifications sent when a new Ad is posted.', 'another-wordpress-classifieds-plugin') );
+
+        $settings->add_setting(
+            $key,
+            'notice_awaiting_approval_ad',
+            __( 'Awaiting approval message', 'another-wordpress-classifieds-plugin' ),
+            'textarea',
+            __( 'All listings must be approved by an administrator before they are activated on the system. As soon as an administrator has approved your listing it will become visible. Thank you for your business.', 'another-wordpress-classifieds-plugin' ),
+            __( 'This message is shown to users right after they post an Ad, if that Ad is awaiting approval from the administrator. The message may also be included in email notifications sent when a new Ad is posted.', 'another-wordpress-classifieds-plugin')
+        );
 
         $settings->add_setting( $key, 'ad-poster-email-address-whitelist', __( 'Allowed domains in Ad poster email', 'another-wordpress-classifieds-plugin' ), 'textarea', '', __( 'Only email addresses with a domain in the list above will be allowed. *.foo.com will match a.foo.com, b.foo.com, etc. but foo.com will match foo.com only. Please type a domain per line.', 'another-wordpress-classifieds-plugin' ) );
 

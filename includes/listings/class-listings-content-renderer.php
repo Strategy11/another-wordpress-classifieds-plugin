@@ -27,35 +27,33 @@ class AWPCP_ListingsContentRenderer {
      * @since 4.0.0
      */
     public function render( $content, $post ) {
+        $user_can_see_disabled_listing = $this->current_user_can_see_disabled_listing( $post );
+
+        if ( $this->listing_renderer->is_disabled( $post ) && ! $user_can_see_disabled_listing ) {
+            $message = __( 'The listing you are trying to view is not available right now.', 'another-wordpress-classifieds-plugin' );
+            return awpcp_print_error( $message );
+        }
+
         $output = apply_filters( 'awpcp-show-listing-content-replacement', null, $content, $post );
 
         if ( ! is_null( $output ) ) {
             return $output;
         }
 
-        // Filters to provide alternative method of storing custom layouts.
-        if ( has_action( 'awpcp_single_ad_template_action' ) || has_filter( 'awpcp_single_ad_template_filter' ) ) {
-            do_action( 'awpcp_single_ad_template_action' );
-            return apply_filters( 'awpcp_single_ad_template_filter' );
-        }
-
-        if ( $this->listing_renderer->is_disabled( $post ) && ! $this->current_user_can_see_disabled_listing( $post ) ) {
-            $message = __( 'The Ad you are trying to view is pending approval. Once the Administrator approves it, it will be active and visible.', 'another-wordpress-classifieds-plugin' );
-            return awpcp_print_error( $message );
-        }
-
         // TODO: We may need to move this to a different place to avoid over-counting.
+        // TODO: Avoid counting previews, admin views and anything that does not occur
+        //       while a visitor is exploring the frontend website.
+        //
+        //       Perhaps even ignore administrator and owner views.
         if ( ! awpcp_request()->is_bot() ) {
             awpcp_listings_api()->increase_visits_count( $post );
         }
 
-        $show_messages = true;
-
-        if ( $show_messages ) {
-            return implode( "\n", $this->render_messages( $post ) ) . $this->render_content( $content, $post );
+        if ( $user_can_see_disabled_listing ) {
+            return $this->render_content_with_notices( $content, $post );
         }
 
-        return $this->render_content( $content, $post );
+        return $this->render_content_without_notices( $content, $post );
     }
 
     /**
@@ -63,12 +61,15 @@ class AWPCP_ListingsContentRenderer {
      * @since 4.0.0
      */
     private function current_user_can_see_disabled_listing( $post ) {
-        $is_preview = false;
+        if ( awpcp_current_user_is_moderator() ) {
+            return true;
+        }
 
-        $current_user_is_moderator     = awpcp_current_user_is_moderator();
-        $current_user_is_listing_owner = $this->current_user_is_listing_owner( $post );
+        if ( $this->current_user_is_listing_owner( $post ) ) {
+            return true;
+        }
 
-        return $current_user_is_moderator || $current_user_is_listing_owner || $is_preview;
+        return false;
     }
 
     /**
@@ -84,71 +85,78 @@ class AWPCP_ListingsContentRenderer {
     }
 
     /**
+     * Renders listing's content and user notices assuming current user is either
+     * a moderator or the listing's owner.
+     *
+     * @param string $content   The content of the post as passed to the
+     *                          `the_content` filter.
+     * @param object $post      An instance of WP_Post.
+     * @since 4.0.0
+     */
+    public function render_content_with_notices( $content, $post ) {
+        return implode( "\n", $this->render_messages( $post ) ) . $this->render_content_without_notices( $content, $post );
+    }
+
+    /**
      * @param object $post An instance of WP_Post.
      * @since 4.0.0
      */
     private function render_messages( $post ) {
         $messages = array();
 
-        $is_listing_disabled = $this->listing_renderer->is_disabled( $post );
         $is_listing_verified = $this->listing_renderer->is_verified( $post );
 
-        if ( awpcp_request_param( 'verified' ) && $is_listing_verified ) {
+        if ( $is_listing_verified && awpcp_request_param( 'verified' ) ) {
             $messages[] = awpcp_print_message( __( 'Your email address was successfully verified.', 'another-wordpress-classifieds-plugin' ) );
         }
 
-        if ( $is_listing_disabled ) {
-            $warnings = $this->get_disabled_listing_warnings( $post );
-            $messages = array_merge( $messages, $warnings );
-        } elseif ( ! $is_listing_verified ) {
-            $warnings = $this->get_unverified_listing_warnings( $post );
-            $messages = array_merge( $messages, $warnings );
+        if ( ! $is_listing_verified ) {
+            $messages[] = $this->get_unverified_listing_warning();
+        } elseif ( $this->listing_renderer->is_disabled( $post ) ) {
+            $messages[] = $this->get_disabled_listing_warning();
         }
 
         return $messages;
     }
 
     /**
-     * @param object $post An instance of WP_Post.
      * @since 4.0.0
      */
-    private function get_disabled_listing_warnings( $post ) {
-        $warnings = array();
-
+    private function get_unverified_listing_warning() {
         if ( awpcp_current_user_is_moderator() ) {
-            $message    = __( 'This Ad is currently disabled until the Administrator approves it. Only you (the Administrator) and the author can see it.', 'another-wordpress-classifieds-plugin' );
-            $warnings[] = awpcp_print_error( $message );
-        } elseif ( $this->current_user_can_see_disabled_listing( $post ) ) {
-            $message    = __( 'This Ad is currently disabled until the Administrator approves it. Only you (the author) can see it.', 'another-wordpress-classifieds-plugin' );
-            $warnings[] = awpcp_print_error( $message );
+            $message = __( 'This listing is currently disabled until the owner verifies the email address used for the contact information. Right now only administrators users and the owner of the listing can see it.', 'another-wordpress-classifieds-plugin' );
+            return awpcp_print_error( $message );
         }
 
-        return $warnings;
+        $message = __( 'This listing is currently disabled until you verify the email address used for the contact information. Right now only you (the owner) and administrators users can see it.', 'another-wordpress-classifieds-plugin' );
+        return awpcp_print_error( $message );
     }
 
     /**
-     * @param object $post An instance of WP_Post.
      * @since 4.0.0
      */
-    private function get_unverified_listing_warnings( $post ) {
-        $warnings = array();
-
-        if ( $this->current_user_can_see_disabled_listing( $post ) ) {
-            $message    = __( 'This Ad is currently disabled until you verify the email address used for the contact information. Only you (the author) can see it.', 'another-wordpress-classifieds-plugin' );
-            $warnings[] = awpcp_print_error( $message );
+    private function get_disabled_listing_warning() {
+        if ( awpcp_current_user_is_moderator() ) {
+            $message = __( 'This listing is currently disabled until an administrator approves it. As soon as an administrator approves the listing, it will become visilbe on the system. Right now only administrators users and the owner of the listing can see it.', 'another-wordpress-classifieds-plugin' );
+            return awpcp_print_error( $message );
         }
 
-        return $warnings;
+        $message = __( 'This listing is currently disabled until an administrator approves it. As soon as an administrator approves the listing, it will become visilbe on the system. Right now only you (the owner) and administrators users can see it.', 'another-wordpress-classifieds-plugin' );
+        return awpcp_print_error( $message );
     }
 
     /**
-     * Handles AWPCPSHOWAD shortcode.
-     *
      * @param string $content   The content of the post.
      * @param object $post      An instance of WP_Post.
      * @return Show Ad page content.
      */
-    public function render_content( $content, $post ) {
+    public function render_content_without_notices( $content, $post ) {
+        // Filters to provide alternative method of storing custom layouts.
+        if ( has_action( 'awpcp_single_ad_template_action' ) || has_filter( 'awpcp_single_ad_template_filter' ) ) {
+            do_action( 'awpcp_single_ad_template_action' );
+            return apply_filters( 'awpcp_single_ad_template_filter' );
+        }
+
         /* Enqueue necessary scripts. */
         awpcp_maybe_add_thickbox();
         wp_enqueue_script( 'awpcp-page-show-ad' );
@@ -164,14 +172,6 @@ class AWPCP_ListingsContentRenderer {
                 'flag-error-message'        => __( 'An error occurred while trying to flag the Ad.', 'another-wordpress-classifieds-plugin' ),
             )
         );
-
-        $preview = false;
-
-        if ( isset( $preview ) && $preview ) {
-            $preview = true;
-        } elseif ( 'preview' === awpcp_request_param( 'adstatus' ) ) {
-            $preview = true;
-        }
 
         $content_before_page = apply_filters( 'awpcp-content-before-listing-page', '' );
         $content_after_page  = apply_filters( 'awpcp-content-after-listing-page', '' );

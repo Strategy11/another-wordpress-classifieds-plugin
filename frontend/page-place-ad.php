@@ -1442,6 +1442,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             $manage_images = awpcp_are_images_allowed() && $payment_term->images > 0;
 
             $params = array(
+                'page' => $this,
                 'ad' => $ad,
                 'edit' => false,
                 'messages' => $this->messages,
