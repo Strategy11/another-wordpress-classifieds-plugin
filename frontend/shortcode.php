@@ -36,6 +36,7 @@ class AWPCP_Pages {
 		add_shortcode('AWPCPSEARCHADS', array($this, 'search_ads'));
 		add_shortcode('AWPCPREPLYTOAD', array($this, 'reply_to_ad'));
 
+        // These shortcodes are no longer used, but kept for backwards compatibility.
 		add_shortcode('AWPCPPAYMENTTHANKYOU', array($this, 'noop'));
 		add_shortcode('AWPCPCANCELPAYMENT', array($this, 'noop'));
 
@@ -388,7 +389,7 @@ function awpcp_get_menu_items( $params ) {
 
     if ( $show_place_ad_item ) {
         $place_ad_url = awpcp_get_page_url( 'place-ad-page-name' );
-        $place_ad_page_name = get_awpcp_option( 'place-ad-page-name' );
+        $place_ad_page_name = awpcp_get_page_name( 'place-ad-page-name' );
         $items['post-listing'] = array( 'url' => $place_ad_url, 'title' => esc_html( $place_ad_page_name ) );
     }
 
@@ -419,14 +420,14 @@ function awpcp_get_menu_items( $params ) {
                 );
             }
         } else {
-            $browse_ads_page_name = get_awpcp_option('browse-ads-page-name');
+            $browse_ads_page_name = awpcp_get_page_name( 'browse-ads-page-name' );
             $browse_ads_url = awpcp_get_page_url( 'browse-ads-page-name' );
             $items['browse-listings'] = array( 'url' => $browse_ads_url, 'title' => esc_html( $browse_ads_page_name  ) );
         }
     }
 
     if ( $show_search_ads_item ) {
-        $search_ads_page_name = get_awpcp_option( 'search-ads-page-name' );
+        $search_ads_page_name = awpcp_get_page_name( 'search-ads-page-name' );
         $search_ads_url = awpcp_get_page_url( 'search-ads-page-name' );
         $items['search-listings'] = array( 'url' => $search_ads_url, 'title' => esc_html( $search_ads_page_name ) );
     }
@@ -475,7 +476,8 @@ function awpcp_get_edit_listing_menu_item() {
     if ( is_null( $edit_ad_url ) ) {
         return null;
     } else {
-        $edit_ad_page_name = $settings->get_option( 'edit-ad-page-name' );
+        $edit_ad_page_name = awpcp_get_page_name( 'edit-ad-page-name' );
+
         return array( 'url' => $edit_ad_url, 'title' => esc_html( $edit_ad_page_name ) );
     }
 }

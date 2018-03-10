@@ -82,7 +82,7 @@ class AWPCP_Installer {
         }
 
         // if table exists, this is an upgrade
-        if ( $installed_version !== false && awpcp_table_exists( AWPCP_TABLE_CATEGORIES ) ) {
+        if ( $installed_version !== false && awpcp_table_exists( AWPCP_TABLE_PAYMENTS ) ) {
             $this->upgrade( $installed_version, $awpcp_db_version );
         } else {
             $this->install( $awpcp_db_version );
@@ -161,9 +161,8 @@ class AWPCP_Installer {
         }
 
         // Delete the classifieds page(s)
-        $pages = awpcp_pages();
-        foreach ($pages as $page => $data) {
-            wp_delete_post(awpcp_get_page_id_by_ref($page), true);
+        foreach ( awpcp_pages() as $page_ref => $data ) {
+            wp_delete_post( awpcp_get_page_id_by_ref( $page_ref ), true );
         }
 
         $this->delete_categories_and_associated_listings();
@@ -318,13 +317,14 @@ class AWPCP_Installer {
         }
 
         do_action( 'awpcp_upgrade', $oldversion, $newversion );
-        
+
         $this->log_upgrade( $oldversion, $newversion );
 
         return update_option( "awpcp_db_version", $newversion );
     }
 
     private function get_upgrade_routines() {
+        // You have to use at least major.minor.patch version numbers.
         return array(
             '1.8.9.4' => 'upgrade_to_1_8_9_4',
             '1.9.9' => 'upgrade_to_1_9_9',
@@ -335,12 +335,12 @@ class AWPCP_Installer {
             '2.0.7' => 'upgrade_to_2_0_7',
             '2.1.3' => 'upgrade_to_2_1_3',
             '2.2.1' => 'upgrade_to_2_2_1',
-            '3.0-beta23' => 'upgrade_to_3_0_0',
+            '3.0.0-beta23' => 'upgrade_to_3_0_0',
             '3.0.2' => 'upgrade_to_3_0_2',
             '3.2.2' => 'upgrade_to_3_2_2',
             '3.3.2' => 'upgrade_to_3_3_2',
             '3.3.3' => 'upgrade_to_3_3_3',
-            '3.4' => 'upgrade_to_3_4',
+            '3.4.0' => 'upgrade_to_3_4',
             '3.5.3' => 'upgrade_to_3_5_3',
             '3.6.4' => array(
                 'create_tasks_table',
@@ -369,8 +369,9 @@ class AWPCP_Installer {
             '3.7.4' => array(
                 'set_flag_to_show_missing_paypal_merchant_id_setting_notice',
             ),
-            '4.0' => array(
+            '4.0.0' => array(
                 'create_old_listing_id_column_in_listing_regions_table',
+                'migrate_wordpress_page_settings',
                 'enable_upgrade_routine_to_migrate_listing_categories',
                 'enable_upgrade_routine_to_migrate_listings',
                 'enable_upgrade_routine_to_migrate_media',
@@ -836,9 +837,13 @@ class AWPCP_Installer {
 
         // Since pages automatic creation is not enabled, we need to create the
         // Renew Ad page manually.
-        awpcp_create_subpage('renew-ad-page-name',
-                             $awpcp->settings->get_option('renew-ad-page-name'),
-                             '[AWPCP-RENEW-AD]');
+        $plugin_pages = awpcp_pages();
+
+        awpcp_create_subpage(
+            'renew-ad-page-name',
+            $plugin_pages['renew-ad-page-name'][0],
+            '[AWPCP-RENEW-AD]'
+        );
     }
 
     private function upgrade_to_2_0_6($version) {
@@ -1057,10 +1062,12 @@ class AWPCP_Installer {
         }
     }
 
+    /**
+     */
     private function upgrade_to_3_5_3( $oldversion ) {
         global $wpdb;
 
-        $plugin_pages = awpcp_get_plugin_pages_info();
+        $plugin_pages = get_option( 'awpcp-plugin-pages', array() );
 
         if ( empty( $plugin_pages ) ) {
             // move plugin pages info from PAGES table to awpcp-plugin-pages option
@@ -1071,7 +1078,7 @@ class AWPCP_Installer {
         }
 
         // make sure there are entries for 'view-categories-page-name' in the plugin pages info
-        $plugin_pages = awpcp_get_plugin_pages_info();
+        $plugin_pages = get_option( 'awpcp-plugin-pages', array() );
 
         if ( isset( $plugin_pages['view-categories-page-name'] ) ) {
             unset( $plugin_pages['view-categories-page-name'] );
@@ -1182,6 +1189,22 @@ class AWPCP_Installer {
         if ( ! awpcp_column_exists( AWPCP_TABLE_AD_REGIONS, 'old_listing_id' ) ) {
             $wpdb->query( 'ALTER TABLE ' . AWPCP_TABLE_AD_REGIONS . ' ADD `old_listing_id` INT(10) NOT NULL AFTER `ad_id`' );
             $wpdb->query( 'UPDATE ' . AWPCP_TABLE_AD_REGIONS . ' SET `old_listing_id` = `ad_id`' );
+        }
+    }
+
+    private function migrate_wordpress_page_settings() {
+        $pages = get_option( 'awpcp-plugin-pages' );
+
+        if ( empty( $pages ) ) {
+            return;
+        }
+
+        foreach ( $pages as $page_ref => $page_info ) {
+            if ( empty( $page_info['page_id'] ) ) {
+                continue;
+            }
+
+            awpcp_update_plugin_page_id( $page_ref, $page_info['page_id'] );
         }
     }
 

@@ -4,7 +4,7 @@
  * Plugin Name: Another WordPress Classifieds Plugin (AWPCP)
  * Plugin URI: http://www.awpcp.com
  * Description: AWPCP - A plugin that provides the ability to run a free or paid classified ads service on your WP site. <strong>!!!IMPORTANT!!!</strong> It's always a good idea to do a BACKUP before you upgrade AWPCP!
- * Version: 4.0-dev-1
+ * Version: 4.0.0dev30
  * Author: D. Rodenbaugh
  * License: GPLv2 or any later version
  * Author URI: http://www.skylineconsult.com
@@ -57,7 +57,7 @@ global $awpcp_imagesurl;
 
 global $nameofsite;
 
-$awpcp_db_version = '4.0-dev-29';
+$awpcp_db_version = '4.0.0dev30';
 
 $wpcontenturl = WP_CONTENT_URL;
 $wpcontentdir = WP_CONTENT_DIR;
@@ -66,11 +66,12 @@ $awpcp_plugin_url = AWPCP_URL;
 $imagespath = $awpcp_plugin_path . '/resources/images';
 $awpcp_imagesurl = $awpcp_plugin_url .'/resources/images';
 
+// TODO: verify we are running on PHP 5.3 or superior
+require_once( AWPCP_DIR . '/vendor/autoload.php' );
+
 // XXX: Required because Settings API attempts to use register_setting on
 //      every request.
 require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-
-require_once( AWPCP_DIR . '/includes/class-container.php' );
 
 // common
 require_once(AWPCP_DIR . "/debug.php");
@@ -372,7 +373,6 @@ require_once( AWPCP_DIR . '/admin/class-dismiss-notice-ajax-handler.php' );
 require( AWPCP_DIR . '/admin/class-export-settings-admin-page.php' );
 require( AWPCP_DIR . '/admin/class-import-settings-admin-page.php' );
 require_once( AWPCP_DIR . '/admin/class-missing-paypal-merchant-id-setting-notice.php' );
-require_once( AWPCP_DIR . '/admin/class-page-name-monitor.php' );
 require_once( AWPCP_DIR . '/admin/class-admin-menu-builder.php' );
 require( AWPCP_DIR . "/admin/class-admin-page-url-builder.php");
 require_once( AWPCP_DIR . '/admin/class-categories-admin-page.php' );
@@ -589,6 +589,14 @@ class AWPCP {
         add_action( 'init', array( $custom_post_types, 'register_custom_image_sizes' ) );
         add_action( 'awpcp-installed', array( $custom_post_types, 'create_default_category' ) );
 
+        $this->container->configure( $this->get_container_configurations() );
+
+        $listing_permalinks = $this->container['ListingsPermalinks'];
+
+        add_action( 'registered_post_type', array( $listing_permalinks, 'update_post_type_permastruct' ), 10, 2 );
+        add_action( 'parse_request', array( $listing_permalinks, 'maybe_set_current_post' ) );
+        add_action( 'post_type_link', array( $listing_permalinks, 'filter_post_type_link' ), 10, 4 );
+
         add_action( 'init', array( $this, 'register_plugin_integrations' ) );
         add_action( 'init', array( $this->compatibility, 'load_plugin_integrations_on_init' ) );
         add_action( 'init', array( $this->plugin_integrations, 'load_plugin_integrations' ), AWPCP_LOWEST_FILTER_PRIORITY );
@@ -751,15 +759,18 @@ class AWPCP {
             add_action( 'personal_options_update', array( $controller, 'save_contact_information' ) );
             add_action( 'edit_user_profile_update', array( $controller, 'save_contact_information' ) );
 
-            $monitor = awpcp_page_name_monitor();
-            add_action( 'post_updated', array( $monitor, 'flush_rewrite_rules_if_plugin_pages_name_changes' ), 10, 3 );
-
             $pointers_manager = awpcp_pointers_manager();
             add_action( 'admin_enqueue_scripts', array( $pointers_manager, 'register_pointers' ) );
             add_action( 'admin_enqueue_scripts', array( $pointers_manager, 'setup_pointers' ) );
 
             $helper = awpcp_url_backwards_compatibility_redirection_helper();
             add_action( 'wp_loaded', array( $helper, 'maybe_redirect_admin_request' ) );
+
+            $settings_type = $this->container['WordPressPageSettingsType'];
+            add_filter( 'awpcp-render-setting-type-wordpress-page', array( $settings_type, 'render' ), 10, 3 );
+
+            $page_events = $this->container['WordPressPageEvents'];
+            add_action( 'post_updated', array( $page_events, 'post_updated' ), 10, 3 );
 
             if ( awpcp_current_user_is_admin() ) {
                 // load resources required in admin screens only, visible to admin users only.
@@ -836,8 +847,6 @@ class AWPCP {
 
             update_option( 'awpcp-installed-or-upgraded', false );
         }
-
-        add_filter( 'post_type_link', array( $this, 'filter_post_type_link' ), 10, 4 );
 
 		$this->register_scripts();
         $this->register_notification_handlers();
@@ -1512,14 +1521,6 @@ class AWPCP {
         }
 	}
 
-    public function filter_post_type_link( $post_link, $post, $leavename, $sample ) {
-        if ( $post->post_type != AWPCP_LISTING_POST_TYPE ) {
-            return $post_link;
-        }
-
-        return awpcp_listing_renderer()->get_view_listing_url( $post );
-    }
-
     public function register_content_placeholders( $placeholders ) {
         $handler = awpcp_edit_listing_url_placeholder();
         $placeholders['edit_listing_url'] = array( 'callback' => array( $handler, 'do_placeholder' ) );
@@ -1580,6 +1581,13 @@ class AWPCP {
         );
 
         return $file_handlers;
+    }
+
+    public function get_container_configurations() {
+        $configurations[] = new AWPCP_SettingsContainerConfiguration();
+        $configurations[] = new AWPCP_ListingPostTypeContainerConfiguration();
+
+        return apply_filters( 'awpcp_container_configurations', $configurations );
     }
 
 
@@ -1720,6 +1728,19 @@ class AWPCP {
     }
 }
 
+/**
+ * TODO: Remove this function. We have autoload now.
+ */
+function awpcp_container() {
+    static $instance = null;
+
+    if ( is_null( $instance ) ) {
+        $instance = new AWPCP_Container();
+    }
+
+    return $instance;
+}
+
 function awpcp() {
 	global $awpcp;
 
@@ -1840,8 +1861,6 @@ function awpcp_pages_with_rewrite_rules() {
 		'reply-to-ad-page-name',
         'edit-ad-page-name',
 		'browse-ads-page-name',
-		'payment-thankyou-page-name',
-		'payment-cancel-page-name'
 	);
 }
 

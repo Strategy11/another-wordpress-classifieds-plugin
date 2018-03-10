@@ -4,27 +4,7 @@
  * Returns the current name of the AWPCP main page.
  */
 function get_currentpagename() {
-    return get_awpcp_option('main-page-name');
-}
-
-/**
- * Return the number of pages with the given post_name.
- */
-function checkforduplicate($cpagename_awpcp) {
-    global $wpdb;
-
-    $awpcppagename = sanitize_title( $cpagename_awpcp );
-
-    $query = "SELECT ID FROM {$wpdb->posts} WHERE post_name = %s AND post_type = %s";
-    $query = $wpdb->prepare( $query, $awpcppagename, 'post' );
-
-    $post_ids = $wpdb->get_col( $query );
-
-    if ( $post_ids !== false ) {
-        return count( $post_ids );
-    } else {
-        return '';
-    }
+    return awpcp_get_page_name( 'main-page-name' );
 }
 
 /**
@@ -63,14 +43,15 @@ function awpcp_get_page_id( $name ) {
 
 /**
  * Returns the ID of WP Page associated to a page-name setting.
+ * TODO: remove usage of awpcp_get_plugin_pages_ids().
  *
  * @param $refname the name of the setting that holds the name of the page
  */
 function awpcp_get_page_id_by_ref( $refname ) {
-    $plugin_pages_info = awpcp_get_plugin_pages_info();
+    $plugin_pages_ids = awpcp_get_plugin_pages_ids();
 
-    if ( isset( $plugin_pages_info[ $refname ] ) ) {
-        return intval( $plugin_pages_info[ $refname ]['page_id'] );
+    if ( isset( $plugin_pages_ids[ $refname ] ) ) {
+        return intval( $plugin_pages_ids[ $refname ] );
     } else {
         return false;
     }
@@ -78,16 +59,17 @@ function awpcp_get_page_id_by_ref( $refname ) {
 
 /**
  * Return the IDs of WP pages associated with AWPCP pages.
+ * TODO: remove usage of awpcp_get_plugin_pages_ids().
  *
  * @return array Array of Page IDs
  */
 function awpcp_get_page_ids_by_ref( $refnames ) {
-    $plugin_pages_info = awpcp_get_plugin_pages_info();
+    $plugin_pages_ids = awpcp_get_plugin_pages_ids();
     $pages_ids = array();
 
     foreach ( $refnames as $refname ) {
-        if ( isset( $plugin_pages_info[ $refname ] ) ) {
-            $pages_ids[] = intval( $plugin_pages_info[ $refname ]['page_id'] );
+        if ( isset( $plugin_pages_ids[ $refname ] ) ) {
+            $pages_ids[] = $plugin_pages_ids[ $refname ];
         }
     }
 
@@ -112,6 +94,7 @@ function awpcp_get_pages_ids_from_db() {
 
 /**
  * @since 3.5.3
+ * @deprecated 4.0.0    Page IDs are now available through Settings->get_option().
  */
 function awpcp_get_plugin_pages_info() {
     return get_option( 'awpcp-plugin-pages', array() );
@@ -119,6 +102,7 @@ function awpcp_get_plugin_pages_info() {
 
 /**
  * @since 3.5.3
+ * @deprecated 4.0.0    Page IDs are now available through Settings->get_option().
  */
 function awpcp_update_plugin_pages_info( $plugin_pages ) {
     return update_option( 'awpcp-plugin-pages', $plugin_pages );
@@ -126,13 +110,13 @@ function awpcp_update_plugin_pages_info( $plugin_pages ) {
 
 /**
  * @since 3.5.3
+ * @deprecated 4.0.0    Page IDs are now available through Settings->get_option().
  */
 function awpcp_get_plugin_pages_refs() {
-    $plugin_pages_info = awpcp_get_plugin_pages_info();
     $plugin_pages = array();
 
-    foreach ( $plugin_pages_info as $page_ref => $page_info ) {
-        $plugin_pages[ intval( $page_info['page_id'] ) ] = $page_ref;
+    foreach ( awpcp_get_plugin_pages_ids() as $page_ref => $page_id ) {
+        $plugin_pages[ $page_id ] = $page_ref;
     }
 
     return $plugin_pages;
@@ -140,26 +124,56 @@ function awpcp_get_plugin_pages_refs() {
 
 /**
  * @since 3.5.3
+ * @since 4.0.0     Uses Settings to get Page IDs.
  */
 function awpcp_get_plugin_pages_ids() {
-    $plugin_pages_info = awpcp_get_plugin_pages_info();
-
     $plugin_pages = array();
-    foreach ( $plugin_pages_info as $page_ref => $page_info ) {
-        $plugin_pages[ $page_ref ] = intval( $page_info['page_id'] );
+
+    foreach( awpcp_get_wordpress_pages_settings_translations() as $setting_name => $page_ref ) {
+        $plugin_pages[ $page_ref ] = intval( awpcp()->settings->get_option( $setting_name ) );
     }
 
     return $plugin_pages;
 }
 
 /**
+ * @since 4.0.0
+ */
+function awpcp_get_wordpress_pages_settings_translations() {
+    return array(
+        'main-plugin-page' => 'main-page-name',
+        'show-listings-page' => 'show-ads-page-name',
+        'submit-listing-page' => 'place-ad-page-name',
+        'edit-listing-page' => 'edit-ad-page-name',
+        'renew-listing-page' => 'renew-ad-page-name',
+        'reply-to-listing-page' => 'reply-to-ad-page-name',
+        'browse-listings-page' => 'browse-ads-page-name',
+        'search-listings-page' => 'search-ads-page-name',
+        'buy-subscription-page' => 'subscriptions-page-name',
+    );
+}
+
+/**
  * @since 3.5.3
+ * @since 4.0.0     Stores Page IDs using Settings.
  */
 function awpcp_update_plugin_page_id( $page_ref, $page_id ) {
-    $plugin_pages_info = awpcp_get_plugin_pages_info();
-    $plugin_pages_info[ $page_ref ] = array( 'page_id' => $page_id );
+    $setting_name = awpcp_translate_page_ref_to_setting_name( $page_ref );
 
-    return awpcp_update_plugin_pages_info( $plugin_pages_info );
+    if ( ! $setting_name ) {
+        return false;
+    }
+
+    return awpcp()->settings->update_option( $setting_name, $page_id );
+}
+
+/**
+ * @since 4.0.0
+ */
+function awpcp_translate_page_ref_to_setting_name( $page_ref ) {
+    $settings_names = awpcp_get_wordpress_pages_settings_translations();
+
+    return array_search( $page_ref, $settings_names, true );
 }
 
 if ( ! function_exists( 'is_awpcp_page' ) ) {
@@ -171,17 +185,17 @@ if ( ! function_exists( 'is_awpcp_page' ) ) {
     function is_awpcp_page( $page_id = null ) {
         global $wp_the_query;
 
-        if ( ! $wp_the_query ) {
-            return false;
+        if ( is_null( $page_id ) && ! $wp_the_query ) {
+            return;
         }
-
-        $pages_refs = awpcp_get_plugin_pages_refs();
 
         if ( is_null( $page_id ) ) {
             $page_id = $wp_the_query->get_queried_object_id();
         }
 
-        return isset( $pages_refs[ $page_id ] );
+        $page_ref = array_search( intval( $page_id ), awpcp_get_plugin_pages_ids(), true );
+
+        return $page_ref !== false;
     }
 }
 
@@ -288,7 +302,7 @@ function url_editad() {
  * the same namespace.
  */
 function awpcp_get_main_page_name() {
-    return get_awpcp_option('main-page-name');
+    return awpcp_get_page_name('main-page-name');
 }
 
 /**

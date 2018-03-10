@@ -985,9 +985,22 @@ function awpcp_insert_submenu_item_after($menu, $slug, $after) {
 
 /**
  * @since 2.1.4
+ * @since 4.0.0     Gets the name of page directly from the post object.
  */
-function awpcp_get_page_name($pagename) {
-	return get_awpcp_option($pagename);
+function awpcp_get_page_name( $page_ref ) {
+    $page_id = awpcp_get_page_id_by_ref( $page_ref );
+
+    if ( ! $page_id ) {
+        return '';
+    }
+
+    $page = get_page( $page_id );
+
+    if ( ! isset( $page->post_title ) ) {
+        return '';
+    }
+
+    return $page->post_title;
 }
 
 /**

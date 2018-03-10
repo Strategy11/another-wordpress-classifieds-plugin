@@ -18,25 +18,6 @@
 </div>
 <?php endif; ?>
 
-<?php if ($page_conflict > 1): ?>
-<div class="error">
-    <p>
-        <?php _e("It appears you have a potential problem that could result in the malfunctioning of Another Wordpress Classifieds plugin. A check of your database was performed and duplicate entries were found that share the same post_name value as your classifieds page. If for some reason you uninstall and then reinstall this plugin and the duplicate pages remain in your database, it could break the plugin and prevent it from working. To fix this problem you can manually delete the duplicate pages and leave only the page with the ID of your real classifieds page, or you can use the link below to rebuild your classifieds page. The process will include first deleting all existing pages with a post name value identical to your classifieds page. Note that if you recreate the page, it will be assigned a new page ID so if you are referencing the classifieds page ID anywhere outside of the classifieds program you will need to adjust the old ID to the new ID.", "AWPCP"); ?>
-    </p>
-
-    <ul>
-        <li><?php _e("Number of duplicate pages", "AWPCP"); ?>: <strong><?php echo $page_conflict; ?></strong></li>
-        <li><?php _e("Duplicated post name", "AWPCP"); ?>: <strong><?php echo $main_page_name ?></strong></li>
-    </ul>
-
-    <p>
-        <a class="button-primary button" href="<?php echo esc_url( add_query_arg( 'page', 'awpcp-admin-settings', admin_url( 'admin.php' ) ) ); ?>">
-            <?php _e("Restore the Classifieds pages to fix the conflict.", "AWPCP"); ?>
-        </a>
-    </p>
-</div>
-<?php endif; ?>
-
 <div class="metabox-holder">
     <div class="meta-box-sortables" <?php echo empty($sidebar) ? '' : ' style="float:left;width:70%;"'; ?>>
 
