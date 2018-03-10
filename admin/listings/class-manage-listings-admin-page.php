@@ -341,7 +341,9 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
             )
         );
 
-        $content = showad( $ad->ID, $omitmenu = 1 );
+        // TODO: Make sure the menu is not shown.
+        // TODO: ContentRenderer should be available as a parameter for this view.
+        $content = awpcp()->container['ListingsContentRenderer']->render( apply_filters( 'the_content', $ad->post_content ), $ad );
 
         $params = array(
             'page' => $this,
