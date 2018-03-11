@@ -4,7 +4,10 @@
  * @since 3.6
  */
 function awpcp_plugin_rewrite_rules() {
-    return new AWPCP_Plugin_Rewrite_Rules( awpcp_rewrite_rules_helper() );
+    return new AWPCP_Plugin_Rewrite_Rules(
+        awpcp_rewrite_rules_helper(),
+        awpcp_settings_api()
+    );
 }
 
 /**
@@ -13,9 +16,11 @@ function awpcp_plugin_rewrite_rules() {
 class AWPCP_Plugin_Rewrite_Rules {
 
     private $rewrite_rules_helper;
+    private $settings;
 
-    public function __construct( $rewrite_rules_helper ) {
+    public function __construct( $rewrite_rules_helper, $settings ) {
         $this->rewrite_rules_helper = $rewrite_rules_helper;
+        $this->settings = $settings;
     }
 
     public function add_rewrite_rules( $rules ) {
@@ -51,7 +56,7 @@ class AWPCP_Plugin_Rewrite_Rules {
     private function get_converted_page_uris( $regular_page_uri ) {
         $uppercase_page_uri = preg_replace_callback(
             '/%[0-9a-zA-Z]{2}/',
-            create_function( '$x', 'return strtoupper( $x[0] );' ),
+            function( $x ) { return strtoupper( $x[0] ); },
             $regular_page_uri
         );
 
@@ -108,13 +113,6 @@ class AWPCP_Plugin_Rewrite_Rules {
 
     private function get_pages_rewrite_rules_definitions() {
         $rewrite_rules = array(
-            'show-ads-page-name' => array(
-                array(
-                    'regex' => '(<page-uri>)/(\d+)(?:.*)',
-                    'redirect' => 'index.php?pagename=$matches[1]&id=$matches[2]',
-                    'position' => 'top'
-                ),
-            ),
             'reply-to-ad-page-name' => array(
                 array(
                     'regex' => '(<page-uri>)/(\d+)(?:.*)',
@@ -154,6 +152,16 @@ class AWPCP_Plugin_Rewrite_Rules {
                 ),
             ),
         );
+
+        if ( ! $this->settings->get_option( 'display-listings-as-single-posts' ) && $this->settings->get_option( 'seofriendlyurls' ) ) {
+            $rewrite_rules['show-ads-page-name'] = array(
+                array(
+                    'regex' => '(<page-uri>)/(\d+)(?:.*)',
+                    'redirect' => 'index.php?pagename=$matches[1]&id=$matches[2]',
+                    'position' => 'top'
+                ),
+            );
+        }
 
         $view_categories = sanitize_title( get_awpcp_option( 'view-categories-page-name' ) );
 

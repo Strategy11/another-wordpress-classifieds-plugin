@@ -30,6 +30,6 @@ class AWPCP_WordPressPageEvents {
 
         do_action( 'awpcp-pages-updated', $post_id, $post_after, $post_before );
 
-        flush_rewrite_rules();
+        update_option( 'awpcp-flush-rewrite-rules', true );
     }
 }

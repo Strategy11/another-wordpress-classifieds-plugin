@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit276ed09fe6dcd35b07a8cc054d7d5e7f
+class ComposerStaticInit0c941298ee85d9f811507700372c60a3
 {
     public static $files = array (
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
@@ -324,6 +324,8 @@ class ComposerStaticInit276ed09fe6dcd35b07a8cc054d7d5e7f
         'AWPCP_Listing_Meta_Configuration' => __DIR__ . '/../../..' . '/another-wordpress-classifieds-plugin/includes/listings/class-listings-meta-configuration.php',
         'AWPCP_ListingsAPI' => __DIR__ . '/../../..' . '/another-wordpress-classifieds-plugin/includes/class-listings-api.php',
         'AWPCP_ListingsCollection' => __DIR__ . '/../../..' . '/another-wordpress-classifieds-plugin/includes/class-listings-collection.php',
+        'AWPCP_ListingsContent' => __DIR__ . '/../../..' . '/another-wordpress-classifieds-plugin/includes/listings/class-listings-content.php',
+        'AWPCP_ListingsContentRenderer' => __DIR__ . '/../../..' . '/another-wordpress-classifieds-plugin/includes/listings/class-listings-content-renderer.php',
         'AWPCP_ListingsFinder' => __DIR__ . '/../../..' . '/another-wordpress-classifieds-plugin/includes/listings/class-listings-finder.php',
         'AWPCP_ListingsModerationSettings' => __DIR__ . '/../../..' . '/another-wordpress-classifieds-plugin/includes/settings/class-listings-moderation-settings.php',
         'AWPCP_ListingsPermalinks' => __DIR__ . '/../../..' . '/another-wordpress-classifieds-plugin/includes/listings/class-listings-permalinks.php',
@@ -481,6 +483,7 @@ class ComposerStaticInit276ed09fe6dcd35b07a8cc054d7d5e7f
         'AWPCP_WindowTitleSettings' => __DIR__ . '/../../..' . '/another-wordpress-classifieds-plugin/includes/settings/class-window-title-settings.php',
         'AWPCP_WooCommercePluginIntegration' => __DIR__ . '/../../..' . '/another-wordpress-classifieds-plugin/includes/compatibility/class-woocommerce-plugin-integration.php',
         'AWPCP_WordPress' => __DIR__ . '/../../..' . '/another-wordpress-classifieds-plugin/includes/wordpress/class-wordpress.php',
+        'AWPCP_WordPressContainerConfiguration' => __DIR__ . '/../../..' . '/another-wordpress-classifieds-plugin/includes/wordpress/class-wordpress-container-configuration.php',
         'AWPCP_WordPressPageEvents' => __DIR__ . '/../../..' . '/another-wordpress-classifieds-plugin/admin/wordpress/class-page-events.php',
         'AWPCP_WordPressPageSettingsType' => __DIR__ . '/../../..' . '/another-wordpress-classifieds-plugin/includes/settings/class-wordpress-page-settings-type.php',
         'AWPCP_WordPress_Scripts' => __DIR__ . '/../../..' . '/another-wordpress-classifieds-plugin/includes/wordpress/class-wordpress-scripts.php',
@@ -495,10 +498,10 @@ class ComposerStaticInit276ed09fe6dcd35b07a8cc054d7d5e7f
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit276ed09fe6dcd35b07a8cc054d7d5e7f::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit276ed09fe6dcd35b07a8cc054d7d5e7f::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit276ed09fe6dcd35b07a8cc054d7d5e7f::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit276ed09fe6dcd35b07a8cc054d7d5e7f::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit0c941298ee85d9f811507700372c60a3::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit0c941298ee85d9f811507700372c60a3::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit0c941298ee85d9f811507700372c60a3::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit0c941298ee85d9f811507700372c60a3::$classMap;
 
         }, null, ClassLoader::class);
     }

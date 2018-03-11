@@ -456,9 +456,7 @@ class AWPCP {
 	public $payments = null;
 	public $js = null;
 
-	public $flush_rewrite_rules = false;
-
-    private $container;
+    public $container;
     private $modules_manager_factory;
 
 	public function __construct( $container, $modules_manager_factory ) {
@@ -546,10 +544,6 @@ class AWPCP {
 
 		if (!$this->is_up_to_date()) {
 			$this->installer->install_or_upgrade();
-			// we can't call flush_rewrite_rules() because
-			// $wp_rewrite is not available yet. It is initialized
-			// after plugins_load hook is executed.
-			$this->flush_rewrite_rules = true;
 		}
 
 		if (!$this->is_up_to_date()) {
@@ -582,11 +576,20 @@ class AWPCP {
         add_action( 'awpcp-configure-routes', array( $this->admin, 'configure_routes' ) );
         add_action( 'awpcp-configure-routes', array( $this->panel, 'configure_routes' ) );
 
+        // TODO: Make sure to update permastruct for custom post types before generating rewrite rules.
+        //
+        //       If the slug of a page, the permalink structure or anything else
+        //       that affects the permastruct for the custom post type changes
+        //       after 'init', calling flush_rewrite_rules will generate the wrong
+        //       set of rules unless we update the permalinks accordingly.
+        //
+        //       Perhaps delaying rewrite rules generation until next request makes
+        //       makes more sense.
         $custom_post_types = awpcp_custom_post_types();
-        add_action( 'init', array( $custom_post_types, 'register_custom_post_status' ) );
-        add_action( 'init', array( $custom_post_types, 'register_custom_post_types' ) );
-        add_action( 'init', array( $custom_post_types, 'register_custom_taxonomies' ) );
-        add_action( 'init', array( $custom_post_types, 'register_custom_image_sizes' ) );
+        add_action( 'init', array( $custom_post_types, 'register_custom_post_status' ), 9999 );
+        add_action( 'init', array( $custom_post_types, 'register_custom_post_types' ), 9999 );
+        add_action( 'init', array( $custom_post_types, 'register_custom_taxonomies' ), 9999 );
+        add_action( 'init', array( $custom_post_types, 'register_custom_image_sizes' ), 9999 );
         add_action( 'awpcp-installed', array( $custom_post_types, 'create_default_category' ) );
 
         $this->container->configure( $this->get_container_configurations() );
@@ -602,6 +605,10 @@ class AWPCP {
         add_action( 'init', array( $this->plugin_integrations, 'load_plugin_integrations' ), AWPCP_LOWEST_FILTER_PRIORITY );
 		add_action( 'init', array($this, 'init' ));
 		add_action( 'init', array($this, 'register_custom_style'), AWPCP_LOWEST_FILTER_PRIORITY );
+
+        // XXX: This is really a hack. We should get the priorities on order or
+        //      come up with a better name for this method.
+        add_action( 'init', array( $this, 'first_time_verifications' ), 9999 );
 
 		add_action('admin_notices', array($this, 'admin_notices'));
 		add_action( 'admin_notices', array( $this->modules_manager, 'show_admin_notices' ) );
@@ -676,6 +683,7 @@ class AWPCP {
 
         $listing_url_settings = awpcp_listing_url_settings();
         add_action( 'awpcp_register_settings', array( $listing_url_settings, 'register_settings' ) );
+        add_action( 'awpcp_settings_validated_listings-settings', array( $listing_url_settings, 'settings_validated' ), 10, 2 );
 
         $credit_system_settings = awpcp_credit_system_settings();
         add_action( 'awpcp_register_settings', array( $credit_system_settings, 'register_settings' ) );
@@ -795,7 +803,9 @@ class AWPCP {
 
             add_action( 'template_redirect', array( awpcp_secure_url_redirection_handler(), 'dispatch' ) );
 
+            // TODO: This is not necessary for new installations
             $helper = awpcp_url_backwards_compatibility_redirection_helper();
+            add_action( 'parse_request', array( $helper, 'maybe_redirect_from_old_listing_url' ) );
             add_action( 'template_redirect', array( $helper, 'maybe_redirect_frontend_request' ) );
 
             add_action( 'template_redirect', array( awpcp_authentication_redirection_handler(), 'maybe_redirect' ) );
@@ -803,18 +813,15 @@ class AWPCP {
 
             $filter = awpcp_wordpress_status_header_filter();
             add_filter( 'status_header', array( $filter, 'filter_status_header' ), 10, 4 );
+
+            $listings_content = $this->container['ListingsContent'];
+            add_filter( 'the_content', array( $listings_content, 'filter_content' ) );
         }
 
         add_filter( 'awpcp-content-placeholders', array( $this, 'register_content_placeholders' ) );
 
         $listing_form_fields = awpcp_listing_form_fields();
         add_filter(  'awpcp-form-fields', array( $listing_form_fields, 'register_listing_form_fields' ), 5, 1 );
-
-		if (!get_option('awpcp_installationcomplete', 0)) {
-			update_option('awpcp_installationcomplete', 1);
-			awpcp_create_pages( __( 'AWPCP', 'another-wordpress-classifieds-plugin' ) );
-			$this->flush_rewrite_rules = true;
-		}
 
         // TODO: Where is this option set?
         if ( get_option( 'awpcp-enable-fix-media-mime-type-upgrde' ) ) {
@@ -829,13 +836,19 @@ class AWPCP {
             $this->maybe_fix_browse_categories_page_information();
         }
 
-		if ( $this->flush_rewrite_rules || get_option( 'awpcp-flush-rewrite-rules' ) ) {
-            add_action( 'wp_loaded', 'flush_rewrite_rules' );
-            update_option( 'awpcp-flush-rewrite-rules', false );
-		}
+        $this->register_scripts();
+        $this->register_notification_handlers();
+	}
 
+    /**
+     * Verifications that need to be done after the plugin is installed or updated,
+     * and/or after all settings have been loaded/defined and custom post types/taxonmies
+     * have been registered.
+     */
+    public function first_time_verifications() {
         if ( get_option( 'awpcp-installed' ) ) {
             do_action( 'awpcp-installed' );
+
             update_option( 'awpcp-installed', false );
         }
 
@@ -845,12 +858,17 @@ class AWPCP {
             $roles_and_capabilities = awpcp_roles_and_capabilities();
             add_action( 'wp_loaded', array( $roles_and_capabilities, 'setup_roles_capabilities' ) );
 
+            awpcp_pages_creator()->restore_missing_pages();
+
             update_option( 'awpcp-installed-or-upgraded', false );
         }
 
-		$this->register_scripts();
-        $this->register_notification_handlers();
-	}
+        if ( get_option( 'awpcp-flush-rewrite-rules' ) ) {
+            add_action( 'shutdown', 'flush_rewrite_rules' );
+
+            update_option( 'awpcp-flush-rewrite-rules', false );
+        }
+    }
 
     private function ajax_setup() {
         // register ajax request handler for pending upgrade tasks
@@ -1584,6 +1602,7 @@ class AWPCP {
     }
 
     public function get_container_configurations() {
+        $configurations[] = new AWPCP_WordPressContainerConfiguration();
         $configurations[] = new AWPCP_SettingsContainerConfiguration();
         $configurations[] = new AWPCP_ListingPostTypeContainerConfiguration();
 

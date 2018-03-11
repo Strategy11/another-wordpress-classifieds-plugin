@@ -672,36 +672,12 @@ function awpcp_subpages() {
 }
 
 function awpcp_create_pages($awpcp_page_name, $subpages=true) {
-	global $wpdb;
-
 	$refname = 'main-page-name';
     $shortcode = '[AWPCPCLASSIFIEDSUI]';
-    $date = date( 'Y-m-d', current_time( 'timestamp' ) );
-    $date_gmt = get_gmt_from_date( $date, 'Y-m-d' );
-
-    if ( awpcp_find_page( $refname ) ) {
-        return awpcp_get_page_id_by_ref( $refname );
-    }
 
 	// create AWPCP main page if it does not exist
 	if (!awpcp_find_page($refname)) {
-		$awpcp_page = array(
-			'post_author' => 1,
-			'post_date' => $date,
-			'post_date_gmt' => $date_gmt,
-			'post_content' => $shortcode,
-			'post_title' => add_slashes_recursive($awpcp_page_name),
-			'post_status' => 'publish',
-			'post_name' => sanitize_title($awpcp_page_name),
-			'post_modified' => $date,
-			'comments_status' => 'closed',
-			'post_content_filtered' => $shortcode,
-			'post_parent' => 0,
-			'post_type' => 'page',
-			'menu_order' => 0
-		);
-		$id = wp_insert_post($awpcp_page);
-
+        $id = awpcp_create_page( $awpcp_page_name, $shortcode );
 		awpcp_update_plugin_page_id( $refname, $id );
 	} else {
 		$id = awpcp_get_page_id_by_ref($refname);
@@ -711,6 +687,44 @@ function awpcp_create_pages($awpcp_page_name, $subpages=true) {
 	if ($subpages) {
 		awpcp_create_subpages($id);
 	}
+}
+
+/**
+ * @since 4.0.0
+ */
+function awpcp_create_page( $title, $content, $parent_id = 0 ) {
+    $date = current_time( 'mysql' );
+    $date_gmt = get_gmt_from_date( $date );
+
+    if ( is_user_logged_in() ) {
+        $post_author = get_current_user_id();
+    } else {
+        $post_author = 1;
+    }
+
+    $page = array(
+        'post_author' => 1,
+        'post_date' => $date,
+        'post_date_gmt' => $date_gmt,
+        'post_content' => $content,
+        'post_title' => add_slashes_recursive( $title ),
+        'post_status' => 'publish',
+        'post_name' => sanitize_title( $title ),
+        'post_modified' => $date,
+        'comments_status' => 'closed',
+        'post_content_filtered' => $content,
+        'post_parent' => $parent_id,
+        'post_type' => 'page',
+        'menu_order' => 0
+    );
+
+    $page_id = wp_insert_post( $page );
+
+    if ( ! $page_id ) {
+        return null;
+    }
+
+    return $page_id;
 }
 
 function awpcp_create_subpages($awpcp_page_id) {
@@ -731,8 +745,6 @@ function awpcp_create_subpages($awpcp_page_id) {
  * page doesn't exist already. Useful for module plugins.
  */
 function awpcp_create_subpage($refname, $name, $shortcode, $awpcp_page_id=null) {
-	global $wpdb;
-
 	$id = 0;
 	if (!empty($name)) {
 		// it is possible that the main AWPCP page does not exist, in that case
@@ -744,8 +756,10 @@ function awpcp_create_subpage($refname, $name, $shortcode, $awpcp_page_id=null) 
 		}
 
 		if (!awpcp_find_page($refname)) {
-			$id = maketheclassifiedsubpage($name, $awpcp_page_id, $shortcode);
-		}
+            $id = awpcp_create_page( $name, $shortcode, $awpcp_page_id );
+        } else {
+            $id = awpcp_get_page_id_by_ref( $refname );
+        }
 	}
 
 	if ($id > 0) {
@@ -755,7 +769,9 @@ function awpcp_create_subpage($refname, $name, $shortcode, $awpcp_page_id=null) 
 	return $id;
 }
 
-
+/**
+ * @deprecated 4.0.0    Use awpcp_create_page() instead.
+ */
 function maketheclassifiedsubpage( $page_name, $parent_page_id, $short_code ) {
 	$post_date = date("Y-m-d");
 	$parent_page_id = intval( $parent_page_id );

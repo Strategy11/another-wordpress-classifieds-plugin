@@ -66,7 +66,7 @@ class AWPCP_ListingsCollection {
         ) );
 
         if ( empty( $listings ) ) {
-            $message = __( 'No Listing was found with id: %d.', 'another-wordpress-classifieds-plugin' );
+            $message = __( 'No Listing was found with old id: %d.', 'another-wordpress-classifieds-plugin' );
             throw new AWPCP_Exception( sprintf( $message, $listing_id ) );
         }
 

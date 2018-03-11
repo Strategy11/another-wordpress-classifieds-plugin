@@ -1237,6 +1237,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
                     'ID' => $ad->ID,
                     'post_author' => $data['user_id'],
                     'post_title' => $this->prepare_ad_title( $data['ad_title'], $characters['characters_allowed_in_title'] ),
+                    'post_name' => '', // Force wp_insert_post() to calculate this again.
                     'post_content' => $this->prepare_ad_details( $data['ad_details'], $characters['characters_allowed'] ),
                     'post_modified' => $now,
                     'post_modified_gmt' => get_gmt_from_date( $now ),
@@ -1441,6 +1442,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             $manage_images = awpcp_are_images_allowed() && $payment_term->images > 0;
 
             $params = array(
+                'page' => $this,
                 'ad' => $ad,
                 'edit' => false,
                 'messages' => $this->messages,

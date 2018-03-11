@@ -42,6 +42,19 @@ function awpcp_get_page_id( $name ) {
 }
 
 /**
+ * @since 4.0.0
+ */
+function awpcp_get_page_by_ref( $ref ) {
+    $page_id = awpcp_get_page_id_by_ref( $ref );
+
+    if ( ! $page_id ) {
+        return null;
+    }
+
+    return get_post( $page_id );
+}
+
+/**
  * Returns the ID of WP Page associated to a page-name setting.
  * TODO: remove usage of awpcp_get_plugin_pages_ids().
  *
@@ -142,7 +155,7 @@ function awpcp_get_plugin_pages_ids() {
 function awpcp_get_wordpress_pages_settings_translations() {
     return array(
         'main-plugin-page' => 'main-page-name',
-        'show-listings-page' => 'show-ads-page-name',
+        'show-listing-page' => 'show-ads-page-name',
         'submit-listing-page' => 'place-ad-page-name',
         'edit-listing-page' => 'edit-ad-page-name',
         'renew-listing-page' => 'renew-ad-page-name',
@@ -164,7 +177,7 @@ function awpcp_update_plugin_page_id( $page_ref, $page_id ) {
         return false;
     }
 
-    return awpcp()->settings->update_option( $setting_name, $page_id );
+    return awpcp()->settings->update_option( $setting_name, $page_id, true );
 }
 
 /**
@@ -223,7 +236,8 @@ function is_awpcp_browse_categories_page() {
 }
 
 /**
- * @since feature/1112  Modified to use Listing_Renderer::get_view_listing_url().
+ * @since 4.0.0         Modified to use Listing_Renderer::get_view_listing_url().
+ * @deprecated 4.0.0    Use Listing_Renderer::get_view_listing_url() or get_permalink().
  */
 function url_showad($ad_id) {
     try {

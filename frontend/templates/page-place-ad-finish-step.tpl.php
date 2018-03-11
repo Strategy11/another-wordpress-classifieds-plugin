@@ -8,7 +8,7 @@
     <?php if ($edit): ?>
     <?php echo awpcp_print_message(__("Your changes have been saved.", 'another-wordpress-classifieds-plugin')); ?>
     <?php else: ?>
-    <?php echo awpcp_print_message(__("Your Ad has been submitted.", 'another-wordpress-classifieds-plugin')); ?>
+    <?php echo awpcp_print_message( __( 'Your listing has been submitted.', 'another-wordpress-classifieds-plugin' ) ); ?>
     <?php endif; ?>
 <?php endif; ?>
 
@@ -16,4 +16,6 @@
     <?php echo awpcp_print_message($message); ?>
 <?php endforeach; ?>
 
-<?php echo showad( $ad->ID, true, true, false ); ?>
+<?php // TODO: Make sure the menu is not shown. ?>
+<?php // TODO: ContentRenderer should be available as a parameter for this view. ?>
+<?php echo awpcp()->container['ListingsContentRenderer']->render_content_without_notices( apply_filters( 'the_content', $ad->post_content ), $ad ); ?>

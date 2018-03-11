@@ -34,6 +34,7 @@ function awpcp_installer() {
             awpcp_database_tables(),
             awpcp_database_helper(),
             awpcp_database_column_creator(),
+            awpcp_settings_api(),
             $GLOBALS['wpdb']
         );
     }
@@ -49,18 +50,21 @@ class AWPCP_Installer {
     private $plugin_tables;
     private $database_helper;
     private $columns;
+    private $settings;
     private $db;
 
-    public function __construct( $upgrade_tasks, $plugin_tables, $database_helper, $columns, $db ) {
+    public function __construct( $upgrade_tasks, $plugin_tables, $database_helper, $columns, $settings, $db ) {
         $this->upgrade_tasks = $upgrade_tasks;
         $this->plugin_tables = $plugin_tables;
         $this->database_helper = $database_helper;
         $this->columns = $columns;
+        $this->settings = $settings;
         $this->db = $db;
     }
 
     public function activate() {
         $this->install_or_upgrade();
+
         update_option( 'awpcp-activated', true );
     }
 
@@ -372,6 +376,7 @@ class AWPCP_Installer {
             '4.0.0' => array(
                 'create_old_listing_id_column_in_listing_regions_table',
                 'migrate_wordpress_page_settings',
+                'keep_legacy_url_structure',
                 'enable_upgrade_routine_to_migrate_listing_categories',
                 'enable_upgrade_routine_to_migrate_listings',
                 'enable_upgrade_routine_to_migrate_media',
@@ -1205,6 +1210,24 @@ class AWPCP_Installer {
             }
 
             awpcp_update_plugin_page_id( $page_ref, $page_info['page_id'] );
+        }
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function keep_legacy_url_structure() {
+        $this->settings->set_or_update_option( 'display-listings-as-single-posts', false );
+
+        $main_plugin_page = awpcp_get_page_by_ref( 'main-page-name' );
+        $show_listing_page = awpcp_get_page_by_ref( 'show-ads-page-name' );
+
+        if ( $main_plugin_page && $show_listing_page && $show_listing_page->post_parent == $main_plugin_page->ID ) {
+            $this->settings->set_or_update_option( 'listings-slug', $show_listing_page->post_name );
+            $this->settings->set_or_update_option( 'include-main-page-slug-in-listing-url', true );
+        } else if ( $show_listing_page ) {
+            $this->settings->set_or_update_option( 'listings-slug', get_page_uri( $show_listing_page ) );
+            $this->settings->set_or_update_option( 'include-main-page-slug-in-listing-url', false );
         }
     }
 

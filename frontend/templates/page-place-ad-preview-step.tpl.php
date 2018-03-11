@@ -2,7 +2,7 @@
     <?php echo awpcp_print_message( $message ); ?>
 <?php endforeach; ?>
 
-<form class="awpcp-preview-ad-form" action="<?php echo esc_attr( $this->url() ); ?>" method="post">
+<form class="awpcp-preview-ad-form" action="<?php echo esc_attr( $page->url() ); ?>" method="post">
     <?php foreach($hidden as $name => $value): ?>
     <input type="hidden" name="<?php echo esc_attr( $name ); ?>" value="<?php echo esc_attr( $value ); ?>" />
     <?php endforeach ?>
@@ -17,4 +17,6 @@
     <input class="button button-primary" type="submit" name="finish" value="<?php echo esc_attr( __( "Finish", 'another-wordpress-classifieds-plugin' ) ); ?>" />
 </form>
 
-<?php echo showad( $ad->ID, true, true, false, false ); ?>
+<?php // TODO: Make sure the menu is not shown. ?>
+<?php // TODO: ContentRenderer should be available as a parameter for this view. ?>
+<?php echo awpcp()->container['ListingsContentRenderer']->render_content_without_notices( apply_filters( 'the_content', $ad->post_content ), $ad ); ?>
