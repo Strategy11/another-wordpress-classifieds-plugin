@@ -76,6 +76,17 @@ class AWPCP_AdminPanel {
         $this->add_manual_upgrade_admin_page( $parent_page, __( 'Classifieds', 'another-wordpress-classifieds-plugin' ), $parent_menu, $router );
     }
 
+    private function add_main_classifieds_admin_page( $page_title, $parent_menu, $handler_constructor, $router ) {
+        return $router->add_admin_page(
+            __( 'Classifieds', 'another-wordpress-classifieds-plugin' ),
+            awpcp_admin_page_title( $page_title ),
+            $parent_menu,
+            $handler_constructor,
+            awpcp_admin_capability(),
+            MENUICO
+        );
+    }
+
     private function configure_routes_for_non_blocking_manual_upgrades( $parent_menu, $router ) {
         $parent_page = $this->configure_route_for_main_classifieds_admin_page( $parent_menu, $router );
         $this->configure_route_for_manual_upgrade_admin_page( $parent_page, $router );
@@ -88,17 +99,6 @@ class AWPCP_AdminPanel {
             $parent_menu,
             'awpcp_main_classifieds_admin_page',
             $router
-        );
-    }
-
-    private function add_main_classifieds_admin_page( $page_title, $parent_menu, $handler_constructor, $router ) {
-        return $router->add_admin_page(
-            __( 'Classifieds', 'another-wordpress-classifieds-plugin' ),
-            awpcp_admin_page_title( $page_title ),
-            $parent_menu,
-            $handler_constructor,
-            awpcp_admin_capability(),
-            MENUICO
         );
     }
 
