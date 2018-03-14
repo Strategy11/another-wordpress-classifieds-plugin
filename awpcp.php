@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Plugin Name: Another WordPress Classifieds Plugin (AWPCP)
  * Plugin URI: http://www.awpcp.com
@@ -10,6 +9,8 @@
  * Author URI: http://www.skylineconsult.com
  * Text Domain: another-wordpress-classifieds-plugin
  * Domain Path: /languages
+ *
+ * @package AWPCP
  */
 
 /**
@@ -30,6 +31,12 @@
  * dcfunctions.php and filop.class.php used with permission of Dan Caragea, http://datemill.com
  * AWPCP Classifieds icon set courtesy of http://www.famfamfam.com/lab/icons/silk/
  */
+
+// phpcs:disable Generic
+// phpcs:disable PEAR
+// phpcs:disable PSR2
+// phpcs:disable Squiz
+// phpcs:disable WordPress
 
 if (preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) {
 	die('You are not allowed to call this page directly.');
@@ -442,6 +449,9 @@ require_once(AWPCP_DIR . "/frontend/widget-categories.php");
 require( AWPCP_DIR . '/frontend/class-wordpress-status-header-filter.php' );
 
 
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 class AWPCP {
 
 	public $installer = null;
@@ -760,6 +770,8 @@ class AWPCP {
         } else if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
             $this->ajax_setup();
         } else if ( is_admin() ) {
+            $this->admin_setup();
+
             // load resources required in admin screens only
             $controller = awpcp_user_profile_contact_information_controller();
             add_action( 'show_user_profile', array( $controller, 'show_contact_information_fields' ) );
@@ -926,6 +938,15 @@ class AWPCP {
 
         $ajax_request_handler = awpcp_ajax_request_handler( $this->router->get_routes() );
         $this->router->register_ajax_request_handler( $ajax_request_handler );
+    }
+
+    /**
+     * Called from init() admin requests.
+     *
+     * @since 4.0.0
+     */
+    public function admin_setup() {
+        add_action( 'admin_init', array( $this->container['Admin'], 'admin_init' ) );
     }
 
 	public function admin_notices() {
@@ -1605,6 +1626,7 @@ class AWPCP {
         $configurations[] = new AWPCP_WordPressContainerConfiguration();
         $configurations[] = new AWPCP_SettingsContainerConfiguration();
         $configurations[] = new AWPCP_ListingPostTypeContainerConfiguration();
+        $configurations[] = new AWPCP_AdminContainerConfiguration();
 
         return apply_filters( 'awpcp_container_configurations', $configurations );
     }
@@ -1840,6 +1862,8 @@ if (file_exists(AWPCP_DIR . "/awpcp_remove_powered_by_module.php")) {
 
 /**
  * Returns the IDs of the pages used by the AWPCP plugin.
+ *
+ * @SuppressWarnings(PHPMD)
  */
 function exclude_awpcp_child_pages($excluded=array()) {
 	global $wpdb, $table_prefix;
@@ -1915,6 +1939,7 @@ function awpcp_query_vars($query_vars) {
 
 /**
  * @since 3.2.1
+ * @SuppressWarnings(PHPMD)
  */
 function awpcp_rel_canonical_url() {
 	global $wp_the_query;
@@ -1947,6 +1972,7 @@ function awpcp_rel_canonical_url() {
  *
  * @since unknown
  * @since 3.2.1	logic moved to awpcp_rel_canonical_url()
+ * @SuppressWarnings(PHPMD)
  */
 function awpcp_rel_canonical() {
 	$url = awpcp_rel_canonical_url();
@@ -1968,6 +1994,8 @@ function awpcp_rel_canonical() {
  * when AWPCP main page is also the front page.
  *
  * http://wordpress.stackexchange.com/questions/51530/rewrite-rules-problem-when-rule-includes-homepage-slug
+ *
+ * @SuppressWarnings(PHPMD)
  */
 function awpcp_redirect_canonical($redirect_url, $requested_url) {
 	global $wp_query;

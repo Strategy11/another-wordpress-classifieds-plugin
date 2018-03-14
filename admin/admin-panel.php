@@ -1,12 +1,24 @@
 <?php
+/**
+ * @package AWPCP\Admin
+ */
+
+// phpcs:disable Generic
+// phpcs:disable PEAR
+// phpcs:disable PSR2
+// phpcs:disable Squiz
+// phpcs:disable WordPress
 
 require_once(AWPCP_DIR . '/admin/admin-panel-users.php');
 
 function awpcp_admin_panel() {
-    return new AWPCP_Admin( awpcp_upgrade_tasks_manager() );
+    return new AWPCP_AdminPanel( awpcp_upgrade_tasks_manager() );
 }
 
-class AWPCP_Admin {
+/**
+ * @SuppressWarnings(PHPMD)
+ */
+class AWPCP_AdminPanel {
 
     private $upgrade_tasks;
 
@@ -517,7 +529,9 @@ class AWPCP_Admin {
     }
 }
 
-function checkifclassifiedpage($pagename) {
+/**
+ */
+function checkifclassifiedpage() {
 	global $wpdb;
 
 	$id = awpcp_get_page_id_by_ref( 'main-page-name' );
@@ -533,7 +547,7 @@ function awpcp_admin_categories_render_category_items($categories, &$children, $
 	$end = $start + $per_page;
 	$items = array();
 
-	foreach ($categories as $key => $category) {
+	foreach ( $categories as $category ) {
 		if ( $count >= $end ) break;
 
 		if ( $category->parent != $parent ) continue;
@@ -562,6 +576,9 @@ function awpcp_admin_categories_render_category_items($categories, &$children, $
 	return $items;
 }
 
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 function awpcp_admin_categories_render_category_item($category, $level, $start, $per_page) {
 	global $hascaticonsmodule, $awpcp_imagesurl;
 
@@ -671,6 +688,9 @@ function awpcp_subpages() {
 	return $pages;
 }
 
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 function awpcp_create_pages($awpcp_page_name, $subpages=true) {
 	$refname = 'main-page-name';
     $shortcode = '[AWPCPCLASSIFIEDSUI]';
@@ -693,29 +713,24 @@ function awpcp_create_pages($awpcp_page_name, $subpages=true) {
  * @since 4.0.0
  */
 function awpcp_create_page( $title, $content, $parent_id = 0 ) {
-    $date = current_time( 'mysql' );
-    $date_gmt = get_gmt_from_date( $date );
-
-    if ( is_user_logged_in() ) {
-        $post_author = get_current_user_id();
-    } else {
-        $post_author = 1;
-    }
+    $date        = current_time( 'mysql' );
+    $date_gmt    = get_gmt_from_date( $date );
+    $post_author = is_user_logged_in() ? get_current_user_id() : 1;
 
     $page = array(
-        'post_author' => 1,
-        'post_date' => $date,
-        'post_date_gmt' => $date_gmt,
-        'post_content' => $content,
-        'post_title' => add_slashes_recursive( $title ),
-        'post_status' => 'publish',
-        'post_name' => sanitize_title( $title ),
-        'post_modified' => $date,
-        'comments_status' => 'closed',
+        'post_author'           => $post_author,
+        'post_date'             => $date,
+        'post_date_gmt'         => $date_gmt,
+        'post_content'          => $content,
+        'post_title'            => add_slashes_recursive( $title ),
+        'post_status'           => 'publish',
+        'post_name'             => sanitize_title( $title ),
+        'post_modified'         => $date,
+        'comments_status'       => 'closed',
         'post_content_filtered' => $content,
-        'post_parent' => $parent_id,
-        'post_type' => 'page',
-        'menu_order' => 0
+        'post_parent'           => $parent_id,
+        'post_type'             => 'page',
+        'menu_order'            => 0
     );
 
     $page_id = wp_insert_post( $page );
@@ -743,6 +758,8 @@ function awpcp_create_subpages($awpcp_page_id) {
  * This functions takes care of checking if the main AWPCP
  * page exists, finding its id and verifying that the new
  * page doesn't exist already. Useful for module plugins.
+ *
+ * @SuppressWarnings(PHPMD)
  */
 function awpcp_create_subpage($refname, $name, $shortcode, $awpcp_page_id=null) {
 	$id = 0;
@@ -810,6 +827,8 @@ function awpcp_admin_sidebar($float='') {
 
 /**
  * XXX: this may belong to AdminPage class
+ *
+ * @SuppressWarnings(PHPMD)
  */
 function awpcp_admin_sidebar_output($html, $float) {
 	global $awpcp;
