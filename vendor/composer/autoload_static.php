@@ -393,6 +393,8 @@ class ComposerStaticInit0c941298ee85d9f811507700372c60a3
         'AWPCP_Profile_Builder_Login_Form_Implementation' => __DIR__ . '/../../..' . '/another-wordpress-classifieds-plugin/includes/compatibility/class-profile-builder-login-form-implementation.php',
         'AWPCP_Profile_Builder_Plugin_Integration' => __DIR__ . '/../../..' . '/another-wordpress-classifieds-plugin/includes/compatibility/class-profile-builder-plugin-integration.php',
         'AWPCP_Query' => __DIR__ . '/../../..' . '/another-wordpress-classifieds-plugin/frontend/class-query.php',
+        'AWPCP_QuickViewListingAdminPage' => __DIR__ . '/../../..' . '/another-wordpress-classifieds-plugin/includes/admin/listings/class-quick-view-listing-admin-page.php',
+        'AWPCP_QuickViewListingTableAction' => __DIR__ . '/../../..' . '/another-wordpress-classifieds-plugin/includes/admin/listings/class-quick-view-listing-table-action.php',
         'AWPCP_RandomAdWidget' => __DIR__ . '/../../..' . '/another-wordpress-classifieds-plugin/frontend/widget-random-ad.php',
         'AWPCP_RawShortcode' => __DIR__ . '/../../..' . '/another-wordpress-classifieds-plugin/frontend/shortcode-raw.php',
         'AWPCP_RedirectionException' => __DIR__ . '/../../..' . '/another-wordpress-classifieds-plugin/includes/exceptions.php',

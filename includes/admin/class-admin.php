@@ -33,6 +33,8 @@ class AWPCP_Admin {
      */
     public function admin_init() {
         add_action( 'post_row_actions', array( $this->table_actions, 'row_actions' ), 10, 2 );
+
+        add_filter( 'awpcp_list_table_actions_listings', array( $this, 'register_listings_table_actions' ) );
     }
 
     /**
@@ -40,6 +42,7 @@ class AWPCP_Admin {
      * @since 4.0.0
      */
     public function register_listings_table_actions( $actions ) {
+        $actions['quick-view'] = $this->container['QuickViewListingTableAction'];
         return $actions;
     }
 }

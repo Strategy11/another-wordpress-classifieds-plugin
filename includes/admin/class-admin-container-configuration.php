@@ -41,5 +41,20 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
         $container['ListingsTableActions'] = $container->service( function( $container ) {
             return new AWPCP_ListTableActions( 'listings' );
         } );
+
+        $container['QuickViewListingTableAction'] = $container->service( function( $container ) {
+            return new AWPCP_QuickViewListingTableAction();
+        } );
+
+        $container['QuickViewListingAdminPage'] = $container->service( function( $container ) {
+            return new AWPCP_QuickViewListingAdminPage(
+                $container['ListingsContentRenderer'],
+                awpcp_listing_renderer(),
+                $container['ListingsCollection'],
+                awpcp_template_renderer(),
+                $container['WordPress'],
+                awpcp_request()
+            );
+        } );
     }
 }

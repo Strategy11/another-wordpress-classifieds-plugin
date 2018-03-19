@@ -1,9 +1,19 @@
 <?php
+/**
+ * @package AWPCP\WordPress
+ */
+
+// phpcs:disable Squiz.Commenting
+// phpcs:disable WordPress.VIP.RestrictedFunctions.get_posts_get_posts
 
 function awpcp_wordpress() {
     return new AWPCP_WordPress();
 }
 
+/**
+ * @SuppressWarnings(BooleanArgumentFlag)
+ * @SuppressWarnings(TooManyPublicMethods)
+ */
 class AWPCP_WordPress {
 
     /* Users */
@@ -62,6 +72,10 @@ class AWPCP_WordPress {
 
     public function delete_post_meta( $post_id, $meta_key, $meta_value = '' ) {
         return delete_post_meta( $post_id, $meta_key, $meta_value );
+    }
+
+    public function get_edit_post_link( $post, $context = 'display' ) {
+        return get_edit_post_link( $post, $context );
     }
 
     /* Taxonomies */

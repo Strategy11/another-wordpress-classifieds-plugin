@@ -298,6 +298,18 @@ class AWPCP_AdminPanel {
             $admin_capability,
             9900
         );
+
+        // TODO: Should subscribers have access to this view?
+        $router->add_admin_subpage(
+            'edit.php?post_type=awpcp_listing',
+            __( 'Quick View', 'another-wordpress-classifieds-plugin' ),
+            awpcp_admin_page_title( __( 'Listing Quick View', 'another-wordpress-classifieds-plugin' ) ),
+            'awpcp-admin-quick-view-listing',
+            function() {
+                return awpcp()->container['QuickViewListingAdminPage'];
+            },
+            $admin_capability
+        );
     }
 
     private function configure_regular_routes( $parent_menu, $router ) {

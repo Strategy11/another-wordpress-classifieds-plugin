@@ -286,6 +286,8 @@ return array(
     'AWPCP_Profile_Builder_Login_Form_Implementation' => $baseDir . '/another-wordpress-classifieds-plugin/includes/compatibility/class-profile-builder-login-form-implementation.php',
     'AWPCP_Profile_Builder_Plugin_Integration' => $baseDir . '/another-wordpress-classifieds-plugin/includes/compatibility/class-profile-builder-plugin-integration.php',
     'AWPCP_Query' => $baseDir . '/another-wordpress-classifieds-plugin/frontend/class-query.php',
+    'AWPCP_QuickViewListingAdminPage' => $baseDir . '/another-wordpress-classifieds-plugin/includes/admin/listings/class-quick-view-listing-admin-page.php',
+    'AWPCP_QuickViewListingTableAction' => $baseDir . '/another-wordpress-classifieds-plugin/includes/admin/listings/class-quick-view-listing-table-action.php',
     'AWPCP_RandomAdWidget' => $baseDir . '/another-wordpress-classifieds-plugin/frontend/widget-random-ad.php',
     'AWPCP_RawShortcode' => $baseDir . '/another-wordpress-classifieds-plugin/frontend/shortcode-raw.php',
     'AWPCP_RedirectionException' => $baseDir . '/another-wordpress-classifieds-plugin/includes/exceptions.php',
