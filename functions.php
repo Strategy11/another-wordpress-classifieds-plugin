@@ -1,4 +1,46 @@
 <?php
+/**
+ * @package AWPCP
+ */
+
+// phpcs:disable Generic.CodeAnalysis
+// phpcs:disable Generic.ControlStructures
+// phpcs:disable Generic.Commenting.DocComment
+// phpcs:disable Generic.Formatting
+// phpcs:disable Generic.Functions.FunctionCallArgumentSpacing
+// phpcs:disable Generic.Functions.OpeningFunctionBraceKernighanRitchie.BraceOnNewLine
+// phpcs:disable Generic.PHP.NoSilencedErrors.Discouraged
+// phpcs:disable Generic.PHP.LowerCaseConstant
+// phpcs:disable Generic.Strings
+// phpcs:disable PEAR.Files
+// phpcs:disable PEAR.Functions.FunctionCallSignature
+// phpcs:disable PSR2.ControlStructures
+// phpcs:disable Squiz.Commenting
+// phpcs:disable Squiz.ControlStructures
+// phpcs:disable Squiz.Functions.FunctionDeclarationArgumentSpacing
+// phpcs:disable Squiz.PHP.CommentedOutCode.Found
+// phpcs:disable Squiz.PHP.DisallowMultipleAssignments.Found
+// phpcs:disable Squiz.Operators
+// phpcs:disable Squiz.Strings.ConcatenationSpacing.PaddingFound
+// phpcs:disable Squiz.Strings.DoubleQuoteUsage.NotRequired
+// phpcs:disable WordPress.Arrays
+// phpcs:disable WordPress.CodeAnalysis.AssignmentInCondition
+// phpcs:disable WordPress.Classes
+// phpcs:disable WordPress.CSRF
+// phpcs:disable WordPress.Functions
+// phpcs:disable WordPress.NamingConventions
+// phpcs:disable WordPress.PHP.StrictComparisons.LooseComparison
+// phpcs:disable WordPress.PHP.YodaConditions
+// phpcs:disable WordPress.Variables
+// phpcs:disable WordPress.VIP.DirectDatabaseQuery
+// phpcs:disable WordPress.VIP.FileSystemWritesDisallow
+// phpcs:disable WordPress.VIP.SuperGlobalInputUsage
+// phpcs:disable WordPress.VIP.ValidatedSanitizedInput
+// phpcs:disable WordPress.WhiteSpace
+// phpcs:disable WordPress.WP.AlternativeFunctions
+// phpcs:disable WordPress.WP.I18n
+// phpcs:disable WordPress.WP.PreparedSQL.NotPrepared
+// phpcs:disable WordPress.XSS
 
 function awpcp_esc_attr($text) {
 	// WP adds slashes to all request variables
@@ -564,7 +606,7 @@ function awpcp_default_region_fields( $context='details', $enabled_fields = null
     $enabled_fields = is_null( $enabled_fields ) ? awpcp_get_enabled_region_fields() : $enabled_fields;
     $show_city_field_before_county_field = get_awpcp_option( 'show-city-field-before-county-field' );
 
-    $always_shown = in_array( $context, array( 'details', 'search', 'user-profile' ) );
+    $always_shown = in_array( $context, array( 'details', 'search', 'user-profile' ), true );
     $can_be_required = $context !== 'search';
     $_fields = array();
 
@@ -895,7 +937,7 @@ function awpcp_get_image_url($image, $suffix='') {
 function awpcp_array_insert($array, $index, $key, $item, $where='before') {
 	$all = array_merge($array, array($key => $item));
 	$keys = array_keys($array);
-	$p = array_search($index, $keys);
+	$p = array_search( $index, $keys, true );
 
 	if ($p !== FALSE) {
 		if ($where === 'before')
@@ -1347,7 +1389,7 @@ function awpcp_get_currency_symbol() {
     $currency_code = awpcp_get_currency_code();
 
     foreach ( awpcp_currency_symbols() as $currency_symbol => $currency_codes ) {
-        if ( in_array( $currency_code, $currency_codes ) ) {
+        if ( in_array( $currency_code, $currency_codes, true ) ) {
             return $currency_symbol;
         }
     }
@@ -1524,6 +1566,13 @@ function awpcp_print_message( $message, $class = array( 'awpcp-updated', 'notice
 
 function awpcp_print_error($message) {
 	return awpcp_print_message($message, array('error'));
+}
+
+/**
+ * @since 4.0.0
+ */
+function awpcp_render_dismissible_success_message( $message ) {
+    return awpcp_print_message( $message, array( 'awpcp-success', 'notice', 'notice-success', 'is-dismissible' ) );
 }
 
 /**
@@ -1836,7 +1885,7 @@ function awpcp_html_postbox_handle( $params ) {
     $params['heading_attributes'] = awpcp_parse_html_attributes( $params['heading_attributes'] );
     $params['span_attributes'] = awpcp_parse_html_attributes( $params['span_attributes'] );
 
-    if ( ! in_array( $params['heading_class'], $params['heading_attributes']['class'] ) ) {
+    if ( ! in_array( $params['heading_class'], $params['heading_attributes']['class'], true ) ) {
         $params['heading_attributes']['class'][] = $params['heading_class'];
     }
 
@@ -2956,7 +3005,7 @@ function awpcp_user_agent_header() {
  * @since 3.7.6
  */
 function awpcp_get_curl_info() {
-    if ( ! in_array( 'curl', get_loaded_extensions() ) ) {
+    if ( ! in_array( 'curl', get_loaded_extensions(), true ) ) {
         return __( 'Not Installed', 'another-wordpress-classifieds-plugin' );
     }
 

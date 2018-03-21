@@ -6,7 +6,7 @@
 /**
  * Array-like list of row actions handlers for WP_List_Table.
  */
-class AWPCP_ListTableActions implements IteratorAggregate {
+class AWPCP_ListTableActions implements ArrayAccess, IteratorAggregate {
 
     /**
      * @var string
@@ -36,6 +36,41 @@ class AWPCP_ListTableActions implements IteratorAggregate {
         }
 
         return $this->actions;
+    }
+
+    /**
+     * @param mixed $offset     Offset to check.
+     * @since 4.0.0
+     */
+    public function offsetExists( $offset ) {
+        $actions = $this->get_actions();
+        return isset( $actions[ $offset ] );
+    }
+
+    /**
+     * @param mixed $offset     Offset to get.
+     * @since 4.0.0
+     */
+    public function offsetGet( $offset ) {
+        $actions = $this->get_actions();
+        return $actions[ $offset ];
+    }
+
+    /**
+     * @param mixed $offset     Offset to set.
+     * @param mixed $value      Value to store.
+     * @since 4.0.0
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
+    public function offsetSet( $offset, $value ) {
+    }
+
+    /**
+     * @param mied $offset  Offset to unset.
+     * @since 4.0.0
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
+    public function offsetUnset( $offset ) {
     }
 
     /**

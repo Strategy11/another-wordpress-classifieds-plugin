@@ -25,4 +25,16 @@ interface AWPCP_ListTableActionInterface {
      * @since 4.0.0
      */
     public function get_url( $post, $current_url );
+
+    /**
+     * @param object $post  An instance of WP_Post.
+     * @since 4.0.0
+     */
+    public function process_item( $post );
+
+    /**
+     * @param array $result_codes   An array of result codes from this action.
+     * @since 4.0.0
+     */
+    public function get_messages( $result_codes );
 }

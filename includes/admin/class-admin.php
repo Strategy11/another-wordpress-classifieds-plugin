@@ -32,7 +32,9 @@ class AWPCP_Admin {
      * @since 4.0.0
      */
     public function admin_init() {
+        add_action( 'admin_head-edit.php', array( $this->table_actions, 'admin_head' ), 10, 2 );
         add_action( 'post_row_actions', array( $this->table_actions, 'row_actions' ), 10, 2 );
+        add_filter( 'handle_bulk_actions-edit-' . $this->table_actions->get_post_type(), array( $this->table_actions, 'handle_action' ), 10, 3 );
 
         add_filter( 'awpcp_list_table_actions_listings', array( $this, 'register_listings_table_actions' ) );
     }
@@ -42,7 +44,10 @@ class AWPCP_Admin {
      * @since 4.0.0
      */
     public function register_listings_table_actions( $actions ) {
-        $actions['quick-view'] = $this->container['QuickViewListingTableAction'];
+        $actions['quick-view']      = $this->container['QuickViewListingTableAction'];
+        $actions['enable']          = $this->container['EnableListingTableAction'];
+        $actions['disable']         = $this->container['DisableListingTableAction'];
+
         return $actions;
     }
 }

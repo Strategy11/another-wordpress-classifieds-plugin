@@ -34,7 +34,9 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
         $container['ListingsTableActionsHandler'] = $container->service( function( $container ) {
             return new AWPCP_ListTableActionsHandler(
                 $container['listing_post_type'],
-                $container['ListingsTableActions']
+                $container['ListingsTableActions'],
+                awpcp_listings_collection(),
+                awpcp_request()
             );
         } );
 
@@ -54,6 +56,20 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
                 awpcp_template_renderer(),
                 $container['WordPress'],
                 awpcp_request()
+            );
+        } );
+
+        $container['EnableListingTableAction'] = $container->service( function( $container ) {
+            return new AWPCP_EnableListingTableAction(
+                awpcp_listings_api(),
+                awpcp_listing_renderer()
+            );
+        } );
+
+        $container['DisableListingTableAction'] = $container->service( function( $container ) {
+            return new AWPCP_DisableListingTableAction(
+                awpcp_listings_api(),
+                awpcp_listing_renderer()
             );
         } );
     }
