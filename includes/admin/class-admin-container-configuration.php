@@ -72,5 +72,12 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
                 awpcp_listing_renderer()
             );
         } );
+
+        $container['SendAccessKeyListingTableAction'] = $container->service( function( $container ) {
+            return new AWPCP_SendAccessKeyListingTableAction(
+                $container['EmailFactory'],
+                $container['ListingRenderer']
+            );
+        } );
     }
 }

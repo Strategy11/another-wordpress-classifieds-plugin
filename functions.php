@@ -1576,6 +1576,13 @@ function awpcp_render_dismissible_success_message( $message ) {
 }
 
 /**
+ * @since 4.0.0
+ */
+function awpcp_render_dismissible_error_message( $message ) {
+    return awpcp_print_message( $message, array( 'awpcp-error', 'notice', 'notice-error', 'is-dismissible' ) );
+}
+
+/**
  * @since 3.7.4
  */
 function awpcp_render_warning( $message ) {

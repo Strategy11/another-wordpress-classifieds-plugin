@@ -47,6 +47,7 @@ class AWPCP_Admin {
         $actions['quick-view']      = $this->container['QuickViewListingTableAction'];
         $actions['enable']          = $this->container['EnableListingTableAction'];
         $actions['disable']         = $this->container['DisableListingTableAction'];
+        $actions['send-access-key'] = $this->container['SendAccessKeyListingTableAction'];
 
         return $actions;
     }

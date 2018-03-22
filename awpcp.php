@@ -1623,6 +1623,7 @@ class AWPCP {
     }
 
     public function get_container_configurations() {
+        $configurations[] = new AWPCP_ContainerConfiguration();
         $configurations[] = new AWPCP_WordPressContainerConfiguration();
         $configurations[] = new AWPCP_SettingsContainerConfiguration();
         $configurations[] = new AWPCP_ListingPostTypeContainerConfiguration();
