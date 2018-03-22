@@ -11,7 +11,7 @@ interface AWPCP_ContainerConfigurationInterface {
     /**
      * Modifies the given dependency injection container.
      *
-     * @param AWPCP_Container $container
+     * @param AWPCP_Container $container    An instance of Container.
      */
     public function modify( $container );
 }

@@ -57,5 +57,28 @@ class AWPCP_ListingPostTypeContainerConfiguration implements AWPCP_ContainerConf
                 );
             }
         );
+
+        $container['ListingsCollection'] = $container->service( function( $container ) {
+            return new AWPCP_ListingsCollection(
+                // TODO: add all these to the container.
+                awpcp_listings_finder(),
+                $container['Settings'],
+                $container['WordPress'],
+                $GLOBALS['wpdb']
+            );
+        } );
+
+        $container['ListingsLogic'] = $container->service( function( $container ) {
+            return new AWPCP_ListingsAPI(
+                awpcp_attachments_logic(),
+                awpcp_attachments_collection(),
+                $container['ListingRenderer'],
+                $container['ListingsCollection'],
+                awpcp_request(),
+                $container['Settings'],
+                $container['WordPress'],
+                $GLOBALS['wpdb']
+            );
+        } );
     }
 }

@@ -21,16 +21,6 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
 
         /* Listings Container */
 
-        $container['ListingsCollection'] = $container->service( function( $container ) {
-            return new AWPCP_ListingsCollection(
-                // TODO: add all these to the container.
-                awpcp_listings_finder(),
-                awpcp()->settings,
-                $container['WordPress'],
-                $GLOBALS['wpdb']
-            );
-        } );
-
         $container['ListingsTableActionsHandler'] = $container->service( function( $container ) {
             return new AWPCP_ListTableActionsHandler(
                 $container['listing_post_type'],
@@ -77,6 +67,14 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
             return new AWPCP_SendAccessKeyListingTableAction(
                 $container['EmailFactory'],
                 $container['ListingRenderer']
+            );
+        } );
+
+        $container['MarkAsSPAMListingTableAction'] = $container->service( function( $container ) {
+            return new AWPCP_MarkAsSPAMListingTableAction(
+                $container['SPAMSubmitter'],
+                $container['ListingsLogic'],
+                $container['WordPress']
             );
         } );
     }

@@ -48,6 +48,7 @@ class AWPCP_Admin {
         $actions['enable']          = $this->container['EnableListingTableAction'];
         $actions['disable']         = $this->container['DisableListingTableAction'];
         $actions['send-access-key'] = $this->container['SendAccessKeyListingTableAction'];
+        $actions['spam']            = $this->container['MarkAsSPAMListingTableAction'];
 
         return $actions;
     }
