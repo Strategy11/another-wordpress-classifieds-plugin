@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2018-02-27 23:52:33+00:00\n"
+"POT-Creation-Date: 2018-03-23 23:55:48+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -174,7 +174,7 @@ msgid "Categories"
 msgstr ""
 
 #: admin/admin-panel-fees-table.php:127
-#: admin/templates/admin-sidebar.tpl.php:103 awpcp.php:884
+#: admin/templates/admin-sidebar.tpl.php:103 awpcp.php:885
 msgid "Featured Ads"
 msgstr ""
 
@@ -302,7 +302,7 @@ msgstr ""
 
 #: admin/admin-panel-listings-table.php:188
 #: admin/admin-panel-listings-table.php:268
-#: admin/admin-panel-listings-table.php:444
+#: admin/admin-panel-listings-table.php:445
 msgid "Featured"
 msgstr ""
 
@@ -400,40 +400,44 @@ msgid "Payer Email"
 msgstr ""
 
 #: admin/admin-panel-listings-table.php:294
+msgid "Ad Contact Email"
+msgstr ""
+
+#: admin/admin-panel-listings-table.php:295
 #: frontend/templates/page-place-ad-details-step.tpl.php:36
 #: frontend/templates/page-place-ad-order-step.tpl.php:43
 msgid "User"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:335
+#: admin/admin-panel-listings-table.php:336
 msgctxt "admin listings table"
 msgid "Filter"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:380
+#: admin/admin-panel-listings-table.php:381
 msgid "View Ad."
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:408
+#: admin/admin-panel-listings-table.php:409
 msgid "Mark as Verified"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:417
+#: admin/admin-panel-listings-table.php:418
 msgid "Disabled"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:417
+#: admin/admin-panel-listings-table.php:418
 #: templates/components/media-manager.tpl.php:19
 #: templates/components/media-manager.tpl.php:58
 #: templates/components/media-manager.tpl.php:100
 msgid "Enabled"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:431
+#: admin/admin-panel-listings-table.php:432
 msgid "Mark as Paid"
 msgstr ""
 
-#: admin/admin-panel-listings-table.php:444
+#: admin/admin-panel-listings-table.php:445
 msgid "Not Featured"
 msgstr ""
 
@@ -750,7 +754,7 @@ msgid "Manage Extra Fields"
 msgstr ""
 
 #: admin/admin-panel.php:315 admin/templates/admin-sidebar.tpl.php:108
-#: awpcp.php:877
+#: awpcp.php:878
 msgid "Extra Fields"
 msgstr ""
 
@@ -1843,19 +1847,19 @@ msgstr ""
 msgid "Get a Premium Module!"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:46 awpcp.php:849
+#: admin/templates/admin-sidebar.tpl.php:46 awpcp.php:850
 msgid "Campaign Manager"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:52 awpcp.php:906
+#: admin/templates/admin-sidebar.tpl.php:52 awpcp.php:907
 msgid "Mark as Sold"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:58 awpcp.php:934
+#: admin/templates/admin-sidebar.tpl.php:58 awpcp.php:935
 msgid "Restricted Categories"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:63 awpcp.php:842
+#: admin/templates/admin-sidebar.tpl.php:63 awpcp.php:843
 msgid "BuddyPress Listings"
 msgstr ""
 
@@ -1863,15 +1867,15 @@ msgstr ""
 msgid "Comments/Ratings"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:73 awpcp.php:828
+#: admin/templates/admin-sidebar.tpl.php:73 awpcp.php:829
 msgid "Attachments"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:78 awpcp.php:835
+#: admin/templates/admin-sidebar.tpl.php:78 awpcp.php:836
 msgid "Authorize.Net"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:83 awpcp.php:920
+#: admin/templates/admin-sidebar.tpl.php:83 awpcp.php:921
 msgid "PayPal Pro"
 msgstr ""
 
@@ -1879,7 +1883,7 @@ msgstr ""
 msgid "Coupon/Discount"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:93 awpcp.php:955
+#: admin/templates/admin-sidebar.tpl.php:93 awpcp.php:956
 msgid "Subscriptions"
 msgstr ""
 
@@ -1887,15 +1891,15 @@ msgstr ""
 msgid "Fee Per Category"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:113 awpcp.php:856
+#: admin/templates/admin-sidebar.tpl.php:113 awpcp.php:857
 msgid "Category Icons"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:118 awpcp.php:927
+#: admin/templates/admin-sidebar.tpl.php:118 awpcp.php:928
 msgid "Regions Control"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:123 awpcp.php:941
+#: admin/templates/admin-sidebar.tpl.php:123 awpcp.php:942
 msgid "RSS"
 msgstr ""
 
@@ -2032,102 +2036,102 @@ msgstr ""
 msgid "Manage Ad Listings"
 msgstr ""
 
-#: awpcp.php:716
+#: awpcp.php:717
 msgid "AWPCP"
 msgstr ""
 
-#: awpcp.php:811
+#: awpcp.php:812
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
 msgstr ""
 
-#: awpcp.php:812
+#: awpcp.php:813
 #: includes/placeholders/class-placeholders-installation-verifier.php:31
 msgid "Warning"
 msgstr ""
 
-#: awpcp.php:863
+#: awpcp.php:864
 msgid "Comments & Ratings"
 msgstr ""
 
-#: awpcp.php:870
+#: awpcp.php:871
 msgid "Coupons/Discount"
 msgstr ""
 
-#: awpcp.php:891
+#: awpcp.php:892
 msgid "Fee per Category"
 msgstr ""
 
-#: awpcp.php:898
+#: awpcp.php:899
 msgid "Google Checkout"
 msgstr ""
 
-#: awpcp.php:913
+#: awpcp.php:914
 msgid "PayFast"
 msgstr ""
 
-#: awpcp.php:948
+#: awpcp.php:949
 msgid "Stripe"
 msgstr ""
 
-#: awpcp.php:962 templates/components/media-manager.tpl.php:46
+#: awpcp.php:963 templates/components/media-manager.tpl.php:46
 msgid "Videos"
 msgstr ""
 
-#: awpcp.php:970
+#: awpcp.php:971
 msgid "XML Sitemap"
 msgstr ""
 
-#: awpcp.php:977
+#: awpcp.php:978
 msgid "ZIP Code Search Module"
 msgstr ""
 
-#: awpcp.php:1273
+#: awpcp.php:1274
 msgid "This field is required."
 msgstr ""
 
-#: awpcp.php:1274 frontend/page-edit-ad.php:130 frontend/page-edit-ad.php:442
+#: awpcp.php:1275 frontend/page-edit-ad.php:130 frontend/page-edit-ad.php:442
 #: includes/settings-api.php:264
 msgid "Please enter a valid email address."
 msgstr ""
 
-#: awpcp.php:1275 awpcp.php:1276
+#: awpcp.php:1276 awpcp.php:1277
 msgid "Please enter a valid URL."
 msgstr ""
 
-#: awpcp.php:1277
+#: awpcp.php:1278
 msgid "Please enter a valid number."
 msgstr ""
 
-#: awpcp.php:1278
+#: awpcp.php:1279
 msgid "Please enter a valid amount."
 msgstr ""
 
-#: awpcp.php:1288
+#: awpcp.php:1289
 msgctxt "[UI Datepicker] Display text for previous month link"
 msgid "&#x3c;Prev"
 msgstr ""
 
-#: awpcp.php:1290
+#: awpcp.php:1291
 msgctxt "[UI Datepicker] Display text for next month link"
 msgid "Next&#x3e;"
 msgstr ""
 
-#: awpcp.php:1305
+#: awpcp.php:1306
 msgctxt "[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ..."
 msgid "0"
 msgstr ""
 
-#: awpcp.php:1311
+#: awpcp.php:1312
 msgid "There are files currently being uploaded."
 msgstr ""
 
-#: awpcp.php:1312
+#: awpcp.php:1313
 msgid "There are files pending to be uploaded."
 msgstr ""
 
-#: awpcp.php:1313
+#: awpcp.php:1314
 msgid "You haven't uploaded any images or files."
 msgstr ""
 
@@ -5154,7 +5158,7 @@ msgid "Images/Attachments"
 msgstr ""
 
 #: includes/settings/class-files-settings.php:21
-#: includes/settings/class-general-settings.php:16 installer.php:116
+#: includes/settings/class-general-settings.php:16 installer.php:133
 msgid "General"
 msgstr ""
 
@@ -7440,147 +7444,147 @@ msgid ""
 "Please note that disabled Ads cannot be posted to Facebook."
 msgstr ""
 
-#: includes/settings-api.php:643
+#: includes/settings-api.php:654
 msgid "<module-name> License Key"
 msgstr ""
 
-#: includes/settings-api.php:652
+#: includes/settings-api.php:663
 msgid "Licenses"
 msgstr ""
 
-#: includes/settings-api.php:792
+#: includes/settings-api.php:803
 msgid ""
 "Require Registration setting was enabled automatically because you activated "
 "the User Ad Management panel."
 msgstr ""
 
-#: includes/settings-api.php:809
+#: includes/settings-api.php:820
 msgid ""
 "Akismet SPAM control cannot be enabled because Akismet plugin is not "
 "installed or activated."
 msgstr ""
 
-#: includes/settings-api.php:813
+#: includes/settings-api.php:824
 msgid ""
 "Akismet SPAM control cannot be enabled because Akismet is not properly "
 "configured."
 msgstr ""
 
-#: includes/settings-api.php:836
+#: includes/settings-api.php:847
 msgid ""
 "reCAPTCHA can't be used because the public key and private key settings are "
 "required for reCAPTCHA to work properly."
 msgstr ""
 
-#: includes/settings-api.php:838
+#: includes/settings-api.php:849
 msgid ""
 "reCAPTCHA can't be used because the public key setting is required for "
 "reCAPTCHA to work properly."
 msgstr ""
 
-#: includes/settings-api.php:840
+#: includes/settings-api.php:851
 msgid ""
 "reCAPTCHA can't be used because the private key setting is required for "
 "reCAPTCHA to work properly."
 msgstr ""
 
-#: includes/settings-api.php:853
+#: includes/settings-api.php:864
 msgid ""
 "User Ad Management panel was automatically deactivated because you disabled "
 "Require Registration setting."
 msgstr ""
 
-#: includes/settings-api.php:858
+#: includes/settings-api.php:869
 msgid ""
 "Credit System was automatically disabled because you disabled Require "
 "Registration setting."
 msgstr ""
 
-#: includes/settings-api.php:874
+#: includes/settings-api.php:885
 msgid ""
 "There is a problem with the PayPal Currency Code you have entered. It does "
 "not match any of the codes in our list of curencies supported by PayPal."
 msgstr ""
 
-#: includes/settings-api.php:875
+#: includes/settings-api.php:886
 msgid "The available currency codes are"
 msgstr ""
 
-#: includes/settings-api.php:884
+#: includes/settings-api.php:895
 msgid ""
 "Require Registration setting was enabled automatically because you activated "
 "the Credit System."
 msgstr ""
 
-#: includes/settings-api.php:889
+#: includes/settings-api.php:900
 msgid ""
 "Charge Listing Fee setting was enabled automatically because you activated "
 "the Credit System."
 msgstr ""
 
-#: includes/settings-api.php:895
+#: includes/settings-api.php:906
 msgid ""
 "Credit System was disabled automatically because you disabled Charge Listing "
 "Fee."
 msgstr ""
 
-#: includes/settings-api.php:918
+#: includes/settings-api.php:929
 msgid ""
 "<new-value> is not a valid email address. Please check the value you entered "
 "to use as the FROM email address for outgoing messages."
 msgstr ""
 
-#: includes/settings-api.php:919
+#: includes/settings-api.php:930
 msgid ""
 "<new-value> is not a valid email address. Please check the value you entered "
 "to use as recipient email address for admin notifications."
 msgstr ""
 
-#: includes/settings-api.php:1188
+#: includes/settings-api.php:1199
 msgid "Deactivate"
 msgstr ""
 
-#: includes/settings-api.php:1189
+#: includes/settings-api.php:1200
 msgid "active"
 msgstr ""
 
-#: includes/settings-api.php:1189 includes/settings-api.php:1192
-#: includes/settings-api.php:1202 includes/settings-api.php:1204
-#: includes/settings-api.php:1206
+#: includes/settings-api.php:1200 includes/settings-api.php:1203
+#: includes/settings-api.php:1213 includes/settings-api.php:1215
+#: includes/settings-api.php:1217
 msgid "Status: <license-status>"
 msgstr ""
 
-#: includes/settings-api.php:1191 includes/settings-api.php:1194
+#: includes/settings-api.php:1202 includes/settings-api.php:1205
 msgid "Activate"
 msgstr ""
 
-#: includes/settings-api.php:1192
+#: includes/settings-api.php:1203
 msgid "inactive"
 msgstr ""
 
-#: includes/settings-api.php:1197
+#: includes/settings-api.php:1208
 msgid ""
 "Click the button above to check the status of your license. Please <contact-"
 "link>contact customer support</a> if you think the reported status is wrong."
 msgstr ""
 
-#: includes/settings-api.php:1202
+#: includes/settings-api.php:1213
 msgid "expired"
 msgstr ""
 
-#: includes/settings-api.php:1204
+#: includes/settings-api.php:1215
 msgid "disabled"
 msgstr ""
 
-#: includes/settings-api.php:1206
+#: includes/settings-api.php:1217
 msgid "unknown"
 msgstr ""
 
-#: includes/settings-api.php:1245
+#: includes/settings-api.php:1256
 msgid "Documentation on date and time formatting"
 msgstr ""
 
-#: includes/settings-api.php:1266
+#: includes/settings-api.php:1277
 msgid "Setting <setting-name> not available."
 msgstr ""
 
@@ -7762,7 +7766,7 @@ msgstr ""
 msgid "You are not allowed to buy credits."
 msgstr ""
 
-#: installer.php:128
+#: installer.php:145
 msgid "30 Day Listing"
 msgstr ""
 

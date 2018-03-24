@@ -4,7 +4,7 @@
  * Plugin Name: Another WordPress Classifieds Plugin (AWPCP)
  * Plugin URI: http://www.awpcp.com
  * Description: AWPCP - A plugin that provides the ability to run a free or paid classified ads service on your WP site. <strong>!!!IMPORTANT!!!</strong> It's always a good idea to do a BACKUP before you upgrade AWPCP!
- * Version: 3.8.4dev1
+ * Version: 3.8.4dev2
  * Author: D. Rodenbaugh
  * License: GPLv2 or any later version
  * Author URI: http://www.skylineconsult.com
@@ -362,6 +362,7 @@ require_once( AWPCP_DIR . '/admin/import/class-csv-reader-factory.php' );
 require_once( AWPCP_DIR . '/admin/import/class-csv-reader.php' );
 require_once( AWPCP_DIR . '/admin/import/class-import-listings-ajax-handler.php' );
 require( AWPCP_DIR . '/admin/listings/class-listings-table-search-by-phone-condition.php' );
+require( AWPCP_DIR . '/admin/listings/class-listings-table-search-by-contact-email-condition.php' );
 
 // frontend functions
 require_once(AWPCP_DIR . "/frontend/placeholders.php");
