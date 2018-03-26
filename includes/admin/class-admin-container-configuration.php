@@ -77,5 +77,12 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
                 $container['WordPress']
             );
         } );
+
+        $container['UnflagListingTableAction'] = $container->service( function( $container ) {
+            return new AWPCP_UnflagListingTableAction(
+                $container['ListingsLogic'],
+                $container['ListingRenderer']
+            );
+        } );
     }
 }

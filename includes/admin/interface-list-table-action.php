@@ -7,6 +7,7 @@
  * Interface for List Table Action classes.
  */
 interface AWPCP_ListTableActionInterface {
+
     /**
      * @param object $post  An instance of WP_Post.
      * @since 4.0.0

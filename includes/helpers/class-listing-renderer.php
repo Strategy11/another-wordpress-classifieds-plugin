@@ -1,4 +1,7 @@
 <?php
+/**
+ * @package AWPCP\Listings
+ */
 
 /**
  * @since 3.3
@@ -14,8 +17,13 @@ function awpcp_listing_renderer() {
 
 /**
  * @since 3.3
+ * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  */
 class AWPCP_ListingRenderer {
+
+    // phpcs:disable Generic
+    // phpcs:disable Squiz
+    // phpcs:disable WordPress
 
     private $categories;
     private $regions;
@@ -98,16 +106,16 @@ class AWPCP_ListingRenderer {
     }
 
     /**
-     * @since feature/1112
+     * @param string $mysql_date    A date string.
+     * @param string $format        A format string as supported by date().
+     * @since 4.0.0
      */
     private function get_formatted_date( $mysql_date, $format = 'awpcp-date' ) {
-        if ( ! empty( $mysql_date ) ) {
-            $formatted_date = awpcp_datetime( $format, strtotime( $mysql_date ) );
-        } else {
-            $formatted_date = '';
+        if ( empty( $mysql_date ) ) {
+            return '';
         }
 
-        return $formatted_date;
+        return awpcp_datetime( $format, strtotime( $mysql_date ) );
     }
 
     /**
@@ -198,10 +206,29 @@ class AWPCP_ListingRenderer {
         return $listing->post_status == 'disabled';
     }
 
+    // phpcs:enable Generic
+    // phpcs:enable Squiz
+    // phpcs:enable WordPress
+
+    /**
+     * @param object $listing  An instance of WP_Post.
+     * @since 4.0.0
+     */
+    public function is_flagged( $listing ) {
+        return ! ! $this->wordpress->get_post_meta( $listing->ID, '_awpcp_flagged', true );
+    }
+
+    // phpcs:disable Generic
+    // phpcs:disable Squiz
+    // phpcs:disable WordPress
+
     public function has_expired( $listing ) {
         return $this->has_expired_on_date( $listing, current_time( 'timestamp' ) );
     }
 
+    /**
+     * @SuppressWarnings(PHPMD)
+     */
     private function has_expired_on_date( $listing, $timestamp ) {
         $end_date = $this->get_plain_end_date( $listing );
 
@@ -214,6 +241,9 @@ class AWPCP_ListingRenderer {
         return $end_date < $timestamp;
     }
 
+    /**
+     * @SuppressWarnings(PHPMD)
+     */
     public function is_about_to_expire( $listing ) {
         if ( $this->has_expired( $listing ) ) {
             return false;
@@ -295,4 +325,8 @@ class AWPCP_ListingRenderer {
         $url = $this->get_edit_listing_url( $listing );
         return apply_filters( 'awpcp-delete-listing-url', $url, $listing );
     }
+
+    // phpcs:enable Generic
+    // phpcs:enable Squiz
+    // phpcs:enable WordPress
 }

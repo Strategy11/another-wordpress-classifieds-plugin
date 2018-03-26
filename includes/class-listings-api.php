@@ -1,4 +1,7 @@
 <?php
+/**
+ * @package AWPCP\Listings
+ */
 
 /**
  * @since 3.0.2
@@ -20,7 +23,16 @@ function awpcp_listings_api() {
     return $GLOBALS['awpcp-listings-api'];
 }
 
+/**
+ * Listings logic.
+ *
+ * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
+ * @SuppressWarnings(PHPMD.TooManyPublicMethods)
+ * @SuppressWarnings(PHPMD.TooManyMethods)
+ */
 class AWPCP_ListingsAPI {
+
+    // phpcs:disable Generic,Squiz,WordPress,PSR2,PEAR
 
     private $attachments_logic;
     private $attachments;
@@ -140,6 +152,9 @@ class AWPCP_ListingsAPI {
         return $this->listings->get( $listing_id );
     }
 
+    /**
+     * @SuppressWarnings(PHPMD)
+     */
     public function update_listing( $listing, $listing_data ) {
         $listing_data = wp_parse_args( $listing_data, array(
             'post_fields' => array(),
@@ -225,18 +240,23 @@ class AWPCP_ListingsAPI {
         }
     }
 
+    /**
+     */
     public function update_listing_verified_status( $listing, $transaction ) {
         if ( $this->listing_renderer->is_verified( $listing ) ) {
             return;
         }
 
         if ( $this->should_mark_listing_as_verified( $listing, $transaction ) ) {
-            $this->mark_listing_as_verified( $listing );
-        } else {
-            $this->mark_listing_as_needs_verification( $listing );
+            return $this->mark_listing_as_verified( $listing );
         }
+
+        $this->mark_listing_as_needs_verification( $listing );
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
     private function should_mark_listing_as_verified( $listing, $transaction ) {
         if ( ! $this->settings->get_option( 'enable-email-verification' ) ) {
             return true;
@@ -292,15 +312,15 @@ class AWPCP_ListingsAPI {
     }
 
     /**
-     * @since feature/1112
+     * @since 4.0.0
      */
     public function enable_listing( $listing ) {
         if ( $this->enable_listing_without_triggering_actions( $listing ) ) {
             do_action( 'awpcp_approve_ad', $listing );
             return true;
-        } else {
-            return false;
         }
+
+        return false;
     }
 
     /**
@@ -349,6 +369,9 @@ class AWPCP_ListingsAPI {
         $this->wordpress->update_post_meta( $listing->ID, '_awpcp_disabled_date', current_time( 'mysql' ) );
     }
 
+    /**
+     * @SuppressWarnings(PHPMD)
+     */
     public function renew_listing( $listing, $end_date = false ) {
         if ( $end_date === false ) {
             // if the Ad's end date is in the future, use that as starting point
@@ -472,26 +495,31 @@ class AWPCP_ListingsAPI {
         }
     }
 
+    // phpcs:enable Generic,Squiz,WordPress,PSR2,PEAR
+
     /**
+     * @param object $listing   An instance of WP_Post.
      * @since 3.4
      */
     public function flag_listing( $listing ) {
-        $listing->flagged = true;
+        $meta_updated = (bool) $this->wordpress->update_post_meta( $listing->ID, '_awpcp_flagged', true );
 
-        if ( $result = $listing->save() ) {
+        if ( $meta_updated ) {
             awpcp_send_listing_was_flagged_notification( $listing );
         }
 
-        return $result;
+        return $meta_updated;
     }
 
     /**
+     * @param object $listing   An instance of WP_Post.
      * @since 3.4
      */
     public function unflag_listing( $listing ) {
-        $listing->flagged = false;
-        return $listing->save();
+        return (bool) $this->wordpress->delete_post_meta( $listing->ID, '_awpcp_flagged' );
     }
+
+    // phpcs:disable Generic,Squiz,WordPress,PSR2,PEAR
 
     public function increase_visits_count( $listing ) {
         $number_of_visits = absint( get_post_meta( $listing->ID, '_awpcp_views', true ) );
@@ -500,11 +528,9 @@ class AWPCP_ListingsAPI {
     }
 
     /**
-     * @since feature/1112
+     * @since 4.0.0
      */
     public function delete_listing( $listing ) {
-        global $wpdb;
-
         do_action( 'awpcp_before_delete_ad', $listing );
 
         $attachments = $this->attachments->find_attachments( array( 'post_parent' => $listing->ID ) );
@@ -522,4 +548,6 @@ class AWPCP_ListingsAPI {
 
         return $result === false ? false : true;
     }
+
+    // phpcs:enable Generic,Squiz,WordPress,PSR2,PEAR
 }
