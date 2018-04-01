@@ -80,5 +80,13 @@ class AWPCP_ListingPostTypeContainerConfiguration implements AWPCP_ContainerConf
                 $GLOBALS['wpdb']
             );
         } );
+
+        $container['ListingRenewedEmailNotifications'] = $container->service( function( $container ) {
+            return new AWPCP_ListingRenewedEmailNotifications(
+                $container['ListingRenderer'],
+                $container['TemplateRenderer'],
+                $container['Settings']
+            );
+        } );
     }
 }

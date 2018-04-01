@@ -242,7 +242,7 @@ class AWPCP_ListingRenderer {
     }
 
     /**
-     * @SuppressWarnings(PHPMD)
+     * @param object $listing   An instance of WP_Post.
      */
     public function is_about_to_expire( $listing ) {
         if ( $this->has_expired( $listing ) ) {
@@ -250,9 +250,9 @@ class AWPCP_ListingRenderer {
         }
 
         $end_of_date_range = awpcp_calculate_end_of_renew_email_date_range_from_now();
-        $one_second_after_end_of_date_range = $end_of_date_range + 1;
 
-        return $this->has_expired_on_date( $listing, $one_second_after_end_of_date_range );
+        // Has the listing expired one second after current time + renew email threshold?
+        return $this->has_expired_on_date( $listing, $end_of_date_range + 1 );
     }
 
     public function get_payment_status( $listing ) {

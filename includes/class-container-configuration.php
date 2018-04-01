@@ -34,5 +34,9 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
                 $container['ListingAkismetDataSource']
             );
         } );
+
+        $container['TemplateRenderer'] = $container->service( function( $container ) {
+            return new AWPCP_Template_Renderer();
+        } );
     }
 }

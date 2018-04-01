@@ -1,4 +1,24 @@
 <?php
+/**
+ * @package AWPCP\Listings
+ */
+
+// phpcs:disable Generic.Commenting
+// phpcs:disable Generic.Formatting
+// phpcs:disable Generic.Functions
+// phpcs:disable PEAR.Functions
+// phpcs:disable PSR2.ControlStructures
+// phpcs:disable Squiz.Commenting
+// phpcs:disable Squiz.Functions
+// phpcs:disable Squiz.PHP
+// phpcs:disable Squiz.Strings
+// phpcs:disable WordPress.Arrays
+// phpcs:disable WordPress.Classes
+// phpcs:disable WordPress.NamingConventions
+// phpcs:disable WordPress.PHP
+// phpcs:disable WordPress.VIP
+// phpcs:disable WordPress.WP
+// phpcs:disable WordPress.WhiteSpace
 
 /**
  * Return an array of Ad Fees.
@@ -19,6 +39,7 @@ function awpcp_get_fees() {
  * Generic function to calculate an date relative to a given start date.
  *
  * @since 2.0.7
+ * @SuppressWarnings(PHPMD)
  */
 function awpcp_calculate_end_date($increment, $period, $start_date) {
 	$periods = array('D' => 'DAY', 'W' => 'WEEK', 'M' => 'MONTH', 'Y' => 'YEAR');
@@ -52,6 +73,8 @@ function awpcp_calculate_end_date($increment, $period, $start_date) {
  * TODO: this can be moved into the Ad class. We actually don't need a transaction,
  * because the payment_status is stored in the Ad object. We need, however, to update
  * the payment_status when the Ad is placed AND renewed. ~2012-09-19
+ *
+ * @SuppressWarnings(PHPMD)
  */
 function awpcp_calculate_ad_disabled_state($id=null, $transaction=null, $payment_status=null) {
     if ( is_null( $payment_status ) && ! is_null( $transaction ) ) {
@@ -75,6 +98,9 @@ function awpcp_calculate_ad_disabled_state($id=null, $transaction=null, $payment
     return $disabled;
 }
 
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 function awpcp_should_disable_new_listing_with_payment_status( $listing, $payment_status ) {
     $payment_is_pending = $payment_status == AWPCP_Payment_Transaction::PAYMENT_STATUS_PENDING;
 
@@ -97,6 +123,9 @@ function awpcp_should_enable_new_listing_with_payment_status( $listing, $payment
     return awpcp_should_disable_new_listing_with_payment_status( $listing, $payment_status ) ? false : true;
 }
 
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 function awpcp_should_disable_existing_listing( $listing ) {
     if ( awpcp_current_user_is_moderator() ) {
         $should_disable = false;
@@ -115,6 +144,7 @@ function awpcp_should_enable_existing_listing( $listing ) {
 
 /**
  * @since 3.0.2
+ * @deprecated 4.0.0    Use ListingRenewedEmailNotifications::send_user_notification().
  */
 function awpcp_ad_renewed_user_email( $ad ) {
 	$listing_renderer = awpcp_listing_renderer();
@@ -141,6 +171,7 @@ function awpcp_ad_renewed_user_email( $ad ) {
 
 /**
  * @since 3.0.2
+ * @deprecated 4.0.0    Use ListingRenewedEmailNotifications::send_admin_notification().
  */
 function awpcp_ad_renewed_admin_email( $ad, $body ) {
 	$subject = __( 'The classifieds listing "%s" has been successfully renewed.', 'another-wordpress-classifieds-plugin' );
@@ -172,6 +203,7 @@ function awpcp_send_ad_renewed_email($ad) {
 
 /**
  * @since 2.0.7
+ * @SuppressWarnings(PHPMD)
  */
 function awpcp_renew_ad_success_message($ad, $text=null, $send_email=true) {
 	if (is_null($text)) {
@@ -190,6 +222,9 @@ function awpcp_renew_ad_success_message($ad, $text=null, $send_email=true) {
 	return sprintf("%s %s", sprintf($text, $ad->get_end_date()), $return);
 }
 
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 function deletead($adid, $adkey, $editemail, $force=false, &$errors=array()) {
 	$output = '';
 	$awpcppage = get_currentpagename();
@@ -243,6 +278,7 @@ function deletead($adid, $adkey, $editemail, $force=false, &$errors=array()) {
 
 /**
  * @since 3.0.2
+ * @SuppressWarnings(PHPMD)
  */
 function awpcp_ad_posted_user_email( $ad, $transaction = null, $message='' ) {
 	$admin_email = awpcp_admin_recipient_email_address();
@@ -349,7 +385,9 @@ function awpcp_login_form($message=null, $redirect=null) {
 	return $login_form->render( $redirect, $message );
 }
 
-
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 function awpcp_user_payment_terms_sort($a, $b) {
 	$result = strcasecmp($a->type, $b->type);
 	if ($result == 0) {

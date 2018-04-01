@@ -50,6 +50,7 @@ class AWPCP_Admin {
         $actions['send-access-key'] = $this->container['SendAccessKeyListingTableAction'];
         $actions['spam']            = $this->container['MarkAsSPAMListingTableAction'];
         $actions['unflag']          = $this->container['UnflagListingTableAction'];
+        $actions['renew']           = $this->container['RenewListingTableAction'];
 
         return $actions;
     }
