@@ -92,5 +92,12 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
                 $container['ListingRenewedEmailNotifications']
             );
         } );
+
+        $container['MakeFeaturedListingTableAction'] = $container->service( function( $container ) {
+            return new AWPCP_MakeFeaturedListingTableAction(
+                $container['ListingRenderer'],
+                $container['WordPress']
+            );
+        } );
     }
 }

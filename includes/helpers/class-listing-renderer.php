@@ -206,6 +206,14 @@ class AWPCP_ListingRenderer {
         return $listing->post_status == 'disabled';
     }
 
+    /**
+     * @param object $listing   An instance of WP_Post.
+     * @since 4.0.0
+     */
+    public function is_featured( $listing ) {
+        return (bool) $this->wordpress->get_post_meta( $listing->ID, '_awpcp_is_featured', true );
+    }
+
     // phpcs:enable Generic
     // phpcs:enable Squiz
     // phpcs:enable WordPress
