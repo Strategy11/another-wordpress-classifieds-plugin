@@ -4,10 +4,12 @@
 		<h3 class="hndle"><span><?php _e('Facebook Integration', 'another-wordpress-classifieds-plugin') ?></span></h3>
 		<div class="inside">
 			<div>
-				<?php echo str_replace( '<a>',
+				<p><?php echo str_replace( '<a>',
 					'<a href="https://developers.facebook.com/docs/web/tutorials/scrumptious/register-facebook-application/" target="_blank">',
 					__( 'This configuration allows you to post ads to Facebook. You must have a Facebook Application created to use this feature. Read <a>How to Register and Configure a Facebook Application.</a>', 'another-wordpress-classifieds-plugin' ) );
-				?>
+				?></p>
+                <p><?php esc_html_e( 'Add the following URL to the list of Valid OAuth Redirect URIs for the configuration of the Facebook Application:', 'another-wordpress-classifieds-plugin' ); ?></p>
+                <pre><code><?php echo esc_html( $redirect_uri ); ?></code></pre>
 			</div>
 	     </div>
 	</div>
@@ -171,10 +173,10 @@
 				<?php endif; ?>
 				<tr>
 					<td colspan="2">
-						<input type="submit" value="<?php _e( 'Save Page and Group Selection', 'another-wordpress-classifieds-plugin' ); ?>" class="button-primary" name="save_config" />	
+						<input type="submit" value="<?php _e( 'Save Page and Group Selection', 'another-wordpress-classifieds-plugin' ); ?>" class="button-primary" name="save_config" />
 					</td>
 				</tr>
-			</table>		
+			</table>
 		<?php endif; ?>
 	</div>
 
