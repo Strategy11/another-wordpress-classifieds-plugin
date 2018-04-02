@@ -12,6 +12,7 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
 
     /**
      * @param object $container     An instance of Container.
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     public function modify( $container ) {
         $container['Admin'] = $container->service( function( $container ) {
@@ -104,6 +105,13 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
 
         $container['MakeStandardListingTableAction'] = $container->service( function( $container ) {
             return new AWPCP_MakeStandardListingTableAction(
+                $container['ListingRenderer'],
+                $container['WordPress']
+            );
+        } );
+
+        $container['MarkReviewedListingTableAction'] = $container->service( function( $container ) {
+            return new AWPCP_MarkReviewedListingTableAction(
                 $container['ListingRenderer'],
                 $container['WordPress']
             );

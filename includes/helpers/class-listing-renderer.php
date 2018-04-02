@@ -214,6 +214,14 @@ class AWPCP_ListingRenderer {
         return (bool) $this->wordpress->get_post_meta( $listing->ID, '_awpcp_is_featured', true );
     }
 
+    /**
+     * @param object $listing   An instance of WP_Post.
+     * @since 4.0.0
+     */
+    public function needs_review( $listing ) {
+        return $this->wordpress->get_post_meta( $listing->ID, '_awpcp_content_needs_review', true );
+    }
+
     // phpcs:enable Generic
     // phpcs:enable Squiz
     // phpcs:enable WordPress
