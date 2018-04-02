@@ -55,6 +55,7 @@ class AWPCP_Admin {
         $actions['make-standard']   = $this->container['MakeStandardListingTableAction'];
         $actions['mark-reviewed']   = $this->container['MarkReviewedListingTableAction'];
         $actions['mark-sold']       = $this->container['MarkSoldListingTableAction'];
+        $actions['mark-unsold']     = $this->container['MarkUnsoldListingTableAction'];
 
         return $actions;
     }
