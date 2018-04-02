@@ -54,6 +54,7 @@ class AWPCP_Admin {
         $actions['make-featured']   = $this->container['MakeFeaturedListingTableAction'];
         $actions['make-standard']   = $this->container['MakeStandardListingTableAction'];
         $actions['mark-reviewed']   = $this->container['MarkReviewedListingTableAction'];
+        $actions['mark-sold']       = $this->container['MarkSoldListingTableAction'];
 
         return $actions;
     }

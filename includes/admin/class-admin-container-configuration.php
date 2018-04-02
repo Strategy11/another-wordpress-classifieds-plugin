@@ -116,5 +116,11 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
                 $container['WordPress']
             );
         } );
+
+        $container['MarkSoldListingTableAction'] = $container->service( function( $container ) {
+            return new AWPCP_MarkSoldListingTableAction(
+                $container['WordPress']
+            );
+        } );
     }
 }
