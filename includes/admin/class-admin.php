@@ -52,6 +52,7 @@ class AWPCP_Admin {
         $actions['unflag']          = $this->container['UnflagListingTableAction'];
         $actions['renew']           = $this->container['RenewListingTableAction'];
         $actions['make-featured']   = $this->container['MakeFeaturedListingTableAction'];
+        $actions['make-standard']   = $this->container['MakeStandardListingTableAction'];
 
         return $actions;
     }

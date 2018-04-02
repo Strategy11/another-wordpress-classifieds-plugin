@@ -5,6 +5,8 @@
 
 /**
  * Container configuration for common classes used on the Admin Dashboard.
+ *
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationInterface {
 
@@ -95,6 +97,13 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
 
         $container['MakeFeaturedListingTableAction'] = $container->service( function( $container ) {
             return new AWPCP_MakeFeaturedListingTableAction(
+                $container['ListingRenderer'],
+                $container['WordPress']
+            );
+        } );
+
+        $container['MakeStandardListingTableAction'] = $container->service( function( $container ) {
+            return new AWPCP_MakeStandardListingTableAction(
                 $container['ListingRenderer'],
                 $container['WordPress']
             );
