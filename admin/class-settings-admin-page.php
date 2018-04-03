@@ -34,6 +34,8 @@ class AWPCP_SettingsAdminPage {
 	public function __construct( $settings, $request ) {
 		$this->settings = $settings;
 		$this->request = $request;
+
+		$this->instantiate_auxiliar_pages();
 	}
 
     /**
@@ -47,8 +49,6 @@ class AWPCP_SettingsAdminPage {
      * Renders the page.
      */
 	public function dispatch() {
-		$this->instantiate_auxiliar_pages();
-
 		$groups = $this->settings->groups;
 		unset( $groups['private-settings'] );
 
