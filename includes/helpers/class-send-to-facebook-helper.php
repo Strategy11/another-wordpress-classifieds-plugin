@@ -1,5 +1,13 @@
 <?php
+/**
+ * @package AWPCP\Listings\Facebook
+ */
 
+// phpcs:disable
+
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 function awpcp_send_to_facebook_helper() {
     return new AWPCP_SendToFacebookHelper(
         AWPCP_Facebook::instance(),
@@ -30,15 +38,15 @@ class AWPCP_SendToFacebookHelper {
         $this->facebook_config->set_access_token( 'page_token' );
 
         if ( ! $this->facebook_config->is_page_set() ) {
-            throw new AWPCP_Exception( 'There is no page selected.' );
+            throw new AWPCP_NoFacebookObjectSelectedException( 'There is no page selected.' );
         }
 
         if ( $this->wordpress->get_post_meta( $listing->ID, '_awpcp_sent_to_facebook_page', true ) ) {
-            throw new AWPCP_Exception( __( 'The Ad was already sent to Facebook Page.', 'another-wordpress-classifieds-plugin' ) );
+            throw new AWPCP_ListingAlreadySharedException( __( 'The Ad was already sent to Facebook Page.', 'another-wordpress-classifieds-plugin' ) );
         }
 
         if ( $this->listing_renderer->is_disabled( $listing ) ) {
-            throw new AWPCP_Exception( __( "The Ad is currently disabled. If you share it, Facebook servers and users won't be able to access it.", 'another-wordpress-classifieds-plugin' ) );
+            throw new AWPCP_ListingDisabledException( __( "The Ad is currently disabled. If you share it, Facebook servers and users won't be able to access it.", 'another-wordpress-classifieds-plugin' ) );
         }
 
         $this->do_facebook_request( $listing,
@@ -48,6 +56,9 @@ class AWPCP_SendToFacebookHelper {
         $this->wordpress->update_post_meta( $listing->ID, '_awpcp_sent_to_facebook_page', true );
     }
 
+    /**
+     * @SuppressWarnings(PHPMD)
+     */
     private function do_facebook_request( $listing, $path, $method ) {
         $primary_image = $this->attachments->get_featured_attachment_of_type( 'image', array(
             'post_parent' => $listing->ID,
@@ -77,6 +88,8 @@ class AWPCP_SendToFacebookHelper {
             throw new AWPCP_Exception( $message );
         }
     }
+
+    // phpcs:disable PEAR.Functions
 
     /**
      * Users should choose Friends (or something more public), not Only Me, when the application
@@ -108,3 +121,5 @@ class AWPCP_SendToFacebookHelper {
         $this->wordpress->update_post_meta( $listing->ID, '_awpcp_sent_to_facebook_group', true );
     }
 }
+
+// phpcs:enable

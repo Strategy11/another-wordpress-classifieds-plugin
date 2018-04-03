@@ -1,12 +1,26 @@
 <?php
+/**
+ * @package AWPCP
+ */
+
+// phpcs:disable
 
 class AWPCP_Exception extends Exception {
 
     private $errors = null;
 
-    public function __construct( $message='', $errors=array() ) {
-        parent::__construct( $message );
-        $this->errors = $errors;
+    public function __construct( $message = '', $code = 0, $previous = null ) {
+        // TODO: Make sure the second parameter is no longer being used to pass
+        //       an array of errors and remove this if statement and its content.
+        if ( is_array( $code ) ) {
+            parent::__construct( $message );
+
+            $this->errors = $code;
+
+            return;
+        }
+
+        parent::__construct( $message, $code, $previous );
     }
 
     public function get_errors() {
@@ -47,6 +61,9 @@ class AWPCP_DatabaseException extends AWPCP_Exception {
         parent::__construct( $this->prepare_exception_message( $exception_message, $db_error ) );
     }
 
+    /**
+     * @SuppressWarnings(PHPMD)
+     */
     private function prepare_exception_message( $exception_message, $db_error ) {
         if ( ! empty( $db_error ) ) {
             return $exception_message . ' ' . $db_error;
@@ -99,3 +116,5 @@ class AWPCP_CSV_Importer_Exception extends Exception {
 
 class AWPCP_HTTP_Exception extends Exception {
 }
+
+// phpcs:enable

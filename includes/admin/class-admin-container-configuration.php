@@ -46,7 +46,7 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
                 $container['ListingsContentRenderer'],
                 awpcp_listing_renderer(),
                 $container['ListingsCollection'],
-                awpcp_template_renderer(),
+                $container['TemplateRenderer'],
                 $container['WordPress'],
                 awpcp_request()
             );
@@ -55,14 +55,14 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
         $container['EnableListingTableAction'] = $container->service( function( $container ) {
             return new AWPCP_EnableListingTableAction(
                 awpcp_listings_api(),
-                awpcp_listing_renderer()
+                $container['ListingRenderer']
             );
         } );
 
         $container['DisableListingTableAction'] = $container->service( function( $container ) {
             return new AWPCP_DisableListingTableAction(
                 awpcp_listings_api(),
-                awpcp_listing_renderer()
+                $container['ListingRenderer']
             );
         } );
 
@@ -125,6 +125,13 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
 
         $container['MarkUnsoldListingTableAction'] = $container->service( function( $container ) {
             return new AWPCP_MarkUnsoldListingTableAction(
+                $container['WordPress']
+            );
+        } );
+
+        $container['SendToFacebookPageListingTableAction'] = $container->service( function( $container ) {
+            return new AWPCP_SendToFacebookPageListingTableAction(
+                $container['SendListingToFacebookHelper'],
                 $container['WordPress']
             );
         } );
