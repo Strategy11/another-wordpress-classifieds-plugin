@@ -67,7 +67,11 @@ class AWPCP_DisableListingTableAction implements AWPCP_ListTableActionInterface 
      * @since 4.0.0
      */
     public function process_item( $post ) {
-        return $this->listings_logic->disable_listing( $post );
+        if ( $this->listings_logic->disable_listing( $post ) ) {
+            return 'success';
+        }
+
+        return 'error';
     }
 
     /**

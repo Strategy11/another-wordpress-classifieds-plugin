@@ -67,7 +67,11 @@ class AWPCP_EnableListingTableAction implements AWPCP_ListTableActionInterface {
      * @since 4.0.0
      */
     public function process_item( $post ) {
-        return $this->listings_logic->enable_listing( $post );
+        if ( $this->listings_logic->enable_listing( $post ) ) {
+            return 'success';
+        }
+
+        return 'error';
     }
 
     /**
