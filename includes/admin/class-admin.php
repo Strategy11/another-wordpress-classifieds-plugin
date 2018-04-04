@@ -44,19 +44,20 @@ class AWPCP_Admin {
      * @since 4.0.0
      */
     public function register_listings_table_actions( $actions ) {
-        $actions['quick-view']            = $this->container['QuickViewListingTableAction'];
-        $actions['enable']                = $this->container['EnableListingTableAction'];
-        $actions['disable']               = $this->container['DisableListingTableAction'];
-        $actions['send-access-key']       = $this->container['SendAccessKeyListingTableAction'];
-        $actions['spam']                  = $this->container['MarkAsSPAMListingTableAction'];
-        $actions['unflag']                = $this->container['UnflagListingTableAction'];
-        $actions['renew']                 = $this->container['RenewListingTableAction'];
-        $actions['make-featured']         = $this->container['MakeFeaturedListingTableAction'];
-        $actions['make-standard']         = $this->container['MakeStandardListingTableAction'];
-        $actions['mark-reviewed']         = $this->container['MarkReviewedListingTableAction'];
-        $actions['mark-sold']             = $this->container['MarkSoldListingTableAction'];
-        $actions['mark-unsold']           = $this->container['MarkUnsoldListingTableAction'];
-        $actions['send-to-facebook-page'] = $this->container['SendToFacebookPageListingTableAction'];
+        $actions['quick-view']             = $this->container['QuickViewListingTableAction'];
+        $actions['enable']                 = $this->container['EnableListingTableAction'];
+        $actions['disable']                = $this->container['DisableListingTableAction'];
+        $actions['send-access-key']        = $this->container['SendAccessKeyListingTableAction'];
+        $actions['spam']                   = $this->container['MarkAsSPAMListingTableAction'];
+        $actions['unflag']                 = $this->container['UnflagListingTableAction'];
+        $actions['renew']                  = $this->container['RenewListingTableAction'];
+        $actions['make-featured']          = $this->container['MakeFeaturedListingTableAction'];
+        $actions['make-standard']          = $this->container['MakeStandardListingTableAction'];
+        $actions['mark-reviewed']          = $this->container['MarkReviewedListingTableAction'];
+        $actions['mark-sold']              = $this->container['MarkSoldListingTableAction'];
+        $actions['mark-unsold']            = $this->container['MarkUnsoldListingTableAction'];
+        $actions['send-to-facebook-page']  = $this->container['SendToFacebookPageListingTableAction'];
+        $actions['send-to-facebook-group'] = $this->container['SendToFacebookGroupListingTableAction'];
 
         return $actions;
     }

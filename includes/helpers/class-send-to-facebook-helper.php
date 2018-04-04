@@ -89,8 +89,6 @@ class AWPCP_SendToFacebookHelper {
         }
     }
 
-    // phpcs:disable PEAR.Functions
-
     /**
      * Users should choose Friends (or something more public), not Only Me, when the application
      * request the permission, to avoid error:
@@ -98,25 +96,32 @@ class AWPCP_SendToFacebookHelper {
      * OAuthException: (#200) Insufficient permission to post to target on behalf of the viewer.
      *
      * http://stackoverflow.com/a/19653226/201354
+     *
+     * @param object $listing   An instance of WP_Post.
+     * @throws AWPCP_NoFacebookObjectSelectedException  If no group has been selected on the configuration.
+     * @throws AWPCP_ListingAlreadySharedException      If the listing was already shared to a Facebook group.
+     * @throws AWPCP_ListingDisabledException           If the listing is disabled.
      */
     public function send_listing_to_facebook_group( $listing ) {
         $this->facebook_config->set_access_token( 'user_token' );
 
         if ( ! $this->facebook_config->is_group_set() ) {
-            throw new AWPCP_Exception( 'There is no group selected.' );
+            throw new AWPCP_NoFacebookObjectSelectedException( 'There is no group selected.' );
         }
 
         if ( $this->wordpress->get_post_meta( $listing->ID, '_awpcp_sent_to_facebook_group', true ) ) {
-            throw new AWPCP_Exception( __( 'The Ad was already sent to Facebook Group.', 'another-wordpress-classifieds-plugin' ) );
+            throw new AWPCP_ListingAlreadySharedException( __( 'The Ad was already sent to Facebook Group.', 'another-wordpress-classifieds-plugin' ) );
         }
 
         if ( $this->listing_renderer->is_disabled( $listing ) ) {
-            throw new AWPCP_Exception( __( "The Ad is currently disabled. If you share it, Facebook servers and users won't be able to access it.", 'another-wordpress-classifieds-plugin' ) );
+            throw new AWPCP_ListingDisabledException( __( "The Ad is currently disabled. If you share it, Facebook servers and users won't be able to access it.", 'another-wordpress-classifieds-plugin' ) );
         }
 
-        $this->do_facebook_request( $listing,
-                                    '/' . $this->facebook_config->get( 'group_id' ) . '/feed',
-                                    'POST' );
+        $this->do_facebook_request(
+            $listing,
+            '/' . $this->facebook_config->get( 'group_id' ) . '/feed',
+            'POST'
+        );
 
         $this->wordpress->update_post_meta( $listing->ID, '_awpcp_sent_to_facebook_group', true );
     }

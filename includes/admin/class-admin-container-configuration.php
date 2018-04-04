@@ -135,5 +135,12 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
                 $container['WordPress']
             );
         } );
+
+        $container['SendToFacebookGroupListingTableAction'] = $container->service( function( $container ) {
+            return new AWPCP_SendToFacebookGroupListingTableAction(
+                $container['SendListingToFacebookHelper'],
+                $container['WordPress']
+            );
+        } );
     }
 }
