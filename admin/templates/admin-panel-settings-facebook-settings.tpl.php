@@ -158,6 +158,7 @@
 							<?php endforeach; ?>
 						<?php else: ?>
 							<p><?php _e( 'There are no Facebook groups available for you to select. Please make sure you are connected to the internet and have granted the Facebook application the correct permissions. Click "Diagnostics" if you are in doubt.', 'another-wordpress-classifieds-plugin' ); ?></p>
+                            <p><?php _e( 'As of April 4, 2018, all applications (new and existing) need to go through <a href="https://developers.facebook.com/docs/apps/review" rel="nofollow">App Review</a> in order to get access to the <a href="https://developers.facebook.com/docs/graph-api/reference/user/groups/" rel="nofollow">Groups API</a>. That means that unless you <a href="https://developers.facebook.com/docs/facebook-login/review" rel="nofollow">submit your app for review</a> (ask for the <code>user_managed_groups</code> permission), AWPCP won\'t be able to display the list of groups you manage and won\'t be able to post classifieds to those groups.', 'another-wordpress-classifieds-plugin' ); ?></p>
 						<?php endif; ?>
 					</td>
 				</tr>
