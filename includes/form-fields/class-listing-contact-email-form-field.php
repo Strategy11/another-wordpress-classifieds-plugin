@@ -78,10 +78,10 @@ class AWPCP_ListingContactEmailFormField extends AWPCP_FormField {
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function render( $value, $errors, $listing, $context ) {
-        $validators = array();
+        $validators = '';
 
         if ( $this->is_required() ) {
-            $validators[] = 'required';
+            $validators = 'required';
         }
 
         $params = array(
