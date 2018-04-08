@@ -1483,6 +1483,9 @@ class AWPCP {
 	}
 
 	public function enqueue_scripts() {
+        // TODO: enqueue this only when necessary
+        wp_enqueue_style( 'awpcp-admin-style' );
+
         if ( is_awpcp_admin_page() ) {
 			wp_enqueue_style( 'awpcp-admin-style' );
 			wp_enqueue_script('awpcp-admin-general');

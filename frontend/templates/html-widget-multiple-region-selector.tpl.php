@@ -1,10 +1,15 @@
-<div id="awpcp-multiple-region-selector-<?php echo esc_attr( $uuid ); ?>" class="awpcp-multiple-region-selector" uuid="<?php echo esc_attr( $uuid ); ?>">
+<?php
+/**
+ * @package AWPCP\Templates
+ */
+
+?><div id="awpcp-multiple-region-selector-<?php echo esc_attr( $uuid ); ?>" class="awpcp-multiple-region-selector" uuid="<?php echo esc_attr( $uuid ); ?>">
 
     <ul data-bind="foreach: regions">
         <li class="awpcp-region-selector">
             <ul class="awpcp-region-selector-partials" data-bind="foreach: partials">
-                <li class="awpcp-region-selector-partial" data-bind="visible: visible">
-                    <label data-bind="attr: { 'for': id }, text: label"></label>
+                <li class="awpcp-region-selector-partial awpcp-form-field awpcp-clearfix" data-bind="visible: visible">
+                    <label class="awpcp-form-field__label" data-bind="attr: { 'for': id }, text: label"></label>
 
                     <select class="multiple-region" data-bind="attr: { id: id }, options: options, optionsText: 'name', optionsValue: 'id', optionsCaption: caption, value: selectedOption, visible: showSelectField, disable: $root.options.disabled">
                     </select>
@@ -23,5 +28,5 @@
     </ul>
 
     <a class="button add-region" href="#" data-bind="click: onAddRegion, visible: showAddRegionButton, text: $root.getLocalizedText('add-region')"></a>
-    <?php echo awpcp_form_error('regions', $errors); ?>
+    <?php echo awpcp_form_error( 'regions', $errors ); // XSS Okay. ?>
 </div>

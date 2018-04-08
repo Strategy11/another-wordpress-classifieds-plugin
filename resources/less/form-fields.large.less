@@ -1,0 +1,31 @@
+/* Styles for the fields used to enter the classified details. */
+@label_width: 150px;
+
+.awpcp-form-field {
+    padding-left: @label_width;
+
+    .awpcp-form-field__label {
+        float: left;
+        line-height: 2em;
+        margin-left: -@label_width;
+        width: @label_width;
+    }
+
+    select {
+        min-width: 25%;
+        width: auto;
+    }
+}
+
+.awpcp-price-form-field__currency-symbol-container {
+}
+.awpcp-price-form-field__currency-symbol-container.--currency-symbol-on-left {
+    span {
+        top: 4px;
+    }
+}
+.awpcp-price-form-field__currency-symbol-container.--currency-symbol-on-right {
+    span {
+        top: 4px;
+    }
+}

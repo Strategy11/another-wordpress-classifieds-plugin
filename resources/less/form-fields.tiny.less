@@ -1,0 +1,59 @@
+/* Styles for the fields using to enter the classified details. */
+.awpcp-form-field {
+    margin: 1em 0;
+
+    label {
+        box-sizing: border-box;
+        display: block;
+    }
+
+    input[type="email"],
+    input[type="password"],
+    input[type="search"],
+    input[type="tel"],
+    input[type="text"],
+    input[type="url"],
+    textarea,
+    select {
+        box-sizing: border-box;
+        width: 100%;
+    }
+    input[type="checkbox"],
+    input[type="radio"] {
+        margin-bottom: 8px;
+    }
+}
+
+.awpcp-price-form-field__currency-symbol-container {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+}
+.awpcp-price-form-field__currency-symbol-container.--currency-symbol-on-left {
+    span {
+        position: absolute;
+        top: 8px;
+        left: 8px;
+    }
+
+    input {
+        padding-left: 20px;
+    }
+}
+.awpcp-price-form-field__currency-symbol-container.--currency-symbol-on-right {
+    span {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+    }
+
+    input {
+        padding-right: 20px;
+    }
+}
+
+.awpcp-choice-form-field {
+    .awpcp-form-field__label {
+        margin-bottom: 8px;
+    }
+}
