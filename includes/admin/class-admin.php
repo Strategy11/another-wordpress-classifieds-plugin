@@ -9,6 +9,11 @@
 class AWPCP_Admin {
 
     /**
+     * @var string
+     */
+    private $post_type;
+
+    /**
      * @var array
      */
     private $container;
@@ -19,11 +24,13 @@ class AWPCP_Admin {
     private $table_actions;
 
     /**
+     * @param string $post_type         A post type identifier.
      * @param array  $container         An instance of Container.
      * @param object $table_actions     An instance of List Table Actions.
      * @since 4.0.0
      */
-    public function __construct( $container, $table_actions ) {
+    public function __construct( $post_type, $container, $table_actions ) {
+        $this->post_type     = $post_type;
         $this->container     = $container;
         $this->table_actions = $table_actions;
     }
@@ -34,11 +41,14 @@ class AWPCP_Admin {
     public function admin_init() {
         global $typenow;
 
-        if ( $this->table_actions->get_post_type() === $typenow ) {
+        if ( $this->post_type === $typenow ) {
             add_action( 'admin_head-edit.php', array( $this->table_actions, 'admin_head' ), 10, 2 );
             add_action( 'post_row_actions', array( $this->table_actions, 'row_actions' ), 10, 2 );
-            add_filter( 'handle_bulk_actions-edit-' . $this->table_actions->get_post_type(), array( $this->table_actions, 'handle_action' ), 10, 3 );
+            add_filter( 'handle_bulk_actions-edit-' . $this->post_type, array( $this->table_actions, 'handle_action' ), 10, 3 );
         }
+
+        add_action( 'add_meta_boxes_' . $this->post_type, array( $this, 'add_classifieds_meta_boxes' ) );
+        add_action( 'save_post_' . $this->post_type, array( $this->container['ListingFieldsMetabox'], 'save' ), 10, 2 );
 
         add_filter( 'awpcp_list_table_actions_listings', array( $this, 'register_listings_table_actions' ) );
     }
@@ -64,5 +74,18 @@ class AWPCP_Admin {
         $actions['send-to-facebook-group'] = $this->container['SendToFacebookGroupListingTableAction'];
 
         return $actions;
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function add_classifieds_meta_boxes() {
+        add_meta_box(
+            'awpcp_classified_fields',
+            __( 'Classified Fields', 'another-wordpress-classifieds-plugin' ),
+            array( $this->container['ListingFieldsMetabox'], 'render' ),
+            $this->post_type,
+            'advanced'
+        );
     }
 }

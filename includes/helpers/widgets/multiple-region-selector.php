@@ -1,9 +1,20 @@
 <?php
+/**
+ * @package AWPCP\Helpers\Widgets
+ */
+
+// phpcs:disable Generic
+// phpcs:disable PEAR
+// phpcs:disable Squiz
+// phpcs:disable WordPress
 
 function awpcp_multiple_region_selector( $regions, $options ) {
     return awpcp_multiple_region_selector_with_template( $regions, $options, 'default' );
 }
 
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 function awpcp_multiple_region_selector_with_template( $regions, $options, $template_name ) {
     if ( $template_name == 'form-table' ) {
         $template = AWPCP_DIR . '/templates/admin/profile/contact-information-region-selector.tpl.php';
@@ -17,6 +28,9 @@ function awpcp_multiple_region_selector_with_template( $regions, $options, $temp
     return $selector;
 }
 
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 class AWPCP_MultipleRegionSelector {
 
     private $template = '';
@@ -24,33 +38,38 @@ class AWPCP_MultipleRegionSelector {
     public $options = array();
     public $regions = array();
 
+    /**
+     * @param array $regions    An array of already selected regions.
+     * @param array $options    An array of options.
+     */
     public function __construct( $regions, $options ) {
-
-        // we need at least one region, even if its empty
+        // We need at least one region, even if its empty.
         if ( empty( $regions ) ) {
-            $this->regions = array( array(
-                'country' => '',
-                'county' => '',
-                'state' => '',
-                'city' => ''
-            ) );
+            $this->regions = array(
+                array(
+                    'country' => '',
+                    'county'  => '',
+                    'state'   => '',
+                    'city'    => '',
+                ),
+            );
         } else {
             $this->regions = $regions;
         }
 
         $this->options = wp_parse_args( $options, array(
-            'maxRegions' => 1,
-            'showTextField' => false,
+            'maxRegions'              => 1,
+            'showTextField'           => false,
             'showExistingRegionsOnly' => get_awpcp_option( 'buildsearchdropdownlists' ),
-            'hierarchy' => array( 'country', 'county', 'state', 'city' ),
+            'hierarchy'               => array( 'country', 'county', 'state', 'city' ),
             // List of Enabled Fields
             //
             // Possible value is an array with country, state, city or county as keys. Set to true to
             // enable that field or false to disable it. All keys must be provided.
-            'enabled_fields' => awpcp_get_enabled_region_fields(),
+            'enabled_fields'          => awpcp_get_enabled_region_fields(),
         ) );
 
-        $this->options['maxRegions'] = max( $this->options['maxRegions'], count( $regions ) );
+        $this->options['maxRegions'] = max( $this->options['maxRegions'], count( $this->regions ) );
     }
 
     public function set_template( $template ) {

@@ -1,4 +1,11 @@
 <?php
+/**
+ * @package AWPCP\Helpers
+ */
+
+// phpcs:disable WordPress
+// phpcs:disable Squiz
+// phpcs:disable Generic
 
 /**
  * @since 3.0.2
@@ -7,6 +14,9 @@ function awpcp_request() {
     return new AWPCP_Request();
 }
 
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 class AWPCP_Request {
 
     /**
@@ -70,11 +80,16 @@ class AWPCP_Request {
     }
 
     /**
-     * @tested
+     * @param string $name      The name of the GET/POST parameter to get.
+     * @param mixed  $default   Value return if the parameter was not sent.
      * @since 3.0.2
      */
-    public function param( $name, $default='' ) {
-        return isset( $_REQUEST[ $name ] ) ? $_REQUEST[ $name ] : $default;
+    public function param( $name, $default = '' ) {
+        // phpcs:disable WordPress.VIP.ValidatedSanitizedInput.InputNotSanitized
+        // phpcs:disable WordPress.CSRF.NonceVerification.NoNonceVerification
+        return isset( $_REQUEST[ $name ] ) ? wp_unslash( $_REQUEST[ $name ] ) : $default; // Input var okay.
+        // phpcs:enable WordPress.VIP.ValidatedSanitizedInput.InputNotSanitized
+        // phpcs:enable WordPress.CSRF.NonceVerification.NoNonceVerification
     }
 
     /**
