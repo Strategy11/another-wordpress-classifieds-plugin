@@ -15,6 +15,10 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
      * @SuppressWarnings(PHPMD.StaticAccess)
      */
     public function modify( $container ) {
+        $container['Settings'] = $container->service( function( $container ) {
+            return awpcp_settings_api();
+        } );
+
         $container['EmailFactory'] = $container->service( function( $container ) {
             return new AWPCP_EmailFactory();
         } );
@@ -47,6 +51,12 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
                 awpcp_attachments_collection(),
                 $container['ListingRenderer'],
                 $container['WordPress']
+            );
+        } );
+
+        $container['FormFieldsValidator'] = $container->service( function( $container ) {
+            return new AWPCP_FormFieldsValidator(
+                $container['Settings']
             );
         } );
     }
