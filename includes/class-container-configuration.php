@@ -54,6 +54,13 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
             );
         } );
 
+        $container['FormFieldsData'] = $container->service( function( $container ) {
+            return new AWPCP_FormFieldsData(
+                $container['ListingRenderer'],
+                awpcp_request()
+            );
+        } );
+
         $container['FormFieldsValidator'] = $container->service( function( $container ) {
             return new AWPCP_FormFieldsValidator(
                 $container['Settings']
