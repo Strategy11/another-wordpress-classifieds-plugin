@@ -4,38 +4,37 @@
  */
 
 /**
- * Array-like list of row actions handlers for WP_List_Table.
+ * An array like object whose elements are loaded only if needed using a filter.
  */
-class AWPCP_ListTableActions implements ArrayAccess, IteratorAggregate {
+class AWPCP_FilteredArray implements ArrayAccess, IteratorAggregate {
 
     /**
      * @var string
      */
-    private $table;
+    private $filter_name;
 
     /**
-     * @var mixed
+     * @var array
      */
-    private $actions;
+    private $items;
 
     /**
-     * @param string $table     The identifier of the table whoose actions are
-     *                          going to be stored in this instance.
+     * @param string $filter_name   Name of the filter used to get this array's elements.
      * @since 4.0.0
      */
-    public function __construct( $table ) {
-        $this->table = $table;
+    public function __construct( $filter_name ) {
+        $this->filter_name = $filter_name;
     }
 
     /**
      * @since 4.0.0
      */
-    public function get_actions() {
-        if ( is_null( $this->actions ) ) {
-            $this->actions = apply_filters( "awpcp_list_table_actions_{$this->table}", array() );
+    private function get_items() {
+        if ( is_null( $this->items ) ) {
+            $this->items = apply_filters( $this->filter_name, array() );
         }
 
-        return $this->actions;
+        return $this->items;
     }
 
     /**
@@ -43,8 +42,8 @@ class AWPCP_ListTableActions implements ArrayAccess, IteratorAggregate {
      * @since 4.0.0
      */
     public function offsetExists( $offset ) {
-        $actions = $this->get_actions();
-        return isset( $actions[ $offset ] );
+        $items = $this->get_items();
+        return isset( $items[ $offset ] );
     }
 
     /**
@@ -52,8 +51,8 @@ class AWPCP_ListTableActions implements ArrayAccess, IteratorAggregate {
      * @since 4.0.0
      */
     public function offsetGet( $offset ) {
-        $actions = $this->get_actions();
-        return $actions[ $offset ];
+        $items = $this->get_items();
+        return $items[ $offset ];
     }
 
     /**
@@ -77,6 +76,6 @@ class AWPCP_ListTableActions implements ArrayAccess, IteratorAggregate {
      * @since 4.0.0
      */
     public function getIterator() {
-        return new ArrayIterator( $this->get_actions() );
+        return new ArrayIterator( $this->get_items() );
     }
 }
