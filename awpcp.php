@@ -89,6 +89,7 @@ require_once( AWPCP_DIR . "/includes/functions/deprecated.php" );
 require( AWPCP_DIR . '/includes/functions/file-upload.php' );
 require_once( AWPCP_DIR . "/includes/functions/format.php" );
 require_once( AWPCP_DIR . "/includes/functions/hooks.php" );
+require_once( AWPCP_DIR . "/includes/functions/l10n.php" );
 require_once( AWPCP_DIR . "/includes/functions/listings.php" );
 require_once( AWPCP_DIR . "/includes/functions/notifications.php" );
 require_once( AWPCP_DIR . "/includes/functions/payments.php" );
@@ -1307,6 +1308,18 @@ class AWPCP {
         );
 
         wp_register_script( 'awpcp-admin', "{$js}/awpcp-admin.min.js", array( 'awpcp', 'awpcp-jquery-validate' ), $awpcp_db_version, true );
+
+        wp_register_script(
+            'awpcp-admin-edit-post',
+            "{$js}/admin/edit-post.min.js",
+            array(
+                'awpcp',
+                'awpcp-jquery-validate',
+                'jquery-ui-datepicker',
+            ),
+            $awpcp_db_version,
+            true
+        );
 
 		wp_register_script( 'awpcp-billing-form', "{$js}/awpcp-billing-form.js", array( 'awpcp' ), $awpcp_db_version, true );
 		wp_register_script( 'awpcp-multiple-region-selector', "{$js}/awpcp-multiple-region-selector.js", array( 'awpcp', 'awpcp-jquery-validate' ), $awpcp_db_version, true );

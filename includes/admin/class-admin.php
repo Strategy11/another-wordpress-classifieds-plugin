@@ -87,5 +87,7 @@ class AWPCP_Admin {
             $this->post_type,
             'advanced'
         );
+
+        add_action( 'admin_enqueue_scripts', array( $this->container['ListingFieldsMetabox'], 'enqueue_scripts' ) );
     }
 }

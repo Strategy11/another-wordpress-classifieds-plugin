@@ -7,6 +7,9 @@
         display: block;
     }
 
+    input, select {
+        margin: 0;
+    }
     input[type="email"],
     input[type="password"],
     input[type="search"],
@@ -21,6 +24,16 @@
     input[type="checkbox"],
     input[type="radio"] {
         margin-bottom: 8px;
+    }
+
+    .error {
+        background-color: @error-message-background-color;
+        border-color: @error-message-border-color;
+        color: @error-message-font-color;
+    }
+    label.error {
+        padding: 6px 8px;
+        margin: 0;
     }
 }
 

@@ -58,6 +58,17 @@ class AWPCP_ListingFieldsMetabox {
     }
 
     /**
+     * @since 4.0.0
+     */
+    public function enqueue_scripts() {
+        wp_enqueue_style( 'awpcp-jquery-ui' );
+        wp_enqueue_script( 'awpcp-admin-edit-post' );
+
+        // TODO: Inject JavaScript as a constructor parameter.
+        awpcp()->js->localize( 'edit-post-form-fields', awpcp_listing_form_fields_validation_messages() );
+    }
+
+    /**
      * @param object $post  An instance of WP_Post.
      * @since 4.0.0
      */

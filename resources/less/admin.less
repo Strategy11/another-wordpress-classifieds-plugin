@@ -1,9 +1,3 @@
-@import 'tiny.less';
-
-@media (min-width: 1024px) {
-    @import 'large.less';
-}
-
 @import 'legacy/admin.less';
 
 @import 'common/spinner.less';
@@ -14,6 +8,12 @@
 @import 'colors.less';
 @import 'icons.less';
 @import 'messages.less';
+
+@import 'form-fields.tiny.less';
+
+@media (min-width: 1024px) {
+    @import 'form-fields.large.less';
+}
 
 @import 'admin/layout.less';
 @import 'admin/common.less';

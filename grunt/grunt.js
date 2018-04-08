@@ -8,6 +8,7 @@ module.exports = function(grunt) {
     path: 'another-wordpress-classifieds-plugin/resources',
     concat: {
       files: {
+        '<%= path.awpcp %>/js/admin/edit-post.src.js': '<%= path.awpcp %>/js/admin/edit-post.js',
         '<%= path.awpcp %>/js/awpcp.src.js': [
           '<%= path.awpcp %>/js/legacy.js',
           '<%= path.awpcp %>/js/awpcp.js',
@@ -61,8 +62,6 @@ module.exports = function(grunt) {
     },
     less: {
       files: {
-        '<%= path.awpcp %>/less/tiny.less': '<%= path.awpcp %>/less/**/*.tiny.less',
-        '<%= path.awpcp %>/less/large.less': '<%= path.awpcp %>/less/**/*.large.less',
         '<%= path.awpcp %>/css/awpcpstyle.css': '<%= path.awpcp %>/less/frontend.less',
         '<%= path.awpcp %>/css/awpcpstyle-ie-6.css': '<%= path.awpcp %>/less/frontend-ie6.less',
         '<%= path.awpcp %>/css/awpcpstyle-lte-ie-7.css': '<%= path.awpcp %>/less/frontend-lte-ie-7.less',

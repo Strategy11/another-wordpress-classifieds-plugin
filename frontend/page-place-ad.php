@@ -1,4 +1,13 @@
 <?php
+/**
+ * @package AWPCP\Frontend
+ */
+
+// phpcs:disable Generic
+// phpcs:disable PEAR
+// phpcs:disable PSR2
+// phpcs:disable Squiz
+// phpcs:disable WordPress
 
 require_once(AWPCP_DIR . '/includes/helpers/page.php');
 
@@ -22,6 +31,7 @@ function awpcp_place_listing_page() {
 
 /**
  * @since  2.1.4
+ * @SuppressWarnings(PHPMD)
  */
 class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
@@ -128,20 +138,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             'payment_term' => __( 'Please select a payment term.', 'another-wordpress-classifieds-plugin' ),
         ) );
 
-        $awpcp->js->localize( 'page-place-ad-details', array(
-            'ad_title' => __( 'Please type in a title for your Ad.', 'another-wordpress-classifieds-plugin' ),
-            'websiteurl' => __( 'Please type in a valid URL.', 'another-wordpress-classifieds-plugin' ),
-            'ad_contact_name' => __( 'Please type in the name of the person to contact.', 'another-wordpress-classifieds-plugin' ),
-            'ad_contact_email' => __( 'Please type in the email address of the person to contact.', 'another-wordpress-classifieds-plugin' ),
-            'ad_contact_phone' => __( 'Please type in the phone number of the person to contact.', 'another-wordpress-classifieds-plugin' ),
-            'ad_country' => __( 'The country is a required field.', 'another-wordpress-classifieds-plugin' ),
-            'ad_county_village' => __( 'The county is a required field.', 'another-wordpress-classifieds-plugin' ),
-            'ad_state' => __( 'The state is a required field.', 'another-wordpress-classifieds-plugin' ),
-            'ad_city' => __( 'The city is a required field.', 'another-wordpress-classifieds-plugin' ),
-            'ad_item_price' => __( 'Please type in a price for your Ad.', 'another-wordpress-classifieds-plugin' ),
-            'ad_details' => __( 'Please type in the details of your Ad.', 'another-wordpress-classifieds-plugin' ),
-            'captcha' => __( 'Please type in the result of the operation.', 'another-wordpress-classifieds-plugin' ),
-        ) );
+        $awpcp->js->localize( 'page-place-ad-details', awpcp_listing_form_fields_validation_messages() );
 
         return $this->_dispatch( $default );
     }
@@ -1506,3 +1503,5 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         return $this->render($template, $params);
     }
 }
+
+// phpcs:enable
