@@ -1,4 +1,7 @@
 <?php
+/**
+ * @package AWPCP\Listings
+ */
 
 /**
  * @since 3.3
@@ -14,27 +17,57 @@ function awpcp_listings_collection() {
 
 /**
  * @since 3.2.2
+ *
+ * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
+ * @SuppressWarnings(PHPMD.TooManyPublicMethods)
+ * @SuppressWarnings(PHPMD.TooManyMethods)
  */
 class AWPCP_ListingsCollection {
 
+    /**
+     * @var object
+     */
     private $finder;
+
+    /**
+     * @var object
+     */
     private $settings;
+
+    /**
+     * @var object
+     */
     private $wordpress;
+
+    /**
+     * @var object
+     */
     private $db;
 
+    /**
+     * Constructor.
+     *
+     * @param object $finder        An instance of Listing Finder.
+     * @param object $settings      An instance of Settings.
+     * @param object $wordpress     An instance of WordPress.
+     * @param object $db            An instance of wpbd.
+     */
     public function __construct( $finder, $settings, $wordpress, $db ) {
-        $this->finder = $finder;
-        $this->settings = $settings;
+        $this->finder    = $finder;
+        $this->settings  = $settings;
         $this->wordpress = $wordpress;
-        $this->db = $db;
+        $this->db        = $db;
     }
 
     /**
+     * @param int $listing_id   A listing ID.
+     * @throws AWPCP_Exception  If no listing is found with the specified ID.
      * @since feature/1112 works with custom post types.
      * @since 3.3
      */
     public function get( $listing_id ) {
         if ( $listing_id <= 0 ) {
+            /* translators: %d is the ID used to search. */
             $message = __( 'The listing ID must be a positive integer, %d was given.', 'another-wordpress-classifieds-plugin' );
             throw new AWPCP_Exception( sprintf( $message, $listing_id ) );
         }
@@ -42,6 +75,7 @@ class AWPCP_ListingsCollection {
         $listing = $this->wordpress->get_post( $listing_id );
 
         if ( empty( $listing ) ) {
+            /* translators: %d is the ID used to search. */
             $message = __( 'No Listing was found with id: %d.', 'another-wordpress-classifieds-plugin' );
             throw new AWPCP_Exception( sprintf( $message, $listing_id ) );
         }
@@ -53,19 +87,19 @@ class AWPCP_ListingsCollection {
      * We need to support OLD listing's IDs for a while, in order to
      * maintain old URLs working.
      *
-     * @since feature/1112
+     * @param int $listing_id   A previous listing ID.
+     * @throws AWPCP_Exception  If no listing is found with the specified ID.
+     * @since 4.0.0
      */
     public function get_listing_with_old_id( $listing_id ) {
-        $listings = $this->find_listings( array(
-            'meta_query' => array(
-                array(
-                    'key' => '_awpcp_old_id',
-                    'value' => $listing_id,
-                ),
+        $listings = $this->query_posts( array(
+            'classifieds_query' => array(
+                'previous_id' => $listing_id,
             ),
         ) );
 
         if ( empty( $listings ) ) {
+            /* translators: %d is the ID used to search. */
             $message = __( 'No Listing was found with old id: %d.', 'another-wordpress-classifieds-plugin' );
             throw new AWPCP_Exception( sprintf( $message, $listing_id ) );
         }
@@ -74,144 +108,315 @@ class AWPCP_ListingsCollection {
     }
 
     /**
+     * @param array $identifiers    An array of classified IDs.
      * @since 3.3
+     * @since 4.0.0     Uses Classifieds Query Integration.
      */
     public function find_all_by_id( $identifiers ) {
         $identifiers = array_filter( array_map( 'intval', $identifiers ) );
 
-        if ( count( $identifiers ) > 0 ) {
-            return $this->find_listings( array( 'post__in' => $identifiers ) );
-        } else {
+        if ( empty( $identifiers ) ) {
             return array();
         }
+
+        return $this->query_posts( array( 'post__in' => $identifiers ) );
     }
 
     /**
-     * @since 3.3
-     * @since feature/1112  Modified to work with custom post types.
-     */
-    public function find_valid_listings( $query = array() ) {
-        return $this->find_successfully_paid_listings( $this->make_valid_listings_query( $query ) );
-    }
-
-    private function make_valid_listings_query( $query ) {
-        $query['meta_query'][] = array(
-            'key' => '_awpcp_verified',
-            'value' => true,
-            'compare' => '=',
-            'type' => 'BINARY',
-        );
-
-        return $query;
-    }
-
-    /**
-     * @since 3.3
-     */
-    public function count_valid_listings( $query = array() ) {
-        return $this->count_successfully_paid_listings( $this->make_valid_listings_query( $query ) );
-    }
-
-    /**
-     * @since feature/1112
+     * @param array $query  An array of query vars.
+     * @since 4.0.0
      */
     public function find_listings( $query = array() ) {
-        $query = $this->prepare_listings_query( $query );
         $query = $this->add_orderby_query_parameters( $query );
 
-        $posts_query = $this->execute_query( apply_filters( 'awpcp-find-listings-query', $query ) );
+        // phpcs:disable
+        $posts = $this->query_posts( apply_filters( 'awpcp-find-listings-query', $query ) );
 
-        return apply_filters( 'awpcp-find-listings', $posts_query->posts, $query );
+        return apply_filters( 'awpcp-find-listings', $posts, $query );
+        // phpcs:enable
     }
 
-    private function prepare_listings_query( $query ) {
-        $query = $this->set_default_parameters( $query );
-        $query = $this->clean_query_parameters( $query );
-        $query = $this->add_conditions_for_custom_query_parameters( $query );
+    /**
+     * @param array $query_vars     An array of query vars.
+     * @since 4.0.0
+     */
+    private function query_posts( $query_vars ) {
+        if ( ! isset( $query_vars['classifieds_query'] ) ) {
+            $query_vars['classifieds_query'] = array();
+        }
 
-        return $query;
+        $posts = $this->wordpress->create_posts_query( $query_vars );
+
+        return $posts->posts;
     }
 
-    private function set_default_parameters( $query ) {
-        return wp_parse_args( $query, array(
-            'context' => 'default',
-            'post_type' => AWPCP_LISTING_POST_TYPE,
-            'post_status' => array(  'disabled', 'draft', 'pending', 'publish' ),
-            'order' => 'DESC',
-        ) );
+    /**
+     * @param array $query  An array of query vars.
+     * @since 3.3
+     */
+    public function count_listings( $query = array() ) {
+        // phpcs:disable
+        return $this->count_posts( apply_filters( 'awpcp-count-listings-query', $query ) );
+        // phpcs:enable
     }
 
-    private function clean_query_parameters( $query ) {
-        $query = wp_parse_args( $query, array( 'context' => 'default' ) );
-        $query = $this->normalize_regions_query( $query );
-
-        $numeric_value_required = array( 'category_id', 'category', 'category_with_no_children', 'category__not_in' );
-
-        foreach ( $numeric_value_required as $field_name ) {
-            if ( isset( $query[ $field_name ] ) && is_array( $query[ $field_name ] ) ) {
-                $query[ $field_name ] = array_map( 'intval', $query[ $field_name ] );
-            } else if ( isset( $query[ $field_name ] ) ) {
-                $query[ $field_name ] = intval( $query[ $field_name ] );
-            }
+    /**
+     * @param array $query_vars     An array of query vars.
+     * @since 4.0.0     Uses Classifieds Query Integration.
+     */
+    private function count_posts( $query_vars ) {
+        if ( ! isset( $query_vars['classifieds_query'] ) ) {
+            $query_vars['classifieds_query'] = array();
         }
 
-        $not_allowed_empty_or_zero = array( 'category_id', 'category', 'category_with_no_children', 'category__not_in', 'regions' );
+        $posts = $this->wordpress->create_posts_query( $query_vars );
 
-        foreach ( $not_allowed_empty_or_zero as $field_name ) {
-            if ( isset( $query[ $field_name ] ) && empty( $query[ $field_name ] ) ) {
-                unset( $query[ $field_name ] );
-            }
-        }
-
-        $must_be_arrays = array( 'context' );
-
-        foreach ( $must_be_arrays as $field_name ) {
-            if ( isset( $query[ $field_name ] ) && ! is_array( $query[ $field_name ] ) ) {
-                $query[ $field_name ] = array( $query[ $field_name ] );
-            }
-        }
-
-        return $query;
+        return $posts->found_posts;
     }
 
-    private function normalize_regions_query( $query ) {
-        $regions_query = shortcode_atts( array(
-            'region' => '',
-            'country' => '',
-            'state' => '',
-            'city' => '',
-            'county' => '',
-        ), $query );
+    /**
+     * @param array $query_vars     An array of query vars.
+     * @since 3.3
+     * @since 4.0.0     Uses Classifieds Query Integration.
+     */
+    public function find_valid_listings( $query_vars = array() ) {
+        $query_vars['classifieds_query']['is_valid'] = true;
 
-        // search for a listing associated with a Region (of any kind) whose
-        // name matches the given search value.
-        if ( isset( $query['region'] ) ) {
-            $query['regions'][] = array( 'country' => $regions_query['region'] );
-            $query['regions'][] = array( 'state' => $regions_query['region'] );
-            $query['regions'][] = array( 'city' => $regions_query['region'] );
-            $query['regions'][] = array( 'county' => $regions_query['region'] );
-        }
-
-        // search for a listing associated with region hierarchy that matches
-        // the given search values.
-        $query['regions'][] = array(
-            'country' => empty( $regions_query['country'] ) ? '' : array( '=', $regions_query['country'] ),
-            'state' => empty( $regions_query['state'] ) ? '' : array( '=', $regions_query['state'] ),
-            'city' => empty( $regions_query['city'] ) ? '' : array( '=', $regions_query['city'] ),
-            'county' => empty( $regions_query['county'] ) ? '' : array( '=', $regions_query['county'] ),
-        );
-
-        $query['regions'] = awpcp_array_filter_recursive( $query['regions'] );
-
-        foreach ( array_keys( $regions_query ) as $field_name ) {
-            if ( isset( $query[ $field_name ] ) ) {
-                unset( $query[ $field_name ] );
-            }
-        }
-
-        return $query;
+        return $this->query_posts( $query_vars );
     }
 
+    /**
+     * @param array $query_vars     An array of query vars.
+     * @since 3.3
+     * @since 4.0.0     Uses Classifieds Query Integration.
+     */
+    public function count_valid_listings( $query_vars = array() ) {
+        $query_vars['classifieds_query']['is_valid'] = true;
+
+        return $this->count_posts( $query_vars );
+    }
+
+    /**
+     * @param array $query_vars     An array of query vars.
+     * @since 4.0.0
+     */
+    public function find_expired_listings( $query_vars = array() ) {
+        $query_vars['classifieds_query']['is_expired'] = true;
+
+        return $this->query_posts( $query_vars );
+    }
+
+    /**
+     * @param array $query_vars     An array of query vars.
+     * @since 4.0.0
+     */
+    public function count_expired_listings( $query_vars = array() ) {
+        $query_vars['classifieds_query']['is_expired'] = true;
+
+        return $this->count_posts( $query_vars );
+    }
+
+    /**
+     * @param array $query_vars     The full listr of query vars.
+     * @since 3.3
+     * @since 4.0.0     Uses Classifieds Query Integration.
+     */
+    public function find_enabled_listings( $query_vars = array() ) {
+        $query_vars['classifieds_query']['is_enabled'] = true;
+
+        return $this->query_posts( $query_vars );
+    }
+
+    /**
+     * @param array $query_vars     The full listr of query vars.
+     * @since 3.3
+     * @since 4.0.0     Uses Classifieds Query Integration.
+     */
+    public function count_enabled_listings( $query_vars = array() ) {
+        $query_vars['classifieds_query']['is_enabled'] = true;
+
+        return $this->count_posts( $query_vars );
+    }
+
+    /**
+     * @param array $query_vars     The full listr of query vars.
+     * @since 3.3
+     * @since 4.0.0     Uses Classifieds Query Integration.
+     */
+    public function find_disabled_listings( $query_vars = array() ) {
+        $query_vars['classifieds_query']['is_disabled'] = true;
+
+        return $this->query_posts( $query_vars );
+    }
+
+    /**
+     * @param array $query_vars     The full listr of query vars.
+     * @since 4.0.0     Uses Classifieds Query Integration.
+     */
+    public function count_disabled_listings( $query_vars = array() ) {
+        $query_vars['classifieds_query']['is_disabled'] = true;
+
+        return $this->count_posts( $query_vars );
+    }
+
+    /**
+     * @param array $query_vars     The full listr of query vars.
+     * @since 3.3
+     * @since 4.0.0     Uses Classifieds Query Integration.
+     */
+    public function find_listings_about_to_expire( $query_vars = array() ) {
+        $query_vars['classifieds_query']['is_about_to_expire'] = true;
+
+        return $this->query_posts( $query_vars );
+    }
+
+    /**
+     * @param array $query_vars     The full listr of query vars.
+     * @since 3.3
+     * @since 4.0.0     Uses Classifieds Query Integration.
+     */
+    public function find_listings_awaiting_approval( $query_vars = array() ) {
+        $query_vars['classifieds_query']['is_awaiting_approval'] = true;
+
+        return $this->query_posts( $query_vars );
+    }
+
+    /**
+     * @param array $query_vars     The full listr of query vars.
+     * @since 4.0.0
+     */
+    public function count_listings_awaiting_approval( $query_vars = array() ) {
+        $query_vars['classifieds_query']['is_awaiting_approval'] = true;
+
+        return $this->count_posts( $query_vars );
+    }
+
+    /**
+     * @param array $query_vars     The full listr of query vars.
+     * @since 3.3
+     * @since 4.0.0     Uses Classifieds Query Integration.
+     */
+    public function find_successfully_paid_listings( $query_vars = array() ) {
+        $query_vars['classifieds_query']['is_successfully_paid'] = true;
+
+        return $this->query_posts( $query_vars );
+    }
+
+    /**
+     * @param array $query_vars     The full listr of query vars.
+     * @since 4.0.0     Uses Classifieds Query Integration.
+     */
+    public function count_successfully_paid_listings( $query_vars = array() ) {
+        $query_vars['classifieds_query']['is_successfully_paid'] = true;
+
+        return $this->count_posts( $query_vars );
+    }
+
+    /**
+     * @param array $query_vars     The full listr of query vars.
+     * @since 3.3
+     * @since 4.0.0     Uses Classifieds Query Integration.
+     */
+    public function find_listings_awaiting_verification( $query_vars = array() ) {
+        $query_vars['classifieds_query']['is_awaiting_verification'] = true;
+
+        return $this->query_posts( $query_vars );
+    }
+
+    /**
+     * @param int   $user_id        The ID of a user.
+     * @param array $query_vars     The full listr of query vars.
+     * @since 3.3
+     * @since 4.0.0     Uses Classifieds Query Integration.
+     */
+    public function find_user_listings( $user_id, $query_vars = array() ) {
+        $query_vars['author'] = $user_id;
+
+        return $this->find_valid_listings( $query_vars );
+    }
+
+    /**
+     * @param int   $user_id        The ID of a user.
+     * @param array $query_vars     The full listr of query vars.
+     * @since 3.3
+     * @since 4.0.0     Uses Classifieds Query Integration.
+     */
+    public function count_user_listings( $user_id, $query_vars = array() ) {
+        $query_vars['author'] = $user_id;
+
+        return $this->count_valid_listings( $query_vars );
+    }
+
+    /**
+     * @param int   $user_id        The ID of a user.
+     * @param array $query_vars     The full listr of query vars.
+     * @since 3.3
+     * @since 4.0.0     Uses Classifieds Query Integration.
+     */
+    public function find_user_enabled_listings( $user_id, $query_vars = array() ) {
+        $query_vars['author'] = $user_id;
+
+        return $this->find_enabled_listings( $query_vars );
+    }
+
+    /**
+     * @param int   $user_id        The ID of a user.
+     * @param array $query_vars     The full listr of query vars.
+     * @since 3.3
+     * @since 4.0.0     Uses Classifieds Query Integration.
+     */
+    public function count_user_enabled_listings( $user_id, $query_vars = array() ) {
+        $query_vars['author'] = $user_id;
+
+        return $this->count_enabled_listings( $query_vars );
+    }
+
+    /**
+     * @param int   $user_id        The ID of a user.
+     * @param array $query_vars     The full listr of query vars.
+     * @since 3.3
+     * @since 4.0.0     Uses Classifieds Query Integration.
+     */
+    public function find_user_disabled_listings( $user_id, $query_vars = array() ) {
+        $query_vars['author'] = $user_id;
+
+        return $this->find_disabled_listings( $query_vars );
+    }
+
+    /**
+     * @param int   $user_id        The ID of a user.
+     * @param array $query_vars     The full listr of query vars.
+     * @since 3.3
+     * @since 4.0.0     Uses Classifieds Query Integration.
+     */
+    public function count_user_disabled_listings( $user_id, $query_vars = array() ) {
+        $query_vars['author'] = $user_id;
+
+        return $this->count_disabled_listings( $query_vars );
+    }
+
+    /**
+     * @param int   $category_id    The ID of a category.
+     * @param array $query_vars     The full listr of query vars.
+     * @since 3.3.2
+     * @since 4.0.0     Added $query_vars parameter.
+     * @since 4.0.0     Use Classifieds Query Integration.
+     */
+    public function count_enabled_listings_in_category( $category_id, $query_vars = array() ) {
+        $query_vars['classifieds_query']['category'] = intval( $category_id );
+
+        return $this->count_enabled_listings( $query_vars );
+    }
+
+    /**
+     * -------------------------------------------------------------------------
+     */
+
+    // phpcs:disable
+
+    /**
+     * @SuppressWarnings(PHPMD)
+     */
     private function add_orderby_query_parameters( $query ) {
 		if ( isset( $query['orderby'] ) ) {
 			$orderby = $query['_orderby'] = $query['orderby'];
@@ -436,6 +641,12 @@ class AWPCP_ListingsCollection {
         return $query;
     }
 
+    // phpcs:enable
+
+    /**
+     * @param array $query  An array of query vars.
+     * @SuppressWarnings(PHPMD)
+     */
     private function execute_query( $query ) {
         if ( isset( $query['_meta_order'] ) ) {
             add_filter( 'posts_clauses', array( $this, 'add_orderby_multiple_meta_keys_clause' ), 10, 2 );
@@ -449,11 +660,15 @@ class AWPCP_ListingsCollection {
             add_filter( 'posts_clauses', array( $this, 'add_regions_clauses' ), 10, 2 );
         }
 
+        // phpcs:disable
         do_action( 'awpcp-before-execute-listings-query', $query );
+        // phpcs:enable
 
         $posts_query = $this->wordpress->create_posts_query( $query );
 
+        // phpcs:disable
         do_action( 'awpcp-after-execute-listings-query', $query );
+        // phpcs:enable
 
         if ( isset( $query['regions'] ) ) {
             remove_filter( 'posts_clauses', array( $this, 'add_regions_clauses' ), 10, 2 );
@@ -475,8 +690,13 @@ class AWPCP_ListingsCollection {
      *
      * See http://www.billerickson.net/wp-query-sort-by-meta/. This function
      * won't be necessary when WP 4.2 becomes the minimum supported version.
+     *
+     * @param array  $clauses       An array of SQL clauses.
+     * @param object $query_object  An instance of WP_Query.
+     *
+     * @SuppressWarnings(PHPMD)
      */
-    public function add_orderby_multiple_meta_keys_clause( $clauses, $query_object) {
+    public function add_orderby_multiple_meta_keys_clause( $clauses, $query_object ) {
         $orderby = array();
 
         foreach ( $query_object->query['_meta_order'] as $meta_key => $order ) {
@@ -484,7 +704,7 @@ class AWPCP_ListingsCollection {
 
             if ( preg_match( $regexp, $clauses['join'], $matches ) ) {
                 $table_name = $matches[1];
-            } else if ( preg_match( $regexp, $clauses['where'], $matches ) ) {
+            } elseif ( preg_match( $regexp, $clauses['where'], $matches ) ) {
                 $table_name = $matches[1];
             } else {
                 continue;
@@ -502,12 +722,16 @@ class AWPCP_ListingsCollection {
         return $clauses;
     }
 
+    /**
+     * @param array  $clauses       An array of SQL clauses.
+     * @param object $query_object  An instance of WP_Query.
+     */
     public function add_orderby_unsupported_properties_clause( $clauses, $query_object ) {
         if ( ! preg_match( '/(\w+)\.menu_order DESC/', $clauses['orderby'], $matches ) ) {
             return $clauses;
         }
 
-        $orderby = array();
+        $orderby     = array();
         $posts_table = $matches[1];
 
         foreach ( $query_object->query['_custom_order'] as $property => $order ) {
@@ -524,8 +748,13 @@ class AWPCP_ListingsCollection {
         return $clauses;
     }
 
+    // phpcs:disable
+
     /**
      * TODO: remove regions from query if all search values are empty.
+     *
+     * @param array  $clauses       An array of SQL clauses.
+     * @param object $query_object  An instance of WP_Query.
      */
     public function add_regions_clauses( $clauses, $query_object ) {
         $regions_conditions = array();
@@ -537,7 +766,7 @@ class AWPCP_ListingsCollection {
                 // add support for exact search, passing a search values defined as array( '=', <region-name> ).
                 if ( is_array( $search ) && count( $search ) == 2 && $search[0] == '=' ) {
                     $region_conditions[] = $this->db->prepare( "listing_regions.`$field` = %s", trim( $search[1] ) );
-                } else if ( ! is_array( $search ) ) {
+                } elseif ( ! is_array( $search ) ) {
                     $region_conditions[] = $this->db->prepare( "listing_regions.`$field` LIKE '%%%s%%'", trim( $search ) );
                 }
             }
@@ -545,415 +774,43 @@ class AWPCP_ListingsCollection {
             $regions_conditions[] = '( ' . implode( ' AND ', $region_conditions ) . ' )';
         }
 
-        $clauses['join'] .= ' INNER JOIN ' . AWPCP_TABLE_AD_REGIONS . ' AS listing_regions ON (listing_regions.ad_id = ' . $this->db->posts . '.ID)';
+        $clauses['join']  .= ' INNER JOIN ' . AWPCP_TABLE_AD_REGIONS . ' AS listing_regions ON (listing_regions.ad_id = ' . $this->db->posts . '.ID)';
         $clauses['where'] .= ' AND ( ' . implode( ' OR ', $regions_conditions ) . ' )';
 
         return $clauses;
     }
 
+    // phpcs:enable
+
     /**
-     * TODO: Add support for verified, have_media_awaiting_approval.
-     * TODO: What other parameters are missing?
-     * TODO: Remove unused methods.
+     * @param array $query_vars     An array of query vars.
+     * @deprecated 4.0.0    Use ListingsCollection::count_expired_listings() instead.
      */
-    private function add_conditions_for_custom_query_parameters( $query ) {
-        $query = $this->add_category_condition( $query );
-        $query = $this->add_contact_condition( $query );
-        $query = $this->add_price_condition( $query );
-        $query = $this->add_payment_status_condition( $query );
-        $query = $this->add_payment_email_condition( $query );
-        $query = $this->add_dates_condition( $query );
-        // $query = $this->add_media_conditions( $query );
-
-        return $query;
-    }
-
-    private function add_category_condition( $query ) {
-        if ( isset( $query['category_id'] ) ) {
-            $query['tax_query'][] = array(
-                'taxonomy' => AWPCP_CATEGORY_TAXONOMY,
-                'field' => 'term_id',
-                'terms' => $query['category_id'],
-                'include_children' => true,
-            );
-            unset( $query['category_id'] );
-        }
-
-        if ( isset( $query['category_with_no_children'] ) ) {
-            $query['tax_query'][] = array(
-                'taxonomy' => AWPCP_CATEGORY_TAXONOMY,
-                'field' => 'term_id',
-                'terms' => $query['category_id'],
-                'include_children' => true,
-            );
-            unset( $query['category_with_no_children'] );
-        }
-
-        if ( isset( $query['category__not_in'] ) ) {
-            $query['tax_query'][] = array(
-                'taxonomy' => AWPCP_CATEGORY_TAXONOMY,
-                'field' => 'term_id',
-                'terms' => $query['category__not_in'],
-                'include_children' => true,
-            );
-            unset( $query['category__not_in'] );
-        }
-
-        return $query;
-    }
-
-    private function add_contact_condition( $query ) {
-        if ( isset( $query['contact_name'] ) && ! empty( $query['contact_name'] ) ) {
-            $query['meta_query'][] = array(
-                'key' => '_awpcp_contact_name',
-                'value' => $query['contact_name'],
-                'compare' => '=',
-                'type' => 'CHAR',
-            );
-        }
-
-        return $query;
-    }
-
-    private function add_price_condition( $query ) {
-        if ( isset( $query['price'] ) && strlen( $query['price'] ) ) {
-            $query['meta_query'][] = array(
-                'key' => '_awpcp_price',
-                'value' => $query['price'] * 100,
-                'compare' => '=',
-                'type' => 'SIGNED',
-            );
-        }
-
-        if ( isset( $query['min_price'] ) && strlen( $query['min_price'] ) ) {
-            $query['meta_query'][] = array(
-                'key' => '_awpcp_price',
-                'value' => $query['min_price'] * 100,
-                'compare' => '>=',
-                'type' => 'SIGNED',
-            );
-        }
-
-        if ( isset( $query['max_price'] ) && strlen( $query['max_price'] ) ) {
-            $query['meta_query'][] = array(
-                'key' => '_awpcp_price',
-                'value' => $query['max_price'] * 100,
-                'compare' => '<=',
-                'type' => 'SIGNED',
-            );
-        }
-
-        return $query;
-    }
-
-    private function add_payment_status_condition( $query ) {
-        if ( isset( $query['payment_status'] ) ) {
-            $query['meta_query'] = array(
-                'key' => '_awpcp_payment_status',
-                'value' => $query['payment_status'],
-                'compare' => is_array( $query['payment_status'] )  ? 'IN' : '=',
-                'type' => 'CHAR',
-            );
-        }
-
-        if ( isset( $query['payment_status__not_in'] ) ) {
-            $query['meta_query'] = array(
-                'key' => '_awpcp_payment_status',
-                'value' => $query['payment_status'],
-                'compare' => 'NOT IN',
-                'type' => 'CHAR',
-            );
-        }
-
-        return $query;
-    }
-
-    private function add_payment_email_condition( $query ) {
-        if ( isset( $query['payer_email'] ) ) {
-            $query['meta_query'][] = array(
-                'key' => '_awpcp_payer_email',
-                'value' => $query['payer_email'],
-                'compare' => '=',
-                'type' => 'CHAR',
-            );
-        }
-
-        return $query;
-    }
-
-    private function add_dates_condition( $query ) {
-        return $query;
+    public function count_expired_listings_with_query( $query_vars ) {
+        return $this->count_expired_listings( $query_vars );
     }
 
     /**
-     * @since 3.3
+     * @param array $query_vars     An array of query vars.
+     * @deprecated 4.0.0    Use ListingsCollection::count_listings_awaiting_approval() instead.
      */
-    public function count_listings( $query = array() ) {
-        $query = $this->prepare_count_listings_query( $query );
-        $posts_query = $this->execute_query( apply_filters( 'awpcp-count-listings-query', $query ) );
-        return $posts_query->found_posts;
-    }
-
-    private function prepare_count_listings_query( $query ) {
-        $query = $this->prepare_listings_query( $query );
-
-        $query['fields'] = 'ids';
-
-        return $query;
+    public function count_listings_awaiting_approval_with_query( $query_vars ) {
+        return $this->count_listings_awaiting_approval( $query_vars );
     }
 
     /**
-     * TODO: Consdier order conditions (See Ad::get_order_conditions,
-     *       Ad::get_enabled_ads (origin/master) and groupbrowseadsby option).
-     *
-     * @since 3.3
-     * @since feature/1112  Modified to work with custom post types.
+     * @param array $query_vars     An array of query vars.
+     * @deprecated 4.0.0    Use ListingsCollection::count_valid_listings() instead.
      */
-    public function find_enabled_listings( $query = array() ) {
-        return $this->find_valid_listings( $this->make_enabled_listings_query( $query ) );
-    }
-
-    private function make_enabled_listings_query( $query ) {
-        $query['post_status'] = 'publish';
-        
-        $query['meta_query'][] = array(
-            'key' => '_awpcp_start_date',
-            'value' => current_time( 'mysql' ),
-            'compare' => '<',
-            'type' => 'DATE',
-        );
-
-        return $query;
-    }
-
-    public function find_disabled_listings( $query = array() ) {
-        return $this->find_valid_listings( $this->make_disabled_listings_query( $query ) );
+    public function count_valid_listings_with_query( $query_vars ) {
+        return $this->count_valid_listings( $query_vars );
     }
 
     /**
-     * TODO: Is it really a good idea to use a custom post status?
+     * @param array $query_vars     An array of query vars.
+     * @deprecated 4.0.0    Use ListingsCollection::count_posts() instead.
      */
-    private function make_disabled_listings_query( $query ) {
-        $query['post_status'] = 'disabled';
-        return $query;
-    }
-
-    public function find_listings_about_to_expire( $query = array() ) {
-        return $this->find_enabled_listings( $this->make_listings_about_to_expire_query( $query ) );
-    }
-
-    private function make_listings_about_to_expire_query( $query ) {
-        $threshold = intval( get_awpcp_option( 'ad-renew-email-threshold' ) );
-        $target_date = strtotime( "+ $threshold days", current_time( 'timestamp' ) );
-
-        $query['meta_query'][] = array(
-            'key' => '_awpcp_end_date',
-            'value' => awpcp_datetime( 'mysql', $target_date ),
-            'compare' => '<=',
-            'type' => 'DATE',
-        );
-
-        $query['meta_query'][] = array(
-            'key' => '_awpcp_renew_email_sent',
-            'compare' => 'NOT EXISTS',
-        );
-
-        return $query;
-    }
-
-    public function find_expired_listings( $query = array() ) {
-        return $this->find_valid_listings( $this->make_expired_listings_query( $query ) );
-    }
-
-    private function make_expired_listings_query( $query ) {
-        $query['meta_query'][] = array(
-            'key' => '_awpcp_end_date',
-            'value' => current_time( 'mysql' ),
-            'compare' => '<=',
-            'type' => 'DATE',
-        );
-
-        return $query;
-    }
-
-    public function count_expired_listings( $query = array() ) {
-        return $this->count_valid_listings( $this->make_expired_listings_query( $query ) );
-    }
-
-    public function find_listings_awaiting_approval( $query = array() ) {
-        return $this->find_valid_listings( $this->make_listings_awaiting_approval_query( $query ) );
-    }
-
-    private function make_listings_awaiting_approval_query( $query ) {
-        $query['meta_query'][] = array(
-            'key' => '_awpcp_disabled_date',
-            'compare' => 'NOT EXISTS',
-        );
-
-        return $this->make_disabled_listings_query( $query );
-    }
-
-    public function count_listings_awaiting_approval( $query = array() ) {
-        return $this->count_valid_listings( $this->make_listings_awaiting_approval_query( $query ) );
-    }
-
-    public function find_successfully_paid_listings( $query ) {
-        return $this->find_listings( $this->make_successfully_paid_listings_query( $query ) );
-    }
-
-    private function make_successfully_paid_listings_query( $query ) {
-        $enable_listings_pending_payment = $this->settings->get_option( 'enable-ads-pending-payment' );
-        $payments_are_enabled = $this->settings->get_option( 'freepay' ) == 1;
-
-        if ( ! $enable_listings_pending_payment && $payments_are_enabled ) {
-            $query['meta_query'][] = array(
-                'key' => '_awpcp_payment_status',
-                'value' => array( 'Pending', 'Unpaid' ),
-                'compare' => 'NOT IN',
-                'type' => 'char'
-            );
-        } else {
-            $query['meta_query'][] = array(
-                'key' => '_awpcp_payment_status',
-                'value' => 'Unpaid',
-                'compare' => '!=',
-                'type' => 'char'
-            );
-        }
-
-        return $query;
-    }
-
-    /**
-     * @since feature/1112
-     */
-    public function count_successfully_paid_listings( $query = array() ) {
-        return $this->count_listings( $this->make_successfully_paid_listings_query( $query ) );
-    }
-
-    public function find_listings_with_query( $query ) {
-        return $this->finder->find( $query );
-    }
-
-    /**
-     * @since feature/1112
-     */
-    public function find_listings_awaiting_verification( $query ) {
-        return $this->find_listings( $this->make_listings_awaiting_verification_query( $query ) );
-    }
-
-    /**
-     * @since feature/1112
-     */
-    private function make_listings_awaiting_verification_query( $query ) {
-        $query['meta_query'][] = array(
-            'key' => '_awpcp_verification_needed',
-            'value' => true,
-            'compare' => '=',
-            'type' => 'BINARY',
-        );
-
-        return $query;
-    }
-
-    /**
-     * @since 3.3
-     * @since feature/1112  Modified to work with custom post types.
-     */
-    public function count_enabled_listings( $query = array() ) {
-        return $this->count_valid_listings( $this->make_enabled_listings_query( $query ) );
-    }
-
-    /**
-     * @since feature/1112.
-     */
-    public function count_disabled_listings( $query = array() ) {
-        return $this->count_valid_listings( $this->make_disabled_listings_query( $query ) );
-    }
-
-    public function count_expired_listings_with_query( $query ) {
-        return $this->finder->count( $this->make_expired_listings_query( $query ) );
-    }
-
-    public function count_listings_awaiting_approval_with_query( $query ) {
-        return $this->finder->count( $this->make_listings_awaiting_approval_query( $query ) );
-    }
-
-    public function count_valid_listings_with_query( $query ) {
-        return $this->finder->count( $this->make_valid_listings_query( $query ) );
-    }
-
-    public function count_listings_with_query( $query ) {
-        return $this->finder->count( $query );
-    }
-
-    /**
-     * @since 3.3
-     */
-    public function find_user_listings( $user_id, $query = array() ) {
-        return $this->find_valid_listings( $this->make_user_listings_query( $user_id, $query ) );
-    }
-
-    private function make_user_listings_query( $user_id, $query ) {
-        $query['author'] = $user_id;
-        return $query;
-    }
-
-    /**
-     * @since 3.3
-     * @since feature/1112  Modified to work with custom post types.
-     */
-    public function count_user_listings( $user_id, $query = array() ) {
-        return $this->count_valid_listings( $this->make_user_listings_query( $user_id, $query ) );
-    }
-
-    /**
-     * @since 3.3
-     * @since feature/1112  Modified to work with custom post types.
-     */
-    public function find_user_enabled_listings( $user_id, $query = array() ) {
-        return $this->find_enabled_listings( $this->make_user_listings_query( $user_id, $query ) );
-    }
-
-    /**
-     * @since 3.3
-     * @since feature/1112  Modified to work with custom post types.
-     */
-    public function count_user_enabled_listings( $user_id, $query = array() ) {
-        return $this->count_enabled_listings( $this->make_user_listings_query( $user_id, $query ) );
-    }
-
-    /**
-     * @since 3.3
-     * @since feature/1112  Modified to work with custom post types.
-     */
-    public function find_user_disabled_listings( $user_id, $query = array() ) {
-        return $this->find_disabled_listings( $this->make_user_listings_query( $user_id, $query ) );
-    }
-
-    /**
-     * @since 3.3
-     * @since feature/1112  Modified to work with custom post types.
-     */
-    public function count_user_disabled_listings( $user_id, $query = array() ) {
-        return $this->count_disabled_listings( $this->make_user_listings_query( $user_id, $query ) );
-    }
-
-    /**
-     * @since 3.3.2
-     */
-    public function count_enabled_listings_in_category( $category_id ) {
-        $category_condition = '( ad_category_id = %d OR ad_category_parent_id = %d )';
-
-        $conditions = array(
-            $this->db->prepare(
-                $category_condition,
-                $category_id,
-                $category_id
-            ),
-            'disabled = 0',
-        );
-
-        return $this->count_valid_listings( $conditions );
+    public function count_listings_with_query( $query_vars ) {
+        return $this->count_posts( $query_vars );
     }
 }

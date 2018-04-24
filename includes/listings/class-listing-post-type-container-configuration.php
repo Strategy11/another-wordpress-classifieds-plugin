@@ -58,6 +58,16 @@ class AWPCP_ListingPostTypeContainerConfiguration implements AWPCP_ContainerConf
             }
         );
 
+        $container['QueryIntegration'] = $container->service(
+            function( $container ) {
+                return new AWPCP_QueryIntegration(
+                    $container['listing_post_type'],
+                    $container['listing_category_taxonomy'],
+                    $container['Settings']
+                );
+            }
+        );
+
         $container['ListingsCollection'] = $container->service( function( $container ) {
             return new AWPCP_ListingsCollection(
                 // TODO: add all these to the container.

@@ -725,6 +725,9 @@ class AWPCP {
     }
 
 	public function init() {
+        $query_integration = $this->container['QueryIntegration'];
+        add_action( 'pre_get_posts', array( $query_integration, 'pre_get_posts' ) );
+
         // load resources always required
         $facebook_cache_helper = awpcp_facebook_cache_helper();
         add_action( 'awpcp-clear-ad-facebook-cache', array( $facebook_cache_helper, 'handle_clear_cache_event_hook' ), 10, 1 );
