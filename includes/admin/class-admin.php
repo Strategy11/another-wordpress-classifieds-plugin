@@ -21,17 +21,24 @@ class AWPCP_Admin {
     /**
      * @var object
      */
+    private $table_views;
+
+    /**
+     * @var object
+     */
     private $table_actions;
 
     /**
      * @param string $post_type         A post type identifier.
      * @param array  $container         An instance of Container.
-     * @param object $table_actions     An instance of List Table Actions.
+     * @param object $table_views       An instance of List Table Views Handler.
+     * @param object $table_actions     An instance of List Table Actions Handler.
      * @since 4.0.0
      */
-    public function __construct( $post_type, $container, $table_actions ) {
+    public function __construct( $post_type, $container, $table_views, $table_actions ) {
         $this->post_type     = $post_type;
         $this->container     = $container;
+        $this->table_views   = $table_views;
         $this->table_actions = $table_actions;
     }
 
@@ -42,6 +49,9 @@ class AWPCP_Admin {
         global $typenow;
 
         if ( $this->post_type === $typenow ) {
+            add_filter( 'pre_get_posts', array( $this->table_views, 'pre_get_posts' ) );
+            add_filter( 'views_edit-' . $this->post_type, array( $this->table_views, 'views' ) );
+
             add_action( 'admin_head-edit.php', array( $this->table_actions, 'admin_head' ), 10, 2 );
             add_action( 'post_row_actions', array( $this->table_actions, 'row_actions' ), 10, 2 );
             add_filter( 'handle_bulk_actions-edit-' . $this->post_type, array( $this->table_actions, 'handle_action' ), 10, 3 );
@@ -50,7 +60,16 @@ class AWPCP_Admin {
         add_action( 'add_meta_boxes_' . $this->post_type, array( $this, 'add_classifieds_meta_boxes' ) );
         add_action( 'save_post_' . $this->post_type, array( $this->container['ListingFieldsMetabox'], 'save' ), 10, 2 );
 
+        add_filter( 'awpcp_list_table_views_listings', array( $this, 'register_listings_table_views' ) );
         add_filter( 'awpcp_list_table_actions_listings', array( $this, 'register_listings_table_actions' ) );
+    }
+
+    /**
+     * @param array $views  An array of views for the Listings table.
+     * @since 4.0.0
+     */
+    public function register_listings_table_views( $views ) {
+        return $views;
     }
 
     /**

@@ -19,6 +19,7 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
             return new AWPCP_Admin(
                 $container['listing_post_type'],
                 $container,
+                $container['ListingsTableViewsHandler'],
                 $container['ListingsTableActionsHandler']
             );
         } );
@@ -27,7 +28,6 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
 
         $container['ListingsTableActionsHandler'] = $container->service( function( $container ) {
             return new AWPCP_ListTableActionsHandler(
-                $container['listing_post_type'],
                 $container['ListingsTableActions'],
                 awpcp_listings_collection(),
                 awpcp_request()
@@ -36,6 +36,17 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
 
         $container['ListingsTableActions'] = $container->service( function( $container ) {
             return new AWPCP_FilteredArray( 'awpcp_list_table_actions_listings' );
+        } );
+
+        $container['ListingsTableViewsHandler'] = $container->service( function( $container ) {
+            return new AWPCP_ListTableViewsHandler(
+                $container['ListingsTableViews'],
+                awpcp_request()
+            );
+        } );
+
+        $container['ListingsTableViews'] = $container->service( function( $container ) {
+            return new AWPCP_FilteredArray( 'awpcp_list_table_views_listings' );
         } );
 
         $container['QuickViewListingTableAction'] = $container->service( function( $container ) {

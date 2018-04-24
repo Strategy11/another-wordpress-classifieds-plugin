@@ -9,11 +9,6 @@
 class AWPCP_ListTableActionsHandler {
 
     /**
-     * @var string The identifier of a custom post type.
-     */
-    private $post_type;
-
-    /**
      * @var array A list of actions handlers.
      */
     private $actions;
@@ -29,24 +24,15 @@ class AWPCP_ListTableActionsHandler {
     private $request;
 
     /**
-     * @param string $post_type     The identifier of a custom post type.
      * @param array  $actions       A list of actions handlers.
      * @param object $posts_finder  An instance of Listings Collection.
      * @param object $request       An instane of Request.
      * @since 4.0.0
      */
-    public function __construct( $post_type, $actions, $posts_finder, $request ) {
-        $this->post_type    = $post_type;
+    public function __construct( $actions, $posts_finder, $request ) {
         $this->actions      = $actions;
         $this->posts_finder = $posts_finder;
         $this->request      = $request;
-    }
-
-    /**
-     * @since 4.0.0
-     */
-    public function get_post_type() {
-        return $this->post_type;
     }
 
     /**
