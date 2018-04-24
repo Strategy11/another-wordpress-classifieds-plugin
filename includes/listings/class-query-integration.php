@@ -69,6 +69,7 @@ class AWPCP_QueryIntegration {
 
         // These groups of listings must be valid listings as well.
         $must_be_valid = array(
+            'is_new',
             'is_expired',
             'is_about_to_expire',
             'is_enabled',
@@ -183,6 +184,7 @@ class AWPCP_QueryIntegration {
     public function process_query_parameters( $query_vars ) {
         $query_vars = $this->process_is_verified_query_parameter( $query_vars );
         $query_vars = $this->process_is_successfully_paid_query_parameter( $query_vars );
+        $query_vars = $this->process_is_new_query_parameter( $query_vars );
         $query_vars = $this->process_is_disabled_query_parameter( $query_vars );
         $query_vars = $this->process_is_enabled_query_parameter( $query_vars );
         $query_vars = $this->process_is_about_to_expire_query_parameter( $query_vars );
@@ -256,6 +258,25 @@ class AWPCP_QueryIntegration {
             'compare' => '!=',
             'type'    => 'char',
         );
+
+        return $query_vars;
+    }
+
+    /**
+     * TODO: Use EXISTS comparator instead.
+     *
+     * @param array $query_vars     An array of query vars.
+     * @since 4.0.0
+     */
+    public function process_is_new_query_parameter( $query_vars ) {
+        if ( isset( $query_vars['classifieds_query']['is_new'] ) ) {
+            $query_vars['meta_query'][] = array(
+                'key'     => '_awpcp_content_needs_review',
+                'value'   => true,
+                'compare' => '=',
+                'type'    => 'BINARY',
+            );
+        }
 
         return $query_vars;
     }

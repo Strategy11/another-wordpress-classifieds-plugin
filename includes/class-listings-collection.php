@@ -200,6 +200,16 @@ class AWPCP_ListingsCollection {
      * @param array $query_vars     An array of query vars.
      * @since 4.0.0
      */
+    public function count_new_listings( $query_vars = array() ) {
+        $query_vars['classifieds_query']['is_new'] = true;
+
+        return $this->count_posts( $query_vars );
+    }
+
+    /**
+     * @param array $query_vars     An array of query vars.
+     * @since 4.0.0
+     */
     public function find_expired_listings( $query_vars = array() ) {
         $query_vars['classifieds_query']['is_expired'] = true;
 

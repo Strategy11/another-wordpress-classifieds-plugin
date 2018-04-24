@@ -49,6 +49,12 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
             return new AWPCP_FilteredArray( 'awpcp_list_table_views_listings' );
         } );
 
+        $container['NewListingTableView'] = $container->service( function( $container ) {
+            return new AWPCP_NewListingTableView(
+                $container['ListingsCollection']
+            );
+        } );
+
         $container['QuickViewListingTableAction'] = $container->service( function( $container ) {
             return new AWPCP_QuickViewListingTableAction();
         } );
