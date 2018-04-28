@@ -33,6 +33,10 @@ class AWPCP_ListTableViewsHandler {
      * @since 4.0.0
      */
     public function pre_get_posts( $query ) {
+        if ( ! $query->is_main_query() ) {
+            return;
+        }
+
         $current_view = $this->get_current_view();
 
         if ( ! $current_view || ! isset( $this->views[ $current_view ] ) ) {

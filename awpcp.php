@@ -726,7 +726,9 @@ class AWPCP {
 
 	public function init() {
         $query_integration = $this->container['QueryIntegration'];
-        add_action( 'pre_get_posts', array( $query_integration, 'pre_get_posts' ) );
+
+        // Execute later to allow Listing Table Views to add query parameters.
+        add_action( 'pre_get_posts', array( $query_integration, 'pre_get_posts' ), 100 );
 
         // load resources always required
         $facebook_cache_helper = awpcp_facebook_cache_helper();

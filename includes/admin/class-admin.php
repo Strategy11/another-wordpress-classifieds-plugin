@@ -69,10 +69,8 @@ class AWPCP_Admin {
      * @since 4.0.0
      */
     public function register_listings_table_views( $views ) {
-        $views['new'] = $this->container['NewListingTableView'];
-        // phpcs:disable Squiz.PHP.CommentedOutCode.Found
-        // $views['featured'] = $this->container['FeaturedListingTableView'];
-        // phpcs:enable
+        $views['new']      = $this->container['NewListingTableView'];
+        $views['featured'] = $this->container['FeaturedListingTableView'];
 
         return $views;
     }

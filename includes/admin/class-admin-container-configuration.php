@@ -55,6 +55,12 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
             );
         } );
 
+        $container['FeaturedListingTableView'] = $container->service( function( $container ) {
+            return new AWPCP_FeaturedListingTableView(
+                $container['ListingsCollection']
+            );
+        } );
+
         $container['QuickViewListingTableAction'] = $container->service( function( $container ) {
             return new AWPCP_QuickViewListingTableAction();
         } );
