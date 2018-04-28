@@ -61,6 +61,12 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
             );
         } );
 
+        $container['ExpiredListingTableView'] = $container->service( function( $container ) {
+            return new AWPCP_ExpiredListingTableView(
+                $container['ListingsCollection']
+            );
+        } );
+
         $container['QuickViewListingTableAction'] = $container->service( function( $container ) {
             return new AWPCP_QuickViewListingTableAction();
         } );

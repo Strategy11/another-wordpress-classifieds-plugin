@@ -71,6 +71,7 @@ class AWPCP_Admin {
     public function register_listings_table_views( $views ) {
         $views['new']      = $this->container['NewListingTableView'];
         $views['featured'] = $this->container['FeaturedListingTableView'];
+        $views['expired']  = $this->container['ExpiredListingTableView'];
 
         return $views;
     }
