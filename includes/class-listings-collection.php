@@ -364,6 +364,16 @@ class AWPCP_ListingsCollection {
     }
 
     /**
+     * @param array $query_vars     The full listr of query vars.
+     * @since 4.0.0
+     */
+    public function count_incomplete_listings( $query_vars = array() ) {
+        $query_vars['classifieds_query']['is_incomplete'] = true;
+
+        return $this->count_posts( $query_vars );
+    }
+
+    /**
      * @param int   $user_id        The ID of a user.
      * @param array $query_vars     The full listr of query vars.
      * @since 3.3

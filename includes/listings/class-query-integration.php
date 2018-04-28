@@ -197,6 +197,7 @@ class AWPCP_QueryIntegration {
         $query_vars = $this->process_is_awaiting_verification_query_parameter( $query_vars );
         $query_vars = $this->process_is_featured_query_parameter( $query_vars );
         $query_vars = $this->process_is_flagged_query_parameter( $query_vars );
+        $query_vars = $this->process_is_incomplete_query_parameter( $query_vars );
 
         $query_vars = $this->process_previous_id_query_parameter( $query_vars );
 
@@ -447,6 +448,23 @@ class AWPCP_QueryIntegration {
             $query_vars['meta_query'][] = array(
                 'key'     => '_awpcp_flagged',
                 'compare' => 'EXISTS',
+            );
+        }
+
+        return $query_vars;
+    }
+
+    /**
+     * @param array $query_vars     An array of query vars.
+     * @since 4.0.0
+     */
+    public function process_is_incomplete_query_parameter( $query_vars ) {
+        if ( isset( $query_vars['classifieds_query']['is_incomplete'] ) ) {
+            $query_vars['meta_query'][] = array(
+                'key'     => '_awpcp_payment_status',
+                'value'   => 'Unpaid',
+                'compare' => '=',
+                'type'    => 'CHAR',
             );
         }
 
