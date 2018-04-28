@@ -73,6 +73,12 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
             );
         } );
 
+        $container['ImagesAwaitingApprovalListingTableView'] = $container->service( function( $container ) {
+            return new AWPCP_ImagesAwaitingApprovalListingTableView(
+                $container['ListingsCollection']
+            );
+        } );
+
         $container['QuickViewListingTableAction'] = $container->service( function( $container ) {
             return new AWPCP_QuickViewListingTableAction();
         } );

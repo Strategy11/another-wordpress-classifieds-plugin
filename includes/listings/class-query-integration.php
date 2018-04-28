@@ -75,6 +75,7 @@ class AWPCP_QueryIntegration {
             'is_enabled',
             'is_disabled',
             'is_awaiting_approval',
+            'has_images_awaiting_approval',
             'is_featured',
         );
 
@@ -191,6 +192,7 @@ class AWPCP_QueryIntegration {
         $query_vars = $this->process_is_about_to_expire_query_parameter( $query_vars );
         $query_vars = $this->process_is_expired_query_parameter( $query_vars );
         $query_vars = $this->process_is_awaiting_approval_query_parameter( $query_vars );
+        $query_vars = $this->process_has_images_awaiting_approval_query_parameter( $query_vars );
         $query_vars = $this->process_is_awaiting_verification_query_parameter( $query_vars );
         $query_vars = $this->process_is_featured_query_parameter( $query_vars );
 
@@ -383,6 +385,20 @@ class AWPCP_QueryIntegration {
         return $query_vars;
     }
 
+    /**
+     * @param array $query_vars     An array of query vars.
+     * @since 4.0.0
+     */
+    public function process_has_images_awaiting_approval_query_parameter( $query_vars ) {
+        if ( isset( $query_vars['classifieds_query']['has_images_awaiting_approval'] ) ) {
+            $query_vars['meta_query'][] = array(
+                'key'     => '_awpcp_has_images_awaiting_approval',
+                'compare' => 'EXISTS',
+            );
+        }
+
+        return $query_vars;
+    }
 
     /**
      * TODO: Convert this into an EXISTS. I think there is no need to compare.

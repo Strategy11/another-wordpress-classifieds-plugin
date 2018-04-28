@@ -69,10 +69,11 @@ class AWPCP_Admin {
      * @since 4.0.0
      */
     public function register_listings_table_views( $views ) {
-        $views['new']               = $this->container['NewListingTableView'];
-        $views['featured']          = $this->container['FeaturedListingTableView'];
-        $views['expired']           = $this->container['ExpiredListingTableView'];
-        $views['awaiting-approval'] = $this->container['AwaitingApprovalListingTableView'];
+        $views['new']                      = $this->container['NewListingTableView'];
+        $views['featured']                 = $this->container['FeaturedListingTableView'];
+        $views['expired']                  = $this->container['ExpiredListingTableView'];
+        $views['awaiting-approval']        = $this->container['AwaitingApprovalListingTableView'];
+        $views['images-awaiting-approval'] = $this->container['ImagesAwaitingApprovalListingTableView'];
 
         return $views;
     }

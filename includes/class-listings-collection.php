@@ -303,6 +303,16 @@ class AWPCP_ListingsCollection {
 
     /**
      * @param array $query_vars     The full listr of query vars.
+     * @since 4.0.0
+     */
+    public function count_listings_with_images_awaiting_approval( $query_vars = array() ) {
+        $query_vars['classifieds_query']['has_images_awaiting_approval'] = true;
+
+        return $this->count_posts( $query_vars );
+    }
+
+    /**
+     * @param array $query_vars     The full listr of query vars.
      * @since 3.3
      * @since 4.0.0     Uses Classifieds Query Integration.
      */
