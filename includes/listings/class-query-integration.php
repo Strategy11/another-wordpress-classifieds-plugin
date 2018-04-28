@@ -77,6 +77,7 @@ class AWPCP_QueryIntegration {
             'is_awaiting_approval',
             'has_images_awaiting_approval',
             'is_featured',
+            'is_flagged',
         );
 
         if ( array_intersect( $must_be_valid, array_keys( $query_vars['classifieds_query'] ) ) ) {
@@ -195,6 +196,7 @@ class AWPCP_QueryIntegration {
         $query_vars = $this->process_has_images_awaiting_approval_query_parameter( $query_vars );
         $query_vars = $this->process_is_awaiting_verification_query_parameter( $query_vars );
         $query_vars = $this->process_is_featured_query_parameter( $query_vars );
+        $query_vars = $this->process_is_flagged_query_parameter( $query_vars );
 
         $query_vars = $this->process_previous_id_query_parameter( $query_vars );
 
@@ -430,6 +432,21 @@ class AWPCP_QueryIntegration {
                 'value'   => true,
                 'compare' => '=',
                 'type'    => 'BINARY',
+            );
+        }
+
+        return $query_vars;
+    }
+
+    /**
+     * @param array $query_vars     An array of query vars.
+     * @since 4.0.0
+     */
+    public function process_is_flagged_query_parameter( $query_vars ) {
+        if ( isset( $query_vars['classifieds_query']['is_flagged'] ) ) {
+            $query_vars['meta_query'][] = array(
+                'key'     => '_awpcp_flagged',
+                'compare' => 'EXISTS',
             );
         }
 

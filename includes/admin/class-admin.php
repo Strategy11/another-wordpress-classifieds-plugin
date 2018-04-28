@@ -74,6 +74,7 @@ class AWPCP_Admin {
         $views['expired']                  = $this->container['ExpiredListingTableView'];
         $views['awaiting-approval']        = $this->container['AwaitingApprovalListingTableView'];
         $views['images-awaiting-approval'] = $this->container['ImagesAwaitingApprovalListingTableView'];
+        $views['flagged']                  = $this->container['FlaggedListingTableView'];
 
         return $views;
     }
