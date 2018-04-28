@@ -61,10 +61,16 @@ class AWPCP_ListTableViewsHandler {
         $current_url  = remove_query_arg( 'post_status' );
 
         foreach ( $this->views as $name => $view ) {
+            $count = $view->get_count();
+
+            if ( 0 === $count ) {
+                continue;
+            }
+
             $views[ $name ] = $this->create_view_link(
                 $view->get_label(),
                 $view->get_url( $current_url ),
-                $view->get_count(),
+                $count,
                 $current_view === $name ? 'current' : ''
             );
         }
