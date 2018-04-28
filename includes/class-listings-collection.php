@@ -227,7 +227,7 @@ class AWPCP_ListingsCollection {
     }
 
     /**
-     * @param array $query_vars     The full listr of query vars.
+     * @param array $query_vars     The full list of query vars.
      * @since 3.3
      * @since 4.0.0     Uses Classifieds Query Integration.
      */
@@ -238,7 +238,7 @@ class AWPCP_ListingsCollection {
     }
 
     /**
-     * @param array $query_vars     The full listr of query vars.
+     * @param array $query_vars     The full list of query vars.
      * @since 3.3
      * @since 4.0.0     Uses Classifieds Query Integration.
      */
@@ -249,7 +249,7 @@ class AWPCP_ListingsCollection {
     }
 
     /**
-     * @param array $query_vars     The full listr of query vars.
+     * @param array $query_vars     The full list of query vars.
      * @since 3.3
      * @since 4.0.0     Uses Classifieds Query Integration.
      */
@@ -260,7 +260,7 @@ class AWPCP_ListingsCollection {
     }
 
     /**
-     * @param array $query_vars     The full listr of query vars.
+     * @param array $query_vars     The full list of query vars.
      * @since 4.0.0     Uses Classifieds Query Integration.
      */
     public function count_disabled_listings( $query_vars = array() ) {
@@ -270,7 +270,7 @@ class AWPCP_ListingsCollection {
     }
 
     /**
-     * @param array $query_vars     The full listr of query vars.
+     * @param array $query_vars     The full list of query vars.
      * @since 3.3
      * @since 4.0.0     Uses Classifieds Query Integration.
      */
@@ -281,7 +281,7 @@ class AWPCP_ListingsCollection {
     }
 
     /**
-     * @param array $query_vars     The full listr of query vars.
+     * @param array $query_vars     The full list of query vars.
      * @since 3.3
      * @since 4.0.0     Uses Classifieds Query Integration.
      */
@@ -292,7 +292,7 @@ class AWPCP_ListingsCollection {
     }
 
     /**
-     * @param array $query_vars     The full listr of query vars.
+     * @param array $query_vars     The full list of query vars.
      * @since 4.0.0
      */
     public function count_listings_awaiting_approval( $query_vars = array() ) {
@@ -302,7 +302,7 @@ class AWPCP_ListingsCollection {
     }
 
     /**
-     * @param array $query_vars     The full listr of query vars.
+     * @param array $query_vars     The full list of query vars.
      * @since 4.0.0
      */
     public function count_listings_with_images_awaiting_approval( $query_vars = array() ) {
@@ -312,7 +312,7 @@ class AWPCP_ListingsCollection {
     }
 
     /**
-     * @param array $query_vars     The full listr of query vars.
+     * @param array $query_vars     The full list of query vars.
      * @since 3.3
      * @since 4.0.0     Uses Classifieds Query Integration.
      */
@@ -323,7 +323,7 @@ class AWPCP_ListingsCollection {
     }
 
     /**
-     * @param array $query_vars     The full listr of query vars.
+     * @param array $query_vars     The full list of query vars.
      * @since 4.0.0     Uses Classifieds Query Integration.
      */
     public function count_successfully_paid_listings( $query_vars = array() ) {
@@ -333,7 +333,7 @@ class AWPCP_ListingsCollection {
     }
 
     /**
-     * @param array $query_vars     The full listr of query vars.
+     * @param array $query_vars     The full list of query vars.
      * @since 3.3
      * @since 4.0.0     Uses Classifieds Query Integration.
      */
@@ -344,7 +344,17 @@ class AWPCP_ListingsCollection {
     }
 
     /**
-     * @param array $query_vars     The full listr of query vars.
+     * @param array $query_vars     The full list of query vars.
+     * @since 4.0.0
+     */
+    public function count_listings_awaiting_verification( $query_vars = array() ) {
+        $query_vars['classifieds_query']['is_awaiting_verification'] = true;
+
+        return $this->count_posts( $query_vars );
+    }
+
+    /**
+     * @param array $query_vars     The full list of query vars.
      * @since 4.0.0
      */
     public function count_featured_listings( $query_vars = array() ) {
@@ -354,7 +364,7 @@ class AWPCP_ListingsCollection {
     }
 
     /**
-     * @param array $query_vars     The full listr of query vars.
+     * @param array $query_vars     The full list of query vars.
      * @since 4.0.0
      */
     public function count_flagged_listings( $query_vars = array() ) {
@@ -364,7 +374,7 @@ class AWPCP_ListingsCollection {
     }
 
     /**
-     * @param array $query_vars     The full listr of query vars.
+     * @param array $query_vars     The full list of query vars.
      * @since 4.0.0
      */
     public function count_incomplete_listings( $query_vars = array() ) {
@@ -375,7 +385,7 @@ class AWPCP_ListingsCollection {
 
     /**
      * @param int   $user_id        The ID of a user.
-     * @param array $query_vars     The full listr of query vars.
+     * @param array $query_vars     The full list of query vars.
      * @since 3.3
      * @since 4.0.0     Uses Classifieds Query Integration.
      */
@@ -387,7 +397,7 @@ class AWPCP_ListingsCollection {
 
     /**
      * @param int   $user_id        The ID of a user.
-     * @param array $query_vars     The full listr of query vars.
+     * @param array $query_vars     The full list of query vars.
      * @since 3.3
      * @since 4.0.0     Uses Classifieds Query Integration.
      */
@@ -399,7 +409,7 @@ class AWPCP_ListingsCollection {
 
     /**
      * @param int   $user_id        The ID of a user.
-     * @param array $query_vars     The full listr of query vars.
+     * @param array $query_vars     The full list of query vars.
      * @since 3.3
      * @since 4.0.0     Uses Classifieds Query Integration.
      */
@@ -411,7 +421,7 @@ class AWPCP_ListingsCollection {
 
     /**
      * @param int   $user_id        The ID of a user.
-     * @param array $query_vars     The full listr of query vars.
+     * @param array $query_vars     The full list of query vars.
      * @since 3.3
      * @since 4.0.0     Uses Classifieds Query Integration.
      */
@@ -423,7 +433,7 @@ class AWPCP_ListingsCollection {
 
     /**
      * @param int   $user_id        The ID of a user.
-     * @param array $query_vars     The full listr of query vars.
+     * @param array $query_vars     The full list of query vars.
      * @since 3.3
      * @since 4.0.0     Uses Classifieds Query Integration.
      */
@@ -435,7 +445,7 @@ class AWPCP_ListingsCollection {
 
     /**
      * @param int   $user_id        The ID of a user.
-     * @param array $query_vars     The full listr of query vars.
+     * @param array $query_vars     The full list of query vars.
      * @since 3.3
      * @since 4.0.0     Uses Classifieds Query Integration.
      */
@@ -447,7 +457,7 @@ class AWPCP_ListingsCollection {
 
     /**
      * @param int   $category_id    The ID of a category.
-     * @param array $query_vars     The full listr of query vars.
+     * @param array $query_vars     The full list of query vars.
      * @since 3.3.2
      * @since 4.0.0     Added $query_vars parameter.
      * @since 4.0.0     Use Classifieds Query Integration.

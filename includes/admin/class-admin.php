@@ -76,6 +76,7 @@ class AWPCP_Admin {
         $views['images-awaiting-approval'] = $this->container['ImagesAwaitingApprovalListingTableView'];
         $views['flagged']                  = $this->container['FlaggedListingTableView'];
         $views['incomplete']               = $this->container['IncompleteListingTableView'];
+        $views['unverified']               = $this->container['UnverifiedListingTableView'];
 
         return $views;
     }
