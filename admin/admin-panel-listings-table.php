@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package AWPCP\Admin
+ */
+
+// phpcs:disable
 
 function awpcp_listings_table( $page, $params = array() ) {
     return new AWPCP_Listings_Table(
@@ -10,6 +15,9 @@ function awpcp_listings_table( $page, $params = array() ) {
     );
 }
 
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 class AWPCP_Listings_Table extends WP_List_Table {
 
     private $params;
@@ -96,69 +104,6 @@ class AWPCP_Listings_Table extends WP_List_Table {
         $show_non_verified = false;
         $show_expired = false;
         $show_awaiting_approval = false;
-
-        switch ($params['filterby']) {
-            case 'is-featured':
-                $query['fatured'] = true;
-                break;
-
-            case 'flagged':
-                $query['meta_query'][] = array(
-                    'key' => '_awpcp_flagged',
-                    'value' => true,
-                    'compare' => '=',
-                    'type' => 'BINARY',
-                );
-                $query['flagged'] = true;
-                break;
-
-            case 'incomplete':
-                $query['meta_query'][] = array(
-                    'key' => '_awpcp_payment_status',
-                    'value' => 'Unpaid',
-                    'compare' => '=',
-                    'type' => 'char'
-                );
-                $show_incomplete = true;
-                break;
-
-            case 'non-verified':
-                // TODO: test NOT EXISTS really works!
-                $query['meta_query'][] = array(
-                    'key' => '_awpcp_verification_needed',
-                    'value' => true,
-                    'compare' => '=',
-                    'type' => 'BINARY',
-                );
-                $show_non_verified = true;
-                break;
-
-            case 'awaiting-approval':
-                $show_awaiting_approval = true;
-                break;
-
-            case 'images-awaiting-approval':
-                // TODO: fix this. Create a method in listings collection to query for this kind of posts.
-                $query['have_media_awaiting_approval'] = true;
-                break;
-
-            case 'new':
-                $query['meta_query'][] = array(
-                    'key' => '_awpcp_content_needs_review',
-                    'value' => true,
-                    'compare' => '=',
-                    'type' => 'BINARY',
-                );
-                break;
-
-            case 'expired':
-                $show_expired = true;
-                break;
-
-            case 'completed':
-            default:
-                break;
-        }
 
         // TODO: update listings collection to support order and orderby parameters
         switch($params['orderby']) {
@@ -279,46 +224,6 @@ class AWPCP_Listings_Table extends WP_List_Table {
         $actions['bulk-delete'] = __( 'Delete', 'another-wordpress-classifieds-plugin' );
 
         return $actions;
-    }
-
-    public function get_views() {
-        $filters = array(
-            'new' => 'new',
-            'expired' => 'expired',
-            'awaiting-approval' => 'awaiting-approval',
-            'images-awaiting-approval' => 'images-awaiting-approval',
-            'is-featured' => 'featured-ads',
-            'flagged' => 'flagged-ads',
-            'incomplete' => 'incomplete-listings',
-            'non-verified' => 'non-verified-ads',
-            'completed' => 'completed',
-        );
-
-        $selected = awpcp_array_data($this->params['filterby'], 'completed', $filters);
-
-        $views = array(
-            'new' => array( __( 'New', 'another-wordpress-classifieds-plugin' ), $this->page->url( array( 'filterby' => 'new', 'filter' => true ) ) ),
-            'expired' => array( __( 'Expired', 'another-wordpress-classifieds-plugin' ), $this->page->url( array( 'filterby' => 'expired', 'filter' => true ) ) ),
-        );
-
-        if ( awpcp_current_user_is_moderator() ) {
-            $views['awaiting-approval'] = array(
-                __( 'Ads Awaiting Approval', 'another-wordpress-classifieds-plugin' ),
-                $this->page->url( array( 'filterby' => 'awaiting-approval', 'filter' => true ) )
-            );
-            $views['images-awaiting-approval'] = array(
-                __( 'Images Awaiting Approval', 'another-wordpress-classifieds-plugin' ),
-                $this->page->url( array( 'filterby' => 'images-awaiting-approval', 'filter' => true ) )
-            );
-        }
-
-        $views['featured-ads'] = array( __( 'Featured', 'another-wordpress-classifieds-plugin' ), $this->page->url( array( 'filterby' => 'is-featured', 'filter' => true ) ) );
-        $views['flagged-ads'] = array( __( 'Flagged', 'another-wordpress-classifieds-plugin' ), $this->page->url( array( 'filterby' => 'flagged', 'filter' => true ) ) );
-        $views['incomplete-listings'] = array( __( 'Incomplete', 'another-wordpress-classifieds-plugin' ), $this->page->url( array( 'filterby' => 'incomplete', 'filter' => true ) ) );
-        $views['non-verified-ads'] = array( __( 'Unverified', 'another-wordpress-classifieds-plugin' ), $this->page->url( array( 'filterby' => 'non-verified', 'filter' => true ) ) );
-        $views['completed'] = array( __( 'Completed', 'another-wordpress-classifieds-plugin' ), $this->page->url( array( 'filterby' => 'completed', 'filter' => false ) ) );
-
-        return $this->page->links($views, $selected);
     }
 
     public function get_search_by_box() {
@@ -514,3 +419,5 @@ class AWPCP_Listings_Table extends WP_List_Table {
         echo '</tr>';
     }
 }
+
+// phpcs:enable

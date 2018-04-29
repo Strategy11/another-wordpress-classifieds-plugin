@@ -180,7 +180,6 @@ require( AWPCP_DIR . '/includes/html/interface-html-element-renderer.php' );
 require( AWPCP_DIR . '/includes/html/class-html-renderer.php' );
 require( AWPCP_DIR . '/includes/html/class-html-default-element-renderer.php' );
 
-require_once( AWPCP_DIR . "/includes/listings/class-listings-finder.php" );
 require( AWPCP_DIR . "/includes/listings/class-listings-meta-configuration.php" );
 require_once( AWPCP_DIR . "/includes/listings/class-listing-action.php" );
 require_once( AWPCP_DIR . "/includes/listings/class-listing-action-with-confirmation.php" );

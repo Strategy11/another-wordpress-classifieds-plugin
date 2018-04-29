@@ -8,7 +8,6 @@
  */
 function awpcp_listings_collection() {
     return new AWPCP_ListingsCollection(
-        awpcp_listings_finder(),
         awpcp()->settings,
         awpcp_wordpress(),
         $GLOBALS['wpdb']
@@ -23,11 +22,6 @@ function awpcp_listings_collection() {
  * @SuppressWarnings(PHPMD.TooManyMethods)
  */
 class AWPCP_ListingsCollection {
-
-    /**
-     * @var object
-     */
-    private $finder;
 
     /**
      * @var object
@@ -47,13 +41,11 @@ class AWPCP_ListingsCollection {
     /**
      * Constructor.
      *
-     * @param object $finder        An instance of Listing Finder.
      * @param object $settings      An instance of Settings.
      * @param object $wordpress     An instance of WordPress.
      * @param object $db            An instance of wpbd.
      */
-    public function __construct( $finder, $settings, $wordpress, $db ) {
-        $this->finder    = $finder;
+    public function __construct( $settings, $wordpress, $db ) {
         $this->settings  = $settings;
         $this->wordpress = $wordpress;
         $this->db        = $db;
