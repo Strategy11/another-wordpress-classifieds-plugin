@@ -77,6 +77,7 @@ class AWPCP_Admin {
         $views['flagged']                  = $this->container['FlaggedListingTableView'];
         $views['incomplete']               = $this->container['IncompleteListingTableView'];
         $views['unverified']               = $this->container['UnverifiedListingTableView'];
+        $views['complete']                 = $this->container['CompleteListingTableView'];
 
         return $views;
     }

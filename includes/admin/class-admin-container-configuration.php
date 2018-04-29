@@ -97,6 +97,12 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
             );
         } );
 
+        $container['CompleteListingTableView'] = $container->service( function( $container ) {
+            return new AWPCP_CompleteListingTableView(
+                $container['ListingsCollection']
+            );
+        } );
+
         $container['QuickViewListingTableAction'] = $container->service( function( $container ) {
             return new AWPCP_QuickViewListingTableAction();
         } );
