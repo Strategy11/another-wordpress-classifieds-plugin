@@ -314,6 +314,13 @@ class AWPCP_ListingsAPI {
     /**
      * @since 4.0.0
      */
+    public function mark_as_having_images_awaiting_approval( $listing ) {
+        $this->wordpress->update_post_meta( $listing->ID, '_awpcp_has_images_awaiting_approval', true );
+    }
+
+    /**
+     * @since 4.0.0
+     */
     public function enable_listing( $listing ) {
         if ( $this->enable_listing_without_triggering_actions( $listing ) ) {
             do_action( 'awpcp_approve_ad', $listing );
