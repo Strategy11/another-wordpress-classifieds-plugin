@@ -381,7 +381,7 @@ class AWPCP_QueryIntegration {
 
             $query_vars['meta_query'][] = array(
                 'key'     => '_awpcp_disabled_date',
-                'compare' => 'NOT_EXISTS',
+                'compare' => 'NOT EXISTS',
             );
         }
 
