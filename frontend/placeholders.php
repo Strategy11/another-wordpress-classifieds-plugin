@@ -277,8 +277,8 @@ function awpcp_do_placeholder_url($ad, $placeholder) {
  */
 function awpcp_do_placeholder_title($ad, $placeholder) {
     $listing_renderer = awpcp_listing_renderer();
-    
-    $title = $listing_renderer->get_listing_title( $ad )
+
+    $title = $listing_renderer->get_listing_title( $ad );
     $url   = $listing_renderer->get_view_listing_url( $ad );
 
     $title_link = sprintf( '<a href="%s">%s</a>', esc_attr( $url ), esc_html( $title ) );
