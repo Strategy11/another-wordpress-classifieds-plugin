@@ -474,14 +474,14 @@ class AWPCP_ListingsAPI {
      * @since 3.0.2
      */
     public function send_verification_email( $ad ) {
-        $contact_email = $this->listing_renderer->get_contact_name( $ad );
-        $contact_name = $this->listing_renderer->get_contact_email( $ad );
+        $contact_email = $this->listing_renderer->get_contact_email( $ad );
+        $contact_name = $this->listing_renderer->get_contact_name( $ad );
         $listing_title = $this->listing_renderer->get_listing_title( $ad );
 
         $mail = new AWPCP_Email;
         $mail->to[] = awpcp_format_recipient_address( $contact_email, $contact_name );
-        $subject = get_awpcp_option( 'verifyemailsubjectline' );
-        $message = get_awpcp_option( 'verifyemailbodymessage' );
+        $subject = $this->settings->get_option( 'verifyemailsubjectline' );
+        $message = $this->settings->get_option( 'verifyemailbodymessage' );
         $mail->subject = str_replace( '$title', $listing_title, $subject );
 
         $verification_link = awpcp_get_email_verification_url( $ad->ID );
