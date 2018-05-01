@@ -74,7 +74,7 @@ class AWPCP_Categories_Switcher {
         ), 'strlen' );
 
         ob_start();
-        include AWPCP_DIR . '/templates/frontend/category-selector.tpl.php';
+        include AWPCP_DIR . '/templates/frontend/category-switcher.tpl.php';
         $output = ob_get_contents();
         ob_end_clean();
 
