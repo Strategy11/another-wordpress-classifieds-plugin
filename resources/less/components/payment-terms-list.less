@@ -1,66 +1,46 @@
-.awpcp-payment-terms-list {
+.awpcp-payment-terms-list-payment-term {
+    .awpcp-box;
+    .awpcp-bordered-box;
+    .awpcp-rounded-box;
 
-    .awpcp-payment-terms-list-payment-term {
-        list-style-type: none;
-        margin: 0 0 6px;
-        padding: 10px;
-
-        div {
-            margin-bottom: 0;
-        }
-    }
-
-    .awpcp-payment-term-duration {
-        text-align: center;
-
-        .awpcp-payment-term-duration-amount,
-        .awpcp-payment-term-duration-interval {
-            display: block;
-            line-height: 1.1em;
-        }
-        .awpcp-payment-term-duration-amount {
-            font-size: 34px;
-            font-weight: bold;
-            padding-top: 22px;
-        }
-        .awpcp-payment-term-duration-interval {
-            font-size: 24px;
-        }
-    }
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-bottom: 15px;
 
     .awpcp-payment-term-content {
-        box-sizing: border-box;
-        padding: 10px 10px 0;
-
         .awpcp-payment-term-name {
-            font-size: 1.1em;
+            display: block;
             font-weight: bold;
+            font-size: 1.5em;
             margin-bottom: 10px;
+            text-align: center;
         }
 
         .awpcp-payment-term-features {
-            margin: 10px 0 !important;
-            padding-left: 10px !important;
-
-            li {
-                list-style-type: disc !important;
-                list-style-position: inside;
-                line-height: 1.25em;
-                margin: 0;
-            }
+            list-style-type: disc;
+            padding-left: 15px;
         }
     }
 
-    .awpcp-payment-term-price {
+    .awpcp-payment-term-duration-price {
+        .awpcp-payment-term-duration {
+            font-size: 2em;
+            padding: 10px;
+            text-align: center;
+        }
 
         label {
+            .awpcp-box;
             .awpcp-bordered-box;
+            .awpcp-rounded-box;
 
             background: #FDFDFD;
-            border-radius: 2px;
-            border-color: #F3F3F3;
             cursor: pointer;
             display: block;
+            margin: 0;
             padding: 4px 8px;
             font-size: 20px;
             line-height: 1.71em;
@@ -75,16 +55,10 @@
                 border-color: #999;
                 color: #FFF;
             }
-
-            input {
-                vertical-align: 2px;
-                margin-right: 4px;
-            }
         }
 
         .awpcp-payment-term-price-in-currency {
-            margin-bottom: 5px;
-            padding-top: 17px;
+            margin-bottom: 8px;
         }
         .awpcp-payment-term-price-in-credits {
             margin-bottom: 0;
@@ -92,26 +66,38 @@
     }
 }
 
-.wp-admin {
-    .awpcp-payment-terms-list .awpcp-payment-term-price input {
-        vertical-align: -1px;
-    }
-}
+@media (min-width: 768px) {
+    .awpcp-payment-terms-list-payment-term {
+        flex-direction: row;
+        margin-bottom: 8px;
+        padding: 8px;
 
-.awpcp-payment-terms-list-520 {
-    .awpcp-payment-term-duration,
-    .awpcp-payment-term-content,
-    .awpcp-payment-term-price {
-        float: left;
-    }
-    .awpcp-payment-term-duration {
-        width: 15%;
-    }
-    .awpcp-payment-term-content {
-        padding-top: 0;
-        width: 60%;
-    }
-    .awpcp-payment-term-price {
-        width: 25%;
+        .awpcp-payment-term-content {
+            padding: 0 8px;
+            width: 70%;
+
+            .awpcp-payment-term-name {
+                font-size: 1.2em;
+            }
+        }
+
+        .awpcp-payment-term-duration-price {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 30%;
+
+            label {
+                order: 2;
+                font-size: 1em;
+            }
+
+            .awpcp-payment-term-duration {
+                font-size: 1.4em;
+                order: 1;
+                padding-right: 0;
+                padding-left: 0;
+            }
+        }
     }
 }
