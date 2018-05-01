@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package AWPCP\UI
+ */
+
+// phpcs:disable
 
 function awpcp_categories_selector_helper() {
     return new AWPCP_Categories_Selector_Helper();
@@ -62,9 +67,11 @@ class AWPCP_Categories_Selector_Helper {
         $parent_id = $category_id;
         while ( $parent_id != 0 && isset( $all_categories_parents[ $parent_id ] ) ) {
             $category_parents[] = $parent_id;
-            $parent_id = $all_categories_parents[ $parent_id ];
+            $parent_id          = $all_categories_parents[ $parent_id ];
         }
 
         return array_reverse( $category_parents );
     }
 }
+
+// phpcs:enable

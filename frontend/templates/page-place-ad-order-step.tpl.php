@@ -1,4 +1,11 @@
-<?php if ( get_awpcp_option( 'freepay' ) == 1 ): ?>
+<?php
+/**
+ * @package AWPCP\Templates
+ */
+
+// phpcs:disable
+
+?><?php if ( get_awpcp_option( 'freepay' ) == 1 ): ?>
 <h2><?php echo esc_html( _x( 'Select Category and Payment Term', 'place ad order step', 'another-wordpress-classifieds-plugin' ) ); ?></h2>
 <?php else: ?>
 <h2><?php echo esc_html( _x( 'Select Category', 'place ad order step', 'another-wordpress-classifieds-plugin' ) ); ?></h2>

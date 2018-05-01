@@ -1,4 +1,11 @@
 <?php
+/**
+ * @package AWPCP\Templates
+ */
+
+// phpcs:disable
+
+?><?php
     foreach ($messages as $message) {
         echo awpcp_print_message($message);
     }

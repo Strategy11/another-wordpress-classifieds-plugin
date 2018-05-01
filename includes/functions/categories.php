@@ -1,7 +1,13 @@
 <?php
+/**
+ * @package AWPCP
+ */
+
+// phpcs:disable
 
 /**
  * @since 3.4
+ * @SuppressWarnings(PHPMD)
  */
 function awpcp_build_categories_hierarchy( &$categories, $hide_empty ) {
     $hierarchy = array( 'root' => array() );
@@ -77,6 +83,7 @@ function awpcp_render_categories_dropdown_options( &$categories, &$hierarchy, $s
 /**
  * @since 3.4
  * @since 4.0.0     Accepts an array of selected categories.
+ * @SuppressWarnings(PHPMD)
  */
 function awpcp_render_categories_dropdown_option( $category, $selected_categories ) {
     if ( in_array( $category->term_id, $selected_categories, true ) ) {
@@ -137,6 +144,7 @@ function awpcp_count_listings_in_categories() {
  *       (up to, at least, version 3.6.3.1).
  *
  * @since feature/1112
+ * @SuppressWarnings(PHPMD)
  */
 function awpcp_count_listings_in_category( $category_id ) {
     $cache_entry_key = 'term-padded-count-' . $category_id;
@@ -168,3 +176,5 @@ function total_ads_in_cat( $category_id ) {
     $listings_count = awpcp_get_count_of_listings_in_categories();
     return isset( $listings_count[ $category_id ] ) ? $listings_count[ $category_id ] : 0;
 }
+
+// phpcs:enable

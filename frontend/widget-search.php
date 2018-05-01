@@ -1,5 +1,13 @@
 <?php
+/**
+ * @package AWPCP\Widgets
+ */
 
+// phpcs:disable
+
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 class AWPCP_Search_Widget extends WP_Widget {
 
 	function __construct() {
@@ -184,6 +192,9 @@ class AWPCP_Search_Widget extends WP_Widget {
 		return $instance;
 	}
 
+    /**
+     * @SuppressWarnings(PHPMD)
+     */
 	function form($instance) {
 		$instance = wp_parse_args((array) $instance, $this->defaults());
 
@@ -199,3 +210,5 @@ class AWPCP_Search_Widget extends WP_Widget {
 		include(AWPCP_DIR . '/frontend/templates/widget-search-form.tpl.php');
 	}
 }
+
+// phpcs:enable
