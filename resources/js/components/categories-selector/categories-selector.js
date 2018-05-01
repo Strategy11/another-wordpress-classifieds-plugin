@@ -11,11 +11,11 @@ function( $, CategoriesSelectorHelper ) {
 
     $.fn.select2.amd.define( 'awpcp/select2/data/array', [
         'select2/utils',
-        'select2/data/array',
+        'select2/data/array'
     ],
     function( Utils, ArrayAdapter ) {
         var CategoriesAdapter = function( $element, options ) {
-            this.helper = options.get( 'helper' ) || null;
+            this.helper = options.get( 'helper' ) || null;
 
             CategoriesAdapter.__super__.constructor.call( this, $element, options );
         };
@@ -26,7 +26,8 @@ function( $, CategoriesSelectorHelper ) {
             var self = this;
 
             if ( ! self.helper ) {
-                return callback( data );
+                CategoriesAdapter.__super__.query.call( self, params, callback );
+                return;
             }
 
             CategoriesAdapter.__super__.current.call( self, function( current ) {
@@ -93,7 +94,7 @@ function( $, CategoriesSelectorHelper ) {
             this.render();
         },
 
-        onChange: function( event ) {
+        onChange: function() {
             var $select = this.$select;
             var categoriesIds = $.map( $select.select2( 'data' ), function( option ) {
                 return parseInt( option.id, 10 );
@@ -117,14 +118,14 @@ function( $, CategoriesSelectorHelper ) {
             }
 
             if ( this.options.helper ) {
-                options.helper = this.options.helper,
+                options.helper = this.options.helper;
                 options.data = this.options.helper.getAllCategories();
                 options.dataAdapter = $.fn.select2.amd.require( 'awpcp/select2/data/array' );
                 $select.empty();
             }
 
             $select.select2( options );
-        },
+        }
     } );
 
     return CategoriesSelector;

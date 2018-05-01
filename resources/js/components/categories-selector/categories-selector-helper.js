@@ -1,6 +1,6 @@
 /*global AWPCP, _*/
 AWPCP.define( 'awpcp/categories-selector-helper', [
-    'jquery',
+    'jquery'
 ],
 function( $ ) {
     var CategoriesSelectorHelper = function( selectedCategoriesIds, categoriesHierarchy, paymentTerms ) {
@@ -19,7 +19,7 @@ function( $ ) {
             self.hierarchy[ parent ] = _.map( categoriesHierarchy[ key ], function( category ) {
                 model = {
                     id: category.term_id,
-                    text: category.name,
+                    text: category.name
                 };
 
                 self.allCategories.push( model );
