@@ -8,7 +8,8 @@ AWPCP.run('awpcp/page-place-ads', [
     'awpcp/multiple-region-selector-validator',
     'awpcp/settings',
     'awpcp/jquery-userfield',
-    'awpcp/jquery-validate-methods'
+    'awpcp/jquery-validate-methods',
+    'awpcp/categories-selector',
 ], function(
     $,
     MediaCenter,
@@ -18,7 +19,8 @@ AWPCP.run('awpcp/page-place-ads', [
     MultipleRegionsSelectorValidator,
     settings,
     MultipleValueSelectorViewModel,
-    MultipleValueSelectorDelegate
+    MultipleValueSelectorDelegate,
+    CategoriesSelector
 ) {
     var AWPCP = jQuery.AWPCP = jQuery.extend({}, jQuery.AWPCP, AWPCP);
 
@@ -232,10 +234,10 @@ AWPCP.run('awpcp/page-place-ads', [
             var form = container.find('.awpcp-order-form');
 
             if (form.length) {
-                // we need to initialize the payment terms list first,
-                // so that it can respond to initial events from Categories Selector
-                // and User fields.
+                // We need to initialize the payment terms list first, so that it
+                // can respond to initial events from Categories Selector and User fields.
                 $.noop( new PaymentTermsList( container.find( '.awpcp-payment-terms-list' ) ) );
+                $.noop( new CategoriesSelector( container.find( '.awpcp-category-dropdown' ) ) );
 
                 $.publish( '/awpcp/post-listing-page/order-step/ready', [form] );
 

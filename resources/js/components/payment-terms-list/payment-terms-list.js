@@ -7,7 +7,7 @@ function( $, settings ) {
             allPaymentTerms: this.container.find( '.awpcp-payment-terms-list-payment-term' )
         };
 
-        $.subscribe( '/category/updated', _.bind( this.onCategoriesUpdated, this ) );
+        $.subscribe( '/categories/change', _.bind( this.onCategoriesUpdated, this ) );
         $.subscribe( '/user/updated', _.bind( this.onUserUpdated, this ) );
 
         this.update();

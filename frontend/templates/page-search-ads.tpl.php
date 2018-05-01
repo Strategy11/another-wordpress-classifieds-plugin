@@ -22,12 +22,12 @@
     </p>
 
     <p class="awpcp-form-spacer">
-        <?php $dropdown = awpcp_categories_dropdown(); ?>
-        <?php echo $dropdown->render( array(
+        <?php echo awpcp_categories_selector()->render( array(
                 'context' => 'search',
                 'selected' => awpcp_array_data('category', '', $form),
                 'name' => 'searchcategory',
                 'required' => false,
+                'multiple' => true,
               ) ); ?>
     </p>
 

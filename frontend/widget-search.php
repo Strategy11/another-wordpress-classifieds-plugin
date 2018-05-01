@@ -147,15 +147,17 @@ class AWPCP_Search_Widget extends WP_Widget {
 		echo $this->render_region_fields( $instance );
 
 		if ($instance['show_category'] == 1) {
+            wp_enqueue_style( 'select2' );
+
 			$label = __('Search by Category', 'another-wordpress-classifieds-plugin');
 			$name = 'searchcategory';
 			$selected = stripslashes_deep( awpcp_request_param( $name, null ) );
 
-			$dropdown = awpcp_categories_dropdown();
-			echo $dropdown->render( array(
+			echo awpcp_categories_selector()->render( array(
                 'context' => 'search',
                 'selected' => $selected,
                 'required' => false,
+                'multiple' => true,
                 'name' => $name,
                 'label' => $label,
             ) );

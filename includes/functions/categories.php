@@ -52,25 +52,22 @@ function awpcp_get_category_hierarchy( $category_id, &$categories ) {
 
 /**
  * @since 3.4
+ * @since 4.0.0     Accepts an array of selected categories.
  */
-function awpcp_render_categories_dropdown_options( &$categories, &$hierarchy, $selected_category ) {
+function awpcp_render_categories_dropdown_options( &$categories, &$hierarchy, $selected_categories ) {
     $output = '';
 
+    if ( ! is_array( $selected_categories ) ) {
+        $selected_categories = array( $selected_categories );
+    }
+
+    $selected_categories = array_map( 'absint', $selected_categories );
+
     foreach ( $categories as $category ) {
-        $category_name = stripslashes( stripslashes( $category->name ) );
-
-        if( $category->term_id == $selected_category ) {
-            $item = '<option class="dropdownparentcategory" selected="selected" value="' . $category->term_id . '">' . $category_name . '</option>';
-            $item = '<option selected="selected" value="' . $category->term_id . '">- ' . $category_name . '</option>';
-        } else {
-            $item = '<option class="dropdownparentcategory" value="' . $category->term_id . '">' . $category_name . '</option>';
-            $item = '<option value="' . $category->term_id . '">-' . $category_name . '</option>';
-        }
-
-        $output .= awpcp_render_categories_dropdown_option( $category, $selected_category );
+        $output .= awpcp_render_categories_dropdown_option( $category, $selected_categories );
 
         if ( isset( $hierarchy[ $category->term_id ] ) ) {
-            $output .= awpcp_render_categories_dropdown_options( $hierarchy[ $category->term_id ], $hierarchy, $selected_category );
+            $output .= awpcp_render_categories_dropdown_options( $hierarchy[ $category->term_id ], $hierarchy, $selected_categories );
         }
     }
 
@@ -79,9 +76,10 @@ function awpcp_render_categories_dropdown_options( &$categories, &$hierarchy, $s
 
 /**
  * @since 3.4
+ * @since 4.0.0     Accepts an array of selected categories.
  */
-function awpcp_render_categories_dropdown_option( $category, $selected_category ) {
-    if ( $selected_category == $category->term_id ) {
+function awpcp_render_categories_dropdown_option( $category, $selected_categories ) {
+    if ( in_array( $category->term_id, $selected_categories, true ) ) {
         $selected_attribute = 'selected="selected"';
     } else {
         $selected_attribute = '';
@@ -89,10 +87,10 @@ function awpcp_render_categories_dropdown_option( $category, $selected_category 
 
     if ( $category->parent == 0 ) {
         $class_attribute = 'class="dropdownparentcategory"';
-        $category_name = esc_html( $category->name );
+        $category_name = esc_html( wp_unslash( $category->name ) );
     } else {
         $class_attribute = '';
-        $category_name = sprintf('- %s', esc_html( $category->name ) );
+        $category_name = sprintf('- %s', esc_html( wp_unslash( $category->name ) ) );
     }
 
     return sprintf(
@@ -169,16 +167,4 @@ function awpcp_count_listings_in_category( $category_id ) {
 function total_ads_in_cat( $category_id ) {
     $listings_count = awpcp_get_count_of_listings_in_categories();
     return isset( $listings_count[ $category_id ] ) ? $listings_count[ $category_id ] : 0;
-}
-
-/**
- * @since feature/1112
- */
-function awpcp_categories_selector() {
-    $constructor_function = apply_filters(
-        'awpcp-categories-selector-constructor-function',
-        'awpcp_single_category_selector'
-    );
-
-    return call_user_func( $constructor_function );
 }

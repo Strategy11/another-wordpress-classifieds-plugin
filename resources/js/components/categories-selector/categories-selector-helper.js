@@ -1,9 +1,8 @@
 /*global AWPCP, _*/
 AWPCP.define( 'awpcp/categories-selector-helper', [
     'jquery',
-    'awpcp/category-item-model'
 ],
-function( $, CategoryItemModel ) {
+function( $ ) {
     var CategoriesSelectorHelper = function( selectedCategoriesIds, categoriesHierarchy, paymentTerms ) {
         var self = this, parent, model;
 
@@ -18,12 +17,10 @@ function( $, CategoryItemModel ) {
             parent = ( key === 'root' ? key : parseInt( key, 10 ) );
 
             self.hierarchy[ parent ] = _.map( categoriesHierarchy[ key ], function( category ) {
-                model = new CategoryItemModel( {
+                model = {
                     id: category.term_id,
-                    name: category.name,
-                    price: category.price,
-                    selected: _.contains( self.selectedCategoriesIds, category.term_id )
-                } );
+                    text: category.name,
+                };
 
                 self.allCategories.push( model );
                 self.registry[ category.term_id ] = model;

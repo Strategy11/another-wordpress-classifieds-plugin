@@ -15,12 +15,20 @@ class AWPCP_Categories_Selector_Helper {
             'label' => __( 'Ad Category', 'another-wordpress-classifieds-plugin' ),
             'required' => true,
             'selected' => null,
+            'multiple' => false,
+            'auto'          => true,
             'hide_empty' => awpcp_parse_bool( $hide_empty_categories ),
+            'mode'          => 'basic',
+            'payment_terms' => array(),
         ) );
+
+        if ( $params['multiple'] ) {
+            $params['name'] = $params['name'] . '[]';
+        }
 
         if ( ! is_array( $params['selected'] ) && ! empty( $params['selected'] ) ) {
             $params['selected'] = array( $params['selected'] );
-        } else if ( ! is_array( $params['selected'] ) ) {
+        } elseif ( ! is_array( $params['selected'] ) ) {
             $params['selected'] = array();
         }
 

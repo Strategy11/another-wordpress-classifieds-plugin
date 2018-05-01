@@ -29,12 +29,18 @@
 
     <div class="awpcp-form-spacer">
         <?php
-            echo awpcp_categories_selector()->render(array(
-                'name' => 'category',
-                'selected' => awpcp_array_data( 'category', '', $form ),
-                'hide_empty' => false,
+            $params = array(
+                'name'          => 'category',
+                'selected'      => awpcp_array_data( 'category', '', $form ),
+                'multiple'      => false,
+                'auto'          => false,
+                'hide_empty'    => false,
                 'payment_terms' => $payment_terms,
-            ));
+            );
+
+            $params = apply_filters( 'awpcp_post_listing_categories_selector_args', $params );
+
+            echo awpcp_categories_selector()->render( $params );
             echo awpcp_form_error('category', $form_errors);
         ?>
     </div>

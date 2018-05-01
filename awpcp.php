@@ -197,9 +197,8 @@ require( AWPCP_DIR . "/includes/db/class-database-helper.php" );
 require( AWPCP_DIR . "/includes/fees/class-fees-collection.php" );
 
 require( AWPCP_DIR . "/includes/ui/class-categories-selector-helper.php" );
-require( AWPCP_DIR . "/includes/ui/class-multiple-categories-selector.php" );
 require( AWPCP_DIR . "/includes/ui/class-payment-terms-list.php" );
-require( AWPCP_DIR . "/includes/ui/class-single-category-selector.php" );
+require( AWPCP_DIR . "/includes/ui/class-category-selector.php" );
 
 require( AWPCP_DIR . '/includes/ui/class-classifieds-bar.php' );
 require( AWPCP_DIR . '/includes/ui/class-classifieds-search-bar-component.php' );
@@ -1301,12 +1300,27 @@ class AWPCP {
             true
         );
 
+        wp_register_style(
+            'select2',
+            "{$vendors}/select2-4.0.5/css/select2.min.css",
+            array(),
+            '4.0.5'
+        );
+
+        wp_register_script(
+            'select2',
+            "{$vendors}/select2-4.0.5/js/select2.min.js",
+            array(),
+            '4.0.5',
+            true
+        );
+
 		/* helpers */
 
 		wp_register_script(
             'awpcp',
             "{$js}/awpcp.min.js",
-            array( 'jquery', 'backbone', 'underscore', 'awpcp-knockout', 'breakpoints.js' ),
+            array( 'jquery', 'backbone', 'underscore', 'awpcp-knockout', 'select2', 'breakpoints.js' ),
             $awpcp_db_version,
             true
         );
@@ -1414,6 +1428,7 @@ class AWPCP {
                 'awpcp',
                 'awpcp-multiple-region-selector',
                 'awpcp-jquery-validate',
+                'select2',
                 'jquery-ui-datepicker',
                 'jquery-ui-autocomplete',
                 'plupload-all',

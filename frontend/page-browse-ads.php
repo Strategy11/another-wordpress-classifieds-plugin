@@ -29,6 +29,9 @@ class AWPCP_BrowseAdsPage extends AWPCP_Page {
     }
 
     protected function _dispatch() {
+        wp_enqueue_style( 'select2' );
+        wp_enqueue_script( 'select2' );
+
         awpcp_enqueue_main_script();
 
         $category_id = absint( $this->request->get_category_id() );

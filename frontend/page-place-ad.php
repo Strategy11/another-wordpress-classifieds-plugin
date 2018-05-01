@@ -128,6 +128,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         do_action( 'awpcp-before-post-listing-page' );
 
         wp_enqueue_style('awpcp-jquery-ui');
+        wp_enqueue_style( 'select2' );
         wp_enqueue_script('awpcp-page-place-ad');
 
         $awpcp = awpcp();
