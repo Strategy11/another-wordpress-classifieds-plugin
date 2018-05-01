@@ -120,7 +120,7 @@ class AWPCP_QueryIntegration {
     private function normalize_region_query_parameters( $query_vars ) {
         $regions_query = array();
 
-        if ( isset( $query_vars['classifieds_query']['regions'] ) ) {
+        if ( isset( $query_vars['classifieds_query']['regions'] ) && is_array( $query_vars['classifieds_query']['regions'] ) ) {
             $regions_query = $query_vars['classifieds_query']['regions'];
         }
 
