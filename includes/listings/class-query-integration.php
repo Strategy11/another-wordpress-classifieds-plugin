@@ -582,7 +582,7 @@ class AWPCP_QueryIntegration {
      * @since 4.0.0
      */
     public function process_price_query_parameter( $query_vars ) {
-        if ( isset( $query_vars['classifieds_query']['price'] ) ) {
+        if ( isset( $query_vars['classifieds_query']['price'] ) && strlen( $query_vars['classifieds_query']['price'] ) ) {
             $price = $this->sanitize_price( $query_vars['classifieds_query']['price'] );
 
             $query_vars['meta_query'][] = array(
@@ -609,7 +609,7 @@ class AWPCP_QueryIntegration {
      * @since 4.0.0
      */
     public function process_min_price_query_parameter( $query_vars ) {
-        if ( isset( $query_vars['classifieds_query']['min_price'] ) ) {
+        if ( isset( $query_vars['classifieds_query']['min_price'] ) && strlen( $query_vars['classifieds_query']['min_price'] ) ) {
             $price = $this->sanitize_price( $query_vars['classifieds_query']['min_price'] );
 
             $query_vars['meta_query'][] = array(
@@ -628,7 +628,7 @@ class AWPCP_QueryIntegration {
      * @since 4.0.0
      */
     public function process_max_price_query_parameter( $query_vars ) {
-        if ( isset( $query_vars['classifieds_query']['max_price'] ) ) {
+        if ( isset( $query_vars['classifieds_query']['max_price'] ) && strlen( $query_vars['classifieds_query']['max_price'] ) ) {
             $price = $this->sanitize_price( $query_vars['classifieds_query']['max_price'] );
 
             $query_vars['meta_query'][] = array(

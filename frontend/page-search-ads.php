@@ -148,14 +148,15 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
 
     private function search_listings( $form ) {
         $query = array(
-            'context' => 'public-listings',
-            's' => $form['query'],
-            'category_id' => absint( $form['category'] ),
-            'contact_name' => $form['name'],
-            'min_price' => $form['min_price'],
-            'max_price' => $form['max_price'],
-            'regions' => $form['regions'],
-            'disabled' => false,
+            'classifieds_query' => array(
+                'context' => 'public-listings',
+                's' => $form['query'],
+                'category' => $form['category'],
+                'contact_name' => $form['name'],
+                'min_price' => $form['min_price'],
+                'max_price' => $form['max_price'],
+                'regions' => $form['regions'],
+            ),
             'posts_per_page' => absint( awpcp_request_param( 'results', get_awpcp_option( 'adresultsperpage', 10 ) ) ),
             'offset' => absint( awpcp_request_param( 'offset', 0 ) ),
             'orderby' => get_awpcp_option( 'search-results-order' ),
