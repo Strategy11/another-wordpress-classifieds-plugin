@@ -113,6 +113,7 @@ require_once(AWPCP_DIR . "/includes/compatibility/class-all-in-one-seo-pack-plug
 require( AWPCP_DIR . "/includes/compatibility/class-facebook-button-plugin-integration.php");
 require_once(AWPCP_DIR . "/includes/compatibility/class-facebook-plugin-integration.php");
 require_once( AWPCP_DIR . '/includes/compatibility/class-facebook-all-plugin-integration.php' );
+require_once( AWPCP_DIR . "/includes/compatibility/class-jetpack-plugin-integration.php" );
 require_once( AWPCP_DIR . '/includes/compatibility/class-mashshare-plugin-integration.php' );
 require_once( AWPCP_DIR . '/includes/compatibility/class-plugin-integrations.php' );
 require( AWPCP_DIR . "/includes/compatibility/class-profile-builder-plugin-integration.php");
@@ -719,6 +720,11 @@ class AWPCP {
         $this->plugin_integrations->add_plugin_integration(
             'wonderm00ns-simple-facebook-open-graph-tags/wonderm00n-open-graph.php',
             'awpcp_simple_facebook_opengraph_tags_plugin_integration'
+        );
+
+        $this->plugin_integrations->add_plugin_integration(
+            'jetpack/jetpack.php',
+            'awpcp_jetpack_plugin_integration'
         );
     }
 

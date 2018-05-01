@@ -72,10 +72,15 @@ class AWPCP_Image_Placeholders {
                     'rel' => esc_attr( $gallery_name ),
                     'data-awpcp-gallery' => esc_attr( $gallery_name ),
                 );
+                
+                $image_attributes = array(
+                    'class' => 'thumbshow',
+                    'alt'   => __( "Thumbnail for the listing's main image", 'another-wordpress-classifieds-plugin' ),
+                );
 
                 $content = '<div class="awpcp-ad-primary-image">';
                 $content.= '<a ' . awpcp_html_attributes( $link_attributes ) . '>';
-                $content.= wp_get_attachment_image( $primary_image->ID, 'awpcp-featured', false, array( 'class' => 'thumbshow' ) );
+                $content.= wp_get_attachment_image( $primary_image->ID, 'awpcp-featured', false, $image_attributes );
                 $content.= '</a>' . $link;
                 $content.= '</div>';
 
