@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package AWPCP\UI
+ */
+
+// phpcs:disable
 
 /**
  * @since 3.3
@@ -10,6 +15,9 @@ function awpcp_categories_dropdown() {
     );
 }
 
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 class AWPCP_CategoriesDropdown {
 
     private $categories;

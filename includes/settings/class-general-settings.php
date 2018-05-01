@@ -1,9 +1,17 @@
 <?php
+/**
+ * @package AWPCP\Settings
+ */
+
+// phpcs:disable
 
 function awpcp_general_settings() {
     return new AWPCP_GeneralSettings( awpcp_roles_and_capabilities() );
 }
 
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 class AWPCP_GeneralSettings {
 
     private $roles;
