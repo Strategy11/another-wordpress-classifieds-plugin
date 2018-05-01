@@ -28,23 +28,7 @@ class AWPCP_Categories_Switcher {
         }
 
         $category_id = $this->request->get_category_id();
-
-        $use_multiple_dropdowns = $this->settings->get_option( 'use-multiple-category-dropdowns', false );
-
-        if ( $use_multiple_dropdowns && $category_id ) {
-            $label = _x( 'Category: <category-name>', 'multiple dropdowns category selector', 'another-wordpress-classifieds-plugin' );
-            $label = str_replace( '<category-name>', get_adcatname( $category_id ), $label );
-        } else if ( $use_multiple_dropdowns ) {
-            $label = false;
-        } else {
-            $label = _x( 'Category:', 'single dropdown category selector', 'another-wordpress-classifieds-plugin' );
-        }
-
-        if ( $use_multiple_dropdowns ) {
-            $dropdown_container_class = 'awpcp-multiple-dropdown-category-selector-container';
-        } else {
-            $dropdown_container_class = 'awpcp-single-dropdown-category-selector-container';
-        }
+        $label       = _x( 'Category:', 'single dropdown category selector', 'another-wordpress-classifieds-plugin' );
 
         $category_dropdown_params = wp_parse_args( $params, array(
             'label' => $label,
