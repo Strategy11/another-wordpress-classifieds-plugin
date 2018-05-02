@@ -1,16 +1,28 @@
 <?php
+/**
+ * @package AWPCP\Listings
+ */
+
+// phpcs:disable
 
 function awpcp_categories_collection() {
-    return new AWPCP_Categories_Collection( awpcp_wordpress() );
+    return new AWPCP_Categories_Collection( 'awpcp_listing_category', awpcp_wordpress() );
 }
 
 class AWPCP_Categories_Collection {
 
-    private $taxonomy = AWPCP_CATEGORY_TAXONOMY;
+    /**
+     * @var string
+     */
+    private $taxonomy;
 
     private $wordpress;
 
-    public function __construct( $wordpress ) {
+    /**
+     * @param string $taxonomy  The name of the listings category taxonomy.
+     */
+    public function __construct( $taxonomy, $wordpress ) {
+        $this->taxonomy  = $taxonomy;
         $this->wordpress = $wordpress;
     }
 

@@ -29,17 +29,24 @@ class AWPCP_Admin {
     private $table_actions;
 
     /**
+     * @var object
+     */
+    private $table_nav;
+
+    /**
      * @param string $post_type         A post type identifier.
      * @param array  $container         An instance of Container.
      * @param object $table_views       An instance of List Table Views Handler.
      * @param object $table_actions     An instance of List Table Actions Handler.
+     * @param object $table_nav         An instance of List Table Nav Handler.
      * @since 4.0.0
      */
-    public function __construct( $post_type, $container, $table_views, $table_actions ) {
+    public function __construct( $post_type, $container, $table_views, $table_actions, $table_nav ) {
         $this->post_type     = $post_type;
         $this->container     = $container;
         $this->table_views   = $table_views;
         $this->table_actions = $table_actions;
+        $this->table_nav     = $table_nav;
     }
 
     /**
@@ -49,12 +56,17 @@ class AWPCP_Admin {
         global $typenow;
 
         if ( $this->post_type === $typenow ) {
+            add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+
             add_filter( 'pre_get_posts', array( $this->table_views, 'pre_get_posts' ) );
             add_filter( 'views_edit-' . $this->post_type, array( $this->table_views, 'views' ) );
 
             add_action( 'admin_head-edit.php', array( $this->table_actions, 'admin_head' ), 10, 2 );
             add_action( 'post_row_actions', array( $this->table_actions, 'row_actions' ), 10, 2 );
             add_filter( 'handle_bulk_actions-edit-' . $this->post_type, array( $this->table_actions, 'handle_action' ), 10, 3 );
+
+            add_action( 'pre_get_posts', array( $this->table_nav, 'pre_get_posts' ) );
+            add_action( 'restrict_manage_posts', array( $this->table_nav, 'restrict_listings' ), 10, 2 );
         }
 
         add_action( 'add_meta_boxes_' . $this->post_type, array( $this, 'add_classifieds_meta_boxes' ) );
@@ -62,6 +74,16 @@ class AWPCP_Admin {
 
         add_filter( 'awpcp_list_table_views_listings', array( $this, 'register_listings_table_views' ) );
         add_filter( 'awpcp_list_table_actions_listings', array( $this, 'register_listings_table_actions' ) );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function enqueue_scripts() {
+        wp_enqueue_style( 'select2' );
+        wp_enqueue_style( 'awpcp-admin-style' );
+
+        wp_enqueue_script( 'awpcp' );
     }
 
     /**

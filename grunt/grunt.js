@@ -51,6 +51,7 @@ module.exports = function(grunt) {
         '<%= path.awpcp %>/js/awpcp-admin.src.js': [
           '<%= path.awpcp %>/js/components/settings-validator.js',
         ],
+        '<%= path.awpcp %>/js/admin/listings-table.src.js': '<%= path.awpcp %>/js/admin/listings-table.js',
         '<%= path.awpcp %>/js/jquery-usableform/jquery-usableform.src.js': '<%= path.awpcp %>/js/jquery-usableform/jquery-usableform.js',
         '<%= path.awpcp %>/js/knockout-progress/knockout-progress.src.js': [
           '<%= path.awpcp %>/js/knockout-progress/knockout-progress.js'

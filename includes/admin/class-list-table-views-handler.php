@@ -58,7 +58,7 @@ class AWPCP_ListTableViewsHandler {
      */
     public function views( $views ) {
         $current_view = $this->get_current_view();
-        $current_url  = remove_query_arg( 'post_status' );
+        $current_url  = add_query_arg( 'post_type', $this->request->param( 'post_type' ), admin_url( 'edit.php' ) );
 
         foreach ( $this->views as $name => $view ) {
             $count = $view->get_count();

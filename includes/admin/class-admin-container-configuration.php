@@ -20,7 +20,8 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
                 $container['listing_post_type'],
                 $container,
                 $container['ListingsTableViewsHandler'],
-                $container['ListingsTableActionsHandler']
+                $container['ListingsTableActionsHandler'],
+                $container['ListingsTableNavHandler']
             );
         } );
 
@@ -206,6 +207,12 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
             return new AWPCP_SendToFacebookGroupListingTableAction(
                 $container['SendListingToFacebookHelper'],
                 $container['WordPress']
+            );
+        } );
+
+        $container['ListingsTableNavHandler'] = $container->service( function( $container ) {
+            return new AWPCP_ListingsTableNavHandler(
+                $container['Request']
             );
         } );
 

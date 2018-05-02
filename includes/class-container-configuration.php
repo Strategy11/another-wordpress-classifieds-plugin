@@ -15,6 +15,10 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
      * @SuppressWarnings(PHPMD.StaticAccess)
      */
     public function modify( $container ) {
+        $container['Request'] = $container->service( function( $container ) {
+            return awpcp_request();
+        } );
+
         $container['Settings'] = $container->service( function( $container ) {
             return awpcp_settings_api();
         } );

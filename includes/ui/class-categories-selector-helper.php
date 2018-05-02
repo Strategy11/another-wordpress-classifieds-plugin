@@ -18,6 +18,7 @@ class AWPCP_Categories_Selector_Helper {
             'context' => 'default',
             'name' => 'category',
             'label' => __( 'Ad Category', 'another-wordpress-classifieds-plugin' ),
+            'placeholder'   => null,
             'required' => true,
             'selected' => null,
             'multiple' => false,

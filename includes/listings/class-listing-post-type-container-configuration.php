@@ -97,5 +97,12 @@ class AWPCP_ListingPostTypeContainerConfiguration implements AWPCP_ContainerConf
                 $container['Settings']
             );
         } );
+
+        $container['CategoriesCollection'] = $container->service( function( $container ) {
+            return new AWPCP_Categories_Collection(
+                $container['listing_category_taxonomy'],
+                $container['WordPress']
+            );
+        } );
     }
 }

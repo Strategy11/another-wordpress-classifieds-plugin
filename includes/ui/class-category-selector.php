@@ -85,6 +85,10 @@ class AWPCP_Category_Selector {
      * @param array $params     An array of parameters for the Category Selector.
      */
     private function get_placeholder( $params ) {
+        if ( isset( $params['placeholder'] ) ) {
+            return $params['placeholder'];
+        }
+
         if ( 'search' === $params['context'] ) {
             return __( 'All Categories', 'another-wordpress-classifieds-plugin' );
         }
