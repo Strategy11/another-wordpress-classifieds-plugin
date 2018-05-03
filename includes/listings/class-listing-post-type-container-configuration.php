@@ -63,7 +63,8 @@ class AWPCP_ListingPostTypeContainerConfiguration implements AWPCP_ContainerConf
                 return new AWPCP_QueryIntegration(
                     $container['listing_post_type'],
                     $container['listing_category_taxonomy'],
-                    $container['Settings']
+                    $container['Settings'],
+                    $GLOBALS['wpdb']
                 );
             }
         );

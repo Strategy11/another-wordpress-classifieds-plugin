@@ -34,19 +34,26 @@ class AWPCP_Admin {
     private $table_nav;
 
     /**
+     * @var object
+     */
+    private $table_search;
+
+    /**
      * @param string $post_type         A post type identifier.
      * @param array  $container         An instance of Container.
      * @param object $table_views       An instance of List Table Views Handler.
      * @param object $table_actions     An instance of List Table Actions Handler.
      * @param object $table_nav         An instance of List Table Nav Handler.
+     * @param object $table_search      An instance of List Table Search Handler.
      * @since 4.0.0
      */
-    public function __construct( $post_type, $container, $table_views, $table_actions, $table_nav ) {
+    public function __construct( $post_type, $container, $table_views, $table_actions, $table_nav, $table_search ) {
         $this->post_type     = $post_type;
         $this->container     = $container;
         $this->table_views   = $table_views;
         $this->table_actions = $table_actions;
         $this->table_nav     = $table_nav;
+        $this->table_search  = $table_search;
     }
 
     /**
@@ -67,13 +74,18 @@ class AWPCP_Admin {
 
             add_action( 'pre_get_posts', array( $this->table_nav, 'pre_get_posts' ) );
             add_action( 'restrict_manage_posts', array( $this->table_nav, 'restrict_listings' ), 10, 2 );
-        }
 
-        add_action( 'add_meta_boxes_' . $this->post_type, array( $this, 'add_classifieds_meta_boxes' ) );
-        add_action( 'save_post_' . $this->post_type, array( $this->container['ListingFieldsMetabox'], 'save' ), 10, 2 );
+            add_action( 'pre_get_posts', array( $this->table_search, 'pre_get_posts' ) );
+            add_filter( 'get_search_query', array( $this->table_search, 'get_search_query' ) );
+            add_action( 'manage_posts_extra_tablenav', array( $this->table_search, 'render_search_mode_dropdown' ) );
+        }
 
         add_filter( 'awpcp_list_table_views_listings', array( $this, 'register_listings_table_views' ) );
         add_filter( 'awpcp_list_table_actions_listings', array( $this, 'register_listings_table_actions' ) );
+        add_filter( 'awpcp_list_table_search_listings', array( $this, 'register_listings_table_search_modes' ) );
+
+        add_action( 'add_meta_boxes_' . $this->post_type, array( $this, 'add_classifieds_meta_boxes' ) );
+        add_action( 'save_post_' . $this->post_type, array( $this->container['ListingFieldsMetabox'], 'save' ), 10, 2 );
     }
 
     /**
@@ -83,7 +95,7 @@ class AWPCP_Admin {
         wp_enqueue_style( 'select2' );
         wp_enqueue_style( 'awpcp-admin-style' );
 
-        wp_enqueue_script( 'awpcp' );
+        wp_enqueue_script( 'awpcp-admin-listings-table' );
     }
 
     /**
@@ -125,6 +137,22 @@ class AWPCP_Admin {
         $actions['send-to-facebook-group'] = $this->container['SendToFacebookGroupListingTableAction'];
 
         return $actions;
+    }
+
+    /**
+     * @param array $search_modes   An array of available search modes.
+     * @since 4.0.0
+     */
+    public function register_listings_table_search_modes( $search_modes ) {
+        $search_modes['keyword']       = $this->container['KeywordListingsTableSearchMode'];
+        $search_modes['title']         = $this->container['TitleListingsTableSearchMode'];
+        $search_modes['user']          = $this->container['UserListingsTableSearchMode'];
+        $search_modes['contact-name']  = $this->container['ContactNameListingsTableSearchMode'];
+        $search_modes['contact-phone'] = $this->container['ContactPhoneListingsTableSearchMode'];
+        $search_modes['payer-email']   = $this->container['PayerEmailListingsTableSearchMode'];
+        $search_modes['location']      = $this->container['LocationListingsTableSearchMode'];
+
+        return $search_modes;
     }
 
     /**

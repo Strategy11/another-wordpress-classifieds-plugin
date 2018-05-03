@@ -21,7 +21,8 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
                 $container,
                 $container['ListingsTableViewsHandler'],
                 $container['ListingsTableActionsHandler'],
-                $container['ListingsTableNavHandler']
+                $container['ListingsTableNavHandler'],
+                $container['ListingsTableSearchHandler']
             );
         } );
 
@@ -214,6 +215,46 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
             return new AWPCP_ListingsTableNavHandler(
                 $container['Request']
             );
+        } );
+
+        $container['ListingsTableSearchHandler'] = $container->service( function( $container ) {
+            return new AWPCP_ListTableSearchHandler(
+                $container['ListingsTableSearchModes'],
+                $container['HTMLRenderer'],
+                $container['Request']
+            );
+        } );
+
+        $container['ListingsTableSearchModes'] = $container->service( function( $container ) {
+            return new AWPCP_FilteredArray( 'awpcp_list_table_search_listings' );
+        } );
+
+        $container['KeywordListingsTableSearchMode'] = $container->service( function( $container ) {
+            return new AWPCP_KeywordListingsTableSearchMode();
+        } );
+
+        $container['TitleListingsTableSearchMode'] = $container->service( function( $container ) {
+            return new AWPCP_TitleListingsTableSearchMode();
+        } );
+
+        $container['UserListingsTableSearchMode'] = $container->service( function( $container ) {
+            return new AWPCP_UserListingsTableSearchMode();
+        } );
+
+        $container['ContactNameListingsTableSearchMode'] = $container->service( function( $container ) {
+            return new AWPCP_ContactNameListingsTableSearchMode();
+        } );
+
+        $container['ContactPhoneListingsTableSearchMode'] = $container->service( function( $container ) {
+            return new AWPCP_ContactPhoneListingsTableSearchMode();
+        } );
+
+        $container['PayerEmailListingsTableSearchMode'] = $container->service( function( $container ) {
+            return new AWPCP_PayerEmailListingsTableSearchMode();
+        } );
+
+        $container['LocationListingsTableSearchMode'] = $container->service( function( $container ) {
+            return new AWPCP_LocationListingsTableSearchMode();
         } );
 
         $container['ListingFieldsMetabox'] = $container->service( function( $container ) {

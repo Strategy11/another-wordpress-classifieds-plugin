@@ -28,15 +28,22 @@ class AWPCP_QueryIntegration {
     private $settings;
 
     /**
+     * @var object
+     */
+    private $db;
+
+    /**
      * @param string $listing_post_type     The identifier for the Listings post type.
      * @param array  $categories_taxonomy   The identifier for the Listing Category taxonomy.
      * @param object $settings              An instance of Settings API.
+     * @param object $db                    An instance of wpdb.
      * @since 4.0.0
      */
-    public function __construct( $listing_post_type, $categories_taxonomy, $settings ) {
+    public function __construct( $listing_post_type, $categories_taxonomy, $settings, $db ) {
         $this->listing_post_type   = $listing_post_type;
         $this->categories_taxonomy = $categories_taxonomy;
         $this->settings            = $settings;
+        $this->db                  = $db;
     }
 
     /**
@@ -44,16 +51,20 @@ class AWPCP_QueryIntegration {
      * @since 4.0.0
      */
     public function pre_get_posts( $query ) {
-        if ( ! isset( $query->query_vars['classifieds_query'] ) ) {
-            return;
+        if ( isset( $query->query_vars['classifieds_query'] ) ) {
+            $query->query_vars = $this->process_query_vars( $query->query_vars );
         }
+    }
 
-        $query_vars = $query->query_vars;
-
+    /**
+     * @param array $query_vars     An array of query vars.
+     * @since 4.0.0
+     */
+    private function process_query_vars( $query_vars ) {
         $query_vars = $this->normalize_query_vars( $query_vars );
         $query_vars = $this->process_query_parameters( $query_vars );
 
-        $query->query_vars = $query_vars;
+        return $query_vars;
     }
 
     /**
@@ -209,6 +220,7 @@ class AWPCP_QueryIntegration {
         // TODO: What other parameters are missing?
         // TODO: Remove unused methods.
         $query_vars = $this->process_contact_name_query_parameter( $query_vars );
+        $query_vars = $this->process_contact_phone_query_parameter( $query_vars );
         $query_vars = $this->process_price_query_parameter( $query_vars );
         $query_vars = $this->process_min_price_query_parameter( $query_vars );
         $query_vars = $this->process_max_price_query_parameter( $query_vars );
@@ -569,8 +581,24 @@ class AWPCP_QueryIntegration {
             $query_vars['meta_query'][] = array(
                 'key'     => '_awpcp_contact_name',
                 'value'   => $query_vars['classifieds_query']['contact_name'],
-                'compare' => '=',
+                'compare' => 'LIKE',
                 'type'    => 'CHAR',
+            );
+        }
+
+        return $query_vars;
+    }
+
+    /**
+     * @param array $query_vars     An array of query vars.
+     * @since 4.0.0
+     */
+    public function process_contact_phone_query_parameter( $query_vars ) {
+        if ( ! empty( $query_vars['classifieds_query']['contact_phone'] ) ) {
+            $query_vars['meta_query'][] = array(
+                'key'     => '_awpcp_contact_phone_number_digits',
+                'value'   => awpcp_get_digits_from_string( $query_vars['classifieds_query']['contact_phone'] ),
+                'compare' => 'LIKE',
             );
         }
 
@@ -695,5 +723,57 @@ class AWPCP_QueryIntegration {
         }
 
         return $query_vars;
+    }
+
+    /**
+     * @param string $where     SQL WHERE cluase for the currrent query.
+     * @param object $query     An instance of WP_Query.
+     * @since 4.0.0
+     */
+    public function posts_where( $where, $query ) {
+        if ( ! isset( $query->query_vars['classifieds_query']['title'] ) ) {
+            return $where;
+        }
+
+        $search_term = $this->db->esc_like( $query->query_vars['classifieds_query']['title'] );
+        $search_term = '%' . $search_term . '%';
+
+        return $where . $this->db->prepare( " AND {$this->db->posts}.post_title LIKE %s", $search_term );
+    }
+
+    /**
+     * @param array  $clauses   An array of SQL clauses.
+     * @param object $query     An instance of WP_Query.
+     * @since 4.0.0
+     */
+    public function posts_clauses( $clauses, $query ) {
+        if ( empty( $query->query_vars['classifieds_query']['regions'] ) ) {
+            return $clauses;
+        }
+
+        $regions_conditions = array();
+
+        foreach ( $query->query_vars['classifieds_query']['regions'] as $region ) {
+            $region_conditions = array();
+
+            foreach ( $region as $field => $search ) {
+                // add support for exact search, passing a search values defined as array( '=', <region-name> ).
+                if ( is_array( $search ) && count( $search ) === 2 && '=' === $search[0] ) {
+                    $region_conditions[] = $this->db->prepare( "listing_regions.`{$field}` = %s", trim( $search[1] ) );
+                } elseif ( ! is_array( $search ) ) {
+                    $search_term = $this->db->esc_like( trim( $search ) );
+                    $search_term = '%' . $search_term . '%';
+
+                    $region_conditions[] = $this->db->prepare( "listing_regions.`{$field}` LIKE %s", $search_term );
+                }
+            }
+
+            $regions_conditions[] = '( ' . implode( ' AND ', $region_conditions ) . ' )';
+        }
+
+        $clauses['join']  .= ' INNER JOIN ' . AWPCP_TABLE_AD_REGIONS . ' AS listing_regions ON (listing_regions.ad_id = ' . $this->db->posts . '.ID)';
+        $clauses['where'] .= ' AND ( ' . implode( ' OR ', $regions_conditions ) . ' )';
+
+        return $clauses;
     }
 }

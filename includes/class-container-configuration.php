@@ -74,5 +74,9 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
                 $container['Settings']
             );
         } );
+
+        $container['HTMLRenderer'] = $container->service( function( $container ) {
+            return new AWPCP_HTML_Renderer();
+        } );
     }
 }

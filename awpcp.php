@@ -733,6 +733,8 @@ class AWPCP {
 
         // Execute later to allow Listing Table Views to add query parameters.
         add_action( 'pre_get_posts', array( $query_integration, 'pre_get_posts' ), 100 );
+        add_filter( 'posts_where', array( $query_integration, 'posts_where' ), 10, 2 );
+        add_filter( 'posts_clauses', array( $query_integration, 'posts_clauses' ), 10, 2 );
 
         // load resources always required
         $facebook_cache_helper = awpcp_facebook_cache_helper();
@@ -1386,6 +1388,14 @@ class AWPCP {
                 'jquery-ui-datepicker',
                 'jquery-ui-autocomplete',
             ),
+            $awpcp_db_version,
+            true
+        );
+
+        wp_register_script(
+            'awpcp-admin-listings-table',
+            "{$js}/admin/listings-table.min.js",
+            array( 'awpcp' ),
             $awpcp_db_version,
             true
         );
