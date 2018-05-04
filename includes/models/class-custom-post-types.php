@@ -146,15 +146,16 @@ class AWPCP_Custom_Post_Types {
             $this->listings_category_taxonomy,
             $this->listings_post_type,
             array(
-                'labels'       => array(
+                'labels'            => array(
                     'name'          => _x( 'Categories', 'taxonomy general name', 'another-wordpress-classifieds-plugin' ),
                     'singular_name' => _x( 'Category', 'taxonomy general name', 'another-wordpress-classifieds-plugin' ),
                 ),
-                'hierarchical' => true,
-                'query_var'    => 'listing-category',
-                'rewrite'      => array(
+                'hierarchical'      => true,
+                'query_var'         => 'listing-category',
+                'rewrite'           => array(
                     'slug' => 'listing-category',
                 ),
+                'show_admin_column' => true,
             )
         );
 

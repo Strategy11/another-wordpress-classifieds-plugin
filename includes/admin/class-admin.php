@@ -39,21 +39,28 @@ class AWPCP_Admin {
     private $table_search;
 
     /**
+     * @var object
+     */
+    private $table_columns;
+
+    /**
      * @param string $post_type         A post type identifier.
      * @param array  $container         An instance of Container.
      * @param object $table_views       An instance of List Table Views Handler.
      * @param object $table_actions     An instance of List Table Actions Handler.
      * @param object $table_nav         An instance of List Table Nav Handler.
      * @param object $table_search      An instance of List Table Search Handler.
+     * @param object $table_columns     An instance of List Table Columns Handler.
      * @since 4.0.0
      */
-    public function __construct( $post_type, $container, $table_views, $table_actions, $table_nav, $table_search ) {
+    public function __construct( $post_type, $container, $table_views, $table_actions, $table_nav, $table_search, $table_columns ) {
         $this->post_type     = $post_type;
         $this->container     = $container;
         $this->table_views   = $table_views;
         $this->table_actions = $table_actions;
         $this->table_nav     = $table_nav;
         $this->table_search  = $table_search;
+        $this->table_columns = $table_columns;
     }
 
     /**
@@ -78,6 +85,9 @@ class AWPCP_Admin {
             add_action( 'pre_get_posts', array( $this->table_search, 'pre_get_posts' ) );
             add_filter( 'get_search_query', array( $this->table_search, 'get_search_query' ) );
             add_action( 'manage_posts_extra_tablenav', array( $this->table_search, 'render_search_mode_dropdown' ) );
+
+            add_filter( "manage_{$this->post_type}_posts_columns", array( $this->table_columns, 'manage_posts_columns' ) );
+            add_action( "manage_{$this->post_type}_posts_custom_column", array( $this->table_columns, 'manage_posts_custom_column' ), 10, 2 );
         }
 
         add_filter( 'awpcp_list_table_views_listings', array( $this, 'register_listings_table_views' ) );

@@ -22,7 +22,8 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
                 $container['ListingsTableViewsHandler'],
                 $container['ListingsTableActionsHandler'],
                 $container['ListingsTableNavHandler'],
-                $container['ListingsTableSearchHandler']
+                $container['ListingsTableSearchHandler'],
+                $container['ListingsTableColumnsHandler']
             );
         } );
 
@@ -265,6 +266,14 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
                 $container['FormFieldsValidator'],
                 $container['FormFields'],
                 $container['WordPress']
+            );
+        } );
+
+        $container['ListingsTableColumnsHandler'] = $container->service( function( $container ) {
+            return new AWPCP_ListingsTableColumnsHandler(
+                $container['listing_category_taxonomy'],
+                $container['ListingRenderer'],
+                $container['ListingsCollection']
             );
         } );
     }
