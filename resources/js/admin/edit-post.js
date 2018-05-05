@@ -14,6 +14,17 @@ AWPCP.run( 'awpcp/edit-post', [
             $.noop( new DatepickerField( $( this ).siblings( '[name]:hidden' ) ) );
         } );
 
+        $( '.awpcp-metabox-tabs' ).on( 'click', '.awpcp-tab a', function() {
+            var $link = $( this ),
+                $tab = $link.closest( '.awpcp-tab' )
+                $container = $tab.closest( '.awpcp-metabox-tabs' );
+
+            $container.find( '.awpcp-tab, .awpcp-tab-panel' ).removeClass( 'awpcp-tab-active awpcp-tab-panel-active' );
+            $container.find( $link.attr( 'href' ) ).addClass( 'awpcp-tab-panel-active' );
+
+            $tab.addClass( 'awpcp-tab-active' );
+        } );
+
         $( 'form#post' ).validate({
             messages: $.AWPCP.l10n( 'edit-post-form-fields' ),
             onfocusout: false,

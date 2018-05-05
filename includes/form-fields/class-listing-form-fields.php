@@ -18,6 +18,31 @@ class AWPCP_ListingFormFields {
 
     /**
      * @param array $fields     An array of Form Fields definitions.
+     * @since 4.0.0
+     */
+    public function register_listing_details_form_fields( $fields ) {
+        $fields = $this->register_listing_form_fields( $fields );
+
+        foreach ( $fields as $field_slug => $field_constructor ) {
+            if ( is_callable( $field_constructor ) ) {
+                $fields[ $field_slug ] = call_user_func( $field_constructor, $field_slug );
+            }
+        }
+
+        $sorted_fields = array();
+
+        foreach ( $this->get_fields_order() as $field_slug ) {
+            if ( isset( $fields[ $field_slug ] ) ) {
+                $sorted_fields[ $field_slug ] = $fields[ $field_slug ];
+                unset( $fields[ $field_slug ] );
+            }
+        }
+
+        return array_merge( $sorted_fields, $fields );
+    }
+
+    /**
+     * @param array $fields     An array of Form Fields definitions.
      */
     public function register_listing_form_fields( $fields ) {
         $fields['ad_title']         = 'awpcp_listing_title_form_field';
@@ -33,6 +58,22 @@ class AWPCP_ListingFormFields {
             unset( $fields['ad_title'] );
             unset( $fields['ad_details'] );
         }
+
+        return apply_filters( 'awpcp-form-fields', $fields );
+    }
+
+    private function get_fields_order() {
+        return get_option( 'awpcp-form-fields-order', array() );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function register_listing_date_form_fields( $fields ) {
+        $template_renderer = awpcp()->container['TemplateRenderer'];
+
+        $fields['start_date'] = new AWPCP_ListingDatePickerFormField( 'start_date', __( 'Start Date', 'another-wordpress-classifieds-plugin' ), $template_renderer );
+        $fields['end_date']   = new AWPCP_ListingDatePickerFormField( 'end_date', __( 'End Date', 'another-wordpress-classifieds-plugin' ), $template_renderer );
 
         return $fields;
     }

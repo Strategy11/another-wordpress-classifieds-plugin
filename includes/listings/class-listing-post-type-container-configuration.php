@@ -91,6 +91,15 @@ class AWPCP_ListingPostTypeContainerConfiguration implements AWPCP_ContainerConf
             );
         } );
 
+        $container['ListingAuthorization'] = $container->service( function( $container ) {
+            return new AWPCP_ListingAuthorization(
+                $container['ListingRenderer'],
+                awpcp_roles_and_capabilities(),
+                $container['Settings'],
+                $container['Request']
+            );
+        } );
+
         $container['ListingRenewedEmailNotifications'] = $container->service( function( $container ) {
             return new AWPCP_ListingRenewedEmailNotifications(
                 $container['ListingRenderer'],

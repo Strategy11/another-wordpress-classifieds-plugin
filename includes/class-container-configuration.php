@@ -64,6 +64,7 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
 
         $container['FormFieldsData'] = $container->service( function( $container ) {
             return new AWPCP_FormFieldsData(
+                $container['ListingAuthorization'],
                 $container['ListingRenderer'],
                 awpcp_request()
             );
@@ -71,8 +72,29 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
 
         $container['FormFieldsValidator'] = $container->service( function( $container ) {
             return new AWPCP_FormFieldsValidator(
+                $container['ListingAuthorization'],
                 $container['Settings']
             );
+        } );
+
+        $container['ListingDetailsFormFieldsRenderer'] = $container->service( function( $container ) {
+            return new AWPCP_FormFieldsRenderer(
+                $container['ListingDetailsFormFields']
+            );
+        } );
+
+        $container['ListingDetailsFormFields'] = $container->service( function( $container ) {
+            return new AWPCP_FilteredArray( 'awpcp_listing_details_form_fields' );
+        } );
+
+        $container['ListingDateFormFieldsRenderer'] = $container->service( function( $container ) {
+            return new AWPCP_FormFieldsRenderer(
+                $container['ListingDateFormFields']
+            );
+        } );
+
+        $container['ListingDateFormFields'] = $container->service( function( $container ) {
+            return new AWPCP_FilteredArray( 'awpcp_listing_date_form_fields' );
         } );
 
         $container['HTMLRenderer'] = $container->service( function( $container ) {

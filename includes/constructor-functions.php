@@ -145,3 +145,11 @@ function awpcp_upgrade_sessions() {
         awpcp_wordpress()
     );
 }
+
+function awpcp_roles_and_capabilities() {
+    return new AWPCP_RolesAndCapabilities( awpcp()->settings, awpcp_request() );
+}
+
+function awpcp_listing_authorization() {
+    return awpcp()->container['ListingAuthorization'];
+}

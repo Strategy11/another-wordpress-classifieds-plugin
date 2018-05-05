@@ -11,6 +11,11 @@ class AWPCP_FormFieldsData {
     /**
      * @var object
      */
+    private $authorization;
+
+    /**
+     * @var object
+     */
     private $listing_renderer;
 
     /**
@@ -19,11 +24,13 @@ class AWPCP_FormFieldsData {
     private $request;
 
     /**
+     * @param object $authorization     An instance of Listing Authorization.
      * @param object $listing_renderer  An instance of Listing Renderer.
      * @param object $request           An instance of Request.
      * @since 4.0.0
      */
-    public function __construct( $listing_renderer, $request ) {
+    public function __construct( $authorization, $listing_renderer, $request ) {
+        $this->authorization    = $authorization;
         $this->listing_renderer = $listing_renderer;
         $this->request          = $request;
     }
@@ -65,9 +72,10 @@ class AWPCP_FormFieldsData {
     }
 
     /**
+     * @param object $post  An instance of WP_Post.
      * @since 4.0.0
      */
-    public function get_posted_data() {
+    public function get_posted_data( $post ) {
         $defaults = $this->get_default_values();
         $data     = array();
 
@@ -90,6 +98,14 @@ class AWPCP_FormFieldsData {
         $data['ad_item_price'] = 100 * $data['ad_item_price'];
 
         $data['is_featured_ad'] = absint( $data['is_featured_ad'] );
+
+        if ( ! $this->authorization->is_current_user_allowed_to_edit_listing_start_date( $post ) ) {
+            $data['start_date'] = $this->listing_renderer->get_plain_start_date( $post );
+        }
+
+        if ( ! $this->authorization->is_current_user_allowed_to_edit_listing_end_date( $post ) ) {
+            $data['end_date'] = $this->listing_renderer->get_plain_end_date( $post );
+        }
 
         // phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
         // TODO: We no longer pass an array that filters can use to extract data from.

@@ -264,7 +264,9 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
                 $container['ListingsLogic'],
                 $container['FormFieldsData'],
                 $container['FormFieldsValidator'],
-                $container['FormFields'],
+                $container['ListingDetailsFormFieldsRenderer'],
+                $container['ListingDateFormFieldsRenderer'],
+                $container['TemplateRenderer'],
                 $container['WordPress']
             );
         } );

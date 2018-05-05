@@ -127,8 +127,7 @@ class AWPCP_ListingRenderer {
     }
 
     /**
-     * TODO: Rename to get_end_date
-     * @since feature/1112
+     * @since 4.0.0
      */
     public function get_plain_start_date( $listing ) {
         return $this->wordpress->get_post_meta( $listing->ID, '_awpcp_start_date', true );

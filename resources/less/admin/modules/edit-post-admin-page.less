@@ -1,0 +1,79 @@
+@border-color: rgb(238, 238, 238);
+
+#awpcp-classifieds-fields-metabox {
+    .inside {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+}
+
+.awpcp-metabox-tabs {
+    display: flex;
+    flex-direction: row;
+    border-radius: 0;
+    border: none;
+    padding: 0;
+
+    .awpcp-tabs {
+        background: #fafafa;
+        border: 1px solid @border-color;
+        border-width: 0 1px 0 0;
+        border-radius: 0;
+        margin: 0;
+        padding: 0;
+        flex: 0 0 auto;
+        width: 40px;
+    }
+    .awpcp-tab {
+        background: transparent;
+        border: 1px solid @border-color;
+        border-width: 0 0 1px;
+        border-radius: 0;
+        display: block;
+        margin: 0;
+        padding: 0;
+
+        a {
+            display: block;
+            line-height: 20px;
+            padding: 10px;
+            text-decoration: none;
+
+            .dashicons {
+                //font-size: 16px;
+            }
+            .awpcp-tab-name {
+                display: none;
+            }
+        }
+    }
+    .awpcp-tab-active {
+        background: #eee;
+        a {
+            color: #555;
+        }
+    }
+    .awpcp-tab-panel {
+        display: none;
+        padding: 0 12px;
+    }
+    .awpcp-tab-panel-active {
+        display: block;
+    }
+}
+
+@media (min-width: 768px) {
+    .awpcp-metabox-tabs {
+        .awpcp-tabs {
+            width: 20%;
+        }
+        .awpcp-tab {
+            a {
+                .awpcp-tab-name {
+                    display: inline;
+                    margin: 0 10px;
+                }
+            }
+        }
+    }
+}

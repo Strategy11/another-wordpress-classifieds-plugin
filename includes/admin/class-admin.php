@@ -170,7 +170,7 @@ class AWPCP_Admin {
      */
     public function add_classifieds_meta_boxes() {
         add_meta_box(
-            'awpcp_classified_fields',
+            'awpcp-classifieds-fields-metabox',
             __( 'Classified Fields', 'another-wordpress-classifieds-plugin' ),
             array( $this->container['ListingFieldsMetabox'], 'render' ),
             $this->post_type,

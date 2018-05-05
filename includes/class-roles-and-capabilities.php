@@ -1,9 +1,5 @@
 <?php
 
-function awpcp_roles_and_capabilities() {
-    return new AWPCP_RolesAndCapabilities( awpcp()->settings, awpcp_request() );
-}
-
 class AWPCP_RolesAndCapabilities {
 
     private $settings;

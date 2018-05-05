@@ -11,14 +11,20 @@ class AWPCP_FormFieldsValidator {
     /**
      * @var object
      */
+    private $authorization;
+
+    /**
+     * @var object
+     */
     private $settings;
 
     /**
      * @param object $settings  An instance of Settings API.
      * @since 4.0.0
      */
-    public function __construct( $settings ) {
-        $this->settings = $settings;
+    public function __construct( $authorization, $settings ) {
+        $this->authorization = $authorization;
+        $this->settings      = $settings;
     }
 
     /**
@@ -30,6 +36,32 @@ class AWPCP_FormFieldsValidator {
      */
     public function get_validation_errors( $data, $post ) {
         $errors = array();
+
+        $allowed_to_edit_start_date = $this->authorization->is_current_user_allowed_to_edit_listing_start_date( $post );
+        $allowed_to_edit_end_date   = $this->authorization->is_current_user_allowed_to_edit_listing_end_date( $post );
+
+        $start_date = null;
+        $end_date   = null;
+
+        if ( isset( $data['metadata']['_awpcp_start_date'] ) ) {
+            $start_date = strtotime( $data['metadata']['_awpcp_start_date'] );
+        }
+
+        if ( isset( $data['metadata']['_awpcp_end_date'] ) ) {
+            $end_date = strtotime( $data['metadata']['_awpcp_end_date'] );
+        }
+
+        if ( $allowed_to_edit_start_date && empty( $start_date ) ) {
+            $errors['start_date'] = __( 'Please enter a start date.', 'another-wordpress-classifieds-plugin' );
+        }
+
+        if ( $allowed_to_edit_end_date && empty( $end_date ) ) {
+            $errors['end_date'] = __( 'Please enter an end date.', 'another-wordpress-classifieds-plugin' );
+        }
+
+        if ( $start_date && $end_date && $start_date > $end_date ) {
+            $errors['start_date'] = __( 'The start date must occur before the end date.', 'another-wordpress-classifieds-plugin' );
+        }
 
         if ( empty( $data['post_fields']['post_title'] ) ) {
             $errors['ad_title'] = __( 'Please enter a title for your classified.', 'another-wordpress-classifieds-plugin' );

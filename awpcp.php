@@ -845,7 +845,8 @@ class AWPCP {
         add_filter( 'awpcp-content-placeholders', array( $this, 'register_content_placeholders' ) );
 
         $listing_form_fields = awpcp_listing_form_fields();
-        add_filter(  'awpcp-form-fields', array( $listing_form_fields, 'register_listing_form_fields' ), 5, 1 );
+        add_filter( 'awpcp_listing_details_form_fields', array( $listing_form_fields, 'register_listing_details_form_fields' ), 10, 1 );
+        add_filter( 'awpcp_listing_date_form_fields', array( $listing_form_fields, 'register_listing_date_form_fields' ), 10, 1 );
 
         // TODO: Where is this option set?
         if ( get_option( 'awpcp-enable-fix-media-mime-type-upgrde' ) ) {
@@ -1531,9 +1532,6 @@ class AWPCP {
 	}
 
 	public function enqueue_scripts() {
-        // TODO: enqueue this only when necessary
-        wp_enqueue_style( 'awpcp-admin-style' );
-
         if ( is_awpcp_admin_page() ) {
 			wp_enqueue_style( 'awpcp-admin-style' );
 			wp_enqueue_script('awpcp-admin-general');

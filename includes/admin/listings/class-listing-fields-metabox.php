@@ -36,6 +36,16 @@ class AWPCP_ListingFieldsMetabox {
     /**
      * @var object
      */
+    private $date_form_fields;
+
+    /**
+     * @var object
+     */
+    private $template_renderer;
+
+    /**
+     * @var object
+     */
     private $wordpress;
 
     /**
@@ -43,17 +53,21 @@ class AWPCP_ListingFieldsMetabox {
      * @param object $listings_logic            An instance of Listings API.
      * @param object $form_fields_data          An instance of Form Fields Data.
      * @param object $form_fields_validator     An instance of Form Fields Validator.
-     * @param object $form_fields               An instance of Form Fields.
+     * @param object $form_fields               An instance of Details Form Fields.
+     * @param object $date_form_fields          An instance of Date Form Fields.
+     * @param object $template_renderer         An instance of Template Renderer.
      * @param object $wordpress                 An instance of WordPress.
      * @since 4.0.0
      */
-    public function __construct( $post_type, $listings_logic, $form_fields_data, $form_fields_validator, $form_fields, $wordpress ) {
+    public function __construct( $post_type, $listings_logic, $form_fields_data, $form_fields_validator, $form_fields, $date_form_fields, $template_renderer, $wordpress ) {
         $this->post_type = $post_type;
 
         $this->listings_logic        = $listings_logic;
         $this->form_fields_data      = $form_fields_data;
         $this->form_fields_validator = $form_fields_validator;
         $this->form_fields           = $form_fields;
+        $this->date_form_fields      = $date_form_fields;
+        $this->template_renderer     = $template_renderer;
         $this->wordpress             = $wordpress;
     }
 
@@ -62,6 +76,8 @@ class AWPCP_ListingFieldsMetabox {
      */
     public function enqueue_scripts() {
         wp_enqueue_style( 'awpcp-jquery-ui' );
+        wp_enqueue_style( 'awpcp-admin-style' );
+
         wp_enqueue_script( 'awpcp-admin-edit-post' );
 
         // TODO: Inject JavaScript as a constructor parameter.
@@ -80,12 +96,12 @@ class AWPCP_ListingFieldsMetabox {
             'action'   => 'normal',
         );
 
-        echo $this->form_fields->render_fields(
-            $data,
-            $errors,
-            $post,
-            $context
-        ); // XSS Okay.
+        $params = array(
+            'details_form_fields' => $this->form_fields->render_fields( $data, $errors, $post, $context ),
+            'date_form_fields'    => $this->date_form_fields->render_fields( $data, $errors, $post, $context ),
+        );
+
+        echo $this->template_renderer->render_template( 'admin/listings/listing-fields-metabox.tpl.php', $params ); // XSS Ok.
     }
 
     /**
@@ -113,7 +129,7 @@ class AWPCP_ListingFieldsMetabox {
             return;
         }
 
-        $data   = $this->form_fields_data->get_posted_data();
+        $data   = $this->form_fields_data->get_posted_data( $post );
         $errors = $this->form_fields_validator->get_validation_errors( $data, $post );
 
         // Post Title and Content are handled by WordPress.
