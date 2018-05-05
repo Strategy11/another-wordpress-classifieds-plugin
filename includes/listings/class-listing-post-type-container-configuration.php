@@ -12,6 +12,7 @@ class AWPCP_ListingPostTypeContainerConfiguration implements AWPCP_ContainerConf
     /**
      * @param object $container     An instance of Container.
      * @since 4.0.0
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     public function modify( $container ) {
         $container['listing_post_type']         = 'awpcp_listing';

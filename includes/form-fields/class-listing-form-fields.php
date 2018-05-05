@@ -59,14 +59,20 @@ class AWPCP_ListingFormFields {
             unset( $fields['ad_details'] );
         }
 
+        // phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
         return apply_filters( 'awpcp-form-fields', $fields );
+        // phpcs:enable
     }
 
+    /**
+     * Return the order in which form fields should be shown.
+     */
     private function get_fields_order() {
         return get_option( 'awpcp-form-fields-order', array() );
     }
 
     /**
+     * @param array $fields     An array of form fields.
      * @since 4.0.0
      */
     public function register_listing_date_form_fields( $fields ) {

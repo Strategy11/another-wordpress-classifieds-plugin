@@ -5,6 +5,8 @@
 
 /**
  * Main Container Configuration.
+ *
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterface {
 

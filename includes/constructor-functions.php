@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package AWPCP
+ */
+
+// phpcs:disable
 
 $container->share(
     'AWPCP_Import_Payment_Transactions_Task_Handler',
@@ -54,6 +59,9 @@ $container->share(
     'awpcp_store_listings_as_custom_post_types_upgrade_task_handler'
 );
 
+/**
+ * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+ */
 function awpcp_store_listings_as_custom_post_types_upgrade_task_handler( $container ) {
     return new AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler(
         awpcp_categories_registry(),
@@ -70,6 +78,9 @@ $container->share(
     'awpcp_store_media_as_attachments_upgrade_task_handler'
 );
 
+/**
+ * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+ */
 function awpcp_store_media_as_attachments_upgrade_task_handler( $container ) {
     return new AWPCP_Store_Media_As_Attachments_Upgrade_Task_Handler(
         awpcp_settings_api(),

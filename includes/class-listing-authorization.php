@@ -1,4 +1,7 @@
 <?php
+/**
+ * @package AWPCP\Listings
+ */
 
 /**
  * Authorization logic for several listing related operations.
@@ -10,6 +13,9 @@ class AWPCP_ListingAuthorization {
      */
     private $listing_renderer;
 
+    /**
+     * @var object
+     */
     private $roles;
 
     /**
@@ -17,8 +23,17 @@ class AWPCP_ListingAuthorization {
      */
     private $settings;
 
+    /**
+     * @var object
+     */
     private $request;
 
+    /**
+     * @param object $listing_renderer  An instance of Listing Renderer.
+     * @param object $roles             An instance of Roles And Capabilities.
+     * @param object $settings          An instance of SettingsAPI.
+     * @param object $request           An instance of Request.
+     */
     public function __construct( $listing_renderer, $roles, $settings, $request ) {
         $this->listing_renderer = $listing_renderer;
         $this->roles            = $roles;
@@ -26,12 +41,15 @@ class AWPCP_ListingAuthorization {
         $this->request          = $request;
     }
 
+    /**
+     * @param object $listing   An instance of WP_Post.
+     */
     public function is_current_user_allowed_to_edit_listing( $listing ) {
         if ( $this->roles->current_user_is_moderator() ) {
             return true;
         }
 
-        if ( is_user_logged_in() && $listing->post_author == $this->request->get_current_user()->ID ) {
+        if ( is_user_logged_in() && $listing->post_author === $this->request->get_current_user()->ID ) {
             return true;
         }
 
@@ -39,6 +57,7 @@ class AWPCP_ListingAuthorization {
     }
 
     /**
+     * @param object $listing   An instance of WP_Post.
      * @since 4.0.0
      */
     public function is_current_user_allowed_to_edit_listing_start_date( $listing ) {
@@ -64,7 +83,9 @@ class AWPCP_ListingAuthorization {
     }
 
     /**
+     * @param object $listing   An instance of WP_Post.
      * @since 4.0.0
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function is_current_user_allowed_to_edit_listing_end_date( $listing ) {
         return $this->roles->current_user_is_moderator();

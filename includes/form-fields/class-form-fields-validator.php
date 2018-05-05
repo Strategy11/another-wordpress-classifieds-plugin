@@ -19,7 +19,8 @@ class AWPCP_FormFieldsValidator {
     private $settings;
 
     /**
-     * @param object $settings  An instance of Settings API.
+     * @param object $authorization     An instance of Listing Authorization.
+     * @param object $settings          An instance of Settings API.
      * @since 4.0.0
      */
     public function __construct( $authorization, $settings ) {

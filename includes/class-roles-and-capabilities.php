@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package AWPCP
+ */
+
+// phpcs:disable
 
 class AWPCP_RolesAndCapabilities {
 
@@ -22,6 +27,9 @@ class AWPCP_RolesAndCapabilities {
         return $this->get_administrator_roles_names_from_string( $selected_roles );
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.ElseExpression)
+     */
     public function get_administrator_roles_names_from_string( $string ) {
         $configured_roles = explode( ',', $string );
 
@@ -56,6 +64,9 @@ class AWPCP_RolesAndCapabilities {
         return array_map( array( $role, 'remove_cap' ), $this->get_administrator_capabilities() );
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.ElseExpression)
+     */
     private function create_moderator_role() {
         $role = get_role( 'awpcp-moderator' );
 
@@ -69,6 +80,9 @@ class AWPCP_RolesAndCapabilities {
         }
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.ElseExpression)
+     */
     public function remove_moderator_role() {
         if ( get_role( 'awpcp-moderator' ) ) {
             return remove_role( 'awpcp-moderator' );
