@@ -340,7 +340,10 @@ class AWPCP_Installer {
             ),
             '3.7.4' => array(
                 'set_flag_to_show_missing_paypal_merchant_id_setting_notice',
-            )
+            ),
+            '3.8.4' => array(
+                'convert_tables_to_innodb',
+            ),
         );
 
         foreach ( $upgrade_routines as $version => $routines ) {
@@ -1172,6 +1175,16 @@ class AWPCP_Installer {
 
     private function set_flag_to_show_missing_paypal_merchant_id_setting_notice() {
         update_option( 'awpcp-show-missing-paypal-merchant-id-setting-notice', true, false );
+    }
+
+    private function convert_tables_to_innodb() {
+        global $wpdb;
+
+        $tables = $wpdb->get_col( "SHOW TABLES LIKE '%_awpcp_%'" );
+
+        foreach ( $tables as $table ) {
+            $wpdb->query( sprintf( 'ALTER TABLE %s ENGINE=InnoDB', $table ) );
+        }
     }
 }
 
