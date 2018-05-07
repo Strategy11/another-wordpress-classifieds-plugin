@@ -340,7 +340,10 @@ class AWPCP_Installer {
             ),
             '3.7.4' => array(
                 'set_flag_to_show_missing_paypal_merchant_id_setting_notice',
-            )
+            ),
+            '3.8.4' => array(
+                'convert_tables_to_innodb',
+            ),
         );
 
         foreach ( $upgrade_routines as $version => $routines ) {
@@ -729,7 +732,7 @@ class AWPCP_Installer {
                 `page` VARCHAR(100) CHARACTER SET <charset> COLLATE <collate> NOT NULL,
                 `id` INT(10) NOT NULL,
                 PRIMARY KEY  (`page`)
-            ) ENGINE=MyISAM DEFAULT CHARSET=<charset> COLLATE=<collate>;";
+            ) ENGINE=InnoDB DEFAULT CHARSET=<charset> COLLATE=<collate>;";
             dbDelta( $this->database_helper->replace_charset_and_collate( $table_definition ) );
         }
 
@@ -1172,6 +1175,16 @@ class AWPCP_Installer {
 
     private function set_flag_to_show_missing_paypal_merchant_id_setting_notice() {
         update_option( 'awpcp-show-missing-paypal-merchant-id-setting-notice', true, false );
+    }
+
+    private function convert_tables_to_innodb() {
+        global $wpdb;
+
+        $tables = $wpdb->get_col( "SHOW TABLES LIKE '%_awpcp_%'" );
+
+        foreach ( $tables as $table ) {
+            $wpdb->query( sprintf( 'ALTER TABLE %s ENGINE=InnoDB', $table ) );
+        }
     }
 }
 
