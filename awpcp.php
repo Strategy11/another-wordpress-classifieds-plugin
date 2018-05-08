@@ -851,7 +851,7 @@ class AWPCP {
                     'url' => 'http://awpcp.com/premium-modules/campaign-manager-module/?ref=panel',
                     'installed' => defined( 'AWPCP_CAMPAIGN_MANAGER_MODULE' ),
                     'version' => 'AWPCP_CAMPAIGN_MANAGER_MODULE_DB_VERSION',
-                    'required' => '3.6.8',
+                    'required' => '3.6.7',
                 ),
 				'category-icons' => array(
 					'name' => __( 'Category Icons', 'another-wordpress-classifieds-plugin' ),
@@ -872,14 +872,14 @@ class AWPCP {
 					'url' => 'http://awpcp.com/downloads/coupons-module/?ref=panel',
 					'installed' => defined( 'AWPCP_COUPONS_MODULE' ),
 					'version' => 'AWPCP_COUPONS_MODULE_DB_VERSION',
-					'required' => '3.6.1',
+					'required' => '3.6',
 				),
 				'extra-fields' => array(
 					'name' => __( 'Extra Fields', 'another-wordpress-classifieds-plugin' ),
 					'url' => 'http://awpcp.com/downloads/extra-fields-module/?ref=panel',
 					'installed' => defined( 'AWPCP_EXTRA_FIELDS_MODULE' ),
 					'version' => 'AWPCP_EXTRA_FIELDS_MODULE_DB_VERSION',
-					'required' => '3.6.11',
+					'required' => '3.6.10',
 				),
 				'featured-ads' => array(
 					'name' => __( 'Featured Ads', 'another-wordpress-classifieds-plugin' ),
@@ -929,7 +929,7 @@ class AWPCP {
 					'url' => 'http://awpcp.com/downloads/regions-module/?ref=panel',
 					'installed' => defined( 'AWPCP_REGION_CONTROL_MODULE' ),
 					'version' => 'AWPCP_REGION_CONTROL_MODULE_DB_VERSION',
-					'required' => '3.6.9',
+					'required' => '3.6.8',
 				),
 				'restricted-categories' => array(
 					'name' => __( 'Restricted Categories', 'another-wordpress-classifieds-plugin' ),
@@ -957,7 +957,7 @@ class AWPCP {
 					'url' => 'http://awpcp.com/downloads/subscriptions-module/?ref=panel',
 					'installed' => defined( 'AWPCP_SUBSCRIPTIONS_MODULE' ),
 					'version' => 'AWPCP_SUBSCRIPTIONS_MODULE_DB_VERSION',
-					'required' => '3.6.6'
+					'required' => '3.6.5'
 				),
                 'videos' => array(
                     'name' => __( 'Videos', 'another-wordpress-classifieds-plugin' ),
