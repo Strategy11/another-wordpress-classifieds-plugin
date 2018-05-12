@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package AWPCP
+ */
+
+// phpcs:disable
 
 class AWPCP_FileTypes {
 
@@ -40,6 +45,9 @@ class AWPCP_FileTypes {
         );
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
+     */
     public function get_allowed_file_extensions() {
         $extensions = array();
 
@@ -88,7 +96,7 @@ class AWPCP_FileTypes {
     private function get_mime_types( $file_types ) {
         $mime_types = array();
 
-        foreach ( $file_types as $extension => $file_type ) {
+        foreach ( $file_types as $file_type ) {
             $mime_types = array_merge( $mime_types, $file_type['mime_types'] );
         }
 

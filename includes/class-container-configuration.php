@@ -14,6 +14,7 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
      * Modifies the given dependency injection container.
      *
      * @param AWPCP_Container $container    The Dependency Injection Container.
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      * @SuppressWarnings(PHPMD.StaticAccess)
      */
     public function modify( $container ) {

@@ -1,5 +1,12 @@
 <?php
+/**
+ * @package AWPCP\Listings
+ */
 
+// phpcs:disable
+
+/**
+ */
 class AWPCP_ListingUploadLimits {
 
     private $attachments;
@@ -14,6 +21,9 @@ class AWPCP_ListingUploadLimits {
         $this->settings = $settings;
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.ElseExpression)
+     */
     public function get_upload_limits_for_payment_term( $payment_term ) {
         if ( awpcp_are_images_allowed() ) {
             $upload_limits = array( 'images' => $this->get_upload_limits_for_images_in_payment_term( $payment_term ) );
@@ -44,6 +54,9 @@ class AWPCP_ListingUploadLimits {
         );
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.ElseExpression)
+     */
     public function get_upload_limits_for_free_board() {
         if ( awpcp_are_images_allowed() ) {
             $upload_limits = array( 'images' => $this->get_upload_limits_for_images_in_free_board() );
@@ -62,7 +75,7 @@ class AWPCP_ListingUploadLimits {
         $limits = $this->get_listing_upload_limits( $listing );
 
         $can_add_file = false;
-        foreach ( $limits as $file_type => $type_limits ) {
+        foreach ( $limits as $type_limits ) {
             if ( in_array( $file->get_mime_type(), $type_limits['mime_types'] ) ) {
                 $can_add_file = $type_limits['allowed_file_count'] > $type_limits['uploaded_file_count'];
                 break;
@@ -76,7 +89,7 @@ class AWPCP_ListingUploadLimits {
     public function are_uploads_allowed_for_listing( $listing ) {
         $allowed_files = $this->get_listing_upload_limits( $listing );
 
-        foreach ( $allowed_files as $file_type => $limits ) {
+        foreach ( $allowed_files as $limits ) {
             if ( $limits['uploaded_file_count'] || $limits['allowed_file_count'] ) {
                 return true;
             }
@@ -85,6 +98,9 @@ class AWPCP_ListingUploadLimits {
         return false;
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.ElseExpression)
+     */
     public function get_listing_upload_limits( $listing ) {
         $payment_term = $this->listing_renderer->get_payment_term( $listing );
 
@@ -97,6 +113,9 @@ class AWPCP_ListingUploadLimits {
         return apply_filters( 'awpcp-listing-upload-limits', $upload_limits, $listing, $payment_term );
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.ElseExpression)
+     */
     private function get_listing_upload_limits_for_images( $listing, $payment_term ) {
         if ( is_object( $payment_term ) ) {
             $upload_limits = $this->get_upload_limits_for_images_in_payment_term( $payment_term );
@@ -111,6 +130,9 @@ class AWPCP_ListingUploadLimits {
         return $upload_limits;
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.ElseExpression)
+     */
     public function get_listing_upload_limits_by_file_type( $listing, $file_type ) {
         $upload_limits = $this->get_listing_upload_limits( $listing );
 
