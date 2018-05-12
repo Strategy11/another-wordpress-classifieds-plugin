@@ -18,7 +18,9 @@ AWPCP.run( 'awpcp/edit-post', [
             $.noop( new DatepickerField( $( this ).siblings( '[name]:hidden' ) ) );
         } );
 
-        $( '.awpcp-metabox-tabs' ).on( 'click', '.awpcp-tab a', function() {
+        $( '.awpcp-metabox-tabs' ).on( 'click', '.awpcp-tab a', function( event ) {
+            event.preventDefault();
+
             var $link = $( this ),
                 $tab = $link.closest( '.awpcp-tab' )
                 $container = $tab.closest( '.awpcp-metabox-tabs' );
