@@ -101,6 +101,15 @@ class AWPCP_ListingPostTypeContainerConfiguration implements AWPCP_ContainerConf
             );
         } );
 
+        $container['ListingUploadLimits'] = $container->service( function( $container ) {
+            return new AWPCP_ListingUploadLimits(
+                awpcp_attachments_collection(),
+                awpcp_file_types(),
+                $container['ListingRenderer'],
+                $container['Settings']
+            );
+        } );
+
         $container['ListingRenewedEmailNotifications'] = $container->service( function( $container ) {
             return new AWPCP_ListingRenewedEmailNotifications(
                 $container['ListingRenderer'],
@@ -112,6 +121,13 @@ class AWPCP_ListingPostTypeContainerConfiguration implements AWPCP_ContainerConf
         $container['CategoriesCollection'] = $container->service( function( $container ) {
             return new AWPCP_Categories_Collection(
                 $container['listing_category_taxonomy'],
+                $container['WordPress']
+            );
+        } );
+
+        $container['AttachmentsCollection'] = $container->service( function( $container ) {
+            return new AWPCP_Attachments_Collection(
+                $container['FileTypes'],
                 $container['WordPress']
             );
         } );

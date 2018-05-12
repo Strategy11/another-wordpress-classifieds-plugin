@@ -1,15 +1,5 @@
 <?php
 
-function awpcp_file_types() {
-    static $instance = null;
-
-    if ( is_null( $instance ) ) {
-        $instance = new AWPCP_FileTypes( awpcp()->settings );
-    }
-
-    return $instance;
-}
-
 class AWPCP_FileTypes {
 
     private $file_types = null;

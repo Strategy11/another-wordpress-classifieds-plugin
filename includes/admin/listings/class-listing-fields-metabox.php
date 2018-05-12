@@ -41,6 +41,11 @@ class AWPCP_ListingFieldsMetabox {
     /**
      * @var object
      */
+    private $media_center;
+
+    /**
+     * @var object
+     */
     private $template_renderer;
 
     /**
@@ -55,11 +60,12 @@ class AWPCP_ListingFieldsMetabox {
      * @param object $form_fields_validator     An instance of Form Fields Validator.
      * @param object $form_fields               An instance of Details Form Fields.
      * @param object $date_form_fields          An instance of Date Form Fields.
+     * @param object $media_center              An instance of Media Center.
      * @param object $template_renderer         An instance of Template Renderer.
      * @param object $wordpress                 An instance of WordPress.
      * @since 4.0.0
      */
-    public function __construct( $post_type, $listings_logic, $form_fields_data, $form_fields_validator, $form_fields, $date_form_fields, $template_renderer, $wordpress ) {
+    public function __construct( $post_type, $listings_logic, $form_fields_data, $form_fields_validator, $form_fields, $date_form_fields, $media_center, $template_renderer, $wordpress ) {
         $this->post_type = $post_type;
 
         $this->listings_logic        = $listings_logic;
@@ -67,6 +73,7 @@ class AWPCP_ListingFieldsMetabox {
         $this->form_fields_validator = $form_fields_validator;
         $this->form_fields           = $form_fields;
         $this->date_form_fields      = $date_form_fields;
+        $this->media_center          = $media_center;
         $this->template_renderer     = $template_renderer;
         $this->wordpress             = $wordpress;
     }
@@ -99,6 +106,7 @@ class AWPCP_ListingFieldsMetabox {
         $params = array(
             'details_form_fields' => $this->form_fields->render_fields( $data, $errors, $post, $context ),
             'date_form_fields'    => $this->date_form_fields->render_fields( $data, $errors, $post, $context ),
+            'media_manager'       => $this->media_center->render( $post ),
         );
 
         echo $this->template_renderer->render_template( 'admin/listings/listing-fields-metabox.tpl.php', $params ); // XSS Ok.

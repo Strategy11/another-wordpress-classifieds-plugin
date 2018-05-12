@@ -3,11 +3,15 @@ AWPCP.run( 'awpcp/edit-post', [
     'jquery',
     'awpcp/datepicker-field',
     'awpcp/multiple-region-selector-validator',
+    'awpcp/media-center',
+    'awpcp/settings',
     'awpcp/jquery-validate-methods'
 ], function(
     $,
     DatepickerField,
-    MultipleRegionsSelectorValidator
+    MultipleRegionsSelectorValidator,
+    MediaCenter,
+    settings
 ) {
     $( function() {
         $( '[datepicker-placeholder]' ).each( function() {
@@ -40,5 +44,10 @@ AWPCP.run( 'awpcp/edit-post', [
                 form.submit();
             }
         });
+
+        $( '.awpcp-media-center' ).StartMediaCenter( {
+            mediaManagerOptions: settings.get( 'media-manager-data' ),
+            mediaUploaderOptions: settings.get( 'media-uploader-data' )
+        } );
     } );
 } );

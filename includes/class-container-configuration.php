@@ -102,5 +102,20 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
         $container['HTMLRenderer'] = $container->service( function( $container ) {
             return new AWPCP_HTML_Renderer();
         } );
+
+        // Media.
+        $container['FileTypes'] = $container->service( function( $container ) {
+            return new AWPCP_FileTypes( $container['Settings'] );
+        } );
+
+        // Components.
+        $container['MediaCenterComponent'] = $container->service( function ( $container ) {
+            return new AWPCP_MediaCenterComponent(
+                $container['ListingUploadLimits'],
+                $container['AttachmentsCollection'],
+                $container['TemplateRenderer'],
+                $container['Settings']
+            );
+        } );
     }
 }

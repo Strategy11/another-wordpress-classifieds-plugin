@@ -1,18 +1,5 @@
 <?php
 
-function awpcp_listing_upload_limits() {
-    if ( ! isset( $GLOBALS['awpcp-listing-upload-limits'] ) ) {
-        $GLOBALS['awpcp-listing-upload-limits'] = new AWPCP_ListingUploadLimits(
-            awpcp_attachments_collection(),
-            awpcp_file_types(),
-            awpcp_listing_renderer(),
-            awpcp()->settings
-        );
-    }
-
-    return $GLOBALS['awpcp-listing-upload-limits'];
-}
-
 class AWPCP_ListingUploadLimits {
 
     private $attachments;

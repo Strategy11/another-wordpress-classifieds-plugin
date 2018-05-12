@@ -164,3 +164,26 @@ function awpcp_roles_and_capabilities() {
 function awpcp_listing_authorization() {
     return awpcp()->container['ListingAuthorization'];
 }
+
+function awpcp_listing_upload_limits() {
+    if ( ! isset( $GLOBALS['awpcp-listing-upload-limits'] ) ) {
+        $GLOBALS['awpcp-listing-upload-limits'] = new AWPCP_ListingUploadLimits(
+            awpcp_attachments_collection(),
+            awpcp_file_types(),
+            awpcp_listing_renderer(),
+            awpcp()->settings
+        );
+    }
+
+    return $GLOBALS['awpcp-listing-upload-limits'];
+}
+
+function awpcp_file_types() {
+    static $instance = null;
+
+    if ( is_null( $instance ) ) {
+        $instance = new AWPCP_FileTypes( awpcp()->settings );
+    }
+
+    return $instance;
+}
