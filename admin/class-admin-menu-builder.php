@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package AWPCP\Admin
+ */
+
+// phpcs:disable
 
 class AWPCP_AdminMenuBuilder {
 

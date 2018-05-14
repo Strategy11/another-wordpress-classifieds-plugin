@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package AWPCP
+ */
+
+// phpcs:disable
 
 function awpcp_routes() {
     return new AWPCP_Routes();
@@ -97,10 +102,10 @@ class AWPCP_Routes {
     }
 
     public function add_admin_users_page( $menu_title, $page_title, $slug, $handler = null, $capability = 'install_plugins', $priority = 10 ) {
+        $parent = 'profile.php';
+
         if ( current_user_can( 'edit_users' ) ) {
             $parent = 'users.php';
-        } else {
-            $parent = 'profile.php';
         }
 
         return $this->add_admin_subpage(
@@ -161,12 +166,14 @@ class AWPCP_Routes {
     }
 
     public function get_admin_page( $parent_page, $subpage ) {
-        if ( isset( $this->admin_pages[ $parent_page ] ) && $subpage == $parent_page ) {
+        if ( isset( $this->admin_pages[ $parent_page ] ) && $subpage === $parent_page ) {
             return $this->admin_pages[ $parent_page ];
-        } else if ( isset( $this->admin_pages[ $parent_page ]->subpages[ $subpage ] ) ) {
-            return $this->admin_pages[ $parent_page ]->subpages[ $subpage ];
-        } else {
-            return null;
         }
+
+        if ( isset( $this->admin_pages[ $parent_page ]->subpages[ $subpage ] ) ) {
+            return $this->admin_pages[ $parent_page ]->subpages[ $subpage ];
+        }
+
+        return null;
     }
 }
