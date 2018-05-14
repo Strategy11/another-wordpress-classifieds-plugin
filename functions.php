@@ -334,7 +334,9 @@ function awpcp_is_array_of_arrays( $array ) {
  * @since 2.0.7
  */
 function awpcp_admin_capability() {
-    return 'manage_classifieds';
+    $capabilities = awpcp_roles_and_capabilities()->get_administrator_capabilities();
+
+    return array_shift( $capabilities );
 }
 
 

@@ -8,6 +8,8 @@
  */
 class AWPCP_SendToFacebookPageListingTableAction implements AWPCP_ListTableActionInterface {
 
+    use AWPCP_ModeratorListTableActionTrait;
+
     /**
      * @var object
      */
@@ -19,20 +21,22 @@ class AWPCP_SendToFacebookPageListingTableAction implements AWPCP_ListTableActio
     private $wordpress;
 
     /**
-     * @param object $facebook_helper   An instance of Send To Facebook Helper.
-     * @param object $wordpress         An instance of WordPress.
+     * @param object $facebook_helper           An instance of Send To Facebook Helper.
+     * @param object $roles_and_capabilities    An instance of Roles and Capabilities.
+     * @param object $wordpress                 An instance of WordPress.
      * @since 4.0.0
      */
-    public function __construct( $facebook_helper, $wordpress ) {
-        $this->facebook_helper = $facebook_helper;
-        $this->wordpress       = $wordpress;
+    public function __construct( $facebook_helper, $roles_and_capabilities, $wordpress ) {
+        $this->facebook_helper        = $facebook_helper;
+        $this->roles_and_capabilities = $roles_and_capabilities;
+        $this->wordpress              = $wordpress;
     }
 
     /**
      * @param object $post  An instance of WP_Post.
      * @since 4.0.0
      */
-    public function should_show_action_for( $post ) {
+    protected function should_show_action_for_post( $post ) {
         return ! $this->wordpress->get_post_meta( $post->ID, '_awpcp_sent_to_facebook_page', true );
     }
 

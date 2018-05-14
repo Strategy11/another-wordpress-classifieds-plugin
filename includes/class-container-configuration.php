@@ -26,6 +26,10 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
             return awpcp_settings_api();
         } );
 
+        $container['RolesAndCapabilities'] = $container->service( function( $container ) {
+            return awpcp_roles_and_capabilities();
+        } );
+
         $container['EmailFactory'] = $container->service( function( $container ) {
             return new AWPCP_EmailFactory();
         } );

@@ -44,23 +44,30 @@ class AWPCP_Admin {
     private $table_columns;
 
     /**
-     * @param string $post_type         A post type identifier.
-     * @param array  $container         An instance of Container.
-     * @param object $table_views       An instance of List Table Views Handler.
-     * @param object $table_actions     An instance of List Table Actions Handler.
-     * @param object $table_nav         An instance of List Table Nav Handler.
-     * @param object $table_search      An instance of List Table Search Handler.
-     * @param object $table_columns     An instance of List Table Columns Handler.
+     * @var object
+     */
+    private $table_restrictions;
+
+    /**
+     * @param string $post_type             A post type identifier.
+     * @param array  $container             An instance of Container.
+     * @param object $table_views           An instance of List Table Views Handler.
+     * @param object $table_actions         An instance of List Table Actions Handler.
+     * @param object $table_nav             An instance of List Table Nav Handler.
+     * @param object $table_search          An instance of List Table Search Handler.
+     * @param object $table_columns         An instance of List Table Columns Handler.
+     * @param object $table_restrictions    An instance of List Table Restrictions.
      * @since 4.0.0
      */
-    public function __construct( $post_type, $container, $table_views, $table_actions, $table_nav, $table_search, $table_columns ) {
-        $this->post_type     = $post_type;
-        $this->container     = $container;
-        $this->table_views   = $table_views;
-        $this->table_actions = $table_actions;
-        $this->table_nav     = $table_nav;
-        $this->table_search  = $table_search;
-        $this->table_columns = $table_columns;
+    public function __construct( $post_type, $container, $table_views, $table_actions, $table_nav, $table_search, $table_columns, $table_restrictions ) {
+        $this->post_type          = $post_type;
+        $this->container          = $container;
+        $this->table_views        = $table_views;
+        $this->table_actions      = $table_actions;
+        $this->table_nav          = $table_nav;
+        $this->table_search       = $table_search;
+        $this->table_columns      = $table_columns;
+        $this->table_restrictions = $table_restrictions;
     }
 
     /**
@@ -72,7 +79,9 @@ class AWPCP_Admin {
         if ( $this->post_type === $typenow ) {
             add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 
-            add_filter( 'pre_get_posts', array( $this->table_views, 'pre_get_posts' ) );
+            add_action( 'pre_get_posts', array( $this->table_restrictions, 'pre_get_posts' ) );
+
+            add_action( 'pre_get_posts', array( $this->table_views, 'pre_get_posts' ) );
             add_filter( 'views_edit-' . $this->post_type, array( $this->table_views, 'views' ) );
 
             add_action( 'admin_head-edit.php', array( $this->table_actions, 'admin_head' ), 10, 2 );

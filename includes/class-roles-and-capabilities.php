@@ -17,7 +17,10 @@ class AWPCP_RolesAndCapabilities {
 
     public function setup_roles_capabilities() {
         $administrator_roles = $this->get_administrator_roles_names();
+        $subscriber_roles    = $this->get_subscriber_roles_names();
+
         array_walk( $administrator_roles, array( $this, 'add_administrator_capabilities_to_role' ) );
+        array_walk( $subscriber_roles, array( $this, 'add_subscriber_capabilities_to_role' ) );
 
         $this->create_moderator_role();
     }
@@ -42,17 +45,44 @@ class AWPCP_RolesAndCapabilities {
         return $roles_names;
     }
 
-    public function get_administrator_capabilities() {
-        return array_merge( array( 'manage_classifieds' ), $this->get_moderator_capabilities() );
+    /**
+     * @param array $administrator_roles    An array of names of roles that are
+     *                                      have administrator capabilities.
+     * @since 4.0.0
+     */
+    public function get_subscriber_roles_names() {
+        $standard_roles = array( 'administrator', 'editor', 'author', 'contributor', 'subscriber' );
+
+        return array_diff( $standard_roles, $this->get_administrator_roles_names() );
     }
 
-    public function get_moderator_capabilities() {
-        return array( 'manage_classifieds_listings'/*, 'edit_classifieds_listings'*/ );
-    }
-
+    /**
+     * @param string $role_name     The name of the role to modify.
+     */
     public function add_administrator_capabilities_to_role( $role_name ) {
-        $role = get_role( $role_name );
-        return $this->add_capabilities_to_role( $role, $this->get_administrator_capabilities() );
+        return $this->add_capabilities_to_role( get_role( $role_name ), $this->get_administrator_capabilities() );
+    }
+
+    public function get_administrator_capabilities() {
+        return array_merge( array( 'manage_awpcp_classifieds' ), $this->get_moderator_capabilities() );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function get_moderator_capabilities() {
+        $capabilities = array(
+            $this->get_moderator_capability(),
+        );
+
+        return array_merge( $capabilities, $this->get_subscriber_capabilities() );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function get_moderator_capability() {
+        return 'edit_others_awpcp_classifieds';
     }
 
     private function add_capabilities_to_role( $role, $capabilities ) {
@@ -64,6 +94,33 @@ class AWPCP_RolesAndCapabilities {
         return array_map( array( $role, 'remove_cap' ), $this->get_administrator_capabilities() );
     }
 
+    public function add_subscriber_capabilities_to_role( $role_name ) {
+        return $this->add_capabilities_to_role( geT_role( $role_name ), $this->get_subscriber_capabilities() );
+    }
+
+    public function get_subscriber_capabilities() {
+        return array(
+            $this->get_subscriber_capability(),
+        );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function get_subscriber_capability() {
+        return 'edit_awpcp_classifieds';
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function get_dashboard_capability() {
+        if ( $this->settings->get_option( 'enable-user-panel' ) ) {
+            return $this->get_subscriber_capability();
+        }
+
+        return $this->get_moderator_capability();
+    }
     /**
      * @SuppressWarnings(PHPMD.ElseExpression)
      */
@@ -92,7 +149,7 @@ class AWPCP_RolesAndCapabilities {
     }
 
     public function current_user_is_administrator() {
-        return $this->current_user_can( $this->get_administrator_capabilities() );
+        return $this->current_user_can( 'manage_awpcp_classifieds' );
     }
 
     private function current_user_can( $capabilities ) {
@@ -110,6 +167,10 @@ class AWPCP_RolesAndCapabilities {
             return false;
         }
 
+        if ( ! is_array( $capabilities ) ) {
+            $capabilities = array( $capabilities );
+        }
+
         foreach ( $capabilities as $capability ) {
             if ( ! user_can( $user, $capability ) ) {
                 return false;
@@ -120,10 +181,10 @@ class AWPCP_RolesAndCapabilities {
     }
 
     public function current_user_is_moderator() {
-        return $this->current_user_can( $this->get_moderator_capabilities() );
+        return $this->current_user_can( 'edit_others_awpcp_classifieds' );
     }
 
     public function user_is_administrator( $user_id ) {
-        return $this->user_can( get_userdata( $user_id ), $this->get_administrator_capabilities() );
+        return $this->user_can( get_userdata( $user_id ), 'manage_awpcp_classifieds' );
     }
 }

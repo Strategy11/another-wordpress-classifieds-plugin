@@ -10,6 +10,7 @@ function awpcp_custom_post_types() {
     return new AWPCP_Custom_Post_Types(
         'awpcp_listing',
         'awpcp_listing_category',
+        awpcp_roles_and_capabilities(),
         awpcp_settings_api()
     );
 }
@@ -22,17 +23,24 @@ class AWPCP_Custom_Post_Types {
     /**
      * @var object
      */
+    private $roles_and_capabilities;
+
+    /**
+     * @var object
+     */
     private $settings;
 
     /**
      * @param string $listings_post_type            The identifier for the Listings post type.
      * @param string $listings_category_taxonomy    The identifier for the Listings taxonomy.
+     * @param object $roles_and_capabilities        An instance of Roles And Capabilities.
      * @param object $settings                      An instance of Settings.
      * @since 4.0.0
      */
-    public function __construct( $listings_post_type, $listings_category_taxonomy, $settings ) {
+    public function __construct( $listings_post_type, $listings_category_taxonomy, $roles_and_capabilities, $settings ) {
         $this->listings_post_type         = $listings_post_type;
         $this->listings_category_taxonomy = $listings_category_taxonomy;
+        $this->roles_and_capabilities     = $roles_and_capabilities;
         $this->settings                   = $settings;
     }
 
@@ -96,6 +104,13 @@ class AWPCP_Custom_Post_Types {
                     'thumbnail',
                     'excerpt',
                     'custom-fields',
+                ),
+                'capability_type'      => 'awpcp_classified',
+                'map_meta_cap'         => true,
+                'capabilities'         => array(
+                    'publish_posts' => 'edit_others_awpcp_classifieds',
+                    'create_posts'  => 'edit_others_awpcp_classifieds',
+                    'edit_posts'    => $this->roles_and_capabilities->get_dashboard_capability(),
                 ),
                 'register_meta_box_cb' => null,
                 'taxonomies'           => array(

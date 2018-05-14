@@ -7,8 +7,10 @@
     <ul class="awpcp-tabs">
         <?php $label = _x( 'Form Fields', 'listing fields metabox', 'another-wordpress-classifieds-plugin' ); ?>
         <li class="awpcp-tab awpcp-tab-active"><a href="#awpcp-listing-fields--form-fields"><span class="screen-reader-text"><?php echo esc_html( $label ); ?></span><span class="dashicons dashicons-feedback"></span><span class="awpcp-tab-name"><?php echo esc_html( $label ); ?></span></a></li>
+        <?php if ( $date_form_fields ) : ?>
         <?php $label = _x( 'Start/End Date', 'listing fields metabox', 'another-wordpress-classifieds-plugin' ); ?>
         <li class="awpcp-tab"><a href="#awpcp-listing-fields--start-end-date"><span class="screen-reader-text"><?php echo esc_html( $label ); ?></span><span class="dashicons dashicons-calendar-alt"></span><span class="awpcp-tab-name"><?php echo esc_html( $label ); ?></span></a></li>
+        <?php endif; ?>
         <?php $label = _x( 'Images', 'listing fields metabox', 'another-wordpress-classifieds-plugin' ); ?>
         <li class="awpcp-tab"><a href="#awpcp-listing-fields--media-manager"><span class="screen-reader-text"><?php echo esc_html( $label ); ?></span><span class="dashicons dashicons-format-gallery"></span><span class="awpcp-tab-name"><?php echo esc_html( $label ); ?></span></a></li>
     </ul>

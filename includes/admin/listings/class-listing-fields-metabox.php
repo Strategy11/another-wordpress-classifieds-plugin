@@ -16,6 +16,11 @@ class AWPCP_ListingFieldsMetabox {
     /**
      * @var object
      */
+    private $roles_and_capabilities;
+
+    /**
+     * @var object
+     */
     private $listings_logic;
 
     /**
@@ -55,6 +60,7 @@ class AWPCP_ListingFieldsMetabox {
 
     /**
      * @param string $post_type                 The post type associated with this metabox.
+     * @param object $roles_and_capabilities    An instance of Roles And Capabilities.
      * @param object $listings_logic            An instance of Listings API.
      * @param object $form_fields_data          An instance of Form Fields Data.
      * @param object $form_fields_validator     An instance of Form Fields Validator.
@@ -64,18 +70,20 @@ class AWPCP_ListingFieldsMetabox {
      * @param object $template_renderer         An instance of Template Renderer.
      * @param object $wordpress                 An instance of WordPress.
      * @since 4.0.0
+     * @SuppressWarnings(PHPMD.ExcessiveParameterList)
      */
-    public function __construct( $post_type, $listings_logic, $form_fields_data, $form_fields_validator, $form_fields, $date_form_fields, $media_center, $template_renderer, $wordpress ) {
+    public function __construct( $post_type, $roles_and_capabilities, $listings_logic, $form_fields_data, $form_fields_validator, $form_fields, $date_form_fields, $media_center, $template_renderer, $wordpress ) {
         $this->post_type = $post_type;
 
-        $this->listings_logic        = $listings_logic;
-        $this->form_fields_data      = $form_fields_data;
-        $this->form_fields_validator = $form_fields_validator;
-        $this->form_fields           = $form_fields;
-        $this->date_form_fields      = $date_form_fields;
-        $this->media_center          = $media_center;
-        $this->template_renderer     = $template_renderer;
-        $this->wordpress             = $wordpress;
+        $this->roles_and_capabilities = $roles_and_capabilities;
+        $this->listings_logic         = $listings_logic;
+        $this->form_fields_data       = $form_fields_data;
+        $this->form_fields_validator  = $form_fields_validator;
+        $this->form_fields            = $form_fields;
+        $this->date_form_fields       = $date_form_fields;
+        $this->media_center           = $media_center;
+        $this->template_renderer      = $template_renderer;
+        $this->wordpress              = $wordpress;
     }
 
     /**
@@ -105,9 +113,13 @@ class AWPCP_ListingFieldsMetabox {
 
         $params = array(
             'details_form_fields' => $this->form_fields->render_fields( $data, $errors, $post, $context ),
-            'date_form_fields'    => $this->date_form_fields->render_fields( $data, $errors, $post, $context ),
+            'date_form_fields'    => '',
             'media_manager'       => $this->media_center->render( $post ),
         );
+
+        if ( $this->roles_and_capabilities->current_user_is_moderator() ) {
+            $params['date_form_fields'] = $this->date_form_fields->render_fields( $data, $errors, $post, $context );
+        }
 
         echo $this->template_renderer->render_template( 'admin/listings/listing-fields-metabox.tpl.php', $params ); // XSS Ok.
     }

@@ -308,7 +308,7 @@ class AWPCP_AdminPanel {
             function() {
                 return awpcp()->container['QuickViewListingAdminPage'];
             },
-            $admin_capability
+            awpcp_roles_and_capabilities()->get_dashboard_capability()
         );
     }
 

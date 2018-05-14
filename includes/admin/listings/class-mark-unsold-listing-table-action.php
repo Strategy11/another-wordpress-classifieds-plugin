@@ -8,24 +8,28 @@
  */
 class AWPCP_MarkUnsoldListingTableAction implements AWPCP_ListTableActionInterface {
 
+    use AWPCP_ModeratorListTableActionTrait;
+
     /**
      * @var object
      */
     private $wordpress;
 
     /**
+     * @param object $roles_and_capabilities    An instance of Roles and Capabilities.
      * @param object $wordpress         An instance of WordPress.
      * @since 4.0.0
      */
-    public function __construct( $wordpress ) {
-        $this->wordpress = $wordpress;
+    public function __construct( $roles_and_capabilities, $wordpress ) {
+        $this->roles_and_capabilities = $roles_and_capabilities;
+        $this->wordpress              = $wordpress;
     }
 
     /**
      * @param object $post  An instance of WP_Post.
      * @since 4.0.0
      */
-    public function should_show_action_for( $post ) {
+    protected function should_show_action_for_post( $post ) {
         return $this->wordpress->get_post_meta( $post->ID, '_awpcp_is_sold', true );
     }
 
