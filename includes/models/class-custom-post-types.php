@@ -97,6 +97,7 @@ class AWPCP_Custom_Post_Types {
                 'show_in_menu'         => true,
                 'show_in_admin_bar'    => true,
                 'menu_icon'            => MENUICO,
+                'menu_position'        => 26,
                 'supports'             => array(
                     'title',
                     'editor',

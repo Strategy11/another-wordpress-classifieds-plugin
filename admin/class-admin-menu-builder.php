@@ -54,7 +54,16 @@ class AWPCP_AdminMenuBuilder {
     }
 
     public function register_admin_page( $admin_page ) {
-        $hook = add_menu_page( $admin_page->title, $admin_page->menu_title, $admin_page->capability, $admin_page->slug, array( $this->router, 'on_admin_dispatch' ), $admin_page->menu_icon );
+        $hook = add_menu_page(
+            $admin_page->title,
+            $admin_page->menu_title,
+            $admin_page->capability,
+            $admin_page->slug,
+            array( $this->router, 'on_admin_dispatch' ),
+            $admin_page->menu_icon,
+            $admin_page->position
+        );
+
         add_action( "load-{$hook}", array( $this->router, 'on_admin_load' ) );
         return $hook;
     }

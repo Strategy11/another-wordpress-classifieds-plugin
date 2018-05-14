@@ -9,7 +9,7 @@ class AWPCP_Routes {
     private $admin_pages = array();
     private $ajax_actions = array( 'private' => array(), 'anonymous' => array() );
 
-    public function add_admin_page( $menu_title, $page_title, $slug, $handler, $capability, $menu_icon = null ) {
+    public function add_admin_page( $menu_title, $page_title, $slug, $handler, $capability, $menu_icon = null, $position = 26 ) {
         $admin_page = $this->get_or_create_admin_page( $slug );
 
         $admin_page->menu_title = $menu_title;
@@ -18,6 +18,7 @@ class AWPCP_Routes {
         $admin_page->handler = $handler;
         $admin_page->capability = $capability;
         $admin_page->menu_icon = $menu_icon;
+        $admin_page->position   = $position;
 
         return $slug;
     }
