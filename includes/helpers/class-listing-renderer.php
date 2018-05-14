@@ -306,7 +306,7 @@ class AWPCP_ListingRenderer {
     }
 
     public function get_price( $listing ) {
-        return $this->wordpress->get_post_meta( $listing->ID, '_awpcp_price', true );
+        return absint( $this->wordpress->get_post_meta( $listing->ID, '_awpcp_price', true ) );
     }
 
     public function get_website_url( $listing ) {
