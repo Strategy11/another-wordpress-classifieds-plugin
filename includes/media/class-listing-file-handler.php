@@ -20,6 +20,13 @@ class AWPCP_ListingFileHandler {
         $this->creator = $creator;
     }
 
+    /**
+     * @since 4.0.0
+     */
+    public function validate_file( $listing, $file ) {
+        $this->validator->validate_file( $listing, $file );
+    }
+
     public function handle_file( $listing, $file ) {
         $this->validator->validate_file( $listing, $file );
         $this->processor->process_file( $listing, $file );

@@ -502,14 +502,35 @@ class AWPCP_CSV_Importer_Delegate {
         $entries = array();
 
         foreach ( $filenames as $filename ) {
-            if ( file_exists( "$images_directory/$filename" ) ) {
-                $entries[] = "$images_directory/$filename";
-            } else {
+            $file_path ="$images_directory/$filename";
+
+            if ( ! file_exists( $file_path ) ) {
                 $message = _x( 'Image file with name <image-name> not found.', 'csv importer', 'another-wordpress-classifieds-plugin' );
                 $message = str_replace( '<image-name>', $filename, $message );
 
                 throw new AWPCP_CSV_Importer_Exception( $message );
             }
+
+            $pathinfo = awpcp_utf8_pathinfo( $file_path );
+
+            $imported_file = (object) array(
+                'path'        => $file_path,
+                'realname'    => $pathinfo['basename'],
+                'name'        => $pathinfo['basename'],
+                'dirname'     => $pathinfo['dirname'],
+                'filename'    => $pathinfo['filename'],
+                'extension'   => $pathinfo['extension'],
+                'mime_type'   => $this->mime_types->get_file_mime_type( $file_path ),
+                'is_complete' => true,
+            );
+
+            try{
+                $this->media_manager->validate_file( (object) [ 'ID' => -1 ], $imported_file );
+            } catch ( AWPCP_Exception $previous ) {
+                throw new AWPCP_CSV_Importer_Exception( $previous->getMessage(), $previous->getCode(), $previous );
+            }
+
+            $entries[] = $file_path;
         }
 
         return $entries;
@@ -520,17 +541,14 @@ class AWPCP_CSV_Importer_Delegate {
         $listing_data['metadata']['_awpcp_payment_status'] = AWPCP_Payment_Transaction::PAYMENT_STATUS_NOT_REQUIRED;
 
         try {
-            $a = microtime( true );
             $listing = $this->listings_logic->create_listing( array(
                 'post_fields' => array( 'post_title' => 'Imported Listing Draft' ),
                 'metadata' => array(),
             ) );
-            $b = microtime( true );
-            $d = $b - $a;
 
             $this->listings_logic->update_listing( $listing, $listing_data );
         } catch ( AWPCP_Exception $previous ) {
-            $message = _x( 'There was an error trying to store imported data in the database', 'csv importer', 'another-wordpress-classifieds-plugin' );
+            $message = _x( 'There was an error trying to store imported data into the database.', 'csv importer', 'another-wordpress-classifieds-plugin' );
             throw new AWPCP_CSV_Importer_Exception( $message, 0, $previous );
         }
 
@@ -548,7 +566,14 @@ class AWPCP_CSV_Importer_Delegate {
                 'is_complete' => true,
             );
 
-            $this->media_manager->add_file( $listing, $imported_file );
+            try {
+                $this->media_manager->add_file( $listing, $imported_file );
+            } catch ( AWPCP_Exception $previous ) {
+                $message = _x( 'There was an error trying to import one of the images: {image-validation-error}', 'csv importer', 'another-wordpress-classifieds-plugin' );
+                $message = str_replace( '{image-validation-error}', $previous->getMessage(), $message );
+
+                throw new AWPCP_CSV_Importer_Exception( $message, 0, $previous );
+            }
         }
 
         do_action( 'awpcp-listing-imported', $listing, $listing_data );

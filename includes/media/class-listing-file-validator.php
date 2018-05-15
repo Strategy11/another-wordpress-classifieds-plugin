@@ -49,8 +49,8 @@ abstract class AWPCP_ListingFileValidator {
 
         if ( $filesize > $upload_limits['max_file_size'] ) {
             $message = $this->validation_errors->get_file_is_too_large_error_message();
-            $message = sprintf( $message, '<strong>' . $file->get_real_name() . '</strong>', $upload_limits['max_file_size'] );
-            throw new AWPCP_Exception( $message );
+            $message = str_replace( '<bytes-count>', $upload_limits['max_file_size'], $message );
+            $this->throw_file_validation_exception( $file, $message );
         }
 
         if ( $filesize < $upload_limits['min_file_size'] ) {

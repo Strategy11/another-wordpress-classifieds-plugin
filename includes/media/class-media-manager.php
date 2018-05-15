@@ -26,6 +26,16 @@ class AWPCP_Media_Manager {
         $this->settings = $settings;
     }
 
+    /**
+     * @since 4.0.0
+     */
+    public function validate_file( $listing, $uploaded_file ) {
+        $file_logic = $this->uploaded_file_logic_factory->create_file_logic( $uploaded_file );
+        $file_handler = $this->file_handlers->get_handler_for_file( $file_logic );
+
+        return $file_handler->validate_file( $listing, $file_logic );
+    }
+
     public function add_file( $listing, $uploaded_file ) {
         $file_logic = $this->uploaded_file_logic_factory->create_file_logic( $uploaded_file );
         $file_handler = $this->file_handlers->get_handler_for_file( $file_logic );
