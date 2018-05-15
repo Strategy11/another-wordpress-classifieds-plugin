@@ -1,5 +1,13 @@
 <?php
+/**
+ * @package AWPCP\Admin\Import
+ */
 
+// phpcs:disable
+
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 class AWPCP_CSV_Importer_Delegate {
 
     private $import_session;
@@ -577,12 +585,15 @@ class AWPCP_CSV_Importer_Delegate {
  *                    that the extra field was assigned to, or if the extra field was
  *                    not assigned to any category.
  *                    required fields may be empty if enforce is false.
+ * @SuppressWarnings(PHPMD.NPathComplexity)
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
  */
 function awpcp_validate_extra_field( $name, $value, $validate, $type, $options, $enforce, &$errors ) {
     $validation_errors = array();
     $serialize = false;
 
-    $list = null;
+    $values_list = null;
 
     switch ( $type ) {
         case 'Input Box':
@@ -594,19 +605,19 @@ function awpcp_validate_extra_field( $name, $value, $validate, $type, $options, 
         case 'Select Multiple':
             // value can be any combination of items from options list
             $msg = sprintf( __( "The value for Extra Field %s's is not allowed. Allowed values are: %%s", 'another-wordpress-classifieds-plugin' ), $name );
-            $list = explode( ';', $value );
+            $values_list = explode( ';', $value );
             $serialize = true;
 
         case 'Select':
         case 'Radio Button':
-            $list = is_array( $list ) ? $list : array( $value );
+            $values_list = is_array( $values_list ) ? $values_list : array( $value );
 
             if ( ! isset( $msg ) ) {
-                $msg = sprintf( __( "The value for Extra Field %s's is not allowed. Allowed value is one of: %%s", 'another-wordpress-classifieds-plugin' ), $name, $row );
+                $msg = sprintf( __( "The value for Extra Field %s's is not allowed. Allowed value is one of: %%s", 'another-wordpress-classifieds-plugin' ), $name );
             }
 
             // only attempt to validate if the field is required (has validation)
-            foreach ( $list as $item ) {
+            foreach ( $values_list as $item ) {
                 if ( empty( $item ) ) {
                     continue;
                 }
@@ -618,7 +629,7 @@ function awpcp_validate_extra_field( $name, $value, $validate, $type, $options, 
 
             // extra fields multiple values are stored serialized
             if ( $serialize ) {
-                $value = maybe_serialize( $list );
+                $value = maybe_serialize( $values_list );
             }
 
             break;
@@ -632,9 +643,9 @@ function awpcp_validate_extra_field( $name, $value, $validate, $type, $options, 
         return false;
     }
 
-    $list = is_array( $list ) ? $list : array( $value );
+    $values_list = is_array( $values_list ) ? $values_list : array( $value );
 
-    foreach ( $list as $k => $item ) {
+    foreach ( $values_list as $item ) {
         if ( ! $enforce && empty( $item ) ) {
             continue;
         }
