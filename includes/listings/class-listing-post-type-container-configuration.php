@@ -6,6 +6,8 @@
 /**
  * Register constructors for classes necessary to provide the Listing custom
  * post type.
+ *
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class AWPCP_ListingPostTypeContainerConfiguration implements AWPCP_ContainerConfigurationInterface {
 

@@ -1,7 +1,11 @@
 <?php
 /**
  * Installation and Upgrade functions
+ *
+ * @package AWPCP
  */
+
+// phpcs:disable
 
 global $wpdb;
 
@@ -42,6 +46,9 @@ function awpcp_installer() {
     return $instance;
 }
 
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 class AWPCP_Installer {
 
     private static $instance = null;

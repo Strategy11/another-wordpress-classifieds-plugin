@@ -1,5 +1,11 @@
 <?php
+/**
+ * @package AWPCP\Admin
+ */
 
+/**
+ * Constructor function.
+ */
 function awpcp_uninstall_admin_page() {
     return new AWPCP_UninstallAdminPage(
         awpcp()->container['Uninstaller'],
@@ -7,6 +13,9 @@ function awpcp_uninstall_admin_page() {
     );
 }
 
+/**
+ * Uninstall admin page.
+ */
 class AWPCP_UninstallAdminPage {
 
     /**
@@ -32,18 +41,16 @@ class AWPCP_UninstallAdminPage {
      * Renders the page.
      */
     public function dispatch() {
-        global $message;
-
-        $action = $this->request->param( 'action', 'confirm' );
-        $url = awpcp_current_url();
+        $action  = $this->request->param( 'action', 'confirm' );
+        $url     = awpcp_current_url();
         $dirname = AWPCPUPLOADDIR;
 
-        if (strcmp($action, 'uninstall') == 0) {
+        if ( 0 === strcmp( $action, 'uninstall' ) ) {
             $this->uninstaller->uninstall();
         }
 
         $template = AWPCP_DIR . '/admin/templates/admin-panel-uninstall.tpl.php';
 
-        return awpcp_render_template( $template, compact('action', 'url', 'dirname') );
+        return awpcp_render_template( $template, compact( 'action', 'url', 'dirname' ) );
     }
 }
