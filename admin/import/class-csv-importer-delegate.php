@@ -3,12 +3,15 @@
 class AWPCP_CSV_Importer_Delegate {
 
     private $import_session;
-    private $image_attachment_creator;
     private $mime_types;
-    private $file_logic_factory;
     private $categories_logic;
     private $categories;
     private $listings_logic;
+
+    /**
+     * @var object
+     */
+    private $media_manager;
 
     private $default_supported_columns = array(
         'post_fields' => array(
@@ -64,14 +67,13 @@ class AWPCP_CSV_Importer_Delegate {
     private $parsed_data = array();
     private $messages = array();
 
-    public function __construct( $import_session, $image_attachment_creator, $mime_types, $file_logic_factory, $categories_logic, $categories, $listings_logic ) {
+    public function __construct( $import_session, $mime_types, $categories_logic, $categories, $listings_logic, $media_manager ) {
         $this->import_session = $import_session;
-        $this->image_attachment_creator = $image_attachment_creator;
         $this->mime_types = $mime_types;
-        $this->file_logic_factory = $file_logic_factory;
         $this->categories_logic = $categories_logic;
         $this->categories = $categories;
         $this->listings_logic = $listings_logic;
+        $this->media_manager    = $media_manager;
     }
 
     public function import_row( $row_data ) {
@@ -372,17 +374,21 @@ class AWPCP_CSV_Importer_Delegate {
             throw new AWPCP_Exception( $message );
         }
 
-        $parsed_value = $this->parse_date(
-            $date,
-            $this->import_session->get_param( 'date_format' ),
-            $this->import_session->get_param( 'date_separator' ),
-            $this->import_session->get_param( 'time_separator' )
-        );
+        if ( ! empty( $date ) ) {
+            $parsed_value = $this->parse_date(
+                $date,
+                $this->import_session->get_param( 'date_format' ),
+                $this->import_session->get_param( 'date_separator' ),
+                $this->import_session->get_param( 'time_separator' )
+            );
 
-        // TODO: validation
-        if ( empty( $parsed_value ) && ! empty( $date ) ) {
-            $message = $error_messages['invalid-date'];
-            throw new AWPCP_Exception( $message );
+            // TODO: validation
+            if ( empty( $parsed_value ) ) {
+                $message = $error_messages['invalid-date'];
+                throw new AWPCP_Exception( $message );
+            }
+
+            return $parsed_value;
         }
 
         $parsed_value = $this->parse_date(
@@ -506,12 +512,12 @@ class AWPCP_CSV_Importer_Delegate {
         $listing_data['metadata']['_awpcp_payment_status'] = AWPCP_Payment_Transaction::PAYMENT_STATUS_NOT_REQUIRED;
 
         try {
-            $a = microtime();
+            $a = microtime( true );
             $listing = $this->listings_logic->create_listing( array(
                 'post_fields' => array( 'post_title' => 'Imported Listing Draft' ),
                 'metadata' => array(),
             ) );
-            $b = microtime();
+            $b = microtime( true );
             $d = $b - $a;
 
             $this->listings_logic->update_listing( $listing, $listing_data );
@@ -523,18 +529,18 @@ class AWPCP_CSV_Importer_Delegate {
         foreach ( $listing_data['attachments'] as $file_path ) {
             $pathinfo = awpcp_utf8_pathinfo( $file_path );
 
-            $file_logic = $this->file_logic_factory->create_file_logic((object) array(
-                'path' => $file_path,
-                'realname' => $pathinfo['basename'],
-                'name' => $pathinfo['basename'],
-                'dirname' => $pathinfo['dirname'],
-                'filename' => $pathinfo['filename'],
-                'extension' => $pathinfo['extension'],
-                'mime_type' => $this->mime_types->get_file_mime_type( $file_path ),
+            $imported_file = (object) array(
+                'path'        => $file_path,
+                'realname'    => $pathinfo['basename'],
+                'name'        => $pathinfo['basename'],
+                'dirname'     => $pathinfo['dirname'],
+                'filename'    => $pathinfo['filename'],
+                'extension'   => $pathinfo['extension'],
+                'mime_type'   => $this->mime_types->get_file_mime_type( $file_path ),
                 'is_complete' => true,
-            ));
+            );
 
-            $this->image_attachment_creator->create_attachment( $listing, $file_logic );
+            $this->media_manager->add_file( $listing, $imported_file );
         }
 
         do_action( 'awpcp-listing-imported', $listing, $listing_data );
