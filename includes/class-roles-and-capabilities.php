@@ -90,12 +90,18 @@ class AWPCP_RolesAndCapabilities {
     }
 
     public function remove_administrator_capabilities_from_role( $role_name ) {
-        $role = get_role( $role_name );
-        return array_map( array( $role, 'remove_cap' ), $this->get_administrator_capabilities() );
+        $this->remove_capabilities_from_role( get_role( $role_name ), $this->get_administrator_capabilities() );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function remove_capabilities_from_role( $role, $capabilities ) {
+        return array_map( array( $role, 'remove_cap' ), $capabilities );
     }
 
     public function add_subscriber_capabilities_to_role( $role_name ) {
-        return $this->add_capabilities_to_role( geT_role( $role_name ), $this->get_subscriber_capabilities() );
+        return $this->add_capabilities_to_role( get_role( $role_name ), $this->get_subscriber_capabilities() );
     }
 
     public function get_subscriber_capabilities() {
@@ -109,6 +115,13 @@ class AWPCP_RolesAndCapabilities {
      */
     public function get_subscriber_capability() {
         return 'edit_awpcp_classifieds';
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function remove_subscriber_capabilities_from_role( $role_name ) {
+        $this->remove_capabilities_from_role( get_role( $role_name ), $this->get_subscriber_capabilities() );
     }
 
     /**

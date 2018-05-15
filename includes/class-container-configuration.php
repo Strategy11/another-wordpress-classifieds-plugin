@@ -18,6 +18,24 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
      * @SuppressWarnings(PHPMD.StaticAccess)
      */
     public function modify( $container ) {
+        $container['wpdb'] = function( $container ) {
+            return $GLOBALS['wpdb'];
+        };
+
+        $container['Uninstaller'] = $container->service( function( $container ) {
+            return new AWPCP_Uninstaller(
+                $container['plugin_basename'],
+                $container['listing_post_type'],
+                $container['ListingsLogic'],
+                $container['ListingsCollection'],
+                $container['CategoriesLogic'],
+                $container['CategoriesCollection'],
+                $container['RolesAndCapabilities'],
+                $container['Settings'],
+                $container['wpdb']
+            );
+        } );
+
         $container['Request'] = $container->service( function( $container ) {
             return awpcp_request();
         } );

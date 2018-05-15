@@ -1826,7 +1826,9 @@ function awpcp_container() {
     static $instance = null;
 
     if ( is_null( $instance ) ) {
-        $instance = new AWPCP_Container();
+        $instance = new AWPCP_Container( [
+            'plugin_basename' => plugin_basename( __FILE__ ),
+        ] );
     }
 
     return $instance;

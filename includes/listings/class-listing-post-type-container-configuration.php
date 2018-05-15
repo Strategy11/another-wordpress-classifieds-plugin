@@ -118,6 +118,15 @@ class AWPCP_ListingPostTypeContainerConfiguration implements AWPCP_ContainerConf
             );
         } );
 
+        $container['CategoriesLogic'] = $container->service( function( $container ) {
+            return new AWPCP_Categories_Logic(
+                $container['listing_category_taxonomy'],
+                $container['ListingsLogic'],
+                $container['ListingsCollection'],
+                $container['WordPress']
+            );
+        } );
+
         $container['CategoriesCollection'] = $container->service( function( $container ) {
             return new AWPCP_Categories_Collection(
                 $container['listing_category_taxonomy'],
