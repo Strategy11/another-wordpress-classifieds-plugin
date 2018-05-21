@@ -66,7 +66,6 @@ class AWPCP_Database_Tables {
             `user_id` INT(10) DEFAULT NULL,
             `renew_email_sent` TINYINT(1) NOT NULL DEFAULT 0,
             `renewed_date` DATETIME,
-            FULLTEXT KEY `titdes` (`ad_title`,`ad_details`),
             PRIMARY KEY  (`ad_id`)
         ) ENGINE=InnoDB DEFAULT CHARSET=<charset> COLLATE=<collate>;";
 
