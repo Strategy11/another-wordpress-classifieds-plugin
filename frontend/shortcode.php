@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package AWPCP
+ */
+
+// phpcs:disable
 
 require_once(AWPCP_DIR . '/frontend/class-awpcp-meta.php');
 
@@ -12,7 +17,9 @@ require_once(AWPCP_DIR . '/frontend/page-reply-to-ad.php');
 require_once(AWPCP_DIR . '/frontend/page-search-ads.php');
 require_once(AWPCP_DIR . '/frontend/page-browse-ads.php');
 
-
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 class AWPCP_Pages {
     private $output = array();
 
@@ -249,6 +256,9 @@ class AWPCP_Pages {
 
 // Set Home Screen
 
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 function awpcpui_homescreen() {
 	global $classicontent;
 
@@ -261,6 +271,9 @@ function awpcpui_homescreen() {
 }
 
 
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 function awpcpui_process($awpcppagename) {
 	global $hasrssmodule, $hasregionsmodule, $awpcp_plugin_url;
 
@@ -294,7 +307,9 @@ function awpcpui_process($awpcppagename) {
 	return $output;
 }
 
-
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 function awpcp_load_classifieds($awpcppagename) {
 	if (get_awpcp_option('main_page_display') == 1) {
         $query = array(
@@ -314,6 +329,10 @@ function awpcp_load_classifieds($awpcppagename) {
 
 
 //	START FUNCTION: show the classifieds page body
+
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 function awpcp_display_the_classifieds_page_body($awpcppagename) {
 	global $hasregionsmodule;
 
@@ -355,7 +374,9 @@ function awpcp_display_the_classifieds_page_body($awpcppagename) {
 }
 //	End function display the home screen
 
-
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 function awpcp_menu_items() {
     $params = array(
         'show-create-listing-button' => get_awpcp_option( 'show-menu-item-place-ad' ),
@@ -380,6 +401,9 @@ function awpcp_menu_items() {
     return awpcp_render_template( $template, $params );
 }
 
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 function awpcp_get_menu_items( $params ) {
     $items = array();
 
@@ -438,6 +462,9 @@ function awpcp_get_menu_items( $params ) {
     return $items;
 }
 
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 function awpcp_should_show_edit_listing_menu( $params ) {
     if ( get_awpcp_option( 'onlyadmincanplaceads' ) && ! awpcp_current_user_is_admin() ) {
         return false;
@@ -454,6 +481,9 @@ function awpcp_should_show_edit_listing_menu( $params ) {
     return true;
 }
 
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 function awpcp_get_edit_listing_menu_item() {
     $listings = awpcp_listings_collection();
     $authorization = awpcp_listing_authorization();
