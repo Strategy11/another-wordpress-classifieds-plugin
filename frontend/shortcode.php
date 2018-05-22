@@ -68,7 +68,8 @@ class AWPCP_Pages {
             do_action('awpcp-shortcode', 'place-ad');
 
             if ( ! isset( $this->place_ad_page ) ) {
-                $this->place_ad_page = awpcp_place_listing_page();
+                // TODO: Get container or page as constructor dependency.
+                $this->place_ad_page = awpcp()->container['SubmitListingPage'];
             }
 
             $this->output['place-ad'] = $this->place_ad_page->dispatch();

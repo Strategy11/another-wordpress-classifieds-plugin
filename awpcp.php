@@ -560,6 +560,8 @@ class AWPCP {
 			return;
 		}
 
+        $this->container->configure( $this->get_container_configurations() );
+
 		$this->setup_register_settings_handlers();
 
 		$this->settings->setup();
@@ -601,8 +603,6 @@ class AWPCP {
         add_action( 'init', array( $custom_post_types, 'register_custom_taxonomies' ), 9999 );
         add_action( 'init', array( $custom_post_types, 'register_custom_image_sizes' ), 9999 );
         add_action( 'awpcp-installed', array( $custom_post_types, 'create_default_category' ) );
-
-        $this->container->configure( $this->get_container_configurations() );
 
         $listing_permalinks = $this->container['ListingsPermalinks'];
 
@@ -1451,6 +1451,18 @@ class AWPCP {
                 'plupload-all',
                 'backbone',
             ),
+            $awpcp_db_version,
+            true
+        );
+
+        wp_register_script(
+            'awpcp-submit-listing-page',
+            "{$js}/frontend/submit-listing-page.src.js",
+            // TODO: Use a filter to allow premium modules to enqueue their
+            //       scripts as dependencies.
+            [
+                'awpcp',
+            ],
             $awpcp_db_version,
             true
         );

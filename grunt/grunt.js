@@ -9,6 +9,11 @@ module.exports = function(grunt) {
     concat: {
       files: {
         '<%= path.awpcp %>/js/admin/edit-post.src.js': '<%= path.awpcp %>/js/admin/edit-post.js',
+        '<%= path.awpcp %>/js/frontend/submit-listing-page.src.js': [
+          '<%= path.awpcp %>/js/frontend/order-section-controller.js',
+          '<%= path.awpcp %>/js/frontend/submit-listing-data-store.js',
+          '<%= path.awpcp %>/js/frontend/submit-listing-page.js',
+        ],
         '<%= path.awpcp %>/js/awpcp.src.js': [
           '<%= path.awpcp %>/js/legacy.js',
           '<%= path.awpcp %>/js/awpcp.js',
@@ -17,6 +22,7 @@ module.exports = function(grunt) {
           '<%= path.awpcp %>/js/moment.js',
           '<%= path.awpcp %>/js/components/category-dropdown/*.js',
           '<%= path.awpcp %>/js/components/categories-selector/*.js',
+          '<%= path.awpcp %>/js/components/credit-plans-list/*.js',
           '<%= path.awpcp %>/js/components/datepicker-field/*.js',
           '<%= path.awpcp %>/js/components/file-manager/*.js',
           '<%= path.awpcp %>/js/components/media-manager/*.js',
@@ -27,6 +33,7 @@ module.exports = function(grunt) {
           '<%= path.awpcp %>/js/components/payment-terms-list/*.js',
           '<%= path.awpcp %>/js/components/thumbnails-generator/*.js',
           '<%= path.awpcp %>/js/components/user-information-updater/*.js',
+          '<%= path.awpcp %>/js/components/user-selector/*.js',
           '<%= path.awpcp %>/js/util/guid.js',
           '<%= path.awpcp %>/js/util/number-format.js',
           '<%= path.awpcp %>/js/asynchronous-tasks.js',

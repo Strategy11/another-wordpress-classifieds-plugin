@@ -1,15 +1,5 @@
 <?php
 
-function awpcp_payments_api() {
-    static $payments = null;
-
-    if ( is_null( $payments ) ) {
-        $payments = new AWPCP_PaymentsAPI( new AWPCP_Request() );
-    }
-
-    return $payments;
-}
-
 class AWPCP_PaymentsAPI {
 
     private $request = null;
@@ -179,7 +169,21 @@ class AWPCP_PaymentsAPI {
     }
 
     public function get_credit_plans() {
-        return AWPCP_CreditPlan::find();
+        $credit_plans = [];
+
+        foreach ( AWPCP_CreditPlan::find() as $credit_plan ) {
+            $summary = __( '{credit-plan-name} ({credit-plan-credits} credits for {credit-plan-price})', 'another-wordpress-classifieds-plugin' );
+
+            $summary = str_replace( '{credit-plan-name}', $credit_plan->name, $summary );
+            $summary = str_replace( '{credit-plan-credits}', awpcp_format_integer( $credit_plan->credits ), $summary );
+            $summary = str_replace( '{credit-plan-price}', awpcp_format_money( $credit_plan->price ), $summary );
+
+            $credit_plan->summary = $summary;
+
+            $credit_plans[] = $credit_plan;
+        }
+
+        return $credit_plans;
     }
 
     public function get_credit_plan($id) {

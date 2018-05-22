@@ -243,6 +243,7 @@ AWPCP.run('awpcp/page-place-ads', [
 
                 container.find('[autocomplete-field], [dropdown-field]').userfield();
 
+                // TODO: We need to support validation on the new Submit Listing Page somehow as well.
                 form.validate({
                     messages: $.AWPCP.l10n('page-place-ad-order')
                 });

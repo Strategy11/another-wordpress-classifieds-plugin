@@ -2,7 +2,23 @@
     width: 100%;
 }
 
-.select2-container--default .select2-selection--multiple .select2-selection__rendered li {
-    border-top: none;
-    border-bottom: none;
+.select2-container--default {
+    line-height: 1.5em;
+
+    .select2-selection--multiple {
+        .select2-selection__rendered {
+        }
+        .select2-selection__rendered li {
+            border-top: none;
+            border-bottom: none;
+            margin-left: 0;
+        }
+        .select2-search--inline {
+            margin-top: 5px;
+            margin-left: 0;
+        }
+        .select2-search--inline .select2-search__field {
+            margin-top: 0;
+        }
+    }
 }

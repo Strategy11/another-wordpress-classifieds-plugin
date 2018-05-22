@@ -187,3 +187,7 @@ function awpcp_file_types() {
 
     return $instance;
 }
+
+function awpcp_payments_api() {
+    return awpcp()->container['Payments'];
+}

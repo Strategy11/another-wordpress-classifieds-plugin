@@ -44,8 +44,22 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
             return awpcp_settings_api();
         } );
 
+        $container['Payments'] = $container->service( function( $container ) {
+            return new AWPCP_PaymentsAPI(
+                $container['Request']
+            );
+        } );
+
         $container['RolesAndCapabilities'] = $container->service( function( $container ) {
             return awpcp_roles_and_capabilities();
+        } );
+
+        $container['UsersCollection'] = $container->service( function( $container ) {
+            return new AWPCP_UsersCollection(
+                $container['Payments'],
+                $container['Settings'],
+                $container['wpdb']
+            );
         } );
 
         $container['EmailFactory'] = $container->service( function( $container ) {
@@ -126,12 +140,25 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
             return new AWPCP_HTML_Renderer();
         } );
 
+        // Frontend.
+        $container['SubmitListingPage'] = $container->service( function( $container ) {
+            return new AWPCP_SubmitListingPage();
+        } );
+
         // Media.
         $container['FileTypes'] = $container->service( function( $container ) {
             return new AWPCP_FileTypes( $container['Settings'] );
         } );
 
         // Components.
+        $container['UserSelector'] = $container->service( function( $container ) {
+            return new AWPCP_UserSelector(
+                $container['UsersCollection'],
+                $container['TemplateRenderer'],
+                $container['Request']
+            );
+        } );
+
         $container['MediaCenterComponent'] = $container->service( function ( $container ) {
             return new AWPCP_MediaCenterComponent(
                 $container['ListingUploadLimits'],

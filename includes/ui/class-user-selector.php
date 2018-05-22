@@ -1,0 +1,199 @@
+<?php
+/**
+ * @package AWPCP\UI
+ */
+
+/**
+ * A user dropdown powered by Select2.
+ */
+class AWPCP_UserSelector {
+
+    /**
+     * @var string
+     */
+    private $template = 'components/user-selector.tpl.php';
+
+    /**
+     * @var object
+     */
+    private $users;
+
+    /**
+     * @var object
+     */
+    private $template_renderer;
+
+    /**
+     * @var object
+     */
+    private $request;
+
+    /**
+     * @param object $users                 An instance of Users Collection.
+     * @param object $template_renderer     An instance of Template Renderer.
+     * @param object $request               An instance of Request.
+     * @since 4.0.0
+     */
+    public function __construct( $users, $template_renderer, $request ) {
+        $this->users             = $users;
+        $this->template_renderer = $template_renderer;
+        $this->request           = $request;
+    }
+
+    /**
+     * @param array $params     An array of configuration parameters.
+     * @since 4.0.0
+     */
+    public function render( $params ) {
+        $params = $this->prepare_paramaters( $params );
+
+        return $this->template_renderer->render_template( $this->template, $params );
+    }
+
+    /**
+     * @param array $params     An array of configuration parameters.
+     * @since 4.0.0
+     */
+    private function prepare_paramaters( $params ) {
+        $params = wp_parse_args( $params, array(
+            'selected'                      => null,
+            'mode'                          => null,
+            'include_full_user_information' => true,
+            'users'                         => [],
+        ) );
+
+        // TODO: Remove usage of include-full-user-information.
+        if ( isset( $params['include-full-user-information'] ) ) {
+            $params['include_full_user_information'] = $params['include-full-user-information'];
+            unset( $params['include-full-user-information'] );
+        }
+
+        $params['selected'] = $this->find_selected_user( $params );
+        $params['mode']     = $this->get_mode( $params );
+
+        if ( 'ajax' === $params['mode'] ) {
+            return $this->prepare_ajax_mode_parameters( $params );
+        }
+
+        return $this->prepare_inline_mode_parameters( $params );
+    }
+
+    /**
+     * @param array $params     An array of configuration parameters.
+     * @since 4.0.0
+     */
+    private function get_mode( $params ) {
+        if ( $params['mode'] ) {
+            return $params['mode'];
+        }
+
+        $users_count = count_users();
+
+        if ( isset( $users_count['total_users'] ) && $users_count['total_users'] > 100 ) {
+            return 'ajax';
+        }
+
+        return 'inline';
+    }
+
+    /**
+     * @param array $params     An array of configuration parameters.
+     * @since 4.0.0
+     */
+    private function find_selected_user( $params ) {
+        if ( is_null( $params['selected'] ) || is_array( $params['selected'] ) ) {
+            return $params['selected'];
+        }
+
+        $current_user_id = $params['selected'];
+
+        // TODO: Cache!
+        if ( empty( $current_user_id ) ) {
+            $current_user_id = get_current_user_id();
+        }
+
+        if ( empty( $current_user_id ) ) {
+            return $params['selected'];
+        }
+
+        $current_user_data = $this->users->get( $current_user_id, [ 'public_name' ] );
+
+        return [
+            'id'   => $current_user_data->ID,
+            'text' => $current_user_data->public_name,
+        ];
+    }
+
+    /**
+     * @param array $params     An array of configuration parameters.
+     * @since 4.0.0
+     */
+    private function prepare_ajax_mode_parameters( $params ) {
+        $params['configuration'] = $this->get_ajax_mode_configuration( $params );
+
+        return $params;
+    }
+
+    /**
+     * @param array $params     An array of configuration parameters.
+     * @since 4.0.0
+     */
+    private function get_ajax_mode_configuration( $params ) {
+        $configuration = $this->get_common_configuration( $params );
+
+        $configuration['select2'] = [
+            'ajax' => [
+                'url'      => add_query_arg( 'action', 'awpcp-autocomplete-users', admin_url( 'admin-ajax.php' ) ),
+                'dataType' => 'json',
+            ],
+        ];
+
+        return $configuration;
+    }
+
+    /**
+     * @param array $params     An array of configuration parameters.
+     * @since 4.0.0
+     */
+    private function get_common_configuration( $params ) {
+        return [
+            'selected' => $params['selected'],
+            'mode'     => $params['mode'],
+        ];
+    }
+
+    /**
+     * @param array $params     An array of configuration parameters.
+     * @since 4.0.0
+     */
+    private function prepare_inline_mode_parameters( $params ) {
+        $params['users']         = $this->get_users( $params );
+        $params['configuration'] = $this->get_iniline_mode_configuration( $params );
+
+        return $params;
+    }
+
+    /**
+     * @param array $params     An array of configuration parameters.
+     * @since 4.0.0
+     */
+    private function get_users( $params ) {
+        if ( $params['include_full_user_information'] ) {
+            return $this->users->get_users_with_full_information();
+        }
+
+        return $this->users->get_users_with_basic_information();
+    }
+
+    /**
+     * @param array $params     An array of configuration parameters.
+     * @since 4.0.0
+     */
+    private function get_iniline_mode_configuration( $params ) {
+        $configuration = $this->get_common_configuration( $params );
+
+        $configuration['select2'] = [];
+
+        return $configuration;
+    }
+}

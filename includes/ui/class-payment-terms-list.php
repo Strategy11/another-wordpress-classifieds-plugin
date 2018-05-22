@@ -75,7 +75,19 @@ class AWPCP_Payment_Terms_List {
     }
 
     private function get_payment_term_definition( $payment_term ) {
+        $summary_currency = __( '{payment-term-name} &ndash; {payment-term-duration} ({payment-term-price})', 'another-wordpress-classifieds-plugin' );
+        $summary_currency = str_replace( '{payment-term-name}', $payment_term->name, $summary_currency );
+        $summary_currency = str_replace( '{payment-term-duration}', $payment_term->duration_amount . ' ' . $payment_term->get_duration_interval(), $summary_currency );
+        $summary_currency = str_replace( '{payment-term-price}', awpcp_format_money( $payment_term->price ), $summary_currency );
+
+        $summary_credits = __( '{payment-term-name} &ndash; {payment-term-duration} ({payment-term-price} credits)', 'another-wordpress-classifieds-plugin' );
+        $summary_credits = str_replace( '{payment-term-name}', $payment_term->name, $summary_credits );
+        $summary_credits = str_replace( '{payment-term-duration}', $payment_term->duration_amount . ' ' . $payment_term->get_duration_interval(), $summary_credits );
+        $summary_credits = str_replace( '{payment-term-price}', awpcp_format_integer( $payment_term->credits ), $summary_credits );
+
         return array(
+            'id'                => $payment_term->id,
+            'type'              => $payment_term->type,
             'attributes' => $this->get_payment_term_attributes( $payment_term ),
             'name' => $payment_term->name,
             'description' => $payment_term->description,
@@ -84,6 +96,8 @@ class AWPCP_Payment_Terms_List {
             'features' => $this->get_payment_term_features_definition( $payment_term ),
             'price' => $this->get_payment_term_price_definition( $payment_term ),
             'extra' => array(),
+            'summary-currency'  => $summary_currency,
+            'summary-credits'   => $summary_credits,
         );
     }
 

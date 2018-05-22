@@ -66,9 +66,13 @@ function( $, CategoriesSelectorHelper ) {
      * Categories Selector component.
      */
 
-    var CategoriesSelector = function( select ) {
+    var CategoriesSelector = function( select, options ) {
         this.$select = $( select );
-        this.options = window[ 'categories_' + this.$select.attr( 'data-hash' ) ];
+        this.options = $.extend(
+            {},
+            window[ 'categories_' + this.$select.attr( 'data-hash' ) ],
+            options
+        );
 
         if ( this.options.mode === 'advanced' ) {
             return this.initAdvancedMode();
@@ -95,16 +99,40 @@ function( $, CategoriesSelectorHelper ) {
         },
 
         onChange: function() {
-            var $select = this.$select;
-            var categoriesIds = $.map( $select.select2( 'data' ), function( option ) {
-                return parseInt( option.id, 10 );
-            } );
+            var self = this;
+
+            var categoriesIds = self.getSelectedCategoriesIds();
 
             if ( this.options.helper ) {
                 this.options.helper.updateSelectedCategories( categoriesIds );
             }
 
-            $.publish( '/categories/change', [ $select, categoriesIds ] );
+            if ( $.isFunction( self.options.onChange ) ) {
+                self.options.onChange( self.getSelectedCategories() );
+            }
+
+            $.publish( '/categories/change', [ self.$select, categoriesIds ] );
+        },
+
+        getSelectedCategories: function() {
+            var self = this;
+
+            return $.map( self.$select.select2( 'data' ), function ( option ) {
+                var id = parseInt( option.id, 10 );
+
+                return {
+                    id: id,
+                    name: option.text
+                };
+            } );
+        },
+
+        getSelectedCategoriesIds: function() {
+            var self = this;
+
+            return $.map( self.$select.select2( 'data' ), function ( option ) {
+                return parseInt( option.id, 10 );
+            } );
         },
 
         render: function() {

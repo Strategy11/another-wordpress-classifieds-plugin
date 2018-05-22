@@ -6,7 +6,8 @@ function( $ ) {
     var CategoriesSelectorHelper = function( selectedCategoriesIds, categoriesHierarchy, paymentTerms ) {
         var self = this, parent, model;
 
-        this.allCategories = [];
+        this.allCategories         = [];
+        this.allCategoriesIds      = [];
         this.selectedCategoriesIds = selectedCategoriesIds;
         this.registry = {};
         this.hierarchy = {};
@@ -23,6 +24,7 @@ function( $ ) {
                 };
 
                 self.allCategories.push( model );
+                self.allCategoriesIds.push( model.id );
                 self.registry[ category.term_id ] = model;
                 self.parents[ category.term_id ] = parent;
 
@@ -81,11 +83,12 @@ function( $ ) {
             var allowedPaymentTerms = _.compact( _.map( _.keys( self.paymentTerms ), function( paymentTermKey ) {
                 var paymentTerm = self.paymentTerms[ paymentTermKey ];
 
-                if ( _.difference( self.selectedCategoriesIds, paymentTerm.categories ).length !== 0 ) {
+                // No explicit list of categories means all categories are allowed.
+                if ( paymentTerm.categories.length > 0 && _.difference( self.selectedCategoriesIds, paymentTerm.categories ).length !== 0 ) {
                     return null;
                 }
 
-                if ( paymentTerm.numberOfCategoriesAllowed <= self.selectedCategoriesIds.length ) {
+                if ( paymentTerm.numberOfCategoriesAllowed > 0 && paymentTerm.numberOfCategoriesAllowed <= self.selectedCategoriesIds.length ) {
                     return null;
                 }
 
@@ -96,7 +99,7 @@ function( $ ) {
 
             for ( var i = allowedPaymentTerms.length - 1; i >= 0; i = i - 1 ) {
                 if ( allowedPaymentTerms[ i ].categories.length === 0 ) {
-                    categoriesThatCanBeSelectedTogether = categories;
+                    categoriesThatCanBeSelectedTogether = self.allCategoriesIds;
                     break;
                 }
 

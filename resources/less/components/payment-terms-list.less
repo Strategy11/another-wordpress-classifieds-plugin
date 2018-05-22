@@ -1,11 +1,19 @@
-.awpcp-payment-terms-list-payment-term {
+.awpcp-payment-terms-list {
+    margin: 0;
+
+    .awpcp-payment-term {
+        margin-left: 0;
+        margin-bottom: 16px;
+    }
+}
+
+.awpcp-payment-term {
     .awpcp-box;
     .awpcp-bordered-box;
     .awpcp-rounded-box;
 
     display: flex;
     flex-direction: column;
-    margin-bottom: 16px;
     padding-right: 15px;
     padding-left: 15px;
     padding-bottom: 15px;
@@ -21,7 +29,11 @@
 
         .awpcp-payment-term-features {
             list-style-type: disc;
+            margin: 0;
             padding-left: 15px;
+        }
+        .awpcp-payment-term-feature {
+            margin-left: 0;
         }
     }
 
@@ -66,8 +78,37 @@
     }
 }
 
+.awpcp-payment-term__read_only .awpcp-payment-term-duration-price {
+    .awpcp-payment-term-duration {
+        line-height: 1em;
+    }
+
+    label {
+        background: none;
+        border: none;
+        cursor: default;
+        font-size: 2em;
+        font-weight: bold;
+        line-height: 1em;
+        text-align: center;
+
+        &:hover {
+            background: none;
+            color: inherit;
+        }
+
+        input {
+            display: none;
+        }
+    }
+}
+
 @media (min-width: 768px) {
-    .awpcp-payment-terms-list-payment-term {
+    .awpcp-payment-terms-list .awpcp-payment-term {
+        margin-bottom: 8px;
+    }
+
+    .awpcp-payment-term {
         flex-direction: row;
         margin-bottom: 8px;
         padding: 8px;
@@ -99,5 +140,9 @@
                 padding-left: 0;
             }
         }
+    }
+
+    .awpcp-payment-term__read_only .awpcp-payment-term-duration-price label {
+        font-size: 20px;
     }
 }
