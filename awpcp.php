@@ -92,6 +92,8 @@ require_once(AWPCP_DIR . "/cron.php");
 // API & Classes
 require_once(AWPCP_DIR . "/includes/exceptions.php");
 
+require_once AWPCP_DIR . '/includes/admin/class-privacy-policy-content.php';
+
 require_once(AWPCP_DIR . "/includes/compatibility/compatibility.php");
 require_once( AWPCP_DIR . '/includes/compatibility/interface-plugin-integration.php' );
 require_once( AWPCP_DIR . "/includes/compatibility/class-add-meta-tags-plugin-integration.php" );
