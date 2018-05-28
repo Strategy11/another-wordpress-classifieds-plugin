@@ -4,9 +4,9 @@
  */
 
 /**
- * Exporter for User personal data.
+ * Exporter and eraser for User personal data.
  */
-class AWPCP_UserPersonalDataExporter implements AWPCP_PersonalDataExporterInterface {
+class AWPCP_UserPersonalDataProvider implements AWPCP_PersonalDataProviderInterface {
 
     /**
      * @var
@@ -73,5 +73,27 @@ class AWPCP_UserPersonalDataExporter implements AWPCP_PersonalDataExporterInterf
         }
 
         return $export_items;
+    }
+
+    /**
+     * @since 3.8.6
+     */
+    public function erase_objects( $users ) {
+        $items_removed  = false;
+        $items_retained = false;
+        $messages       = array();
+
+        foreach ( $users as $user ) {
+            if ( delete_user_meta( $user->ID, 'awpcp-profile' ) ) {
+                $items_removed = true;
+                continue;
+            }
+
+            $items_retained = true;
+
+            $messages[] = __( 'An unknown error occurred while trying to delete information from Classifieds Profile', 'another-wordpress-classifieds-plugin' );
+        }
+
+        return compact( 'items_removed', 'items_retained', 'messages' );
     }
 }

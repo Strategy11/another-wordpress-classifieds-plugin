@@ -3,11 +3,10 @@
  * @package AWPCP\Admin
  */
 
-
 /**
- * Interface for Data Exporter implementations.
+ * Interface for Perwonal Data Provider implementations.
  */
-interface AWPCP_PersonalDataExporterInterface {
+interface AWPCP_PersonalDataProviderInterface {
 
     /**
      * @since 3.8.6
@@ -23,4 +22,9 @@ interface AWPCP_PersonalDataExporterInterface {
      * @since 3.8.6
      */
     public function export_objects( $objects );
+
+    /**
+     * @since 3.8.6
+     */
+    public function erase_objects( $objects );
 }

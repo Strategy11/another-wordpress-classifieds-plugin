@@ -4,9 +4,9 @@
  */
 
 /**
- * Exporter for Listings personal data.
+ * Exporter and eraser for Listings personal data.
  */
-class AWPCP_ListingsPersonalDataExporter implements AWPCP_PersonalDataExporterInterface {
+class AWPCP_ListingsPersonalDataProvider implements AWPCP_PersonalDataProviderInterface {
 
     /**
      * @var media
@@ -165,5 +165,30 @@ class AWPCP_ListingsPersonalDataExporter implements AWPCP_PersonalDataExporterIn
         return array(
             'URL' => $media_record->get_url( 'original' ),
         );
+    }
+
+    /**
+     * @since 3.8.6
+     */
+    public function erase_objects( $listings ) {
+        $items_removed  = false;
+        $items_retained = false;
+        $messages       = array();
+
+        foreach ( $listings as $listing ) {
+            if ( $listing->delete() ) {
+                $items_removed = true;
+                continue;
+            }
+
+            $items_retained = true;
+
+            $message = __( 'An unknown error occurred while trying to delete information for classified {listing_id}.', 'another-wordpress-classifieds-plugin' );
+            $message = str_replace( '{listing_id}', $listing->ad_id, $message );
+
+            $messages[] = $message;
+        }
+
+        return compact( 'items_removed', 'items_retained', 'messages' );
     }
 }
