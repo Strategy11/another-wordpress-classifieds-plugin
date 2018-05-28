@@ -1427,7 +1427,7 @@ class AWPCP {
     /**
      * @since 3.8.6
      */
-    private function get_data_formatter() {
+    public function get_data_formatter() {
         static $instance;
 
         if ( is_null( $instance ) ) {
