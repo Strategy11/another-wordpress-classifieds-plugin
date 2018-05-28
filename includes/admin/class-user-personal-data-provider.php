@@ -64,6 +64,10 @@ class AWPCP_UserPersonalDataProvider implements AWPCP_PersonalDataProviderInterf
         foreach ( $users as $user ) {
             $data = $this->data_formatter->format_data( $items, $user->classifieds_profile );
 
+            if ( empty( $data ) ) {
+                continue;
+            }
+
             $export_items[] = array(
                 'group_id'    => 'awpcp-profile',
                 'group_label' => __( 'Classifieds Profile', 'another-wordpress-classifieds-plugin' ),
