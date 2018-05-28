@@ -74,7 +74,7 @@ class AWPCP_ListingsPersonalDataProvider implements AWPCP_PersonalDataProviderIn
      */
     public function export_objects( $listings ) {
         // TODO: Let premium modules define additional properties.
-        $items = array(
+        $items = apply_filters( 'awpcp_listings_personal_data_items_descriptions', array(
             'ID'                          => __( 'Classified ID', 'another-wordpress-classifieds-plugin' ),
             'contact_name'                => __( 'Contact Name', 'another-wordpress-classifieds-plugin' ),
             'contact_phone'               => __( 'Contact Phone Number', 'another-wordpress-classifieds-plugin' ),
@@ -87,7 +87,7 @@ class AWPCP_ListingsPersonalDataProvider implements AWPCP_PersonalDataProviderIn
             'website_url'                 => __( 'Website URL', 'another-wordpress-classifieds-plugin' ),
             'payer_email'                 => __( 'Payer Email', 'another-wordpress-classifieds-plugin' ),
             'ip_address'                  => __( 'Author IP', 'another-wordpress-classifieds-plugin' ),
-        );
+        ) );
 
         $region_items = array(
             'country' => __( 'Country', 'another-wordpress-classifieds-plugin' ),
@@ -146,7 +146,7 @@ class AWPCP_ListingsPersonalDataProvider implements AWPCP_PersonalDataProviderIn
             'ip_address'                  => $listing->posterip,
         );
 
-        return $properties;
+        return apply_filters( 'awpcp_listing_personal_data_properties', $properties, $listing );
     }
 
     /**
