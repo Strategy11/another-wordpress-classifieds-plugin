@@ -1,6 +1,7 @@
 @import 'legacy/frontend.less';
 
-@import 'common/forms.less';
+// TODO: Maybe remove forms.less
+// @import 'common/forms.less';
 @import 'common/state.less';
 @import 'common/thickbox.less';
 @import 'common.less';
@@ -8,6 +9,12 @@
 @import 'icons.less';
 @import 'messages.less';
 @import 'tables.less';
+
+@import 'form-fields.tiny.less';
+
+@media (min-width: 1024px) {
+    @import 'form-fields.large.less';
+}
 
 @import 'components/billing-form.less';
 @import 'components/category-dropdown.less';

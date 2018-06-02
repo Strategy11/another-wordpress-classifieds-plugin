@@ -61,6 +61,14 @@ AWPCP.define( 'awpcp/frontend/submit-listing-data-store', [
             self.refresh()
         },
 
+        getSelectedCategoriesIds: function() {
+            var self = this;
+
+            return $.map( self.data.categories || [], function( category ) {
+                return category.id;
+            } );
+        },
+
         getSelectedCategoriesNames: function() {
             var self = this;
 
@@ -105,6 +113,17 @@ AWPCP.define( 'awpcp/frontend/submit-listing-data-store', [
             return null;
         },
 
+        getSelectedPaymentTermId: function() {
+            var self = this;
+
+            if ( self.data.paymentTerm ) {
+                console.log( self.data.paymentTerm );
+                return self.data.paymentTerm.id
+            }
+
+            return null;
+        },
+
         getSelectedPaymentTermSummary: function() {
             var self = this;
 
@@ -131,6 +150,20 @@ AWPCP.define( 'awpcp/frontend/submit-listing-data-store', [
             }
 
             return '';
+        },
+
+        updateListingFields: function( fields ) {
+            var self = this;
+
+            self.data.fields = $.extend( self.data.fields || {}, fields );
+
+            self.refresh();
+        },
+
+        getListingFields: function() {
+            var self = this;
+
+            return self.data.fields || {};
         }
     } );
 

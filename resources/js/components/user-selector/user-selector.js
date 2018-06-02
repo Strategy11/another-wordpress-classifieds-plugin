@@ -72,8 +72,8 @@ function( $ ) {
             var self  = this;
             var users = self.$select.select2( 'data' );
 
-            if ( users.length ) {
-                return { id: users[0].id, name: users[0].text };
+            if ( users && users.length ) {
+                return { id: users[0].id, name: users[0].text };
             }
 
             return { id: 0, name: '' };

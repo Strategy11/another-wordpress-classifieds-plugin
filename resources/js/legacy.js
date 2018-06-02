@@ -85,35 +85,11 @@
          * @return {[type]} [description]
          */
         validate: function(defaults) {
-            $.extend($.validator.messages, $.AWPCP.get('default-validation-messages'));
+            if ( typeof $.validator === 'undefined' ) {
+                return;
+            }
 
-            $.validator.addMethod('money', (function() {
-                var decimal = $.AWPCP.get('decimal-separator'),
-                    thousands = $.AWPCP.get('thousands-separator'),
-                    pattern = new RegExp('^-?(?:\\d+|\\d{1,3}(?:\\' + thousands + '\\d{3})+)?(?:\\' + decimal + '\\d+)?$');
-
-                return function(value, element) {
-                    return this.optional(element) || pattern.test(value);
-                };
-            })()/*, validation message provided as a default validation message in awpcp.php */);
-
-            $.validator.addClassRules('integer', {
-                integer: true
-            });
-
-            $.validator.setDefaults(defaults || {
-                errorClass: 'invalid',
-                errorElement: 'span',
-                errorPlacement: function (error, element) {
-                    error.addClass('awpcp-error');
-                    var tables = ['payment_term', 'credit_plan', 'payment_method'];
-                    if ($.inArray(element.attr('name'), tables) !== -1) {
-                        error.insertBefore(element.closest('table'));
-                    } else if (element.closest('.awpcp-form-spacer').length) {
-                        error.appendTo(element.closest('.awpcp-form-spacer'));
-                    }
-                }
-            });
+            $.validator.setDefaults( defaults );
         }
     });
 

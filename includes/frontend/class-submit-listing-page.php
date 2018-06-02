@@ -27,6 +27,11 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
                 awpcp()->container['RolesAndCapabilities'],
                 awpcp()->container['TemplateRenderer']
             ),
+            new AWPCP_ListingFieldsSubmitListingSection(
+                awpcp()->container['ListingDetailsFormFieldsRenderer'],
+                awpcp()->container['FormFieldsData'],
+                awpcp()->container['TemplateRenderer']
+            ),
         ];
 
         $sections = [];

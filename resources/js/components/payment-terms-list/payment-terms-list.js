@@ -75,10 +75,6 @@ function( $, settings ) {
             var disabledPaymentTerms = this._getDisabledPaymentTerms();
             var enabledPaymentTerms = this.state.allPaymentTerms.not( disabledPaymentTerms.get() );
 
-            console.log( disabledPaymentTerms );
-            console.log( enabledPaymentTerms );
-            console.log( this.state.allPaymentTerms );
-
             if ( enabledPaymentTerms.find( ':radio:checked' ).length === 0 ) {
                 var radio = enabledPaymentTerms.eq( 0 ).find( ':radio:first' );
 

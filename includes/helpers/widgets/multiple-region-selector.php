@@ -167,7 +167,7 @@ class AWPCP_MultipleRegionSelector {
                     $regions[$i][$type]['param'] = $type;
                 }
 
-                // make values selected in parent fields available to child
+                // Make values selected in parent fields available to child
                 // fields when computing the field options.
                 $hierarchy[$type] = $regions[$i][$type]['selected'];
             }

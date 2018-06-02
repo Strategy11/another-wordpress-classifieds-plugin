@@ -10,6 +10,7 @@ module.exports = function(grunt) {
       files: {
         '<%= path.awpcp %>/js/admin/edit-post.src.js': '<%= path.awpcp %>/js/admin/edit-post.js',
         '<%= path.awpcp %>/js/frontend/submit-listing-page.src.js': [
+          '<%= path.awpcp %>/js/frontend/listing-fields-section-controller.js',
           '<%= path.awpcp %>/js/frontend/order-section-controller.js',
           '<%= path.awpcp %>/js/frontend/submit-listing-data-store.js',
           '<%= path.awpcp %>/js/frontend/submit-listing-page.js',
@@ -34,6 +35,7 @@ module.exports = function(grunt) {
           '<%= path.awpcp %>/js/components/thumbnails-generator/*.js',
           '<%= path.awpcp %>/js/components/user-information-updater/*.js',
           '<%= path.awpcp %>/js/components/user-selector/*.js',
+          '<%= path.awpcp %>/js/components/restricted-length-field.js',
           '<%= path.awpcp %>/js/util/guid.js',
           '<%= path.awpcp %>/js/util/number-format.js',
           '<%= path.awpcp %>/js/asynchronous-tasks.js',

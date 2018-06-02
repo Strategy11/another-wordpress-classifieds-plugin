@@ -54,7 +54,6 @@ function( $, DatepickerField, settings ) {
 
                 this.progress = ko.computed( function() {
                     var rowsProcessed = this.rowsImported() + this.rowsRejected();
-                    console.log( 'progress', Math.round( 100 * rowsProcessed / this.rowsCount() ) );
                     return Math.round( 100 * rowsProcessed / this.rowsCount() ) + '%';
                 }, this );
 

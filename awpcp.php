@@ -1462,6 +1462,7 @@ class AWPCP {
             //       scripts as dependencies.
             [
                 'awpcp',
+                'awpcp-jquery-validate',
             ],
             $awpcp_db_version,
             true
