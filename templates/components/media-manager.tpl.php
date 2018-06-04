@@ -1,4 +1,9 @@
-<!-- Using template binding as workaround for conflict with imagesLoaded plugin
+<?php
+/**
+ * @package AWPCP\Templates
+ */
+
+?><!-- Using template binding as workaround for conflict with imagesLoaded plugin
 from Paul Irish. See https://github.com/drodenbaugh/awpcp/issues/979. -->
 <div class="awpcp-media-manager" data-breakpoints-class-prefix="awpcp-media-manager" data-breakpoints='{"tiny":[0,420],"small":[420,620],"medium":[620,874], "large": [874,9999]}' data-bind="{ template: 'awpcp-media-manager-template' }"></div>
 
@@ -36,8 +41,8 @@ from Paul Irish. See https://github.com/drodenbaugh/awpcp/issues/979. -->
                     </li>
                 </ul>
                 <span class="awpcp-spinner awpcp-spinner-visible awpcp-uploaded-file-spinner" data-bind="visible: isBeingModified"></span>
-                <div class="awpcp-uploaded-file-label awpcp-uploaded-file-primary-label" data-bind="visible: isPrimary"><?php echo esc_html(  __( 'Primary Image', 'another-wordpress-classifieds-plugin' ) ); ?></div>
-                <div class="awpcp-uploaded-file-label awpcp-uploaded-file-rejected-label" data-bind="visible: isRejected"><?php echo esc_html(  __( 'Rejected', 'another-wordpress-classifieds-plugin' ) ); ?></div>
+                <div class="awpcp-uploaded-file-label awpcp-uploaded-file-primary-label" data-bind="visible: isPrimary"><?php echo esc_html( __( 'Primary Image', 'another-wordpress-classifieds-plugin' ) ); ?></div>
+                <div class="awpcp-uploaded-file-label awpcp-uploaded-file-rejected-label" data-bind="visible: isRejected"><?php echo esc_html( __( 'Rejected', 'another-wordpress-classifieds-plugin' ) ); ?></div>
             </li>
         </ul>
     </div>
@@ -75,8 +80,8 @@ from Paul Irish. See https://github.com/drodenbaugh/awpcp/issues/979. -->
                     </li>
                 </ul>
                 <span class="awpcp-spinner awpcp-spinner-visible awpcp-uploaded-file-spinner" data-bind="visible: isBeingModified"></span>
-                <div class="awpcp-uploaded-file-label awpcp-uploaded-file-primary-label" data-bind="visible: isPrimary"><?php echo esc_html(  __( 'Primary Video', 'another-wordpress-classifieds-plugin' ) ); ?></div>
-                <div class="awpcp-uploaded-file-label awpcp-uploaded-file-rejected-label" data-bind="visible: isRejected"><?php echo esc_html(  __( 'Rejected', 'another-wordpress-classifieds-plugin' ) ); ?></div>
+                <div class="awpcp-uploaded-file-label awpcp-uploaded-file-primary-label" data-bind="visible: isPrimary"><?php echo esc_html( __( 'Primary Video', 'another-wordpress-classifieds-plugin' ) ); ?></div>
+                <div class="awpcp-uploaded-file-label awpcp-uploaded-file-rejected-label" data-bind="visible: isRejected"><?php echo esc_html( __( 'Rejected', 'another-wordpress-classifieds-plugin' ) ); ?></div>
             </li>
         </ul>
     </div>
@@ -111,7 +116,7 @@ from Paul Irish. See https://github.com/drodenbaugh/awpcp/issues/979. -->
                     </li>
                 </ul>
                 <span class="awpcp-spinner awpcp-spinner-visible awpcp-uploaded-file-spinner" data-bind="visible: isBeingModified"></span>
-                <div class="awpcp-uploaded-file-label awpcp-uploaded-file-rejected-label" data-bind="visible: isRejected"><?php echo esc_html(  __( 'Rejected', 'another-wordpress-classifieds-plugin' ) ); ?></div>
+                <div class="awpcp-uploaded-file-label awpcp-uploaded-file-rejected-label" data-bind="visible: isRejected"><?php echo esc_html( __( 'Rejected', 'another-wordpress-classifieds-plugin' ) ); ?></div>
             </li>
         </ul>
     </div>

@@ -15,7 +15,7 @@
             <?php else : ?>
 
                 <?php foreach ( $messages as $message ) : ?>
-                    <?php echo awpcp_print_message( $message ); ?>
+                    <?php echo awpcp_print_message( $message ); // XSS Ok. ?>
                 <?php endforeach; ?>
 
                 <?php include AWPCP_DIR . '/templates/components/media-center.tpl.php'; ?>
