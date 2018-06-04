@@ -20,10 +20,10 @@ class AWPCP_MediaUploaderComponent {
 
         $this->javascript->set( 'media-uploader-data', $configuration );
 
-        return $this->render_component();
+        return $this->render_component( $configuration );
     }
 
-    private function render_component() {
+    private function render_component( $configuration ) {
         ob_start();
         include( AWPCP_DIR . '/templates/components/media-uploader.tpl.php' );
         $output = ob_get_contents();

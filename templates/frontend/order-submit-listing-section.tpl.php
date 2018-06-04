@@ -7,56 +7,58 @@
     <h2 class="awpcp-submit-listing-section-title"><?php echo esc_html_x( 'Category, owner and payment term selection', 'order submit listing section', 'another-wordpress-classifieds-plugin' ); ?></h2>
     <div class="awpcp-submit-listing-section-content">
         <div class="awpcp-order-submit-listing-section__edit_mode">
-            <div class="awpcp-form-spacer">
-                <?php
-                    $params = array(
-                        'name'          => 'category',
-                        'label'         => _x( 'Please select a category for your classified', 'order submit listing section', 'another-wordpress-classifieds-plugin' ),
-                        'selected'      => awpcp_array_data( 'category', '', $form ),
-                        'multiple'      => false,
-                        'auto'          => false,
-                        'hide_empty'    => false,
-                        'payment_terms' => $payment_terms,
-                    );
+            <form>
+                <div class="awpcp-form-spacer">
+                    <?php
+                        $params = array(
+                            'name'          => 'category',
+                            'label'         => _x( 'Please select a category for your classified', 'order submit listing section', 'another-wordpress-classifieds-plugin' ),
+                            'selected'      => awpcp_array_data( 'category', '', $form ),
+                            'multiple'      => false,
+                            'auto'          => false,
+                            'hide_empty'    => false,
+                            'payment_terms' => $payment_terms,
+                        );
 
-                    $params = apply_filters( 'awpcp_post_listing_categories_selector_args', $params );
+                        $params = apply_filters( 'awpcp_post_listing_categories_selector_args', $params );
 
-                    echo awpcp_categories_selector()->render( $params ); // XSS Ok.
-                    echo awpcp_form_error( 'category', $form_errors ); // XSS Ok.
-                ?>
-            </div>
+                        echo awpcp_categories_selector()->render( $params ); // XSS Ok.
+                        echo awpcp_form_error( 'category', $form_errors ); // XSS Ok.
+                    ?>
+                </div>
 
-            <?php if ( $show_user_field ) : ?>
-            <div class="awpcp-form-spacer">
-                <?php
-                    echo awpcp()->container['UserSelector']->render( array(
-                        'required' => true,
-                        'selected' => awpcp_array_data( 'user', '', $form ),
-                        'label'    => _x( 'Who is the owner of this classified?', 'order submit listing section', 'another-wordpress-classifieds-plugin' ),
-                        'default'  => __( 'Please select a user', 'another-wordpress-classifieds-plugin' ),
-                        'id'       => 'ad-user-id',
-                        'name'     => 'user',
-                        'class'    => array( 'awpcp-user-selector' ),
-                    ) ); // XSS Ok.
-                ?>
-                <?php echo awpcp_form_error( 'user', $form_errors ); // XSS Ok. ?>
-            </div>
-            <?php endif; ?>
-
-            <div class="awpcp-form-spacer">
-                <label><?php echo esc_html_x( 'Please select the duration and features that will be available for this classified', 'order submit listing section', 'another-wordpress-classifieds-plugin' ); ?><span class="required">*</span></label>
-
-                <?php if ( $show_account_balance ) : ?>
-                <?php echo $account_balance; // XSS Ok. ?>
+                <?php if ( $show_user_field ) : ?>
+                <div class="awpcp-form-spacer">
+                    <?php
+                        echo awpcp()->container['UserSelector']->render( array(
+                            'required' => true,
+                            'selected' => awpcp_array_data( 'user', '', $form ),
+                            'label'    => _x( 'Who is the owner of this classified?', 'order submit listing section', 'another-wordpress-classifieds-plugin' ),
+                            'default'  => __( 'Please select a user', 'another-wordpress-classifieds-plugin' ),
+                            'id'       => 'ad-user-id',
+                            'name'     => 'user',
+                            'class'    => array( 'awpcp-user-selector' ),
+                        ) ); // XSS Ok.
+                    ?>
+                    <?php echo awpcp_form_error( 'user', $form_errors ); // XSS Ok. ?>
+                </div>
                 <?php endif; ?>
 
-                <?php echo $payment_terms_list; // XSS Ok. ?>
-                <?php echo $credit_plans_table; // XSS Ok. ?>
-            </div>
+                <div class="awpcp-form-spacer">
+                    <label><?php echo esc_html_x( 'Please select the duration and features that will be available for this classified', 'order submit listing section', 'another-wordpress-classifieds-plugin' ); ?><span class="required">*</span></label>
 
-            <p class="form-submit">
-                <input class="awpcp-order-submit-listing-section--continue-button button button-primary" type="submit" value="<?php echo esc_attr_x( 'Continue', 'order submit listing section', 'another-wordpress-clasifieds-plugin' ); ?>"/>
-            </p>
+                    <?php if ( $show_account_balance ) : ?>
+                    <?php echo $account_balance; // XSS Ok. ?>
+                    <?php endif; ?>
+
+                    <?php echo $payment_terms_list; // XSS Ok. ?>
+                    <?php echo $credit_plans_table; // XSS Ok. ?>
+                </div>
+
+                <p class="form-submit">
+                    <input class="awpcp-order-submit-listing-section--continue-button button button-primary" type="submit" value="<?php echo esc_attr_x( 'Continue', 'order submit listing section', 'another-wordpress-clasifieds-plugin' ); ?>"/>
+                </p>
+            </form>
         </div>
 
         <div class="awpcp-order-submit-listing-section__read_mode">

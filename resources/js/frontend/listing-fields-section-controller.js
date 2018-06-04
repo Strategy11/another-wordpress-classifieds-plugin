@@ -28,14 +28,10 @@ AWPCP.define( 'awpcp/frontend/listing-fields-section-controller', [
             }
 
             if ( self.shouldUpdateTemplate() ) {
-                console.log( 'should update template' );
-
                 self.updateSelectedValues();
 
                 return self.getUpdatedTemplate();
             }
-
-            console.log( 'business as usual' );
 
             self.updateSelectedValues();
             self.prepareTemplate();
@@ -173,6 +169,9 @@ AWPCP.define( 'awpcp/frontend/listing-fields-section-controller', [
 
             self.selectedCategories  = self.store.getSelectedCategoriesIds();
             self.selectedPaymentTerm = self.store.getSelectedPaymentTermId();
+        },
+
+        reload: function() {
         }
     } );
 

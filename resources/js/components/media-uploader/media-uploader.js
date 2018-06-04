@@ -41,7 +41,7 @@ function( $, settings) {
 
             self.uploader.bind( 'FilesAdded', self.onFilesAdded, self );
             self.uploader.bind( 'UploadProgress', self.onUploadProgress, self );
-            self.uploader.bind( 'FileUploaded', self.onFileUplaoded, self );
+            self.uploader.bind( 'FileUploaded', self.onFileUploaded, self );
         },
 
         filterFileBySize: function( enabled, file, done ) {
@@ -121,7 +121,7 @@ function( $, settings) {
             $.publish( '/file/progress', [ uploader, file ] );
         },
 
-        onFileUplaoded: function( uploader, file, data ) {
+        onFileUploaded: function( uploader, file, data ) {
             var response = $.parseJSON( data.response );
 
             if ( response.status === 'ok' && response.file ) {

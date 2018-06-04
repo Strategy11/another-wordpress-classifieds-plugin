@@ -904,6 +904,14 @@ class AWPCP {
         }
 
         // load resources required to handle Ajax requests only.
+        $handler = $this->container['CreateEmptyListingAjaxHandler'];
+        add_action( 'wp_ajax_awpcp_create_empty_listing', [ $handler, 'ajax' ] );
+        add_action( 'wp_ajax_nopriv_awpcp_create_empty_listing', [ $handler, 'ajax' ] );
+
+        $handler = $this->container['UpdateSubmitListingSectionsAjaxHandler'];
+        add_action( 'wp_ajax_awpcp_update_submit_listing_sections', [ $handler, 'ajax' ] );
+        add_action( 'wp_ajax_nopriv_awpcp_update_submit_listing_sections', [ $handler, 'ajax' ] );
+
         $handler = awpcp_users_autocomplete_ajax_handler();
         add_action( 'wp_ajax_awpcp-autocomplete-users', array( $handler, 'ajax' ) );
         add_action( 'wp_ajax_nopriv_awpcp-autocomplete-users', array( $handler, 'ajax' ) );
@@ -1688,7 +1696,8 @@ class AWPCP {
         $configurations[] = new AWPCP_ContainerConfiguration();
         $configurations[] = new AWPCP_WordPressContainerConfiguration();
         $configurations[] = new AWPCP_SettingsContainerConfiguration();
-        $configurations[] = new AWPCP_ListingPostTypeContainerConfiguration();
+        $configurations[] = new AWPCP_ListingsContainerConfiguration();
+        $configurations[] = new AWPCP_FrontendContainerConfiguration();
         $configurations[] = new AWPCP_AdminContainerConfiguration();
 
         return apply_filters( 'awpcp_container_configurations', $configurations );

@@ -116,3 +116,11 @@ from Paul Irish. See https://github.com/drodenbaugh/awpcp/issues/979. -->
         </ul>
     </div>
 </script>
+
+<script type="text/javascript">
+/* <![CDATA[ */
+    window.awpcp = window.awpcp || {};
+    window.awpcp.options = window.awpcp.options || [];
+    window.awpcp.options.push( ['media-manager-data', <?php echo wp_json_encode( $options ); ?> ] );
+/* ]]> */
+</script>

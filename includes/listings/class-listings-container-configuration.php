@@ -9,7 +9,7 @@
  *
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
-class AWPCP_ListingPostTypeContainerConfiguration implements AWPCP_ContainerConfigurationInterface {
+class AWPCP_ListingsContainerConfiguration implements AWPCP_ContainerConfigurationInterface {
 
     /**
      * @param object $container     An instance of Container.

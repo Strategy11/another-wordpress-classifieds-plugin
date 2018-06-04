@@ -5,10 +5,9 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
     'awpcp/user-selector',
     'awpcp/payment-terms-list',
     'awpcp/credit-plans-list',
-    'awpcp/jquery-userfield'
+    'awpcp/jquery-userfield',
+    'awpcp/jquery-validate-methods',
 ], function( $, CategoriesSelector, UserSelector, PaymentTermsList, CreditPlansList ) {
-    var button = 'on';
-
     var OrderSectionController = function( section, store ) {
         var self = this;
 
@@ -76,9 +75,13 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
                 }
             } );
 
-            $container.on( 'click', '.awpcp-order-submit-listing-section--continue-button', function( event ) {
-                event.preventDefault();
-                self.onContinueButtonClicked();
+            self.$editModeContainer.find( 'form' ).validate( {
+                messages: $.AWPCP.l10n( 'page-place-ad-order' ),
+                submitHandler: function( form, event ) {
+                    event.preventDefault();
+
+                    self.onContinueButtonClicked();
+                }
             } );
 
             $container.on( 'click', '.awpcp-order-submit-listing-section--change-selection-button', function( event ) {
@@ -147,6 +150,10 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
         onContinueButtonClicked: function() {
             var self = this;
 
+            if ( ! self.store.getListingId() ) {
+                self.store.createEmptyListing();
+            }
+
             self.store.setSectionStateToRead( self.id );
         },
 
@@ -154,6 +161,9 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
             var self = this;
 
             self.store.setSectionStateToEdit( self.id );
+        },
+
+        reload: function() {
         }
     } );
 

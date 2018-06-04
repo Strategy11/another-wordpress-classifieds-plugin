@@ -54,6 +54,13 @@ class AWPCP_ListingFieldsSubmitListingSection {
     /**
      * @since 4.0.0
      */
+    public function get_state( $listing ) {
+        return is_null( $listing ) ? 'disabled' : 'edit';
+    }
+
+    /**
+     * @since 4.0.0
+     */
     public function enqueue_scripts() {
     }
 

@@ -188,6 +188,13 @@ class AWPCP_Request {
         return wp_get_current_user();
     }
 
+    /**
+     * @since 4.0.0
+     */
+    public function get_current_user_id() {
+        return get_current_user_id();
+    }
+
     public function is_bot() {
         if ( ! isset( $_SERVER['HTTP_USER_AGENT'] ) ) {
             return false;

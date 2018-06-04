@@ -25,7 +25,7 @@ class AWPCP_MediaManagerComponent {
 
         $this->javascript->set( 'media-manager-data', $options );
 
-        return $this->render_component();
+        return $this->render_component( $options );
     }
 
     private function prepare_files( $files ) {
@@ -50,7 +50,7 @@ class AWPCP_MediaManagerComponent {
         return $files_info;
     }
 
-    private function render_component() {
+    private function render_component( $options ) {
         $thumbnails_width = $this->settings->get_option( 'imgthumbwidth' );
 
         ob_start();

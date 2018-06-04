@@ -53,7 +53,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         parent::__construct( $page, $title, $template_renderer );
 
         $this->show_menu_items = false;
-        
+
         $this->attachments = $attachments;
         $this->listing_upload_limits = $listing_upload_limits;
         $this->authorization = $authorization;
@@ -247,6 +247,9 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         return $required;
     }
 
+    /**
+     * TODO: Move into create_listing or create_empty_listing methods on ListingsLogic.
+     */
     protected function validate_order($data, &$errors=array()) {
         $this->validate_selected_categories( $data, 'category', $errors );
 
@@ -271,6 +274,9 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         return $errors;
     }
 
+    /**
+     * TODO: Move into create_listing or create_empty_listing methods on ListingsLogic.
+     */
     private function validate_selected_categories( $data, $field_name, &$errors = array() ) {
         $allow_categories_in_parent  = ! get_awpcp_option( 'noadsinparentcat' );
 

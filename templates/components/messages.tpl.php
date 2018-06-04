@@ -3,3 +3,10 @@
         <li data-bind="css: [ 'awpcp-message', message.type ].join( ' ' ), html: message.content"></li>
     </ul>
 </div>
+<script type="text/javascript">
+/* <![CDATA[ */
+    window.awpcp = window.awpcp || {};
+    window.awpcp.options = window.awpcp.options || [];
+    window.awpcp.options.push( ['messages-data-for-<?php echo esc_attr( $component_id ); ?>', <?php echo wp_json_encode( [ 'channels' => $channels ] ); ?> ] );
+/* ]]> */
+</script>

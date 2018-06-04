@@ -13,3 +13,13 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+/* <![CDATA[ */
+    window.awpcp = window.awpcp || {};
+    window.awpcp.localization = window.awpcp.localization || [];
+    window.awpcp.localization.push( ['media-uploader-strings', <?php echo wp_json_encode( $configuration['l10n'] ); ?> ] );
+    window.awpcp.options = window.awpcp.options || [];
+    window.awpcp.options.push( ['media-uploader-data', <?php echo wp_json_encode( $configuration ); ?> ] );
+/* ]]> */
+</script>

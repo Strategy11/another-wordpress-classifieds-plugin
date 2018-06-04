@@ -12,6 +12,7 @@ module.exports = function(grunt) {
         '<%= path.awpcp %>/js/frontend/submit-listing-page.src.js': [
           '<%= path.awpcp %>/js/frontend/listing-fields-section-controller.js',
           '<%= path.awpcp %>/js/frontend/order-section-controller.js',
+          '<%= path.awpcp %>/js/frontend/upload-media-section-controller.js',
           '<%= path.awpcp %>/js/frontend/submit-listing-data-store.js',
           '<%= path.awpcp %>/js/frontend/submit-listing-page.js',
         ],

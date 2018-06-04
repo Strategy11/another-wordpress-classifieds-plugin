@@ -63,10 +63,34 @@
         },
 
         get: function(name, fallback) {
+            var self = this;
+
+            // Used to allow submit listing sections to register options when a new
+            // section's template is loaded.
+            if ( typeof awpcp !== 'undefined' && awpcp.options && awpcp.options.length ) {
+                $.each( awpcp.options, function( index, data ) {
+                    self.set( data[0], data[1] );
+                } );
+
+                delete awpcp.options;
+            }
+
             return this.options[name] ? this.options[name] : (fallback ? fallback : null);
         },
 
         l10n: function(context, message) {
+            var self = this;
+
+            // Used to allow submit listing sections to register localization strings
+            // when a new section's template is loaded.
+            if ( typeof awpcp !== 'undefined' && awpcp.localization && awpcp.localization.length ) {
+                $.each( awpcp.localization, function( index, data ) {
+                    self.localization[ data[0] ] = data[1];
+                } );
+
+                delete awpcp.localization;
+            }
+
             if (this.localization.hasOwnProperty(context)) {
                 if (!message) {
                     return this.localization[context];

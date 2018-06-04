@@ -140,11 +140,6 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
             return new AWPCP_HTML_Renderer();
         } );
 
-        // Frontend.
-        $container['SubmitListingPage'] = $container->service( function( $container ) {
-            return new AWPCP_SubmitListingPage();
-        } );
-
         // Media.
         $container['FileTypes'] = $container->service( function( $container ) {
             return new AWPCP_FileTypes( $container['Settings'] );
