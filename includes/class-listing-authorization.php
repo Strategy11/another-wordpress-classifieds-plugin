@@ -45,11 +45,15 @@ class AWPCP_ListingAuthorization {
      * @param object $listing   An instance of WP_Post.
      */
     public function is_current_user_allowed_to_edit_listing( $listing ) {
+        if ( ! is_user_logged_in() ) {
+            return false;
+        }
+
         if ( $this->roles->current_user_is_moderator() ) {
             return true;
         }
 
-        if ( is_user_logged_in() && $listing->post_author === $this->request->get_current_user()->ID ) {
+        if ( absint( $listing->post_author ) === $this->request->get_current_user()->ID ) {
             return true;
         }
 
