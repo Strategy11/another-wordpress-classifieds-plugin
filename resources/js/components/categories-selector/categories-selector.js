@@ -136,6 +136,8 @@ function( $, CategoriesSelectorHelper ) {
         },
 
         render: function() {
+            var self = this;
+
             var options = $.extend( {}, this.options.select2 );
 
             var $select = this.$select;
@@ -146,9 +148,17 @@ function( $, CategoriesSelectorHelper ) {
             }
 
             if ( this.options.helper ) {
-                options.helper = this.options.helper;
-                options.data = this.options.helper.getAllCategories();
+                options.data = $.map( this.options.helper.getAllCategories(), function( category ) {
+                    if ( $.inArray( category.id, self.options.selectedCategoriesIds ) >= 0 ) {
+                        category.selected = true;
+                    }
+
+                    return category;
+                } );
+
                 options.dataAdapter = $.fn.select2.amd.require( 'awpcp/select2/data/array' );
+                options.helper = this.options.helper;
+
                 $select.empty();
             }
 

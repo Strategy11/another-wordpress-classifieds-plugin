@@ -29,13 +29,11 @@ class AWPCP_OrderSubmitListingSection {
     private $template_renderer;
 
     /**
-     * @param object $payments              An instance of Payments API.
-     * @param object $roles                 An instance of Roles And Capabilities.
-     * @param object $template_renderer     An instance of Template Renderer.
      * @since 4.0.0
      */
-    public function __construct( $payments, $roles, $template_renderer ) {
+    public function __construct( $payments, $listing_renderer, $roles, $template_renderer ) {
         $this->payments          = $payments;
+        $this->listing_renderer  = $listing_renderer;
         $this->roles             = $roles;
         $this->template_renderer = $template_renderer;
     }
@@ -70,27 +68,31 @@ class AWPCP_OrderSubmitListingSection {
     }
 
     /**
+     * TODO: Lock this section for regular users that just completed payment.
+     *
      * @since 4.0.0
      */
-    public function render() {
+    public function render( $listing ) {
         $messages = [];
 
         if ( awpcp_current_user_is_admin() ) {
             $messages[] = __( 'You are logged in as an administrator. Any payment steps will be skipped.', 'another-wordpress-classifieds-plugin' );
         }
 
+        $stored_data = $this->get_stored_data( $listing );
+
         $params = array(
             'transaction'          => null,
 
             'payment_terms'        => $this->payments->get_payment_terms(),
-            'form'                 => $this->get_stored_data(),
+            'form'                 => $stored_data,
 
             'form_errors'          => [],
 
             'show_user_field'      => $this->roles->current_user_is_moderator(),
             'show_account_balance' => ! $this->roles->current_user_is_administrator(),
             'account_balance'      => '',
-            'payment_terms_list'   => $this->render_payment_terms_list(),
+            'payment_terms_list'   => $this->render_payment_terms_list( $stored_data ),
             'credit_plans_table'   => $this->payments->render_credit_plans_table( null ),
         );
 
@@ -104,14 +106,29 @@ class AWPCP_OrderSubmitListingSection {
     }
 
     /**
-     * TODO: Actually get stored data.
-     *
      * @since 4.0.0
      */
-    private function get_stored_data() {
+    private function get_stored_data( $listing ) {
+        if ( is_null( $listing ) ) {
+            return [
+                'listing_id'                => null,
+                'category'                  => null,
+                'user'                      => null,
+                'payment_term_id'           => null,
+                'payment_term_type'         => null,
+                'payment_term_payment_type' => null,
+            ];
+        }
+
+        $payment_term = $this->listing_renderer->get_payment_term( $listing );
+
         return [
-            'category' => null,
-            'user'     => null,
+            'listing_id'                => $listing->ID,
+            'category'                  => $this->listing_renderer->get_categories_ids( $listing ),
+            'user'                      => $listing->post_author,
+            'payment_term_id'           => $payment_term->id,
+            'payment_term_type'         => $payment_term->type,
+            'payment_term_payment_type' => 'money', // TODO: Get actual payment type from listing metadata?
         ];
     }
 
@@ -120,12 +137,15 @@ class AWPCP_OrderSubmitListingSection {
      *
      * @since 4.0.0
      */
-    private function render_payment_terms_list() {
+    private function render_payment_terms_list( $data ) {
         $payment_terms_list = awpcp_payment_terms_list();
 
         return $payment_terms_list->render( [
-            'payment_term' => null,
-            'payment_type' => null,
+            'payment_term' => (object) [
+                'id'   => $data['payment_term_id'],
+                'type' => $data['payment_term_type'],
+            ],
+            'payment_type' => $data['payment_term_payment_type'],
         ] );
     }
 }

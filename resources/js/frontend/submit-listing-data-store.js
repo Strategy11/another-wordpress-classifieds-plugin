@@ -3,7 +3,8 @@ AWPCP.define( 'awpcp/frontend/submit-listing-data-store', [
     'jquery',
 ], function( $ ) {
     var Store = function ( data ) {
-        this.data = data || {};
+        this.data         = data || {};
+        this.refreshCalls = 0;
     };
 
     $.extend( Store.prototype, {
@@ -49,11 +50,17 @@ AWPCP.define( 'awpcp/frontend/submit-listing-data-store', [
         refresh: function() {
             var self = this;
 
-            self.data.sectionsToUpdate = [];
+            self.refreshCalls = self.refreshCalls + 1;
+
+            if ( typeof self.data.sectionsToUpdate === 'undefined' ) {
+                self.data.sectionsToUpdate = [];
+            }
 
             self.listener.render();
 
-            if ( self.data.sectionsToUpdate.length ) {
+            self.refreshCalls = self.refreshCalls - 1;
+
+            if ( self.refreshCalls <= 0 && self.data.sectionsToUpdate.length ) {
                 self.updateSections();
             }
         },
@@ -104,6 +111,16 @@ AWPCP.define( 'awpcp/frontend/submit-listing-data-store', [
             self.data.user = user;
 
             self.refresh();
+        },
+
+        getSelectedUserId: function() {
+            var self = this;
+
+            if ( self.data.user ) {
+                return self.data.user.id;
+            }
+
+            return '';
         },
 
         getSelectedUserName: function() {
@@ -172,10 +189,34 @@ AWPCP.define( 'awpcp/frontend/submit-listing-data-store', [
             return '';
         },
 
+        getTransactionId: function() {
+            var self = this;
+
+            if ( self.data.transaction ) {
+                return self.data.transaction;
+            }
+
+            return null;
+        },
+
         updateListingFields: function( fields ) {
             var self = this;
 
             self.data.fields = $.extend( self.data.fields || {}, fields );
+
+            self.refresh();
+        },
+
+        setListingId: function( listingId ) {
+            var self = this;
+
+            if ( ! listingId ) {
+                return;
+            }
+
+            self.data.listing = {
+                ID: listingId
+            };
 
             self.refresh();
         },
@@ -198,18 +239,37 @@ AWPCP.define( 'awpcp/frontend/submit-listing-data-store', [
 
         createEmptyListing: function() {
             var self = this,
-                data, request;
+                paymentTerm, data, request;
+
+            paymentTerm = self.getSelectedPaymentTerm();
 
             data = {
-                action:       'awpcp_create_empty_listing',
-                nonce:        $.AWPCP.get( 'create_empty_listing_nonce' ),
-                categories:   self.getSelectedCategoriesIds(),
-                payment_term: self.getSelectedPaymentTermId(),
+                action:                    'awpcp_create_empty_listing',
+                nonce:                     $.AWPCP.get( 'create_empty_listing_nonce' ),
+                categories:                self.getSelectedCategoriesIds(),
+                payment_term_id:           paymentTerm.id,
+                payment_term_type:         paymentTerm.type,
+                payment_term_payment_type: paymentTerm.mode,
+                user_id:                   self.getSelectedUserId(),
+                current_url:               document.location.href,
             };
 
-            request = $.getJSON( $.AWPCP.get( 'ajaxurl' ), data ).done( function( data ) {
+            options = {
+                url: $.AWPCP.get( 'ajaxurl' ),
+                data: data,
+                dataType: 'json',
+                method: 'POST',
+            };
+
+            request = $.ajax( options ).done( function( data ) {
+                if ( 'ok' === data.status && data.redirect_url ) {
+                    document.location.href = data.redirect_url;
+                    return;
+                }
+
                 if ( 'ok' === data.status ) {
                     self.data.listing = data.listing;
+                    self.data.transaction = data.transaction;
                     self.refresh();
                 }
             } );
@@ -221,16 +281,68 @@ AWPCP.define( 'awpcp/frontend/submit-listing-data-store', [
 
             data = {
                 action: 'awpcp_update_submit_listing_sections',
+                sections: self.data.sectionsToUpdate,
                 nonce: $.AWPCP.get( 'update_submit_listing_sections_nonce' ),
                 listing: self.getListingId(),
             };
 
-            request = $.getJSON( $.AWPCP.get( 'ajaxurl' ), data ).done( function( data ) {
+            options = {
+                url: $.AWPCP.get( 'ajaxurl' ),
+                data: data,
+                dataType: 'json',
+                method: 'POST',
+            };
+
+            request = $.ajax( options ).done( function( data ) {
                 if ( 'ok' === data.status ) {
                     self.listener.reload( data.sections );
                 }
+
+                self.data.sectionsToUpdate = [];
             } );
-        }
+        },
+
+        saveListingInformation: function() {
+            var self = this,
+                paymentTerm, data, request;
+
+            paymentTerm = self.getSelectedPaymentTerm();
+
+            // TODO: How are other sections going to introduce information here?
+            // TODO: Remove multiple region selector information from listing fields.
+            //       We don't need to send that to the server.
+            data = $.extend( {},  self.getListingFields(), {
+                action: 'awpcp_save_listing_information',
+                nonce: $.AWPCP.get( 'save_listing_information_nonce' ),
+                transaction_id: self.getTransactionId(),
+                ad_id: self.getListingId(),
+                user_id: self.getSelectedUserId(),
+                categories: self.getSelectedCategoriesIds(),
+                payment_term_id: self.getSelectedPaymentTermId(),
+                payment_term_type: paymentTerm.type,
+                payment_type: paymentTerm.mode,
+                current_url:       document.location.href,
+            } );
+
+            // Remove Multiple Region Selector data.
+            delete data.regions;
+
+            options = {
+                url: $.AWPCP.get( 'ajaxurl' ),
+                data: data,
+                dataType: 'json',
+                method: 'POST',
+            };
+
+            request = $.ajax( options ).done( function( data ) {
+                console.log( 'save listing information', data );
+
+                if ( 'ok' === data.status && data.redirect_url ) {
+                    document.location.href = data.redirect_url;
+                    return;
+                }
+            } );
+        },
     } );
 
     return Store;

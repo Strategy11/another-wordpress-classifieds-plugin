@@ -8,12 +8,14 @@
     <div class="awpcp-submit-listing-section-content">
         <div class="awpcp-order-submit-listing-section__edit_mode">
             <form>
+                <input type="hidden" name="listing_id" value="<?php echo esc_attr( $form['listing_id'] ); ?>"/>
+
                 <div class="awpcp-form-spacer">
                     <?php
                         $params = array(
                             'name'          => 'category',
                             'label'         => _x( 'Please select a category for your classified', 'order submit listing section', 'another-wordpress-classifieds-plugin' ),
-                            'selected'      => awpcp_array_data( 'category', '', $form ),
+                            'selected'      => $form['category'],
                             'multiple'      => false,
                             'auto'          => false,
                             'hide_empty'    => false,

@@ -444,6 +444,9 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         return $this->render($template, $params);
     }
 
+    /**
+     * TODO: Move to Create Empty and Save Information ajax handlers?
+     */
     private function get_posted_categories( $categories, $transaction = null ) {
         if ( is_null( $categories ) && is_object( $transaction ) ) {
             $categories = $transaction->get( 'category', array( array() ) );

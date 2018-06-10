@@ -191,3 +191,24 @@ function awpcp_file_types() {
 function awpcp_payments_api() {
     return awpcp()->container['Payments'];
 }
+
+/**
+ * @since 3.0.2
+ */
+function awpcp_listings_api() {
+    if ( ! isset( $GLOBALS['awpcp-listings-api'] ) ) {
+        $GLOBALS['awpcp-listings-api'] = new AWPCP_ListingsAPI(
+            awpcp_attachments_logic(),
+            awpcp_attachments_collection(),
+            awpcp_listing_renderer(),
+            awpcp_listings_collection(),
+            awpcp_roles_and_capabilities(),
+            awpcp_request(),
+            awpcp()->settings,
+            awpcp_wordpress(),
+            $GLOBALS['wpdb']
+        );
+    }
+
+    return $GLOBALS['awpcp-listings-api'];
+}

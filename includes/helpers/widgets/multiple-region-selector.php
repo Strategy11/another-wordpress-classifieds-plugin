@@ -178,14 +178,16 @@ class AWPCP_MultipleRegionSelector {
 
         $options = apply_filters( 'awpcp-multiple-region-selector-configuration', $this->options, $context, $fields );
 
-        $uuid = uniqid();
-        awpcp()->js->set( "multiple-region-selector-$uuid", array(
+        $uuid          = uniqid();
+        $configuration = [
             'options' => array_merge( $options, array(
                 'fields' => array_keys( $fields ),
                 'context' => $context,
             ) ),
             'regions' => $regions,
-        ) );
+        ];
+
+        awpcp()->js->set( "multiple-region-selector-$uuid", $configuration );
 
         ob_start();
         include( $this->template );

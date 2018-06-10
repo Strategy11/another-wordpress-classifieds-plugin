@@ -67,14 +67,17 @@ class AWPCP_ListingFieldsSubmitListingSection {
     /**
      * @since 4.0.0
      */
-    public function render() {
-        $post    = (object) [
-            'ID'           => 0,
-            'post_title'   => '',
-            'post_content' => '',
-            'post_author'  => 0,
-        ];
-        $data    = $this->form_fields_data->get_stored_data( $post );
+    public function render( $listing ) {
+        if ( is_null( $listing ) ) {
+            $listing = (object) [
+                'ID'           => 0,
+                'post_title'   => '',
+                'post_content' => '',
+                'post_author'  => 0,
+            ];
+        }
+
+        $data    = $this->form_fields_data->get_stored_data( $listing );
         $errors  = array();
         $context = array(
             'category' => null,
@@ -82,7 +85,7 @@ class AWPCP_ListingFieldsSubmitListingSection {
         );
 
         $params = array(
-            'form_fields' => $this->form_fields->render_fields( $data, $errors, $post, $context ),
+            'form_fields' => $this->form_fields->render_fields( $data, $errors, $listing, $context ),
         );
 
         return $this->template_renderer->render_template( $this->template, $params );

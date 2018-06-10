@@ -62,11 +62,6 @@ function awpcp_calculate_end_date($increment, $period, $start_date) {
 }
 
 /**
- * ...
- *
- * @param $id	Ad ID.
- * @param $transaction	Payment Transaction associated to the Ad being posted
- *
  * It must be possible to have more than one transaction associated to a single
  * Ad, for example, when an Ad has been posted AND renewed one or more times.
  *
@@ -74,6 +69,9 @@ function awpcp_calculate_end_date($increment, $period, $start_date) {
  * because the payment_status is stored in the Ad object. We need, however, to update
  * the payment_status when the Ad is placed AND renewed. ~2012-09-19
  *
+ * @param $id	Ad ID.
+ * @param $transaction	Payment Transaction associated to the Ad being posted
+ * @deprecated 4.0.0    This is function is no longer used.
  * @SuppressWarnings(PHPMD)
  */
 function awpcp_calculate_ad_disabled_state($id=null, $transaction=null, $payment_status=null) {
@@ -99,6 +97,7 @@ function awpcp_calculate_ad_disabled_state($id=null, $transaction=null, $payment
 }
 
 /**
+ * @deprecated 4.0.0    This function is no longer used.
  * @SuppressWarnings(PHPMD)
  */
 function awpcp_should_disable_new_listing_with_payment_status( $listing, $payment_status ) {
@@ -119,6 +118,9 @@ function awpcp_should_disable_new_listing_with_payment_status( $listing, $paymen
     return $should_disable;
 }
 
+/**
+ * @deprecated 4.0.0    This function is no longer used.
+ */
 function awpcp_should_enable_new_listing_with_payment_status( $listing, $payment_status ) {
     return awpcp_should_disable_new_listing_with_payment_status( $listing, $payment_status ) ? false : true;
 }

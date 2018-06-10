@@ -5,7 +5,15 @@ AWPCP.run( 'awpcp/frontend/submit-listing-page', [
     'awpcp/frontend/order-section-controller',
     'awpcp/frontend/listing-fields-section-controller',
     'awpcp/frontend/upload-media-section-controller',
-], function( $, Store, OrderSectionController, ListingFieldsSectionController, UploadMediaSectionController ) {
+    'awpcp/frontend/save-section-controller',
+], function(
+    $,
+    Store,
+    OrderSectionController,
+    ListingFieldsSectionController,
+    UploadMediaSectionController,
+    SaveSectionController
+) {
     var Page = function( store, sections, $container ) {
         var self = this;
 
@@ -26,10 +34,7 @@ AWPCP.run( 'awpcp/frontend/submit-listing-page', [
         reload: function( sections ) {
             var self = this;
 
-            console.log( 'reloading...', sections );
-
             $.each( sections, function( index, data ) {
-                console.log( self.sections[ data.id ], index, data, self.sections );
                 if ( typeof self.sections[ data.id ] === 'undefined' ) {
                     return;
                 }
@@ -48,9 +53,12 @@ AWPCP.run( 'awpcp/frontend/submit-listing-page', [
             'order':          new OrderSectionController( AWPCPSubmitListingPageSections[0], store ),
             'listing-fields': new ListingFieldsSectionController( AWPCPSubmitListingPageSections[1], store ),
             'upload-media':   new UploadMediaSectionController( AWPCPSubmitListingPageSections[2], store ),
+            'save':           new SaveSectionController( AWPCPSubmitListingPageSections[3], store ),
         };
 
+        store.setSectionStateWithoutRefreshing( AWPCPSubmitListingPageSections[1].id, AWPCPSubmitListingPageSections[1].state );
         store.setSectionStateWithoutRefreshing( AWPCPSubmitListingPageSections[2].id, AWPCPSubmitListingPageSections[2].state );
+        store.setSectionStateWithoutRefreshing( AWPCPSubmitListingPageSections[3].id, AWPCPSubmitListingPageSections[3].state );
 
         var page = new Page( store, sections, $( '.awpcp-submit-listing-page-form' ) );
 

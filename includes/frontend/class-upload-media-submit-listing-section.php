@@ -107,6 +107,7 @@ class AWPCP_UploadMediaSubmitListingSection {
 
         $images_allowed  = 0;
         $images_uploaded = 0;
+        $messages        = [];
 
         if ( isset( $upload_limits['images']['allowed_file_count'] ) ) {
             $images_allowed = $upload_limits['images']['allowed_file_count'];
@@ -142,7 +143,7 @@ class AWPCP_UploadMediaSubmitListingSection {
             ] ),
             'images_allowed'               => $images_allowed,
             'images_uploaded'              => $images_uploaded,
-            'messages'                     => $this->messages,
+            'messages'                     => $messages,
         ];
 
         return $this->template_renderer->render_template( $this->template, $params );

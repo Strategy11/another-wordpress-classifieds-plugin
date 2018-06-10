@@ -142,13 +142,18 @@ class AWPCP_Payment_Transaction {
 		$transaction = AWPCP_Payment_Transaction::find_by_id($id);
 
 		if (is_null($transaction)) {
-			$unique = awpcp_array_data('UNIQUE_ID', rand(), $_SERVER);
-			$id = md5($unique . microtime() . wp_salt());
-			$transaction = new AWPCP_Payment_Transaction(array('id' => $id));
+            return AWPCP_Payment_Transaction::create();
 		}
 
 		return $transaction;
 	}
+
+    public static function create() {
+        $unique = awpcp_array_data( 'UNIQUE_ID', rand(), $_SERVER );
+        $id     = md5( $unique . microtime() . wp_salt() );
+
+        return new AWPCP_Payment_Transaction( array( 'id' => $id ) );
+    }
 
 	/**
 	 * @since 2.1.4

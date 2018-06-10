@@ -3,8 +3,8 @@
  * @package AWPCP\Templates\Frontend
  */
 
-?><div class="awpcp-order-submit-listing-section awpcp-submit-listing-section">
-    <h2 class="awpcp-submit-listing-section-title"><?php echo esc_html_x( 'Upload Files', 'upload media submit listing section', 'another-wordpress-classifieds-plugin' ); ?></h2>
+?><div class="awpcp-upload-media-submit-listing-section awpcp-submit-listing-section">
+    <h2 class="awpcp-submit-listing-section-title"><?php echo esc_html_x( 'Upload files', 'upload media submit listing section', 'another-wordpress-classifieds-plugin' ); ?></h2>
 
     <div class="awpcp-submit-listing-section-content">
         <div class="awpcp-upload-media-listing-section__loading_mode">

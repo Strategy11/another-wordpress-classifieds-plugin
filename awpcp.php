@@ -912,6 +912,10 @@ class AWPCP {
         add_action( 'wp_ajax_awpcp_update_submit_listing_sections', [ $handler, 'ajax' ] );
         add_action( 'wp_ajax_nopriv_awpcp_update_submit_listing_sections', [ $handler, 'ajax' ] );
 
+        $handler = $this->container['SaveListingInformationAjaxHandler'];
+        add_action( 'wp_ajax_awpcp_save_listing_information', [ $handler, 'ajax' ] );
+        add_action( 'wp_ajax_nopriv_awpcp_save_listing_information', [ $handler, 'ajax' ] );
+
         $handler = awpcp_users_autocomplete_ajax_handler();
         add_action( 'wp_ajax_awpcp-autocomplete-users', array( $handler, 'ajax' ) );
         add_action( 'wp_ajax_nopriv_awpcp-autocomplete-users', array( $handler, 'ajax' ) );
@@ -1465,7 +1469,7 @@ class AWPCP {
 
         wp_register_script(
             'awpcp-submit-listing-page',
-            "{$js}/frontend/submit-listing-page.src.js",
+            "{$js}/frontend/submit-listing-page.min.js",
             // TODO: Use a filter to allow premium modules to enqueue their
             //       scripts as dependencies.
             [

@@ -30,6 +30,7 @@ AWPCP.define( 'awpcp/frontend/upload-media-section-controller', [
                 return self.store.requestSectionUpdate( self.id );
             }
 
+            self.updateSelectedValues();
             self.prepareTemplate();
         },
 
@@ -63,7 +64,6 @@ AWPCP.define( 'awpcp/frontend/upload-media-section-controller', [
                 self.renderTemplate();
             }
 
-            self.updateSelectedValues();
             self.updateTemplate();
         },
 

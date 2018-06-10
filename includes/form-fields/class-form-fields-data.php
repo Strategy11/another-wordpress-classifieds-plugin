@@ -115,11 +115,12 @@ class AWPCP_FormFieldsData {
 
     /**
      * Return default values for standard fields.
+     * TODO: We should probably remove payment term fields from this class.
      */
     private function get_default_values() {
         return array(
-            'start_date'       => '',
-            'end_date'         => '',
+            'start_date'       => null,
+            'end_date'         => null,
 
             'ad_id'            => '',
             'adterm_id'        => '',
@@ -153,17 +154,15 @@ class AWPCP_FormFieldsData {
             ),
             'regions'     => $data['regions'],
             'metadata'    => array(
-                '_awpcp_start_date'      => $data['start_date'],
-                '_awpcp_end_date'        => $data['end_date'],
-                '_awpcp_contact_name'    => $data['ad_contact_name'],
-                '_awpcp_contact_phone'   => $data['ad_contact_phone'],
-                '_awpcp_contact_email'   => $data['ad_contact_email'],
-                '_awpcp_website_url'     => $data['websiteurl'],
-                '_awpcp_price'           => $data['ad_item_price'],
-                '_awpcp_payment_term'    => $data['ad_payment_term'],
-                '_awpcp_payment_term_id' => $data['adterm_id'],
+                '_awpcp_start_date'    => $data['start_date'],
+                '_awpcp_end_date'      => $data['end_date'],
+                '_awpcp_contact_name'  => $data['ad_contact_name'],
+                '_awpcp_contact_phone' => $data['ad_contact_phone'],
+                '_awpcp_contact_email' => $data['ad_contact_email'],
+                '_awpcp_website_url'   => $data['websiteurl'],
+                '_awpcp_price'         => $data['ad_item_price'],
                 // TODO: Make sure to move this to the Featured Listings module.
-                '_awpcp_is_featured'     => $data['is_featured_ad'],
+                '_awpcp_is_featured'   => $data['is_featured_ad'],
             ),
         );
     }

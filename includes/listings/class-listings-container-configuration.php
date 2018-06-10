@@ -87,6 +87,7 @@ class AWPCP_ListingsContainerConfiguration implements AWPCP_ContainerConfigurati
                 awpcp_attachments_collection(),
                 $container['ListingRenderer'],
                 $container['ListingsCollection'],
+                $container['RolesAndCapabilities'],
                 awpcp_request(),
                 $container['Settings'],
                 $container['WordPress'],
@@ -117,6 +118,14 @@ class AWPCP_ListingsContainerConfiguration implements AWPCP_ContainerConfigurati
                 $container['ListingRenderer'],
                 $container['TemplateRenderer'],
                 $container['Settings']
+            );
+        } );
+
+        $container['PaymentInformationValidator'] = $container->service( function( $container ) {
+            return new AWPCP_PaymentInformationValidator(
+                $container['listing_category_taxonomy'],
+                $container['Payments'],
+                $container['RolesAndCapabilities']
             );
         } );
 

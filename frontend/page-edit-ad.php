@@ -328,7 +328,7 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
             $orginal_start_date = $this->listing_renderer->get_plain_start_date( $ad );
             $start_date = awpcp_set_datetime_date( $orginal_start_date, $data['start_date'] );
             $listing_data['metadata']['_awpcp_start_date'] = $start_date;
-            
+
             $start_date_timestamp = awpcp_datetime( $listing_data['metadata']['_awpcp_start_date'] );
             $end_date = $payment_term->calculate_end_date( $start_date_timestamp );
             $listing_data['metadata']['_awpcp_end_date'] = $end_date;

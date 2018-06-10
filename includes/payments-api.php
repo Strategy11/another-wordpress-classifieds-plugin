@@ -315,6 +315,13 @@ class AWPCP_PaymentsAPI {
     }
 
     /**
+     * @since 4.0.0
+     */
+    public function create_transaction() {
+        return $this->get_transaction_with_method( 'create' );
+    }
+
+    /**
      * TODO: should throw an exception if the status can't be set
      */
     private function set_transaction_status($transaction, $status, &$errors) {

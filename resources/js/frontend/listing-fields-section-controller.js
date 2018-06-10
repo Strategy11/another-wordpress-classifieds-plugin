@@ -13,6 +13,7 @@ AWPCP.define( 'awpcp/frontend/listing-fields-section-controller', [
         self.template = section.template;
         self.store    = store;
 
+        self.listing             = null;
         self.selectedCategories  = [];
         self.selectedPaymentTerm = null;
 
@@ -30,7 +31,9 @@ AWPCP.define( 'awpcp/frontend/listing-fields-section-controller', [
             if ( self.shouldUpdateTemplate() ) {
                 self.updateSelectedValues();
 
-                return self.getUpdatedTemplate();
+                self.store.setSectionStateToLoading( self.id );
+
+                return self.store.requestSectionUpdate( self.id );
             }
 
             self.updateSelectedValues();
@@ -39,6 +42,16 @@ AWPCP.define( 'awpcp/frontend/listing-fields-section-controller', [
 
         shouldUpdateTemplate: function() {
             var self = this;
+
+            var listing = self.store.getListingId();
+
+            if ( null === listing ) {
+                return false;
+            }
+
+            if ( listing !== self.listing ) {
+                return true;
+            }
 
             var selectedCategories  = self.store.getSelectedCategoriesIds();
             var selectedPaymentTerm = self.store.getSelectedPaymentTermId();
@@ -56,16 +69,6 @@ AWPCP.define( 'awpcp/frontend/listing-fields-section-controller', [
             }
 
             return false;
-        },
-
-        getUpdatedTemplate: function() {
-            var self = this;
-
-            (function( data ) {
-                self.template = data.template;
-                self.$element.removeClass( 'rendered' );
-                self.prepareTemplate();
-            })( { template: self.template } );
         },
 
         prepareTemplate: function() {
@@ -155,23 +158,65 @@ AWPCP.define( 'awpcp/frontend/listing-fields-section-controller', [
         },
 
         updateTemplate: function( $container ) {
+            var self  = this,
+                state = self.store.getSectionState( self.id );
+
+            if ( 'disabled' === state ) {
+                return self.showDisabledMode();
+            }
+
+            if ( 'loading' === state ) {
+                return self.showLoadingMode();
+            }
+
+            return self.showEditMode();
+        },
+
+        showDisabledMode: function() {
             var self = this;
+
+            self.$element.hide();
+        },
+
+        showLoadingMode: function() {
+            var self = this;
+
+            self.$element.find( '.awpcp-listing-fields-submit-listing-section__loading_mode' ).show();
+            self.$element.find( '.awpcp-listing-fields-submit-listing-section__edit_mode' ).hide();
+
+            self.$element.show();
+        },
+
+        showEditMode: function() {
+            var self = this;
+
+            self.$element.find( '.awpcp-listing-fields-submit-listing-section__loading_mode' ).hide();
+            self.$element.find( '.awpcp-listing-fields-submit-listing-section__edit_mode' ).show();
 
             data = self.store.getListingFields();
 
             $.each( data, function( name, value ) {
                 $( '[name="' + name + '"]').val( value );
             } );
+
+            self.$element.show();
         },
 
         updateSelectedValues: function() {
             var self = this;
 
+            self.listing             = self.store.getListingId();
             self.selectedCategories  = self.store.getSelectedCategoriesIds();
             self.selectedPaymentTerm = self.store.getSelectedPaymentTermId();
         },
 
-        reload: function() {
+        reload: function( data ) {
+            var self = this;
+
+            self.template = data.template;
+
+            self.$element.removeClass( 'rendered' );
+            self.prepareTemplate();
         }
     } );
 

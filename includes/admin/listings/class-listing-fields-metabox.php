@@ -126,6 +126,7 @@ class AWPCP_ListingFieldsMetabox {
 
     /**
      * TODO: Use redirect_post_location filter to add feedback messages on redirect_post().
+     * TODO: What happens when update_listing throws an exception?
      *
      * @param int    $post_id   The ID of the post being saved.
      * @param object $post      The post being saved.

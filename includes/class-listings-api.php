@@ -4,26 +4,6 @@
  */
 
 /**
- * @since 3.0.2
- */
-function awpcp_listings_api() {
-    if ( ! isset( $GLOBALS['awpcp-listings-api'] ) ) {
-        $GLOBALS['awpcp-listings-api'] = new AWPCP_ListingsAPI(
-            awpcp_attachments_logic(),
-            awpcp_attachments_collection(),
-            awpcp_listing_renderer(),
-            awpcp_listings_collection(),
-            awpcp_request(),
-            awpcp()->settings,
-            awpcp_wordpress(),
-            $GLOBALS['wpdb']
-        );
-    }
-
-    return $GLOBALS['awpcp-listings-api'];
-}
-
-/**
  * Listings logic.
  *
  * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
@@ -38,16 +18,18 @@ class AWPCP_ListingsAPI {
     private $attachments;
     private $listing_renderer;
     private $listings;
+    private $roles;
     private $request = null;
     private $settings = null;
     private $wordpress;
     private $db;
 
-    public function __construct( $attachments_logic, $attachments, $listing_renderer, $listings, /*AWPCP_Request*/ $request = null, $settings, $wordpress, $db ) {
+    public function __construct( $attachments_logic, $attachments, $listing_renderer, $listings, $roles, /*AWPCP_Request*/ $request = null, $settings, $wordpress, $db ) {
         $this->attachments_logic = $attachments_logic;
         $this->attachments = $attachments;
         $this->listing_renderer = $listing_renderer;
         $this->listings = $listings;
+        $this->roles             = $roles;
         $this->settings = $settings;
         $this->wordpress = $wordpress;
         $this->request = $request;
@@ -143,6 +125,10 @@ class AWPCP_ListingsAPI {
 
         if ( isset( $metadata['_awpcp_start_date'] ) ) {
             $metadata['_awpcp_most_recent_start_date'] = $metadata['_awpcp_start_date'];
+        }
+
+        foreach ( $listing_data['terms'] as $taxonomy => $terms ) {
+            $this->wordpress->set_object_terms( $listing_id, $terms, $taxonomy );
         }
 
         foreach ( $metadata as $field_name => $field_value ) {
@@ -289,26 +275,104 @@ class AWPCP_ListingsAPI {
             return;
         }
 
-        $payment_term = $this->listing_renderer->get_payment_term( $ad );
+        $payment_term   = $this->listing_renderer->get_payment_term( $ad );
         $payment_status = $this->listing_renderer->get_payment_status( $ad );
 
         $timestamp = current_time( 'timestamp' );
-        $now = current_time( 'mysql' );
+        $now       = current_time( 'mysql' );
 
         $this->mark_listing_as_verified( $ad );
+
         $this->wordpress->update_post_meta( $ad->ID, '_awpcp_start_date', $now );
         $this->wordpress->update_post_meta( $ad->ID, '_awpcp_end_date', $payment_term->calculate_end_date( $timestamp ) );
 
-        $listing_is_disabled = $this->listing_renderer->is_disabled( $ad );
-        $should_enable_listing = awpcp_should_enable_new_listing_with_payment_status( $ad, $payment_status );
-
-        if ( $listing_is_disabled && $should_enable_listing ) {
-            $this->enable_listing_without_triggering_actions( $ad );
-        }
+        $this->set_new_listing_post_status( $ad, $payment_status, true );
 
         if ( ! awpcp_current_user_is_moderator() ) {
             $this->send_ad_posted_email_notifications( $ad );
         }
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function get_modified_listing_post_status( $listing ) {
+        if ( $this->roles->current_user_is_moderator() ) {
+            return $listing->post_status;
+        }
+
+        if ( $this->settings->get_option( 'disable-edited-listings-until-admin-approves' ) ) {
+            return 'pending';
+        }
+
+        return $listing->post_status;
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function set_new_listing_post_status( $listing, $payment_status, $trigger_actions ) {
+        if ( $this->roles->current_user_is_moderator() ) {
+            return $this->enable_listing_maybe_triggering_actions( $listing, $trigger_actions );
+        }
+
+        if ( $this->settings->get_option( 'adapprove' ) ) {
+            return $this->mark_listing_as_awating_approval( $listing );
+        }
+
+        if ( $payment_status == AWPCP_Payment_Transaction::PAYMENT_STATUS_PENDING && ! $this->settings->get_option( 'enable-ads-pending-payment' ) ) {
+            return $this->mark_listing_as_awating_approval( $listing );
+        }
+
+        return $this->enable_listing_maybe_triggering_actions( $listing, $trigger_actions );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function set_modified_listing_post_status( $listing ) {
+        $post_status = $this->get_modified_listing_post_status( $listing );
+
+        if ( $post_status === $listing->post_status ) {
+            return true;
+        }
+
+        if ( 'pending' === $post_status ) {
+            return $this->mark_listing_as_awating_approval( $listing );
+        }
+
+        if ( 'publish' === $post_status ) {
+            return $this->enable_listing( $listing );
+        }
+
+        return true;
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function enable_listing_maybe_triggering_actions( $listing, $trigger_actions ) {
+        if ( $trigger_actions ) {
+            return $this->enable_listing( $listing );
+        }
+
+        return $this->enable_listing_without_triggering_actions( $listing );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function mark_listing_as_awating_approval( $listing ) {
+        $this->wordpress->update_post_meta( $listing->ID, '_awpcp_awaiting_approval', true );
+
+        $listing->post_status = 'pending';
+
+        $post_data = [
+            'ID'          => $listing->ID,
+            'post_status' => $listing->post_status,
+        ];
+
+        return $this->wordpress->update_post( $post_data );
     }
 
     /**
@@ -334,10 +398,6 @@ class AWPCP_ListingsAPI {
      * @since feature/1112
      */
     public function enable_listing_without_triggering_actions( $listing ) {
-        if ( ! $this->listing_renderer->is_disabled( $listing ) ) {
-            return false;
-        }
-
         $images_must_be_approved = $this->settings->get_option( 'imagesapprove', false );
 
         // TODO: this is kind of useles... if images don't need to be approved,
