@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package AWPCP\Frontend
+ */
+
+// phpcs:disable
 
 require_once(AWPCP_DIR . '/frontend/page-place-ad.php');
 
@@ -21,6 +26,7 @@ function awpcp_edit_listing_page() {
 
 /**
  * @since  2.1.4
+ * @SuppressWarnings(PHPMD)
  */
 class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
 

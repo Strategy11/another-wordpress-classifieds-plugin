@@ -1,5 +1,13 @@
 <?php
+/**
+ * @package AWPCP\Payments
+ */
 
+// phpcs:disable
+
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 class AWPCP_Payment_Transaction {
 
 	// public static $PAYMENT_STATUS_UNKNOWN = 'Unknown';
@@ -125,6 +133,9 @@ class AWPCP_Payment_Transaction {
         }
     }
 
+	/**
+     * @SuppressWarnings(PHPMD.ElseExpression)
+	 */
 	public static function find_by_id($id) {
         global $wpdb;
 
@@ -138,6 +149,9 @@ class AWPCP_Payment_Transaction {
         return empty($results) ? null : array_shift($results);
 	}
 
+    /**
+     * @SuppressWarnings(PHPMD.StaticAccess)
+     */
 	public static function find_or_create($id) {
 		$transaction = AWPCP_Payment_Transaction::find_by_id($id);
 
@@ -157,6 +171,8 @@ class AWPCP_Payment_Transaction {
 
 	/**
 	 * @since 2.1.4
+     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
+     * @SuppressWarnings(PHPMD.ElseExpression)
 	 */
 	public function save() {
 		global $wpdb;
@@ -207,6 +223,9 @@ class AWPCP_Payment_Transaction {
 		return true;
 	}
 
+    /**
+     * @SuppressWarnings(PHPMD.ElseExpression)
+     */
     private function verify_ready_to_checkout_conditions(&$errors) {
         $items = count($this->get_items());
 		if ($items === 0) {
@@ -243,6 +262,9 @@ class AWPCP_Payment_Transaction {
         return true;
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
     private function verify_checkout_conditions(&$errors) {
         return true;
 	}
@@ -267,6 +289,9 @@ class AWPCP_Payment_Transaction {
         return true;
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
     public function verify_completed_conditions(&$errors) {
         // TODO: code me!s
         return true;
@@ -285,6 +310,10 @@ class AWPCP_Payment_Transaction {
         $this->status = $status;
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.NPathComplexity)
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     */
     public function set_status($status, &$errors) {
         $allowed = true;
         $verify = array();

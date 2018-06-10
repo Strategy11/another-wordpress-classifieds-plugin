@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package AWPCP\Payments
+ */
+
+// phpcs:disable
 
 function awpcp_listing_payment_transaction_handler() {
     return new AWPCP_ListingPaymentTransactionHandler(
@@ -9,6 +14,9 @@ function awpcp_listing_payment_transaction_handler() {
     );
 }
 
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 class AWPCP_ListingPaymentTransactionHandler {
 
     private $listing_renderer;
@@ -23,7 +31,7 @@ class AWPCP_ListingPaymentTransactionHandler {
         $this->wordpress = $wordpress;
     }
 
-    public function transaction_status_updated( $transaction, $new_status ) {
+    public function transaction_status_updated( $transaction ) {
         $this->process_payment_transaction( $transaction );
     }
 
@@ -33,6 +41,9 @@ class AWPCP_ListingPaymentTransactionHandler {
         }
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.ElseExpression)
+     */
     public function process_completed_transaction( $transaction ) {
         if ( strcmp( $transaction->get( 'context' ), 'place-ad' ) !== 0 ) {
             return;
