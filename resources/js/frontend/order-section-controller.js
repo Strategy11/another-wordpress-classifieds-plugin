@@ -91,8 +91,7 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
                 self.onChangeSelectionButtonClicked();
             } );
 
-            // // TODO: We need a replacement for this event.
-            // $.publish( '/awpcp/post-listing-page/order-step/ready', [form] );
+            $.publish( '/awpcp/post-listing-page/order-step/ready', [ self.$element ] );
         },
 
         updateInitialState: function() {

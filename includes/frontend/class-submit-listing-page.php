@@ -102,8 +102,6 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
      * @since 4.0.0
      */
     private function do_listing_information_step() {
-        wp_enqueue_script( 'awpcp-submit-listing-page' );
-
         $transaction = $this->payments->get_transaction();
 
         $this->verify_payment_transaction_was_successful( $transaction );
@@ -118,6 +116,12 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
         if ( $listing_id ) {
             $listing = $this->listings->get( $listing_id );
         }
+
+        // phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
+        do_action( 'awpcp-before-post-listing-page' );
+        // phpcs:disable
+
+        wp_enqueue_script( 'awpcp-submit-listing-page' );
 
         $sections = $this->sections_generator->get_sections( $listing );
 
