@@ -179,6 +179,26 @@ AWPCP.define( 'awpcp/frontend/submit-listing-data-store', [
             self.refresh();
         },
 
+        getSelectedCreditPlan: function() {
+            var self = this;
+
+            if ( self.data.creditPlan ) {
+                return self.data.creditPlan;
+            }
+
+            return null;
+        },
+
+        getSelectedCreditPlanId: function() {
+            var self = this;
+
+            if ( self.data.creditPlan ) {
+                return self.data.creditPlan.id;
+            }
+
+            return null;
+        },
+
         getSelectedCreditPlanSummary: function() {
             var self = this;
 
@@ -241,7 +261,8 @@ AWPCP.define( 'awpcp/frontend/submit-listing-data-store', [
             var self = this,
                 paymentTerm, data, request;
 
-            paymentTerm = self.getSelectedPaymentTerm();
+            paymentTerm  = self.getSelectedPaymentTerm();
+            creditPlanId = self.getSelectedCreditPlanId();
 
             data = {
                 action:                    'awpcp_create_empty_listing',
@@ -250,6 +271,7 @@ AWPCP.define( 'awpcp/frontend/submit-listing-data-store', [
                 payment_term_id:           paymentTerm.id,
                 payment_term_type:         paymentTerm.type,
                 payment_term_payment_type: paymentTerm.mode,
+                credit_plan:               creditPlanId,
                 user_id:                   self.getSelectedUserId(),
                 current_url:               document.location.href,
             };
@@ -306,7 +328,8 @@ AWPCP.define( 'awpcp/frontend/submit-listing-data-store', [
             var self = this,
                 paymentTerm, data, request;
 
-            paymentTerm = self.getSelectedPaymentTerm();
+            paymentTerm  = self.getSelectedPaymentTerm();
+            creditPlanId = self.getSelectedCreditPlanId();
 
             // TODO: How are other sections going to introduce information here?
             // TODO: Remove multiple region selector information from listing fields.
@@ -321,6 +344,7 @@ AWPCP.define( 'awpcp/frontend/submit-listing-data-store', [
                 payment_term_id: self.getSelectedPaymentTermId(),
                 payment_term_type: paymentTerm.type,
                 payment_type: paymentTerm.mode,
+                credit_plan: creditPlanId,
                 current_url:       document.location.href,
             } );
 
