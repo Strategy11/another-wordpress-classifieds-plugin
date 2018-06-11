@@ -70,6 +70,7 @@
             <p class="awpcp-order-submit-listing-section--listing-owner"><?php echo esc_html_x( 'Owner:', 'order submit listing section', 'another-wordpress-classifieds-plugin' ); ?> <span></span></p>
 
             <p class="form-submit">
+            <span class="awpcp-order-submit-listing-section--loading-message"><?php echo esc_html_x( 'Loading classified fields', 'order submit listing section', 'another-wordpress-classifieds-plugin' ); ?><span class="awpcp-spinner"></span></span>
                 <input class="awpcp-order-submit-listing-section--change-selection-button button button-primary" type="submit" value="<?php echo esc_attr_x( 'Change selection', 'order submit listing section', 'another-wordpress-clasifieds-plugin' ); ?>"/>
             </p>
         </div>

@@ -25,6 +25,11 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
                 self.updateInitialState();
             }
 
+            if ( 'loading' === self.store.getSectionState( self.id ) && self.store.getListingId() ) {
+                self.store.setSectionStateToRead( self.id );
+                return;
+            }
+
             self.updateTemplate();
         },
 
@@ -45,6 +50,8 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
             self.$paymentTerm              = $( '.awpcp-order-submit-listing-section--payment-term' );
             self.$creditPlanLabel          = $( '.awpcp-order-submit-listing-section--credit-plan-label' );
             self.$creditPlan               = $( '.awpcp-order-submit-listing-section--credit-plan' );
+
+            self.$loadingMessage = self.$readModeContainer.find( '.awpcp-order-submit-listing-section--loading-message' );
 
             // We need to initialize the payment terms list first, so that it
             // can respond to initial events from Categories Selector and User fields.
@@ -104,21 +111,35 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
         },
 
         updateTemplate: function() {
-            var self = this;
+            var self = this,
+                state = self.store.getSectionState( self.id );
 
-            if ( 'read' === self.store.getSectionState( self.id ) ) {
-                self.updateReadModeTemplate();
+            if ( 'loading' === state ) {
+                self.showLoadingMode();
+                return;
+            }
+
+            if ( 'read' === state ) {
+                self.showReadingMode();
                 return;
             }
 
             self.updateEditModeTemplate();
         },
 
-        updateReadModeTemplate: function() {
+        showLoadingMode: function() {
+            var self = this;
+
+            self.showReadingMode();
+            self.$loadingMessage.show();
+        },
+
+        showReadingMode: function() {
             var self = this;
 
             self.$editModeContainer.hide();
             self.$readModeContainer.show();
+            self.$loadingMessage.hide();
 
             self.$listOfSelectedCategories.empty().text( self.store.getSelectedCategoriesNames().join( ', ' ) );
             self.$listingOwner.find( 'span' ).html( self.store.getSelectedUserName() );
@@ -154,6 +175,8 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
 
             if ( ! self.store.getListingId() ) {
                 self.store.createEmptyListing();
+                self.store.setSectionStateToLoading( self.id );
+                return;
             }
 
             self.store.setSectionStateToRead( self.id );
@@ -171,4 +194,3 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
 
     return OrderSectionController;
 } );
-
