@@ -5,6 +5,7 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
     'awpcp/user-selector',
     'awpcp/payment-terms-list',
     'awpcp/credit-plans-list',
+    'awpcp/jquery-collapsible',
     'awpcp/jquery-userfield',
     'awpcp/jquery-validate-methods',
 ], function( $, CategoriesSelector, UserSelector, PaymentTermsList, CreditPlansList ) {
@@ -36,7 +37,7 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
         renderTemplate: function( $container ) {
             var self = this;
 
-            self.$element = $( self.template );
+            self.$element = $( self.template ).collapsible();
 
             $container.append( self.$element );
 

@@ -3,6 +3,7 @@ AWPCP.define( 'awpcp/frontend/upload-media-section-controller', [
     'jquery',
     'awpcp/media-center',
     'awpcp/settings',
+    'awpcp/jquery-collapsible',
 ], function( $, MediaCenter, settings ) {
     var UploadMediaSectionController = function( section, store ) {
         var self = this;
@@ -70,7 +71,7 @@ AWPCP.define( 'awpcp/frontend/upload-media-section-controller', [
         renderTemplate: function() {
             var self = this;
 
-            self.$element = $( self.template ).replaceAll( self.$element );
+            self.$element = $( self.template ).replaceAll( self.$element ).collapsible();
 
             self.$element.find( '.awpcp-media-center' ).StartMediaCenter( {
                 mediaManagerOptions: settings.get( 'media-manager-data' ),

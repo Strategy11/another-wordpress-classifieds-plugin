@@ -4,6 +4,7 @@ AWPCP.define( 'awpcp/frontend/listing-fields-section-controller', [
     'awpcp/settings',
     'awpcp/restricted-length-field',
     'awpcp/multiple-region-selector-validator',
+    'awpcp/jquery-collapsible',
     'awpcp/jquery-validate-methods',
 ], function( $, settings, RestrictedLengthField, MultipleRegionsSelectorValidator ) {
     var ListingFieldsSectionController = function( section, store ) {
@@ -84,7 +85,7 @@ AWPCP.define( 'awpcp/frontend/listing-fields-section-controller', [
         renderTemplate: function() {
             var self = this;
 
-            self.$element = $( self.template ).replaceAll( self.$element );
+            self.$element = $( self.template ).replaceAll( self.$element ).collapsible();
 
             var data = self.store.getListingFields();
 
