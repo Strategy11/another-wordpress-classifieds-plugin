@@ -92,6 +92,15 @@ require_once(AWPCP_DIR . "/cron.php");
 // API & Classes
 require_once(AWPCP_DIR . "/includes/exceptions.php");
 
+require_once AWPCP_DIR . '/includes/admin/interface-personal-data-provider.php';
+require_once AWPCP_DIR . '/includes/admin/class-data-formatter.php';
+require_once AWPCP_DIR . '/includes/admin/class-listings-personal-data-provider.php';
+require_once AWPCP_DIR . '/includes/admin/class-payment-personal-data-provider.php';
+require_once AWPCP_DIR . '/includes/admin/class-personal-data-exporter.php';
+require_once AWPCP_DIR . '/includes/admin/class-personal-data-eraser.php';
+require_once AWPCP_DIR . '/includes/admin/class-privacy-policy-content.php';
+require_once AWPCP_DIR . '/includes/admin/class-user-personal-data-provider.php';
+
 require_once(AWPCP_DIR . "/includes/compatibility/compatibility.php");
 require_once( AWPCP_DIR . '/includes/compatibility/interface-plugin-integration.php' );
 require_once( AWPCP_DIR . "/includes/compatibility/class-add-meta-tags-plugin-integration.php" );
@@ -743,6 +752,9 @@ class AWPCP {
             delete_option( 'awpcp-installed-or-upgraded' );
         }
 
+        add_filter( 'wp_privacy_personal_data_exporters', array( $this, 'register_personal_data_exporters' ) );
+        add_filter( 'wp_privacy_personal_data_erasers', array( $this, 'register_personal_data_erasers' ) );
+
 		$this->register_scripts();
         $this->register_notification_handlers();
 	}
@@ -1365,6 +1377,127 @@ class AWPCP {
 	    register_widget('AWPCP_Search_Widget');
 	    register_widget( 'AWPCP_CategoriesWidget' );
 	}
+
+    /**
+     * @since 3.8.6
+     */
+    public function register_personal_data_exporters( $exporters ) {
+        $exporters['another-wordpres-classifieds-plugin-user'] = array(
+            'exporter_friendly_name' => __( 'Another WordPress Classifieds Plugin', 'another-wordpress-classifieds-plugin' ),
+            'callback'               => array(
+                new AWPCP_PersonalDataExporter( $this->get_user_personal_data_provider() ),
+                'export_personal_data',
+            ),
+        );
+
+        $exporters['another-wordpres-classifieds-plugin-listings'] = array(
+            'exporter_friendly_name' => __( 'Another WordPress Classifieds Plugin', 'another-wordpress-classifieds-plugin' ),
+            'callback'               => array(
+                new AWPCP_PersonalDataExporter( $this->get_listings_personal_data_provider() ),
+                'export_personal_data',
+            ),
+        );
+
+        $exporters['another-wordpres-classifieds-plugin-payment'] = array(
+            'exporter_friendly_name' => __( 'Another WordPress Classifieds Plugin', 'another-wordpress-classifieds-plugin' ),
+            'callback'               => array(
+                new AWPCP_PersonalDataExporter( $this->get_payment_personal_data_provider() ),
+                'export_personal_data',
+            ),
+        );
+
+        return $exporters;
+    }
+
+    /**
+     * @since 3.8.6
+     */
+    private function get_user_personal_data_provider() {
+        static $instance;
+
+        if ( is_null( $instance ) ) {
+            $instance = new AWPCP_UserPersonalDataProvider(
+                $this->get_data_formatter()
+            );
+        }
+
+        return $instance;
+    }
+
+    /**
+     * @since 3.8.6
+     */
+    public function get_data_formatter() {
+        static $instance;
+
+        if ( is_null( $instance ) ) {
+            $instance = new AWPCP_DataFormatter();
+        }
+
+        return $instance;
+    }
+
+    /**
+     * @since 3.8.6
+     */
+    private function get_listings_personal_data_provider() {
+        static $instance;
+
+        if ( is_null( $instance ) ) {
+            $instance = new AWPCP_ListingsPersonalDataProvider(
+                awpcp_media_api(),
+                awpcp_basic_regions_api(),
+                $this->get_data_formatter(),
+                $GLOBALS['wpdb']
+            );
+        }
+
+        return $instance;
+    }
+
+    /**
+     * @since 3.8.6
+     */
+    private function get_payment_personal_data_provider() {
+        static $instance;
+
+        if ( is_null( $instance ) ) {
+            $instance = new AWPCP_PaymentPersonalDataProvider( $this->get_data_formatter() );
+        }
+
+        return $instance;
+    }
+
+    /**
+     * @since 3.8.6
+     */
+    public function register_personal_data_erasers( $erasers ) {
+        $erasers['another-wordpress-classifieds-plugin-user'] = array(
+            'eraser_friendly_name' => __( 'Another WordPress Classifieds Plugin', 'another-wordpress-classifieds-plugin' ),
+            'callback'             => array(
+                new AWPCP_PersonalDataEraser( $this->get_user_personal_data_provider() ),
+                'erase_personal_data',
+            ),
+        );
+
+        $erasers['another-wordpres-classifieds-plugin-listings'] = array(
+            'eraser_friendly_name' => __( 'Another WordPress Classifieds Plugin', 'another-wordpress-classifieds-plugin' ),
+            'callback'               => array(
+                new AWPCP_PersonalDataEraser( $this->get_listings_personal_data_provider() ),
+                'erase_personal_data',
+            ),
+        );
+
+        $erasers['another-wordpres-classifieds-plugin-payment'] = array(
+            'eraser_friendly_name' => __( 'Another WordPress Classifieds Plugin', 'another-wordpress-classifieds-plugin' ),
+            'callback'               => array(
+                new AWPCP_PersonalDataEraser( $this->get_payment_personal_data_provider() ),
+                'erase_personal_data',
+            ),
+        );
+
+        return $erasers;
+    }
 
     public function register_notification_handlers() {
         $media_uploaded_notification = awpcp_media_uploaded_notification();
