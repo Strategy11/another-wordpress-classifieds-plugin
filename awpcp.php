@@ -3,7 +3,7 @@
  * Plugin Name: Another WordPress Classifieds Plugin (AWPCP)
  * Plugin URI: http://www.awpcp.com
  * Description: AWPCP - A plugin that provides the ability to run a free or paid classified ads service on your WP site. <strong>!!!IMPORTANT!!!</strong> It's always a good idea to do a BACKUP before you upgrade AWPCP!
- * Version: 3.8.6dev1
+ * Version: 3.8.6dev2
  * Author: D. Rodenbaugh
  * License: GPLv2 or any later version
  * Author URI: http://www.skylineconsult.com
@@ -639,6 +639,7 @@ class AWPCP {
         add_action( 'awpcp-listing-facebook-cache-cleared', array( $send_new_listings_to_facebook_helper, 'schedule_listing_if_necessary' ) );
         add_action( 'awpcp-send-listing-to-facebook', array( $send_new_listings_to_facebook_helper, 'send_listing_to_facebook' ) );
 
+        add_action( 'awpcp_clear_categories_list_cache', array( $this, 'clear_categories_list_cache' ) );
         add_action( 'awpcp-place-ad', array( $this, 'clear_categories_list_cache' ) );
         add_action( 'awpcp_approve_ad', array( $this, 'clear_categories_list_cache' ) );
         add_action( 'awpcp_edit_ad', array( $this, 'clear_categories_list_cache' ) );
