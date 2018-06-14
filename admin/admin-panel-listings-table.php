@@ -34,6 +34,7 @@ class AWPCP_Listings_Table extends WP_List_Table {
 
         $items_per_page = (int) get_user_meta($user->ID, 'listings-items-per-page', true);
         $this->items_per_page = awpcp_request_param('items-per-page', $items_per_page === 0 ? 10 : $items_per_page);
+        $this->items_per_page = apply_filters( 'awpcp_listings_table_items_per_page', $this->items_per_page, $user );
         update_user_meta($user->ID, 'listings-items-per-page', $this->items_per_page);
 
         $default_category = absint( get_user_meta( $user->ID, 'listings-category', true ) );
@@ -349,7 +350,7 @@ class AWPCP_Listings_Table extends WP_List_Table {
         $template = '<option %3$s value="%1$s">%2$s</option>';
         $selected = 'selected="selected"';
 
-        foreach ( awpcp_default_pagination_options( $this->items_per_page ) as $value ) {
+        foreach ( awpcp_pagination_options( $this->items_per_page ) as $value ) {
             $attributes = $value == $this->items_per_page ? $selected : '';
             $options[] = sprintf( $template, esc_attr( $value ), esc_html( $value ), $attributes );
         }
