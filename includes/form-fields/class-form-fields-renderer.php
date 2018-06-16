@@ -14,17 +14,25 @@ class AWPCP_FormFieldsRenderer {
     private $fields;
 
     /**
-     * @param array $fields     An array of Form Field instances.
+     * @var string
+     */
+    private $filter;
+
+    /**
      * @since 4.0.0
      */
-    public function __construct( $fields ) {
-        $this->fields = $fields;
+    public function __construct( $filter ) {
+        $this->filter = $filter;
     }
 
     /**
      * @since 4.0.0
      */
-    public function get_fields() {
+    public function get_fields( $listing, $context ) {
+        if ( is_null( $this->fields ) ) {
+            $this->fields = apply_filters( $this->filter, [], $listing, $context );
+        }
+
         return $this->fields;
     }
 
@@ -51,7 +59,7 @@ class AWPCP_FormFieldsRenderer {
     public function render_fields( $form_values, $form_errors, $listing, $context ) {
         $output = array();
 
-        foreach ( $this->fields as $field_slug => $field ) {
+        foreach ( $this->get_fields( $listing, $context ) as $field_slug => $field ) {
             if ( ! $field->is_allowed_in_context( $context ) ) {
                 continue;
             }

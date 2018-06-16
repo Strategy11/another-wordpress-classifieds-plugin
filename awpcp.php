@@ -846,7 +846,7 @@ class AWPCP {
 
         $listing_form_fields = awpcp_listing_form_fields();
         add_filter( 'awpcp_listing_details_form_fields', array( $listing_form_fields, 'register_listing_details_form_fields' ), 10, 1 );
-        add_filter( 'awpcp_listing_date_form_fields', array( $listing_form_fields, 'register_listing_date_form_fields' ), 10, 1 );
+        add_filter( 'awpcp_listing_date_form_fields', array( $listing_form_fields, 'register_listing_date_form_fields' ), 10, 2 );
 
         // TODO: Where is this option set?
         if ( get_option( 'awpcp-enable-fix-media-mime-type-upgrde' ) ) {

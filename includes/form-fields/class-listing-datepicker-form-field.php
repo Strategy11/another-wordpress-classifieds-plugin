@@ -55,10 +55,18 @@ class AWPCP_ListingDatePickerFormField extends AWPCP_FormField {
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function render( $value, $errors, $listing, $context ) {
+        $hidden_value    = '';
+        $formatted_value = '';
+
+        if ( $value ) {
+            $hidden_value    = awpcp_datetime( 'Y/m/d', $value );
+            $formatted_value = awpcp_datetime( 'awpcp-date', $value );
+        }
+
         $params = array(
             'required'        => false,
-            'value'           => awpcp_datetime( 'Y/m/d', $value ),
-            'formatted_value' => awpcp_datetime( 'awpcp-date', $value ),
+            'value'           => $hidden_value,
+            'formatted_value' => $formatted_value,
             'errors'          => $errors,
 
             'label'           => $this->get_label(),

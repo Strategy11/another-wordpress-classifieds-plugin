@@ -7,7 +7,9 @@
  * Constructor function for Listing Form Fields.
  */
 function awpcp_listing_form_fields() {
-    return new AWPCP_ListingFormFields();
+    return new AWPCP_ListingFormFields(
+        awpcp()->container['ListingAuthorization']
+    );
 }
 
 /**
@@ -15,6 +17,18 @@ function awpcp_listing_form_fields() {
  * Edit and Submit Listing forms.
  */
 class AWPCP_ListingFormFields {
+
+    /**
+     * @var ListingAuthorization
+     */
+    private $authorization;
+
+    /**
+     * @since 4.0.0
+     */
+    public function __construct( $authorization ) {
+        $this->authorization = $authorization;
+    }
 
     /**
      * @param array $fields     An array of Form Fields definitions.
@@ -75,11 +89,16 @@ class AWPCP_ListingFormFields {
      * @param array $fields     An array of form fields.
      * @since 4.0.0
      */
-    public function register_listing_date_form_fields( $fields ) {
+    public function register_listing_date_form_fields( $fields, $listing ) {
         $template_renderer = awpcp()->container['TemplateRenderer'];
 
-        $fields['start_date'] = new AWPCP_ListingDatePickerFormField( 'start_date', __( 'Start Date', 'another-wordpress-classifieds-plugin' ), $template_renderer );
-        $fields['end_date']   = new AWPCP_ListingDatePickerFormField( 'end_date', __( 'End Date', 'another-wordpress-classifieds-plugin' ), $template_renderer );
+        if ( $this->authorization->is_current_user_allowed_to_edit_listing_start_date( $listing ) ) {
+            $fields['start_date'] = new AWPCP_ListingDatePickerFormField( 'start_date', __( 'Start Date', 'another-wordpress-classifieds-plugin' ), $template_renderer );
+        }
+
+        if ( $this->authorization->is_current_user_allowed_to_edit_listing_end_date( $listing ) ) {
+            $fields['end_date'] = new AWPCP_ListingDatePickerFormField( 'end_date', __( 'End Date', 'another-wordpress-classifieds-plugin' ), $template_renderer );
+        }
 
         return $fields;
     }

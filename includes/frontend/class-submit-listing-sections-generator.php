@@ -25,6 +25,12 @@ class AWPCP_SubmitLisitngSectionsGenerator {
                 awpcp()->container['RolesAndCapabilities'],
                 awpcp()->container['TemplateRenderer']
             ),
+            'listing-dates'  => new AWPCP_ListingDatesSubmitListingSection(
+                awpcp()->container['ListingDateFormFieldsRenderer'],
+                awpcp()->container['FormFieldsData'],
+                awpcp()->container['ListingAuthorization'],
+                awpcp()->container['TemplateRenderer']
+            ),
             'listing-fields' => new AWPCP_ListingFieldsSubmitListingSection(
                 awpcp()->container['ListingDetailsFormFieldsRenderer'],
                 awpcp()->container['FormFieldsData'],

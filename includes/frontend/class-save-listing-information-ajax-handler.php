@@ -29,6 +29,11 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
     private $payments;
 
     /**
+     * @var ListingAuthorization
+     */
+    private $authorization;
+
+    /**
      * @var RolesAndCapabilities
      */
     private $roles;
@@ -52,7 +57,7 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
      * @since 4.0.0
      * @SuppressWarnings(PHPMD.ExcessiveParameterList)
      */
-    public function __construct( $listing_category_taxonomy, $listings_logic, $listing_renderer, $listings, $payments, $roles, $form_fields_validator, $payment_information_validator, $form_fields_data, $settings, $response, $request ) {
+    public function __construct( $listing_category_taxonomy, $listings_logic, $listing_renderer, $listings, $payments, $authorization, $roles, $form_fields_validator, $payment_information_validator, $form_fields_data, $settings, $response, $request ) {
         parent::__construct( $response );
 
         $this->listing_category_taxonomy     = $listing_category_taxonomy;
@@ -60,6 +65,7 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
         $this->listing_renderer              = $listing_renderer;
         $this->listings                      = $listings;
         $this->payments                      = $payments;
+        $this->authorization                 = $authorization;
         $this->roles                         = $roles;
         $this->form_fields_validator         = $form_fields_validator;
         $this->payment_information_validator = $payment_information_validator;
@@ -146,7 +152,7 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
         $posted_data  = $this->get_common_posted_data( $listing );
         $payment_term = $this->listing_renderer->get_payment_term( $listing );
 
-        return $this->update_posted_data_for_payment_term( $posted_data, $payment_term );
+        return $this->update_posted_data_for_payment_term( $posted_data, $listing, $payment_term );
     }
 
     /**
@@ -198,7 +204,7 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
     /**
      * @since 4.0.0
      */
-    private function update_posted_data_for_payment_term( $posted_data, $payment_term ) {
+    private function update_posted_data_for_payment_term( $posted_data, $listing, $payment_term ) {
         $posted_data['payment_term'] = $payment_term;
 
         $post_title   = $posted_data['post_data']['post_fields']['post_title'];
@@ -209,7 +215,7 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
         $posted_data['post_data']['post_fields']['post_title']   = $this->prepare_title( $post_title, $payment_term->get_characters_allowed_in_title() );
         $posted_data['post_data']['post_fields']['post_content'] = $this->prepare_content( $post_content, $payment_term->get_characters_allowed() );
 
-        if ( empty( $posted_data['post_data']['metadata']['_awpcp_end_date'] ) ) {
+        if ( $this->authorization->is_current_user_allowed_to_edit_listing_start_date( $listing ) && ! $this->authorization->is_current_user_allowed_to_edit_listing_end_date( $listing ) ) {
             $start_date_timestamp = awpcp_datetime( 'timestamp', $posted_data['post_data']['metadata']['_awpcp_start_date'] );
 
             $posted_data['post_data']['metadata']['_awpcp_end_date'] = $payment_term->calculate_end_date( $start_date_timestamp );
@@ -290,7 +296,7 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
         $payment_term = $this->payments->get_payment_term( $payment_term_id, $payment_term_type );
 
         $posted_data = $this->get_common_posted_data( $listing );
-        $posted_data = $this->update_posted_data_for_payment_term( $posted_data, $payment_term );
+        $posted_data = $this->update_posted_data_for_payment_term( $posted_data, $listing, $payment_term );
 
         $posted_data['categories']   = $categories;
         $posted_data['payment_term'] = $payment_term;

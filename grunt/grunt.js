@@ -10,8 +10,9 @@ module.exports = function(grunt) {
       files: {
         '<%= path.awpcp %>/js/admin/edit-post.src.js': '<%= path.awpcp %>/js/admin/edit-post.js',
         '<%= path.awpcp %>/js/frontend/submit-listing-page.src.js': [
-          '<%= path.awpcp %>/js/frontend/listing-fields-section-controller.js',
           '<%= path.awpcp %>/js/frontend/order-section-controller.js',
+          '<%= path.awpcp %>/js/frontend/listing-dates-section-controller.js',
+          '<%= path.awpcp %>/js/frontend/listing-fields-section-controller.js',
           '<%= path.awpcp %>/js/frontend/save-section-controller.js',
           '<%= path.awpcp %>/js/frontend/upload-media-section-controller.js',
           '<%= path.awpcp %>/js/frontend/submit-listing-data-store.js',

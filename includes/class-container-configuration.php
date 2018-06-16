@@ -118,22 +118,14 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
 
         $container['ListingDetailsFormFieldsRenderer'] = $container->service( function( $container ) {
             return new AWPCP_FormFieldsRenderer(
-                $container['ListingDetailsFormFields']
+                'awpcp_listing_details_form_fields'
             );
-        } );
-
-        $container['ListingDetailsFormFields'] = $container->service( function( $container ) {
-            return new AWPCP_FilteredArray( 'awpcp_listing_details_form_fields' );
         } );
 
         $container['ListingDateFormFieldsRenderer'] = $container->service( function( $container ) {
             return new AWPCP_FormFieldsRenderer(
-                $container['ListingDateFormFields']
+                'awpcp_listing_date_form_fields'
             );
-        } );
-
-        $container['ListingDateFormFields'] = $container->service( function( $container ) {
-            return new AWPCP_FilteredArray( 'awpcp_listing_date_form_fields' );
         } );
 
         $container['HTMLRenderer'] = $container->service( function( $container ) {

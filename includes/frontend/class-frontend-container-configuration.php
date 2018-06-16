@@ -65,6 +65,7 @@ class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurati
                 $container['ListingRenderer'],
                 $container['ListingsCollection'],
                 $container['Payments'],
+                $container['ListingAuthorization'],
                 $container['RolesAndCapabilities'],
                 $container['FormFieldsValidator'],
                 $container['PaymentInformationValidator'],

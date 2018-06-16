@@ -76,7 +76,7 @@ class AWPCP_ListingAuthorization {
         $start_date = $this->listing_renderer->get_start_date( $listing );
 
         if ( empty( $start_date ) ) {
-            return false;
+            return true;
         }
 
         if ( strtotime( $start_date ) > current_time( 'timestamp' ) ) {
