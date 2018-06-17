@@ -58,6 +58,19 @@ class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurati
             );
         } );
 
+        $container['ListingPostedData'] = $container->service( function( $container ) {
+            return new AWPCP_ListingPostedData(
+                $container['listing_category_taxonomy'],
+                $container['FormFieldsData'],
+                $container['ListingsLogic'],
+                $container['ListingRenderer'],
+                $container['Payments'],
+                $container['ListingAuthorization'],
+                $container['RolesAndCapabilities'],
+                $container['Request']
+            );
+        } );
+
         $container['SaveListingInformationAjaxHandler'] = $container->service( function( $container ) {
             return new AWPCP_SaveListingInformationAjaxHandler(
                 $container['listing_category_taxonomy'],
@@ -65,11 +78,9 @@ class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurati
                 $container['ListingRenderer'],
                 $container['ListingsCollection'],
                 $container['Payments'],
-                $container['ListingAuthorization'],
-                $container['RolesAndCapabilities'],
                 $container['FormFieldsValidator'],
                 $container['PaymentInformationValidator'],
-                $container['FormFieldsData'],
+                $container['ListingPostedData'],
                 $container['Settings'],
                 awpcp_ajax_response(),
                 $container['Request']
