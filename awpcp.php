@@ -974,6 +974,15 @@ class AWPCP {
         add_action( 'wp_ajax_awpcp-autoresponder-user-subscribed', array( $handler, 'ajax' ) );
         add_action( 'wp_ajax_awpcp-autoresponder-dismissed', array( $handler, 'ajax' ) );
 
+        $handler = awpcp_add_credit_plan_ajax_handler();
+        add_action( 'wp_ajax_awpcp-credit-plans-add', array( $handler, 'ajax') );
+
+        $handler = awpcp_edit_credit_plan_ajax_handler();
+        add_action( 'wp_ajax_awpcp-credit-plans-edit', array( $handler, 'ajax' ) );
+
+        $handler = awpcp_delete_credit_plan_ajax_handler();
+        add_action( 'wp_ajax_awpcp-credit-plans-delete', array( $handler, 'ajax' ) );
+
         $handler = awpcp_import_listings_ajax_handler();
         add_action( 'wp_ajax_awpcp-import-listings', array( $handler, 'ajax' ) );
 
