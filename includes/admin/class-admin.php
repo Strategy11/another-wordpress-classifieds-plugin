@@ -103,6 +103,7 @@ class AWPCP_Admin {
         add_filter( 'awpcp_list_table_actions_listings', array( $this, 'register_listings_table_actions' ) );
         add_filter( 'awpcp_list_table_search_listings', array( $this, 'register_listings_table_search_modes' ) );
 
+        add_action( 'admin_enqueue_scripts', [ $this, 'maybe_enqueue_meta_boxes_scripts' ] );
         add_action( 'add_meta_boxes_' . $this->post_type, array( $this, 'add_classifieds_meta_boxes' ) );
         add_action( 'save_post_' . $this->post_type, array( $this->container['ListingFieldsMetabox'], 'save' ), 10, 2 );
     }
@@ -177,6 +178,23 @@ class AWPCP_Admin {
     /**
      * @since 4.0.0
      */
+    public function maybe_enqueue_meta_boxes_scripts( $hook_suffix ) {
+        if ( 'post.php' !== $hook_suffix && 'post-new.php' !== $hook_suffix ) {
+            return;
+        }
+
+        $post = get_post();
+
+        if ( $this->post_type !== $post->post_type ) {
+            return;
+        }
+
+        $this->container['ListingFieldsMetabox']->enqueue_scripts();
+    }
+
+    /**
+     * @since 4.0.0
+     */
     public function add_classifieds_meta_boxes() {
         add_meta_box(
             'awpcp-classifieds-fields-metabox',
@@ -185,7 +203,5 @@ class AWPCP_Admin {
             $this->post_type,
             'advanced'
         );
-
-        add_action( 'admin_enqueue_scripts', array( $this->container['ListingFieldsMetabox'], 'enqueue_scripts' ) );
     }
 }
