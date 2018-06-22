@@ -92,6 +92,11 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
     private function save_new_listing_information( $listing ) {
         $transaction = $this->payments->get_transaction();
 
+        // TODO: I believe the post_status is never going to be auto-draft when
+        // pay before place ad is enabled.
+        //
+        // Hence save_information_for_new_listing_pending_payment() is never
+        // called.
         if ( $this->settings->get_option( 'pay-before-place-ad' ) ) {
             return $this->save_information_for_new_listing_already_paid( $listing, $transaction );
         }
@@ -121,8 +126,14 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
         $this->listings_logic->update_listing( $listing, $posted_data['post_data'] );
 
         // TODO: Handle redirects when the listing is still a draft.
+        // TODO: Shouldn't this sent the user to the finish step?
+        $redirect_params = [
+            'step'       => 'finish',
+            'listing_id' => $listing->ID,
+        ];
+
         $response = [
-            'redirect_url' => $this->listing_renderer->get_view_listing_url( $listing ),
+            'redirect_url' => add_query_arg( $redirect_params, $posted_data['current_url'] ),
         ];
 
         return $this->success( $response );

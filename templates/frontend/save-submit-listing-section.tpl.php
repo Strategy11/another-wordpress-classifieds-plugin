@@ -8,6 +8,7 @@
     <div class="awpcp-submit-listing-section-content">
         <div class="awpcp-save-submit-listing-section__edit_mode">
             <p class="form-submit">
+                <input class="button" type="reset" value="<?php echo esc_attr( _x( 'Clear form', 'save submit listing section', 'another-wordpress-classifieds-plugin' ) ); ?>"/>
                 <input class="button button-primary" type="submit" value="<?php echo esc_attr( $button_label ); ?>" name="submit"/>
             </p>
         </div>

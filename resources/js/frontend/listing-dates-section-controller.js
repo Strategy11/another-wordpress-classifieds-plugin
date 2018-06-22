@@ -85,21 +85,10 @@ AWPCP.define( 'awpcp/frontend/listing-dates-section-controller', [
                             data[ instance.id ] = instance.settings.altField.val();
 
                             self.store.updateListingFields( data );
-                            console.log( dateText, instance, data, self.store.getListingFields() );
                         }
                     }
                 } ) );
             } );
-
-            self.$startDate.change( function() {
-                console.log( arguments );
-            } );
-
-            self.$endDate.change( function() {
-                console.log( arguments );
-            } );
-
-            console.log( self.$startDate, self.$endDate );
 
             self.$element.addClass( 'rendered' );
         },
@@ -150,6 +139,12 @@ AWPCP.define( 'awpcp/frontend/listing-dates-section-controller', [
 
             self.$element.removeClass( 'rendered' );
             self.prepareTemplate();
+        },
+
+        clear: function() {
+            var self = this;
+
+            self.$element.find( '[datepicker-placeholder]' ).val( null ).trigger( 'change' );
         },
     } );
 

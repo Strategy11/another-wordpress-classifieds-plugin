@@ -21,6 +21,7 @@ class AWPCP_SubmitLisitngSectionsGenerator {
         $this->sections = [
             'order'          => new AWPCP_OrderSubmitListingSection(
                 awpcp()->container['Payments'],
+                awpcp()->container['ListingsLogic'],
                 awpcp()->container['ListingRenderer'],
                 awpcp()->container['RolesAndCapabilities'],
                 awpcp()->container['TemplateRenderer']

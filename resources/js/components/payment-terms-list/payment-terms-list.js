@@ -71,6 +71,13 @@ function( $, settings ) {
             return null;
         },
 
+        clearSelectedPaymentTerm: function() {
+            var self = this;
+
+            self.$container.find( '[name="payment_term"]' ).prop( 'checked', false );
+            self.update();
+        },
+
         update: function() {
             var disabledPaymentTerms = this._getDisabledPaymentTerms();
             var enabledPaymentTerms = this.state.allPaymentTerms.not( disabledPaymentTerms.get() );

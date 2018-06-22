@@ -40,7 +40,13 @@ function( $ ) {
                 price: $radio.data( 'credit-plan-price' ),
                 summary: $radio.data( 'credit-plan-summary' )
             };
-        }
+        },
+
+        clearSelectedCreditPlan: function() {
+            var self = this;
+
+            self.$container.find( '[name="credit_plan"]' ).prop( 'checked', false );
+        },
     } );
 
     return CreditPlansList;

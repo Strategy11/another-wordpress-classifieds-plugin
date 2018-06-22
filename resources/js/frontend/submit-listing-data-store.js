@@ -8,6 +8,12 @@ AWPCP.define( 'awpcp/frontend/submit-listing-data-store', [
     };
 
     $.extend( Store.prototype, {
+        setSectionStateToPreview: function( sectionId ) {
+            var self = this;
+
+            this.setSectionState( sectionId, 'preview' );
+        },
+
         setSectionStateToRead: function( sectionId ) {
             var self = this;
 
@@ -301,6 +307,10 @@ AWPCP.define( 'awpcp/frontend/submit-listing-data-store', [
             var self = this,
                 data, request;
 
+            if ( self.updateSectionsTimeout ) {
+                clearTimeout( self.updateSectionsTimeout );
+            }
+
             data = {
                 action: 'awpcp_update_submit_listing_sections',
                 sections: self.data.sectionsToUpdate,
@@ -315,13 +325,15 @@ AWPCP.define( 'awpcp/frontend/submit-listing-data-store', [
                 method: 'POST',
             };
 
-            request = $.ajax( options ).done( function( data ) {
-                if ( 'ok' === data.status ) {
-                    self.listener.reload( data.sections );
-                }
+            self.updateSectionsTimeout = setTimeout( function() {
+                request = $.ajax( options ).done( function( data ) {
+                    if ( 'ok' === data.status ) {
+                        self.listener.reload( data.sections );
+                    }
 
-                self.data.sectionsToUpdate = [];
-            } );
+                    self.data.sectionsToUpdate = [];
+                } );
+            }, 250 );
         },
 
         saveListingInformation: function() {
@@ -359,11 +371,32 @@ AWPCP.define( 'awpcp/frontend/submit-listing-data-store', [
             };
 
             request = $.ajax( options ).done( function( data ) {
-                console.log( 'save listing information', data );
-
                 if ( 'ok' === data.status && data.redirect_url ) {
                     document.location.href = data.redirect_url;
                     return;
+                }
+            } );
+        },
+
+        clearListingInformation: function() {
+            var self = this, data;
+
+            data = {
+                action: 'awpcp_clear_listing_information',
+                nonce: $.AWPCP.get( 'clear_listing_information_nonce' ),
+                ad_id: self.getListingId(),
+            };
+
+            options = {
+                url: $.AWPCP.get( 'ajaxurl' ),
+                data: data,
+                dataType: 'json',
+                method: 'POST',
+            };
+
+            request = $.ajax( options ).done( function( data ) {
+                if ( 'ok' === data.status ) {
+                    self.listener.clear();
                 }
             } );
         },

@@ -86,5 +86,14 @@ class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurati
                 $container['Request']
             );
         } );
+
+        $container['ClearListingInformationAjaxHandler'] = $container->service( function( $container ) {
+            return new AWPCP_ClearListingInformationAjaxHandler(
+                $container['ListingsLogic'],
+                $container['ListingsCollection'],
+                awpcp_ajax_response(),
+                $container['Request']
+            );
+        } );
     }
 }

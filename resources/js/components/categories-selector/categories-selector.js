@@ -127,6 +127,12 @@ function( $, CategoriesSelectorHelper ) {
             } );
         },
 
+        clearSelectedCategories: function() {
+            var self = this;
+
+            self.$select.val( null ).trigger( 'change' );
+        },
+
         getSelectedCategoriesIds: function() {
             var self = this;
 

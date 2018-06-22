@@ -617,4 +617,14 @@ class AWPCP_ListingsAPI {
     }
 
     // phpcs:enable Generic,Squiz,WordPress,PSR2,PEAR
+
+    /**
+     * @since 4.0.0
+     */
+    public function can_payment_information_be_modified_during_submit( $listing ) {
+        $payment_term   = $this->listing_renderer->get_payment_term( $listing );
+        $payment_status = $this->listing_renderer->get_payment_status( $listing );
+
+        return is_null( $payment_term ) || empty( $payment_status );
+    }
 }

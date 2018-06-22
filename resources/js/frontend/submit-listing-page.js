@@ -45,6 +45,14 @@ AWPCP.run( 'awpcp/frontend/submit-listing-page', [
 
                 self.sections[ data.id ].reload( data, self.$container );
             } );
+        },
+
+        clear: function() {
+            var self = this;
+
+            $.each( self.sections, function( index, section ) {
+                section.clear();
+            } );
         }
     } );
 
@@ -59,6 +67,7 @@ AWPCP.run( 'awpcp/frontend/submit-listing-page', [
             'save':           new SaveSectionController( AWPCPSubmitListingPageSections[4], store ),
         };
 
+        store.setSectionStateWithoutRefreshing( AWPCPSubmitListingPageSections[0].id, AWPCPSubmitListingPageSections[0].state );
         store.setSectionStateWithoutRefreshing( AWPCPSubmitListingPageSections[1].id, AWPCPSubmitListingPageSections[1].state );
         store.setSectionStateWithoutRefreshing( AWPCPSubmitListingPageSections[2].id, AWPCPSubmitListingPageSections[2].state );
         store.setSectionStateWithoutRefreshing( AWPCPSubmitListingPageSections[3].id, AWPCPSubmitListingPageSections[3].state );

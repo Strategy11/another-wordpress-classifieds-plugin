@@ -85,6 +85,14 @@ if (typeof jQuery !== 'undefined') {
                 return data;
             },
 
+            clearSelectedRegions: function() {
+                var self = this;
+
+                $.each( self.regions(), function( index, region ) {
+                    self.removeRegion( region );
+                } );
+            },
+
             addRegion: function(data, fields) {
                 var region;
 

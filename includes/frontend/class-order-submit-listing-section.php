@@ -14,6 +14,16 @@ class AWPCP_OrderSubmitListingSection {
     private $template = 'frontend/order-submit-listing-section.tpl.php';
 
     /**
+     * @var ListingsAPI
+     */
+    private $listings_logic;
+
+    /**
+     * @var ListingRenderer
+     */
+    private $listing_renderer;
+
+    /**
      * @var object
      */
     private $payments;
@@ -31,8 +41,9 @@ class AWPCP_OrderSubmitListingSection {
     /**
      * @since 4.0.0
      */
-    public function __construct( $payments, $listing_renderer, $roles, $template_renderer ) {
+    public function __construct( $payments, $listings_logic, $listing_renderer, $roles, $template_renderer ) {
         $this->payments          = $payments;
+        $this->listings_logic    = $listings_logic;
         $this->listing_renderer  = $listing_renderer;
         $this->roles             = $roles;
         $this->template_renderer = $template_renderer;
@@ -55,8 +66,16 @@ class AWPCP_OrderSubmitListingSection {
     /**
      * @since 4.0.0
      */
-    public function get_state() {
-        return 'edit';
+    public function get_state( $listing ) {
+        if ( is_null( $listing ) ) {
+            return 'edit';
+        }
+
+        if ( $this->listings_logic->can_payment_information_be_modified_during_submit( $listing ) ) {
+            return 'edit';
+        }
+
+        return 'read';
     }
 
     /**

@@ -27,7 +27,7 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
             }
 
             if ( 'loading' === self.store.getSectionState( self.id ) && self.store.getListingId() ) {
-                self.store.setSectionStateToRead( self.id );
+                self.store.setSectionStateToPreview( self.id );
                 return;
             }
 
@@ -53,6 +53,8 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
             self.$creditPlan               = $( '.awpcp-order-submit-listing-section--credit-plan' );
 
             self.$loadingMessage = self.$readModeContainer.find( '.awpcp-order-submit-listing-section--loading-message' );
+
+            self.$changeSelectionButton = self.$readModeContainer.find( '.awpcp-order-submit-listing-section--change-selection-button' );
 
             // We need to initialize the payment terms list first, so that it
             // can respond to initial events from Categories Selector and User fields.
@@ -120,6 +122,11 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
                 return;
             }
 
+            if ( 'preview' === state ) {
+                self.showPreviewMode();
+                return;
+            }
+
             if ( 'read' === state ) {
                 self.showReadingMode();
                 return;
@@ -133,6 +140,14 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
 
             self.showReadingMode();
             self.$loadingMessage.show();
+        },
+
+        showPreviewMode: function() {
+            var self = this;
+
+            self.showReadingMode();
+
+            self.$changeSelectionButton.show();
         },
 
         showReadingMode: function() {
@@ -162,6 +177,8 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
             if ( creditPlanSummary ) {
                 self.$creditPlan.show().find( 'span' ).html( creditPlanSummary )
             }
+
+            self.$changeSelectionButton.hide();
         },
 
         updateEditModeTemplate: function() {
@@ -190,6 +207,19 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
         },
 
         reload: function() {
+        },
+
+        clear: function() {
+            var self = this;
+
+            if ( 'read' === self.store.getSectionState( self.id ) ) {
+                return;
+            }
+
+            self.paymentTermsList.clearSelectedPaymentTerm();
+            self.categoriesSelector.clearSelectedCategories();
+            self.userSelector.clearSelectedUser();
+            self.creditPlansList.clearSelectedCreditPlan();
         }
     } );
 

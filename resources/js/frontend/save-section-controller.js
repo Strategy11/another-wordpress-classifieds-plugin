@@ -67,11 +67,18 @@ AWPCP.define( 'awpcp/frontend/save-section-controller', [
             self.$element = $( self.template ).replaceAll( self.$element );
 
             self.$submitButton = self.$element.find( ':submit' );
+            self.$resetButton  = self.$element.find( '[type="reset"]' );
 
             self.$submitButton.click( function( event ) {
                 event.preventDefault();
 
                 self.store.saveListingInformation();
+            } );
+
+            self.$resetButton.click( function( event ) {
+                event.preventDefault();
+
+                self.store.clearListingInformation();
             } );
 
             self.$element.addClass( 'rendered' );
@@ -93,7 +100,10 @@ AWPCP.define( 'awpcp/frontend/save-section-controller', [
             var self = this;
 
             self.prepareTemplate();
-        }
+        },
+
+        clear: function() {
+        },
     } );
 
     return SaveSectionController;

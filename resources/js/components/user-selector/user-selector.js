@@ -77,7 +77,13 @@ function( $ ) {
             }
 
             return { id: 0, name: '' };
-        }
+        },
+
+        clearSelectedUser: function() {
+            var self = this;
+
+            self.$select.val( null ).trigger( 'change' );
+        },
     } );
 
     return UserSelector;

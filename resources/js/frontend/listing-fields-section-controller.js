@@ -218,7 +218,14 @@ AWPCP.define( 'awpcp/frontend/listing-fields-section-controller', [
 
             self.$element.removeClass( 'rendered' );
             self.prepareTemplate();
-        }
+        },
+
+        clear: function( data ) {
+            var self = this;
+
+            self.$element.find( '.awpcp-has-value' ).val( null ).trigger( 'change' );
+            self.$regionsSelector.data( 'RegionSelector' ).clearSelectedRegions();
+        },
     } );
 
     return ListingFieldsSectionController;

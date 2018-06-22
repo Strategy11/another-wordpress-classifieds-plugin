@@ -127,7 +127,10 @@ AWPCP.define( 'awpcp/frontend/upload-media-section-controller', [
 
             self.$element.removeClass( 'rendered' );
             self.prepareTemplate();
-        }
+        },
+
+        clear: function() {
+        },
     } );
 
     return UploadMediaSectionController;
