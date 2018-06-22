@@ -16,6 +16,8 @@ function( $, ko, FileViewModel, settings ) {
         vm.haveOtherFiles = ko.computed( haveOtherFiles );
         vm.showAdminActions = ko.observable( !! options.show_admin_actions );
 
+        vm.enableFile       = enableFile;
+        vm.disableFile      = disableFile;
         vm.deleteFile = deleteFile;
         vm.setFileAsPrimary = setFileAsPrimary;
         vm.approveFile = approveFile;
@@ -32,9 +34,7 @@ function( $, ko, FileViewModel, settings ) {
 
         function prepareFiles( files ) {
             return $.map( files, function( file ) {
-                var model = new FileViewModel( file );
-                model.enabled.subscribe( updateFileEnabledStatus, model );
-                return model;
+                return new FileViewModel( file );
             } );
         }
 
@@ -109,9 +109,15 @@ function( $, ko, FileViewModel, settings ) {
             return mimeTypes === null ? [] : filterFilesByMimeType( vm.files(), mimeTypes );
         }
 
-        function updateFileEnabledStatus( newStatus ) {
-            var file = this;
+        function enableFile( file ) {
+            updateFileEnabledStatus( file, true );
+        }
 
+        function disableFile( file ) {
+            updateFileEnabledStatus( file, false );
+        }
+
+        function updateFileEnabledStatus( file, newStatus ) {
             if ( file.isBeingModified() ) {
                 return;
             } else {
@@ -125,9 +131,10 @@ function( $, ko, FileViewModel, settings ) {
                 file_id: file.id,
                 new_status: newStatus
             }, function( response ) {
-                if ( response.status !== 'ok' ) {
-                    file.enabled( ! newStatus );
+                if ( 'ok' === response.status ) {
+                    file.enabled( newStatus );
                 }
+
                 file.isBeingModified( false );
             } );
         }

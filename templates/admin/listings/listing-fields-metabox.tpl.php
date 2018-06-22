@@ -16,5 +16,5 @@
     </ul>
     <div id="awpcp-listing-fields--form-fields" class="awpcp-tab-panel awpcp-tab-panel-active"><?php echo $details_form_fields; // XSS Ok. ?></div>
     <div id="awpcp-listing-fields--start-end-date" class="awpcp-tab-panel"><?php echo $date_form_fields; // XSS Ok. ?></div>
-    <div id="awpcp-listing-fields--media-manager" class="awpcp-tab-panel"><?php echo $media_manager; // XSS Ok. ?></div>
+    <div id="awpcp-listing-fields--media-manager" class="awpcp-listing-fields--media-manager-tab-panel awpcp-tab-panel"><?php echo $media_manager; // XSS Ok. ?></div>
 </div>
