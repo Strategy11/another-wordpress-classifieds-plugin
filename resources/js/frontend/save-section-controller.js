@@ -72,7 +72,9 @@ AWPCP.define( 'awpcp/frontend/save-section-controller', [
             self.$submitButton.click( function( event ) {
                 event.preventDefault();
 
-                self.store.saveListingInformation();
+                if ( self.store.isValid() ) {
+                    self.store.saveListingInformation();
+                }
             } );
 
             self.$resetButton.click( function( event ) {

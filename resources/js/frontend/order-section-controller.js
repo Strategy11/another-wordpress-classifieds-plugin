@@ -191,13 +191,17 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
         onContinueButtonClicked: function() {
             var self = this;
 
-            if ( ! self.store.getListingId() ) {
+            if ( ! self.store.getListingId() && self.store.isValid() ) {
                 self.store.createEmptyListing();
                 self.store.setSectionStateToLoading( self.id );
                 return;
             }
 
-            self.store.setSectionStateToRead( self.id );
+            if ( ! self.store.getListingId() ) {
+                return;
+            }
+
+            self.store.setSectionStateToPreview( self.id );
         },
 
         onChangeSelectionButtonClicked: function() {

@@ -614,6 +614,7 @@ class AWPCP {
         add_action( 'init', array( $this->compatibility, 'load_plugin_integrations_on_init' ) );
         add_action( 'init', array( $this->plugin_integrations, 'load_plugin_integrations' ), AWPCP_LOWEST_FILTER_PRIORITY );
 		add_action( 'init', array($this, 'init' ));
+        add_action( 'init', [ $this, 'register_scripts' ], AWPCP_LOWEST_FILTER_PRIORITY );
 		add_action( 'init', array($this, 'register_custom_style'), AWPCP_LOWEST_FILTER_PRIORITY );
 
         // XXX: This is really a hack. We should get the priorities on order or
@@ -861,7 +862,6 @@ class AWPCP {
             $this->maybe_fix_browse_categories_page_information();
         }
 
-        $this->register_scripts();
         $this->register_notification_handlers();
 	}
 
@@ -1471,15 +1471,15 @@ class AWPCP {
             true
         );
 
+        $dependencies = [
+            'awpcp',
+            'awpcp-jquery-validate',
+        ];
+
         wp_register_script(
             'awpcp-submit-listing-page',
             "{$js}/frontend/submit-listing-page.min.js",
-            // TODO: Use a filter to allow premium modules to enqueue their
-            //       scripts as dependencies.
-            [
-                'awpcp',
-                'awpcp-jquery-validate',
-            ],
+            apply_filters( 'awpcp_submit_listing_page_script_dependencies', $dependencies ),
             $awpcp_db_version,
             true
         );

@@ -49,6 +49,8 @@ class AWPCP_SubmitLisitngSectionsGenerator {
             ),
         ];
 
+        $this->sections = apply_filters( 'awpcp_submit_listing_sections', $this->sections );
+
         $sections = [];
 
         foreach ( $this->sections as $section_id => $section ) {
@@ -56,7 +58,7 @@ class AWPCP_SubmitLisitngSectionsGenerator {
                 continue;
             }
 
-            $sections[] = [
+            $sections[ $section_id ] = [
                 'id'       => $section_id,
                 'position' => $section->get_position(),
                 'state'    => $section->get_state( $listing ),
@@ -65,6 +67,10 @@ class AWPCP_SubmitLisitngSectionsGenerator {
 
             $section->enqueue_scripts();
         }
+
+        uasort( $sections, function( $section_a, $section_b ) {
+            return $section_a['position'] - $section_b['position'];
+        } );
 
         return $sections;
     }

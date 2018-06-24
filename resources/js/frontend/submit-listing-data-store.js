@@ -263,9 +263,22 @@ AWPCP.define( 'awpcp/frontend/submit-listing-data-store', [
             return self.data.fields || {};
         },
 
+        updateCustomData: function( data ) {
+            var self = this;
+
+            self.data.custom = $.extend( self.data.custom || {}, data );
+
+            self.refresh();
+        },
+
+        getCustomData: function() {
+            var self = this;
+
+            return self.data.custom || {};
+        },
+
         createEmptyListing: function() {
-            var self = this,
-                paymentTerm, data, request;
+            var self = this, request, paymentTerm, data;
 
             paymentTerm  = self.getSelectedPaymentTerm();
             creditPlanId = self.getSelectedCreditPlanId();
@@ -279,6 +292,7 @@ AWPCP.define( 'awpcp/frontend/submit-listing-data-store', [
                 payment_term_payment_type: paymentTerm.mode,
                 credit_plan:               creditPlanId,
                 user_id:                   self.getSelectedUserId(),
+                custom:                    self.getCustomData(),
                 current_url:               document.location.href,
             };
 
@@ -357,6 +371,7 @@ AWPCP.define( 'awpcp/frontend/submit-listing-data-store', [
                 payment_term_type: paymentTerm.type,
                 payment_type: paymentTerm.mode,
                 credit_plan: creditPlanId,
+                custom:            self.getCustomData(),
                 current_url:       document.location.href,
             } );
 
@@ -400,6 +415,10 @@ AWPCP.define( 'awpcp/frontend/submit-listing-data-store', [
                 }
             } );
         },
+
+        isValid: function() {
+            return this.listener.validate();
+        }
     } );
 
     return Store;

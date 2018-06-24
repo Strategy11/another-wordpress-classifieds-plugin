@@ -53,29 +53,64 @@ AWPCP.run( 'awpcp/frontend/submit-listing-page', [
             $.each( self.sections, function( index, section ) {
                 section.clear();
             } );
-        }
+        },
+
+        validate: function() {
+            var self = this,
+                errors = {},
+                errorsCount = 0;
+
+            $.each( self.sections, function( index, section ) {
+                if ( ! section.validate ) {
+                    return;
+                }
+
+                errors[ section.id ] = section.validate();
+                errorsCount = errorsCount + errors[ section.id ].length;
+            } );
+
+            if ( 0 === errorsCount ) {
+                return true;
+            }
+
+            $.each( errors, function( sectionId, sectionErrors ) {
+                self.sections[ sectionId ].showErrors( sectionErrors );
+            } );
+
+            $( 'html, body' ).animate( {
+                scrollTop: self.$container.find( '.awpcp-error:visible' ).eq( 0 ).offset().top - 200
+            }, 'fast' );
+        },
     } );
 
     $( function() {
-        var store = new Store();
+        var store = new Store(),
+            sections = {},
+            controllers,
+            page;
 
-        var sections = {
-            'order':          new OrderSectionController( AWPCPSubmitListingPageSections[0], store ),
-            'listing-dates':  new ListingDatesSectionController( AWPCPSubmitListingPageSections[1], store ),
-            'listing-fields': new ListingFieldsSectionController( AWPCPSubmitListingPageSections[2], store ),
-            'upload-media':   new UploadMediaSectionController( AWPCPSubmitListingPageSections[3], store ),
-            'save':           new SaveSectionController( AWPCPSubmitListingPageSections[4], store ),
+        controllers = {
+            'order':          OrderSectionController,
+            'listing-dates':  ListingDatesSectionController,
+            'listing-fields': ListingFieldsSectionController,
+            'upload-media':   UploadMediaSectionController,
+            'save':           SaveSectionController,
         };
 
-        store.setSectionStateWithoutRefreshing( AWPCPSubmitListingPageSections[0].id, AWPCPSubmitListingPageSections[0].state );
-        store.setSectionStateWithoutRefreshing( AWPCPSubmitListingPageSections[1].id, AWPCPSubmitListingPageSections[1].state );
-        store.setSectionStateWithoutRefreshing( AWPCPSubmitListingPageSections[2].id, AWPCPSubmitListingPageSections[2].state );
-        store.setSectionStateWithoutRefreshing( AWPCPSubmitListingPageSections[3].id, AWPCPSubmitListingPageSections[3].state );
-        store.setSectionStateWithoutRefreshing( AWPCPSubmitListingPageSections[4].id, AWPCPSubmitListingPageSections[4].state );
+        /**
+         * Use $.subscribe( 'awpcp/register-submit-listing-section-controllers', function( event, controllers ) {} )
+         * to register additional sections controllers.
+         */
+        $.publish( 'awpcp/register-submit-listing-section-controllers', [ controllers ] );
 
-        var page = new Page( store, sections, $( '.awpcp-submit-listing-page-form' ) );
+        $.each( AWPCPSubmitListingPageSections, function( index, section ) {
+            sections[ index ] = new controllers[ index ]( section, store );
 
-        store.listener = page;
+            store.setSectionStateWithoutRefreshing( section.id, section.state );
+        } );
+
+        store.listener = new Page( store, sections, $( '.awpcp-submit-listing-page-form' ) );
+
         store.refresh();
     } );
 } );
