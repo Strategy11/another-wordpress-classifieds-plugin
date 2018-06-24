@@ -123,9 +123,14 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
 
         wp_enqueue_script( 'awpcp-submit-listing-page' );
 
-        $sections = $this->sections_generator->get_sections( $listing );
+        $params = [
+            'transaction' => $transaction,
+            'sections'    => $this->sections_generator->get_sections( $listing ),
+        ];
 
-        return $this->render( 'content', '<form class="awpcp-submit-listing-page-form"></form><script type="text/javascript">var AWPCPSubmitListingPageSections = ' . wp_json_encode( $sections ) . ';</script>' );
+        $template = AWPCP_DIR . '/templates/frontend/submit-listing-page/listing-information-step.tpl.php';
+
+        return $this->render( $template, $params );
     }
 
     /**
