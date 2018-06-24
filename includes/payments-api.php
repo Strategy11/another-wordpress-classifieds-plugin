@@ -560,28 +560,6 @@ class AWPCP_PaymentsAPI {
         return awpcp_print_message( $text );
     }
 
-    public function render_payment_terms_form_field($transaction, $table, $form_errors) {
-        $items = $table->get_items();
-
-        $show_payment_terms = true;
-        $accepted_payment_types = $this->get_accepted_payment_types();
-
-        // do not show payment terms if payments are disabled and there is only
-        // one payment term available (the Free Listing fee);
-        if ( count( $items ) === 1 && !$this->payments_enabled() ) {
-            if ( $items[0]->type === AWPCP_FeeType::TYPE && $items[0]->id === 0 ) {
-                $show_payment_terms = false;
-            }
-        }
-
-        ob_start();
-            include( AWPCP_DIR . '/frontend/templates/payments-payment-terms-form-field.tpl.php' );
-            $html = ob_get_contents();
-        ob_end_clean();
-
-        return $html;
-    }
-
     /**
      * @since  2.2.2
      */
