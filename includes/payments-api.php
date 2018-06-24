@@ -391,7 +391,7 @@ class AWPCP_PaymentsAPI {
             $payment_type = AWPCP_Payment_Transaction::PAYMENT_TYPE_MONEY;
         }
 
-        if ( ! in_array( $payment_type, $this->get_accepted_payment_types() ) ) {
+        if ( ! in_array( $payment_type, $this->get_accepted_payment_types(), true ) ) {
             awpcp_flash( __( "The selected payment type can't be used in this kind of transaction.", 'another-wordpress-classifieds-plugin' ), 'error' );
             return;
         }
@@ -401,6 +401,16 @@ class AWPCP_PaymentsAPI {
             return;
         }
 
+        return $transaction->add_item(
+            "{$payment_term->type}-{$payment_term->id}-${payment_type}",
+            $payment_term->get_name(),
+            $payment_term->description,
+            $payment_type,
+            $this->calculate_payment_term_price( $payment_term, $payment_type, $transaction )
+        );
+    }
+
+    public function calculate_payment_term_price( $payment_term, $payment_type, $transaction ) {
         if ( $payment_type == 'credits' ) {
             $payment_amount = $payment_term->credits;
         } else {
@@ -415,13 +425,7 @@ class AWPCP_PaymentsAPI {
             $transaction
         );
 
-        return $transaction->add_item(
-            "{$payment_term->type}-{$payment_term->id}-${payment_type}",
-            $payment_term->get_name(),
-            $payment_term->description,
-            $payment_type,
-            $payment_amount
-        );
+        return $payment_amount;
     }
 
     public function process_transaction($transaction) {

@@ -457,6 +457,7 @@ class AWPCP_ListingsAPI {
         $this->wordpress->delete_post_meta( $listing->ID, '_awpcp_renew_email_sent' );
         $this->wordpress->update_post_meta( $listing->ID, '_awpcp_renewed_date', current_time( 'mysql' ) );
 
+        // TODO: Fix is_disabled verification.
         if ( $this->listing_renderer->is_disabled( $listing ) ) {
             $this->enable_listing( $listing );
         }

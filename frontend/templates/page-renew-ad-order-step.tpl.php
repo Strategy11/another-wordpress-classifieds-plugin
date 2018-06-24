@@ -1,4 +1,11 @@
-<h2><?php _ex('Select Payment Term', 'renew ad order step', 'another-wordpress-classifieds-plugin') ?></h2>
+<?php
+/**
+ * @package AWPCP\Templates
+ */
+
+// phpcs:disable
+
+?><h2><?php _ex('Select Payment Term', 'renew ad order step', 'another-wordpress-classifieds-plugin') ?></h2>
 
 <?php foreach ($messages as $message): ?>
     <?php echo awpcp_print_message($message) ?>
@@ -14,7 +21,7 @@
 
 <form class="awpcp-order-form" method="post">
     <?php echo awpcp_form_error( 'payment-term', $form_errors ); ?>
-    <?php echo $payment_terms_list->render( null, array( 'payment_terms' => $payment_terms ) ); ?>
+    <?php echo $payment_terms_list->render( null, $payment_terms_list_options ); ?>
 
     <?php echo $payments->render_credit_plans_table( $transaction ); ?>
 

@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package AWPCP\Frontend
+ */
+
+// phpcs:disable
 
 require_once(AWPCP_DIR . '/frontend/page-place-ad.php');
 
@@ -55,6 +60,10 @@ class AWPCP_RenewAdPage extends AWPCP_Place_Ad_Page {
         return awpcp_verify_renew_ad_hash( $ad->ID, $this->request->param( 'awpcprah' ) );
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     * @SuppressWarnings(PHPMD.NPathComplexity)
+     */
     protected function _dispatch($default=null) {
         $action = $this->get_current_action( $default );
         $ad = $this->get_ad();
@@ -124,6 +133,9 @@ class AWPCP_RenewAdPage extends AWPCP_Place_Ad_Page {
         }
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.ElseExpression)
+     */
     protected function get_renew_ad_page_implementation($ad) {
         $term = $this->listing_renderer->get_payment_term( $ad );
 
@@ -138,6 +150,9 @@ class AWPCP_RenewAdPage extends AWPCP_Place_Ad_Page {
         }
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.ElseExpression)
+     */
     public function get_return_link($ad) {
         if (is_admin()) {
             return sprintf('<a href="%1$s">%2$s</a>', $this->get_panel_url(), __('Return to Listings', 'another-wordpress-classifieds-plugin'));
@@ -186,6 +201,9 @@ class AWPCP_RenewAdPageImplementation {
         $this->request = $request;
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.ElseExpression)
+     */
     protected function validate_order($data, &$errors=array()) {
         if ( is_null( $data['payment_term'] ) ) {
             $errors[] = __('You should choose one of the available Payment Terms.', 'another-wordpress-classifieds-plugin');
@@ -196,9 +214,15 @@ class AWPCP_RenewAdPageImplementation {
         }
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.ElseExpression)
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     */
     public function order_step() {
-        $ad = $this->page->get_ad();
-        $transaction = $this->page->get_transaction(true);
+        $ad                  = $this->page->get_ad();
+        $transaction         = $this->page->get_transaction(true);
+        $selected_categories = $this->listing_renderer->get_categories_ids( $ad );
 
         $fee = $this->listing_renderer->get_payment_term( $ad );
 
@@ -211,6 +235,8 @@ class AWPCP_RenewAdPageImplementation {
             $this->payments->set_transaction_status_to_open( $transaction, $transaction_errors );
         }
 
+        $transaction->set( 'category', $selected_categories );
+
         // validate submitted data and prepare transaction
 
         $payment_terms = new AWPCP_PaymentTermsTable(array($fee->type => array($fee)), $transaction->get('payment-term'));
@@ -218,7 +244,10 @@ class AWPCP_RenewAdPageImplementation {
         $payment_terms_list = awpcp_payment_terms_list();
 
         if ( awpcp_current_user_is_admin() || ! $this->payments->payment_term_requires_payment( $fee ) ) {
+            $accepted_payment_types = $this->payments->get_accepted_payment_types();
+
             $payment_term = $fee;
+            $payment_type = array_shift( $accepted_payment_types );
 
             $transaction->set('payment-term-type', $payment_term->type);
             $transaction->set('payment-term-id', $payment_term->id);
@@ -287,8 +316,11 @@ class AWPCP_RenewAdPageImplementation {
         $params = array(
             'payments' => $this->payments,
             'transaction' => $transaction,
-            'payment_terms' => $payment_terms,
-            'payment_terms_list' => $payment_terms_list,
+            'payment_terms_list'         => $payment_terms_list,
+            'payment_terms_list_options' => [
+                'payment_terms' => $payment_terms,
+                'transaction'   => $transaction,
+            ],
 
             'messages' => $messages,
             'form_errors' => $form_errors,
