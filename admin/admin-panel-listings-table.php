@@ -366,9 +366,13 @@ class AWPCP_Listings_Table extends WP_List_Table {
             $actions = '';
         }
 
+        $status = '';
+
         if ( $this->listing_renderer->is_disabled( $item ) ) {
             $status = __( 'Disabled', 'another-wordpress-classifieds-plugin' );
-        } else {
+        }
+
+        if ( $this->listing_renderer->is_public( $item ) ) {
             $status = __( 'Enabled', 'another-wordpress-classifieds-plugin' );
         }
 

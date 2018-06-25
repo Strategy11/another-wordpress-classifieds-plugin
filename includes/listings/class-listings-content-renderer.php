@@ -29,7 +29,7 @@ class AWPCP_ListingsContentRenderer {
     public function render( $content, $post ) {
         $user_can_see_disabled_listing = $this->current_user_can_see_disabled_listing( $post );
 
-        if ( $this->listing_renderer->is_disabled( $post ) && ! $user_can_see_disabled_listing ) {
+        if ( ! $this->listing_renderer->is_public( $post ) && ! $user_can_see_disabled_listing ) {
             $message = __( 'The listing you are trying to view is not available right now.', 'another-wordpress-classifieds-plugin' );
             return awpcp_print_error( $message );
         }

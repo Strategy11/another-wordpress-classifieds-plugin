@@ -34,7 +34,7 @@ class AWPCP_SendListingToFacebookHelper {
             return;
         }
 
-        if ( $this->listing_renderer->is_disabled( $listing ) ) {
+        if ( ! $this->listing_renderer->is_public( $listing ) ) {
             return;
         }
 

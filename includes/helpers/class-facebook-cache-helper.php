@@ -53,7 +53,7 @@ class AWPCP_FacebookCacheHelper {
     }
 
     private function clear_ad_cache( $ad ) {
-        if (is_null( $ad ) || $this->listing_renderer->is_disabled( $ad ) ) {
+        if ( is_null( $ad ) || ! $this->listing_renderer->is_public( $ad ) ) {
             return;
         }
 

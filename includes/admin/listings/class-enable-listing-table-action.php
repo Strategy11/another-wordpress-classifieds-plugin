@@ -37,7 +37,7 @@ class AWPCP_EnableListingTableAction implements AWPCP_ListTableActionInterface {
             return false;
         }
 
-        return $this->listing_renderer->is_disabled( $post );
+        return ! $this->listing_renderer->is_public( $post );
     }
 
     /**

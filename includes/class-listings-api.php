@@ -197,7 +197,7 @@ class AWPCP_ListingsAPI {
             $this->send_verification_email( $ad );
         }
 
-        if ( ! $is_listing_verified && ! $this->listing_renderer->is_disabled( $ad ) ) {
+        if ( ! $is_listing_verified && $this->listing_renderer->is_public( $ad ) ) {
             $this->disable_listing( $ad );
         }
 
@@ -212,7 +212,7 @@ class AWPCP_ListingsAPI {
 
         // if Ad is enabled and should be disabled, then disable it, otherwise
         // do not alter the Ad disabled status.
-        if ( $should_disable_listing && ! $this->listing_renderer->is_disabled( $ad )  ) {
+        if ( $should_disable_listing && $this->listing_renderer->is_public( $ad )  ) {
             $this->disable_listing( $ad );
             $this->wordpress->delete_post_meta( $ad->ID, '_awpcp_disabled_date' );
         } else if ( $should_disable_listing ) {
@@ -457,8 +457,7 @@ class AWPCP_ListingsAPI {
         $this->wordpress->delete_post_meta( $listing->ID, '_awpcp_renew_email_sent' );
         $this->wordpress->update_post_meta( $listing->ID, '_awpcp_renewed_date', current_time( 'mysql' ) );
 
-        // TODO: Fix is_disabled verification.
-        if ( $this->listing_renderer->is_disabled( $listing ) ) {
+        if ( ! $this->listing_renderer->is_public( $listing ) ) {
             $this->enable_listing( $listing );
         }
 

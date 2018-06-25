@@ -45,8 +45,8 @@ class AWPCP_SendToFacebookHelper {
             throw new AWPCP_ListingAlreadySharedException( __( 'The Ad was already sent to Facebook Page.', 'another-wordpress-classifieds-plugin' ) );
         }
 
-        if ( $this->listing_renderer->is_disabled( $listing ) ) {
-            throw new AWPCP_ListingDisabledException( __( "The Ad is currently disabled. If you share it, Facebook servers and users won't be able to access it.", 'another-wordpress-classifieds-plugin' ) );
+        if ( ! $this->listing_renderer->is_public( $listing ) ) {
+            throw new AWPCP_ListingDisabledException( __( "The Ad is currently not public. If you share it, Facebook servers and users won't be able to access it.", 'another-wordpress-classifieds-plugin' ) );
         }
 
         $this->do_facebook_request( $listing,
@@ -100,7 +100,7 @@ class AWPCP_SendToFacebookHelper {
      * @param object $listing   An instance of WP_Post.
      * @throws AWPCP_NoFacebookObjectSelectedException  If no group has been selected on the configuration.
      * @throws AWPCP_ListingAlreadySharedException      If the listing was already shared to a Facebook group.
-     * @throws AWPCP_ListingDisabledException           If the listing is disabled.
+     * @throws AWPCP_ListingDisabledException           If the listing is not public.
      */
     public function send_listing_to_facebook_group( $listing ) {
         $this->facebook_config->set_access_token( 'user_token' );
@@ -113,8 +113,8 @@ class AWPCP_SendToFacebookHelper {
             throw new AWPCP_ListingAlreadySharedException( __( 'The Ad was already sent to Facebook Group.', 'another-wordpress-classifieds-plugin' ) );
         }
 
-        if ( $this->listing_renderer->is_disabled( $listing ) ) {
-            throw new AWPCP_ListingDisabledException( __( "The Ad is currently disabled. If you share it, Facebook servers and users won't be able to access it.", 'another-wordpress-classifieds-plugin' ) );
+        if ( ! $this->listing_renderer->is_public( $listing ) ) {
+            throw new AWPCP_ListingDisabledException( __( "The Ad is currently is not public. If you share it, Facebook servers and users won't be able to access it.", 'another-wordpress-classifieds-plugin' ) );
         }
 
         $this->do_facebook_request(
