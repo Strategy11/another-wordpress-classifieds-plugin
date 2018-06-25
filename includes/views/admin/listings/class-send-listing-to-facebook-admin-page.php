@@ -1,5 +1,13 @@
 <?php
+/**
+ * @package AWPCP\Admin\Listings
+ */
 
+// phpcs:disable
+
+/**
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
 function awpcp_send_listing_to_facebook_admin_page() {
     return new AWPCP_SendListingToFacebookAdminPage(
         awpcp_send_to_facebook_helper(),
@@ -28,6 +36,9 @@ class AWPCP_SendListingToFacebookAdminPage extends AWPCP_ListingActionAdminPage 
         $this->listing_renderer = $listing_renderer;
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.ElseExpression)
+     */
     public function dispatch() {
         $destinations = array();
 
@@ -80,6 +91,9 @@ class AWPCP_SendListingToFacebookAdminPage extends AWPCP_ListingActionAdminPage 
         $this->successful['group'] = $this->successful['group'] + 1;
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.ElseExpression)
+     */
     private function show_results() {
         $listings_processed = array_sum( $this->successful );
         $listings_failed = array_sum( $this->failed );

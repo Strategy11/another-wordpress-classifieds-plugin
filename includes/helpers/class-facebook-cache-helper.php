@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package AWPCP
+ */
+
+// phpcs:disable
 
 function awpcp_facebook_cache_helper() {
     return new AWPCP_FacebookCacheHelper(
@@ -52,6 +57,9 @@ class AWPCP_FacebookCacheHelper {
         $this->clear_ad_cache( $listing );
     }
 
+    /**
+     * @SuppressWarnings(ElseExpression)
+     */
     private function clear_ad_cache( $ad ) {
         if ( is_null( $ad ) || ! $this->listing_renderer->is_public( $ad ) ) {
             return;

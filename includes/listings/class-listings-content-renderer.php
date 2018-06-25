@@ -34,7 +34,9 @@ class AWPCP_ListingsContentRenderer {
             return awpcp_print_error( $message );
         }
 
+        // phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
         $output = apply_filters( 'awpcp-show-listing-content-replacement', null, $content, $post );
+        // phpcs:enable
 
         if ( ! is_null( $output ) ) {
             return $output;
@@ -42,9 +44,9 @@ class AWPCP_ListingsContentRenderer {
 
         // TODO: We may need to move this to a different place to avoid over-counting.
         // TODO: Avoid counting previews, admin views and anything that does not occur
-        //       while a visitor is exploring the frontend website.
+        // while a visitor is exploring the frontend website.
         //
-        //       Perhaps even ignore administrator and owner views.
+        // Perhaps even ignore administrator and owner views.
         if ( ! awpcp_request()->is_bot() ) {
             awpcp_listings_api()->increase_visits_count( $post );
         }
@@ -149,6 +151,7 @@ class AWPCP_ListingsContentRenderer {
      * @param string $content   The content of the post.
      * @param object $post      An instance of WP_Post.
      * @return Show Ad page content.
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function render_content_without_notices( $content, $post ) {
         // Filters to provide alternative method of storing custom layouts.
@@ -173,8 +176,10 @@ class AWPCP_ListingsContentRenderer {
             )
         );
 
+        // phpcs:disable
         $content_before_page = apply_filters( 'awpcp-content-before-listing-page', awpcp_render_classifieds_bar() );
         $content_after_page  = apply_filters( 'awpcp-content-after-listing-page', '' );
+        // phpcs:enable
 
         $output = '<div id="classiwrapper">%s<!--awpcp-single-ad-layout-->%s</div><!--close classiwrapper-->';
         $output = sprintf( $output, $content_before_page, $content_after_page );
@@ -183,7 +188,9 @@ class AWPCP_ListingsContentRenderer {
         $layout = awpcp_do_placeholders( $post, $layout, 'single' );
 
         $output = str_replace( '<!--awpcp-single-ad-layout-->', $layout, $output );
+        // phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
         $output = apply_filters( 'awpcp-show-ad', $output, $post->ID );
+        // phpcs:enable
 
         return $output;
     }

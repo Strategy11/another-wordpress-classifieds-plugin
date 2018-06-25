@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package AWPCP
+ */
+
+// phpcs:disable
 
 function awpcp_send_listing_to_facebook_helper() {
     return new AWPCP_SendListingToFacebookHelper(
