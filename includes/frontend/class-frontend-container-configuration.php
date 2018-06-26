@@ -27,7 +27,9 @@ class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurati
         $container['EditListingPage'] = $container->service( function( $container ) {
             return new AWPCP_EditListingPage(
                 $container['SubmitListingSectionsGenerator'],
+                $container['ListingRenderer'],
                 $container['ListingsCollection'],
+                $container['Settings'],
                 $container['Request']
             );
         } );

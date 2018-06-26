@@ -4,7 +4,7 @@
 <?php _e( 'Total ads found sharing your email address', 'another-wordpress-classifieds-plugin' ); ?>: <?php echo count( $ads ); ?> 
 
 <?php foreach ( $ads as $ad ): ?>
-<?php echo $ad->get_title(); ?> 
+<?php echo $listing_renderer->get_listing_title( $ad ); ?> 
 <?php _e( 'Access Key', 'another-wordpress-classifieds-plugin' ); ?>: <?php echo $listing_renderer->get_access_key( $ad ); ?> 
 <?php _e( 'Edit Link:', 'another-wordpress-classifieds-plugin' ); ?> <?php echo awpcp_get_edit_listing_url_with_access_key( $ad ); ?> 
  
