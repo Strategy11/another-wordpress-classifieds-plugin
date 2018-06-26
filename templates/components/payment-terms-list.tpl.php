@@ -33,7 +33,7 @@
                 $checked = '';
             }
             ?>
-            <label class="awpcp-payment-term-price-in-currency"><input type="radio" name="payment_term" value="<?php echo esc_html( $payment_term['price']['currency_option'] ); ?>"<?php echo $checked; // XSS Ok. ?> data-payment-term-id="<?php echo esc_attr( $payment_term['id'] ); ?>" data-payment-term-type="<?php echo esc_attr( $payment_term['type'] ); ?>" data-payment-term-mode="money" data-payment-term-summary="<?php echo esc_attr( $payment_term['summary-currency'] ); ?>">&nbsp;<span class="awpcp-payment-terms-list-payment-term-currency-amount"><?php echo esc_html( $payment_term['price']['currency_amount'] ); ?></span></label>
+            <label class="awpcp-payment-term-price-in-money"><input type="radio" name="payment_term" value="<?php echo esc_html( $payment_term['price']['currency_option'] ); ?>"<?php echo $checked; // XSS Ok. ?> data-payment-term-id="<?php echo esc_attr( $payment_term['id'] ); ?>" data-payment-term-type="<?php echo esc_attr( $payment_term['type'] ); ?>" data-payment-term-mode="money" data-payment-term-summary="<?php echo esc_attr( $payment_term['summary-currency'] ); ?>">&nbsp;<span class="awpcp-payment-terms-list-payment-term-currency-amount"><?php echo esc_html( $payment_term['price']['currency_amount'] ); ?></span></label>
             <?php endif; ?>
             <?php if ( $show_credits_payment_option ) : ?>
             <?php
