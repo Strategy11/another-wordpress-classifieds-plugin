@@ -156,7 +156,7 @@ class AWPCP_CreateEmptyListingAjaxHandler extends AWPCP_AjaxHandler {
 
         $data = [
             'post_fields' => [
-                'post_title'  => __( 'Classified Auto Draft', 'another-wordpress-classifieds-plugin' ),
+                'post_title'  => 'Classified Auto Draft',
                 'post_status' => 'auto-draft',
                 'post_author' => $user_id,
             ],

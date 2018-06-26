@@ -68,6 +68,11 @@ class AWPCP_FormFieldsData {
         // devide them by 100.
         $data['ad_item_price'] = $data['ad_item_price'] / 100;
 
+        // Remove default title for listings created on the frontend.
+        if ( 'Classified Auto Draft' === $data['ad_title'] ) {
+            $data['ad_title'] = '';
+        }
+
         return apply_filters( 'awpcp_form_fields_stored_data', $data, 'details' );
     }
 
