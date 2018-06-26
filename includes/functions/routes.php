@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package AWPCP
+ */
+
+// phpcs:disable
 
 /**
  * Returns the current name of the AWPCP main page.
@@ -456,30 +461,31 @@ function awpcp_get_edit_listing_url_with_access_key( $listing ) {
 function awpcp_create_edit_listing_access_token( $listing ) {
 	$i = wp_nonce_tick();
 
-	$nonce = substr( wp_hash( $i . '|' . $listing->ad_id, 'nonce' ), -12, 10 );
-    $id_hash = substr( wp_hash( $nonce . '|' . $listing->ad_id, 'nonce' ), -12, 10 );
+	$nonce = substr( wp_hash( $i . '|' . $listing->ID, 'nonce' ), -12, 10 );
+    $id_hash = substr( wp_hash( $nonce . '|' . $listing->ID, 'nonce' ), -12, 10 );
 
-    return $nonce . $id_hash . '-' . $listing->ad_id;
+    return $nonce . $id_hash . '-' . $listing->ID;
 }
 
 function awpcp_verify_edit_listing_access_token( $access_token, $listing ) {
-    $i = wp_nonce_tick();
+    $listing_id = $listing->ID;
+    $i          = wp_nonce_tick();
 
     $nonce = substr( $access_token, 0, 10 );
-    $expected_nonce = substr( wp_hash( $i . '|' . $listing->ad_id, 'nonce' ), -12, 10 );
+    $expected_nonce = substr( wp_hash( $i . '|' . $listing_id, 'nonce' ), -12, 10 );
 
     if ( hash_equals( $nonce, $expected_nonce ) ) {
         return 'valid';
     }
 
-    $expected_nonce = substr( wp_hash( ( $i - 1 ) . '|' . $listing->ad_id, 'nonce' ), -12, 10 );
+    $expected_nonce = substr( wp_hash( ( $i - 1 ) . '|' . $listing_id, 'nonce' ), -12, 10 );
 
     if ( hash_equals( $nonce, $expected_nonce ) ) {
         return 'valid';
     }
 
     $id_hash = substr( $access_token, 10 );
-    $expected_id_hash = substr( wp_hash( $nonce . '|' . $listing->ad_id, 'nonce' ), -12, 10 );
+    $expected_id_hash = substr( wp_hash( $nonce . '|' . $listing_id, 'nonce' ), -12, 10 );
 
     return hash_equals( $id_hash, $expected_id_hash ) ? 'expired' : 'invalid';
 }

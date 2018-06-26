@@ -1567,7 +1567,7 @@ function awpcp_print_message( $message, $class = array( 'awpcp-updated', 'notice
 }
 
 function awpcp_print_error($message) {
-	return awpcp_print_message($message, array('error'));
+	return awpcp_print_message( $message, array( 'awpcp-error', 'notice', 'notice-error', 'error' ) );
 }
 
 /**

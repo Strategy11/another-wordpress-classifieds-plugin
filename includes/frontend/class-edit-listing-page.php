@@ -5,6 +5,8 @@
 
 /**
  * Edit Listing Page.
+ *
+ * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  */
 class AWPCP_EditListingPage extends AWPCP_Page {
 
@@ -60,6 +62,10 @@ class AWPCP_EditListingPage extends AWPCP_Page {
 
         if ( 'send-access-key' === $step ) {
             return $this->do_send_access_key_step();
+        }
+
+        if ( 'verify-access-token' === $step ) {
+            return $this->do_verify_access_token_step();
         }
 
         $listing_id = $this->get_listing_id();
@@ -412,4 +418,85 @@ class AWPCP_EditListingPage extends AWPCP_Page {
 
         return $this->render( $template, $params );
     }
+
+    /**
+     * Copied from old Edit Listing page.
+     *
+     * @since 4.0.0
+     */
+    public function do_verify_access_token_step() {
+        $access_token = awpcp_request_param( 'access_token' );
+        $token_parts  = explode( '-', $access_token );
+
+        if ( 2 !== count( $token_parts ) ) {
+            $message = __( 'Invalid access token.', 'another-wordpress-classifieds-plugin' );
+            return $this->render( 'content', awpcp_print_error( $message ) );
+        }
+
+        // Substr: 0:10 -> nonce, 10: -> id_hash.
+        $access_token = $token_parts[0];
+
+        $listing_id = $token_parts[1];
+
+        try {
+            $listing = awpcp_listings_collection()->get( $listing_id );
+        } catch ( AWPCP_Exception $e ) {
+            $message = __( "The specified listing doesn't exists.", 'another-wordpress-classifieds-plugin' );
+            return $this->render( 'content', awpcp_print_error( $message ) );
+        }
+
+        $access_token_status = awpcp_verify_edit_listing_access_token( $access_token, $listing );
+
+        if ( 'invalid' === $access_token_status ) {
+            $message = __( 'The sepecified listing cannot be edited using this access code.', 'another-wordpress-classifieds-plugin' );
+            return $this->render( 'content', awpcp_print_error( $message ) );
+        }
+
+        if ( 'expired' === $access_token_status ) {
+            return $this->send_new_access_token( $listing );
+        }
+
+        $this->ad = $listing;
+
+        return $this->do_listing_information_step();
+    }
+
+    /**
+     * Copied from old Edit Listing page.
+     *
+     * @since 4.0.0
+     */
+    private function send_new_access_token( $listing ) {
+        $listing_title = $this->listing_renderer->get_listing_title( $listing );
+        $contact_name  = $this->listing_renderer->get_contact_name( $listing );
+        $contact_email = $this->listing_renderer->get_contact_email( $listing );
+        $access_key    = $this->listing_renderer->get_access_key( $listing );
+
+        $recipient = awpcp_format_recipient_address( $contact_email, $contact_name );
+
+        $email = new AWPCP_Email();
+
+        $email->to[] = $recipient;
+        /* translators: %s is the title of the listing. */
+        $email->subject = __( 'Edit link for listing: %s', 'another-wordpress-classifieds-plugin' );
+        $email->subject = sprintf( $email->subject, $listing_title );
+
+        $email->prepare(
+            AWPCP_DIR . '/templates/email/listing-edit-link-with-access-token.tpl.php',
+            array(
+                'listing_title' => $listing_title,
+                'contact_name'  => $contact_name,
+                'email_address' => $contact_email,
+                'access_key'    => $access_key,
+                'edit_link'     => awpcp_get_edit_listing_url_with_access_key( $listing ),
+            )
+        );
+
+        $email->send();
+
+        $message = __( 'The link you used already expired. Please check your email to receive a link with a new access token.', 'another-wordpress-classifieds-plugin' );
+
+        return $this->render( 'content', awpcp_print_message( $message ) );
+    }
+
 }
