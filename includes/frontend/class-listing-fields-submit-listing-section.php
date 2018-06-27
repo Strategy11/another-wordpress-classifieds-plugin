@@ -86,8 +86,24 @@ class AWPCP_ListingFieldsSubmitListingSection {
 
         $params = array(
             'form_fields' => $this->form_fields->render_fields( $data, $errors, $listing, $context ),
+            'nonces'      => $this->maybe_generate_nonces( $listing ),
         );
 
         return $this->template_renderer->render_template( $this->template, $params );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function maybe_generate_nonces( $listing ) {
+        $save_listing_information  = '';
+        $clear_listing_information = '';
+
+        if ( ! is_null( $listing ) ) {
+            $save_listing_information  = wp_create_nonce( "awpcp-save-listing-information-{$listing->ID}" );
+            $clear_listing_information = wp_create_nonce( "awpcp-clear-listing-information-{$listing->ID}" );
+        }
+
+        return compact( 'save_listing_information', 'clear_listing_information' );
     }
 }

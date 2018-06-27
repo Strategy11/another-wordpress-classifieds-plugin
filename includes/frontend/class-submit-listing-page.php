@@ -5,6 +5,8 @@
 
 /**
  * Submit Listing Page.
+ *
+ * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  */
 class AWPCP_SubmitListingPage extends AWPCP_Page {
 
@@ -14,19 +16,35 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
     public $show_menu_items = false;
 
     /**
+     * @var object
+     */
+    private $listing = false;
+
+    /**
+     * @var object
+     */
+    private $transaction = false;
+
+    /**
      * @var SubmitListingSectionsGenerator
      */
     private $sections_generator;
 
     /**
+     * @var ListingAuthorization
+     */
+    private $authorization;
+
+    /**
      * @since 4.0.0
      */
-    public function __construct( $sections_generator, $listings_logic, $listings, $payments, $settings, $request ) {
+    public function __construct( $sections_generator, $listings_logic, $listings, $authorization, $payments, $settings, $request ) {
         parent::__construct( null, null, awpcp()->container['TemplateRenderer'] );
 
         $this->sections_generator = $sections_generator;
         $this->listings_logic     = $listings_logic;
         $this->listings           = $listings;
+        $this->authorization      = $authorization;
         $this->payments           = $payments;
         $this->settings           = $settings;
         $this->request            = $request;
@@ -46,6 +64,7 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
     /**
      * @since 4.0.0
      * @throws AWPCP_Exception If the current user is not allowed to access the page.
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      */
     private function do_current_step() {
         if ( $this->settings->get_option( 'onlyadmincanplaceads' ) && ! $this->roles->current_user_is_administrator() ) {
@@ -55,6 +74,13 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
 
         if ( $this->settings->get_option( 'requireuserregistration' ) && ! is_user_logged_in() ) {
             return $this->do_login_step();
+        }
+
+        $listing = $this->get_listing();
+
+        if ( $listing && ! $this->authorization->is_current_user_allowed_to_edit_listing( $listing ) ) {
+            $message = __( 'You are not allowed to edit the specified classified.', 'another-wordpress-classifieds-plugin' );
+            return $this->render( 'content', awpcp_print_error( $message ) );
         }
 
         $step = $this->get_current_step();
@@ -71,6 +97,41 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
             default:
                 return $this->do_listing_information_step();
         }
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function get_transaction() {
+        // We compare with false instead of using is_null() because get_transaction()
+        // may return null the first time the page is loaded.
+        if ( false === $this->transaction ) {
+            $this->transaction = $this->payments->get_transaction();
+        }
+
+        return $this->transaction;
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function get_listing() {
+        if ( false === $this->listing ) {
+            $transaction = $this->get_transaction();
+            $listing_id  = $this->request->param( 'listing_id' );
+
+            if ( ! $listing_id && $transaction ) {
+                $listing_id = $transaction->get( 'ad-id' );
+            }
+
+            $this->listing = null;
+
+            if ( $listing_id ) {
+                $this->listing = $this->listings->get( $listing_id );
+            }
+        }
+
+        return $this->listing;
     }
 
     /**

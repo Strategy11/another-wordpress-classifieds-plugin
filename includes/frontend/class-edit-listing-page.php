@@ -31,14 +31,20 @@ class AWPCP_EditListingPage extends AWPCP_Page {
     private $settings;
 
     /**
+     * @var ListingAuthorization
+     */
+    private $authorization;
+
+    /**
      * @since 4.0.0
      */
-    public function __construct( $sections_generator, $listing_renderer, $listings, $settings, $request ) {
+    public function __construct( $sections_generator, $listing_renderer, $listings, $authorization, $settings, $request ) {
         parent::__construct( null, null, awpcp()->container['TemplateRenderer'] );
 
         $this->sections_generator = $sections_generator;
         $this->listing_renderer   = $listing_renderer;
         $this->listings           = $listings;
+        $this->authorization      = $authorization;
         $this->settings           = $settings;
         $this->request            = $request;
     }
@@ -70,8 +76,15 @@ class AWPCP_EditListingPage extends AWPCP_Page {
 
         $listing_id = $this->get_listing_id();
 
-        if ( empty( $listing_id ) ) {
-            $step = 'enter-access-key';
+        if ( empty( $listing_id ) || 'enter-access-key' === $step ) {
+            return $this->do_enter_email_and_access_key_step();
+        }
+
+        $listing = $this->get_ad();
+
+        if ( ! $this->authorization->is_current_user_allowed_to_edit_listing( $listing ) ) {
+            $message = __( 'You are not allowed to edit the specified classified.', 'another-wordpress-classifieds-plugin' );
+            return $this->render( 'content', awpcp_print_error( $message ) );
         }
 
         switch ( $step ) {
@@ -79,8 +92,6 @@ class AWPCP_EditListingPage extends AWPCP_Page {
                 return $this->do_listing_information_step();
             case 'finish':
                 return $this->do_finish_step();
-            case 'enter-access-key':
-                return $this->do_enter_email_and_access_key_step();
             default:
                 return $this->do_listing_information_step();
         }

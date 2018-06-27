@@ -18,6 +18,7 @@ class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurati
                 $container['SubmitListingSectionsGenerator'],
                 $container['ListingsLogic'],
                 $container['ListingsCollection'],
+                $container['ListingAuthorization'],
                 $container['Payments'],
                 $container['Settings'],
                 $container['Request']
@@ -29,6 +30,7 @@ class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurati
                 $container['SubmitListingSectionsGenerator'],
                 $container['ListingRenderer'],
                 $container['ListingsCollection'],
+                $container['ListingAuthorization'],
                 $container['Settings'],
                 $container['Request']
             );
@@ -83,6 +85,7 @@ class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurati
                 $container['FormFieldsValidator'],
                 $container['PaymentInformationValidator'],
                 $container['ListingPostedData'],
+                $container['RolesAndCapabilities'],
                 $container['Settings'],
                 awpcp_ajax_response(),
                 $container['Request']
@@ -93,6 +96,8 @@ class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurati
             return new AWPCP_ClearListingInformationAjaxHandler(
                 $container['ListingsLogic'],
                 $container['ListingsCollection'],
+                $container['RolesAndCapabilities'],
+                $container['Settings'],
                 awpcp_ajax_response(),
                 $container['Request']
             );

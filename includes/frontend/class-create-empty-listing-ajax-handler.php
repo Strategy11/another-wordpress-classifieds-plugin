@@ -57,8 +57,29 @@ class AWPCP_CreateEmptyListingAjaxHandler extends AWPCP_AjaxHandler {
 
     /**
      * @since 4.0.0
+     * @throws AWPCP_Exception  If current user is not allowed to create empty listings.
      */
     private function process_request() {
+        $nonce = $this->request->post( 'nonce' );
+
+        if ( ! wp_verify_nonce( $nonce, 'awpcp-create-empty-listing' ) ) {
+            throw new AWPCP_Exception( __( 'You are not authorized to perform this action.', 'another-wordpress-classifieds-plugin' ) );
+        }
+
+        // Only admin users are allowed to post listings.
+        if ( $this->settings->get_option( 'onlyadmincanplaceads' ) && ! $this->roles->current_user_is_administrator() ) {
+            $message = __( 'You are not authorized to perform this action. Only administrator users are allowed to submit classifieds.', 'another-wordpress-classifieds-plugin' );
+
+            throw new AWPCP_Exception( $message );
+        }
+
+        // Only registered users are allowed to place listings.
+        if ( $this->settings->get_option( 'requireuserregistration' ) && ! is_user_logged_in() ) {
+            $message = __( 'Your are not authorized to perform this action. Only logged in users are allowed to submit classifieds.', 'another-wordpress-classifieds-plugin' );
+
+            throw new AWPCP_Exception( $message );
+        }
+
         $posted_data = $this->get_posted_data();
         $transaction = $this->create_transaction( $posted_data );
         $listing     = $this->create_listing( $transaction, $posted_data );

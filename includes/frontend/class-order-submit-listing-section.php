@@ -67,15 +67,26 @@ class AWPCP_OrderSubmitListingSection {
      * @since 4.0.0
      */
     public function get_state( $listing ) {
-        if ( is_null( $listing ) ) {
-            return 'edit';
-        }
-
-        if ( $this->listings_logic->can_payment_information_be_modified_during_submit( $listing ) ) {
+        if ( $this->can_payment_information_be_modified_during_submit( $listing ) ) {
             return 'edit';
         }
 
         return 'read';
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function can_payment_information_be_modified_during_submit( $listing ) {
+        if ( is_null( $listing ) ) {
+            return true;
+        }
+
+        if ( $this->listings_logic->can_payment_information_be_modified_during_submit( $listing ) ) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -99,12 +110,14 @@ class AWPCP_OrderSubmitListingSection {
         }
 
         $stored_data = $this->get_stored_data( $listing );
+        $nonce       = $this->maybe_generate_nonce( $listing );
 
         $params = array(
             'transaction'          => null,
 
             'payment_terms'        => $this->payments->get_payment_terms(),
             'form'                 => $stored_data,
+            'nonce'                => $nonce,
 
             'form_errors'          => [],
 
@@ -149,6 +162,17 @@ class AWPCP_OrderSubmitListingSection {
             'payment_term_type'         => $payment_term->type,
             'payment_term_payment_type' => 'money', // TODO: Get actual payment type from listing metadata?
         ];
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function maybe_generate_nonce( $listing ) {
+        if ( $this->can_payment_information_be_modified_during_submit( $listing ) ) {
+            return wp_create_nonce( 'awpcp-create-empty-listing' );
+        }
+
+        return '';
     }
 
     /**

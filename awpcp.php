@@ -918,7 +918,7 @@ class AWPCP {
 
         $handler = $this->container['ClearListingInformationAjaxHandler'];
         add_action( 'wp_ajax_awpcp_clear_listing_information', [ $handler, 'ajax' ] );
-        add_action( 'wp_ajax_nopriv_clear_listing_information', [ $handler, 'ajax' ] );
+        add_action( 'wp_ajax_nopriv_awpcp_clear_listing_information', [ $handler, 'ajax' ] );
 
         $handler = awpcp_users_autocomplete_ajax_handler();
         add_action( 'wp_ajax_awpcp-autocomplete-users', array( $handler, 'ajax' ) );

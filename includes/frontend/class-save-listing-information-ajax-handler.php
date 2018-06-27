@@ -42,7 +42,7 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
      * @since 4.0.0
      * @SuppressWarnings(PHPMD.ExcessiveParameterList)
      */
-    public function __construct( $listing_category_taxonomy, $listings_logic, $listing_renderer, $listings, $payments, $form_fields_validator, $payment_information_validator, $posted_data, $settings, $response, $request ) {
+    public function __construct( $listing_category_taxonomy, $listings_logic, $listing_renderer, $listings, $payments, $form_fields_validator, $payment_information_validator, $posted_data, $roles, $settings, $response, $request ) {
         parent::__construct( $response );
 
         $this->listing_category_taxonomy     = $listing_category_taxonomy;
@@ -53,6 +53,7 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
         $this->form_fields_validator         = $form_fields_validator;
         $this->payment_information_validator = $payment_information_validator;
         $this->posted_data                   = $posted_data;
+        $this->roles                         = $roles;
         $this->settings                      = $settings;
         $this->request                       = $request;
     }
@@ -75,9 +76,30 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
      * TODO: Validate re-captcha.
      *
      * @since 4.0.0
+     * @throws AWPCP_Exception  If current user is not authorized to save the
+     *                          listing's information.
      */
     private function try_to_save_listing_information() {
         $listing = $this->listings->get( $this->request->param( 'ad_id' ) );
+        $nonce   = $this->request->post( 'nonce' );
+
+        if ( ! wp_verify_nonce( $nonce, "awpcp-save-listing-information-{$listing->ID}" ) ) {
+            throw new AWPCP_Exception( __( 'You are not authorized to perform this action.', 'another-wordpress-classifieds-plugin' ) );
+        }
+
+        // Only admin users are allowed to post listings.
+        if ( $this->settings->get_option( 'onlyadmincanplaceads' ) && ! $this->roles->current_user_is_administrator() ) {
+            $message = __( 'You are not authorized to perform this action. Only administrator users are allowed to submit classifieds.', 'another-wordpress-classifieds-plugin' );
+
+            throw new AWPCP_Exception( $message );
+        }
+
+        // Only registered users are allowed to place listings.
+        if ( $this->settings->get_option( 'requireuserregistration' ) && ! is_user_logged_in() ) {
+            $message = __( 'Your are not authorized to perform this action. Only logged in users are allowed to submit classifieds.', 'another-wordpress-classifieds-plugin' );
+
+            throw new AWPCP_Exception( $message );
+        }
 
         if ( 'auto-draft' === $listing->post_status ) {
             return $this->save_new_listing_information( $listing );
