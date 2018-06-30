@@ -112,10 +112,13 @@ class AWPCP_OrderSubmitListingSection {
         $stored_data = $this->get_stored_data( $listing );
         $nonce       = $this->maybe_generate_nonce( $listing );
 
+        $payment_terms = $this->payments->get_payment_terms();
+        $payment_terms = apply_filters( 'awpcp_submit_listing_payment_terms', $payment_terms, $listing );
+
         $params = array(
             'transaction'          => null,
 
-            'payment_terms'        => $this->payments->get_payment_terms(),
+            'payment_terms'        => $payment_terms,
             'form'                 => $stored_data,
             'nonce'                => $nonce,
 
@@ -124,7 +127,7 @@ class AWPCP_OrderSubmitListingSection {
             'show_user_field'      => $this->roles->current_user_is_moderator(),
             'show_account_balance' => ! $this->roles->current_user_is_administrator(),
             'account_balance'      => '',
-            'payment_terms_list'   => $this->render_payment_terms_list( $stored_data ),
+            'payment_terms_list'   => $this->render_payment_terms_list( $stored_data, $payment_terms ),
             'credit_plans_table'   => $this->payments->render_credit_plans_table( null ),
         );
 
@@ -180,15 +183,20 @@ class AWPCP_OrderSubmitListingSection {
      *
      * @since 4.0.0
      */
-    private function render_payment_terms_list( $data ) {
+    private function render_payment_terms_list( $data, $payment_terms ) {
         $payment_terms_list = awpcp_payment_terms_list();
 
-        return $payment_terms_list->render( [
-            'payment_term' => (object) [
-                'id'   => $data['payment_term_id'],
-                'type' => $data['payment_term_type'],
+        return $payment_terms_list->render(
+            [
+                'payment_term' => (object) [
+                    'id'   => $data['payment_term_id'],
+                    'type' => $data['payment_term_type'],
+                ],
+                'payment_type' => $data['payment_term_payment_type'],
             ],
-            'payment_type' => $data['payment_term_payment_type'],
-        ] );
+            [
+                'payment_terms' => $payment_terms,
+            ]
+        );
     }
 }

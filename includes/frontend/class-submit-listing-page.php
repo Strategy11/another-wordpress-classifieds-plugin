@@ -102,7 +102,7 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
     /**
      * @since 4.0.0
      */
-    private function get_transaction() {
+    public function get_transaction() {
         // We compare with false instead of using is_null() because get_transaction()
         // may return null the first time the page is loaded.
         if ( false === $this->transaction ) {
