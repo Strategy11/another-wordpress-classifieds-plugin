@@ -91,7 +91,7 @@ from Paul Irish. See https://github.com/drodenbaugh/awpcp/issues/979. -->
 
     <div class="awpcp-uploaded-files-group awpcp-uploaded-files" data-bind="if: haveOtherFiles">
         <h3 class="awpcp-uploaded-files-group-title"><?php echo esc_html( __( 'Other Files', 'another-wordpress-classifieds-plugin' ) ); ?></h3>
-        <ul class="awpcp-uploaded-files-list clearfix" data-bind="foreach: { data: others, as: 'file' }">
+        <ul class="awpcp-uploaded-files-list" data-bind="foreach: { data: others, as: 'file' }">
             <li data-bind="css: $root.getFileCSSClasses( file ), attr: { id: $root.getFileId( file ) }">
                 <div class="awpcp-uploaded-file-thumbnail-container">
                     <a target="_blank">
@@ -102,20 +102,21 @@ from Paul Irish. See https://github.com/drodenbaugh/awpcp/issues/979. -->
                         <div class="awpcp-progress-bar" data-bind="style: { width: progress() + '%' }"></div>
                     </div>
                 </div>
-                <ul class="awpcp-uploaded-file-actions clearfix">
+                <ul class="awpcp-uploaded-file-actions">
                     <li class="awpcp-uploaded-file-action awpcp-uploaded-file-change-status-action">
-                        <label>
-                            <input type="checkbox" data-bind="checked: enabled"> <?php echo esc_html( __( 'Enabled', 'another-wordpress-classifieds-plugin' ) ); ?>
-                        </label>
+                        <a href="#" title="<?php echo esc_attr( __( 'File currently enabled &mdash; click to disable it', 'another-wordpress-classifieds-plugin' ) ); ?>" data-bind="visible: enabled(), click: $root.disableFile">
+                            <span class="dashicons dashicons-visibility"></span>
+                        </a>
+                        <a href="#" title="<?php echo esc_attr( __( 'File currently disabled &mdash; click to enable it', 'another-wordpress-classifieds-plugin' ) ); ?>" data-bind="visible: ! enabled(), click: $root.enableFile">
+                            <span class="dashicons dashicons-hidden"></span>
+                        </a>
                     </li>
-                    <li class="awpcp-uploaded-file-action awpcp-uploaded-file-delete-action"><a title="<?php echo esc_attr( __( 'Delete File', 'another-wordpress-classifieds-plugin' ) ); ?>" data-bind="click: $root.deleteFile"></a></li>
-                    <li data-bind="visible: $root.showAdminActions()">
-                        <div class="awpcp-uploaded-file-action awpcp-uploaded-file-toggle-action awpcp-uploaded-file-reject-action">
-                            <a class="awpcp-toggle-button" title="<?php echo esc_attr( __( 'Reject File', 'another-wordpress-classifieds-plugin' ) ); ?>" data-bind="click: $root.rejectFile, css: { 'awpcp-toggle-on': !isApproved(), 'awpcp-toggle-off': isApproved() }"></a>
-                        </div>
-                        <div class="awpcp-uploaded-file-action awpcp-uploaded-file-toggle-action awpcp-uploaded-file-approve-action">
-                            <a class="awpcp-toggle-button" title="<?php echo esc_attr( __( 'Approve File', 'another-wordpress-classifieds-plugin' ) ); ?>" data-bind="click: $root.approveFile, css: { 'awpcp-toggle-on': isApproved(), 'awpcp-toggle-off': !isApproved() }"></a>
-                        </div>
+                    <li class="awpcp-uploaded-file-action awpcp-uploaded-file-delete-action"><a title="<?php echo esc_attr( __( 'Click to delete this file', 'another-wordpress-classifieds-plugin' ) ); ?>" data-bind="click: $root.deleteFile"><span class="dashicons dashicons-trash"></span></a></li>
+                    <li class="awpcp-uploaded-file-action awpcp-uploaded-file-reject-action" data-bind="visible: $root.showAdminActions() && isApproved()">
+                        <a class="awpcp-toggle-button" title="<?php echo esc_attr( __( 'File currently approved &mdash; click to reject it', 'another-wordpress-classifieds-plugin' ) ); ?>" data-bind="click: $root.rejectFile, css: { 'awpcp-toggle-on': !isApproved(), 'awpcp-toggle-off': isApproved() }"><span class="dashicons dashicons-thumbs-up"></span></a>
+                    </li>
+                    <li class="awpcp-uploaded-file-action awpcp-uploaded-file-approve-action" data-bind="visible: $root.showAdminActions() && !isApproved()">
+                            <a class="awpcp-toggle-button" title="<?php echo esc_attr( __( 'File currently rejected &mdash; click to approve it', 'another-wordpress-classifieds-plugin' ) ); ?>" data-bind="click: $root.approveFile, css: { 'awpcp-toggle-on': isApproved(), 'awpcp-toggle-off': !isApproved() }"><span class="dashicons dashicons-thumbs-down"></span></a>
                     </li>
                 </ul>
                 <span class="awpcp-spinner awpcp-spinner-visible awpcp-uploaded-file-spinner" data-bind="visible: isBeingModified"></span>

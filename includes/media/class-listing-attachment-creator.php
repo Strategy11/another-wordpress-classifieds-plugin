@@ -19,7 +19,7 @@ class AWPCP_Listing_Attachment_Creator {
                 'tmp_name' => $file_logic->get_path(),
             ),
             $listing->ID,
-            '' // empty attachment description
+            null // If not null, it will overwrite the post's title.
         );
 
         $this->wordpress->update_post_meta( $attachment_id, '_awpcp_enabled', true );
