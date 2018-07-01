@@ -215,6 +215,12 @@ AWPCP.define( 'awpcp/frontend/submit-listing-data-store', [
             return '';
         },
 
+        setTransactionId: function( transactionId ) {
+            var self = this;
+
+            self.data.transaction = transactionId;
+        },
+
         getTransactionId: function() {
             var self = this;
 
@@ -277,46 +283,6 @@ AWPCP.define( 'awpcp/frontend/submit-listing-data-store', [
             return self.data.custom || {};
         },
 
-        createEmptyListing: function() {
-            var self = this, request, paymentTerm, data;
-
-            paymentTerm  = self.getSelectedPaymentTerm();
-            creditPlanId = self.getSelectedCreditPlanId();
-
-            data = {
-                action:                    'awpcp_create_empty_listing',
-                nonce:                     $.AWPCP.get( 'create_empty_listing_nonce' ),
-                categories:                self.getSelectedCategoriesIds(),
-                payment_term_id:           paymentTerm.id,
-                payment_term_type:         paymentTerm.type,
-                payment_term_payment_type: paymentTerm.mode,
-                credit_plan:               creditPlanId,
-                user_id:                   self.getSelectedUserId(),
-                custom:                    self.getCustomData(),
-                current_url:               document.location.href,
-            };
-
-            options = {
-                url: $.AWPCP.get( 'ajaxurl' ),
-                data: data,
-                dataType: 'json',
-                method: 'POST',
-            };
-
-            request = $.ajax( options ).done( function( data ) {
-                if ( 'ok' === data.status && data.redirect_url ) {
-                    document.location.href = data.redirect_url;
-                    return;
-                }
-
-                if ( 'ok' === data.status ) {
-                    self.data.listing = data.listing;
-                    self.data.transaction = data.transaction;
-                    self.refresh();
-                }
-            } );
-        },
-
         updateSections: function() {
             var self = this,
                 data, request;
@@ -350,70 +316,10 @@ AWPCP.define( 'awpcp/frontend/submit-listing-data-store', [
             }, 250 );
         },
 
-        saveListingInformation: function() {
-            var self = this,
-                paymentTerm, data, request;
+        clearSections: function() {
+            var self = this;
 
-            paymentTerm  = self.getSelectedPaymentTerm();
-            creditPlanId = self.getSelectedCreditPlanId();
-
-            // TODO: How are other sections going to introduce information here?
-            // TODO: Remove multiple region selector information from listing fields.
-            //       We don't need to send that to the server.
-            data = $.extend( {},  self.getListingFields(), {
-                action: 'awpcp_save_listing_information',
-                nonce: $.AWPCP.get( 'save_listing_information_nonce' ),
-                transaction_id: self.getTransactionId(),
-                ad_id: self.getListingId(),
-                user_id: self.getSelectedUserId(),
-                categories: self.getSelectedCategoriesIds(),
-                payment_term_id: self.getSelectedPaymentTermId(),
-                payment_term_type: paymentTerm.type,
-                payment_type: paymentTerm.mode,
-                credit_plan: creditPlanId,
-                custom:            self.getCustomData(),
-                current_url:       document.location.href,
-            } );
-
-            // Remove Multiple Region Selector data.
-            delete data.regions;
-
-            options = {
-                url: $.AWPCP.get( 'ajaxurl' ),
-                data: data,
-                dataType: 'json',
-                method: 'POST',
-            };
-
-            request = $.ajax( options ).done( function( data ) {
-                if ( 'ok' === data.status && data.redirect_url ) {
-                    document.location.href = data.redirect_url;
-                    return;
-                }
-            } );
-        },
-
-        clearListingInformation: function() {
-            var self = this, data;
-
-            data = {
-                action: 'awpcp_clear_listing_information',
-                nonce: $.AWPCP.get( 'clear_listing_information_nonce' ),
-                ad_id: self.getListingId(),
-            };
-
-            options = {
-                url: $.AWPCP.get( 'ajaxurl' ),
-                data: data,
-                dataType: 'json',
-                method: 'POST',
-            };
-
-            request = $.ajax( options ).done( function( data ) {
-                if ( 'ok' === data.status ) {
-                    self.listener.clear();
-                }
-            } );
+            self.listener.clear();
         },
 
         isValid: function() {

@@ -68,7 +68,7 @@ class AWPCP_Payment_Transaction {
 				'id' => null,
 				'user_id' => 0,
 				'status' => self::STATUS_NEW,
-				'payment_status' => null,
+                'payment_status'  => $this->get_default_payment_status(),
                 'payment_gateway' => '',
                 'payer_email' => '',
 				'items' => array(),
@@ -87,6 +87,17 @@ class AWPCP_Payment_Transaction {
 			$this->$name = maybe_unserialize($args[$name]);
 		}
 	}
+
+    /**
+     * @since 4.0.0
+     */
+    private function get_default_payment_status() {
+        if ( awpcp_current_user_is_admin() ) {
+            return self::PAYMENT_STATUS_NOT_REQUIRED;
+        }
+
+        return null;
+    }
 
     public static function query($args) {
         global $wpdb;
@@ -436,6 +447,13 @@ class AWPCP_Payment_Transaction {
         return $this->payment_is_completed()
             || $this->payment_is_pending()
             || $this->payment_is_not_required();
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function reset_payment_status() {
+        $this->payment_status = $this->get_default_payment_status();
     }
 
     /**

@@ -68,6 +68,10 @@ class AWPCP_FormFieldsValidator {
             $errors['ad_title'] = __( 'Please enter a title for your classified.', 'another-wordpress-classifieds-plugin' );
         }
 
+        if ( empty( $data['post_fields']['post_content'] ) ) {
+            $errors['ad_details'] = __( 'Please provide a description for your classified listing.', 'another-wordpress-classifieds-plugin' );
+        }
+
         if ( $this->settings->get_option( 'displaywebsitefield' ) && $this->settings->get_option( 'displaywebsitefieldreqop' ) ) {
             if ( empty( $data['metadata']['_awpcp_website_url'] ) ) {
                 $errors['websiteurl'] = __( 'Please enter a website address.', 'another-wordpress-classifieds-plugin' );
@@ -79,7 +83,7 @@ class AWPCP_FormFieldsValidator {
         }
 
         if ( empty( $data['metadata']['_awpcp_contact_name'] ) ) {
-            $errors['ad_contact_name'] = __( 'Please a contact name.', 'another-wordpress-classifieds-plugin' );
+            $errors['ad_contact_name'] = __( 'Please enter a contact name.', 'another-wordpress-classifieds-plugin' );
         }
 
         if ( empty( $data['metadata']['_awpcp_contact_email'] ) ) {

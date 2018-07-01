@@ -51,7 +51,7 @@ class AWPCP_CreateEmptyListingAjaxHandler extends AWPCP_AjaxHandler {
         try {
             return $this->process_request();
         } catch ( AWPCP_Exception $e ) {
-            return $this->error_response( $e->getMessage() );
+            return $this->multiple_errors_response( $e->getMessage() );
         }
     }
 
@@ -248,6 +248,7 @@ class AWPCP_CreateEmptyListingAjaxHandler extends AWPCP_AjaxHandler {
         $transaction->set( 'payment-term-payment-type', $payment_type );
 
         $transaction->remove_all_items();
+        $transaction->reset_payment_status();
 
         $this->payments->set_transaction_item_from_payment_term( $transaction, $payment_term, $payment_type );
 

@@ -107,36 +107,30 @@ AWPCP.define( 'awpcp/frontend/listing-fields-section-controller', [
             // if any.
             self.$regionsSelector.MultipleRegionSelector( data.regions );
 
-            // TODO: Route this through the store.
+            // TODO: Should we route this through the store?
             $.publish( '/awpcp/post-listing-page/details-step/ready', [ self.$element ] );
 
-            // var validator = self.$element.find( 'form' ).validate({
-            //     messages: $.AWPCP.l10n( 'page-place-ad-details' ),
-            //     onfocusout: false,
-            //     submitHandler: function( form, event ) {
-            //         event.preventDefault();
+            self.$element.find( 'form' ).validate({
+                messages: $.AWPCP.l10n( 'page-place-ad-details' ),
+                onfocusout: false,
+                submitHandler: function( form, event ) {
+                    event.preventDefault();
 
-            //         var $form = $( form );
+                    var $form = $( form );
 
-            //         if ( MultipleRegionsSelectorValidator.showErrorsIfUserSelectedDuplicatedRegions( $form ) ) {
-            //             return false;
-            //         }
+                    if ( MultipleRegionsSelectorValidator.showErrorsIfUserSelectedDuplicatedRegions( $form ) ) {
+                        return false;
+                    }
 
-            //         if ( MultipleRegionsSelectorValidator.showErrorsIfRequiredFieldsAreEmpty( $form ) ) {
-            //             return false;
-            //         }
+                    if ( MultipleRegionsSelectorValidator.showErrorsIfRequiredFieldsAreEmpty( $form ) ) {
+                        return false;
+                    }
 
-            //         self.onContinueButtonClicked();
-            //     }
-            // });
+                    self.onContinueButtonClicked();
+                }
+            });
 
             self.$element.on( 'change', '.awpcp-has-value', function() {
-                self.onContinueButtonClicked();
-            } );
-
-            self.$element.find( 'form :submit' ).click( function( event ) {
-                event.preventDefault();
-
                 self.onContinueButtonClicked();
             } );
 
@@ -226,6 +220,20 @@ AWPCP.define( 'awpcp/frontend/listing-fields-section-controller', [
             self.$element.find( '.awpcp-has-value' ).val( null ).trigger( 'change' );
             self.$regionsSelector.data( 'RegionSelector' ).clearSelectedRegions();
         },
+
+        validate: function() {
+            var self = this;
+
+            if ( self.$element.find( 'form' ).valid() ) {
+                return [];
+            }
+
+            return [ true ];
+        },
+
+        showErrors: function( errors ) {
+            // jQuery validate takes care of that.
+        }
     } );
 
     return ListingFieldsSectionController;

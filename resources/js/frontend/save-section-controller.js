@@ -73,17 +73,102 @@ AWPCP.define( 'awpcp/frontend/save-section-controller', [
                 event.preventDefault();
 
                 if ( self.store.isValid() ) {
-                    self.store.saveListingInformation();
+                    self.saveListingInformation();
                 }
             } );
 
             self.$resetButton.click( function( event ) {
                 event.preventDefault();
 
-                self.store.clearListingInformation();
+                self.clearListingInformation();
             } );
 
             self.$element.addClass( 'rendered' );
+        },
+
+        saveListingInformation: function() {
+            var self = this,
+                paymentTerm, data, request;
+
+            paymentTerm  = self.store.getSelectedPaymentTerm();
+            creditPlanId = self.store.getSelectedCreditPlanId();
+
+            // TODO: How are other sections going to introduce information here?
+            data = $.extend( {},  self.store.getListingFields(), {
+                action:            'awpcp_save_listing_information',
+                nonce:             $.AWPCP.get( 'save_listing_information_nonce' ),
+                transaction_id:    self.store.getTransactionId(),
+                ad_id:             self.store.getListingId(),
+                user_id:           self.store.getSelectedUserId(),
+                categories:        self.store.getSelectedCategoriesIds(),
+                payment_term_id:   self.store.getSelectedPaymentTermId(),
+                payment_term_type: paymentTerm.type,
+                payment_type:      paymentTerm.mode,
+                credit_plan:       creditPlanId,
+                custom:            self.store.getCustomData(),
+                current_url:       document.location.href,
+            } );
+
+            // Remove Multiple Region Selector data.
+            delete data.regions;
+
+            options = {
+                url: $.AWPCP.get( 'ajaxurl' ),
+                data: data,
+                dataType: 'json',
+                method: 'POST',
+            };
+
+            // Remove existing error messages.
+            self.$element.find( '.awpcp-message.awpcp-error' ).remove();
+
+            request = $.ajax( options ).done( function( data ) {
+                if ( 'ok' === data.status && data.redirect_url ) {
+                    document.location.href = data.redirect_url;
+                    return;
+                }
+
+                if ( 'error' === data.status && data.errors ) {
+                    self.showErrors( data.errors );
+                }
+            } );
+        },
+
+        showErrors: function( errors ) {
+            var self = this, $container;
+
+            $container = self.$element.find( '.awpcp-save-submit-listing-section__edit_mode' );
+
+            $.each( errors, function( index, error ) {
+                $container.prepend( '<div class="awpcp-message awpcp-error notice notice-error error"><p>' + error + '</p></div>' );
+            } );
+        },
+
+        clearListingInformation: function() {
+            var self = this, data;
+
+            data = {
+                action: 'awpcp_clear_listing_information',
+                nonce: $.AWPCP.get( 'clear_listing_information_nonce' ),
+                ad_id: self.store.getListingId(),
+            };
+
+            options = {
+                url: $.AWPCP.get( 'ajaxurl' ),
+                data: data,
+                dataType: 'json',
+                method: 'POST',
+            };
+
+            request = $.ajax( options ).done( function( data ) {
+                if ( 'ok' === data.status ) {
+                    self.store.clearSections();
+                }
+
+                if ( 'error' === data.status && data.errors ) {
+                    self.showErrors( data.errors );
+                }
+            } );
         },
 
         showDisabledMode: function() {

@@ -68,7 +68,7 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
         try {
             return $this->try_to_save_listing_information();
         } catch ( AWPCP_Exception $e ) {
-            return $this->error_response( $e->getMessage() );
+            return $this->multiple_errors_response( $e->getMessage() );
         }
     }
 
@@ -110,9 +110,16 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
 
     /**
      * @since 4.0.0
+     * @throws AWPCP_Exception  If a transaction cannot be found.
      */
     private function save_new_listing_information( $listing ) {
         $transaction = $this->payments->get_transaction();
+
+        if ( is_null( $transaction ) ) {
+            $message = __( 'There is no payment transaction associated with this request. Aborting.', 'another-wordpress-classifieds-plugin' );
+
+            throw new AWPCP_Exception( $message );
+        }
 
         // TODO: I believe the post_status is never going to be auto-draft when
         // pay before place ad is enabled.
@@ -176,6 +183,8 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
             return $this->multiple_errors_response( $errors );
         }
 
+        $this->prepare_transaction_for_checkout( $transaction, $posted_data );
+
         $this->listings_logic->update_listing( $listing, $posted_data['post_data'] );
 
         // TODO: Redirect to checkout page.
@@ -186,8 +195,6 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
      * @since 4.0.0
      */
     private function redirect_to_checkout_page( $listing, $transaction, $posted_data ) {
-        $this->prepare_transaction_for_checkout( $transaction, $posted_data );
-
         $redirect_params = [
             'step'           => 'checkout',
             'listing_id'     => $listing->ID,
@@ -227,6 +234,7 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
         $transaction->set( 'payment-term-payment-type', $payment_type );
 
         $transaction->remove_all_items();
+        $transaction->reset_payment_status();
 
         $this->payments->set_transaction_item_from_payment_term( $transaction, $payment_term, $payment_type );
 

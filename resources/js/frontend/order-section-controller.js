@@ -192,7 +192,7 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
             var self = this;
 
             if ( ! self.store.getListingId() && self.store.isValid() ) {
-                self.store.createEmptyListing();
+                self.createEmptyListing();
                 self.store.setSectionStateToLoading( self.id );
                 return;
             }
@@ -202,6 +202,53 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
             }
 
             self.store.setSectionStateToPreview( self.id );
+        },
+
+        createEmptyListing: function() {
+            var self = this, request, paymentTerm, data;
+
+            paymentTerm  = self.store.getSelectedPaymentTerm();
+            creditPlanId = self.store.getSelectedCreditPlanId();
+
+            data = {
+                action:                    'awpcp_create_empty_listing',
+                nonce:                     $.AWPCP.get( 'create_empty_listing_nonce' ),
+                categories:                self.store.getSelectedCategoriesIds(),
+                payment_term_id:           paymentTerm.id,
+                payment_term_type:         paymentTerm.type,
+                payment_term_payment_type: paymentTerm.mode,
+                credit_plan:               creditPlanId,
+                user_id:                   self.store.getSelectedUserId(),
+                custom:                    self.store.getCustomData(),
+                current_url:               document.location.href,
+            };
+
+            options = {
+                url: $.AWPCP.get( 'ajaxurl' ),
+                data: data,
+                dataType: 'json',
+                method: 'POST',
+            };
+
+            // Remove existing error messages.
+            self.$element.find( '.awpcp-message.awpcp-error' ).remove();
+
+            request = $.ajax( options ).done( function( data ) {
+                if ( 'ok' === data.status && data.redirect_url ) {
+                    document.location.href = data.redirect_url;
+                    return;
+                }
+
+                if ( 'ok' === data.status ) {
+                    self.store.setTransactionId( data.transaction );
+                    self.store.setListingId( data.listing.ID );
+                }
+
+                if ( 'error' === data.status && data.errors ) {
+                    self.showErrors( data.errors );
+                    self.store.setSectionStateToPreview( self.id );
+                }
+            } );
         },
 
         onChangeSelectionButtonClicked: function() {
@@ -224,6 +271,16 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
             self.categoriesSelector.clearSelectedCategories();
             self.userSelector.clearSelectedUser();
             self.creditPlansList.clearSelectedCreditPlan();
+        },
+
+        showErrors: function( errors ) {
+            var self = this, $container;
+
+            $container = self.$element.find( '.awpcp-order-submit-listing-section__read_mode .form-submit' );
+
+            $.each( errors, function( index, error ) {
+                $container.before( '<div class="awpcp-message awpcp-error notice notice-error error"><p>' + error + '</p></div>' );
+            } );
         }
     } );
 
