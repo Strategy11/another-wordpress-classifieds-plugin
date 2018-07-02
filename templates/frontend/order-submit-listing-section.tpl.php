@@ -58,6 +58,13 @@
                     <?php echo $credit_plans_table; // XSS Ok. ?>
                 </div>
 
+                <?php if ( $show_captcha ) : ?>
+                <div class='awpcp-form-spacer'>
+                    <?php echo $captcha->render(); // XSS Ok. ?>
+                    <?php echo awpcp_form_error( 'captcha', $form_errors ); // XSS Ok. ?>
+                </div>
+                <?php endif; ?>
+
                 <p class="form-submit">
                     <input class="awpcp-order-submit-listing-section--continue-button button button-primary" type="submit" value="<?php echo esc_attr_x( 'Continue', 'order submit listing section', 'another-wordpress-clasifieds-plugin' ); ?>"/>
                 </p>

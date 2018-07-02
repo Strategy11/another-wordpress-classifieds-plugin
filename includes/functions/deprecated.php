@@ -273,8 +273,8 @@ function awpcp_get_uploads_directories() {
 
 /**
  * Resize images if they're too wide or too tall based on admin's Image Settings.
- * Requires both max width and max height to be set otherwise no resizing 
- * takes place. If the image exceeds either max width or max height then the 
+ * Requires both max width and max height to be set otherwise no resizing
+ * takes place. If the image exceeds either max width or max height then the
  * image is resized proportionally.
  *
  * @deprecated 3.4
@@ -323,13 +323,13 @@ function awpcp_resizer($filename, $dir) {
     $newname = $dir . $filename;
 
     switch ($parts['extension']) {
-        case 'gif': 
+        case 'gif':
             @imagegif($tmp, $newname);
             break;
-        case 'png': 
+        case 'png':
             @imagepng($tmp, $newname, 0);
             break;
-        case 'jpg': 
+        case 'jpg':
         case 'jpeg':
             @imagejpeg($tmp, $newname, 100);
             break;
@@ -428,3 +428,9 @@ function checkforduplicate($cpagename_awpcp) {
     }
 }
 
+/**
+ * @deprecated 4.0.0    Use a instance of CAPTCHA instead.
+ */
+function awpcp_create_captcha($type='default') {
+    return awpcp()->container['CAPTCHAProviderFactory']->get_captcha_provider( $type );
+}

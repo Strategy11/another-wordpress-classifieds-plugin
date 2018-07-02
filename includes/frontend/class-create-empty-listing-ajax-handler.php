@@ -25,6 +25,11 @@ class AWPCP_CreateEmptyListingAjaxHandler extends AWPCP_AjaxHandler {
     private $payment_information_validator;
 
     /**
+     * @var CAPTCHA
+     */
+    private $captcha;
+
+    /**
      * @var AWPCP_Request
      */
     private $request;
@@ -32,7 +37,7 @@ class AWPCP_CreateEmptyListingAjaxHandler extends AWPCP_AjaxHandler {
     /**
      * @since 4.0.0
      */
-    public function __construct( $listing_category_taxonomy, $listings_logic, $payment_information_validator, $payments, $roles, $response, $settings, $request ) {
+    public function __construct( $listing_category_taxonomy, $listings_logic, $payment_information_validator, $payments, $roles, $captcha, $response, $settings, $request ) {
         parent::__construct( $response );
 
         $this->listing_category_taxonomy     = $listing_category_taxonomy;
@@ -40,6 +45,7 @@ class AWPCP_CreateEmptyListingAjaxHandler extends AWPCP_AjaxHandler {
         $this->payment_information_validator = $payment_information_validator;
         $this->payments                      = $payments;
         $this->roles                         = $roles;
+        $this->captcha                       = $captcha;
         $this->settings                      = $settings;
         $this->request                       = $request;
     }
@@ -79,6 +85,8 @@ class AWPCP_CreateEmptyListingAjaxHandler extends AWPCP_AjaxHandler {
 
             throw new AWPCP_Exception( $message );
         }
+
+        $this->captcha->validate();
 
         $posted_data = $this->get_posted_data();
         $transaction = $this->create_transaction( $posted_data );

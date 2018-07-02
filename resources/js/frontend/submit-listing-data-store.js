@@ -215,6 +215,22 @@ AWPCP.define( 'awpcp/frontend/submit-listing-data-store', [
             return '';
         },
 
+        setCAPTCHAAnswer: function( captcha ) {
+            var self = this;
+
+            self.data.captcha = captcha;
+        },
+
+        getCAPTCHAAnswer: function() {
+            var self = this;
+
+            if ( self.data.captcha ) {
+                return self.data.captcha;
+            }
+
+            return {};
+        },
+
         setTransactionId: function( transactionId ) {
             var self = this;
 

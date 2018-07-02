@@ -34,6 +34,11 @@ class AWPCP_OrderSubmitListingSection {
     private $roles;
 
     /**
+     * @var CAPTCHA
+     */
+    private $captcha;
+
+    /**
      * @var object
      */
     private $template_renderer;
@@ -41,11 +46,12 @@ class AWPCP_OrderSubmitListingSection {
     /**
      * @since 4.0.0
      */
-    public function __construct( $payments, $listings_logic, $listing_renderer, $roles, $template_renderer ) {
+    public function __construct( $payments, $listings_logic, $listing_renderer, $roles, $captcha, $template_renderer ) {
         $this->payments          = $payments;
         $this->listings_logic    = $listings_logic;
         $this->listing_renderer  = $listing_renderer;
         $this->roles             = $roles;
+        $this->captcha           = $captcha;
         $this->template_renderer = $template_renderer;
     }
 
@@ -126,13 +132,14 @@ class AWPCP_OrderSubmitListingSection {
 
             'show_user_field'      => $this->roles->current_user_is_moderator(),
             'show_account_balance' => ! $this->roles->current_user_is_administrator(),
+            'show_captcha'         => $this->should_show_captcha( $listing ),
             'account_balance'      => '',
             'payment_terms_list'   => $this->render_payment_terms_list( $stored_data, $payment_terms ),
             'credit_plans_table'   => $this->payments->render_credit_plans_table( null ),
+            'captcha'              => $this->captcha,
         );
 
-        // TODO: Fix always-true condition.
-        if ( true || $params['show_account_balance'] ) {
+        if ( $params['show_account_balance'] ) {
             $params['show_account_balance'] = true;
             $params['account_balance']      = $this->payments->render_account_balance();
         }
@@ -176,6 +183,17 @@ class AWPCP_OrderSubmitListingSection {
         }
 
         return '';
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function should_show_captcha( $listing ) {
+        if ( ! $this->captcha->is_captcha_required() ) {
+            return false;
+        }
+
+        return $this->can_payment_information_be_modified_during_submit( $listing );
     }
 
     /**

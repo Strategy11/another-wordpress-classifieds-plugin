@@ -11,6 +11,7 @@ class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurati
     /**
      * @param AWPCP_Container $container    The plugin's container.
      * @since 4.0.0
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     public function modify( $container ) {
         $container['SubmitListingPage'] = $container->service( function( $container ) {
@@ -47,6 +48,7 @@ class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurati
                 $container['PaymentInformationValidator'],
                 $container['Payments'],
                 $container['RolesAndCapabilities'],
+                $container['CAPTCHA'],
                 awpcp_ajax_response(),
                 $container['Settings'],
                 $container['Request']
@@ -99,6 +101,21 @@ class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurati
                 $container['RolesAndCapabilities'],
                 $container['Settings'],
                 awpcp_ajax_response(),
+                $container['Request']
+            );
+        } );
+
+        $container['CAPTCHA'] = $container->service( function( $container ) {
+            return new AWPCP_CAPTCHA(
+                $container['CAPTCHAProviderFactory']->get_captcha_provider(),
+                $container['RolesAndCapabilities'],
+                $container['Settings']
+            );
+        } );
+
+        $container['CAPTCHAProviderFactory'] = $container->service( function( $container ) {
+            return new AWPCP_CAPTCHAProviderFactory(
+                $container['Settings'],
                 $container['Request']
             );
         } );

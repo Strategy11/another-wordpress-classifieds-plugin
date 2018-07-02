@@ -1,80 +1,31 @@
 <?php
+/**
+ * @package AWPCP\Frontend
+ */
 
+// phpcs:disable
 
-class AWPCP_CAPTCHA {
+class AWPCP_reCAPTCHAProvider implements AWPCP_CAPTCHAProviderInterface {
 
-    public function __construct() { }
-
-    public function render() {
-        // must be overriden in sub-class
-        return '';
-    }
-
-    public function validate(&$error='') {
-        // must be overriden in sub-class
-        return false;
-    }
-}
-
-
-class AWPCP_DefaultCAPTCHA extends AWPCP_CAPTCHA {
-
-    public function __construct($max_number) {
-        parent::__construct();
-
-        $this->max_number = $max_number;
-    }
-
-    public function render() {
-        $a = rand( 1, $this->max_number );
-        $b = rand( 1, $this->max_number );
-
-        $hash = $this->hash( $a + $b );
-        $answer = awpcp_post_param( 'captcha' );
-
-        $label = _x( 'Enter the value of the following sum: %d + %d', 'CAPTCHA', 'another-wordpress-classifieds-plugin' ) . '*';
-        $label = sprintf( $label, $a, $b );
-
-        $html = '<label for="captcha"><span>%s</span></label>';
-        $html.= '<input type="hidden" name="captcha-hash" value="%s" />';
-        $html.= '<input id="captcha" class="awpcp-textfield inputbox required" type="text" name="captcha" value="%s" size="5" />';
-
-        return sprintf( $html, $label, $hash, esc_attr( $answer ) );
-    }
-
-    private function hash($number) {
-        return wp_hash( $number );
-    }
-
-    public function validate(&$error='') {
-        $answer = awpcp_post_param( 'captcha' );
-        $expected = awpcp_post_param( 'captcha-hash' );
-
-        $is_valid = strcmp( $expected, $this->hash( $answer ) ) === 0;
-
-        if ( empty( $answer ) ) {
-            $error = __( 'You did not solve the math problem. Please solve the math problem to proceed.', 'another-wordpress-classifieds-plugin' );
-        } else if ( !$is_valid ) {
-            $error = __( 'Your solution to the math problem was incorrect. Please try again.', 'another-wordpress-classifieds-plugin' );
-        }
-
-        return $is_valid;
-    }
-}
-
-class AWPCP_reCAPTCHA extends AWPCP_CAPTCHA {
-
+    /**
+     * @var string
+     */
     private $site_key;
+
+    /**
+     * @var string
+     */
     private $secret_key;
+
+    /**
+     * @var Request
+     */
     private $request;
 
     public function __construct( $site_key, $secret_key, $request ) {
-        parent::__construct();
-
-        $this->site_key = $site_key;
+        $this->site_key   = $site_key;
         $this->secret_key = $secret_key;
-
-        $this->request = $request;
+        $this->request    = $request;
     }
 
     public function render() {
@@ -127,13 +78,15 @@ class AWPCP_reCAPTCHA extends AWPCP_CAPTCHA {
 
         if ( $json['success'] ) {
             return true;
-        } else if ( $json['error-codes'] ) {
+        }
+
+        if ( $json['error-codes'] ) {
             $error = $this->process_error_codes( $json['error-codes'] );
             return false;
-        } else {
-            $error = __( "Your answers couldn't be verified by the reCAPTCHA server.", 'another-wordpress-classifieds-plugin' );
-            return false;
         }
+
+        $error = __( "Your answers couldn't be verified by the reCAPTCHA server.", 'another-wordpress-classifieds-plugin' );
+        return false;
     }
 
     private function process_error_codes( $error_codes ) {
@@ -158,20 +111,5 @@ class AWPCP_reCAPTCHA extends AWPCP_CAPTCHA {
         }
 
         return implode( ' ', $errors );
-    }
-}
-
-function awpcp_create_captcha($type='default') {
-    switch ($type) {
-        case 'recaptcha':
-            $site_key = get_awpcp_option( 'recaptcha-public-key' );
-            $secret_key = get_awpcp_option( 'recaptcha-private-key' );
-
-            return new AWPCP_reCAPTCHA( $site_key, $secret_key, awpcp_request() );
-
-        case 'default':
-        default:
-            $max = get_awpcp_option( 'math-captcha-max-number' );
-            return new AWPCP_DefaultCAPTCHA( $max );
     }
 }
