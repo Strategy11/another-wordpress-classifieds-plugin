@@ -885,57 +885,6 @@ function awpcp_country_list_options($value=false, $use_names=true) {
  * as needed.
  */
 
-/**
- * @deprecated 3.0.2 use $media->get_url()
- */
-function awpcp_get_image_url($image, $suffix='') {
-	_deprecated_function( __FUNCTION__, '3.0.2', 'AWPCP_Media::get_url()' );
-
-	static $uploads = array();
-
-	if ( empty( $uploads ) ) {
-		$uploads = awpcp_setup_uploads_dir();
-		$uploads = array_shift( $uploads );
-	}
-
-	$images = trailingslashit(AWPCPUPLOADURL);
-	$thumbnails = trailingslashit(AWPCPTHUMBSUPLOADURL);
-
-	if (is_object($image))
-		$basename = $image->image_name;
-	if (is_string($image))
-		$basename = $image;
-
-	$original = $images . $basename;
-	$thumbnail = $thumbnails . $basename;
-	$part = empty($suffix) ? '.' : "-$suffix.";
-
-	$info = awpcp_utf8_pathinfo($original);
-
-	if ($suffix == 'original') {
-		$alternatives = array($original);
-	} else if ($suffix == 'large') {
-		$alternatives = array(
-			str_replace(".{$info['extension']}", "$part{$info['extension']}", $original),
-			$original
-		);
-	} else {
-		$alternatives = array(
-			str_replace(".{$info['extension']}", "$part{$info['extension']}", $thumbnail),
-			$thumbnail,
-			$original
-		);
-	}
-
-	foreach ($alternatives as $imagepath) {
-		if (file_exists(str_replace(AWPCPUPLOADURL, $uploads, $imagepath))) {
-			return $imagepath;
-		}
-	}
-
-	return false;
-}
-
 function awpcp_array_insert($array, $index, $key, $item, $where='before') {
 	$all = array_merge($array, array($key => $item));
 	$keys = array_keys($array);

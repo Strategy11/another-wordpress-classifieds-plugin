@@ -486,17 +486,13 @@ class AWPCP {
     public function bootstrap() {
         $this->rewrite_rules = awpcp_plugin_rewrite_rules();
 
-        if ( $this->settings->get_option( 'activatelanguages' ) ) {
-            awpcp_load_plugin_textdomain( __FILE__, 'another-wordpress-classifieds-plugin' );
-        }
+        awpcp_load_plugin_textdomain( __FILE__, 'another-wordpress-classifieds-plugin' );
 
         $this->modules_manager = $this->modules_manager_factory->get_modules_manager_instance( $this );
 
         // register settings, this will define default values for settings
         // that have never been stored
         $this->settings->register_settings();
-
-        $this->setup_runtime_options();
 
         awpcp_register_activation_hook( __FILE__, array( $this->installer, 'activate' ) );
 
@@ -507,19 +503,6 @@ class AWPCP {
         // too late to add rules using add_rewrite_rule function
         add_action( 'page_rewrite_rules', array( $this->rewrite_rules, 'add_rewrite_rules' ) );
         add_filter('query_vars', 'awpcp_query_vars');
-    }
-
-    private function setup_runtime_options() {
-        $this->settings->set_runtime_option( 'easy-digital-downloads-store-url', 'http://awpcp.com' );
-        $this->settings->set_runtime_option( 'image-mime-types', array( 'image/png', 'image/jpeg', 'image/jpg', 'image/gif' ) );
-
-        // TODO: see if we can call setup_runtime_options after awpcp_register_settings action has fired!
-        $uploads_dir_name = $this->settings->get_option( 'uploadfoldername', 'uploads' );
-        $uploads_dir = implode( DIRECTORY_SEPARATOR, array( rtrim( WP_CONTENT_DIR, DIRECTORY_SEPARATOR ), $uploads_dir_name, 'awpcp' ) );
-        $uploads_url = implode( '/', array( rtrim( WP_CONTENT_URL, '/' ), $uploads_dir_name, 'awpcp' ) );
-
-        $this->settings->set_runtime_option( 'awpcp-uploads-dir', $uploads_dir );
-        $this->settings->set_runtime_option( 'awpcp-uploads-url', $uploads_url );
     }
 
 	/**
@@ -564,6 +547,7 @@ class AWPCP {
 		$this->setup_register_settings_handlers();
 
 		$this->settings->setup();
+
         $this->modules_updater = awpcp_modules_updater();
         $this->router = awpcp_router();
 		$this->payments = awpcp_payments_api();
@@ -663,10 +647,6 @@ class AWPCP {
 
     		add_action('widgets_init', array($this, 'register_widgets'));
 
-    		if (get_awpcp_option('awpcppagefilterswitch') == 1) {
-    			add_filter('wp_list_pages_excludes', 'exclude_awpcp_child_pages');
-    		}
-
     		awpcp_schedule_activation();
 
             $this->modules_manager->load_modules( $this->container );
@@ -710,6 +690,18 @@ class AWPCP {
         add_action( 'awpcp_register_settings', array( $form_fields_settings, 'register_settings' ) );
         add_action( 'awpcp-admin-settings-page--form-field-settings', array( $form_fields_settings, 'settings_header' ) );
 	}
+
+    public function setup_runtime_options() {
+        $this->settings->set_runtime_option( 'easy-digital-downloads-store-url', 'http://awpcp.com' );
+        $this->settings->set_runtime_option( 'image-mime-types', array( 'image/png', 'image/jpeg', 'image/jpg', 'image/gif' ) );
+
+        $uploads_dir_name = $this->settings->get_option( 'uploadfoldername', 'uploads' );
+        $uploads_dir = implode( DIRECTORY_SEPARATOR, array( rtrim( WP_CONTENT_DIR, DIRECTORY_SEPARATOR ), $uploads_dir_name, 'awpcp' ) );
+        $uploads_url = implode( '/', array( rtrim( WP_CONTENT_URL, '/' ), $uploads_dir_name, 'awpcp' ) );
+
+        $this->settings->set_runtime_option( 'awpcp-uploads-dir', $uploads_dir );
+        $this->settings->set_runtime_option( 'awpcp-uploads-url', $uploads_url );
+    }
 
     public function register_plugin_integrations() {
         $this->plugin_integrations->add_plugin_integration(
@@ -773,7 +765,7 @@ class AWPCP {
             add_action( 'awpcp_edit_ad', array( $facebook_cache_helper, 'on_edit_ad' ) );
         }
 
-        $this->router->configure_routes();
+        add_action( 'wp_loaded', [ $this, 'wp_loaded' ] );
 
         if ( defined( 'DOING_CRON' ) && DOING_CRON ) {
             $task_queue = awpcp_task_queue();
@@ -986,6 +978,18 @@ class AWPCP {
 			echo $this->missing_gd_library_notice();
 		}
 	}
+
+    /**
+     * @since 4.0.0
+     */
+    public function wp_loaded() {
+        $this->setup_runtime_options();
+        $this->router->configure_routes();
+
+        if ( $this->settings->get_option( 'awpcppagefilterswitch' ) == 1 ) {
+            add_filter( 'wp_list_pages_excludes', 'exclude_awpcp_child_pages' );
+        }
+    }
 
 	private function missing_gd_library_notice() {
         $message = __( "AWPCP requires the graphics processing library GD and it is not installed. Contact your web host to fix this.", 'another-wordpress-classifieds-plugin' );
@@ -1880,18 +1884,8 @@ function awpcp() {
 
 awpcp();
 
-
-$uploadfoldername = get_awpcp_option('uploadfoldername', "uploads");
-
-define('MAINUPLOADURL', $wpcontenturl .'/' .$uploadfoldername);
-define('MAINUPLOADDIR', $wpcontentdir .'/' .$uploadfoldername);
-define('AWPCPUPLOADURL', $wpcontenturl .'/' .$uploadfoldername .'/awpcp');
-define('AWPCPUPLOADDIR', $wpcontentdir .'/' .$uploadfoldername .'/awpcp/');
-define('AWPCPTHUMBSUPLOADURL', $wpcontenturl .'/' .$uploadfoldername .'/awpcp/thumbs');
-define('AWPCPTHUMBSUPLOADDIR', $wpcontentdir .'/' .$uploadfoldername .'/awpcp/thumbs/');
 define('MENUICO', $awpcp_imagesurl .'/menuico.png');
 
-global $awpcpthumbsurl;
 global $hascaticonsmodule;
 global $hasregionsmodule;
 global $haspoweredbyremovalmodule;
@@ -1905,7 +1899,6 @@ $hasregionsmodule = $hasregionsmodule ? true : false;
 $hasfeaturedadsmodule = $hasfeaturedadsmodule ? true : false;
 $hasrssmodule = $hasrssmodule ? true : false;
 
-$awpcpthumbsurl = AWPCPTHUMBSUPLOADURL;
 $hascaticonsmodule = 0;
 $haspoweredbyremovalmodule = 0;
 $hasgooglecheckoutmodule = 0;
