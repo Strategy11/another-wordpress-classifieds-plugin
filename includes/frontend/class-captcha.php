@@ -67,7 +67,7 @@ class AWPCP_CAPTCHA {
         // is not correct. If the provider simply returns false, then we throw a
         // generic exception.
         if ( ! $this->provider->validate() ) {
-            throw new AWPCP_Exception( __( 'An unknown error ocurred trying to valid the answer to the CAPTCHA challenge.', 'another-wordpress-classifieds-plugin' ) );
+            throw new AWPCP_Exception( __( 'An unknown error ocurred trying to validate the answer to the CAPTCHA challenge.', 'another-wordpress-classifieds-plugin' ) );
         }
 
         return true;

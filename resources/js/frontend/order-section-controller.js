@@ -45,8 +45,7 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
             self.$readModeContainer = $( '.awpcp-order-submit-listing-section__read_mode' );
 
             self.$listingId   = self.$element.find( '[name="listing_id"]' );
-            self.$captchaHash = self.$element.find( '[name="captcha-hash"]' );
-            self.$captcha     = self.$element.find( '[name="captcha"]' );
+            self.$captcha     = self.$element.find( '.awpcp-captcha' );
 
             self.$listOfSelectedCategories = $( '.awpcp-order-submit-listing-section--selected-categories' );
             self.$listingOwner             = $( '.awpcp-order-submit-listing-section--listing-owner' );
@@ -87,13 +86,6 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
                 onChange: function( creditPlan ) {
                     self.store.updateSelectedCreditPlan( creditPlan );
                 }
-            } );
-
-            self.$captcha.change( function() {
-                self.store.setCAPTCHAAnswer( {
-                    captcha: self.$captcha.val(),
-                    captchaHash: self.$captchaHash.val(),
-                } );
             } );
 
             self.$editModeContainer.find( 'form' ).validate( {
@@ -197,7 +189,7 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
             self.$editModeContainer.show();
 
             if ( self.store.getListingId() ) {
-                self.$captcha.closest( '.awpcp-form-spacer' ).hide();
+                self.$captcha.hide();
             }
         },
 
@@ -220,9 +212,8 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
         createEmptyListing: function() {
             var self = this, request, paymentTerm, data;
 
-            paymentTerm  = self.store.getSelectedPaymentTerm();
-            creditPlanId = self.store.getSelectedCreditPlanId();
-            captcha      = self.store.getCAPTCHAAnswer();
+            paymentTerm   = self.store.getSelectedPaymentTerm();
+            creditPlanId  = self.store.getSelectedCreditPlanId();
 
             data = {
                 action:                    'awpcp_create_empty_listing',
@@ -233,11 +224,11 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
                 payment_term_payment_type: paymentTerm.mode,
                 credit_plan:               creditPlanId,
                 user_id:                   self.store.getSelectedUserId(),
-                captcha:                   captcha.captcha,
-                "captcha-hash":            captcha.captchaHash,
                 custom:                    self.store.getCustomData(),
                 current_url:               document.location.href,
             };
+
+            data = $.extend( data, self.getCaptchaFields() );
 
             options = {
                 url: $.AWPCP.get( 'ajaxurl' ),
@@ -265,6 +256,25 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
                     self.store.setSectionStateToPreview( self.id );
                 }
             } );
+        },
+
+        getCaptchaFields: function() {
+            var self = this;
+
+            if ( self.$captcha.find( '[name="captcha-hash"]' ).length ) {
+                return {
+                    captcha:        self.$captcha.find( '[name="captcha"]' ).val(),
+                    "captcha-hash": self.$captcha.find( '[name="captcha-hash"]' ).val(),
+                };
+            }
+
+            if ( self.$captcha.find( '[name="g-recaptcha-response"]' ).length ) {
+                return {
+                    "g-recaptcha-response": self.$captcha.find( '[name="g-recaptcha-response"]' ).val(),
+                };
+            }
+
+            return {};
         },
 
         onChangeSelectionButtonClicked: function() {

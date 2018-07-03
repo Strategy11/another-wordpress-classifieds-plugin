@@ -54,10 +54,9 @@ class AWPCP_reCAPTCHAProvider implements AWPCP_CAPTCHAProviderInterface {
         return '<div class="g-recaptcha awpcp-recaptcha" data-sitekey="' . esc_attr( $site_key ) . '"></div>';
     }
 
-    public function validate(&$error='') {
+    public function validate() {
         if ( empty( $this->secret_key ) ) {
-            $error = $this->missing_key_message();
-            return false;
+            throw new AWPCP_Exception( $this->missing_key_message() );
         }
 
         $response = wp_remote_post( 'https://www.google.com/recaptcha/api/siteverify', array(
@@ -69,24 +68,36 @@ class AWPCP_reCAPTCHAProvider implements AWPCP_CAPTCHAProviderInterface {
         ) );
 
         if ( is_wp_error( $response ) ) {
-            $message = __( 'There was an error trying to verify the reCAPTCHA answer. <reCAPTCHA-error>', 'another-wordpress-classifieds-plugin' );
-            $error = str_replace( 'reCAPTCHA-error', $response->get_error_message(), $message );
-            return false;
+            $message = $this->get_verification_error_message( $response->get_error_message() );
+
+            throw new AWPCP_Exception( $message );
         }
 
         $json = json_decode( $response['body'], true );
 
-        if ( $json['success'] ) {
-            return true;
-        }
-
         if ( $json['error-codes'] ) {
-            $error = $this->process_error_codes( $json['error-codes'] );
-            return false;
+            $message = $this->get_verification_error_message( $this->process_error_codes( $json['error-codes'] ) );
+
+            throw new AWPCP_Exception( $message );
         }
 
-        $error = __( "Your answers couldn't be verified by the reCAPTCHA server.", 'another-wordpress-classifieds-plugin' );
-        return false;
+        if ( ! $json['success'] ) {
+            $message = __( "Your answers couldn't be verified by the reCAPTCHA server.", 'another-wordpress-classifieds-plugin' );
+
+            throw new AWPCP_Exception( $message );
+        }
+
+        return true;
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function get_verification_error_message( $error ) {
+        $message = __( 'There was an error trying to verify the reCAPTCHA answer. <reCAPTCHA-error>', 'another-wordpress-classifieds-plugin' );
+        $message = str_replace( '<reCAPTCHA-error>', $error, $message );
+
+        return $message;
     }
 
     private function process_error_codes( $error_codes ) {

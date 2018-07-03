@@ -59,7 +59,7 @@
                 </div>
 
                 <?php if ( $show_captcha ) : ?>
-                <div class='awpcp-form-spacer'>
+                <div class="awpcp-form-spacer awpcp-captcha">
                     <?php echo $captcha->render(); // XSS Ok. ?>
                     <?php echo awpcp_form_error( 'captcha', $form_errors ); // XSS Ok. ?>
                 </div>
