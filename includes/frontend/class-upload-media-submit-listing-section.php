@@ -126,24 +126,25 @@ class AWPCP_UploadMediaSubmitListingSection {
         }
 
         $params = [
-            'media_manager_configuration'  => [
+            'show_background_color_explanation' => $this->settings->get_option( 'imagesapprove' ),
+            'media_manager_configuration'       => [
                 'nonce'              => wp_create_nonce( 'awpcp-manage-listing-media-' . $listing->ID ),
                 'allowed_files'      => $allowed_files,
                 'show_admin_actions' => $this->roles->current_user_is_moderator(),
             ],
-            'media_uploader_configuration' => [
+            'media_uploader_configuration'      => [
                 'listing_id'    => $listing->ID,
                 'context'       => 'post-listing',
                 'nonce'         => wp_create_nonce( 'awpcp-upload-media-for-listing-' . $listing->ID ),
                 'allowed_files' => $allowed_files,
             ],
-            'listing'                      => $listing,
-            'files'                        => $this->attachments->find_attachments( [
+            'listing'                           => $listing,
+            'files'                             => $this->attachments->find_attachments( [
                 'post_parent' => $listing->ID,
             ] ),
-            'images_allowed'               => $images_allowed,
-            'images_uploaded'              => $images_uploaded,
-            'messages'                     => $messages,
+            'images_allowed'                    => $images_allowed,
+            'images_uploaded'                   => $images_uploaded,
+            'messages'                          => $messages,
         ];
 
         return $this->template_renderer->render_template( $this->template, $params );
