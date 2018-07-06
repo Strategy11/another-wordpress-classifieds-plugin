@@ -5,6 +5,9 @@
 
 // phpcs:disable
 
+/**
+ * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
+ */
 class AWPCP_ModulesManager {
 
     private $plugin;
@@ -40,12 +43,21 @@ class AWPCP_ModulesManager {
         }
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.ElseExpression)
+     * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
+     */
     private function load_module( $module ) {
         $module->load_textdomain();
         $this->verify_version_compatibility( $module );
 
-        if ( $this->is_premium_module( $module ) ) {
+        $is_premium_module = $this->is_premium_module( $module );
+
+        if ( $is_premium_module && is_admin() ) {
             $this->licenses_settings->add_license_setting( $module->name, $module->slug );
+        }
+
+        if ( $is_premium_module ) {
             $this->verify_license_status( $module );
         }
 
