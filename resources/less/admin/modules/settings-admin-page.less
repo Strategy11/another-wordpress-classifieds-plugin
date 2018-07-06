@@ -1,0 +1,25 @@
+.awpcp-settings-sub-groups {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin: 8px !important;
+
+    li {
+    }
+
+    li:after {
+        content: '|';
+        margin: 0 6px 0 4px;
+    }
+
+    li:last-child:after {
+        display: none;
+    }
+
+    li.awpcp-current a {
+        color: #333;
+        font-weight: bold;
+        text-decoration: none;
+    }
+}

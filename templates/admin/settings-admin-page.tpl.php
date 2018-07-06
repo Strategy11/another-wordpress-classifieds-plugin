@@ -8,23 +8,33 @@
 awpcp_print_messages(); ?>
 
 			<h2 class="nav-tab-wrapper">
-			<?php foreach ($groups as $g): ?>
-				<?php $href = add_query_arg(array('g' => $g->slug), awpcp_current_url()); ?>
-				<?php $active = $group->slug == $g->slug ? 'nav-tab nav-tab-active' : 'nav-tab'; ?>
-				<a href="<?php echo esc_url( $href ); ?>" class="<?php echo esc_attr( $active ) ?>"><?php echo $g->name ?></a>
-			<?php endforeach ?>
+			<?php foreach ( $groups as $group ) : ?>
+				<a href="<?php echo esc_url( add_query_arg( 'g', $group['id'], $current_url ) ); ?>" class="<?php echo esc_attr( $group['id'] === $current_group['id'] ? 'nav-tab nav-tab-active' : 'nav-tab' ); ?>"><?php echo $group['name']; ?></a>
+			<?php endforeach; ?>
 			</h2>
 
-			<?php do_action('awpcp-admin-settings-page--' . $group->slug); ?>
+            <?php if ( count( $current_group['subgroups'] ) > 1 ) : ?>
+            <ul class="awpcp-settings-sub-groups">
+            <?php foreach( $current_subgroups as $subgroup_id ) : ?>
+                <li class="<?php echo esc_attr( $current_subgroup['id'] === $subgroup_id ? 'awpcp-current' : '' ); ?>">
+                    <a href="<?php echo esc_url( add_query_arg( 'sg', $subgroup_id, $current_url ) ); ?>"><?php echo esc_html( $subgroups[ $subgroup_id ]['name'] ); ?></a>
+                </li>
+            <?php endforeach; ?>
+            </ul>
+            <?php endif; ?>
 
-			<form class="settings-form" action="<?php echo admin_url('options.php') ?>" method="post">
-				<?php settings_fields( $settings->setting_name ); ?>
-				<input type="hidden" name="group" value="<?php echo $group->slug ?>" />
+            <?php /* TODO: DO we still need this? */ do_action( 'awpcp-admin-settings-page--' . $current_group['id'] ); ?>
+
+			<form class="settings-form" action="<?php echo esc_url( admin_url( 'options.php' ) ); ?>" method="post">
+
+				<?php settings_fields( $setting_name ); ?>
+
+				<input type="hidden" name="group" value="<?php echo esc_attr( $group['id'] ); ?>" />
 
 				<?php $settings->load() ?>
 				<?php
 				ob_start();
-				do_settings_sections($group->slug);
+				do_settings_sections( $current_subgroup['id'] );
 				$output = ob_get_contents();
 				ob_end_clean();
 				?>

@@ -295,16 +295,10 @@ require_once( AWPCP_DIR . '/includes/routes/class-ajax-request-handler.php' );
 require_once( AWPCP_DIR . '/includes/routes/class-router.php' );
 require_once( AWPCP_DIR . '/includes/routes/class-routes.php' );
 
-require_once( AWPCP_DIR . "/includes/settings/class-credit-system-settings.php" );
 require_once( AWPCP_DIR . "/includes/settings/class-files-settings.php" );
-require_once( AWPCP_DIR . "/includes/settings/class-form-fields-settings.php" );
 require_once( AWPCP_DIR . "/includes/settings/class-general-settings.php" );
 require_once( AWPCP_DIR . "/includes/settings/class-listings-moderation-settings.php" );
-require_once( AWPCP_DIR . '/includes/settings/class-listing-url-settings.php' );
-require_once( AWPCP_DIR . "/includes/settings/class-payment-general-settings.php" );
-require_once( AWPCP_DIR . "/includes/settings/class-registration-settings.php" );
 require_once( AWPCP_DIR . "/includes/settings/class-user-notifications-settings.php" );
-require_once( AWPCP_DIR . "/includes/settings/class-window-title-settings.php" );
 
 require( AWPCP_DIR . "/includes/upgrade/interface-upgrade-task-runner.php" );
 
@@ -466,43 +460,26 @@ class AWPCP {
 	public $js = null;
 
     public $container;
-    private $modules_manager_factory;
 
-	public function __construct( $container, $modules_manager_factory ) {
+	public function __construct( $container ) {
 		global $awpcp_db_version;
 
         $this->container = $container;
-        $this->modules_manager_factory = $modules_manager_factory;
 		$this->version = $awpcp_db_version;
-
-		// stored options are loaded when the settings API is instatiated
-		$this->settings = awpcp_settings_api();
-		$this->js = AWPCP_JavaScript::instance();
-        $this->upgrade_tasks = awpcp_upgrade_tasks_manager();
-        $this->installer = awpcp_installer();
-        $this->manual_upgrades = awpcp_manual_upgrade_tasks();
 	}
 
     public function bootstrap() {
-        $this->rewrite_rules = awpcp_plugin_rewrite_rules();
+        $this->settings_manager = $this->container['SettingsManager'];
+		$this->js = AWPCP_JavaScript::instance();
+        $this->upgrade_tasks = awpcp_upgrade_tasks_manager();
+        $this->manual_upgrades = awpcp_manual_upgrade_tasks();
 
         awpcp_load_plugin_textdomain( __FILE__, 'another-wordpress-classifieds-plugin' );
 
-        $this->modules_manager = $this->modules_manager_factory->get_modules_manager_instance( $this );
-
-        // register settings, this will define default values for settings
-        // that have never been stored
-        $this->settings->register_settings();
-
-        awpcp_register_activation_hook( __FILE__, array( $this->installer, 'activate' ) );
+        // TODO: Fix activation hook
+        // awpcp_register_activation_hook( __FILE__, array( $this->installer, 'activate' ) );
 
         add_action('plugins_loaded', array($this, 'setup'), 10);
-
-        // register rewrite rules when the plugin file is loaded.
-        // generate_rewrite_rules or rewrite_rules_array hooks are
-        // too late to add rules using add_rewrite_rule function
-        add_action( 'page_rewrite_rules', array( $this->rewrite_rules, 'add_rewrite_rules' ) );
-        add_filter('query_vars', 'awpcp_query_vars');
     }
 
 	/**
@@ -534,6 +511,11 @@ class AWPCP {
 	public function setup() {
 		global $wpdb;
 
+        $this->container->configure( $this->get_container_configurations() );
+
+        $this->installer     = awpcp_installer();
+        $this->rewrite_rules = awpcp_plugin_rewrite_rules();
+
 		if (!$this->is_up_to_date()) {
 			$this->installer->install_or_upgrade();
 		}
@@ -542,12 +524,19 @@ class AWPCP {
 			return;
 		}
 
-        $this->container->configure( $this->get_container_configurations() );
+        $this->register_settings_handlers();
 
-		$this->setup_register_settings_handlers();
+        // register rewrite rules when the plugin file is loaded.
+        // generate_rewrite_rules or rewrite_rules_array hooks are
+        // too late to add rules using add_rewrite_rule function
+        add_action( 'page_rewrite_rules', array( $this->rewrite_rules, 'add_rewrite_rules' ) );
+        add_filter('query_vars', 'awpcp_query_vars');
 
+        // Stored options are loaded when the settings API is instatiated.
+		$this->settings = awpcp_settings_api();
 		$this->settings->setup();
 
+        $this->modules_manager = $this->container['ModulesManager'];
         $this->modules_updater = awpcp_modules_updater();
         $this->router = awpcp_router();
 		$this->payments = awpcp_payments_api();
@@ -604,6 +593,8 @@ class AWPCP {
         //      come up with a better name for this method.
         add_action( 'init', array( $this, 'first_time_verifications' ), 9999 );
 
+        add_action( 'init', [ $this->settings_manager, 'register_settings' ], 9999 );
+
 		add_action('admin_notices', array($this, 'admin_notices'));
 		add_action( 'admin_notices', array( $this->modules_manager, 'show_admin_notices' ) );
 
@@ -653,43 +644,49 @@ class AWPCP {
         }
 	}
 
-	public function setup_register_settings_handlers() {
-		add_action( 'awpcp_register_settings', array( new AWPCP_RegistrationSettings, 'register_settings' ) );
-
+	public function register_settings_handlers() {
         $general_settings = awpcp_general_settings();
         add_action( 'awpcp_register_settings', array( $general_settings, 'register_settings' ) );
         add_filter( 'awpcp_validate_settings_general-settings', array( $general_settings, 'validate_group_settings' ), 10, 2 );
 
-        $user_notifications_settings = awpcp_user_notifications_settings();
-        add_action( 'awpcp_register_settings', array( $user_notifications_settings, 'register_settings' ) );
+        add_action( 'awpcp_register_settings', [ $this->container['PagesSettings'], 'register_settings' ] );
 
-		$listings_moderation_settings = new AWPCP_ListingsModerationSettings;
-		add_action( 'awpcp_register_settings', array( $listings_moderation_settings, 'register_settings' ) );
+        $listings_settings = $this->container['ListingsSettings'];
+        add_action( 'awpcp_register_settings', [ $listings_settings, 'register_settings' ] );
+
+        $listings_moderation_settings = new AWPCP_ListingsModerationSettings( $this->settings );
 		add_filter( 'awpcp_validate_settings', array( $listings_moderation_settings, 'validate_all_settings' ), 10, 2 );
 		add_filter( 'awpcp_validate_settings_listings-settings', array( $listings_moderation_settings, 'validate_group_settings' ), 10, 2 );
 
-        $window_title_settings = awpcp_window_title_settings();
-        add_action( 'awpcp_register_settings', array( $window_title_settings, 'register_settings' ) );
-
-        $listing_url_settings = awpcp_listing_url_settings();
-        add_action( 'awpcp_register_settings', array( $listing_url_settings, 'register_settings' ) );
-        add_action( 'awpcp_settings_validated_listings-settings', array( $listing_url_settings, 'settings_validated' ), 10, 2 );
-
-        $credit_system_settings = awpcp_credit_system_settings();
-        add_action( 'awpcp_register_settings', array( $credit_system_settings, 'register_settings' ) );
-        add_filter( 'awpcp_validate_settings_payment-settings', array( $credit_system_settings, 'validate_credit_system_settings' ), 10, 2 );
-
-		$payment_general_settings = new AWPCP_PaymentGeneralSettings;
-		add_action( 'awpcp_register_settings', array( $payment_general_settings, 'register_settings' ) );
-		add_filter( 'awpcp_validate_settings_payment-settings', array( $payment_general_settings, 'validate_group_settings' ), 10, 2 );
+        $payment_settings = $this->container['PaymentSettings'];
+        add_action( 'awpcp_register_settings', array( $payment_settings, 'register_settings' ) );
+        add_filter( 'awpcp_validate_settings_payment-settings', array( $payment_settings, 'validate_group_settings' ), 10, 2 );
+        add_filter( 'awpcp_validate_settings_payment-settings', array( $payment_settings, 'validate_credit_system_settings' ), 10, 2 );
 
         $files_settings = awpcp_files_settings();
         add_action( 'awpcp_register_settings', array( $files_settings, 'register_settings') );
 
-        $form_fields_settings = awpcp_form_fields_settings();
-        add_action( 'awpcp_register_settings', array( $form_fields_settings, 'register_settings' ) );
-        add_action( 'awpcp-admin-settings-page--form-field-settings', array( $form_fields_settings, 'settings_header' ) );
+        $appearance_settings = $this->container['AppearanceSettings'];
+        add_action( 'awpcp_register_settings', [ $appearance_settings, 'register_settings' ] );
 	}
+
+    /**
+     * @since 4.0.0
+     */
+    public function register_settings_renderers( $renderers ) {
+        $renderers['checkbox']       = $this->container['CheckboxSettingsRenderer'];
+        $renderers['select']         = $this->container['SelectSettingsRenderer'];
+        $renderers['textarea']       = $this->container['TextareaSettingsRenderer'];
+        $renderers['radio']          = $this->container['RadioSettingsRenderer'];
+        $renderers['textfield']      = $this->container['TextfieldSettingsRenderer'];
+        $renderers['password']       = $this->container['TextfieldSettingsRenderer'];
+        $renderers['choice']         = $this->container['ChoiceSettingsRenderer'];
+        $renderers['categories']     = $this->container['CategoriesSettingsRenderer'];
+        $renderers['license']        = $this->container['LicenseSettingsRenderer'];
+        $renderers['wordpress-page'] = $this->container['WordPressPageSettingsRenderer'];
+
+        return $renderers;
+    }
 
     public function setup_runtime_options() {
         $this->settings->set_runtime_option( 'easy-digital-downloads-store-url', 'http://awpcp.com' );
@@ -701,6 +698,33 @@ class AWPCP {
 
         $this->settings->set_runtime_option( 'awpcp-uploads-dir', $uploads_dir );
         $this->settings->set_runtime_option( 'awpcp-uploads-url', $uploads_url );
+    }
+
+    public function setup_javascript_data() {
+        $this->js->set(
+            'show-popup-if-user-did-not-upload-files',
+            (bool) $this->settings->get_option( 'show-popup-if-user-did-not-upload-files' )
+        );
+
+        $this->js->set( 'overwrite-contact-information-on-user-change', (bool) $this->settings->get_option( 'overwrite-contact-information-on-user-change' ) );
+        $this->js->set( 'date-format', awpcp_datepicker_format( $this->settings->get_option( 'date-format') ) );
+        $this->js->set( 'datetime-formats', array(
+            'american' => array(
+                'date'   => 'm/d/Y',
+                'time'   => 'h:i:s',
+                'format' => '<date> <time>',
+            ),
+            'european' => array(
+                'date'   => 'd/m/Y',
+                'time'   => 'H:i:s',
+                'format' => '<date> <time>',
+            ),
+            'custom' => array(
+                'date'   => 'l F j, Y',
+                'time'   => 'g:i a T',
+                'format' => '<date> at <time>',
+            ),
+        ) );
     }
 
     public function register_plugin_integrations() {
@@ -789,9 +813,6 @@ class AWPCP {
 
             $helper = awpcp_url_backwards_compatibility_redirection_helper();
             add_action( 'wp_loaded', array( $helper, 'maybe_redirect_admin_request' ) );
-
-            $settings_type = $this->container['WordPressPageSettingsType'];
-            add_filter( 'awpcp-render-setting-type-wordpress-page', array( $settings_type, 'render' ), 10, 3 );
 
             $page_events = $this->container['WordPressPageEvents'];
             add_action( 'post_updated', array( $page_events, 'post_updated' ), 10, 3 );
@@ -967,6 +988,9 @@ class AWPCP {
      */
     public function admin_setup() {
         add_action( 'admin_init', array( $this->container['Admin'], 'admin_init' ) );
+        add_action( 'admin_init', [ $this->container['SettingsIntegration'], 'setup' ] );
+
+        add_action( 'awpcp_settings_renderers', [ $this, 'register_settings_renderers' ] );
     }
 
 	public function admin_notices() {
@@ -985,6 +1009,7 @@ class AWPCP {
     public function wp_loaded() {
         $this->setup_runtime_options();
         $this->router->configure_routes();
+        $this->setup_javascript_data();
 
         if ( $this->settings->get_option( 'awpcppagefilterswitch' ) == 1 ) {
             add_filter( 'wp_list_pages_excludes', 'exclude_awpcp_child_pages' );
@@ -1655,7 +1680,12 @@ class AWPCP {
 	 * Register other AWPCP settings, normally for private use.
 	 */
 	public function register_settings() {
-		$this->settings->add_setting('private:notices', 'show-quick-start-guide-notice', '', 'checkbox', false, '');
+        $this->settings_manager->add_setting( [
+            'id'      => 'show-quick-start-guide-notice',
+            'type'    => 'checkbox',
+            'default' => false,
+            'section' => 'private-settings',
+        ] );
 	}
 
 	/**
@@ -1861,6 +1891,7 @@ function awpcp_container() {
     if ( is_null( $instance ) ) {
         $instance = new AWPCP_Container( [
             'plugin_basename' => plugin_basename( __FILE__ ),
+            'SettingsManager' => new AWPCP_SettingsManager(),
         ] );
     }
 
@@ -1875,7 +1906,9 @@ function awpcp() {
 
         include( AWPCP_DIR . '/includes/constructor-functions.php' );
 
-        $awpcp = new AWPCP( $container, awpcp_modules_manager_factory() );
+        $container['Plugin'] = new AWPCP( $container );
+
+        $awpcp = $container['Plugin'];
         $awpcp->bootstrap();
 	}
 

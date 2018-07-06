@@ -212,3 +212,10 @@ function awpcp_listings_api() {
 
     return $GLOBALS['awpcp-listings-api'];
 }
+
+/**
+ * @deprecated 4.0.0
+ */
+function awpcp_modules_manager() {
+    return awpcp()->container['ModulesManager'];
+}

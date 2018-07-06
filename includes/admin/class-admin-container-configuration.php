@@ -293,5 +293,6 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
                 $container['ListingsCollection']
             );
         } );
+
     }
 }

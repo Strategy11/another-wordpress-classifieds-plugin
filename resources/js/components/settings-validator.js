@@ -29,7 +29,7 @@ AWPCP.define( 'awpcp/settings-validator', [
             form.validate( $.extend( options, {
                 errorClass: 'invalid',
                 errorPlacement: function ( error, element ) {
-                    error.addClass( 'awpcp-message error' ).css( 'display', 'block' );
+                    error.addClass( 'awpcp-message awpcp-error' ).css( 'display', 'block' );
                     element.closest( 'td' ).append( error );
                 }
             } ) );

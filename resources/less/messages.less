@@ -38,6 +38,40 @@ body:not(.wp-admin), #classiwrapper {
     }
 }
 
+.wp-admin {
+    .awpcp-message:not(.notice) {
+        background-color: #FFFBCC;
+        border: 1px solid #CCC;
+        color: #333;
+        margin: 10px 0;
+        padding: 8px 12px;
+
+        &.info {
+            border-color: #00A1CE;
+        }
+        &.ghost {
+            display: none;
+        }
+
+        p {
+            margin: 0;
+        }
+    }
+
+    .awpcp-updated:not(.notice) {
+        border-color: #E6DB55;
+        display: block !important;
+    }
+
+    .awpcp-error:not(.notice) {
+        background-color: @error-message-background-color;
+        border-color: @error-message-border-color;
+        color: @error-message-font-color;
+        font-weight: normal;
+        font-size: 14px;
+    }
+}
+
 .wrap div.awpcp-inline-form-error /* necessary to overwrite WordPress styles */ {
     background: #FFF;
     border-radius: 3px;

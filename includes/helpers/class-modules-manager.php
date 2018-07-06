@@ -1,27 +1,23 @@
 <?php
 
-function awpcp_modules_manager() {
-    return awpcp_modules_manager_factory()->get_modules_manager_instance();
-}
-
 class AWPCP_ModulesManager {
 
     private $plugin;
     private $upgrade_tasks;
     private $licenses_manager;
     private $modules_updater;
-    private $settings;
+    private $licenses_settings;
     private $request;
 
     private $modules = array();
     private $notices = array();
 
-    public function __construct( $plugin, $upgrade_tasks, $licenses_manager, $modules_updater, $settings, $request ) {
+    public function __construct( $plugin, $upgrade_tasks, $licenses_manager, $modules_updater, $licenses_settings, $request ) {
         $this->plugin = $plugin;
         $this->upgrade_tasks = $upgrade_tasks;
         $this->licenses_manager = $licenses_manager;
         $this->modules_updater = $modules_updater;
-        $this->settings = $settings;
+        $this->licenses_settings = $licenses_settings;
         $this->request = $request;
     }
 
@@ -44,7 +40,7 @@ class AWPCP_ModulesManager {
         $this->verify_version_compatibility( $module );
 
         if ( $this->is_premium_module( $module ) ) {
-            $this->settings->add_license_setting( $module->name, $module->slug );
+            $this->licenses_settings->add_license_setting( $module->name, $module->slug );
             $this->verify_license_status( $module );
         }
 

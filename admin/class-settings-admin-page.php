@@ -7,7 +7,11 @@
  * Constructor function for AWPCP_SettingsAdminPage
  */
 function awpcp_settings_admin_page() {
-	return new AWPCP_SettingsAdminPage( awpcp()->settings, awpcp_request() );
+    return new AWPCP_SettingsAdminPage(
+        awpcp()->container['SettingsManager'],
+        awpcp()->container['Settings'],
+        awpcp()->container['Request']
+    );
 }
 
 /**
@@ -28,12 +32,14 @@ class AWPCP_SettingsAdminPage {
     /**
      * Constructor.
      *
-     * @param object $settings An instance of SettingsAPI.
-     * @param object $request  An instance of Request.
+     * @param object $settings_manager  An instance of SettingsManager.
+     * @param object $settings          An instance of SettingsAPI.
+     * @param object $request           An instance of Request.
      */
-	public function __construct( $settings, $request ) {
-		$this->settings = $settings;
-		$this->request = $request;
+	public function __construct( $settings_manager, $settings, $request ) {
+        $this->settings_manager = $settings_manager;
+        $this->settings         = $settings;
+        $this->request          = $request;
 
 		$this->instantiate_auxiliar_pages();
 	}
@@ -49,13 +55,24 @@ class AWPCP_SettingsAdminPage {
      * Renders the page.
      */
 	public function dispatch() {
-		$groups = $this->settings->groups;
+        $groups    = $this->settings_manager->get_settings_groups();
+        $subgroups = $this->settings_manager->get_settings_subgroups();
+
+        $current_subgroup = $this->get_current_subgroup( $groups, $subgroups );
+        $current_group    = $groups[ $current_subgroup['parent'] ];
+
 		unset( $groups['private-settings'] );
 
 		$params = array(
-			'groups' => $groups,
-			'group' => $groups[ $this->request->param( 'g', 'pages-settings' ) ],
-			'settings' => $this->settings,
+            'groups'              => $groups,
+            'subgroups'           => $subgroups,
+            'current_group'       => $current_group,
+            'current_subgroup'    => $current_subgroup,
+            // $subgroups is ordered by priority, $current_group['subgroups'] is not.
+            'current_subgroups'   => array_intersect( array_keys( $subgroups ), $current_group['subgroups'] ),
+            'settings'            => $this->settings,
+            'setting_name'        => $this->settings->setting_name,
+            'current_url'         => remove_query_arg( [ 'sg', 'g' ], awpcp_current_url() ),
             'import_settings_url' => add_query_arg( 'awpcp-action', 'import-settings', awpcp_get_admin_settings_url() ),
             'export_settings_url' => add_query_arg( 'awpcp-action', 'export-settings', awpcp_get_admin_settings_url() ),
 		);
@@ -64,6 +81,30 @@ class AWPCP_SettingsAdminPage {
 
 		return awpcp_render_template( $template, $params );
 	}
+
+    /**
+     * @since 4.0.0
+     */
+    private function get_current_subgroup( $groups, $subgroups ) {
+        $subgroup_id = $this->request->param( 'sg' );
+
+        if ( isset( $subgroups[ $subgroup_id ] ) ) {
+            return $subgroups[ $subgroup_id ];
+        }
+
+        $group_id = $this->request->param( 'g', 'pages-settings' );
+
+        if ( isset( $groups[ $group_id ] ) ) {
+            $subgroup_id = reset( $groups[ $group_id ]['subgroups'] );
+
+            return $subgroups[ $subgroup_id ];
+        }
+
+        $first_group = reset( $groups );
+        $subgroup_id = reset( $first_group['subgroups'] );
+
+        return $subgroups[ $subgroup_id ];
+    }
 
 	private function instantiate_auxiliar_pages() {
 		$pages = awpcp_classfieds_pages_settings();

@@ -134,7 +134,7 @@ class AWPCP_Router {
             $request_handler->on_load();
         }
 
-        do_action( 'awpcp-admin-load-' . $admin_page->slug );
+        do_action( "awpcp_admin_load_{$admin_page->slug}" );
     }
 
     public function serve_admin_page( $route ) {

@@ -1,30 +1,54 @@
 <?php
 
 function awpcp_files_settings() {
-    return new AWPCP_FilesSettings( awpcp_file_types() );
+    return new AWPCP_FilesSettings(
+        awpcp_file_types(),
+        awpcp()->container['Settings']
+    );
 }
 
 class AWPCP_FilesSettings {
 
     private $file_types;
 
-    public function __construct( $file_types ) {
+    /**
+     * @var Settings
+     */
+    private $settings;
+
+    public function __construct( $file_types, $settings ) {
         $this->file_types = $file_types;
+        $this->settings   = $settings;
     }
 
-    public function register_settings( $settings ) {
+    public function register_settings( $settings_manager ) {
         global $awpcp_imagesurl;
-        $group = $settings->add_group( _x( 'Images/Attachments', 'name of Files settings section', 'another-wordpress-classifieds-plugin' ), 'attachments-settings', 50 );
 
-        $key = $settings->add_section(
-            $group,
+        $settings_manager->add_settings_group( [
+            'id'       =>'attachments-settings',
+            'name'     => __( 'Media', 'another-wordpress-classifieds-plugin' ),
+            'priority' => 50
+        ] );
+
+        $settings_manager->add_settings_subgroup( [
+            'id'       => 'media-settings',
+            'name'     => __( 'Media', 'another-wordpress-classifieds-plugin' ),
+            'priority' => 10,
+            'parent'   => 'attachments-settings',
+        ] );
+
+        $group = 'media-settings';
+        $key   = 'media-settings';
+
+        $settings_manager->add_section(
+            'media-settings',
             __( 'General', 'another-wordpress-classifieds-plugin' ),
-            'general',
+            $key,
             5,
-            array( $settings, 'section' )
+            array( $settings_manager, 'section' )
         );
 
-        $settings->add_setting(
+        $settings_manager->add_setting(
             $key,
             'show-popup-if-user-did-not-upload-files',
             __( "Show popup if user didn't upload files", 'another-wordpress-classifieds-plugin' ),
@@ -35,9 +59,11 @@ class AWPCP_FilesSettings {
 
         // Section: Uploads Directory
 
-        $key = $settings->add_section( $group, __( 'Uploads Directory', 'another-wordpress-classifieds-plugin' ), 'uploads-directory', 10, array( $settings, 'section' ) );
+        $key = 'uploads-directory';
 
-        $settings->add_setting( $key, 'uploadfoldername', __( 'Uploads folder name', 'another-wordpress-classifieds-plugin' ), 'textfield', 'uploads', __( 'Upload folder name. (Folder must exist and be located in your wp-content directory)', 'another-wordpress-classifieds-plugin' ) );
+        $settings_manager->add_section( $group, __( 'Uploads Directory', 'another-wordpress-classifieds-plugin' ), 'uploads-directory', 10, array( $settings_manager, 'section' ) );
+
+        $settings_manager->add_setting( $key, 'uploadfoldername', __( 'Uploads folder name', 'another-wordpress-classifieds-plugin' ), 'textfield', 'uploads', __( 'Upload folder name. (Folder must exist and be located in your wp-content directory)', 'another-wordpress-classifieds-plugin' ) );
 
         $permissions = array(
             '0755' => '0755',
@@ -45,7 +71,7 @@ class AWPCP_FilesSettings {
             '0777' => '0777',
         );
 
-        $settings->add_setting(
+        $settings_manager->add_setting(
             $key,
             'upload-directory-permissions',
             __( 'File permissions for uploads directory', 'another-wordpress-classifieds-plugin' ),
@@ -57,10 +83,12 @@ class AWPCP_FilesSettings {
 
         // Section: Image Settings
 
-        $key = $settings->add_section( $group, __( 'Images', 'another-wordpress-classifieds-plugin' ), 'image', 20, array( $settings, 'section' ) );
+        $key = 'image';
+
+        $settings_manager->add_section( $group, __( 'Images', 'another-wordpress-classifieds-plugin' ), 'image', 20, array( $settings_manager, 'section' ) );
 
         $image_extensions = $this->file_types->get_file_extensions_in_group( 'image' );
-        $legacy_allow_images_setting = $settings->get_option( 'imagesallowdisallow', true );
+        $legacy_allow_images_setting = $this->settings->get_option( 'imagesallowdisallow', true );
 
         if ( $legacy_allow_images_setting ) {
             $default_image_extenstions = $image_extensions;
@@ -69,7 +97,7 @@ class AWPCP_FilesSettings {
         }
 
         awpcp_register_allowed_extensions_setting(
-            $settings,
+            $settings_manager,
             $key,
             array(
                 'name' => 'allowed-image-extensions',
@@ -79,50 +107,74 @@ class AWPCP_FilesSettings {
             )
         );
 
-        $settings->add_setting( $key, 'imagesapprove', __( 'Hide images until admin approves them', 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, '');
-        $settings->add_setting( $key, 'awpcp_thickbox_disabled', __( "Disable AWPCP's Lightbox feature", 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, __( 'Do not include the lightbox jQuery plugin used by AWPCP. Use this option to fix conflicts with themes or plugins that also offers a lightbox feature.', 'another-wordpress-classifieds-plugin' ) );
-        $settings->add_setting( $key, 'show-click-to-enlarge-link', __( 'Show click to enlarge link?', 'another-wordpress-classifieds-plugin' ), 'checkbox', 1, '' );
-        $settings->add_setting( $key, 'imagesallowedfree', __( 'Number of images allowed if payments are disabled (Free Mode)', 'another-wordpress-classifieds-plugin' ), 'textfield', 4, __( 'If images are allowed and payments are disabled, users will be allowed upload this amount of images.', 'another-wordpress-classifieds-plugin' ) );
+        $settings_manager->add_setting( $key, 'imagesapprove', __( 'Hide images until admin approves them', 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, '');
+        $settings_manager->add_setting( $key, 'awpcp_thickbox_disabled', __( "Disable AWPCP's Lightbox feature", 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, __( 'Do not include the lightbox jQuery plugin used by AWPCP. Use this option to fix conflicts with themes or plugins that also offers a lightbox feature.', 'another-wordpress-classifieds-plugin' ) );
+        $settings_manager->add_setting( $key, 'show-click-to-enlarge-link', __( 'Show click to enlarge link?', 'another-wordpress-classifieds-plugin' ), 'checkbox', 1, '' );
+        $settings_manager->add_setting( $key, 'imagesallowedfree', __( 'Number of images allowed if payments are disabled (Free Mode)', 'another-wordpress-classifieds-plugin' ), 'textfield', 4, __( 'If images are allowed and payments are disabled, users will be allowed upload this amount of images.', 'another-wordpress-classifieds-plugin' ) );
 
         $options = array(0 => 0, 1 => 1, 2 => 2, 3 => 3, 4 => 4);
 
-        $settings->add_setting( $key, 'display-thumbnails-in-columns', __( 'Number of columns of thumbnails to show in Show Ad page.', 'another-wordpress-classifieds-plugin' ), 'select', 0, __( 'Zero means there will be as many thumbnails as possible per row.', 'another-wordpress-classifieds-plugin' ), array( 'options' => $options ) );
+        $settings_manager->add_setting( $key, 'display-thumbnails-in-columns', __( 'Number of columns of thumbnails to show in Show Ad page.', 'another-wordpress-classifieds-plugin' ), 'select', 0, __( 'Zero means there will be as many thumbnails as possible per row.', 'another-wordpress-classifieds-plugin' ), array( 'options' => $options ) );
 
-        $settings->add_setting( $key, 'hide-noimage-placeholder', __( 'Hide No Image placeholder', 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, '' );
-        $settings->add_setting( $key, 'override-noimage-placeholder', __( 'Override the No Image placeholder image with my own', 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, '' );
-        $settings->add_setting( $key, 'noimage-placeholder-url', __( 'No Image Placeholder URL', 'another-wordpress-classifieds-plugin' ), 'textfield', sprintf( '%s/adhasnoimage.png', $awpcp_imagesurl ), __( 'Put the URL of an existing image on your site to use.  The size of this image should match the thumbnail size settings on this tab', 'another-wordpress-classifieds-plugin' ) );
+        $settings_manager->add_setting( $key, 'hide-noimage-placeholder', __( 'Hide No Image placeholder', 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, '' );
 
-        $settings->add_behavior( $key, 'override-noimage-placeholder', 'shownUnless', 'hide-noimage-placeholder' );
-        $settings->add_behavior( $key, 'noimage-placeholder-url', 'shownUnless', 'hide-noimage-placeholder' );
-        $settings->add_behavior( $key, 'noimage-placeholder-url', 'enabledIf', 'override-noimage-placeholder' );
+        $settings_manager->add_setting( [
+            'id' => 'override-noimage-placeholder',
+            'name' => __( 'Override the No Image placeholder image with my own', 'another-wordpress-classifieds-plugin' ),
+            'type' => 'checkbox',
+            'default' => 0,
+            'behavior' => [
+                'shownUnless' => 'hide-noimage-placeholder',
+            ],
+            'section' => $key,
+        ] );
+
+        $settings_manager->add_setting( [
+            'id'          => 'noimage-placeholder-url',
+            'name'        => __( 'No Image Placeholder URL', 'another-wordpress-classifieds-plugin' ),
+            'type'        => 'textfield',
+            'default'     => sprintf( '%s/adhasnoimage.png', $awpcp_imagesurl ),
+            'description' => __( 'Put the URL of an existing image on your site to use.  The size of this image should match the thumbnail size settings on this tab', 'another-wordpress-classifieds-plugin' ),
+            'behavior'   => [
+                'shownUnless' => 'hide-noimage-placeholder',
+                'enabledIf'   => 'override-noimage-placeholder',
+            ],
+            'section'     => $key,
+        ] );
 
         // Section: Image File Size Settings
 
-        $key = $settings->add_section($group, __('Image File Size', 'another-wordpress-classifieds-plugin'), 'image-file-size', 30, array($settings, 'section'));
+        $key = 'image-file-size';
 
-        $settings->add_setting( $key, 'maximagesize', __( 'Maximum file size per image', 'another-wordpress-classifieds-plugin' ), 'textfield', '1000000', __( 'Maximum file size, in bytes, for files user can upload to system. 1 MB = 1000000 bytes. You can google "x MB to bytes" to get an accurate conversion.', 'another-wordpress-classifieds-plugin' ) );
-        $settings->add_setting( $key, 'minimagesize', __( 'Minimum file size per image', 'another-wordpress-classifieds-plugin' ), 'textfield', '300', __( 'Minimum file size, in bytes, for files user can upload to system. 1 MB = 1000000 bytes. You can google "x MB to bytes" to get an accurate conversion.', 'another-wordpress-classifieds-plugin' ) );
-        $settings->add_setting( $key, 'imgminwidth', __( 'Minimum image width', 'another-wordpress-classifieds-plugin' ), 'textfield', '640', __( 'Minimum width for images.', 'another-wordpress-classifieds-plugin' ) );
-        $settings->add_setting( $key, 'imgminheight', __( 'Minimum image height', 'another-wordpress-classifieds-plugin' ), 'textfield', '480', __( 'Minimum height for images.', 'another-wordpress-classifieds-plugin' ) );
-        $settings->add_setting( $key, 'imgmaxwidth', __( 'Maximum image width', 'another-wordpress-classifieds-plugin' ), 'textfield', '640', __( 'Maximum width for images. Images wider than settings are automatically resized upon upload.', 'another-wordpress-classifieds-plugin' ) );
-        $settings->add_setting( $key, 'imgmaxheight', __( 'Maximum image height', 'another-wordpress-classifieds-plugin' ), 'textfield', '480', __( 'Maximum height for images. Images taller than settings are automatically resized upon upload.', 'another-wordpress-classifieds-plugin' ) );
+        $settings_manager->add_section($group, __('Image File Size', 'another-wordpress-classifieds-plugin'), 'image-file-size', 30, array($settings_manager, 'section'));
+
+        $settings_manager->add_setting( $key, 'maximagesize', __( 'Maximum file size per image', 'another-wordpress-classifieds-plugin' ), 'textfield', '1000000', __( 'Maximum file size, in bytes, for files user can upload to system. 1 MB = 1000000 bytes. You can google "x MB to bytes" to get an accurate conversion.', 'another-wordpress-classifieds-plugin' ) );
+        $settings_manager->add_setting( $key, 'minimagesize', __( 'Minimum file size per image', 'another-wordpress-classifieds-plugin' ), 'textfield', '300', __( 'Minimum file size, in bytes, for files user can upload to system. 1 MB = 1000000 bytes. You can google "x MB to bytes" to get an accurate conversion.', 'another-wordpress-classifieds-plugin' ) );
+        $settings_manager->add_setting( $key, 'imgminwidth', __( 'Minimum image width', 'another-wordpress-classifieds-plugin' ), 'textfield', '640', __( 'Minimum width for images.', 'another-wordpress-classifieds-plugin' ) );
+        $settings_manager->add_setting( $key, 'imgminheight', __( 'Minimum image height', 'another-wordpress-classifieds-plugin' ), 'textfield', '480', __( 'Minimum height for images.', 'another-wordpress-classifieds-plugin' ) );
+        $settings_manager->add_setting( $key, 'imgmaxwidth', __( 'Maximum image width', 'another-wordpress-classifieds-plugin' ), 'textfield', '640', __( 'Maximum width for images. Images wider than settings are automatically resized upon upload.', 'another-wordpress-classifieds-plugin' ) );
+        $settings_manager->add_setting( $key, 'imgmaxheight', __( 'Maximum image height', 'another-wordpress-classifieds-plugin' ), 'textfield', '480', __( 'Maximum height for images. Images taller than settings are automatically resized upon upload.', 'another-wordpress-classifieds-plugin' ) );
 
         // Section: Image Settings - Primary Images
 
-        $key = $settings->add_section( $group, __( 'Primary Image', 'another-wordpress-classifieds-plugin'), 'primary-image', 40, array( $this, 'primary_image_section_header' ) );
+        $key = 'primary-image';
 
-        $settings->add_setting( $key, 'displayadthumbwidth', __( 'Thumbnail width (Ad Listings page)', 'another-wordpress-classifieds-plugin' ), 'textfield', '80', __( 'Width of the thumbnail for the primary image shown in Ad Listings view.', 'another-wordpress-classifieds-plugin' ) );
-        $settings->add_setting( $key, 'primary-image-thumbnail-width', __( 'Thumbnail width (Primary Image)', 'another-wordpress-classifieds-plugin' ), 'textfield', '200', __( 'Width of the thumbnail for the primary image shown in Single Ad view.', 'another-wordpress-classifieds-plugin' ) );
-        $settings->add_setting( $key, 'primary-image-thumbnail-height', __( 'Thumbnail height (Primary Image)', 'another-wordpress-classifieds-plugin' ), 'textfield', '200', __( 'Height of the thumbnail for the primary image shown in Single Ad view.', 'another-wordpress-classifieds-plugin' ) );
-        $settings->add_setting( $key, 'crop-primary-image-thumbnails', __( 'Crop primary image thumbnails?', 'another-wordpress-classifieds-plugin' ), 'checkbox', 1, _x('If you decide to crop thumbnails, images will match exactly the dimensions in the settings above but part of the image may be cropped out. If you decide to resize, image thumbnails will be resized to match the specified width and their height will be adjusted proportionally; depending on the uploaded images, thumbnails may have different heights.', 'settings', 'another-wordpress-classifieds-plugin' ) );
+        $settings_manager->add_section( $group, __( 'Primary Image', 'another-wordpress-classifieds-plugin'), 'primary-image', 40, array( $this, 'primary_image_section_header' ) );
+
+        $settings_manager->add_setting( $key, 'displayadthumbwidth', __( 'Thumbnail width (Ad Listings page)', 'another-wordpress-classifieds-plugin' ), 'textfield', '80', __( 'Width of the thumbnail for the primary image shown in Ad Listings view.', 'another-wordpress-classifieds-plugin' ) );
+        $settings_manager->add_setting( $key, 'primary-image-thumbnail-width', __( 'Thumbnail width (Primary Image)', 'another-wordpress-classifieds-plugin' ), 'textfield', '200', __( 'Width of the thumbnail for the primary image shown in Single Ad view.', 'another-wordpress-classifieds-plugin' ) );
+        $settings_manager->add_setting( $key, 'primary-image-thumbnail-height', __( 'Thumbnail height (Primary Image)', 'another-wordpress-classifieds-plugin' ), 'textfield', '200', __( 'Height of the thumbnail for the primary image shown in Single Ad view.', 'another-wordpress-classifieds-plugin' ) );
+        $settings_manager->add_setting( $key, 'crop-primary-image-thumbnails', __( 'Crop primary image thumbnails?', 'another-wordpress-classifieds-plugin' ), 'checkbox', 1, _x('If you decide to crop thumbnails, images will match exactly the dimensions in the settings above but part of the image may be cropped out. If you decide to resize, image thumbnails will be resized to match the specified width and their height will be adjusted proportionally; depending on the uploaded images, thumbnails may have different heights.', 'settings', 'another-wordpress-classifieds-plugin' ) );
 
         // Section: Image Settings - Thumbnails
 
-        $key = $settings->add_section( $group, __( 'Thumbnails', 'another-wordpress-classifieds-plugin' ), 'thumbnails', 50, array( $this, 'thumbnails_section_header' ) );
+        $key = 'thumbnails';
 
-        $settings->add_setting( $key, 'imgthumbwidth', __( 'Thumbnail width', 'another-wordpress-classifieds-plugin' ), 'textfield', '125', __( 'Width of the thumbnail images.', 'another-wordpress-classifieds-plugin' ) );
-        $settings->add_setting( $key, 'imgthumbheight', __( 'Thumbnail height', 'another-wordpress-classifieds-plugin' ), 'textfield', '125', __( 'Height of the thumbnail images.', 'another-wordpress-classifieds-plugin' ) );
-        $settings->add_setting( $key, 'crop-thumbnails', __( 'Crop thumbnail images?', 'another-wordpress-classifieds-plugin' ), 'checkbox', 1, _x( 'If you decide to crop thumbnails, images will match exactly the dimensions in the settings above but part of the image may be cropped out. If you decide to resize, image thumbnails will be resized to match the specified width and their height will be adjusted proportionally; depending on the uploaded images, thumbnails may have different heights.', 'settings', 'another-wordpress-classifieds-plugin' ) );
+        $settings_manager->add_section( $group, __( 'Thumbnails', 'another-wordpress-classifieds-plugin' ), 'thumbnails', 50, array( $this, 'thumbnails_section_header' ) );
+
+        $settings_manager->add_setting( $key, 'imgthumbwidth', __( 'Thumbnail width', 'another-wordpress-classifieds-plugin' ), 'textfield', '125', __( 'Width of the thumbnail images.', 'another-wordpress-classifieds-plugin' ) );
+        $settings_manager->add_setting( $key, 'imgthumbheight', __( 'Thumbnail height', 'another-wordpress-classifieds-plugin' ), 'textfield', '125', __( 'Height of the thumbnail images.', 'another-wordpress-classifieds-plugin' ) );
+        $settings_manager->add_setting( $key, 'crop-thumbnails', __( 'Crop thumbnail images?', 'another-wordpress-classifieds-plugin' ), 'checkbox', 1, _x( 'If you decide to crop thumbnails, images will match exactly the dimensions in the settings above but part of the image may be cropped out. If you decide to resize, image thumbnails will be resized to match the specified width and their height will be adjusted proportionally; depending on the uploaded images, thumbnails may have different heights.', 'settings', 'another-wordpress-classifieds-plugin' ) );
     }
 
     public function primary_image_section_header() {
