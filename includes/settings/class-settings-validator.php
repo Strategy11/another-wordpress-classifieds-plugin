@@ -9,12 +9,12 @@
 class AWPCP_SettingsValidator {
 
     /**
-     * @since 4.0.0
+     * @var Settings
      */
     private $settings;
 
     /**
-     * @since 4.0.0
+     * @var Request.
      */
     private $request;
 
@@ -30,8 +30,6 @@ class AWPCP_SettingsValidator {
 	 * Validates AWPCP settings before being saved.
 	 */
 	public function sanitize_settings( $new_options ) {
-        // if ($this->skip) { return $options; }
-
         $group = $this->request->post( 'group', '' );
 
         // Populate array with all plugin options before attempt validation.
@@ -56,6 +54,8 @@ class AWPCP_SettingsValidator {
 
         return $this->settings->options;
 	}
+
+    // phpcs:disable
 
 	/**
 	 * General Settings checks
@@ -227,7 +227,7 @@ class AWPCP_SettingsValidator {
 
         if ( ! awpcp_is_valid_email_address( $options[ $setting_name ] ) ) {
             $new_value = '<strong>' . esc_html( $options[ $setting_name ] ) . '</strong>';
-            $message = str_replace( '<new-value>', $new_value, $message );
+            $message   = str_replace( '<new-value>', $new_value, $message );
 
             awpcp_flash( $message, 'notice notice-error' );
 

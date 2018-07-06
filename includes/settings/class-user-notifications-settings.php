@@ -1,24 +1,39 @@
 <?php
+/**
+ * @package AWPCP\Settings
+ */
 
+/**
+ * Constructor functions.
+ */
 function awpcp_user_notifications_settings() {
     return new AWPCP_UserNotificationsSettings();
 }
 
+/**
+ * Register settings for notifications.
+ */
 class AWPCP_UserNotificationsSettings {
 
+    /**
+     * Handler for awpcp_register_settings action.
+     */
     public function register_settings( $settings_manager ) {
         $this->register_subscriber_notifications_settings( $settings_manager );
         $this->register_moderator_notifications_settings( $settings_manager );
         $this->register_administrator_notifications_settings( $settings_manager );
     }
 
+    /**
+     * Register settins for subscriber notifications.
+     */
     private function register_subscriber_notifications_settings( $settings_manager ) {
         $group = 'listings-settings';
         $key   = 'user-notifications';
 
         $settings_manager->add_settings_subgroup( [
-            'id' => 'listings-settings',
-            'name' => __( 'Classifieds', 'another-wordpress-classifieds-plugin' ),
+            'id'       => 'listings-settings',
+            'name'     => __( 'Classifieds', 'another-wordpress-classifieds-plugin' ),
             'priority' => 10,
             'parent'   => 'listings-settings',
         ] );
@@ -49,6 +64,9 @@ class AWPCP_UserNotificationsSettings {
         $settings_manager->add_setting( $key, 'notifyofadexpiring', __( 'Listing Expired', 'another-wordpress-classifieds-plugin' ), 'checkbox', 1, __( 'An email will be sent when the Ad expires.', 'another-wordpress-classifieds-plugin' ) );
     }
 
+    /**
+     * Register settings for moderator notifications.
+     */
     private function register_moderator_notifications_settings( $settings_manager ) {
         $key = $settings_manager->add_section( 'listings-settings', __( 'Moderator Notifications', 'another-wordpress-classifieds-plugin' ), 'moderator-notifications', 4, array( $settings, 'section' ) );
 
@@ -80,6 +98,9 @@ class AWPCP_UserNotificationsSettings {
         );
     }
 
+    /**
+     * Register settings for administrator notifications.
+     */
     private function register_administrator_notifications_settings( $settings_manager ) {
         $key = $settings_manager->add_section( 'listings-settings', __( 'Admin Notifications', 'another-wordpress-classifieds-plugin' ), 'admin-notifications', 5, array( $settings, 'section' ) );
 
@@ -121,7 +142,7 @@ class AWPCP_UserNotificationsSettings {
             __( 'An email will be sent to administrator users when a listing is flagged.', 'another-wordpress-classifieds-plugin' )
         );
 
-         $settings_manager->add_setting(
+        $settings_manager->add_setting(
             $key,
             'send-media-uploaded-notification-to-administrators',
             __( 'New media was uploaded', 'another-wordpress-classifieds-plugin' ),

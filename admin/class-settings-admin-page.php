@@ -106,6 +106,8 @@ class AWPCP_SettingsAdminPage {
         return $subgroups[ $subgroup_id ];
     }
 
+    // phpcs:disable
+
 	private function instantiate_auxiliar_pages() {
 		$pages = awpcp_classfieds_pages_settings();
 		$facebook = new AWPCP_Facebook_Page_Settings();

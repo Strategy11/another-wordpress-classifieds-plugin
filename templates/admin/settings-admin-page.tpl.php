@@ -9,13 +9,13 @@ awpcp_print_messages(); ?>
 
 			<h2 class="nav-tab-wrapper">
 			<?php foreach ( $groups as $group ) : ?>
-				<a href="<?php echo esc_url( add_query_arg( 'g', $group['id'], $current_url ) ); ?>" class="<?php echo esc_attr( $group['id'] === $current_group['id'] ? 'nav-tab nav-tab-active' : 'nav-tab' ); ?>"><?php echo $group['name']; ?></a>
+				<a href="<?php echo esc_url( add_query_arg( 'g', $group['id'], $current_url ) ); ?>" class="<?php echo esc_attr( $group['id'] === $current_group['id'] ? 'nav-tab nav-tab-active' : 'nav-tab' ); ?>"><?php echo esc_html( $group['name'] ); ?></a>
 			<?php endforeach; ?>
 			</h2>
 
             <?php if ( count( $current_group['subgroups'] ) > 1 ) : ?>
             <ul class="awpcp-settings-sub-groups">
-            <?php foreach( $current_subgroups as $subgroup_id ) : ?>
+            <?php foreach ( $current_subgroups as $subgroup_id ) : ?>
                 <li class="<?php echo esc_attr( $current_subgroup['id'] === $subgroup_id ? 'awpcp-current' : '' ); ?>">
                     <a href="<?php echo esc_url( add_query_arg( 'sg', $subgroup_id, $current_url ) ); ?>"><?php echo esc_html( $subgroups[ $subgroup_id ]['name'] ); ?></a>
                 </li>
@@ -23,7 +23,10 @@ awpcp_print_messages(); ?>
             </ul>
             <?php endif; ?>
 
-            <?php /* TODO: DO we still need this? */ do_action( 'awpcp-admin-settings-page--' . $current_group['id'] ); ?>
+            <?php
+                // TODO: DO we still need this?
+                do_action( 'awpcp-admin-settings-page--' . $current_group['id'] ); // phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
+            ?>
 
 			<form class="settings-form" action="<?php echo esc_url( admin_url( 'options.php' ) ); ?>" method="post">
 
@@ -31,7 +34,7 @@ awpcp_print_messages(); ?>
 
 				<input type="hidden" name="group" value="<?php echo esc_attr( $group['id'] ); ?>" />
 
-				<?php $settings->load() ?>
+				<?php $settings->load(); ?>
 				<?php
 				ob_start();
 				do_settings_sections( $current_subgroup['id'] );
@@ -39,9 +42,9 @@ awpcp_print_messages(); ?>
 				ob_end_clean();
 				?>
 
-				<?php if ( $output ): ?>
+				<?php if ( $output ) : ?>
 				<p class="submit hidden">
-					<input type="submit" value="<?php _e( 'Save Changes', 'another-wordpress-classifieds-plugin' ); ?>" class="button-primary" id="submit-top" name="submit">
+					<input type="submit" value="<?php esc_attr_e( 'Save Changes', 'another-wordpress-classifieds-plugin' ); ?>" class="button-primary" id="submit-top" name="submit">
 				</p>
 				<?php endif; ?>
 
@@ -51,11 +54,11 @@ awpcp_print_messages(); ?>
 					// unwanted behaviours.
 				?>
 
-				<?php echo $output; ?>
+				<?php echo $output; // XSS Ok. ?>
 
-				<?php if ( $output ): ?>
+				<?php if ( $output ) : ?>
 				<p class="submit">
-					<input type="submit" value="<?php _e( 'Save Changes', 'another-wordpress-classifieds-plugin' ) ?>" class="button-primary" id="submit-bottom" name="submit">
+					<input type="submit" value="<?php esc_attr_e( 'Save Changes', 'another-wordpress-classifieds-plugin' ); ?>" class="button-primary" id="submit-bottom" name="submit">
 				</p>
 				<?php endif; ?>
 			</form>

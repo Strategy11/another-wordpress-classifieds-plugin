@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package AWPCP
+ */
+
+// phpcs:disable
 
 class AWPCP_ModulesManager {
 

@@ -15,6 +15,9 @@ class AWPCP_WordPressPageSettingsRenderer {
         $this->settings = $settings;
     }
 
+    /**
+     * Handler for awpcp_register_settings action.
+     */
     public function render_setting( $setting ) {
         $dropdown_params = array(
             'name'              => $this->settings->setting_name . '[' . $setting['id'] . ']',
@@ -32,6 +35,6 @@ class AWPCP_WordPressPageSettingsRenderer {
 
         $description = sprintf( '<span class="description">%s</span>', $setting['description'] );
 
-        echo wp_dropdown_pages( $dropdown_params ) . $create_page_button . '<br/>' . $description;
+        echo wp_dropdown_pages( $dropdown_params ) . $create_page_button . '<br/>' . $description; // XSS Ok.
     }
 }

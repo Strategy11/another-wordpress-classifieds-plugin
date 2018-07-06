@@ -9,7 +9,7 @@
 class AWPCP_LicensesSettings {
 
     /**
-     * @since 4.0.0
+     * @var SettingsManager
      */
     private $settings_manager;
 
@@ -43,6 +43,9 @@ class AWPCP_LicensesSettings {
         ] );
     }
 
+    /**
+     * Defines Licenses settings group, sub group and section.
+     */
     private function register_licenses_settings_group() {
         $this->settings_manager->add_settings_group( [
             'id'       => 'licenses-settings',

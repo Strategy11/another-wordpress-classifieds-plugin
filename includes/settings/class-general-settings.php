@@ -3,6 +3,9 @@
  * @package AWPCP\Settings
  */
 
+/**
+ * Constructor function.
+ */
 function awpcp_general_settings() {
     return new AWPCP_GeneralSettings(
         awpcp_roles_and_capabilities(),
@@ -11,6 +14,7 @@ function awpcp_general_settings() {
 }
 
 /**
+ * Register general plugin settings.
  */
 class AWPCP_GeneralSettings {
 
@@ -44,6 +48,8 @@ class AWPCP_GeneralSettings {
 
         $this->register_legacy_settings( $settings_manager );
     }
+
+    // phpcs:disable
 
     /**
      * @since 4.0.0

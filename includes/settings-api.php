@@ -1,4 +1,7 @@
 <?php
+/**
+ * @package AWPCP\Settings
+ */
 
 /**
  * @since 3.6.1
@@ -7,7 +10,12 @@ function awpcp_settings_api() {
     return awpcp()->container['Settings'];
 }
 
+/**
+ * Allows access to stored values of the plugin's settings.
+ */
 class AWPCP_Settings_API {
+
+    // phpcs:disable
 
 	private $runtime_settings = array();
 

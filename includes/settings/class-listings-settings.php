@@ -20,10 +20,13 @@ class AWPCP_ListingsSettings {
         $this->settings = $settings;
     }
 
+    /**
+     * Handler for awpcp_register_settings action.
+     */
     public function register_settings( $settings_manager ) {
         $settings_manager->add_settings_group( [
             'id'       => 'listings-settings',
-            'name'     => __( 'Classifieds', 'another-wordpress-classifieds-plugin'),
+            'name'     => __( 'Classifieds', 'another-wordpress-classifieds-plugin' ),
             'priority' => 30,
         ] );
 
@@ -32,6 +35,8 @@ class AWPCP_ListingsSettings {
         $this->register_seo_settings( $settings_manager );
         $this->register_regions_settings( $settings_manager );
     }
+
+    // phpcs:disable
 
     /**
      * @since 4.0.0

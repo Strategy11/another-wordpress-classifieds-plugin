@@ -8,11 +8,14 @@
  */
 class AWPCP_PagesSettings {
 
+    /**
+     * Handler for awpcp_register_settings action.
+     */
     public function register_settings( $settings_manager ) {
         $settings_manager->add_settings_group( [
             'name'     => __( 'Pages', 'another-wordpress-classifieds-plugin' ),
             'id'       => 'pages-settings',
-            'priority' => 20
+            'priority' => 20,
         ] );
 
         $settings_manager->add_settings_subgroup( [

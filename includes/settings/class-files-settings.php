@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package AWPCP\Settings
+ */
+
+// phpcs:disable
 
 function awpcp_files_settings() {
     return new AWPCP_FilesSettings(

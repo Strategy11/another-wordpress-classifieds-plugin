@@ -26,15 +26,15 @@ class AWPCP_CheckboxSettingsRenderer {
     public function render_setting( $setting, $config ) {
         $value = intval( $this->settings->get_option( $setting['id'] ) );
 
-        $html = '<input type="hidden" value="0" name="awpcp-options['. $setting['id'] .']" ';
+        $html = '<input type="hidden" value="0" name="awpcp-options[' . $setting['id'] . ']" ';
 
         if ( ! empty( $config ) ) {
-            $html .= 'awpcp-setting="' . esc_attr( json_encode( $config ) ) . '" />';
+            $html .= 'awpcp-setting="' . esc_attr( wp_json_encode( $config ) ) . '" />';
         } else {
             $html .= '/>';
         }
 
-        $html .= '<input id="'. $setting['id'] . '" value="1" ';
+        $html .= '<input id="' . $setting['id'] . '" value="1" ';
         $html .= 'type="checkbox" name="awpcp-options[' . $setting['id'] . ']" ';
 
         if ( $value ) {
@@ -42,15 +42,15 @@ class AWPCP_CheckboxSettingsRenderer {
         }
 
         if ( ! empty( $config ) ) {
-            $html .= 'awpcp-setting="' . esc_attr( json_encode( $config ) ) . '" />';
+            $html .= 'awpcp-setting="' . esc_attr( wp_json_encode( $config ) ) . '" />';
         } else {
             $html .= '/>';
         }
 
-        $html .= '<label for="'. $setting['id'] . '">';
+        $html .= '<label for="' . $setting['id'] . '">';
         $html .= '&nbsp;<span class="description">' . $setting['description'] . '</span>';
         $html .= '</label>';
 
-        echo $html;
+        echo $html; // XSS Ok.
     }
 }

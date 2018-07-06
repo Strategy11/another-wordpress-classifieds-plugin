@@ -23,6 +23,8 @@ class AWPCP_AppearanceSettings {
         $this->register_form_settings( $settings_manager );
     }
 
+    // phpcs:disable
+
     /**
      * @since 4.0.0
      */

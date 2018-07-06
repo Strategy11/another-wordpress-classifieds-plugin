@@ -15,6 +15,9 @@ class AWPCP_PaymentSettings {
         $this->settings = $settings;
     }
 
+    /**
+     * Handler for awpcp_register_settings action.
+     */
     public function register_settings( $settings_manager ) {
         $settings_manager->add_settings_group( [
             'id'       => 'payment-settings',
@@ -27,6 +30,8 @@ class AWPCP_PaymentSettings {
         $this->register_2checkout_settings( $settings_manager );
         $this->register_credit_system_settings( $settings_manager );
     }
+
+    // phpcs:disable
 
     /**
      * @since 4.0.0

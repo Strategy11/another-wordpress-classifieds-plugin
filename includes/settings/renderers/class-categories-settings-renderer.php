@@ -28,12 +28,12 @@ class AWPCP_CategoriesSettingsRenderer {
             'field_name'           => 'awpcp-options[' . $setting['id'] . ']',
             'selected'             => $this->settings->get_option( $setting['id'] ),
             'first_level_ul_class' => 'awpcp-categories-list',
-            'no-cache'             => time()
+            'no-cache'             => time(),
         );
 
         $checklist = awpcp_categories_checkbox_list_renderer()->render( $params );
 
-        echo sprintf( '<div class="cat-checklist category-checklist">%s</div>', $checklist );
-        echo '<span class="description">' . $setting['description'] . '</span>';
+        echo sprintf( '<div class="cat-checklist category-checklist">%s</div>', $checklist ); // XSS Ok.
+        echo '<span class="description">' . $setting['description'] . '</span>'; // XSS Ok.
     }
 }

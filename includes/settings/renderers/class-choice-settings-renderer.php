@@ -28,7 +28,7 @@ class AWPCP_ChoiceSettingsRenderer {
         $field_type = 'radio';
 
         if ( isset( $setting['multiple'] ) && $setting['multiple'] ) {
-           $field_type = 'checkbox';
+            $field_type = 'checkbox';
         }
 
         $selected = array_filter( $this->settings->get_option( $setting['id'], array() ), 'strlen' );
@@ -36,8 +36,8 @@ class AWPCP_ChoiceSettingsRenderer {
         $html = array( sprintf( '<input type="hidden" name="%s" value="">', $field_name ) );
 
         foreach ( $setting['choices'] as $value => $label ) {
-            $id = "{$setting['id']}-$value";
-            $checked = in_array( $value, $selected ) ? 'checked="checked"' : '';
+            $id      = "{$setting['id']}-$value";
+            $checked = in_array( $value, $selected, true ) ? 'checked="checked"' : '';
 
             $html_field = '<input id="%s" type="%s" name="%s" value="%s" %s />';
             $html_field = sprintf( $html_field, $id, $field_type, $field_name, $value, $checked );
@@ -48,6 +48,6 @@ class AWPCP_ChoiceSettingsRenderer {
 
         $html[] = '<span class="description">' . $setting['description'] . '</span>';
 
-        echo join( '', $html );
+        echo join( '', $html ); // XSS Ok.
     }
 }

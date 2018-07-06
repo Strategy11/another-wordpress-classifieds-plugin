@@ -70,6 +70,7 @@ class AWPCP_SettingsManager {
 
     /**
      * @since 4.0.0
+     * @throws AWPCP_Exception  If no group was specified or it doesn't exist.
      */
     public function add_settings_subgroup( $params ) {
         $subgroup = wp_parse_args( $params, [
@@ -117,6 +118,7 @@ class AWPCP_SettingsManager {
      * on add_section().
      *
      * @since 4.0.0
+     * @throws AWPCP_Exception  If no subgroup was specified or it doesn't exist.
      */
     public function add_settings_section( $params ) {
         $section = wp_parse_args( $params, [
@@ -155,6 +157,7 @@ class AWPCP_SettingsManager {
 
     /**
      * @since 4.0.0
+     * @throws AWPCP_Exception  If the section was specified or it doesn't exist.
      */
     public function add_setting( $params ) {
         // Support legacy function signature :(.
@@ -179,7 +182,7 @@ class AWPCP_SettingsManager {
             'description' => '',
             'default'     => null,
             'validation'  => [],
-            'behavior'   => [],
+            'behavior'    => [],
             'section'     => null,
         ] );
 
@@ -196,13 +199,16 @@ class AWPCP_SettingsManager {
         $this->settings[ $setting['id'] ] = $setting;
     }
 
+    /**
+     * Generates frontend configuration for the given setting.
+     */
     public function get_setting_configuration( $setting ) {
         $config = [
             'validation' => [
                 'rules'    => [],
                 'messages' => [],
             ],
-            'behavior' => $setting['behavior'],
+            'behavior'   => $setting['behavior'],
         ];
 
         foreach ( $setting['validation'] as $validator => $params ) {

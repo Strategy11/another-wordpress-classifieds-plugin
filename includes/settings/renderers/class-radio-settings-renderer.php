@@ -30,10 +30,10 @@ class AWPCP_RadioSettingsRenderer {
 
         foreach ( $setting['options'] as $value => $label ) {
             $id    = "{$setting['id']}-$value";
-            $label = ' <label for="' . $id . '">' . $label . '</label>';
+            $label = ' <label for="' . esc_attr( $id ) . '">' . $label . '</label>';
 
-            $html .= '<input id="' . $id . '"type="radio" value="' . $value . '" ';
-            $html .= 'name="awpcp-options['. $setting['id'] .']" ';
+            $html .= '<input id="' . esc_attr( $id ) . '"type="radio" value="' . esc_attr( $value ) . '" ';
+            $html .= 'name="awpcp-options[' . $setting['id'] . ']" ';
 
             if ( $value === $current ) {
                 $html .= 'checked="checked" />' . $label;
@@ -44,8 +44,8 @@ class AWPCP_RadioSettingsRenderer {
             $html .= '<br/>';
         }
 
-        $html.= '<span class="description">' . $setting['description'] . '</span>';
+        $html .= '<span class="description">' . $setting['description'] . '</span>';
 
-        echo $html;
+        echo $html; // XSS Ok.
     }
 }

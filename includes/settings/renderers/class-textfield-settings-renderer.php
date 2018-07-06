@@ -31,12 +31,12 @@ class AWPCP_TextfieldSettingsRenderer {
             $type = 'password';
         }
 
-        $html  = '<input id="'. $setting['id'] . '" class="regular-text" ';
-        $html .= 'value="' . $value . '" type="' . $type . '" ';
+        $html  = '<input id="' . esc_attr( $setting['id'] ) . '" class="regular-text" ';
+        $html .= 'value="' . esc_attr( $value ) . '" type="' . esc_attr( $type ) . '" ';
         $html .= 'name="awpcp-options[' . $setting['id'] . ']" ';
 
         if ( ! empty( $config ) ) {
-            $html .= 'awpcp-setting="' . esc_attr( json_encode( $config ) ) . '" />';
+            $html .= 'awpcp-setting="' . esc_attr( wp_json_encode( $config ) ) . '" />';
         } else {
             $html .= '/>';
         }
@@ -44,6 +44,6 @@ class AWPCP_TextfieldSettingsRenderer {
         $html .= strlen( $setting['description'] ) > 20 ? '<br/>' : '&nbsp;';
         $html .= '<span class="description">' . $setting['description'] . '</span>';
 
-        echo $html;
+        echo $html; // XSS Ok.
     }
 }

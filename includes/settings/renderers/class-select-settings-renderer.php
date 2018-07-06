@@ -24,21 +24,21 @@ class AWPCP_SelectSettingsRenderer {
      * @since 4.0.0
      */
     public function render_setting( $setting ) {
-        $current = esc_html( stripslashes( $this->settings->get_option( $setting['id'] ) ) );
+        $current = stripslashes( $this->settings->get_option( $setting['id'] ) );
 
-        $html = '<select id="' . $setting['id'] . '" name="awpcp-options['. $setting['id'] .']">';
+        $html = '<select id="' . esc_attr( $setting['id'] ) . '" name="awpcp-options[' . esc_attr( $setting['id'] ) . ']">';
 
         foreach ( $setting['options'] as $value => $label ) {
             if ( $value === $current ) {
-                $html .= '<option value="' . $value . '" selected="selected">' . $label . '</option>';
+                $html .= '<option value="' . esc_attr( $value ) . '" selected="selected">' . esc_html( $label ) . '</option>';
             } else {
-                $html .= '<option value="' . $value . '">' . $label . '</option>';
+                $html .= '<option value="' . esc_attr( $value ) . '">' . esc_html( $label ) . '</option>';
             }
         }
 
         $html .= '</select><br/>';
         $html .= '<span class="description">' . $setting['description'] . '</span>';
 
-        echo $html;
+        echo $html; // XSS Ok.
     }
 }

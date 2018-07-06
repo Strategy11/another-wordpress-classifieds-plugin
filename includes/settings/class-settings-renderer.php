@@ -33,11 +33,11 @@ class AWPCP_SettingsRenderer {
         $section = $this->settings_manager->get_settings_section( $params['id'] );
 
         if ( isset( $section['description'] ) ) {
-            echo $section['description'];
+            echo $section['description']; // XSS Ok.
         }
 
         if ( isset( $section['callback'] ) && is_callable( $section['callback'] ) ) {
-            echo call_user_func( $section['callback'], $section );
+            echo call_user_func( $section['callback'], $section ); // XSS Ok.
         }
     }
 
@@ -55,12 +55,13 @@ class AWPCP_SettingsRenderer {
         try {
             return $this->get_settings_renderer( $setting['type'] )->render_setting( $setting, $config );
         } catch ( AWPCP_Exception $e ) {
-            echo $e->getMessage();
+            echo $e->getMessage(); // XSS Ok.
         }
     }
 
     /**
      * @since 4.0.0
+     * @throws AWPCP_Exception  If there is no setting renderer for this setting type.
      */
     private function get_settings_renderer( $setting_type ) {
         if ( ! isset( $this->settings_renderers[ $setting_type ] ) ) {
