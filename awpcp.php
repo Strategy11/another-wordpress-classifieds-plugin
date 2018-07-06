@@ -524,14 +524,6 @@ class AWPCP {
 			return;
 		}
 
-        $this->register_settings_handlers();
-
-        // register rewrite rules when the plugin file is loaded.
-        // generate_rewrite_rules or rewrite_rules_array hooks are
-        // too late to add rules using add_rewrite_rule function
-        add_action( 'page_rewrite_rules', array( $this->rewrite_rules, 'add_rewrite_rules' ) );
-        add_filter('query_vars', 'awpcp_query_vars');
-
         // Stored options are loaded when the settings API is instatiated.
 		$this->settings = awpcp_settings_api();
 		$this->settings->setup();
@@ -551,6 +543,14 @@ class AWPCP {
 		$this->compatibility->load_plugin_integrations();
 
         $this->plugin_integrations = new AWPCP_Plugin_Integrations();
+
+        $this->register_settings_handlers();
+
+        // register rewrite rules when the plugin file is loaded.
+        // generate_rewrite_rules or rewrite_rules_array hooks are
+        // too late to add rules using add_rewrite_rule function
+        add_action( 'page_rewrite_rules', array( $this->rewrite_rules, 'add_rewrite_rules' ) );
+        add_filter('query_vars', 'awpcp_query_vars');
 
         add_action( 'activated_plugin', array( $this->plugin_integrations, 'maybe_enable_plugin_integration' ), 10, 2 );
         add_action( 'deactivated_plugin', array( $this->plugin_integrations, 'maybe_disable_plugin_integration' ), 10, 2 );
