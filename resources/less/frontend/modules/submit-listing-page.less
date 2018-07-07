@@ -1,3 +1,7 @@
+.awpcp-submit-listing-section div {
+    margin: 0; // To overwrite a rule on Responsive theme's CSS.
+}
+
 .awpcp-submit-listing-section {
     .awpcp-box;
     .awpcp-bordered-box;
@@ -13,10 +17,12 @@
         cursor: pointer;
         float: none;
         font-size: 1em;
+        line-height: 1.5;
         margin: 0;
         padding: 2px 4px;
 
         span {
+            box-sizing: border-box;
             float: right;
             margin: 2px;
         }
@@ -53,4 +59,8 @@
     .form-submit {
         margin: 0;
     }
+}
+
+.awpcp-order-submit-listing-section__edit_mode > form {
+    margin: 0;
 }
