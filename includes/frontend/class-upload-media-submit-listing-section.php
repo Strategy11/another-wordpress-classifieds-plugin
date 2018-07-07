@@ -60,7 +60,7 @@ class AWPCP_UploadMediaSubmitListingSection {
      * @since 4.0.0
      */
     public function get_position() {
-        return 15;
+        return 20;
     }
 
     /**
