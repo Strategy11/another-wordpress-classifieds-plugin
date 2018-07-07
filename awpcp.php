@@ -516,14 +516,6 @@ class AWPCP {
         $this->installer     = awpcp_installer();
         $this->rewrite_rules = awpcp_plugin_rewrite_rules();
 
-		if (!$this->is_up_to_date()) {
-			$this->installer->install_or_upgrade();
-		}
-
-		if (!$this->is_up_to_date()) {
-			return;
-		}
-
         // Stored options are loaded when the settings API is instatiated.
 		$this->settings = awpcp_settings_api();
 		$this->settings->setup();
@@ -543,6 +535,14 @@ class AWPCP {
 		$this->compatibility->load_plugin_integrations();
 
         $this->plugin_integrations = new AWPCP_Plugin_Integrations();
+
+        if (!$this->is_up_to_date()) {
+            $this->installer->install_or_upgrade();
+        }
+
+        if (!$this->is_up_to_date()) {
+            return;
+        }
 
         $this->register_settings_handlers();
 
