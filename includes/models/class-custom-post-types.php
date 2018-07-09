@@ -70,7 +70,8 @@ class AWPCP_Custom_Post_Types {
      * @since 4.0.0
      */
     public function register_custom_post_types() {
-        $post_type_slug = $this->get_post_type_slug();
+        $dashboard_capability = $this->roles_and_capabilities->get_dashboard_capability();
+        $post_type_slug       = $this->get_post_type_slug();
 
         register_post_type(
             $this->listings_post_type,
@@ -109,9 +110,17 @@ class AWPCP_Custom_Post_Types {
                 'capability_type'      => 'awpcp_classified',
                 'map_meta_cap'         => true,
                 'capabilities'         => array(
-                    'publish_posts' => 'edit_others_awpcp_classifieds',
-                    'create_posts'  => 'edit_others_awpcp_classifieds',
-                    'edit_posts'    => $this->roles_and_capabilities->get_dashboard_capability(),
+                    'edit_posts'             => $dashboard_capability,
+                    'edit_published_posts'   => $dashboard_capability,
+                    'delete_posts'           => $dashboard_capability,
+                    'read_private_posts'     => 'edit_others_awpcp_classifieds',
+                    'edit_private_posts'     => 'edit_others_awpcp_classifieds',
+                    'edit_other_posts'       => 'edit_others_awpcp_classifieds',
+                    'publish_posts'          => 'edit_others_awpcp_classifieds',
+                    'delete_private_posts'   => 'edit_others_awpcp_classifieds',
+                    'delete_published_posts' => 'edit_others_awpcp_classifieds',
+                    'delete_others_posts'    => 'edit_others_awpcp_classifieds',
+                    'create_posts'           => 'edit_others_awpcp_classifieds',
                 ),
                 'register_meta_box_cb' => null,
                 'taxonomies'           => array(
