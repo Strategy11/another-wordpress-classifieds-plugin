@@ -50,6 +50,8 @@ class AWPCP_ListingInfromationMetabox {
     public function render( $post ) {
         $params = [];
 
+        $params['user_can_change_payment_term'] = awpcp_current_user_is_moderator();
+
         $params['renewed_date'] = $this->listing_renderer->get_renewed_date_formatted( $post );
         $params['end_date']     = $this->listing_renderer->get_end_date_formatted( $post );
         $params['access_key']   = $this->listing_renderer->get_access_key( $post );
@@ -131,6 +133,10 @@ class AWPCP_ListingInfromationMetabox {
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function save( $post_id, $post ) {
+        if ( ! awpcp_current_user_is_moderator() ) {
+            return;
+        }
+
         if ( isset( $this->save_in_progress ) && $this->save_in_progress ) {
             return;
         }

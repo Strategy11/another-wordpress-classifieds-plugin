@@ -33,11 +33,15 @@
         <ul>
             <li class="awpcp-payment-term-name">
                 <span><?php echo esc_html_x( 'Payment term:', 'listing information metabox', 'another-wordpress-classifieds-plugin' ); ?></span>
-                <?php if ( $payment_term['id'] ) : ?>
+                <?php if ( $payment_term['id'] && $user_can_change_payment_term ) : ?>
                 <span class="awpcp-value-display"><a href="<?php echo esc_url( $payment_term['url'] ); ?>"><?php echo esc_html( $payment_term['name'] ); ?></a></span>
+                <?php elseif ( $payment_term['id'] ) : ?>
+                <span class="awpcp-value-display"><?php echo esc_html( $payment_term['name'] ); ?></span>
                 <?php else : ?>
                 <span class="awpcp-value-display">&mdash;</span>
                 <?php endif; ?>
+
+                <?php if ( $user_can_change_payment_term ) : ?>
                 <a class="edit-link" href="#"><?php echo esc_html_x( 'Edit', 'listing information metabox', 'another-wordpress-classifieds-plugin' ); ?></a>
 
                 <div class="awpcp-change-payment-term-form awpcp-hidden">
@@ -49,6 +53,7 @@
                     <input class="button" type="button" value="<?php echo esc_html__( 'Done', 'another-wordpress-classifieds-plugin' ); ?>" />
                     <a class="cancel-link" href="#"><?php echo esc_html_x( 'Cancel', 'listing information metabox', 'another-wordpress-classifieds-plugin' ); ?></a>
                 </div>
+                <?php endif; ?>
             </li>
             <li class="awpcp-payment-term-number-of-images">
             <span><?php echo esc_html_x( '# of images:', 'listing information metabox', 'another-wordpress-classifieds-plugin' ); ?></span> <span class="awpcp-value-display"><?php echo $payment_term['number_of_images'] ? esc_html( $payment_term['number_of_images'] ) : '&mdash;'; ?></span>
