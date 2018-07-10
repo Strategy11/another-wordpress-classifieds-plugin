@@ -271,6 +271,16 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
             return new AWPCP_LocationListingsTableSearchMode();
         } );
 
+        $container['ListingInformationMetabox'] = $container->service( function( $container ) {
+            return new AWPCP_ListingInfromationMetabox(
+                $container['ListingsLogic'],
+                $container['ListingRenderer'],
+                $container['Payments'],
+                $container['TemplateRenderer'],
+                $container['Request']
+            );
+        } );
+
         $container['ListingFieldsMetabox'] = $container->service( function( $container ) {
             return new AWPCP_ListingFieldsMetabox(
                 $container['listing_post_type'],

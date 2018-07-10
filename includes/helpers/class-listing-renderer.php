@@ -93,8 +93,7 @@ class AWPCP_ListingRenderer {
      * @since feature/1112
      */
     public function get_end_date( $listing ) {
-        $end_date = $this->get_plain_end_date( $listing );
-        return $this->get_formatted_date( $end_date );
+        return $this->get_end_date_formatted( $listing );
     }
 
     /**
@@ -103,6 +102,15 @@ class AWPCP_ListingRenderer {
      */
     public function get_plain_end_date( $listing ) {
         return $this->wordpress->get_post_meta( $listing->ID, '_awpcp_end_date', true );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function get_end_date_formatted( $listing ) {
+        $end_date = $this->get_plain_end_date( $listing );
+
+        return $this->get_formatted_date( $end_date );
     }
 
     /**

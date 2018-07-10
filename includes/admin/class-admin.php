@@ -106,6 +106,7 @@ class AWPCP_Admin {
         add_action( 'admin_enqueue_scripts', [ $this, 'maybe_enqueue_meta_boxes_scripts' ] );
         add_action( 'add_meta_boxes_' . $this->post_type, array( $this, 'add_classifieds_meta_boxes' ) );
         add_action( 'save_post_' . $this->post_type, array( $this->container['ListingFieldsMetabox'], 'save' ), 10, 2 );
+        add_action( 'save_post_' . $this->post_type, array( $this->container['ListingInformationMetabox'], 'save' ), 10, 2 );
     }
 
     /**
@@ -196,6 +197,14 @@ class AWPCP_Admin {
      * @since 4.0.0
      */
     public function add_classifieds_meta_boxes() {
+        add_meta_box(
+            'awpcp-classifeds-information-metabox',
+            __( 'Classified Inofrmation', 'another-wordpress-classifieds-plugin' ),
+            [ $this->container['ListingInformationMetabox'], 'render' ],
+            $this->post_type,
+            'side'
+        );
+
         add_meta_box(
             'awpcp-classifieds-fields-metabox',
             __( 'Classified Fields', 'another-wordpress-classifieds-plugin' ),

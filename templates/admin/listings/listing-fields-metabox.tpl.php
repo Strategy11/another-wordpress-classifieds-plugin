@@ -3,7 +3,7 @@
  * @package AWPCP\Templates
  */
 
-?><div class="awpcp-listing-fields-metabox awpcp-metabox-tabs">
+?><div class="awpcp-listing-fields-metabox awpcp-master-detail-tabs">
     <ul class="awpcp-tabs">
         <?php $label = _x( 'Form Fields', 'listing fields metabox', 'another-wordpress-classifieds-plugin' ); ?>
         <li class="awpcp-tab awpcp-tab-active"><a href="#awpcp-listing-fields--form-fields"><span class="screen-reader-text"><?php echo esc_html( $label ); ?></span><span class="dashicons dashicons-feedback"></span><span class="awpcp-tab-name"><?php echo esc_html( $label ); ?></span></a></li>

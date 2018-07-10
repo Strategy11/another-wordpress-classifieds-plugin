@@ -1,7 +1,13 @@
 <?php
+/**
+ * @package AWPCP
+ */
+
+// phpcs:disable
 
 /**
  * @since 2.1.4
+ * @SuppressWarnings(PHPMD)
  */
 class AWPCP_PaymentTerm {
 
@@ -266,5 +272,12 @@ class AWPCP_PaymentTerm {
 
     public function get_regions_allowed() {
         return 1;
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function get_dashboard_url() {
+        return awpcp_get_admin_fees_url();
     }
 }

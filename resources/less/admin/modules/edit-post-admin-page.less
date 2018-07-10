@@ -7,7 +7,13 @@
     }
 }
 
-.awpcp-metabox-tabs {
+.awpcp-listing-information-metabox {
+    .awpcp-value-display {
+        font-weight: bold;
+    }
+}
+
+.awpcp-master-detail-tabs {
     display: flex;
     flex-direction: row;
     border-radius: 0;
@@ -67,8 +73,53 @@
     }
 }
 
+.awpcp-metabox-tabs {
+    @metabox-tabs-border-color: #ccc;
+
+    .awpcp-tabs {
+        border-bottom: 1px solid @metabox-tabs-border-color;
+        margin: 0;
+        padding: 0 8px;
+
+        li {
+            display: inline-block;
+            margin: 0;
+
+            a {
+                background: #e5e5e5;
+                border: 1px solid @metabox-tabs-border-color;
+                border-bottom: none;
+                display: block;
+                margin: 0;
+                padding: 2px 4px;
+
+                text-decoration: none
+            }
+        }
+
+        .awpcp-tab-active {
+            margin-bottom: -1px;
+
+            a {
+                background: white;
+                border-bottom: 1px solid white;
+                color: #555;
+                font-weight: bold;
+            }
+        }
+    }
+
+    .awpcp-tab-panel {
+        display: none;
+    }
+
+    .awpcp-tab-panel-active {
+        display: block;
+    }
+}
+
 @media (min-width: 768px) {
-    .awpcp-metabox-tabs {
+    .awpcp-master-detail-tabs {
         .awpcp-tabs {
             width: 20%;
         }
