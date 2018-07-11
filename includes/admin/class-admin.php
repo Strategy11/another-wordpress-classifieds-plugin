@@ -199,7 +199,7 @@ class AWPCP_Admin {
     public function add_classifieds_meta_boxes() {
         add_meta_box(
             'awpcp-classifeds-information-metabox',
-            __( 'Classified Inofrmation', 'another-wordpress-classifieds-plugin' ),
+            __( 'Classified Information', 'another-wordpress-classifieds-plugin' ),
             [ $this->container['ListingInformationMetabox'], 'render' ],
             $this->post_type,
             'side'
