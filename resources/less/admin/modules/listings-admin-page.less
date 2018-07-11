@@ -3,6 +3,7 @@
 }
 
 @select2-border-color: rgb(221, 221, 221);
+@select2-placeholder-text-color: #444;
 
 .tablenav {
     .actions {
@@ -20,6 +21,9 @@
         }
         .select2-selection__clear {
             padding-left: 4px;
+        }
+        .select2-selection__placeholder {
+            color: @select2-placeholder-text-color;
         }
     }
 }
