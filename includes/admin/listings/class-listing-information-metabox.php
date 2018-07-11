@@ -225,6 +225,10 @@ class AWPCP_ListingInfromationMetabox {
      * @since 4.0.0
      */
     private function payment_are_terms_equal( $payment_term_one, $payment_term_two ) {
+        if ( ! $payment_term_one || ! $payment_term_two ) {
+            return false;
+        }
+
         if ( $payment_term_one->type !== $payment_term_two->type ) {
             return false;
         }
