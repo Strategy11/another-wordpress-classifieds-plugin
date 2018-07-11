@@ -163,6 +163,10 @@ class AWPCP_ListingInfromationMetabox {
         $payment_term         = $this->get_selected_payment_term();
         $current_payment_term = $this->listing_renderer->get_payment_term( $post );
 
+        if ( is_null( $payment_term ) ) {
+            return;
+        }
+
         if ( $this->payment_are_terms_equal( $payment_term, $current_payment_term ) ) {
             return;
         }
