@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package AWPCP\Upgrade
+ */
+
+// phpcs:disable
 
 class AWPCP_Store_Listing_Categories_As_Custom_Taxonomies_Upgrade_Task_Handler implements AWPCP_Upgrade_Task_Runner {
 
@@ -32,12 +37,17 @@ class AWPCP_Store_Listing_Categories_As_Custom_Taxonomies_Upgrade_Task_Handler i
     }
 
     public function process_item( $item, $last_item_id ) {
+        $categories_registry = $this->categories->get_categories_registry();
+
+        if ( isset( $categories_registry[ $item->category_id ] ) ) {
+            return $last_item_id + 1;
+        }
+
         $existing_term = $this->wordpress->get_term_by( 'name', $item->category_name, 'awpcp_listing_category' );
+        $category_name = $item->category_name;
 
         if ( is_object( $existing_term ) ) {
             $category_name = $this->get_unique_category_name( $existing_term );
-        } else {
-            $category_name = $item->category_name;
         }
 
         $term = $this->wordpress->insert_term(
@@ -66,15 +76,14 @@ class AWPCP_Store_Listing_Categories_As_Custom_Taxonomies_Upgrade_Task_Handler i
             )
         );
 
-        $numbers = array();
+        $category_name = "{$term->name} (Copy 1)";
+        $numbers       = array();
 
         foreach ( $similar_terms as $similar_term ) {
             $numbers[] = absint( str_replace( "{$term->name} (Copy ", '', $similar_term->name ) );
         }
 
-        if ( empty( $numbers ) ) {
-            $category_name = "{$term->name} (Copy 1)";
-        } else {
+        if ( ! empty( $numbers ) ) {
             $category_name = sprintf( "{$term->name} (Copy %d)", max( $numbers ) + 1 );
         }
 
