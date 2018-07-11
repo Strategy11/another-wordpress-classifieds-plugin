@@ -79,19 +79,37 @@ class AWPCP_ListTableSearchHandler {
             $options[ $id ] = $search_mode->get_name();
         }
 
-        $dropdown = array(
-            '#type'       => 'select',
-            '#attributes' => array(
-                'name'  => 'awpcp_search_by',
-                'class' => array(
-                    'awpcp-search-mode-dropdown',
+        $container = [
+            '#type'       => 'div',
+            '#attributes' => [
+                'class' => [
+                    'awpcp-search-mode-dropdown-container',
                     'awpcp-hidden',
-                ),
-            ),
-            '#options'    => $options,
-            '#value'      => $this->get_selected_search_mode_id(),
-        );
+                ],
+            ],
+            '#content'    => [
+                'dropdown-label' => [
+                    '#type'       => 'label',
+                    '#attributes' => [
+                        'for' => 'awpcp-search-mode-dropdown',
+                    ],
+                    '#content'    => __( 'Search for listings matching', 'another-wordpress-classifieds-plugin' ),
+                ],
+                'dropdown'       => [
+                    '#type'       => 'select',
+                    '#attributes' => array(
+                        'id'    => 'awpcp-search-mode-dropdown',
+                        'name'  => 'awpcp_search_by',
+                        'class' => array(
+                            'awpcp-search-mode-dropdown',
+                        ),
+                    ),
+                    '#options'    => $options,
+                    '#value'      => $this->get_selected_search_mode_id(),
+                ],
+            ],
+        ];
 
-        echo $this->html_renderer->render( $dropdown ); // XSS Ok.
+        echo $this->html_renderer->render( $container ); // XSS Ok.
     }
 }

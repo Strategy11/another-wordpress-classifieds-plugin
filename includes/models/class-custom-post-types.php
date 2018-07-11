@@ -85,7 +85,7 @@ class AWPCP_Custom_Post_Types {
                     'edit_item'          => __( 'Edit Listing', 'another-wordpress-classifieds-plugin' ),
                     'new_item'           => __( 'New Listing', 'another-wordpress-classifieds-plugin' ),
                     'view_item'          => __( 'View Listing', 'another-wordpress-classifieds-plugin' ),
-                    'search_items'       => __( 'Search Listings', 'another-wordpress-classifieds-plugin' ),
+                    'search_items'       => __( 'Search Now', 'another-wordpress-classifieds-plugin' ),
                     'not_found'          => __( 'No listings found', 'another-wordpress-classifieds-plugin' ),
                     'not_found_in_trash' => __( 'No listings found in Trash', 'another-wordpress-classifieds-plugin' ),
                 ),
