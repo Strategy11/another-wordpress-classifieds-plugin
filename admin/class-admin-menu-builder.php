@@ -75,8 +75,30 @@ class AWPCP_AdminMenuBuilder {
 
     public function register_admin_subpage( $parent_menu, $subpage ) {
         $hook = add_submenu_page( $parent_menu, $subpage->title, $subpage->menu_title, $subpage->capability, $subpage->slug, array( $this->router, 'on_admin_dispatch' ) );
+
+        $this->add_submenu_class( $parent_menu, $subpage->slug );
         add_action( "load-{$hook}", array( $this->router, 'on_admin_load' ) );
+
         return $hook;
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function add_submenu_class( $parent_menu, $menu_slug ) {
+        global $submenu;
+
+        if ( ! isset( $submenu[ $parent_menu ] ) ) {
+            return;
+        }
+
+        foreach ( $submenu[ $parent_menu ] as $index => $submenu_item ) {
+            if ( $submenu_item[2] !== $menu_slug ) {
+                continue;
+            }
+
+            $submenu[ $parent_menu ][ $index ][4] = "$menu_slug-submenu-item";
+        }
     }
 
     public function register_users_page( $subpage ) {
