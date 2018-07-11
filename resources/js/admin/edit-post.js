@@ -69,10 +69,9 @@ AWPCP.run( 'awpcp/edit-post', [
             var paymentTermId = $( '[name="payment_term"]' ).val(),
                 $selectedOption = $changePaymentTermForm.find( '[value="' + paymentTermId + '"]' ),
                 properties = $.parseJSON( $selectedOption.attr( 'data-properties' ) ),
-                $paymentTermName = $listingInformationMetabox.find( '.awpcp-payment-term-name .awpcp-value-display a' );
+                $paymentTermName = $listingInformationMetabox.find( '.awpcp-payment-term-name .awpcp-value-display' );
 
-            $paymentTermName.attr( 'href', properties.url );
-            $paymentTermName.text( properties.name );
+            $paymentTermName.html( '<a href="' + properties.url + '">' + properties.name + '</a>' );
 
             $listingInformationMetabox.find( '.awpcp-payment-term-number-of-images .awpcp-value-display' ).text( properties.number_of_images );
             $listingInformationMetabox.find( '.awpcp-payment-term-number-of-regions .awpcp-value-display' ).text( properties.number_of_regions );
