@@ -86,15 +86,19 @@ class AWPCP_ListingInfromationMetabox {
 
         foreach ( $this->payments->get_payment_terms() as $type => $terms ) {
             foreach ( $terms as $term ) {
+                $payment_terms[] = $this->get_payment_term_properties( $term );
+
+                if ( ! $current_payment_term ) {
+                    continue;
+                }
+
                 if ( $type === $current_payment_term->type && $term->id === $current_payment_term->id ) {
                     $current_payment_term_included = true;
                 }
-
-                $payment_terms[] = $this->get_payment_term_properties( $term );
             }
         }
 
-        if ( ! $current_payment_term_included ) {
+        if ( $current_payment_term && ! $current_payment_term_included ) {
             array_unshift( $payment_terms, $this->get_payment_term_properties( $current_payment_term ) );
         }
 
