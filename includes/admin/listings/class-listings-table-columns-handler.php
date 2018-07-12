@@ -40,10 +40,13 @@ class AWPCP_ListingsTableColumnsHandler {
      * @since 4.0.0
      */
     public function manage_posts_columns( $columns ) {
+        // Remove Date column.
+        unset( $columns['date'] );
+
+        // Move Categories column.
         $columns_keys   = array_keys( $columns );
         $columns_values = array_values( $columns );
 
-        // Move Categories column.
         $position = array_search( 'taxonomy-' . $this->listing_category_taxonomy, $columns_keys, true );
 
         $categories_column_key   = array_splice( $columns_keys, $position, 1 );
@@ -53,9 +56,7 @@ class AWPCP_ListingsTableColumnsHandler {
         array_splice( $columns_values, 2, 0, $categories_column_value );
 
         // Add custom columns.
-        $new_columns['awpcp-start-date']   = _x( 'Start Date', 'listings table column', 'another-wordpress-classifieds-plugin' );
-        $new_columns['awpcp-end-date']     = _x( 'End Date', 'listings table column', 'another-wordpress-classifieds-plugin' );
-        $new_columns['awpcp-renewed-date'] = _x( 'Renewed Date', 'listings table column', 'another-wordpress-classifieds-plugin' );
+        $new_columns['awpcp-dates']        = _x( 'Dates', 'listings table column', 'another-wordpress-classifieds-plugin' );
         $new_columns['awpcp-payment-term'] = _x( 'Payment Term', 'listings table column', 'another-wordpress-classifieds-plugin' );
 
         array_splice( $columns_keys, 3, 0, array_keys( $new_columns ) );
@@ -77,6 +78,12 @@ class AWPCP_ListingsTableColumnsHandler {
         }
 
         switch ( $column ) {
+            case 'awpcp-dates':
+                echo esc_html( __( 'Start Date:', 'another-wordpress-classifieds-plugin' ) ) . ' <strong>' . esc_html( $this->listing_renderer->get_start_date( $post ) ) . '</strong><br/>';
+                echo esc_html( __( 'End Date:', 'another-wordpress-classifieds-plugin' ) ) . ' <strong>' . esc_html( $this->listing_renderer->get_end_date_formatted( $post ) ) . '</strong><br/>';
+                echo esc_html( __( 'Renewed Date:', 'another-wordpress-classifieds-plugin' ) ) . ' <strong>' . esc_html( $this->listing_renderer->get_renewed_date_formatted( $post ) ) . '</strong><br/>';
+                echo esc_html( __( 'Published:', 'another-wordpress-classifieds-plugin' ) ) . ' <strong>' . esc_html( awpcp_datetime( 'awpcp-date', $post->post_date ) ) . '</strong><br/>';
+                return;
             case 'awpcp-start-date':
                 echo esc_html( $this->listing_renderer->get_start_date( $post ) );
                 return;
