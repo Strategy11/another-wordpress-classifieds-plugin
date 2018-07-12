@@ -86,7 +86,7 @@ class AWPCP_ListingsTableColumnsHandler {
             case 'awpcp-renewed-date':
                 $renewed_date = $this->listing_renderer->get_renewed_date_formatted( $post );
 
-                echo $renewed_date ? esc_html( $renewed_date ) : '---';
+                echo $renewed_date ? esc_html( $renewed_date ) : '&mdash;';
                 return;
             case 'awpcp-payment-term':
                 $payment_term = $this->listing_renderer->get_payment_term( $post );
