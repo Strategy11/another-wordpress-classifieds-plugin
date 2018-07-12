@@ -2,148 +2,144 @@
     margin: 0;
 
     .awpcp-payment-term {
+        .awpcp-box;
+        .awpcp-bordered-box;
+        .awpcp-rounded-box;
+
+        display: flex;
+        flex-direction: column;
         margin-left: 0;
         margin-bottom: 16px;
-    }
-}
-
-.awpcp-payment-term {
-    .awpcp-box;
-    .awpcp-bordered-box;
-    .awpcp-rounded-box;
-
-    display: flex;
-    flex-direction: column;
-    padding-right: 15px;
-    padding-left: 15px;
-    padding-bottom: 15px;
-
-    .awpcp-payment-term-content {
-        .awpcp-payment-term-name {
-            display: block;
-            font-weight: bold;
-            font-size: 1.5em;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-
-        .awpcp-payment-term-features {
-            list-style-type: disc;
-            margin: 0;
-            padding-left: 15px;
-        }
-        .awpcp-payment-term-feature {
-            margin-left: 0;
-        }
-    }
-
-    .awpcp-payment-term-duration-price {
-        .awpcp-payment-term-duration {
-            font-size: 2em;
-            padding: 10px;
-            text-align: center;
-        }
-
-        label {
-            .awpcp-box;
-            .awpcp-bordered-box;
-            .awpcp-rounded-box;
-
-            background: #FDFDFD;
-            cursor: pointer;
-            display: block;
-            margin: 0;
-            padding: 4px 8px;
-            font-size: 20px;
-            line-height: 1.71em;
-
-            &:hover {
-                background: #fff;
-                border-color: #d0d0d0;
-            }
-
-            &:active {
-                background: #BBB;
-                border-color: #999;
-                color: #FFF;
-            }
-        }
-
-        .awpcp-payment-term-price-in-money {
-            margin-bottom: 8px;
-        }
-        .awpcp-payment-term-price-in-credits {
-            margin-bottom: 0;
-        }
-    }
-}
-
-.awpcp-payment-term__read_only .awpcp-payment-term-duration-price {
-    .awpcp-payment-term-duration {
-        line-height: 1em;
-    }
-
-    label {
-        background: none;
-        border: none;
-        cursor: default;
-        font-size: 2em;
-        font-weight: bold;
-        line-height: 1em;
-        text-align: center;
-
-        &:hover {
-            background: none;
-            color: inherit;
-        }
-
-        input {
-            display: none;
-        }
-    }
-}
-
-@media (min-width: 768px) {
-    .awpcp-payment-terms-list .awpcp-payment-term {
-        margin-bottom: 8px;
-    }
-
-    .awpcp-payment-term {
-        flex-direction: row;
-        margin-bottom: 8px;
-        padding: 8px;
+        padding-right: 15px;
+        padding-left: 15px;
+        padding-bottom: 15px;
 
         .awpcp-payment-term-content {
-            padding: 0 8px;
-            width: 70%;
-
             .awpcp-payment-term-name {
-                font-size: 1.2em;
-                text-align: left;
+                display: block;
+                font-weight: bold;
+                font-size: 1.5em;
+                margin-bottom: 10px;
+                text-align: center;
+            }
+
+            .awpcp-payment-term-features {
+                list-style-type: disc;
+                margin: 0;
+                padding-left: 15px;
+            }
+            .awpcp-payment-term-feature {
+                margin-left: 0;
             }
         }
 
         .awpcp-payment-term-duration-price {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            width: 30%;
-
-            label {
-                order: 2;
-                font-size: 1em;
+            .awpcp-payment-term-duration {
+                font-size: 2em;
+                padding: 10px;
+                text-align: center;
             }
 
-            .awpcp-payment-term-duration {
-                font-size: 1.4em;
-                order: 1;
-                padding-right: 0;
-                padding-left: 0;
+            label {
+                .awpcp-box;
+                .awpcp-bordered-box;
+                .awpcp-rounded-box;
+
+                background: #FDFDFD;
+                cursor: pointer;
+                display: block;
+                margin: 0;
+                padding: 4px 8px;
+                font-size: 20px;
+                line-height: 1.71em;
+
+                &:hover {
+                    background: #fff;
+                    border-color: #d0d0d0;
+                }
+
+                &:active {
+                    background: #BBB;
+                    border-color: #999;
+                    color: #FFF;
+                }
+            }
+
+            .awpcp-payment-term-price-in-money {
+                margin-bottom: 8px;
+            }
+            .awpcp-payment-term-price-in-credits {
+                margin-bottom: 0;
             }
         }
     }
 
-    .awpcp-payment-term__read_only .awpcp-payment-term-duration-price label {
-        font-size: 20px;
+    .awpcp-payment-term__read_only .awpcp-payment-term-duration-price {
+        .awpcp-payment-term-duration {
+            line-height: 1em;
+        }
+
+        label {
+            background: none;
+            border: none;
+            cursor: default;
+            font-size: 2em;
+            font-weight: bold;
+            line-height: 1em;
+            text-align: center;
+
+            &:hover {
+                background: none;
+                color: inherit;
+            }
+
+            input {
+                display: none;
+            }
+        }
+    }
+}
+
+
+@media (min-width: 768px) {
+    .awpcp-payment-terms-list {
+        .awpcp-payment-term {
+            flex-direction: row;
+            margin-bottom: 8px;
+            padding: 8px;
+
+            .awpcp-payment-term-content {
+                padding: 0 8px;
+                width: 70%;
+
+                .awpcp-payment-term-name {
+                    font-size: 1.2em;
+                    text-align: left;
+                }
+            }
+
+            .awpcp-payment-term-duration-price {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                width: 30%;
+
+                label {
+                    order: 2;
+                    font-size: 1em;
+                }
+
+                .awpcp-payment-term-duration {
+                    font-size: 1.4em;
+                    order: 1;
+                    padding-right: 0;
+                    padding-left: 0;
+                }
+            }
+        }
+
+        .awpcp-payment-term__read_only .awpcp-payment-term-duration-price label {
+            font-size: 20px;
+        }
     }
 }
