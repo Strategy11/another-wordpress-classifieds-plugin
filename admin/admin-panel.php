@@ -78,7 +78,7 @@ class AWPCP_AdminPanel {
 
     private function add_main_classifieds_admin_page( $page_title, $parent_menu, $handler_constructor, $router ) {
         return $router->add_admin_page(
-            __( 'Classifieds', 'another-wordpress-classifieds-plugin' ),
+            __( 'Classified Admin', 'another-wordpress-classifieds-plugin' ),
             awpcp_admin_page_title( $page_title ),
             $parent_menu,
             $handler_constructor,
