@@ -72,6 +72,7 @@ class AWPCP_Settings_API {
 
     /**
      * @since 4.0.0     Updated to use Settings Manager.
+     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
      */
 	public function get_option( $name, $default = '', $reload = false ) {
         if ( $reload ) {
@@ -145,6 +146,7 @@ class AWPCP_Settings_API {
 
 	/**
 	 * @param $force boolean - true to update unregistered options
+     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
 	 */
 	public function update_option( $name, $value, $force = false ) {
 		if ( $force || array_key_exists( $name, $this->options, true ) ) {
@@ -178,16 +180,8 @@ class AWPCP_Settings_API {
 	public function get_runtime_option( $name, $default = '' ) {
 		if ( isset( $this->runtime_settings[ $name ] ) ) {
 			return $this->runtime_settings[ $name ];
-		} else {
-			return $default;
 		}
-	}
 
-    /**
-     * TODO: Register section description renderer.
-     */
-	public function section_date_time_format($args) {
-		$link = '<a href="http://codex.wordpress.org/Formatting_Date_and_Time">%s</a>.';
-		echo sprintf( $link, __( 'Documentation on date and time formatting', 'another-wordpress-classifieds-plugin' ) );
+        return $default;
 	}
 }

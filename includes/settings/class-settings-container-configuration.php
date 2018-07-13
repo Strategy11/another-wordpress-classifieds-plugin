@@ -5,6 +5,8 @@
 
 /**
  * Register constructor for classes necessary to support plugin settings.
+ *
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class AWPCP_SettingsContainerConfiguration implements AWPCP_ContainerConfigurationInterface {
 
@@ -75,6 +77,13 @@ class AWPCP_SettingsContainerConfiguration implements AWPCP_ContainerConfigurati
             );
         } );
 
+        $this->define_settings_renderers( $container );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function define_settings_renderers( $container ) {
         $container['SettingsRenderers'] = $container->service( function( $container ) {
             return new AWPCP_FilteredArray( 'awpcp_settings_renderers' );
         } );
