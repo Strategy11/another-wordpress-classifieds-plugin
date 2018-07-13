@@ -221,11 +221,15 @@ if ( ! function_exists( 'is_awpcp_page' ) ) {
  * @since 3.4
  */
 function is_awpcp_admin_page() {
-    if ( ! is_admin() || empty( $_REQUEST['page'] ) ) {
+    if ( ! is_admin() ) {
         return false;
     }
 
-    if ( string_starts_with( $_REQUEST['page'], 'awpcp' ) ) {
+    if ( ! empty( $_REQUEST['action'] ) && string_starts_with( $_REQUEST['action'], 'awpcp' ) ) {
+        return true;
+    }
+
+    if ( ! empty( $_REQUEST['page'] ) && string_starts_with( $_REQUEST['page'], 'awpcp' ) ) {
         return true;
     }
 
