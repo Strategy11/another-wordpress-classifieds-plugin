@@ -604,14 +604,26 @@ function awpcp_get_admin_panel_url() {
 
 /**
  * @since 3.0.2
+ * @since 4.0.0     Supports taking an array of query args.
  */
-function awpcp_get_admin_settings_url( $group = false ) {
-    $params = array(
+function awpcp_get_admin_settings_url( $params = false ) {
+    $query_args = [
         'page' => 'awpcp-admin-settings',
-        'g' => urlencode( $group ),
-    );
+    ];
 
-    return add_query_arg( array_filter( $params, 'strlen' ), admin_url( 'admin.php' ) );
+    if ( false === $params ) {
+        $params = [];
+    }
+
+    if ( is_string( $params ) ) {
+        $params = [
+            'g' => $params,
+        ];
+    }
+
+    $query_args = array_filter( array_merge( $query_args, $params ), 'strlen' );
+
+    return add_query_arg( $query_args, admin_url( 'admin.php' ) );
 }
 
 /**
