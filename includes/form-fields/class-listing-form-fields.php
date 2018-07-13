@@ -35,9 +35,7 @@ class AWPCP_ListingFormFields {
      * @since 4.0.0
      */
     public function register_listing_details_form_fields( $fields ) {
-        $fields = $this->register_listing_form_fields( $fields );
-
-        foreach ( $fields as $field_slug => $field_constructor ) {
+        foreach ( $this->get_listing_form_fields( [] ) as $field_slug => $field_constructor ) {
             if ( is_callable( $field_constructor ) ) {
                 $fields[ $field_slug ] = call_user_func( $field_constructor, $field_slug );
             }
@@ -58,7 +56,7 @@ class AWPCP_ListingFormFields {
     /**
      * @param array $fields     An array of Form Fields definitions.
      */
-    public function register_listing_form_fields( $fields ) {
+    public function get_listing_form_fields( $fields ) {
         $fields['ad_title']         = 'awpcp_listing_title_form_field';
         $fields['websiteurl']       = 'awpcp_listing_website_form_field';
         $fields['ad_contact_name']  = 'awpcp_listing_contact_name_form_field';
@@ -83,6 +81,13 @@ class AWPCP_ListingFormFields {
      */
     private function get_fields_order() {
         return get_option( 'awpcp-form-fields-order', array() );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function get_listing_details_form_fields() {
+        return $this->register_listing_details_form_fields( [] );
     }
 
     /**

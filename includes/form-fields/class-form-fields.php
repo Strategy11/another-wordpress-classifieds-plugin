@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package AWPCP\FormFields
+ */
+
+// phpcs:disable
 
 function awpcp_form_fields() {
     static $instance = null;
@@ -10,6 +15,10 @@ function awpcp_form_fields() {
     return $instance;
 }
 
+/**
+ * TODO: Remove class. An instance of Form Fields Renderer should be used instead.
+ * TODO: Make sure sorting fields still works.
+ */
 class AWPCP_FormFields {
 
     private $fields = null;

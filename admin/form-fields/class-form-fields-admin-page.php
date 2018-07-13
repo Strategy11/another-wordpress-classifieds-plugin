@@ -4,7 +4,7 @@ function awpcp_form_fields_admin_page() {
     return new AWPCP_FormFieldsAdminPage(
         'awpcp-form-fields',
         awpcp_admin_page_title( __( 'Form Fields', 'another-wordpress-classifieds-plugin' ) ),
-        awpcp_form_fields(),
+        awpcp_listing_form_fields(),
         awpcp_form_fields_table_factory()
     );
 }
@@ -17,7 +17,7 @@ class AWPCP_FormFieldsAdminPage extends AWPCP_AdminPageWithTable {
     public function __construct( $page, $title, $form_fields, $table_factory ) {
         parent::__construct( $page, $title, _x( 'Form Fields', 'sub menu title', 'another-wordpress-classifieds-plugin' ) );
 
-        $this->form_fields = $form_fields;
+        $this->form_fields   = $form_fields;
         $this->table_factory = $table_factory;
     }
 
@@ -34,7 +34,7 @@ class AWPCP_FormFieldsAdminPage extends AWPCP_AdminPageWithTable {
     }
 
     public function dispatch() {
-        $form_fields = $this->form_fields->get_fields();
+        $form_fields = $this->form_fields->get_listing_details_form_fields();
 
         $table = $this->get_table();
         $table->prepare( $form_fields, count( $form_fields ) );
