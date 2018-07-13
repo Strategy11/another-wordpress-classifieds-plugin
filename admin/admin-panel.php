@@ -360,6 +360,12 @@ class AWPCP_AdminPanel {
 			echo $html;
 		}
 
+        if ( awpcp_request_param( 'action' ) === 'awpcp-manage-credits' ) {
+            $message = __( 'Use the Account Balance column on the table below to manage credit balance for users.', 'another-wordpress-classifieds-plugin' );
+
+            echo awpcp_render_info_message( $message );
+        }
+
 		do_action( 'awpcp-admin-notices' );
 	}
 
@@ -471,6 +477,7 @@ class AWPCP_AdminPanel {
 
 	public function init() {
 		add_filter( 'parent_file', array( $this, 'parent_file' ) );
+        add_filter( 'admin_body_class', [ $this, 'filter_admin_body_classes' ] );
 	}
 
 	public function scripts() {
@@ -513,6 +520,19 @@ class AWPCP_AdminPanel {
 
 		return $parent_file;
 	}
+
+    /**
+     * @since 4.0.0
+     */
+    public function filter_admin_body_classes( $admin_body_classes ) {
+        global $current_screen;
+
+        if ( $current_screen->base == 'users' && awpcp_request_param( 'action' ) == 'awpcp-manage-credits' ) {
+            $admin_body_classes = $admin_body_classes ? "$admin_body_classes awpcp-manage-credits-admin-page" : 'awpcp-manage-credits-admin-page';
+        }
+
+        return $admin_body_classes;
+    }
 
 	public function menu() {
 	}
