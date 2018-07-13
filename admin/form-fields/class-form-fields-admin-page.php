@@ -1,5 +1,11 @@
 <?php
+/**
+ * @package AWPCP\Admin
+ */
 
+/**
+ * Constructor function for AWPCP_FormFieldsAdminPage.
+ */
 function awpcp_form_fields_admin_page() {
     return new AWPCP_FormFieldsAdminPage(
         'awpcp-form-fields',
@@ -9,11 +15,24 @@ function awpcp_form_fields_admin_page() {
     );
 }
 
+/**
+ * Admin page to manage order of listing's form fields.
+ */
 class AWPCP_FormFieldsAdminPage extends AWPCP_AdminPageWithTable {
 
+    /**
+     * @var ListingFormFields
+     */
     private $form_fields;
+
+    /**
+     * @var FormFieldsTableFactory
+     */
     private $table_factory;
 
+    /**
+     * Constructor.
+     */
     public function __construct( $page, $title, $form_fields, $table_factory ) {
         parent::__construct( $page, $title, _x( 'Form Fields', 'sub menu title', 'another-wordpress-classifieds-plugin' ) );
 
@@ -21,6 +40,9 @@ class AWPCP_FormFieldsAdminPage extends AWPCP_AdminPageWithTable {
         $this->table_factory = $table_factory;
     }
 
+    /**
+     * Creates an instance of table used to render form fields rows.
+     */
     public function get_table() {
         if ( ! isset( $this->table ) || is_null( $this->table ) ) {
             $this->table = $this->table_factory->create_table( $this );
@@ -29,10 +51,16 @@ class AWPCP_FormFieldsAdminPage extends AWPCP_AdminPageWithTable {
         return $this->table;
     }
 
+    /**
+     * Enqueue required scripts.
+     */
     public function enqueue_scripts() {
         wp_enqueue_script( 'awpcp-admin-form-fields' );
     }
 
+    /**
+     * Renders the page.
+     */
     public function dispatch() {
         $form_fields = $this->form_fields->get_listing_details_form_fields();
 
@@ -40,7 +68,7 @@ class AWPCP_FormFieldsAdminPage extends AWPCP_AdminPageWithTable {
         $table->prepare( $form_fields, count( $form_fields ) );
 
         $params = array(
-            'page' => $this,
+            'page'  => $this,
             'table' => $table,
         );
 
