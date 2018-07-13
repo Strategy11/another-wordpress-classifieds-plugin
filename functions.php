@@ -1462,7 +1462,7 @@ function awpcp_clear_flash_messages() {
     return delete_user_option( get_current_user_id(), 'awpcp-messages' );
 }
 
-function awpcp_flash( $message, $class = array( 'awpcp-updated', 'updated') ) {
+function awpcp_flash( $message, $class = array( 'awpcp-updated', 'notice', 'notice-info', 'updated') ) {
 	$messages = awpcp_get_flash_messages();
 
     if ( ! awpcp_is_duplicated_flash_message( $messages, $message, $class ) ) {

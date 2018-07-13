@@ -9,9 +9,9 @@
 class AWPCP_SettingsIntegration {
 
     /**
-     * @var string
+     * @var array
      */
-    private $page_hook;
+    private $page_hooks;
 
     /**
      * @var SettingsManager
@@ -36,8 +36,8 @@ class AWPCP_SettingsIntegration {
     /**
      * @since 4.0.0
      */
-    public function __construct( $page_hook, $settings_manager, $settings_validator, $settings_renderer, $settings ) {
-        $this->page_hook          = $page_hook;
+    public function __construct( $page_hooks, $settings_manager, $settings_validator, $settings_renderer, $settings ) {
+        $this->page_hooks         = $page_hooks;
         $this->settings_manager   = $settings_manager;
         $this->settings_validator = $settings_validator;
         $this->settings_renderer  = $settings_renderer;
@@ -52,12 +52,16 @@ class AWPCP_SettingsIntegration {
             $this->settings->setting_name,
             $this->settings->setting_name,
             [
-                // TODO: This should probable be handled elsewhere.
+                // TODO: This should pyobably be handled elsewhere.
                 'sanitize_callback' => [ $this->settings_validator, 'sanitize_settings' ],
             ]
         );
 
-        add_action( $this->page_hook, [ $this, 'add_settings_sections' ] );
+        add_filter( 'awpcp_validate_settings_payment-settings', [ $this->settings_validator, 'validate_payment_settings' ], 10, 2 );
+
+        foreach ( $this->page_hooks as $page_hook ) {
+            add_action( $page_hook, [ $this, 'add_settings_sections' ] );
+        }
     }
 
     /**

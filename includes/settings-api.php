@@ -55,8 +55,6 @@ class AWPCP_Settings_API {
 		// setup validate functions
 		add_filter('awpcp_validate_settings_general-settings',
 				   array($this, 'validate_general_settings'), 10, 2);
-		add_filter('awpcp_validate_settings_payment-settings',
-				   array($this, 'validate_payment_settings'), 10, 2);
 		add_filter('awpcp_validate_settings_registration-settings',
 				   array($this, 'validate_registration_settings'), 10, 2);
 		add_filter('awpcp_validate_settings_smtp-settings',

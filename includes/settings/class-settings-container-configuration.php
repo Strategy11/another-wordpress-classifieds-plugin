@@ -26,7 +26,10 @@ class AWPCP_SettingsContainerConfiguration implements AWPCP_ContainerConfigurati
 
         $container['SettingsIntegration'] = $container->service( function( $container ) {
             return new AWPCP_SettingsIntegration(
-                'awpcp_admin_load_awpcp-admin-settings',
+                [
+                    'awpcp_admin_load_awpcp-admin-settings',
+                    'awpcp_admin_load_awpcp-admin-credit-plans',
+                ],
                 $container['SettingsManager'],
                 $container['SettingsValidator'],
                 $container['SettingsRenderer'],

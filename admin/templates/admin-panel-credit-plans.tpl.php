@@ -1,10 +1,10 @@
 <div class="metabox-holder">
-    <div class="postbox">
+    <div class="awpcp-credit-system-settings-postbox postbox">
         <?php echo awpcp_html_postbox_handle( array( 'content' => esc_html( __( 'Credit System Settings', 'another-wordpress-classifieds-plugin' ) ) ) ); ?>
         <div class="inside">
         <form action="<?php echo esc_attr( admin_url( 'options.php' ) ); ?>" method="post">
             <table class="form-table">
-            <?php do_settings_fields( 'payment-settings', 'credit-system' ); ?>
+            <?php do_settings_fields( 'credit-system-settings', 'credit-system-settings' ); ?>
             </table>
             <?php settings_fields( $option ); ?>
             <input type="hidden" name="group" value="<?php echo 'payment-settings'; ?>" />
