@@ -29,5 +29,3 @@ class AWPCP_ContactNameListingsTableSearchMode {
         unset( $query->query_vars['s'] );
     }
 }
-
-

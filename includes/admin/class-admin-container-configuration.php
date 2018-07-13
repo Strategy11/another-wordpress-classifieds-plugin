@@ -243,6 +243,10 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
             return new AWPCP_FilteredArray( 'awpcp_list_table_search_listings' );
         } );
 
+        $container['IDListingsTableSearchMode'] = $container->service( function( $container ) {
+            return new AWPCP_IDListingsTableSearchMode();
+        } );
+
         $container['KeywordListingsTableSearchMode'] = $container->service( function( $container ) {
             return new AWPCP_KeywordListingsTableSearchMode();
         } );
