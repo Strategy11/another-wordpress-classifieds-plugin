@@ -1329,6 +1329,13 @@ class AWPCP {
             '1.2.22'
         );
 
+        wp_register_style(
+            'awpcp-font-awesome',
+            'https://use.fontawesome.com/releases/v5.1.0/css/all.css',
+            array(),
+            '5.1.0'
+        );
+
         $this->maybe_register_script(
             'breakpoints.js',
             "{$vendors}/breakpoints.js/breakpoints.min.js",
@@ -1403,6 +1410,13 @@ class AWPCP {
 		wp_register_script('awpcp-toggle-checkboxes', "{$js}/checkuncheckboxes.js", array('jquery'), $awpcp_db_version, true);
 
 		/* admin */
+
+        wp_register_style(
+            'awpcp-admin-menu',
+            "{$css}/awpcp-admin-menu.css",
+            [ 'awpcp-font-awesome' ],
+            $awpcp_db_version
+        );
 
 		wp_register_style('awpcp-admin-style', "{$css}/awpcp-admin.css", array(), $awpcp_db_version);
 
@@ -1589,6 +1603,10 @@ class AWPCP {
 	}
 
 	public function enqueue_scripts() {
+        if ( is_admin() ) {
+            wp_enqueue_style( 'awpcp-admin-menu' );
+        }
+
         if ( is_awpcp_admin_page() ) {
 			wp_enqueue_style( 'awpcp-admin-style' );
 			wp_enqueue_script('awpcp-admin-general');
