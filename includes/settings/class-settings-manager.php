@@ -147,6 +147,13 @@ class AWPCP_SettingsManager {
     /**
      * @since 4.0.0
      */
+    public function get_settings() {
+        return $this->settings;
+    }
+
+    /**
+     * @since 4.0.0
+     */
     public function get_setting( $setting_id ) {
         if ( isset( $this->settings[ $setting_id ] ) ) {
             return $this->settings[ $setting_id ];

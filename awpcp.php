@@ -977,6 +977,8 @@ class AWPCP {
         $handler = awpcp_dismiss_notice_ajax_handler();
         add_action( 'wp_ajax_awpcp-dismiss-notice', array( $handler, 'ajax' ) );
 
+        add_action( 'wp_ajax_awpcp-test-ssl-client', [ awpcp()->container['TestSSLClientAjaxHandler'], 'ajax' ] );
+
         $ajax_request_handler = awpcp_ajax_request_handler( $this->router->get_routes() );
         $this->router->register_ajax_request_handler( $ajax_request_handler );
     }
@@ -1477,6 +1479,14 @@ class AWPCP {
             'awpcp-admin-pointers',
             "{$js}/admin-pointers.min.js",
             array( 'awpcp', 'wp-pointer' ),
+            $awpcp_db_version,
+            true
+        );
+
+        wp_register_script(
+            'awpcp-admin-debug',
+            "{$js}/admin/debug-admin-page.min.js",
+            array(),
             $awpcp_db_version,
             true
         );

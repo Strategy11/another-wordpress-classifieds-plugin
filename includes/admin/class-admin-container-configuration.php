@@ -308,5 +308,8 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
             );
         } );
 
+        $container['TestSSLClientAjaxHandler'] = $container->service( function( $container ) {
+            return new AWPCP_TestSSLClientAjaxHandler();
+        } );
     }
 }

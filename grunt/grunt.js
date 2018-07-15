@@ -8,6 +8,7 @@ module.exports = function(grunt) {
     path: 'another-wordpress-classifieds-plugin/resources',
     concat: {
       files: {
+        '<%= path.awpcp %>/js/admin/debug-admin-page.src.js': '<%= path.awpcp %>/js/admin/debug-admin-page.js',
         '<%= path.awpcp %>/js/admin/edit-post.src.js': '<%= path.awpcp %>/js/admin/edit-post.js',
         '<%= path.awpcp %>/js/frontend/submit-listing-page.src.js': [
           '<%= path.awpcp %>/js/frontend/order-section-controller.js',
