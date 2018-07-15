@@ -1,4 +1,9 @@
-<?php echo awpcp_html_admin_second_level_heading( [ 'content' => __( 'Another WordPress Classifieds Plugin', 'another-wordpress-classifieds-plugin' ) ] ); // XSS Ok. ?>
+<?php
+/**
+ * @package AWPCP\Templates\Admin\Debug
+ */
+
+?><?php echo awpcp_html_admin_second_level_heading( [ 'content' => __( 'Another WordPress Classifieds Plugin', 'another-wordpress-classifieds-plugin' ) ] ); // XSS Ok. ?>
 
 <table class="awpcp-debug-plugin-info widefat striped">
     <tbody>

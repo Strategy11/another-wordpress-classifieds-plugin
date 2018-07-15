@@ -1,4 +1,9 @@
-<table class="awpcp-debug-environment-properties widefat striped">
+<?php
+/**
+ * @package AWPCP\Templates\Admin\Debug
+ */
+
+?><table class="awpcp-debug-environment-properties widefat striped">
     <tbody>
     <?php foreach ( $properties as $property ) : ?>
         <?php if ( ! is_null( $property['value'] ) ) : ?>

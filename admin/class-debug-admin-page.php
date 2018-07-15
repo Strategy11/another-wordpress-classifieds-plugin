@@ -1,5 +1,11 @@
 <?php
+/**
+ * @package AWPCP\Admin
+ */
 
+/**
+ * Constructor for AWPCP_DebugAdminPage.
+ */
 function awpcp_debug_admin_page() {
     return new AWPCP_DebugAdminPage(
         awpcp(),
@@ -11,6 +17,9 @@ function awpcp_debug_admin_page() {
     );
 }
 
+/**
+ * Renders the Debug admin page.
+ */
 class AWPCP_DebugAdminPage {
 
     /**
@@ -38,6 +47,9 @@ class AWPCP_DebugAdminPage {
      */
     private $db;
 
+    /**
+     * Constructor.
+     */
 	public function __construct( $plugin, $settings, $settings_manager, $template_renderer, $request, $db ) {
         $this->plugin            = $plugin;
         $this->settings          = $settings;
@@ -69,10 +81,9 @@ class AWPCP_DebugAdminPage {
 	 * Allow users to download Debug Info as an JSON file.
 	 *
 	 * @since 2.0.7
+     * @SuppressWarnings(PHPMD.ExitExpression)
 	 */
 	public function export_to_json() {
-		global $pagenow;
-
         $content = [
             'environment'     => $this->get_environment_data(),
             'plugin-info'     => $this->get_plugin_info_data(),
@@ -86,10 +97,10 @@ class AWPCP_DebugAdminPage {
         $filename = sprintf( 'awpcp-debug-info-%s.json', $current_date );
         $filename = str_replace( ':', '', $filename );
 
-        header('Content-Description: File Transfer');
-        header('Content-Type: application/json; charset=' . get_option('blog_charset'), true);
-        header('Content-Disposition: attachment; filename=' . $filename);
-        header("Pragma: no-cache");
+        header( 'Content-Description: File Transfer' );
+        header( 'Content-Type: application/json; charset=' . get_option( 'blog_charset' ), true );
+        header( 'Content-Disposition: attachment; filename=' . $filename );
+        header( 'Pragma: no-cache' );
 
         echo wp_json_encode( $content, JSON_PRETTY_PRINT );
 
@@ -102,8 +113,6 @@ class AWPCP_DebugAdminPage {
 	 * @since 2.0.7
 	 */
 	public function dispatch() {
-		global $wp_rewrite;
-
         $current_section = $this->get_current_section();
 
         switch ( $current_section ) {
@@ -167,7 +176,7 @@ class AWPCP_DebugAdminPage {
         global $awpcp_db_version;
 
         $properties = [
-            'plugin-version'   => [
+            'plugin-version' => [
                 'label' => _x( 'Plugin Version', 'debug page', 'another-wordpress-classifieds-plugin' ),
                 'value' => $awpcp_db_version,
             ],
@@ -280,7 +289,7 @@ class AWPCP_DebugAdminPage {
             'paypal-connection' => [
                 'label' => _x( 'PayPal Connection', 'debug page', 'another-wordpress-classifieds-plugin' ),
                 'value' => $this->get_paypal_connection_results(),
-            ]
+            ],
         ];
 
         return $properties;
@@ -326,6 +335,7 @@ class AWPCP_DebugAdminPage {
             return __( 'N/A', 'another-wordpress-classifieds-plugin' );
         }
 
+        // phpcs:disable WordPress.WP.AlternativeFunctions.curl_curl_version
         $version = curl_version();
 
         if ( ! isset( $version[ $element ] ) ) {
@@ -381,10 +391,10 @@ class AWPCP_DebugAdminPage {
     private function get_plugin_settings() {
         $all_settings = $this->settings_manager->get_settings();
 
-        $safe_settings['awpcp_installationcomplete'] = get_option('awpcp_installationcomplete');
-        $safe_settings['awpcp_pagename_warning']     = get_option('awpcp_pagename_warning');
-        $safe_settings['widget_awpcplatestads']      = get_option('widget_awpcplatestads');
-        $safe_settings['awpcp_db_version']           = get_option('awpcp_db_version');
+        $safe_settings['awpcp_installationcomplete'] = get_option( 'awpcp_installationcomplete' );
+        $safe_settings['awpcp_pagename_warning']     = get_option( 'awpcp_pagename_warning' );
+        $safe_settings['widget_awpcplatestads']      = get_option( 'widget_awpcplatestads' );
+        $safe_settings['awpcp_db_version']           = get_option( 'awpcp_db_version' );
 
         foreach ( $all_settings as $setting ) {
             $safe_settings[ $setting['id'] ] = $this->sanitize_setting_value( $this->settings->get_option( $setting['id'] ) );
@@ -399,23 +409,32 @@ class AWPCP_DebugAdminPage {
 
     /**
      * @since 4.0.0     Removed setting name argument.
+     * @SuppressWarnings(PHPMD.DevelopmentCodeFragment)
      */
 	private function sanitize_setting_value( $value ) {
         static $hosts_regexp = '';
         static $email_regexp = '';
 
-        if (empty($hosts_regexp)) {
-            $hosts = array_unique(array(parse_url(home_url(), PHP_URL_HOST),
-                                        parse_url(site_url(), PHP_URL_HOST)));
-            $hosts_regexp = '/' . preg_quote(join('|', $hosts), '/') . '/';
+        if ( empty( $hosts_regexp ) ) {
+            $hosts = array_unique(
+                array(
+                    wp_parse_url( home_url(), PHP_URL_HOST ),
+                    wp_parse_url( site_url(), PHP_URL_HOST ),
+                )
+            );
+
+            $hosts_regexp = '/' . preg_quote( join( '|', $hosts ), '/' ) . '/';
             $email_regexp = '/[_a-z0-9-+]+(\.[_a-z0-9-+]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})/';
         }
 
-        $sanitized = (is_object($value) || is_array($value)) ? print_r($value, true) : $value;
-        // remove Website domain
-        $sanitized = preg_replace($hosts_regexp, '<host>', $sanitized);
-        // remove email addresses
-        $sanitized = preg_replace($email_regexp, '<email>', $sanitized);
+        // phpcs:disable WordPress.PHP.DevelopmentFunctions.error_log_print_r
+        $sanitized = ( is_object( $value ) || is_array( $value ) ) ? print_r( $value, true ) : $value;
+
+        // Remove Website domain.
+        $sanitized = preg_replace( $hosts_regexp, '<host>', $sanitized );
+
+        // Remove email addresses.
+        $sanitized = preg_replace( $email_regexp, '<email>', $sanitized );
 
         return $sanitized;
 	}
@@ -424,17 +443,25 @@ class AWPCP_DebugAdminPage {
      * @since 4.0.0
      */
     private function get_blacklisted_options() {
-        // TODO: add other settings from premium modules
+        // TODO: add other settings from premium modules.
         return array(
             'tos',
             'admin-recipient-email',
             'awpcpadminemail',
             'paypalemail',
             '2checkout',
-            'smtphost', 'smtpport', 'smtpusername', 'smtppassword',
-            'googlecheckoutmerchantID', 'googlecheckoutsandboxseller', 'googlecheckoutbuttonurl',
-            'authorize.net-login-id', 'authorize.net-transaction-key',
-            'paypal-pro-username', 'paypal-pro-password', 'paypal-pro-signature',
+            'smtphost',
+            'smtpport',
+            'smtpusername',
+            'smtppassword',
+            'googlecheckoutmerchantID',
+            'googlecheckoutsandboxseller',
+            'googlecheckoutbuttonurl',
+            'authorize.net-login-id',
+            'authorize.net-transaction-key',
+            'paypal-pro-username',
+            'paypal-pro-password',
+            'paypal-pro-signature',
         );
     }
 

@@ -1,17 +1,21 @@
-<table class="widefat striped">
+<?php
+/**
+ * @package AWPCP\Templates\Admin\Debug
+ */
+
+?><table class="widefat striped">
     <thead>
         <tr>
-            <th><?php _e('Pattern', 'another-wordpress-classifieds-plugin') ?></th>
-            <th><?php _e('Replacement', 'another-wordpress-classifieds-plugin') ?></th>
+            <th><?php echo esc_html__( 'Pattern', 'another-wordpress-classifieds-plugin' ); ?></th>
+            <th><?php echo esc_html( 'Replacement', 'another-wordpress-classifieds-plugin' ); ?></th>
         </tr>
     </thead>
     <tbody>
-<?php foreach($rules as $pattern => $rule): ?>
+        <?php foreach ( $rules as $pattern => $rule ) : ?>
         <tr>
-            <td><?php echo $pattern ?></td>
-            <td><?php echo $rule ?></td>
+            <td><?php echo esc_html( $pattern ); ?></td>
+            <td><?php echo esc_html( $rule ); ?></td>
         </tr>
-<?php endforeach ?>
+        <?php endforeach; ?>
     </tbody>
 </table>
-

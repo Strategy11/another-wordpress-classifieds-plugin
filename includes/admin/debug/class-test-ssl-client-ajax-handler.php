@@ -10,11 +10,15 @@ class AWPCP_TestSSLClientAjaxHandler {
 
     /**
      * @since 4.0.0
+     * @SuppressWarnings(PHPMD.ExitExpression)
      */
     public function ajax() {
         if ( ! awpcp_current_user_is_admin() ) {
             die();
         }
+
+        // phpcs:disable WordPress.WP.AlternativeFunctions
+        // phpcs:disable WordPress.XSS.EscapeOutput
 
         if ( ! function_exists( 'curl_init' ) ) {
             die( 'cURL not available.' );
@@ -25,7 +29,7 @@ class AWPCP_TestSSLClientAjaxHandler {
         curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
         curl_setopt( $ch, CURLOPT_SSLVERSION, 6 );
 
-        $data = curl_exec($ch);
+        $data = curl_exec( $ch );
 
         if ( 0 !== curl_errno( $ch ) ) {
             die( 'cURL error: ' . curl_error( $ch ) );
@@ -39,9 +43,9 @@ class AWPCP_TestSSLClientAjaxHandler {
 
         $json = json_decode( $data );
 
-        echo "Cipher Suites:\n" . implode( ',', $json->given_cipher_suites ) . "\n\n";
-        echo "TLS Version:\n" . $json->tls_version . "\n\n";
-        echo "Rating:\n" . $json->rating;
+        echo "Cipher Suites:\n" . implode( ',', $json->given_cipher_suites ) . "\n\n"; // XSS Ok.
+        echo "TLS Version:\n" . $json->tls_version . "\n\n"; // XSS Ok.
+        echo "Rating:\n" . $json->rating; // XSS Ok.
 
         exit();
     }
