@@ -668,6 +668,9 @@ class AWPCP {
 
         $appearance_settings = $this->container['AppearanceSettings'];
         add_action( 'awpcp_register_settings', [ $appearance_settings, 'register_settings' ] );
+
+        $email_settings = $this->container['EmailSettings'];
+        add_action( 'awpcp_register_settings', [ $email_settings, 'register_settings' ] );
 	}
 
     /**
