@@ -42,6 +42,7 @@ class AWPCP_GeneralSettings {
         ] );
 
         $this->register_general_settings( $settings_manager );
+        $this->register_date_and_time_format_settings( $settings_manager );
         $this->register_anti_spam_settings( $settings_manager );
         $this->register_adsense_settings( $settings_manager );
         $this->register_registration_settings( $settings_manager );
@@ -158,7 +159,6 @@ class AWPCP_GeneralSettings {
         ] );
 
         $this->register_classifieds_management_panel_settings( $settings_manager );
-        $this->register_date_and_time_format_settings( $settings_manager );
         $this->register_currency_format_settings( $settings_manager );
         $this->register_terms_of_service_settings( $settings_manager );
     }
@@ -184,64 +184,6 @@ class AWPCP_GeneralSettings {
             'default'     => 0,
             'description' => $help_text,
             'section'     => 'classifieds-management-panel',
-        ] );
-    }
-
-    private function register_date_and_time_format_settings( $settings_manager ) {
-		$description = '<a href="http://codex.wordpress.org/Formatting_Date_and_Time">%s</a>.';
-		$description = sprintf( $description, __( 'Documentation on date and time formatting', 'another-wordpress-classifieds-plugin' ) );
-
-        $settings_manager->add_settings_section( [
-            'name'        => _x( 'Date & Time Format', 'settings', 'another-wordpress-classifieds-plugin' ),
-            'id'          => 'date-time-format',
-            'description' => $description,
-            'priority'    => 20,
-            'subgroup'    => 'general-settings',
-        ] );
-
-        $current_time = current_time( 'timestamp' );
-
-        $settings_manager->add_setting( [
-            'id'      => 'x-date-time-format',
-            'name'    => __( 'Date Time Format', 'another-wordpress-classifieds-plugin' ),
-            'type'    => 'radio',
-            'default' => 'american',
-            'options' => [
-                'american' => sprintf( '<strong>%s</strong>: %s', __( 'American', 'another-wordpress-classifieds-plugin' ), awpcp_datetime( 'm/d/Y h:i:s', $current_time ) ),
-                'european' => sprintf( '<strong>%s</strong>: %s', __( 'European', 'another-wordpress-classifieds-plugin' ), awpcp_datetime( 'd/m/Y H:i:s', $current_time ) ),
-                'custom'   => __( 'Your own.', 'another-wordpress-classifieds-plugin' ),
-            ],
-            'section' => 'date-time-format',
-        ] );
-
-        $settings_manager->add_setting( [
-            'id'      => 'date-format',
-            'name'    => _x( 'Date Format', 'settings', 'another-wordpress-classifieds-plugin' ),
-            'type'    => 'textfield',
-            'default' => 'm/d/Y',
-            'section' => 'date-time-format',
-        ] );
-
-        $settings_manager->add_setting( [
-            'id'      => 'time-format',
-            'name'    => _x( 'Time Format', 'settings', 'another-wordpress-classifieds-plugin' ),
-            'type'    => 'textfield',
-            'default' => 'h:i:s',
-            'section' => 'date-time-format',
-        ] );
-
-        $example     = sprintf( '<strong>%s</strong>: <span example>%s</span>', _x( 'Example output', 'settings', 'another-wordpress-classifieds-plugin' ), awpcp_datetime( 'awpcp' ) );
-
-        $description = _x( 'Full date/time output with any strings you wish to add. <date> and <time> are placeholders for date and time strings using the formats specified in the Date Format and Time Format settings above.', 'settings', 'another-wordpress-classifieds-plugin' );
-        $description = esc_html( $description ) . '<br/>' . $example;
-
-        $settings_manager->add_setting( [
-            'id'          => 'date-time-format',
-            'name'        => _x( 'Full Display String', 'settings', 'another-wordpress-classifieds-plugin' ),
-            'type'        => 'textfield',
-            'default'     => '<date> at <time>',
-            'description' => $description,
-            'section'     => 'date-time-format',
         ] );
     }
 
@@ -310,6 +252,73 @@ class AWPCP_GeneralSettings {
 
         $settings_manager->add_setting( $key, 'requiredtos', __( 'Display and require Terms of Service', 'another-wordpress-classifieds-plugin' ), 'checkbox', 1, __( 'Display and require Terms of Service', 'another-wordpress-classifieds-plugin' ) );
         $settings_manager->add_setting( $key, 'tos', __( 'Terms of Service', 'another-wordpress-classifieds-plugin' ), 'textarea', __( 'Terms of service go here...', 'another-wordpress-classifieds-plugin' ), __( 'Terms of Service for posting Ads. Put in text or an URL starting with http. If you use an URL, the text box will be replaced by a link to the appropriate Terms of Service page', 'another-wordpress-classifieds-plugin' ) );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function register_date_and_time_format_settings( $settings_manager ) {
+        $settings_manager->add_settings_subgroup( [
+            'id'      => 'date-time-format-settings',
+            'name'    => _x( 'Date & Time Format', 'settings', 'another-wordpress-classifieds-plugin' ),
+            'parent'  => 'general-settings',
+        ] );
+
+		$description = '<a href="http://codex.wordpress.org/Formatting_Date_and_Time">%s</a>.';
+		$description = sprintf( $description, __( 'Documentation on date and time formatting', 'another-wordpress-classifieds-plugin' ) );
+
+        $settings_manager->add_settings_section( [
+            'name'        => _x( 'Date & Time Format', 'settings', 'another-wordpress-classifieds-plugin' ),
+            'id'          => 'date-time-format',
+            'description' => $description,
+            'priority'    => 20,
+            'subgroup'    => 'date-time-format-settings',
+        ] );
+
+        $current_time = current_time( 'timestamp' );
+
+        $settings_manager->add_setting( [
+            'id'      => 'x-date-time-format',
+            'name'    => __( 'Date Time Format', 'another-wordpress-classifieds-plugin' ),
+            'type'    => 'radio',
+            'default' => 'american',
+            'options' => [
+                'american' => sprintf( '<strong>%s</strong>: %s', __( 'American', 'another-wordpress-classifieds-plugin' ), awpcp_datetime( 'm/d/Y h:i:s', $current_time ) ),
+                'european' => sprintf( '<strong>%s</strong>: %s', __( 'European', 'another-wordpress-classifieds-plugin' ), awpcp_datetime( 'd/m/Y H:i:s', $current_time ) ),
+                'custom'   => __( 'Your own.', 'another-wordpress-classifieds-plugin' ),
+            ],
+            'section' => 'date-time-format',
+        ] );
+
+        $settings_manager->add_setting( [
+            'id'      => 'date-format',
+            'name'    => _x( 'Date Format', 'settings', 'another-wordpress-classifieds-plugin' ),
+            'type'    => 'textfield',
+            'default' => 'm/d/Y',
+            'section' => 'date-time-format',
+        ] );
+
+        $settings_manager->add_setting( [
+            'id'      => 'time-format',
+            'name'    => _x( 'Time Format', 'settings', 'another-wordpress-classifieds-plugin' ),
+            'type'    => 'textfield',
+            'default' => 'h:i:s',
+            'section' => 'date-time-format',
+        ] );
+
+        $example     = sprintf( '<strong>%s</strong>: <span example>%s</span>', _x( 'Example output', 'settings', 'another-wordpress-classifieds-plugin' ), awpcp_datetime( 'awpcp' ) );
+
+        $description = _x( 'Full date/time output with any strings you wish to add. <date> and <time> are placeholders for date and time strings using the formats specified in the Date Format and Time Format settings above.', 'settings', 'another-wordpress-classifieds-plugin' );
+        $description = esc_html( $description ) . '<br/>' . $example;
+
+        $settings_manager->add_setting( [
+            'id'          => 'date-time-format',
+            'name'        => _x( 'Full Display String', 'settings', 'another-wordpress-classifieds-plugin' ),
+            'type'        => 'textfield',
+            'default'     => '<date> at <time>',
+            'description' => $description,
+            'section'     => 'date-time-format',
+        ] );
     }
 
     /**
