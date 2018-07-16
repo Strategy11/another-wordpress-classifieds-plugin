@@ -101,7 +101,7 @@ class AWPCP_PaymentSettings {
 
     }
 
-    public function validate_group_settings( $options, $group ) {
+    public function validate_group_settings( $options ) {
         // debugp( $options, $group );
         if ( isset( $options[ 'force-secure-urls' ] ) && $options[ 'force-secure-urls' ] ) {
             if ( $this->is_https_disabled() ) {
@@ -294,15 +294,55 @@ class AWPCP_PaymentSettings {
         );
     }
 
-    public function validate_credit_system_settings( $options, $group ) {
-        $credits_is_the_only_accepted_payment_type = $options['accepted-payment-type'] == AWPCP_Payment_Transaction::PAYMENT_TYPE_CREDITS;
+    public function validate_credit_system_settings( $options ) {
+        $only_credits_accepted         = $options['accepted-payment-type'] == AWPCP_Payment_Transaction::PAYMENT_TYPE_CREDITS;
         $credit_system_will_be_enabled = $options['enable-credit-system'];
 
-        if ( $credits_is_the_only_accepted_payment_type && ! $credit_system_will_be_enabled ) {
+        if ( $only_credits_accepted && ! $credit_system_will_be_enabled ) {
             $options['accepted-payment-type'] = 'both';
 
             $message = __( 'You cannot configure Credits as the only accepted payment type unless you enable the Credit System as well. The setting was set to accept both Currency and Credits.', 'another-wordpress-classifieds-plugin' );
             awpcp_flash( $message, array( 'error' ) );
+        }
+
+        return $options;
+    }
+
+    /**
+     * Payment Settings checks.
+     *
+     * XXX: Referenced in FAQ: http://awpcp.com/forum/faq/why-doesnt-my-currency-code-change-when-i-set-it/
+     *
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     */
+    public function validate_payment_settings( $options ) {
+        $setting = 'paypalcurrencycode';
+
+        if ( isset( $options[ $setting ] ) && ! awpcp_paypal_supports_currency( $options[ $setting ] ) ) {
+            $currency_codes = awpcp_paypal_supported_currencies();
+            $message = __( 'There is a problem with the PayPal Currency Code you have entered. It does not match any of the codes in our list of curencies supported by PayPal.', 'another-wordpress-classifieds-plugin' );
+            $message.= '<br/><br/><strong>' . __( 'The available currency codes are', 'another-wordpress-classifieds-plugin' ) . '</strong>:<br/>';
+            $message.= join(' | ', $currency_codes);
+            awpcp_flash($message);
+
+            $options[$setting] = 'USD';
+        }
+
+        $setting = 'enable-credit-system';
+        if (isset($options[$setting]) && $options[$setting] == 1 && !get_awpcp_option('requireuserregistration')) {
+            awpcp_flash(__('Require Registration setting was enabled automatically because you activated the Credit System.', 'another-wordpress-classifieds-plugin'));
+            $options['requireuserregistration'] = 1;
+        }
+
+        if (isset($options[$setting]) && $options[$setting] == 1 && !get_awpcp_option('freepay')) {
+            awpcp_flash(__('Charge Listing Fee setting was enabled automatically because you activated the Credit System.', 'another-wordpress-classifieds-plugin'));
+            $options['freepay'] = 1;
+        }
+
+        $setting = 'freepay';
+        if (isset($options[$setting]) && $options[$setting] == 0 && get_awpcp_option('enable-credit-system')) {
+            awpcp_flash(__('Credit System was disabled automatically because you disabled Charge Listing Fee.', 'another-wordpress-classifieds-plugin'));
+            $options['enable-credit-system'] = 0;
         }
 
         return $options;

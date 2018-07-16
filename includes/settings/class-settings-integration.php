@@ -57,8 +57,6 @@ class AWPCP_SettingsIntegration {
             ]
         );
 
-        add_filter( 'awpcp_validate_settings_payment-settings', [ $this->settings_validator, 'validate_payment_settings' ], 10, 2 );
-
         foreach ( $this->page_hooks as $page_hook ) {
             add_action( $page_hook, [ $this, 'add_settings_sections' ] );
         }

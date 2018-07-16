@@ -10,6 +10,8 @@ class AWPCP_PagesSettings {
 
     /**
      * Handler for awpcp_register_settings action.
+     *
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     public function register_settings( $settings_manager ) {
         $settings_manager->add_settings_group( [
@@ -126,5 +128,16 @@ class AWPCP_PagesSettings {
             'View Categories',
             __( 'Name for categories view page. (Dynamic Page)', 'another-wordpress-classifieds-plugin' )
         );
+    }
+
+    /**
+     * Flush rewrite rules when Page settings change.
+     *
+     * TODO: We should check that the selected page has the corresponding shortcode
+     *       and/or update the plugin to show that page's content even if the
+     *       shortcode is not set.
+     */
+    public function page_settings_validated() {
+        update_option( 'awpcp-flush-rewrite-rules', true );
     }
 }

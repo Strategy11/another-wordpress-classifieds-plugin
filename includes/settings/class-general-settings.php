@@ -613,7 +613,7 @@ class AWPCP_GeneralSettings {
 	/**
 	 * General Settings checks
 	 */
-	public function validate_general_settings($options, $group) {
+	public function validate_general_settings( $options ) {
         $this->validate_akismet_settings( $options );
         $this->validate_captcha_settings( $options );
 
@@ -707,6 +707,26 @@ class AWPCP_GeneralSettings {
             $options['date-format']      = $formats['european']['date'];
             $options['time-format']      = $formats['european']['time'];
             $options['date-time-format'] = $formats['european']['format'];
+        }
+
+        return $options;
+    }
+
+    /**
+     * Registration Settings checks
+     */
+    public function validate_registration_settings( $options ) {
+        // if Require Registration is disabled, User Ad Management Panel should be
+        // disabled as well.
+        $setting = 'requireuserregistration';
+        if (isset($options[$setting]) && $options[$setting] == 0 && get_awpcp_option('enable-user-panel')) {
+            awpcp_flash(__('User Ad Management panel was automatically deactivated because you disabled Require Registration setting.', 'another-wordpress-classifieds-plugin'));
+            $options['enable-user-panel'] = 0;
+        }
+
+        if (isset($options[$setting]) && $options[$setting] == 0 && get_awpcp_option('enable-credit-system')) {
+            awpcp_flash(__('Credit System was automatically disabled because you disabled Require Registration setting.', 'another-wordpress-classifieds-plugin'));
+            $options['enable-credit-system'] = 0;
         }
 
         return $options;

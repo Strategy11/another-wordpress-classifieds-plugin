@@ -161,4 +161,61 @@ class AWPCP_EmailSettings {
 		$settings_manager->add_setting( $key, 'smtppassword', __( 'SMTP password', 'another-wordpress-classifieds-plugin' ), 'password', '', __( 'SMTP password (if emails not processing normally).', 'another-wordpress-classifieds-plugin' ) );
 
     }
+
+    public function validate_email_settings( $options ) {
+        $settings = array(
+            'awpcpadminemail' => __( '<new-value> is not a valid email address. Please check the value you entered to use as the FROM email address for outgoing messages.', 'another-wordpress-classifieds-plugin' ),
+            'admin-recipient-email' => __( '<new-value> is not a valid email address. Please check the value you entered to use as recipient email address for admin notifications.', 'another-wordpress-classifieds-plugin' ),
+        );
+
+        foreach( $settings as $setting_name => $message ) {
+            $validated_value = $this->validate_email_setting(
+                $options,
+                $setting_name,
+                $message
+            );
+
+            if ( is_null( $validated_value ) ) {
+                continue;
+            }
+
+            $options[ $setting_name ] = $validated_value;
+        }
+
+        return $options;
+    }
+
+    private function validate_email_setting( $options, $setting_name, $message ) {
+        if ( ! isset( $options[ $setting_name ] ) ) {
+            return null;
+        }
+
+        if ( empty( $options[ $setting_name ] ) ) {
+            return $options[ $setting_name ];
+        }
+
+        if ( ! awpcp_is_valid_email_address( $options[ $setting_name ] ) ) {
+            $new_value = '<strong>' . esc_html( $options[ $setting_name ] ) . '</strong>';
+            $message   = str_replace( '<new-value>', $new_value, $message );
+
+            awpcp_flash( $message, 'notice notice-error' );
+
+            return $this->get_option( $setting_name );
+        }
+
+        return $options[ $setting_name ];
+    }
+
+    /**
+     * SMTP Settings checks.
+     */
+    public function validate_smtp_settings( $options ) {
+        // Not sure if this works, but that's what the old code did.
+        $setting = 'smtppassword';
+        if (isset($options[$setting])) {
+            $options[$setting] = md5($options[$setting]);
+        }
+
+        return $options;
+    }
 }

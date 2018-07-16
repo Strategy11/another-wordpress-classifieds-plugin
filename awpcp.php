@@ -518,7 +518,6 @@ class AWPCP {
 
         // Stored options are loaded when the settings API is instatiated.
 		$this->settings = awpcp_settings_api();
-		$this->settings->setup();
 
         $this->modules_manager = $this->container['ModulesManager'];
         $this->modules_updater = awpcp_modules_updater();
@@ -650,8 +649,11 @@ class AWPCP {
         add_filter( 'awpcp_validate_settings_general-settings', array( $general_settings, 'validate_group_settings' ), 10, 2 );
         add_filter( 'awpcp_validate_settings_general-settings', array( $general_settings, 'validate_general_settings' ), 10, 2 );
         add_filter( 'awpcp_validate_settings_subgroup_date-time-format-settings', array( $general_settings, 'validate_date_time_format_settings' ), 10, 2 );
+        add_filter( 'awpcp_validate_settings_registration-settings',[ $general_settings, 'validate_registration_settings' ] );
 
-        add_action( 'awpcp_register_settings', [ $this->container['PagesSettings'], 'register_settings' ] );
+        $pages_settings = $this->container['PagesSettings'];
+        add_action( 'awpcp_register_settings', [ $pages_settings, 'register_settings' ] );
+        add_action( 'awpcp_settings_validated_pages-settings', [ $pages_settings, 'page_settings_validated' ] );
 
         $listings_settings = $this->container['ListingsSettings'];
         add_action( 'awpcp_register_settings', [ $listings_settings, 'register_settings' ] );
@@ -664,6 +666,7 @@ class AWPCP {
         add_action( 'awpcp_register_settings', array( $payment_settings, 'register_settings' ) );
         add_filter( 'awpcp_validate_settings_payment-settings', array( $payment_settings, 'validate_group_settings' ), 10, 2 );
         add_filter( 'awpcp_validate_settings_payment-settings', array( $payment_settings, 'validate_credit_system_settings' ), 10, 2 );
+        add_filter( 'awpcp_validate_settings_payment-settings', [ $payment_settings, 'validate_payment_settings' ], 10, 2 );
 
         $files_settings = awpcp_files_settings();
         add_action( 'awpcp_register_settings', array( $files_settings, 'register_settings') );
@@ -673,6 +676,8 @@ class AWPCP {
 
         $email_settings = $this->container['EmailSettings'];
         add_action( 'awpcp_register_settings', [ $email_settings, 'register_settings' ] );
+        add_filter( 'awpcp_validate_settings_email-settings', [ $email_settings, 'validate_email_settings' ] );
+        add_filter( 'awpcp_validate_settings_smtp-settings', [ $email_settings, 'validate_smtp_settings' ], 10, 2 );
 	}
 
     /**

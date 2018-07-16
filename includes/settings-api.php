@@ -47,27 +47,6 @@ class AWPCP_Settings_API {
 		return update_option( $this->setting_name, $this->options );
 	}
 
-	/**
-	 * Hook actions and filters required by AWPCP Settings
-	 * to work.
-	 */
-	public function setup() {
-		// setup validate functions
-		add_filter('awpcp_validate_settings_registration-settings',
-				   array($this, 'validate_registration_settings'), 10, 2);
-		add_filter('awpcp_validate_settings_smtp-settings',
-				   array($this, 'validate_smtp_settings'), 10, 2);
-
-        add_filter(
-            'awpcp_validate_settings_email-settings',
-            array( $this, 'validate_email_settings' ),
-            10,
-            2
-        );
-
-        add_action( 'awpcp_settings_validated_pages-settings', array( $this, 'page_settings_validated' ), 10, 2 );
-	}
-
     /**
      * @since 4.0.0     Updated to use Settings Manager.
      * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
