@@ -32,7 +32,8 @@ awpcp_print_messages(); ?>
 
 				<?php settings_fields( $setting_name ); ?>
 
-				<input type="hidden" name="group" value="<?php echo esc_attr( $group['id'] ); ?>" />
+				<input type="hidden" name="group" value="<?php echo esc_attr( $current_group['id'] ); ?>" />
+				<input type="hidden" name="subgroup" value="<?php echo esc_attr( $current_subgroup['id'] ); ?>" />
 
 				<?php $settings->load(); ?>
 				<?php

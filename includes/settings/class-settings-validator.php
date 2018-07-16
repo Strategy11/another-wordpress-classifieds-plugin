@@ -30,22 +30,27 @@ class AWPCP_SettingsValidator {
 	 * Validates AWPCP settings before being saved.
 	 */
 	public function sanitize_settings( $new_options ) {
-        $group = $this->request->post( 'group', '' );
+        $group    = $this->request->post( 'group', '' );
+        $subgroup = $this->request->post( 'subgroup', '' );
 
         // Populate array with all plugin options before attempt validation.
         $new_options = array_merge( $this->settings->options, $new_options );
 
-        if ( $group ) {
-            $new_options = apply_filters( 'awpcp_validate_settings_' . $group, $new_options, $group );
+        if ( $subgroup ) {
+            $new_options = apply_filters( 'awpcp_validate_settings_subgroup_' . $subgroup, $new_options, $group, $subgroup );
         }
 
-        $new_options = apply_filters( 'awpcp_validate_settings', $new_options, $group );
-
         if ( $group ) {
-            do_action( 'awpcp_settings_validated_' . $group, $new_options, $group );
+            $new_options = apply_filters( 'awpcp_validate_settings_' . $group, $new_options, $group, $subgroup );
         }
 
-        do_action( 'awpcp_settings_validated', $new_options, $group );
+        $new_options = apply_filters( 'awpcp_validate_settings', $new_options, $group, $subgroup );
+
+        if ( $group ) {
+            do_action( 'awpcp_settings_validated_' . $group, $new_options, $group, $subgroup );
+        }
+
+        do_action( 'awpcp_settings_validated', $new_options, $group, $subgroup );
 
         // Filters and actions need to be executed before we update the in-memory
         // options to allow handlers to compare existing values with the ones that
@@ -56,71 +61,6 @@ class AWPCP_SettingsValidator {
 	}
 
     // phpcs:disable
-
-	/**
-	 * General Settings checks
-	 */
-	public function validate_general_settings($options, $group) {
-		$this->validate_akismet_settings( $options );
-		$this->validate_captcha_settings( $options );
-
-		// Enabling User Ad Management Panel will automatically enable
-		// require Registration, if it isn’t enabled. Disabling this feature
-		// will not disable Require Registration.
-		$setting = 'enable-user-panel';
-		if (isset($options[$setting]) && $options[$setting] == 1 && !get_awpcp_option('requireuserregistration')) {
-			awpcp_flash(__('Require Registration setting was enabled automatically because you activated the User Ad Management panel.', 'another-wordpress-classifieds-plugin'));
-			$options['requireuserregistration'] = 1;
-		}
-
-		return $options;
-	}
-
-	private function validate_akismet_settings( &$options ) {
-		$setting_name = 'use-akismet-in-place-listing-form';
-		$is_akismet_enabled_in_place_listing_form = isset( $options[ $setting_name ] ) && $options[ $setting_name ];
-
-		$setting_name = 'use-akismet-in-reply-to-listing-form';
-		$is_akismet_enabled_in_reply_to_listing_form = isset( $options[ $setting_name ] ) && $options[ $setting_name ];
-
-		if ( $is_akismet_enabled_in_place_listing_form || $is_akismet_enabled_in_reply_to_listing_form ) {
-			$wpcom_api_key = get_option( 'wordpress_api_key' );
-			if ( !function_exists( 'akismet_init' ) ) {
-				awpcp_flash( __( 'Akismet SPAM control cannot be enabled because Akismet plugin is not installed or activated.', 'another-wordpress-classifieds-plugin' ), 'error' );
-				$options[ 'use-akismet-in-place-listing-form' ] = 0;
-				$options[ 'use-akismet-in-reply-to-listing-form' ] = 0;
-			} else if ( empty( $wpcom_api_key ) ) {
-				awpcp_flash( __( 'Akismet SPAM control cannot be enabled because Akismet is not properly configured.', 'another-wordpress-classifieds-plugin' ), 'error' );
-				$options[ 'use-akismet-in-place-listing-form' ] = 0;
-				$options[ 'use-akismet-in-reply-to-listing-form' ] = 0;
-			}
-		}
-	}
-
-	private function validate_captcha_settings( &$options ) {
-	$option_name = 'captcha-enabled-in-place-listing-form';
-		$captcha_enabled_in_place_listing_form = isset( $options[ $option_name ] ) && $options[ $option_name ];
-
-		$option_name = 'captcha-enabled-in-reply-to-listing-form';
-		$captcha_enabled_in_reply_to_listing_form = isset( $options[ $option_name ] ) && $options[ $option_name ];
-
-		$is_captcha_enabled = $captcha_enabled_in_place_listing_form || $captcha_enabled_in_reply_to_listing_form;
-
-		// Verify reCAPTCHA is properly configured
-		if ( $is_captcha_enabled && $options['captcha-provider'] === 'recaptcha' ) {
-			if ( empty( $options[ 'recaptcha-public-key' ] ) || empty( $options[ 'recaptcha-private-key' ] ) ) {
-				$options['captcha-provider'] = 'math';
-			}
-
-			if ( empty( $options[ 'recaptcha-public-key' ] ) && empty( $options[ 'recaptcha-private-key' ] )  ) {
-				awpcp_flash( __( "reCAPTCHA can't be used because the public key and private key settings are required for reCAPTCHA to work properly.", 'another-wordpress-classifieds-plugin' ), 'error' );
-			} else if ( empty( $options[ 'recaptcha-public-key' ] ) ) {
-				awpcp_flash( __( "reCAPTCHA can't be used because the public key setting is required for reCAPTCHA to work properly.", 'another-wordpress-classifieds-plugin' ), 'error' );
-			} else if ( empty( $options[ 'recaptcha-private-key' ] ) ){
-				awpcp_flash( __( "reCAPTCHA can't be used because the private key setting is required for reCAPTCHA to work properly.", 'another-wordpress-classifieds-plugin' ), 'error' );
-			}
-		}
-	}
 
 	/**
 	 * Registration Settings checks

@@ -648,6 +648,8 @@ class AWPCP {
         $general_settings = awpcp_general_settings();
         add_action( 'awpcp_register_settings', array( $general_settings, 'register_settings' ) );
         add_filter( 'awpcp_validate_settings_general-settings', array( $general_settings, 'validate_group_settings' ), 10, 2 );
+        add_filter( 'awpcp_validate_settings_general-settings', array( $general_settings, 'validate_general_settings' ), 10, 2 );
+        add_filter( 'awpcp_validate_settings_subgroup_date-time-format-settings', array( $general_settings, 'validate_date_time_format_settings' ), 10, 2 );
 
         add_action( 'awpcp_register_settings', [ $this->container['PagesSettings'], 'register_settings' ] );
 
@@ -711,23 +713,7 @@ class AWPCP {
 
         $this->js->set( 'overwrite-contact-information-on-user-change', (bool) $this->settings->get_option( 'overwrite-contact-information-on-user-change' ) );
         $this->js->set( 'date-format', awpcp_datepicker_format( $this->settings->get_option( 'date-format') ) );
-        $this->js->set( 'datetime-formats', array(
-            'american' => array(
-                'date'   => 'm/d/Y',
-                'time'   => 'h:i:s',
-                'format' => '<date> <time>',
-            ),
-            'european' => array(
-                'date'   => 'd/m/Y',
-                'time'   => 'H:i:s',
-                'format' => '<date> <time>',
-            ),
-            'custom' => array(
-                'date'   => 'l F j, Y',
-                'time'   => 'g:i a T',
-                'format' => '<date> at <time>',
-            ),
-        ) );
+        $this->js->set( 'datetime-formats', awpcp_get_datetime_formats() );
     }
 
     public function register_plugin_integrations() {

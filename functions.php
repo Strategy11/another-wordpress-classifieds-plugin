@@ -256,6 +256,29 @@ function awpcp_get_datetime_format() {
 }
 
 /**
+ * @since 4.0.0
+ */
+function awpcp_get_datetime_formats() {
+    return [
+        'american' => array(
+            'date'   => 'm/d/Y',
+            'time'   => 'h:i:s',
+            'format' => '<date> <time>',
+        ),
+        'european' => array(
+            'date'   => 'd/m/Y',
+            'time'   => 'H:i:s',
+            'format' => '<date> <time>',
+        ),
+        'custom' => array(
+            'date'   => 'l F j, Y',
+            'time'   => 'g:i a T',
+            'format' => '<date> at <time>',
+        ),
+    ];
+}
+
+/**
  * Returns the given date as MySQL date string, Unix timestamp or
  * using a custom format.
  *

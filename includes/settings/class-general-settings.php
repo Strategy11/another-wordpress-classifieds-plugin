@@ -15,6 +15,8 @@ function awpcp_general_settings() {
 
 /**
  * Register general plugin settings.
+ *
+ * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  */
 class AWPCP_GeneralSettings {
 
@@ -243,25 +245,31 @@ class AWPCP_GeneralSettings {
         ] );
 
         $settings_manager->add_setting( [
-            'id'      => 'date-format',
-            'name'    => _x( 'Date Format', 'settings', 'another-wordpress-classifieds-plugin' ),
-            'type'    => 'textfield',
-            'default' => 'm/d/Y',
-            'section' => 'date-time-format',
+            'id'       => 'date-format',
+            'name'     => _x( 'Date Format', 'settings', 'another-wordpress-classifieds-plugin' ),
+            'type'     => 'textfield',
+            'default'  => 'm/d/Y',
+            'behavior' => [
+                'enabledIfMatches' => 'x-date-time-format=custom',
+            ],
+            'section'  => 'date-time-format',
         ] );
 
         $settings_manager->add_setting( [
-            'id'      => 'time-format',
-            'name'    => _x( 'Time Format', 'settings', 'another-wordpress-classifieds-plugin' ),
-            'type'    => 'textfield',
-            'default' => 'h:i:s',
-            'section' => 'date-time-format',
+            'id'       => 'time-format',
+            'name'     => _x( 'Time Format', 'settings', 'another-wordpress-classifieds-plugin' ),
+            'type'     => 'textfield',
+            'default'  => 'h:i:s',
+            'behavior' => [
+                'enabledIfMatches' => 'x-date-time-format=custom',
+            ],
+            'section'  => 'date-time-format',
         ] );
 
-        $example     = sprintf( '<strong>%s</strong>: <span example>%s</span>', _x( 'Example output', 'settings', 'another-wordpress-classifieds-plugin' ), awpcp_datetime( 'awpcp' ) );
+        $example     = sprintf( '%s: <strong example>%s</strong>', _x( 'Example output', 'settings', 'another-wordpress-classifieds-plugin' ), awpcp_datetime( 'awpcp' ) );
 
         $description = _x( 'Full date/time output with any strings you wish to add. <date> and <time> are placeholders for date and time strings using the formats specified in the Date Format and Time Format settings above.', 'settings', 'another-wordpress-classifieds-plugin' );
-        $description = esc_html( $description ) . '<br/>' . $example;
+        $description = esc_html( $description ) . '<br/><br/>' . $example;
 
         $settings_manager->add_setting( [
             'id'          => 'date-time-format',
@@ -269,6 +277,9 @@ class AWPCP_GeneralSettings {
             'type'        => 'textfield',
             'default'     => '<date> at <time>',
             'description' => $description,
+            'behavior'    => [
+                'enabledIfMatches' => 'x-date-time-format=custom',
+            ],
             'section'     => 'date-time-format',
         ] );
     }
@@ -508,24 +519,6 @@ class AWPCP_GeneralSettings {
         ] );
     }
 
-    public function validate_group_settings( $options ) {
-        $current_roles = $this->roles->get_administrator_roles_names();
-        $selected_roles = $this->roles->get_administrator_roles_names_from_string( $options['awpcpadminaccesslevel'] );
-
-        $removed_roles = array_diff( $current_roles, $selected_roles );
-        $new_roles = array_diff( $selected_roles, $current_roles );
-
-        if ( ! empty( $removed_roles ) ) {
-            array_walk( $removed_roles, array( $this->roles, 'remove_administrator_capabilities_from_role' ) );
-        }
-
-        if ( ! empty( $new_roles ) ) {
-            array_walk( $new_roles, array( $this->roles, 'add_administrator_capabilities_to_role' ) );
-        }
-
-        return $options;
-    }
-
     /**
      * @since 4.0.0
      */
@@ -593,5 +586,129 @@ class AWPCP_GeneralSettings {
         $settings_manager->add_section( $group, __( 'General Settings', 'another-wordpress-classifieds-plugin' ), 'general', 10, array( $settings_manager, 'section' ) );
 
 		$settings_manager->add_setting( $key, 'sends-listings-to-facebook-automatically', __( 'Send Ads to Facebook Automatically', 'another-wordpress-classifieds-plugin' ), 'checkbox', 1, __( 'If checked, Ads will be posted to Facebook shortly after they are posted, enabled or edited, whichever occurs first. Ads will be posted only once. Please note that disabled Ads cannot be posted to Facebook.', 'another-wordpress-classifieds-plugin' ) );
+    }
+
+    public function validate_group_settings( $options ) {
+        if ( ! isset( $options['awpcpadminaccesslevel'] ) ) {
+            return $options;
+        }
+
+        $current_roles = $this->roles->get_administrator_roles_names();
+        $selected_roles = $this->roles->get_administrator_roles_names_from_string( $options['awpcpadminaccesslevel'] );
+
+        $removed_roles = array_diff( $current_roles, $selected_roles );
+        $new_roles = array_diff( $selected_roles, $current_roles );
+
+        if ( ! empty( $removed_roles ) ) {
+            array_walk( $removed_roles, array( $this->roles, 'remove_administrator_capabilities_from_role' ) );
+        }
+
+        if ( ! empty( $new_roles ) ) {
+            array_walk( $new_roles, array( $this->roles, 'add_administrator_capabilities_to_role' ) );
+        }
+
+        return $options;
+    }
+
+	/**
+	 * General Settings checks
+	 */
+	public function validate_general_settings($options, $group) {
+        $this->validate_akismet_settings( $options );
+        $this->validate_captcha_settings( $options );
+
+        // Enabling User Ad Management Panel will automatically enable
+        // require Registration, if it isn’t enabled. Disabling this feature
+        // will not disable Require Registration.
+        $setting = 'enable-user-panel';
+
+        if (isset($options[$setting]) && $options[$setting] == 1 && !get_awpcp_option('requireuserregistration')) {
+            awpcp_flash(__('Require Registration setting was enabled automatically because you activated the User Ad Management panel.', 'another-wordpress-classifieds-plugin'));
+            $options['requireuserregistration'] = 1;
+        }
+
+        return $options;
+	}
+
+    /**
+     * @since 4.0.0
+     */
+    private function validate_akismet_settings( &$options ) {
+        $setting_name = 'use-akismet-in-place-listing-form';
+        $akismet_for_place_listing = isset( $options[ $setting_name ] ) && $options[ $setting_name ];
+
+        $setting_name = 'use-akismet-in-reply-to-listing-form';
+        $akismet_for_reply_to_listing = isset( $options[ $setting_name ] ) && $options[ $setting_name ];
+
+        if ( $akismet_for_place_listing || $akismet_for_reply_to_listing ) {
+            $wpcom_api_key = get_option( 'wordpress_api_key' );
+            if ( !function_exists( 'akismet_init' ) ) {
+                awpcp_flash( __( 'Akismet SPAM control cannot be enabled because Akismet plugin is not installed or activated.', 'another-wordpress-classifieds-plugin' ), 'error' );
+                $options[ 'use-akismet-in-place-listing-form' ] = 0;
+                $options[ 'use-akismet-in-reply-to-listing-form' ] = 0;
+            } else if ( empty( $wpcom_api_key ) ) {
+                awpcp_flash( __( 'Akismet SPAM control cannot be enabled because Akismet is not properly configured.', 'another-wordpress-classifieds-plugin' ), 'error' );
+                $options[ 'use-akismet-in-place-listing-form' ] = 0;
+                $options[ 'use-akismet-in-reply-to-listing-form' ] = 0;
+            }
+        }
+	}
+
+    /**
+     * @since 4.0.0
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     */
+    private function validate_captcha_settings( &$options ) {
+        $option_name = 'captcha-enabled-in-place-listing-form';
+        $captcha_for_place_listing = isset( $options[ $option_name ] ) && $options[ $option_name ];
+
+        $option_name = 'captcha-enabled-in-reply-to-listing-form';
+        $captcha_for_reply_to_listing = isset( $options[ $option_name ] ) && $options[ $option_name ];
+
+        $is_captcha_enabled = $captcha_for_place_listing || $captcha_for_reply_to_listing;
+
+        // Verify reCAPTCHA is properly configured
+        if ( $is_captcha_enabled && $options['captcha-provider'] === 'recaptcha' ) {
+            if ( empty( $options[ 'recaptcha-public-key' ] ) || empty( $options[ 'recaptcha-private-key' ] ) ) {
+                $options['captcha-provider'] = 'math';
+            }
+
+            if ( empty( $options[ 'recaptcha-public-key' ] ) && empty( $options[ 'recaptcha-private-key' ] )  ) {
+                awpcp_flash( __( "reCAPTCHA can't be used because the public key and private key settings are required for reCAPTCHA to work properly.", 'another-wordpress-classifieds-plugin' ), 'error' );
+            } else if ( empty( $options[ 'recaptcha-public-key' ] ) ) {
+                awpcp_flash( __( "reCAPTCHA can't be used because the public key setting is required for reCAPTCHA to work properly.", 'another-wordpress-classifieds-plugin' ), 'error' );
+            } else if ( empty( $options[ 'recaptcha-private-key' ] ) ){
+                awpcp_flash( __( "reCAPTCHA can't be used because the private key setting is required for reCAPTCHA to work properly.", 'another-wordpress-classifieds-plugin' ), 'error' );
+            }
+        }
+	}
+
+    /**
+     * @since 4.0.0
+     */
+    public function validate_date_time_format_settings( $options ) {
+        if ( ! isset( $options['x-date-time-format'] ) ) {
+            return $options;
+        }
+
+        if ( 'custom' === $options['x-date-time-format'] ) {
+            return $options;
+        }
+
+        $formats = awpcp_get_datetime_formats();
+
+        if ( 'american' === $options['x-date-time-format'] ) {
+            $options['date-format']      = $formats['american']['date'];
+            $options['time-format']      = $formats['american']['time'];
+            $options['date-time-format'] = $formats['american']['format'];
+        }
+
+        if ( 'european' === $options['x-date-time-format'] ) {
+            $options['date-format']      = $formats['european']['date'];
+            $options['time-format']      = $formats['european']['time'];
+            $options['date-time-format'] = $formats['european']['format'];
+        }
+
+        return $options;
     }
 }
