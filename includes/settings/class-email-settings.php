@@ -21,43 +21,51 @@ class AWPCP_EmailSettings {
             'priority' => 90,
         ] );
 
+        $this->register_general_settings( $settings_manager );
+        $this->register_email_messages_settings( $settings_manager );
+        $this->register_advanced_settings( $settings_manager );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function register_general_settings( $settings_manager ) {
         $settings_manager->add_settings_subgroup( [
-            'name'   => __( 'Email', 'another-wordpress-classifieds-plugin' ),
-            'id'     => 'email-settings',
-            'parent' => 'email-settings',
+            'name'     => __( 'General', 'another-wordpress-classifieds-plugin' ),
+            'id'       => 'general-email-settings',
+            'parent'   => 'email-settings',
+            'priority' => 10,
         ] );
 
-		// Section: General Email Settings
-
-        $group = 'email-settings';
-        $key = 'default';
+        $group = 'general-email-settings';
+        $key   = 'default';
 
         $settings_manager->add_section($group, __('General Email Settings', 'another-wordpress-classifieds-plugin'), 'default', 20, array($settings_manager, 'section'));
 
-		$settings_manager->add_setting( $key, 'admin-recipient-email', __( 'TO email address for outgoing emails', 'another-wordpress-classifieds-plugin' ), 'textfield', '', __( 'Emails are sent to your WordPress admin email. If you prefer to receive emails in a different address, please enter it here.', 'another-wordpress-classifieds-plugin' ) );
+        $settings_manager->add_setting( $key, 'admin-recipient-email', __( 'TO email address for outgoing emails', 'another-wordpress-classifieds-plugin' ), 'textfield', '', __( 'Emails are sent to your WordPress admin email. If you prefer to receive emails in a different address, please enter it here.', 'another-wordpress-classifieds-plugin' ) );
 
-		$settings_manager->add_setting(
-			$key,
-			'awpcpadminemail',
-			__( 'FROM email address for outgoing emails', 'another-wordpress-classifieds-plugin' ),
-			'textfield',
-			'',
-			__( 'Emails go out using your WordPress admin email. If you prefer to use a different email enter it here. Some servers will not process outgoing emails that have an email address from gmail, yahoo, hotmail and other free email services in the FROM field. Some servers will also not process emails that have an email address that is different from the email address associated with your hosting account in the FROM field. If you are with such a webhost you need to make sure your WordPress admin email address is tied to your hosting account.', 'another-wordpress-classifieds-plugin' )
-		);
+        $settings_manager->add_setting(
+            $key,
+            'awpcpadminemail',
+            __( 'FROM email address for outgoing emails', 'another-wordpress-classifieds-plugin' ),
+            'textfield',
+            '',
+            __( 'Emails go out using your WordPress admin email. If you prefer to use a different email enter it here. Some servers will not process outgoing emails that have an email address from gmail, yahoo, hotmail and other free email services in the FROM field. Some servers will also not process emails that have an email address that is different from the email address associated with your hosting account in the FROM field. If you are with such a webhost you need to make sure your WordPress admin email address is tied to your hosting account.', 'another-wordpress-classifieds-plugin' )
+        );
 
-		$setting_label = __( 'Use wordpress@<website-domain> as the FROM email address for outgoing emails.', 'another-wordpress-classifieds-plugin' );
-		$setting_label = str_replace( '<website-domain>', awpcp_request()->domain( false ), $setting_label );
+        $setting_label = __( 'Use wordpress@<website-domain> as the FROM email address for outgoing emails.', 'another-wordpress-classifieds-plugin' );
+        $setting_label = str_replace( '<website-domain>', awpcp_request()->domain( false ), $setting_label );
 
-		$settings_manager->add_setting(
-			$key,
-			'sent-emails-using-wordpress-email-address',
-			$setting_label,
-			'checkbox',
-			0,
-			__( "That's the address WordPress uses to send its emails. If you are receiving the registration emails and other WordPress notifications succesfully, then you may want to enable this setting to use the same email address for all the outgoing messages. If enabled, the FROM email address for outgoing emails setting is ignored.", 'another-wordpress-classifieds-plugin' )
-		);
+        $settings_manager->add_setting(
+            $key,
+            'sent-emails-using-wordpress-email-address',
+            $setting_label,
+            'checkbox',
+            0,
+            __( "That's the address WordPress uses to send its emails. If you are receiving the registration emails and other WordPress notifications succesfully, then you may want to enable this setting to use the same email address for all the outgoing messages. If enabled, the FROM email address for outgoing emails setting is ignored.", 'another-wordpress-classifieds-plugin' )
+        );
 
-		$settings_manager->add_setting( $key, 'usesenderemailinsteadofadmin', __( 'Use sender email for reply messages', 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, __( 'Check this to use the name and email of the sender in the FROM field when someone replies to an ad. When unchecked the messages go out with the website name and WP admin email address in the from field. Some servers will not process outgoing emails that have an email address from gmail, yahoo, hotmail and other free email services in the FROM field. Some servers will also not process emails that have an email address that is different from the email address associated with your hosting account in the FROM field. If you are with such a webhost you need to leave this option unchecked and make sure your WordPress admin email address is tied to your hosting account.', 'another-wordpress-classifieds-plugin' ) );
+        $settings_manager->add_setting( $key, 'usesenderemailinsteadofadmin', __( 'Use sender email for reply messages', 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, __( 'Check this to use the name and email of the sender in the FROM field when someone replies to an ad. When unchecked the messages go out with the website name and WP admin email address in the from field. Some servers will not process outgoing emails that have an email address from gmail, yahoo, hotmail and other free email services in the FROM field. Some servers will also not process emails that have an email address that is different from the email address associated with your hosting account in the FROM field. If you are with such a webhost you need to leave this option unchecked and make sure your WordPress admin email address is tied to your hosting account.', 'another-wordpress-classifieds-plugin' ) );
 
         /* translators: full-email-address=John Doe <john.doe@example.com>, short-email-address=john.doe@example.com */
         $description = __( 'If checked, whenever the name of the recipient is available, emails will be sent to <full-email-address> instead of just <short-email-address>. Some email servers, however, have problems handling email address that include the name of the recipient. If emails sent by the plugin are not being delivered properly, try unchecking this settting.' );
@@ -73,11 +81,24 @@ class AWPCP_EmailSettings {
             $description
         );
 
-		$settings_manager->add_setting( $key, 'include-ad-access-key', __( 'Include Ad access key in email messages', 'another-wordpress-classifieds-plugin' ), 'checkbox', 1, __( "Include Ad access key in email notifications. You may want to uncheck this option if you are using the Ad Management panel, but is not necessary.", 'another-wordpress-classifieds-plugin' ) );
+        $settings_manager->add_setting( $key, 'include-ad-access-key', __( 'Include Ad access key in email messages', 'another-wordpress-classifieds-plugin' ), 'checkbox', 1, __( "Include Ad access key in email notifications. You may want to uncheck this option if you are using the Ad Management panel, but is not necessary.", 'another-wordpress-classifieds-plugin' ) );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function register_email_messages_settings( $settings_manager ) {
+        $settings_manager->add_settings_subgroup( [
+            'name'     => __( 'Messages', 'another-wordpress-classifieds-plugin' ),
+            'id'       => 'email-messages-settings',
+            'parent'   => 'email-settings',
+            'priority' => 20,
+        ] );
 
 		// Section: Ad Posted Message
 
-        $key = 'ad-posted-message';
+        $group = 'email-messages-settings';
+        $key   = 'ad-posted-message';
 
         $settings_manager->add_section($group, __('Ad Posted Message', 'another-wordpress-classifieds-plugin'), 'ad-posted-message', 10, array($settings_manager, 'section'));
 
@@ -147,10 +168,21 @@ class AWPCP_EmailSettings {
 
 		$settings_manager->add_setting( $key, 'adexpiredsubjectline', __( 'Subject for Ad Expired email', 'another-wordpress-classifieds-plugin' ), 'textfield', __( 'Your classifieds listing at %s has expired', 'another-wordpress-classifieds-plugin' ), __( 'Subject line for email sent out when an ad has auto-expired', 'another-wordpress-classifieds-plugin' ) );
 		$settings_manager->add_setting( $key, 'adexpiredbodymessage', __( 'Body for Ad Expired email', 'another-wordpress-classifieds-plugin' ), 'textarea', __( 'This is an automated notification that your Classified Ad has expired.', 'another-wordpress-classifieds-plugin' ), __( 'Message body text for email sent out when an ad has auto-expired', 'another-wordpress-classifieds-plugin' ) );
+    }
 
-		// Section: Advanced Email Configuration
+    /**
+     * @since 4.0.0
+     */
+    private function register_advanced_settings( $settings_manager ) {
+        $settings_manager->add_settings_subgroup( [
+            'name'     => __( 'Advanced', 'another-wordpress-classifieds-plugin' ),
+            'id'       => 'advanced-email-settings',
+            'parent'   => 'email-settings',
+            'priority' => 30,
+        ] );
 
-        $key = 'advanced';
+        $group = 'advanced-email-settings';
+        $key   = 'advanced';
 
         $settings_manager->add_section( $group, __( 'Advanced Email Configuration', 'another-wordpress-classifieds-plugin' ), 'advanced', 30, array( $settings_manager, 'section' ) );
 
@@ -159,7 +191,6 @@ class AWPCP_EmailSettings {
 		$settings_manager->add_setting( $key, 'smtpport', __( 'SMTP port', 'another-wordpress-classifieds-plugin' ), 'textfield', '25', __( 'SMTP port (if emails not processing normally).', 'another-wordpress-classifieds-plugin' ) );
 		$settings_manager->add_setting( $key, 'smtpusername', __( 'SMTP username', 'another-wordpress-classifieds-plugin' ), 'textfield', 'smtp_username', __( 'SMTP username (if emails not processing normally).', 'another-wordpress-classifieds-plugin' ) );
 		$settings_manager->add_setting( $key, 'smtppassword', __( 'SMTP password', 'another-wordpress-classifieds-plugin' ), 'password', '', __( 'SMTP password (if emails not processing normally).', 'another-wordpress-classifieds-plugin' ) );
-
     }
 
     public function validate_email_settings( $options ) {
