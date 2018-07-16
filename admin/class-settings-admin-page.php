@@ -92,16 +92,15 @@ class AWPCP_SettingsAdminPage {
             return $subgroups[ $subgroup_id ];
         }
 
-        $group_id = $this->request->param( 'g', 'pages-settings' );
+        $group_id = $this->request->param( 'g', 'general-settings' );
 
-        if ( isset( $groups[ $group_id ] ) ) {
+        if ( isset( $groups[ $group_id ] ) && count( $groups[ $group_id ]['subgroups'] ) ) {
             $subgroup_id = reset( $groups[ $group_id ]['subgroups'] );
 
             return $subgroups[ $subgroup_id ];
         }
 
-        $first_group = reset( $groups );
-        $subgroup_id = reset( $first_group['subgroups'] );
+        $subgroup_id = reset( $groups['general-settings']['subgroups'] );
 
         return $subgroups[ $subgroup_id ];
     }

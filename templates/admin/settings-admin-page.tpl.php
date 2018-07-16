@@ -9,7 +9,9 @@ awpcp_print_messages(); ?>
 
 			<h2 class="nav-tab-wrapper">
 			<?php foreach ( $groups as $group ) : ?>
+                <?php if ( count( $group['subgroups'] ) ) : ?>
 				<a href="<?php echo esc_url( add_query_arg( 'g', $group['id'], $current_url ) ); ?>" class="<?php echo esc_attr( $group['id'] === $current_group['id'] ? 'nav-tab nav-tab-active' : 'nav-tab' ); ?>"><?php echo esc_html( $group['name'] ); ?></a>
+                <?php endif; ?>
 			<?php endforeach; ?>
 			</h2>
 
