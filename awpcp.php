@@ -671,7 +671,7 @@ class AWPCP {
         $files_settings = awpcp_files_settings();
         add_action( 'awpcp_register_settings', array( $files_settings, 'register_settings') );
 
-        $appearance_settings = $this->container['AppearanceSettings'];
+        $appearance_settings = $this->container['DisplaySettings'];
         add_action( 'awpcp_register_settings', [ $appearance_settings, 'register_settings' ] );
 
         $email_settings = $this->container['EmailSettings'];

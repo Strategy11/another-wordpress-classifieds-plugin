@@ -6,19 +6,19 @@
 /**
  * Register settings for the Appearance group.
  */
-class AWPCP_AppearanceSettings {
+class AWPCP_DisplaySettings {
 
     /**
      * @since 4.0.0
      */
     public function register_settings( $settings_manager ) {
         $settings_manager->add_settings_group( [
-            'id'       => 'appearance-settings',
-            'name'     => 'Appearance',
+            'id'       => 'display-settings',
+            'name'     => __( 'Display', 'another-wordpress-classifieds-plugin' ),
             'priority' => 50,
         ] );
 
-        $this->register_appearance_settings( $settings_manager );
+        $this->register_layout_and_presentation_settings( $settings_manager );
         $this->register_classifieds_bar_settings( $settings_manager );
         $this->register_form_settings( $settings_manager );
     }
@@ -27,13 +27,15 @@ class AWPCP_AppearanceSettings {
 
     /**
      * @since 4.0.0
+     *
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
-    private function register_appearance_settings( $settings_manager ) {
+    private function register_layout_and_presentation_settings( $settings_manager ) {
         $settings_manager->add_settings_subgroup( [
             'id'       => 'layout-and-presentation-settings',
             'name'     => __( 'Layout and Presentation', 'another-wordpress-classifieds-plugin' ),
             'priority' => 10,
-            'parent'   => 'appearance-settings',
+            'parent'   => 'display-settings',
         ] );
 
         $group = 'layout-and-presentation-settings';
@@ -175,8 +177,8 @@ class AWPCP_AppearanceSettings {
         $settings_manager->add_settings_subgroup( [
             'id'       => 'classifieds-bar-settings',
             'name'     => __( 'Classifieds Bar', 'another-wordpress-classifieds-plugin' ),
-            'priority' => 10,
-            'parent'   => 'appearance-settings',
+            'priority' => 20,
+            'parent'   => 'display-settings',
         ] );
 
         $settings_manager->add_section( $group, __( 'Classifieds Bar', 'another-wordpress-classifieds-plugin' ), 'classifieds-bar-settings', 60, array( $settings_manager, 'section' ) );
@@ -248,13 +250,15 @@ class AWPCP_AppearanceSettings {
 
     /**
      * @since 4.0.0
+     *
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     private function register_form_settings( $settings_manager ) {
         $settings_manager->add_settings_subgroup( [
             'id'       => 'form-fields-settings',
             'name'     => __( 'Form Fields', 'another-wordpress-classifieds-plugin' ),
-            'priority' => 10,
-            'parent'   => 'appearance-settings',
+            'priority' => 30,
+            'parent'   => 'display-settings',
         ] );
 
         $group = 'form-fields-settings';

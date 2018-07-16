@@ -67,8 +67,8 @@ class AWPCP_SettingsContainerConfiguration implements AWPCP_ContainerConfigurati
             return new AWPCP_PaymentSettings( $container['Settings'] );
         } );
 
-        $container['AppearanceSettings'] = $container->service( function( $container ) {
-            return new AWPCP_AppearanceSettings();
+        $container['DisplaySettings'] = $container->service( function( $container ) {
+            return new AWPCP_DisplaySettings();
         } );
 
         $container['EmailSettings'] = $container->service( function( $container ) {

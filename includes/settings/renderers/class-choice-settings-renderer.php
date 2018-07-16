@@ -25,10 +25,10 @@ class AWPCP_ChoiceSettingsRenderer {
      */
     public function render_setting( $setting ) {
         $field_name = 'awpcp-options[' . $setting['id'] . '][]';
-        $field_type = 'radio';
+        $field_type = 'checkbox';
 
-        if ( isset( $setting['multiple'] ) && $setting['multiple'] ) {
-            $field_type = 'checkbox';
+        if ( isset( $setting['multiple'] ) && empty( $setting['multiple'] ) ) {
+            $field_type = 'radio';
         }
 
         $selected = array_filter( $this->settings->get_option( $setting['id'], array() ), 'strlen' );
