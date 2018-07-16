@@ -664,8 +664,8 @@ class AWPCP {
 
         $payment_settings = $this->container['PaymentSettings'];
         add_action( 'awpcp_register_settings', array( $payment_settings, 'register_settings' ) );
+        add_filter( 'awpcp_validate_settings_subgroup_credit-system-settings', array( $payment_settings, 'validate_credit_system_settings' ) );
         add_filter( 'awpcp_validate_settings_payment-settings', array( $payment_settings, 'validate_group_settings' ), 10, 2 );
-        add_filter( 'awpcp_validate_settings_payment-settings', array( $payment_settings, 'validate_credit_system_settings' ), 10, 2 );
         add_filter( 'awpcp_validate_settings_payment-settings', [ $payment_settings, 'validate_payment_settings' ], 10, 2 );
 
         $files_settings = awpcp_files_settings();

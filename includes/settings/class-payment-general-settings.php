@@ -64,7 +64,7 @@ class AWPCP_PaymentSettings {
         $settings_manager->add_setting(
             $key,
             'fee-order',
-            __( 'Fee Plan sort order', 'another-wordpress-classifieds-plugin' ),
+            __( 'Sort Fee Plans By', 'another-wordpress-classifieds-plugin' ),
             'radio',
             1,
             __( 'The order used to sort Fees in the payment screens.', 'another-wordpress-classifieds-plugin' ),
@@ -79,7 +79,7 @@ class AWPCP_PaymentSettings {
         $settings_manager->add_setting(
             $key,
             'fee-order-direction',
-            __( 'Fee Plan sort direction', 'another-wordpress-classifieds-plugin' ),
+            __( 'Sort Direction of Fee Plans', 'another-wordpress-classifieds-plugin' ),
             'radio',
             'ASC',
             __( 'The direction used to sort Fees in the payment screens.', 'another-wordpress-classifieds-plugin' ),

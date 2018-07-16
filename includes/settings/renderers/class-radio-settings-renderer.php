@@ -22,6 +22,8 @@ class AWPCP_RadioSettingsRenderer {
 
     /**
      * @since 4.0.0
+     *
+     * @SuppressWarnings(PHPMD.ElseExpression)
      */
     public function render_setting( $setting ) {
         $current = esc_html( stripslashes( $this->settings->get_option( $setting['id'] ) ) );
@@ -35,7 +37,7 @@ class AWPCP_RadioSettingsRenderer {
             $html .= '<input id="' . esc_attr( $id ) . '"type="radio" value="' . esc_attr( $value ) . '" ';
             $html .= 'name="awpcp-options[' . $setting['id'] . ']" ';
 
-            if ( $value === $current ) {
+            if ( 0 === strcmp( (string) $value, $current ) ) {
                 $html .= 'checked="checked" />' . $label;
             } else {
                 $html .= '>' . $label;
