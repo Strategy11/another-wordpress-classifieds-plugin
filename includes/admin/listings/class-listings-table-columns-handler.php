@@ -96,13 +96,45 @@ class AWPCP_ListingsTableColumnsHandler {
                 echo $renewed_date ? esc_html( $renewed_date ) : '&mdash;';
                 return;
             case 'awpcp-payment-term':
-                $payment_term = $this->listing_renderer->get_payment_term( $post );
+                echo $this->render_payment_term_column( $post ); // XSS Ok.
+                return;
+        }
+    }
 
-                if ( ! $payment_term ) {
-                    return;
-                }
+    /**
+     * @since 4.0.0
+     */
+    private function render_payment_term_column( $post ) {
+        $payment_term = $this->listing_renderer->get_payment_term( $post );
 
-                echo esc_html( $payment_term->name );
+        if ( ! $payment_term ) {
+            return;
+        }
+
+        $payment_status = $this->get_payment_status_formatted( $post );
+
+        echo '<strong>' . esc_html( $payment_term->name ) . '</strong>';
+        echo '<br/>';
+        echo esc_html( $payment_status );
+    }
+
+    /**
+     * @since feature/1112  Moved from Ad class.
+     */
+    public function get_payment_status_formatted( $post ) {
+        $payment_status = $this->listing_renderer->get_payment_status( $post );
+
+        switch ( $payment_status ) {
+            case AWPCP_Payment_Transaction::PAYMENT_STATUS_PENDING:
+                return _x( 'Payment Pending', 'ad payment status', 'another-wordpress-classifieds-plugin' );
+            case AWPCP_Payment_Transaction::PAYMENT_STATUS_COMPLETED:
+                return _x( 'Payment Completed', 'ad payment status', 'another-wordpress-classifieds-plugin' );
+            case AWPCP_Payment_Transaction::PAYMENT_STATUS_NOT_REQUIRED:
+                return _x( 'Payment Not Required', 'ad payment status', 'another-wordpress-classifieds-plugin' );
+            case 'Unpaid':
+                return _x( 'Unpaid', 'ad payment status', 'another-wordpress-classifieds-plugin' );
+            default:
+                return _x( 'Payment Status Unknown', 'ad payment status', 'another-wordpress-classifieds-plugin' );
         }
     }
 }

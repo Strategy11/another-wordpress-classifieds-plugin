@@ -289,30 +289,6 @@ class AWPCP_ListingRenderer {
         return $this->wordpress->get_post_meta( $listing->ID, '_awpcp_payment_status', true );
     }
 
-    /**
-     * @since feature/1112  Moved from Ad class.
-     */
-    public function get_payment_status_formatted( $listing ) {
-        $payment_status = $this->get_payment_status( $listing );
-
-        if ( empty( $payment_status ) ) {
-            return _x( 'N/A', 'ad payment status', 'another-wordpress-classifieds-plugin' );
-        }
-
-        switch ( $payment_status ) {
-            case AWPCP_Payment_Transaction::PAYMENT_STATUS_PENDING:
-                return _x( 'Pending', 'ad payment status', 'another-wordpress-classifieds-plugin' );
-            case AWPCP_Payment_Transaction::PAYMENT_STATUS_COMPLETED:
-                return _x( 'Completed', 'ad payment status', 'another-wordpress-classifieds-plugin' );
-            case AWPCP_Payment_Transaction::PAYMENT_STATUS_NOT_REQUIRED:
-                return _x( 'Not Required', 'ad payment status', 'another-wordpress-classifieds-plugin' );
-            case 'Unpaid':
-                return _x( 'Unpaid', 'ad payment status', 'another-wordpress-classifieds-plugin' );
-            default:
-                return 'Undefined';
-        }
-    }
-
     public function get_payment_term( $listing ) {
         $payment_term_id = $this->wordpress->get_post_meta( $listing->ID, '_awpcp_payment_term_id', true );
         $payment_term_type = $this->wordpress->get_post_meta( $listing->ID, '_awpcp_payment_term_type', true );
