@@ -70,4 +70,17 @@ class AWPCP_SettingsRenderer {
 
         return $this->settings_renderers[ $setting_type ];
     }
+
+    /**
+     * @since 4.0.0
+     */
+    public function is_renderer_available( $setting ) {
+        try {
+            $this->get_settings_renderer( $setting['type'] );
+        } catch ( AWPCP_Exception $e ) {
+            return false;
+        }
+
+        return true;
+    }
 }

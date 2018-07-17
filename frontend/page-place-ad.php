@@ -1,6 +1,8 @@
 <?php
 /**
  * @package AWPCP\Frontend
+ *
+ * TODO: Remove this file.
  */
 
 // phpcs:disable Generic

@@ -1,4 +1,13 @@
-<h2><?php echo esc_html( __( 'Enter Ad Details', 'another-wordpress-classifieds-plugin' ) ); ?></h2>
+<?php
+/**
+ * @package AWPCP\Frontend
+ */
+
+// phpcs:disable
+
+// TODO: Remove this file.
+
+?><h2><?php echo esc_html( __( 'Enter Ad Details', 'another-wordpress-classifieds-plugin' ) ); ?></h2>
 
 <?php
     if ( isset( $transaction ) && get_awpcp_option( 'show-create-listing-form-steps' ) ) {

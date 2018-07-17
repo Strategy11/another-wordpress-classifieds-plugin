@@ -79,8 +79,15 @@ class AWPCP_ListingFormFields {
     /**
      * Return the order in which form fields should be shown.
      */
-    private function get_fields_order() {
+    public function get_fields_order() {
         return get_option( 'awpcp-form-fields-order', array() );
+    }
+
+    /**
+     * Updates the order in which form fields should be shown.
+     */
+    public function update_fields_order( $order ) {
+        return update_option( 'awpcp-form-fields-order', $order );
     }
 
     /**
@@ -88,6 +95,19 @@ class AWPCP_ListingFormFields {
      */
     public function get_listing_details_form_fields() {
         return $this->register_listing_details_form_fields( [] );
+    }
+
+    /**
+     * @since 4.0.0 Copied from old Form Fields class.
+     */
+    public function get_field( $slug ) {
+        $form_fields = $this->get_listing_details_form_fields();
+
+        if ( ! isset( $form_fields[ $slug ] ) ) {
+            return null;
+        }
+
+        return $form_fields[ $slug ];
     }
 
     /**

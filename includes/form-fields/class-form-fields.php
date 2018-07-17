@@ -1,6 +1,8 @@
 <?php
 /**
  * @package AWPCP\FormFields
+ *
+ * TODO: Remove this file.
  */
 
 // phpcs:disable

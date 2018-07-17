@@ -73,7 +73,7 @@
     ?>
 
     <?php
-        echo awpcp_form_fields()->render_fields(
+        echo awpcp()->container['ListingDetailsFormFieldsRenderer']->render_fields(
             $form,
             $errors,
             null,

@@ -110,6 +110,10 @@ class AWPCP_SettingsIntegration {
         foreach ( $section['settings'] as $setting_id ) {
             $setting = $this->settings_manager->get_setting( $setting_id );
 
+            if ( ! $this->settings_renderer->is_renderer_available( $setting ) ) {
+                continue;
+            }
+
             add_settings_field(
                 $setting['id'],
                 $setting['name'],
