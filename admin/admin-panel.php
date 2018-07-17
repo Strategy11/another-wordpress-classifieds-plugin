@@ -152,16 +152,6 @@ class AWPCP_AdminPanel {
             'awpcp_import_settings_admin_page'
         );
 
-        $router->add_admin_subpage(
-            $parent_page,
-            __( 'Listings', 'another-wordpress-classifieds-plugin' ),
-            awpcp_admin_page_title( __( 'Manage Listings', 'another-wordpress-classifieds-plugin' ) ),
-            'awpcp-admin-listings',
-            'awpcp_manage_listings_admin_page',
-            $admin_capability,
-            20
-        );
-
         $router->add_private_ajax_action( 'listings-delete-ad', 'awpcp_delete_listing_ajax_handler' );
 
         $router->add_admin_subpage(

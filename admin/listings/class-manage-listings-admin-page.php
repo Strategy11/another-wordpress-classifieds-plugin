@@ -1,6 +1,8 @@
 <?php
 /**
  * @package AWPCP\Admin\Listings
+ *
+ * TODO: Remove this file.
  */
 
 // phpcs:disable
