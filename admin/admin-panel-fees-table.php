@@ -1,19 +1,27 @@
 <?php
+/**
+ * @package AWPCP\Admin
+ */
 
+// phpcs:disable
+
+/**
+ * @SuppressWarnings(PHPMD.TooManyPublicMethods)
+ */
 class AWPCP_FeesTable extends WP_List_Table {
 
     private $page;
     private $items_per_page;
-    private $total_items;
 
     public function __construct($page, $args=array()) {
         parent::__construct(wp_parse_args($args, array('plural' => 'awpcp-fees')));
         $this->page = $page;
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     */
     private function parse_query() {
-        global $wpdb;
-
         $user = wp_get_current_user();
         $ipp = (int) get_user_meta($user->ID, 'fees-items-per-page', true);
         $this->items_per_page = awpcp_request_param('items-per-page', $ipp === 0 ? 10 : $ipp);
@@ -256,13 +264,13 @@ class AWPCP_FeesTable extends WP_List_Table {
     }
 
     public function column_categories($item) {
-        if ( ! empty( $item->categories ) ) {
-            $categories = awpcp_categories_collection()->find_categories(array(
-                'include' => $item->categories
-            ));
-        } else {
+        if ( empty( $item->categories ) ) {
             return _x( 'All', 'all categories', 'another-wordpress-classifieds-plugin' );
         }
+
+        $categories = awpcp_categories_collection()->find_categories(array(
+            'include' => $item->categories
+        ));
 
         return awpcp_get_comma_separated_categories_list( $categories );
     }
