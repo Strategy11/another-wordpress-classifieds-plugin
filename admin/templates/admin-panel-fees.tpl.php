@@ -15,14 +15,14 @@
     <?php $url = $page->url( array( 'awpcp-action' => 'add-fee' ) ); ?>
     <?php $label = __( 'Add Fee Plan', 'another-wordpress-classifieds-plugin' ); ?>
     <a class="button-primary" title="<?php echo esc_attr( $label ); ?>" href="<?php echo esc_attr( $url ); ?>" accesskey="s"><?php echo $label; ?></a>
-    <span><?php
+    <?php
         $fee_settings_url = awpcp_get_admin_settings_url( 'payment-settings' );
-        $fee_settings_link = sprintf( '<a href="%s">%s</a>', $fee_settings_url, __( 'Fee Plan Settings', 'another-wordpress-classifieds-plugin' ) );
+        $fee_settings_link = sprintf( '<a href="%s">%s</a>', $fee_settings_url, __( 'Fee Plan sort order and sort direction Settings', 'another-wordpress-classifieds-plugin' ) );
 
         $message = __( 'If you wish to change the sorting of your fee plans, you can change the <fee-settings-link>.', 'another-wordpress-classifieds-plugin' );
         $message = str_replace( '<fee-settings-link>', $fee_settings_link, $message );
-
-        echo $message; ?></span>
+    ?>
+    <p><?php echo $message; // XSS Ok. ?></p>
 
     <?php //echo $table->views() ?>
     <?php //echo $table->search_box(__('Search Credit Plans', 'another-wordpress-classifieds-plugin'), 'credit-plans') ?>

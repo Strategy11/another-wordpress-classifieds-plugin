@@ -263,11 +263,11 @@ class AWPCP_PaymentTerm {
     }
 
     public function get_characters_allowed() {
-        return $this->characters;
+        return absint( $this->characters );
     }
 
     public function get_characters_allowed_in_title() {
-        return $this->title_characters;
+        return absint( $this->title_characters );
     }
 
     public function get_regions_allowed() {

@@ -111,12 +111,7 @@ class AWPCP_FeesTable extends WP_List_Table {
         $columns['cb'] = '<input type="checkbox" />';
         $columns['name'] = __('Name', 'another-wordpress-classifieds-plugin');
         $columns['description'] = __( 'Description', 'another-wordpress-classifieds-plugin' );
-        $columns['duration'] = __('Duration', 'another-wordpress-classifieds-plugin');
-        $columns['interval'] = __('Units', 'another-wordpress-classifieds-plugin');
-        $columns['images'] = __('Images Allowed', 'another-wordpress-classifieds-plugin');
-        $columns['regions'] = __( 'Regions', 'another-wordpress-classifieds-plugin' );
-        $columns['title_characters'] = __( 'Chars in Title', 'another-wordpress-classifieds-plugin' );
-        $columns['characters'] = __( 'Chars in Description', 'another-wordpress-classifieds-plugin' );
+        $columns['attributes']  = __( 'Attributes', 'another-wordpress-classifieds-plugin' );
         $columns['price'] = __('Price', 'another-wordpress-classifieds-plugin');
         $columns['credits'] = __('Credits', 'another-wordpress-classifieds-plugin');
 
@@ -171,28 +166,85 @@ class AWPCP_FeesTable extends WP_List_Table {
         return $item->description;
     }
 
-    public function column_duration($item) {
-        return $item->duration_amount;
+    /**
+     * @since 4.0.0
+     */
+    public function column_attributes( $item ) {
+        $features = [
+            'duration'                  => $this->get_payment_term_duration( $item ),
+            'images'                    => $this->get_number_of_images( $item ),
+            'regions'                   => $this->get_number_of_regions( $item ),
+            'characters-in-title'       => $this->get_characters_limit_for_title( $item ),
+            'characters-in-description' => $this->get_characters_limit_for_description( $item ),
+        ];
+
+        return implode( '<br/>', $features );
     }
 
-    public function column_interval($item) {
-        return $item->get_duration_interval();
+    /**
+     * @since 4.0.0
+     */
+    private function get_payment_term_duration( $payment_term ) {
+        $duration = __( '<duration-amount> <duration-interval>', 'another-wordpress-classifieds-plugin' );
+        $duration = str_replace( '<duration-amount>', $payment_term->duration_amount, $duration );
+        $duration = str_replace( '<duration-interval>', $payment_term->get_duration_interval(), $duration );
+
+        $description = __( 'Duration: <payment-term-duration>', 'another-wordpress-classifieds-plugin' );
+        $description = str_replace( '<payment-term-duration>', '<strong>' . $duration . '</strong>', $description );
+
+        return $description;
     }
 
-    public function column_images($item) {
-        return $item->images;
+    /**
+     * @since 4.0.0
+     */
+    private function get_number_of_images( $payment_term ) {
+        $description = __( '# of images: <number-of-images-allowed>', 'another-wordpress-classifieds-plugin' );
+        $description = str_replace( '<number-of-images-allowed>', '<strong>' . $payment_term->images . '</strong>', $description );
+
+        return $description;
     }
 
-    public function column_regions( $item ) {
-        return $item->regions;
+    /**
+     * @since 4.0.0
+     */
+    private function get_number_of_regions( $payment_term ) {
+        $description = __( '# of regions: <number-of-regions-allowed>', 'another-wordpress-classifieds-plugin' );
+        $description = str_replace( '<number-of-regions-allowed>', '<strong>' . $payment_term->regions . '</strong>', $description );
+
+        return $description;
     }
 
-    public function column_characters($item) {
-        return $item->get_characters_allowed();
+    /**
+     * @since 4.0.0
+     */
+    private function get_characters_limit_for_title( $payment_term ) {
+        $characters_limit = $payment_term->get_characters_allowed_in_title();
+
+        if ( 0 === $characters_limit ) {
+            $characters_limit = __( 'unlimited', 'another-wordpress-classifieds-plugin' );
+        }
+
+        $description = __( 'Chars in title: <characters-limit>', 'another-wordpress-classifieds-plugin' );
+        $description = str_replace( '<characters-limit>', '<strong>' . $characters_limit . '</strong>', $description );
+
+        return $description;
     }
 
-    public function column_title_characters($item) {
-        return $item->get_characters_allowed_in_title();
+    /**
+     * @since 4.0.0
+     */
+    private function get_characters_limit_for_description( $payment_term ) {
+        $characters_limit = $payment_term->get_characters_allowed();
+
+        if ( 0 === $characters_limit ) {
+            $characters_limit = __( 'unlimited', 'another-wordpress-classifieds-plugin' );
+        }
+
+        $description = __( 'Chars in description: <characters-limit>', 'another-wordpress-classifieds-plugin' );
+        $description = str_replace( '<characters-limit>', '<strong>' . $characters_limit . '</strong>', $description );
+
+        return $description;
     }
 
     public function column_price($item) {
