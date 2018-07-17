@@ -157,7 +157,7 @@ class AWPCP_DebugAdminPage {
      * @since 4.0.0
      */
     private function get_current_section() {
-        return $this->request->param( 'awpcp-section', 'environment' );
+        return $this->request->param( 'awpcp-section', 'plugin-info' );
     }
 
     /**
