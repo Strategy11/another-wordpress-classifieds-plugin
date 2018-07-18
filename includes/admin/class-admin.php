@@ -95,7 +95,10 @@ class AWPCP_Admin {
             add_filter( 'get_search_query', array( $this->table_search, 'get_search_query' ) );
             add_action( 'manage_posts_extra_tablenav', array( $this->table_search, 'render_search_mode_dropdown' ) );
 
+            add_action( 'pre_get_posts', array( $this->table_columns, 'pre_get_posts' ) );
+            add_action( 'posts_orderby', array( $this->table_columns, 'posts_orderby' ), 10, 2 );
             add_filter( "manage_{$this->post_type}_posts_columns", array( $this->table_columns, 'manage_posts_columns' ) );
+            add_filter( "manage_edit-{$this->post_type}_sortable_columns", array( $this->table_columns, 'manage_sortable_columns' ) );
             add_action( "manage_{$this->post_type}_posts_custom_column", array( $this->table_columns, 'manage_posts_custom_column' ), 10, 2 );
         }
 

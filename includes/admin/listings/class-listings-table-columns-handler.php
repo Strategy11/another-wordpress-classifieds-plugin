@@ -36,6 +36,36 @@ class AWPCP_ListingsTableColumnsHandler {
     }
 
     /**
+     * @since 4.0.0
+     */
+    public function pre_get_posts( $query ) {
+        if ( ! $query->is_main_query() ) {
+            return;
+        }
+
+        if ( 'payment_term' === $query->query_vars['orderby'] ) {
+            // phpcs:disable WordPress.VIP.SlowDBQuery.slow_db_query_meta_key
+            $query->query_vars['meta_key'] = '_awpcp_payment_term_id';
+            $query->query_vars['orderby']  = 'meta_value_num';
+        }
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function posts_orderby( $sql, $query ) {
+        if ( ! $query->is_main_query() ) {
+            return $sql;
+        }
+
+        if ( 'post_status' !== $query->query_vars['orderby'] ) {
+            return $sql;
+        }
+
+        return "post_status {$query->query_vars['order']}";
+    }
+
+    /**
      * @param array $columns    An array of available columns.
      * @since 4.0.0
      */
@@ -64,6 +94,16 @@ class AWPCP_ListingsTableColumnsHandler {
         array_splice( $columns_values, 3, 0, array_values( $new_columns ) );
 
         return array_combine( $columns_keys, $columns_values );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function manage_sortable_columns( $sortable_columns ) {
+        $sortable_columns['awpcp-payment-term'] = 'payment_term';
+        $sortable_columns['awpcp-status']       = 'post_status';
+
+        return $sortable_columns;
     }
 
     /**
