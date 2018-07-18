@@ -43,6 +43,10 @@ class AWPCP_ListingsTableColumnsHandler {
             return;
         }
 
+        if ( ! isset( $query->query_vars['orderby'] ) ) {
+            return;
+        }
+
         if ( 'payment_term' === $query->query_vars['orderby'] ) {
             // phpcs:disable WordPress.VIP.SlowDBQuery.slow_db_query_meta_key
             $query->query_vars['meta_key'] = '_awpcp_payment_term_id';
@@ -55,6 +59,10 @@ class AWPCP_ListingsTableColumnsHandler {
      */
     public function posts_orderby( $sql, $query ) {
         if ( ! $query->is_main_query() ) {
+            return $sql;
+        }
+
+        if ( ! isset( $query->query_vars['orderby'] ) ) {
             return $sql;
         }
 
