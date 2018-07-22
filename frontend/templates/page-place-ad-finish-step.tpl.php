@@ -6,9 +6,9 @@
 
 <?php if (!is_admin()): ?>
     <?php if ($edit): ?>
-    <?php echo awpcp_print_message(__("Your changes have been saved.", 'another-wordpress-classifieds-plugin')); ?>
+    <?php echo awpcp_print_message( __( 'Your changes have been saved. This is a preview of the content as seen by visitors of the website.', 'another-wordpress-classifieds-plugin' ) ); ?>
     <?php else: ?>
-    <?php echo awpcp_print_message( __( 'Your listing has been submitted.', 'another-wordpress-classifieds-plugin' ) ); ?>
+    <?php echo awpcp_print_message( __( 'Your listing has been submitted. This is a preview of the content as seen by visitors of the website.', 'another-wordpress-classifieds-plugin' ) ); ?>
     <?php endif; ?>
 <?php endif; ?>
 
