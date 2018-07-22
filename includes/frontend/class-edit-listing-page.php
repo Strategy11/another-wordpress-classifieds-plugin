@@ -202,8 +202,8 @@ class AWPCP_EditListingPage extends AWPCP_Page {
             'attempts' => intval( $this->request->post( 'attempts', 0 ) ),
         );
 
-        if ( 0 === $form['attempts'] && get_awpcp_option( 'enable-user-panel' ) === 1 ) {
-            $url = admin_url( 'admin.php?page=awpcp-panel' );
+        if ( 0 === $form['attempts'] && get_awpcp_option( 'enable-user-panel' ) ) {
+            $url = awpcp_get_user_panel_url();
 
             $message = __( 'You are currently not logged in, if you have an account on this website you can log in and go to the Ad Management panel to edit your Ads.', 'another-wordpress-classifieds-plugin' );
             $message = sprintf( '%s <a href="%s">%s</a>', $message, $url, __( 'Click here', 'another-wordpress-classifieds-plugin' ) );
@@ -509,5 +509,4 @@ class AWPCP_EditListingPage extends AWPCP_Page {
 
         return $this->render( 'content', awpcp_print_message( $message ) );
     }
-
 }

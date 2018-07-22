@@ -664,7 +664,11 @@ function awpcp_get_admin_upgrade_url() {
  * @since 2.1.4
  */
 function awpcp_get_admin_listings_url() {
-    return add_query_arg( 'page', 'awpcp-admin-listings', admin_url( 'admin.php' ) );
+    $params = [
+        'post_type' => awpcp()->container['listing_post_type'],
+    ];
+
+    return add_query_arg( $params, admin_url( 'edit.php' ) );
 }
 
 /**
@@ -680,7 +684,7 @@ function awpcp_get_admin_form_fields_url() {
  * @since 2.0.7
  */
 function awpcp_get_user_panel_url( $params=array() ) {
-    return add_query_arg( urlencode_deep( $params ), admin_url( 'admin.php?page=awpcp-panel' ) );
+    return add_query_arg( urlencode_deep( $params ), awpcp_get_admin_listings_url() );
 }
 
 
