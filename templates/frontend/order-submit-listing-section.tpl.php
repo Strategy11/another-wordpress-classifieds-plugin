@@ -73,7 +73,11 @@
 
         <div class="awpcp-order-submit-listing-section__read_mode">
             <p class="awpcp-order-submit-listing-section--selected-categories-container"><?php echo str_replace( '{categories}', '<span class="awpcp-order-submit-listing-section--selected-categories"></span>', esc_html_x( 'Your classified will be posted on the following categories: {categories}.', 'order submit listing section', 'another-wordpress-classifieds-plugin' ) ); // XSS Ok. ?></p>
-            <div class="awpcp-order-submit-listing-section--payment-term awpcp-payment-term awpcp-payment-term__read_only"></div>
+
+            <div class="awpcp-payment-terms-list">
+                <div class="awpcp-order-submit-listing-section--payment-term awpcp-payment-term awpcp-payment-term__read_only"></div>
+            </div>
+
             <p class="awpcp-order-submit-listing-section--credit-plan"><?php echo esc_html_x( 'Credit Plan:', 'order submit listing section', 'another-wordpress-classifieds-plugin' ); ?> <span></span></p>
             <p class="awpcp-order-submit-listing-section--listing-owner"><?php echo esc_html_x( 'Owner:', 'order submit listing section', 'another-wordpress-classifieds-plugin' ); ?> <span></span></p>
 
