@@ -771,12 +771,12 @@ class AWPCP {
         // load resources required both in front end and admin screens, but not during ajax calls.
         if ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) {
             $listing_payment_transaction_handler = awpcp_listing_payment_transaction_handler();
-            add_action( 'awpcp-transaction-status-updated', array( $listing_payment_transaction_handler, 'transaction_status_updated' ), 10, 2 );
-            add_filter( 'awpcp-process-payment-transaction', array( $listing_payment_transaction_handler, 'process_payment_transaction' ) );
+            add_action( 'awpcp-transaction-status-updated', array( $listing_payment_transaction_handler, 'transaction_status_updated' ), 20, 2 );
+            add_filter( 'awpcp-process-payment-transaction', array( $listing_payment_transaction_handler, 'process_payment_transaction' ), 20 );
 
             $handler = awpcp_renew_listing_payment_transaction_handler();
-            add_action( 'awpcp-transaction-status-updated', array( $handler, 'process_payment_transaction' ) );
-            add_filter( 'awpcp-process-payment-transaction', array( $handler, 'process_payment_transaction' ) );
+            add_action( 'awpcp-transaction-status-updated', array( $handler, 'process_payment_transaction' ), 20 );
+            add_filter( 'awpcp-process-payment-transaction', array( $handler, 'process_payment_transaction' ), 20 );
 
             add_action( 'awpcp-place-ad', array( $facebook_cache_helper, 'on_place_ad' ) );
             add_action( 'awpcp_approve_ad', array( $facebook_cache_helper, 'on_approve_ad' ) );
