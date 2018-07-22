@@ -1,9 +1,13 @@
 <?php
+/**
+ * @package AWPCP\Admin
+ */
+
+// phpcs:disable
 
 function awpcp_delete_listing_ajax_handler() {
     return new AWPCP_TableEntryActionAjaxHandler(
         new AWPCP_DeleteListingAjaxHandler(
-            awpcp_manage_listings_admin_page(),
             awpcp_listings_api(),
             awpcp_listings_collection(),
             awpcp_listing_authorization(),
@@ -13,16 +17,17 @@ function awpcp_delete_listing_ajax_handler() {
     );
 }
 
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 class AWPCP_DeleteListingAjaxHandler implements AWPCP_Table_Entry_Action_Handler {
 
-    private $page;
     private $listings_logic;
     private $listings;
     private $authorization;
     private $request;
 
-    public function __construct( $page, $listings_logic, $listings, $authorization, $request ) {
-        $this->page = $page;
+    public function __construct( $listings_logic, $listings, $authorization, $request ) {
         $this->listings_logic = $listings_logic;
         $this->listings = $listings;
         $this->authorization = $authorization;
@@ -47,7 +52,8 @@ class AWPCP_DeleteListingAjaxHandler implements AWPCP_Table_Entry_Action_Handler
         if ( $this->request->post( 'remove' ) ) {
             $this->delete_listing( $listing, $ajax_handler );
         } else {
-            $params = array( 'columns' => count( $this->page->get_table()->get_columns() ) );
+            // $params = array( 'columns' => count( $this->page->get_table()->get_columns() ) );
+            $params = array( 'columns' => 0 );
             $template = AWPCP_DIR . '/admin/templates/delete_form.tpl.php';
             return $ajax_handler->success( array( 'html' => awpcp_render_template( $template, $params ) ) );
         }
