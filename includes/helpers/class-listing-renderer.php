@@ -72,6 +72,15 @@ class AWPCP_ListingRenderer {
         return is_object( $category ) ? $category->term_id : null;
     }
 
+    /**
+     * @since 4.0.0
+     */
+    public function get_category_slug( $listing ) {
+        $category = $this->get_category( $listing );
+
+        return is_object( $category ) ? $category->slug : null;
+    }
+
     public function get_contact_name( $listing ) {
         return $this->wordpress->get_post_meta( $listing->ID, '_awpcp_contact_name', true );
     }

@@ -218,7 +218,9 @@ class AWPCP_ListingsPermalinks {
 
         // TODO: Make sure all handlers of this filter are still working on 4.0.
         // TODO: Rename to awpcp_listing_url.
+        // phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
         return apply_filters( 'awpcp-listing-url', $this->get_post_link( $post_link, $post ), $post );
+        // phpcs:enable
     }
 
     /**
@@ -301,7 +303,7 @@ class AWPCP_ListingsPermalinks {
         $rewrite_tags = array(
             '%awpcp_listing_id%'          => $post->ID,
             '%awpcp_optional_listing_id%' => '',
-            '%awpcp_category%'            => strtolower( $this->listing_renderer->get_category_name( $post ) ),
+            '%awpcp_category%'            => $this->listing_renderer->get_category_slug( $post ),
             '%awpcp_location%'            => $this->get_listing_location( $post ),
         );
 
