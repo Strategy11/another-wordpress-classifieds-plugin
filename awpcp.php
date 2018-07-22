@@ -559,6 +559,8 @@ class AWPCP {
         add_action( 'awpcp-configure-routes', array( $this->admin, 'configure_routes' ) );
         add_action( 'awpcp-configure-routes', array( $this->panel, 'configure_routes' ) );
 
+        add_action( 'init', [ $this->settings_manager, 'register_settings' ], 9999 );
+
         // TODO: Make sure to update permastruct for custom post types before generating rewrite rules.
         //
         //       If the slug of a page, the permalink structure or anything else
@@ -591,8 +593,6 @@ class AWPCP {
         // XXX: This is really a hack. We should get the priorities on order or
         //      come up with a better name for this method.
         add_action( 'init', array( $this, 'first_time_verifications' ), 9999 );
-
-        add_action( 'init', [ $this->settings_manager, 'register_settings' ], 9999 );
 
 		add_action('admin_notices', array($this, 'admin_notices'));
 		add_action( 'admin_notices', array( $this->modules_manager, 'show_admin_notices' ) );
