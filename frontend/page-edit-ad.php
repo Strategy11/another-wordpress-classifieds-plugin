@@ -61,7 +61,7 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
 
     protected function _dispatch($default=null) {
         if ( $this->should_redirect_user_to_ad_management_panel() ) {
-            $url = admin_url('admin.php?page=awpcp-panel');
+            $url = awpcp_get_user_panel_url();
             $message = __('Please go to the Ad Management panel to edit your Ads.', 'another-wordpress-classifieds-plugin');
             $message = sprintf('%s <a href="%s">%s</a>.', $message, $url, __('Click here', 'another-wordpress-classifieds-plugin'));
             return $this->render('content', awpcp_print_message($message));

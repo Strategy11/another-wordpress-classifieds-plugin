@@ -203,12 +203,7 @@ class AWPCP_EditListingPage extends AWPCP_Page {
         );
 
         if ( 0 === $form['attempts'] && get_awpcp_option( 'enable-user-panel' ) ) {
-            $url = awpcp_get_user_panel_url();
-
-            $message = __( 'You are currently not logged in, if you have an account on this website you can log in and go to the Ad Management panel to edit your Ads.', 'another-wordpress-classifieds-plugin' );
-            $message = sprintf( '%s <a href="%s">%s</a>', $message, $url, __( 'Click here', 'another-wordpress-classifieds-plugin' ) );
-
-            $messages[] = $message;
+            $messages[] = $this->get_go_to_user_panel_message();
         }
 
         $send_access_key_url = add_query_arg( array( 'step' => 'send-access-key' ), $this->url() );
@@ -264,6 +259,18 @@ class AWPCP_EditListingPage extends AWPCP_Page {
         $template = AWPCP_DIR . '/frontend/templates/page-edit-ad-email-key-step.tpl.php';
 
         return $this->render( $template, $params );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function get_go_to_user_panel_message() {
+        $url = awpcp_get_user_panel_url();
+
+        $message = __( 'You are currently not logged in, if you have an account on this website you can log in and go to the Ad Management panel to edit your Ads.', 'another-wordpress-classifieds-plugin' );
+        $message = sprintf( '%s <a href="%s">%s</a>', $message, $url, __( 'Click here', 'another-wordpress-classifieds-plugin' ) );
+
+        return $message;
     }
 
     /**
@@ -408,13 +415,8 @@ class AWPCP_EditListingPage extends AWPCP_Page {
     private function render_send_access_key_form( $form, $errors = array() ) {
         $messages = [];
 
-        if ( 0 === $form['attempts'] && $this->settings->get_option( 'enable-user-panel' ) === 1 ) {
-            $url = admin_url( 'admin.php?page=awpcp-panel' );
-
-            $message = __( 'You are currently not logged in, if you have an account in this website you can log in and go to the Ad Management panel to edit your Ads.', 'another-wordpress-classifieds-plugin' );
-            $message = sprintf( '%s <a href="%s">%s</a>', $message, $url, __( 'Click here', 'another-wordpress-classifieds-plugin' ) );
-
-            $messages[] = $message;
+        if ( 0 === $form['attempts'] && $this->settings->get_option( 'enable-user-panel' ) ) {
+            $messages[] = $this->get_go_to_user_panel_message();
         }
 
         $send_access_key_url = add_query_arg( array( 'step' => 'send-access-key' ), $this->url() );
