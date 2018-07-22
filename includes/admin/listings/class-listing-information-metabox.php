@@ -72,7 +72,7 @@ class AWPCP_ListingInfromationMetabox {
             $params['payment_term'] = $this->get_payment_term_properties( $payment_term );
         }
 
-        $params['payment_terms'] = $this->get_available_payment_terms( $payment_term );
+        $params['payment_terms'] = $this->get_available_payment_terms( $post->post_author, $payment_term );
 
         echo $this->template_renderer->render_template( 'admin/listings/listing-information-metabox.tpl.php', $params ); // XSS Ok.
     }
@@ -80,11 +80,11 @@ class AWPCP_ListingInfromationMetabox {
     /**
      * @since 4.0.0
      */
-    private function get_available_payment_terms( $current_payment_term ) {
+    private function get_available_payment_terms( $post_author, $current_payment_term ) {
         $current_payment_term_included = false;
         $payment_terms                 = [];
 
-        foreach ( $this->payments->get_payment_terms() as $type => $terms ) {
+        foreach ( $this->payments->get_user_payment_terms( $post_author ) as $type => $terms ) {
             foreach ( $terms as $term ) {
                 $payment_terms[] = $this->get_payment_term_properties( $term );
 
@@ -164,49 +164,36 @@ class AWPCP_ListingInfromationMetabox {
      * @since 4.0.0
      */
     private function maybe_update_payment_term( $post ) {
-        $payment_term         = $this->get_selected_payment_term();
-        $current_payment_term = $this->listing_renderer->get_payment_term( $post );
+        $previous_payment_term = $this->listing_renderer->get_payment_term( $post );
+        $new_payment_term      = $this->get_selected_payment_term();
+        $payment_type          = 'money';
 
-        if ( is_null( $payment_term ) ) {
+        if ( is_null( $new_payment_term ) ) {
             return;
         }
 
-        if ( $this->payment_are_terms_equal( $payment_term, $current_payment_term ) ) {
+        if ( $this->payments->payment_terms_are_equals( $new_payment_term, $previous_payment_term ) ) {
             return;
         }
 
-        $categories   = $this->listing_renderer->get_categories_ids( $post );
-        $payment_type = 'money';
+        $transaction = $this->create_transaction( $post, $new_payment_term, $payment_type );
 
-        $transaction = $this->payments->create_transaction();
-        $errors      = [];
-
-        // TODO: Merge with code from Create Emtpy Listing and Save Listing Information ajax handlers. I think the transaction logic can be extracted.
-        $transaction->user_id = $post->post_author;
-        $transaction->set( 'context', 'place-ad' );
-        $transaction->set( 'ad-id', $post->ID );
-        $transaction->set( 'category', $categories );
-        $transaction->set( 'payment-term-type', $payment_term->type );
-        $transaction->set( 'payment-term-id', $payment_term->id );
-        $transaction->set( 'payment-term-payment-type', $payment_type );
-        $transaction->payment_status = AWPCP_Payment_Transaction::PAYMENT_STATUS_NOT_REQUIRED;
-
-        $this->payments->set_transaction_item_from_payment_term( $transaction, $payment_term, $payment_type );
+        $this->update_payment_term( $post, $new_payment_term );
+        $this->payments->set_transaction_item_from_payment_term( $transaction, $new_payment_term, $payment_type );
         $this->payments->set_transaction_status_to_completed( $transaction, $errors );
 
         if ( $errors ) {
+            $this->update_payment_term( $post, $previous_payment_term );
             $transaction->delete();
             return;
         }
 
-        $post_data = [
-            'metadata' => [
-                '_awpcp_payment_term_id'   => $payment_term->id,
-                '_awpcp_payment_term_type' => $payment_term->type,
-            ],
-        ];
+        // Reload payment term objects so that changes made when the transaction
+        // was being processed are available to handlers of `awpcp_listing_payment_term_changed`.
+        $previous_payment_term = $this->payments->get_payment_term( $previous_payment_term->id, $previous_payment_term->type );
+        $new_payment_term      = $this->listing_renderer->get_payment_term( $post );
 
-        $this->listings_logic->update_listing( $post, $post_data );
+        do_action( 'awpcp_listing_payment_term_changed', $post, $previous_payment_term, $new_payment_term );
     }
 
     /**
@@ -224,19 +211,34 @@ class AWPCP_ListingInfromationMetabox {
     /**
      * @since 4.0.0
      */
-    private function payment_are_terms_equal( $payment_term_one, $payment_term_two ) {
-        if ( ! $payment_term_one || ! $payment_term_two ) {
-            return false;
-        }
+    private function create_transaction( $post, $payment_term, $payment_type ) {
+        $transaction = $this->payments->create_transaction();
+        $errors      = [];
 
-        if ( $payment_term_one->type !== $payment_term_two->type ) {
-            return false;
-        }
+        // TODO: Merge with code from Create Emtpy Listing and Save Listing Information ajax handlers. I think the transaction logic can be extracted.
+        $transaction->user_id = $post->post_author;
+        $transaction->set( 'context', 'place-ad' );
+        $transaction->set( 'ad-id', $post->ID );
+        $transaction->set( 'category', $this->listing_renderer->get_categories_ids( $post ) );
+        $transaction->set( 'payment-term-type', $payment_term->type );
+        $transaction->set( 'payment-term-id', $payment_term->id );
+        $transaction->set( 'payment-term-payment-type', $payment_type );
+        $transaction->payment_status = AWPCP_Payment_Transaction::PAYMENT_STATUS_NOT_REQUIRED;
 
-        if ( $payment_term_one->id !== $payment_term_two->id ) {
-            return false;
-        }
+        return $transaction;
+    }
 
-        return true;
+    /**
+     * @since 4.0.0
+     */
+    private function update_payment_term( $post, $payment_term ) {
+        $post_data = [
+            'metadata' => [
+                '_awpcp_payment_term_id'   => $payment_term->id,
+                '_awpcp_payment_term_type' => $payment_term->type,
+            ],
+        ];
+
+        $this->listings_logic->update_listing( $post, $post_data );
     }
 }

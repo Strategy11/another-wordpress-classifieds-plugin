@@ -246,6 +246,25 @@ class AWPCP_PaymentsAPI {
         return $terms;
     }
 
+    /**
+     * @since 4.0.0
+     */
+    public function payment_terms_are_equals( $payment_term_one, $payment_term_two ) {
+        if ( ! $payment_term_one || ! $payment_term_two ) {
+            return false;
+        }
+
+        if ( $payment_term_one->type !== $payment_term_two->type ) {
+            return false;
+        }
+
+        if ( $payment_term_one->id !== $payment_term_two->id ) {
+            return false;
+        }
+
+        return true;
+    }
+
     public function payment_term_requires_payment($term) {
         $credits = intval($this->credit_system_enabled() ? $term->credits : 0);
         $money = floatval($term->price);

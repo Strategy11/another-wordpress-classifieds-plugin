@@ -902,6 +902,16 @@ class AWPCP {
     }
 
     private function ajax_setup() {
+        add_action( 'admin_init', [ $this, 'register_ajax_handlers' ] );
+    }
+
+    /**
+     * Needs to run after awpcp-configure-routes actions is fired to give premium
+     * modules enough time to register handlers for their Ajax actions.
+     *
+     * @since 4.0.0
+     */
+    public function register_ajax_handlers() {
         // register ajax request handler for pending upgrade tasks
         $task_handler = $this->container->get( 'AWPCP_Upgrade_Task_Ajax_Handler' );
 
