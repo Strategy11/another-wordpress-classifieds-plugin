@@ -1,24 +1,44 @@
 <?php
 /**
- * User Ad Management Panel functions
+ * @package AWPCP\Admin
  */
 
+/**
+ * Constructor function.
+ */
 function awpcp_user_panel() {
     return new AWPCP_User_Panel( awpcp_upgrade_tasks_manager() );
 }
 
+/**
+ * Register admin menu items for subscribers.
+ */
 class AWPCP_User_Panel {
 
+    /**
+     * @var UpgradeTasksManager
+     */
     private $upgrade_tasks;
 
+    /**
+     * Constructor.
+     */
 	public function __construct( $upgrade_tasks ) {
         $this->upgrade_tasks = $upgrade_tasks;
 
         $this->account = awpcp_account_balance_page();
 	}
 
+    /**
+     * Handler for the awpcp-configure-routes action.
+     */
     public function configure_routes( $router ) {
-        if ( $this->upgrade_tasks->has_pending_tasks( array( 'context' => 'plugin', 'blocking' => true ) ) ) {
+        $params = [
+            'context'  => 'plugin',
+            'blocking' => true,
+        ];
+
+        if ( $this->upgrade_tasks->has_pending_tasks( $params ) ) {
             return;
         }
 
@@ -33,6 +53,9 @@ class AWPCP_User_Panel {
         }
     }
 
+    /**
+     * Registers the page used by subscribers to see their credit account balance.
+     */
     private function add_users_page( $router ) {
         $router->add_admin_users_page(
             __( 'Account Balance', 'another-wordpress-classifieds-plugin' ),
@@ -47,7 +70,7 @@ class AWPCP_User_Panel {
      * Register Ad Management Panel menu
      */
     public function configure_user_panel_routes( $router ) {
-        $parent_page = $router->add_admin_page(
+        $router->add_admin_page(
             __( 'Ad Management', 'another-wordpress-classifieds-plugin' ),
             awpcp_admin_page_title( __( 'Manage Listings', 'another-wordpress-classifieds-plugin' ) ),
             'awpcp-panel',
