@@ -30,8 +30,7 @@
                     ?>
                 </div>
 
-                <?php if ( $show_user_field ) : ?>
-                <div class="awpcp-form-spacer">
+                <div class="awpcp-form-spacer<?php echo $show_user_field ? '' : esc_attr( ' awpcp-hidden' ); ?>">
                     <?php
                         echo awpcp()->container['UserSelector']->render( array(
                             'required' => true,
@@ -45,7 +44,6 @@
                     ?>
                     <?php echo awpcp_form_error( 'user', $form_errors ); // XSS Ok. ?>
                 </div>
-                <?php endif; ?>
 
                 <div class="awpcp-form-spacer">
                     <label><?php echo esc_html_x( 'Please select the duration and features that will be available for this classified', 'order submit listing section', 'another-wordpress-classifieds-plugin' ); ?><span class="required">*</span></label>
