@@ -213,7 +213,6 @@ class AWPCP_ListingInfromationMetabox {
      */
     private function create_transaction( $post, $payment_term, $payment_type ) {
         $transaction = $this->payments->create_transaction();
-        $errors      = [];
 
         // TODO: Merge with code from Create Emtpy Listing and Save Listing Information ajax handlers. I think the transaction logic can be extracted.
         $transaction->user_id = $post->post_author;
