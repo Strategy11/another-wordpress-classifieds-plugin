@@ -43,7 +43,7 @@ class AWPCP_ListingContactEmailFormField extends AWPCP_FormField {
      *                  to fill it.
      */
     public function get_help_text() {
-        return _x( 'Please enter a valid email. The codes needed to edit your Ad will be sent to your email address.', 'ad details form', 'another-wordpress-classifieds-plugin' );
+        return _x( 'The access codes needed to edit your listing will be sent to this email address.', 'ad details form', 'another-wordpress-classifieds-plugin' );
     }
 
     /**
