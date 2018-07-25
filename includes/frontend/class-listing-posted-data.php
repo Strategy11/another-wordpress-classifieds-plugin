@@ -115,9 +115,6 @@ class AWPCP_ListingPostedData {
             'post_modified_gmt' => get_gmt_from_date( $now ),
             // TODO: Use appropriate post status for new and existing listings.
             'post_status'       => $post_status,
-            'post_date'         => $now,
-            'post_date_gmt'     => get_gmt_from_date( $now ),
-
         ] );
 
         // TODO: Make sure users are allowed to change the start/end date fields when authorized.
