@@ -159,6 +159,11 @@ class AWPCP_ListingFieldsMetabox {
         unset( $errors['ad_title'] );
         unset( $errors['ad_details'] );
 
+        if ( empty( $data['metadata']['_awpcp_start_date'] ) && empty( $data['metadata']['_awpcp_end_date'] ) ) {
+            unset( $errors['start_date'] );
+            unset( $errors['end_date'] );
+        }
+
         $this->save_in_progress = true;
 
         $this->save_or_store_errors( $post, $data, $errors );
