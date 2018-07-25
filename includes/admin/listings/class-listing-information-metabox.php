@@ -190,7 +190,10 @@ class AWPCP_ListingInfromationMetabox {
 
         // Reload payment term objects so that changes made when the transaction
         // was being processed are available to handlers of `awpcp_listing_payment_term_changed`.
-        $previous_payment_term = $this->payments->get_payment_term( $previous_payment_term->id, $previous_payment_term->type );
+        if ( $previous_payment_term ) {
+            $previous_payment_term = $this->payments->get_payment_term( $previous_payment_term->id, $previous_payment_term->type );
+        }
+
         $new_payment_term      = $this->listing_renderer->get_payment_term( $post );
 
         do_action( 'awpcp_listing_payment_term_changed', $post, $previous_payment_term, $new_payment_term );
