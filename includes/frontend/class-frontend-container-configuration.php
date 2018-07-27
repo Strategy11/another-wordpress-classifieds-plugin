@@ -30,6 +30,7 @@ class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurati
             return new AWPCP_EditListingPage(
                 $container['SubmitListingSectionsGenerator'],
                 $container['ListingRenderer'],
+                $container['ListingsLogic'],
                 $container['ListingsCollection'],
                 $container['ListingAuthorization'],
                 $container['Settings'],

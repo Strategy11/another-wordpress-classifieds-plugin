@@ -26,6 +26,11 @@ class AWPCP_EditListingPage extends AWPCP_Page {
     private $listing_renderer;
 
     /**
+     * @var ListingsLogic
+     */
+    private $listings_logic;
+
+    /**
      * @var Settings
      */
     private $settings;
@@ -38,11 +43,12 @@ class AWPCP_EditListingPage extends AWPCP_Page {
     /**
      * @since 4.0.0
      */
-    public function __construct( $sections_generator, $listing_renderer, $listings, $authorization, $settings, $request ) {
+    public function __construct( $sections_generator, $listing_renderer, $listings_logic, $listings, $authorization, $settings, $request ) {
         parent::__construct( null, null, awpcp()->container['TemplateRenderer'] );
 
         $this->sections_generator = $sections_generator;
         $this->listing_renderer   = $listing_renderer;
+        $this->listings_logic     = $listings_logic;
         $this->listings           = $listings;
         $this->authorization      = $authorization;
         $this->settings           = $settings;
@@ -84,6 +90,14 @@ class AWPCP_EditListingPage extends AWPCP_Page {
 
         if ( ! $this->authorization->is_current_user_allowed_to_edit_listing( $listing ) ) {
             $message = __( 'You are not allowed to edit the specified classified.', 'another-wordpress-classifieds-plugin' );
+            return $this->render( 'content', awpcp_print_error( $message ) );
+        }
+
+        // If payment information is not consolidated yet, the listing needs to be
+        // edited through the Submit Listing page.
+        if ( $this->listings_logic->can_payment_information_be_modified_during_submit( $listing ) ) {
+            $message = __( 'The selected classified cannot be edited right now.', 'another-wordpress-classifieds-plugin' );
+
             return $this->render( 'content', awpcp_print_error( $message ) );
         }
 
