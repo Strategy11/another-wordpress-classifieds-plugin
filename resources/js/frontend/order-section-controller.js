@@ -67,20 +67,29 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
                 }
             } );
 
-            self.categoriesSelector = new CategoriesSelector( $container.find( '.awpcp-category-dropdown' ), {
+            self.$categoriesDropdown = $container.find( '.awpcp-category-dropdown' );
+
+            self.categoriesSelector = new CategoriesSelector( self.$categoriesDropdown, {
                 onChange: function( categories ) {
                     self.store.updateSelectedCategories( categories );
                 }
             } );
 
-            var $userSelect = $container.find( '.awpcp-user-selector' );
-            var userSelectorOptions = $.extend( $userSelect.data( 'configuration' ), {
+            self.$userSelect = $container.find( '.awpcp-user-selector' );
+
+            var userSelectorOptions = $.extend( self.$userSelect.data( 'configuration' ), {
                 onChange: function( user ) {
+                    var userInformation = self.getUserInformation( user.id );
+
+                    if ( userInformation ) {
+                        $.publish( '/user/updated', [ userInformation ] );
+                    }
+
                     self.store.updateSelectedUser( user );
                 }
             } );
 
-            self.userSelector = new UserSelector( $userSelect, userSelectorOptions );
+            self.userSelector = new UserSelector( self.$userSelect, userSelectorOptions );
 
             self.creditPlansList = new CreditPlansList( $container.find( '.awpcp-credit-plans-table' ), {
                 onChange: function( creditPlan ) {
@@ -102,7 +111,29 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
                 self.onChangeSelectionButtonClicked();
             } );
 
+            $.publish( '/user/updated', [ self.getSelectedUserInformation() ] );
+            $.publish( '/categories/change', [ self.$categoriesDropdown, self.getSelectedCategories() ] );
             $.publish( '/awpcp/post-listing-page/order-step/ready', [ self.$element ] );
+        },
+
+        getSelectedUserInformation: function() {
+            var self = this,
+                user = self.userSelector.getSelectedUser();
+
+            return user ? self.getUserInformation( user.id ) : null;
+        },
+
+        getUserInformation: function( userId ) {
+            var self = this,
+                $user = self.$userSelect.find( 'option[value="' + userId + '"]' );
+
+            return $user.length ? $user.data( 'user-information' ) : null;
+        },
+
+        getSelectedCategories: function() {
+            var self = this;
+
+            return self.categoriesSelector.getSelectedCategories();
         },
 
         updateInitialState: function() {
