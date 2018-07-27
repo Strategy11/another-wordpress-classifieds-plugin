@@ -76,7 +76,7 @@ class AWPCP_User_Panel {
             'awpcp-panel',
             'awpcp_manage_listings_user_panel_page',
             awpcp_user_capability(),
-            MENUICO
+            'none'
         );
     }
 }
