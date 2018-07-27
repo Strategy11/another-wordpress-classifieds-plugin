@@ -65,6 +65,7 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
      * @since 4.0.0
      * @throws AWPCP_Exception If the current user is not allowed to access the page.
      * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     * @SuppressWarnings(PHPMD.NPathComplexity)
      */
     private function do_current_step() {
         if ( $this->settings->get_option( 'onlyadmincanplaceads' ) && ! $this->roles->current_user_is_administrator() ) {
@@ -80,6 +81,15 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
 
         if ( $listing && ! $this->authorization->is_current_user_allowed_to_edit_listing( $listing ) ) {
             $message = __( 'You are not allowed to edit the specified classified.', 'another-wordpress-classifieds-plugin' );
+            return $this->render( 'content', awpcp_print_error( $message ) );
+        }
+
+        // If payment information cannot be changed and there is no transaction available,
+        // it is likely that the listing was already posted and someone is trying to
+        // edit it from the Submit Listing page.
+        if ( $listing && ! $this->listings_logic->can_payment_information_be_modified_during_submit( $listing ) && ! $this->get_transaction() ) {
+            $message = __( 'The information for the selected classified was already saved.', 'another-wordpress-classifieds-plugin' );
+
             return $this->render( 'content', awpcp_print_error( $message ) );
         }
 
