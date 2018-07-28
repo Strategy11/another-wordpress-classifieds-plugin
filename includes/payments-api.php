@@ -86,6 +86,10 @@ class AWPCP_PaymentsAPI {
     }
 
     public function is_credit_accepted() {
+        if ( ! $this->credit_system_enabled() ) {
+            return false;
+        }
+
         return in_array( AWPCP_Payment_Transaction::PAYMENT_TYPE_CREDITS, $this->get_accepted_payment_types() );
     }
 
