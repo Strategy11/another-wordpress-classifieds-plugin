@@ -5,8 +5,7 @@
  * @package AWPCP\Admin\Pages
  */
 
-awpcp_print_messages(); ?>
-
+?>
 			<h2 class="nav-tab-wrapper">
 			<?php foreach ( $groups as $group ) : ?>
                 <?php if ( count( $group['subgroups'] ) ) : ?>
