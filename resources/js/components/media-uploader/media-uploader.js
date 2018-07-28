@@ -20,7 +20,7 @@ function( $, settings) {
                 container: container.get(0),
                 drop_element: dropzone.get(0),
                 filters: {
-                    mime_types: _.bind( self.getFileTypeFilters, self ),
+                    mime_types: self.getFileTypeFilters(),
                     restrict_file_size: true,
                     restrict_file_count: true
                 },
