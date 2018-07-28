@@ -1494,6 +1494,13 @@ function awpcp_flash( $message, $class = array( 'awpcp-updated', 'notice', 'noti
     }
 }
 
+/**
+ * @since 4.0.0
+ */
+function awpcp_flash_error( $message, $class = array( 'awpcp-error', 'notice', 'notice-error', 'notice' ) ) {
+    awpcp_flash( $message, $class );
+}
+
 function awpcp_is_duplicated_flash_message( $messages, $message, $class ) {
     foreach ( $messages as $m ) {
         if ( strcmp( $m['message'], $message ) == 0 ) {

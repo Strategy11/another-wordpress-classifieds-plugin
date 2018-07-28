@@ -302,7 +302,7 @@ class AWPCP_PaymentSettings {
             $options['accepted-payment-type'] = 'both';
 
             $message = __( 'You cannot configure Credits as the only accepted payment type unless you enable the Credit System as well. The setting was set to accept both Currency and Credits.', 'another-wordpress-classifieds-plugin' );
-            awpcp_flash( $message, array( 'error' ) );
+            awpcp_flash_error( $message );
         }
 
         return $options;
