@@ -39,7 +39,7 @@ class AWPCP_AdminPanel {
 		add_action('admin_enqueue_scripts', array($this, 'scripts'));
 		add_action('admin_menu', array($this, 'menu'));
 
-        $admin_menu_builder = new AWPCP_AdminMenuBuilder( awpcp()->router );
+        $admin_menu_builder = new AWPCP_AdminMenuBuilder( awpcp()->container['listing_post_type'], awpcp()->router );
         add_action( 'admin_menu', array( $admin_menu_builder, 'build_menu' ) );
 
 		add_action('admin_notices', array($this, 'notices'));

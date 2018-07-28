@@ -7,10 +7,19 @@
 
 class AWPCP_AdminMenuBuilder {
 
+    /**
+     * @var string
+     */
+    private $listing_post_type;
+
+    /**
+     * @var Router
+     */
     private $router;
 
-    public function __construct( $router ) {
-        $this->router = $router;
+    public function __construct( $listing_post_type, $router ) {
+        $this->listing_post_type = $listing_post_type;
+        $this->router            = $router;
     }
 
     public function build_menu() {
@@ -38,8 +47,8 @@ class AWPCP_AdminMenuBuilder {
         // allow plugins to define additional menu entries
         do_action('awpcp_add_menu_page');
 
-        // allow plugins to define additiona user panel sub menu entries
-        do_action('awpcp_panel_add_submenu_page', 'awpcp-panel', awpcp_user_capability() );
+        // Allow plugins to define additional user panel sub menu entries.
+        do_action( 'awpcp_panel_add_submenu_page', "edit.php?post_type={$this->listing_post_type}", awpcp_user_capability() );
     }
 
     public function register_subpage( $admin_page, $subpage ) {
