@@ -61,7 +61,7 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
             // can respond to initial events from Categories Selector and User fields.
             //
             // TODO: Is this still the case?
-            self.paymentTermsList = new PaymentTermsList( $container.find( '.awpcp-payment-terms-list' ), {
+            self.paymentTermsList = new PaymentTermsList( self.$editModeContainer.find( '.awpcp-payment-terms-list' ), {
                 onChange: function( paymentTerm ) {
                     self.store.updateSelectedPaymentTerm( paymentTerm );
                 }
