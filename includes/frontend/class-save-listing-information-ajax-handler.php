@@ -101,7 +101,7 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
             throw new AWPCP_Exception( $message );
         }
 
-        if ( 'auto-draft' === $listing->post_status ) {
+        if ( $this->listings_logic->can_payment_information_be_modified_during_submit( $listing ) ) {
             return $this->save_new_listing_information( $listing );
         }
 
