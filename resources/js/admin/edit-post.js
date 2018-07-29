@@ -68,15 +68,17 @@ AWPCP.run( 'awpcp/edit-post', [
         $changePaymentTermForm.on( 'click', '[type="button"]', function( event ) {
             var paymentTermId = $( '[name="payment_term"]' ).val(),
                 $selectedOption = $changePaymentTermForm.find( '[value="' + paymentTermId + '"]' ),
-                properties = $.parseJSON( $selectedOption.attr( 'data-properties' ) ),
+                properties = $selectedOption.data( 'properties' ),
                 $paymentTermName = $listingInformationMetabox.find( '.awpcp-payment-term-name .awpcp-value-display' );
 
-            $paymentTermName.html( '<a href="' + properties.url + '">' + properties.name + '</a>' );
+            if ( properties ) {
+                $paymentTermName.html( '<a href="' + properties.url + '">' + properties.name + '</a>' );
 
-            $listingInformationMetabox.find( '.awpcp-payment-term-number-of-images .awpcp-value-display' ).text( properties.number_of_images );
-            $listingInformationMetabox.find( '.awpcp-payment-term-number-of-regions .awpcp-value-display' ).text( properties.number_of_regions );
-            $listingInformationMetabox.find( '.awpcp-payment-term-characters-in-title .awpcp-value-display' ).text( properties.characters_in_title );
-            $listingInformationMetabox.find( '.awpcp-payment-term-characters-in-description .awpcp-value-display' ).text( properties.characters_in_description );
+                $listingInformationMetabox.find( '.awpcp-payment-term-number-of-images .awpcp-value-display' ).text( properties.number_of_images );
+                $listingInformationMetabox.find( '.awpcp-payment-term-number-of-regions .awpcp-value-display' ).text( properties.number_of_regions );
+                $listingInformationMetabox.find( '.awpcp-payment-term-characters-in-title .awpcp-value-display' ).text( properties.characters_in_title );
+                $listingInformationMetabox.find( '.awpcp-payment-term-characters-in-description .awpcp-value-display' ).text( properties.characters_in_description );
+            }
 
             $changePaymentTermLink.toggleClass( 'awpcp-hidden' );
             $changePaymentTermForm.toggleClass( 'awpcp-hidden' );

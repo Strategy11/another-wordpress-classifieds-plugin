@@ -46,6 +46,9 @@
 
                 <div class="awpcp-change-payment-term-form awpcp-hidden">
                     <select name="payment_term">
+                        <?php if ( ! $payment_term['id'] ) : ?>
+                        <option value="0"><?php echo esc_html_x( 'Select a payment term', 'listing information metabox', 'another-wordpress-classifieds-plugin' ); ?></option>
+                        <?php endif; ?>
                         <?php foreach ( $payment_terms as $term ) : ?>
                         <option value="<?php echo esc_attr( $term['id'] ); ?>"<?php echo $payment_term['id'] === $term['id'] ? ' selected="selected"' : ''; ?> data-properties="<?php echo esc_attr( wp_json_encode( $term ) ); ?>"><?php echo esc_html( $term['name'] ); ?></option>
                         <?php endforeach; ?>
