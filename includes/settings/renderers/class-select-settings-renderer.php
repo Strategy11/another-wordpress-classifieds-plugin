@@ -29,7 +29,7 @@ class AWPCP_SelectSettingsRenderer {
         $html = '<select id="' . esc_attr( $setting['id'] ) . '" name="awpcp-options[' . esc_attr( $setting['id'] ) . ']">';
 
         foreach ( $setting['options'] as $value => $label ) {
-            if ( $value === $current ) {
+            if ( 0 === strcmp( $value, $current ) ) {
                 $html .= '<option value="' . esc_attr( $value ) . '" selected="selected">' . esc_html( $label ) . '</option>';
             } else {
                 $html .= '<option value="' . esc_attr( $value ) . '">' . esc_html( $label ) . '</option>';
