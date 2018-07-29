@@ -32,6 +32,13 @@ class AWPCP_Attachment_Properties {
         return in_array( $attachment->post_mime_type, awpcp_get_image_mime_types() );
     }
 
+    /**
+     * @since 4.0.0
+     */
+    public function get_url( $attachment ) {
+        return $this->wordpress->get_attachment_url( $attachment->ID );
+    }
+
     public function get_image_url( $attachment, $size ) {
         return $this->wordpress->get_attachment_image_url( $attachment->ID, "awpcp-$size" );
     }

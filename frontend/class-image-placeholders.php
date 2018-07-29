@@ -72,7 +72,7 @@ class AWPCP_Image_Placeholders {
                     'rel' => esc_attr( $gallery_name ),
                     'data-awpcp-gallery' => esc_attr( $gallery_name ),
                 );
-                
+
                 $image_attributes = array(
                     'class' => 'thumbshow',
                     'alt'   => __( "Thumbnail for the listing's main image", 'another-wordpress-classifieds-plugin' ),
@@ -117,22 +117,26 @@ class AWPCP_Image_Placeholders {
                         continue;
                     }
 
+                    if ( ! $this->attachment_properties->is_image( $image ) ) {
+                        continue;
+                    }
+
                     $large_image = $this->attachment_properties->get_image_url( $image, 'large' );
+                    $li_classes  = [ 'awpcp-attachments-list-item' ];
 
                     if ($columns > 0) {
-                        $li_attributes['class'] = join(' ', awpcp_get_grid_item_css_class(array(), $shown, $columns, $rows));
-                    } else {
-                        $li_attributes['class'] = '';
+                        $li_classes[] = "awpcp-attchment-column-width-1-{$columns}";
+                        $li_classes = awpcp_get_grid_item_css_class( $li_classes, $shown, $columns, $rows );
                     }
 
                     $link_attributes = array(
-                        'class' => 'thickbox',
+                        'class' => 'awpcp-attachment-thumbnail-container thickbox',
                         'href' => esc_url( $large_image ),
                         'rel' => esc_attr( $gallery_name ),
                         'data-awpcp-gallery' => esc_attr( $gallery_name ),
                     );
 
-                    $content = '<li ' . awpcp_html_attributes( $li_attributes ) . '>';
+                    $content = '<li ' . awpcp_html_attributes( [ 'class' => $li_classes ] ) . '>';
                     $content.= '<a ' . awpcp_html_attributes( $link_attributes ) . '>';
                     $content.= wp_get_attachment_image( $image->ID, 'awpcp-thumbnail', false, array( 'class' => 'thumbshow' ) );
                     $content.= '</a>';
