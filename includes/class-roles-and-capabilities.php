@@ -100,6 +100,25 @@ class AWPCP_RolesAndCapabilities {
         return array_map( array( $role, 'remove_cap' ), $capabilities );
     }
 
+    /**
+     * @since 4.0.0
+     */
+    public function remove_capabilities( $capabilities ) {
+        $roles = wp_roles();
+
+        if ( ! is_a( $roles, 'WP_Roles' ) ) {
+            return;
+        }
+
+        if ( ! isset( $roles->role_objects ) || ! is_array( $roles->role_objects ) ) {
+            return;
+        }
+
+        foreach ( $roles->role_objects as $role ) {
+            $this->remove_capabilities_from_role( $role, $capabilities );
+        }
+    }
+
     public function add_subscriber_capabilities_to_role( $role_name ) {
         return $this->add_capabilities_to_role( get_role( $role_name ), $this->get_subscriber_capabilities() );
     }

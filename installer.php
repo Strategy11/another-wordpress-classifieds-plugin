@@ -232,6 +232,7 @@ class AWPCP_Installer {
                 'create_old_listing_id_column_in_listing_regions_table',
                 'migrate_wordpress_page_settings',
                 'keep_legacy_url_structure',
+                'remove_old_capabilities',
                 'enable_upgrade_routine_to_migrate_listing_categories',
                 'enable_upgrade_routine_to_migrate_listings',
                 'enable_upgrade_routine_to_migrate_media',
@@ -1084,6 +1085,19 @@ class AWPCP_Installer {
             $this->settings->set_or_update_option( 'listings-slug', get_page_uri( $show_listing_page ) );
             $this->settings->set_or_update_option( 'include-main-page-slug-in-listing-url', false );
         }
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function remove_old_capabilities() {
+        $roles_and_capabilities = awpcp()->container['RolesAndCapabilities'];
+        $capabilities           = [
+            'manage_classifieds',
+            'manage_classifieds_listings',
+        ];
+
+        $roles_and_capabilities->remove_capabilities( $capabilities );
     }
 
     private function enable_upgrade_routine_to_migrate_listing_categories() {
