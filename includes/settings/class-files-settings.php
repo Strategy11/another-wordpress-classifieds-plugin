@@ -200,7 +200,15 @@ class AWPCP_FilesSettings {
 
         $options = array(0 => 0, 1 => 1, 2 => 2, 3 => 3, 4 => 4);
 
-        $settings_manager->add_setting( $key, 'display-thumbnails-in-columns', __( 'Number of columns of thumbnails to show in Show Ad page.', 'another-wordpress-classifieds-plugin' ), 'select', 0, __( 'Zero means there will be as many thumbnails as possible per row.', 'another-wordpress-classifieds-plugin' ), array( 'options' => $options ) );
+        $settings_manager->add_setting( [
+            'id'          => 'display-thumbnails-in-columns',
+            'name'        => __( 'Number of columns of thumbnails to show in Show Ad page', 'another-wordpress-classifieds-plugin' ),
+            'type'        => 'select',
+            'default'     => 0,
+            'description' => __( 'Zero means there will be as many thumbnails as possible per row.', 'another-wordpress-classifieds-plugin' ),
+            'options'     => $options,
+            'section'     => $key,
+        ] );
 
         $settings_manager->add_setting( $key, 'awpcp_thickbox_disabled', __( "Disable AWPCP's Lightbox feature", 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, __( 'Do not include the lightbox jQuery plugin used by AWPCP. Use this option to fix conflicts with themes or plugins that also offers a lightbox feature.', 'another-wordpress-classifieds-plugin' ) );
 
