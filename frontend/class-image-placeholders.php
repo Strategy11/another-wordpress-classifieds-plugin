@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package AWPCP
+ */
+
+// phpcs:disable
 
 function awpcp_image_placeholders() {
     return new AWPCP_Image_Placeholders(
@@ -34,6 +39,9 @@ class AWPCP_Image_Placeholders {
         return $this->cache[ $ad->ID ][ $placeholder ];
     }
 
+    /**
+     * @SuppressWarnings(PHPMD)
+     */
     private function render_image_placeholders( $ad, $placeholder ) {
         global $awpcp_imagesurl;
 
