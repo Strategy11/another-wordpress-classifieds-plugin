@@ -8,15 +8,16 @@ function($) {
 
     var renderReCaptchaWidgets = function() {
         $( '.awpcp-recaptcha' ).each( function() {
-            var element = $( this );
+            var element = $( this ), widgetId;
 
             if ( ! element.data( 'awpcp-recaptcha' ) ) {
-                grecaptcha.render( this, {
+                widgetId = grecaptcha.render( this, {
                   'sitekey' : element.attr( 'data-sitekey' ),
                   'theme' : 'light'
                 } );
 
                 element.data( 'awpcp-recaptcha', true );
+                element.attr( 'data-recaptcha-widget-id', widgetId );
             }
         } );
     };

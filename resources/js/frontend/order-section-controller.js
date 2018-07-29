@@ -286,6 +286,12 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
                     self.showErrors( data.errors );
                     self.store.setSectionStateToPreview( self.id );
                 }
+
+                var reCAPTCHA = self.$captcha.find( '.awpcp-recaptcha' ).attr( 'data-recaptcha-widget-id' );
+
+                if ( undefined !== reCAPTCHA ) {
+                    grecaptcha.reset( reCAPTCHA );
+                }
             } );
         },
 
