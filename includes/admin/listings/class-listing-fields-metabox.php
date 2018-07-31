@@ -160,6 +160,9 @@ class AWPCP_ListingFieldsMetabox {
         unset( $errors['ad_details'] );
 
         if ( empty( $data['metadata']['_awpcp_start_date'] ) && empty( $data['metadata']['_awpcp_end_date'] ) ) {
+            unset( $data['metadata']['_awpcp_start_date'] );
+            unset( $data['metadata']['_awpcp_end_date'] );
+
             unset( $errors['start_date'] );
             unset( $errors['end_date'] );
         }
