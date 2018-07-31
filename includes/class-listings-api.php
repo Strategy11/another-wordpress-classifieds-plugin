@@ -636,4 +636,32 @@ class AWPCP_ListingsAPI {
 
         return false;
     }
+
+    /**
+     * @since 4.0.0
+     */
+    public function update_listing_payment_term( $listing, $payment_term ) {
+        $start_date = $this->listing_renderer->get_plain_start_date( $listing );
+        $end_date   = $this->listing_renderer->get_plain_end_date( $listing );
+
+        if ( empty( $start_date ) ) {
+            $start_date = current_time( 'mysql' );
+        }
+
+        if ( empty( $end_date ) ) {
+            $end_date = $payment_term->calculate_end_date( awpcp_datetime( 'timestamp', $start_date ) );
+        }
+
+        $post_data = [
+            'metadata' => [
+                '_awpcp_payment_term_type' => $payment_term->type,
+                '_awpcp_payment_term_id'   => $payment_term->id,
+                '_awpcp_is_featured'       => $payment_term->featured,
+                '_awpcp_start_date'        => $start_date,
+                '_awpcp_end_date'          => $end_date,
+            ],
+        ];
+
+        return $this->update_listing( $listing, $post_data );
+    }
 }

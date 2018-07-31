@@ -34,6 +34,11 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
     private $form_fields_validator;
 
     /**
+     * @var ListingPostedData
+     */
+    private $posted_data;
+
+    /**
      * @var Request
      */
     private $request;

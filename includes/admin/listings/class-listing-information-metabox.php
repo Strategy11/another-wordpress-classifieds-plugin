@@ -178,12 +178,13 @@ class AWPCP_ListingInfromationMetabox {
 
         $transaction = $this->create_transaction( $post, $new_payment_term, $payment_type );
 
-        $this->update_payment_term( $post, $new_payment_term );
+        $this->listings_logic->update_listing_payment_term( $post, $new_payment_term );
+
         $this->payments->set_transaction_item_from_payment_term( $transaction, $new_payment_term, $payment_type );
         $this->payments->set_transaction_status_to_completed( $transaction, $errors );
 
         if ( $errors ) {
-            $this->update_payment_term( $post, $previous_payment_term );
+            $this->listings_logic->update_listing_payment_term( $post, $previous_payment_term );
             $transaction->delete();
             return;
         }
@@ -194,7 +195,7 @@ class AWPCP_ListingInfromationMetabox {
             $previous_payment_term = $this->payments->get_payment_term( $previous_payment_term->id, $previous_payment_term->type );
         }
 
-        $new_payment_term      = $this->listing_renderer->get_payment_term( $post );
+        $new_payment_term = $this->listing_renderer->get_payment_term( $post );
 
         do_action( 'awpcp_listing_payment_term_changed', $post, $previous_payment_term, $new_payment_term );
     }
@@ -228,19 +229,5 @@ class AWPCP_ListingInfromationMetabox {
         $transaction->payment_status = AWPCP_Payment_Transaction::PAYMENT_STATUS_NOT_REQUIRED;
 
         return $transaction;
-    }
-
-    /**
-     * @since 4.0.0
-     */
-    private function update_payment_term( $post, $payment_term ) {
-        $post_data = [
-            'metadata' => [
-                '_awpcp_payment_term_id'   => $payment_term->id,
-                '_awpcp_payment_term_type' => $payment_term->type,
-            ],
-        ];
-
-        $this->listings_logic->update_listing( $post, $post_data );
     }
 }
