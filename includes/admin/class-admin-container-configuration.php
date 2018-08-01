@@ -209,6 +209,14 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
             );
         } );
 
+        $container['MarkPaidListingTableAction'] = $container->service( function( $container ) {
+            return new AWPCP_MarkPaidListingTableAction(
+                $container['RolesAndCapabilities'],
+                $container['ListingsLogic'],
+                $container['ListingRenderer']
+            );
+        } );
+
         $container['SendToFacebookPageListingTableAction'] = $container->service( function( $container ) {
             return new AWPCP_SendToFacebookPageListingTableAction(
                 $container['SendListingToFacebookHelper'],
