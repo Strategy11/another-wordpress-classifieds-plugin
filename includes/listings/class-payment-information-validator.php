@@ -55,7 +55,8 @@ class AWPCP_PaymentInformationValidator {
     private function validate_selected_payment_term( $data ) {
         $errors = [];
 
-        if ( empty( $data['metadata']['_awpcp_payment_term_id'] ) || empty( $data['metadata']['_awpcp_payment_term_type'] ) ) {
+        // Can't use empty for term ID, because 0 is the ID of the Free Fee.
+        if ( 0 === strlen( $data['metadata']['_awpcp_payment_term_id'] ) || empty( $data['metadata']['_awpcp_payment_term_type'] ) ) {
             $errors['payment-term'] = __( 'You should choose one of the available Payment Terms.', 'another-wordpress-classifieds-plugin' );
         }
 

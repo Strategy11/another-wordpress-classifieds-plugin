@@ -203,13 +203,6 @@ class AWPCP_Payment_Terms_List {
             return true;
         }
 
-        $all_payment_terms = array_map( 'array_values', $payment_terms );
-        $all_payment_terms = call_user_func_array( 'array_merge', $all_payment_terms );
-
-        if ( $all_payment_terms[0]->type === AWPCP_FeeType::TYPE && $all_payment_terms[0]->id === 0 ) {
-            return false;
-        }
-
         return true;
     }
 
