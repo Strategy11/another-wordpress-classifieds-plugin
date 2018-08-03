@@ -5,7 +5,8 @@
  * @package AWPCP\Admin\Pages
  */
 
-?>
+?><?php settings_errors(); ?>
+
 			<h2 class="nav-tab-wrapper">
 			<?php foreach ( $groups as $group ) : ?>
                 <?php if ( count( $group['subgroups'] ) ) : ?>
