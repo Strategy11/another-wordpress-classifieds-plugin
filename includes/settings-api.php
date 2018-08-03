@@ -126,7 +126,7 @@ class AWPCP_Settings_API {
      * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
 	 */
 	public function update_option( $name, $value, $force = false ) {
-		if ( $force || array_key_exists( $name, $this->options, true ) ) {
+		if ( $force || array_key_exists( $name, $this->options ) ) {
 			$this->options[ $name ] = $value;
 			$this->save_settings();
 			return true;
