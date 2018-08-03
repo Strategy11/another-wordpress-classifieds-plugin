@@ -42,6 +42,21 @@ class AWPCP_ListingAuthorization {
     }
 
     /**
+     * @since 4.0.0
+     */
+    public function is_current_user_allowed_to_submit_listing() {
+        if ( ! $this->settings->get_option( 'onlyadmincanplaceads' ) ) {
+            return true;
+        }
+
+        if ( $this->roles->current_user_is_administrator() ) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
      * @param object $listing   An instance of WP_Post.
      */
     public function is_current_user_allowed_to_edit_listing( $listing ) {

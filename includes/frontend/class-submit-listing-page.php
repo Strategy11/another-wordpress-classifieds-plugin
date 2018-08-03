@@ -68,8 +68,8 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
      * @SuppressWarnings(PHPMD.NPathComplexity)
      */
     private function do_current_step() {
-        if ( $this->settings->get_option( 'onlyadmincanplaceads' ) && ! $this->roles->current_user_is_administrator() ) {
-            $message = __( 'Only website administrators are allowed to publish classifieds at this time.', 'another-wordpress-classifieds-plugin' );
+        if ( ! $this->authorization->is_current_user_allowed_to_submit_listing() ) {
+            $message = __( 'Users are not allowed to publish classifieds at this time.', 'another-wordpress-classifieds-plugin' );
             throw new AWPCP_Exception( awpcp_print_error( $message ) );
         }
 
