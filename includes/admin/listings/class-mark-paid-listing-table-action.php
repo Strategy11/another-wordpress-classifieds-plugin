@@ -68,7 +68,11 @@ class AWPCP_MarkPaidListingTableAction implements AWPCP_ListTableActionInterface
             ],
         ];
 
-        $this->listings_logic->update_listing( $post, $post_data );
+        if ( ! $this->listings_logic->update_listing( $post, $post_data ) ) {
+            return 'error';
+        }
+
+        return 'success';
     }
 
     /**
