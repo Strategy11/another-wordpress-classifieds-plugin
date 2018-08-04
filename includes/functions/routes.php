@@ -444,7 +444,7 @@ function awpcp_get_edit_listing_url( $listing ) {
  */
 function awpcp_get_edit_listing_direct_url( $listing ) {
     if ( awpcp()->settings->get_option( 'enable-user-panel' ) ) {
-        return add_query_arg( array( 'action' => 'edit', 'id' => $listing->ID ), awpcp_get_user_panel_url() );
+        return get_edit_post_link( $listing );
     } else {
         return awpcp_get_edit_listing_page_url_with_listing_id( $listing );
     }
