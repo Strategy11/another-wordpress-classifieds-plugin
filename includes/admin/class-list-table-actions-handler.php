@@ -106,6 +106,12 @@ class AWPCP_ListTableActionsHandler {
      * @since 4.0.0
      */
     public function handle_action( $sendback, $action, $posts_ids ) {
+        $redirect_to = $this->request->param( 'redirect_to' );
+
+        if ( $redirect_to ) {
+            $sendback = $redirect_to;
+        }
+
         if ( ! isset( $this->actions[ $action ] ) ) {
             return $sendback;
         }

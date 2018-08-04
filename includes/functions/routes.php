@@ -533,11 +533,23 @@ function awpcp_get_renew_ad_url($ad_id) {
 
     if ( get_awpcp_option( 'enable-user-panel' ) == 1 ) {
         $url = awpcp_get_user_panel_url();
-        $params = array( 'id' => $ad_id, 'action' => 'renew', 'awpcprah' => $hash );
-    } else {
-        $url = awpcp_get_page_url('renew-ad-page-name');
-        $params = array( 'ad_id' => $ad_id, 'awpcprah' => $hash );
+
+        $params = [
+            'ids'         => $ad_id,
+            'action'      => 'renew',
+            'awpcprah'    => $hash,
+            'redirect_to' => $url
+        ];
+
+        return wp_nonce_url( add_query_arg( urlencode_deep( $params ), $url ), 'bulk-posts' );
     }
+
+    $url = awpcp_get_page_url('renew-ad-page-name');
+
+    $params =  [
+        'ad_id'    => $ad_id,
+        'awpcprah' => $hash,
+    ];
 
     return add_query_arg( urlencode_deep( $params ), $url );
 }
