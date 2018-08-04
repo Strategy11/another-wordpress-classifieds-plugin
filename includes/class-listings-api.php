@@ -112,30 +112,53 @@ class AWPCP_ListingsAPI {
             throw new AWPCP_Exception( $message );
         }
 
-        $metadata = wp_parse_args( $listing_data['metadata'], array(
-            '_awpcp_payment_status' => 'Unpaid',
+        $listing = $this->listings->get( $listing_id );
+
+        $this->update_listing_terms( $listing, $listing_data['terms'] );
+        $this->update_listing_metadata( $listing, $this->get_default_listing_metadata( $listing_data['metadata'] ) );
+
+        return $listing;
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function update_listing_terms( $listing, $terms ) {
+        foreach ( $terms as $taxonomy => $taxonomy_terms ) {
+            $this->wordpress->set_object_terms( $listing->ID, $taxonomy_terms, $taxonomy );
+        }
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function update_listing_metadata( $listing, $metadata ) {
+        if ( isset( $metadata['_awpcp_start_date'] ) ) {
+            $metadata['_awpcp_most_recent_start_date'] = $metadata['_awpcp_start_date'];
+        }
+
+        foreach ( $metadata as $field_name => $field_value ) {
+            $this->wordpress->update_post_meta( $listing->ID, $field_name, $field_value );
+        }
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function get_default_listing_metadata( $metadata ) {
+        $metadata = wp_parse_args( $metadata, array(
+            '_awpcp_payment_status'         => 'Unpaid',
             // TODO: Do we need to alter this when someones changes the start date?
-            '_awpcp_most_recent_start_date' => $now,
-            '_awpcp_renewed_date' => '',
+            '_awpcp_most_recent_start_date' => current_time( 'mysql' ),
+            '_awpcp_renewed_date'           => '',
         ) );
 
         if ( ! isset( $metadata['_awpcp_access_key'] ) || empty( $metadata['_awpcp_access_key'] ) ) {
             $metadata['_awpcp_access_key'] = $this->generate_access_key();
         }
 
-        if ( isset( $metadata['_awpcp_start_date'] ) ) {
-            $metadata['_awpcp_most_recent_start_date'] = $metadata['_awpcp_start_date'];
-        }
+        return $metadata;
 
-        foreach ( $listing_data['terms'] as $taxonomy => $terms ) {
-            $this->wordpress->set_object_terms( $listing_id, $terms, $taxonomy );
-        }
-
-        foreach ( $metadata as $field_name => $field_value ) {
-            $this->wordpress->update_post_meta( $listing_id, $field_name, $field_value );
-        }
-
-        return $this->listings->get( $listing_id );
     }
 
     /**
@@ -168,13 +191,8 @@ class AWPCP_ListingsAPI {
             throw new AWPCP_Exception( $message );
         }
 
-        foreach ( $listing_data['terms'] as $taxonomy => $terms ) {
-            $this->wordpress->set_object_terms( $listing_id, $terms, $taxonomy );
-        }
-
-        foreach ( $listing_data['metadata'] as $field_name => $field_value ) {
-            $this->wordpress->update_post_meta( $listing_id, $field_name, $field_value );
-        }
+        $this->update_listing_terms( $listing, $listing_data['terms'] );
+        $this->update_listing_metadata( $listing, $listing_data['metadata'] );
 
         if ( isset( $listing_data['regions'] ) && isset( $listing_data['regions-allowed'] ) ) {
             awpcp_basic_regions_api()->update_ad_regions( $listing, $listing_data['regions'], $listing_data['regions-allowed'] );

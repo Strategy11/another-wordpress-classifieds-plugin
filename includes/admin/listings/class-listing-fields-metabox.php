@@ -150,6 +150,13 @@ class AWPCP_ListingFieldsMetabox {
             return;
         }
 
+        $this->try_to_save( $post );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function try_to_save( $post ) {
         $data   = $this->form_fields_data->get_posted_data( $post );
         $errors = $this->form_fields_validator->get_validation_errors( $data, $post );
 
@@ -165,6 +172,10 @@ class AWPCP_ListingFieldsMetabox {
 
             unset( $errors['start_date'] );
             unset( $errors['end_date'] );
+        }
+
+        if ( ! $this->wordpress->get_post_meta( $post->ID, '_awpcp_access_key', true ) ) {
+            $data['metadata'] = $this->listings_logic->get_default_listing_metadata( $data['metadata'] );
         }
 
         $this->save_in_progress = true;
