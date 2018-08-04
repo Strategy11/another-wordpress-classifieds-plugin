@@ -88,7 +88,7 @@ class AWPCP_EditListingPage extends AWPCP_Page {
 
         $listing = $this->get_ad();
 
-        if ( ! $this->authorization->is_current_user_allowed_to_edit_listing( $listing ) ) {
+        if ( ! $this->is_current_user_allowed_to_edit_listing( $listing ) ) {
             $message = __( 'You are not allowed to edit the specified classified.', 'another-wordpress-classifieds-plugin' );
             return $this->render( 'content', awpcp_print_error( $message ) );
         }
@@ -116,6 +116,27 @@ class AWPCP_EditListingPage extends AWPCP_Page {
      */
     private function get_current_step() {
         return $this->request->post( 'step', $this->request->param( 'step' ) );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function is_current_user_allowed_to_edit_listing( $listing ) {
+        if ( $this->request_includes_valid_edit_nonce( $listing ) ) {
+            return true;
+        }
+
+        return $this->authorization->is_current_user_allowed_to_edit_listing( $listing );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function request_includes_valid_edit_nonce( $listing ) {
+        $nonce  = $this->request->post( 'edit_nonce', $this->request->param( 'edit_nonce' ) );
+        $action = "awpcp-edit-listing-{$listing->ID}";
+
+        return wp_verify_nonce( $nonce, $action );
     }
 
     /**

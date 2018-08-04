@@ -276,6 +276,7 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
         $redirect_params = [
             'step'       => 'finish',
             'listing_id' => $listing->ID,
+            'edit_nonce' => wp_create_nonce( "awpcp-edit-listing-{$listing->ID}" ),
         ];
 
         $response = [

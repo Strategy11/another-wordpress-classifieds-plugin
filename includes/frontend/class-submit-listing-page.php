@@ -55,7 +55,7 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
      */
     public function dispatch() {
         try {
-            return $this->do_current_step();
+            return $this->process_request();
         } catch ( AWPCP_Exception $e ) {
             return $this->render( 'content', $e->getMessage() );
         }
@@ -65,9 +65,8 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
      * @since 4.0.0
      * @throws AWPCP_Exception If the current user is not allowed to access the page.
      * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-     * @SuppressWarnings(PHPMD.NPathComplexity)
      */
-    private function do_current_step() {
+    private function process_request() {
         if ( ! $this->authorization->is_current_user_allowed_to_submit_listing() ) {
             $message = __( 'Users are not allowed to publish classifieds at this time.', 'another-wordpress-classifieds-plugin' );
             throw new AWPCP_Exception( awpcp_print_error( $message ) );
@@ -77,9 +76,10 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
             return $this->do_login_step();
         }
 
-        $listing = $this->get_listing();
+        $listing     = $this->get_listing();
+        $transaction = $this->get_transaction();
 
-        if ( $listing && ! $this->authorization->is_current_user_allowed_to_edit_listing( $listing ) ) {
+        if ( is_object( $listing ) && ! is_object( $transaction ) && ! $this->authorization->is_current_user_allowed_to_edit_listing( $listing ) ) {
             $message = __( 'You are not allowed to edit the specified classified.', 'another-wordpress-classifieds-plugin' );
             return $this->render( 'content', awpcp_print_error( $message ) );
         }
@@ -87,12 +87,21 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
         // If payment information cannot be changed and there is no transaction available,
         // it is likely that the listing was already posted and someone is trying to
         // edit it from the Submit Listing page.
-        if ( $listing && ! $this->listings_logic->can_payment_information_be_modified_during_submit( $listing ) && ! $this->get_transaction() ) {
+        if ( is_object( $listing ) && ! is_object( $transaction ) && ! $this->listings_logic->can_payment_information_be_modified_during_submit( $listing ) ) {
             $message = __( 'The information for the selected classified was already saved.', 'another-wordpress-classifieds-plugin' );
 
             return $this->render( 'content', awpcp_print_error( $message ) );
         }
 
+        return $this->do_current_step();
+    }
+
+    /**
+     * @since 4.0.0
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     * @SuppressWarnings(PHPMD.NPathComplexity)
+     */
+    private function do_current_step() {
         $step = $this->get_current_step();
 
         switch ( $step ) {
