@@ -42,8 +42,10 @@ function( $, settings ) {
         },
 
         onUserUpdated: function( event, user ) {
-            this.state.userPaymentTerms = user.payment_terms;
-            this.update();
+            if ( user && user.payment_terms ) {
+                this.state.userPaymentTerms = user.payment_terms;
+                this.update();
+            }
         },
 
         onChange: function() {
