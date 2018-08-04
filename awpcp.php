@@ -1638,7 +1638,9 @@ class AWPCP {
             $options = array('ajaxurl' => awpcp_ajaxurl());
             wp_localize_script('awpcp-admin-general', 'AWPCPAjaxOptions', $options);
         } else if ( ! is_admin() ) {
-            if ( awpcp_query()->is_single_listing_page() ) {
+            $query = awpcp_query();
+
+            if ( $query->is_post_listings_page() || $query->is_edit_listing_page() || $query->is_single_listing_page() ) {
                 awpcp_maybe_include_lightbox_style();
             }
 
