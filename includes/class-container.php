@@ -6,7 +6,7 @@
 /**
  * A container class greatly inspired by https://carlalexander.ca/dependency-injection-wordpress/
  *
- * @since 4.0
+ * @since 4.0.0
  */
 class AWPCP_Container implements ArrayAccess {
 

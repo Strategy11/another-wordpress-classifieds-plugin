@@ -367,7 +367,7 @@ function awpcp_admin_capability() {
  * We are using read as an alias for edit_classifieds_listings. If a user can `read`,
  * he or she can `edit_classifieds_listings`.
  *
- * @since next-release
+ * @since 4.0.0
  */
 function awpcp_user_capability() {
     return 'read';
@@ -1313,7 +1313,7 @@ function awpcp_format_money($value) {
 }
 
 /**
- * @since 4.0
+ * @since 4.0.0
  */
 function awpcp_get_default_formatted_amount_template() {
     if ( get_awpcp_option( 'show-currency-symbol' ) != 'do-not-show-currency-symbol' ) {
@@ -1327,7 +1327,7 @@ function awpcp_get_default_formatted_amount_template() {
 
 /**
  * @access private
- * @since 4.0
+ * @since 4.0.0
  */
 function awpcp_get_formatted_amount_template( $show_currency_symbol ) {
     $symbol_position = get_awpcp_option( 'show-currency-symbol' );
@@ -1639,7 +1639,7 @@ function awpcp_module_not_compatible_notice( $module, $installed_version ) {
 /**
  * Use awpcp_html_attributes instead.
  *
- * @deprecated since next-release
+ * @deprecated since 4.0.0
  */
 function awpcp_render_attributes($attrs) {
     $attributes = array();
@@ -1652,7 +1652,7 @@ function awpcp_render_attributes($attrs) {
 }
 
 /**
- * @since next-release
+ * @since 4.0.0
  */
 function awpcp_html_attributes( $attributes ) {
     $output = array();
@@ -1683,7 +1683,7 @@ function awpcp_html_hidden_fields( $fields ) {
 }
 
 /**
- * @since next-release
+ * @since 4.0.0
  */
 function awpcp_html_image( $params ) {
     $params = wp_parse_args( $params, array(
@@ -2163,7 +2163,7 @@ function awpcp_admin_sender_email_address($include_contact_name=false) {
 }
 
 /**
- * @since next-release
+ * @since 4.0.0
  */
 function awpcp_admin_sender_name() {
     if ( awpcp_get_option( 'sent-emails-using-wordpress-email-address' ) ) {
@@ -2330,7 +2330,7 @@ function awpcp_maybe_add_thickbox() {
 }
 
 /**
- * @since next-release
+ * @since 4.0.0
  */
 function awpcp_maybe_include_lightbox_script() {
     if ( ! get_awpcp_option( 'awpcp_thickbox_disabled' ) ) {
@@ -2339,7 +2339,7 @@ function awpcp_maybe_include_lightbox_script() {
 }
 
 /**
- * @since next-release
+ * @since 4.0.0
  */
 function awpcp_maybe_include_lightbox_style() {
     if ( ! get_awpcp_option( 'awpcp_thickbox_disabled' ) ) {
@@ -2578,7 +2578,7 @@ function awpcp_unique_filename( $path, $filename, $directories ) {
  *
  * See: https://github.com/drodenbaugh/awpcp/issues/1222#issuecomment-119742743
  *
- * @since next-release
+ * @since 4.0.0
  */
 function awpcp_sanitize_file_name( $filename ) {
     $sanitize_file_name = sanitize_file_name( $filename );
@@ -2613,7 +2613,7 @@ function awpcp_register_deactivation_hook( $__FILE__, $callback ) {
 }
 
 /**
- * @since next-release
+ * @since 4.0.0
  */
 function awpcp_unregister_widget_if_exists( $widget_class ) {
     global $wp_widget_factory;

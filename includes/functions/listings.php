@@ -101,7 +101,7 @@ function awpcp_display_listings_in_page( $query, $context, $options = array() ) 
 }
 
 /**
- * @since 4.0
+ * @since 4.0.0
  */
 function awpcp_render_classifieds_bar( $components = array() ) {
     return awpcp_classifieds_bar()->render( $components );
