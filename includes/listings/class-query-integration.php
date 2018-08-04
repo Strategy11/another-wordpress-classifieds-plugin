@@ -416,8 +416,6 @@ class AWPCP_QueryIntegration {
     }
 
     /**
-     * TODO: Convert this into an EXISTS. I think there is no need to compare.
-     *
      * @param array $query_vars     An array of query vars.
      * @since 4.0.0
      */
@@ -425,9 +423,7 @@ class AWPCP_QueryIntegration {
         if ( isset( $query_vars['classifieds_query']['is_awaiting_verification'] ) ) {
             $query_vars['meta_query'][] = array(
                 'key'     => '_awpcp_verification_needed',
-                'value'   => true,
-                'compare' => '=',
-                'type'    => 'BINARY',
+                'compare' => 'EXISTS',
             );
         }
 
