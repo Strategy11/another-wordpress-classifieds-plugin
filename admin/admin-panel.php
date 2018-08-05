@@ -12,7 +12,10 @@
 require_once(AWPCP_DIR . '/admin/admin-panel-users.php');
 
 function awpcp_admin_panel() {
-    return new AWPCP_AdminPanel( awpcp_upgrade_tasks_manager() );
+    return new AWPCP_AdminPanel(
+        awpcp_upgrade_tasks_manager(),
+        awpcp()->container['Request']
+    );
 }
 
 /**
@@ -22,8 +25,14 @@ class AWPCP_AdminPanel {
 
     private $upgrade_tasks;
 
-	public function __construct( $upgrade_tasks ) {
+    /**
+     * @var Request
+     */
+    private $request;
+
+    public function __construct( $upgrade_tasks, $request ) {
         $this->upgrade_tasks = $upgrade_tasks;
+        $this->request       = $request;
 
 		$this->title = awpcp_admin_page_title();
 		$this->menu = _x('Classifieds', 'awpcp admin menu', 'another-wordpress-classifieds-plugin');
@@ -289,12 +298,18 @@ class AWPCP_AdminPanel {
             9900
         );
 
+        $quick_view_admin_page_slug = 'awpcp-admin-quick-view-listing';
+
+        if ( $this->request->param( 'page' ) !== $quick_view_admin_page_slug ) {
+            return;
+        }
+
         // TODO: Should subscribers have access to this view?
         $router->add_admin_subpage(
             'edit.php?post_type=awpcp_listing',
             __( 'Quick View', 'another-wordpress-classifieds-plugin' ),
             awpcp_admin_page_title( __( 'Listing Quick View', 'another-wordpress-classifieds-plugin' ) ),
-            'awpcp-admin-quick-view-listing',
+            $quick_view_admin_page_slug,
             function() {
                 return awpcp()->container['QuickViewListingAdminPage'];
             },
