@@ -56,12 +56,12 @@ class AWPCP_SaveSubmitListingSection {
      * @since 4.0.0
      */
     public function render( $listing ) {
-        $section_label = _x( 'Update classified', 'save submit listing section', 'another-wordpress-classifieds-plugin' );
-        $button_label  = _x( 'Update Classified', 'save submit listing section', 'another-wordpress-classifieds-plugin' );
+        $section_label = _x( 'Update ad', 'save submit listing section', 'another-wordpress-classifieds-plugin' );
+        $button_label  = _x( 'Update Ad', 'save submit listing section', 'another-wordpress-classifieds-plugin' );
 
         if ( is_null( $listing ) ) {
-            $section_label = _x( 'Create classified', 'save submit listing section', 'another-wordpress-classifieds-plugin' );
-            $button_label  = _x( 'Create Classified', 'save submit listing section', 'another-wordpress-classifieds-plugin' );
+            $section_label = _x( 'Create ad', 'save submit listing section', 'another-wordpress-classifieds-plugin' );
+            $button_label  = _x( 'Create Ad', 'save submit listing section', 'another-wordpress-classifieds-plugin' );
         }
 
         $params = compact( 'section_label', 'button_label' );

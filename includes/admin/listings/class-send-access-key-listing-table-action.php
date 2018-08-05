@@ -88,7 +88,7 @@ class AWPCP_SendAccessKeyListingTableAction implements AWPCP_ListTableActionInte
 
         $message->to[] = $recipient;
 
-        // translators: %s is the title of the classified.
+        // translators: %s is the title of the ad.
         $message->subject = sprintf( __( 'Access Key for "%s"', 'another-wordpress-classifieds-plugin' ), $listing_title );
 
         $message->prepare(

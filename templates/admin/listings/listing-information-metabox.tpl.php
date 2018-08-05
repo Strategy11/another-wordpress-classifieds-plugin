@@ -22,7 +22,7 @@
             </li>
             <?php else : ?>
             <li>
-                <span><?php echo esc_html_x( "This classified hasn't been renewed yet.", 'listing information metabox', 'another-wordpress-classifieds-plugin' ); ?></span>
+                <span><?php echo esc_html_x( "This ad hasn't been renewed yet.", 'listing information metabox', 'another-wordpress-classifieds-plugin' ); ?></span>
             </li>
             <?php endif; ?>
             <li>

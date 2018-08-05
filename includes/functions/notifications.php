@@ -30,7 +30,7 @@ function awpcp_send_listing_posted_notification_to_moderators( $listing, $transa
 
     $admin_message = new AWPCP_Email;
     $admin_message->to = $email_recipients;
-    $admin_message->subject = __( 'New classified listing created', 'another-wordpress-classifieds-plugin' );
+    $admin_message->subject = __( 'New classified ad created', 'another-wordpress-classifieds-plugin' );
 
     $params = array( 'action' => 'view', 'id' => $listing->ID );
     $url = add_query_arg( urlencode_deep( $params ), awpcp_get_admin_listings_url() );

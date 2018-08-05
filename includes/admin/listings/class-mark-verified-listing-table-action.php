@@ -74,14 +74,14 @@ class AWPCP_MarkVerifiedListingTableAction implements AWPCP_ListTableActionInter
      */
     protected function get_message( $code, $count ) {
         if ( 'success' === $code ) {
-            $message = _n( 'Classified marked as verified.', '{count} classifieds marked as verified.', $count, 'another-wordpress-classifieds-plugin' );
+            $message = _n( 'Ad marked as verified.', '{count} ads marked as verified.', $count, 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '{count}', $count, $message );
 
             return awpcp_render_dismissible_success_message( $message );
         }
 
         if ( 'error' === $code ) {
-            $message = _n( 'An error occurred trying to mark a classified as verified.', 'An error occurred trying to mark {count} classifieds as verified.', $count, 'another-wordpress-classifieds-plugin' );
+            $message = _n( 'An error occurred trying to mark an ad as verified.', 'An error occurred trying to mark {count} ads as verified.', $count, 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '{count}', $count, $message );
 
             return awpcp_render_dismissible_error_message( $message );

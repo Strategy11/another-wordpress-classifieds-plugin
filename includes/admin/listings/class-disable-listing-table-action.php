@@ -96,7 +96,7 @@ class AWPCP_DisableListingTableAction implements AWPCP_ListTableActionInterface 
      */
     private function get_message( $code, $count ) {
         if ( 'success' === $code ) {
-            $message = _n( 'The classified was successfully disabled.', '{count} classifieds were successfully disabled.', $count, 'another-wordpress-classifieds-plugin' );
+            $message = _n( 'The ad was successfully disabled.', '{count} ads were successfully disabled.', $count, 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '{count}', $count, $message );
 
             return awpcp_render_dismissible_success_message( $message );

@@ -90,14 +90,14 @@ class AWPCP_MarkUnsoldListingTableAction implements AWPCP_ListTableActionInterfa
      */
     private function get_message( $code, $count ) {
         if ( 'success' === $code ) {
-            $message = _n( 'Classified marked as unsold.', '{count} classifieds marked as unsold.', $count, 'another-wordpress-classifieds-plugin' );
+            $message = _n( 'Ad marked as unsold.', '{count} ads marked as unsold.', $count, 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '{count}', $count, $message );
 
             return awpcp_render_dismissible_success_message( $message );
         }
 
         if ( 'error' === $code ) {
-            $message = _n( 'An error occurred trying to mark a classified as unsold.', 'An error occurred trying to mark {count} classifieds as unsold.', $count, 'another-wordpress-classifieds-plugin' );
+            $message = _n( 'An error occurred trying to mark an ad as unsold.', 'An error occurred trying to mark {count} ads as unsold.', $count, 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '{count}', $count, $message );
 
             return awpcp_render_dismissible_error_message( $message );

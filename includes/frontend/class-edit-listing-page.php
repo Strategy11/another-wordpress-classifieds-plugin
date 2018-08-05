@@ -89,14 +89,14 @@ class AWPCP_EditListingPage extends AWPCP_Page {
         $listing = $this->get_ad();
 
         if ( ! $this->is_current_user_allowed_to_edit_listing( $listing ) ) {
-            $message = __( 'You are not allowed to edit the specified classified.', 'another-wordpress-classifieds-plugin' );
+            $message = __( 'You are not allowed to edit the specified ad.', 'another-wordpress-classifieds-plugin' );
             return $this->render( 'content', awpcp_print_error( $message ) );
         }
 
         // If payment information is not consolidated yet, the listing needs to be
         // edited through the Submit Listing page.
         if ( $this->listings_logic->can_payment_information_be_modified_during_submit( $listing ) ) {
-            $message = __( 'The selected classified cannot be edited right now.', 'another-wordpress-classifieds-plugin' );
+            $message = __( 'The selected ad cannot be edited right now.', 'another-wordpress-classifieds-plugin' );
 
             return $this->render( 'content', awpcp_print_error( $message ) );
         }

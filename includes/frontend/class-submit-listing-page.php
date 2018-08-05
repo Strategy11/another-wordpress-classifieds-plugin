@@ -68,7 +68,7 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
      */
     private function process_request() {
         if ( ! $this->authorization->is_current_user_allowed_to_submit_listing() ) {
-            $message = __( 'Users are not allowed to publish classifieds at this time.', 'another-wordpress-classifieds-plugin' );
+            $message = __( 'Users are not allowed to publish ads at this time.', 'another-wordpress-classifieds-plugin' );
             throw new AWPCP_Exception( awpcp_print_error( $message ) );
         }
 
@@ -80,7 +80,7 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
         $transaction = $this->get_transaction();
 
         if ( is_object( $listing ) && ! is_object( $transaction ) && ! $this->authorization->is_current_user_allowed_to_edit_listing( $listing ) ) {
-            $message = __( 'You are not allowed to edit the specified classified.', 'another-wordpress-classifieds-plugin' );
+            $message = __( 'You are not allowed to edit the specified ad.', 'another-wordpress-classifieds-plugin' );
             return $this->render( 'content', awpcp_print_error( $message ) );
         }
 
@@ -88,7 +88,7 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
         // it is likely that the listing was already posted and someone is trying to
         // edit it from the Submit Listing page.
         if ( is_object( $listing ) && ! is_object( $transaction ) && ! $this->listings_logic->can_payment_information_be_modified_during_submit( $listing ) ) {
-            $message = __( 'The information for the selected classified was already saved.', 'another-wordpress-classifieds-plugin' );
+            $message = __( 'The information for the selected ad was already saved.', 'another-wordpress-classifieds-plugin' );
 
             return $this->render( 'content', awpcp_print_error( $message ) );
         }

@@ -129,28 +129,28 @@ class AWPCP_RenewListingTableAction implements AWPCP_ListTableActionInterface {
      */
     private function get_message( $code, $count ) {
         if ( 'success' === $code ) {
-            $message = _n( 'A classified was renewed successfully.', '{count} classifieds were renewed successfully.', $count, 'another-wordpress-classifieds-plugin' );
+            $message = _n( 'Ad renewed successfully.', '{count} ads renewed successfully.', $count, 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '{count}', $count, $message );
 
             return awpcp_render_dismissible_success_message( $message );
         }
 
         if ( 'not-expired' === $code ) {
-            $message = _n( "A classified couldn't be renewed because it hasn't expired yet.", "{count} classifieds couldn't be renewed because they haven't expired yet.", $count, 'another-wordpress-classifieds-plugin' );
+            $message = _n( "The ad couldn't be renewed because it hasn't expired yet.", "{count} ads couldn't be renewed because they haven't expired yet.", $count, 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '{count}', $count, $message );
 
             return awpcp_render_dismissible_error_message( $message );
         }
 
         if ( 'no-payment' === $code ) {
-            $message = _n( "A classified couldn't be renewed because we couldn't find the associated payment.", "{count} classifieds couldn't be renewed because we couldn't finde the associated payments.", $count, 'another-wordpress-classifieds-plugin' );
+            $message = _n( "The ad couldn't be renewed because we couldn't find the associated payment.", "{count} ads couldn't be renewed because we couldn't finde the associated payments.", $count, 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '{count}', $count, $message );
 
             return awpcp_render_dismissible_error_message( $message );
         }
 
         if ( 'error' === $code ) {
-            $message = _n( 'There was an error trying to renew one classified.', 'There was an error trying to renew {count} classifieds.', $count, 'another-wordpress-classifieds-plugin' );
+            $message = _n( 'There was an error trying to renew one ad.', 'There was an error trying to renew {count} ads.', $count, 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '{count}', $count, $message );
 
             return awpcp_render_dismissible_error_message( $message );

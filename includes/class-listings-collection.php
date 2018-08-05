@@ -100,7 +100,7 @@ class AWPCP_ListingsCollection {
     }
 
     /**
-     * @param array $identifiers    An array of classified IDs.
+     * @param array $identifiers    An array of classifieds IDs.
      * @since 3.3
      * @since 4.0.0     Uses Classifieds Query Integration.
      */

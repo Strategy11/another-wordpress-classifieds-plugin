@@ -113,14 +113,14 @@ class AWPCP_MarkAsSPAMListingTableAction implements AWPCP_ListTableActionInterfa
      */
     private function get_message( $code, $count ) {
         if ( 'success' === $code ) {
-            $message = _n( 'The classified was marked as SPAM and removed.', '{count} classifieds were marked as SPAM and removed.', $count, 'another-wordpress-classifieds-plugin' );
+            $message = _n( 'The ad was marked as SPAM and removed.', '{count} ads were marked as SPAM and removed.', $count, 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '{count}', $count, $message );
 
             return awpcp_render_dismissible_success_message( $message );
         }
 
         if ( 'error' === $code ) {
-            $message = _n( 'There was an error trying to mark the classified as SPAM.', 'There was an error trying to mark {count} classifieds as SPAM.', $count, 'another-wordpress-classifieds-plugin' );
+            $message = _n( 'There was an error trying to mark the ad as SPAM.', 'There was an error trying to mark {count} ads as SPAM.', $count, 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '{count}', $count, $message );
 
             return awpcp_render_dismissible_error_message( $message );

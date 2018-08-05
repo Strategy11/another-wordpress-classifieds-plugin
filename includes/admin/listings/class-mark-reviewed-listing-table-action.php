@@ -97,14 +97,14 @@ class AWPCP_MarkReviewedListingTableAction implements AWPCP_ListTableActionInter
      */
     private function get_message( $code, $count ) {
         if ( 'success' === $code ) {
-            $message = _n( 'Classified marked as reviewed.', '{count} classifieds marked as reviewed.', $count, 'another-wordpress-classifieds-plugin' );
+            $message = _n( 'Ad marked as reviewed.', '{count} ads marked as reviewed.', $count, 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '{count}', $count, $message );
 
             return awpcp_render_dismissible_success_message( $message );
         }
 
         if ( 'error' === $code ) {
-            $message = _n( 'An error occurred trying to mark a classified as reviewed.', 'An error occurred trying to mark {count} classifieds as reviewed.', $count, 'another-wordpress-classifieds-plugin' );
+            $message = _n( 'An error occurred trying to mark an ad as reviewed.', 'An error occurred trying to mark {count} ads as reviewed.', $count, 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '{count}', $count, $message );
 
             return awpcp_render_dismissible_error_message( $message );

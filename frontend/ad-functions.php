@@ -176,7 +176,7 @@ function awpcp_ad_renewed_user_email( $ad ) {
  * @deprecated 4.0.0    Use ListingRenewedEmailNotifications::send_admin_notification().
  */
 function awpcp_ad_renewed_admin_email( $ad, $body ) {
-	$subject = __( 'The classifieds listing "%s" has been successfully renewed.', 'another-wordpress-classifieds-plugin' );
+	$subject = __( 'The ad "%s" has been successfully renewed.', 'another-wordpress-classifieds-plugin' );
 	$subject = sprintf( $subject, awpcp_listing_renderer()->get_listing_title( $ad ) );
 
 	$mail = new AWPCP_Email;

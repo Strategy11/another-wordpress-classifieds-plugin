@@ -148,7 +148,7 @@ class AWPCP_EmailSettings {
 
         $settings_manager->add_section($group, __('Renew Ad Message', 'another-wordpress-classifieds-plugin'), 'renew-ad-message', 10, array($settings_manager, 'section'));
 
-		$settings_manager->add_setting( $key, 'renew-ad-email-subject', __( 'Subject for Renew Ad email', 'another-wordpress-classifieds-plugin' ), 'textfield', __( 'Your classifieds listing Ad will expire in %d days.', 'another-wordpress-classifieds-plugin' ), __( 'Subject line for email sent out when an Ad is about to expire.', 'another-wordpress-classifieds-plugin' ) );
+		$settings_manager->add_setting( $key, 'renew-ad-email-subject', __( 'Subject for Renew Ad email', 'another-wordpress-classifieds-plugin' ), 'textfield', __( 'Your ad will expire in %d days.', 'another-wordpress-classifieds-plugin' ), __( 'Subject line for email sent out when an Ad is about to expire.', 'another-wordpress-classifieds-plugin' ) );
 		$settings_manager->add_setting( $key, 'renew-ad-email-body', __( 'Body for Renew Ad email', 'another-wordpress-classifieds-plugin' ), 'textarea', __( 'This is an automated notification that your Classified Ad will expire in %d days.', 'another-wordpress-classifieds-plugin' ), __( 'Message body text for email sent out when an Ad is about to expire. Use %d as placeholder for the number of days before the Ad expires.', 'another-wordpress-classifieds-plugin' ) );
 
 		// Section: Ad Renewed Message
@@ -157,8 +157,8 @@ class AWPCP_EmailSettings {
 
         $settings_manager->add_section($group, __('Ad Renewed Message', 'another-wordpress-classifieds-plugin'), 'ad-renewed-message', 10, array($settings_manager, 'section'));
 
-		$settings_manager->add_setting( $key, 'ad-renewed-email-subject', __( 'Subject for Ad Renewed email', 'another-wordpress-classifieds-plugin' ), 'textfield', __( 'Your classifieds listing "%s" has been successfully renewed.', 'another-wordpress-classifieds-plugin' ), __( 'Subject line for email sent out when an Ad is successfully renewed.', 'another-wordpress-classifieds-plugin' ) );
-		$settings_manager->add_setting( $key, 'ad-renewed-email-body', __( 'Body for Renew Ad email', 'another-wordpress-classifieds-plugin' ), 'textarea', __( 'Your classifieds listing Ad has been successfully renewed. More information below:', 'another-wordpress-classifieds-plugin' ), __( 'Message body text for email sent out when an Ad is successfully renewed. ', 'another-wordpress-classifieds-plugin' ) );
+		$settings_manager->add_setting( $key, 'ad-renewed-email-subject', __( 'Subject for Ad Renewed email', 'another-wordpress-classifieds-plugin' ), 'textfield', __( 'Your ad "%s" has been successfully renewed.', 'another-wordpress-classifieds-plugin' ), __( 'Subject line for email sent out when an Ad is successfully renewed.', 'another-wordpress-classifieds-plugin' ) );
+		$settings_manager->add_setting( $key, 'ad-renewed-email-body', __( 'Body for Renew Ad email', 'another-wordpress-classifieds-plugin' ), 'textarea', __( 'Your ad has been successfully renewed. More information below:', 'another-wordpress-classifieds-plugin' ), __( 'Message body text for email sent out when an Ad is successfully renewed. ', 'another-wordpress-classifieds-plugin' ) );
 
 		// Section: Ad Expired Message
 
@@ -166,8 +166,8 @@ class AWPCP_EmailSettings {
 
         $settings_manager->add_section($group, __('Ad Expired Message', 'another-wordpress-classifieds-plugin'), 'ad-expired-message', 10, array($settings_manager, 'section'));
 
-		$settings_manager->add_setting( $key, 'adexpiredsubjectline', __( 'Subject for Ad Expired email', 'another-wordpress-classifieds-plugin' ), 'textfield', __( 'Your classifieds listing at %s has expired', 'another-wordpress-classifieds-plugin' ), __( 'Subject line for email sent out when an ad has auto-expired', 'another-wordpress-classifieds-plugin' ) );
-		$settings_manager->add_setting( $key, 'adexpiredbodymessage', __( 'Body for Ad Expired email', 'another-wordpress-classifieds-plugin' ), 'textarea', __( 'This is an automated notification that your Classified Ad has expired.', 'another-wordpress-classifieds-plugin' ), __( 'Message body text for email sent out when an ad has auto-expired', 'another-wordpress-classifieds-plugin' ) );
+		$settings_manager->add_setting( $key, 'adexpiredsubjectline', __( 'Subject for Ad Expired email', 'another-wordpress-classifieds-plugin' ), 'textfield', __( 'Your ad at %s has expired', 'another-wordpress-classifieds-plugin' ), __( 'Subject line for email sent out when an ad has auto-expired', 'another-wordpress-classifieds-plugin' ) );
+		$settings_manager->add_setting( $key, 'adexpiredbodymessage', __( 'Body for Ad Expired email', 'another-wordpress-classifieds-plugin' ), 'textarea', __( 'This is an automated notification that your ad has expired.', 'another-wordpress-classifieds-plugin' ), __( 'Message body text for email sent out when an ad has auto-expired', 'another-wordpress-classifieds-plugin' ) );
     }
 
     /**

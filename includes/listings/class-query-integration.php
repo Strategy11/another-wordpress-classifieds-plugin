@@ -382,7 +382,7 @@ class AWPCP_QueryIntegration {
 
     /**
      * TODO: Should we handle this with a single meta parameter that is removed
-     *       when the classified no longer needs to be approved?
+     *       when the classified ad no longer needs to be approved?
      *
      * @param array $query_vars     An array of query vars.
      * @since 4.0.0

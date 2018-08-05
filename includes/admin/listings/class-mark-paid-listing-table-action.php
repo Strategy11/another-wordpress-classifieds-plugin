@@ -97,14 +97,14 @@ class AWPCP_MarkPaidListingTableAction implements AWPCP_ListTableActionInterface
      */
     private function get_message( $code, $count ) {
         if ( 'success' === $code ) {
-            $message = _n( 'Classified marked as paid.', '{count} classifieds marked as paid.', $count, 'another-wordpress-classifieds-plugin' );
+            $message = _n( 'Ad marked as paid.', '{count} ads marked as paid.', $count, 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '{count}', $count, $message );
 
             return awpcp_render_dismissible_success_message( $message );
         }
 
         if ( 'error' === $code ) {
-            $message = _n( 'An error occurred trying to mark a classified as paid.', 'An error occurred trying to mark {count} classifieds as paid.', $count, 'another-wordpress-classifieds-plugin' );
+            $message = _n( 'An error occurred trying to mark an ad as paid.', 'An error occurred trying to mark {count} ads as paid.', $count, 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '{count}', $count, $message );
 
             return awpcp_render_dismissible_error_message( $message );

@@ -825,7 +825,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         } else if ($is_admin_user) {
             $messages[] = __("You are logged in as an administrator. Any payment steps will be skipped.", 'another-wordpress-classifieds-plugin');
         } else if (empty($errors)) {
-            $messages[] = __("Fill out the form below to post your classified Ad.", 'another-wordpress-classifieds-plugin');
+            $messages[] = __( "Fill out the form below to post your classified ad.", 'another-wordpress-classifieds-plugin' );
         }
 
         if (!empty($errors)) {

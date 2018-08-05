@@ -133,10 +133,10 @@ class AWPCP_GeneralSettings {
 
         $settings_manager->add_setting( [
             'id'          => 'uiwelcome',
-            'name'        => __( 'Welcome message in Classified page', 'another-wordpress-classifieds-plugin' ),
+            'name'        => __( 'Welcome message in Classifieds page', 'another-wordpress-classifieds-plugin' ),
             'type'        => 'textarea',
             'default'     => __( 'Looking for a job? Trying to find a date? Looking for an apartment? Browse our classifieds. Have a job to advertise? An apartment to rent? Post a Classified Ad.', 'another-wordpress-classifieds-plugin' ),
-            'description' => __( 'The welcome text for your classified page on the user side', 'another-wordpress-classifieds-plugin' ),
+            'description' => __( 'The welcome text for your classifieds page on the user side', 'another-wordpress-classifieds-plugin' ),
             'section'     => 'general-settings',
         ] );
 

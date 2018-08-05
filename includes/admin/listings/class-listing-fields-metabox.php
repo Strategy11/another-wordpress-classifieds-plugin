@@ -4,7 +4,7 @@
  */
 
 /**
- * Metabox to collect additional deatils for a classified.
+ * Metabox to collect additional deatils for an ad.
  */
 class AWPCP_ListingFieldsMetabox {
 

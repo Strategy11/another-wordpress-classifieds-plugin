@@ -105,35 +105,35 @@ class AWPCP_SendToFacebookPageListingTableAction implements AWPCP_ListTableActio
      */
     private function get_message( $code, $count ) {
         if ( 'success' === $code ) {
-            $message = _n( 'Classified sent to Facebook page.', '{count} classifieds sent to Facebook page.', $count, 'another-wordpress-classifieds-plugin' );
+            $message = _n( 'Ad sent to Facebook page.', '{count} ads sent to Facebook page.', $count, 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '{count}', $count, $message );
 
             return awpcp_render_dismissible_success_message( $message );
         }
 
         if ( 'no-page' === $code ) {
-            $message = _n( "1 classified couldn't be sent to Facebook because there is no page selected.", "{count} classifieds couldn't be sent to Facebook because there is no page selected.", $count, 'another-wordpress-classifieds-plugin' );
+            $message = _n( "1 ad couldn't be sent to Facebook because there is no page selected.", "{count} ads couldn't be sent to Facebook because there is no page selected.", $count, 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '{count}', $count, $message );
 
             return awpcp_render_dismissible_error_message( $message );
         }
 
         if ( 'disabled' === $code ) {
-            $message = _n( "1 classified was not sent to Facebook because it is currenlty disabled. If you share it, Facebook servers and users won't be able to access it.", "{count} classifieds were not sent to Facebook because they are currenlty disabled. If you share them, Facebook servers and users won't be able to access them.", $count, 'another-wordpress-classifieds-plugin' );
+            $message = _n( "1 ad was not sent to Facebook because it is currenlty disabled. If you share it, Facebook servers and users won't be able to access it.", "{count} ads were not sent to Facebook because they are currenlty disabled. If you share them, Facebook servers and users won't be able to access them.", $count, 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '{count}', $count, $message );
 
             return awpcp_render_dismissible_error_message( $message );
         }
 
         if ( 'already-sent' === $code ) {
-            $message = _n( '1 classified was already sent to the Facebook page.', '{count} classifieds were already sent to the Facebook page.', $count, 'another-wordpress-classifieds-plugin' );
+            $message = _n( '1 ad was already sent to the Facebook page.', '{count} ads were already sent to the Facebook page.', $count, 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '{count}', $count, $message );
 
             return awpcp_render_dismissible_error_message( $message );
         }
 
         if ( 'error' === $code ) {
-            $message = _n( 'An error occurred trying to sent a classified to the Facebook page.', 'An error occurred trying to sent {count} classifieds to the Facebook page.', $count, 'another-wordpress-classifieds-plugin' );
+            $message = _n( 'An error occurred trying to sent an ad to the Facebook page.', 'An error occurred trying to sent {count} ads to the Facebook page.', $count, 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '{count}', $count, $message );
 
             return awpcp_render_dismissible_error_message( $message );

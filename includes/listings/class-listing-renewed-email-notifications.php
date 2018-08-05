@@ -83,7 +83,7 @@ class AWPCP_ListingRenewedEmailNotifications {
      */
     public function send_admin_notification( $listing ) {
         // translators: %s is the title of the listing.
-        $subject = __( 'The classifieds listing "%s" has been successfully renewed.', 'another-wordpress-classifieds-plugin' );
+        $subject = __( 'The ad "%s" has been successfully renewed.', 'another-wordpress-classifieds-plugin' );
         $subject = sprintf( $subject, $this->listing_renderer->get_listing_title( $listing ) );
 
         $template = AWPCP_DIR . '/frontend/templates/email-ad-renewed-success-admin.tpl.php';

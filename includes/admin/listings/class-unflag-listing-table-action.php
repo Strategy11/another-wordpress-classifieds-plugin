@@ -92,7 +92,7 @@ class AWPCP_UnflagListingTableAction implements AWPCP_ListTableActionInterface {
      */
     private function get_message( $code, $count ) {
         if ( 'success' === $code ) {
-            $message = _n( 'The classified was unflagged.', '{count} classifieds were unflagged.', $count, 'another-wordpress-classifieds-plugin' );
+            $message = _n( 'The ad was unflagged.', '{count} ads were unflagged.', $count, 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '{count}', $count, $message );
 
             return awpcp_render_dismissible_success_message( $message );

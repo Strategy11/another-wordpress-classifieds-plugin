@@ -93,14 +93,14 @@ class AWPCP_MakeStandardListingTableAction implements AWPCP_ListTableActionInter
      */
     private function get_message( $code, $count ) {
         if ( 'success' === $code ) {
-            $message = _n( 'Classified marked as standard.', '{count} classifieds marked as standard.', $count, 'another-wordpress-classifieds-plugin' );
+            $message = _n( 'Ad marked as standard.', '{count} ads marked as standard.', $count, 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '{count}', $count, $message );
 
             return awpcp_render_dismissible_success_message( $message );
         }
 
         if ( 'error' === $code ) {
-            $message = _n( 'An error occurred trying to mark a classified as standard.', 'An error occurred trying to mark {count} classifieds as standard.', $count, 'another-wordpress-classifieds-plugin' );
+            $message = _n( 'An error occurred trying to mark an ad as standard.', 'An error occurred trying to mark {count} ads as standard.', $count, 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '{count}', $count, $message );
 
             return awpcp_render_dismissible_error_message( $message );
