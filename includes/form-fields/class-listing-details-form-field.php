@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package AWPCP\FormFields
+ */
+
+// phpcs:disable
 
 function awpcp_listing_details_form_field( $slug ) {
     return new AWPCP_ListingDetailsFormField(
@@ -11,6 +16,8 @@ function awpcp_listing_details_form_field( $slug ) {
 
 /**
  * TODO: what if that field shouldn't be shown?
+ *
+ * @SuppressWarnings(PHPMD)
  */
 class AWPCP_ListingDetailsFormField extends AWPCP_FormField {
 
