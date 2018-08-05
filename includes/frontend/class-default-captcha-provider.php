@@ -31,7 +31,7 @@ class AWPCP_DefaultCAPTCHAProvider implements AWPCP_CAPTCHAProviderInterface {
         $answer = awpcp_post_param( 'captcha' );
 
         /* translators: the numbers that need to be added up for the math challenge. */
-        $label = _x( 'Enter the value of the following sum: %1$d + %2$d', 'CAPTCHA', 'another-wordpress-classifieds-plugin' ) . '*';
+        $label = _x( 'Enter the value of the following sum: %1$d + %2$d', 'CAPTCHA', 'another-wordpress-classifieds-plugin' ) . '<span class="required">*</span>';
         $label = sprintf( $label, $left, $right );
 
         $html  = '<label for="captcha"><span>%s</span></label>';

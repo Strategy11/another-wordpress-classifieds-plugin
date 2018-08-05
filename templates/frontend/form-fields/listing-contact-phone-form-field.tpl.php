@@ -5,7 +5,7 @@
 
 ?><p class="awpcp-form-field awpcp-clearfix   awpcp-form-spacer">
     <label class="awpcp-form-field__label" for="<?php echo esc_attr( $html['id'] ); ?>">
-        <?php echo esc_html( $label ); ?><?php echo $required ? '*' : ''; ?>
+        <?php echo esc_html( $label ); ?><?php echo $required ? '<span class="required">*</span>' : ''; ?>
         <?php if ( ! empty( $help_text ) ) : ?>
         &nbsp;<span class="helptext"><?php echo esc_html( $help_text ); ?></span>
         <?php endif; ?>

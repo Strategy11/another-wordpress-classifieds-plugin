@@ -4,7 +4,7 @@
  */
 
 ?><p class="awpcp-form-field awpcp-clearfix awpcp-form-spacer">
-    <label class="awpcp-form-field__label" for="<?php echo esc_attr( $html['id'] ); ?>"><?php echo esc_html( $label ); ?><?php echo $required ? '*' : ''; ?></label>
+    <label class="awpcp-form-field__label" for="<?php echo esc_attr( $html['id'] ); ?>"><?php echo esc_html( $label ); ?><?php echo $required ? '<span class="required">*</span>' : ''; ?></label>
     <?php echo awpcp_form_error( $html['name'], $errors );  // XSS Okay. ?>
     <?php if ( ! empty( $help_text ) ) : ?>
     <label for="<?php echo esc_attr( $html['id'] ); ?>" class="helptext"><?php echo $help_text; // XSS Okay. ?></label>
