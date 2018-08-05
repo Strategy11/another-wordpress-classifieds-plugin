@@ -56,13 +56,19 @@ class AWPCP_ListingFormStepsComponent {
      * @SuppressWarnings(PHPMD.ElseExpression)
      */
     private function should_show_login_step( $transaction ) {
+        if ( ! is_user_logged_in() && ! $this->settings->get_option( 'requireuserregistration' ) ) {
+            return false;
+        }
+
         if ( ! is_user_logged_in() ) {
             return true;
-        } else if ( ! is_null( $transaction ) ) {
-            return $transaction->get( 'user-just-logged-in', false );
-        } else {
-            return $this->request->param( 'loggedin', false );
         }
+
+        if ( ! is_null( $transaction ) ) {
+            return $transaction->get( 'user-just-logged-in', false );
+        }
+
+        return $this->request->param( 'loggedin', false );
     }
 
     /**
