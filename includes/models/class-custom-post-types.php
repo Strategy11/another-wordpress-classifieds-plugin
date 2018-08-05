@@ -71,6 +71,7 @@ class AWPCP_Custom_Post_Types {
      */
     public function register_custom_post_types() {
         $dashboard_capability = $this->roles_and_capabilities->get_dashboard_capability();
+        $moderator_capability = $this->roles_and_capabilities->get_moderator_capability();
         $post_type_slug       = $this->get_post_type_slug();
 
         register_post_type(
@@ -108,20 +109,22 @@ class AWPCP_Custom_Post_Types {
                     'excerpt',
                     'custom-fields',
                 ),
-                'capability_type'      => 'awpcp_classified',
+                'capability_type'      => 'awpcp_classified_ad',
                 'map_meta_cap'         => true,
                 'capabilities'         => array(
+                    // Moderators and subscribers.
                     'edit_posts'             => $dashboard_capability,
                     'edit_published_posts'   => $dashboard_capability,
                     'delete_posts'           => $dashboard_capability,
-                    'read_private_posts'     => 'edit_others_awpcp_classifieds',
-                    'edit_private_posts'     => 'edit_others_awpcp_classifieds',
-                    'edit_other_posts'       => 'edit_others_awpcp_classifieds',
-                    'publish_posts'          => 'edit_others_awpcp_classifieds',
-                    'delete_private_posts'   => 'edit_others_awpcp_classifieds',
-                    'delete_published_posts' => 'edit_others_awpcp_classifieds',
-                    'delete_others_posts'    => 'edit_others_awpcp_classifieds',
-                    'create_posts'           => 'edit_others_awpcp_classifieds',
+                    // Moderators only.
+                    'read_private_posts'     => $moderator_capability,
+                    'edit_private_posts'     => $moderator_capability,
+                    'edit_others_posts'      => $moderator_capability,
+                    'publish_posts'          => $moderator_capability,
+                    'delete_private_posts'   => $moderator_capability,
+                    'delete_published_posts' => $moderator_capability,
+                    'delete_others_posts'    => $moderator_capability,
+                    'create_posts'           => $moderator_capability,
                 ),
                 'register_meta_box_cb' => null,
                 'taxonomies'           => array(

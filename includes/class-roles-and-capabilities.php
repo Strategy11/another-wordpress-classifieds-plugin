@@ -5,6 +5,9 @@
 
 // phpcs:disable
 
+/**
+ * @SuppressWarnings(PHPMD.TooManyPublicMethods)
+ */
 class AWPCP_RolesAndCapabilities {
 
     private $settings;
@@ -64,7 +67,11 @@ class AWPCP_RolesAndCapabilities {
     }
 
     public function get_administrator_capabilities() {
-        return array_merge( array( 'manage_awpcp_classifieds' ), $this->get_moderator_capabilities() );
+        return array_merge( array( $this->get_administrator_capability() ), $this->get_moderator_capabilities() );
+    }
+
+    private function get_administrator_capability() {
+        return 'manage_awpcp';
     }
 
     /**
@@ -82,7 +89,7 @@ class AWPCP_RolesAndCapabilities {
      * @since 4.0.0
      */
     public function get_moderator_capability() {
-        return 'edit_others_awpcp_classifieds';
+        return 'edit_others_awpcp_classified_ads';
     }
 
     private function add_capabilities_to_role( $role, $capabilities ) {
@@ -133,7 +140,7 @@ class AWPCP_RolesAndCapabilities {
      * @since 4.0.0
      */
     public function get_subscriber_capability() {
-        return 'edit_awpcp_classifieds';
+        return 'edit_awpcp_classified_ads';
     }
 
     /**
@@ -181,7 +188,7 @@ class AWPCP_RolesAndCapabilities {
     }
 
     public function current_user_is_administrator() {
-        return $this->current_user_can( 'manage_awpcp_classifieds' );
+        return $this->current_user_can( $this->get_administrator_capability() );
     }
 
     private function current_user_can( $capabilities ) {
@@ -213,10 +220,10 @@ class AWPCP_RolesAndCapabilities {
     }
 
     public function current_user_is_moderator() {
-        return $this->current_user_can( 'edit_others_awpcp_classifieds' );
+        return $this->current_user_can( $this->get_moderator_capability() );
     }
 
     public function user_is_administrator( $user_id ) {
-        return $this->user_can( get_userdata( $user_id ), 'manage_awpcp_classifieds' );
+        return $this->user_can( get_userdata( $user_id ), $this->get_administrator_capability() );
     }
 }
