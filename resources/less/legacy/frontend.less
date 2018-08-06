@@ -94,19 +94,27 @@
 }
 
 /* Details */
-.awpcp-page .awpcp-form-spacer .characters-left {
-    background: #333;
-    color: #FFF;
-    display: inline-block;
-    font-size: 0.9em;
-    font-weight: normal;
-    margin: 4px 0 0;
-    padding: 2px 8px;
+.awpcp-page .awpcp-form-spacer {
+    .characters-left {
+        display: block;
+        font-size: 0.9em;
+        font-weight: normal;
+        margin: 0;
+        padding: 2px 4px;
+        text-align: right;
+    }
+    .awpcp-almost-no-characters-left {
+        color: #ff9d00;
+    }
+    .awpcp-no-characters-left {
+        color: @error-message-font-color;
+    }
+
+    .characters-left-placeholder {
+        padding: 0 2px;
+    }
 }
-.awpcp-page .awpcp-form-spacer-title .characters-left {
-    margin-top: 0;
-    margin-left: 4px;
-}
+
 .awpcp-page .awpcp-form-spacer .awpcp-textarea {
     display: block;
 }
