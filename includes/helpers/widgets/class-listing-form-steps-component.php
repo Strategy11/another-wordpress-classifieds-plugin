@@ -40,7 +40,7 @@ class AWPCP_ListingFormStepsComponent {
             $steps['login'] = __( 'Login/Registration', 'another-wordpress-classifieds-plugin' );
         }
 
-        $steps['listing-details'] = __( 'Enter Classified Information', 'another-wordpress-classifieds-plugin' );
+        $steps['listing-details'] = __( 'Enter Ad Information', 'another-wordpress-classifieds-plugin' );
 
         if ( $this->should_show_payment_steps() && ! $this->settings->get_option( 'pay-before-place-ad' ) ) {
             $steps['checkout'] = __( 'Checkout', 'another-wordpress-classifieds-plugin' );
