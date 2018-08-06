@@ -8,6 +8,7 @@
 
     label {
         box-sizing: border-box;
+        cursor: pointer;
         display: block;
     }
 
@@ -27,7 +28,28 @@
     }
     input[type="checkbox"],
     input[type="radio"] {
+        cursor: pointer;
         margin-bottom: 8px;
+    }
+
+    .inline {
+        display: inline;
+    }
+
+    .secondary-label {
+        display: inline;
+        font-weight: normal;
+        margin-right: 4px;
+
+        input {
+            margin-right: 2px;
+        }
+    }
+
+    .helptext {
+        display: block;
+        font-weight: normal;
+        font-size: 0.9em;
     }
 
     .error {
@@ -38,6 +60,10 @@
     label.error {
         padding: 6px 8px;
         margin: 0;
+    }
+
+    .hidden {
+        display: none;
     }
 }
 
@@ -74,5 +100,19 @@
 .awpcp-choice-form-field {
     .awpcp-form-field__label {
         margin-bottom: 8px;
+    }
+}
+
+.awpcp-range-form-field {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .awpcp-range-search {
+        box-sizing: border-box;
+        flex: 0 1 auto;
+        min-width: 45%;
+        width: ~"calc( 100%/2 - ( 1 - 1/2 ) * 10px )";
     }
 }
