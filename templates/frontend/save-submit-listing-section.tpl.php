@@ -3,7 +3,7 @@
  * @package AWPCP\Templates\Frontend
  */
 
-?><div class="awpcp-save-submit-listing-section awpcp-submit-listing-section">
+?><div class="awpcp-save-submit-listing-section awpcp-submit-listing-section awpcp-submit-listing-section-without-decoration">
     <h2 class="awpcp-submit-listing-section-title"><?php echo esc_html( $section_label ); ?></h2>
     <div class="awpcp-submit-listing-section-content">
         <div class="awpcp-save-submit-listing-section__edit_mode">
