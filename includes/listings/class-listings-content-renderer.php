@@ -162,6 +162,7 @@ class AWPCP_ListingsContentRenderer {
 
         /* Enqueue necessary scripts. */
         awpcp_maybe_add_thickbox();
+        wp_enqueue_style( 'awpcp-font-awesome' );
         wp_enqueue_script( 'awpcp-page-show-ad' );
 
         $awpcp = awpcp();

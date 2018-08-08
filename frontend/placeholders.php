@@ -750,8 +750,11 @@ function awpcp_do_placeholder_adsense($ad, $placeholder) {
  * @since 3.0
  */
 function awpcp_do_placeholder_flag_link($ad, $placeholder) {
-    $content = '<a id="flag_ad_link" href="#" data-ad="%d">%s</a>';
-    $replacements['flagad'] = sprintf($content, $ad->ID, __('Flag Ad', 'another-wordpress-classifieds-plugin'));
+    $title   = __( 'Flag Ad', 'another-wordpress-classifieds-plugin' );
+
+    $content = '<a class="awpcp-flag-listing-link" href="#" data-ad="%d" title="%s"><i class="fas fa-flag"></i></a>';
+
+    $replacements['flagad']    = sprintf( $content, esc_attr( $ad->ID ), esc_attr( $title ) );
     $replacements['flag_link'] = $replacements['flagad'];
 
     return $replacements[$placeholder];
@@ -762,13 +765,14 @@ function awpcp_do_placeholder_flag_link($ad, $placeholder) {
  * @since 3.0
  */
 function awpcp_do_placeholder_twitter_button($ad, $placeholder) {
-    $url = awpcp_do_placeholder_twitter_button_url( $ad, 'twitter_button_url' );
+    $title = __( 'Tweet This', 'another-wordpress-classifieds-plugin' );
+    $url   = awpcp_do_placeholder_twitter_button_url( $ad, 'twitter_button_url' );
 
-    $button = '<div class="tw_button awpcp_tweet_button_div">';
-    $button.= '<a href="' . $url . '" rel="nofollow" class="twitter-share-button" target="_blank">';
-    $button.= __('Tweet This', 'another-wordpress-classifieds-plugin');
-    $button.= '</a>';
-    $button.= '</div>';
+    $button  = '<a class="awpcp-social-button tw_button awpcp_tweet_button_div" href="' . esc_url( $url ) . '" title="' . esc_attr( $title ) . '" target="_blank" rel="nofollow noopener">';
+    $button .= '<span class="twitter-share-button">';
+    $button .= '<i class="fab fa-twitter-square"></i>';
+    $button .= '</span>';
+    $button .= '</a>';
 
     return $button;
 }
@@ -794,13 +798,16 @@ function awpcp_do_placeholder_twitter_button_url( $ad, $placeholder ) {
  * @since 3.0
  */
 function awpcp_do_placeholder_facebook_button($ad, $placeholder) {
-    $href = awpcp_do_placeholder_facebook_button_url( $ad, 'facebook_button_url' );
+    $title = __( 'Share on Facebook', 'another-wordpress-classifieds-plugin' );
+    $href  = awpcp_do_placeholder_facebook_button_url( $ad, 'facebook_button_url' );
 
-    $button = '<div class="tw_button awpcp_tweet_button_div">';
-    $button.= '<a href="%s" class="facebook-share-button" title="%s" target="_blank"></a>';
-    $button.= '</div>';
+    $button  = '<a class="awpcp-social-button tw_button awpcp_tweet_button_div" href="%s" class="facebook-share-button" title="%s" target="_blank" rel="nofollow noopener">';
+    $button .= '<span class="facebook-share-button">';
+    $button .= '<i class="fab fa-facebook-square"></i>';
+    $button .= '</span>';
+    $button .= '</a>';
 
-    return sprintf($button, $href, __('Share on Facebook', 'another-wordpress-classifieds-plugin'));
+    return sprintf( $button, esc_url( $href ), esc_attr( $title ) );
 }
 
 
