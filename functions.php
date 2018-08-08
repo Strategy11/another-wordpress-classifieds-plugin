@@ -474,7 +474,7 @@ function awpcp_pagination($config, $url) {
 
 	for ($i=1; $i <= $pages; $i++) {
         if ( $page == $i ) {
-            $items[] = sprintf('%d', $i);
+            $items[] = sprintf( '<span class="awpcp-pagination-links--link">%d</span>', $i );
         } else if ( $i < ( $page - $radius ) ) {
             // pass
         } else if ( $i > ( $page + $radius ) ) {
@@ -514,7 +514,7 @@ function awpcp_render_pagination_item( $label, $page, $results_per_page, $params
 
     $url = add_query_arg( urlencode_deep( $params ), $url );
 
-    return sprintf( '<a href="%s">%s</a>', esc_url( $url ), $label );
+    return sprintf( '<a class="awpcp-pagination-links--link" href="%s">%s</a>', esc_url( $url ), $label );
 }
 
 /**
