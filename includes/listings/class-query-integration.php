@@ -129,10 +129,10 @@ class AWPCP_QueryIntegration {
      * @since 4.0.0
      */
     private function normalize_region_query_parameters( $query_vars ) {
-        $regions_query = array();
+        $regions_query = [];
 
         if ( isset( $query_vars['classifieds_query']['regions'] ) && is_array( $query_vars['classifieds_query']['regions'] ) ) {
-            $regions_query = $query_vars['classifieds_query']['regions'];
+            $regions_query = $this->remove_empty_regions( $query_vars['classifieds_query']['regions'] );
         }
 
         // The 'region' parameter can be used to find listings that are associated
@@ -189,6 +189,29 @@ class AWPCP_QueryIntegration {
         unset( $query_vars['classifieds_query']['county'] );
 
         return $query_vars;
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function remove_empty_regions( $regions ) {
+        $filtered_regions = [];
+
+        foreach ( $regions as $region ) {
+            if ( ! is_array( $region ) ) {
+                continue;
+            }
+
+            $region = array_filter( $region, 'strlen' );
+
+            if ( empty( $region ) ) {
+                continue;
+            }
+
+            $filtered_regions[] = $region;
+        }
+
+        return $filtered_regions;
     }
 
     /**
