@@ -67,15 +67,22 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
     }
 
     protected function get_posted_data() {
-        $data = stripslashes_deep( array(
+        $data = [
             'query' => $this->request->param('keywordphrase'),
-            'category' => $this->request->param('searchcategory'),
+            'category' => null,
             'name' => $this->request->param('searchname'),
             'min_price' => awpcp_parse_money( $this->request->param( 'searchpricemin' ) ),
             'max_price' => awpcp_parse_money( $this->request->param( 'searchpricemax' ) ),
             'regions' => $this->request->param('regions'),
-        ) );
+        ];
 
+        $category = array_filter( array_map( 'intval', (array) $this->request->param( 'searchcategory' ) ) );
+
+        if ( $category ) {
+            $data['category'] = $category;
+        }
+
+        $data = stripslashes_deep( $data );
         $data = apply_filters( 'awpcp-get-posted-data', $data, 'search', array() );
 
         return $data;
