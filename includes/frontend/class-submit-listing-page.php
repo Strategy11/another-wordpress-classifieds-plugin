@@ -114,8 +114,15 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
             case 'finish':
                 return $this->do_finish_step();
             default:
-                return $this->do_listing_information_step();
+                return $this->do_initial_step();
         }
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function get_current_step() {
+        return $this->request->post( 'step', $this->request->param( 'step' ) );
     }
 
     /**
@@ -154,13 +161,6 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
     }
 
     /**
-     * @since 4.0.0
-     */
-    private function get_current_step() {
-        return $this->request->post( 'step', $this->request->param( 'step' ) );
-    }
-
-    /**
      * TODO: Remove form steps from login page?
      *
      * @since 4.0.0
@@ -181,7 +181,25 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
     /**
      * @since 4.0.0
      */
-    private function do_listing_information_step() {
+    private function do_initial_step() {
+        if ( $this->payments->payments_enabled() && $this->settings->get_option( 'pay-before-place-ad' ) ) {
+            return $this->do_select_category_step();
+        }
+
+        return $this->do_listing_information_step();
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function do_select_category_step() {
+        return $this->render_submit_listing_sections( 'listing-category' );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function render_submit_listing_sections( $current_step ) {
         $transaction = $this->payments->get_transaction();
 
         $this->verify_payment_transaction_was_successful( $transaction );
@@ -204,13 +222,21 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
         wp_enqueue_script( 'awpcp-submit-listing-page' );
 
         $params = [
-            'transaction' => $transaction,
-            'sections'    => $this->sections_generator->get_sections( $listing ),
+            'current_step' => $current_step,
+            'transaction'  => $transaction,
+            'sections'     => $this->sections_generator->get_sections( $listing ),
         ];
 
         $template = AWPCP_DIR . '/templates/frontend/submit-listing-page/listing-information-step.tpl.php';
 
         return $this->render( $template, $params );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function do_listing_information_step() {
+        return $this->render_submit_listing_sections( 'listing-information' );
     }
 
     /**
@@ -326,7 +352,7 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
             'transaction' => $transaction,
             'messages'    => [],
             'url'         => $this->url(),
-            'hidden'      => array( 'step' => $pay_first ? 'details' : 'finish' ),
+            'hidden'      => array( 'step' => $pay_first ? 'listing-information' : 'finish' ),
         );
 
         $template = AWPCP_DIR . '/frontend/templates/page-place-ad-payment-completed-step.tpl.php';

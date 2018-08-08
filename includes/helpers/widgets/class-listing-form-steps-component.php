@@ -40,11 +40,20 @@ class AWPCP_ListingFormStepsComponent {
             $steps['login'] = __( 'Login/Registration', 'another-wordpress-classifieds-plugin' );
         }
 
-        $steps['listing-details'] = __( 'Enter Ad Information', 'another-wordpress-classifieds-plugin' );
+        $should_show_payment_steps = $this->payments->payments_enabled();
+        $should_pay_before         = $this->settings->get_option( 'pay-before-place-ad' );
 
-        if ( $this->should_show_payment_steps() && ! $this->settings->get_option( 'pay-before-place-ad' ) ) {
-            $steps['checkout'] = __( 'Checkout', 'another-wordpress-classifieds-plugin' );
-            $steps['payment'] = __( 'Payment', 'another-wordpress-classifieds-plugin' );
+        if ( $should_show_payment_steps && $should_pay_before ) {
+            $steps['listing-category'] = __( 'Select a Category', 'another-wordpress-classifieds-plugin' );
+            $steps['checkout']         = __( 'Checkout', 'another-wordpress-classifieds-plugin' );
+            $steps['payment']          = __( 'Payment', 'another-wordpress-classifieds-plugin' );
+        }
+
+        $steps['listing-information']  = __( 'Enter Ad Information', 'another-wordpress-classifieds-plugin' );
+
+        if ( $should_show_payment_steps && ! $should_pay_before ) {
+            $steps['checkout']        = __( 'Checkout', 'another-wordpress-classifieds-plugin' );
+            $steps['payment']         = __( 'Payment', 'another-wordpress-classifieds-plugin' );
         }
 
         $steps['finish'] = __( 'Finish', 'another-wordpress-classifieds-plugin' );
@@ -69,17 +78,6 @@ class AWPCP_ListingFormStepsComponent {
         }
 
         return $this->request->param( 'loggedin', false );
-    }
-
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     */
-    private function should_show_payment_steps() {
-        if ( awpcp_current_user_is_admin() ) {
-            return false;
-        } else {
-            return $this->payments->payments_enabled();
-        }
     }
 
     /**

@@ -94,7 +94,7 @@ class AWPCP_CreateEmptyListingAjaxHandler extends AWPCP_AjaxHandler {
 
         $this->prepare_transaction_for_checkout( $transaction, $posted_data );
 
-        if ( $this->settings->get_option( 'pay-before-place-ad' ) ) {
+        if ( $this->payments->payments_enabled() && $this->settings->get_option( 'pay-before-place-ad' ) ) {
             return $this->redirect_to_checkout_page( $listing, $transaction, $posted_data );
         }
 

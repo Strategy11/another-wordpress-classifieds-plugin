@@ -131,6 +131,10 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
         //
         // Hence save_information_for_new_listing_pending_payment() is never
         // called.
+        //
+        // XXX: It could be called if someone tries to bypass payment by returning to
+        // the listing-information step passing the newly generated listing_id and
+        // transaction_id.
         if ( $this->settings->get_option( 'pay-before-place-ad' ) ) {
             return $this->save_information_for_new_listing_already_paid( $listing, $transaction );
         }
