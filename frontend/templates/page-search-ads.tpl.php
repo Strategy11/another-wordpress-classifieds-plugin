@@ -78,5 +78,5 @@
         );
     ?>
 
-    <input type="submit" class="button" value="<?php echo esc_attr( _x( 'Start Search', 'ad search form', 'another-wordpress-classifieds-plugin' ) ); ?>" />
+    <input type="submit" class="button" value="<?php echo esc_attr( _x( 'Find Ads', 'ad search form', 'another-wordpress-classifieds-plugin' ) ); ?>" />
 </form>
