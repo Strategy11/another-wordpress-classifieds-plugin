@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package AWPCP\Frontend
+ */
+
+// phpcs:disable
 
 /**
  * @since 3.0
