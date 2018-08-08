@@ -109,8 +109,6 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
         $ui['price-field'] = get_awpcp_option('displaypricefield');
         $ui['allow-user-to-search-in-multiple-regions'] = get_awpcp_option('allow-user-to-search-in-multiple-regions');
 
-        $messages = array( __( 'Use the form below to select the fields on which you want to search. Adding more fields makes for a more specific search. Using fewer fields will make for a broader search.', 'another-wordpress-classifieds-plugin' ) );
-
         $url_params = wp_parse_args( parse_url( awpcp_current_url(), PHP_URL_QUERY ) );
 
         foreach ( $form as $name => $value ) {
@@ -122,7 +120,7 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
         $action_url = awpcp_current_url();
         $hidden = array_merge( $url_params, array( 'awpcp-step' => 'dosearch' ) );
 
-        $params = compact( 'action_url', 'ui', 'form', 'hidden', 'messages', 'errors' );
+        $params = compact( 'action_url', 'ui', 'form', 'hidden', 'errors' );
 
         $template = AWPCP_DIR . '/frontend/templates/page-search-ads.tpl.php';
 

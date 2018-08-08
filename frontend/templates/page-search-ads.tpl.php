@@ -6,10 +6,6 @@
 // phpcs:disable
 
 ?><?php
-    foreach ($messages as $message) {
-        echo awpcp_print_message($message);
-    }
-
     foreach ($errors as $index => $error) {
         if (is_numeric($index)) {
             echo awpcp_print_message($error, array('error'));
