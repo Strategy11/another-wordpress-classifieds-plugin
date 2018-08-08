@@ -153,9 +153,9 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
 
     private function search_listings( $form ) {
         $query = array(
+            's' => $form['query'],
             'classifieds_query' => array(
                 'context' => 'public-listings',
-                's' => $form['query'],
                 'category' => $form['category'],
                 'contact_name' => $form['name'],
                 'min_price' => $form['min_price'],
