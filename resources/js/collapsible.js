@@ -36,6 +36,8 @@ AWPCP.define('awpcp/collapsible', ['jquery'], function($) {
         },
 
         showCollapsed: function() {
+            var self = this;
+
             self.subject.hide();
             self.setHandlerClass( 'open' );
         },
