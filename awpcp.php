@@ -1326,7 +1326,6 @@ class AWPCP {
 
 		wp_register_script('awpcp-jquery-validate', "{$js}/jquery-validate/all.js", array('jquery'), '1.10.0', true);
         wp_register_script( 'awpcp-knockout', "//ajax.aspnetcdn.com/ajax/knockout/knockout-3.1.0.js", array(), '3.1.0', true );
-        wp_register_script( 'awpcp-momentjs-with-locales', '//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment-with-locales.min.js', array(), '2.10.6', true );
 
         wp_register_script(
             'awpcp-lightgallery',
@@ -1387,6 +1386,33 @@ class AWPCP {
             array(),
             '4.0.5',
             true
+        );
+
+        // TODO: If we ever have to load Moment.js on the frontend, we need to load
+        // only the required locale, using BP's logic to enqueue just the necessary files.
+        //
+        // https://plugins.svn.wordpress.org/buddypress/tags/3.1.0/bp-core/bp-core-cssjs.php
+        wp_register_script(
+            'awpcp-moment-with-locales',
+            "{$vendors}/moment-2.22.2/moment-with-locales.min.js",
+            [],
+            '2.18.1',
+            true
+        );
+
+        wp_register_script(
+            'daterangepicker',
+            'https://cdn.jsdelivr.net/npm/daterangepicker@3.0.3/daterangepicker.min.js',
+            [ 'jquery', 'awpcp-moment-with-locales' ],
+            '3.0.3',
+            true
+        );
+
+        wp_register_style(
+            'daterangepicker',
+            'https://cdn.jsdelivr.net/npm/daterangepicker@3.0.3/daterangepicker.min.css',
+            [],
+            '3.0.3'
         );
 
 		/* helpers */
@@ -1468,7 +1494,7 @@ class AWPCP {
         wp_register_script(
             'awpcp-admin-listings-table',
             "{$js}/admin/listings-table.min.js",
-            array( 'awpcp' ),
+            [ 'awpcp', 'daterangepicker' ],
             $awpcp_db_version,
             true
         );
@@ -1481,7 +1507,7 @@ class AWPCP {
             array(
                 'awpcp',
                 'awpcp-knockout-progress',
-                'awpcp-momentjs-with-locales'
+                'awpcp-moment-with-locales'
             ),
             $awpcp_db_version,
             true

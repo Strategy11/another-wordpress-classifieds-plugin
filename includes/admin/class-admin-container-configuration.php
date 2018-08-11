@@ -243,6 +243,7 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
 
         $container['ListingsTableNavHandler'] = $container->service( function( $container ) {
             return new AWPCP_ListingsTableNavHandler(
+                $container['HTMLRenderer'],
                 $container['Request']
             );
         } );

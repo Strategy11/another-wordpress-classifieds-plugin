@@ -88,6 +88,7 @@ class AWPCP_Admin {
             add_action( 'post_row_actions', array( $this->table_actions, 'row_actions' ), 10, 2 );
             add_filter( 'handle_bulk_actions-edit-' . $this->post_type, array( $this->table_actions, 'handle_action' ), 10, 3 );
 
+            add_filter( 'disable_months_dropdown', '__return_true' );
             add_action( 'pre_get_posts', array( $this->table_nav, 'pre_get_posts' ) );
             add_action( 'restrict_manage_posts', array( $this->table_nav, 'restrict_listings' ), 10, 2 );
 
@@ -117,6 +118,7 @@ class AWPCP_Admin {
      */
     public function enqueue_scripts() {
         wp_enqueue_style( 'select2' );
+        wp_enqueue_style( 'daterangepicker' );
         wp_enqueue_style( 'awpcp-admin-style' );
 
         wp_enqueue_script( 'awpcp-admin-listings-table' );
