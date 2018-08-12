@@ -23,3 +23,99 @@
         text-decoration: none;
     }
 }
+
+.awpcp-admin-settings {
+    form textarea {
+        width: 100%;
+        height: 120px;
+    }
+
+    label {
+        font-weight: normal;
+    }
+
+    .awpcp-main-content {
+        .metabox-holder {
+            padding-top: 20px !important;
+        }
+    }
+
+    .settings-form {
+        padding: 0 6px;
+
+        h3 {
+            margin-top: 2em;
+            margin-bottom: 0.7em;
+        }
+
+        .form-table {
+            th {
+                width: 250px;
+            }
+            label img {
+                vertical-align: middle;
+            }
+        }
+    }
+
+    .category-checklist {
+        height: 290px;
+        max-height: 290px;
+
+        .awpcp-categories-list  {
+            margin-top: 4px;
+
+            li {
+                margin-bottom: 4px;
+            }
+
+            ul {
+                margin-left: 20px;
+
+                li:first-child {
+                    margin-top: 4px;
+                }
+            }
+        }
+    }
+
+    .awpcp-license-valid {
+        color: green;
+    }
+    .awpcp-license-inactive {
+        color: blue;
+    }
+    .awpcp-license-expired {
+        color: orange;
+    }
+    .awpcp-license-invalid {
+        color: red;
+    }
+
+    .awpcp-settings-row {
+        th, td {
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+    }
+
+    .awpcp-settings-grid {
+        > td {
+            padding: 0 0 20px;
+        }
+    }
+}
+
+.awpcp-settings-label-mobile {
+    display: none;
+}
+
+.awpcp-setting-form-fields-behavior {
+    display: none;
+}
+
+@media screen and (max-width: 782px) {
+    .awpcp-settings-label-mobile {
+        display: inline-block;
+    }
+}

@@ -122,6 +122,10 @@ class AWPCP_SettingsIntegration {
                 $section['id'],
                 [
                     'setting_id' => $setting_id,
+                    'class'      => implode( ' ', [
+                        str_replace( '_', '-', "awpcp-setting-{$setting['id']}" ),
+                        'awpcp-settings-row',
+                    ] ),
                 ]
             );
         }

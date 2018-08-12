@@ -1,6 +1,6 @@
 <?php
 /**
- * @package AWPCP/Settings/Renderers
+ * @package AWPCP\Settings\Renderers
  */
 
 /**

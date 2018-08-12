@@ -693,6 +693,7 @@ class AWPCP {
         $renderers['categories']     = $this->container['CategoriesSettingsRenderer'];
         $renderers['license']        = $this->container['LicenseSettingsRenderer'];
         $renderers['wordpress-page'] = $this->container['WordPressPageSettingsRenderer'];
+        $renderers['settings-grid']  = $this->container['SettingsGridRenderer'];
 
         return $renderers;
     }

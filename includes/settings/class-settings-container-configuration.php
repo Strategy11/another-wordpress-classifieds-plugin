@@ -146,5 +146,13 @@ class AWPCP_SettingsContainerConfiguration implements AWPCP_ContainerConfigurati
                 $container['Settings']
             );
         } );
+
+        $container['SettingsGridRenderer'] = $container->service( function( $container ) {
+            return new AWPCP_SettingsGridRenderer(
+                $container['Settings'],
+                $container['SettingsManager'],
+                $container['TemplateRenderer']
+            );
+        } );
     }
 }
