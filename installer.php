@@ -245,8 +245,10 @@ class AWPCP_Installer {
             '3.7.4' => array(
                 'set_flag_to_show_missing_paypal_merchant_id_setting_notice',
             ),
-            '3.8.4' => array(
+            '3.8.5' => array(
+                'remove_fulltext_index_from_listings_table',
                 'convert_tables_to_innodb',
+                'create_listings_table_if_missing',
             ),
             ),
             '4.0.0' => array(
@@ -1065,6 +1067,16 @@ class AWPCP_Installer {
         update_option( 'awpcp-show-missing-paypal-merchant-id-setting-notice', true, false );
     }
 
+    private function remove_fulltext_index_from_listings_table() {
+        global $wpdb;
+
+        $indexes = $wpdb->get_results( "SHOW INDEX FROM wp_awpcp_ads WHERE key_name = 'titdes'" );
+
+        if ( is_array( $indexes ) && count( $indexes ) ) {
+            $wpdb->query( 'ALTER TABLE ' . AWPCP_TABLE_ADS . '  DROP INDEX `titdes`' );
+        }
+    }
+
     private function convert_tables_to_innodb() {
         global $wpdb;
 
@@ -1072,6 +1084,12 @@ class AWPCP_Installer {
 
         foreach ( $tables as $table ) {
             $wpdb->query( sprintf( 'ALTER TABLE %s ENGINE=InnoDB', $table ) );
+        }
+    }
+
+    private function create_listings_table_if_missing() {
+        if ( ! awpcp_table_exists( AWPCP_TABLE_ADS ) ) {
+            dbDelta( $this->plugin_tables->get_listings_table_definition() );
         }
     }
 
