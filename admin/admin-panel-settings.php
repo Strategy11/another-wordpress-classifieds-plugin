@@ -208,8 +208,8 @@ class AWPCP_Facebook_Page_Settings {
 		$app_secret = isset( $_POST['app_secret'] ) ? trim( $_POST['app_secret'] ) : '';
 		$user_token = isset( $_POST['user_token'] ) ? trim( $_POST['user_token'] ) : '';
 
-		$page = isset( $_POST['page'] ) ? trim( $_POST['page'] ) : '';
-		$group = isset( $_POST['group'] ) ? trim( $_POST['group'] ) : '';
+		$page = isset( $_POST['facebook_page'] ) ? trim( $_POST['facebook_page'] ) : '';
+		$group = isset( $_POST['facebook_group'] ) ? trim( $_POST['facebook_group'] ) : '';
 
 		$config['app_id'] = $app_id;
 		$config['app_secret'] = $app_secret;

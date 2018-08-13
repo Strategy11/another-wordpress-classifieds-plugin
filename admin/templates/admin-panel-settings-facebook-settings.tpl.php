@@ -129,11 +129,11 @@
 					<td>
 						<?php if ( $pages ): ?>
 								<label>
-									<input type="radio" name="page" value="none" <?php echo empty( $config['page_id'] ) ? 'checked="checked"' : ''; ?> /> <?php echo __( 'None (Do not sent Ads to a Facebook Page)', 'another-wordpress-classifieds-plugin' ); ?>
+									<input type="radio" name="facebook_page" value="none" <?php echo empty( $config['page_id'] ) ? 'checked="checked"' : ''; ?> /> <?php echo __( 'None (Do not sent Ads to a Facebook Page)', 'another-wordpress-classifieds-plugin' ); ?>
 								</label><br />
 							<?php foreach( $pages as $page ): ?>
 								<label>
-									<input type="radio" name="page" value="<?php echo esc_attr( $page['id'] . '|' . $page['access_token'] ); ?>" <?php echo $page['id'] == $config['page_id'] ? 'checked="checked"' : ''; ?> /> <?php echo esc_html( $page['name'] ); ?> <?php echo isset( $page['profile'] ) && $page['profile'] ? __( '(Your own profile page)', 'another-wordpress-classifieds-plugin' ) : ''; ?>
+									<input type="radio" name="facebook_page" value="<?php echo esc_attr( $page['id'] . '|' . $page['access_token'] ); ?>" <?php echo $page['id'] == $config['page_id'] ? 'checked="checked"' : ''; ?> /> <?php echo esc_html( $page['name'] ); ?> <?php echo isset( $page['profile'] ) && $page['profile'] ? __( '(Your own profile page)', 'another-wordpress-classifieds-plugin' ) : ''; ?>
 								</label><br />
 							<?php endforeach; ?>
 						<?php else: ?>
@@ -149,11 +149,11 @@
 						<?php if ( $groups ): ?>
 								<?php $group_id = isset( $config['group_id'] ) ? $config['group_id'] : ''; ?>
 								<label>
-									<input type="radio" name="group" value="none" <?php echo empty( $group_id ) ? 'checked="checked"' : ''; ?> /> <?php echo __( 'None (Do not sent Ads to a Facebook Group)', 'another-wordpress-classifieds-plugin' ); ?>
+									<input type="radio" name="facebook_group" value="none" <?php echo empty( $group_id ) ? 'checked="checked"' : ''; ?> /> <?php echo __( 'None (Do not sent Ads to a Facebook Group)', 'another-wordpress-classifieds-plugin' ); ?>
 								</label><br />
 							<?php foreach( $groups as $group ): ?>
 								<label>
-									<input type="radio" name="group" value="<?php echo esc_attr( $group['id'] ); ?>" <?php echo $group['id'] == $group_id ? 'checked="checked"' : ''; ?> /> <?php echo esc_html( $group['name'] ); ?>
+									<input type="radio" name="facebook_group" value="<?php echo esc_attr( $group['id'] ); ?>" <?php echo $group['id'] == $group_id ? 'checked="checked"' : ''; ?> /> <?php echo esc_html( $group['name'] ); ?>
 								</label><br />
 							<?php endforeach; ?>
 						<?php else: ?>
