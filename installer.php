@@ -78,11 +78,19 @@ class AWPCP_Installer {
     public function install_or_upgrade() {
         global $awpcp_db_version;
 
-        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-
         $installed_version = get_option( 'awpcp_db_version' );
 
-        if ( $installed_version !== false && ! preg_match( '/^\d[\d.]*/', $installed_version ) ) {
+        if ( ! $this->is_version_number( $awpcp_db_version ) ) {
+            // Something is wrong. The version extracted from the plugin's headers
+            // is not a valid version number.
+
+            // We create a log entry for debug purposes, but abort the operation.
+            $this->log_upgrade( $installed_version, $awpcp_db_version );
+
+            return;
+        }
+
+        if ( $installed_version !== false && ! $this->is_version_number( $installed_version ) ) {
             // Something is wrong. The installed version should always be false
             // or a valid version number.
 
@@ -91,6 +99,8 @@ class AWPCP_Installer {
 
             return;
         }
+
+        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
         // if table exists, this is an upgrade
         if ( $installed_version !== false && awpcp_table_exists( AWPCP_TABLE_PAYMENTS ) ) {
@@ -101,6 +111,13 @@ class AWPCP_Installer {
 
         update_option( 'awpcp-installed-or-upgraded', true );
         update_option( 'awpcp-flush-rewrite-rules', true );
+    }
+
+    /**
+     * @since 3.8.4
+     */
+    private function is_version_number( $version_string ) {
+        return preg_match( '/^\d[\d.]*/', $version_string );
     }
 
     private function log_upgrade( $oldversion, $newversion ) {
@@ -227,6 +244,10 @@ class AWPCP_Installer {
             ),
             '3.7.4' => array(
                 'set_flag_to_show_missing_paypal_merchant_id_setting_notice',
+            ),
+            '3.8.4' => array(
+                'convert_tables_to_innodb',
+            ),
             ),
             '4.0.0' => array(
                 'create_old_listing_id_column_in_listing_regions_table',
@@ -607,7 +628,7 @@ class AWPCP_Installer {
                 `page` VARCHAR(100) CHARACTER SET <charset> COLLATE <collate> NOT NULL,
                 `id` INT(10) NOT NULL,
                 PRIMARY KEY  (`page`)
-            ) ENGINE=MyISAM DEFAULT CHARSET=<charset> COLLATE=<collate>;";
+            ) ENGINE=InnoDB DEFAULT CHARSET=<charset> COLLATE=<collate>;";
             dbDelta( $this->database_helper->replace_charset_and_collate( $table_definition ) );
         }
 
@@ -1042,6 +1063,16 @@ class AWPCP_Installer {
 
     private function set_flag_to_show_missing_paypal_merchant_id_setting_notice() {
         update_option( 'awpcp-show-missing-paypal-merchant-id-setting-notice', true, false );
+    }
+
+    private function convert_tables_to_innodb() {
+        global $wpdb;
+
+        $tables = $wpdb->get_col( "SHOW TABLES LIKE '%_awpcp_%'" );
+
+        foreach ( $tables as $table ) {
+            $wpdb->query( sprintf( 'ALTER TABLE %s ENGINE=InnoDB', $table ) );
+        }
     }
 
     private function create_old_listing_id_column_in_listing_regions_table() {

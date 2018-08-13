@@ -57,13 +57,23 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
     protected function _dispatch($default=null) {
         $action = $this->get_current_action();
 
-        switch ($action) {
-            case 'dosearch':
-                return $this->do_search_step();
-            case 'searchads':
-            default:
-                return $this->search_step();
+        $form = $this->search_step();
+
+        if ( 'dosearch' !== $action ) {
+            return $form;
         }
+
+        $results = $this->do_search_step();
+
+        if ( 'above' === get_awpcp_option( 'search-form-in-results' ) ) {
+            return $form . $results;
+        }
+
+        if ( 'below' === get_awpcp_option( 'search-form-in-results' ) ) {
+            return $results . $form;
+        }
+
+        return $results;
     }
 
     protected function get_posted_data() {

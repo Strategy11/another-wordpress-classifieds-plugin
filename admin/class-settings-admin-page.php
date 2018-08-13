@@ -250,9 +250,11 @@ class AWPCP_Facebook_Page_Settings {
      * @SuppressWarnings(PHPMD.UnusedLocalVariable)
      */
 	private function display_settings( $errors=array() ) {
-		$fb = AWPCP_Facebook::instance();
-		$config = $fb->get_config();
-		$current_step = $this->get_current_settings_step();
+        $fb = AWPCP_Facebook::instance();
+
+        $config       = $fb->get_config();
+        $current_step = $this->get_current_settings_step();
+        $redirect_uri = add_query_arg( 'obtain_user_token', 1, admin_url( '/admin.php?page=awpcp-admin-settings&g=facebook-settings' ) );
 
 		if ( $current_step == 3 ) {
 			// User Pages.
@@ -262,8 +264,7 @@ class AWPCP_Facebook_Page_Settings {
 
 		if ( $current_step >= 2 ) {
 			// Login URL.
-			$redirect_uri = add_query_arg( 'obtain_user_token', 1, admin_url( '/admin.php?page=awpcp-admin-settings&g=facebook-settings' ) );
-			$login_url = $fb->get_login_url( $redirect_uri, 'publish_pages,publish_actions,manage_pages,user_managed_groups' );
+            $login_url = $fb->get_login_url( $redirect_uri, 'publish_pages,publish_actions,manage_pages,user_managed_groups' );
 		}
 
 		if ( isset( $_GET['code_error'] ) && isset( $_GET['error_message'] )  ) {

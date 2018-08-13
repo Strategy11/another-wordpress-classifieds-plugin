@@ -20,7 +20,7 @@ class AWPCP_Database_Tables {
             `category_name` VARCHAR(255) CHARACTER SET <charset> COLLATE <collate> NOT NULL DEFAULT '',
             `category_order` INT(10) NULL DEFAULT 0,
             PRIMARY KEY  (`category_id`)
-        ) ENGINE=MyISAM DEFAULT CHARSET=<charset> COLLATE=<collate>;";
+        ) ENGINE=InnoDB DEFAULT CHARSET=<charset> COLLATE=<collate>;";
 
         return $this->database_helper->replace_charset_and_collate( $table_defintion );
     }
@@ -68,7 +68,7 @@ class AWPCP_Database_Tables {
             `renewed_date` DATETIME,
             FULLTEXT KEY `titdes` (`ad_title`,`ad_details`),
             PRIMARY KEY  (`ad_id`)
-        ) ENGINE=MyISAM DEFAULT CHARSET=<charset> COLLATE=<collate>;";
+        ) ENGINE=InnoDB DEFAULT CHARSET=<charset> COLLATE=<collate>;";
 
         return $this->database_helper->replace_charset_and_collate( $table_defintion );
     }
@@ -89,7 +89,7 @@ class AWPCP_Database_Tables {
             INDEX `city_index` (`city`),
             INDEX `region_id_index` (`region_id`),
             PRIMARY KEY  (`id`)
-        ) ENGINE=MyISAM DEFAULT CHARSET=<charset> COLLATE=<collate>;";
+        ) ENGINE=InnoDB DEFAULT CHARSET=<charset> COLLATE=<collate>;";
 
         return $this->database_helper->replace_charset_and_collate( $table_defintion );
     }
@@ -115,7 +115,7 @@ class AWPCP_Database_Tables {
             `title_characters` INT(1) NOT NULL DEFAULT 0,
             `private` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
             PRIMARY KEY  (`adterm_id`)
-        ) ENGINE=MyISAM DEFAULT CHARSET=<charset> COLLATE=<collate>;";
+        ) ENGINE=InnoDB DEFAULT CHARSET=<charset> COLLATE=<collate>;";
 
         return $this->database_helper->replace_charset_and_collate( $table_defintion );
     }
@@ -137,7 +137,7 @@ class AWPCP_Database_Tables {
             `updated` DATETIME NOT NULL,
             `completed` DATETIME,
             PRIMARY KEY  (`id`)
-        ) ENGINE=MyISAM DEFAULT CHARSET=<charset> COLLATE=<collate>;";
+        ) ENGINE=InnoDB DEFAULT CHARSET=<charset> COLLATE=<collate>;";
 
         return $this->database_helper->replace_charset_and_collate( $table_defintion );
     }
@@ -153,7 +153,7 @@ class AWPCP_Database_Tables {
             `created` DATETIME NOT NULL,
             `updated` DATETIME NOT NULL,
             PRIMARY KEY  (`id`)
-        ) ENGINE=MyISAM DEFAULT CHARSET=<charset> COLLATE=<collate>;";
+        ) ENGINE=InnoDB DEFAULT CHARSET=<charset> COLLATE=<collate>;";
 
         return $this->database_helper->replace_charset_and_collate( $table_defintion );
     }
@@ -172,7 +172,7 @@ class AWPCP_Database_Tables {
             `metadata` TEXT CHARACTER SET <charset> COLLATE <collate> NOT NULL,
             `created` DATETIME NOT NULL,
             PRIMARY KEY  (`id`)
-        ) ENGINE=MyISAM DEFAULT CHARSET=<charset> COLLATE=<collate>;";
+        ) ENGINE=InnoDB DEFAULT CHARSET=<charset> COLLATE=<collate>;";
 
         return $this->database_helper->replace_charset_and_collate( $table_defintion );
     }
@@ -185,7 +185,7 @@ class AWPCP_Database_Tables {
             `meta_key` VARCHAR(255),
             `meta_value` LONGTEXT,
             PRIMARY KEY  (`meta_id`)
-        ) ENGINE=MyISAM DEFAULT CHARSET=<charset> COLLATE=<collate>;";
+        ) ENGINE=InnoDB DEFAULT CHARSET=<charset> COLLATE=<collate>;";
 
         return $this->database_helper->replace_charset_and_collate( $table_defintion );
     }
@@ -201,7 +201,7 @@ class AWPCP_Database_Tables {
             `metadata` TEXT CHARACTER SET <charset> COLLATE <collate> NOT NULL,
             `created_at` DATETIME NOT NULL,
             PRIMARY KEY  (`id`)
-        ) ENGINE=MyISAM DEFAULT CHARSET=<charset> COLLATE=<collate>;";
+        ) ENGINE=InnoDB DEFAULT CHARSET=<charset> COLLATE=<collate>;";
         return $this->database_helper->replace_charset_and_collate( $table_defintion );
     }
 }

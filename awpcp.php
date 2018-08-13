@@ -419,6 +419,7 @@ require_once( AWPCP_DIR . '/admin/import/class-import-listings-ajax-handler.php'
 require_once( AWPCP_DIR . "/admin/upgrade/class-manual-upgrade-admin-page.php" );
 require_once( AWPCP_DIR . '/admin/user-panel.php' );
 require( AWPCP_DIR . '/admin/listings/class-listings-table-search-by-phone-condition.php' );
+require( AWPCP_DIR . '/admin/listings/class-listings-table-search-by-contact-email-condition.php' );
 
 // required later to make sure dependencies are already loaded
 require_once(AWPCP_DIR . "/admin/user-panel.php");
@@ -1180,7 +1181,7 @@ class AWPCP {
 					'url' => 'http://awpcp.com/downloads/subscriptions-module/?ref=panel',
 					'installed' => defined( 'AWPCP_SUBSCRIPTIONS_MODULE' ),
 					'version' => 'AWPCP_SUBSCRIPTIONS_MODULE_DB_VERSION',
-					'required' => '3.6.4-dev-1'
+					'required' => '4.0-dev-1'
 				),
                 'videos' => array(
                     'name' => __( 'Videos', 'another-wordpress-classifieds-plugin' ),

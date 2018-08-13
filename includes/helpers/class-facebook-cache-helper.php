@@ -26,6 +26,12 @@ class AWPCP_FacebookCacheHelper {
     }
 
     public function on_place_ad( $ad ) {
+        $user_token = $this->facebook->get( 'user_token' );
+
+        if ( ! $user_token ) {
+            return;
+        }
+
         $this->schedule_clear_cache_action( $ad );
     }
 
@@ -65,12 +71,18 @@ class AWPCP_FacebookCacheHelper {
             return;
         }
 
+        $user_token = $this->facebook->get( 'user_token' );
+
+        if ( ! $user_token ) {
+            return;
+        }
+
         $args = array(
             'timeout' => 30,
             'body' => array(
                 'id' => url_showad( $ad->ID ),
                 'scrape' => true,
-                'access_token' => $this->facebook->get( 'user_token' ),
+                'access_token' => $user_token,
             ),
         );
 
