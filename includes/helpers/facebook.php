@@ -130,7 +130,10 @@ class AWPCP_Facebook {
         );
 
         $config = array_merge( $defaults, $config );
-        array_walk( $config, create_function( '&$x', '$x = str_replace( " ", "", $x );' ) );
+
+        foreach ( $config as $name => $value ) {
+            $config[ $name ] = str_replace( ' ', '', $value );
+        }
 
         $previous_config = $this->get_config();
 
