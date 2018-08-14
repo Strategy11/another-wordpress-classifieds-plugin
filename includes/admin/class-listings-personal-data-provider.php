@@ -9,9 +9,19 @@
 class AWPCP_ListingsPersonalDataProvider implements AWPCP_PersonalDataProviderInterface {
 
     /**
-     * @var media
+     * @var ListingsCollection
      */
-    private $media;
+    private $listings;
+
+    /**
+     * @var ListingsLogic
+     */
+    private $listings_logic;
+
+    /**
+     * @var AttachmentsCollection
+     */
+    private $attachments;
 
     /**
      * @var object
@@ -19,23 +29,26 @@ class AWPCP_ListingsPersonalDataProvider implements AWPCP_PersonalDataProviderIn
     private $regions;
 
     /**
-     * @var
+     * @var DataFormatter
      */
     private $data_formatter;
 
     /**
-     * @var
+     * @var wpdb
      */
     private $db;
 
     /**
      * @since 3.8.6
      */
-    public function __construct( $media, $regions, $data_formatter, $db ) {
-        $this->media          = $media;
-        $this->regions        = $regions;
-        $this->data_formatter = $data_formatter;
-        $this->db             = $db;
+    public function __construct( $listings, $listing_renderer, $listings_logic, $attachments, $regions, $data_formatter, $db ) {
+        $this->listings         = $listings;
+        $this->listing_renderer = $listing_renderer;
+        $this->listings_logic   = $listings_logic;
+        $this->attachments      = $attachments;
+        $this->regions          = $regions;
+        $this->data_formatter   = $data_formatter;
+        $this->db               = $db;
     }
 
     /**
@@ -51,22 +64,41 @@ class AWPCP_ListingsPersonalDataProvider implements AWPCP_PersonalDataProviderIn
     public function get_objects( $user, $email_address, $page ) {
         $items_per_page = $this->get_page_size();
 
-        return AWPCP_Ad::query( array(
-            'where' => $this->get_user_listings_conditions( $user, $email_address ),
-            'limit' => $items_per_page,
-            'offset' => ( $page - 1 ) * $items_per_page,
-        ) );
-    }
+        if ( $user ) {
+            $user_listings = $this->listings->find_listings( [
+                'author'         => $user->ID,
+                'posts_per_page' => $items_per_page,
+                'paged'          => $page,
+                'fields'         => 'ids',
+            ] );
 
-    /**
-     * @since 3.8.6
-     */
-    private function get_user_listings_conditions( $user, $email_address ) {
-        if ( is_object( $user ) ) {
-            return $this->db->prepare( 'user_id = %d OR ad_contact_email = %s', $user->ID, $email_address );
+            $email_listings = $this->listings->find_listings( [
+                'classifieds_query' => [
+                    'contact_email' => $email_address,
+                ],
+                'posts_per_page'    => $items_per_page,
+                'paged'             => $page,
+                'fields'            => 'ids',
+            ] );
+
+            $posts_ids = array_unique( array_merge( $user_listings, $email_listings ) );
+
+            if ( empty( $posts_ids ) ) {
+                return [];
+            }
+
+            return $this->listings->find_listings( [
+                'post__in' => $posts_ids,
+            ] );
         }
 
-        return $this->db->prepare( 'ad_contact_email = %s', $email_address );
+        return $this->listings->find_listings( [
+            'classifieds_query' => [
+                'contact_email' => $email_address,
+            ],
+            'posts_per_page'    => $items_per_page,
+            'paged'             => $page,
+        ] );
     }
 
     /**
@@ -105,14 +137,14 @@ class AWPCP_ListingsPersonalDataProvider implements AWPCP_PersonalDataProviderIn
         foreach ( $listings as $listing ) {
             $data = $this->data_formatter->format_data( $items, $this->get_listing_properties( $listing ) );
 
-            foreach ( $this->regions->find_by_ad_id( $listing->ad_id ) as $region ) {
+            foreach ( $this->regions->find_by_ad_id( $listing->ID ) as $region ) {
                 $data = array_merge( $data, $this->data_formatter->format_data( $region_items, (array) $region ) );
             }
 
             $export_items[] = array(
                 'group_id'    => 'awpcp-classifieds',
                 'group_label' => __( 'Classifieds Listings', 'another-wordpress-classifieds-plugin' ),
-                'item_id'     => "awpcp-classified-{$listing->ad_id}",
+                'item_id'     => "awpcp-classified-{$listing->ID}",
                 'data'        => $data,
             );
         }
@@ -123,7 +155,7 @@ class AWPCP_ListingsPersonalDataProvider implements AWPCP_PersonalDataProviderIn
             $export_items[] = array(
                 'group_id'    => 'awpcp-media',
                 'group_label' => __( 'Classifieds Media', 'another-wordpress-classifieds-plugin' ),
-                'item_id'     => "awpcp-media-{$media_record->id}",
+                'item_id'     => "awpcp-media-{$media_record->ID}",
                 'data'        => $data,
             );
         }
@@ -136,14 +168,14 @@ class AWPCP_ListingsPersonalDataProvider implements AWPCP_PersonalDataProviderIn
      */
     private function get_listing_properties( $listing ) {
         $properties = array(
-            'ID'                          => $listing->ad_id,
-            'contact_name'                => $listing->ad_contact_name,
-            'contact_phone'               => $listing->ad_contact_phone,
-            'contact_phone_number_digits' => $listing->phone_number_digits,
-            'contact_email'               => $listing->ad_contact_email,
-            'website_url'                 => $listing->websiteurl,
-            'payer_email'                 => $listing->payer_email,
-            'ip_address'                  => $listing->posterip,
+            'ID'                          => $listing->ID,
+            'contact_name'                => $this->listing_renderer->get_contact_name( $listing ),
+            'contact_phone'               => $this->listing_renderer->get_contact_phone( $listing ),
+            'contact_phone_number_digits' => $this->listing_renderer->get_contact_phone_digits( $listing ),
+            'contact_email'               => $this->listing_renderer->get_contact_email( $listing ),
+            'website_url'                 => $this->listing_renderer->get_website_url( $listing ),
+            'payer_email'                 => $this->listing_renderer->get_payment_email( $listing ),
+            'ip_address'                  => $this->listing_renderer->get_ip_address( $listing ),
         );
 
         return apply_filters( 'awpcp_listing_personal_data_properties', $properties, $listing );
@@ -153,9 +185,9 @@ class AWPCP_ListingsPersonalDataProvider implements AWPCP_PersonalDataProviderIn
      * @since 3.8.6
      */
     private function get_listings_media( $listings ) {
-        return $this->media->query( array(
-            'ad_id' => wp_list_pluck( $listings, 'ad_id' ),
-        ) );
+        return $this->attachments->find_attachments( [
+            'post_parent__in' => wp_list_pluck( $listings, 'ID' ),
+        ] );
     }
 
     /**
@@ -163,7 +195,7 @@ class AWPCP_ListingsPersonalDataProvider implements AWPCP_PersonalDataProviderIn
      */
     private function get_media_properties( $media_record ) {
         return array(
-            'URL' => $media_record->get_url( 'original' ),
+            'URL' => wp_get_attachment_url( $media_record->ID ),
         );
     }
 
@@ -176,7 +208,7 @@ class AWPCP_ListingsPersonalDataProvider implements AWPCP_PersonalDataProviderIn
         $messages       = array();
 
         foreach ( $listings as $listing ) {
-            if ( $listing->delete() ) {
+            if ( $this->listings_logic->delete_listing( $listing ) ) {
                 $items_removed = true;
                 continue;
             }
@@ -184,7 +216,7 @@ class AWPCP_ListingsPersonalDataProvider implements AWPCP_PersonalDataProviderIn
             $items_retained = true;
 
             $message = __( 'An unknown error occurred while trying to delete information for classified {listing_id}.', 'another-wordpress-classifieds-plugin' );
-            $message = str_replace( '{listing_id}', $listing->ad_id, $message );
+            $message = str_replace( '{listing_id}', $listing->ID, $message );
 
             $messages[] = $message;
         }

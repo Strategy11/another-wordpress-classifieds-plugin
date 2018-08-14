@@ -18,6 +18,7 @@ function awpcp_listing_renderer() {
 /**
  * @since 3.3
  * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
+ * @SuppressWarnings(PHPMD.ExcessivePublicCount)
  */
 class AWPCP_ListingRenderer {
 
@@ -91,6 +92,22 @@ class AWPCP_ListingRenderer {
 
     public function get_contact_phone( $listing ) {
         return $this->wordpress->get_post_meta( $listing->ID, '_awpcp_contact_phone', true );
+    }
+
+    /**
+     * TODO: Make sure phone number digits are being stored.
+     *
+     * @since 4.0.0
+     */
+    public function get_contact_phone_digits( $listing ) {
+        return $this->wordpress->get_post_meta( $listing->ID, '_awpcp_contact_phone_number_digits', true );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function get_payment_email( $listing ) {
+        return $this->wordpress->get_post_meta( $listing->ID, '_awpcp_payer_email', true );
     }
 
     public function get_access_key( $listing ) {
@@ -212,6 +229,15 @@ class AWPCP_ListingRenderer {
     public function get_first_region( $listing ) {
         $regions = $this->get_regions( $listing );
         return count( $regions ) > 0 ? $regions[0] : null;
+    }
+
+    /**
+     * TODO: Store User's IP address during listing creation.
+     *
+     * @since 4.0.0
+     */
+    public function get_ip_address( $listing ) {
+        return $this->wordpress->get_post_meta( $listing->ID, '_awpcp_user_ip_address', true );
     }
 
     public function is_verified( $listing ) {

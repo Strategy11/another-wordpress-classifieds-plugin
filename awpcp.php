@@ -1865,7 +1865,10 @@ class AWPCP {
 
         if ( is_null( $instance ) ) {
             $instance = new AWPCP_ListingsPersonalDataProvider(
-                awpcp_media_api(),
+                $this->container['ListingsCollection'],
+                $this->container['ListingRenderer'],
+                $this->container['ListingsLogic'],
+                $this->container['AttachmentsCollection'],
                 awpcp_basic_regions_api(),
                 $this->get_data_formatter(),
                 $GLOBALS['wpdb']
