@@ -79,6 +79,8 @@ class AWPCP_Admin {
         if ( $this->post_type === $typenow ) {
             add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 
+            add_filter( "get_user_option_edit_{$this->post_type}_per_page", [ $this, 'filter_items_per_page_user_option' ], 10, 3 );
+
             add_action( 'pre_get_posts', array( $this->table_restrictions, 'pre_get_posts' ) );
 
             add_action( 'pre_get_posts', array( $this->table_views, 'pre_get_posts' ) );
@@ -122,6 +124,14 @@ class AWPCP_Admin {
         wp_enqueue_style( 'awpcp-admin-style' );
 
         wp_enqueue_script( 'awpcp-admin-listings-table' );
+    }
+
+    /**
+     * @since 4.0.0
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
+    public function filter_items_per_page_user_option( $items_per_page, $option, $user ) {
+        return apply_filters( 'awpcp_listings_table_items_per_page', $items_per_page, $user );
     }
 
     /**
