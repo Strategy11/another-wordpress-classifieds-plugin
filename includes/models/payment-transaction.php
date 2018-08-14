@@ -107,6 +107,7 @@ class AWPCP_Payment_Transaction {
             'status' => null,
             'created' => null,
             'conditions' => array(),
+            'user_id' => null,
         )));
 
         $query = 'SELECT %s FROM ' . AWPCP_TABLE_PAYMENTS . ' ';
@@ -127,6 +128,10 @@ class AWPCP_Payment_Transaction {
             $conditions[] = $wpdb->prepare(sprintf('created %s %%s', $created[0]), $created[1]);
         } else if (!is_null($created)) {
             $conditions[] = $wpdb->prepare('created = %s', $created);
+        }
+
+        if ( ! is_null( $user_id ) ) {
+            $conditions[] = $wpdb->prepare( 'user_id = %d', $user_id );
         }
 
         $query = sprintf("%s WHERE %s", $query, join(' AND ', $conditions));

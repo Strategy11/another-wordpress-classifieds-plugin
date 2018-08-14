@@ -259,6 +259,12 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
             $original_end_date = $this->listing_renderer->get_plain_end_date( $ad );
             $end_date = awpcp_set_datetime_date( $original_end_date, $data['end_date'] );
             $listing_data['metadata']['_awpcp_end_date'] = $end_date;
+            
+            // // From 3.8.6
+            // $now = current_time( 'mysql' );
+            //
+            // $ad->set_start_date( awpcp_set_datetime_date( $now, $data['start_date'] ) );
+            // $ad->set_end_date( awpcp_set_datetime_date( $now, $data['end_date'] ) );
         } elseif ( $this->user_can_modify_start_date( $ad, true, false ) ) {
             $orginal_start_date = $this->listing_renderer->get_plain_start_date( $ad );
             $start_date = awpcp_set_datetime_date( $orginal_start_date, $data['start_date'] );

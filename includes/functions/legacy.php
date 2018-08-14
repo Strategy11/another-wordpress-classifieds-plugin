@@ -477,7 +477,7 @@ function create_pager( $items_count, $offset, $results, $tpname ) {
 function vector2options($show_vector,$selected_map_val,$exclusion_vector=array()) {
    $myreturn='';
 
-   foreach( $show_vector as $k => $v ) {
+   foreach ( $show_vector as $k => $v ) {
        if (!in_array($k,$exclusion_vector)) {
            $myreturn.="<option value=\"".$k."\"";
            if ($k==$selected_map_val) {
