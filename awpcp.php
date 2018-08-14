@@ -249,7 +249,6 @@ require_once( AWPCP_DIR . "/includes/views/admin/listings/class-listings-table-s
 require_once( AWPCP_DIR . "/includes/views/admin/listings/class-listings-table-search-by-payer-email-condition.php" );
 require_once( AWPCP_DIR . "/includes/views/admin/listings/class-listings-table-search-by-title-condition.php" );
 require_once( AWPCP_DIR . "/includes/views/admin/listings/class-listings-table-search-by-user-condition.php" );
-require_once( AWPCP_DIR . "/includes/views/admin/listings/class-listings-table-search-conditions-parser.php" );
 require_once( AWPCP_DIR . "/includes/views/admin/account-balance/class-account-balance-page.php" );
 require_once( AWPCP_DIR . "/includes/views/admin/account-balance/class-account-balance-page-summary-step.php" );
 
@@ -427,8 +426,6 @@ require_once( AWPCP_DIR . '/admin/import/class-csv-reader.php' );
 require_once( AWPCP_DIR . '/admin/import/class-import-listings-ajax-handler.php' );
 require_once( AWPCP_DIR . "/admin/upgrade/class-manual-upgrade-admin-page.php" );
 require_once( AWPCP_DIR . '/admin/user-panel.php' );
-require( AWPCP_DIR . '/admin/listings/class-listings-table-search-by-phone-condition.php' );
-require( AWPCP_DIR . '/admin/listings/class-listings-table-search-by-contact-email-condition.php' );
 
 // required later to make sure dependencies are already loaded
 require_once(AWPCP_DIR . "/admin/user-panel.php");
@@ -904,7 +901,7 @@ class AWPCP {
 
             update_option( 'awpcp-installed-or-upgraded', false );
         }
-        
+
         add_filter( 'wp_privacy_personal_data_exporters', array( $this, 'register_personal_data_exporters' ) );
         add_filter( 'wp_privacy_personal_data_erasers', array( $this, 'register_personal_data_erasers' ) );
 
