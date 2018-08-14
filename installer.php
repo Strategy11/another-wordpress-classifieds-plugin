@@ -250,7 +250,6 @@ class AWPCP_Installer {
                 'convert_tables_to_innodb',
                 'create_listings_table_if_missing',
             ),
-            ),
             '4.0.0' => array(
                 'create_old_listing_id_column_in_listing_regions_table',
                 'migrate_wordpress_page_settings',
