@@ -106,10 +106,14 @@ class AWPCP_FormFieldsData {
 
         if ( ! $this->authorization->is_current_user_allowed_to_edit_listing_start_date( $post ) ) {
             $data['start_date'] = $this->listing_renderer->get_plain_start_date( $post );
+        } elseif ( ! empty( $data['start_date'] ) ) {
+            $data['start_date'] = awpcp_set_datetime_date( current_time( 'mysql' ), $data['start_date'] );
         }
 
         if ( ! $this->authorization->is_current_user_allowed_to_edit_listing_end_date( $post ) ) {
             $data['end_date'] = $this->listing_renderer->get_plain_end_date( $post );
+        } elseif ( ! empty( $data['end_date'] ) ) {
+            $data['end_date'] = awpcp_set_datetime_date( current_time( 'mysql' ), $data['end_date'] );
         }
 
         // phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
