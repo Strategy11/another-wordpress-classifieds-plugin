@@ -284,6 +284,10 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
             return new AWPCP_ContactPhoneListingsTableSearchMode();
         } );
 
+        $container['ContactEmailListingsTableSearchMode'] = $container->service( function( $container ) {
+            return new AWPCP_ContactEmailListingsTableSearchMode();
+        } );
+
         $container['PayerEmailListingsTableSearchMode'] = $container->service( function( $container ) {
             return new AWPCP_PayerEmailListingsTableSearchMode();
         } );

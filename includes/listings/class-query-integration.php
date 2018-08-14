@@ -244,6 +244,7 @@ class AWPCP_QueryIntegration {
         // TODO: Remove unused methods.
         $query_vars = $this->process_contact_name_query_parameter( $query_vars );
         $query_vars = $this->process_contact_phone_query_parameter( $query_vars );
+        $query_vars = $this->process_contact_email_query_parameter( $query_vars );
         $query_vars = $this->process_price_query_parameter( $query_vars );
         $query_vars = $this->process_min_price_query_parameter( $query_vars );
         $query_vars = $this->process_max_price_query_parameter( $query_vars );
@@ -619,6 +620,21 @@ class AWPCP_QueryIntegration {
                 'value'   => awpcp_get_digits_from_string( $query_vars['classifieds_query']['contact_phone'] ),
                 'compare' => 'LIKE',
             );
+        }
+
+        return $query_vars;
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function process_contact_email_query_parameter( $query_vars ) {
+        if ( ! empty( $query_vars['classifieds_query']['contact_email'] ) ) {
+            $query_vars['meta_query'][] = [
+                'key'     => '_awpcp_contact_email',
+                'value'   => $query_vars['classifieds_query']['contact_email'],
+                'compare' => 'LIKE',
+            ];
         }
 
         return $query_vars;

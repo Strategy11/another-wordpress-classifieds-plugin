@@ -177,6 +177,7 @@ class AWPCP_Admin {
         $search_modes['user']          = $this->container['UserListingsTableSearchMode'];
         $search_modes['contact-name']  = $this->container['ContactNameListingsTableSearchMode'];
         $search_modes['contact-phone'] = $this->container['ContactPhoneListingsTableSearchMode'];
+        $search_modes['contact-email'] = $this->container['ContactEmailListingsTableSearchMode'];
         $search_modes['payer-email']   = $this->container['PayerEmailListingsTableSearchMode'];
         $search_modes['location']      = $this->container['LocationListingsTableSearchMode'];
         $search_modes['id']            = $this->container['IDListingsTableSearchMode'];
