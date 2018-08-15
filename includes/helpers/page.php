@@ -11,7 +11,7 @@ class AWPCP_Page {
     public $page;
     public $title;
 
-    private $template_renderer;
+    protected $template_renderer;
 
     public function __construct( $page, $title, $template_renderer ) {
         $this->page = $page;
