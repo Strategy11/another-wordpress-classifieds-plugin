@@ -147,7 +147,7 @@ class AWPCP_CSV_Importer_Delegate {
     }
 
     /**
-     * @since feature/1112
+     * @since 4.0.0
      */
     public function parse_column_value( $row_data, $column_name ) {
         // DO NOT USE awpcp_array_data BECAUSE IT WILL TREAT '0' AS AN EMPTY VALUE
@@ -184,7 +184,7 @@ class AWPCP_CSV_Importer_Delegate {
     }
 
     /**
-     * @since feature/1112
+     * @since 4.0.0
      */
     private function parse_username_column( $username, $row_data ) {
         $contact_email = $this->parse_column_value( $row_data, 'contact_email' );
@@ -205,7 +205,7 @@ class AWPCP_CSV_Importer_Delegate {
      * Attempts to find a user by its username or email. If a user can't be
      * found one will be created.
      *
-     * @since feature/1112
+     * @since 4.0.0
      * @param $username string  User's username.
      * @param $contact_email    string  User's email address.
      * @return User info object or false.
@@ -238,7 +238,7 @@ class AWPCP_CSV_Importer_Delegate {
     }
 
     /**
-     * @since feature/1112
+     * @since 4.0.0
      */
     private function get_user( $username, $contact_email ) {
         if ( isset( $this->users_cache[ $username ] ) ) {
@@ -259,7 +259,7 @@ class AWPCP_CSV_Importer_Delegate {
     }
 
     /**
-     * @since feature/1112
+     * @since 4.0.0
      * @throws AWPCP_Exception
      */
     private function create_user( $username, $contact_email ) {
@@ -295,7 +295,7 @@ class AWPCP_CSV_Importer_Delegate {
     }
 
     /**
-     * @since feature/1112
+     * @since 4.0.0
      */
     private function parse_category_name_column( $category_name, $row_data ) {
         $category = $this->get_category( $category_name );
@@ -328,7 +328,7 @@ class AWPCP_CSV_Importer_Delegate {
     }
 
     /**
-     * @since feature/1112
+     * @since 4.0.0
      */
     private function create_category( $name ) {
         try {

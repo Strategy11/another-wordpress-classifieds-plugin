@@ -124,7 +124,7 @@ function awpcp_get_count_of_listings_in_categories() {
 
 /**
  * @since 3.4
- * @since feature/1112  Modified to work with custom post type and custom taxonomies.
+ * @since 4.0.0  Modified to work with custom post type and custom taxonomies.
  */
 function awpcp_count_listings_in_categories() {
     $listings_count = array();
@@ -143,7 +143,7 @@ function awpcp_count_listings_in_categories() {
  *       See the old implementation of awpcp_count_listings_in_categories
  *       (up to, at least, version 3.6.3.1).
  *
- * @since feature/1112
+ * @since 4.0.0
  * @SuppressWarnings(PHPMD)
  */
 function awpcp_count_listings_in_category( $category_id ) {

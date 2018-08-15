@@ -173,7 +173,7 @@ function doadcleanup() {
 
 /**
  * @access private
- * @since feature/1112
+ * @since 4.0.0
  */
 function awpcp_delete_unpaid_listings_older_than_a_month( $listings_logic, $listings ) {
     $query = array(
@@ -199,7 +199,7 @@ function awpcp_delete_unpaid_listings_older_than_a_month( $listings_logic, $list
 
 /**
  * @access private
- * @since feature/1112
+ * @since 4.0.0
  */
 function awpcp_delete_expired_listings( $listings_logic, $listings ) {
     $days_before_expired_listings_are_deleted = get_awpcp_option( 'days-before-expired-listings-are-deleted' );
@@ -301,7 +301,7 @@ function awpcp_clean_up_non_verified_ads_handler() {
 }
 
 /**
- * @since feature/1112  Updated to load listings using Listings Collection methods.
+ * @since 4.0.0  Updated to load listings using Listings Collection methods.
  * @since 3.0.2
  */
 function awpcp_clean_up_non_verified_ads( $listings_collection, /* AWPCP_ListingsAPI */ $listings, $settings, $wordpress ) {

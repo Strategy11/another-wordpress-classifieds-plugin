@@ -413,7 +413,7 @@ class AWPCP_ListingsAPI {
     }
 
     /**
-     * @since feature/1112
+     * @since 4.0.0
      */
     public function enable_listing_without_triggering_actions( $listing ) {
         $images_must_be_approved = $this->settings->get_option( 'imagesapprove', false );
@@ -483,7 +483,7 @@ class AWPCP_ListingsAPI {
     }
 
     /**
-     * @since feature/1112
+     * @since 4.0.0
      */
     public function generate_access_key() {
         return md5( sprintf( '%s%s%d', wp_salt(), uniqid( '', true ), rand( 1, 1000 ) ) );

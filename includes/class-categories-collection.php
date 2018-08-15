@@ -27,7 +27,7 @@ class AWPCP_Categories_Collection {
     }
 
     /**
-     * @since feature/1112
+     * @since 4.0.0
      */
     public function get( $category_id ) {
         if ( $category_id <= 0 ) {
@@ -64,7 +64,7 @@ class AWPCP_Categories_Collection {
     }
 
     /**
-     * @since feature/1112
+     * @since 4.0.0
      */
     public function get_all() {
         return $this->find_categories();
@@ -81,7 +81,7 @@ class AWPCP_Categories_Collection {
     }
 
     /**
-     * @since feature/1112
+     * @since 4.0.0
      */
     private function prepare_categories_args( $args = array() ) {
         return wp_parse_args( $args, array(

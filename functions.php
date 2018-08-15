@@ -1953,7 +1953,7 @@ function awpcp_html_admin_second_level_heading_tag() {
 }
 
 /**
- * @since feature/1112
+ * @since 4.0.0
  */
 function awpcp_html_admin_third_level_heading( $params ) {
     $params['tag'] = awpcp_html_admin_third_level_heading_tag();
@@ -1961,7 +1961,7 @@ function awpcp_html_admin_third_level_heading( $params ) {
 }
 
 /**
- * @since feature/1112
+ * @since 4.0.0
  */
 function awpcp_html_admin_third_level_heading_tag() {
     if ( version_compare( get_bloginfo('version'), '4.4-beta1', '<' ) ) {

@@ -171,7 +171,7 @@ class AWPCP_ListingsTableColumnsHandler {
     }
 
     /**
-     * @since feature/1112  Moved from Ad class.
+     * @since 4.0.0  Moved from Ad class.
      */
     public function get_payment_status_formatted( $post ) {
         $payment_status = $this->listing_renderer->get_payment_status( $post );

@@ -54,7 +54,7 @@ class AWPCP_ListingsCollection {
     /**
      * @param int $listing_id   A listing ID.
      * @throws AWPCP_Exception  If no listing is found with the specified ID.
-     * @since feature/1112 works with custom post types.
+     * @since 4.0.0 works with custom post types.
      * @since 3.3
      */
     public function get( $listing_id ) {
