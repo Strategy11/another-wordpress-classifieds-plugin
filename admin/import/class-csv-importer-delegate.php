@@ -11,6 +11,12 @@
 class AWPCP_CSV_Importer_Delegate {
 
     private $import_session;
+
+    /**
+     * @var CSVImporterColumns
+     */
+    private $columns;
+
     private $mime_types;
     private $categories_logic;
     private $categories;
@@ -20,38 +26,6 @@ class AWPCP_CSV_Importer_Delegate {
      * @var object
      */
     private $media_manager;
-
-    private $default_supported_columns = array(
-        'post_fields' => array(
-            'title' => 'post_title',
-            'details' => 'post_content',
-            'username' => 'post_author'
-        ),
-        'terms' => array(
-            'category_name' => 'term_id',
-            // 'category_parent' => 'ad_category_parent_id',
-        ),
-        'metadata' => array(
-            'contact_name' => '_awpcp_contact_name',
-            'contact_email' => '_awpcp_contact_email',
-            'contact_phone' => '_awpcp_contact_phone',
-            'website_url' => '_awpcp_website_url',
-            'item_price' => '_awpcp_price',
-            'start_date' => '_awpcp_start_date',
-            'end_date' => '_awpcp_end_date',
-        ),
-        'region_fields' => array(
-            'city' => 'ad_city',
-            'state' => 'ad_state',
-            'country' => 'ad_country',
-            'county_village' => 'ad_county_village',
-        ),
-        'custom' => array(
-            'images' => 'images',
-        ),
-    );
-
-    private $supported_columns = null;
 
     private $required_columns = array(
         'title',
@@ -75,8 +49,9 @@ class AWPCP_CSV_Importer_Delegate {
     private $parsed_data = array();
     private $messages = array();
 
-    public function __construct( $import_session, $mime_types, $categories_logic, $categories, $listings_logic, $media_manager ) {
+    public function __construct( $import_session, $columns, $mime_types, $categories_logic, $categories, $listings_logic, $media_manager ) {
         $this->import_session = $import_session;
+        $this->columns          = $columns;
         $this->mime_types = $mime_types;
         $this->categories_logic = $categories_logic;
         $this->categories = $categories;
@@ -104,8 +79,8 @@ class AWPCP_CSV_Importer_Delegate {
     }
 
     private function get_listing_data( $row_data ) {
-        foreach ( $this->get_supported_columns() as $column_type => $columns ) {
-            foreach ( $columns as $column_name => $field_name ) {
+        foreach ( $this->columns->get_supported_columns() as $column_type => $columns ) {
+            foreach ( $columns as $column_name => $field ) {
                 if ( ! isset( $row_data[ $column_name ] ) && in_array( $column_name, $this->required_columns ) ) {
                     $message =_x( 'Required value for column "<column-name>" is missing.', 'csv importer', 'another-wordpress-classifieds-plugin' );
                     $message = str_replace( $message, '<column-name>', $column_name );
@@ -116,18 +91,18 @@ class AWPCP_CSV_Importer_Delegate {
                 try {
                     $parsed_value = $this->parse_column_value( $row_data, $column_name );
                 } catch ( AWPCP_Exception $e ) {
-                    if ( ! in_array( $field_name, $this->required_fields ) ) {
+                    if ( ! in_array( $field['name'], $this->required_fields ) ) {
                         continue;
                     }
 
                     throw $e;
                 }
 
-                $listing_data[ $column_type ][ $field_name ] = $parsed_value;
+                $listing_data[ $column_type ][ $field['name'] ] = $parsed_value;
             }
         }
 
-        if ( isset( $row_data['images'] ) ) {
+        if ( ! empty( $row_data['images'] ) ) {
             $image_names = array_filter( explode( ';', $row_data['images'] ) );
             $listing_data['attachments'] = $this->import_images( $image_names );
         } else {
@@ -136,14 +111,6 @@ class AWPCP_CSV_Importer_Delegate {
 
         // TODO: fix Extra Fields module to be able to import extra fields data
         return apply_filters( 'awpcp-imported-listing-data', $listing_data, $row_data );
-    }
-
-    private function get_supported_columns() {
-        if ( is_null( $this->supported_columns ) ) {
-            $this->supported_columns = apply_filters( 'awpcp-csv-importer-supported-columns', $this->default_supported_columns );
-        }
-
-        return $this->supported_columns;
     }
 
     /**
@@ -379,7 +346,7 @@ class AWPCP_CSV_Importer_Delegate {
     private function parse_date_column( $date, $default_date, $error_messages = array() ) {
         if ( empty( $date ) && empty( $default_date ) ) {
             $message = $error_messages['empty-date-with-no-default'];
-            throw new AWPCP_Exception( $message );
+            throw new AWPCP_CSV_Importer_Exception( $message );
         }
 
         if ( ! empty( $date ) ) {
@@ -393,7 +360,7 @@ class AWPCP_CSV_Importer_Delegate {
             // TODO: validation
             if ( empty( $parsed_value ) ) {
                 $message = $error_messages['invalid-date'];
-                throw new AWPCP_Exception( $message );
+                throw new AWPCP_CSV_Importer_Exception( $message );
             }
 
             return $parsed_value;
@@ -408,7 +375,7 @@ class AWPCP_CSV_Importer_Delegate {
 
         if ( empty( $parsed_value ) && ! empty( $default_date ) ) {
             $message = $error_messages['invalid-default-date'];
-            throw new AWPCP_Exception( $message );
+            throw new AWPCP_CSV_Importer_Exception( $message );
         }
 
         return $parsed_value;

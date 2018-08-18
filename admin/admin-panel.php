@@ -175,6 +175,22 @@ class AWPCP_AdminPanel {
             30
         );
 
+        $router->add_admin_section(
+            "$parent_page::awpcp-import",
+            'supported-csv-headers',
+            'awpcp-view',
+            'supported-csv-headers',
+            function() { return awpcp()->container['SupportedCSVHeadersAdminPage']; }
+        );
+
+        $router->add_admin_section(
+            "$parent_page::awpcp-import",
+            'example-csv-file',
+            'awpcp-view',
+            'example-csv-file',
+            function() { return awpcp()->container['ExampleCSVFileAdminPage']; }
+        );
+
         $router->add_admin_subpage(
             $parent_page,
             __( 'Categories', 'another-wordpress-classifieds-plugin' ),

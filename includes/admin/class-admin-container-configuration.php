@@ -332,5 +332,23 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
         $container['TestSSLClientAjaxHandler'] = $container->service( function( $container ) {
             return new AWPCP_TestSSLClientAjaxHandler();
         } );
+
+        $container['CSVImporterColumns'] = $container->service( function( $container ) {
+            return new AWPCP_CSVImporterColumns();
+        } );
+
+        $container['SupportedCSVHeadersAdminPage'] = $container->service( function( $container ) {
+            return new AWPCP_SupportedCSVHeadersAdminPage(
+                $container['CSVImporterColumns'],
+                $container['TemplateRenderer']
+            );
+        } );
+
+        $container['ExampleCSVFileAdminPage'] = $container->service( function( $container ) {
+            return new AWPCP_ExampleCSVFileAdminPage(
+                $container['CSVImporterColumns'],
+                $container['TemplateRenderer']
+            );
+        } );
     }
 }
