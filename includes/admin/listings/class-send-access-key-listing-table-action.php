@@ -38,12 +38,19 @@ class AWPCP_SendAccessKeyListingTableAction implements AWPCP_ListTableActionInte
     }
 
     /**
+     * @since 4.0.0
+     */
+    public function get_title() {
+        return _x( 'Send Access Key', 'listing row action', 'another-wordpress-classifieds-plugin' );
+    }
+
+    /**
      * @param object $post  An instance of WP_Post.
      * @since 4.0.0
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function get_label( $post ) {
-        return _x( 'Send Access Key', 'listing row action', 'another-wordpress-classifieds-plugin' );
+        $this->get_title();
     }
 
     /**

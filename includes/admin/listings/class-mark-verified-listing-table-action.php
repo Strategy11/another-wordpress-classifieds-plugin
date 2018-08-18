@@ -39,10 +39,17 @@ class AWPCP_MarkVerifiedListingTableAction implements AWPCP_ListTableActionInter
 
     /**
      * @since 4.0.0
+     */
+    public function get_title() {
+        return _x( 'Mark as Verified', 'listing row action', 'another-wordpress-classifieds-plugin' );
+    }
+
+    /**
+     * @since 4.0.0
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function get_label( $post ) {
-        return _x( 'Mark as Verified', 'listing row action', 'another-wordpress-classifieds-plugin' );
+        return $this->get_title();
     }
 
     /**

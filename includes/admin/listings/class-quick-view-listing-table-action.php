@@ -18,12 +18,27 @@ class AWPCP_QuickViewListingTableAction implements AWPCP_ListTableActionInterfac
     }
 
     /**
+     * @since 4.0.0
+     */
+    public function should_show_as_bulk_action() {
+        return false;
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function get_title() {
+        return _x( 'Quick View', 'listings row action', 'another-wordpress-classifieds-plugin' );
+    }
+
+    /**
      * @SuppressWarnings(UnusedFormalParameter)
      * @param object $post  An instance of WP_Post.
      * @since 4.0.0
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function get_label( $post ) {
-        return _x( 'Quick View', 'listings row action', 'another-wordpress-classifieds-plugin' );
+        return $this->get_title();
     }
 
     /**

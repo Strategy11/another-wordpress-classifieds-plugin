@@ -323,6 +323,7 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
 
         $container['ListingsTableColumnsHandler'] = $container->service( function( $container ) {
             return new AWPCP_ListingsTableColumnsHandler(
+                $container['listing_post_type'],
                 $container['listing_category_taxonomy'],
                 $container['ListingRenderer'],
                 $container['ListingsCollection']

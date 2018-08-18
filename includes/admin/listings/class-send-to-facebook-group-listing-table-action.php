@@ -41,12 +41,19 @@ class AWPCP_SendToFacebookGroupListingTableAction implements AWPCP_ListTableActi
     }
 
     /**
+     * @since 4.0.0
+     */
+    public function get_title() {
+        return _x( 'Send to Facebook Group', 'listing row action', 'another-wordpress-classifieds-plugin' );
+    }
+
+    /**
      * @param object $post  An instance of WP_Post.
      * @since 4.0.0
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function get_label( $post ) {
-        return _x( 'Send to Facebook Group', 'listing row action', 'another-wordpress-classifieds-plugin' );
+        return $this->get_title();
     }
 
     /**

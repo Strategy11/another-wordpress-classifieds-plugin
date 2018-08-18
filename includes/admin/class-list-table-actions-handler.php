@@ -100,6 +100,20 @@ class AWPCP_ListTableActionsHandler {
     }
 
     /**
+     * @since 4.0.0
+     */
+    public function get_bulk_actions( $actions ) {
+        foreach ( $this->actions as $name => $action ) {
+            if ( method_exists( $action, 'should_show_as_bulk_action' ) && ! $action->should_show_as_bulk_action() ) {
+                continue;
+            }
+
+            $actions[ $name ] = $action->get_title();
+        }
+
+        return $actions;
+    }
+    /**
      * @param string $sendback      Redirect URL.
      * @param string $action        The name of the current action.
      * @param array  $posts_ids     An array of posts IDs that need to be processed.

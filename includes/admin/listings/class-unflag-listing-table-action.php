@@ -37,11 +37,19 @@ class AWPCP_UnflagListingTableAction implements AWPCP_ListTableActionInterface {
     }
 
     /**
-     * @param object $post  An instance of WP_Post.
      * @since 4.0.0
      */
-    public function get_label( $post ) {
+    public function get_title() {
         return _x( 'Unflag', 'listing row action', 'another-wordpress-classifieds-plugin' );
+    }
+
+    /**
+     * @param object $post  An instance of WP_Post.
+     * @since 4.0.0
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
+    public function get_label( $post ) {
+        return $this->get_title();
     }
 
     /**
