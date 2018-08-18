@@ -15,6 +15,11 @@ interface AWPCP_ListTableActionInterface {
     public function should_show_action_for( $post );
 
     /**
+     * @since 4.0.0
+     */
+    public function get_icon_class( $post );
+
+    /**
      * @param object $post  An instance of WP_Post.
      * @since 4.0.0
      */

@@ -32,9 +32,18 @@ class AWPCP_MarkVerifiedListingTableAction implements AWPCP_ListTableActionInter
 
     /**
      * @since 4.0.0
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     protected function should_show_action_for_post( $post ) {
-        return $this->listing_renderer->is_verified( $post ) ? false : true;
+        return false; // Available as a bulk action only.
+    }
+
+    /**
+     * @since 4.0.0
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
+    public function get_icon_class( $post ) {
+        return 'fas fa-check-double';
     }
 
     /**

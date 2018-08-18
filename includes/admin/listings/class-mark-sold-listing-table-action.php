@@ -35,6 +35,14 @@ class AWPCP_MarkSoldListingTableAction implements AWPCP_ListTableActionInterface
 
     /**
      * @since 4.0.0
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
+    public function get_icon_class( $post ) {
+        return 'fas fa-hand-holding-usd';
+    }
+
+    /**
+     * @since 4.0.0
      */
     public function get_title() {
         return _x( 'Mark as Sold', 'listing row action', 'another-wordpress-classifieds-plugin' );

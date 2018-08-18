@@ -26,6 +26,14 @@ class AWPCP_QuickViewListingTableAction implements AWPCP_ListTableActionInterfac
 
     /**
      * @since 4.0.0
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
+    public function get_icon_class( $post ) {
+        return 'fas fa-eye';
+    }
+
+    /**
+     * @since 4.0.0
      */
     public function get_title() {
         return _x( 'Quick View', 'listings row action', 'another-wordpress-classifieds-plugin' );
@@ -58,6 +66,7 @@ class AWPCP_QuickViewListingTableAction implements AWPCP_ListTableActionInterfac
     /**
      * @param object $post  An instance of WP_Post.
      * @since 4.0.0
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function process_item( $post ) {
     }
@@ -65,6 +74,7 @@ class AWPCP_QuickViewListingTableAction implements AWPCP_ListTableActionInterfac
     /**
      * @param array $result_codes   An array of result codes from this action.
      * @since 4.0.0
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function get_messages( $result_codes ) {
         return array();

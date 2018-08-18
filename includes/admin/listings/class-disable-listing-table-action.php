@@ -40,6 +40,14 @@ class AWPCP_DisableListingTableAction implements AWPCP_ListTableActionInterface 
      * @since 4.0.0
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
+    public function get_icon_class( $post ) {
+        return 'fas fa-times';
+    }
+
+    /**
+     * @since 4.0.0
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
     public function get_title() {
         return _x( 'Disable', 'listing row action', 'another-wordpress-classifieds-plugin' );
     }

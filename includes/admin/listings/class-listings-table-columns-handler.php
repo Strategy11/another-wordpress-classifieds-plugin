@@ -11,6 +11,11 @@ class AWPCP_ListingsTableColumnsHandler {
     /**
      * @var string
      */
+    private $listing_post_type;
+
+    /**
+     * @var string
+     */
     private $listing_category_taxonomy;
 
     /**
@@ -24,12 +29,10 @@ class AWPCP_ListingsTableColumnsHandler {
     private $listings_collection;
 
     /**
-     * @param string $listing_category_taxonomy     The name of the classifieds category taxonomy.
-     * @param object $listing_renderer              An instance of Listing Renderer.
-     * @param object $listings_collection           An instance of Listings Collection.
      * @since 4.0.0
      */
-    public function __construct( $listing_category_taxonomy, $listing_renderer, $listings_collection ) {
+    public function __construct( $listing_post_type, $listing_category_taxonomy, $listing_renderer, $listings_collection ) {
+        $this->listing_post_type         = $listing_post_type;
         $this->listing_category_taxonomy = $listing_category_taxonomy;
         $this->listing_renderer          = $listing_renderer;
         $this->listings_collection       = $listings_collection;
@@ -101,6 +104,10 @@ class AWPCP_ListingsTableColumnsHandler {
         array_splice( $columns_keys, 3, 0, array_keys( $new_columns ) );
         array_splice( $columns_values, 3, 0, array_values( $new_columns ) );
 
+        // Add Actions column at the end.
+        $columns_keys[]   = 'awpcp-actions';
+        $columns_values[] = _x( 'Actions', 'listings table column', 'another-wordpress-classifieds-plugin' );
+
         return array_combine( $columns_keys, $columns_values );
     }
 
@@ -118,6 +125,7 @@ class AWPCP_ListingsTableColumnsHandler {
      * @param string $column    The name of the column that is being rendered.
      * @param int    $post_id   The ID of the current post.
      * @since 4.0.0
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      */
     public function manage_posts_custom_column( $column, $post_id ) {
         try {
@@ -149,6 +157,9 @@ class AWPCP_ListingsTableColumnsHandler {
                 return;
             case 'awpcp-status':
                 echo $this->render_status_column( $post ); // XSS Ok.
+                return;
+            case 'awpcp-actions':
+                echo $this->render_actions_column( $post ); // XSS Ok.
                 return;
         }
     }
@@ -199,5 +210,14 @@ class AWPCP_ListingsTableColumnsHandler {
         }
 
         return _x( 'Disabled', 'listing status', 'another-wordpress-classifieds-plugin' );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function render_actions_column( $post ) {
+        $actions = apply_filters( "{$this->listing_post_type}_row_actions", [], $post );
+
+        return implode( '', $actions );
     }
 }

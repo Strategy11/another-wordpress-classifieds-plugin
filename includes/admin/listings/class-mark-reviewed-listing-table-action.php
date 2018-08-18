@@ -31,9 +31,18 @@ class AWPCP_MarkReviewedListingTableAction implements AWPCP_ListTableActionInter
     /**
      * @param object $post  An instance of WP_Post.
      * @since 4.0.0
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function should_show_action_for( $post ) {
-        return $this->listing_renderer->needs_review( $post );
+        return false; // Available as a bulk action only.
+    }
+
+    /**
+     * @since 4.0.0
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
+    public function get_icon_class( $post ) {
+        return 'fas fa-clipboard-check';
     }
 
     /**

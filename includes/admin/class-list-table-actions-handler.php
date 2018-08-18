@@ -73,7 +73,14 @@ class AWPCP_ListTableActionsHandler {
      *                           of WP_Post.
      * @since 4.0.0
      */
-    public function row_actions( $actions, $post ) {
+    public function row_actions_links( $actions, $post ) {
+        return $this->row_actions( $actions, $post, [ $this, 'create_action_link' ] );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function row_actions( $actions, $post, $create_element ) {
         $current_url = add_query_arg( array() );
 
         foreach ( $this->actions as $name => $action ) {
@@ -81,22 +88,43 @@ class AWPCP_ListTableActionsHandler {
                 continue;
             }
 
-            $actions[ $name ] = $this->create_action_link(
-                $action->get_label( $post ),
-                $action->get_url( $post, $current_url )
-            );
+            $actions[ $name ] = call_user_func( $create_element, $action, $post, $current_url );
         }
 
         return $actions;
     }
 
     /**
-     * @param string $label     The label for the action.
-     * @param mixed  $url       The URL for the action.
+     * @since 4.0.0
+     * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
+     */
+    private function create_action_link( $action, $post, $current_url ) {
+        $label = $action->get_label( $post );
+        $url   = $action->get_url( $post, $current_url );
+
+        return sprintf( '<a href="%1$s">%2$s</a>', wp_nonce_url( $url, 'bulk-posts' ), $label );
+    }
+
+    /**
      * @since 4.0.0
      */
-    private function create_action_link( $label, $url ) {
-        return sprintf( '<a href="%1$s">%2$s</a>', wp_nonce_url( $url, 'bulk-posts' ), $label );
+    public function row_actions_buttons( $actions, $post ) {
+        return $this->row_actions( $actions, $post, [ $this, 'create_action_button' ] );
+    }
+
+    /**
+     * @since 4.0.0
+     * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
+     */
+    private function create_action_button( $action, $post, $current_url ) {
+        $label      = $action->get_label( $post );
+        $url        = wp_nonce_url( $action->get_url( $post, $current_url ), 'bulk-posts' );
+        $icon_class = 'fas fa-meh-rolling-eyes';
+        if ( method_exists( $action, 'get_icon_class' ) ) {
+            $icon_class = $action->get_icon_class( $post );
+        }
+
+        return sprintf( '<a class="awpcp-action-button button" href="%1$s" title="%2$s" aria-label="%2$s"><i class="%3$s"></i></a>', $url, $label, $icon_class );
     }
 
     /**

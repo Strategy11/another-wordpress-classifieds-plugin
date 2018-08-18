@@ -87,7 +87,7 @@ class AWPCP_Admin {
             add_filter( 'views_edit-' . $this->post_type, array( $this->table_views, 'views' ) );
 
             add_action( 'admin_head-edit.php', array( $this->table_actions, 'admin_head' ), 10, 2 );
-            add_action( 'post_row_actions', array( $this->table_actions, 'row_actions' ), 10, 2 );
+            add_filter( "{$this->post_type}_row_actions", [ $this->table_actions, 'row_actions_buttons' ], 10, 2 );
             add_filter( "bulk_actions-edit-{$this->post_type}", [ $this->table_actions, 'get_bulk_actions' ] );
             add_filter( 'handle_bulk_actions-edit-' . $this->post_type, array( $this->table_actions, 'handle_action' ), 10, 3 );
 

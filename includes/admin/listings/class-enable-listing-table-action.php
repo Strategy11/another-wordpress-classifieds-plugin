@@ -44,6 +44,14 @@ class AWPCP_EnableListingTableAction implements AWPCP_ListTableActionInterface {
      * @since 4.0.0
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
+    public function get_icon_class( $post ) {
+        return 'fas fa-check';
+    }
+
+    /**
+     * @since 4.0.0
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
     public function get_title() {
         return _x( 'Enable', 'listing row action', 'another-wordpress-classifieds-plugin' );
     }

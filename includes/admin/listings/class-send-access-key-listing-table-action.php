@@ -39,6 +39,14 @@ class AWPCP_SendAccessKeyListingTableAction implements AWPCP_ListTableActionInte
 
     /**
      * @since 4.0.0
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
+    public function get_icon_class( $post ) {
+        return 'fas fa-key';
+    }
+
+    /**
+     * @since 4.0.0
      */
     public function get_title() {
         return _x( 'Send Access Key', 'listing row action', 'another-wordpress-classifieds-plugin' );

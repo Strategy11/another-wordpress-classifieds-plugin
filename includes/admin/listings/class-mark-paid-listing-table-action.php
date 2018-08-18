@@ -31,11 +31,18 @@ class AWPCP_MarkPaidListingTableAction implements AWPCP_ListTableActionInterface
 
     /**
      * @since 4.0.0
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     protected function should_show_action_for_post( $post ) {
-        $payment_status = $this->listing_renderer->get_payment_status( $post );
+        return false; // Available as a bulk action only.
+    }
 
-        return 'Unpaid' === $payment_status;
+    /**
+     * @since 4.0.0
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
+    public function get_icon_class( $post ) {
+        return 'far fa-money-bill-alt';
     }
 
     /**

@@ -35,9 +35,18 @@ class AWPCP_SendToFacebookPageListingTableAction implements AWPCP_ListTableActio
     /**
      * @param object $post  An instance of WP_Post.
      * @since 4.0.0
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     protected function should_show_action_for_post( $post ) {
-        return ! $this->wordpress->get_post_meta( $post->ID, '_awpcp_sent_to_facebook_page', true );
+        return false; // Available as a bulk action only.
+    }
+
+    /**
+     * @since 4.0.0
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
+    public function get_icon_class( $post ) {
+        return 'fab fa-facebook-square';
     }
 
     /**

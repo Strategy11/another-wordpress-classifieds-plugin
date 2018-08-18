@@ -54,6 +54,14 @@ class AWPCP_MarkAsSPAMListingTableAction implements AWPCP_ListTableActionInterfa
 
     /**
      * @since 4.0.0
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
+    public function get_icon_class( $post ) {
+        return 'fas fa-flag';
+    }
+
+    /**
+     * @since 4.0.0
      */
     public function get_title() {
         return _x( 'SPAM', 'listing row action', 'another-wordpress-classifieds-plugin' );
