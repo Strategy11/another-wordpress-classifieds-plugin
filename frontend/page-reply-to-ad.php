@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package AWPCP\Frontend
+ */
+
+// phpcs:disable
 
 require_once(AWPCP_DIR . '/includes/helpers/page.php');
 
@@ -7,7 +12,9 @@ function awpcp_reply_to_listing_page() {
         'awpcp-reply-to-ad',
         __('Reply to Ad', 'another-wordpress-classifieds-plugin'),
         awpcp_listing_renderer(),
-        awpcp_listings_collection()
+        awpcp_listings_collection(),
+        awpcp_template_renderer(),
+        awpcp_request()
     );
 }
 
@@ -22,11 +29,17 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
 
     public $messages = array();
 
-    public function __construct( $page, $title, $listing_renderer, $listings ) {
-        parent::__construct( $page, $title );
+    /**
+     * @var Request
+     */
+    private $request;
+
+    public function __construct( $page, $title, $listing_renderer, $listings, $template_renderer, $request ) {
+        parent::__construct( $page, $title, $template_renderer );
 
         $this->listing_renderer = $listing_renderer;
         $this->listings = $listings;
+        $this->request          = $request;
     }
 
     public function get_current_action($default='contact') {
@@ -35,18 +48,12 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
 
     public function get_ad() {
         if (is_null($this->ad)) {
-            $ad_id = absint(awpcp_request_param('i'));
-            if ($ad_id === 0 && get_awpcp_option('seofriendlyurls')) {
-                $permalinks = get_option('permalink_structure');
-                if (!empty($permalinks)) {
-                    $ad_id = absint(get_query_var('id'));
-                }
-            }
+            $listing_id = $this->request->get_current_listing_id();
 
             try {
-                $ad = $this->listings->get( $ad_id );
+                $this->ad = $this->listings->get( $listing_id );
             } catch ( AWPCP_Exception $e ) {
-                $ad = null;
+                $this->ad = null;
             }
         }
 
@@ -72,7 +79,7 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
         return $this->_dispatch();
     }
 
-    protected function _dispatch($default=null) {
+    protected function _dispatch() {
         $action = $this->get_current_action();
 
         if (get_awpcp_option('reply-to-ad-requires-registration') && !is_user_logged_in()) {
@@ -191,6 +198,9 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
         return $this->render($template, $params);
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.ElseExpression)
+     */
     protected function process_contact_form() {
         global $nameofsite;
 

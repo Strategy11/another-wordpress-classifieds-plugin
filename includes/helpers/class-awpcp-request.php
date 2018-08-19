@@ -201,6 +201,12 @@ class AWPCP_Request {
             return $listing_id;
         }
 
+        $listing_id = $this->param( 'i' );
+
+        if ( $listing_id ) {
+            return $listing_id;
+        }
+
         return $this->get_query_var( 'id' );
     }
 

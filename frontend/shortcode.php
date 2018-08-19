@@ -125,7 +125,7 @@ class AWPCP_Pages {
 	public function reply_to_ad() {
         if ( ! isset( $this->output['reply-to-ad'] ) ) {
             do_action('awpcp-shortcode', 'reply-to-ad');
-            $page = new AWPCP_ReplyToAdPage();
+            $page = awpcp_reply_to_listing_page();
             $this->output['reply-to-ad'] = $page->dispatch();
         }
 
