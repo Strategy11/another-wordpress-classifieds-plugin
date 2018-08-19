@@ -253,6 +253,7 @@ class AWPCP_Installer {
             '4.0.0' => array(
                 'create_old_listing_id_column_in_listing_regions_table',
                 'migrate_wordpress_page_settings',
+                'migrate_reply_to_ad_email_templates',
                 'keep_legacy_url_structure',
                 'remove_old_capabilities',
                 'enable_upgrade_routine_to_migrate_listing_categories',
@@ -1115,6 +1116,32 @@ class AWPCP_Installer {
 
             awpcp_update_plugin_page_id( $page_ref, $page_info['page_id'] );
         }
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function migrate_reply_to_ad_email_templates() {
+        $previous_subject = $this->settings->get_option( 'contactformsubjectline', __( 'Response to your AWPCP Demo Ad', 'another-wordpress-classifieds-plugin' ) );
+        $previous_body    = $this->settings->get_option( 'contactformbodymessage', __( 'Someone has responded to your AWPCP Demo Ad', 'another-wordpress-classifieds-plugin' ) );
+
+        $template = $this->settings->get_option( 'contact-form-user-notification-email-template-x' );
+
+        if ( ! empty( $template ) ) {
+            // We already migrated the settings or someone provided a new value first. Abort.
+            return;
+        }
+
+        $template = [
+            'subject' => _x( "{__previous_subject__} regarding: {listing_title}", 'reply to ad email', 'another-wordpress-classifieds-plugin' ),
+            'body'    => _x( "{__previous_body__}\n\nContact name: {sender_name}\nContact email: {sender_email}\n\nContacting about {listing_title}\n{listing_url}\n\nMessage:\n\n{message}\n\n\n{site_title}\n{home_url}", 'reply to ad email', 'another-wordpress-classifieds-plugin' ),
+            'version' => '4.0.0',
+        ];
+
+        $template['subject'] = str_replace( '{__previous_subject__}', $previous_subject, $template['subject'] );
+        $template['body']    = str_replace( '{__previous_body__}', $previous_body, $template['body'] );
+
+        $this->settings->set_or_update_option( 'contact-form-user-notification-email-template-x', $template );
     }
 
     /**
