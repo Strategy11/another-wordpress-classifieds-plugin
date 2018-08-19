@@ -701,6 +701,7 @@ class AWPCP {
         $renderers['license']        = $this->container['LicenseSettingsRenderer'];
         $renderers['wordpress-page'] = $this->container['WordPressPageSettingsRenderer'];
         $renderers['settings-grid']  = $this->container['SettingsGridRenderer'];
+        $renderers['email-template'] = $this->container['EmailTemplateSettingsRenderer'];
 
         return $renderers;
     }

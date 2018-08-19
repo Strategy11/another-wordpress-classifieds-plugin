@@ -161,5 +161,11 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
                 $container['Settings']
             );
         } );
+
+        $container['EmailHelper'] = $container->service( function( $container ) {
+            return new AWPCP_EmailHelper(
+                $container['Settings']
+            );
+        } );
     }
 }

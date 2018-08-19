@@ -154,5 +154,12 @@ class AWPCP_SettingsContainerConfiguration implements AWPCP_ContainerConfigurati
                 $container['TemplateRenderer']
             );
         } );
+
+        $container['EmailTemplateSettingsRenderer'] = $container->service( function( $container ) {
+            return new AWPCP_EmailTemplateSettingsRenderer(
+                $container['Settings'],
+                $container['TemplateRenderer']
+            );
+        } );
     }
 }

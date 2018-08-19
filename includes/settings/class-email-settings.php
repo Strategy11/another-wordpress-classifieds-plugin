@@ -86,6 +86,7 @@ class AWPCP_EmailSettings {
 
     /**
      * @since 4.0.0
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     private function register_email_messages_settings( $settings_manager ) {
         $settings_manager->add_settings_subgroup( [
@@ -111,9 +112,53 @@ class AWPCP_EmailSettings {
 
         $settings_manager->add_section($group, __('Reply to Ad Message', 'another-wordpress-classifieds-plugin'), 'reply-to-ad-message', 10, array($settings_manager, 'section'));
 
-		$settings_manager->add_setting( $key, 'contactformsubjectline', __( 'Subject for Reply to Ad email', 'another-wordpress-classifieds-plugin' ), 'textfield', __( 'Response to your AWPCP Demo Ad', 'another-wordpress-classifieds-plugin' ), __( 'Subject line for email sent out when someone replies to Ad', 'another-wordpress-classifieds-plugin' ) );
-		$settings_manager->add_setting( $key, 'contactformbodymessage', __( 'Body for Reply to Ad email', 'another-wordpress-classifieds-plugin' ), 'textarea', __( 'Someone has responded to your AWPCP Demo Ad', 'another-wordpress-classifieds-plugin' ), __( 'Message body text for email sent out when someone replies to Ad', 'another-wordpress-classifieds-plugin' ) );
+        $settings_manager->add_setting( [
+            'id'           => 'contact-form-user-notification-email-template-x',
+            'name'         => __( 'Response notification for listing owners', 'another-wordpress-classifieds-plugin' ),
+            'type'         => 'email-template',
+            'default'      => [
+                'subject' => _x( "{__previous_subject__} regarding: {listing_title}", 'reply to ad email', 'another-wordpress-classifieds-plugin' ),
+                'subject' => _x( "Response to your classified ad: {listing_title}", 'reply to ad email', 'another-wordpress-classifieds-plugin' ),
+                'body'    => _x( "{__previous_body__}\n\nContact name: {sender_name}\nContact email: {sender_email}\n\nContacting about {listing_title}\n{listing_url}\n\nMessage:\n\n{message}\n\n\n{site_title}\n{home_url}", 'reply to ad email', 'another-wordpress-classifieds-plugin' ),
+                'body'    => _x( "Someone has responded to your classified ad.\n\nContact name: {sender_name}\nContact email: {sender_email}\n\nContacting about: {listing_title}\n{listing_url}\n\nMessage:\n\n{message}\n\n{site_title}\n{home_url}", 'reply to ad email', 'another-wordpress-classifieds-plugin' ),
+                'version' => '4.0.0',
+            ],
+            'description'  => __( 'Subject and body template for email sent out when someone replies to an ad.', 'another-wordpress-classifieds-plugin' ),
+            'placeholders' => [
+                'sender_name' => __( 'The name of the person who replied.', 'another-wordpress-classifieds-plugin' ),
+                'sender_email' => __( 'The email adderss of the person who replied.', 'another-wordpress-classifieds-plugin' ),
+                'listing_title' => __( 'The title of the ad where the reply was posted.', 'another-wordpress-classifieds-plugin' ),
+                'listing_url'   => __( 'The URL for the ad where the reply was posted.', 'another-wordpress-classifieds-plugin' ),
+                'message'       => __( 'The content of the reply.', 'another-wordpress-classifieds-plugin' ),
+                'site_title'    => __( 'The title of this website', 'another-wordpress-classifieds-plugin' ),
+                'home_url'      => __( "The URL of this website's homepage", 'another-wordpress-classifieds-plugin' ),
+            ],
+            'section'      => 'reply-to-ad-message',
+        ] );
+
 		$settings_manager->add_setting( $key, 'notify-admin-about-contact-message', __( 'Notify admin about contact message', 'another-wordpress-classifieds-plugin' ), 'checkbox', 1, __( 'An email will be sent to the administrator every time a visitor sends a message to one of the Ad posters through the Reply to Ad page.', 'another-wordpress-classifieds-plugin' ) );
+
+        $settings_manager->add_setting( [
+            'id'           => 'contact-form-admin-notification-email-template-x',
+            'name'         => __( 'Response notification for administrators', 'another-wordpress-classifieds-plugin' ),
+            'type'         => 'email-template',
+            'default'      => [
+                'subject' => _x( 'Notification about a response regarding ad: {listing_title}', 'reply to ad email', 'another-wordpress-classifieds-plugin' ),
+                'body'    => _x( "Someone has responded to one of the classified ads on your website.\n\nContact name: {sender_name}\nContact email: {sender_email}\n\nContacting about: {listing_title}\n{listing_url}\n\nMessage:\n\n{message}\n\n{site_title}\n{home_url}", 'reply to ad email', 'another-wordpress-classifieds-plugin' ),
+                'version' => '4.0.0',
+            ],
+            'description'  => __( 'Subject and body template for email sent out to administrators when someone replies to an ad.', 'another-wordpress-classifieds-plugin' ),
+            'placeholders' => [
+                'sender_name' => __( 'The name of the person who replied.', 'another-wordpress-classifieds-plugin' ),
+                'sender_email' => __( 'The email adderss of the person who replied.', 'another-wordpress-classifieds-plugin' ),
+                'listing_title' => __( 'The title of the ad where the reply was posted.', 'another-wordpress-classifieds-plugin' ),
+                'listing_url'   => __( 'The URL for the ad where the reply was posted.', 'another-wordpress-classifieds-plugin' ),
+                'message'       => __( 'The content of the reply.', 'another-wordpress-classifieds-plugin' ),
+                'site_title'    => __( 'The title of this website', 'another-wordpress-classifieds-plugin' ),
+                'home_url'      => __( "The URL of this website's homepage", 'another-wordpress-classifieds-plugin' ),
+            ],
+            'section'      => 'reply-to-ad-message',
+        ] );
 
 		// Section: Request Ad Message
 
