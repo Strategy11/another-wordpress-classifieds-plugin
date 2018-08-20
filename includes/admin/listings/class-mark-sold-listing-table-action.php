@@ -28,9 +28,10 @@ class AWPCP_MarkSoldListingTableAction implements AWPCP_ListTableActionInterface
     /**
      * @param object $post  An instance of WP_Post.
      * @since 4.0.0
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     protected function should_show_action_for_post( $post ) {
-        return ! $this->wordpress->get_post_meta( $post->ID, '_awpcp_is_sold', true );
+        return false; // Available as bluk action only.
     }
 
     /**
