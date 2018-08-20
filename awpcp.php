@@ -663,6 +663,7 @@ class AWPCP {
 
         $listings_settings = $this->container['ListingsSettings'];
         add_action( 'awpcp_register_settings', [ $listings_settings, 'register_settings' ] );
+        add_action( 'awpcp_settings_validated_subgroup_seo-settings', [ $listings_settings, 'seo_settings_validated' ], 10, 3 );
 
         $listings_moderation_settings = new AWPCP_ListingsModerationSettings( $this->settings );
 		add_filter( 'awpcp_validate_settings', array( $listings_moderation_settings, 'validate_all_settings' ), 10, 2 );

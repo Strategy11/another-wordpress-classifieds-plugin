@@ -539,8 +539,9 @@ class AWPCP_ListingsSettings {
      *
      *       Alternatively, we could add filters and actions for sections and
      *       invidiual settings.
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function settings_validated( $options, $group ) {
+    public function seo_settings_validated( $options, $group, $subgroup ) {
         update_option( 'awpcp-flush-rewrite-rules', true );
     }
 
