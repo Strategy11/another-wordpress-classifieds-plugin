@@ -52,6 +52,10 @@ class AWPCP_ListingsContent {
             return $content;
         }
 
+        if ( ! is_singular( $this->post_type ) ) {
+            return $content;
+        }
+
         return $this->content_renderer->render( $content, $post );
     }
 }
