@@ -113,7 +113,7 @@ class AWPCP_EmailSettings {
         $settings_manager->add_section($group, __('Reply to Ad Message', 'another-wordpress-classifieds-plugin'), 'reply-to-ad-message', 10, array($settings_manager, 'section'));
 
         $settings_manager->add_setting( [
-            'id'           => 'contact-form-user-notification-email-template-x',
+            'id'           => 'contact-form-user-notification-email-template',
             'name'         => __( 'Response notification for listing owners', 'another-wordpress-classifieds-plugin' ),
             'type'         => 'email-template',
             'default'      => [

@@ -258,7 +258,7 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
         }
 
         /* send email to user */ {
-            $email = $this->email_helper->prepare_email_from_template_setting( 'contact-form-user-notification-email-template-x', $replacement );
+            $email = $this->email_helper->prepare_email_from_template_setting( 'contact-form-user-notification-email-template', $replacement );
 
             // TODO: Update email templates so that 1. placehoders can be used freely
             //       and 2. modules can define what placeholders are available and when/where.

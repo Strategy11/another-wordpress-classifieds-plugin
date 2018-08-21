@@ -1125,7 +1125,7 @@ class AWPCP_Installer {
         $previous_subject = $this->settings->get_option( 'contactformsubjectline', __( 'Response to your AWPCP Demo Ad', 'another-wordpress-classifieds-plugin' ) );
         $previous_body    = $this->settings->get_option( 'contactformbodymessage', __( 'Someone has responded to your AWPCP Demo Ad', 'another-wordpress-classifieds-plugin' ) );
 
-        $template = $this->settings->get_option( 'contact-form-user-notification-email-template-x' );
+        $template = $this->settings->get_option( 'contact-form-user-notification-email-template' );
 
         if ( ! empty( $template ) ) {
             // We already migrated the settings or someone provided a new value first. Abort.
@@ -1141,7 +1141,7 @@ class AWPCP_Installer {
         $template['subject'] = str_replace( '{__previous_subject__}', $previous_subject, $template['subject'] );
         $template['body']    = str_replace( '{__previous_body__}', $previous_body, $template['body'] );
 
-        $this->settings->set_or_update_option( 'contact-form-user-notification-email-template-x', $template );
+        $this->settings->set_or_update_option( 'contact-form-user-notification-email-template', $template );
     }
 
     /**
