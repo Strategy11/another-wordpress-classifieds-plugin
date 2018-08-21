@@ -25,7 +25,6 @@ module.exports = function(grunt) {
           '<%= path.awpcp %>/js/jquery.js',
           '<%= path.awpcp %>/js/knockout.js',
           '<%= path.awpcp %>/js/moment.js',
-          '<%= path.awpcp %>/js/components/category-dropdown/*.js',
           '<%= path.awpcp %>/js/components/categories-selector/*.js',
           '<%= path.awpcp %>/js/components/credit-plans-list/*.js',
           '<%= path.awpcp %>/js/components/datepicker-field/*.js',
