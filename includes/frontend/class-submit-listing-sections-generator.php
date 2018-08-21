@@ -25,7 +25,8 @@ class AWPCP_SubmitLisitngSectionsGenerator {
                 awpcp()->container['ListingRenderer'],
                 awpcp()->container['RolesAndCapabilities'],
                 awpcp()->container['CAPTCHA'],
-                awpcp()->container['TemplateRenderer']
+                awpcp()->container['TemplateRenderer'],
+                awpcp()->container['Settings']
             ),
             'listing-dates'  => new AWPCP_ListingDatesSubmitListingSection(
                 awpcp()->container['ListingDateFormFieldsRenderer'],

@@ -44,15 +44,21 @@ class AWPCP_OrderSubmitListingSection {
     private $template_renderer;
 
     /**
+     * @var Settings
+     */
+    private $settings;
+
+    /**
      * @since 4.0.0
      */
-    public function __construct( $payments, $listings_logic, $listing_renderer, $roles, $captcha, $template_renderer ) {
+    public function __construct( $payments, $listings_logic, $listing_renderer, $roles, $captcha, $template_renderer, $settings ) {
         $this->payments          = $payments;
         $this->listings_logic    = $listings_logic;
         $this->listing_renderer  = $listing_renderer;
         $this->roles             = $roles;
         $this->captcha           = $captcha;
         $this->template_renderer = $template_renderer;
+        $this->settings          = $settings;
     }
 
     /**
@@ -122,21 +128,22 @@ class AWPCP_OrderSubmitListingSection {
         $payment_terms = apply_filters( 'awpcp_submit_listing_payment_terms', $payment_terms, $listing );
 
         $params = array(
-            'transaction'          => null,
+            'transaction'               => null,
 
-            'payment_terms'        => $payment_terms,
-            'form'                 => $stored_data,
-            'nonce'                => $nonce,
+            'payment_terms'             => $payment_terms,
+            'form'                      => $stored_data,
+            'nonce'                     => $nonce,
 
-            'form_errors'          => [],
+            'form_errors'               => [],
 
-            'show_user_field'      => $this->roles->current_user_is_moderator(),
-            'show_account_balance' => ! $this->roles->current_user_is_administrator(),
-            'show_captcha'         => $this->should_show_captcha( $listing ),
-            'account_balance'      => '',
-            'payment_terms_list'   => $this->render_payment_terms_list( $stored_data, $payment_terms ),
-            'credit_plans_table'   => $this->payments->render_credit_plans_table( null ),
-            'captcha'              => $this->captcha,
+            'show_user_field'           => $this->roles->current_user_is_moderator(),
+            'show_account_balance'      => ! $this->roles->current_user_is_administrator(),
+            'show_captcha'              => $this->should_show_captcha( $listing ),
+            'disable_parent_categories' => $this->settings->get_option( 'noadsinparentcat' ),
+            'account_balance'           => '',
+            'payment_terms_list'        => $this->render_payment_terms_list( $stored_data, $payment_terms ),
+            'credit_plans_table'        => $this->payments->render_credit_plans_table( null ),
+            'captcha'                   => $this->captcha,
         );
 
         if ( $params['show_account_balance'] ) {

@@ -14,13 +14,14 @@
                 <div class="awpcp-form-spacer">
                     <?php
                         $params = array(
-                            'name'          => 'category',
-                            'label'         => _x( 'Please select a category for your ad', 'order submit listing section', 'another-wordpress-classifieds-plugin' ),
-                            'selected'      => $form['category'],
-                            'multiple'      => false,
-                            'auto'          => false,
-                            'hide_empty'    => false,
-                            'payment_terms' => $payment_terms,
+                            'name'                      => 'category',
+                            'label'                     => _x( 'Please select a category for your ad', 'order submit listing section', 'another-wordpress-classifieds-plugin' ),
+                            'selected'                  => $form['category'],
+                            'multiple'                  => false,
+                            'auto'                      => false,
+                            'hide_empty'                => false,
+                            'disable_parent_categories' => $disable_parent_categories,
+                            'payment_terms'             => $payment_terms,
                         );
 
                         $params = apply_filters( 'awpcp_post_listing_categories_selector_args', $params );

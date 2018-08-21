@@ -208,19 +208,17 @@ function category_has_children($catid) {
     return $myreturn;
 }
 
+/**
+ * @since 4.0.0     Updated to use Categories Collection.
+ */
 function category_is_child($catid) {
-    global $wpdb;
-
-    $query = 'SELECT category_parent_id FROM ' . AWPCP_TABLE_CATEGORIES . ' WHERE category_id = %d';
-    $query = $wpdb->prepare( $query, $catid );
-
-    $parent_id = $wpdb->get_var( $query );
-
-    if ( $parent_id !== false && $parent_id != 0 ) {
-        return true;
-    } else {
+    try {
+        $category = awpcp_categories_collection()->get( $catid );
+    } catch ( AWPCP_Exception $e ) {
         return false;
     }
+
+    return $category->parent !== 0;
 }
 
 function add_config_group_id($cvalue,$coption) {

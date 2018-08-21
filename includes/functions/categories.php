@@ -7,25 +7,56 @@
 
 /**
  * @since 3.4
- * @SuppressWarnings(PHPMD)
+ * @since 4.0.0     Replaced $hide_empty boolean parameter with optional callable $filter
+ *                  $parameter.
+ * @since 4.0.0     Added optional callable $callback parameter.
  */
-function awpcp_build_categories_hierarchy( &$categories, $hide_empty ) {
+function awpcp_build_categories_hierarchy( &$categories, $filter = null, $callback = null ) {
+    // Backwards compatibility.
+    if ( ! is_null( $filter ) && ! is_callable( $filter ) && $filter ) {
+        return awpcp_build_non_empty_categories_hierarchy( $categories );
+    } elseif ( ! is_null( $filter ) && ! is_callable( $filter ) ) {
+        return __awpcp_build_categories_hierarchy( $categories, null, $callback );
+    }
+
+    return __awpcp_build_categories_hierarchy( $categories, $filter, $callback );
+}
+
+/**
+ * @since 4.0.0
+ */
+function __awpcp_build_categories_hierarchy( $categories, $filter = null, $callback = null ) {
     $hierarchy = array( 'root' => array() );
 
-    foreach ( $categories as $category ) {
-        $listings_count = total_ads_in_cat( $category->term_id );
+    $filter_categories  = is_callable( $filter );
+    $process_categories = is_callable( $callback );
 
-        if ( !$hide_empty || $listings_count > 0 ) {
-            if ( $category->parent == 0 ) {
-                $hierarchy['root'][] = $category;
-            } else {
-                $hierarchy[ $category->parent ][] = $category;
-            }
+    foreach ( $categories as $category ) {
+        if ( $filter_categories && ! call_user_func( $filter, $category ) ) {
+            continue;
         }
 
+        $key = $category->parent === 0 ? 'root' : $category->parent;
+
+        if ( $process_categories ) {
+            $category = call_user_func( $callback, $category );
+        }
+
+        $hierarchy[ $key ][] = $category;
     }
 
     return $hierarchy;
+}
+
+/**
+ * @since 4.0.0
+ */
+function awpcp_build_non_empty_categories_hierarchy( $categories, $callback = null ) {
+    $filter = function( $category ) {
+        return total_ads_in_cat( $category->term_id ) > 0;
+    };
+
+    return __awpcp_build_categories_hierarchy( $categories, $filter, $callback );
 }
 
 /**
@@ -86,10 +117,16 @@ function awpcp_render_categories_dropdown_options( &$categories, &$hierarchy, $s
  * @SuppressWarnings(PHPMD)
  */
 function awpcp_render_categories_dropdown_option( $category, $selected_categories ) {
+    $disabled_attribute = '';
+
     if ( in_array( $category->term_id, $selected_categories, true ) ) {
         $selected_attribute = 'selected="selected"';
     } else {
         $selected_attribute = '';
+    }
+
+    if ( isset( $category->disabled ) && $category->disabled ) {
+        $disabled_attribute = 'disabled="disabled"';
     }
 
     if ( $category->parent == 0 ) {
@@ -97,13 +134,14 @@ function awpcp_render_categories_dropdown_option( $category, $selected_categorie
         $category_name = esc_html( wp_unslash( $category->name ) );
     } else {
         $class_attribute = '';
-        $category_name = sprintf('- %s', esc_html( wp_unslash( $category->name ) ) );
+        $category_name = sprintf( '– %s', esc_html( wp_unslash( $category->name ) ) );
     }
 
     return sprintf(
-        '<option %s %s value="%d">%s</option>',
+        '<option %s %s %s value="%d">%s</option>',
         $class_attribute,
         $selected_attribute,
+        $disabled_attribute,
         esc_attr( $category->term_id ),
         $category_name
     );

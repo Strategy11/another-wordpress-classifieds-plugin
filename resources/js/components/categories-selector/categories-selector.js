@@ -35,11 +35,6 @@ function( $, CategoriesSelectorHelper ) {
                     return parseInt( option.id, 10 );
                 } );
 
-                if ( 0 === selectedCategories.length ) {
-                    CategoriesAdapter.__super__.query.call( self, params, callback );
-                    return;
-                }
-
                 CategoriesAdapter.__super__.query.call( self, params, function( data ) {
                     var enabled = self.helper.getCategoriesThatCanBeSelectedTogether( selectedCategories );
 

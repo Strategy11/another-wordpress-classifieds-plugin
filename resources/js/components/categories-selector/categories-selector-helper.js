@@ -14,23 +14,33 @@ function( $ ) {
         this.parents = {};
         this.paymentTerms = paymentTerms;
 
-        _.each( _.keys( categoriesHierarchy ), function( key ) {
-            parent = ( key === 'root' ? key : parseInt( key, 10 ) );
+        var walk = function( parent, level ) {
+            if ( typeof categoriesHierarchy[ parent ] === 'undefined' ) {
+                return;
+            }
 
-            self.hierarchy[ parent ] = _.map( categoriesHierarchy[ key ], function( category ) {
+            if ( typeof self.hierarchy[ parent ] === 'undefined' ) {
+                self.hierarchy[ parent ] = [];
+            }
+
+            _.each( categoriesHierarchy[ parent ], function( category ) {
                 model = {
                     id: category.term_id,
-                    text: category.name
+                    text: '– '.repeat( level ) + category.name,
+                    disabled: category.disabled || false,
                 };
 
                 self.allCategories.push( model );
                 self.allCategoriesIds.push( model.id );
+                self.hierarchy[ parent ].push( model );
                 self.registry[ category.term_id ] = model;
                 self.parents[ category.term_id ] = parent;
 
-                return model;
+                walk( model.id, level + 1 );
             } );
-        } );
+        };
+
+        walk( 'root', 0 );
     };
 
     $.extend( CategoriesSelectorHelper.prototype, {

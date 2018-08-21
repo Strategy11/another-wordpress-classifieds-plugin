@@ -24,6 +24,7 @@ class AWPCP_Categories_Selector_Helper {
             'multiple' => false,
             'auto'          => true,
             'hide_empty' => awpcp_parse_bool( $hide_empty_categories ),
+            'disable_parent_categories' => false,
             'mode'          => 'basic',
             'payment_terms' => array(),
         ) );
@@ -41,8 +42,20 @@ class AWPCP_Categories_Selector_Helper {
         return $params;
     }
 
-    public function build_categories_hierarchy( $categories, $hide_empty ) {
-        return awpcp_build_categories_hierarchy( $categories, $hide_empty );
+    /**
+     * @since 4.0.0     Replaced $hide_empty boolean parameter with optional callable $filter
+     *                  $parameter.
+     * @since 4.0.0     Added optional callable $callback parameter.
+     */
+    public function build_categories_hierarchy( $categories, $filter = null, $callback = null ) {
+        return awpcp_build_categories_hierarchy( $categories, $filter, $callback );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function build_non_empty_categories_hierarchy( $categories, $callback = null ) {
+        return awpcp_build_non_empty_categories_hierarchy( $categories, $callback );
     }
 
     public function get_categories_parents( $categories, &$all_categories ) {

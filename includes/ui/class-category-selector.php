@@ -52,10 +52,7 @@ class AWPCP_Category_Selector {
         $categories = $this->categories->get_all();
 
         $params               = $this->helper->get_params( $params );
-        $categories_hierarchy = $this->helper->build_categories_hierarchy(
-            $categories,
-            $params['hide_empty']
-        );
+        $categories_hierarchy = $this->get_categories_hierarchy( $categories, $params );
 
         $placeholder = $this->get_placeholder( $params );
 
@@ -79,6 +76,29 @@ class AWPCP_Category_Selector {
             AWPCP_DIR . '/templates/components/category-selector.tpl.php',
             $template_params
         );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function get_categories_hierarchy( $categories, $params ) {
+        $categories_callback = null;
+
+        if ( $params['disable_parent_categories'] ) {
+            $categories_callback = function( $category ) {
+                if ( 0 === $category->parent ) {
+                    $category->disabled = true;
+                }
+
+                return $category;
+            };
+        }
+
+        if ( $params['hide_empty'] ) {
+            return $this->helper->build_non_empty_categories_hierarchy( $categories, $categories_callback );
+        }
+
+        return $this->helper->build_categories_hierarchy( $categories, null, $categories_callback );
     }
 
     /**
