@@ -145,6 +145,13 @@ class AWPCP_WordPress {
         return wp_delete_attachment( $attachment_id, $force_delete );
     }
 
+    /**
+     * @since 4.0.0
+     */
+    public function set_post_thumbnail( $post_id, $attachment_id ) {
+        return set_post_thumbnail( $post_id, $attachment_id );
+    }
+
     /* Others */
 
     public function schedule_single_event( $timestamp, $hook, $args ) {

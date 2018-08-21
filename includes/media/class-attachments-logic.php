@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package AWPCP\Media
+ */
+
+// phpcs:disable
 
 function awpcp_attachments_logic() {
     return new AWPCP_Attachments_Logic(
@@ -55,6 +60,8 @@ class AWPCP_Attachments_Logic {
             $this->wordpress->delete_post_meta( $an_attachment->ID, '_awpcp_featured' );
         }
 
+        $this->wordpress->set_post_thumbnail( $attachment->post_parent, $attachment->ID );
+
         return $this->wordpress->update_post_meta( $attachment->ID, '_awpcp_featured', true );
     }
 
@@ -63,7 +70,7 @@ class AWPCP_Attachments_Logic {
         $file_extension = awpcp_get_file_extension( $attachment->post_title );
 
         foreach ( $file_types as $type => $subtypes ) {
-            foreach ( $subtypes as $subtype => $subtype_properties ) {
+            foreach ( $subtypes as $subtype_properties ) {
                 if ( in_array( $attachment->post_mime_type, $subtype_properties['mime_types'] ) ) {
                     return $type;
                 }
