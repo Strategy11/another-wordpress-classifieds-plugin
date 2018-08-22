@@ -21,7 +21,7 @@ class AWPCP_ImageFileProcessor {
             return;
         }
 
-        $exif_data = @exif_read_data( $filepath );
+        $exif_data = @exif_read_data( $file->get_path() );
 
         $orientation = isset( $exif_data['Orientation'] ) ? $exif_data['Orientation'] : 0;
         $mime_type = isset( $exif_data['MimeType'] ) ? $exif_data['MimeType'] : '';
@@ -36,7 +36,7 @@ class AWPCP_ImageFileProcessor {
         }
 
         if ( $rotation_angle > 0 ) {
-            awpcp_rotate_image( $filepath, $mime_type, $rotation_angle );
+            awpcp_rotate_image( $file->get_path(), $mime_type, $rotation_angle );
         }
     }
 }
