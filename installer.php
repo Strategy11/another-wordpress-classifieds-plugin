@@ -253,7 +253,8 @@ class AWPCP_Installer {
             '4.0.0' => array(
                 'create_old_listing_id_column_in_listing_regions_table',
                 'migrate_wordpress_page_settings',
-                'migrate_reply_to_ad_email_templates',
+                'migrate_reply_to_ad_email_template',
+                'migrate_verify_email_message_email_template',
                 'keep_legacy_url_structure',
                 'remove_old_capabilities',
                 'enable_upgrade_routine_to_migrate_listing_categories',
@@ -1121,7 +1122,7 @@ class AWPCP_Installer {
     /**
      * @since 4.0.0
      */
-    private function migrate_reply_to_ad_email_templates() {
+    private function migrate_reply_to_ad_email_template() {
         $previous_subject = $this->settings->get_option( 'contactformsubjectline', __( 'Response to your AWPCP Demo Ad', 'another-wordpress-classifieds-plugin' ) );
         $previous_body    = $this->settings->get_option( 'contactformbodymessage', __( 'Someone has responded to your AWPCP Demo Ad', 'another-wordpress-classifieds-plugin' ) );
 
@@ -1142,6 +1143,37 @@ class AWPCP_Installer {
         $template['body']    = str_replace( '{__previous_body__}', $previous_body, $template['body'] );
 
         $this->settings->set_or_update_option( 'contact-form-user-notification-email-template', $template );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function migrate_verify_email_message_email_template() {
+        $previous_subject = $this->settings->get_option( 'verifyemailsubjectline', __( 'Verify the email address used for Ad $title', 'another-wordpress-classifieds-plugin' ) );
+        $previous_body    = $this->settings->get_option( 'verifyemailbodymessage', _x( "Hello \$author_name \n\nYou recently posted the Ad \$title to \$website_name. \n\nIn order to complete the posting process you have to verify your email address. Please click the link below to complete the verification process. You will be redirected to the website where you can see your Ad. \n\n\$verification_link \n\nAfter you verify your email address, the administrator will be notified about the new Ad. If moderation is enabled, your Ad will remain in a disabled status until the administrator approves it.\n\n\$website_name\n\n\$website_url", 'another-wordpress-classifieds-plugin' ) );
+
+        $template = $this->settings->get_option( 'verify-email-message-email-template' );
+
+        if ( ! empty( $template ) ) {
+            // We already migrated the settings or someone provided a new value first. Abort.
+            return;
+        }
+
+        $template = [
+            'subject'  => $previous_subject,
+            'body'     => $previous_body,
+            'version'  => '4.0.0',
+        ];
+
+        $template['subject'] = str_replace( '$title', '{listing_title}', $template['subject'] );
+
+        $template['body'] = str_replace( '$title', '{listing_title}', $template['body'] );
+        $template['body'] = str_replace( '$author_name', '{author_name}', $template['body'] );
+        $template['body'] = str_replace( '$verification_link', '{verification_link}', $template['body'] );
+        $template['body'] = str_replace( '$website_name', '{website_title}', $template['body'] );
+        $template['body'] = str_replace( '$website_url', '{website_url}', $template['body'] );
+
+        $this->settings->set_or_update_option( 'verify-email-message-email-template', $template );
     }
 
     /**

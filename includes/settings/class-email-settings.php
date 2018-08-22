@@ -117,21 +117,19 @@ class AWPCP_EmailSettings {
             'name'         => __( 'Response notification for listing owners', 'another-wordpress-classifieds-plugin' ),
             'type'         => 'email-template',
             'default'      => [
-                'subject' => _x( "{__previous_subject__} regarding: {listing_title}", 'reply to ad email', 'another-wordpress-classifieds-plugin' ),
                 'subject' => _x( "Response to your classified ad: {listing_title}", 'reply to ad email', 'another-wordpress-classifieds-plugin' ),
-                'body'    => _x( "{__previous_body__}\n\nContact name: {sender_name}\nContact email: {sender_email}\n\nContacting about {listing_title}\n{listing_url}\n\nMessage:\n\n{message}\n\n\n{site_title}\n{home_url}", 'reply to ad email', 'another-wordpress-classifieds-plugin' ),
-                'body'    => _x( "Someone has responded to your classified ad.\n\nContact name: {sender_name}\nContact email: {sender_email}\n\nContacting about: {listing_title}\n{listing_url}\n\nMessage:\n\n{message}\n\n{site_title}\n{home_url}", 'reply to ad email', 'another-wordpress-classifieds-plugin' ),
+                'body'    => _x( "Someone has responded to your classified ad.\n\nContact name: {sender_name}\nContact email: {sender_email}\n\nContacting about: {listing_title}\n{listing_url}\n\nMessage:\n\n{message}\n\n{website_title}\n{website_url}", 'reply to ad email', 'another-wordpress-classifieds-plugin' ),
                 'version' => '4.0.0',
             ],
             'description'  => __( 'Subject and body template for email sent out when someone replies to an ad.', 'another-wordpress-classifieds-plugin' ),
             'placeholders' => [
-                'sender_name' => __( 'The name of the person who replied.', 'another-wordpress-classifieds-plugin' ),
-                'sender_email' => __( 'The email adderss of the person who replied.', 'another-wordpress-classifieds-plugin' ),
+                'sender_name'   => __( 'The name of the person who replied.', 'another-wordpress-classifieds-plugin' ),
+                'sender_email'  => __( 'The email adderss of the person who replied.', 'another-wordpress-classifieds-plugin' ),
                 'listing_title' => __( 'The title of the ad where the reply was posted.', 'another-wordpress-classifieds-plugin' ),
                 'listing_url'   => __( 'The URL for the ad where the reply was posted.', 'another-wordpress-classifieds-plugin' ),
                 'message'       => __( 'The content of the reply.', 'another-wordpress-classifieds-plugin' ),
-                'site_title'    => __( 'The title of this website', 'another-wordpress-classifieds-plugin' ),
-                'home_url'      => __( "The URL of this website's homepage", 'another-wordpress-classifieds-plugin' ),
+                'website_title' => __( 'The title of this website', 'another-wordpress-classifieds-plugin' ),
+                'website_url'   => __( "The URL of this website's homepage", 'another-wordpress-classifieds-plugin' ),
             ],
             'section'      => 'reply-to-ad-message',
         ] );
@@ -144,18 +142,18 @@ class AWPCP_EmailSettings {
             'type'         => 'email-template',
             'default'      => [
                 'subject' => _x( 'Notification about a response regarding ad: {listing_title}', 'reply to ad email', 'another-wordpress-classifieds-plugin' ),
-                'body'    => _x( "Someone has responded to one of the classified ads on your website.\n\nContact name: {sender_name}\nContact email: {sender_email}\n\nContacting about: {listing_title}\n{listing_url}\n\nMessage:\n\n{message}\n\n{site_title}\n{home_url}", 'reply to ad email', 'another-wordpress-classifieds-plugin' ),
+                'body'    => _x( "Someone has responded to one of the classified ads on your website.\n\nContact name: {sender_name}\nContact email: {sender_email}\n\nContacting about: {listing_title}\n{listing_url}\n\nMessage:\n\n{message}\n\n{website_title}\n{website_url}", 'reply to ad email', 'another-wordpress-classifieds-plugin' ),
                 'version' => '4.0.0',
             ],
             'description'  => __( 'Subject and body template for email sent out to administrators when someone replies to an ad.', 'another-wordpress-classifieds-plugin' ),
             'placeholders' => [
-                'sender_name' => __( 'The name of the person who replied.', 'another-wordpress-classifieds-plugin' ),
-                'sender_email' => __( 'The email adderss of the person who replied.', 'another-wordpress-classifieds-plugin' ),
+                'sender_name'   => __( 'The name of the person who replied.', 'another-wordpress-classifieds-plugin' ),
+                'sender_email'  => __( 'The email adderss of the person who replied.', 'another-wordpress-classifieds-plugin' ),
                 'listing_title' => __( 'The title of the ad where the reply was posted.', 'another-wordpress-classifieds-plugin' ),
                 'listing_url'   => __( 'The URL for the ad where the reply was posted.', 'another-wordpress-classifieds-plugin' ),
                 'message'       => __( 'The content of the reply.', 'another-wordpress-classifieds-plugin' ),
-                'site_title'    => __( 'The title of this website', 'another-wordpress-classifieds-plugin' ),
-                'home_url'      => __( "The URL of this website's homepage", 'another-wordpress-classifieds-plugin' ),
+                'website_title' => __( 'The title of this website', 'another-wordpress-classifieds-plugin' ),
+                'website_url'   => __( "The URL of this website's homepage", 'another-wordpress-classifieds-plugin' ),
             ],
             'section'      => 'reply-to-ad-message',
         ] );
@@ -175,8 +173,25 @@ class AWPCP_EmailSettings {
 
         $settings_manager->add_section($group, __('Verify Email Message', 'another-wordpress-classifieds-plugin'), 'verify-email-message', 10, array($settings_manager, 'section'));
 
-		$settings_manager->add_setting( $key, 'verifyemailsubjectline', __( 'Subject for Verification email', 'another-wordpress-classifieds-plugin' ), 'textfield', __( 'Verify the email address used for Ad $title', 'another-wordpress-classifieds-plugin' ), __( 'Subject line for email sent out to verify the email address.', 'another-wordpress-classifieds-plugin' ) );
-		$settings_manager->add_setting( $key, 'verifyemailbodymessage', __( 'Body for Verification email', 'another-wordpress-classifieds-plugin' ), 'textarea', _x( "Hello \$author_name \n\nYou recently posted the Ad \$title to \$website_name. \n\nIn order to complete the posting process you have to verify your email address. Please click the link below to complete the verification process. You will be redirected to the website where you can see your Ad. \n\n\$verification_link \n\nAfter you verify your email address, the administrator will be notified about the new Ad. If moderation is enabled, your Ad will remain in a disabled status until the administrator approves it.\n\n\$website_name\n\n\$website_url", 'another-wordpress-classifieds-plugin' ), __('You can use the following placeholders to personalize the body of the email: $title, $author_name,$verification_email, $website_name, $website_url.', 'another-wordpress-classifieds-plugin' ) );
+        $settings_manager->add_setting([
+            'id'           => 'verify-email-message-email-template',
+            'name'         => __( 'Subject and body for verify email message', 'another-wordpress-classifieds-plugin' ),
+            'type'         => 'email-template',
+            'default'      => [
+                'subject'  => __( 'Verify the email address used for Ad {listing_title}', 'another-wordpress-classifieds-plugin' ),
+                'body'     => _x( "Hello {author_name} \n\nYou recently posted the Ad {listing_title} to {website_title}. \n\nIn order to complete the posting process you have to verify your email address. Please click the link below to complete the verification process. You will be redirected to the website where you can see your Ad. \n\n{verification_link} \n\nAfter you verify your email address, the administrator will be notified about the new Ad. If moderation is enabled, your Ad will remain in a disabled status until the administrator approves it.\n\n{website_title}\n\n{website_url}", 'another-wordpress-classifieds-plugin' ),
+                'version'  => '4.0.0',
+            ],
+            'description'  => __( 'Subject and body template for email sent out to verify the email address.', 'another-wordpress-classifieds-plugin' ),
+            'placeholders' => [
+                'listing_title'     => __( 'The title of the ad where the reply was posted.', 'another-wordpress-classifieds-plugin' ),
+                'author_name'       => __( 'The name of the owner of the listing.', 'another-wordpress-classifieds-plugin' ),
+                'verification_link' => __( 'Verification link.', 'another-wordpress-classifieds-plugin' ),
+                'website_title'     => __( 'The title of this website.', 'another-wordpress-classifieds-plugin' ),
+                'website_url'       => __( "The URL of this webiste's homepage.", 'another-wordpress-classifieds-plugin' ),
+            ],
+            'section'      => 'verify-email-message',
+        ] );
 
 		// Section: Incomplete Payment Message
 
