@@ -563,24 +563,19 @@ class AWPCP_ListingsAPI {
         $contact_name = $this->listing_renderer->get_contact_name( $ad );
         $listing_title = $this->listing_renderer->get_listing_title( $ad );
 
-        $mail = new AWPCP_Email;
-        $mail->to[] = awpcp_format_recipient_address( $contact_email, $contact_name );
-        $subject = $this->settings->get_option( 'verifyemailsubjectline' );
-        $message = $this->settings->get_option( 'verifyemailbodymessage' );
-        $mail->subject = str_replace( '$title', $listing_title, $subject );
+        $replacement = [
+            'listing_title'     => $listing_title,
+            'author_name'       => $contact_name,
+            'verification_link' => awpcp_get_email_verification_url( $ad->ID ),
+            'website_title'     => awpcp_get_blog_name(),
+            'website_url'       => home_url(),
+        ];
 
-        $verification_link = awpcp_get_email_verification_url( $ad->ID );
+        $email = awpcp()->container['EmailHelper']->prepare_email_from_template_setting( 'verify-email-message-email-template', $replacement );
 
-        $template = AWPCP_DIR . '/frontend/templates/email-ad-awaiting-verification.tpl.php';
-        $mail->prepare( $template, array(
-            'contact_name' => $contact_name,
-            'ad_title' => $listing_title,
-            'verification_link' => $verification_link
-        ) );
+        $email->to[] = awpcp_format_recipient_address( $contact_email, $contact_name );
 
-        $mail->body = $message;
-
-        if ( $mail->send() ) {
+        if ( $email->send() ) {
             $emails_sent = intval( $this->wordpress->get_post_meta( $ad->ID, '_awpcp_verification_emails_sent', 1 ) );
             $this->wordpress->update_post_meta( $ad->ID, '_awpcp_verification_email_sent_at', current_time( 'mysql' ) );
             $this->wordpress->update_post_meta( $ad->ID, '_awpcp_verification_emails_sent', $emails_sent + 1 );
