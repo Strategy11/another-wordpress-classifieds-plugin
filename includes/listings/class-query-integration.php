@@ -202,7 +202,9 @@ class AWPCP_QueryIntegration {
                 continue;
             }
 
-            $region = array_filter( $region, 'strlen' );
+            $region = array_filter( $region, function( $value ) {
+                return is_array( $value ) || strlen( $value );
+            } );
 
             if ( empty( $region ) ) {
                 continue;

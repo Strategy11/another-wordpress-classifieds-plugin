@@ -84,7 +84,7 @@ class AWPCP_ListingsCollection {
      * @since 4.0.0
      */
     public function get_listing_with_old_id( $listing_id ) {
-        $listings = $this->query_posts( array(
+        $listings = $this->find_listings( array(
             'classifieds_query' => array(
                 'previous_id' => $listing_id,
             ),
@@ -111,7 +111,7 @@ class AWPCP_ListingsCollection {
             return array();
         }
 
-        return $this->query_posts( array( 'post__in' => $identifiers ) );
+        return $this->find_listings( array( 'post__in' => $identifiers ) );
     }
 
     /**
@@ -174,7 +174,7 @@ class AWPCP_ListingsCollection {
     public function find_valid_listings( $query_vars = array() ) {
         $query_vars['classifieds_query']['is_valid'] = true;
 
-        return $this->query_posts( $query_vars );
+        return $this->find_listings( $query_vars );
     }
 
     /**
@@ -205,7 +205,7 @@ class AWPCP_ListingsCollection {
     public function find_expired_listings( $query_vars = array() ) {
         $query_vars['classifieds_query']['is_expired'] = true;
 
-        return $this->query_posts( $query_vars );
+        return $this->find_listings( $query_vars );
     }
 
     /**
@@ -226,7 +226,7 @@ class AWPCP_ListingsCollection {
     public function find_enabled_listings( $query_vars = array() ) {
         $query_vars['classifieds_query']['is_enabled'] = true;
 
-        return $this->query_posts( $query_vars );
+        return $this->find_listings( $query_vars );
     }
 
     /**
@@ -248,7 +248,7 @@ class AWPCP_ListingsCollection {
     public function find_disabled_listings( $query_vars = array() ) {
         $query_vars['classifieds_query']['is_disabled'] = true;
 
-        return $this->query_posts( $query_vars );
+        return $this->find_listings( $query_vars );
     }
 
     /**
@@ -269,7 +269,7 @@ class AWPCP_ListingsCollection {
     public function find_listings_about_to_expire( $query_vars = array() ) {
         $query_vars['classifieds_query']['is_about_to_expire'] = true;
 
-        return $this->query_posts( $query_vars );
+        return $this->find_listings( $query_vars );
     }
 
     /**
@@ -280,7 +280,7 @@ class AWPCP_ListingsCollection {
     public function find_listings_awaiting_approval( $query_vars = array() ) {
         $query_vars['classifieds_query']['is_awaiting_approval'] = true;
 
-        return $this->query_posts( $query_vars );
+        return $this->find_listings( $query_vars );
     }
 
     /**
@@ -311,7 +311,7 @@ class AWPCP_ListingsCollection {
     public function find_successfully_paid_listings( $query_vars = array() ) {
         $query_vars['classifieds_query']['is_successfully_paid'] = true;
 
-        return $this->query_posts( $query_vars );
+        return $this->find_listings( $query_vars );
     }
 
     /**
@@ -332,7 +332,7 @@ class AWPCP_ListingsCollection {
     public function find_listings_awaiting_verification( $query_vars = array() ) {
         $query_vars['classifieds_query']['is_awaiting_verification'] = true;
 
-        return $this->query_posts( $query_vars );
+        return $this->find_listings( $query_vars );
     }
 
     /**
