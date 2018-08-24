@@ -6,22 +6,23 @@ body:not(.wp-admin), #classiwrapper {
         margin: 10px 0;
         padding: 8px 12px;
 
-        &.updated {
-            border-color: #E6DB55;
-        }
-        &.error {
-            border-color: #CC0000;
-        }
-        &.info {
-            border-color: #00A1CE;
-        }
-        &.ghost {
-            display: none;
-        }
-
         p {
             margin: 0;
         }
+    }
+
+    .awpcp-message.updated, .awpcp-message-updated {
+        border-color: #E6DB55;
+    }
+    .awpcp-message.error, .awpcp-message-error {
+        border-color: #CC0000;
+    }
+    .awpcp-message.info, .awpcp-message-info {
+        background: #f7fdff;
+        border-color: #00A1CE;
+    }
+    .awpcp-message.ghost {
+        display: none;
     }
 
     .awpcp-updated {

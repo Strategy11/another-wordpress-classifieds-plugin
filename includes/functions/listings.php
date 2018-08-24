@@ -52,7 +52,7 @@ function awpcp_display_listings( $query, $context, $options ) {
     } else {
         $before_pagination[20]['user-content'] = $options['before_pagination'];
     }
-    $before_pagination = apply_filters( 'awpcp-content-before-listings-pagination', $before_pagination, $context );
+    $before_pagination = apply_filters( 'awpcp-content-before-listings-pagination', $before_pagination, $context, $listings, $query );
     ksort( $before_pagination );
     $before_pagination = awpcp_flatten_array( $before_pagination );
 

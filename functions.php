@@ -1561,7 +1561,7 @@ function awpcp_print_error($message) {
  * @since 4.0.0
  */
 function awpcp_render_info_message( $message ) {
-    return awpcp_print_message( $message, array( 'awpcp-info', 'notice', 'notice-info' ) );
+    return awpcp_print_message( $message, array( 'awpcp-message-info', 'notice', 'notice-info' ) );
 }
 
 /**
