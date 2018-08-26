@@ -1363,9 +1363,9 @@ class AWPCP {
 
         wp_register_style(
             'awpcp-font-awesome',
-            'https://use.fontawesome.com/releases/v5.1.0/css/all.css',
+            'https://use.fontawesome.com/releases/v5.2.0/css/all.css',
             array(),
-            '5.1.0'
+            '5.2.0'
         );
 
         $this->maybe_register_script(
@@ -1553,7 +1553,7 @@ class AWPCP {
         wp_register_style(
             'awpcp-frontend-style',
             "{$css}/awpcpstyle.css",
-            array( 'dashicons' ),
+            [ 'awpcp-font-awesome' ],
             $awpcp_db_version
         );
 

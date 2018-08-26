@@ -56,7 +56,7 @@
             <span><?php echo __( 'Icon Meanings:', 'another-wordpress-classifieds-plugin' ); ?></span>
         </li>
     <?php foreach ( $icons as $icon ): ?>
-        <li class="awpcp-manage-categories-icons-meaning-icon"><?php echo awpcp_html_image( $icon['image'] ); ?><span><?php echo $icon['label']; ?></span></li>
+        <li class="awpcp-manage-categories-icons-meaning-icon"><i class="<?php echo esc_attr( $icon['class'] ); ?>"></i><span><?php echo $icon['label']; ?></span></li>
     <?php endforeach; ?>
     </ul>
 </div>

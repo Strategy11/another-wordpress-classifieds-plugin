@@ -26,6 +26,7 @@ class AWPCP_CategoriesAdminPage {
         $icons = array(
             array(
                 'label' => __( 'Edit Category', 'another-wordpress-classifieds-plugin' ),
+                'class' => 'fas fa-pen-square',
                 'image' => array(
                     'attributes' => array(
                         'alt' => __( 'Edit Category', 'another-wordpress-classifieds-plugin' ),
@@ -36,6 +37,7 @@ class AWPCP_CategoriesAdminPage {
             ),
             array(
                 'label' => __( 'Delete Category', 'another-wordpress-classifieds-plugin' ),
+                'class' => 'fas fa-minus-square',
                 'image' => array(
                     'attributes' => array(
                         'alt' => __( 'Delete Category', 'another-wordpress-classifieds-plugin' ),
@@ -49,6 +51,7 @@ class AWPCP_CategoriesAdminPage {
         if ( $hascaticonsmodule == 1 ) {
             $icons[] = array(
                 'label' => __( 'Manage Category Icon', 'another-wordpress-classifieds-plugin' ),
+                'class' => 'fas fa-shapes',
                 'image' => array(
                     'attributes' => array(
                         'alt' => __( 'Manage Category Icon', 'another-wordpress-classifieds-plugin' ),
