@@ -167,6 +167,8 @@ function awpcp_get_wordpress_pages_settings_translations() {
         'browse-listings-page' => 'browse-ads-page-name',
         'search-listings-page' => 'search-ads-page-name',
         'buy-subscription-page' => 'subscriptions-page-name',
+        'payment-thnakyou-page' => 'payment-thankyou-page-name',
+        'cancel-payment-page'   => 'payment-cancel-page-name',
     );
 }
 
