@@ -161,5 +161,9 @@ class AWPCP_SettingsContainerConfiguration implements AWPCP_ContainerConfigurati
                 $container['TemplateRenderer']
             );
         } );
+
+        $container['ReadingSettingsIntegration'] = $container->service( function( $container ) {
+            return new AWPCP_ReadingSettingsIntegration();
+        } );
     }
 }

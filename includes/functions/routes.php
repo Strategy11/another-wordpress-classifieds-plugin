@@ -77,7 +77,6 @@ function awpcp_get_page_id_by_ref( $refname ) {
 
 /**
  * Return the IDs of WP pages associated with AWPCP pages.
- * TODO: remove usage of awpcp_get_plugin_pages_ids().
  *
  * @return array Array of Page IDs
  */

@@ -1017,6 +1017,12 @@ class AWPCP {
         add_action( 'admin_init', array( $this->container['Admin'], 'admin_init' ) );
         add_action( 'admin_init', [ $this->container['SettingsIntegration'], 'setup' ] );
 
+        add_action( 'load-options-reading.php', function() {
+            $integration = $this->container['ReadingSettingsIntegration'];
+
+            add_action( 'wp_dropdown_pages', [ $integration, 'filter_plugin_pages' ], 10, 3 );
+        } );
+
         add_action( 'awpcp_settings_renderers', [ $this, 'register_settings_renderers' ] );
     }
 
