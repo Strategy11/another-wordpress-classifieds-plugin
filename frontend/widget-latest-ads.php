@@ -1,4 +1,7 @@
 <?php
+/**
+ * @package AWPCP\Frontend\Widgets
+ */
 
 class AWPCP_LatestAdsWidget extends WP_Widget {
 
@@ -95,29 +98,31 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
         $item_url = $this->listing_renderer->get_view_listing_url( $item );
         $item_title = sprintf( '<a href="%s">%s</a>', $item_url, stripslashes( $listing_title ) );
 
+        $html_title   = '';
+        $html_excerpt = '';
+        $read_more    = '';
+
         if ($instance['show-title']) {
             $html_title = sprintf( '<div class="awpcp-listing-title">%s</div>', $item_title );
-        } else {
-            $html_title = '';
         }
 
         if ($instance['show-excerpt']) {
             $excerpt = awpcp_do_placeholder_excerpt( $item, 'excerpt' );
-            $read_more = sprintf( '<a class="awpcp-widget-read-more" href="%s">[%s]</a>', $item_url, __( 'Read more', 'another-wordpress-classifieds-plugin' ) );
-            $html_excerpt = sprintf( '<div class="awpcp-listings-widget-item-excerpt">%s%s</div>', $excerpt, $read_more );
-        } else {
-            $html_excerpt = '';
+            $read_more = sprintf( '<p class="awpcp-widget-read-more-container"><a class="awpcp-widget-read-more" href="%s">[%s]</a></p>', $item_url, __( 'Read more', 'another-wordpress-classifieds-plugin' ) );
+            $html_excerpt = sprintf( '<div class="awpcp-listings-widget-item-excerpt">%s</div>', $excerpt );
         }
 
         $html_image = $this->render_item_image( $item, $instance );
 
         if ( ! empty( $html_image ) ) {
-            $template = '<li class="awpcp-listings-widget-item %1$s"><div class="awpcplatestbox awpcp-clearfix"><div class="awpcplatestthumb awpcp-clearfix">%2$s</div>%3$s %4$s</div></li>';
+            $html_class .= 'awpcp-listings-widget-item-without-thumbnail';
+
+            $template = '<li class="awpcp-listings-widget-item %1$s"><div class="awpcplatestbox awpcp-clearfix"><div class="awpcplatestthumb awpcp-clearfix">%2$s</div><div class="awpcp-listings-widget-item--title-and-content">%3$s %4$s</div>%5$s</div></li>';
         } else {
-            $template = '<li class="awpcp-listings-widget-item %1$s"><div class="awpcplatestbox awpcp-clearfix">%3$s %4$s</div></li>';
+            $template = '<li class="awpcp-listings-widget-item %1$s"><div class="awpcplatestbox awpcp-clearfix"><div class="awpcp-listings-widget-item--title-and-content">%3$s %4$s</div>%5$s</div></li>';
         }
 
-        return sprintf( $template, $html_class, $html_image, $html_title, $html_excerpt );
+        return sprintf( $template, $html_class, $html_image, $html_title, $html_excerpt, $read_more );
     }
 
     protected function render_item_image( $item, $instance ) {
