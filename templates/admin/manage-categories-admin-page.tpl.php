@@ -1,5 +1,11 @@
+<?php
+/**
+ * @package AWPCP\Templates\Admin
+ */
 
-<div class="awpcp-manage-categories-category-form-container postbox-container">
+// phpcs:disable
+
+?><div class="awpcp-manage-categories-category-form-container postbox-container">
     <div class="metabox-holder">
         <div class="metabox-sortables">
             <div class="postbox">

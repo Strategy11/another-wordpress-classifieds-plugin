@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package AWPCP\Admin
+ */
+
+// phpcs:disable
 
 function awpcp_categories_admin_page() {
     return new AWPCP_CategoriesAdminPage(
