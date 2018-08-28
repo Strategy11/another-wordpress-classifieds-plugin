@@ -133,7 +133,7 @@ class AWPCP_Search_Widget extends WP_Widget {
 
         echo '<div class="awpcp-search-listings-widget">';
 		echo $before_widget . $before_title . $title . $after_title;
-		echo '<div align="center"><form method=\'get\' action="'.url_searchads().'">';
+		echo '<form method=\'get\' action="'.url_searchads().'">';
 
         $url_params = wp_parse_args( parse_url( url_searchads(), PHP_URL_QUERY ) );
         foreach ( $url_params as $param => $value ) {
@@ -145,11 +145,16 @@ class AWPCP_Search_Widget extends WP_Widget {
 		$keywordphrase = stripslashes_deep( awpcp_request_param( 'keywordphrase' ) );
 
 		if ($instance['show_keyword'] == 1) {
+            echo '<div class="awpcp-form-field">';
 			echo '<label for="awpcp-search-keywordphrase" class="awpcp-block-label">' . __('Search by keyword', 'another-wordpress-classifieds-plugin') . '</label>';
 			echo '<input id="awpcp-search-keywordphrase" type="text" name="keywordphrase" value="' . esc_attr($keywordphrase) . '">';
+            echo '</div>';
 		}
+
 		if ($instance['show_by'] == 1) {
+            echo '<div class="awpcp-form-field">';
 			echo $this->render_find_by_contact_name_field();
+            echo '</div>';
 		}
 
 		echo $this->render_region_fields( $instance );
@@ -161,6 +166,7 @@ class AWPCP_Search_Widget extends WP_Widget {
 			$name = 'searchcategory';
 			$selected = stripslashes_deep( awpcp_request_param( $name, null ) );
 
+            echo '<div class="awpcp-form-field">';
 			echo awpcp_categories_selector()->render( array(
                 'context' => 'search',
                 'selected' => $selected,
@@ -169,12 +175,13 @@ class AWPCP_Search_Widget extends WP_Widget {
                 'name' => $name,
                 'label' => $label,
             ) );
+            echo '</div>';
 		}
 
         do_action( 'awpcp-search-listings-widget-form-field' );
 
 		echo '<div class="submit"><input class="button" type="submit" value="' . __( 'Search', 'another-wordpress-classifieds-plugin' ) . '"></div>';
-        echo '</form></div>';
+        echo '</form>';
         echo '</div>';
 		echo $after_widget;
 	}
