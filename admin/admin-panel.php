@@ -667,7 +667,7 @@ function awpcp_admin_categories_render_category_item($category, $level, $start, 
 
 	if ($hascaticonsmodule == 1 ) {
 		$url = esc_url( add_query_arg( 'action', 'managecaticon', $admin_categories_url ) );
-		$managecaticon = "<a class=\"awpcp-action-button button\" href=\"$url\" title=\"" . __("Manage Category Icon", 'another-wordpress-classifieds-plugin') . "\"><i class=\"fas fa-shapes\"></i></a>";
+		$managecaticon = "<a class=\"awpcp-action-button button\" href=\"$url\" title=\"" . __("Manage Category Icon", 'another-wordpress-classifieds-plugin') . "\"><i class=\"fas fa-wrench\"></i></a>";
 	} else {
 		$managecaticon = '';
 	}
@@ -683,9 +683,9 @@ function awpcp_admin_categories_render_category_item($category, $level, $start, 
 	$row.= "<td style=\"border-bottom:1px dotted #dddddd;font-weight:normal;\">$thecategory_order</td>";
 	$row.= "<td style=\"border-bottom:1px dotted #dddddd;font-size:smaller;font-weight:normal;\">";
 	$url = esc_url( add_query_arg( 'awpcp-action', 'edit-category', $admin_categories_url ) );
-	$row.= "<a class=\"awpcp-action-button button\" href=\"$url\" title=\"$awpcpeditcategoryword\"><i class=\"fas fa-pen-square\"></i></a>";
+	$row.= "<a class=\"awpcp-action-button button\" href=\"$url\" title=\"$awpcpeditcategoryword\"><i class=\"fas fa-pen\"></i></a>";
 	$url = esc_url( add_query_arg( 'awpcp-action', 'delete-category', $admin_categories_url ) );
-	$row.= "<a class=\"awpcp-action-button button\" href=\"$url\" title=\"$awpcpdeletecategoryword\"><i class=\"fas fa-minus-square\"></i></a>";
+	$row.= "<a class=\"awpcp-action-button button\" href=\"$url\" title=\"$awpcpdeletecategoryword\"><i class=\"fas fa-trash-alt\"></i></a>";
 	$row.= $managecaticon;
 	$row.= "</td>";
 	$row.= "</tr>";
