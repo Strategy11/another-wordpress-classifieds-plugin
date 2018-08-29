@@ -237,8 +237,12 @@ class AWPCP_Uninstaller {
      * @since 4.0.0
      */
     private function delete_metadata() {
+        $blog_prefix = $this->db->get_blog_prefix();
+
         $this->db->query( "DELETE FROM {$this->db->postmeta} WHERE meta_key LIKE '_awpcp_%'" );
-        $this->db->query( "DELETE FROM {$this->db->usermeta} WHERE meta_key LIKE 'awpcp-%'" );
+        $this->db->query( "DELETE FROM {$this->db->postmeta} WHERE meta_key LIKE '__awpcp_%'" );
+
+        $this->db->query( "DELETE FROM {$this->db->usermeta} WHERE meta_key LIKE '{$blog_prefix}awpcp-%'" );
     }
 
     /**
