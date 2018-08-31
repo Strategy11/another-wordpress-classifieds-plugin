@@ -482,6 +482,10 @@ class AWPCP_CSV_Importer_Delegate {
             return null;
         }
 
+        if ( ! in_array( $payment_term_type, [ 'fee', 'subscription' ] ) ) {
+            throw new AWPCP_CSV_Importer_Exception( __( "The payment term type must be 'fee' or 'subscription'.", 'another-wordpress-classifieds-plugin' ) );
+        }
+
         $payment_term = $this->payments->get_payment_term( $payment_term_id, $payment_term_type );
 
         if ( ! $payment_term ) {

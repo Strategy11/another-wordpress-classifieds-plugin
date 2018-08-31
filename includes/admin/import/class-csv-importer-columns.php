@@ -193,7 +193,7 @@ class AWPCP_CSVImporterColumns {
                 'payment_term_type' => [
                     'name'        => '_awpcp_payment_term_type',
                     'label'       => __( 'Payment Term Type', 'another-wordpress-classifieds-plugin' ),
-                    'description' => __( "The type of the payment term. Either 'fee', 'subscription-plan' or 'subscription'. Default: 'fee'.", 'another-wordpress-classifieds-plugin' ),
+                    'description' => __( "The type of the payment term. Either 'fee' or 'subscription'. Default: 'fee'.", 'another-wordpress-classifieds-plugin' ),
                     'examples'    => [
                         'fee',
                         'subscription',
