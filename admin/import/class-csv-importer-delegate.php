@@ -17,10 +17,20 @@ class AWPCP_CSV_Importer_Delegate {
      */
     private $columns;
 
+    /**
+     * @var ListingsPayments
+     */
+    private $listings_payments;
+
     private $mime_types;
     private $categories_logic;
     private $categories;
     private $listings_logic;
+
+    /**
+     * @var Payments
+     */
+    private $payments;
 
     /**
      * @var object
@@ -43,20 +53,20 @@ class AWPCP_CSV_Importer_Delegate {
         '_awpcp_contact_email',
         '_awpcp_start_date',
         '_awpcp_end_date',
-        'term_id',
     );
 
-    private $parsed_data = array();
     private $messages = array();
 
-    public function __construct( $import_session, $columns, $mime_types, $categories_logic, $categories, $listings_logic, $media_manager ) {
-        $this->import_session = $import_session;
-        $this->columns          = $columns;
-        $this->mime_types = $mime_types;
-        $this->categories_logic = $categories_logic;
-        $this->categories = $categories;
-        $this->listings_logic = $listings_logic;
-        $this->media_manager    = $media_manager;
+    public function __construct( $import_session, $columns, $listings_payments, $mime_types, $categories_logic, $categories, $listings_logic, $payments, $media_manager ) {
+        $this->import_session    = $import_session;
+        $this->listings_payments = $listings_payments;
+        $this->columns           = $columns;
+        $this->mime_types        = $mime_types;
+        $this->categories_logic  = $categories_logic;
+        $this->categories        = $categories;
+        $this->listings_logic    = $listings_logic;
+        $this->payments          = $payments;
+        $this->media_manager     = $media_manager;
     }
 
     public function import_row( $row_data ) {
@@ -74,7 +84,6 @@ class AWPCP_CSV_Importer_Delegate {
     }
 
     private function clear_state() {
-        $this->parsed_data = array();
         $this->messages = array();
     }
 
@@ -142,12 +151,15 @@ class AWPCP_CSV_Importer_Delegate {
             case 'ad_last_updated':
                 $parsed_value = $this->parse_post_modified_column( $raw_value, $row_data );
                 break;
+            case 'payment_term_id':
+                $parsed_value = $this->parse_payment_term_id_column( $raw_value, $row_data );
+                break;
             default:
                 $parsed_value = $raw_value;
                 break;
         }
 
-        return $this->parsed_data[ $column_name ] = $parsed_value;
+        return $parsed_value;
     }
 
     /**
@@ -459,6 +471,30 @@ class AWPCP_CSV_Importer_Delegate {
         return current_time( 'mysql' );
     }
 
+    /**
+     * @since 4.0.0
+     */
+    private function parse_payment_term_id_column( $payment_term_id, $row_data ) {
+        $payment_term_id   = intval( $payment_term_id );
+        $payment_term_type = isset( $row_data['payment_term_type'] ) ? $row_data['payment_term_type'] : 'fee';
+
+        if ( ! $payment_term_id || ! $payment_term_type ) {
+            return null;
+        }
+
+        $payment_term = $this->payments->get_payment_term( $payment_term_id, $payment_term_type );
+
+        if ( ! $payment_term ) {
+            $message = __( 'There is no payment term with type {payment_term_type} and ID {payment_term_id}.', 'another-wordpress-classifieds-plugin' );
+            $message = str_replace( '{payment_term_type}', $payment_term_type, $message );
+            $message = str_replace( '{payment_term_id}', $payment_term_id, $message );
+
+            throw new AWPCP_CSV_Importer_Exception( $message );
+        }
+
+        return $payment_term;
+    }
+
     private function import_images( $filenames ) {
         $images_directory = $this->import_session->get_images_directory();
 
@@ -504,8 +540,17 @@ class AWPCP_CSV_Importer_Delegate {
     }
 
     private function save_listing_data( $listing_data ) {
+        $payment_term = null;
+
         $listing_data['metadata']['_awpcp_verified'] = true;
         $listing_data['metadata']['_awpcp_payment_status'] = AWPCP_Payment_Transaction::PAYMENT_STATUS_NOT_REQUIRED;
+
+        if ( ! empty( $listing_data['metadata']['_awpcp_payment_term_id'] ) ) {
+            $payment_term = $listing_data['metadata']['_awpcp_payment_term_id'];
+        }
+
+        unset( $listing_data['metadata']['_awpcp_payment_term_id'] );
+        unset( $listing_data['metadata']['_awpcp_payment_term_type'] );
 
         try {
             $listing = $this->listings_logic->create_listing( array(
@@ -513,7 +558,11 @@ class AWPCP_CSV_Importer_Delegate {
                 'metadata' => array(),
             ) );
 
-            $this->listings_logic->update_listing( $listing, $listing_data );
+            $listing = $this->listings_logic->update_listing( $listing, $listing_data );
+
+            if ( $payment_term ) {
+                $this->listings_payments->update_listing_payment_term( $listing, $payment_term );
+            }
         } catch ( AWPCP_Exception $previous ) {
             $message = _x( 'There was an error trying to store imported data into the database.', 'csv importer', 'another-wordpress-classifieds-plugin' );
             throw new AWPCP_CSV_Importer_Exception( $message, 0, $previous );

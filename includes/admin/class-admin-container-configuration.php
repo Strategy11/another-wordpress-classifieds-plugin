@@ -298,7 +298,7 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
 
         $container['ListingInformationMetabox'] = $container->service( function( $container ) {
             return new AWPCP_ListingInfromationMetabox(
-                $container['ListingsLogic'],
+                $container['ListingsPayments'],
                 $container['ListingRenderer'],
                 $container['Payments'],
                 $container['TemplateRenderer'],

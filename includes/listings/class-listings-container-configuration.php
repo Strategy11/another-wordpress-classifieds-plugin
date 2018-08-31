@@ -20,6 +20,16 @@ class AWPCP_ListingsContainerConfiguration implements AWPCP_ContainerConfigurati
         $container['listing_post_type']         = 'awpcp_listing';
         $container['listing_category_taxonomy'] = 'awpcp_listing_category';
 
+        $this->register_listings_presentation_values( $container );
+        $this->register_listings_logic_values( $container );
+        $this->register_listings_categories_values( $container );
+        $this->register_listings_payments_values( $container );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function register_listings_presentation_values( $container ) {
         $container['ListingsPermalinks'] = $container->service(
             function( $container ) {
                 // TODO: Add dependencies to the container.
@@ -80,7 +90,12 @@ class AWPCP_ListingsContainerConfiguration implements AWPCP_ContainerConfigurati
                 $GLOBALS['wpdb']
             );
         } );
+    }
 
+    /**
+     * @since 4.0.0
+     */
+    private function register_listings_logic_values( $container ) {
         $container['ListingsLogic'] = $container->service( function( $container ) {
             return new AWPCP_ListingsAPI(
                 awpcp_attachments_logic(),
@@ -121,14 +136,18 @@ class AWPCP_ListingsContainerConfiguration implements AWPCP_ContainerConfigurati
             );
         } );
 
-        $container['PaymentInformationValidator'] = $container->service( function( $container ) {
-            return new AWPCP_PaymentInformationValidator(
-                $container['listing_category_taxonomy'],
-                $container['Payments'],
-                $container['RolesAndCapabilities']
+        $container['AttachmentsCollection'] = $container->service( function( $container ) {
+            return new AWPCP_Attachments_Collection(
+                $container['FileTypes'],
+                $container['WordPress']
             );
         } );
+    }
 
+    /**
+     * @since 4.0.0
+     */
+    private function register_listings_categories_values( $container ) {
         $container['CategoriesLogic'] = $container->service( function( $container ) {
             return new AWPCP_Categories_Logic(
                 $container['listing_category_taxonomy'],
@@ -144,11 +163,25 @@ class AWPCP_ListingsContainerConfiguration implements AWPCP_ContainerConfigurati
                 $container['WordPress']
             );
         } );
+    }
 
-        $container['AttachmentsCollection'] = $container->service( function( $container ) {
-            return new AWPCP_Attachments_Collection(
-                $container['FileTypes'],
-                $container['WordPress']
+    /**
+     * @since 4.0.0
+     */
+    private function register_listings_payments_values( $container ) {
+        $container['ListingsPayments'] = $container->service( function( $container ) {
+            return new AWPCP_ListingsPayments(
+                $container['ListingsLogic'],
+                $container['ListingRenderer'],
+                $container['Payments']
+            );
+        } );
+
+        $container['PaymentInformationValidator'] = $container->service( function( $container ) {
+            return new AWPCP_PaymentInformationValidator(
+                $container['listing_category_taxonomy'],
+                $container['Payments'],
+                $container['RolesAndCapabilities']
             );
         } );
     }

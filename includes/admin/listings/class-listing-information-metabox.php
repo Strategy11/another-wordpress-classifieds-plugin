@@ -11,7 +11,7 @@ class AWPCP_ListingInfromationMetabox {
     /**
      * @var ListingsLogic
      */
-    private $listings_logic;
+    private $listings_payments;
 
     /**
      * @var ListingRenderer
@@ -36,8 +36,8 @@ class AWPCP_ListingInfromationMetabox {
     /**
      * @since 4.0.0
      */
-    public function __construct( $listings_logic, $listing_renderer, $payments, $template_renderer, $request ) {
-        $this->listings_logic    = $listings_logic;
+    public function __construct( $listings_payments, $listing_renderer, $payments, $template_renderer, $request ) {
+        $this->listings_payments = $listings_payments;
         $this->listing_renderer  = $listing_renderer;
         $this->payments          = $payments;
         $this->template_renderer = $template_renderer;
@@ -164,40 +164,13 @@ class AWPCP_ListingInfromationMetabox {
      * @since 4.0.0
      */
     private function maybe_update_payment_term( $post ) {
-        $previous_payment_term = $this->listing_renderer->get_payment_term( $post );
-        $new_payment_term      = $this->get_selected_payment_term();
-        $payment_type          = 'money';
+        $new_payment_term = $this->get_selected_payment_term();
 
         if ( is_null( $new_payment_term ) ) {
             return;
         }
 
-        if ( $this->payments->payment_terms_are_equals( $new_payment_term, $previous_payment_term ) ) {
-            return;
-        }
-
-        $transaction = $this->create_transaction( $post, $new_payment_term, $payment_type );
-
-        $this->listings_logic->update_listing_payment_term( $post, $new_payment_term );
-
-        $this->payments->set_transaction_item_from_payment_term( $transaction, $new_payment_term, $payment_type );
-        $this->payments->set_transaction_status_to_completed( $transaction, $errors );
-
-        if ( $errors ) {
-            $this->listings_logic->update_listing_payment_term( $post, $previous_payment_term );
-            $transaction->delete();
-            return;
-        }
-
-        // Reload payment term objects so that changes made when the transaction
-        // was being processed are available to handlers of `awpcp_listing_payment_term_changed`.
-        if ( $previous_payment_term ) {
-            $previous_payment_term = $this->payments->get_payment_term( $previous_payment_term->id, $previous_payment_term->type );
-        }
-
-        $new_payment_term = $this->listing_renderer->get_payment_term( $post );
-
-        do_action( 'awpcp_listing_payment_term_changed', $post, $previous_payment_term, $new_payment_term );
+        $this->listings_payments->update_listing_payment_term( $post, $new_payment_term );
     }
 
     /**
@@ -210,24 +183,5 @@ class AWPCP_ListingInfromationMetabox {
         $payment_term_id       = intval( substr( $selected_payment_term, $separator_pos + 1 ) );
 
         return $this->payments->get_payment_term( $payment_term_id, $payment_term_type );
-    }
-
-    /**
-     * @since 4.0.0
-     */
-    private function create_transaction( $post, $payment_term, $payment_type ) {
-        $transaction = $this->payments->create_transaction();
-
-        // TODO: Merge with code from Create Emtpy Listing and Save Listing Information ajax handlers. I think the transaction logic can be extracted.
-        $transaction->user_id = $post->post_author;
-        $transaction->set( 'context', 'place-ad' );
-        $transaction->set( 'ad-id', $post->ID );
-        $transaction->set( 'category', $this->listing_renderer->get_categories_ids( $post ) );
-        $transaction->set( 'payment-term-type', $payment_term->type );
-        $transaction->set( 'payment-term-id', $payment_term->id );
-        $transaction->set( 'payment-term-payment-type', $payment_type );
-        $transaction->payment_status = AWPCP_Payment_Transaction::PAYMENT_STATUS_NOT_REQUIRED;
-
-        return $transaction;
     }
 }

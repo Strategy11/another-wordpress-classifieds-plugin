@@ -100,7 +100,7 @@ class AWPCP_CSVImporterColumns {
                 ],
             ),
             'metadata'      => [
-                'contact_name'  => [
+                'contact_name'      => [
                     'name'     => '_awpcp_contact_name',
                     'label'    => _x( 'Contact Name', 'ad details form', 'another-wordpress-classifieds-plugin' ),
                     'required' => true,
@@ -111,7 +111,7 @@ class AWPCP_CSVImporterColumns {
                         'John Doe',
                     ],
                 ],
-                'contact_email' => [
+                'contact_email'     => [
                     'name'        => '_awpcp_contact_email',
                     'label'       => _x( 'Contact Email', 'ad details form', 'another-wordpress-classifieds-plugin' ),
                     'description' => __( 'An email address.', 'another-wordpress-classifieds-plugin' ),
@@ -123,7 +123,7 @@ class AWPCP_CSVImporterColumns {
                         'john@doe.com',
                     ],
                 ],
-                'contact_phone' => [
+                'contact_phone'     => [
                     'name'     => '_awpcp_contact_phone',
                     'label'    => _x( 'Contact Phone Number', 'ad details form', 'another-wordpress-classifieds-plugin' ),
                     'examples' => [
@@ -133,7 +133,7 @@ class AWPCP_CSVImporterColumns {
                         '302-555-0130',
                     ],
                 ],
-                'website_url'   => [
+                'website_url'       => [
                     'name'        => '_awpcp_website_url',
                     'label'       => _x( 'Website URL', 'ad details form', 'another-wordpress-classifieds-plugin' ),
                     'description' => __( 'A URL.', 'another-wordpress-classifieds-plugin' ),
@@ -145,7 +145,7 @@ class AWPCP_CSVImporterColumns {
                         'https://www.change.org/',
                     ],
                 ],
-                'item_price'    => [
+                'item_price'        => [
                     'name'        => '_awpcp_price',
                     'label'       => _x( 'Item Price', 'ad details form', 'another-wordpress-classifieds-plugin' ),
                     'description' => __( 'The price of the ad as a decimal number.', 'another-wordpress-classifieds-plugin' ),
@@ -156,7 +156,7 @@ class AWPCP_CSVImporterColumns {
                         '600.15',
                     ],
                 ],
-                'start_date'    => [
+                'start_date'        => [
                     'name'        => '_awpcp_start_date',
                     'label'       => __( 'Start Date', 'another-wordpress-classifieds-plugin' ),
                     'description' => __( 'A date using UK (dd/mm/year hh:mm:ss) or US (mm/dd/year hh:mm:ss) format. Time is optional.', 'another-wordpress-classifieds-plugin' ),
@@ -167,7 +167,7 @@ class AWPCP_CSVImporterColumns {
                         '05/12/2008',
                     ],
                 ],
-                'end_date'      => [
+                'end_date'          => [
                     'name'        => '_awpcp_end_date',
                     'label'       => __( 'End Date', 'another-wordpress-classifieds-plugin' ),
                     'description' => __( 'A date using UK (dd/mm/year hh:mm:ss) or US (mm/dd/year hh:mm:ss) format. Time is optional.', 'another-wordpress-classifieds-plugin' ),
@@ -176,6 +176,27 @@ class AWPCP_CSVImporterColumns {
                         '09/13/1981',
                         '05/24/2006',
                         '05/12/2008',
+                    ],
+                ],
+                'payment_term_id'   => [
+                    'name'        => '_awpcp_payment_term_id',
+                    'label'       => __( 'Payment Term ID', 'another-wordpress-classifieds-plugin' ),
+                    'description' => __( 'The ID of the payment term that should be associated with this listing.', 'another-wordpress-classifieds-plugin' ),
+                    'examples'    => [
+                        1,
+                        6,
+                        9,
+                        12,
+                        3,
+                    ],
+                ],
+                'payment_term_type' => [
+                    'name'        => '_awpcp_payment_term_type',
+                    'label'       => __( 'Payment Term Type', 'another-wordpress-classifieds-plugin' ),
+                    'description' => __( "The type of the payment term. Either 'fee', 'subscription-plan' or 'subscription'. Default: 'fee'.", 'another-wordpress-classifieds-plugin' ),
+                    'examples'    => [
+                        'fee',
+                        'subscription',
                     ],
                 ],
             ],

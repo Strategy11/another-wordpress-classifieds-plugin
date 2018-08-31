@@ -197,6 +197,8 @@ class AWPCP_ListingsAPI {
         if ( isset( $listing_data['regions'] ) && isset( $listing_data['regions-allowed'] ) ) {
             awpcp_basic_regions_api()->update_ad_regions( $listing, $listing_data['regions'], $listing_data['regions-allowed'] );
         }
+
+        return $this->listings->get( $listing_id );
     }
 
     /**
