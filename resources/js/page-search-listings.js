@@ -22,6 +22,8 @@ AWPCP.run( 'awpcp/page-search-listings', [
             $( '[datepicker-placeholder]' ).each( function() {
                 $.noop( new DatepickerField( $(this).siblings('[name]:hidden') ) );
             } );
+
+            $( '[name="searchname"]' ).select2();
         }
     });
 } );
