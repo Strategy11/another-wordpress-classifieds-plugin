@@ -16,7 +16,7 @@ function awpcp_import_listings_admin_page() {
 }
 
 /**
- * TODO: rename to admin/class-import-listings-admin-page.php
+ * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  */
 class AWPCP_ImportListingsAdminPage {
 
@@ -46,6 +46,10 @@ class AWPCP_ImportListingsAdminPage {
         echo $this->handle_request();
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.ElseExpression)
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     */
     private function handle_request() {
         if ( $this->request->post( 'cancel' ) || $this->request->post( 'finish' ) ) {
             return $this->delete_current_import_session();
@@ -89,11 +93,17 @@ class AWPCP_ImportListingsAdminPage {
     private function do_upload_files_step() {
         if ( $this->request->post( 'upload_files' ) ) {
             return $this->upload_files();
-        } else {
-            return $this->show_upload_files_form();
         }
+
+        return $this->show_upload_files_form();
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.ElseExpression)
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+     * @SuppressWarnings(PHPMD.NPathComplexity)
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     */
     private function upload_files() {
         $import_session = $this->import_session = $this->import_sessions_manager->create_import_session();
 
@@ -106,8 +116,8 @@ class AWPCP_ImportListingsAdminPage {
         );
 
         if ( $_FILES['csv_file']['error'] != UPLOAD_ERR_OK ) {
-            list( $_, $error_message ) = awpcp_uploaded_file_error( $_FILES['csv_file'] );
-            $form_errors['csv_file'] = $error_message;
+            $file_error              = awpcp_uploaded_file_error( $_FILES['csv_file'] );
+            $form_errors['csv_file'] = $file_error[1];
         } else if ( substr( $_FILES['csv_file']['name'], -4 ) !== '.csv' ) {
             $form_errors['csv_file'] = __( "The uploaded file doesn't look like a CSV file. Please upload a valid CSV file.", 'another-wordpress-classifieds-plugin' );
         } else if ( ! @move_uploaded_file( $_FILES['csv_file']['tmp_name'], "$working_directory/source.csv" ) ) {
@@ -118,8 +128,8 @@ class AWPCP_ImportListingsAdminPage {
 
         if ( $form_data['images_source'] == 'zip' ) {
             if ( ! in_array( $_FILES['zip_file']['error'], array( UPLOAD_ERR_OK, UPLOAD_ERR_NO_FILE ) ) ) {
-                list( $_, $error_message ) = awpcp_uploaded_file_error( $_FILES['zip_file'] );
-                $form_errors['zip_file'] = $error_message;
+                $file_error              = awpcp_uploaded_file_error( $_FILES['zip_file'] );
+                $form_errors['zip_file'] = $file_error[1];
             } else if ( $_FILES['zip_file']['error'] == UPLOAD_ERR_NO_FILE ) {
                 // all good...
             } else if ( substr( $_FILES['zip_file']['name'], -4 ) !== '.zip' ) {
@@ -194,26 +204,26 @@ class AWPCP_ImportListingsAdminPage {
             $this->import_sessions_manager->update_current_import_session( $import_session );
 
             return $this->show_configuration_form();
-        } else {
-            return $this->show_upload_files_form( $form_data, $form_errors );
         }
+
+        return $this->show_upload_files_form( $form_data, $form_errors );
     }
 
     private function get_working_directory( $session_id ) {
-        list( $images_dir, $thumbnails_dir ) = awpcp_setup_uploads_dir();
+        $uploads_directories = awpcp_setup_uploads_dir();
 
-        $import_dir = str_replace( 'thumbs', 'import', $thumbnails_dir );
+        $import_dir = str_replace( 'thumbs', 'import', $uploads_directories[1] );
         $working_directory = $import_dir . $session_id;
 
         if ( $this->create_directory( $working_directory ) ) {
             return $working_directory;
-        } else {
-            return false;
         }
+
+        return false;
     }
 
     private function create_directory( $directory ) {
-        list( $images_dir, $_ ) = awpcp_setup_uploads_dir();
+        list( $images_dir ) = awpcp_setup_uploads_dir();
 
         if ( ! is_dir( $directory ) ) {
             umask( 0 );
@@ -229,9 +239,9 @@ class AWPCP_ImportListingsAdminPage {
 
         if ( $this->create_directory( $images_directory ) ) {
             return $images_directory;
-        } else {
-            return false;
         }
+
+        return false;
     }
 
     private function show_upload_files_form( $form_data = array(), $form_errors = array() ) {
@@ -251,11 +261,14 @@ class AWPCP_ImportListingsAdminPage {
     private function do_configuration_step() {
         if ( $this->request->post( 'configure' ) ) {
             return $this->save_configuration();
-        } else {
-            return $this->show_configuration_form();
         }
+
+        return $this->show_configuration_form();
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.ElseExpression)
+     */
     private function save_configuration() {
         $import_session = $this->get_import_session();
 
@@ -342,6 +355,9 @@ class AWPCP_ImportListingsAdminPage {
         return $this->show_import_form();
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.ElseExpression)
+     */
     private function show_import_form() {
         $import_session = $this->get_import_session();
 
