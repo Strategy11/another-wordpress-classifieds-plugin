@@ -37,6 +37,7 @@ class AWPCP_ListingsContainerConfiguration implements AWPCP_ContainerConfigurati
                     $container['listing_post_type'],
                     $container['listing_category_taxonomy'],
                     awpcp_listing_renderer(),
+                    awpcp_rewrite_rules_helper(),
                     awpcp_settings_api()
                 );
             }

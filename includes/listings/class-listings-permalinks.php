@@ -5,6 +5,8 @@
 
 /**
  * Clases used to define permalink structure and create listings permalinks.
+ *
+ * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  */
 class AWPCP_ListingsPermalinks {
     /**
@@ -18,19 +20,21 @@ class AWPCP_ListingsPermalinks {
     private $category_taxonomy;
 
     /**
+     * @var RewriteRulesHelper
+     */
+    private $rewrite_rules_helper;
+
+    /**
      * Constructor.
      *
-     * @param string $post_type     Listing post type identifier.
-     * @param string $category_taxonomy     Name of the Listing's Category taxonomy.
-     * @param object $listing_renderer  An instance of ListingRenderer.
-     * @param object $settings  An instance of Settings.
      * @since 4.0.0
      */
-    public function __construct( $post_type, $category_taxonomy, $listing_renderer, $settings ) {
-        $this->post_type         = $post_type;
-        $this->category_taxonomy = $category_taxonomy;
-        $this->listing_renderer  = $listing_renderer;
-        $this->settings          = $settings;
+    public function __construct( $post_type, $category_taxonomy, $listing_renderer, $rewrite_rules_helper, $settings ) {
+        $this->post_type            = $post_type;
+        $this->category_taxonomy    = $category_taxonomy;
+        $this->listing_renderer     = $listing_renderer;
+        $this->rewrite_rules_helper = $rewrite_rules_helper;
+        $this->settings             = $settings;
     }
 
     /**
@@ -185,8 +189,6 @@ class AWPCP_ListingsPermalinks {
      * Necessary to support non SEO friendly URLs when permalinks are enabled:
      * http://next.awpcp.test/awpcp/show-ads/?id=1
      *
-     * TODO: Do this on Show Listings page only.
-     *
      * @param object $query     An instance of WP_Query.
      * @since 4.0.0
      */
@@ -199,11 +201,36 @@ class AWPCP_ListingsPermalinks {
             return;
         }
 
+        if ( ! $this->is_show_listings_page( $query ) ) {
+            return;
+        }
+
         if ( preg_match( '/([0-9]+)/', $query->query_vars['id'], $matches ) ) {
             $query->query_vars['p']         = intval( $matches[1] );
             $query->query_vars['post_type'] = $this->post_type;
             unset( $query->query_vars['pagename'] );
         }
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function is_show_listings_page( $query ) {
+        $page_id = $this->get_show_listing_page_id();
+
+        if ( -1 === $page_id ) {
+            return false;
+        }
+
+        $page_uris = $this->rewrite_rules_helper->generate_page_uri_variants( get_page_uri( $page_id ) );
+
+        foreach ( $page_uris as $page_uri ) {
+            if ( 0 === strpos( $page_uri, $query->request ) ) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
