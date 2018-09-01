@@ -147,28 +147,7 @@ AWPCP.define( 'awpcp/frontend/save-section-controller', [
         clearListingInformation: function() {
             var self = this, data;
 
-            data = {
-                action: 'awpcp_clear_listing_information',
-                nonce: $.AWPCP.get( 'clear_listing_information_nonce' ),
-                ad_id: self.store.getListingId(),
-            };
-
-            options = {
-                url: $.AWPCP.get( 'ajaxurl' ),
-                data: data,
-                dataType: 'json',
-                method: 'POST',
-            };
-
-            request = $.ajax( options ).done( function( data ) {
-                if ( 'ok' === data.status ) {
-                    self.store.clearSections();
-                }
-
-                if ( 'error' === data.status && data.errors ) {
-                    self.showErrors( data.errors );
-                }
-            } );
+            self.store.clearSections();
         },
 
         showDisabledMode: function() {

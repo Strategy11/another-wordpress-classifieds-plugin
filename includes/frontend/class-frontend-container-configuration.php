@@ -95,17 +95,6 @@ class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurati
             );
         } );
 
-        $container['ClearListingInformationAjaxHandler'] = $container->service( function( $container ) {
-            return new AWPCP_ClearListingInformationAjaxHandler(
-                $container['ListingsLogic'],
-                $container['ListingsCollection'],
-                $container['RolesAndCapabilities'],
-                $container['Settings'],
-                awpcp_ajax_response(),
-                $container['Request']
-            );
-        } );
-
         $container['CAPTCHA'] = $container->service( function( $container ) {
             return new AWPCP_CAPTCHA(
                 $container['CAPTCHAProviderFactory']->get_captcha_provider(),
