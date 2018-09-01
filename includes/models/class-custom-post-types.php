@@ -135,7 +135,7 @@ class AWPCP_Custom_Post_Types {
                     'slug'       => $post_type_slug,
                     'with_front' => false,
                 ),
-                'query_var'            => 'listing',
+                'query_var'            => 'awpcp_listing',
             )
         );
     }

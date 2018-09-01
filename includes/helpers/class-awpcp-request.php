@@ -183,31 +183,39 @@ class AWPCP_Request {
      * @since 4.0.0
      */
     private function find_current_listing_id() {
-        $listing_id = $this->param( 'adid' );
+        $alternatives = [
+            'params'     => [
+                'adid',
+                'id',
+                'listing_id',
+                'i',
+            ],
+            'query_vars' => [
+                'id',
+            ],
+        ];
 
-        if ( $listing_id ) {
-            return $listing_id;
+        foreach ( $alternatives['params'] as $name ) {
+            $value = $this->param( 'adid' );
+
+            if ( ! empty( $value ) ) {
+                return $value;
+            }
         }
 
-        $listing_id = $this->param( 'id' );
+        foreach ( $alternatives['query_vars'] as $name ) {
+            $value = $this->get_query_var( $name );
 
-        if ( $listing_id ) {
-            return $listing_id;
+            if ( ! empty( $value ) ) {
+                return $value;
+            }
         }
 
-        $listing_id = $this->param( 'listing_id' );
-
-        if ( $listing_id ) {
-            return $listing_id;
+        if ( 'awpcp_listing' === $this->get_query_var( 'post_type' ) ) {
+            return $this->get_query_var( 'p' );
         }
 
-        $listing_id = $this->param( 'i' );
-
-        if ( $listing_id ) {
-            return $listing_id;
-        }
-
-        return $this->get_query_var( 'id' );
+        return null;
     }
 
     /**
