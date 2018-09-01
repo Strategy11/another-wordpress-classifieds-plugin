@@ -56,6 +56,7 @@ class AWPCP_UserSelector {
      */
     private function prepare_paramaters( $params ) {
         $params = wp_parse_args( $params, array(
+            'label'                         => false,
             'selected'                      => null,
             'mode'                          => null,
             'include_full_user_information' => true,
