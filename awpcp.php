@@ -1505,6 +1505,7 @@ class AWPCP {
                 'awpcp-knockout-progress',
                 'jquery-ui-datepicker',
                 'jquery-ui-autocomplete',
+                'select2',
             ),
             $awpcp_db_version,
             true

@@ -4,10 +4,11 @@ AWPCP.run('awpcp/admin-import', [
     'jquery',
     'awpcp/datepicker-field',
     'awpcp/settings',
+    'awpcp/user-selector',
     'awpcp/jquery-userfield',
     'awpcp/knockout-progress',
 ],
-function( $, DatepickerField, settings ) {
+function( $, DatepickerField, settings, UserSelector ) {
     $(function() {
         $( '#awpcp-import-listings-upload-source-files' ).usableform();
 
@@ -22,6 +23,12 @@ function( $, DatepickerField, settings ) {
                         altFormat: 'mm/dd/yy'
                     }
                 } ) );
+            } );
+
+            $form.find( '[name="default_user"]' ).each( function() {
+                var $field = $( this );
+
+                $.noop( new UserSelector( $field, $field.data( 'configuration' ) ) );
             } );
 
             $form.usableform();

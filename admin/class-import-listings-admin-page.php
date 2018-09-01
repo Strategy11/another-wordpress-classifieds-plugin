@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package AWPCP\Admin\Importer
+ */
+
+// phpcs:disable
 
 function awpcp_import_listings_admin_page() {
     return new AWPCP_ImportListingsAdminPage(
@@ -33,6 +38,7 @@ class AWPCP_ImportListingsAdminPage {
 
 	public function enqueue_scripts() {
 		wp_enqueue_style('awpcp-jquery-ui');
+		wp_enqueue_style( 'select2' );
   		wp_enqueue_script( 'awpcp-admin-import' );
 	}
 
