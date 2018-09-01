@@ -20,15 +20,15 @@ from Paul Irish. See https://github.com/drodenbaugh/awpcp/issues/979. -->
                 </div>
                 <ul class="awpcp-uploaded-file-actions">
                     <li class="awpcp-uploaded-file-action awpcp-uploaded-file-change-status-action">
-                        <a href="#" title="<?php echo esc_attr( __( 'Image currently enabled &mdash; click to disable it', 'another-wordpress-classifieds-plugin' ) ); ?>" data-bind="visible: enabled(), click: $root.disableFile">
+                        <a href="#enable-image" title="<?php echo esc_attr( __( 'Image currently enabled &mdash; click to disable it', 'another-wordpress-classifieds-plugin' ) ); ?>" data-bind="visible: enabled(), click: $root.disableFile">
                             <span class="fas fa-times"></span>
                         </a>
-                        <a href="#" title="<?php echo esc_attr( __( 'Image currently disabled &mdash; click to enable it', 'another-wordpress-classifieds-plugin' ) ); ?>" data-bind="visible: ! enabled(), click: $root.enableFile">
+                        <a href="#disable-image" title="<?php echo esc_attr( __( 'Image currently disabled &mdash; click to enable it', 'another-wordpress-classifieds-plugin' ) ); ?>" data-bind="visible: ! enabled(), click: $root.enableFile">
                             <span class="fas fa-check"></span>
                         </a>
                     </li>
                     <li class="awpcp-uploaded-file-action awpcp-uploaded-file-set-as-primary-action" data-bind="visible: !isPrimary()">
-                        <a href="#" title="<?php echo esc_attr( __( 'Set as Primary Image', 'another-wordpress-classifieds-plugin' ) ); ?>" data-bind="visible: !isPrimary(), click: $root.setFileAsPrimary">
+                        <a href="#set-image-as-primary" title="<?php echo esc_attr( __( 'Set as Primary Image', 'another-wordpress-classifieds-plugin' ) ); ?>" data-bind="visible: !isPrimary(), click: $root.setFileAsPrimary">
                             <span class="fas fa-star"></span>
                         </a>
                     </li>
