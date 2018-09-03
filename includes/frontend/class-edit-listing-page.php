@@ -68,6 +68,8 @@ class AWPCP_EditListingPage extends AWPCP_Page {
 
     /**
      * @since 4.0.0
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     * @SuppressWarnings(PHPMD.NPathComplexity)
      */
     private function do_current_step() {
         $step = $this->get_current_step();
@@ -87,6 +89,11 @@ class AWPCP_EditListingPage extends AWPCP_Page {
         }
 
         $listing = $this->get_ad();
+
+        if ( is_null( $listing ) ) {
+            $message = __( "There specified ad doesn't exist.", 'another-wordpress-classifieds-plugin' );
+            return $this->render( 'content', awpcp_print_error( $message ) );
+        }
 
         if ( ! $this->is_current_user_allowed_to_edit_listing( $listing ) ) {
             $message = __( 'You are not allowed to edit the specified ad.', 'another-wordpress-classifieds-plugin' );
