@@ -1,15 +1,29 @@
 <?php
+/**
+ * @package AWPCP\Listings
+ */
 
+// phpcs:disable Squiz.Commenting.FunctionComment.Missing
+
+/**
+ * Base class for frontend listing actions.
+ */
 abstract class AWPCP_ListingAction {
 
+    /**
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
     public function is_enabled_for_listing( $listing ) {
         return true;
     }
 
-    public abstract function get_slug();
-    public abstract function get_name();
-    public abstract function get_description();
+    abstract public function get_slug();
+    abstract public function get_name();
+    abstract public function get_description();
 
+    /**
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
     public function get_endpoint( $listing, $config ) {
         return $config['current-url'];
     }
@@ -24,13 +38,15 @@ abstract class AWPCP_ListingAction {
 
     /**
      * @since 4.0.0     $config is now optional.
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
      */
     public function render( $listing, $config = [] ) {
         $slug  = $this->get_slug();
         $nonce = wp_create_nonce( "awpcp-listing-action-{$listing->ID}-{$slug}" );
 
         ob_start();
-        include( $this->get_template() );
+        include $this->get_template();
         $content = ob_get_contents();
         ob_end_clean();
 

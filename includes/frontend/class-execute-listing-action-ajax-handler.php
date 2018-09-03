@@ -40,6 +40,8 @@ class AWPCP_ExecuteListingActionAjaxHandler extends AWPCP_AjaxHandler {
 
     /**
      * @since 4.0.0
+     * @throws AWPCP_Exception  If no listing ID is provided, current user is not
+     *                          authorized or the action is not defined.
      */
     public function execute_action() {
         $listing_id = $this->request->post( 'listing_id' );
@@ -60,7 +62,9 @@ class AWPCP_ExecuteListingActionAjaxHandler extends AWPCP_AjaxHandler {
             throw new AWPCP_Exception( str_replace( '{action}', $action, __( 'Unknown action: {action}', 'another-wordpress-classifieds-plugin' ) ) );
         }
 
+        // phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
         $response = apply_filters( "awpcp-custom-listing-action-$action", [], $listing );
+        // phpcs:enable WordPress.NamingConventions.ValidHookName.UseUnderscores
 
         if ( isset( $response['error'] ) ) {
             return $this->error_response( $response['error'] );

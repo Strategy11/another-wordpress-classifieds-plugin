@@ -3,6 +3,9 @@
  * @package AWPCP\Frontend
  */
 
+/**
+ * Handler for Delete Listing frontend action.
+ */
 class AWPCP_DeleteListingActionHandler {
 
     /**
