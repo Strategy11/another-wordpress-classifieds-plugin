@@ -915,6 +915,7 @@ class AWPCP {
 
     private function ajax_setup() {
         add_action( 'admin_init', [ $this, 'register_ajax_handlers' ] );
+        add_action( 'admin_init', [ $this, 'register_listing_actions_handlers' ] );
     }
 
     /**
@@ -943,6 +944,10 @@ class AWPCP {
         $handler = $this->container['SaveListingInformationAjaxHandler'];
         add_action( 'wp_ajax_awpcp_save_listing_information', [ $handler, 'ajax' ] );
         add_action( 'wp_ajax_nopriv_awpcp_save_listing_information', [ $handler, 'ajax' ] );
+
+        $handler = $this->container['ExecuteListingActionAjaxHandler'];
+        add_action( 'wp_ajax_awpcp_execute_listing_action', [ $handler, 'ajax' ] );
+        add_action( 'wp_ajax_nopriv_awpcp_execute_listing_action', [ $handler, 'ajax' ] );
 
         $handler = awpcp_users_autocomplete_ajax_handler();
         add_action( 'wp_ajax_awpcp-autocomplete-users', array( $handler, 'ajax' ) );
@@ -1002,6 +1007,13 @@ class AWPCP {
 
         $ajax_request_handler = awpcp_ajax_request_handler( $this->router->get_routes() );
         $this->router->register_ajax_request_handler( $ajax_request_handler );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function register_listing_actions_handlers() {
+        add_filter( 'awpcp-custom-listing-action-delete-ad', array( $this->container['DeleteListingActionHandler'], 'do_action' ), 10, 2 );
     }
 
     /**

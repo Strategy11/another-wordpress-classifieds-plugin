@@ -18,7 +18,14 @@ class AWPCP_SubmitLisitngSectionsGenerator {
      * @since 4.0.0
      */
     public function get_sections( $listing = null, $sections_ids = [] ) {
+        $container = awpcp()->container;
+
+        // TODO: Move constructors to a container configuration.
         $this->sections = [
+            'actions'        => new AWPCP_ActionsSubmitListingSection(
+                $container['ListingsLogic'],
+                $container['TemplateRenderer']
+            ),
             'order'          => new AWPCP_OrderSubmitListingSection(
                 awpcp()->container['Payments'],
                 awpcp()->container['ListingsLogic'],

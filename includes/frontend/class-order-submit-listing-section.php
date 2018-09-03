@@ -8,6 +8,8 @@
  */
 class AWPCP_OrderSubmitListingSection {
 
+    use AWPCP_SubmitListingSectionTrait;
+
     /**
      * @var string
      */
@@ -84,21 +86,6 @@ class AWPCP_OrderSubmitListingSection {
         }
 
         return 'read';
-    }
-
-    /**
-     * @since 4.0.0
-     */
-    private function can_payment_information_be_modified_during_submit( $listing ) {
-        if ( is_null( $listing ) ) {
-            return true;
-        }
-
-        if ( $this->listings_logic->can_payment_information_be_modified_during_submit( $listing ) ) {
-            return true;
-        }
-
-        return false;
     }
 
     /**

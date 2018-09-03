@@ -2,6 +2,7 @@
 AWPCP.run( 'awpcp/frontend/submit-listing-page', [
     'jquery',
     'awpcp/frontend/submit-listing-data-store',
+    'awpcp/frontend/actions-section-controller',
     'awpcp/frontend/order-section-controller',
     'awpcp/frontend/listing-fields-section-controller',
     'awpcp/frontend/listing-dates-section-controller',
@@ -10,6 +11,7 @@ AWPCP.run( 'awpcp/frontend/submit-listing-page', [
 ], function(
     $,
     Store,
+    ActionsSectionController,
     OrderSectionController,
     ListingFieldsSectionController,
     ListingDatesSectionController,
@@ -90,6 +92,7 @@ AWPCP.run( 'awpcp/frontend/submit-listing-page', [
             page;
 
         controllers = {
+            'actions':        ActionsSectionController,
             'order':          OrderSectionController,
             'listing-dates':  ListingDatesSectionController,
             'listing-fields': ListingFieldsSectionController,

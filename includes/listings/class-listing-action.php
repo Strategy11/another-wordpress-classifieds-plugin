@@ -22,7 +22,13 @@ abstract class AWPCP_ListingAction {
         return $this->get_name();
     }
 
-    public function render( $listing, $config ) {
+    /**
+     * @since 4.0.0     $config is now optional.
+     */
+    public function render( $listing, $config = [] ) {
+        $slug  = $this->get_slug();
+        $nonce = wp_create_nonce( "awpcp-listing-action-{$listing->ID}-{$slug}" );
+
         ob_start();
         include( $this->get_template() );
         $content = ob_get_contents();

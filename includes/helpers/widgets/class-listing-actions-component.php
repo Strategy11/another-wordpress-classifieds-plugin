@@ -15,12 +15,7 @@ function awpcp_listing_actions_component() {
  */
 class AWPCP_ListingActionsComponent {
 
-    public function render( $listing, $config = array() ) {
-        $config = wp_parse_args( $config, array(
-            'current-url' => awpcp_current_url(),
-            'hidden-params' => array(),
-        ) );
-
+    public function render( $listing ) {
         $actions = apply_filters( 'awpcp-listing-actions', array(), $listing );
 
         ob_start();

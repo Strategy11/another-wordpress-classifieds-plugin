@@ -1568,7 +1568,7 @@ function awpcp_render_info_message( $message ) {
  * @since 4.0.0
  */
 function awpcp_render_dismissible_success_message( $message ) {
-    return awpcp_print_message( $message, array( 'awpcp-success', 'notice', 'notice-success', 'is-dismissible' ) );
+    return awpcp_print_message( $message, array( 'awpcp-message-success', 'notice', 'notice-success', 'is-dismissible' ) );
 }
 
 /**

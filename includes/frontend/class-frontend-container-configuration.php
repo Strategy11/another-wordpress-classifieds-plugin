@@ -56,15 +56,6 @@ class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurati
             );
         } );
 
-        $container['UpdateSubmitListingSectionsAjaxHandler'] = $container->service( function( $container ) {
-            return new AWPCP_UpdateSubmitListingSectionsAjaxHandler(
-                $container['SubmitListingSectionsGenerator'],
-                $container['ListingsCollection'],
-                awpcp_ajax_response(),
-                $container['Request']
-            );
-        } );
-
         $container['ListingPostedData'] = $container->service( function( $container ) {
             return new AWPCP_ListingPostedData(
                 $container['listing_category_taxonomy'],
@@ -74,6 +65,38 @@ class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurati
                 $container['Payments'],
                 $container['ListingAuthorization'],
                 $container['RolesAndCapabilities'],
+                $container['Request']
+            );
+        } );
+
+        $container['CAPTCHA'] = $container->service( function( $container ) {
+            return new AWPCP_CAPTCHA(
+                $container['CAPTCHAProviderFactory']->get_captcha_provider(),
+                $container['RolesAndCapabilities'],
+                $container['Settings']
+            );
+        } );
+
+        $container['CAPTCHAProviderFactory'] = $container->service( function( $container ) {
+            return new AWPCP_CAPTCHAProviderFactory(
+                $container['Settings'],
+                $container['Request']
+            );
+        } );
+
+        $this->register_ajax_handlers( $container );
+        $this->register_listing_actions_handlers( $container );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function register_ajax_handlers( $container ) {
+        $container['UpdateSubmitListingSectionsAjaxHandler'] = $container->service( function( $container ) {
+            return new AWPCP_UpdateSubmitListingSectionsAjaxHandler(
+                $container['SubmitListingSectionsGenerator'],
+                $container['ListingsCollection'],
+                awpcp_ajax_response(),
                 $container['Request']
             );
         } );
@@ -95,18 +118,22 @@ class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurati
             );
         } );
 
-        $container['CAPTCHA'] = $container->service( function( $container ) {
-            return new AWPCP_CAPTCHA(
-                $container['CAPTCHAProviderFactory']->get_captcha_provider(),
-                $container['RolesAndCapabilities'],
-                $container['Settings']
+        $container['ExecuteListingActionAjaxHandler'] = $container->service( function( $container ) {
+            return new AWPCP_ExecuteListingActionAjaxHandler(
+                $container['ListingsCollection'],
+                awpcp_ajax_response(),
+                $container['Request']
             );
         } );
+    }
 
-        $container['CAPTCHAProviderFactory'] = $container->service( function( $container ) {
-            return new AWPCP_CAPTCHAProviderFactory(
-                $container['Settings'],
-                $container['Request']
+    /**
+     * @since 4.0.0
+     */
+    public function register_listing_actions_handlers( $container ) {
+        $container['DeleteListingActionHandler'] = $container->service( function( $container ) {
+            return new AWPCP_DeleteListingActionHandler(
+                $container['ListingsLogic']
             );
         } );
     }
