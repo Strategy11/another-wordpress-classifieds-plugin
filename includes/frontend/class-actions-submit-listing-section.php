@@ -52,10 +52,10 @@ class AWPCP_ActionsSubmitListingSection {
      */
     public function get_state( $listing ) {
         if ( $this->can_payment_information_be_modified_during_submit( $listing ) ) {
-            return 'edit';
+            return 'disabled';
         }
 
-        return 'read';
+        return 'edit';
     }
 
     /**
