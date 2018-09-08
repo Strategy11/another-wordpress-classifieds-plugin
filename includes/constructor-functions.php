@@ -219,3 +219,10 @@ function awpcp_listings_api() {
 function awpcp_modules_manager() {
     return awpcp()->container['ModulesManager'];
 }
+
+/**
+ * @deprecated 4.0.0    Use a container.
+ */
+function awpcp_csv_importer_delegate_factory() {
+    return awpcp()->container['ImporterDelegateFactory'];
+}

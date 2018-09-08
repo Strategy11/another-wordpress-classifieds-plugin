@@ -334,6 +334,17 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
             return new AWPCP_TestSSLClientAjaxHandler();
         } );
 
+        $this->register_importer_objects( $container );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function register_importer_objects( $container ) {
+        $container['ImporterDelegateFactory'] = $container->service( function( $container ) {
+            return new AWPCP_CSV_Importer_Delegate_Factory( $container );
+        } );
+
         $container['CSVImporterColumns'] = $container->service( function( $container ) {
             return new AWPCP_CSVImporterColumns();
         } );

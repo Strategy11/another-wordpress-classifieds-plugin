@@ -28,6 +28,11 @@ class AWPCP_CSV_Importer_Delegate {
     private $listings_logic;
 
     /**
+     * @var ListingsCollection
+     */
+    private $listings;
+
+    /**
      * @var Payments
      */
     private $payments;
@@ -57,7 +62,7 @@ class AWPCP_CSV_Importer_Delegate {
 
     private $messages = array();
 
-    public function __construct( $import_session, $columns, $listings_payments, $mime_types, $categories_logic, $categories, $listings_logic, $payments, $media_manager ) {
+    public function __construct( $import_session, $columns, $listings_payments, $mime_types, $categories_logic, $categories, $listings_logic, $listings, $payments, $media_manager ) {
         $this->import_session    = $import_session;
         $this->listings_payments = $listings_payments;
         $this->columns           = $columns;
@@ -65,6 +70,7 @@ class AWPCP_CSV_Importer_Delegate {
         $this->categories_logic  = $categories_logic;
         $this->categories        = $categories;
         $this->listings_logic    = $listings_logic;
+        $this->listings          = $listings;
         $this->payments          = $payments;
         $this->media_manager     = $media_manager;
     }
@@ -557,11 +563,7 @@ class AWPCP_CSV_Importer_Delegate {
         unset( $listing_data['metadata']['_awpcp_payment_term_type'] );
 
         try {
-            $listing = $this->listings_logic->create_listing( array(
-                'post_fields' => array( 'post_title' => 'Imported Listing Draft' ),
-                'metadata' => array(),
-            ) );
-
+            $listing = $this->find_or_create_listing( $listing_data );
             $listing = $this->listings_logic->update_listing( $listing, $listing_data );
 
             if ( $payment_term ) {
@@ -597,6 +599,38 @@ class AWPCP_CSV_Importer_Delegate {
         }
 
         do_action( 'awpcp-listing-imported', $listing, $listing_data );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function find_or_create_listing( $listing_data ) {
+        if ( empty( $listing_data['metadata']['_awpcp_import_id'] ) ) {
+            return $this->create_empty_listing();
+        }
+
+        $listings = $this->listings->find_listings( [
+            'meta_key'   => '_awpcp_import_id',
+            'meta_value' => $listing_data['metadata']['_awpcp_import_id'],
+        ] );
+
+        if ( empty( $listings ) ) {
+            return $this->create_empty_listing();
+        }
+
+        return $listings[0];
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function create_empty_listing() {
+        $listing_data = [
+            'post_fields' => [ 'post_title' => 'Imported Listing Draft' ],
+            'metadata'    => [],
+        ];
+
+        return $this->listings_logic->create_listing( $listing_data );
     }
 
     private function get_extra_fields() {
