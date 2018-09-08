@@ -68,6 +68,10 @@ class AWPCP_ActionsSubmitListingSection {
      * @since 4.0.0
      */
     public function render( $listing ) {
+        if ( is_null( $listing ) ) {
+            return '';
+        }
+
         $params = [
             'listing_actions' => awpcp_listing_actions_component()->render( $listing ),
         ];
