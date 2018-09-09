@@ -105,6 +105,7 @@ require_once(AWPCP_DIR . "/includes/compatibility/compatibility.php");
 require_once( AWPCP_DIR . '/includes/compatibility/interface-plugin-integration.php' );
 require_once( AWPCP_DIR . "/includes/compatibility/class-add-meta-tags-plugin-integration.php" );
 require_once(AWPCP_DIR . "/includes/compatibility/class-all-in-one-seo-pack-plugin-integration.php");
+require_once AWPCP_DIR . '/includes/compatibility/class-complete-open-graph-plugin-integration.php';
 require( AWPCP_DIR . "/includes/compatibility/class-facebook-button-plugin-integration.php");
 require_once(AWPCP_DIR . "/includes/compatibility/class-facebook-plugin-integration.php");
 require_once( AWPCP_DIR . '/includes/compatibility/class-facebook-all-plugin-integration.php' );
@@ -627,6 +628,11 @@ class AWPCP {
         $this->plugin_integrations->add_plugin_integration(
             'jetpack/jetpack.php',
             'awpcp_jetpack_plugin_integration'
+        );
+
+        $this->plugin_integrations->add_plugin_integration(
+            'complete-open-graph/complete-open-graph.php',
+            'awpcp_complete_open_grap_plugin_integration'
         );
     }
 
