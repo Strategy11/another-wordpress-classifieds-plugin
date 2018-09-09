@@ -100,9 +100,9 @@ class AWPCP_CSVImporterColumns {
                 ],
             ),
             'metadata'      => [
-                'import_id'         => [
-                    'name'        => '_awpcp_import_id',
-                    'label'       => _x( 'Import ID', 'csv columns', 'another-wordpress-classifieds-plugin' ),
+                'sequence_id'       => [
+                    'name'        => '_awpcp_sequence_id',
+                    'label'       => _x( 'Sequence ID', 'csv columns', 'another-wordpress-classifieds-plugin' ),
                     'description' => _x( 'Identifier used to match imported data with existing ads allowing existing records to be modified. Use a string or number that is unique for each ad.', 'csv columns', 'another-wordpress-classifieds-plugin' ),
                     'required'    => false,
                     'examples'    => [

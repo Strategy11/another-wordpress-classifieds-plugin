@@ -605,13 +605,13 @@ class AWPCP_CSV_Importer_Delegate {
      * @since 4.0.0
      */
     private function find_or_create_listing( $listing_data ) {
-        if ( empty( $listing_data['metadata']['_awpcp_import_id'] ) ) {
+        if ( empty( $listing_data['metadata']['_awpcp_sequence_id'] ) ) {
             return $this->create_empty_listing();
         }
 
         $listings = $this->listings->find_listings( [
-            'meta_key'   => '_awpcp_import_id',
-            'meta_value' => $listing_data['metadata']['_awpcp_import_id'],
+            'meta_key'   => '_awpcp_sequence_id',
+            'meta_value' => $listing_data['metadata']['_awpcp_sequence_id'],
         ] );
 
         if ( empty( $listings ) ) {
