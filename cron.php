@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package AWPCP
+ */
+
+// phpcs:disable
 
 // ensure we get the expiration hooks scheduled properly:
 function awpcp_schedule_activation() {
@@ -70,9 +75,11 @@ function awpcp_check_license_status() {
 
 /*
  * Function to disable ads run hourly
+ *
+ * TODO: Fix for autoexpiredisabledelete.
  */
 function doadexpirations() {
-    global $wpdb, $nameofsite;
+    global $nameofsite;
 
     $listings_logic = awpcp_listings_api();
 
@@ -157,6 +164,8 @@ function doadexpirations() {
 
 /*
  * Function run once per month to cleanup disabled / deleted ads.
+ *
+ * TODO: Fix for autoexpiredisabledelete.
  */
 function doadcleanup() {
     $listings_logic = awpcp_listings_api();

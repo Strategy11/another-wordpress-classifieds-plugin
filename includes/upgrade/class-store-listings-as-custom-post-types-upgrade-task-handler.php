@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package AWPCP\Upgrade
+ */
+
+// phpcs:disable
 
 class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements AWPCP_Upgrade_Task_Runner {
 
@@ -32,6 +37,9 @@ class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements 
         return $this->db->get_results( $this->db->prepare( $query, $last_item_id ) );
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
     public function process_item( $item, $last_item_id ) {
         $post_date_gmt = get_gmt_from_date( $item->ad_postdate, 'Y-m-d' );
         $post_time_gmt = get_gmt_from_date( $item->ad_startdate, 'H:i:s' );
@@ -81,6 +89,9 @@ class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements 
         return $item->ad_id;
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.ElseExpression)
+     */
     private function update_post_status_with_item_properties( $post_id, $item ) {
         $listing_expired = strtotime( $item->ad_enddate ) < current_time( 'timestamp' );
 
@@ -177,16 +188,15 @@ class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements 
     }
 
     private function update_post_author_with_item_properties( $post_id, $item ) {
-        if ( empty( $item->user_id ) ) {
-            $user = null;
-        } else {
+        $user    = null;
+        $user_id = 0;
+
+        if ( ! empty( $item->user_id ) ) {
             $user = $this->wordpress->get_user_by( 'id', $item->user_id );
         }
 
         if ( is_a( $user, 'WP_User' ) ) {
             $user_id = $user->ID;
-        } else {
-            $user_id = 0;
         }
 
         $this->wordpress->update_post( array( 'ID' => $post_id, 'post_author' => $user_id ) );
