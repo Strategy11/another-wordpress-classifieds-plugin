@@ -14,6 +14,7 @@ class AWPCP_ListingsAPI {
 
     // phpcs:disable Generic,Squiz,WordPress,PSR2,PEAR
 
+    private $disabled_status = 'disabled';
     private $attachments_logic;
     private $attachments;
     private $listing_renderer;
@@ -100,7 +101,7 @@ class AWPCP_ListingsAPI {
 
         $post_fields = wp_parse_args( $listing_data['post_fields'], array(
             'post_type' => AWPCP_LISTING_POST_TYPE,
-            'post_status' => 'disabled',
+            'post_status'   => $this->disabled_status,
             'post_date' => $now,
             'post_date_gmt' => get_gmt_from_date( $now ),
         ) );
@@ -148,6 +149,7 @@ class AWPCP_ListingsAPI {
     public function get_default_listing_metadata( $metadata ) {
         $metadata = wp_parse_args( $metadata, array(
             '_awpcp_payment_status'         => 'Unpaid',
+            '_awpcp_verification_needed'    => true,
             // TODO: Do we need to alter this when someones changes the start date?
             '_awpcp_most_recent_start_date' => current_time( 'mysql' ),
             '_awpcp_renewed_date'           => '',
@@ -457,10 +459,19 @@ class AWPCP_ListingsAPI {
     }
 
     public function disable_listing_without_triggering_actions( $listing ) {
-        $listing->post_status = 'disabled';
+        $listing->post_status = $this->disabled_status;
 
         $this->wordpress->update_post( array( 'ID' => $listing->ID, 'post_status' => $listing->post_status ) );
         $this->wordpress->update_post_meta( $listing->ID, '_awpcp_disabled_date', current_time( 'mysql' ) );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function expire_listing( $listing ) {
+        $this->wordpress->update_post_meta( $listing->ID, '_awpcp_expired', true );
+
+        return $this->disable_listing( $listing );
     }
 
     /**

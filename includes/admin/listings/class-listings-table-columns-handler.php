@@ -99,7 +99,7 @@ class AWPCP_ListingsTableColumnsHandler {
         // Add custom columns.
         $new_columns['awpcp-dates']        = _x( 'Dates', 'listings table column', 'another-wordpress-classifieds-plugin' );
         $new_columns['awpcp-payment-term'] = _x( 'Payment Term', 'listings table column', 'another-wordpress-classifieds-plugin' );
-        $new_columns['awpcp-status']       = _x( 'Disabled', 'listings table column', 'another-wordpress-classifieds-plugin' );
+        $new_columns['awpcp-status']       = _x( 'Active', 'listings table column', 'another-wordpress-classifieds-plugin' );
 
         array_splice( $columns_keys, 3, 0, array_keys( $new_columns ) );
         array_splice( $columns_values, 3, 0, array_values( $new_columns ) );
@@ -206,7 +206,11 @@ class AWPCP_ListingsTableColumnsHandler {
      */
     private function render_status_column( $post ) {
         if ( $this->listing_renderer->is_public( $post ) ) {
-            return _x( 'Enabled', 'listing status', 'another-wordpress-classifieds-plugin' );
+            return _x( 'Active', 'listing status', 'another-wordpress-classifieds-plugin' );
+        }
+
+        if ( $this->listing_renderer->is_expired( $post ) ) {
+            return _x( 'Expired', 'listing status', 'another-wordpress-classifieds-plugin' );
         }
 
         return _x( 'Disabled', 'listing status', 'another-wordpress-classifieds-plugin' );

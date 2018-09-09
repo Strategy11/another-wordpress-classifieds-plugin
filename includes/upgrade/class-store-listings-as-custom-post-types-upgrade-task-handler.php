@@ -82,10 +82,11 @@ class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements 
     }
 
     private function update_post_status_with_item_properties( $post_id, $item ) {
-        if ( $item->payment_status === 'Unpaid' ) {
+        $listing_expired = strtotime( $item->ad_enddate ) < current_time( 'timestamp' );
+
+        if ( 'Unpaid' === $item->payment_status || ! $item->verified ) {
             $this->wordpress->update_post( array( 'ID' => $post_id, 'post_status' => 'draft' ) );
-            $this->wordpress->update_post_meta( $post_id, '_awpcp_payment_pending', true );
-        } else if ( $item->disabled || $item->verified != 1 ) {
+        } else if ( $item->disabled || $listing_expired ) {
             $this->wordpress->update_post( array( 'ID' => $post_id, 'post_status' => 'disabled' ) );
         } else {
             $this->wordpress->update_post( array( 'ID' => $post_id, 'post_status' => 'publish' ) );
@@ -93,7 +94,7 @@ class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements 
 
         // update verified status
         if ( $item->verified != 1 ) {
-            $this->wordpress->update_post_meta( $post_id, '_awpcp_verfication_needed', true );
+            $this->wordpress->update_post_meta( $post_id, '_awpcp_verification_needed', true );
         } else {
             $this->wordpress->update_post_meta( $post_id, '_awpcp_verified', true );
         }
@@ -108,7 +109,7 @@ class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements 
         }
 
         // update expired status
-        if ( strtotime( $item->ad_enddate ) < current_time( 'timestamp' ) ) {
+        if ( $listing_expired ) {
             $this->wordpress->update_post_meta( $post_id, '_awpcp_expired', true );
         }
     }

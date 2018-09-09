@@ -89,17 +89,22 @@ function doadexpirations() {
 
     $ads = awpcp_listings_collection()->find_valid_listings(array(
         'meta_query' => array(
+            'relation' => 'AND',
             array(
                 'key' => '_awpcp_end_date',
                 'value' => current_time( 'mysql' ),
                 'compare' => '<=',
                 'type' => 'DATETIME',
             ),
+            [
+                'key'     => '_awpcp_expired',
+                'compare' => 'NOT EXISTS',
+            ],
         ),
     ));
 
     foreach ($ads as $ad) {
-        $listings_logic->disable_listing( $ad );
+        $listings_logic->expire_listing( $ad );
 
         if ( $notify_expiring == false && $notify_admin == false ) {
             continue;

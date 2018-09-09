@@ -26,6 +26,7 @@ class AWPCP_ListingRenderer {
     // phpcs:disable Squiz
     // phpcs:disable WordPress
 
+    private $disabled_status = 'disabled';
     private $categories;
     private $regions;
     private $payments;
@@ -286,6 +287,21 @@ class AWPCP_ListingRenderer {
     // phpcs:disable Generic
     // phpcs:disable Squiz
     // phpcs:disable WordPress
+
+    /**
+     * @since 4.0.0
+     */
+    public function is_expired( $listing ) {
+        if ( $this->disabled_status !== $listing->post_status ) {
+            return false;
+        }
+
+        if ( ! $this->wordpress->get_post_meta( $listing->ID, '_awpcp_expired', true ) ) {
+            return false;
+        }
+
+        return true;
+    }
 
     public function has_expired( $listing ) {
         return $this->has_expired_on_date( $listing, current_time( 'timestamp' ) );
