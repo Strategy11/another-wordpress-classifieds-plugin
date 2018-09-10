@@ -29,7 +29,6 @@ class AWPCP_CompleteOpenGraphPluginIntegration {
         }
 
         add_filter( 'awpcp-should-generate-opengraph-tags', array( $this, 'should_generate_open_graph_tags' ), 10, 2 );
-        add_filter( 'complete_open_graph_all_data', array( $this, 'filter_open_grap_data' ) );
     }
 
     /**
@@ -37,6 +36,8 @@ class AWPCP_CompleteOpenGraphPluginIntegration {
      */
     public function should_generate_open_graph_tags( $should, $meta ) {
         $this->meta = $meta;
+
+        add_filter( 'complete_open_graph_all_data', array( $this, 'filter_open_grap_data' ) );
 
         return false;
     }
