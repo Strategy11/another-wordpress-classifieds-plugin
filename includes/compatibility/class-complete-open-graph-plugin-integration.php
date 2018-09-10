@@ -35,11 +35,15 @@ class AWPCP_CompleteOpenGraphPluginIntegration {
      * @since 3.8.6
      */
     public function should_generate_open_graph_tags( $should, $meta ) {
-        $this->meta = $meta;
+        if ( class_exists( '\CompleteOpenGraph\App' ) ) {
+            $this->meta = $meta;
 
-        add_filter( 'complete_open_graph_all_data', array( $this, 'filter_open_grap_data' ) );
+            add_filter( 'complete_open_graph_all_data', array( $this, 'filter_open_grap_data' ) );
 
-        return false;
+            return false;
+        }
+
+        return $should;
     }
 
     /**
