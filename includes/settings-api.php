@@ -1117,24 +1117,39 @@ class AWPCP_Settings_API {
 
 	public function radio($args) {
 		$setting = $args['setting'];
-		$options = $args['options'];
+        $options = array();
+
+        if ( is_array( $args['options'] ) ) {
+            $options = $args['options'];
+        }
+
+        if ( is_callable( $args['options'] ) ) {
+            $options = call_user_func( $args['options'] );
+        }
 
 		$current = esc_html(stripslashes($this->get_option($setting->name)));
 
 		$html = '';
-		foreach ($options as $value => $label) {
-			$id = "{$setting->name}-$value";
+        foreach ( $options as $key => $label ) {
+            $value = $key;
+
+            if ( is_array( $label ) ) {
+                $value = $label['value'];
+                $label = $label['label'];
+            }
+
+			$id = "{$setting->name}-$key";
 			$label = ' <label for="' . $id . '">' . $label . '</label>';
 
 			$html.= '<input id="' . $id . '"type="radio" value="' . $value . '" ';
 			$html.= 'name="awpcp-options['. $setting->name .']" ';
-			if ($value == $current) {
+            if ( $key == $current ) {
 				$html.= 'checked="checked" />' . $label;
 			} else {
 				$html.= '>' . $label;
 			}
 			$html.= '<br/>';
-		}
+        }
 		$html.= '<span class="description">' . $setting->helptext . '</span>';
 
 		echo $html;
