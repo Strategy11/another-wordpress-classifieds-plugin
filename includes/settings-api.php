@@ -1028,6 +1028,10 @@ class AWPCP_Settings_API {
 		$html.= 'value="' . $value . '" type="' . $type . '" ';
 		$html.= 'name="awpcp-options[' . $setting->name . ']" ';
 
+        if ( ! empty( $args['readonly'] ) ) {
+            $html .= 'disabled="disabled" ';
+        }
+
 		if ( ! empty( $setting->args['behavior'] ) ) {
 			$html.= 'awpcp-setting="' . esc_attr( json_encode( $setting->args['behavior'] ) ) . '" />';
 		} else {
