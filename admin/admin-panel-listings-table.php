@@ -225,9 +225,9 @@ class AWPCP_Listings_Table extends WP_List_Table {
                 $actions['bulk-remove-featured'] = __( 'Make Non Featured', 'another-wordpress-classifieds-plugin' );
             }
 
-            $fb = AWPCP_Facebook::instance();
-            if ( $fb->get( 'page_token' ) )
+            if ( awpcp()->settings->get_option( 'facebook-page-access-token' ) ) {
                 $actions['bulk-send-to-facebook'] = __( 'Send to Facebook', 'another-wordpress-classifieds-plugin' );
+            }
         }
 
         $actions['bulk-delete'] = __( 'Delete', 'another-wordpress-classifieds-plugin' );

@@ -153,7 +153,6 @@ require_once( AWPCP_DIR . "/includes/helpers/class-listing-renderer.php" );
 require_once( AWPCP_DIR . "/includes/helpers/class-listing-reply-akismet-data-source.php" );
 require_once( AWPCP_DIR . "/includes/helpers/class-page-title-builder.php" );
 require_once( AWPCP_DIR . "/includes/helpers/class-payment-transaction-helper.php" );
-require_once( AWPCP_DIR . "/includes/helpers/class-send-listing-to-facebook-helper.php" );
 require_once( AWPCP_DIR . "/includes/helpers/class-send-to-facebook-helper.php" );
 require_once( AWPCP_DIR . "/includes/helpers/class-spam-filter.php" );
 require_once( AWPCP_DIR . "/includes/helpers/class-spam-submitter.php" );
@@ -170,6 +169,8 @@ require_once( AWPCP_DIR . "/includes/helpers/widgets/class-listing-form-steps-co
 require_once(AWPCP_DIR . "/includes/helpers/widgets/class-user-field.php");
 require_once(AWPCP_DIR . "/includes/helpers/widgets/class-users-dropdown.php");
 require_once(AWPCP_DIR . "/includes/helpers/widgets/class-users-autocomplete.php");
+
+require_once AWPCP_DIR . '/includes/integrations/facebook/class-facebook-integration.php';
 
 require_once( AWPCP_DIR . "/includes/listings/class-listings-finder.php" );
 require_once( AWPCP_DIR . "/includes/listings/class-listing-action.php" );
@@ -641,9 +642,8 @@ class AWPCP {
         $facebook_cache_helper = awpcp_facebook_cache_helper();
         add_action( 'awpcp-clear-ad-facebook-cache', array( $facebook_cache_helper, 'handle_clear_cache_event_hook' ), 10, 1 );
 
-        $send_new_listings_to_facebook_helper = awpcp_send_listing_to_facebook_helper();
-        add_action( 'awpcp-listing-facebook-cache-cleared', array( $send_new_listings_to_facebook_helper, 'schedule_listing_if_necessary' ) );
-        add_action( 'awpcp-send-listing-to-facebook', array( $send_new_listings_to_facebook_helper, 'send_listing_to_facebook' ) );
+        $send_to_facebook_helper = awpcp_send_to_facebook_helper();
+        add_action( 'awpcp-send-listing-to-facebook', array( $send_to_facebook_helper, 'send_listing_to_facebook' ) );
 
         add_action( 'awpcp_clear_categories_list_cache', array( $this, 'clear_categories_list_cache' ) );
         add_action( 'awpcp-place-ad', array( $this, 'clear_categories_list_cache' ) );
@@ -669,9 +669,11 @@ class AWPCP {
             add_action( 'awpcp-transaction-status-updated', array( $handler, 'process_payment_transaction' ) );
             add_filter( 'awpcp-process-payment-transaction', array( $handler, 'process_payment_transaction' ) );
 
-            add_action( 'awpcp-place-ad', array( $facebook_cache_helper, 'on_place_ad' ) );
-            add_action( 'awpcp_approve_ad', array( $facebook_cache_helper, 'on_approve_ad' ) );
-            add_action( 'awpcp_edit_ad', array( $facebook_cache_helper, 'on_edit_ad' ) );
+            $facebook_integration = awpcp_facebook_integration();
+            add_action( 'awpcp-place-ad', array( $facebook_integration, 'on_ad_modified' ) );
+            add_action( 'awpcp_approve_ad', array( $facebook_integration, 'on_ad_modified' ) );
+            add_action( 'awpcp_edit_ad', array( $facebook_integration, 'on_ad_modified' ) );
+            add_action( 'awpcp-listing-facebook-cache-cleared', array( $facebook_integration, 'on_ad_facebook_cache_cleared' ) );
         }
 
         if ( defined( 'DOING_CRON' ) && DOING_CRON ) {
