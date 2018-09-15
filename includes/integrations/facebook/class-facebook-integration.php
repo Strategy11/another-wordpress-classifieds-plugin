@@ -73,7 +73,7 @@ class AWPCP_FacebookIntegration {
         $params = array( $ad->ad_id, $this->wordpress->current_time( 'timestamp' ) );
 
         if ( ! wp_next_scheduled( $action, $params ) ) {
-            wp_schedule_single_event( time() + $wait_time, $action, $params );
+            $this->wordpress->schedule_single_event( time() + $wait_time, $action, $params );
         }
     }
 
