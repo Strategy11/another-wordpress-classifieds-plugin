@@ -52,7 +52,6 @@ class AWPCP_SettingsIntegration {
             $this->settings->setting_name,
             $this->settings->setting_name,
             [
-                // TODO: This should pyobably be handled elsewhere.
                 'sanitize_callback' => [ $this->settings_validator, 'sanitize_settings' ],
             ]
         );
