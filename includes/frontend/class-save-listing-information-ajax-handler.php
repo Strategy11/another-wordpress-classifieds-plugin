@@ -155,13 +155,7 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
     private function save_information_for_new_listing_already_paid( $listing, $transaction ) {
         $posted_data = $this->posted_data->get_posted_data_for_already_paid_listing( $listing );
 
-        $errors = $this->form_fields_validator->get_validation_errors( $posted_data['post_data'], $listing );
-
-        if ( ! empty( $errors ) ) {
-            return $this->multiple_errors_response( $errors );
-        }
-
-        $this->listings_logic->update_listing( $listing, $posted_data['post_data'] );
+        $this->save_information_for_already_paid_listing( $listing );
 
         // TODO: Handle redirects when the listing is still a draft.
         // TODO: Shouldn't this sent the user to the finish step?
@@ -176,6 +170,19 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
         ];
 
         return $this->success( $response );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function save_information_for_already_paid_listing( $listing, $posted_data ) {
+        $errors = $this->form_fields_validator->get_validation_errors( $posted_data['post_data'], $listing );
+
+        if ( ! empty( $errors ) ) {
+            return $this->multiple_errors_response( $errors );
+        }
+
+        $this->listings_logic->update_listing( $listing, $posted_data['post_data'] );
     }
 
     /**
@@ -270,13 +277,7 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
     private function save_existing_listing_information( $listing ) {
         $posted_data = $this->posted_data->get_posted_data_for_already_paid_listing( $listing );
 
-        $errors = $this->form_fields_validator->get_validation_errors( $posted_data['post_data'], $listing );
-
-        if ( ! empty( $errors ) ) {
-            return $this->multiple_errors_response( $errors );
-        }
-
-        $this->listings_logic->update_listing( $listing, $posted_data['post_data'] );
+        $this->save_information_for_already_paid_listing( $listing );
 
         $redirect_params = [
             'step'       => 'finish',
