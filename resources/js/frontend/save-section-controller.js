@@ -162,9 +162,12 @@ AWPCP.define( 'awpcp/frontend/save-section-controller', [
             self.$element.show();
         },
 
-        reload: function() {
+        reload: function( data ) {
             var self = this;
 
+            self.template = data.template;
+
+            self.$element.removeClass( 'rendered' );
             self.prepareTemplate();
         },
 

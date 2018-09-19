@@ -17,7 +17,7 @@ class AWPCP_SubmitLisitngSectionsGenerator {
     /**
      * @since 4.0.0
      */
-    public function get_sections( $listing = null, $sections_ids = [] ) {
+    public function get_sections( $sections_ids = [], $mode = 'create', $listing = null, $transaction = null ) {
         $container = awpcp()->container;
 
         // TODO: Move constructors to a container configuration.
@@ -54,6 +54,7 @@ class AWPCP_SubmitLisitngSectionsGenerator {
                 awpcp()->container['Settings']
             ),
             'save'           => new AWPCP_SaveSubmitListingSection(
+                $container['Settings'],
                 awpcp()->container['TemplateRenderer']
             ),
         ];
@@ -71,7 +72,7 @@ class AWPCP_SubmitLisitngSectionsGenerator {
                 'id'       => $section_id,
                 'position' => $section->get_position(),
                 'state'    => $section->get_state( $listing ),
-                'template' => $section->render( $listing ),
+                'template' => $section->render( $listing, $transaction, $mode ),
             ];
 
             $section->enqueue_scripts();

@@ -224,7 +224,7 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
         $params = [
             'current_step' => $current_step,
             'transaction'  => $transaction,
-            'sections'     => $this->sections_generator->get_sections( $listing ),
+            'sections'     => $this->sections_generator->get_sections( [], 'create', $listing, $transaction ),
         ];
 
         $template = AWPCP_DIR . '/templates/frontend/submit-listing-page/listing-information-step.tpl.php';

@@ -96,6 +96,7 @@ class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurati
             return new AWPCP_UpdateSubmitListingSectionsAjaxHandler(
                 $container['SubmitListingSectionsGenerator'],
                 $container['ListingsCollection'],
+                $container['Payments'],
                 awpcp_ajax_response(),
                 $container['Request']
             );

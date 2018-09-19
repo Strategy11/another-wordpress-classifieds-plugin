@@ -154,7 +154,7 @@ class AWPCP_EditListingPage extends AWPCP_Page {
 
         $listing = $this->get_ad();
 
-        $sections = $this->sections_generator->get_sections( $listing );
+        $sections = $this->sections_generator->get_sections( [], 'edit', $listing );
 
         return $this->render( 'content', '<form class="awpcp-submit-listing-page-form"></form><script type="text/javascript">var AWPCPSubmitListingPageSections = ' . wp_json_encode( $sections ) . ';</script>' );
     }

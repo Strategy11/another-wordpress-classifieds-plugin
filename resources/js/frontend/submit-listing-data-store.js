@@ -312,6 +312,7 @@ AWPCP.define( 'awpcp/frontend/submit-listing-data-store', [
                 sections: self.data.sectionsToUpdate,
                 nonce: $.AWPCP.get( 'update_submit_listing_sections_nonce' ),
                 listing: self.getListingId(),
+                transaction_id: self.getTransactionId(),
             };
 
             options = {

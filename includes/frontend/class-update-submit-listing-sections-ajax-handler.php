@@ -20,6 +20,11 @@ class AWPCP_UpdateSubmitListingSectionsAjaxHandler extends AWPCP_AjaxHandler {
     private $listings;
 
     /**
+     * @var Payments
+     */
+    private $payments;
+
+    /**
      * @var Request
      */
     private $request;
@@ -27,11 +32,12 @@ class AWPCP_UpdateSubmitListingSectionsAjaxHandler extends AWPCP_AjaxHandler {
     /**
      * @since 4.0.0
      */
-    public function __construct( $sections_generator, $listings, $response, $request ) {
+    public function __construct( $sections_generator, $listings, $payments, $response, $request ) {
         parent::__construct( $response );
 
         $this->sections_generator = $sections_generator;
         $this->listings           = $listings;
+        $this->payments           = $payments;
         $this->request            = $request;
     }
 
@@ -39,7 +45,8 @@ class AWPCP_UpdateSubmitListingSectionsAjaxHandler extends AWPCP_AjaxHandler {
      * @since 4.0.0
      */
     public function ajax() {
-        $listing_id = $this->request->param( 'listing' );
+        $transaction = $this->payments->get_transaction();
+        $listing_id  = $this->request->param( 'listing' );
 
         try {
             $listing = $this->listings->get( $listing_id );
@@ -48,7 +55,7 @@ class AWPCP_UpdateSubmitListingSectionsAjaxHandler extends AWPCP_AjaxHandler {
         }
 
         $response = [
-            'sections' => $this->sections_generator->get_sections( $listing ),
+            'sections' => $this->sections_generator->get_sections( [], 'create', $listing, $transaction ),
         ];
 
         return $this->success( $response );
