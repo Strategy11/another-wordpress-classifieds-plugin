@@ -1334,7 +1334,7 @@ function awpcp_get_formatted_amount_template( $show_currency_symbol ) {
     $currency_symbol = $show_currency_symbol ? awpcp_get_currency_symbol() : '';
 
     if ( get_awpcp_option( 'include-space-between-currency-symbol-and-amount' ) ) {
-        $separator = ' ';
+        $separator = ' ';
     } else {
         $separator = '';
     }
@@ -1974,7 +1974,7 @@ function awpcp_html_admin_third_level_heading_tag() {
 /**
  * @param string $content The already escaped content of the heading tag.
  *
- * @access private
+ * @access private
  * @since 3.6
  */
 function awpcp_html_heading( $params ) {
