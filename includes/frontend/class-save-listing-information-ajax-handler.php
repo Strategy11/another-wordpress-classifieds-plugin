@@ -155,7 +155,7 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
     private function save_information_for_new_listing_already_paid( $listing, $transaction ) {
         $posted_data = $this->posted_data->get_posted_data_for_already_paid_listing( $listing );
 
-        $this->save_information_for_already_paid_listing( $listing );
+        $this->save_information_for_already_paid_listing( $listing, $posted_data );
 
         // TODO: Handle redirects when the listing is still a draft.
         // TODO: Shouldn't this sent the user to the finish step?
@@ -277,7 +277,7 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
     private function save_existing_listing_information( $listing ) {
         $posted_data = $this->posted_data->get_posted_data_for_already_paid_listing( $listing );
 
-        $this->save_information_for_already_paid_listing( $listing );
+        $this->save_information_for_already_paid_listing( $listing, $posted_data );
 
         $redirect_params = [
             'step'       => 'finish',
