@@ -113,6 +113,8 @@ class AWPCP_SettingsIntegration {
                 continue;
             }
 
+            $css_class = str_replace( '_', '-', "awpcp-setting-{$setting['id']}" );
+
             add_settings_field(
                 $setting['id'],
                 $setting['name'],
@@ -121,10 +123,7 @@ class AWPCP_SettingsIntegration {
                 $section['id'],
                 [
                     'setting_id' => $setting_id,
-                    'class'      => implode( ' ', [
-                        str_replace( '_', '-', "awpcp-setting-{$setting['id']}" ),
-                        'awpcp-settings-row',
-                    ] ),
+                    'class'      => implode( ' ', [ $css_class, 'awpcp-settings-row' ] ),
                 ]
             );
         }
