@@ -64,32 +64,37 @@ class AWPCP_SaveSubmitListingSection {
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function render( $listing, $transaction, $mode = 'create' ) {
-        $labels = $this->get_button_labels( $transaction, $mode );
+        $params = $this->get_params( $transaction, $mode );
 
-        return $this->template_renderer->render_template( $this->template, $labels );
+        return $this->template_renderer->render_template( $this->template, $params );
     }
 
     /**
      * @since 4.0.0
      */
-    private function get_button_labels( $transaction, $mode ) {
+    private function get_params( $transaction, $mode ) {
         if ( 'edit' === $mode ) {
             return [
-                'section_label' => _x( 'Save ad', 'save submit listing section', 'another-wordpress-classifieds-plugin' ),
-                'button_label'  => _x( 'Save Ad', 'save submit listing section', 'another-wordpress-classifieds-plugin' ),
+                'show_preview_section' => false,
+                'submit_button_label'  => _x( 'Save Ad', 'save submit listing section', 'another-wordpress-classifieds-plugin' ),
             ];
         }
+
+        $params = [
+            'show_preview_section' => $this->settings->get_option( 'show-ad-preview-before-payment' ),
+            'section_label'        => _x( 'Preview Ad', 'save submit listing section', 'another-wordpress-classifieds-plugin' ),
+            'preview_button_label' => _x( 'Preview Ad', 'save submit listing section', 'another-wordpress-classifieds-plugin' ),
+            'refresh_button_label' => _x( 'Refresh Preview', 'save submit listing section', 'another-wordpress-classifieds-plugin' ),
+        ];
 
         if ( $this->settings->get_option( 'pay-before-place-ad' ) || is_null( $transaction ) || $transaction->payment_is_not_required() ) {
-            return [
-                'section_label' => _x( 'Create ad', 'save submit listing section', 'another-wordpress-classifieds-plugin' ),
-                'button_label'  => _x( 'Create Ad', 'save submit listing section', 'another-wordpress-classifieds-plugin' ),
-            ];
+            $params['submit_button_label'] = _x( 'Create Ad', 'save submit listing section', 'another-wordpress-classifieds-plugin' );
+
+            return $params;
         }
 
-        return [
-            'section_label' => _x( 'Create ad', 'save submit listing section', 'another-wordpress-classifieds-plugin' ),
-            'button_label'  => _x( 'Continue', 'save submit listing section', 'another-wordpress-classifieds-plugin' ),
-        ];
+        $params['submit_button_label'] = _x( 'Continue', 'save submit listing section', 'another-wordpress-classifieds-plugin' );
+
+        return $params;
     }
 }

@@ -66,14 +66,27 @@ AWPCP.define( 'awpcp/frontend/save-section-controller', [
 
             self.$element = $( self.template ).replaceAll( self.$element );
 
-            self.$submitButton = self.$element.find( ':submit' );
-            self.$resetButton  = self.$element.find( '[type="reset"]' );
+            self.$previewContainer = self.$element.find( '.awpcp-listing-preview-container' );
+
+            self.$previewButton = self.$element.find( '.awpcp-preview-listing-button' );
+            self.$submitButton  = self.$element.find( '.awpcp-submit-listing-button' );
+            self.$resetButton   = self.$element.find( '[type="reset"]' );
+
+            self.$previewContainer.hide();
+
+            self.$previewButton.click( function( event ) {
+                event.preventDefault();
+
+                if ( self.store.isValid() ) {
+                    self.saveListingInformationAndShowPreview();
+                }
+            } );
 
             self.$submitButton.click( function( event ) {
                 event.preventDefault();
 
                 if ( self.store.isValid() ) {
-                    self.saveListingInformation();
+                    self.saveListingInformationAndRedirect();
                 }
             } );
 
@@ -86,9 +99,39 @@ AWPCP.define( 'awpcp/frontend/save-section-controller', [
             self.$element.addClass( 'rendered' );
         },
 
+        saveListingInformationAndShowPreview: function() {
+            var self = this;
+
+            self.saveListingInformation().done( function( data ) {
+                self.showListingPreview();
+            } );
+        },
+
         saveListingInformation: function() {
+            var self     = this,
+                deferred = $.Deferred();
+
+            self.clearErrors();
+
+            self.doSaveListingRequest().done( function( data ) {
+                if ( 'ok' === data.status && data.redirect_url ) {
+                    deferred.resolve( data );
+                    return;
+                }
+
+                if ( 'error' === data.status && data.errors ) {
+                    self.showErrors( data.errors );
+                    deferred.reject( data );
+                    return;
+                }
+            } );
+
+            return deferred;
+        },
+
+        doSaveListingRequest: function() {
             var self = this,
-                paymentTerm, data, request;
+                paymentTerm, creditPlanId, data, options, request;
 
             paymentTerm  = self.store.getSelectedPaymentTerm();
             creditPlanId = self.store.getSelectedCreditPlanId();
@@ -119,19 +162,13 @@ AWPCP.define( 'awpcp/frontend/save-section-controller', [
                 method: 'POST',
             };
 
-            // Remove existing error messages.
+            return $.ajax( options );
+        },
+
+        clearErrors: function() {
+            var self = this;
+
             self.$element.find( '.awpcp-message.awpcp-error' ).remove();
-
-            request = $.ajax( options ).done( function( data ) {
-                if ( 'ok' === data.status && data.redirect_url ) {
-                    document.location.href = data.redirect_url;
-                    return;
-                }
-
-                if ( 'error' === data.status && data.errors ) {
-                    self.showErrors( data.errors );
-                }
-            } );
         },
 
         showErrors: function( errors ) {
@@ -141,6 +178,48 @@ AWPCP.define( 'awpcp/frontend/save-section-controller', [
 
             $.each( errors, function( index, error ) {
                 $container.prepend( '<div class="awpcp-message awpcp-error notice notice-error error"><p>' + error + '</p></div>' );
+            } );
+        },
+
+        showListingPreview: function() {
+            var self = this;
+
+            self.doGenerateListingPreviewRequest().done( function( data ) {
+                if ( 'ok' === data.status && data.preview ) {
+                    self.preview = data.preview;
+
+                    self.$previewButton.blur();
+                    self.store.refresh();
+                }
+            } );
+        },
+
+        doGenerateListingPreviewRequest: function() {
+            var self = this,
+                data, options;
+
+            data = {
+                action: 'awpcp_generate_listing_preview',
+                ad_id:  self.store.getListingId(),
+            };
+
+            options = {
+                url:      $.AWPCP.get( 'ajaxurl' ),
+                data:     data,
+                dataType: 'json',
+                method:   'POST',
+            };
+
+            return $.ajax( options );
+        },
+
+        saveListingInformationAndRedirect: function() {
+            var self = this;
+
+            self.saveListingInformation().done( function( data ) {
+                if ( data.redirect_url ) {
+                    document.location.href = data.redirect_url;
+                }
             } );
         },
 
@@ -158,6 +237,11 @@ AWPCP.define( 'awpcp/frontend/save-section-controller', [
 
         showEditMode: function() {
             var self = this;
+
+            if ( self.preview ) {
+                self.$previewButton.val( self.$previewButton.data( 'refresh-label' ) );
+                self.$previewContainer.html( self.preview ).show();
+            }
 
             self.$element.show();
         },

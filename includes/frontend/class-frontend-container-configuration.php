@@ -119,6 +119,15 @@ class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurati
             );
         } );
 
+        $container['GenerateListingPreviewAjaxHandler'] = $container->service( function( $container ) {
+            return new AWPCP_GenerateListingPreviewAjaxHandler(
+                $container['ListingsContentRenderer'],
+                $container['ListingsCollection'],
+                awpcp_ajax_response(),
+                $container['Request']
+            );
+        } );
+
         $container['ExecuteListingActionAjaxHandler'] = $container->service( function( $container ) {
             return new AWPCP_ExecuteListingActionAjaxHandler(
                 $container['ListingsCollection'],

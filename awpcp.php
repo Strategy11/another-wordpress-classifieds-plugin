@@ -945,6 +945,10 @@ class AWPCP {
         add_action( 'wp_ajax_awpcp_save_listing_information', [ $handler, 'ajax' ] );
         add_action( 'wp_ajax_nopriv_awpcp_save_listing_information', [ $handler, 'ajax' ] );
 
+        $handler = $this->container['GenerateListingPreviewAjaxHandler'];
+        add_action( 'wp_ajax_awpcp_generate_listing_preview', [ $handler, 'ajax' ] );
+        add_action( 'wp_ajax_nopriv_awpcp_generate_listing_preview', [ $handler, 'ajax' ] );
+
         $handler = $this->container['ExecuteListingActionAjaxHandler'];
         add_action( 'wp_ajax_awpcp_execute_listing_action', [ $handler, 'ajax' ] );
         add_action( 'wp_ajax_nopriv_awpcp_execute_listing_action', [ $handler, 'ajax' ] );
