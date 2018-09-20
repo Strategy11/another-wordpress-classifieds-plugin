@@ -196,7 +196,7 @@ class AWPCP_Request {
         ];
 
         foreach ( $alternatives['params'] as $name ) {
-            $value = $this->param( 'adid' );
+            $value = $this->param( $name );
 
             if ( ! empty( $value ) ) {
                 return $value;
