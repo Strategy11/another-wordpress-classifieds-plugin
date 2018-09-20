@@ -66,11 +66,12 @@ AWPCP.define( 'awpcp/frontend/save-section-controller', [
 
             self.$element = $( self.template ).replaceAll( self.$element );
 
-            self.$previewContainer = self.$element.find( '.awpcp-listing-preview-container' );
-
             self.$previewButton = self.$element.find( '.awpcp-preview-listing-button' );
             self.$submitButton  = self.$element.find( '.awpcp-submit-listing-button' );
             self.$resetButton   = self.$element.find( '[type="reset"]' );
+
+            self.$previewContainer = self.$element.find( '.awpcp-listing-preview-container' );
+            self.$errorsSibling    = self.$submitButton.closest( '.form-submit' );
 
             self.$previewContainer.hide();
 
@@ -174,10 +175,8 @@ AWPCP.define( 'awpcp/frontend/save-section-controller', [
         showErrors: function( errors ) {
             var self = this, $container;
 
-            $container = self.$element.find( '.awpcp-save-submit-listing-section__edit_mode' );
-
             $.each( errors, function( index, error ) {
-                $container.prepend( '<div class="awpcp-message awpcp-error notice notice-error error"><p>' + error + '</p></div>' );
+                self.$errorsSibling.before( '<div class="awpcp-message awpcp-error notice notice-error error"><p>' + error + '</p></div>' );
             } );
         },
 
