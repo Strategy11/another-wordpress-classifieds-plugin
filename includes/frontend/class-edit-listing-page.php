@@ -265,20 +265,23 @@ class AWPCP_EditListingPage extends AWPCP_Page {
 
         if ( empty( $errors ) ) {
             // phpcs:disable WordPress.VIP.SlowDBQuery.slow_db_query_meta_query
-            $listings = $this->listings->find_listings( array(
-                'meta_query' => array(
-                    array(
-                        'key'     => '_awpcp_contact_email',
-                        'value'   => $form['ad_email'],
-                        'compare' => '=',
-                    ),
-                    array(
-                        'key'     => '_awpcp_access_key',
-                        'value'   => $form['ad_key'],
-                        'compare' => '=',
-                    ),
-                ),
-            ));
+            // phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+            $listings = $this->listings->find_listings(
+                [
+                    'meta_query' => [
+                        [
+                            'key'     => '_awpcp_contact_email',
+                            'value'   => $form['ad_email'],
+                            'compare' => '=',
+                        ],
+                        [
+                            'key'     => '_awpcp_access_key',
+                            'value'   => $form['ad_key'],
+                            'compare' => '=',
+                        ],
+                    ],
+                ]
+            );
             // phpcs:enable
 
             if ( ! empty( $listings ) ) {
@@ -353,15 +356,18 @@ class AWPCP_EditListingPage extends AWPCP_Page {
         $ads = array();
         if ( empty( $errors ) ) {
             // phpcs:disable WordPress.VIP.SlowDBQuery.slow_db_query_meta_query
-            $ads = $this->listings->find_listings( array(
-                'meta_query' => array(
-                    array(
-                        'key'     => '_awpcp_contact_email',
-                        'value'   => $form['ad_email'],
-                        'compare' => '=',
-                    ),
-                ),
-            ));
+            // phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+            $ads = $this->listings->find_listings(
+                [
+                    'meta_query' => [
+                        [
+                            'key'     => '_awpcp_contact_email',
+                            'value'   => $form['ad_email'],
+                            'compare' => '=',
+                        ],
+                    ],
+                ]
+            );
             // phpcs:enable
 
             if ( empty( $ads ) ) {
