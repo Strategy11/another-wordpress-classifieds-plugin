@@ -11,21 +11,29 @@
 class AWPCP_RolesAndCapabilities {
 
     private $settings;
+
     private $request;
 
     public function __construct( $settings, $request ) {
         $this->settings = $settings;
-        $this->request = $request;
+        $this->request  = $request;
     }
 
     public function setup_roles_capabilities() {
+        $this->create_moderator_role();
+
         $administrator_roles = $this->get_administrator_roles_names();
         $subscriber_roles    = $this->get_subscriber_roles_names();
+        $current_user        = $this->request->get_current_user();
 
         array_walk( $administrator_roles, array( $this, 'add_administrator_capabilities_to_role' ) );
         array_walk( $subscriber_roles, array( $this, 'add_subscriber_capabilities_to_role' ) );
 
-        $this->create_moderator_role();
+        if ( $current_user instanceof WP_User ) {
+            // Force WordPress to load role capabilities. Otherwise the current user won't have AWPCP
+            // capabilities during this request.
+            $current_user->get_role_caps();
+        }
     }
 
     public function get_administrator_roles_names() {
