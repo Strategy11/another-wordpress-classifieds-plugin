@@ -4,6 +4,8 @@ AWPCP.define( 'awpcp/frontend/submit-listing-data-store', [
 ], function( $ ) {
     var Store = function ( data ) {
         this.data         = data || {};
+        this.listener     = null;
+        this.mode         = '';
         this.refreshCalls = 0;
     };
 
@@ -310,6 +312,8 @@ AWPCP.define( 'awpcp/frontend/submit-listing-data-store', [
             data = {
                 action: 'awpcp_update_submit_listing_sections',
                 sections: self.data.sectionsToUpdate,
+                mode:           self.mode,
+                // TODO: create, validate and pass this nonce around.
                 nonce: $.AWPCP.get( 'update_submit_listing_sections_nonce' ),
                 listing: self.getListingId(),
                 transaction_id: self.getTransactionId(),

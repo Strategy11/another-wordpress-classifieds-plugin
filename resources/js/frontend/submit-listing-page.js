@@ -106,13 +106,14 @@ AWPCP.run( 'awpcp/frontend/submit-listing-page', [
          */
         $.publish( 'awpcp/register-submit-listing-section-controllers', [ controllers ] );
 
-        $.each( AWPCPSubmitListingPageSections, function( index, section ) {
+        $.each( AWPCPSubmitListingPageData.sections, function( index, section ) {
             sections[ index ] = new controllers[ index ]( section, store );
 
             store.setSectionStateWithoutRefreshing( section.id, section.state );
         } );
 
         store.listener = new Page( store, sections, $( '.awpcp-submit-listing-page-form' ) );
+        store.mode     = AWPCPSubmitListingPageData.mode;
 
         store.refresh();
     } );

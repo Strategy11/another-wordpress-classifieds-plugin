@@ -154,9 +154,12 @@ class AWPCP_EditListingPage extends AWPCP_Page {
 
         $listing = $this->get_ad();
 
-        $sections = $this->sections_generator->get_sections( [], 'edit', $listing );
+        $page_data = [
+            'sections' => $this->sections_generator->get_sections( [], 'edit', $listing ),
+            'mode'     => 'edit',
+        ];
 
-        return $this->render( 'content', '<form class="awpcp-submit-listing-page-form"></form><script type="text/javascript">var AWPCPSubmitListingPageSections = ' . wp_json_encode( $sections ) . ';</script>' );
+        return $this->render( 'content', '<form class="awpcp-submit-listing-page-form"></form><script type="text/javascript">var AWPCPSubmitListingPageData = ' . wp_json_encode( $page_data ) . ';</script>' );
     }
 
     /**
