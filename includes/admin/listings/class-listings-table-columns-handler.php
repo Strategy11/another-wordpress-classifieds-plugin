@@ -51,7 +51,7 @@ class AWPCP_ListingsTableColumnsHandler {
         }
 
         if ( 'payment_term' === $query->query_vars['orderby'] ) {
-            // phpcs:disable WordPress.VIP.SlowDBQuery.slow_db_query_meta_key
+            // phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_meta_key
             $query->query_vars['meta_key'] = '_awpcp_payment_term_id';
             $query->query_vars['orderby']  = 'meta_value_num';
         }
@@ -99,7 +99,7 @@ class AWPCP_ListingsTableColumnsHandler {
         // Add custom columns.
         $new_columns['awpcp-dates']        = _x( 'Dates', 'listings table column', 'another-wordpress-classifieds-plugin' );
         $new_columns['awpcp-payment-term'] = _x( 'Payment Term', 'listings table column', 'another-wordpress-classifieds-plugin' );
-        $new_columns['awpcp-status']       = _x( 'Active', 'listings table column', 'another-wordpress-classifieds-plugin' );
+        $new_columns['awpcp-status']       = _x( 'Status', 'listings table column', 'another-wordpress-classifieds-plugin' );
 
         array_splice( $columns_keys, 3, 0, array_keys( $new_columns ) );
         array_splice( $columns_values, 3, 0, array_values( $new_columns ) );
