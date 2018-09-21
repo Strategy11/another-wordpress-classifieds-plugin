@@ -257,6 +257,13 @@ class AWPCP_ListingRenderer {
     }
 
     /**
+     * @since 4.0.0
+     */
+    public function is_pending_approval( $listing ) {
+        return 'pending' === $listing->post_status;
+    }
+
+    /**
      * @param object $listing   An instance of WP_Post.
      * @since 4.0.0
      */

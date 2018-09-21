@@ -209,6 +209,10 @@ class AWPCP_ListingsTableColumnsHandler {
             return _x( 'Active', 'listing status', 'another-wordpress-classifieds-plugin' );
         }
 
+        if ( $this->listing_renderer->is_pending_approval( $post ) ) {
+            return _x( 'Pending Approval', 'listing status', 'another-wordpress-classifieds-plugin' );
+        }
+
         if ( $this->listing_renderer->is_expired( $post ) ) {
             return _x( 'Expired', 'listing status', 'another-wordpress-classifieds-plugin' );
         }
