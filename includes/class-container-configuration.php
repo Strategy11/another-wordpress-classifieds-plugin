@@ -18,6 +18,8 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
      * @SuppressWarnings(PHPMD.StaticAccess)
      */
     public function modify( $container ) {
+        // @phpcs:disable PEAR.Functions.FunctionCallSignature.CloseBracketLine
+        // @phpcs:disable PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket
         $container['wpdb'] = function( $container ) {
             return $GLOBALS['wpdb'];
         };
@@ -170,5 +172,6 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
                 $container['Settings']
             );
         } );
+        // @phpcs:enable
     }
 }
