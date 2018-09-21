@@ -19,6 +19,7 @@ function awpcp_listing_renderer() {
  * @since 3.3
  * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  * @SuppressWarnings(PHPMD.ExcessivePublicCount)
+ * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
 class AWPCP_ListingRenderer {
 
