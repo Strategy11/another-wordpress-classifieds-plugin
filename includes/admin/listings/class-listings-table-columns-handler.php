@@ -224,6 +224,10 @@ class AWPCP_ListingsTableColumnsHandler {
         if ( ! $this->listing_renderer->has_payment( $post ) ) {
             return _x( 'Pending Payment', 'listing status', 'another-wordpress-classifieds-plugin' );
         }
+
+        if ( ! $this->listing_renderer->is_verified( $post ) ) {
+            return _x( 'Pending Verification', 'listing status', 'another-wordpress-classifieds-plugin' );
+        }
     }
 
     /**
