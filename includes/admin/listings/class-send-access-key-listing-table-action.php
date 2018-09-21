@@ -58,7 +58,7 @@ class AWPCP_SendAccessKeyListingTableAction implements AWPCP_ListTableActionInte
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function get_label( $post ) {
-        $this->get_title();
+        return $this->get_title();
     }
 
     /**

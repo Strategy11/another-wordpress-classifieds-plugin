@@ -522,7 +522,7 @@ class AWPCP {
         $this->rewrite_rules = awpcp_plugin_rewrite_rules();
 
         // Stored options are loaded when the settings API is instatiated.
-		$this->settings = awpcp_settings_api();
+        $this->settings = $this->container['Settings'];
 
         $this->modules_manager = $this->container['ModulesManager'];
         $this->modules_updater = awpcp_modules_updater();

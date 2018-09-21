@@ -16,9 +16,9 @@ class AWPCP_SettingsContainerConfiguration implements AWPCP_ContainerConfigurati
      * @param AWPCP_Container $container    An instance of Container.
      */
     public function modify( $container ) {
-        $container['Settings'] = $container->service( function() {
+        $container['Settings'] = $container->service( function( $container ) {
             return new AWPCP_Settings_API(
-                awpcp()->container['SettingsManager']
+                $container['SettingsManager']
             );
         } );
 

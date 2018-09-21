@@ -48,7 +48,7 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
         } );
 
         $container['Request'] = $container->service( function( $container ) {
-            return awpcp_request();
+            return new AWPCP_Request();
         } );
 
         $container['Payments'] = $container->service( function( $container ) {
@@ -58,7 +58,10 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
         } );
 
         $container['RolesAndCapabilities'] = $container->service( function( $container ) {
-            return awpcp_roles_and_capabilities();
+            return new AWPCP_RolesAndCapabilities(
+                $container['Settings'],
+                $container['Request']
+            );
         } );
 
         $container['UsersCollection'] = $container->service( function( $container ) {
@@ -112,7 +115,7 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
             return new AWPCP_FormFieldsData(
                 $container['ListingAuthorization'],
                 $container['ListingRenderer'],
-                awpcp_request()
+                $container['Request']
             );
         } );
 
