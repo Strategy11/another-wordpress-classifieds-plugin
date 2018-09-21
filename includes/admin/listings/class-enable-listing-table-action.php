@@ -33,11 +33,7 @@ class AWPCP_EnableListingTableAction implements AWPCP_ListTableActionInterface {
      * @since 4.0.0
      */
     public function should_show_action_for( $post ) {
-        if ( $this->listing_renderer->has_expired( $post ) ) {
-            return false;
-        }
-
-        return ! $this->listing_renderer->is_public( $post );
+        return $this->listing_renderer->is_disabled( $post );
     }
 
     /**

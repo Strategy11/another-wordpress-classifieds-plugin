@@ -217,7 +217,13 @@ class AWPCP_ListingsTableColumnsHandler {
             return _x( 'Expired', 'listing status', 'another-wordpress-classifieds-plugin' );
         }
 
-        return _x( 'Disabled', 'listing status', 'another-wordpress-classifieds-plugin' );
+        if ( $this->listing_renderer->is_disabled( $post ) ) {
+            return _x( 'Disabled', 'listing status', 'another-wordpress-classifieds-plugin' );
+        }
+
+        if ( ! $this->listing_renderer->has_payment( $post ) ) {
+            return _x( 'Pending Payment', 'listing status', 'another-wordpress-classifieds-plugin' );
+        }
     }
 
     /**

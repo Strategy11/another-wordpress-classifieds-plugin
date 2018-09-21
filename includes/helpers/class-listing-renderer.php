@@ -241,12 +241,24 @@ class AWPCP_ListingRenderer {
         return $this->wordpress->get_post_meta( $listing->ID, '_awpcp_user_ip_address', true );
     }
 
+    public function has_payment( $listing ) {
+        return 'Unpaid' !== $this->get_payment_status( $listing );
+    }
+
     public function is_verified( $listing ) {
         return $this->wordpress->get_post_meta( $listing->ID, '_awpcp_verified', true );
     }
 
     public function is_disabled( $listing ) {
-        return $listing->post_status == 'disabled';
+        if ( $this->disabled_status !== $listing->post_status ) {
+            return false;
+        }
+
+        if ( $this->wordpress->get_post_meta( $listing->ID, '_awpcp_expired', true ) ) {
+            return false;
+        }
+
+        return true;
     }
 
     /**
