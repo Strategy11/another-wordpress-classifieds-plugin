@@ -95,18 +95,23 @@
 
     <table class="listcatsh">
         <tr>
-            <td style="width:10%; text-align: center;"><?php echo __( 'Category ID', 'another-wordpress-classifieds-plugin' ); ?></td>
-            <td style="width:30%;padding:5px;">
-                <label><input type="checkbox" onclick="CheckAll()" />&nbsp;<?php echo __( 'Category Name (Total Ads)','another-wordpress-classifieds-plugin' ); ?></label>
+            <td style="width:4%;padding:5px;text-align:center">
+                <label class="screen-reader-text" for="awpcp-category-select-all"><?php esc_html_e( 'Select all categories', 'another-wordpress-classifieds-plugin' ); ?></label>
+                <input id="awpcp-category-select-all" type="checkbox" onclick="CheckAll()" />
             </td>
-            <td style="width:35%;padding:5px;"><?php echo __( 'Parent', 'another-wordpress-classifieds-plugin' ); ?></td>
+            <td style="width:15%; text-align: center;"><?php esc_html_e( 'Category ID', 'another-wordpress-classifieds-plugin' ); ?></td>
+            <td style="width:33%;padding:5px;">
+                <?php esc_html_e( 'Category Name (Total Ads)', 'another-wordpress-classifieds-plugin' ); ?>
+            </td>
+            <td style="width:33%;padding:5px;"><?php echo __( 'Parent', 'another-wordpress-classifieds-plugin' ); ?></td>
             <td style="width:5%;padding:5px;"><?php echo __( 'Order', 'another-wordpress-classifieds-plugin' ); ?></td>
-            <td style="width:20%;padding:5px;;"><?php echo __( 'Action', 'another-wordpress-classifieds-plugin' ); ?></td>
+            <td style="width:10%;padding:5px;;"><?php echo __( 'Action', 'another-wordpress-classifieds-plugin' ); ?></td>
         </tr>
 
         <?php echo smart_table2( $items, 1, '', '', false ); ?>
 
         <tr>
+            <td style="padding:5px"></td>
             <td style="width:10%; text-align: center;"><?php echo __( 'Category ID', 'another-wordpress-classifieds-plugin' ); ?></td>
             <td style="padding:5px;"><?php echo __( 'Category Name (Total Ads)', 'another-wordpress-classifieds-plugin' ); ?></td>
             <td style="padding:5px;"><?php echo __( 'Parent', 'another-wordpress-classifieds-plugin' ); ?></td>
