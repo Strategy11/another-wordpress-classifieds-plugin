@@ -68,6 +68,14 @@ class AWPCP_Fee_Details_Form implements AWPCP_HTML_Element {
                     ),
                     '#content' => array(
                         array(
+                            '#type'       => 'a',
+                            '#attributes' => array(
+                                'class' => array( 'button' ),
+                                'href'  => awpcp_get_admin_fees_url(),
+                            ),
+                            '#content'    => __( 'Cancel', 'another-wordpress-classifieds-plugin' ),
+                        ),
+                        array(
                             '#type' => 'input',
                             '#attributes' => array(
                                 'class' => array( 'button', 'button-primary' ),
@@ -86,14 +94,6 @@ class AWPCP_Fee_Details_Form implements AWPCP_HTML_Element {
                                 'value' => __( 'Save & Continue', 'another-wordpress-classifieds-plugin' ),
                                 'data-usableform' => 'hide-if:price_model:flat-price',
                             )
-                        ),
-                        array(
-                            '#type' => 'a',
-                            '#attributes' => array(
-                                'class' => array( 'button' ),
-                                'href' => awpcp_get_admin_fees_url(),
-                            ),
-                            '#content' => __( 'Cancel', 'another-wordpress-classifieds-plugin' ),
                         ),
                     ),
                 ),
