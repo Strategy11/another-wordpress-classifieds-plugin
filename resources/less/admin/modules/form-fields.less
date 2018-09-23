@@ -63,17 +63,23 @@
     }
 }
 
+.awpcp-admin-form-field-with-left-label,
 .awpcp-admin-form-text-field-with-left-label {
-    label {
-        float: left;
-        margin-top: 5px;
-        width: 60%;
-    }
+    display: flex;
+    flex-direction: column;
 
+    label {
+        margin-top: 16px;
+        margin-bottom: 8px;
+        width: 100%;
+    }
+}
+.awpcp-admin-form-text-field-with-left-label input[type="text"] {
+    width: 100%;
+}
+.awpcp-admin-form-text-field-with-left-label {
     input[type="text"] {
         display: inherit;
-        margin-left: 60%;
-        width: 40%;
     }
 }
 
@@ -120,5 +126,22 @@
 
     input[type="submit"], input[type="button"], a.button {
         margin-right: 8px;
+    }
+}
+
+@media (min-width: 768px) {
+    .awpcp-admin-form-field-with-left-label,
+    .awpcp-admin-form-text-field-with-left-label {
+        flex-direction: row;
+
+        label {
+            flex: 0 1 60%;
+            margin-top: 5px;
+            margin-bottom: 0;
+        }
+    }
+    .awpcp-admin-form-field-with-left-label > div,
+    .awpcp-admin-form-text-field-with-left-label input[type="text"] {
+        flex: 1 1 40%;
     }
 }

@@ -49,7 +49,7 @@ class AWPCP_Fee_Details_Form implements AWPCP_HTML_Element {
                 'features' => $this->get_features_fields_definition( $params ),
                 'special-features' => array(
                     '#type' => 'fieldset',
-                    '#attributes' => array( 'class' => 'awpcp-admin-form-fieldset' ),
+                    '#attributes' => array( 'class' => [ 'awpcp-admin-form-fieldset' ]),
                     '#content' => array(
                         array(
                             '#type' => 'admin-form-checkbox',
@@ -107,7 +107,7 @@ class AWPCP_Fee_Details_Form implements AWPCP_HTML_Element {
         return array(
             '#type' => 'div',
             '#attributes' => array(
-                'class' => array( 'awpcp-fee-duration-field' ),
+                'class' => array( 'awpcp-fee-duration-field', 'awpcp-admin-form-field-with-left-label' ),
             ),
             '#content' => array(
                 array(
@@ -170,7 +170,7 @@ class AWPCP_Fee_Details_Form implements AWPCP_HTML_Element {
 
         return array(
             '#type' => 'fieldset',
-            '#attributes' => array( 'class' => 'awpcp-admin-form-fieldset' ),
+            '#attributes' => array( 'class' => [ 'awpcp-admin-form-fieldset' ] ),
             '#content' => array(
                 'duration' => $this->get_duration_field_definition( $params ),
                 array(
@@ -244,6 +244,12 @@ class AWPCP_Fee_Details_Form implements AWPCP_HTML_Element {
             );
         }
 
-        return array( '#type' => 'fieldset', '#content' => $form_fields );
+        return array(
+            '#type'       => 'fieldset',
+            '#attributes' => [
+                'class' => [ 'awpcp-admin-form-fieldset' ],
+            ],
+            '#content'    => $form_fields,
+        );
     }
 }
