@@ -451,10 +451,20 @@ function awpcp_pagination($config, $url) {
 		unset($params[$param]);
 	}
 
-	extract(shortcode_atts(array('offset' => 0, 'results' => 10, 'total' => 10), $config));
+    extract(shortcode_atts(
+        [
+            'offset'         => 0,
+            'results'        => 10,
+            'total'          => 10,
+            'show_dropdown'  => true,
+            'dropdown_label' => __( 'Ads per page:', 'another-wordpress-classifieds-plugin' ),
+            'dropdown_name'  => 'results',
+        ],
+        $config
+    ));
 
     $items = array();
-    $radius = 5;
+    $radius = 2;
 
     if ( $results > 0 ) {
         $pages = ceil($total / $results);
@@ -463,6 +473,12 @@ function awpcp_pagination($config, $url) {
         $pages = 1;
         $page = 1;
     }
+
+    $summary = __( 'Page {current_page_number} of {number_of_pages}', 'another-wordpress-classifieds-plugin' );
+    $summary = str_replace( '{current_page_number}', $page, $summary );
+    $summary = str_replace( '{number_of_pages}', $pages, $summary );
+
+    $items[] = '<span class="awpcp-pagination-summary">' . esc_html( $summary ) . '</span>';
 
     if ( ( $page - $radius ) > 2 ) {
         $items[] = awpcp_render_pagination_item( '&laquo;&laquo;', 1, $results, $params, $url );

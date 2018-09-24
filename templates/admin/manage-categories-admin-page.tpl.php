@@ -54,8 +54,6 @@
     </div>
 </div>
 
-<div class="awpcp-manage-categories-top-pagination"><?php echo $pager1; ?></div>
-
 <div class="awpcp-manage-categories-icons-meaning">
     <ul>
         <li class="awpcp-manage-categories-icons-meaning-header">
@@ -76,6 +74,9 @@
             <?php echo get_categorynameid( $cat_id = 0, $cat_parent_id = 0, $exclude='' ); ?>
         </select>
     </p>
+
+    <?php echo $pager1; ?>
+
     <p>
         <?php echo __( 'Delete categories should do this with existing Ads', 'another-wordpress-classifieds-plugin' ); ?>
         <label><input type="radio" name="movedeleteads" value="1" checked='checked' ><?php echo __( 'Move Ads to new category', 'another-wordpress-classifieds-plugin' ); ?></label>

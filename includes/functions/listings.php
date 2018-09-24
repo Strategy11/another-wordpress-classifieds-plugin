@@ -59,12 +59,20 @@ function awpcp_display_listings( $query, $context, $options ) {
     $before_list = apply_filters( 'awpcp-content-before-listings-list', $options['before_list'], $context );
 
     if ( $listings_count > 0 ) {
-        $pagination_options = array(
-            'results' => $results_per_page,
-            'offset' => $results_offset,
-            'total' => $listings_count,
-        );
-        $pagination = $options['show_pagination'] ? awpcp_pagination( $pagination_options, awpcp_current_url() ) : '';
+        if ( $options['show_pagination'] ) {
+            $top_pagination_options = array(
+                'results'       => $results_per_page,
+                'offset'        => $results_offset,
+                'total'         => $listings_count,
+                'show_dropdown' => false,
+            );
+
+            $bottom_pagination_options = $top_pagination_options;
+            unset( $bottom_pagination_options['show_dropdown'] );
+
+            $top_pagination    = awpcp_pagination( $top_pagination_options, awpcp_current_url() );
+            $bottom_pagination = awpcp_pagination( $bottom_pagination_options, awpcp_current_url() );
+        }
 
         $items = awpcp_render_listings_items( $listings, $context );
     } else {

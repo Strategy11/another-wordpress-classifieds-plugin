@@ -88,8 +88,24 @@ class AWPCP_CategoriesAdminPage {
         $template = AWPCP_DIR . '/templates/admin/manage-categories-admin-page.tpl.php';
         $params = array(
             'icons' => $icons,
-            'pager1' => create_pager( count( $categories ), $offset, $results, $tpname='' ),
-            'pager2' => create_pager( count( $categories ), $offset, $results, $tpname='' ),
+            'pager1' => awpcp_pagination(
+                [
+                    'total'         => count( $categories ),
+                    'offset'        => $offset,
+                    'results'       => $results,
+                    'show_dropdown' => false,
+                ],
+                ''
+            ),
+            'pager2' => awpcp_pagination(
+                [
+                    'total'          => count( $categories ),
+                    'offset'         => $offset,
+                    'results'        => $results,
+                    'dropdown_label' => __( 'Categories per page:', 'another-wordpress-classifieds-plugin' ),
+                ],
+                ''
+            ),
             'form_title' => __( 'Add new category', 'another-wordpress-classifieds-plugin' ),
             'form_values' => array(
                 'category_id' => $category_id,
