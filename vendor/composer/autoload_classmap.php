@@ -246,7 +246,7 @@ return array(
     'AWPCP_ListingFileHandler' => $baseDir . '/includes/media/class-listing-file-handler.php',
     'AWPCP_ListingFileValidator' => $baseDir . '/includes/media/class-listing-file-validator.php',
     'AWPCP_ListingFormFields' => $baseDir . '/includes/form-fields/class-listing-form-fields.php',
-    'AWPCP_ListingFormStepsComponent' => $baseDir . '/includes/helpers/widgets/class-listing-form-steps-component.php',
+    'AWPCP_ListingFormStepsComponent' => $baseDir . '/includes/ui/class-form-steps-component.php',
     'AWPCP_ListingInfromationMetabox' => $baseDir . '/includes/admin/listings/class-listing-information-metabox.php',
     'AWPCP_ListingIsAboutToExpireNotification' => $baseDir . '/includes/class-listing-is-about-to-expire-notification.php',
     'AWPCP_ListingPaymentTransactionHandler' => $baseDir . '/includes/class-listing-payment-transaction-handler.php',

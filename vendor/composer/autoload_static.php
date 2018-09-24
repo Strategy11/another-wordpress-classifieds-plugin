@@ -247,7 +247,7 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_ListingFileHandler' => __DIR__ . '/../..' . '/includes/media/class-listing-file-handler.php',
         'AWPCP_ListingFileValidator' => __DIR__ . '/../..' . '/includes/media/class-listing-file-validator.php',
         'AWPCP_ListingFormFields' => __DIR__ . '/../..' . '/includes/form-fields/class-listing-form-fields.php',
-        'AWPCP_ListingFormStepsComponent' => __DIR__ . '/../..' . '/includes/helpers/widgets/class-listing-form-steps-component.php',
+        'AWPCP_ListingFormStepsComponent' => __DIR__ . '/../..' . '/includes/ui/class-form-steps-component.php',
         'AWPCP_ListingInfromationMetabox' => __DIR__ . '/../..' . '/includes/admin/listings/class-listing-information-metabox.php',
         'AWPCP_ListingIsAboutToExpireNotification' => __DIR__ . '/../..' . '/includes/class-listing-is-about-to-expire-notification.php',
         'AWPCP_ListingPaymentTransactionHandler' => __DIR__ . '/../..' . '/includes/class-listing-payment-transaction-handler.php',

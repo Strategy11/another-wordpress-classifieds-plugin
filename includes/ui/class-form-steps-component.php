@@ -87,7 +87,7 @@ class AWPCP_ListingFormStepsComponent {
         $form_steps = $this->prepare_steps( $steps, $selected_step );
 
         ob_start();
-        include( AWPCP_DIR . '/templates/components/listing-form-steps.tpl.php' );
+        include( AWPCP_DIR . '/templates/components/form-steps.tpl.php' );
         $content = ob_get_contents();
         ob_end_clean();
 
