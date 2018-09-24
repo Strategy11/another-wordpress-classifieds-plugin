@@ -1,12 +1,27 @@
-.awpcp-form-fields-table {
-}
-
 .awpcp-sortable-handle {
     background: url(../images/drag-handle.png) center center no-repeat;
     cursor: move;
     float: right;
     width: 20px;
     height: 20px;
+}
+
+@sortable_handler_width: 16px;
+
+.awpcp-form-fields-table {
+    .column-cb {
+        width: 3.2em;
+
+        input {
+            margin-left: @sortable_handler_width + 8px;
+        }
+    }
+
+    .awpcp-sortable-handle {
+        float: left;
+        height: @sortable_handler_width;
+        width: @sortable_handler_width;
+    }
 }
 
 .awpcp-form-fields-table-spinner {

@@ -34,11 +34,13 @@ class AWPCP_FormFieldsTable extends WP_List_Table {
     }
 
     public function column_cb($item) {
-        return '<input type="checkbox" value="' . $item->get_slug() . '" name="selected[]" />';
+        $handle   = '<div class="awpcp-sortable-handle"><div class="spinner awpcp-spinner awpcp-form-fields-table-spinner"></div></div>';
+        $checkbox = '<input type="checkbox" value="' . $item->get_slug() . '" name="selected[]" />';
+
+        return $handle . $checkbox;
     }
 
     public function column_name( $item ) {
-        $handle = '<div class="awpcp-sortable-handle"><div class="spinner awpcp-spinner awpcp-form-fields-table-spinner"></div></div>';
         return $handle . $item->get_name() . $this->row_actions( array( '' => '' ) );
     }
 
