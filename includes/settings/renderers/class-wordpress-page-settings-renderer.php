@@ -29,12 +29,16 @@ class AWPCP_WordPressPageSettingsRenderer {
 
         $create_page_button = sprintf(
             '<a class="button" href="%s">%s</a>',
-            admin_url( 'post-new.php?post_type=page' ),
-            __( 'Create Page', 'another-wordpress-classifieds-plugin' )
+            esc_url( admin_url( 'post-new.php?post_type=page' ) ),
+            esc_html( __( 'Create Page', 'another-wordpress-classifieds-plugin' ) )
         );
 
         $description = sprintf( '<span class="description">%s</span>', $setting['description'] );
 
-        echo wp_dropdown_pages( $dropdown_params ) . $create_page_button . '<br/>' . $description; // XSS Ok.
+        $content = esc_html( _x( 'Select existing page {dropdown} -or- {create_page_button}', 'page settings', 'another-wordpress-classifieds-plugin' ) );
+        $content = str_replace( '{dropdown}', wp_dropdown_pages( $dropdown_params ), $content );
+        $content = str_replace( '{create_page_button}', $create_page_button, $content );
+
+        echo  $content . '<br/>' . $description; // XSS Ok.
     }
 }
