@@ -226,3 +226,30 @@ function awpcp_modules_manager() {
 function awpcp_csv_importer_delegate_factory() {
     return awpcp()->container['ImporterDelegateFactory'];
 }
+
+/**
+ * @since 4.0.0     Extracted from class file.
+ */
+function awpcp_import_listings_admin_page() {
+    return awpcp()->container['ImportListingsAdminPage'];
+}
+
+/**
+ * @since 4.0.0     Extracted from class file.
+ */
+function awpcp_render_listing_form_steps( $selected_step, $transaction = null ) {
+    return awpcp_listing_form_steps_componponent()->render( $selected_step, compact( 'transaction' ) );
+}
+
+/**
+ * @since 4.0.0     Extracted from class file.
+ */
+function awpcp_listing_form_steps_componponent() {
+    return new AWPCP_FormStepsComponent(
+        new AWPCP_SubmitListingFormSteps(
+            awpcp_payments_api(),
+            awpcp()->settings,
+            awpcp_request()
+        )
+    );
+}

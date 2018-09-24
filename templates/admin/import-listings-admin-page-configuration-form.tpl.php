@@ -11,6 +11,8 @@
 
 <?php include( AWPCP_DIR . '/admin/templates/admin-panel-header.tpl.php') ?>
 
+            <?php echo $form_steps; // XSS Ok. ?>
+
             <h3><?php echo esc_html( __( 'Configure', 'another-wordpress-classifieds-plugin' ) ); ?></h3>
 
             <form id="awpcp-import-listings-configuration-form" method="post">

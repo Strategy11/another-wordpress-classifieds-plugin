@@ -349,6 +349,21 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
             return new AWPCP_CSVImporterColumns();
         } );
 
+        $container['ImporterFormStepsComponent'] = $container->service( function( $container ) {
+            return new AWPCP_FormStepsComponent( new AWPCP_ImporterFormSteps() );
+        } );
+
+        $container['ImportListingsAdminPage'] = $container->service( function( $container ) {
+            return new AWPCP_ImportListingsAdminPage(
+                awpcp_csv_import_sessions_manager(),
+                awpcp_csv_importer_factory(),
+                $container['ImporterFormStepsComponent'],
+                awpcp()->js,
+                $container['Settings'],
+                $container['Request']
+            );
+        } );
+
         $container['SupportedCSVHeadersAdminPage'] = $container->service( function( $container ) {
             return new AWPCP_SupportedCSVHeadersAdminPage(
                 $container['CSVImporterColumns'],

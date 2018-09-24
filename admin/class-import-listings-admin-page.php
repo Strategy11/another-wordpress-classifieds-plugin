@@ -5,16 +5,6 @@
 
 // phpcs:disable
 
-function awpcp_import_listings_admin_page() {
-    return new AWPCP_ImportListingsAdminPage(
-        awpcp_csv_import_sessions_manager(),
-        awpcp_csv_importer_factory(),
-        awpcp()->js,
-        awpcp()->settings,
-        awpcp_request()
-    );
-}
-
 /**
  * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  */
@@ -24,13 +14,15 @@ class AWPCP_ImportListingsAdminPage {
 
     private $import_sessions_manager;
     private $csv_importer_factory;
+    private $form_steps;
     private $javascript;
     private $settings;
     private $request;
 
-    public function __construct( $import_sessions_manager, $csv_importer_factory, $javascript, $settings, $request ) {
+    public function __construct( $import_sessions_manager, $csv_importer_factory, $form_steps, $javascript, $settings, $request ) {
         $this->import_sessions_manager = $import_sessions_manager;
         $this->csv_importer_factory = $csv_importer_factory;
+        $this->form_steps              = $form_steps;
         $this->javascript = $javascript;
         $this->settings = $settings;
         $this->request = $request;
@@ -246,6 +238,7 @@ class AWPCP_ImportListingsAdminPage {
 
     private function show_upload_files_form( $form_data = array(), $form_errors = array() ) {
         $params = array(
+            'form_steps' => $this->form_steps->render( 'upload-files' ),
             'form_data' => wp_parse_args( $form_data, array(
                 'images_source' => 'none',
                 'local_path' => '',
@@ -316,6 +309,7 @@ class AWPCP_ImportListingsAdminPage {
         $define_default_user = ! empty( $form_data['default_user'] );
 
         $params = array(
+            'form_steps'  => $this->form_steps->render( 'configuration' ),
             'form_data' => wp_parse_args( $form_data, array(
                 'define_default_dates' => $define_default_dates,
                 'default_start_date' => '',
@@ -372,7 +366,12 @@ class AWPCP_ImportListingsAdminPage {
             'message-description' => _x( '<message-type> in line <message-line>', 'description for messages used to show feedback for the Import Listings operation', 'another-wordpress-classifieds-plugin' )
         ) );
 
-        $params = array( 'test_mode_enabled' => $import_session->is_test_mode_enabled() );
+        $is_test_mode_enabled = $import_session->is_test_mode_enabled();
+
+        $params = [
+            'form_steps'        => $this->form_steps->render( 'import', [ 'test_mode_enabled' => $is_test_mode_enabled ] ),
+            'test_mode_enabled' => $is_test_mode_enabled,
+        ];
 
         if ( $import_session->is_test_mode_enabled() ) {
             $params['action_name'] = _x( 'Test Import', 'text for page subtitle and submit button', 'another-wordpress-classifieds-plugin' );

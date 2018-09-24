@@ -5,20 +5,6 @@
 
 // phpcs:disable
 
-function awpcp_render_listing_form_steps( $selected_step, $transaction = null ) {
-    return awpcp_listing_form_steps_componponent()->render( $selected_step, $transaction );
-}
-
-function awpcp_listing_form_steps_componponent() {
-    return new AWPCP_FormStepsComponent(
-        new AWPCP_SubmitListingFormSteps(
-            awpcp_payments_api(),
-            awpcp()->settings,
-            awpcp_request()
-        )
-    );
-}
-
 class AWPCP_FormStepsComponent {
 
     /**
@@ -30,10 +16,11 @@ class AWPCP_FormStepsComponent {
         $this->form_steps = $form_steps;
     }
 
-    public function render( $selected_step, $transaction ) {
-        $steps = $this->form_steps->get_steps( compact( 'transaction' ) );
-
-        return $this->render_steps( $selected_step, $steps );
+    /**
+     * @since 4.0.0     $transaction parameter was replaced by an optional $params array.
+     */
+    public function render( $selected_step, $params = [] ) {
+        return $this->render_steps( $selected_step, $this->form_steps->get_steps( $params ) );
     }
 
     /**

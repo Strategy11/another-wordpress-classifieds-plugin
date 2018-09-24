@@ -208,6 +208,7 @@ return array(
     'AWPCP_Import_Listings_Ajax_Handler' => $baseDir . '/admin/import/class-import-listings-ajax-handler.php',
     'AWPCP_Import_Payment_Transactions_Task_Handler' => $baseDir . '/includes/upgrade/class-import-payment-transactions-task-handler.php',
     'AWPCP_Import_Settings_Admin_Page' => $baseDir . '/admin/class-import-settings-admin-page.php',
+    'AWPCP_ImporterFormSteps' => $baseDir . '/includes/admin/import/class-importer-form-steps.php',
     'AWPCP_IncompleteListingTableView' => $baseDir . '/includes/admin/listings/class-incomplete-listing-table-view.php',
     'AWPCP_Infinite_Loop_Detected_Exception' => $baseDir . '/includes/exceptions.php',
     'AWPCP_Installer' => $baseDir . '/installer.php',

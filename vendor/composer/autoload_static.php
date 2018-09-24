@@ -209,6 +209,7 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_Import_Listings_Ajax_Handler' => __DIR__ . '/../..' . '/admin/import/class-import-listings-ajax-handler.php',
         'AWPCP_Import_Payment_Transactions_Task_Handler' => __DIR__ . '/../..' . '/includes/upgrade/class-import-payment-transactions-task-handler.php',
         'AWPCP_Import_Settings_Admin_Page' => __DIR__ . '/../..' . '/admin/class-import-settings-admin-page.php',
+        'AWPCP_ImporterFormSteps' => __DIR__ . '/../..' . '/includes/admin/import/class-importer-form-steps.php',
         'AWPCP_IncompleteListingTableView' => __DIR__ . '/../..' . '/includes/admin/listings/class-incomplete-listing-table-view.php',
         'AWPCP_Infinite_Loop_Detected_Exception' => __DIR__ . '/../..' . '/includes/exceptions.php',
         'AWPCP_Installer' => __DIR__ . '/../..' . '/installer.php',
