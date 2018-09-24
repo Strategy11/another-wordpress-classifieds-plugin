@@ -11,73 +11,29 @@ function awpcp_render_listing_form_steps( $selected_step, $transaction = null ) 
 
 function awpcp_listing_form_steps_componponent() {
     return new AWPCP_FormStepsComponent(
-        awpcp_payments_api(),
-        awpcp()->settings,
-        awpcp_request()
+        new AWPCP_SubmitListingFormSteps(
+            awpcp_payments_api(),
+            awpcp()->settings,
+            awpcp_request()
+        )
     );
 }
 
 class AWPCP_FormStepsComponent {
 
-    private $payments;
-    private $settings;
-    private $request;
+    /**
+     * @var FormSteps
+     */
+    private $form_steps;
 
-    public function __construct( $payments, $settings, $request ) {
-        $this->payments = $payments;
-        $this->settings = $settings;
-        $this->request = $request;
+    public function __construct( AWPCP_FormSteps $form_steps ) {
+        $this->form_steps = $form_steps;
     }
 
     public function render( $selected_step, $transaction ) {
-        return $this->render_steps( $selected_step, $this->get_steps( $transaction ) );
-    }
+        $steps = $this->form_steps->get_steps( compact( 'transaction' ) );
 
-    private function get_steps( $transaction ) {
-        $steps = array();
-
-        if ( $this->should_show_login_step( $transaction ) ) {
-            $steps['login'] = __( 'Login/Registration', 'another-wordpress-classifieds-plugin' );
-        }
-
-        $should_show_payment_steps = $this->payments->payments_enabled();
-        $should_pay_before         = $this->settings->get_option( 'pay-before-place-ad' );
-
-        if ( $should_show_payment_steps && $should_pay_before ) {
-            $steps['listing-category'] = __( 'Select a Category', 'another-wordpress-classifieds-plugin' );
-            $steps['checkout']         = __( 'Checkout', 'another-wordpress-classifieds-plugin' );
-            $steps['payment']          = __( 'Payment', 'another-wordpress-classifieds-plugin' );
-        }
-
-        $steps['listing-information']  = __( 'Enter Ad Information', 'another-wordpress-classifieds-plugin' );
-
-        if ( $should_show_payment_steps && ! $should_pay_before ) {
-            $steps['checkout']        = __( 'Checkout', 'another-wordpress-classifieds-plugin' );
-            $steps['payment']         = __( 'Payment', 'another-wordpress-classifieds-plugin' );
-        }
-
-        $steps['finish'] = __( 'Finish', 'another-wordpress-classifieds-plugin' );
-
-        return $steps;
-    }
-
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     */
-    private function should_show_login_step( $transaction ) {
-        if ( ! is_user_logged_in() && ! $this->settings->get_option( 'requireuserregistration' ) ) {
-            return false;
-        }
-
-        if ( ! is_user_logged_in() ) {
-            return true;
-        }
-
-        if ( ! is_null( $transaction ) ) {
-            return $transaction->get( 'user-just-logged-in', false );
-        }
-
-        return $this->request->param( 'loggedin', false );
+        return $this->render_steps( $selected_step, $steps );
     }
 
     /**
