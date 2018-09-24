@@ -10,14 +10,14 @@ function awpcp_render_listing_form_steps( $selected_step, $transaction = null ) 
 }
 
 function awpcp_listing_form_steps_componponent() {
-    return new AWPCP_ListingFormStepsComponent(
+    return new AWPCP_FormStepsComponent(
         awpcp_payments_api(),
         awpcp()->settings,
         awpcp_request()
     );
 }
 
-class AWPCP_ListingFormStepsComponent {
+class AWPCP_FormStepsComponent {
 
     private $payments;
     private $settings;
