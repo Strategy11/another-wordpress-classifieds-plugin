@@ -14,18 +14,22 @@ class AWPCP_PagesSettings {
      * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     public function register_settings( $settings_manager ) {
-        $settings_manager->add_settings_group( [
-            'name'     => __( 'Pages', 'another-wordpress-classifieds-plugin' ),
-            'id'       => 'pages-settings',
-            'priority' => 20,
-        ] );
+        $settings_manager->add_settings_group(
+            [
+                'name'     => __( 'Pages', 'another-wordpress-classifieds-plugin' ),
+                'id'       => 'pages-settings',
+                'priority' => 20,
+            ]
+        );
 
-        $settings_manager->add_settings_subgroup( [
-            'name'     => __( 'Pages', 'another-wordpress-classifieds-plugin' ),
-            'id'       => 'pages-settings',
-            'priority' => 10,
-            'parent'   => 'pages-settings',
-        ] );
+        $settings_manager->add_settings_subgroup(
+            [
+                'name'     => __( 'Pages', 'another-wordpress-classifieds-plugin' ),
+                'id'       => 'pages-settings',
+                'priority' => 10,
+                'parent'   => 'pages-settings',
+            ]
+        );
 
         $group   = 'pages-settings';
         $section = 'pages-settings';
