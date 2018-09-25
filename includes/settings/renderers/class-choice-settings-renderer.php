@@ -36,8 +36,10 @@ class AWPCP_ChoiceSettingsRenderer {
         $html = array( sprintf( '<input type="hidden" name="%s" value="">', $field_name ) );
 
         foreach ( $setting['choices'] as $value => $label ) {
-            $id      = "{$setting['id']}-$value";
-            $checked = in_array( $value, $selected, true ) ? 'checked="checked"' : '';
+            $id = "{$setting['id']}-$value";
+
+            // Options values ($selected) are stored as strings.
+            $checked = in_array( (string) $value, $selected, true ) ? 'checked="checked"' : '';
 
             $html_field = '<input id="%s" type="%s" name="%s" value="%s" %s />';
             $html_field = sprintf( $html_field, $id, $field_type, $field_name, $value, $checked );
