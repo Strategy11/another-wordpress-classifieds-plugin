@@ -126,7 +126,7 @@ class AWPCP_PagesSettings {
             __( 'View Categories page', 'another-wordpress-classifieds-plugin' ),
             'textfield',
             'View Categories',
-            __( 'Name for categories view page. (Dynamic Page)', 'another-wordpress-classifieds-plugin' )
+            __( "This page is one AWPCP will generate for you. We just need a title of the page to show the categories. You can use any name, just make sure it's unique.", 'another-wordpress-classifieds-plugin' )
         );
     }
 
