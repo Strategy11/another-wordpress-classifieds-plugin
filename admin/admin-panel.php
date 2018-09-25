@@ -94,7 +94,8 @@ class AWPCP_AdminPanel {
             $parent_menu,
             $handler_constructor,
             awpcp_admin_capability(),
-            'none'
+            'none',
+            26
         );
     }
 
