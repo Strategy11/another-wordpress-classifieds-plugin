@@ -707,7 +707,7 @@ class AWPCP {
     }
 
     public function setup_runtime_options() {
-        $this->settings->set_runtime_option( 'easy-digital-downloads-store-url', 'http://awpcp.com' );
+        $this->settings->set_runtime_option( 'easy-digital-downloads-store-url', 'https://awpcp.com' );
         $this->settings->set_runtime_option( 'image-mime-types', array( 'image/png', 'image/jpeg', 'image/jpg', 'image/gif' ) );
 
         $uploads_dir_name = $this->settings->get_option( 'uploadfoldername', 'uploads' );
