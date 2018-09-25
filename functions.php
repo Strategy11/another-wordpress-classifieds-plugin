@@ -508,6 +508,7 @@ function awpcp_pagination($config, $url) {
         $items[] = awpcp_render_pagination_item( '&raquo;&raquo;', $pages, $results, $params, $url );
     }
 
+    $unique_id  = str_replace( [ ' ', '.' ], '-', microtime() );
 	$pagination = implode( '', $items );
 	$options = awpcp_pagination_options( $results );
 
