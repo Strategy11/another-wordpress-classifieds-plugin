@@ -118,7 +118,6 @@ class AWPCP_FeesTable extends WP_List_Table {
 
         $columns['cb'] = '<input type="checkbox" />';
         $columns['name'] = __('Name', 'another-wordpress-classifieds-plugin');
-        $columns['description'] = __( 'Description', 'another-wordpress-classifieds-plugin' );
         $columns['attributes']  = __( 'Attributes', 'another-wordpress-classifieds-plugin' );
         $columns['price'] = __('Price', 'another-wordpress-classifieds-plugin');
         $columns['credits'] = __('Credits', 'another-wordpress-classifieds-plugin');
