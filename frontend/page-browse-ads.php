@@ -86,7 +86,9 @@ class AWPCP_BrowseAdsPage extends AWPCP_Page {
 
     protected function render_all_listings() {
         $query = array(
-            'context' => 'public-listings',
+            'classifieds_query' => [
+                'context' => 'public-listings',
+            ],
             'limit' => absint( awpcp_request_param( 'results', get_awpcp_option( 'adresultsperpage', 10 ) ) ),
             'offset' => absint( awpcp_request_param( 'offset', 0 ) ),
             'orderby' => get_awpcp_option( 'groupbrowseadsby' ),
