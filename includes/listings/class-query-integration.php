@@ -784,10 +784,89 @@ class AWPCP_QueryIntegration {
      * @since 4.0.0
      */
     public function posts_clauses( $clauses, $query ) {
-        if ( empty( $query->query_vars['classifieds_query']['regions'] ) ) {
+        if ( isset( $query->query_vars['_meta_order'] ) ) {
+            $clauses = $this->add_clauses_to_order_by_multiple_meta_keys( $clauses, $query );
+        }
+
+        if ( isset( $query->query_vars['_custom_order'] ) ) {
+            $clauses = $this->add_clauses_to_order_by_unsupported_properties( $clauses, $query );
+        }
+
+        if ( ! empty( $query->query_vars['classifieds_query']['regions'] ) ) {
+            $clauses = $this->add_regions_clauses( $clauses, $query );
+        }
+
+        return $clauses;
+    }
+
+    /**
+     * Based on code found in http://wordpress.stackexchange.com/a/67391
+     *
+     * See http://www.billerickson.net/wp-query-sort-by-meta/.
+     *
+     * TODO: This function won't be necessary when WP 4.2 becomes the
+     * minimum supported version.
+     *
+     * @param array  $clauses   An array of SQL clauses.
+     * @param object $query     An instance of WP_Query.
+     * @since 4.0.0
+     * @SuppressWarnings(PHPMD)
+     */
+    private function add_clauses_to_order_by_multiple_meta_keys( $clauses, $query ) {
+        $orderby = array();
+
+        foreach ( $query->query_vars['_meta_order'] as $meta_key => $order ) {
+            $regexp = "/([\w_]+)\.meta_key = '" . preg_quote( $meta_key, '/' ) . "'/";
+
+            if ( preg_match( $regexp, $clauses['join'], $matches ) ) {
+                $table_name = $matches[1];
+            } elseif ( preg_match( $regexp, $clauses['where'], $matches ) ) {
+                $table_name = $matches[1];
+            } else {
+                continue;
+            }
+
+            $meta_type = $query->query_vars['_meta_type'][ $meta_key ];
+
+            $orderby[] = "CAST({$table_name}.meta_value AS {$meta_type}) $order";
+        }
+
+        if ( ! empty( $orderby ) ) {
+            $clauses['orderby'] = preg_replace( '/[\w_]+\.menu_order DESC/', implode( ', ', $orderby ), $clauses['orderby'] );
+        }
+
+        return $clauses;
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function add_clauses_to_order_by_unsupported_properties( $clauses, $query ) {
+        if ( ! preg_match( '/(\w+)\.menu_order DESC/', $clauses['orderby'], $matches ) ) {
             return $clauses;
         }
 
+        $orderby     = array();
+        $posts_table = $matches[1];
+
+        foreach ( $query->query_vars['_custom_order'] as $property => $order ) {
+            switch ( $property ) {
+                case 'post_status':
+                    $orderby[] = "$posts_table.post_status $order";
+            }
+        }
+
+        if ( ! empty( $orderby ) ) {
+            $clauses['orderby'] = str_replace( "$posts_table.menu_order DESC", implode( ', ', $orderby ), $clauses['orderby'] );
+        }
+
+        return $clauses;
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function add_regions_clauses( $clauses, $query ) {
         $regions_conditions = array();
 
         foreach ( $query->query_vars['classifieds_query']['regions'] as $region ) {
