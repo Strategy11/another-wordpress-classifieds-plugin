@@ -102,8 +102,6 @@ class AWPCP_FormFieldsData {
         $data['ad_item_price'] = awpcp_parse_money( $data['ad_item_price'] );
         $data['ad_item_price'] = 100 * $data['ad_item_price'];
 
-        $data['is_featured_ad'] = absint( $data['is_featured_ad'] );
-
         if ( ! $this->authorization->is_current_user_allowed_to_edit_listing_start_date( $post ) ) {
             $data['start_date'] = $this->listing_renderer->get_plain_start_date( $post );
         } elseif ( ! empty( $data['start_date'] ) ) {
@@ -141,7 +139,6 @@ class AWPCP_FormFieldsData {
             'ad_item_price'    => '',
             'ad_details'       => '',
             'ad_payment_term'  => '',
-            'is_featured_ad'   => '',
 
             'regions'          => array(),
         );
@@ -170,8 +167,6 @@ class AWPCP_FormFieldsData {
                 '_awpcp_contact_email' => $data['ad_contact_email'],
                 '_awpcp_website_url'   => $data['websiteurl'],
                 '_awpcp_price'         => $data['ad_item_price'],
-                // TODO: Make sure to move this to the Featured Listings module.
-                '_awpcp_is_featured'   => $data['is_featured_ad'],
             ),
         );
     }
