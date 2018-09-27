@@ -153,6 +153,7 @@ class AWPCP_ListingsAPI {
             // TODO: Do we need to alter this when someones changes the start date?
             '_awpcp_most_recent_start_date' => current_time( 'mysql' ),
             '_awpcp_renewed_date'           => '',
+            '_awpcp_poster_ip'              => awpcp_getip(),
         ) );
 
         if ( ! isset( $metadata['_awpcp_access_key'] ) || empty( $metadata['_awpcp_access_key'] ) ) {
