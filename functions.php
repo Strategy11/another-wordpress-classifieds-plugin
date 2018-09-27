@@ -2072,7 +2072,7 @@ function awpcp_table_exists($table) {
 
 /**
  * TODO: move memoization to where the information is needed. Having it here is the perfect
- *          scenarion for hard to track bugs.
+ * scenarion for hard to track bugs.
  * @since  2.1.4
  */
 function awpcp_column_exists($table, $column) {
