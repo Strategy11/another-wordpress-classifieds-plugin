@@ -292,8 +292,6 @@ return array(
     'AWPCP_MarkAsSPAMListingTableAction' => $baseDir . '/includes/admin/listings/class-mark-as-spam-listing-table-action.php',
     'AWPCP_MarkPaidListingTableAction' => $baseDir . '/includes/admin/listings/class-mark-paid-listing-table-action.php',
     'AWPCP_MarkReviewedListingTableAction' => $baseDir . '/includes/admin/listings/class-mark-reviewed-listing-table-action.php',
-    'AWPCP_MarkSoldListingTableAction' => $baseDir . '/includes/admin/listings/class-mark-sold-listing-table-action.php',
-    'AWPCP_MarkUnsoldListingTableAction' => $baseDir . '/includes/admin/listings/class-mark-unsold-listing-table-action.php',
     'AWPCP_MarkVerifiedListingTableAction' => $baseDir . '/includes/admin/listings/class-mark-verified-listing-table-action.php',
     'AWPCP_MashShare_Plugin_Integration' => $baseDir . '/includes/compatibility/class-mashshare-plugin-integration.php',
     'AWPCP_MediaCenterComponent' => $baseDir . '/includes/ui/class-media-center-component.php',

@@ -195,20 +195,6 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
             );
         } );
 
-        $container['MarkSoldListingTableAction'] = $container->service( function( $container ) {
-            return new AWPCP_MarkSoldListingTableAction(
-                $container['RolesAndCapabilities'],
-                $container['WordPress']
-            );
-        } );
-
-        $container['MarkUnsoldListingTableAction'] = $container->service( function( $container ) {
-            return new AWPCP_MarkUnsoldListingTableAction(
-                $container['RolesAndCapabilities'],
-                $container['WordPress']
-            );
-        } );
-
         $container['MarkPaidListingTableAction'] = $container->service( function( $container ) {
             return new AWPCP_MarkPaidListingTableAction(
                 $container['RolesAndCapabilities'],

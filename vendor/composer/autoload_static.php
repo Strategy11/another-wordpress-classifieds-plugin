@@ -293,8 +293,6 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_MarkAsSPAMListingTableAction' => __DIR__ . '/../..' . '/includes/admin/listings/class-mark-as-spam-listing-table-action.php',
         'AWPCP_MarkPaidListingTableAction' => __DIR__ . '/../..' . '/includes/admin/listings/class-mark-paid-listing-table-action.php',
         'AWPCP_MarkReviewedListingTableAction' => __DIR__ . '/../..' . '/includes/admin/listings/class-mark-reviewed-listing-table-action.php',
-        'AWPCP_MarkSoldListingTableAction' => __DIR__ . '/../..' . '/includes/admin/listings/class-mark-sold-listing-table-action.php',
-        'AWPCP_MarkUnsoldListingTableAction' => __DIR__ . '/../..' . '/includes/admin/listings/class-mark-unsold-listing-table-action.php',
         'AWPCP_MarkVerifiedListingTableAction' => __DIR__ . '/../..' . '/includes/admin/listings/class-mark-verified-listing-table-action.php',
         'AWPCP_MashShare_Plugin_Integration' => __DIR__ . '/../..' . '/includes/compatibility/class-mashshare-plugin-integration.php',
         'AWPCP_MediaCenterComponent' => __DIR__ . '/../..' . '/includes/ui/class-media-center-component.php',

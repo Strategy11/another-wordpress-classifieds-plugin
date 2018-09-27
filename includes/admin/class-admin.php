@@ -168,8 +168,6 @@ class AWPCP_Admin {
         $actions['make-featured']          = $this->container['MakeFeaturedListingTableAction'];
         $actions['make-standard']          = $this->container['MakeStandardListingTableAction'];
         $actions['mark-reviewed']          = $this->container['MarkReviewedListingTableAction'];
-        $actions['mark-sold']              = $this->container['MarkSoldListingTableAction'];
-        $actions['mark-unsold']            = $this->container['MarkUnsoldListingTableAction'];
         $actions['mark-paid']              = $this->container['MarkPaidListingTableAction'];
         $actions['mark-verified']          = $this->container['MarkVerifiedListingTableAction'];
         $actions['send-to-facebook-page']  = $this->container['SendToFacebookPageListingTableAction'];
