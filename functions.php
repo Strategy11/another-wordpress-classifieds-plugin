@@ -3,44 +3,7 @@
  * @package AWPCP
  */
 
-// phpcs:disable Generic.CodeAnalysis
-// phpcs:disable Generic.ControlStructures
-// phpcs:disable Generic.Commenting.DocComment
-// phpcs:disable Generic.Formatting
-// phpcs:disable Generic.Functions.FunctionCallArgumentSpacing
-// phpcs:disable Generic.Functions.OpeningFunctionBraceKernighanRitchie.BraceOnNewLine
-// phpcs:disable Generic.PHP.NoSilencedErrors.Discouraged
-// phpcs:disable Generic.PHP.LowerCaseConstant
-// phpcs:disable Generic.Strings
-// phpcs:disable PEAR.Files
-// phpcs:disable PEAR.Functions.FunctionCallSignature
-// phpcs:disable PSR2.ControlStructures
-// phpcs:disable Squiz.Commenting
-// phpcs:disable Squiz.ControlStructures
-// phpcs:disable Squiz.Functions.FunctionDeclarationArgumentSpacing
-// phpcs:disable Squiz.PHP.CommentedOutCode.Found
-// phpcs:disable Squiz.PHP.DisallowMultipleAssignments.Found
-// phpcs:disable Squiz.Operators
-// phpcs:disable Squiz.Strings.ConcatenationSpacing.PaddingFound
-// phpcs:disable Squiz.Strings.DoubleQuoteUsage.NotRequired
-// phpcs:disable WordPress.Arrays
-// phpcs:disable WordPress.CodeAnalysis.AssignmentInCondition
-// phpcs:disable WordPress.Classes
-// phpcs:disable WordPress.CSRF
-// phpcs:disable WordPress.Functions
-// phpcs:disable WordPress.NamingConventions
-// phpcs:disable WordPress.PHP.StrictComparisons.LooseComparison
-// phpcs:disable WordPress.PHP.YodaConditions
-// phpcs:disable WordPress.Variables
-// phpcs:disable WordPress.VIP.DirectDatabaseQuery
-// phpcs:disable WordPress.VIP.FileSystemWritesDisallow
-// phpcs:disable WordPress.VIP.SuperGlobalInputUsage
-// phpcs:disable WordPress.VIP.ValidatedSanitizedInput
-// phpcs:disable WordPress.WhiteSpace
-// phpcs:disable WordPress.WP.AlternativeFunctions
-// phpcs:disable WordPress.WP.I18n
-// phpcs:disable WordPress.WP.PreparedSQL.NotPrepared
-// phpcs:disable WordPress.XSS
+// phpcs:disable
 
 function awpcp_esc_attr($text) {
 	// WP adds slashes to all request variables
@@ -111,7 +74,7 @@ function awpcp_strptime_replacement( $date, $format ) {
         // usw..
     );
 
-    $regexp = "#" . strtr( preg_quote( $format ), $masks ) . "#";
+    $regexp = "#" . strtr( preg_quote( $format, '#' ), $masks ) . "#";
     if ( ! preg_match( $regexp, $date, $out ) ) {
         return false;
     }
@@ -2749,7 +2712,11 @@ function awpcp_is_email_address_allowed( $email_address ) {
     return false;
 }
 
-// START FUNCTION: function to create a default category with an ID of  1 in the event a default category with ID 1 does not exist
+/**
+ * Function to create a default category with an ID of  1 in the event a default category with ID 1 does not exist.
+ *
+ * @deprecated 4.0.0
+ */
 function createdefaultcategory($idtomake,$titletocallit) {
     global $wpdb;
 
@@ -2758,9 +2725,10 @@ function createdefaultcategory($idtomake,$titletocallit) {
     $query = 'UPDATE ' . AWPCP_TABLE_CATEGORIES . ' SET category_id = 1 WHERE category_id = %d';
     $query = $wpdb->prepare( $query, $wpdb->insert_id );
 
-    $wpdb->query( $query );
+    // @phpcs:disable WordPress.DB.DirectDatabaseQuery.NoCaching
+    $wpdb->query( $query ); // WPCS: unprepared SQL OK
+    // @phpcs:enable WordPress.DB.DirectDatabaseQuery.NoCaching
 }
-// END FUNCTION: create default category
 
 function create_ad_postedby_list($name) {
     $names = awpcp_listings_meta()->get_meta_values( 'contact_name' );
@@ -2865,7 +2833,11 @@ function awpcp_format_email_sent_datetime() {
     return sprintf( __( 'Email sent %s.', 'another-wordpress-classifieds-plugin' ), $time );
 }
 
-// make sure the IP isn't a reserved IP address
+/**
+ * Make sure the IP isn't a reserved IP address.
+ *
+ * @phpcs:disable
+ */
 function awpcp_validip($ip) {
 
     if (!empty($ip) && ip2long($ip)!=-1) {
@@ -2896,37 +2868,47 @@ function awpcp_validip($ip) {
 
     }
 }
+// @phpcs:enable
 
-// retrieve the ad poster's IP if possible
+/**
+ * @since 4.0.0     Rewrote to use use filter_var() and wp_unslash().
+ */
 function awpcp_getip() {
-    if ( awpcp_validip(awpcp_array_data("HTTP_CLIENT_IP", '', $_SERVER)) ) {
-        return $_SERVER["HTTP_CLIENT_IP"];
-    }
+    $variables    = [];
+    $alternatives = [
+        'HTTP_CLIENT_IP',
+        'HTTP_X_FORWARDED_FOR',
+        'HTTP_X_FORWARDED',
+        'HTTP_FORWARDED_FOR',
+        'HTTP_FORWARDED',
+        'REMOTE_ADDR',
+    ];
 
-    foreach ( explode(",", awpcp_array_data("HTTP_X_FORWARDED_FOR", '', $_SERVER)) as $ip ) {
-        if ( awpcp_validip(trim($ip) ) ) {
-            return $ip;
+    foreach ( $alternatives as $variable ) {
+        if ( ! empty( $_SERVER[ $variable ] ) ) {
+            $variables[ $variable ] = filter_var( wp_unslash( $_SERVER[ $variable ] ), FILTER_SANITIZE_STRING );
         }
     }
 
-    if (awpcp_validip(awpcp_array_data("HTTP_X_FORWARDED", '', $_SERVER))) {
-        return $_SERVER["HTTP_X_FORWARDED"];
+    if ( isset( $variables['HTTP_X_FORWARDED_FOR'] ) ) {
+        $variables['HTTP_X_FORWARDED_FOR'] = array_map( 'trim', explode( ',', $http_x_forwarded_for ) );
+    }
 
-    } elseif (awpcp_validip(awpcp_array_data('HTTP_FORWARDED_FOR', '', $_SERVER))) {
-        return $_SERVER["HTTP_FORWARDED_FOR"];
+    foreach ( $variables as $values ) {
+        foreach ( $values as $value ) {
+            $filtered_value = filter_var( $value, FILTER_VALIDATE_IP );
 
-    } elseif (awpcp_validip(awpcp_array_data("HTTP_FORWARDED", '', $_SERVER))) {
-        return $_SERVER["HTTP_FORWARDED"];
-
-    } else {
-        return awpcp_array_data("REMOTE_ADDR", '', $_SERVER);
+            if ( ! empty( $filtered_value ) && awpcp_validip( $filtered_value ) ) {
+                return $filtered_value;
+            }
+        }
     }
 }
 
 /**
  * TODO: Update this to work with listing objects to reduce database queries.
  */
-function awpcp_get_ad_share_info($id) {
+function awpcp_get_ad_share_info( $id ) {
     try {
         $ad = awpcp_listings_collection()->get( $id );
     } catch ( AWPCP_Exception $e ) {
@@ -2935,9 +2917,9 @@ function awpcp_get_ad_share_info($id) {
 
     $info = array();
 
-    $info['url'] = url_showad($id);
-    $info['title'] = stripslashes( $ad->post_title );
-    $info['description'] = strip_tags( stripslashes( $ad->post_content ) );
+    $info['url']         = url_showad( $id );
+    $info['title']       = stripslashes( $ad->post_title );
+    $info['description'] = wp_strip_all_tags( stripslashes( $ad->post_content ) );
 
     $info['description'] = str_replace( array( "\r", "\n", "\t" ), ' ', $info['description'] );
     $info['description'] = preg_replace( '/ {2,}/', ' ', $info['description'] );
@@ -2950,79 +2932,30 @@ function awpcp_get_ad_share_info($id) {
     $info['images'] = array();
 
     $info['published-time'] = awpcp_datetime( 'Y-m-d', $ad->post_date );
-    $info['modified-time'] = awpcp_datetime( 'Y-m-d', $ad->post_modified );
+    $info['modified-time']  = awpcp_datetime( 'Y-m-d', $ad->post_modified );
 
     $attachment_properties = awpcp_attachment_properties();
 
     $images = awpcp_attachments_collection()->find_visible_attachments( array( 'post_parent' => $ad->ID ) );
 
     foreach ( $images as $image ) {
-        $info[ 'images' ][] = $attachment_properties->get_image_url( $image, 'large' );
+        $info['images'][] = $attachment_properties->get_image_url( $image, 'large' );
     }
 
     return $info;
 }
 
 /**
- * TODO: move to AWPCP_Email?
- */
-function awpcp_send_email($from,$to,$subject,$message, $html=false, $attachments=array(), $bcc='') {
-    $separator='Next.Part.331925654896717'.time();
-    $att_separator='NextPart.is_a_file9817298743'.time();
-    $headers="From: $from\n";
-    $headers.="MIME-Version: 1.0\n";
-    if (!empty($bcc)) {
-        $headers.="Bcc: $bcc\n";
-    }
-    $text_header="Content-Type: text/plain; charset=\"iso-8859-1\"\nContent-Transfer-Encoding: 8bit\n\n";
-    $html_header="Content-Type: text/html; charset=\"iso-8859-1\"\nContent-Transfer-Encoding: 8bit\n\n";
-    $html_message=$message;
-    $text_message=$message;
-    $text_message=str_replace('&nbsp;',' ',$text_message);
-    $text_message=trim(strip_tags(stripslashes($text_message)));
-    // Bring down number of empty lines to 2 max
-    $text_message=preg_replace("/\n[\s]+\n/","\n",$text_message);
-    $text_message=preg_replace("/[\n]{3,}/", "\n\n",$text_message);
-    $text_message=wordwrap($text_message,72);
-    $message="\n\n--$separator\n".$text_header.$text_message;
-
-    if ($html) {
-        $message.="\n\n--$separator\n".$html_header.$html_message;
-    }
-
-    $message.="\n\n--$separator--\n";
-
-    if (!empty($attachments)) {
-        $headers.="Content-Type: multipart/mixed; boundary=\"$att_separator\";\n";
-        $message="\n\n--$att_separator\nContent-Type: multipart/alternative; boundary=\"$separator\";\n".$message;
-        while (list(,$file)=each($attachments)) {
-            $message.="\n\n--$att_separator\n";
-            $message.="Content-Type: application/octet-stream; name=\"".basename($file)."\"\n";
-            $message.="Content-Transfer-Encoding: base64\n";
-            $message.='Content-Disposition: attachment; filename="'.basename($file)."\"\n\n";
-            $message.=wordwrap(base64_encode(fread(fopen($file,'rb'),filesize($file))),72,"\n",1);
-        }
-        $message.="\n\n--$att_separator--\n";
-    } else {
-        $headers.="Content-Type: multipart/alternative;\n\tboundary=\"$separator\";\n";
-    }
-    $message='This is a multi-part message in MIME format.'.$message;
-    if (isset($_SERVER['WINDIR']) || isset($_SERVER['windir']) || isset($_ENV['WINDIR']) || isset($_ENV['windir'])) {
-        $message=unix2dos($message);
-    }
-    //  $headers=unix2dos($headers);
-    $sentok=@mail($to,$subject,$message,$headers,"-f$from");
-    return $sentok;
-}
-
-/**
  * @since 3.6.6
  */
 function awpcp_user_agent_header() {
-    $user_agent = "WordPress %s / Another WordPress Classifieds Plugin %s";
+    $user_agent = 'WordPress %s / Another WordPress Classifieds Plugin %s';
     $user_agent = sprintf( $user_agent, get_bloginfo( 'version' ), $GLOBALS['awpcp_db_version'] );
     return $user_agent;
 }
+
+// @phpcs:disable WordPress.WP.AlternativeFunctions.curl_curl_version_ssl
+// @phpcs:disable WordPress.WP.AlternativeFunctions.curl_curl_version
 
 /**
  * @since 3.7.6
@@ -3040,7 +2973,7 @@ function awpcp_get_curl_info() {
 
     $output[] = "Version: {$curl_info['version']}";
 
-    if ( $curl_info['features'] & CURL_VERSION_SSL) {
+    if ( $curl_info['features'] & CURL_VERSION_SSL ) {
         $output[] = __( 'SSL Support: Yes.', 'another-wordpress-classifieds-plugin' );
     } else {
         $output[] = __( 'SSL Support: No.', 'another-wordpress-classifieds-plugin' );
@@ -3050,6 +2983,7 @@ function awpcp_get_curl_info() {
 
     return implode( '<br>', $output );
 }
+// @phpcs:enable
 
 /**
  * @since 3.7.8
