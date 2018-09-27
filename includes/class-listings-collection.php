@@ -742,38 +742,6 @@ class AWPCP_ListingsCollection {
     }
 
     /**
-     * TODO: remove regions from query if all search values are empty.
-     *
-     * @param array  $clauses       An array of SQL clauses.
-     * @param object $query_object  An instance of WP_Query.
-     */
-    public function add_regions_clauses( $clauses, $query_object ) {
-        $regions_conditions = array();
-
-        foreach ( $query_object->query['regions'] as $region ) {
-            $region_conditions = array();
-
-            foreach ( $region as $field => $search ) {
-                // add support for exact search, passing a search values defined as array( '=', <region-name> ).
-                if ( is_array( $search ) && count( $search ) == 2 && $search[0] == '=' ) {
-                    $region_conditions[] = $this->db->prepare( "listing_regions.`$field` = %s", trim( $search[1] ) );
-                } elseif ( ! is_array( $search ) ) {
-                    $region_conditions[] = $this->db->prepare( "listing_regions.`$field` LIKE '%%%s%%'", trim( $search ) );
-                }
-            }
-
-            $regions_conditions[] = '( ' . implode( ' AND ', $region_conditions ) . ' )';
-        }
-
-        $clauses['join']  .= ' INNER JOIN ' . AWPCP_TABLE_AD_REGIONS . ' AS listing_regions ON (listing_regions.ad_id = ' . $this->db->posts . '.ID)';
-        $clauses['where'] .= ' AND ( ' . implode( ' OR ', $regions_conditions ) . ' )';
-
-        return $clauses;
-    }
-
-    // phpcs:enable
-
-    /**
      * @param array $query_vars     An array of query vars.
      * @deprecated 4.0.0    Use ListingsCollection::count_expired_listings() instead.
      */
