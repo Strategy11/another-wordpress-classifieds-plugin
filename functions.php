@@ -2795,39 +2795,6 @@ function awpcp_phpmailer_init_smtp( $phpmailer ) {
     // that's it!
 }
 
-/**
- * @deprecated 3.7.5    Use AWPCP_Email class instead.
- */
-function awpcp_process_mail($senderemail='', $receiveremail='',  $subject='',
-                            $body='', $sendername='', $replytoemail='', $html=false)
-{
-    $headers =  "MIME-Version: 1.0\n" .
-    "From: $sendername <$senderemail>\n" .
-    "Reply-To: $replytoemail\n";
-
-    if ($html) {
-        $headers .= "Content-Type: text/html; charset=\"" . get_option('blog_charset') . "\"\n";
-    } else {
-        $headers .= "Content-Type: text/plain; charset=\"" . get_option('blog_charset') . "\"\n";
-    }
-
-    $subject = $subject;
-    $message = "$body\n\n" . awpcp_format_email_sent_datetime() . "\n\n";
-
-    if (wp_mail($receiveremail, $subject, $message, $headers )) {
-        return 1;
-
-    } elseif (awpcp_send_email($senderemail, $receiveremail, $subject, $body,true)) {
-        return 1;
-
-    } elseif (@mail($receiveremail, $subject, $body, $headers)) {
-        return 1;
-
-    } else {
-        return 0;
-    }
-}
-
 function awpcp_format_email_sent_datetime() {
     $time = date_i18n( awpcp_get_datetime_format(), current_time( 'timestamp' ) );
     return sprintf( __( 'Email sent %s.', 'another-wordpress-classifieds-plugin' ), $time );
