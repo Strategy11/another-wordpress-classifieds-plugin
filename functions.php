@@ -1356,7 +1356,7 @@ function awpcp_get_currency_symbol() {
  */
 function awpcp_get_formmatted_amount( $value, $template ) {
     if ( $value < 0 ) {
-        return str_replace( '(<amount>)', awpcp_format_number( $value ), $template );
+        return '(' . str_replace( '<amount>', awpcp_format_number( $value ), $template ) . ')';
     } else {
         return str_replace( '<amount>', awpcp_format_number( $value ), $template );
     }
