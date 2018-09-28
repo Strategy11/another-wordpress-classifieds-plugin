@@ -2858,11 +2858,11 @@ function awpcp_getip() {
     }
 
     if ( isset( $variables['HTTP_X_FORWARDED_FOR'] ) ) {
-        $variables['HTTP_X_FORWARDED_FOR'] = array_map( 'trim', explode( ',', $http_x_forwarded_for ) );
+        $variables['HTTP_X_FORWARDED_FOR'] = array_map( 'trim', explode( ',', $variables['HTTP_X_FORWARDED_FOR'] ) );
     }
 
     foreach ( $variables as $values ) {
-        foreach ( $values as $value ) {
+        foreach ( (array) $values as $value ) {
             $filtered_value = filter_var( $value, FILTER_VALIDATE_IP );
 
             if ( ! empty( $filtered_value ) && awpcp_validip( $filtered_value ) ) {
