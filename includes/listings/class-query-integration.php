@@ -231,7 +231,6 @@ class AWPCP_QueryIntegration {
         $query_vars = $this->process_is_awaiting_approval_query_parameter( $query_vars );
         $query_vars = $this->process_has_images_awaiting_approval_query_parameter( $query_vars );
         $query_vars = $this->process_is_awaiting_verification_query_parameter( $query_vars );
-        $query_vars = $this->process_is_featured_query_parameter( $query_vars );
         $query_vars = $this->process_is_flagged_query_parameter( $query_vars );
         $query_vars = $this->process_is_incomplete_query_parameter( $query_vars );
 
@@ -450,23 +449,6 @@ class AWPCP_QueryIntegration {
             $query_vars['meta_query'][] = array(
                 'key'     => '_awpcp_verification_needed',
                 'compare' => 'EXISTS',
-            );
-        }
-
-        return $query_vars;
-    }
-
-    /**
-     * @param array $query_vars     An array of query vars.
-     * @since 4.0.0
-     */
-    public function process_is_featured_query_parameter( $query_vars ) {
-        if ( isset( $query_vars['classifieds_query']['is_featured'] ) ) {
-            $query_vars['meta_query'][] = array(
-                'key'     => '_awpcp_is_featured',
-                'value'   => true,
-                'compare' => '=',
-                'type'    => 'BINARY',
             );
         }
 
