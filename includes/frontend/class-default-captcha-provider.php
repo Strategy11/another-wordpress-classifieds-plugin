@@ -36,7 +36,7 @@ class AWPCP_DefaultCAPTCHAProvider implements AWPCP_CAPTCHAProviderInterface {
 
         $html  = '<label for="captcha"><span>%s</span></label>';
         $html .= '<input type="hidden" name="captcha-hash" value="%s" />';
-        $html .= '<input id="captcha" class="awpcp-textfield inputbox required" type="text" name="captcha" value="%s" size="5" />';
+        $html .= '<input id="captcha" class="awpcp-textfield inputbox required" type="text" name="captcha" value="%s" size="5" autocomplete="off"/>';
 
         return sprintf( $html, $label, $hash, esc_attr( $answer ) );
     }
