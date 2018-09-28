@@ -24,8 +24,8 @@ class AWPCP_DefaultCAPTCHAProvider implements AWPCP_CAPTCHAProviderInterface {
      * Renders the form field to enter the answer to the challenge.
      */
     public function render() {
-        $left  = rand( 1, $this->max_number );
-        $right = rand( 1, $this->max_number );
+        $left  = wp_rand( 1, $this->max_number );
+        $right = wp_rand( 1, $this->max_number );
 
         $hash   = $this->hash( $left + $right );
         $answer = awpcp_post_param( 'captcha' );
