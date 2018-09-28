@@ -290,7 +290,6 @@ require( AWPCP_DIR . '/includes/media/class-update-attachment-allowed-status-aja
 require( AWPCP_DIR . '/includes/media/class-update-attachment-enabled-status-ajax-action.php' );
 require_once( AWPCP_DIR . '/includes/media/class-uploaded-file-logic-factory.php' );
 require_once( AWPCP_DIR . '/includes/media/class-uploaded-file-logic.php' );
-require_once( AWPCP_DIR . '/includes/media/class-uploads-manager.php' );
 require_once( AWPCP_DIR . '/includes/media/class-upload-listing-media-ajax-handler.php' );
 require_once( AWPCP_DIR . '/includes/media/class-upload-generated-thumbnail-ajax-handler.php' );
 

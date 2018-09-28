@@ -452,6 +452,7 @@ return array(
     'AWPCP_UploadMediaSubmitListingSection' => $baseDir . '/includes/frontend/class-upload-media-submit-listing-section.php',
     'AWPCP_UploadedFileLogic' => $baseDir . '/includes/media/class-uploaded-file-logic.php',
     'AWPCP_UploadedFileLogicFactory' => $baseDir . '/includes/media/class-uploaded-file-logic-factory.php',
+    'AWPCP_UploadsManager' => $baseDir . '/includes/media/class-uploads-manager.php',
     'AWPCP_UserField' => $baseDir . '/includes/helpers/widgets/class-user-field.php',
     'AWPCP_UserListingsTableSearchMode' => $baseDir . '/includes/admin/listings/class-user-listings-table-search-mode.php',
     'AWPCP_UserNotificationsSettings' => $baseDir . '/includes/settings/class-user-notifications-settings.php',

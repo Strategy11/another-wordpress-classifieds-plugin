@@ -1,9 +1,5 @@
 <?php
 
-function awpcp_uploads_manager() {
-    return new AWPCP_UploadsManager( awpcp()->settings );
-}
-
 class AWPCP_UploadsManager {
 
     private $settings;

@@ -453,6 +453,7 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_UploadMediaSubmitListingSection' => __DIR__ . '/../..' . '/includes/frontend/class-upload-media-submit-listing-section.php',
         'AWPCP_UploadedFileLogic' => __DIR__ . '/../..' . '/includes/media/class-uploaded-file-logic.php',
         'AWPCP_UploadedFileLogicFactory' => __DIR__ . '/../..' . '/includes/media/class-uploaded-file-logic-factory.php',
+        'AWPCP_UploadsManager' => __DIR__ . '/../..' . '/includes/media/class-uploads-manager.php',
         'AWPCP_UserField' => __DIR__ . '/../..' . '/includes/helpers/widgets/class-user-field.php',
         'AWPCP_UserListingsTableSearchMode' => __DIR__ . '/../..' . '/includes/admin/listings/class-user-listings-table-search-mode.php',
         'AWPCP_UserNotificationsSettings' => __DIR__ . '/../..' . '/includes/settings/class-user-notifications-settings.php',

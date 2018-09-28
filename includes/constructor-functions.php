@@ -253,3 +253,10 @@ function awpcp_listing_form_steps_componponent() {
         )
     );
 }
+
+/**
+ * @since 4.0.0     Extracted from class file.
+ */
+function awpcp_uploads_manager() {
+    return new AWPCP_UploadsManager( awpcp()->settings );
+}
