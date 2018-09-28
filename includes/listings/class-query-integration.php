@@ -69,7 +69,7 @@ class AWPCP_QueryIntegration {
 
     /**
      * TODO: Do we need to set a context for the query? Listings Collection defined
-     *       context = 'defualt'.
+     *       context = 'default'.
      *
      * @param array $query_vars     An array of query vars.
      * @since 4.0.0
