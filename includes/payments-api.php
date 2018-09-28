@@ -519,9 +519,13 @@ class AWPCP_PaymentsAPI {
     }
 
     public function process_payment() {
-        if ( ! ( $id = awpcp_post_param( 'transaction_id', false ) ) ) return;
+        $transaction_id = awpcp_request_param( 'transaction_id', false );
 
-        $transaction = AWPCP_Payment_Transaction::find_by_id($id);
+        if ( empty( $transaction_id ) ) {
+            return;
+        }
+
+        $transaction = AWPCP_Payment_Transaction::find_by_id( $transaction_id );
 
         if ( !is_null( $transaction ) && $transaction->is_doing_checkout() ) {
             $this->set_transaction_payment_method($transaction);
@@ -665,6 +669,7 @@ class AWPCP_PaymentsAPI {
         $attempts = awpcp_post_param('attempts', 0);
 
         $result = awpcp_array_data($transaction->id, array(), $this->cache);
+        $html   = '';
 
         if (is_null($payment_method) || isset($result['errors'])) {
             $transaction_errors = awpcp_array_data('errors', array(), $result);
