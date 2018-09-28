@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package AWPCP
+ */
+
+// @phpcs:disable Squiz.Commenting
 
 class AWPCP_UploadsManager {
 
@@ -26,20 +31,21 @@ class AWPCP_UploadsManager {
         }
 
         $target_directories = array_merge( array( $destination_dir ), $related_directories );
-        $unique_filename = awpcp_unique_filename( $file->get_path(), $file->get_real_name(), $target_directories );
-        $destination_path = implode( DIRECTORY_SEPARATOR, array( $destination_dir, $unique_filename ) );
+        $unique_filename    = awpcp_unique_filename( $file->get_path(), $file->get_real_name(), $target_directories );
+        $destination_path   = implode( DIRECTORY_SEPARATOR, array( $destination_dir, $unique_filename ) );
 
-        if ( rename( $file->get_path(), $destination_path ) ) {
-            $file->set_path( $destination_path );
-            chmod( $destination_path, 0644 );
-        } else {
+        if ( ! rename( $file->get_path(), $destination_path ) ) {
             unlink( $file->get_path() );
 
+            /* translators: %s is the name of the uploaded file. */
             $message = _x( 'The file %s could not be copied to the destination directory.', 'upload files', 'another-wordpress-classifieds-plugin' );
             $message = sprintf( $message, $file->get_real_name() );
 
             throw new AWPCP_Exception( $message );
         }
+
+        $file->set_path( $destination_path );
+        chmod( $destination_path, 0644 );
 
         return $file;
     }

@@ -84,11 +84,13 @@ class AWPCP_ListingsCollection {
      * @since 4.0.0
      */
     public function get_listing_with_old_id( $listing_id ) {
-        $listings = $this->find_listings( array(
-            'classifieds_query' => array(
-                'previous_id' => $listing_id,
-            ),
-        ) );
+        $listings = $this->find_listings(
+            [
+                'classifieds_query' => [
+                    'previous_id' => $listing_id,
+                ],
+            ]
+        );
 
         if ( empty( $listings ) ) {
             /* translators: %d is the ID used to search. */
