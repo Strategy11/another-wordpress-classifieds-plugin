@@ -185,6 +185,7 @@ class AWPCP_ListingFieldsMetabox {
         $this->save_in_progress = false;
     }
 
+
     /**
      * @param object $post      An instance of WP Post.
      * @param array  $data      An array of data.
