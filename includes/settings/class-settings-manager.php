@@ -237,6 +237,10 @@ class AWPCP_SettingsManager {
         do_action( 'awpcp_register_settings', $this );
 
         $comparator = function( $element_a, $element_b ) {
+            if ( $element_a['priority'] === $element_b['priority'] ) {
+                return strcmp( $element_a['name'], $element_b['name'] );
+            }
+
             return $element_a['priority'] - $element_b['priority'];
         };
 
