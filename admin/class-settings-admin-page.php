@@ -57,21 +57,17 @@ class AWPCP_SettingsAdminPage {
      * Renders the page.
      */
 	public function dispatch() {
-        $groups    = $this->settings_manager->get_settings_groups();
-        $subgroups = $this->settings_manager->get_settings_subgroups();
-
-        $current_subgroup = $this->get_current_subgroup( $groups, $subgroups );
-        $current_group    = $groups[ $current_subgroup['parent'] ];
+        $groups         = $this->settings_manager->get_settings_groups();
+        $subgroups      = $this->settings_manager->get_settings_subgroups();
+        $current_groups = $this->get_current_groups( $groups, $subgroups );
 
 		unset( $groups['private-settings'] );
 
 		$params = array(
             'groups'              => $groups,
             'subgroups'           => $subgroups,
-            'current_group'       => $current_group,
-            'current_subgroup'    => $current_subgroup,
-            // $subgroups is ordered by priority, $current_group['subgroups'] is not.
-            'current_subgroups'   => array_intersect( array_keys( $subgroups ), $current_group['subgroups'] ),
+            'current_group'       => $current_groups['group'],
+            'current_subgroup'    => $current_groups['subgroup'],
             'settings'            => $this->settings,
             'setting_name'        => $this->settings->setting_name,
             'current_url'         => remove_query_arg( [ 'sg', 'g' ], awpcp_current_url() ),
@@ -87,24 +83,36 @@ class AWPCP_SettingsAdminPage {
     /**
      * @since 4.0.0
      */
-    private function get_current_subgroup( $groups, $subgroups ) {
+    private function get_current_groups( $groups, $subgroups ) {
         $subgroup_id = $this->request->param( 'sg' );
 
         if ( isset( $subgroups[ $subgroup_id ] ) ) {
-            return $subgroups[ $subgroup_id ];
+            $subgroup = $subgroups[ $subgroup_id ];
+            $group    = $this->sort_group_subgroups( $groups[ $subgroup['parent'] ], $subgroups );
+
+            return compact( 'group', 'subgroup' );
         }
 
-        $group_id = $this->request->param( 'g', 'general-settings' );
+        $group_id = $this->request->param( 'g' );
 
-        if ( isset( $groups[ $group_id ] ) && count( $groups[ $group_id ]['subgroups'] ) ) {
-            $subgroup_id = reset( $groups[ $group_id ]['subgroups'] );
-
-            return $subgroups[ $subgroup_id ];
+        if ( empty( $groups[ $group_id ]['subgroups'] ) ) {
+            $group_id = 'general-settings';
         }
 
-        $subgroup_id = reset( $groups['general-settings']['subgroups'] );
+        $group       = $this->sort_group_subgroups( $groups[ $group_id ], $subgroups );
+        $subgroup_id = reset( $group['subgroups'] );
+        $subgroup    = $subgroups[ $subgroup_id ];
 
-        return $subgroups[ $subgroup_id ];
+        return compact( 'group', 'subgroup' );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function sort_group_subgroups( $group, $subgroups ) {
+        $group['subgroups'] = array_intersect( array_keys( $subgroups ), $group['subgroups'] );
+
+        return $group;
     }
 
     // phpcs:disable

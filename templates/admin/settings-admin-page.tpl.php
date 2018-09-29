@@ -17,7 +17,7 @@
 
             <?php if ( count( $current_group['subgroups'] ) > 1 ) : ?>
             <ul class="awpcp-settings-sub-groups">
-            <?php foreach ( $current_subgroups as $subgroup_id ) : ?>
+            <?php foreach ( $current_group['subgroups'] as $subgroup_id ) : ?>
                 <li class="<?php echo esc_attr( $current_subgroup['id'] === $subgroup_id ? 'awpcp-current' : '' ); ?>">
                     <a href="<?php echo esc_url( add_query_arg( 'sg', $subgroup_id, $current_url ) ); ?>"><?php echo esc_html( $subgroups[ $subgroup_id ]['name'] ); ?></a>
                 </li>
