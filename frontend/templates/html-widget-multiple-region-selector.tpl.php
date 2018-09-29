@@ -11,10 +11,10 @@
                 <li class="awpcp-region-selector-partial awpcp-form-field awpcp-clearfix" data-bind="visible: visible">
                     <label class="awpcp-form-field__label" data-bind="attr: { 'for': id }, text: label"></label>
 
-                    <select class="multiple-region" data-bind="attr: { id: id }, options: options, optionsText: 'name', optionsValue: 'id', optionsCaption: caption, value: selectedOption, visible: showSelectField, disable: $root.options.disabled">
+                    <select class="awpcp-has-value multiple-region" data-bind="attr: { id: id }, options: options, optionsText: 'name', optionsValue: 'id', optionsCaption: caption, value: selectedOption, visible: showSelectField, disable: $root.options.disabled">
                     </select>
 
-                    <input class="multiple-region awpcp-textfield inputbox" type="text" data-bind="attr: { id: id }, value: selectedText, visible: showTextField, disable: $root.options.disabled" />
+                    <input class="awpcp-textfield awpcp-has-value multiple-region inputbox" type="text" data-bind="attr: { id: id }, value: selectedText, visible: showTextField, disable: $root.options.disabled" />
 
                     <span class="loading-message" data-bind="visible: loading"><?php echo esc_html( _x( 'loading...', 'loading region options', 'another-wordpress-classifieds-plugin' ) ); ?></span>
 
