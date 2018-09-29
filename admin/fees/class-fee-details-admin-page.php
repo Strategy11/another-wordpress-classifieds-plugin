@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package AWPCP\Admin\Fess
+ */
+
+// @phpcs:disable
 
 function awpcp_fee_details_admin_page() {
     return new AWPCP_Fee_Details_Admin_Page(
@@ -33,11 +38,11 @@ class AWPCP_Fee_Details_Admin_Page {
     public function dispatch() {
         $action = $this->request->get( 'awpcp-action' );
 
-        if ( $action == 'add-fee' ) {
+        if ( 'add-fee' === $action ) {
             return $this->add_fee();
-        } else {
-            return $this->edit_fee();
         }
+
+        return $this->edit_fee();
     }
 
     private function add_fee() {
@@ -45,9 +50,9 @@ class AWPCP_Fee_Details_Admin_Page {
 
         if ( $this->request->post('save') || $this->request->post('save_and_continue') ) {
             return $this->update_fee( $fee );
-        } else {
-            return $this->render_form( $fee );
         }
+
+        return $this->render_form( $fee );
     }
 
     private function update_fee( $fee ) {
@@ -58,13 +63,13 @@ class AWPCP_Fee_Details_Admin_Page {
         if ( $fee->save( $errors ) === false ) {
             awpcp_flash( __( 'The form has errors', 'another-wordpress-classifieds-plugin' ), 'error' );
             return $this->render_form( $fee );
-        } else {
-            awpcp_flash( __( 'Fee successfully updated.', 'another-wordpress-classifieds-plugin' ) );
-
-            $redirect_target = array( 'parent' => 'awpcp.php', 'page' => 'awpcp-admin-fees' );
-
-            return $this->router->redirect( apply_filters( 'awpcp-fee-details-successful-redirect', $redirect_target, $fee ) );
         }
+
+        awpcp_flash( __( 'Fee successfully updated.', 'another-wordpress-classifieds-plugin' ) );
+
+        $redirect_target = array( 'parent' => 'awpcp.php', 'page' => 'awpcp-admin-fees' );
+
+        return $this->router->redirect( apply_filters( 'awpcp-fee-details-successful-redirect', $redirect_target, $fee ) );
     }
 
     private function get_posted_data() {
@@ -121,8 +126,8 @@ class AWPCP_Fee_Details_Admin_Page {
 
         if ( $this->request->post('save') || $this->request->post('save_and_continue') ) {
             return $this->update_fee( $fee );
-        } else {
-            return $this->render_form( $fee );
         }
+
+        return $this->render_form( $fee );
     }
 }
