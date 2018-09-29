@@ -71,7 +71,7 @@ class AWPCP_Categories_Collection {
     }
 
     public function find_categories( $args = array() ) {
-        $results = $this->wordpress->get_terms( $this->taxonomy, $this->prepare_categories_args( $args ) );
+        $results = $this->wordpress->get_terms( $this->prepare_categories_args( $args ) );
 
         if ( is_wp_error( $results ) ) {
             return array();
@@ -85,6 +85,7 @@ class AWPCP_Categories_Collection {
      */
     private function prepare_categories_args( $args = array() ) {
         return wp_parse_args( $args, array(
+            'taxonomy' => $this->taxonomy,
             'orderby' => 'name',
             'order' => 'ASC',
             'hide_empty' => false
