@@ -150,7 +150,7 @@ class AWPCP_ListingsCollection {
      */
     public function count_listings( $query = array() ) {
         // phpcs:disable
-        return $this->count_posts( apply_filters( 'awpcp-count-listings-query', $query ) );
+        return $this->count_posts( apply_filters( 'awpcp-find-listings-query', $query ) );
         // phpcs:enable
     }
 
@@ -187,7 +187,7 @@ class AWPCP_ListingsCollection {
     public function count_valid_listings( $query_vars = array() ) {
         $query_vars['classifieds_query']['is_valid'] = true;
 
-        return $this->count_posts( $query_vars );
+        return $this->count_listings( $query_vars );
     }
 
     /**
@@ -197,7 +197,7 @@ class AWPCP_ListingsCollection {
     public function count_new_listings( $query_vars = array() ) {
         $query_vars['classifieds_query']['is_new'] = true;
 
-        return $this->count_posts( $query_vars );
+        return $this->count_listings( $query_vars );
     }
 
     /**
@@ -217,7 +217,7 @@ class AWPCP_ListingsCollection {
     public function count_expired_listings( $query_vars = array() ) {
         $query_vars['classifieds_query']['is_expired'] = true;
 
-        return $this->count_posts( $query_vars );
+        return $this->count_listings( $query_vars );
     }
 
     /**
@@ -239,7 +239,7 @@ class AWPCP_ListingsCollection {
     public function count_enabled_listings( $query_vars = array() ) {
         $query_vars['classifieds_query']['is_enabled'] = true;
 
-        return $this->count_posts( $query_vars );
+        return $this->count_listings( $query_vars );
     }
 
     /**
@@ -260,7 +260,7 @@ class AWPCP_ListingsCollection {
     public function count_disabled_listings( $query_vars = array() ) {
         $query_vars['classifieds_query']['is_disabled'] = true;
 
-        return $this->count_posts( $query_vars );
+        return $this->count_listings( $query_vars );
     }
 
     /**
@@ -292,7 +292,7 @@ class AWPCP_ListingsCollection {
     public function count_listings_awaiting_approval( $query_vars = array() ) {
         $query_vars['classifieds_query']['is_awaiting_approval'] = true;
 
-        return $this->count_posts( $query_vars );
+        return $this->count_listings( $query_vars );
     }
 
     /**
@@ -302,7 +302,7 @@ class AWPCP_ListingsCollection {
     public function count_listings_with_images_awaiting_approval( $query_vars = array() ) {
         $query_vars['classifieds_query']['has_images_awaiting_approval'] = true;
 
-        return $this->count_posts( $query_vars );
+        return $this->count_listings( $query_vars );
     }
 
     /**
@@ -323,7 +323,7 @@ class AWPCP_ListingsCollection {
     public function count_successfully_paid_listings( $query_vars = array() ) {
         $query_vars['classifieds_query']['is_successfully_paid'] = true;
 
-        return $this->count_posts( $query_vars );
+        return $this->count_listings( $query_vars );
     }
 
     /**
@@ -344,7 +344,7 @@ class AWPCP_ListingsCollection {
     public function count_listings_awaiting_verification( $query_vars = array() ) {
         $query_vars['classifieds_query']['is_awaiting_verification'] = true;
 
-        return $this->count_posts( $query_vars );
+        return $this->count_listings( $query_vars );
     }
 
     /**
@@ -354,7 +354,7 @@ class AWPCP_ListingsCollection {
     public function count_featured_listings( $query_vars = array() ) {
         $query_vars['classifieds_query']['is_featured'] = true;
 
-        return $this->count_posts( $query_vars );
+        return $this->count_listings( $query_vars );
     }
 
     /**
@@ -364,7 +364,7 @@ class AWPCP_ListingsCollection {
     public function count_flagged_listings( $query_vars = array() ) {
         $query_vars['classifieds_query']['is_flagged'] = true;
 
-        return $this->count_posts( $query_vars );
+        return $this->count_listings( $query_vars );
     }
 
     /**
@@ -374,7 +374,7 @@ class AWPCP_ListingsCollection {
     public function count_incomplete_listings( $query_vars = array() ) {
         $query_vars['classifieds_query']['is_incomplete'] = true;
 
-        return $this->count_posts( $query_vars );
+        return $this->count_listings( $query_vars );
     }
 
     /**
@@ -769,9 +769,9 @@ class AWPCP_ListingsCollection {
 
     /**
      * @param array $query_vars     An array of query vars.
-     * @deprecated 4.0.0    Use ListingsCollection::count_posts() instead.
+     * @deprecated 4.0.0    Use ListingsCollection::count_listings() instead.
      */
     public function count_listings_with_query( $query_vars ) {
-        return $this->count_posts( $query_vars );
+        return $this->count_listings( $query_vars );
     }
 }
