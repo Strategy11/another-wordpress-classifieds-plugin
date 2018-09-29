@@ -154,7 +154,7 @@ AWPCP.define( 'awpcp/frontend/save-section-controller', [
                 current_url:       document.location.href,
             } );
 
-            for ( var i = data.regions.length - 1; i >= 0; i-- ) {
+            for ( var length = data.regions.length, i = 0; i < length; i++ ) {
                 var region = {};
 
                 $.each( data.regions[ i ], function( index, part ) {
