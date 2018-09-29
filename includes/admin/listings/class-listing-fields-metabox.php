@@ -225,9 +225,16 @@ class AWPCP_ListingFieldsMetabox {
          * Fires once the information for a classified ad has been saved.
          *
          * @since 4.0.0     A transaction object is no longer passsed as the second argument.
-         * @deprecated 4.0.0    Use awpcp_ad_information_saved instead.
+         * @deprecated 4.0.0    Use awpcp_listing_information_saved instead.
          */
         do_action( 'awpcp-save-ad-details', $listing, null );
         // @phpcs:enable
+
+        /**
+         * Fires once the information for a classified ad has been saved.
+         *
+         * @since 4.0.0
+         */
+        do_action( 'awpcp_listing_information_saved', $listing, $post_data );
     }
 }
