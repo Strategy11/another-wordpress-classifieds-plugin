@@ -195,7 +195,7 @@ class AWPCP_ListingFieldsMetabox {
             // TODO: Figure out the best place to calculate the number of regions allowed.
             $data['regions-allowed'] = 1;
 
-            $this->listings_logic->update_listing( $post, $data );
+            $this->save_listing_information( $post, $data );
 
             $this->wordpress->delete_post_meta( $post->ID, '__awpcp_admin_editor_pending_data' );
             $this->wordpress->delete_post_meta( $post->ID, '__awpcp_admin_editor_validation_errors' );
@@ -205,5 +205,29 @@ class AWPCP_ListingFieldsMetabox {
 
         $this->wordpress->update_post_meta( $post->ID, '__awpcp_admin_editor_pending_data', $data );
         $this->wordpress->update_post_meta( $post->ID, '__awpcp_admin_editor_validation_errors', $errors );
+    }
+
+    /**
+     * XXX: This is a copy of AWPCP_SaveListingInformationAjaxHandler::save_listing_information.
+     *
+     * TODO: trigger awpcp-place-listing-listing-data filter
+     * TODO: trigger awpcp_before_edit_ad action.
+     *
+     * @since 4.0.0
+     */
+    private function save_listing_information( $listing, $post_data ) {
+        // @phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
+        do_action( 'awpcp-before-save-listing', $listing, $post_data );
+
+        $this->listings_logic->update_listing( $listing, $post_data );
+
+        /**
+         * Fires once the information for a classified ad has been saved.
+         *
+         * @since 4.0.0     A transaction object is no longer passsed as the second argument.
+         * @deprecated 4.0.0    Use awpcp_ad_information_saved instead.
+         */
+        do_action( 'awpcp-save-ad-details', $listing, null );
+        // @phpcs:enable
     }
 }

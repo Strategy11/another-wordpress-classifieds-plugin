@@ -143,10 +143,6 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
     }
 
     /**
-     * TODO: trigger awpcp-before-save-listing action
-     * TODO: trigger awpcp-place-listing-listing-data filter
-     * TODO: trigger awpcp-save-ad-details action
-     * TODO: trigger awpcp_before_edit_ad action.
      * TODO: create payment transaction and redirect to payment page.
      * TODO: Test trying to provide the ID of a listing that hasn't been paid. Does it let the user edit the listing information?
      *
@@ -182,7 +178,31 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
             return $this->multiple_errors_response( $errors );
         }
 
-        $this->listings_logic->update_listing( $listing, $posted_data['post_data'] );
+        $this->save_listing_information( $listing, $posted_data['post_data'] );
+    }
+
+    /**
+     * XXX: This is a copy of AWPCP_ListingFieldsMetabox::save_listing_information.
+     *
+     * TODO: trigger awpcp-place-listing-listing-data filter
+     * TODO: trigger awpcp_before_edit_ad action.
+     *
+     * @since 4.0.0
+     */
+    private function save_listing_information( $listing, $post_data ) {
+        // @phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
+        do_action( 'awpcp-before-save-listing', $listing, $post_data );
+
+        $this->listings_logic->update_listing( $listing, $post_data );
+
+        /**
+         * Fires once the information for a classified ad has been saved.
+         *
+         * @since 4.0.0     A transaction object is no longer passsed as the second argument.
+         * @deprecated 4.0.0    Use awpcp_ad_information_saved instead.
+         */
+        do_action( 'awpcp-save-ad-details', $listing, null );
+        // @phpcs:enable
     }
 
     /**
@@ -201,8 +221,7 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
         }
 
         $this->prepare_transaction_for_checkout( $transaction, $posted_data );
-
-        $this->listings_logic->update_listing( $listing, $posted_data['post_data'] );
+        $this->save_listing_information( $listing, $posted_data['post_data'] );
 
         // TODO: Redirect to checkout page.
         return $this->redirect_to_checkout_page( $listing, $transaction, $posted_data );
