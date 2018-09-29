@@ -781,6 +781,10 @@ class AWPCP_QueryIntegration {
             $clauses = $this->add_regions_clauses( $clauses, $query );
         }
 
+        if ( isset( $query->query_vars['classifieds_query'] ) ) {
+            $clauses = apply_filters( 'awpcp_listings_query_clauses', $clauses, $query );
+        }
+
         return $clauses;
     }
 
