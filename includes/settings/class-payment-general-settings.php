@@ -217,7 +217,7 @@ class AWPCP_PaymentSettings {
         $settings_manager->add_settings_subgroup( [
             'id'       => '2checkout-settings',
             'name'     => __( '2Checkout', 'another-wordpress-classifieds-plugin' ),
-            'priority' => 40,
+            'priority' => 30,
             'parent'   => 'payment-settings',
         ] );
 
