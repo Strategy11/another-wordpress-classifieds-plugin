@@ -76,6 +76,7 @@ class AWPCP_Fee_Details_Admin_Page {
             'duration_amount' => $this->request->post( 'duration_amount' ),
             'duration_interval' => $this->request->post( 'duration_interval' ),
             'images' => $this->request->post( 'images_allowed' ),
+            'regions'           => $this->request->post( 'regions_allowed' ),
             'title_characters' => $this->request->post( 'characters_allowed_in_title' ),
             'characters' => $this->request->post( 'characters_allowed_in_description' ),
             'private' => $this->request->post( 'is_private', false ),
