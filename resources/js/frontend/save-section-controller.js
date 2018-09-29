@@ -132,13 +132,14 @@ AWPCP.define( 'awpcp/frontend/save-section-controller', [
 
         doSaveListingRequest: function() {
             var self = this,
-                paymentTerm, creditPlanId, data, options, request;
+                paymentTerm, creditPlanId, data, regions, options, request;
 
             paymentTerm  = self.store.getSelectedPaymentTerm();
             creditPlanId = self.store.getSelectedCreditPlanId();
+            regions      = [];
 
             // TODO: How are other sections going to introduce information here?
-            data = $.extend( {},  self.store.getListingFields(), {
+            data = $.extend( {}, self.store.getListingFields(), {
                 action:            'awpcp_save_listing_information',
                 nonce:             $.AWPCP.get( 'save_listing_information_nonce' ),
                 transaction_id:    self.store.getTransactionId(),
@@ -153,8 +154,22 @@ AWPCP.define( 'awpcp/frontend/save-section-controller', [
                 current_url:       document.location.href,
             } );
 
-            // Remove Multiple Region Selector data.
-            delete data.regions;
+            for ( var i = data.regions.length - 1; i >= 0; i-- ) {
+                var region = {};
+
+                $.each( data.regions[ i ], function( index, part ) {
+                    if ( part.selected ) {
+                        region[ part.type ] = part.selected;
+                    }
+                } );
+
+                if ( region ) {
+                   regions.push( region );
+                }
+            }
+
+            // Replace Multiple Region Selector data with just selected regions.
+            data.regions = regions;
 
             options = {
                 url: $.AWPCP.get( 'ajaxurl' ),
