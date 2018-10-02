@@ -74,7 +74,7 @@ class AWPCP_SendToFacebookHelper {
         }
 
         $integration_method = $this->settings->get_option( 'facebook-integration-method' );
-        $listing_sent            = false;
+        $listing_sent       = false;
 
         if ( 'facebook-api' === $integration_method ) {
             $listing_sent = $this->send_listing_to_facebook_page_using_facebook_api( $listing );
