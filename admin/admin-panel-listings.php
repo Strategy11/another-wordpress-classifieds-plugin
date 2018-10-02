@@ -84,6 +84,7 @@ class AWPCP_Admin_Listings extends AWPCP_AdminPageWithTable {
     public function get_table() {
         if ( is_null( $this->table ) ) {
             $this->table = new AWPCP_Listings_Table( $this, array( 'screen' => 'classifieds_page_awpcp-admin-listings' ) );
+            $this->table->set_facebook_integration( $this->facebook_integration );
         }
         return $this->table;
     }

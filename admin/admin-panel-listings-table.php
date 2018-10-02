@@ -9,9 +9,21 @@ class AWPCP_Listings_Table extends WP_List_Table {
 
     private $page;
 
+    /**
+     * @var Facebook Integration.
+     */
+    private $facebook_integration;
+
     public function __construct( $page, $params = array() ) {
         parent::__construct( array_merge( array( 'plural' => 'awpcp-listings' ), $params ) );
         $this->page = $page;
+    }
+
+    /**
+     * @since 3.9.0
+     */
+    public function set_facebook_integration( $facebook_integration ) {
+        $this->facebook_integration = $facebook_integration;
     }
 
     public function prepare_items() {
@@ -225,7 +237,7 @@ class AWPCP_Listings_Table extends WP_List_Table {
                 $actions['bulk-remove-featured'] = __( 'Make Non Featured', 'another-wordpress-classifieds-plugin' );
             }
 
-            if ( awpcp()->settings->get_option( 'facebook-page-access-token' ) ) {
+            if ( $this->facebook_integration->is_facebook_page_integration_configured() || $this->facebook_integration->is_facebook_group_integration_configured() ) {
                 $actions['bulk-send-to-facebook'] = __( 'Send to Facebook', 'another-wordpress-classifieds-plugin' );
             }
         }
