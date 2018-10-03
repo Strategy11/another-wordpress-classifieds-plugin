@@ -4,9 +4,10 @@ AWPCP.define( 'awpcp/frontend/listing-fields-section-controller', [
     'awpcp/settings',
     'awpcp/restricted-length-field',
     'awpcp/multiple-region-selector-validator',
+    'awpcp/datepicker-field',
     'awpcp/jquery-collapsible',
     'awpcp/jquery-validate-methods',
-], function( $, settings, RestrictedLengthField, MultipleRegionsSelectorValidator ) {
+], function( $, settings, RestrictedLengthField, MultipleRegionsSelectorValidator, DatepickerField ) {
     var ListingFieldsSectionController = function( section, store ) {
         var self = this;
 
@@ -106,6 +107,21 @@ AWPCP.define( 'awpcp/frontend/listing-fields-section-controller', [
             // Instantiate Multiple Region Selector using the currently selected regions,
             // if any.
             self.$regionsSelector.MultipleRegionSelector( data.regions );
+
+            // XXX: Adds support for Extra Fields DatePicker fields.
+            self.$element.find( '[datepicker-placeholder]' ).each( function() {
+                $.noop( new DatepickerField( $( this ).siblings( '[name]:hidden' ), {
+                    datepicker: {
+                        onSelect: function( dateText, instance ) {
+                            var data = {};
+
+                            data[ instance.id ] = instance.settings.altField.val();
+
+                            self.store.updateListingFields( data );
+                        }
+                    }
+                } ) );
+            } );
 
             // TODO: Should we route this through the store?
             $.publish( '/awpcp/post-listing-page/details-step/ready', [ self.$element ] );
