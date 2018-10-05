@@ -33,6 +33,10 @@ class AWPCP_SettingsValidator {
         $group    = $this->request->post( 'group', '' );
         $subgroup = $this->request->post( 'subgroup', '' );
 
+        if ( ! is_array( $new_options ) ) {
+            $new_options = [];
+        }
+
         // Populate array with all plugin options before attempt validation.
         $new_options = array_merge( $this->settings->options, $new_options );
 
