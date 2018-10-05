@@ -304,6 +304,6 @@ class AWPCP_SendToFacebookHelper {
      * @since 3.8.6
      */
     private function get_webhooks_for_facebook_group_integration( $listing ) {
-        return [];
+        return array();
     }
 }
