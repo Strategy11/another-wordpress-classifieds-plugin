@@ -1,4 +1,7 @@
 <?php
+/**
+ * @package AWPCP\UI
+ */
 
 function awpcp_classifieds_bar() {
     return new AWPCP_Classifieds_Bar(
@@ -16,15 +19,18 @@ class AWPCP_Classifieds_Bar {
 
     public function __construct( $classifieds_search_bar, $classifieds_menu, $settings ) {
         $this->classifieds_search_bar = $classifieds_search_bar;
-        $this->classifieds_menu = $classifieds_menu;
-        $this->settings = $settings;
+        $this->classifieds_menu       = $classifieds_menu;
+        $this->settings               = $settings;
     }
 
     public function render( $components = array() ) {
-        $components = wp_parse_args( $components, array(
-            'search_bar' => $this->settings->get_option( 'show-classifieds-search-bar' ),
-            'menu' => true,
-        ) );
+        $components = wp_parse_args(
+            $components,
+            [
+                'search_bar' => $this->settings->get_option( 'show-classifieds-search-bar' ),
+                'menu'       => true,
+            ]
+        );
 
         $should_show_classifieds_bar = $this->settings->get_option( 'show-classifieds-bar' );
         $output                      = '';
