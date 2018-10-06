@@ -158,9 +158,21 @@ AWPCP.define( 'awpcp/frontend/listing-fields-section-controller', [
                 data = {};
 
             self.$element.find( '.awpcp-has-value' ).each( function( index, element ) {
-                var $field = $( element );
+                var $field = $( element ),
+                    type   = $field.attr( 'type' ),
+                    name   = $field.attr( 'name' );
 
-                data[ $field.attr( 'name' ) ] = $field.val();
+                if ( ( 'radio' === type || 'checkbox' === type ) && ! $field.is(':checked') ) {
+                    return;
+                }
+
+                if ( typeof data[ name ] !== 'undefined' && $.isArray( data[ name ] ) ) {
+                    data[ name ].push( $field.val() );
+                } else if ( typeof data[ name ] !== 'undefined' ) {
+                    data[ name ] = [ data[ name ], $field.val() ];
+                } else {
+                    data[ $field.attr( 'name' ) ] = $field.val();
+                }
             } );
 
             data.regions = self.$regionsSelector.data( 'RegionSelector' ).getSelectedRegions();
@@ -207,7 +219,25 @@ AWPCP.define( 'awpcp/frontend/listing-fields-section-controller', [
             data = self.store.getListingFields();
 
             $.each( data, function( name, value ) {
-                $( '[name="' + name + '"]').val( value );
+                $( '[name="' + name + '"]').each( function() {
+                    var $field       = $( this ),
+                        type         = $field.attr( 'type' ),
+                        isArrayValue = $.isArray( value );
+
+                    if ( 'checkbox' === type || 'radio' === type ) {
+                        if ( isArrayValue && $.inArray( $field.val(), value ) !== -1 ) {
+                            $field.prop( 'checked', true );
+                        } else if ( ! isArrayValue && value === $field.val() ) {
+                            $field.prop( 'checked', true );
+                        } else {
+                            $field.prop( 'checked', false );
+                        }
+                    } else if ( 'hidden' === type ) {
+                        return;
+                    } else {
+                        $field.val( value );
+                    }
+                } );
             } );
 
             self.$element.show();
