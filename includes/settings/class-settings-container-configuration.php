@@ -33,6 +33,7 @@ class AWPCP_SettingsContainerConfiguration implements AWPCP_ContainerConfigurati
                 [
                     'awpcp_admin_load_awpcp-admin-settings',
                     'awpcp_admin_load_awpcp-admin-credit-plans',
+                    'awpcp_admin_load_awpcp-admin-extra-fields',
                 ],
                 $container['SettingsManager'],
                 $container['SettingsValidator'],
