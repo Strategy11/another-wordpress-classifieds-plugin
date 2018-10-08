@@ -564,6 +564,13 @@ class AWPCP {
         add_action( 'awpcp-configure-routes', array( $this->admin, 'configure_routes' ) );
         add_action( 'awpcp-configure-routes', array( $this->panel, 'configure_routes' ) );
 
+        /**
+         * The setup_nav method in BuddyPressListingsComponent needs to run
+         * after register_settings().
+         *
+         * Make sure to update setup_component() on premium-modules/awpcp-buddypress-listings/includes/class-buddypress-listings-loader.php
+         * if you ever change the priority for this action.
+         */
         add_action( 'init', [ $this->settings_manager, 'register_settings' ], 9999 );
 
         // TODO: Make sure to update permastruct for custom post types before generating rewrite rules.
