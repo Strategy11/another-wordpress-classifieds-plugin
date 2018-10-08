@@ -26,9 +26,18 @@ class AWPCP_Classifieds_Bar {
             'menu' => true,
         ) );
 
-        $output = '';
+        $should_show_classifieds_bar = $this->settings->get_option( 'show-classifieds-bar' );
+        $output                      = '';
 
-        if ( ! $this->settings->get_option( 'show-classifieds-bar' ) ) {
+        /**
+         * Filters whether the Classifieds Bar should be rendered.
+         *
+         * Allows others parts of the plugin, modules and third party plugins to
+         * disalbe the Classifieds Bar on specific locations.
+         *
+         * @since 4.0.0
+         */
+        if ( ! apply_filters( 'awpcp_should_show_classifieds_bar', $should_show_classifieds_bar ) ) {
             return $output;
         }
 
@@ -43,4 +52,3 @@ class AWPCP_Classifieds_Bar {
         return $output;
     }
 }
-
