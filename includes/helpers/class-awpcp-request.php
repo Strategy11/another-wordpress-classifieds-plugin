@@ -186,6 +186,7 @@ class AWPCP_Request {
         $alternatives = [
             'params'     => [
                 'adid',
+                'ad_id',
                 'id',
                 'listing_id',
                 'i',

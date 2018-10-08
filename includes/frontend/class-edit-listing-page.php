@@ -82,7 +82,7 @@ class AWPCP_EditListingPage extends AWPCP_Page {
             return $this->do_verify_access_token_step();
         }
 
-        $listing_id = $this->get_listing_id();
+        $listing_id = $this->request->get_current_listing_id();
 
         if ( empty( $listing_id ) || 'enter-access-key' === $step ) {
             return $this->do_enter_email_and_access_key_step();
@@ -206,28 +206,13 @@ class AWPCP_EditListingPage extends AWPCP_Page {
     public function get_ad() {
         if ( is_null( $this->ad ) ) {
             try {
-                $this->ad = $this->listings->get( $this->get_listing_id() );
+                $this->ad = $this->listings->get( $this->request->get_current_listing_id() );
             } catch ( AWPCP_Exception $e ) {
                 $this->ad = null;
             }
         }
 
         return $this->ad;
-    }
-
-    /**
-     * TODO: Can't we use Request's method?
-     *
-     * @since 4.0.0
-     */
-    private function get_listing_id() {
-        $listing_id = $this->request->param( 'ad_id', $this->request->param( 'id', $this->request->get_query_var( 'id' ) ) );
-
-        if ( ! empty( $listing_id ) ) {
-            return $listing_id;
-        }
-
-        return $this->request->param( 'listing_id' );
     }
 
     /**
