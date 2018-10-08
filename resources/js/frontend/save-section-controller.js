@@ -136,7 +136,8 @@ AWPCP.define( 'awpcp/frontend/save-section-controller', [
 
             paymentTerm  = self.store.getSelectedPaymentTerm();
             creditPlanId = self.store.getSelectedCreditPlanId();
-            regions      = [];
+            regions      = [],
+            regionsCount = 0;
 
             // TODO: How are other sections going to introduce information here?
             data = $.extend( {}, self.store.getListingFields(), {
@@ -154,7 +155,11 @@ AWPCP.define( 'awpcp/frontend/save-section-controller', [
                 current_url:       document.location.href,
             } );
 
-            for ( var length = data.regions.length, i = 0; i < length; i++ ) {
+            if ( data.regions && data.regions.length ) {
+                regionsCount = data.regions.length;
+            }
+
+            for ( var i = 0; i < regionsCount; i++ ) {
                 var region = {};
 
                 $.each( data.regions[ i ], function( index, part ) {
