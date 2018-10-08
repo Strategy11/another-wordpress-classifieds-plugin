@@ -126,7 +126,7 @@ class AWPCP_ListingsContentRenderer {
      */
     private function get_unverified_listing_warning() {
         if ( awpcp_current_user_is_moderator() ) {
-            $message = __( 'This listing is currently disabled until the owner verifies the email address used for the contact information. Right now only administrators users and the owner of the listing can see it.', 'another-wordpress-classifieds-plugin' );
+            $message = __( 'This listing is currently disabled until the owner verifies the email address used for the contact information. Right now only administrators users and the owner of the listing can see it. A verification email has been sent to you.', 'another-wordpress-classifieds-plugin' );
             return awpcp_print_error( $message );
         }
 

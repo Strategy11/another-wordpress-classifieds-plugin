@@ -631,7 +631,7 @@ class AWPCP_Installer {
                 `page` VARCHAR(100) CHARACTER SET <charset> COLLATE <collate> NOT NULL,
                 `id` INT(10) NOT NULL,
                 PRIMARY KEY  (`page`)
-            ) ENGINE=InnoDB DEFAULT CHARSET=<charset> COLLATE=<collate>;";
+            ) DEFAULT CHARSET=<charset> COLLATE=<collate>;";
             dbDelta( $this->database_helper->replace_charset_and_collate( $table_definition ) );
         }
 

@@ -516,10 +516,6 @@ class AWPCP_ListingsAPI {
     public function get_ad_alerts( $ad ) {
         $alerts = array();
 
-        if ( ! $this->listing_renderer->is_verified( $ad ) ) {
-            $alerts[] = __( 'You need to verify the email address used as the contact email address for this Ad. The Ad will remain in a disabled status until you verify your address. A verification email has been sent to you.', 'another-wordpress-classifieds-plugin' );
-        }
-
         if ( get_awpcp_option( 'adapprove' ) == 1 && $this->listing_renderer->is_disabled( $ad ) ) {
             $alerts[] = get_awpcp_option( 'notice_awaiting_approval_ad' );
         }
