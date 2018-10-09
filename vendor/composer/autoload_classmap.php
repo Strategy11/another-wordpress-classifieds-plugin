@@ -380,7 +380,6 @@ return array(
     'AWPCP_SecureURLRedirectionHandler' => $baseDir . '/includes/class-secure-url-redirection-handler.php',
     'AWPCP_SelectSettingsRenderer' => $baseDir . '/includes/settings/renderers/class-select-settings-renderer.php',
     'AWPCP_SendAccessKeyListingTableAction' => $baseDir . '/includes/admin/listings/class-send-access-key-listing-table-action.php',
-    'AWPCP_SendListingToFacebookAdminPage' => $baseDir . '/includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php',
     'AWPCP_SendListingToFacebookHelper' => $baseDir . '/includes/helpers/class-send-listing-to-facebook-helper.php',
     'AWPCP_SendToFacebookGroupListingTableAction' => $baseDir . '/includes/admin/listings/class-send-to-facebook-group-listing-table-action.php',
     'AWPCP_SendToFacebookHelper' => $baseDir . '/includes/helpers/class-send-to-facebook-helper.php',
