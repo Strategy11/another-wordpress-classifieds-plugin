@@ -86,12 +86,16 @@ class AWPCP_SendToFacebookGroupListingTableAction implements AWPCP_ListTableActi
     public function process_item( $post ) {
         try {
             $this->facebook_helper->send_listing_to_facebook_group( $post );
+        } catch ( AWPCP_NoIntegrationMethodDefined $e ) {
+            return 'no-integration-method';
         } catch ( AWPCP_NoFacebookObjectSelectedException $e ) {
             return 'no-group';
         } catch ( AWPCP_ListingAlreadySharedException $e ) {
             return 'already-sent';
         } catch ( AWPCP_ListingDisabledException $e ) {
             return 'disabled';
+        } catch ( AWPCP_WebhooksNotCurrentlySupported $e ) {
+            return 'webhooks-not-supported';
         } catch ( AWPCP_Exception $e ) {
             return 'error';
         }
@@ -125,6 +129,24 @@ class AWPCP_SendToFacebookGroupListingTableAction implements AWPCP_ListTableActi
             $message = str_replace( '{count}', $count, $message );
 
             return awpcp_render_dismissible_success_message( $message );
+        }
+
+        if ( 'no-integration-method' === $code ) {
+            $url = awpcp_get_admin_settings_url( [ 'g' => 'facebook-settings' ] );
+
+            $message = _n( "1 ad couldn't be sent to Facebook because there is no integration method selected on {facebook_settings_link}Facebook Settings{/facebook_settings_link}.", "{count} ads couldn't be sent to Facebook because there is no integration method selected on {facebook_settings_link}Facebook Settings{/facebook_settings_link}.", $count, 'another-wordpress-classifieds-plugin' );
+            $message = str_replace( '{count}', $count, $message );
+            $message = str_replace( '{facebook_settings_link}', "<a href='{$url}'>", $message );
+            $message = str_replace( '{/facebook_settings_link}', '</a>', $message );
+
+            return awpcp_render_dismissible_error_message( $message );
+        }
+
+        if ( 'webhooks-not-supported' === $code ) {
+            $message = _n( "1 ad couldn't be sent to Facebook because sending ads to Facebook groups using webhooks is not currently supported.", "{count} ads couldn't be sent to Facebook because sending ads to Facebook groups using webhooks is not currently supported.", $count, 'another-wordpress-classifieds-plugin' );
+            $message = str_replace( '{count}', $count, $message );
+
+            return awpcp_render_dismissible_error_message( $message );
         }
 
         if ( 'no-group' === $code ) {

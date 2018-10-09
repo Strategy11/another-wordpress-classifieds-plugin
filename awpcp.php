@@ -663,6 +663,7 @@ class AWPCP {
         add_filter( 'awpcp_validate_settings_general-settings', array( $general_settings, 'validate_general_settings' ), 10, 2 );
         add_filter( 'awpcp_validate_settings_subgroup_date-time-format-settings', array( $general_settings, 'validate_date_time_format_settings' ), 10, 2 );
         add_filter( 'awpcp_validate_settings_registration-settings',[ $general_settings, 'validate_registration_settings' ] );
+        add_filter( 'awpcp_validate_settings_facebook-settings', [ $general_settings, 'validate_facebook_settings' ] );
 
         $pages_settings = $this->container['PagesSettings'];
         add_action( 'awpcp_register_settings', [ $pages_settings, 'register_settings' ] );
@@ -771,7 +772,7 @@ class AWPCP {
         $facebook_cache_helper = awpcp_facebook_cache_helper();
         add_action( 'awpcp-clear-ad-facebook-cache', array( $facebook_cache_helper, 'handle_clear_cache_event_hook' ), 10, 1 );
 
-        $send_to_facebook_helper = awpcp_send_to_facebook_helper();
+        $send_to_facebook_helper = $this->container['SendListingToFacebookHelper'];
         add_action( 'awpcp-send-listing-to-facebook', array( $send_to_facebook_helper, 'send_listing_to_facebook' ) );
 
         add_action( 'awpcp_clear_categories_list_cache', array( $this, 'clear_categories_list_cache' ) );

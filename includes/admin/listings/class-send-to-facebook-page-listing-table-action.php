@@ -86,6 +86,8 @@ class AWPCP_SendToFacebookPageListingTableAction implements AWPCP_ListTableActio
     public function process_item( $post ) {
         try {
             $this->facebook_helper->send_listing_to_facebook_page( $post );
+        } catch ( AWPCP_NoIntegrationMethodDefined $e ) {
+            return 'no-integration-method';
         } catch ( AWPCP_NoFacebookObjectSelectedException $e ) {
             return 'no-page';
         } catch ( AWPCP_ListingAlreadySharedException $e ) {
@@ -127,6 +129,17 @@ class AWPCP_SendToFacebookPageListingTableAction implements AWPCP_ListTableActio
             return awpcp_render_dismissible_success_message( $message );
         }
 
+        if ( 'no-integration-method' === $code ) {
+            $url = awpcp_get_admin_settings_url( [ 'g' => 'facebook-settings' ] );
+
+            $message = _n( "1 ad couldn't be sent to Facebook because there is no integration method selected on {facebook_settings_link}Facebook Settings{/facebook_settings_link}.", "{count} ads couldn't be sent to Facebook because there is no integration method selected on {facebook_settings_link}Facebook Settings{/facebook_settings_link}.", $count, 'another-wordpress-classifieds-plugin' );
+            $message = str_replace( '{count}', $count, $message );
+            $message = str_replace( '{facebook_settings_link}', "<a href='{$url}'>", $message );
+            $message = str_replace( '{/facebook_settings_link}', '</a>', $message );
+
+            return awpcp_render_dismissible_error_message( $message );
+        }
+
         if ( 'no-page' === $code ) {
             $message = _n( "1 ad couldn't be sent to Facebook because there is no page selected.", "{count} ads couldn't be sent to Facebook because there is no page selected.", $count, 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '{count}', $count, $message );
@@ -158,4 +171,3 @@ class AWPCP_SendToFacebookPageListingTableAction implements AWPCP_ListTableActio
         return '';
     }
 }
-

@@ -103,9 +103,9 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
             return new AWPCP_SendToFacebookHelper(
                 AWPCP_Facebook::instance(),
                 awpcp_facebook_integration(),
-                awpcp_attachment_properties(),
-                awpcp_attachments_collection(),
                 $container['ListingRenderer'],
+                $container['ListingsCollection'],
+                $container['Settings'],
                 $container['WordPress']
             );
         } );

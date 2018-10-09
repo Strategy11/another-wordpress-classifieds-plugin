@@ -260,3 +260,14 @@ function awpcp_listing_form_steps_componponent() {
 function awpcp_uploads_manager() {
     return new AWPCP_UploadsManager( awpcp()->settings );
 }
+
+/**
+ * @since 3.8.6
+ */
+function awpcp_facebook_integration() {
+    return new AWPCP_FacebookIntegration(
+        awpcp()->container['ListingRenderer'],
+        awpcp()->settings,
+        awpcp_wordpress()
+    );
+}
