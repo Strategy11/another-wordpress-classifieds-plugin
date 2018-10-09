@@ -10,30 +10,29 @@
  */
 function awpcp_send_listing_to_facebook_admin_page() {
     return new AWPCP_SendListingToFacebookAdminPage(
+        awpcp_facebook_integration(),
         awpcp_send_to_facebook_helper(),
-        AWPCP_Facebook::instance(),
         awpcp_listing_renderer(),
-        awpcp_listings_collection(),
         awpcp_request()
     );
 }
 
 class AWPCP_SendListingToFacebookAdminPage extends AWPCP_ListingActionAdminPage {
 
+    private $facebook_integration;
     private $facebook_helper;
-    private $facebook_config;
     private $listing_renderer;
 
     public $successful = array( 'page' => 0, 'group' => 0 );
     public $failed = array( 'page' => 0, 'group' => 0 );
     public $errors = array();
 
-    public function __construct( $facebook_helper, $facebook_config, $listing_renderer, $listings, $request ) {
+    public function __construct( $facebook_integration, $facebook_helper, $listing_renderer, $request ) {
         parent::__construct( $listings, $request );
 
-        $this->facebook_helper = $facebook_helper;
-        $this->facebook_config = $facebook_config;
-        $this->listing_renderer = $listing_renderer;
+        $this->facebook_integration = $facebook_integration;
+        $this->facebook_helper      = $facebook_helper;
+        $this->listing_renderer     = $listing_renderer;
     }
 
     /**
@@ -42,11 +41,11 @@ class AWPCP_SendListingToFacebookAdminPage extends AWPCP_ListingActionAdminPage 
     public function dispatch() {
         $destinations = array();
 
-        if ( $this->facebook_config->is_page_set() ) {
+        if ( $this->facebook_integration->is_facebook_page_integration_configured() ) {
             $destinations['page'] = __( 'Facebook Page', 'another-wordpress-classifieds-plugin' );
         }
 
-        if ( $this->facebook_config->is_group_set() ) {
+        if ( $this->facebook_integration->is_facebook_group_integration_configured() ) {
             $destinations['group'] = __( 'Facebook Group', 'another-wordpress-classifieds-plugin' );
         }
 
@@ -82,13 +81,15 @@ class AWPCP_SendListingToFacebookAdminPage extends AWPCP_ListingActionAdminPage 
     }
 
     public function send_listing_to_facebook_page( $listing ) {
-        $this->facebook_helper->send_listing_to_facebook_page( $listing );
-        $this->successful['page'] = $this->successful['page'] + 1;
+        if ( $this->facebook_helper->send_listing_to_facebook_page( $listing ) ) {
+            $this->successful['page'] = $this->successful['page'] + 1;
+        }
     }
 
     public function send_listing_to_facebook_group( $listing ) {
-        $this->facebook_helper->send_listing_to_facebook_group( $listing );
-        $this->successful['group'] = $this->successful['group'] + 1;
+        if ( $this->facebook_helper->send_listing_to_facebook_group( $listing ) ) {
+            $this->successful['group'] = $this->successful['group'] + 1;
+        }
     }
 
     /**

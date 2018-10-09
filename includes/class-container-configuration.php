@@ -102,6 +102,7 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
         $container['SendListingToFacebookHelper'] = $container->service( function( $container ) {
             return new AWPCP_SendToFacebookHelper(
                 AWPCP_Facebook::instance(),
+                awpcp_facebook_integration(),
                 awpcp_attachment_properties(),
                 awpcp_attachments_collection(),
                 $container['ListingRenderer'],

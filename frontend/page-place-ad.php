@@ -143,7 +143,11 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
         $awpcp->js->localize( 'page-place-ad-details', awpcp_listing_form_fields_validation_messages() );
 
-        return $this->_dispatch( $default );
+        if ( is_admin() && isset( $_GET['page'] ) && in_array( $_GET['page'], array( 'awpcp-listings', 'awpcp-panel' ), true ) ) {
+            echo $this->_dispatch( $default );
+        } else {
+            return $this->_dispatch( $default );
+        }
     }
 
     protected function _dispatch($default=null) {
