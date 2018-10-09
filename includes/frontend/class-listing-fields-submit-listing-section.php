@@ -77,6 +77,8 @@ class AWPCP_ListingFieldsSubmitListingSection {
             ];
         }
 
+        awpcp()->js->localize( 'submit-listing-form-fields', awpcp_listing_form_fields_validation_messages() );
+
         $data    = $this->form_fields_data->get_stored_data( $listing );
         $errors  = array();
         $context = array(

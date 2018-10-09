@@ -127,7 +127,7 @@ AWPCP.define( 'awpcp/frontend/listing-fields-section-controller', [
             $.publish( '/awpcp/post-listing-page/details-step/ready', [ self.$element ] );
 
             self.$element.find( 'form' ).validate({
-                messages: $.AWPCP.l10n( 'page-place-ad-details' ),
+                messages: $.AWPCP.l10n( 'submit-listing-form-fields' ),
                 onfocusout: false,
                 submitHandler: function( form, event ) {
                     event.preventDefault();
