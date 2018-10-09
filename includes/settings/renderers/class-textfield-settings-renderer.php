@@ -35,12 +35,15 @@ class AWPCP_TextfieldSettingsRenderer {
         $html .= 'value="' . esc_attr( $value ) . '" type="' . esc_attr( $type ) . '" ';
         $html .= 'name="awpcp-options[' . $setting['id'] . ']" ';
 
-        if ( ! empty( $config ) ) {
-            $html .= 'awpcp-setting="' . esc_attr( wp_json_encode( $config ) ) . '" />';
-        } else {
-            $html .= '/>';
+        if ( ! empty( $setting['readonly'] ) ) {
+            $html .= 'disabled="disabled" ';
         }
 
+        if ( ! empty( $config ) ) {
+            $html .= 'awpcp-setting="' . esc_attr( wp_json_encode( $config ) ) . '" ';
+        }
+
+        $html .= '/>';
         $html .= strlen( $setting['description'] ) > 20 ? '<br/>' : '&nbsp;';
         $html .= '<span class="description">' . $setting['description'] . '</span>';
 
