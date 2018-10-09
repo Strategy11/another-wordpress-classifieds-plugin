@@ -17,6 +17,9 @@ function awpcp_general_settings() {
  * Register general plugin settings.
  *
  * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
+ * @SuppressWarnings(PHPMD.ExcessiveClassLength)
+ * @SuppressWarnings(PHPMD.TooManyMethods)
+ * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
 class AWPCP_GeneralSettings {
 
@@ -37,11 +40,13 @@ class AWPCP_GeneralSettings {
      * @since 4.0.0     Updated to use Settings Manager.
      */
     public function register_settings( $settings_manager ) {
-        $settings_manager->add_settings_group( [
-            'id'       => 'general-settings',
-            'name'     => __( 'General', 'another-wordpress-classifieds-plugin' ),
-            'priority' => 5,
-        ] );
+        $settings_manager->add_settings_group(
+            [
+                'id'       => 'general-settings',
+                'name'     => __( 'General', 'another-wordpress-classifieds-plugin' ),
+                'priority' => 5,
+            ]
+        );
 
         $this->register_general_settings( $settings_manager );
         $this->register_date_and_time_format_settings( $settings_manager );
@@ -565,6 +570,7 @@ class AWPCP_GeneralSettings {
 
     /**
      * @since 4.0.0
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     private function register_facebook_settings( $settings_manager ) {
         $settings_manager->add_settings_group( [
@@ -779,7 +785,7 @@ class AWPCP_GeneralSettings {
     /**
       * @since 3.8.6
       */
-     public function facebook_application_settings_section( $args ) {
+     public function facebook_application_settings_section() {
          $content = __( 'You can find your application information in the <a>Facebook Developer Apps</a> page.', 'another-wordpress-classifieds-plugin' );
          $content = str_replace( '<a>', '<a href="https://developers.facebook.com/apps/" target="_blank">', $content );
 
@@ -788,8 +794,9 @@ class AWPCP_GeneralSettings {
 
     /**
      * @since 3.8.6
+     * @SuppressWarnings(PHPMD.ElseExpression)
      */
-    public function facebook_user_authorization_section( $args ) {
+    public function facebook_user_authorization_section() {
         // Choosing Public is important because:
         // - http://stackoverflow.com/a/19653226/201354
         // - https://github.com/drodenbaugh/awpcp/issues/1288#issuecomment-134198377
@@ -814,7 +821,7 @@ class AWPCP_GeneralSettings {
     /**
      * @sicne 3.8.6
      */
-    public function facebook_page_and_group_selection_section( $args ) {
+    public function facebook_page_and_group_selection_section() {
         $content  = '<p><strong>' . esc_html__( 'Available Facebook Pages and Groups will be displayed after you enter a valid User Access Token.', 'another-wordpress-classifieds-plugin' ) . '</strong></p>';
         $content .= '<p>' . __( 'As of April 4, 2018, all applications need to go through <a href="https://developers.facebook.com/docs/apps/review" rel="nofollow">App Review</a> in order to get access to the <a href="https://developers.facebook.com/docs/graph-api/reference/page/" rel="nofollow">Page API</a> and <a href="https://developers.facebook.com/docs/graph-api/reference/user/groups/" rel="nofollow">Groups API</a>. That means that you may need to <a href="https://developers.facebook.com/docs/facebook-login/review" rel="nofollow">submit your app for review</a> (ask for the <code>manage_pages</code>, <code>publish_pages</code>, <code>publish_to_groups</code> permissions), before AWPCP can display the list of pages and groups you manage and be able to post classifieds ads to those groups and pages.', 'another-wordpress-classifieds-plugin' ) . '</p>';
 
