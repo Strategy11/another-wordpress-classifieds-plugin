@@ -37,7 +37,7 @@ class AWPCP_FacebookCacheHelper {
      */
     private $settings;
 
-    public function __construct( $facebook_integration, $listing_renderer, $ads, $$settings ) {
+    public function __construct( $facebook_integration, $listing_renderer, $ads, $settings ) {
         $this->facebook_integration = $facebook_integration;
         $this->listing_renderer     = $listing_renderer;
         $this->ads                  = $ads;
