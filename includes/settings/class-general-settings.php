@@ -378,7 +378,7 @@ class AWPCP_GeneralSettings {
             $is_akismet_key_set = strlen( get_option( 'wordpress_api_key' ) ) > 0;
             $use_akismet_default_value = $is_akismet_installed && $is_akismet_key_set;
         } else {
-            $use_akismet_default_value = $settings_manager->get_option( 'useakismet' );
+            $use_akismet_default_value = $this->settings->get_option( 'useakismet' );
         }
 
         $settings_manager->add_setting(
