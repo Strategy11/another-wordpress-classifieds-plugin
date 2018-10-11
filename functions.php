@@ -2857,6 +2857,10 @@ function awpcp_getip() {
         }
     }
 
+    // HTTP_X_FORWARDED_FOR sometimes is a comma separated list of IP addresses:
+    // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-For.
+    //
+    // Let's turn that into an array of IP addresses instead.
     if ( isset( $variables['HTTP_X_FORWARDED_FOR'] ) ) {
         $variables['HTTP_X_FORWARDED_FOR'] = array_map( 'trim', explode( ',', $variables['HTTP_X_FORWARDED_FOR'] ) );
     }
@@ -2865,6 +2869,7 @@ function awpcp_getip() {
         foreach ( (array) $values as $value ) {
             $filtered_value = filter_var( $value, FILTER_VALIDATE_IP );
 
+            // awpcp_validip() also checks that the IP address is not a reserved one.
             if ( ! empty( $filtered_value ) && awpcp_validip( $filtered_value ) ) {
                 return $filtered_value;
             }
