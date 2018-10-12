@@ -162,7 +162,7 @@ class AWPCP_ModulesManager {
                 echo $this->show_required_awpcp_version_notice( $modules );
                 break;
             case 'modules-not-compatible':
-                return $this->show_modules_not_compatible_notice( $modules );
+                echo $this->show_modules_not_compatible_notice( $modules );
                 break;
             case 'modules-with-inactive-license':
                 echo $this->show_inactive_licenses_notice( $modules );
@@ -209,9 +209,23 @@ class AWPCP_ModulesManager {
     }
 
     private function show_modules_not_compatible_notice( $modules ) {
+        $modules_information = $this->plugin->get_premium_modules_information();
+
+        $message  = _n( 'The version of AWPCP {modules_names} is not compatible with version {awpcp_version}.', 'The versions of AWPCP {modules_names} are not compatible with version {awpcp_version}.', count( $modules ), 'another-wordpress-classifieds-plugin' );
+        $message .= '<br><br>';
+        $message .= __( 'Please get AWPCP {required_modules_versions} or newer!', 'another-wordpress-classifieds-plugin' );
+        $strings  = [];
+
         foreach ( $modules as $module ) {
-            echo $this->show_module_not_compatible_notice( $module );
+            $strings['modules'][]           = $module->name;
+            $strings['required_versions'][] = "{$module->name} ({$modules_information[ $module->slug ]['required']})";
         }
+
+        $message = str_replace( '{modules_names}', awpcp_string_with_names( $strings['modules'] ), $message );
+        $message = str_replace( '{awpcp_version}', '<strong>' . $this->plugin->version . '</strong>', $message );
+        $message = str_replace( '{required_modules_versions}', awpcp_string_with_names( $strings['required_versions'] ), $message );
+
+        return awpcp_print_error( $message );
     }
 
     private function show_inactive_licenses_notice( $modules ) {
@@ -236,18 +250,6 @@ class AWPCP_ModulesManager {
     private function show_expired_licenses_notice( $modules ) {
         $message = _n( 'The license for AWPCP <module-name> expired. The module will continue to work but you will not receive automatic updates when a new version is available.', 'The license for AWPCP <modules-names> expired. Those modules will continue to work but you will not receive automatic updates when a new version is available.', count( $modules ), 'another-wordpress-classifieds-plugin' );
         return $this->show_license_notice( $message, $modules );
-    }
-
-    private function show_module_not_compatible_notice( $module ) {
-        $modules = $this->plugin->get_premium_modules_information();
-
-        $required_version = $modules[ $module->slug ][ 'required' ];
-
-        $message = __( 'This version of AWPCP %1$s is not compatible with AWPCP version %2$s. Please get AWPCP %1$s %3$s or newer!', 'another-wordpress-classifieds-plugin' );
-        $message = sprintf( $message, '<strong>' . $module->name . '</strong>', $this->plugin->version, '<strong>' . $required_version . '</strong>' );
-        $message = sprintf( '<strong>%s:</strong> %s', __( 'Error', 'another-wordpress-classifieds-plugin' ), $message );
-
-        return awpcp_print_error( $message );
     }
 
     private function show_module_requires_manual_upgrade_notice( $modules ) {
