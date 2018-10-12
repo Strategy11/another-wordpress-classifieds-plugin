@@ -1,21 +1,27 @@
+/**
+ * Most themes include rules such as .entry ul o .site-main ul that have
+ * higher specificity than just .awpcp-classifieds-menu. I added !important
+ * to force our rules.
+ */
 .awpcp-classifieds-menu {
-    margin: 8pt 0;
-    padding: 0;
-}
-.awpcp-classifieds-menu--menu-item {
-    box-sizing: border-box;
-    float: left;
-    list-style: none;
-    padding-right: 8pt;
-    margin: 0 0 4pt;
-}
-.awpcp-classifieds-menu--menu-item a img {
-    display: inline-block;
-}
-.awpcp-classifieds-menu--menu-item-link {
-    box-sizing: border-box;
-    text-align: center;
-    width: 100%;
+    margin: 8pt 0 !important;
+    padding: 0 !important;
+
+    .awpcp-classifieds-menu--menu-item {
+        box-sizing: border-box;
+        float: left;
+        list-style: none;
+        padding-right: 8pt;
+        margin: 0 0 4pt;
+    }
+    .awpcp-classifieds-menu--menu-item a img {
+        display: inline-block;
+    }
+    .awpcp-classifieds-menu--menu-item-link {
+        box-sizing: border-box;
+        text-align: center;
+        width: 100%;
+    }
 }
 
 .awpcp-classifieds-menu-tiny {
