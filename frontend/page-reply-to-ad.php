@@ -242,8 +242,8 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
             'listing_title' => $ad_title,
             'listing_url'   => $ad_url,
             'message'       => $message,
-            'site_title'    => $nameofsite,
-            'home_url'      => home_url(),
+            'website_title' => $nameofsite,
+            'website_url'   => home_url(),
         ];
 
         /* send email to admin */

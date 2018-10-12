@@ -1178,7 +1178,7 @@ class AWPCP_Installer {
 
         $template = [
             'subject' => _x( "{__previous_subject__} regarding: {listing_title}", 'reply to ad email', 'another-wordpress-classifieds-plugin' ),
-            'body'    => _x( "{__previous_body__}\n\nContact name: {sender_name}\nContact email: {sender_email}\n\nContacting about {listing_title}\n{listing_url}\n\nMessage:\n\n{message}\n\n\n{site_title}\n{home_url}", 'reply to ad email', 'another-wordpress-classifieds-plugin' ),
+            'body'    => _x( "{__previous_body__}\n\nContact name: {sender_name}\nContact email: {sender_email}\n\nContacting about {listing_title}\n{listing_url}\n\nMessage:\n\n{message}\n\n{website_title}\n{website_url}", 'reply to ad email', 'another-wordpress-classifieds-plugin' ),
             'version' => '4.0.0',
         ];
 
