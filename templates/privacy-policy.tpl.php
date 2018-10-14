@@ -2,7 +2,7 @@
 
     <h3><?php echo _x( 'Another WordPress Classifieds Plugin', 'privacy policy', 'another-wordpress-classifieds-plugin' ); // XSS Ok. ?></h3>
 
-    <p><strong class="privacy-policy-tutorial"><?php echo __( 'Suggested text:' ); // XSS Ok. ?> </strong><?php echo _x( 'When you submit a classified listing, the content of the listing and its metadata are retained indefinetely. All users can see, edit or delete the personal information included on their listings at any time. Website administrators can also see and edit that information.', 'privacy policy', 'another-wordpress-classifieds-plugin' ); // XSS Ok. ?></p>
+    <p><strong class="privacy-policy-tutorial"><?php echo __( 'Suggested text:' ); // XSS Ok. ?> </strong><?php echo _x( 'When you submit a classified listing, the content of the listing and its metadata are retained indefinitely. All users can see, edit or delete the personal information included on their listings at any time. Website administrators can also see and edit that information.', 'privacy policy', 'another-wordpress-classifieds-plugin' ); // XSS Ok. ?></p>
 
     <p><?php echo _x( 'Website visitors can see the contact name, website URL, phone number, address and other information included in your submission to describe the classified listing.', 'privacy policy', 'another-wordpress-classifieds-plugin' ); // XSS Ok. ?></p>
 
