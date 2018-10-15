@@ -9,13 +9,13 @@
 # Franck, 2015-2017
 # FX Bénard <fxb@wp-translations.org>, 2016-2017
 # FX Bénard <fxb@wp-translations.org>, 2014-2015
-# Willington Vega <wvega@wvega.com>, 2015-2017
+# Willington Vega <wvega@wvega.com>, 2015-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2018-05-07 23:40:50+00:00\n"
-"PO-Revision-Date: 2018-05-07 23:41+0000\n"
+"POT-Creation-Date: 2018-10-15 23:38:43+00:00\n"
+"PO-Revision-Date: 2018-10-15 23:40+0000\n"
 "Last-Translator: Willington Vega <wvega@wvega.com>\n"
 "Language-Team: French (France) (http://www.transifex.com/wp-translations/another-wordpress-classifieds-plugin/language/fr_FR/)\n"
 "MIME-Version: 1.0\n"
@@ -65,12 +65,12 @@ msgid "Credit Plans"
 msgstr "Offres de crédits"
 
 #: admin/admin-panel-credit-plans.php:42 admin/admin-panel-fees.php:45
-#: admin/admin-panel-listings.php:91
+#: admin/admin-panel-listings.php:98
 msgid "Edit"
 msgstr "Modifier"
 
 #: admin/admin-panel-credit-plans.php:43 admin/admin-panel-fees.php:46
-#: admin/admin-panel-listings-table.php:232 admin/admin-panel-listings.php:92
+#: admin/admin-panel-listings-table.php:245 admin/admin-panel-listings.php:99
 #: admin/templates/admin-panel-fees-delete-form.tpl.php:13
 #: admin/templates/delete_form.tpl.php:12
 msgid "Delete"
@@ -179,13 +179,13 @@ msgstr "Caractères dans le titre"
 msgid "Chars in Description"
 msgstr "Caractères dans la description"
 
-#: admin/admin-panel-fees-table.php:124 admin/admin-panel.php:290
+#: admin/admin-panel-fees-table.php:124 admin/admin-panel.php:292
 #: admin/templates/admin-panel-fees-entry-form.tpl.php:89
 msgid "Categories"
 msgstr "Catégories"
 
 #: admin/admin-panel-fees-table.php:127
-#: admin/templates/admin-sidebar.tpl.php:103 awpcp.php:885
+#: admin/templates/admin-sidebar.tpl.php:103 awpcp.php:905
 msgid "Featured Ads"
 msgstr "Annonces mises en avant"
 
@@ -251,7 +251,7 @@ msgstr "Modifier l’annonce"
 #: admin/admin-panel-listings-edit-ad-page.php:15
 #: admin/admin-panel-listings-place-ad-page.php:15
 #: admin/admin-panel-listings-renew-ad-page.php:15
-#: admin/admin-panel-listings.php:20
+#: admin/admin-panel-listings.php:25
 msgid "Manage Listings"
 msgstr "Gérer les annonces"
 
@@ -261,16 +261,16 @@ msgid "Place Ad"
 msgstr "Ajouter une annonce"
 
 #: admin/admin-panel-listings-renew-ad-page.php:15
-#: admin/admin-panel-listings.php:119
+#: admin/admin-panel-listings.php:126
 #: frontend/templates/page-renew-ad.tpl.php:3
 msgid "Renew Ad"
 msgstr "Renouveler l’annonce"
 
-#: admin/admin-panel-listings-table.php:25
+#: admin/admin-panel-listings-table.php:37
 msgid "Showing Ads from %s category."
 msgstr "Afficher les annonces de la catégorie %s."
 
-#: admin/admin-panel-listings-table.php:174
+#: admin/admin-panel-listings-table.php:187
 #: admin/templates/admin-panel-debug.tpl.php:44
 #: frontend/templates/widget-categories-form.tpl.php:2
 #: frontend/templates/widget-latest-ads-form.tpl.php:2
@@ -278,189 +278,191 @@ msgstr "Afficher les annonces de la catégorie %s."
 msgid "Title"
 msgstr "Titre"
 
-#: admin/admin-panel-listings-table.php:177
+#: admin/admin-panel-listings-table.php:190
 #: admin/templates/admin-panel-listings-view.tpl.php:5
 #: frontend/templates/email-send-ad-access-key.tpl.php:6
 #: frontend/templates/email-send-all-ad-access-keys.tpl.php:8
 msgid "Access Key"
 msgstr "Code d'accès"
 
-#: admin/admin-panel-listings-table.php:180 frontend/page-place-ad.php:755
+#: admin/admin-panel-listings-table.php:193 frontend/page-place-ad.php:755
 #: templates/admin/import-listings-admin-page-configuration-form.tpl.php:23
 msgid "Start Date"
 msgstr "Date de début"
 
-#: admin/admin-panel-listings-table.php:181 frontend/page-place-ad.php:757
+#: admin/admin-panel-listings-table.php:194 frontend/page-place-ad.php:757
 #: templates/admin/import-listings-admin-page-configuration-form.tpl.php:33
 msgid "End Date"
 msgstr "Date de fin"
 
-#: admin/admin-panel-listings-table.php:182
+#: admin/admin-panel-listings-table.php:195
 msgid "Renewed Date"
 msgstr "Date de renouvellement "
 
-#: admin/admin-panel-listings-table.php:183
+#: admin/admin-panel-listings-table.php:196
 msgid "Status"
 msgstr "État"
 
-#: admin/admin-panel-listings-table.php:184
+#: admin/admin-panel-listings-table.php:197
 msgid "Payment Term"
 msgstr "Conditions de paiement"
 
-#: admin/admin-panel-listings-table.php:185
+#: admin/admin-panel-listings-table.php:198
 msgid "Payment Status"
 msgstr "État du paiement"
 
-#: admin/admin-panel-listings-table.php:188
-#: admin/admin-panel-listings-table.php:268
-#: admin/admin-panel-listings-table.php:445
+#: admin/admin-panel-listings-table.php:201
+#: admin/admin-panel-listings-table.php:281
+#: admin/admin-panel-listings-table.php:458
 msgid "Featured"
 msgstr "Mis en avant"
 
-#: admin/admin-panel-listings-table.php:192
+#: admin/admin-panel-listings-table.php:205
 msgid "Owner"
 msgstr "Propriétaire"
 
-#: admin/admin-panel-listings-table.php:216 admin/admin-panel-listings.php:96
+#: admin/admin-panel-listings-table.php:229 admin/admin-panel-listings.php:103
 msgid "Enable"
 msgstr "Activer"
 
-#: admin/admin-panel-listings-table.php:217 admin/admin-panel-listings.php:98
+#: admin/admin-panel-listings-table.php:230 admin/admin-panel-listings.php:105
 msgid "Disable"
 msgstr "Désactiver"
 
-#: admin/admin-panel-listings-table.php:218
+#: admin/admin-panel-listings-table.php:231
 msgid "Renew"
 msgstr "Renouveler"
 
-#: admin/admin-panel-listings-table.php:219
+#: admin/admin-panel-listings-table.php:232
 msgid "Mark as SPAM"
 msgstr "Signaler comme indésirable"
 
-#: admin/admin-panel-listings-table.php:223 admin/admin-panel-listings.php:111
+#: admin/admin-panel-listings-table.php:236 admin/admin-panel-listings.php:118
 msgid "Make Featured"
 msgstr "Mettre en avant"
 
-#: admin/admin-panel-listings-table.php:224
+#: admin/admin-panel-listings-table.php:237
 msgid "Make Non Featured"
 msgstr "Ne pas mettre en avant"
 
-#: admin/admin-panel-listings-table.php:229 admin/admin-panel-listings.php:134
+#: admin/admin-panel-listings-table.php:241 admin/admin-panel-listings.php:140
 msgid "Send to Facebook"
 msgstr "Envoyer sur Facebook"
 
-#: admin/admin-panel-listings-table.php:253
+#: admin/admin-panel-listings-table.php:266
 msgid "New"
 msgstr "Nouveau"
 
-#: admin/admin-panel-listings-table.php:254
+#: admin/admin-panel-listings-table.php:267
 msgid "Expired"
 msgstr "Expirée"
 
-#: admin/admin-panel-listings-table.php:259
+#: admin/admin-panel-listings-table.php:272
 msgid "Ads Awaiting Approval"
 msgstr "Annonces à valider"
 
-#: admin/admin-panel-listings-table.php:263
+#: admin/admin-panel-listings-table.php:276
 msgid "Images Awaiting Approval"
 msgstr "Images à valider"
 
-#: admin/admin-panel-listings-table.php:269
+#: admin/admin-panel-listings-table.php:282
 msgid "Flagged"
 msgstr "Signalées"
 
-#: admin/admin-panel-listings-table.php:270
+#: admin/admin-panel-listings-table.php:283
 msgid "Incomplete"
 msgstr "Incomplète"
 
-#: admin/admin-panel-listings-table.php:271
+#: admin/admin-panel-listings-table.php:284
 msgid "Unverified"
 msgstr "Non vérifiées"
 
-#: admin/admin-panel-listings-table.php:272
+#: admin/admin-panel-listings-table.php:285
 msgid "Completed"
 msgstr "Terminée"
 
-#: admin/admin-panel-listings-table.php:282
+#: admin/admin-panel-listings-table.php:295
 msgid "Search by"
 msgstr "Rechercher par"
 
-#: admin/admin-panel-listings-table.php:284
+#: admin/admin-panel-listings-table.php:297
 msgid "Ad ID"
 msgstr "ID de l’annonce"
 
-#: admin/admin-panel-listings-table.php:285
+#: admin/admin-panel-listings-table.php:298
 msgid "Ad Title"
 msgstr "Titre de l’annonce"
 
-#: admin/admin-panel-listings-table.php:286
+#: admin/admin-panel-listings-table.php:299
 msgid "Keyword"
 msgstr "Mot-clé"
 
-#: admin/admin-panel-listings-table.php:287 frontend/page-show-ad.php:58
+#: admin/admin-panel-listings-table.php:300 frontend/page-show-ad.php:58
 #: frontend/placeholders.php:584
 msgid "Location"
 msgstr "Adresse"
 
-#: admin/admin-panel-listings-table.php:288 frontend/placeholders.php:676
+#: admin/admin-panel-listings-table.php:301 frontend/placeholders.php:676
 msgid "Phone"
 msgstr "Téléphone"
 
-#: admin/admin-panel-listings-table.php:291
+#: admin/admin-panel-listings-table.php:304
+#: includes/admin/class-listings-personal-data-provider.php:88
+#: includes/admin/class-payment-personal-data-provider.php:47
 msgid "Payer Email"
 msgstr "E-mail"
 
-#: admin/admin-panel-listings-table.php:294
+#: admin/admin-panel-listings-table.php:307
 msgid "Ad Contact Email"
-msgstr ""
+msgstr "Adresse e-mail du contact"
 
-#: admin/admin-panel-listings-table.php:295
+#: admin/admin-panel-listings-table.php:308
 #: frontend/templates/page-place-ad-details-step.tpl.php:36
 #: frontend/templates/page-place-ad-order-step.tpl.php:43
 msgid "User"
 msgstr "Utilisateur"
 
-#: admin/admin-panel-listings-table.php:336
+#: admin/admin-panel-listings-table.php:349
 msgctxt "admin listings table"
 msgid "Filter"
 msgstr "Filtrer"
 
-#: admin/admin-panel-listings-table.php:381
+#: admin/admin-panel-listings-table.php:394
 msgid "View Ad."
 msgstr "Voir l’annonce"
 
-#: admin/admin-panel-listings-table.php:409
+#: admin/admin-panel-listings-table.php:422
 msgid "Mark as Verified"
 msgstr "Marquer comme vérifiée"
 
-#: admin/admin-panel-listings-table.php:418
+#: admin/admin-panel-listings-table.php:431
 msgid "Disabled"
 msgstr "Désactivé"
 
-#: admin/admin-panel-listings-table.php:418
+#: admin/admin-panel-listings-table.php:431
 #: templates/components/media-manager.tpl.php:19
 #: templates/components/media-manager.tpl.php:58
 #: templates/components/media-manager.tpl.php:100
 msgid "Enabled"
 msgstr "Activé"
 
-#: admin/admin-panel-listings-table.php:432
+#: admin/admin-panel-listings-table.php:445
 msgid "Mark as Paid"
 msgstr "Marquer comme payé"
 
-#: admin/admin-panel-listings-table.php:445
+#: admin/admin-panel-listings-table.php:458
 msgid "Not Featured"
 msgstr "Pas mise en avant"
 
-#: admin/admin-panel-listings.php:22 admin/user-panel.php:50
+#: admin/admin-panel-listings.php:27 admin/user-panel.php:50
 msgid "Listings"
 msgstr "Listes"
 
-#: admin/admin-panel-listings.php:43
+#: admin/admin-panel-listings.php:49
 msgid "Are you sure you want to delete the selected Ads?"
 msgstr "Voulez-vous vraiment supprimer les annonces sélectionnées ?"
 
-#: admin/admin-panel-listings.php:44
+#: admin/admin-panel-listings.php:50
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:31
 #: admin/templates/admin-panel-fees-delete-form.tpl.php:12
 #: admin/templates/admin-panel-fees-delete.tpl.php:12
@@ -474,193 +476,189 @@ msgstr "Voulez-vous vraiment supprimer les annonces sélectionnées ?"
 msgid "Cancel"
 msgstr "Annuler"
 
-#: admin/admin-panel-listings.php:90
+#: admin/admin-panel-listings.php:97
 msgid "View"
 msgstr "Afficher"
 
-#: admin/admin-panel-listings.php:101
+#: admin/admin-panel-listings.php:108
 msgid "Unflag"
 msgstr "Retirer le signalement"
 
-#: admin/admin-panel-listings.php:109
+#: admin/admin-panel-listings.php:116
 msgid "Remove Featured"
 msgstr "Retirer la mise en avant"
 
-#: admin/admin-panel-listings.php:113
+#: admin/admin-panel-listings.php:120
 msgid "Send Access Key"
 msgstr "Envoyer la clé d’accès"
 
-#: admin/admin-panel-listings.php:123
+#: admin/admin-panel-listings.php:130
 #: frontend/templates/page-place-ad-preview-step.tpl.php:15
 msgid "Manage Images"
 msgstr "Gérer les images"
 
-#: admin/admin-panel-listings.php:127
+#: admin/admin-panel-listings.php:134
 msgid "Add Images"
 msgstr "Ajouter des images"
 
-#: admin/admin-panel-listings.php:142
+#: admin/admin-panel-listings.php:148
 msgid "Send to Facebook Group"
 msgstr "Envoyer sur le groupe Facebook"
 
-#: admin/admin-panel-listings.php:155
+#: admin/admin-panel-listings.php:161
 msgid "Mark Reviewed"
 msgstr "Marqué comme revu"
 
-#: admin/admin-panel-listings.php:189
+#: admin/admin-panel-listings.php:195
 msgctxt "admin listings"
 msgid "You do not have sufficient permissions to perform that action."
 msgstr "Vous n'avez pas les droits nécessaires pour effectuer cette action. "
 
-#: admin/admin-panel-listings.php:298
+#: admin/admin-panel-listings.php:304
 msgid "No Ad ID was specified."
 msgstr "Aucune ID d’annonce n’a été spécifiée."
 
-#: admin/admin-panel-listings.php:305 frontend/ad-functions.php:242
+#: admin/admin-panel-listings.php:311 frontend/ad-functions.php:242
 #: frontend/page-edit-ad.php:173 frontend/page-edit-ad.php:231
-#: frontend/page-edit-ad.php:369 frontend/page-edit-ad.php:397
+#: frontend/page-edit-ad.php:371 frontend/page-edit-ad.php:399
 msgid "The specified Ad doesn't exists."
 msgstr "L’annonce demandée n’existe pas."
 
-#: admin/admin-panel-listings.php:365
+#: admin/admin-panel-listings.php:371
 msgid "No Ads were selected."
 msgstr "Aucune annonce n’a été sélectionnée."
 
-#: admin/admin-panel-listings.php:371
+#: admin/admin-panel-listings.php:377
 #: includes/views/admin/listings/class-listing-action-admin-page.php:24
 msgctxt "Listing bulk operations: <message-ok> and <message-error>."
 msgid "%s and %s."
 msgstr "%s et %s."
 
-#: admin/admin-panel-listings.php:388
+#: admin/admin-panel-listings.php:394
 msgid "%d Ad was disabled"
 msgid_plural "%d Ads were disabled"
 msgstr[0] "%d annonce a été désactivée"
 msgstr[1] "%d annonces ont été désactivées"
 
-#: admin/admin-panel-listings.php:392
+#: admin/admin-panel-listings.php:398
 msgid "there was an error trying to disable %d Ads"
 msgstr "Une erreur s’est produite pendant l’opération de désactivation de l’annonce %d"
 
-#: admin/admin-panel-listings.php:415
+#: admin/admin-panel-listings.php:421
 msgid "%d was enabled"
 msgid_plural "%d Ads were enabled"
 msgstr[0] "%d a été activée"
 msgstr[1] "%d annonces ont été activées"
 
-#: admin/admin-panel-listings.php:419
+#: admin/admin-panel-listings.php:425
 msgid "there was an error trying to enable %d Ads"
 msgstr "Une erreur s’est produite pendant l’opération de désactivation de l’annonce %d"
 
-#: admin/admin-panel-listings.php:434
+#: admin/admin-panel-listings.php:440
 msgid "The Ad has been unflagged."
 msgstr "L’annonce n’est plus signalée."
 
-#: admin/admin-panel-listings.php:444
+#: admin/admin-panel-listings.php:450
 msgid "The Ad was marked as verified."
 msgstr "L’annonce a été marquée comme vérifiée."
 
-#: admin/admin-panel-listings.php:454
+#: admin/admin-panel-listings.php:460
 msgid "The Ad has been marked as paid."
 msgstr "L’annonce a été marquée comme payée."
 
-#: admin/admin-panel-listings.php:471
+#: admin/admin-panel-listings.php:477
 msgid "%d Ad were marked as SPAM and removed"
 msgid_plural "%d Ads were marked as SPAM and removed"
 msgstr[0] "L’annonce %d a été marquée comme indésirable et supprimée"
 msgstr[1] "Les annonces %d ont été marquées comme indésirables et supprimées"
 
-#: admin/admin-panel-listings.php:475
+#: admin/admin-panel-listings.php:481
 msgid "there was an error trying to mark %d Ad as SPAM"
 msgstr "Une erreur s’est produite pendant l’opération de signalement comme indésirable de l’annonce %d"
 
-#: admin/admin-panel-listings.php:491
+#: admin/admin-panel-listings.php:497
 msgid "%d Ad was set as fatured"
 msgid_plural "%d Ads were set as featured"
 msgstr[0] "L’annonce %d a été mise en avant"
 msgstr[1] "Les annonces %d ont été mises en avant"
 
-#: admin/admin-panel-listings.php:495
+#: admin/admin-panel-listings.php:501
 msgid "there was an error trying to set %d Ads as featured"
 msgstr "Une erreur s’est produite pendant l’opération de mise en avant de l’annonce %d"
 
-#: admin/admin-panel-listings.php:511
+#: admin/admin-panel-listings.php:517
 msgid "%d Ad was set as non-fatured"
 msgid_plural "%d Ads were set as non-featured"
 msgstr[0] "L’Annonce %d a été définie comme non-vedette"
 msgstr[1] "Les Annonces %d ont été définies comme non-vedette"
 
-#: admin/admin-panel-listings.php:515
+#: admin/admin-panel-listings.php:521
 msgid "there was an error trying to set %d Ads as non-featured"
 msgstr "Une erreur s’est produite pendant l’opération de retrait de la mise en avant de l’annonce %d"
 
-#: admin/admin-panel-listings.php:528
+#: admin/admin-panel-listings.php:534
 msgid "The listing was marked as reviewed."
 msgstr "L’annonce a été marquée comme revue."
 
-#: admin/admin-panel-listings.php:530
+#: admin/admin-panel-listings.php:536
 msgid "The listing couldn't marked as reviewed."
 msgstr "L’Annonce pas pu être marquée comme vérifiée."
 
-#: admin/admin-panel-listings.php:545
+#: admin/admin-panel-listings.php:551
 msgid "Access Key for \"%s\""
 msgstr "Clé d'accès pour \"%s\""
 
-#: admin/admin-panel-listings.php:554
+#: admin/admin-panel-listings.php:560
 msgid "The access key was sent to %s."
 msgstr "La clé d’accès a été envoyée à %s."
 
-#: admin/admin-panel-listings.php:556 frontend/page-edit-ad.php:535
+#: admin/admin-panel-listings.php:562 frontend/page-edit-ad.php:537
 msgid "There was an error trying to send the email to %s."
 msgstr "Une erreur s’est produite pendant l’envoi du mail à %s."
 
-#: admin/admin-panel-listings.php:633
+#: admin/admin-panel-listings.php:639
 msgid "%d of %d Ads were deleted. %d generated errors."
 msgstr "%d annonces sur %d ont été supprimées. %d ont générées des erreurs."
 
-#: admin/admin-panel-listings.php:635
+#: admin/admin-panel-listings.php:641
 msgid "%d of %d Ads were deleted."
 msgstr "%d annonces sur %d ont été supprimées."
 
-#: admin/admin-panel-listings.php:639
+#: admin/admin-panel-listings.php:645
 msgid "%d of %d Ads don't exist."
 msgstr "%d annonces sur %d n’existent pas."
 
-#: admin/admin-panel-listings.php:643
+#: admin/admin-panel-listings.php:649
 msgid "%d of %d Ads weren't deleted because you are not authorized."
 msgstr "%d annonces sur %d n’ont pas été supprimées car vous n’y êtes pas autorisé."
 
-#: admin/admin-panel-listings.php:670
+#: admin/admin-panel-listings.php:676
 msgctxt "ajax delete ad"
 msgid "The specified Ad doesn't exists."
 msgstr "L’annonce demandée n’existe pas."
 
-#: admin/admin-panel-listings.php:711 frontend/page-edit-ad.php:558
+#: admin/admin-panel-listings.php:717 frontend/page-edit-ad.php:560
 msgid "The specified listing doesn't exists."
 msgstr "La liste spécifiée n’existe pas."
 
-#: admin/admin-panel-settings.php:172
+#: admin/admin-panel-settings.php:145
 msgid ""
 "We could not obtain a valid access token from Facebook. The API returned the"
 " following error: %s"
 msgstr "Nous n’avons pas pu obtenir de jeton d’accès valide chez Facebook. L’API a retourné l’erreur suivante&nbsp;: %s"
 
-#: admin/admin-panel-settings.php:174
+#: admin/admin-panel-settings.php:150
 msgid ""
 "We could not obtain a valid access token from Facebook. Please try again."
 msgstr "Nous n’avons pas pu obtenir de jeton d’accès valide chez Facebook. Veuillez faire un nouvel essai."
 
-#: admin/admin-panel-settings.php:182
+#: admin/admin-panel-settings.php:158
 msgid "Facebook Config Diagnostics"
 msgstr "Diagnostic de configuration de Facebook"
 
-#: admin/admin-panel-settings.php:189
+#: admin/admin-panel-settings.php:165
 msgid "Everything looks OK."
 msgstr "Tout semble fonctionner correctement."
-
-#: admin/admin-panel-settings.php:239
-msgid "There was an error trying to contact Facebook servers: \"%s\"."
-msgstr "Une erreur s’est produite durant la connexion aux serveurs de Facebook&nbsp;: %s."
 
 #: admin/admin-panel-uninstall.php:11 admin/admin-panel-uninstall.php:12
 msgid "Uninstall"
@@ -717,12 +715,12 @@ msgctxt "awpcp admin menu"
 msgid "Classifieds"
 msgstr "Petites annonces"
 
-#: admin/admin-panel.php:113 admin/admin-panel.php:266
-#: admin/admin-panel.php:267
+#: admin/admin-panel.php:115 admin/admin-panel.php:268
+#: admin/admin-panel.php:269
 msgid "Settings"
 msgstr "Configuration"
 
-#: admin/admin-panel.php:167
+#: admin/admin-panel.php:169
 msgid ""
 "%1$s has the same name as the %2$s. That will cause %1$s to become "
 "unreachable. Please make sure you don't have duplicate page names."
@@ -732,7 +730,7 @@ msgid_plural ""
 msgstr[0] "%1$s a le même nom que %2$s. Cela va rendre %1$s inaccessible. S’il vous plaît vérifiez que vous ne disposez pas de noms de pages en doubles."
 msgstr[1] "%1$s a le même nom que %2$s. Cela va rendre %1$s inaccessible. S’il vous plaît vérifiez que vous ne disposez pas de noms de pages en doubles."
 
-#: admin/admin-panel.php:181
+#: admin/admin-panel.php:183
 msgid ""
 "Page %1$s has the same name as the AWPCP %2$s. That will cause WordPress "
 "page %1$s to become unreachable. The %2$s is dynamic; you don't need to "
@@ -751,228 +749,228 @@ msgid_plural ""
 msgstr[0] "Page %1$s a le même nom que AWPCP %2$s. Cela rendra la page WordPress %1$s inaccessible. Le %2$s est dynamique; vous n’avez pas besoin de créer une véritable page de WordPress pour afficher la liste des catégories, le plugin va la générer pour vous. Si la page WordPress a été créé pour afficher la liste par défaut des catégories AWPCP, vous pouvez la supprimer et ce message d’erreur disparaîtra. Sinon, s’il vous plaît assurez-vous que vous ne disposez pas de noms de pages en double."
 msgstr[1] "Pages %1$s ont le même nom que AWPCP %2$s. Cela rendra les pages WordPress %1$s inaccessibles. Le %2$s est dynamique; vous n’avez pas besoin de créer une véritable page de WordPress pour afficher la liste des catégories, le plugin va la générer pour vous. Si les pages WordPress ont été créées pour afficher la liste par défaut des catégories AWPCP, vous pouvez les supprimer et ce message d’erreur disparaîtra. Sinon, s’il vous plaît assurez-vous que vous ne disposez pas de noms de pages en double."
 
-#: admin/admin-panel.php:280
+#: admin/admin-panel.php:282
 msgid "Manage Credit"
 msgstr "Gérer les crédits"
 
-#: admin/admin-panel.php:289 admin/admin-panel.php:795
+#: admin/admin-panel.php:291 admin/admin-panel.php:797
 #: admin/templates/admin-panel-home.tpl.php:80
 #: admin/templates/admin-panel-home.tpl.php:108
 msgid "Manage Categories"
 msgstr "Gestion des rubriques"
 
-#: admin/admin-panel.php:315
+#: admin/admin-panel.php:317
 msgid "Manage Extra Fields"
 msgstr "Gestion des champs supplémentaires"
 
-#: admin/admin-panel.php:315 admin/templates/admin-sidebar.tpl.php:108
-#: awpcp.php:878
+#: admin/admin-panel.php:317 admin/templates/admin-sidebar.tpl.php:108
+#: awpcp.php:898
 msgid "Extra Fields"
 msgstr "Champs supplémentaires"
 
-#: admin/admin-panel.php:318
+#: admin/admin-panel.php:320
 msgid "Import Ad"
 msgstr "Importer l’annonce"
 
-#: admin/admin-panel.php:318
+#: admin/admin-panel.php:320
 #: templates/admin/import-listings-admin-page-configuration-form.tpl.php:146
 msgid "Import"
 msgstr "Importer"
 
-#: admin/admin-panel.php:321 admin/templates/admin-panel-debug.tpl.php:3
+#: admin/admin-panel.php:323 admin/templates/admin-panel-debug.tpl.php:3
 msgid "Debug"
 msgstr "Débogage"
 
-#: admin/admin-panel.php:491 admin/admin-panel.php:492
-#: admin/admin-panel.php:824
+#: admin/admin-panel.php:493 admin/admin-panel.php:494
+#: admin/admin-panel.php:826
 msgid "Manage Category Icon"
 msgstr "Gestion des icônes de rubrique"
 
-#: admin/admin-panel.php:497 admin/admin-panel.php:814
-#: admin/admin-panel.php:816
+#: admin/admin-panel.php:499 admin/admin-panel.php:816
+#: admin/admin-panel.php:818
 msgid "Edit Category"
 msgstr "Modifier la rubrique"
 
-#: admin/admin-panel.php:498 admin/admin-panel.php:667
-#: admin/admin-panel.php:818 admin/admin-panel.php:820
+#: admin/admin-panel.php:500 admin/admin-panel.php:669
+#: admin/admin-panel.php:820 admin/admin-panel.php:822
 msgid "Delete Category"
 msgstr "Supprimer la rubrique"
 
-#: admin/admin-panel.php:650
+#: admin/admin-panel.php:652
 msgid "Add A New Category"
 msgstr "Ajouter une nouvelle rubrique"
 
-#: admin/admin-panel.php:657
+#: admin/admin-panel.php:659
 msgid "You are currently editing the category shown below"
 msgstr "Vous modifiez actuellement la rubrique affichée ci-dessous"
 
-#: admin/admin-panel.php:658
+#: admin/admin-panel.php:660
 msgid "Save Category Changes"
 msgstr "Enregistrer les modifications"
 
-#: admin/admin-panel.php:659 admin/admin-panel.php:668
+#: admin/admin-panel.php:661 admin/admin-panel.php:670
 msgid "Parent Category"
 msgstr "Rubrique parente"
 
-#: admin/admin-panel.php:660
+#: admin/admin-panel.php:662
 msgid "Category List Order"
 msgstr "Tri de la liste des rubriques"
 
-#: admin/admin-panel.php:666
+#: admin/admin-panel.php:668
 msgid ""
 "If you're sure that you want to delete this category please press the delete"
 " button"
 msgstr "Si vous voulez vraiment supprimer la rubrique, cliquez le bouton de suppression"
 
-#: admin/admin-panel.php:685 admin/admin-panel.php:696
+#: admin/admin-panel.php:687 admin/admin-panel.php:698
 msgid "Untitled"
 msgstr "Sans titre"
 
-#: admin/admin-panel.php:689
+#: admin/admin-panel.php:691
 msgid ""
 "The category contains ads. If you do not select a category to move them to "
 "the ads will be moved to:"
 msgstr "La rubrique contient encore des annonces. Si vous ne choisissez pas une autre rubrique vers laquelle les déplacer, les annonces seront enregistrées dans&nbsp;:"
 
-#: admin/admin-panel.php:702
+#: admin/admin-panel.php:704
 msgid ""
 "The category also has children. If you do not specify a move-to category the"
 " children will be adopted by"
 msgstr "La rubrique a aussi des dépendances. Si vous n’indiquez pas une rubrique vers laquelle les déplacer, les dépendances seront rattachées à"
 
-#: admin/admin-panel.php:704
+#: admin/admin-panel.php:706
 msgid "Note"
 msgstr "Remarque"
 
-#: admin/admin-panel.php:706
+#: admin/admin-panel.php:708
 msgid "The move-to category specified applies to both ads and categories"
 msgstr "La rubrique réceptrice spécifiée s’applique aux annonces et aux rubriques"
 
-#: admin/admin-panel.php:710
+#: admin/admin-panel.php:712
 msgid "Please select a Move-To category"
 msgstr "Veuillez sélectionner une rubrique de destination"
 
-#: admin/admin-panel.php:720
+#: admin/admin-panel.php:722
 msgid ""
 "Sorry but you cannot delete %s. It is the default category and the default "
 "category cannot be deleted."
 msgstr "Désolé mais vous ne pouvez pas supprimer %s. C’est la rubrique par défaut et elle ne peut être supprimée."
 
-#: admin/admin-panel.php:735
+#: admin/admin-panel.php:737
 msgid "Add a new category"
 msgstr "Ajouter une nouvelle catégorie"
 
-#: admin/admin-panel.php:736
+#: admin/admin-panel.php:738
 msgid "Add new category"
 msgstr "Ajouter une nouvelle catégorie"
 
-#: admin/admin-panel.php:737
+#: admin/admin-panel.php:739
 msgid "List category under"
 msgstr "Sous catégorie d’annonce"
 
-#: admin/admin-panel.php:738
+#: admin/admin-panel.php:740
 msgid "Category list order"
 msgstr "Ordre de catégories d’annonces"
 
-#: admin/admin-panel.php:756
+#: admin/admin-panel.php:758
 msgid "Category to Delete"
 msgstr "Rubrique à supprimer"
 
-#: admin/admin-panel.php:766
+#: admin/admin-panel.php:768
 msgid "Category to Edit"
 msgstr "Rubrique à modifier"
 
-#: admin/admin-panel.php:770 admin/admin-panel.php:784
+#: admin/admin-panel.php:772 admin/admin-panel.php:786
 msgid "Make This a Top Level Category"
 msgstr "En faire une rubrique principale"
 
-#: admin/admin-panel.php:781
+#: admin/admin-panel.php:783
 msgid "Enter the category name"
 msgstr "Intitulé de la rubrique"
 
-#: admin/admin-panel.php:812
+#: admin/admin-panel.php:814
 msgid "Icon Meanings"
 msgstr "Signification des icônes"
 
-#: admin/admin-panel.php:883
+#: admin/admin-panel.php:885
 msgid "Delete Selected Categories"
 msgstr "Supprimer les rubriques sélectionnées"
 
-#: admin/admin-panel.php:886
+#: admin/admin-panel.php:888
 msgid "Move Selected Categories"
 msgstr "Déplacer les rubriques sélectionnées"
 
-#: admin/admin-panel.php:889
+#: admin/admin-panel.php:891
 msgid "Select Move-To category"
 msgstr "Rubrique de destination"
 
-#: admin/admin-panel.php:894
+#: admin/admin-panel.php:896
 msgid "Delete categories should do this with existing Ads"
 msgstr "Supprimer des rubriques devrait provoquer ceci sur les annonces existantes"
 
-#: admin/admin-panel.php:895
+#: admin/admin-panel.php:897
 msgid "Move Ads to new category"
 msgstr "Déplacer l’annonce vers une nouvelle rubrique"
 
-#: admin/admin-panel.php:896
+#: admin/admin-panel.php:898
 msgid "Delete Ads too"
 msgstr "Supprimer aussi l’annonce"
 
-#: admin/admin-panel.php:908 admin/admin-panel.php:920
+#: admin/admin-panel.php:910 admin/admin-panel.php:922
 msgid "Category ID"
 msgstr "ID de la rubrique"
 
-#: admin/admin-panel.php:910 admin/admin-panel.php:922
+#: admin/admin-panel.php:912 admin/admin-panel.php:924
 msgid "Category Name (Total Ads)"
 msgstr "Intitulé de la rubrique (total des annonces)"
 
-#: admin/admin-panel.php:912 admin/admin-panel.php:924
+#: admin/admin-panel.php:914 admin/admin-panel.php:926
 msgid "Parent"
 msgstr "Parente"
 
-#: admin/admin-panel.php:914 admin/admin-panel.php:926
+#: admin/admin-panel.php:916 admin/admin-panel.php:928
 msgid "Order"
 msgstr "Ordre"
 
-#: admin/admin-panel.php:916 admin/admin-panel.php:928
+#: admin/admin-panel.php:918 admin/admin-panel.php:930
 msgid "Action"
 msgstr "Action"
 
-#: admin/admin-panel.php:1126
+#: admin/admin-panel.php:1128
 msgid "The new category was successfully added."
 msgstr "La nouvelle rubrique a bien été ajoutée."
 
-#: admin/admin-panel.php:1136
+#: admin/admin-panel.php:1138
 msgid ""
 "Sorry but you cannot delete the default category. The default category can "
 "only be renamed"
 msgstr "Désolé mais vous ne pouvez pas supprimer la rubrique par défaut, mais seulement la renommer."
 
-#: admin/admin-panel.php:1173
+#: admin/admin-panel.php:1175
 msgid "The category has been deleted"
 msgstr "La rubrique a bien été supprimée"
 
-#: admin/admin-panel.php:1185
+#: admin/admin-panel.php:1187
 msgid "Your category changes have been saved."
 msgstr "Les modifications de la rubrique ont bien été enregistrées."
 
-#: admin/admin-panel.php:1192
+#: admin/admin-panel.php:1194
 msgid "No changes made to categories."
 msgstr "Aucune modification effectuée sur les rubriques."
 
-#: admin/admin-panel.php:1231
+#: admin/admin-panel.php:1233
 msgid ""
 "With the exception of any category that was being moved to itself, the "
 "categories have been moved"
 msgstr "À l’exception de toute rubrique qui aurait été déplacée vers elle-même, les rubriques ont bien été déplacées"
 
-#: admin/admin-panel.php:1235
+#: admin/admin-panel.php:1237
 msgid ""
 "The categories have not been moved because you did not indicate where you "
 "want the categories to be moved to"
 msgstr "Les rubriques n’ont pas été déplacées, car vous n’avez pas indiqué de rubriques vers lesquelles les déplacer"
 
-#: admin/admin-panel.php:1330
+#: admin/admin-panel.php:1332
 msgid "The categories have been deleted"
 msgstr "Les rubriques ont bien été supprimés"
 
@@ -1531,173 +1529,135 @@ msgstr "Gestion des annonces"
 msgid "Search Ads"
 msgstr "Rechercher des annonces"
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:4
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:31
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:9
 msgid "Facebook Integration"
 msgstr "Int&eacute;gration avec Facebook"
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:9
-msgid ""
-"This configuration allows you to post ads to Facebook. You must have a "
-"Facebook Application created to use this feature. Read <a>How to Register "
-"and Configure a Facebook Application.</a>"
-msgstr "Cette configuration vous permet de publier des annonces sur Facebook. Pour cela vous devez d’abord créer une application Facebook. Apprenez ici <a>comment enregistrer et configurer une application Facebook (en)</a>;."
-
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:11
+msgid ""
+"We currently support two methods for posting new ads to Facebook: Facebook "
+"API and Zapier/IFTTT Webhooks."
+msgstr "Nous prenons actuellement en charge deux méthodes pour publier de nouvelles annonces sur Facebook: l'API Facebook et les Webhook Zapier / IFTTT."
+
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:13
+msgid ""
+"Support for Facebook API will be removed in the future. Facebook "
+"significantly reduced access to their APIs across all apps on Apr, 2018. Now"
+" it takes longer and is more difficult to configure Facebook Apps that can "
+"post content to pages or groups. As a result, it is unlikely that this "
+"integration is going to work for new users. We introduced support for "
+"Zapier/IFTTT Webhooks as an alternative and expect customers to migrate to "
+"that integration method."
+msgstr "Le support de l'API Facebook sera supprimé à l'avenir. En avril 2018, Facebook a considérablement réduit l'accès à ses API dans toutes les applications. Désormais, il est plus difficile et plus long de configurer des applications Facebook capables de publier du contenu sur des pages ou des groupes. En conséquence, il est peu probable que cette intégration fonctionne pour les nouveaux utilisateurs. Nous avons introduit la prise en charge de Zapier / IFTTT Webhooks comme une alternative et attendons des clients qu'ils migrent vers cette méthode d'intégration."
+
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:16
+msgid "You can read more about Facebook changes here: {facebook_post_link}"
+msgstr "Vous pouvez en savoir plus sur les modifications de Facebook ici: {facebook_post_link}"
+
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:21
+msgid ""
+"If you are currently using the Facebook API integration method and not "
+"having any issues, you don't have to do anything right now. If you are "
+"having issues, please read the Diagnostics section below to try to fix them."
+msgstr "Si vous utilisez actuellement la méthode d'intégration de l'API Facebook et que vous ne rencontrez aucun problème, vous n'avez rien à faire maintenant. Si vous rencontrez des problèmes, veuillez lire la section Diagnostics ci-dessous pour essayer de les résoudre."
+
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:23
+#: includes/settings-api.php:454
+msgid "Facebook API"
+msgstr "API Facebook"
+
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:26
+msgid ""
+"This integration method allows you to post ads to Facebook using a Facebook "
+"Application. Please read {link_to_how_to_register_facebook_apps}How to "
+"Register and Configure a Facebook "
+"Application{/link_to_how_to_register_facebook_apps} and follow "
+"{link_to_facebook_integration_documentation}these "
+"instructions{/link_to_facebook_integration_documentation}."
+msgstr "Cette méthode d'intégration vous permet de publier des annonces sur Facebook à l'aide d'une application Facebook. Veuillez lire {link_to_how_to_register_facebook_apps} Comment enregistrer et configurer une application Facebook {/ link_to_how_to_register_facebook_apps} et suivez {link_to_facebook_integration_documentation} ces instructions {/ link_to_facebook_integration_documentation}."
+
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:34
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:62
 msgid ""
 "Add the following URL to the list of Valid OAuth Redirect URIs for the "
 "configuration of the Facebook Application:"
-msgstr ""
+msgstr "Ajoutez l'URL suivante à la liste des URLs de redirection valides pour la configuration de l'application Facebook:"
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:19
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:24
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:38
+#: includes/settings-api.php:455
+msgid "Zapier/IFTTT Webhooks"
+msgstr "Webhooks Zapier / IFTTT"
+
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:40
+msgid ""
+"Webhooks allow the plugin to send a request to one of the configured webhook"
+" URLs the first time an ad becomes publicly available on the website. That "
+"is, as soon as any visitor is able to see the ad on the frontend. You can "
+"then add a task on Zapier or IFTTT to process the submitted information "
+"(url, title and description) and create a post on a Facebook Page you "
+"control."
+msgstr "Les Webhook permettent au plug-in d'envoyer une demande à l'une des URL Webhook configurées la première fois qu'une annonce devient publiquement disponible sur le site Web. C’est-à-dire dès que tout visiteur est en mesure de voir l’annonce sur le front-office. Vous pouvez ensuite ajouter une tâche sur Zapier ou IFTTT pour traiter les informations soumises (URL, titre et description) et créer un message sur une page Facebook que vous contrôlez."
+
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:43
+msgid ""
+"Follow the instructiones to create the tasks on "
+"{webhook_instructions_for_zapier}Zapier{/webhook_instructions_for_zapier} or"
+" {webhook_instructions_for_ifttt}IFTTT{/webhook_instructions_for_ifttt}. "
+"Then update the settings at the bottom of this page to enter the webhook "
+"URLs associated with those tasks."
+msgstr "Suivez les instructions pour créer les tâches sur {webhook_instructions_for_zapier} Zapier {/ webhook_instructions_for_zapier} ou sur {webhook_instructions_for_ifttt} IFTTT {/ webhook_instructions_for_ifttt}. Puis mettez à jour les paramètres au bas de cette page pour entrer les URL Webhook associées à ces tâches."
+
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:51
+msgid "Facebook Cache"
+msgstr "Cache Facebook"
+
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:54
+msgid ""
+"If you are using Webhooks to send ads to Facebook, a Facebook Application "
+"can still be used to ask Facebook to clear the cache it has stored for ads "
+"pages. This is useful to ensure users always see the latest version when the"
+" ad is shared on Facebook Pages, Groups and user feeds. If you decide to use"
+" this feature, please read {link_to_how_to_register_facebook_apps}How to "
+"Register and Configure a Facebook "
+"Application{/link_to_how_to_register_facebook_apps} and follow "
+"{link_to_facebook_integration_documentation}these "
+"instructions{/link_to_facebook_integration_documentation}."
+msgstr "Si vous utilisez Webhooks pour envoyer des annonces sur Facebook, vous pouvez toujours utiliser une application Facebook pour demander à Facebook de vider le cache stocké pour les pages d'annonces. Cela est utile pour garantir que les utilisateurs voient toujours la dernière version lorsque l'annonce est partagée sur des pages Facebook, des groupes et des flux d'utilisateurs. Si vous décidez d'utiliser cette fonctionnalité, veuillez lire {link_to_how_to_register_facebook_apps} Comment enregistrer et configurer une application Facebook {/ link_to_how_to_register_facebook_apps} et suivez {link_to_facebook_integration_documentation} ces instructions {/ link_to_facebook_integration_documentation}."
+
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:66
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:89
 msgid "Diagnostics"
 msgstr "Diagnostics"
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:23
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:68
 msgid ""
-"If you are having trouble with Facebook integration, click \"Diagnostics\" "
-"to check your settings."
-msgstr "Si vous avez des problèmes avec l’intégration de Facebook, cliquez sur « Diagnostiques » pour vérifier vos réglages."
+"If you see the following error after trying to get a valid User Access "
+"Token:"
+msgstr "Si vous voyez l'erreur suivante après avoir tenté d'obtenir un jeton d'accès utilisateur valide:"
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:43
-msgid "1. Application Information"
-msgstr "1. informations sur l’extension&nbsp;"
-
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:48
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:72
 msgid ""
-"You can find your application information in the <a>Facebook Developer "
-"Apps</a> page."
-msgstr "Vous trouverez des informations sur votre application sur la page <a>Facebook Developer Apps (en)</a>."
+"You have to submit your Facebook Application for Review and ask for those "
+"permissions or use the Webhooks integration method to send ads to Facebook "
+"using Zapier or IFTTT Webhooks."
+msgstr "Vous devez soumettre votre application Facebook à la révision et demander ces autorisations ou utiliser la méthode d'intégration Webhooks pour envoyer des publicités à Facebook à l'aide de Zapier ou IFTTT Webhooks."
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:54
-msgid "App Id"
-msgstr "App Id"
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:74
+msgid "If you see the following error trying to send ads to a Facebook Group:"
+msgstr "Si l'erreur suivante s'affiche lors de la tentative d'envoi d'annonces sur un groupe Facebook:"
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:59
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:79
 msgid ""
-"An application identifier associates your site, its pages, and visitor "
-"actions with a registered Facebook application."
-msgstr "L’identifiant d’application associe votre site, ses pages et les actions de vos visiteurs à une application Facebook dûment enregistrée."
+"Please make sure the Facebook Application "
+"{link_to_how_to_add_apps_to_a_group}was added to the "
+"group{/link_to_how_to_add_apps_to_a_group}."
+msgstr "Assurez-vous que l'application Facebook {link_to_how_to_add_apps_to_a_group} a été ajoutée au groupe {/ link_to_how_to_add_apps_to_a_group}."
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:65
-msgid "App Secret"
-msgstr "Mot secret"
-
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:70
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:88
 msgid ""
-"An application secret is a secret shared between Facebook and your "
-"application, similar to a password."
-msgstr "Un secret d’application est un secret partagé entre Facebook et l’application, à la manière d’un mot de passe."
-
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:76
-msgid "Save App Settings"
-msgstr "Enregistrer les paramètres"
-
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:83
-msgid "2. User Authorization"
-msgstr "2. autorisation de l’utilisateur"
-
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:85
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:122
-msgid ""
-"This settings section is not available yet. Please fill out required fields "
-"above and save your settings."
-msgstr "Cette section de paramètres n’est pas disponible pour le moment. Merci de renseigner les champs requis ci-dessus et d’enregistrer vos paramètres."
-
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:87
-msgid ""
-"AWPCP needs to get an authorization token from Facebook to work correctly. "
-"You'll be redirected to Facebook to login. AWPCP does not store or obtain "
-"any personal information from your profile."
-msgstr "AWPCP nécessite un jeton d’autorisation de Facebook pour fonctionner correctement. Vous serez redirigé vers Facebook pour vous connecter. AWPCP ne stocke ou n’obtient aucune information personnelle de votre profil."
-
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:96
-msgid ""
-"Please choose Public as the audience for posts made by the application, even"
-" if you are just testing the integration. Facebook won't allow us to post "
-"content in some cases if you choose something else."
-msgstr "Veuillez choisir l’affichage publiquepour les articles créés par l’application, même si vous souhaitez juste tester l’intégration. Facebook ne nous permettra pas d’afficher du contenu dans certains cas, si vous choisissez quelque chose d’autre."
-
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:101
-msgid "User Access Token"
-msgstr "Jeton d’accès utilisateur"
-
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:104
-msgid " or <a>obtain an access token from Facebook</a>."
-msgstr "ou <a>obtenez un jeton d’accès de Facebook</a>."
-
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:106
-msgid ""
-"You can manually enter your user access token (if you know it) or log in to "
-"Facebook to get one."
-msgstr "Vous pouvez saisir manuellement votre jeton d’accès (si vous le connaissez) ou vous connecter à Facebook pour en obtenir un."
-
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:112
-msgid "Save Token Value"
-msgstr "Enregistrer la valeur du jeton"
-
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:120
-msgid "3. Page and Group Selection"
-msgstr "3. Sélection de page et de groupe"
-
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:127
-#: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:27
-msgid "Facebook Page"
-msgstr "Page Facebook"
-
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:132
-msgid "None (Do not sent Ads to a Facebook Page)"
-msgstr "Aucune (Ne pas envoyer d’annonces sur la page Facebook)"
-
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:136
-msgid "(Your own profile page)"
-msgstr "(votre page de profil)"
-
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:140
-msgid ""
-"There are no Facebook pages available for you to select. Please make sure "
-"you are connected to the internet and have granted the Facebook application "
-"the correct permissions. Click \"Diagnostics\" if you are in doubt."
-msgstr "Il n’y a aucune page Facebook à sélectionner. Assurez-vous que vous êtes connecté à Internet et que vous avez alloué les permissions correctes à votre application Facebook. Cliquez sur \"Diagnostics\" si vous avez un doute."
-
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:146
-#: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:31
-msgid "Facebook Group"
-msgstr "Groupe Facebook"
-
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:152
-msgid "None (Do not sent Ads to a Facebook Group)"
-msgstr "Aucune (Ne pas envoyer d’annonces sur le groupe Facebook)"
-
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:160
-msgid ""
-"There are no Facebook groups available for you to select. Please make sure "
-"you are connected to the internet and have granted the Facebook application "
-"the correct permissions. Click \"Diagnostics\" if you are in doubt."
-msgstr "Il n’y a pas de groupes Facebook disponibles que vous puissiez choisir. Veuillez vous assurer que vous êtes bien connecté à Internet et que vous avez donné à l’application Facebook les autorisations nécessaires. En cas de doutes, cliquez sur \"Diagnostic\"."
-
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:161
-msgid ""
-"As of April 4, 2018, all applications (new and existing) need to go through "
-"<a href=\"https://developers.facebook.com/docs/apps/review\" "
-"rel=\"nofollow\">App Review</a> in order to get access to the <a "
-"href=\"https://developers.facebook.com/docs/graph-"
-"api/reference/user/groups/\" rel=\"nofollow\">Groups API</a>. That means "
-"that unless you <a href=\"https://developers.facebook.com/docs/facebook-"
-"login/review\" rel=\"nofollow\">submit your app for review</a> (ask for the "
-"<code>user_managed_groups</code> permission), AWPCP won't be able to display"
-" the list of groups you manage and won't be able to post classifieds to "
-"those groups."
-msgstr ""
-
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:168
-msgid "Page Token (not editable)"
-msgstr "Jeton de page (non modifiable)"
-
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:177
-msgid "Save Page and Group Selection"
-msgstr "Enregistrer la sélection de page et de groupe"
+"If you are having additional problems with Facebook API, click "
+"\"Diagnostics\" to check your settings."
+msgstr "Si vous rencontrez des problèmes supplémentaires avec l'API Facebook, cliquez sur \"Diagnostics\" pour vérifier vos paramètres."
 
 #: admin/templates/admin-panel-settings-pages-settings.tpl.php:3
 msgid "Restore AWPCP Pages"
@@ -1880,19 +1840,19 @@ msgstr "Acheter un module Premium"
 msgid "Get a Premium Module!"
 msgstr "Découvrez nos modules Premium !"
 
-#: admin/templates/admin-sidebar.tpl.php:46 awpcp.php:850
+#: admin/templates/admin-sidebar.tpl.php:46 awpcp.php:870
 msgid "Campaign Manager"
 msgstr "Gestionnaire de campagne"
 
-#: admin/templates/admin-sidebar.tpl.php:52 awpcp.php:907
+#: admin/templates/admin-sidebar.tpl.php:52 awpcp.php:927
 msgid "Mark as Sold"
 msgstr "Marqué comme Vendu"
 
-#: admin/templates/admin-sidebar.tpl.php:58 awpcp.php:935
+#: admin/templates/admin-sidebar.tpl.php:58 awpcp.php:955
 msgid "Restricted Categories"
 msgstr "Rubriques restreintes"
 
-#: admin/templates/admin-sidebar.tpl.php:63 awpcp.php:843
+#: admin/templates/admin-sidebar.tpl.php:63 awpcp.php:863
 msgid "BuddyPress Listings"
 msgstr "Listes BuddyPress"
 
@@ -1900,15 +1860,15 @@ msgstr "Listes BuddyPress"
 msgid "Comments/Ratings"
 msgstr "Commentaires & Evaluations"
 
-#: admin/templates/admin-sidebar.tpl.php:73 awpcp.php:829
+#: admin/templates/admin-sidebar.tpl.php:73 awpcp.php:849
 msgid "Attachments"
 msgstr "Pièces jointes"
 
-#: admin/templates/admin-sidebar.tpl.php:78 awpcp.php:836
+#: admin/templates/admin-sidebar.tpl.php:78 awpcp.php:856
 msgid "Authorize.Net"
 msgstr "Authorize.Net"
 
-#: admin/templates/admin-sidebar.tpl.php:83 awpcp.php:921
+#: admin/templates/admin-sidebar.tpl.php:83 awpcp.php:941
 msgid "PayPal Pro"
 msgstr "PayPal Pro"
 
@@ -1916,7 +1876,7 @@ msgstr "PayPal Pro"
 msgid "Coupon/Discount"
 msgstr "Coupon/Remise"
 
-#: admin/templates/admin-sidebar.tpl.php:93 awpcp.php:956
+#: admin/templates/admin-sidebar.tpl.php:93 awpcp.php:976
 msgid "Subscriptions"
 msgstr "Abonnements"
 
@@ -1924,15 +1884,15 @@ msgstr "Abonnements"
 msgid "Fee Per Category"
 msgstr "Tarif par Catégorie"
 
-#: admin/templates/admin-sidebar.tpl.php:113 awpcp.php:857
+#: admin/templates/admin-sidebar.tpl.php:113 awpcp.php:877
 msgid "Category Icons"
 msgstr "Icônes des rubriques"
 
-#: admin/templates/admin-sidebar.tpl.php:118 awpcp.php:928
+#: admin/templates/admin-sidebar.tpl.php:118 awpcp.php:948
 msgid "Regions Control"
 msgstr "Contrôle des régions"
 
-#: admin/templates/admin-sidebar.tpl.php:123 awpcp.php:942
+#: admin/templates/admin-sidebar.tpl.php:123 awpcp.php:962
 msgid "RSS"
 msgstr "Flux RSS"
 
@@ -1980,7 +1940,7 @@ msgid "Premium Modules"
 msgstr "Modules Premium"
 
 #: admin/templates/admin-sidebar.tpl.php:154
-#: admin/templates/admin-sidebar.tpl.php:195 functions.php:2919
+#: admin/templates/admin-sidebar.tpl.php:195 functions.php:2927
 msgid "Installed"
 msgstr "Déjà installé"
 
@@ -1989,7 +1949,7 @@ msgid "No premium modules installed."
 msgstr "Aucun module Premium installé !"
 
 #: admin/templates/admin-sidebar.tpl.php:171
-#: admin/templates/admin-sidebar.tpl.php:212 functions.php:2915
+#: admin/templates/admin-sidebar.tpl.php:212 functions.php:2923
 msgid "Not Installed"
 msgstr "PAS INSTALL&Eacute;"
 
@@ -2069,104 +2029,109 @@ msgstr "Gestion"
 msgid "Manage Ad Listings"
 msgstr "Gestion des annonces"
 
-#: awpcp.php:717
+#: awpcp.php:734
 msgid "AWPCP"
 msgstr "AWPCP"
 
-#: awpcp.php:812
+#: awpcp.php:832
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
 msgstr "Le fonctionnement d’AWPCP exige la présence de la librairie GD de PHP qui n’est pas activée sur votre site. Veuillez corriger cela ou vous mettre en relation avec votre hébergeur."
 
-#: awpcp.php:813
+#: awpcp.php:833
 #: includes/placeholders/class-placeholders-installation-verifier.php:31
 msgid "Warning"
 msgstr "Avertissement"
 
-#: awpcp.php:864
+#: awpcp.php:884
 msgid "Comments & Ratings"
 msgstr "Commentaires & Notations"
 
-#: awpcp.php:871
+#: awpcp.php:891
 msgid "Coupons/Discount"
 msgstr "Coupons/Remises"
 
-#: awpcp.php:892
+#: awpcp.php:912
 msgid "Fee per Category"
 msgstr "Participation par rubrique"
 
-#: awpcp.php:899
+#: awpcp.php:919
 msgid "Google Checkout"
 msgstr "Google Checkout"
 
-#: awpcp.php:914
+#: awpcp.php:934
 msgid "PayFast"
 msgstr "PayFast"
 
-#: awpcp.php:949
+#: awpcp.php:969
 msgid "Stripe"
 msgstr "Stripe"
 
-#: awpcp.php:963 templates/components/media-manager.tpl.php:46
+#: awpcp.php:983 templates/components/media-manager.tpl.php:46
 msgid "Videos"
 msgstr "Vidéos"
 
-#: awpcp.php:971
+#: awpcp.php:991
 msgid "XML Sitemap"
 msgstr "Plan du site XML"
 
-#: awpcp.php:978
+#: awpcp.php:998
 msgid "ZIP Code Search Module"
 msgstr "Module de recherche de code postal"
 
-#: awpcp.php:1274
+#: awpcp.php:1294
 msgid "This field is required."
 msgstr "Ce champ est obligatoire."
 
-#: awpcp.php:1275 frontend/page-edit-ad.php:130 frontend/page-edit-ad.php:442
+#: awpcp.php:1295 frontend/page-edit-ad.php:130 frontend/page-edit-ad.php:444
 #: includes/settings-api.php:264
 msgid "Please enter a valid email address."
 msgstr "Veuillez saisir une adresse e-mail valide."
 
-#: awpcp.php:1276 awpcp.php:1277
+#: awpcp.php:1296 awpcp.php:1297
 msgid "Please enter a valid URL."
 msgstr "Veuillez indiquer une URL valide."
 
-#: awpcp.php:1278
+#: awpcp.php:1298
 msgid "Please enter a valid number."
 msgstr "Veuillez saisir un nombre valide."
 
-#: awpcp.php:1279
+#: awpcp.php:1299
 msgid "Please enter a valid amount."
 msgstr "Veuillez saisir un montant valide."
 
-#: awpcp.php:1289
+#: awpcp.php:1309
 msgctxt "[UI Datepicker] Display text for previous month link"
 msgid "&#x3c;Prev"
 msgstr "&#x3c;Préc."
 
-#: awpcp.php:1291
+#: awpcp.php:1311
 msgctxt "[UI Datepicker] Display text for next month link"
 msgid "Next&#x3e;"
 msgstr "Suivant&#x3e;"
 
-#: awpcp.php:1306
+#: awpcp.php:1326
 msgctxt "[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ..."
 msgid "0"
 msgstr "0"
 
-#: awpcp.php:1312
+#: awpcp.php:1332
 msgid "There are files currently being uploaded."
 msgstr "Il y a des fichiers en cours de téléchargement."
 
-#: awpcp.php:1313
+#: awpcp.php:1333
 msgid "There are files pending to be uploaded."
 msgstr "Il y a des fichiers en attente de téléchargement."
 
-#: awpcp.php:1314
+#: awpcp.php:1334
 msgid "You haven't uploaded any images or files."
 msgstr "Vous n’avez téléchargé aucune image ni aucun fichier."
+
+#: awpcp.php:1395 awpcp.php:1403 awpcp.php:1411 awpcp.php:1485 awpcp.php:1493
+#: awpcp.php:1501
+msgid "Another WordPress Classifieds Plugin"
+msgstr "Plugin Another WordPress Classifieds"
 
 #: cron.php:102
 msgid "Listing Details"
@@ -2254,7 +2219,7 @@ msgid "Please go to the Ad Management panel to edit your Ads."
 msgstr "Utilisez le panneau de gestion pour modifier vos annonces."
 
 #: frontend/page-edit-ad.php:46 frontend/page-edit-ad.php:121
-#: frontend/page-edit-ad.php:498
+#: frontend/page-edit-ad.php:500
 msgid "Click here"
 msgstr "Cliquez ici"
 
@@ -2262,7 +2227,7 @@ msgstr "Cliquez ici"
 msgid "You are not allowed to edit the specified Ad."
 msgstr "Désolé, vous n’avez pas l’autorisation de modifier cette annonce."
 
-#: frontend/page-edit-ad.php:120 frontend/page-edit-ad.php:497
+#: frontend/page-edit-ad.php:120 frontend/page-edit-ad.php:499
 msgid ""
 "You are currently not logged in, if you have an account in this website you "
 "can log in and go to the Ad Management panel to edit your Ads."
@@ -2292,69 +2257,69 @@ msgstr "Gérer les fichiers attachés"
 msgid "Go to the %s section to manage the Images and Attachments for this Ad."
 msgstr "Rendez-vous à la section %s pour gérer les images et les fichiers liés à cette annonce."
 
-#: frontend/page-edit-ad.php:282 frontend/page-place-ad.php:1157
+#: frontend/page-edit-ad.php:284 frontend/page-place-ad.php:1157
 msgid ""
 "There was an unexpected error trying to save your Ad details. Please try "
 "again or contact an administrator."
 msgstr "Une erreur inattendue est survenue pendant l’enregistrement de vos informations. Veuillez réessayer ou contactez l’administrateur du site."
 
-#: frontend/page-edit-ad.php:304 frontend/page-place-ad.php:1224
+#: frontend/page-edit-ad.php:306 frontend/page-place-ad.php:1224
 msgid "The specified Ad doesn't exists. No images can be added at this time."
 msgstr "L’annonce demandée n’existe pas. Aucune image ne peut y être ajoutée."
 
-#: frontend/page-edit-ad.php:357
+#: frontend/page-edit-ad.php:359
 #: frontend/templates/page-place-ad-preview-step.tpl.php:17
 #: includes/helpers/widgets/class-listing-form-steps-component.php:69
 #: templates/admin/import-listings-admin-page-import-form.tpl.php:30
 msgid "Finish"
 msgstr "Terminer"
 
-#: frontend/page-edit-ad.php:376
+#: frontend/page-edit-ad.php:378
 msgid ""
 "The Ad has been edited successfully. <a href=\"%s\">Go back to view "
 "listings</a>."
 msgstr "L’annonce a été modifiée avec succès. <a href=\"%s\">Revenir à la liste</a>;."
 
-#: frontend/page-edit-ad.php:402
+#: frontend/page-edit-ad.php:404
 msgid "There was a problem trying to delete your Ad. The Ad was not deleted."
 msgstr "Une erreur est survenue pendant l’opération de suppression. L’annonce n’a pas été détruite."
 
-#: frontend/page-edit-ad.php:414
+#: frontend/page-edit-ad.php:416
 msgid "Your Ad has been successfully deleted."
 msgstr "L’annonce a bien été supprimée."
 
-#: frontend/page-edit-ad.php:440
+#: frontend/page-edit-ad.php:442
 msgid "Please enter the email address you used when you created your Ad."
 msgstr "Indiquez l’adresse mail que vous avez déclaré lors de la création de votre annonce."
 
-#: frontend/page-edit-ad.php:449
+#: frontend/page-edit-ad.php:451
 msgid ""
 "The email address you entered does not match any of the Ads in our system."
 msgstr "L’adresse email que vous venez d’indiquer ne correspond à aucune annonce déposée sur notre site."
 
-#: frontend/page-edit-ad.php:483
+#: frontend/page-edit-ad.php:485
 msgid ""
 "The email address you entered does not match any of the listing in our "
 "system."
 msgstr "L’adresse e-mail que vous avez saisi ne correspond à aucune liste dans notre système."
 
-#: frontend/page-edit-ad.php:532
+#: frontend/page-edit-ad.php:534
 msgid "The access keys were sent to %s."
 msgstr "Les clés d’accès ont été envoyées à %s."
 
-#: frontend/page-edit-ad.php:545
+#: frontend/page-edit-ad.php:547
 msgid "Invalid access token."
 msgstr "Jeton d'accès invalide."
 
-#: frontend/page-edit-ad.php:565
+#: frontend/page-edit-ad.php:567
 msgid "The sepecified listing cannot be edited using this access code."
 msgstr "La liste spécifiée ne peut pas être éditée en utilisant ce code d'accès."
 
-#: frontend/page-edit-ad.php:583
+#: frontend/page-edit-ad.php:585
 msgid "Edit link for listing: %s"
 msgstr "Modifier le lien de l’annonce : %s"
 
-#: frontend/page-edit-ad.php:599
+#: frontend/page-edit-ad.php:601
 msgid ""
 "The link you used already expired. Please check your email to receive a link"
 " with a new access token."
@@ -2821,8 +2786,9 @@ msgstr "Cette annonce en cours de validation est momentanément désactivée. En
 
 #: frontend/page-show-ad.php:159
 msgid ""
-"This Ad is currently disabled until you verify the email address used for "
-"the contact information. Only you (the author) can see it."
+"This listing is currently disabled until you verify the email address used "
+"for the contact information. Only you (the author) can see the listing. A "
+"verification email has been sent to you."
 msgstr "Cette annonce en cours de validation est momentanément désactivée. En attendant son approbation, seul l’auteur (vous) peut la voir."
 
 #: frontend/page-show-ad.php:162
@@ -3023,6 +2989,7 @@ msgid "%s Transaction"
 msgstr "%s Transaction"
 
 #: frontend/templates/email-place-ad-success-user.tpl.php:14
+#: includes/admin/class-payment-personal-data-provider.php:46
 msgid "Payment Transaction"
 msgstr "Transaction de paiement"
 
@@ -3360,6 +3327,8 @@ msgid ""
 msgstr "Veuillez compléter le formulaire de facturation ci-dessous pour effectuer votre paiement."
 
 #: frontend/templates/payments-billing-form.tpl.php:6 functions.php:559
+#: includes/admin/class-listings-personal-data-provider.php:83
+#: includes/admin/class-listings-personal-data-provider.php:93
 msgid "Country"
 msgstr "Pays"
 
@@ -3396,10 +3365,14 @@ msgid "Address Line 2"
 msgstr "Adresse 2"
 
 #: frontend/templates/payments-billing-form.tpl.php:92
+#: includes/admin/class-listings-personal-data-provider.php:84
+#: includes/admin/class-listings-personal-data-provider.php:94
 msgid "State"
 msgstr "&Eacute;tat"
 
 #: frontend/templates/payments-billing-form.tpl.php:101 functions.php:579
+#: includes/admin/class-listings-personal-data-provider.php:85
+#: includes/admin/class-listings-personal-data-provider.php:95
 msgid "City"
 msgstr "Ville"
 
@@ -3703,7 +3676,7 @@ msgctxt "default blog title"
 msgid "Classifieds Website"
 msgstr "Site de petites annonces"
 
-#: functions.php:1530
+#: functions.php:1538
 msgid ""
 "The images or files with pale red background have been rejected by an "
 "administrator user. Likewise, files with a pale yellow background are "
@@ -3711,96 +3684,191 @@ msgid ""
 "cannot be shown in the frontend."
 msgstr "Les images ou fichiers surlignés en rouge pâle ont été rejeté par un administrateur. De la même façon, les fichiers sur fond jaune pâle sont en attente de validation. Les fichiers en attente ou rejetés ne peuvent pas être affichés sur le site."
 
-#: functions.php:1549
+#: functions.php:1557
 msgid ""
 "This version of AWPCP %1$s module is not compatible with AWPCP version %2$s."
 " Please get AWPCP %1$s %3$s or newer!"
 msgstr "Le module %1$s installé est incompatible avec la version %2$s d’AWPCP. Veuillez utiliser %1$s %3$s ou plus récent."
 
-#: functions.php:1551 includes/helpers/class-modules-manager.php:245
+#: functions.php:1559 includes/helpers/class-modules-manager.php:245
 msgid "Error"
 msgstr "Erreur"
 
-#: functions.php:1888
+#: functions.php:1896
 msgid "No errors."
 msgstr "Aucune erreur."
 
-#: functions.php:1889
+#: functions.php:1897
 msgid "The file is larger than upload_max_filesize."
 msgstr "Le fichier est plus grand que upload_max_filesize."
 
-#: functions.php:1890
+#: functions.php:1898
 msgid "The file is larger than form MAX_FILE_SIZE."
 msgstr "Le fichier est plus grand que MAX_FILE_SIZE."
 
-#: functions.php:1891
+#: functions.php:1899
 msgid "The file was only partially uploaded."
 msgstr "Le fichier n’a été téléchargé que partiellement."
 
-#: functions.php:1892
+#: functions.php:1900
 msgid "No file was uploaded."
 msgstr "Aucun fichier n’;a été téléchargé."
 
-#: functions.php:1893
+#: functions.php:1901
 msgid "Missing temporary directory."
 msgstr "Il manque un répertoire temporaire."
 
-#: functions.php:1894
+#: functions.php:1902
 msgid "Can't write file to disk."
 msgstr "Impossible d’écrire dans le fichier."
 
-#: functions.php:1895
+#: functions.php:1903
 msgid "The file upload was stopped by extension."
 msgstr "Par conséquent le téléchargement a été interrompu."
 
-#: functions.php:2121
+#: functions.php:2129
 msgid "Your Ad \"%s\" has been approved"
 msgstr "L&#39;annonce \"%s\" a &eacute;t&eacute; valid&eacute;e"
 
-#: functions.php:2137
+#: functions.php:2145
 msgid "Your Ad \"%s\" has been successfully updated"
 msgstr "L&#39;annonce \"%s\" a bien &eacute;t&eacute; mise à jour"
 
-#: functions.php:2158
+#: functions.php:2166
 msgid "Images on Ad \"%s\" are awaiting approval"
 msgstr "Les images de l&#39;annonce \"%s\" sont en attente de validation"
 
-#: functions.php:2160 includes/functions/notifications.php:189
+#: functions.php:2168 includes/functions/notifications.php:189
 msgid ""
 "Images on Ad \"%s\" are awaiting approval. You can approve the images going "
 "to the Manage Images section for that Ad and clicking the \"Enable\" button "
 "below each image. Click here to continue: %s."
 msgstr "Les images de l’Annonce \"%s\" sont en attente d’approbation. Vous pouvez approuver les images en vous rendant dans la section Gestion des Images et en cliquant sur \"Activer\". Cliquez ici pour continuer: %s"
 
-#: functions.php:2163
+#: functions.php:2171
 msgid "The Ad \"%s\" is awaiting approval"
 msgstr "L&#39;annonce \"%s\" a &eacute;t&eacute; mise en attente de validation"
 
-#: functions.php:2165 includes/functions/notifications.php:194
+#: functions.php:2173 includes/functions/notifications.php:194
 msgid ""
 "The Ad \"%s\" is awaiting approval. You can approve the Ad going to the "
 "Manage Listings section and clicking the \"Enable\" action shown on top. "
 "Click here to continue: %s."
 msgstr "L’annonce \"%s\" est en attente de validation. Pour l’approuver, rendez-vous sur le panneau de gestion des annonces et cliquez sur le menu \"Activer\" situé sur le dessus de la liste. Cliquez ici pour continuer: %s"
 
-#: functions.php:2172 includes/functions/notifications.php:201
+#: functions.php:2180 includes/functions/notifications.php:201
 msgid ""
 "Additionally, You can approve the images going to the Manage Images section "
 "for that Ad and clicking the \"Enable\" button below each image. Click here "
 "to continue: %s."
 msgstr "De plus, vous pouvez approuver les images en vous rendant dans la section Gestion des Images et en cliquant sur le bouton \"Activer\" présent sous chaque image. Cliquez ici pour continuer: %s"
 
-#: functions.php:2749
+#: functions.php:2757
 msgid "Email sent %s."
 msgstr "Email expédié le %s"
 
-#: functions.php:2927
+#: functions.php:2935
 msgid "SSL Support: Yes."
 msgstr "Prise en charge SSL&nbsp;: Oui."
 
-#: functions.php:2929
+#: functions.php:2937
 msgid "SSL Support: No."
 msgstr "Prise en charge SSL&nbsp;: Non."
+
+#: includes/admin/class-listings-personal-data-provider.php:78
+msgid "Classified ID"
+msgstr "ID classifié"
+
+#: includes/admin/class-listings-personal-data-provider.php:79
+msgid "Contact Name"
+msgstr "Nom du contact"
+
+#: includes/admin/class-listings-personal-data-provider.php:80
+msgid "Contact Phone Number"
+msgstr "Numéro de téléphone du contact"
+
+#: includes/admin/class-listings-personal-data-provider.php:81
+msgid "Contact Phone Number Digits"
+msgstr "Numéro de téléphone du contact"
+
+#: includes/admin/class-listings-personal-data-provider.php:82
+msgid "Contact Email"
+msgstr "E-mail de contact"
+
+#: includes/admin/class-listings-personal-data-provider.php:86
+#: includes/admin/class-listings-personal-data-provider.php:96
+msgid "County"
+msgstr "Code Postal"
+
+#: includes/admin/class-listings-personal-data-provider.php:87
+msgid "Website URL"
+msgstr "﻿URL du site Web"
+
+#: includes/admin/class-listings-personal-data-provider.php:89
+msgid "Author IP"
+msgstr "IP de l'auteur"
+
+#: includes/admin/class-listings-personal-data-provider.php:100
+msgid "URL"
+msgstr "URL"
+
+#: includes/admin/class-listings-personal-data-provider.php:114
+msgid "Classifieds Listings"
+msgstr "Annonces classées"
+
+#: includes/admin/class-listings-personal-data-provider.php:125
+msgid "Classifieds Media"
+msgstr "Annonces Médias"
+
+#: includes/admin/class-listings-personal-data-provider.php:186
+msgid ""
+"An unknown error occurred while trying to delete information for classified "
+"{listing_id}."
+msgstr "Une erreur inconnue s'est produite lors de la tentative de suppression des informations relatives à {listing_id}."
+
+#: includes/admin/class-payment-personal-data-provider.php:57
+msgid "Classifieds Payment Information"
+msgstr "Informations de paiement de l'annonce"
+
+#: includes/admin/class-payment-personal-data-provider.php:92
+msgid ""
+"An unknown error occurred while trying to delete classifieds payment "
+"information for transaction {transaction_id}."
+msgstr "Une erreur inconnue s'est produite lors de la tentative de suppression des informations relatives à {listing_id}."
+
+#: includes/admin/class-user-personal-data-provider.php:54
+msgid "Contact Address"
+msgstr "Adresse du Contact"
+
+#: includes/admin/class-user-personal-data-provider.php:55
+msgid "Contact Phone"
+msgstr "Téléphone du Contact"
+
+#: includes/admin/class-user-personal-data-provider.php:56
+msgid "Default Country"
+msgstr "Pays par défaut"
+
+#: includes/admin/class-user-personal-data-provider.php:57
+msgid "Default State"
+msgstr "Pays par défaut"
+
+#: includes/admin/class-user-personal-data-provider.php:58
+msgid "Default City"
+msgstr "Ville par défaut"
+
+#: includes/admin/class-user-personal-data-provider.php:59
+msgid "Default County"
+msgstr "Code Postal par défaut"
+
+#: includes/admin/class-user-personal-data-provider.php:73
+msgid "Classifieds Profile"
+msgstr "Profil des petites annonces"
+
+#: includes/admin/class-user-personal-data-provider.php:98
+msgid ""
+"An unknown error occurred while trying to delete information from "
+"Classifieds Profile"
+msgstr "Une erreur inconnue s'est produite lors de la tentative de suppression d'informations du profil de petites annonces."
 
 #: includes/class-edit-listing-link-placeholder.php:32
 msgctxt "text for edit listing link"
@@ -3828,14 +3896,7 @@ msgstr "Votre licence for <module-name> est valide, mais est déjà active sur b
 msgid "less than 1"
 msgstr "inférieur à 1"
 
-#: includes/class-listings-api.php:182
-msgid ""
-"You need to verify the email address used as the contact email address for "
-"this Ad. The Ad will remain in a disabled status until you verify you "
-"address. A verification email has been sent to you."
-msgstr "Vous devez vérifier l’adresse email du contact pour cette annonce. L’annonce restera désactivée tant que vous n’aurez pas fait la vérification. Un email de vérification vous a été envoyé."
-
-#: includes/class-listings-api.php:190
+#: includes/class-listings-api.php:186
 msgid ""
 "If you have uploaded images your images will not show up until an admin has "
 "approved them."
@@ -4146,7 +4207,7 @@ msgstr "L’annonce \"%s\" est en attente d’approbation."
 msgid "Listing <listing-title> was flagged"
 msgstr "L’Annonce <listing-title> a été signalée"
 
-#: includes/functions/payments.php:276
+#: includes/functions/payments.php:309
 msgid "Customer attempt to pay has failed"
 msgstr "La procédure de règlement du client a échouée."
 
@@ -4231,7 +4292,7 @@ msgstr "Il y a eu une erreur en tentant de désactiver la licence de votre <modu
 msgid "The server returned a 403 Forbidden error."
 msgstr "Le serveur à renvoyé une erreur 403 Forbidden."
 
-#: includes/helpers/class-http.php:31 includes/helpers/class-http.php:68
+#: includes/helpers/class-http.php:31 includes/helpers/class-http.php:71
 msgid ""
 "It look's like your server is not authorized to make requests to <host>. "
 "Please <support-link>contact Another WordPress Classifieds Plugin support"
@@ -4239,23 +4300,23 @@ msgid ""
 "whitelist."
 msgstr "Il semblerait que votre serveur ne soit pas autorisé à faire des demandes à <host>. S'il vous plaît <support-link> contactez le support Another WordPress Classifieds Plugin </support-link> et demandez-leur d'ajouter votre adresse IP <ip-address> à la liste blanche."
 
-#: includes/helpers/class-http.php:33 includes/helpers/class-http.php:70
+#: includes/helpers/class-http.php:33 includes/helpers/class-http.php:73
 msgid "Include this error message with your report."
 msgstr "Incluez ce message d’erreur dans votre rapport."
 
-#: includes/helpers/class-http.php:64
+#: includes/helpers/class-http.php:67
 msgid ""
 "It was not possible to establish a connection with <host>. The connection "
 "failed with the following error:"
 msgstr "impossible d’établir une connexion avec <host>. La connexion à échoué avec le message d’erreur suivant :"
 
-#: includes/helpers/class-http.php:79
+#: includes/helpers/class-http.php:82
 msgid ""
 "It was not possible to establish a connection with <host>. A problem "
 "occurred in the SSL/TSL handshake:"
 msgstr "impossible d’établir une connexion avec <host>. Un problème est survenu avec la connexion SSL/TSL :"
 
-#: includes/helpers/class-http.php:84
+#: includes/helpers/class-http.php:87
 msgid ""
 "To ensure the security of our systems and adhere to industry best practices,"
 " we require that your server uses a recent version of cURL and a version of "
@@ -4263,14 +4324,14 @@ msgid ""
 "1.0.1c)."
 msgstr "Pour assurer la sécurité de nos systèmes et suivre les bonnes pratiques de l’industrie, nous exigeons que votre serveur utilise une version récente de cURL et une version d’OpenSSL qui supporte TLSv1.2 (la version minimale qui le fait est OpenSSL1.0.1c)."
 
-#: includes/helpers/class-http.php:86
+#: includes/helpers/class-http.php:89
 msgid ""
 "Upgrading your system will not only allow you to communicate with our "
 "servers but also help you prepare your website to interact with services "
 "using the latest security standards."
 msgstr "La mise à jour de votre système ne vous permettra pas uniquement de communiquer avec nos serveurs mais aussi préparera votre site Web à intéragir avec des services utilisant les derniers standards de sécurité."
 
-#: includes/helpers/class-http.php:88
+#: includes/helpers/class-http.php:91
 msgid ""
 "Please contact your hosting provider and ask them to upgrade your system. "
 "Include this message if necesary."
@@ -4343,51 +4404,50 @@ msgstr "Le %1$s que vous avez installé n’est pas compatible avec la version %
 msgid "The specified module does not exists!."
 msgstr "Le module spécifié n’existe pas."
 
-#: includes/helpers/class-send-to-facebook-helper.php:27
-msgid "The Ad was already sent to Facebook Page."
-msgstr "La pub a déjà été envoyée sur la page Facebook."
+#: includes/helpers/class-send-to-facebook-helper.php:69
+msgid "The ad was already sent to a Facebook Page."
+msgstr "L'annonce a déjà été envoyée sur une page Facebook."
 
-#: includes/helpers/class-send-to-facebook-helper.php:31
-#: includes/helpers/class-send-to-facebook-helper.php:84
+#: includes/helpers/class-send-to-facebook-helper.php:73
+#: includes/helpers/class-send-to-facebook-helper.php:247
 msgid ""
-"The Ad is currently disabled. If you share it, Facebook servers and users "
+"The ad is currently disabled. If you share it, Facebook servers and users "
 "won't be able to access it."
-msgstr "L’annonce est actuellement désactivée. Si vous la partagez, les serveurs de Facebook et les utilisateurs ne seront pas en mesure d’y accéder."
+msgstr "L'annonce est actuellement désactivée. Si vous le partagez, les serveurs et les utilisateurs de Facebook ne pourront pas y accéder."
 
-#: includes/helpers/class-send-to-facebook-helper.php:52
+#: includes/helpers/class-send-to-facebook-helper.php:121
 msgid "There was an error trying to contact Facebook servers: %s."
 msgstr "Il y a eu une erreur en essayant de contacter les serveurs Facebook&nbsp;: %s."
 
-#: includes/helpers/class-send-to-facebook-helper.php:58
+#: includes/helpers/class-send-to-facebook-helper.php:126
 msgid "Facebook API returned the following errors: %s."
 msgstr "L’API Facebook a retourné les erreurs suivantes&nbsp;: %s."
 
-#: includes/helpers/class-send-to-facebook-helper.php:80
-msgid "The Ad was already sent to Facebook Group."
-msgstr "L’annonce a été déjà envoyé au groupe Facebook."
+#: includes/helpers/class-send-to-facebook-helper.php:243
+msgid "The ad was already sent to a Facebook Group."
+msgstr "L'annonce a déjà été envoyée à un groupe Facebook."
 
-#: includes/helpers/facebook.php:31
+#: includes/helpers/facebook.php:36
 msgid "Missing App ID and Secret."
 msgstr "L’identifiant et la clé secrète sont absents."
 
-#: includes/helpers/facebook.php:36
+#: includes/helpers/facebook.php:41
 msgid "Missing a valid User Access Token."
 msgstr "Il manque un jeton d’accès utilisateur valide."
 
-#: includes/helpers/facebook.php:49
-msgid ""
-"Could not validate User Access Token. Are you connected to the internet?"
-msgstr "Impossible de valider le jeton d’accès. &Ecirc;tes-vous connecté à Internet ?"
-
-#: includes/helpers/facebook.php:62
+#: includes/helpers/facebook.php:56
 msgid ""
 "User Access Token is valid but doesn't have the permissions required for "
-"AWPCP integration (publish_pages, publis_actions and manage_pages)."
-msgstr "Le code d’accès utilisateur est bien valide mais n’a pas les permissions requises pour l’intégration AWPCP (publish_pages, publish_actions and manage_pages)."
+"AWPCP integration ({permissions})."
+msgstr "Le jeton d'accès utilisateur est valide mais ne dispose pas des autorisations requises pour l'intégration AWPCP ({autorisations})."
 
-#: includes/helpers/facebook.php:67
+#: includes/helpers/facebook.php:65
 msgid "No Facebook page is selected (missing page id or token)."
 msgstr "Aucune page Facebook n’a été sélectionnée (ID de page ou de jeton manquant)."
+
+#: includes/helpers/facebook.php:99
+msgid "Could not validate User Access Token."
+msgstr "Impossible de valider le jeton d'accès utilisateur."
 
 #: includes/helpers/page.php:51
 msgid "Template not found."
@@ -4730,15 +4790,15 @@ msgstr "Aucune catégorie trouvée avec l’ID : %d"
 msgid "No file was found with id: %d"
 msgstr "Aucun fichier trouvé avec l’ID : %d"
 
-#: includes/models/payment-transaction.php:198
+#: includes/models/payment-transaction.php:203
 msgid "The transaction must be assigned to a WordPress user."
 msgstr "La transaction doit être assignée à un utilisateur WordPress."
 
-#: includes/models/payment-transaction.php:208
+#: includes/models/payment-transaction.php:213
 msgid "The transaction has no items."
 msgstr "La transaction n’a pas d’élément."
 
-#: includes/models/payment-transaction.php:220
+#: includes/models/payment-transaction.php:225
 msgid ""
 "The amount of credit in your account is not enough to pay for the selected "
 "items. Please choose one of the available Credit Plans in addition to the "
@@ -4746,18 +4806,18 @@ msgid ""
 "Profile Page.<br>You need %d extra credit."
 msgstr "Le solde de crédit sur votre compte n’est pas suffisant pour payer les éléments sélectionnés. Utilisez l’une des offres de crédits disponibles en complément des éléments que vous voulez acquérir ou ajoutez du crédit à votre compte depuis votre page de profil. <br>Il vous faut %d de crédit supplémentaire."
 
-#: includes/models/payment-transaction.php:222
+#: includes/models/payment-transaction.php:227
 msgid ""
 "The selected Credit Plan is not enough to pay for the selected items. Please"
 " choose a bigger Credit Plan or add credit to your account from your Profile"
 " Page.<br>You need %d extra credit."
 msgstr "L’offre de crédit choisie n’est pas suffisante pour payer les items sélectionnés. Utilisez une autre offre ou ajoutez du crédit à votre compte depuis votre page de profil. <br>Il vous faut %d crédit supplémentaire."
 
-#: includes/models/payment-transaction.php:249
+#: includes/models/payment-transaction.php:254
 msgid "You must select a payment method."
 msgstr "Veuillez sélectionner un mode de règlement."
 
-#: includes/models/payment-transaction.php:258
+#: includes/models/payment-transaction.php:263
 msgid "The payment status for this transaction hasn't been defined."
 msgstr "Aucun statut de paiement n’a été défini pour cette transaction."
 
@@ -5744,17 +5804,17 @@ msgid "General Settings"
 msgstr "Réglages généraux"
 
 #: includes/settings/class-general-settings.php:30
-msgid "Turn on transalation file (POT)"
+msgid "Turn on translation file (POT)"
 msgstr "Activer le fichier de traduction (POT)"
 
 #: includes/settings/class-general-settings.php:30
 msgid ""
 "Enable translations. WordPress will look for an AWPCP-&lt;language&gt;.mo "
 "file in AWPCP's languages/ directory of the main plugin and premium modules."
-" Example filenames are: AWPCP-en_EN.mo, AWPCP-es_ES.mo. You can generate .mo"
-" files using POEdit and the AWPCP.pot or AWPCP-en_EN.po files included with "
+" Example filenames are: AWPCP-en_US.mo, AWPCP-es_ES.mo. You can generate .mo"
+" files using POEdit and the AWPCP.pot or AWPCP-en_US.po files included with "
 "the plugin."
-msgstr "Activation de la traduction. WordPress cherchera le fichier AWPCP-xx_XX.mo file dans le répertoire AWPCP /languages/ Exemple de fichier AWPCP-en_EN.mo. Vous pouvez générer un fichier .mo à l’aide de PoEdit et du fichier AWPCP.pot ou AWPCP-en_EN.po livrés avec le plugin."
+msgstr "Activer les traductions. WordPress recherchera un fichier AWPCP - & lt; language & gt; .mo dans le répertoire AWPCP languages / du module principal et des modules premium. Des exemples de noms de fichiers sont: AWPCP-en_US.mo, AWPCP-es_ES.mo. Vous pouvez générer des fichiers .mo à l'aide de POEdit et des fichiers AWPCP.pot ou AWPCP-en_US.po inclus dans le plug-in."
 
 #: includes/settings/class-general-settings.php:31
 msgid "Show Ad listings on main page"
@@ -6902,19 +6962,19 @@ msgstr "Trier les résultats de recherche par"
 
 #: includes/settings-api.php:172
 msgid "Search form display"
-msgstr ""
+msgstr "Affichage du formulaire de recherche"
 
 #: includes/settings-api.php:177
 msgid "Above results"
-msgstr ""
+msgstr "Résultats ci-dessus"
 
 #: includes/settings-api.php:178
 msgid "Below results"
-msgstr ""
+msgstr "Résulats ci-dessous"
 
 #: includes/settings-api.php:179
 msgid "Don't show with results"
-msgstr ""
+msgstr "Ne pas afficher avec les résultats"
 
 #: includes/settings-api.php:181
 msgid "Default number of Ads per page"
@@ -7479,158 +7539,340 @@ msgstr "Mot de passe SMTP"
 msgid "SMTP password (if emails not processing normally)."
 msgstr "Mot de passe SMTP (si les mails ne partent pas normalement)."
 
-#: includes/settings-api.php:445
+#: includes/settings-api.php:448
+msgid "Facebook Integration Method"
+msgstr "Méthode d'intégration Facebook"
+
+#: includes/settings-api.php:451
+msgid ""
+"Please note that sending ads to Facebook Groups is currently not available "
+"using Webhooks, after Facebook significantly reduced access to their APIs "
+"across all apps. You can read more about these changes here: <a "
+"href=\"https://developers.facebook.com/blog/post/2018/04/04/facebook-api-"
+"platform-product-"
+"changes/\">https://developers.facebook.com/blog/post/2018/04/04/facebook-"
+"api-platform-product-changes/</a>"
+msgstr "Notez que l'envoi d'annonces aux groupes Facebook n'est actuellement pas disponible avec Webhooks, car Facebook a considérablement réduit l'accès à leurs API dans toutes les applications. Vous pouvez en savoir plus sur ces changements ici: <a href=\"https://developers.facebook.com/blog/post/2018/04/04/facebook-api-platform-product-changes/\">https://developers.facebook.com/blog/post/2018/04/04/facebook-api-platform-product-changes/</a>"
+
+#: includes/settings-api.php:460
 msgid "Send Ads to Facebook Automatically"
 msgstr "Envoyer les annonces automatiquement sur Facebook"
 
-#: includes/settings-api.php:445
+#: includes/settings-api.php:460
 msgid ""
-"If checked, Ads will be posted to Facebook shortly after they are posted, "
-"enabled or edited, whichever occurs first. Ads will be posted only once. "
-"Please note that disabled Ads cannot be posted to Facebook."
-msgstr "Si c’est coché, toutes les annonces seront affichées sur Facebook peu de temps après leur publication, activation ou modification, selon la première éventualité. Les annonces ne seront affichées qu’une seule fois. Veuillez noter qu’une annonce désactivée ne peut pas être publiées sur Facebook."
+"If checked, Ads will be sent to Facebook shortly after they are posted, "
+"enabled or edited, whichever occurs first. Please note that ads will be sent"
+" only once and disabled ads cannot be sent to Facebook."
+msgstr "Si cette case est cochée, les annonces seront envoyées à Facebook peu de temps après leur publication, activation ou modification, selon la première éventualité. Veuillez noter que les annonces ne seront envoyées qu'une seule fois et que les annonces désactivées ne peuvent pas être envoyées à Facebook."
 
-#: includes/settings-api.php:654
+#: includes/settings-api.php:465
+msgid "Ask Facebook to clear cache for ads pages"
+msgstr "Demander à Facebook de vider le cache pour les pages d'annonces"
+
+#: includes/settings-api.php:473
+msgid "Facebook Application"
+msgstr "Application Facebook"
+
+#: includes/settings-api.php:482
+msgid "App Id"
+msgstr "App Id"
+
+#: includes/settings-api.php:485
+msgid ""
+"An application identifier associates your site, its pages, and visitor "
+"actions with a registered Facebook application."
+msgstr "L’identifiant d’application associe votre site, ses pages et les actions de vos visiteurs à une application Facebook dûment enregistrée."
+
+#: includes/settings-api.php:491
+msgid "App Secret"
+msgstr "Mot secret"
+
+#: includes/settings-api.php:494
+msgid ""
+"An application secret is a secret shared between Facebook and your "
+"application, similar to a password."
+msgstr "Un secret d’application est un secret partagé entre Facebook et l’application, à la manière d’un mot de passe."
+
+#: includes/settings-api.php:499
+msgid "Facebook User Authorization"
+msgstr "Autorisation d'utilisateur Facebook"
+
+#: includes/settings-api.php:508
+msgid "User Access Token"
+msgstr "Jeton d’accès utilisateur"
+
+#: includes/settings-api.php:511
+msgid ""
+"You can manually enter your user access token (if you know it) or log in to "
+"Facebook to get one using the link above."
+msgstr "Vous pouvez entrer manuellement votre jeton d'accès utilisateur (si vous le connaissez) ou vous connecter à Facebook pour en obtenir un en utilisant le lien ci-dessus."
+
+#: includes/settings-api.php:516
+msgid "Facebook Page and Group Selection"
+msgstr "Sélection de page et de groupe sur Facebook"
+
+#: includes/settings-api.php:525
+#: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:32
+msgid "Facebook Page"
+msgstr "Page Facebook"
+
+#: includes/settings-api.php:537
+#: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:36
+msgid "Facebook Group"
+msgstr "Groupe Facebook"
+
+#: includes/settings-api.php:549
+msgid "Facebook Page Access Token"
+msgstr "Jeton d'accès à la page Facebook"
+
+#: includes/settings-api.php:560
+msgid "Zapier Integration"
+msgstr "Intégration Zapier"
+
+#: includes/settings-api.php:569
+msgid "Zapier webhook used to send ads to a Facebook page"
+msgstr "Zapier webhook utilisé pour envoyer des annonces sur une page Facebook"
+
+#: includes/settings-api.php:572
+msgid ""
+"The plugin will post information to this URL the first time an ad becomes "
+"publicly available (after they are posted, enabled or edited) on the website"
+" or using the Send to Facebook Page action from the list of classified ads. "
+"Disabled ads are excluded."
+msgstr "Le plug-in publiera des informations sur cette URL la première fois qu'une annonce sera publiquement disponible (après leur publication, son activation ou sa modification) sur le site Web ou à l'aide de l'action Envoyer à la page Facebook de la liste des annonces classées. Les annonces désactivées sont exclues."
+
+#: includes/settings-api.php:577
+msgid "IFTTT Integration"
+msgstr "Intégration IFTTT"
+
+#: includes/settings-api.php:586
+msgid "URL used to send requests to IFTTT Webhooks service"
+msgstr "URL utilisée pour envoyer des demandes au service IFTTT Webhooks"
+
+#: includes/settings-api.php:589
+msgid ""
+"The plugin will post information to the Webhooks service the first time an "
+"ad becomes publicly available (after they are posted, enabled or edited) on "
+"the website or when someone uses the Send to Facebook Page action from the "
+"list of classified ads. Disabled ads are excluded."
+msgstr "Le plugin publiera des informations sur le service Webhooks la première fois qu'une annonce deviendra publiquement disponible (après leur publication, son activation ou sa modification) sur le site Web ou lorsqu'une personne utilisera l'action Envoyer à la page Facebook de la liste des annonces classées. Les annonces désactivées sont exclues."
+
+#: includes/settings-api.php:595
+msgid "The name of the event that will be posted to the Webhooks service"
+msgstr "Le nom de l'événement qui sera publié sur le service Webhooks"
+
+#: includes/settings-api.php:598
+msgid ""
+"The plugin will post information about new ads to a unique URL built using "
+"the Webhooks URL and Event Name you define."
+msgstr "Le plug-in publiera des informations sur les nouvelles annonces sur une URL unique créée à l'aide de l'URL Webhooks et du nom de l'événement que vous avez définis."
+
+#: includes/settings-api.php:808
 msgid "<module-name> License Key"
 msgstr "<module-name> Clé de licence"
 
-#: includes/settings-api.php:663
+#: includes/settings-api.php:817
 msgid "Licenses"
 msgstr "Licences"
 
-#: includes/settings-api.php:803
+#: includes/settings-api.php:957
 msgid ""
 "Require Registration setting was enabled automatically because you activated"
 " the User Ad Management panel."
 msgstr "L’inscription obligatoire a été activée automatiquement car vous avez activé le panneau de gestion d’annonces pour les utilisateurs."
 
-#: includes/settings-api.php:820
+#: includes/settings-api.php:974
 msgid ""
 "Akismet SPAM control cannot be enabled because Akismet plugin is not "
 "installed or activated."
 msgstr "Vous ne pouvez pas activer le contrôle de SPAM Akismet parce que vous n’avez pas installé ou activé le plugin Akismet"
 
-#: includes/settings-api.php:824
+#: includes/settings-api.php:978
 msgid ""
 "Akismet SPAM control cannot be enabled because Akismet is not properly "
 "configured."
 msgstr "Vous ne pouvez pas activer le contrôle de SPAM Akismet parce que Akismet n’est pas correctement configuré."
 
-#: includes/settings-api.php:847
+#: includes/settings-api.php:1001
 msgid ""
 "reCAPTCHA can't be used because the public key and private key settings are "
 "required for reCAPTCHA to work properly."
 msgstr "reCAPTCHA est inutilisable sans ses clés publique et privée."
 
-#: includes/settings-api.php:849
+#: includes/settings-api.php:1003
 msgid ""
 "reCAPTCHA can't be used because the public key setting is required for "
 "reCAPTCHA to work properly."
 msgstr "reCAPTCHA nécessite une clé publique pour fonctionner."
 
-#: includes/settings-api.php:851
+#: includes/settings-api.php:1005
 msgid ""
 "reCAPTCHA can't be used because the private key setting is required for "
 "reCAPTCHA to work properly."
 msgstr "reCAPTCHA nécessite une clé privée pour fonctionner."
 
-#: includes/settings-api.php:864
+#: includes/settings-api.php:1018
 msgid ""
 "User Ad Management panel was automatically deactivated because you disabled "
 "Require Registration setting."
 msgstr "Le panneau de gestion d’annonce a été désactivé automatiquement car vous avez désactivé l’inscription obligatoire."
 
-#: includes/settings-api.php:869
+#: includes/settings-api.php:1023
 msgid ""
 "Credit System was automatically disabled because you disabled Require "
 "Registration setting."
 msgstr "Le système de crédit a été désactivé automatiquement parce que vous avez désactivé l’inscription obligatoire."
 
-#: includes/settings-api.php:885
+#: includes/settings-api.php:1039
 msgid ""
 "There is a problem with the PayPal Currency Code you have entered. It does "
 "not match any of the codes in our list of curencies supported by PayPal."
 msgstr "Il y a un problème avec le code de la devise Paypal que vous avez entré. Il ne correspond à aucun des codes dans la liste des devises disponibles fournies par PayPal."
 
-#: includes/settings-api.php:886
+#: includes/settings-api.php:1040
 msgid "The available currency codes are"
 msgstr "Les codes de devises disponibles sont"
 
-#: includes/settings-api.php:895
+#: includes/settings-api.php:1049
 msgid ""
 "Require Registration setting was enabled automatically because you activated"
 " the Credit System."
 msgstr "L’inscription automatique a été activée automatiquement parce que vous avez activé le système de crédit."
 
-#: includes/settings-api.php:900
+#: includes/settings-api.php:1054
 msgid ""
 "Charge Listing Fee setting was enabled automatically because you activated "
 "the Credit System."
 msgstr "La facturation de participations a été activée automatiquement parce que vous avez activé le système de crédit."
 
-#: includes/settings-api.php:906
+#: includes/settings-api.php:1060
 msgid ""
 "Credit System was disabled automatically because you disabled Charge Listing"
 " Fee."
 msgstr "Le système de crédit a été désactivé automatiquement parce que vous désactivé la facturation de participations."
 
-#: includes/settings-api.php:929
+#: includes/settings-api.php:1083
 msgid ""
 "<new-value> is not a valid email address. Please check the value you entered"
 " to use as the FROM email address for outgoing messages."
 msgstr "<new-value> n'est pas une adresse e-mail valide. Veuillez vérifier la valeur que vous avez entrée pour l'utiliser comme adresse e-mail \"FROM\" pour les messages sortants."
 
-#: includes/settings-api.php:930
+#: includes/settings-api.php:1084
 msgid ""
 "<new-value> is not a valid email address. Please check the value you entered"
 " to use as recipient email address for admin notifications."
 msgstr "<new-value> n'est pas une adresse e-mail valide. Veuillez vérifier la valeur que vous avez saisie pour l'utiliser comme adresse e-mail \"destinataire\" pour les notifications d'administration."
 
-#: includes/settings-api.php:1199
+#: includes/settings-api.php:1406
 msgid "Deactivate"
 msgstr "Désactiver"
 
-#: includes/settings-api.php:1200
+#: includes/settings-api.php:1407
 msgid "active"
 msgstr "licence active"
 
-#: includes/settings-api.php:1200 includes/settings-api.php:1203
-#: includes/settings-api.php:1213 includes/settings-api.php:1215
-#: includes/settings-api.php:1217
+#: includes/settings-api.php:1407 includes/settings-api.php:1410
+#: includes/settings-api.php:1420 includes/settings-api.php:1422
+#: includes/settings-api.php:1424
 msgid "Status: <license-status>"
 msgstr "État: <license-status>"
 
-#: includes/settings-api.php:1202 includes/settings-api.php:1205
+#: includes/settings-api.php:1409 includes/settings-api.php:1412
 msgid "Activate"
 msgstr "Activer"
 
-#: includes/settings-api.php:1203
+#: includes/settings-api.php:1410
 msgid "inactive"
 msgstr "Inactive"
 
-#: includes/settings-api.php:1208
+#: includes/settings-api.php:1415
 msgid ""
 "Click the button above to check the status of your license. Please <contact-"
 "link>contact customer support</a> if you think the reported status is wrong."
 msgstr "Cliquez sur le bouton ci-dessus pour vérifier le statut de votre licence. S’il vous plaît <contact-link> Contactez le support client </a> si vous pensez que le statut rapporté est faux."
 
-#: includes/settings-api.php:1213
+#: includes/settings-api.php:1420
 msgid "expired"
 msgstr "expirée"
 
-#: includes/settings-api.php:1215
+#: includes/settings-api.php:1422
 msgid "disabled"
 msgstr "désactivé"
 
-#: includes/settings-api.php:1217
+#: includes/settings-api.php:1424
 msgid "unknown"
 msgstr "inconnu"
 
-#: includes/settings-api.php:1256
+#: includes/settings-api.php:1463
 msgid "Documentation on date and time formatting"
 msgstr "Documentation sur le formatage des dates et des heures"
 
-#: includes/settings-api.php:1277
+#: includes/settings-api.php:1470
+msgid ""
+"You can find your application information in the <a>Facebook Developer "
+"Apps</a> page."
+msgstr "Vous trouverez des informations sur votre application sur la page <a>Facebook Developer Apps (en)</a>."
+
+#: includes/settings-api.php:1483
+msgid ""
+"AWPCP needs to get an authorization token from Facebook to work correctly. "
+"You'll be redirected to Facebook to login. AWPCP does not store or obtain "
+"any personal information from your profile."
+msgstr "AWPCP nécessite un jeton d’autorisation de Facebook pour fonctionner correctement. Vous serez redirigé vers Facebook pour vous connecter. AWPCP ne stocke ou n’obtient aucune information personnelle de votre profil."
+
+#: includes/settings-api.php:1484
+msgid ""
+"Please choose Public as the audience for posts made by the application, even"
+" if you are just testing the integration. Facebook won't allow us to post "
+"content in some cases if you choose something else."
+msgstr "Veuillez choisir l’affichage publiquepour les articles créés par l’application, même si vous souhaitez juste tester l’intégration. Facebook ne nous permettra pas d’afficher du contenu dans certains cas, si vous choisissez quelque chose d’autre."
+
+#: includes/settings-api.php:1493
+msgid "Click here to obtain an access token from Facebook"
+msgstr "Cliquez ici pour obtenir un jeton d'accès de Facebook"
+
+#: includes/settings-api.php:1495
+msgid ""
+"Please provide a value for the App Id and App Secret settings before trying "
+"to get an access token from Facebook."
+msgstr "Veuillez fournir une valeur pour les paramètres App Id et App Secret avant d'essayer d'obtenir un jeton d'accès à partir de Facebook."
+
+#: includes/settings-api.php:1505
+msgid ""
+"Available Facebook Pages and Groups will be displayed after you enter a "
+"valid User Access Token."
+msgstr "Les pages et groupes Facebook disponibles seront affichés après que vous ayez entré un jeton d'accès utilisateur valide."
+
+#: includes/settings-api.php:1506
+msgid ""
+"As of April 4, 2018, all applications need to go through <a "
+"href=\"https://developers.facebook.com/docs/apps/review\" "
+"rel=\"nofollow\">App Review</a> in order to get access to the <a "
+"href=\"https://developers.facebook.com/docs/graph-api/reference/page/\" "
+"rel=\"nofollow\">Page API</a> and <a "
+"href=\"https://developers.facebook.com/docs/graph-"
+"api/reference/user/groups/\" rel=\"nofollow\">Groups API</a>. That means "
+"that you may need to <a href=\"https://developers.facebook.com/docs"
+"/facebook-login/review\" rel=\"nofollow\">submit your app for review</a> "
+"(ask for the <code>manage_pages</code>, <code>publish_pages</code>, "
+"<code>publish_to_groups</code> permissions), before AWPCP can display the "
+"list of pages and groups you manage and be able to post classifieds ads to "
+"those groups and pages."
+msgstr "À partir du 4 avril 2018, toutes les applications doivent passer par <a href=\"https://developers.facebook.com/docs/apps/review\" rel=\"nofollow\"> Examen de l'application </a> afin d'avoir accès à la <a href=\"https://developers.facebook.com/docs/graph-api/reference/page/\" rel=\"nofollow\">Page API</a> et <a href=\"https://developers.facebook.com/docs/graph-api/reference/user/groups/\" rel=\"nofollow\">Groupes API</a>. Cela signifie que vous devrez peut-être <a href=\"https://developers.facebook.com/docs/facebook-login/review\" rel=\"nofollow\"> soumettre votre application pour examen </a> (demander la <code>manage_pages</code>, <code>publish_pages</code>, <code>publish_to_groups</code> permissions), avant qu'AWPCP puisse afficher la liste des pages et des groupes que vous gérez et pouvoir publier des annonces classées sur ces groupes et pages."
+
+#: includes/settings-api.php:1523
+msgid "None (Do not sent ads to a Facebook Page)"
+msgstr "Aucun (ne pas envoyer d'annonces sur une page Facebook)"
+
+#: includes/settings-api.php:1530
+msgid "(Your own profile page)"
+msgstr "(votre page de profil)"
+
+#: includes/settings-api.php:1554
+msgid "None (Do not sent ads to a Facebook Group)"
+msgstr "Aucun (ne pas envoyer d'annonces sur un groupe Facebook)"
+
+#: includes/settings-api.php:1582
 msgid "Setting <setting-name> not available."
 msgstr "Le paramètre <setting-name> n’est pas disponible."
 
@@ -7698,7 +7940,7 @@ msgid "We couldn't find a valid payment term associated with this Ad."
 msgstr "Nous ne pouvons pas trouver un moyen de paiement valide associé à cette annonce."
 
 #: includes/views/admin/listings/class-renew-listings-admin-page.php:68
-#: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:80
+#: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:87
 msgid "No Ads were selected"
 msgstr "Aucune annonce n’a été sélectionnée"
 
@@ -7712,24 +7954,24 @@ msgstr[1] "%d Annonces sont renouvelées"
 msgid "there was an error trying to renew %d Ads"
 msgstr "Une erreur s’est produite pendant l’opération de renouvellement de l’annonce %d"
 
-#: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:35
+#: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:40
 msgid ""
 "AWPCP could not post to Facebook because you haven't selected a Page or a "
 "Group."
 msgstr "AWPCP ne peut pas publier sur Facebook parce que vous n’avez pas sélectionné de page ou de groupe."
 
-#: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:47
+#: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:52
 msgid ""
 "The Ad %s was not sent to Facebook because is currently disabled. If you "
 "share it, Facebook servers and users won't be able to access it."
 msgstr "L’annonce %s n’a pas été envoyée à Facebook parce qu’elle est actuellement désactivée. Si vous la partagez, les serveurs et les utilisateurs Facebook ne pourront pas y accéder."
 
-#: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:56
+#: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:61
 msgctxt "... <listing-title> to a <Facebook Group/Page>"
 msgid "There was an error trying to send the listing %s to a %s."
 msgstr "Une erreur s’est produite pendant l’envoi de la liste %s à %s."
 
-#: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:88
+#: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:95
 msgid ""
 "There were errors trying to Send Ads to Facebook, perhaps your credentials "
 "are invalid or have expired. Please check your <a>settings</a>. If your "
@@ -7737,23 +7979,23 @@ msgid ""
 "link in step 2 of the settings."
 msgstr "Il y eu des erreurs en essayant d’envoyer l’annonce sur Facebook, peut-être que vos informations d’identification ne sont pas valides ou ont expirées. Merci de vérifier vos <a>paramètres</a>. Si votre jeton a expiré, merci d’essayer d’obtenir un nouveau jeton d’accès de Facebook en utilisant le lien dans l’étape 2 des paramètres."
 
-#: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:98
+#: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:105
 msgid "%d Ad was sent to a Facebook Page"
 msgid_plural "%d Ads were sent to a Facebook Page"
 msgstr[0] "%d annonces ont été envoyées à a page Facebook"
 msgstr[1] "%d annonces ont été envoyées à a page Facebook"
 
-#: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:100
+#: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:107
 msgid "there was an error trying to send %d Ads to a Facebook Page"
 msgstr "il y a eu une erreur en essayant d’envoyer %d annonces sur une page Facebook"
 
-#: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:106
+#: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:113
 msgid "%d Ad was sent to a Facebook Group"
 msgid_plural "%d Ads were sent to a Facebook Group"
 msgstr[0] "%d Annonce a été envoyée à un Groupe Facebook"
 msgstr[1] "%d Annonces ont été envoyées à un Groupe Facebook"
 
-#: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:108
+#: includes/views/admin/listings/class-send-listing-to-facebook-admin-page.php:115
 msgid "there was an error trying to send %d Ads to a Facebook Group"
 msgstr "il y a eu une erreur en essayant d’envoyer l’annonce %d au groupe Facebook"
 
@@ -8261,3 +8503,118 @@ msgstr "Retour aux Annonces principales"
 #: templates/frontend/listings.tpl.php:24
 msgid "There were no listings found."
 msgstr "Aucune Annonce n’a été trouvée."
+
+#: templates/privacy-policy.tpl.php:3
+msgctxt "privacy policy"
+msgid "Another WordPress Classifieds Plugin"
+msgstr "Plugin Another WordPress Classifieds (AWPCP)"
+
+#: templates/privacy-policy.tpl.php:5
+msgctxt "privacy policy"
+msgid ""
+"When you submit a classified listing, the content of the listing and its "
+"metadata are retained indefinitely. All users can see, edit or delete the "
+"personal information included on their listings at any time. Website "
+"administrators can also see and edit that information."
+msgstr "Lorsque vous soumettez une liste classée, son contenu et ses métadonnées sont conservés indéfiniment. Tous les utilisateurs peuvent voir, éditer ou supprimer les informations personnelles incluses dans leurs listes à tout moment. Les administrateurs de site Web peuvent également voir et éditer ces informations."
+
+#: templates/privacy-policy.tpl.php:7
+msgctxt "privacy policy"
+msgid ""
+"Website visitors can see the contact name, website URL, phone number, "
+"address and other information included in your submission to describe the "
+"classified listing."
+msgstr "Les visiteurs du site Web peuvent voir le nom du contact, l'URL du site Web, le numéro de téléphone, l'adresse et d'autres informations incluses dans votre soumission pour décrire la liste classée."
+
+#: templates/privacy-policy.tpl.php:9
+msgctxt "privacy policy"
+msgid ""
+"Contact name, email address, website URL and content of submitted classified"
+" listings may be checked through Akismet's spam detection service. The "
+"Akismet service privacy policy is available <a "
+"href=\"https://automattic.com/privacy/\">here</a>."
+msgstr "Le nom du contact, l'adresse e-mail, l'URL du site Web et le contenu des petites annonces soumises peuvent être vérifiés via le service de détection de spam d'Akismet. La politique de confidentialité du service Akismet est disponible <a href=\"https://automattic.com/privacy/\"> ici </a>."
+
+#: templates/privacy-policy.tpl.php:11
+msgctxt "privacy policy"
+msgid "Payment Information"
+msgstr "Informations de paiement"
+
+#: templates/privacy-policy.tpl.php:13
+msgctxt "privacy policy"
+msgid ""
+"If you pay to post a classified listing entering your credit card and "
+"billing information directly on <a href=\"{home_url}\">{home_url}</a>, the "
+"credit card information won't be stored but it will be shared through a "
+"secure connection with the following payment gateways to process the "
+"payment:"
+msgstr "Si vous payez pour publier une annonce classifiée, entrez vos informations de carte de crédit et de facturation directement sur <a href=\"{home_url}\">{home_url} </a>, les informations de carte de crédit ne seront pas stockées mais elles seront partagées via une connexion sécurisée avec les passerelles de paiement suivantes pour traiter le paiement:"
+
+#: templates/privacy-policy.tpl.php:16
+msgctxt "privacy policy"
+msgid ""
+"PayPal &mdash; <a href=\"https://www.paypal.com/webapps/mpp/ua/privacy-"
+"full\">https://www.paypal.com/webapps/mpp/ua/privacy-full</a>"
+msgstr "PayPal &mdash; <a href=\"https://www.paypal.com/webapps/mpp/ua/privacy-full\">https://www.paypal.com/webapps/mpp/ua/privacy-full</a>"
+
+#: templates/privacy-policy.tpl.php:17
+msgctxt "privacy policy"
+msgid ""
+"Authorize.Net &mdash; <a "
+"href=\"https://www.authorize.net/company/privacy/\">https://www.authorize.net/company/privacy/</a>"
+msgstr "Authorize.Net &mdash; <a href=\"https://www.authorize.net/company/privacy/\">https://www.authorize.net/company/privacy/</a>"
+
+#: templates/privacy-policy.tpl.php:18
+msgctxt "privacy policy"
+msgid ""
+"Stripe &mdash; <a "
+"href=\"https://stripe.com/us/privacy/\">https://stripe.com/us/privacy/</a>"
+msgstr "Stripe &mdash; <a href=\"https://stripe.com/us/privacy/\">https://stripe.com/us/privacy/</a>"
+
+#: templates/privacy-policy.tpl.php:21
+msgctxt "privacy policy"
+msgid "Regions"
+msgstr "Régions"
+
+#: templates/privacy-policy.tpl.php:23
+msgctxt "privacy policy"
+msgid ""
+"If you choose to see listings published on a specific region, a cookie will "
+"be stored on your browser for the remainder of the session to remember the "
+"selected region."
+msgstr "Si vous choisissez de voir les annonces publiées sur une région spécifique, un cookie sera stocké sur votre navigateur pour le reste de la session afin de mémoriser la région sélectionnée."
+
+#: templates/privacy-policy.tpl.php:25
+msgctxt "privacy policy"
+msgid "Comments and Ratings"
+msgstr "Commentaires et évaluations"
+
+#: templates/privacy-policy.tpl.php:27
+msgctxt "privacy policy"
+msgid ""
+"When visitors leave comments and reviews for classified listings we collect "
+"the data shown in the comments form, and also the visitor’s IP address to "
+"help spam detection."
+msgstr "Lorsque les visiteurs laissent des commentaires et des critiques d’annonces classées, nous collectons les données figurant dans le formulaire de commentaires, ainsi que l’adresse IP du visiteur afin de faciliter la détection du spam."
+
+#: templates/privacy-policy.tpl.php:29
+msgctxt "privacy policy"
+msgid ""
+"Visitor comments may be checked through Akismet's spam detection service. "
+"The Akismet service privacy policy is available <a "
+"href=\"https://automattic.com/privacy/\">here</a>."
+msgstr "Les commentaires des visiteurs peuvent être vérifiés via le service de détection de spam d’Akismet. La politique de confidentialité du service Akismet est disponible <a href=\"https://automattic.com/privacy/\"> ici </a>."
+
+#: templates/privacy-policy.tpl.php:31
+msgctxt "privacy policy"
+msgid "Restricted Categories"
+msgstr "Rubriques restreintes"
+
+#: templates/privacy-policy.tpl.php:33
+msgctxt "privacy policy"
+msgid ""
+"When you agree to see listings or publish a listing on a restricted "
+"category, a cookie will be stored in your browser to remember your decision."
+" The cookie will be stored on your browser for the remainder of that "
+"session."
+msgstr "Lorsque vous acceptez de voir des annonces ou de publier une annonce dans une catégorie restreinte, un cookie sera enregistré dans votre navigateur pour rappeler votre décision. Le cookie sera stocké sur votre navigateur pour le reste de la session."
