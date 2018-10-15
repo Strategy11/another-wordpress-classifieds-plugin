@@ -253,7 +253,7 @@ class AWPCP_Installer {
             '3.8.6' => array(
                 'migrate_facebook_integration_settings',
             ),
-            '4.0.0' => array(
+            '4.0.0beta1' => array(
                 'create_old_listing_id_column_in_listing_regions_table',
                 'migrate_wordpress_page_settings',
                 'migrate_reply_to_ad_email_template',
