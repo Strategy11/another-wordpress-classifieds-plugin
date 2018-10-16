@@ -43,7 +43,7 @@
     });
 
     $(function() {
-        $.noop(new $.AWPCP.FlagLink($('#flag_ad_link')));
+        $.noop( new $.AWPCP.FlagLink( $( '.awpcp-flag-listing-link' ) ) );
     });
 
     $(function() {
