@@ -84,11 +84,17 @@ AWPCP.define( 'awpcp/frontend/listing-fields-section-controller', [
         },
 
         renderTemplate: function() {
-            var self = this;
+            var self = this,
+                data = self.store.getListingFields();
 
             self.$element = $( self.template ).replaceAll( self.$element ).collapsible();
 
-            var data = self.store.getListingFields();
+            // Mark element as rendered earlier to prevent renderTemplate from being called
+            // again if the data store is refreshed as the result of one of the actions
+            // below.
+            //
+            // This line shouldn't be moved to the bottom of the function.
+            self.$element.addClass( 'rendered' );
 
             // References to necessary elements.
             self.$regionsSelector = self.$element.find( '.awpcp-multiple-region-selector' );
@@ -150,7 +156,8 @@ AWPCP.define( 'awpcp/frontend/listing-fields-section-controller', [
                 self.onContinueButtonClicked();
             } );
 
-            self.$element.addClass( 'rendered' );
+            // Load values already present in the form when the template was loaded.
+            self.onContinueButtonClicked();
         },
 
         onContinueButtonClicked: function() {
