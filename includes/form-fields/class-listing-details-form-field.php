@@ -52,12 +52,6 @@ class AWPCP_ListingDetailsFormField extends AWPCP_FormField {
             $remaining_characters_text = $characters_limit['remaining_characters'];
         }
 
-        if ( $this->is_required() ) {
-            $validators = 'required';
-        } else {
-            $validators = '';
-        }
-
         $params = array(
             'required' => $this->is_required(),
             'value' => $this->format_value( $value ),
@@ -65,7 +59,6 @@ class AWPCP_ListingDetailsFormField extends AWPCP_FormField {
 
             'label' => $this->get_label(),
             'help_text' => nl2br( get_awpcp_option( 'htmlstatustext' ) ),
-            'validators' => $validators,
 
             'characters_allowed' => $characters_limit['characters_allowed'],
             'characters_allowed_text' => $characters_allowed_text,

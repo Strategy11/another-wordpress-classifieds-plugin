@@ -70,21 +70,14 @@ class AWPCP_ListingContactNameFormField extends AWPCP_FormField {
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function render( $value, $errors, $listing, $context ) {
-        $validators = '';
-
-        if ( $this->is_required() ) {
-            $validators = 'required';
-        }
-
         $params = array(
-            'required'   => $this->is_required(),
-            'value'      => $value,
-            'errors'     => $errors,
+            'required' => $this->is_required(),
+            'value'    => $value,
+            'errors'   => $errors,
 
-            'label'      => $this->get_label(),
-            'validators' => $validators,
+            'label'    => $this->get_label(),
 
-            'html'       => array(
+            'html'     => array(
                 'id'       => str_replace( '_', '-', $this->get_slug() ),
                 'name'     => $this->get_slug(),
                 'readonly' => $this->is_readonly( $value ),
