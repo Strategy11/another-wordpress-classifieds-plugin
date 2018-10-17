@@ -61,8 +61,6 @@ class AWPCP_BrowseAdsPage extends AWPCP_Page {
                 'context'  => 'public-listings',
                 'category' => $category_id,
             ],
-            'limit'             => absint( awpcp_request_param( 'results', get_awpcp_option( 'adresultsperpage', 10 ) ) ),
-            'offset'            => absint( awpcp_request_param( 'offset', 0 ) ),
             'orderby'           => get_awpcp_option( 'groupbrowseadsby' ),
         ];
 
@@ -89,8 +87,6 @@ class AWPCP_BrowseAdsPage extends AWPCP_Page {
             'classifieds_query' => [
                 'context' => 'public-listings',
             ],
-            'limit' => absint( awpcp_request_param( 'results', get_awpcp_option( 'adresultsperpage', 10 ) ) ),
-            'offset' => absint( awpcp_request_param( 'offset', 0 ) ),
             'orderby' => get_awpcp_option( 'groupbrowseadsby' ),
         );
 
