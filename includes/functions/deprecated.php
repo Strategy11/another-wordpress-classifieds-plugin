@@ -1,37 +1,6 @@
 <?php
 
 /**
- * @deprecated 3.4
- */
-function awpcp_render_ads($ads, $context='listings', $config=array(), $pagination=array()) {
-    _deprecated_function( __FUNCTION__, '3.4', 'awpcp_display_listings' );
-
-    $config = shortcode_atts(array('show_menu' => true, 'show_intro' => true), $config);
-
-    if (has_action('awpcp_browse_ads_template_action') || has_filter('awpcp_browse_ads_template_filter')) {
-        do_action('awpcp_browse_ads_template_action');
-        $output = apply_filters('awpcp_browse_ads_template_filter');
-        return;
-    } else if (file_exists(AWPCP_DIR . "/awpcp_display_ads_my_layout.php") && get_awpcp_option('activatemylayoutdisplayads')) {
-        include(AWPCP_DIR . "/awpcp_display_ads_my_layout.php");
-        return;
-    }
-
-    $items = awpcp_render_listings_items( $ads, $context );
-
-    $before_content = apply_filters('awpcp-content-before-listings-pagination', array(), $context);
-    $after_content = apply_filters('awpcp-content-after-listings-pagination', array(), $context);
-    $pagination_block = is_array( $pagination ) ? awpcp_pagination( $pagination, '' ) : '';
-
-    ob_start();
-        include(AWPCP_DIR . '/frontend/templates/listings.tpl.php');
-        $output = ob_get_contents();
-    ob_end_clean();
-
-    return $output;
-}
-
-/**
  * Check that the given file meets the file size, dimensions and file type
  * constraints and moves the file to the AWPCP Uploads directory.
  *
