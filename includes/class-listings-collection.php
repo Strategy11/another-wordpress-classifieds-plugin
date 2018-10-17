@@ -24,6 +24,12 @@ function awpcp_listings_collection() {
 class AWPCP_ListingsCollection {
 
     /**
+     * @var WP_Query    A reference to the most recent WP_Query used to retrieve
+     *                  or count listings.
+     */
+    private $last_query;
+
+    /**
      * @var object
      */
     private $settings;
@@ -139,9 +145,19 @@ class AWPCP_ListingsCollection {
             $query_vars['classifieds_query'] = array();
         }
 
-        $posts = $this->wordpress->create_posts_query( $query_vars );
+        $this->last_query = $this->wordpress->create_posts_query( $query_vars );
 
-        return $posts->posts;
+        return $this->last_query->posts;
+    }
+
+    /**
+     * Returns a reference to the most recent instance of WP_Query used to retrieve
+     * or count listings.
+     *
+     * @since 4.0.0
+     */
+    public function get_last_query() {
+        return $this->last_query;
     }
 
     /**
@@ -163,9 +179,9 @@ class AWPCP_ListingsCollection {
             $query_vars['classifieds_query'] = array();
         }
 
-        $posts = $this->wordpress->create_posts_query( $query_vars );
+        $this->last_query = $this->wordpress->create_posts_query( $query_vars );
 
-        return $posts->found_posts;
+        return $this->last_query->found_posts;
     }
 
     /**
