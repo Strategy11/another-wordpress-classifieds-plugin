@@ -383,6 +383,14 @@ function awpcp_get_grid_item_css_class($classes, $pos, $columns, $rows) {
  * @return 	String	HTML
  */
 function awpcp_pagination($config, $url) {
+    if ( ! is_admin() && function_exists( 'wp_pagenavi' ) && isset( $config['query'] ) ) {
+        $args = [
+            'query' => $config['query'],
+            'echo'  => false,
+        ];
+
+        return wp_pagenavi( $args );
+    }
 
     $blacklist = array(
         'offset',

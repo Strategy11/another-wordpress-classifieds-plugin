@@ -3,7 +3,7 @@
 /**
  * @since 3.4
  */
-function awpcp_display_listings( $query, $context, $options ) {
+function awpcp_display_listings( $query_vars, $context, $options ) {
     $options = wp_parse_args( $options, array(
         'page' => false,
         'show_intro_message' => false,
@@ -23,23 +23,18 @@ function awpcp_display_listings( $query, $context, $options ) {
         return apply_filters( 'awpcp_browse_ads_template_filter' );
     }
 
-    $results_per_page = absint( awpcp_request_param( 'results', get_awpcp_option( 'adresultsperpage', 10 ) ) );
-    $results_per_page = max( $results_per_page, 1 );
-    $results_offset = absint( awpcp_request_param( 'offset', 0 ) );
-    $results_page = ceil( $results_offset / $results_per_page );
+    $results_per_page = awpcp_get_results_per_page( $query_vars );
+    $results_offset   = awpcp_get_results_offset( $results_per_page, $query_vars );
 
-    if ( empty( $query['posts_per_page'] ) && $results_per_page ) {
-        $query['posts_per_page'] = $results_per_page;
-    }
+    $query_vars['posts_per_page'] = $results_per_page;
+    $query_vars['paged']          = 1 + floor( $results_offset / $results_per_page );
 
-    if ( empty( $query['paged'] ) && $query['posts_per_page'] ) {
-        $query['paged'] = $results_page;
-    }
+    unset( $query_vars['results'], $query_vars['limit'], $query_vars['offset'] );
 
     $listings_collection = awpcp_listings_collection();
 
-    $listings = $listings_collection->find_enabled_listings( $query );
-    $listings_count = $listings_collection->count_enabled_listings( $query );
+    $listings = $listings_collection->find_enabled_listings( $query_vars );
+    $query    = $listings_collection->get_last_query();
 
     $before_content = apply_filters( 'awpcp-content-before-listings-page', $options['before_content'], $context );
 
@@ -52,18 +47,19 @@ function awpcp_display_listings( $query, $context, $options ) {
     } else {
         $before_pagination[20]['user-content'] = $options['before_pagination'];
     }
-    $before_pagination = apply_filters( 'awpcp-content-before-listings-pagination', $before_pagination, $context, $listings, $query );
+    $before_pagination = apply_filters( 'awpcp-content-before-listings-pagination', $before_pagination, $context, $listings, $query_vars );
     ksort( $before_pagination );
     $before_pagination = awpcp_flatten_array( $before_pagination );
 
     $before_list = apply_filters( 'awpcp-content-before-listings-list', $options['before_list'], $context );
 
-    if ( $listings_count > 0 ) {
+    if ( $query->found_posts > 0 ) {
         if ( $options['show_pagination'] ) {
             $top_pagination_options = array(
+                'query'         => $query,
                 'results'       => $results_per_page,
                 'offset'        => $results_offset,
-                'total'         => $listings_count,
+                'total'         => $query->found_posts,
                 'show_dropdown' => false,
             );
 
@@ -91,6 +87,87 @@ function awpcp_display_listings( $query, $context, $options ) {
     ob_end_clean();
 
     return $content;
+}
+
+/**
+ * The number of results to show in each page is calculated considering the
+ * following sources. We will use the first value that is available.
+ *
+ * 1. The value of a 'posts_per_page' entry in the $query_vars argument.
+ * 2. The value of a 'limit' entry in the $query_vars argument.
+ * 3. The value of a 'results' entry in the $query_vars argument.
+ * 4. The value of a 'results' GET or POST variable.
+ * 5. The value of the 'adresultsperpage' option.
+ * 6. 10
+ *
+ * @param array $query_vars     Array of WP_Query query vars that will be used
+ *                              elsewhere to load the listings to show on this
+ *                              page.
+ * @since 4.0.0
+ */
+function awpcp_get_results_per_page( $query_vars = [] ) {
+    $results_per_page = intval( awpcp_request_param( 'results', get_awpcp_option( 'adresultsperpage', 10 ) ) );
+
+    if ( isset( $query_vars['results'] ) ) {
+        $results_per_page = intval( $query_vars['results'] );
+    }
+
+    if ( isset( $query_vars['limit'] ) ) {
+        $results_per_page = intval( $query_vars['limit'] );
+    }
+
+    if ( isset( $query_vars['posts_per_page'] ) ) {
+        $results_per_page = intval( $query_vars['posts_per_page'] );
+    }
+
+    // The number of results per page should always be a number greater or
+    // equal than 1.
+    return max( $results_per_page, 1 );
+}
+
+/**
+ * The results offset is calculated considering the following sources. We
+ * will use the first value that is available.
+ *
+ * 1. The value of an 'offset' entry in the $query_vars argument.
+ * 2. The value of a 'paged' entry in the $query_vars argument.
+ * 3. The value of an 'offset' GET or POST variable.
+ * 4. The value of the 'paged' query var.
+ * 5. The value of the 'page' query var.
+ *
+ * @param int   $results_per_page   Used to calculate the offset from a page
+ *                                  number.
+ * @param array $query_vars         Array of WP_Query query vars that will be
+ *                                  used elsewhere to load the listings to show
+ *                                  on this page.
+ * @since 4.0.0
+ */
+function awpcp_get_results_offset( $results_per_page, $query_vars = [] ) {
+    $results_offset = 0;
+    $page           = intval( get_query_var( 'page' ) );
+
+    if ( $page > 0 ) {
+        $results_offset = ( $page - 1 ) * $results_per_page;
+    }
+
+    $paged = intval( get_query_var( 'paged' ) );
+
+    if ( $paged > 0 ) {
+        $results_offset = ( $paged - 1 ) * $results_per_page;
+    }
+
+    $results_offset = intval( awpcp_request_param( 'offset', $results_offset ) );
+    $paged          = isset( $query_vars['paged'] ) ? intval( $query_vars['paged'] ) : 0;
+
+    if ( $paged > 0 ) {
+        $results_offset = ( $paged - 1 ) * $results_per_page;
+    }
+
+    if ( isset( $query_vars['offset'] ) ) {
+        $results_offset = intval( $query_vars['offset'] );
+    }
+
+    return $results_offset;
 }
 
 /**
