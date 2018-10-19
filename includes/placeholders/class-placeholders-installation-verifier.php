@@ -63,7 +63,11 @@ class AWPCP_PlaceholdersInstallationVerifier {
         $warning_message = sprintf( '<strong>%s:</strong> %s', __( 'Warning', 'another-wordpress-classifieds-plugin' ), $warning_message );
 
         $url  = awpcp_get_admin_settings_url( [ 'sg' => 'layout-and-presentation-settings' ] );
-        $link = sprintf( '<a href="%s">%s</a>', $url, __( 'Ad/Listings settings page', 'another-wordpress-classifieds-plugin' ) );
+        $link = sprintf(
+            '<a href="%s">%s</a>',
+            esc_url( $url ),
+            esc_html( __( 'Display > Layout and Presentation settings page', 'another-wordpress-classifieds-plugin' ) )
+        );
 
         /* translators: %s an HTML A element */
         $go_to_settings_message = sprintf( __( 'Go to the %s to change the Single Ad layout.', 'another-wordpress-classifieds-plugin' ), $link );
