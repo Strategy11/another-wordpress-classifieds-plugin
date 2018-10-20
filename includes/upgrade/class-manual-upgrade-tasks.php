@@ -1,18 +1,48 @@
 <?php
+/**
+ * @package AWPCP/Upgrade
+ */
 
+/**
+ * Constructor function for Manual Upgrade Tasks class.
+ */
 function awpcp_manual_upgrade_tasks() {
     return new AWPCP_Manual_Upgrade_Tasks( awpcp_upgrade_tasks_manager() );
 }
 
+/**
+ * Registers the plugin manual upgrade routines that are enabled from other
+ * routines on Installer during upgrade.
+ *
+ * Manual Upgrade Routines are routines that require the user to initiate them
+ * from the admin dashboard and keep the browser tab open until all the steps
+ * have been completed.
+ *
+ * If a manual upgrade routine is defined with blocking = true, then all other
+ * plugin features are disabled until that upgrade routine is completed.
+ */
 class AWPCP_Manual_Upgrade_Tasks {
 
+    /**
+     * @var UpgradeTasksManager
+     */
     private $upgrade_tasks;
 
+    /**
+     * Constructor.
+     */
     public function __construct( $upgrade_tasks ) {
         $this->upgrade_tasks = $upgrade_tasks;
     }
 
+    /**
+     * Register manual upgrade rotuines.
+     */
     public function register_upgrade_tasks() {
+        // @phpcs:disable PEAR.Functions.FunctionCallSignature.CloseBracketLine
+        // @phpcs:disable WordPress.Arrays.MultipleStatementAlignment.DoubleArrowNotAligned
+        // @phpcs:disable PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket
+
         $this->upgrade_tasks->register_upgrade_task( array(
             'slug' => 'awpcp-import-payment-transactions',
             'name' => __( 'Import Payment Transactions', 'another-wordpress-classifieds-plugin' ),
@@ -69,6 +99,8 @@ class AWPCP_Manual_Upgrade_Tasks {
             'context' => 'plugin',
             'blocking' => false,
         ) );
+
+        // @phpcs:enable
 
         $this->upgrade_tasks->register_upgrade_task(
             [
