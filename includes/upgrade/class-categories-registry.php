@@ -1,17 +1,38 @@
 <?php
+/**
+ * @package AWPCP\Upgrade
+ */
 
+/**
+ * Constructor function for Categories Registry class.
+ */
 function awpcp_categories_registry() {
     return new AWPCP_Categories_Registry( awpcp_wordpress() );
 }
 
+/**
+ * Provides access to translation arrays for pre-4.0.0 categories that were
+ * converted into listing category taxonomy terms and terms that had to be
+ * replaced by other terms with greater IDs to avoid ID collisions.
+ */
 class AWPCP_Categories_Registry {
 
+    /**
+     * @var WordPress
+     */
     private $wordpress;
 
+    /**
+     * Constructor.
+     */
     public function __construct( $wordpress ) {
         $this->wordpress = $wordpress;
     }
 
+    /**
+     * Retuns a translation array with IDs of pre-4.0.0 categories as the keys
+     * and the IDs of the corresponding listing category term as the values.
+     */
     public function get_categories_registry() {
         return $this->get_array_option( 'awpcp-legacy-categories' );
     }
@@ -34,6 +55,12 @@ class AWPCP_Categories_Registry {
         return $data;
     }
 
+    /**
+     * Adds information about a migrated category to the registry.
+     *
+     * @param int $category_id  The ID of a pre-4.0.0 category.
+     * @param int $term_id      The ID of the term that replaced the old category.
+     */
     public function update_categories_registry( $category_id, $term_id ) {
         $this->update_array_option( 'awpcp-legacy-categories', $category_id, $term_id );
     }
