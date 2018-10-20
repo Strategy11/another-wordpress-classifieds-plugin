@@ -72,7 +72,8 @@ function awpcp_display_listings( $query_vars, $context, $options ) {
 
         $items = awpcp_render_listings_items( $listings, $context );
     } else {
-        $pagination = '';
+        $top_pagination    = '';
+        $bottom_pagination = '';
         $items = array();
     }
 
