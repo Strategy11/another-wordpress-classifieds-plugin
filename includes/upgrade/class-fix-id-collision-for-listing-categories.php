@@ -14,6 +14,8 @@
  */
 class AWPCP_FixIDCollisionForListingCategoriesUpgradeTaskHandler implements AWPCP_Upgrade_Task_Runner {
 
+    use AWPCP_UpgradeCategoriesTaskHandlerHelper;
+
     /**
      * @var string
      */
@@ -130,38 +132,17 @@ class AWPCP_FixIDCollisionForListingCategoriesUpgradeTaskHandler implements AWPC
      * @since 4.0.0
      */
     private function create_replacement_term( $current_category, $categories_registry ) {
-        $max_term_id            = $this->get_max_term_id();
         $max_legacy_category_id = max( array_keys( $categories_registry ) );
+        $wanted_term_id         = $max_legacy_category_id + 1;
 
-        if ( $max_term_id <= $max_legacy_category_id ) {
-            return $this->wordpress->insert_term_with_id(
-                $max_legacy_category_id + 1,
-                $current_category->name . ' (' . wp_rand() . ')',
-                $this->listing_category_taxonomy,
-                [
-                    'parent'      => $current_category->parent,
-                    'description' => $current_category->term_id,
-                ]
-            );
-        }
+        $term_data = [
+            'name'        => $current_category->name . ' (' . wp_rand() . ')',
+            'parent'      => $current_category->parent,
+            'description' => $current_category->term_id,
+            'taxonomy'    => $this->listing_category_taxonomy,
+        ];
 
-        return $this->wordpress->insert_term(
-            $current_category->name . ' (' . wp_rand() . ')',
-            $this->listing_category_taxonomy,
-            [
-                'parent'      => $current_category->parent,
-                'description' => $current_category->term_id,
-            ]
-        );
-    }
-
-    /**
-     * Returns the greatest term_id currently stored in the terms table.
-     *
-     * @since 4.0.0
-     */
-    private function get_max_term_id() {
-        return intval( $this->db->get_var( "SELECT MAX(term_id) FROM {$this->db->terms}" ) );
+        return $this->maybe_insert_term_with_id( $wanted_term_id, $term_data );
     }
 
     /**

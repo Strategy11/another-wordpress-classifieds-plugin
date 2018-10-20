@@ -443,6 +443,7 @@ return array(
     'AWPCP_Update_Categories_Task_Runner' => $baseDir . '/includes/upgrade/class-update-categories-task-runner.php',
     'AWPCP_Update_Category_Admin_Page' => $baseDir . '/admin/categories/class-update-category-admin-page.php',
     'AWPCP_Update_Media_Status_Task_Handler' => $baseDir . '/includes/upgrade/class-update-media-status-task-handler.php',
+    'AWPCP_UpgradeCategoriesTaskHandlerHelper' => $baseDir . '/includes/upgrade/trait-upgrade-categories-task-handler-helper.php',
     'AWPCP_Upgrade_Session' => $baseDir . '/includes/upgrade/class-upgrade-session.php',
     'AWPCP_Upgrade_Sessions' => $baseDir . '/includes/upgrade/class-upgrade-sessions.php',
     'AWPCP_Upgrade_Task_Ajax_Handler' => $baseDir . '/includes/upgrade/class-upgrade-task-ajax-handler.php',
