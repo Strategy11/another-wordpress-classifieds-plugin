@@ -170,6 +170,7 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_FilesSettings' => __DIR__ . '/../..' . '/includes/settings/class-files-settings.php',
         'AWPCP_Filesystem' => __DIR__ . '/../..' . '/includes/media/class-filesystem.php',
         'AWPCP_FilteredArray' => __DIR__ . '/../..' . '/includes/admin/class-filtered-array.php',
+        'AWPCP_FixIDCollisionForListingCategoriesUpgradeTaskHandler' => __DIR__ . '/../..' . '/includes/upgrade/class-fix-id-collision-for-listing-categories.php',
         'AWPCP_FlaggedListingTableView' => __DIR__ . '/../..' . '/includes/admin/listings/class-flagged-listing-table-view.php',
         'AWPCP_FormField' => __DIR__ . '/../..' . '/includes/form-fields/class-form-field.php',
         'AWPCP_FormFields' => __DIR__ . '/../..' . '/includes/form-fields/class-form-fields.php',

@@ -174,5 +174,25 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
             );
         } );
         // @phpcs:enable
+
+        $this->register_upgrade_task_handlers( $container );
+    }
+
+    /**
+     * Register constructors for Upgrade Task Handlers.
+     *
+     * @since 4.0.0
+     */
+    private function register_upgrade_task_handlers( $container ) {
+        $container['FixIDCollisionForListingCategoriesUpgradeTaskHandler'] = $container->service(
+            function( $container ) {
+                return new AWPCP_FixIDCollisionForListingCategoriesUpgradeTaskHandler(
+                    $container['listing_category_taxonomy'],
+                    awpcp_categories_registry(),
+                    $container['WordPress'],
+                    $container['wpdb']
+                );
+            }
+        );
     }
 }

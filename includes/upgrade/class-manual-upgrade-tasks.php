@@ -69,5 +69,15 @@ class AWPCP_Manual_Upgrade_Tasks {
             'context' => 'plugin',
             'blocking' => false,
         ) );
+
+        $this->upgrade_tasks->register_upgrade_task(
+            [
+                'slug'     => 'awpcp-fix-id-collision-for-listing-categories',
+                'name'     => __( 'Fix ID Collision for Listing Categories', 'another-wordpress-classifieds-plugin' ),
+                'handler'  => 'FixIDCollisionForListingCategoriesUpgradeTaskHandler',
+                'context'  => 'plugin',
+                'blocking' => true,
+            ]
+        );
     }
 }

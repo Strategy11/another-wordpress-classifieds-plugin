@@ -264,6 +264,9 @@ class AWPCP_Installer {
                 'enable_upgrade_routine_to_migrate_listings',
                 'enable_upgrade_routine_to_migrate_media',
             ),
+            '4.0.0beta2' => array(
+                'enable_routine_to_fix_id_collision_for_listing_categories',
+            ),
         );
     }
 
@@ -1263,6 +1266,30 @@ class AWPCP_Installer {
     private function enable_upgrade_routine_to_migrate_media() {
         $this->upgrade_tasks->enable_upgrade_task( 'awpcp-store-media-as-attachments-upgrade-task-handler' );
         delete_option( 'awpcp-smaa-last-listing-id' );
+    }
+
+    /**
+     * Version 4.0.0beta1 can create listing_category terms having an ID equal to
+     * the ID of one of the categories stored in the awpcp_categories table.
+     *
+     * When that happens, that listing_cateogry becomes inaccessible because
+     * the plugin will automatically redirect to the listing_category assocaited
+     * with the category from the awpcp_categories table that has the same ID.
+     *
+     * This upgrade routine fixes that problem by replacing affected terms with
+     * identical ones that have a different, non-conflicting ID.
+     *
+     * @since 4.0.0
+     */
+    private function enable_routine_to_fix_id_collision_for_listing_categories() {
+        // TODO: We need to make each upgrade routine its own class so that we
+        // can inject dependencies through the constructor.
+        $collisions = awpcp_categories_registry()->get_id_collisions();
+
+        if ( $collisions ) {
+            $this->upgrade_tasks->enable_upgrade_task( 'awpcp-fix-id-collision-for-listing-categories' );
+            delete_option( 'awpcp-ficflc-last-listing-id' );
+        }
     }
 }
 

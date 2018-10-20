@@ -169,6 +169,7 @@ return array(
     'AWPCP_FilesSettings' => $baseDir . '/includes/settings/class-files-settings.php',
     'AWPCP_Filesystem' => $baseDir . '/includes/media/class-filesystem.php',
     'AWPCP_FilteredArray' => $baseDir . '/includes/admin/class-filtered-array.php',
+    'AWPCP_FixIDCollisionForListingCategoriesUpgradeTaskHandler' => $baseDir . '/includes/upgrade/class-fix-id-collision-for-listing-categories.php',
     'AWPCP_FlaggedListingTableView' => $baseDir . '/includes/admin/listings/class-flagged-listing-table-view.php',
     'AWPCP_FormField' => $baseDir . '/includes/form-fields/class-form-field.php',
     'AWPCP_FormFields' => $baseDir . '/includes/form-fields/class-form-fields.php',
