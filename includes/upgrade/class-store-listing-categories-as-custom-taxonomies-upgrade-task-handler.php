@@ -11,6 +11,8 @@ class AWPCP_Store_Listing_Categories_As_Custom_Taxonomies_Upgrade_Task_Handler i
     private $wordpress;
     private $db;
 
+    use AWPCP_UpgradeCategoriesTaskHandlerHelper;
+
     public function __construct( $categories, $wordpress, $db ) {
         $this->categories = $categories;
         $this->wordpress = $wordpress;
@@ -50,13 +52,7 @@ class AWPCP_Store_Listing_Categories_As_Custom_Taxonomies_Upgrade_Task_Handler i
             $category_name = $this->get_unique_category_name( $existing_term );
         }
 
-        $term = $this->wordpress->insert_term(
-            $category_name,
-            'awpcp_listing_category',
-            array(
-                'parent' => $this->get_item_parent_id( $item ),
-            )
-        );
+        $term = $this->insert_term( $category_name, $item );
 
         if ( is_wp_error( $term ) ) {
             throw new AWPCP_Exception( sprintf( "A custom taxonomy term coulnd't be created for listing category \"%s\".", $item->category_name ) );
@@ -88,6 +84,38 @@ class AWPCP_Store_Listing_Categories_As_Custom_Taxonomies_Upgrade_Task_Handler i
         }
 
         return $category_name;
+    }
+
+    /**
+     * Inserts a new term to replace the pre-4.0.0 category represented by
+     * $category, making sure that the ID of the new term is greater than the
+     * largest ID of all pre-4.0.0 categories, to avoid conflicts.
+     *
+     * @since 4.0.0
+     */
+    private function insert_term( $category_name, $category ) {
+        $max_legacy_category_id = $this->get_max_category_id();
+        $wanted_term_id         = $max_legacy_category_id + 1;
+
+        $term_data = [
+            'name'        => $category_name,
+            'description' => '',
+            'parent'      => $this->get_item_parent_id( $category ),
+            'taxonomy'    => 'awpcp_listing_category',
+        ];
+
+        return $this->maybe_insert_term_with_id( $wanted_term_id, $term_data );
+    }
+
+    /**
+     * Returns the greatest category_id stored on the awpcp_categories table.
+     *
+     * @since 4.0.0
+     */
+    private function get_max_category_id() {
+        $table = AWPCP_TABLE_CATEGORIES;
+
+        return intval( $this->db->get_var( "SELECT MAX(category_id) FROM {$table}" ) );
     }
 
     private function get_item_parent_id( $item ) {

@@ -12,17 +12,6 @@
 trait AWPCP_UpgradeCategoriesTaskHandlerHelper {
 
     /**
-     * Returns the greatest category_id stored on the awpcp_categories table.
-     *
-     * @since 4.0.0
-     */
-    private function get_max_category_id() {
-        $table = AWPCP_TABLE_CATEGORIES;
-
-        return intval( $this->db->get_var( "SELECT MAX(category_id) FROM {$table}" ) );
-    }
-
-    /**
      * Returns the greatest term_id currently stored in the terms table.
      *
      * @since 4.0.0
