@@ -9,16 +9,33 @@
  */
 abstract class AWPCP_Update_Categories_Task_Runner implements AWPCP_Upgrade_Task_Runner {
 
+    /**
+     * @var object
+     */
     protected $delegate;
+
+    /**
+     * @var Categories Registry
+     */
     protected $categories;
+
+    /**
+     * @var WordPress
+     */
     protected $wordpress;
+
+    /**
+     * @var wpdb
+     */
     protected $db;
 
+    // @phpcs:disable Squiz.Commenting.FunctionComment
+
     public function __construct( $delegate, $categories, $wordpress, $db ) {
-        $this->delegate = $delegate;
+        $this->delegate   = $delegate;
         $this->categories = $categories;
-        $this->wordpress = $wordpress;
-        $this->db = $db;
+        $this->wordpress  = $wordpress;
+        $this->db         = $db;
     }
 
     public function get_last_item_id() {
@@ -39,6 +56,10 @@ abstract class AWPCP_Update_Categories_Task_Runner implements AWPCP_Upgrade_Task
         return $this->db->get_results( $this->db->prepare( $sql, $last_item_id ) );
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)   $last_item_id
+     * @SuppressWarnings(PHPMD.ElseExpression)
+     */
     public function process_item( $item, $last_item_id ) {
         $categories_translations = $this->get_categories_translations();
 
@@ -59,6 +80,8 @@ abstract class AWPCP_Update_Categories_Task_Runner implements AWPCP_Upgrade_Task
 
         return $this->delegate->get_item_id( $item );
     }
+
+    // @phpcs:enable
 
     /**
      * Subclasses should use this method to return an array with outdated
