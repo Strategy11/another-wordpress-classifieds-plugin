@@ -3,7 +3,7 @@
  * Plugin Name: Another WordPress Classifieds Plugin (AWPCP)
  * Plugin URI: http://www.awpcp.com
  * Description: AWPCP - A plugin that provides the ability to run a free or paid classified ads service on your WP site. <strong>!!!IMPORTANT!!!</strong> It's always a good idea to do a BACKUP before you upgrade AWPCP!
- * Version: 4.0.0beta1
+ * Version: 4.0.0beta2
  * Author: D. Rodenbaugh
  * License: GPLv2 or any later version
  * Author URI: http://www.skylineconsult.com
@@ -64,7 +64,7 @@ global $awpcp_imagesurl;
 
 global $nameofsite;
 
-$awpcp_db_version = '4.0.0beta1';
+$awpcp_db_version = '4.0.0beta2';
 
 $wpcontenturl = WP_CONTENT_URL;
 $wpcontentdir = WP_CONTENT_DIR;
@@ -1126,7 +1126,7 @@ class AWPCP {
 					'url' => 'http://awpcp.com/downloads/category-icons-module/?ref=panel',
 					'installed' => defined( 'AWPCP_CATEGORY_ICONS_MODULE_DB_VERSION' ),
 					'version' => 'AWPCP_CATEGORY_ICONS_MODULE_DB_VERSION',
-					'required' => '4.0.0beta1',
+					'required' => '4.0.0beta2',
 				),
 				'comments' => array(
 					'name' => __(  'Comments & Ratings', 'another-wordpress-classifieds-plugin'  ),
@@ -1147,7 +1147,7 @@ class AWPCP {
 					'url' => 'http://awpcp.com/downloads/extra-fields-module/?ref=panel',
 					'installed' => defined( 'AWPCP_EXTRA_FIELDS_MODULE' ),
 					'version' => 'AWPCP_EXTRA_FIELDS_MODULE_DB_VERSION',
-					'required' => '4.0.0beta1',
+					'required' => '4.0.0beta2',
 				),
 				'featured-ads' => array(
 					'name' => __( 'Featured Ads', 'another-wordpress-classifieds-plugin' ),
@@ -1161,7 +1161,7 @@ class AWPCP {
 					'url' =>'http://awpcp.com/downloads/fee-category-module/?ref=panel',
 					'installed' => function_exists( 'awpcp_price_cats' ),
 					'version' => 'AWPCP_FPC_MODULE_DB_VERSION',
-					'required' => '4.0.0beta1',
+					'required' => '4.0.0beta2',
 				),
 				'google-checkout' => array(
 					'name' => __( 'Google Checkout', 'another-wordpress-classifieds-plugin' ),
