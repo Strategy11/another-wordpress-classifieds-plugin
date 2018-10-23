@@ -314,6 +314,7 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_Missing_PayPal_Merchant_ID_Setting_Notice' => __DIR__ . '/../..' . '/admin/class-missing-paypal-merchant-id-setting-notice.php',
         'AWPCP_ModeratorListTableActionTrait' => __DIR__ . '/../..' . '/includes/admin/trait-moderator-list-table-action.php',
         'AWPCP_Module' => __DIR__ . '/../..' . '/includes/helpers/class-module.php',
+        'AWPCP_ModuleInstaller' => __DIR__ . '/../..' . '/includes/helpers/trait-module-installer.php',
         'AWPCP_ModulesManager' => __DIR__ . '/../..' . '/includes/helpers/class-modules-manager.php',
         'AWPCP_ModulesUpdater' => __DIR__ . '/../..' . '/includes/helpers/class-modules-updater.php',
         'AWPCP_Modules_Manager_Factory' => __DIR__ . '/../..' . '/includes/helpers/class-modules-manager-factory.php',

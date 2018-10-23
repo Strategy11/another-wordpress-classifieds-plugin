@@ -313,6 +313,7 @@ return array(
     'AWPCP_Missing_PayPal_Merchant_ID_Setting_Notice' => $baseDir . '/admin/class-missing-paypal-merchant-id-setting-notice.php',
     'AWPCP_ModeratorListTableActionTrait' => $baseDir . '/includes/admin/trait-moderator-list-table-action.php',
     'AWPCP_Module' => $baseDir . '/includes/helpers/class-module.php',
+    'AWPCP_ModuleInstaller' => $baseDir . '/includes/helpers/trait-module-installer.php',
     'AWPCP_ModulesManager' => $baseDir . '/includes/helpers/class-modules-manager.php',
     'AWPCP_ModulesUpdater' => $baseDir . '/includes/helpers/class-modules-updater.php',
     'AWPCP_Modules_Manager_Factory' => $baseDir . '/includes/helpers/class-modules-manager-factory.php',
