@@ -1,11 +1,18 @@
 <?php
+/**
+ * @package AWPCP\Upgrade
+ */
 
-class AWPCP_Update_Categories_Task_Runner implements AWPCP_Upgrade_Task_Runner {
+/**
+ * Base class for Upgrade Task Handlers used to update categories associations
+ * with objects from premium modules.
+ */
+abstract class AWPCP_Update_Categories_Task_Runner implements AWPCP_Upgrade_Task_Runner {
 
-    private $delegate;
-    private $categories;
-    private $wordpress;
-    private $db;
+    protected $delegate;
+    protected $categories;
+    protected $wordpress;
+    protected $db;
 
     public function __construct( $delegate, $categories, $wordpress, $db ) {
         $this->delegate = $delegate;
@@ -33,14 +40,14 @@ class AWPCP_Update_Categories_Task_Runner implements AWPCP_Upgrade_Task_Runner {
     }
 
     public function process_item( $item, $last_item_id ) {
-        $categories_registry = $this->categories->get_categories_registry();
+        $categories_translations = $this->get_categories_translations();
 
         $old_categories = $this->delegate->get_item_categories( $item );
         $new_categories = array();
 
         foreach ( $old_categories as $category ) {
-            if ( isset( $categories_registry[ $category ] ) ) {
-                $new_categories[] = $categories_registry[ $category ];
+            if ( isset( $categories_translations[ $category ] ) ) {
+                $new_categories[] = $categories_translations[ $category ];
             } else {
                 $new_categories[] = $category;
             }
@@ -52,4 +59,13 @@ class AWPCP_Update_Categories_Task_Runner implements AWPCP_Upgrade_Task_Runner {
 
         return $this->delegate->get_item_id( $item );
     }
+
+    /**
+     * Subclasses should use this method to return an array with outdated
+     * categories IDs as keys (pre-4.0.0 or conflciting IDs for example) and
+     * the new term IDs as the corresponding values.
+     *
+     * @since 4.0.0
+     */
+    abstract protected function get_categories_translations();
 }

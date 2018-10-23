@@ -372,6 +372,8 @@ return array(
     'AWPCP_RenewListingTableAction' => $baseDir . '/includes/admin/listings/class-renew-listing-table-action.php',
     'AWPCP_RenewListingsAdminPage' => $baseDir . '/includes/views/admin/listings/class-renew-listings-admin-page.php',
     'AWPCP_Renew_Listing_Payment_Transaction_Handler' => $baseDir . '/includes/class-renew-listing-payment-transaction-handler.php',
+    'AWPCP_ReplaceConflictingCategoriesIDsTaskRunner' => $baseDir . '/includes/upgrade/class-replace-conflicting-categories-ids-task-runner.php',
+    'AWPCP_ReplaceCustomCategoriesWithTaxonomiesTaskRunner' => $baseDir . '/includes/upgrade/class-replace-custom-categories-with-taxonomies-task-runner.php',
     'AWPCP_ReplyToAdPage' => $baseDir . '/frontend/page-reply-to-ad.php',
     'AWPCP_Request' => $baseDir . '/includes/helpers/class-awpcp-request.php',
     'AWPCP_Rewrite_Rules_Helper' => $baseDir . '/includes/class-rewrite-rules-helper.php',
