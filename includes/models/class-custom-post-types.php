@@ -179,6 +179,7 @@ class AWPCP_Custom_Post_Types {
                     'name'          => _x( 'Categories', 'taxonomy general name', 'another-wordpress-classifieds-plugin' ),
                     'singular_name' => _x( 'Category', 'taxonomy general name', 'another-wordpress-classifieds-plugin' ),
                 ),
+                'show_in_menu'      => false,
                 'hierarchical'      => true,
                 'query_var'         => 'listing-category',
                 'rewrite'           => array(
