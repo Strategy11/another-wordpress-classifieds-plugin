@@ -84,17 +84,30 @@ class AWPCP_Categories_Collection {
      * @since 4.0.0
      */
     private function prepare_categories_args( $args = array() ) {
-        return wp_parse_args( $args, array(
+        $args = wp_parse_args( $args, array(
             'taxonomy' => $this->taxonomy,
-            'orderby' => 'name',
-            'order' => 'ASC',
-            'hide_empty' => false
+            'hide_empty' => false,
+            'meta_query' => [],
         ) );
+
+        if ( ! isset( $args['orderby'] ) ) {
+            $args['orderby']  = 'meta_value_num';
+            $args['meta_key'] = '_awpcp_order';
+        }
+
+        return $args;
     }
 
     public function count_categories( $args = array() ) {
         $args = array_merge( $this->prepare_categories_args( $args ), array( 'fields' => 'count' ) );
-        return $this->wordpress->get_terms( $this->taxonomy, $args );
+
+        if ( 'meta_value_num' === $args['orderby'] && '_awpcp_order' === $args['meta_key'] ) {
+            unset( $args['meta_key'] );
+        }
+
+        unset( $args['orderby'], $args['order'] );
+
+        return intval( $this->wordpress->get_terms( $args ) );
     }
 
     public function get_hierarchy() {

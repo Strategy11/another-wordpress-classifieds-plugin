@@ -655,7 +655,7 @@ function awpcp_admin_categories_render_category_item($category, $level, $start, 
 
 	$thecategory_parent_id = $category->parent;
 	$thecategory_parent_name = stripslashes(get_adparentcatname($thecategory_parent_id));
-	$thecategory_order = $category->order ? $category->order : 0;
+    $thecategory_order       = intval( get_term_meta( $category->term_id, '_awpcp_order', true ) );
 	$thecategory_name = sprintf( '%s%s<a href="%s">%s</a>', str_repeat( '&mdash;&nbsp;', $level ),
 															$thecategoryicon,
 															esc_url( $admin_listings_url ),

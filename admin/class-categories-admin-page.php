@@ -111,7 +111,7 @@ class AWPCP_CategoriesAdminPage {
                 'category_id' => $category_id,
                 'category_name' => $category ? $category->name : null,
                 'category_parent_id' => $category ? $category->parent : null,
-                'category_order' => null,
+                'category_order' => $category ? intval( get_term_meta( $category->term_id, '_awpcp_order', true ) ) : null,
                 'action' => $category ? 'update-category' : 'create-category',
             ),
             'form_submit' => $category ? __( 'Update category', 'another-wordpress-classifieds-plugin' ) : __( 'Add new category', 'another-wordpress-classifieds-plugin' ),

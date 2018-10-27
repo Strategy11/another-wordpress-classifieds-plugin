@@ -47,10 +47,9 @@ class AWPCP_Update_Category_Admin_Page {
 
         $category->name = stripcslashes( $this->request->param( 'category_name' ) );
         $category->parent = absint( $this->request->param( 'category_parent_id' ) );
-        // TODO: store category order somewhere...
         $category_order = absint( $this->request->param( 'category_order' ) );
 
-        $this->categories_logic->update_category( $category );
+        $this->categories_logic->update_category( $category, $category_order );
 
         awpcp_flash( __( 'The category was successfully updated.', 'another-wordpress-classifieds-plugin' ) );
     }

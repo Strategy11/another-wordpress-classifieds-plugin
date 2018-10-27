@@ -21,7 +21,6 @@ class AWPCP_Create_Category_Admin_Page {
     }
 
     public function dispatch() {
-        // TODO: store category order somewhere...
         $category_order = absint( $this->request->param( 'category_order' ) );
         $category_data = array(
             'name' => stripcslashes( $this->request->param( 'category_name' ) ),
@@ -29,7 +28,7 @@ class AWPCP_Create_Category_Admin_Page {
         );
 
         try {
-            $this->categories_data_mapper->create_category( $category_data );
+            $this->categories_data_mapper->create_category( $category_data, $category_order );
             awpcp_flash( __( 'The new category was successfully added.', 'another-wordpress-classifieds-plugin' ) );
         } catch ( AWPCP_Exception $e ) {
             awpcp_flash( $e->getMessage(), 'error' );
