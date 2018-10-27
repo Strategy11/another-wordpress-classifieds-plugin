@@ -104,9 +104,9 @@
             <td style="width:33%;padding:5px;">
                 <?php esc_html_e( 'Category Name (Total Ads)', 'another-wordpress-classifieds-plugin' ); ?>
             </td>
-            <td style="width:33%;padding:5px;"><?php echo __( 'Parent', 'another-wordpress-classifieds-plugin' ); ?></td>
+            <td style="width:28%;padding:5px;"><?php echo __( 'Parent', 'another-wordpress-classifieds-plugin' ); ?></td>
             <td style="width:5%;padding:5px;"><?php echo __( 'Order', 'another-wordpress-classifieds-plugin' ); ?></td>
-            <td style="width:10%;padding:5px;;"><?php echo __( 'Action', 'another-wordpress-classifieds-plugin' ); ?></td>
+            <td style="width:15%;padding:5px;;"><?php echo __( 'Action', 'another-wordpress-classifieds-plugin' ); ?></td>
         </tr>
 
         <?php echo smart_table2( $items, 1, '', '', false ); ?>
