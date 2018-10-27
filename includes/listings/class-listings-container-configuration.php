@@ -91,15 +91,19 @@ class AWPCP_ListingsContainerConfiguration implements AWPCP_ContainerConfigurati
             }
         );
 
-        $container['ListingsCollection'] = $container->service( function( $container ) {
-            return new AWPCP_ListingsCollection(
-                // TODO: add all these to the container.
-                $container['Settings'],
-                $container['WordPress'],
-                $GLOBALS['wpdb']
-            );
-        } );
+        $container['ListingsCollection'] = $container->service(
+            function( $container ) {
+                return new AWPCP_ListingsCollection(
+                    $container['Settings'],
+                    $container['WordPress'],
+                    $container['wpdb']
+                );
+            }
+        );
     }
+
+    // @phpcs:disable PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket
+    // @phpcs:disable PEAR.Functions.FunctionCallSignature.CloseBracketLine
 
     /**
      * @since 4.0.0
@@ -194,4 +198,6 @@ class AWPCP_ListingsContainerConfiguration implements AWPCP_ContainerConfigurati
             );
         } );
     }
+
+    // @phpcs:enable
 }

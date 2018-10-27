@@ -16,14 +16,14 @@ class AWPCP_Create_Category_Admin_Page {
 
     public function __construct( $categories_data_mapper, $router, $request ) {
         $this->categories_data_mapper = $categories_data_mapper;
-        $this->router = $router;
-        $this->request = $request;
+        $this->router                 = $router;
+        $this->request                = $request;
     }
 
     public function dispatch() {
         $category_order = absint( $this->request->param( 'category_order' ) );
-        $category_data = array(
-            'name' => stripcslashes( $this->request->param( 'category_name' ) ),
+        $category_data  = array(
+            'name'   => stripcslashes( $this->request->param( 'category_name' ) ),
             'parent' => absint( $this->request->param( 'category_parent_id' ) ),
         );
 
@@ -34,7 +34,12 @@ class AWPCP_Create_Category_Admin_Page {
             awpcp_flash( $e->getMessage(), 'error' );
         }
 
-        $this->router->serve_admin_page( array( 'parent' => 'awpcp.php', 'page' => 'awpcp-admin-categories' ) );
+        $route = [
+            'parent' => 'awpcp.php',
+            'page'   => 'awpcp-admin-categories',
+        ];
+
+        $this->router->serve_admin_page( $route );
 
         return false; // halt rendering process. Ugh!
     }

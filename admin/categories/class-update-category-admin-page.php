@@ -18,9 +18,9 @@ class AWPCP_Update_Category_Admin_Page {
 
     public function __construct( $categories_logic, $categories, $router, $request ) {
         $this->categories_logic = $categories_logic;
-        $this->categories = $categories;
-        $this->router = $router;
-        $this->request = $request;
+        $this->categories       = $categories;
+        $this->router           = $router;
+        $this->request          = $request;
     }
 
     public function dispatch() {
@@ -30,7 +30,12 @@ class AWPCP_Update_Category_Admin_Page {
             awpcp_flash( $e->getMessage(), 'error' );
         }
 
-        $this->router->serve_admin_page( array( 'parent' => 'awpcp.php', 'page' => 'awpcp-admin-categories' ) );
+        $route = [
+            'parent' => 'awpcp.php',
+            'page'   => 'awpcp-admin-categories',
+        ];
+
+        $this->router->serve_admin_page( $route );
 
         return false; // halt rendering process. Ugh!
     }
@@ -45,9 +50,9 @@ class AWPCP_Update_Category_Admin_Page {
             throw new AWPCP_Exception( $message );
         }
 
-        $category->name = stripcslashes( $this->request->param( 'category_name' ) );
+        $category->name   = stripcslashes( $this->request->param( 'category_name' ) );
         $category->parent = absint( $this->request->param( 'category_parent_id' ) );
-        $category_order = absint( $this->request->param( 'category_order' ) );
+        $category_order   = absint( $this->request->param( 'category_order' ) );
 
         $this->categories_logic->update_category( $category, $category_order );
 

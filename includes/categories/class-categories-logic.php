@@ -18,10 +18,10 @@ class AWPCP_Categories_Logic {
     private $wordpress;
 
     public function __construct( $taxonomy, $listings_logic, $listings, $wordpress ) {
-        $this->taxonomy = $taxonomy;
+        $this->taxonomy       = $taxonomy;
         $this->listings_logic = $listings_logic;
-        $this->listings = $listings;
-        $this->wordpress = $wordpress;
+        $this->listings       = $listings;
+        $this->wordpress      = $wordpress;
     }
 
     public function create_category( $category, $category_order = null ) {
@@ -65,7 +65,7 @@ class AWPCP_Categories_Logic {
             throw new AWPCP_Exception( __( 'The name of the Category is required.', 'another-wordpress-classifieds-plugin' ) );
         }
 
-        if ( isset( $category->parent ) && isset( $category->term_id ) && $category->parent == $category->term_id ) {
+        if ( isset( $category->parent ) && isset( $category->term_id ) && $category->parent === $category->term_id ) {
             throw new AWPCP_Exception( __( 'The ID of the parent category and the ID of the category must be different.' ) );
         } else if ( isset( $category->parent ) ) {
             $category_data['parent'] = $category->parent;
@@ -86,7 +86,7 @@ class AWPCP_Categories_Logic {
             throw new AWPCP_Exception( __( 'There was an error trying to update a category. The ID of the category is required.' ) );
         }
 
-        $data = $this->get_category_data( $category, $category_order );
+        $data      = $this->get_category_data( $category, $category_order );
         $term_info = $this->wordpress->update_term( $category->term_id, $this->taxonomy, $data );
 
         if ( is_wp_error( $term_info ) ) {
@@ -109,7 +109,7 @@ class AWPCP_Categories_Logic {
     }
 
     public function move_category( $category, $target_category ) {
-        if ( $category->term_id == $target_category->term_id ) {
+        if ( $category->term_id === $target_category->term_id ) {
             $message = __( 'The category to be moved and the target category can not be the same.', 'another-wordpress-classifieds-plugin' );
             throw new AWPCP_Exception( $message );
         }
@@ -120,7 +120,7 @@ class AWPCP_Categories_Logic {
     }
 
     public function delete_category_moving_listings_to( $category, $target_category ) {
-        if ( $category->term_id == $target_category->term_id ) {
+        if ( $category->term_id === $target_category->term_id ) {
             throw new AWPCP_Exception( __( 'The move-to category and the category that is going to be deleted must be different.', 'another-wordpress-classifieds-plugin' ) );
         }
 
@@ -139,20 +139,22 @@ class AWPCP_Categories_Logic {
     }
 
     public function delete_category_and_associated_listings( $category, $target_category = null ) {
-        if ( is_object( $target_category ) && $category->term_id == $target_category->term_id ) {
+        if ( is_object( $target_category ) && $category->term_id === $target_category->term_id ) {
             throw new AWPCP_Exception( __( 'The move-to category and the category that is going to be deleted must be different.', 'another-wordpress-classifieds-plugin' ) );
         }
 
-        $listings = $this->listings->find_listings( array(
-            'tax_query' => array(
-                array(
-                    'taxonomy' => $this->taxonomy,
-                    'field' => 'term_id',
-                    'terms' => $category->term_id,
-                    'include_children' => false,
-                )
-            )
-        ) );
+        $listings = $this->listings->find_listings(
+            [
+                'tax_query' => [
+                    [
+                        'taxonomy'         => $this->taxonomy,
+                        'field'            => 'term_id',
+                        'terms'            => $category->term_id,
+                        'include_children' => false,
+                    ],
+                ],
+            ]
+        );
 
         try {
             foreach ( $listings as $listing ) {

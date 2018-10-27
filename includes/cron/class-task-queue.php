@@ -1,4 +1,10 @@
 <?php
+/**
+ * @package AWPCP
+ */
+
+// @phpcs:disable Squiz.Commenting
+// @phpcs:disable WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
 
 function awpcp_task_queue() {
     static $instance = null;
@@ -16,7 +22,7 @@ class AWPCP_TaskQueue {
     private $settings;
 
     public function __construct( $tasks, $settings ) {
-        $this->tasks = $tasks;
+        $this->tasks    = $tasks;
         $this->settings = $settings;
     }
 
@@ -27,7 +33,7 @@ class AWPCP_TaskQueue {
 
     private function schedule_next_task_queue_event_if_necessary( $next_event_timestamp = null ) {
         $next_scheduled_event_timestamp = $this->get_next_scheduled_event_timestamp();
-        $next_event_timestamp = is_null( $next_event_timestamp ) ? time() + 30 : $next_event_timestamp;
+        $next_event_timestamp           = is_null( $next_event_timestamp ) ? time() + 30 : $next_event_timestamp;
 
         if ( $next_scheduled_event_timestamp && ( $next_scheduled_event_timestamp < $next_event_timestamp ) ) {
             return;
@@ -47,12 +53,12 @@ class AWPCP_TaskQueue {
     private function get_next_scheduled_event_timestamp() {
         $crons = _get_cron_array();
 
-        if ( empty($crons) ) {
+        if ( empty( $crons ) ) {
             return false;
         }
 
         foreach ( $crons as $timestamp => $cron ) {
-            if ( isset( $cron[ 'awpcp-task-queue-event' ] ) ) {
+            if ( isset( $cron['awpcp-task-queue-event'] ) ) {
                 return $timestamp;
             }
         }
@@ -79,7 +85,7 @@ class AWPCP_TaskQueue {
         }
 
         $next_event_local_timestamp = strtotime( $next_task->get_execute_after_date() );
-        $next_event_timestamp = $next_event_local_timestamp - ( get_option( 'gmt_offset' ) * HOUR_IN_SECONDS );
+        $next_event_timestamp       = $next_event_local_timestamp - ( get_option( 'gmt_offset' ) * HOUR_IN_SECONDS );
 
         $this->schedule_next_task_queue_event_if_necessary( $next_event_timestamp );
     }
@@ -97,12 +103,14 @@ class AWPCP_TaskQueue {
             }
 
             return false;
-        } else if ( time() - filectime( $lockfile ) > 30 * 60 ) {
+        }
+
+        if ( time() - filectime( $lockfile ) > 30 * 60 ) {
             unlink( $lockfile );
             return touch( $lockfile );
-        } else {
-            return false;
         }
+
+        return false;
     }
 
     private function get_lock_file() {
@@ -113,7 +121,10 @@ class AWPCP_TaskQueue {
         try {
             $this->process_task( $this->tasks->get_next_active_task() );
         } catch ( AWPCP_Exception $e ) {
-            trigger_error( $e->format_errors() );
+            // TODO: Throw different exceptions so that we can handle them differently.
+            if ( $e->getMessage() !== 'There are no more tasks.' ) {
+                trigger_error( esc_html( $e->format_errors() ) );
+            }
             return;
         }
     }
@@ -125,14 +136,16 @@ class AWPCP_TaskQueue {
 
         if ( $task->is_delayed() || $task->is_failing() ) {
             $this->tasks->update_task( $task );
-        } else if ( $task->failed() || $task->is_complete() ) {
+        } elseif ( $task->failed() || $task->is_complete() ) {
             $this->tasks->update_task( $task );
         }
     }
 
     private function run_task( $task ) {
         try {
+            // @phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
             $exit_code = apply_filters( "awpcp-task-{$task->get_name()}", false, $task );
+            // @phpcs:enable WordPress.NamingConventions.ValidHookName.UseUnderscores
         } catch ( AWPCP_Exception $e ) {
             $exit_code = false;
         }
@@ -145,8 +158,10 @@ class AWPCP_TaskQueue {
 
         if ( file_exists( $lockfile ) ) {
             return unlink( $this->get_lock_file() );
-        } else {
-             return false;
         }
+
+        return false;
     }
+
+    // @phpcs:enable
 }
