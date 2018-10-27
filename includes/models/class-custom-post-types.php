@@ -241,9 +241,11 @@ class AWPCP_Custom_Post_Types {
      */
     public function create_default_category() {
         try {
-            $category_id = awpcp_categories_logic()->create_category( array(
+            $category_data = [
                 'name' => __( 'General', 'another-wordpress-classifieds-plugin' ),
-            ) );
+            ];
+
+            $category_id = awpcp_categories_logic()->create_category( $category_data );
         } catch ( AWPCP_Exception $e ) {
             return;
         }
