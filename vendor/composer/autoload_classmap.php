@@ -413,6 +413,7 @@ return array(
     'AWPCP_SpamFilter' => $baseDir . '/includes/helpers/class-spam-filter.php',
     'AWPCP_SpamSubmitter' => $baseDir . '/includes/helpers/class-spam-submitter.php',
     'AWPCP_StepDecorator' => $baseDir . '/includes/views/class-step-decorator.php',
+    'AWPCP_StoreCategoriesOrderAsTermMetaTaskHandler' => $baseDir . '/includes/upgrade/class-store-categories-order-as-term-meta-task-handler.php',
     'AWPCP_Store_Listing_Categories_As_Custom_Taxonomies_Upgrade_Task_Handler' => $baseDir . '/includes/upgrade/class-store-listing-categories-as-custom-taxonomies-upgrade-task-handler.php',
     'AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler' => $baseDir . '/includes/upgrade/class-store-listings-as-custom-post-types-upgrade-task-handler.php',
     'AWPCP_Store_Media_As_Attachments_Upgrade_Task_Handler' => $baseDir . '/includes/upgrade/class-store-media-as-attachments-upgrade-task-handler.php',

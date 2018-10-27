@@ -111,5 +111,15 @@ class AWPCP_Manual_Upgrade_Tasks {
                 'blocking' => true,
             ]
         );
+
+        $this->upgrade_tasks->register_upgrade_task(
+            [
+                'slug'     => 'awpcp-store-categories-order-as-term-meta',
+                'name'     => __( 'Store Categories Order as Term Meta', 'another-wordpress-classifieds-plugin' ),
+                'handler'  => 'StoreCategoriesOrderAsTermMetaTaskHandler',
+                'context'  => 'plugin',
+                'blocking' => false,
+            ]
+        );
     }
 }

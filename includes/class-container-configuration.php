@@ -194,5 +194,16 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
                 );
             }
         );
+
+        $container['StoreCategoriesOrderAsTermMetaTaskHandler'] = $container->service(
+            function( $container ) {
+                return new AWPCP_StoreCategoriesOrderAsTermMetaTaskHandler(
+                    awpcp_categories_collection(),
+                    awpcp_categories_registry(),
+                    $container['WordPress'],
+                    $container['wpdb']
+                );
+            }
+        );
     }
 }

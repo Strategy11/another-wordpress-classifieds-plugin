@@ -267,6 +267,9 @@ class AWPCP_Installer {
             '4.0.0beta2' => array(
                 'enable_routine_to_fix_id_collision_for_listing_categories',
             ),
+            '4.0.0beta4' => [
+                'enable_routine_to_store_categories_order_as_term_meta',
+            ],
         );
     }
 
@@ -1290,6 +1293,13 @@ class AWPCP_Installer {
             $this->upgrade_tasks->enable_upgrade_task( 'awpcp-fix-id-collision-for-listing-categories' );
             delete_option( 'awpcp-ficflc-last-listing-id' );
         }
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function enable_routine_to_store_categories_order_as_term_meta() {
+        $this->upgrade_tasks->enable_upgrade_task( 'awpcp-store-categories-order-as-term-meta' );
     }
 }
 
