@@ -116,6 +116,13 @@ class AWPCP_WordPress {
         return wp_get_object_terms( $objects_ids, $taxonomies, $args );
     }
 
+    /**
+     * @since 4.0.0
+     */
+    public function update_term_meta( $term_id, $meta_key, $meta_value, $prev_value = '' ) {
+        return update_term_meta( $term_id, $meta_key, $meta_value, $prev_value );
+    }
+
     /* Attachments */
 
     public function handle_media_sideload( $file_array, $parent_post_id, $description ) {
