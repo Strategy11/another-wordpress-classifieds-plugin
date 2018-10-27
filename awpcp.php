@@ -768,6 +768,10 @@ class AWPCP {
         add_filter( 'posts_where', array( $query_integration, 'posts_where' ), 10, 2 );
         add_filter( 'posts_clauses', array( $query_integration, 'posts_clauses' ), 10, 2 );
 
+        $term_query_integration = $this->container['TermQueryIntegration'];
+
+        add_filter( 'terms_clauses', [ $term_query_integration, 'terms_clauses' ], 10, 3 );
+
         // load resources always required
         $facebook_cache_helper = awpcp_facebook_cache_helper();
         add_action( 'awpcp-clear-ad-facebook-cache', array( $facebook_cache_helper, 'handle_clear_cache_event_hook' ), 10, 1 );

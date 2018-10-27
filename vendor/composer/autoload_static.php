@@ -432,6 +432,7 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_TaskQueue' => __DIR__ . '/../..' . '/includes/cron/class-task-queue.php',
         'AWPCP_TasksCollection' => __DIR__ . '/../..' . '/includes/cron/class-tasks-collection.php',
         'AWPCP_Template_Renderer' => __DIR__ . '/../..' . '/includes/class-template-renderer.php',
+        'AWPCP_TermQueryIntegration' => __DIR__ . '/../..' . '/includes/listings/class-term-query-integration.php',
         'AWPCP_TestSSLClientAjaxHandler' => __DIR__ . '/../..' . '/includes/admin/debug/class-test-ssl-client-ajax-handler.php',
         'AWPCP_TextareaSettingsRenderer' => __DIR__ . '/../..' . '/includes/settings/renderers/class-textarea-settings-renderer.php',
         'AWPCP_TextfieldSettingsRenderer' => __DIR__ . '/../..' . '/includes/settings/renderers/class-textfield-settings-renderer.php',

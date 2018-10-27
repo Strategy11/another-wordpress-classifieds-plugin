@@ -83,6 +83,14 @@ class AWPCP_ListingsContainerConfiguration implements AWPCP_ContainerConfigurati
             }
         );
 
+        $container['TermQueryIntegration'] = $container->service(
+            function( $container ) {
+                return new AWPCP_TermQueryIntegration(
+                    $container['listing_category_taxonomy']
+                );
+            }
+        );
+
         $container['ListingsCollection'] = $container->service( function( $container ) {
             return new AWPCP_ListingsCollection(
                 // TODO: add all these to the container.

@@ -68,7 +68,6 @@ class AWPCP_CategoriesAdminPage {
         }
 
         $children = $this->categories->get_hierarchy();
-        // TODO: support order by category_order AS, category_name ASC
         $categories = $this->categories->get_all();
 
         $offset = (int) $this->request->param( 'offset' );
