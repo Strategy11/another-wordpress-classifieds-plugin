@@ -88,7 +88,7 @@ class AWPCP_SaveSubmitListingSection {
         ];
 
         if ( $this->settings->get_option( 'pay-before-place-ad' ) || is_null( $transaction ) || $transaction->payment_is_not_required() ) {
-            $params['submit_button_label'] = _x( 'Create Ad', 'save submit listing section', 'another-wordpress-classifieds-plugin' );
+            $params['submit_button_label'] = _x( 'Complete Ad', 'save submit listing section', 'another-wordpress-classifieds-plugin' );
 
             return $params;
         }
