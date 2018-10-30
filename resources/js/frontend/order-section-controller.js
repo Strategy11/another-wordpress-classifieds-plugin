@@ -111,8 +111,12 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
                 self.onChangeSelectionButtonClicked();
             } );
 
+            var selectedCategoriesIds = $.map( self.getSelectedCategories(), function( category ) {
+                return category.id;
+            } );
+
             $.publish( '/user/updated', [ self.getSelectedUserInformation() ] );
-            $.publish( '/categories/change', [ self.$categoriesDropdown, self.getSelectedCategories() ] );
+            $.publish( '/categories/change', [ self.$categoriesDropdown, selectedCategoriesIds ] );
             $.publish( '/awpcp/post-listing-page/order-step/ready', [ self.$element ] );
         },
 
