@@ -596,6 +596,10 @@ class AWPCP {
         add_action( 'parse_request', array( $listing_permalinks, 'maybe_set_current_post' ) );
         add_action( 'post_type_link', array( $listing_permalinks, 'filter_post_type_link' ), 10, 4 );
 
+        $listings_categories_permalinks = $this->container['ListingsCategoriesPermalinks'];
+
+        add_filter( 'term_link', [ $listings_categories_permalinks, 'filter_term_link' ], 10, 3 );
+
         add_action( 'init', array( $this, 'register_plugin_integrations' ) );
         add_action( 'init', array( $this->compatibility, 'load_plugin_integrations_on_init' ) );
         add_action( 'init', array( $this->plugin_integrations, 'load_plugin_integrations' ), AWPCP_LOWEST_FILTER_PRIORITY );

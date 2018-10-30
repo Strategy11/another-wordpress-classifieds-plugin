@@ -269,6 +269,7 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_Listing_Attachment_Creator' => __DIR__ . '/../..' . '/includes/media/class-listing-attachment-creator.php',
         'AWPCP_Listing_Meta_Configuration' => __DIR__ . '/../..' . '/includes/listings/class-listings-meta-configuration.php',
         'AWPCP_ListingsAPI' => __DIR__ . '/../..' . '/includes/class-listings-api.php',
+        'AWPCP_ListingsCategoriesPermalinks' => __DIR__ . '/../..' . '/includes/listings/class-listings-categories-permalinks.php',
         'AWPCP_ListingsCollection' => __DIR__ . '/../..' . '/includes/class-listings-collection.php',
         'AWPCP_ListingsContainerConfiguration' => __DIR__ . '/../..' . '/includes/listings/class-listings-container-configuration.php',
         'AWPCP_ListingsContent' => __DIR__ . '/../..' . '/includes/listings/class-listings-content.php',

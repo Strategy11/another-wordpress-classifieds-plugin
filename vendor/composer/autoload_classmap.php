@@ -268,6 +268,7 @@ return array(
     'AWPCP_Listing_Attachment_Creator' => $baseDir . '/includes/media/class-listing-attachment-creator.php',
     'AWPCP_Listing_Meta_Configuration' => $baseDir . '/includes/listings/class-listings-meta-configuration.php',
     'AWPCP_ListingsAPI' => $baseDir . '/includes/class-listings-api.php',
+    'AWPCP_ListingsCategoriesPermalinks' => $baseDir . '/includes/listings/class-listings-categories-permalinks.php',
     'AWPCP_ListingsCollection' => $baseDir . '/includes/class-listings-collection.php',
     'AWPCP_ListingsContainerConfiguration' => $baseDir . '/includes/listings/class-listings-container-configuration.php',
     'AWPCP_ListingsContent' => $baseDir . '/includes/listings/class-listings-content.php',

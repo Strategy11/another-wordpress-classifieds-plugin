@@ -161,6 +161,14 @@ class AWPCP_ListingsContainerConfiguration implements AWPCP_ContainerConfigurati
      * @since 4.0.0
      */
     private function register_listings_categories_values( $container ) {
+        $container['ListingsCategoriesPermalinks'] = $container->service(
+            function( $container ) {
+                return new AWPCP_ListingsCategoriesPermalinks(
+                    $container['listing_category_taxonomy']
+                );
+            }
+        );
+
         $container['CategoriesLogic'] = $container->service( function( $container ) {
             return new AWPCP_Categories_Logic(
                 $container['listing_category_taxonomy'],
