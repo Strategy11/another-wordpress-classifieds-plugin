@@ -245,6 +245,10 @@ function awpcp_get_datetime_formats() {
  * Returns the given date as MySQL date string, Unix timestamp or
  * using a custom format.
  *
+ * If $date is null or an empty string, then the function uses the timestamp
+ * of current time in the blog's configured timezone as the timestamp to
+ * generate formated dates.
+ *
  * @since 3.0.2
  * @param $format 	'mysql', 'timestamp', 'awpcp', 'awpcp-date', 'awpcp-time'
  *					  or first arguemnt for date() function.
