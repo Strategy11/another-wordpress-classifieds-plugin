@@ -347,7 +347,7 @@ class AWPCP_SendToFacebookHelper {
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     private function get_webhooks_for_facebook_group_integration( $listing ) {
-        return [];
+        return array();
     }
 }
 

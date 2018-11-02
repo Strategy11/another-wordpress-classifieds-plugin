@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2018-10-27 16:01:17+00:00\n"
+"POT-Creation-Date: 2018-11-02 00:56:47+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -53,7 +53,7 @@ msgid "Categories"
 msgstr ""
 
 #: admin/admin-panel-fees-table.php:129
-#: admin/templates/admin-sidebar.tpl.php:103 awpcp.php:1157
+#: admin/templates/admin-sidebar.tpl.php:103 awpcp.php:1165
 msgid "Featured Ads"
 msgstr ""
 
@@ -1451,19 +1451,19 @@ msgstr ""
 msgid "Get a Premium Module!"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:46 awpcp.php:1122
+#: admin/templates/admin-sidebar.tpl.php:46 awpcp.php:1130
 msgid "Campaign Manager"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:52 awpcp.php:1179
+#: admin/templates/admin-sidebar.tpl.php:52 awpcp.php:1187
 msgid "Mark as Sold"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:58 awpcp.php:1207
+#: admin/templates/admin-sidebar.tpl.php:58 awpcp.php:1215
 msgid "Restricted Categories"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:63 awpcp.php:1115
+#: admin/templates/admin-sidebar.tpl.php:63 awpcp.php:1123
 msgid "BuddyPress Listings"
 msgstr ""
 
@@ -1471,15 +1471,15 @@ msgstr ""
 msgid "Comments/Ratings"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:73 awpcp.php:1101
+#: admin/templates/admin-sidebar.tpl.php:73 awpcp.php:1109
 msgid "Attachments"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:78 awpcp.php:1108
+#: admin/templates/admin-sidebar.tpl.php:78 awpcp.php:1116
 msgid "Authorize.Net"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:83 awpcp.php:1193
+#: admin/templates/admin-sidebar.tpl.php:83 awpcp.php:1201
 msgid "PayPal Pro"
 msgstr ""
 
@@ -1487,7 +1487,7 @@ msgstr ""
 msgid "Coupon/Discount"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:93 awpcp.php:1228
+#: admin/templates/admin-sidebar.tpl.php:93 awpcp.php:1236
 msgid "Subscriptions"
 msgstr ""
 
@@ -1495,19 +1495,19 @@ msgstr ""
 msgid "Fee Per Category"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:108 awpcp.php:1150
+#: admin/templates/admin-sidebar.tpl.php:108 awpcp.php:1158
 msgid "Extra Fields"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:113 awpcp.php:1129
+#: admin/templates/admin-sidebar.tpl.php:113 awpcp.php:1137
 msgid "Category Icons"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:118 awpcp.php:1200
+#: admin/templates/admin-sidebar.tpl.php:118 awpcp.php:1208
 msgid "Regions Control"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:123 awpcp.php:1214
+#: admin/templates/admin-sidebar.tpl.php:123 awpcp.php:1222
 msgid "RSS"
 msgstr ""
 
@@ -1710,105 +1710,105 @@ msgstr ""
 msgid "Account Balance"
 msgstr ""
 
-#: awpcp.php:1084
+#: awpcp.php:1092
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
 msgstr ""
 
-#: awpcp.php:1085
+#: awpcp.php:1093
 #: includes/placeholders/class-placeholders-installation-verifier.php:63
 msgid "Warning"
 msgstr ""
 
-#: awpcp.php:1136
+#: awpcp.php:1144
 msgid "Comments & Ratings"
 msgstr ""
 
-#: awpcp.php:1143
+#: awpcp.php:1151
 msgid "Coupons/Discount"
 msgstr ""
 
-#: awpcp.php:1164
+#: awpcp.php:1172
 msgid "Fee per Category"
 msgstr ""
 
-#: awpcp.php:1171
+#: awpcp.php:1179
 msgid "Google Checkout"
 msgstr ""
 
-#: awpcp.php:1186
+#: awpcp.php:1194
 msgid "PayFast"
 msgstr ""
 
-#: awpcp.php:1221
+#: awpcp.php:1229
 msgid "Stripe"
 msgstr ""
 
-#: awpcp.php:1235 templates/components/media-manager.tpl.php:51
+#: awpcp.php:1243 templates/components/media-manager.tpl.php:51
 msgid "Videos"
 msgstr ""
 
-#: awpcp.php:1243
+#: awpcp.php:1251
 msgid "XML Sitemap"
 msgstr ""
 
-#: awpcp.php:1250
+#: awpcp.php:1258
 msgid "ZIP Code Search Module"
 msgstr ""
 
-#: awpcp.php:1736
+#: awpcp.php:1744
 msgid "This field is required."
 msgstr ""
 
-#: awpcp.php:1737 includes/form-fields/class-form-fields-validator.php:94
+#: awpcp.php:1745 includes/form-fields/class-form-fields-validator.php:94
 #: includes/frontend/class-edit-listing-page.php:244
 #: includes/frontend/class-edit-listing-page.php:338
 #: includes/settings/class-payment-general-settings.php:168
 msgid "Please enter a valid email address."
 msgstr ""
 
-#: awpcp.php:1738 awpcp.php:1739
+#: awpcp.php:1746 awpcp.php:1747
 msgid "Please enter a valid URL."
 msgstr ""
 
-#: awpcp.php:1740
+#: awpcp.php:1748
 msgid "Please enter a valid number."
 msgstr ""
 
-#: awpcp.php:1741
+#: awpcp.php:1749
 msgid "Please enter a valid amount."
 msgstr ""
 
-#: awpcp.php:1751
+#: awpcp.php:1759
 msgctxt "[UI Datepicker] Display text for previous month link"
 msgid "&#x3c;Prev"
 msgstr ""
 
-#: awpcp.php:1753
+#: awpcp.php:1761
 msgctxt "[UI Datepicker] Display text for next month link"
 msgid "Next&#x3e;"
 msgstr ""
 
-#: awpcp.php:1768
+#: awpcp.php:1776
 msgctxt "[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ..."
 msgid "0"
 msgstr ""
 
-#: awpcp.php:1774
+#: awpcp.php:1782
 msgid "There are files currently being uploaded."
 msgstr ""
 
-#: awpcp.php:1775
+#: awpcp.php:1783
 msgid "There are files pending to be uploaded."
 msgstr ""
 
-#: awpcp.php:1776
+#: awpcp.php:1784
 msgid "You haven't uploaded any images or files."
 msgstr ""
 
-#: awpcp.php:1845 awpcp.php:1853 awpcp.php:1861 awpcp.php:1938 awpcp.php:1946
-#: awpcp.php:1954 templates/admin/debug/plugin-info-debug-section.tpl.php:6
+#: awpcp.php:1853 awpcp.php:1861 awpcp.php:1869 awpcp.php:1946 awpcp.php:1954
+#: awpcp.php:1962 templates/admin/debug/plugin-info-debug-section.tpl.php:6
 msgid "Another WordPress Classifieds Plugin"
 msgstr ""
 
@@ -5364,7 +5364,7 @@ msgctxt "taxonomy general name"
 msgid "Category"
 msgstr ""
 
-#: includes/models/class-custom-post-types.php:244
+#: includes/models/class-custom-post-types.php:245
 #: includes/settings/class-email-settings.php:34
 #: includes/settings/class-files-settings.php:44
 #: includes/settings/class-general-settings.php:46
@@ -9799,7 +9799,7 @@ msgstr ""
 msgctxt "privacy policy"
 msgid ""
 "When you submit a classified listing, the content of the listing and its "
-"metadata are retained indefinetely. All users can see, edit or delete the "
+"metadata are retained indefinitely. All users can see, edit or delete the "
 "personal information included on their listings at any time. Website "
 "administrators can also see and edit that information."
 msgstr ""
