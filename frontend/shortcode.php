@@ -274,7 +274,7 @@ function awpcpui_homescreen() {
  * @SuppressWarnings(PHPMD)
  */
 function awpcpui_process($awpcppagename) {
-	global $hasrssmodule, $hasregionsmodule, $awpcp_plugin_url;
+	global $hasregionsmodule;
 
 	$output = '';
 
