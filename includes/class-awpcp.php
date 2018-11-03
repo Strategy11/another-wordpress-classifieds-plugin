@@ -4,6 +4,11 @@
  */
 
 /**
+ * @phpcs:disable Generic
+ * @phpcs:disable PEAR
+ * @phpcs:disable PSR2
+ * @phpcs:disable Squiz
+ * @phpcs:disable WordPress
  * @SuppressWarnings(PHPMD)
  */
 class AWPCP {
@@ -39,8 +44,6 @@ class AWPCP {
 
         // TODO: Fix activation hook
         // awpcp_register_activation_hook( __FILE__, array( $this->installer, 'activate' ) );
-
-        add_action('plugins_loaded', array($this, 'setup'), 10);
     }
 
 	/**

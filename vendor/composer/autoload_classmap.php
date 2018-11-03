@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AWPCP' => $baseDir . '/includes/class-awpcp.php',
     'AWPCP_2CheckoutPaymentGateway' => $baseDir . '/includes/payment-gateway-2checkout.php',
     'AWPCP_AccountBalancePage' => $baseDir . '/includes/views/admin/account-balance/class-account-balance-page.php',
     'AWPCP_AccountBalancePageSummaryStep' => $baseDir . '/includes/views/admin/account-balance/class-account-balance-page-summary-step.php',

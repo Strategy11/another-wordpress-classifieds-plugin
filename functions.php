@@ -5,6 +5,196 @@
 
 // phpcs:disable
 
+/**
+ * Returns the IDs of the pages used by the AWPCP plugin.
+ *
+ * @SuppressWarnings(PHPMD)
+ */
+function exclude_awpcp_child_pages($excluded=array()) {
+	global $wpdb, $table_prefix;
+
+	$awpcp_page_id = awpcp_get_page_id_by_ref('main-page-name');
+
+	if (empty($awpcp_page_id)) {
+		return array();
+	}
+
+	$query = "SELECT ID FROM {$table_prefix}posts ";
+	$query.= "WHERE post_parent=$awpcp_page_id AND post_content LIKE '%AWPCP%'";
+
+	$child_pages = $wpdb->get_col( $query );
+
+	if ( is_array( $child_pages ) ) {
+		return array_merge( $child_pages, $excluded );
+	} else {
+		return $excluded;
+	}
+}
+
+
+
+// PROGRAM FUNCTIONS
+
+/**
+ * Return an array of refnames for pages associated with one or more
+ * rewrite rules.
+ *
+ * @since 2.1.3
+ * @return array Array of page refnames.
+ */
+function awpcp_pages_with_rewrite_rules() {
+	return array(
+		'main-page-name',
+		'show-ads-page-name',
+		'reply-to-ad-page-name',
+        'edit-ad-page-name',
+		'browse-ads-page-name',
+	);
+}
+
+/**
+ * Register AWPCP query vars
+ */
+function awpcp_query_vars($query_vars) {
+	$vars = array(
+		// API
+		'awpcpx',
+		'awpcp-module',
+		'awpcp-action',
+		'module',
+		'action',
+
+		// Payments API
+		'awpcp-txn',
+
+		// Listings API
+		'awpcp-ad',
+		'awpcp-hash',
+
+		// misc
+        'awpcp-custom',
+		"cid",
+		"id",
+		"layout",
+		"regionid",
+	);
+
+	return array_merge($query_vars, $vars);
+}
+
+/**
+ * @since 3.2.1
+ * @SuppressWarnings(PHPMD)
+ */
+function awpcp_rel_canonical_url() {
+	global $wp_the_query;
+
+	if ( ! is_singular() )
+		return false;
+
+	if ( ! $page_id = $wp_the_query->get_queried_object_id() ) {
+		return false;
+	}
+
+	if ( $page_id != awpcp_get_page_id_by_ref( 'show-ads-page-name' ) ) {
+		return false;
+	}
+
+	$ad_id = intval( awpcp_request_param( 'id', '' ) );
+	$ad_id = empty( $ad_id ) ? intval( get_query_var( 'id' ) ) : $ad_id;
+
+	if ( empty( $ad_id ) ) {
+		$url = get_permalink( $page_id );
+	} else {
+		$url = url_showad( $ad_id );
+	}
+
+	return $url;
+}
+
+/**
+ * Set canonical URL to the Ad URL when in viewing on of AWPCP Ads.
+ *
+ * @since unknown
+ * @since 3.2.1	logic moved to awpcp_rel_canonical_url()
+ * @SuppressWarnings(PHPMD)
+ */
+function awpcp_rel_canonical() {
+	$url = awpcp_rel_canonical_url();
+
+	if ( $url ) {
+		echo "<link rel='canonical' href='$url' />\n";
+	} else {
+		rel_canonical();
+	}
+}
+
+
+/**
+ * Overwrittes WP canonicalisation to ensure our rewrite rules
+ * work, even when the main AWPCP page is also the front page or
+ * when the requested page slug is 'awpcp'.
+ *
+ * Required for the View Categories and Classifieds RSS rules to work
+ * when AWPCP main page is also the front page.
+ *
+ * http://wordpress.stackexchange.com/questions/51530/rewrite-rules-problem-when-rule-includes-homepage-slug
+ *
+ * @SuppressWarnings(PHPMD)
+ */
+function awpcp_redirect_canonical($redirect_url, $requested_url) {
+	global $wp_query;
+
+    $awpcp_rewrite = false;
+	$ids = awpcp_get_page_ids_by_ref(awpcp_pages_with_rewrite_rules());
+
+	// do not redirect requests to AWPCP pages with rewrite rules
+	if (is_page() && in_array(awpcp_request_param('page_id', 0), $ids)) {
+        $awpcp_rewrite = true;
+
+	// do not redirect requests to the front page, if any of the AWPCP pages
+	// with rewrite rules is the front page
+	} else if (is_page() && !is_feed() && isset($wp_query->queried_object) &&
+			  'page' == get_option('show_on_front') && in_array($wp_query->queried_object->ID, $ids) &&
+			   $wp_query->queried_object->ID == get_option('page_on_front'))
+	{
+        $awpcp_rewrite = true;
+	}
+
+    if ( $awpcp_rewrite ) {
+        // Fix for #943.
+        $requested_host = parse_url( $requested_url, PHP_URL_HOST );
+        $redirect_host = parse_url( $redirect_url, PHP_URL_HOST );
+
+        if ( $requested_host != $redirect_host ) {
+            if ( strtolower( $redirect_host ) == ( 'www.' . $requested_host ) ) {
+                return str_replace( $requested_host, 'www.' . $requested_host, $requested_url );
+            } elseif ( strtolower( $requested_host ) == ( 'www.' . $redirect_host ) ) {
+                return str_replace( 'www.', '', $requested_url );
+            }
+        }
+
+        return $requested_url;
+    }
+
+	// $id = awpcp_get_page_id_by_ref('main-page-name');
+
+	// // do not redirect direct requests to AWPCP main page
+	// if (is_page() && !empty($_GET['page_id']) && $id == $_GET['page_id']) {
+	// 	$redirect_url = $requested_url;
+
+	// // do not redirect request to the front page, if AWPCP main page is
+	// // the front page
+	// } else if (is_page() && !is_feed() && isset($wp_query->queried_object) &&
+	// 		  'page' == get_option('show_on_front') && $id == $wp_query->queried_object->ID &&
+	// 		   $wp_query->queried_object->ID == get_option('page_on_front'))
+	// {
+	// 	$redirect_url = $requested_url;
+	// }
+
+	return $redirect_url;
+}
+
 function awpcp_esc_attr($text) {
 	// WP adds slashes to all request variables
 	$text = stripslashes($text);

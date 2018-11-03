@@ -7,6 +7,7 @@ namespace Composer\Autoload;
 class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
 {
     public static $classMap = array (
+        'AWPCP' => __DIR__ . '/../..' . '/includes/class-awpcp.php',
         'AWPCP_2CheckoutPaymentGateway' => __DIR__ . '/../..' . '/includes/payment-gateway-2checkout.php',
         'AWPCP_AccountBalancePage' => __DIR__ . '/../..' . '/includes/views/admin/account-balance/class-account-balance-page.php',
         'AWPCP_AccountBalancePageSummaryStep' => __DIR__ . '/../..' . '/includes/views/admin/account-balance/class-account-balance-page-summary-step.php',

@@ -1,10 +1,15 @@
 <?php
+/**
+ * @package AWPCP
+ */
+
+// @phpcs:disable
 
 function awpcp_manual_upgrade_admin_page() {
     return new AWPCP_ManualUpgradeAdminPage(
         awpcp_upgrade_tasks_manager(),
         // TODO: this reference to the container shouldn't be here
-        awpcp_container()->get( 'AWPCP_Upgrade_Sessions' ),
+        awpcp()->container->get( 'AWPCP_Upgrade_Sessions' ),
         awpcp_request()
     );
 }
@@ -42,24 +47,27 @@ class AWPCP_ManualUpgradeAdminPage {
     private function get_pending_uprade_tasks( $context ) {
         if ( $context === 'plugin' ) {
             return $this->upgrade_tasks->get_pending_tasks( compact( 'context' ) );
-        } else {
-            return $this->upgrade_tasks->get_pending_tasks();
         }
+
+        return $this->upgrade_tasks->get_pending_tasks();
     }
 
     private function add_tasks_to_upgrade_session( $pending_upgrade_tasks, $upgrade_session ) {
-        foreach ( $pending_upgrade_tasks as $task => $properties ) {
+        foreach ( array_keys( $pending_upgrade_tasks ) as $task ) {
             if ( ! $upgrade_session->has_task( $task ) ) {
                 $upgrade_session->add_task( $task );
             }
         }
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.ElseExpression)
+     */
     private function get_tasks_defintions( $pending_upgrade_tasks, $upgrade_session, $context ) {
         $upgrade_tasks = array();
         $asynchronous_tasks = array();
 
-        foreach ( $upgrade_session->get_tasks() as $task_slug => $_ ) {
+        foreach ( array_keys( $upgrade_session->get_tasks() ) as $task_slug ) {
             // add back already completed tasks!
             if ( ! isset( $pending_upgrade_tasks[ $task_slug ] ) ) {
                 $upgrade_tasks[ $task_slug ] = $this->upgrade_tasks->get_upgrade_task( $task_slug );
@@ -83,11 +91,14 @@ class AWPCP_ManualUpgradeAdminPage {
         return $this->split_tasks_defintions( $upgrade_tasks, $asynchronous_tasks );
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.ElseExpression)
+     */
     private function split_tasks_defintions( $pending_upgrade_tasks, $asynchronous_tasks ) {
         $last_blocking_task = null;
         $storing_blocking_tasks = true;
 
-        foreach ( array_reverse( array_keys( $pending_upgrade_tasks ) ) as $i => $key ) {
+        foreach ( array_reverse( array_keys( $pending_upgrade_tasks ) ) as $key ) {
             if ( $pending_upgrade_tasks[ $key ]['blocking'] ) {
                 $last_blocking_task = $key;
                 break;
@@ -97,7 +108,7 @@ class AWPCP_ManualUpgradeAdminPage {
         $blocking_tasks = array();
         $non_blocking_tasks = array();
 
-        foreach ( $pending_upgrade_tasks as $slug => $task ) {
+        foreach ( array_keys( $pending_upgrade_tasks ) as $slug ) {
             if ( ! is_null( $last_blocking_task ) && $storing_blocking_tasks ) {
                 $blocking_tasks[] = $asynchronous_tasks[ $slug ];
             } else {
@@ -127,11 +138,14 @@ class AWPCP_ManualUpgradeAdminPage {
     private function get_introduction_text( $context ) {
         if ( $context == 'plugin' ) {
             return _x( 'Another WordPress Classifieds Plugin needs to upgrade your database.  The operation may take several minutes, depending on the amount of information stored. Please press the Upgrade button shown below to start the process.', 'awpcp upgrade', 'another-wordpress-classifieds-plugin' );
-        } else {
-            return _x( "AWPCP's premium modules need to upgrade the information stored in the database.  The operation may take several minutes, depending on the amount of information stored. Please press the Upgrade button shown below to start the process.", 'awpcp upgrade', 'another-wordpress-classifieds-plugin' );
         }
+
+        return _x( "AWPCP's premium modules need to upgrade the information stored in the database.  The operation may take several minutes, depending on the amount of information stored. Please press the Upgrade button shown below to start the process.", 'awpcp upgrade', 'another-wordpress-classifieds-plugin' );
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.ElseExpression)
+     */
     private function get_tasks_groups( $asynchronous_tasks ) {
         $groups = array();
 
