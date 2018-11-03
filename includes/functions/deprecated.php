@@ -181,21 +181,19 @@ function awpcp_get_uploads_directories() {
     static $uploads_directories = null;
 
     if ( is_null( $uploads_directories ) ) {
-        global $wpcontentdir;
-
         // TODO: Remove directory permissions setting when this code is finally removed.
         $permissions = awpcp_directory_permissions();
 
         $upload_dir_name = get_awpcp_option( 'uploadfoldername', 'uploads' );
-        $upload_dir = $wpcontentdir . '/' . $upload_dir_name . '/';
+        $upload_dir = WP_CONTENT_DIR . '/' . $upload_dir_name . '/';
 
         // Required to set permission on main upload directory
         require_once(AWPCP_DIR . '/includes/class-fileop.php');
 
         $fileop = new fileop();
-        $owner = fileowner( $wpcontentdir );
+        $owner = fileowner( WP_CONTENT_DIR );
 
-        if ( ! is_dir( $upload_dir ) && is_writable( $wpcontentdir ) ) {
+        if ( ! is_dir( $upload_dir ) && is_writable( WP_CONTENT_DIR ) ) {
             umask( 0 );
             wp_mkdir_p( $upload_dir );
             chown( $upload_dir, $owner );
