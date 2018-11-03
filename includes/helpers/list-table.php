@@ -1,11 +1,12 @@
 <?php
+/**
+ * @package AWPCP
+ * @phpcs:disable
+ */
 
-if (file_exists(ABSPATH . 'wp-admin/includes/class-wp-list-table.php')) {
-	require_once(ABSPATH . 'wp-admin/includes/class-wp-list-table.php');
-} else {
-	require_once(AWPCP_DIR . '/includes/helpers/wp-list-table.php');
+if ( ! class_exists( 'WP_List_Table' ) ) {
+    require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
 }
-
 
 class AWPCP_List_Table extends WP_List_Table {
 	var $_screen;

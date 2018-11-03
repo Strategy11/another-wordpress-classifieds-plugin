@@ -490,6 +490,5 @@ return array(
     'AWPCP_WordPress_Status_Header_Filter' => $baseDir . '/frontend/class-wordpress-status-header-filter.php',
     'AWPCP_YoastWordPressSEOPluginIntegration' => $baseDir . '/includes/compatibility/class-yoast-wordpress-seo-plugin-integration.php',
     'AWPCP_reCAPTCHAProvider' => $baseDir . '/includes/frontend/class-recaptcha-provider.php',
-    'WP_List_Table' => $baseDir . '/includes/helpers/wp-list-table.php',
     'fileop' => $baseDir . '/includes/class-fileop.php',
 );

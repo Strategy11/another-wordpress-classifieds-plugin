@@ -491,7 +491,6 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_WordPress_Status_Header_Filter' => __DIR__ . '/../..' . '/frontend/class-wordpress-status-header-filter.php',
         'AWPCP_YoastWordPressSEOPluginIntegration' => __DIR__ . '/../..' . '/includes/compatibility/class-yoast-wordpress-seo-plugin-integration.php',
         'AWPCP_reCAPTCHAProvider' => __DIR__ . '/../..' . '/includes/frontend/class-recaptcha-provider.php',
-        'WP_List_Table' => __DIR__ . '/../..' . '/includes/helpers/wp-list-table.php',
         'fileop' => __DIR__ . '/../..' . '/includes/class-fileop.php',
     );
 
