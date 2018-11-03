@@ -636,7 +636,7 @@ function awpcp_admin_categories_render_category_items($categories, &$children, $
  * @SuppressWarnings(PHPMD)
  */
 function awpcp_admin_categories_render_category_item($category, $level, $start, $per_page) {
-	global $hascaticonsmodule, $awpcp_imagesurl;
+	global $hascaticonsmodule;
 
 	if ( function_exists( 'awpcp_get_category_icon' ) ) {
 		$category_icon = awpcp_get_category_icon( $category );
