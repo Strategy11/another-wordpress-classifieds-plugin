@@ -209,8 +209,6 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
      * @SuppressWarnings(PHPMD.ElseExpression)
      */
     protected function process_contact_form() {
-        global $nameofsite;
-
         $ad = $this->get_ad();
 
         $form = array_merge( $this->get_posted_data(), array( 'ad_id' => $ad->ID ) );
@@ -242,7 +240,7 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
             'listing_title' => $ad_title,
             'listing_url'   => $ad_url,
             'message'       => $message,
-            'website_title' => $nameofsite,
+            'website_title' => awpcp_get_blog_name(),
             'website_url'   => home_url(),
         ];
 

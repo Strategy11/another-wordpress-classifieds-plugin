@@ -79,8 +79,6 @@ function awpcp_check_license_status() {
  * TODO: Fix for autoexpiredisabledelete.
  */
 function doadexpirations() {
-    global $nameofsite;
-
     $listings_logic = awpcp_listings_api();
 
     $notify_admin = get_awpcp_option('notifyofadexpired');
@@ -91,7 +89,7 @@ function doadexpirations() {
 
     // allow users to use %s placeholder for the website name in the subject line
     $subject = get_awpcp_option('adexpiredsubjectline');
-    $subject = sprintf($subject, $nameofsite);
+    $subject = sprintf( $subject, awpcp_get_blog_name() );
     $bodybase = get_awpcp_option('adexpiredbodymessage');
 
     $ads = awpcp_listings_collection()->find_valid_listings(array(
@@ -369,4 +367,3 @@ function awpcp_clean_up_non_verified_ads( $listings_collection, /* AWPCP_Listing
         $listings->send_verification_email( $listing );
     }
 }
-
