@@ -1667,7 +1667,7 @@ function awpcp() {
 
 	if (!is_object($awpcp)) {
 		$awpcp = new AWPCP();
-        $awpcp->bootstrap();
+        add_action( 'plugins_loaded', array( $awpcp, 'bootstrap' ), -5 );
 	}
 
 	return $awpcp;
