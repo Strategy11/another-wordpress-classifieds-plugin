@@ -59,7 +59,7 @@ global $nameofsite;
 // each request, defining the version manually is a less
 // expensive way --wvega
 require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-$awpcp_plugin_data = get_plugin_data(__FILE__);
+$awpcp_plugin_data = get_plugin_data( __FILE__, false, false );
 $awpcp_db_version = $awpcp_plugin_data['Version'];
 
 $wpcontenturl = WP_CONTENT_URL;
