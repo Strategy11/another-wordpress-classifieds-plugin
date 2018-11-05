@@ -422,7 +422,7 @@ class AWPCP {
         $this->rewrite_rules = awpcp_plugin_rewrite_rules();
 
         if ( $this->settings->get_option( 'activatelanguages' ) ) {
-            awpcp_load_plugin_textdomain( __FILE__, 'another-wordpress-classifieds-plugin' );
+            awpcp_load_plugin_textdomain( __FILE__ );
         }
 
         $this->modules_manager = awpcp_modules_manager();
