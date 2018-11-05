@@ -317,7 +317,7 @@ class AWPCP_EditListingPage extends AWPCP_Page {
             'attempts' => intval( $this->request->post( 'attempts', 0 ) ),
         );
 
-        if ( 1 === $form['attempts'] ) {
+        if ( $form['attempts'] >= 1 ) {
             return $this->process_send_access_key_form( $form );
         }
 
