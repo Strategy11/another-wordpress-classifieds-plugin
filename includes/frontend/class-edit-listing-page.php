@@ -227,8 +227,8 @@ class AWPCP_EditListingPage extends AWPCP_Page {
         $messages = [];
 
         $form = array(
-            'ad_email' => $this->request->post( 'ad_email' ),
-            'ad_key'   => $this->request->post( 'ad_key' ),
+            'ad_email' => trim( $this->request->post( 'ad_email' ) ),
+            'ad_key'   => trim( $this->request->post( 'ad_key' ) ),
             'attempts' => intval( $this->request->post( 'attempts', 0 ) ),
         );
 
@@ -313,7 +313,7 @@ class AWPCP_EditListingPage extends AWPCP_Page {
      */
     public function do_send_access_key_step() {
         $form = array(
-            'ad_email' => $this->request->post( 'ad_email' ),
+            'ad_email' => trim( $this->request->post( 'ad_email' ) ),
             'attempts' => intval( $this->request->post( 'attempts', 0 ) ),
         );
 
@@ -370,7 +370,7 @@ class AWPCP_EditListingPage extends AWPCP_Page {
             AWPCP_Payment_Transaction::PAYMENT_STATUS_NOT_REQUIRED,
         );
 
-        if ( get_awpcp_option( 'enable-ads-pending-payment' ) ) {
+        if ( $this->settings->get_option( 'enable-ads-pending-payment' ) ) {
             $accepted_payment_statuses[] = AWPCP_Payment_Transaction::PAYMENT_STATUS_PENDING;
         }
 
