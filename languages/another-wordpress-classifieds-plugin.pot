@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2018-11-02 00:56:47+00:00\n"
+"POT-Creation-Date: 2018-11-05 20:05:14+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -53,7 +53,7 @@ msgid "Categories"
 msgstr ""
 
 #: admin/admin-panel-fees-table.php:129
-#: admin/templates/admin-sidebar.tpl.php:103 awpcp.php:1165
+#: admin/templates/admin-sidebar.tpl.php:103 includes/class-awpcp.php:719
 msgid "Featured Ads"
 msgstr ""
 
@@ -1451,19 +1451,19 @@ msgstr ""
 msgid "Get a Premium Module!"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:46 awpcp.php:1130
+#: admin/templates/admin-sidebar.tpl.php:46 includes/class-awpcp.php:684
 msgid "Campaign Manager"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:52 awpcp.php:1187
+#: admin/templates/admin-sidebar.tpl.php:52 includes/class-awpcp.php:741
 msgid "Mark as Sold"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:58 awpcp.php:1215
+#: admin/templates/admin-sidebar.tpl.php:58 includes/class-awpcp.php:769
 msgid "Restricted Categories"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:63 awpcp.php:1123
+#: admin/templates/admin-sidebar.tpl.php:63 includes/class-awpcp.php:677
 msgid "BuddyPress Listings"
 msgstr ""
 
@@ -1471,15 +1471,15 @@ msgstr ""
 msgid "Comments/Ratings"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:73 awpcp.php:1109
+#: admin/templates/admin-sidebar.tpl.php:73 includes/class-awpcp.php:663
 msgid "Attachments"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:78 awpcp.php:1116
+#: admin/templates/admin-sidebar.tpl.php:78 includes/class-awpcp.php:670
 msgid "Authorize.Net"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:83 awpcp.php:1201
+#: admin/templates/admin-sidebar.tpl.php:83 includes/class-awpcp.php:755
 msgid "PayPal Pro"
 msgstr ""
 
@@ -1487,7 +1487,7 @@ msgstr ""
 msgid "Coupon/Discount"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:93 awpcp.php:1236
+#: admin/templates/admin-sidebar.tpl.php:93 includes/class-awpcp.php:790
 msgid "Subscriptions"
 msgstr ""
 
@@ -1495,19 +1495,19 @@ msgstr ""
 msgid "Fee Per Category"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:108 awpcp.php:1158
+#: admin/templates/admin-sidebar.tpl.php:108 includes/class-awpcp.php:712
 msgid "Extra Fields"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:113 awpcp.php:1137
+#: admin/templates/admin-sidebar.tpl.php:113 includes/class-awpcp.php:691
 msgid "Category Icons"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:118 awpcp.php:1208
+#: admin/templates/admin-sidebar.tpl.php:118 includes/class-awpcp.php:762
 msgid "Regions Control"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:123 awpcp.php:1222
+#: admin/templates/admin-sidebar.tpl.php:123 includes/class-awpcp.php:776
 msgid "RSS"
 msgstr ""
 
@@ -1557,7 +1557,7 @@ msgid "Premium Modules"
 msgstr ""
 
 #: admin/templates/admin-sidebar.tpl.php:154
-#: admin/templates/admin-sidebar.tpl.php:195 functions.php:2949
+#: admin/templates/admin-sidebar.tpl.php:195 functions.php:3143
 msgid "Installed"
 msgstr ""
 
@@ -1566,7 +1566,7 @@ msgid "No premium modules installed."
 msgstr ""
 
 #: admin/templates/admin-sidebar.tpl.php:171
-#: admin/templates/admin-sidebar.tpl.php:212 functions.php:2945
+#: admin/templates/admin-sidebar.tpl.php:212 functions.php:3139
 msgid "Not Installed"
 msgstr ""
 
@@ -1618,7 +1618,7 @@ msgid ""
 "add credit when posting a new Ad or using the \"Add Credit\" button below."
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:129
+#: admin/upgrade/class-manual-upgrade-admin-page.php:140
 msgctxt "awpcp upgrade"
 msgid ""
 "Another WordPress Classifieds Plugin needs to upgrade your database.  The "
@@ -1626,7 +1626,7 @@ msgid ""
 "stored. Please press the Upgrade button shown below to start the process."
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:131
+#: admin/upgrade/class-manual-upgrade-admin-page.php:143
 msgctxt "awpcp upgrade"
 msgid ""
 "AWPCP's premium modules need to upgrade the information stored in the "
@@ -1635,13 +1635,13 @@ msgid ""
 "the process."
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:143
+#: admin/upgrade/class-manual-upgrade-admin-page.php:157
 msgid ""
 "All blocking upgrade tasks were completed successfully. All features are "
 "availablle again."
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:144
+#: admin/upgrade/class-manual-upgrade-admin-page.php:158
 msgid ""
 "Please keep this tab open, but you can open up another browser tab and "
 "continue working on your site while this processes in the background. "
@@ -1649,58 +1649,58 @@ msgid ""
 "tab</a>."
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:150
+#: admin/upgrade/class-manual-upgrade-admin-page.php:164
 msgid ""
 "Congratulations. All blocking upgrade tasks were completed successfully. You "
 "can now access all features. <continue-link>Click here to Continue</a>."
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:155
+#: admin/upgrade/class-manual-upgrade-admin-page.php:169
 msgid "Upgrade Tasks that must complete immediately"
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:156
+#: admin/upgrade/class-manual-upgrade-admin-page.php:170
 msgid ""
 "The following tasks need to be completed before you can use the plugin's and "
 "modules features again."
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:164
-#: admin/upgrade/class-manual-upgrade-admin-page.php:169
+#: admin/upgrade/class-manual-upgrade-admin-page.php:178
+#: admin/upgrade/class-manual-upgrade-admin-page.php:183
 msgid ""
 "The following tasks need to be completed, but the plugin's and modules "
 "features will continue to work while the routines are executed."
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:171
+#: admin/upgrade/class-manual-upgrade-admin-page.php:185
 msgid ""
 "Please keep this tab open, but you can open up another browser tab and "
 "continue working on your site while this processes in the background."
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:172
+#: admin/upgrade/class-manual-upgrade-admin-page.php:186
 msgid ""
 "Click the Upgrade button and then <continue-link>Click here to open the main "
 "Classifieds admin screen in a new tab</a>."
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:179
+#: admin/upgrade/class-manual-upgrade-admin-page.php:193
 msgctxt "awpcp upgrade"
 msgid ""
 "Congratulations. All non blocking tasks were completed successfully. "
 "<continue-link>Click here to Continue</a>."
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:183
+#: admin/upgrade/class-manual-upgrade-admin-page.php:197
 msgid "Upgrade tasks that will run while the plugin continues to work"
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:194
+#: admin/upgrade/class-manual-upgrade-admin-page.php:208
 msgctxt "button text in manual upgrade admin page"
 msgid "Resume Upgrade"
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:208
+#: admin/upgrade/class-manual-upgrade-admin-page.php:222
 msgctxt "button text in manual upgrade admin page"
 msgid "Upgrade"
 msgstr ""
@@ -1710,121 +1710,39 @@ msgstr ""
 msgid "Account Balance"
 msgstr ""
 
-#: awpcp.php:1092
+#: awpcp.php:133
 msgid ""
-"AWPCP requires the graphics processing library GD and it is not installed. "
-"Contact your web host to fix this."
+"Another WordPress Classifieds Plugin was deactivated because it requires PHP "
+"5.6 or newer."
 msgstr ""
 
-#: awpcp.php:1093
-#: includes/placeholders/class-placeholders-installation-verifier.php:63
-msgid "Warning"
+#: awpcp.php:136
+msgid ""
+"Hi, we noticed that your site is running on an outdated version of PHP. New "
+"versions of PHP are faster, more secure and include the features our module "
+"requires."
 msgstr ""
 
-#: awpcp.php:1144
-msgid "Comments & Ratings"
+#: awpcp.php:139
+msgid ""
+"You should upgrade to <strong>PHP 5.6</strong>, but if you want your site to "
+"also be considerable faster and even more secure, we recommend going up to "
+"<strong>PHP 7.2</strong>."
 msgstr ""
 
-#: awpcp.php:1151
-msgid "Coupons/Discount"
-msgstr ""
-
-#: awpcp.php:1172
-msgid "Fee per Category"
-msgstr ""
-
-#: awpcp.php:1179
-msgid "Google Checkout"
-msgstr ""
-
-#: awpcp.php:1194
-msgid "PayFast"
-msgstr ""
-
-#: awpcp.php:1229
-msgid "Stripe"
-msgstr ""
-
-#: awpcp.php:1243 templates/components/media-manager.tpl.php:51
-msgid "Videos"
-msgstr ""
-
-#: awpcp.php:1251
-msgid "XML Sitemap"
-msgstr ""
-
-#: awpcp.php:1258
-msgid "ZIP Code Search Module"
-msgstr ""
-
-#: awpcp.php:1744
-msgid "This field is required."
-msgstr ""
-
-#: awpcp.php:1745 includes/form-fields/class-form-fields-validator.php:94
-#: includes/frontend/class-edit-listing-page.php:244
-#: includes/frontend/class-edit-listing-page.php:338
-#: includes/settings/class-payment-general-settings.php:168
-msgid "Please enter a valid email address."
-msgstr ""
-
-#: awpcp.php:1746 awpcp.php:1747
-msgid "Please enter a valid URL."
-msgstr ""
-
-#: awpcp.php:1748
-msgid "Please enter a valid number."
-msgstr ""
-
-#: awpcp.php:1749
-msgid "Please enter a valid amount."
-msgstr ""
-
-#: awpcp.php:1759
-msgctxt "[UI Datepicker] Display text for previous month link"
-msgid "&#x3c;Prev"
-msgstr ""
-
-#: awpcp.php:1761
-msgctxt "[UI Datepicker] Display text for next month link"
-msgid "Next&#x3e;"
-msgstr ""
-
-#: awpcp.php:1776
-msgctxt "[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ..."
-msgid "0"
-msgstr ""
-
-#: awpcp.php:1782
-msgid "There are files currently being uploaded."
-msgstr ""
-
-#: awpcp.php:1783
-msgid "There are files pending to be uploaded."
-msgstr ""
-
-#: awpcp.php:1784
-msgid "You haven't uploaded any images or files."
-msgstr ""
-
-#: awpcp.php:1853 awpcp.php:1861 awpcp.php:1869 awpcp.php:1946 awpcp.php:1954
-#: awpcp.php:1962 templates/admin/debug/plugin-info-debug-section.tpl.php:6
-msgid "Another WordPress Classifieds Plugin"
-msgstr ""
-
-#: cron.php:125
+#: cron.php:123
 msgid "Listing Details"
 msgstr ""
 
-#: cron.php:127
+#: cron.php:125
 msgid "Ad Title:"
 msgstr ""
 
-#: cron.php:130
+#: cron.php:128
 msgid "Posted:"
 msgstr ""
 
-#: cron.php:134
+#: cron.php:132
 msgid "Renew your ad by visiting:"
 msgstr ""
 
@@ -2302,14 +2220,14 @@ msgid ""
 "site."
 msgstr ""
 
-#: frontend/page-reply-to-ad.php:279
+#: frontend/page-reply-to-ad.php:277
 msgid ""
 "There was a problem encountered during the attempt to send your message. "
 "Please try again and if the problem persists, please contact the system "
 "administrator."
 msgstr ""
 
-#: frontend/page-reply-to-ad.php:285
+#: frontend/page-reply-to-ad.php:283
 msgid "Your message has been sent. Return to <view-listing-link>."
 msgstr ""
 
@@ -2862,7 +2780,7 @@ msgid ""
 "payment."
 msgstr ""
 
-#: frontend/templates/payments-billing-form.tpl.php:6 functions.php:630
+#: frontend/templates/payments-billing-form.tpl.php:6 functions.php:824
 #: includes/admin/class-listings-personal-data-provider.php:115
 #: includes/admin/class-listings-personal-data-provider.php:125
 #: includes/admin/import/class-csv-importer-columns.php:218
@@ -2910,7 +2828,7 @@ msgstr ""
 msgid "State"
 msgstr ""
 
-#: frontend/templates/payments-billing-form.tpl.php:101 functions.php:650
+#: frontend/templates/payments-billing-form.tpl.php:101 functions.php:844
 #: includes/admin/class-listings-personal-data-provider.php:117
 #: includes/admin/class-listings-personal-data-provider.php:127
 #: includes/admin/import/class-csv-importer-columns.php:248
@@ -3168,57 +3086,57 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: functions.php:431
+#: functions.php:625
 msgid "Ads per page:"
 msgstr ""
 
-#: functions.php:448
+#: functions.php:642
 msgid "Page {current_page_number} of {number_of_pages}"
 msgstr ""
 
-#: functions.php:561
+#: functions.php:755
 msgid "None"
 msgstr ""
 
-#: functions.php:572
+#: functions.php:766
 msgctxt "comma separated list of things"
 msgid "%s and %d more."
 msgstr ""
 
-#: functions.php:631
+#: functions.php:825
 msgid "separate countries by commas"
 msgstr ""
 
-#: functions.php:640
+#: functions.php:834
 msgid "State/Province"
 msgstr ""
 
-#: functions.php:641
+#: functions.php:835
 msgid "separate states by commas"
 msgstr ""
 
-#: functions.php:651
+#: functions.php:845
 msgid "separate cities by commas"
 msgstr ""
 
-#: functions.php:660
+#: functions.php:854
 msgid "County/Village/Other"
 msgstr ""
 
-#: functions.php:661
+#: functions.php:855
 msgid "separate counties by commas"
 msgstr ""
 
-#: functions.php:875
+#: functions.php:1069
 msgid "-- Choose a Country --"
 msgstr ""
 
-#: functions.php:1045
+#: functions.php:1239
 msgctxt "default blog title"
 msgid "Classifieds Website"
 msgstr ""
 
-#: functions.php:1609 templates/components/media-center.tpl.php:14
+#: functions.php:1803 templates/components/media-center.tpl.php:14
 msgid ""
 "The images or files with pale red background have been rejected by an "
 "administrator user. Likewise, files with a pale yellow background are "
@@ -3226,94 +3144,94 @@ msgid ""
 "cannot be shown in the frontend."
 msgstr ""
 
-#: functions.php:1628
+#: functions.php:1822
 msgid ""
 "This version of AWPCP %1$s module is not compatible with AWPCP version %2$s. "
 "Please get AWPCP %1$s %3$s or newer!"
 msgstr ""
 
-#: functions.php:1630
+#: functions.php:1824
 msgid "Error"
 msgstr ""
 
-#: functions.php:1988
+#: functions.php:2182
 msgid "No errors."
 msgstr ""
 
-#: functions.php:1989
+#: functions.php:2183
 msgid "The file is larger than upload_max_filesize."
 msgstr ""
 
-#: functions.php:1990
+#: functions.php:2184
 msgid "The file is larger than form MAX_FILE_SIZE."
 msgstr ""
 
-#: functions.php:1991
+#: functions.php:2185
 msgid "The file was only partially uploaded."
 msgstr ""
 
-#: functions.php:1992
+#: functions.php:2186
 msgid "No file was uploaded."
 msgstr ""
 
-#: functions.php:1993
+#: functions.php:2187
 msgid "Missing temporary directory."
 msgstr ""
 
-#: functions.php:1994
+#: functions.php:2188
 msgid "Can't write file to disk."
 msgstr ""
 
-#: functions.php:1995
+#: functions.php:2189
 msgid "The file upload was stopped by extension."
 msgstr ""
 
-#: functions.php:2227
+#: functions.php:2421
 msgid "Your Ad \"%s\" has been approved"
 msgstr ""
 
-#: functions.php:2250
+#: functions.php:2444
 msgid "Your Ad \"%s\" has been successfully updated"
 msgstr ""
 
-#: functions.php:2273
+#: functions.php:2467
 msgid "Images on Ad \"%s\" are awaiting approval"
 msgstr ""
 
-#: functions.php:2275 includes/functions/notifications.php:197
+#: functions.php:2469 includes/functions/notifications.php:197
 msgid ""
 "Images on Ad \"%s\" are awaiting approval. You can approve the images going "
 "to the Manage Images section for that Ad and clicking the \"Enable\" button "
 "below each image. Click here to continue: %s."
 msgstr ""
 
-#: functions.php:2278
+#: functions.php:2472
 msgid "The Ad \"%s\" is awaiting approval"
 msgstr ""
 
-#: functions.php:2280 includes/functions/notifications.php:202
+#: functions.php:2474 includes/functions/notifications.php:202
 msgid ""
 "The Ad \"%s\" is awaiting approval. You can approve the Ad going to the "
 "Manage Listings section and clicking the \"Enable\" action shown on top. "
 "Click here to continue: %s."
 msgstr ""
 
-#: functions.php:2287 includes/functions/notifications.php:209
+#: functions.php:2481 includes/functions/notifications.php:209
 msgid ""
 "Additionally, You can approve the images going to the Manage Images section "
 "for that Ad and clicking the \"Enable\" button below each image. Click here "
 "to continue: %s."
 msgstr ""
 
-#: functions.php:2808
+#: functions.php:3002
 msgid "Email sent %s."
 msgstr ""
 
-#: functions.php:2957
+#: functions.php:3151
 msgid "SSL Support: Yes."
 msgstr ""
 
-#: functions.php:2959
+#: functions.php:3153
 msgid "SSL Support: No."
 msgstr ""
 
@@ -4091,6 +4009,111 @@ msgid ""
 "one of the associated listings: <error-message>"
 msgstr ""
 
+#: includes/class-awpcp.php:646
+msgid ""
+"AWPCP requires the graphics processing library GD and it is not installed. "
+"Contact your web host to fix this."
+msgstr ""
+
+#: includes/class-awpcp.php:647
+#: includes/placeholders/class-placeholders-installation-verifier.php:63
+msgid "Warning"
+msgstr ""
+
+#: includes/class-awpcp.php:698
+msgid "Comments & Ratings"
+msgstr ""
+
+#: includes/class-awpcp.php:705
+msgid "Coupons/Discount"
+msgstr ""
+
+#: includes/class-awpcp.php:726
+msgid "Fee per Category"
+msgstr ""
+
+#: includes/class-awpcp.php:733
+msgid "Google Checkout"
+msgstr ""
+
+#: includes/class-awpcp.php:748
+msgid "PayFast"
+msgstr ""
+
+#: includes/class-awpcp.php:783
+msgid "Stripe"
+msgstr ""
+
+#: includes/class-awpcp.php:797 templates/components/media-manager.tpl.php:51
+msgid "Videos"
+msgstr ""
+
+#: includes/class-awpcp.php:805
+msgid "XML Sitemap"
+msgstr ""
+
+#: includes/class-awpcp.php:812
+msgid "ZIP Code Search Module"
+msgstr ""
+
+#: includes/class-awpcp.php:1298
+msgid "This field is required."
+msgstr ""
+
+#: includes/class-awpcp.php:1299
+#: includes/form-fields/class-form-fields-validator.php:94
+#: includes/frontend/class-edit-listing-page.php:244
+#: includes/frontend/class-edit-listing-page.php:338
+#: includes/settings/class-payment-general-settings.php:168
+msgid "Please enter a valid email address."
+msgstr ""
+
+#: includes/class-awpcp.php:1300 includes/class-awpcp.php:1301
+msgid "Please enter a valid URL."
+msgstr ""
+
+#: includes/class-awpcp.php:1302
+msgid "Please enter a valid number."
+msgstr ""
+
+#: includes/class-awpcp.php:1303
+msgid "Please enter a valid amount."
+msgstr ""
+
+#: includes/class-awpcp.php:1313
+msgctxt "[UI Datepicker] Display text for previous month link"
+msgid "&#x3c;Prev"
+msgstr ""
+
+#: includes/class-awpcp.php:1315
+msgctxt "[UI Datepicker] Display text for next month link"
+msgid "Next&#x3e;"
+msgstr ""
+
+#: includes/class-awpcp.php:1330
+msgctxt "[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ..."
+msgid "0"
+msgstr ""
+
+#: includes/class-awpcp.php:1336
+msgid "There are files currently being uploaded."
+msgstr ""
+
+#: includes/class-awpcp.php:1337
+msgid "There are files pending to be uploaded."
+msgstr ""
+
+#: includes/class-awpcp.php:1338
+msgid "You haven't uploaded any images or files."
+msgstr ""
+
+#: includes/class-awpcp.php:1407 includes/class-awpcp.php:1415
+#: includes/class-awpcp.php:1423 includes/class-awpcp.php:1500
+#: includes/class-awpcp.php:1508 includes/class-awpcp.php:1516
+#: templates/admin/debug/plugin-info-debug-section.tpl.php:6
+msgid "Another WordPress Classifieds Plugin"
+msgstr ""
+
 #: includes/class-categories-collection.php:34
 msgid "The category ID must be a positive integer, %d was given."
 msgstr ""
@@ -4638,55 +4661,55 @@ msgctxt "upload files"
 msgid "Could not create resized versions of image %s."
 msgstr ""
 
-#: includes/functions/file-upload.php:25
+#: includes/functions/file-upload.php:28
 msgid "The specified image file does not exists: %s."
 msgstr ""
 
-#: includes/functions/file-upload.php:35
+#: includes/functions/file-upload.php:38
 msgid "No file was selected."
 msgstr ""
 
-#: includes/functions/file-upload.php:39
+#: includes/functions/file-upload.php:42
 msgid "Unknown error encountered while uploading the image."
 msgstr ""
 
-#: includes/functions/file-upload.php:48
+#: includes/functions/file-upload.php:51
 msgid "The file %s has an invalid extension and was rejected."
 msgstr ""
 
-#: includes/functions/file-upload.php:51
+#: includes/functions/file-upload.php:54
 msgid ""
 "The size of %1$s was too small. The file was not uploaded. File size must be "
 "greater than %2$d bytes."
 msgstr ""
 
-#: includes/functions/file-upload.php:55
+#: includes/functions/file-upload.php:58
 msgid ""
 "The file %s was larger than the maximum allowed file size of %s bytes. The "
 "file was not uploaded."
 msgstr ""
 
-#: includes/functions/file-upload.php:59
+#: includes/functions/file-upload.php:62
 msgid "The file %s does not appear to be a valid image file."
 msgstr ""
 
-#: includes/functions/file-upload.php:62
+#: includes/functions/file-upload.php:65
 msgid ""
 "The image %s did not meet the minimum width of %s pixels. The file was not "
 "uploaded."
 msgstr ""
 
-#: includes/functions/file-upload.php:66
+#: includes/functions/file-upload.php:69
 msgid ""
 "The image %s did not meet the minimum height of %s pixels. The file was not "
 "uploaded."
 msgstr ""
 
-#: includes/functions/file-upload.php:71 includes/functions/file-upload.php:75
+#: includes/functions/file-upload.php:74 includes/functions/file-upload.php:78
 msgid "The file %s could not be moved to the destination directory."
 msgstr ""
 
-#: includes/functions/file-upload.php:80
+#: includes/functions/file-upload.php:83
 msgid "Could not create resized versions of image %s."
 msgstr ""
 
@@ -9790,12 +9813,12 @@ msgctxt "upload media submit listing section"
 msgid "Loading..."
 msgstr ""
 
-#: templates/privacy-policy.tpl.php:3
+#: templates/privacy-policy.tpl.php:8
 msgctxt "privacy policy"
 msgid "Another WordPress Classifieds Plugin"
 msgstr ""
 
-#: templates/privacy-policy.tpl.php:5
+#: templates/privacy-policy.tpl.php:10
 msgctxt "privacy policy"
 msgid ""
 "When you submit a classified listing, the content of the listing and its "
@@ -9804,7 +9827,7 @@ msgid ""
 "administrators can also see and edit that information."
 msgstr ""
 
-#: templates/privacy-policy.tpl.php:7
+#: templates/privacy-policy.tpl.php:12
 msgctxt "privacy policy"
 msgid ""
 "Website visitors can see the contact name, website URL, phone number, "
@@ -9812,7 +9835,7 @@ msgid ""
 "classified listing."
 msgstr ""
 
-#: templates/privacy-policy.tpl.php:9
+#: templates/privacy-policy.tpl.php:14
 msgctxt "privacy policy"
 msgid ""
 "Contact name, email address, website URL and content of submitted classified "
@@ -9821,12 +9844,12 @@ msgid ""
 "privacy/\">here</a>."
 msgstr ""
 
-#: templates/privacy-policy.tpl.php:11
+#: templates/privacy-policy.tpl.php:16
 msgctxt "privacy policy"
 msgid "Payment Information"
 msgstr ""
 
-#: templates/privacy-policy.tpl.php:13
+#: templates/privacy-policy.tpl.php:18
 msgctxt "privacy policy"
 msgid ""
 "If you pay to post a classified listing entering your credit card and "
@@ -9835,33 +9858,33 @@ msgid ""
 "secure connection with the following payment gateways to process the payment:"
 msgstr ""
 
-#: templates/privacy-policy.tpl.php:16
+#: templates/privacy-policy.tpl.php:21
 msgctxt "privacy policy"
 msgid ""
 "PayPal &mdash; <a href=\"https://www.paypal.com/webapps/mpp/ua/privacy-full"
 "\">https://www.paypal.com/webapps/mpp/ua/privacy-full</a>"
 msgstr ""
 
-#: templates/privacy-policy.tpl.php:17
+#: templates/privacy-policy.tpl.php:22
 msgctxt "privacy policy"
 msgid ""
 "Authorize.Net &mdash; <a href=\"https://www.authorize.net/company/privacy/"
 "\">https://www.authorize.net/company/privacy/</a>"
 msgstr ""
 
-#: templates/privacy-policy.tpl.php:18
+#: templates/privacy-policy.tpl.php:23
 msgctxt "privacy policy"
 msgid ""
 "Stripe &mdash; <a href=\"https://stripe.com/us/privacy/\">https://stripe.com/"
 "us/privacy/</a>"
 msgstr ""
 
-#: templates/privacy-policy.tpl.php:21
+#: templates/privacy-policy.tpl.php:26
 msgctxt "privacy policy"
 msgid "Regions"
 msgstr ""
 
-#: templates/privacy-policy.tpl.php:23
+#: templates/privacy-policy.tpl.php:28
 msgctxt "privacy policy"
 msgid ""
 "If you choose to see listings published on a specific region, a cookie will "
@@ -9869,12 +9892,12 @@ msgid ""
 "selected region."
 msgstr ""
 
-#: templates/privacy-policy.tpl.php:25
+#: templates/privacy-policy.tpl.php:30
 msgctxt "privacy policy"
 msgid "Comments and Ratings"
 msgstr ""
 
-#: templates/privacy-policy.tpl.php:27
+#: templates/privacy-policy.tpl.php:32
 msgctxt "privacy policy"
 msgid ""
 "When visitors leave comments and reviews for classified listings we collect "
@@ -9882,7 +9905,7 @@ msgid ""
 "help spam detection."
 msgstr ""
 
-#: templates/privacy-policy.tpl.php:29
+#: templates/privacy-policy.tpl.php:34
 msgctxt "privacy policy"
 msgid ""
 "Visitor comments may be checked through Akismet's spam detection service. "
@@ -9890,12 +9913,12 @@ msgid ""
 "com/privacy/\">here</a>."
 msgstr ""
 
-#: templates/privacy-policy.tpl.php:31
+#: templates/privacy-policy.tpl.php:36
 msgctxt "privacy policy"
 msgid "Restricted Categories"
 msgstr ""
 
-#: templates/privacy-policy.tpl.php:33
+#: templates/privacy-policy.tpl.php:38
 msgctxt "privacy policy"
 msgid ""
 "When you agree to see listings or publish a listing on a restricted "
