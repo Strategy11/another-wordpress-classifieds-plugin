@@ -217,6 +217,10 @@ function awpcp_get_datetime_format() {
  * Returns the given date as MySQL date string, Unix timestamp or
  * using a custom format.
  *
+ * If $date is null or an empty string, then the function uses the timestamp
+ * of current time in the blog's configured timezone as the timestamp to
+ * generate formated dates.
+ *
  * @since 3.0.2
  * @param $format 	'mysql', 'timestamp', 'awpcp', 'awpcp-date', 'awpcp-time'
  *					  or first arguemnt for date() function.
@@ -2225,57 +2229,79 @@ function awpcp_maybe_add_thickbox() {
 
 /**
  * @since 3.2.1
+ * @since 3.9.2     Modified to use load_plugin_textdomain() in preparation for
+ *                  adding support for Language Packs.
  */
-function awpcp_load_plugin_textdomain( $__file__, $text_domain ) {
-    if ( awpcp_load_text_domain_with_file_prefix( $__file__, $text_domain, $text_domain ) ) {
-        return;
-    }
+function awpcp_load_plugin_textdomain( $__file__ ) {
+    $basename = dirname( plugin_basename( $__file__ ) );
 
-    if ( $text_domain == 'another-wordpress-classifieds-plugin' ) {
-        // attempt to load translations from file using old text domain.
-        awpcp_load_text_domain_with_file_prefix( $__file__, $text_domain, 'AWPCP' );
+    $locale = function_exists( 'determined_locale' ) ? determined_locale() : get_locale();
+    $locale = apply_filters( 'plugin_locale', $locale, 'another-wordpress-classifieds-plugin' );
+
+    // Try to load translations from WP_LANG_DIR /<plugin-slug>/another-wordpress-classifieds-plugin-$locale.mo.
+    $mofile = WP_LANG_DIR . "/$basename/another-wordpress-classifieds-plugin-$locale.mo";
+    load_textdomain( 'another-wordpress-classifieds-plugin', $mofile );
+
+    /**
+     * Try to load translations from the following locations:
+     *
+     * - WP_LANG_DIR /<plugin-slug>/another-wordpress-classifieds-plugin-$locale.mo
+     * - WP_PLUGIN_DIR /<plugin-slug>/languages/another-wordpress-classifieds-plugin-$locale.mo
+     */
+    load_plugin_textdomain( 'another-wordpress-classifieds-plugin', false, "$basename/languages/" );
+
+    // Try to load translations from WP_PLUGIN_DIR /<plugin-slug>/another-wordpress-classifieds-plugin-$locale.mo.
+    $mofile = WP_PLUGIN_DIR . "/$basename/another-wordpress-classifieds-plugin-$locale.mo";
+    load_textdomain( 'another-wordpress-classifieds-plugin', $mofile );
+
+    if ( ! awpcp_is_textdomain_loaded( 'another-wordpress-classifieds-plugin' ) ) {
+        // Attempt to load translations from file using old text domain.
+        awpcp_load_text_domain_with_file_prefix( $__file__, 'another-wordpress-classifieds-plugin', 'AWPCP' );
     }
 }
 
 /**
+ * Attempts to load translations from the following locations:
+ *
+ * - WP_LANG_DIR /plugins/$file_prefix-$locale.mo
+ * - WP_LANG_DIR /<plugin-slug>/$file_prefix-$locale.mo
+ * - WP_PLUGIN_DIR /<plugin-slug>/languages/$file_prefix-$locale.mo
+ * - WP_PLUGIN_DIR /<plugin-slug>/$file_prefix-$locale.mo
+ *
  * TODO: Do we really need to load files from all those locations? Isn't all that verifications too exepensive?
- *          Also having all that options is confusing. We should support the standard ones only.
+ *       Having all that options is confusing. We should support the standard ones only.
+ *
  * @since 3.5.3.2
  */
 function awpcp_load_text_domain_with_file_prefix( $__file__, $text_domain, $file_prefix ) {
     $basename = dirname( plugin_basename( $__file__ ) );
-    $locale = apply_filters( 'plugin_locale', get_locale(), $text_domain );
-    $text_domain_loaded = false;
+
+    $locale = function_exists( 'determined_locale' ) ? determined_locale() : get_locale();
+    $locale = apply_filters( 'plugin_locale', $locale, $text_domain );
 
     // Load user translation from wp-content/languages/plugins/$domain-$locale.mo
     $mofile = WP_LANG_DIR . '/plugins/' . $file_prefix . '-' . $locale . '.mo';
     if ( file_exists( $mofile ) ) {
         load_textdomain( $text_domain, $mofile );
-        $text_domain_loaded = awpcp_is_textdomain_loaded( $text_domain );
     }
 
     // Load user translation from wp-content/languages/another-wordpress-classifieds-plugin/$domain-$locale.mo
     $mofile = WP_LANG_DIR . '/' . $basename . '/' . $file_prefix . '-' . $locale . '.mo';
     if ( file_exists( $mofile ) ) {
         load_textdomain( $text_domain, $mofile );
-        $text_domain_loaded = awpcp_is_textdomain_loaded( $text_domain ) || $text_domain_loaded;
     }
 
     // Load translation included in plugin's languages directory. Stop if the file is loaded.
     $mofile = WP_PLUGIN_DIR . '/' . $basename . '/languages/' . $file_prefix . '-' . $locale . '.mo';
     if ( file_exists( $mofile ) ) {
         load_textdomain( $text_domain, $mofile );
-        $text_domain_loaded = awpcp_is_textdomain_loaded( $text_domain ) || $text_domain_loaded;
     }
 
     // Try loading the translations from the plugin's root directory.
     $mofile = WP_PLUGIN_DIR . '/' . $basename . '/' . $file_prefix . '-' . $locale . '.mo';
     if ( file_exists( $mofile ) ) {
         load_textdomain( $text_domain, $mofile );
-        $text_domain_loaded = awpcp_is_textdomain_loaded( $text_domain ) || $text_domain_loaded;
     }
-
-    return $text_domain_loaded;
 }
 
 /**
