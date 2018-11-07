@@ -12,11 +12,13 @@ class AWPCP_DisplaySettings {
      * @since 4.0.0
      */
     public function register_settings( $settings_manager ) {
-        $settings_manager->add_settings_group( [
-            'id'       => 'display-settings',
-            'name'     => __( 'Display', 'another-wordpress-classifieds-plugin' ),
-            'priority' => 50,
-        ] );
+        $settings_manager->add_settings_group(
+            [
+                'id'       => 'display-settings',
+                'name'     => __( 'Display', 'another-wordpress-classifieds-plugin' ),
+                'priority' => 50,
+            ]
+        );
 
         $this->register_layout_and_presentation_settings( $settings_manager );
         $this->register_classifieds_bar_settings( $settings_manager );
