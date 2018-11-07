@@ -3,7 +3,7 @@
  * Plugin Name: Another WordPress Classifieds Plugin (AWPCP)
  * Plugin URI: http://www.awpcp.com
  * Description: AWPCP - A plugin that provides the ability to run a free or paid classified ads service on your WP site. <strong>!!!IMPORTANT!!!</strong> It's always a good idea to do a BACKUP before you upgrade AWPCP!
- * Version: 3.9.2
+ * Version: 3.9.3
  * Author: D. Rodenbaugh
  * License: GPLv2 or any later version
  * Author URI: http://www.skylineconsult.com
@@ -434,8 +434,6 @@ class AWPCP {
         $this->setup_runtime_options();
 
         awpcp_register_activation_hook( __FILE__, array( $this->installer, 'activate' ) );
-
-        add_action('plugins_loaded', array($this, 'setup'), 10);
 
         // register rewrite rules when the plugin file is loaded.
         // generate_rewrite_rules or rewrite_rules_array hooks are
@@ -1667,7 +1665,15 @@ function awpcp() {
 
 	if (!is_object($awpcp)) {
 		$awpcp = new AWPCP();
-        add_action( 'plugins_loaded', array( $awpcp, 'bootstrap' ), -5 );
+
+        /**
+         * BuddyPress normally attaches bp_loaded to plugins_loaded with priority 10.
+         * When changing the priorities below, please make sure that modules are
+         * still loaded before bp_loaded so that they can register handlers for
+         * BuddyPress actions and filters.
+         */
+        add_action( 'plugins_loaded', array( $awpcp, 'bootstrap' ), 5 );
+        add_action( 'plugins_loaded', array( $awpcp, 'setup' ), 5 );
 	}
 
 	return $awpcp;
