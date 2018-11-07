@@ -866,8 +866,6 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $ui['website-field-required'] = get_awpcp_option('displaywebsitefieldreqop') == 1;
         $ui['contact-name-field-readonly'] = !empty( $form['ad_contact_name'] ) && !$is_moderator;
         $ui['contact-email-field-readonly'] = !empty( $form['ad_contact_email'] ) && !$is_moderator;
-        $ui['contact-phone-field'] = get_awpcp_option('displayphonefield') == 1;
-        $ui['contact-phone-field-required'] = get_awpcp_option('displayphonefieldreqop') == 1;
         $ui['price-field'] = get_awpcp_option('displaypricefield') == 1;
         $ui['price-field-required'] = get_awpcp_option('displaypricefieldreqop') == 1;
         $ui['allow-regions-modification'] = $is_moderator || !$edit || get_awpcp_option( 'allow-regions-modification' );
