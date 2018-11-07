@@ -40,6 +40,10 @@ class AWPCP_SettingsGridRenderer {
             for ( $i = count( $values ) - 1; $i > 0; $i-- ) {
                 $inner_setting = $this->settings_manager->get_setting( $values[ $i ] );
 
+                if ( ! $inner_setting ) {
+                    continue;
+                }
+
                 $setting['rows'][ $key ][ $i ] = [
                     'id'                 => "$key-{$values[ $i ]}",
                     'label'              => $inner_setting['name'],

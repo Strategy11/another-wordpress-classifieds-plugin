@@ -774,30 +774,20 @@ function awpcp_get_comma_separated_list($items=array(), $threshold=5, $none='') 
 }
 
 /**
- * Returns an array of Region fields. Only those enabled
- * in the settings will be returned.
- *
- * @param $translations array 	Allow developers to change the name
- * 								attribute of the form field associated
- *								to this Region Field.
- * @since 3.0.2
+ * @since 3.3.1
+ * @since 4.0.0     Added support for returning a different set of fields for
+ *                  the Search form using the $context parameter.
  */
-function awpcp_region_fields( $context='details', $enabled_fields = null ) {
-    $enabled_fields = is_null( $enabled_fields ) ? awpcp_get_enabled_region_fields() : $enabled_fields;
-
-    $fields = apply_filters( 'awpcp-region-fields', false, $context, $enabled_fields );
-
-    if ( false === $fields ) {
-    	$fields = awpcp_default_region_fields( $context, $enabled_fields );
+function awpcp_get_enabled_region_fields( $context = null ) {
+    if ( 'search' === $context ) {
+        return [
+            'country' => get_awpcp_option( 'display_country_field_on_search_form' ),
+            'state'   => get_awpcp_option( 'display_state_field_on_search_form' ),
+            'city'    => get_awpcp_option( 'display_city_field_on_search_form' ),
+            'county'  => get_awpcp_option( 'display_county_field_on_search_form' ),
+        ];
     }
 
-    return $fields;
-}
-
-/**
- * @since 3.3.1
- */
-function awpcp_get_enabled_region_fields() {
     return array(
         'country' => get_awpcp_option( 'displaycountryfield' ),
         'state' => get_awpcp_option( 'displaystatefield' ),

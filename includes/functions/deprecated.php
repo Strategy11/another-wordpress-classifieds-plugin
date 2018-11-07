@@ -401,3 +401,29 @@ function checkforduplicate($cpagename_awpcp) {
 function awpcp_create_captcha($type='default') {
     return awpcp()->container['CAPTCHAProviderFactory']->get_captcha_provider( $type );
 }
+
+/**
+ * Returns an array of Region fields. Only those enabled in the settings will
+ * be returned.
+ *
+ * @since 3.0.2
+ * @deprecated 4.0.0    This function is now implemented as a private method on
+ *                      Multiple Region Selector class.
+ */
+function awpcp_region_fields( $context='details', $enabled_fields = null ) {
+    if ( function_exists( '_doing_it_wrong' ) ) {
+        _doing_it_wrong( 'awpcp_region_fields', 'This function is now implemented as a private method on Multiple Region Selector class and will be removed in future versions.', 'another-wordpress-classifieds-plugin', '4.0.0' );
+    }
+
+    if ( is_null( $enabled_fields ) ) {
+        $enabled_fields = awpcp_get_enabled_region_fields( $context );
+    }
+
+    $fields = apply_filters( 'awpcp-region-fields', false, $context, $enabled_fields );
+
+    if ( false === $fields ) {
+        $fields = awpcp_default_region_fields( $context, $enabled_fields );
+    }
+
+    return $fields;
+}

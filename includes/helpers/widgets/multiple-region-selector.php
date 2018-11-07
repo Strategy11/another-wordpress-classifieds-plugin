@@ -62,11 +62,16 @@ class AWPCP_MultipleRegionSelector {
             'showTextField'           => false,
             'showExistingRegionsOnly' => get_awpcp_option( 'buildsearchdropdownlists' ),
             'hierarchy'               => array( 'country', 'county', 'state', 'city' ),
-            // List of Enabled Fields
-            //
-            // Possible value is an array with country, state, city or county as keys. Set to true to
-            // enable that field or false to disable it. All keys must be provided.
-            'enabled_fields'          => awpcp_get_enabled_region_fields(),
+            /**
+             * List of Enabled Fields
+             *
+             * Possible values are null (to show fields based on context) or
+             * an array with country, state, city or county as keys. Set the values
+             * to true to enable that field or false to disable it.
+             *
+             * All keys must be provided.
+             */
+            'enabled_fields'          => null,
         ) );
 
         $this->options['maxRegions'] = max( $this->options['maxRegions'], count( $this->regions ) );
@@ -76,8 +81,28 @@ class AWPCP_MultipleRegionSelector {
         $this->template = $template;
     }
 
+    /**
+     * @since 4.0.0     Update to include code that was previously defined on
+     *                  awpcp_region_fields();
+     */
     private function get_region_fields( $context ) {
-        return awpcp_region_fields( $context, $this->options['enabled_fields'] );
+        $enabled_fields = null;
+
+        if ( is_array( $this->options['enabled_fields'] ) && $this->options['enabled_fields'] ) {
+            $enabled_fields = $this->options['enabled_fields'];
+        }
+
+        if ( is_null( $enabled_fields ) ) {
+            $enabled_fields = awpcp_get_enabled_region_fields( $context );
+        }
+
+        $fields = apply_filters( 'awpcp-region-fields', false, $context, $enabled_fields );
+
+        if ( false === $fields ) {
+            $fields = awpcp_default_region_fields( $context, $enabled_fields );
+        }
+
+        return $fields;
     }
 
     private function get_region_field_options( $context, $type, $selected, $hierarchy ) {

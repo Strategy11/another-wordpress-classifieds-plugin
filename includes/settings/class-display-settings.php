@@ -383,6 +383,17 @@ class AWPCP_DisplaySettings {
         // Section: Price Field
 
         $settings_manager->add_setting( 'private-settings', 'displaypricefield', __( 'Show Price field', 'another-wordpress-classifieds-plugin' ), 'checkbox', 1, __( 'Show price field?', 'another-wordpress-classifieds-plugin' ) );
+
+        $settings_manager->add_setting(
+            [
+                'id'      => 'display_price_field_on_search_form',
+                'name'    => __( 'Show price field on search form', 'another-wordpress-classifieds-plugin' ),
+                'type'    => 'checkbox',
+                'default' => true,
+                'section' => 'private-settings',
+            ]
+        );
+
         $settings_manager->add_setting( 'private-settings', 'displaypricefieldreqop', __( 'Require Price', 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, __( 'Require price on Place Ad and Edit Ad forms?', 'another-wordpress-classifieds-plugin' ) );
 
         $settings_manager->add_setting(
@@ -399,21 +410,65 @@ class AWPCP_DisplaySettings {
         // Section: Country Field
 
         $settings_manager->add_setting('private-settings', 'displaycountryfield', __( 'Show Country field', 'another-wordpress-classifieds-plugin' ), 'checkbox', 1, __( 'Show country field?', 'another-wordpress-classifieds-plugin' ) );
+
+        $settings_manager->add_setting(
+            [
+                'id'      => 'display_country_field_on_search_form',
+                'name'    => __( 'Show country field on search form', 'another-wordpress-classifieds-plugin' ),
+                'type'    => 'checkbox',
+                'default' => true,
+                'section' => 'private-settings',
+            ]
+        );
+
         $settings_manager->add_setting('private-settings', 'displaycountryfieldreqop', __( 'Require Country', 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, __( 'Require country on Place Ad and Edit Ad forms?', 'another-wordpress-classifieds-plugin' ) );
 
         // Section: State Field
 
         $settings_manager->add_setting( 'private-settings', 'displaystatefield', __( 'Show State field', 'another-wordpress-classifieds-plugin' ), 'checkbox', 1, __( 'Show state field?', 'another-wordpress-classifieds-plugin' ) );
+
+        $settings_manager->add_setting(
+            [
+                'id'      => 'display_state_field_on_search_form',
+                'name'    => __( 'Show state field on search form', 'another-wordpress-classifieds-plugin' ),
+                'type'    => 'checkbox',
+                'default' => true,
+                'section' => 'private-settings',
+            ]
+        );
+
         $settings_manager->add_setting( 'private-settings', 'displaystatefieldreqop', __( 'Require State', 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, __( 'Require state on Place Ad and Edit Ad forms?', 'another-wordpress-classifieds-plugin' ) );
 
         // Section: County Field
 
         $settings_manager->add_setting('private-settings', 'displaycountyvillagefield', __( 'Show County/Village/other', 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, __( 'Show County/village/other?', 'another-wordpress-classifieds-plugin' ) );
+
+        $settings_manager->add_setting(
+            [
+                'id'      => 'display_county_field_on_search_form',
+                'name'    => __( 'Show county/village/other field on search form', 'another-wordpress-classifieds-plugin' ),
+                'type'    => 'checkbox',
+                'default' => true,
+                'section' => 'private-settings',
+            ]
+        );
+
         $settings_manager->add_setting('private-settings', 'displaycountyvillagefieldreqop', __( 'Require County/Village/other', 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, __( 'Require county/village/other on Place Ad and Edit Ad forms?', 'another-wordpress-classifieds-plugin' ) );
 
         // Section: City Field
 
         $settings_manager->add_setting('private-settings', 'displaycityfield', __( 'Show City field', 'another-wordpress-classifieds-plugin' ), 'checkbox', 1, __( 'Show city field?', 'another-wordpress-classifieds-plugin' ) );
+
+        $settings_manager->add_setting(
+            [
+                'id'      => 'display_city_field_on_search_form',
+                'name'    => __( 'Show city field on search form', 'another-wordpress-classifieds-plugin' ),
+                'type'    => 'checkbox',
+                'default' => true,
+                'section' => 'private-settings',
+            ]
+        );
+
         $settings_manager->add_setting('private-settings', 'displaycityfieldreqop', __( 'Require City', 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, __( 'Require city on Place Ad and Edit Ad forms?', 'another-wordpress-classifieds-plugin' ) );
         $settings_manager->add_setting( 'form-fields-behavior', 'show-city-field-before-county-field', __( 'Show City field before County field', 'another-wordpress-classifieds-plugin' ), 'checkbox', 1, __( 'If checked the city field will be shown before the county field. This setting may be overwritten if Region Control module is installed.', 'another-wordpress-classifieds-plugin' ) );
     }
@@ -445,6 +500,7 @@ class AWPCP_DisplaySettings {
             'columns' => [
                 __( 'Field', 'another-wordpress-classifieds-plugin' ),
                 __( 'Show field on form', 'another-wordpress-classifieds-plugin' ),
+                __( 'Show field on search form', 'another-wordpress-classifieds-plugin' ),
                 __( 'Required', 'another-wordpress-classifieds-plugin' ),
                 __( 'Show value to registered users only', 'another-wordpress-classifieds-plugin' ),
             ],
@@ -452,39 +508,46 @@ class AWPCP_DisplaySettings {
                 'website' => [
                     __( 'Website', 'another-wordpress-classifieds-plugin' ),
                     'displaywebsitefield',
+                    '',
                     'displaywebsitefieldreqop',
                     'displaywebsitefieldreqpriv',
                 ],
                 'contact-phone' => [
                     __( 'Contact Phone', 'another-wordpress-classifieds-plugin' ),
                     'displayphonefield',
+                    '',
                     'displayphonefieldreqop',
                     'displayphonefieldpriv',
                 ],
                 'price'         => [
                     __( 'Price', 'another-wordpress-classifieds-plugin' ),
                     'displaypricefield',
+                    'display_price_field_on_search_form',
                     'displaypricefieldreqop',
                     'price-field-is-restricted',
                 ],
                 'country'       => [
                     __( 'Country', 'another-wordpress-classifieds-plugin' ),
                     'displaycountryfield',
+                    'display_country_field_on_search_form',
                     'displaycountryfieldreqop',
                 ],
                 'state'         => [
                     __( 'State', 'another-wordpress-classifieds-plugin' ),
                     'displaystatefield',
+                    'display_state_field_on_search_form',
                     'displaystatefieldreqop'
                 ],
                 'county'        => [
                     __( 'County', 'another-wordpress-classifieds-plugin' ),
                     'displaycountyvillagefield',
+                    'display_county_field_on_search_form',
                     'displaycountyvillagefieldreqop',
                 ],
                 'city'          => [
                     __( 'City', 'another-wordpress-classifieds-plugin' ),
                     'displaycityfield',
+                    'display_city_field_on_search_form',
                     'displaycityfieldreqop',
                 ]
             ],

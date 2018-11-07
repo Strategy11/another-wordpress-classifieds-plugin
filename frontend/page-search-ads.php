@@ -113,7 +113,7 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
 
         $ui['module-extra-fields'] = $hasextrafieldsmodule;
         $ui['posted-by-field'] = get_awpcp_option('displaypostedbyfield');
-        $ui['price-field'] = get_awpcp_option('displaypricefield');
+        $ui['price-field'] = get_awpcp_option( 'display_price_field_on_search_form' );
         $ui['allow-user-to-search-in-multiple-regions'] = get_awpcp_option('allow-user-to-search-in-multiple-regions');
 
         $url_params = wp_parse_args( parse_url( awpcp_current_url(), PHP_URL_QUERY ) );
