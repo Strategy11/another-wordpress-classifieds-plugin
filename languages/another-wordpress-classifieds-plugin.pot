@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2018-10-15 23:38:43+00:00\n"
+"POT-Creation-Date: 2018-11-08 23:56:15+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -174,7 +174,7 @@ msgid "Categories"
 msgstr ""
 
 #: admin/admin-panel-fees-table.php:127
-#: admin/templates/admin-sidebar.tpl.php:103 awpcp.php:905
+#: admin/templates/admin-sidebar.tpl.php:103 awpcp.php:903
 msgid "Featured Ads"
 msgstr ""
 
@@ -752,7 +752,7 @@ msgid "Manage Extra Fields"
 msgstr ""
 
 #: admin/admin-panel.php:317 admin/templates/admin-sidebar.tpl.php:108
-#: awpcp.php:898
+#: awpcp.php:896
 msgid "Extra Fields"
 msgstr ""
 
@@ -1826,19 +1826,19 @@ msgstr ""
 msgid "Get a Premium Module!"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:46 awpcp.php:870
+#: admin/templates/admin-sidebar.tpl.php:46 awpcp.php:868
 msgid "Campaign Manager"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:52 awpcp.php:927
+#: admin/templates/admin-sidebar.tpl.php:52 awpcp.php:925
 msgid "Mark as Sold"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:58 awpcp.php:955
+#: admin/templates/admin-sidebar.tpl.php:58 awpcp.php:953
 msgid "Restricted Categories"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:63 awpcp.php:863
+#: admin/templates/admin-sidebar.tpl.php:63 awpcp.php:861
 msgid "BuddyPress Listings"
 msgstr ""
 
@@ -1846,15 +1846,15 @@ msgstr ""
 msgid "Comments/Ratings"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:73 awpcp.php:849
+#: admin/templates/admin-sidebar.tpl.php:73 awpcp.php:847
 msgid "Attachments"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:78 awpcp.php:856
+#: admin/templates/admin-sidebar.tpl.php:78 awpcp.php:854
 msgid "Authorize.Net"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:83 awpcp.php:941
+#: admin/templates/admin-sidebar.tpl.php:83 awpcp.php:939
 msgid "PayPal Pro"
 msgstr ""
 
@@ -1862,7 +1862,7 @@ msgstr ""
 msgid "Coupon/Discount"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:93 awpcp.php:976
+#: admin/templates/admin-sidebar.tpl.php:93 awpcp.php:974
 msgid "Subscriptions"
 msgstr ""
 
@@ -1870,15 +1870,15 @@ msgstr ""
 msgid "Fee Per Category"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:113 awpcp.php:877
+#: admin/templates/admin-sidebar.tpl.php:113 awpcp.php:875
 msgid "Category Icons"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:118 awpcp.php:948
+#: admin/templates/admin-sidebar.tpl.php:118 awpcp.php:946
 msgid "Regions Control"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:123 awpcp.php:962
+#: admin/templates/admin-sidebar.tpl.php:123 awpcp.php:960
 msgid "RSS"
 msgstr ""
 
@@ -1926,7 +1926,7 @@ msgid "Premium Modules"
 msgstr ""
 
 #: admin/templates/admin-sidebar.tpl.php:154
-#: admin/templates/admin-sidebar.tpl.php:195 functions.php:2927
+#: admin/templates/admin-sidebar.tpl.php:195 functions.php:2953
 msgid "Installed"
 msgstr ""
 
@@ -1935,7 +1935,7 @@ msgid "No premium modules installed."
 msgstr ""
 
 #: admin/templates/admin-sidebar.tpl.php:171
-#: admin/templates/admin-sidebar.tpl.php:212 functions.php:2923
+#: admin/templates/admin-sidebar.tpl.php:212 functions.php:2949
 msgid "Not Installed"
 msgstr ""
 
@@ -2015,107 +2015,107 @@ msgstr ""
 msgid "Manage Ad Listings"
 msgstr ""
 
-#: awpcp.php:734
+#: awpcp.php:732
 msgid "AWPCP"
 msgstr ""
 
-#: awpcp.php:832
+#: awpcp.php:830
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
 msgstr ""
 
-#: awpcp.php:833
+#: awpcp.php:831
 #: includes/placeholders/class-placeholders-installation-verifier.php:31
 msgid "Warning"
 msgstr ""
 
-#: awpcp.php:884
+#: awpcp.php:882
 msgid "Comments & Ratings"
 msgstr ""
 
-#: awpcp.php:891
+#: awpcp.php:889
 msgid "Coupons/Discount"
 msgstr ""
 
-#: awpcp.php:912
+#: awpcp.php:910
 msgid "Fee per Category"
 msgstr ""
 
-#: awpcp.php:919
+#: awpcp.php:917
 msgid "Google Checkout"
 msgstr ""
 
-#: awpcp.php:934
+#: awpcp.php:932
 msgid "PayFast"
 msgstr ""
 
-#: awpcp.php:969
+#: awpcp.php:967
 msgid "Stripe"
 msgstr ""
 
-#: awpcp.php:983 templates/components/media-manager.tpl.php:46
+#: awpcp.php:981 templates/components/media-manager.tpl.php:46
 msgid "Videos"
 msgstr ""
 
-#: awpcp.php:991
+#: awpcp.php:989
 msgid "XML Sitemap"
 msgstr ""
 
-#: awpcp.php:998
+#: awpcp.php:996
 msgid "ZIP Code Search Module"
 msgstr ""
 
-#: awpcp.php:1294
+#: awpcp.php:1292
 msgid "This field is required."
 msgstr ""
 
-#: awpcp.php:1295 frontend/page-edit-ad.php:130 frontend/page-edit-ad.php:444
+#: awpcp.php:1293 frontend/page-edit-ad.php:130 frontend/page-edit-ad.php:444
 #: includes/settings-api.php:264
 msgid "Please enter a valid email address."
 msgstr ""
 
-#: awpcp.php:1296 awpcp.php:1297
+#: awpcp.php:1294 awpcp.php:1295
 msgid "Please enter a valid URL."
 msgstr ""
 
-#: awpcp.php:1298
+#: awpcp.php:1296
 msgid "Please enter a valid number."
 msgstr ""
 
-#: awpcp.php:1299
+#: awpcp.php:1297
 msgid "Please enter a valid amount."
 msgstr ""
 
-#: awpcp.php:1309
+#: awpcp.php:1307
 msgctxt "[UI Datepicker] Display text for previous month link"
 msgid "&#x3c;Prev"
 msgstr ""
 
-#: awpcp.php:1311
+#: awpcp.php:1309
 msgctxt "[UI Datepicker] Display text for next month link"
 msgid "Next&#x3e;"
 msgstr ""
 
-#: awpcp.php:1326
+#: awpcp.php:1324
 msgctxt "[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ..."
 msgid "0"
 msgstr ""
 
-#: awpcp.php:1332
+#: awpcp.php:1330
 msgid "There are files currently being uploaded."
 msgstr ""
 
-#: awpcp.php:1333
+#: awpcp.php:1331
 msgid "There are files pending to be uploaded."
 msgstr ""
 
-#: awpcp.php:1334
+#: awpcp.php:1332
 msgid "You haven't uploaded any images or files."
 msgstr ""
 
-#: awpcp.php:1395 awpcp.php:1403 awpcp.php:1411 awpcp.php:1485 awpcp.php:1493
-#: awpcp.php:1501
+#: awpcp.php:1393 awpcp.php:1401 awpcp.php:1409 awpcp.php:1483 awpcp.php:1491
+#: awpcp.php:1499
 msgid "Another WordPress Classifieds Plugin"
 msgstr ""
 
@@ -3311,7 +3311,7 @@ msgid ""
 "payment."
 msgstr ""
 
-#: frontend/templates/payments-billing-form.tpl.php:6 functions.php:559
+#: frontend/templates/payments-billing-form.tpl.php:6 functions.php:563
 #: includes/admin/class-listings-personal-data-provider.php:83
 #: includes/admin/class-listings-personal-data-provider.php:93
 msgid "Country"
@@ -3355,7 +3355,7 @@ msgstr ""
 msgid "State"
 msgstr ""
 
-#: frontend/templates/payments-billing-form.tpl.php:101 functions.php:579
+#: frontend/templates/payments-billing-form.tpl.php:101 functions.php:583
 #: includes/admin/class-listings-personal-data-provider.php:85
 #: includes/admin/class-listings-personal-data-provider.php:95
 msgid "City"
@@ -3619,49 +3619,49 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: functions.php:490
+#: functions.php:494
 msgid "None"
 msgstr ""
 
-#: functions.php:501
+#: functions.php:505
 msgctxt "comma separated list of things"
 msgid "%s and %d more."
 msgstr ""
 
-#: functions.php:560
+#: functions.php:564
 msgid "separate countries by commas"
 msgstr ""
 
-#: functions.php:569
+#: functions.php:573
 msgid "State/Province"
 msgstr ""
 
-#: functions.php:570
+#: functions.php:574
 msgid "separate states by commas"
 msgstr ""
 
-#: functions.php:580
+#: functions.php:584
 msgid "separate cities by commas"
 msgstr ""
 
-#: functions.php:589
+#: functions.php:593
 msgid "County/Village/Other"
 msgstr ""
 
-#: functions.php:590
+#: functions.php:594
 msgid "separate counties by commas"
 msgstr ""
 
-#: functions.php:804
+#: functions.php:808
 msgid "-- Choose a Country --"
 msgstr ""
 
-#: functions.php:1038
+#: functions.php:1042
 msgctxt "default blog title"
 msgid "Classifieds Website"
 msgstr ""
 
-#: functions.php:1538
+#: functions.php:1542
 msgid ""
 "The images or files with pale red background have been rejected by an "
 "administrator user. Likewise, files with a pale yellow background are "
@@ -3669,94 +3669,94 @@ msgid ""
 "cannot be shown in the frontend."
 msgstr ""
 
-#: functions.php:1557
+#: functions.php:1561
 msgid ""
 "This version of AWPCP %1$s module is not compatible with AWPCP version %2$s. "
 "Please get AWPCP %1$s %3$s or newer!"
 msgstr ""
 
-#: functions.php:1559 includes/helpers/class-modules-manager.php:245
+#: functions.php:1563 includes/helpers/class-modules-manager.php:245
 msgid "Error"
 msgstr ""
 
-#: functions.php:1896
+#: functions.php:1900
 msgid "No errors."
 msgstr ""
 
-#: functions.php:1897
+#: functions.php:1901
 msgid "The file is larger than upload_max_filesize."
 msgstr ""
 
-#: functions.php:1898
+#: functions.php:1902
 msgid "The file is larger than form MAX_FILE_SIZE."
 msgstr ""
 
-#: functions.php:1899
+#: functions.php:1903
 msgid "The file was only partially uploaded."
 msgstr ""
 
-#: functions.php:1900
+#: functions.php:1904
 msgid "No file was uploaded."
 msgstr ""
 
-#: functions.php:1901
+#: functions.php:1905
 msgid "Missing temporary directory."
 msgstr ""
 
-#: functions.php:1902
+#: functions.php:1906
 msgid "Can't write file to disk."
 msgstr ""
 
-#: functions.php:1903
+#: functions.php:1907
 msgid "The file upload was stopped by extension."
 msgstr ""
 
-#: functions.php:2129
+#: functions.php:2133
 msgid "Your Ad \"%s\" has been approved"
 msgstr ""
 
-#: functions.php:2145
+#: functions.php:2149
 msgid "Your Ad \"%s\" has been successfully updated"
 msgstr ""
 
-#: functions.php:2166
+#: functions.php:2170
 msgid "Images on Ad \"%s\" are awaiting approval"
 msgstr ""
 
-#: functions.php:2168 includes/functions/notifications.php:189
+#: functions.php:2172 includes/functions/notifications.php:189
 msgid ""
 "Images on Ad \"%s\" are awaiting approval. You can approve the images going "
 "to the Manage Images section for that Ad and clicking the \"Enable\" button "
 "below each image. Click here to continue: %s."
 msgstr ""
 
-#: functions.php:2171
+#: functions.php:2175
 msgid "The Ad \"%s\" is awaiting approval"
 msgstr ""
 
-#: functions.php:2173 includes/functions/notifications.php:194
+#: functions.php:2177 includes/functions/notifications.php:194
 msgid ""
 "The Ad \"%s\" is awaiting approval. You can approve the Ad going to the "
 "Manage Listings section and clicking the \"Enable\" action shown on top. "
 "Click here to continue: %s."
 msgstr ""
 
-#: functions.php:2180 includes/functions/notifications.php:201
+#: functions.php:2184 includes/functions/notifications.php:201
 msgid ""
 "Additionally, You can approve the images going to the Manage Images section "
 "for that Ad and clicking the \"Enable\" button below each image. Click here "
 "to continue: %s."
 msgstr ""
 
-#: functions.php:2757
+#: functions.php:2783
 msgid "Email sent %s."
 msgstr ""
 
-#: functions.php:2935
+#: functions.php:2961
 msgid "SSL Support: Yes."
 msgstr ""
 
-#: functions.php:2937
+#: functions.php:2963
 msgid "SSL Support: No."
 msgstr ""
 
@@ -8024,6 +8024,10 @@ msgstr ""
 msgid "You are not allowed to buy credits."
 msgstr ""
 
+#: includes/wordpress/class-wordpress-scripts.php:8
+msgid "The instance of WP_Scripts is not ready!"
+msgstr ""
+
 #: installer.php:145
 msgid "30 Day Listing"
 msgstr ""
@@ -8164,6 +8168,14 @@ msgctxt "csv-importer"
 msgid "Define a default user?"
 msgstr ""
 
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:117
+msgctxt "csv-importer"
+msgid ""
+"The default user will be used when the username column is not present in the "
+"CSV file or there is no user with the specified username and we couldn't "
+"find a user with the contact email address specified in the CSV file."
+msgstr ""
+
 #: templates/admin/import-listings-admin-page-configuration-form.tpl.php:123
 msgid "Default user"
 msgstr ""
@@ -8185,6 +8197,14 @@ msgstr ""
 msgid ""
 "You're currently testing the import operation. No listings will be created "
 "or modified in the database."
+msgstr ""
+
+#: templates/admin/import-listings-admin-page-import-form.tpl.php:22
+msgid ""
+"All rows were processed. You can change the Configuration & Restart the "
+"import operation, or click the Finish button to delete the source and "
+"temporary files created during this import session (imported listings and "
+"images will be kept, of course)."
 msgstr ""
 
 #: templates/admin/import-listings-admin-page-import-form.tpl.php:25
