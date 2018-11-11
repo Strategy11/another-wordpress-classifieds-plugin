@@ -64,6 +64,7 @@ class AWPCP_SettingsGridRenderer {
 
         echo '</td></tr><tr class="awpcp-setting-' . str_replace( '_', '-', $setting['id'] ) . '-grid awpcp-settings-grid awpcp-settings-row"><td colspan="2">'; // XSS Ok.
         echo $this->template_renderer->render_template( $template, $params ); // XSS Ok.
+        echo apply_filters( "awpcp_after_settings_grid_{$setting['id']}", '', $setting ); // XSS Ok.
     }
 
     /**
