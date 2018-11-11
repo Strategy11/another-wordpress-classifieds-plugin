@@ -119,7 +119,7 @@ require_once AWPCP_DIR . '/requires.php';
  * @since 4.0.0
  */
 function awpcp_outdated_php_version() {
-    add_action( 'admin_notices', 'awpcp_required_php_version_notice' );
+    add_action( 'admin_notices', 'awpcp_render_plugin_required_php_version_notice' );
 
     awpcp_self_deactivate();
 }
@@ -127,13 +127,20 @@ function awpcp_outdated_php_version() {
 /**
  * @since 4.0.0
  */
-function awpcp_required_php_version_notice() {
+function awpcp_render_plugin_required_php_version_notice() {
+    awpcp_required_php_version_notice( 'Another WordPress Classifieds Plugin' );
+}
+
+/**
+ * @since 4.0.0
+ */
+function awpcp_required_php_version_notice( $product_name ) {
     $content  = '';
     $content .= '<p><strong>';
-    $content .= esc_html__( 'Another WordPress Classifieds Plugin was deactivated because it requires PHP 5.6 or newer.', 'another-wordpress-classifieds-plugin' );
+    $content .= str_replace( '{product_name}', $product_name, esc_html__( '{product_name} was deactivated because it requires PHP 5.6 or newer.', 'another-wordpress-classifieds-plugin' ) );
     $content .= '</strong></p>';
     $content .= '<p>';
-    $content .= esc_html__( 'Hi, we noticed that your site is running on an outdated version of PHP. New versions of PHP are faster, more secure and include the features our module requires.', 'another-wordpress-classifieds-plugin' );
+    $content .= esc_html__( 'Hi, we noticed that your site is running on an outdated version of PHP. New versions of PHP are faster, more secure and include the features our product requires.', 'another-wordpress-classifieds-plugin' );
     $content .= '</p>';
     $content .= '<p>';
     $content .= wp_kses_post( __( 'You should upgrade to <strong>PHP 5.6</strong>, but if you want your site to also be considerable faster and even more secure, we recommend going up to <strong>PHP 7.2</strong>.', 'another-wordpress-classifieds-plugin' ) );
