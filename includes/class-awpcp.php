@@ -40,10 +40,10 @@ class AWPCP {
         $this->upgrade_tasks = awpcp_upgrade_tasks_manager();
         $this->manual_upgrades = awpcp_manual_upgrade_tasks();
 
-        awpcp_load_plugin_textdomain( __FILE__, 'another-wordpress-classifieds-plugin' );
+        awpcp_load_plugin_textdomain( AWPCP_FILE, 'another-wordpress-classifieds-plugin' );
 
         // TODO: Fix activation hook
-        // awpcp_register_activation_hook( __FILE__, array( $this->installer, 'activate' ) );
+        // awpcp_register_activation_hook( AWPCP_FILE, array( $this->installer, 'activate' ) );
     }
 
 	/**
