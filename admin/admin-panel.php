@@ -427,11 +427,16 @@ class AWPCP_AdminPanel {
 	 * @param  String $file
 	 */
 	public function add_settings_link(  $links, $file ){
+        if ( $this->upgrade_tasks->has_pending_tasks( array( 'context' => 'plugin', 'blocking' => true ) ) ) {
+            return $links;
+        }
+
 		$settings_link = '<a href="' . admin_url( 'admin.php?page=awpcp-admin-settings' ) . '">' . esc_html__( 'Settings', 'another-wordpress-classifieds-plugin' ) . '</a>';
 
-		if ( $file == 'another-wordpress-classifieds-plugin/awpcp.php' ){
+        if ( AWPCP_BASENAME === $file ) {
 			array_unshift( $links, $settings_link );
 		}
+
 		return $links;
 	}
 

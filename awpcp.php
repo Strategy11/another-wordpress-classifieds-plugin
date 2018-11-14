@@ -41,7 +41,7 @@ if ( ! defined( 'AWPCP_FILE' ) ) {
 }
 
 if ( ! defined( 'AWPCP_BASENAME' ) ) {
-    define( 'AWPCP_BASENAME', basename( dirname( AWPCP_FILE ) ) );
+    define( 'AWPCP_BASENAME', plugin_basename( AWPCP_FILE ) );
 }
 
 if ( ! defined( 'AWPCP_DIR' ) ) {
