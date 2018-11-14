@@ -24,11 +24,13 @@ class AWPCP_ListingsSettings {
      * Handler for awpcp_register_settings action.
      */
     public function register_settings( $settings_manager ) {
-        $settings_manager->add_settings_group( [
-            'id'       => 'listings-settings',
-            'name'     => __( 'Classifieds', 'another-wordpress-classifieds-plugin' ),
-            'priority' => 30,
-        ] );
+        $settings_manager->add_settings_group(
+            [
+                'id'       => 'listings-settings',
+                'name'     => __( 'Classifieds', 'another-wordpress-classifieds-plugin' ),
+                'priority' => 30,
+            ]
+        );
 
         $this->register_moderation_settings( $settings_manager );
         $this->register_notification_settings( $settings_manager );
@@ -101,30 +103,26 @@ class AWPCP_ListingsSettings {
             __( 'The end date for listings posted in free mode will be calculated using the value in this field. You can enter 0 to keep listings enabled for 10 years.', 'another-wordpress-classifieds-plugin' )
         );
 
-        $disable_expired_listings_setting_name = __( 'Disable expired listings instead of deleting them?', 'another-wordpress-classifieds-plugin' );
+        $setting_name = __( 'Disable expired listings instead of deleting them?', 'another-wordpress-classifieds-plugin' );
 
         $settings_manager->add_setting(
             $key,
             'autoexpiredisabledelete',
-            $disable_expired_listings_setting_name,
+            $setting_name,
             'checkbox',
             0,
             __( 'If checked, listings will remain in disabled indefinitely after they expire. If not checked, listings will be deleted after the number of days set in the next setting.', 'another-wordpress-classifieds-plugin' )
         );
 
-        $days_before_expired_listings_are_deleted_description = __( 'If the <setting-name> setting is NOT checked, the listings will be permanently deleted from the system, after the number of days specified in this field have passed since each listing was disabled.', 'another-wordpress-classifieds-plugin' );
-        $days_before_expired_listings_are_deleted_description = str_replace(
-            '<setting-name>',
-            '<strong>' . $disable_expired_listings_setting_name . '</strong>',
-            $days_before_expired_listings_are_deleted_description
-        );
+        $description = __( 'If the <setting-name> setting is NOT checked, the listings will be permanently deleted from the system, after the number of days specified in this field have passed since each listing was disabled.', 'another-wordpress-classifieds-plugin' );
+        $description = str_replace( '<setting-name>', '<strong>' . $setting_name . '</strong>', $description );
 
         $settings_manager->add_setting( [
             'id'          => 'days-before-expired-listings-are-deleted',
             'name'        => __( 'Number of days before expired listings are deleted', 'another-wordpress-classifieds-plugin' ),
             'type'        => 'textfield',
             'priority'    => 7,
-            'description' => $days_before_expired_listings_are_deleted_description,
+            'description' => $description,
             'behavior'   => [
                 'shownUnless' => 'autoexpiredisabledelete',
             ],
@@ -392,6 +390,8 @@ class AWPCP_ListingsSettings {
 
     /**
      * @since 4.0.0
+     * @SuppressWarnings(PHPMD.ElseExpression)
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     private function register_url_settings( $settings_manager ) {
         $key = 'listing-url';
