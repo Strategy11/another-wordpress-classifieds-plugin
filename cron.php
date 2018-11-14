@@ -242,6 +242,7 @@ function awpcp_delete_expired_listings( $listings_logic, $listings ) {
  */
 function awpcp_ad_renewal_email() {
     $listing_renderer = awpcp_listing_renderer();
+    $wordpress        = awpcp_wordpress();
 
 	if (!(get_awpcp_option('sent-ad-renew-email') == 1)) {
 		return;
@@ -267,8 +268,7 @@ function awpcp_ad_renewal_email() {
         $email->body = $notification->render_body( $listing );
 
 		if ( $email->send() ) {
-			$listing->renew_email_sent = true;
-			$listing->save();
+            $wordpress->update_post_meta( $listing->ID, '_awpcp_renew_email_sent', true );
 		}
 	}
 }
