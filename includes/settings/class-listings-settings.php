@@ -157,6 +157,9 @@ class AWPCP_ListingsSettings {
         $this->register_administrator_notifications_settings( $settings_manager );
     }
 
+    /**
+     * Register settings for subscriber notifications.
+     */
     private function register_subscriber_notifications_settings( $settings_manager ) {
         $key   = 'user-notifications';
 
@@ -186,6 +189,9 @@ class AWPCP_ListingsSettings {
         $settings_manager->add_setting( $key, 'notifyofadexpiring', __( 'Listing Expired', 'another-wordpress-classifieds-plugin' ), 'checkbox', 1, __( 'An email will be sent when the Ad expires.', 'another-wordpress-classifieds-plugin' ) );
     }
 
+    /**
+     * Register settings for moderator notifications.
+     */
     private function register_moderator_notifications_settings( $settings_manager ) {
         $key = 'moderator-notifications';
 
@@ -219,6 +225,9 @@ class AWPCP_ListingsSettings {
         );
     }
 
+    /**
+     * Register settings for administrator notifications.
+     */
     private function register_administrator_notifications_settings( $settings_manager ) {
         $key = 'admin-notifications';
 

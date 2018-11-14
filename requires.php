@@ -228,7 +228,6 @@ require_once AWPCP_DIR . '/includes/routes/class-routes.php';
 require_once AWPCP_DIR . '/includes/settings/class-files-settings.php';
 require_once AWPCP_DIR . '/includes/settings/class-general-settings.php';
 require_once AWPCP_DIR . '/includes/settings/class-listings-moderation-settings.php';
-require_once AWPCP_DIR . '/includes/settings/class-user-notifications-settings.php';
 
 require_once AWPCP_DIR . '/includes/upgrade/interface-upgrade-task-runner.php';
 
