@@ -2245,7 +2245,7 @@ function awpcp_load_plugin_textdomain( $__file__ ) {
     /**
      * Try to load translations from the following locations:
      *
-     * - WP_LANG_DIR /<plugin-slug>/another-wordpress-classifieds-plugin-$locale.mo
+     * - WP_LANG_DIR /plugins/another-wordpress-classifieds-plugin-$locale.mo
      * - WP_PLUGIN_DIR /<plugin-slug>/languages/another-wordpress-classifieds-plugin-$locale.mo
      */
     load_plugin_textdomain( 'another-wordpress-classifieds-plugin', false, "$basename/languages/" );
