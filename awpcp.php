@@ -103,7 +103,7 @@ if ( file_exists( AWPCP_DIR . '/awpcp_category_icons_module.php' ) ) {
 }
 /* End of legacy code. */
 
-add_action( 'plugins_loaded', 'awpcp_load_main_plugin', 10 );
+add_action( 'plugins_loaded', 'awpcp_load_main_plugin', -5 );
 
 // TODO: Configure this on plugin's main class?
 add_filter( 'redirect_canonical', 'awpcp_redirect_canonical', 10, 2 );
