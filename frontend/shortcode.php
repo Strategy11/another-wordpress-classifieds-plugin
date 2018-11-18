@@ -456,6 +456,13 @@ function awpcp_get_menu_items( $params ) {
         $items['search-listings'] = array( 'url' => $search_ads_url, 'title' => esc_html( $search_ads_page_name ) );
     }
 
+    /**
+     * @params array $items     An array of menu items where every entry is a new array
+     *                          with url and title keys.
+     *
+     *                          The value of associated with title key must be passed
+     *                          through esc_html().
+     */
     $items = apply_filters( 'awpcp_menu_items', $items );
 
     return $items;
