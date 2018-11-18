@@ -2235,7 +2235,7 @@ function awpcp_maybe_add_thickbox() {
 function awpcp_load_plugin_textdomain( $__file__ ) {
     $basename = dirname( plugin_basename( $__file__ ) );
 
-    $locale = function_exists( 'determined_locale' ) ? determined_locale() : get_locale();
+    $locale = function_exists( 'determine_locale' ) ? determine_locale() : get_locale();
     $locale = apply_filters( 'plugin_locale', $locale, 'another-wordpress-classifieds-plugin' );
 
     // Try to load translations from WP_LANG_DIR /<plugin-slug>/another-wordpress-classifieds-plugin-$locale.mo.
