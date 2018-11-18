@@ -270,6 +270,9 @@ class AWPCP_Installer {
             '4.0.0beta4' => [
                 'enable_routine_to_store_categories_order_as_term_meta',
             ],
+            '4.0.0beta5' => [
+                'rename_translation_files_using_outdated_textdomain',
+            ],
         );
     }
 
@@ -1300,6 +1303,63 @@ class AWPCP_Installer {
      */
     private function enable_routine_to_store_categories_order_as_term_meta() {
         $this->upgrade_tasks->enable_upgrade_task( 'awpcp-store-categories-order-as-term-meta' );
+    }
+
+    /**
+     * Many versions of the plugin used AWPCP as the textdomain for translations,
+     * the filename prefix for PO and MO files, both official and custom.
+     *
+     * As we move towards providing translations using Language Packs exclusively,
+     * we want to stop loading translation files using the old textdomain in their
+     * names. This upgrade routine attempts to rename those files using the new
+     * textdomain and to move them to the  wp-languages/another-wordpress-classifieds-plugin
+     * directory.
+     *
+     * @since 4.0.0
+     */
+    private function rename_translation_files_using_outdated_textdomain() {
+        if ( ! function_exists( 'glob' ) ) {
+            return;
+        }
+
+        $basename = dirname( plugin_basename( AWPCP_FILE ) );
+
+        // Historically we have loaded custom and official translation files from these directories.
+        $directories = [
+            WP_PLUGIN_DIR . "/$basename",
+            WP_PLUGIN_DIR . "/$basename/languages",
+            WP_LANG_DIR . '/another-wordpress-classifieds-plugin',
+            WP_LANG_DIR . '/plugins',
+        ];
+
+        $files_to_move   = [];
+        $files_not_moved = [];
+
+        foreach ( $directories as $directory ) {
+            $files_found   = glob( "$directory/AWPCP-*.{po,mo}", GLOB_BRACE );
+            $files_to_move = array_merge( $files_to_move, $files_found );
+        }
+
+        foreach ( $files_to_move as $file ) {
+            $filename = basename( $file );
+            $filename = str_replace( 'AWPCP', 'another-wordpress-classifieds-plugin', $filename );
+
+            $path = WP_LANG_DIR . "/another-wordpress-classifieds-plugin/$filename";
+
+            if ( file_exists( $path ) ) {
+                $files_not_moved[] = $file;
+                continue;
+            }
+
+            if ( ! rename( $file, $path ) ) {
+                $files_not_moved[] = $file;
+                continue;
+            }
+        }
+
+        if ( $files_not_moved ) {
+            update_option( 'awpcp_translation_files_with_outdated_textdomain', $files_not_moved, false );
+        }
     }
 }
 
