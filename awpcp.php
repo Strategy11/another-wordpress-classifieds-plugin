@@ -103,7 +103,15 @@ if ( file_exists( AWPCP_DIR . '/awpcp_category_icons_module.php' ) ) {
 }
 /* End of legacy code. */
 
-add_action( 'plugins_loaded', 'awpcp_load_main_plugin', -5 );
+/**
+ * BuddyPress normally attaches bp_loaded to plugins_loaded with priority 10.
+ * When changing the priorities below, please make sure that modules are
+ * still loaded before bp_loaded so that they can register handlers for
+ * BuddyPress actions and filters.
+ *
+ * See bootstrap() and setup() methods that are called inside awpcp_load_main_plugin().
+ */
+add_action( 'plugins_loaded', 'awpcp_load_main_plugin', 5 );
 
 // TODO: Configure this on plugin's main class?
 add_filter( 'redirect_canonical', 'awpcp_redirect_canonical', 10, 2 );
