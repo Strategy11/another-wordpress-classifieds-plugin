@@ -2554,11 +2554,6 @@ function awpcp_load_plugin_textdomain( $__file__ ) {
     // Try to load translations from WP_PLUGIN_DIR /<plugin-slug>/another-wordpress-classifieds-plugin-$locale.mo.
     $mofile = WP_PLUGIN_DIR . "/$basename/another-wordpress-classifieds-plugin-$locale.mo";
     load_textdomain( 'another-wordpress-classifieds-plugin', $mofile );
-
-    if ( ! awpcp_is_textdomain_loaded( 'another-wordpress-classifieds-plugin' ) ) {
-        // Attempt to load translations from file using old text domain.
-        awpcp_load_text_domain_with_file_prefix( $__file__, 'another-wordpress-classifieds-plugin', 'AWPCP' );
-    }
 }
 
 /**
