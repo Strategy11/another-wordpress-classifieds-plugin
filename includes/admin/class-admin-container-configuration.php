@@ -10,6 +10,9 @@
  */
 class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationInterface {
 
+    // @phpcs:disable PEAR.Functions.FunctionCallSignature.CloseBracketLine
+    // @phpcs:disable PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket
+
     /**
      * @param object $container     An instance of Container.
      * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
@@ -326,6 +329,8 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
 
     /**
      * @since 4.0.0
+     * @phpcs:disable PEAR.Functions.FunctionCallSignature.CloseBracketLine
+     * @phpcs:disable PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket
      */
     private function register_importer_objects( $container ) {
         $container['ImporterDelegateFactory'] = $container->service( function( $container ) {
@@ -365,6 +370,8 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
             );
         } );
     }
+
+    // @phpcs:enable
 
     /**
      * @since 4.0.0

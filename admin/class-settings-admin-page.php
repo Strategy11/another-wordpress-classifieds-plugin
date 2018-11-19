@@ -64,13 +64,13 @@ class AWPCP_SettingsAdminPage {
 		unset( $groups['private-settings'] );
 
 		$params = array(
-            'groups'              => $groups,
-            'subgroups'           => $subgroups,
-            'current_group'       => $current_groups['group'],
-            'current_subgroup'    => $current_groups['subgroup'],
-            'settings'            => $this->settings,
-            'setting_name'        => $this->settings->setting_name,
-            'current_url'         => remove_query_arg( [ 'sg', 'g' ], awpcp_current_url() ),
+            'groups'           => $groups,
+            'subgroups'        => $subgroups,
+            'current_group'    => $current_groups['group'],
+            'current_subgroup' => $current_groups['subgroup'],
+            'settings'         => $this->settings,
+            'setting_name'     => $this->settings->setting_name,
+            'current_url'      => remove_query_arg( [ 'sg', 'g' ], awpcp_current_url() ),
 		);
 
 		$template = AWPCP_DIR . '/templates/admin/settings-admin-page.tpl.php';

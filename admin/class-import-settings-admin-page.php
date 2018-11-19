@@ -54,14 +54,16 @@ class AWPCP_Import_Settings_Admin_Page {
      * @param object $request           An instance of Request.
      */
     public function __construct( $settings_writer, $capabilities, $template_renderer, $request ) {
-        $this->settings_writer = $settings_writer;
-        $this->capabilities = $capabilities;
+        $this->settings_writer   = $settings_writer;
+        $this->capabilities      = $capabilities;
         $this->template_renderer = $template_renderer;
-        $this->request = $request;
+        $this->request           = $request;
     }
 
     /**
      * Executed during admin_init when this page is visited.
+     *
+     * @SuppressWarnings(PHPMD.ExitExpression)
      */
     public function on_admin_init() {
         // TODO: Is this unnecesasry, since we are already insde an admin page?
@@ -69,11 +71,11 @@ class AWPCP_Import_Settings_Admin_Page {
             wp_die( 'You must be an administrator' );
         }
 
-        if ( isset( $_FILES['settings_file'] ) ) { // WPCS: Input var okay.
-            $file = wp_unslash( $_FILES['settings_file'] ); // WPCS: Input var and sanitization okay.
-        } else {
+        if ( ! isset( $_FILES['settings_file'] ) ) { // WPCS: Input var okay.
             return;
         }
+
+        $file = wp_unslash( $_FILES['settings_file'] ); // WPCS: Input var and sanitization okay.
 
         try {
             $this->try_to_import_settings( $file );
@@ -82,7 +84,7 @@ class AWPCP_Import_Settings_Admin_Page {
         }
 
         $params = array(
-            'page' => 'awpcp-admin-settings',
+            'page'         => 'awpcp-admin-settings',
             'awpcp-action' => 'import-settings',
         );
 
@@ -141,9 +143,9 @@ class AWPCP_Import_Settings_Admin_Page {
         $template = AWPCP_DIR . '/templates/admin/tools/import-settings-admin-page.tpl.php';
 
         $params = array(
-            'action_url' => '',
+            'action_url'   => '',
             'nonce_action' => $this->nonce_action,
-            'tools_url' => remove_query_arg( 'awpcp-view' ),
+            'tools_url'    => remove_query_arg( 'awpcp-view' ),
         );
 
         return $this->template_renderer->render_template( $template, $params );

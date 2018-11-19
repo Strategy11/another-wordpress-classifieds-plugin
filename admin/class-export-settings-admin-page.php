@@ -54,6 +54,8 @@ class AWPCP_Export_Settings_Admin_Page {
 
     /**
      * Code executed during admin_init when this page is visited.
+     *
+     * @SuppressWarnings(PHPMD.ExitExpression)
      */
     public function on_admin_init() {
         if ( ! wp_verify_nonce( $this->request->post( '_wpnonce' ), $this->nonce_action ) ) {

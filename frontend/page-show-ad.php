@@ -1,5 +1,11 @@
 <?php
+/**
+ * @pacakge AWPCP\Frontend
+ */
 
+/**
+ * Renders the content for the individual page of an ad.
+ */
 class AWPCP_Show_Ad_Page {
 
 	public function __construct() {
