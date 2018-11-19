@@ -468,7 +468,6 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_UploadsManager' => __DIR__ . '/../..' . '/includes/media/class-uploads-manager.php',
         'AWPCP_UserField' => __DIR__ . '/../..' . '/includes/helpers/widgets/class-user-field.php',
         'AWPCP_UserListingsTableSearchMode' => __DIR__ . '/../..' . '/includes/admin/listings/class-user-listings-table-search-mode.php',
-        'AWPCP_UserNotificationsSettings' => __DIR__ . '/../..' . '/includes/settings/class-user-notifications-settings.php',
         'AWPCP_UserPersonalDataProvider' => __DIR__ . '/../..' . '/includes/admin/class-user-personal-data-provider.php',
         'AWPCP_UserProfileContactInformationController' => __DIR__ . '/../..' . '/admin/profile/class-user-profile-contact-information-controller.php',
         'AWPCP_UserSelector' => __DIR__ . '/../..' . '/includes/ui/class-user-selector.php',

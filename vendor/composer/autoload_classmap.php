@@ -467,7 +467,6 @@ return array(
     'AWPCP_UploadsManager' => $baseDir . '/includes/media/class-uploads-manager.php',
     'AWPCP_UserField' => $baseDir . '/includes/helpers/widgets/class-user-field.php',
     'AWPCP_UserListingsTableSearchMode' => $baseDir . '/includes/admin/listings/class-user-listings-table-search-mode.php',
-    'AWPCP_UserNotificationsSettings' => $baseDir . '/includes/settings/class-user-notifications-settings.php',
     'AWPCP_UserPersonalDataProvider' => $baseDir . '/includes/admin/class-user-personal-data-provider.php',
     'AWPCP_UserProfileContactInformationController' => $baseDir . '/admin/profile/class-user-profile-contact-information-controller.php',
     'AWPCP_UserSelector' => $baseDir . '/includes/ui/class-user-selector.php',
