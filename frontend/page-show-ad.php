@@ -26,8 +26,30 @@ class AWPCP_Show_Ad_Page {
      */
 	public function dispatch() {
         $listings_content_renderer = awpcp()->container['ListingsContentRenderer'];
+        $listing_id                = awpcp_request()->get_current_listing_id();
 
-        $post = awpcp_listings_collection()->get( awpcp_request()->get_current_listing_id() );
+        if ( ! $listing_id ) {
+            $browse_listings_url = awpcp_get_page_url( 'browse-ads-page-name' );
+
+            $message = __( 'No ad ID was specified. Return to {browse_listings_link}browse all ads{/browse_listings_link}.', 'another-wordpress-classifieds-plugin' );
+            $message = str_replace( '{browse_listings_link}', '<a href="' . esc_url( $browse_listings_url ) . '">', $message );
+            $message = str_replace( '{/browse_listings_link}', '</a>', $message );
+
+            return awpcp_print_error( $message );
+        }
+
+        try {
+            $post = awpcp_listings_collection()->get( $listing_id );
+        } catch ( AWPCP_Exception $e ) {
+            $browse_listings_url = awpcp_get_page_url( 'browse-ads-page-name' );
+
+            $message = __( 'No ad was found with ID equal to {listing_id}. Return to {browse_listings_link}browse all ads{/browse_listings_link}.', 'another-wordpress-classifieds-plugin' );
+            $message = str_replace( '{listing_id}', $listing_id, $message );
+            $message = str_replace( '{browse_listings_link}', '<a href="' . esc_url( $browse_listings_url ) . '">', $message );
+            $message = str_replace( '{/browse_listings_link}', '</a>', $message );
+
+            return awpcp_print_error( $message );
+        }
 
         return $listings_content_renderer->render(
             apply_filters( 'the_content', $post->post_content ),
