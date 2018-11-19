@@ -438,6 +438,7 @@ return array(
     'AWPCP_TextareaSettingsRenderer' => $baseDir . '/includes/settings/renderers/class-textarea-settings-renderer.php',
     'AWPCP_TextfieldSettingsRenderer' => $baseDir . '/includes/settings/renderers/class-textfield-settings-renderer.php',
     'AWPCP_TitleListingsTableSearchMode' => $baseDir . '/includes/admin/listings/class-title-listings-table-search-mode.php',
+    'AWPCP_ToolsAdminPage' => $baseDir . '/includes/admin/tools/class-tools-admin-page.php',
     'AWPCP_URL_Backwards_Compatibility_Redirection_Helper' => $baseDir . '/frontend/class-url-backwards-compatibility-redirection-helper.php',
     'AWPCP_UnflagListingTableAction' => $baseDir . '/includes/admin/listings/class-unflag-listing-table-action.php',
     'AWPCP_UninstallAdminPage' => $baseDir . '/admin/class-uninstall-admin-page.php',

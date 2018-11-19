@@ -10,7 +10,9 @@
  */
 function awpcp_export_settings_admin_page() {
     return new AWPCP_Export_Settings_Admin_Page(
-        awpcp_settings_json_reader()
+        awpcp_settings_json_reader(),
+        awpcp()->container['TemplateRenderer'],
+        awpcp()->container['Request']
     );
 }
 
@@ -20,6 +22,16 @@ function awpcp_export_settings_admin_page() {
 class AWPCP_Export_Settings_Admin_Page {
 
     /**
+     * @var string
+     */
+    private $nonce_action = 'awpcp-export-settings';
+
+    /**
+     * @var string
+     */
+    private $template = '/admin/tools/export-settings-admin-page.tpl.php';
+
+    /**
      * An instance of a Settings Reader.
      *
      * @var object
@@ -27,18 +39,27 @@ class AWPCP_Export_Settings_Admin_Page {
     private $settings_reader;
 
     /**
-     * Constructor.
-     *
-     * @param object $settings_reader An instance of a Settings Reader.
+     * @var TemplateRenderer
      */
-    public function __construct( $settings_reader ) {
-        $this->settings_reader = $settings_reader;
+    private $template_renderer;
+
+    /**
+     * Constructor.
+     */
+    public function __construct( $settings_reader, $template_renderer, $request ) {
+        $this->settings_reader   = $settings_reader;
+        $this->template_renderer = $template_renderer;
+        $this->request           = $request;
     }
 
     /**
      * Code executed during admin_init when this page is visited.
      */
     public function on_admin_init() {
+        if ( ! wp_verify_nonce( $this->request->post( '_wpnonce' ), $this->nonce_action ) ) {
+            return;
+        }
+
         $filename = 'awpcp-settings-' . awpcp_datetime( 'Ymd-His' ) . '.json';
 
         header( 'Content-Description: File Transfer' );
@@ -48,5 +69,17 @@ class AWPCP_Export_Settings_Admin_Page {
         echo $this->settings_reader->read_all(); // WPCS: XSS OK.
 
         exit();
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function dispatch() {
+        $params = array(
+            'nonce_action' => $this->nonce_action,
+            'tools_url'    => remove_query_arg( 'awpcp-view' ),
+        );
+
+        return $this->template_renderer->render_template( $this->template, $params );
     }
 }

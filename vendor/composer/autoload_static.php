@@ -439,6 +439,7 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_TextareaSettingsRenderer' => __DIR__ . '/../..' . '/includes/settings/renderers/class-textarea-settings-renderer.php',
         'AWPCP_TextfieldSettingsRenderer' => __DIR__ . '/../..' . '/includes/settings/renderers/class-textfield-settings-renderer.php',
         'AWPCP_TitleListingsTableSearchMode' => __DIR__ . '/../..' . '/includes/admin/listings/class-title-listings-table-search-mode.php',
+        'AWPCP_ToolsAdminPage' => __DIR__ . '/../..' . '/includes/admin/tools/class-tools-admin-page.php',
         'AWPCP_URL_Backwards_Compatibility_Redirection_Helper' => __DIR__ . '/../..' . '/frontend/class-url-backwards-compatibility-redirection-helper.php',
         'AWPCP_UnflagListingTableAction' => __DIR__ . '/../..' . '/includes/admin/listings/class-unflag-listing-table-action.php',
         'AWPCP_UninstallAdminPage' => __DIR__ . '/../..' . '/admin/class-uninstall-admin-page.php',

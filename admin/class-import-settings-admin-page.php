@@ -138,18 +138,14 @@ class AWPCP_Import_Settings_Admin_Page {
      * Renders the import settings form.
      */
     private function render_import_settings_form() {
-        $template = AWPCP_DIR . '/templates/admin/import-settings-admin-page.tpl.php';
+        $template = AWPCP_DIR . '/templates/admin/tools/import-settings-admin-page.tpl.php';
 
         $params = array(
             'action_url' => '',
             'nonce_action' => $this->nonce_action,
-            'heading_params' => array(
-                'content' => esc_html__( 'Import Settings', 'another-wordpress-classifieds-plugin' ),
-            ),
-            'settings_url' => awpcp_get_admin_settings_url(),
+            'tools_url' => remove_query_arg( 'awpcp-view' ),
         );
 
         return $this->template_renderer->render_template( $template, $params );
     }
 }
-

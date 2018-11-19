@@ -321,6 +321,7 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
         } );
 
         $this->register_importer_objects( $container );
+        $this->register_tools_objects( $container );
     }
 
     /**
@@ -363,5 +364,26 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
                 $container['TemplateRenderer']
             );
         } );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function register_tools_objects( $container ) {
+        $container['ToolsAdminPage'] = $container->service(
+            function( $container ) {
+                return new AWPCP_ToolsAdminPage(
+                    $container['TemplateRenderer']
+                );
+            }
+        );
+
+        $container['ImportExportAdminPage'] = $container->service(
+            function( $container ) {
+                return new AWPCP_ImportExportAdminPage(
+                    $container['TemplateRenderer']
+                );
+            }
+        );
     }
 }

@@ -148,22 +148,6 @@ class AWPCP_AdminPanel {
             10
         );
 
-        $router->add_admin_section(
-            'awpcp.php::awpcp-admin-settings',
-            'export-settings',
-            'awpcp-action',
-            'export-settings',
-            'awpcp_export_settings_admin_page'
-        );
-
-        $router->add_admin_section(
-            'awpcp.php::awpcp-admin-settings',
-            'import-settings',
-            'awpcp-action',
-            'import-settings',
-            'awpcp_import_settings_admin_page'
-        );
-
         $router->add_private_ajax_action( 'listings-delete-ad', 'awpcp_delete_listing_ajax_handler' );
 
         $router->add_admin_subpage(
@@ -295,6 +279,34 @@ class AWPCP_AdminPanel {
             'awpcp-action',
             'edit-fee',
             'awpcp_fee_details_admin_page'
+        );
+
+        $router->add_admin_subpage(
+            $parent_page,
+            __( 'Tools', 'another-wordpress-classifieds-plugin' ),
+            awpcp_admin_page_title( __( 'Tools', 'another-wordpress-classifieds-plugin' ) ),
+            'awpcp-tools',
+            function() {
+                return awpcp()->container['ToolsAdminPage'];
+            },
+            $admin_capability,
+            8000
+        );
+
+        $router->add_admin_section(
+            'awpcp.php::awpcp-tools',
+            'import-settings',
+            'awpcp-view',
+            'import-settings',
+            'awpcp_import_settings_admin_page'
+        );
+
+        $router->add_admin_section(
+            'awpcp.php::awpcp-tools',
+            'export-settings',
+            'awpcp-view',
+            'export-settings',
+            'awpcp_export_settings_admin_page'
         );
 
         $router->add_admin_subpage(

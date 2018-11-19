@@ -71,8 +71,6 @@ class AWPCP_SettingsAdminPage {
             'settings'            => $this->settings,
             'setting_name'        => $this->settings->setting_name,
             'current_url'         => remove_query_arg( [ 'sg', 'g' ], awpcp_current_url() ),
-            'import_settings_url' => add_query_arg( 'awpcp-action', 'import-settings', awpcp_get_admin_settings_url() ),
-            'export_settings_url' => add_query_arg( 'awpcp-action', 'export-settings', awpcp_get_admin_settings_url() ),
 		);
 
 		$template = AWPCP_DIR . '/templates/admin/settings-admin-page.tpl.php';
