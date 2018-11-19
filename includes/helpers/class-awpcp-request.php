@@ -8,13 +8,6 @@
 // phpcs:disable Generic
 
 /**
- * @since 3.0.2
- */
-function awpcp_request() {
-    return new AWPCP_Request();
-}
-
-/**
  * @SuppressWarnings(PHPMD)
  */
 class AWPCP_Request {

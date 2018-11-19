@@ -271,3 +271,10 @@ function awpcp_facebook_integration() {
         awpcp_wordpress()
     );
 }
+
+/**
+ * @since 3.0.2
+ */
+function awpcp_request() {
+    return new AWPCP_Request();
+}
