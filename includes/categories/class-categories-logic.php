@@ -53,6 +53,7 @@ class AWPCP_Categories_Logic {
 
     /**
      * @since 4.0.0
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      */
     private function get_category_data( $category, $category_order ) {
         $category_data = [
@@ -131,11 +132,17 @@ class AWPCP_Categories_Logic {
         $category->parent = $target_category->term_id;
         $this->update_category( $category );
 
-        return $this->wordpress->delete_term(
+        $category_deleted = $this->wordpress->delete_term(
             $category->term_id,
             $this->taxonomy,
             array( 'default' => $target_category->term_id )
         );
+
+        // @phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
+        do_action( 'awpcp-category-deleted', $category->term_id );
+        // @phpcs:enable
+
+        return $category_deleted;
     }
 
     public function delete_category_and_associated_listings( $category, $target_category = null ) {
@@ -176,6 +183,12 @@ class AWPCP_Categories_Logic {
             $this->update_category( $category );
         }
 
-        return $this->wordpress->delete_term( $category->term_id, $this->taxonomy );
+        $category_deleted = $this->wordpress->delete_term( $category->term_id, $this->taxonomy );
+
+        // @phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
+        do_action( 'awpcp-category-deleted', $category->term_id );
+        // @phpcs:enable
+
+        return $category_deleted;
     }
 }
