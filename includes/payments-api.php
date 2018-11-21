@@ -452,7 +452,11 @@ class AWPCP_PaymentsAPI {
     }
 
     public function process_transaction($transaction) {
-        do_action('awpcp-process-payment-transaction', $transaction);
+        /**
+         * Used by the main plugin and premium modules to modify or take actions
+         * based on the current payment transaction.
+         */
+        do_action( 'awpcp-process-payment-transaction', $transaction );
     }
 
     public function process_payment_request($action) {
