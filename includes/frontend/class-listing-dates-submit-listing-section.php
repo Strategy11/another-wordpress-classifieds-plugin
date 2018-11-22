@@ -114,9 +114,28 @@ class AWPCP_ListingDatesSubmitListingSection {
         );
 
         $params = [
+            'description' => $this->get_description( $listing ),
             'form_fields' => $this->form_fields->render_fields( $data, $errors, $listing, $context ),
         ];
 
         return $this->template_renderer->render_template( $this->template, $params );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function get_description( $listing ) {
+        $can_edit_start_date = $this->authorization->is_current_user_allowed_to_edit_listing_start_date( $listing );
+        $can_edit_end_date   = $this->authorization->is_current_user_allowed_to_edit_listing_end_date( $listing );
+
+        if ( $can_edit_start_date && $can_edit_end_date ) {
+            return __( "You can schedule the ad to appear on the website at a future date. If you specify an end date as well, the ad will remain visible until that day, regardless of the duration of the selected plan. If you don't specify an end date, the ad will remain visible for the duration of the selected plan starting from the start date.", 'another-wordpress-classifieds-plugin' );
+        }
+
+        if ( $can_edit_start_date ) {
+            return __( 'You can schedule your ad to appear on the website at a future date. The ad will remain visible for the duration of the selected plan starting from that date.', 'another-wordpress-classifieds-plugin' );
+        }
+
+        return '';
     }
 }
