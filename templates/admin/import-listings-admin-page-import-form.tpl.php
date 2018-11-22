@@ -1,13 +1,19 @@
-<?php $page_id = 'awpcp-admin-csv-importer' ?>
-<?php $page_title = awpcp_admin_page_title( __( 'Import Listings', 'another-wordpress-classifieds-plugin' ) ); ?>
+<?php
+/**
+ * @package AWPCP\Templates
+ */
 
-<?php include( AWPCP_DIR . '/admin/templates/admin-panel-header.tpl.php') ?>
+$page_id    = 'awpcp-admin-csv-importer';
+$page_title = awpcp_admin_page_title( __( 'Import Listings', 'another-wordpress-classifieds-plugin' ) );
 
+require AWPCP_DIR . '/admin/templates/admin-panel-header.tpl.php';
+
+?>
         <?php echo $form_steps; // XSS Ok. ?>
 
         <h3><?php echo esc_html( $action_name ); ?></h3>
-        <?php if ( $test_mode_enabled ): ?>
-        <p><?php echo awpcp_render_warning( __( "You're currently testing the import operation. No listings will be created or modified in the database.", 'another-wordpress-classifieds-plugin' ) ); ?></p>
+        <?php if ( $test_mode_enabled ) : ?>
+        <p><?php echo awpcp_render_warning( esc_html__( "You're currently testing the import operation. No listings will be created or modified in the database.", 'another-wordpress-classifieds-plugin' ) ); // XSS Ok. ?></p>
         <?php endif; ?>
 
         <form id="awpcp-import-listings-import-form" method="post">
@@ -21,7 +27,7 @@
                 <li><span class="message-description" data-bind="html: description"></span><span class="message-content" data-bind="html: content"></span></li>
             </ul>
 
-            <p data-bind="visible: completed"><?php echo __( 'All rows were processed. You can change the Configuration & Restart the import operation, or click the Finish button to delete the source and temporary files created during this import session (imported listings and images will be kept, of course).', 'another-wordpress-classifieds-plugin' ); ?></p>
+            <p data-bind="visible: completed"><?php esc_html_e( 'All rows were processed. You can change the Configuration & Restart the import operation, or click the Finish button to delete the source and temporary files created during this import session (imported listings and images will be kept, of course).', 'another-wordpress-classifieds-plugin' ); ?></p>
 
             <p class="submit">
                 <input type="submit" class="button" name="change_configuration" value="<?php echo esc_html( __( 'Change Configuration & Restart', 'another-wordpress-classifieds-plugin' ) ); ?>" data-bind="visible: paused() || completed()"></input>
@@ -35,7 +41,7 @@
             <div data-bind="visible: paused() && ! completed()">
                 <hr>
 
-                <p><?php echo __( "Press the button below to cancel the current import operation and discard the uploaded CSV file and ZIP file (if any). If you manually uploaded images to the directory specified in the Local Directory field, those won't be deleted.", 'another-wordpress-classifieds-plugin' ); ?></p>
+                <p><?php esc_html_e( "Press the button below to cancel the current import operation and discard the uploaded CSV file and ZIP file (if any). If you manually uploaded images to the directory specified in the Local Directory field, those won't be deleted.", 'another-wordpress-classifieds-plugin' ); ?></p>
 
                 <p class="cancel-submit">
                     <input type="submit" class="button" name="cancel" value="<?php echo esc_html( __( 'Cancel', 'another-wordpress-classifieds-plugin' ) ); ?>"></input>
