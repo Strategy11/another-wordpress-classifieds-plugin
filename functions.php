@@ -360,7 +360,12 @@ function awpcp_pagination($config, $url) {
 					   'adkey',
 					   'editemail',
 					   'awpcp_ads_to_action',
-					   'post_type');
+        'post_type',
+        'TCM_PostShown',
+        'TCM_SnippetsWrittenIds',
+        'TCM_SnippetsWrittenMd5',
+        'TCM_Cache_Query_2_',
+    );
 
 	$params = array_merge($_GET, $_POST);
 	foreach ($blacklist as $param) {
