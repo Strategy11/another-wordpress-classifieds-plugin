@@ -30,7 +30,11 @@ class AWPCP_Upgrade_Task_Ajax_Handler extends AWPCP_AjaxHandler {
             return $this->error_response( sprintf( "The handler for task '%s' couldn't be instantiated.", $task_slug ) );
         }
 
-        list( $records_count, $records_left ) = $task_handler->run_task( $task_slug, $context );
+        try {
+            list( $records_count, $records_left ) = $task_handler->run_task( $task_slug, $context );
+        } catch ( AWPCP_Exception $e ) {
+            return $this->error_response( $e->getMessage() );
+        }
 
         return $this->progress_response( $records_count, $records_left );
     }
