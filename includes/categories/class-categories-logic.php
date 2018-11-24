@@ -139,7 +139,7 @@ class AWPCP_Categories_Logic {
         );
 
         // @phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
-        do_action( 'awpcp-category-deleted', $category->term_id );
+        do_action( 'awpcp-category-deleted', $category );
         // @phpcs:enable
 
         return $category_deleted;
@@ -186,7 +186,7 @@ class AWPCP_Categories_Logic {
         $category_deleted = $this->wordpress->delete_term( $category->term_id, $this->taxonomy );
 
         // @phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
-        do_action( 'awpcp-category-deleted', $category->term_id );
+        do_action( 'awpcp-category-deleted', $category );
         // @phpcs:enable
 
         return $category_deleted;
