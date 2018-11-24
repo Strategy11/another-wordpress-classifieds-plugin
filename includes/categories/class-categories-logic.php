@@ -1,5 +1,13 @@
 <?php
+/**
+ * @package AWPCP
+ */
 
+// @phpcs:disable Squiz.Commenting
+
+/**
+ * Constructor for Categories Logic class.
+ */
 function awpcp_categories_logic() {
     return new AWPCP_Categories_Logic(
         AWPCP_CATEGORY_TAXONOMY,
@@ -29,7 +37,7 @@ class AWPCP_Categories_Logic {
             $category = (object) $category;
         }
 
-        $data = $this->get_category_data( $category, $category_order );
+        $data      = $this->get_category_data( $category, $category_order );
         $term_info = $this->wordpress->insert_term( $data['name'], $this->taxonomy, $data );
 
         if ( is_wp_error( $term_info ) ) {
@@ -46,7 +54,9 @@ class AWPCP_Categories_Logic {
          * @since 3.3
          * TODO: fix handlers now that we pass more parameters
          */
+        // @phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
         do_action( 'awpcp-category-added', $term_info['term_id'], $category );
+        // @phpcs:enable WordPress.NamingConventions.ValidHookName.UseUnderscores
 
         return $term_info['term_id'];
     }
@@ -54,6 +64,7 @@ class AWPCP_Categories_Logic {
     /**
      * @since 4.0.0
      * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     * @throws AWPCP_Exception If the $category object has invalid data.
      */
     private function get_category_data( $category, $category_order ) {
         $category_data = [
@@ -62,13 +73,13 @@ class AWPCP_Categories_Logic {
 
         if ( isset( $category->name ) && ! empty( $category->name ) ) {
             $category_data['name'] = $category->name;
-        } else if ( ! isset( $category->name ) || empty( $category->name ) ) {
+        } elseif ( ! isset( $category->name ) || empty( $category->name ) ) {
             throw new AWPCP_Exception( __( 'The name of the Category is required.', 'another-wordpress-classifieds-plugin' ) );
         }
 
         if ( isset( $category->parent ) && isset( $category->term_id ) && $category->parent === $category->term_id ) {
             throw new AWPCP_Exception( __( 'The ID of the parent category and the ID of the category must be different.' ) );
-        } else if ( isset( $category->parent ) ) {
+        } elseif ( isset( $category->parent ) ) {
             $category_data['parent'] = $category->parent;
         }
 
@@ -79,7 +90,9 @@ class AWPCP_Categories_Logic {
         /**
          * TODO: fix now that we pass a different array
          */
+        // @phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
         return apply_filters( 'awpcp-category-data', $category_data, $category );
+        // @phpcs:enable WordPress.NamingConventions.ValidHookName.UseUnderscores
     }
 
     public function update_category( $category, $category_order = null ) {
@@ -104,7 +117,9 @@ class AWPCP_Categories_Logic {
          * @since 3.3
          * TODO: fix handlers now that we pass more parameters
          */
+        // @phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
         do_action( 'awpcp-category-edited', $term_info['term_id'], $category );
+        // @phpcs:enable WordPress.NamingConventions.ValidHookName.UseUnderscores
 
         return $term_info['term_id'];
     }
@@ -140,7 +155,7 @@ class AWPCP_Categories_Logic {
 
         // @phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
         do_action( 'awpcp-category-deleted', $category );
-        // @phpcs:enable
+        // @phpcs:enable WordPress.NamingConventions.ValidHookName.UseUnderscores
 
         return $category_deleted;
     }
@@ -150,6 +165,7 @@ class AWPCP_Categories_Logic {
             throw new AWPCP_Exception( __( 'The move-to category and the category that is going to be deleted must be different.', 'another-wordpress-classifieds-plugin' ) );
         }
 
+        // @phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_tax_query
         $listings = $this->listings->find_listings(
             [
                 'tax_query' => [
@@ -162,6 +178,7 @@ class AWPCP_Categories_Logic {
                 ],
             ]
         );
+        // @phpcs:enable WordPress.NamingConventions.ValidHookName.UseUnderscores
 
         try {
             foreach ( $listings as $listing ) {
@@ -187,7 +204,7 @@ class AWPCP_Categories_Logic {
 
         // @phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
         do_action( 'awpcp-category-deleted', $category );
-        // @phpcs:enable
+        // @phpcs:enable WordPress.NamingConventions.ValidHookName.UseUnderscores
 
         return $category_deleted;
     }
