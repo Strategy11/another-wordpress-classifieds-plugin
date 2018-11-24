@@ -18,7 +18,7 @@ trait AWPCP_ReplaceConflictingListingsUpgradeTaskHelper {
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.SuppressWarnings)
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function update_last_item_id( $last_item_id ) {
         // Not used.
@@ -63,6 +63,7 @@ trait AWPCP_ReplaceConflictingListingsUpgradeTaskHelper {
 
     /**
      * @since 4.0.0
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     protected function update_records( $old_listing_id, $new_listing_id ) {
     }
