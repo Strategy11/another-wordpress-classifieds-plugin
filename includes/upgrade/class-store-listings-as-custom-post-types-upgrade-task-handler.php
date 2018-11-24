@@ -12,6 +12,8 @@ class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements 
     private $wordpress;
     private $db;
 
+    use AWPCP_UpgradeListingsTaskHandlerHelper;
+
     public function __construct( $categories, $legacy_listing_metadata, $wordpress, $db ) {
         $this->categories = $categories;
         $this->legacy_listing_metadata = $legacy_listing_metadata;
@@ -41,29 +43,32 @@ class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements 
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function process_item( $item, $last_item_id ) {
+        // Ignore incomplete ad records.
+        if ( ! $item->ad_details && ! $item->ad_title ) {
+            return $item->ad_id;
+        }
+
         $post_date_gmt = get_gmt_from_date( $item->ad_postdate, 'Y-m-d' );
         $post_time_gmt = get_gmt_from_date( $item->ad_startdate, 'H:i:s' );
 
-        /* create post and import standard fields as custom fields. */
-        $post_id = $this->wordpress->insert_post(
-            array(
-                'post_content' => $item->ad_details, // TODO: do I need to strip slashes?,
-                'post_title' => $item->ad_title,
-                'post_name' => sanitize_title( $item->ad_title ),
-                'post_status' => 'draft',
-                'post_type' => 'awpcp_listing',
-                // 'post_excerpt' => '',
-                'post_date' => get_date_from_gmt( $post_date_gmt . ' ' . $post_time_gmt ),
-                'post_date_gmt' => $post_date_gmt . ' ' . $post_time_gmt,
-                'post_modified' => $item->ad_last_updated,
+        // Create post and import standard fields as custom fields.
+        $post_id = $this->insert_post(
+            [
+                'post_content'      => $item->ad_details, // TODO: do I need to strip slashes?,
+                'post_title'        => $item->ad_title,
+                'post_name'         => sanitize_title( $item->ad_title ),
+                'post_status'       => 'draft',
+                'post_type'         => 'awpcp_listing',
+                'post_date'         => get_date_from_gmt( $post_date_gmt . ' ' . $post_time_gmt ),
+                'post_date_gmt'     => $post_date_gmt . ' ' . $post_time_gmt,
+                'post_modified'     => $item->ad_last_updated,
                 'post_modified_gmt' => get_gmt_from_date( $item->ad_last_updated ),
-                'comment_status' => 'closed',
-            ),
-            true // return a WP_Error object on failure
+                'comment_status'    => 'closed',
+            ]
         );
 
         if ( is_wp_error( $post_id ) ) {
-            throw new AWPCP_Exception( sprintf( "A custom post entry couldn't be created for listing %d.", $item->ad_id ) );
+            throw new AWPCP_Exception( sprintf( "A custom post entry couldn't be created for listing %d. %s", $item->ad_id, $post_id->get_error_message() ) );
         }
 
         /* update post status and meta information */
@@ -87,6 +92,16 @@ class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements 
         $this->wordpress->update_post_meta( $post_id, '_awpcp_old_id', $item->ad_id );
 
         return $item->ad_id;
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function insert_post( $post_data ) {
+        $max_legacy_post_id = $this->get_max_legacy_post_id();
+        $wanted_post_id     = $max_legacy_post_id + 1;
+
+        return $this->maybe_insert_post_with_id( $wanted_post_id, $post_data );
     }
 
     /**

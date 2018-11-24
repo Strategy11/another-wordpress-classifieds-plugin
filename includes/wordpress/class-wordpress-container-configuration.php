@@ -14,8 +14,18 @@ class AWPCP_WordPressContainerConfiguration implements AWPCP_ContainerConfigurat
      * @since 4.0.0
      */
     public function modify( $container ) {
-        $container['WordPress'] = $container->service( function( $container ) {
-            return new AWPCP_WordPress();
-        } );
+        $container['WordPress'] = $container->service(
+            function( $container ) {
+                return new AWPCP_WordPress();
+            }
+        );
+
+        $container['ArrayOptions'] = $container->service(
+            function( $container ) {
+                return new AWPCP_ArrayOptions(
+                    $container['WordPress']
+                );
+            }
+        );
     }
 }

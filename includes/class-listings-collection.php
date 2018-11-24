@@ -701,10 +701,14 @@ class AWPCP_ListingsCollection {
                 break;
 
             case 'id':
+            case 'ID':
                 $query['orderby'] = 'ID';
                 break;
 
             default:
+                // XXX: This default case makes it impossible to use other orderby values
+                // supported by WP_Query. Perhaps we should set a default orderby when
+                // no value is provided only.
                 $query['orderby'] = array( 'post_date' => 'DESC', 'title' => 'ASC' );
                 break;
         }

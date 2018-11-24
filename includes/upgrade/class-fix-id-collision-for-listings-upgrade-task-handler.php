@@ -1,0 +1,237 @@
+<?php
+/**
+ * @package AWPCP\Upgrade
+ */
+
+/**
+ * Upgrade routine to replace listing category taxonomy terms that have an ID
+ * matching the ID from one of the pre-4.0.0 categories, causing that listing
+ * category taxonomy term to be inaccessible because, in order to maintain
+ * backwards compatiblity, the plugin always assumes the user is trying to see
+ * the pre-4.0.0 category.
+ *
+ * @since 4.0.0beta2
+ */
+class AWPCP_FixIDCollisionForListingsUpgradeTaskHandler implements AWPCP_Upgrade_Task_Runner {
+
+    /**
+     * @var ListingsRegistry
+     */
+    private $listings_registry;
+
+    /**
+     * @var ListingsCollection
+     */
+    private $listings;
+
+    /**
+     * @var WordPress
+     */
+    private $wordpress;
+
+    /**
+     * @var wpdb
+     */
+    private $db;
+
+    use AWPCP_UpgradeListingsTaskHandlerHelper;
+
+    /**
+     * @since 4.0.0
+     */
+    public function __construct( $listings_registry, $listings, $wordpress, $db ) {
+        $this->listings_registry = $listings_registry;
+        $this->listings          = $listings;
+        $this->wordpress         = $wordpress;
+        $this->db                = $db;
+    }
+    /**
+     * @since 4.0.0
+     */
+    public function get_last_item_id() {
+        return intval( $this->wordpress->get_option( 'awpcp_ficfl_last_listing_id' ) );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function update_last_item_id( $last_item_id ) {
+        $this->wordpress->update_option( 'awpcp_ficfl_last_listing_id', $last_item_id );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function count_pending_items( $last_item_id ) {
+        if ( 0 === $last_item_id ) {
+            return $this->listings->count_listings( $this->get_pending_items_query_vars() );
+        }
+
+        return $this->execute_query_for_posts_with_id_greater_than(
+            $last_item_id,
+            function() {
+                return $this->listings->count_listings( $this->get_pending_items_query_vars() );
+            }
+        );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function execute_query_for_posts_with_id_greater_than( $last_item_id, $query ) {
+        $filter_by_id = function( $where ) use ( $last_item_id ) {
+            return "$where AND {$this->db->posts}.ID < $last_item_id";
+        };
+
+        add_filter( 'posts_where', $filter_by_id );
+
+        $result = $query();
+
+        remove_filter( 'posts_where', $filter_by_id );
+
+        return $result;
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function get_pending_items_query_vars() {
+        return [
+            'orderby'        => 'ID',
+            'order'          => 'DESC',
+            'posts_per_page' => 1,
+        ];
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function get_pending_items( $last_item_id ) {
+        if ( 0 === $last_item_id ) {
+            return $this->listings->find_listings( $this->get_pending_items_query_vars() );
+        }
+
+        return $this->execute_query_for_posts_with_id_greater_than(
+            $last_item_id,
+            function() {
+                return $this->listings->find_listings( $this->get_pending_items_query_vars() );
+            }
+        );
+    }
+
+    /**
+     * @since 4.0.0
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
+    public function process_item( $item, $last_item_id ) {
+        if ( $this->wordpress->get_option( 'awpcp_ficfl_maybe_force_post_id' ) ) {
+            $this->maybe_force_post_id();
+        }
+
+        if ( $this->post_has_conflicting_id( $item ) ) {
+            $this->replace_post( $item );
+        }
+
+        return $item->ID;
+    }
+
+    /**
+     * @since 4.0.0
+     * @throws AWPCP_Exception If a post with a greater ID cannot be created.
+     */
+    public function maybe_force_post_id() {
+        $max_legacy_post_id = $this->get_max_legacy_post_id();
+        $max_post_id        = $this->get_max_post_id();
+
+        if ( $max_post_id >= $max_legacy_post_id ) {
+            return;
+        }
+
+        $post_data = [
+            'post_title' => 'AWPCP Test Post',
+        ];
+
+        $post_id = $this->insert_post_with_id( $max_legacy_post_id, $post_data );
+
+        if ( is_wp_error( $post_id ) ) {
+            $message = __( 'There was an error trying to force the next post_id to be greater than {post_id}. {error_message}', 'another-wordpress-classifieds-plugin' );
+            $message = str_replace( '{post_id}', $max_legacy_post_id, $message );
+            $message = str_replace( '{error_message}', $post_id->get_error_message(), $message );
+
+            throw new AWPCP_Exception( $message );
+        }
+
+        if ( $this->wordpress->delete_post( $post_id ) ) {
+            $this->wordpress->delete_option( 'awpcp_ficfl_maybe_force_post_id' );
+        }
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function post_has_conflicting_id( $item ) {
+        $sql = 'SELECT * FROM ' . AWPCP_TABLE_ADS . ' WHERE ad_id = %d';
+
+        $listing = $this->db->get_row( $this->db->prepare( $sql, $item->ID ) );
+
+        return is_object( $listing );
+    }
+
+    /**
+     * @since 4.0.0
+     * @throws AWPCP_Exception If a replacement post cannot be created or modified.
+     */
+    private function replace_post( $post ) {
+        $max_legacy_post_id = $this->get_max_legacy_post_id();
+        $wanted_post_id     = $max_legacy_post_id + 1;
+        $post_data          = [
+            'post_title' => $post->post_title,
+        ];
+
+        $old_post_id = $post->ID;
+        $new_post_id = $this->maybe_insert_post_with_id( $wanted_post_id, $post_data );
+
+        if ( is_wp_error( $new_post_id ) ) {
+            $message = __( 'There was an error trying to create a replacement post for post with _ID equal to {post_id}. {error_message}', 'another-wordpress-classifieds-plugin' );
+            $message = str_replace( '{post_id}', $old_post_id, $message );
+            $message = str_replace( '{error_message}', $new_post_id->get_error_message(), $message );
+
+            throw new AWPCP_Exception( $message );
+        }
+
+        // Cast the old WP_Post to stdClass and set the ID property to the ID
+        // of the newly created post.
+        $post_data = (object) array_merge( (array) $post, [ 'ID' => $new_post_id ] );
+
+        $new_post_id = $this->wordpress->update_post( $post_data, true );
+
+        if ( is_wp_error( $new_post_id ) ) {
+            $message = __( 'There was an error trying to update the replacement post ({replacement_post_id}) for post with ID equal to {post_id}. {error_message}', 'another-wordpress-classifieds-plugin' );
+            $message = str_replace( '{replacement_post_id}', $post_data->ID, $message );
+            $message = str_replace( '{post_id}', $old_post_id, $message );
+            $message = str_replace( '{error_message}', $new_post_id->get_error_message(), $message );
+
+            throw new AWPCP_Exception( $message );
+        }
+
+        $sql  = "UPDATE {$this->db->term_relationships} ";
+        $sql .= 'SET object_id = %d ';
+        $sql .= 'WHERE object_id = %d ';
+
+        $this->db->query( $this->db->prepare( $sql, $new_post_id, $old_post_id ) );
+
+        $sql  = "UPDATE {$this->db->postmeta} ";
+        $sql .= 'SET post_id = %d ';
+        $sql .= 'WHERE post_id = %d ';
+
+        $this->db->query( $this->db->prepare( $sql, $new_post_id, $old_post_id ) );
+
+        $old_post = $this->wordpress->delete_post( $old_post_id, true );
+
+        if ( $old_post ) {
+            $this->listings_registry->update_listings_registry( $old_post_id, $new_post_id );
+        }
+
+        return $old_post;
+    }
+}

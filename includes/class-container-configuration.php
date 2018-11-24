@@ -205,5 +205,24 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
                 );
             }
         );
+
+        $container['ListingsRegistry'] = $container->service(
+            function( $container ) {
+                return new AWPCP_ListingsRegistry(
+                    $container['ArrayOptions']
+                );
+            }
+        );
+
+        $container['FixIDCollisionForListingsUpgradeTaskHandler'] = $container->service(
+            function( $container ) {
+                return new AWPCP_FixIDCollisionForListingsUpgradeTaskHandler(
+                    $container['ListingsRegistry'],
+                    $container['ListingsCollection'],
+                    $container['WordPress'],
+                    $container['wpdb']
+                );
+            }
+        );
     }
 }

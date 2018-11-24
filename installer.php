@@ -273,6 +273,9 @@ class AWPCP_Installer {
             '4.0.0beta5' => [
                 'rename_translation_files_using_outdated_textdomain',
             ],
+            '4.0.0beta6' => [
+                'enable_routine_to_fix_id_collision_for_listings',
+            ],
         );
     }
 
@@ -1360,6 +1363,16 @@ class AWPCP_Installer {
         if ( $files_not_moved ) {
             update_option( 'awpcp_translation_files_with_outdated_textdomain', $files_not_moved, false );
         }
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function enable_routine_to_fix_id_collision_for_listings() {
+        $this->upgrade_tasks->enable_upgrade_task( 'awpcp-fix-id-collision-for-listings' );
+
+        update_option( 'awpcp_ficfl_maybe_force_post_id', true );
+        delete_option( 'awpcp_ficfl_last_listing_id' );
     }
 }
 
