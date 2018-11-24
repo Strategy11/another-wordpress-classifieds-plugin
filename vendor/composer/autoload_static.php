@@ -380,6 +380,7 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_RenewListingsAdminPage' => __DIR__ . '/../..' . '/includes/views/admin/listings/class-renew-listings-admin-page.php',
         'AWPCP_Renew_Listing_Payment_Transaction_Handler' => __DIR__ . '/../..' . '/includes/class-renew-listing-payment-transaction-handler.php',
         'AWPCP_ReplaceConflictingCategoriesIDsTaskRunner' => __DIR__ . '/../..' . '/includes/upgrade/class-replace-conflicting-categories-ids-task-runner.php',
+        'AWPCP_ReplaceConflictingListingsUpgradeTaskHelper' => __DIR__ . '/../..' . '/includes/upgrade/trait-replace-conflicting-listings-upgrade-task-helper.php',
         'AWPCP_ReplaceCustomCategoriesWithTaxonomiesTaskRunner' => __DIR__ . '/../..' . '/includes/upgrade/class-replace-custom-categories-with-taxonomies-task-runner.php',
         'AWPCP_ReplyToAdPage' => __DIR__ . '/../..' . '/frontend/page-reply-to-ad.php',
         'AWPCP_Request' => __DIR__ . '/../..' . '/includes/helpers/class-awpcp-request.php',
