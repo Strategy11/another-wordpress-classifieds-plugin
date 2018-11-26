@@ -154,8 +154,8 @@ class AWPCP_ManualUpgradeAdminPage {
                 $continue_link = sprintf( '<a href="%s" target="_blank">', add_query_arg( 'page', 'awpcp.php' ) );
 
                 $successContent =
-                '<p>' . __( 'All blocking upgrade tasks were completed successfully. All features are availablle again.', 'another-wordpress-classifieds-plugin' ) . '</p>' .
-                '<p><strong>' . __( 'Please keep this tab open, but you can open up another browser tab and continue working on your site while this processes in the background. <continue-link>Click here to open the main Classifieds admin screen in a new tab</a>.', 'another-wordpress-classifieds-plugin' ) . '</strong></p>';
+                '<p>' . __( 'All blocking upgrade tasks were completed successfully. All features are available again.', 'another-wordpress-classifieds-plugin' ) . '</p>' .
+                '<p><strong>' . __( 'Please keep this tab open, but you can open up another browser tab and continue working on your site while this process runs in the background. <continue-link>Click here to open the main Classifieds admin screen in a new tab</a>.', 'another-wordpress-classifieds-plugin' ) . '</strong></p>';
 
                 $successContent = str_replace( '<continue-link>', $continue_link, $successContent );
             } else {
@@ -167,7 +167,7 @@ class AWPCP_ManualUpgradeAdminPage {
 
             $groups[] = array(
                 'title' => __( 'Upgrade Tasks that must complete immediately', 'another-wordpress-classifieds-plugin' ),
-                'content' => '<p>' . __( "The following tasks need to be completed before you can use the plugin's and modules features again.", 'another-wordpress-classifieds-plugin' ) . '</p>',
+                'content' => '<p>' . __( "The following tasks need to be completed before you can use the plugin and modules features again.", 'another-wordpress-classifieds-plugin' ) . '</p>',
                 'successContent' => $successContent,
                 'tasks' => $asynchronous_tasks['blocking_tasks'],
             );
@@ -180,9 +180,9 @@ class AWPCP_ManualUpgradeAdminPage {
                 $continue_link = sprintf( '<a href="%s" target="_blank">', add_query_arg( 'page', 'awpcp.php' ) );
 
                 $content =
-                '<p>' . __( "The following tasks need to be completed, but the plugin's and modules features will continue to work while the routines are executed.", 'another-wordpress-classifieds-plugin' ) . '</p>' .
+                '<p>' . __( "The following tasks need to be completed, but the plugin and modules features will continue to work while the routines are executed.", 'another-wordpress-classifieds-plugin' ) . '</p>' .
 
-                '<p><strong>' . __( 'Please keep this tab open, but you can open up another browser tab and continue working on your site while this processes in the background.', 'another-wordpress-classifieds-plugin' ) . '</strong></p>' .
+                '<p><strong>' . __( 'Please keep this tab open, but you can open up another browser tab and continue working on your site while this process runs in the background.', 'another-wordpress-classifieds-plugin' ) . '</strong></p>' .
                 '<p>' . __( 'Click the Upgrade button and then <continue-link>Click here to open the main Classifieds admin screen in a new tab</a>.', 'another-wordpress-classifieds-plugin' ) . '</p>';
 
                 $content = str_replace( '<continue-link>', $continue_link, $content );
