@@ -32,7 +32,7 @@ class AWPCP_ManualUpgradeAdminPage {
 
     public function dispatch() {
         $context = $this->request->param( 'context', 'plugin' );
-        $pending_tasks = $this->get_pending_uprade_tasks( $context );
+        $pending_tasks = $this->get_pending_upgrade_tasks( $context );
 
         $upgrade_session = $this->upgrade_sessions->get_or_create_session( $context );
 
@@ -44,12 +44,17 @@ class AWPCP_ManualUpgradeAdminPage {
         return $this->render_asynchronous_tasks_component( $tasks_definitions, $context );
     }
 
-    private function get_pending_uprade_tasks( $context ) {
-        if ( $context === 'plugin' ) {
-            return $this->upgrade_tasks->get_pending_tasks( compact( 'context' ) );
+    private function get_pending_upgrade_tasks( $context ) {
+        // Each module uses its slug as the context for the upgrade tasks it registers,
+        // but we wanted to execute all premium modules upgrade tasks together, so
+        // we added support for a special context 'premium-modules' that is included
+        // by the Modules Manager in the URL used in the admin notice shown when
+        // there are pending manual upgrades for any of the modules.
+        if ( $context === 'premium-modules' ) {
+            return $this->upgrade_tasks->get_pending_tasks( [ 'context__not_in' => 'plugin' ] );
         }
 
-        return $this->upgrade_tasks->get_pending_tasks();
+        return $this->upgrade_tasks->get_pending_tasks( compact( 'context' ) );
     }
 
     private function add_tasks_to_upgrade_session( $pending_upgrade_tasks, $upgrade_session ) {

@@ -50,16 +50,23 @@ class AWPCP_Upgrade_Tasks_Manager {
     }
 
     public function get_pending_tasks( $query = array() ) {
-        $query = wp_parse_args( $query, array(
-            'type' => null,
-            'context' => null,
-            'blocking' => null,
-        ) );
+        $default_args = array(
+            'type'            => null,
+            'context'         => null,
+            'context__not_in' => null,
+            'blocking'        => null,
+        );
+
+        $query = wp_parse_args( $query, $default_args );
 
         $pending_tasks = array();
 
         foreach ( $this->tasks as $slug => $task ) {
             if ( ! is_null( $query['context'] ) && $task['context'] != $query['context'] ) {
+                continue;
+            }
+
+            if ( ! is_null( $query['context__not_in'] ) && in_array( $task['context'], (array) $query['context__not_in'] ) ) {
                 continue;
             }
 
