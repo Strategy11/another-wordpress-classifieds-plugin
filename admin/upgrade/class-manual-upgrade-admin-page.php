@@ -73,15 +73,24 @@ class AWPCP_ManualUpgradeAdminPage {
         $asynchronous_tasks = array();
 
         foreach ( array_keys( $upgrade_session->get_tasks() ) as $task_slug ) {
-            // add back already completed tasks!
+            $items_count     = $upgrade_session->get_task_metadata( $task_slug, 'items_count', null );
+            $items_processed = $upgrade_session->get_task_metadata( $task_slug, 'items_processed', null );
+
+            // If a task appears to be completed but there is no metadata stored
+            // in the upgrade session, that task may had been added to the session
+            // by mistake, so we ignore them.
+            //
+            // See https://github.com/drodenbaugh/awpcp/issues/2203
+            if  ( ! isset( $pending_upgrade_tasks[ $task_slug ] ) && is_null( $items_count ) && is_null( $items_processed ) ) {
+                continue;
+            }
+
+            // Add back already completed tasks.
             if ( ! isset( $pending_upgrade_tasks[ $task_slug ] ) ) {
                 $upgrade_tasks[ $task_slug ] = $this->upgrade_tasks->get_upgrade_task( $task_slug );
             } else {
                 $upgrade_tasks[ $task_slug ] = $pending_upgrade_tasks[ $task_slug ];
             }
-
-            $items_count = $upgrade_session->get_task_metadata( $task_slug, 'items_count', null );
-            $items_processed = $upgrade_session->get_task_metadata( $task_slug, 'items_processed', null );
 
             $asynchronous_tasks[ $task_slug ] = array(
                 'name' => $upgrade_tasks[ $task_slug ]['name'],
