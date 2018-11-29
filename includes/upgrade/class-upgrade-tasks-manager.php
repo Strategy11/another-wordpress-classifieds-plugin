@@ -1,5 +1,11 @@
 <?php
+/**
+ * @package AWPCP\Upgrade
+ */
 
+/**
+ * Constructor function for Upgrade Tasks Manager class.
+ */
 function awpcp_upgrade_tasks_manager() {
     static $instance = null;
 
@@ -15,15 +21,16 @@ class AWPCP_Upgrade_Tasks_Manager {
     private $tasks = array();
 
     public function register_upgrade_task( $params ) {
-        $task = wp_parse_args( $params, array(
-            'slug' => '',
-            'name' => '',
+        $default_args = array(
+            'slug'        => '',
+            'name'        => '',
             'description' => '',
-            'handler' => '',
-            'context' => '',
-            'blocking' => true,
-            'type' => 'manual'
-        ) );
+            'handler'     => '',
+            'context'     => '',
+            'blocking'    => true,
+            'type'        => 'manual',
+        );
+        $task         = wp_parse_args( $params, $default_args );
 
         $this->tasks[ $task['slug'] ] = $task;
     }
@@ -31,9 +38,9 @@ class AWPCP_Upgrade_Tasks_Manager {
     public function get_upgrade_task( $slug ) {
         if ( isset( $this->tasks[ $slug ] ) ) {
             return $this->tasks[ $slug ];
-        } else {
-            return null;
         }
+
+        return null;
     }
 
     public function is_upgrade_task_enabled( $slug ) {
@@ -49,6 +56,9 @@ class AWPCP_Upgrade_Tasks_Manager {
         return count( $pending_tasks ) > 0;
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     */
     public function get_pending_tasks( $query = array() ) {
         $default_args = array(
             'type'            => null,
@@ -62,19 +72,19 @@ class AWPCP_Upgrade_Tasks_Manager {
         $pending_tasks = array();
 
         foreach ( $this->tasks as $slug => $task ) {
-            if ( ! is_null( $query['context'] ) && $task['context'] != $query['context'] ) {
+            if ( ! is_null( $query['context'] ) && $task['context'] !== $query['context'] ) {
                 continue;
             }
 
-            if ( ! is_null( $query['context__not_in'] ) && in_array( $task['context'], (array) $query['context__not_in'] ) ) {
+            if ( ! is_null( $query['context__not_in'] ) && in_array( $task['context'], (array) $query['context__not_in'], true ) ) {
                 continue;
             }
 
-            if ( ! is_null( $query['type'] ) && $task['type'] != $query['type'] ) {
+            if ( ! is_null( $query['type'] ) && $task['type'] !== $query['type'] ) {
                 continue;
             }
 
-            if ( ! is_null( $query['blocking'] ) && $task['blocking'] != $query['blocking'] ) {
+            if ( ! is_null( $query['blocking'] ) && $task['blocking'] !== $query['blocking'] ) {
                 continue;
             }
 
