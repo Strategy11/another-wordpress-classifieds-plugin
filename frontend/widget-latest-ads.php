@@ -66,7 +66,7 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
     }
 
     private function render_empty_widget( $html_class ) {
-        return sprintf( '<li class="awpcp-empty-widget %s">%s</li>', $html_class, __( 'There are currently no Ads to show.', 'another-wordpress-classifieds-plugin' ) );
+        return sprintf( '<li class="awpcp-empty-widget %s">%s</li>', $html_class, __( 'There are currently no ads to show.', 'another-wordpress-classifieds-plugin' ) );
     }
 
     private function render_widget( $items, $instance, $html_class ) {
