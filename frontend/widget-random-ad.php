@@ -17,12 +17,12 @@ class AWPCP_RandomAdWidget extends AWPCP_LatestAdsWidget {
     }
 
     protected function query($instance) {
-        $query = array_merge( parent::query( $instance ), array(
-            'orderby' => 'random',
-            'order' => 'DESC',
-        ) );
+        $query_vars = parent::query( $instance );
 
-        return $query;
+        $query_vars['orderby'] = 'random';
+        $query_vars['order']   = 'DESC';
+
+        return $query_vars;
     }
 
     public function form($instance) {

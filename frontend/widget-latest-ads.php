@@ -161,13 +161,13 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
     }
 
     protected function query($instance) {
-        // TODO: make sure the query can be filtered by modules
-        // TODO: make sure the orderby parameter is replaced by a proper value before passing it to WP_Query
-        return array(
-            'context' => array( 'public-listings', 'latest-listings-widget' ),
-            'orderby' => 'renewed-date',
-            'posts_per_page' => $instance['limit'],
-        );
+        return [
+            'classifieds_query' => [
+                'context' => [ 'public-listings', 'latest-listings-widget' ],
+            ],
+            'posts_per_page'    => $instance['limit'],
+            'orderby'           => 'renewed-date',
+        ];
     }
 
     public function widget($args, $instance) {
