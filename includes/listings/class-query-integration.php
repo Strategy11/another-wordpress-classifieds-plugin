@@ -397,12 +397,12 @@ class AWPCP_QueryIntegration {
      */
     public function process_is_expired_query_parameter( $query_vars ) {
         if ( isset( $query_vars['classifieds_query']['is_expired'] ) ) {
-            $query_vars['meta_query'][] = array(
-                'key'     => '_awpcp_end_date',
-                'value'   => current_time( 'mysql' ),
-                'compare' => '<=',
-                'type'    => 'DATE',
-            );
+            $query_vars['post_status'] = 'disabled';
+
+            $query_vars['meta_query'][] = [
+                'key'     => '_awpcp_expired',
+                'compare' => 'EXISTS',
+            ];
         }
 
         return $query_vars;
