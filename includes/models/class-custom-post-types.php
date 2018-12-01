@@ -240,15 +240,28 @@ class AWPCP_Custom_Post_Types {
      * default categories and fee plans, maybe.
      */
     public function create_default_category() {
+        $category_name = __( 'General', 'another-wordpress-classifieds-plugin' );
+        $category_id   = null;
+
         try {
             $category_data = [
-                'name' => __( 'General', 'another-wordpress-classifieds-plugin' ),
+                'name' => $category_name,
             ];
 
             $category_id = awpcp_categories_logic()->create_category( $category_data );
         } catch ( AWPCP_Exception $e ) {
+            $category = get_term_by( 'name', $category_name, $this->listings_category_taxonomy );
+
+            if ( $category ) {
+                $category_id = $category->term_id;
+            }
+        }
+
+        if ( ! $category_id ) {
             return;
         }
+
+        add_term_meta( $category_id, '_awpcp_order', 0, true );
 
         update_option( 'awpcp-main-category-id', $category_id );
     }
