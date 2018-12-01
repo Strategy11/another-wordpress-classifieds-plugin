@@ -31,6 +31,11 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
     private $sections_generator;
 
     /**
+     * @var ListingRenderer
+     */
+    private $listing_renderer;
+
+    /**
      * @var ListingAuthorization
      */
     private $authorization;
@@ -38,10 +43,11 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
     /**
      * @since 4.0.0
      */
-    public function __construct( $sections_generator, $listings_logic, $listings, $authorization, $payments, $settings, $request ) {
+    public function __construct( $sections_generator, $listing_renderer, $listings_logic, $listings, $authorization, $payments, $settings, $request ) {
         parent::__construct( null, null, awpcp()->container['TemplateRenderer'] );
 
         $this->sections_generator = $sections_generator;
+        $this->listing_renderer   = $listing_renderer;
         $this->listings_logic     = $listings_logic;
         $this->listings           = $listings;
         $this->authorization      = $authorization;
@@ -369,8 +375,6 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
     private function do_finish_step() {
         $transaction = $this->payments->get_transaction();
 
-        $messages = [];
-
         if ( is_null( $transaction ) ) {
             $message = __( 'We were unable to find a Payment Transaction assigned to this operation.', 'another-wordpress-classifieds-plugin' );
             return $this->render( 'content', awpcp_print_error( $message ) );
@@ -400,7 +404,7 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
         $params = array(
             'edit'           => false,
             'ad'             => $ad,
-            'messages'       => array_merge( $messages, $this->listings_logic->get_ad_alerts( $ad ) ),
+            'messages'       => $this->get_listing_messages( $ad ),
             'transaction'    => $transaction,
             'transaction_id' => $transaction->id,
         );
@@ -408,5 +412,22 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
         $template = AWPCP_DIR . '/frontend/templates/page-place-ad-finish-step.tpl.php';
 
         return $this->render( $template, $params );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    protected function get_listing_messages( $listing ) {
+        $messages = [];
+
+        if ( $this->listing_renderer->is_public( $listing ) ) {
+            $messages[] = __( 'Your listing has been published. This is the content that will be seen by visitors of the website.', 'another-wordpress-classifieds-plugin' );
+        }
+
+        if ( $this->listing_renderer->is_pending_approval( $listing ) ) {
+            $messages[] = __( 'Your listing has been submitted. This is a preview of the content as seen by visitors of the website.', 'another-wordpress-classifieds-plugin' );
+        }
+
+        return array_merge( $messages, $this->listings_logic->get_ad_alerts( $listing ) );
     }
 }

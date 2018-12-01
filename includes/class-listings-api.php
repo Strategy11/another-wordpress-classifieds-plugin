@@ -516,7 +516,7 @@ class AWPCP_ListingsAPI {
     public function get_ad_alerts( $ad ) {
         $alerts = array();
 
-        if ( get_awpcp_option( 'adapprove' ) == 1 && $this->listing_renderer->is_disabled( $ad ) ) {
+        if ( get_awpcp_option( 'adapprove' ) == 1 && $this->listing_renderer->is_pending_approval( $ad ) ) {
             $alerts[] = get_awpcp_option( 'notice_awaiting_approval_ad' );
         }
 

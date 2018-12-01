@@ -17,6 +17,7 @@ class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurati
         $container['SubmitListingPage'] = $container->service( function( $container ) {
             return new AWPCP_SubmitListingPage(
                 $container['SubmitListingSectionsGenerator'],
+                $container['ListingRenderer'],
                 $container['ListingsLogic'],
                 $container['ListingsCollection'],
                 $container['ListingAuthorization'],

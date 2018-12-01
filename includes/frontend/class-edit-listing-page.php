@@ -203,6 +203,23 @@ class AWPCP_EditListingPage extends AWPCP_Page {
     /**
      * @since 4.0.0
      */
+    protected function get_listing_messages( $listing ) {
+        $messages = [];
+
+        if ( $this->listing_renderer->is_public( $listing ) ) {
+            $messages[] = __( 'Your changes have been published. This is the content that will be seen by visitors of the website.', 'another-wordpress-classifieds-plugin' );
+        }
+
+        if ( $this->listing_renderer->is_pending_approval( $listing ) ) {
+            $messages[] = __( 'Your changes have been saved. This is a preview of the content as seen by visitors of the website.', 'another-wordpress-classifieds-plugin' );
+        }
+
+        return array_merge( $messages, $this->listings_logic->get_ad_alerts( $listing ) );
+    }
+
+    /**
+     * @since 4.0.0
+     */
     public function get_ad() {
         if ( is_null( $this->ad ) ) {
             try {
