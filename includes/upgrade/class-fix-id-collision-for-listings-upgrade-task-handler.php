@@ -63,10 +63,6 @@ class AWPCP_FixIDCollisionForListingsUpgradeTaskHandler implements AWPCP_Upgrade
      * @since 4.0.0
      */
     public function count_pending_items( $last_item_id ) {
-        if ( 0 === $last_item_id ) {
-            return $this->listings->count_listings( $this->get_pending_items_query_vars() );
-        }
-
         return $this->execute_query_for_posts_with_id_greater_than(
             $last_item_id,
             function() {
@@ -79,6 +75,10 @@ class AWPCP_FixIDCollisionForListingsUpgradeTaskHandler implements AWPCP_Upgrade
      * @since 4.0.0
      */
     private function execute_query_for_posts_with_id_greater_than( $last_item_id, $query ) {
+        if ( 0 === $last_item_id ) {
+            $last_item_id = $this->get_max_legacy_post_id();
+        }
+
         $filter_by_id = function( $where ) use ( $last_item_id ) {
             return "$where AND {$this->db->posts}.ID < $last_item_id";
         };
@@ -107,10 +107,6 @@ class AWPCP_FixIDCollisionForListingsUpgradeTaskHandler implements AWPCP_Upgrade
      * @since 4.0.0
      */
     public function get_pending_items( $last_item_id ) {
-        if ( 0 === $last_item_id ) {
-            return $this->listings->find_listings( $this->get_pending_items_query_vars() );
-        }
-
         return $this->execute_query_for_posts_with_id_greater_than(
             $last_item_id,
             function() {
