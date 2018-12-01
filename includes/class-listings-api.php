@@ -660,7 +660,17 @@ class AWPCP_ListingsAPI {
 
         $payment_status = $this->listing_renderer->get_payment_status( $listing );
 
-        if ( empty( $payment_status ) || 'Unpaid' === $payment_status ) {
+        // Legacy free listings (internally associated with the Fee width ID = 0)
+        // had an empty payment status, even after payment information was
+        // consolidated.
+        //
+        // We check for empty payment status only when the listing is associated
+        // with one of the payment terms defined by the admin.
+        if ( $payment_term->id && empty( $payment_status ) ) {
+            return true;
+        }
+
+        if ( 'Unpaid' === $payment_status ) {
             return true;
         }
 
