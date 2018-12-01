@@ -192,7 +192,7 @@ class AWPCP_EditListingPage extends AWPCP_Page {
 
         $template = AWPCP_DIR . '/frontend/templates/page-place-ad-finish-step.tpl.php';
         $params   = array(
-            'messages' => array_merge( $messages, awpcp_listings_api()->get_ad_alerts( $ad ) ),
+            'messages' => $this->get_listing_messages( $ad ),
             'edit'     => true,
             'ad'       => $ad,
         );
