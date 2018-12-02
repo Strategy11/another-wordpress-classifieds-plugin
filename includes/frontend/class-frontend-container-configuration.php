@@ -8,6 +8,8 @@
  */
 class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurationInterface {
 
+    // @phpcs:disable PEAR.Functions.FunctionCallSignature
+
     /**
      * @param AWPCP_Container $container    The plugin's container.
      * @since 4.0.0
@@ -148,4 +150,6 @@ class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurati
             );
         } );
     }
+
+    // @phpcs:enable
 }

@@ -37,6 +37,8 @@ class AWPCP_Manual_Upgrade_Tasks {
 
     /**
      * Register manual upgrade rotuines.
+     *
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     public function register_upgrade_tasks() {
         // @phpcs:disable PEAR.Functions.FunctionCallSignature.CloseBracketLine

@@ -3,7 +3,12 @@
  * @package AWPCP\Frontend\Widgets
  */
 
+/**
+ * Widget used to display ads recently added to the system.
+ */
 class AWPCP_LatestAdsWidget extends WP_Widget {
+
+    // @phpcs:disable
 
     public function __construct($id=null, $name=null, $description=null) {
         $id = is_null($id) ? 'awpcp-latest-ads': $id;
@@ -60,9 +65,9 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
 
         if ( empty( $items ) ) {
             return $this->render_empty_widget( $html_class );
-        } else {
-            return $this->render_widget( $items, $instance, $html_class );
         }
+
+        return $this->render_widget( $items, $instance, $html_class );
     }
 
     private function render_empty_widget( $html_class ) {
@@ -83,6 +88,9 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
         return join("\n", $html);
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.ElseExpression)
+     */
     private function get_item_thumbnail_position_css_class( $thumbnail_position, $version ) {
         if ( $thumbnail_position == 'left' || $thumbnail_position == 'right' ) {
             $css_class = sprintf( 'awpcp-listings-widget-item-with-%s-thumbnail-in-%s', $thumbnail_position, $version );
@@ -93,6 +101,9 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
         return $css_class;
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.ElseExpression)
+     */
     private function render_item( $item, $instance, $html_class ) {
         $listing_title = $this->listing_renderer->get_listing_title( $item );
         $item_url = $this->listing_renderer->get_view_listing_url( $item );
@@ -134,13 +145,14 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
             'image', array( 'post_parent' => $item->ID )
         );
 
+        $image_url  = '';
+        $html_image = '';
+
         // TODO: fix so that a blank image is shown if no image is available. Can we add the blank image as an attachment?
         if ( ! is_null( $image ) && $show_images ) {
             $image_url = $this->attachment_properties->get_image_url( $image, 'featured' );
         } else if ( $instance['show-blank'] && $show_images ) {
             $image_url = "$awpcp_imagesurl/adhasnoimage.png";
-        } else {
-            $image_url = '';
         }
 
         if ( ! is_null( $image ) && $show_images ) {
@@ -153,8 +165,6 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
                 $this->listing_renderer->get_view_listing_url( $item ),
                 $this->attachment_properties->get_image( $image, 'featured', false, $image_attributes )
             );
-        } else {
-            $html_image = '';
         }
 
         return apply_filters( 'awpcp-listings-widget-listing-thumbnail', $html_image, $item );
@@ -175,17 +185,19 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
 
         $title = apply_filters( 'widget_title', $instance['title'] );
 
-        echo $before_widget;
+        echo $args['before_widget'];
 
-        // do not show empty titles
-        echo !empty( $title ) ? $before_title . $title . $after_title : '';
+        // Do not show empty titles.
+        if ( $title ) {
+            echo $args['before_title'] . $title . $args['after_title'];
+        }
 
         echo '<ul class="awpcp-listings-widget-items-list">';
         $items = awpcp_listings_collection()->find_enabled_listings( $this->query( $instance ) );
         echo $this->render( $items, $instance );
         echo '</ul>';
 
-        echo $after_widget;
+        echo $args['after_widget'];
     }
 
     public function form($instance) {
@@ -193,6 +205,9 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
         include(AWPCP_DIR . '/frontend/templates/widget-latest-ads-form.tpl.php');
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
     public function update($new_instance, $old_instance) {
         $instance['title'] = sanitize_text_field( $new_instance['title'] );
         $instance['limit'] = sanitize_text_field( $new_instance['limit'] );
