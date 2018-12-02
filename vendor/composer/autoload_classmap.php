@@ -303,6 +303,7 @@ return array(
     'AWPCP_MarkReviewedListingTableAction' => $baseDir . '/includes/admin/listings/class-mark-reviewed-listing-table-action.php',
     'AWPCP_MarkVerifiedListingTableAction' => $baseDir . '/includes/admin/listings/class-mark-verified-listing-table-action.php',
     'AWPCP_MashShare_Plugin_Integration' => $baseDir . '/includes/compatibility/class-mashshare-plugin-integration.php',
+    'AWPCP_MaybeForcePostIDUpgradeTaskHandler' => $baseDir . '/includes/upgrade/class-maybe-force-post-id-upgrade-task-handler.php',
     'AWPCP_MediaCenterComponent' => $baseDir . '/includes/ui/class-media-center-component.php',
     'AWPCP_MediaManagerComponent' => $baseDir . '/includes/media/class-media-manager-component.php',
     'AWPCP_MediaUploaderComponent' => $baseDir . '/includes/media/class-media-uploader-component.php',

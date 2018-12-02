@@ -276,6 +276,9 @@ class AWPCP_Installer {
             '4.0.0beta6' => [
                 'enable_routine_to_fix_id_collision_for_listings',
             ],
+            '4.0.0beta8' => [
+                'enable_routine_to_force_post_id',
+            ],
         );
     }
 
@@ -1371,8 +1374,16 @@ class AWPCP_Installer {
     private function enable_routine_to_fix_id_collision_for_listings() {
         $this->upgrade_tasks->enable_upgrade_task( 'awpcp-fix-id-collision-for-listings' );
 
-        update_option( 'awpcp_ficfl_maybe_force_post_id', true );
         delete_option( 'awpcp_ficfl_last_listing_id' );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function enable_routine_to_force_post_id() {
+        $this->upgrade_tasks->enable_upgrade_task( 'awpcp-maybe-force-post-id' );
+
+        update_option( 'awpcp_mfpi_maybe_force_post_id', true );
     }
 }
 

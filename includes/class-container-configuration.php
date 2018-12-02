@@ -214,6 +214,15 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
             }
         );
 
+        $container['MaybeForcePostIDUpgradeTaskHandler'] = $container->service(
+            function( $container ) {
+                return new AWPCP_MaybeForcePostIDUpgradeTaskHandler(
+                    $container['WordPress'],
+                    $container['wpdb']
+                );
+            }
+        );
+
         $container['FixIDCollisionForListingsUpgradeTaskHandler'] = $container->service(
             function( $container ) {
                 return new AWPCP_FixIDCollisionForListingsUpgradeTaskHandler(

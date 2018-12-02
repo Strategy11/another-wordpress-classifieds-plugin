@@ -304,6 +304,7 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_MarkReviewedListingTableAction' => __DIR__ . '/../..' . '/includes/admin/listings/class-mark-reviewed-listing-table-action.php',
         'AWPCP_MarkVerifiedListingTableAction' => __DIR__ . '/../..' . '/includes/admin/listings/class-mark-verified-listing-table-action.php',
         'AWPCP_MashShare_Plugin_Integration' => __DIR__ . '/../..' . '/includes/compatibility/class-mashshare-plugin-integration.php',
+        'AWPCP_MaybeForcePostIDUpgradeTaskHandler' => __DIR__ . '/../..' . '/includes/upgrade/class-maybe-force-post-id-upgrade-task-handler.php',
         'AWPCP_MediaCenterComponent' => __DIR__ . '/../..' . '/includes/ui/class-media-center-component.php',
         'AWPCP_MediaManagerComponent' => __DIR__ . '/../..' . '/includes/media/class-media-manager-component.php',
         'AWPCP_MediaUploaderComponent' => __DIR__ . '/../..' . '/includes/media/class-media-uploader-component.php',

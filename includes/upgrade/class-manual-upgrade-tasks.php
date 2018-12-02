@@ -124,6 +124,16 @@ class AWPCP_Manual_Upgrade_Tasks {
 
         $this->upgrade_tasks->register_upgrade_task(
             [
+                'slug'     => 'awpcp-maybe-force-post-id',
+                'name'     => __( 'Maybe force the value for the next Post ID', 'another-wordpress-classifieds-plugin' ),
+                'handler'  => 'MaybeForcePostIDUpgradeTaskHandler',
+                'context'  => 'plugin',
+                'blocking' => true,
+            ]
+        );
+
+        $this->upgrade_tasks->register_upgrade_task(
+            [
                 'slug'     => 'awpcp-fix-id-collision-for-listings',
                 'name'     => __( 'Fix ID Collision for Listings', 'another-wordpress-classifieds-plugin' ),
                 'handler'  => 'FixIDCollisionForListingsUpgradeTaskHandler',

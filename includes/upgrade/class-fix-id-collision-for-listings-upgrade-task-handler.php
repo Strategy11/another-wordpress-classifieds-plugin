@@ -4,11 +4,10 @@
  */
 
 /**
- * Upgrade routine to replace listing category taxonomy terms that have an ID
- * matching the ID from one of the pre-4.0.0 categories, causing that listing
- * category taxonomy term to be inaccessible because, in order to maintain
- * backwards compatiblity, the plugin always assumes the user is trying to see
- * the pre-4.0.0 category.
+ * Upgrade routine to replace listing terms that have an ID matching the ID
+ * from one of the pre-4.0.0 listings, causing that listing to be inaccessible
+ * because, in order to maintain backwards compatiblity, the plugin always
+ * assumes the user is trying to see the pre-4.0.0 listing.
  *
  * @since 4.0.0beta2
  */
@@ -45,6 +44,7 @@ class AWPCP_FixIDCollisionForListingsUpgradeTaskHandler implements AWPCP_Upgrade
         $this->wordpress         = $wordpress;
         $this->db                = $db;
     }
+
     /**
      * @since 4.0.0
      */
@@ -120,46 +120,11 @@ class AWPCP_FixIDCollisionForListingsUpgradeTaskHandler implements AWPCP_Upgrade
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function process_item( $item, $last_item_id ) {
-        if ( $this->wordpress->get_option( 'awpcp_ficfl_maybe_force_post_id' ) ) {
-            $this->maybe_force_post_id();
-        }
-
         if ( $this->post_has_conflicting_id( $item ) ) {
             $this->replace_post( $item );
         }
 
         return $item->ID;
-    }
-
-    /**
-     * @since 4.0.0
-     * @throws AWPCP_Exception If a post with a greater ID cannot be created.
-     */
-    public function maybe_force_post_id() {
-        $max_legacy_post_id = $this->get_max_legacy_post_id();
-        $max_post_id        = $this->get_max_post_id();
-
-        if ( $max_post_id >= $max_legacy_post_id ) {
-            return;
-        }
-
-        $post_data = [
-            'post_title' => 'AWPCP Test Post',
-        ];
-
-        $post_id = $this->insert_post_with_id( $max_legacy_post_id, $post_data );
-
-        if ( is_wp_error( $post_id ) ) {
-            $message = __( 'There was an error trying to force the next post_id to be greater than {post_id}. {error_message}', 'another-wordpress-classifieds-plugin' );
-            $message = str_replace( '{post_id}', $max_legacy_post_id, $message );
-            $message = str_replace( '{error_message}', $post_id->get_error_message(), $message );
-
-            throw new AWPCP_Exception( $message );
-        }
-
-        if ( $this->wordpress->delete_post( $post_id ) ) {
-            $this->wordpress->delete_option( 'awpcp_ficfl_maybe_force_post_id' );
-        }
     }
 
     /**
