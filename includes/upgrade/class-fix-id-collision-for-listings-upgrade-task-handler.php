@@ -99,7 +99,7 @@ class AWPCP_FixIDCollisionForListingsUpgradeTaskHandler implements AWPCP_Upgrade
         return [
             'orderby'        => 'ID',
             'order'          => 'DESC',
-            'posts_per_page' => 1,
+            'posts_per_page' => 10,
         ];
     }
 
