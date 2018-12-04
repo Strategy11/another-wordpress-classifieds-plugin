@@ -83,6 +83,19 @@ class AWPCP_Store_Media_As_Attachments_Upgrade_Task_Handler implements AWPCP_Upg
             require_once ABSPATH . 'wp-admin/includes/media.php';
         }
 
+        $parent_listing_id = $this->get_id_of_associated_listing( $item );
+
+        if ( 0 === $parent_listing_id ) {
+            debugf(
+                sprintf( 'The file %s has no associated listing.', $file_path ),
+                $item,
+                $file_path,
+                $file_name
+            );
+
+            return $item->id;
+        }
+
         $file_path = trailingslashit( $this->settings->get_runtime_option( 'awpcp-uploads-dir' ) ) . $item->path;
         $file_name = awpcp_utf8_pathinfo( $file_path, PATHINFO_BASENAME );
 
@@ -107,24 +120,11 @@ class AWPCP_Store_Media_As_Attachments_Upgrade_Task_Handler implements AWPCP_Upg
             throw new AWPCP_Exception( sprintf( "The file %s couldn't be copied to the temporary location %s", $file_path, $tmp_name ) );
         }
 
-        $file_array = array(
+        $file_array  = array(
             'name'     => awpcp_sanitize_file_name( $file_name ),
             'tmp_name' => $tmp_name,
         );
-
-        $parent_listing_id = $this->get_id_of_associated_listing( $item );
-        $description       = '';
-
-        if ( 0 === $parent_listing_id ) {
-            debugf(
-                sprintf( 'The file %s has no associated listing.', $file_path ),
-                $item,
-                $file_path,
-                $file_name
-            );
-
-            return $item->id;
-        }
+        $description = '';
 
         // Do the validation and storage stuff.
         $attachment_id = $this->wordpress->handle_media_sideload( $file_array, $parent_listing_id, $description );
