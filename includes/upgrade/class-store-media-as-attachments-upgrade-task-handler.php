@@ -114,6 +114,7 @@ class AWPCP_Store_Media_As_Attachments_Upgrade_Task_Handler implements AWPCP_Upg
         $tmp_name = '/tmp/' . $new_name;
 
         // phpcs:disable Generic.PHP.NoSilencedErrors.Discouraged
+        // phpcs:disable WordPress.PHP.NoSilencedErrors.Discouraged
         $file_was_copied = @copy( $file_path, $tmp_name );
 
         if ( ! $file_was_copied ) {
@@ -153,15 +154,18 @@ class AWPCP_Store_Media_As_Attachments_Upgrade_Task_Handler implements AWPCP_Upg
     /**
      * phpcs:disable WordPress.VIP.SlowDBQuery.slow_db_query_meta_key
      * phpcs:disable WordPress.VIP.SlowDBQuery.slow_db_query_meta_value
+     *
      * @param object $item  An item that is being processed.
      */
     private function get_id_of_associated_listing( $item ) {
         // TODO: Use a new WP_Query instead.
-        $listings = $this->wordpress->get_posts( array(
-            'post_type'  => 'awpcp_listing',
-            'meta_key'   => '_awpcp_old_id',
-            'meta_value' => $item->ad_id,
-        ) );
+        $listings = $this->wordpress->get_posts(
+            [
+                'post_type'  => 'awpcp_listing',
+                'meta_key'   => '_awpcp_old_id',
+                'meta_value' => $item->ad_id,
+            ]
+        );
 
         if ( ! is_array( $listings ) || empty( $listings ) ) {
             return 0;
