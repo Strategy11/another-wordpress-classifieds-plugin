@@ -4,6 +4,7 @@
  */
 
 // Include all plugin functions.
+require_once AWPCP_DIR . '/debug.php';
 require_once AWPCP_DIR . '/cron.php';
 require_once AWPCP_DIR . '/functions.php';
 require_once AWPCP_DIR . '/includes/functions/compat.php';
