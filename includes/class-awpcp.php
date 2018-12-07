@@ -727,7 +727,7 @@ class AWPCP {
 					'url' =>'http://awpcp.com/downloads/fee-category-module/?ref=panel',
 					'installed' => function_exists( 'awpcp_price_cats' ),
 					'version' => 'AWPCP_FPC_MODULE_DB_VERSION',
-					'required' => '4.0.0beta2',
+					'required' => '4.0.0beta3',
 				),
 				'google-checkout' => array(
 					'name' => __( 'Google Checkout', 'another-wordpress-classifieds-plugin' ),
