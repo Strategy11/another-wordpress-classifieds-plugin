@@ -777,7 +777,7 @@ class AWPCP {
 					'url' => 'http://awpcp.com/downloads/rss-feeds-module/?ref=panel',
 					'installed' => defined( 'AWPCP_RSS_MODULE' ),
 					'version' => 'AWPCP_RSS_MODULE_DB_VERSION',
-					'required' => '4.0.0beta1',
+					'required' => '4.0.0beta2',
 				),
                 'stripe' => array(
                     'name' => __( 'Stripe', 'another-wordpress-classifieds-plugin' ),
