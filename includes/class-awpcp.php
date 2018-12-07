@@ -813,7 +813,7 @@ class AWPCP {
                     'url' => 'http://www.awpcp.com/premium-modules/',
                     'installed' => defined( 'AWPCP_ZIP_CODE_SEARCH_MODULE_DB_VERSION' ),
                     'version' => 'AWPCP_ZIP_CODE_SEARCH_MODULE_DB_VERSION',
-                    'required' => '4.0.0beta1',
+                    'required' => '4.0.0beta3',
                     'private' => true,
                 ),
 			);
