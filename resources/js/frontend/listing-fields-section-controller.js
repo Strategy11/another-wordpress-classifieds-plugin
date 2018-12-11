@@ -112,7 +112,9 @@ AWPCP.define( 'awpcp/frontend/listing-fields-section-controller', [
 
             // Instantiate Multiple Region Selector using the currently selected regions,
             // if any.
-            self.$regionsSelector.MultipleRegionSelector( data.regions );
+            if ( self.$regionsSelector.length ) {
+                self.$regionsSelector.MultipleRegionSelector( data.regions );
+            }
 
             // XXX: Adds support for Extra Fields DatePicker fields.
             self.$element.find( '[datepicker-placeholder]' ).each( function() {
@@ -182,7 +184,9 @@ AWPCP.define( 'awpcp/frontend/listing-fields-section-controller', [
                 }
             } );
 
-            data.regions = self.$regionsSelector.data( 'RegionSelector' ).getSelectedRegions();
+            if ( self.$regionsSelector.length ) {
+                data.regions = self.$regionsSelector.data( 'RegionSelector' ).getSelectedRegions();
+            }
 
             self.store.updateListingFields( data );
         },
@@ -271,7 +275,10 @@ AWPCP.define( 'awpcp/frontend/listing-fields-section-controller', [
             var self = this;
 
             self.$element.find( '.awpcp-has-value' ).val( null ).trigger( 'change' );
-            self.$regionsSelector.data( 'RegionSelector' ).clearSelectedRegions();
+
+            if ( self.$regionsSelector.length ) {
+                self.$regionsSelector.data( 'RegionSelector' ).clearSelectedRegions();
+            }
         },
 
         validate: function() {
