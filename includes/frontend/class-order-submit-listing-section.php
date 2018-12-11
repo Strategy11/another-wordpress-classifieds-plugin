@@ -78,14 +78,26 @@ class AWPCP_OrderSubmitListingSection {
     }
 
     /**
+     * See AWPCP_OrderSubmitListingSectionTest::test_get_state_returns_preview().
+     *
      * @since 4.0.0
      */
     public function get_state( $listing ) {
-        if ( $this->can_payment_information_be_modified_during_submit( $listing ) ) {
+        if ( is_null( $listing ) ) {
             return 'edit';
         }
 
-        return 'read';
+        if ( ! $this->listings_logic->can_payment_information_be_modified_during_submit( $listing ) ) {
+            return 'read';
+        }
+
+        $payment_term = $this->listing_renderer->get_payment_term( $listing );
+
+        if ( $payment_term ) {
+            return 'preview';
+        }
+
+        return 'edit';
     }
 
     /**
