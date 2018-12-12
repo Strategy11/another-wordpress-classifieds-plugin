@@ -12,8 +12,7 @@
 #classiwrapper .awpcp-multiple-region-selector,
 .awpcp-multiple-region-selector {
     ul {
-        margin: 0;
-        padding: 0 !important;
+        .h-awpcp-nomargin-nopadding();
 
         li {
             list-style-type: none;
@@ -31,8 +30,9 @@
         }
 
         .awpcp-region-selector-partial {
+            .h-awpcp-nomargin-nopadding();
+
             list-style-type: none;
-            margin: 0;
 
             label {
                 display: block;
