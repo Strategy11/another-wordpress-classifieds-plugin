@@ -132,7 +132,7 @@ AWPCP.define( 'awpcp/frontend/listing-fields-section-controller', [
             } );
 
             // TODO: Should we route this through the store?
-            $.publish( '/awpcp/post-listing-page/details-step/ready', [ self.$element ] );
+            $.publish( '/awpcp/post-listing-page/details-step/ready', [ self.$element, self.store ] );
 
             self.$element.find( 'form' ).validate({
                 messages: $.AWPCP.l10n( 'submit-listing-form-fields' ),

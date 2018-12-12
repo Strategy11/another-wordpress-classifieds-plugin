@@ -31,6 +31,7 @@
                 'name' => 'searchcategory',
                 'required' => false,
                 'multiple' => true,
+                'auto'     => false,
               ) ); ?>
     </p>
 
