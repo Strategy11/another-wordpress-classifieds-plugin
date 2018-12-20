@@ -150,6 +150,8 @@ class AWPCP_EditListingPage extends AWPCP_Page {
      * @since 4.0.0
      */
     private function do_listing_information_step() {
+        do_action( 'awpcp_before_edit_listing_page' );
+
         wp_enqueue_script( 'awpcp-submit-listing-page' );
 
         $listing = $this->get_ad();
