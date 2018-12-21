@@ -1,5 +1,11 @@
 <?php
+/**
+ * @package AWPCP\Admin\Categories
+ */
 
+/**
+ * Constructor for AWPCP_Create_Category_Admin_Page.
+ */
 function awpcp_create_category_admin_page() {
     return new AWPCP_Create_Category_Admin_Page(
         awpcp_categories_logic(),
@@ -8,6 +14,9 @@ function awpcp_create_category_admin_page() {
     );
 }
 
+/**
+ * Handles admin requests to create categories.
+ */
 class AWPCP_Create_Category_Admin_Page {
 
     private $categories_data_mapper;

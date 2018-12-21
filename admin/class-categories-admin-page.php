@@ -32,6 +32,11 @@ class AWPCP_CategoriesAdminPage {
         $this->request = $request;
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     * @SuppressWarnings(PHPMD.NPathComplexity)
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+     */
     public function dispatch() {
         global $hascaticonsmodule; // Ugh!
 
