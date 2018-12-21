@@ -24,7 +24,7 @@ class AWPCP_Create_Category_Admin_Page {
         $category_order = absint( $this->request->param( 'category_order' ) );
         $category_data  = array(
             'name'   => stripcslashes( $this->request->param( 'category_name' ) ),
-            'parent' => absint( $this->request->param( 'category_parent_id' ) ),
+            'parent' => intval( $this->request->param( 'category_parent_id' ) ),
         );
 
         try {

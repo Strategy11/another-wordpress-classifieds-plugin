@@ -7,6 +7,7 @@
 
 function awpcp_categories_admin_page() {
     return new AWPCP_CategoriesAdminPage(
+        awpcp()->container['listing_category_taxonomy'],
         awpcp_categories_collection(),
         awpcp_template_renderer(),
         awpcp_request()
@@ -15,11 +16,17 @@ function awpcp_categories_admin_page() {
 
 class AWPCP_CategoriesAdminPage {
 
+    /**
+     * @var string
+     */
+    private $listing_category_taxonomy;
+
     private $categories;
     private $template_renderer;
     private $request;
 
-    public function __construct( $categories, $template_renderer, $request ) {
+    public function __construct( $listing_category_taxonomy, $categories, $template_renderer, $request ) {
+        $this->listing_category_taxonomy = $listing_category_taxonomy;
         $this->categories = $categories;
         $this->template_renderer = $template_renderer;
         $this->request = $request;
@@ -105,7 +112,17 @@ class AWPCP_CategoriesAdminPage {
                 ],
                 ''
             ),
-            'form_title' => __( 'Add new category', 'another-wordpress-classifieds-plugin' ),
+            'categories_dropdown_args' => [
+                'hide_empty'        => false,
+                'hide_if_empty'     => false,
+                'taxonomy'          => $this->listing_category_taxonomy,
+                'name'              => 'category_parent_id',
+                'selected'          => $category ? $category->parent : false,
+                'hierarchical'      => true,
+                'show_option_none'  => __( 'None (this is a top level category)', 'another-wordpress-classifieds-plugin' ),
+                'option_none_value' => 0,
+            ],
+            'form_title' => __( 'Add New Category', 'another-wordpress-classifieds-plugin' ),
             'form_values' => array(
                 'category_id' => $category_id,
                 'category_name' => $category ? $category->name : null,

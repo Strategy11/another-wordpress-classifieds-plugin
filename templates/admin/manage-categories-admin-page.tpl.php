@@ -16,6 +16,7 @@
                     ));
                 ?>
                 <div class="inside">
+                    <div class="form-wrap">
                     <form id="awpcp_launch" class="awpcp-manage-categories-category-form" method="post">
                         <input type="hidden" name="awpcp-action" value="<?php echo $form_values['action']; ?>" />
                         <input type="hidden" name="category_id" value="<?php echo $form_values['category_id']; ?>" />
@@ -23,31 +24,40 @@
                         <input type="hidden" name="offset" value="<?php echo $offset; ?>" />
                         <input type="hidden" name="results" value="<?php echo $results; ?>" />
 
-                        <div class="awpcp-clearfix clearfix">
-                        <div class="awpcp-manage-categories-category-form-field awpcp-manage-categories-category-form-name-field">
-                            <label for="cat_name"><?php echo __( 'Category Name', 'another-wordpress-classifieds-plugin' ); ?></label>
-                            <input id="cat_name" type="text" name="category_name" value="<?php echo $form_values['category_name']; ?>"/>
-                        </div>
-                        <div class="awpcp-manage-categories-category-form-field">
-                            <label for="awpcp-category-parent-field"><?php echo __( 'Category Parent', 'another-wordpress-classifieds-plugin' ); ?></label>
-                            <select id="awpcp-category-parent-field" name="category_parent_id">
-                                <option value="0"><?php echo __( 'No parent, this a top level category','another-wordpress-classifieds-plugin' ); ?></option>
-                                <?php echo get_categorynameid( $form_values['category_id'], $form_values['category_parent_id'] ); ?>
-                            </select>
-                        </div>
-                        <div class="awpcp-manage-categories-category-form-field">
-                            <label for="category_order"><?php echo __( 'Category list order', 'another-wordpress-classifieds-plugin' ); ?></label>
-                            <input id="category_order" type="text" name="category_order" value="<?php echo $form_values['category_order']; ?>"/>
-                        </div>
+                        <div class="l-awpcp-row">
+                            <div class="l-awpcp-column-50">
+                                <div class="form-field form-required">
+                                    <label for="m-awpcp-category-form__name-field"><?php esc_html_e( 'Name', 'another-wordpress-classifieds-plugin' ); ?></label>
+                                    <input name="category_name" id="m-awpcp-category-form__name-field" type="text" value="<?php echo $form_values['category_name']; ?>" size="40" aria-required="true">
+                                </div>
+
+                                <div class="form-field">
+                                    <label for="m-awpcp-category-form__parent-field"><?php esc_html_e( 'Parent Category', 'another-wordpress-classifieds-plugin' ); ?></label>
+                                    <?php
+                                    $categories_dropdown_args['id']    = 'm-awpcp-category-form__parent-field';
+                                    $categories_dropdown_args['class'] = '';
+
+                                    wp_dropdown_categories( $categories_dropdown_args );
+                                    ?>
+                                </div>
+                            </div>
+
+                            <div class="l-awpcp-column-50">
+                                <div class="form-field">
+                                    <label for="m-awpcp-category-form__order-field"><?php esc_html_e( 'Category list order', 'another-wordpress-classifieds-plugin' ); ?></label>
+                                    <input id="m-awpcp-category-form__order-field" type="text" name="category_order" value="<?php esc_attr_e( $form_values['category_order'] ); ?>" size="20"/>
+                                </div>
+                            </div>
                         </div>
 
                         <?php // TODO: allow other sections to enter content before the submit button ?>
                         <?php // echo $promptmovetocat; ?>
 
                         <p class="submit inline-edit-save">
-                            <input type="submit" class="button-primary button" name="createeditadcategory" value="<?php echo $form_submit; ?>" />
+                            <input type="submit" class="button-primary button" name="createeditadcategory" value="<?php esc_attr_e( $form_submit ); ?>" />
                         </p>
                     </form>
+                    </div>
                 </div>
             </div>
         </div>
