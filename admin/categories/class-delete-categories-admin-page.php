@@ -26,7 +26,7 @@ class AWPCP_Delete_Categories_Admin_Page {
         try {
             $this->try_to_delete_categories();
         } catch ( AWPCP_Exception $e ) {
-            awpcp_flash( $e->getMessage(), 'error' );
+            awpcp_flash_error( $e->getMessage() );
         }
 
         $this->router->serve_admin_page( array( 'parent' => 'awpcp.php', 'page' => 'awpcp-admin-categories' ) );
@@ -43,7 +43,7 @@ class AWPCP_Delete_Categories_Admin_Page {
             try {
                 $target_category = $this->categories->get( $target_category_id );
             } catch ( AWPCP_Exception $e ) {
-                $message = __( "The categories couldn't be deleted because there was an error trying to load the categoery that you selecetd to become the new category associated to affected listings. <error-message>", 'another-wordpress-classifieds-plugin' );
+                $message = __( "The categories couldn't be deleted because there was an error trying to load the categoery that you selecetd to become the new category associated to affected ads. <error-message>", 'another-wordpress-classifieds-plugin' );
                 $message = str_replace( '<error-message>' , $e->getMessage(), $message );
 
                 throw new AWPCP_Exception( $message );
