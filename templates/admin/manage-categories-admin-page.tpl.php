@@ -34,10 +34,9 @@
                                 <div class="form-field">
                                     <label for="m-awpcp-category-form__parent-field"><?php esc_html_e( 'Parent Category', 'another-wordpress-classifieds-plugin' ); ?></label>
                                     <?php
-                                    $categories_dropdown_args['id']    = 'm-awpcp-category-form__parent-field';
-                                    $categories_dropdown_args['class'] = '';
+                                    $parent_category_dropdown_args['id'] = 'm-awpcp-category-form__parent-field';
 
-                                    wp_dropdown_categories( $categories_dropdown_args );
+                                    wp_dropdown_categories( $parent_category_dropdown_args );
                                     ?>
                                 </div>
                             </div>
@@ -77,20 +76,23 @@
 
 <form id="mycats" class="awpcp-clearboth" name="mycats" method="post">
     <p>
-        <input type="submit" name="awpcp-delete-multiple-categories" class="button" value="<?php echo __( "Delete Selected Categories",'another-wordpress-classifieds-plugin' ); ?>"/>
-        <input type="submit" name="awpcp-move-multiple-categories" class="button" value="<?php echo __( "Move Selected Categories",'another-wordpress-classifieds-plugin' ); ?>"/>
-        <select name="moveadstocategory">
-            <option value="0"><?php echo __( "Select Move-To category",'another-wordpress-classifieds-plugin' ); ?></option>
-            <?php echo get_categorynameid( $cat_id = 0, $cat_parent_id = 0, $exclude='' ); ?>
-        </select>
+        <label for="m-awpcp-category-bulk-actions-form__target-category-field"><?php esc_html_e( 'Move categories or ads under:', 'another-wordpress-classifieds-plugin' ); ?></label>
+        <?php
+        $target_category_dropdown_args['id'] = 'm-awpcp-category-bulk-actions-form__target-category-field';
+
+        wp_dropdown_categories( $target_category_dropdown_args );
+        ?>
+        <br/>
+        <?php echo __( 'Delete categories should do this with existing ads:', 'another-wordpress-classifieds-plugin' ); ?>
+        <label><input type="radio" name="movedeleteads" value="1" checked='checked' ><?php echo __( 'Move ads to new category', 'another-wordpress-classifieds-plugin' ); ?></label>
+        <label><input type="radio" name="movedeleteads" value="2" ><?php echo __( 'Delete ads too', 'another-wordpress-classifieds-plugin' ); ?></label>
     </p>
 
     <?php echo $pager1; ?>
 
     <p>
-        <?php echo __( 'Delete categories should do this with existing Ads', 'another-wordpress-classifieds-plugin' ); ?>
-        <label><input type="radio" name="movedeleteads" value="1" checked='checked' ><?php echo __( 'Move Ads to new category', 'another-wordpress-classifieds-plugin' ); ?></label>
-        <label><input type="radio" name="movedeleteads" value="2" ><?php echo __( 'Delete Ads too', 'another-wordpress-classifieds-plugin' ); ?></label>
+        <input type="submit" name="awpcp-move-multiple-categories" class="button" value="<?php esc_attr_e( 'Move Selected Categories', 'another-wordpress-classifieds-plugin' ); ?>"/>
+        <input type="submit" name="awpcp-delete-multiple-categories" class="button" value="<?php esc_attr_e( 'Delete Selected Categories', 'another-wordpress-classifieds-plugin' ); ?>"/>
     </p>
 
     <style>

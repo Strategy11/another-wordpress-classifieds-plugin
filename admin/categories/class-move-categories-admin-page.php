@@ -27,7 +27,7 @@ class AWPCP_Move_Categories_Admin_Page {
         try {
             $this->try_to_move_categories();
         } catch ( AWPCP_Exception $e ) {
-            awpcp_flash( $e->getMessage(), 'error' );
+            awpcp_flash_error( $e->getMessage() );
         }
 
         $this->router->serve_admin_page( array( 'parent' => 'awpcp.php', 'page' => 'awpcp-admin-categories' ) );

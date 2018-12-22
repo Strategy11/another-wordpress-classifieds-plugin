@@ -117,7 +117,7 @@ class AWPCP_CategoriesAdminPage {
                 ],
                 ''
             ),
-            'categories_dropdown_args' => [
+            'parent_category_dropdown_args' => [
                 'hide_empty'        => false,
                 'hide_if_empty'     => false,
                 'taxonomy'          => $this->listing_category_taxonomy,
@@ -127,6 +127,17 @@ class AWPCP_CategoriesAdminPage {
                 'hierarchical'      => true,
                 'show_option_none'  => __( 'None (this is a top level category)', 'another-wordpress-classifieds-plugin' ),
                 'option_none_value' => 0,
+                'class'             => '',
+            ],
+            'target_category_dropdown_args' => [
+                'hide_empty'        => false,
+                'hide_if_empty'     => false,
+                'taxonomy'          => $this->listing_category_taxonomy,
+                'name'              => 'moveadstocategory',
+                'hierarchical'      => true,
+                'show_option_none'  => __( 'Select target category', 'another-wordpress-classifieds-plugin' ),
+                'option_none_value' => 0,
+                'class'             => '',
             ],
             'form_title' => $category ? __( 'Edit Category', 'another-wordpress-classifieds-plugin' ) : __( 'Add New Category', 'another-wordpress-classifieds-plugin' ),
             'form_values' => array(
