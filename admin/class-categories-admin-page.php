@@ -127,7 +127,7 @@ class AWPCP_CategoriesAdminPage {
                 'show_option_none'  => __( 'None (this is a top level category)', 'another-wordpress-classifieds-plugin' ),
                 'option_none_value' => 0,
             ],
-            'form_title' => __( 'Add New Category', 'another-wordpress-classifieds-plugin' ),
+            'form_title' => $category ? __( 'Edit Category', 'another-wordpress-classifieds-plugin' ) : __( 'Add New Category', 'another-wordpress-classifieds-plugin' ),
             'form_values' => array(
                 'category_id' => $category_id,
                 'category_name' => $category ? $category->name : null,
