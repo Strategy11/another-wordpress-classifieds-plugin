@@ -91,7 +91,7 @@ function awpcp_get_category_hierarchy( $category_id, &$categories ) {
  * @since 3.4
  * @since 4.0.0     Accepts an array of selected categories.
  */
-function awpcp_render_categories_dropdown_options( &$categories, &$hierarchy, $selected_categories ) {
+function awpcp_render_categories_dropdown_options( &$categories, &$hierarchy, $selected_categories, $level = 0 ) {
     $output = '';
 
     if ( ! is_array( $selected_categories ) ) {
@@ -101,10 +101,10 @@ function awpcp_render_categories_dropdown_options( &$categories, &$hierarchy, $s
     $selected_categories = array_map( 'absint', $selected_categories );
 
     foreach ( $categories as $category ) {
-        $output .= awpcp_render_categories_dropdown_option( $category, $selected_categories );
+        $output .= awpcp_render_categories_dropdown_option( $category, $selected_categories, $level );
 
         if ( isset( $hierarchy[ $category->term_id ] ) ) {
-            $output .= awpcp_render_categories_dropdown_options( $hierarchy[ $category->term_id ], $hierarchy, $selected_categories );
+            $output .= awpcp_render_categories_dropdown_options( $hierarchy[ $category->term_id ], $hierarchy, $selected_categories, $level + 1 );
         }
     }
 
@@ -116,7 +116,7 @@ function awpcp_render_categories_dropdown_options( &$categories, &$hierarchy, $s
  * @since 4.0.0     Accepts an array of selected categories.
  * @SuppressWarnings(PHPMD)
  */
-function awpcp_render_categories_dropdown_option( $category, $selected_categories ) {
+function awpcp_render_categories_dropdown_option( $category, $selected_categories, $level ) {
     $disabled_attribute = '';
 
     if ( in_array( $category->term_id, $selected_categories, true ) ) {
@@ -134,7 +134,7 @@ function awpcp_render_categories_dropdown_option( $category, $selected_categorie
         $category_name = esc_html( wp_unslash( $category->name ) );
     } else {
         $class_attribute = '';
-        $category_name = sprintf( '– %s', esc_html( wp_unslash( $category->name ) ) );
+        $category_name = sprintf( '%s%s', str_repeat( '&nbsp;', 3 * $level ), esc_html( wp_unslash( $category->name ) ) );
     }
 
     return sprintf(

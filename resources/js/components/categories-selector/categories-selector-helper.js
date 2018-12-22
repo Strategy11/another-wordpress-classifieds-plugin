@@ -26,7 +26,7 @@ function( $ ) {
             _.each( categoriesHierarchy[ parent ], function( category ) {
                 model = {
                     id: category.term_id,
-                    text: '– '.repeat( level ) + category.name,
+                    text: ' '.repeat( 3 * level ) + category.name,
                     disabled: category.disabled || false,
                 };
 
