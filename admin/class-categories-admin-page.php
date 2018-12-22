@@ -123,6 +123,7 @@ class AWPCP_CategoriesAdminPage {
                 'taxonomy'          => $this->listing_category_taxonomy,
                 'name'              => 'category_parent_id',
                 'selected'          => $category ? $category->parent : false,
+                'exclude_tree'      => $category ? $category->term_id : null,
                 'hierarchical'      => true,
                 'show_option_none'  => __( 'None (this is a top level category)', 'another-wordpress-classifieds-plugin' ),
                 'option_none_value' => 0,
