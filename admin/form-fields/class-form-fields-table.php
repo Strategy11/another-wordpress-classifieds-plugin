@@ -41,7 +41,7 @@ class AWPCP_FormFieldsTable extends WP_List_Table {
     }
 
     public function column_name( $item ) {
-        return $handle . $item->get_name() . $this->row_actions( array( '' => '' ) );
+        return $item->get_name() . $this->row_actions( array( '' => '' ) );
     }
 
     public function column_slug( $item ) {
