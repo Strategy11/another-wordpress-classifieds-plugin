@@ -72,19 +72,6 @@ class AWPCP_Search_Widget extends WP_Widget {
         echo $selector->render( 'search', array(), array() );
     }
 
-    /**
-     * @since 3.0.2
-     */
-    private function render_region_field( $label, $options, $name ) {
-        if ( isset( $_REQUEST['regions'][0][ $name ] ) ) {
-            $selected = stripslashes_deep( $_REQUEST['regions'][0][ $name ] );
-        } else {
-            $selected = null;
-        }
-
-        return $this->select( $options, $label, "regions[0][$name]", $selected );
-    }
-
 	/**
 	 * @since 3.0
 	 */
