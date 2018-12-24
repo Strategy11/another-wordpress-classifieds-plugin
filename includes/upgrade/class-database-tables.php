@@ -16,7 +16,7 @@ class AWPCP_Database_Tables {
 
     public function get_categories_table_definition() {
         $table_defintion =
-        "CREATE TABLE " . AWPCP_TABLE_CATEGORIES . " (
+        'CREATE TABLE ' . AWPCP_TABLE_CATEGORIES . " (
             `category_id` INT(10) NOT NULL AUTO_INCREMENT,
             `category_parent_id` INT(10) NOT NULL,
             `category_name` VARCHAR(255) CHARACTER SET <charset> COLLATE <collate> NOT NULL DEFAULT '',
@@ -29,7 +29,7 @@ class AWPCP_Database_Tables {
 
     public function get_listings_table_definition() {
         $table_defintion =
-        "CREATE TABLE " . AWPCP_TABLE_ADS . " (
+        'CREATE TABLE ' . AWPCP_TABLE_ADS . " (
             `ad_id` INT(10) NOT NULL AUTO_INCREMENT,
             `adterm_id` INT(10) NOT NULL DEFAULT 0,
             `payment_term_type` VARCHAR(64) NOT NULL DEFAULT 'fee',
@@ -76,7 +76,7 @@ class AWPCP_Database_Tables {
 
     public function get_listing_regions_table_definition() {
         $table_defintion =
-        "CREATE TABLE " . AWPCP_TABLE_AD_REGIONS . " (
+        'CREATE TABLE ' . AWPCP_TABLE_AD_REGIONS . " (
             `id` INT(10) NOT NULL AUTO_INCREMENT,
             `ad_id` INT(10) NOT NULL,
             `country` VARCHAR(64) COLLATE <collate> DEFAULT '',
@@ -97,7 +97,7 @@ class AWPCP_Database_Tables {
 
     public function get_fees_table_definition() {
         $table_defintion =
-        "CREATE TABLE " . AWPCP_TABLE_ADFEES . " (
+        'CREATE TABLE ' . AWPCP_TABLE_ADFEES . " (
             `adterm_id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
             `adterm_name` VARCHAR(100) CHARACTER SET <charset> COLLATE <collate> NOT NULL DEFAULT '',
             `description` TEXT COLLATE <collate> NOT NULL,
@@ -145,7 +145,7 @@ class AWPCP_Database_Tables {
 
     public function get_credit_plans_table_definition() {
         $table_defintion =
-        "CREATE TABLE " . AWPCP_TABLE_CREDIT_PLANS . " (
+        'CREATE TABLE ' . AWPCP_TABLE_CREDIT_PLANS . " (
             `id` INT(10) NOT NULL AUTO_INCREMENT,
             `name` VARCHAR(255) CHARACTER SET <charset> COLLATE <collate> NOT NULL DEFAULT '',
             `description` VARCHAR(500) CHARACTER SET <charset> COLLATE <collate> NOT NULL DEFAULT '',
@@ -161,7 +161,7 @@ class AWPCP_Database_Tables {
 
     public function get_media_table_definition() {
         $table_defintion =
-        "CREATE TABLE " . AWPCP_TABLE_MEDIA . " (
+        'CREATE TABLE ' . AWPCP_TABLE_MEDIA . " (
             `id` INT(10) NOT NULL AUTO_INCREMENT,
             `ad_id` INT(10) UNSIGNED NOT NULL DEFAULT 0,
             `name` VARCHAR(255) CHARACTER SET <charset> COLLATE <collate> NOT NULL DEFAULT '',
@@ -180,20 +180,20 @@ class AWPCP_Database_Tables {
 
     public function get_listing_meta_table_definition() {
         $table_defintion =
-        "CREATE TABLE " . AWPCP_TABLE_AD_META . " (
+        'CREATE TABLE ' . AWPCP_TABLE_AD_META . ' (
             `meta_id` BIGINT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
             `awpcp_ad_id` BIGINT(10) UNSIGNED NOT NULL,
             `meta_key` VARCHAR(255),
             `meta_value` LONGTEXT,
             PRIMARY KEY  (`meta_id`)
-        ) DEFAULT CHARSET=<charset> COLLATE=<collate>;";
+        ) DEFAULT CHARSET=<charset> COLLATE=<collate>;';
 
         return $this->database_helper->replace_charset_and_collate( $table_defintion );
     }
 
     public function get_tasks_table_definition() {
         $table_defintion =
-        "CREATE TABLE " . AWPCP_TABLE_TASKS . " (
+        'CREATE TABLE ' . AWPCP_TABLE_TASKS . " (
             `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
             `name` VARCHAR(255) CHARACTER SET <charset> COLLATE <collate> NOT NULL,
             `status` VARCHAR(50) CHARACTER SET <charset> COLLATE <collate> NOT NULL DEFAULT 'new',
