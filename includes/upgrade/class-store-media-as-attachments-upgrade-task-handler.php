@@ -126,8 +126,10 @@ class AWPCP_Store_Media_As_Attachments_Upgrade_Task_Handler implements AWPCP_Upg
         );
         $description = '';
 
-        // Do the validation and storage stuff.
+        // Add attachment, but don't create intermediate image sizes.
+        add_filter( 'intermediate_image_sizes_advanced', '__return_empty_array', 20181224 );
         $attachment_id = $this->wordpress->handle_media_sideload( $file_array, $parent_listing_id, $description );
+        remove_filter( 'intermediate_image_sizes_advanced', '__return_empty_array', 20181224 );
 
         // If error storing permanently, unlink.
         if ( is_wp_error( $attachment_id ) ) {
@@ -146,6 +148,7 @@ class AWPCP_Store_Media_As_Attachments_Upgrade_Task_Handler implements AWPCP_Upg
         }
 
         update_post_meta( $attachment_id, '_awpcp_allowed_status', $item->status );
+        update_post_meta( $attachment_id, '_awpcp_generate_intermediate_image_sizes', true );
 
         return $item->id;
     }
