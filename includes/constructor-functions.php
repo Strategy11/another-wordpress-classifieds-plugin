@@ -278,3 +278,10 @@ function awpcp_facebook_integration() {
 function awpcp_request() {
     return new AWPCP_Request();
 }
+
+/**
+ * @since 4.0.0 Extracted from class file.
+ */
+function awpcp_database_tables() {
+    return new AWPCP_Database_Tables( awpcp_database_helper() );
+}

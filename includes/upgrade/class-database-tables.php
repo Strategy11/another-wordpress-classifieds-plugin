@@ -1,9 +1,11 @@
 <?php
+/**
+ * @package AWPCP\Upgrade
+ */
 
-function awpcp_database_tables() {
-    return new AWPCP_Database_Tables( awpcp_database_helper() );
-}
-
+/**
+ * Collection of SQL statements used to create the necessary custom tables.
+ */
 class AWPCP_Database_Tables {
 
     private $database_helper;
