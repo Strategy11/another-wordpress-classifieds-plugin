@@ -186,6 +186,7 @@ return array(
     'AWPCP_FrontendContainerConfiguration' => $baseDir . '/includes/frontend/class-frontend-container-configuration.php',
     'AWPCP_GeneralSettings' => $baseDir . '/includes/settings/class-general-settings.php',
     'AWPCP_GenerateListingPreviewAjaxHandler' => $baseDir . '/includes/frontend/class-generate-listing-preview-ajax-handler.php',
+    'AWPCP_GenerateThumbnailsForMigratedMediaTaskHandler' => $baseDir . '/includes/upgrade/class-generate-thumbnails-for-migrated-media-task-handler.php',
     'AWPCP_HTML_Admin_Form_Autocomplete_Renderer' => $baseDir . '/includes/html/class-html-admin-form-autocomplete-renderer.php',
     'AWPCP_HTML_Admin_Form_Checkbox_Renderer' => $baseDir . '/includes/html/class-html-admin-form-checkbox-renderer.php',
     'AWPCP_HTML_Admin_Form_Checkbox_Textfield_Renderer' => $baseDir . '/includes/html/class-html-admin-form-checkbox-textfield-renderer.php',

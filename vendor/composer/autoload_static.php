@@ -187,6 +187,7 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_FrontendContainerConfiguration' => __DIR__ . '/../..' . '/includes/frontend/class-frontend-container-configuration.php',
         'AWPCP_GeneralSettings' => __DIR__ . '/../..' . '/includes/settings/class-general-settings.php',
         'AWPCP_GenerateListingPreviewAjaxHandler' => __DIR__ . '/../..' . '/includes/frontend/class-generate-listing-preview-ajax-handler.php',
+        'AWPCP_GenerateThumbnailsForMigratedMediaTaskHandler' => __DIR__ . '/../..' . '/includes/upgrade/class-generate-thumbnails-for-migrated-media-task-handler.php',
         'AWPCP_HTML_Admin_Form_Autocomplete_Renderer' => __DIR__ . '/../..' . '/includes/html/class-html-admin-form-autocomplete-renderer.php',
         'AWPCP_HTML_Admin_Form_Checkbox_Renderer' => __DIR__ . '/../..' . '/includes/html/class-html-admin-form-checkbox-renderer.php',
         'AWPCP_HTML_Admin_Form_Checkbox_Textfield_Renderer' => __DIR__ . '/../..' . '/includes/html/class-html-admin-form-checkbox-textfield-renderer.php',

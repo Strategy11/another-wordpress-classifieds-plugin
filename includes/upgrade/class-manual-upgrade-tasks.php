@@ -94,14 +94,6 @@ class AWPCP_Manual_Upgrade_Tasks {
             'context' => 'plugin',
         ) );
 
-        $this->upgrade_tasks->register_upgrade_task( array(
-            'slug' => 'awpcp-store-media-as-attachments-upgrade-task-handler',
-            'name' => __( 'Store Media as Attachments', 'another-wordpress-classifieds-plugin' ),
-            'handler' => 'AWPCP_Store_Media_As_Attachments_Upgrade_Task_Handler',
-            'context' => 'plugin',
-            'blocking' => false,
-        ) );
-
         // @phpcs:enable
 
         $this->upgrade_tasks->register_upgrade_task(
@@ -141,6 +133,26 @@ class AWPCP_Manual_Upgrade_Tasks {
                 'handler'  => 'FixIDCollisionForListingsUpgradeTaskHandler',
                 'context'  => 'plugin',
                 'blocking' => true,
+            ]
+        );
+
+        $this->upgrade_tasks->register_upgrade_task(
+            [
+                'slug'     => 'awpcp-store-media-as-attachments-upgrade-task-handler',
+                'name'     => __( 'Store Media as Attachments', 'another-wordpress-classifieds-plugin' ),
+                'handler'  => 'AWPCP_Store_Media_As_Attachments_Upgrade_Task_Handler',
+                'context'  => 'plugin',
+                'blocking' => false,
+            ]
+        );
+
+        $this->upgrade_tasks->register_upgrade_task(
+            [
+                'slug'     => 'awpcp-generate-thumbnails-for-migrated-media',
+                'name'     => __( 'Generate Thumbnails for Migrated Media', 'another-wordpress-classifieds-plugin' ),
+                'handler'  => 'GenerateThumbnailsForMigratedMediaTaskHandler',
+                'context'  => 'plugin',
+                'blocking' => false,
             ]
         );
     }

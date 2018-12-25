@@ -233,5 +233,13 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
                 );
             }
         );
+
+        $container['GenerateThumbnailsForMigratedMediaTaskHandler'] = $container->service(
+            function( $container ) {
+                return new AWPCP_GenerateThumbnailsForMigratedMediaTaskHandler(
+                    $container['WordPress']
+                );
+            }
+        );
     }
 }

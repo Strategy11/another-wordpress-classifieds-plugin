@@ -199,6 +199,13 @@ class AWPCP_Installer {
         return update_option( "awpcp_db_version", $newversion );
     }
 
+    /**
+     * TODO: Update upgrade system to ensure that tasks are executed in the
+     * order they are defined here.
+     *
+     * In 4.0.0beta10 routines were still executed in the order they are registered
+     * in Manual Upgrade Tasks.
+     */
     private function get_upgrade_routines() {
         // You have to use at least major.minor.patch version numbers.
         return array(
@@ -262,7 +269,6 @@ class AWPCP_Installer {
                 'remove_old_capabilities',
                 'enable_upgrade_routine_to_migrate_listing_categories',
                 'enable_upgrade_routine_to_migrate_listings',
-                'enable_upgrade_routine_to_migrate_media',
             ),
             '4.0.0beta2' => array(
                 'enable_routine_to_fix_id_collision_for_listing_categories',
@@ -279,6 +285,9 @@ class AWPCP_Installer {
             '4.0.0beta8' => [
                 'enable_routine_to_force_post_id',
             ],
+            '4.0.0beta11' => [
+                'maybe_enable_upgrade_routines_to_migrate_media',
+            ]
         );
     }
 
@@ -1275,9 +1284,26 @@ class AWPCP_Installer {
         delete_option( 'awpcp-slacpt-last-listing-id' );
     }
 
-    private function enable_upgrade_routine_to_migrate_media() {
+    /**
+     * @since 4.0.0
+     */
+    private function maybe_enable_upgrade_routines_to_migrate_media( $oldversion ) {
+        // These upgrade routines were first introduced in 4.0.0beta1 and modified
+        // for 4.0.0beta11 (See https://github.com/drodenbaugh/awpcp/issues/2201).
+        //
+        // The routines continued to be included in other beta releases and enqueued
+        // last, so that all blocking routines were always executed first, even those
+        // introduced after 4.0.0beta1, and media migration (when necessary) was
+        // always performed as a non-blocking routine.
+        //
+        // However, if the website is already using 4.0.0beta1 or superior, then there
+        // is no to need enable the routine again.
+        if ( version_compare( $oldversion, '4.0.0beta1', '>=' ) ) {
+            return;
+        }
+
         $this->upgrade_tasks->enable_upgrade_task( 'awpcp-store-media-as-attachments-upgrade-task-handler' );
-        delete_option( 'awpcp-smaa-last-listing-id' );
+        $this->upgrade_tasks->enable_upgrade_task( 'awpcp-generate-thumbnails-for-migrated-media' );
     }
 
     /**

@@ -148,7 +148,7 @@ class AWPCP_Store_Media_As_Attachments_Upgrade_Task_Handler implements AWPCP_Upg
         }
 
         update_post_meta( $attachment_id, '_awpcp_allowed_status', $item->status );
-        update_post_meta( $attachment_id, '_awpcp_generate_intermediate_image_sizes', true );
+        update_post_meta( $attachment_id, '_awpcp_generate_intermediate_image_sizes', get_intermediate_image_sizes() );
 
         return $item->id;
     }
