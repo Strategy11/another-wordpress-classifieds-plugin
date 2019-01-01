@@ -285,3 +285,10 @@ function awpcp_request() {
 function awpcp_database_tables() {
     return new AWPCP_Database_Tables( awpcp_database_helper() );
 }
+
+/**
+ * @since 4.0.0 Extracted from class file.
+ */
+function awpcp_attachments_collection() {
+    return new AWPCP_Attachments_Collection( awpcp_file_types(), awpcp_wordpress() );
+}
