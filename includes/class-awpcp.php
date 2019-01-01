@@ -334,6 +334,11 @@ class AWPCP {
 
         add_filter( 'terms_clauses', [ $term_query_integration, 'terms_clauses' ], 10, 3 );
 
+        $remove_listing_attachments_service = $this->container['RemoveListingAttachmentsService'];
+
+        add_action( 'before_delete_post', [ $remove_listing_attachments_service, 'enqueue_attachments_to_be_removed' ], 10, 1 );
+        add_action( 'after_delete_post', [ $remove_listing_attachments_service, 'remove_attachments' ], 10, 1 );
+
         // load resources always required
         $facebook_cache_helper = awpcp_facebook_cache_helper();
         add_action( 'awpcp-clear-ad-facebook-cache', array( $facebook_cache_helper, 'handle_clear_cache_event_hook' ), 10, 1 );

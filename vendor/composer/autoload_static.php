@@ -375,6 +375,7 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_RawShortcode' => __DIR__ . '/../..' . '/frontend/shortcode-raw.php',
         'AWPCP_ReadingSettingsIntegration' => __DIR__ . '/../..' . '/includes/settings/class-reading-settings-integration.php',
         'AWPCP_RedirectionException' => __DIR__ . '/../..' . '/includes/exceptions.php',
+        'AWPCP_RemoveListingAttachmentsService' => __DIR__ . '/../..' . '/includes/listings/class-remove-listing-attachments-service.php',
         'AWPCP_RenewAdPage' => __DIR__ . '/../..' . '/frontend/page-renew-ad.php',
         'AWPCP_RenewAdPageImplementation' => __DIR__ . '/../..' . '/frontend/page-renew-ad.php',
         'AWPCP_RenewListingTableAction' => __DIR__ . '/../..' . '/includes/admin/listings/class-renew-listing-table-action.php',

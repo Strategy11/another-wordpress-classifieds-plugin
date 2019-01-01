@@ -122,6 +122,25 @@ class AWPCP_Attachments_Collection {
         return $this->find_attachments( $this->make_attachments_awaiting_approval_query( $query ) );
     }
 
+    /**
+     * Returns attachments that were uploaded using any of the plugin's upload
+     * screens (instead of being uploaded to the Media Library directly, for exmaple).
+     *
+     * @since 4.0.0
+     */
+    public function find_uploaded_attachments( $query = [] ) {
+        return $this->find_attachments( $this->make_uploaded_attachments_query( $query ) );
+    }
+
+    private function make_uploaded_attachments_query( $query ) {
+        $query['meta_query'][] = [
+            'key'     => '_awpcp_allowed_status',
+            'compare' => 'EXISTS',
+        ];
+
+        return $query;
+    }
+
     private function make_attachments_awaiting_approval_query( $query ) {
         $query['meta_query'][] = array(
             'key' => '_awpcp_allowed_status',

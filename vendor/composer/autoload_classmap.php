@@ -374,6 +374,7 @@ return array(
     'AWPCP_RawShortcode' => $baseDir . '/frontend/shortcode-raw.php',
     'AWPCP_ReadingSettingsIntegration' => $baseDir . '/includes/settings/class-reading-settings-integration.php',
     'AWPCP_RedirectionException' => $baseDir . '/includes/exceptions.php',
+    'AWPCP_RemoveListingAttachmentsService' => $baseDir . '/includes/listings/class-remove-listing-attachments-service.php',
     'AWPCP_RenewAdPage' => $baseDir . '/frontend/page-renew-ad.php',
     'AWPCP_RenewAdPageImplementation' => $baseDir . '/frontend/page-renew-ad.php',
     'AWPCP_RenewListingTableAction' => $baseDir . '/includes/admin/listings/class-renew-listing-table-action.php',

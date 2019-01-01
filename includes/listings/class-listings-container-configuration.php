@@ -155,6 +155,16 @@ class AWPCP_ListingsContainerConfiguration implements AWPCP_ContainerConfigurati
                 $container['WordPress']
             );
         } );
+
+        $container['RemoveListingAttachmentsService'] = $container->service(
+            function( $container ) {
+                return new AWPCP_RemoveListingAttachmentsService(
+                    $container['listing_post_type'],
+                    $container['AttachmentsCollection'],
+                    $container['WordPress']
+                );
+            }
+        );
     }
 
     /**
