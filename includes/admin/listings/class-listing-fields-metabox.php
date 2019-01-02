@@ -134,29 +134,6 @@ class AWPCP_ListingFieldsMetabox {
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function save( $post_id, $post ) {
-        if ( isset( $this->save_in_progress ) && $this->save_in_progress ) {
-            return;
-        }
-
-        if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
-            return;
-        }
-
-        if ( $this->post_type !== $post->post_type ) {
-            return;
-        }
-
-        if ( 'auto-draft' === $post->post_status ) {
-            return;
-        }
-
-        $this->try_to_save( $post );
-    }
-
-    /**
-     * @since 4.0.0
-     */
-    private function try_to_save( $post ) {
         $data   = $this->form_fields_data->get_posted_data( $post );
         $errors = $this->form_fields_validator->get_validation_errors( $data, $post );
 
@@ -178,11 +155,7 @@ class AWPCP_ListingFieldsMetabox {
             $data['metadata'] = $this->listings_logic->get_default_listing_metadata( $data['metadata'] );
         }
 
-        $this->save_in_progress = true;
-
         $this->save_or_store_errors( $post, $data, $errors );
-
-        $this->save_in_progress = false;
     }
 
 

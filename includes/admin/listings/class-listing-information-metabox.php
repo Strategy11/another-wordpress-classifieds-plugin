@@ -9,7 +9,7 @@
 class AWPCP_ListingInfromationMetabox {
 
     /**
-     * @var ListingsLogic
+     * @var ListingsPayments
      */
     private $listings_payments;
 
@@ -141,23 +141,7 @@ class AWPCP_ListingInfromationMetabox {
             return;
         }
 
-        if ( isset( $this->save_in_progress ) && $this->save_in_progress ) {
-            return;
-        }
-
-        if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
-            return;
-        }
-
-        if ( 'auto-draft' === $post->post_status ) {
-            return;
-        }
-
-        $this->save_in_progress = true;
-
         $this->maybe_update_payment_term( $post );
-
-        $this->save_in_progress = false;
     }
 
     /**

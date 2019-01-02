@@ -112,8 +112,7 @@ class AWPCP_Admin {
 
         add_action( 'admin_enqueue_scripts', [ $this, 'maybe_enqueue_meta_boxes_scripts' ] );
         add_action( 'add_meta_boxes_' . $this->post_type, array( $this, 'add_classifieds_meta_boxes' ) );
-        add_action( 'save_post_' . $this->post_type, array( $this->container['ListingFieldsMetabox'], 'save' ), 10, 2 );
-        add_action( 'save_post_' . $this->post_type, array( $this->container['ListingInformationMetabox'], 'save' ), 10, 2 );
+        add_action( 'save_post_' . $this->post_type, [ $this, 'save_classifieds_meta_boxes' ], 10, 2 );
     }
 
     /**
@@ -230,5 +229,43 @@ class AWPCP_Admin {
             $this->post_type,
             'advanced'
         );
+    }
+
+    /**
+     * Each metabox save() method is manually executed here to ensure that
+     * the execution of one method is complete before the next one is called.
+     *
+     * This prevents information being accidentally overwritten, for example
+     * when the save() method for the Listing Information Metabox was called
+     * after wp_update_post() was used in Listings_API::update_listing(), but
+     * before the terms and metadata had been stored.
+     *
+     * @since 4.0.0
+     */
+    public function save_classifieds_meta_boxes( $post_id, $post ) {
+        static $save_in_progress = false;
+
+        if ( $save_in_progress ) {
+            return;
+        }
+
+        if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+            return;
+        }
+
+        if ( $this->post_type !== $post->post_type ) {
+            return;
+        }
+
+        if ( 'auto-draft' === $post->post_status ) {
+            return;
+        }
+
+        $save_in_progress = true;
+
+        $this->container['ListingFieldsMetabox']->save( $post_id, $post );
+        $this->container['ListingInformationMetabox']->save( $post_id, $post );
+
+        $save_in_progress = false;
     }
 }
