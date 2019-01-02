@@ -112,9 +112,15 @@ class AWPCP_Payment_Terms_List {
     }
 
     private function get_payment_term_attributes( $payment_term ) {
+        $number_of_categories_allowed = 1;
+
+        if ( isset( $payment_term->number_of_categories_allowed ) ) {
+            $number_of_categories_allowed = $payment_term->number_of_categories_allowed;
+        }
+
         $attributes = array(
             'data-id' => "{$payment_term->type}-{$payment_term->id}",
-            'data-number-of-categories-allowed' => esc_attr( absint( $payment_term->number_of_categories_allowed ) ),
+            'data-number-of-categories-allowed' => esc_attr( absint( $number_of_categories_allowed ) ),
             'data-categories' => esc_attr( json_encode( array_map( 'absint', $payment_term->categories ) ) ),
         );
 
