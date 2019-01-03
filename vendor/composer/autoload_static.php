@@ -156,7 +156,6 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_Facebook_All_Plugin_Integration' => __DIR__ . '/../..' . '/includes/compatibility/class-facebook-all-plugin-integration.php',
         'AWPCP_Facebook_Button_Plugin_Integration' => __DIR__ . '/../..' . '/includes/compatibility/class-facebook-button-plugin-integration.php',
         'AWPCP_Facebook_Page_Settings' => __DIR__ . '/../..' . '/admin/class-settings-admin-page.php',
-        'AWPCP_FeaturedListingTableView' => __DIR__ . '/../..' . '/includes/admin/listings/class-featured-listing-table-view.php',
         'AWPCP_Fee' => __DIR__ . '/../..' . '/includes/payment-term-fee.php',
         'AWPCP_FeePaymentTermsNotices' => __DIR__ . '/../..' . '/includes/views/admin/class-fee-payment-terms-notices.php',
         'AWPCP_FeeType' => __DIR__ . '/../..' . '/includes/payment-term-fee-type.php',

@@ -155,7 +155,6 @@ return array(
     'AWPCP_Facebook_All_Plugin_Integration' => $baseDir . '/includes/compatibility/class-facebook-all-plugin-integration.php',
     'AWPCP_Facebook_Button_Plugin_Integration' => $baseDir . '/includes/compatibility/class-facebook-button-plugin-integration.php',
     'AWPCP_Facebook_Page_Settings' => $baseDir . '/admin/class-settings-admin-page.php',
-    'AWPCP_FeaturedListingTableView' => $baseDir . '/includes/admin/listings/class-featured-listing-table-view.php',
     'AWPCP_Fee' => $baseDir . '/includes/payment-term-fee.php',
     'AWPCP_FeePaymentTermsNotices' => $baseDir . '/includes/views/admin/class-fee-payment-terms-notices.php',
     'AWPCP_FeeType' => $baseDir . '/includes/payment-term-fee-type.php',
