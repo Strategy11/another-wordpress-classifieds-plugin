@@ -53,6 +53,13 @@ class AWPCP_QueryIntegration {
     public function pre_get_posts( $query ) {
         if ( isset( $query->query_vars['classifieds_query'] ) ) {
             $query->query_vars = $this->process_query_vars( $query->query_vars );
+
+            /**
+             * A pre_get_posts action for queries that return classified ads only.
+             *
+             * @since 4.0.0
+             */
+            do_action( 'awpcp_pre_get_posts', $query );
         }
     }
 
