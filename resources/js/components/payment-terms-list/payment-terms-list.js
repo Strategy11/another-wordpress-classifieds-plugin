@@ -80,6 +80,22 @@ function( $, settings ) {
             self.update();
         },
 
+        includesFreePaymentTermOnly: function() {
+            var length = this.state.allPaymentTerms.length;
+
+            if ( length !== 1 ) {
+                return false;
+            }
+
+            for ( var i = length - 1; i >= 0; i-- ) {
+                if ( this.state.allPaymentTerms.eq( i ).data( 'id' ) !== 'fee-0' ) {
+                    return false;
+                }
+            }
+
+            return true;
+        },
+
         update: function() {
             var disabledPaymentTerms = this._getDisabledPaymentTerms();
             var enabledPaymentTerms = this.state.allPaymentTerms.not( disabledPaymentTerms.get() );

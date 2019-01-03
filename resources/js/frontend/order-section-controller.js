@@ -61,7 +61,8 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
             // can respond to initial events from Categories Selector and User fields.
             //
             // TODO: Is this still the case?
-            self.paymentTermsList = new PaymentTermsList( self.$editModeContainer.find( '.awpcp-payment-terms-list' ), {
+            self.$paymentTermList = self.$editModeContainer.find( '.awpcp-payment-terms-list' );
+            self.paymentTermsList = new PaymentTermsList( self.$paymentTermList, {
                 onChange: function( paymentTerm ) {
                     self.store.updateSelectedPaymentTerm( paymentTerm );
                 }
@@ -105,6 +106,10 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
                     self.onContinueButtonClicked();
                 }
             } );
+
+            if ( self.paymentTermsList.includesFreePaymentTermOnly() ) {
+                self.$paymentTermList.closest( '.awpcp-form-spacer' ).hide();
+            }
 
             $container.on( 'click', '.awpcp-order-submit-listing-section--change-selection-button', function( event ) {
                 event.preventDefault();
