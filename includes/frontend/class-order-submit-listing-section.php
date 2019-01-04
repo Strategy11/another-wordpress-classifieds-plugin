@@ -136,16 +136,17 @@ class AWPCP_OrderSubmitListingSection {
             'form_errors'               => [],
 
             'show_user_field'           => $this->roles->current_user_is_moderator(),
-            'show_account_balance'      => ! $this->roles->current_user_is_administrator(),
+            'show_account_balance'      => false,
             'show_captcha'              => $this->should_show_captcha( $listing ),
             'disable_parent_categories' => $this->settings->get_option( 'noadsinparentcat' ),
+
             'account_balance'           => '',
             'payment_terms_list'        => $this->render_payment_terms_list( $stored_data, $payment_terms ),
             'credit_plans_table'        => $this->payments->render_credit_plans_table( null ),
             'captcha'                   => $this->captcha,
         );
 
-        if ( $params['show_account_balance'] ) {
+        if ( ! $this->roles->current_user_is_administrator() ) {
             $params['show_account_balance'] = true;
             $params['account_balance']      = $this->payments->render_account_balance();
         }
