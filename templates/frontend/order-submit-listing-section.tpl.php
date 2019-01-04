@@ -13,27 +13,28 @@
 
                 <div class="awpcp-form-spacer">
                     <?php
-                        $params = array(
-                            'name'                      => 'category',
-                            'label'                     => _x( 'Please select a category for your ad', 'order submit listing section', 'another-wordpress-classifieds-plugin' ),
-                            'selected'                  => $form['category'],
-                            'multiple'                  => false,
-                            'auto'                      => false,
-                            'hide_empty'                => false,
-                            'disable_parent_categories' => $disable_parent_categories,
-                            'payment_terms'             => $payment_terms,
-                        );
+                    $params = array(
+                        'name'                      => 'category',
+                        'label'                     => _x( 'Please select a category for your ad', 'order submit listing section', 'another-wordpress-classifieds-plugin' ),
+                        'selected'                  => $form['category'],
+                        'multiple'                  => false,
+                        'auto'                      => false,
+                        'hide_empty'                => false,
+                        'disable_parent_categories' => $disable_parent_categories,
+                        'payment_terms'             => $payment_terms,
+                    );
 
-                        $params = apply_filters( 'awpcp_post_listing_categories_selector_args', $params );
+                    $params = apply_filters( 'awpcp_post_listing_categories_selector_args', $params );
 
-                        echo awpcp_categories_selector()->render( $params ); // XSS Ok.
-                        echo awpcp_form_error( 'category', $form_errors ); // XSS Ok.
+                    echo awpcp_categories_selector()->render( $params ); // XSS Ok.
+                    echo awpcp_form_error( 'category', $form_errors ); // XSS Ok.
                     ?>
                 </div>
 
                 <div class="awpcp-form-spacer<?php echo $show_user_field ? '' : esc_attr( ' awpcp-hidden' ); ?>">
                     <?php
-                        echo awpcp()->container['UserSelector']->render( array(
+                    echo awpcp()->container['UserSelector']->render(
+                        [
                             'required' => true,
                             'selected' => awpcp_array_data( 'user', '', $form ),
                             'label'    => _x( 'Who is the owner of this ad?', 'order submit listing section', 'another-wordpress-classifieds-plugin' ),
@@ -41,7 +42,8 @@
                             'id'       => 'ad-user-id',
                             'name'     => 'user',
                             'class'    => array( 'awpcp-user-selector' ),
-                        ) ); // XSS Ok.
+                        ]
+                    ); // XSS Ok.
                     ?>
                     <?php echo awpcp_form_error( 'user', $form_errors ); // XSS Ok. ?>
                 </div>
@@ -50,7 +52,7 @@
                     <label><?php echo esc_html_x( 'Please select the duration and features that will be available for this ad', 'order submit listing section', 'another-wordpress-classifieds-plugin' ); ?><span class="required">*</span></label>
 
                     <?php if ( $show_account_balance ) : ?>
-                    <?php echo $account_balance; // XSS Ok. ?>
+                        <?php echo $account_balance; // XSS Ok. ?>
                     <?php endif; ?>
 
                     <?php echo $payment_terms_list; // XSS Ok. ?>
