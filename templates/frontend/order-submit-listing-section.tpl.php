@@ -4,7 +4,7 @@
  */
 
 ?><div class="awpcp-order-submit-listing-section awpcp-submit-listing-section">
-    <h2 class="awpcp-submit-listing-section-title js-handler"><?php echo esc_html_x( 'Category, owner and payment term selection', 'order submit listing section', 'another-wordpress-classifieds-plugin' ); ?><span></span></h2>
+    <h2 class="awpcp-submit-listing-section-title js-handler"><?php echo esc_html( $section_title ); ?><span></span></h2>
 
     <div class="awpcp-submit-listing-section-content" data-collapsible awpcp-keep-open>
         <div class="awpcp-order-submit-listing-section__edit_mode">

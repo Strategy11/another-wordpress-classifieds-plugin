@@ -126,6 +126,8 @@ class AWPCP_OrderSubmitListingSection {
         $payment_terms = $this->payments->get_payment_terms();
         $payment_terms = apply_filters( 'awpcp_submit_listing_payment_terms', $payment_terms, $listing );
 
+        $current_user_is_moderator = $this->roles->current_user_is_moderator();
+
         $params = array(
             'transaction'               => null,
 
@@ -135,11 +137,12 @@ class AWPCP_OrderSubmitListingSection {
 
             'form_errors'               => [],
 
-            'show_user_field'           => $this->roles->current_user_is_moderator(),
+            'show_user_field'           => $current_user_is_moderator,
             'show_account_balance'      => false,
             'show_captcha'              => $this->should_show_captcha( $listing ),
             'disable_parent_categories' => $this->settings->get_option( 'noadsinparentcat' ),
 
+            'section_title'             => $this->get_section_title( $current_user_is_moderator ),
             'account_balance'           => '',
             'payment_terms_list'        => $this->render_payment_terms_list( $stored_data, $payment_terms ),
             'credit_plans_table'        => $this->payments->render_credit_plans_table( null ),
@@ -201,6 +204,23 @@ class AWPCP_OrderSubmitListingSection {
         }
 
         return $this->can_payment_information_be_modified_during_submit( $listing );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function get_section_title( $current_user_is_moderator ) {
+        $payments_are_enabled = $this->payments->payments_enabled();
+
+        if ( $current_user_is_moderator && $payments_are_enabled ) {
+            return _x( 'Category, owner and payment term selection', 'order submit listing section', 'another-wordpress-classifieds-plugin' );
+        } elseif ( $current_user_is_moderator ) {
+            return _x( 'Category and owner selection', 'order submit listing section', 'another-wordpress-classifieds-plugin' );
+        } elseif ( $payments_are_enabled ) {
+            return _x( 'Category and payment term selection', 'order submit listing section', 'another-wordpress-classifieds-plugin' );
+        }
+
+        return _x( 'Category selection', 'order submit listing section', 'another-wordpress-classifieds-plugin' );
     }
 
     /**
