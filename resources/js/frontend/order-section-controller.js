@@ -201,10 +201,10 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
             self.$loadingMessage.hide();
 
             self.$listOfSelectedCategories.empty().text( self.store.getSelectedCategoriesNames().join( ', ' ) );
-            self.$listingOwner.find( 'span' ).html( self.store.getSelectedUserName() );
 
             self.$paymentTerm.hide();
             self.$creditPlan.hide();
+            self.$listingOwner.hide();
 
             var paymentTerm = self.store.getSelectedPaymentTerm();
 
@@ -219,6 +219,11 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
 
             if ( creditPlanSummary ) {
                 self.$creditPlan.show().find( 'span' ).html( creditPlanSummary )
+            }
+
+            if ( self.store.getSelectedUserId() ) {
+                self.$listingOwner.find( 'span' ).html( self.store.getSelectedUserName() );
+                self.$listingOwner.show();
             }
 
             self.$changeSelectionButton.hide();
