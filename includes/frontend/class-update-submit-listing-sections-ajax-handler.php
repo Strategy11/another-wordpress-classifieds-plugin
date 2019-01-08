@@ -45,9 +45,10 @@ class AWPCP_UpdateSubmitListingSectionsAjaxHandler extends AWPCP_AjaxHandler {
      * @since 4.0.0
      */
     public function ajax() {
-        $transaction = $this->payments->get_transaction();
-        $listing_id  = $this->request->param( 'listing' );
-        $mode        = $this->request->param( 'mode' );
+        $transaction  = $this->payments->get_transaction();
+        $listing_id   = $this->request->param( 'listing' );
+        $sections_ids = $this->request->post( 'sections' );
+        $mode         = $this->request->param( 'mode' );
 
         if ( 'edit' !== $mode ) {
             $mode = 'create';
@@ -60,7 +61,7 @@ class AWPCP_UpdateSubmitListingSectionsAjaxHandler extends AWPCP_AjaxHandler {
         }
 
         $response = [
-            'sections' => $this->sections_generator->get_sections( [], $mode, $listing, $transaction ),
+            'sections' => $this->sections_generator->get_sections( $sections_ids, $mode, $listing, $transaction ),
         ];
 
         return $this->success( $response );
