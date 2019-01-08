@@ -18,6 +18,7 @@ AWPCP.define( 'awpcp/frontend/listing-fields-section-controller', [
         self.listing             = null;
         self.selectedCategories  = [];
         self.selectedPaymentTerm = null;
+        self.selectedUserId      = null;
 
         self.updater = null;
     };
@@ -57,6 +58,7 @@ AWPCP.define( 'awpcp/frontend/listing-fields-section-controller', [
 
             var selectedCategories  = self.store.getSelectedCategoriesIds();
             var selectedPaymentTerm = self.store.getSelectedPaymentTermId();
+            var selectedUserId      = self.store.getSelectedUserId();
 
             if ( 0 === selectedCategories.length || null === selectedPaymentTerm ) {
                 return false;
@@ -67,6 +69,10 @@ AWPCP.define( 'awpcp/frontend/listing-fields-section-controller', [
             }
 
             if ( selectedPaymentTerm !== self.selectedPaymentTerm ) {
+                return true;
+            }
+
+            if ( selectedUserId !== self.selectedUserId ) {
                 return true;
             }
 
@@ -260,6 +266,7 @@ AWPCP.define( 'awpcp/frontend/listing-fields-section-controller', [
             self.listing             = self.store.getListingId();
             self.selectedCategories  = self.store.getSelectedCategoriesIds();
             self.selectedPaymentTerm = self.store.getSelectedPaymentTermId();
+            self.selectedUserId      = self.store.getSelectedUserId();
         },
 
         reload: function( data ) {
