@@ -44,8 +44,9 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
             self.$editModeContainer = $( '.awpcp-order-submit-listing-section__edit_mode' );
             self.$readModeContainer = $( '.awpcp-order-submit-listing-section__read_mode' );
 
-            self.$listingId   = self.$element.find( '[name="listing_id"]' );
-            self.$captcha     = self.$element.find( '.awpcp-captcha' );
+            self.$listingId     = self.$element.find( '[name="listing_id"]' );
+            self.$transactionId = self.$element.find( '[name="transaction_id"]' );
+            self.$captcha       = self.$element.find( '.awpcp-captcha' );
 
             self.$listOfSelectedCategories = $( '.awpcp-order-submit-listing-section--selected-categories' );
             self.$listingOwner             = $( '.awpcp-order-submit-listing-section--listing-owner' );
@@ -149,6 +150,7 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
             var self = this;
 
             self.store.setListingId( parseInt( self.$listingId.val(), 10 ) );
+            self.store.setTransactionId( self.$transactionId.val() );
             self.store.updateSelectedPaymentTerm( self.paymentTermsList.getSelectedPaymentTerm() );
             self.store.updateSelectedCategories( self.categoriesSelector.getSelectedCategories() );
             self.store.updateSelectedUser( self.userSelector.getSelectedUser() );

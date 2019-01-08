@@ -113,14 +113,14 @@ class AWPCP_OrderSubmitListingSection {
      *
      * @since 4.0.0
      */
-    public function render( $listing ) {
+    public function render( $listing, $transaction ) {
         $messages = [];
 
         if ( awpcp_current_user_is_admin() ) {
             $messages[] = __( 'You are logged in as an administrator. Any payment steps will be skipped.', 'another-wordpress-classifieds-plugin' );
         }
 
-        $stored_data = $this->get_stored_data( $listing );
+        $stored_data = $this->get_stored_data( $listing, $transaction );
         $nonce       = $this->maybe_generate_nonce( $listing );
 
         $payment_terms = $this->payments->get_payment_terms();
@@ -160,28 +160,36 @@ class AWPCP_OrderSubmitListingSection {
     /**
      * @since 4.0.0
      */
-    private function get_stored_data( $listing ) {
+    private function get_stored_data( $listing, $transaction ) {
+        $data = [
+            'listing_id'                => null,
+            'category'                  => null,
+            'user'                      => null,
+            'payment_term_id'           => null,
+            'payment_term_type'         => null,
+            'payment_term_payment_type' => null,
+            'transaction_id'            => null,
+        ];
+
         if ( is_null( $listing ) ) {
-            return [
-                'listing_id'                => null,
-                'category'                  => null,
-                'user'                      => null,
-                'payment_term_id'           => null,
-                'payment_term_type'         => null,
-                'payment_term_payment_type' => null,
-            ];
+            return $data;
         }
+
+        $data['listing_id'] = $listing->ID;
+        $data['category']   = $this->listing_renderer->get_categories_ids( $listing );
+        $data['user']       = $listing->post_author;
 
         $payment_term = $this->listing_renderer->get_payment_term( $listing );
 
-        return [
-            'listing_id'                => $listing->ID,
-            'category'                  => $this->listing_renderer->get_categories_ids( $listing ),
-            'user'                      => $listing->post_author,
-            'payment_term_id'           => $payment_term->id,
-            'payment_term_type'         => $payment_term->type,
-            'payment_term_payment_type' => 'money', // TODO: Get actual payment type from listing metadata?
-        ];
+        $data['payment_term_id']           = $payment_term->id;
+        $data['payment_term_type']         = $payment_term->type;
+        $data['payment_term_payment_type'] = 'money'; // TODO: Get actual payment type from listing metadata?
+
+        if ( $transaction ) {
+            $data['transaction_id'] = $transaction->id;
+        }
+
+        return $data;
     }
 
     /**

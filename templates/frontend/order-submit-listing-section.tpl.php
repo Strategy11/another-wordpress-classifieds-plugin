@@ -10,6 +10,7 @@
         <div class="awpcp-order-submit-listing-section__edit_mode">
             <form>
                 <input type="hidden" name="listing_id" value="<?php echo esc_attr( $form['listing_id'] ); ?>"/>
+                <input type="hidden" name="transaction_id" value="<?php echo esc_attr( $form['transaction_id'] ); ?>"/>
 
                 <div class="awpcp-form-spacer">
                     <?php
