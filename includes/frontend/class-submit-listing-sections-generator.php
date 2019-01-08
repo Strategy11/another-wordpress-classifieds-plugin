@@ -79,9 +79,12 @@ class AWPCP_SubmitLisitngSectionsGenerator {
             $section->enqueue_scripts();
         }
 
-        uasort( $sections, function( $section_a, $section_b ) {
-            return $section_a['position'] - $section_b['position'];
-        } );
+        uasort(
+            $sections,
+            function( $section_a, $section_b ) {
+                return $section_a['position'] - $section_b['position'];
+            }
+        );
 
         return $sections;
     }
