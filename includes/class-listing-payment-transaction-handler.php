@@ -10,6 +10,7 @@ function awpcp_listing_payment_transaction_handler() {
         awpcp_listing_renderer(),
         awpcp_listings_collection(),
         awpcp_listings_api(),
+        awpcp()->container['Settings'],
         awpcp_wordpress()
     );
 }
@@ -22,12 +23,19 @@ class AWPCP_ListingPaymentTransactionHandler {
     private $listing_renderer;
     private $listings;
     private $listings_logic;
+
+    /**
+     * @var Settings
+     */
+    private $settings;
+
     private $wordpress;
 
-    public function __construct( $listing_renderer, $listings, $listings_logic, $wordpress ) {
+    public function __construct( $listing_renderer, $listings, $listings_logic, $settings, $wordpress ) {
         $this->listing_renderer = $listing_renderer;
         $this->listings = $listings;
         $this->listings_logic = $listings_logic;
+        $this->settings         = $settings;
         $this->wordpress = $wordpress;
     }
 
@@ -36,15 +44,12 @@ class AWPCP_ListingPaymentTransactionHandler {
     }
 
     public function process_payment_transaction( $transaction ) {
-        if ( $transaction->is_payment_completed() || $transaction->is_completed() ) {
-            $this->process_completed_transaction( $transaction );
-        }
-    }
+        $transaction_is_completed = $transaction->is_completed();
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     */
-    public function process_completed_transaction( $transaction ) {
+        if ( ! $transaction->is_payment_completed() && ! $transaction_is_completed ) {
+            return;
+        }
+
         if ( strcmp( $transaction->get( 'context' ), 'place-ad' ) !== 0 ) {
             return;
         }
@@ -59,11 +64,40 @@ class AWPCP_ListingPaymentTransactionHandler {
             return;
         }
 
-        $listing_had_accepted_payment_status = $this->listing_has_accepted_payment_status( $listing );
+        $this->update_listing_payment_information( $listing, $transaction );
+
+        // We process the transaction as soon as the payment is completed when users
+        // pay for their ads after entering all the required information only. That
+        // way ads will become available even if the user doesn't return to the website
+        // from the payment gateway.
+        //
+        // We wait until the transaction is complete for ads that were paid before the
+        // deatils were provided.
+        if ( ! $transaction_is_completed && $this->settings->get_option( 'pay-before-place-ad' ) ) {
+            return;
+        }
+
+        $this->consolidate_transaction( $listing, $transaction );
+    }
+
+    private function update_listing_payment_information( $listing, $transaction ) {
+        if ( ! $transaction->get( 'previous-ad-payment-status' ) ) {
+            $transaction->set( 'previous-ad-payment-status', $this->listing_renderer->get_payment_status( $listing ) );
+
+            $this->wordpress->update_post_meta( $listing->ID, '_awpcp_payment_status', $transaction->payment_status );
+            $this->wordpress->update_post_meta( $listing->ID, '_awpcp_payment_gateway', $transaction->payment_gateway );
+            $this->wordpress->update_post_meta( $listing->ID, '_awpcp_payer_email', $transaction->payer_email );
+        }
+    }
+
+    /**
+     * @SuppressWarnings(PHPMD.ElseExpression)
+     */
+    private function consolidate_transaction( $listing, $transaction ) {
+        $previous_listing_payment_status     = $transaction->get( 'previous-ad-payment-status' );
+        $listing_had_accepted_payment_status = $this->is_accepted_payment_status( $previous_listing_payment_status );
         $is_transaction_consolidated = (bool) $transaction->get( 'ad-consolidated-at' );
         $should_trigger_actions = $is_transaction_consolidated;
-
-        $this->update_listing_payment_information( $listing, $transaction );
 
         if ( $transaction->was_payment_successful() ) {
             if ( ! $listing_had_accepted_payment_status ) {
@@ -83,10 +117,10 @@ class AWPCP_ListingPaymentTransactionHandler {
         }
     }
 
-    private function listing_has_accepted_payment_status( $listing ) {
-        $payment_status = $this->listing_renderer->get_payment_status( $listing );
-
-        // TODO: how to remove dependency on AWPCP_Payment_Transaction?
+    /**
+     * TODO: how to remove dependency on AWPCP_Payment_Transaction?
+     */
+    private function is_accepted_payment_status( $payment_status ) {
         if ( $payment_status === AWPCP_Payment_Transaction::PAYMENT_STATUS_PENDING ) {
             return true;
         } else if ( $payment_status === AWPCP_Payment_Transaction::PAYMENT_STATUS_COMPLETED ) {
@@ -95,11 +129,5 @@ class AWPCP_ListingPaymentTransactionHandler {
             return true;
         }
         return false;
-    }
-
-    private function update_listing_payment_information( $listing, $transaction ) {
-        $this->wordpress->update_post_meta( $listing->ID, '_awpcp_payment_status', $transaction->payment_status );
-        $this->wordpress->update_post_meta( $listing->ID, '_awpcp_payment_gateway', $transaction->payment_gateway );
-        $this->wordpress->update_post_meta( $listing->ID, '_awpcp_payer_email', $transaction->payer_email );
     }
 }
