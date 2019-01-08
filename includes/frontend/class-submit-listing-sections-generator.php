@@ -44,6 +44,7 @@ class AWPCP_SubmitLisitngSectionsGenerator {
             'listing-fields' => new AWPCP_ListingFieldsSubmitListingSection(
                 awpcp()->container['ListingDetailsFormFieldsRenderer'],
                 awpcp()->container['FormFieldsData'],
+                $container['UsersCollection'],
                 awpcp()->container['TemplateRenderer']
             ),
             'upload-media'   => new AWPCP_UploadMediaSubmitListingSection(
