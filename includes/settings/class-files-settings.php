@@ -70,8 +70,12 @@ class AWPCP_FilesSettings {
         );
     }
 
+    public function primary_image_excerpt_section_header() {
+        echo __( 'Configure the dimensions of the image displayed as the thumbnail for each ad in the page the list of ads.', 'another-wordpress-classifieds-plugin' );
+    }
+
     public function primary_image_section_header() {
-        echo __( 'The primary image is the one displayed as the thumbnail in the list view and the largest one shown when the detail view of the listing is clicked.', 'another-wordpress-classifieds-plugin' );
+        echo __( 'Configure the dimensions of the image displayed as the main thumbnail on the page that shows the ad details.', 'another-wordpress-classifieds-plugin' );
     }
 
     public function thumbnails_section_header() {
@@ -245,12 +249,60 @@ class AWPCP_FilesSettings {
      * @since 4.0.0
      */
     private function register_primary_image_settings( $settings_manager ) {
-        $group = 'presentation-media-settings';
+        $settings_manager->add_settings_section(
+            [
+                'id'       => 'featured-image-on-lists',
+                'name'     => __( 'Primary Image (List of ads)', 'another-wordpress-classifieds-plugin'),
+                'subgroup' => 'presentation-media-settings',
+                'callback' => [ $this, 'primary_image_excerpt_section_header' ],
+                'priority' => 35,
+            ]
+        );
+
+        $settings_manager->add_setting(
+            [
+                'id'          => 'displayadthumbwidth',
+                'name'        => __( 'Thumbnail width', 'another-wordpress-classifieds-plugin' ),
+                'type'        => 'textfield',
+                'default'     => '80',
+                'description' => __( 'Width of the thumbnail for the primary image shown in the list of ads.', 'another-wordpress-classifieds-plugin' ),
+                'section'     => 'featured-image-on-lists',
+            ]
+        );
+
+        $settings_manager->add_setting(
+            [
+                'id'          => 'featured-image-height-on-lists',
+                'name'        => __( 'Thumbnail height', 'another-wordpress-classifieds-plugin' ),
+                'type'        => 'textfield',
+                'default'     => $this->settings->get_option( 'displayadthumbwidth', '' ),
+                'description' => __( 'Height of the thumbnail for the primary image shown in the list of ads.', 'another-wordpress-classifieds-plugin' ),
+                'section'     => 'featured-image-on-lists',
+            ]
+        );
+
+        $settings_manager->add_setting(
+            [
+                'id'          => 'crop-featured-image-on-lists',
+                'name'        => 'Crop thumbnail',
+                'type'        => 'checkbox',
+                'default'     => true,
+                'description' => __( 'If you decide to crop thumbnails, images will match exactly the dimensions in the settings above but part of the image may be cropped out. If you decide to resize, image thumbnails will be resized to match the specified width and their height will be adjusted proportionally; depending on the uploaded images, thumbnails may have different heights.', 'another-wordpress-classifieds-plugin' ),
+                'section'     => 'featured-image-on-lists',
+            ]
+        );
+
         $key = 'primary-image';
 
-        $settings_manager->add_section( $group, __( 'Primary Image', 'another-wordpress-classifieds-plugin'), 'primary-image', 40, array( $this, 'primary_image_section_header' ) );
-
-        $settings_manager->add_setting( $key, 'displayadthumbwidth', __( 'Thumbnail width (Ad Listings page)', 'another-wordpress-classifieds-plugin' ), 'textfield', '80', __( 'Width of the thumbnail for the primary image shown in Ad Listings view.', 'another-wordpress-classifieds-plugin' ) );
+        $settings_manager->add_settings_section(
+            [
+                'id' => 'primary-image',
+                'name'     => __( 'Primary Image (Single ad page)', 'another-wordpress-classifieds-plugin'),
+                'subgroup' => 'presentation-media-settings',
+                'callback' => [ $this, 'primary_image_section_header' ],
+                'priority' => 40,
+            ]
+        );
 
         $settings_manager->add_setting( $key, 'primary-image-thumbnail-width', __( 'Thumbnail width (Primary Image)', 'another-wordpress-classifieds-plugin' ), 'textfield', '200', __( 'Width of the thumbnail for the primary image shown in Single Ad view.', 'another-wordpress-classifieds-plugin' ) );
 

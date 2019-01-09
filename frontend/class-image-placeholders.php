@@ -9,7 +9,8 @@ function awpcp_image_placeholders() {
     return new AWPCP_Image_Placeholders(
         awpcp_attachment_properties(),
         awpcp_attachments_collection(),
-        awpcp_listing_renderer()
+        awpcp_listing_renderer(),
+        awpcp()->container['Settings']
     );
 }
 
@@ -19,12 +20,18 @@ class AWPCP_Image_Placeholders {
     private $attachments;
     private $listing_renderer;
 
+    /**
+     * @var Settings
+     */
+    private $settings;
+
     private $cache;
 
-    public function __construct( $attachment_properties, $attachments, $listing_renderer ) {
+    public function __construct( $attachment_properties, $attachments, $listing_renderer, $settings ) {
         $this->attachment_properties = $attachment_properties;
         $this->attachments = $attachments;
         $this->listing_renderer = $listing_renderer;
+        $this->settings              = $settings;
     }
 
     /**
@@ -65,7 +72,6 @@ class AWPCP_Image_Placeholders {
 
             if ($primary_image) {
                 $large_image = $this->attachment_properties->get_image_url( $primary_image, 'large' );
-                $thumbnail = $this->attachment_properties->get_image_url( $primary_image, 'featured' );
 
                 if (get_awpcp_option('show-click-to-enlarge-link', 1)) {
                     $link = '<a class="thickbox enlarge" href="%s">%s</a>';
@@ -94,20 +100,23 @@ class AWPCP_Image_Placeholders {
 
                 $placeholders['featureimg'] = $content;
 
-                // listings
                 $image_attributes = array(
                     'class' => 'awpcp-listing-primary-image-thumbnail',
-                    'alt' => awpcp_esc_attr( $ad->ad_title ),
-                    'src' => esc_attr( $thumbnail ),
-                    'width' => $thumbnail_width,
+                    'alt'   => awpcp_esc_attr( $this->listing_renderer->get_listing_title( $ad ) ),
                 );
 
-                $content = '<a class="awpcp-listing-primary-image-listing-link" href="%s">%s</a>';
-                // TODO: Can we define a custom image size everytime the user changes the displayadthumbwidth setting, and regenerate
-                //       thumbnails for that.
-                $content = sprintf( $content, $url, wp_get_attachment_image( $primary_image->ID, array( $thumbnail_width, 0 ), false, $image_attributes ) );
+                // TODO: Can we regeneate thumbnails every time the user changes
+                // the dimensions for featured images on lists?
+                $featured_image_on_lists = wp_get_attachment_image(
+                    $primary_image->ID,
+                    'awpcp-featured-on-lists',
+                    false,
+                    $image_attributes
+                );
 
-                $placeholders['awpcp_image_name_srccode'] = $content;
+                $template = '<a class="awpcp-listing-primary-image-listing-link" href="%s">%s</a>';
+
+                $placeholders['awpcp_image_name_srccode'] = sprintf( $template, esc_url( $url ), $featured_image_on_lists );
             }
 
             $images_uploaded = $this->attachments->count_attachments_of_type( 'image', array( 'post_parent' => $ad->ID ) );
@@ -182,6 +191,10 @@ class AWPCP_Image_Placeholders {
                     'width' => esc_attr( $thumbnail_width ),
                 )
             );
+
+            if ( $this->settings->get_option( 'crop-featured-image-on-lists' ) ) {
+                $image_attributes['attributes']['height'] = $this->settings->get_option( 'featured-image-height-on-lists' );
+            }
 
             $content = '<a class="awpcp-listing-primary-image-listing-link" href="%s">%s</a>';
             $content = sprintf($content, $url, awpcp_html_image( $image_attributes ) );

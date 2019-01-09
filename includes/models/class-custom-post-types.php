@@ -228,6 +228,13 @@ class AWPCP_Custom_Post_Types {
         );
 
         add_image_size(
+            'awpcp-featured-on-lists',
+            $this->settings->get_option( 'displayadthumbwidth' ),
+            $this->settings->get_option( 'featured-image-height-on-lists' ),
+            $this->settings->get_option( 'crop-featured-image-on-lists' )
+        );
+
+        add_image_size(
             'awpcp-large',
             $this->settings->get_option( 'imgmaxwidth' ),
             $this->settings->get_option( 'imgmaxheight' ),
