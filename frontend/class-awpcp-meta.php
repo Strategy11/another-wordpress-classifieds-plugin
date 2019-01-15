@@ -22,7 +22,7 @@ class AWPCP_Meta {
         $this->query = $query;
         $this->request = $request;
 
-        add_action( 'template_redirect', array( $this, 'configure' ) );
+        add_action( 'wp', array( $this, 'configure' ) );
     }
 
     public function configure() {

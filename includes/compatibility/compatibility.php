@@ -31,10 +31,7 @@ class AWPCP_Compatibility {
         add_filter( 'awpcp-should-generate-rel-canonical', array( $integration, 'should_generate_rel_canonical' ), 10, 2 );
 
         $integration = awpcp_yoast_wordpress_seo_plugin_integration();
-        add_filter( 'awpcp-should-generate-basic-meta-tags', array( $integration, 'should_generate_basic_meta_tags' ), 10, 2 );
-        add_filter( 'awpcp-should-generate-opengraph-tags', array( $integration, 'should_generate_opengraph_tags' ), 10, 2 );
-        add_filter( 'awpcp-should-generate-rel-canonical', array( $integration, 'should_generate_rel_canonical' ), 10, 2 );
-        add_filter( 'awpcp-should-generate-title', array( $integration, 'should_generate_title' ), 10, 2 );
+        $integration->setup();
 
         $integration = awpcp_add_meta_tags_plugin_integration();
         add_filter( 'awpcp-should-generate-basic-meta-tags', array( $integration, 'should_generate_basic_meta_tags' ), 10, 2 );

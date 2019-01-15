@@ -1,128 +1,191 @@
 <?php
+/**
+ * @package AWPCP/Compatibility
+ */
 
+/**
+ * Constructor function for Yoast WordPress SEO Plugin Integration.
+ */
 function awpcp_yoast_wordpress_seo_plugin_integration() {
-    return new AWPCP_YoastWordPressSEOPluginIntegration( awpcp_tag_renderer() );
+    $container = awpcp()->container;
+
+    return new AWPCP_YoastWordPressSEOPluginIntegration(
+        $container['Meta'],
+        awpcp_query(),
+        $container['AttachmentsCollection'],
+        $container['Request']
+    );
 }
 
+/**
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.TooManyPublicMethods)
+ */
 class AWPCP_YoastWordPressSEOPluginIntegration {
 
-    private $meta;
     private $current_listing;
-    private $image_already_processed;
 
-    private $tag_renderer;
+    /**
+     * @var Meta
+     */
+    private $meta;
 
-    public function __construct( $tag_renderer ) {
-        $this->tag_renderer = $tag_renderer;
+    /**
+     * @var Query
+     */
+    private $query;
+
+    /**
+     * @var AttachmentsCollection
+     */
+    private $attachments;
+
+    /**
+     * @var Request
+     */
+    private $request;
+
+    public function __construct( $meta, $query, $attachments, $request ) {
+        $this->meta        = $meta;
+        $this->query       = $query;
+        $this->attachments = $attachments;
+        $this->request     = $request;
     }
 
-    public function should_generate_basic_meta_tags( $should, $meta ) {
-        if ( defined( 'WPSEO_VERSION' ) ) {
-            if ( ! isset( $this->metadata ) ) {
-                $this->metadata = $meta->get_listing_metadata();
-            }
+    /**
+     * @since 4.0.0
+     */
+    public function setup() {
+        if ( $this->are_required_classes_loaded() ) {
+            add_action( 'wp', [ $this, 'prepare_metadata_and_add_hooks' ] );
+        }
+    }
 
-            add_filter( 'wpseo_metadesc', array( $this, 'generate_meta_description' ) );
-
+    /**
+     * @since 4.0.0
+     */
+    private function are_required_classes_loaded() {
+        if ( ! defined( 'WPSEO_VERSION' ) ) {
+            // Yoast SEO doesn't seem to be loaded. Bail.
             return false;
         }
 
-        return $should;
-    }
-
-    public function generate_meta_description() {
-        return $this->metadata['http://ogp.me/ns#description'];
-    }
-
-    public function should_generate_opengraph_tags( $should, AWPCP_Meta $meta ) {
-        if ( defined( 'WPSEO_VERSION' ) && class_exists( 'WPSEO_OpenGraph' ) ) {
-            if ( ! isset( $this->metadata ) ) {
-                $this->metadata = $meta->get_listing_metadata();
-            }
-
-            add_filter( 'wpseo_opengraph_type', array( $this, 'og_type' ) );
-            add_filter( 'wpseo_opengraph_title', array( $this, 'og_title' ) );
-            add_filter( 'wpseo_opengraph_desc', array( $this, 'og_description' ) );
-            add_filter( 'wpseo_opengraph_url', array( $this, 'og_url' ) );
-            add_filter( 'wpseo_og_article_published_time', array( $this, 'og_published_time' ) );
-            add_filter( 'wpseo_og_article_modified_time', array( $this, 'og_modified_time' ) );
-            add_filter( 'wpseo_opengraph_image', array( $this, 'og_image' ) );
-
-            add_action( 'wpseo_opengraph', array( $this, 'maybe_render_og_image_tag' ), 90 );
-
+        if ( ! class_exists( 'WPSEO_OpenGraph_Image' ) ) {
             return false;
         }
 
-        return $should;
+        return class_exists( 'WPSEO_OpenGraph' ) && class_exists( 'WPSEO_Meta' );
     }
 
-    public function og_type() {
-        return $this->metadata['http://ogp.me/ns#type'];
-    }
-
-    public function og_title() {
-        return $this->metadata['http://ogp.me/ns#title'];
-    }
-
-    public function og_description() {
-        return $this->metadata['http://ogp.me/ns#description'];
-    }
-
-    public function og_url() {
-        return $this->metadata['http://ogp.me/ns#url'];
-    }
-
-    public function og_published_time() {
-        return $this->metadata['http://ogp.me/ns/article#published_time'];
-    }
-
-    public function og_modified_time() {
-        return $this->metadata['http://ogp.me/ns/article#modified_time'];
-    }
-
-    public function og_image( $image ) {
-        $this->image_already_processed = true;
-        return $this->get_image_src( $image );
-    }
-
-    private function get_image_src( $default = '' ) {
-        if ( isset( $this->metadata['http://ogp.me/ns#image'] ) ) {
-            return $this->metadata['http://ogp.me/ns#image'];
-        } else {
-            return $default;
-        }
-    }
-
-    public function maybe_render_og_image_tag() {
-        $image_src = $this->get_image_src();
-
-        if ( empty( $image_src ) ) {
+    /**
+     * Configure integration hooks, but only on selected pages.
+     *
+     * On Show Ad page:
+     * - If the listing has a SEO override, we should use the override (don't forget
+     * to replace any snippet variables included).
+     * - If the listing has no SEO override, generate good default.
+     *
+     * On an Ad own page:
+     * - If the listing has a SEO override, we use the override without attempting
+     * to replace any variables. Yoast must have already done that.
+     * - If the listing has no SEO override, generate a good default.
+     *
+     * @since 4.0.0
+     */
+    public function prepare_metadata_and_add_hooks() {
+        if ( ! $this->query->is_single_listing_page() ) {
             return;
         }
 
-        if ( $this->image_already_processed ) {
-            echo $this->render_image_src_link( $image_src );
-        } else {
-            echo $this->render_og_image_tag( $image_src );
-            echo $this->render_image_src_link( $image_src );
-        }
-    }
+        $post_id = $this->request->get_current_listing_id();
 
-    private function render_image_src_link( $image_src ) {
-        return $this->tag_renderer->render_tag( 'link', array( 'rel' => 'image_src', 'href' => $image_src ) );
-    }
-
-    private function render_og_image_tag( $image_src ) {
-        return $this->tag_renderer->render_tag( 'meta', array( 'property' => 'og:image', 'content' => $image_src ) );
-    }
-
-    public function should_generate_rel_canonical( $should ) {
-        if ( defined( 'WPSEO_VERSION' ) ) {
-            add_filter( 'wpseo_canonical', array( $this, 'canonical_url' ) );
-            return false;
+        if ( ! $post_id ) {
+            return;
         }
 
-        return $should;
+        $post = get_post( $post_id );
+
+        if ( ! is_object( $post ) ) {
+            return;
+        }
+
+        $this->current_listing = $post;
+        $this->is_singular     = is_singular( awpcp()->container['listing_post_type'] );
+        $this->metadata        = $this->meta->get_listing_metadata();
+
+        add_filter( 'wpseo_title', [ $this, 'filter_title' ] );
+        add_filter( 'wpseo_metadesc', array( $this, 'filter_meta_description' ) );
+        add_filter( 'wpseo_canonical', [ $this, 'canonical_url' ] );
+        add_filter( 'wpseo_opengraph_type', [ $this, 'filter_opengraph_type' ] );
+        add_filter( 'wpseo_opengraph_title', [ $this, 'filter_opengraph_title' ] );
+        add_filter( 'wpseo_opengraph_desc', [ $this, 'filter_opengraph_description' ] );
+        add_filter( 'wpseo_opengraph_url', [ $this, 'filter_opengraph_url' ] );
+        add_filter( 'wpseo_og_article_published_time', [ $this, 'filter_opengraph_published_time' ] );
+        add_filter( 'wpseo_og_article_modified_time', [ $this, 'filter_opengraph_modified_time' ] );
+        add_filter( 'wpseo_opengraph_show_publish_date', '__return_true' );
+
+        add_action( 'wpseo_add_opengraph_images', [ $this, 'add_opengraph_images' ] );
+
+        add_filter( 'wpseo_twitter_title', [ $this, 'filter_twitter_title' ] );
+        add_filter( 'wpseo_twitter_description', [ $this, 'filter_twitter_description' ] );
+
+        add_filter( 'awpcp-should-generate-title', '__return_false' );
+        add_filter( 'awpcp-should-generate-basic-meta-tags', '__return_false' );
+        add_filter( 'awpcp-should-generate-rel-canonical', '__return_false' );
+        add_filter( 'awpcp-should-generate-opengraph-tags', '__return_false' );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function filter_title( $title ) {
+        $override = WPSEO_Meta::get_value( 'title', $this->current_listing->ID );
+
+        if ( empty( $override ) ) {
+            return $this->build_title( $title );
+        }
+
+        if ( $this->is_singular ) {
+            return $title;
+        }
+
+        return wpseo_replace_vars( $override, $this->current_listing );
+    }
+
+    private function build_title( $title ) {
+        $separator = '';
+
+        if ( function_exists( 'wpseo_replace_vars' ) ) {
+            $separator = wpseo_replace_vars( '%%sep%%', array() );
+        } elseif ( isset( $GLOBALS['sep'] ) ) {
+            $separator = $GLOBALS['sep'];
+        }
+
+        return $this->meta->title_builder->build_title( $title, $separator, '' );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function filter_meta_description( $description ) {
+        $override = WPSEO_Meta::get_value( 'metadesc', $this->current_listing->ID );
+
+        return $this->get_social_description( $description, $override );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function get_social_description( $description, $override ) {
+        if ( empty( $override ) ) {
+            return $this->metadata['http://ogp.me/ns#description'];
+        }
+
+        if ( $this->is_singular ) {
+            return $description;
+        }
+
+        return wpseo_replace_vars( $override, $this->current_listing );
     }
 
     /**
@@ -138,26 +201,142 @@ class AWPCP_YoastWordPressSEOPluginIntegration {
         return $url;
     }
 
-    public function should_generate_title( $should, $meta ) {
-        $this->meta = $meta;
+    /**
+     * @since 4.0.0
+     */
+    public function filter_opengraph_type( $type ) {
+        $override = WPSEO_Meta::get_value( 'og_type', $this->current_listing->ID );
 
-        if ( defined( 'WPSEO_VERSION' ) ) {
-            add_filter( 'wpseo_title', array( $this, 'build_title' ) );
-            return false;
+        if ( ! empty( $override ) && $this->is_singular ) {
+            return $type;
         }
 
-        return $should;
+        return 'article';
     }
 
-    public function build_title( $title ) {
-        if ( function_exists( 'wpseo_replace_vars' ) ) {
-            $separator = wpseo_replace_vars( '%%sep%%', array() );
-        } else if ( isset( $GLOBALS['sep'] ) ) {
-            $separator = $GLOBALS['sep'];
-        } else {
-            $separator = '';
+    /**
+     * @since 4.0.0
+     */
+    public function filter_opengraph_title( $title ) {
+        $override = WPSEO_Meta::get_value( 'opengraph-title', $this->current_listing->ID );
+
+        return $this->get_social_title( $title, $override );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function get_social_title( $title, $override ) {
+        if ( empty( $override ) ) {
+            return $this->metadata['http://ogp.me/ns#title'];
         }
 
-        return $this->meta->title_builder->build_title( $title, $separator, '' );
+        if ( $this->is_singular ) {
+            return $title;
+        }
+
+        return wpseo_replace_vars( $override, $this->current_listing );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function filter_opengraph_description( $description ) {
+        $override = WPSEO_Meta::get_value( 'opengraph-description', $this->current_listing->ID );
+
+        return $this->get_social_description( $description, $override );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function filter_opengraph_url() {
+        return $this->metadata['http://ogp.me/ns#url'];
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function filter_opengraph_published_time() {
+        return $this->metadata['http://ogp.me/ns/article#published_time'];
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function filter_opengraph_modified_time() {
+        return $this->metadata['http://ogp.me/ns/article#modified_time'];
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function add_opengraph_images( $opengraph_image ) {
+        $image_id  = WPSEO_Meta::get_value( 'opengraph-image-id', $this->current_listing->ID );
+        $image_url = WPSEO_Meta::get_value( 'opengraph-image', $this->current_listing->ID );
+
+        if ( empty( $image_id ) && empty( $image_url ) ) {
+            $this->add_listing_images( $opengraph_image );
+            return;
+        }
+
+        if ( $this->is_singular ) {
+            return;
+        }
+
+        $this->add_user_defined_image( $opengraph_image, $image_id, $image_url );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function add_listing_images( $opengraph_image ) {
+        $featured_image = $this->attachments->get_featured_attachment_of_type(
+            'image',
+            [
+                'post_parent' => $this->current_listing->ID,
+            ]
+        );
+
+        if ( $featured_image ) {
+            $opengraph_image->add_image_by_id( $featured_image->ID );
+        }
+    }
+
+    /**
+     * Copied from WPSEO_OpenGraph_Image::add_image_by_id_or_url().
+     *
+     * @since 4.0.0
+     */
+    private function add_user_defined_image( $opengraph_image, $image_id, $image_url ) {
+        if ( ! $image_id ) {
+            $opengraph_image->add_image_by_url( $image_url );
+            return;
+        }
+
+        if ( $image_id === constant( 'WPSEO_OpenGraph_Image::EXTERNAL_IMAGE_ID' ) ) {
+            $opengraph_image->add_image( [ 'url' => $image_url ] );
+            return;
+        }
+
+        $opengraph_image->add_image_by_id( $image_id );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function filter_twitter_title( $title ) {
+        $override = WPSEO_Meta::get_value( 'twitter-title', $this->current_listing->ID );
+
+        return $this->get_social_title( $title, $override );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function filter_twitter_description( $description ) {
+        $override = WPSEO_Meta::get_value( 'twitter-description', $this->current_listing->ID );
+
+        return $this->get_social_description( $description, $override );
     }
 }

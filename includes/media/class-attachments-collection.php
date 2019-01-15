@@ -20,6 +20,10 @@ class AWPCP_Attachments_Collection {
         return $this->wordpress->get_post( $attachment_id );
     }
 
+    /**
+     * Returns the attachment that the user selected as featured or the first
+     * attachment of the requested type that is available.
+     */
     public function get_featured_attachment_of_type( $type, $query = array() ) {
         $query['posts_per_page'] = 1;
         $query['orderby']        = array( 'ID' => 'ASC' );
