@@ -5,6 +5,8 @@
 
 /**
  * Container configuration for objects used on the frontend.
+ *
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurationInterface {
 
