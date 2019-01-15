@@ -1,16 +1,5 @@
 <?php
 
-function awpcp_meta() {
-    return new AWPCP_Meta(
-        awpcp_listings_collection(),
-        awpcp_page_title_builder(),
-        awpcp_meta_tags_generator(),
-        awpcp_query(),
-        awpcp_request()
-    );
-}
-
-
 class AWPCP_Meta {
 
     public $ad = null;

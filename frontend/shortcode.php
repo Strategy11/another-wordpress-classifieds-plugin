@@ -5,8 +5,6 @@
 
 // phpcs:disable
 
-require_once(AWPCP_DIR . '/frontend/class-awpcp-meta.php');
-
 require_once(AWPCP_DIR . '/frontend/shortcode-raw.php');
 
 require_once(AWPCP_DIR . '/frontend/page-edit-ad.php');
@@ -23,7 +21,7 @@ class AWPCP_Pages {
     private $output = array();
 
 	public function __construct() {
-		$this->meta = awpcp_meta();
+		$this->meta = awpcp()->container['Meta'];
 
 		$this->show_ad = new AWPCP_Show_Ad_Page();
 		$this->browse_ads = awpcp_browse_listings_page();

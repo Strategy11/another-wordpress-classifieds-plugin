@@ -16,6 +16,18 @@ class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurati
      * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     public function modify( $container ) {
+        $container['Meta'] = $container->service(
+            function( $container ) {
+                return new AWPCP_Meta(
+                    $container['ListingsCollection'],
+                    awpcp_page_title_builder(),
+                    awpcp_meta_tags_generator(),
+                    awpcp_query(),
+                    $container['Request']
+                );
+            }
+        );
+
         $container['SubmitListingPage'] = $container->service( function( $container ) {
             return new AWPCP_SubmitListingPage(
                 $container['SubmitListingSectionsGenerator'],
