@@ -789,7 +789,7 @@ class AWPCP {
                     'url' => 'http://awpcp.com/downdloads/',
                     'installed' => defined( 'STRIPE_MODULE_DB_VERSION' ),
                     'version' => 'AWPCP_STRIPE_MODULE_DB_VERSION',
-                    'required' => '1.0',
+                    'required' => '4.0.0beta1',
                 ),
 				'subscriptions' => array(
 					'name' => __( 'Subscriptions', 'another-wordpress-classifieds-plugin' ),
