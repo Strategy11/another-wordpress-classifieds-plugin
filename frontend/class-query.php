@@ -1,4 +1,7 @@
 <?php
+/**
+ * @package AWPCP/Frontend
+ */
 
 /**
  * @since 3.6
@@ -11,6 +14,7 @@ function awpcp_query() {
 
 /**
  * @since 3.6
+ * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
 class AWPCP_Query {
 
@@ -41,7 +45,9 @@ class AWPCP_Query {
             $is_single_listing_page = true;
         }
 
+        // @phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
         return apply_filters( 'awpcp-is-single-listing-page', $is_single_listing_page );
+        // @phpcs:enable WordPress.NamingConventions.ValidHookName.UseUnderscores
     }
 
     public function is_reply_to_listing_page() {
@@ -77,9 +83,9 @@ class AWPCP_Query {
     }
 
     public function is_page_that_accepts_payments() {
-        $shortcodes_that_accept_payments = array( 'AWPCPPLACEAD', 'AWPCP-BUY-SUBSCRIPTION', 'AWPCP-RENEW-AD', 'AWPCPBUYCREDITS' );
+        $accept_payments = [ 'AWPCPPLACEAD', 'AWPCP-BUY-SUBSCRIPTION', 'AWPCP-RENEW-AD', 'AWPCPBUYCREDITS' ];
 
-        foreach ( $shortcodes_that_accept_payments as $shortcode ) {
+        foreach ( $accept_payments as $shortcode ) {
             if ( $this->is_page_that_has_shortcode( $shortcode ) ) {
                 return true;
             }
