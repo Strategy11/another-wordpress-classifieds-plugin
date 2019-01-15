@@ -1,10 +1,18 @@
 <?php
+/**
+ * @package AWPCP\Frontend
+ */
 
+/**
+ * Generates meta tags for listings.
+ *
+ * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
+ */
 class AWPCP_Meta {
 
-    public $ad = null;
-    public $properties = array();
-    public $metadata = array();
+    public $ad          = null;
+    public $properties  = array();
+    public $metadata    = array();
     public $category_id = null;
 
     private $listings_collection;
@@ -17,10 +25,10 @@ class AWPCP_Meta {
 
     public function __construct( $listings_collection, $title_builder, $meta_tags_genertor, $query, $request ) {
         $this->listings_collection = $listings_collection;
-        $this->title_builder = $title_builder;
-        $this->meta_tags_genertor = $meta_tags_genertor;
-        $this->query = $query;
-        $this->request = $request;
+        $this->title_builder       = $title_builder;
+        $this->meta_tags_genertor  = $meta_tags_genertor;
+        $this->query               = $query;
+        $this->request             = $request;
 
         add_action( 'wp', array( $this, 'configure' ) );
     }
@@ -56,10 +64,12 @@ class AWPCP_Meta {
     }
 
     private function configure_rel_canonical() {
+        // @phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
         if ( apply_filters( 'awpcp-should-generate-rel-canonical', true, $this ) ) {
             remove_action( 'wp_head', 'rel_canonical' );
             add_action( 'wp_head', 'awpcp_rel_canonical' );
         }
+        // @phpcs:enable WordPress.NamingConventions.ValidHookName.UseUnderscores
     }
 
     private function configure_opengraph_meta_tags() {
@@ -71,10 +81,12 @@ class AWPCP_Meta {
             return;
         }
 
+        // @phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
         if ( apply_filters( 'awpcp-should-generate-opengraph-tags', true, $this ) ) {
             add_action( 'wp_head', array( $this, 'opengraph' ) );
             $this->doing_opengraph = true;
         }
+        // @phpcs:enable WordPress.NamingConventions.ValidHookName.UseUnderscores
     }
 
     private function configure_description_meta_tag() {
@@ -86,10 +98,12 @@ class AWPCP_Meta {
             return;
         }
 
+        // @phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
         if ( apply_filters( 'awpcp-should-generate-basic-meta-tags', true, $this ) ) {
             add_action( 'wp_head', array( $this, 'generate_basic_meta_tags' ) );
             $this->doin_description_meta_tag = true;
         }
+        // @phpcs:enable WordPress.NamingConventions.ValidHookName.UseUnderscores
     }
 
     private function configure_title_generation() {
@@ -97,6 +111,7 @@ class AWPCP_Meta {
             return;
         }
 
+        // @phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
         if ( apply_filters( 'awpcp-should-generate-title', true, $this ) ) {
             add_action( 'wp_title', array( $this->title_builder, 'build_title' ), 10, 3 );
         }
@@ -104,19 +119,20 @@ class AWPCP_Meta {
         if ( apply_filters( 'awpcp-should-generate-single-post-title', true, $this ) ) {
             add_action( 'single_post_title', array( $this->title_builder, 'build_single_post_title' ) );
         }
+        // @phpcs:enable WordPress.NamingConventions.ValidHookName.UseUnderscores
 
-        // SEO Ultimate
+        // SEO Ultimate.
         if ( defined( 'SU_PLUGIN_NAME' ) ) {
             $this->seo_ultimate();
         }
 
-        // All In One SEO Pack
+        // All In One SEO Pack.
         if ( class_exists( 'All_in_One_SEO_Pack' ) ) {
             $this->all_in_one_seo_pack();
         }
 
-        // Jetpack >= 2.2.2 Integration
-        if (function_exists('jetpack_og_tags')) {
+        // Jetpack >= 2.2.2 Integration.
+        if ( function_exists( 'jetpack_og_tags' ) ) {
             $this->jetpack();
         }
     }
@@ -131,8 +147,8 @@ class AWPCP_Meta {
     }
 
     private function is_browse_categories_page() {
-        // we want't to use the original query but calling wp_reset_query
-        // breaks things for Events Manager and maybe other plugins
+        // We want't to use the original query but calling wp_reset_query
+        // breaks things for Events Manager and maybe other plugins.
         if ( ! isset( $GLOBALS['wp_the_query'] ) ) {
             return false;
         }
@@ -153,8 +169,10 @@ class AWPCP_Meta {
         remove_filter( 'wp_title', array( $this->title_builder, 'build_title' ), 10, 3 );
     }
 
-    // The function to add the page meta and Facebook meta to the header of the index page
-    // https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F108.166.84.26%2F%25253Fpage_id%25253D5%252526id%25253D3&t=Ad+in+Rackspace+1.8.9.4+(2)
+    /**
+     * The function to add the page meta and Facebook meta to the header of the index page.
+     * https://www.facebook.com/sharer/sharer.php?u={url}
+     */
     public function opengraph() {
         $metadata = $this->get_listing_metadata();
 
@@ -166,13 +184,13 @@ class AWPCP_Meta {
     }
 
     private function render_meta_tags( $meta_tags, $group_name ) {
-        echo '<!-- START - Another WordPress Classifieds Plugin ' . $group_name . ' meta tags -->' . PHP_EOL;
+        echo '<!-- START - Another WordPress Classifieds Plugin ' . $group_name . ' meta tags -->' . PHP_EOL; // XSS Ok.
 
         foreach ( $meta_tags as $tag ) {
-            echo $tag . PHP_EOL;
+            echo $tag . PHP_EOL; // XSS Ok.
         }
 
-        echo '<!-- END - Another WordPress Classifieds Plugin ' . $group_name . ' meta tags -->' . PHP_EOL;
+        echo '<!-- END - Another WordPress Classifieds Plugin ' . $group_name . ' meta tags -->' . PHP_EOL; // XSS Ok.
     }
 
     public function get_listing_metadata() {
@@ -185,15 +203,15 @@ class AWPCP_Meta {
 
     private function generate_listing_metadata() {
         $metadata = array(
-            'http://ogp.me/ns#type' => 'article',
-            'http://ogp.me/ns#url' => $this->properties['url'],
-            'http://ogp.me/ns#title' => $this->properties['title'],
-            'http://ogp.me/ns#description' => htmlspecialchars( $this->properties['description'], ENT_QUOTES, get_bloginfo('charset') ),
+            'http://ogp.me/ns#type'                   => 'article',
+            'http://ogp.me/ns#url'                    => $this->properties['url'],
+            'http://ogp.me/ns#title'                  => $this->properties['title'],
+            'http://ogp.me/ns#description'            => htmlspecialchars( $this->properties['description'], ENT_QUOTES, get_bloginfo( 'charset' ) ),
             'http://ogp.me/ns/article#published_time' => awpcp_datetime( 'c', $this->properties['published-time'] ),
-            'http://ogp.me/ns/article#modified_time' => awpcp_datetime( 'c', $this->properties['modified-time'] ),
+            'http://ogp.me/ns/article#modified_time'  => awpcp_datetime( 'c', $this->properties['modified-time'] ),
         );
 
-        foreach ( $this->properties['images'] as $k => $image ) {
+        foreach ( $this->properties['images'] as $image ) {
             $metadata['http://ogp.me/ns#image'] = $image;
             break;
         }
@@ -212,53 +230,60 @@ class AWPCP_Meta {
             return $metadata[ $property ];
         }
 
-        return $title;
+        return $default;
     }
 
 
     public function generate_basic_meta_tags() {
-        $metadata = $this->get_listing_metadata();
+        $metadata  = $this->get_listing_metadata();
         $meta_tags = $this->meta_tags_genertor->generate_basic_meta_tags( $metadata );
 
         $this->render_meta_tags( $meta_tags, 'Basic' );
     }
 
-    public function get_the_date( $the_date, $d = '' ) {
-        if ( ! $d )
-            $d = get_option( 'date_format' );
+    /**
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
+    public function get_the_date( $the_date, $format = '' ) {
+        if ( ! $format ) {
+            $format = get_option( 'date_format' );
+        }
 
-        return mysql2date( $d, $this->properties['published-time'] );
+        return mysql2date( $format, $this->properties['published-time'] );
     }
 
-    public function get_the_modified_date( $the_date, $d ) {
-        if ( ! $d )
-            $d = get_option( 'date_format' );
+    /**
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
+    public function get_the_modified_date( $the_date, $format ) {
+        if ( ! $format ) {
+            $format = get_option( 'date_format' );
+        }
 
-        return mysql2date( $d, $this->properties['modified-time'] );
+        return mysql2date( $format, $this->properties['modified-time'] );
     }
 
     /**
      * Integration with SEO Ultimate.
      */
     public function seo_ultimate() {
-        // overwrite title
+        // Overwrite title.
         add_filter( 'single_post_title', array( $this, 'seo_ultimate_title' ) );
         $this->remove_wp_title_filter();
 
-        // disable OpenGraph meta tags in Show Ad page
-        if ($this->doing_opengraph) {
+        // Disable OpenGraph meta tags in Show Ad page.
+        if ( $this->doing_opengraph ) {
             awpcp_remove_filter( 'su_head', 'SU_OpenGraph' );
         }
     }
 
-    public function seo_ultimate_title($title) {
-        $settings = get_option( 'seo_ultimate_module_titles' );
+    public function seo_ultimate_title( $title ) {
+        $settings     = get_option( 'seo_ultimate_module_titles' );
         $title_format = awpcp_array_data( 'title_page', '', $settings );
+        $seplocation  = 'right';
 
         if ( string_starts_with( $title_format, '{blog}' ) ) {
             $seplocation = 'left';
-        } else {
-            $seplocation = 'right';
         }
 
         return $this->title_builder->build_title( $title, '', $seplocation );
@@ -272,15 +297,14 @@ class AWPCP_Meta {
         $this->remove_wp_title_filter();
     }
 
-    public function all_in_one_seo_pack_title($title) {
+    public function all_in_one_seo_pack_title( $title ) {
         global $aioseop_options;
 
         $title_format = awpcp_array_data( 'aiosp_page_title_format', '', $aioseop_options );
+        $seplocation  = 'left';
 
         if ( string_starts_with( $title_format, '%page_title%' ) ) {
             $seplocation = 'right';
-        } else {
-            $seplocation = 'left';
         }
 
         return $this->title_builder->build_title( $title, '', $seplocation );
@@ -290,8 +314,10 @@ class AWPCP_Meta {
      * Jetpack Integration
      */
     public function jetpack() {
-        if (!$this->doing_opengraph) return;
+        if ( ! $this->doing_opengraph ) {
+            return;
+        }
 
-        remove_action('wp_head', 'jetpack_og_tags');
+        remove_action( 'wp_head', 'jetpack_og_tags' );
     }
 }
