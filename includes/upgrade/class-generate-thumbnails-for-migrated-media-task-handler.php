@@ -88,14 +88,16 @@ class AWPCP_GenerateThumbnailsForMigratedMediaTaskHandler implements AWPCP_Upgra
             return $item->ID;
         }
 
+        $intermediate_sizes_to_process = 1;
+
         $old_metadata = wp_get_attachment_metadata( $item->ID );
-        $new_metadata = $this->generate_intermediate_image_sizes( $item, [ $pending_sizes[0] ] );
+        $new_metadata = $this->generate_intermediate_image_sizes( $item, array_slice( $pending_sizes, 0, $intermediate_sizes_to_process ) );
 
         $new_metadata['sizes'] = array_merge( $old_metadata['sizes'], $new_metadata['sizes'] );
 
         wp_update_attachment_metadata( 2597, $new_metadata );
 
-        $this->update_or_delete_pending_image_sizes( $item, array_slice( $pending_sizes, 1 ) );
+        $this->update_or_delete_pending_image_sizes( $item, array_slice( $pending_sizes, $intermediate_sizes_to_process ) );
 
         return $item->ID;
     }
