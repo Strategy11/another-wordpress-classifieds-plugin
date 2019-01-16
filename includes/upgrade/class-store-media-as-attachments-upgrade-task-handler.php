@@ -85,13 +85,9 @@ class AWPCP_Store_Media_As_Attachments_Upgrade_Task_Handler implements AWPCP_Upg
         $parent_listing_id = $this->get_id_of_associated_listing( $item );
 
         if ( 0 === $parent_listing_id ) {
-            debugf(
-                sprintf( 'The file %s has no associated listing.', $file_path ),
-                $item,
-                $file_path,
-                $file_name
-            );
-
+            // The file has no associated listing. We assume this is an orphan file
+            // left behind by broken delete operation on previous versions of the
+            // plugin.
             return $item->id;
         }
 
@@ -99,11 +95,16 @@ class AWPCP_Store_Media_As_Attachments_Upgrade_Task_Handler implements AWPCP_Upg
         $file_name = awpcp_utf8_pathinfo( $file_path, PATHINFO_BASENAME );
 
         if ( ! file_exists( $file_path ) ) {
-            debugf(
-                sprintf( 'The file %s does not exists.', $file_path ),
-                $item,
-                $file_path,
-                $file_name
+            $error_message = __( "The file {filepath} doesn't exist.", 'another-wordpress-classifieds-plugin' );
+            $error_message = str_replace( '{filepath}', $file_path, $error_message );
+
+            add_post_meta(
+                $parent_listing_id,
+                '_awpcp_failed_media_migration',
+                [
+                    'errors' => [ $error_message ],
+                    'media'  => (array) $item,
+                ]
             );
 
             return $item->id;
@@ -131,12 +132,30 @@ class AWPCP_Store_Media_As_Attachments_Upgrade_Task_Handler implements AWPCP_Upg
         $attachment_id = $this->wordpress->handle_media_sideload( $file_array, $parent_listing_id, $description );
         remove_filter( 'intermediate_image_sizes_advanced', '__return_empty_array', 20181224 );
 
-        // If error storing permanently, unlink.
-        if ( is_wp_error( $attachment_id ) ) {
-            throw new AWPCP_Exception( sprintf( "An attachment couldn't be created for media item with id %d", $item->id ) );
-        } elseif ( file_exists( $tmp_name ) ) {
+        if ( file_exists( $tmp_name ) ) {
             // phpcs:disable WordPress.VIP.FileSystemWritesDisallow.file_ops_unlink
             @unlink( $tmp_name );
+            // phpcs:enable WordPress.VIP.FileSystemWritesDisallow.file_ops_unlink
+        }
+
+        // If error storing permanently, unlink.
+        if ( is_wp_error( $attachment_id ) ) {
+            $error_message = __( "An attachment couldn't be created for media item with id {media_id}.", 'another-wordpress-classifieds-plugin' );
+            $error_message = str_replace( '{media_id}', $item->id, $error_message );
+
+            add_post_meta(
+                $parent_listing_id,
+                '_awpcp_failed_media_migration',
+                [
+                    'errors' => [
+                        $error_message,
+                        $attachment_id->get_error_message(),
+                    ],
+                    'media'  => (array) $item,
+                ]
+            );
+
+            return $item->id;
         }
 
         if ( $item->enabled ) {
