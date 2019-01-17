@@ -139,7 +139,7 @@ class AWPCP_Image_Placeholders {
                     }
 
                     $large_image = $this->attachment_properties->get_image_url( $image, 'large' );
-                    $li_classes  = [ 'awpcp-attachments-list-item' ];
+                    $li_classes  = [ 'awpcp-attachments-list-item', 'awpcp-attachment-type-image' ];
 
                     if ($columns > 0) {
                         $li_classes[] = "awpcp-attchment-column-width-1-{$columns}";
