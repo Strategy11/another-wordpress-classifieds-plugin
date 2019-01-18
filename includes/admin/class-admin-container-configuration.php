@@ -378,13 +378,5 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
                 );
             }
         );
-
-        $container['ImportExportAdminPage'] = $container->service(
-            function( $container ) {
-                return new AWPCP_ImportExportAdminPage(
-                    $container['TemplateRenderer']
-                );
-            }
-        );
     }
 }
