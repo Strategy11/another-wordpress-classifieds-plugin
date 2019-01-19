@@ -43,13 +43,15 @@ class AWPCP_CategoryShortcode {
         $attrs = shortcode_atts( array(
             'id' => 0,
             'children' => true,
-            'items_per_page' => get_awpcp_option( 'adresultsperpage', 10 ),
+            'items_per_page'       => null,
             'show_categories_list' => true,
         ), $attrs );
 
         $attrs['children'] = awpcp_parse_bool( $attrs['children'] );
         $attrs['show_categories_list'] = awpcp_parse_bool( $attrs['show_categories_list'] );
 
+        // $attrs['id'] must be an array. If that's not the case anymore, please
+        // update render_categories_list() and get_categories() to handle single values.
         if ( strpos( $attrs['id'], ',' ) ){
             $attrs['id'] = explode( ',', $attrs['id'] );
         } else {
@@ -60,17 +62,19 @@ class AWPCP_CategoryShortcode {
     }
 
     private function render_shortcode_content( $attrs ) {
-        try {
-            $category = $this->categories->get( $attrs['id'] );
-        } catch ( AWPCP_Exception $e ) {
-            return __( 'Category ID must be valid for Ads to display.', 'category shortcode', 'another-wordpress-classifieds-plugin' );
+        $categories = $this->get_categories( $attrs['id'] );
+
+        if ( ! $categories ) {
+            return __( 'No category was found with the IDs provided. Please provide at least one valid category ID.', 'another-wordpress-classifieds-plugin' );
         }
+
+        $categories_ids = wp_list_pluck( $categories, 'term_id' );
 
         if ( $attrs['show_categories_list'] ) {
             $options = array(
                 'before_pagination' => array(
                     10 => array(
-                        'categories-list' => $this->render_categories_list( $attrs['id'] ),
+                        'categories-list' => $this->render_categories_list( $categories_ids ),
                     ),
                 ),
             );
@@ -78,15 +82,23 @@ class AWPCP_CategoryShortcode {
             $options = array();
         }
 
-        $query = array(
-            'context' => 'public-listings',
-            'category_id' => $category->term_id,
-            'include_listings_in_children_categories' => $attrs['children'],
-            'posts_per_page' => absint( $this->request->param( 'results', $attrs['items_per_page'] ) ),
-            'offset' => absint( $this->request->param( 'offset', 0 ) ),
-            'orderby' => get_awpcp_option( 'groupbrowseadsby' ),
-        );
+        // TODO: Is the include_listings_in_children_categories parameter supported?
+        $query = [
+            'classifieds_query' => [
+                'context'                                 => 'public-listings',
+                'category'                                => $categories_ids,
+                'include_listings_in_children_categories' => $attrs['children'],
+            ],
+            'orderby'           => get_awpcp_option( 'groupbrowseadsby' ),
+        ];
 
+        $posts_per_page = $this->request->param( 'results' );
+
+        if ( $posts_per_page ) {
+            $query['posts_per_page'] = $posts_per_page;
+        } elseif ( isset( $attrs['items_per_page'] ) ) {
+            $query['posts_per_page'] = $attrs['items_per_page'];
+        }
 
         // required so awpcp_display_ads shows the name of the current category
         if ( count( $attrs['id'] ) === 1 ) {
@@ -96,10 +108,33 @@ class AWPCP_CategoryShortcode {
         return awpcp_display_listings_in_page( $query, 'category-shortcode', $options );
     }
 
-    private function render_categories_list( $categories_ids ) {
+    /**
+     * @since 4.0.0
+     */
+    private function get_categories( $categories_ids ) {
+        $categories = [];
+
+        foreach ( $categories_ids as $category_id ) {
+            try {
+                try {
+                    $categories[] = $this->categories->get( $category_id );
+                } catch ( AWPCP_Exception $e ) {
+                    $categories[] = $this->categories->get_category_with_old_id( $category_id );
+                }
+            } catch ( AWPCP_Exception $e ) {
+                continue;
+            }
+        }
+
+        // This method must return an array. If that's not the case anymore, please
+        // update render_categories_list() to handle single values.
+        return $categories;
+    }
+
+    private function render_categories_list( array $categories_ids ) {
         $categories_list_params = array( 'show_listings_count' => true, );
 
-        if ( count( $categories_ids ) == 1 ) {
+        if ( count( $categories_ids ) === 1 ) {
             $categories_list_params['parent_category_id'] = $categories_ids[0];
         } else {
             $categories_list_params['category_id'] = $categories_ids;
