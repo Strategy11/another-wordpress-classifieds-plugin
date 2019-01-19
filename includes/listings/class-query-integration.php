@@ -521,6 +521,12 @@ class AWPCP_QueryIntegration {
      * @since 4.0.0
      */
     public function process_category_query_parameter( $query_vars ) {
+        $include_children = true;
+
+        if ( isset( $query_vars['classifieds_query']['include_listings_in_children_categories'] ) ) {
+            $include_children = $query_vars['classifieds_query']['include_listings_in_children_categories'];
+        }
+
         if ( isset( $query_vars['classifieds_query']['category'] ) ) {
             $terms = $this->sanitize_terms( $query_vars['classifieds_query']['category'] );
 
@@ -528,7 +534,7 @@ class AWPCP_QueryIntegration {
                 'taxonomy'         => $this->categories_taxonomy,
                 'field'            => 'term_id',
                 'terms'            => $terms,
-                'include_children' => true,
+                'include_children' => $include_children,
             );
         }
 
