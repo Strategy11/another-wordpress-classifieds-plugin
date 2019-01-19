@@ -2746,39 +2746,6 @@ function awpcp_phpmailer_init_smtp( $phpmailer ) {
     // that's it!
 }
 
-/**
- * @deprecated 3.7.5    Use AWPCP_Email class instead.
- */
-function awpcp_process_mail($senderemail='', $receiveremail='',  $subject='',
-                            $body='', $sendername='', $replytoemail='', $html=false)
-{
-    $headers =  "MIME-Version: 1.0\n" .
-    "From: $sendername <$senderemail>\n" .
-    "Reply-To: $replytoemail\n";
-
-    if ($html) {
-        $headers .= "Content-Type: text/html; charset=\"" . get_option('blog_charset') . "\"\n";
-    } else {
-        $headers .= "Content-Type: text/plain; charset=\"" . get_option('blog_charset') . "\"\n";
-    }
-
-    $subject = $subject;
-    $message = "$body\n\n" . awpcp_format_email_sent_datetime() . "\n\n";
-
-    if (wp_mail($receiveremail, $subject, $message, $headers )) {
-        return 1;
-
-    } elseif (awpcp_send_email($senderemail, $receiveremail, $subject, $body,true)) {
-        return 1;
-
-    } elseif (@mail($receiveremail, $subject, $body, $headers)) {
-        return 1;
-
-    } else {
-        return 0;
-    }
-}
-
 function awpcp_format_email_sent_datetime() {
     $time = date_i18n( awpcp_get_datetime_format(), current_time( 'timestamp' ) );
     return sprintf( __( 'Email sent %s.', 'another-wordpress-classifieds-plugin' ), $time );
@@ -2879,58 +2846,6 @@ function awpcp_get_ad_share_info($id) {
     }
 
     return $info;
-}
-
-/**
- * TODO: move to AWPCP_Email?
- */
-function awpcp_send_email($from,$to,$subject,$message, $html=false, $attachments=array(), $bcc='') {
-    $separator='Next.Part.331925654896717'.time();
-    $att_separator='NextPart.is_a_file9817298743'.time();
-    $headers="From: $from\n";
-    $headers.="MIME-Version: 1.0\n";
-    if (!empty($bcc)) {
-        $headers.="Bcc: $bcc\n";
-    }
-    $text_header="Content-Type: text/plain; charset=\"iso-8859-1\"\nContent-Transfer-Encoding: 8bit\n\n";
-    $html_header="Content-Type: text/html; charset=\"iso-8859-1\"\nContent-Transfer-Encoding: 8bit\n\n";
-    $html_message=$message;
-    $text_message=$message;
-    $text_message=str_replace('&nbsp;',' ',$text_message);
-    $text_message=trim(strip_tags(stripslashes($text_message)));
-    // Bring down number of empty lines to 2 max
-    $text_message=preg_replace("/\n[\s]+\n/","\n",$text_message);
-    $text_message=preg_replace("/[\n]{3,}/", "\n\n",$text_message);
-    $text_message=wordwrap($text_message,72);
-    $message="\n\n--$separator\n".$text_header.$text_message;
-
-    if ($html) {
-        $message.="\n\n--$separator\n".$html_header.$html_message;
-    }
-
-    $message.="\n\n--$separator--\n";
-
-    if (!empty($attachments)) {
-        $headers.="Content-Type: multipart/mixed; boundary=\"$att_separator\";\n";
-        $message="\n\n--$att_separator\nContent-Type: multipart/alternative; boundary=\"$separator\";\n".$message;
-        while (list(,$file)=each($attachments)) {
-            $message.="\n\n--$att_separator\n";
-            $message.="Content-Type: application/octet-stream; name=\"".basename($file)."\"\n";
-            $message.="Content-Transfer-Encoding: base64\n";
-            $message.='Content-Disposition: attachment; filename="'.basename($file)."\"\n\n";
-            $message.=wordwrap(base64_encode(fread(fopen($file,'rb'),filesize($file))),72,"\n",1);
-        }
-        $message.="\n\n--$att_separator--\n";
-    } else {
-        $headers.="Content-Type: multipart/alternative;\n\tboundary=\"$separator\";\n";
-    }
-    $message='This is a multi-part message in MIME format.'.$message;
-    if (isset($_SERVER['WINDIR']) || isset($_SERVER['windir']) || isset($_ENV['WINDIR']) || isset($_ENV['windir'])) {
-        $message=unix2dos($message);
-    }
-    //  $headers=unix2dos($headers);
-    $sentok=@mail($to,$subject,$message,$headers,"-f$from");
-    return $sentok;
 }
 
 /**
