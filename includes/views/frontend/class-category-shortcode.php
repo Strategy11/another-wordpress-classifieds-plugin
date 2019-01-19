@@ -1,5 +1,11 @@
 <?php
+/**
+ * @package AWPCP\Frontend
+ */
 
+/**
+ * Constructor for Category Shortcode class.
+ */
 function awpcp_category_shortcode() {
     return new AWPCP_CategoryShortcode(
         awpcp_categories_renderer_factory(),
@@ -18,41 +24,49 @@ class AWPCP_CategoryShortcode {
 
     public function __construct( $categories_renderer_factory, $categories, $db, $request ) {
         $this->categories_renderer_factory = $categories_renderer_factory;
-        $this->categories = $categories;
-        $this->db = $db;
-        $this->request = $request;
+        $this->categories                  = $categories;
+        $this->db                          = $db;
+        $this->request                     = $request;
     }
 
     public function render( $attrs ) {
         $attrs = $this->get_shortcode_attrs( $attrs );
 
+        // @phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
         $output = apply_filters( 'awpcp-category-shortcode-content-replacement', null, $attrs );
+        // @phpcs:enable WordPress.NamingConventions.ValidHookName.UseUnderscores
 
         if ( is_null( $output ) ) {
             return $this->render_shortcode_content( $attrs );
-        } else {
-            return $output;
         }
+
+        return $output;
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.ElseExpression)
+     */
     private function get_shortcode_attrs( $attrs ) {
         if ( ! isset( $attrs['show_categories_list'] ) && isset( $attrs['children'] ) ) {
             $attrs['show_categories_list'] = $attrs['children'];
         }
 
-        $attrs = shortcode_atts( array(
-            'id' => 0,
-            'children' => true,
-            'items_per_page'       => null,
-            'show_categories_list' => true,
-        ), $attrs );
+        $attrs = shortcode_atts(
+            array(
+                'id'                   => 0,
+                'children'             => true,
+                'items_per_page'       => null,
+                'show_categories_list' => true,
+            ),
+            $attrs
+        );
 
-        $attrs['children'] = awpcp_parse_bool( $attrs['children'] );
+        $attrs['children']             = awpcp_parse_bool( $attrs['children'] );
         $attrs['show_categories_list'] = awpcp_parse_bool( $attrs['show_categories_list'] );
 
-        // $attrs['id'] must be an array. If that's not the case anymore, please
+        // $attrs['id'] must be an array at the end. If that's not the case anymore, please
         // update render_categories_list() and get_categories() to handle single values.
-        if ( strpos( $attrs['id'], ',' ) ){
+        if ( strpos( $attrs['id'], ',' ) ) {
             $attrs['id'] = explode( ',', $attrs['id'] );
         } else {
             $attrs['id'] = array( $attrs['id'] );
@@ -69,6 +83,7 @@ class AWPCP_CategoryShortcode {
         }
 
         $categories_ids = wp_list_pluck( $categories, 'term_id' );
+        $options        = [];
 
         if ( $attrs['show_categories_list'] ) {
             $options = array(
@@ -78,8 +93,6 @@ class AWPCP_CategoryShortcode {
                     ),
                 ),
             );
-        } else {
-            $options = array();
         }
 
         // TODO: Is the include_listings_in_children_categories parameter supported?
@@ -100,7 +113,7 @@ class AWPCP_CategoryShortcode {
             $query['posts_per_page'] = $attrs['items_per_page'];
         }
 
-        // required so awpcp_display_ads shows the name of the current category
+        // Required so awpcp_display_ads shows the name of the current category.
         if ( count( $attrs['id'] ) === 1 ) {
             $_REQUEST['category_id'] = $attrs['id'][0];
         }
@@ -131,8 +144,11 @@ class AWPCP_CategoryShortcode {
         return $categories;
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.ElseExpression)
+     */
     private function render_categories_list( array $categories_ids ) {
-        $categories_list_params = array( 'show_listings_count' => true, );
+        $categories_list_params = array( 'show_listings_count' => true );
 
         if ( count( $categories_ids ) === 1 ) {
             $categories_list_params['parent_category_id'] = $categories_ids[0];
