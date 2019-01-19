@@ -6,7 +6,11 @@
 // phpcs:disable
 
 function awpcp_categories_collection() {
-    return new AWPCP_Categories_Collection( 'awpcp_listing_category', awpcp_wordpress() );
+    return new AWPCP_Categories_Collection(
+        'awpcp_listing_category',
+        awpcp_categories_registry(),
+        awpcp_wordpress()
+    );
 }
 
 class AWPCP_Categories_Collection {
@@ -16,33 +20,95 @@ class AWPCP_Categories_Collection {
      */
     private $taxonomy;
 
+    /**
+     * @var Categories Registry
+     */
+    private $categories_registry;
+
     private $wordpress;
 
     /**
      * @param string $taxonomy  The name of the listings category taxonomy.
      */
-    public function __construct( $taxonomy, $wordpress ) {
-        $this->taxonomy  = $taxonomy;
-        $this->wordpress = $wordpress;
+    public function __construct( $taxonomy, $categories_registry, $wordpress ) {
+        $this->taxonomy            = $taxonomy;
+        $this->categories_registry = $categories_registry;
+        $this->wordpress           = $wordpress;
     }
 
     /**
      * @since 4.0.0
      */
     public function get( $category_id ) {
-        if ( $category_id <= 0 ) {
-            $message = __( 'The category ID must be a positive integer, %d was given.', 'another-wordpress-classifieds-plugin' );
-            throw new AWPCP_Exception( sprintf( $message, $category_id ) );
-        }
-
-        $category = $this->wordpress->get_term_by( 'id', $category_id, $this->taxonomy );
+        $category_id = $this->sanitize_category_id( $category_id );
+        $category    = $this->get_category_by_id( $category_id );
 
         if ( $category === false || is_null( $category ) ) {
             $message = __( 'No category was found with ID: %d', 'another-wordpress-classifieds-plugin' );
             throw new AWPCP_Exception( sprintf( $message, $category_id ) );
         }
 
+        return $this->prepare_category_object( $category );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function sanitize_category_id( $category_id ) {
+        if ( $category_id <= 0 ) {
+            $message = __( 'The category ID must be a positive integer, {category_id} was given.', 'another-wordpress-classifieds-plugin' );
+            $message = str_replace( '{category_id}', $category_id, $message );
+
+            throw new AWPCP_Exception( $message );
+        }
+
+        return absint( $category_id );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function get_category_by_id( $category_id ) {
+        return $this->wordpress->get_term_by( 'id', $category_id, $this->taxonomy );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function prepare_category_object( $category ) {
+        $category->term_id = absint( $category->term_id );
+
         return $category;
+    }
+
+    /**
+     * We need to support OLD category's IDs for a while, in order to maintain
+     * old shortcodes and URLs working.
+     *
+     * @since 4.0.0
+     */
+    public function get_category_with_old_id( $old_category_id ) {
+        $old_category_id = $this->sanitize_category_id( $old_category_id );
+        $new_categories  = $this->categories_registry->get_categories_registry();
+
+        if ( ! isset( $new_categories[ $old_category_id ] ) ) {
+            $message = __( 'No category was found with old ID: {old_category_id}.', 'another-wordpress-classifieds-plugin' );
+            $message = str_replace( '{old_category_id}', $old_category_id, $message );
+
+            throw new AWPCP_Exception( $message );
+        }
+
+        $category = $this->get_category_by_id( $new_categories[ $old_category_id ] );
+
+        if ( $category === false ) {
+            $message = __( 'No category was found with ID: {category_id}, the replacement for category with old ID: {old_category_id}.', 'another-wordpress-classifieds-plugin' );
+            $message = str_replace( '{category_id}', $new_categories[ $old_category_id ], $message );
+            $message = str_replace( '{old_category_id}', $old_category_id, $message );
+
+            throw new AWPCP_Exception( $message );
+        }
+
+        return $this->prepare_category_object( $category );
     }
 
     public function get_category_by_name( $name ) {
@@ -60,7 +126,7 @@ class AWPCP_Categories_Collection {
             throw new AWPCP_Exception( sprintf( $message, $name ) );
         }
 
-        return $category;
+        return $this->prepare_category_object( $category );
     }
 
     /**
