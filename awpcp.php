@@ -948,7 +948,7 @@ class AWPCP {
 					'url' => 'http://awpcp.com/downloads/regions-module/?ref=panel',
 					'installed' => defined( 'AWPCP_REGION_CONTROL_MODULE' ),
 					'version' => 'AWPCP_REGION_CONTROL_MODULE_DB_VERSION',
-					'required' => '3.6.8',
+					'required' => '3.6.11',
 				),
 				'restricted-categories' => array(
 					'name' => __( 'Restricted Categories', 'another-wordpress-classifieds-plugin' ),
