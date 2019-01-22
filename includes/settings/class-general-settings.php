@@ -178,7 +178,8 @@ class AWPCP_GeneralSettings {
         );
 
         $options = array(
-            'recaptcha' => __( 'reCAPTCHA (recommended)', 'another-wordpress-classifieds-plugin' ),
+            'recaptcha'   => __( 'reCAPTCHA v2', 'another-wordpress-classifieds-plugin' ),
+            'reCAPTCHAv3' => __( 'reCAPTCHA v3', 'another-wordpress-classifieds-plugin' ),
             'math' => __( 'Math', 'another-wordpress-classifieds-plugin' ),
         );
 
@@ -188,7 +189,7 @@ class AWPCP_GeneralSettings {
             __( 'Type of CAPTCHA', 'another-wordpress-classifieds-plugin' ),
             'radio',
             'math',
-            __( 'reCAPTCHA: Uses distorted images that only humans should be able to read (recommended).', 'another-wordpress-classifieds-plugin' ) . '<br/>' . __( 'Math: Asks user to solve a simple arithmetic operation.', 'another-wordpress-classifieds-plugin' ),
+            '<br/>' . __( 'reCAPTCHA v2: requires the user to click a checkbox indicating the user is not a robot. This will either pass the user immediately (with No CAPTCHA) or challenge them to validate whether or not they are human.', 'another-wordpress-classifieds-plugin' ) . '<br/><br/>' . __( 'reCAPTCHA v3: returns a score for each request without user friction. The score is based on interactions with your site and enables you to take an appropriate action for your site.', 'another-wordpress-classifieds-plugin' ) . '<br/><br/>' . __( 'Math: Asks user to solve a simple arithmetic operation.', 'another-wordpress-classifieds-plugin' ),
             array( 'options' => $options )
         );
 
