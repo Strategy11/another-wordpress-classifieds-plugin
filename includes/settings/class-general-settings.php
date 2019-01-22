@@ -201,6 +201,19 @@ class AWPCP_GeneralSettings {
         $settings->add_setting( $key, 'recaptcha-public-key', __( 'reCAPTCHA Site Key', 'another-wordpress-classifieds-plugin' ), 'textfield', '', $help_text );
         $settings->add_setting( $key, 'recaptcha-private-key', __( 'reCAPTCHA Secret Key', 'another-wordpress-classifieds-plugin' ), 'textfield', '',$help_text );
 
+        $description = __( 'reCAPTCHA v3 returns a score (1.0 is very likely a good interaction, 0.0 is very likely a bot). The plugin will interrupt all interactions that receive a score under the configured threshold.', 'another-wordpress-classifieds-plugin' ) . '<br/><br/>' . __( "However, reCAPTCHA learns by seeing real traffic on your site. For this reason, scores in a staging environment or soon after implementing may differ from production. You can start using a threshold of 0.5 and find a better value looking at your traffic in the {console_link}admin console{/console_link}.", 'another-wordpress-classifieds-plugin' );
+        $description = str_replace( '{console_link}', '<a href="https://g.co/recaptcha/admin">', $description );
+        $description = str_replace( '{/console_link}', '</a>', $description );
+
+        $settings->add_setting(
+            $key,
+            'recaptcha-v3-score-threshold',
+            __( 'reCAPTCHA score threshold (v3 only)', 'another-wordpress-classifieds-plugin' ),
+            'textfield',
+            '0.5',
+            $description
+        );
+
         // Section: SEO Settings
 
         $key = $settings->add_section($group, __('SEO Settings', 'another-wordpress-classifieds-plugin'), 'seo-settings', 10, array( $settings, 'section' ) );
