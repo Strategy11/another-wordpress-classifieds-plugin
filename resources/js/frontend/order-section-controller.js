@@ -147,10 +147,18 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
         },
 
         updateInitialState: function() {
-            var self = this;
+            var self = this,
+                listingId = parseInt( self.$listingId.val(), 10 ),
+                transactionId = self.$transactionId.val();
 
-            self.store.setListingId( parseInt( self.$listingId.val(), 10 ) );
-            self.store.setTransactionId( self.$transactionId.val() );
+            if ( listingId ) {
+                self.store.setListingId( listingId );
+            }
+
+            if ( transactionId ) {
+                self.store.setTransactionId( self.$transactionId.val() );
+            }
+
             self.store.updateSelectedPaymentTerm( self.paymentTermsList.getSelectedPaymentTerm() );
             self.store.updateSelectedCategories( self.categoriesSelector.getSelectedCategories() );
             self.store.updateSelectedUser( self.userSelector.getSelectedUser() );
