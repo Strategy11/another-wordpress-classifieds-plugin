@@ -358,6 +358,10 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
             self.categoriesSelector.clearSelectedCategories();
             self.userSelector.clearSelectedUser();
             self.creditPlansList.clearSelectedCreditPlan();
+
+            self.updateInitialState();
+
+            self.store.setSectionStateToEdit( self.id );
         },
 
         showErrors: function( errors ) {
