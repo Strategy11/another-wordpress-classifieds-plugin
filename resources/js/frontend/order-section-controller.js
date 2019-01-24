@@ -356,7 +356,6 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
 
             self.paymentTermsList.clearSelectedPaymentTerm();
             self.categoriesSelector.clearSelectedCategories();
-            self.userSelector.clearSelectedUser();
             self.creditPlansList.clearSelectedCreditPlan();
 
             self.updateInitialState();
