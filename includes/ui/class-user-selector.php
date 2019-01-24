@@ -60,6 +60,7 @@ class AWPCP_UserSelector {
             'selected'                      => null,
             'mode'                          => null,
             'include_full_user_information' => true,
+            'include_selected_user_only'    => false,
             'users'                         => [],
         ) );
 
@@ -179,11 +180,19 @@ class AWPCP_UserSelector {
      * @since 4.0.0
      */
     private function get_users( $params ) {
-        if ( $params['include_full_user_information'] ) {
-            return $this->users->get_users_with_full_information();
+        $query_vars = [];
+
+        if ( $params['include_selected_user_only'] && ! empty( $params['selected']['id'] ) ) {
+            $query_vars['user_id'] = $params['selected']['id'];
+        } elseif ( $params['include_selected_user_only'] && empty( $params['selected'] ) ) {
+            $query_vars['user_id'] = $params['selected'];
         }
 
-        return $this->users->get_users_with_basic_information();
+        if ( $params['include_full_user_information'] ) {
+            return $this->users->get_users_with_full_information( $query_vars );
+        }
+
+        return $this->users->get_users_with_basic_information( $query_vars );
     }
 
     /**
