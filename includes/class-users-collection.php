@@ -238,13 +238,31 @@ class AWPCP_UsersCollection {
         return array_shift( $users );
     }
 
-    public function get_users_with_full_information() {
-        return $this->find( array(
-            'fields' => array_merge( $this->standard_fields, $this->meta_fields, $this->other_fields ),
-        ) );
+    /**
+     * @since 4.0.0 Added $query_vars parameter.
+     */
+    public function get_users_with_full_information( $query_vars = [] ) {
+        $query_vars = array_merge(
+            [
+                'fields' => array_merge( $this->standard_fields, $this->meta_fields, $this->other_fields ),
+            ],
+            $query_vars
+        );
+
+        return $this->find( $query_vars );
     }
 
-    public function get_users_with_basic_information() {
-        return $this->find( array( 'fields' => array_merge( $this->standard_fields, array( 'public_name' ) ) ) );
+    /**
+     * @since 4.0.0 Added $query_vars parameter.
+     */
+    public function get_users_with_basic_information( $query_vars = [] ) {
+        $query_vars = array_merge(
+            [
+                'fields' => array_merge( $this->standard_fields, [ 'public_name' ] ),
+            ],
+            $query_vars
+        );
+
+        return $this->find( $query_vars );
     }
 }
