@@ -158,6 +158,9 @@ AWPCP.define( 'awpcp/frontend/actions-section-controller', [
             self.template = data.template;
 
             self.renderTemplate();
+        },
+
+        clear: function() {
         }
     } );
 
