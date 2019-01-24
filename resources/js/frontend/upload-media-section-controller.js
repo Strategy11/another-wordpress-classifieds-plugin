@@ -48,7 +48,13 @@ AWPCP.define( 'awpcp/frontend/upload-media-section-controller', [
                 return true;
             }
 
-            return self.store.getSelectedPaymentTermId() !== self.selectedPaymentTerm;
+            var selectedPaymentTerm = self.store.getSelectedPaymentTermId();
+
+            if ( selectedPaymentTerm === null ) {
+                return false;
+            }
+
+            return selectedPaymentTerm !== self.selectedPaymentTerm;
         },
 
         updateSelectedValues: function() {
