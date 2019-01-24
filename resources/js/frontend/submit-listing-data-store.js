@@ -128,7 +128,7 @@ AWPCP.define( 'awpcp/frontend/submit-listing-data-store', [
                 return self.data.user.id;
             }
 
-            return '';
+            return null;
         },
 
         getSelectedUserName: function() {
