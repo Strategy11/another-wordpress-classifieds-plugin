@@ -86,7 +86,11 @@ AWPCP.define( 'awpcp/frontend/listing-fields-section-controller', [
                 self.renderTemplate();
             }
 
-            self.updateTemplate();
+            if ( self.shouldHideTemplate() ) {
+                self.showDisabledMode();
+            } else {
+                self.updateTemplate();
+            }
         },
 
         renderTemplate: function() {
@@ -195,6 +199,24 @@ AWPCP.define( 'awpcp/frontend/listing-fields-section-controller', [
             }
 
             self.store.updateListingFields( data );
+        },
+
+        shouldHideTemplate: function() {
+            var self = this;
+
+            if ( self.selectedCategories.length === 0 ) {
+                return true;
+            }
+
+            if ( self.selectedUserId === null ) {
+                return true;
+            }
+
+            if ( self.selectedPaymentTerm === null ) {
+                return true;
+            }
+
+            return false;
         },
 
         updateTemplate: function( $container ) {

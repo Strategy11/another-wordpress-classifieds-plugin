@@ -65,7 +65,11 @@ AWPCP.define( 'awpcp/frontend/upload-media-section-controller', [
                 self.renderTemplate();
             }
 
-            self.updateTemplate();
+            if ( self.shouldHideTemplate() ) {
+                self.showDisabledMode();
+            } else {
+                self.updateTemplate();
+            }
         },
 
         renderTemplate: function() {
@@ -79,6 +83,16 @@ AWPCP.define( 'awpcp/frontend/upload-media-section-controller', [
             } );
 
             self.$element.addClass( 'rendered' );
+        },
+
+        shouldHideTemplate: function() {
+            var self = this;
+
+            if ( self.selectedPaymentTerm === null ) {
+                return true;
+            }
+
+            return false;
         },
 
         updateTemplate: function() {
