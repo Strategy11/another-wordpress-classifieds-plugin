@@ -281,7 +281,7 @@ AWPCP.define( 'awpcp/frontend/listing-fields-section-controller', [
         clear: function( data ) {
             var self = this;
 
-            self.$element.find( '.awpcp-has-value' ).val( null ).trigger( 'change' );
+            self.$element.find( '.awpcp-has-value' ).not( '[readonly]' ).val( null ).trigger( 'change' );
 
             if ( self.$regionsSelector.length ) {
                 self.$regionsSelector.data( 'RegionSelector' ).clearSelectedRegions();
