@@ -55,14 +55,17 @@ class AWPCP_UserSelector {
      * @since 4.0.0
      */
     private function prepare_paramaters( $params ) {
-        $params = wp_parse_args( $params, array(
-            'label'                         => false,
-            'selected'                      => null,
-            'mode'                          => null,
-            'include_full_user_information' => true,
-            'include_selected_user_only'    => false,
-            'users'                         => [],
-        ) );
+        $params = wp_parse_args(
+            $params,
+            [
+                'label'                         => false,
+                'selected'                      => null,
+                'mode'                          => null,
+                'include_full_user_information' => true,
+                'include_selected_user_only'    => false,
+                'users'                         => [],
+            ]
+        );
 
         // TODO: Remove usage of include-full-user-information.
         if ( isset( $params['include-full-user-information'] ) ) {
