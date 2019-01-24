@@ -113,6 +113,10 @@ function( $, CategoriesSelectorHelper ) {
             var self = this;
 
             return $.map( self.$select.select2( 'data' ), function ( option ) {
+                if ( option.id === '' ) {
+                    return null;
+                }
+
                 var id = parseInt( option.id, 10 );
 
                 return {
