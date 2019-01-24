@@ -36,13 +36,15 @@
                     <?php
                     echo awpcp()->container['UserSelector']->render(
                         [
-                            'required' => true,
-                            'selected' => awpcp_array_data( 'user', '', $form ),
-                            'label'    => _x( 'Who is the owner of this ad?', 'order submit listing section', 'another-wordpress-classifieds-plugin' ),
-                            'default'  => __( 'Please select a user', 'another-wordpress-classifieds-plugin' ),
-                            'id'       => 'ad-user-id',
-                            'name'     => 'user',
-                            'class'    => array( 'awpcp-user-selector' ),
+                            'required'                   => true,
+                            'selected'                   => awpcp_array_data( 'user', '', $form ),
+                            'label'                      => _x( 'Who is the owner of this ad?', 'order submit listing section', 'another-wordpress-classifieds-plugin' ),
+                            'default'                    => $show_user_field ? __( 'Please select a user', 'another-wordpress-classifieds-plugin' ) : '',
+                            'id'                         => 'ad-user-id',
+                            'name'                       => 'user',
+                            'class'                      => array( 'awpcp-user-selector' ),
+                            'include_selected_user_only' => ! $show_user_field,
+                            'include_full_user_information' => false,
                         ]
                     ); // XSS Ok.
                     ?>
