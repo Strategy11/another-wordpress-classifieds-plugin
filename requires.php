@@ -90,6 +90,7 @@ require_once AWPCP_DIR . '/includes/helpers/class-listing-renderer.php';
 require_once AWPCP_DIR . '/includes/helpers/class-listing-reply-akismet-data-source.php';
 require_once AWPCP_DIR . '/includes/helpers/class-page-title-builder.php';
 require_once AWPCP_DIR . '/includes/helpers/class-payment-transaction-helper.php';
+require_once AWPCP_DIR . '/includes/helpers/class-recaptcha-v3.php';
 require_once AWPCP_DIR . '/includes/helpers/class-send-to-facebook-helper.php';
 require_once AWPCP_DIR . '/includes/helpers/class-spam-filter.php';
 require_once AWPCP_DIR . '/includes/helpers/class-spam-submitter.php';

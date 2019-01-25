@@ -1,15 +1,15 @@
-# Copyright (C) 2018 
+# Copyright (C) 2019 
 # This file is distributed under the same license as the  package.
 msgid ""
 msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2018-12-07 00:53:27+00:00\n"
+"POT-Creation-Date: 2019-01-25 15:38:06+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2018-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2019-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
@@ -18,6 +18,7 @@ msgstr ""
 #: admin/fees/class-fee-details-form.php:35
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:9
 #: includes/settings/class-payment-general-settings.php:58
+#: templates/admin/manage-categories-admin-page.tpl.php:30
 msgid "Name"
 msgstr ""
 
@@ -53,7 +54,7 @@ msgid "Categories"
 msgstr ""
 
 #: admin/admin-panel-fees-table.php:129
-#: admin/templates/admin-sidebar.tpl.php:103 includes/class-awpcp.php:719
+#: admin/templates/admin-sidebar.tpl.php:103 includes/class-awpcp.php:724
 msgid "Featured Ads"
 msgstr ""
 
@@ -268,18 +269,19 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/admin-panel.php:688 admin/class-categories-admin-page.php:58
-#: admin/class-categories-admin-page.php:62
+#: admin/admin-panel.php:688 admin/class-categories-admin-page.php:70
+#: admin/class-categories-admin-page.php:74
 msgid "Manage Category Icon"
 msgstr ""
 
-#: admin/admin-panel.php:693 admin/class-categories-admin-page.php:33
-#: admin/class-categories-admin-page.php:37
+#: admin/admin-panel.php:693 admin/class-categories-admin-page.php:45
+#: admin/class-categories-admin-page.php:49
+#: admin/class-categories-admin-page.php:142
 msgid "Edit Category"
 msgstr ""
 
-#: admin/admin-panel.php:694 admin/class-categories-admin-page.php:44
-#: admin/class-categories-admin-page.php:48
+#: admin/admin-panel.php:694 admin/class-categories-admin-page.php:56
+#: admin/class-categories-admin-page.php:60
 msgid "Delete Category"
 msgstr ""
 
@@ -322,26 +324,26 @@ msgctxt "page name"
 msgid "Search Ads"
 msgstr ""
 
-#: admin/categories/class-create-category-admin-page.php:32
+#: admin/categories/class-create-category-admin-page.php:41
 msgid "The new category was successfully added."
 msgstr ""
 
-#: admin/categories/class-delete-categories-admin-page.php:46
+#: admin/categories/class-delete-categories-admin-page.php:58
 msgid ""
 "The categories couldn't be deleted because there was an error trying to load "
 "the categoery that you selecetd to become the new category associated to "
-"affected listings. <error-message>"
+"affected ads. <error-message>"
 msgstr ""
 
-#: admin/categories/class-delete-categories-admin-page.php:58
+#: admin/categories/class-delete-categories-admin-page.php:68
 msgid "The selected categories have been deleted."
 msgstr ""
 
-#: admin/categories/class-delete-categories-admin-page.php:60
+#: admin/categories/class-delete-categories-admin-page.php:73
 msgid "There was an error trying to delete the selected categories."
 msgstr ""
 
-#: admin/categories/class-delete-categories-admin-page.php:62
+#: admin/categories/class-delete-categories-admin-page.php:77
 msgid ""
 "<categories-deleted> (out of <categories-count>) categories were deleted. "
 "However, there was an error trying to delete the other <categories-not-"
@@ -387,21 +389,21 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: admin/categories/class-move-categories-admin-page.php:45
+#: admin/categories/class-move-categories-admin-page.php:56
 msgid ""
 "The categories couldn't be moved because there was an error trying to load "
 "the target category. <specific-error-message>"
 msgstr ""
 
-#: admin/categories/class-move-categories-admin-page.php:54
+#: admin/categories/class-move-categories-admin-page.php:65
 msgid "The selected categories have been moved."
 msgstr ""
 
-#: admin/categories/class-move-categories-admin-page.php:56
+#: admin/categories/class-move-categories-admin-page.php:70
 msgid "There was an error trying to move the selected categories."
 msgstr ""
 
-#: admin/categories/class-move-categories-admin-page.php:58
+#: admin/categories/class-move-categories-admin-page.php:74
 msgid ""
 "<categories-moved> (out of <categories-count>) categories were moved. "
 "However, there was an error trying to move the other <categories-not-moved> "
@@ -416,17 +418,28 @@ msgstr ""
 msgid "The category was successfully updated."
 msgstr ""
 
-#: admin/class-categories-admin-page.php:104
+#: admin/class-categories-admin-page.php:116
 msgid "Categories per page:"
 msgstr ""
 
-#: admin/class-categories-admin-page.php:108
-#: admin/class-categories-admin-page.php:116
-msgid "Add new category"
+#: admin/class-categories-admin-page.php:128
+msgid "None (this is a top level category)"
 msgstr ""
 
-#: admin/class-categories-admin-page.php:116
+#: admin/class-categories-admin-page.php:138
+msgid "Select target category"
+msgstr ""
+
+#: admin/class-categories-admin-page.php:142
+msgid "Add New Category"
+msgstr ""
+
+#: admin/class-categories-admin-page.php:150
 msgid "Update category"
+msgstr ""
+
+#: admin/class-categories-admin-page.php:150
+msgid "Add new category"
 msgstr ""
 
 #: admin/class-debug-admin-page.php:140
@@ -759,12 +772,12 @@ msgctxt "sub menu title"
 msgid "Form Fields"
 msgstr ""
 
-#: admin/form-fields/class-form-fields-table.php:29
+#: admin/form-fields/class-form-fields-table.php:37
 msgctxt "form field name"
 msgid "Name"
 msgstr ""
 
-#: admin/form-fields/class-form-fields-table.php:30
+#: admin/form-fields/class-form-fields-table.php:38
 msgctxt "form field slug"
 msgid "Slug"
 msgstr ""
@@ -1185,7 +1198,7 @@ msgid ""
 msgstr ""
 
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:31
-#: includes/settings/class-general-settings.php:605
+#: includes/settings/class-general-settings.php:619
 msgid "Facebook API"
 msgstr ""
 
@@ -1207,7 +1220,7 @@ msgid ""
 msgstr ""
 
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:49
-#: includes/settings/class-general-settings.php:606
+#: includes/settings/class-general-settings.php:620
 msgid "Zapier/IFTTT Webhooks"
 msgstr ""
 
@@ -1450,19 +1463,19 @@ msgstr ""
 msgid "Get a Premium Module!"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:46 includes/class-awpcp.php:684
+#: admin/templates/admin-sidebar.tpl.php:46 includes/class-awpcp.php:689
 msgid "Campaign Manager"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:52 includes/class-awpcp.php:741
+#: admin/templates/admin-sidebar.tpl.php:52 includes/class-awpcp.php:746
 msgid "Mark as Sold"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:58 includes/class-awpcp.php:769
+#: admin/templates/admin-sidebar.tpl.php:58 includes/class-awpcp.php:774
 msgid "Restricted Categories"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:63 includes/class-awpcp.php:677
+#: admin/templates/admin-sidebar.tpl.php:63 includes/class-awpcp.php:682
 msgid "BuddyPress Listings"
 msgstr ""
 
@@ -1470,15 +1483,15 @@ msgstr ""
 msgid "Comments/Ratings"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:73 includes/class-awpcp.php:663
+#: admin/templates/admin-sidebar.tpl.php:73 includes/class-awpcp.php:668
 msgid "Attachments"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:78 includes/class-awpcp.php:670
+#: admin/templates/admin-sidebar.tpl.php:78 includes/class-awpcp.php:675
 msgid "Authorize.Net"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:83 includes/class-awpcp.php:755
+#: admin/templates/admin-sidebar.tpl.php:83 includes/class-awpcp.php:760
 msgid "PayPal Pro"
 msgstr ""
 
@@ -1486,7 +1499,7 @@ msgstr ""
 msgid "Coupon/Discount"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:93 includes/class-awpcp.php:790
+#: admin/templates/admin-sidebar.tpl.php:93 includes/class-awpcp.php:795
 msgid "Subscriptions"
 msgstr ""
 
@@ -1494,19 +1507,19 @@ msgstr ""
 msgid "Fee Per Category"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:108 includes/class-awpcp.php:712
+#: admin/templates/admin-sidebar.tpl.php:108 includes/class-awpcp.php:717
 msgid "Extra Fields"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:113 includes/class-awpcp.php:691
+#: admin/templates/admin-sidebar.tpl.php:113 includes/class-awpcp.php:696
 msgid "Category Icons"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:118 includes/class-awpcp.php:762
+#: admin/templates/admin-sidebar.tpl.php:118 includes/class-awpcp.php:767
 msgid "Regions Control"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:123 includes/class-awpcp.php:776
+#: admin/templates/admin-sidebar.tpl.php:123 includes/class-awpcp.php:781
 msgid "RSS"
 msgstr ""
 
@@ -1556,7 +1569,7 @@ msgid "Premium Modules"
 msgstr ""
 
 #: admin/templates/admin-sidebar.tpl.php:154
-#: admin/templates/admin-sidebar.tpl.php:195 functions.php:3150
+#: admin/templates/admin-sidebar.tpl.php:195 functions.php:3151
 msgid "Installed"
 msgstr ""
 
@@ -1565,7 +1578,7 @@ msgid "No premium modules installed."
 msgstr ""
 
 #: admin/templates/admin-sidebar.tpl.php:171
-#: admin/templates/admin-sidebar.tpl.php:212 functions.php:3146
+#: admin/templates/admin-sidebar.tpl.php:212 functions.php:3147
 msgid "Not Installed"
 msgstr ""
 
@@ -1784,7 +1797,7 @@ msgstr ""
 #: frontend/ad-functions.php:260 frontend/page-edit-ad.php:145
 #: frontend/page-edit-ad.php:213 frontend/page-edit-ad.php:374
 #: frontend/page-edit-ad.php:406
-#: includes/frontend/class-edit-listing-page.php:174
+#: includes/frontend/class-edit-listing-page.php:176
 msgid "The specified Ad doesn't exists."
 msgstr ""
 
@@ -1801,11 +1814,11 @@ msgctxt "single dropdown category selector"
 msgid "Category:"
 msgstr ""
 
-#: frontend/class-image-placeholders.php:72
+#: frontend/class-image-placeholders.php:78
 msgid "Click to enlarge image."
 msgstr ""
 
-#: frontend/class-image-placeholders.php:86
+#: frontend/class-image-placeholders.php:92
 msgid "Thumbnail for the listing's main image"
 msgstr ""
 
@@ -1829,7 +1842,7 @@ msgid "Please go to the Ad Management panel to edit your Ads."
 msgstr ""
 
 #: frontend/page-edit-ad.php:66
-#: includes/frontend/class-edit-listing-page.php:321
+#: includes/frontend/class-edit-listing-page.php:323
 msgid "Click here"
 msgstr ""
 
@@ -1858,7 +1871,7 @@ msgstr ""
 
 #. translators: %s is the URL to the listing's individual page.
 #: frontend/page-edit-ad.php:381
-#: includes/frontend/class-edit-listing-page.php:182
+#: includes/frontend/class-edit-listing-page.php:184
 msgid ""
 "The Ad has been edited successfully. <a href=\"%s\">Go back to view "
 "listings</a>."
@@ -1942,7 +1955,7 @@ msgstr ""
 
 #: frontend/page-place-ad.php:427 frontend/page-place-ad.php:835
 #: frontend/page-renew-ad.php:313
-#: includes/frontend/class-order-submit-listing-section.php:108
+#: includes/frontend/class-order-submit-listing-section.php:120
 msgid ""
 "You are logged in as an administrator. Any payment steps will be skipped."
 msgstr ""
@@ -2305,11 +2318,11 @@ msgstr ""
 msgid "Share on Facebook"
 msgstr ""
 
-#: frontend/shortcode.php:296
+#: frontend/shortcode.php:294
 msgid "Hi admin, you need to go to your dashboard and setup your classifieds."
 msgstr ""
 
-#: frontend/shortcode.php:299
+#: frontend/shortcode.php:297
 msgid "You currently have no classifieds"
 msgstr ""
 
@@ -2750,23 +2763,23 @@ msgstr ""
 msgid "Search for ads containing this word or phrase"
 msgstr ""
 
-#: frontend/templates/page-search-ads.tpl.php:39
+#: frontend/templates/page-search-ads.tpl.php:40
 msgid "For ads posted by"
 msgstr ""
 
-#: frontend/templates/page-search-ads.tpl.php:41
+#: frontend/templates/page-search-ads.tpl.php:42
 msgid "All Users"
 msgstr ""
 
-#: frontend/templates/page-search-ads.tpl.php:50
+#: frontend/templates/page-search-ads.tpl.php:51
 msgid "Min price"
 msgstr ""
 
-#: frontend/templates/page-search-ads.tpl.php:54
+#: frontend/templates/page-search-ads.tpl.php:55
 msgid "Max price"
 msgstr ""
 
-#: frontend/templates/page-search-ads.tpl.php:81
+#: frontend/templates/page-search-ads.tpl.php:82
 msgctxt "ad search form"
 msgid "Find Ads"
 msgstr ""
@@ -2782,7 +2795,7 @@ msgid ""
 "payment."
 msgstr ""
 
-#: frontend/templates/payments-billing-form.tpl.php:6 functions.php:814
+#: frontend/templates/payments-billing-form.tpl.php:6 functions.php:819
 #: includes/admin/class-listings-personal-data-provider.php:115
 #: includes/admin/class-listings-personal-data-provider.php:125
 #: includes/admin/import/class-csv-importer-columns.php:218
@@ -2830,7 +2843,7 @@ msgstr ""
 msgid "State"
 msgstr ""
 
-#: frontend/templates/payments-billing-form.tpl.php:101 functions.php:834
+#: frontend/templates/payments-billing-form.tpl.php:101 functions.php:839
 #: includes/admin/class-listings-personal-data-provider.php:117
 #: includes/admin/class-listings-personal-data-provider.php:127
 #: includes/admin/import/class-csv-importer-columns.php:248
@@ -3005,14 +3018,18 @@ msgid "Show City field?"
 msgstr ""
 
 #: frontend/templates/widget-search-form.tpl.php:22
-msgid "Show State field?"
+msgid "Show County field?"
 msgstr ""
 
 #: frontend/templates/widget-search-form.tpl.php:25
-msgid "Show Country field?"
+msgid "Show State field?"
 msgstr ""
 
 #: frontend/templates/widget-search-form.tpl.php:28
+msgid "Show Country field?"
+msgstr ""
+
+#: frontend/templates/widget-search-form.tpl.php:31
 msgid "Show Category field?"
 msgstr ""
 
@@ -3064,81 +3081,81 @@ msgstr ""
 msgid "AWPCP Search Ads"
 msgstr ""
 
-#: frontend/widget-search.php:47
+#: frontend/widget-search.php:48
 msgid "Find ads by Contact Name"
 msgstr ""
 
-#: frontend/widget-search.php:50
+#: frontend/widget-search.php:51
 msgid "All Contact Names"
 msgstr ""
 
-#: frontend/widget-search.php:100
+#: frontend/widget-search.php:88
 msgid "Select Option"
 msgstr ""
 
-#: frontend/widget-search.php:149
+#: frontend/widget-search.php:137
 msgid "Search by keyword"
 msgstr ""
 
-#: frontend/widget-search.php:165
+#: frontend/widget-search.php:153
 msgid "Search by Category"
 msgstr ""
 
-#: frontend/widget-search.php:183
+#: frontend/widget-search.php:171
 msgid "Search"
 msgstr ""
 
-#: functions.php:625
+#: functions.php:630
 msgid "Ads per page:"
 msgstr ""
 
-#: functions.php:642
+#: functions.php:647
 msgid "Page {current_page_number} of {number_of_pages}"
 msgstr ""
 
-#: functions.php:755
+#: functions.php:760
 msgid "None"
 msgstr ""
 
-#: functions.php:766
+#: functions.php:771
 msgctxt "comma separated list of things"
 msgid "%s and %d more."
 msgstr ""
 
-#: functions.php:815
+#: functions.php:820
 msgid "separate countries by commas"
 msgstr ""
 
-#: functions.php:824
+#: functions.php:829
 msgid "State/Province"
 msgstr ""
 
-#: functions.php:825
+#: functions.php:830
 msgid "separate states by commas"
 msgstr ""
 
-#: functions.php:835
+#: functions.php:840
 msgid "separate cities by commas"
 msgstr ""
 
-#: functions.php:844
+#: functions.php:849
 msgid "County/Village/Other"
 msgstr ""
 
-#: functions.php:845
+#: functions.php:850
 msgid "separate counties by commas"
 msgstr ""
 
-#: functions.php:1059
+#: functions.php:1064
 msgid "-- Choose a Country --"
 msgstr ""
 
-#: functions.php:1229
+#: functions.php:1234
 msgctxt "default blog title"
 msgid "Classifieds Website"
 msgstr ""
 
-#: functions.php:1793 templates/components/media-center.tpl.php:14
+#: functions.php:1798 templates/components/media-center.tpl.php:14
 msgid ""
 "The images or files with pale red background have been rejected by an "
 "administrator user. Likewise, files with a pale yellow background are "
@@ -3146,102 +3163,102 @@ msgid ""
 "cannot be shown in the frontend."
 msgstr ""
 
-#: functions.php:1812
+#: functions.php:1817
 msgid ""
 "This version of AWPCP %1$s module is not compatible with AWPCP version %2$s. "
 "Please get AWPCP %1$s %3$s or newer!"
 msgstr ""
 
-#: functions.php:1814
+#: functions.php:1819
 msgid "Error"
 msgstr ""
 
-#: functions.php:2172
+#: functions.php:2177
 msgid "No errors."
 msgstr ""
 
-#: functions.php:2173
+#: functions.php:2178
 msgid "The file is larger than upload_max_filesize."
 msgstr ""
 
-#: functions.php:2174
+#: functions.php:2179
 msgid "The file is larger than form MAX_FILE_SIZE."
 msgstr ""
 
-#: functions.php:2175
+#: functions.php:2180
 msgid "The file was only partially uploaded."
 msgstr ""
 
-#: functions.php:2176
+#: functions.php:2181
 msgid "No file was uploaded."
 msgstr ""
 
-#: functions.php:2177
+#: functions.php:2182
 msgid "Missing temporary directory."
 msgstr ""
 
-#: functions.php:2178
+#: functions.php:2183
 msgid "Can't write file to disk."
 msgstr ""
 
-#: functions.php:2179
+#: functions.php:2184
 msgid "The file upload was stopped by extension."
 msgstr ""
 
-#: functions.php:2411
+#: functions.php:2416
 msgid "Your Ad \"%s\" has been approved"
 msgstr ""
 
-#: functions.php:2434
+#: functions.php:2439
 msgid "Your Ad \"%s\" has been successfully updated"
 msgstr ""
 
-#: functions.php:2457
+#: functions.php:2462
 msgid "Images on Ad \"%s\" are awaiting approval"
 msgstr ""
 
-#: functions.php:2459 includes/functions/notifications.php:197
+#: functions.php:2464 includes/functions/notifications.php:197
 msgid ""
 "Images on Ad \"%s\" are awaiting approval. You can approve the images going "
 "to the Manage Images section for that Ad and clicking the \"Enable\" button "
 "below each image. Click here to continue: %s."
 msgstr ""
 
-#: functions.php:2462
+#: functions.php:2467
 msgid "The Ad \"%s\" is awaiting approval"
 msgstr ""
 
-#: functions.php:2464 includes/functions/notifications.php:202
+#: functions.php:2469 includes/functions/notifications.php:202
 msgid ""
 "The Ad \"%s\" is awaiting approval. You can approve the Ad going to the "
 "Manage Listings section and clicking the \"Enable\" action shown on top. "
 "Click here to continue: %s."
 msgstr ""
 
-#: functions.php:2471 includes/functions/notifications.php:209
+#: functions.php:2476 includes/functions/notifications.php:209
 msgid ""
 "Additionally, You can approve the images going to the Manage Images section "
 "for that Ad and clicking the \"Enable\" button below each image. Click here "
 "to continue: %s."
 msgstr ""
 
-#: functions.php:3009
+#: functions.php:3010
 msgid "Email sent %s."
 msgstr ""
 
-#: functions.php:3158
+#: functions.php:3159
 msgid "SSL Support: Yes."
 msgstr ""
 
-#: functions.php:3160
+#: functions.php:3161
 msgid "SSL Support: No."
 msgstr ""
 
-#: includes/admin/class-admin.php:220
+#: includes/admin/class-admin.php:218
 msgid "Classified Information"
 msgstr ""
 
-#: includes/admin/class-admin.php:228
+#: includes/admin/class-admin.php:226
 msgid "Classified Fields"
 msgstr ""
 
@@ -3523,11 +3540,6 @@ msgstr[1] ""
 #: includes/admin/listings/class-expired-listing-table-view.php:28
 msgctxt "listing view"
 msgid "Expired"
-msgstr ""
-
-#: includes/admin/listings/class-featured-listing-table-view.php:28
-msgctxt "listing view"
-msgid "Featured"
 msgstr ""
 
 #: includes/admin/listings/class-flagged-listing-table-view.php:28
@@ -4011,124 +4023,134 @@ msgid ""
 "one of the associated listings: <error-message>"
 msgstr ""
 
-#: includes/class-awpcp.php:646
+#: includes/class-awpcp.php:651
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
 msgstr ""
 
-#: includes/class-awpcp.php:647
+#: includes/class-awpcp.php:652
 #: includes/placeholders/class-placeholders-installation-verifier.php:63
 msgid "Warning"
 msgstr ""
 
-#: includes/class-awpcp.php:698
+#: includes/class-awpcp.php:703
 msgid "Comments & Ratings"
 msgstr ""
 
-#: includes/class-awpcp.php:705
+#: includes/class-awpcp.php:710
 msgid "Coupons/Discount"
 msgstr ""
 
-#: includes/class-awpcp.php:726
+#: includes/class-awpcp.php:731
 msgid "Fee per Category"
 msgstr ""
 
-#: includes/class-awpcp.php:733
+#: includes/class-awpcp.php:738
 msgid "Google Checkout"
 msgstr ""
 
-#: includes/class-awpcp.php:748
+#: includes/class-awpcp.php:753
 msgid "PayFast"
 msgstr ""
 
-#: includes/class-awpcp.php:783
+#: includes/class-awpcp.php:788
 msgid "Stripe"
 msgstr ""
 
-#: includes/class-awpcp.php:797 templates/components/media-manager.tpl.php:51
+#: includes/class-awpcp.php:802 templates/components/media-manager.tpl.php:51
 msgid "Videos"
 msgstr ""
 
-#: includes/class-awpcp.php:805
+#: includes/class-awpcp.php:810
 msgid "XML Sitemap"
 msgstr ""
 
-#: includes/class-awpcp.php:812
+#: includes/class-awpcp.php:817
 msgid "ZIP Code Search Module"
 msgstr ""
 
-#: includes/class-awpcp.php:1298
+#: includes/class-awpcp.php:1303
 msgid "This field is required."
 msgstr ""
 
-#: includes/class-awpcp.php:1299
+#: includes/class-awpcp.php:1304
 #: includes/form-fields/class-form-fields-validator.php:94
-#: includes/frontend/class-edit-listing-page.php:261
-#: includes/frontend/class-edit-listing-page.php:355
+#: includes/frontend/class-edit-listing-page.php:263
+#: includes/frontend/class-edit-listing-page.php:357
 #: includes/settings/class-payment-general-settings.php:168
 msgid "Please enter a valid email address."
 msgstr ""
 
-#: includes/class-awpcp.php:1300 includes/class-awpcp.php:1301
+#: includes/class-awpcp.php:1305 includes/class-awpcp.php:1306
 msgid "Please enter a valid URL."
 msgstr ""
 
-#: includes/class-awpcp.php:1302
+#: includes/class-awpcp.php:1307
 msgid "Please enter a valid number."
 msgstr ""
 
-#: includes/class-awpcp.php:1303
+#: includes/class-awpcp.php:1308
 msgid "Please enter a valid amount."
 msgstr ""
 
-#: includes/class-awpcp.php:1313
+#: includes/class-awpcp.php:1318
 msgctxt "[UI Datepicker] Display text for previous month link"
 msgid "&#x3c;Prev"
 msgstr ""
 
-#: includes/class-awpcp.php:1315
+#: includes/class-awpcp.php:1320
 msgctxt "[UI Datepicker] Display text for next month link"
 msgid "Next&#x3e;"
 msgstr ""
 
-#: includes/class-awpcp.php:1330
+#: includes/class-awpcp.php:1335
 msgctxt "[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ..."
 msgid "0"
 msgstr ""
 
-#: includes/class-awpcp.php:1336
+#: includes/class-awpcp.php:1341
 msgid "There are files currently being uploaded."
 msgstr ""
 
-#: includes/class-awpcp.php:1337
+#: includes/class-awpcp.php:1342
 msgid "There are files pending to be uploaded."
 msgstr ""
 
-#: includes/class-awpcp.php:1338
+#: includes/class-awpcp.php:1343
 msgid "You haven't uploaded any images or files."
 msgstr ""
 
-#: includes/class-awpcp.php:1407 includes/class-awpcp.php:1415
-#: includes/class-awpcp.php:1423 includes/class-awpcp.php:1500
-#: includes/class-awpcp.php:1508 includes/class-awpcp.php:1516
+#: includes/class-awpcp.php:1412 includes/class-awpcp.php:1420
+#: includes/class-awpcp.php:1428 includes/class-awpcp.php:1505
+#: includes/class-awpcp.php:1513 includes/class-awpcp.php:1521
 #: templates/admin/debug/plugin-info-debug-section.tpl.php:6
 msgid "Another WordPress Classifieds Plugin"
 msgstr ""
 
-#: includes/class-categories-collection.php:34
-msgid "The category ID must be a positive integer, %d was given."
-msgstr ""
-
-#: includes/class-categories-collection.php:41
+#: includes/class-categories-collection.php:47
 msgid "No category was found with ID: %d"
 msgstr ""
 
-#: includes/class-categories-collection.php:50
+#: includes/class-categories-collection.php:59
+msgid "The category ID must be a positive integer, {category_id} was given."
+msgstr ""
+
+#: includes/class-categories-collection.php:95
+msgid "No category was found with old ID: {old_category_id}."
+msgstr ""
+
+#: includes/class-categories-collection.php:104
+msgid ""
+"No category was found with ID: {category_id}, the replacement for category "
+"with old ID: {old_category_id}."
+msgstr ""
+
+#: includes/class-categories-collection.php:116
 msgid "The category name must be a non empty string, %s was given."
 msgstr ""
 
-#: includes/class-categories-collection.php:59
+#: includes/class-categories-collection.php:125
 msgid "No category was found with name: %s."
 msgstr ""
 
@@ -4408,83 +4430,83 @@ msgstr ""
 msgid "The selected ad cannot be edited right now."
 msgstr ""
 
-#: includes/frontend/class-edit-listing-page.php:210
+#: includes/frontend/class-edit-listing-page.php:212
 msgid ""
 "Your changes have been published. This is the content that will be seen by "
 "visitors of the website."
 msgstr ""
 
-#: includes/frontend/class-edit-listing-page.php:214
+#: includes/frontend/class-edit-listing-page.php:216
 msgid ""
 "Your changes have been saved. This is a preview of the content as seen by "
 "visitors of the website."
 msgstr ""
 
-#: includes/frontend/class-edit-listing-page.php:259
+#: includes/frontend/class-edit-listing-page.php:261
 msgid ""
 "Please enter the email address you used when you created your Ad in addition "
 "to the Ad access key that was emailed to you after your Ad was submitted."
 msgstr ""
 
-#: includes/frontend/class-edit-listing-page.php:265
+#: includes/frontend/class-edit-listing-page.php:267
 msgid "Please enter your Ad access key."
 msgstr ""
 
-#: includes/frontend/class-edit-listing-page.php:295
+#: includes/frontend/class-edit-listing-page.php:297
 msgid ""
 "The email address and access key you entered does not match any of the Ads "
 "in our system."
 msgstr ""
 
-#: includes/frontend/class-edit-listing-page.php:320
+#: includes/frontend/class-edit-listing-page.php:322
 msgid ""
 "You are currently not logged in, if you have an account on this website you "
 "can log in and go to the Ad Management panel to edit your Ads."
 msgstr ""
 
-#: includes/frontend/class-edit-listing-page.php:353
+#: includes/frontend/class-edit-listing-page.php:355
 msgid "Please enter the email address you used when you created your Ad."
 msgstr ""
 
-#: includes/frontend/class-edit-listing-page.php:376
+#: includes/frontend/class-edit-listing-page.php:378
 msgid ""
 "The email address you entered does not match any of the Ads in our system."
 msgstr ""
 
-#: includes/frontend/class-edit-listing-page.php:414
+#: includes/frontend/class-edit-listing-page.php:416
 msgid ""
 "The email address you entered does not match any of the listing in our "
 "system."
 msgstr ""
 
 #. translators: %s is the email address that user provided.
-#: includes/frontend/class-edit-listing-page.php:453
+#: includes/frontend/class-edit-listing-page.php:455
 msgid "There was an error trying to send the email to %s."
 msgstr ""
 
 #. translators: %s is the email address that user provided.
-#: includes/frontend/class-edit-listing-page.php:458
+#: includes/frontend/class-edit-listing-page.php:460
 msgid "The access keys were sent to %s."
 msgstr ""
 
-#: includes/frontend/class-edit-listing-page.php:498
+#: includes/frontend/class-edit-listing-page.php:500
 msgid "Invalid access token."
 msgstr ""
 
-#: includes/frontend/class-edit-listing-page.php:510
+#: includes/frontend/class-edit-listing-page.php:512
 msgid "The specified listing doesn't exists."
 msgstr ""
 
-#: includes/frontend/class-edit-listing-page.php:517
+#: includes/frontend/class-edit-listing-page.php:519
 msgid "The sepecified listing cannot be edited using this access code."
 msgstr ""
 
 #. translators: %s is the title of the listing.
-#: includes/frontend/class-edit-listing-page.php:547
+#: includes/frontend/class-edit-listing-page.php:549
 msgid "Edit link for listing: %s"
 msgstr ""
 
-#: includes/frontend/class-edit-listing-page.php:563
+#: includes/frontend/class-edit-listing-page.php:565
 msgid ""
 "The link you used already expired. Please check your email to receive a link "
 "with a new access token."
@@ -4512,6 +4534,26 @@ msgid ""
 "You can schedule your ad to appear on the website at a future date. The ad "
 "will remain visible for the duration of the selected plan starting from that "
 "date."
+msgstr ""
+
+#: includes/frontend/class-order-submit-listing-section.php:224
+msgctxt "order submit listing section"
+msgid "Category, owner and payment term selection"
+msgstr ""
+
+#: includes/frontend/class-order-submit-listing-section.php:226
+msgctxt "order submit listing section"
+msgid "Category and owner selection"
+msgstr ""
+
+#: includes/frontend/class-order-submit-listing-section.php:228
+msgctxt "order submit listing section"
+msgid "Category and payment term selection"
+msgstr ""
+
+#: includes/frontend/class-order-submit-listing-section.php:231
+msgctxt "order submit listing section"
+msgid "Category selection"
 msgstr ""
 
 #: includes/frontend/class-recaptcha-provider.php:48
@@ -4964,7 +5006,7 @@ msgid ""
 "Include this message if necesary."
 msgstr ""
 
-#: includes/helpers/class-modules-manager.php:182
+#: includes/helpers/class-modules-manager.php:183
 msgid ""
 "Yikes, there has been a mistake. It looks like you have an outdated version "
 "of AWPCP <module-name>, or you need a newer version of AWPCP to use that "
@@ -4978,7 +5020,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/helpers/class-modules-manager.php:214
+#: includes/helpers/class-modules-manager.php:215
 msgid ""
 "The version of AWPCP {modules_names} is not compatible with version "
 "{awpcp_version}."
@@ -4988,11 +5030,11 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/helpers/class-modules-manager.php:216
+#: includes/helpers/class-modules-manager.php:217
 msgid "Please get AWPCP {required_modules_versions} or newer!"
 msgstr ""
 
-#: includes/helpers/class-modules-manager.php:232
+#: includes/helpers/class-modules-manager.php:233
 msgid ""
 "The license for AWPCP <module-name> is inactive. All features will remain "
 "disabled until you activate the license. Please go to the <licenses-settings-"
@@ -5004,7 +5046,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/helpers/class-modules-manager.php:246
+#: includes/helpers/class-modules-manager.php:247
 msgid ""
 "The AWPCP <module-name> requires a license to be used. All features will "
 "remain disabled until a valid license is entered. Please go to the <licenses-"
@@ -5017,7 +5059,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/helpers/class-modules-manager.php:251
+#: includes/helpers/class-modules-manager.php:252
 msgid ""
 "The license for AWPCP <module-name> expired. The module will continue to "
 "work but you will not receive automatic updates when a new version is "
@@ -5029,7 +5071,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/helpers/class-modules-manager.php:262
+#: includes/helpers/class-modules-manager.php:263
 msgid ""
 "The AWPCP <module-name> is currently disabled because it requires you to "
 "perform a manual upgrade before continuing. Please <upgrade-link>go to the "
@@ -5041,8 +5083,13 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/helpers/class-modules-manager.php:275
+#: includes/helpers/class-modules-manager.php:276
 msgid "The specified module does not exists!."
+msgstr ""
+
+#: includes/helpers/class-recaptcha-v3.php:51
+msgid ""
+"The current interaction was not approved by reCAPTCHA. Please try again."
 msgstr ""
 
 #: includes/helpers/class-send-to-facebook-helper.php:81
@@ -5429,7 +5476,7 @@ msgctxt "taxonomy general name"
 msgid "Category"
 msgstr ""
 
-#: includes/models/class-custom-post-types.php:243
+#: includes/models/class-custom-post-types.php:250
 #: includes/settings/class-email-settings.php:34
 #: includes/settings/class-files-settings.php:44
 #: includes/settings/class-general-settings.php:46
@@ -6947,204 +6994,232 @@ msgstr ""
 
 #: includes/settings/class-files-settings.php:74
 msgid ""
-"The primary image is the one displayed as the thumbnail in the list view and "
-"the largest one shown when the detail view of the listing is clicked."
+"Configure the dimensions of the image displayed as the thumbnail for each ad "
+"in the page the list of ads."
 msgstr ""
 
 #: includes/settings/class-files-settings.php:78
+msgid ""
+"Configure the dimensions of the image displayed as the main thumbnail on the "
+"page that shows the ad details."
+msgstr ""
+
+#: includes/settings/class-files-settings.php:82
 msgid ""
 "These are the remaining images that are not primary ones, if you have more "
 "than one image allowed per listing."
 msgstr ""
 
-#: includes/settings/class-files-settings.php:87
+#: includes/settings/class-files-settings.php:91
 #: includes/settings/class-listings-settings.php:49
 #: includes/settings/class-listings-settings.php:58
 msgid "Moderation"
 msgstr ""
 
-#: includes/settings/class-files-settings.php:104
+#: includes/settings/class-files-settings.php:108
 msgid "Images Moderation"
 msgstr ""
 
-#: includes/settings/class-files-settings.php:108
+#: includes/settings/class-files-settings.php:112
 msgid "Hide images until admin approves them"
 msgstr ""
 
-#: includes/settings/class-files-settings.php:113
+#: includes/settings/class-files-settings.php:117
 msgid "Show popup if user didn't upload files"
 msgstr ""
 
-#: includes/settings/class-files-settings.php:116
+#: includes/settings/class-files-settings.php:120
 msgid ""
 "If checked, a popup warning the user about leaving the page without "
 "uploading a file, will be shown when users try to navigate away from the "
 "Upload Files step without uploading at least one image or attachment."
 msgstr ""
 
-#: includes/settings/class-files-settings.php:119
+#: includes/settings/class-files-settings.php:123
 msgid "Number of images allowed if payments are disabled (Free Mode)"
 msgstr ""
 
-#: includes/settings/class-files-settings.php:119
+#: includes/settings/class-files-settings.php:123
 msgid ""
 "If images are allowed and payments are disabled, users will be allowed "
 "upload this amount of images."
 msgstr ""
 
-#: includes/settings/class-files-settings.php:133
+#: includes/settings/class-files-settings.php:137
 msgid "Allowed image extensions"
 msgstr ""
 
-#: includes/settings/class-files-settings.php:147
+#: includes/settings/class-files-settings.php:151
 msgid "Images File Size"
 msgstr ""
 
-#: includes/settings/class-files-settings.php:149
+#: includes/settings/class-files-settings.php:153
 msgid "Maximum file size per image"
 msgstr ""
 
-#: includes/settings/class-files-settings.php:149
+#: includes/settings/class-files-settings.php:153
 msgid ""
 "Maximum file size, in bytes, for files user can upload to system. 1 MB = "
 "1000000 bytes. You can google \"x MB to bytes\" to get an accurate "
 "conversion."
 msgstr ""
 
-#: includes/settings/class-files-settings.php:151
+#: includes/settings/class-files-settings.php:155
 msgid "Minimum file size per image"
 msgstr ""
 
-#: includes/settings/class-files-settings.php:151
+#: includes/settings/class-files-settings.php:155
 msgid ""
 "Minimum file size, in bytes, for files user can upload to system. 1 MB = "
 "1000000 bytes. You can google \"x MB to bytes\" to get an accurate "
 "conversion."
 msgstr ""
 
-#: includes/settings/class-files-settings.php:161
+#: includes/settings/class-files-settings.php:165
 msgid "Images Dimensions"
 msgstr ""
 
-#: includes/settings/class-files-settings.php:163
+#: includes/settings/class-files-settings.php:167
 msgid "Minimum image width"
 msgstr ""
 
-#: includes/settings/class-files-settings.php:163
+#: includes/settings/class-files-settings.php:167
 msgid "Minimum width for images."
 msgstr ""
 
-#: includes/settings/class-files-settings.php:165
+#: includes/settings/class-files-settings.php:169
 msgid "Minimum image height"
 msgstr ""
 
-#: includes/settings/class-files-settings.php:165
+#: includes/settings/class-files-settings.php:169
 msgid "Minimum height for images."
 msgstr ""
 
-#: includes/settings/class-files-settings.php:167
+#: includes/settings/class-files-settings.php:171
 msgid "Maximum image width"
 msgstr ""
 
-#: includes/settings/class-files-settings.php:167
+#: includes/settings/class-files-settings.php:171
 msgid ""
 "Maximum width for images. Images wider than settings are automatically "
 "resized upon upload."
 msgstr ""
 
-#: includes/settings/class-files-settings.php:169
+#: includes/settings/class-files-settings.php:173
 msgid "Maximum image height"
 msgstr ""
 
-#: includes/settings/class-files-settings.php:169
+#: includes/settings/class-files-settings.php:173
 msgid ""
 "Maximum height for images. Images taller than settings are automatically "
 "resized upon upload."
 msgstr ""
 
-#: includes/settings/class-files-settings.php:175
+#: includes/settings/class-files-settings.php:179
 msgid "Presentation"
 msgstr ""
 
-#: includes/settings/class-files-settings.php:196
+#: includes/settings/class-files-settings.php:200
 msgid "Images Presentation"
 msgstr ""
 
-#: includes/settings/class-files-settings.php:205
+#: includes/settings/class-files-settings.php:209
 msgid "Number of columns of thumbnails to show in Show Ad page"
 msgstr ""
 
-#: includes/settings/class-files-settings.php:208
+#: includes/settings/class-files-settings.php:212
 msgid "Zero means there will be as many thumbnails as possible per row."
 msgstr ""
 
-#: includes/settings/class-files-settings.php:213
+#: includes/settings/class-files-settings.php:217
 msgid "Disable AWPCP's Lightbox feature"
 msgstr ""
 
-#: includes/settings/class-files-settings.php:213
+#: includes/settings/class-files-settings.php:217
 msgid ""
 "Do not include the lightbox jQuery plugin used by AWPCP. Use this option to "
 "fix conflicts with themes or plugins that also offers a lightbox feature."
 msgstr ""
 
-#: includes/settings/class-files-settings.php:215
+#: includes/settings/class-files-settings.php:219
 msgid "Show click to enlarge link?"
 msgstr ""
 
-#: includes/settings/class-files-settings.php:217
+#: includes/settings/class-files-settings.php:221
 msgid "Hide No Image placeholder"
 msgstr ""
 
-#: includes/settings/class-files-settings.php:221
+#: includes/settings/class-files-settings.php:225
 msgid "Override the No Image placeholder image with my own"
 msgstr ""
 
-#: includes/settings/class-files-settings.php:232
+#: includes/settings/class-files-settings.php:236
 msgid "No Image Placeholder URL"
 msgstr ""
 
-#: includes/settings/class-files-settings.php:235
+#: includes/settings/class-files-settings.php:239
 msgid ""
 "Put the URL of an existing image on your site to use.  The size of this "
 "image should match the thumbnail size settings on this tab"
 msgstr ""
 
-#: includes/settings/class-files-settings.php:251
-#: templates/components/media-manager.tpl.php:44
-msgid "Primary Image"
-msgstr ""
-
-#: includes/settings/class-files-settings.php:253
-msgid "Thumbnail width (Ad Listings page)"
-msgstr ""
-
-#: includes/settings/class-files-settings.php:253
-msgid "Width of the thumbnail for the primary image shown in Ad Listings view."
-msgstr ""
-
 #: includes/settings/class-files-settings.php:255
+msgid "Primary Image (List of ads)"
+msgstr ""
+
+#: includes/settings/class-files-settings.php:265
+#: includes/settings/class-files-settings.php:323
+msgid "Thumbnail width"
+msgstr ""
+
+#: includes/settings/class-files-settings.php:268
+msgid "Width of the thumbnail for the primary image shown in the list of ads."
+msgstr ""
+
+#: includes/settings/class-files-settings.php:276
+#: includes/settings/class-files-settings.php:325
+msgid "Thumbnail height"
+msgstr ""
+
+#: includes/settings/class-files-settings.php:279
+msgid "Height of the thumbnail for the primary image shown in the list of ads."
+msgstr ""
+
+#: includes/settings/class-files-settings.php:290
+msgid ""
+"If you decide to crop thumbnails, images will match exactly the dimensions "
+"in the settings above but part of the image may be cropped out. If you "
+"decide to resize, image thumbnails will be resized to match the specified "
+"width and their height will be adjusted proportionally; depending on the "
+"uploaded images, thumbnails may have different heights."
+msgstr ""
+
+#: includes/settings/class-files-settings.php:300
+msgid "Primary Image (Single ad page)"
+msgstr ""
+
+#: includes/settings/class-files-settings.php:307
 msgid "Thumbnail width (Primary Image)"
 msgstr ""
 
-#: includes/settings/class-files-settings.php:255
+#: includes/settings/class-files-settings.php:307
 msgid "Width of the thumbnail for the primary image shown in Single Ad view."
 msgstr ""
 
-#: includes/settings/class-files-settings.php:257
+#: includes/settings/class-files-settings.php:309
 msgid "Thumbnail height (Primary Image)"
 msgstr ""
 
-#: includes/settings/class-files-settings.php:257
+#: includes/settings/class-files-settings.php:309
 msgid "Height of the thumbnail for the primary image shown in Single Ad view."
 msgstr ""
 
-#: includes/settings/class-files-settings.php:259
+#: includes/settings/class-files-settings.php:311
 msgid "Crop primary image thumbnails?"
 msgstr ""
 
-#: includes/settings/class-files-settings.php:259
-#: includes/settings/class-files-settings.php:275
+#: includes/settings/class-files-settings.php:311
+#: includes/settings/class-files-settings.php:327
 msgctxt "settings"
 msgid ""
 "If you decide to crop thumbnails, images will match exactly the dimensions "
@@ -7154,33 +7229,25 @@ msgid ""
 "uploaded images, thumbnails may have different heights."
 msgstr ""
 
-#: includes/settings/class-files-settings.php:269
+#: includes/settings/class-files-settings.php:321
 msgid "Thumbnails"
 msgstr ""
 
-#: includes/settings/class-files-settings.php:271
-msgid "Thumbnail width"
-msgstr ""
-
-#: includes/settings/class-files-settings.php:271
+#: includes/settings/class-files-settings.php:323
 msgid "Width of the thumbnail images."
 msgstr ""
 
-#: includes/settings/class-files-settings.php:273
-msgid "Thumbnail height"
-msgstr ""
-
-#: includes/settings/class-files-settings.php:273
+#: includes/settings/class-files-settings.php:325
 msgid "Height of the thumbnail images."
 msgstr ""
 
-#: includes/settings/class-files-settings.php:275
+#: includes/settings/class-files-settings.php:327
 msgid "Crop thumbnail images?"
 msgstr ""
 
 #: includes/settings/class-general-settings.php:69
 #: includes/settings/class-general-settings.php:84
-#: includes/settings/class-general-settings.php:591
+#: includes/settings/class-general-settings.php:605
 #: includes/settings/class-payment-general-settings.php:42
 msgid "General Settings"
 msgstr ""
@@ -7487,154 +7554,186 @@ msgid ""
 msgstr ""
 
 #: includes/settings/class-general-settings.php:423
-msgid "reCAPTCHA (recommended)"
+msgid "reCAPTCHA v2"
 msgstr ""
 
 #: includes/settings/class-general-settings.php:424
+msgid "reCAPTCHA v3"
+msgstr ""
+
+#: includes/settings/class-general-settings.php:425
 msgid "Math"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:430
+#: includes/settings/class-general-settings.php:431
 msgid "Type of CAPTCHA"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:433
+#: includes/settings/class-general-settings.php:434
 msgid ""
-"reCAPTCHA: Uses distorted images that only humans should be able to read "
-"(recommended)."
+"reCAPTCHA v2: requires the user to click a checkbox indicating the user is "
+"not a robot. This will either pass the user immediately (with No CAPTCHA) or "
+"challenge them to validate whether or not they are human."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:433
+#: includes/settings/class-general-settings.php:434
+msgid ""
+"reCAPTCHA v3: returns a score for each request without user friction. The "
+"score is based on interactions with your site and enables you to take an "
+"appropriate action for your site."
+msgstr ""
+
+#: includes/settings/class-general-settings.php:434
 msgid "Math: Asks user to solve a simple arithmetic operation."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:437
+#: includes/settings/class-general-settings.php:438
 msgid "Max number used in Math CAPTCHA"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:437
+#: includes/settings/class-general-settings.php:438
 msgid "Highest number used in aithmetic operation."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:440
+#: includes/settings/class-general-settings.php:441
 msgid "You can get an API key from %s."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:442
+#: includes/settings/class-general-settings.php:443
 msgid "reCAPTCHA Site Key"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:443
+#: includes/settings/class-general-settings.php:444
 msgid "reCAPTCHA Secret Key"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:451
-msgid "AdSense"
+#: includes/settings/class-general-settings.php:446
+msgid ""
+"reCAPTCHA v3 returns a score (1.0 is very likely a good interaction, 0.0 is "
+"very likely a bot). The plugin will interrupt all interactions that receive "
+"a score under the configured threshold."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:460
-msgid "AdSense Settings"
+#: includes/settings/class-general-settings.php:446
+msgid ""
+"However, reCAPTCHA learns by seeing real traffic on your site. For this "
+"reason, scores in a staging environment or soon after implementing may "
+"differ from production. You can start using a threshold of 0.5 and find a "
+"better value looking at your traffic in the {console_link}admin console{/"
+"console_link}."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:463
-msgid "Above Ad text."
-msgstr ""
-
-#: includes/settings/class-general-settings.php:464
-msgid "Under Ad text."
+#: includes/settings/class-general-settings.php:453
+msgid "reCAPTCHA score threshold (v3 only)"
 msgstr ""
 
 #: includes/settings/class-general-settings.php:465
-msgid "Below Ad images."
+msgid "AdSense"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:468
-msgid "Activate AdSense"
+#: includes/settings/class-general-settings.php:474
+msgid "AdSense Settings"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:469
-msgid "AdSense code"
+#: includes/settings/class-general-settings.php:477
+msgid "Above Ad text."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:469
-msgid "Your AdSense code (Best if 468x60 text or banner.)"
-msgstr ""
-
-#: includes/settings/class-general-settings.php:470
-msgid "Show AdSense at position"
+#: includes/settings/class-general-settings.php:478
+msgid "Under Ad text."
 msgstr ""
 
 #: includes/settings/class-general-settings.php:479
+msgid "Below Ad images."
+msgstr ""
+
+#: includes/settings/class-general-settings.php:482
+msgid "Activate AdSense"
+msgstr ""
+
+#: includes/settings/class-general-settings.php:483
+msgid "AdSense code"
+msgstr ""
+
+#: includes/settings/class-general-settings.php:483
+msgid "Your AdSense code (Best if 468x60 text or banner.)"
+msgstr ""
+
+#: includes/settings/class-general-settings.php:484
+msgid "Show AdSense at position"
+msgstr ""
+
+#: includes/settings/class-general-settings.php:493
 msgid "Registration"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:486
+#: includes/settings/class-general-settings.php:500
 msgid "Registration Settings"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:492
+#: includes/settings/class-general-settings.php:506
 msgid "Place Ad requires user registration"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:494
+#: includes/settings/class-general-settings.php:508
 msgid "Only registered users will be allowed to post Ads."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:501
+#: includes/settings/class-general-settings.php:515
 msgid "Reply to Ad requires user registration"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:504
+#: includes/settings/class-general-settings.php:518
 msgid "Require user registration for replying to an Ad?"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:510
+#: includes/settings/class-general-settings.php:524
 msgid "Login URL"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:513
+#: includes/settings/class-general-settings.php:527
 msgid ""
 "Location of the login page. The value should be the full URL to the "
 "WordPress login page (e.g. http://www.awpcp.com/wp-login.php)."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:513
-#: includes/settings/class-general-settings.php:522
+#: includes/settings/class-general-settings.php:527
+#: includes/settings/class-general-settings.php:536
 msgid ""
 "IMPORTANT: Only change this setting when using a membership plugin with "
 "custom login pages or similar scenarios."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:519
+#: includes/settings/class-general-settings.php:533
 msgid "Custom Registration Page URL"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:522
+#: includes/settings/class-general-settings.php:536
 msgid ""
 "Location of registration page. Value should be the full URL to the WordPress "
 "registration page (e.g. http://www.awpcp.com/wp-login.php?action=register)."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:542
-#: includes/settings/class-general-settings.php:548
-#: includes/settings/class-general-settings.php:555
+#: includes/settings/class-general-settings.php:556
+#: includes/settings/class-general-settings.php:562
+#: includes/settings/class-general-settings.php:569
 msgid "Private Settings"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:566
+#: includes/settings/class-general-settings.php:580
 msgid "Modules"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:577
-#: includes/settings/class-general-settings.php:583
+#: includes/settings/class-general-settings.php:591
+#: includes/settings/class-general-settings.php:597
 msgid "Facebook"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:600
+#: includes/settings/class-general-settings.php:614
 msgid "Facebook Integration Method"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:603
+#: includes/settings/class-general-settings.php:617
 msgid ""
 "Please note that sending ads to Facebook Groups is currently not available "
 "using Webhooks, after Facebook significantly reduced access to their APIs "
@@ -7644,84 +7743,84 @@ msgid ""
 "facebook-api-platform-product-changes/</a>"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:615
+#: includes/settings/class-general-settings.php:629
 msgid "Send Ads to Facebook Automatically"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:618
+#: includes/settings/class-general-settings.php:632
 msgid ""
 "If checked, Ads will be sent to Facebook shortly after they are posted, "
 "enabled or edited, whichever occurs first. Please note that ads will be sent "
 "only once and disabled ads cannot be sent to Facebook."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:626
+#: includes/settings/class-general-settings.php:640
 msgid "Ask Facebook to clear cache for ads pages"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:637
+#: includes/settings/class-general-settings.php:651
 msgid "Facebook Application"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:647
+#: includes/settings/class-general-settings.php:661
 msgid "App Id"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:650
+#: includes/settings/class-general-settings.php:664
 msgid ""
 "An application identifier associates your site, its pages, and visitor "
 "actions with a registered Facebook application."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:658
+#: includes/settings/class-general-settings.php:672
 msgid "App Secret"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:661
+#: includes/settings/class-general-settings.php:675
 msgid ""
 "An application secret is a secret shared between Facebook and your "
 "application, similar to a password."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:669
+#: includes/settings/class-general-settings.php:683
 msgid "Facebook User Authorization"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:679
+#: includes/settings/class-general-settings.php:693
 msgid "User Access Token"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:682
+#: includes/settings/class-general-settings.php:696
 msgid ""
 "You can manually enter your user access token (if you know it) or log in to "
 "Facebook to get one using the link above."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:690
+#: includes/settings/class-general-settings.php:704
 msgid "Facebook Page and Group Selection"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:700
+#: includes/settings/class-general-settings.php:714
 msgid "Facebook Page"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:712
+#: includes/settings/class-general-settings.php:726
 msgid "Facebook Group"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:724
+#: includes/settings/class-general-settings.php:738
 msgid "Facebook Page Access Token"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:736
+#: includes/settings/class-general-settings.php:750
 msgid "Zapier Integration"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:745
+#: includes/settings/class-general-settings.php:759
 msgid "Zapier webhook used to send ads to a Facebook page"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:748
+#: includes/settings/class-general-settings.php:762
 msgid ""
 "The plugin will post information to this URL the first time an ad becomes "
 "publicly available (after they are posted, enabled or edited) on the website "
@@ -7729,15 +7828,15 @@ msgid ""
 "Disabled ads are excluded."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:755
+#: includes/settings/class-general-settings.php:769
 msgid "IFTTT Integration"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:765
+#: includes/settings/class-general-settings.php:779
 msgid "URL used to send requests to IFTTT Webhooks service"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:768
+#: includes/settings/class-general-settings.php:782
 msgid ""
 "The plugin will post information to the Webhooks service the first time an "
 "ad becomes publicly available (after they are posted, enabled or edited) on "
@@ -7745,53 +7844,53 @@ msgid ""
 "list of classified ads. Disabled ads are excluded."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:776
+#: includes/settings/class-general-settings.php:790
 msgid "The name of the event that will be posted to the Webhooks service"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:779
+#: includes/settings/class-general-settings.php:793
 msgid ""
 "The plugin will post information about new ads to a unique URL built using "
 "the Webhooks URL and Event Name you define."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:789
+#: includes/settings/class-general-settings.php:803
 msgid ""
 "You can find your application information in the <a>Facebook Developer Apps</"
 "a> page."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:803
+#: includes/settings/class-general-settings.php:817
 msgid ""
 "AWPCP needs to get an authorization token from Facebook to work correctly. "
 "You'll be redirected to Facebook to login. AWPCP does not store or obtain "
 "any personal information from your profile."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:804
+#: includes/settings/class-general-settings.php:818
 msgid ""
 "Please choose Public as the audience for posts made by the application, even "
 "if you are just testing the integration. Facebook won't allow us to post "
 "content in some cases if you choose something else."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:813
+#: includes/settings/class-general-settings.php:827
 msgid "Click here to obtain an access token from Facebook"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:815
+#: includes/settings/class-general-settings.php:829
 msgid ""
 "Please provide a value for the App Id and App Secret settings before trying "
 "to get an access token from Facebook."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:825
+#: includes/settings/class-general-settings.php:839
 msgid ""
 "Available Facebook Pages and Groups will be displayed after you enter a "
 "valid User Access Token."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:826
+#: includes/settings/class-general-settings.php:840
 msgid ""
 "As of April 4, 2018, all applications need to go through <a href=\"https://"
 "developers.facebook.com/docs/apps/review\" rel=\"nofollow\">App Review</a> "
@@ -7806,61 +7905,61 @@ msgid ""
 "to post classifieds ads to those groups and pages."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:843
+#: includes/settings/class-general-settings.php:857
 msgid "None (Do not sent ads to a Facebook Page)"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:850
+#: includes/settings/class-general-settings.php:864
 msgid "(Your own profile page)"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:874
+#: includes/settings/class-general-settings.php:888
 msgid "None (Do not sent ads to a Facebook Group)"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:920
+#: includes/settings/class-general-settings.php:934
 msgid ""
 "Require Registration setting was enabled automatically because you activated "
 "the User Ad Management panel."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:940
+#: includes/settings/class-general-settings.php:954
 msgid ""
 "Akismet SPAM control cannot be enabled because Akismet plugin is not "
 "installed or activated."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:944
+#: includes/settings/class-general-settings.php:958
 msgid ""
 "Akismet SPAM control cannot be enabled because Akismet is not properly "
 "configured."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:971
+#: includes/settings/class-general-settings.php:985
 msgid ""
 "reCAPTCHA can't be used because the public key and private key settings are "
 "required for reCAPTCHA to work properly."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:973
+#: includes/settings/class-general-settings.php:987
 msgid ""
 "reCAPTCHA can't be used because the public key setting is required for "
 "reCAPTCHA to work properly."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:975
+#: includes/settings/class-general-settings.php:989
 msgid ""
 "reCAPTCHA can't be used because the private key setting is required for "
 "reCAPTCHA to work properly."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:1017
+#: includes/settings/class-general-settings.php:1031
 msgid ""
 "User Ad Management panel was automatically deactivated because you disabled "
 "Require Registration setting."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:1022
+#: includes/settings/class-general-settings.php:1036
 msgid ""
 "Credit System was automatically disabled because you disabled Require "
 "Registration setting."
@@ -8720,57 +8819,57 @@ msgid ""
 "credits)"
 msgstr ""
 
-#: includes/ui/class-payment-terms-list.php:133
+#: includes/ui/class-payment-terms-list.php:140
 msgid "<number-of-listings> listing allowed."
 msgid_plural "<number-of-listings> listings allowed."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/ui/class-payment-terms-list.php:141
+#: includes/ui/class-payment-terms-list.php:148
 msgid "No images allowed."
 msgstr ""
 
-#: includes/ui/class-payment-terms-list.php:144
+#: includes/ui/class-payment-terms-list.php:151
 msgid "<number-of-images> image allowed."
 msgid_plural "<number-of-images> images allowed."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/ui/class-payment-terms-list.php:151
+#: includes/ui/class-payment-terms-list.php:158
 msgid "No characters limit in listing's title."
 msgstr ""
 
-#: includes/ui/class-payment-terms-list.php:154
+#: includes/ui/class-payment-terms-list.php:161
 msgid "Up to <characters-count> characters in listing's title."
 msgstr ""
 
-#: includes/ui/class-payment-terms-list.php:161
+#: includes/ui/class-payment-terms-list.php:168
 msgid "No characters limit in listing's content."
 msgstr ""
 
-#: includes/ui/class-payment-terms-list.php:164
+#: includes/ui/class-payment-terms-list.php:171
 msgid "Up to <characters-count> characters in listing's content."
 msgstr ""
 
-#: includes/ui/class-payment-terms-list.php:170
+#: includes/ui/class-payment-terms-list.php:177
 msgid "Purchase this plan"
 msgstr ""
 
-#: includes/ui/class-payment-terms-list.php:171
+#: includes/ui/class-payment-terms-list.php:178
 msgid "Pay for this plan with credits"
 msgstr ""
 
-#: includes/ui/class-payment-terms-list.php:174
-#: includes/ui/class-payment-terms-list.php:178
+#: includes/ui/class-payment-terms-list.php:181
+#: includes/ui/class-payment-terms-list.php:185
 msgid "Use this plan for free!"
 msgstr ""
 
-#: includes/ui/class-payment-terms-list.php:183
-#: includes/ui/class-payment-terms-list.php:188
+#: includes/ui/class-payment-terms-list.php:190
+#: includes/ui/class-payment-terms-list.php:195
 msgid "Select"
 msgstr ""
 
-#: includes/ui/class-payment-terms-list.php:187
+#: includes/ui/class-payment-terms-list.php:194
 msgid "credits"
 msgstr ""
 
@@ -8814,30 +8913,42 @@ msgstr ""
 msgid "Store Listings as Custom Post Types"
 msgstr ""
 
-#: includes/upgrade/class-manual-upgrade-tasks.php:99
-msgid "Store Media as Attachments"
-msgstr ""
-
-#: includes/upgrade/class-manual-upgrade-tasks.php:110
+#: includes/upgrade/class-manual-upgrade-tasks.php:102
 msgid "Fix ID Collision for Listing Categories"
 msgstr ""
 
-#: includes/upgrade/class-manual-upgrade-tasks.php:120
+#: includes/upgrade/class-manual-upgrade-tasks.php:112
 msgid "Store Categories Order as Term Meta"
 msgstr ""
 
-#: includes/upgrade/class-manual-upgrade-tasks.php:130
+#: includes/upgrade/class-manual-upgrade-tasks.php:122
 msgid "Maybe force the value for the next Post ID"
 msgstr ""
 
-#: includes/upgrade/class-manual-upgrade-tasks.php:140
+#: includes/upgrade/class-manual-upgrade-tasks.php:132
 msgid "Fix ID Collision for Listings"
+msgstr ""
+
+#: includes/upgrade/class-manual-upgrade-tasks.php:142
+msgid "Store Media as Attachments"
+msgstr ""
+
+#: includes/upgrade/class-manual-upgrade-tasks.php:152
+msgid "Generate Thumbnails for Migrated Media"
 msgstr ""
 
 #: includes/upgrade/class-maybe-force-post-id-upgrade-task-handler.php:95
 msgid ""
 "There was an error trying to force the next post_id to be greater than "
 "{post_id}. {error_message}"
+msgstr ""
+
+#: includes/upgrade/class-store-media-as-attachments-upgrade-task-handler.php:99
+msgid "The file {filepath} doesn't exist."
+msgstr ""
+
+#: includes/upgrade/class-store-media-as-attachments-upgrade-task-handler.php:144
+msgid "An attachment couldn't be created for media item with id {media_id}."
 msgstr ""
 
 #: includes/views/admin/account-balance/class-account-balance-page.php:32
@@ -8937,6 +9048,12 @@ msgstr ""
 msgid "You are not allowed to buy credits."
 msgstr ""
 
+#: includes/views/frontend/class-category-shortcode.php:82
+msgid ""
+"No category was found with the IDs provided. Please provide at least one "
+"valid category ID."
+msgstr ""
+
 #: includes/wordpress/class-wordpress-scripts.php:13
 msgid "The instance of WP_Scripts is not ready!"
 msgstr ""
@@ -8945,20 +9062,20 @@ msgstr ""
 msgid "30 Day Listing"
 msgstr ""
 
-#: installer.php:1184
+#: installer.php:1193
 msgid "Response to your AWPCP Demo Ad"
 msgstr ""
 
-#: installer.php:1185
+#: installer.php:1194
 msgid "Someone has responded to your AWPCP Demo Ad"
 msgstr ""
 
-#: installer.php:1195
+#: installer.php:1204
 msgctxt "reply to ad email"
 msgid "{__previous_subject__} regarding: {listing_title}"
 msgstr ""
 
-#: installer.php:1196
+#: installer.php:1205
 msgctxt "reply to ad email"
 msgid ""
 "{__previous_body__}\n"
@@ -8977,7 +9094,7 @@ msgid ""
 "{website_url}"
 msgstr ""
 
-#: installer.php:1210
+#: installer.php:1219
 msgid "Verify the email address used for Ad $title"
 msgstr ""
 
@@ -9431,76 +9548,68 @@ msgstr ""
 msgid "Configure AWPCP"
 msgstr ""
 
-#: templates/admin/manage-categories-admin-page.tpl.php:28
-msgid "Category Name"
+#: templates/admin/manage-categories-admin-page.tpl.php:35
+msgid "Parent Category"
 msgstr ""
 
-#: templates/admin/manage-categories-admin-page.tpl.php:32
-msgid "Category Parent"
-msgstr ""
-
-#: templates/admin/manage-categories-admin-page.tpl.php:34
-msgid "No parent, this a top level category"
-msgstr ""
-
-#: templates/admin/manage-categories-admin-page.tpl.php:39
+#: templates/admin/manage-categories-admin-page.tpl.php:46
 msgid "Category list order"
 msgstr ""
 
-#: templates/admin/manage-categories-admin-page.tpl.php:60
+#: templates/admin/manage-categories-admin-page.tpl.php:69
 msgid "Icon Meanings:"
 msgstr ""
 
-#: templates/admin/manage-categories-admin-page.tpl.php:70
-msgid "Delete Selected Categories"
+#: templates/admin/manage-categories-admin-page.tpl.php:79
+msgid "Move categories or ads under:"
 msgstr ""
 
-#: templates/admin/manage-categories-admin-page.tpl.php:71
+#: templates/admin/manage-categories-admin-page.tpl.php:86
+msgid "Delete categories should do this with existing ads:"
+msgstr ""
+
+#: templates/admin/manage-categories-admin-page.tpl.php:87
+msgid "Move ads to new category"
+msgstr ""
+
+#: templates/admin/manage-categories-admin-page.tpl.php:88
+msgid "Delete ads too"
+msgstr ""
+
+#: templates/admin/manage-categories-admin-page.tpl.php:94
 msgid "Move Selected Categories"
 msgstr ""
 
-#: templates/admin/manage-categories-admin-page.tpl.php:73
-msgid "Select Move-To category"
+#: templates/admin/manage-categories-admin-page.tpl.php:95
+msgid "Delete Selected Categories"
 msgstr ""
 
-#: templates/admin/manage-categories-admin-page.tpl.php:81
-msgid "Delete categories should do this with existing Ads"
-msgstr ""
-
-#: templates/admin/manage-categories-admin-page.tpl.php:82
-msgid "Move Ads to new category"
-msgstr ""
-
-#: templates/admin/manage-categories-admin-page.tpl.php:83
-msgid "Delete Ads too"
-msgstr ""
-
-#: templates/admin/manage-categories-admin-page.tpl.php:100
+#: templates/admin/manage-categories-admin-page.tpl.php:112
 msgid "Select all categories"
 msgstr ""
 
-#: templates/admin/manage-categories-admin-page.tpl.php:103
-#: templates/admin/manage-categories-admin-page.tpl.php:116
+#: templates/admin/manage-categories-admin-page.tpl.php:115
+#: templates/admin/manage-categories-admin-page.tpl.php:128
 msgid "Category ID"
 msgstr ""
 
-#: templates/admin/manage-categories-admin-page.tpl.php:105
 #: templates/admin/manage-categories-admin-page.tpl.php:117
+#: templates/admin/manage-categories-admin-page.tpl.php:129
 msgid "Category Name (Total Ads)"
 msgstr ""
 
-#: templates/admin/manage-categories-admin-page.tpl.php:107
-#: templates/admin/manage-categories-admin-page.tpl.php:118
+#: templates/admin/manage-categories-admin-page.tpl.php:119
+#: templates/admin/manage-categories-admin-page.tpl.php:130
 msgid "Parent"
 msgstr ""
 
-#: templates/admin/manage-categories-admin-page.tpl.php:108
-#: templates/admin/manage-categories-admin-page.tpl.php:119
+#: templates/admin/manage-categories-admin-page.tpl.php:120
+#: templates/admin/manage-categories-admin-page.tpl.php:131
 msgid "Order"
 msgstr ""
 
-#: templates/admin/manage-categories-admin-page.tpl.php:109
-#: templates/admin/manage-categories-admin-page.tpl.php:120
+#: templates/admin/manage-categories-admin-page.tpl.php:121
+#: templates/admin/manage-categories-admin-page.tpl.php:132
 msgid "Action"
 msgstr ""
 
@@ -9620,6 +9729,10 @@ msgstr ""
 
 #: templates/components/media-manager.tpl.php:40
 msgid "Image currently rejected &mdash; click to approve it"
+msgstr ""
+
+#: templates/components/media-manager.tpl.php:44
+msgid "Primary Image"
 msgstr ""
 
 #: templates/components/media-manager.tpl.php:45
@@ -9835,47 +9948,42 @@ msgstr ""
 msgid "There were no listings found."
 msgstr ""
 
-#: templates/frontend/order-submit-listing-section.tpl.php:7
-msgctxt "order submit listing section"
-msgid "Category, owner and payment term selection"
-msgstr ""
-
-#: templates/frontend/order-submit-listing-section.tpl.php:18
+#: templates/frontend/order-submit-listing-section.tpl.php:19
 msgctxt "order submit listing section"
 msgid "Please select a category for your ad"
 msgstr ""
 
-#: templates/frontend/order-submit-listing-section.tpl.php:39
+#: templates/frontend/order-submit-listing-section.tpl.php:41
 msgctxt "order submit listing section"
 msgid "Who is the owner of this ad?"
 msgstr ""
 
-#: templates/frontend/order-submit-listing-section.tpl.php:40
+#: templates/frontend/order-submit-listing-section.tpl.php:42
 msgid "Please select a user"
 msgstr ""
 
-#: templates/frontend/order-submit-listing-section.tpl.php:50
+#: templates/frontend/order-submit-listing-section.tpl.php:55
 msgctxt "order submit listing section"
 msgid ""
 "Please select the duration and features that will be available for this ad"
 msgstr ""
 
-#: templates/frontend/order-submit-listing-section.tpl.php:74
+#: templates/frontend/order-submit-listing-section.tpl.php:79
 msgctxt "order submit listing section"
 msgid "Your ad will be posted on the following categories: {categories}."
 msgstr ""
 
-#: templates/frontend/order-submit-listing-section.tpl.php:80
+#: templates/frontend/order-submit-listing-section.tpl.php:85
 msgctxt "order submit listing section"
 msgid "Credit Plan:"
 msgstr ""
 
-#: templates/frontend/order-submit-listing-section.tpl.php:81
+#: templates/frontend/order-submit-listing-section.tpl.php:86
 msgctxt "order submit listing section"
 msgid "Owner:"
 msgstr ""
 
-#: templates/frontend/order-submit-listing-section.tpl.php:84
+#: templates/frontend/order-submit-listing-section.tpl.php:89
 msgctxt "order submit listing section"
 msgid "Loading ad fields"
 msgstr ""

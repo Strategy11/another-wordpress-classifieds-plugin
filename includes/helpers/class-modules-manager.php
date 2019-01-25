@@ -49,6 +49,8 @@ class AWPCP_ModulesManager {
      */
     private function load_module( $module ) {
         $module->load_textdomain();
+
+        $this->handle_module_updates( $module );
         $this->verify_version_compatibility( $module );
 
         $is_premium_module = $this->is_premium_module( $module );
@@ -61,7 +63,6 @@ class AWPCP_ModulesManager {
             $this->verify_license_status( $module );
         }
 
-        $this->handle_module_updates( $module );
         $module->setup( $this->plugin );
 
         if ( ! $this->upgrade_tasks->has_pending_tasks( array( 'context' => $module->slug ) ) ) {

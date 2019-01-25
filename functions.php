@@ -609,7 +609,12 @@ function awpcp_pagination($config, $url) {
 					   'adkey',
 					   'editemail',
 					   'awpcp_ads_to_action',
-					   'post_type');
+        'post_type',
+        'TCM_PostShown',
+        'TCM_SnippetsWrittenIds',
+        'TCM_SnippetsWrittenMd5',
+        'TCM_Cache_Query_2_',
+    );
 
 	$params = array_merge($_GET, $_POST);
 	foreach ($blacklist as $param) {
@@ -2873,13 +2878,9 @@ function get_awpcp_option($option, $default='', $reload=false) {
     return awpcp()->settings->get_option( $option, $default, $reload );
 }
 
-//Function to replace addslashes_mq, which is causing major grief.  Stripping of undesireable characters now done
-// through above stripslashes_deep_gpc.
 function clean_field($foo) {
     return add_slashes_recursive($foo);
 }
-// END FUNCTION: replace underscores with dashes for search engine friendly urls
-
 
 function isValidURL($url) {
     return preg_match('|^http(s)?://[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(/.*)?$|i', $url);
