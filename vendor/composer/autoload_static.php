@@ -373,6 +373,10 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_RadioSettingsRenderer' => __DIR__ . '/../..' . '/includes/settings/renderers/class-radio-settings-renderer.php',
         'AWPCP_RandomAdWidget' => __DIR__ . '/../..' . '/frontend/widget-random-ad.php',
         'AWPCP_RawShortcode' => __DIR__ . '/../..' . '/frontend/shortcode-raw.php',
+        'AWPCP_ReCAPTCHADelegate' => __DIR__ . '/../..' . '/includes/frontend/interface-recaptcha-delegate.php',
+        'AWPCP_ReCAPTCHAProvider' => __DIR__ . '/../..' . '/includes/frontend/class-recaptcha-provider.php',
+        'AWPCP_ReCAPTCHAv2' => __DIR__ . '/../..' . '/includes/frontend/class-recaptcha-v2.php',
+        'AWPCP_ReCAPTCHAv3' => __DIR__ . '/../..' . '/includes/helpers/class-recaptcha-v3.php',
         'AWPCP_ReadingSettingsIntegration' => __DIR__ . '/../..' . '/includes/settings/class-reading-settings-integration.php',
         'AWPCP_RedirectionException' => __DIR__ . '/../..' . '/includes/exceptions.php',
         'AWPCP_RemoveListingAttachmentsService' => __DIR__ . '/../..' . '/includes/listings/class-remove-listing-attachments-service.php',
@@ -498,8 +502,6 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_WordPress_Scripts' => __DIR__ . '/../..' . '/includes/wordpress/class-wordpress-scripts.php',
         'AWPCP_WordPress_Status_Header_Filter' => __DIR__ . '/../..' . '/frontend/class-wordpress-status-header-filter.php',
         'AWPCP_YoastWordPressSEOPluginIntegration' => __DIR__ . '/../..' . '/includes/compatibility/class-yoast-wordpress-seo-plugin-integration.php',
-        'AWPCP_reCAPTCHAProvider' => __DIR__ . '/../..' . '/includes/frontend/class-recaptcha-provider.php',
-        'AWPCP_reCAPTCHAv3' => __DIR__ . '/../..' . '/includes/helpers/class-recaptcha-v3.php',
         'fileop' => __DIR__ . '/../..' . '/includes/class-fileop.php',
     );
 

@@ -372,6 +372,10 @@ return array(
     'AWPCP_RadioSettingsRenderer' => $baseDir . '/includes/settings/renderers/class-radio-settings-renderer.php',
     'AWPCP_RandomAdWidget' => $baseDir . '/frontend/widget-random-ad.php',
     'AWPCP_RawShortcode' => $baseDir . '/frontend/shortcode-raw.php',
+    'AWPCP_ReCAPTCHADelegate' => $baseDir . '/includes/frontend/interface-recaptcha-delegate.php',
+    'AWPCP_ReCAPTCHAProvider' => $baseDir . '/includes/frontend/class-recaptcha-provider.php',
+    'AWPCP_ReCAPTCHAv2' => $baseDir . '/includes/frontend/class-recaptcha-v2.php',
+    'AWPCP_ReCAPTCHAv3' => $baseDir . '/includes/helpers/class-recaptcha-v3.php',
     'AWPCP_ReadingSettingsIntegration' => $baseDir . '/includes/settings/class-reading-settings-integration.php',
     'AWPCP_RedirectionException' => $baseDir . '/includes/exceptions.php',
     'AWPCP_RemoveListingAttachmentsService' => $baseDir . '/includes/listings/class-remove-listing-attachments-service.php',
@@ -497,7 +501,5 @@ return array(
     'AWPCP_WordPress_Scripts' => $baseDir . '/includes/wordpress/class-wordpress-scripts.php',
     'AWPCP_WordPress_Status_Header_Filter' => $baseDir . '/frontend/class-wordpress-status-header-filter.php',
     'AWPCP_YoastWordPressSEOPluginIntegration' => $baseDir . '/includes/compatibility/class-yoast-wordpress-seo-plugin-integration.php',
-    'AWPCP_reCAPTCHAProvider' => $baseDir . '/includes/frontend/class-recaptcha-provider.php',
-    'AWPCP_reCAPTCHAv3' => $baseDir . '/includes/helpers/class-recaptcha-v3.php',
     'fileop' => $baseDir . '/includes/class-fileop.php',
 );

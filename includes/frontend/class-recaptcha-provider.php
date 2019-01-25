@@ -3,9 +3,13 @@
  * @package AWPCP\Frontend
  */
 
-// phpcs:disable
-
-class AWPCP_reCAPTCHAProvider implements AWPCP_CAPTCHAProviderInterface {
+/**
+ * Implementation for reCAPTCHA integration.
+ *
+ * The specifics of v2 and v3 types of integration are handled separately
+ * through delegate objects.
+ */
+class AWPCP_ReCAPTCHAProvider implements AWPCP_CAPTCHAProviderInterface {
 
     /**
      * @var string
@@ -18,14 +22,14 @@ class AWPCP_reCAPTCHAProvider implements AWPCP_CAPTCHAProviderInterface {
     private $secret_key;
 
     /**
-     * @var Request
+     * @var ReCAPTCHA Delegate
      */
-    private $request;
+    private $delegate;
 
-    public function __construct( $site_key, $secret_key, $request ) {
+    public function __construct( $site_key, $secret_key, $delegate ) {
         $this->site_key   = $site_key;
         $this->secret_key = $secret_key;
-        $this->request    = $request;
+        $this->delegate   = $delegate;
     }
 
     public function render() {
@@ -33,25 +37,17 @@ class AWPCP_reCAPTCHAProvider implements AWPCP_CAPTCHAProviderInterface {
             return $this->missing_key_message();
         }
 
-        wp_enqueue_script(
-            'awpcp-recaptcha',
-            'https://www.google.com/recaptcha/api.js?onload=AWPCPreCAPTCHAonLoadCallback&render=explicit',
-            array( 'awpcp' ),
-            'v2',
-            true
-        );
+        $this->delegate->enqueue_scripts( $this->site_key );
 
-        return $this->get_recaptcha_html( $this->site_key );
+        return $this->delegate->get_recaptcha_html( $this->site_key );
     }
 
     private function missing_key_message() {
+        /* translators: %s will become an A HTML tag pointing to reCAPTCHA admin console. */
         $message = __( 'To use reCAPTCHA you must get an API key from %s.', 'another-wordpress-classifieds-plugin' );
-        $link = sprintf( '<a href="%1$s">%1$s</a>', 'https://www.google.com/recaptcha/admin' );
-        return sprintf( $message, $link );
-    }
+        $link    = sprintf( '<a href="%1$s">%1$s</a>', 'https://www.google.com/recaptcha/admin' );
 
-    private function get_recaptcha_html( $site_key ) {
-        return '<div class="g-recaptcha awpcp-recaptcha" data-sitekey="' . esc_attr( $site_key ) . '"></div>';
+        return sprintf( $message, $link );
     }
 
     public function validate() {
@@ -59,16 +55,19 @@ class AWPCP_reCAPTCHAProvider implements AWPCP_CAPTCHAProviderInterface {
             throw new AWPCP_Exception( $this->missing_key_message() );
         }
 
-        $response = wp_remote_post( 'https://www.google.com/recaptcha/api/siteverify', array(
-            'body' => array(
-                'secret' => $this->secret_key,
-                'response' => $this->request->post( 'g-recaptcha-response' ),
-                $_SERVER['REMOTE_ADDR'],
-            ),
-        ) );
+        $response = wp_remote_post(
+            'https://www.google.com/recaptcha/api/siteverify',
+            [
+                'body' => [
+                    'secret'   => $this->secret_key,
+                    'response' => $this->delegate->get_recaptcha_response(),
+                    filter_var( INPUT_SERVER, 'REMOTE_ADDR', FILTER_VALIDATE_IP ),
+                ],
+            ]
+        );
 
         if ( is_wp_error( $response ) ) {
-            $message = $this->get_verification_error_message( $response->get_error_message() );
+            $message = $this->delegate->get_verification_error_message( $response->get_error_message() );
 
             throw new AWPCP_Exception( $message );
         }
@@ -76,7 +75,8 @@ class AWPCP_reCAPTCHAProvider implements AWPCP_CAPTCHAProviderInterface {
         $json = json_decode( $response['body'], true );
 
         if ( $json['error-codes'] ) {
-            $message = $this->get_verification_error_message( $this->process_error_codes( $json['error-codes'] ) );
+            $error_message = $this->delegate->process_error_codes( $json['error-codes'] );
+            $message       = $this->delegate->get_verification_error_message( $error_message );
 
             throw new AWPCP_Exception( $message );
         }
@@ -87,40 +87,6 @@ class AWPCP_reCAPTCHAProvider implements AWPCP_CAPTCHAProviderInterface {
             throw new AWPCP_Exception( $message );
         }
 
-        return true;
-    }
-
-    /**
-     * @since 4.0.0
-     */
-    private function get_verification_error_message( $error ) {
-        $message = __( 'There was an error trying to verify the reCAPTCHA answer. <reCAPTCHA-error>', 'another-wordpress-classifieds-plugin' );
-        $message = str_replace( '<reCAPTCHA-error>', $error, $message );
-
-        return $message;
-    }
-
-    private function process_error_codes( $error_codes ) {
-        $errors = array();
-
-        foreach ( $error_codes as $error_code ) {
-            switch( $error_code ) {
-                case 'missing-input-secret':
-                    $errors[] = _x( 'The secret parameter is missing', 'recaptcha-error', 'another-wordpress-classifieds-plugin' );
-                    break;
-                case 'invalid-input-secret':
-                    $errors[] = _x( 'The secret parameter is invalid or malformed.', 'recaptcha-error', 'another-wordpress-classifieds-plugin' );
-                    break;
-                case 'missing-input-response':
-                    $errors[] = _x( 'The response parameter is missing.', 'recaptcha-error', 'another-wordpress-classifieds-plugin' );
-                    break;
-                case 'invalid-input-response':
-                default:
-                    $errors[] = _x( 'The response parameter is invalid or malformed.', 'recaptcha-error', 'another-wordpress-classifieds-plugin' );
-                    break;
-            }
-        }
-
-        return implode( ' ', $errors );
+        return $this->delegate->handle_successful_response( $json );
     }
 }

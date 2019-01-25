@@ -265,7 +265,7 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
         },
 
         createEmptyListing: function() {
-            var self = this, request, paymentTerm, creditPlanId, data, options;
+            var self = this, paymentTerm, creditPlanId, data, callback;
 
             paymentTerm   = self.store.getSelectedPaymentTerm();
             creditPlanId  = self.store.getSelectedCreditPlanId();
@@ -283,40 +283,48 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
                 current_url:               document.location.href
             };
 
-            data = $.extend( data, self.getCaptchaFields() );
-
-            options = {
-                url: $.AWPCP.get( 'ajaxurl' ),
-                data: data,
-                dataType: 'json',
-                method: 'POST'
-            };
-
             // Remove existing error messages.
             self.$element.find( '.awpcp-message.awpcp-error' ).remove();
 
-            request = $.ajax( options ).done( function( data ) {
-                if ( 'ok' === data.status && data.redirect_url ) {
-                    document.location.href = data.redirect_url;
-                    return;
-                }
+            callback = function() {
+                data = $.extend( data, self.getCaptchaFields() );
 
-                if ( 'ok' === data.status ) {
-                    self.store.setTransactionId( data.transaction );
-                    self.store.setListingId( data.listing.ID );
-                }
+                var options = {
+                    url: $.AWPCP.get( 'ajaxurl' ),
+                    data: data,
+                    dataType: 'json',
+                    method: 'POST'
+                };
 
-                if ( 'error' === data.status && data.errors ) {
-                    self.showErrors( data.errors );
-                    self.store.setSectionStateToPreview( self.id );
-                }
+                $.ajax( options ).done( function( response ) {
+                    if ( 'ok' === response.status && response.redirect_url ) {
+                        document.location.href = response.redirect_url;
+                        return;
+                    }
 
-                var reCAPTCHA = self.$captcha.find( '.awpcp-recaptcha' ).attr( 'data-recaptcha-widget-id' );
+                    if ( 'ok' === response.status ) {
+                        self.store.setTransactionId( response.transaction );
+                        self.store.setListingId( response.listing.ID );
+                    }
 
-                if ( undefined !== reCAPTCHA ) {
-                    grecaptcha.reset( reCAPTCHA );
-                }
-            } );
+                    if ( 'error' === response.status && response.errors ) {
+                        self.showErrors( response.errors );
+                        self.store.setSectionStateToPreview( self.id );
+                    }
+
+                    var reCAPTCHA = self.$captcha.find( '.awpcp-recaptcha' ).attr( 'data-recaptcha-widget-id' );
+
+                    if ( grecaptcha && grecaptcha.reset && undefined !== reCAPTCHA ) {
+                        grecaptcha.reset( reCAPTCHA );
+                    }
+                } );
+            };
+
+            if ( window['AWPCPGetReCaptchaResponse'] ) {
+                window['AWPCPGetReCaptchaResponse']( callback );
+            } else {
+                callback();
+            }
         },
 
         getCaptchaFields: function() {
@@ -332,6 +340,12 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
             if ( self.$captcha.find( '[name="g-recaptcha-response"]' ).length ) {
                 return {
                     'g-recaptcha-response': self.$captcha.find( '[name="g-recaptcha-response"]' ).val()
+                };
+            }
+
+            if ( self.$captcha.find( '[name="awpcp_recaptcha_v3_response"]' ).length ) {
+                return {
+                    'awpcp_recaptcha_v3_response': self.$captcha.find( '[name="awpcp_recaptcha_v3_response"]' ).val()
                 };
             }
 

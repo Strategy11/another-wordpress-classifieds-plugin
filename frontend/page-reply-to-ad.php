@@ -164,9 +164,10 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
         if ( get_awpcp_option( 'captcha-enabled-in-reply-to-listing-form' ) ) {
             $captcha = awpcp_create_captcha( get_awpcp_option( 'captcha-provider' ) );
 
-            $error = '';
-            if ( !$captcha->validate( $error ) ) {
-                $errors['captcha'] = $error;
+            try {
+                $captcha->validate();
+            } catch ( AWPCP_Exception $e ) {
+                $errors['captcha'] = $e->getMessage();
             }
         }
 
