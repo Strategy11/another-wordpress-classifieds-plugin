@@ -1,7 +1,7 @@
 /*global AWPCP*/
 AWPCP.define( 'awpcp/frontend/actions-section-controller', [
     'jquery',
-    'awpcp/jquery-collapsible',
+    'awpcp/jquery-collapsible'
 ], function( $ ) {
     var ActionsSectionController = function( section, store ) {
         var self = this;
@@ -103,10 +103,10 @@ AWPCP.define( 'awpcp/frontend/actions-section-controller', [
                     action: 'awpcp_execute_listing_action',
                     listing_action: $action.data( 'action' ),
                     listing_id: self.store.getListingId(),
-                    nonce: $action.data( 'nonce' ),
+                    nonce: $action.data( 'nonce' )
                 },
                 dataType: 'json',
-                method:   'POST',
+                method:   'POST'
             };
 
             $.ajax( options ).done( function( response ) {

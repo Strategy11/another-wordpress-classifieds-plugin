@@ -3,7 +3,7 @@ AWPCP.define( 'awpcp/frontend/upload-media-section-controller', [
     'jquery',
     'awpcp/media-center',
     'awpcp/settings',
-    'awpcp/jquery-collapsible',
+    'awpcp/jquery-collapsible'
 ], function( $, MediaCenter, settings ) {
     var UploadMediaSectionController = function( section, store ) {
         var self = this;
@@ -140,7 +140,7 @@ AWPCP.define( 'awpcp/frontend/upload-media-section-controller', [
             self.$element.show();
         },
 
-        reload: function( data, $container ) {
+        reload: function( data ) {
             var self = this;
 
             self.template = data.template;
@@ -150,7 +150,7 @@ AWPCP.define( 'awpcp/frontend/upload-media-section-controller', [
         },
 
         clear: function() {
-        },
+        }
     } );
 
     return UploadMediaSectionController;

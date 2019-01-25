@@ -22,7 +22,7 @@ AWPCP.run( 'awpcp/edit-post', [
             event.preventDefault();
 
             var $link = $( this ),
-                $tab = $link.closest( '.awpcp-tab' )
+                $tab = $link.closest( '.awpcp-tab' ),
                 $container = $tab.closest( '.awpcp-tabs' ).parent();
 
             $container.find( '.awpcp-tab, .awpcp-tab-panel' ).removeClass( 'awpcp-tab-active awpcp-tab-panel-active' );
@@ -65,7 +65,7 @@ AWPCP.run( 'awpcp/edit-post', [
             $changePaymentTermForm.toggleClass( 'awpcp-hidden' );
         } );
 
-        $changePaymentTermForm.on( 'click', '[type="button"]', function( event ) {
+        $changePaymentTermForm.on( 'click', '[type="button"]', function() {
             var paymentTermId = $( '[name="payment_term"]' ).val(),
                 $selectedOption = $changePaymentTermForm.find( '[value="' + paymentTermId + '"]' ),
                 properties = $selectedOption.data( 'properties' ),

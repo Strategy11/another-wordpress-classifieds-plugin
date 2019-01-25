@@ -1,4 +1,4 @@
-/*global AWPCP*/
+/* globals AWPCP, grecaptcha */
 AWPCP.define( 'awpcp/frontend/order-section-controller', [
     'jquery',
     'awpcp/categories-selector',
@@ -7,7 +7,7 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
     'awpcp/credit-plans-list',
     'awpcp/jquery-collapsible',
     'awpcp/jquery-userfield',
-    'awpcp/jquery-validate-methods',
+    'awpcp/jquery-validate-methods'
 ], function( $, CategoriesSelector, UserSelector, PaymentTermsList, CreditPlansList ) {
     var OrderSectionController = function( section, store ) {
         var self = this;
@@ -15,7 +15,7 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
         self.id       = section.id;
         self.template = section.template;
         self.store    = store;
-    }
+    };
 
     $.extend( OrderSectionController.prototype, {
         render: function( $container ) {
@@ -226,7 +226,7 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
             var creditPlanSummary = self.store.getSelectedCreditPlanSummary();
 
             if ( creditPlanSummary ) {
-                self.$creditPlan.show().find( 'span' ).html( creditPlanSummary )
+                self.$creditPlan.show().find( 'span' ).html( creditPlanSummary );
             }
 
             if ( self.store.getSelectedUserId() ) {
@@ -265,7 +265,7 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
         },
 
         createEmptyListing: function() {
-            var self = this, request, paymentTerm, data;
+            var self = this, request, paymentTerm, creditPlanId, data, options;
 
             paymentTerm   = self.store.getSelectedPaymentTerm();
             creditPlanId  = self.store.getSelectedCreditPlanId();
@@ -280,7 +280,7 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
                 credit_plan:               creditPlanId,
                 user_id:                   self.store.getSelectedUserId(),
                 custom:                    self.store.getCustomData(),
-                current_url:               document.location.href,
+                current_url:               document.location.href
             };
 
             data = $.extend( data, self.getCaptchaFields() );
@@ -289,7 +289,7 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
                 url: $.AWPCP.get( 'ajaxurl' ),
                 data: data,
                 dataType: 'json',
-                method: 'POST',
+                method: 'POST'
             };
 
             // Remove existing error messages.
@@ -325,13 +325,13 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
             if ( self.$captcha.find( '[name="captcha-hash"]' ).length ) {
                 return {
                     captcha:        self.$captcha.find( '[name="captcha"]' ).val(),
-                    "captcha-hash": self.$captcha.find( '[name="captcha-hash"]' ).val(),
+                    'captcha-hash': self.$captcha.find( '[name="captcha-hash"]' ).val()
                 };
             }
 
             if ( self.$captcha.find( '[name="g-recaptcha-response"]' ).length ) {
                 return {
-                    "g-recaptcha-response": self.$captcha.find( '[name="g-recaptcha-response"]' ).val(),
+                    'g-recaptcha-response': self.$captcha.find( '[name="g-recaptcha-response"]' ).val()
                 };
             }
 

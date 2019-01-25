@@ -2,8 +2,8 @@
 AWPCP.run( 'awpcp/admin/listings-table', [
     'jquery',
     'moment',
-    'awpcp/categories-selector',
-], function( $, moment, CategoriesSelector ) {
+    'awpcp/categories-selector'
+], function( $, moment ) {
     $( function() {
         $( '.awpcp-search-mode-dropdown-container' ).insertBefore( '#post-search-input' ).removeClass( 'awpcp-hidden' );
     } );

@@ -1,3 +1,4 @@
+/* globals ajaxurl */
 if ( typeof jQuery !== 'undefined' ) {
     (function( $ ) {
         $( '.awpcp-test-ssl-client-button' ).click( function( event ) {
@@ -7,8 +8,8 @@ if ( typeof jQuery !== 'undefined' ) {
 
             options = {
                 data: {
-                    action: 'awpcp-test-ssl-client',
-                },
+                    action: 'awpcp-test-ssl-client'
+                }
             };
 
             $textarea.html( '&hellip;' ).removeClass( 'awpcp-hidden' );

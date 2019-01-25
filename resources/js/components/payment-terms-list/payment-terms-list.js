@@ -67,7 +67,7 @@ function( $, settings ) {
                     type: $radio.data( 'payment-term-type' ),
                     mode: $radio.data( 'payment-term-mode' ),
                     summary: $radio.data( 'payment-term-summary' )
-                }
+                };
             }
 
             return null;
@@ -87,7 +87,7 @@ function( $, settings ) {
                 return false;
             }
 
-            for ( var i = length - 1; i >= 0; i-- ) {
+            for ( var i = length - 1; i >= 0; i = i - 1 ) {
                 if ( this.state.allPaymentTerms.eq( i ).data( 'id' ) !== 'fee-0' ) {
                     return false;
                 }

@@ -1,6 +1,6 @@
-/*global AWPCP, _*/
+/*global AWPCP*/
 AWPCP.define( 'awpcp/user-selector', [
-    'jquery',
+    'jquery'
 ],
 function( $ ) {
     var UserSelector = function( select, options ) {
@@ -26,7 +26,7 @@ function( $ ) {
                             return {
                                 id: item.ID,
                                 text: item.public_name
-                            }
+                            };
                         } );
 
                         return { results: items };
@@ -83,7 +83,7 @@ function( $ ) {
             var self = this;
 
             self.$select.val( null ).trigger( 'change' );
-        },
+        }
     } );
 
     return UserSelector;

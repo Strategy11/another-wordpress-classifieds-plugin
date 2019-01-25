@@ -1,7 +1,7 @@
 /*global AWPCP*/
 AWPCP.define( 'awpcp/frontend/listing-dates-section-controller', [
     'jquery',
-    'awpcp/datepicker-field',
+    'awpcp/datepicker-field'
 ], function( $, DatepickerField ) {
     var ListingDatesSectionController = function( section, store ) {
         var self = this;
@@ -145,7 +145,7 @@ AWPCP.define( 'awpcp/frontend/listing-dates-section-controller', [
             var self = this;
 
             self.$element.find( '[datepicker-placeholder]' ).val( null ).trigger( 'change' );
-        },
+        }
     } );
 
     return ListingDatesSectionController;

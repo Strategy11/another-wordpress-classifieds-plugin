@@ -1,3 +1,4 @@
+/*global awpcp*/
 /*global __awpcp_js_data*/
 /*global __awpcp_js_l10n*/
 /*global ajaxurl*/

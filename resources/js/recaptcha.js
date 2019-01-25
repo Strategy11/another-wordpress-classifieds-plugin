@@ -6,7 +6,7 @@ function($) {
         maxDelay = 1500,
         timeout = false;
 
-    var initReCaptcha = function() {
+     function initReCaptcha() {
         if ( window['AWPCPGetReCaptchaResponse'] ) {
             return;
         }
@@ -22,9 +22,9 @@ function($) {
         if ( $actions.length ) {
             executeReCaptchaAction( $actions );
         }
-    };
+    }
 
-    var renderReCaptchaWidgets = function( $widgets ) {
+    function renderReCaptchaWidgets( $widgets ) {
         $widgets.each( function() {
             var element = $( this ), widgetId;
 
@@ -41,19 +41,19 @@ function($) {
 
         window['AWPCPGetReCaptchaResponse'] = function( callback ) {
             callback();
-        }
-    };
+        };
+    }
 
-    var executeReCaptchaAction = function( $actions ) {
-        $action = $actions.eq( 0 );
+     function executeReCaptchaAction( $actions ) {
+        var $action = $actions.eq( 0 );
 
         window['AWPCPGetReCaptchaResponse'] = function( callback ) {
             grecaptcha.execute( $action.data( 'sitekey' ), { action: $action.data( 'name' ) } ).then( function( token ) {
                 $action.find( ':hidden' ).val( token );
                 callback();
             } );
-        }
-    };
+        };
+    }
 
     var waitForReCaptchaToBeReady = function() {
         attempts = attempts + 1;

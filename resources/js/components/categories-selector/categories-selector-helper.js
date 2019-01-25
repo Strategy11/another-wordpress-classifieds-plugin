@@ -4,7 +4,7 @@ AWPCP.define( 'awpcp/categories-selector-helper', [
 ],
 function( $ ) {
     var CategoriesSelectorHelper = function( selectedCategoriesIds, categoriesHierarchy, paymentTerms ) {
-        var self = this, parent, model;
+        var self = this, model;
 
         this.allCategories         = [];
         this.allCategoriesIds      = [];
@@ -27,7 +27,7 @@ function( $ ) {
                 model = {
                     id: category.term_id,
                     text: ' '.repeat( 3 * level ) + category.name.replace( /&amp;/g, '&' ),
-                    disabled: category.disabled || false,
+                    disabled: category.disabled || false
                 };
 
                 self.allCategories.push( model );
@@ -87,7 +87,7 @@ function( $ ) {
             this.selectedCategoriesIds = selectedCategoriesIds;
         },
 
-        getCategoriesThatCanBeSelectedTogether: function( categories ) {
+        getCategoriesThatCanBeSelectedTogether: function() {
             var self = this;
 
             var allowedPaymentTerms = _.compact( _.map( _.keys( self.paymentTerms ), function( paymentTermKey ) {

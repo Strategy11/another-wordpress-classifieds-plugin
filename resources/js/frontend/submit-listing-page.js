@@ -1,4 +1,5 @@
 /*global AWPCP*/
+/*global AWPCPSubmitListingPageData*/
 AWPCP.run( 'awpcp/frontend/submit-listing-page', [
     'jquery',
     'awpcp/frontend/submit-listing-data-store',
@@ -7,7 +8,7 @@ AWPCP.run( 'awpcp/frontend/submit-listing-page', [
     'awpcp/frontend/listing-fields-section-controller',
     'awpcp/frontend/listing-dates-section-controller',
     'awpcp/frontend/upload-media-section-controller',
-    'awpcp/frontend/save-section-controller',
+    'awpcp/frontend/save-section-controller'
 ], function(
     $,
     Store,
@@ -82,14 +83,13 @@ AWPCP.run( 'awpcp/frontend/submit-listing-page', [
             $( 'html, body' ).animate( {
                 scrollTop: self.$container.find( '.awpcp-error:visible' ).eq( 0 ).offset().top - 200
             }, 'fast' );
-        },
+        }
     } );
 
     $( function() {
         var store = new Store(),
             sections = {},
-            controllers,
-            page;
+            controllers;
 
         controllers = {
             'actions':        ActionsSectionController,
@@ -97,7 +97,7 @@ AWPCP.run( 'awpcp/frontend/submit-listing-page', [
             'listing-dates':  ListingDatesSectionController,
             'listing-fields': ListingFieldsSectionController,
             'upload-media':   UploadMediaSectionController,
-            'save':           SaveSectionController,
+            'save':           SaveSectionController
         };
 
         /**

@@ -1,6 +1,6 @@
-/*global AWPCP, _*/
+/*global AWPCP*/
 AWPCP.define( 'awpcp/credit-plans-list', [
-    'jquery',
+    'jquery'
 ],
 function( $ ) {
     var CreditPlansList = function( container, options ) {
@@ -46,7 +46,7 @@ function( $ ) {
             var self = this;
 
             self.$container.find( '[name="credit_plan"]' ).prop( 'checked', false );
-        },
+        }
     } );
 
     return CreditPlansList;

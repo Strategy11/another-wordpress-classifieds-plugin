@@ -1,6 +1,6 @@
 /*global AWPCP*/
 AWPCP.run( 'awpcp/restricted-length-field', [
-    'jquery',
+    'jquery'
 ], function( $ ) {
     var RestrictedLengthField = function(element) {
         var self = this;

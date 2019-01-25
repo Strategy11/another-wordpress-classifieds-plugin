@@ -1,6 +1,7 @@
+/* jshint loopfunc: true */
 /*global AWPCP*/
 AWPCP.define( 'awpcp/frontend/save-section-controller', [
-    'jquery',
+    'jquery'
 ], function( $ ) {
     var SaveSectionController = function( section, store ) {
         var self = this;
@@ -103,7 +104,7 @@ AWPCP.define( 'awpcp/frontend/save-section-controller', [
         saveListingInformationAndShowPreview: function() {
             var self = this;
 
-            self.saveListingInformation().done( function( data ) {
+            self.saveListingInformation().done( function() {
                 self.showListingPreview();
             } );
         },
@@ -132,11 +133,11 @@ AWPCP.define( 'awpcp/frontend/save-section-controller', [
 
         doSaveListingRequest: function() {
             var self = this,
-                paymentTerm, creditPlanId, data, regions, options, request;
+                paymentTerm, creditPlanId, data, regions, regionsCount, options;
 
             paymentTerm  = self.store.getSelectedPaymentTerm();
             creditPlanId = self.store.getSelectedCreditPlanId();
-            regions      = [],
+            regions      = [];
             regionsCount = 0;
 
             // TODO: How are other sections going to introduce information here?
@@ -152,14 +153,14 @@ AWPCP.define( 'awpcp/frontend/save-section-controller', [
                 payment_type:      paymentTerm.mode,
                 credit_plan:       creditPlanId,
                 custom:            self.store.getCustomData(),
-                current_url:       document.location.href,
+                current_url:       document.location.href
             } );
 
             if ( data.regions && data.regions.length ) {
                 regionsCount = data.regions.length;
             }
 
-            for ( var i = 0; i < regionsCount; i++ ) {
+            for ( var i = 0; i < regionsCount; i = i + 1 ) {
                 var region = {};
 
                 $.each( data.regions[ i ], function( index, part ) {
@@ -180,7 +181,7 @@ AWPCP.define( 'awpcp/frontend/save-section-controller', [
                 url: $.AWPCP.get( 'ajaxurl' ),
                 data: data,
                 dataType: 'json',
-                method: 'POST',
+                method: 'POST'
             };
 
             return $.ajax( options );
@@ -193,7 +194,7 @@ AWPCP.define( 'awpcp/frontend/save-section-controller', [
         },
 
         showErrors: function( errors ) {
-            var self = this, $container;
+            var self = this;
 
             $.each( errors, function( index, error ) {
                 self.$errorsSibling.before( '<div class="awpcp-message awpcp-error notice notice-error error"><p>' + error + '</p></div>' );
@@ -219,14 +220,14 @@ AWPCP.define( 'awpcp/frontend/save-section-controller', [
 
             data = {
                 action: 'awpcp_generate_listing_preview',
-                ad_id:  self.store.getListingId(),
+                ad_id:  self.store.getListingId()
             };
 
             options = {
                 url:      $.AWPCP.get( 'ajaxurl' ),
                 data:     data,
                 dataType: 'json',
-                method:   'POST',
+                method:   'POST'
             };
 
             return $.ajax( options );
@@ -243,7 +244,7 @@ AWPCP.define( 'awpcp/frontend/save-section-controller', [
         },
 
         clearListingInformation: function() {
-            var self = this, data;
+            var self = this;
 
             self.store.clearSections();
         },
@@ -275,7 +276,7 @@ AWPCP.define( 'awpcp/frontend/save-section-controller', [
         },
 
         clear: function() {
-        },
+        }
     } );
 
     return SaveSectionController;

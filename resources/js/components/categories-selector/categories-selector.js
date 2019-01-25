@@ -36,7 +36,7 @@ function( $, CategoriesSelectorHelper ) {
                 } );
 
                 CategoriesAdapter.__super__.query.call( self, params, function( data ) {
-                    var enabled = self.helper.getCategoriesThatCanBeSelectedTogether( selectedCategories );
+                    var enabled = self.helper.getCategoriesThatCanBeSelectedTogether();
 
                     data.results = $.map( data.results, function( option ) {
                         var newOption = $.extend( {}, option ),

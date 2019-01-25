@@ -145,7 +145,7 @@ AWPCP.define( 'awpcp/settings-validator', [
             } );
 
             dependencies.change();
-        },
+        }
     } );
 
     return new SettingsValidator();

@@ -1,4 +1,4 @@
-/*global AWPCP*/
+/* globals AWPCP, _ */
 AWPCP.define( 'awpcp/frontend/listing-fields-section-controller', [
     'jquery',
     'awpcp/settings',
@@ -6,7 +6,7 @@ AWPCP.define( 'awpcp/frontend/listing-fields-section-controller', [
     'awpcp/multiple-region-selector-validator',
     'awpcp/datepicker-field',
     'awpcp/jquery-collapsible',
-    'awpcp/jquery-validate-methods',
+    'awpcp/jquery-validate-methods'
 ], function( $, settings, RestrictedLengthField, MultipleRegionsSelectorValidator, DatepickerField ) {
     var ListingFieldsSectionController = function( section, store ) {
         var self = this;
@@ -109,10 +109,12 @@ AWPCP.define( 'awpcp/frontend/listing-fields-section-controller', [
             // References to necessary elements.
             self.$regionsSelector = self.$element.find( '.awpcp-multiple-region-selector' );
 
+            /* jshint ignore:start */
             if ( settings.get( 'overwrite-contact-information-on-user-change' ) ) {
                 // self.updater = new UserInformationUpdater( self.$element );
                 // self.updater.watch();
             }
+            /* jshint ignore:end */
 
             // display and control characters allowed for the Ad title
             $.noop( new RestrictedLengthField( self.$element.find( '[name="ad_title"]' ) ) );
@@ -219,7 +221,7 @@ AWPCP.define( 'awpcp/frontend/listing-fields-section-controller', [
             return false;
         },
 
-        updateTemplate: function( $container ) {
+        updateTemplate: function() {
             var self  = this,
                 state = self.store.getSectionState( self.id );
 
@@ -250,7 +252,7 @@ AWPCP.define( 'awpcp/frontend/listing-fields-section-controller', [
         },
 
         showEditMode: function() {
-            var self = this;
+            var self = this, data;
 
             self.$element.find( '.awpcp-listing-fields-submit-listing-section__loading_mode' ).hide();
             self.$element.find( '.awpcp-listing-fields-submit-listing-section__edit_mode' ).show();
@@ -300,7 +302,7 @@ AWPCP.define( 'awpcp/frontend/listing-fields-section-controller', [
             self.prepareTemplate();
         },
 
-        clear: function( data ) {
+        clear: function() {
             var self = this;
 
             self.$element.find( '.awpcp-has-value' ).not( '[readonly]' ).val( null ).trigger( 'change' );
@@ -320,7 +322,7 @@ AWPCP.define( 'awpcp/frontend/listing-fields-section-controller', [
             return [ true ];
         },
 
-        showErrors: function( errors ) {
+        showErrors: function() {
             // jQuery validate takes care of that.
         }
     } );

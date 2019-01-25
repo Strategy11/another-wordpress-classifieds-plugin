@@ -1,6 +1,6 @@
 /*global AWPCP*/
 AWPCP.define( 'awpcp/frontend/submit-listing-data-store', [
-    'jquery',
+    'jquery'
 ], function( $ ) {
     var Store = function ( data ) {
         this.data         = data || {};
@@ -13,7 +13,7 @@ AWPCP.define( 'awpcp/frontend/submit-listing-data-store', [
         setSectionStateToPreview: function( sectionId ) {
             var self = this;
 
-            this.setSectionState( sectionId, 'preview' );
+            self.setSectionState( sectionId, 'preview' );
         },
 
         setSectionStateToRead: function( sectionId ) {
@@ -94,7 +94,7 @@ AWPCP.define( 'awpcp/frontend/submit-listing-data-store', [
 
             self.data.categories = categories;
 
-            self.refresh()
+            self.refresh();
         },
 
         getSelectedCategoriesIds: function() {
@@ -163,7 +163,7 @@ AWPCP.define( 'awpcp/frontend/submit-listing-data-store', [
             var self = this;
 
             if ( self.data.paymentTerm ) {
-                return self.data.paymentTerm.id
+                return self.data.paymentTerm.id;
             }
 
             return null;
@@ -303,7 +303,7 @@ AWPCP.define( 'awpcp/frontend/submit-listing-data-store', [
 
         updateSections: function() {
             var self = this,
-                data, request;
+                data, options, request;
 
             if ( self.updateSectionsTimeout ) {
                 clearTimeout( self.updateSectionsTimeout );
@@ -316,14 +316,14 @@ AWPCP.define( 'awpcp/frontend/submit-listing-data-store', [
                 // TODO: create, validate and pass this nonce around.
                 nonce: $.AWPCP.get( 'update_submit_listing_sections_nonce' ),
                 listing: self.getListingId(),
-                transaction_id: self.getTransactionId(),
+                transaction_id: self.getTransactionId()
             };
 
             options = {
                 url: $.AWPCP.get( 'ajaxurl' ),
                 data: data,
                 dataType: 'json',
-                method: 'POST',
+                method: 'POST'
             };
 
             self.updateSectionsTimeout = setTimeout( function() {
