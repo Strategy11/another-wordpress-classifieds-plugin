@@ -191,6 +191,7 @@ class AWPCP_ListingsContainerConfiguration implements AWPCP_ContainerConfigurati
         $container['CategoriesCollection'] = $container->service( function( $container ) {
             return new AWPCP_Categories_Collection(
                 $container['listing_category_taxonomy'],
+                awpcp_categories_registry(),
                 $container['WordPress']
             );
         } );
