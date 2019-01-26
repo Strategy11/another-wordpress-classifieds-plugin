@@ -187,8 +187,11 @@ class AWPCP_UserSelector {
 
         if ( $params['include_selected_user_only'] && ! empty( $params['selected']['id'] ) ) {
             $query_vars['user_id'] = $params['selected']['id'];
-        } elseif ( $params['include_selected_user_only'] && empty( $params['selected'] ) ) {
+        } elseif ( $params['include_selected_user_only'] && ! empty( $params['selected'] ) ) {
             $query_vars['user_id'] = $params['selected'];
+        } elseif ( $params['include_selected_user_only'] ) {
+            // We are not supposed to reveal information from other users.
+            return [];
         }
 
         if ( $params['include_full_user_information'] ) {
