@@ -39,7 +39,7 @@ class AWPCP_ListingTitleFormField extends AWPCP_FormField {
         $characters_limit = $this->get_characters_limit_for_listing( $listing );
 
         if ( $characters_limit['characters_allowed'] == 0 ) {
-            $characters_allowed_text = _x( 'No characters limit', 'ad details form', 'another-wordpress-classifieds-plugin' );
+            $characters_allowed_text = _x( 'Unlimited characters', 'ad details form', 'another-wordpress-classifieds-plugin' );
             $remaining_characters_text = '';
         } else {
             $characters_allowed_text = _x( 'characters left', 'ad details form', 'another-wordpress-classifieds-plugin' );

@@ -155,7 +155,7 @@ class AWPCP_Payment_Terms_List {
 
     private function get_number_of_characters_allowed_in_title_feature_description( $payment_term ) {
         if ( $payment_term->title_characters == 0 ) {
-            return '<strong>' . __( "No characters limit in listing's title.", 'another-wordpress-classifieds-plugin' ) . '</strong>';
+            return '<strong>' . __( "Unlimited characters in listing's title.", 'another-wordpress-classifieds-plugin' ) . '</strong>';
         }
 
         $description = __( "Up to <characters-count> characters in listing's title.", 'another-wordpress-classifieds-plugin' );
@@ -165,7 +165,7 @@ class AWPCP_Payment_Terms_List {
 
     private function get_number_of_characters_allowed_in_content_feature_description( $payment_term ) {
         if ( $payment_term->characters == 0 ) {
-            return '<strong>' . __( "No characters limit in listing's content.", 'another-wordpress-classifieds-plugin' ) . '</strong>';
+            return '<strong>' . __( "Unlimited characters in listing's content.", 'another-wordpress-classifieds-plugin' ) . '</strong>';
         }
 
         $description = __( "Up to <characters-count> characters in listing's content.", 'another-wordpress-classifieds-plugin' );
