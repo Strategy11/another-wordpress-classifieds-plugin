@@ -811,7 +811,8 @@ class AWPCP {
 					'url' => 'http://www.awpcp.com/premium-modules/',
 					'installed' => function_exists( 'awpcp_generate_ad_entries' ),
 					'version' => 'AWPCP_XML_SITEMAP_MODULE_DB_VERSION',
-					'required' => '4.0.0beta1',
+                    'required'  => '4.0.0',
+                    'removed'   => 'awpcp_xml_sitemap_module_removed_notice',
 				),
                 'zip-code-search' => array(
                     'name' => __( 'ZIP Code Search Module', 'another-wordpress-classifieds-plugin' ),

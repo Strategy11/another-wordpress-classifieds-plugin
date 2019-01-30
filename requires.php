@@ -15,6 +15,7 @@ require_once AWPCP_DIR . '/includes/functions/format.php';
 require_once AWPCP_DIR . '/includes/functions/hooks.php';
 require_once AWPCP_DIR . '/includes/functions/l10n.php';
 require_once AWPCP_DIR . '/includes/functions/listings.php';
+require_once AWPCP_DIR . '/includes/functions/notices.php';
 require_once AWPCP_DIR . '/includes/functions/notifications.php';
 require_once AWPCP_DIR . '/includes/functions/payments.php';
 require_once AWPCP_DIR . '/includes/functions/routes.php';

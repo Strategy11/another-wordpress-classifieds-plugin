@@ -76,11 +76,18 @@ class AWPCP_ModulesManager {
     }
 
     private function verify_version_compatibility( $module ) {
-        $modules = $this->plugin->get_premium_modules_information();
+        $modules_information = $this->plugin->get_premium_modules_information();
 
-        if ( ! isset( $modules[ $module->slug ] ) ) {
+        if ( ! isset( $modules_information[ $module->slug ] ) ) {
             $this->notices['modules-not-registered'][] = $module;
             throw new AWPCP_Exception( 'Module is not registered.' );
+        }
+
+        $module_information = $modules_information[ $module->slug ];
+
+        if ( isset( $module_information['removed'] ) && is_callable( $module_information['removed'] ) ) {
+            $this->notices['modules-removed'][] = $module;
+            throw new AWPCP_Exception( 'Module is no longer supported.' );
         }
 
         if ( version_compare( $this->plugin->version, $module->required_awpcp_version, '<' ) ) {
@@ -165,6 +172,9 @@ class AWPCP_ModulesManager {
             case 'modules-not-compatible':
                 echo $this->show_modules_not_compatible_notice( $modules );
                 break;
+            case 'modules-removed':
+                echo $this->show_modules_removed_notice( $modules );
+                break;
             case 'modules-with-inactive-license':
                 echo $this->show_inactive_licenses_notice( $modules );
                 break;
@@ -176,6 +186,7 @@ class AWPCP_ModulesManager {
                 break;
             case 'module-requires-manual-upgrade':
                 echo $this->show_module_requires_manual_upgrade_notice( $modules );
+                break;
         }
     }
 
@@ -227,6 +238,21 @@ class AWPCP_ModulesManager {
         $message = str_replace( '{required_modules_versions}', awpcp_string_with_names( $strings['required_versions'] ), $message );
 
         return awpcp_print_error( $message );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function show_modules_removed_notice( $modules ) {
+        $modules_information = $this->plugin->get_premium_modules_information();
+        $notices             = '';
+
+        foreach ( $modules as $module ) {
+            $content  = call_user_func( $modules_information[ $module->slug ]['removed'] );
+            $notices .= awpcp_activation_failed_notice( $content );
+        }
+
+        return $notices;
     }
 
     private function show_inactive_licenses_notice( $modules ) {
