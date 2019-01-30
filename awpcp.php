@@ -161,6 +161,10 @@ function awpcp_required_php_version_notice( $product_name ) {
 }
 
 /**
+ * TODO: Organize functions to print/render flash messages, errors and notices.
+ * Right now we have too many ways to do the same thing and none of them seem
+ * to be good enough.
+ *
  * @since 4.0.0
  */
 function awpcp_activation_failed_notice( $content ) {
