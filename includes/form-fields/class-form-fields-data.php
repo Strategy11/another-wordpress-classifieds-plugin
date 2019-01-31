@@ -102,13 +102,16 @@ class AWPCP_FormFieldsData {
         $data['ad_item_price'] = awpcp_parse_money( $data['ad_item_price'] );
         $data['ad_item_price'] = 100 * $data['ad_item_price'];
 
-        if ( ! $this->authorization->is_current_user_allowed_to_edit_listing_start_date( $post ) ) {
+        $can_edit_start_date = $this->authorization->is_current_user_allowed_to_edit_listing_start_date( $post );
+        $can_edit_end_date   = $this->authorization->is_current_user_allowed_to_edit_listing_end_date( $post );
+
+        if ( ! $can_edit_start_date || empty( $data['start_date'] ) ) {
             $data['start_date'] = $this->listing_renderer->get_plain_start_date( $post );
         } elseif ( ! empty( $data['start_date'] ) ) {
             $data['start_date'] = awpcp_set_datetime_date( current_time( 'mysql' ), $data['start_date'] );
         }
 
-        if ( ! $this->authorization->is_current_user_allowed_to_edit_listing_end_date( $post ) ) {
+        if ( ! $can_edit_end_date || empty( $data['end_date'] ) ) {
             $data['end_date'] = $this->listing_renderer->get_plain_end_date( $post );
         } elseif ( ! empty( $data['end_date'] ) ) {
             $data['end_date'] = awpcp_set_datetime_date( current_time( 'mysql' ), $data['end_date'] );
