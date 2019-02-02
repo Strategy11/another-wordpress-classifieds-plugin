@@ -58,7 +58,7 @@ AWPCP.run( 'awpcp/frontend/submit-listing-page', [
             } );
         },
 
-        validate: function() {
+        validate: function( action ) {
             var self = this,
                 errors = {},
                 errorsCount = 0;
@@ -68,7 +68,7 @@ AWPCP.run( 'awpcp/frontend/submit-listing-page', [
                     return;
                 }
 
-                errors[ section.id ] = section.validate();
+                errors[ section.id ] = section.validate( action );
                 errorsCount = errorsCount + errors[ section.id ].length;
             } );
 

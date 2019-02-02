@@ -343,8 +343,8 @@ AWPCP.define( 'awpcp/frontend/submit-listing-data-store', [
             self.listener.clear();
         },
 
-        isValid: function() {
-            return this.listener.validate();
+        isValid: function( action ) {
+            return this.listener.validate( action );
         }
     } );
 
