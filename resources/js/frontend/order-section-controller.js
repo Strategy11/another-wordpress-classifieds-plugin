@@ -314,7 +314,7 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
 
                     var reCAPTCHA = self.$captcha.find( '.awpcp-recaptcha' ).attr( 'data-recaptcha-widget-id' );
 
-                    if ( grecaptcha && grecaptcha.reset && undefined !== reCAPTCHA ) {
+                    if ( typeof grecaptcha !== 'undefined' && grecaptcha.reset && undefined !== reCAPTCHA ) {
                         grecaptcha.reset( reCAPTCHA );
                     }
                 } );
