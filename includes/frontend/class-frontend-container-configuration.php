@@ -61,7 +61,6 @@ class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurati
 
         $container['CreateEmptyListingAjaxHandler'] = $container->service( function( $container ) {
             return new AWPCP_CreateEmptyListingAjaxHandler(
-                $container['listing_category_taxonomy'],
                 $container['ListingsLogic'],
                 $container['PaymentInformationValidator'],
                 $container['Payments'],
@@ -69,6 +68,16 @@ class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurati
                 $container['CAPTCHA'],
                 awpcp_ajax_response(),
                 $container['Settings'],
+                $container['ListingOrderPostedData'],
+                $container['Request']
+            );
+        } );
+
+        $container['ListingOrderPostedData'] = $container->service( function( $container ) {
+            return new AWPCP_ListingOrderPostedData(
+                $container['listing_category_taxonomy'],
+                $container['Payments'],
+                $container['RolesAndCapabilities'],
                 $container['Request']
             );
         } );

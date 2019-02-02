@@ -259,6 +259,7 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_ListingFormFields' => __DIR__ . '/../..' . '/includes/form-fields/class-listing-form-fields.php',
         'AWPCP_ListingInfromationMetabox' => __DIR__ . '/../..' . '/includes/admin/listings/class-listing-information-metabox.php',
         'AWPCP_ListingIsAboutToExpireNotification' => __DIR__ . '/../..' . '/includes/class-listing-is-about-to-expire-notification.php',
+        'AWPCP_ListingOrderPostedData' => __DIR__ . '/../..' . '/includes/frontend/class-listing-order-posted-data.php',
         'AWPCP_ListingPaymentTransactionHandler' => __DIR__ . '/../..' . '/includes/class-listing-payment-transaction-handler.php',
         'AWPCP_ListingPostedData' => __DIR__ . '/../..' . '/includes/frontend/class-listing-posted-data.php',
         'AWPCP_ListingPriceFormField' => __DIR__ . '/../..' . '/includes/form-fields/class-listing-price-form-field.php',

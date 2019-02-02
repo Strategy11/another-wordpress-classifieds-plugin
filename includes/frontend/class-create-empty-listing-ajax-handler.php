@@ -10,11 +10,6 @@
 class AWPCP_CreateEmptyListingAjaxHandler extends AWPCP_AjaxHandler {
 
     /**
-     * @var string
-     */
-    private $listing_category_taxonomy;
-
-    /**
      * @var AWPCP_Listings_API
      */
     private $listings_logic;
@@ -30,6 +25,11 @@ class AWPCP_CreateEmptyListingAjaxHandler extends AWPCP_AjaxHandler {
     private $captcha;
 
     /**
+     * @var ListingOrderPostedData
+     */
+    private $posted_data;
+
+    /**
      * @var AWPCP_Request
      */
     private $request;
@@ -37,16 +37,16 @@ class AWPCP_CreateEmptyListingAjaxHandler extends AWPCP_AjaxHandler {
     /**
      * @since 4.0.0
      */
-    public function __construct( $listing_category_taxonomy, $listings_logic, $payment_information_validator, $payments, $roles, $captcha, $response, $settings, $request ) {
+    public function __construct( $listings_logic, $payment_information_validator, $payments, $roles, $captcha, $response, $settings, $posted_data, $request ) {
         parent::__construct( $response );
 
-        $this->listing_category_taxonomy     = $listing_category_taxonomy;
         $this->listings_logic                = $listings_logic;
         $this->payment_information_validator = $payment_information_validator;
         $this->payments                      = $payments;
         $this->roles                         = $roles;
         $this->captcha                       = $captcha;
         $this->settings                      = $settings;
+        $this->posted_data                   = $posted_data;
         $this->request                       = $request;
     }
 
@@ -88,9 +88,9 @@ class AWPCP_CreateEmptyListingAjaxHandler extends AWPCP_AjaxHandler {
 
         $this->captcha->validate();
 
-        $posted_data = $this->get_posted_data();
+        $posted_data = $this->posted_data->get_posted_data();
         $transaction = $this->create_transaction( $posted_data );
-        $listing     = $this->create_listing( $transaction, $posted_data );
+        $listing     = $this->create_listing( $transaction, $posted_data['post_data'] );
 
         $this->prepare_transaction_for_checkout( $transaction, $posted_data );
 
@@ -106,43 +106,6 @@ class AWPCP_CreateEmptyListingAjaxHandler extends AWPCP_AjaxHandler {
         ];
 
         return $this->success( $response );
-    }
-
-    /**
-     * @since 4.0.0
-     * @throws AWPCP_Exception  When the selected payment term cannot be found.
-     */
-    private function get_posted_data() {
-        $categories                = array_map( 'intval', $this->request->post( 'categories' ) );
-        $payment_term_id           = $this->request->post( 'payment_term_id' );
-        $payment_term_type         = $this->request->post( 'payment_term_type' );
-        $payment_term_payment_type = $this->request->post( 'payment_term_payment_type' );
-        $user_id                   = null;
-        $current_url               = $this->request->post( 'current_url' );
-
-        if ( $this->roles->current_user_is_moderator() ) {
-            $user_id = intval( $this->request->post( 'user_id' ) );
-        }
-
-        if ( ! $user_id ) {
-            $user_id = $this->request->get_current_user_id();
-        }
-
-        $payment_term = $this->payments->get_payment_term( $payment_term_id, $payment_term_type );
-
-        if ( is_null( $payment_term ) ) {
-            throw new AWPCP_Exception( __( "The selected payment term couldn't be found.", 'another-wordpress-classifieds-plugin' ) );
-        }
-
-        $posted_data = [
-            'categories'   => $categories,
-            'payment_term' => $payment_term,
-            'payment_type' => $payment_term_payment_type,
-            'user_id'      => $user_id,
-            'current_url'  => $current_url,
-        ];
-
-        return $posted_data;
     }
 
     /**
@@ -178,34 +141,17 @@ class AWPCP_CreateEmptyListingAjaxHandler extends AWPCP_AjaxHandler {
      * @since 4.0.0
      * @throws AWPCP_Exception  When the payment information is not valid.
      */
-    private function create_listing( $transaction, $posted_data ) {
-        $categories   = $posted_data['categories'];
-        $payment_term = $posted_data['payment_term'];
-        $user_id      = $posted_data['user_id'];
+    private function create_listing( $transaction, $post_data ) {
+        $post_data['post_fields']['post_title']  = 'Classified Auto Draft';
+        $post_data['post_fields']['post_status'] = 'auto-draft';
 
-        $data = [
-            'post_fields' => [
-                'post_title'  => 'Classified Auto Draft',
-                'post_status' => 'auto-draft',
-                'post_author' => $user_id,
-            ],
-            'metadata'    => [
-                '_awpcp_payment_term_id'   => $payment_term->id,
-                '_awpcp_payment_term_type' => $payment_term->type,
-            ],
-            // TODO: Update create_listing to store terms as well.
-            'terms'       => [
-                $this->listing_category_taxonomy => $categories,
-            ],
-        ];
-
-        $errors = $this->payment_information_validator->get_validation_errors( $data );
+        $errors = $this->payment_information_validator->get_validation_errors( $post_data );
 
         if ( $errors ) {
             throw new AWPCP_Exception( array_shift( $errors ) );
         }
 
-        $listing = $this->listings_logic->create_listing( $data );
+        $listing = $this->listings_logic->create_listing( $post_data );
 
         $transaction->set( 'ad-id', $listing->ID );
         $transaction->save();
