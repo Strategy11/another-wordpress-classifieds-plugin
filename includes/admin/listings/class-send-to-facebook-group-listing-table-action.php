@@ -46,7 +46,7 @@ class AWPCP_SendToFacebookGroupListingTableAction implements AWPCP_ListTableActi
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function get_icon_class( $post ) {
-        return 'fab fa-facebook-square';
+        return 'fa fa-facebook-square';
     }
 
     /**

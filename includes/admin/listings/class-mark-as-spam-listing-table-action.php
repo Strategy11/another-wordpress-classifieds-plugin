@@ -57,7 +57,7 @@ class AWPCP_MarkAsSPAMListingTableAction implements AWPCP_ListTableActionInterfa
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function get_icon_class( $post ) {
-        return 'fas fa-flag';
+        return 'fa fa-flag';
     }
 
     /**

@@ -46,7 +46,7 @@ class AWPCP_MakeFeaturedListingTableAction implements AWPCP_ListTableActionInter
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function get_icon_class( $post ) {
-        return 'fas fa-star';
+        return 'fa fa-star';
     }
 
     /**

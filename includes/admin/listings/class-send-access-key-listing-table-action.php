@@ -42,7 +42,7 @@ class AWPCP_SendAccessKeyListingTableAction implements AWPCP_ListTableActionInte
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function get_icon_class( $post ) {
-        return 'fas fa-key';
+        return 'fa fa-key';
     }
 
     /**

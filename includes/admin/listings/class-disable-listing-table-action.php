@@ -41,7 +41,7 @@ class AWPCP_DisableListingTableAction implements AWPCP_ListTableActionInterface 
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function get_icon_class( $post ) {
-        return 'fas fa-times';
+        return 'fa fa-times';
     }
 
     /**

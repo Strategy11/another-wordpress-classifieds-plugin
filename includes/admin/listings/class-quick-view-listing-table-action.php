@@ -29,7 +29,7 @@ class AWPCP_QuickViewListingTableAction implements AWPCP_ListTableActionInterfac
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function get_icon_class( $post ) {
-        return 'fas fa-eye';
+        return 'fa fa-eye';
     }
 
     /**

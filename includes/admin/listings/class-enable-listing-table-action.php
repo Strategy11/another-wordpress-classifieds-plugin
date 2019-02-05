@@ -41,7 +41,7 @@ class AWPCP_EnableListingTableAction implements AWPCP_ListTableActionInterface {
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function get_icon_class( $post ) {
-        return 'fas fa-check';
+        return 'fa fa-check';
     }
 
     /**

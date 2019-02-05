@@ -64,7 +64,8 @@ class AWPCP_ListTableActionsHandler {
 
         $messages = $this->actions[ $action ]->get_messages( $result_codes );
 
-        echo implode( "\n", $messages ); // XSS: Ok.
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        echo implode( "\n", $messages );
     }
 
     /**
@@ -119,7 +120,7 @@ class AWPCP_ListTableActionsHandler {
     private function create_action_button( $action, $post, $current_url ) {
         $label      = $action->get_label( $post );
         $url        = wp_nonce_url( $action->get_url( $post, $current_url ), 'bulk-posts' );
-        $icon_class = 'fas fa-meh-rolling-eyes';
+        $icon_class = 'fa fa-meh-rolling-eyes';
         if ( method_exists( $action, 'get_icon_class' ) ) {
             $icon_class = $action->get_icon_class( $post );
         }

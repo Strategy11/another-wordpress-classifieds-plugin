@@ -41,7 +41,7 @@ class AWPCP_UnflagListingTableAction implements AWPCP_ListTableActionInterface {
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function get_icon_class( $post ) {
-        return 'fas fa-user-check';
+        return 'fa fa-user-check';
     }
 
     /**

@@ -42,7 +42,7 @@ class AWPCP_MarkReviewedListingTableAction implements AWPCP_ListTableActionInter
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function get_icon_class( $post ) {
-        return 'fas fa-clipboard-check';
+        return 'fa fa-clipboard-check';
     }
 
     /**

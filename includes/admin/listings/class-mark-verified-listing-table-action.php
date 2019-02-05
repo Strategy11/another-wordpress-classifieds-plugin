@@ -43,7 +43,7 @@ class AWPCP_MarkVerifiedListingTableAction implements AWPCP_ListTableActionInter
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function get_icon_class( $post ) {
-        return 'fas fa-check-double';
+        return 'fa fa-check-double';
     }
 
     /**

@@ -55,7 +55,7 @@ class AWPCP_RenewListingTableAction implements AWPCP_ListTableActionInterface {
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function get_icon_class( $post ) {
-        return 'fas fa-redo';
+        return 'fa fa-redo';
     }
 
     /**
