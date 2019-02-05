@@ -60,6 +60,13 @@ AWPCP.define( 'awpcp/frontend/listing-fields-section-controller', [
             var selectedPaymentTerm = self.store.getSelectedPaymentTermId();
             var selectedUserId      = self.store.getSelectedUserId();
 
+            // The modified order date changes everytime the Order section
+            // successfully stores the payment information for the listing.
+            //
+            // We use it here to update the template again after the Payment
+            // Transaction has been updated to use the newly selected user.
+            var orderModifiedDate   = self.store.getOrderModifiedDate();
+
             if ( 0 === selectedCategories.length || null === selectedPaymentTerm ) {
                 return false;
             }
@@ -73,6 +80,10 @@ AWPCP.define( 'awpcp/frontend/listing-fields-section-controller', [
             }
 
             if ( selectedUserId !== self.selectedUserId ) {
+                return true;
+            }
+
+            if ( orderModifiedDate !== self.orderModifiedDate ) {
                 return true;
             }
 
@@ -291,6 +302,7 @@ AWPCP.define( 'awpcp/frontend/listing-fields-section-controller', [
             self.selectedCategories  = self.store.getSelectedCategoriesIds();
             self.selectedPaymentTerm = self.store.getSelectedPaymentTermId();
             self.selectedUserId      = self.store.getSelectedUserId();
+            self.orderModifiedDate   = self.store.getOrderModifiedDate();
         },
 
         reload: function( data ) {
@@ -312,8 +324,15 @@ AWPCP.define( 'awpcp/frontend/listing-fields-section-controller', [
             }
         },
 
-        validate: function() {
+        validate: function( action ) {
             var self = this;
+
+            // The current state of form fields is irrelevant if we are about
+            // to change the category, payment term or ad owner. New fields may
+            // become available and other become unnecessary after that action.
+            if ( action === 'update-listing-order' ) {
+                return [];
+            }
 
             if ( self.$element.find( 'form' ).valid() ) {
                 return [];

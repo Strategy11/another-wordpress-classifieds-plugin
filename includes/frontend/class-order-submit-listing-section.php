@@ -121,7 +121,7 @@ class AWPCP_OrderSubmitListingSection {
         }
 
         $stored_data = $this->get_stored_data( $listing, $transaction );
-        $nonce       = $this->maybe_generate_nonce( $listing );
+        $nonces      = $this->maybe_generate_nonces( $listing );
 
         $payment_terms = $this->payments->get_payment_terms();
         $payment_terms = apply_filters( 'awpcp_submit_listing_payment_terms', $payment_terms, $listing );
@@ -133,7 +133,7 @@ class AWPCP_OrderSubmitListingSection {
 
             'payment_terms'             => $payment_terms,
             'form'                      => $stored_data,
-            'nonce'                     => $nonce,
+            'nonces'                    => $nonces,
 
             'form_errors'               => [],
 
@@ -195,12 +195,16 @@ class AWPCP_OrderSubmitListingSection {
     /**
      * @since 4.0.0
      */
-    private function maybe_generate_nonce( $listing ) {
+    private function maybe_generate_nonces( $listing ) {
+        $create_empty_listing_nonce = '';
+        $update_listing_order_nonce = '';
+
         if ( $this->can_payment_information_be_modified_during_submit( $listing ) ) {
-            return wp_create_nonce( 'awpcp-create-empty-listing' );
+            $create_empty_listing_nonce = wp_create_nonce( 'awpcp-create-empty-listing' );
+            $update_listing_order_nonce = wp_create_nonce( 'awpcp-update-listing-order' );
         }
 
-        return '';
+        return compact( 'create_empty_listing_nonce', 'update_listing_order_nonce' );
     }
 
     /**

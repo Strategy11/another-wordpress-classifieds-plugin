@@ -242,6 +242,9 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
     }
 
     /**
+     * TODO: This is an exact copy of prepare_transaction_for_checkout() in
+     * UpdateListingOrder and CreateEmptyListing ajax handlers.
+     *
      * @since 4.0.0
      * @throws AWPCP_Exception  When an error occurs trying to change the transaction
      *                          status to Checkout.

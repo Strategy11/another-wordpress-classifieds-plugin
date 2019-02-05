@@ -523,6 +523,10 @@ class AWPCP {
         add_action( 'wp_ajax_awpcp_create_empty_listing', [ $handler, 'ajax' ] );
         add_action( 'wp_ajax_nopriv_awpcp_create_empty_listing', [ $handler, 'ajax' ] );
 
+        $handler = $this->container['UpdateListingOrderAjaxHandler'];
+        add_action( 'wp_ajax_awpcp_update_listing_order', [ $handler, 'ajax' ] );
+        add_action( 'wp_ajax_nopriv_awpcp_update_listing_order', [ $handler, 'ajax' ] );
+
         $handler = $this->container['UpdateSubmitListingSectionsAjaxHandler'];
         add_action( 'wp_ajax_awpcp_update_submit_listing_sections', [ $handler, 'ajax' ] );
         add_action( 'wp_ajax_nopriv_awpcp_update_submit_listing_sections', [ $handler, 'ajax' ] );

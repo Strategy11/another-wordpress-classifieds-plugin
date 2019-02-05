@@ -117,12 +117,8 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
                 self.onChangeSelectionButtonClicked();
             } );
 
-            var selectedCategoriesIds = $.map( self.getSelectedCategories(), function( category ) {
-                return category.id;
-            } );
-
             $.publish( '/user/updated', [ self.getSelectedUserInformation() ] );
-            $.publish( '/categories/change', [ self.$categoriesDropdown, selectedCategoriesIds ] );
+            $.publish( '/categories/change', [ self.$categoriesDropdown, self.getSelectedCategoriesIds() ] );
             $.publish( '/awpcp/post-listing-page/order-step/ready', [ self.$element ] );
         },
 
@@ -138,6 +134,14 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
                 $user = self.$userSelect.find( 'option[value="' + userId + '"]' );
 
             return $user.length ? $user.data( 'user-information' ) : null;
+        },
+
+        getSelectedCategoriesIds: function() {
+            var self = this;
+
+            return $.map( self.getSelectedCategories(), function( category ) {
+                return category.id;
+            } );
         },
 
         getSelectedCategories: function() {
@@ -249,30 +253,40 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
         },
 
         onContinueButtonClicked: function() {
-            var self = this;
+            var self = this,
+                lisitngId = self.store.getListingId();
 
-            if ( ! self.store.getListingId() && self.store.isValid() ) {
+            if ( lisitngId && self.store.isValid( 'update-listing-order' ) ) {
+                self.updateListingOrder();
+                self.store.setSectionStateToLoading( self.id );
+                return;
+            } else if ( ! lisitngId && self.store.isValid( 'create-listing' ) ) {
                 self.createEmptyListing();
                 self.store.setSectionStateToLoading( self.id );
                 return;
             }
-
-            if ( ! self.store.getListingId() ) {
-                return;
-            }
-
-            self.store.setSectionStateToPreview( self.id );
         },
 
-        createEmptyListing: function() {
-            var self = this, paymentTerm, creditPlanId, data, callback;
+        updateListingOrder: function() {
+            var self = this, data;
+
+            data = self.getListingOrderData();
+
+            data.action         = 'awpcp_update_listing_order'
+            data.nonce          = $.AWPCP.get( 'update_listing_order_nonce' );
+            data.listing_id     = self.store.getListingId();
+            data.transaction_id = self.store.getTransactionId();
+
+            self.doAjaxRequest( data );
+        },
+
+        getListingOrderData: function() {
+            var self = this, paymentTerm, creditPlanId, data;
 
             paymentTerm   = self.store.getSelectedPaymentTerm();
             creditPlanId  = self.store.getSelectedCreditPlanId();
 
             data = {
-                action:                    'awpcp_create_empty_listing',
-                nonce:                     $.AWPCP.get( 'create_empty_listing_nonce' ),
                 categories:                self.store.getSelectedCategoriesIds(),
                 payment_term_id:           paymentTerm.id,
                 payment_term_type:         paymentTerm.type,
@@ -282,6 +296,12 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
                 custom:                    self.store.getCustomData(),
                 current_url:               document.location.href
             };
+
+            return data;
+        },
+
+        doAjaxRequest: function( data ) {
+            var self = this;
 
             // Remove existing error messages.
             self.$element.find( '.awpcp-message.awpcp-error' ).remove();
@@ -303,7 +323,9 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
                     }
 
                     if ( 'ok' === response.status ) {
+                        self.store.setOrderModifiedDate( new Date() );
                         self.store.setTransactionId( response.transaction );
+                        // setListingId() causes the store to refresh() all sections.
                         self.store.setListingId( response.listing.ID );
                     }
 
@@ -350,6 +372,17 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
             }
 
             return {};
+        },
+
+        createEmptyListing: function() {
+            var self = this, data;
+
+            data = self.getListingOrderData();
+
+            data.action = 'awpcp_create_empty_listing';
+            data.nonce  = $.AWPCP.get( 'create_empty_listing_nonce' );
+
+            self.doAjaxRequest( data );
         },
 
         onChangeSelectionButtonClicked: function() {

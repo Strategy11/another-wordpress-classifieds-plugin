@@ -457,6 +457,7 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_Uninstaller' => __DIR__ . '/../..' . '/includes/class-uninstaller.php',
         'AWPCP_UnverifiedListingTableView' => __DIR__ . '/../..' . '/includes/admin/listings/class-unverified-listing-table-view.php',
         'AWPCP_UpdateFormFieldsOrderAjaxHandler' => __DIR__ . '/../..' . '/admin/form-fields/class-update-form-fields-order-ajax-handler.php',
+        'AWPCP_UpdateListingOrderAjaxHandler' => __DIR__ . '/../..' . '/includes/frontend/class-update-listing-order-ajax-handler.php',
         'AWPCP_UpdateSubmitListingSectionsAjaxHandler' => __DIR__ . '/../..' . '/includes/frontend/class-update-submit-listing-sections-ajax-handler.php',
         'AWPCP_Update_Attachment_Allowed_Status_Ajax_Action' => __DIR__ . '/../..' . '/includes/media/class-update-attachment-allowed-status-ajax-action.php',
         'AWPCP_Update_Attachment_Enabled_Status_Ajax_Action' => __DIR__ . '/../..' . '/includes/media/class-update-attachment-enabled-status-ajax-action.php',

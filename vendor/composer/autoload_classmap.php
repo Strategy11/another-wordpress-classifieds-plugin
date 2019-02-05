@@ -456,6 +456,7 @@ return array(
     'AWPCP_Uninstaller' => $baseDir . '/includes/class-uninstaller.php',
     'AWPCP_UnverifiedListingTableView' => $baseDir . '/includes/admin/listings/class-unverified-listing-table-view.php',
     'AWPCP_UpdateFormFieldsOrderAjaxHandler' => $baseDir . '/admin/form-fields/class-update-form-fields-order-ajax-handler.php',
+    'AWPCP_UpdateListingOrderAjaxHandler' => $baseDir . '/includes/frontend/class-update-listing-order-ajax-handler.php',
     'AWPCP_UpdateSubmitListingSectionsAjaxHandler' => $baseDir . '/includes/frontend/class-update-submit-listing-sections-ajax-handler.php',
     'AWPCP_Update_Attachment_Allowed_Status_Ajax_Action' => $baseDir . '/includes/media/class-update-attachment-allowed-status-ajax-action.php',
     'AWPCP_Update_Attachment_Enabled_Status_Ajax_Action' => $baseDir . '/includes/media/class-update-attachment-enabled-status-ajax-action.php',

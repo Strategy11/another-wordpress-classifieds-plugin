@@ -118,6 +118,18 @@ class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurati
      * @since 4.0.0
      */
     public function register_ajax_handlers( $container ) {
+        $container['UpdateListingOrderAjaxHandler'] = $container->service( function( $container ) {
+            return new AWPCP_UpdateListingOrderAjaxHandler(
+                $container['ListingsLogic'],
+                $container['PaymentInformationValidator'],
+                $container['ListingsCollection'],
+                $container['Payments'],
+                $container['ListingOrderPostedData'],
+                awpcp_ajax_response(),
+                $container['Request']
+            );
+        } );
+
         $container['UpdateSubmitListingSectionsAjaxHandler'] = $container->service( function( $container ) {
             return new AWPCP_UpdateSubmitListingSectionsAjaxHandler(
                 $container['SubmitListingSectionsGenerator'],

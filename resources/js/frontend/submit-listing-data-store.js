@@ -249,6 +249,26 @@ AWPCP.define( 'awpcp/frontend/submit-listing-data-store', [
             return null;
         },
 
+        setOrderModifiedDate: function( date ) {
+            var self = this;
+
+            self.data.order = { modifiedDate: date }
+        },
+
+        getOrderModifiedDate: function() {
+            var self = this;
+
+            if ( typeof self.data.order === 'undefined' ) {
+                return null;
+            }
+
+            if ( typeof self.data.order.modifiedDate === 'undefined' ) {
+                return null;
+            }
+
+            return self.data.order.modifiedDate;
+        },
+
         updateListingFields: function( fields ) {
             var self = this;
 

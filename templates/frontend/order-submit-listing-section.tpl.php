@@ -27,13 +27,16 @@
 
                     $params = apply_filters( 'awpcp_post_listing_categories_selector_args', $params );
 
-                    echo awpcp_categories_selector()->render( $params ); // XSS Ok.
-                    echo awpcp_form_error( 'category', $form_errors ); // XSS Ok.
+                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                    echo awpcp_categories_selector()->render( $params );
+                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                    echo awpcp_form_error( 'category', $form_errors );
                     ?>
                 </div>
 
                 <div class="awpcp-form-spacer<?php echo $show_user_field ? '' : esc_attr( ' awpcp-hidden' ); ?>">
                     <?php
+                    // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
                     echo awpcp()->container['UserSelector']->render(
                         [
                             'required'                   => true,
@@ -46,26 +49,32 @@
                             'include_selected_user_only' => ! $show_user_field,
                             'include_full_user_information' => false,
                         ]
-                    ); // XSS Ok.
+                    );
+
+                    echo awpcp_form_error( 'user', $form_errors );
+                    // phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped
                     ?>
-                    <?php echo awpcp_form_error( 'user', $form_errors ); // XSS Ok. ?>
                 </div>
 
                 <div class="awpcp-form-spacer">
                     <label><?php echo esc_html_x( 'Please select the duration and features that will be available for this ad', 'order submit listing section', 'another-wordpress-classifieds-plugin' ); ?><span class="required">*</span></label>
 
+                    <?php // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped ?>
                     <?php if ( $show_account_balance ) : ?>
-                        <?php echo $account_balance; // XSS Ok. ?>
+                        <?php echo $account_balance; ?>
                     <?php endif; ?>
 
-                    <?php echo $payment_terms_list; // XSS Ok. ?>
-                    <?php echo $credit_plans_table; // XSS Ok. ?>
+                    <?php echo $payment_terms_list; ?>
+                    <?php echo $credit_plans_table; ?>
+                    <?php // phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped ?>
                 </div>
 
                 <?php if ( $show_captcha ) : ?>
                 <div class="awpcp-form-spacer awpcp-captcha">
-                    <?php echo $captcha->render(); // XSS Ok. ?>
-                    <?php echo awpcp_form_error( 'captcha', $form_errors ); // XSS Ok. ?>
+                    <?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                    <?php echo $captcha->render(); ?>
+                    <?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                    <?php echo awpcp_form_error( 'captcha', $form_errors ); ?>
                 </div>
                 <?php endif; ?>
 
@@ -76,7 +85,7 @@
         </div>
 
         <div class="awpcp-order-submit-listing-section__read_mode">
-            <p class="awpcp-order-submit-listing-section--selected-categories-container"><?php echo str_replace( '{categories}', '<span class="awpcp-order-submit-listing-section--selected-categories"></span>', esc_html_x( 'Your ad will be posted on the following categories: {categories}.', 'order submit listing section', 'another-wordpress-classifieds-plugin' ) ); // XSS Ok. ?></p>
+            <p class="awpcp-order-submit-listing-section--selected-categories-container"><?php echo str_replace( '{categories}', '<span class="awpcp-order-submit-listing-section--selected-categories"></span>', esc_html_x( 'Your ad will be posted on the following categories: {categories}.', 'order submit listing section', 'another-wordpress-classifieds-plugin' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
 
             <div class="awpcp-payment-terms-list">
                 <div class="awpcp-order-submit-listing-section--payment-term awpcp-payment-term awpcp-payment-term__read_only"></div>
@@ -96,7 +105,8 @@
     /* <![CDATA[ */
         window.awpcp = window.awpcp || {};
         window.awpcp.options = window.awpcp.options || [];
-        window.awpcp.options.push( ['create_empty_listing_nonce', <?php echo wp_json_encode( $nonce ); ?> ] );
+        window.awpcp.options.push( ['create_empty_listing_nonce', <?php echo wp_json_encode( $nonces['create_empty_listing_nonce'] ); ?> ] );
+        window.awpcp.options.push( ['update_listing_order_nonce', <?php echo wp_json_encode( $nonces['update_listing_order_nonce'] ); ?> ] );
     /* ]]> */
     </script>
 </div>
