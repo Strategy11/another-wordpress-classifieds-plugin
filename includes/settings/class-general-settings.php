@@ -58,8 +58,6 @@ class AWPCP_GeneralSettings {
         $this->register_legacy_settings( $settings_manager );
     }
 
-    // phpcs:disable
-
     /**
      * @since 4.0.0
      */
@@ -120,13 +118,16 @@ class AWPCP_GeneralSettings {
             'section'     => 'general-settings',
         ] );
 
-        $settings_manager->add_setting( [
-            'id'      => 'noadsinparentcat',
-            'name'    => __( 'Prevent ads from being posted to top level categories?', 'another-wordpress-classifieds-plugin' ),
-            'type'    => 'checkbox',
-            'default' => 0,
-            'section' => 'general-settings',
-        ] );
+        $settings_manager->add_setting(
+            [
+                'id'          => 'noadsinparentcat',
+                'name'        => __( 'Force ads to posted be on leaf categories only', 'another-wordpress-classifieds-plugin' ),
+                'type'        => 'checkbox',
+                'default'     => 0,
+                'description' => __( 'With this on, users cannot post ads in top or mid-level categories, only those at the very bottom.', 'another-wordpress-classifieds-plugin' ),
+                'section'     => 'general-settings',
+            ]
+        );
 
         $settings_manager->add_setting( [
             'id'      => 'hide-empty-categories-dropdown',
