@@ -7,6 +7,7 @@
 require_once AWPCP_DIR . '/debug.php';
 require_once AWPCP_DIR . '/cron.php';
 require_once AWPCP_DIR . '/functions.php';
+require_once AWPCP_DIR . '/includes/functions/assets.php';
 require_once AWPCP_DIR . '/includes/functions/compat.php';
 require_once AWPCP_DIR . '/includes/functions/categories.php';
 require_once AWPCP_DIR . '/includes/functions/deprecated.php';

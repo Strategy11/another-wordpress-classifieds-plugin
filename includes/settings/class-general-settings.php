@@ -54,6 +54,7 @@ class AWPCP_GeneralSettings {
         $this->register_anti_spam_settings( $settings_manager );
         $this->register_adsense_settings( $settings_manager );
         $this->register_registration_settings( $settings_manager );
+        $this->register_advanced_settings( $settings_manager );
 
         $this->register_legacy_settings( $settings_manager );
     }
@@ -537,6 +538,45 @@ class AWPCP_GeneralSettings {
             'description' => __( 'Location of registration page. Value should be the full URL to the WordPress registration page (e.g. http://www.awpcp.com/wp-login.php?action=register).', 'another-wordpress-classifieds-plugin' ) . '<br/><br/>' . __( 'IMPORTANT: Only change this setting when using a membership plugin with custom login pages or similar scenarios.', 'another-wordpress-classifieds-plugin' ),
             'section' => 'registration-settings',
         ] );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function register_advanced_settings( $settings_manager ) {
+        $settings_manager->add_settings_subgroup(
+            [
+                'id'       => 'advanced-settings',
+                'name'     => __( 'Advanced', 'another-wordpress-classifieds-plugin' ),
+                'priority' => 1000,
+                'parent'   => 'general-settings',
+            ]
+        );
+
+        $settings_manager->add_settings_section(
+            [
+                'id'       => 'scripts-and-styles',
+                'name'     => __( 'Scripts and Styles', 'another-wordpress-classifieds-plugin' ),
+                'subgroup' => 'advanced-settings',
+            ]
+        );
+
+        $settings_manager->add_setting(
+            [
+                'id'          => 'enqueue-font-awesome-style',
+                'name'        => __( 'Enqueue Font Awesome stylesheet (v5.2.0)', 'another-wordpress-classifieds-plugin' ),
+                'type'        => 'radio',
+                'default'     => 'both',
+                'description' => __( 'Use this setting to prevent conflicts with other plugins that already enqueue Font Awesome. Change the default value only if you have performed a conflict test to validate this is a Font Awesome issue.', 'another-wordpress-classifieds-plugin' ),
+                'options'     => [
+                    'both'     => __( 'Admin and frontend pages (default)', 'another-wordpress-classifieds-plugin' ),
+                    'frontend' => __( 'Frontend pages only', 'another-wordpress-classifieds-plugin' ),
+                    'admin'    => __( 'Admin pages only', 'another-wordpress-classifieds-plugin' ),
+                    'none'     => __( "Don't enqueue", 'another-wordpress-classifieds-plugin' ),
+                ],
+                'section'     => 'scripts-and-styles',
+            ]
+        );
     }
 
     /**

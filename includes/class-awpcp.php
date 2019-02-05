@@ -964,6 +964,8 @@ class AWPCP {
             '1.2.22'
         );
 
+        // Please update the name of the enqueue-font-awesome-style setting everytime
+        // you change the registered version of the stylesheet below.
         wp_register_style(
             'awpcp-font-awesome',
             'https://use.fontawesome.com/releases/v5.2.0/css/all.css',
@@ -1076,7 +1078,7 @@ class AWPCP {
         wp_register_style(
             'awpcp-admin-menu',
             "{$css}/awpcp-admin-menu.css",
-            [ 'awpcp-font-awesome' ],
+            awpcp_maybe_add_asset_dependencies( [ 'awpcp-font-awesome' => 'enqueue-font-awesome-style' ] ),
             $awpcp_db_version
         );
 
@@ -1157,7 +1159,7 @@ class AWPCP {
         wp_register_style(
             'awpcp-frontend-style',
             "{$css}/awpcpstyle.css",
-            [ 'awpcp-font-awesome' ],
+            awpcp_maybe_add_asset_dependencies( [ 'awpcp-font-awesome' => 'enqueue-font-awesome-style' ] ),
             $awpcp_db_version
         );
 
