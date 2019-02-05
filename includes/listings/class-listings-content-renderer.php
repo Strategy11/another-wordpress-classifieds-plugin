@@ -170,11 +170,12 @@ class AWPCP_ListingsContentRenderer {
         $awpcp->js->set( 'page-show-ad-flag-ad-nonce', wp_create_nonce( 'flag_ad' ) );
 
         $awpcp->js->localize(
-            'page-show-ad', array(
+            'page-show-ad',
+            [
                 'flag-confirmation-message' => __( 'Are you sure you want to flag this ad?', 'another-wordpress-classifieds-plugin' ),
                 'flag-success-message'      => __( 'This Ad has been flagged.', 'another-wordpress-classifieds-plugin' ),
                 'flag-error-message'        => __( 'An error occurred while trying to flag the Ad.', 'another-wordpress-classifieds-plugin' ),
-            )
+            ]
         );
 
         // phpcs:disable
