@@ -85,8 +85,10 @@ class AWPCP_Category_Selector {
         $categories_callback = null;
 
         if ( $params['disable_parent_categories'] ) {
-            $categories_callback = function( $category ) {
-                if ( 0 === $category->parent ) {
+            $hierarchy = $this->categories->get_hierarchy();
+
+            $categories_callback = function ( $category ) use ( $hierarchy ) {
+                if ( isset( $hierarchy[ $category->term_id ] ) ) {
                     $category->disabled = true;
                 }
 

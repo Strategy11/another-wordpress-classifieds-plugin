@@ -15,6 +15,11 @@ class AWPCP_PaymentInformationValidator {
     private $listing_category_taxonomy;
 
     /**
+     * @var AWPCP_CategoriesCollection
+     */
+    private $categories;
+
+    /**
      * @var AWPCP_PaymentsAPI
      */
     private $payments;
@@ -27,8 +32,9 @@ class AWPCP_PaymentInformationValidator {
     /**
      * @since 4.0.0
      */
-    public function __construct( $listing_category_taxonomy, $payments, $roles ) {
+    public function __construct( $listing_category_taxonomy, $categories, $payments, $roles ) {
         $this->listing_category_taxonomy = $listing_category_taxonomy;
+        $this->categories                = $categories;
         $this->payments                  = $payments;
         $this->roles                     = $roles;
     }
@@ -108,9 +114,13 @@ class AWPCP_PaymentInformationValidator {
             return $errors;
         }
 
+        $hierarchy = $this->categories->get_hierarchy();
+
         foreach ( $categories as $category_id ) {
-            if ( ! category_is_child( $category_id ) ) {
+            if ( isset( $hierarchy[ $category_id ] ) ) {
                 $errors['categories'] = __( 'You cannot list your Ad in top level categories.', 'another-wordpress-classifieds-plugin' );
+
+                return $errors;
             }
         }
 

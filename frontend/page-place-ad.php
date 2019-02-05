@@ -280,9 +280,6 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         return $errors;
     }
 
-    /**
-     * TODO: Move into create_listing or create_empty_listing methods on ListingsLogic.
-     */
     private function validate_selected_categories( $data, $field_name, &$errors = array() ) {
         $allow_categories_in_parent  = ! get_awpcp_option( 'noadsinparentcat' );
 

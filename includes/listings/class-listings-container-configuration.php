@@ -220,6 +220,7 @@ class AWPCP_ListingsContainerConfiguration implements AWPCP_ContainerConfigurati
         $container['PaymentInformationValidator'] = $container->service( function( $container ) {
             return new AWPCP_PaymentInformationValidator(
                 $container['listing_category_taxonomy'],
+                $container['CategoriesCollection'],
                 $container['Payments'],
                 $container['RolesAndCapabilities']
             );
