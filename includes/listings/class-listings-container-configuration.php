@@ -209,6 +209,14 @@ class AWPCP_ListingsContainerConfiguration implements AWPCP_ContainerConfigurati
             );
         } );
 
+        $container['ListingsPaymentTransactions'] = $container->service(
+            function( $container ) {
+                return new AWPCP_ListingsPaymentTransactions(
+                    $container['Payments']
+                );
+            }
+        );
+
         $container['PaymentInformationValidator'] = $container->service( function( $container ) {
             return new AWPCP_PaymentInformationValidator(
                 $container['listing_category_taxonomy'],

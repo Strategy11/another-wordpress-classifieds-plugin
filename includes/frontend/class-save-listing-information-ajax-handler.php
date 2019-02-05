@@ -24,9 +24,9 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
     private $listings;
 
     /**
-     * @var Payments
+     * @var ListingsPaymentTransactions
      */
-    private $payments;
+    private $listings_transactions;
 
     /**
      * @var FormFieldsValidator
@@ -47,14 +47,27 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
      * @since 4.0.0
      * @SuppressWarnings(PHPMD.ExcessiveParameterList)
      */
-    public function __construct( $listing_category_taxonomy, $listings_logic, $listing_renderer, $listings, $payments, $form_fields_validator, $payment_information_validator, $posted_data, $roles, $settings, $response, $request ) {
+    public function __construct(
+        $listing_category_taxonomy,
+        $listings_logic,
+        $listing_renderer,
+        $listings,
+        $listings_transactions,
+        $form_fields_validator,
+        $payment_information_validator,
+        $posted_data,
+        $roles,
+        $settings,
+        $response,
+        $request
+    ) {
         parent::__construct( $response );
 
         $this->listing_category_taxonomy     = $listing_category_taxonomy;
         $this->listings_logic                = $listings_logic;
         $this->listing_renderer              = $listing_renderer;
         $this->listings                      = $listings;
-        $this->payments                      = $payments;
+        $this->listings_transactions         = $listings_transactions;
         $this->form_fields_validator         = $form_fields_validator;
         $this->payment_information_validator = $payment_information_validator;
         $this->posted_data                   = $posted_data;
@@ -104,7 +117,7 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
      * @throws AWPCP_Exception  If a transaction cannot be found.
      */
     private function save_new_listing_information( $listing ) {
-        $transaction = $this->payments->get_transaction();
+        $transaction = $this->listings_transactions->get_current_transaction();
 
         if ( is_null( $transaction ) ) {
             $message = __( 'There is no payment transaction associated with this request. Aborting.', 'another-wordpress-classifieds-plugin' );
@@ -213,7 +226,7 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
             return $this->multiple_errors_response( $errors );
         }
 
-        $this->prepare_transaction_for_checkout( $transaction, $posted_data );
+        $this->listings_transactions->prepare_transaction_for_checkout( $transaction, $posted_data );
         $this->save_listing_information( $listing, $posted_data['post_data'] );
 
         // TODO: Redirect to checkout page.
@@ -239,48 +252,6 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
         ];
 
         return $this->success( $response );
-    }
-
-    /**
-     * TODO: This is an exact copy of prepare_transaction_for_checkout() in
-     * UpdateListingOrder and CreateEmptyListing ajax handlers.
-     *
-     * @since 4.0.0
-     * @throws AWPCP_Exception  When an error occurs trying to change the transaction
-     *                          status to Checkout.
-     */
-    private function prepare_transaction_for_checkout( $transaction, $data ) {
-        $categories   = $data['categories'];
-        $payment_term = $data['payment_term'];
-        $payment_type = $data['payment_type'];
-        $user_id      = $data['user_id'];
-
-        // phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
-        $number_of_categories_allowed = apply_filters( 'awpcp-number-of-categories-allowed-in-post-listing-order-step', 1, $payment_term );
-        // phpcs:enable
-
-        $transaction->user_id = $user_id;
-        $transaction->set( 'category', array_slice( $categories, 0, $number_of_categories_allowed ) );
-        $transaction->set( 'payment-term-type', $payment_term->type );
-        $transaction->set( 'payment-term-id', $payment_term->id );
-        $transaction->set( 'payment-term-payment-type', $payment_type );
-
-        $transaction->remove_all_items();
-        $transaction->reset_payment_status();
-
-        $this->payments->set_transaction_item_from_payment_term( $transaction, $payment_term, $payment_type );
-
-        // Process transaction to grab Credit Plan information.
-        $this->payments->set_transaction_credit_plan( $transaction );
-
-        // Let other parts of the plugin know a transaction is being processed.
-        $this->payments->process_transaction( $transaction );
-
-        $this->payments->set_transaction_status_to_ready_to_checkout( $transaction, $transaction_errors );
-
-        if ( $transaction_errors ) {
-            throw new AWPCP_Exception( array_shift( $transaction_errors ) );
-        }
     }
 
     /**

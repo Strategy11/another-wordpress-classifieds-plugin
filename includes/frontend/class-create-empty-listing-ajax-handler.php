@@ -15,9 +15,19 @@ class AWPCP_CreateEmptyListingAjaxHandler extends AWPCP_AjaxHandler {
     private $listings_logic;
 
     /**
+     * @var ListingsPaymentTransactions
+     */
+    private $listings_transactions;
+
+    /**
      * @var AWPCP_PaymentInformationValidator
      */
     private $payment_information_validator;
+
+    /**
+     * @var PaymentsAPI
+     */
+    private $payments;
 
     /**
      * @var CAPTCHA
@@ -36,11 +46,24 @@ class AWPCP_CreateEmptyListingAjaxHandler extends AWPCP_AjaxHandler {
 
     /**
      * @since 4.0.0
+     * @SuppressWarnings(PHPMD.ExcessiveParameterList)
      */
-    public function __construct( $listings_logic, $payment_information_validator, $payments, $roles, $captcha, $response, $settings, $posted_data, $request ) {
+    public function __construct(
+        $listings_logic,
+        $listings_transactions,
+        $payment_information_validator,
+        $payments,
+        $roles,
+        $captcha,
+        $response,
+        $settings,
+        $posted_data,
+        $request
+    ) {
         parent::__construct( $response );
 
         $this->listings_logic                = $listings_logic;
+        $this->listings_transactions         = $listings_transactions;
         $this->payment_information_validator = $payment_information_validator;
         $this->payments                      = $payments;
         $this->roles                         = $roles;
@@ -92,7 +115,7 @@ class AWPCP_CreateEmptyListingAjaxHandler extends AWPCP_AjaxHandler {
         $transaction = $this->create_transaction( $posted_data );
         $listing     = $this->create_listing( $transaction, $posted_data['post_data'] );
 
-        $this->prepare_transaction_for_checkout( $transaction, $posted_data );
+        $this->listings_transactions->prepare_transaction_for_checkout( $transaction, $posted_data );
 
         if ( $this->payments->payments_enabled() && $this->settings->get_option( 'pay-before-place-ad' ) ) {
             return $this->redirect_to_checkout_page( $listing, $transaction, $posted_data );
@@ -178,47 +201,5 @@ class AWPCP_CreateEmptyListingAjaxHandler extends AWPCP_AjaxHandler {
         ];
 
         return $this->success( $response );
-    }
-
-    /**
-     * TODO: This is an exact copy of prepare_transaction_for_checkout() in
-     * UpdateListingOrder and SaveListingInformation ajax handlers.
-     *
-     * @since 4.0.0
-     * @throws AWPCP_Exception  When an error occurs trying to change the transaction
-     *                          status to Checkout.
-     */
-    private function prepare_transaction_for_checkout( $transaction, $data ) {
-        $categories   = $data['categories'];
-        $payment_term = $data['payment_term'];
-        $payment_type = $data['payment_type'];
-        $user_id      = $data['user_id'];
-
-        // phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
-        $number_of_categories_allowed = apply_filters( 'awpcp-number-of-categories-allowed-in-post-listing-order-step', 1, $payment_term );
-        // phpcs:enable
-
-        $transaction->user_id = $user_id;
-        $transaction->set( 'category', array_slice( $categories, 0, $number_of_categories_allowed ) );
-        $transaction->set( 'payment-term-type', $payment_term->type );
-        $transaction->set( 'payment-term-id', $payment_term->id );
-        $transaction->set( 'payment-term-payment-type', $payment_type );
-
-        $transaction->remove_all_items();
-        $transaction->reset_payment_status();
-
-        $this->payments->set_transaction_item_from_payment_term( $transaction, $payment_term, $payment_type );
-
-        // Process transaction to grab Credit Plan information.
-        $this->payments->set_transaction_credit_plan( $transaction );
-
-        // Let other parts of the plugin know a transaction is being processed.
-        $this->payments->process_transaction( $transaction );
-
-        $this->payments->set_transaction_status_to_ready_to_checkout( $transaction, $transaction_errors );
-
-        if ( $transaction_errors ) {
-            throw new AWPCP_Exception( array_shift( $transaction_errors ) );
-        }
     }
 }

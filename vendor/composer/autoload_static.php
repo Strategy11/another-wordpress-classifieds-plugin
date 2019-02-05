@@ -279,6 +279,7 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_ListingsContent' => __DIR__ . '/../..' . '/includes/listings/class-listings-content.php',
         'AWPCP_ListingsContentRenderer' => __DIR__ . '/../..' . '/includes/listings/class-listings-content-renderer.php',
         'AWPCP_ListingsModerationSettings' => __DIR__ . '/../..' . '/includes/settings/class-listings-moderation-settings.php',
+        'AWPCP_ListingsPaymentTransactions' => __DIR__ . '/../..' . '/includes/listings/class-listings-payment-transactions.php',
         'AWPCP_ListingsPayments' => __DIR__ . '/../..' . '/includes/listings/class-listings-payments.php',
         'AWPCP_ListingsPermalinks' => __DIR__ . '/../..' . '/includes/listings/class-listings-permalinks.php',
         'AWPCP_ListingsPersonalDataProvider' => __DIR__ . '/../..' . '/includes/admin/class-listings-personal-data-provider.php',

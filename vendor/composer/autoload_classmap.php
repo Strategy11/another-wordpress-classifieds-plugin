@@ -278,6 +278,7 @@ return array(
     'AWPCP_ListingsContent' => $baseDir . '/includes/listings/class-listings-content.php',
     'AWPCP_ListingsContentRenderer' => $baseDir . '/includes/listings/class-listings-content-renderer.php',
     'AWPCP_ListingsModerationSettings' => $baseDir . '/includes/settings/class-listings-moderation-settings.php',
+    'AWPCP_ListingsPaymentTransactions' => $baseDir . '/includes/listings/class-listings-payment-transactions.php',
     'AWPCP_ListingsPayments' => $baseDir . '/includes/listings/class-listings-payments.php',
     'AWPCP_ListingsPermalinks' => $baseDir . '/includes/listings/class-listings-permalinks.php',
     'AWPCP_ListingsPersonalDataProvider' => $baseDir . '/includes/admin/class-listings-personal-data-provider.php',

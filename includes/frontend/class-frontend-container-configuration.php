@@ -62,6 +62,7 @@ class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurati
         $container['CreateEmptyListingAjaxHandler'] = $container->service( function( $container ) {
             return new AWPCP_CreateEmptyListingAjaxHandler(
                 $container['ListingsLogic'],
+                $container['ListingsPaymentTransactions'],
                 $container['PaymentInformationValidator'],
                 $container['Payments'],
                 $container['RolesAndCapabilities'],
@@ -123,7 +124,7 @@ class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurati
                 $container['ListingsLogic'],
                 $container['PaymentInformationValidator'],
                 $container['ListingsCollection'],
-                $container['Payments'],
+                $container['ListingsPaymentTransactions'],
                 $container['ListingOrderPostedData'],
                 awpcp_ajax_response(),
                 $container['Request']
@@ -146,7 +147,7 @@ class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurati
                 $container['ListingsLogic'],
                 $container['ListingRenderer'],
                 $container['ListingsCollection'],
-                $container['Payments'],
+                $container['ListingsPaymentTransactions'],
                 $container['FormFieldsValidator'],
                 $container['PaymentInformationValidator'],
                 $container['ListingPostedData'],
