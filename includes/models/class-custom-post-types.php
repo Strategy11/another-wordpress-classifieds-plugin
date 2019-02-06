@@ -181,7 +181,7 @@ class AWPCP_Custom_Post_Types {
                 ),
                 'show_in_menu'      => false,
                 'hierarchical'      => true,
-                'query_var'         => 'listing-category',
+                'query_var'         => 'awpcp_category',
                 'rewrite'           => array(
                     'slug' => 'listing-category',
                 ),
