@@ -63,7 +63,7 @@ class AWPCP_Categories_Switcher {
         $category_dropdown_params = wp_parse_args( $params, array(
             'label'    => $label,
             'context'  => 'search',
-            'name'     => 'category_id',
+            'name'     => 'awpcp_category_id',
             'selected' => $category_id,
         ) );
 

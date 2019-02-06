@@ -147,12 +147,17 @@ class AWPCP_Request {
      * @since 3.0.2
      */
     public function get_category_id() {
-        $category_id = $this->param( 'category_id', 0 );
-        if ( empty( $category_id ) ) {
-            return intval( $this->get_query_var( 'cid' ) );
-        } else {
-            return intval( $category_id );
-        }
+        $alternatives = [
+            'params'     => [
+                'awpcp_category_id',
+                'category_id',
+            ],
+            'query_vars' => [
+                'cid',
+            ],
+        ];
+
+        return intval( $this->find_variable( $alternatives, 0 ) );
     }
 
     /**
@@ -189,6 +194,17 @@ class AWPCP_Request {
             ],
         ];
 
+        if ( 'awpcp_listing' === $this->get_query_var( 'post_type' ) ) {
+            $alternatives['query_vars'][] = 'p';
+        }
+
+        return $this->find_variable( $alternatives );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function find_variable( array $alternatives, $default = null ) {
         foreach ( $alternatives['params'] as $name ) {
             $value = $this->param( $name );
 
@@ -205,11 +221,7 @@ class AWPCP_Request {
             }
         }
 
-        if ( 'awpcp_listing' === $this->get_query_var( 'post_type' ) ) {
-            return $this->get_query_var( 'p' );
-        }
-
-        return null;
+        return $default;
     }
 
     /**

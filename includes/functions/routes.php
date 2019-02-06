@@ -289,9 +289,9 @@ function url_browsecategory( $category ) {
         $url_browsecats = awpcp_get_url_with_page_permastruct( $path );
     } else {
         if (!empty($permalinks)) {
-            $params = array('category_id' => "$cat_id/$cat_slug");
+            $params = array( 'awpcp_category_id' => "$cat_id/$cat_slug" );
         } else {
-            $params = array( 'category_id' => $cat_id );
+            $params = array( 'awpcp_category_id' => $cat_id );
         }
 
         $url_browsecats = add_query_arg( urlencode_deep( $params ), home_url( '?page_id=' . $page_id ) );

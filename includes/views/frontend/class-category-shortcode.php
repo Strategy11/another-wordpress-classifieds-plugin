@@ -115,7 +115,7 @@ class AWPCP_CategoryShortcode {
 
         // Required so awpcp_display_ads shows the name of the current category.
         if ( count( $categories_ids ) === 1 ) {
-            $_REQUEST['category_id'] = $categories_ids[0];
+            $_REQUEST['awpcp_category_id'] = $categories_ids[0];
         }
 
         return awpcp_display_listings_in_page( $query, 'category-shortcode', $options );

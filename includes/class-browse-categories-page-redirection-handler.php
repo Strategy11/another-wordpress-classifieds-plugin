@@ -42,18 +42,12 @@ class AWPCP_Browse_Categories_Page_Redirection_Handler {
     }
 
     private function redirect() {
-        $params = wp_parse_args( parse_url( awpcp_current_url(), PHP_URL_QUERY ) );
-
-        if ( isset( $params['category_id'] ) ) {
-            $category_id = intval( $params['category_id'] );
-        } else if ( $this->request->get_query_var( 'cid' ) ) {
-            $category_id = intval( $this->request->get_query_var( 'cid' ) );
-        } else {
-            $category_id = 0;
-        }
+        $category_id = $this->request->get_category_id();
+        $params      = wp_parse_args( parse_url( awpcp_current_url(), PHP_URL_QUERY ) );
 
         unset( $params['page_id'] );
         unset( $params['category_id'] );
+        unset( $params['awpcp_category_id'] );
 
         if ( $category_id ) {
             $url = awpcp_get_browse_category_url_from_id( $category_id );
