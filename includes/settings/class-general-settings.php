@@ -63,12 +63,14 @@ class AWPCP_GeneralSettings {
      * @since 4.0.0
      */
     private function register_general_settings( $settings_manager ) {
-        $settings_manager->add_settings_subgroup( [
-            'id' => 'general-settings',
-            'name' => __( 'General Settings', 'another-wordpress-classifieds-plugin' ),
-            'priority' => 5,
-            'parent' => 'general-settings',
-        ] );
+        $settings_manager->add_settings_subgroup(
+            [
+                'id'       => 'general-settings',
+                'name'     => __( 'General Settings', 'another-wordpress-classifieds-plugin' ),
+                'priority' => 5,
+                'parent'   => 'general-settings',
+            ]
+        );
 
         $this->register_general_settings_section( $settings_manager );
         $this->register_classifieds_management_panel_settings( $settings_manager );
@@ -77,47 +79,56 @@ class AWPCP_GeneralSettings {
 
     /**
      * @since 4.0.0
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     private function register_general_settings_section( $settings_manager ) {
-        $settings_manager->add_settings_section( [
-            'name'     => __( 'General Settings', 'another-wordpress-classifieds-plugin' ),
-            'id'       => 'general-settings',
-            'priority' => 5,
-            'subgroup' => 'general-settings',
-        ] );
+        $settings_manager->add_settings_section(
+            [
+                'name'     => __( 'General Settings', 'another-wordpress-classifieds-plugin' ),
+                'id'       => 'general-settings',
+                'priority' => 5,
+                'subgroup' => 'general-settings',
+            ]
+        );
 
-        $settings_manager->add_setting( [
-            'id'          => 'main_page_display',
-            'name'        => __( 'Show Ad listings on main page', 'another-wordpress-classifieds-plugin' ),
-            'type'        => 'checkbox',
-            'default'     => 0,
-            'description' => __( 'If unchecked only categories will be displayed', 'another-wordpress-classifieds-plugin' ),
-            'section'     => 'general-settings',
-        ] );
+        $settings_manager->add_setting(
+            [
+                'id'          => 'main_page_display',
+                'name'        => __( 'Show Ad listings on main page', 'another-wordpress-classifieds-plugin' ),
+                'type'        => 'checkbox',
+                'default'     => 0,
+                'description' => __( 'If unchecked only categories will be displayed', 'another-wordpress-classifieds-plugin' ),
+                'section'     => 'general-settings',
+            ]
+        );
 
-        $settings_manager->add_setting( [
-            'id'      => 'view-categories-columns',
-            'name'    => __( 'Category columns in View Categories page', 'another-wordpress-classifieds-plugin' ),
-            'type'    => 'select',
-            'default' => 2,
-            'options' => [
-                1 => 1,
-                2 => 2,
-                3 => 3,
-                4 => 4,
-                5 => 5,
-            ],
-            'section' => 'general-settings',
-        ] );
+        $settings_manager->add_setting(
+            [
+                'id'      => 'view-categories-columns',
+                'name'    => __( 'Category columns in View Categories page', 'another-wordpress-classifieds-plugin' ),
+                'type'    => 'select',
+                'default' => 2,
+                'options' => [
+                    1 => 1,
+                    2 => 2,
+                    3 => 3,
+                    4 => 4,
+                    5 => 5,
+                ],
+                'section' => 'general-settings',
+            ]
+        );
 
-        $settings_manager->add_setting( [
-            'id'          => 'collapse-categories-columns',
-            'name'        => __( 'Collapse Categories', 'another-wordpress-classifieds-plugin' ),
-            'type'        =>'checkbox',
-            'default'     => 0,
-            'description' => __( 'If checked the list of sub-categories will be collapsed by default. Users would have to click the down arrow icon to expand the list and see the sub-categories.', 'another-wordpress-classifieds-plugin' ),
-            'section'     => 'general-settings',
-        ] );
+        $settings_manager->add_setting(
+            [
+                'id'          => 'collapse-categories-columns',
+                'name'        => __( 'Collapse Categories', 'another-wordpress-classifieds-plugin' ),
+                'type'        => 'checkbox',
+                'default'     => 0,
+                'description' => __( 'If checked the list of sub-categories will be collapsed by default. Users would have to click the down arrow icon to expand the list and see the sub-categories.', 'another-wordpress-classifieds-plugin' ),
+                'section'     => 'general-settings',
+            ]
+        );
 
         $settings_manager->add_setting(
             [
@@ -130,76 +141,90 @@ class AWPCP_GeneralSettings {
             ]
         );
 
-        $settings_manager->add_setting( [
-            'id'      => 'hide-empty-categories-dropdown',
-            'name'    => __( 'Hide empty categories from dropdowns', 'another-wordpress-classifieds-plugin' ),
-            'type'    => 'checkbox',
-            'default' => 0,
-            'section' => 'general-settings',
-        ] );
+        $settings_manager->add_setting(
+            [
+                'id'      => 'hide-empty-categories-dropdown',
+                'name'    => __( 'Hide empty categories from dropdowns', 'another-wordpress-classifieds-plugin' ),
+                'type'    => 'checkbox',
+                'default' => 0,
+                'section' => 'general-settings',
+            ]
+        );
 
-        $settings_manager->add_setting( [
-            'id'          => 'uiwelcome',
-            'name'        => __( 'Welcome message in Classifieds page', 'another-wordpress-classifieds-plugin' ),
-            'type'        => 'textarea',
-            'default'     => __( 'Looking for a job? Trying to find a date? Looking for an apartment? Browse our classifieds. Have a job to advertise? An apartment to rent? Post a Classified Ad.', 'another-wordpress-classifieds-plugin' ),
-            'description' => __( 'The welcome text for your classifieds page on the user side', 'another-wordpress-classifieds-plugin' ),
-            'section'     => 'general-settings',
-        ] );
+        $settings_manager->add_setting(
+            [
+                'id'          => 'uiwelcome',
+                'name'        => __( 'Welcome message in Classifieds page', 'another-wordpress-classifieds-plugin' ),
+                'type'        => 'textarea',
+                'default'     => __( 'Looking for a job? Trying to find a date? Looking for an apartment? Browse our classifieds. Have a job to advertise? An apartment to rent? Post a Classified Ad.', 'another-wordpress-classifieds-plugin' ),
+                'description' => __( 'The welcome text for your classifieds page on the user side', 'another-wordpress-classifieds-plugin' ),
+                'section'     => 'general-settings',
+            ]
+        );
 
-        $settings_manager->add_setting( [
-            'id'          => 'awpcpadminaccesslevel',
-            'name'        => __( 'Who can access AWPCP Admin Dashboard', 'another-wordpress-classifieds-plugin' ),
-            'type'        => 'radio',
-            'default'     => 'admin',
-            'description' => __( 'Role of WordPress users who can have admin access to Classifieds.', 'another-wordpress-classifieds-plugin' ),
-            'options'     => [
-                'admin'        => __( 'Administrator', 'another-wordpress-classifieds-plugin' ),
-                'admin,editor' => __( 'Administrator & Editor', 'another-wordpress-classifieds-plugin' ),
-            ],
-            'section'     => 'general-settings',
-        ] );
+        $settings_manager->add_setting(
+            [
+                'id'          => 'awpcpadminaccesslevel',
+                'name'        => __( 'Who can access AWPCP Admin Dashboard', 'another-wordpress-classifieds-plugin' ),
+                'type'        => 'radio',
+                'default'     => 'admin',
+                'description' => __( 'Role of WordPress users who can have admin access to Classifieds.', 'another-wordpress-classifieds-plugin' ),
+                'options'     => [
+                    'admin'        => __( 'Administrator', 'another-wordpress-classifieds-plugin' ),
+                    'admin,editor' => __( 'Administrator & Editor', 'another-wordpress-classifieds-plugin' ),
+                ],
+                'section'     => 'general-settings',
+            ]
+        );
 
-        $settings_manager->add_setting( [
-            'id'          => 'awpcppagefilterswitch',
-            'name'        => __( 'Enable page filter', 'another-wordpress-classifieds-plugin' ),
-            'type'        => 'checkbox',
-            'default'     => 1,
-            'description' => __( 'Uncheck this if you need to turn off the AWPCP page filter that prevents AWPCP classifieds children pages from showing up in your wp pages menu (You might need to do this if for example the AWPCP page filter is messing up your page menu. It means you will have to manually exclude the AWPCP children pages from showing in your page list. Some of the pages really should not be visible to your users by default).', 'another-wordpress-classifieds-plugin'),
-            'section'     => 'general-settings',
-        ] );
+        $settings_manager->add_setting(
+            [
+                'id'          => 'awpcppagefilterswitch',
+                'name'        => __( 'Enable page filter', 'another-wordpress-classifieds-plugin' ),
+                'type'        => 'checkbox',
+                'default'     => 1,
+                'description' => __( 'Uncheck this if you need to turn off the AWPCP page filter that prevents AWPCP classifieds children pages from showing up in your wp pages menu (You might need to do this if for example the AWPCP page filter is messing up your page menu. It means you will have to manually exclude the AWPCP children pages from showing in your page list. Some of the pages really should not be visible to your users by default).', 'another-wordpress-classifieds-plugin' ),
+                'section'     => 'general-settings',
+            ]
+        );
 
-        $settings_manager->add_setting( [
-            'id'      => 'show-mobile-menu-expanded',
-            'name'    => __( 'Auto-expand the Classifieds Menu for mobile devices?', 'another-wordpress-classifieds-plugin' ),
-            'type'    => 'checkbox',
-            'default' => false,
-            'section' => 'general-settings',
-        ] );
+        $settings_manager->add_setting(
+            [
+                'id'      => 'show-mobile-menu-expanded',
+                'name'    => __( 'Auto-expand the Classifieds Menu for mobile devices?', 'another-wordpress-classifieds-plugin' ),
+                'type'    => 'checkbox',
+                'default' => false,
+                'section' => 'general-settings',
+            ]
+        );
     }
 
     /**
      * @since 4.0.0
      */
     private function register_classifieds_management_panel_settings( $settings_manager ) {
-        $settings_manager->add_settings_section( [
-            'id'       => 'classifieds-management-panel',
-            'name'     => __( 'Classifieds Management Panel', 'another-wordpress-classifieds-plugin' ),
-            'priority' => 10,
-            'subgroup' => 'general-settings',
-        ] );
+        $settings_manager->add_settings_section(
+            [
+                'id'       => 'classifieds-management-panel',
+                'name'     => __( 'Classifieds Management Panel', 'another-wordpress-classifieds-plugin' ),
+                'priority' => 10,
+                'subgroup' => 'general-settings',
+            ]
+        );
 
         $help_text = __( 'You must have registered users to use this setting. Turning it on will automatically enable "Require Registration" for AWPCP. Make sure you site allows users to register under <wp-settings-link>Settings->General</a>.', 'another-wordpress-classifieds-plugin' );
         $help_text = str_replace( '<wp-settings-link>', sprintf( '<a href="%s">', admin_url( 'options-general.php' ) ), $help_text );
 
-        $settings_manager->add_setting( [
-            'id'          => 'enable-user-panel',
-            'name'        => __( 'Enable User Ad Management Panel', 'another-wordpress-classifieds-plugin' ),
-            'type'        => 'checkbox',
-            'default'     => 0,
-            'description' => $help_text,
-            'section'     => 'classifieds-management-panel',
-        ] );
+        $settings_manager->add_setting(
+            [
+                'id'          => 'enable-user-panel',
+                'name'        => __( 'Enable User Ad Management Panel', 'another-wordpress-classifieds-plugin' ),
+                'type'        => 'checkbox',
+                'default'     => 0,
+                'description' => $help_text,
+                'section'     => 'classifieds-management-panel',
+            ]
+        );
     }
 
     /**
@@ -219,96 +244,112 @@ class AWPCP_GeneralSettings {
      * @since 4.0.0
      */
     private function register_date_and_time_format_settings( $settings_manager ) {
-        $settings_manager->add_settings_subgroup( [
-            'id'       => 'date-time-format-settings',
-            'name'     => _x( 'Date & Time Format', 'settings', 'another-wordpress-classifieds-plugin' ),
-            'priority' => 20,
-            'parent'   => 'general-settings',
-        ] );
+        $settings_manager->add_settings_subgroup(
+            [
+                'id'       => 'date-time-format-settings',
+                'name'     => _x( 'Date & Time Format', 'settings', 'another-wordpress-classifieds-plugin' ),
+                'priority' => 20,
+                'parent'   => 'general-settings',
+            ]
+        );
 
-		$description = '<a href="http://codex.wordpress.org/Formatting_Date_and_Time">%s</a>.';
-		$description = sprintf( $description, __( 'Documentation on date and time formatting', 'another-wordpress-classifieds-plugin' ) );
+        $description = '<a href="http://codex.wordpress.org/Formatting_Date_and_Time">%s</a>.';
+        $description = sprintf( $description, __( 'Documentation on date and time formatting', 'another-wordpress-classifieds-plugin' ) );
 
-        $settings_manager->add_settings_section( [
-            'name'        => _x( 'Date & Time Format', 'settings', 'another-wordpress-classifieds-plugin' ),
-            'id'          => 'date-time-format',
-            'description' => $description,
-            'subgroup'    => 'date-time-format-settings',
-        ] );
+        $settings_manager->add_settings_section(
+            [
+                'name'        => _x( 'Date & Time Format', 'settings', 'another-wordpress-classifieds-plugin' ),
+                'id'          => 'date-time-format',
+                'description' => $description,
+                'subgroup'    => 'date-time-format-settings',
+            ]
+        );
 
         $current_time = current_time( 'timestamp' );
 
-        $settings_manager->add_setting( [
-            'id'      => 'x-date-time-format',
-            'name'    => __( 'Date Time Format', 'another-wordpress-classifieds-plugin' ),
-            'type'    => 'radio',
-            'default' => 'american',
-            'options' => [
-                'american' => sprintf( '<strong>%s</strong>: %s', __( 'American', 'another-wordpress-classifieds-plugin' ), awpcp_datetime( 'm/d/Y h:i:s', $current_time ) ),
-                'european' => sprintf( '<strong>%s</strong>: %s', __( 'European', 'another-wordpress-classifieds-plugin' ), awpcp_datetime( 'd/m/Y H:i:s', $current_time ) ),
-                'custom'   => __( 'Your own.', 'another-wordpress-classifieds-plugin' ),
-            ],
-            'section' => 'date-time-format',
-        ] );
+        $settings_manager->add_setting(
+            [
+                'id'      => 'x-date-time-format',
+                'name'    => __( 'Date Time Format', 'another-wordpress-classifieds-plugin' ),
+                'type'    => 'radio',
+                'default' => 'american',
+                'options' => [
+                    'american' => sprintf( '<strong>%s</strong>: %s', __( 'American', 'another-wordpress-classifieds-plugin' ), awpcp_datetime( 'm/d/Y h:i:s', $current_time ) ),
+                    'european' => sprintf( '<strong>%s</strong>: %s', __( 'European', 'another-wordpress-classifieds-plugin' ), awpcp_datetime( 'd/m/Y H:i:s', $current_time ) ),
+                    'custom'   => __( 'Your own.', 'another-wordpress-classifieds-plugin' ),
+                ],
+                'section' => 'date-time-format',
+            ]
+        );
 
-        $settings_manager->add_setting( [
-            'id'       => 'date-format',
-            'name'     => _x( 'Date Format', 'settings', 'another-wordpress-classifieds-plugin' ),
-            'type'     => 'textfield',
-            'default'  => 'm/d/Y',
-            'behavior' => [
-                'enabledIfMatches' => 'x-date-time-format=custom',
-            ],
-            'section'  => 'date-time-format',
-        ] );
+        $settings_manager->add_setting(
+            [
+                'id'       => 'date-format',
+                'name'     => _x( 'Date Format', 'settings', 'another-wordpress-classifieds-plugin' ),
+                'type'     => 'textfield',
+                'default'  => 'm/d/Y',
+                'behavior' => [
+                    'enabledIfMatches' => 'x-date-time-format=custom',
+                ],
+                'section'  => 'date-time-format',
+            ]
+        );
 
-        $settings_manager->add_setting( [
-            'id'       => 'time-format',
-            'name'     => _x( 'Time Format', 'settings', 'another-wordpress-classifieds-plugin' ),
-            'type'     => 'textfield',
-            'default'  => 'h:i:s',
-            'behavior' => [
-                'enabledIfMatches' => 'x-date-time-format=custom',
-            ],
-            'section'  => 'date-time-format',
-        ] );
+        $settings_manager->add_setting(
+            [
+                'id'       => 'time-format',
+                'name'     => _x( 'Time Format', 'settings', 'another-wordpress-classifieds-plugin' ),
+                'type'     => 'textfield',
+                'default'  => 'h:i:s',
+                'behavior' => [
+                    'enabledIfMatches' => 'x-date-time-format=custom',
+                ],
+                'section'  => 'date-time-format',
+            ]
+        );
 
-        $example     = sprintf( '%s: <strong example>%s</strong>', _x( 'Example output', 'settings', 'another-wordpress-classifieds-plugin' ), awpcp_datetime( 'awpcp' ) );
+        $example = sprintf( '%s: <strong example>%s</strong>', _x( 'Example output', 'settings', 'another-wordpress-classifieds-plugin' ), awpcp_datetime( 'awpcp' ) );
 
         $description = _x( 'Full date/time output with any strings you wish to add. <date> and <time> are placeholders for date and time strings using the formats specified in the Date Format and Time Format settings above.', 'settings', 'another-wordpress-classifieds-plugin' );
         $description = esc_html( $description ) . '<br/><br/>' . $example;
 
-        $settings_manager->add_setting( [
-            'id'          => 'date-time-format',
-            'name'        => _x( 'Full Display String', 'settings', 'another-wordpress-classifieds-plugin' ),
-            'type'        => 'textfield',
-            'default'     => '<date> at <time>',
-            'description' => $description,
-            'behavior'    => [
-                'enabledIfMatches' => 'x-date-time-format=custom',
-            ],
-            'section'     => 'date-time-format',
-        ] );
+        $settings_manager->add_setting(
+            [
+                'id'          => 'date-time-format',
+                'name'        => _x( 'Full Display String', 'settings', 'another-wordpress-classifieds-plugin' ),
+                'type'        => 'textfield',
+                'default'     => '<date> at <time>',
+                'description' => $description,
+                'behavior'    => [
+                    'enabledIfMatches' => 'x-date-time-format=custom',
+                ],
+                'section'     => 'date-time-format',
+            ]
+        );
     }
 
     /**
      * @since 4.0.0
      */
     private function register_currency_format_settings( $settings_manager ) {
-        $key   = 'currency-format';
+        $key = 'currency-format';
 
-        $settings_manager->add_settings_subgroup( [
-            'id'      => 'currency-format-settings',
-            'name'    => _x( 'Currency Format', 'settings', 'another-wordpress-classifieds-plugin' ),
-            'priority' => 30,
-            'parent'  => 'general-settings',
-        ] );
+        $settings_manager->add_settings_subgroup(
+            [
+                'id'       => 'currency-format-settings',
+                'name'     => _x( 'Currency Format', 'settings', 'another-wordpress-classifieds-plugin' ),
+                'priority' => 30,
+                'parent'   => 'general-settings',
+            ]
+        );
 
-        $settings_manager->add_settings_section( [
-            'id'       => 'currency-format',
-            'name'     => __('Currency Format', 'another-wordpress-classifieds-plugin'),
-            'subgroup' => 'currency-format-settings',
-        ] );
+        $settings_manager->add_settings_section(
+            [
+                'id'       => 'currency-format',
+                'name'     => __( 'Currency Format', 'another-wordpress-classifieds-plugin' ),
+                'subgroup' => 'currency-format-settings',
+            ]
+        );
 
         $settings_manager->add_setting(
             $key,
@@ -328,9 +369,9 @@ class AWPCP_GeneralSettings {
             __( "Use this setting to overwrite the currency symbol shown in listings pages. If empty, the plugin will attempt to show one of the standard symbols for the selected currency code, but if the plugin doesn't know the symbol for your currency, it will use an uppercase version of the currency code.", 'another-wordpress-classifieds-plugin' )
         );
 
-        $settings_manager->add_setting($key, 'thousands-separator', __('Thousands separator', 'another-wordpress-classifieds-plugin'), 'textfield', _x(',', 'This translation is deprecated. Please go to the Settings section to change the thousands separator.', 'another-wordpress-classifieds-plugin'), '');
-        $settings_manager->add_setting($key, 'decimal-separator', __('Separator for the decimal point', 'another-wordpress-classifieds-plugin'), 'textfield', _x('.', 'This translation is deprecated. Please go to the Settings section to change the decimal separator.', 'another-wordpress-classifieds-plugin'), '');
-        $settings_manager->add_setting($key, 'show-decimals', __('Show decimals in price', 'another-wordpress-classifieds-plugin'), 'checkbox', 1, _x('Uncheck to show prices without decimals. The value will be rounded.', 'settings', 'another-wordpress-classifieds-plugin'));
+        $settings_manager->add_setting( $key, 'thousands-separator', __( 'Thousands separator', 'another-wordpress-classifieds-plugin' ), 'textfield', _x( ',', 'This translation is deprecated. Please go to the Settings section to change the thousands separator.', 'another-wordpress-classifieds-plugin' ), '' );
+        $settings_manager->add_setting( $key, 'decimal-separator', __( 'Separator for the decimal point', 'another-wordpress-classifieds-plugin' ), 'textfield', _x( '.', 'This translation is deprecated. Please go to the Settings section to change the decimal separator.', 'another-wordpress-classifieds-plugin' ), '' );
+        $settings_manager->add_setting( $key, 'show-decimals', __( 'Show decimals in price', 'another-wordpress-classifieds-plugin' ), 'checkbox', 1, _x( 'Uncheck to show prices without decimals. The value will be rounded.', 'settings', 'another-wordpress-classifieds-plugin' ) );
 
         $settings_manager->add_setting(
             $key,
@@ -341,9 +382,9 @@ class AWPCP_GeneralSettings {
             __( 'The currency symbol can be configured by changing the currency code in the settings above.', 'another-wordpress-classifieds-plugin' ),
             array(
                 'options' => array(
-                    'show-currency-symbol-on-left' => __( 'Show currency symbol on left', 'another-wordpress-classifieds-plugin' ),
+                    'show-currency-symbol-on-left'  => __( 'Show currency symbol on left', 'another-wordpress-classifieds-plugin' ),
                     'show-currency-symbol-on-right' => __( 'Show currency symbol on right', 'another-wordpress-classifieds-plugin' ),
-                    'do-not-show-currency-symbol' => __( "Don't show currency symbol", 'another-wordpress-classifieds-plugin' ),
+                    'do-not-show-currency-symbol'   => __( "Don't show currency symbol", 'another-wordpress-classifieds-plugin' ),
                 ),
             )
         );
@@ -361,23 +402,26 @@ class AWPCP_GeneralSettings {
     /**
      * @since 4.0.0
      * @SuppressWarnings(PHPMD.ElseExpression)
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     private function register_anti_spam_settings( $settings_manager ) {
         $group = 'anit-spam';
         $key   = 'anti-spam';
 
-        $settings_manager->add_settings_subgroup( [
-            'id'       => 'anit-spam',
-            'name'     =>  __( 'Anti-SPAM', 'another-wordpress-classifieds-plugin' ),
-            'priority' => 50,
-            'parent'   => 'general-settings',
-        ] );
+        $settings_manager->add_settings_subgroup(
+            [
+                'id'       => 'anit-spam',
+                'name'     => __( 'Anti-SPAM', 'another-wordpress-classifieds-plugin' ),
+                'priority' => 50,
+                'parent'   => 'general-settings',
+            ]
+        );
 
-        $settings_manager->add_section($group, __( 'Anti-SPAM', 'another-wordpress-classifieds-plugin' ), 'anti-spam', 10, array( $settings_manager, 'section' ) );
+        $settings_manager->add_section( $group, __( 'Anti-SPAM', 'another-wordpress-classifieds-plugin' ), 'anti-spam', 10, array( $settings_manager, 'section' ) );
 
         if ( ! $this->settings->option_exists( 'useakismet' ) ) {
-            $is_akismet_installed = function_exists( 'akismet_init' );
-            $is_akismet_key_set = strlen( get_option( 'wordpress_api_key' ) ) > 0;
+            $is_akismet_installed      = function_exists( 'akismet_init' );
+            $is_akismet_key_set        = strlen( get_option( 'wordpress_api_key' ) ) > 0;
             $use_akismet_default_value = $is_akismet_installed && $is_akismet_key_set;
         } else {
             $use_akismet_default_value = $this->settings->get_option( 'useakismet' );
@@ -424,7 +468,7 @@ class AWPCP_GeneralSettings {
         $options = array(
             'recaptcha'   => __( 'reCAPTCHA v2', 'another-wordpress-classifieds-plugin' ),
             'reCAPTCHAv3' => __( 'reCAPTCHA v3', 'another-wordpress-classifieds-plugin' ),
-            'math' => __( 'Math', 'another-wordpress-classifieds-plugin' ),
+            'math'        => __( 'Math', 'another-wordpress-classifieds-plugin' ),
         );
 
         $settings_manager->add_setting(
@@ -437,15 +481,17 @@ class AWPCP_GeneralSettings {
             array( 'options' => $options )
         );
 
-        $settings_manager->add_setting( $key, 'math-captcha-max-number', __( 'Max number used in Math CAPTCHA', 'another-wordpress-classifieds-plugin' ), 'textfield', $this->settings->get_option( 'contactformcheckhumanhighnumval', 10 ), __( 'Highest number used in aithmetic operation.', 'another-wordpress-classifieds-plugin') );
+        $settings_manager->add_setting( $key, 'math-captcha-max-number', __( 'Max number used in Math CAPTCHA', 'another-wordpress-classifieds-plugin' ), 'textfield', $this->settings->get_option( 'contactformcheckhumanhighnumval', 10 ), __( 'Highest number used in aithmetic operation.', 'another-wordpress-classifieds-plugin' ) );
 
         $link = sprintf( '<a href="%1$s">%1$s</a>', 'https://www.google.com/recaptcha/admin' );
+
+        /* translators: %s is the link to Google reCAPTCHA admin panel. */
         $help_text = sprintf( __( 'You can get an API key from %s.', 'another-wordpress-classifieds-plugin' ), $link );
 
         $settings_manager->add_setting( $key, 'recaptcha-public-key', __( 'reCAPTCHA Site Key', 'another-wordpress-classifieds-plugin' ), 'textfield', '', $help_text );
-        $settings_manager->add_setting( $key, 'recaptcha-private-key', __( 'reCAPTCHA Secret Key', 'another-wordpress-classifieds-plugin' ), 'textfield', '',$help_text );
+        $settings_manager->add_setting( $key, 'recaptcha-private-key', __( 'reCAPTCHA Secret Key', 'another-wordpress-classifieds-plugin' ), 'textfield', '', $help_text );
 
-        $description = __( 'reCAPTCHA v3 returns a score (1.0 is very likely a good interaction, 0.0 is very likely a bot). The plugin will interrupt all interactions that receive a score under the configured threshold.', 'another-wordpress-classifieds-plugin' ) . '<br/><br/>' . __( "Please note that reCAPTCHA learns by seeing real traffic on your site. For this reason, scores in a staging environment or soon after implementing may differ from production. You can start using a threshold of 0.5 and find a better value later looking at your traffic in the {console_link}admin console{/console_link}.", 'another-wordpress-classifieds-plugin' );
+        $description = __( 'reCAPTCHA v3 returns a score (1.0 is very likely a good interaction, 0.0 is very likely a bot). The plugin will interrupt all interactions that receive a score under the configured threshold.', 'another-wordpress-classifieds-plugin' ) . '<br/><br/>' . __( 'Please note that reCAPTCHA learns by seeing real traffic on your site. For this reason, scores in a staging environment or soon after implementing may differ from production. You can start using a threshold of 0.5 and find a better value later looking at your traffic in the {console_link}admin console{/console_link}.', 'another-wordpress-classifieds-plugin' );
         $description = str_replace( '{console_link}', '<a href="https://g.co/recaptcha/admin">', $description );
         $description = str_replace( '{/console_link}', '</a>', $description );
 
@@ -463,81 +509,95 @@ class AWPCP_GeneralSettings {
      * @since 4.0.0
      */
     private function register_adsense_settings( $settings_manager ) {
-        $settings_manager->add_settings_subgroup( [
-            'name'     => __( 'AdSense', 'another-wordpress-classifieds-plugin' ),
-            'id'       => 'adsense-settings',
-            'priority' => 60,
-            'parent'   => 'general-settings',
-        ] );
+        $settings_manager->add_settings_subgroup(
+            [
+                'name'     => __( 'AdSense', 'another-wordpress-classifieds-plugin' ),
+                'id'       => 'adsense-settings',
+                'priority' => 60,
+                'parent'   => 'general-settings',
+            ]
+        );
 
         $group = 'adsense-settings';
         $key   = 'adsense-settings';
 
         $settings_manager->add_section( $group, __( 'AdSense Settings', 'another-wordpress-classifieds-plugin' ), 'adsense-settings', 10, array( $settings_manager, 'section' ) );
 
-		$options = array(
-			1 => __( 'Above Ad text.', 'another-wordpress-classifieds-plugin' ),
-			2 => __( 'Under Ad text.', 'another-wordpress-classifieds-plugin' ),
-			3 => __( 'Below Ad images.', 'another-wordpress-classifieds-plugin' ),
-		);
+        $options = array(
+            1 => __( 'Above Ad text.', 'another-wordpress-classifieds-plugin' ),
+            2 => __( 'Under Ad text.', 'another-wordpress-classifieds-plugin' ),
+            3 => __( 'Below Ad images.', 'another-wordpress-classifieds-plugin' ),
+        );
 
-		$settings_manager->add_setting( $key, 'useadsense', __( 'Activate AdSense', 'another-wordpress-classifieds-plugin'), 'checkbox', 1, '');
-		$settings_manager->add_setting( $key, 'adsense', __( 'AdSense code', 'another-wordpress-classifieds-plugin' ), 'textarea', __( 'AdSense code', 'another-wordpress-classifieds-plugin' ), __( 'Your AdSense code (Best if 468x60 text or banner.)', 'another-wordpress-classifieds-plugin' ) );
-		$settings_manager->add_setting( $key, 'adsenseposition', __( 'Show AdSense at position', 'another-wordpress-classifieds-plugin' ), 'radio', 2, '', array( 'options' => $options ) );
+        $settings_manager->add_setting( $key, 'useadsense', __( 'Activate AdSense', 'another-wordpress-classifieds-plugin' ), 'checkbox', 1, '' );
+        $settings_manager->add_setting( $key, 'adsense', __( 'AdSense code', 'another-wordpress-classifieds-plugin' ), 'textarea', __( 'AdSense code', 'another-wordpress-classifieds-plugin' ), __( 'Your AdSense code (Best if 468x60 text or banner.)', 'another-wordpress-classifieds-plugin' ) );
+        $settings_manager->add_setting( $key, 'adsenseposition', __( 'Show AdSense at position', 'another-wordpress-classifieds-plugin' ), 'radio', 2, '', array( 'options' => $options ) );
     }
 
     /**
      * @since 4.0.0
      */
     private function register_registration_settings( $settings_manager ) {
-        $settings_manager->add_settings_subgroup( [
-            'id'       => 'registration-settings',
-            'name'     => __( 'Registration', 'another-wordpress-classifieds-plugin' ),
-            'priority' => 40,
-            'parent'   => 'general-settings',
-        ] );
+        $settings_manager->add_settings_subgroup(
+            [
+                'id'       => 'registration-settings',
+                'name'     => __( 'Registration', 'another-wordpress-classifieds-plugin' ),
+                'priority' => 40,
+                'parent'   => 'general-settings',
+            ]
+        );
 
-        $settings_manager->add_settings_section( [
-            'id' => 'registration-settings',
-            'name' => __( 'Registration Settings', 'another-wordpress-classifieds-plugin' ),
-            'subgroup' => 'registration-settings',
-        ] );
+        $settings_manager->add_settings_section(
+            [
+                'id'       => 'registration-settings',
+                'name'     => __( 'Registration Settings', 'another-wordpress-classifieds-plugin' ),
+                'subgroup' => 'registration-settings',
+            ]
+        );
 
-        $settings_manager->add_setting( [
-            'id' => 'requireuserregistration',
-            'name' => __( 'Place Ad requires user registration', 'another-wordpress-classifieds-plugin' ),
-            'type' => 'checkbox',
-            'description' =>  __( 'Only registered users will be allowed to post Ads.', 'another-wordpress-classifieds-plugin' ),
-            'default' => 0,
-            'section' => 'registration-settings',
-        ] );
+        $settings_manager->add_setting(
+            [
+                'id'          => 'requireuserregistration',
+                'name'        => __( 'Place Ad requires user registration', 'another-wordpress-classifieds-plugin' ),
+                'type'        => 'checkbox',
+                'description' => __( 'Only registered users will be allowed to post Ads.', 'another-wordpress-classifieds-plugin' ),
+                'default'     => 0,
+                'section'     => 'registration-settings',
+            ]
+        );
 
-        $settings_manager->add_setting( [
-            'id' => 'reply-to-ad-requires-registration',
-            'name' => __( 'Reply to Ad requires user registration', 'another-wordpress-classifieds-plugin' ),
-            'type' => 'checkbox',
-            'default' => 0,
-            'description' => __( 'Require user registration for replying to an Ad?', 'another-wordpress-classifieds-plugin' ),
-            'section' => 'registration-settings',
-        ] );
+        $settings_manager->add_setting(
+            [
+                'id'          => 'reply-to-ad-requires-registration',
+                'name'        => __( 'Reply to Ad requires user registration', 'another-wordpress-classifieds-plugin' ),
+                'type'        => 'checkbox',
+                'default'     => 0,
+                'description' => __( 'Require user registration for replying to an Ad?', 'another-wordpress-classifieds-plugin' ),
+                'section'     => 'registration-settings',
+            ]
+        );
 
-        $settings_manager->add_setting( [
-            'id' => 'login-url',
-            'name' => __( 'Login URL', 'another-wordpress-classifieds-plugin' ),
-            'type' => 'textfield',
-            'default' => '',
-            'description' => __( 'Location of the login page. The value should be the full URL to the WordPress login page (e.g. http://www.awpcp.com/wp-login.php).', 'another-wordpress-classifieds-plugin' ) . '<br/><br/>' . __( 'IMPORTANT: Only change this setting when using a membership plugin with custom login pages or similar scenarios.', 'another-wordpress-classifieds-plugin' ),
-            'section' => 'registration-settings',
-        ] );
+        $settings_manager->add_setting(
+            [
+                'id'          => 'login-url',
+                'name'        => __( 'Login URL', 'another-wordpress-classifieds-plugin' ),
+                'type'        => 'textfield',
+                'default'     => '',
+                'description' => __( 'Location of the login page. The value should be the full URL to the WordPress login page (e.g. http://www.awpcp.com/wp-login.php).', 'another-wordpress-classifieds-plugin' ) . '<br/><br/>' . __( 'IMPORTANT: Only change this setting when using a membership plugin with custom login pages or similar scenarios.', 'another-wordpress-classifieds-plugin' ),
+                'section'     => 'registration-settings',
+            ]
+        );
 
-        $settings_manager->add_setting( [
-            'id' => 'registrationurl',
-            'name' => __( 'Custom Registration Page URL', 'another-wordpress-classifieds-plugin' ),
-            'type' => 'textfield',
-            'default' => '',
-            'description' => __( 'Location of registration page. Value should be the full URL to the WordPress registration page (e.g. http://www.awpcp.com/wp-login.php?action=register).', 'another-wordpress-classifieds-plugin' ) . '<br/><br/>' . __( 'IMPORTANT: Only change this setting when using a membership plugin with custom login pages or similar scenarios.', 'another-wordpress-classifieds-plugin' ),
-            'section' => 'registration-settings',
-        ] );
+        $settings_manager->add_setting(
+            [
+                'id'          => 'registrationurl',
+                'name'        => __( 'Custom Registration Page URL', 'another-wordpress-classifieds-plugin' ),
+                'type'        => 'textfield',
+                'default'     => '',
+                'description' => __( 'Location of registration page. Value should be the full URL to the WordPress registration page (e.g. http://www.awpcp.com/wp-login.php?action=register).', 'another-wordpress-classifieds-plugin' ) . '<br/><br/>' . __( 'IMPORTANT: Only change this setting when using a membership plugin with custom login pages or similar scenarios.', 'another-wordpress-classifieds-plugin' ),
+                'section'     => 'registration-settings',
+            ]
+        );
     }
 
     /**
@@ -592,35 +652,43 @@ class AWPCP_GeneralSettings {
      * @since 4.0.0
      */
     private function register_private_settings( $settings_manager ) {
-        $settings_manager->add_settings_group( [
-            'id'       => 'private-settings',
-            'name'     => __( 'Private Settings', 'another-wordpress-classifieds-plugin' ),
-            'priority' => 0,
-        ] );
+        $settings_manager->add_settings_group(
+            [
+                'id'       => 'private-settings',
+                'name'     => __( 'Private Settings', 'another-wordpress-classifieds-plugin' ),
+                'priority' => 0,
+            ]
+        );
 
-        $settings_manager->add_settings_subgroup( [
-            'id'       => 'private-settings',
-            'name'     => __( 'Private Settings', 'another-wordpress-classifieds-plugin' ),
-            'priority' => 0,
-            'parent'   => 'private-settings',
-        ] );
+        $settings_manager->add_settings_subgroup(
+            [
+                'id'       => 'private-settings',
+                'name'     => __( 'Private Settings', 'another-wordpress-classifieds-plugin' ),
+                'priority' => 0,
+                'parent'   => 'private-settings',
+            ]
+        );
 
-        $settings_manager->add_settings_section( [
-            'id'       => 'private-settings',
-            'name'     => __( 'Private Settings', 'another-wordpress-classifieds-plugin' ),
-            'subgroup' => 'private-settings',
-        ] );
+        $settings_manager->add_settings_section(
+            [
+                'id'       => 'private-settings',
+                'name'     => __( 'Private Settings', 'another-wordpress-classifieds-plugin' ),
+                'subgroup' => 'private-settings',
+            ]
+        );
     }
 
     /**
      * @since 4.0.0
      */
     private function register_modules_settings( $settings_manager ) {
-        $settings_manager->add_settings_group( [
-            'id'       => 'modules-settings',
-            'name'     => __( 'Modules', 'another-wordpress-classifieds-plugin' ),
-            'priority' => 1000,
-        ] );
+        $settings_manager->add_settings_group(
+            [
+                'id'       => 'modules-settings',
+                'name'     => __( 'Modules', 'another-wordpress-classifieds-plugin' ),
+                'priority' => 1000,
+            ]
+        );
     }
 
     /**
@@ -628,17 +696,21 @@ class AWPCP_GeneralSettings {
      * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     private function register_facebook_settings( $settings_manager ) {
-        $settings_manager->add_settings_group( [
-            'name'     => __( 'Facebook', 'another-wordpress-classifieds-plugin' ),
-            'id'       => 'facebook-settings',
-            'priority' => 100,
-        ] );
+        $settings_manager->add_settings_group(
+            [
+                'name'     => __( 'Facebook', 'another-wordpress-classifieds-plugin' ),
+                'id'       => 'facebook-settings',
+                'priority' => 100,
+            ]
+        );
 
-        $settings_manager->add_settings_subgroup( [
-            'name'     => __( 'Facebook', 'another-wordpress-classifieds-plugin' ),
-            'id'       => 'facebook-settings',
-            'parent'   => 'facebook-settings',
-        ] );
+        $settings_manager->add_settings_subgroup(
+            [
+                'name'   => __( 'Facebook', 'another-wordpress-classifieds-plugin' ),
+                'id'     => 'facebook-settings',
+                'parent' => 'facebook-settings',
+            ]
+        );
 
         $settings_manager->add_settings_section(
             [
@@ -838,23 +910,26 @@ class AWPCP_GeneralSettings {
     }
 
     /**
-      * @since 3.8.6
-      */
-     public function facebook_application_settings_section() {
-         $content = __( 'You can find your application information in the <a>Facebook Developer Apps</a> page.', 'another-wordpress-classifieds-plugin' );
-         $content = str_replace( '<a>', '<a href="https://developers.facebook.com/apps/" target="_blank">', $content );
+     * @since 3.8.6
+     */
+    public function facebook_application_settings_section() {
+        $content = __( 'You can find your application information in the <a>Facebook Developer Apps</a> page.', 'another-wordpress-classifieds-plugin' );
+        $content = str_replace( '<a>', '<a href="https://developers.facebook.com/apps/" target="_blank">', $content );
 
-         echo $content; // XSS Ok.
-     }
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        echo $content;
+    }
 
     /**
      * @since 3.8.6
      * @SuppressWarnings(PHPMD.ElseExpression)
      */
     public function facebook_user_authorization_section() {
-        // Choosing Public is important because:
-        // - http://stackoverflow.com/a/19653226/201354
-        // - https://github.com/drodenbaugh/awpcp/issues/1288#issuecomment-134198377
+        /**
+         * Choosing Public is important because:
+         * - http://stackoverflow.com/a/19653226/201354
+         * - https://github.com/drodenbaugh/awpcp/issues/1288#issuecomment-134198377
+         */
         $content  = '<p>' . esc_html__( 'AWPCP needs to get an authorization token from Facebook to work correctly. You\'ll be redirected to Facebook to login. AWPCP does not store or obtain any personal information from your profile.', 'another-wordpress-classifieds-plugin' ) . '</p>';
         $content .= '<p>' . esc_html__( "Please choose Public as the audience for posts made by the application, even if you are just testing the integration. Facebook won't allow us to post content in some cases if you choose something else.", 'another-wordpress-classifieds-plugin' ) . '</p>';
 
@@ -870,7 +945,8 @@ class AWPCP_GeneralSettings {
             $content .= '<p><strong>' . esc_html__( 'Please provide a value for the App Id and App Secret settings before trying to get an access token from Facebook.', 'another-wordpress-classifieds-plugin' ) . '</strong></p>';
         }
 
-        echo $content; // XSS Ok.
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        echo $content;
     }
 
     /**
@@ -880,6 +956,7 @@ class AWPCP_GeneralSettings {
         $content  = '<p><strong>' . esc_html__( 'Available Facebook Pages and Groups will be displayed after you enter a valid User Access Token.', 'another-wordpress-classifieds-plugin' ) . '</strong></p>';
         $content .= '<p>' . __( 'As of April 4, 2018, all applications need to go through <a href="https://developers.facebook.com/docs/apps/review" rel="nofollow">App Review</a> in order to get access to the <a href="https://developers.facebook.com/docs/graph-api/reference/page/" rel="nofollow">Page API</a> and <a href="https://developers.facebook.com/docs/graph-api/reference/user/groups/" rel="nofollow">Groups API</a>. That means that you may need to <a href="https://developers.facebook.com/docs/facebook-login/review" rel="nofollow">submit your app for review</a> (ask for the <code>manage_pages</code>, <code>publish_pages</code>, <code>publish_to_groups</code> permissions), before AWPCP can display the list of pages and groups you manage and be able to post classifieds ads to those groups and pages.', 'another-wordpress-classifieds-plugin' ) . '</p>';
 
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo $content;
     }
 
@@ -894,7 +971,7 @@ class AWPCP_GeneralSettings {
             return array();
         }
 
-        $pages         = array(
+        $pages = array(
             'none' => __( 'None (Do not sent ads to a Facebook Page)', 'another-wordpress-classifieds-plugin' ),
         );
 
@@ -905,7 +982,7 @@ class AWPCP_GeneralSettings {
                 $page_name = $page_name . ' ' . __( '(Your own profile page)', 'another-wordpress-classifieds-plugin' );
             }
 
-            $pages[ $page['id'] ]         = array(
+            $pages[ $page['id'] ] = array(
                 'value' => "{$page['id']}|{$page['access_token']}",
                 'label' => $page_name,
             );
@@ -925,7 +1002,7 @@ class AWPCP_GeneralSettings {
             return array();
         }
 
-        $groups   = array(
+        $groups = array(
             'none' => __( 'None (Do not sent ads to a Facebook Group)', 'another-wordpress-classifieds-plugin' ),
         );
 
@@ -942,11 +1019,11 @@ class AWPCP_GeneralSettings {
             return $options;
         }
 
-        $current_roles = $this->roles->get_administrator_roles_names();
+        $current_roles  = $this->roles->get_administrator_roles_names();
         $selected_roles = $this->roles->get_administrator_roles_names_from_string( $options['awpcpadminaccesslevel'] );
 
         $removed_roles = array_diff( $current_roles, $selected_roles );
-        $new_roles = array_diff( $selected_roles, $current_roles );
+        $new_roles     = array_diff( $selected_roles, $current_roles );
 
         if ( ! empty( $removed_roles ) ) {
             array_walk( $removed_roles, array( $this->roles, 'remove_administrator_capabilities_from_role' ) );
@@ -959,10 +1036,10 @@ class AWPCP_GeneralSettings {
         return $options;
     }
 
-	/**
-	 * General Settings checks
-	 */
-	public function validate_general_settings( $options ) {
+    /**
+     * General Settings checks
+     */
+    public function validate_general_settings( $options ) {
         $this->validate_akismet_settings( $options );
         $this->validate_captcha_settings( $options );
 
@@ -971,66 +1048,66 @@ class AWPCP_GeneralSettings {
         // will not disable Require Registration.
         $setting = 'enable-user-panel';
 
-        if (isset($options[$setting]) && $options[$setting] == 1 && !get_awpcp_option('requireuserregistration')) {
-            awpcp_flash(__('Require Registration setting was enabled automatically because you activated the User Ad Management panel.', 'another-wordpress-classifieds-plugin'));
+        if ( isset( $options[ $setting ] ) && intval( $options[ $setting ] ) === 1 && ! get_awpcp_option( 'requireuserregistration' ) ) {
+            awpcp_flash( __( 'Require Registration setting was enabled automatically because you activated the User Ad Management panel.', 'another-wordpress-classifieds-plugin' ) );
             $options['requireuserregistration'] = 1;
         }
 
         return $options;
-	}
+    }
 
     /**
      * @since 4.0.0
      */
     private function validate_akismet_settings( &$options ) {
-        $setting_name = 'use-akismet-in-place-listing-form';
+        $setting_name              = 'use-akismet-in-place-listing-form';
         $akismet_for_place_listing = isset( $options[ $setting_name ] ) && $options[ $setting_name ];
 
-        $setting_name = 'use-akismet-in-reply-to-listing-form';
+        $setting_name                 = 'use-akismet-in-reply-to-listing-form';
         $akismet_for_reply_to_listing = isset( $options[ $setting_name ] ) && $options[ $setting_name ];
 
         if ( $akismet_for_place_listing || $akismet_for_reply_to_listing ) {
             $wpcom_api_key = get_option( 'wordpress_api_key' );
-            if ( !function_exists( 'akismet_init' ) ) {
+            if ( ! function_exists( 'akismet_init' ) ) {
                 awpcp_flash( __( 'Akismet SPAM control cannot be enabled because Akismet plugin is not installed or activated.', 'another-wordpress-classifieds-plugin' ), 'error' );
-                $options[ 'use-akismet-in-place-listing-form' ] = 0;
-                $options[ 'use-akismet-in-reply-to-listing-form' ] = 0;
-            } else if ( empty( $wpcom_api_key ) ) {
+                $options['use-akismet-in-place-listing-form']    = 0;
+                $options['use-akismet-in-reply-to-listing-form'] = 0;
+            } elseif ( empty( $wpcom_api_key ) ) {
                 awpcp_flash( __( 'Akismet SPAM control cannot be enabled because Akismet is not properly configured.', 'another-wordpress-classifieds-plugin' ), 'error' );
-                $options[ 'use-akismet-in-place-listing-form' ] = 0;
-                $options[ 'use-akismet-in-reply-to-listing-form' ] = 0;
+                $options['use-akismet-in-place-listing-form']    = 0;
+                $options['use-akismet-in-reply-to-listing-form'] = 0;
             }
         }
-	}
+    }
 
     /**
      * @since 4.0.0
      * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      */
     private function validate_captcha_settings( &$options ) {
-        $option_name = 'captcha-enabled-in-place-listing-form';
+        $option_name               = 'captcha-enabled-in-place-listing-form';
         $captcha_for_place_listing = isset( $options[ $option_name ] ) && $options[ $option_name ];
 
-        $option_name = 'captcha-enabled-in-reply-to-listing-form';
+        $option_name                  = 'captcha-enabled-in-reply-to-listing-form';
         $captcha_for_reply_to_listing = isset( $options[ $option_name ] ) && $options[ $option_name ];
 
         $is_captcha_enabled = $captcha_for_place_listing || $captcha_for_reply_to_listing;
 
-        // Verify reCAPTCHA is properly configured
+        // Verify reCAPTCHA is properly configured.
         if ( $is_captcha_enabled && $options['captcha-provider'] === 'recaptcha' ) {
-            if ( empty( $options[ 'recaptcha-public-key' ] ) || empty( $options[ 'recaptcha-private-key' ] ) ) {
+            if ( empty( $options['recaptcha-public-key'] ) || empty( $options['recaptcha-private-key'] ) ) {
                 $options['captcha-provider'] = 'math';
             }
 
-            if ( empty( $options[ 'recaptcha-public-key' ] ) && empty( $options[ 'recaptcha-private-key' ] )  ) {
+            if ( empty( $options['recaptcha-public-key'] ) && empty( $options['recaptcha-private-key'] ) ) {
                 awpcp_flash( __( "reCAPTCHA can't be used because the public key and private key settings are required for reCAPTCHA to work properly.", 'another-wordpress-classifieds-plugin' ), 'error' );
-            } else if ( empty( $options[ 'recaptcha-public-key' ] ) ) {
+            } elseif ( empty( $options['recaptcha-public-key'] ) ) {
                 awpcp_flash( __( "reCAPTCHA can't be used because the public key setting is required for reCAPTCHA to work properly.", 'another-wordpress-classifieds-plugin' ), 'error' );
-            } else if ( empty( $options[ 'recaptcha-private-key' ] ) ){
+            } elseif ( empty( $options['recaptcha-private-key'] ) ) {
                 awpcp_flash( __( "reCAPTCHA can't be used because the private key setting is required for reCAPTCHA to work properly.", 'another-wordpress-classifieds-plugin' ), 'error' );
             }
         }
-	}
+    }
 
     /**
      * @since 4.0.0
@@ -1068,13 +1145,13 @@ class AWPCP_GeneralSettings {
         // if Require Registration is disabled, User Ad Management Panel should be
         // disabled as well.
         $setting = 'requireuserregistration';
-        if (isset($options[$setting]) && $options[$setting] == 0 && get_awpcp_option('enable-user-panel')) {
-            awpcp_flash(__('User Ad Management panel was automatically deactivated because you disabled Require Registration setting.', 'another-wordpress-classifieds-plugin'));
+        if ( isset( $options[ $setting ] ) && intval( $options[ $setting ] ) === 0 && get_awpcp_option( 'enable-user-panel' ) ) {
+            awpcp_flash( __( 'User Ad Management panel was automatically deactivated because you disabled Require Registration setting.', 'another-wordpress-classifieds-plugin' ) );
             $options['enable-user-panel'] = 0;
         }
 
-        if (isset($options[$setting]) && $options[$setting] == 0 && get_awpcp_option('enable-credit-system')) {
-            awpcp_flash(__('Credit System was automatically disabled because you disabled Require Registration setting.', 'another-wordpress-classifieds-plugin'));
+        if ( isset( $options[ $setting ] ) && intval( $options[ $setting ] ) === 0 && get_awpcp_option( 'enable-credit-system' ) ) {
+            awpcp_flash( __( 'Credit System was automatically disabled because you disabled Require Registration setting.', 'another-wordpress-classifieds-plugin' ) );
             $options['enable-credit-system'] = 0;
         }
 
@@ -1085,9 +1162,9 @@ class AWPCP_GeneralSettings {
      * @since 3.8.6
      */
     public function validate_facebook_settings( $options ) {
-        $options['facebook-app-id']             = trim( $options['facebook-app-id'] );
-        $options['facebook-app-secret']         = trim( $options['facebook-app-secret'] );
-        $options['facebook-user-access-token']  = trim( $options['facebook-user-access-token'] );
+        $options['facebook-app-id']            = trim( $options['facebook-app-id'] );
+        $options['facebook-app-secret']        = trim( $options['facebook-app-secret'] );
+        $options['facebook-user-access-token'] = trim( $options['facebook-user-access-token'] );
 
         if ( $options['facebook-app-id'] !== $this->settings->get_option( 'facebook-app-id' ) || $options['facebook-app-secret'] !== $this->settings->get_option( 'facebook-app-secret' ) ) {
             $options['facebook-user-access-token'] = '';
