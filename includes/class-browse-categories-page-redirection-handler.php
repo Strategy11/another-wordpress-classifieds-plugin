@@ -1,5 +1,11 @@
 <?php
+/**
+ * @package AWPCP
+ */
 
+/**
+ * Constructor for Browse Categories Page Redirection Handler.
+ */
 function awpcp_browse_categories_page_redirection_handler() {
     return new AWPCP_Browse_Categories_Page_Redirection_Handler(
         awpcp_request()
@@ -28,22 +34,26 @@ class AWPCP_Browse_Categories_Page_Redirection_Handler {
         }
 
         $browse_categores_page_id = $browse_categories_page_info['page_id'];
-        $current_page_id = $this->request->get_query_var( 'page_id' );
+        $current_page_id          = $this->request->get_query_var( 'page_id' );
 
-        if ( $current_page_id && $browse_categores_page_id != $current_page_id ) {
+        if ( $current_page_id && $browse_categores_page_id !== $current_page_id ) {
             return;
         }
 
-        if ( $browse_categores_page_id != $current_page_id ) {
+        if ( $browse_categores_page_id !== $current_page_id ) {
             return;
         }
 
         return $this->redirect();
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.ExitExpression)
+     * @SuppressWarnings(PHPMD.ElseExpression)
+     */
     private function redirect() {
         $category_id = $this->request->get_category_id();
-        $params      = wp_parse_args( parse_url( awpcp_current_url(), PHP_URL_QUERY ) );
+        $params      = wp_parse_args( wp_parse_url( awpcp_current_url(), PHP_URL_QUERY ) );
 
         unset( $params['page_id'] );
         unset( $params['category_id'] );
@@ -55,7 +65,7 @@ class AWPCP_Browse_Categories_Page_Redirection_Handler {
             $url = awpcp_get_browse_categories_page_url();
         }
 
-        wp_redirect( add_query_arg( urlencode_deep( $params ), $url ), 301 );
+        wp_safe_redirect( add_query_arg( urlencode_deep( $params ), $url ), 301 );
         exit();
     }
 }
