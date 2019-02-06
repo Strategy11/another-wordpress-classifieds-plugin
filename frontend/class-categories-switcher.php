@@ -60,18 +60,24 @@ class AWPCP_Categories_Switcher {
         $category_id = $this->request->get_category_id();
         $label       = _x( 'Category:', 'single dropdown category selector', 'another-wordpress-classifieds-plugin' );
 
-        $category_dropdown_params = wp_parse_args( $params, array(
-            'label'    => $label,
-            'context'  => 'search',
-            'name'     => 'awpcp_category_id',
-            'selected' => $category_id,
-        ) );
+        $category_dropdown_params = wp_parse_args(
+            $params,
+            array(
+                'label'    => $label,
+                'context'  => 'search',
+                'name'     => 'awpcp_category_id',
+                'selected' => $category_id,
+            )
+        );
 
-        $hidden = array_filter( array(
-            'awpcp-action' => 'browsecat',
-            'results'      => $this->request->param( 'results' ),
-            'offset'       => 0,
-        ), 'strlen' );
+        $hidden = array_filter(
+            array(
+                'awpcp-action' => 'browsecat',
+                'results'      => $this->request->param( 'results' ),
+                'offset'       => 0,
+            ),
+            'strlen'
+        );
 
         ob_start();
         include AWPCP_DIR . '/templates/frontend/category-switcher.tpl.php';
