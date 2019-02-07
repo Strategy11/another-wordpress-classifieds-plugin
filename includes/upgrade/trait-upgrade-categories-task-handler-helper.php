@@ -30,26 +30,17 @@ trait AWPCP_UpgradeCategoriesTaskHandlerHelper {
      * @since 4.0.0
      */
     private function maybe_insert_term_with_id( $term_id, $term_data ) {
+        $args = [
+            'slug'        => $term_data['slug'],
+            'parent'      => $term_data['parent'],
+            'description' => $term_data['description'],
+        ];
+
         if ( $this->get_max_term_id() < ( $term_id - 1 ) ) {
-            return $this->insert_term_with_id(
-                $term_id,
-                $term_data['name'],
-                $term_data['taxonomy'],
-                [
-                    'parent'      => $term_data['parent'],
-                    'description' => $term_data['description'],
-                ]
-            );
+            return $this->insert_term_with_id( $term_id, $term_data['name'], $term_data['taxonomy'], $args );
         }
 
-        return $this->wordpress->insert_term(
-            $term_data['name'],
-            $term_data['taxonomy'],
-            [
-                'parent'      => $term_data['parent'],
-                'description' => $term_data['description'],
-            ]
-        );
+        return $this->wordpress->insert_term( $term_data['name'], $term_data['taxonomy'], $args );
     }
 
     /**

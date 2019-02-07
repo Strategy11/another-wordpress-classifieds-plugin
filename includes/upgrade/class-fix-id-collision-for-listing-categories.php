@@ -136,6 +136,7 @@ class AWPCP_FixIDCollisionForListingCategoriesUpgradeTaskHandler implements AWPC
         $wanted_term_id         = $max_legacy_category_id + 1;
 
         $term_data = [
+            'slug'        => null,
             'name'        => $current_category->name . ' (' . wp_rand() . ')',
             'parent'      => $current_category->parent,
             'description' => $current_category->term_id,
