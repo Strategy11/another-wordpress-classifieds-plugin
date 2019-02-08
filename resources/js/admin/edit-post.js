@@ -34,7 +34,11 @@ AWPCP.run( 'awpcp/edit-post', [
         $( 'form#post' ).validate({
             messages: $.AWPCP.l10n( 'edit-post-form-fields' ),
             onfocusout: false,
-            submitHandler: function( form ) {
+            submitHandler: function( form, event ) {
+                if ( event.isDefaultPrevented() ) {
+                    return;
+                }
+
                 if ( MultipleRegionsSelectorValidator.showErrorsIfUserSelectedDuplicatedRegions( form ) ) {
                     return false;
                 }
@@ -43,7 +47,7 @@ AWPCP.run( 'awpcp/edit-post', [
                     return false;
                 }
 
-                form.submit();
+                $( form ).trigger( 'submit.edit-post' );
             }
         });
 
