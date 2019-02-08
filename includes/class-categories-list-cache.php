@@ -1,0 +1,49 @@
+<?php
+/**
+ * @package AWPCP
+ */
+
+/**
+ * Manages the cache of the list of categories shown on frontend pages.
+ */
+class AWPCP_CategoriesListCache {
+
+    /**
+     * @var string
+     */
+    private $listing_category_taxonomy;
+
+    /**
+     * @since 4.0.0
+     */
+    public function __construct( $listing_category_taxonomy ) {
+        $this->listing_category_taxonomy = $listing_category_taxonomy;
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function clear() {
+        $transient_keys = get_option( 'awpcp-categories-list-cache-keys', array() );
+
+        foreach ( $transient_keys as $transient_key ) {
+            delete_transient( $transient_key );
+        }
+
+        delete_option( 'awpcp-categories-list-cache-keys' );
+    }
+
+    /**
+     * Handler for the set_object_terms action.
+     *
+     * @since 4.0.0
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
+    public function on_set_object_terms( $object_id, $terms, $term_taxonomy_ids, $taxonomy ) {
+        if ( $this->listing_category_taxonomy !== $taxonomy ) {
+            return;
+        }
+
+        $this->clear();
+    }
+}

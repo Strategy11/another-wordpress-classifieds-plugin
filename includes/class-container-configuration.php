@@ -175,7 +175,21 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
         } );
         // @phpcs:enable
 
+        $this->register_categories_ui_objects( $container );
         $this->register_upgrade_task_handlers( $container );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function register_categories_ui_objects( $container ) {
+        $container['CategoriesListCache'] = $container->service(
+            function( $container ) {
+                return new AWPCP_CategoriesListCache(
+                    $container['listing_category_taxonomy']
+                );
+            }
+        );
     }
 
     /**

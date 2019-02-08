@@ -118,7 +118,7 @@ class AWPCP {
         add_action( 'activated_plugin', array( $this->plugin_integrations, 'maybe_enable_plugin_integration' ), 10, 2 );
         add_action( 'deactivated_plugin', array( $this->plugin_integrations, 'maybe_disable_plugin_integration' ), 10, 2 );
 
-        add_action( 'generate_rewrite_rules', array( $this, 'clear_categories_list_cache' ) );
+        add_action( 'generate_rewrite_rules', [ $this->container['CategoriesListCache'], 'clear' ] );
 
         add_action( 'awpcp-configure-routes', array( $this->admin, 'configure_routes' ) );
         add_action( 'awpcp-configure-routes', array( $this->panel, 'configure_routes' ) );
@@ -346,18 +346,20 @@ class AWPCP {
         $send_to_facebook_helper = $this->container['SendListingToFacebookHelper'];
         add_action( 'awpcp-send-listing-to-facebook', array( $send_to_facebook_helper, 'send_listing_to_facebook' ) );
 
-        add_action( 'awpcp_clear_categories_list_cache', array( $this, 'clear_categories_list_cache' ) );
-        add_action( 'awpcp-place-ad', array( $this, 'clear_categories_list_cache' ) );
-        add_action( 'awpcp_approve_ad', array( $this, 'clear_categories_list_cache' ) );
-        add_action( 'awpcp_edit_ad', array( $this, 'clear_categories_list_cache' ) );
-        add_action( 'awpcp_disable_ad', array( $this, 'clear_categories_list_cache' ) );
-        add_action( 'awpcp_delete_ad', array( $this, 'clear_categories_list_cache' ) );
-        // TODO: are these category events being triggered?
-        add_action( 'awpcp-category-added', array( $this, 'clear_categories_list_cache' ) );
-        add_action( 'awpcp-category-edited', array( $this, 'clear_categories_list_cache' ) );
-        add_action( 'awpcp-category-deleted', array( $this, 'clear_categories_list_cache' ) );
-        add_action( 'awpcp-pages-updated', array( $this, 'clear_categories_list_cache' ) );
-        add_action( 'awpcp-listings-imported', array( $this, 'clear_categories_list_cache' ) );
+        $categories_list_cache = $this->container['CategoriesListCache'];
+
+        add_action( 'awpcp_clear_categories_list_cache', [ $categories_list_cache, 'clear' ] );
+        add_action( 'awpcp-place-ad', [ $categories_list_cache, 'clear' ] );
+        add_action( 'awpcp_approve_ad', [ $categories_list_cache, 'clear' ] );
+        add_action( 'awpcp_edit_ad', [ $categories_list_cache, 'clear' ] );
+        add_action( 'awpcp_disable_ad', [ $categories_list_cache, 'clear' ] );
+        add_action( 'awpcp_delete_ad', [ $categories_list_cache, 'clear' ] );
+        add_action( 'awpcp-category-added', [ $categories_list_cache, 'clear' ] );
+        add_action( 'awpcp-category-edited', [ $categories_list_cache, 'clear' ] );
+        add_action( 'awpcp-category-deleted', [ $categories_list_cache, 'clear' ] );
+        add_action( 'awpcp-pages-updated', [ $categories_list_cache, 'clear' ] );
+        add_action( 'awpcp-listings-imported', [ $categories_list_cache, 'clear' ] );
+        add_action( 'set_object_terms', [ $categories_list_cache, 'on_set_object_terms' ], 10, 4 );
 
         add_filter( 'awpcp-listing-actions', array( $this, 'register_listing_actions' ), 10, 2 );
 
@@ -1673,17 +1675,6 @@ class AWPCP {
 		header( "Content-Type: application/json" );
     	echo json_encode($response);
     	die();
-	}
-
-	/**
-	 * XXX: Used in Region Control installer.
-	 */
-	public function clear_categories_list_cache() {
-		$transient_keys = get_option( 'awpcp-categories-list-cache-keys', array() );
-		foreach ( $transient_keys as $transient_key ) {
-			delete_transient( $transient_key );
-		}
-		delete_option( 'awpcp-categories-list-cache-keys' );
 	}
 
     public function register_listing_actions( $actions, $listing ) {
