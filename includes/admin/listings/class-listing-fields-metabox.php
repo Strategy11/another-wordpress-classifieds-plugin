@@ -94,6 +94,7 @@ class AWPCP_ListingFieldsMetabox {
         wp_enqueue_style( 'awpcp-admin-style' );
 
         wp_enqueue_script( 'awpcp-admin-edit-post' );
+        wp_enqueue_script( 'awpcp-extra-fields' );
 
         // TODO: Inject JavaScript as a constructor parameter.
         awpcp()->js->localize( 'edit-post-form-fields', awpcp_listing_form_fields_validation_messages() );
@@ -121,7 +122,8 @@ class AWPCP_ListingFieldsMetabox {
             $params['date_form_fields'] = $this->date_form_fields->render_fields( $data, $errors, $post, $context );
         }
 
-        echo $this->template_renderer->render_template( 'admin/listings/listing-fields-metabox.tpl.php', $params ); // XSS Ok.
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        echo $this->template_renderer->render_template( 'admin/listings/listing-fields-metabox.tpl.php', $params );
     }
 
     /**
