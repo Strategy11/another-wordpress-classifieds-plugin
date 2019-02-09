@@ -117,34 +117,28 @@ function awpcp_render_categories_dropdown_options( &$categories, &$hierarchy, $s
  * @SuppressWarnings(PHPMD)
  */
 function awpcp_render_categories_dropdown_option( $category, $selected_categories, $level ) {
-    $disabled_attribute = '';
+    $category_name = esc_html( wp_unslash( $category->name ) );
+
+    $attributes = [
+        'class'     => 'dropdownparentcategory',
+        'value'     => esc_attr( $category->term_id ),
+    ];
+
+    if ( $category->parent ) {
+        $attributes['class'] = '';
+
+        $category_name = sprintf( '%s%s', str_repeat( '&nbsp;', 3 * $level ), $category_name );
+    }
 
     if ( in_array( $category->term_id, $selected_categories, true ) ) {
-        $selected_attribute = 'selected="selected"';
-    } else {
-        $selected_attribute = '';
+        $attributes['selected'] = 'selected';
     }
 
     if ( isset( $category->disabled ) && $category->disabled ) {
-        $disabled_attribute = 'disabled="disabled"';
+        $attributes['disabled'] = 'disabled';
     }
 
-    if ( $category->parent == 0 ) {
-        $class_attribute = 'class="dropdownparentcategory"';
-        $category_name = esc_html( wp_unslash( $category->name ) );
-    } else {
-        $class_attribute = '';
-        $category_name = sprintf( '%s%s', str_repeat( '&nbsp;', 3 * $level ), esc_html( wp_unslash( $category->name ) ) );
-    }
-
-    return sprintf(
-        '<option %s %s %s value="%d">%s</option>',
-        $class_attribute,
-        $selected_attribute,
-        $disabled_attribute,
-        esc_attr( $category->term_id ),
-        $category_name
-    );
+    return sprintf( '<option %s>%s</option>', awpcp_html_attributes( $attributes ), $category_name );
 }
 
 /**
