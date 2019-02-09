@@ -12,6 +12,7 @@ function( $ ) {
         this.registry = {};
         this.hierarchy = {};
         this.parents = {};
+        this.namesRegistry         = {};
         this.paymentTerms = paymentTerms;
 
         var walk = function( parent, level ) {
@@ -24,10 +25,14 @@ function( $ ) {
             }
 
             _.each( categoriesHierarchy[ parent ], function( category ) {
+                var name = category.name.replace( /&amp;/g, '&' );
+
                 model = {
-                    id: category.term_id,
-                    text: ' '.repeat( 3 * level ) + category.name.replace( /&amp;/g, '&' ),
-                    disabled: category.disabled || false
+                    id:       category.term_id,
+                    text:     ' '.repeat( 3 * level ) + name,
+                    disabled: category.disabled || false,
+                    name:     name,
+                    parent:   parent !== 'root' ? parent : null
                 };
 
                 self.allCategories.push( model );
@@ -35,6 +40,19 @@ function( $ ) {
                 self.hierarchy[ parent ].push( model );
                 self.registry[ category.term_id ] = model;
                 self.parents[ category.term_id ] = parent;
+
+                // TODO: Can we generate this on demand and cache it using
+                // Select2's Utils.StoreData?
+                model.fullName = self.getCategoryFullName( model.id );
+
+                if ( typeof self.namesRegistry[ name ] !== 'undefined' ) {
+                    self.namesRegistry[ name ][0].requiresFullName = true;
+                    model.requiresFullName                         = true;
+
+                    self.namesRegistry[ name ].push( model );
+                } else {
+                    self.namesRegistry[ name ] = [ model ];
+                }
 
                 walk( model.id, level + 1 );
             } );
@@ -46,6 +64,10 @@ function( $ ) {
     $.extend( CategoriesSelectorHelper.prototype, {
         getAllCategories: function() {
             return this.allCategories;
+        },
+
+        getAllCategoriesIds: function() {
+            return this.allCategoriesIds;
         },
 
         getCategoriesAncestors: function( categories ) {
@@ -69,6 +91,22 @@ function( $ ) {
 
         getCategory: function( category ) {
             return this.registry[ category ];
+        },
+
+        getCategoryFullName: function( categoryId ) {
+            var self           = this,
+                nextCategoryId = categoryId,
+                names          = [ self.getCategory( categoryId ).name ],
+                category;
+
+            while ( self.parents[ nextCategoryId ] !== 'root' ) {
+                category       = self.getCategory( self.parents[ nextCategoryId ] );
+                nextCategoryId = category.id;
+
+                names.push( category.name )
+            }
+
+            return names.reverse().join( ': ' );
         },
 
         getCategoryParent: function( category ) {

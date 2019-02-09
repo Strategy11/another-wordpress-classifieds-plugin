@@ -150,20 +150,16 @@ class AWPCP_Category_Selector {
      */
     private function get_javascript_options( $params, $placeholder, $categories_hierarchy ) {
         $options = array(
-            'mode'    => $params['mode'],
-            'select2' => array(
-                'debug'                  => true,
+            'mode'                  => $params['mode'],
+            'select2'               => array(
                 'allowClear'             => true,
                 'placeholder'            => $placeholder,
                 'maximumSelectionLength' => 100,
             ),
+            'selectedCategoriesIds' => $params['selected'],
+            'categoriesHierarchy'   => $categories_hierarchy,
+            'paymentTerms'          => $this->prepare_payment_terms( $params['payment_terms'] ),
         );
-
-        if ( 'advanced' === $params['mode'] ) {
-            $options['selectedCategoriesIds'] = $params['selected'];
-            $options['categoriesHierarchy']   = $categories_hierarchy;
-            $options['paymentTerms']          = $this->prepare_payment_terms( $params['payment_terms'] );
-        }
 
         return $options;
     }

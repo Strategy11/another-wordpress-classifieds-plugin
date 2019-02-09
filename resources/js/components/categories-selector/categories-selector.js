@@ -16,6 +16,11 @@ function( $, CategoriesSelectorHelper ) {
     function( Utils, ArrayAdapter ) {
         var CategoriesAdapter = function( $element, options ) {
             this.helper = options.get( 'helper' ) || null;
+            this.multiple = options.get( 'multiple' );
+            this.cache    = {
+                term:  '',
+                items: []
+            };
 
             CategoriesAdapter.__super__.constructor.call( this, $element, options );
         };
@@ -25,33 +30,90 @@ function( $, CategoriesSelectorHelper ) {
         CategoriesAdapter.prototype.query = function( params, callback ) {
             var self = this;
 
-            if ( ! self.helper ) {
-                CategoriesAdapter.__super__.query.call( self, params, callback );
-                return;
+            self.current( function( current ) {
+                var data = [],
+                    enabledCategories = null,
+                    selectedCategories;
+
+                selectedCategories = $.map( current, function( item ) {
+                    return parseInt( item.id, 10 );
+                } );
+
+                if ( self.multiple && self.helper ) {
+                    enabledCategories = self.helper.getCategoriesThatCanBeSelectedTogether();
+                 } else {
+                     enabledCategories = self.helper.getAllCategoriesIds();
+                 }
+
+                self.$element.find( 'option' ).each( function() {
+                    var item  = self.item( $( this ) ),
+                        match = self.matches( params, item );
+
+                    if ( match === null ) {
+                        return;
+                    }
+
+                    if ( self.shouldDisableCategory( item, selectedCategories, enabledCategories ) ) {
+                        match = $.extend( {}, match, { disabled: true } );
+                    }
+
+                    data.push( match );
+                } );
+
+                callback( { results: data } );
+            } );
+        };
+
+        CategoriesAdapter.prototype.shouldDisableCategory = function( option, selectedCategoriesIds, enabledCategoriesIds ) {
+            var id = parseInt( option.id, 10 );
+
+            if ( enabledCategoriesIds === null ) {
+                return false;
             }
 
-            CategoriesAdapter.__super__.current.call( self, function( current ) {
-                var selectedCategories = $.map( current, function( option ) {
-                    return parseInt( option.id, 10 );
-                } );
+            if ( _.contains( selectedCategoriesIds, id ) ) {
+                return false;
+            }
 
-                CategoriesAdapter.__super__.query.call( self, params, function( data ) {
-                    var enabled = self.helper.getCategoriesThatCanBeSelectedTogether();
+            if ( _.contains( enabledCategoriesIds, id ) ) {
+                return false;
+            }
 
-                    data.results = $.map( data.results, function( option ) {
-                        var newOption = $.extend( {}, option ),
-                            id = parseInt( option.id, 10 );
+            return true;
+        };
 
-                        if ( ! _.contains( selectedCategories, id ) && ! _.contains( enabled, id ) ) {
-                            newOption.disabled = true;
-                        }
+        CategoriesAdapter.prototype.matches = function( params, item ) {
+            var self = this,
+                fullName;
 
-                        return newOption;
-                    } );
+            if ( $.trim( params.term ) === '' ) {
+                return item;
+            }
 
-                    callback( data );
-                } );
-            } );
+            if ( self.cache.term !== params.term ) {
+                self.cache.term  = params.term;
+                self.cache.items = [];
+            }
+
+            if ( self.cache.items.indexOf( parseInt( item.parent, 10 ) ) !== -1 ) {
+                self.cache.items.push( parseInt( item.id, 10 ) );
+
+                return item;
+            }
+
+            if ( item.text.toLowerCase().indexOf( params.term.toLowerCase() ) !== -1 ) {
+                self.cache.items.push( parseInt( item.id, 10 ) );
+
+                if ( item.fullName ) {
+                    fullName = item.fullName;
+
+                    return $.extend( {}, item, { text: fullName } );
+                }
+
+                return item;
+            }
+
+            return null;
         };
 
         return CategoriesAdapter;
@@ -63,44 +125,31 @@ function( $, CategoriesSelectorHelper ) {
 
     var CategoriesSelector = function( select, options ) {
         this.$select = $( select );
+
         this.options = $.extend(
             {},
             window[ 'categories_' + this.$select.attr( 'data-hash' ) ],
             options
         );
 
-        if ( this.options.mode === 'advanced' ) {
-            return this.initAdvancedMode();
-        }
+        this.options.helper = new CategoriesSelectorHelper(
+            this.options.selectedCategoriesIds,
+            this.options.categoriesHierarchy,
+            this.options.paymentTerms
+        );
 
-        return this.initBasicMode();
+        this.$select.on( 'change.select2', _.bind( this.onChange, this ) );
+
+        this.render();
     };
 
     $.extend( CategoriesSelector.prototype, {
-        initAdvancedMode: function() {
-            this.options.helper = new CategoriesSelectorHelper(
-                this.options.selectedCategoriesIds,
-                this.options.categoriesHierarchy,
-                this.options.paymentTerms
-            );
-
-            this.initBasicMode();
-        },
-
-        initBasicMode: function() {
-            this.$select.on( 'change.select2', _.bind( this.onChange, this ) );
-
-            this.render();
-        },
-
         onChange: function() {
             var self = this;
 
             var categoriesIds = self.getSelectedCategoriesIds();
 
-            if ( this.options.helper ) {
-                this.options.helper.updateSelectedCategories( categoriesIds );
-            }
+            this.options.helper.updateSelectedCategories( categoriesIds );
 
             if ( $.isFunction( self.options.onChange ) ) {
                 self.options.onChange( self.getSelectedCategories() );
@@ -148,22 +197,31 @@ function( $, CategoriesSelectorHelper ) {
             var $select = this.$select;
             var $placeholderOption = $select.find( '.awpcp-dropdown-placeholder' );
 
+            options.dataAdapter = $.fn.select2.amd.require( 'awpcp/select2/data/array' );
+            options.helper      = this.options.helper;
+
+            options.data = $.map( this.options.helper.getAllCategories(), function( category ) {
+                if ( $.inArray( category.id, self.options.selectedCategoriesIds ) >= 0 ) {
+                    category.selected = true;
+                }
+
+                return category;
+            } );
+
+            options.templateSelection = function( selection ) {
+                if ( selection.fullName ) {
+                    return selection.fullName;
+                }
+
+                return selection.text;
+            };
+
+            // Single selects require an empty option at the top in order to
+            // display the configured placeholder. See https://select2.org/placeholders.
             if ( $placeholderOption.length ) {
                 $placeholderOption.text( '' );
-            }
-
-            if ( this.options.helper ) {
-                options.data = $.map( this.options.helper.getAllCategories(), function( category ) {
-                    if ( $.inArray( category.id, self.options.selectedCategoriesIds ) >= 0 ) {
-                        category.selected = true;
-                    }
-
-                    return category;
-                } );
-
-                options.dataAdapter = $.fn.select2.amd.require( 'awpcp/select2/data/array' );
-                options.helper = this.options.helper;
-
+                $select.find( 'option' ).not( $placeholderOption ).remove();
+            } else {
                 $select.empty();
             }
 
