@@ -54,7 +54,7 @@ class AWPCP_ListingsTableNavHandler {
      * @since 4.0.0
      */
     private function get_selected_category() {
-        return absint( $this->request->param( 'awpcp_category' ) );
+        return absint( $this->request->param( 'awpcp_category_id' ) );
     }
 
     /**
@@ -124,7 +124,8 @@ class AWPCP_ListingsTableNavHandler {
      * @since 4.0.0
      */
     public function restrict_listings() {
-        echo $this->render_date_filter() . $this->render_categories_selector(); // XSS Ok.
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        echo $this->render_date_filter() . $this->render_categories_selector();
     }
 
     /**
@@ -210,7 +211,7 @@ class AWPCP_ListingsTableNavHandler {
 
         $params = array(
             'label'       => false,
-            'name'        => 'awpcp_category',
+            'name'        => 'awpcp_category_id',
             'placeholder' => _x( 'All categories', 'category filter placeholder', 'another-wordpress-classifieds-plugin' ),
             'selected'    => $selected_category,
         );
