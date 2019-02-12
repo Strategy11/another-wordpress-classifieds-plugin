@@ -31,14 +31,16 @@ class AWPCP_ChoiceSettingsRenderer {
             $field_type = 'radio';
         }
 
-        $selected = array_filter( $this->settings->get_option( $setting['id'], array() ), 'strlen' );
+        // Selected values are stored as strings, but can be returned as integers
+        // when the default value of the setting is returned by get_option().
+        $selected = array_filter( array_map( 'strval', $this->settings->get_option( $setting['id'], array() ) ), 'strlen' );
 
         $html = array( sprintf( '<input type="hidden" name="%s" value="">', $field_name ) );
 
         foreach ( $setting['choices'] as $value => $label ) {
             $id = "{$setting['id']}-$value";
 
-            // Options values ($selected) are stored as strings.
+            // Options values ($selected) are retrieved as strings.
             $checked = in_array( (string) $value, $selected, true ) ? 'checked="checked"' : '';
 
             $html_field = '<input id="%s" type="%s" name="%s" value="%s" %s />';
@@ -50,6 +52,7 @@ class AWPCP_ChoiceSettingsRenderer {
 
         $html[] = '<span class="description">' . $setting['description'] . '</span>';
 
-        echo join( '', $html ); // XSS Ok.
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        echo join( '', $html );
     }
 }
