@@ -39,11 +39,11 @@ function( $, CategoriesSelectorHelper ) {
                     return parseInt( item.id, 10 );
                 } );
 
-                if ( self.multiple && self.helper ) {
+                if ( self.multiple ) {
                     enabledCategories = self.helper.getCategoriesThatCanBeSelectedTogether();
-                 } else {
-                     enabledCategories = self.helper.getAllCategoriesIds();
-                 }
+                } else {
+                    enabledCategories = self.helper.getAllCategoriesIds();
+                }
 
                 self.$element.find( 'option' ).each( function() {
                     var item  = self.item( $( this ) ),

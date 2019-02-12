@@ -128,6 +128,13 @@ function( $ ) {
         getCategoriesThatCanBeSelectedTogether: function() {
             var self = this;
 
+            // At least one payment term is required in order to figure out which
+            // categories can be selected together. All categories are allowed by
+            // default.
+            if ( self.paymentTerms.length === 0 ) {
+                return self.allCategoriesIds;
+            }
+
             var allowedPaymentTerms = _.compact( _.map( _.keys( self.paymentTerms ), function( paymentTermKey ) {
                 var paymentTerm = self.paymentTerms[ paymentTermKey ];
 
