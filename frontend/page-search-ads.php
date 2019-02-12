@@ -124,6 +124,9 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
             }
         }
 
+        // Allow selected categories to be cleared or replaced.
+        unset( $url_params['searchcategory'] );
+
         $action_url = awpcp_current_url();
         $hidden = array_merge( $url_params, array( 'awpcp-step' => 'dosearch' ) );
 
