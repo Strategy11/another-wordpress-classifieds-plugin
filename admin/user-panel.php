@@ -7,7 +7,13 @@
  * Constructor function.
  */
 function awpcp_user_panel() {
-    return new AWPCP_User_Panel( awpcp_upgrade_tasks_manager() );
+    $container = awpcp()->container;
+
+    return new AWPCP_User_Panel(
+        $container['listing_post_type'],
+        awpcp_upgrade_tasks_manager(),
+        $container['Settings']
+    );
 }
 
 /**
@@ -16,15 +22,27 @@ function awpcp_user_panel() {
 class AWPCP_User_Panel {
 
     /**
+     * @var string
+     */
+    private $listing_post_type;
+
+    /**
      * @var UpgradeTasksManager
      */
     private $upgrade_tasks;
 
     /**
+     * @var Settings
+     */
+    private $settings;
+
+    /**
      * Constructor.
      */
-	public function __construct( $upgrade_tasks ) {
-        $this->upgrade_tasks = $upgrade_tasks;
+	public function __construct( $listing_post_type, $upgrade_tasks, $settings ) {
+        $this->listing_post_type = $listing_post_type;
+        $this->upgrade_tasks     = $upgrade_tasks;
+        $this->settings          = $settings;
 
         $this->account = awpcp_account_balance_page();
 	}
@@ -40,6 +58,19 @@ class AWPCP_User_Panel {
 
         if ( $this->upgrade_tasks->has_pending_tasks( $params ) ) {
             return;
+        }
+
+        // Workaround for https://core.trac.wordpress.org/ticket/22895.
+        if ( $this->settings->get_option( 'enable-user-panel' ) ) {
+            $router->add_admin_subpage(
+                "edit.php?post_type={$this->listing_post_type}",
+                null,
+                null,
+                null,
+                null,
+                'read',
+                9999
+            );
         }
 
         if ( awpcp_payments_api()->credit_system_enabled() && ! awpcp_current_user_is_admin() ) {
