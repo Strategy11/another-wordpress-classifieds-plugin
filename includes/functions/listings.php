@@ -186,9 +186,18 @@ function awpcp_display_listings_in_page( $query, $context, $options = array() ) 
 }
 
 /**
+ * Returns the HTML code for the Classifieds Bar component.
+ *
+ * If called from the Admin Dashboard, then it returns an empty string
+ * to avoid the component to be shown on the Quick View admin page.
+ *
  * @since 4.0.0
  */
 function awpcp_render_classifieds_bar( $components = array() ) {
+    if ( is_admin() ) {
+        return '';
+    }
+
     return awpcp_classifieds_bar()->render( $components );
 }
 
