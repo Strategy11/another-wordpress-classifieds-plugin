@@ -46,7 +46,7 @@ class AWPCP_SendToFacebookPageListingTableAction implements AWPCP_ListTableActio
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function get_icon_class( $post ) {
-        return 'fa fa-facebook-square';
+        return awpcp_add_font_awesome_style_class_for_brands( 'fa-facebook-square' );
     }
 
     /**

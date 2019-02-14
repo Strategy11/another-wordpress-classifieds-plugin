@@ -637,6 +637,21 @@ class AWPCP_GeneralSettings {
                 'section'     => 'scripts-and-styles',
             ]
         );
+
+        $settings_manager->add_setting(
+            [
+                'id'          => 'use-font-awesome-brands-style',
+                'name'        => __( "Use Font Awesome's Brands style", 'another-wordpress-classifieds-plugin' ),
+                'type'        => 'radio',
+                'default'     => 'with-stylesheet',
+                'description' => __( 'Configure whether the plugin uses <code>fab</code> or <code>fa</code> CSS class to define Twitter and Facebook icons. The <code>fab</code> class is required with Font Awesome 5.0+. If you disabled our version of Font Awesome stylesheet above because a theme or another plugin is already loading a Font Awesome 5.0+ stylesheet, then select "Always".', 'another-wordpress-classifieds-plugin' ),
+                'options'     => [
+                    'with-stylesheet' => __( "When the plugin's Font Awesome stylesheet is included only", 'another-wordpress-classifieds-plugin' ),
+                    'always'          => __( 'Always', 'another-wordpress-classifieds-plugin' ),
+                ],
+                'section'     => 'scripts-and-styles',
+            ]
+        );
     }
 
     /**

@@ -52,3 +52,18 @@ function awpcp_maybe_enqueue_font_awesome_style() {
         wp_enqueue_style( 'awpcp-font-awesome' );
     }
 }
+
+/**
+ * See description of use-font-awesome-brands-style setting.
+ *
+ * @since 4.0.0
+ */
+function awpcp_add_font_awesome_style_class_for_brands( $icon_class ) {
+    $use = get_awpcp_option( 'use-font-awesome-brands-style' );
+
+    if ( $use === 'always' || awpcp_should_enqueue_asset( 'enqueue-font-awesome-style' ) ) {
+        return "fab $icon_class";
+    }
+
+    return "fa $icon_class";
+}

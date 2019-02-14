@@ -775,7 +775,7 @@ function awpcp_do_placeholder_twitter_button($ad, $placeholder) {
 
     $button  = '<a class="awpcp-social-button tw_button awpcp_tweet_button_div" href="' . esc_url( $url ) . '" title="' . esc_attr( $title ) . '" target="_blank" rel="nofollow noopener">';
     $button .= '<span class="twitter-share-button">';
-    $button .= '<i class="fa fa-twitter-square"></i>';
+    $button .= '<i class="' . awpcp_add_font_awesome_style_class_for_brands( 'fa-twitter-square' ) . '"></i>';
     $button .= '</span>';
     $button .= '</a>';
 
@@ -808,7 +808,7 @@ function awpcp_do_placeholder_facebook_button($ad, $placeholder) {
 
     $button  = '<a class="awpcp-social-button tw_button awpcp_tweet_button_div" href="%s" class="facebook-share-button" title="%s" target="_blank" rel="nofollow noopener">';
     $button .= '<span class="facebook-share-button">';
-    $button .= '<i class="fa fa-facebook-square"></i>';
+    $button .= '<i class="' . awpcp_add_font_awesome_style_class_for_brands( 'fa-facebook-square' ) . '"></i>';
     $button .= '</span>';
     $button .= '</a>';
 
