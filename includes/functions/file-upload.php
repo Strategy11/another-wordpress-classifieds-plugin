@@ -81,7 +81,6 @@ function awpcp_upload_image_file($directory, $filename, $tmpname, $min_size, $ma
 
 	if (!awpcp_create_image_versions($newname, $directory)) {
 		$message = __('Could not create resized versions of image %s.', 'another-wordpress-classifieds-plugin');
-		# TODO: unlink resized version, thumbnail and primary image
 		@unlink($newpath);
 		return sprintf($message, $filename);
 	}

@@ -2,7 +2,6 @@
 /**
  * @package AWPCP\Frontend
  *
- * TODO: Remove this file.
  */
 
 // phpcs:disable Generic
@@ -576,7 +575,6 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             'ad_key' => $this->listing_renderer->get_access_key( $listing ),
         );
 
-        // TODO: allow module to modify this data
         if ( get_awpcp_option('allowhtmlinadtext') ) {
             $data['ad_details'] = awpcp_esc_textarea( $data['ad_details'] );
         }
@@ -846,8 +844,6 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         }
 
         $ui = array();
-        // TODO: add form validation
-        // TODO: strip slashes from title, details
         $ui['listing-actions'] = !is_admin() && $edit;
         // show categories dropdown if $category is not set
         $ui['category-field'] = ( $edit || empty( $form['ad_category'] ) ) && $is_moderator;

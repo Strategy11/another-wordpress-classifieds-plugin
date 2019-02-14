@@ -61,7 +61,6 @@ function awpcp_get_page_by_ref( $ref ) {
 
 /**
  * Returns the ID of WP Page associated to a page-name setting.
- * TODO: remove usage of awpcp_get_plugin_pages_ids().
  *
  * @param $refname the name of the setting that holds the name of the page
  */

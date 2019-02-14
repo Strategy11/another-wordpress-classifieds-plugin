@@ -1079,10 +1079,6 @@ function awpcp_country_list_options($value=false, $use_names=true) {
 
 /**
  * AWPCP misc functions
- *
- * TODO: merge content from functions_awpcp.php,
- * fileop.class.php, dcfunctions.php, upload_awpcp.php
- * as needed.
  */
 
 function awpcp_array_insert($array, $index, $key, $item, $where='before') {
@@ -1396,7 +1392,8 @@ function awpcp_get_object_property_from_alternatives( $object, $alternatives, $d
  *      [awpcp-test-max] =>
  *      [awpcp-select_list] =>
  * )
- * TODO: see WP's _http_build_query
+ *
+ * XXX: Could it be replaced by WP's _http_build_query somehow?
  *
  * @since 3.0.2
  */

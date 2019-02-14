@@ -117,9 +117,6 @@ class AWPCP_ListingPaymentTransactionHandler {
         }
     }
 
-    /**
-     * TODO: how to remove dependency on AWPCP_Payment_Transaction?
-     */
     private function is_accepted_payment_status( $payment_status ) {
         if ( $payment_status === AWPCP_Payment_Transaction::PAYMENT_STATUS_PENDING ) {
             return true;

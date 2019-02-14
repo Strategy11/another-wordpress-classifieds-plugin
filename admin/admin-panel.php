@@ -335,7 +335,6 @@ class AWPCP_AdminPanel {
             return;
         }
 
-        // TODO: Should subscribers have access to this view?
         $router->add_admin_subpage(
             'edit.php?post_type=awpcp_listing',
             __( 'Quick View', 'another-wordpress-classifieds-plugin' ),

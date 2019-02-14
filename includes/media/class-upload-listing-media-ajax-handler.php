@@ -52,8 +52,6 @@ class AWPCP_UploadListingMediaAjaxHandler extends AWPCP_AjaxHandler {
             return false;
         }
 
-        // TODO: complete me!
-
         return true;
     }
 

@@ -259,7 +259,7 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
             $original_end_date = $this->listing_renderer->get_plain_end_date( $ad );
             $end_date = awpcp_set_datetime_date( $original_end_date, $data['end_date'] );
             $listing_data['metadata']['_awpcp_end_date'] = $end_date;
-            
+
             // // From 3.8.6
             // $now = current_time( 'mysql' );
             //
@@ -326,9 +326,6 @@ class AWPCP_EditAdPage extends AWPCP_Place_Ad_Page {
         return $this->show_upload_images_form( $ad, null, $params, array() );
     }
 
-    /**
-     * TODO: merge with the same method from Page Place Ad.
-     */
     protected function show_upload_images_form( $ad, $transaction, $params, $errors ) {
         $allowed_files = awpcp_listing_upload_limits()->get_listing_upload_limits( $ad );
 

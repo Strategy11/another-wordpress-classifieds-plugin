@@ -309,7 +309,6 @@ class AWPCP_Payment_Transaction {
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function verify_completed_conditions(&$errors) {
-        // TODO: code me!s
         return true;
     }
 

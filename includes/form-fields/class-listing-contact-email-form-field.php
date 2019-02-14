@@ -12,9 +12,6 @@ function awpcp_listing_contact_email_form_field( $slug ) {
     return new AWPCP_ListingContactEmailFormField( $slug, awpcp()->settings );
 }
 
-/**
- * TODO: what if that field shouldn't be shown?
- */
 class AWPCP_ListingContactEmailFormField extends AWPCP_FormField {
 
     /**

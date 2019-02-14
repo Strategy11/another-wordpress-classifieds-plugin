@@ -4,9 +4,6 @@ function awpcp_listing_price_form_field( $slug ) {
     return new AWPCP_ListingPriceFormField( $slug, awpcp()->settings );
 }
 
-/**
- * TODO: what if that field shouldn't be shown?
- */
 class AWPCP_ListingPriceFormField extends AWPCP_FormField {
 
     protected $settings;

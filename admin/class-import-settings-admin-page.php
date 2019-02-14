@@ -66,11 +66,6 @@ class AWPCP_Import_Settings_Admin_Page {
      * @SuppressWarnings(PHPMD.ExitExpression)
      */
     public function on_admin_init() {
-        // TODO: Is this unnecesasry, since we are already insde an admin page?
-        if ( ! $this->capabilities->current_user_is_administrator() ) {
-            wp_die( 'You must be an administrator' );
-        }
-
         if ( ! isset( $_FILES['settings_file'] ) ) { // WPCS: Input var okay.
             return;
         }

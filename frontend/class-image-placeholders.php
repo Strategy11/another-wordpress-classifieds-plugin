@@ -34,9 +34,6 @@ class AWPCP_Image_Placeholders {
         $this->settings              = $settings;
     }
 
-    /**
-     * TODO: test image src, width and other properties are properly rendered.
-     */
     public function do_image_placeholders( $ad, $placeholder ) {
         if ( ! isset( $this->cache[ $ad->ID ] ) ) {
             $placeholders = $this->render_image_placeholders( $ad, $placeholder );

@@ -93,9 +93,6 @@ class AWPCP_ListingsAPI {
      * API Methods
      */
 
-    /**
-     * TODO: Do we need to provide default values for start_date and end_date?
-     */
     public function create_listing( $listing_data ) {
         $now = current_time( 'mysql' );
 
@@ -150,7 +147,6 @@ class AWPCP_ListingsAPI {
         $metadata = wp_parse_args( $metadata, array(
             '_awpcp_payment_status'         => 'Unpaid',
             '_awpcp_verification_needed'    => true,
-            // TODO: Do we need to alter this when someones changes the start date?
             '_awpcp_most_recent_start_date' => current_time( 'mysql' ),
             '_awpcp_renewed_date'           => '',
             '_awpcp_poster_ip'              => awpcp_getip(),

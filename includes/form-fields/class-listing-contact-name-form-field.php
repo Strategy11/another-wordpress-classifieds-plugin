@@ -12,9 +12,6 @@ function awpcp_listing_contact_name_form_field( $slug ) {
     return new AWPCP_ListingContactNameFormField( $slug, awpcp()->settings );
 }
 
-/**
- * TODO: what if that field shouldn't be shown?
- */
 class AWPCP_ListingContactNameFormField extends AWPCP_FormField {
 
     /**

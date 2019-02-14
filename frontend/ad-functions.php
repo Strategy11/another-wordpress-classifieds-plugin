@@ -65,7 +65,7 @@ function awpcp_calculate_end_date($increment, $period, $start_date) {
  * It must be possible to have more than one transaction associated to a single
  * Ad, for example, when an Ad has been posted AND renewed one or more times.
  *
- * TODO: this can be moved into the Ad class. We actually don't need a transaction,
+ * This can be moved into the Ad class. We actually don't need a transaction,
  * because the payment_status is stored in the Ad object. We need, however, to update
  * the payment_status when the Ad is placed AND renewed. ~2012-09-19
  *

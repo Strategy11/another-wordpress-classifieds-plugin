@@ -171,7 +171,6 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
         $data['title_characters'] = absint( $_data['title_characters'] );
         $data['characters_allowed'] = absint( $_data['characters'] );
         $data['categories'] = $_data['categories'];
-        // TODO: properly save, validate and sanitize this value
         $data['buys'] = absint( $_data['buys'] );
         $data['private'] = absint( $_data['private'] );
         $data['is_featured_ad_pricing'] = absint( $_data['featured'] );

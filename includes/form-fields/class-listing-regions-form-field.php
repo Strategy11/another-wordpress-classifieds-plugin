@@ -9,9 +9,6 @@ function awpcp_listing_regions_form_field( $slug ) {
     );
 }
 
-/**
- * TODO: what if that field shouldn't be shown?
- */
 class AWPCP_ListingRegionsFormField extends AWPCP_FormField {
 
     private $region_selector;

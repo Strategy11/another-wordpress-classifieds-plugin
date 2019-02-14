@@ -452,11 +452,6 @@ class AWPCP {
         add_filter( 'awpcp_listing_details_form_fields', array( $listing_form_fields, 'register_listing_details_form_fields' ), 10, 1 );
         add_filter( 'awpcp_listing_date_form_fields', array( $listing_form_fields, 'register_listing_date_form_fields' ), 10, 2 );
 
-        // TODO: Where is this option set?
-        if ( get_option( 'awpcp-enable-fix-media-mime-type-upgrde' ) ) {
-            awpcp_fix_empty_media_mime_type_upgrade_routine()->run();
-        }
-
         if ( get_option( 'awpcp-store-browse-categories-page-information' ) ) {
             $this->store_browse_categories_page_information();
         }
@@ -1571,8 +1566,6 @@ class AWPCP {
 	/**
 	 * Set payment status to Not Required in requiredtransactions made by
 	 * admin users.
-	 *
-	 * TODO: move this into one of the steps decorator, when steps decorators become widely used.
 	 *
 	 * @since  2.2.2
 	 */

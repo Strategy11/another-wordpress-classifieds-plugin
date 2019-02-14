@@ -106,7 +106,6 @@ function awpcp_upload_file( $file, $constraints, &$error=false, $action='upload'
             $error = _x( 'Could not create resized versions of image %s.', 'upload files', 'another-wordpress-classifieds-plugin' );
             $error = sprintf( $error, '<strong>' . $filename . '</strong>' );
 
-            # TODO: unlink resized version, thumbnail and primary image
             @unlink( $newpath );
 
             return false;
