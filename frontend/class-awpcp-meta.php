@@ -181,13 +181,15 @@ class AWPCP_Meta {
     }
 
     private function render_meta_tags( $meta_tags, $group_name ) {
-        echo '<!-- START - Another WordPress Classifieds Plugin ' . $group_name . ' meta tags -->' . PHP_EOL; // XSS Ok.
+        // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
+        echo '<!-- START - Another WordPress Classifieds Plugin ' . $group_name . ' meta tags -->' . PHP_EOL;
 
         foreach ( $meta_tags as $tag ) {
-            echo $tag . PHP_EOL; // XSS Ok.
+            echo $tag . PHP_EOL;
         }
 
-        echo '<!-- END - Another WordPress Classifieds Plugin ' . $group_name . ' meta tags -->' . PHP_EOL; // XSS Ok.
+        echo '<!-- END - Another WordPress Classifieds Plugin ' . $group_name . ' meta tags -->' . PHP_EOL;
+        // phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped
     }
 
     public function get_listing_metadata() {
