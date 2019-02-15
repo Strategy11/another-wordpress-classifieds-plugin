@@ -10,7 +10,7 @@ function awpcp_yoast_wordpress_seo_plugin_integration() {
     $container = awpcp()->container;
 
     return new AWPCP_YoastWordPressSEOPluginIntegration(
-        $container['Meta'],
+        $container['listing_post_type'],
         awpcp_query(),
         $container['AttachmentsCollection'],
         $container['Request']
@@ -26,9 +26,9 @@ class AWPCP_YoastWordPressSEOPluginIntegration {
     private $current_listing;
 
     /**
-     * @var Meta
+     * @var string
      */
-    private $meta;
+    private $listing_post_type;
 
     /**
      * @var Query
@@ -45,11 +45,11 @@ class AWPCP_YoastWordPressSEOPluginIntegration {
      */
     private $request;
 
-    public function __construct( $meta, $query, $attachments, $request ) {
-        $this->meta        = $meta;
-        $this->query       = $query;
-        $this->attachments = $attachments;
-        $this->request     = $request;
+    public function __construct( $listing_post_type, $query, $attachments, $request ) {
+        $this->listing_post_type = $listing_post_type;
+        $this->query             = $query;
+        $this->attachments       = $attachments;
+        $this->request           = $request;
     }
 
     /**
@@ -57,7 +57,7 @@ class AWPCP_YoastWordPressSEOPluginIntegration {
      */
     public function setup() {
         if ( $this->are_required_classes_loaded() ) {
-            add_action( 'wp', [ $this, 'prepare_metadata_and_add_hooks' ] );
+            add_action( 'awpcp_before_configure_frontend_meta', [ $this, 'before_configure_frontend_meta' ] );
         }
     }
 
@@ -78,8 +78,44 @@ class AWPCP_YoastWordPressSEOPluginIntegration {
     }
 
     /**
-     * Configure integration hooks, but only on selected pages.
-     *
+     * @since 4.0.0
+     */
+    public function before_configure_frontend_meta( $meta ) {
+        $this->current_listing = $meta->ad;
+        $this->title_builder   = $meta->title_builder;
+        $this->is_singular     = is_singular( $this->listing_post_type );
+        $this->metadata        = [];
+
+        if ( $this->current_listing ) {
+            $this->metadata = $meta->get_listing_metadata();
+        }
+
+        add_filter( 'awpcp-should-generate-rel-canonical', [ $this, 'configure_canonical_url' ] );
+        add_filter( 'awpcp-should-generate-title', [ $this, 'configure_title_generation' ] );
+        add_filter( 'awpcp-should-generate-basic-meta-tags', [ $this, 'configure_description_meta_tags' ] );
+        add_filter( 'awpcp-should-generate-opengraph-tags', [ $this, 'configure_opengraph_meta_tags' ] );
+
+        add_filter( 'awpcp-should-generate-rel-canonical', '__return_false' );
+        add_filter( 'awpcp-should-generate-title', '__return_false' );
+        add_filter( 'awpcp-should-generate-basic-meta-tags', '__return_false' );
+        add_filter( 'awpcp-should-generate-opengraph-tags', '__return_false' );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function configure_canonical_url() {
+        add_filter( 'wpseo_canonical', [ $this, 'canonical_url' ] );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function configure_title_generation() {
+        add_filter( 'wpseo_title', [ $this, 'filter_title' ] );
+    }
+
+    /**
      * On Show Ad page:
      * - If the listing has a SEO override, we should use the override (don't forget
      * to replace any snippet variables included).
@@ -92,30 +128,24 @@ class AWPCP_YoastWordPressSEOPluginIntegration {
      *
      * @since 4.0.0
      */
-    public function prepare_metadata_and_add_hooks() {
-        if ( ! $this->query->is_single_listing_page() ) {
-            return;
-        }
-
-        $post_id = $this->request->get_current_listing_id();
-
-        if ( ! $post_id ) {
-            return;
-        }
-
-        $post = get_post( $post_id );
-
-        if ( ! is_object( $post ) ) {
-            return;
-        }
-
-        $this->current_listing = $post;
-        $this->is_singular     = is_singular( awpcp()->container['listing_post_type'] );
-        $this->metadata        = $this->meta->get_listing_metadata();
-
-        add_filter( 'wpseo_title', [ $this, 'filter_title' ] );
+    public function configure_description_meta_tags() {
         add_filter( 'wpseo_metadesc', array( $this, 'filter_meta_description' ) );
-        add_filter( 'wpseo_canonical', [ $this, 'canonical_url' ] );
+    }
+
+    /**
+     * On Show Ad page:
+     * - If the listing has a SEO override, we should use the override (don't forget
+     * to replace any snippet variables included).
+     * - If the listing has no SEO override, generate good default.
+     *
+     * On an Ad own page:
+     * - If the listing has a SEO override, we use the override without attempting
+     * to replace any variables. Yoast must have already done that.
+     * - If the listing has no SEO override, generate a good default.
+     *
+     * @since 4.0.0
+     */
+    public function configure_opengraph_meta_tags() {
         add_filter( 'wpseo_opengraph_type', [ $this, 'filter_opengraph_type' ] );
         add_filter( 'wpseo_opengraph_title', [ $this, 'filter_opengraph_title' ] );
         add_filter( 'wpseo_opengraph_desc', [ $this, 'filter_opengraph_description' ] );
@@ -128,11 +158,6 @@ class AWPCP_YoastWordPressSEOPluginIntegration {
 
         add_filter( 'wpseo_twitter_title', [ $this, 'filter_twitter_title' ] );
         add_filter( 'wpseo_twitter_description', [ $this, 'filter_twitter_description' ] );
-
-        add_filter( 'awpcp-should-generate-title', '__return_false' );
-        add_filter( 'awpcp-should-generate-basic-meta-tags', '__return_false' );
-        add_filter( 'awpcp-should-generate-rel-canonical', '__return_false' );
-        add_filter( 'awpcp-should-generate-opengraph-tags', '__return_false' );
     }
 
     /**
@@ -161,7 +186,7 @@ class AWPCP_YoastWordPressSEOPluginIntegration {
             $separator = $GLOBALS['sep'];
         }
 
-        return $this->meta->title_builder->build_title( $title, $separator, '' );
+        return $this->title_builder->build_title( $title, $separator, '' );
     }
 
     /**

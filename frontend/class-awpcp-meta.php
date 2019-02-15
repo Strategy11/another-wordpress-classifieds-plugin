@@ -37,11 +37,32 @@ class AWPCP_Meta {
         $this->find_current_listing();
         $this->find_current_category_id();
 
+        /**
+         * Runs before the plugin setups the handlers that generate the
+         * default metadata.
+         *
+         * Used by plugin integrations to disable default behavour and configure
+         * the hooks necessary to generate better metadata for listings and
+         * categories.
+         *
+         * @since 4.0.0
+         */
+        do_action( 'awpcp_before_configure_frontend_meta', $this );
+
         $this->configure_rel_canonical();
-        $this->configure_description_meta_tag();
-        $this->configure_opengraph_meta_tags();
-        $this->configure_title_generation();
-        $this->configure_page_dates();
+
+        if ( $this->query->is_single_listing_page() || $this->is_browse_categories_page() ) {
+            $this->configure_title_generation();
+        }
+
+        if ( $this->query->is_single_listing_page() ) {
+            if ( $this->ad && $this->properties ) {
+                $this->configure_description_meta_tag();
+                $this->configure_opengraph_meta_tags();
+            }
+
+            $this->configure_page_dates();
+        }
 
         $this->title_builder->set_current_listing( $this->ad );
         $this->title_builder->set_current_category_id( $this->category_id );
@@ -73,14 +94,6 @@ class AWPCP_Meta {
     }
 
     private function configure_opengraph_meta_tags() {
-        if ( ! $this->query->is_single_listing_page() ) {
-            return;
-        }
-
-        if ( is_null( $this->ad ) || is_null( $this->properties ) ) {
-            return;
-        }
-
         // @phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
         if ( apply_filters( 'awpcp-should-generate-opengraph-tags', true, $this ) ) {
             add_action( 'wp_head', array( $this, 'opengraph' ) );
@@ -90,14 +103,6 @@ class AWPCP_Meta {
     }
 
     private function configure_description_meta_tag() {
-        if ( ! $this->query->is_single_listing_page() ) {
-            return;
-        }
-
-        if ( is_null( $this->ad ) || is_null( $this->properties ) ) {
-            return;
-        }
-
         // @phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
         if ( apply_filters( 'awpcp-should-generate-basic-meta-tags', true, $this ) ) {
             add_action( 'wp_head', array( $this, 'generate_basic_meta_tags' ) );
@@ -107,10 +112,6 @@ class AWPCP_Meta {
     }
 
     private function configure_title_generation() {
-        if ( ! $this->query->is_single_listing_page() && ! $this->is_browse_categories_page() ) {
-            return;
-        }
-
         // @phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
         if ( apply_filters( 'awpcp-should-generate-title', true, $this ) ) {
             add_action( 'wp_title', array( $this->title_builder, 'build_title' ), 10, 3 );
@@ -138,10 +139,6 @@ class AWPCP_Meta {
     }
 
     private function configure_page_dates() {
-        if ( ! $this->query->is_single_listing_page() ) {
-            return;
-        }
-
         add_filter( 'get_the_date', array( $this, 'get_the_date' ), 10, 2 );
         add_filter( 'get_the_modified_date', array( $this, 'get_the_modified_date' ), 10, 2 );
     }
