@@ -32,6 +32,13 @@
                                 </div>
 
                                 <div class="form-field">
+                                    <label for="m-awpcp-category-form__description-field"><?php esc_html_e( 'Description', 'another-wordpress-classifieds-plugin' ); ?></label>
+                                    <textarea id="m-awpcp-category-form__description-field" type="text" name="category_description" rows="4"><?php esc_html_e( $form_values['category_description'] ); ?></textarea>
+                                </div>
+                            </div>
+
+                            <div class="l-awpcp-column-50">
+                                <div class="form-field">
                                     <label for="m-awpcp-category-form__parent-field"><?php esc_html_e( 'Parent Category', 'another-wordpress-classifieds-plugin' ); ?></label>
                                     <?php
                                     $parent_category_dropdown_args['id'] = 'm-awpcp-category-form__parent-field';
@@ -39,9 +46,7 @@
                                     wp_dropdown_categories( $parent_category_dropdown_args );
                                     ?>
                                 </div>
-                            </div>
 
-                            <div class="l-awpcp-column-50">
                                 <div class="form-field">
                                     <label for="m-awpcp-category-form__order-field"><?php esc_html_e( 'Category list order', 'another-wordpress-classifieds-plugin' ); ?></label>
                                     <input id="m-awpcp-category-form__order-field" type="text" name="category_order" value="<?php esc_attr_e( $form_values['category_order'] ); ?>" size="20"/>

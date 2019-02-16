@@ -77,6 +77,10 @@ class AWPCP_Categories_Logic {
             throw new AWPCP_Exception( __( 'The name of the Category is required.', 'another-wordpress-classifieds-plugin' ) );
         }
 
+        if ( isset( $category->description ) && ! empty( $category->description ) ) {
+            $category_data['description'] = $category->description;
+        }
+
         if ( isset( $category->parent ) && isset( $category->term_id ) && $category->parent === $category->term_id ) {
             throw new AWPCP_Exception( __( 'The ID of the parent category and the ID of the category must be different.' ) );
         } elseif ( isset( $category->parent ) ) {

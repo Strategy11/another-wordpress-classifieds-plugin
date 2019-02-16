@@ -1,5 +1,11 @@
 <?php
+/**
+ * @package AWPCP\Admin\Categories
+ */
 
+/**
+ * Constructor for Update Category Admin Page.
+ */
 function awpcp_update_category_admin_page() {
     return new AWPCP_Update_Category_Admin_Page(
         awpcp_categories_logic(),
@@ -50,9 +56,10 @@ class AWPCP_Update_Category_Admin_Page {
             throw new AWPCP_Exception( $message );
         }
 
-        $category->name   = stripcslashes( $this->request->param( 'category_name' ) );
-        $category->parent = absint( $this->request->param( 'category_parent_id' ) );
-        $category_order   = absint( $this->request->param( 'category_order' ) );
+        $category->name        = wp_unslash( $this->request->param( 'category_name' ) );
+        $category->description = wp_unslash( $this->request->param( 'category_description' ) );
+        $category->parent      = absint( $this->request->param( 'category_parent_id' ) );
+        $category_order        = absint( $this->request->param( 'category_order' ) );
 
         $this->categories_logic->update_category( $category, $category_order );
 

@@ -143,6 +143,7 @@ class AWPCP_CategoriesAdminPage {
             'form_values' => array(
                 'category_id' => $category_id,
                 'category_name' => $category ? $category->name : null,
+                'category_description' => $category ? $category->description : null,
                 'category_parent_id' => $category ? $category->parent : null,
                 'category_order' => $category ? intval( get_term_meta( $category->term_id, '_awpcp_order', true ) ) : null,
                 'action' => $category ? 'update-category' : 'create-category',

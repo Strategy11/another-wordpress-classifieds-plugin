@@ -32,8 +32,9 @@ class AWPCP_Create_Category_Admin_Page {
     public function dispatch() {
         $category_order = absint( $this->request->param( 'category_order' ) );
         $category_data  = array(
-            'name'   => stripcslashes( $this->request->param( 'category_name' ) ),
-            'parent' => intval( $this->request->param( 'category_parent_id' ) ),
+            'name'        => wp_unslash( $this->request->param( 'category_name' ) ),
+            'description' => wp_unslash( $this->request->param( 'category_description' ) ),
+            'parent'      => intval( $this->request->param( 'category_parent_id' ) ),
         );
 
         try {
