@@ -16,6 +16,7 @@ class AWPCP_Meta {
     public $category_id = null;
 
     private $listings_collection;
+    private $categories_collection;
     public $title_builder;
     private $meta_tags_genertor;
     private $query;
@@ -23,12 +24,13 @@ class AWPCP_Meta {
 
     private $doing_opengraph = false;
 
-    public function __construct( $listings_collection, $title_builder, $meta_tags_genertor, $query, $request ) {
-        $this->listings_collection = $listings_collection;
-        $this->title_builder       = $title_builder;
-        $this->meta_tags_genertor  = $meta_tags_genertor;
-        $this->query               = $query;
-        $this->request             = $request;
+    public function __construct( $listings_collection, $categories_collection, $title_builder, $meta_tags_genertor, $query, $request ) {
+        $this->listings_collection   = $listings_collection;
+        $this->categories_collection = $categories_collection;
+        $this->title_builder         = $title_builder;
+        $this->meta_tags_genertor    = $meta_tags_genertor;
+        $this->query                 = $query;
+        $this->request               = $request;
 
         add_action( 'wp', array( $this, 'configure' ) );
     }
@@ -51,17 +53,19 @@ class AWPCP_Meta {
 
         $this->configure_rel_canonical();
 
-        if ( $this->query->is_single_listing_page() || $this->is_browse_categories_page() ) {
-            $this->configure_title_generation();
-        }
-
         if ( $this->query->is_single_listing_page() ) {
             if ( $this->ad && $this->properties ) {
+                $this->configure_title_generation();
                 $this->configure_description_meta_tag();
                 $this->configure_opengraph_meta_tags();
             }
 
             $this->configure_page_dates();
+        }
+
+        if ( $this->category && $this->is_browse_categories_page() ) {
+            $this->configure_category_title_generator();
+            $this->configure_category_description_generator();
         }
 
         $this->title_builder->set_current_listing( $this->ad );
@@ -82,6 +86,12 @@ class AWPCP_Meta {
 
     private function find_current_category_id() {
         $this->category_id = $this->request->get_category_id();
+
+        try {
+            $this->category = $this->categories_collection->get( $this->category_id );
+        } catch ( AWPCP_Exception $e ) {
+            $this->category = null;
+        }
     }
 
     private function configure_rel_canonical() {
@@ -318,5 +328,41 @@ class AWPCP_Meta {
         }
 
         remove_action( 'wp_head', 'jetpack_og_tags' );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function configure_category_title_generator() {
+        if ( apply_filters( 'awpcp_should_generate_category_title', true, $this ) ) {
+            add_action( 'wp_title', [ $this->title_builder, 'build_title' ], 10, 3 );
+        }
+
+        do_action( 'awpcp_configure_category_title_generator', $this );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function configure_category_description_generator() {
+        if ( apply_filters( 'awpcp_should_generate_category_description', true, $this ) ) {
+            add_action( 'wp_head', [ $this, 'generate_category_description_meta_tag' ], 1 );
+        }
+
+        do_action( 'awpcp_configure_category_description_generator' );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function generate_category_description_meta_tag() {
+        $metadata = [
+            'http://ogp.me/ns#title'       => null,
+            'http://ogp.me/ns#description' => $this->category->description,
+        ];
+
+        $meta_tags = $this->meta_tags_genertor->generate_basic_meta_tags( $metadata );
+
+        $this->render_meta_tags( [ $meta_tags['description'] ], 'Basic' );
     }
 }

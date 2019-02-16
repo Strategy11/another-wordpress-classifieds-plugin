@@ -22,6 +22,7 @@ class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurati
             function( $container ) {
                 return new AWPCP_Meta(
                     $container['ListingsCollection'],
+                    $container['CategoriesCollection'],
                     $container['TitleBuilder'],
                     awpcp_meta_tags_generator(),
                     awpcp_query(),

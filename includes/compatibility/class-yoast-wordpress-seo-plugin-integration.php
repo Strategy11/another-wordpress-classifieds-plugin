@@ -18,8 +18,10 @@ function awpcp_yoast_wordpress_seo_plugin_integration() {
 }
 
 /**
+ * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  * @SuppressWarnings(PHPMD.StaticAccess)
  * @SuppressWarnings(PHPMD.TooManyPublicMethods)
+ * @SuppressWarnings(PHPMD.TooManyMethods)
  */
 class AWPCP_YoastWordPressSEOPluginIntegration {
 
@@ -81,19 +83,26 @@ class AWPCP_YoastWordPressSEOPluginIntegration {
      * @since 4.0.0
      */
     public function before_configure_frontend_meta( $meta ) {
-        $this->current_listing = $meta->ad;
-        $this->title_builder   = $meta->title_builder;
-        $this->is_singular     = is_singular( $this->listing_post_type );
-        $this->metadata        = [];
+        $this->current_listing  = $meta->ad;
+        $this->current_category = $meta->category;
+        $this->title_builder    = $meta->title_builder;
+        $this->is_singular      = is_singular( $this->listing_post_type );
+        $this->metadata         = [];
 
         if ( $this->current_listing ) {
             $this->metadata = $meta->get_listing_metadata();
         }
 
+        add_filter( 'awpcp_should_generate_category_title', '__return_false' );
+        add_filter( 'awpcp_should_generate_category_description', '__return_false' );
+
         add_filter( 'awpcp-should-generate-rel-canonical', [ $this, 'configure_canonical_url' ] );
         add_filter( 'awpcp-should-generate-title', [ $this, 'configure_title_generation' ] );
         add_filter( 'awpcp-should-generate-basic-meta-tags', [ $this, 'configure_description_meta_tags' ] );
         add_filter( 'awpcp-should-generate-opengraph-tags', [ $this, 'configure_opengraph_meta_tags' ] );
+
+        add_action( 'awpcp_configure_category_title_generator', [ $this, 'configure_category_title_generator' ] );
+        add_action( 'awpcp_configure_category_description_generator', [ $this, 'configure_category_description_generator' ] );
 
         add_filter( 'awpcp-should-generate-rel-canonical', '__return_false' );
         add_filter( 'awpcp-should-generate-title', '__return_false' );
@@ -112,7 +121,7 @@ class AWPCP_YoastWordPressSEOPluginIntegration {
      * @since 4.0.0
      */
     public function configure_title_generation() {
-        add_filter( 'wpseo_title', [ $this, 'filter_title' ] );
+        add_filter( 'wpseo_title', [ $this, 'filter_listing_title' ] );
     }
 
     /**
@@ -129,7 +138,7 @@ class AWPCP_YoastWordPressSEOPluginIntegration {
      * @since 4.0.0
      */
     public function configure_description_meta_tags() {
-        add_filter( 'wpseo_metadesc', array( $this, 'filter_meta_description' ) );
+        add_filter( 'wpseo_metadesc', array( $this, 'filter_listing_description' ) );
     }
 
     /**
@@ -163,7 +172,7 @@ class AWPCP_YoastWordPressSEOPluginIntegration {
     /**
      * @since 4.0.0
      */
-    public function filter_title( $title ) {
+    public function filter_listing_title( $title ) {
         $override = WPSEO_Meta::get_value( 'title', $this->current_listing->ID );
 
         if ( empty( $override ) ) {
@@ -192,7 +201,7 @@ class AWPCP_YoastWordPressSEOPluginIntegration {
     /**
      * @since 4.0.0
      */
-    public function filter_meta_description( $description ) {
+    public function filter_listing_description( $description ) {
         $override = WPSEO_Meta::get_value( 'metadesc', $this->current_listing->ID );
 
         return $this->get_social_description( $description, $override );
@@ -363,5 +372,37 @@ class AWPCP_YoastWordPressSEOPluginIntegration {
         $override = WPSEO_Meta::get_value( 'twitter-description', $this->current_listing->ID );
 
         return $this->get_social_description( $description, $override );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function configure_category_title_generator() {
+        add_filter( 'wpseo_title', [ $this, 'filter_category_title' ] );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function filter_category_title( $title ) {
+        return $this->build_title( $title );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function configure_category_description_generator() {
+        add_filter( 'wpseo_metadesc', array( $this, 'filter_category_description' ) );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function filter_category_description( $description ) {
+        if ( $this->current_category->description ) {
+            return $this->current_category->description;
+        }
+
+        return $description;
     }
 }
