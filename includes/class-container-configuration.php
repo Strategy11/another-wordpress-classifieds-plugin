@@ -175,8 +175,22 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
         } );
         // @phpcs:enable
 
+        $this->register_media_objects( $container );
         $this->register_categories_ui_objects( $container );
         $this->register_upgrade_task_handlers( $container );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function register_media_objects( $container ) {
+        $container['ImageRenderer'] = $container->service(
+            function( $container ) {
+                return new AWPCP_ImageRenderer(
+                    $container['Settings']
+                );
+            }
+        );
     }
 
     /**

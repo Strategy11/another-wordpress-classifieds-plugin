@@ -207,6 +207,7 @@ return array(
     'AWPCP_IDListingsTableSearchMode' => $baseDir . '/includes/admin/listings/class-id-listings-table-search-mode.php',
     'AWPCP_IOError' => $baseDir . '/includes/exceptions.php',
     'AWPCP_ImageFileProcessor' => $baseDir . '/includes/media/class-image-file-processor.php',
+    'AWPCP_ImageRenderer' => $baseDir . '/includes/media/class-image-renderer.php',
     'AWPCP_ImageResizer' => $baseDir . '/includes/media/class-image-resizer.php',
     'AWPCP_Image_Attachment_Creator' => $baseDir . '/includes/media/class-image-attachment-creator.php',
     'AWPCP_Image_File_Validator' => $baseDir . '/includes/media/class-image-file-validator.php',

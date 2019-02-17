@@ -6,11 +6,14 @@
 // phpcs:disable
 
 function awpcp_image_placeholders() {
+    $container = awpcp()->container;
+
     return new AWPCP_Image_Placeholders(
         awpcp_attachment_properties(),
         awpcp_attachments_collection(),
+        $container['ImageRenderer'],
         awpcp_listing_renderer(),
-        awpcp()->container['Settings']
+        $container['Settings']
     );
 }
 
@@ -18,6 +21,12 @@ class AWPCP_Image_Placeholders {
 
     private $attachment_properties;
     private $attachments;
+
+    /**
+     * @var ImageRenderer
+     */
+    private $image_renderer;
+
     private $listing_renderer;
 
     /**
@@ -27,9 +36,10 @@ class AWPCP_Image_Placeholders {
 
     private $cache;
 
-    public function __construct( $attachment_properties, $attachments, $listing_renderer, $settings ) {
+    public function __construct( $attachment_properties, $attachments, $image_renderer, $listing_renderer, $settings ) {
         $this->attachment_properties = $attachment_properties;
         $this->attachments = $attachments;
+        $this->image_renderer        = $image_renderer;
         $this->listing_renderer = $listing_renderer;
         $this->settings              = $settings;
     }
@@ -152,7 +162,7 @@ class AWPCP_Image_Placeholders {
 
                     $content = '<li ' . awpcp_html_attributes( [ 'class' => $li_classes ] ) . '>';
                     $content.= '<a ' . awpcp_html_attributes( $link_attributes ) . '>';
-                    $content.= wp_get_attachment_image( $image->ID, 'awpcp-thumbnail', false, array( 'class' => 'thumbshow' ) );
+                    $content.= $this->image_renderer->render_attachment_thumbnail( $image->ID, [ 'class' => 'thumbshow' ] );
                     $content.= '</a>';
                     $content.= '</li>';
 

@@ -208,6 +208,7 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_IDListingsTableSearchMode' => __DIR__ . '/../..' . '/includes/admin/listings/class-id-listings-table-search-mode.php',
         'AWPCP_IOError' => __DIR__ . '/../..' . '/includes/exceptions.php',
         'AWPCP_ImageFileProcessor' => __DIR__ . '/../..' . '/includes/media/class-image-file-processor.php',
+        'AWPCP_ImageRenderer' => __DIR__ . '/../..' . '/includes/media/class-image-renderer.php',
         'AWPCP_ImageResizer' => __DIR__ . '/../..' . '/includes/media/class-image-resizer.php',
         'AWPCP_Image_Attachment_Creator' => __DIR__ . '/../..' . '/includes/media/class-image-attachment-creator.php',
         'AWPCP_Image_File_Validator' => __DIR__ . '/../..' . '/includes/media/class-image-file-validator.php',
