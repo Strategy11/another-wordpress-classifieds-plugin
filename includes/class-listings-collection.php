@@ -7,11 +7,7 @@
  * @since 3.3
  */
 function awpcp_listings_collection() {
-    return new AWPCP_ListingsCollection(
-        awpcp()->settings,
-        awpcp_wordpress(),
-        $GLOBALS['wpdb']
-    );
+    return awpcp()->container['ListingsCollection'];
 }
 
 /**
@@ -30,6 +26,11 @@ class AWPCP_ListingsCollection {
     private $last_query;
 
     /**
+     * @var string
+     */
+    private $listing_post_type;
+
+    /**
      * @var object
      */
     private $settings;
@@ -44,17 +45,11 @@ class AWPCP_ListingsCollection {
      */
     private $db;
 
-    /**
-     * Constructor.
-     *
-     * @param object $settings      An instance of Settings.
-     * @param object $wordpress     An instance of WordPress.
-     * @param object $db            An instance of wpbd.
-     */
-    public function __construct( $settings, $wordpress, $db ) {
-        $this->settings  = $settings;
-        $this->wordpress = $wordpress;
-        $this->db        = $db;
+    public function __construct( $listing_post_type, $settings, $wordpress, $db ) {
+        $this->listing_post_type = $listing_post_type;
+        $this->settings          = $settings;
+        $this->wordpress         = $wordpress;
+        $this->db                = $db;
     }
 
     /**
@@ -73,6 +68,12 @@ class AWPCP_ListingsCollection {
         $listing = $this->wordpress->get_post( $listing_id );
 
         if ( empty( $listing ) ) {
+            /* translators: %d is the ID used to search. */
+            $message = __( 'No Listing was found with id: %d.', 'another-wordpress-classifieds-plugin' );
+            throw new AWPCP_Exception( sprintf( $message, $listing_id ) );
+        }
+
+        if ( $listing->post_type !== $this->listing_post_type ) {
             /* translators: %d is the ID used to search. */
             $message = __( 'No Listing was found with id: %d.', 'another-wordpress-classifieds-plugin' );
             throw new AWPCP_Exception( sprintf( $message, $listing_id ) );
@@ -104,7 +105,15 @@ class AWPCP_ListingsCollection {
             throw new AWPCP_Exception( sprintf( $message, $listing_id ) );
         }
 
-        return $listings[0];
+        $listing = $listings[0];
+
+        if ( $listing->post_type !== $this->listing_post_type ) {
+            /* translators: %d is the ID used to search. */
+            $message = __( 'No Listing was found with old id: %d.', 'another-wordpress-classifieds-plugin' );
+            throw new AWPCP_Exception( sprintf( $message, $listing_id ) );
+        }
+
+        return $listing;
     }
 
     /**

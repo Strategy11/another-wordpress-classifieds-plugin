@@ -94,6 +94,7 @@ class AWPCP_ListingsContainerConfiguration implements AWPCP_ContainerConfigurati
         $container['ListingsCollection'] = $container->service(
             function( $container ) {
                 return new AWPCP_ListingsCollection(
+                    $container['listing_post_type'],
                     $container['Settings'],
                     $container['WordPress'],
                     $container['wpdb']
