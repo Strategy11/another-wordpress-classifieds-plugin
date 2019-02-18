@@ -57,6 +57,10 @@ class AWPCP_Show_Ad_Page {
             return awpcp_print_error( $message );
         }
 
+        if ( ! awpcp_request()->is_bot() ) {
+            awpcp_listings_api()->increase_visits_count( $post );
+        }
+
         return $listings_content_renderer->render(
             apply_filters( 'the_content', $post->post_content ),
             $post

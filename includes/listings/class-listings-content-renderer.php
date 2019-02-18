@@ -42,15 +42,6 @@ class AWPCP_ListingsContentRenderer {
             return $output;
         }
 
-        // TODO: We may need to move this to a different place to avoid over-counting.
-        // TODO: Avoid counting previews, admin views and anything that does not occur
-        // while a visitor is exploring the frontend website.
-        //
-        // Perhaps even ignore administrator and owner views.
-        if ( ! awpcp_request()->is_bot() ) {
-            awpcp_listings_api()->increase_visits_count( $post );
-        }
-
         if ( $user_can_see_disabled_listing ) {
             return $this->render_content_with_notices( $content, $post );
         }
