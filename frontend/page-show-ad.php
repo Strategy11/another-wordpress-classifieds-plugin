@@ -1,6 +1,6 @@
 <?php
 /**
- * @pacakge AWPCP\Frontend
+ * @package AWPCP\Frontend
  */
 
 /**
@@ -9,19 +9,19 @@
 class AWPCP_Show_Ad_Page {
 
 	public function __construct() {
-		add_filter('awpcp-ad-details', array($this, 'oembed'));
+        add_filter( 'awpcp-ad-details', array( $this, 'oembed' ) );
 	}
 
 	/**
 	 * Acts on awpcp-ad-details filter to add oEmbed support
 	 */
-	public function oembed($content) {
+    public function oembed( $content ) {
 		global $wp_embed;
 
-		$usecache = $wp_embed->usecache;
+        $usecache           = $wp_embed->usecache;
 		$wp_embed->usecache = false;
-		$content = $wp_embed->run_shortcode($content);
-		$content = $wp_embed->autoembed($content);
+        $content            = $wp_embed->run_shortcode( $content );
+        $content            = $wp_embed->autoembed( $content );
 		$wp_embed->usecache = $usecache;
 
 		return $content;
