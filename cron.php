@@ -74,18 +74,18 @@ function awpcp_check_license_status() {
 }
 
 /*
- * Function to disable ads run hourly
+ * Cron job handler executed every hour to disable ads that already expired.
  *
- * TODO: Fix for autoexpiredisabledelete.
+ * Notifications, if enabled, are always sent, even if the plugin is configured
+ * to delete expired ads instead of disabling them.
+ *
+ * See https://github.com/drodenbaugh/awpcp/issues/808#issuecomment-42561940
  */
 function doadexpirations() {
     $listings_logic = awpcp_listings_api();
 
     $notify_admin = get_awpcp_option('notifyofadexpired');
     $notify_expiring = get_awpcp_option('notifyofadexpiring');
-    // disable the ads or delete the ads?
-    // 1 = disable, 0 = delete
-    $disable_ads = get_awpcp_option('autoexpiredisabledelete');
 
     // allow users to use %s placeholder for the website name in the subject line
     $subject = get_awpcp_option('adexpiredsubjectline');
