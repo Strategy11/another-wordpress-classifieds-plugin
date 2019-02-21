@@ -5,7 +5,38 @@
  * @package AWPCP
  */
 
-// phpcs:disable
+// phpcs:disable PEAR.Functions.FunctionCallSignature.SpaceBeforeCloseBracket
+// phpcs:disable PEAR.Functions.FunctionCallSignature.SpaceAfterOpenBracket
+// phpcs:disable Generic.Formatting.MultipleStatementAlignment.NotSameWarning
+// phpcs:disable WordPress.WhiteSpace.OperatorSpacing.NoSpaceBefore
+// phpcs:disable WordPress.WhiteSpace.ControlStructureSpacing.NoSpaceAfterOpenParenthesis
+// phpcs:disable WordPress.WhiteSpace.ControlStructureSpacing.NoSpaceBeforeCloseParenthesis
+// phpcs:disable WordPress.Arrays.ArrayDeclarationSpacing.NoSpaceBeforeArrayCloser
+// phpcs:disable WordPress.Arrays.ArrayDeclarationSpacing.NoSpaceAfterArrayOpener
+// phpcs:disable Squiz.Commenting.InlineComment.InvalidEndChar
+// phpcs:disable WordPress.WhiteSpace.ControlStructureSpacing.ExtraSpaceBeforeCloseParenthesis
+// phpcs:disable WordPress.Arrays.MultipleStatementAlignment.DoubleArrowNotAligned
+// phpcs:disable PEAR.Files.IncludingFile.BracketsNotRequired
+// phpcs:disable Generic.Formatting.MultipleStatementAlignment.IncorrectWarning
+// phpcs:disable Squiz.Strings.DoubleQuoteUsage.NotRequired
+// phpcs:disable PSR2.ControlStructures.ElseIfDeclaration.NotAllowed
+// phpcs:disable Squiz.Functions.FunctionDeclarationArgumentSpacing.SpacingAfterOpen
+// phpcs:disable Generic.Functions.FunctionCallArgumentSpacing.NoSpaceBeforeEquals
+// phpcs:disable WordPress.WhiteSpace.OperatorSpacing.NoSpaceAfter
+// phpcs:disable WordPress.PHP.StrictComparisons.LooseComparison
+// phpcs:disable WordPress.Arrays.ArrayIndentation.CloseBraceNotAligned
+// phpcs:disable WordPress.Arrays.ArrayDeclarationSpacing.CloseBraceNewLine
+// phpcs:disalbe Squiz.Commenting.InlineComment.SpacingAfter
+// phpcs:disable Generic.Commenting.DocComment.Empty
+// phpcs:disable WordPress.Arrays.CommaAfterArrayItem.NoComma
+// phpcs:disable PEAR.Functions.FunctionCallSignature.CloseBracketLine
+// phpcs:disable Generic.Functions.FunctionCallArgumentSpacing.NoSpaceAfterEquals
+// phpcs:disable Squiz.Commenting.FunctionComment.WrongStyle
+// phpcs:disable Squiz.Commenting.InlineComment.SpacingAfter
+// phpcs:disable Squiz.Commenting.InlineComment.SpacingBefore
+// phpcs:disable PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket
+// phpcs:disable PEAR.Functions.FunctionCallSignature.MultipleArguments
+// phpcs:disable PEAR.Functions.FunctionCallSignature.Indent
 
 global $wpdb;
 
@@ -1029,8 +1060,22 @@ class AWPCP_Installer {
     private function delete_settings_table() {
         $this->db->query( "DROP TABLE {$this->db->prefix}awpcp_adsettings IF EXISTS" );
     }
+
+    // phpcs:enable
 }
 
+// phpcs:disable PEAR.Functions.FunctionCallSignature.SpaceBeforeCloseBracket
+// phpcs:disable PEAR.Functions.FunctionCallSignature.SpaceAfterOpenBracket
+// phpcs:disable Generic.Formatting.MultipleStatementAlignment.NotSameWarning
+// phpcs:disable WordPress.WhiteSpace.OperatorSpacing.NoSpaceBefore
+// phpcs:disable WordPress.WhiteSpace.ControlStructureSpacing.NoSpaceAfterOpenParenthesis
+// phpcs:disable WordPress.WhiteSpace.ControlStructureSpacing.NoSpaceBeforeCloseParenthesis
+// phpcs:disable WordPress.Arrays.ArrayDeclarationSpacing.NoSpaceBeforeArrayCloser
+// phpcs:disable WordPress.Arrays.ArrayDeclarationSpacing.NoSpaceAfterArrayOpener
+// phpcs:disable Squiz.Commenting.InlineComment.InvalidEndChar
+// phpcs:disable Generic.Formatting.MultipleStatementAlignment.IncorrectWarning
+// phpcs:disable Squiz.Strings.DoubleQuoteUsage.NotRequired
+// phpcs:disable Squiz.Functions.FunctionDeclarationArgumentSpacing.SpacingAfterOpen
 
 /**
  * Set tables charset to utf8 and text-based columns collate to utf8_general_ci.
@@ -1071,3 +1116,5 @@ function awpcp_fix_table_charset_and_collate($tables) {
         $wpdb->query($sql);
     }
 }
+
+// phpcs:enable
