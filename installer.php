@@ -51,9 +51,9 @@ define('AWPCP_TABLE_CREDIT_PLANS', $wpdb->prefix . 'awpcp_credit_plans');
 define('AWPCP_TABLE_PAGES', $wpdb->prefix . "awpcp_pages");
 define('AWPCP_TABLE_TASKS', $wpdb->prefix . "awpcp_tasks");
 
-// TODO: remove references to these constants in plugin's code, then plan to
-//  remove the tables and finally the constants.
-define('AWPCP_TABLE_ADPHOTOS', $wpdb->prefix . "awpcp_adphotos");
+// TODO: Remove references to AWPCP_TABLE_ADPHOTOS constant when the routines
+// to upgrade to 2.x are removed from the codebase.
+define( 'AWPCP_TABLE_ADPHOTOS', $wpdb->prefix . 'awpcp_adphotos' );
 
 // TODO: remove these constants after another major release (Added in 3.5.3)
 define( 'AWPCP_TABLE_PAGENAME', $wpdb->prefix . 'awpcp_pagename' );
