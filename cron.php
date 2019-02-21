@@ -160,27 +160,46 @@ function doadexpirations() {
     }
 }
 
-/*
- * Function run once per month to cleanup disabled / deleted ads.
- *
- * TODO: Fix for autoexpiredisabledelete.
+/**
+ * Function run once per month to cleanup incomplete and expired ads.
  */
 function doadcleanup() {
     $listings_logic = awpcp_listings_api();
-    $listings = awpcp_listings_collection();
+    $listings       = awpcp_listings_collection();
 
-    $should_delete_expired_listings = get_awpcp_option('autoexpiredisabledelete') != 1;
-
-    // also, get Ads that were disabled more than a week ago, but only if the
-    // 'disable instead of delete' flag is not set.
-    if (get_awpcp_option('autoexpiredisabledelete') != 1) {
-        $days_before_expired_listings_are_deleted = get_awpcp_option( 'days-before-expired-listings-are-deleted' );
-        $sql = "(disabled=1 AND (disabled_date + INTERVAL %d DAY) < CURDATE())";
-
-        $conditions[] = sprintf( $sql, $days_before_expired_listings_are_deleted );
+    if ( ! get_awpcp_option( 'autoexpiredisabledelete' ) ) {
+        $days_before = get_awpcp_option( 'days-before-expired-listings-are-deleted' );
+        awpcp_delete_listings_expired_more_than_days_ago( intval( $days_before ), $listings_logic, $listings );
     }
 
     awpcp_delete_unpaid_listings_older_than_a_month( $listings_logic, $listings );
+}
+
+/**
+ * @since 4.0.0
+ */
+function awpcp_delete_listings_expired_more_than_days_ago( $number_of_days, $listings_logic, $listings ) {
+    $date_query = new WP_Date_Query( [] );
+
+    $query_vars = [
+        'post_status' => 'disabled',
+        'meta_query'  => [
+            [
+                'key'     => '_awpcp_disabled_date',
+                'compare' => '<',
+                'value'   => $date_query->build_mysql_datetime( sprintf( '%d days ago', $number_of_days ) ),
+                'type'    => 'DATE',
+            ],
+            [
+                'key'     => '_awpcp_expired',
+                'compare' => 'EXISTS',
+            ],
+        ],
+    ];
+
+    foreach ( $listings->find_listings( $query_vars ) as $listing ) {
+        $listings_logic->delete_listing( $listing );
+    }
 }
 
 /**
@@ -208,32 +227,6 @@ function awpcp_delete_unpaid_listings_older_than_a_month( $listings_logic, $list
         $listings_logic->delete_listing( $listing );
     }
 }
-
-/**
- * @access private
- * @since 4.0.0
- */
-function awpcp_delete_expired_listings( $listings_logic, $listings ) {
-    $days_before_expired_listings_are_deleted = get_awpcp_option( 'days-before-expired-listings-are-deleted' );
-    $timestamp =  strtotime( "$days_before_expired_listings_are_deleted days ago" );
-
-    $query = array(
-        'post_status' => 'disabled',
-        'meta_query' => array(
-            array(
-                'key' => '_awpcp_disabled_date',
-                'value' => awpcp_datetime( 'mysql', $timestamp ),
-                'compare' => '<=',
-                'type' => 'DATETIME',
-            ),
-        ),
-    );
-
-    foreach ( $listings->find_listings( $query ) as $listing ) {
-        $listings_logic->delete_listing( $listing );
-    }
-}
-
 
 /**
  * Check if any Ad is about to expire and send an email to the poster.
