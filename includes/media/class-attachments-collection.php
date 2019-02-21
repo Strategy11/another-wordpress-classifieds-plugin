@@ -26,7 +26,6 @@ class AWPCP_Attachments_Collection {
      */
     public function get_featured_attachment_of_type( $type, $query = array() ) {
         $query['posts_per_page'] = 1;
-        $query['orderby']        = array( 'ID' => 'ASC' );
 
         $attachments_of_type_query = $this->make_attachments_of_type_query( $type, $query );
         $featured_attachment_query = $this->make_featured_attachment_query( $attachments_of_type_query );
@@ -65,6 +64,14 @@ class AWPCP_Attachments_Collection {
 
         if ( ! isset( $query['posts_per_page'] ) ) {
             $query['posts_per_page'] = -1;
+        }
+
+        if ( ! isset( $query['orderby'] ) ) {
+            $query['orderby'] = 'name';
+        }
+
+        if ( ! isset( $query['order'] ) ) {
+            $query['order'] = 'ASC';
         }
 
         return $query;
