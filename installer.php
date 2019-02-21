@@ -284,7 +284,10 @@ class AWPCP_Installer {
             ],
             '4.0.0beta11' => [
                 'maybe_enable_upgrade_routines_to_migrate_media',
-            ]
+            ],
+            '4.0.0' => [
+                'delete_settings_table',
+            ],
         );
     }
 
@@ -1018,6 +1021,13 @@ class AWPCP_Installer {
         $this->upgrade_tasks->enable_upgrade_task( 'awpcp-maybe-force-post-id' );
 
         update_option( 'awpcp_mfpi_maybe_force_post_id', true );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function delete_settings_table() {
+        $this->db->query( "DROP TABLE {$this->db->prefix}awpcp_adsettings IF EXISTS" );
     }
 }
 
