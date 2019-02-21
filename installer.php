@@ -22,7 +22,6 @@ define('AWPCP_TABLE_TASKS', $wpdb->prefix . "awpcp_tasks");
 
 // TODO: remove references to these constants in plugin's code, then plan to
 //  remove the tables and finally the constants.
-define('AWPCP_TABLE_ADSETTINGS', $wpdb->prefix . "awpcp_adsettings");
 define('AWPCP_TABLE_ADPHOTOS', $wpdb->prefix . "awpcp_adphotos");
 
 // TODO: remove these constants after another major release (Added in 3.5.3)
