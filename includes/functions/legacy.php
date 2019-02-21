@@ -221,35 +221,6 @@ function category_is_child($catid) {
     return $category->parent !== 0;
 }
 
-function add_config_group_id($cvalue,$coption) {
-    global $wpdb;
-
-    $query = 'UPDATE ' . AWPCP_TABLE_ADSETTINGS . ' SET config_group_id = %d WHERE config_option = %s';
-    $query = $wpdb->prepare( $query, $cvalue, $coption );
-
-    $wpdb->query( $query );
-}
-
-function field_exists($field) {
-    global $wpdb;
-
-    if ( ! checkfortable( AWPCP_TABLE_ADSETTINGS ) ) {
-        return false;
-    }
-
-    $query = 'SELECT config_value FROM ' . AWPCP_TABLE_ADSETTINGS . ' WHERE config_option = %s';
-    $query = $wpdb->prepare( $query, $field );
-
-    $value = $wpdb->get_var( $config_value );
-
-    if ( $value === false || is_null( $value ) ) {
-        return false;
-    } else {
-        return true;
-    }
-}
-
-
 /**
  * Originally developed by Dan Caragea.  
  * Permission is hereby granted to AWPCP to release this code 
