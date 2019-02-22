@@ -8,7 +8,32 @@
  */
 class AWPCP_Show_Ad_Page {
 
-	public function __construct() {
+    /**
+     * @var object ListingsContentRenderer
+     */
+    private $listings_content_renderer;
+
+    /**
+     * @var object ListingsLogic
+     */
+    private $listings_logic;
+
+    /**
+     * @var object ListingsCollection
+     */
+    private $listings_collection;
+
+    /**
+     * @var object Request
+     */
+    private $request;
+
+    public function __construct( $listings_content_renderer, $listings_logic, $listings_collection, $request ) {
+        $this->listings_content_renderer = $listings_content_renderer;
+        $this->listings_logic            = $listings_logic;
+        $this->listings_collection       = $listings_collection;
+        $this->request                   = $request;
+
         add_filter( 'awpcp-ad-details', array( $this, 'oembed' ) );
 	}
 
@@ -27,12 +52,8 @@ class AWPCP_Show_Ad_Page {
 		return $content;
 	}
 
-    /**
-     * TODO: Get instances of all necessary objects as constructor arguments.
-     */
 	public function dispatch() {
-        $listings_content_renderer = awpcp()->container['ListingsContentRenderer'];
-        $listing_id                = awpcp_request()->get_current_listing_id();
+        $listing_id = $this->request->get_current_listing_id();
 
         if ( ! $listing_id ) {
             $browse_listings_url = awpcp_get_page_url( 'browse-ads-page-name' );
@@ -45,7 +66,7 @@ class AWPCP_Show_Ad_Page {
         }
 
         try {
-            $post = awpcp_listings_collection()->get( $listing_id );
+            $post = $this->listings_collection->get( $listing_id );
         } catch ( AWPCP_Exception $e ) {
             $browse_listings_url = awpcp_get_page_url( 'browse-ads-page-name' );
 
@@ -57,11 +78,11 @@ class AWPCP_Show_Ad_Page {
             return awpcp_print_error( $message );
         }
 
-        if ( ! awpcp_request()->is_bot() ) {
-            awpcp_listings_api()->increase_visits_count( $post );
+        if ( ! $this->request->is_bot() ) {
+            $this->listings_logic->increase_visits_count( $post );
         }
 
-        return $listings_content_renderer->render(
+        return $this->listings_content_renderer->render(
             apply_filters( 'the_content', $post->post_content ),
             $post
         );
