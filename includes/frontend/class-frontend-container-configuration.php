@@ -121,8 +121,25 @@ class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurati
             );
         } );
 
+        $this->register_pages( $container );
         $this->register_ajax_handlers( $container );
         $this->register_listing_actions_handlers( $container );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function register_pages( $container ) {
+        $container['ShowListingPage'] = $container->service(
+            function( $container ) {
+                return new AWPCP_Show_Ad_Page(
+                    $container['ListingsContentRenderer'],
+                    $container['ListingsLogic'],
+                    $container['ListingsCollection'],
+                    $container['Request']
+                );
+            }
+        );
     }
 
     /**

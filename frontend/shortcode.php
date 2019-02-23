@@ -23,7 +23,7 @@ class AWPCP_Pages {
 	public function __construct() {
 		$this->meta = awpcp()->container['Meta'];
 
-		$this->show_ad = new AWPCP_Show_Ad_Page();
+		$this->show_ad = awpcp()->container['ShowListingPage'];
 		$this->browse_ads = awpcp_browse_listings_page();
 
 		// fix for theme conflict with ThemeForest themes.
