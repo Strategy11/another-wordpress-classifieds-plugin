@@ -196,6 +196,14 @@ class AWPCP_ListingsContainerConfiguration implements AWPCP_ContainerConfigurati
                 $container['WordPress']
             );
         } );
+
+        $container['CategoryPresenter'] = $container->service(
+            function( $container ) {
+                return new AWPCP_CategoryPresenter(
+                    $container['CategoriesCollection']
+                );
+            }
+        );
     }
 
     /**

@@ -75,10 +75,21 @@ class AWPCP_Categories_Collection {
     /**
      * @since 4.0.0
      */
-    private function prepare_category_object( $category ) {
-        $category->term_id = absint( $category->term_id );
+    private function prepare_category_object( $result ) {
+        $results = $this->prepare_categories_objects( [ $result ] );
 
-        return $category;
+        return $results[0];
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function prepare_categories_objects( $results ) {
+        foreach ( $results as $term ) {
+            $term->term_id = absint( $term->term_id );
+        }
+
+        return $results;
     }
 
     /**
@@ -143,7 +154,7 @@ class AWPCP_Categories_Collection {
             return array();
         }
 
-        return $results;
+        return $this->prepare_categories_objects( $results );
     }
 
     /**

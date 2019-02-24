@@ -80,6 +80,7 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_Categories_Renderer_Factory' => __DIR__ . '/../..' . '/frontend/class-categories-renderer-factory.php',
         'AWPCP_Categories_Selector_Helper' => __DIR__ . '/../..' . '/includes/ui/class-categories-selector-helper.php',
         'AWPCP_Categories_Switcher' => __DIR__ . '/../..' . '/frontend/class-categories-switcher.php',
+        'AWPCP_CategoryPresenter' => __DIR__ . '/../..' . '/includes/categories/class-category-presenter.php',
         'AWPCP_CategoryShortcode' => __DIR__ . '/../..' . '/includes/views/frontend/class-category-shortcode.php',
         'AWPCP_Category_Selector' => __DIR__ . '/../..' . '/includes/ui/class-category-selector.php',
         'AWPCP_CheckboxSettingsRenderer' => __DIR__ . '/../..' . '/includes/settings/renderers/class-checkbox-settings-renderer.php',

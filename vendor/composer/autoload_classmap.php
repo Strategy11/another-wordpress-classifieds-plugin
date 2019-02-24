@@ -79,6 +79,7 @@ return array(
     'AWPCP_Categories_Renderer_Factory' => $baseDir . '/frontend/class-categories-renderer-factory.php',
     'AWPCP_Categories_Selector_Helper' => $baseDir . '/includes/ui/class-categories-selector-helper.php',
     'AWPCP_Categories_Switcher' => $baseDir . '/frontend/class-categories-switcher.php',
+    'AWPCP_CategoryPresenter' => $baseDir . '/includes/categories/class-category-presenter.php',
     'AWPCP_CategoryShortcode' => $baseDir . '/includes/views/frontend/class-category-shortcode.php',
     'AWPCP_Category_Selector' => $baseDir . '/includes/ui/class-category-selector.php',
     'AWPCP_CheckboxSettingsRenderer' => $baseDir . '/includes/settings/renderers/class-checkbox-settings-renderer.php',
