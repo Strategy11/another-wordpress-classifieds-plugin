@@ -21,10 +21,7 @@
             </ul>
         </div>
         <div class="awpcp-payment-term-duration-price">
-            <div class="awpcp-payment-term-duration">
-                <span class="awpcp-payment-term-duration-amount"><?php echo esc_html( $payment_term['duration_amount'] ); ?></span>
-                <span class="awpcp-payment-term-duration-interval"><?php echo esc_html( $payment_term['duration_interval'] ); ?></span>
-            </div>
+            <div class="awpcp-payment-term-duration"><?php echo esc_html( $payment_term['duration'] ); ?></div>
             <?php if ( $show_currency_payment_option ) : ?>
             <?php
             if ( $payment_term['price']['currency_option'] === $selected_payment_option ) {

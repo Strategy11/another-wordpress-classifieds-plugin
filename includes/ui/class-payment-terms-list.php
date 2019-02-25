@@ -82,17 +82,18 @@ class AWPCP_Payment_Terms_List {
     }
 
     private function get_payment_term_definition( $payment_term, $transaction ) {
-        $payment_term_price   = $this->payments->calculate_payment_term_price( $payment_term, 'currency', $transaction );
-        $payment_term_credits = $this->payments->calculate_payment_term_price( $payment_term, 'credits', $transaction );
+        $payment_term_duration = $this->get_payment_term_duration_description( $payment_term );
+        $payment_term_price    = $this->payments->calculate_payment_term_price( $payment_term, 'currency', $transaction );
+        $payment_term_credits  = $this->payments->calculate_payment_term_price( $payment_term, 'credits', $transaction );
 
         $summary_currency = __( '{payment-term-name} &ndash; {payment-term-duration} ({payment-term-price})', 'another-wordpress-classifieds-plugin' );
         $summary_currency = str_replace( '{payment-term-name}', $payment_term->name, $summary_currency );
-        $summary_currency = str_replace( '{payment-term-duration}', $payment_term->duration_amount . ' ' . $payment_term->get_duration_interval(), $summary_currency );
+        $summary_currency = str_replace( '{payment-term-duration}', $payment_term_duration, $summary_currency );
         $summary_currency = str_replace( '{payment-term-price}', awpcp_format_money( $payment_term_price ), $summary_currency );
 
         $summary_credits = __( '{payment-term-name} &ndash; {payment-term-duration} ({payment-term-price} credits)', 'another-wordpress-classifieds-plugin' );
         $summary_credits = str_replace( '{payment-term-name}', $payment_term->name, $summary_credits );
-        $summary_credits = str_replace( '{payment-term-duration}', $payment_term->duration_amount . ' ' . $payment_term->get_duration_interval(), $summary_credits );
+        $summary_credits = str_replace( '{payment-term-duration}', $payment_term_duration, $summary_credits );
         $summary_credits = str_replace( '{payment-term-price}', awpcp_format_integer( $payment_term_credits ), $summary_credits );
 
         return array(
@@ -101,14 +102,26 @@ class AWPCP_Payment_Terms_List {
             'attributes' => $this->get_payment_term_attributes( $payment_term ),
             'name' => $payment_term->name,
             'description' => $payment_term->description,
-            'duration_amount' => $payment_term->duration_amount,
-            'duration_interval' => $payment_term->get_duration_interval(),
+            'duration'          => $payment_term_duration,
             'features' => $this->get_payment_term_features_definition( $payment_term ),
             'price' => $this->get_payment_term_price_definition( $payment_term, $payment_term_price, $payment_term_credits ),
             'extra' => array(),
             'summary-currency'  => $summary_currency,
             'summary-credits'   => $summary_credits,
         );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function get_payment_term_duration_description( $payment_term ) {
+        if ( $payment_term->duration_amount === 0 ) {
+            $duration_interval = $payment_term->get_duration_interval_label( AWPCP_PaymentTerm::INTERVAL_YEAR, 10 );
+
+            return "10 $duration_interval";
+        }
+
+        return $payment_term->duration_amount . ' ' . $payment_term->get_duration_interval();
     }
 
     private function get_payment_term_attributes( $payment_term ) {
