@@ -55,7 +55,7 @@ msgid "Categories"
 msgstr ""
 
 #: admin/admin-panel-fees-table.php:129
-#: admin/templates/admin-sidebar.tpl.php:103 includes/class-awpcp.php:726
+#: admin/templates/admin-sidebar.tpl.php:103 includes/class-awpcp.php:725
 msgid "Featured Ads"
 msgstr ""
 
@@ -1465,19 +1465,19 @@ msgstr ""
 msgid "Get a Premium Module!"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:46 includes/class-awpcp.php:691
+#: admin/templates/admin-sidebar.tpl.php:46 includes/class-awpcp.php:690
 msgid "Campaign Manager"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:52 includes/class-awpcp.php:748
+#: admin/templates/admin-sidebar.tpl.php:52 includes/class-awpcp.php:747
 msgid "Mark as Sold"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:58 includes/class-awpcp.php:776
+#: admin/templates/admin-sidebar.tpl.php:58 includes/class-awpcp.php:775
 msgid "Restricted Categories"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:63 includes/class-awpcp.php:684
+#: admin/templates/admin-sidebar.tpl.php:63 includes/class-awpcp.php:683
 msgid "BuddyPress Listings"
 msgstr ""
 
@@ -1485,15 +1485,15 @@ msgstr ""
 msgid "Comments/Ratings"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:73 includes/class-awpcp.php:670
+#: admin/templates/admin-sidebar.tpl.php:73 includes/class-awpcp.php:669
 msgid "Attachments"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:78 includes/class-awpcp.php:677
+#: admin/templates/admin-sidebar.tpl.php:78 includes/class-awpcp.php:676
 msgid "Authorize.Net"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:83 includes/class-awpcp.php:762
+#: admin/templates/admin-sidebar.tpl.php:83 includes/class-awpcp.php:761
 msgid "PayPal Pro"
 msgstr ""
 
@@ -1501,7 +1501,7 @@ msgstr ""
 msgid "Coupon/Discount"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:93 includes/class-awpcp.php:797
+#: admin/templates/admin-sidebar.tpl.php:93 includes/class-awpcp.php:796
 msgid "Subscriptions"
 msgstr ""
 
@@ -1509,19 +1509,19 @@ msgstr ""
 msgid "Fee Per Category"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:108 includes/class-awpcp.php:719
+#: admin/templates/admin-sidebar.tpl.php:108 includes/class-awpcp.php:718
 msgid "Extra Fields"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:113 includes/class-awpcp.php:698
+#: admin/templates/admin-sidebar.tpl.php:113 includes/class-awpcp.php:697
 msgid "Category Icons"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:118 includes/class-awpcp.php:769
+#: admin/templates/admin-sidebar.tpl.php:118 includes/class-awpcp.php:768
 msgid "Regions Control"
 msgstr ""
 
-#: admin/templates/admin-sidebar.tpl.php:123 includes/class-awpcp.php:783
+#: admin/templates/admin-sidebar.tpl.php:123 includes/class-awpcp.php:782
 msgid "RSS"
 msgstr ""
 
@@ -4025,58 +4025,58 @@ msgid ""
 "one of the associated listings: <error-message>"
 msgstr ""
 
-#: includes/class-awpcp.php:653
+#: includes/class-awpcp.php:652
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
 msgstr ""
 
-#: includes/class-awpcp.php:654
+#: includes/class-awpcp.php:653
 #: includes/placeholders/class-placeholders-installation-verifier.php:63
 msgid "Warning"
 msgstr ""
 
-#: includes/class-awpcp.php:705
+#: includes/class-awpcp.php:704
 msgid "Comments & Ratings"
 msgstr ""
 
-#: includes/class-awpcp.php:712
+#: includes/class-awpcp.php:711
 msgid "Coupons/Discount"
 msgstr ""
 
-#: includes/class-awpcp.php:733
+#: includes/class-awpcp.php:732
 msgid "Fee per Category"
 msgstr ""
 
-#: includes/class-awpcp.php:740
+#: includes/class-awpcp.php:739
 msgid "Google Checkout"
 msgstr ""
 
-#: includes/class-awpcp.php:755
+#: includes/class-awpcp.php:754
 msgid "PayFast"
 msgstr ""
 
-#: includes/class-awpcp.php:790
+#: includes/class-awpcp.php:789
 msgid "Stripe"
 msgstr ""
 
-#: includes/class-awpcp.php:804 templates/components/media-manager.tpl.php:51
+#: includes/class-awpcp.php:803 templates/components/media-manager.tpl.php:51
 msgid "Videos"
 msgstr ""
 
-#: includes/class-awpcp.php:812
+#: includes/class-awpcp.php:811
 msgid "XML Sitemap"
 msgstr ""
 
-#: includes/class-awpcp.php:820
+#: includes/class-awpcp.php:819
 msgid "ZIP Code Search Module"
 msgstr ""
 
-#: includes/class-awpcp.php:1308
+#: includes/class-awpcp.php:1307
 msgid "This field is required."
 msgstr ""
 
-#: includes/class-awpcp.php:1309
+#: includes/class-awpcp.php:1308
 #: includes/form-fields/class-form-fields-validator.php:94
 #: includes/frontend/class-edit-listing-page.php:263
 #: includes/frontend/class-edit-listing-page.php:357
@@ -4084,48 +4084,48 @@ msgstr ""
 msgid "Please enter a valid email address."
 msgstr ""
 
-#: includes/class-awpcp.php:1310 includes/class-awpcp.php:1311
+#: includes/class-awpcp.php:1309 includes/class-awpcp.php:1310
 msgid "Please enter a valid URL."
 msgstr ""
 
-#: includes/class-awpcp.php:1312
+#: includes/class-awpcp.php:1311
 msgid "Please enter a valid number."
 msgstr ""
 
-#: includes/class-awpcp.php:1313
+#: includes/class-awpcp.php:1312
 msgid "Please enter a valid amount."
 msgstr ""
 
-#: includes/class-awpcp.php:1323
+#: includes/class-awpcp.php:1322
 msgctxt "[UI Datepicker] Display text for previous month link"
 msgid "&#x3c;Prev"
 msgstr ""
 
-#: includes/class-awpcp.php:1325
+#: includes/class-awpcp.php:1324
 msgctxt "[UI Datepicker] Display text for next month link"
 msgid "Next&#x3e;"
 msgstr ""
 
-#: includes/class-awpcp.php:1340
+#: includes/class-awpcp.php:1339
 msgctxt "[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ..."
 msgid "0"
 msgstr ""
 
-#: includes/class-awpcp.php:1346
+#: includes/class-awpcp.php:1345
 msgid "There are files currently being uploaded."
 msgstr ""
 
-#: includes/class-awpcp.php:1347
+#: includes/class-awpcp.php:1346
 msgid "There are files pending to be uploaded."
 msgstr ""
 
-#: includes/class-awpcp.php:1348
+#: includes/class-awpcp.php:1347
 msgid "You haven't uploaded any images or files."
 msgstr ""
 
-#: includes/class-awpcp.php:1417 includes/class-awpcp.php:1425
-#: includes/class-awpcp.php:1433 includes/class-awpcp.php:1510
-#: includes/class-awpcp.php:1518 includes/class-awpcp.php:1526
+#: includes/class-awpcp.php:1416 includes/class-awpcp.php:1424
+#: includes/class-awpcp.php:1432 includes/class-awpcp.php:1509
+#: includes/class-awpcp.php:1517 includes/class-awpcp.php:1525
 #: templates/admin/debug/plugin-info-debug-section.tpl.php:6
 msgid "Another WordPress Classifieds Plugin"
 msgstr ""
@@ -10108,6 +10108,11 @@ msgstr ""
 #: templates/frontend/order-submit-listing-section.tpl.php:98
 msgctxt "order submit listing section"
 msgid "Loading ad fields"
+msgstr ""
+
+#: templates/frontend/order-submit-listing-section.tpl.php:99
+msgctxt "order submit listing section"
+msgid "Change selection"
 msgstr ""
 
 #: templates/frontend/save-submit-listing-section.tpl.php:22
