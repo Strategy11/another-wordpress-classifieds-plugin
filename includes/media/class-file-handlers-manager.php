@@ -13,6 +13,15 @@ class AWPCP_File_Handlers_Manager {
     private $handlers;
 
     /**
+     * @var object AWPCP_Container
+     */
+    private $container;
+
+    public function __construct( $container ) {
+        $this->container = $container;
+    }
+
+    /**
      * Loops through the array of file handlers definitions an attempts to
      * return an instance by calling a constructor function or loading it from
      * the plugin's container.
@@ -21,16 +30,20 @@ class AWPCP_File_Handlers_Manager {
      * @throws AWPCP_Exception  When no handler can be found.
      */
     public function get_handler_for_file( $uploaded_file ) {
-        foreach ( $this->get_file_handlers() as $slug => $handler ) {
-            if ( ! in_array( $uploaded_file->get_mime_type(), $handler['mime_types'] ) ) {
+        foreach ( $this->get_file_handlers() as $handler ) {
+            if ( ! in_array( $uploaded_file->get_mime_type(), $handler['mime_types'], true ) ) {
                 continue;
             }
 
-            if ( ! is_callable( $handler['constructor'] ) ) {
-                continue;
+            $instance = null;
+
+            if ( is_callable( $handler['constructor'] ) ) {
+                $instance = call_user_func( $handler['constructor'] );
             }
 
-            $instance = call_user_func( $handler['constructor'] );
+            if ( isset( $this->container[ $handler['constructor'] ] ) ) {
+                $instance = $this->container[ $handler['constructor'] ];
+            }
 
             if ( ! is_object( $instance ) ) {
                 continue;
