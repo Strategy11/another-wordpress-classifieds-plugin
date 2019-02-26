@@ -33,7 +33,7 @@ class AWPCP_Delete_Category_Admin_Page {
         try {
             $category = $this->categories->get( $category_id );
         } catch ( AWPCP_Exception $e ) {
-            $message = __( "The category you are trying to delte doesn't exist.", 'another-wordpress-classifieds-plugin' );
+            $message = __( "The category you are trying to delete doesn't exist.", 'another-wordpress-classifieds-plugin' );
             awpcp_flash( $message, 'error' );
 
             return $this->redirect_to_main_page();
