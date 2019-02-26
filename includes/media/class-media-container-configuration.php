@@ -15,5 +15,10 @@ class AWPCP_MediaContainerConfiguration implements AWPCP_ContainerConfigurationI
      * @since 4.0.0
      */
     public function modify( $container ) {
+        $container['FileHandlersManager'] = $container->service(
+            function( $container ) {
+                return new AWPCP_File_Handlers_Manager( $container );
+            }
+        );
     }
 }

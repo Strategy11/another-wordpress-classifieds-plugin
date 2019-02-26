@@ -1,13 +1,25 @@
 <?php
+/**
+ * @package AWPCP\Media
+ */
 
-function awpcp_file_handlers_manager() {
-    return new AWPCP_File_Handlers_Manager();
-}
-
+/**
+ * Allows the plugin and premium modules to register File Handlers for the types
+ * of files currently supported and provide methods to retrieve the appropriate
+ * handler for a given file.
+ */
 class AWPCP_File_Handlers_Manager {
 
     private $handlers;
 
+    /**
+     * Loops through the array of file handlers definitions an attempts to
+     * return an instance by calling a constructor function or loading it from
+     * the plugin's container.
+     *
+     * @param object AWPCP_UploadedFileLogic $uploaded_file     The uploaded file.
+     * @throws AWPCP_Exception  When no handler can be found.
+     */
     public function get_handler_for_file( $uploaded_file ) {
         foreach ( $this->get_file_handlers() as $slug => $handler ) {
             if ( ! in_array( $uploaded_file->get_mime_type(), $handler['mime_types'] ) ) {
@@ -35,6 +47,7 @@ class AWPCP_File_Handlers_Manager {
 
     public function get_file_handlers() {
         if ( is_null( $this->handlers ) ) {
+            // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
             $this->handlers = apply_filters( 'awpcp-file-handlers', array() );
         }
 

@@ -10,8 +10,10 @@ function awpcp_new_media_manager() {
     static $instance = null;
 
     if ( is_null( $instance ) ) {
+        $container = awpcp()->container;
+
         $instance = new AWPCP_Media_Manager(
-            awpcp_file_handlers_manager(),
+            $container['FileHandlersManager'],
             awpcp_uploaded_file_logic_factory(),
             awpcp()->settings
         );
@@ -21,7 +23,17 @@ function awpcp_new_media_manager() {
 }
 
 /**
- * Logic for adding media files to listings.
+ * A File Logic object exposes methods to access information about the uploaded file.
+ *
+ * This class offers methods that create a File Logic object for the uploaded file
+ * and then attempt to find a File Handler for the kind of file that was uploaded.
+ *
+ * The File Handler object is then used to determine whether the file is valid and
+ * to add the file to the system.
+ *
+ * We currently support Images and Attachments (other files excluding videos).
+ * Videos were also supported for a short time through the now abandoned Videos
+ * module.
  */
 class AWPCP_Media_Manager {
 
@@ -52,6 +64,8 @@ class AWPCP_Media_Manager {
     }
 
     /**
+     * Uses a File Handler to determine whether the uploaded file is valid or not.
+     *
      * @param object $listing           An instance of WP_Post.
      * @param object $uploaded_file     An object with information about the file
      *                                  that is being added.
@@ -65,6 +79,9 @@ class AWPCP_Media_Manager {
     }
 
     /**
+     * Uses a File Handler to add the uploaded file to the system and associated
+     * it with the listing.
+     *
      * @param object $listing           An instance of WP_Post.
      * @param object $uploaded_file     An object with information about the file
      *                                  that is being added.
