@@ -4,17 +4,6 @@
  */
 
 /**
- * Constructor function.
- */
-function awpcp_image_file_handler() {
-    return new AWPCP_ListingFileHandler(
-        awpcp_image_file_validator(),
-        awpcp_image_file_processor(),
-        awpcp_image_attachment_creator()
-    );
-}
-
-/**
  * Validates, process and associates an uploaded file with a listing.
  */
 class AWPCP_ListingFileHandler {

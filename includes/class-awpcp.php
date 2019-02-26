@@ -1541,7 +1541,7 @@ class AWPCP {
     public function register_file_handlers( $file_handlers ) {
         $file_handlers['image'] = array(
             'mime_types' => $this->settings->get_runtime_option( 'image-mime-types' ),
-            'constructor' => 'awpcp_image_file_handler',
+            'constructor' => 'ImageFileHandler',
         );
 
         return $file_handlers;
