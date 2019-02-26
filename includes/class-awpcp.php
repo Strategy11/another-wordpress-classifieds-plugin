@@ -1552,6 +1552,7 @@ class AWPCP {
         $configurations[] = new AWPCP_WordPressContainerConfiguration();
         $configurations[] = new AWPCP_SettingsContainerConfiguration();
         $configurations[] = new AWPCP_ListingsContainerConfiguration();
+        $configurations[] = new AWPCP_MediaContainerConfiguration();
         $configurations[] = new AWPCP_FrontendContainerConfiguration();
         $configurations[] = new AWPCP_AdminContainerConfiguration();
 
