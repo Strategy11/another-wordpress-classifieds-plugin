@@ -3,16 +3,6 @@
  * @package AWPCP\Media
  */
 
-// phpcs:disable
-
-function awpcp_attachments_logic() {
-    return new AWPCP_Attachments_Logic(
-        awpcp_file_types(),
-        awpcp_attachments_collection(),
-        awpcp_wordpress()
-    );
-}
-
 class AWPCP_Attachments_Logic {
 
     private $file_types;

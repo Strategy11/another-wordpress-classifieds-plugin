@@ -112,7 +112,7 @@ class AWPCP_ListingsContainerConfiguration implements AWPCP_ContainerConfigurati
     private function register_listings_logic_values( $container ) {
         $container['ListingsLogic'] = $container->service( function( $container ) {
             return new AWPCP_ListingsAPI(
-                awpcp_attachments_logic(),
+                $container['AttachmentsLogic'],
                 $container['AttachmentsCollection'],
                 $container['ListingRenderer'],
                 $container['ListingsCollection'],

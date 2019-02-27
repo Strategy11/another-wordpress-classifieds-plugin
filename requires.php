@@ -188,7 +188,6 @@ require_once AWPCP_DIR . '/includes/media/class-listing-file-validator.php';
 
 require_once AWPCP_DIR . '/includes/media/interface-attachment-ajax-action.php';
 require_once AWPCP_DIR . '/includes/media/class-attachments-collection.php';
-require_once AWPCP_DIR . '/includes/media/class-attachments-logic.php';
 require_once AWPCP_DIR . '/includes/media/class-attachment-action-ajax-handler.php';
 require_once AWPCP_DIR . '/includes/media/class-attachment-properties.php';
 require_once AWPCP_DIR . '/includes/media/class-attachment-status.php';

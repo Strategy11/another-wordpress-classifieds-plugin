@@ -1,5 +1,24 @@
 <?php
 /**
+ * For a long time instances of classes were created using constructor functions
+ * such as awpcp_attachments_collection(). That was the first attempt to
+ * keep information about how to initialize a class in one place instead of using
+ * the new operator everywhere an instance was necessary.
+ *
+ * On 4.0 we introduced a custom implementation of a Dependency Injection
+ * Container (See class-container.php) and started using Container Configuration
+ * objects (See interface-container-configuration.php) to register constructors
+ * for the different objects used in the plugin.
+ *
+ * The Dependency Injection Container (DIC) added support to reuse instances of
+ * class that behave like services and is the preferred method to register and access
+ * new classes. However, most of the code is still using the old constructor
+ * functions.
+ *
+ * This file contains all the constructor functions for classes that have been
+ * added to the container but that are still being instantiated using a constructor
+ * function in other parts of the code.
+ *
  * @package AWPCP
  */
 
@@ -291,4 +310,17 @@ function awpcp_database_tables() {
  */
 function awpcp_attachments_collection() {
     return new AWPCP_Attachments_Collection( awpcp_file_types(), awpcp_wordpress() );
+}
+
+/**
+ * @since 4.0.0 Extracted from class-attachments-logic.php.
+ */
+function awpcp_attachments_logic() {
+    $container = awpcp()->container;
+
+    return new AWPCP_Attachments_Logic(
+        awpcp_file_types(),
+        $container['AttachmentsCollection'],
+        $container['WordPress']
+    );
 }
