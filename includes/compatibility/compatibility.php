@@ -45,6 +45,9 @@ class AWPCP_Compatibility {
 
         $integration = awpcp_facebook_button_plugin_integration();
         $integration->setup();
+
+	    $integration = awpcp_seo_framework_integration();
+	    $integration->setup();
     }
 
     private function load_content_aware_sidebars_integration() {

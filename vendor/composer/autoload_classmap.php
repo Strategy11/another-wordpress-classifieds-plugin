@@ -399,6 +399,7 @@ return array(
     'AWPCP_RolesAndCapabilities' => $baseDir . '/includes/class-roles-and-capabilities.php',
     'AWPCP_Router' => $baseDir . '/includes/routes/class-router.php',
     'AWPCP_Routes' => $baseDir . '/includes/routes/class-routes.php',
+    'AWPCP_SEOrameworkIntegration' => $baseDir . '/includes/compatibility/class-seo-framework-plugin-integration.php',
     'AWPCP_SaveListingInformationAjaxHandler' => $baseDir . '/includes/frontend/class-save-listing-information-ajax-handler.php',
     'AWPCP_SaveSubmitListingSection' => $baseDir . '/includes/frontend/class-save-submit-listing-section.php',
     'AWPCP_SearchAdsPage' => $baseDir . '/frontend/page-search-ads.php',
