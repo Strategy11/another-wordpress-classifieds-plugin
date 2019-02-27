@@ -113,7 +113,7 @@ class AWPCP_ListingsContainerConfiguration implements AWPCP_ContainerConfigurati
         $container['ListingsLogic'] = $container->service( function( $container ) {
             return new AWPCP_ListingsAPI(
                 awpcp_attachments_logic(),
-                awpcp_attachments_collection(),
+                $container['AttachmentsCollection'],
                 $container['ListingRenderer'],
                 $container['ListingsCollection'],
                 $container['RolesAndCapabilities'],
@@ -147,13 +147,6 @@ class AWPCP_ListingsContainerConfiguration implements AWPCP_ContainerConfigurati
                 $container['ListingRenderer'],
                 $container['TemplateRenderer'],
                 $container['Settings']
-            );
-        } );
-
-        $container['AttachmentsCollection'] = $container->service( function( $container ) {
-            return new AWPCP_Attachments_Collection(
-                $container['FileTypes'],
-                $container['WordPress']
             );
         } );
 

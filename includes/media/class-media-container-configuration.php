@@ -15,6 +15,15 @@ class AWPCP_MediaContainerConfiguration implements AWPCP_ContainerConfigurationI
      * @since 4.0.0
      */
     public function modify( $container ) {
+        $container['AttachmentsCollection'] = $container->service(
+            function( $container ) {
+                return new AWPCP_Attachments_Collection(
+                    $container['FileTypes'],
+                    $container['WordPress']
+                );
+            }
+        );
+
         $container['FileHandlersManager'] = $container->service(
             function( $container ) {
                 return new AWPCP_File_Handlers_Manager( $container );
