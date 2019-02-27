@@ -114,5 +114,4 @@ class AWPCP_SEOFrameworkIntegration {
 
 		return $this->metadata['http://ogp.me/ns#image'];
 	}
-
 }
