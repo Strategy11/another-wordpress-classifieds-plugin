@@ -3,6 +3,10 @@
  * @package AWPCP\Media
  */
 
+/**
+ * Provides methods to moderate, set as featured, delete or otherwise manage
+ * attachments as required by the core plugin and premium modules.
+ */
 class AWPCP_Attachments_Logic {
 
     private $file_types;
@@ -10,9 +14,9 @@ class AWPCP_Attachments_Logic {
     private $wordpress;
 
     public function __construct( $file_types, $attachments, $wordpress ) {
-        $this->file_types = $file_types;
+        $this->file_types  = $file_types;
         $this->attachments = $attachments;
-        $this->wordpress = $wordpress;
+        $this->wordpress   = $wordpress;
     }
 
     public function approve_attachment( $attachment ) {
@@ -43,7 +47,8 @@ class AWPCP_Attachments_Logic {
         $attachment_type = $this->get_type_of_attachment( $attachment );
 
         $attachments = $this->attachments->find_attachments_of_type(
-            $attachment_type, array( 'post_parent' => $attachment->post_parent )
+            $attachment_type,
+            [ 'post_parent' => $attachment->post_parent ]
         );
 
         foreach ( $attachments as $an_attachment ) {
@@ -56,16 +61,16 @@ class AWPCP_Attachments_Logic {
     }
 
     private function get_type_of_attachment( $attachment ) {
-        $file_types = $this->file_types->get_file_types();
+        $file_types     = $this->file_types->get_file_types();
         $file_extension = awpcp_get_file_extension( $attachment->post_title );
 
         foreach ( $file_types as $type => $subtypes ) {
             foreach ( $subtypes as $subtype_properties ) {
-                if ( in_array( $attachment->post_mime_type, $subtype_properties['mime_types'] ) ) {
+                if ( in_array( $attachment->post_mime_type, $subtype_properties['mime_types'], true ) ) {
                     return $type;
                 }
 
-                if ( in_array( $file_extension, $subtype_properties['extensions'] ) ) {
+                if ( in_array( $file_extension, $subtype_properties['extensions'], true ) ) {
                     return $type;
                 }
             }
