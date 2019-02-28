@@ -400,7 +400,7 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_RolesAndCapabilities' => __DIR__ . '/../..' . '/includes/class-roles-and-capabilities.php',
         'AWPCP_Router' => __DIR__ . '/../..' . '/includes/routes/class-router.php',
         'AWPCP_Routes' => __DIR__ . '/../..' . '/includes/routes/class-routes.php',
-        'AWPCP_SEOrameworkIntegration' => __DIR__ . '/../..' . '/includes/compatibility/class-seo-framework-plugin-integration.php',
+        'AWPCP_SEOFrameworkIntegration' => __DIR__ . '/../..' . '/includes/compatibility/class-seo-framework-plugin-integration.php',
         'AWPCP_SaveListingInformationAjaxHandler' => __DIR__ . '/../..' . '/includes/frontend/class-save-listing-information-ajax-handler.php',
         'AWPCP_SaveSubmitListingSection' => __DIR__ . '/../..' . '/includes/frontend/class-save-submit-listing-section.php',
         'AWPCP_SearchAdsPage' => __DIR__ . '/../..' . '/frontend/page-search-ads.php',
