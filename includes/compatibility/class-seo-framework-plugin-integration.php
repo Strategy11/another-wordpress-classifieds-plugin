@@ -5,6 +5,7 @@
 
 /**
  * Plugin integration for SEO Framework plugin.
+ *
  * @since 4.1.0
  */
 function awpcp_seo_framework_integration() {
@@ -18,7 +19,12 @@ function awpcp_seo_framework_integration() {
 	);
 }
 
-
+/**
+ * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.TooManyPublicMethods)
+ * @SuppressWarnings(PHPMD.TooManyMethods)
+ */
 class AWPCP_SEOFrameworkIntegration {
 
 	private $current_listing;
@@ -223,13 +229,13 @@ class AWPCP_SEOFrameworkIntegration {
 	/**
 	 * @since 4.1.0
 	 */
-	public function add_opengraph_images( $opengraph_image ) {
+	public function add_opengraph_images() {
 		$override = $this->seo->get_custom_field( '_social_image_url', $this->current_listing->ID );
 
 		if ( empty( $override ) ) {
 			$featured_image = $this->attachments->get_featured_attachment_of_type(
 				'image',
-				[ 'post_parent' => $this->current_listing->ID, ]
+				[ 'post_parent' => $this->current_listing->ID ]
 			);
 
 			if ( $featured_image ) {
@@ -318,9 +324,10 @@ class AWPCP_SEOFrameworkIntegration {
 
 	/**
 	 * Needed to make twitter cards work On Show Ad page
+	 *
 	 * @since 4.1.0
 	 */
-	public function twitter_cards( $retval ) {
+	public function twitter_cards() {
 		return [ 'summary_large_image' ];
 	}
 }
