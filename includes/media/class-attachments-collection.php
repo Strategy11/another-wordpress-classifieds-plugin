@@ -50,6 +50,18 @@ class AWPCP_Attachments_Collection {
         return $query;
     }
 
+    /**
+     * @since 4.0.0
+     */
+    public function get_featured_image( $post_parent_id ) {
+        return $this->get_featured_attachment_of_type(
+            'image',
+            [
+                'post_parent' => $post_parent_id,
+            ]
+        );
+    }
+
     public function find_attachments( $query = array() ) {
         $attachments = $this->wordpress->create_posts_query( $this->prepare_attachments_query( $query ) );
         return $attachments->posts;

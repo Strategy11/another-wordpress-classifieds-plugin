@@ -325,12 +325,7 @@ class AWPCP_YoastWordPressSEOPluginIntegration {
      * @since 4.0.0
      */
     private function add_listing_images( $opengraph_image ) {
-        $featured_image = $this->attachments->get_featured_attachment_of_type(
-            'image',
-            [
-                'post_parent' => $this->current_listing->ID,
-            ]
-        );
+        $featured_image = $this->attachments->get_featured_image( $this->current_listing->ID );
 
         if ( $featured_image ) {
             $opengraph_image->add_image_by_id( $featured_image->ID );

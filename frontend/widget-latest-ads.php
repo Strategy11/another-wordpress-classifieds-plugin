@@ -140,10 +140,8 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
         global $awpcp_imagesurl;
 
         $show_images = $instance['show-images'] && awpcp_are_images_allowed();
-        // TODO: wrap this instruction in a method. The same line is used in Image Placeholders.
-        $image = $this->attachments->get_featured_attachment_of_type(
-            'image', array( 'post_parent' => $item->ID )
-        );
+
+        $image = $this->attachments->get_featured_image( $item->ID );
 
         $image_url  = '';
         $html_image = '';

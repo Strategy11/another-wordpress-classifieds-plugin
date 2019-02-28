@@ -70,12 +70,8 @@ class AWPCP_Image_Placeholders {
         $thumbnail_width = get_awpcp_option('displayadthumbwidth');
 
         if ( awpcp_are_images_allowed() ) {
-            $primary_image = $this->attachments->get_featured_attachment_of_type(
-                'image',
-                array( 'post_parent' => $ad->ID )
-            );
-
-            $gallery_name = 'awpcp-gallery-' . $ad->ID;
+            $primary_image = $this->attachments->get_featured_image( $ad->ID );
+            $gallery_name  = 'awpcp-gallery-' . $ad->ID;
 
             if ($primary_image) {
                 $large_image = $this->attachment_properties->get_image_url( $primary_image, 'large' );
