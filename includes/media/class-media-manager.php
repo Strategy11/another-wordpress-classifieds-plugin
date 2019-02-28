@@ -79,7 +79,7 @@ class AWPCP_Media_Manager {
     }
 
     /**
-     * Uses a File Handler to add the uploaded file to the system and associated
+     * Uses a File Handler to add the uploaded file to the system and associate
      * it with the listing.
      *
      * @param object $listing           An instance of WP_Post.
