@@ -189,7 +189,7 @@ class AWPCP_ManualUpgradeAdminPage {
 
         if ( count( $asynchronous_tasks['non_blocking_tasks'] ) ) {
             if ( count( $asynchronous_tasks['blocking_tasks'] ) ) {
-                $content = '<p>' . __( "The following tasks need to be completed, but the plugin's and modules features will continue to work while the routines are executed.", 'another-wordpress-classifieds-plugin' ) . '</p>';
+                $content = '<p>' . __( "The following tasks need to be completed, but the plugin and modules features will continue to work while the routines are executed.", 'another-wordpress-classifieds-plugin' ) . '</p>';
             } else {
                 $continue_link = sprintf( '<a href="%s" target="_blank">', add_query_arg( 'page', 'awpcp.php' ) );
 
