@@ -192,7 +192,7 @@ class AWPCP_SEOFrameworkIntegration {
 	}
 
 	/**
-	 * @since 4.0.0
+	 * @since 4.1.0
 	 */
 	private function get_social_description( $description, $override ) {
 		if ( empty( $override ) ) {
@@ -233,7 +233,9 @@ class AWPCP_SEOFrameworkIntegration {
 			);
 
 			if ( $featured_image ) {
-				return $featured_image->guid;
+				$attachment_properties = awpcp_attachment_properties();
+
+				return $attachment_properties->get_image_url( $featured_image, 'large' );
 			}
 
 			return $this->metadata['http://ogp.me/ns#image'];
@@ -313,7 +315,6 @@ class AWPCP_SEOFrameworkIntegration {
 
 		return $url;
 	}
-
 
 	/**
 	 * Needed to make twitter cards work On Show Ad page
