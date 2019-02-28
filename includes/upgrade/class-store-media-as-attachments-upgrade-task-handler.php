@@ -164,6 +164,7 @@ class AWPCP_Store_Media_As_Attachments_Upgrade_Task_Handler implements AWPCP_Upg
         }
 
         if ( $item->is_primary ) {
+            update_post_meta( $parent_listing_id, '_thumbnail_id', $attachment_id );
             update_post_meta( $attachment_id, '_awpcp_featured', true );
         }
 
