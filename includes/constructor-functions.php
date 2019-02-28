@@ -11,7 +11,7 @@
  * for the different objects used in the plugin.
  *
  * The Dependency Injection Container (DIC) added support to reuse instances of
- * class that behave like services and is the preferred method to register and access
+ * classes that behave like services and is the preferred method to register and access
  * new classes. However, most of the code is still using the old constructor
  * functions.
  *
