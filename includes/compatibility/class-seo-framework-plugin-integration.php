@@ -9,13 +9,15 @@
  * @since 4.1.0
  */
 function awpcp_seo_framework_integration() {
-	$container = awpcp()->container;
+	$container             = awpcp()->container;
+	$attachment_properties = awpcp_attachment_properties();
 
 	return new AWPCP_SEOFrameworkIntegration(
 		$container['listing_post_type'],
 		awpcp_query(),
 		$container['AttachmentsCollection'],
-		$container['Request']
+		$container['Request'],
+		$attachment_properties
 	);
 }
 
@@ -50,11 +52,12 @@ class AWPCP_SEOFrameworkIntegration {
 	private $request;
 
 
-	public function __construct( $listing_post_type, $query, $attachments, $request ) {
-		$this->listing_post_type = $listing_post_type;
-		$this->query             = $query;
-		$this->attachments       = $attachments;
-		$this->request           = $request;
+	public function __construct( $listing_post_type, $query, $attachments, $request, $attachment_properties ) {
+		$this->listing_post_type     = $listing_post_type;
+		$this->query                 = $query;
+		$this->attachments           = $attachments;
+		$this->request               = $request;
+		$this->attachment_properties = $attachment_properties;
 	}
 
 	/**
@@ -239,9 +242,8 @@ class AWPCP_SEOFrameworkIntegration {
 			);
 
 			if ( $featured_image ) {
-				$attachment_properties = awpcp_attachment_properties();
 
-				return $attachment_properties->get_image_url( $featured_image, 'large' );
+				return $this->attachment_properties->get_image_url( $featured_image, 'large' );
 			}
 
 			return $this->metadata['http://ogp.me/ns#image'];
