@@ -29,6 +29,10 @@ class AWPCP_Upgrade_Task_Handler {
         $pending_items_count_before = $this->implementation->count_pending_items( $last_item_id );
         $pending_items = $this->implementation->get_pending_items( $last_item_id );
 
+        if ( method_exists( $this->implementation, 'before_step' ) ) {
+            $this->implementation->before_step();
+        }
+
         foreach ( $pending_items as $item ) {
             $last_item_id = $this->implementation->process_item( $item, $last_item_id );
         }

@@ -3,8 +3,12 @@
  * @package AWPCP\Upgrade
  */
 
-// phpcs:disable
-
+/**
+ * This upgrade routine converts records from the ads table into posts with the
+ * awpcp_listing post type.
+ *
+ * @since 4.0.0
+ */
 class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements AWPCP_Upgrade_Task_Runner {
 
     private $categories;
@@ -19,6 +23,16 @@ class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements 
         $this->legacy_listing_metadata = $legacy_listing_metadata;
         $this->wordpress               = $wordpress;
         $this->db                      = $db;
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function before_step() {
+        // See https://10up.github.io/Engineering-Best-Practices/migrations/#requirements-for-a-successful-migration.
+        if ( ! defined( 'WP_IMPORTING' ) ) {
+            define( 'WP_IMPORTING', true );
+        }
     }
 
     public function count_pending_items( $last_item_id ) {

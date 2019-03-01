@@ -35,7 +35,17 @@ class AWPCP_Store_Media_As_Attachments_Upgrade_Task_Handler implements AWPCP_Upg
     }
 
     /**
-     * Count number items that need to be processed.
+     * @since 4.0.0
+     */
+    public function before_step() {
+        // See https://10up.github.io/Engineering-Best-Practices/migrations/#requirements-for-a-successful-migration.
+        if ( ! defined( 'WP_IMPORTING' ) ) {
+            define( 'WP_IMPORTING', true );
+        }
+    }
+
+    /**
+     * Count number of items that need to be processed.
      *
      * @param int $last_item_id     The ID of the last item processed by the routine.
      */

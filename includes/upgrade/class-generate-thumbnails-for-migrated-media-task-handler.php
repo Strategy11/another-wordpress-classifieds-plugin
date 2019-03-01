@@ -18,6 +18,16 @@ class AWPCP_GenerateThumbnailsForMigratedMediaTaskHandler implements AWPCP_Upgra
     }
 
     /**
+     * @since 4.0.0
+     */
+    public function before_step() {
+        // See https://10up.github.io/Engineering-Best-Practices/migrations/#requirements-for-a-successful-migration.
+        if ( ! defined( 'WP_IMPORTING' ) ) {
+            define( 'WP_IMPORTING', true );
+        }
+    }
+
+    /**
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function count_pending_items( $last_item_id ) {

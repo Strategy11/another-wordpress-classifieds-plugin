@@ -3,8 +3,12 @@
  * @package AWPCP\Upgrade
  */
 
-// phpcs:disable
-
+/**
+ * This upgrade routine converts records from the categories table into terms
+ * in the awpcp_listing_category taxonomy.
+ *
+ * @since 4.0.0
+ */
 class AWPCP_Store_Listing_Categories_As_Custom_Taxonomies_Upgrade_Task_Handler implements AWPCP_Upgrade_Task_Runner {
 
     private $categories;
@@ -17,6 +21,16 @@ class AWPCP_Store_Listing_Categories_As_Custom_Taxonomies_Upgrade_Task_Handler i
         $this->categories = $categories;
         $this->wordpress  = $wordpress;
         $this->db         = $db;
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function before_step() {
+        // See https://10up.github.io/Engineering-Best-Practices/migrations/#requirements-for-a-successful-migration.
+        if ( ! defined( 'WP_IMPORTING' ) ) {
+            define( 'WP_IMPORTING', true );
+        }
     }
 
     public function count_pending_items( $last_item_id ) {
