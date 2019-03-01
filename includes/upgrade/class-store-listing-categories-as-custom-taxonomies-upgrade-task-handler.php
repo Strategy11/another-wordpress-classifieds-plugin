@@ -19,14 +19,6 @@ class AWPCP_Store_Listing_Categories_As_Custom_Taxonomies_Upgrade_Task_Handler i
         $this->db = $db;
     }
 
-    public function get_last_item_id() {
-        return $this->wordpress->get_option( 'awpcp-slcact-last-listing-id' );
-    }
-
-    public function update_last_item_id( $last_item_id  ) {
-        $this->wordpress->update_option( 'awpcp-slcact-last-listing-id', $last_item_id );
-    }
-
     public function count_pending_items( $last_item_id ) {
         $items_count = $this->db->get_var( 'SELECT COUNT(category_id) FROM ' . AWPCP_TABLE_CATEGORIES );
 

@@ -38,14 +38,6 @@ abstract class AWPCP_Update_Categories_Task_Runner implements AWPCP_Upgrade_Task
         $this->db         = $db;
     }
 
-    public function get_last_item_id() {
-        $this->wordpress->get_option( $this->delegate->get_option_name() );
-    }
-
-    public function update_last_item_id( $last_item_id ) {
-        $this->wordpress->update_option( $this->delegate->get_option_name(), $last_item_id );
-    }
-
     public function count_pending_items( $last_item_id ) {
         $sql = $this->delegate->get_count_pending_items_sql();
         return intval( $this->db->get_var( $this->db->prepare( $sql, $last_item_id ) ) );

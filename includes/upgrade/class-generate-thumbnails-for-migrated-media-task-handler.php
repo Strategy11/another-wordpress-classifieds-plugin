@@ -17,17 +17,6 @@ class AWPCP_GenerateThumbnailsForMigratedMediaTaskHandler implements AWPCP_Upgra
         $this->wordpress = $wordpress;
     }
 
-    public function get_last_item_id() {
-        // Not used.
-    }
-
-    /**
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     */
-    public function update_last_item_id( $last_item_id ) {
-        // Not used.
-    }
-
     /**
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */

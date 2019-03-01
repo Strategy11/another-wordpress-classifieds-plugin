@@ -721,7 +721,6 @@ class AWPCP_Installer {
             return;
         }
 
-        delete_option( 'awpcp-spnd-last-file-id' );
         $this->upgrade_tasks->enable_upgrade_task( 'awpcp-store-phone-number-digits' );
     }
 
@@ -918,12 +917,10 @@ class AWPCP_Installer {
 
     private function enable_upgrade_routine_to_migrate_listing_categories() {
         $this->upgrade_tasks->enable_upgrade_task( 'awpcp-store-listing-categories-as-custom-taxonomies' );
-        delete_option( 'awpcp-slcact-last-listing-id' );
     }
 
     private function enable_upgrade_routine_to_migrate_listings() {
         $this->upgrade_tasks->enable_upgrade_task( 'awpcp-store-listings-as-custom-post-types' );
-        delete_option( 'awpcp-slacpt-last-listing-id' );
     }
 
     /**
@@ -1041,8 +1038,6 @@ class AWPCP_Installer {
      */
     private function enable_routine_to_fix_id_collision_for_listings() {
         $this->upgrade_tasks->enable_upgrade_task( 'awpcp-fix-id-collision-for-listings' );
-
-        delete_option( 'awpcp_ficfl_last_listing_id' );
     }
 
     /**

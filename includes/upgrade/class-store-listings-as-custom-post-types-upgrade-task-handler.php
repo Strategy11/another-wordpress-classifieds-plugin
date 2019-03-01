@@ -21,14 +21,6 @@ class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements 
         $this->db = $db;
     }
 
-    public function get_last_item_id() {
-        return $this->wordpress->get_option( 'awpcp-slacpt-last-listing-id' );
-    }
-
-    public function update_last_item_id( $last_item_id  ) {
-        $this->wordpress->update_option( 'awpcp-slacpt-last-listing-id', $last_item_id );
-    }
-
     public function count_pending_items( $last_item_id ) {
         $query = 'SELECT COUNT(ad_id) FROM ' . AWPCP_TABLE_ADS . ' WHERE ad_id > %d';
         return intval( $this->db->get_var( $this->db->prepare( $query, $last_item_id ) ) );

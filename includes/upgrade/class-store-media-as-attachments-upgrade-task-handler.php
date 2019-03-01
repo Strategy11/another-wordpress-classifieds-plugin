@@ -35,21 +35,6 @@ class AWPCP_Store_Media_As_Attachments_Upgrade_Task_Handler implements AWPCP_Upg
     }
 
     /**
-     * @since 4.0.0
-     */
-    public function get_last_item_id() {
-        // Not used.
-    }
-
-    /**
-     * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     */
-    public function update_last_item_id( $last_item_id ) {
-        // Not used.
-    }
-
-    /**
      * Count number items that need to be processed.
      *
      * @param int $last_item_id     The ID of the last item processed by the routine.

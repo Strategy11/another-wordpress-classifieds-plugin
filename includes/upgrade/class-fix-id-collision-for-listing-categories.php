@@ -47,26 +47,6 @@ class AWPCP_FixIDCollisionForListingCategoriesUpgradeTaskHandler implements AWPC
     }
 
     /**
-     * We will continue processing items until there are no more collisions on
-     * the categories registry, so we don't need to keep track of the last
-     * processed item. Processed an item will result in that collision being
-     * removed.
-     *
-     * @since 4.0.0
-     */
-    public function get_last_item_id() {
-        return 1;
-    }
-
-    /**
-     * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     */
-    public function update_last_item_id( $last_item_id ) {
-        // These aren't the droids you're looking for. See get_last_item_id().
-    }
-
-    /**
      * Count number items that need to be processed.
      *
      * @param int $last_item_id     The ID of the last item processed by the routine.

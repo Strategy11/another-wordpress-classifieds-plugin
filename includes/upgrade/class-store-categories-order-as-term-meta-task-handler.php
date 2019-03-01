@@ -38,20 +38,6 @@ class AWPCP_StoreCategoriesOrderAsTermMetaTaskHandler implements AWPCP_Upgrade_T
         $this->wordpress           = $wordpress;
         $this->db                  = $db;
     }
-    /**
-     * @since 4.0.0
-     */
-    public function get_last_item_id() {
-        return 0;
-    }
-
-    /**
-     * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     */
-    public function update_last_item_id( $last_item_id ) {
-        return true;
-    }
 
     /**
      * @since 4.0.0

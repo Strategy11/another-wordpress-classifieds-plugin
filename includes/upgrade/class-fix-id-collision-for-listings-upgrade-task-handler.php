@@ -48,20 +48,6 @@ class AWPCP_FixIDCollisionForListingsUpgradeTaskHandler implements AWPCP_Upgrade
     /**
      * @since 4.0.0
      */
-    public function get_last_item_id() {
-        return intval( $this->wordpress->get_option( 'awpcp_ficfl_last_listing_id' ) );
-    }
-
-    /**
-     * @since 4.0.0
-     */
-    public function update_last_item_id( $last_item_id ) {
-        $this->wordpress->update_option( 'awpcp_ficfl_last_listing_id', $last_item_id );
-    }
-
-    /**
-     * @since 4.0.0
-     */
     public function count_pending_items( $last_item_id ) {
         return $this->execute_query_for_posts_with_id_greater_than(
             $last_item_id,

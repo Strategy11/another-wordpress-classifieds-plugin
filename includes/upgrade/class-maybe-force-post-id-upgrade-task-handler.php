@@ -33,21 +33,6 @@ class AWPCP_MaybeForcePostIDUpgradeTaskHandler implements AWPCP_Upgrade_Task_Run
 
     /**
      * @since 4.0.0
-     */
-    public function get_last_item_id() {
-        // Not used.
-    }
-
-    /**
-     * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     */
-    public function update_last_item_id( $last_item_id ) {
-        // Not used.
-    }
-
-    /**
-     * @since 4.0.0
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function count_pending_items( $last_item_id ) {

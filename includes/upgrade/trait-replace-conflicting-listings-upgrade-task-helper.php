@@ -12,21 +12,6 @@ trait AWPCP_ReplaceConflictingListingsUpgradeTaskHelper {
     /**
      * @since 4.0.0
      */
-    public function get_last_item_id() {
-        // Not used.
-    }
-
-    /**
-     * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     */
-    public function update_last_item_id( $last_item_id ) {
-        // Not used.
-    }
-
-    /**
-     * @since 4.0.0
-     */
     public function count_pending_items( $last_item_id ) {
         $replacements = $this->listings_registry->get_listings_registry();
         $replacements = array_slice( $replacements, $last_item_id, null );

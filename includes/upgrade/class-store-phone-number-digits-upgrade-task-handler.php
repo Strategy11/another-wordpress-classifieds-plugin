@@ -6,14 +6,6 @@ class AWPCP_Store_Phone_Number_Digits_Upgrade_Task_Handler implements AWPCP_Upgr
         $this->db = $db;
     }
 
-    public function get_last_item_id() {
-        return get_option( 'awpcp-spnd-last-file-id' );
-    }
-
-    public function update_last_item_id( $last_item_id ) {
-        return update_option( 'awpcp-spnd-last-file-id', $last_item_id, false );
-    }
-
     public function count_pending_items( $last_item_id ) {
         $query = 'SELECT COUNT(ad_id) FROM ' . AWPCP_TABLE_ADS . ' WHERE ad_id > %d';
         return intval( $this->db->get_var( $this->db->prepare( $query, intval( $last_item_id ) ) ) );
