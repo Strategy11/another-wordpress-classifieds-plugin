@@ -15,10 +15,10 @@ class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements 
     use AWPCP_UpgradeListingsTaskHandlerHelper;
 
     public function __construct( $categories, $legacy_listing_metadata, $wordpress, $db ) {
-        $this->categories = $categories;
+        $this->categories              = $categories;
         $this->legacy_listing_metadata = $legacy_listing_metadata;
-        $this->wordpress = $wordpress;
-        $this->db = $db;
+        $this->wordpress               = $wordpress;
+        $this->db                      = $db;
     }
 
     public function count_pending_items( $last_item_id ) {
@@ -32,6 +32,7 @@ class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements 
     }
 
     /**
+     * @throws AWPCP_Exception  If a custom post can't be created.
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function process_item( $item, $last_item_id ) {
@@ -46,7 +47,7 @@ class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements 
         // Create post and import standard fields as custom fields.
         $post_id = $this->insert_post(
             [
-                'post_content'      => $item->ad_details, // TODO: do I need to strip slashes?,
+                'post_content'      => $item->ad_details, // TODO: do I need to strip slashes?
                 'post_title'        => $item->ad_title,
                 'post_name'         => sanitize_title( $item->ad_title ),
                 'post_status'       => 'draft',
@@ -103,21 +104,36 @@ class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements 
         $listing_expired = strtotime( $item->ad_enddate ) < current_time( 'timestamp' );
 
         if ( 'Unpaid' === $item->payment_status || ! $item->verified ) {
-            $this->wordpress->update_post( array( 'ID' => $post_id, 'post_status' => 'draft' ) );
-        } else if ( $item->disabled || $listing_expired ) {
-            $this->wordpress->update_post( array( 'ID' => $post_id, 'post_status' => 'disabled' ) );
+            $this->wordpress->update_post(
+                [
+                    'ID'          => $post_id,
+                    'post_status' => 'draft',
+                ]
+            );
+        } elseif ( $item->disabled || $listing_expired ) {
+            $this->wordpress->update_post(
+                [
+                    'ID'          => $post_id,
+                    'post_status' => 'disabled',
+                ]
+            );
         } else {
-            $this->wordpress->update_post( array( 'ID' => $post_id, 'post_status' => 'publish' ) );
+            $this->wordpress->update_post(
+                [
+                    'ID'          => $post_id,
+                    'post_status' => 'publish',
+                ]
+            );
         }
 
-        // update verified status
-        if ( $item->verified != 1 ) {
+        // Update verified status.
+        if ( intval( $item->verified ) !== 1 ) {
             $this->wordpress->update_post_meta( $post_id, '_awpcp_verification_needed', true );
         } else {
             $this->wordpress->update_post_meta( $post_id, '_awpcp_verified', true );
         }
 
-        // update reviewed status
+        // Update reviewed status.
         $reviewed = $this->legacy_listing_metadata->get( $item->ad_id, 'reviewed' );
 
         if ( is_null( $reviewed ) || $reviewed ) {
@@ -126,7 +142,7 @@ class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements 
             $this->wordpress->update_post_meta( $post_id, '_awpcp_content_needs_review', true );
         }
 
-        // update expired status
+        // Update expired status.
         if ( $listing_expired ) {
             $this->wordpress->update_post_meta( $post_id, '_awpcp_expired', true );
         }
@@ -163,10 +179,10 @@ class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements 
     private function update_post_metadata_with_item_metadata( $post_id, $item ) {
         // 'reviewed' was handled in update_post_status_with_item_properties()
         $meta_keys = array(
-            'sent-to-facebook' => '_awpcp_sent_to_facebook_page',
-            'sent-to-facebook-group' => '_awpcp_sent_to_facebook_group',
+            'sent-to-facebook'           => '_awpcp_sent_to_facebook_page',
+            'sent-to-facebook-group'     => '_awpcp_sent_to_facebook_group',
             'verification_email_sent_at' => '_awpcp_verification_email_sent_at',
-            'verification_emails_sent' => '_awpcp_verification_emails_sent',
+            'verification_emails_sent'   => '_awpcp_verification_emails_sent',
         );
 
         foreach ( $meta_keys as $old_key => $new_key ) {
@@ -206,6 +222,11 @@ class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements 
             $user_id = $user->ID;
         }
 
-        $this->wordpress->update_post( array( 'ID' => $post_id, 'post_author' => $user_id ) );
+        $this->wordpress->update_post(
+            [
+                'ID'          => $post_id,
+                'post_author' => $user_id,
+            ]
+        );
     }
 }

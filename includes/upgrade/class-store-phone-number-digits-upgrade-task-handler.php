@@ -1,5 +1,18 @@
 <?php
+/**
+ * @package AWPCP\Upgrade
+ */
 
+/**
+ * This upgrade routine goes through the records in the ads table converting
+ * the phone numbers stored in the ad_contact_phone column into a string that
+ * contains the digits only (no spaces, dashes or other formatting characters).
+ *
+ * Having the phone number stored as a string of digits only makes searching
+ * by phone number easier, because we can convert the search parameter into
+ * a string of digits as well and find listings with numbers that contain those
+ * same digits.
+ */
 class AWPCP_Store_Phone_Number_Digits_Upgrade_Task_Handler implements AWPCP_Upgrade_Task_Runner {
 
     public function __construct( $db ) {
@@ -16,6 +29,9 @@ class AWPCP_Store_Phone_Number_Digits_Upgrade_Task_Handler implements AWPCP_Upgr
         return $this->db->get_results( $this->db->prepare( $query, intval( $last_item_id ) ) );
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
     public function process_item( $item, $last_item_id ) {
         $phone_number_digits = awpcp_get_digits_from_string( $item->ad_contact_phone );
 

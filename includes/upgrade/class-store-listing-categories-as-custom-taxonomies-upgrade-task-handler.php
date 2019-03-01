@@ -15,8 +15,8 @@ class AWPCP_Store_Listing_Categories_As_Custom_Taxonomies_Upgrade_Task_Handler i
 
     public function __construct( $categories, $wordpress, $db ) {
         $this->categories = $categories;
-        $this->wordpress = $wordpress;
-        $this->db = $db;
+        $this->wordpress  = $wordpress;
+        $this->db         = $db;
     }
 
     public function count_pending_items( $last_item_id ) {
