@@ -152,32 +152,6 @@ class AWPCP_AdminPanel {
 
         $router->add_admin_subpage(
             $parent_page,
-            __( 'Import Listings', 'another-wordpress-classifieds-plugin' ),
-            awpcp_admin_page_title( __( 'Import Listings', 'another-wordpress-classifieds-plugin' ) ),
-            'awpcp-import',
-            'awpcp_import_listings_admin_page',
-            $admin_capability,
-            30
-        );
-
-        $router->add_admin_section(
-            "$parent_page::awpcp-import",
-            'supported-csv-headers',
-            'awpcp-view',
-            'supported-csv-headers',
-            function() { return awpcp()->container['SupportedCSVHeadersAdminPage']; }
-        );
-
-        $router->add_admin_section(
-            "$parent_page::awpcp-import",
-            'example-csv-file',
-            'awpcp-view',
-            'example-csv-file',
-            function() { return awpcp()->container['ExampleCSVFileAdminPage']; }
-        );
-
-        $router->add_admin_subpage(
-            $parent_page,
             __( 'Categories', 'another-wordpress-classifieds-plugin' ),
             awpcp_admin_page_title( __( 'Manage Categories', 'another-wordpress-classifieds-plugin' ) ),
             'awpcp-admin-categories',
@@ -308,6 +282,30 @@ class AWPCP_AdminPanel {
             'export-settings',
             'awpcp_export_settings_admin_page'
         );
+
+	    $router->add_admin_section(
+		    'awpcp.php::awpcp-tools',
+		    'awpcp-import',
+		    'awpcp-view',
+		    'awpcp-import',
+		    'awpcp_import_listings_admin_page'
+	    );
+
+	    $router->add_admin_section(
+		    'awpcp.php::awpcp-tools',
+		    'supported-csv-headers',
+		    'awpcp-view',
+		    'supported-csv-headers',
+		    function() { return awpcp()->container['SupportedCSVHeadersAdminPage']; }
+	    );
+
+	    $router->add_admin_section(
+		    'awpcp.php::awpcp-tools',
+		    'example-csv-file',
+		    'awpcp-view',
+		    'example-csv-file',
+		    function() { return awpcp()->container['ExampleCSVFileAdminPage']; }
+	    );
 
         $router->add_admin_subpage(
             $parent_page,
