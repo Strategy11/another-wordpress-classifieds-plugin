@@ -23,10 +23,14 @@
     </li>
 
 	<?php
-	// lets make sure the awpcp-admin-import-zip-code-database is registered.
+	// lets make sure the awpcp-admin-import-zip-code-database section is registered.
 	global $awpcp;
-	$admin_pages           = $awpcp->router->routes->get_admin_pages();
-	$awpcp_zip_code_import = $admin_pages['awpcp.php']->subpages['awpcp-tools']->sections['awpcp-admin-import-zip-code-database'];
+	$admin_pages = $awpcp->router->routes->get_admin_pages();
+	if ( isset( $admin_pages['awpcp.php']->subpages['awpcp-tools']->sections['awpcp-admin-import-zip-code-database'] ) ) {
+		$awpcp_zip_code_import = $admin_pages['awpcp.php']->subpages['awpcp-tools']->sections['awpcp-admin-import-zip-code-database'];
+	} else {
+		$awpcp_zip_code_import = false;
+	}
 	if ( $awpcp_zip_code_import ) :
 		$import_zip_code_url = add_query_arg( 'awpcp-view', 'awpcp-admin-import-zip-code-database' );
 		?>
