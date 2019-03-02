@@ -731,7 +731,7 @@ class AWPCP {
 				'fee-per-category' => array(
 					'name' => __( 'Fee per Category', 'another-wordpress-classifieds-plugin' ),
 					'url' =>'http://awpcp.com/downloads/fee-category-module/?ref=panel',
-					'installed' => function_exists( 'awpcp_price_cats' ),
+					'installed' => defined( 'AWPCP_FPC_MODULE_DB_VERSION' ),
 					'version' => 'AWPCP_FPC_MODULE_DB_VERSION',
 					'required' => '4.0.0beta3',
 				),
@@ -788,7 +788,7 @@ class AWPCP {
                 'stripe' => array(
                     'name' => __( 'Stripe', 'another-wordpress-classifieds-plugin' ),
                     'url' => 'http://awpcp.com/downdloads/',
-                    'installed' => defined( 'STRIPE_MODULE_DB_VERSION' ),
+                    'installed' => defined( 'AWPCP_STRIPE_MODULE_DB_VERSION' ),
                     'version' => 'AWPCP_STRIPE_MODULE_DB_VERSION',
                     'required' => '4.0.0beta1',
                 ),
@@ -821,7 +821,6 @@ class AWPCP {
                     'installed' => defined( 'AWPCP_ZIP_CODE_SEARCH_MODULE_DB_VERSION' ),
                     'version' => 'AWPCP_ZIP_CODE_SEARCH_MODULE_DB_VERSION',
                     'required' => '4.0.0beta3',
-                    'private' => true,
                 ),
 			);
 		}
