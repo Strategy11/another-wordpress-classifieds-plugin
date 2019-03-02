@@ -405,9 +405,40 @@ class AWPCP_AdminPanel {
 	}
 
     private function load_notice_for_blocking_manual_uprades() {
-        $message = __( 'AWPCP features are currently disabled because the plugin needs you to perform a manual upgrade before continuing. Please <upgrade-link>go to the Classifieds admin section section to Upgrade</a> or click the button below.', 'another-wordpress-classifieds-plugin' );
+        $message = $this->get_message_for_blocking_manual_upgrade_notice();
 
         return $this->load_notice_for_manual_upgrades( $message );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function get_message_for_blocking_manual_upgrade_notice() {
+        if ( $this->upgrade_tasks->is_upgrade_task_enabled( 'awpcp-store-listings-as-custom-post-types' ) ) {
+            $message  = '<p>' . esc_html__( 'AWPCP features are currently disabled because the plugin needs you to perform a manual upgrade before continuing.', 'another-wordpress-classifieds-plugin' ) . '</p>';
+            $message .= '<p><strong style="color: #CC0000">' . esc_html__( "The duration for this upgrade operation varies between several minutes and a few hours, depending on the size of your database, the current network conditions and the server's capabilities. Your users and you won't be able to use the Classified Admin pages or submit and explore ads on the frontend until the upgrade is complete.", 'another-wordpress-classifieds-plugin' ) . '</strong></p>';
+            $message .= sprintf(
+                /* translators: %1$s is the opening tag for the link to the page explaining how to downgrade to a previous version of the plugin, %2$s is the closing tag for the link. */
+                '<p>' . esc_html__( 'If this is not a good time to go through the upgrade process, we recommend you to %1$sinstall the previous version again%2$s and plan to upgrade tonight or later this week when you have more time.', 'another-wordpress-classifieds-plugin' ) . '</p>',
+                sprintf( '<a href="%s">', 'https://awpcp.com/forum/faq/how-to-downgrade-awpcp-4-0-to-something-earlier/' ),
+                '</a>'
+            );
+            $message .= sprintf(
+                /* translators: %1$s is the opening tag for the link to the upgrade page, %2$s is the closing tag for the link. */
+                '<p>' . esc_html__( 'To upgrade, please %1$sgo to the Classifieds admin section%2$s or click the button below.', 'another-wordpress-classifieds-plugin' ) . '</p>',
+                sprintf( '<a href="%s">', esc_url( awpcp_get_admin_upgrade_url() ) ),
+                '</a>'
+            );
+
+            return $message;
+        }
+
+        return sprintf(
+            /* translators: %1$s is the opening tag for the link to the upgrade page, %2$s is the closing tag for the link. */
+            '<p>' . esc_html__( 'AWPCP features are currently disabled because the plugin needs you to perform a manual upgrade before continuing. Please %1$sgo to the Classifieds admin section to Upgrade%2$s or click the button below.', 'another-wordpress-classifieds-plugin' ) . '</p>',
+            sprintf( '<a href="%s">', esc_url( awpcp_get_admin_upgrade_url() ) ),
+            '</a>'
+        );
     }
 
     private function load_notice_for_manual_upgrades( $message ) {
@@ -424,7 +455,12 @@ class AWPCP_AdminPanel {
     }
 
     private function load_notice_for_non_blocking_manual_uprades() {
-        $message = __( 'AWPCP needs you to perform a manual upgrade to update the database schema and the information stored there. All plugin features will continue to work while the upgrade routines are executed. Please <upgrade-link>go to the Classifieds admin section section to Upgrade</a> or click the button below.', 'another-wordpress-classifieds-plugin' );
+        $message = sprintf(
+            /* translators: %1$s is the opening tag for the link to the upgrade page, %2$s is the closing tag for the link. */
+            '<p>' . esc_html__( 'AWPCP needs you to perform a manual upgrade to update the database schema and the information stored there. All plugin features will continue to work while the upgrade routines are executed. Please %1$sgo to the Classifieds admin section to Upgrade%2$s or click the button below.', 'another-wordpress-classifieds-plugin' ) . '</p>',
+            sprintf( '<a href="%s">', esc_url( awpcp_get_admin_upgrade_url() ) ),
+            '</a>'
+        );
 
         return $this->load_notice_for_manual_upgrades( $message );
     }
