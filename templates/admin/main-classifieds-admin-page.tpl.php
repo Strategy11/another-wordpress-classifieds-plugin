@@ -2,9 +2,7 @@
 
 <div class="awpcp-updated updated">
     <p>
-        <?php $msg = _x("Thank you for using Another Wordpress Classifieds Plugin, the #1 Wordpress Classifieds Plugin.  Please direct support requests, enhancement ideas and bug reports to the %s.",
-                            '... to the <a>AWPCP Support Website link</a>',
-                            'another-wordpress-classifieds-plugin' ); ?>
+        <?php $msg = _x( 'Thank you for using Another WordPress Classifieds Plugin, the #1 WordPress Classifieds Plugin.  Please direct support requests, enhancement ideas and bug reports to the %s.', '... to the <a>AWPCP Support Website link</a>', 'another-wordpress-classifieds-plugin' ); ?>
         <?php echo sprintf($msg, '<a href="http://www.awpcp.com/forum/">' . __("AWPCP Support Website", "AWPCP") . '</a>'); ?>
     </p>
 </div>
@@ -12,7 +10,7 @@
 <?php if ($hasextrafieldsmodule == 1 && !($extrafieldsversioncompatibility == 1)): ?>
 <div id="message" class="awpcp-updated updated fade">
     <p>
-        <?php _e("The version of the extra fields module that you are using is not compatible with this version of Another Wordpress Classifieds Plugin.", "AWPCP"); ?>
+        <?php _e( 'The version of the extra fields module that you are using is not compatible with this version of Another WordPress Classifieds Plugin.', 'AWPCP' ); ?>
         <a href="http://www.awpcp.com/contact/"><?php _e("Please request updated Extra Fields module files", "AWPCP"); ?></a>.
     </p>
 </div>
@@ -22,7 +20,7 @@
     <div class="meta-box-sortables" <?php echo empty($sidebar) ? '' : ' style="float:left;width:70%;"'; ?>>
 
         <div class="postbox">
-            <h3 class="hndle1"><span><?php _e("Another Wordpress Classifieds Plugin Stats", "AWPCP"); ?><span></h3>
+            <h3 class="hndle1"><span><?php _e( 'Another WordPress Classifieds Plugin Stats', 'AWPCP' ); ?><span></h3>
             <div class="inside">
                 <ul>
                     <li><?php _e("AWPCP version", "AWPCP"); ?>: <strong><?php echo $awpcp_db_version; ?></strong>.</li>

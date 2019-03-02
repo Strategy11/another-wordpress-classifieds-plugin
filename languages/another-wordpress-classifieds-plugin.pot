@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2019-02-25 22:49:04+00:00\n"
+"POT-Creation-Date: 2019-03-02 17:10:49+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -165,8 +165,8 @@ msgid "Import Listings"
 msgstr ""
 
 #: admin/admin-panel.php:182
-#: templates/admin/main-classifieds-admin-page.tpl.php:63
-#: templates/admin/main-classifieds-admin-page.tpl.php:91
+#: templates/admin/main-classifieds-admin-page.tpl.php:61
+#: templates/admin/main-classifieds-admin-page.tpl.php:89
 msgid "Manage Categories"
 msgstr ""
 
@@ -190,7 +190,7 @@ msgid "Manage Credit"
 msgstr ""
 
 #: admin/admin-panel.php:260 admin/fees/class-fees-admin-page.php:21
-#: templates/admin/main-classifieds-admin-page.tpl.php:50
+#: templates/admin/main-classifieds-admin-page.tpl.php:48
 msgid "Fees"
 msgstr ""
 
@@ -351,32 +351,32 @@ msgid ""
 "deleted> categories."
 msgstr ""
 
-#: admin/categories/class-delete-category-admin-page.php:36
-msgid "The category you are trying to delte doesn't exist."
+#: admin/categories/class-delete-category-admin-page.php:44
+msgid "The category you are trying to delete doesn't exist."
 msgstr ""
 
-#: admin/categories/class-delete-category-admin-page.php:46
+#: admin/categories/class-delete-category-admin-page.php:57
 msgid "There was an error trying to delete the category. <error-message>"
 msgstr ""
 
-#: admin/categories/class-delete-category-admin-page.php:66
+#: admin/categories/class-delete-category-admin-page.php:74
 msgid ""
 "There was an error trying to load the selected category. <error-message>"
 msgstr ""
 
-#: admin/categories/class-delete-category-admin-page.php:81
+#: admin/categories/class-delete-category-admin-page.php:85
 msgid "The category was deleted successfully"
 msgstr ""
 
-#: admin/categories/class-delete-category-admin-page.php:87
+#: admin/categories/class-delete-category-admin-page.php:103
 msgid "Are you sure you want to delete \"<category-name>\" category?"
 msgstr ""
 
-#: admin/categories/class-delete-category-admin-page.php:98
+#: admin/categories/class-delete-category-admin-page.php:114
 msgid "Delete category"
 msgstr ""
 
-#: admin/categories/class-delete-category-admin-page.php:99
+#: admin/categories/class-delete-category-admin-page.php:115
 #: admin/fees/class-fee-details-form.php:76
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:31
 #: admin/templates/admin-panel-fees-delete-form.tpl.php:12
@@ -1680,11 +1680,6 @@ msgid ""
 msgstr ""
 
 #: admin/upgrade/class-manual-upgrade-admin-page.php:192
-msgid ""
-"The following tasks need to be completed, but the plugin's and modules "
-"features will continue to work while the routines are executed."
-msgstr ""
-
 #: admin/upgrade/class-manual-upgrade-admin-page.php:197
 msgid ""
 "The following tasks need to be completed, but the plugin and modules "
@@ -4138,21 +4133,21 @@ msgstr ""
 msgid "The category ID must be a positive integer, {category_id} was given."
 msgstr ""
 
-#: includes/class-categories-collection.php:95
+#: includes/class-categories-collection.php:106
 msgid "No category was found with old ID: {old_category_id}."
 msgstr ""
 
-#: includes/class-categories-collection.php:104
+#: includes/class-categories-collection.php:115
 msgid ""
 "No category was found with ID: {category_id}, the replacement for category "
 "with old ID: {old_category_id}."
 msgstr ""
 
-#: includes/class-categories-collection.php:116
+#: includes/class-categories-collection.php:127
 msgid "The category name must be a non empty string, %s was given."
 msgstr ""
 
-#: includes/class-categories-collection.php:125
+#: includes/class-categories-collection.php:136
 msgid "No category was found with name: %s."
 msgstr ""
 
@@ -8995,13 +8990,13 @@ msgstr ""
 msgid "credits"
 msgstr ""
 
-#: includes/upgrade/class-fix-id-collision-for-listings-upgrade-task-handler.php:156
+#: includes/upgrade/class-fix-id-collision-for-listings-upgrade-task-handler.php:142
 msgid ""
 "There was an error trying to create a replacement post for post with _ID "
 "equal to {post_id}. {error_message}"
 msgstr ""
 
-#: includes/upgrade/class-fix-id-collision-for-listings-upgrade-task-handler.php:170
+#: includes/upgrade/class-fix-id-collision-for-listings-upgrade-task-handler.php:156
 msgid ""
 "There was an error trying to update the replacement post "
 "({replacement_post_id}) for post with ID equal to {post_id}. {error_message}"
@@ -9059,17 +9054,17 @@ msgstr ""
 msgid "Generate Thumbnails for Migrated Media"
 msgstr ""
 
-#: includes/upgrade/class-maybe-force-post-id-upgrade-task-handler.php:95
+#: includes/upgrade/class-maybe-force-post-id-upgrade-task-handler.php:80
 msgid ""
 "There was an error trying to force the next post_id to be greater than "
 "{post_id}. {error_message}"
 msgstr ""
 
-#: includes/upgrade/class-store-media-as-attachments-upgrade-task-handler.php:99
+#: includes/upgrade/class-store-media-as-attachments-upgrade-task-handler.php:94
 msgid "The file {filepath} doesn't exist."
 msgstr ""
 
-#: includes/upgrade/class-store-media-as-attachments-upgrade-task-handler.php:144
+#: includes/upgrade/class-store-media-as-attachments-upgrade-task-handler.php:139
 msgid "An attachment couldn't be created for media item with id {media_id}."
 msgstr ""
 
@@ -9184,20 +9179,20 @@ msgstr ""
 msgid "30 Day Listing"
 msgstr ""
 
-#: installer.php:835
+#: installer.php:834
 msgid "Response to your AWPCP Demo Ad"
 msgstr ""
 
-#: installer.php:836
+#: installer.php:835
 msgid "Someone has responded to your AWPCP Demo Ad"
 msgstr ""
 
-#: installer.php:846
+#: installer.php:845
 msgctxt "reply to ad email"
 msgid "{__previous_subject__} regarding: {listing_title}"
 msgstr ""
 
-#: installer.php:847
+#: installer.php:846
 msgctxt "reply to ad email"
 msgid ""
 "{__previous_body__}\n"
@@ -9216,7 +9211,7 @@ msgid ""
 "{website_url}"
 msgstr ""
 
-#: installer.php:861
+#: installer.php:860
 msgid "Verify the email address used for Ad $title"
 msgstr ""
 
@@ -9650,23 +9645,23 @@ msgstr ""
 #: templates/admin/main-classifieds-admin-page.tpl.php:5
 msgctxt "... to the <a>AWPCP Support Website link</a>"
 msgid ""
-"Thank you for using Another Wordpress Classifieds Plugin, the #1 Wordpress "
+"Thank you for using Another WordPress Classifieds Plugin, the #1 WordPress "
 "Classifieds Plugin.  Please direct support requests, enhancement ideas and "
 "bug reports to the %s."
 msgstr ""
 
-#: templates/admin/main-classifieds-admin-page.tpl.php:54
-#: templates/admin/main-classifieds-admin-page.tpl.php:100
+#: templates/admin/main-classifieds-admin-page.tpl.php:52
+#: templates/admin/main-classifieds-admin-page.tpl.php:98
 msgid "Payment Options"
 msgstr ""
 
-#: templates/admin/main-classifieds-admin-page.tpl.php:110
+#: templates/admin/main-classifieds-admin-page.tpl.php:108
 msgid ""
 "AWPCP is highly customizable. Use the next button to go to the Settings "
 "section to fit AWPCP to your needs."
 msgstr ""
 
-#: templates/admin/main-classifieds-admin-page.tpl.php:111
+#: templates/admin/main-classifieds-admin-page.tpl.php:109
 msgid "Configure AWPCP"
 msgstr ""
 
