@@ -77,29 +77,43 @@
                     <ul>
 
 						<?php
+						/* translators: %s: link  %s: translated text */
 						$atag = sprintf( $tpl, 'http://www.awpcp.com/quick-start-guide', __( 'Quick Start Guide', 'another-wordpress-classifieds-plugin' ) );
 						?>
                         <li>
 							<?php
-							echo sprintf( esc_html_x( 'Browse the %s.', 'Browse the <a>Quick Start Guide</a>', 'another-wordpress-classifieds-plugin' ), $atag );
+							/* translators: %s: translated link */
+							$text = sprintf( esc_html_x( 'Browse the %s.', 'Browse the <a>Quick Start Guide</a>', 'another-wordpress-classifieds-plugin' ), $atag );
+							echo wp_kses_post( $text );
 							?>
                         </li>
 						<?php
-						/* translators: %s: Link,  %s: text */
+						/* translators: %s: link  %s: translated text */
 						$atag = sprintf( $tpl, 'http://awpcp.com/docs', __( 'Documentation', 'another-wordpress-classifieds-plugin' ) );
 						?>
-						<?php /* translators: %s: Documentation */ ?>
-                        <li>
-                            <?php
-                            echo sprintf( esc_html_x( 'Read the full %s.', 'Read the full <a>Documentation</a>', 'another-wordpress-classifieds-plugin' ), $atag );
-                            ?>
-                        </li>
-						<?php /* translators: %s: Forums*/ ?>
-						<?php $atag = sprintf( $tpl, 'http://www.awpcp.com/forum', __( 'visit the forums!', 'another-wordpress-classifieds-plugin' ) ); ?>
                         <li>
 							<?php
-							// phpcs:ignore
-							echo sprintf( esc_html_x( 'Report bugs or get more help: %s.', 'Report bugs or get more help: <a>visit the forums!</a>', 'another-wordpress-classifieds-plugin' ), $atag );
+							/* translators: %s: link  %s: translated text */
+							$text = sprintf( esc_html_x( 'Read the full %s.', 'Read the full <a>Documentation</a>', 'another-wordpress-classifieds-plugin' ), $atag );
+							echo wp_kses_post( $text );
+							?>
+                        </li>
+						<?php
+						/* translators: %s: link  %s: translated text */
+						$atag = sprintf( $tpl, 'http://www.awpcp.com/forum', __( 'visit the forums!', 'another-wordpress-classifieds-plugin' ) );
+						?>
+                        <li>
+							<?php
+							$text = sprintf(
+							    /* translators: %s: translated link   */
+								esc_html_x(
+									'Report bugs or get more help: %s.',
+									'Report bugs or get more help: <a>visit the forums!</a>',
+									'another-wordpress-classifieds-plugin'
+								),
+								$atag
+							);
+							echo wp_kses_post( $text );
 							?>
                         </li>
                     </ul>
