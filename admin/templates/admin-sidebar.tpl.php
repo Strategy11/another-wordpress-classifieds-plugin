@@ -77,24 +77,20 @@
                     <ul>
 
 						<?php
-						// phpcs:ignore WordPress.Security.EscapeOutput
 						$atag = sprintf( $tpl, 'http://www.awpcp.com/quick-start-guide', __( 'Quick Start Guide', 'another-wordpress-classifieds-plugin' ) );
 						?>
                         <li>
 							<?php
-							// phpcs:ignore
 							echo sprintf( esc_html_x( 'Browse the %s.', 'Browse the <a>Quick Start Guide</a>', 'another-wordpress-classifieds-plugin' ), $atag );
 							?>
                         </li>
-						<?php /* translators: %s: Link */ ?>
 						<?php
-						// phpcs:ignore WordPress.Security.EscapeOutput
+						/* translators: %s: Link,  %s: text */
 						$atag = sprintf( $tpl, 'http://awpcp.com/docs', __( 'Documentation', 'another-wordpress-classifieds-plugin' ) );
 						?>
 						<?php /* translators: %s: Documentation */ ?>
                         <li>
                             <?php
-                            // phpcs:ignore
                             echo sprintf( esc_html_x( 'Read the full %s.', 'Read the full <a>Documentation</a>', 'another-wordpress-classifieds-plugin' ), $atag );
                             ?>
                         </li>
