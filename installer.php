@@ -807,8 +807,9 @@ class AWPCP_Installer {
 
         if ( ! awpcp_column_exists( AWPCP_TABLE_AD_REGIONS, 'old_listing_id' ) ) {
             $wpdb->query( 'ALTER TABLE ' . AWPCP_TABLE_AD_REGIONS . ' ADD `old_listing_id` INT(10) NOT NULL AFTER `ad_id`' );
-            $wpdb->query( 'UPDATE ' . AWPCP_TABLE_AD_REGIONS . ' SET `old_listing_id` = `ad_id`' );
         }
+
+        $wpdb->query( 'UPDATE ' . AWPCP_TABLE_AD_REGIONS . ' SET `old_listing_id` = `ad_id`' );
     }
 
     private function migrate_wordpress_page_settings() {
