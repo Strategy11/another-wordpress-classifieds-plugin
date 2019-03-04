@@ -1,17 +1,31 @@
 <?php
+/**
+ * @package AWPCP\Frontend
+ */
 
+/**
+ * Constructor for URL Backwards Compatiblity Redirection Helper.
+ */
 function awpcp_url_backwards_compatibility_redirection_helper() {
+    $container = awpcp()->container;
+
     return new AWPCP_URL_Backwards_Compatibility_Redirection_Helper(
-        'awpcp_listing', // TODO: Get value from container.
+        $container['listing_post_type'],
         awpcp_categories_registry(),
-        awpcp_categories_collection(),
-        awpcp_listings_collection(),
+        $container['CategoriesCollection'],
+        $container['ListingsCollection'],
         awpcp_query(),
-        awpcp_settings_api(),
-        awpcp_request()
+        $container['Settings'],
+        $container['Request']
     );
 }
 
+/**
+ * Redirect URLs that include IDs used before 4.0 to URLs that use the
+ * corresponding ID from listings stored as custom post types.
+ *
+ * @since 4.0.0
+ */
 class AWPCP_URL_Backwards_Compatibility_Redirection_Helper {
 
     private $post_type;
