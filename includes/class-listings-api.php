@@ -180,11 +180,11 @@ class AWPCP_ListingsAPI {
             $error_message = $listing_id->get_error_message();
 
             if ( $error_message ) {
-                $message = __( 'There was an error trying to save your listing details:', 'another-wordpress-classifieds-plugin' );
+                $message = __( 'There was an error trying to save the listing details:', 'another-wordpress-classifieds-plugin' );
                 $message.= '<br/><br/>';
                 $message.= $error_message;
             } else {
-                $message = __( 'There was an unexpected error trying to save your listing details. Please try again or contact an administrator.', 'another-wordpress-classifieds-plugin' );
+                $message = __( 'There was an unexpected error trying to save the listing details. Please try again or contact an administrator.', 'another-wordpress-classifieds-plugin' );
             }
 
             throw new AWPCP_Exception( $message );
