@@ -106,17 +106,7 @@ class AWPCP_URL_Backwards_Compatibility_Redirection_Helper {
                 $category = $this->categories->get( $equivalent_category_id );
                 return $this->redirect( url_browsecategory( $category ) );
             }
-        // } else if ( $this->query->is_single_listing_page() ) {
-        //     $requested_listing_id = $this->request->get_current_listing_id();
-
-        //     try {
-        //         $listing = $this->listings->get_listing_with_old_id( $requested_listing_id );
-        //     } catch ( AWPCP_Exception $e ) {
-        //         return;
-        //     }
-
-        //     return $this->redirect( url_showad( $listing->ID ) );
-        } else if ( $this->query->is_renew_listing_page() ) {
+        } elseif ( $this->query->is_renew_listing_page() ) {
             $this->maybe_redirect_frontend_renew_listing_request();
         }
     }
