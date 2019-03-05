@@ -6,11 +6,12 @@
 // @phpcs:disable
 
 function awpcp_manual_upgrade_admin_page() {
+    $container = awpcp()->container;
+
     return new AWPCP_ManualUpgradeAdminPage(
         awpcp_upgrade_tasks_manager(),
-        // TODO: this reference to the container shouldn't be here
-        awpcp()->container->get( 'AWPCP_Upgrade_Sessions' ),
-        awpcp_request()
+        $container->get( 'AWPCP_Upgrade_Sessions' ),
+        $container['Request']
     );
 }
 
