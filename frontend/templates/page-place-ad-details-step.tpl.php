@@ -92,15 +92,6 @@
         </div>
         <?php endif ?>
 
-        <?php
-            echo awpcp_form_fields()->render_fields(
-                $form,
-                $errors,
-                isset( $listing ) ? $listing : null,
-                array( 'category' => $form['ad_category'], 'action' => 'normal' )
-            );
-        ?>
-
         <?php if ($ui['terms-of-service']): ?>
         <p class="awpcp-form-spacer">
         <?php $text = get_awpcp_option('tos') ?>
