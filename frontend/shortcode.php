@@ -7,7 +7,6 @@
 
 require_once(AWPCP_DIR . '/frontend/shortcode-raw.php');
 
-require_once(AWPCP_DIR . '/frontend/page-edit-ad.php');
 require_once(AWPCP_DIR . '/frontend/page-renew-ad.php');
 require_once(AWPCP_DIR . '/frontend/page-show-ad.php');
 require_once(AWPCP_DIR . '/frontend/page-reply-to-ad.php');
