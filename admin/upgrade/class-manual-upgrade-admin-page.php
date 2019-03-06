@@ -33,9 +33,11 @@ class AWPCP_ManualUpgradeAdminPage {
 
     public function dispatch() {
         $context = $this->request->param( 'context', 'plugin' );
-        $pending_tasks = $this->get_pending_upgrade_tasks( $context );
 
         $upgrade_session = $this->upgrade_sessions->get_or_create_session( $context );
+
+        $pending_tasks = $this->get_pending_upgrade_tasks( $context );
+        $pending_tasks = $this->clean_already_completed_upgrade_tasks( $pending_tasks, $upgrade_session );
 
         $this->add_tasks_to_upgrade_session( $pending_tasks, $upgrade_session );
         $tasks_definitions = $this->get_tasks_defintions( $pending_tasks, $upgrade_session, $context );
@@ -56,6 +58,37 @@ class AWPCP_ManualUpgradeAdminPage {
         }
 
         return $this->upgrade_tasks->get_pending_tasks( compact( 'context' ) );
+    }
+
+    /**
+     * This method checks each pending task and disable those that are already
+     * completed according to the metadata stored in the upgrade session.
+     *
+     * If someone stops the execution of the upgrade routines and downgrades to
+     * a previous version of the plugin, the next time they install the version
+     * that added the original upgrade routines, routines that were already
+     * completed may be enabled again.
+     *
+     * However, since the routines are completed, the handlers are never
+     * executed and the name of the routine is never removed from the list of
+     * pending taks.
+     *
+     * @since 4.0.0
+     */
+    private function clean_already_completed_upgrade_tasks( $pending_tasks, $upgrade_session ) {
+        foreach ( array_keys( $pending_tasks ) as $task_slug ) {
+            $items_count     = $upgrade_session->get_task_metadata( $task_slug, 'items_count', null );
+            $items_processed = $upgrade_session->get_task_metadata( $task_slug, 'items_processed', null );
+
+            // We need to cast items_count and items_processed to int because
+            // they were not always stored as integers.
+            if ( ! is_null( $items_count ) && (int) $items_count === (int) $items_processed ) {
+                $this->upgrade_tasks->disable_upgrade_task( $task_slug );
+                unset( $pending_tasks[ $task_slug ] );
+            }
+        }
+
+        return $pending_tasks;
     }
 
     private function add_tasks_to_upgrade_session( $pending_upgrade_tasks, $upgrade_session ) {

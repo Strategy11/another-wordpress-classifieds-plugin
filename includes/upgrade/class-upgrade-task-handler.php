@@ -71,11 +71,12 @@ class AWPCP_Upgrade_Task_Handler {
         $items_count = $upgrade_session->get_task_metadata( $task, 'items_count', 0 );
 
         if ( $items_count === 0 ) {
-            $items_count = $result['pending_items_count_before'];
+            $items_count = (int) $result['pending_items_count_before'];
+
             $upgrade_session->set_task_metadata( $task, 'items_count', $items_count );
         }
 
-        $items_processed = $items_count - $result['pending_items_count_now'];
+        $items_processed = (int) $items_count - (int) $result['pending_items_count_now'];
 
         $upgrade_session->set_task_metadata( $task, 'items_processed', $items_processed );
         $upgrade_session->set_task_metadata( $task, 'last_item_id', $result['last_item_id'] );
