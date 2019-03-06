@@ -205,11 +205,12 @@ function awpcp_send_ad_renewed_email($ad) {
 
 /**
  * @since 2.0.7
+ * @deprecated 4.0.0 No longer used by internal code.
  * @SuppressWarnings(PHPMD)
  */
 function awpcp_renew_ad_success_message($ad, $text=null, $send_email=true) {
 	if (is_null($text)) {
-		$text = __("The Ad has been successfully renewed. New expiration date is %s. ", 'another-wordpress-classifieds-plugin');
+		$text = __( 'The Ad has been successfully renewed. New expiration date is %s.', 'another-wordpress-classifieds-plugin' );
 	}
 
 	$return = '';

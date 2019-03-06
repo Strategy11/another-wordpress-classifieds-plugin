@@ -71,7 +71,7 @@ class AWPCP_FilesSettings {
     }
 
     public function primary_image_excerpt_section_header() {
-        echo __( 'Configure the dimensions of the image displayed as the thumbnail for each ad in the page the list of ads.', 'another-wordpress-classifieds-plugin' );
+        echo __( 'Configure the dimensions of the image displayed as the thumbnail for each ad in the page with the list of ads.', 'another-wordpress-classifieds-plugin' );
     }
 
     public function primary_image_section_header() {

@@ -139,7 +139,7 @@ class AWPCP_FixIDCollisionForListingsUpgradeTaskHandler implements AWPCP_Upgrade
         $new_post_id = $this->maybe_insert_post_with_id( $wanted_post_id, $post_data );
 
         if ( is_wp_error( $new_post_id ) ) {
-            $message = __( 'There was an error trying to create a replacement post for post with _ID equal to {post_id}. {error_message}', 'another-wordpress-classifieds-plugin' );
+            $message = __( 'There was an error trying to create a replacement post for post with ID equal to {post_id}. {error_message}', 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '{post_id}', $old_post_id, $message );
             $message = str_replace( '{error_message}', $new_post_id->get_error_message(), $message );
 
