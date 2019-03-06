@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-"
 "plugin\n"
-"POT-Creation-Date: 2019-03-02 17:10:49+00:00\n"
+"POT-Creation-Date: 2019-03-06 03:41:52+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -165,8 +165,8 @@ msgid "Import Listings"
 msgstr ""
 
 #: admin/admin-panel.php:182
-#: templates/admin/main-classifieds-admin-page.tpl.php:61
-#: templates/admin/main-classifieds-admin-page.tpl.php:89
+#: templates/admin/main-classifieds-admin-page.tpl.php:69
+#: templates/admin/main-classifieds-admin-page.tpl.php:97
 msgid "Manage Categories"
 msgstr ""
 
@@ -1632,7 +1632,7 @@ msgid ""
 "add credit when posting a new Ad or using the \"Add Credit\" button below."
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:154
+#: admin/upgrade/class-manual-upgrade-admin-page.php:155
 msgctxt "awpcp upgrade"
 msgid ""
 "Another WordPress Classifieds Plugin needs to upgrade your database.  The "
@@ -1640,7 +1640,7 @@ msgid ""
 "stored. Please press the Upgrade button shown below to start the process."
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:157
+#: admin/upgrade/class-manual-upgrade-admin-page.php:158
 msgctxt "awpcp upgrade"
 msgid ""
 "AWPCP's premium modules need to upgrade the information stored in the "
@@ -1649,13 +1649,13 @@ msgid ""
 "the process."
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:171
+#: admin/upgrade/class-manual-upgrade-admin-page.php:172
 msgid ""
 "All blocking upgrade tasks were completed successfully. All features are "
 "available again."
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:172
+#: admin/upgrade/class-manual-upgrade-admin-page.php:173
 msgid ""
 "Please keep this tab open, but you can open up another browser tab and "
 "continue working on your site while this process runs in the background. "
@@ -1663,58 +1663,58 @@ msgid ""
 "tab</a>."
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:178
+#: admin/upgrade/class-manual-upgrade-admin-page.php:179
 msgid ""
 "Congratulations. All blocking upgrade tasks were completed successfully. You "
 "can now access all features. <continue-link>Click here to Continue</a>."
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:183
+#: admin/upgrade/class-manual-upgrade-admin-page.php:184
 msgid "Upgrade Tasks that must complete immediately"
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:184
+#: admin/upgrade/class-manual-upgrade-admin-page.php:185
 msgid ""
 "The following tasks need to be completed before you can use the plugin and "
 "modules features again."
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:192
-#: admin/upgrade/class-manual-upgrade-admin-page.php:197
+#: admin/upgrade/class-manual-upgrade-admin-page.php:193
+#: admin/upgrade/class-manual-upgrade-admin-page.php:198
 msgid ""
 "The following tasks need to be completed, but the plugin and modules "
 "features will continue to work while the routines are executed."
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:199
+#: admin/upgrade/class-manual-upgrade-admin-page.php:200
 msgid ""
 "Please keep this tab open, but you can open up another browser tab and "
 "continue working on your site while this process runs in the background."
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:200
+#: admin/upgrade/class-manual-upgrade-admin-page.php:201
 msgid ""
 "Click the Upgrade button and then <continue-link>Click here to open the main "
 "Classifieds admin screen in a new tab</a>."
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:207
+#: admin/upgrade/class-manual-upgrade-admin-page.php:208
 msgctxt "awpcp upgrade"
 msgid ""
 "Congratulations. All non blocking tasks were completed successfully. "
 "<continue-link>Click here to Continue</a>."
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:211
+#: admin/upgrade/class-manual-upgrade-admin-page.php:212
 msgid "Upgrade tasks that will run while the plugin continues to work"
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:222
+#: admin/upgrade/class-manual-upgrade-admin-page.php:223
 msgctxt "button text in manual upgrade admin page"
 msgid "Resume Upgrade"
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:236
+#: admin/upgrade/class-manual-upgrade-admin-page.php:237
 msgctxt "button text in manual upgrade admin page"
 msgid "Upgrade"
 msgstr ""
@@ -1764,45 +1764,43 @@ msgstr ""
 msgid "The ad \"%s\" has been successfully renewed."
 msgstr ""
 
-#: frontend/ad-functions.php:212
-msgid "The Ad has been successfully renewed. New expiration date is %s. "
+#: frontend/ad-functions.php:213 frontend/page-renew-ad.php:166
+msgid "The Ad has been successfully renewed. New expiration date is %s."
 msgstr ""
 
-#: frontend/ad-functions.php:217 frontend/page-renew-ad.php:158
+#: frontend/ad-functions.php:218 frontend/page-renew-ad.php:158
 #: templates/admin/listings/quick-view-listing-admin-page.tpl.php:10
 #: templates/admin/listings-media-center.tpl.php:6
 #: templates/admin/view-listing-admin-page.tpl.php:15
 msgid "Return to Listings"
 msgstr ""
 
-#: frontend/ad-functions.php:238 frontend/page-place-ad.php:157
+#: frontend/ad-functions.php:239 frontend/page-place-ad.php:157
 msgid ""
 "You do not have permission to perform the function you are trying to "
 "perform. Access to this page has been denied"
 msgstr ""
 
-#: frontend/ad-functions.php:253
+#: frontend/ad-functions.php:254
 msgid "The Ad has been deleted"
 msgstr ""
 
-#: frontend/ad-functions.php:256
+#: frontend/ad-functions.php:257
 msgid ""
 "Your Ad details and any photos you have uploaded have been deleted from the "
 "system"
 msgstr ""
 
-#: frontend/ad-functions.php:260 frontend/page-edit-ad.php:145
-#: frontend/page-edit-ad.php:213 frontend/page-edit-ad.php:371
-#: frontend/page-edit-ad.php:403
+#: frontend/ad-functions.php:261
 #: includes/frontend/class-edit-listing-page.php:176
 msgid "The specified Ad doesn't exists."
 msgstr ""
 
-#: frontend/ad-functions.php:262
+#: frontend/ad-functions.php:263
 msgid "There was an error trying to delete the Ad. The Ad was not deleted."
 msgstr ""
 
-#: frontend/ad-functions.php:265
+#: frontend/ad-functions.php:266
 msgid "Problem encountered. Cannot complete  request"
 msgstr ""
 
@@ -1811,11 +1809,11 @@ msgctxt "single dropdown category selector"
 msgid "Category:"
 msgstr ""
 
-#: frontend/class-image-placeholders.php:85
+#: frontend/class-image-placeholders.php:81
 msgid "Click to enlarge image."
 msgstr ""
 
-#: frontend/class-image-placeholders.php:99
+#: frontend/class-image-placeholders.php:95
 msgid "Thumbnail for the listing's main image"
 msgstr ""
 
@@ -1832,54 +1830,6 @@ msgstr ""
 msgid ""
 "No specific category was selected for browsing so you are viewing listings "
 "from all categories."
-msgstr ""
-
-#: frontend/page-edit-ad.php:65
-msgid "Please go to the Ad Management panel to edit your Ads."
-msgstr ""
-
-#: frontend/page-edit-ad.php:66
-#: includes/frontend/class-edit-listing-page.php:323
-msgid "Click here"
-msgstr ""
-
-#: frontend/page-edit-ad.php:96
-msgid "You are not allowed to edit the specified Ad."
-msgstr ""
-
-#: frontend/page-edit-ad.php:182
-msgid "Manage Attachments"
-msgstr ""
-
-#: frontend/page-edit-ad.php:185
-msgid "Go to the %s section to manage the Images and Attachments for this Ad."
-msgstr ""
-
-#: frontend/page-edit-ad.php:309 frontend/page-place-ad.php:1349
-msgid "The specified Ad doesn't exists. No images can be added at this time."
-msgstr ""
-
-#: frontend/page-edit-ad.php:359
-#: frontend/templates/page-place-ad-preview-step.tpl.php:17
-#: includes/frontend/class-submit-listing-form-steps.php:66
-#: templates/admin/import-listings-admin-page-import-form.tpl.php:38
-msgid "Finish"
-msgstr ""
-
-#. translators: %s is the URL to the listing's individual page.
-#: frontend/page-edit-ad.php:378
-#: includes/frontend/class-edit-listing-page.php:184
-msgid ""
-"The Ad has been edited successfully. <a href=\"%s\">Go back to view "
-"listings</a>."
-msgstr ""
-
-#: frontend/page-edit-ad.php:408
-msgid "There was a problem trying to delete your Ad. The Ad was not deleted."
-msgstr ""
-
-#: frontend/page-edit-ad.php:420
-msgid "Your Ad has been successfully deleted."
 msgstr ""
 
 #: frontend/page-place-ad.php:83
@@ -2119,6 +2069,10 @@ msgid ""
 "images can be added at this time."
 msgstr ""
 
+#: frontend/page-place-ad.php:1349
+msgid "The specified Ad doesn't exists. No images can be added at this time."
+msgstr ""
+
 #: frontend/page-place-ad.php:1405
 msgctxt "upload listing images form"
 msgid "Preview Ad"
@@ -2176,10 +2130,6 @@ msgstr ""
 
 #: frontend/page-renew-ad.php:160
 msgid "You can see your Ad here"
-msgstr ""
-
-#: frontend/page-renew-ad.php:166
-msgid "The Ad has been successfully renewed. New expiration date is %s."
 msgstr ""
 
 #: frontend/page-renew-ad.php:212
@@ -2315,11 +2265,11 @@ msgstr ""
 msgid "Share on Facebook"
 msgstr ""
 
-#: frontend/shortcode.php:294
+#: frontend/shortcode.php:293
 msgid "Hi admin, you need to go to your dashboard and setup your classifieds."
 msgstr ""
 
-#: frontend/shortcode.php:297
+#: frontend/shortcode.php:296
 msgid "You currently have no classifieds"
 msgstr ""
 
@@ -2631,27 +2581,27 @@ msgstr ""
 msgid "Add Details and Contact Information"
 msgstr ""
 
-#: frontend/templates/page-place-ad-details-step.tpl.php:109
+#: frontend/templates/page-place-ad-details-step.tpl.php:100
 msgctxt "ad details form"
 msgid "Read our Terms of Service"
 msgstr ""
 
-#: frontend/templates/page-place-ad-details-step.tpl.php:111
+#: frontend/templates/page-place-ad-details-step.tpl.php:102
 msgctxt "ad details form"
 msgid "Terms of service:"
 msgstr ""
 
-#: frontend/templates/page-place-ad-details-step.tpl.php:116
+#: frontend/templates/page-place-ad-details-step.tpl.php:107
 msgctxt "ad details form"
 msgid "I agree to the terms of service"
 msgstr ""
 
-#: frontend/templates/page-place-ad-details-step.tpl.php:131
+#: frontend/templates/page-place-ad-details-step.tpl.php:122
 msgctxt "listing details form"
 msgid "Preview Ad"
 msgstr ""
 
-#: frontend/templates/page-place-ad-details-step.tpl.php:133
+#: frontend/templates/page-place-ad-details-step.tpl.php:124
 msgctxt "listing details form"
 msgid "Continue"
 msgstr ""
@@ -2702,6 +2652,12 @@ msgstr ""
 
 #: frontend/templates/page-place-ad-preview-step.tpl.php:15
 msgid "Manage Images"
+msgstr ""
+
+#: frontend/templates/page-place-ad-preview-step.tpl.php:17
+#: includes/frontend/class-submit-listing-form-steps.php:66
+#: templates/admin/import-listings-admin-page-import-form.tpl.php:38
+msgid "Finish"
 msgstr ""
 
 #: frontend/templates/page-place-ad-upload-images-step.tpl.php:1
@@ -4177,20 +4133,14 @@ msgstr ""
 msgid "less than 1"
 msgstr ""
 
-#: includes/class-listings-api.php:109
+#: includes/class-listings-api.php:109 includes/class-listings-api.php:187
 msgid ""
 "There was an unexpected error trying to save the listing details. Please try "
 "again or contact an administrator."
 msgstr ""
 
 #: includes/class-listings-api.php:183
-msgid "There was an error trying to save your listing details:"
-msgstr ""
-
-#: includes/class-listings-api.php:187
-msgid ""
-"There was an unexpected error trying to save your listing details. Please "
-"try again or contact an administrator."
+msgid "There was an error trying to save the listing details:"
 msgstr ""
 
 #: includes/class-listings-api.php:520
@@ -4425,6 +4375,13 @@ msgstr ""
 msgid "The selected ad cannot be edited right now."
 msgstr ""
 
+#. translators: %s is the URL to the listing's individual page.
+#: includes/frontend/class-edit-listing-page.php:184
+msgid ""
+"The Ad has been edited successfully. <a href=\"%s\">Go back to view "
+"listings</a>."
+msgstr ""
+
 #: includes/frontend/class-edit-listing-page.php:212
 msgid ""
 "Your changes have been published. This is the content that will be seen by "
@@ -4457,6 +4414,10 @@ msgstr ""
 msgid ""
 "You are currently not logged in, if you have an account on this website you "
 "can log in and go to the Ad Management panel to edit your Ads."
+msgstr ""
+
+#: includes/frontend/class-edit-listing-page.php:323
+msgid "Click here"
 msgstr ""
 
 #: includes/frontend/class-edit-listing-page.php:355
@@ -5290,7 +5251,7 @@ msgstr ""
 msgid "The specified file is not associated with Listing with ID %d."
 msgstr ""
 
-#: includes/media/class-file-handlers-manager.php:30
+#: includes/media/class-file-handlers-manager.php:55
 msgctxt "file uploads"
 msgid "There is no file handler for this kind of file (<mime-type>). Aborting."
 msgstr ""
@@ -7052,7 +7013,7 @@ msgstr ""
 #: includes/settings/class-files-settings.php:74
 msgid ""
 "Configure the dimensions of the image displayed as the thumbnail for each ad "
-"in the page the list of ads."
+"in the page with the list of ads."
 msgstr ""
 
 #: includes/settings/class-files-settings.php:78
@@ -8992,7 +8953,7 @@ msgstr ""
 
 #: includes/upgrade/class-fix-id-collision-for-listings-upgrade-task-handler.php:142
 msgid ""
-"There was an error trying to create a replacement post for post with _ID "
+"There was an error trying to create a replacement post for post with ID "
 "equal to {post_id}. {error_message}"
 msgstr ""
 
@@ -9650,18 +9611,100 @@ msgid ""
 "bug reports to the %s."
 msgstr ""
 
-#: templates/admin/main-classifieds-admin-page.tpl.php:52
-#: templates/admin/main-classifieds-admin-page.tpl.php:98
+#: templates/admin/main-classifieds-admin-page.tpl.php:6
+msgid "AWPCP Support Website"
+msgstr ""
+
+#: templates/admin/main-classifieds-admin-page.tpl.php:13
+msgid ""
+"The version of the extra fields module that you are using is not compatible "
+"with this version of Another WordPress Classifieds Plugin."
+msgstr ""
+
+#: templates/admin/main-classifieds-admin-page.tpl.php:14
+msgid "Please request updated Extra Fields module files"
+msgstr ""
+
+#: templates/admin/main-classifieds-admin-page.tpl.php:23
+msgid "Another WordPress Classifieds Plugin Stats"
+msgstr ""
+
+#: templates/admin/main-classifieds-admin-page.tpl.php:26
+msgid "AWPCP version"
+msgstr ""
+
+#: templates/admin/main-classifieds-admin-page.tpl.php:31
+msgid "Number of active listings currently in the system"
+msgstr ""
+
+#: templates/admin/main-classifieds-admin-page.tpl.php:34
+msgid "Number of expired/disabled listings currently in the system"
+msgstr ""
+
+#: templates/admin/main-classifieds-admin-page.tpl.php:37
+msgid "Number of invalid listings currently in the system"
+msgstr ""
+
+#: templates/admin/main-classifieds-admin-page.tpl.php:43
+msgid "You have setup your listing fees. To edit your fees go to %s."
+msgstr ""
+
+#: templates/admin/main-classifieds-admin-page.tpl.php:45
+msgid ""
+"You have not configured your Listing fees. Go to %s to set up your listing "
+"fees. Once that is completed, if you are running in pay mode, the options "
+"will automatically appear on the listing form for users to fill out."
+msgstr ""
+
+#: templates/admin/main-classifieds-admin-page.tpl.php:50
+msgid ""
+"You currently have your system configured to run in free mode. To change to "
+"'pay' mode go to %s and Check the box labeled 'Charge Listing Fee? (Pay "
+"Mode).'"
+msgstr ""
+
+#: templates/admin/main-classifieds-admin-page.tpl.php:60
+#: templates/admin/main-classifieds-admin-page.tpl.php:114
 msgid "Payment Options"
 msgstr ""
 
-#: templates/admin/main-classifieds-admin-page.tpl.php:108
+#: templates/admin/main-classifieds-admin-page.tpl.php:67
+msgid ""
+"Go to the %s section to edit/delete current categories or add new categories."
+msgstr ""
+
+#: templates/admin/main-classifieds-admin-page.tpl.php:74
+msgid "Total number of categories in the system"
+msgstr ""
+
+#: templates/admin/main-classifieds-admin-page.tpl.php:80
+msgid "Number of Top Level parent categories"
+msgstr ""
+
+#: templates/admin/main-classifieds-admin-page.tpl.php:86
+msgid "Number of sub level children categories"
+msgstr ""
+
+#: templates/admin/main-classifieds-admin-page.tpl.php:95
+msgid ""
+"You have not categories defined. Go to the %s section to set up your "
+"categories."
+msgstr ""
+
+#: templates/admin/main-classifieds-admin-page.tpl.php:104
+msgid ""
+"You currently have your system configured to run in pay mode. To change to "
+"'free' mode go to %s and uncheck the box labeled 'Charge Listing Fee? (Pay "
+"Mode).'"
+msgstr ""
+
+#: templates/admin/main-classifieds-admin-page.tpl.php:124
 msgid ""
 "AWPCP is highly customizable. Use the next button to go to the Settings "
 "section to fit AWPCP to your needs."
 msgstr ""
 
-#: templates/admin/main-classifieds-admin-page.tpl.php:109
+#: templates/admin/main-classifieds-admin-page.tpl.php:125
 msgid "Configure AWPCP"
 msgstr ""
 
@@ -10035,10 +10078,6 @@ msgstr ""
 #: templates/frontend/actions-submit-listing-section.tpl.php:7
 msgctxt "actions submit listing section"
 msgid "Actions"
-msgstr ""
-
-#: templates/frontend/edit-listing-page-delete-listing-confirmation.tpl.php:7
-msgid "Return to main classifieds"
 msgstr ""
 
 #: templates/frontend/listing-dates-submit-listing-section.tpl.php:7
