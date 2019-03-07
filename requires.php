@@ -59,6 +59,7 @@ require_once AWPCP_DIR . '/includes/compatibility/class-wp-members-login-form-im
 require_once AWPCP_DIR . '/includes/compatibility/class-wp-members-plugin-integration.php';
 require_once AWPCP_DIR . '/includes/compatibility/class-yoast-wordpress-seo-plugin-integration.php';
 require_once AWPCP_DIR . '/includes/compatibility/class-seo-framework-plugin-integration.php';
+require_once AWPCP_DIR . '/includes/compatibility/class-navxt-plugin-integration.php';
 
 
 require_once AWPCP_DIR . '/includes/form-fields/class-form-field.php';
