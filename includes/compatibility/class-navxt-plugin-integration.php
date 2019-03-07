@@ -53,14 +53,14 @@ class AWPCP_NavXTPluginIntegration {
         $this->current_listing  = $meta->ad;
         $this->current_category = $meta->category;
         $this->is_singular      = is_singular( $this->listing_post_type );
-        add_action( 'bcn_before_fill', array( $this, 'modify_ad_breadcrumb' ), 10 );
-        add_action( 'bcn_before_fill', array( $this, 'modify_ad_category_breadcrumb' ), 10 );
+        add_action( 'bcn_before_fill', array( $this, 'ad_breadcrumb' ), 10 );
+        add_action( 'bcn_before_fill', array( $this, 'ad_category_breadcrumb' ), 10 );
     }
 
     /**
      * @since 4.1.0
      */
-    public function modify_ad_breadcrumb( $bcn_breadcrumb_trail ) {
+    public function ad_breadcrumb() {
         global $post, $wp_query;
         if ( ! $this->current_listing ) {
             return false;
@@ -68,7 +68,7 @@ class AWPCP_NavXTPluginIntegration {
         if ( $this->is_singular ) {
             return false;
         }
-
+        // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
         $post                     = $this->current_listing;
         $wp_query->queried_object = $post;
     }
@@ -76,7 +76,7 @@ class AWPCP_NavXTPluginIntegration {
     /**
      * @since 4.1.0
      */
-    public function modify_ad_category_breadcrumb( $bcn_breadcrumb_trail ) {
+    public function ad_category_breadcrumb() {
         global $wp_query;
         if ( ! $this->current_category ) {
             return false;
