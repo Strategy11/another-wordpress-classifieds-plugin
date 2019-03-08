@@ -239,7 +239,6 @@ class AWPCP_RenewAdPageImplementation {
 
         // validate submitted data and prepare transaction
 
-        $payment_terms = new AWPCP_PaymentTermsTable(array($fee->type => array($fee)), $transaction->get('payment-term'));
         $payment_terms = array( $fee->type => array( $fee ) );
         $payment_terms_list = awpcp_payment_terms_list();
 
