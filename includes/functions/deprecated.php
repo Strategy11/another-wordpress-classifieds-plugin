@@ -426,3 +426,38 @@ function awpcp_region_fields( $context='details', $enabled_fields = null ) {
 
     return $fields;
 }
+
+/**
+ * @deprecated 4.0.0 This function will be removed in 4.1.0.
+ */
+function vector2options($show_vector,$selected_map_val,$exclusion_vector=array()) {
+   $myreturn='';
+
+   foreach ( $show_vector as $k => $v ) {
+       if (!in_array($k,$exclusion_vector)) {
+           $myreturn.="<option value=\"".$k."\"";
+           if ($k==$selected_map_val) {
+               $myreturn.=" selected='selected'";
+           }
+           $myreturn.=">".$v."</option>\n";
+       }
+   }
+   return $myreturn;
+}
+
+/**
+ * @deprecated 4.0.0 This function will be removed in 4.1.0.
+ */
+function unix2dos($mystring) {
+    $mystring=preg_replace("/\r/m",'',$mystring);
+    $mystring=preg_replace("/\n/m","\r\n",$mystring);
+    return $mystring;
+}
+
+/**
+ * @deprecated 4.0.0 This function will be removed in 4.1.0.
+ */
+function create_awpcp_random_seed() {
+    list($usec, $sec) = explode(' ', microtime());
+    return (int)$sec+(int)($usec*100000);
+}

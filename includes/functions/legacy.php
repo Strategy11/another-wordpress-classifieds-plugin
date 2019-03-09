@@ -281,36 +281,10 @@ function smart_table2($array, $table_cols=1, $opentable, $closetable, $usingtabl
     $rest=($i-1)%$table_cols;
     if ($rest!=0) {
         $colspan=$table_cols-$rest;
-            
+
         $myreturn.="\t<td".(($colspan==1) ? '' : " colspan=\"$colspan\"")."></td>\n</tr>\n";
     }
     //}
     $myreturn.="$closetable\n";
     return $myreturn;
-}
-
-function create_awpcp_random_seed() {
-    list($usec, $sec) = explode(' ', microtime());
-    return (int)$sec+(int)($usec*100000);
-}
-
-function vector2options($show_vector,$selected_map_val,$exclusion_vector=array()) {
-   $myreturn='';
-
-   foreach ( $show_vector as $k => $v ) {
-       if (!in_array($k,$exclusion_vector)) {
-           $myreturn.="<option value=\"".$k."\"";
-           if ($k==$selected_map_val) {
-               $myreturn.=" selected='selected'";
-           }
-           $myreturn.=">".$v."</option>\n";
-       }
-   }
-   return $myreturn;
-}
-
-function unix2dos($mystring) {
-    $mystring=preg_replace("/\r/m",'',$mystring);
-    $mystring=preg_replace("/\n/m","\r\n",$mystring);
-    return $mystring;
 }
