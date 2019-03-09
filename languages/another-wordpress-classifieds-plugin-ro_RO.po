@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2019-03-06 03:41:52+00:00\n"
+"POT-Creation-Date: 2019-03-09 22:48:24+00:00\n"
 "PO-Revision-Date: 2019-02-25 21:46+0000\n"
 "Last-Translator: Lucian Mihailescu <lucian@intercer.net>, 2019\n"
 "Language-Team: Romanian (Romania) (https://www.transifex.com/wp-translations/teams/8416/ro_RO/)\n"
@@ -148,7 +148,7 @@ msgstr "Anunțuri"
 msgid "Manual Upgrade"
 msgstr "Actualizare Manuală"
 
-#: admin/admin-panel.php:87 admin/admin-panel.php:722
+#: admin/admin-panel.php:87 admin/admin-panel.php:758
 #: includes/models/class-custom-post-types.php:81
 #: includes/settings/class-listings-settings.php:30
 msgid "Classifieds"
@@ -163,7 +163,7 @@ msgid "AWPCP"
 msgstr "AWPCP"
 
 #: admin/admin-panel.php:143 admin/admin-panel.php:144
-#: admin/admin-panel.php:445
+#: admin/admin-panel.php:481
 msgid "Settings"
 msgstr "Setari"
 
@@ -243,31 +243,60 @@ msgstr ""
 "Folosește coloana Balanța Contului în tabela de mai jos pentru a administra "
 "balanța utilizatorilor."
 
-#: admin/admin-panel.php:408
+#: admin/admin-panel.php:418
 msgid ""
 "AWPCP features are currently disabled because the plugin needs you to "
-"perform a manual upgrade before continuing. Please <upgrade-link>go to the "
-"Classifieds admin section section to Upgrade</a> or click the button below."
+"perform a manual upgrade before continuing."
 msgstr ""
-"Facilitățile AWPCP sunt în mod curent dezactivate pentru ca plugin-ul "
-"trebuie să desfășoare o actualizare manuală înainte de a continua. Vă rugăm "
-"să<upgrade-link>mergeți la sectiunea de administrare</a> sau dați click pe "
-"butonul de mai jos."
 
-#: admin/admin-panel.php:427
+#: admin/admin-panel.php:419
+msgid ""
+"The duration for this upgrade operation varies between several minutes and a"
+" few hours, depending on the size of your database, the current network "
+"conditions and the server's capabilities. Your users and you won't be able "
+"to use the Classified Admin pages or submit and explore ads on the frontend "
+"until the upgrade is complete."
+msgstr ""
+
+#. translators: %1$s is the opening tag for the link to the page explaining
+#. how
+#. to downgrade to a previous version of the plugin, %2$s is the closing tag
+#. for the link.
+#: admin/admin-panel.php:422
+msgid ""
+"If this is not a good time to go through the upgrade process, we recommend "
+"you to %1$sinstall the previous version again%2$s and plan to upgrade "
+"tonight or later this week when you have more time."
+msgstr ""
+
+#. translators: %1$s is the opening tag for the link to the upgrade page, %2$s
+#. is the closing tag for the link.
+#: admin/admin-panel.php:428
+msgid ""
+"To upgrade, please %1$sgo to the Classifieds admin section%2$s or click the "
+"button below."
+msgstr ""
+
+#. translators: %1$s is the opening tag for the link to the upgrade page, %2$s
+#. is the closing tag for the link.
+#: admin/admin-panel.php:438
+msgid ""
+"AWPCP features are currently disabled because the plugin needs you to "
+"perform a manual upgrade before continuing. Please %1$sgo to the Classifieds"
+" admin section to Upgrade%2$s or click the button below."
+msgstr ""
+
+#. translators: %1$s is the opening tag for the link to the upgrade page, %2$s
+#. is the closing tag for the link.
+#: admin/admin-panel.php:460
 msgid ""
 "AWPCP needs you to perform a manual upgrade to update the database schema "
 "and the information stored there. All plugin features will continue to work "
-"while the upgrade routines are executed. Please <upgrade-link>go to the "
-"Classifieds admin section section to Upgrade</a> or click the button below."
+"while the upgrade routines are executed. Please %1$sgo to the Classifieds "
+"admin section to Upgrade%2$s or click the button below."
 msgstr ""
-"AWPCP are nevoie să procesezi o actualizare manuală pentru a actualiza baza "
-"de date și informațiile stocate în ea. Toate capabilitățile plugin-ului vor "
-"continua să lucreze în timp ce are loc actualizarea. Te rugăm <upgrade-"
-"link>să mergi la secțiunea de administrare a anunțurilor pentru a actualiza "
-"</a>sau dă click pe butonul de mai jos."
 
-#: admin/admin-panel.php:498
+#: admin/admin-panel.php:534
 msgid ""
 "Page %1$s has the same URL as the %2$s from AWPCP. The WordPress page %1$s "
 "is going to be unreachable until this changes."
@@ -284,7 +313,7 @@ msgstr[2] ""
 "Paginile %1$s au același URL ca și %2$sdin AWPCP. Paginile din WordPress "
 "%1$s vor fi inaccesibile până le vei schimba. "
 
-#: admin/admin-panel.php:506
+#: admin/admin-panel.php:542
 msgid ""
 "The %1$s is dynamic; you don't need to create a real WordPress page to show "
 "the list of categories, the plugin will generate it for you. If the "
@@ -301,57 +330,57 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: admin/admin-panel.php:687 admin/class-categories-admin-page.php:70
+#: admin/admin-panel.php:723 admin/class-categories-admin-page.php:70
 #: admin/class-categories-admin-page.php:74
 msgid "Manage Category Icon"
 msgstr "Administrează Icon-uri pentru categorii"
 
-#: admin/admin-panel.php:692 admin/class-categories-admin-page.php:45
+#: admin/admin-panel.php:728 admin/class-categories-admin-page.php:45
 #: admin/class-categories-admin-page.php:49
 #: admin/class-categories-admin-page.php:142
 msgid "Edit Category"
 msgstr "Editează categorie"
 
-#: admin/admin-panel.php:693 admin/class-categories-admin-page.php:56
+#: admin/admin-panel.php:729 admin/class-categories-admin-page.php:56
 #: admin/class-categories-admin-page.php:60
 msgid "Delete Category"
 msgstr "Șterge categorie"
 
-#: admin/admin-panel.php:699
+#: admin/admin-panel.php:735
 msgid "Select {category_name}"
 msgstr ""
 
-#: admin/admin-panel.php:733 includes/settings/class-listings-settings.php:407
+#: admin/admin-panel.php:769 includes/settings/class-listings-settings.php:407
 msgctxt "page name"
 msgid "Show Ad"
 msgstr ""
 
-#: admin/admin-panel.php:737
+#: admin/admin-panel.php:773
 msgctxt "page name"
 msgid "Reply to Ad"
 msgstr "Răspunde la anunț"
 
-#: admin/admin-panel.php:741
+#: admin/admin-panel.php:777
 msgctxt "page name"
 msgid "Edit Ad"
 msgstr "Editează anunț"
 
-#: admin/admin-panel.php:745
+#: admin/admin-panel.php:781
 msgctxt "page name"
 msgid "Place Ad"
 msgstr "Adauga anunț"
 
-#: admin/admin-panel.php:749
+#: admin/admin-panel.php:785
 msgctxt "page name"
 msgid "Renew Ad"
 msgstr "Reînnoieste anunț"
 
-#: admin/admin-panel.php:753
+#: admin/admin-panel.php:789
 msgctxt "page name"
 msgid "Browse Ads"
 msgstr "Explorează anunțuri"
 
-#: admin/admin-panel.php:757
+#: admin/admin-panel.php:793
 msgctxt "page name"
 msgid "Search Ads"
 msgstr "Caută anunțuri"
@@ -1512,11 +1541,11 @@ msgstr "Vă rugăm să dați click aici pentru procesul de dezinstalare."
 msgid "Amount"
 msgstr "Valoare"
 
-#: admin/templates/admin-pending-manual-upgrade-notice.tpl.php:4
+#: admin/templates/admin-pending-manual-upgrade-notice.tpl.php:12
 msgid "Manual Upgrade Required"
 msgstr "Este necesară actualizare manuală"
 
-#: admin/templates/admin-pending-manual-upgrade-notice.tpl.php:9
+#: admin/templates/admin-pending-manual-upgrade-notice.tpl.php:17
 msgid "Upgrade"
 msgstr "Actualizează"
 
@@ -1758,7 +1787,7 @@ msgstr ""
 "Puteți adăuga mai mult credit când postați un anunț nou sau folosind butonul"
 " \"Adaugă Credit\" de mai jos."
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:155
+#: admin/upgrade/class-manual-upgrade-admin-page.php:188
 msgctxt "awpcp upgrade"
 msgid ""
 "Another WordPress Classifieds Plugin needs to upgrade your database.  The "
@@ -1766,7 +1795,7 @@ msgid ""
 "stored. Please press the Upgrade button shown below to start the process."
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:158
+#: admin/upgrade/class-manual-upgrade-admin-page.php:191
 msgctxt "awpcp upgrade"
 msgid ""
 "AWPCP's premium modules need to upgrade the information stored in the "
@@ -1775,13 +1804,13 @@ msgid ""
 "the process."
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:172
+#: admin/upgrade/class-manual-upgrade-admin-page.php:205
 msgid ""
 "All blocking upgrade tasks were completed successfully. All features are "
 "available again."
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:173
+#: admin/upgrade/class-manual-upgrade-admin-page.php:206
 msgid ""
 "Please keep this tab open, but you can open up another browser tab and "
 "continue working on your site while this process runs in the background. "
@@ -1789,58 +1818,58 @@ msgid ""
 " tab</a>."
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:179
+#: admin/upgrade/class-manual-upgrade-admin-page.php:212
 msgid ""
 "Congratulations. All blocking upgrade tasks were completed successfully. You"
 " can now access all features. <continue-link>Click here to Continue</a>."
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:184
+#: admin/upgrade/class-manual-upgrade-admin-page.php:217
 msgid "Upgrade Tasks that must complete immediately"
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:185
+#: admin/upgrade/class-manual-upgrade-admin-page.php:218
 msgid ""
 "The following tasks need to be completed before you can use the plugin and "
 "modules features again."
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:193
-#: admin/upgrade/class-manual-upgrade-admin-page.php:198
+#: admin/upgrade/class-manual-upgrade-admin-page.php:226
+#: admin/upgrade/class-manual-upgrade-admin-page.php:231
 msgid ""
 "The following tasks need to be completed, but the plugin and modules "
 "features will continue to work while the routines are executed."
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:200
+#: admin/upgrade/class-manual-upgrade-admin-page.php:233
 msgid ""
 "Please keep this tab open, but you can open up another browser tab and "
 "continue working on your site while this process runs in the background."
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:201
+#: admin/upgrade/class-manual-upgrade-admin-page.php:234
 msgid ""
 "Click the Upgrade button and then <continue-link>Click here to open the main"
 " Classifieds admin screen in a new tab</a>."
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:208
+#: admin/upgrade/class-manual-upgrade-admin-page.php:241
 msgctxt "awpcp upgrade"
 msgid ""
 "Congratulations. All non blocking tasks were completed successfully. "
 "<continue-link>Click here to Continue</a>."
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:212
+#: admin/upgrade/class-manual-upgrade-admin-page.php:245
 msgid "Upgrade tasks that will run while the plugin continues to work"
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:223
+#: admin/upgrade/class-manual-upgrade-admin-page.php:256
 msgctxt "button text in manual upgrade admin page"
 msgid "Resume Upgrade"
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:237
+#: admin/upgrade/class-manual-upgrade-admin-page.php:270
 msgctxt "button text in manual upgrade admin page"
 msgid "Upgrade"
 msgstr "Actualizează"
@@ -2046,7 +2075,7 @@ msgstr ""
 "link-ul de înregistrare."
 
 #: frontend/page-place-ad.php:423 frontend/page-place-ad.php:830
-#: frontend/page-renew-ad.php:313
+#: frontend/page-renew-ad.php:312
 #: includes/frontend/class-order-submit-listing-section.php:120
 msgid ""
 "You are logged in as an administrator. Any payment steps will be skipped."
@@ -2056,7 +2085,7 @@ msgstr ""
 
 #. translators: %s is an alphanumeric string that identifies a payment
 #. transaction.
-#: frontend/page-place-ad.php:503 frontend/page-renew-ad.php:362
+#: frontend/page-place-ad.php:503 frontend/page-renew-ad.php:361
 #: includes/frontend/class-submit-listing-page.php:319
 #: includes/views/class-verify-payment-can-be-processed-step-decorator.php:17
 msgid ""
@@ -2277,7 +2306,7 @@ msgid ""
 msgstr "Nu am putut găsi o tranzacție de plată asociată cu această operație."
 
 #: frontend/page-place-ad.php:1435 frontend/page-place-ad.php:1487
-#: frontend/page-renew-ad.php:423
+#: frontend/page-renew-ad.php:422
 #: includes/frontend/class-submit-listing-page.php:386
 msgid "The Ad associated with this transaction doesn't exists."
 msgstr "Anunțul asociat cu această tranzacție nu există."
@@ -10060,20 +10089,20 @@ msgstr ""
 msgid "30 Day Listing"
 msgstr "Anunț pentru 30 zile"
 
-#: installer.php:834
+#: installer.php:835
 msgid "Response to your AWPCP Demo Ad"
 msgstr "Răspuns la anunțul dvs. de la Adserv"
 
-#: installer.php:835
+#: installer.php:836
 msgid "Someone has responded to your AWPCP Demo Ad"
 msgstr "Cineva a răspuns anunțului dvs. de la Adserv"
 
-#: installer.php:845
+#: installer.php:846
 msgctxt "reply to ad email"
 msgid "{__previous_subject__} regarding: {listing_title}"
 msgstr ""
 
-#: installer.php:846
+#: installer.php:847
 msgctxt "reply to ad email"
 msgid ""
 "{__previous_body__}\n"
@@ -10092,7 +10121,7 @@ msgid ""
 "{website_url}"
 msgstr ""
 
-#: installer.php:860
+#: installer.php:861
 msgid "Verify the email address used for Ad $title"
 msgstr "Verificați adresa de email folosită pentru anunțul $title"
 
