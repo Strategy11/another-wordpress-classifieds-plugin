@@ -30,6 +30,16 @@ class AWPCP_NavXTPluginIntegration {
      */
     private $listing_post_type;
 
+    /**
+     * @var obj
+     */
+    private $post;
+
+    /**
+     * @var obj
+     */
+    private $wp_query;
+
 
     public function __construct( $listing_post_type ) {
         $this->listing_post_type = $listing_post_type;
@@ -50,11 +60,15 @@ class AWPCP_NavXTPluginIntegration {
      * @since 4.1.0
      */
     public function before_configure_frontend_meta( $meta ) {
+        global $post, $wp_query;
         $this->current_listing  = $meta->ad;
         $this->current_category = $meta->category;
         $this->is_singular      = is_singular( $this->listing_post_type );
+        $this->post              = $post;
+        $this->wp_query          = $wp_query;
         add_action( 'bcn_before_fill', array( $this, 'ad_breadcrumb' ), 10 );
         add_action( 'bcn_before_fill', array( $this, 'ad_category_breadcrumb' ), 10 );
+        add_action( 'bcn_after_fill', array( $this, 'restore_globals' ), 10 );
     }
 
     /**
@@ -86,5 +100,14 @@ class AWPCP_NavXTPluginIntegration {
         $wp_query->is_page        = false;
         $wp_query->is_singular    = false;
         $wp_query->queried_object = $this->current_category;
+    }
+
+    /**
+     * @since 4.1.0
+     */
+    public function restore_globals() {
+        global $post, $wp_query;
+        $post     = $this->post;
+        $wp_query = $this->wp_query;
     }
 }
