@@ -10,34 +10,14 @@
 <?php require AWPCP_DIR . '/admin/templates/admin-panel-header.tpl.php'; ?>
 
 <ul class="ul-disc">
-	<?php $import_and_export_url = add_query_arg( 'awpcp-view', 'import-settings' ); ?>
-    <li>
-        <strong><a href="<?php echo esc_url( $import_and_export_url ); ?>"><?php esc_html_e( 'Import and Export Settings', 'another-wordpress-classifieds-plugin' ); ?></a></strong>
-        <br>
-		<?php esc_html_e( 'Import and export your settings for re-use on another site.', 'another-wordpress-classifieds-plugin' ); ?>
-    </li>
-
-	<?php $import_listings_url = add_query_arg( 'awpcp-view', 'awpcp-import' ); ?>
-    <li>
-        <strong><a href="<?php echo esc_url( $import_listings_url ); ?>"><?php esc_html_e( 'Import Listings', 'another-wordpress-classifieds-plugin' ); ?></a></strong>
-    </li>
-
-	<?php
-	// lets make sure the awpcp-admin-import-zip-code-database section is registered.
-	global $awpcp;
-	$admin_pages = $awpcp->router->routes->get_admin_pages();
-	if ( isset( $admin_pages['awpcp.php']->subpages['awpcp-tools']->sections['awpcp-admin-import-zip-code-database'] ) ) {
-		$awpcp_zip_code_import = $admin_pages['awpcp.php']->subpages['awpcp-tools']->sections['awpcp-admin-import-zip-code-database'];
-	} else {
-		$awpcp_zip_code_import = false;
-	}
-	if ( $awpcp_zip_code_import ) :
-		$import_zip_code_url = add_query_arg( 'awpcp-view', 'awpcp-admin-import-zip-code-database' );
-		?>
+    <?php foreach ( $params as $view ) : ?>
+        <?php $import_and_export_url = add_query_arg( 'awpcp-view', 'import-settings' ); ?>
         <li>
-            <strong><a href="<?php echo esc_url( $import_zip_code_url ); ?>"><?php esc_html_e( 'Import ZIP Code Database', 'another-wordpress-classifieds-plugin' ); ?></a></strong>
+            <strong><a href="<?php echo $view['url']; ?>"><?php echo $view['title']; ?></a></strong>
+            <br>
+            <?php echo $view['description']; ?>
         </li>
-	<?php endif; ?>
+    <?php endforeach; ?>
 </ul>
 
 </div><!-- end of .awpcp-main-content -->

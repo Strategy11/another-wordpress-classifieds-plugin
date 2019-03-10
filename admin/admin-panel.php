@@ -285,9 +285,9 @@ class AWPCP_AdminPanel {
 
 	    $router->add_admin_section(
 		    'awpcp.php::awpcp-tools',
-		    'awpcp-import',
+		    'import-listings',
 		    'awpcp-view',
-		    'awpcp-import',
+		    'import-listings',
 		    'awpcp_import_listings_admin_page'
 	    );
 
