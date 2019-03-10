@@ -13,8 +13,12 @@
     <?php foreach ( $params as $view ) : ?>
         <?php $import_and_export_url = add_query_arg( 'awpcp-view', 'import-settings' ); ?>
         <li>
+            <?php
+            // Already escaped.
+            // @phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped ?>
             <strong><a href="<?php echo $view['url']; ?>"><?php echo $view['title']; ?></a></strong>
             <br>
+            <?php // @phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped ?>
             <?php echo $view['description']; ?>
         </li>
     <?php endforeach; ?>
