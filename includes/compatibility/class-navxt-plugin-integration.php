@@ -64,8 +64,8 @@ class AWPCP_NavXTPluginIntegration {
         $this->current_listing  = $meta->ad;
         $this->current_category = $meta->category;
         $this->is_singular      = is_singular( $this->listing_post_type );
-        $this->post              = $post;
-        $this->wp_query          = $wp_query;
+        $this->post             = $post;
+        $this->wp_query         = $wp_query;
         add_action( 'bcn_before_fill', array( $this, 'ad_breadcrumb' ), 10 );
         add_action( 'bcn_before_fill', array( $this, 'ad_category_breadcrumb' ), 10 );
         add_action( 'bcn_after_fill', array( $this, 'restore_globals' ), 10 );
@@ -107,7 +107,9 @@ class AWPCP_NavXTPluginIntegration {
      */
     public function restore_globals() {
         global $post, $wp_query;
-        $post     = $this->post;
+        // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+        $post = $this->post;
+        // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
         $wp_query = $this->wp_query;
     }
 }
