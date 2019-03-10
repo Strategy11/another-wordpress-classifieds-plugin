@@ -31,12 +31,12 @@ class AWPCP_NavXTPluginIntegration {
     private $listing_post_type;
 
     /**
-     * @var obj
+     * @var object
      */
     private $post;
 
     /**
-     * @var obj
+     * @var object
      */
     private $wp_query;
 
