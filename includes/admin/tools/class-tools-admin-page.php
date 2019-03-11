@@ -22,6 +22,13 @@ class AWPCP_ToolsAdminPage {
      * @since 4.0.0
      */
     public function __construct( $template_renderer ) {
+        $this->template_renderer = $template_renderer;
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function dispatch() {
         // Tool page views.
         $views                   = array(
             array(
@@ -36,13 +43,6 @@ class AWPCP_ToolsAdminPage {
         );
         $views                   = apply_filters( 'awpcp_tool_page_views', $views );
         $this->views             = $views;
-        $this->template_renderer = $template_renderer;
-    }
-
-    /**
-     * @since 4.0.0
-     */
-    public function dispatch() {
         // @phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
         echo $this->template_renderer->render_template( $this->template, $this->views );
     }
