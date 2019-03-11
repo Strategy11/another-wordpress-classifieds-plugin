@@ -30,7 +30,7 @@ class AWPCP_ToolsAdminPage {
      */
     public function dispatch() {
         // Tool page views.
-        $views                   = array(
+        $views       = array(
             array(
                 'title'       => esc_html__( 'Import and Export Settings', 'another-wordpress-classifieds-plugin' ),
                 'url'         => esc_url( add_query_arg( 'awpcp-view', 'import-settings' ) ),
@@ -41,8 +41,8 @@ class AWPCP_ToolsAdminPage {
                 'url'   => esc_url( add_query_arg( 'awpcp-view', 'import-listings' ) ),
             ),
         );
-        $views                   = apply_filters( 'awpcp_tool_page_views', $views );
-        $this->views             = $views;
+        $views       = apply_filters( 'awpcp_tool_page_views', $views );
+        $this->views = $views;
         // @phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
         echo $this->template_renderer->render_template( $this->template, $this->views );
     }
