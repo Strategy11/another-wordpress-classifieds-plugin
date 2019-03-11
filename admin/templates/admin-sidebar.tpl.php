@@ -100,7 +100,7 @@
                         <li>
                             <?php
                             $text = sprintf(
-                            /* translators: %s: translated link   */
+                                /* translators: %s: translated link   */
                                 esc_html_x(
                                     'Report bugs or get more help: %s.',
                                     'Report bugs or get more help: <a>visit the forums!</a>',
