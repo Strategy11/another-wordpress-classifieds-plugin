@@ -12,12 +12,6 @@ function awpcp_navxt_plugin_integration() {
     return new AWPCP_NavXTPluginIntegration( $container['listing_post_type'] );
 }
 
-/**
- * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
- * @SuppressWarnings(PHPMD.StaticAccess)
- * @SuppressWarnings(PHPMD.TooManyPublicMethods)
- * @SuppressWarnings(PHPMD.TooManyMethods)
- */
 class AWPCP_NavXTPluginIntegration {
 
     /**
@@ -34,11 +28,6 @@ class AWPCP_NavXTPluginIntegration {
      * @var object
      */
     private $post;
-
-    /**
-     * @var object
-     */
-    private $wp_query;
 
 
     public function __construct( $listing_post_type ) {
@@ -60,12 +49,9 @@ class AWPCP_NavXTPluginIntegration {
      * @since 4.1.0
      */
     public function before_configure_frontend_meta( $meta ) {
-        global $post, $wp_query;
         $this->current_listing  = $meta->ad;
         $this->current_category = $meta->category;
         $this->is_singular      = is_singular( $this->listing_post_type );
-        $this->post             = $post;
-        $this->wp_query         = $wp_query;
         add_action( 'bcn_before_fill', array( $this, 'ad_breadcrumb' ), 10 );
         add_action( 'bcn_before_fill', array( $this, 'ad_category_breadcrumb' ), 10 );
         add_action( 'bcn_after_fill', array( $this, 'restore_globals' ), 10 );
@@ -76,6 +62,12 @@ class AWPCP_NavXTPluginIntegration {
      */
     public function ad_breadcrumb() {
         global $post, $wp_query;
+        $this->post             = $post;
+        $this->is_archive       = $wp_query->is_archive;
+        $this->is_category      = $wp_query->is_category;
+        $this->is_page          = $wp_query->is_page;
+        $this->is_singular_post = $wp_query->is_singular;
+        $this->queried_object   = $wp_query->queried_object;
         if ( ! $this->current_listing ) {
             return false;
         }
@@ -110,6 +102,10 @@ class AWPCP_NavXTPluginIntegration {
         // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
         $post = $this->post;
         // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
-        $wp_query = $this->wp_query;
+        $wp_query->is_archive     = $this->is_archive;
+        $wp_query->is_category    = $this->is_category;
+        $wp_query->is_page        = $this->is_page;
+        $wp_query->is_singular    = $this->is_singular_post;
+        $wp_query->queried_object = $this->queried_object;
     }
 }
