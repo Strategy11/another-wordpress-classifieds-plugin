@@ -13,10 +13,9 @@
     <?php foreach ( $params as $view ) : ?>
         <?php $import_and_export_url = add_query_arg( 'awpcp-view', 'import-settings' ); ?>
         <li>
-            <strong><a href="<?php echo esc_url($view['url']); ?>"><?php echo esc_html($view['title']); ?></a></strong>
+            <strong><a href="<?php echo esc_url( $view['url'] ); ?>"><?php echo esc_html( $view['title'] ); ?></a></strong>
             <br>
-            <?php // @phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-            <?php echo esc_html($view['description']); ?>
+            <?php echo esc_html( $view['description'] ); ?>
         </li>
     <?php endforeach; ?>
 </ul>
