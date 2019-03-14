@@ -37,6 +37,24 @@ class AWPCP_Template_Renderer {
         return $this->render_template( $page_template, $params );
     }
 
+    /**
+     * Render the given template using the provided parameters.
+     *
+     * The view parameters can be accessed from the template through the $params
+     * array or using each key in that array as variable names.
+     *
+     * The recommended method is to use the $params array because that makes it
+     * more clear that you are using a value that the user of the template
+     * should provide.
+     *
+     * @param string $template  The path to a template file. It can be an
+     *                          absolute path or relative to the plugin's
+     *                          templates directory.
+     * @param array $params     An array of parameters that will be extracted
+     *                          into the function's symbol table and made
+     *                          available in the template.
+     * @return string The rendered template.
+     */
     public function render_template( $template, $params = array() ) {
         if ( file_exists( $template ) ) {
             $template_file = $template;
