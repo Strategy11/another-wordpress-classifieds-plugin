@@ -101,7 +101,7 @@ class AWPCP_NavXTPluginIntegration {
         global $post, $wp_query;
         // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
         $post = $this->post;
-        // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+
         $wp_query->is_archive     = $this->is_archive;
         $wp_query->is_category    = $this->is_category;
         $wp_query->is_page        = $this->is_page;
