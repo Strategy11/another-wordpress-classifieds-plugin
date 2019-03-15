@@ -98,7 +98,8 @@ class AWPCP_Installer {
         $upgrade_log[] = array(
             'oldversion' => $oldversion,
             'newversion' => $newversion,
-            'date' => current_time( 'mysql' ),
+            'url'        => home_url(),
+            'date'       => current_time( 'mysql' ),
         );
 
         // Keep latest 100 entries. This should prevent filling the database with
