@@ -76,6 +76,8 @@ class AWPCP_CategoryShortcode {
     }
 
     private function render_shortcode_content( $attrs ) {
+        wp_enqueue_style( 'select2' );
+
         $categories = $this->get_categories( $attrs['id'] );
 
         if ( ! $categories ) {
