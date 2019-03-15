@@ -53,10 +53,24 @@ class AWPCP_ListingsCollection {
     }
 
     /**
-     * @param int $listing_id   A listing ID.
-     * @throws AWPCP_Exception  If no listing is found with the specified ID.
-     * @since 4.0.0 works with custom post types.
+     * Get the listing identified by the given ID.
+     *
+     * If you plan to rewrite this method to use find_listings() please note
+     * that doing so could cause get() query vars to be modified by modules
+     * that define handlers for the {@see 'awpcp-find-listings-query'} filter.
+     *
+     * The Restricted Categories module, for example, modifies query vars to
+     * exclude listings from all categories marked as restricted. If the same
+     * restrictions are used for queries that should return a single listing,
+     * listings on restricted categories may become unreachable to this class.
+     *
      * @since 3.3
+     * @since 4.0.0 works with custom post types.
+     *
+     * @param int $listing_id A listing ID.
+     *
+     * @return object An instance of WP_Post representing a listing.
+     * @throws AWPCP_Exception If no listing is found with the specified ID.
      */
     public function get( $listing_id ) {
         if ( $listing_id <= 0 ) {
