@@ -1059,7 +1059,7 @@ class AWPCP_Installer {
      * @since 4.0.0
      */
     private function delete_settings_table() {
-        $this->db->query( "DROP TABLE {$this->db->prefix}awpcp_adsettings IF EXISTS" );
+        $this->db->query( "DROP TABLE IF EXISTS {$this->db->prefix}awpcp_adsettings" );
     }
 
     // phpcs:enable
