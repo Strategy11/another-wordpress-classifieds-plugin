@@ -22,5 +22,14 @@ class AWPCP_UpgradeContainerConfiguration implements AWPCP_ContainerConfiguratio
                 return new AWPCP_Import_Payment_Transactions_Task_Handler();
             }
         );
+
+        $container['MigrateMediaInformationTaskHandler'] = $container->service(
+            function( $container ) {
+                return new AWPCP_Migrate_Media_Information_Task_Handler(
+                    $container['Settings'],
+                    $container['wpdb']
+                );
+            }
+        );
     }
 }

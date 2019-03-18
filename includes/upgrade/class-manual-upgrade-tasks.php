@@ -64,7 +64,7 @@ class AWPCP_Manual_Upgrade_Tasks {
         $this->upgrade_tasks->register_upgrade_task( array(
             'slug' => 'awpcp-migrate-media-information',
             'name' => __( 'Migrate Media Information', 'another-wordpress-classifieds-plugin' ),
-            'handler' => 'AWPCP_Migrate_Media_Information_Task_Handler',
+            'handler' => 'MigrateMediaInformationTaskHandler',
             'context' => 'plugin',
         ) );
 
