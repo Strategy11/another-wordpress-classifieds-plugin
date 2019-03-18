@@ -15,7 +15,11 @@
         <li>
             <strong><a href="<?php echo esc_url( $view['url'] ); ?>"><?php echo esc_html( $view['title'] ); ?></a></strong>
             <br>
-            <?php echo esc_html( $view['description'] ); ?>
+            <?php
+            if ( !empty( $view['description'] ) ) {
+                echo esc_html( $view['description'] );
+            }
+            ?>
         </li>
     <?php endforeach; ?>
 </ul>

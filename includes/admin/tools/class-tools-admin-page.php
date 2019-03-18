@@ -43,7 +43,7 @@ class AWPCP_ToolsAdminPage {
         );
         $views       = apply_filters( 'awpcp_tool_page_views', $views );
         $this->views = $views;
-        // @phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
+        // @phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo $this->template_renderer->render_template( $this->template, $this->views );
     }
 }
