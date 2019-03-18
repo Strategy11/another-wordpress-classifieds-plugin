@@ -25,17 +25,6 @@
 // phpcs:disable
 
 $container->share(
-    'AWPCP_Import_Payment_Transactions_Task_Handler',
-    AWPCP_DIR . '/includes/upgrade/class-import-payment-transactions-task-handler.php',
-    'awpcp_import_payment_transactions_task_handler'
-);
-
-function awpcp_import_payment_transactions_task_handler() {
-    return new AWPCP_Import_Payment_Transactions_Task_Handler();
-}
-
-
-$container->share(
     'AWPCP_Migrate_Media_Information_Task_Handler',
     AWPCP_DIR . '/includes/upgrade/class-migrate-media-information-task-handler.php',
     'awpcp_migrate_media_information_task_handler'

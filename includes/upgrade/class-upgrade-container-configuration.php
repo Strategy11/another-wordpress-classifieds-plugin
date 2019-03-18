@@ -17,5 +17,10 @@ class AWPCP_UpgradeContainerConfiguration implements AWPCP_ContainerConfiguratio
      * @see AWPCP_ContainerConfigurationInterface::modify()
      */
     public function modify( $container ) {
+        $container['ImportPaymentTransactionsTaskHandler'] = $container->service(
+            function( $container ) {
+                return new AWPCP_Import_Payment_Transactions_Task_Handler();
+            }
+        );
     }
 }

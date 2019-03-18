@@ -41,16 +41,18 @@ class AWPCP_Manual_Upgrade_Tasks {
      * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     public function register_upgrade_tasks() {
+        $this->upgrade_tasks->register_upgrade_task(
+            [
+                'slug'    => 'awpcp-import-payment-transactions',
+                'name'    => __( 'Import Payment Transactions', 'another-wordpress-classifieds-plugin' ),
+                'handler' => 'ImportPaymentTransactionsTaskHandler',
+                'context' => 'plugin',
+            ]
+        );
+
         // @phpcs:disable PEAR.Functions.FunctionCallSignature.CloseBracketLine
         // @phpcs:disable WordPress.Arrays.MultipleStatementAlignment.DoubleArrowNotAligned
         // @phpcs:disable PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket
-
-        $this->upgrade_tasks->register_upgrade_task( array(
-            'slug' => 'awpcp-import-payment-transactions',
-            'name' => __( 'Import Payment Transactions', 'another-wordpress-classifieds-plugin' ),
-            'handler' => 'AWPCP_Import_Payment_Transactions_Task_Handler',
-            'context' => 'plugin',
-        ) );
 
         $this->upgrade_tasks->register_upgrade_task( array(
             'slug' => 'awpcp-migrate-regions-information',
