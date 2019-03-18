@@ -25,17 +25,6 @@
 // phpcs:disable
 
 $container->share(
-    'AWPCP_Migrate_Regions_Information_Task_Handler',
-    AWPCP_DIR . '/includes/upgrade/class-migrate-regions-information-task-handler.php',
-    'awpcp_migrate_regions_information_task_handler'
-);
-
-function awpcp_migrate_regions_information_task_handler() {
-    return new AWPCP_Migrate_Regions_Information_Task_Handler();
-}
-
-
-$container->share(
     'AWPCP_Store_Listing_Categories_As_Custom_Taxonomies_Upgrade_Task_Handler',
     AWPCP_DIR . '/includes/upgrade/class-store-listing-categories-as-custom-taxonomies-upgrade-task-handler.php',
     'awpcp_store_listing_categories_as_custom_taxonomies_upgrade_task_handler'

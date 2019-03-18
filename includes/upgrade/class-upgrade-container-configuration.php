@@ -31,5 +31,11 @@ class AWPCP_UpgradeContainerConfiguration implements AWPCP_ContainerConfiguratio
                 );
             }
         );
+
+        $container['MigrateRegionsInformationTaskHandler'] = $container->service(
+            function( $container ) {
+                return new AWPCP_Migrate_Regions_Information_Task_Handler();
+            }
+        );
     }
 }
