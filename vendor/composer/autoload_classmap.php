@@ -470,6 +470,7 @@ return array(
     'AWPCP_Update_Category_Admin_Page' => $baseDir . '/admin/categories/class-update-category-admin-page.php',
     'AWPCP_Update_Media_Status_Task_Handler' => $baseDir . '/includes/upgrade/class-update-media-status-task-handler.php',
     'AWPCP_UpgradeCategoriesTaskHandlerHelper' => $baseDir . '/includes/upgrade/trait-upgrade-categories-task-handler-helper.php',
+    'AWPCP_UpgradeContainerConfiguration' => $baseDir . '/includes/upgrade/class-upgrade-container-configuration.php',
     'AWPCP_UpgradeListingsTaskHandlerHelper' => $baseDir . '/includes/upgrade/trait-upgrade-listings-task-handler-helper.php',
     'AWPCP_Upgrade_Session' => $baseDir . '/includes/upgrade/class-upgrade-session.php',
     'AWPCP_Upgrade_Sessions' => $baseDir . '/includes/upgrade/class-upgrade-sessions.php',

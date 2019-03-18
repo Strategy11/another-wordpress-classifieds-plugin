@@ -1555,6 +1555,7 @@ class AWPCP {
         $configurations[] = new AWPCP_MediaContainerConfiguration();
         $configurations[] = new AWPCP_FrontendContainerConfiguration();
         $configurations[] = new AWPCP_AdminContainerConfiguration();
+        $configurations[] = new AWPCP_UpgradeContainerConfiguration();
 
         return apply_filters( 'awpcp_container_configurations', $configurations );
     }
