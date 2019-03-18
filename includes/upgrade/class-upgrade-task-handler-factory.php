@@ -35,10 +35,16 @@ class AWPCP_Upgrade_Task_Handler_Factory {
             $task_runner = $this->container->get( $task_runner_class );
         }
 
-        return new AWPCP_Upgrade_Task_Handler(
-            $task_runner,
-            $this->container->get( 'AWPCP_Upgrade_Sessions' ),
-            awpcp_upgrade_tasks_manager()
-        );
+        if ( $task_runner instanceof AWPCP_Upgrade_Task_Runner ) {
+            return new AWPCP_Upgrade_Task_Handler(
+                $task_runner,
+                $this->container->get( 'AWPCP_Upgrade_Sessions' ),
+                awpcp_upgrade_tasks_manager()
+            );
+        }
+
+        if ( method_exists( $task_runner, 'run_task' ) ) {
+            return $task_runner;
+        }
     }
 }
