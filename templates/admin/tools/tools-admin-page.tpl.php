@@ -16,7 +16,7 @@
             <strong><a href="<?php echo esc_url( $view['url'] ); ?>"><?php echo esc_html( $view['title'] ); ?></a></strong>
             <br>
             <?php
-            if ( !empty( $view['description'] ) ) {
+            if ( ! empty( $view['description'] ) ) {
                 echo esc_html( $view['description'] );
             }
             ?>
