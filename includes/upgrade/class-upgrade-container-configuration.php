@@ -47,5 +47,16 @@ class AWPCP_UpgradeContainerConfiguration implements AWPCP_ContainerConfiguratio
                 );
             }
         );
+
+        $container['StoreListingsAsCustomPostTypesUpgradeTaskHandler'] = $container->service(
+            function( $container ) {
+                return new AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler(
+                    awpcp_categories_registry(),
+                    awpcp_legacy_listings_metadata(),
+                    $container['WordPress'],
+                    $container['wpdb']
+                );
+            }
+        );
     }
 }

@@ -92,7 +92,7 @@ class AWPCP_Manual_Upgrade_Tasks {
         $this->upgrade_tasks->register_upgrade_task( array(
             'slug' => 'awpcp-store-listings-as-custom-post-types',
             'name' => __( 'Store Listings as Custom Post Types', 'another-wordpress-classifieds-plugin' ),
-            'handler' => 'AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler',
+            'handler' => 'StoreListingsAsCustomPostTypesUpgradeTaskHandler',
             'context' => 'plugin',
         ) );
 
