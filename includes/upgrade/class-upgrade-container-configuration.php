@@ -37,5 +37,15 @@ class AWPCP_UpgradeContainerConfiguration implements AWPCP_ContainerConfiguratio
                 return new AWPCP_Migrate_Regions_Information_Task_Handler();
             }
         );
+
+        $container['StoreListingCategoriesAsCustomTaxonomiesUpgradeTaskHandler'] = $container->service(
+            function( $container ) {
+                return new AWPCP_Store_Listing_Categories_As_Custom_Taxonomies_Upgrade_Task_Handler(
+                    awpcp_categories_registry(),
+                    $container['WordPress'],
+                    $container['wpdb']
+                );
+            }
+        );
     }
 }

@@ -85,7 +85,7 @@ class AWPCP_Manual_Upgrade_Tasks {
         $this->upgrade_tasks->register_upgrade_task( array(
             'slug' => 'awpcp-store-listing-categories-as-custom-taxonomies',
             'name' => __( 'Store Listing Categories as Custom Taxonomies', 'another-wordpress-classifieds-plugin' ),
-            'handler' => 'AWPCP_Store_Listing_Categories_As_Custom_Taxonomies_Upgrade_Task_Handler',
+            'handler' => 'StoreListingCategoriesAsCustomTaxonomiesUpgradeTaskHandler',
             'context' => 'plugin',
         ) );
 

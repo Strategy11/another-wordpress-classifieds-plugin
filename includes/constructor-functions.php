@@ -25,21 +25,6 @@
 // phpcs:disable
 
 $container->share(
-    'AWPCP_Store_Listing_Categories_As_Custom_Taxonomies_Upgrade_Task_Handler',
-    AWPCP_DIR . '/includes/upgrade/class-store-listing-categories-as-custom-taxonomies-upgrade-task-handler.php',
-    'awpcp_store_listing_categories_as_custom_taxonomies_upgrade_task_handler'
-);
-
-function awpcp_store_listing_categories_as_custom_taxonomies_upgrade_task_handler() {
-    return new AWPCP_Store_Listing_Categories_As_Custom_Taxonomies_Upgrade_Task_Handler(
-        awpcp_categories_registry(),
-        awpcp_wordpress(),
-        $GLOBALS['wpdb']
-    );
-}
-
-
-$container->share(
     'AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler',
     AWPCP_DIR . '/includes/upgrade/class-store-listings-as-custom-post-types-upgrade-task-handler.php',
     'awpcp_store_listings_as_custom_post_types_upgrade_task_handler'
