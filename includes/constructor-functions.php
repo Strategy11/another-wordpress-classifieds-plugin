@@ -25,22 +25,6 @@
 // phpcs:disable
 
 $container->share(
-    'AWPCP_Upgrade_Task_Ajax_Handler',
-    AWPCP_DIR . '/includes/upgrade/class-upgrade-task-ajax-handler.php',
-    'awpcp_upgrade_task_ajax_handler'
-);
-
-function awpcp_upgrade_task_ajax_handler( $container ) {
-    return new AWPCP_Upgrade_Task_Ajax_Handler(
-        awpcp_upgrade_tasks_manager(),
-        $container->get( 'AWPCP_Upgrade_Task_Handler_Factory' ),
-        awpcp_request(),
-        awpcp_ajax_response()
-    );
-}
-
-
-$container->share(
     'AWPCP_Upgrade_Task_Handler_Factory',
     AWPCP_DIR . '/includes/upgrade/class-upgrade-task-handler-factory.php',
     'awpcp_upgrade_task_handler_factory'

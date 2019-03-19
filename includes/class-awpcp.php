@@ -509,7 +509,7 @@ class AWPCP {
      */
     public function register_ajax_handlers() {
         // register ajax request handler for pending upgrade tasks
-        $task_handler = $this->container->get( 'AWPCP_Upgrade_Task_Ajax_Handler' );
+        $task_handler = $this->container['UpgradeTaskAjaxHandler'];
 
         foreach ( $this->upgrade_tasks->get_pending_tasks() as $slug => $task ) {
             add_action( "wp_ajax_$slug", array( $task_handler, 'ajax' ) );

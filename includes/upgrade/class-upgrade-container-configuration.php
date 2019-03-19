@@ -17,6 +17,25 @@ class AWPCP_UpgradeContainerConfiguration implements AWPCP_ContainerConfiguratio
      * @see AWPCP_ContainerConfigurationInterface::modify()
      */
     public function modify( $container ) {
+        $container['UpgradeTaskAjaxHandler'] = $container->service(
+            function( $container ) {
+                return new AWPCP_Upgrade_Task_Ajax_Handler(
+                    awpcp_upgrade_tasks_manager(),
+                    $container->get( 'AWPCP_Upgrade_Task_Handler_Factory' ),
+                    awpcp_request(),
+                    awpcp_ajax_response()
+                );
+            }
+        );
+
+        $this->register_3_x_x_objects( $container );
+        $this->register_4_0_0_objects( $container );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function register_3_x_x_objects( $container ) {
         $container['ImportPaymentTransactionsTaskHandler'] = $container->service(
             function( $container ) {
                 return new AWPCP_Import_Payment_Transactions_Task_Handler();
@@ -43,8 +62,6 @@ class AWPCP_UpgradeContainerConfiguration implements AWPCP_ContainerConfiguratio
                 return new AWPCP_Update_Media_Status_Task_Handler();
             }
         );
-
-        $this->register_4_0_0_objects( $container );
     }
 
     /**
