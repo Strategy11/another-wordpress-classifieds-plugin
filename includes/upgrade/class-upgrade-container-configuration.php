@@ -17,8 +17,17 @@ class AWPCP_UpgradeContainerConfiguration implements AWPCP_ContainerConfiguratio
      * @see AWPCP_ContainerConfigurationInterface::modify()
      */
     public function modify( $container ) {
+        $container['UpgradeSessions'] = $container->service(
+            function( $container ) {
+                return new AWPCP_Upgrade_Sessions(
+                    awpcp_upgrade_tasks_manager(),
+                    $container['WordPress']
+                );
+            }
+        );
+
         $container['UpgradeTaskHandlerFactory'] = $container->service(
-            function ( $container ) {
+            function( $container ) {
                 return new AWPCP_Upgrade_Task_Handler_Factory( $container );
             }
         );

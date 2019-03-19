@@ -10,7 +10,7 @@ function awpcp_manual_upgrade_admin_page() {
 
     return new AWPCP_ManualUpgradeAdminPage(
         awpcp_upgrade_tasks_manager(),
-        $container->get( 'AWPCP_Upgrade_Sessions' ),
+        $container['UpgradeSessions'],
         $container['Request']
     );
 }

@@ -24,22 +24,6 @@
 
 // phpcs:disable
 
-$container->share(
-    'AWPCP_Upgrade_Sessions',
-    array(
-        AWPCP_DIR . '/includes/upgrade/class-upgrade-session.php',
-        AWPCP_DIR . '/includes/upgrade/class-upgrade-sessions.php',
-    ),
-    'awpcp_upgrade_sessions'
-);
-
-function awpcp_upgrade_sessions() {
-    return new AWPCP_Upgrade_Sessions(
-        awpcp_upgrade_tasks_manager(),
-        awpcp_wordpress()
-    );
-}
-
 function awpcp_roles_and_capabilities() {
     return new AWPCP_RolesAndCapabilities( awpcp()->settings, awpcp_request() );
 }

@@ -38,7 +38,7 @@ class AWPCP_Upgrade_Task_Handler_Factory {
         if ( $task_runner instanceof AWPCP_Upgrade_Task_Runner ) {
             return new AWPCP_Upgrade_Task_Handler(
                 $task_runner,
-                $this->container->get( 'AWPCP_Upgrade_Sessions' ),
+                $this->container['UpgradeSessions'],
                 awpcp_upgrade_tasks_manager()
             );
         }
