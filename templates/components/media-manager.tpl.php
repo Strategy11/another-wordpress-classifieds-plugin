@@ -33,7 +33,7 @@ from Paul Irish. See https://github.com/drodenbaugh/awpcp/issues/979. -->
                         </a>
                     </li>
                     <li class="awpcp-uploaded-file-action awpcp-uploaded-file-delete-action"><a title="<?php echo esc_attr( __( 'Click to delete this image', 'another-wordpress-classifieds-plugin' ) ); ?>" data-bind="click: $root.deleteFile"><span class="fa fa-trash-alt"></span></a></li>
-                    <?php if ( awpcp_current_user_is_moderator()) : ?>
+                    <?php if ( awpcp_current_user_is_moderator() ) : ?>
                     <li class="awpcp-uploaded-file-action awpcp-uploaded-file-reject-action" data-bind="visible: isApproved()">
                         <a class="awpcp-toggle-button" title="<?php echo esc_attr( __( 'Image currently approved &mdash; click to reject it', 'another-wordpress-classifieds-plugin' ) ); ?>" data-bind="click: $root.rejectFile, css: { 'awpcp-toggle-on': !isApproved(), 'awpcp-toggle-off': isApproved() }"><span class="fa fa-thumbs-down"></span></a>
                     </li>
