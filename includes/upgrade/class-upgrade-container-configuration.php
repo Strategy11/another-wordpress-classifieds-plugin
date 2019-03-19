@@ -38,6 +38,13 @@ class AWPCP_UpgradeContainerConfiguration implements AWPCP_ContainerConfiguratio
             }
         );
 
+        $this->register_4_0_0_objects( $container );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function register_4_0_0_objects( $container ) {
         $container['StoreListingCategoriesAsCustomTaxonomiesUpgradeTaskHandler'] = $container->service(
             function( $container ) {
                 return new AWPCP_Store_Listing_Categories_As_Custom_Taxonomies_Upgrade_Task_Handler(
@@ -64,6 +71,14 @@ class AWPCP_UpgradeContainerConfiguration implements AWPCP_ContainerConfiguratio
                 return new AWPCP_Store_Media_As_Attachments_Upgrade_Task_Handler(
                     $container['Settings'],
                     $container['WordPress'],
+                    $container['wpdb']
+                );
+            }
+        );
+
+        $container['StorePhoneNumberDigitsUpgradeTaskHandler'] = $container->service(
+            function( $container ) {
+                return new AWPCP_Store_Phone_Number_Digits_Upgrade_Task_Handler(
                     $container['wpdb']
                 );
             }

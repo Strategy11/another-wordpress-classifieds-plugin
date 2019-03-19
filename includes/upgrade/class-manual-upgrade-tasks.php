@@ -78,7 +78,7 @@ class AWPCP_Manual_Upgrade_Tasks {
         $this->upgrade_tasks->register_upgrade_task( array(
             'slug' => 'awpcp-store-phone-number-digits',
             'name' => __( 'Store phone number digits', 'another-wordpress-classifieds-plugin' ),
-            'handler' => 'AWPCP_Store_Phone_Number_Digits_Upgrade_Task_Handler',
+            'handler' => 'StorePhoneNumberDigitsUpgradeTaskHandler',
             'context' => 'plugin',
         ) );
 

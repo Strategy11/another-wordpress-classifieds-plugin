@@ -25,19 +25,6 @@
 // phpcs:disable
 
 $container->share(
-    'AWPCP_Store_Phone_Number_Digits_Upgrade_Task_Handler',
-    AWPCP_DIR . '/includes/upgrade/class-store-phone-number-digits-upgrade-task-handler.php',
-    'awpcp_store_phone_number_digits_upgrade_task_handler'
-);
-
-function awpcp_store_phone_number_digits_upgrade_task_handler() {
-    return new AWPCP_Store_Phone_Number_Digits_Upgrade_Task_Handler(
-        $GLOBALS['wpdb']
-    );
-}
-
-
-$container->share(
     'AWPCP_Update_Media_Status_Task_Handler',
     AWPCP_DIR . '/includes/upgrade/class-update-media-status-task-handler.php',
     'awpcp_update_media_status_task_handler'
