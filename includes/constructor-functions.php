@@ -22,8 +22,9 @@
  * @package AWPCP
  */
 
-// phpcs:disable
-
+/**
+ * Constructor function for AWPCP_RolesAndCapabilities class.
+ */
 function awpcp_roles_and_capabilities() {
     return new AWPCP_RolesAndCapabilities( awpcp()->settings, awpcp_request() );
 }
