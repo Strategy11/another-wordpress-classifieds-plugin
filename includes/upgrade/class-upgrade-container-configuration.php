@@ -38,6 +38,12 @@ class AWPCP_UpgradeContainerConfiguration implements AWPCP_ContainerConfiguratio
             }
         );
 
+        $container['UpdateMediaStatusTaskHandler'] = $container->service(
+            function( $container ) {
+                return new AWPCP_Update_Media_Status_Task_Handler();
+            }
+        );
+
         $this->register_4_0_0_objects( $container );
     }
 

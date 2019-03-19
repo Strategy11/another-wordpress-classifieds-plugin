@@ -71,7 +71,7 @@ class AWPCP_Manual_Upgrade_Tasks {
         $this->upgrade_tasks->register_upgrade_task( array(
             'slug' => 'awpcp-update-media-status',
             'name' => __( 'Update Image/Attachments Status', 'another-wordpress-classifieds-plugin' ),
-            'handler' => 'AWPCP_Update_Media_Status_Task_Handler',
+            'handler' => 'UpdateMediaStatusTaskHandler',
             'context' => 'plugin',
         ) );
 

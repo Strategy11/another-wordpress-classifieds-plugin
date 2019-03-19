@@ -25,17 +25,6 @@
 // phpcs:disable
 
 $container->share(
-    'AWPCP_Update_Media_Status_Task_Handler',
-    AWPCP_DIR . '/includes/upgrade/class-update-media-status-task-handler.php',
-    'awpcp_update_media_status_task_handler'
-);
-
-function awpcp_update_media_status_task_handler() {
-    return new AWPCP_Update_Media_Status_Task_Handler();
-}
-
-
-$container->share(
     'AWPCP_Upgrade_Task_Ajax_Handler',
     AWPCP_DIR . '/includes/upgrade/class-upgrade-task-ajax-handler.php',
     'awpcp_upgrade_task_ajax_handler'
