@@ -58,5 +58,15 @@ class AWPCP_UpgradeContainerConfiguration implements AWPCP_ContainerConfiguratio
                 );
             }
         );
+
+        $container['StoreMediaAsAttachmentsUpgradeTaskHandler'] = $container->service(
+            function( $container ) {
+                return new AWPCP_Store_Media_As_Attachments_Upgrade_Task_Handler(
+                    $container['Settings'],
+                    $container['WordPress'],
+                    $container['wpdb']
+                );
+            }
+        );
     }
 }

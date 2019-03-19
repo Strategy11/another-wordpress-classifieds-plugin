@@ -25,24 +25,6 @@
 // phpcs:disable
 
 $container->share(
-    'AWPCP_Store_Media_As_Attachments_Upgrade_Task_Handler',
-    AWPCP_DIR . '/includes/upgrade/class-store-media-as-attachments-upgrade-task-handler.php',
-    'awpcp_store_media_as_attachments_upgrade_task_handler'
-);
-
-/**
- * @SuppressWarnings(PHPMD.UnusedFormalParameter)
- */
-function awpcp_store_media_as_attachments_upgrade_task_handler( $container ) {
-    return new AWPCP_Store_Media_As_Attachments_Upgrade_Task_Handler(
-        awpcp_settings_api(),
-        awpcp_wordpress(),
-        $GLOBALS['wpdb']
-    );
-}
-
-
-$container->share(
     'AWPCP_Store_Phone_Number_Digits_Upgrade_Task_Handler',
     AWPCP_DIR . '/includes/upgrade/class-store-phone-number-digits-upgrade-task-handler.php',
     'awpcp_store_phone_number_digits_upgrade_task_handler'
