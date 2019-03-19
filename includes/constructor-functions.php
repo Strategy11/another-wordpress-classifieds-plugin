@@ -25,17 +25,6 @@
 // phpcs:disable
 
 $container->share(
-    'AWPCP_Upgrade_Task_Handler_Factory',
-    AWPCP_DIR . '/includes/upgrade/class-upgrade-task-handler-factory.php',
-    'awpcp_upgrade_task_handler_factory'
-);
-
-function awpcp_upgrade_task_handler_factory( $container ) {
-    return new AWPCP_Upgrade_Task_Handler_Factory( $container );
-}
-
-
-$container->share(
     'AWPCP_Upgrade_Sessions',
     array(
         AWPCP_DIR . '/includes/upgrade/class-upgrade-session.php',

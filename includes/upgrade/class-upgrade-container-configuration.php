@@ -17,11 +17,17 @@ class AWPCP_UpgradeContainerConfiguration implements AWPCP_ContainerConfiguratio
      * @see AWPCP_ContainerConfigurationInterface::modify()
      */
     public function modify( $container ) {
+        $container['UpgradeTaskHandlerFactory'] = $container->service(
+            function ( $container ) {
+                return new AWPCP_Upgrade_Task_Handler_Factory( $container );
+            }
+        );
+
         $container['UpgradeTaskAjaxHandler'] = $container->service(
             function( $container ) {
                 return new AWPCP_Upgrade_Task_Ajax_Handler(
                     awpcp_upgrade_tasks_manager(),
-                    $container->get( 'AWPCP_Upgrade_Task_Handler_Factory' ),
+                    $container['UpgradeTaskHandlerFactory'],
                     awpcp_request(),
                     awpcp_ajax_response()
                 );
