@@ -2561,45 +2561,41 @@ function awpcp_load_plugin_textdomain( $__file__ ) {
 /**
  * Attempts to load translations from the following locations:
  *
- * - WP_LANG_DIR /plugins/$file_prefix-$locale.mo
  * - WP_LANG_DIR /<plugin-slug>/$file_prefix-$locale.mo
+ * - WP_LANG_DIR /plugins/$file_prefix-$locale.mo
  * - WP_PLUGIN_DIR /<plugin-slug>/languages/$file_prefix-$locale.mo
  * - WP_PLUGIN_DIR /<plugin-slug>/$file_prefix-$locale.mo
  *
  * TODO: Do we really need to load files from all those locations? Isn't all that verifications too exepensive?
- *       Having all that options is confusing. We should support the standard ones only.
+ * TODO: Having all that options is confusing. We should support the standard ones only.
  *
  * @since 3.5.3.2
+ * @since 4.0.0 $file_prefix parameter was deprecated.
+ *
+ * @param string $__file__    Absolute path to the plugin's main file.
+ * @param string $text_domain Plugin's text domain.
  */
-function awpcp_load_text_domain_with_file_prefix( $__file__, $text_domain, $file_prefix ) {
+function awpcp_load_text_domain_with_file_prefix( $__file__, $text_domain, $file_prefix = null ) {
     $basename = dirname( plugin_basename( $__file__ ) );
 
     $locale = function_exists( 'determined_locale' ) ? determined_locale() : get_locale();
     $locale = apply_filters( 'plugin_locale', $locale, $text_domain );
 
-    // Load user translation from wp-content/languages/plugins/$domain-$locale.mo
-    $mofile = WP_LANG_DIR . '/plugins/' . $file_prefix . '-' . $locale . '.mo';
-    if ( file_exists( $mofile ) ) {
-        load_textdomain( $text_domain, $mofile );
-    }
+    // Try to load translations from WP_LANG_DIR/$basename/$domain-$locale.mo.
+    $mofile = WP_LANG_DIR . "/$basename/$text_domain-$locale.mo";
+    load_textdomain( $text_domain, $mofile );
 
-    // Load user translation from wp-content/languages/another-wordpress-classifieds-plugin/$domain-$locale.mo
-    $mofile = WP_LANG_DIR . '/' . $basename . '/' . $file_prefix . '-' . $locale . '.mo';
-    if ( file_exists( $mofile ) ) {
-        load_textdomain( $text_domain, $mofile );
-    }
-
-    // Load translation included in plugin's languages directory. Stop if the file is loaded.
-    $mofile = WP_PLUGIN_DIR . '/' . $basename . '/languages/' . $file_prefix . '-' . $locale . '.mo';
-    if ( file_exists( $mofile ) ) {
-        load_textdomain( $text_domain, $mofile );
-    }
+    /**
+     * Try to load translations from the following locations:
+     *
+     * - WP_LANG_DIR /plugins/$basename-$locale.mo
+     * - WP_PLUGIN_DIR /<plugin-slug>/languages/$basename-$locale.mo
+     */
+    load_plugin_textdomain( $text_domain, false, "$basename/languages/" );
 
     // Try loading the translations from the plugin's root directory.
-    $mofile = WP_PLUGIN_DIR . '/' . $basename . '/' . $file_prefix . '-' . $locale . '.mo';
-    if ( file_exists( $mofile ) ) {
-        load_textdomain( $text_domain, $mofile );
-    }
+    $mofile = WP_PLUGIN_DIR . "/$basename/$text_domain-$locale.mo";
+    load_textdomain( $text_domain, $mofile );
 }
 
 /**

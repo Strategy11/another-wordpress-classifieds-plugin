@@ -31,7 +31,7 @@ abstract class AWPCP_Module {
     abstract public function required_awpcp_version_notice();
 
     public function load_textdomain() {
-        awpcp_load_text_domain_with_file_prefix( $this->file, $this->textdomain, $this->textdomain );
+        awpcp_load_text_domain_with_file_prefix( $this->file, $this->textdomain );
     }
 
     public function setup() {
