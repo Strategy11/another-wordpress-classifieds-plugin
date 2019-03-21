@@ -18,16 +18,6 @@ class AWPCP_Container implements ArrayAccess {
     private $values = array();
 
     /**
-     * @var array
-     */
-    private $definitions = array();
-
-    /**
-     * @var array
-     */
-    private $shared = array();
-
-    /**
      * Constructor
      *
      * @param array $values     Initial set of values to store in the container.
@@ -116,65 +106,5 @@ class AWPCP_Container implements ArrayAccess {
 
             return $object;
         };
-    }
-
-    // phpcs:enable Squiz.Commenting.FunctionComment.IncorrectTypeHint
-
-    /**
-     * @deprecated 4.0.0    Register the constructor function as a service.
-     */
-    public function share( $name, $files, $constructor ) {
-        $this->definitions[ $name ] = array(
-            'name'          => $name,
-            'files'         => $files,
-            'constructor'   => $constructor,
-            'instance-type' => 'shared',
-        );
-    }
-
-    /**
-     * @deprecated 4.0.0    Use the container as an array instead.
-     */
-    public function get( $name ) {
-        if ( ! isset( $this->definitions[ $name ] ) ) {
-            return null;
-        }
-
-        $definition = $this->definitions[ $name ];
-
-        if ( 'shared' === $definition['instance-type'] ) {
-            return $this->get_shared_instance( $definition );
-        }
-
-        return $this->get_instance( $definition );
-    }
-
-    /**
-     * @deprecated 4.0.0    Register the constructor function as a service and
-     *                      use the container as an array instead.
-     */
-    private function get_shared_instance( $definition ) {
-        if ( isset( $this->shared[ $definition['name'] ] ) ) {
-            return $this->shared[ $definition['name'] ];
-        }
-
-        $this->shared[ $definition['name'] ] = $this->get_instance( $definition );
-
-        return $this->shared[ $definition['name'] ];
-    }
-
-    /**
-     * @deprecated 4.0.0    Use the container as an array instead.
-     */
-    private function get_instance( $definition ) {
-        foreach ( (array) $definition['files'] as $file ) {
-            require_once $file;
-        }
-
-        if ( ! is_callable( $definition['constructor'] ) ) {
-            return null;
-        }
-
-        return call_user_func( $definition['constructor'], $this );
     }
 }

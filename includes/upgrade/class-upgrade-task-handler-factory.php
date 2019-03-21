@@ -31,10 +31,6 @@ class AWPCP_Upgrade_Task_Handler_Factory {
             $task_runner = $this->container[ $task_runner_class ];
         }
 
-        if ( is_null( $task_runner ) ) {
-            $task_runner = $this->container->get( $task_runner_class );
-        }
-
         if ( $task_runner instanceof AWPCP_Upgrade_Task_Runner ) {
             return new AWPCP_Upgrade_Task_Handler(
                 $task_runner,
