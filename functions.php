@@ -2531,6 +2531,11 @@ function awpcp_maybe_include_lightbox_style() {
 
 
 /**
+ * This function is a specific case of awpcp_load_text_domain_with_file_prefix().
+ * However, before trying to remove it, confirm that support for Language Packs
+ * is still enabled even if load_plugin_textdomain() is not called with the slug
+ * for core plugin hardcoded.
+ *
  * @since 3.2.1
  * @since 3.9.2     Modified to use load_plugin_textdomain() in preparation for
  *                  adding support for Language Packs.
