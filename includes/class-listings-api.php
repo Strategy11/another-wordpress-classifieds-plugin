@@ -313,6 +313,36 @@ class AWPCP_ListingsAPI {
     }
 
     /**
+     * Calculate start and end dates for a listing using information from the
+     * given payment term.
+     *
+     * @since 4.0.0
+     *
+     * @param object $payment_term The payment term used to calculate the dates.
+     * @param string $start_date   Optional. If given, the end date will be
+     *                             calculated adding the duration of the payment
+     *                             term to the $start_date.
+     *
+     * @return array {
+     *     @type string $_awpcp_start_date The new start date for the listing.
+     *     @type string $_awpcp_end_date   The new end date for the listing.
+     * }
+     */
+    public function calculate_start_and_end_dates_using_payment_term( $payment_term, $start_date = null ) {
+        $timestamp = strtotime( $start_date );
+
+        if ( ! $start_date ) {
+            $start_date = current_time( 'mysql' );
+            $timestamp  = current_time( 'timestamp' );
+        }
+
+        return [
+            '_awpcp_start_date' => $start_date,
+            '_awpcp_end_date'   => $payment_term->calculate_end_date( $timestamp ),
+        ];
+    }
+
+    /**
      * @since 4.0.0
      */
     public function get_modified_listing_post_status( $listing ) {
