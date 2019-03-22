@@ -454,13 +454,18 @@ class AWPCP_ListingsAPI {
      * @since 4.0.0
      */
     public function enable_listing_without_triggering_actions( $listing ) {
-        $images_must_be_approved = $this->settings->get_option( 'imagesapprove', false );
+        $post_data = [
+            'post_fields' => [
+                'post_status' => 'publish',
+            ],
+        ];
 
         // TODO: this is kind of useles... if images don't need to be approved,
         // they are likely already enabled...
         //
-        // Also, why don't we disable images when the
-        // listing is disabled?
+        // Also, why don't we disable images when the listing is disabled?
+        $images_must_be_approved = $this->settings->get_option( 'imagesapprove', false );
+
         if ( ! $images_must_be_approved ) {
             $images = $this->attachments->find_attachments_of_type_awaiting_approval( 'image', array( 'post_parent' => $listing->ID, ) );
 
@@ -469,10 +474,20 @@ class AWPCP_ListingsAPI {
             }
         }
 
-        $listing->post_status = 'publish';
+        // Make sure the duration of the ad is modified to account for the
+        // number of days it remained disabled waiting for admin approval.
+        if ( $this->listing_renderer->is_pending_approval( $listing ) ) {
+            $post_data['metadata'] = $this->calculate_start_and_end_dates_using_payment_term(
+                $this->listing_renderer->get_payment_term( $listing )
+            );
+        }
 
-        $this->wordpress->update_post( array( 'ID' => $listing->ID, 'post_status' => $listing->post_status ) );
+        $this->update_listing( $listing, $post_data );
         $this->wordpress->delete_post_meta( $listing->ID, '_awpcp_disabled_date' );
+
+        // Allow other parts of the code to access the latest post status
+        // without reloading the instance from the database.
+        $listing->post_status = $post_data['post_fields']['post_status'];
 
         return true;
     }
