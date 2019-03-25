@@ -23,18 +23,18 @@
 # Derek Ashauer <derek@ashwebstudio.com>, 2019
 # Óscar García Pérez <oscargp1986@gmail.com>, 2019
 # Daniel Maza <dfmazam@gmail.com>, 2019
-# Adrian Cobo <adria.cobo@gmail.com>, 2019
 # Alberto Jara <ajaragrados@gmail.com>, 2019
 # FX Bénard <fxb@wp-translations.org>, 2019
 # Willington Vega <wvega@wvega.com>, 2019
+# Adrian Cobo <adria.cobo@gmail.com>, 2019
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2019-03-09 22:48:24+00:00\n"
+"POT-Creation-Date: 2019-03-25 18:45:30+00:00\n"
 "PO-Revision-Date: 2019-02-25 21:46+0000\n"
-"Last-Translator: Willington Vega <wvega@wvega.com>, 2019\n"
+"Last-Translator: Adrian Cobo <adria.cobo@gmail.com>, 2019\n"
 "Language-Team: Spanish (Spain) (https://www.transifex.com/wp-translations/teams/8416/es_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -4739,19 +4739,19 @@ msgstr ""
 "que el Administrador las apruebe."
 
 #. translators: %d is the ID used to search.
-#: includes/class-listings-collection.php:64
+#: includes/class-listings-collection.php:78
 msgid "The listing ID must be a positive integer, %d was given."
 msgstr "Recibimos %d, pero el ID de un anuncio debe ser un entero positivo."
 
 #. translators: %d is the ID used to search.
-#: includes/class-listings-collection.php:72
-#: includes/class-listings-collection.php:78
+#: includes/class-listings-collection.php:86
+#: includes/class-listings-collection.php:92
 msgid "No Listing was found with id: %d."
 msgstr "No se encontró un anuncio con ID: %d."
 
 #. translators: %d is the ID used to search.
-#: includes/class-listings-collection.php:104
-#: includes/class-listings-collection.php:112
+#: includes/class-listings-collection.php:118
+#: includes/class-listings-collection.php:126
 msgid "No Listing was found with old id: %d."
 msgstr "No encontramos un anuncio con ID anterior igual a %d."
 
@@ -10481,55 +10481,55 @@ msgstr ""
 "({replacement_post_id}) para la entrada con ID igual a {post_id}. "
 "{error_message}"
 
-#: includes/upgrade/class-manual-upgrade-tasks.php:50
+#: includes/upgrade/class-manual-upgrade-tasks.php:47
 msgid "Import Payment Transactions"
 msgstr "Importar transacciones de pago"
 
-#: includes/upgrade/class-manual-upgrade-tasks.php:57
+#: includes/upgrade/class-manual-upgrade-tasks.php:59
 msgid "Migrate Regions Information"
 msgstr "Migrar información de regiones"
 
-#: includes/upgrade/class-manual-upgrade-tasks.php:64
+#: includes/upgrade/class-manual-upgrade-tasks.php:66
 msgid "Migrate Media Information"
 msgstr "Migrar información sobre imágenes y archivos adjuntos"
 
-#: includes/upgrade/class-manual-upgrade-tasks.php:71
+#: includes/upgrade/class-manual-upgrade-tasks.php:73
 msgid "Update Image/Attachments Status"
 msgstr "Actualizar estado de imágenes y archivos adjuntos"
 
-#: includes/upgrade/class-manual-upgrade-tasks.php:78
+#: includes/upgrade/class-manual-upgrade-tasks.php:80
 msgid "Store phone number digits"
 msgstr "Almacenar los dígitos de los números de teléfono"
 
-#: includes/upgrade/class-manual-upgrade-tasks.php:85
+#: includes/upgrade/class-manual-upgrade-tasks.php:87
 msgid "Store Listing Categories as Custom Taxonomies"
 msgstr "Almacenar las categorías del anuncio como una taxonomía personalizada"
 
-#: includes/upgrade/class-manual-upgrade-tasks.php:92
+#: includes/upgrade/class-manual-upgrade-tasks.php:94
 msgid "Store Listings as Custom Post Types"
 msgstr "Almacenar los anuncios como un tipo de contenido personalizado "
 
-#: includes/upgrade/class-manual-upgrade-tasks.php:102
+#: includes/upgrade/class-manual-upgrade-tasks.php:104
 msgid "Fix ID Collision for Listing Categories"
 msgstr "Eliminar IDs duplicados en las categorías de los anuncios"
 
-#: includes/upgrade/class-manual-upgrade-tasks.php:112
+#: includes/upgrade/class-manual-upgrade-tasks.php:114
 msgid "Store Categories Order as Term Meta"
 msgstr "Almacenar el orden de las categorías como metadatos"
 
-#: includes/upgrade/class-manual-upgrade-tasks.php:122
+#: includes/upgrade/class-manual-upgrade-tasks.php:124
 msgid "Maybe force the value for the next Post ID"
 msgstr "Generar un valor apropiado para el ID del próximo anuncio"
 
-#: includes/upgrade/class-manual-upgrade-tasks.php:132
+#: includes/upgrade/class-manual-upgrade-tasks.php:134
 msgid "Fix ID Collision for Listings"
 msgstr "Eliminar IDs duplicados en los anuncios"
 
-#: includes/upgrade/class-manual-upgrade-tasks.php:142
+#: includes/upgrade/class-manual-upgrade-tasks.php:144
 msgid "Store Media as Attachments"
 msgstr "Almacenar imágenes y archivos como adjuntos"
 
-#: includes/upgrade/class-manual-upgrade-tasks.php:152
+#: includes/upgrade/class-manual-upgrade-tasks.php:154
 msgid "Generate Thumbnails for Migrated Media"
 msgstr "Generar miniaturas para las imágenes migradas"
 
@@ -10668,7 +10668,7 @@ msgstr "El pago asociado a esta transacción falló (más detalles abajo)."
 msgid "You are not allowed to buy credits."
 msgstr "Usted no está autorizado para comprar créditos."
 
-#: includes/views/frontend/class-category-shortcode.php:82
+#: includes/views/frontend/class-category-shortcode.php:84
 msgid ""
 "No category was found with the IDs provided. Please provide at least one "
 "valid category ID."
@@ -10680,24 +10680,24 @@ msgstr ""
 msgid "The instance of WP_Scripts is not ready!"
 msgstr "La instancia de WP_Scripts no está lista!"
 
-#: installer.php:187
+#: installer.php:192
 msgid "30 Day Listing"
 msgstr "Listado de 30 días"
 
-#: installer.php:835
+#: installer.php:840
 msgid "Response to your AWPCP Demo Ad"
 msgstr "Respuesta a su anuncio de prueba"
 
-#: installer.php:836
+#: installer.php:841
 msgid "Someone has responded to your AWPCP Demo Ad"
 msgstr "Alguien ha respondido a su anuncio de prueba"
 
-#: installer.php:846
+#: installer.php:851
 msgctxt "reply to ad email"
 msgid "{__previous_subject__} regarding: {listing_title}"
 msgstr "{__previous_subject__} sobre el anuncio: {listing_title}"
 
-#: installer.php:847
+#: installer.php:852
 msgctxt "reply to ad email"
 msgid ""
 "{__previous_body__}\n"
@@ -10730,7 +10730,7 @@ msgstr ""
 "{website_title}\n"
 "{website_url}"
 
-#: installer.php:861
+#: installer.php:866
 msgid "Verify the email address used for Ad $title"
 msgstr "Verifique la dirección de correo usada para el anuncio $title"
 
@@ -11804,6 +11804,11 @@ msgid ""
 msgstr ""
 "Por elige la duración y las características que estarán disponibles para "
 "este anuncio"
+
+#: templates/frontend/order-submit-listing-section.tpl.php:82
+msgctxt "order submit listing section"
+msgid "Continue"
+msgstr "Continuar"
 
 #: templates/frontend/order-submit-listing-section.tpl.php:88
 msgctxt "order submit listing section"

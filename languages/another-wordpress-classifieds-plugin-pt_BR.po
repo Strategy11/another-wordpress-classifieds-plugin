@@ -19,7 +19,6 @@
 # Francisco Hina <hhsystem@hhsystem.com.br>, 2019
 # Josh Lyford <josh@brewlabs.us>, 2019
 # Raphael Mendonça, 2019
-# Dionizio Bonfim Bach <translations@djio.com.br>, 2019
 # FX Bénard <fxb@wp-translations.org>, 2019
 # Gregory Karpinsky <gregory@tiv.net>, 2019
 # Marcos Nakamine, 2019
@@ -27,14 +26,15 @@
 # Marco Castelluccio <mar.castelluccio@studenti.unina.it>, 2019
 # Francisco Baptista <francisco@sabercriativo.com.br>, 2019
 # Willington Vega <wvega@wvega.com>, 2019
+# Dionizio Bonfim Bach <translations@djio.com.br>, 2019
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2019-03-09 22:48:24+00:00\n"
+"POT-Creation-Date: 2019-03-25 18:45:30+00:00\n"
 "PO-Revision-Date: 2019-02-25 21:46+0000\n"
-"Last-Translator: Willington Vega <wvega@wvega.com>, 2019\n"
+"Last-Translator: Dionizio Bonfim Bach <translations@djio.com.br>, 2019\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/wp-translations/teams/8416/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -4424,19 +4424,19 @@ msgstr ""
 " aprovado."
 
 #. translators: %d is the ID used to search.
-#: includes/class-listings-collection.php:64
+#: includes/class-listings-collection.php:78
 msgid "The listing ID must be a positive integer, %d was given."
 msgstr ""
 
 #. translators: %d is the ID used to search.
-#: includes/class-listings-collection.php:72
-#: includes/class-listings-collection.php:78
+#: includes/class-listings-collection.php:86
+#: includes/class-listings-collection.php:92
 msgid "No Listing was found with id: %d."
 msgstr "Não listagem foi encontrado com id: %d ."
 
 #. translators: %d is the ID used to search.
-#: includes/class-listings-collection.php:104
-#: includes/class-listings-collection.php:112
+#: includes/class-listings-collection.php:118
+#: includes/class-listings-collection.php:126
 msgid "No Listing was found with old id: %d."
 msgstr ""
 
@@ -9754,55 +9754,55 @@ msgid ""
 "({replacement_post_id}) for post with ID equal to {post_id}. {error_message}"
 msgstr ""
 
-#: includes/upgrade/class-manual-upgrade-tasks.php:50
+#: includes/upgrade/class-manual-upgrade-tasks.php:47
 msgid "Import Payment Transactions"
 msgstr "Operações de importação de pagamento"
 
-#: includes/upgrade/class-manual-upgrade-tasks.php:57
+#: includes/upgrade/class-manual-upgrade-tasks.php:59
 msgid "Migrate Regions Information"
 msgstr "Migrar Regiões de Informação"
 
-#: includes/upgrade/class-manual-upgrade-tasks.php:64
+#: includes/upgrade/class-manual-upgrade-tasks.php:66
 msgid "Migrate Media Information"
 msgstr "Migrar informações de mídia"
 
-#: includes/upgrade/class-manual-upgrade-tasks.php:71
+#: includes/upgrade/class-manual-upgrade-tasks.php:73
 msgid "Update Image/Attachments Status"
 msgstr "Atualização da imagem / acessórios Estado"
 
-#: includes/upgrade/class-manual-upgrade-tasks.php:78
+#: includes/upgrade/class-manual-upgrade-tasks.php:80
 msgid "Store phone number digits"
 msgstr ""
 
-#: includes/upgrade/class-manual-upgrade-tasks.php:85
+#: includes/upgrade/class-manual-upgrade-tasks.php:87
 msgid "Store Listing Categories as Custom Taxonomies"
 msgstr ""
 
-#: includes/upgrade/class-manual-upgrade-tasks.php:92
+#: includes/upgrade/class-manual-upgrade-tasks.php:94
 msgid "Store Listings as Custom Post Types"
 msgstr ""
 
-#: includes/upgrade/class-manual-upgrade-tasks.php:102
+#: includes/upgrade/class-manual-upgrade-tasks.php:104
 msgid "Fix ID Collision for Listing Categories"
 msgstr ""
 
-#: includes/upgrade/class-manual-upgrade-tasks.php:112
+#: includes/upgrade/class-manual-upgrade-tasks.php:114
 msgid "Store Categories Order as Term Meta"
 msgstr ""
 
-#: includes/upgrade/class-manual-upgrade-tasks.php:122
+#: includes/upgrade/class-manual-upgrade-tasks.php:124
 msgid "Maybe force the value for the next Post ID"
 msgstr ""
 
-#: includes/upgrade/class-manual-upgrade-tasks.php:132
+#: includes/upgrade/class-manual-upgrade-tasks.php:134
 msgid "Fix ID Collision for Listings"
 msgstr ""
 
-#: includes/upgrade/class-manual-upgrade-tasks.php:142
+#: includes/upgrade/class-manual-upgrade-tasks.php:144
 msgid "Store Media as Attachments"
 msgstr ""
 
-#: includes/upgrade/class-manual-upgrade-tasks.php:152
+#: includes/upgrade/class-manual-upgrade-tasks.php:154
 msgid "Generate Thumbnails for Migrated Media"
 msgstr ""
 
@@ -9937,7 +9937,7 @@ msgstr "O pagamento associado a esta operação falhou (ver razões abaixo)."
 msgid "You are not allowed to buy credits."
 msgstr "Você não tem permissão para comprar créditos."
 
-#: includes/views/frontend/class-category-shortcode.php:82
+#: includes/views/frontend/class-category-shortcode.php:84
 msgid ""
 "No category was found with the IDs provided. Please provide at least one "
 "valid category ID."
@@ -9947,24 +9947,24 @@ msgstr ""
 msgid "The instance of WP_Scripts is not ready!"
 msgstr ""
 
-#: installer.php:187
+#: installer.php:192
 msgid "30 Day Listing"
 msgstr "Dia 30 Listing"
 
-#: installer.php:835
+#: installer.php:840
 msgid "Response to your AWPCP Demo Ad"
 msgstr "Resposta ao seu anúncio AWPCP Demonstração"
 
-#: installer.php:836
+#: installer.php:841
 msgid "Someone has responded to your AWPCP Demo Ad"
 msgstr "Alguém tem respondido ao seu anúncio AWPCP Demonstração"
 
-#: installer.php:846
+#: installer.php:851
 msgctxt "reply to ad email"
 msgid "{__previous_subject__} regarding: {listing_title}"
 msgstr ""
 
-#: installer.php:847
+#: installer.php:852
 msgctxt "reply to ad email"
 msgid ""
 "{__previous_body__}\n"
@@ -9983,7 +9983,7 @@ msgid ""
 "{website_url}"
 msgstr ""
 
-#: installer.php:861
+#: installer.php:866
 msgid "Verify the email address used for Ad $title"
 msgstr "Verifique o endereço de e-mail utilizado para Ad $title"
 
@@ -10966,6 +10966,11 @@ msgctxt "order submit listing section"
 msgid ""
 "Please select the duration and features that will be available for this ad"
 msgstr ""
+
+#: templates/frontend/order-submit-listing-section.tpl.php:82
+msgctxt "order submit listing section"
+msgid "Continue"
+msgstr "Continuar"
 
 #: templates/frontend/order-submit-listing-section.tpl.php:88
 msgctxt "order submit listing section"
