@@ -1,4 +1,199 @@
 <?php
+/**
+ * @package AWPCP
+ */
+
+// phpcs:disable
+
+/**
+ * Returns the IDs of the pages used by the AWPCP plugin.
+ *
+ * @SuppressWarnings(PHPMD)
+ */
+function exclude_awpcp_child_pages($excluded=array()) {
+	global $wpdb, $table_prefix;
+
+	$awpcp_page_id = awpcp_get_page_id_by_ref('main-page-name');
+
+	if (empty($awpcp_page_id)) {
+		return array();
+	}
+
+	$query = "SELECT ID FROM {$table_prefix}posts ";
+	$query.= "WHERE post_parent=$awpcp_page_id AND post_content LIKE '%AWPCP%'";
+
+	$child_pages = $wpdb->get_col( $query );
+
+	if ( is_array( $child_pages ) ) {
+		return array_merge( $child_pages, $excluded );
+	} else {
+		return $excluded;
+	}
+}
+
+
+
+// PROGRAM FUNCTIONS
+
+/**
+ * Return an array of refnames for pages associated with one or more
+ * rewrite rules.
+ *
+ * @since 2.1.3
+ * @return array Array of page refnames.
+ */
+function awpcp_pages_with_rewrite_rules() {
+	return array(
+		'main-page-name',
+		'show-ads-page-name',
+		'reply-to-ad-page-name',
+        'edit-ad-page-name',
+		'browse-ads-page-name',
+	);
+}
+
+/**
+ * Register AWPCP query vars
+ */
+function awpcp_query_vars($query_vars) {
+	$vars = array(
+		// API
+		'awpcpx',
+		'awpcp-module',
+		'awpcp-action',
+		'module',
+		'action',
+
+		// Payments API
+		'awpcp-txn',
+
+		// Listings API
+		'awpcp-ad',
+		'awpcp-hash',
+
+		// misc
+        'awpcp-custom',
+		"cid",
+		"id",
+		"layout",
+		"regionid",
+	);
+
+	return array_merge($query_vars, $vars);
+}
+
+/**
+ * @since 3.2.1
+ * @SuppressWarnings(PHPMD)
+ */
+function awpcp_rel_canonical_url() {
+	global $wp_the_query;
+
+	if ( ! is_singular() )
+		return false;
+
+	if ( ! $page_id = $wp_the_query->get_queried_object_id() ) {
+		return false;
+	}
+
+	if ( $page_id != awpcp_get_page_id_by_ref( 'show-ads-page-name' ) ) {
+		return false;
+	}
+
+	$ad_id = intval( awpcp_request_param( 'id', '' ) );
+	$ad_id = empty( $ad_id ) ? intval( get_query_var( 'id' ) ) : $ad_id;
+
+	if ( empty( $ad_id ) ) {
+		$url = get_permalink( $page_id );
+	} else {
+		$url = url_showad( $ad_id );
+	}
+
+	return $url;
+}
+
+/**
+ * Set canonical URL to the Ad URL when in viewing on of AWPCP Ads.
+ *
+ * @since unknown
+ * @since 3.2.1	logic moved to awpcp_rel_canonical_url()
+ * @SuppressWarnings(PHPMD)
+ */
+function awpcp_rel_canonical() {
+	$url = awpcp_rel_canonical_url();
+
+	if ( $url ) {
+		echo "<link rel='canonical' href='$url' />\n";
+	} else {
+		rel_canonical();
+	}
+}
+
+
+/**
+ * Overwrittes WP canonicalisation to ensure our rewrite rules
+ * work, even when the main AWPCP page is also the front page or
+ * when the requested page slug is 'awpcp'.
+ *
+ * Required for the View Categories and Classifieds RSS rules to work
+ * when AWPCP main page is also the front page.
+ *
+ * http://wordpress.stackexchange.com/questions/51530/rewrite-rules-problem-when-rule-includes-homepage-slug
+ *
+ * @SuppressWarnings(PHPMD)
+ */
+function awpcp_redirect_canonical($redirect_url, $requested_url) {
+	global $wp_query;
+
+    $awpcp_rewrite = false;
+	$ids = awpcp_get_page_ids_by_ref(awpcp_pages_with_rewrite_rules());
+
+	// do not redirect requests to AWPCP pages with rewrite rules
+	if (is_page() && in_array(awpcp_request_param('page_id', 0), $ids)) {
+        $awpcp_rewrite = true;
+
+	// do not redirect requests to the front page, if any of the AWPCP pages
+	// with rewrite rules is the front page
+	} else if (is_page() && !is_feed() && isset($wp_query->queried_object) &&
+			  'page' == get_option('show_on_front') && in_array($wp_query->queried_object->ID, $ids) &&
+			   $wp_query->queried_object->ID == get_option('page_on_front'))
+	{
+        $awpcp_rewrite = true;
+	}
+
+    if ( $awpcp_rewrite ) {
+        // Fix for #943.
+        $requested_host = parse_url( $requested_url, PHP_URL_HOST );
+        $redirect_host = parse_url( $redirect_url, PHP_URL_HOST );
+
+        if ( $requested_host != $redirect_host ) {
+            if ( strtolower( $redirect_host ) == ( 'www.' . $requested_host ) ) {
+                return str_replace( $requested_host, 'www.' . $requested_host, $requested_url );
+            } elseif ( strtolower( $requested_host ) == ( 'www.' . $redirect_host ) ) {
+                return str_replace( 'www.', '', $requested_url );
+            }
+        }
+
+        return $requested_url;
+    }
+
+	// $id = awpcp_get_page_id_by_ref('main-page-name');
+
+	// // do not redirect direct requests to AWPCP main page
+	// if (is_page() && !empty($_GET['page_id']) && $id == $_GET['page_id']) {
+	// 	$redirect_url = $requested_url;
+
+	// // do not redirect request to the front page, if AWPCP main page is
+	// // the front page
+	// } else if (is_page() && !is_feed() && isset($wp_query->queried_object) &&
+	// 		  'page' == get_option('show_on_front') && $id == $wp_query->queried_object->ID &&
+	// 		   $wp_query->queried_object->ID == get_option('page_on_front'))
+	// {
+	// 	$redirect_url = $requested_url;
+	// }
+
+	return $redirect_url;
+}
 
 function awpcp_esc_attr($text) {
 	// WP adds slashes to all request variables
@@ -69,7 +264,7 @@ function awpcp_strptime_replacement( $date, $format ) {
         // usw..
     );
 
-    $regexp = "#" . strtr( preg_quote( $format ), $masks ) . "#";
+    $regexp = "#" . strtr( preg_quote( $format, '#' ), $masks ) . "#";
     if ( ! preg_match( $regexp, $date, $out ) ) {
         return false;
     }
@@ -214,6 +409,29 @@ function awpcp_get_datetime_format() {
 }
 
 /**
+ * @since 4.0.0
+ */
+function awpcp_get_datetime_formats() {
+    return [
+        'american' => array(
+            'date'   => 'm/d/Y',
+            'time'   => 'h:i:s',
+            'format' => '<date> <time>',
+        ),
+        'european' => array(
+            'date'   => 'd/m/Y',
+            'time'   => 'H:i:s',
+            'format' => '<date> <time>',
+        ),
+        'custom' => array(
+            'date'   => 'l F j, Y',
+            'time'   => 'g:i a T',
+            'format' => '<date> at <time>',
+        ),
+    ];
+}
+
+/**
  * Returns the given date as MySQL date string, Unix timestamp or
  * using a custom format.
  *
@@ -277,6 +495,16 @@ function awpcp_is_mysql_date( $date ) {
 	return preg_match( $regexp, $date ) === 1;
 }
 
+function awpcp_is_array_of_arrays( $array ) {
+    if ( ! is_array( $array ) ) {
+        return false;
+    }
+
+    $array_keys = array_keys( $array );
+
+    return is_array( $array[ $array_keys[ 0 ] ] );
+}
+
 
 /**
  * Returns a WP capability required to be considered an AWPCP admin.
@@ -286,7 +514,20 @@ function awpcp_is_mysql_date( $date ) {
  * @since 2.0.7
  */
 function awpcp_admin_capability() {
-    return 'manage_classifieds';
+    $capabilities = awpcp_roles_and_capabilities()->get_administrator_capabilities();
+
+    return array_shift( $capabilities );
+}
+
+
+/**
+ * We are using read as an alias for edit_classifieds_listings. If a user can `read`,
+ * he or she can `edit_classifieds_listings`.
+ *
+ * @since 4.0.0
+ */
+function awpcp_user_capability() {
+    return 'read';
 }
 
 /**
@@ -336,6 +577,14 @@ function awpcp_get_grid_item_css_class($classes, $pos, $columns, $rows) {
  * @return 	String	HTML
  */
 function awpcp_pagination($config, $url) {
+    if ( ! is_admin() && function_exists( 'wp_pagenavi' ) && isset( $config['query'] ) ) {
+        $args = [
+            'query' => $config['query'],
+            'echo'  => false,
+        ];
+
+        return wp_pagenavi( $args );
+    }
 
     $blacklist = array(
         'offset',
@@ -372,10 +621,20 @@ function awpcp_pagination($config, $url) {
 		unset($params[$param]);
 	}
 
-	extract(shortcode_atts(array('offset' => 0, 'results' => 10, 'total' => 10), $config));
+    extract(shortcode_atts(
+        [
+            'offset'         => 0,
+            'results'        => 10,
+            'total'          => 10,
+            'show_dropdown'  => true,
+            'dropdown_label' => __( 'Ads per page:', 'another-wordpress-classifieds-plugin' ),
+            'dropdown_name'  => 'results',
+        ],
+        $config
+    ));
 
     $items = array();
-    $radius = 5;
+    $radius = 2;
 
     if ( $results > 0 ) {
         $pages = ceil($total / $results);
@@ -384,6 +643,12 @@ function awpcp_pagination($config, $url) {
         $pages = 1;
         $page = 1;
     }
+
+    $summary = __( 'Page {current_page_number} of {number_of_pages}', 'another-wordpress-classifieds-plugin' );
+    $summary = str_replace( '{current_page_number}', $page, $summary );
+    $summary = str_replace( '{number_of_pages}', $pages, $summary );
+
+    $items[] = '<span class="awpcp-pagination-summary">' . esc_html( $summary ) . '</span>';
 
     if ( ( $page - $radius ) > 2 ) {
         $items[] = awpcp_render_pagination_item( '&laquo;&laquo;', 1, $results, $params, $url );
@@ -395,7 +660,7 @@ function awpcp_pagination($config, $url) {
 
 	for ($i=1; $i <= $pages; $i++) {
         if ( $page == $i ) {
-            $items[] = sprintf('%d', $i);
+            $items[] = sprintf( '<span class="awpcp-pagination-links--link">%d</span>', $i );
         } else if ( $i < ( $page - $radius ) ) {
             // pass
         } else if ( $i > ( $page + $radius ) ) {
@@ -413,6 +678,7 @@ function awpcp_pagination($config, $url) {
         $items[] = awpcp_render_pagination_item( '&raquo;&raquo;', $pages, $results, $params, $url );
     }
 
+    $unique_id  = str_replace( [ ' ', '.' ], '-', microtime() );
 	$pagination = implode( '', $items );
 	$options = awpcp_pagination_options( $results );
 
@@ -435,7 +701,7 @@ function awpcp_render_pagination_item( $label, $page, $results_per_page, $params
 
     $url = add_query_arg( urlencode_deep( $params ), $url );
 
-    return sprintf( '<a href="%s">%s</a>', esc_url( $url ), $label );
+    return sprintf( '<a class="awpcp-pagination-links--link" href="%s">%s</a>', esc_url( $url ), $label );
 }
 
 /**
@@ -473,19 +739,14 @@ function awpcp_default_pagination_options( $selected = 10 ) {
 }
 
 function awpcp_get_categories() {
-	global $wpdb;
-
-	$sql = 'SELECT * FROM ' . AWPCP_TABLE_CATEGORIES;
-	$results = $wpdb->get_results($sql);
-
-	return $results;
+    return awpcp_categories_collection()->find_categories();
 }
 
 function awpcp_get_categories_ids() {
 	static $categories;
 
 	if (!is_array($categories)) {
-		$categories = awpcp_get_properties( awpcp_get_categories(), 'category_id' );
+		$categories = awpcp_get_properties( awpcp_get_categories(), 'term_id' );
 	}
 
 	return $categories;
@@ -518,30 +779,20 @@ function awpcp_get_comma_separated_list($items=array(), $threshold=5, $none='') 
 }
 
 /**
- * Returns an array of Region fields. Only those enabled
- * in the settings will be returned.
- *
- * @param $translations array 	Allow developers to change the name
- * 								attribute of the form field associated
- *								to this Region Field.
- * @since 3.0.2
+ * @since 3.3.1
+ * @since 4.0.0     Added support for returning a different set of fields for
+ *                  the Search form using the $context parameter.
  */
-function awpcp_region_fields( $context='details', $enabled_fields = null ) {
-    $enabled_fields = is_null( $enabled_fields ) ? awpcp_get_enabled_region_fields() : $enabled_fields;
-
-    $fields = apply_filters( 'awpcp-region-fields', false, $context, $enabled_fields );
-
-    if ( false === $fields ) {
-    	$fields = awpcp_default_region_fields( $context, $enabled_fields );
+function awpcp_get_enabled_region_fields( $context = null ) {
+    if ( 'search' === $context ) {
+        return [
+            'country' => get_awpcp_option( 'display_country_field_on_search_form' ),
+            'state'   => get_awpcp_option( 'display_state_field_on_search_form' ),
+            'city'    => get_awpcp_option( 'display_city_field_on_search_form' ),
+            'county'  => get_awpcp_option( 'display_county_field_on_search_form' ),
+        ];
     }
 
-    return $fields;
-}
-
-/**
- * @since 3.3.1
- */
-function awpcp_get_enabled_region_fields() {
     return array(
         'country' => get_awpcp_option( 'displaycountryfield' ),
         'state' => get_awpcp_option( 'displaystatefield' ),
@@ -557,7 +808,7 @@ function awpcp_default_region_fields( $context='details', $enabled_fields = null
     $enabled_fields = is_null( $enabled_fields ) ? awpcp_get_enabled_region_fields() : $enabled_fields;
     $show_city_field_before_county_field = get_awpcp_option( 'show-city-field-before-county-field' );
 
-    $always_shown = in_array( $context, array( 'details', 'search', 'user-profile' ) );
+    $always_shown = in_array( $context, array( 'details', 'search', 'user-profile' ), true );
     $can_be_required = $context !== 'search';
     $_fields = array();
 
@@ -828,93 +1079,12 @@ function awpcp_country_list_options($value=false, $use_names=true) {
 
 /**
  * AWPCP misc functions
- *
- * TODO: merge content from functions_awpcp.php,
- * fileop.class.php, dcfunctions.php, upload_awpcp.php
- * as needed.
  */
-
-/**
- * @deprecated 3.0.2 use $media->get_url()
- */
-function awpcp_get_image_url($image, $suffix='') {
-	_deprecated_function( __FUNCTION__, '3.0.2', 'AWPCP_Media::get_url()' );
-
-	static $uploads = array();
-
-	if ( empty( $uploads ) ) {
-		$uploads = awpcp_setup_uploads_dir();
-		$uploads = array_shift( $uploads );
-	}
-
-	$images = trailingslashit(AWPCPUPLOADURL);
-	$thumbnails = trailingslashit(AWPCPTHUMBSUPLOADURL);
-
-	if (is_object($image))
-		$basename = $image->image_name;
-	if (is_string($image))
-		$basename = $image;
-
-	$original = $images . $basename;
-	$thumbnail = $thumbnails . $basename;
-	$part = empty($suffix) ? '.' : "-$suffix.";
-
-	$info = awpcp_utf8_pathinfo($original);
-
-	if ($suffix == 'original') {
-		$alternatives = array($original);
-	} else if ($suffix == 'large') {
-		$alternatives = array(
-			str_replace(".{$info['extension']}", "$part{$info['extension']}", $original),
-			$original
-		);
-	} else {
-		$alternatives = array(
-			str_replace(".{$info['extension']}", "$part{$info['extension']}", $thumbnail),
-			$thumbnail,
-			$original
-		);
-	}
-
-	foreach ($alternatives as $imagepath) {
-		if (file_exists(str_replace(AWPCPUPLOADURL, $uploads, $imagepath))) {
-			return $imagepath;
-		}
-	}
-
-	return false;
-}
-
-/**
- * Get the primary image of the given Ad.
- *
- * @param  int	$ad_id	Ad's ID
- * @return object	an StdClass object representing an image
- * @deprecated use awpcp_media_api()->get_ad_primary_image()
- */
-function awpcp_get_ad_primary_image($ad_id) {
-	global $wpdb;
-
-	$query = 'SELECT * FROM ' . AWPCP_TABLE_ADPHOTOS . ' ';
-	$query.= 'WHERE ad_id = %d AND is_primary = 1 AND disabled = 0';
-
-	$results = $wpdb->get_results($wpdb->prepare($query, $ad_id));
-
-	if (!empty($results)) return $results[0];
-
-	$query = 'SELECT * FROM ' . AWPCP_TABLE_ADPHOTOS . ' ';
-	$query.= 'WHERE ad_id = %d AND disabled = 0 ORDER BY key_id LIMIT 0,1';
-
-	$results = $wpdb->get_results($wpdb->prepare($query, $ad_id));
-
-	return empty($results) ? null : $results[0];
-}
-
 
 function awpcp_array_insert($array, $index, $key, $item, $where='before') {
 	$all = array_merge($array, array($key => $item));
 	$keys = array_keys($array);
-	$p = array_search($index, $keys);
+	$p = array_search( $index, $keys, true );
 
 	if ($p !== FALSE) {
 		if ($where === 'before')
@@ -1004,9 +1174,22 @@ function awpcp_insert_submenu_item_after($menu, $slug, $after) {
 
 /**
  * @since 2.1.4
+ * @since 4.0.0     Gets the name of page directly from the post object.
  */
-function awpcp_get_page_name($pagename) {
-	return get_awpcp_option($pagename);
+function awpcp_get_page_name( $page_ref ) {
+    $page_id = awpcp_get_page_id_by_ref( $page_ref );
+
+    if ( ! $page_id ) {
+        return '';
+    }
+
+    $page = get_page( $page_id );
+
+    if ( ! isset( $page->post_title ) ) {
+        return '';
+    }
+
+    return $page->post_title;
 }
 
 /**
@@ -1209,7 +1392,8 @@ function awpcp_get_object_property_from_alternatives( $object, $alternatives, $d
  *      [awpcp-test-max] =>
  *      [awpcp-select_list] =>
  * )
- * TODO: see WP's _http_build_query
+ *
+ * XXX: Could it be replaced by WP's _http_build_query somehow?
  *
  * @since 3.0.2
  */
@@ -1268,28 +1452,6 @@ function awpcp_get_currency_code() {
     }
 }
 
-
-/**
- * XXX: Referenced in FAQ: http://awpcp.com/forum/faq/why-doesnt-my-currency-code-change-when-i-set-it/
- */
-function awpcp_get_currency_symbol() {
-    $currency_symbol = get_awpcp_option( 'currency-symbol' );
-
-    if ( ! empty( $currency_symbol ) ) {
-        return $currency_symbol;
-    }
-
-	$currency_code = awpcp_get_currency_code();
-
-    foreach ( awpcp_currency_symbols() as $currency_symbol => $currency_codes ) {
-        if ( in_array( $currency_code, $currency_codes ) ) {
-            return $currency_symbol;
-        }
-    }
-
-    return $currency_code;
-}
-
 /**
  * @since 3.4
  */
@@ -1318,48 +1480,89 @@ function awpcp_currency_symbols() {
  * @since 3.0
  */
 function awpcp_format_money($value) {
+    return awpcp_get_formmatted_amount(
+        $value,
+        awpcp_get_default_formatted_amount_template()
+    );
+}
+
+/**
+ * @since 4.0.0
+ */
+function awpcp_get_default_formatted_amount_template() {
     if ( get_awpcp_option( 'show-currency-symbol' ) != 'do-not-show-currency-symbol' ) {
         $show_currency_symbol = true;
     } else {
         $show_currency_symbol = false;
     }
 
-    return awpcp_get_formmatted_amount( $value, $show_currency_symbol );
+    return awpcp_get_formatted_amount_template( $show_currency_symbol );
 }
 
-function awpcp_format_money_without_currency_symbol( $value ) {
-    return awpcp_get_formmatted_amount( $value, false );
-}
-
-function awpcp_get_formmatted_amount( $value, $include_symbol ) {
+/**
+ * @access private
+ * @since 4.0.0
+ */
+function awpcp_get_formatted_amount_template( $show_currency_symbol ) {
     $symbol_position = get_awpcp_option( 'show-currency-symbol' );
-    $symbol = $include_symbol ? awpcp_get_currency_symbol() : '';
+    $currency_symbol = $show_currency_symbol ? awpcp_get_currency_symbol() : '';
 
     if ( get_awpcp_option( 'include-space-between-currency-symbol-and-amount' ) ) {
-        $separator = ' ';
+        $separator = ' ';
     } else {
         $separator = '';
     }
 
-    if ( $include_symbol && $symbol_position == 'show-currency-symbol-on-left' ) {
-        $formatted = '<currenct-symbol><separator><amount>';
-    } else if ( $include_symbol && $symbol_position == 'show-currency-symbol-on-right' ) {
-        $formatted = '<amount><separator><currenct-symbol>';
+    if ( $show_currency_symbol && $symbol_position == 'show-currency-symbol-on-left' ) {
+        $formatted = "${currency_symbol}${separator}<amount>";
+    } else if ( $show_currency_symbol && $symbol_position == 'show-currency-symbol-on-right' ) {
+        $formatted = "<amount>${separator}${currency_symbol}";
     } else {
         $formatted = '<amount>';
     }
 
-    $formatted = str_replace( '<currenct-symbol>', $symbol, $formatted );
-    $formatted = str_replace( '<amount>', awpcp_format_number( $value ), $formatted );
-    $formatted = str_replace( '<separator>', $separator, $formatted );
+    return $formatted;
+}
 
-    return $value >= 0 ? $formatted : "($formatted)";
+/**
+ * XXX: Referenced in FAQ: http://awpcp.com/forum/faq/why-doesnt-my-currency-code-change-when-i-set-it/
+ */
+function awpcp_get_currency_symbol() {
+    $currency_symbol = get_awpcp_option( 'currency-symbol' );
+
+    if ( ! empty( $currency_symbol ) ) {
+        return $currency_symbol;
+    }
+
+    $currency_code = awpcp_get_currency_code();
+
+    foreach ( awpcp_currency_symbols() as $currency_symbol => $currency_codes ) {
+        if ( in_array( $currency_code, $currency_codes, true ) ) {
+            return $currency_symbol;
+        }
+    }
+
+    return $currency_code;
+}
+
+/**
+ * @access private
+ */
+function awpcp_get_formmatted_amount( $value, $template ) {
+    if ( $value < 0 ) {
+        return '(' . str_replace( '<amount>', awpcp_format_number( $value ), $template ) . ')';
+    } else {
+        return str_replace( '<amount>', awpcp_format_number( $value ), $template );
+    }
 }
 
 function awpcp_format_number( $value, $decimals = null ) {
     return awpcp_get_formatted_number( $value, $decimals = get_awpcp_option( 'show-decimals' ) ? 2 : 0 );
 }
 
+/**
+ * @access private
+ */
 function awpcp_get_formatted_number( $value, $decimals = 0 ) {
     $thousands_separator = get_awpcp_option( 'thousands-separator' );
     $decimal_separator = get_awpcp_option( 'decimal-separator' );
@@ -1369,6 +1572,20 @@ function awpcp_get_formatted_number( $value, $decimals = 0 ) {
     $formatted = str_replace( '^', $thousands_separator, $formatted );
 
     return $formatted;
+}
+
+function awpcp_format_money_without_currency_symbol( $value ) {
+    return awpcp_get_formmatted_amount(
+        $value,
+        awpcp_get_formatted_amount_template_without_currency_symbol()
+    );
+}
+
+/**
+ * @access private
+ */
+function awpcp_get_formatted_amount_template_without_currency_symbol() {
+    return awpcp_get_formatted_amount_template( false );
 }
 
 function awpcp_format_integer( $value ) {
@@ -1442,13 +1659,20 @@ function awpcp_clear_flash_messages() {
     return delete_user_option( get_current_user_id(), 'awpcp-messages' );
 }
 
-function awpcp_flash( $message, $class = array( 'awpcp-updated', 'updated') ) {
+function awpcp_flash( $message, $class = array( 'awpcp-updated', 'notice', 'notice-info', 'updated') ) {
 	$messages = awpcp_get_flash_messages();
 
     if ( ! awpcp_is_duplicated_flash_message( $messages, $message, $class ) ) {
         $messages[] = array( 'message' => $message, 'class' => (array) $class );
         awpcp_update_flash_messages( $messages );
     }
+}
+
+/**
+ * @since 4.0.0
+ */
+function awpcp_flash_error( $message, $class = array( 'awpcp-error', 'notice', 'notice-error', 'notice' ) ) {
+    awpcp_flash( $message, $class );
 }
 
 function awpcp_is_duplicated_flash_message( $messages, $message, $class ) {
@@ -1504,7 +1728,28 @@ function awpcp_print_message( $message, $class = array( 'awpcp-updated', 'notice
 }
 
 function awpcp_print_error($message) {
-	return awpcp_print_message($message, array('error'));
+	return awpcp_print_message( $message, array( 'awpcp-error', 'notice', 'notice-error', 'error' ) );
+}
+
+/**
+ * @since 4.0.0
+ */
+function awpcp_render_info_message( $message ) {
+    return awpcp_print_message( $message, array( 'awpcp-message-info', 'notice', 'notice-info' ) );
+}
+
+/**
+ * @since 4.0.0
+ */
+function awpcp_render_dismissible_success_message( $message ) {
+    return awpcp_print_message( $message, array( 'awpcp-message-success', 'notice', 'notice-success', 'is-dismissible' ) );
+}
+
+/**
+ * @since 4.0.0
+ */
+function awpcp_render_dismissible_error_message( $message ) {
+    return awpcp_print_message( $message, array( 'awpcp-error', 'notice', 'notice-error', 'is-dismissible' ) );
 }
 
 /**
@@ -1542,6 +1787,9 @@ function awpcp_form_help_text( $field_id, $help_text ) {
     return awpcp_html_label( $params );
 }
 
+/**
+ * @deprecated 4.0.0    No longer used.
+ */
 function awpcp_attachment_background_color_explanation() {
 	if ( get_awpcp_option( 'imagesapprove' ) ) {
 		return '<p>' . __( 'The images or files with pale red background have been rejected by an administrator user. Likewise, files with a pale yellow background are awaiting approval. Files that are awaiting approval and rejected files, cannot be shown in the frontend.', 'another-wordpress-classifieds-plugin' ) . '</p>';
@@ -1573,7 +1821,7 @@ function awpcp_module_not_compatible_notice( $module, $installed_version ) {
 /**
  * Use awpcp_html_attributes instead.
  *
- * @deprecated since next-release
+ * @deprecated since 4.0.0
  */
 function awpcp_render_attributes($attrs) {
     $attributes = array();
@@ -1586,7 +1834,7 @@ function awpcp_render_attributes($attrs) {
 }
 
 /**
- * @since next-release
+ * @since 4.0.0
  */
 function awpcp_html_attributes( $attributes ) {
     $output = array();
@@ -1617,7 +1865,7 @@ function awpcp_html_hidden_fields( $fields ) {
 }
 
 /**
- * @since next-release
+ * @since 4.0.0
  */
 function awpcp_html_image( $params ) {
     $params = wp_parse_args( $params, array(
@@ -1817,7 +2065,7 @@ function awpcp_html_postbox_handle( $params ) {
     $params['heading_attributes'] = awpcp_parse_html_attributes( $params['heading_attributes'] );
     $params['span_attributes'] = awpcp_parse_html_attributes( $params['span_attributes'] );
 
-    if ( ! in_array( $params['heading_class'], $params['heading_attributes']['class'] ) ) {
+    if ( ! in_array( $params['heading_class'], $params['heading_attributes']['class'], true ) ) {
         $params['heading_attributes']['class'][] = $params['heading_class'];
     }
 
@@ -1879,7 +2127,28 @@ function awpcp_html_admin_second_level_heading_tag() {
 }
 
 /**
- * @access private
+ * @since 4.0.0
+ */
+function awpcp_html_admin_third_level_heading( $params ) {
+    $params['tag'] = awpcp_html_admin_third_level_heading_tag();
+    return awpcp_html_heading( $params );
+}
+
+/**
+ * @since 4.0.0
+ */
+function awpcp_html_admin_third_level_heading_tag() {
+    if ( version_compare( get_bloginfo('version'), '4.4-beta1', '<' ) ) {
+        return 'h4';
+    } else {
+        return 'h3';
+    }
+}
+
+/**
+ * @param string $content The already escaped content of the heading tag.
+ *
+ * @access private
  * @since 3.6
  */
 function awpcp_html_heading( $params ) {
@@ -1960,7 +2229,7 @@ function awpcp_table_exists($table) {
 
 /**
  * TODO: move memoization to where the information is needed. Having it here is the perfect
- *          scenarion for hard to track bugs.
+ * scenarion for hard to track bugs.
  * @since  2.1.4
  */
 function awpcp_column_exists($table, $column) {
@@ -2076,7 +2345,7 @@ function awpcp_admin_sender_email_address($include_contact_name=false) {
 }
 
 /**
- * @since next-release
+ * @since 4.0.0
  */
 function awpcp_admin_sender_name() {
     if ( awpcp_get_option( 'sent-emails-using-wordpress-email-address' ) ) {
@@ -2131,14 +2400,20 @@ function awpcp_moderators_email_to() {
 /**
  * @since  2.1.4
  */
-function awpcp_ad_enabled_email($ad) {
+function awpcp_ad_enabled_email( $listing ) {
+    $listing_renderer = awpcp_listing_renderer();
+
+    $listing_title = $listing_renderer->get_listing_title( $listing );
+    $contact_name = $listing_renderer->get_contact_name( $listing );
+    $contact_email = $listing_renderer->get_contact_email( $listing );
+
 	// user email
 	$mail = new AWPCP_Email;
-	$mail->to[] = awpcp_format_recipient_address( $ad->ad_contact_email, $ad->ad_contact_name );
-	$mail->subject = sprintf(__('Your Ad "%s" has been approved', 'another-wordpress-classifieds-plugin'), $ad->get_title());
+	$mail->to[] = awpcp_format_recipient_address( $contact_email, $contact_name );
+	$mail->subject = sprintf( __( 'Your Ad "%s" has been approved', 'another-wordpress-classifieds-plugin'), $listing_title );
 
 	$template = AWPCP_DIR . '/frontend/templates/email-ad-enabled-user.tpl.php';
-	$mail->prepare($template, compact('ad'));
+	$mail->prepare( $template, compact( 'listing', 'listing_title', 'contact_name' ) );
 
 	$mail->send();
 }
@@ -2149,12 +2424,19 @@ function awpcp_ad_enabled_email($ad) {
 function awpcp_ad_updated_user_email( $ad, $message ) {
 	$admin_email = awpcp_admin_recipient_email_address();
 
+    $listing_renderer = awpcp_listing_renderer();
+
+    $listing_title = $listing_renderer->get_listing_title( $ad );
+    $access_key = $listing_renderer->get_access_key( $ad );
+    $contact_name = $listing_renderer->get_contact_name( $ad );
+    $contact_email = $listing_renderer->get_contact_email( $ad );
+
 	$mail = new AWPCP_Email;
-	$mail->to[] = awpcp_format_recipient_address( $ad->ad_contact_email, $ad->ad_contact_name );
-	$mail->subject = sprintf(__('Your Ad "%s" has been successfully updated', 'another-wordpress-classifieds-plugin'), $ad->get_title());
+	$mail->to[] = awpcp_format_recipient_address( $contact_email, $contact_name );
+	$mail->subject = sprintf( __( 'Your Ad "%s" has been successfully updated', 'another-wordpress-classifieds-plugin' ), $listing_title );
 
 	$template = AWPCP_DIR . '/frontend/templates/email-ad-updated-user.tpl.php';
-	$mail->prepare($template, compact('ad', 'message', 'admin_email'));
+	$mail->prepare( $template, compact( 'ad', 'listing_title', 'access_key', 'contact_email', 'admin_email', 'message' ) );
 
 	return $mail;
 }
@@ -2167,23 +2449,25 @@ function awpcp_ad_updated_email( $ad, $message ) {
 }
 
 function awpcp_ad_awaiting_approval_email($ad, $ad_approve, $images_approve) {
+    $listing_renderer = awpcp_listing_renderer();
+
 	// admin email
-	$params = array( 'page' => 'awpcp-listings',  'action' => 'manage-images', 'id' => $ad->ad_id );
-    $manage_images_url = add_query_arg( urlencode_deep( $params ), admin_url( 'admin.php' ) );
+	$params = array( 'action' => 'manage-images', 'id' => $ad->ID );
+    $manage_images_url = add_query_arg( urlencode_deep( $params ), awpcp_get_admin_listings_url() );
 
 	if ( false == $ad_approve && $images_approve ) {
 		$subject = __( 'Images on Ad "%s" are awaiting approval', 'another-wordpress-classifieds-plugin' );
 
 		$message = __( 'Images on Ad "%s" are awaiting approval. You can approve the images going to the Manage Images section for that Ad and clicking the "Enable" button below each image. Click here to continue: %s.', 'another-wordpress-classifieds-plugin');
-		$messages = array( sprintf( $message, $ad->get_title(), $manage_images_url ) );
+		$messages = array( sprintf( $message, $listing_renderer->get_listing_title( $ad ), $manage_images_url ) );
 	} else {
 		$subject = __( 'The Ad "%s" is awaiting approval', 'another-wordpress-classifieds-plugin' );
 
 		$message = __('The Ad "%s" is awaiting approval. You can approve the Ad going to the Manage Listings section and clicking the "Enable" action shown on top. Click here to continue: %s.', 'another-wordpress-classifieds-plugin');
-		$params = array('page' => 'awpcp-listings',  'action' => 'view', 'id' => $ad->ad_id);
-	    $url = add_query_arg( urlencode_deep( $params ), admin_url( 'admin.php' ) );
+		$params = array( 'action' => 'view', 'id' => $ad->ID );
+	    $url = add_query_arg( urlencode_deep( $params ), awpcp_get_admin_listings_url() );
 
-	    $messages[] = sprintf( $message, $ad->get_title(), $url );
+	    $messages[] = sprintf( $message, $listing_renderer->get_listing_title( $ad ), $url );
 
 	    if ( $images_approve ) {
 		    $message = __( 'Additionally, You can approve the images going to the Manage Images section for that Ad and clicking the "Enable" button below each image. Click here to continue: %s.', 'another-wordpress-classifieds-plugin' );
@@ -2193,7 +2477,7 @@ function awpcp_ad_awaiting_approval_email($ad, $ad_approve, $images_approve) {
 
 	$mail = new AWPCP_Email;
 	$mail->to[] = awpcp_admin_email_to();
-	$mail->subject = sprintf( $subject, $ad->get_title() );
+	$mail->subject = sprintf( $subject, $listing_renderer->get_listing_title( $ad ) );
 
 	$template = AWPCP_DIR . '/frontend/templates/email-ad-awaiting-approval-admin.tpl.php';
 	$mail->prepare( $template, compact( 'messages' ) );
@@ -2224,15 +2508,34 @@ function awpcp_enqueue_main_script() {
  * @since 3.3
  */
 function awpcp_maybe_add_thickbox() {
-    if ( get_awpcp_option( 'awpcp_thickbox_disabled' ) ) {
-        return;
-    }
+    awpcp_maybe_include_lightbox_script();
+}
 
-    add_thickbox();
+/**
+ * @since 4.0.0
+ */
+function awpcp_maybe_include_lightbox_script() {
+    if ( ! get_awpcp_option( 'awpcp_thickbox_disabled' ) ) {
+        wp_enqueue_script( 'awpcp-lightgallery' );
+    }
+}
+
+/**
+ * @since 4.0.0
+ */
+function awpcp_maybe_include_lightbox_style() {
+    if ( ! get_awpcp_option( 'awpcp_thickbox_disabled' ) ) {
+        wp_enqueue_style( 'awpcp-lightgallery' );
+    }
 }
 
 
 /**
+ * This function is a specific case of awpcp_load_text_domain_with_file_prefix().
+ * However, before trying to remove it, confirm that support for Language Packs
+ * is still enabled even if load_plugin_textdomain() is not called with the slug
+ * for core plugin hardcoded.
+ *
  * @since 3.2.1
  * @since 3.9.2     Modified to use load_plugin_textdomain() in preparation for
  *                  adding support for Language Packs.
@@ -2258,55 +2561,46 @@ function awpcp_load_plugin_textdomain( $__file__ ) {
     // Try to load translations from WP_PLUGIN_DIR /<plugin-slug>/another-wordpress-classifieds-plugin-$locale.mo.
     $mofile = WP_PLUGIN_DIR . "/$basename/another-wordpress-classifieds-plugin-$locale.mo";
     load_textdomain( 'another-wordpress-classifieds-plugin', $mofile );
-
-    if ( ! awpcp_is_textdomain_loaded( 'another-wordpress-classifieds-plugin' ) ) {
-        // Attempt to load translations from file using old text domain.
-        awpcp_load_text_domain_with_file_prefix( $__file__, 'another-wordpress-classifieds-plugin', 'AWPCP' );
-    }
 }
 
 /**
  * Attempts to load translations from the following locations:
  *
- * - WP_LANG_DIR /plugins/$file_prefix-$locale.mo
  * - WP_LANG_DIR /<plugin-slug>/$file_prefix-$locale.mo
+ * - WP_LANG_DIR /plugins/$file_prefix-$locale.mo
  * - WP_PLUGIN_DIR /<plugin-slug>/languages/$file_prefix-$locale.mo
  * - WP_PLUGIN_DIR /<plugin-slug>/$file_prefix-$locale.mo
  *
  * TODO: Do we really need to load files from all those locations? Isn't all that verifications too exepensive?
- *       Having all that options is confusing. We should support the standard ones only.
+ * TODO: Having all that options is confusing. We should support the standard ones only.
  *
  * @since 3.5.3.2
+ * @since 4.0.0 $file_prefix parameter was deprecated.
+ *
+ * @param string $__file__    Absolute path to the plugin's main file.
+ * @param string $text_domain Plugin's text domain.
  */
-function awpcp_load_text_domain_with_file_prefix( $__file__, $text_domain, $file_prefix ) {
+function awpcp_load_text_domain_with_file_prefix( $__file__, $text_domain, $file_prefix = null ) {
     $basename = dirname( plugin_basename( $__file__ ) );
 
     $locale = function_exists( 'determined_locale' ) ? determined_locale() : get_locale();
     $locale = apply_filters( 'plugin_locale', $locale, $text_domain );
 
-    // Load user translation from wp-content/languages/plugins/$domain-$locale.mo
-    $mofile = WP_LANG_DIR . '/plugins/' . $file_prefix . '-' . $locale . '.mo';
-    if ( file_exists( $mofile ) ) {
-        load_textdomain( $text_domain, $mofile );
-    }
+    // Try to load translations from WP_LANG_DIR/$basename/$domain-$locale.mo.
+    $mofile = WP_LANG_DIR . "/$basename/$text_domain-$locale.mo";
+    load_textdomain( $text_domain, $mofile );
 
-    // Load user translation from wp-content/languages/another-wordpress-classifieds-plugin/$domain-$locale.mo
-    $mofile = WP_LANG_DIR . '/' . $basename . '/' . $file_prefix . '-' . $locale . '.mo';
-    if ( file_exists( $mofile ) ) {
-        load_textdomain( $text_domain, $mofile );
-    }
-
-    // Load translation included in plugin's languages directory. Stop if the file is loaded.
-    $mofile = WP_PLUGIN_DIR . '/' . $basename . '/languages/' . $file_prefix . '-' . $locale . '.mo';
-    if ( file_exists( $mofile ) ) {
-        load_textdomain( $text_domain, $mofile );
-    }
+    /**
+     * Try to load translations from the following locations:
+     *
+     * - WP_LANG_DIR /plugins/$basename-$locale.mo
+     * - WP_PLUGIN_DIR /<plugin-slug>/languages/$basename-$locale.mo
+     */
+    load_plugin_textdomain( $text_domain, false, "$basename/languages/" );
 
     // Try loading the translations from the plugin's root directory.
-    $mofile = WP_PLUGIN_DIR . '/' . $basename . '/' . $file_prefix . '-' . $locale . '.mo';
-    if ( file_exists( $mofile ) ) {
-        load_textdomain( $text_domain, $mofile );
-    }
+    $mofile = WP_PLUGIN_DIR . "/$basename/$text_domain-$locale.mo";
+    load_textdomain( $text_domain, $mofile );
 }
 
 /**
@@ -2484,7 +2778,7 @@ function awpcp_unique_filename( $path, $filename, $directories ) {
  *
  * See: https://github.com/drodenbaugh/awpcp/issues/1222#issuecomment-119742743
  *
- * @since next-release
+ * @since 4.0.0
  */
 function awpcp_sanitize_file_name( $filename ) {
     $sanitize_file_name = sanitize_file_name( $filename );
@@ -2519,7 +2813,7 @@ function awpcp_register_deactivation_hook( $__FILE__, $callback ) {
 }
 
 /**
- * @since next-release
+ * @since 4.0.0
  */
 function awpcp_unregister_widget_if_exists( $widget_class ) {
     global $wp_widget_factory;
@@ -2626,23 +2920,11 @@ function awpcp_is_email_address_allowed( $email_address ) {
     return false;
 }
 
-function defaultcatexists($defid) {
-    global $wpdb;
-
-    $query = 'SELECT COUNT(*) FROM ' . AWPCP_TABLE_CATEGORIES . ' WHERE category_id = %d';
-    $query = $wpdb->prepare( $query, $defid );
-
-    $count = $wpdb->get_var( $query );
-
-    if ( $count !== false && $count > 0 ) {
-        return true;
-    } else {
-        return false;
-    }
-
-}
-
-// START FUNCTION: function to create a default category with an ID of  1 in the event a default category with ID 1 does not exist
+/**
+ * Function to create a default category with an ID of  1 in the event a default category with ID 1 does not exist.
+ *
+ * @deprecated 4.0.0
+ */
 function createdefaultcategory($idtomake,$titletocallit) {
     global $wpdb;
 
@@ -2651,39 +2933,14 @@ function createdefaultcategory($idtomake,$titletocallit) {
     $query = 'UPDATE ' . AWPCP_TABLE_CATEGORIES . ' SET category_id = 1 WHERE category_id = %d';
     $query = $wpdb->prepare( $query, $wpdb->insert_id );
 
-    $wpdb->query( $query );
+    // @phpcs:disable WordPress.DB.DirectDatabaseQuery.NoCaching
+    $wpdb->query( $query ); // WPCS: unprepared SQL OK
+    // @phpcs:enable WordPress.DB.DirectDatabaseQuery.NoCaching
 }
-// END FUNCTION: create default category
-
-
-//////////////////////
-// START FUNCTION: function to delete multiple ads at once used when admin deletes a category that contains ads but does not move the ads to a new category
-//////////////////////
-function massdeleteadsfromcategory($catid) {
-    $ads = AWPCP_Ad::find_by_category_id($catid);
-    foreach ($ads as $ad) {
-        $ad->delete();
-    }
-}
-// END FUNCTION
 
 function create_ad_postedby_list($name) {
-    global $wpdb;
-
-    $output = '';
-    $query = 'SELECT DISTINCT ad_contact_name FROM ' . AWPCP_TABLE_ADS . ' WHERE disabled = 0 ORDER BY ad_contact_name ASC';
-
-    $results = $wpdb->get_col( $query );
-
-    foreach ( $results as $contact_name ) {
-        if ( strcmp( $contact_name, $name ) === 0 ) {
-            $output .= "<option value=\"$contact_name\" selected=\"selected\">$contact_name</option>";
-        } else {
-            $output .= "<option value=\"$contact_name\">$contact_name</option>";
-        }
-    }
-
-    return $output;
+    $names = awpcp_listings_meta()->get_meta_values( 'contact_name' );
+    return awpcp_html_options( array( 'current-value' => $name, 'options' => array_combine( $names, $names ) ) );
 }
 
 function awpcp_strip_html_tags( $text )
@@ -2751,7 +3008,11 @@ function awpcp_format_email_sent_datetime() {
     return sprintf( __( 'Email sent %s.', 'another-wordpress-classifieds-plugin' ), $time );
 }
 
-// make sure the IP isn't a reserved IP address
+/**
+ * Make sure the IP isn't a reserved IP address.
+ *
+ * @phpcs:disable
+ */
 function awpcp_validip($ip) {
 
     if (!empty($ip) && ip2long($ip)!=-1) {
@@ -2782,46 +3043,63 @@ function awpcp_validip($ip) {
 
     }
 }
+// @phpcs:enable
 
-// retrieve the ad poster's IP if possible
+/**
+ * @since 4.0.0     Rewrote to use use filter_var() and wp_unslash().
+ */
 function awpcp_getip() {
-    if ( awpcp_validip(awpcp_array_data("HTTP_CLIENT_IP", '', $_SERVER)) ) {
-        return $_SERVER["HTTP_CLIENT_IP"];
-    }
+    $variables    = [];
+    $alternatives = [
+        'HTTP_CLIENT_IP',
+        'HTTP_X_FORWARDED_FOR',
+        'HTTP_X_FORWARDED',
+        'HTTP_FORWARDED_FOR',
+        'HTTP_FORWARDED',
+        'REMOTE_ADDR',
+    ];
 
-    foreach ( explode(",", awpcp_array_data("HTTP_X_FORWARDED_FOR", '', $_SERVER)) as $ip ) {
-        if ( awpcp_validip(trim($ip) ) ) {
-            return $ip;
+    foreach ( $alternatives as $variable ) {
+        if ( ! empty( $_SERVER[ $variable ] ) ) {
+            $variables[ $variable ] = filter_var( wp_unslash( $_SERVER[ $variable ] ), FILTER_SANITIZE_STRING );
         }
     }
 
-    if (awpcp_validip(awpcp_array_data("HTTP_X_FORWARDED", '', $_SERVER))) {
-        return $_SERVER["HTTP_X_FORWARDED"];
+    // HTTP_X_FORWARDED_FOR sometimes is a comma separated list of IP addresses:
+    // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-For.
+    //
+    // Let's turn that into an array of IP addresses instead.
+    if ( isset( $variables['HTTP_X_FORWARDED_FOR'] ) ) {
+        $variables['HTTP_X_FORWARDED_FOR'] = array_map( 'trim', explode( ',', $variables['HTTP_X_FORWARDED_FOR'] ) );
+    }
 
-    } elseif (awpcp_validip(awpcp_array_data('HTTP_FORWARDED_FOR', '', $_SERVER))) {
-        return $_SERVER["HTTP_FORWARDED_FOR"];
+    foreach ( $variables as $values ) {
+        foreach ( (array) $values as $value ) {
+            $filtered_value = filter_var( $value, FILTER_VALIDATE_IP );
 
-    } elseif (awpcp_validip(awpcp_array_data("HTTP_FORWARDED", '', $_SERVER))) {
-        return $_SERVER["HTTP_FORWARDED"];
-
-    } else {
-        return awpcp_array_data("REMOTE_ADDR", '', $_SERVER);
+            // awpcp_validip() also checks that the IP address is not a reserved one.
+            if ( ! empty( $filtered_value ) && awpcp_validip( $filtered_value ) ) {
+                return $filtered_value;
+            }
+        }
     }
 }
 
-function awpcp_get_ad_share_info($id) {
-    global $wpdb;
-
-    $ad = AWPCP_Ad::find_by_id($id);
-    $info = array();
-
-    if (is_null($ad)) {
+/**
+ * TODO: Update this to work with listing objects to reduce database queries.
+ */
+function awpcp_get_ad_share_info( $id ) {
+    try {
+        $ad = awpcp_listings_collection()->get( $id );
+    } catch ( AWPCP_Exception $e ) {
         return null;
     }
 
-    $info['url'] = url_showad($id);
-    $info['title'] = stripslashes($ad->ad_title);
-    $info['description'] = strip_tags(stripslashes($ad->ad_details));
+    $info = array();
+
+    $info['url']         = url_showad( $id );
+    $info['title']       = stripslashes( $ad->post_title );
+    $info['description'] = wp_strip_all_tags( stripslashes( $ad->post_content ) );
 
     $info['description'] = str_replace( array( "\r", "\n", "\t" ), ' ', $info['description'] );
     $info['description'] = preg_replace( '/ {2,}/', ' ', $info['description'] );
@@ -2833,16 +3111,15 @@ function awpcp_get_ad_share_info($id) {
 
     $info['images'] = array();
 
-    $info['published-time'] = awpcp_datetime( 'Y-m-d', $ad->ad_postdate );
-    $info['modified-time'] = awpcp_datetime( 'Y-m-d', $ad->ad_last_updated );
+    $info['published-time'] = awpcp_datetime( 'Y-m-d', $ad->post_date );
+    $info['modified-time']  = awpcp_datetime( 'Y-m-d', $ad->post_modified );
 
-    $images = awpcp_media_api()->find_by_ad_id( $ad->ad_id, array(
-        'enabled' => true,
-        'status' => AWPCP_Media::STATUS_APPROVED,
-    ) );
+    $attachment_properties = awpcp_attachment_properties();
+
+    $images = awpcp_attachments_collection()->find_visible_attachments( array( 'post_parent' => $ad->ID ) );
 
     foreach ( $images as $image ) {
-        $info[ 'images' ][] = $image->get_url( 'large' );
+        $info['images'][] = $attachment_properties->get_image_url( $image, 'large' );
     }
 
     return $info;
@@ -2852,16 +3129,19 @@ function awpcp_get_ad_share_info($id) {
  * @since 3.6.6
  */
 function awpcp_user_agent_header() {
-    $user_agent = "WordPress %s / Another WordPress Classifieds Plugin %s";
+    $user_agent = 'WordPress %s / Another WordPress Classifieds Plugin %s';
     $user_agent = sprintf( $user_agent, get_bloginfo( 'version' ), $GLOBALS['awpcp_db_version'] );
     return $user_agent;
 }
+
+// @phpcs:disable WordPress.WP.AlternativeFunctions.curl_curl_version_ssl
+// @phpcs:disable WordPress.WP.AlternativeFunctions.curl_curl_version
 
 /**
  * @since 3.7.6
  */
 function awpcp_get_curl_info() {
-    if ( ! in_array( 'curl', get_loaded_extensions() ) ) {
+    if ( ! in_array( 'curl', get_loaded_extensions(), true ) ) {
         return __( 'Not Installed', 'another-wordpress-classifieds-plugin' );
     }
 
@@ -2873,7 +3153,7 @@ function awpcp_get_curl_info() {
 
     $output[] = "Version: {$curl_info['version']}";
 
-    if ( $curl_info['features'] & CURL_VERSION_SSL) {
+    if ( $curl_info['features'] & CURL_VERSION_SSL ) {
         $output[] = __( 'SSL Support: Yes.', 'another-wordpress-classifieds-plugin' );
     } else {
         $output[] = __( 'SSL Support: No.', 'another-wordpress-classifieds-plugin' );
@@ -2883,6 +3163,7 @@ function awpcp_get_curl_info() {
 
     return implode( '<br>', $output );
 }
+// @phpcs:enable
 
 /**
  * @since 3.7.8

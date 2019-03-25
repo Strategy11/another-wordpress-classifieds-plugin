@@ -1,280 +1,820 @@
 <?php
+/**
+ * @package AWPCP\Listings
+ */
 
 /**
  * @since 3.3
  */
 function awpcp_listings_collection() {
-    return new AWPCP_ListingsCollection( awpcp_listings_finder(), awpcp()->settings, $GLOBALS['wpdb'] );
+    return awpcp()->container['ListingsCollection'];
 }
 
 /**
  * @since 3.2.2
+ *
+ * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
+ * @SuppressWarnings(PHPMD.TooManyPublicMethods)
+ * @SuppressWarnings(PHPMD.TooManyMethods)
  */
 class AWPCP_ListingsCollection {
 
-    private $finder;
+    /**
+     * @var WP_Query    A reference to the most recent WP_Query used to retrieve
+     *                  or count listings.
+     */
+    private $last_query;
+
+    /**
+     * @var string
+     */
+    private $listing_post_type;
+
+    /**
+     * @var object
+     */
     private $settings;
+
+    /**
+     * @var object
+     */
+    private $wordpress;
+
+    /**
+     * @var object
+     */
     private $db;
 
-    public function __construct( $finder, $settings, $db ) {
-        $this->finder = $finder;
-        $this->settings = $settings;
-        $this->db = $db;
+    public function __construct( $listing_post_type, $settings, $wordpress, $db ) {
+        $this->listing_post_type = $listing_post_type;
+        $this->settings          = $settings;
+        $this->wordpress         = $wordpress;
+        $this->db                = $db;
     }
 
     /**
+     * Get the listing identified by the given ID.
+     *
+     * If you plan to rewrite this method to use find_listings() please note
+     * that doing so could cause get() query vars to be modified by modules
+     * that define handlers for the {@see 'awpcp-find-listings-query'} filter.
+     *
+     * The Restricted Categories module, for example, modifies query vars to
+     * exclude listings from all categories marked as restricted. If the same
+     * restrictions are used for queries that should return a single listing,
+     * listings on restricted categories may become unreachable to this class.
+     *
      * @since 3.3
+     * @since 4.0.0 works with custom post types.
+     *
+     * @param int $listing_id A listing ID.
+     *
+     * @return object An instance of WP_Post representing a listing.
+     * @throws AWPCP_Exception If no listing is found with the specified ID.
      */
     public function get( $listing_id ) {
         if ( $listing_id <= 0 ) {
-            $this->throw_no_listing_was_found_with_id_exception( $listing_id );
+            /* translators: %d is the ID used to search. */
+            $message = __( 'The listing ID must be a positive integer, %d was given.', 'another-wordpress-classifieds-plugin' );
+            throw new AWPCP_Exception( sprintf( $message, $listing_id ) );
         }
 
-        $listings = $this->finder->find( array( 'id' => $listing_id, 'limit' => null, 'order' => null ) );
+        $listing = $this->wordpress->get_post( $listing_id );
+
+        if ( empty( $listing ) ) {
+            /* translators: %d is the ID used to search. */
+            $message = __( 'No Listing was found with id: %d.', 'another-wordpress-classifieds-plugin' );
+            throw new AWPCP_Exception( sprintf( $message, $listing_id ) );
+        }
+
+        if ( $listing->post_type !== $this->listing_post_type ) {
+            /* translators: %d is the ID used to search. */
+            $message = __( 'No Listing was found with id: %d.', 'another-wordpress-classifieds-plugin' );
+            throw new AWPCP_Exception( sprintf( $message, $listing_id ) );
+        }
+
+        return $listing;
+    }
+
+    /**
+     * We need to support OLD listing's IDs for a while, in order to
+     * maintain old URLs working.
+     *
+     * @param int $listing_id   A previous listing ID.
+     * @throws AWPCP_Exception  If no listing is found with the specified ID.
+     * @since 4.0.0
+     */
+    public function get_listing_with_old_id( $listing_id ) {
+        $listings = $this->find_listings(
+            [
+                'classifieds_query' => [
+                    'previous_id' => $listing_id,
+                ],
+            ]
+        );
 
         if ( empty( $listings ) ) {
-            $this->throw_no_listing_was_found_with_id_exception( $listing_id );
+            /* translators: %d is the ID used to search. */
+            $message = __( 'No Listing was found with old id: %d.', 'another-wordpress-classifieds-plugin' );
+            throw new AWPCP_Exception( sprintf( $message, $listing_id ) );
         }
 
-        return array_shift( $listings );
-    }
+        $listing = $listings[0];
 
-    private function throw_no_listing_was_found_with_id_exception( $listing_id ) {
-        $message = __( 'No Listing was found with id: %d.', 'another-wordpress-classifieds-plugin' );
-        throw new AWPCP_Exception( sprintf( $message, $listing_id ) );
-    }
+        if ( $listing->post_type !== $this->listing_post_type ) {
+            /* translators: %d is the ID used to search. */
+            $message = __( 'No Listing was found with old id: %d.', 'another-wordpress-classifieds-plugin' );
+            throw new AWPCP_Exception( sprintf( $message, $listing_id ) );
+        }
 
-    /**
-     * @since 3.2.2
-     */
-    public function find_by_id( $ad_id ) {
-        return AWPCP_Ad::find_by_id( $ad_id );
+        return $listing;
     }
 
     /**
+     * @param array $identifiers    An array of classifieds IDs.
      * @since 3.3
+     * @since 4.0.0     Uses Classifieds Query Integration.
      */
     public function find_all_by_id( $identifiers ) {
         $identifiers = array_filter( array_map( 'intval', $identifiers ) );
 
-        if ( count( $identifiers ) > 0 ) {
-            $where = 'ad_id IN ( ' . implode( ',', $identifiers ) . ' )';
-            return AWPCP_Ad::query( array( 'where' => $where ) );
-        } else {
+        if ( empty( $identifiers ) ) {
             return array();
         }
+
+        return $this->find_listings( array( 'post__in' => $identifiers ) );
     }
 
     /**
-     * @since 3.3
+     * @param array $query  An array of query vars.
+     * @since 4.0.0
      */
-    private function find_valid_listings( $params = array() ) {
-        $params = wp_parse_args( $params, array(
-            'items_per_page' => 10,
-            'page' => 1,
-            'conditions' => array(),
-        ) );
+    public function find_listings( $query = array() ) {
+        $query = $this->add_orderby_query_parameters( $query );
 
-        $params['conditions'] = AWPCP_Ad::get_where_conditions_for_valid_ads( $params['conditions'] );
+        // phpcs:disable
+        $posts = $this->query_posts( apply_filters( 'awpcp-find-listings-query', $query ) );
 
-        return AWPCP_Ad::query( array(
-            'where' => implode( ' AND ', $params['conditions'] ),
-            'limit' => $params['items_per_page'],
-            'offset' => ( $params['page'] - 1 ) * $params['items_per_page']
-        ) );
+        return apply_filters( 'awpcp-find-listings', $posts, $query );
+        // phpcs:enable
     }
 
     /**
-     * @since 3.3
+     * @param array $query_vars     An array of query vars.
+     * @since 4.0.0
      */
-    private function count_valid_listings( $conditions = array() ) {
-        $conditions = AWPCP_Ad::get_where_conditions_for_valid_ads( $conditions );
-        return AWPCP_Ad::count( implode( ' AND ', $conditions ) );
-    }
-
-    /**
-     * @since 3.3
-     */
-    public function find_listings( $params = array() ) {
-        return $this->find_valid_listings( $params );
-    }
-
-    /**
-     * @since 3.3
-     */
-    public function count_listings() {
-        return $this->count_valid_listings();
-    }
-
-    /**
-     * @since 3.3
-     */
-    public function find_enabled_listings( $params = array() ) {
-        $params = array_merge( $params, array( 'conditions' => array( 'disabled = 0' ) ) );
-        return $this->find_valid_listings( $params );
-    }
-
-    public function find_enabled_listings_with_query( $query ) {
-        return $this->finder->find( $this->make_enabled_listings_query( $query ) );
-    }
-
-    private function make_enabled_listings_query( $query ) {
-        return $this->make_valid_listings_query( array_merge( $query, array(
-            'disabled' => false,
-            'start_date' => array( 'compare' => '<', 'value' => current_time( 'mysql' ) ),
-        ) ) );
-    }
-
-    private function make_valid_listings_query( $query ) {
-        return $this->make_successfully_paid_listings_query( array_merge( $query, array( 'verified' => true ) ) );
-    }
-
-    private function make_successfully_paid_listings_query( $query ) {
-        $enable_listings_pending_payment = $this->settings->get_option( 'enable-ads-pending-payment' );
-        $payments_are_enabled = $this->settings->get_option( 'freepay' ) == 1;
-
-        if ( ! $enable_listings_pending_payment && $payments_are_enabled ) {
-            $query['payment_status'] = array( 'compare' => 'not', 'values' => array( 'Pending', 'Unpaid' ) );
-        } else {
-            $query['payment_status'] = array( 'compare' => 'not', 'values' => 'Unpaid' );
+    private function query_posts( $query_vars ) {
+        if ( ! isset( $query_vars['classifieds_query'] ) ) {
+            $query_vars['classifieds_query'] = array();
         }
+
+        $this->last_query = $this->wordpress->create_posts_query( $query_vars );
+
+        return $this->last_query->posts;
+    }
+
+    /**
+     * Returns a reference to the most recent instance of WP_Query used to retrieve
+     * or count listings.
+     *
+     * @since 4.0.0
+     */
+    public function get_last_query() {
+        return $this->last_query;
+    }
+
+    /**
+     * @param array $query  An array of query vars.
+     * @since 3.3
+     */
+    public function count_listings( $query = array() ) {
+        // phpcs:disable
+        return $this->count_posts( apply_filters( 'awpcp-find-listings-query', $query ) );
+        // phpcs:enable
+    }
+
+    /**
+     * @param array $query_vars     An array of query vars.
+     * @since 4.0.0     Uses Classifieds Query Integration.
+     */
+    private function count_posts( $query_vars ) {
+        if ( ! isset( $query_vars['classifieds_query'] ) ) {
+            $query_vars['classifieds_query'] = array();
+        }
+
+        $this->last_query = $this->wordpress->create_posts_query( $query_vars );
+
+        return $this->last_query->found_posts;
+    }
+
+    /**
+     * @param array $query_vars     An array of query vars.
+     * @since 3.3
+     * @since 4.0.0     Uses Classifieds Query Integration.
+     */
+    public function find_valid_listings( $query_vars = array() ) {
+        $query_vars['classifieds_query']['is_valid'] = true;
+
+        return $this->find_listings( $query_vars );
+    }
+
+    /**
+     * @param array $query_vars     An array of query vars.
+     * @since 3.3
+     * @since 4.0.0     Uses Classifieds Query Integration.
+     */
+    public function count_valid_listings( $query_vars = array() ) {
+        $query_vars['classifieds_query']['is_valid'] = true;
+
+        return $this->count_listings( $query_vars );
+    }
+
+    /**
+     * @param array $query_vars     An array of query vars.
+     * @since 4.0.0
+     */
+    public function count_new_listings( $query_vars = array() ) {
+        $query_vars['classifieds_query']['is_new'] = true;
+
+        return $this->count_listings( $query_vars );
+    }
+
+    /**
+     * @param array $query_vars     An array of query vars.
+     * @since 4.0.0
+     */
+    public function find_expired_listings( $query_vars = array() ) {
+        $query_vars['classifieds_query']['is_expired'] = true;
+
+        return $this->find_listings( $query_vars );
+    }
+
+    /**
+     * @param array $query_vars     An array of query vars.
+     * @since 4.0.0
+     */
+    public function count_expired_listings( $query_vars = array() ) {
+        $query_vars['classifieds_query']['is_expired'] = true;
+
+        return $this->count_listings( $query_vars );
+    }
+
+    /**
+     * @param array $query_vars     The full list of query vars.
+     * @since 3.3
+     * @since 4.0.0     Uses Classifieds Query Integration.
+     */
+    public function find_enabled_listings( $query_vars = array() ) {
+        $query_vars['classifieds_query']['is_enabled'] = true;
+
+        return $this->find_listings( $query_vars );
+    }
+
+    /**
+     * @param array $query_vars     The full list of query vars.
+     * @since 3.3
+     * @since 4.0.0     Uses Classifieds Query Integration.
+     */
+    public function count_enabled_listings( $query_vars = array() ) {
+        $query_vars['classifieds_query']['is_enabled'] = true;
+
+        return $this->count_listings( $query_vars );
+    }
+
+    /**
+     * @param array $query_vars     The full list of query vars.
+     * @since 3.3
+     * @since 4.0.0     Uses Classifieds Query Integration.
+     */
+    public function find_disabled_listings( $query_vars = array() ) {
+        $query_vars['classifieds_query']['is_disabled'] = true;
+
+        return $this->find_listings( $query_vars );
+    }
+
+    /**
+     * @param array $query_vars     The full list of query vars.
+     * @since 4.0.0     Uses Classifieds Query Integration.
+     */
+    public function count_disabled_listings( $query_vars = array() ) {
+        $query_vars['classifieds_query']['is_disabled'] = true;
+
+        return $this->count_listings( $query_vars );
+    }
+
+    /**
+     * @param array $query_vars     The full list of query vars.
+     * @since 3.3
+     * @since 4.0.0     Uses Classifieds Query Integration.
+     */
+    public function find_listings_about_to_expire( $query_vars = array() ) {
+        $query_vars['classifieds_query']['is_about_to_expire'] = true;
+
+        return $this->find_listings( $query_vars );
+    }
+
+    /**
+     * @param array $query_vars     The full list of query vars.
+     * @since 3.3
+     * @since 4.0.0     Uses Classifieds Query Integration.
+     */
+    public function find_listings_awaiting_approval( $query_vars = array() ) {
+        $query_vars['classifieds_query']['is_awaiting_approval'] = true;
+
+        return $this->find_listings( $query_vars );
+    }
+
+    /**
+     * @param array $query_vars     The full list of query vars.
+     * @since 4.0.0
+     */
+    public function count_listings_awaiting_approval( $query_vars = array() ) {
+        $query_vars['classifieds_query']['is_awaiting_approval'] = true;
+
+        return $this->count_listings( $query_vars );
+    }
+
+    /**
+     * @param array $query_vars     The full list of query vars.
+     * @since 4.0.0
+     */
+    public function count_listings_with_images_awaiting_approval( $query_vars = array() ) {
+        $query_vars['classifieds_query']['has_images_awaiting_approval'] = true;
+
+        return $this->count_listings( $query_vars );
+    }
+
+    /**
+     * @param array $query_vars     The full list of query vars.
+     * @since 3.3
+     * @since 4.0.0     Uses Classifieds Query Integration.
+     */
+    public function find_successfully_paid_listings( $query_vars = array() ) {
+        $query_vars['classifieds_query']['is_successfully_paid'] = true;
+
+        return $this->find_listings( $query_vars );
+    }
+
+    /**
+     * @param array $query_vars     The full list of query vars.
+     * @since 4.0.0     Uses Classifieds Query Integration.
+     */
+    public function count_successfully_paid_listings( $query_vars = array() ) {
+        $query_vars['classifieds_query']['is_successfully_paid'] = true;
+
+        return $this->count_listings( $query_vars );
+    }
+
+    /**
+     * @param array $query_vars     The full list of query vars.
+     * @since 3.3
+     * @since 4.0.0     Uses Classifieds Query Integration.
+     */
+    public function find_listings_awaiting_verification( $query_vars = array() ) {
+        $query_vars['classifieds_query']['is_awaiting_verification'] = true;
+
+        return $this->find_listings( $query_vars );
+    }
+
+    /**
+     * @param array $query_vars     The full list of query vars.
+     * @since 4.0.0
+     */
+    public function count_listings_awaiting_verification( $query_vars = array() ) {
+        $query_vars['classifieds_query']['is_awaiting_verification'] = true;
+
+        return $this->count_listings( $query_vars );
+    }
+
+    /**
+     * @param array $query_vars     The full list of query vars.
+     * @since 4.0.0
+     */
+    public function count_featured_listings( $query_vars = array() ) {
+        $query_vars['classifieds_query']['is_featured'] = true;
+
+        return $this->count_listings( $query_vars );
+    }
+
+    /**
+     * @param array $query_vars     The full list of query vars.
+     * @since 4.0.0
+     */
+    public function count_flagged_listings( $query_vars = array() ) {
+        $query_vars['classifieds_query']['is_flagged'] = true;
+
+        return $this->count_listings( $query_vars );
+    }
+
+    /**
+     * @param array $query_vars     The full list of query vars.
+     * @since 4.0.0
+     */
+    public function count_incomplete_listings( $query_vars = array() ) {
+        $query_vars['classifieds_query']['is_incomplete'] = true;
+
+        return $this->count_listings( $query_vars );
+    }
+
+    /**
+     * @param int   $user_id        The ID of a user.
+     * @param array $query_vars     The full list of query vars.
+     * @since 3.3
+     * @since 4.0.0     Uses Classifieds Query Integration.
+     */
+    public function find_user_listings( $user_id, $query_vars = array() ) {
+        $query_vars['author'] = $user_id;
+
+        return $this->find_valid_listings( $query_vars );
+    }
+
+    /**
+     * @param int   $user_id        The ID of a user.
+     * @param array $query_vars     The full list of query vars.
+     * @since 3.3
+     * @since 4.0.0     Uses Classifieds Query Integration.
+     */
+    public function count_user_listings( $user_id, $query_vars = array() ) {
+        $query_vars['author'] = $user_id;
+
+        return $this->count_valid_listings( $query_vars );
+    }
+
+    /**
+     * @param int   $user_id        The ID of a user.
+     * @param array $query_vars     The full list of query vars.
+     * @since 3.3
+     * @since 4.0.0     Uses Classifieds Query Integration.
+     */
+    public function find_user_enabled_listings( $user_id, $query_vars = array() ) {
+        $query_vars['author'] = $user_id;
+
+        return $this->find_enabled_listings( $query_vars );
+    }
+
+    /**
+     * @param int   $user_id        The ID of a user.
+     * @param array $query_vars     The full list of query vars.
+     * @since 3.3
+     * @since 4.0.0     Uses Classifieds Query Integration.
+     */
+    public function count_user_enabled_listings( $user_id, $query_vars = array() ) {
+        $query_vars['author'] = $user_id;
+
+        return $this->count_enabled_listings( $query_vars );
+    }
+
+    /**
+     * @param int   $user_id        The ID of a user.
+     * @param array $query_vars     The full list of query vars.
+     * @since 3.3
+     * @since 4.0.0     Uses Classifieds Query Integration.
+     */
+    public function find_user_disabled_listings( $user_id, $query_vars = array() ) {
+        $query_vars['author'] = $user_id;
+
+        return $this->find_disabled_listings( $query_vars );
+    }
+
+    /**
+     * @param int   $user_id        The ID of a user.
+     * @param array $query_vars     The full list of query vars.
+     * @since 3.3
+     * @since 4.0.0     Uses Classifieds Query Integration.
+     */
+    public function count_user_disabled_listings( $user_id, $query_vars = array() ) {
+        $query_vars['author'] = $user_id;
+
+        return $this->count_disabled_listings( $query_vars );
+    }
+
+    /**
+     * @param int   $category_id    The ID of a category.
+     * @param array $query_vars     The full list of query vars.
+     * @since 3.3.2
+     * @since 4.0.0     Added $query_vars parameter.
+     * @since 4.0.0     Use Classifieds Query Integration.
+     */
+    public function count_enabled_listings_in_category( $category_id, $query_vars = array() ) {
+        $query_vars['classifieds_query']['category'] = intval( $category_id );
+
+        return $this->count_enabled_listings( $query_vars );
+    }
+
+    /**
+     * -------------------------------------------------------------------------
+     */
+
+    // phpcs:disable
+
+    /**
+     * @SuppressWarnings(PHPMD)
+     */
+    private function add_orderby_query_parameters( $query ) {
+		if ( isset( $query['orderby'] ) ) {
+			$orderby = $query['_orderby'] = $query['orderby'];
+		} else {
+			$orderby = null;
+		}
+
+        if ( ! isset( $query['order'] ) ) {
+            $query['order'] = 'DESC';
+        }
+
+        $basedate = 'CASE WHEN renewed_date IS NULL THEN ad_startdate ELSE GREATEST(ad_startdate, renewed_date) END';
+        $is_paid = 'CASE WHEN ad_fee_paid > 0 THEN 1 ELSE 0 END';
+
+        switch ( $orderby ) {
+            case 1:
+                $query['meta_key'] = '_awpcp_most_recent_start_date';
+                $query['meta_type'] = 'DATETIME';
+                $query['orderby'] = array( 'meta_value' => 'DESC' );
+                break;
+
+            case 2:
+                $query['orderby'] = array( 'title' => 'ASC' );
+                break;
+
+            case 3:
+                $query['orderby'] = 'menu_order';
+                $query['_meta_order'] = array( '_awpcp_is_paid' => 'DESC', '_awpcp_most_recent_start_date' => 'DESC' );
+                $query['_meta_type'] = array( '_awpcp_is_paid' => 'SIGNED', '_awpcp_most_recent_start_date' => 'DATETIME' );
+
+                $query['meta_query'][] = array(
+                    'key' => '_awpcp_is_paid',
+                    'compare' => 'EXISTS',
+                );
+
+                $query['meta_query'][] = array(
+                    'key' => '_awpcp_most_recent_start_date',
+                    'compare' => 'EXISTS',
+                );
+                break;
+
+            case 4:
+                $query['meta_key'] = '_awpcp_is_paid';
+                $query['meta_type'] = 'SIGNED';
+                $query['orderby'] = array( 'meta_value' => 'DESC', 'title' => 'ASC' );
+                break;
+
+            case 5:
+                $query['meta_key'] = '_awpcp_views';
+                $query['meta_type'] = 'SIGNED';
+                $query['orderby'] = array( 'meta_value' => 'DESC', 'title' => 'ASC' );
+                break;
+
+            case 6:
+                $query['orderby'] = 'menu_order';
+                $query['_meta_order'] = array( '_awpcp_views' => 'DESC', '_awpcp_most_recent_start_date' => 'DESC' );
+                $query['_meta_type'] = array( '_awpcp_views' => 'SIGNED', '_awpcp_most_recent_start_date' => 'DATETIME' );
+
+                $query['meta_query'][] = array(
+                    'key' => '_awpcp_views',
+                    'compare' => 'EXISTS',
+                );
+
+                $query['meta_query'][] = array(
+                    'key' => '_awpcp_most_recent_start_date',
+                    'compare' => 'EXISTS',
+                );
+                break;
+
+            case 7:
+                $query['orderby'] = 'menu_order';
+                $query['_meta_order'] = array( '_awpcp_price' => 'DESC', '_awpcp_most_recent_start_date' => 'DESC' );
+                $query['_meta_type'] = array( '_awpcp_price' => 'SIGNED', '_awpcp_most_recent_start_date' => 'DATETIME' );
+
+                $query['meta_query'][] = array(
+                    'key' => '_awpcp_price',
+                    'compare' => 'EXISTS',
+                );
+
+                $query['meta_query'][] = array(
+                    'key' => '_awpcp_most_recent_start_date',
+                    'compare' => 'EXISTS',
+                );
+                break;
+
+            case 8:
+                $query['orderby'] = 'menu_order';
+                $query['_meta_order'] = array( '_awpcp_price' => 'ASC', '_awpcp_most_recent_start_date' => 'DESC' );
+                $query['_meta_type'] = array( '_awpcp_price' => 'SIGNED', '_awpcp_most_recent_start_date' => 'DATETIME' );
+
+                $query['meta_query'][] = array(
+                    'key' => '_awpcp_price',
+                    'compare' => 'EXISTS',
+                );
+
+                $query['meta_query'][] = array(
+                    'key' => '_awpcp_most_recent_start_date',
+                    'compare' => 'EXISTS',
+                );
+                break;
+
+            case 9:
+                $query['meta_key'] = '_awpcp_most_recent_start_date';
+                $query['meta_type'] = 'DATETIME';
+                $query['orderby'] = array( 'meta_value' => 'ASC' );
+                break;
+
+            case 10:
+                $query['orderby'] = array( 'title' => 'DESC' );
+                break;
+
+            case 11:
+                $query['meta_key'] = '_awpcp_views';
+                $query['meta_type'] = 'SIGNED';
+                $query['orderby'] = array( 'meta_value' => 'ASC', 'title' => 'ASC' );
+                break;
+
+            case 12:
+                $query['orderby'] = 'menu_order';
+                $query['_meta_order'] = array( '_awpcp_views' => 'ASC', '_awpcp_most_recent_start_date' => 'ASC' );
+                $query['_meta_type'] = array( '_awpcp_views' => 'SIGNED', '_awpcp_most_recent_start_date' => 'DATETIME' );
+
+                $query['meta_query'][] = array(
+                    'key' => '_awpcp_views',
+                    'compare' => 'EXISTS',
+                );
+
+                $query['meta_query'][] = array(
+                    'key' => '_awpcp_most_recent_start_date',
+                    'compare' => 'EXISTS',
+                );
+                break;
+
+            case 'title':
+                $query['orderby'] = array( 'title' => $query['order'] );
+                break;
+
+            case 'start-date':
+                $query['meta_key'] = '_awpcp_start_date';
+                $query['meta_type'] = 'DATETIME';
+                $query['orderby'] = array( 'meta_value' => $query['order'] );
+                break;
+
+            case 'end-date':
+                $query['meta_key'] = '_awpcp_start_date';
+                $query['meta_type'] = 'DATETIME';
+                $query['orderby'] = array( 'meta_value' => $query['order'] );
+                break;
+
+            case 'renewed-date':
+                $query['orderby'] = array( 'menu_order' => 'DESC', 'ID' => $query['order'] );
+                $query['_meta_order'] = array( '_awpcp_most_recent_start_date' => $query['order'], '_awpcp_renewed_date' => $query['order'] );
+                $query['_meta_type'] = array( '_awpcp_most_recent_start_date' => 'DATETIME', '_awpcp_renewed_date' => 'DATETIME' );
+
+                $query['meta_query'][] = array(
+                    'key' => '_awpcp_most_recent_start_date',
+                    'compare' => 'EXISTS',
+                );
+
+                $query['meta_query'][] = array(
+                    'key' => '_awpcp_renewed_date',
+                    'compare' => 'EXISTS',
+                );
+                break;
+
+            case 'status':
+                $query['meta_key'] = '_awpcp_start_date';
+                $query['orderby'] = array( 'menu_order' => 'DESC', 'meta_value' => $query['order'], 'ID' => $query['order'] );
+                $query['_custom_order'] = array( 'post_status' => $query['order'] );
+                break;
+
+            case 'payment-term':
+                $query['orderby'] = array( 'menu_order' => 'DESC', 'ID' => $query['order'] );
+                $query['_meta_order'] = array( '_awpcp_payment_term_id' => $query['order'], '_awpcp_start_date' => $query['order'] );
+                $query['_meta_type'] = array( '_awpcp_payment_term_id' => 'DATETIME', '_awpcp_start_date' => 'DATETIME' );
+
+                $query['meta_query'][] = array(
+                    'key' => '_awpcp_payment_term_id',
+                    'compare' => 'EXISTS',
+                );
+
+                $query['meta_query'][] = array(
+                    'key' => '_awpcp_start_date',
+                    'compare' => 'EXISTS',
+                );
+                break;
+
+            case 'payment-status':
+                $query['orderby'] = array( 'menu_order' => 'DESC', 'ID' => $query['order'] );
+                $query['_meta_order'] = array( '_awpcp_payment_status' => $query['order'], '_awpcp_start_date' => $query['order'] );
+                $query['_meta_type'] = array( '_awpcp_payment_status' => 'DATETIME', '_awpcp_start_date' => 'DATETIME' );
+
+                $query['meta_query'][] = array(
+                    'key' => '_awpcp_payment_status',
+                    'compare' => 'EXISTS',
+                );
+
+                $query['meta_query'][] = array(
+                    'key' => '_awpcp_start_date',
+                    'compare' => 'EXISTS',
+                );
+                break;
+
+            case 'owner':
+                $query['meta_key'] = '_awpcp_start_date';
+                $query['meta_type'] = 'DATETIME';
+                $query['orderby'] = array( 'author' => $query['order'], 'meta_value' => $query['order'], 'ID' => $query['order'] );
+                break;
+
+            case 'random':
+                $query['orderby'] = 'rand';
+                break;
+
+            case 'id':
+            case 'ID':
+                $query['orderby'] = 'ID';
+                break;
+
+            default:
+                // XXX: This default case makes it impossible to use other orderby values
+                // supported by WP_Query. Perhaps we should set a default orderby when
+                // no value is provided only.
+                $query['orderby'] = array( 'post_date' => 'DESC', 'title' => 'ASC' );
+                break;
+        }
+
+        // TODO: run 'awpcp-ad-order-conditions' and 'awpcp-find-listings-order-conditions' filters?
+        // I think is better to remove these filters and let modules filter the query before is executed.
 
         return $query;
     }
 
-    public function find_expired_listings_with_query( $query ) {
-        return $this->finder->find( $this->make_expired_listings_query( $query ) );
-    }
+    // phpcs:enable
 
-    private function make_expired_listings_query( $query ) {
-        $query['end_date'] = array( 'compare' => '<', 'value' => current_time( 'mysql' ) );
-        return $this->make_valid_listings_query( $query );
-    }
+    /**
+     * @param array $query  An array of query vars.
+     * @SuppressWarnings(PHPMD)
+     */
+    private function execute_query( $query ) {
+        if ( isset( $query['_meta_order'] ) ) {
+            add_filter( 'posts_clauses', array( $this, 'add_orderby_multiple_meta_keys_clause' ), 10, 2 );
+        }
 
-    public function find_listings_awaiting_approval_with_query( $query ) {
-        return $this->finder->find( $this->make_listings_awaiting_approval_query( $query ) );
-    }
+        if ( isset( $query['_custom_order'] ) ) {
+            add_filter( 'posts_clauses', array( $this, 'add_orderby_unsupported_properties_clause' ), 10, 2 );
+        }
 
-    private function make_listings_awaiting_approval_query( $query ) {
-        $query = array_merge( $query, array( 'disabled' => true, 'disabled_date' => 'NULL' ) );
-        return $this->make_valid_listings_query( $query );
-    }
+        if ( isset( $query['regions'] ) ) {
+            add_filter( 'posts_clauses', array( $this, 'add_regions_clauses' ), 10, 2 );
+        }
 
-    public function find_valid_listings_with_query( $query ) {
-        return $this->finder->find( $this->make_valid_listings_query( $query ) );
-    }
+        // phpcs:disable
+        do_action( 'awpcp-before-execute-listings-query', $query );
+        // phpcs:enable
 
-    public function find_successfully_paid_listings_with_query( $query ) {
-        return $this->finder->find( $this->make_successfully_paid_listings_query( $query ) );
-    }
+        $posts_query = $this->wordpress->create_posts_query( $query );
 
-    public function find_listings_with_query( $query ) {
-        return $this->finder->find( $query );
+        // phpcs:disable
+        do_action( 'awpcp-after-execute-listings-query', $query );
+        // phpcs:enable
+
+        if ( isset( $query['regions'] ) ) {
+            remove_filter( 'posts_clauses', array( $this, 'add_regions_clauses' ), 10, 2 );
+        }
+
+        if ( isset( $query['_meta_order'] ) ) {
+            remove_filter( 'posts_clauses', array( $this, 'add_orderby_multiple_meta_keys_clause' ), 10, 2 );
+        }
+
+        if ( isset( $query['_custom_order'] ) ) {
+            remove_filter( 'posts_clauses', array( $this, 'add_orderby_unsupported_properties_clause' ), 10, 2 );
+        }
+
+        return $posts_query;
     }
 
     /**
-     * @since 3.3
+     * @param array $query_vars     An array of query vars.
+     * @deprecated 4.0.0    Use ListingsCollection::count_expired_listings() instead.
      */
-    public function count_enabled_listings() {
-        return $this->count_valid_listings( array( 'disabled = 0' ) );
-    }
-
-    public function count_enabled_listings_with_query( $query ) {
-        return $this->finder->count( $this->make_enabled_listings_query( $query ) );
-    }
-
-    public function count_expired_listings_with_query( $query ) {
-        return $this->finder->count( $this->make_expired_listings_query( $query ) );
-    }
-
-    public function count_listings_awaiting_approval_with_query( $query ) {
-        return $this->finder->count( $this->make_listings_awaiting_approval_query( $query ) );
-    }
-
-    public function count_valid_listings_with_query( $query ) {
-        return $this->finder->count( $this->make_valid_listings_query( $query ) );
-    }
-
-    public function count_successfully_paid_listings_with_query( $query ) {
-        return $this->finder->count( $this->make_successfully_paid_listings_query( $query ) );
-    }
-
-    public function count_listings_with_query( $query ) {
-        return $this->finder->count( $query );
+    public function count_expired_listings_with_query( $query_vars ) {
+        return $this->count_expired_listings( $query_vars );
     }
 
     /**
-     * @since 3.3
+     * @param array $query_vars     An array of query vars.
+     * @deprecated 4.0.0    Use ListingsCollection::count_listings_awaiting_approval() instead.
      */
-    public function find_user_listings( $user_id, $params = array() ) {
-        $params = array_merge( $params, array(
-            'conditions' => array( $this->db->prepare( 'user_id = %d', $user_id ) )
-        ) );
-
-        return $this->find_valid_listings( $params );
+    public function count_listings_awaiting_approval_with_query( $query_vars ) {
+        return $this->count_listings_awaiting_approval( $query_vars );
     }
 
     /**
-     * @since 3.3
+     * @param array $query_vars     An array of query vars.
+     * @deprecated 4.0.0    Use ListingsCollection::count_valid_listings() instead.
      */
-    public function count_user_listings( $user_id ) {
-        $conditions = array( $this->db->prepare( 'user_id = %d', $user_id ) );
-        return $this->count_valid_listings( $conditions );
+    public function count_valid_listings_with_query( $query_vars ) {
+        return $this->count_valid_listings( $query_vars );
     }
 
     /**
-     * @since 3.3
+     * @param array $query_vars     An array of query vars.
+     * @deprecated 4.0.0    Use ListingsCollection::count_listings() instead.
      */
-    public function find_user_enabled_listings( $user_id, $params = array() ) {
-        $params = array_merge( $params, array(
-            'conditions' => array( $this->db->prepare( 'user_id = %d', $user_id ), 'disabled = 0' )
-        ) );
-
-        return $this->find_valid_listings( $params );
-    }
-
-    /**
-     * @since 3.3
-     */
-    public function count_user_enabled_listings( $user_id ) {
-        $conditions = array( $this->db->prepare( 'user_id = %d', $user_id ), 'disabled = 0' );
-        return $this->count_valid_listings( $conditions );
-    }
-
-    /**
-     * @since 3.3
-     */
-    public function find_user_disabled_listings( $user_id, $params = array() ) {
-        $params = array_merge( $params, array(
-            'conditions' => array( $this->db->prepare( 'user_id = %d', $user_id ), 'disabled = 1' )
-        ) );
-
-        return $this->find_valid_listings( $params );
-    }
-
-    /**
-     * @since 3.3
-     */
-    public function count_user_disabled_listings( $user_id ) {
-        $conditions = array( $this->db->prepare( 'user_id = %d', $user_id ), 'disabled = 1' );
-        return $this->count_valid_listings( $conditions );
-    }
-
-    /**
-     * @since 3.3.2
-     */
-    public function count_enabled_listings_in_category( $category_id ) {
-        $category_condition = '( ad_category_id = %d OR ad_category_parent_id = %d )';
-
-        $conditions = array(
-            $this->db->prepare(
-                $category_condition,
-                $category_id,
-                $category_id
-            ),
-            'disabled = 0',
-        );
-
-        return $this->count_valid_listings( $conditions );
+    public function count_listings_with_query( $query_vars ) {
+        return $this->count_listings( $query_vars );
     }
 }

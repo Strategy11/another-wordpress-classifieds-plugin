@@ -1,25 +1,62 @@
 <?php
+/**
+ * @package AWPCP
+ */
+
+// phpcs:disable
 
 /**
  * @since 3.4
+ * @since 4.0.0     Replaced $hide_empty boolean parameter with optional callable $filter
+ *                  $parameter.
+ * @since 4.0.0     Added optional callable $callback parameter.
  */
-function awpcp_build_categories_hierarchy( &$categories, $hide_empty ) {
-    $hierarchy = array();
+function awpcp_build_categories_hierarchy( &$categories, $filter = null, $callback = null ) {
+    // Backwards compatibility.
+    if ( ! is_null( $filter ) && ! is_callable( $filter ) && $filter ) {
+        return awpcp_build_non_empty_categories_hierarchy( $categories );
+    } elseif ( ! is_null( $filter ) && ! is_callable( $filter ) ) {
+        return __awpcp_build_categories_hierarchy( $categories, null, $callback );
+    }
+
+    return __awpcp_build_categories_hierarchy( $categories, $filter, $callback );
+}
+
+/**
+ * @since 4.0.0
+ */
+function __awpcp_build_categories_hierarchy( $categories, $filter = null, $callback = null ) {
+    $hierarchy = array( 'root' => array() );
+
+    $filter_categories  = is_callable( $filter );
+    $process_categories = is_callable( $callback );
 
     foreach ( $categories as $category ) {
-
-        $listings_count = total_ads_in_cat( $category->id );
-        if ( !$hide_empty || $listings_count > 0 ) {
-            if ( $category->parent == 0 ) {
-                $hierarchy['root'][] = $category;
-            } else {
-                $hierarchy[ $category->parent ][] = $category;
-            }
+        if ( $filter_categories && ! call_user_func( $filter, $category ) ) {
+            continue;
         }
 
+        $key = $category->parent === 0 ? 'root' : $category->parent;
+
+        if ( $process_categories ) {
+            $category = call_user_func( $callback, $category );
+        }
+
+        $hierarchy[ $key ][] = $category;
     }
 
     return $hierarchy;
+}
+
+/**
+ * @since 4.0.0
+ */
+function awpcp_build_non_empty_categories_hierarchy( $categories, $callback = null ) {
+    $filter = function( $category ) {
+        return total_ads_in_cat( $category->term_id ) > 0;
+    };
+
+    return __awpcp_build_categories_hierarchy( $categories, $filter, $callback );
 }
 
 /**
@@ -52,25 +89,22 @@ function awpcp_get_category_hierarchy( $category_id, &$categories ) {
 
 /**
  * @since 3.4
+ * @since 4.0.0     Accepts an array of selected categories.
  */
-function awpcp_render_categories_dropdown_options( &$categories, &$hierarchy, $selected_category ) {
+function awpcp_render_categories_dropdown_options( &$categories, &$hierarchy, $selected_categories, $level = 0 ) {
     $output = '';
 
+    if ( ! is_array( $selected_categories ) ) {
+        $selected_categories = array( $selected_categories );
+    }
+
+    $selected_categories = array_map( 'absint', $selected_categories );
+
     foreach ( $categories as $category ) {
-        $category_name = stripslashes( stripslashes( $category->name ) );
+        $output .= awpcp_render_categories_dropdown_option( $category, $selected_categories, $level );
 
-        if( $category->id == $selected_category ) {
-            $item = '<option class="dropdownparentcategory" selected="selected" value="' . $category->id . '">' . $category_name . '</option>';
-            $item = '<option selected="selected" value="' . $category->id . '">- ' . $category_name . '</option>';
-        } else {
-            $item = '<option class="dropdownparentcategory" value="' . $category->id . '">' . $category_name . '</option>';
-            $item = '<option value="' . $category->id . '">-' . $category_name . '</option>';
-        }
-
-        $output .= awpcp_render_categories_dropdown_option( $category, $selected_category );
-
-        if ( isset( $hierarchy[ $category->id ] ) ) {
-            $output .= awpcp_render_categories_dropdown_options( $hierarchy[ $category->id ], $hierarchy, $selected_category );
+        if ( isset( $hierarchy[ $category->term_id ] ) ) {
+            $output .= awpcp_render_categories_dropdown_options( $hierarchy[ $category->term_id ], $hierarchy, $selected_categories, $level + 1 );
         }
     }
 
@@ -79,29 +113,32 @@ function awpcp_render_categories_dropdown_options( &$categories, &$hierarchy, $s
 
 /**
  * @since 3.4
+ * @since 4.0.0     Accepts an array of selected categories.
+ * @SuppressWarnings(PHPMD)
  */
-function awpcp_render_categories_dropdown_option( $category, $selected_category ) {
-    if ( $selected_category == $category->id ) {
-        $selected_attribute = 'selected="selected"';
-    } else {
-        $selected_attribute = '';
+function awpcp_render_categories_dropdown_option( $category, $selected_categories, $level ) {
+    $category_name = esc_html( wp_unslash( $category->name ) );
+
+    $attributes = [
+        'class'     => 'dropdownparentcategory',
+        'value'     => esc_attr( $category->term_id ),
+    ];
+
+    if ( $category->parent ) {
+        $attributes['class'] = '';
+
+        $category_name = sprintf( '%s%s', str_repeat( '&nbsp;', 3 * $level ), $category_name );
     }
 
-    if ( $category->parent == 0 ) {
-        $class_attribute = 'class="dropdownparentcategory"';
-        $category_name = esc_html( $category->name );
-    } else {
-        $class_attribute = '';
-        $category_name = sprintf('- %s', esc_html( $category->name ) );
+    if ( in_array( $category->term_id, $selected_categories, true ) ) {
+        $attributes['selected'] = 'selected';
     }
 
-    return sprintf(
-        '<option %s %s value="%d">%s</option>',
-        $class_attribute,
-        $selected_attribute,
-        esc_attr( $category->id ),
-        $category_name
-    );
+    if ( isset( $category->disabled ) && $category->disabled ) {
+        $attributes['disabled'] = 'disabled';
+    }
+
+    return sprintf( '<option %s>%s</option>', awpcp_html_attributes( $attributes ), $category_name );
 }
 
 /**
@@ -119,52 +156,50 @@ function awpcp_get_count_of_listings_in_categories() {
 
 /**
  * @since 3.4
+ * @since 4.0.0  Modified to work with custom post type and custom taxonomies.
  */
 function awpcp_count_listings_in_categories() {
-    global $wpdb;
-
-    // never allow Unpaid, Unverified or Disabled Ads
-    $conditions[] = "payment_status != 'Unpaid'";
-    $conditions[] = 'verified = 1';
-    $conditions[] = 'disabled = 0';
-
-    if( ( get_awpcp_option( 'enable-ads-pending-payment' ) == 0 ) && ( get_awpcp_option( 'freepay' ) == 1 ) ) {
-        $conditions[] = "payment_status != 'Pending'";
-    }
-
-    // TODO: ideally there would be a function to get all visible Ads,
-    // and modules, like Regions, would use hooks to include their own
-    // conditions.
-    if ( function_exists( 'awpcp_region_control_module' ) && function_exists( 'awpcp_regions_api' ) ) {
-        if ( $active_region = awpcp_region_control_module()->get_active_region() ) {
-            $conditions[] = awpcp_regions_api()->sql_where( $active_region->region_id );
-        }
-    }
-
-    // TODO: at some point we should start using the Category model.
-    $query = 'SELECT ad_category_parent_id AS parent_category_id, ad_category_id AS category_id, count(*) AS count ';
-    $query.= 'FROM ' . AWPCP_TABLE_ADS;
-    $query = sprintf( '%s WHERE %s', $query, implode( ' AND ', $conditions ) );
-    $query.= ' GROUP BY ad_category_id, ad_category_parent_id';
-    $query.= ' ORDER BY ad_category_parent_id, ad_category_id';
-
     $listings_count = array();
 
-    foreach ( $wpdb->get_results( $query ) as $row ) {
-        if ( $row->parent_category_id > 0 ) {
-            if ( isset( $listings_count[ $row->parent_category_id ] ) ) {
-                $listings_count[ $row->parent_category_id ] = $listings_count[ $row->parent_category_id ] + $row->count;
-            } else {
-                $listings_count[ $row->parent_category_id ] = $row->count;
-            }
-        }
-
-        if ( isset( $listings_count[ $row->category_id ] ) ) {
-            $listings_count[ $row->category_id ] = $listings_count[ $row->category_id ] + $row->count;
-        } else {
-            $listings_count[ $row->category_id ] = $row->count;
-        }
+    foreach ( awpcp_categories_collection()->get_all() as $category ) {
+        $listings_count[ $category->term_id ] = awpcp_count_listings_in_category( $category->term_id );
     }
+
+    return $listings_count;
+}
+
+/**
+ * TODO: Make sure other moduels (Like regions) are able to filter the query
+ *       and their own parameters.
+ *
+ *       See the old implementation of awpcp_count_listings_in_categories
+ *       (up to, at least, version 3.6.3.1).
+ *
+ * @since 4.0.0
+ * @SuppressWarnings(PHPMD)
+ */
+function awpcp_count_listings_in_category( $category_id ) {
+    $cache_entry_key = 'term-padded-count-' . $category_id;
+    $cache_entry_found = false;
+
+    // $listings_count = intval( wp_cache_get( $cache_entry_key , 'awpcp', false, $cache_entry_found ) );
+
+    if ( $cache_entry_found ) {
+        return $listings_count;
+    }
+
+    $children_categories = get_term_children( $category_id , 'awpcp_listing_category' );
+
+    $listings_count = awpcp_listings_collection()->count_enabled_listings( array(
+        'tax_query' => array(
+            array(
+                'taxonomy' => 'awpcp_listing_category',
+                'field' => 'term_id',
+                'terms' => array_merge( array( $category_id ), $children_categories ),
+                'operator' => 'IN',
+            )
+        )
+    ) );
 
     return $listings_count;
 }
@@ -173,3 +208,5 @@ function total_ads_in_cat( $category_id ) {
     $listings_count = awpcp_get_count_of_listings_in_categories();
     return isset( $listings_count[ $category_id ] ) ? $listings_count[ $category_id ] : 0;
 }
+
+// phpcs:enable

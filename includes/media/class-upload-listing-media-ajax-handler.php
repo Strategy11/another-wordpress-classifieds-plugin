@@ -2,6 +2,7 @@
 
 function awpcp_upload_listing_media_ajax_handler() {
     return new AWPCP_UploadListingMediaAjaxHandler(
+        awpcp_attachment_properties(),
         awpcp_listings_collection(),
         awpcp_file_uploader(),
         awpcp_new_media_manager(),
@@ -12,14 +13,16 @@ function awpcp_upload_listing_media_ajax_handler() {
 
 class AWPCP_UploadListingMediaAjaxHandler extends AWPCP_AjaxHandler {
 
+    private $attachment_properties;
     private $listings;
     private $uploader;
     private $media_manager;
     private $request;
 
-    public function __construct( $listings, $uploader, $media_manager, $request, $response ) {
+    public function __construct( $attachment_properties, $listings, $uploader, $media_manager, $request, $response ) {
         parent::__construct( $response );
 
+        $this->attachment_properties = $attachment_properties;
         $this->listings = $listings;
         $this->media_manager = $media_manager;
         $this->uploader = $uploader;
@@ -45,11 +48,9 @@ class AWPCP_UploadListingMediaAjaxHandler extends AWPCP_AjaxHandler {
     }
 
     private function is_user_authorized_to_upload_media_to_listing( $listing ) {
-        if ( ! wp_verify_nonce( $this->request->post( 'nonce' ), 'awpcp-upload-media-for-listing-' . $listing->ad_id ) ) {
+        if ( ! wp_verify_nonce( $this->request->post( 'nonce' ), 'awpcp-upload-media-for-listing-' . $listing->ID ) ) {
             return false;
         }
-
-        // TODO: complete me!
 
         return true;
     }
@@ -64,16 +65,16 @@ class AWPCP_UploadListingMediaAjaxHandler extends AWPCP_AjaxHandler {
 
             return $this->success( array(
                 'file' => array(
-                    'id' => $file->id,
-                    'name' => $file->name,
-                    'listingId' => $file->ad_id,
-                    'enabled' => $file->enabled,
-                    'status' => $file->status,
-                    'mimeType' => $file->mime_type,
-                    'isPrimary' => $file->is_primary(),
-                    'thumbnailUrl' => $file->get_url( 'thumbnail' ),
-                    'iconUrl' => $file->get_icon_url(),
-                    'url' => $file->get_url(),
+                    'id' => $file->ID,
+                    'name' => $file->post_title, // TODO: where is the name of the file stored?
+                    'listingId' => $file->post_parent,
+                    'enabled' => $this->attachment_properties->is_enabled( $file ),
+                    'status' => $this->attachment_properties->get_allowed_status( $file ),
+                    'mimeType' => $file->post_mime_type,
+                    'isPrimary' => $this->attachment_properties->is_featured( $file ),
+                    'thumbnailUrl' => $this->attachment_properties->get_image_url( $file, 'thumbnail' ),
+                    'iconUrl' => $this->attachment_properties->get_icon_url( $file ),
+                    'url' => $this->attachment_properties->get_image_url( $file, 'large' ),
                 ),
             ) );
         } else {

@@ -18,6 +18,12 @@ function( $, SettingsValidator ) {
 
             self.radios = self.element.find(':radio');
             self.radios.change(function() {
+                var $radio = $( this );
+
+                if ( ! $radio.is( ':checked' ) ) {
+                    return;
+                }
+
                 if (!self.keep_format_strings) {
                     var value = $(this).val(),
                         descriptions = $.AWPCP.get('datetime-formats'),

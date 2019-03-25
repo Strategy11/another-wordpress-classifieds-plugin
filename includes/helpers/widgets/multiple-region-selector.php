@@ -1,9 +1,20 @@
 <?php
+/**
+ * @package AWPCP\Helpers\Widgets
+ */
+
+// phpcs:disable Generic
+// phpcs:disable PEAR
+// phpcs:disable Squiz
+// phpcs:disable WordPress
 
 function awpcp_multiple_region_selector( $regions, $options ) {
     return awpcp_multiple_region_selector_with_template( $regions, $options, 'default' );
 }
 
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 function awpcp_multiple_region_selector_with_template( $regions, $options, $template_name ) {
     if ( $template_name == 'form-table' ) {
         $template = AWPCP_DIR . '/templates/admin/profile/contact-information-region-selector.tpl.php';
@@ -17,6 +28,9 @@ function awpcp_multiple_region_selector_with_template( $regions, $options, $temp
     return $selector;
 }
 
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 class AWPCP_MultipleRegionSelector {
 
     private $template = '';
@@ -24,29 +38,40 @@ class AWPCP_MultipleRegionSelector {
     public $options = array();
     public $regions = array();
 
+    /**
+     * @param array $regions    An array of already selected regions.
+     * @param array $options    An array of options.
+     */
     public function __construct( $regions, $options ) {
         // We need at least one region, even if its empty.
         if ( ! is_array( $regions ) || empty( $regions ) ) {
-            $this->regions = array( array(
-                'country' => '',
-                'county' => '',
-                'state' => '',
-                'city' => ''
-            ) );
+            $this->regions = array(
+                array(
+                    'country' => '',
+                    'county'  => '',
+                    'state'   => '',
+                    'city'    => '',
+                ),
+            );
         } else {
             $this->regions = $regions;
         }
 
         $this->options = wp_parse_args( $options, array(
-            'maxRegions' => 1,
-            'showTextField' => false,
+            'maxRegions'              => 1,
+            'showTextField'           => false,
             'showExistingRegionsOnly' => get_awpcp_option( 'buildsearchdropdownlists' ),
-            'hierarchy' => array( 'country', 'county', 'state', 'city' ),
-            // List of Enabled Fields
-            //
-            // Possible value is an array with country, state, city or county as keys. Set to true to
-            // enable that field or false to disable it. All keys must be provided.
-            'enabled_fields' => awpcp_get_enabled_region_fields(),
+            'hierarchy'               => array( 'country', 'county', 'state', 'city' ),
+            /**
+             * List of Enabled Fields
+             *
+             * Possible values are null (to show fields based on context) or
+             * an array with country, state, city or county as keys. Set the values
+             * to true to enable that field or false to disable it.
+             *
+             * All keys must be provided.
+             */
+            'enabled_fields'          => null,
         ) );
 
         $this->options['maxRegions'] = max( $this->options['maxRegions'], count( $this->regions ) );
@@ -56,8 +81,28 @@ class AWPCP_MultipleRegionSelector {
         $this->template = $template;
     }
 
+    /**
+     * @since 4.0.0     Update to include code that was previously defined on
+     *                  awpcp_region_fields();
+     */
     private function get_region_fields( $context ) {
-        return awpcp_region_fields( $context, $this->options['enabled_fields'] );
+        $enabled_fields = null;
+
+        if ( is_array( $this->options['enabled_fields'] ) && $this->options['enabled_fields'] ) {
+            $enabled_fields = $this->options['enabled_fields'];
+        }
+
+        if ( is_null( $enabled_fields ) ) {
+            $enabled_fields = awpcp_get_enabled_region_fields( $context );
+        }
+
+        $fields = apply_filters( 'awpcp-region-fields', false, $context, $enabled_fields );
+
+        if ( false === $fields ) {
+            $fields = awpcp_default_region_fields( $context, $enabled_fields );
+        }
+
+        return $fields;
     }
 
     private function get_region_field_options( $context, $type, $selected, $hierarchy ) {
@@ -147,7 +192,7 @@ class AWPCP_MultipleRegionSelector {
                     $regions[$i][$type]['param'] = $type;
                 }
 
-                // make values selected in parent fields available to child
+                // Make values selected in parent fields available to child
                 // fields when computing the field options.
                 $hierarchy[$type] = $regions[$i][$type]['selected'];
             }
@@ -158,14 +203,16 @@ class AWPCP_MultipleRegionSelector {
 
         $options = apply_filters( 'awpcp-multiple-region-selector-configuration', $this->options, $context, $fields );
 
-        $uuid = uniqid();
-        awpcp()->js->set( "multiple-region-selector-$uuid", array(
+        $uuid          = uniqid();
+        $configuration = [
             'options' => array_merge( $options, array(
                 'fields' => array_keys( $fields ),
                 'context' => $context,
             ) ),
             'regions' => $regions,
-        ) );
+        ];
+
+        awpcp()->js->set( "multiple-region-selector-$uuid", $configuration );
 
         ob_start();
         include( $this->template );

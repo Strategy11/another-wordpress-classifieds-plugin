@@ -11,33 +11,55 @@ AWPCP.define('awpcp/collapsible', ['jquery'], function($) {
         setup: function() {
             var self = this;
 
-            if (self.subject.length !== 0) {
-                if (!self.subject.is('[awpcp-keep-open]')) {
-                    self.subject.hide();
-                }
-
-                self.toggleHandlerClass();
-
-                self.handler.click(function(event) {
-                    self.toggle.apply(self, [event, this]);
-                });
-            } else {
+            if ( 0 === self.subject.length ) {
                 self.handler.hide();
+                return;
             }
+
+            self.handler.click( function( event ) {
+                self.toggle.apply( self, [ event, this ] );
+            } );
+
+            if ( self.subject.is( '[awpcp-keep-open]' ) ) {
+                self.showExpanded();
+                return;
+            }
+
+            self.showCollapsed();
+        },
+
+        showExpanded: function() {
+            var self = this;
+
+            self.subject.show();
+            self.setHandlerClass( 'close' );
+        },
+
+        showCollapsed: function() {
+            var self = this;
+
+            self.subject.hide();
+            self.setHandlerClass( 'open' );
+        },
+
+        setHandlerClass: function( className ) {
+            this.handler.find( 'span' ).removeClass( 'open close' ).addClass( className );
         },
 
         toggleHandlerClass: function() {
             if (this.subject.is(':visible')) {
-                this.handler.find('span').removeClass('open').addClass('close');
+                this.setHandlerClass( 'close' );
             } else {
-                this.handler.find('span').removeClass('close').addClass('open');
+                this.setHandlerClass( 'open' );
             }
         },
 
         toggle: function(event) {
-            event.preventDefault();
             var self = this;
-            self.subject.slideToggle(function() { self.toggleHandlerClass(); });
+
+            event.preventDefault();
+
+            self.subject.stop().slideToggle(function() { self.toggleHandlerClass(); });
         }
     });
 

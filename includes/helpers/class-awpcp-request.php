@@ -1,12 +1,15 @@
 <?php
+/**
+ * @package AWPCP\Helpers
+ */
+
+// phpcs:disable WordPress
+// phpcs:disable Squiz
+// phpcs:disable Generic
 
 /**
- * @since 3.0.2
+ * @SuppressWarnings(PHPMD)
  */
-function awpcp_request() {
-    return new AWPCP_Request();
-}
-
 class AWPCP_Request {
 
     /**
@@ -70,11 +73,16 @@ class AWPCP_Request {
     }
 
     /**
-     * @tested
+     * @param string $name      The name of the GET/POST parameter to get.
+     * @param mixed  $default   Value return if the parameter was not sent.
      * @since 3.0.2
      */
-    public function param( $name, $default='' ) {
-        return isset( $_REQUEST[ $name ] ) ? $_REQUEST[ $name ] : $default;
+    public function param( $name, $default = '' ) {
+        // phpcs:disable WordPress.VIP.ValidatedSanitizedInput.InputNotSanitized
+        // phpcs:disable WordPress.CSRF.NonceVerification.NoNonceVerification
+        return isset( $_REQUEST[ $name ] ) ? wp_unslash( $_REQUEST[ $name ] ) : $default; // Input var okay.
+        // phpcs:enable WordPress.VIP.ValidatedSanitizedInput.InputNotSanitized
+        // phpcs:enable WordPress.CSRF.NonceVerification.NoNonceVerification
     }
 
     /**
@@ -111,6 +119,13 @@ class AWPCP_Request {
     }
 
     /**
+     * @since 3.5.4
+     */
+    public function all_post_params() {
+        return $_POST;
+    }
+
+    /**
      * @tested
      * @since 3.0.2
      */
@@ -132,12 +147,17 @@ class AWPCP_Request {
      * @since 3.0.2
      */
     public function get_category_id() {
-        $category_id = $this->param( 'category_id', 0 );
-        if ( empty( $category_id ) ) {
-            return intval( $this->get_query_var( 'cid' ) );
-        } else {
-            return intval( $category_id );
-        }
+        $alternatives = [
+            'params'     => [
+                'awpcp_category_id',
+                'category_id',
+            ],
+            'query_vars' => [
+                'cid',
+            ],
+        ];
+
+        return intval( $this->find_variable( $alternatives, 0 ) );
     }
 
     /**
@@ -152,11 +172,56 @@ class AWPCP_Request {
      * @since 3.6.4
      */
     public function get_current_listing_id() {
-        $listing_id = $this->param( 'adid' );
-        $listing_id = empty( $listing_id ) ? $this->param( 'id' ) : $listing_id;
-        $listing_id = empty( $listing_id ) ? $this->get_query_var( 'id' ) : $listing_id;
+        $listing_id = intval( $this->find_current_listing_id() );
 
-        return apply_filters( 'awpcp-current-listing-id', intval( $listing_id ) );
+        return apply_filters( 'awpcp-current-listing-id', $listing_id );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function find_current_listing_id() {
+        $alternatives = [
+            'params'     => [
+                'adid',
+                'ad_id',
+                'id',
+                'listing_id',
+                'i',
+            ],
+            'query_vars' => [
+                'id',
+            ],
+        ];
+
+        if ( 'awpcp_listing' === $this->get_query_var( 'post_type' ) ) {
+            $alternatives['query_vars'][] = 'p';
+        }
+
+        return $this->find_variable( $alternatives );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function find_variable( array $alternatives, $default = null ) {
+        foreach ( $alternatives['params'] as $name ) {
+            $value = $this->param( $name );
+
+            if ( ! empty( $value ) ) {
+                return $value;
+            }
+        }
+
+        foreach ( $alternatives['query_vars'] as $name ) {
+            $value = $this->get_query_var( $name );
+
+            if ( ! empty( $value ) ) {
+                return $value;
+            }
+        }
+
+        return $default;
     }
 
     /**
@@ -164,6 +229,13 @@ class AWPCP_Request {
      */
     public function get_current_user() {
         return wp_get_current_user();
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function get_current_user_id() {
+        return get_current_user_id();
     }
 
     public function is_bot() {

@@ -4,9 +4,6 @@ function awpcp_listing_price_form_field( $slug ) {
     return new AWPCP_ListingPriceFormField( $slug, awpcp()->settings );
 }
 
-/**
- * TODO: what if that field shouldn't be shown?
- */
 class AWPCP_ListingPriceFormField extends AWPCP_FormField {
 
     protected $settings;
@@ -57,8 +54,15 @@ class AWPCP_ListingPriceFormField extends AWPCP_FormField {
                 'name' => $this->get_slug(),
                 'readonly' => false,
             ),
+
+            'currency_symbol' => awpcp_get_currency_symbol(),
+            'show_currency_symbol_on_right' => $this->should_show_currency_symbol_on_right(),
         );
 
-        return awpcp_render_template( 'frontend/form-fields/listing-contact-phone-form-field.tpl.php', $params );
+        return awpcp_render_template( 'frontend/form-fields/listing-price-form-field.tpl.php', $params );
+    }
+
+    private function should_show_currency_symbol_on_right() {
+        return $this->settings->get_option( 'show-currency-symbol' ) == 'show-currency-symbol-on-right';
     }
 }

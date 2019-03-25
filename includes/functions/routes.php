@@ -1,30 +1,15 @@
 <?php
+/**
+ * @package AWPCP
+ */
+
+// phpcs:disable
 
 /**
  * Returns the current name of the AWPCP main page.
  */
 function get_currentpagename() {
-    return get_awpcp_option('main-page-name');
-}
-
-/**
- * Return the number of pages with the given post_name.
- */
-function checkforduplicate($cpagename_awpcp) {
-    global $wpdb;
-
-    $awpcppagename = sanitize_title( $cpagename_awpcp );
-
-    $query = "SELECT ID FROM {$wpdb->posts} WHERE post_name = %s AND post_type = %s";
-    $query = $wpdb->prepare( $query, $awpcppagename, 'post' );
-
-    $post_ids = $wpdb->get_col( $query );
-
-    if ( $post_ids !== false ) {
-        return count( $post_ids );
-    } else {
-        return '';
-    }
+    return awpcp_get_page_name( 'main-page-name' );
 }
 
 /**
@@ -62,15 +47,28 @@ function awpcp_get_page_id( $name ) {
 }
 
 /**
+ * @since 4.0.0
+ */
+function awpcp_get_page_by_ref( $ref ) {
+    $page_id = awpcp_get_page_id_by_ref( $ref );
+
+    if ( ! $page_id ) {
+        return null;
+    }
+
+    return get_post( $page_id );
+}
+
+/**
  * Returns the ID of WP Page associated to a page-name setting.
  *
  * @param $refname the name of the setting that holds the name of the page
  */
 function awpcp_get_page_id_by_ref( $refname ) {
-    $plugin_pages_info = awpcp_get_plugin_pages_info();
+    $plugin_pages_ids = awpcp_get_plugin_pages_ids();
 
-    if ( isset( $plugin_pages_info[ $refname ] ) ) {
-        return intval( $plugin_pages_info[ $refname ]['page_id'] );
+    if ( isset( $plugin_pages_ids[ $refname ] ) ) {
+        return intval( $plugin_pages_ids[ $refname ] );
     } else {
         return false;
     }
@@ -82,12 +80,12 @@ function awpcp_get_page_id_by_ref( $refname ) {
  * @return array Array of Page IDs
  */
 function awpcp_get_page_ids_by_ref( $refnames ) {
-    $plugin_pages_info = awpcp_get_plugin_pages_info();
+    $plugin_pages_ids = awpcp_get_plugin_pages_ids();
     $pages_ids = array();
 
     foreach ( $refnames as $refname ) {
-        if ( isset( $plugin_pages_info[ $refname ] ) ) {
-            $pages_ids[] = intval( $plugin_pages_info[ $refname ]['page_id'] );
+        if ( isset( $plugin_pages_ids[ $refname ] ) ) {
+            $pages_ids[] = $plugin_pages_ids[ $refname ];
         }
     }
 
@@ -112,6 +110,7 @@ function awpcp_get_pages_ids_from_db() {
 
 /**
  * @since 3.5.3
+ * @deprecated 4.0.0    Page IDs are now available through Settings->get_option().
  */
 function awpcp_get_plugin_pages_info() {
     return get_option( 'awpcp-plugin-pages', array() );
@@ -119,6 +118,7 @@ function awpcp_get_plugin_pages_info() {
 
 /**
  * @since 3.5.3
+ * @deprecated 4.0.0    Page IDs are now available through Settings->get_option().
  */
 function awpcp_update_plugin_pages_info( $plugin_pages ) {
     return update_option( 'awpcp-plugin-pages', $plugin_pages );
@@ -126,13 +126,13 @@ function awpcp_update_plugin_pages_info( $plugin_pages ) {
 
 /**
  * @since 3.5.3
+ * @deprecated 4.0.0    Page IDs are now available through Settings->get_option().
  */
 function awpcp_get_plugin_pages_refs() {
-    $plugin_pages_info = awpcp_get_plugin_pages_info();
     $plugin_pages = array();
 
-    foreach ( $plugin_pages_info as $page_ref => $page_info ) {
-        $plugin_pages[ intval( $page_info['page_id'] ) ] = $page_ref;
+    foreach ( awpcp_get_plugin_pages_ids() as $page_ref => $page_id ) {
+        $plugin_pages[ $page_id ] = $page_ref;
     }
 
     return $plugin_pages;
@@ -140,26 +140,58 @@ function awpcp_get_plugin_pages_refs() {
 
 /**
  * @since 3.5.3
+ * @since 4.0.0     Uses Settings to get Page IDs.
  */
 function awpcp_get_plugin_pages_ids() {
-    $plugin_pages_info = awpcp_get_plugin_pages_info();
-
     $plugin_pages = array();
-    foreach ( $plugin_pages_info as $page_ref => $page_info ) {
-        $plugin_pages[ $page_ref ] = intval( $page_info['page_id'] );
+
+    foreach( awpcp_get_wordpress_pages_settings_translations() as $setting_name => $page_ref ) {
+        $plugin_pages[ $page_ref ] = intval( awpcp()->settings->get_option( $setting_name ) );
     }
 
     return $plugin_pages;
 }
 
 /**
+ * @since 4.0.0
+ */
+function awpcp_get_wordpress_pages_settings_translations() {
+    return array(
+        'main-plugin-page' => 'main-page-name',
+        'show-listing-page' => 'show-ads-page-name',
+        'submit-listing-page' => 'place-ad-page-name',
+        'edit-listing-page' => 'edit-ad-page-name',
+        'renew-listing-page' => 'renew-ad-page-name',
+        'reply-to-listing-page' => 'reply-to-ad-page-name',
+        'browse-listings-page' => 'browse-ads-page-name',
+        'search-listings-page' => 'search-ads-page-name',
+        'buy-subscription-page' => 'subscriptions-page-name',
+        'payment-thnakyou-page' => 'payment-thankyou-page-name',
+        'cancel-payment-page'   => 'payment-cancel-page-name',
+    );
+}
+
+/**
  * @since 3.5.3
+ * @since 4.0.0     Stores Page IDs using Settings.
  */
 function awpcp_update_plugin_page_id( $page_ref, $page_id ) {
-    $plugin_pages_info = awpcp_get_plugin_pages_info();
-    $plugin_pages_info[ $page_ref ] = array( 'page_id' => $page_id );
+    $setting_name = awpcp_translate_page_ref_to_setting_name( $page_ref );
 
-    return awpcp_update_plugin_pages_info( $plugin_pages_info );
+    if ( ! $setting_name ) {
+        return false;
+    }
+
+    return awpcp()->settings->update_option( $setting_name, $page_id, true );
+}
+
+/**
+ * @since 4.0.0
+ */
+function awpcp_translate_page_ref_to_setting_name( $page_ref ) {
+    $settings_names = awpcp_get_wordpress_pages_settings_translations();
+
+    return array_search( $page_ref, $settings_names, true );
 }
 
 if ( ! function_exists( 'is_awpcp_page' ) ) {
@@ -171,17 +203,17 @@ if ( ! function_exists( 'is_awpcp_page' ) ) {
     function is_awpcp_page( $page_id = null ) {
         global $wp_the_query;
 
-        if ( ! $wp_the_query ) {
-            return false;
+        if ( is_null( $page_id ) && ! $wp_the_query ) {
+            return;
         }
-
-        $pages_refs = awpcp_get_plugin_pages_refs();
 
         if ( is_null( $page_id ) ) {
             $page_id = $wp_the_query->get_queried_object_id();
         }
 
-        return isset( $pages_refs[ $page_id ] );
+        $page_ref = array_search( intval( $page_id ), awpcp_get_plugin_pages_ids(), true );
+
+        return $page_ref !== false;
     }
 }
 
@@ -189,15 +221,15 @@ if ( ! function_exists( 'is_awpcp_page' ) ) {
  * @since 3.4
  */
 function is_awpcp_admin_page() {
-    if ( ! is_admin() || empty( $_REQUEST['page'] ) ) {
+    if ( ! is_admin() ) {
         return false;
     }
 
-    if ( string_starts_with( $_REQUEST['page'], 'awpcp' ) ) {
+    if ( ! empty( $_REQUEST['action'] ) && string_starts_with( $_REQUEST['action'], 'awpcp' ) ) {
         return true;
     }
 
-    if ( in_array( $_REQUEST['page'], array( 'Configure4', 'Configure5' ) ) ) {
+    if ( ! empty( $_REQUEST['page'] ) && string_starts_with( $_REQUEST['page'], 'awpcp' ) ) {
         return true;
     }
 
@@ -212,6 +244,10 @@ function is_awpcp_browse_categories_page() {
     return awpcp_query()->is_browse_categories_page();
 }
 
+/**
+ * @since 4.0.0         Modified to use Listing_Renderer::get_view_listing_url().
+ * @deprecated 4.0.0    Use Listing_Renderer::get_view_listing_url() or get_permalink().
+ */
 function url_showad($ad_id) {
     try {
         $ad = awpcp_listings_collection()->get( $ad_id );
@@ -219,51 +255,7 @@ function url_showad($ad_id) {
         return false;
     }
 
-    $use_seo_friendly_urls = get_awpcp_option( 'seofriendlyurls' );
-
-    $awpcp_showad_pageid = awpcp_get_page_id_by_ref('show-ads-page-name');
-    $base_url = get_permalink( $awpcp_showad_pageid, $use_seo_friendly_urls );
-    $url = false;
-
-    $params = array('id' => $ad_id);
-
-    if ( $use_seo_friendly_urls && get_option('permalink_structure') ) {
-        $pagename = sprintf( '%s/%s', get_page_uri( $awpcp_showad_pageid ), $ad_id );
-
-        $region = $ad->get_first_region();
-
-        $parts = array();
-
-        if ( get_awpcp_option( 'include-title-in-listing-url' ) ) {
-            $parts[] = sanitize_title( $ad->get_title() );
-        }
-
-        if( get_awpcp_option( 'include-city-in-listing-url' ) && $region ) {
-            $parts[] = sanitize_title( awpcp_array_data( 'city', '', $region ) );
-        }
-        if( get_awpcp_option( 'include-state-in-listing-url' ) && $region ) {
-            $parts[] = sanitize_title( awpcp_array_data( 'state', '', $region ) );
-        }
-        if( get_awpcp_option( 'include-country-in-listing-url' ) && $region ) {
-            $parts[] = sanitize_title( awpcp_array_data( 'country', '', $region ) );
-        }
-        if( get_awpcp_option( 'include-county-in-listing-url' ) && $region ) {
-            $parts[] = sanitize_title( awpcp_array_data( 'county', '', $region ) );
-        }
-        if( get_awpcp_option( 'include-category-in-listing-url' ) ) {
-            $awpcp_ad_category_id = $ad->ad_category_id;
-            $parts[] = sanitize_title(get_adcatname($awpcp_ad_category_id));
-        }
-
-        // always append a slash (RSS module issue)
-        $pagename = sprintf( "%s%s", trailingslashit( $pagename ), join( '/', array_filter( $parts ) ) );
-        $url = str_replace( '%pagename%', $pagename, $base_url );
-    } else {
-        $base_url = user_trailingslashit($base_url);
-        $url = add_query_arg( urlencode_deep( $params ), $base_url );
-    }
-
-    return apply_filters( 'awpcp-listing-url', $url, $ad );
+    return awpcp_listing_renderer()->get_view_listing_url( $ad );
 }
 
 function awpcp_get_browse_categories_page_url() {
@@ -288,7 +280,7 @@ function url_browsecategory( $category ) {
     $permalinks = get_option('permalink_structure');
 
     $page_id = awpcp_get_page_id_by_ref( 'browse-ads-page-name' );
-    $cat_id = $category->id;
+	$cat_id = $category->term_id;
     $cat_slug = sanitize_title( $category->name );
 
     if ( get_awpcp_option( 'seofriendlyurls' ) && $permalinks ) {
@@ -296,9 +288,9 @@ function url_browsecategory( $category ) {
         $url_browsecats = awpcp_get_url_with_page_permastruct( $path );
     } else {
         if (!empty($permalinks)) {
-            $params = array('category_id' => "$cat_id/$cat_slug");
+            $params = array( 'awpcp_category_id' => "$cat_id/$cat_slug" );
         } else {
-            $params = array( 'category_id' => $cat_id );
+            $params = array( 'awpcp_category_id' => $cat_id );
         }
 
         $url_browsecats = add_query_arg( urlencode_deep( $params ), home_url( '?page_id=' . $page_id ) );
@@ -333,7 +325,7 @@ function url_editad() {
  * the same namespace.
  */
 function awpcp_get_main_page_name() {
-    return get_awpcp_option('main-page-name');
+    return awpcp_get_page_name('main-page-name');
 }
 
 /**
@@ -452,7 +444,7 @@ function awpcp_get_edit_listing_url( $listing ) {
  */
 function awpcp_get_edit_listing_direct_url( $listing ) {
     if ( awpcp()->settings->get_option( 'enable-user-panel' ) ) {
-        return add_query_arg( array( 'action' => 'edit', 'id' => $listing->ad_id ), awpcp_get_user_panel_url() );
+        return get_edit_post_link( $listing );
     } else {
         return awpcp_get_edit_listing_page_url_with_listing_id( $listing );
     }
@@ -473,30 +465,31 @@ function awpcp_get_edit_listing_url_with_access_key( $listing ) {
 function awpcp_create_edit_listing_access_token( $listing ) {
 	$i = wp_nonce_tick();
 
-	$nonce = substr( wp_hash( $i . '|' . $listing->ad_id, 'nonce' ), -12, 10 );
-    $id_hash = substr( wp_hash( $nonce . '|' . $listing->ad_id, 'nonce' ), -12, 10 );
+	$nonce = substr( wp_hash( $i . '|' . $listing->ID, 'nonce' ), -12, 10 );
+    $id_hash = substr( wp_hash( $nonce . '|' . $listing->ID, 'nonce' ), -12, 10 );
 
-    return $nonce . $id_hash . '-' . $listing->ad_id;
+    return $nonce . $id_hash . '-' . $listing->ID;
 }
 
 function awpcp_verify_edit_listing_access_token( $access_token, $listing ) {
-    $i = wp_nonce_tick();
+    $listing_id = $listing->ID;
+    $i          = wp_nonce_tick();
 
     $nonce = substr( $access_token, 0, 10 );
-    $expected_nonce = substr( wp_hash( $i . '|' . $listing->ad_id, 'nonce' ), -12, 10 );
+    $expected_nonce = substr( wp_hash( $i . '|' . $listing_id, 'nonce' ), -12, 10 );
 
     if ( hash_equals( $nonce, $expected_nonce ) ) {
         return 'valid';
     }
 
-    $expected_nonce = substr( wp_hash( ( $i - 1 ) . '|' . $listing->ad_id, 'nonce' ), -12, 10 );
+    $expected_nonce = substr( wp_hash( ( $i - 1 ) . '|' . $listing_id, 'nonce' ), -12, 10 );
 
     if ( hash_equals( $nonce, $expected_nonce ) ) {
         return 'valid';
     }
 
     $id_hash = substr( $access_token, 10 );
-    $expected_id_hash = substr( wp_hash( $nonce . '|' . $listing->ad_id, 'nonce' ), -12, 10 );
+    $expected_id_hash = substr( wp_hash( $nonce . '|' . $listing_id, 'nonce' ), -12, 10 );
 
     return hash_equals( $id_hash, $expected_id_hash ) ? 'expired' : 'invalid';
 }
@@ -507,14 +500,13 @@ function awpcp_verify_edit_listing_access_token( $access_token, $listing ) {
 function awpcp_get_edit_listing_page_url_with_listing_id( $listing ) {
     $use_seo_friendly_urls = get_awpcp_option( 'seofriendlyurls' );
 
-    $page_id = awpcp_get_page_id_by_ref( 'edit-ad-page-name' );
-    $base_url = get_permalink( $page_id, $use_seo_friendly_urls );
-
-    if ( get_option( 'permalink_structure' ) && $use_seo_friendly_urls ) {
-        $pagename = sprintf( '%s/%d', get_page_uri( $page_id ), $listing->ad_id );
+    if ( $use_seo_friendly_urls && get_option( 'permalink_structure' ) ) {
+        $page_id = awpcp_get_page_id_by_ref( 'edit-ad-page-name' );
+        $base_url = get_permalink( $page_id, true );
+        $pagename = sprintf( '%s/%d', get_page_uri( $page_id ), $listing->ID );
         $url = str_replace( '%pagename%', $pagename, $base_url );
     } else {
-        $url = add_query_arg( 'id', $listing->ad_id, awpcp_get_page_url( 'edit-ad-page-name' ) );
+        $url = add_query_arg( 'id', $listing->ID, awpcp_get_page_url( 'edit-ad-page-name' ) );
     }
 
     return $url;
@@ -541,11 +533,23 @@ function awpcp_get_renew_ad_url($ad_id) {
 
     if ( get_awpcp_option( 'enable-user-panel' ) == 1 ) {
         $url = awpcp_get_user_panel_url();
-        $params = array( 'id' => $ad_id, 'action' => 'renew', 'awpcprah' => $hash );
-    } else {
-        $url = awpcp_get_page_url('renew-ad-page-name');
-        $params = array( 'ad_id' => $ad_id, 'awpcprah' => $hash );
+
+        $params = [
+            'ids'         => $ad_id,
+            'action'      => 'renew',
+            'awpcprah'    => $hash,
+            'redirect_to' => $url
+        ];
+
+        return wp_nonce_url( add_query_arg( urlencode_deep( $params ), $url ), 'bulk-posts' );
     }
+
+    $url = awpcp_get_page_url('renew-ad-page-name');
+
+    $params =  [
+        'ad_id'    => $ad_id,
+        'awpcprah' => $hash,
+    ];
 
     return add_query_arg( urlencode_deep( $params ), $url );
 }
@@ -588,7 +592,12 @@ function awpcp_get_reply_to_ad_url($ad_id, $ad_title=null) {
     if (!is_null($ad_title)) {
         $title = sanitize_title($ad_title);
     } else {
-        $title = sanitize_title(AWPCP_Ad::find_by_id($ad_id)->ad_title);
+        try {
+            $listing = $listings->get( $ad_id );
+            $title = sanitize_title( awpcp_listing_renderer()->get_listing_title( $listing ) );
+        } catch ( AWPCP_Exception $e ) {
+            $title = '';
+        }
     }
 
     if ( $use_seo_friendly_urls && get_option( 'permalink_structure' ) ) {
@@ -611,9 +620,26 @@ function awpcp_get_admin_panel_url() {
 
 /**
  * @since 3.0.2
+ * @since 4.0.0     Supports taking an array of query args.
  */
-function awpcp_get_admin_settings_url( $group = false ) {
-    return add_query_arg( array( 'page' => 'awpcp-admin-settings', 'g' => urlencode( $group ) ), admin_url( 'admin.php' ) );
+function awpcp_get_admin_settings_url( $params = false ) {
+    $query_args = [
+        'page' => 'awpcp-admin-settings',
+    ];
+
+    if ( false === $params ) {
+        $params = [];
+    }
+
+    if ( is_string( $params ) ) {
+        $params = [
+            'g' => $params,
+        ];
+    }
+
+    $query_args = array_filter( array_merge( $query_args, $params ), 'strlen' );
+
+    return add_query_arg( $query_args, admin_url( 'admin.php' ) );
 }
 
 /**
@@ -650,7 +676,11 @@ function awpcp_get_admin_upgrade_url() {
  * @since 2.1.4
  */
 function awpcp_get_admin_listings_url() {
-    return admin_url('admin.php?page=awpcp-listings');
+    $params = [
+        'post_type' => awpcp()->container['listing_post_type'],
+    ];
+
+    return add_query_arg( $params, admin_url( 'edit.php' ) );
 }
 
 /**
@@ -666,7 +696,7 @@ function awpcp_get_admin_form_fields_url() {
  * @since 2.0.7
  */
 function awpcp_get_user_panel_url( $params=array() ) {
-    return add_query_arg( urlencode_deep( $params ), admin_url( 'admin.php?page=awpcp-panel' ) );
+    return add_query_arg( urlencode_deep( $params ), awpcp_get_admin_listings_url() );
 }
 
 

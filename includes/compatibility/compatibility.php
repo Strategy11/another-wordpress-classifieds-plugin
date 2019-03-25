@@ -1,15 +1,21 @@
 <?php
+/**
+ * @package AWPCP\Compatibility
+ */
 
+/**
+ * Configures available plugin integrations to improve compatibility.
+ */
 class AWPCP_Compatibility {
 
     public function load_plugin_integrations() {
-        require_once(AWPCP_DIR . '/includes/compatibility/cryptx.php');
+        require_once AWPCP_DIR . '/includes/compatibility/cryptx.php';
 
-        if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+        $doing_ajax = defined( 'DOING_AJAX' ) && DOING_AJAX;
 
-        } else if ( is_admin() ) {
+        if ( ! $doing_ajax && is_admin() ) {
             $this->load_plugin_integration_used_in_admin_screens();
-        } else {
+        } elseif ( ! $doing_ajax ) {
             $this->load_plugin_integration_used_in_frontend_screens();
         }
 
@@ -31,10 +37,7 @@ class AWPCP_Compatibility {
         add_filter( 'awpcp-should-generate-rel-canonical', array( $integration, 'should_generate_rel_canonical' ), 10, 2 );
 
         $integration = awpcp_yoast_wordpress_seo_plugin_integration();
-        add_filter( 'awpcp-should-generate-basic-meta-tags', array( $integration, 'should_generate_basic_meta_tags' ), 10, 2 );
-        add_filter( 'awpcp-should-generate-opengraph-tags', array( $integration, 'should_generate_opengraph_tags' ), 10, 2 );
-        add_filter( 'awpcp-should-generate-rel-canonical', array( $integration, 'should_generate_rel_canonical' ), 10, 2 );
-        add_filter( 'awpcp-should-generate-title', array( $integration, 'should_generate_title' ), 10, 2 );
+        $integration->setup();
 
         $integration = awpcp_add_meta_tags_plugin_integration();
         add_filter( 'awpcp-should-generate-basic-meta-tags', array( $integration, 'should_generate_basic_meta_tags' ), 10, 2 );
@@ -42,12 +45,18 @@ class AWPCP_Compatibility {
 
         $integration = awpcp_facebook_button_plugin_integration();
         $integration->setup();
+
+	    $integration = awpcp_seo_framework_integration();
+	    $integration->setup();
+
+        $integration = awpcp_navxt_plugin_integration();
+        $integration->setup();
     }
 
     private function load_content_aware_sidebars_integration() {
         if ( class_exists( 'ContentAwareSidebars' ) && class_exists( 'CASModule' ) && class_exists( 'CAS_Walker_Checklist' ) ) {
-            require_once( AWPCP_DIR . '/includes/compatibility/class-content-aware-sidebars-listings-categories-module.php' );
-            require_once( AWPCP_DIR . '/includes/compatibility/class-content-aware-sidebars-categories-walker.php' );
+            require_once AWPCP_DIR . '/includes/compatibility/class-content-aware-sidebars-listings-categories-module.php';
+            require_once AWPCP_DIR . '/includes/compatibility/class-content-aware-sidebars-categories-walker.php';
             add_filter( 'cas-module-pre-deploy', 'awpcp_register_content_aware_sidebars_listings_categories_module' );
         }
     }
@@ -62,7 +71,7 @@ class AWPCP_Compatibility {
     }
 
     public function load_plugin_integrations_on_init() {
-        if ( !is_user_logged_in() ) {
+        if ( ! is_user_logged_in() ) {
             $this->load_plugin_integrations_for_anonymous_users();
         }
     }

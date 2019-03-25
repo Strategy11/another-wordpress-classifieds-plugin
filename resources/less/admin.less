@@ -1,23 +1,41 @@
 @import 'legacy/admin.less';
 
-@import 'common/spinner.less';
-@import 'common/state.less';
-@import 'common/tabs.less';
 @import 'common.less';
 
 @import 'colors.less';
 @import 'icons.less';
 @import 'messages.less';
 
+@import 'form-fields.tiny.less';
+
+@media (min-width: 1024px) {
+    @import 'form-fields.large.less';
+}
+
 @import 'admin/layout.less';
+@import 'admin/common.less';
 @import 'admin/modules/spinner.less';
 
 @import 'admin/modules/form-fields.less';
 @import 'admin/modules/import-listings.less';
+@import 'admin/modules/fees.less';
+@import 'admin/modules/manage-categories.less';
+
+@import 'admin/modules/credit-plans-admin-page.less';
+@import 'admin/modules/debug-admin-page.less';
+@import 'admin/modules/manage-credit-admin-page.less';
+@import 'admin/modules/edit-post-admin-page.less';
+@import 'admin/modules/listings-admin-page.less';
+@import 'admin/modules/quick-view-listing-admin-page.less';
+@import 'admin/modules/settings-admin-page.less';
 
 @import 'components/admin-sidebar.less';
 @import 'components/asynchronous-tasks.less';
 @import 'components/form-steps.less';
+@import 'components/listing-content-legacy.less';
+@import 'components/social-buttons.less';
 @import 'components/media-manager.less';
 @import 'components/media-uploader.less';
+@import 'components/pagination.less';
+@import 'components/payment-terms-list.less';
 @import 'components/thumbnails-generator.less';

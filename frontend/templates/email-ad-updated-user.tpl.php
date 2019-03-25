@@ -6,12 +6,12 @@
 
 <?php _e('Ad Information', 'another-wordpress-classifieds-plugin') ?> 
 
-<?php _e("Listing Title", 'another-wordpress-classifieds-plugin') ?>: <?php echo $ad->get_title() ?> 
-<?php _e("Listing URL", 'another-wordpress-classifieds-plugin') ?>: <?php echo urldecode( url_showad( $ad->ad_id ) ); ?> 
-<?php _e("Listing ID", 'another-wordpress-classifieds-plugin') ?>: <?php echo $ad->ad_id ?> 
-<?php _e("Listing Edit Email", 'another-wordpress-classifieds-plugin') ?>: <?php echo $ad->ad_contact_email ?> 
+<?php _e("Listing Title", 'another-wordpress-classifieds-plugin') ?>: <?php echo $listing_title; ?> 
+<?php _e("Listing URL", 'another-wordpress-classifieds-plugin') ?>: <?php echo urldecode( url_showad( $ad->ID ) ); ?> 
+<?php _e("Listing ID", 'another-wordpress-classifieds-plugin') ?>: <?php echo $ad->ID ?> 
+<?php _e("Listing Edit Email", 'another-wordpress-classifieds-plugin') ?>: <?php echo $contact_email ?> 
 <?php if ( get_awpcp_option( 'include-ad-access-key' ) ): ?>
-<?php _e( "Listing Edit Key", 'another-wordpress-classifieds-plugin' ); ?>: <?php echo $ad->get_access_key(); ?> 
+<?php _e( "Listing Edit Key", 'another-wordpress-classifieds-plugin' ); ?>: <?php echo $access_key; ?> 
 <?php endif; ?>
 
 

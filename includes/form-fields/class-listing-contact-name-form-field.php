@@ -1,29 +1,50 @@
 <?php
+/**
+ * @package AWPCP\FormFields
+ */
 
+/**
+ * Constructor function for Listing Contact Name Form Field class.
+ *
+ * @param string $slug      An identifier for this field.
+ */
 function awpcp_listing_contact_name_form_field( $slug ) {
     return new AWPCP_ListingContactNameFormField( $slug, awpcp()->settings );
 }
 
-/**
- * TODO: what if that field shouldn't be shown?
- */
 class AWPCP_ListingContactNameFormField extends AWPCP_FormField {
 
+    /**
+     * @var object
+     */
     private $settings;
 
+    /**
+     * @param string $slug      An identifier for this field.
+     * @param object $settings  An instance of Settings API.
+     */
     public function __construct( $slug, $settings ) {
         parent::__construct( $slug );
         $this->settings = $settings;
     }
 
+    /**
+     * @return string   The label for this field.
+     */
     public function get_name() {
-        return _x( 'Name of Person to Contact', 'ad details form', 'another-wordpress-classifieds-plugin' );
+        return _x( 'Contact Name', 'ad details form', 'another-wordpress-classifieds-plugin' );
     }
 
+    /**
+     * @return bool     Whether this field is required or not.
+     */
     protected function is_required() {
         return true;
     }
 
+    /**
+     * @param mixed $value     The current value for thi field.
+     */
     public function is_readonly( $value ) {
         $make_contact_fields_writable = $this->settings->get_option( 'make-contact-fields-writable-for-logged-in-users' );
 
@@ -38,24 +59,24 @@ class AWPCP_ListingContactNameFormField extends AWPCP_FormField {
         return true;
     }
 
+    /**
+     * @param mixed  $value     The current value for thi field.
+     * @param array  $errors    An array of form errors.
+     * @param object $listing   An instance of WP_Post.
+     * @param mixed  $context   The context in which this field is being rendered.
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
     public function render( $value, $errors, $listing, $context ) {
-        if ( $this->is_required() ) {
-            $validators = 'required';
-        } else {
-            $validators = '';
-        }
-
         $params = array(
             'required' => $this->is_required(),
-            'value' => $value,
-            'errors' => $errors,
+            'value'    => $value,
+            'errors'   => $errors,
 
-            'label' => $this->get_label(),
-            'validators' => $validators,
+            'label'    => $this->get_label(),
 
-            'html' => array(
-                'id' => str_replace( '_', '-', $this->get_slug() ),
-                'name' => $this->get_slug(),
+            'html'     => array(
+                'id'       => str_replace( '_', '-', $this->get_slug() ),
+                'name'     => $this->get_slug(),
                 'readonly' => $this->is_readonly( $value ),
             ),
         );

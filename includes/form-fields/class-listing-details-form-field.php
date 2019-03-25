@@ -1,19 +1,34 @@
 <?php
+/**
+ * @package AWPCP\FormFields
+ */
+
+// phpcs:disable
 
 function awpcp_listing_details_form_field( $slug ) {
-    return new AWPCP_ListingDetailsFormField( $slug, awpcp_payments_api() );
+    return new AWPCP_ListingDetailsFormField(
+        $slug,
+        awpcp_listing_renderer(),
+        awpcp_payments_api(),
+        awpcp_template_renderer()
+    );
 }
 
 /**
- * TODO: what if that field shouldn't be shown?
+ * @SuppressWarnings(PHPMD)
  */
 class AWPCP_ListingDetailsFormField extends AWPCP_FormField {
 
-    protected $payments;
+    private $listing_renderer;
+    private $payments;
+    private $template_renderer;
 
-    public function __construct( $slug, $payments ) {
+    public function __construct( $slug, $listing_renderer, $payments, $template_renderer ) {
         parent::__construct( $slug );
+
+        $this->listing_renderer = $listing_renderer;
         $this->payments = $payments;
+        $this->template_renderer = $template_renderer;
     }
 
     public function get_name() {
@@ -28,17 +43,11 @@ class AWPCP_ListingDetailsFormField extends AWPCP_FormField {
         $characters_limit = $this->get_characters_limit_for_listing( $listing );
 
         if ( $characters_limit['characters_allowed'] == 0 ) {
-            $characters_allowed_text = _x('No characters limit.', 'ad details form', 'another-wordpress-classifieds-plugin');
+            $characters_allowed_text = _x( 'Unlimited characters', 'ad details form', 'another-wordpress-classifieds-plugin' );
             $remaining_characters_text = '';
         } else {
-            $characters_allowed_text = _x('characters left.', 'ad details form', 'another-wordpress-classifieds-plugin');
+            $characters_allowed_text = _x( 'characters left', 'ad details form', 'another-wordpress-classifieds-plugin' );
             $remaining_characters_text = $characters_limit['remaining_characters'];
-        }
-
-        if ( $this->is_required() ) {
-            $validators = 'required';
-        } else {
-            $validators = '';
         }
 
         $params = array(
@@ -48,7 +57,6 @@ class AWPCP_ListingDetailsFormField extends AWPCP_FormField {
 
             'label' => $this->get_label(),
             'help_text' => nl2br( get_awpcp_option( 'htmlstatustext' ) ),
-            'validators' => $validators,
 
             'characters_allowed' => $characters_limit['characters_allowed'],
             'characters_allowed_text' => $characters_allowed_text,
@@ -62,13 +70,16 @@ class AWPCP_ListingDetailsFormField extends AWPCP_FormField {
             ),
         );
 
-        return awpcp_render_template( 'frontend/form-fields/listing-details-form-field.tpl.php', $params );
+        return $this->template_renderer->render_template( 'frontend/form-fields/listing-details-form-field.tpl.php', $params );
     }
 
+    /**
+     * TODO: Move to Listing Logic or Listing Properties.
+     */
     private function get_characters_limit_for_listing( $listing ) {
-        if ( is_a( $listing, 'AWPCP_Ad' ) ) {
-            $payment_term = $listing->get_payment_term();
-            $characters_used = strlen( $listing->ad_details );
+        if ( is_object( $listing ) ) {
+            $payment_term = $this->listing_renderer->get_payment_term( $listing );
+            $characters_used = strlen( $this->listing_renderer->get_listing_title( $listing ) );
         } else if ( $transaction = $this->payments->get_transaction() ) {
             $payment_term = $this->payments->get_transaction_payment_term( $transaction );
             $characters_used = 0;

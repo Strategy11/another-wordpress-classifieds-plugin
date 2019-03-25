@@ -1,6 +1,5 @@
 <?php
 
-
 class AWPCP_Fee extends AWPCP_PaymentTerm {
 
     public $type = AWPCP_FeeType::TYPE;
@@ -109,8 +108,18 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
             return false;
         }
 
-        $where = "adterm_id = %d AND payment_term_type = 'fee'";
-        $ads = AWPCP_Ad::find( $wpdb->prepare( $where, $id ) );
+        $ads = awpcp_listings_collection()->find_listings(array(
+            'meta_query' => array(
+                array(
+                    'key' => '_awpcp_payment_term_id',
+                    'value' => $id,
+                ),
+                array(
+                    'key' => '_awpcp_payment_term_type',
+                    'value' => 'fee',
+                ),
+            ),
+        ));
 
         if (!empty($ads)) {
             $errors[] = __("The Fee can't be deleted because there are active Ads in the system that are associated with the Fee ID.", 'another-wordpress-classifieds-plugin');
@@ -130,14 +139,18 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
             $this->defaults['buys'] = 0;
         }
 
+        $this->defaults = apply_filters( 'awpcp-prepare-payment-term-fee-default-properties', $this->defaults );
+
         return $this->defaults;
     }
 
     protected function sanitize( $data ) {
         $data = parent::sanitize($data);
+
         $data['ads'] = 1;
         $data['buys'] = (int) $data['buys'];
-        return $data;
+
+        return apply_filters( 'awpcp-sanitize-payment-term-fee-data', $data );
     }
 
     protected function validate($data, &$errors=array()) {
@@ -158,7 +171,6 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
         $data['title_characters'] = absint( $_data['title_characters'] );
         $data['characters_allowed'] = absint( $_data['characters'] );
         $data['categories'] = $_data['categories'];
-        // TODO: properly save, validate and sanitize this value
         $data['buys'] = absint( $_data['buys'] );
         $data['private'] = absint( $_data['private'] );
         $data['is_featured_ad_pricing'] = absint( $_data['featured'] );
@@ -167,7 +179,7 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
             unset( $data[ 'adterm_id' ] );
         }
 
-        return $data;
+        return apply_filters( 'awpcp-translate-payment-term-fee-data', $data, $_data );
     }
 
     public function save(&$errors=array()) {
@@ -181,7 +193,9 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
         $data = $this->sanitize($data);
 
         // categories are saved as a comma separated string, for now
-        $data['categories'] = join(',', $data['categories']);
+        if ( is_array( $data['categories'] ) ) {
+            $data['categories'] = join( ',', $data['categories'] );
+        }
 
         if ($this->validate($data, $errors)) {
             $data = $this->translate($data);
@@ -190,9 +204,17 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
                 $result = true;
             } else if ($this->id) {
                 $result = $wpdb->update(AWPCP_TABLE_ADFEES, $data, array('adterm_id' => $this->id));
+
+                if ( $result !== false ) {
+                    do_action( 'awpcp-payment-term-fee-updated', $this );
+                }
             } else {
                 $result = $wpdb->insert(AWPCP_TABLE_ADFEES, $data);
                 $this->id = $wpdb->insert_id;
+
+                if ( $result !== false ) {
+                    do_action( 'awpcp-payment-term-fee-created', $this );
+                }
             }
         } else {
             $result = false;
@@ -202,20 +224,37 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
     }
 
     public function transfer_ads_to($id, &$errors) {
-        global $wpdb;
-
         $recipient = self::find_by_id($id);
 
         if (is_null($recipient)) {
             $errors[] = __("The recipient Fee doesn't exists.", 'another-wordpress-classifieds-plugin');
         }
 
-        $query = 'UPDATE ' . AWPCP_TABLE_ADS . ' SET adterm_id = %d ';
-        $query.= 'WHERE adterm_id = %d';
+        $listings = awpcp_listings_collection()->find_listings(array(
+            'meta_query' => array(
+                array(
+                    'key' => '_awpcp_payment_term_id',
+                    'value' => $this->id,
+                    'compare' => '=',
+                    'type' => 'SIGNED',
+                ),
+                array(
+                    'key' => '_awpcp_payment_term_id',
+                    'value' => $this->id,
+                    'compare' => '=',
+                    'type' => 'SIGNED',
+                ),
+            ),
+        ));
 
-        $result = $wpdb->query($wpdb->prepare($query, $recipient->id, $this->id));
+        $wordpress = awpcp_wordpress();
+        $success = true;
 
-        return $result !== false;
+        foreach ( $listings as $listing ) {
+            $success = $success && $wordpress->update_post_meta( $listing->ID, '_awpcp_payment_term_id', $recipient->id );
+        }
+
+        return $success;
     }
 
     public function get_regions_allowed() {

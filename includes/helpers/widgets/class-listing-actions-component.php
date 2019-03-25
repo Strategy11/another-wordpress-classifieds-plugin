@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package AWPCP
+ */
+
+// phpcs:disable
 
 function awpcp_listing_actions_component() {
     return new AWPCP_ListingActionsComponent();
@@ -15,16 +20,14 @@ function awpcp_listing_actions_component() {
  */
 class AWPCP_ListingActionsComponent {
 
-    public function render( $listing, $config = array() ) {
-        $config = wp_parse_args( $config, array(
-            'current-url' => awpcp_current_url(),
-            'hidden-params' => array(),
-        ) );
-
+    /**
+     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
+     */
+    public function render( $listing ) {
         $actions = apply_filters( 'awpcp-listing-actions', array(), $listing );
 
         ob_start();
-        include( AWPCP_DIR . '/templates/components/listings-actions.tpl.php' );
+        include AWPCP_DIR . '/templates/components/listings-actions.tpl.php';
         $content = ob_get_contents();
         ob_end_clean();
 

@@ -2,7 +2,8 @@
     <form action="<?php echo esc_url( $action_url ); ?>" method="GET">
         <input type="hidden" name="awpcp-step" value="dosearch" />
         <div class="awpcp-classifieds-search-bar--query-field">
-            <input type="text" name="keywordphrase" />
+            <label class="screen-reader-text" for="awpcp-search-query-field"><?php esc_html_e( 'Search for:', 'another-wordpress-classifieds-plugin' ); ?></label>
+            <input id="awpcp-search-query-field" type="text" name="keywordphrase" />
         </div>
         <div class="awpcp-classifieds-search-bar--submit-button">
             <input class="button" type="submit" value="<?php echo esc_attr( __( 'Find Listings', 'another-wordpress-classifieds-plugin' ) ); ?>" />

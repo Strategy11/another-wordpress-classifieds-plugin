@@ -4,7 +4,7 @@ function awpcp_licenses_manager() {
     static $instance = null;
 
     if ( is_null( $instance ) ) {
-        $instance = new AWPCP_LicensesManager( awpcp_easy_digital_downloads(), awpcp()->settings );
+        $instance = new AWPCP_LicensesManager( awpcp_easy_digital_downloads(), awpcp_settings_api() );
     }
 
     return $instance;

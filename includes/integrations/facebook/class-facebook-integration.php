@@ -6,18 +6,12 @@
 /**
  * @since 3.8.6
  */
-function awpcp_facebook_integration() {
-    return new AWPCP_FacebookIntegration(
-        awpcp_listings_metadata(),
-        awpcp_wordpress(),
-        awpcp()->settings
-    );
-}
-
-/**
- * @since 3.8.6
- */
 class AWPCP_FacebookIntegration {
+
+    /**
+     * @var ListingRenderer
+     */
+    private $listing_renderer;
 
     /**
      * @var Settings
@@ -27,10 +21,10 @@ class AWPCP_FacebookIntegration {
     /**
      * @since 3.8.6
      */
-    public function __construct( $ads_metadata, $wordpress, $settings ) {
-        $this->ads_metadata = $ads_metadata;
-        $this->wordpress    = $wordpress;
-        $this->settings     = $settings;
+    public function __construct( $listing_renderer, $settings, $wordpress ) {
+        $this->listing_renderer = $listing_renderer;
+        $this->settings         = $settings;
+        $this->wordpress        = $wordpress;
     }
 
     /**
@@ -70,7 +64,7 @@ class AWPCP_FacebookIntegration {
      * @since 3.8.6
      */
     private function schedule_action_seconds_from_now( $ad, $action, $wait_time ) {
-        $params = array( $ad->ad_id, $this->wordpress->current_time( 'timestamp' ) );
+        $params = array( $ad->ID, $this->wordpress->current_time( 'timestamp' ) );
 
         if ( ! wp_next_scheduled( $action, $params ) ) {
             $this->wordpress->schedule_single_event( time() + $wait_time, $action, $params );
@@ -85,12 +79,12 @@ class AWPCP_FacebookIntegration {
             return;
         }
 
-        if ( $ad->disabled ) {
+        if ( ! $this->listing_renderer->is_public( $ad ) ) {
             return;
         }
 
         $page_integration_configured = $this->is_facebook_page_integration_configured();
-        $already_sent_to_a_fb_page   = $this->ads_metadata->get( $ad->ad_id, 'sent-to-facebook' );
+        $already_sent_to_a_fb_page   = $this->wordpress->get_post_meta( $ad->ID, '_awpcp_sent_to_facebook_page', true );
 
         if ( $page_integration_configured && ! $already_sent_to_a_fb_page ) {
             $this->schedule_send_to_facebook_action( $ad );
@@ -99,7 +93,7 @@ class AWPCP_FacebookIntegration {
         }
 
         $group_integration_configured = $this->is_facebook_group_integration_configured();
-        $already_sent_to_a_fb_group   = $this->ads_metadata->get( $ad->ad_id, 'sent-to-facebook-group' );
+        $already_sent_to_a_fb_group   = $this->wordpress->get_post_meta( $ad->ID, '_awpcp_sent_to_facebook_group', true );
 
         if ( $group_integration_configured && ! $already_sent_to_a_fb_group ) {
             $this->schedule_send_to_facebook_action( $ad );

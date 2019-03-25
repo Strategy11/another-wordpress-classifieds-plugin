@@ -1,16 +1,34 @@
 <?php
+/**
+ * @package AWPCP/Frontend
+ */
 
 /**
  * @since 3.6
  */
 function awpcp_query() {
-    return new AWPCP_Query();
+    return new AWPCP_Query(
+        awpcp()->container['listing_post_type']
+    );
 }
 
 /**
  * @since 3.6
+ * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
 class AWPCP_Query {
+
+    /**
+     * @var string
+     */
+    private $listing_post_type;
+
+    /**
+     * @since 4.0.0
+     */
+    public function __construct( $listing_post_type ) {
+        $this->listing_post_type = $listing_post_type;
+    }
 
     public function is_post_listings_page() {
         return $this->is_page_that_has_shortcode( 'AWPCPPLACEAD' );
@@ -21,7 +39,15 @@ class AWPCP_Query {
     }
 
     public function is_single_listing_page() {
-        return apply_filters( 'awpcp-is-single-listing-page', $this->is_page_that_has_shortcode( 'AWPCPSHOWAD' ) );
+        $is_single_listing_page = false;
+
+        if ( $this->is_singular_listing_page() || $this->is_page_that_has_shortcode( 'AWPCPSHOWAD' ) ) {
+            $is_single_listing_page = true;
+        }
+
+        // @phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
+        return apply_filters( 'awpcp-is-single-listing-page', $is_single_listing_page );
+        // @phpcs:enable WordPress.NamingConventions.ValidHookName.UseUnderscores
     }
 
     public function is_reply_to_listing_page() {
@@ -52,15 +78,29 @@ class AWPCP_Query {
         return $this->is_browse_listings_page();
     }
 
-    public function is_page_that_accepts_payments() {
-        $shortcodes_that_accept_payments = array( 'AWPCPPLACEAD', 'AWPCP-BUY-SUBSCRIPTION', 'AWPCP-RENEW-AD', 'AWPCPBUYCREDITS' );
+    public function is_renew_listing_page() {
+        return $this->is_page_that_has_shortcode( 'AWPCP-RENEW-AD' );
+    }
 
-        foreach ( $shortcodes_that_accept_payments as $shortcode ) {
+    public function is_page_that_accepts_payments() {
+        $accept_payments = [ 'AWPCPPLACEAD', 'AWPCP-BUY-SUBSCRIPTION', 'AWPCP-RENEW-AD', 'AWPCPBUYCREDITS' ];
+
+        foreach ( $accept_payments as $shortcode ) {
             if ( $this->is_page_that_has_shortcode( $shortcode ) ) {
                 return true;
             }
         }
 
         return false;
+    }
+
+    /**
+     * Returns true only when the current request is for a listing displayed on
+     * its own page (instead of through the Show Ads page).
+     *
+     * @since 4.0.0
+     */
+    public function is_singular_listing_page() {
+        return is_singular( $this->listing_post_type );
     }
 }

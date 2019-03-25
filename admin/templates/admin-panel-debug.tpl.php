@@ -69,15 +69,12 @@
 						</tr>
 					</thead>
 					<tbody>
-				<?php foreach($options as $name => $value): ?>
-                    <?php if ( ! $debug_info->blacklisted( $name ) ): ?>
-                    <?php $value = $debug_info->sanitize( $name, $value ) ?>
+				<?php foreach( $options as $name => $value ): ?>
 						<tr>
                             <th scope="row"><?php echo $name; ?></th>
                             <td><?php echo esc_html( $value ); ?></td>
 						</tr>
-                    <?php endif; ?>
-                <?php endforeach ?>
+				<?php endforeach ?>
 					</tbody>
 				</table>
 		    </div>
@@ -99,7 +96,7 @@
 							<td><?php echo $pattern ?></td>
 							<td><?php echo $rule ?></td>
 						</tr>
-				<?php endforeach ?> 
+				<?php endforeach ?>
 					</tbody>
 				</table>
 		    </div>
@@ -129,7 +126,7 @@
 							<td><?php _ex('Working', 'debug page', 'another-wordpress-classifieds-plugin')	?></td>
 							<?php else: ?>
 							<td>
-								<?php _ex('Not Working', 'debug page', 'another-wordpress-classifieds-plugin') ?><br/>
+								<?php _ex( 'Not Working', 'debug page', 'another-wordpress-classifieds-plugin' ) ?><br/>
 								<?php foreach ( (array) $errors as $error ): ?>
 								<?php echo $error ?><br/>
 								<?php endforeach ?>
@@ -141,10 +138,10 @@
 		    </div>
 	    </div>
 
-	    </div>
+		<?php echo awpcp_html_admin_second_level_heading( array( 'content' => __( 'Debug & Development Tools', 'another-wordpress-classifieds-plugin' ) ) ); ?>
 
-<?php if (!$download): ?>
-		</div><!-- end of .awpcp-main-content -->
-	</div><!-- end of .page-content -->
-</div><!-- end of #page_id -->
-<?php endif ?>
+        <ul>
+            <li><a href="<?php echo admin_url( 'plugin-install.php?tab=plugin-information&plugin=query-monitor&TB_iframe=true&width=600&height=550' ); ?>">Query Monitor</a></li>
+        </ul>
+
+	    </div>

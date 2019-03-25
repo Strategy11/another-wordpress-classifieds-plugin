@@ -7,7 +7,7 @@
 ?>
 
 <?php foreach ( $other_attachments as $attachment ): ?>
-- <?php echo $attachment->name . PHP_EOL; ?>
+- <?php echo $attachment->post_title . PHP_EOL; ?>
 <?php endforeach; ?>
 <?php endif; ?>
 <?php if ( $attachments_awaiting_approval ): ?>
@@ -18,7 +18,7 @@
 ?>
 
 <?php foreach ( $attachments_awaiting_approval as $attachment ): ?>
-- <?php echo $attachment->name . PHP_EOL; ?>
+- <?php echo $attachment->post_title . PHP_EOL; ?>
 <?php endforeach; ?>
 <?php endif; ?>
 

@@ -62,6 +62,27 @@ function awpcp_admin_page_title() {
     return implode( ' &ndash; ', $sections );
 }
 
+function awpcp_replace_names_in_message( $message, $names ) {
+    $placeholder = count( $names ) === 1 ? '<name>' : '<names>';
+    return str_replace( $placeholder, awpcp_string_with_names( $names ), $message );
+}
+
+function awpcp_string_with_names( $names ) {
+    if ( count( $names ) === 1 ) {
+        $string = '<strong>' . $names[0] . '</strong>';
+    } else {
+        $n_first_names = '<strong>' . implode( '</strong>, <strong>', array_slice( $names, 0, -1 ) ) . '</strong>';
+        $last_name = '<strong>' . end( $names ) . '</strong>';
+
+        /* translators: example: <First Name, Second Name, ...> and <Last Name> */
+        $string = __( '<comma-separated-names> and <single-name>', 'another-wordpress-classifieds-plugin' );
+        $string = str_replace( '<comma-separated-names>', $n_first_names, $string );
+        $string = str_replace( '<single-name>', $last_name, $string );
+    }
+
+    return $string;
+}
+
 function awpcp_get_digits_from_string( $string ) {
     if ( ! preg_match_all( '/\d+/', $string, $matches ) ) {
         return '';

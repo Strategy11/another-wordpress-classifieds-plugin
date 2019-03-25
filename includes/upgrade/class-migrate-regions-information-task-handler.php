@@ -1,18 +1,8 @@
 <?php
 
-function awpcp_migrate_regions_information_task_handler() {
-    return new AWPCP_Migrate_Regions_Information_Task_Handler();
-}
-
 class AWPCP_Migrate_Regions_Information_Task_Handler {
 
     /**
-     * TODO: do this in the next version
-     * $columns = array( 'ad_country, ad_state, ad_city, ad_county_village' );
-     * foreach ( $columns as $column ) {
-     *     $wpdb->query( sprintf( 'ALTER TABLE %s DROP COLUMN', AWPCP_TABLE_ADS, $column ) );
-     * }
-     *
      * TODO: delete region_id column in a future upgrade and remove
      * all rows from ad_regions table that have no data in the country, county, state
      * and city columns.

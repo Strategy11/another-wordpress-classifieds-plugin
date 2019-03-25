@@ -1,15 +1,13 @@
 <?php
+/**
+ * @package AWPCP\Payments
+ */
 
-function awpcp_payments_api() {
-    static $payments = null;
+// phpcs:disable
 
-    if ( is_null( $payments ) ) {
-        $payments = new AWPCP_PaymentsAPI( new AWPCP_Request() );
-    }
-
-    return $payments;
-}
-
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 class AWPCP_PaymentsAPI {
 
     private $request = null;
@@ -83,7 +81,15 @@ class AWPCP_PaymentsAPI {
         return get_awpcp_option('enable-credit-system') == 1;
     }
 
+    public function is_currency_accepted() {
+        return in_array( AWPCP_Payment_Transaction::PAYMENT_TYPE_MONEY, $this->get_accepted_payment_types() );
+    }
+
     public function is_credit_accepted() {
+        if ( ! $this->credit_system_enabled() ) {
+            return false;
+        }
+
         return in_array( AWPCP_Payment_Transaction::PAYMENT_TYPE_CREDITS, $this->get_accepted_payment_types() );
     }
 
@@ -175,7 +181,21 @@ class AWPCP_PaymentsAPI {
     }
 
     public function get_credit_plans() {
-        return AWPCP_CreditPlan::find();
+        $credit_plans = [];
+
+        foreach ( AWPCP_CreditPlan::find() as $credit_plan ) {
+            $summary = __( '{credit-plan-name} ({credit-plan-credits} credits for {credit-plan-price})', 'another-wordpress-classifieds-plugin' );
+
+            $summary = str_replace( '{credit-plan-name}', $credit_plan->name, $summary );
+            $summary = str_replace( '{credit-plan-credits}', awpcp_format_integer( $credit_plan->credits ), $summary );
+            $summary = str_replace( '{credit-plan-price}', awpcp_format_money( $credit_plan->price ), $summary );
+
+            $credit_plan->summary = $summary;
+
+            $credit_plans[] = $credit_plan;
+        }
+
+        return $credit_plans;
     }
 
     public function get_credit_plan($id) {
@@ -230,8 +250,23 @@ class AWPCP_PaymentsAPI {
         return $terms;
     }
 
-    public function get_ad_payment_term($ad) {
-        return $this->get_payment_term($ad->adterm_id, $ad->payment_term_type);
+    /**
+     * @since 4.0.0
+     */
+    public function payment_terms_are_equals( $payment_term_one, $payment_term_two ) {
+        if ( ! $payment_term_one || ! $payment_term_two ) {
+            return false;
+        }
+
+        if ( $payment_term_one->type !== $payment_term_two->type ) {
+            return false;
+        }
+
+        if ( $payment_term_one->id !== $payment_term_two->id ) {
+            return false;
+        }
+
+        return true;
     }
 
     public function payment_term_requires_payment($term) {
@@ -303,6 +338,13 @@ class AWPCP_PaymentsAPI {
     }
 
     /**
+     * @since 4.0.0
+     */
+    public function create_transaction() {
+        return $this->get_transaction_with_method( 'create' );
+    }
+
+    /**
      * TODO: should throw an exception if the status can't be set
      */
     private function set_transaction_status($transaction, $status, &$errors) {
@@ -367,8 +409,54 @@ class AWPCP_PaymentsAPI {
         }
     }
 
+    public function set_transaction_item_from_payment_term( $transaction, $payment_term, $payment_type = null ) {
+        if ( is_null( $payment_type ) ) {
+            $payment_type = AWPCP_Payment_Transaction::PAYMENT_TYPE_MONEY;
+        }
+
+        if ( ! in_array( $payment_type, $this->get_accepted_payment_types(), true ) ) {
+            awpcp_flash( __( "The selected payment type can't be used in this kind of transaction.", 'another-wordpress-classifieds-plugin' ), 'error' );
+            return;
+        }
+
+        if ( ! $payment_term->is_suitable_for_transaction( $transaction ) ) {
+            awpcp_flash( __( "The selected payment term can't be used in this kind of transaction.", 'another-wordpress-classifieds-plugin' ), 'error' );
+            return;
+        }
+
+        return $transaction->add_item(
+            "{$payment_term->type}-{$payment_term->id}-${payment_type}",
+            $payment_term->get_name(),
+            $payment_term->description,
+            $payment_type,
+            $this->calculate_payment_term_price( $payment_term, $payment_type, $transaction )
+        );
+    }
+
+    public function calculate_payment_term_price( $payment_term, $payment_type, $transaction ) {
+        if ( $payment_type == 'credits' ) {
+            $payment_amount = $payment_term->credits;
+        } else {
+            $payment_amount = $payment_term->price;
+        }
+
+        $payment_amount = apply_filters(
+            'awpcp-payment-term-payment-amount',
+            $payment_amount,
+            $payment_term,
+            $payment_type,
+            $transaction
+        );
+
+        return $payment_amount;
+    }
+
     public function process_transaction($transaction) {
-        do_action('awpcp-process-payment-transaction', $transaction);
+        /**
+         * Used by the main plugin and premium modules to modify or take actions
+         * based on the current payment transaction.
+         */
+        do_action( 'awpcp-process-payment-transaction', $transaction );
     }
 
     public function process_payment_request($action) {
@@ -444,9 +532,13 @@ class AWPCP_PaymentsAPI {
     }
 
     public function process_payment() {
-        if ( ! ( $id = awpcp_post_param( 'transaction_id', false ) ) ) return;
+        $transaction_id = awpcp_request_param( 'transaction_id', false );
 
-        $transaction = AWPCP_Payment_Transaction::find_by_id($id);
+        if ( empty( $transaction_id ) ) {
+            return;
+        }
+
+        $transaction = AWPCP_Payment_Transaction::find_by_id( $transaction_id );
 
         if ( is_null( $transaction ) ) {
             return;
@@ -549,28 +641,6 @@ class AWPCP_PaymentsAPI {
         return awpcp_print_message( $text );
     }
 
-    public function render_payment_terms_form_field($transaction, $table, $form_errors) {
-        $items = $table->get_items();
-
-        $show_payment_terms = true;
-        $accepted_payment_types = $this->get_accepted_payment_types();
-
-        // do not show payment terms if payments are disabled and there is only
-        // one payment term available (the Free Listing fee);
-        if ( count( $items ) === 1 && !$this->payments_enabled() ) {
-            if ( $items[0]->type === AWPCP_FeeType::TYPE && $items[0]->id === 0 ) {
-                $show_payment_terms = false;
-            }
-        }
-
-        ob_start();
-            include( AWPCP_DIR . '/frontend/templates/payments-payment-terms-form-field.tpl.php' );
-            $html = ob_get_contents();
-        ob_end_clean();
-
-        return $html;
-    }
-
     /**
      * @since  2.2.2
      */
@@ -653,6 +723,7 @@ class AWPCP_PaymentsAPI {
         $attempts = awpcp_post_param('attempts', 0);
 
         $result = awpcp_array_data($transaction->id, array(), $this->cache);
+        $html   = '';
 
         if (is_null($payment_method) || isset($result['errors'])) {
             $transaction_errors = awpcp_array_data('errors', array(), $result);

@@ -1,3 +1,4 @@
+/*global awpcp*/
 /*global __awpcp_js_data*/
 /*global __awpcp_js_l10n*/
 /*global ajaxurl*/
@@ -63,10 +64,34 @@
         },
 
         get: function(name, fallback) {
+            var self = this;
+
+            // Used to allow submit listing sections to register options when a new
+            // section's template is loaded.
+            if ( typeof awpcp !== 'undefined' && awpcp.options && awpcp.options.length ) {
+                $.each( awpcp.options, function( index, data ) {
+                    self.set( data[0], data[1] );
+                } );
+
+                delete awpcp.options;
+            }
+
             return this.options[name] ? this.options[name] : (fallback ? fallback : null);
         },
 
         l10n: function(context, message) {
+            var self = this;
+
+            // Used to allow submit listing sections to register localization strings
+            // when a new section's template is loaded.
+            if ( typeof awpcp !== 'undefined' && awpcp.localization && awpcp.localization.length ) {
+                $.each( awpcp.localization, function( index, data ) {
+                    self.localization[ data[0] ] = data[1];
+                } );
+
+                delete awpcp.localization;
+            }
+
             if (this.localization.hasOwnProperty(context)) {
                 if (!message) {
                     return this.localization[context];
@@ -85,35 +110,11 @@
          * @return {[type]} [description]
          */
         validate: function(defaults) {
-            $.extend($.validator.messages, $.AWPCP.get('default-validation-messages'));
+            if ( typeof $.validator === 'undefined' ) {
+                return;
+            }
 
-            $.validator.addMethod('money', (function() {
-                var decimal = $.AWPCP.get('decimal-separator'),
-                    thousands = $.AWPCP.get('thousands-separator'),
-                    pattern = new RegExp('^-?(?:\\d+|\\d{1,3}(?:\\' + thousands + '\\d{3})+)?(?:\\' + decimal + '\\d+)?$');
-
-                return function(value, element) {
-                    return this.optional(element) || pattern.test(value);
-                };
-            })()/*, validation message provided as a default validation message in awpcp.php */);
-
-            $.validator.addClassRules('integer', {
-                integer: true
-            });
-
-            $.validator.setDefaults(defaults || {
-                errorClass: 'invalid',
-                errorElement: 'span',
-                errorPlacement: function (error, element) {
-                    error.addClass('awpcp-error');
-                    var tables = ['payment_term', 'credit_plan', 'payment_method'];
-                    if ($.inArray(element.attr('name'), tables) !== -1) {
-                        error.insertBefore(element.closest('table'));
-                    } else if (element.closest('.awpcp-form-spacer').length) {
-                        error.appendTo(element.closest('.awpcp-form-spacer'));
-                    }
-                }
-            });
+            $.validator.setDefaults( defaults );
         }
     });
 

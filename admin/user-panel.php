@@ -1,56 +1,93 @@
 <?php
 /**
- * User Ad Management Panel functions
+ * @package AWPCP\Admin
  */
 
-require_once(AWPCP_DIR . '/admin/user-panel-listings.php');
+/**
+ * Constructor function.
+ */
+function awpcp_user_panel() {
+    $container = awpcp()->container;
 
+    return new AWPCP_User_Panel(
+        $container['listing_post_type'],
+        awpcp_upgrade_tasks_manager(),
+        $container['Settings']
+    );
+}
 
+/**
+ * Register admin menu items for subscribers.
+ */
 class AWPCP_User_Panel {
 
-	public function __construct() {
-        $this->account = awpcp_account_balance_page();
-        $this->listings = new AWPCP_UserListings();
+    /**
+     * @var string
+     */
+    private $listing_post_type;
 
-		add_action('awpcp_add_menu_page', array($this, 'menu'));
+    /**
+     * @var UpgradeTasksManager
+     */
+    private $upgrade_tasks;
+
+    /**
+     * @var Settings
+     */
+    private $settings;
+
+    /**
+     * Constructor.
+     */
+	public function __construct( $listing_post_type, $upgrade_tasks, $settings ) {
+        $this->listing_post_type = $listing_post_type;
+        $this->upgrade_tasks     = $upgrade_tasks;
+        $this->settings          = $settings;
+
+        $this->account = awpcp_account_balance_page();
 	}
 
-	/**
-	 * Register Ad Management Panel menu
-	 */
-	public function menu() {
-        /* Profile Menu */
+    /**
+     * Handler for the awpcp-configure-routes action.
+     */
+    public function configure_routes( $router ) {
+        $params = [
+            'context'  => 'plugin',
+            'blocking' => true,
+        ];
 
-        // We are using read as an alias for edit_classifieds_listings. If a user can `read`,
-        // he or she can `edit_classifieds_listings`.
-        $capability = 'read';
-
-        // Account Balance
-        if (awpcp_payments_api()->credit_system_enabled() && !awpcp_current_user_is_admin()) {
-            $parts = array($this->account->title, $this->account->menu, $this->account->page);
-            $hook = add_users_page($parts[0], $parts[1], $capability, $parts[2], array($this->account, 'dispatch'));
-            add_action("admin_print_styles-{$hook}", array($this->account, 'scripts'));
-        }
-
-        $current_user_is_non_admin_moderator = awpcp_current_user_is_moderator() && ! awpcp_current_user_is_admin();
-
-		if ( get_awpcp_option( 'enable-user-panel' ) != 1 || $current_user_is_non_admin_moderator ) {
+        if ( $this->upgrade_tasks->has_pending_tasks( $params ) ) {
             return;
         }
 
-		/* Ad Management Menu */
+        // Workaround for https://core.trac.wordpress.org/ticket/22895.
+        if ( $this->settings->get_option( 'enable-user-panel' ) ) {
+            $router->add_admin_subpage(
+                "edit.php?post_type={$this->listing_post_type}",
+                null,
+                null,
+                null,
+                null,
+                'read',
+                9999
+            );
+        }
 
-		$slug = 'awpcp-panel';
-		$title = sprintf(__('%s Ad Management Panel', 'another-wordpress-classifieds-plugin'), get_bloginfo());
-		$menu = __('Ad Management', 'another-wordpress-classifieds-plugin');
-		$hook = add_menu_page($title, $menu, $capability, $slug, array($this->listings, 'dispatch'), MENUICO);
+        if ( awpcp_payments_api()->credit_system_enabled() && ! awpcp_current_user_is_admin() ) {
+            $this->add_users_page( $router );
+        }
+    }
 
-		// Listings
-		$title = __('Manage Ad Listings', 'another-wordpress-classifieds-plugin');
-		$menu = __('Listings', 'another-wordpress-classifieds-plugin');
-		$hook = add_submenu_page($slug, $title, $menu, $capability, $slug, array($this->listings, 'dispatch'));
-		add_action("admin_print_styles-{$hook}", array($this->listings, 'scripts'));
-
-		do_action('awpcp_panel_add_submenu_page', $slug, $capability);
-	}
+    /**
+     * Registers the page used by subscribers to see their credit account balance.
+     */
+    private function add_users_page( $router ) {
+        $router->add_admin_users_page(
+            __( 'Account Balance', 'another-wordpress-classifieds-plugin' ),
+            __( 'Account Balance', 'another-wordpress-classifieds-plugin' ),
+            'awpcp-user-account',
+            'awpcp_account_balance_page',
+            awpcp_user_capability()
+        );
+    }
 }

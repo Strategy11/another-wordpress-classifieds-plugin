@@ -6,7 +6,8 @@ class AWPCP_ListingsTableSearchByLocationCondition {
         return $search_by == 'location';
     }
 
-    public function create( $search_term ) {
-        return array( 'region' => $search_term );
+    public function create( $search_term, $query ) {
+        $query['region'] = $search_term;
+        return $query;
     }
 }

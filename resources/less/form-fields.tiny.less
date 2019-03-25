@@ -1,0 +1,118 @@
+/* Styles for the fields using to enter the classified ad details. */
+.awpcp-form-spacer label span.required {
+    padding: 0 2px;
+}
+
+.awpcp-form-field {
+    margin: 1em 0;
+
+    label {
+        box-sizing: border-box;
+        cursor: pointer;
+        display: block;
+    }
+
+    input, select {
+        margin: 0;
+    }
+    input[type="email"],
+    input[type="password"],
+    input[type="search"],
+    input[type="tel"],
+    input[type="text"],
+    input[type="url"],
+    textarea,
+    select {
+        box-sizing: border-box;
+        width: 100%;
+    }
+    input[type="checkbox"],
+    input[type="radio"] {
+        cursor: pointer;
+        margin-bottom: 8px;
+    }
+
+    .inline {
+        display: inline;
+    }
+
+    .secondary-label {
+        display: inline;
+        font-weight: normal;
+        margin-right: 4px;
+
+        input {
+            margin-right: 2px;
+        }
+    }
+
+    .helptext {
+        display: block;
+        font-weight: normal;
+        font-size: 0.9em;
+    }
+
+    .error {
+        background-color: @error-message-background-color;
+        border-color: @error-message-border-color;
+        color: @error-message-font-color;
+    }
+    label.error {
+        padding: 6px 8px;
+        margin: 0;
+    }
+
+    .hidden {
+        display: none;
+    }
+}
+
+.awpcp-price-form-field__currency-symbol-container {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+}
+.awpcp-price-form-field__currency-symbol-container.--currency-symbol-on-left {
+    span {
+        line-height: 20px;
+        margin-top: -10px;
+        position: absolute;
+        top: 50%;
+        left: 8px;
+    }
+
+    input {
+        padding-left: 20px;
+    }
+}
+.awpcp-price-form-field__currency-symbol-container.--currency-symbol-on-right {
+    span {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+    }
+
+    input {
+        padding-right: 20px;
+    }
+}
+
+.awpcp-choice-form-field {
+    .awpcp-form-field__label {
+        margin-bottom: 8px;
+    }
+}
+
+.awpcp-range-form-field {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .awpcp-range-search {
+        box-sizing: border-box;
+        flex: 0 1 auto;
+        min-width: 45%;
+        width: ~"calc( 100%/2 - ( 1 - 1/2 ) * 10px )";
+    }
+}

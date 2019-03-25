@@ -1,10 +1,38 @@
 <?php
+/**
+ * @package AWPCP\Frontend
+ *
+ */
+
+// phpcs:disable Generic
+// phpcs:disable PEAR
+// phpcs:disable PSR2
+// phpcs:disable Squiz
+// phpcs:disable WordPress
 
 require_once(AWPCP_DIR . '/includes/helpers/page.php');
+
+function awpcp_place_listing_page() {
+    return new AWPCP_Place_Ad_Page(
+        'awpcp-place-ad',
+        null,
+        awpcp_attachments_collection(),
+        awpcp_listing_upload_limits(),
+        awpcp_listing_authorization(),
+        awpcp_listing_renderer(),
+        awpcp_listings_api(),
+        awpcp_listings_collection(),
+        awpcp_payments_api(),
+        awpcp_template_renderer(),
+        awpcp_wordpress(),
+        awpcp_request()
+    );
+}
 
 
 /**
  * @since  2.1.4
+ * @SuppressWarnings(PHPMD)
  */
 class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
@@ -12,38 +40,34 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
     public $messages = array();
 
-    protected $request;
-    protected $payments_api;
-    protected $authorization;
+    protected $attachments;
     protected $listing_upload_limits;
+    protected $authorization;
+    protected $listing_renderer;
+    protected $listings_logic;
+    protected $listings;
+    protected $payments;
+    protected $wordpress;
+    protected $request;
 
-    public function __construct($page='awpcp-place-ad', $title=null) {
-        parent::__construct($page, $title);
+    public function __construct( $page = 'awpcp-place-ad', $title = null, $attachments, $listing_upload_limits, $authorization, $listing_renderer, $listings_logic, $listings, $payments, $template_renderer, $wordpress, $request ) {
+        parent::__construct( $page, $title, $template_renderer );
 
         $this->show_menu_items = false;
 
-        $this->authorization = awpcp_listing_authorization();
-        $this->listing_upload_limits = awpcp_listing_upload_limits();
-    }
-
-    protected function get_payments_api() {
-        if ( ! isset( $this->payments_api ) ) {
-            $this->payments_api = awpcp_payments_api();
-        }
-
-        return $this->payments_api;
-    }
-
-    protected function get_request() {
-        if ( ! isset( $this->request ) ) {
-            $this->request = awpcp_request();
-        }
-
-        return $this->request;
+        $this->attachments = $attachments;
+        $this->listing_upload_limits = $listing_upload_limits;
+        $this->authorization = $authorization;
+        $this->listing_renderer = $listing_renderer;
+        $this->listings_logic = $listings_logic;
+        $this->listings = $listings;
+        $this->payments = $payments;
+        $this->wordpress = $wordpress;
+        $this->request = $request;
     }
 
     public function get_current_action($default=null) {
-        return $this->get_request()->post( 'step', $this->get_request()->param( 'step', $default ) );
+        return $this->request->post( 'step', $this->request->param( 'step', $default ) );
     }
 
     public function url($params=array()) {
@@ -61,9 +85,9 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
     public function get_transaction($create=false) {
         if ( $create ) {
-            $this->transaction = $this->get_payments_api()->get_or_create_transaction();
+            $this->transaction = $this->payments->get_or_create_transaction();
         } else {
-            $this->transaction = $this->get_payments_api()->get_transaction();
+            $this->transaction = $this->payments->get_transaction();
         }
 
         if (!is_null($this->transaction) && $this->transaction->is_new()) {
@@ -78,11 +102,11 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
     }
 
     protected function get_preview_hash($ad) {
-        return wp_create_nonce( "preview-ad-{$ad->ad_id}" );
+        return wp_create_nonce( "preview-ad-{$ad->ID}" );
     }
 
     protected function verify_preview_hash($ad) {
-        return wp_verify_nonce( awpcp_post_param( 'preview-hash' ), "preview-ad-{$ad->ad_id}" );
+        return wp_verify_nonce( awpcp_post_param( 'preview-hash' ), "preview-ad-{$ad->ID}" );
     }
 
     protected function is_user_allowed_to_edit($ad) {
@@ -105,6 +129,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         do_action( 'awpcp-before-post-listing-page' );
 
         wp_enqueue_style('awpcp-jquery-ui');
+        wp_enqueue_style( 'select2' );
         wp_enqueue_script('awpcp-page-place-ad');
 
         $awpcp = awpcp();
@@ -115,25 +140,12 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             'payment_term' => __( 'Please select a payment term.', 'another-wordpress-classifieds-plugin' ),
         ) );
 
-        $awpcp->js->localize( 'page-place-ad-details', array(
-            'ad_title' => __( 'Please type in a title for your Ad.', 'another-wordpress-classifieds-plugin' ),
-            'websiteurl' => __( 'Please type in a valid URL.', 'another-wordpress-classifieds-plugin' ),
-            'ad_contact_name' => __( 'Please type in the name of the person to contact.', 'another-wordpress-classifieds-plugin' ),
-            'ad_contact_email' => __( 'Please type in the email address of the person to contact.', 'another-wordpress-classifieds-plugin' ),
-            'ad_contact_phone' => __( 'Please type in the phone number of the person to contact.', 'another-wordpress-classifieds-plugin' ),
-            'ad_country' => __( 'The country is a required field.', 'another-wordpress-classifieds-plugin' ),
-            'ad_county_village' => __( 'The county is a required field.', 'another-wordpress-classifieds-plugin' ),
-            'ad_state' => __( 'The state is a required field.', 'another-wordpress-classifieds-plugin' ),
-            'ad_city' => __( 'The city is a required field.', 'another-wordpress-classifieds-plugin' ),
-            'ad_item_price' => __( 'Please type in a price for your Ad.', 'another-wordpress-classifieds-plugin' ),
-            'ad_details' => __( 'Please type in the details of your Ad.', 'another-wordpress-classifieds-plugin' ),
-            'captcha' => __( 'Please type in the result of the operation.', 'another-wordpress-classifieds-plugin' ),
-        ) );
+        $awpcp->js->localize( 'page-place-ad-details', awpcp_listing_form_fields_validation_messages() );
 
         if ( is_admin() && isset( $_GET['page'] ) && in_array( $_GET['page'], array( 'awpcp-listings', 'awpcp-panel' ), true ) ) {
-            echo $this->_dispatch($default);
+            echo $this->_dispatch( $default );
         } else {
-            return $this->_dispatch($default);
+            return $this->_dispatch( $default );
         }
     }
 
@@ -167,7 +179,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             if ( $transaction->payment_is_unknown() || $transaction->payment_is_invalid() || $transaction->payment_is_failed() ) {
                 $message = __('You can\'t post an Ad at this time because the payment associated with this transaction failed (see reasons below).', 'another-wordpress-classifieds-plugin');
                 $message = awpcp_print_message($message);
-                $message = $message . awpcp_payments_api()->render_transaction_errors($transaction);
+                $message = $message . $this->payments->render_transaction_errors($transaction);
                 return $this->render('content', $message);
             }
 
@@ -240,44 +252,45 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         return $required;
     }
 
+    /**
+     * TODO: Move into create_listing or create_empty_listing methods on ListingsLogic.
+     */
     protected function validate_order($data, &$errors=array()) {
-        if ($data['category'] <= 0) {
-            $errors['category'] = __('Ad Category field is required', 'another-wordpress-classifieds-plugin');
-        }
-
-        try {
-            $category = awpcp_categories_collection()->get( $data['category'] );
-            $category_name = $category->name;
-        } catch ( AWPCP_Exception $e ) {
-            $category_name = 'Unknown';
-        }
-
-        if (get_awpcp_option('noadsinparentcat') && !category_is_child($data['category'])) {
-            $message = __("You cannot list your Ad in top level categories. You need to select a sub-category of category %s.", 'another-wordpress-classifieds-plugin');
-            $errors['category'] = sprintf( $message, $category_name );
-        }
+        $this->validate_selected_categories( $data, 'category', $errors );
 
         if (awpcp_current_user_is_moderator() && empty($data['user'])) {
             $errors['user'] = __('You should select an owner for this Ad.', 'another-wordpress-classifieds-plugin');
         }
 
-        if (is_null($data['term'])) {
+        if (is_null($data['payment_term'])) {
             $errors['payment-term'] = __('You should choose one of the available Payment Terms.', 'another-wordpress-classifieds-plugin');
         }
 
-        if (!empty($data['term']->categories) && !in_array($data['category'], $data['term']->categories)) {
-            $message = __('The Payment Term you selected is not valid for the category %s', 'another-wordpress-classifieds-plugin');
-            $errors['payment-term'] = sprintf( $message, $category_name );
-        }
-
-        if ( ! awpcp_current_user_is_admin() && ! is_null( $data['term'] ) && $data['term']->private ) {
+        if ( ! awpcp_current_user_is_admin() && ! is_null( $data['payment_term'] ) && $data['payment_term']->private ) {
             $message = __( 'The Payment Term you selected is not available for non-administrator users.', 'another-wordpress-classifieds-plugin' );
             $errors['payment-term'] = $message;
         }
 
-        $additional_errors = apply_filters( 'awpcp-validate-post-listing-order', array(), $data );
+        $errors = apply_filters(
+            'awpcp-validate-post-listing-order',
+            $errors, $data
+        );
 
-        array_splice( $errors, count( $errors ), 0, $additional_errors );
+        return $errors;
+    }
+
+    private function validate_selected_categories( $data, $field_name, &$errors = array() ) {
+        $allow_categories_in_parent  = ! get_awpcp_option( 'noadsinparentcat' );
+
+        if ( empty( $data[ $field_name ] ) ) {
+            $errors[ $field_name ] = __( 'Ad Category field is required', 'another-wordpress-classifieds-plugin' );
+        }
+
+        foreach ( $data[ $field_name ] as $category_id ) {
+            if ( ! $allow_categories_in_parent && ! category_is_child( $category_id ) ) {
+                $errors[ $field_name ] = __( "You cannot list your Ad in top level categories.", 'another-wordpress-classifieds-plugin' );
+            }
+        }
     }
 
     public function login_step() {
@@ -300,8 +313,8 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $pay_first = get_awpcp_option('pay-before-place-ad');
         $skip_payment_term_selection = false;
 
-        $payments = awpcp_payments_api();
-        $_payment_terms = $payments->get_payment_terms();
+        $payments = $this->payments;
+        $available_payment_terms = $payments->get_payment_terms();
 
         // validate submitted data and set relevant transaction attributes
         if (!empty($_POST)) {
@@ -314,34 +327,55 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             $skip_payment_term_selection = $transaction->get( 'skip-payment-term-selection' );
 
             $user = awpcp_post_param( 'user', intval( $transaction->user_id ) );
-            $category = awpcp_post_param( 'category', $transaction->get('category', 0) );
+            $category = $this->get_posted_categories(
+                awpcp_post_param( 'category', null ),
+                $transaction
+            );
 
             if ( $skip_payment_term_selection ) {
+                $payment_terms_list = null;
+                $payment_options = null;
+
                 $payment_terms = null;
-                $term = $payments->get_transaction_payment_term($transaction);
+                $payment_term = $payments->get_transaction_payment_term($transaction);
                 $payment_type = $transaction->get( 'payment-term-payment-type' );
             } else {
-                $payment_terms = new AWPCP_PaymentTermsTable( $_payment_terms, $transaction->get('payment-term') );
-                $term = $payment_terms->get_payment_term($payment_type, $selected);
+                $payment_terms_list = awpcp_payment_terms_list();
+                $payment_terms_list->handle_request( $this->request );
+
+                $payment_options = $payment_terms_list->get_data();
+
+                if ( ! is_null( $payment_options ) ) {
+                    $payment_term = $payment_options['payment_term'];
+                    $payment_type = $payment_options['payment_type'];
+                } else {
+                    $payment_term = null;
+                    $payment_type = '';
+                }
             }
 
-            $this->validate_order(compact('user', 'category', 'term'), $form_errors);
+            $this->validate_order(compact('user', 'category', 'payment_term'), $form_errors);
 
             if (empty($form_errors) && empty($transaction_errors)) {
+                $number_of_categories_allowed = apply_filters(
+                    'awpcp-number-of-categories-allowed-in-post-listing-order-step', 1, $payment_term
+                );
+
                 $transaction->user_id = $user;
-                $transaction->set('category', $category);
+                $transaction->set( 'category', array_slice( $category, 0, $number_of_categories_allowed ) );
 
                 if ( ! $skip_payment_term_selection ) {
-                    $transaction->set( 'payment-term', $selected );
-                    $transaction->set( 'payment-term-type', $term->type );
-                    $transaction->set( 'payment-term-id', $term->id );
+                    $transaction->set( 'payment-term-type', $payment_term->type );
+                    $transaction->set( 'payment-term-id', $payment_term->id );
                     $transaction->set( 'payment-term-payment-type', $payment_type );
-
                     $transaction->remove_all_items();
-                    $payment_terms->set_transaction_item( $transaction );
+
+                    $this->payments->set_transaction_item_from_payment_term(
+                        $transaction, $payment_term, $payment_type
+                    );
 
                     // process transaction to grab Credit Plan information
-                    $payments->set_transaction_credit_plan($transaction);
+                    $this->payments->set_transaction_credit_plan($transaction);
                 }
             }
 
@@ -360,16 +394,17 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         } else {
             $transaction = null;
 
-            $payment_terms = new AWPCP_PaymentTermsTable($_payment_terms);
+            $payment_terms_list = awpcp_payment_terms_list();
+            $payment_options = null;
 
             $user = wp_get_current_user()->ID;
-            $category = 0;
-            $term = null;
+            $category = array();
+            $payment_term = null;
         }
 
 
         // are we done here? what next?
-        if ($category > 0 && !is_null($term)) {
+        if ( ! empty( $category ) && ! is_null( $payment_term ) ) {
             if (empty($form_errors) && empty($transaction_errors)) {
                 $payments->set_transaction_status_to_ready_to_checkout($transaction, $transaction_errors);
 
@@ -391,11 +426,13 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $params = array(
             'page' => $this,
             'payments' => $payments,
-            'table' => $payment_terms,
+            'payment_terms_list' => $payment_terms_list,
+            'payment_options' => $payment_options,
             'transaction' => $transaction,
 
             'skip_payment_term_selection' => $skip_payment_term_selection,
 
+            'payment_terms' => $available_payment_terms,
             'categories' => awpcp_get_categories(),
             'form' => compact('category', 'user'),
 
@@ -409,9 +446,33 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         return $this->render($template, $params);
     }
 
+    /**
+     * TODO: Move to Create Empty and Save Information ajax handlers?
+     */
+    private function get_posted_categories( $categories, $transaction = null ) {
+        if ( is_null( $categories ) && is_object( $transaction ) ) {
+            $categories = $transaction->get( 'category', array( array() ) );
+        }
+
+        if ( ! is_array( $categories ) && $categories ) {
+            $most_specific_categories = array( intval( $categories ) );
+        } else if ( ! is_array( $categories ) ) {
+            $most_specific_categories = array();
+        } else if ( awpcp_is_array_of_arrays( $categories ) ) {
+            $categories = array_map( 'array_filter', $categories );
+            $categories = array_values( $categories );
+
+            $most_specific_categories = array_map( 'end', $categories );
+        } else {
+            $most_specific_categories = array_map( 'intval', $categories );
+        }
+
+        return array_filter( $most_specific_categories );
+    }
+
     public function checkout_step() {
         $transaction = $this->get_transaction();
-        $payments = awpcp_payments_api();
+        $payments = $this->payments;
 
         $errors = array();
 
@@ -470,7 +531,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
     public function payment_completed_step() {
         $transaction = $this->get_transaction();
-        $payments = awpcp_payments_api();
+        $payments = $this->payments;
         $pay_first = get_awpcp_option('pay-before-place-ad');
 
         if ($pay_first && $transaction->payment_is_not_required()) {
@@ -493,49 +554,39 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
     }
 
     protected function get_ad_info($ad_id) {
-        global $wpdb, $hasextrafieldsmodule;
+        $listing = $this->listings->get( $ad_id );
+        $payment_term = $this->listing_renderer->get_payment_term( $listing );
 
-        $fields = array(
-            'ad_id',
-            'user_id',
-            'adterm_id',
-            'ad_title',
-            'ad_contact_name',
-            'ad_contact_email',
-            'ad_category_id',
-            'ad_contact_phone',
-            'ad_item_price',
-            'ad_details',
-            'websiteurl',
-            'ad_startdate',
-            'ad_enddate',
-            'ad_key',
+        $data = array(
+            'ad_id' => $listing->ID,
+            'user_id' => $listing->post_author,
+            'adterm_id' => $payment_term->id,
+            'ad_title' => $this->listing_renderer->get_listing_title( $listing ),
+            'ad_contact_name' => $this->listing_renderer->get_contact_name( $listing ),
+            'ad_contact_email' => $this->listing_renderer->get_contact_email( $listing ),
+            'ad_contact_phone' => $this->listing_renderer->get_contact_phone( $listing ),
+            'ad_category_id' => $this->listing_renderer->get_category_id( $listing ),
+            'categories' => $this->listing_renderer->get_categories_ids( $listing ),
+            'ad_item_price' => $this->listing_renderer->get_price( $listing ),
+            'ad_details' => $listing->post_content,
+            'websiteurl' => $this->listing_renderer->get_website_url( $listing ),
+            'ad_startdate' => $this->listing_renderer->get_plain_start_date( $listing ),
+            'ad_enddate' => $this->listing_renderer->get_plain_end_date( $listing ),
+            'ad_key' => $this->listing_renderer->get_access_key( $listing ),
         );
-
-        if ($hasextrafieldsmodule) {
-            foreach (x_fields_fetch_fields() as $field) {
-                $fields[] = "`$field` AS `awpcp-$field`";
-            }
-        }
-
-        $query = "SELECT " . join(', ', $fields) . " ";
-        $query.= "FROM " . AWPCP_TABLE_ADS . " ";
-        $query.= "WHERE ad_id=%d";
-
-        $data = $wpdb->get_row( $wpdb->prepare( $query, (int) $ad_id ), ARRAY_A );
 
         if ( get_awpcp_option('allowhtmlinadtext') ) {
             $data['ad_details'] = awpcp_esc_textarea( $data['ad_details'] );
         }
 
+        $data['ad_category'] = $data['categories'];
         // please note we are dividing the Ad price by 100
         // Ad prices have been historically stored in cents
-        $data['ad_category'] = $data['ad_category_id'];
         $data['ad_item_price'] = $data['ad_item_price'] / 100;
         $data['start_date'] = $data['ad_startdate'];
         $data['end_date'] = $data['ad_enddate'];
 
-        $data['regions'] = AWPCP_Ad::get_ad_regions( $ad_id );
+        $data['regions'] = $this->listing_renderer->get_regions( $listing );
 
         return $data;
     }
@@ -596,14 +647,20 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $remaining_characters_in_body = false;
         $max_characters_in_body = false;
 
-        if ($ad = AWPCP_Ad::find_by_id($ad_id)) {
-            $max_characters_in_title = $ad->get_characters_allowed_in_title();
-            $remaining_characters_in_title = $ad->get_remaining_characters_in_title();
-            $max_characters_in_body = $ad->get_characters_allowed();
-            $remaining_characters_in_body = $ad->get_remaining_characters_count();
+        try {
+            $ad = $this->listings->get( $ad_id );
+        } catch ( AWPCP_Exception $e ) {
+            $ad = null;
+        }
+
+        if ( ! is_null( $ad ) ) {
+            $max_characters_in_title = $this->get_characters_allowed_in_title( $ad );
+            $remaining_characters_in_title = $this->get_remaining_characters_in_title( $ad );
+            $max_characters_in_body = $this->get_characters_allowed_in_content( $ad );
+            $remaining_characters_in_body = $this->get_remaining_characters_in_content( $ad );
 
         } else if (!is_null($transaction)) {
-            $term = awpcp_payments_api()->get_transaction_payment_term($transaction);
+            $term = $this->payments->get_transaction_payment_term($transaction);
             if ($term) {
                 $max_characters_in_title = $remaining_characters_in_title = $term->get_characters_allowed_in_title();
                 $max_characters_in_body = $remaining_characters_in_body = $term->get_characters_allowed();
@@ -621,13 +678,51 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         );
     }
 
+    protected function get_characters_allowed_in_title( $listing ) {
+        $payment_term = $this->listing_renderer->get_payment_term( $listing );
+
+        if ( ! is_object( $payment_term ) ) {
+            return 0;
+        }
+
+        return $payment_term->get_characters_allowed_in_title();
+    }
+
+    protected function get_remaining_characters_in_title( $listing ) {
+        $allowed_characters_count = $this->get_characters_allowed_in_title( $listing );
+        $listing_title = $this->listing_renderer->get_listing_title( $listing );
+        return max( $allowed_characters_count - strlen( $listing_title ), 0 );
+    }
+
+    protected function get_characters_allowed_in_content( $listing ) {
+        $payment_term = $this->listing_renderer->get_payment_term( $listing );
+
+        if ( ! is_object( $payment_term ) ) {
+            return 0;
+        }
+
+        return $payment_term->get_characters_allowed();
+    }
+
+    protected function get_remaining_characters_in_content( $listing ) {
+        $allowed_characters_count = $this->get_characters_allowed_in_content( $listing );
+        return max( $allowed_characters_count - strlen( $listing->post_content ), 0 );
+    }
+
     protected function get_regions_allowed( $ad_id, $transaction=null ) {
         $regions_allowed = 1;
 
-        if ( $ad = AWPCP_Ad::find_by_id( $ad_id ) ) {
-            $regions_allowed = $ad->get_regions_allowed();
+        try {
+            $ad = $this->listings->get( $ad_id );
+        } catch ( AWPCP_Exception $e ) {
+            $ad = null;
+        }
+
+        if ( ! is_null( $ad ) ) {
+            $payment_term = $this->listing_renderer->get_payment_term( $ad );
+            $regions_allowed = $payment_term->get_regions_allowed();
         } else if ( ! is_null( $transaction ) ) {
-            $term = awpcp_payments_api()->get_transaction_payment_term( $transaction );
+            $term = $this->payments->get_transaction_payment_term( $transaction );
             if ( $term ) {
                 $regions_allowed = $term->get_regions_allowed();
             }
@@ -642,7 +737,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
             'ad_id' => '',
             'adterm_id' => '',
-            'ad_category' => '',
+            'ad_category' => null,
             'ad_title' => '',
             'ad_contact_name' => '',
             'ad_contact_phone' => '',
@@ -691,8 +786,12 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             $data['user_id'] = (int) awpcp_array_data('user', 0, $from);
         }
 
+        $data['ad_category'] = $this->get_posted_categories(
+            $data['ad_category'],
+            $transaction
+        );
+
         if (!is_null($transaction)) {
-            $data['ad_category'] = $transaction->get('category', $data['ad_category']);
             $data['user_id'] = (int) awpcp_get_property($transaction, 'user_id', $data['user_id']);
 
             $payment_term_type = $transaction->get('payment-term-type');
@@ -715,7 +814,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         return $data;
     }
 
-    public function details_form($form=array(), $edit=false, $hidden=array(), $required=array(), $errors=array()) {
+    public function details_form( $params = array(), $form = array(), $edit = false, $hidden = array(), $required = array(), $errors = array() ) {
         global $hasregionsmodule, $hasextrafieldsmodule;
 
         $is_admin_user = awpcp_current_user_is_admin();
@@ -730,7 +829,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         } else if ($is_admin_user) {
             $messages[] = __("You are logged in as an administrator. Any payment steps will be skipped.", 'another-wordpress-classifieds-plugin');
         } else if (empty($errors)) {
-            $messages[] = __("Fill out the form below to post your classified Ad.", 'another-wordpress-classifieds-plugin');
+            $messages[] = __( "Fill out the form below to post your classified ad.", 'another-wordpress-classifieds-plugin' );
         }
 
         if (!empty($errors)) {
@@ -745,8 +844,6 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         }
 
         $ui = array();
-        // TODO: add form validation
-        // TODO: strip slashes from title, details
         $ui['listing-actions'] = !is_admin() && $edit;
         // show categories dropdown if $category is not set
         $ui['category-field'] = ( $edit || empty( $form['ad_category'] ) ) && $is_moderator;
@@ -767,13 +864,11 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $ui['website-field-required'] = get_awpcp_option('displaywebsitefieldreqop') == 1;
         $ui['contact-name-field-readonly'] = !empty( $form['ad_contact_name'] ) && !$is_moderator;
         $ui['contact-email-field-readonly'] = !empty( $form['ad_contact_email'] ) && !$is_moderator;
-        $ui['contact-phone-field'] = get_awpcp_option('displayphonefield') == 1;
-        $ui['contact-phone-field-required'] = get_awpcp_option('displayphonefieldreqop') == 1;
         $ui['price-field'] = get_awpcp_option('displaypricefield') == 1;
         $ui['price-field-required'] = get_awpcp_option('displaypricefieldreqop') == 1;
         $ui['allow-regions-modification'] = $is_moderator || !$edit || get_awpcp_option( 'allow-regions-modification' );
         $ui['price-field'] = get_awpcp_option('displaypricefield') == 1;
-        $ui['extra-fields'] = $hasextrafieldsmodule && function_exists('awpcp_extra_fields_render_form');
+        $ui['extra-fields'] = $hasextrafieldsmodule && function_exists( 'awpcp_extra_fields_module' );
         $ui['terms-of-service'] = !$edit && !$is_moderator && get_awpcp_option('requiredtos');
         $ui['captcha'] = !$edit && !is_admin() && ( get_awpcp_option( 'captcha-enabled-in-place-listing-form' ) == 1 );
 
@@ -797,7 +892,10 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $transaction = $this->get_transaction();
         $template = AWPCP_DIR . '/frontend/templates/page-place-ad-details-step.tpl.php';
 
-        $params = compact('transaction', 'page', 'ui', 'messages', 'form', 'hidden', 'required', 'url', 'edit', 'preview', 'errors');
+        $params = array_merge(
+            $params,
+            compact('transaction', 'page', 'ui', 'messages', 'form', 'hidden', 'required', 'url', 'edit', 'preview', 'errors')
+        );
 
         if ( $current_listing ) {
             $params['listing'] = $current_listing;
@@ -850,11 +948,11 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
         $required = $this->get_required_fields();
 
-        return $this->details_form($form, false, array(), $required, $errors);
+        return $this->details_form( array(), $form, false, array(), $required, $errors);
     }
 
     public function details_step() {
-        $transaction = $this->get_transaction(!get_awpcp_option('pay-before-place-ad'));
+        $transaction = $this->get_transaction( ! $this->get_settings()->get_option( 'pay-before-place-ad' ) );
 
         $errors = array();
         $form = array();
@@ -915,8 +1013,8 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         }
 
         // Check for ad category
-        if (empty($data['ad_category']) && $edit) {
-            $errors['ad_category'] = __("You did not select a category for your Ad. Please select a category for your Ad.", 'another-wordpress-classifieds-plugin');
+        if ( $edit ) {
+            $this->validate_selected_categories( $data, 'ad_category', $errors );
         }
 
         // If website field is checked and required make sure website value was entered
@@ -1054,6 +1152,11 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             }
         }
 
+        $errors = apply_filters(
+            'awpcp-validate-post-listing-details',
+            $errors, $data, $payment_term
+        );
+
         return count(array_filter($errors)) === 0;
     }
 
@@ -1092,85 +1195,102 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
     public function save_details_step($transaction, $errors=array()) {
         global $wpdb, $hasextrafieldsmodule;
 
-        $data = $this->get_posted_details($_POST, $transaction);
+        $data = $this->get_posted_details( $this->request->all_post_params(), $transaction );
         $characters = $this->get_characters_allowed( $data['ad_id'], $transaction );
         $errors = array();
 
-        $payment_term = awpcp_payments_api()->get_transaction_payment_term( $transaction );
+        $payment_term = $this->payments->get_transaction_payment_term( $transaction );
 
         if (!$this->validate_details($data, false, $payment_term, $errors)) {
             return $this->details_step_form($transaction, $data, $errors);
         }
 
-        $now = current_time('mysql');
-
         if ($transaction->get('ad-id')) {
-            $ad = AWPCP_Ad::find_by_id($transaction->get('ad-id'));
+            $ad = $this->listings->get( $transaction->get( 'ad-id' ) );
         } else {
-            $ad = new AWPCP_Ad;
+            $now = current_time('mysql');
 
-            $totals = $transaction->get_totals();
+            $payment_term_id = $transaction->get( 'payment-term-id' );
+            $payment_term_type = $transaction->get( 'payment-term-type' );
 
-            $ad->adterm_id = $transaction->get('payment-term-id');
-            $ad->payment_term_type = $transaction->get('payment-term-type');
-            $ad->ad_transaction_id = $transaction->id;
-            $ad->ad_fee_paid = $totals['money'];
-            $ad->ad_key = AWPCP_Ad::generate_key();
-            $ad->ad_postdate = $now;
+            $amount_paid = $transaction->get_totals();
 
-            $ad->disabled = true;
-            $ad->payment_status = 'Unpaid';
+            $listing_data = array(
+                'post_fields' => array(
+                    'post_title' => 'Listing Draft',
+                    'post_date' => $now,
+                    'post_date_gmt' => get_gmt_from_date( $now ),
+                ),
+                'metadata' => array(
+                    '_awpcp_payment_term_type' => $payment_term_type,
+                    '_awpcp_payment_term_id' => $payment_term_id,
+                    '_awpcp_payment_amount' => $amount_paid['money'],
+                    '_awpcp_transaction_id' => $transaction->id,
+                    '_awpcp_start_date' => $now,
+                    '_awpcp_end_date' => $payment_term->calculate_end_date( strtotime( $now ) ),
+                    '_awpcp_is_paid' => $amount_paid['money'] > 0,
+                ),
+            );
+
+            try {
+                $ad = $this->listings_logic->create_listing( $listing_data );
+            } catch ( AWPCP_Exception $e ) {
+                $errors[] = $e->getMessage();
+                return $this->details_step_form( $transaction, $data, $errors );
+            }
         }
 
         if ( !$transaction->get('ad-id') || $this->verify_preview_hash($ad) ) {
-            $ad->user_id = $data['user_id'];
-            $ad->ad_category_id = $data['ad_category'];
-            $ad->ad_category_parent_id = get_cat_parent_ID($data['ad_category']);
-            $ad->ad_title = $this->prepare_ad_title( $data['ad_title'], $characters['characters_allowed_in_title']);
-            $ad->ad_details = $this->prepare_ad_details($data['ad_details'], $characters['characters_allowed']);
-            $ad->ad_contact_name = $data['ad_contact_name'];
-            $ad->ad_contact_phone = $data['ad_contact_phone'];
-            $ad->phone_number_digits = awpcp_get_digits_from_string( $data['ad_contact_phone'] );
-            $ad->ad_contact_email = $data['ad_contact_email'];
-            $ad->websiteurl = $data['websiteurl'];
-            $ad->ad_item_price = $data['ad_item_price'] * 100;
-            $ad->is_featured_ad = $data['is_featured_ad'];
-            $ad->ad_last_updated = $now;
-            $ad->posterip = awpcp_getip();
+            $listing_data = array(
+                'post_fields' => array(
+                    'ID' => $ad->ID,
+                    'post_author' => $data['user_id'],
+                    'post_title' => $this->prepare_ad_title( $data['ad_title'], $characters['characters_allowed_in_title'] ),
+                    'post_name' => '', // Force wp_insert_post() to calculate this again.
+                    'post_content' => $this->prepare_ad_details( $data['ad_details'], $characters['characters_allowed'] ),
+                    'post_modified' => $now,
+                    'post_modified_gmt' => get_gmt_from_date( $now ),
+                ),
+                'metadata' => array(
+                    '_awpcp_contact_name' => $data['ad_contact_name'],
+                    '_awpcp_contact_phone' => $data['ad_contact_phone'],
+                    '_awpcp_contact_email' => $data['ad_contact_email'],
+                    '_awpcp_website_url' => $data['websiteurl'],
+                    '_awpcp_price' => $data['ad_item_price'] * 100,
+                    '_awpcp_poster_ip' => awpcp_getip(),
+                ),
+                'terms' => array(
+                    AWPCP_CATEGORY_TAXONOMY => array_map( 'intval', $data['ad_category'] ),
+                ),
+                'regions' => $data['regions'],
+                'regions-allowed' => $this->get_regions_allowed( $ad->ID, $transaction ),
+            );
 
             if ( $this->user_can_modify_start_date( null, false, awpcp_current_user_is_moderator() ) ) {
-                $start_date = $data['start_date'];
+                $listing_data['metadata']['_awpcp_start_date'] = $data['start_date'];
             } else {
-                $start_date = $now;
+                $listing_data['metadata']['_awpcp_start_date'] = $now;
             }
 
-            $start_date_timestamp = awpcp_datetime( 'timestamp', $start_date );
+            $start_date_timestamp = awpcp_datetime( 'timestamp', $listing_data['metadata']['_awpcp_start_date'] );
+            $end_date = $payment_term->calculate_end_date( $start_date_timestamp );
+            $listing_data['metadata']['_awpcp_end_date'] = $end_date;
 
-            $ad->set_start_date( $start_date );
-            $ad->set_end_date( $payment_term->calculate_end_date( $start_date_timestamp ) );
+            do_action( 'awpcp-before-save-listing', $ad, $data );
 
-            $ad = apply_filters( 'awpcp-before-save-listing', $ad, $data );
+            // TODO: make sure the Featured Ads module sets this meta attribute properly
+            $ad->is_featured_ad = $data['is_featured_ad'];
+            // TODO: Pass $data
+            $listing_data = apply_filters( 'awpcp-place-listing-listing-data', $listing_data, $ad );
 
-            if (!$ad->save()) {
-                global $wpdb;
-
-                if ( $wpdb->last_error && awpcp_current_user_is_admin() ) {
-                    $message = __( 'There was an error trying to save your listing details:', 'another-wordpress-classifieds-plugin' );
-                    $message.= '<br/><br/>';
-                    $message.= $wpdb->last_error;
-                } else {
-                    $message = __( 'There was an unexpected error trying to save your Ad details. Please try again or contact an administrator.', 'another-wordpress-classifieds-plugin' );
-                }
-
-                $errors[] = $message;
-
-                return $this->details_step_form($transaction, $data, $errors);
+            try {
+                $this->listings_logic->update_listing( $ad, $listing_data );
+            } catch ( AWPCP_Exception $e ) {
+                $errors[] = $e->getMessage();
+                return $this->details_step_form( $transaction, $data, $errors );
             }
 
-            $regions_allowed = $this->get_regions_allowed( $ad->ad_id, $transaction );
-            awpcp_basic_regions_api()->update_ad_regions( $ad, $data['regions'], $regions_allowed );
-
-            $transaction->set('ad-id', $ad->ad_id);
+            $transaction->set('ad-id', $ad->ID);
 
             do_action('awpcp-save-ad-details', $ad, $transaction);
 
@@ -1223,9 +1343,9 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             return $this->render('content', awpcp_print_error($message));
         }
 
-        $ad = AWPCP_Ad::find_by_id($transaction->get('ad-id', 0));
-
-        if (is_null($ad)) {
+        try {
+            $ad = $this->listings->get( $transaction->get( 'ad-id', 0 ) );
+        } catch ( AWPCP_Exception $e ) {
             $message = __('The specified Ad doesn\'t exists. No images can be added at this time.', 'another-wordpress-classifieds-plugin');
             return $this->render('content', awpcp_print_error($message));
         }
@@ -1234,7 +1354,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
         // see if we can move to the next step
         $skip = ! $this->should_show_upload_files_step( $ad );
-        $skip = $skip || awpcp_post_param( 'submit-no-images', false );
+        $skip = $skip || $this->request->post( 'submit-no-images', false );
         $skip = $skip || $images_allowed == 0;
 
         $show_preview = (bool) get_awpcp_option('show-ad-preview-before-payment');
@@ -1259,14 +1379,14 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             'hidden' => array( 'transaction_id' => $transaction->id ),
             'errors' => $errors,
             'media_manager_configuration' => array(
-                'nonce' => wp_create_nonce( 'awpcp-manage-listing-media-' . $ad->ad_id ),
+                'nonce' => wp_create_nonce( 'awpcp-manage-listing-media-' . $ad->ID ),
                 'allowed_files' => $allowed_files,
                 'show_admin_actions' => awpcp_current_user_is_moderator(),
             ),
             'media_uploader_configuration' => array(
-                'listing_id' => $ad->ad_id,
+                'listing_id' => $ad->ID,
                 'context' => 'post-listing',
-                'nonce' => wp_create_nonce( 'awpcp-upload-media-for-listing-' . $ad->ad_id ),
+                'nonce' => wp_create_nonce( 'awpcp-upload-media-for-listing-' . $ad->ID ),
                 'allowed_files' => $allowed_files,
             ),
         ) );
@@ -1291,7 +1411,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
         $params = array_merge( $params, array(
             'listing' => $ad,
-            'files' => awpcp_media_api()->find_by_ad_id( $ad->ad_id ),
+            'files' => $this->attachments->find_attachments( array( 'post_parent' => $ad->ID ) ),
             'messages' => $this->messages,
             'next' => $next,
         ) );
@@ -1309,9 +1429,9 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             return $this->render('content', awpcp_print_error($message));
         }
 
-        $ad = AWPCP_Ad::find_by_id($transaction->get('ad-id', 0));
-
-        if ( is_null( $ad ) ) {
+        try {
+            $ad = $this->listings->get( $transaction->get( 'ad-id', 0 ) );
+        } catch ( AWPCP_Exception $e ) {
             $message = __('The Ad associated with this transaction doesn\'t exists.', 'another-wordpress-classifieds-plugin');
             return $this->render('content', awpcp_print_error($message));
         }
@@ -1327,10 +1447,11 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         } else if ( isset( $_POST['finish'] ) ) {
             return $this->checkout_step();
         } else {
-            $payment_term = awpcp_payments_api()->get_ad_payment_term($ad);
+            $payment_term = $this->listing_renderer->get_payment_term( $ad );
             $manage_images = awpcp_are_images_allowed() && $payment_term->images > 0;
 
             $params = array(
+                'page' => $this,
                 'ad' => $ad,
                 'edit' => false,
                 'messages' => $this->messages,
@@ -1360,15 +1481,15 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             return $this->render('content', awpcp_print_error($message));
         }
 
-        $ad = AWPCP_Ad::find_by_id($transaction->get('ad-id', 0));
-
-        if (is_null($ad)) {
+        try {
+            $ad = $this->listings->get( $transaction->get( 'ad-id', 0 ) );
+        } catch ( AWPCP_Exception $e ) {
             $message = __('The Ad associated with this transaction doesn\'t exists.', 'another-wordpress-classifieds-plugin');
             return $this->render('content', awpcp_print_error($message));
         }
 
         if (!$transaction->is_completed()) {
-            awpcp_payments_api()->set_transaction_status_to_completed( $transaction, $errors );
+            $this->payments->set_transaction_status_to_completed( $transaction, $errors );
 
             if (!empty($errors)) {
                 return $this->render('content', join(',', array_map('awpcp_print_error', $errors)));
@@ -1379,12 +1500,12 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
         // reload Ad, since modifications were probably made as part of the
         // transaction handling workflow
-        $ad = AWPCP_Ad::find_by_id( $transaction->get( 'ad-id', 0 ) );
+        $ad = $this->listings->get( $transaction->get( 'ad-id', 0 ) );
 
         $params = array(
             'edit' => false,
             'ad' => $ad,
-            'messages' => array_merge( $messages, awpcp_listings_api()->get_ad_alerts( $ad ) ),
+            'messages' => array_merge( $messages, $this->listings_logic->get_ad_alerts( $ad ) ),
             'transaction' => $transaction,
             'transaction_id' => $transaction->id
         );
@@ -1394,3 +1515,5 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         return $this->render($template, $params);
     }
 }
+
+// phpcs:enable

@@ -1,29 +1,29 @@
 <tr style="" class="inline-edit-row quick-edit-row alternate inline-editor" id="edit-1">
     <td class="colspanchange" colspan="5">
-        <?php $id = awpcp_get_property($plan, 'id', false) ?>
+        <?php $id = awpcp_get_property( $entry, 'id', false ); ?>
         <form action="<?php echo esc_attr( admin_url( 'admin-ajax.php' ) ); ?>" method="post">
         <fieldset class="inline-edit-col-left"><div class="inline-edit-col">
                 <h4><?php echo $id ? _x( 'Edit Credit Plan Details', 'credit plans form', 'another-wordpress-classifieds-plugin' ) : _x( 'New Credit Plan Details', 'credit plans form', 'another-wordpress-classifieds-plugin' ); ?></h4>
 
                 <label>
                     <span class="title"><?php echo esc_html( __( 'Name', 'another-wordpress-classifieds-plugin' ) ); ?></span>
-                    <span class="input-text-wrap"><input type="text" value="<?php echo esc_attr( awpcp_get_property( $plan, 'name' ) ); ?>" name="name"></span>
+                    <span class="input-text-wrap"><input type="text" value="<?php echo esc_attr( awpcp_get_property( $entry, 'name' ) ); ?>" name="name"></span>
                 </label>
 
                 <label>
                     <span class="title"><?php echo esc_html( __( 'Credits', 'another-wordpress-classifieds-plugin' ) ); ?></span>
-                    <span class="input-text-wrap formatted-field"><input type="text" value="<?php echo esc_attr( $plan ? $plan->credits : '' ); ?>" name="credits"></span>
+                    <span class="input-text-wrap formatted-field"><input type="text" value="<?php echo esc_attr( $entry ? $entry->credits : '' ); ?>" name="credits"></span>
                 </label>
 
                 <label>
                     <span class="title"><?php echo esc_html( __( 'Price', 'another-wordpress-classifieds-plugin' ) ); ?></span>
-                    <span class="input-text-wrap formatted-field"><input type="text" value="<?php echo esc_attr( $plan ? $plan->price : '' ); ?>" name="price"></span>
+                    <span class="input-text-wrap formatted-field"><input type="text" value="<?php echo esc_attr( $entry ? $entry->price : '' ); ?>" name="price"></span>
                 </label>
         </fieldset>
 
         <fieldset class="inline-edit-col-right"><div class="inline-edit-col">
                 <label><span class="title"><?php echo esc_html( __( 'Description', 'another-wordpress-classifieds-plugin' ) ); ?></span></label>
-                <textarea name="description" cols="54" rows="6"><?php echo stripslashes( awpcp_get_property( $plan, 'description' ) ) ?></textarea>
+                <textarea name="description" cols="54" rows="6"><?php echo stripslashes( awpcp_get_property( $entry, 'description' ) ) ?></textarea>
         </fieldset>
 
         <p class="submit inline-edit-save">

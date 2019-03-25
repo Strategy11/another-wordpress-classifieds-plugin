@@ -1,19 +1,17 @@
 <?php
-    if ( isset( $transaction ) && get_awpcp_option( 'show-create-listing-form-steps' ) ) {
-        echo awpcp_render_listing_form_steps( 'finish', $transaction );
-    }
-?>
+/**
+ * @package AWPCP\Templates
+ */
 
-<?php if (!is_admin()): ?>
-    <?php if ($edit): ?>
-    <?php echo awpcp_print_message(__("Your changes have been saved.", 'another-wordpress-classifieds-plugin')); ?>
-    <?php else: ?>
-    <?php echo awpcp_print_message(__("Your Ad has been submitted.", 'another-wordpress-classifieds-plugin')); ?>
-    <?php endif; ?>
-<?php endif; ?>
+if ( isset( $transaction ) && get_awpcp_option( 'show-create-listing-form-steps' ) ) {
+    echo awpcp_render_listing_form_steps( 'finish', $transaction ); // XSS Ok.
+}
 
-<?php foreach ((array) $messages as $message): ?>
-    <?php echo awpcp_print_message($message); ?>
+?><?php foreach ( (array) $messages as $message ) : ?>
+    <?php echo awpcp_print_message( $message ); // XSS Ok. ?>
 <?php endforeach; ?>
 
-<?php echo showad($ad->ad_id, true, true, false); ?>
+<?php
+// TODO: Make sure the menu is not shown.
+// TODO: ContentRenderer should be available as a parameter for this view.
+echo awpcp()->container['ListingsContentRenderer']->render_content_without_notices( apply_filters( 'the_content', $ad->post_content ), $ad ); // XSS Ok.

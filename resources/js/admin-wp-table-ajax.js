@@ -48,6 +48,8 @@ if (typeof jQuery !== 'undefined') {
                     self.move();
                 } else if (parent.hasClass('trash')) {
                     self.trash();
+                } else {
+                    self.default(parent.attr('class'));
                 }
             });
 
@@ -68,14 +70,19 @@ if (typeof jQuery !== 'undefined') {
                 var options = this.options,
                     link = this.link,
                     parent = link.closest('div'),
-                    tbody = parent.find('table:last tbody'),
-                    first = tbody.find('tr:first'), inline;
+                    tbody, first, inline;
+
+                if ( parent.find( 'table:last tbody' ).length == 0 ) {
+                    parent = link.closest( '.awpcp-inner-content' );
+                }
+
+                tbody = parent.find( 'table:last tbody' );
+                first = tbody.find( 'tr:first' );
 
                 $.post(options.ajaxurl, $.extend({}, options.data, {
                     'action': options.actions.add,
-                    'columns': tbody.closest('table').find('thead th').length
+                    'columns': tbody.closest('table').find('thead tr').first().children().length
                 }), function(response) {
-
                     if ( first.length ) {
                         inline = $(response.html).insertBefore( first );
                     } else {
@@ -110,7 +117,7 @@ if (typeof jQuery !== 'undefined') {
                                     }
 
                                     if ( $.isFunction( options.onSuccess ) ) {
-                                        options.onSuccess.apply( this, [ options.actions.add, row ] );
+                                        options.onSuccess.apply( this, [ options.actions.add, row, response ] );
                                     }
                                 } else {
                                     loadingIcon.hide().removeClass( 'is-visible-inline-block' );
@@ -154,8 +161,8 @@ if (typeof jQuery !== 'undefined') {
                         var loadingIcon = inline.find( 'p.submit' ).find( 'img.waiting, .spinner' );
 
                         loadingIcon.show().addClass( 'is-visible-inline-block' );
+                        inline.find('div.awpcp-ajax-error').remove();
 
-                        inline.find('div.error').remove();
                         inline.find('form').ajaxSubmit({
                             data: $.extend({}, options.data, {save: true}),
                             dataType: 'json',
@@ -167,11 +174,11 @@ if (typeof jQuery !== 'undefined') {
                                     inline.remove();
 
                                     if ( $.isFunction( options.onSuccess ) ) {
-                                        options.onSuccess.apply( this, [ options.actions.edit, newRow ] );
+                                        options.onSuccess.apply( this, [ options.actions.edit, newRow, response ] );
                                     }
                                 } else {
                                     loadingIcon.hide().removeClass( 'is-visible-inline-block' );
-                                    var errors = $('<div class="awpcp-error awpcp-inline-form-error">');
+                                    var errors = $('<div class="awpcp-ajax-error error awpcp-error awpcp-inline-form-error">');
                                     $.each(response.errors, function(k,v) {
                                         errors.append(v + '</br>');
                                     });
@@ -242,10 +249,12 @@ if (typeof jQuery !== 'undefined') {
                             data: { 'remove': true, 'option': option },
                             dataType: 'json',
                             success: function(response) {
-                                var link = null, label;
+                                var link = null, label, errorMessage;
+
+                                loadingIcon.hide().removeClass( 'is-visible-inline-block' );
 
                                 // mission acomplished!
-                                if (response.status === 'success' || response.status === 'ok' ) {
+                                if ( response.status === 'success' || response.status === 'ok' ) {
                                     row.remove();
                                     inline.remove();
 
@@ -255,8 +264,6 @@ if (typeof jQuery !== 'undefined') {
 
                                 // we need to ask something else to the user
                                 } else if (response.status === 'confirm') {
-                                    loadingIcon.hide().removeClass( 'is-visible-inline-block' );
-
                                     // create a set of options
                                     $.each(response.options, function(value, label) {
                                         link = $('<a></a>').attr({
@@ -273,11 +280,11 @@ if (typeof jQuery !== 'undefined') {
 
                                 // ¬_¬
                                 } else {
-                                    loadingIcon.hide().removeClass( 'is-visible-inline-block' );
-                                    form.find('div.error').remove();
-                                    form.append('<div class="error"><p>' + response.message + '</p></div>');
-
+                                    errorMessage = response.message || response.error;
                                     label = 'Delete';
+
+                                    form.find('div.awpcp-ajax-error').remove();
+                                    form.append('<div class="awpcp-ajax-error error">' + errorMessage + '</div>');
 
                                     // create default Delete button
                                     link = $('<a></a>').attr({
@@ -296,6 +303,25 @@ if (typeof jQuery !== 'undefined') {
                         row.hide();
                     } else {
                         alert(response.message);
+                    }
+                });
+            },
+
+            default: function(action) {
+                var self = this, options = self.options;
+
+                $.post(options.ajaxurl, $.extend({}, options.data, {
+                    'action': options.actions[action],
+                    'id': self.row.data('id')
+                }), function(response) {
+                    if (response.status == 'success' || response.status == 'ok') {
+                        if ($.isFunction(options.onDefaultActionSuccess)) {
+                            options.onDefaultActionSuccess.apply(self, [action, response]);
+                        }
+                    } else {
+                        if ($.isFunction(options.onDefaultActionError)) {
+                            options.onDefaultActionError.apply(self, [action, response]);
+                        }
                     }
                 });
             }

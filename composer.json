@@ -1,0 +1,14 @@
+{
+    "name": "drodenbaugh/another-wordpress-classifieds-plugin",
+    "description": "A plugin that provides the ability to run a free or paid classified ads servie on your WP site.",
+    "type": "project",
+    "autoload": {
+        "classmap": [
+            "admin",
+            "frontend",
+            "includes",
+            "installer.php",
+            "interface-container-configuration.php"
+        ]
+    }
+}

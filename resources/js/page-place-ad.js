@@ -1,14 +1,27 @@
-/*global AWPCP*/
+/*global AWPCP, _ */
 AWPCP.run('awpcp/page-place-ads', [
     'jquery',
     'awpcp/media-center',
+    'awpcp/payment-terms-list',
     'awpcp/datepicker-field',
     'awpcp/user-information-updater',
     'awpcp/multiple-region-selector-validator',
     'awpcp/settings',
     'awpcp/jquery-userfield',
-    'awpcp/jquery-validate-methods'
-], function( $, MediaCenter, DatepickerField, UserInformationUpdater, MultipleRegionsSelectorValidator, settings ) {
+    'awpcp/jquery-validate-methods',
+    'awpcp/categories-selector',
+], function(
+    $,
+    MediaCenter,
+    PaymentTermsList,
+    DatepickerField,
+    UserInformationUpdater,
+    MultipleRegionsSelectorValidator,
+    settings,
+    MultipleValueSelectorViewModel,
+    MultipleValueSelectorDelegate,
+    CategoriesSelector
+) {
     var AWPCP = jQuery.AWPCP = jQuery.extend({}, jQuery.AWPCP, AWPCP);
 
     $.AWPCP.PaymentTermsTable = function(table) {
@@ -17,16 +30,16 @@ AWPCP.run('awpcp/page-place-ads', [
         self.table = table;
         self.terms = table.find('.awpcp-payment-term');
 
-        self.category = null;
+        self.categories = null;
         self.user_terms = null;
 
-        $.subscribe('/category/updated', function(event, dropdown, category) {
+        $.subscribe('/category/updated', function( event, dropdown, categories ) {
             if ($.contains(dropdown.closest('form').get(0), self.table.get(0))) {
-                if ( category === null && ! settings.get( 'hide-all-payment-terms-if-no-category-is-selected' ) ) {
+                if ( categories === null && ! settings.get( 'hide-all-payment-terms-if-no-category-is-selected' ) ) {
                     return;
                 }
 
-                self.category = category;
+                self.categories = categories;
                 self.update();
             }
         });
@@ -41,39 +54,12 @@ AWPCP.run('awpcp/page-place-ads', [
         update: function() {
             var self = this, enabled, disabled, radio, term, categories;
 
-            disabled = self.terms.filter(function() {
-                term = $(this);
-
-                // filter by user
-                if ($.isArray(self.user_terms) && $.inArray(term.attr('id'), self.user_terms) === -1) {
-                    return true;
-                }
-
-                // filter by category
-                if ( self.category === null && settings.get( 'hide-all-payment-terms-if-no-category-is-selected' ) ) {
-                    return true;
-                } else if (self.category) {
-                    categories = $.parseJSON(term.attr('data-categories'));
-                    if ($.isArray(categories)) {
-                        categories = $.map(categories, function(category) {
-                            return parseInt(category, 10);
-                        });
-                    } else {
-                        categories = [];
-                    }
-
-                    if (categories.length > 0 && $.inArray(self.category, categories) === -1) {
-                        return true;
-                    }
-                }
-
-                return false;
-            });
-
+            disabled = this._getDisabledPaymentTerms();
             enabled = self.terms.not(disabled.get());
+
             if (enabled.find(':radio:checked').length === 0) {
                 radio = enabled.eq(0).find(':radio');
-                if ( $.fn.prop ) {
+                if (radio.prop) {
                     radio.prop('checked', true);
                 } else {
                     radio.attr('checked', 'checked');
@@ -82,6 +68,63 @@ AWPCP.run('awpcp/page-place-ads', [
 
             enabled.fadeIn();
             disabled.fadeOut();
+        },
+
+        _getDisabledPaymentTerms: function _getDisabledPaymentTerms() {
+            var self = this;
+
+            return self.terms.filter(function() {
+                term = $(this);
+
+                // filter by user
+                if ($.isArray(self.user_terms) && $.inArray(term.attr('id'), self.user_terms) === -1) {
+                    return true;
+                }
+
+                // filter by category
+                if ( self.categories === null && settings.get( 'hide-all-payment-terms-if-no-category-is-selected' ) ) {
+                    return true;
+                } else if ( self.categories ) {
+                    categories = $.parseJSON(term.attr('data-categories'));
+
+                    if ($.isArray(categories)) {
+                        categories = $.map(categories, function(category) {
+                            return parseInt(category, 10);
+                        });
+                    } else {
+                        categories = [];
+                    }
+
+                    if ( _.difference( self.categories, categories ).length ) {
+                        return true;
+                    }
+                }
+
+                return false;
+            });
+        },
+
+        _broadcastCategoriesMatrix: function _broadcastCategoriesMatrix() {
+            var termsCategories = this.terms.map(function() {
+                return { categories: $.parseJSON( $(this).attr( 'data-categories' ) ) };
+            });
+
+            var matrix = {}, newEntries, previousEntries;
+
+            _.each( termsCategories, function( item ) {
+                _.each( item.categories, function( id, index, list ) {
+                    newEntries = _.union( list.slice( 0, index ), list.slice( index + 1 ) );
+                    previousEntries = matrix[ id ];
+
+                    if ( previousEntries ) {
+                        matrix[ id ] = _.union( previousEntries, newEntries );
+                    } else {
+                        matrix[ id ] = newEntries;
+                    }
+                } );
+            } );
+
+            $.publish( '/category-selector/set-availability-matrix', [ matrix ] );
         }
     });
 
@@ -147,29 +190,6 @@ AWPCP.run('awpcp/page-place-ads', [
         }
     });
 
-    $.AWPCP.RestrictedLengthField = function(element) {
-        var self = this;
-
-        self.element = $(element);
-        self.container = self.element.closest('.awpcp-form-spacer');
-        self.placeholder = self.container.find('.characters-left-placeholder');
-
-        self.allowed = parseInt(self.element.attr('data-max-characters'), 10);
-        self.remaining = parseInt(self.element.attr('data-remaining-characters'), 10);
-
-        self.element.bind('keyup keydown', function() {
-            var text = self.element.val();
-            if (self.allowed > 0) {
-                if (text.length > self.allowed) {
-                    text = text.substring(0, self.allowed);
-                    self.element.val(text);
-                }
-
-                self.placeholder.text(self.allowed - text.length);
-            }
-        }).trigger('keyup');
-    };
-
     $(function() {
         $.AWPCP.validate();
 
@@ -189,8 +209,15 @@ AWPCP.run('awpcp/page-place-ads', [
 
         (function() {
             var form = container.find('.awpcp-order-form');
+
             if (form.length) {
-                $.noop(new $.AWPCP.PaymentTermsTable(container.find('.awpcp-payment-terms-table')));
+                // We need to initialize the payment terms list first, so that it
+                // can respond to initial events from Categories Selector and User fields.
+                $.noop( new PaymentTermsList( container.find( '.awpcp-payment-terms-list' ) ) );
+                $.noop( new CategoriesSelector( container.find( '.awpcp-category-dropdown' ) ) );
+
+                $.publish( '/awpcp/post-listing-page/order-step/ready', [form] );
+
                 container.find('[autocomplete-field], [dropdown-field]').userfield();
 
                 form.validate({
@@ -229,6 +256,8 @@ AWPCP.run('awpcp/page-place-ads', [
 
                 // display and control characters allowed for the Ad details
                 $.noop(new $.AWPCP.RestrictedLengthField(container.find('[name="ad_details"]')));
+
+                $.publish( '/awpcp/post-listing-page/details-step/ready', [form] );
 
                 form.validate({
                     messages: $.AWPCP.l10n('page-place-ad-details'),

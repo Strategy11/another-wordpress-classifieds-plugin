@@ -20,7 +20,7 @@ function( $, settings) {
                 container: container.get(0),
                 drop_element: dropzone.get(0),
                 filters: {
-                    mime_types: _.bind( self.getFileTypeFilters, self ),
+                    mime_types: self.getFileTypeFilters(),
                     restrict_file_size: true,
                     restrict_file_count: true
                 },
@@ -41,7 +41,7 @@ function( $, settings) {
 
             self.uploader.bind( 'FilesAdded', self.onFilesAdded, self );
             self.uploader.bind( 'UploadProgress', self.onUploadProgress, self );
-            self.uploader.bind( 'FileUploaded', self.onFileUplaoded, self );
+            self.uploader.bind( 'FileUploaded', self.onFileUploaded, self );
         },
 
         filterFileBySize: function( enabled, file, done ) {
@@ -121,7 +121,7 @@ function( $, settings) {
             $.publish( '/file/progress', [ uploader, file ] );
         },
 
-        onFileUplaoded: function( uploader, file, data ) {
+        onFileUploaded: function( uploader, file, data ) {
             var response = $.parseJSON( data.response );
 
             if ( response.status === 'ok' && response.file ) {

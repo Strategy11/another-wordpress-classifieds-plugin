@@ -1,12 +1,26 @@
 <?php
+/**
+ * @package AWPCP
+ */
+
+// phpcs:disable
 
 class AWPCP_Exception extends Exception {
 
     private $errors = null;
 
-    public function __construct( $message='', $errors=array() ) {
-        parent::__construct( $message );
-        $this->errors = $errors;
+    public function __construct( $message = '', $code = 0, $previous = null ) {
+        // TODO: Make sure the second parameter is no longer being used to pass
+        //       an array of errors and remove this if statement and its content.
+        if ( is_array( $code ) ) {
+            parent::__construct( $message );
+
+            $this->errors = $code;
+
+            return;
+        }
+
+        parent::__construct( $message, $code, $previous );
     }
 
     public function get_errors() {
@@ -47,12 +61,27 @@ class AWPCP_DatabaseException extends AWPCP_Exception {
         parent::__construct( $this->prepare_exception_message( $exception_message, $db_error ) );
     }
 
+    /**
+     * @SuppressWarnings(PHPMD)
+     */
     private function prepare_exception_message( $exception_message, $db_error ) {
         if ( ! empty( $db_error ) ) {
             return $exception_message . ' ' . $db_error;
         } else {
             return $exception_message;
         }
+    }
+}
+
+class AWPCP_DBException extends AWPCP_Exception {
+
+    public function __construct( $message, $database_error = null ) {
+        if ( $database_error ) {
+            $template = _x( '%s The error was: %s.', 'DBException message template', 'another-wordpress-classifieds-plugin' );
+            $message = sprintf( $template, $message, $database_error );
+        }
+
+        parent::__construct( $message );
     }
 }
 
@@ -87,3 +116,5 @@ class AWPCP_CSV_Importer_Exception extends Exception {
 
 class AWPCP_HTTP_Exception extends Exception {
 }
+
+// phpcs:enable

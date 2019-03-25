@@ -1,258 +1,6 @@
 <?php
 
 /**
- * @deprecated 3.4
- */
-function awpcp_display_ads($where, $byl, $hidepager, $grouporderby, $adorcat, $before_content='') {
-    _deprecated_function( __FUNCTION__, '3.4', 'awpcp_display_listings' );
-
-    global $wpdb;
-    global $awpcp_plugin_path;
-    global $hasregionsmodule;
-
-    $output = '';
-
-    $awpcp_browsecats_pageid=awpcp_get_page_id_by_ref('browse-categories-page-name');
-    $browseadspageid=awpcp_get_page_id_by_ref('browse-ads-page-name');
-    $searchadspageid=awpcp_get_page_id_by_ref('search-ads-page-name');
-
-    // filters to provide alternative method of storing custom layouts (e.g. can be outside of this plugin's directory)
-    if ( has_action('awpcp_browse_ads_template_action') || has_filter('awpcp_browse_ads_template_filter') ) {
-        do_action('awpcp_browse_ads_template_action');
-        $output = apply_filters('awpcp_browse_ads_template_filter');
-        return;
-
-    } else if (file_exists("$awpcp_plugin_path/awpcp_display_ads_my_layout.php") &&
-               get_awpcp_option('activatemylayoutdisplayads'))
-    {
-        include("$awpcp_plugin_path/awpcp_display_ads_my_layout.php");
-
-    } else {
-        $output .= "<div id=\"classiwrapper\">";
-
-        $uiwelcome=stripslashes_deep(get_awpcp_option('uiwelcome'));
-
-        $output .= apply_filters( 'awpcp-content-before-listings-page', '' );
-        $output .= "<div class=\"uiwelcome\">$uiwelcome</div>";
-        $output .= awpcp_menu_items();
-
-        if ($hasregionsmodule ==  1) {
-            // Do not show Region Control form when showing Search Ads page
-            // search result. Changing the current location will redirect the user
-            // to the form instead of a filterd version of the form and that's confusing
-            if ( is_page( awpcp_get_page_id_by_ref( 'search-ads-page-name' ) ) && isset( $_POST['a']) && $_POST['a'] == 'dosearch' ) {
-                // do nothing
-            } else {
-                $output .= awpcp_region_control_selector();
-            }
-        }
-
-        $output .= $before_content;
-
-        $tbl_ads = $wpdb->prefix . "awpcp_ads";
-
-        $from="$tbl_ads";
-
-        $ads_exist = ads_exist();
-
-        if (!$ads_exist) {
-            $showcategories="<p style=\"padding:10px\">";
-            $showcategories.=__("There are currently no ads in the system",'another-wordpress-classifieds-plugin');
-            $showcategories.="</p>";
-            $pager1='';
-            $pager2='';
-
-        } else {
-            $awpcp_image_display_list=array();
-
-            if ($adorcat == 'cat') {
-                $tpname = get_permalink($awpcp_browsecats_pageid);
-            } elseif ($adorcat == 'search') {
-                $tpname = get_permalink($searchadspageid);
-            } elseif ( preg_match( '/^custom:/', $adorcat ) ) {
-                $tpname = str_replace( 'custom:', '', $adorcat );
-            } else {
-                $tpname = get_permalink($browseadspageid);
-            }
-
-            $results = get_awpcp_option( 'adresultsperpage', 10 );
-            $results = absint( awpcp_request_param( 'results', $results ) );
-            $offset = absint( awpcp_request_param( 'offset', 0 ) );
-
-            if ( $results === 0 ) {
-                $results = 10;
-            }
-
-            $args = array(
-                'order' => AWPCP_Ad::get_order_conditions( $grouporderby ),
-                'offset' => $offset,
-                'limit' => $results,
-            );
-            $ads = AWPCP_Ad::get_enabled_ads( $args, array( $where ) );
-
-            // get_where_conditions() is called from get_enabled_ads(), we need the
-            // WHERE conditions here to pass them to create_pager()
-            $where = AWPCP_Ad::get_where_conditions( array( $where ) );
-
-            if (!isset($hidepager) || empty($hidepager) ) {
-                //Unset the page and action here...these do the wrong thing on display ad
-                unset($_GET['page_id']);
-                unset($_POST['page_id']);
-                //unset($params['page_id']);
-                $pager1=create_pager($from, join( ' AND ', $where ),$offset,$results,$tpname);
-                $pager2=create_pager($from, join( ' AND ', $where ),$offset,$results,$tpname);
-            } else {
-                $pager1='';
-                $pager2='';
-            }
-
-            $items = awpcp_render_listings_items( $ads, 'listings' );
-
-            $opentable = "";
-            $closetable = "";
-
-            if (empty($ads)) {
-                $showcategories="<p style=\"padding:20px;\">";
-                $showcategories.=__("There were no ads found",'another-wordpress-classifieds-plugin');
-                $showcategories.="</p>";
-                $pager1='';
-                $pager2='';
-            } else {
-                $showcategories = smart_table($items, intval($results/$results), $opentable, $closetable);
-            }
-        }
-
-        $show_category_id = absint( awpcp_request_param( 'category_id' ) );
-
-        if (!isset($url_browsecatselect) || empty($url_browsecatselect)) {
-            $url_browsecatselect = get_permalink($awpcp_browsecats_pageid);
-        }
-
-        if ($ads_exist) {
-            $category_id = (int) awpcp_request_param('category_id', -1);
-            $category_id = $category_id === -1 ? (int) get_query_var('cid') : $category_id;
-
-            $output .= "<div class=\"changecategoryselect\"><form method=\"post\" action=\"$url_browsecatselect\">";
-
-            $output .= '<div class="awpcp-category-dropdown-container">';
-            $dropdown = new AWPCP_CategoriesDropdown();
-            $output .= $dropdown->render( array( 'context' => 'search', 'name' => 'category_id', 'selected' => $category_id ) );
-            $output .= '</div>';
-
-            $output .= "<input class=\"button\" type=\"submit\" value=\"";
-            $output .= __("Change Category",'another-wordpress-classifieds-plugin');
-            $output .= "\" /></form></div>";
-
-            $output .= "<div class=\"pager\">$pager1</div><div class=\"fixfloat\"></div>";
-
-            $output .= "<div id='awpcpcatname' class=\"fixfloat\">";
-
-            if ($category_id > 0) {
-                $output .= "<h3>" . __("Category: ", 'another-wordpress-classifieds-plugin') . get_adcatname($category_id) . "</h3>";
-            }
-
-            $output .= "</div>";
-        }
-
-        $output .= apply_filters('awpcp-content-before-listings-list', '');
-        $output .= "$showcategories";
-
-        if ($ads_exist) {
-            $output .= "&nbsp;<div class=\"pager\">$pager2</div>";
-        }
-
-        $output .= apply_filters( 'awpcp-content-after-listings-page', '' );
-        $output .= "</div>";
-
-    }
-    return $output;
-}
-
-/**
- * @deprecated 3.4
- */
-function awpcp_render_ads($ads, $context='listings', $config=array(), $pagination=array()) {
-    _deprecated_function( __FUNCTION__, '3.4', 'awpcp_display_listings' );
-
-    $config = shortcode_atts(array('show_menu' => true, 'show_intro' => true), $config);
-
-    if (has_action('awpcp_browse_ads_template_action') || has_filter('awpcp_browse_ads_template_filter')) {
-        do_action('awpcp_browse_ads_template_action');
-        $output = apply_filters('awpcp_browse_ads_template_filter');
-        return;
-    } else if (file_exists(AWPCP_DIR . "/awpcp_display_ads_my_layout.php") && get_awpcp_option('activatemylayoutdisplayads')) {
-        include(AWPCP_DIR . "/awpcp_display_ads_my_layout.php");
-        return;
-    }
-
-    $items = awpcp_render_listings_items( $ads, $context );
-
-    $before_content = apply_filters('awpcp-content-before-listings-pagination', array(), $context);
-    $after_content = apply_filters('awpcp-content-after-listings-pagination', array(), $context);
-    $pagination_block = is_array( $pagination ) ? awpcp_pagination( $pagination, '' ) : '';
-
-    ob_start();
-        include(AWPCP_DIR . '/frontend/templates/listings.tpl.php');
-        $output = ob_get_contents();
-    ob_end_clean();
-
-    return $output;
-}
-
-/**
- * Upload and associates the given files with the specified Ad.
- *
- * @param $files    An array of elements of $_FILES.
- * @since 3.0.2
- * @deprecated 3.4
- */
-function awpcp_upload_files( $ad, $files, &$errors=array() ) {
-    $media = awpcp_media_api();
-
-    $constraints = awpcp_get_upload_file_constraints();
-    $image_mime_types = awpcp_get_image_mime_types();
-
-    $uploaded = array();
-    foreach ( $files as $name => $info ) {
-        $can_upload = awpcp_can_upload_file_to_ad( $info, $ad );
-        if ( $can_upload !== true ) {
-            if ( $can_upload !== false ) {
-                $errors[ $name ] = $can_upload;
-            } else {
-                $message = _x( 'An error occurred trying to upload the file %s.', 'upload files', 'another-wordpress-classifieds-plugin' );
-                $errors[ $name ] = sprintf( $message, '<strong>' . $info['name'] . '</strong>' );
-            }
-            continue;
-        }
-
-        if ( $result = awpcp_upload_file( $info, $constraints, $error ) ) {
-            $file = $media->create( array(
-                'ad_id' => $ad->ad_id,
-                'name' => $result['filename'],
-                'path' => $result['path'],
-                'mime_type' => $result['mime_type'],
-                'is_primary' => in_array( $info['type'], $image_mime_types ) && awpcp_array_data( 'is_primary', false, $info ),
-            ) );
-
-            if ( ! is_null( $file ) ) {
-                if ( $file->is_image() && $file->is_primary() ) {
-                    $media->set_ad_primary_image( $ad, $file );
-                }
-
-                $uploaded[] = $file;
-            } else {
-                $message = _x( 'The file %s was properly uploaded but there was a problem trying to save the information to the database.', 'upload files', 'another-wordpress-classifieds-plugin' );
-                $errors[ $name ] = sprintf( $message, '<strong>' . $result['original'] . '</strong>' );
-            }
-        } else {
-            $errors[ $name ] = $error;
-        }
-    }
-
-    return $uploaded;
-}
-
-/**
  * Check that the given file meets the file size, dimensions and file type
  * constraints and moves the file to the AWPCP Uploads directory.
  *
@@ -358,7 +106,6 @@ function awpcp_upload_file( $file, $constraints, &$error=false, $action='upload'
             $error = _x( 'Could not create resized versions of image %s.', 'upload files', 'another-wordpress-classifieds-plugin' );
             $error = sprintf( $error, '<strong>' . $filename . '</strong>' );
 
-            # TODO: unlink resized version, thumbnail and primary image
             @unlink( $newpath );
 
             return false;
@@ -401,32 +148,6 @@ function awpcp_get_upload_file_constraints( ) {
 }
 
 /**
- * Determines if a file of the given type can be added to an Ad based solely
- * on the number of files of the same type that are already attached to
- * the Ad.
- *
- * @since 3.0.2
- * @deprecated 3.4
- */
-function awpcp_can_upload_file_to_ad( $file, $ad ) {
-    $stats = awpcp_get_ad_uploaded_files_stats( $ad );
-
-    $image_mime_types = awpcp_get_image_mime_types();
-    $images_allowed = $stats['images_allowed'];
-    $images_uploaded = $stats['images_uploaded'];
-
-    $result = true;
-
-    if ( in_array( $file['type'], $image_mime_types ) ) {
-        if ( $images_allowed <= $images_uploaded ) {
-            $result = _x( "You can't add more images to this Ad. There are not remaining images slots.", 'upload files', 'another-wordpress-classifieds-plugin' );
-        }
-    }
-
-    return apply_filters( 'awpcp-can-upload-file-to-ad', $result, $file, $ad, $stats );
-}
-
-/**
  * Returns information about the number of files uploaded to an Ad, and
  * the number of files that can still be added to that same Ad.
  *
@@ -459,44 +180,53 @@ function awpcp_get_uploads_directories() {
     static $uploads_directories = null;
 
     if ( is_null( $uploads_directories ) ) {
-        global $wpcontentdir;
-
+        // TODO: Remove directory permissions setting when this code is finally removed.
         $permissions = awpcp_directory_permissions();
 
         $upload_dir_name = get_awpcp_option( 'uploadfoldername', 'uploads' );
-        $upload_dir = $wpcontentdir . '/' . $upload_dir_name . '/';
+        $upload_dir = WP_CONTENT_DIR . '/' . $upload_dir_name . '/';
 
         // Required to set permission on main upload directory
         require_once(AWPCP_DIR . '/includes/class-fileop.php');
 
         $fileop = new fileop();
-        $owner = fileowner( $wpcontentdir );
+        $owner = fileowner( WP_CONTENT_DIR );
 
-        if ( ! is_dir( $upload_dir ) && is_writable( $wpcontentdir ) ) {
+        if ( ! is_dir( $upload_dir ) && is_writable( WP_CONTENT_DIR ) ) {
             umask( 0 );
-            mkdir( $upload_dir, $permissions );
+            wp_mkdir_p( $upload_dir );
             chown( $upload_dir, $owner );
         }
 
-        $fileop->set_permission( $upload_dir, $permissions );
+        // TODO: It is a waste of resources to check this on every request.
+        if ( ! is_writable( $upload_dir ) ) {
+            $fileop->set_permission( $upload_dir, $permissions );
+        }
 
         $files_dir = $upload_dir . 'awpcp/';
         $thumbs_dir = $upload_dir . 'awpcp/thumbs/';
 
         if ( ! is_dir( $files_dir ) && is_writable( $upload_dir ) ) {
             umask( 0 );
-            @mkdir( $files_dir, $permissions );
+            wp_mkdir_p( $files_dir );
             @chown( $files_dir, $owner );
         }
 
         if ( ! is_dir( $thumbs_dir ) && is_writable( $upload_dir ) ) {
             umask( 0 );
-            @mkdir( $thumbs_dir, $permissions );
+            wp_mkdir_p( $thumbs_dir );
             @chown( $thumbs_dir, $owner );
         }
 
-        $fileop->set_permission( $files_dir, $permissions );
-        $fileop->set_permission( $thumbs_dir, $permissions );
+        // TODO: It is a waste of resources to check this on every request.
+        if ( ! is_writable( $files_dir ) ) {
+            $fileop->set_permission( $files_dir, $permissions );
+        }
+
+        // TODO: It is a waste of resources to check this on every request.
+        if ( ! is_writable( $thumbs_dir ) ) {
+            $fileop->set_permission( $thumbs_dir, $permissions );
+        }
 
         $uploads_directories = array(
             'files_dir' => $files_dir,
@@ -509,8 +239,8 @@ function awpcp_get_uploads_directories() {
 
 /**
  * Resize images if they're too wide or too tall based on admin's Image Settings.
- * Requires both max width and max height to be set otherwise no resizing 
- * takes place. If the image exceeds either max width or max height then the 
+ * Requires both max width and max height to be set otherwise no resizing
+ * takes place. If the image exceeds either max width or max height then the
  * image is resized proportionally.
  *
  * @deprecated 3.4
@@ -559,13 +289,13 @@ function awpcp_resizer($filename, $dir) {
     $newname = $dir . $filename;
 
     switch ($parts['extension']) {
-        case 'gif': 
+        case 'gif':
             @imagegif($tmp, $newname);
             break;
-        case 'png': 
+        case 'png':
             @imagepng($tmp, $newname, 0);
             break;
-        case 'jpg': 
+        case 'jpg':
         case 'jpeg':
             @imagejpeg($tmp, $newname, 100);
             break;
@@ -640,4 +370,94 @@ function get_categorynameidall($cat_id = 0) {
  */
 function checkfortable($table) {
     return awpcp_table_exists($table);
+}
+
+/**
+ * Return the number of pages with the given post_name.
+ *
+ * @deprecated 4.0.0    This is no longer used.
+ */
+function checkforduplicate($cpagename_awpcp) {
+    global $wpdb;
+
+    $awpcppagename = sanitize_title( $cpagename_awpcp );
+
+    $query = "SELECT ID FROM {$wpdb->posts} WHERE post_name = %s AND post_type = %s";
+    $query = $wpdb->prepare( $query, $awpcppagename, 'post' );
+
+    $post_ids = $wpdb->get_col( $query );
+
+    if ( $post_ids !== false ) {
+        return count( $post_ids );
+    } else {
+        return '';
+    }
+}
+
+/**
+ * @deprecated 4.0.0    Use a instance of CAPTCHA instead.
+ */
+function awpcp_create_captcha($type='default') {
+    return awpcp()->container['CAPTCHAProviderFactory']->get_captcha_provider( $type );
+}
+
+/**
+ * Returns an array of Region fields. Only those enabled in the settings will
+ * be returned.
+ *
+ * @since 3.0.2
+ * @deprecated 4.0.0    This function is now implemented as a private method on
+ *                      Multiple Region Selector class.
+ */
+function awpcp_region_fields( $context='details', $enabled_fields = null ) {
+    if ( function_exists( '_doing_it_wrong' ) ) {
+        _doing_it_wrong( 'awpcp_region_fields', 'This function is now implemented as a private method on Multiple Region Selector class and will be removed in future versions.', 'another-wordpress-classifieds-plugin', '4.0.0' );
+    }
+
+    if ( is_null( $enabled_fields ) ) {
+        $enabled_fields = awpcp_get_enabled_region_fields( $context );
+    }
+
+    $fields = apply_filters( 'awpcp-region-fields', false, $context, $enabled_fields );
+
+    if ( false === $fields ) {
+        $fields = awpcp_default_region_fields( $context, $enabled_fields );
+    }
+
+    return $fields;
+}
+
+/**
+ * @deprecated 4.0.0 This function will be removed in 4.1.0.
+ */
+function vector2options($show_vector,$selected_map_val,$exclusion_vector=array()) {
+   $myreturn='';
+
+   foreach ( $show_vector as $k => $v ) {
+       if (!in_array($k,$exclusion_vector)) {
+           $myreturn.="<option value=\"".$k."\"";
+           if ($k==$selected_map_val) {
+               $myreturn.=" selected='selected'";
+           }
+           $myreturn.=">".$v."</option>\n";
+       }
+   }
+   return $myreturn;
+}
+
+/**
+ * @deprecated 4.0.0 This function will be removed in 4.1.0.
+ */
+function unix2dos($mystring) {
+    $mystring=preg_replace("/\r/m",'',$mystring);
+    $mystring=preg_replace("/\n/m","\r\n",$mystring);
+    return $mystring;
+}
+
+/**
+ * @deprecated 4.0.0 This function will be removed in 4.1.0.
+ */
+function create_awpcp_random_seed() {
+    list($usec, $sec) = explode(' ', microtime());
+    return (int)$sec+(int)($usec*100000);
 }

@@ -70,7 +70,7 @@ class AWPCP_TasksCollection {
         $result = $this->db->get_row( $query );
 
         if ( $result === false ) {
-            throw new AWPCP_Exception( 'There was an error tring to retrive the next task from the database.' );
+            throw new AWPCP_Exception( 'There was an error trying to retrive the next task from the database.' );
         }
 
         if ( $result === null ) {

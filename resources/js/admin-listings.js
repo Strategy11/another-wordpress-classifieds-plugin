@@ -23,7 +23,7 @@ AWPCP.run( 'awpcp/listing-admin-page', [
          */
 
         $(function() {
-            var panel = $('#awpcp-admin-listings'), items;
+            var panel = $( '#awpcp-admin-listings' ), items;
 
             // handle row actions
 

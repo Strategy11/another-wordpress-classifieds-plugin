@@ -2,7 +2,7 @@
 
 function awpcp_easy_digital_downloads() {
     return new AWPCP_EasyDigitalDownloads(
-        awpcp()->settings,
+        awpcp_settings_api(),
         awpcp_http(),
         awpcp_request(),
         awpcp_exceptions()

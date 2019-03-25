@@ -1,30 +1,46 @@
 <?php
+/**
+ * @package AWPCP\Admin\Import
+ */
 
+// phpcs:disable
+
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 class AWPCP_CSV_Importer_Delegate {
 
     private $import_session;
-    private $db;
 
-    private $accepted_columns = array(
-        "title" => "ad_title",
-        "details" => "ad_details",
-        "contact_name" => "ad_contact_name",
-        "contact_email" => "ad_contact_email",
-        "category_name" => "ad_category_id",
-        "category_parent" => "ad_category_parent_id",
-        "contact_phone" => "ad_contact_phone",
-        "website_url" => "websiteurl",
-        "city" => "ad_city",
-        "state" => 'ad_state',
-        "country" => "ad_country",
-        "county_village" => "ad_county_village",
-        "item_price" => "ad_item_price",
-        "start_date" => "ad_startdate",
-        "end_date" => "ad_enddate",
-        'username' => 'user_id',
-    );
+    /**
+     * @var CSVImporterColumns
+     */
+    private $columns;
 
-    private $region_columns = array( 'city', 'state', 'country', 'county_village' );
+    /**
+     * @var ListingsPayments
+     */
+    private $listings_payments;
+
+    private $mime_types;
+    private $categories_logic;
+    private $categories;
+    private $listings_logic;
+
+    /**
+     * @var ListingsCollection
+     */
+    private $listings;
+
+    /**
+     * @var Payments
+     */
+    private $payments;
+
+    /**
+     * @var object
+     */
+    private $media_manager;
 
     private $required_columns = array(
         'title',
@@ -34,303 +50,221 @@ class AWPCP_CSV_Importer_Delegate {
         'category_name',
     );
 
-    // empty string to indicate integers :\
-    private $types = array(
-        "title" => "varchar",
-        "details" => "varchar",
-        "contact_name" => "varchar",
-        "contact_email" => "varchar",
-        "category_name" => "",
-        "category_parent" => "",
-        "contact_phone" => "varchar",
-        "website_url" => "varchar",
-        "city" => "varchar",
-        'state' => 'varchar',
-        "country" => "varchar",
-        "county_village" => "varchar",
-        "item_price" => "",
-        "start_date" => "date",
-        "end_date" => "date",
-        'username' => '',
-        "images" => "varchar"
+    private $required_fields = array(
+        'post_title',
+        'post_content',
+        'post_author',
+        '_awpcp_contact_name',
+        '_awpcp_contact_email',
+        '_awpcp_start_date',
+        '_awpcp_end_date',
     );
 
-    private $auto_columns = array(
-        "is_featured_ad" => 0,
-        "disabled" => 0,
-        "adterm_id" => 0,
-        "ad_postdate" => "?",
-        "disabled_date" => "",
-        "ad_views" => 0,
-        "ad_last_updated" => "?",
-        "ad_key" => ""
-    );
+    private $messages = array();
 
-    private $auto_columns_types = array(
-        "is_featured_ad" => "",
-        "disabled" => "",
-        "adterm_id" => "",
-        "ad_postdate" => "?",
-        "disabled_date" => "date",
-        "ad_views" => "",
-        "ad_last_updated" => "?",
-        "ad_key" => "varchar"
-    );
-
-    private $extra_fields = null;
-
-    public function __construct( $import_session, $db ) {
-        $this->import_session = $import_session;
-        $this->db = $db;
+    public function __construct( $import_session, $columns, $listings_payments, $mime_types, $categories_logic, $categories, $listings_logic, $listings, $payments, $media_manager ) {
+        $this->import_session    = $import_session;
+        $this->listings_payments = $listings_payments;
+        $this->columns           = $columns;
+        $this->mime_types        = $mime_types;
+        $this->categories_logic  = $categories_logic;
+        $this->categories        = $categories;
+        $this->listings_logic    = $listings_logic;
+        $this->listings          = $listings;
+        $this->payments          = $payments;
+        $this->media_manager     = $media_manager;
     }
 
     public function import_row( $row_data ) {
-        $columns = array();
-        $values = array();
-        $placeholders = array();
-        $region = array();
+        $this->clear_state();
 
-        $contact_email = awpcp_array_data( 'contact_email', '', $row_data );
-        $category_name = awpcp_array_data( 'category_name', '', $row_data );
-        list( $category_id, $category_parent_id ) = $this->get_category_id( $category_name );
-
-        foreach ( $this->accepted_columns as $column_name => $database_column ) {
-            // DO NOT USE awpcp_array_data BECAUSE IT WILL TREAT '0' AS
-            // AN EMPTY VALUE
-            $value = isset( $row_data[ $column_name ] ) ? $row_data[ $column_name ] : '';
-
-            $_errors = array();
-            if ( $column_name == 'username' ) {
-                $value = $this->get_user_id( $value, $contact_email );
-
-                if ( empty( $value ) && ! empty( $_errors ) ) {
-                    $exception = new AWPCP_CSV_Importer_Exception();
-                    $exception->setErrors( $_errors );
-
-                    throw $exception;
-                }
-            } else if ( $column_name == 'category_name' ) {
-                $value = $category_id;
-            } else if ( $column_name == 'category_parent' ) {
-                $value = $category_parent_id;
-            } else {
-                $value = $this->parse( $value, $column_name );
-            }
-
-            // missing value, mark row as bad
-            if ( strlen( $value ) === 0 && in_array( $column_name, $this->required_columns ) ) {
-                $message = __( 'Missing value for required column <em>%s</em>.', 'another-wordpress-classifieds-plugin' );
-                $message = sprintf( $message, $column_name );
-
-                throw new AWPCP_CSV_Importer_Exception( $message );
-            }
-
-            // if there was an error getting a value for this field,
-            // but the field wasn't included in the CSV, skip and mark
-            // the row as good
-            if ( $value === false && ! isset( $row_data[ $column_name ] ) ) {
-                continue;
-            }
-
-            if ( in_array( $column_name, $this->region_columns ) ) {
-                if ( $column_name == 'county_village' ) {
-                    $region['county'] = $value;
-                } else {
-                    $region[ $column_name ] = $value;
-                }
-            } else {
-                $placeholders[] = empty( $this->types[ $column_name ] ) ? '%d' : '%s';
-                $values[] = $value;
-                $columns[] = $database_column;
-
-                if ( $column_name == 'contact_phone' ) {
-                    $placeholders[] = '%s';
-                    $values[] = awpcp_get_digits_from_string( $value );
-                    $columns[] = 'phone_number_digits';
-                }
-            }
-        }
-
-        foreach ( $this->auto_columns as $column_name => $value ) {
-            if ( $value == '?' ) {
-                $value = $this->parse( $value, $column_name );
-            }
-
-            $columns[] = $column_name;
-            $placeholders[] = empty( $this->auto_columns_types[ $column_name ] ) ? '%d' : '%s';
-            $values[] = empty( $this->auto_columns_types[ $column_name ]) ? 0 : $value;
-        }
-
-        foreach ( $this->get_extra_fields() as $field ) {
-            $name = $field->field_name;
-
-            // validate only extra fields present in the CSV file
-            if ( ! isset( $row_data[ $name ] ) ) {
-                continue;
-            }
-
-            $validate = $field->field_validation;
-            $type = $field->field_input_type;
-            $options = $field->field_options;
-            $category = $field->field_category;
-            $errors = array();
-            $enforce = in_array( $category_id, $category ) && $field->required;
-
-            $value = awpcp_validate_extra_field(
-                $name,
-                $row_data[ $name ],
-                $validate,
-                $type,
-                $options,
-                $enforce,
-                $errors
-            );
-
-            if ( ! empty( $errors ) ) {
-                throw new AWPCP_CSV_Importer_Exception( array_shift( $errors ) );
-            }
-
-            switch ( $field->field_mysql_data_type ) {
-                case 'VARCHAR':
-                case 'TEXT':
-                    $placeholders[] = '%s';
-                    break;
-                case 'INT':
-                    $placeholders[] = '%d';
-                    break;
-                case 'FLOAT':
-                    $placeholders[] = '%f';
-                    break;
-            }
-
-            $columns[] = $name;
-            $values[] = $value;
-        }
-
-        $image_names = array_filter( explode( ';', $row_data['images'] ) );
-
-        if ( $image_names ) {
-            $images = $this->import_images( $image_names );
-        } else {
-            $images = array();
-        }
-
-        // $this->images_imported += count( $images );
-        // // save created images to be deleted later, if test mode is on
-        // array_splice( $images_created, 0, 0, $images );
-
-        $sql = 'INSERT INTO ' . AWPCP_TABLE_ADS . ' ';
-        $sql.= '( ' . implode( ', ', $columns ) . ' ) VALUES ( ' . implode( ', ', $placeholders ) . ' ) ';
-
-        $sql = $this->db->prepare( $sql, $values);
-
-        if ( $this->import_session->is_test_mode_enabled() ) {
-            $inserted_id = 5;
-        } else {
-            $this->db->query( $sql );
-            $inserted_id = $this->db->insert_id;
-        }
-
-        if ( !empty( $region ) ) {
-            $this->save_regions( $region, $inserted_id );
-        }
-
-        if ( $images && $this->import_session->is_test_mode_enabled() ) {
-            $this->delete_imported_images( $images );
-        } else if ( $images ) {
-            $this->save_images( $images, $inserted_id );
-        }
+        $listing_data = $this->get_listing_data( $row_data );
 
         if ( ! $this->import_session->is_test_mode_enabled() ) {
-            do_action( 'awpcp-listing-imported', $inserted_id, $row_data );
+            $this->save_listing_data( $listing_data );
         }
+
+        return (object) array(
+            'messages' => $this->messages,
+        );
     }
 
-    private function get_category_id( $category_name ) {
-        $auto = $this->import_session->get_param( 'create_missing_categories', false );
-        $test = $this->import_session->is_test_mode_enabled();
+    private function clear_state() {
+        $this->messages = array();
+    }
 
-        $sql = 'SELECT category_id, category_parent_id FROM ' . AWPCP_TABLE_CATEGORIES . ' ';
-        $sql.= 'WHERE category_name = %s';
-        $sql = $this->db->prepare( $sql, $category_name );
+    private function get_listing_data( $row_data ) {
+        foreach ( $this->columns->get_supported_columns() as $column_type => $columns ) {
+            foreach ( $columns as $column_name => $field ) {
+                if ( ! isset( $row_data[ $column_name ] ) && in_array( $column_name, $this->required_columns ) ) {
+                    $message =_x( 'Required value for column "<column-name>" is missing.', 'csv importer', 'another-wordpress-classifieds-plugin' );
+                    $message = str_replace( $message, '<column-name>', $column_name );
 
-        $category = $this->db->get_row( $sql, ARRAY_N );
+                    throw new AWPCP_CSV_Importer_Exception( $message );
+                }
 
-        if ( is_null( $category ) && $auto && ! $test ) {
-            $sql = 'INSERT INTO ' . AWPCP_TABLE_CATEGORIES . ' ';
-            $sql.= '(category_parent_id, category_name, category_order) VALUES (0, %s, 0)';
-            $sql = $this->db->prepare( $sql, $category_name );
+                try {
+                    $parsed_value = $this->parse_column_value( $row_data, $column_name );
+                } catch ( AWPCP_Exception $e ) {
+                    if ( ! in_array( $field['name'], $this->required_fields ) ) {
+                        continue;
+                    }
 
-            $this->db->query( $sql );
+                    throw $e;
+                }
 
-            return array( $this->db->insert_id, 0 );
-        } else if ( ! is_null( $category ) ) {
-            return $category;
-        } else if ( $auto && $test ) {
-            return array( 5, 0 );
+                $listing_data[ $column_type ][ $field['name'] ] = $parsed_value;
+            }
         }
 
-        return false;
+        if ( ! empty( $row_data['images'] ) ) {
+            $image_names = array_filter( explode( ';', $row_data['images'] ) );
+            $listing_data['attachments'] = $this->import_images( $image_names );
+        } else {
+            $listing_data['attachments'] = array();
+        }
+
+        // TODO: fix Extra Fields module to be able to import extra fields data
+        return apply_filters( 'awpcp-imported-listing-data', $listing_data, $row_data );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function parse_column_value( $row_data, $column_name ) {
+        // DO NOT USE awpcp_array_data BECAUSE IT WILL TREAT '0' AS AN EMPTY VALUE
+        $raw_value = isset( $row_data[ $column_name ] ) ? $row_data[ $column_name ] : false;
+
+        switch ( $column_name ) {
+            case 'username':
+                $parsed_value = $this->parse_username_column( $raw_value, $row_data );
+                break;
+            case 'category_name':
+                $parsed_value = $this->parse_category_name_column( $raw_value, $row_data );
+                break;
+            case 'item_price':
+                $parsed_value = $this->parse_item_price_column( $raw_value, $row_data );
+                break;
+            case 'start_date':
+                $parsed_value = $this->parse_start_date_column( $raw_value, $row_data );
+                break;
+            case 'end_date':
+                $parsed_value = $this->parse_end_date_column( $raw_value, $row_data );
+                break;
+            case 'ad_postdate':
+                $parsed_value = $this->parse_post_date_column( $raw_value, $row_data );
+                break;
+            case 'ad_last_updated':
+                $parsed_value = $this->parse_post_modified_column( $raw_value, $row_data );
+                break;
+            case 'payment_term_id':
+                $parsed_value = $this->parse_payment_term_id_column( $raw_value, $row_data );
+                break;
+            default:
+                $parsed_value = $raw_value;
+                break;
+        }
+
+        return $parsed_value;
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function parse_username_column( $username, $row_data ) {
+        $contact_email = $this->parse_column_value( $row_data, 'contact_email' );
+
+        $user_info = $this->get_user_info( $username, $contact_email );
+
+        if ( $user_info->created ) {
+            $message = _x( "A new user '%s' with email address '%s' and password '%s' was created.", 'csv importer', 'another-wordpress-classifieds-plugin' );
+            $message = sprintf( $message, $username, $contact_email, $user_info->password );
+
+            $this->messages[] = $message;
+        }
+
+        return $user_info->ID;
     }
 
     /**
      * Attempts to find a user by its username or email. If a user can't be
      * found one will be created.
      *
-     * @param $username string  User's username
-     * @param $email    string  User's email address
-     * @param $row      int     The index of the row being processed
-     * @param $errors   array   Used to pass errors back to the caller.
-     * @param $messages array   Used to pass messages back to the caller
-     *
-     * @return User ID or false on error
+     * @since 4.0.0
+     * @param $username string  User's username.
+     * @param $contact_email    string  User's email address.
+     * @return User info object or false.
+     * @throws AWPCP_Exception
      */
-    public function get_user_id( $username, $email ) {
-        static $users = array();
-
-        if ( ! $this->import_session->get_param( 'assign_listings_to_user', false ) ) {
-            return '';
-        }
-
-        if ( isset( $users[ $username ] ) ) {
-            return $users[ $username ];
-        }
-
-        $user = empty( $username ) ? false : get_user_by( 'login', $username );
-
-        if ( $user === false ) {
-            $user = empty( $email ) ? false : get_user_by( 'email', $email );
-        } else {
-            $users[ $user->user_login ] = $user->ID;
-            return $user->ID;
-        }
+    private function get_user_info( $username, $contact_email ) {
+        $user = $this->get_user( $username, $contact_email );
 
         if ( is_object( $user ) ) {
-            $users[ $user->user_login ] = $user->ID;
-            return $user->ID;
+            return (object) array( 'ID' => $user->ID, 'created' => false );
         }
 
         $default_user = $this->import_session->get_param( 'default_user' );
 
-        // a default user was selected, do not attempt to create a new one
-        if ( $default_user > 0) {
-            return $default_user;
+        if ( $default_user ) {
+            return (object) array( 'ID' => $default_user, 'created' => false );
         }
 
-        if ( empty( $username ) ) {
-            $message = __( "No user could be assigned to this listing. A new user couldn't be created because the username column has an empty value. Please include a username or select a default user.", 'another-wordpress-classifieds-plugin' );
-            throw new AWPCP_CSV_Importer_Exception( $message );
-        } else if ( empty( $email ) ) {
-            $message = __( "No user could be assigned to this listing. A new user couldn't be created because the contact_email column has an empty value. Please include a contact_email or select a default user.", 'another-wordpress-classifieds-plugin' );
-            throw new AWPCP_CSV_Importer_Exception( $message );
+        $user_data = $this->create_user( $username, $contact_email );
+
+        if ( isset( $user_data['user'] ) && is_object( $user_data['user'] ) ) {
+            return (object) array(
+                'ID' => $user_data['user']->ID,
+                'created' => true,
+                'password' => $user_data['password']
+            );
         }
 
-        $password = wp_generate_password( 8, false, false );
+        return null;
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function get_user( $username, $contact_email ) {
+        if ( isset( $this->users_cache[ $username ] ) ) {
+            return $this->users_cache[ $username ];
+        }
+
+        if ( ! empty( $username ) ) {
+            $user = get_user_by( 'login', $username );
+        } else {
+            $user = null;
+        }
+
+        if ( ! is_object( $user ) && ! empty( $contact_email ) ) {
+            $user = get_user_by( 'email', $contact_email );
+        }
+
+        return $this->users_cache[ $username ] = $user;
+    }
+
+    /**
+     * @since 4.0.0
+     * @throws AWPCP_Exception
+     */
+    private function create_user( $username, $contact_email ) {
+        if ( empty( $username ) && empty( $contact_email ) ) {
+            $message = _x( "No user could be assigned to this listing. A new user couldn't be created because both the username and contact email columns are missing or have an empty value. Please include a username and contact email or select a default user.", 'csv importer', 'another-wordpress-classifieds-plugin' );
+            throw new AWPCP_Exception( $message );
+        } else if ( empty( $username ) ) {
+            $message = _x( "No user could be assigned to this listing. A new user couldn't be created because the username column is missing or has an empty value. Please include a username or select a default user.", 'csv importer', 'another-wordpress-classifieds-plugin' );
+            throw new AWPCP_Exception( $message );
+        } else if ( empty( $contact_email ) ) {
+            $message = _x( "No user could be assigned to this listing. A new user couldn't be created because the contact_email column is missing or has an empty value. Please include a contact_email or select a default user.", 'csv importer', 'another-wordpress-classifieds-plugin' );
+            throw new AWPCP_Exception( $message );
+        }
+
+        $password = wp_generate_password( 14, false, false );
 
         if ( $this->import_session->is_test_mode_enabled() ) {
             $result = 1; // fake it!
         } else {
-            $result = wp_create_user( $username, $password, $email );
+            $result = wp_create_user( $username, $password, $contact_email );
         }
 
         if ( is_wp_error( $result ) ) {
@@ -340,97 +274,129 @@ class AWPCP_CSV_Importer_Delegate {
             throw new AWPCP_CSV_Importer_Exception( $message );
         }
 
-        $users[ $username ] = $result;
+        $this->users_cache[ $username ] = get_user_by( 'id', $result );
 
-        $message = __( "A new user '%s' with email address '%s' and password '%s' was created.", 'another-wordpress-classifieds-plugin' );
-        $messages[] = sprintf( $message, $username, $email, $password );
-
-        return $result;
+        return array( 'user' => $this->users_cache[ $username ], 'password' => $password );
     }
 
-    private function parse( $val, $key ) {
-        $start_date = $this->import_session->get_param( 'default_start_date' );
-        $end_date = $this->import_session->get_param( 'default_end_date' );
-        $import_date_format = $this->import_session->get_param( 'date_format' );
-        $date_sep = $this->import_session->get_param( 'date_separator' );
-        $time_sep = $this->import_session->get_param( 'time_separator' );
+    /**
+     * @since 4.0.0
+     */
+    private function parse_category_name_column( $category_name, $row_data ) {
+        $category = $this->get_category( $category_name );
 
-        if ( $key == "item_price" ) {
-            if ( empty( $val ) ) {
-                return 0;
-            }
+        return $category ? $category->term_id : null;
+    }
 
-            // numeric validation
-            if ( is_numeric( $val ) ) {
-                // AWPCP stores Ad prices using an INT column (WTF!) so we need to
-                // store 99.95 as 9995 and 99 as 9900.
-                return $val * 100;
-            }
-
-            $message = __( 'Item price is not a numeric value.', 'another-wordpress-classifieds-plugin' );
-            throw new AWPCP_CSV_Importer_Exception( $message );
-        } else if ($key == "start_date") {
-            // TODO: validation
-            if ( ! empty( $val ) ) {
-                $val = $this->parse_date( $val, $import_date_format, $date_sep, $time_sep );
-
-                if ( empty( $val ) || $val == null ) {
-                    $message = __( 'Invalid Start date.', 'another-wordpress-classifieds-plugin' );
-                    throw new AWPCP_CSV_Importer_Exception( $message );
-                }
-
-                return $val;
-            }
-
-            if ( empty( $start_date ) ) {
-                $message = __( 'Start date missing. You can define a default value for this column changing the import configuration.', 'another-wordpress-classifieds-plugin' );
-                throw new AWPCP_CSV_Importer_Exception( $message );
-            } else {
-                // TODO: validation
-                $val = $this->parse_date( $start_date, 'us_date', $date_sep, $time_sep ); // $start_date;
-            }
-
-            return $val;
-        } else if ($key == "end_date") {
-            // TODO: validation
-            if ( ! empty( $val ) ) {
-                $val = $this->parse_date( $val, $import_date_format, $date_sep, $time_sep );
-
-                if ( empty( $val ) || $val == null ) {
-                    $message = __( 'Invalid End date.', 'another-wordpress-classifieds-plugin' );
-                    throw new AWPCP_CSV_Importer_Exception( $message );
-                }
-
-                return $val;
-            }
-
-            if ( empty( $end_date ) ) {
-                $message = __( 'End date missing. You can define a default value for this column changing the import configuration.', 'another-wordpress-classifieds-plugin' );
-                throw new AWPCP_CSV_Importer_Exception( $message );
-            } else {
-                // TODO: validation
-                $val = $this->parse_date( $end_date, 'us_date', $date_sep, $time_sep ); // $end_date;
-            }
-            return $val;
-        } else if ( $key == "ad_postdate" ) {
-            if ( empty( $start_date ) ) {
-                $date = new DateTime();
-                $val = $date->format( 'Y-m-d' );
-            } else {
-                // TODO: validation
-                $val = $this->parse_date( $start_date, 'us_date', $date_sep, $time_sep, 'Y-m-d' ); // $start_date;
-            }
-
-            return $val;
-        } else if ( $key == "ad_last_updated" ) {
-            $date = new DateTime();
-            $val = $date->format( 'Y-m-d' );
-            return $val;
-        } else if ( ! empty( $val ) ) {
-            return $val;
+    private function get_category( $name ) {
+        try {
+            $category = $this->categories->get_category_by_name( $name );
+        } catch ( AWPCP_Exception $e ) {
+            $category = null;
         }
 
-        return false;
+        $create_missing_categories = $this->import_session->get_param( 'create_missing_categories' );
+        $is_test_mode_enabled = $this->import_session->is_test_mode_enabled();
+
+        if ( is_null( $category ) && $create_missing_categories && $is_test_mode_enabled ) {
+            return (object) array( 'term_id' => rand() + 1, 'parent' => 0 );
+        } else if ( is_null( $category ) && $create_missing_categories ) {
+            return $this->create_category( $name );
+        } else if ( is_null( $category ) ) {
+            $message = _x( 'No category with name "<category-name>" was found.', 'csv importer', 'another-wordpress-classifieds-plugin' );
+            $message = str_replace( '<category-name>', $name, $message );
+
+            throw new AWPCP_CSV_Importer_Exception( $message );
+        }
+
+        return $category;
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function create_category( $name ) {
+        try {
+            $category_id = $this->categories_logic->create_category( array( 'name' => $name ) );
+        } catch ( AWPCP_Exception $e ) {
+            $message = _x( 'There was an error trying to create category "<category-name>".', 'csv importer', 'another-wordpress-classifieds-plugin' );
+            $message = str_replace( '<category-name>', $name, $message );
+
+            throw new AWPCP_CSV_Importer_Exception( $message, null, $e );
+        }
+
+        try {
+            $category = $this->categories->get( $category_id );
+        } catch ( AWPCP_Exception $e ) {
+            $message = _x( 'A category with name "<category-name>" was created, but there was an error trying to retrieve its information from the database.', 'csv importer', 'another-wordpress-classifieds-plugin' );
+            $message = str_replace( '<category-name>', $name, $message );
+
+            throw new AWPCP_CSV_Importer_Exception( $message, null, $e );
+        }
+
+        return $category;
+    }
+
+    private function parse_item_price_column( $price, $row_data ) {
+        // numeric validation
+        if ( ! is_numeric( $price ) ) {
+            $message = _x( "Item price must be a number.", 'csv importer', 'another-wordpress-classifieds-plugin' );
+            throw new AWPCP_Exception( $message );
+        }
+
+        // AWPCP stores Ad prices using an INT column (WTF!) so we need to
+        // store 99.95 as 9995 and 99 as 9900.
+        return $price * 100;
+    }
+
+    private function parse_start_date_column( $start_date, $row_data ) {
+        return $this->parse_date_column(
+            $start_date,
+            $this->import_session->get_param( 'default_start_date' ),
+            array(
+                'empty-date-with-no-default' => _x( 'The start date is missing and no default value was defined.', 'csv importer', 'another-wordpress-classifieds-plugin' ),
+                'invalid-date' => _x( 'The start date is invalid and no default value was defined.', 'csv importer', 'another-wordpress-classifieds-plugin' ),
+                'invalid-default-date' => _x( "Invalid default start date.", 'csv importer', 'another-wordpress-classifieds-plugin' ),
+            )
+        );
+    }
+
+    private function parse_date_column( $date, $default_date, $error_messages = array() ) {
+        if ( empty( $date ) && empty( $default_date ) ) {
+            $message = $error_messages['empty-date-with-no-default'];
+            throw new AWPCP_CSV_Importer_Exception( $message );
+        }
+
+        if ( ! empty( $date ) ) {
+            $parsed_value = $this->parse_date(
+                $date,
+                $this->import_session->get_param( 'date_format' ),
+                $this->import_session->get_param( 'date_separator' ),
+                $this->import_session->get_param( 'time_separator' )
+            );
+
+            // TODO: validation
+            if ( empty( $parsed_value ) ) {
+                $message = $error_messages['invalid-date'];
+                throw new AWPCP_CSV_Importer_Exception( $message );
+            }
+
+            return $parsed_value;
+        }
+
+        $parsed_value = $this->parse_date(
+            $default_date,
+            'us_date',
+            $this->import_session->get_param( 'date_separator' ),
+            $this->import_session->get_param( 'time_separator' )
+        );
+
+        if ( empty( $parsed_value ) && ! empty( $default_date ) ) {
+            $message = $error_messages['invalid-default-date'];
+            throw new AWPCP_CSV_Importer_Exception( $message );
+        }
+
+        return $parsed_value;
     }
 
     public function parse_date($val, $date_time_format, $date_separator, $time_separator, $format = "Y-m-d H:i:s") {
@@ -478,6 +444,67 @@ class AWPCP_CSV_Importer_Delegate {
         return $datetime->format($format);
     }
 
+    private function parse_end_date_column( $end_date, $row_data ) {
+        return $this->parse_date_column(
+            $end_date,
+            $this->import_session->get_param( 'default_end_date' ),
+            array(
+                'empty-date-with-no-default' => _x( 'The end date is missing and no default value was defined.', 'csv importer', 'another-wordpress-classifieds-plugin' ),
+                'invalid-date' => _x( 'The end date is missing and no default value was defined.', 'csv importer', 'another-wordpress-classifieds-plugin' ),
+                'invalid-default-date' => _x( "Invalid default end date.", 'csv importer', 'another-wordpress-classifieds-plugin' ),
+            )
+        );
+    }
+
+    private function parse_post_date_column( $post_date, $row_data ) {
+        $default_start_date = $this->options['start-date'];
+
+        if ( empty( $default_start_date ) ) {
+            return current_time( 'mysql' );
+        }
+
+        $parsed_value = $this->parse_date(
+            $default_start_date,
+            'us_date',
+            $this->options['date-separator'],
+            $this->options['time-separator']
+        );
+
+        return $parsed_value;
+    }
+
+    private function parse_post_modified_column( $post_modified, $row_data ) {
+        return current_time( 'mysql' );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function parse_payment_term_id_column( $payment_term_id, $row_data ) {
+        $payment_term_id   = intval( $payment_term_id );
+        $payment_term_type = isset( $row_data['payment_term_type'] ) ? $row_data['payment_term_type'] : 'fee';
+
+        if ( ! $payment_term_id || ! $payment_term_type ) {
+            return null;
+        }
+
+        if ( ! in_array( $payment_term_type, [ 'fee', 'subscription' ] ) ) {
+            throw new AWPCP_CSV_Importer_Exception( __( "The payment term type must be 'fee' or 'subscription'.", 'another-wordpress-classifieds-plugin' ) );
+        }
+
+        $payment_term = $this->payments->get_payment_term( $payment_term_id, $payment_term_type );
+
+        if ( ! $payment_term ) {
+            $message = __( 'There is no payment term with type {payment_term_type} and ID {payment_term_id}.', 'another-wordpress-classifieds-plugin' );
+            $message = str_replace( '{payment_term_type}', $payment_term_type, $message );
+            $message = str_replace( '{payment_term_id}', $payment_term_id, $message );
+
+            throw new AWPCP_CSV_Importer_Exception( $message );
+        }
+
+        return $payment_term;
+    }
+
     private function import_images( $filenames ) {
         $images_directory = $this->import_session->get_images_directory();
 
@@ -485,93 +512,125 @@ class AWPCP_CSV_Importer_Delegate {
             throw new AWPCP_CSV_Importer_Exception( __( 'No images directory was configured. Are you sure you uploaded a ZIP file or defined a local directory?', 'another-wordpress-classifieds-plugin' ) );
         }
 
-        list( $images_dir, $_ ) = awpcp_setup_uploads_dir();
-        list( $min_width, $min_height, $min_size, $max_size ) = awpcp_get_image_constraints();
-
         $entries = array();
 
-        foreach ( array_filter( $filenames ) as $filename ) {
-            $uploaded = awpcp_upload_image_file(
-                $images_dir,
-                awpcp_unique_filename( $images_directory . DIRECTORY_SEPARATOR . $filename, basename( $filename ), array( $images_dir, $images_dir . 'images/', $images_dir . 'thumbs/' ) ),
-                $images_directory . DIRECTORY_SEPARATOR . $filename,
-                $min_size,
-                $max_size,
-                $min_width,
-                $min_height,
-                false
-            );
+        foreach ( $filenames as $filename ) {
+            $file_path ="$images_directory/$filename";
 
-            if ( is_array( $uploaded ) && isset( $uploaded['filename'] ) ) {
-                $entries[] = $uploaded;
-            } else {
-                $message = __( 'An image could not be succesfully imported. The operation failed with the following error: <error-message>', 'another-wordpress-classifieds-plugin' );
-                $message = str_replace( '<error-message>', $uploaded, $message );
+            if ( ! file_exists( $file_path ) ) {
+                $message = _x( 'Image file with name <image-name> not found.', 'csv importer', 'another-wordpress-classifieds-plugin' );
+                $message = str_replace( '<image-name>', $filename, $message );
 
                 throw new AWPCP_CSV_Importer_Exception( $message );
             }
+
+            $pathinfo = awpcp_utf8_pathinfo( $file_path );
+
+            $imported_file = (object) array(
+                'path'        => $file_path,
+                'realname'    => $pathinfo['basename'],
+                'name'        => $pathinfo['basename'],
+                'dirname'     => $pathinfo['dirname'],
+                'filename'    => $pathinfo['filename'],
+                'extension'   => $pathinfo['extension'],
+                'mime_type'   => $this->mime_types->get_file_mime_type( $file_path ),
+                'is_complete' => true,
+            );
+
+            try{
+                $this->media_manager->validate_file( (object) [ 'ID' => -1 ], $imported_file );
+            } catch ( AWPCP_Exception $previous ) {
+                throw new AWPCP_CSV_Importer_Exception( $previous->getMessage(), $previous->getCode(), $previous );
+            }
+
+            $entries[] = $file_path;
         }
 
         return $entries;
     }
 
-    private function save_regions( $region, $ad_id ) {
-        if ( ! $this->import_session->is_test_mode_enabled() ) {
-            $ad = AWPCP_Ad::find_by_id( $ad_id );
-            awpcp_basic_regions_api()->update_ad_regions( $ad, array( $region ), 1 );
+    private function save_listing_data( $listing_data ) {
+        $payment_term = null;
+
+        $listing_data['metadata']['_awpcp_verified'] = true;
+        $listing_data['metadata']['_awpcp_payment_status'] = AWPCP_Payment_Transaction::PAYMENT_STATUS_NOT_REQUIRED;
+
+        if ( ! empty( $listing_data['metadata']['_awpcp_payment_term_id'] ) ) {
+            $payment_term = $listing_data['metadata']['_awpcp_payment_term_id'];
         }
-    }
 
-    private function delete_imported_images( $images ) {
-        list( $images_dir, $thumbs_dir ) = awpcp_setup_uploads_dir();
+        unset( $listing_data['metadata']['_awpcp_payment_term_id'] );
+        unset( $listing_data['metadata']['_awpcp_payment_term_type'] );
 
-        foreach ( $images as $image ) {
-            $basename = $image['filename'];
+        try {
+            $listing = $this->find_or_create_listing( $listing_data );
+            $listing = $this->listings_logic->update_listing( $listing, $listing_data );
 
-            $filename = awpcp_utf8_pathinfo( $basename, PATHINFO_FILENAME );
-            $extension = awpcp_utf8_pathinfo( $basename, PATHINFO_EXTENSION );
-
-            if ( file_exists( $images_dir . $basename ) ) {
-                unlink( $images_dir . $basename );
+            if ( $payment_term ) {
+                $this->listings_payments->update_listing_payment_term( $listing, $payment_term );
             }
-
-            if ( file_exists( $thumbs_dir . $basename ) ) {
-                unlink( $thumbs_dir . $basename );
-            }
-
-            if ( file_exists( $images_dir . $filename . '-large.' . $extension ) ) {
-                unlink( $images_dir . $filename . '-large.' . $extension );
-            }
-
-            if ( file_exists( $thumbs_dir . $filename . '-primary.' . $extension ) ) {
-                unlink( $thumbs_dir . $filename . '-primary.' . $extension );
-            }
+        } catch ( AWPCP_Exception $previous ) {
+            $message = _x( 'There was an error trying to store imported data into the database.', 'csv importer', 'another-wordpress-classifieds-plugin' );
+            throw new AWPCP_CSV_Importer_Exception( $message, 0, $previous );
         }
-    }
 
-    private function save_images( $entries, $adid ) {
-        $media_api = awpcp_media_api();
+        foreach ( $listing_data['attachments'] as $file_path ) {
+            $pathinfo = awpcp_utf8_pathinfo( $file_path );
 
-        foreach ( $entries as $entry ) {
-            $extension = awpcp_get_file_extension( $entry['filename'] );
-            $mime_type = sprintf( 'image/%s', $extension );
-
-            $data = array(
-                'ad_id' => $adid,
-                'name' => $entry['filename'],
-                'path' => $entry['filename'],
-                'mime_type' => $mime_type,
-                'enabled' => true,
-                'is_primary' => false,
+            $imported_file = (object) array(
+                'path'        => $file_path,
+                'realname'    => $pathinfo['basename'],
+                'name'        => $pathinfo['basename'],
+                'dirname'     => $pathinfo['dirname'],
+                'filename'    => $pathinfo['filename'],
+                'extension'   => $pathinfo['extension'],
+                'mime_type'   => $this->mime_types->get_file_mime_type( $file_path ),
+                'is_complete' => true,
             );
 
-            if ( $media_api->create( $data ) === false ) {
-                $message =__( 'Could not save the information for image <image> into the database.', 'another-wordpress-classifieds-plugin' );
-                $message = str_replace( '<image>', $entry['original'], $message );
+            try {
+                $this->media_manager->add_file( $listing, $imported_file );
+            } catch ( AWPCP_Exception $previous ) {
+                $message = _x( 'There was an error trying to import one of the images: {image-validation-error}', 'csv importer', 'another-wordpress-classifieds-plugin' );
+                $message = str_replace( '{image-validation-error}', $previous->getMessage(), $message );
 
-                throw new AWPCP_CSV_Importer_Exception( $message );
+                throw new AWPCP_CSV_Importer_Exception( $message, 0, $previous );
             }
         }
+
+        do_action( 'awpcp-listing-imported', $listing, $listing_data );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function find_or_create_listing( $listing_data ) {
+        if ( empty( $listing_data['metadata']['_awpcp_sequence_id'] ) ) {
+            return $this->create_empty_listing();
+        }
+
+        $listings = $this->listings->find_listings( [
+            'meta_key'   => '_awpcp_sequence_id',
+            'meta_value' => $listing_data['metadata']['_awpcp_sequence_id'],
+        ] );
+
+        if ( empty( $listings ) ) {
+            return $this->create_empty_listing();
+        }
+
+        return $listings[0];
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function create_empty_listing() {
+        $listing_data = [
+            'post_fields' => [ 'post_title' => 'Imported Listing Draft' ],
+            'metadata'    => [],
+        ];
+
+        return $this->listings_logic->create_listing( $listing_data );
     }
 
     private function get_extra_fields() {
@@ -605,12 +664,15 @@ class AWPCP_CSV_Importer_Delegate {
  *                    that the extra field was assigned to, or if the extra field was
  *                    not assigned to any category.
  *                    required fields may be empty if enforce is false.
+ * @SuppressWarnings(PHPMD.NPathComplexity)
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
  */
 function awpcp_validate_extra_field( $name, $value, $validate, $type, $options, $enforce, &$errors ) {
     $validation_errors = array();
     $serialize = false;
 
-    $list = null;
+    $values_list = null;
 
     switch ( $type ) {
         case 'Input Box':
@@ -622,19 +684,19 @@ function awpcp_validate_extra_field( $name, $value, $validate, $type, $options, 
         case 'Select Multiple':
             // value can be any combination of items from options list
             $msg = sprintf( __( "The value for Extra Field %s's is not allowed. Allowed values are: %%s", 'another-wordpress-classifieds-plugin' ), $name );
-            $list = explode( ';', $value );
+            $values_list = explode( ';', $value );
             $serialize = true;
 
         case 'Select':
         case 'Radio Button':
-            $list = is_array( $list ) ? $list : array( $value );
+            $values_list = is_array( $values_list ) ? $values_list : array( $value );
 
             if ( ! isset( $msg ) ) {
-                $msg = sprintf( __( "The value for Extra Field %s's is not allowed. Allowed value is one of: %%s", 'another-wordpress-classifieds-plugin' ), $name, $row );
+                $msg = sprintf( __( "The value for Extra Field %s's is not allowed. Allowed value is one of: %%s", 'another-wordpress-classifieds-plugin' ), $name );
             }
 
             // only attempt to validate if the field is required (has validation)
-            foreach ( $list as $item ) {
+            foreach ( $values_list as $item ) {
                 if ( empty( $item ) ) {
                     continue;
                 }
@@ -646,7 +708,7 @@ function awpcp_validate_extra_field( $name, $value, $validate, $type, $options, 
 
             // extra fields multiple values are stored serialized
             if ( $serialize ) {
-                $value = maybe_serialize( $list );
+                $value = maybe_serialize( $values_list );
             }
 
             break;
@@ -660,9 +722,9 @@ function awpcp_validate_extra_field( $name, $value, $validate, $type, $options, 
         return false;
     }
 
-    $list = is_array( $list ) ? $list : array( $value );
+    $values_list = is_array( $values_list ) ? $values_list : array( $value );
 
-    foreach ( $list as $k => $item ) {
+    foreach ( $values_list as $item ) {
         if ( ! $enforce && empty( $item ) ) {
             continue;
         }

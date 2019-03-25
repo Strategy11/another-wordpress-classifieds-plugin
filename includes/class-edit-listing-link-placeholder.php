@@ -1,14 +1,19 @@
 <?php
 
 function awpcp_edit_listing_link_placeholder() {
-    return new AWPCP_EditListingLinkPlaceholder( awpcp_listing_authorization() );
+    return new AWPCP_EditListingLinkPlaceholder(
+        awpcp_listing_renderer(),
+        awpcp_listing_authorization()
+    );
 }
 
 class AWPCP_EditListingLinkPlaceholder {
 
+    private $listing_renderer;
     private $authorization;
 
-    public function __construct( $authorization ) {
+    public function __construct( $listing_renderer, $authorization ) {
+        $this->listing_renderer = $listing_renderer;
         $this->authorization = $authorization;
     }
 
@@ -36,7 +41,7 @@ class AWPCP_EditListingLinkPlaceholder {
 
     private function generate_link_title( $listing ) {
         $template = _x( 'Edit <listing-title>', 'title attribute for edit listing link', 'another-wordpress-classifieds-plugin' );
-        $template = str_replace( '<listing-title>', $listing->get_title(), $template );
+        $template = str_replace( '<listing-title>', $this->listing_renderer->get_listing_title( $listing ), $template );
 
         return $template;
     }

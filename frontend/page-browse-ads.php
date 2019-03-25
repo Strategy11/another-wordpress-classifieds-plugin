@@ -1,14 +1,28 @@
 <?php
+/**
+ * @package AWPCP
+ */
 
-require_once( AWPCP_DIR . '/includes/helpers/page.php' );
+// phpcs:disable
 
+function awpcp_browse_listings_page() {
+    return new AWPCP_BrowseAdsPage(
+        'awpcp-browse-ads',
+        __( 'Browse Ads', 'another-wordpress-classifieds-plugin' ),
+        awpcp_template_renderer(),
+        awpcp_request()
+    );
+}
+
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 class AWPCP_BrowseAdsPage extends AWPCP_Page {
 
     private $request;
 
-    public function __construct($page='awpcp-browse-ads', $title=null) {
-        $title = is_null($title) ? __( 'Browse Ads', 'another-wordpress-classifieds-plugin' ) : $title;
-        parent::__construct( $page, $title );
+    public function __construct( $page, $title, $template_renderer, $request ) {
+        parent::__construct( $page, $title, $template_renderer );
 
         $this->request = awpcp_request();
     }
@@ -23,9 +37,12 @@ class AWPCP_BrowseAdsPage extends AWPCP_Page {
     }
 
     protected function _dispatch() {
+        wp_enqueue_style( 'select2' );
+        wp_enqueue_script( 'select2' );
+
         awpcp_enqueue_main_script();
 
-        $category_id = absint( $this->request->param( 'category_id', get_query_var( 'cid' ) ) );
+        $category_id = absint( $this->request->get_category_id() );
 
         $output = apply_filters( 'awpcp-browse-listings-content-replacement', null, $category_id );
 
@@ -39,13 +56,13 @@ class AWPCP_BrowseAdsPage extends AWPCP_Page {
     }
 
     private function render_listings_from_category( $category_id ) {
-        $query = array(
-            'context' => 'public-listings',
-            'category_id' => $category_id,
-            'limit' => absint( awpcp_request_param( 'results', get_awpcp_option( 'adresultsperpage', 10 ) ) ),
-            'offset' => absint( awpcp_request_param( 'offset', 0 ) ),
-            'orderby' => get_awpcp_option( 'groupbrowseadsby' ),
-        );
+        $query = [
+            'classifieds_query' => [
+                'context'  => 'public-listings',
+                'category' => $category_id,
+            ],
+            'orderby'           => get_awpcp_option( 'groupbrowseadsby' ),
+        ];
 
         if ( $category_id == -1 ) {
             $message = __( "No specific category was selected for browsing so you are viewing listings from all categories." , 'another-wordpress-classifieds-plugin' );
@@ -67,9 +84,9 @@ class AWPCP_BrowseAdsPage extends AWPCP_Page {
 
     protected function render_all_listings() {
         $query = array(
-            'context' => 'public-listings',
-            'limit' => absint( awpcp_request_param( 'results', get_awpcp_option( 'adresultsperpage', 10 ) ) ),
-            'offset' => absint( awpcp_request_param( 'offset', 0 ) ),
+            'classifieds_query' => [
+                'context' => 'public-listings',
+            ],
             'orderby' => get_awpcp_option( 'groupbrowseadsby' ),
         );
 

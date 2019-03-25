@@ -1,0 +1,55 @@
+@select2-border-color: rgb(221, 221, 221);
+@select2-placeholder-text-color: #444;
+
+.tablenav {
+    .actions {
+        overflow: visible;
+    }
+
+    .select2-container {
+        margin-top: 1px;
+
+        .select2-dropdown, .select2-selection {
+            border-color: @select2-border-color;
+        }
+        .select2-selection__rendered {
+            line-height: 26px;
+        }
+        .select2-selection__clear {
+            padding-left: 4px;
+        }
+        .select2-selection__placeholder {
+            color: @select2-placeholder-text-color;
+        }
+    }
+}
+.select2-dropdown {
+    border-color: @select2-border-color;
+}
+
+[name="awpcp_date_range_placeholder"] {
+    height: 28px;
+    margin: 0 6px 0 0;
+    min-width: 270px;
+    vertical-align: bottom;
+}
+
+.awpcp-search-mode-dropdown-container {
+    float: left;
+    margin: 0 4px 0 0;
+
+    label {
+        margin-right: 4px;
+    }
+}
+
+.column-taxonomy-awpcp_listing_category,
+.column-awpcp-status {
+    width: 10%;
+}
+.column-awpcp-dates {
+    width: 20%;
+}
+.column-awpcp-payment-term {
+    width: 15%;
+}

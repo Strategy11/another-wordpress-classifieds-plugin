@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package AWPCP\Frontend
+ */
+
+// phpcs:disable
 
 /**
  * @since 3.0
@@ -170,6 +175,9 @@ function awpcp_content_placeholders() {
         'posted_date' => array(
             'callback' => 'awpcp_do_placeholder_dates',
         ),
+        'posted_date_time' => array(
+            'callback' => 'awpcp_do_placeholder_dates',
+        ),
          'posted_time_elapsed' => array(
             'callback' => 'awpcp_do_placeholder_dates',
         ),
@@ -273,8 +281,10 @@ function awpcp_do_placeholder_url($ad, $placeholder) {
  * @since 3.0
  */
 function awpcp_do_placeholder_title($ad, $placeholder) {
-    $title = $ad->get_title();
-    $url = awpcp_listing_renderer()->get_view_listing_url( $ad );
+    $listing_renderer = awpcp_listing_renderer();
+
+    $title = $listing_renderer->get_listing_title( $ad );
+    $url   = $listing_renderer->get_view_listing_url( $ad );
 
     $title_link = sprintf( '<a href="%s">%s</a>', esc_attr( $url ), esc_html( $title ) );
     $title_link = apply_filters( 'awpcp_title_link_placeholder', $title_link, $ad, $title, $url );
@@ -290,14 +300,14 @@ function awpcp_do_placeholder_title($ad, $placeholder) {
  * @since 3.0
  */
 function awpcp_do_placeholder_category_name($ad, $placeholder) {
-    return esc_html( stripslashes( get_adcatname( $ad->ad_category_id ) ) );
+    return esc_html( stripslashes( awpcp_listing_renderer()->get_category_name( $ad ) ) );
 }
 
 /**
  * @since 3.0
  */
 function awpcp_do_placeholder_category_url($ad, $placeholder) {
-    return awpcp_get_browse_category_url_from_id( $ad->ad_category_id );
+    return awpcp_get_browse_category_url_from_id( awpcp_listing_renderer()->get_category_id( $ad ) );
 }
 
 /**
@@ -318,13 +328,11 @@ function awpcp_do_placeholder_parent_category_url( $ad, $placeholder ) {
  * @since 3.3
  */
 function awpcp_do_placeholder_categories( $listing, $placeholder ) {
-    $categories_ids = array_filter( array( $listing->ad_category_id, $listing->ad_category_parent_id ) );
-    $categories = awpcp_categories_collection()->find( array( 'id' => $categories_ids ) );
-
+    $categories = awpcp_categories_collection()->find_by_listing_id( $listing->ID );
     $links = array( 'parent-category' => '', 'category' => '' );
 
     foreach ( $categories as $category ) {
-        if ( $listing->ad_category_parent_id == $category->id ) {
+        if ( $category->parent ) {
             $category_type = 'parent-category';
         } else {
             $category_type = 'category';
@@ -349,11 +357,11 @@ function awpcp_do_placeholder_categories( $listing, $placeholder ) {
 function awpcp_do_placeholder_details($ad, $placeholder) {
     static $replacements = array();
 
-    if (isset($replacements[$ad->ad_id])) {
-        return $replacements[$ad->ad_id][$placeholder];
+    if (isset($replacements[ $ad->ID ])) {
+        return $replacements[ $ad->ID ][$placeholder];
     }
 
-    $placeholders['addetails'] = apply_filters('awpcp-ad-details', stripslashes_deep($ad->ad_details));
+    $placeholders['addetails'] = apply_filters( 'awpcp-ad-details', stripslashes_deep( $ad->post_content ) );
 
     if (get_awpcp_option('hyperlinkurlsinadtext')) {
         $pattern = '#(?<!")(https?://[^\s]+)(?!")#';
@@ -365,9 +373,9 @@ function awpcp_do_placeholder_details($ad, $placeholder) {
     $placeholders['addetails'] = nl2br($placeholders['addetails']);
     $placeholders['details'] = $placeholders['addetails'];
 
-    $replacements[$ad->ad_id] = $placeholders;
+    $replacements[ $ad->ID ] = $placeholders;
 
-    return $replacements[$ad->ad_id][$placeholder];
+    return $replacements[ $ad->ID ][$placeholder];
 }
 
 
@@ -376,7 +384,7 @@ function awpcp_do_placeholder_details($ad, $placeholder) {
  */
 function awpcp_do_placeholder_excerpt($ad, $placeholder) {
     $word_count = get_awpcp_option( 'words-in-listing-excerpt' );
-    $details = stripslashes( $ad->ad_details );
+    $details = stripslashes( $ad->post_content );
 
     if ( get_awpcp_option( 'allowhtmlinadtext' ) ) {
         $excerpt = awpcp_trim_html_content( $details, $word_count );
@@ -399,7 +407,7 @@ function awpcp_do_placeholder_contact_name($ad, $placeholder) {
     if ( get_awpcp_option( 'hidelistingcontactname' ) == 1 && ! is_user_logged_in() ) {
         $contact_name = __( 'Seller', 'another-wordpress-classifieds-plugin' );
     } else {
-        $contact_name = $ad->ad_contact_name;
+        $contact_name = awpcp_listing_renderer()->get_contact_name( $ad );
     }
 
     return esc_html( stripslashes( $contact_name ) );
@@ -443,7 +451,9 @@ function awpcp_do_placeholder_website_link($ad, $placeholder) {
  * @since 3.0
  */
 function awpcp_do_placeholder_price($ad, $placeholder) {
-    $price = empty($ad->ad_item_price) ? 0 : ($ad->ad_item_price / 100);
+    $listing_renderer = awpcp_listing_renderer();
+
+    $price = intval( $listing_renderer->get_price( $ad ) ) / 100;
 
     $show_price_field = get_awpcp_option( 'displaypricefield' ) == 1;
     $user_can_see_price_field = is_user_logged_in() || get_awpcp_option( 'price-field-is-restricted' ) == 0;
@@ -474,16 +484,28 @@ function awpcp_do_placeholder_price($ad, $placeholder) {
  * @since 3.0
  */
 function awpcp_do_placeholder_dates($ad, $placeholder) {
-    $replacements['start_date'] = awpcp_datetime( 'awpcp-date', $ad->ad_startdate );
-    $replacements['end_date'] = awpcp_datetime( 'awpcp-date', $ad->ad_enddate );
-    $replacements['posted_date'] = awpcp_datetime( 'awpcp-date', $ad->ad_postdate );
-    $replacements['posted_time_elapsed'] = awpcp_datetime( 'time-elapsed', $ad->verified_at );
-    $replacements['last_updated_date'] = awpcp_datetime( 'awpcp-date', $ad->ad_last_updated );
+    $listing_renderer = awpcp_listing_renderer();
 
-    if ( ! empty( $ad->renewed_date ) ) {
-        $replacements['renewed_date'] = awpcp_datetime( 'awpcp-date', $ad->renewed_date );
+    $replacements['start_date'] = $listing_renderer->get_start_date( $ad );
+    $replacements['end_date'] = $listing_renderer->get_end_date( $ad );
+    $replacements['posted_date'] = $listing_renderer->get_posted_date_formatted( $ad );
+    $replacements['posted_date_time'] = $listing_renderer->get_posted_date_and_time_formatted( $ad );
+    $replacements['last_updated_date'] = $listing_renderer->get_last_updated_date_formatted( $ad );
+
+	$verification_date = $listing_renderer->get_verification_date( $ad );
+
+	if ( ! empty( $verification_date ) ) {
+	    $replacements['posted_time_elapsed'] = awpcp_datetime( 'time-elapsed', $verification_date );
+	} else {
+	    $replacements['posted_time_elapsed'] = '';
+	}
+
+    $renewed_date = $listing_renderer->get_renewed_date( $ad );
+
+     if ( ! empty( $renewed_date ) ) {
+        $replacements['renewed_date'] = $listing_renderer->get_renewed_date_formatted( $ad );
     } else {
-        $replacements['renewed_date'] = awpcp_datetime( 'awpcp-date', $ad->ad_postdate );
+        $replacements['renewed_date'] = $listing_renderer->get_posted_date_formatted( $ad );
     }
 
     return $replacements[$placeholder];
@@ -510,8 +532,10 @@ function awpcp_do_placeholder_views($ad, $placeholder) {
  * @since 3.0
  */
 function awpcp_do_placeholder_legacy_dates($ad, $placeholder) {
-    $replacements['ad_startdate'] = awpcp_datetime( 'awpcp-date', $ad->ad_startdate );
-    $replacements['ad_postdate'] = awpcp_datetime( 'awpcp-date', $ad->ad_postdate );
+    $listing_renderer = awpcp_listing_renderer();
+
+    $replacements['ad_startdate'] = $listing_renderer->get_start_date( $ad );
+    $replacements['ad_postdate'] = $listing_renderer->get_posted_date_formatted( $ad );
     $replacements['awpcpadpostdate'] = sprintf('%s<br/>', $replacements['ad_postdate']);
 
     return $replacements[$placeholder];
@@ -522,7 +546,7 @@ function awpcp_do_placeholder_legacy_dates($ad, $placeholder) {
  * @since 3.0
  */
 function awpcp_do_placeholder_location($ad, $placeholder) {
-    $regions = AWPCP_Ad::get_ad_regions_names( $ad->ad_id );
+    $regions = awpcp_listing_renderer()->get_regions( $ad );
 
     $cities = array();
     $states = array();
@@ -616,7 +640,7 @@ function awpcp_do_placeholder_location($ad, $placeholder) {
 function awpcp_do_placeholder_legacy_views($ad, $placeholder) {
     if (get_awpcp_option('displayadviews')) {
         // single ad
-        $views = get_numtimesadviewd($ad->ad_id);
+        $views = get_numtimesadviewd( $ad->ID );
         $text = _n('This Ad has been viewed %d time.', 'This Ad has been viewed %d times.', $views, 'another-wordpress-classifieds-plugin');
         $replacements['awpcpadviews'] = sprintf('<div class="adviewed">%s</div>', sprintf($text, $views));
 
@@ -640,7 +664,7 @@ function awpcp_do_placeholder_extra_fields($ad, $placeholder, $context) {
 
     if ($hasextrafieldsmodule == 1) {
         $single = $context === 'single' ? true : false;
-        $replacements['awpcpextrafields'] = display_x_fields_data( $ad->ad_id, $single );
+        $replacements['awpcpextrafields'] = display_x_fields_data( $ad->ID, $single );
     } else {
         $replacements['awpcpextrafields'] = '';
     }
@@ -655,7 +679,7 @@ function awpcp_do_placeholder_extra_fields($ad, $placeholder, $context) {
  * @since 3.0
  */
 function awpcp_do_placeholder_contact_url($ad, $placeholder) {
-    return awpcp_get_reply_to_ad_url($ad->ad_id, $ad->ad_title);
+    return awpcp_get_reply_to_ad_url( $ad->ID, awpcp_listing_renderer()->get_listing_title( $ad ) );
 }
 
 
@@ -663,9 +687,9 @@ function awpcp_do_placeholder_contact_url($ad, $placeholder) {
  * @since 3.0
  */
 function awpcp_do_placeholder_contact_phone($ad, $placeholder) {
-    if (!empty($ad->ad_contact_phone)) {
-        $phone = $ad->ad_contact_phone;
+    $phone = awpcp_listing_renderer()->get_contact_phone( $ad );
 
+    if ( ! empty( $phone ) ) {
         if ( get_awpcp_option( 'displayphonefieldpriv') == 1 && !is_user_logged_in() ) {
             $allowed = intval( strlen( $phone ) * 0.4 );
             $phone = substr($phone, 0, $allowed) . str_repeat('X', strlen( $phone ) - $allowed );
@@ -694,8 +718,8 @@ function awpcp_do_placeholder_contact_phone($ad, $placeholder) {
 function awpcp_do_placeholder_adsense($ad, $placeholder) {
     static $replacements = array();
 
-    if (isset($replacements[$ad->ad_id])) {
-        return $replacements[$ad->ad_id][$placeholder];
+    if (isset($replacements[ $ad->ID ])) {
+        return $replacements[ $ad->ID ][$placeholder];
     }
 
     if (get_awpcp_option('useadsense')) {
@@ -721,9 +745,9 @@ function awpcp_do_placeholder_adsense($ad, $placeholder) {
             break;
     }
 
-    $replacements[$ad->ad_id] = $placeholders;
+    $replacements[ $ad->ID ] = $placeholders;
 
-    return $replacements[$ad->ad_id][$placeholder];
+    return $replacements[ $ad->ID ][$placeholder];
 }
 
 
@@ -731,8 +755,11 @@ function awpcp_do_placeholder_adsense($ad, $placeholder) {
  * @since 3.0
  */
 function awpcp_do_placeholder_flag_link($ad, $placeholder) {
-    $content = '<a id="flag_ad_link" href="#" data-ad="%d">%s</a>';
-    $replacements['flagad'] = sprintf($content, $ad->ad_id, __('Flag Ad', 'another-wordpress-classifieds-plugin'));
+    $title   = __( 'Flag Ad', 'another-wordpress-classifieds-plugin' );
+
+    $content = '<a class="awpcp-flag-listing-link" href="#" data-ad="%d" title="%s"><i class="fa fa-flag"></i></a>';
+
+    $replacements['flagad']    = sprintf( $content, esc_attr( $ad->ID ), esc_attr( $title ) );
     $replacements['flag_link'] = $replacements['flagad'];
 
     return $replacements[$placeholder];
@@ -743,13 +770,14 @@ function awpcp_do_placeholder_flag_link($ad, $placeholder) {
  * @since 3.0
  */
 function awpcp_do_placeholder_twitter_button($ad, $placeholder) {
-    $url = awpcp_do_placeholder_twitter_button_url( $ad, 'twitter_button_url' );
+    $title = __( 'Tweet This', 'another-wordpress-classifieds-plugin' );
+    $url   = awpcp_do_placeholder_twitter_button_url( $ad, 'twitter_button_url' );
 
-    $button = '<div class="tw_button awpcp_tweet_button_div">';
-    $button.= '<a href="' . $url . '" rel="nofollow" class="twitter-share-button" target="_blank">';
-    $button.= __('Tweet This', 'another-wordpress-classifieds-plugin');
-    $button.= '</a>';
-    $button.= '</div>';
+    $button  = '<a class="awpcp-social-button tw_button awpcp_tweet_button_div" href="' . esc_url( $url ) . '" title="' . esc_attr( $title ) . '" target="_blank" rel="nofollow noopener">';
+    $button .= '<span class="twitter-share-button">';
+    $button .= '<i class="' . awpcp_add_font_awesome_style_class_for_brands( 'fa-twitter-square' ) . '"></i>';
+    $button .= '</span>';
+    $button .= '</a>';
 
     return $button;
 }
@@ -759,11 +787,14 @@ function awpcp_do_placeholder_twitter_button($ad, $placeholder) {
  * @since 3.2.2
  */
 function awpcp_do_placeholder_twitter_button_url( $ad, $placeholder ) {
-    $url = awpcp_listing_renderer()->get_view_listing_url( $ad );
+    $listing_renderer = awpcp_listing_renderer();
+
+    $title = $listing_renderer->get_listing_title( $ad );
+    $url = $listing_renderer->get_view_listing_url( $ad );
 
     return add_query_arg(array(
         'url' => urlencode( $url ),
-        'text' => urlencode($ad->get_title()),
+        'text' => urlencode( $title ),
     ), 'http://twitter.com/share');
 }
 
@@ -772,13 +803,16 @@ function awpcp_do_placeholder_twitter_button_url( $ad, $placeholder ) {
  * @since 3.0
  */
 function awpcp_do_placeholder_facebook_button($ad, $placeholder) {
-    $href = awpcp_do_placeholder_facebook_button_url( $ad, 'facebook_button_url' );
+    $title = __( 'Share on Facebook', 'another-wordpress-classifieds-plugin' );
+    $href  = awpcp_do_placeholder_facebook_button_url( $ad, 'facebook_button_url' );
 
-    $button = '<div class="tw_button awpcp_tweet_button_div">';
-    $button.= '<a href="%s" class="facebook-share-button" title="%s" target="_blank"></a>';
-    $button.= '</div>';
+    $button  = '<a class="awpcp-social-button tw_button awpcp_tweet_button_div" href="%s" class="facebook-share-button" title="%s" target="_blank" rel="nofollow noopener">';
+    $button .= '<span class="facebook-share-button">';
+    $button .= '<i class="' . awpcp_add_font_awesome_style_class_for_brands( 'fa-facebook-square' ) . '"></i>';
+    $button .= '</span>';
+    $button .= '</a>';
 
-    return sprintf($button, $href, __('Share on Facebook', 'another-wordpress-classifieds-plugin'));
+    return sprintf( $button, esc_url( $href ), esc_attr( $title ) );
 }
 
 
@@ -786,7 +820,7 @@ function awpcp_do_placeholder_facebook_button($ad, $placeholder) {
  * @since 3.2.2
  */
 function awpcp_do_placeholder_facebook_button_url( $ad, $placeholder ) {
-    $info = awpcp_get_ad_share_info( $ad->ad_id );
+    $info = awpcp_get_ad_share_info( $ad->ID );
     return sprintf( 'http://www.facebook.com/sharer/sharer.php?u=%s', urlencode( $info['url'] ) );
 }
 

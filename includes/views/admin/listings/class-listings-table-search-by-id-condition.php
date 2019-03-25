@@ -6,8 +6,9 @@ class AWPCP_ListingsTableSearchByIdCondition {
         return $search_by == 'id';
     }
 
-    public function create( $search_term ) {
-        return array( 'id' => absint( $search_term ) );
+    public function create( $search_term, $query ) {
+        $query['p'] = absint( $search_term );
+        return $query;
     }
 }
 

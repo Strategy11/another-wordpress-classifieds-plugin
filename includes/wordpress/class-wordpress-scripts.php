@@ -1,18 +1,25 @@
 <?php
+/**
+ * @package AWPCP/WordPress
+ */
 
 /**
  * @since 3.6
  */
 function awpcp_wordpress_scripts() {
-    if ( ! isset( $GLOBALS['wp_scripts'] ) ) {
-        _doing_it_wrong( __FUNCTION__, __( 'The instance of WP_Scripts is not ready!', 'another-wordpress-classifieds-plugin' ), '3.5.4' );
-        $GLOBALS['wp_scripts'] = new WP_Scripts();
+    global $wp_scripts;
+
+    if ( ! ( $wp_scripts instanceof WP_Scripts ) ) {
+        _doing_it_wrong( __FUNCTION__, esc_html__( 'The instance of WP_Scripts is not ready!', 'another-wordpress-classifieds-plugin' ), '3.5.4' );
     }
 
-    return new AWPCP_WordPress_Scripts( $GLOBALS['wp_scripts'] );
+    return new AWPCP_WordPress_Scripts( wp_scripts() );
 }
 
 /**
+ * We can probably remove most of the code in this class, since WP_Scripts
+ * has been capable of searching the dependency tree since WP 4.2.
+ *
  * @package AWPCP
  * @subpackage WordPress_Facade
  * @uses WP_Scripts
@@ -20,6 +27,9 @@ function awpcp_wordpress_scripts() {
  */
 class AWPCP_WordPress_Scripts {
 
+    /**
+     * @var WP_Scripts
+     */
     private $wp_scripts;
 
     /**
@@ -58,7 +68,7 @@ class AWPCP_WordPress_Scripts {
             return $this->wp_scripts->query( $handle, $list );
         }
 
-        if ( ! in_array( $list, array( 'enqueued', 'queue' ) ) ) {
+        if ( ! in_array( $list, array( 'enqueued', 'queue' ), true ) ) {
             return $this->wp_scripts->query( $handle, $list );
         }
 
@@ -79,14 +89,14 @@ class AWPCP_WordPress_Scripts {
      * @param string $handle Name of the item. Should be unique.
      * @return bool Whether the handle is found after recursively searching the dependency tree.
      */
-    function recurse_deps( $queue, $handle ) {
+    protected function recurse_deps( $queue, $handle ) {
         $registered = $this->wp_scripts->registered;
 
         foreach ( $queue as $queued ) {
             if ( ! isset( $registered[ $queued ] ) ) {
                 continue;
             }
-            if ( in_array( $handle, $registered[ $queued ]->deps ) ) {
+            if ( in_array( $handle, $registered[ $queued ]->deps, true ) ) {
                 return true;
             } elseif ( $this->recurse_deps( $registered[ $queued ]->deps, $handle ) ) {
                 return true;
