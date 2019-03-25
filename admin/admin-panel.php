@@ -960,6 +960,10 @@ function awpcp_admin_sidebar_output($html, $float) {
 			continue;
 		}
 
+		if ( isset( $module['removed'] ) && $module['removed'] ) {
+			continue;
+		}
+
 		if ( $module['installed'] ) {
 			$modules['premium']['installed'][] = $module;
 		} else {
