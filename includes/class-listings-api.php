@@ -294,22 +294,52 @@ class AWPCP_ListingsAPI {
             return;
         }
 
-        $payment_term   = $this->listing_renderer->get_payment_term( $ad );
-        $payment_status = $this->listing_renderer->get_payment_status( $ad );
-
-        $timestamp = current_time( 'timestamp' );
-        $now       = current_time( 'mysql' );
-
         $this->mark_listing_as_verified( $ad );
 
-        $this->wordpress->update_post_meta( $ad->ID, '_awpcp_start_date', $now );
-        $this->wordpress->update_post_meta( $ad->ID, '_awpcp_end_date', $payment_term->calculate_end_date( $timestamp ) );
+        $payment_status = $this->listing_renderer->get_payment_status( $ad );
 
+        $post_data = [
+            'metadata' => $this->calculate_start_and_end_dates_using_payment_term(
+                $this->listing_renderer->get_payment_term( $ad )
+            ),
+        ];
+
+        $this->update_listing( $ad, $post_data );
         $this->set_new_listing_post_status( $ad, $payment_status, true );
 
         if ( ! awpcp_current_user_is_moderator() ) {
             $this->send_ad_posted_email_notifications( $ad );
         }
+    }
+
+    /**
+     * Calculate start and end dates for a listing using information from the
+     * given payment term.
+     *
+     * @since 4.0.0
+     *
+     * @param object $payment_term The payment term used to calculate the dates.
+     * @param string $start_date   Optional. If given, the end date will be
+     *                             calculated adding the duration of the payment
+     *                             term to the $start_date.
+     *
+     * @return array {
+     *     @type string $_awpcp_start_date The new start date for the listing.
+     *     @type string $_awpcp_end_date   The new end date for the listing.
+     * }
+     */
+    public function calculate_start_and_end_dates_using_payment_term( $payment_term, $start_date = null ) {
+        $timestamp = strtotime( $start_date );
+
+        if ( ! $start_date ) {
+            $start_date = current_time( 'mysql' );
+            $timestamp  = current_time( 'timestamp' );
+        }
+
+        return [
+            '_awpcp_start_date' => $start_date,
+            '_awpcp_end_date'   => $payment_term->calculate_end_date( $timestamp ),
+        ];
     }
 
     /**
@@ -424,13 +454,18 @@ class AWPCP_ListingsAPI {
      * @since 4.0.0
      */
     public function enable_listing_without_triggering_actions( $listing ) {
-        $images_must_be_approved = $this->settings->get_option( 'imagesapprove', false );
+        $post_data = [
+            'post_fields' => [
+                'post_status' => 'publish',
+            ],
+        ];
 
         // TODO: this is kind of useles... if images don't need to be approved,
         // they are likely already enabled...
         //
-        // Also, why don't we disable images when the
-        // listing is disabled?
+        // Also, why don't we disable images when the listing is disabled?
+        $images_must_be_approved = $this->settings->get_option( 'imagesapprove', false );
+
         if ( ! $images_must_be_approved ) {
             $images = $this->attachments->find_attachments_of_type_awaiting_approval( 'image', array( 'post_parent' => $listing->ID, ) );
 
@@ -439,10 +474,20 @@ class AWPCP_ListingsAPI {
             }
         }
 
-        $listing->post_status = 'publish';
+        // Make sure the duration of the ad is modified to account for the
+        // number of days it remained disabled waiting for admin approval.
+        if ( $this->listing_renderer->is_pending_approval( $listing ) ) {
+            $post_data['metadata'] = $this->calculate_start_and_end_dates_using_payment_term(
+                $this->listing_renderer->get_payment_term( $listing )
+            );
+        }
 
-        $this->wordpress->update_post( array( 'ID' => $listing->ID, 'post_status' => $listing->post_status ) );
+        $this->update_listing( $listing, $post_data );
         $this->wordpress->delete_post_meta( $listing->ID, '_awpcp_disabled_date' );
+
+        // Allow other parts of the code to access the latest post status
+        // without reloading the instance from the database.
+        $listing->post_status = $post_data['post_fields']['post_status'];
 
         return true;
     }
@@ -476,19 +521,25 @@ class AWPCP_ListingsAPI {
      */
     public function renew_listing( $listing, $end_date = false ) {
         if ( $end_date === false ) {
-            // if the Ad's end date is in the future, use that as starting point
-            // for the new end date, else use current date.
-            $end_date = awpcp_datetime( 'timestamp', $this->listing_renderer->get_plain_end_date( $listing ) );
-            $now = current_time( 'timestamp' );
-            $start_date = $end_date > $now ? $end_date : $now;
+            $period_start_date = null;
+            $current_end_date  = $this->listing_renderer->get_plain_end_date( $listing );
+            $timestamp         = awpcp_datetime( 'timestamp', $current_end_date );
 
-            $payment_term = $this->listing_renderer->get_payment_term( $listing );
+            // If the listing's end date is in the future, use that date as
+            // starting point for the new end date.
+            if ( $timestamp > current_time( 'timestamp' ) ) {
+               $period_start_date = $current_end_date;
+            }
 
-            $this->wordpress->update_post_meta( $listing->ID, '_awpcp_end_date', $payment_term->calculate_end_date( $start_date ) );
-        } else {
-            $this->wordpress->update_post_meta( $listing->ID, '_awpcp_end_date', $end_date );
+            $metadata = $this->calculate_start_and_end_dates_using_payment_term(
+                $this->listing_renderer->get_payment_term( $listing ),
+                $period_start_date
+            );
+
+            $end_date = $metadata['_awpcp_end_date'];
         }
 
+        $this->wordpress->update_post_meta( $listing->ID, '_awpcp_end_date', $end_date );
         $this->wordpress->delete_post_meta( $listing->ID, '_awpcp_renew_email_sent' );
         $this->wordpress->update_post_meta( $listing->ID, '_awpcp_renewed_date', current_time( 'mysql' ) );
 
@@ -677,15 +728,20 @@ class AWPCP_ListingsAPI {
      * @since 4.0.0
      */
     public function update_listing_payment_term( $listing, $payment_term ) {
-        $start_date = $this->listing_renderer->get_plain_start_date( $listing );
-        $end_date   = $this->listing_renderer->get_plain_end_date( $listing );
+        $dates = [
+            '_awpcp_start_date' => $this->listing_renderer->get_plain_start_date( $listing ),
+            '_awpcp_end_date'   => $this->listing_renderer->get_plain_end_date( $listing ),
+        ];
 
-        if ( empty( $start_date ) ) {
-            $start_date = current_time( 'mysql' );
+        if ( empty( $dates['_awpcp_start_date'] ) ) {
+            $dates['_awpcp_start_date'] = current_time( 'mysql' );
         }
 
-        if ( empty( $end_date ) ) {
-            $end_date = $payment_term->calculate_end_date( awpcp_datetime( 'timestamp', $start_date ) );
+        if ( empty( $dates['_awpcp_end_date'] ) ) {
+            $dates = $this->calculate_start_and_end_dates_using_payment_term(
+                $payment_term,
+                $dates['_awpcp_start_date']
+            );
         }
 
         $post_data = [
@@ -693,8 +749,8 @@ class AWPCP_ListingsAPI {
                 '_awpcp_payment_term_type' => $payment_term->type,
                 '_awpcp_payment_term_id'   => $payment_term->id,
                 '_awpcp_is_featured'       => $payment_term->featured,
-                '_awpcp_start_date'        => $start_date,
-                '_awpcp_end_date'          => $end_date,
+                '_awpcp_start_date'        => $dates['_awpcp_start_date'],
+                '_awpcp_end_date'          => $dates['_awpcp_end_date'],
             ],
         ];
 
