@@ -153,6 +153,9 @@ function( $, ko, FileViewModel, settings ) {
 
                     vm.files.remove( file );
                     file.isBeingModified( false );
+                    if (file.isPrimary() && vm.files().length > 0) {
+                        vm.setFileAsPrimary(vm.files()[0]);
+                    }
                 }
             } );
         }
