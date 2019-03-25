@@ -9,15 +9,21 @@
 
 <?php require AWPCP_DIR . '/admin/templates/admin-panel-header.tpl.php'; ?>
 
-            <ul class="ul-disc">
-                <?php $import_and_export_url = add_query_arg( 'awpcp-view', 'import-settings' ); ?>
-                <li>
-                    <strong><a href="<?php echo esc_url( $import_and_export_url ); ?>"><?php esc_html_e( 'Import and Export', 'another-wordpress-classifieds-plugin' ); ?></a></strong>
-                    <br>
-                    <?php esc_html_e( 'Import and export your settings for re-use on another site.', 'another-wordpress-classifieds-plugin' ); ?>
-                </li>
-            </ul>
+<ul class="ul-disc">
+    <?php foreach ( $params as $view ) : ?>
+        <?php $import_and_export_url = add_query_arg( 'awpcp-view', 'import-settings' ); ?>
+        <li>
+            <strong><a href="<?php echo esc_url( $view['url'] ); ?>"><?php echo esc_html( $view['title'] ); ?></a></strong>
+            <br>
+            <?php
+            if ( ! empty( $view['description'] ) ) {
+                echo esc_html( $view['description'] );
+            }
+            ?>
+        </li>
+    <?php endforeach; ?>
+</ul>
 
-        </div><!-- end of .awpcp-main-content -->
-    </div><!-- end of .page-content -->
+</div><!-- end of .awpcp-main-content -->
+</div><!-- end of .page-content -->
 </div><!-- end of #page_id -->
