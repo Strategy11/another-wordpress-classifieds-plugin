@@ -30,7 +30,7 @@ class AWPCP_Filesystem {
     private function create_directory( $path ) {
         $previous_umask = umask( 0 );
 
-        if ( ! @mkdir( $path, $this->get_default_directory_mode(), true ) ) {
+        if ( ! wp_mkdir_p( $path ) ) {
             $message = __( 'There was a problem trying to create directory <directory-name>.', 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '<directory-name>', awpcp_utf8_basename( $path ), $message );
             throw new AWPCP_Exception( $message );

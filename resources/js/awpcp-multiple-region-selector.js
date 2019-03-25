@@ -59,6 +59,40 @@ if (typeof jQuery !== 'undefined') {
                 disabled: false
             },
 
+            getSelectedRegions: function() {
+                var self = this,
+                    data = [];
+
+                $.each( self.regions(), function( index, region ) {
+                    var entry = {};
+
+                    $.each( region.partials(), function( index, partial ) {
+                        entry[ partial.type ] = {
+                            'type' : partial.type,
+                            'label': partial.label(),
+                            'param': partial.param(),
+                            'options': partial.options(),
+                            'selected': partial.selected(),
+                            'required': partial.config.required,
+                            'alwaysShown': partial.config.alwaysShown,
+                            'showTextField': partial.config.showTextField
+                        };
+                    } );
+
+                    data.push( entry );
+                } );
+
+                return data;
+            },
+
+            clearSelectedRegions: function() {
+                var self = this;
+
+                $.each( self.regions(), function( index, region ) {
+                    self.removeRegion( region );
+                } );
+            },
+
             addRegion: function(data, fields) {
                 var region;
 
@@ -445,15 +479,31 @@ if (typeof jQuery !== 'undefined') {
          * Initialization
          */
 
+        $.fn.MultipleRegionSelector = function( regions ) {
+            return $(this).each( function() {
+                var selector = $(this),
+                    instance,
+                    data;
+
+                instance = selector.data( 'RegionSelector' );
+
+                if ( instance ) {
+                    return;
+                }
+
+                data = $.AWPCP.get( 'multiple-region-selector-' + selector.attr( 'uuid' ) );
+
+                selector.data( 'RegionSelector', new $.AWPCP.RegionSelector(
+                    data.options,
+                    regions || data.regions
+                ) );
+
+                ko.applyBindings( selector.data( 'RegionSelector' ), this );
+            } );
+        };
+
         $(function() {
-            $('.awpcp-multiple-region-selector').each(function() {
-                var selector = $(this), data;
-
-                data = $.AWPCP.get('multiple-region-selector-' + selector.attr('uuid'));
-                selector.data('RegionSelector', new $.AWPCP.RegionSelector(data.options, data.regions));
-
-                ko.applyBindings(selector.data('RegionSelector'), selector.get(0));
-            });
+            $( '.awpcp-multiple-region-selector' ).MultipleRegionSelector();
         });
 
     })(jQuery);

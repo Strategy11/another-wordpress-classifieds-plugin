@@ -11,13 +11,20 @@ function awpcp_register_content_aware_sidebars_listings_categories_module( $modu
 
 class AWPCP_ContentAwareSidebarsListingsCategoriesModule extends CASModule {
 
+    private $listing_renderer;
     private $categories;
     private $listings;
     private $walker;
     private $request;
 
-    public function __construct( $categories = null, $listings = null, $walker = null, $request = null ) {
+    public function __construct( $listing_renderer = null, $categories = null, $listings = null, $walker = null, $request = null ) {
         parent::__construct( AWPCP_CAS_LISTINGS_CATEGORIES_MODULE, __( 'Categories (AWPCP)', 'another-wordpress-classifieds-plugin' ) );
+
+        if ( is_null( $listing_renderer ) ) {
+            $this->listing_renderer = awpcp_listing_renderer();
+        } else {
+            $this->listing_renderer = $listing_renderer;
+        }
 
         if ( is_null( $categories ) ) {
             $this->categories = awpcp_categories_collection();
@@ -49,7 +56,7 @@ class AWPCP_ContentAwareSidebarsListingsCategoriesModule extends CASModule {
 
         $control_items = array();
         foreach ( $categories as $category ) {
-            $control_items[ $category->id ] = $category->name;
+            $control_items[ $category->term_id ] = $category->name;
         }
 
         return $control_items;
@@ -61,7 +68,7 @@ class AWPCP_ContentAwareSidebarsListingsCategoriesModule extends CASModule {
         if ( empty( $args['include'] ) ) {
             $categories = $this->categories->get_all();
         } else {
-            $categories = $this->categories->find( array( 'id' => $args['include'] ) );
+            $categories = $this->categories->find_categories( array( 'include' => $args['include'] ) );
         }
 
         return $categories;
@@ -83,12 +90,14 @@ class AWPCP_ContentAwareSidebarsListingsCategoriesModule extends CASModule {
 
         $ad_id = $this->request->get_ad_id();
 
-        if ( $ad_id > 0 ) {
-            $ad = $this->listings->find_by_id( $ad_id );
-            return is_null( $ad ) ? array() : array( $ad->ad_category_id );
+        try {
+            $listing = $this->listings->get( $ad_id );
+            $category_id = $this->listing_renderer->get_category_id( $listing );
+        } catch ( AWPCP_Exception $e ) {
+            $category_id = null;
         }
 
-        return array();
+        return $category_id ? array( $category_id ) : array();
     }
 
     public function meta_box_content() {

@@ -40,20 +40,12 @@
     width: 130px;
 }
 
-.nav-tab-wrapper {
-    .nav-tab {
-        font-size: 11px;
-        padding: 2px 5px;
-        margin-right: -3px;
-    }
-}
-
 .category-checklist {
     background: #FFF;
     border: 1px solid #DDD;
-    max-height: 150px;
+    max-height: 250px;
     overflow-y: scroll;
-    min-width: 150px;
+    min-width: 250px;
 }
 .category-checklist ul {
     margin: 0;
@@ -66,15 +58,6 @@
 .awpcp-delete-form .submit .delete {
     margin-left: 5px;
 }
-
-.uploaderror, .awpcp-error {
-    background: none repeat scroll 0 0 #FFEBE8;
-    border: 1px solid #CC0000;
-    display: block;
-    margin: 5px 0 0;
-    padding: 5px;
-}
-
 
 /* Admin Panel
  ---------------------------------------------------------------------------- */
@@ -195,78 +178,33 @@
     }
 }
 
+.awpcp-admin-page {
+    div.awpcp-ajax-error {
+        margin: 0.5em;
+        padding: 10px;
+
+        p {
+            margin: 0;
+            padding: 0;
+        }
+    }
+}
+
+/* Admin Sidebar */
+
+.awpcp-postbox-container {
+    .postbox {
+        min-width: 200px;
+
+        .hndle, .hndle1 {
+            cursor: default;
+        }
+    }
+}
+
 /* =Admin Settings
 ---------------------------------------------------------------------------- */
 
-.awpcp-admin-settings {
-    form textarea {
-        width: 100%;
-        height: 120px;
-    }
-
-    label {
-        font-weight: normal;
-    }
-
-    .awpcp-main-content {
-        .metabox-holder {
-            padding-top: 20px !important;
-        }
-    }
-
-    .settings-form {
-        h3 {
-            margin-top: 2em;
-            margin-bottom: 0.7em;
-        }
-        .form-table {
-            th, td {
-                padding-top: 10px;
-                padding-bottom: 10px;
-            }
-        }
-    }
-
-    .category-checklist {
-        height: 290px;
-        max-height: 290px;
-
-        .awpcp-categories-list  {
-            margin-top: 4px;
-
-            li {
-                margin-bottom: 4px;
-            }
-
-            ul {
-                margin-left: 20px;
-
-                li:first-child {
-                    margin-top: 4px;
-                }
-            }
-        }
-    }
-}
-
-.awpcp-licenses-settings {
-    .form-table th {
-        width: 250px;
-    }
-
-    .awpcp-license-valid {
-        color: green;
-    }
-    .awpcp-license-inactive {
-        color: blue;
-    }
-    .awpcp-license-expired {
-        color: orange;
-    }
-    .awpcp-license-invalid {
-        color: red;
-    }
-}
 
 /* =Admin Credit Plans
 ---------------------------------------------------------------------------- */
@@ -282,53 +220,10 @@
     margin-left: 7em;
 }
 
-
-/* =Admin Fees
----------------------------------------------------------------------------- */
-
-#wpbody-content .awpcp-admin-fees .inline-edit-row .inline-edit-col-left,
-#wpbody-content .awpcp-admin-fees .inline-edit-row .inline-edit-col-center {
-    width: 50%;
-}
-
-.awpcp-admin-fees form .awpcp-message {
-    margin-bottom: 0;
-}
-
-.awpcp-admin-fees .inline-edit-col label .title {
-    width: 10em;
-}
-.awpcp-admin-fees .inline-edit-col label .input-text-wrap {
-    margin-left: 10em;
-}
-.awpcp-admin-fees .inline-edit-col label .helptext {
-    float: right;
-}
-
-.awpcp-admin-fees .inline-edit-col .category-checklist {
-    height: 290px;
-    max-height: 290px;
-}
-
-.awpcp-admin-fees .column-categories {
-    width: 17%;
-}
-.awpcp-admin-fees .column-categories .category-checklist {
-    height: 100px;
-    min-width: 100px;
-}
-.awpcp-admin-fees .column-categories .category-checklist li {
-    margin-bottom: 3px;
-}
-.awpcp-admin-fees .column-categories .category-checklist label {
-    font-size: 0.9em;
-}
-
-
 /* =Admin Listings
 ---------------------------------------------------------------------------- */
 
-.awpcp-admin-listings .awpcp-category-filter {
+.awpcp-listings .awpcp-category-filter {
     @select_field_width: 180px;
     @submit_button_max_width: 90px;
 
@@ -388,6 +283,18 @@
         margin-top: 8px;
     }
 
+    table {
+        .column-title, .column-manage {
+            width: 17%;
+        }
+    }
+
+    #classiwrapper {
+        padding: 0;
+    }
+}
+
+.awpcp-admin-listings, .awpcp-panel {
     .awpcp-search-container {
         .search-by-box {
             float: right;
@@ -397,16 +304,6 @@
                 margin-top: 0;
             }
         }
-    }
-
-    table {
-        .column-title, .column-manage {
-            width: 17%;
-        }
-    }
-
-    #classiwrapper {
-        padding: 0;
     }
 }
 
@@ -514,56 +411,6 @@
         }
     }
 }
-
-
-/* =Settings
----------------------------------------------------------------------------- */
-
-#awpcp-admin-settings .settings-form {
-    padding: 0 6px;
-}
-#awpcp-admin-settings .settings-form label img {
-    vertical-align: middle;
-}
-
-
-/* =Debug Page
----------------------------------------------------------------------------- */
-
-#awpcp-admin-debug {
-    .nav-tab-wrapper {
-        margin-bottom: 20px;
-    }
-
-    .postbox table {
-        border-spacing: 0;
-        width: 100%;
-
-        thead th {
-            padding: 4px 0px;
-        }
-
-        tbody {
-            tr:nth-child(2n+1) {
-                // background: #EFEFEF;
-            }
-            tr:nth-child(2n) {
-                // background: #FDFDFD;
-            }
-            th {
-                padding: 6px 10px;
-                text-align: left;
-            }
-            td {
-                padding: 6px 10px;
-            }
-            td.align-center {
-                text-align: center;
-            }
-        }
-    }
-}
-
 
 /* User Ad Management Panel
  ---------------------------------------------------------------------------- */

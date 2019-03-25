@@ -2,7 +2,9 @@
 
 function awpcp_media_uploaded_notification() {
     return new AWPCP_Media_Uploaded_Notification(
-        awpcp_files_collection(),
+        awpcp_attachment_properties(),
+        awpcp_attachments_collection(),
+        awpcp_listing_renderer(),
         awpcp_listings_collection(),
         awpcp()->settings,
         awpcp_wordpress(),
@@ -12,14 +14,18 @@ function awpcp_media_uploaded_notification() {
 
 class AWPCP_Media_Uploaded_Notification {
 
+    private $attachments_properties;
     private $attachments;
+    private $listing_renderer;
     private $listings;
     private $settings;
     private $wordpress;
     private $request;
 
-    public function __construct( $attachments, $listings, $settings, $wordpress, $request ) {
+    public function __construct( $attachments_properties, $attachments, $listing_renderer, $listings, $settings, $wordpress, $request ) {
+        $this->attachments_properties = $attachments_properties;
         $this->attachments = $attachments;
+        $this->listing_renderer = $listing_renderer;
         $this->listings = $listings;
         $this->settings = $settings;
         $this->wordpress = $wordpress;
@@ -37,7 +43,9 @@ class AWPCP_Media_Uploaded_Notification {
             return;
         }
 
-        if ( ! $this->should_send_media_uploaded_notification() && ! $file->is_awaiting_approval() ) {
+        $is_file_awaiting_approval = $this->attachments_properties->is_awaiting_approval( $file );
+
+        if ( ! $is_file_awaiting_approval && ! $this->should_send_media_uploaded_notification() ) {
             return;
         }
 
@@ -59,7 +67,7 @@ class AWPCP_Media_Uploaded_Notification {
 
     private function schedule_single_event( $uploaded_file, $listing ) {
         $event_name = "awpcp-media-uploaded-notification";
-        $event_args = array( $listing->ad_id );
+        $event_args = array( $listing->ID );
 
         if ( wp_next_scheduled( $event_name, $event_args ) ) {
             wp_clear_scheduled_hook( $event_name, $event_args );
@@ -69,10 +77,10 @@ class AWPCP_Media_Uploaded_Notification {
     }
 
     private function store_uploaded_media_information( $uploaded_file, $listing ) {
-        $uploaded_media = $this->get_uploaded_media_information( $listing->ad_id );
+        $uploaded_media = $this->get_uploaded_media_information( $listing->ID );
         $uploaded_media[] = (array) $uploaded_file;
 
-        $option_name = $this->get_uploaded_media_information_option_name( $listing->ad_id );
+        $option_name = $this->get_uploaded_media_information_option_name( $listing->ID );
         update_option( $option_name, $uploaded_media, false );
     }
 
@@ -102,7 +110,7 @@ class AWPCP_Media_Uploaded_Notification {
                 continue;
             }
 
-            if ( $attachment->is_awaiting_approval() ) {
+            if ( $this->attachments_properties->is_awaiting_approval( $attachment ) ) {
                 $attachments_awaiting_approval[] = $attachment;
             } else {
                 $other_attachments[] = $attachment;
@@ -121,18 +129,18 @@ class AWPCP_Media_Uploaded_Notification {
 
         $message = new AWPCP_Email;
         $message->to = array( awpcp_admin_email_to() );
-        $message->subject = str_replace( '<listing-title>', $listing->ad_title, $subject );
+        $message->subject = str_replace( '<listing-title>', $this->listing_renderer->get_listing_title( $listing ), $subject );
 
-        $query_args = array( 'action' => 'view', 'id' => $listing->ad_id );
+        $query_args = array( 'action' => 'view', 'id' => $listing->ID );
         $view_listing_url = add_query_arg( $query_args, awpcp_get_admin_listings_url() );
 
-        $query_args = array( 'action' => 'manage-images', 'id' => $listing->ad_id );
+        $query_args = array( 'action' => 'manage-images', 'id' => $listing->ID );
         $manage_listing_media_url = add_query_arg( $query_args, awpcp_get_admin_listings_url() );
 
         $params = array(
             'attachments_awaiting_approval' => $attachments_awaiting_approval,
             'other_attachments' => $other_attachments,
-            'listing_title' => $listing->ad_title,
+            'listing_title' =>  $this->listing_renderer->get_listing_title( $listing ),
             'view_listing_url' => $view_listing_url,
             'manage_listing_media_url' => $manage_listing_media_url,
         );

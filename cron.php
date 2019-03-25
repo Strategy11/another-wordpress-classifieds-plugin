@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package AWPCP
+ */
+
+// phpcs:disable
 
 // ensure we get the expiration hooks scheduled properly:
 function awpcp_schedule_activation() {
@@ -69,33 +74,49 @@ function awpcp_check_license_status() {
 }
 
 /*
- * Function to disable ads run hourly
+ * Cron job handler executed every hour to disable ads that already expired.
+ *
+ * Notifications, if enabled, are always sent, even if the plugin is configured
+ * to delete expired ads instead of disabling them.
+ *
+ * See https://github.com/drodenbaugh/awpcp/issues/808#issuecomment-42561940
  */
 function doadexpirations() {
-    global $wpdb, $nameofsite;
+    $listings_logic = awpcp_listings_api();
 
     $notify_admin = get_awpcp_option('notifyofadexpired');
     $notify_expiring = get_awpcp_option('notifyofadexpiring');
-    // disable the ads or delete the ads?
-    // 1 = disable, 0 = delete
-    $disable_ads = get_awpcp_option('autoexpiredisabledelete');
 
     // allow users to use %s placeholder for the website name in the subject line
     $subject = get_awpcp_option('adexpiredsubjectline');
-    $subject = sprintf($subject, $nameofsite);
+    $subject = sprintf( $subject, awpcp_get_blog_name() );
     $bodybase = get_awpcp_option('adexpiredbodymessage');
 
-    $ads = AWPCP_Ad::find("ad_enddate <= NOW() AND disabled != 1 AND payment_status != 'Unpaid' AND verified = 1");
+    $ads = awpcp_listings_collection()->find_valid_listings(array(
+        'meta_query' => array(
+            'relation' => 'AND',
+            array(
+                'key' => '_awpcp_end_date',
+                'value' => current_time( 'mysql' ),
+                'compare' => '<=',
+                'type' => 'DATETIME',
+            ),
+            [
+                'key'     => '_awpcp_expired',
+                'compare' => 'NOT EXISTS',
+            ],
+        ),
+    ));
 
     foreach ($ads as $ad) {
-        $ad->disable();
+        $listings_logic->expire_listing( $ad );
 
         if ( $notify_expiring == false && $notify_admin == false ) {
             continue;
         }
 
-        $adtitle = get_adtitle( $ad->ad_id );
-        $adstartdate = date( "D M j Y G:i:s", strtotime( get_adstartdate( $ad->ad_id ) ) );
+        $adtitle = get_adtitle( $ad->ID );
+        $adstartdate = date( "D M j Y G:i:s", strtotime( get_adstartdate( $ad->ID ) ) );
 
         $body = $bodybase;
         $body.= "\n\n";
@@ -109,7 +130,7 @@ function doadexpirations() {
         $body.= "\n\n";
 
         $body.= __( "Renew your ad by visiting:", 'another-wordpress-classifieds-plugin' );
-        $body.= " " . urldecode( awpcp_get_renew_ad_url( $ad->ad_id ) );
+        $body.= " " . urldecode( awpcp_get_renew_ad_url( $ad->ID ) );
         $body.= "\n\n";
 
         if ( $notify_expiring ) {
@@ -139,32 +160,73 @@ function doadexpirations() {
     }
 }
 
-
-/*
- * Function run once per month to cleanup disabled / deleted ads.
+/**
+ * Function run once per month to cleanup incomplete and expired ads.
  */
 function doadcleanup() {
-    global $wpdb;
+    $listings_logic = awpcp_listings_api();
+    $listings       = awpcp_listings_collection();
 
-    // get Unpaid Ads older than a month
-    $conditions[] = "(payment_status = 'Unpaid' AND (ad_postdate + INTERVAL 30 DAY) < CURDATE()) ";
-
-    // also, get Ads that were disabled more than a week ago, but only if the
-    // 'disable instead of delete' flag is not set.
-    if (get_awpcp_option('autoexpiredisabledelete') != 1) {
-        $days_before_expired_listings_are_deleted = get_awpcp_option( 'days-before-expired-listings-are-deleted' );
-        $sql = "(disabled=1 AND (disabled_date + INTERVAL %d DAY) < CURDATE())";
-
-        $conditions[] = sprintf( $sql, $days_before_expired_listings_are_deleted );
+    if ( ! get_awpcp_option( 'autoexpiredisabledelete' ) ) {
+        $days_before = get_awpcp_option( 'days-before-expired-listings-are-deleted' );
+        awpcp_delete_listings_expired_more_than_days_ago( intval( $days_before ), $listings_logic, $listings );
     }
 
-    $ads = AWPCP_Ad::find(join(' OR ', $conditions));
+    awpcp_delete_unpaid_listings_older_than_a_month( $listings_logic, $listings );
+}
 
-    foreach ($ads as $ad) {
-        $ad->delete();
+/**
+ * @since 4.0.0
+ */
+function awpcp_delete_listings_expired_more_than_days_ago( $number_of_days, $listings_logic, $listings ) {
+    $date_query = new WP_Date_Query( [] );
+
+    $query_vars = [
+        'post_status' => 'disabled',
+        'meta_query'  => [
+            [
+                'key'     => '_awpcp_disabled_date',
+                'compare' => '<',
+                'value'   => $date_query->build_mysql_datetime( sprintf( '%d days ago', $number_of_days ) ),
+                'type'    => 'DATE',
+            ],
+            [
+                'key'     => '_awpcp_expired',
+                'compare' => 'EXISTS',
+            ],
+        ],
+    ];
+
+    foreach ( $listings->find_listings( $query_vars ) as $listing ) {
+        $listings_logic->delete_listing( $listing );
     }
 }
 
+/**
+ * @access private
+ * @since 4.0.0
+ */
+function awpcp_delete_unpaid_listings_older_than_a_month( $listings_logic, $listings ) {
+    $query = array(
+        'meta_query' => array(
+            array(
+                'key' => '_awpcp_payment_status',
+                'value' => 'Unpaid',
+                'compare' => '=',
+            ),
+        ),
+        'date_query' => array(
+            array(
+                'column' => 'post_date_gmt',
+                'before' => '30 days ago',
+            ),
+        ),
+    );
+
+    foreach ( $listings->find_listings( $query ) as $listing ) {
+        $listings_logic->delete_listing( $listing );
+    }
+}
 
 /**
  * Check if any Ad is about to expire and send an email to the poster.
@@ -172,7 +234,8 @@ function doadcleanup() {
  * This functions runs daily.
  */
 function awpcp_ad_renewal_email() {
-	global $wpdb;
+    $listing_renderer = awpcp_listing_renderer();
+    $wordpress        = awpcp_wordpress();
 
 	if (!(get_awpcp_option('sent-ad-renew-email') == 1)) {
 		return;
@@ -181,37 +244,26 @@ function awpcp_ad_renewal_email() {
     $notification = awpcp_listing_is_about_to_expire_notification();
     $admin_sender_email = awpcp_admin_email_from();
 
-	foreach ( awpcp_get_listings_about_to_expire() as $listing ) {
+	foreach ( awpcp_listings_collection()->find_listings_about_to_expire() as $listing ) {
         // When the user clicks the renew ad link, AWPCP uses
         // the is_about_to_expire() method to decide if the Ad
         // can be renewed. We double check here to make
         // sure users can use the link in the email immediately.
-        if ( ! $listing->is_about_to_expire() ) continue;
+        if ( ! $listing_renderer->is_about_to_expire( $listing ) ) {
+            continue;
+        }
 
         $email = new AWPCP_Email();
 
         $email->from = $admin_sender_email;
-        $email->to = awpcp_format_recipient_address( $listing->ad_contact_email );
+        $email->to = awpcp_format_recipient_address( $listing_renderer->get_contact_email( $listing ) );
         $email->subject = $notification->render_subject( $listing );
         $email->body = $notification->render_body( $listing );
 
 		if ( $email->send() ) {
-			$listing->renew_email_sent = true;
-			$listing->save();
+            $wordpress->update_post_meta( $listing->ID, '_awpcp_renew_email_sent', true );
 		}
 	}
-}
-
-function awpcp_get_listings_about_to_expire() {
-    global $wpdb;
-
-    $end_of_range = awpcp_calculate_end_of_renew_email_date_range_from_now();
-
-    $conditions[] = $wpdb->prepare( 'ad_enddate <= %s', date( 'Y-m-d H:i:s', $end_of_range ) );
-    $conditions[] = 'disabled != 1';
-    $conditions[] = 'renew_email_sent != 1';
-
-    return AWPCP_Ad::find( implode( ' AND ', $conditions ) );
 }
 
 function awpcp_calculate_end_of_renew_email_date_range_from_now() {
@@ -245,15 +297,19 @@ function awpcp_clean_up_payment_transactions() {
  * @since 3.3
  */
 function awpcp_clean_up_non_verified_ads_handler() {
-    return awpcp_clean_up_non_verified_ads( awpcp_listings_api(), awpcp()->settings );
+    return awpcp_clean_up_non_verified_ads(
+        awpcp_listings_collection(),
+        awpcp_listings_api(),
+        awpcp()->settings,
+        awpcp_wordpress()
+    );
 }
 
 /**
+ * @since 4.0.0  Updated to load listings using Listings Collection methods.
  * @since 3.0.2
  */
-function awpcp_clean_up_non_verified_ads( /* AWPCP_ListingsAPI */ $listings, $settings ) {
-    global $wpdb;
-
+function awpcp_clean_up_non_verified_ads( $listings_collection, /* AWPCP_ListingsAPI */ $listings, $settings, $wordpress ) {
     if ( ! $settings->get_option( 'enable-email-verification' ) ) {
         return;
     }
@@ -262,27 +318,45 @@ function awpcp_clean_up_non_verified_ads( /* AWPCP_ListingsAPI */ $listings, $se
     $delete_ads_threshold = $settings->get_option( 'email-verification-second-threshold' );
 
     // delete Ads that have been in a non-verified state for more than M days
-
-    $conditions = AWPCP_Ad::get_where_conditions_for_successfully_paid_listings( array(
-        'verified = 0',
-        $wpdb->prepare( 'ad_postdate < ADDDATE( NOW(), INTERVAL -%d DAY )', $delete_ads_threshold )
+    $results = $listings_collection->find_listings_awaiting_verification( array(
+        'date_query' => array(
+            'relation' => 'AND',
+            array(
+                'before' => awpcp_datetime( 'mysql', current_time( 'timestamp' ) - $delete_ads_threshold * DAY_IN_SECONDS ),
+            ),
+        ),
     ) );
 
-    foreach ( AWPCP_Ad::find( join( ' AND ', $conditions ) ) as $ad ) {
-        $ad->delete();
+    foreach ( $results as $listing ) {
+        $listings->delete_listing( $listing );
     }
 
     // re-send verificaiton email for Ads that have been in a non-verified state for more than N days
-
-    $conditions = AWPCP_Ad::get_where_conditions_for_successfully_paid_listings( array(
-        'verified = 0',
-        $wpdb->prepare( 'ad_postdate < ADDDATE( NOW(), INTERVAL -%d DAY )', $resend_email_threshold )
+    $results = $listings_collection->find_listings_awaiting_verification( array(
+        'date_query' => array(
+            'relation' => 'AND',
+            array(
+                'before' => awpcp_datetime( 'mysql', current_time( 'timestamp' ) - $resend_email_threshold * DAY_IN_SECONDS ),
+            ),
+        ),
+        'meta_query' => array(
+            'relation' => 'AND',
+            array(
+                'key' => '_awpcp_verification_emails_sent',
+                'value' => 1,
+                'compare' => '<=',
+                'type' => 'UNSIGNED'
+            ),
+        ),
     ) );
 
-    foreach ( AWPCP_Ad::find( join( ' AND ', $conditions ) ) as $ad ) {
-        if ( intval( awpcp_get_ad_meta( $ad->ad_id, 'verification_emails_sent', true ) ) <= 1 ) {
-            $listings->send_verification_email( $ad );
+    foreach ( $results as $listing ) {
+        $emails_sent = intval( $wordpress->get_post_meta( $listing->ID, '_awpcp_verification_emails_sent', 1 ) );
+
+        if ( $emails_sent >= 2 ) {
+            continue;
         }
+
+        $listings->send_verification_email( $listing );
     }
 }
-

@@ -1,3 +1,18 @@
+@import 'layout.less';
+
+@import 'common/state.less';
+@import 'common/thickbox.less';
+@import 'common/spinner.less';
+
+@import 'helpers.less';
+
+/* old clearfix */
+.fixfloat {
+    clear:both;
+    display:block;
+    overflow:hidden;
+}
+
 /* new clearfix */
 .clearfix:after, .awpcp-clearfix:after {
     visibility: hidden;
@@ -12,10 +27,10 @@
 *:first-child+html .clearfix,
 *:first-child+html .awpcp-clearfix { zoom: 1; } /* IE7 */
 
-.align-text-right {
+.awpcp-align-text-right, .align-text-right {
     text-align: right;
 }
-.align-text-left {
+.awpcp-align-text-left, .align-text-left {
     text-align: left;
 }
 
@@ -28,6 +43,10 @@
 
 .awpcp-hidden {
     display: none;
+}
+
+.awpcp-text-underline {
+    text-decoration: underline;
 }
 
 .awpcp-hide-if-js {

@@ -27,6 +27,14 @@
     margin-bottom: 0;
     margin-left: 0;
 }
+.widget_awpcp-categories .top-level-categories {
+    margin: 0;
+    padding: 0 !important;
+
+    li {
+        border: none !important;
+    }
+}
 .widget_awpcp-categories .top-level-categories .sub-categories li:before {
     content: '—';
     margin-right: 3px;
@@ -39,48 +47,6 @@
 /* =Page
 ---------------------------------------------------------------------------- */
 
-.awpcp-page .awpcp-form-spacer {
-    margin: 1px 1px 10px;
-    padding: 1px;
-}
-.awpcp-page .awpcp-form-spacer label {
-    display: block;
-}
-.awpcp-page .awpcp-form-spacer .secondary-label {
-    display: inline;
-    font-weight: normal;
-}
-.awpcp-page .awpcp-form-spacer .inline {
-    display: inline;
-}
-.awpcp-page .awpcp-form-spacer .helptext {
-    display: block;
-    font-weight: normal;
-    font-size: 0.9em;
-}
-.awpcp-page .awpcp-form-spacer .hidden {
-    display: none;
-}
-
-.awpcp-page .awpcp-range-search,
-.awpcp-page .awpcp-date-range-search {
-    label {
-        display: inline;
-        font-weight: normal;
-        margin-right: 2px;
-    }
-    input {
-        width: 60px;
-        margin-right: 5px;
-    }
-}
-
-.awpcp-page .awpcp-date-range-search input {
-    width: 200px;
-}
-
-
-
 /* =Place Ad Page
 ---------------------------------------------------------------------------- */
 
@@ -91,6 +57,11 @@
 
 .awpcp-page .awpcp-credit-plans-table {
     border-bottom: none;
+
+    tr td label {
+        display: inline-block;
+        margin-left: 4px;
+    }
 }
 .awpcp-page .awpcp-credit-plans-table tfoot .clear-selection input {
     display: none;
@@ -101,6 +72,7 @@
     font-size: 0.9em;
     font-weight: normal;
     line-height: 1em;
+    margin: 0;
     padding: 4px 6px;
 }
 .awpcp-page .awpcp-credit-plans-table tfoot .clear-selection label:hover {
@@ -130,19 +102,27 @@
 }
 
 /* Details */
-.awpcp-page .awpcp-form-spacer .characters-left {
-    background: #333;
-    color: #FFF;
-    display: inline-block;
-    font-size: 0.9em;
-    font-weight: normal;
-    margin: 4px 0 0;
-    padding: 2px 8px;
+.awpcp-page .awpcp-form-spacer {
+    .characters-left {
+        display: block;
+        font-size: 0.9em;
+        font-weight: normal;
+        margin: 0;
+        padding: 2px 4px;
+        text-align: right;
+    }
+    .awpcp-almost-no-characters-left {
+        color: #ff9d00;
+    }
+    .awpcp-no-characters-left {
+        color: @error-message-font-color;
+    }
+
+    .characters-left-placeholder {
+        padding: 0 2px;
+    }
 }
-.awpcp-page .awpcp-form-spacer-title .characters-left {
-    margin-top: 0;
-    margin-left: 4px;
-}
+
 .awpcp-page .awpcp-form-spacer .awpcp-textarea {
     display: block;
 }
@@ -179,11 +159,6 @@
     padding: 8px 14px;
 }
 
-.fixfloat {
-clear:both;
-display:block;
-overflow:hidden;
-}
 
 #awpcpqsearch { background:#f2f2f2; padding:5px 0px 0px 5px; margin:10px auto 10px auto; }
 
@@ -292,13 +267,6 @@ font-weight:normal;
 }
 
 
-.cl-adsense {
-margin:10px 0 10px 0;
-text-align:center;
-background:#f2f2f2;
-padding:10px;
-}
-
 .imgtransparency {
 -moz-opacity:.20; filter:alpha(opacity=20); opacity:.20;
 
@@ -369,21 +337,6 @@ img.awpcpbrowseadsimg  { width:60px; }
 .displayadscellviews { padding:5px; border-right:1px solid #eeeeee; border-top:1px solid #eeeeee;  border-bottom:1px solid #eeeeee;}
 .displayadscellposted { padding:5px;  border-bottom:1px solid #eeeeee; border-top:1px solid #eeeeee; font-size:x-small; }
 
-.changecategoryselect {
-    float:left;
-    margin-bottom:10px;
-    padding:5px;
-}
-.changecategoryselect .awpcp-category-dropdown-container {
-    float: left;
-}
-.awpcp-single-dropdown-category-selector-container .awpcp-category-dropdown-label {
-    display: inline-block;
-}
-
-.pager { float:right; }
-.pager a { padding:2px; border:1px solid #cccccc; }
-
 #awpcpcatlayout { width:100%; }
 #awpcpcatlayout .awpcpcatlayoutleft { width:70%; float: left; }
 #awpcpcatlayout .awpcpcatlayoutright { width:25%;  float:right; border-left:1px solid #dddddd;}
@@ -431,29 +384,11 @@ div.theuploaddiv { display:block;padding:10px;   }
 p.uploaderror { padding:5px; background:#ffffcc; color:#000000; }
 div.unsetsavedlocationslink { clear:both;padding:5px;background:#f2f2f2; width:300px;text-align:center;}
 
-.adviewed { margin:10px 0px; border-top:1px dotted #333333; padding-top:10px; }
-
 .dropdownparentcategory { background-color:#eeeeee;margin-bottom:3px; color:#000000;}
 
 .displayaditemsodd { background:#f2f2f2; width:100%; margin-bottom:10px; }
 .displayaditemseven { width:100%; margin-bottom:10px; }
 
-.twitter-share-button {
-    background:transparent url('../images/tweetn.png') no-repeat  0 0;
-    direction: ltr;
-    display:block;
-    margin-top: 5px;
-    width:55px;
-    height:22px;
-    text-align:left;
-    text-indent:-9999px;
-}
-.facebook-share-button {
-    background: url(../images/fbshare.png) no-repeat 0 0;
-    display: block;
-    height: 18px;
-    width: 57px;
-}
 
 #js_error {
 color:#cf0000;
@@ -519,50 +454,4 @@ p.ad_status_msg {
 .awpcp-extra-fields-columns-3 .last-column {
     margin-left: 3%;
     margin-right: 0;
-}
-
-/* Attachments Style */
-
-#classiwrapper {
-    .awpcp-videos {
-        clear: both;
-        margin-top: 10px;
-    }
-    .awpcp-videos-title {
-        font-weight: bold;
-    }
-    .awpcp-videos-grid-item {
-        float: left;
-        list-style: none;
-        margin: 10px;
-
-        a {
-            background: #626262;
-            border: 1px solid #313131;
-            display: inline-block;
-            padding: 9px;
-        }
-    }
-
-    .awpcp-videos-list-item {
-        list-style: none;
-        margin: 10px 0;
-    }
-
-    .awpcp-attachments {
-        clear: both;
-        margin-top: 10px;
-    }
-    .awpcp-attachments-title {
-        font-weight: bold;
-    }
-    .awpcp-attachments-list {
-        margin: 0;
-        padding: 0;
-    }
-    .awpcp-attachments-list li {
-        list-style-type: circle;
-        list-style-position: inside;
-        margin: 0;
-    }
 }

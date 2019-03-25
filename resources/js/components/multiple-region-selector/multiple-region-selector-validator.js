@@ -35,6 +35,10 @@ function( $ ) {
                 emptyRequiredField = null,
                 requiredFieldsAreEmpty = false;
 
+            if ( ! multipleRegionSelector ) {
+                return requiredFieldsAreEmpty;
+            }
+
             $.each( multipleRegionSelector.regions(), function( index, region ) {
                 $.each( region.partials(), function( index, partial ) {
                     if ( ! partial.config.required ) {

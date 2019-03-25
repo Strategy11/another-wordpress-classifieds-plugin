@@ -1,7 +1,17 @@
+<?php
+/**
+ * @package AWPCP\Templates\Admin
+ */
+
+// phpcs:disable
+
+?>
 <?php $page_id = 'awpcp-admin-csv-importer' ?>
 <?php $page_title = awpcp_admin_page_title( __( 'Import Listings', 'another-wordpress-classifieds-plugin' ) ); ?>
 
 <?php include( AWPCP_DIR . '/admin/templates/admin-panel-header.tpl.php') ?>
+
+            <?php echo $form_steps; // XSS Ok. ?>
 
             <h3><?php echo esc_html( __( 'Configure', 'another-wordpress-classifieds-plugin' ) ); ?></h3>
 
@@ -124,16 +134,17 @@
                             </th>
                             <td>
                                 <?php
-                                    echo awpcp_users_field()->render( array(
-                                        'selected' => empty( $form_data['default_user'] ) ? null : $form_data['default_user'],
-                                        'label' => false,
-                                        'default' => false,
-                                        'id' => 'awpcp-importer-user',
-                                        'name' => 'default_user',
-                                        'include-full-user-information' => false,
-                                    ) );
+                                    echo awpcp()->container['UserSelector']->render( array(
+                                        'selected'                      => empty( $form_data['default_user'] ) ? null : $form_data['default_user'],
+                                        'label'                         => false,
+                                        'default'                       => false,
+                                        'id'                            => 'awpcp-importer-user',
+                                        'name'                          => 'default_user',
+                                        'class'                         => array( 'awpcp-user-selector' ),
+                                        'include_full_user_information' => false,
+                                    ) ); // XSS Ok.
                                 ?>
-                                <?php echo awpcp_form_error( 'default_user', $form_errors ); ?>
+                                <?php echo awpcp_form_error( 'default_user', $form_errors ); // XSS Ok. ?>
                             </td>
                         </tr>
                     </tbody>

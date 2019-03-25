@@ -6,7 +6,8 @@ class AWPCP_ListingsTableSearchByTitleCondition {
         return $search_by == 'title';
     }
 
-    public function create( $search_term ) {
-        return array( 'title' => $search_term );
+    public function create( $search_term, $query ) {
+        $query['s'] = $search_term;
+        return $query;
     }
 }

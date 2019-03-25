@@ -1,23 +1,49 @@
 <?php
+/**
+ * @package AWPCP\Admin
+ */
 
+/**
+ * Constructor function.
+ */
 function awpcp_update_form_fields_order_ajax_handler() {
-    return new AWPCP_UpdateFormFieldsOrderAjaxHandler( awpcp_form_fields(), awpcp_request(), awpcp_ajax_response() );
+    return new AWPCP_UpdateFormFieldsOrderAjaxHandler(
+        awpcp_listing_form_fields(),
+        awpcp_request(),
+        awpcp_ajax_response()
+    );
 }
 
+/**
+ * Handler for the ajax action that updates the order of listing's form fields.
+ */
 class AWPCP_UpdateFormFieldsOrderAjaxHandler extends AWPCP_AjaxHandler {
 
+    /**
+     * @var ListingFormFields
+     */
     private $form_fields;
+
+    /**
+     * @var Request
+     */
     private $request;
 
+    /**
+     * Constructor.
+     */
     public function __construct( $form_fields, $request, $response ) {
         parent::__construct( $response );
 
         $this->form_fields = $form_fields;
-        $this->request = $request;
+        $this->request     = $request;
     }
 
+    /**
+     * Handles ajax request.
+     */
     public function ajax() {
-        $fields = $this->form_fields->get_fields();
+        $fields       = $this->form_fields->get_listing_details_form_fields();
         $fields_order = array();
 
         foreach ( $this->request->post( 'awpcp-form-fields-order' ) as $element_id ) {

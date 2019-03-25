@@ -1,8 +1,14 @@
 <?php
+/**
+ * @package AWPCP
+ */
+
+// phpcs:disable
 
 function awpcp_facebook_cache_helper() {
     return new AWPCP_FacebookCacheHelper(
         awpcp_facebook_integration(),
+        awpcp_listing_renderer(),
         awpcp_listings_collection(),
         awpcp()->settings
     );
@@ -14,6 +20,12 @@ class AWPCP_FacebookCacheHelper {
      * @var FacebookIntegration
      */
     private $facebook_integration;
+    
+    
+    /**
+     * @var ListingRenderer
+     */
+    private $listing_renderer;
 
     /**
      * @var ListingsCollection
@@ -25,8 +37,9 @@ class AWPCP_FacebookCacheHelper {
      */
     private $settings;
 
-    public function __construct( $facebook_integration, $ads, $settings ) {
+    public function __construct( $facebook_integration, $listing_renderer, $ads, $settings ) {
         $this->facebook_integration = $facebook_integration;
+        $this->listing_renderer     = $listing_renderer;
         $this->ads                  = $ads;
         $this->settings             = $settings;
     }
@@ -41,8 +54,11 @@ class AWPCP_FacebookCacheHelper {
         $this->clear_ad_cache( $ad );
     }
 
+    /**
+     * @SuppressWarnings(ElseExpression)
+     */
     private function clear_ad_cache( $ad ) {
-        if ( $ad->disabled ) {
+        if ( is_null( $ad ) || ! $this->listing_renderer->is_public( $ad ) ) {
             return;
         }
 
@@ -55,7 +71,7 @@ class AWPCP_FacebookCacheHelper {
         $args = array(
             'timeout' => 30,
             'body' => array(
-                'id' => url_showad( $ad->ad_id ),
+                'id' => url_showad( $ad->ID ),
                 'scrape' => true,
                 'access_token' => $user_token,
             ),

@@ -1,20 +1,16 @@
 <?php
 
-function awpcp_categories_list_renderer() {
-    return new AWPCP_CategoriesRenderer( awpcp_categories_collection(), new AWPCP_CategoriesListWalker() );
-}
-
 function awpcp_categories_checkbox_list_renderer() {
-    return new AWPCP_CategoriesRenderer( awpcp_categories_collection(), new AWPCP_CategoriesCheckboxListWalker() );
+    return new AWPCP_CategoriesRenderer( awpcp_categories_renderer_data_provider(), new AWPCP_CategoriesCheckboxListWalker() );
 }
 
 class AWPCP_CategoriesRenderer {
 
-    private $categories;
+    private $data_provider;
     private $walker;
 
-    public function __construct( $categories, $walker ) {
-        $this->categories = $categories;
+    public function __construct( $data_provider, $walker ) {
+        $this->data_provider = $data_provider;
         $this->walker = $walker;
     }
 
@@ -22,6 +18,11 @@ class AWPCP_CategoriesRenderer {
         awpcp_enqueue_main_script();
 
         $params = $this->merge_params( $params );
+
+        if ( $params['ignore_cache'] ) {
+            return $this->render_categories( $params );
+        }
+
         $transient_key = $this->generate_transient_key( $params );
 
         try {
@@ -38,6 +39,7 @@ class AWPCP_CategoriesRenderer {
             'show_empty_categories' => true,
             'show_children_categories' => true,
             'show_listings_count' => true,
+            'ignore_cache' => false,
         ) );
     }
 
@@ -62,13 +64,11 @@ class AWPCP_CategoriesRenderer {
         throw new AWPCP_Exception( 'No cache entry was found.' );
     }
 
-    private function render_categories_and_update_cache( $params, $transient_key ) {
-        $categories = $this->get_categories( $params );
-        $max_depth = $params['show_children_categories'] ? 0 : 1;
+    private function render_categories( $params ) {
+        $categories = $this->data_provider->get_categories( $params );
 
         if ( $this->walker->configure( $params ) ) {
-            $output = $this->walker->walk( $categories, $max_depth );
-            $this->update_cache( $transient_key, $output );
+            $output = $this->walker->walk( $categories, 0 );
         } else {
             $output = '';
         }
@@ -76,33 +76,18 @@ class AWPCP_CategoriesRenderer {
         return $output;
     }
 
-    private function get_categories( $params ) {
-        $selected_categories = array();
+    private function render_categories_and_update_cache( $params, $transient_key ) {
+        $output = $this->render_categories( $params );
 
-        if ( ! is_null( $params['category_id'] ) && $params['show_children_categories'] ) {
-            $categories_found = $this->categories->get_categories_hierarchy( $params['category_id'] );
-        } else if ( ! is_null( $params['category_id'] ) ) {
-            $categories_found = $this->categories->find( array( 'id' => $params['category_id'] ) );
-        } else if ( is_null( $params['parent_category_id'] ) && $params['show_children_categories'] ) {
-            $categories_found = $this->categories->get_all();
-        } else if ( is_null( $params['parent_category_id'] ) ) {
-            $categories_found = $this->categories->find_by_parent_id( 0 );
-        } else {
-            $categories_found = $this->categories->find_by_parent_id( $params['parent_category_id'] );
+        if ( ! empty( $output ) ) {
+            $this->update_cache( $transient_key, $output );
         }
 
-        foreach ( $categories_found as $category ) {
-            $category->listings_count = total_ads_in_cat( $category->id );
-            if ( $params['show_empty_categories'] || $category->listings_count > 0 ) {
-                $selected_categories[] = $category;
-            }
-        }
-
-        return $selected_categories;
+        return $output;
     }
 
     private function update_cache( $transient_key, $output ) {
-        if ( set_transient( $transient_key, $output, YEAR_IN_SECONDS ) ) {
+        if ( $transient_key && set_transient( $transient_key, $output, YEAR_IN_SECONDS ) ) {
             $transient_keys = get_option( 'awpcp-categories-list-cache-keys' );
             if ( $transient_keys === false ) {
                 add_option( 'awpcp-categories-list-cache-keys', array( $transient_key ), '', 'no' );

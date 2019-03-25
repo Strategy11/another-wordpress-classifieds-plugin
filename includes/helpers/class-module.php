@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package AWPCP
+ * @phpcs:disable Squiz.Commenting.FunctionComment.Missing
+ * @phpcs:disable Squiz.Commenting.VariableComment.Missing
+ */
 
 /**
  * @since 3.3
@@ -15,18 +20,18 @@ abstract class AWPCP_Module {
     public $notices = array();
 
     public function __construct( $file, $name, $slug, $version, $required_awpcp_version, $textdomain = null ) {
-        $this->file = $file;
-        $this->name = $name;
-        $this->slug = $slug;
-        $this->version = $version;
+        $this->file                   = $file;
+        $this->name                   = $name;
+        $this->slug                   = $slug;
+        $this->version                = $version;
         $this->required_awpcp_version = $required_awpcp_version;
-        $this->textdomain = $textdomain ? $textdomain : "awpcp-{$this->slug}";
+        $this->textdomain             = $textdomain ? $textdomain : "awpcp-{$this->slug}";
     }
 
-    public abstract function required_awpcp_version_notice();
+    abstract public function required_awpcp_version_notice();
 
     public function load_textdomain() {
-        awpcp_load_text_domain_with_file_prefix( $this->file, $this->textdomain, $this->textdomain );
+        awpcp_load_text_domain_with_file_prefix( $this->file, $this->textdomain );
     }
 
     public function setup() {
@@ -35,11 +40,8 @@ abstract class AWPCP_Module {
         }
 
         if ( ! $this->is_up_to_date() ) {
-            return;
+            throw new AWPCP_Exception( sprintf( '%s is outdated.', $this->name ) );
         }
-
-        // run after load_dependencies() in new modules and init() in old modules
-        add_action( 'init', array( $this, 'setup_module' ), 11 );
 
         $this->load_dependencies();
         $this->load_module();
@@ -55,15 +57,22 @@ abstract class AWPCP_Module {
     }
 
     public function install_or_upgrade() {
-        // overwrite in children classes if necessary
+        // Overwrite in children classes if necessary.
     }
 
     public function load_dependencies() {
-        // overwrite in children classes if necessary
+        // Overwrite in children classes if necessary.
     }
 
     public function load_module() {
-        // overwrite in children classes if necessary
+        // Overwrite in children classes if necessary.
+    }
+
+    /**
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
+    public function configure_routes( $routes ) {
+        // Overwrite in children classes if necessary.
     }
 
     /**
@@ -78,10 +87,13 @@ abstract class AWPCP_Module {
         return $this->module_setup();
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.ElseExpression)
+     */
     protected function module_setup() {
         if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
             $this->ajax_setup();
-        } else if ( is_admin() ) {
+        } elseif ( is_admin() ) {
             $this->admin_setup();
         } else {
             $this->frontend_setup();

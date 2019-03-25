@@ -29,7 +29,7 @@ AWPCP.define( 'awpcp/settings-validator', [
             form.validate( $.extend( options, {
                 errorClass: 'invalid',
                 errorPlacement: function ( error, element ) {
-                    error.addClass( 'awpcp-message error' ).css( 'display', 'block' );
+                    error.addClass( 'awpcp-message awpcp-error' ).css( 'display', 'block' );
                     element.closest( 'td' ).append( error );
                 }
             } ) );
@@ -63,12 +63,28 @@ AWPCP.define( 'awpcp/settings-validator', [
         },
 
         getEscapedSelector: function ( selector ) {
+            var self = this;
+
             if ( typeof selector === 'undefined' ) {
                 return false;
             }
 
             var escapedSelectorParts = $.map( selector.split( ',' ), function( part ) {
-                return '#' + part.trim().replace( /(:|\.|\[|\]|,)/g, '\\$1' );
+                return '#' + self.escapeSelector( part );
+            } );
+
+            return escapedSelectorParts.join( ',' );
+        },
+
+        escapeSelector: function( selector ) {
+            return selector.trim().replace( /(:|\.|\[|\]|,)/g, '\\$1' );
+        },
+
+        getEscapedNameSelector: function( selector ) {
+            var self = this;
+
+            var escapedSelectorParts = $.map( selector.split( ',' ), function( part ) {
+                return '[name="awpcp-options[' + self.escapeSelector( part ) + ']"]';
             } );
 
             return escapedSelectorParts.join( ',' );
@@ -91,17 +107,9 @@ AWPCP.define( 'awpcp/settings-validator', [
 
             dependencies.change( function() {
                 if ( dependencies.is(':checked') ) {
-                    if ( $.fn.prop ) {
-                        field.prop( 'disabled', false );
-                    } else {
-                        field.removeAttr( 'disabled' );
-                    }
+                    field.prop( 'disabled', false );
                 } else {
-                    if ( $.fn.prop ) {
-                        field.prop( 'disabled', true );
-                    } else {
-                        field.attr( 'disabled', 'disabled' );
-                    }
+                    field.prop( 'disabled', true );
                 }
             } );
 
@@ -116,6 +124,23 @@ AWPCP.define( 'awpcp/settings-validator', [
                     field.closest('tr').fadeOut( 400 );
                 } else {
                     field.closest('tr').fadeIn( 400 );
+                }
+            } );
+
+            dependencies.change();
+        },
+
+        enabledIfMatches: function( field, rule ) {
+            var parts = rule.split( '=' ),
+                element = parts[0],
+                expectedValue = parts[1],
+                dependencies = $( this.getEscapedNameSelector( element ) );
+
+            dependencies.change( function() {
+                if ( dependencies.filter( ':checked' ).val() === expectedValue ) {
+                    field.prop( 'disabled', false );
+                } else {
+                    field.prop( 'disabled', true );
                 }
             } );
 

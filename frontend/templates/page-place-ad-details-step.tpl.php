@@ -1,8 +1,17 @@
-<h2><?php echo esc_html( __( 'Enter Ad Details', 'another-wordpress-classifieds-plugin' ) ); ?></h2>
+<?php
+/**
+ * @package AWPCP\Frontend
+ */
+
+// phpcs:disable
+
+// TODO: Remove this file.
+
+?><h2><?php echo esc_html( __( 'Enter Ad Details', 'another-wordpress-classifieds-plugin' ) ); ?></h2>
 
 <?php
     if ( isset( $transaction ) && get_awpcp_option( 'show-create-listing-form-steps' ) ) {
-        echo awpcp_render_listing_form_steps( 'listing-details', $transaction );
+        echo awpcp_render_listing_form_steps( 'listing-information', $transaction );
     }
 ?>
 
@@ -15,15 +24,13 @@
 ?>
 
 <?php if ($ui['listing-actions']): ?>
-<?php echo awpcp_listing_actions_component()->render( $listing, array( 'hidden-params' => $hidden, 'current_url' => $this->url() ) ); ?>
+<?php echo awpcp_listing_actions_component()->render( $listing, array( 'hidden-params' => $hidden, 'current_url' => $page->url() ) ); ?>
 <?php endif ?>
 
 <!-- TODO: check where is used $formdisplayvalue -->
 <div>
-	<form class="awpcp-details-form" id="adpostform" name="adpostform" action="<?php echo esc_attr( $this->url() ) ?>" method="post">
-        <?php foreach($hidden as $name => $value): ?>
-        <input type="hidden" name="<?php echo esc_attr($name) ?>" value="<?php echo esc_attr($value) ?>" />
-        <?php endforeach ?>
+	<form class="awpcp-details-form" id="adpostform" name="adpostform" action="<?php echo esc_attr( $page->url() ) ?>" method="post">
+        <?php echo awpcp_html_hidden_fields( $hidden ); ?>
 
         <?php if ($ui['user-dropdown']): ?>
 
@@ -72,21 +79,18 @@
         <h3><?php echo esc_html( __( 'Add Details and Contact Information', 'another-wordpress-classifieds-plugin' ) ); ?></h3>
 
         <?php if ($ui['category-field']): ?>
-        <p class="awpcp-form-spacer">
-            <?php $dropdown = new AWPCP_CategoriesDropdown(); ?>
-            <?php echo $dropdown->render( array( 'selected' => awpcp_array_data( 'ad_category', '', $form ), 'name' => 'ad_category' ) ); ?>
-            <?php echo awpcp_form_error( 'ad_category', $errors ); ?>
-        </p>
+        <div class="awpcp-form-spacer">
+            <?php
+                echo awpcp_categories_selector()->render(array(
+                    'name' => 'ad_category',
+                    'selected' => awpcp_array_data( 'ad_category', '', $form ),
+                    'hide_empty' => false,
+                    'payment_terms' => isset( $payment_terms ) ? $payment_terms : array(),
+                ));
+                echo awpcp_form_error( 'ad_category', $errors );
+            ?>
+        </div>
         <?php endif ?>
-
-        <?php
-            echo awpcp_form_fields()->render_fields(
-                $form,
-                $errors,
-                isset( $listing ) ? $listing : null,
-                array( 'category' => $form['ad_category'], 'action' => 'normal' )
-            );
-        ?>
 
         <?php if ($ui['terms-of-service']): ?>
         <p class="awpcp-form-spacer">

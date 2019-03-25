@@ -1,12 +1,21 @@
 <?php
+/**
+ * @package AWPCP\Listings\Facebook
+ */
 
+// phpcs:disable
+
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 function awpcp_send_to_facebook_helper() {
     return new AWPCP_SendToFacebookHelper(
         AWPCP_Facebook::instance(),
         awpcp_facebook_integration(),
+        awpcp_listing_renderer(),
         awpcp_listings_collection(),
-        awpcp_listings_metadata(),
-        awpcp()->settings
+        awpcp()->settings,
+        awpcp_wordpress()
     );
 }
 
@@ -27,19 +36,18 @@ class AWPCP_SendToFacebookHelper {
      */
     private $listings;
 
-    private $listings_metadata;
-
     /**
      * @var Settings
      */
     private $settings;
 
-    public function __construct( $facebook, $facebook_integration, $listings, $listings_metadata, $settings ) {
+    public function __construct( $facebook, $facebook_integration, $listing_renderer, $listings, $settings, $wordpress ) {
         $this->facebook             = $facebook;
         $this->facebook_integration = $facebook_integration;
+        $this->listing_renderer     = $listing_renderer;
         $this->listings             = $listings;
-        $this->listings_metadata    = $listings_metadata;
         $this->settings             = $settings;
+        $this->wordpress            = $wordpress;
     }
 
     public function send_listing_to_facebook( $listing_id ) {
@@ -64,17 +72,25 @@ class AWPCP_SendToFacebookHelper {
         $this->facebook_integration->maybe_schedelue_send_to_facebook_action( $listing );
     }
 
+    /**
+     * @return true     If the ad is successfully send to Facebook. An exception is
+     *                  thrown otherwise.
+     */
     public function send_listing_to_facebook_page( $listing ) {
-        if ( $this->listings_metadata->get( $listing->ad_id, 'sent-to-facebook' ) ) {
-            throw new AWPCP_Exception( __( 'The ad was already sent to a Facebook Page.', 'another-wordpress-classifieds-plugin' ) );
+        if ( $this->wordpress->get_post_meta( $listing->ID, '_awpcp_sent_to_facebook_page', true ) ) {
+            throw new AWPCP_ListingAlreadySharedException( __( 'The ad was already sent to a Facebook Page.', 'another-wordpress-classifieds-plugin' ) );
         }
 
-        if ( $listing->disabled ) {
-            throw new AWPCP_Exception( __( "The ad is currently disabled. If you share it, Facebook servers and users won't be able to access it.", 'another-wordpress-classifieds-plugin' ) );
+        if ( ! $this->listing_renderer->is_public( $listing ) ) {
+            throw new AWPCP_ListingDisabledException( __( "The ad is currently disabled. If you share it, Facebook servers and users won't be able to access it.", 'another-wordpress-classifieds-plugin' ) );
         }
 
         $integration_method = $this->settings->get_option( 'facebook-integration-method' );
         $listing_sent       = false;
+
+        if ( empty( $integration_method ) ) {
+            throw new AWPCP_NoIntegrationMethodDefined();
+        }
 
         if ( 'facebook-api' === $integration_method ) {
             $listing_sent = $this->send_listing_to_facebook_page_using_facebook_api( $listing );
@@ -84,9 +100,11 @@ class AWPCP_SendToFacebookHelper {
             $listing_sent = $this->send_listing_to_facebook_page_using_webhook( $listing );
         }
 
-        if ( $listing_sent ) {
-            $this->listings_metadata->set( $listing->ad_id, 'sent-to-facebook', true );
+        if ( ! $listing_sent ) {
+            throw new AWPCP_Exception( 'Unknown error.' );
         }
+
+        $this->wordpress->update_post_meta( $listing->ID, '_awpcp_sent_to_facebook_page', true );
 
         return $listing_sent;
     }
@@ -98,7 +116,7 @@ class AWPCP_SendToFacebookHelper {
         $this->facebook->set_access_token( 'page_token' );
 
         if ( ! $this->facebook->is_page_set() ) {
-            throw new AWPCP_Exception( 'There is no Facebook Page selected.' );
+            throw new AWPCP_NoFacebookObjectSelectedException( 'There is no Facebook Page selected.' );
         }
 
         $this->do_facebook_request(
@@ -110,9 +128,12 @@ class AWPCP_SendToFacebookHelper {
         return true;
     }
 
+    /**
+     * @SuppressWarnings(PHPMD)
+     */
     private function do_facebook_request( $listing, $path, $method ) {
         $params = array(
-            'link' => url_showad( $listing->ad_id ),
+            'link' => url_showad( $listing->ID ),
         );
 
         try {
@@ -122,6 +143,7 @@ class AWPCP_SendToFacebookHelper {
             $message = sprintf( $message, $e->getMessage() );
             throw new AWPCP_Exception( $message );
         }
+
         if ( ! $response || ! isset( $response->id ) ) {
             $message = __( 'Facebook API returned the following errors: %s.', 'another-wordpress-classifieds-plugin' );
             $message = sprintf( $message, $this->facebook->get_last_error()->message );
@@ -133,7 +155,7 @@ class AWPCP_SendToFacebookHelper {
      * @since 3.8.6
      */
     private function send_listing_to_facebook_page_using_webhook( $listing ) {
-        $webhooks = $this->get_webohooks_for_facebook_page_integration( $listing );
+        $webhooks = $this->get_webhooks_for_facebook_page_integration( $listing );
 
         if ( empty( $webhooks ) ) {
             throw new AWPCP_Exception( 'There is no webhook configured to send ads to a Facebook Page.' );
@@ -145,7 +167,7 @@ class AWPCP_SendToFacebookHelper {
     /**
      * @since 3.8.6
      */
-    private function get_webohooks_for_facebook_page_integration( $listing ) {
+    private function get_webhooks_for_facebook_page_integration( $listing ) {
         $zapier_webhook      = $this->settings->get_option( 'zapier-webhook-for-facebook-page-integration' );
         $ifttt_webhook_base  = $this->settings->get_option( 'ifttt-webhook-base-url-for-facebook-page-integration' );
         $ifttt_webhook_event = $this->settings->get_option( 'ifttt-webhook-event-name-for-facebook-page-integration' );
@@ -197,7 +219,7 @@ class AWPCP_SendToFacebookHelper {
      * @since 3.8.6
      */
     private function get_listing_properties( $listing ) {
-        $properties = awpcp_get_ad_share_info( $listing->ad_id );
+        $properties = awpcp_get_ad_share_info( $listing->ID );
 
         return array(
             'url'         => $properties['url'],
@@ -237,26 +259,41 @@ class AWPCP_SendToFacebookHelper {
      * OAuthException: (#200) Insufficient permission to post to target on behalf of the viewer.
      *
      * http://stackoverflow.com/a/19653226/201354
+     *
+     * @param object $listing   An instance of WP_Post.
+     * @throws AWPCP_Exception  If no group has been selected on the configuration.
+     * @throws AWPCP_Exception  If the listing was already shared to a Facebook group.
+     * @throws AWPCP_Exception  If the listing is not public.
      */
     public function send_listing_to_facebook_group( $listing ) {
-        if ( $this->listings_metadata->get( $listing->ad_id, 'sent-to-facebook-group' ) ) {
-            throw new AWPCP_Exception( __( 'The ad was already sent to a Facebook Group.', 'another-wordpress-classifieds-plugin' ) );
+        if ( $this->wordpress->get_post_meta( $listing->ID, '_awpcp_sent_to_facebook_group', true ) ) {
+            throw new AWPCP_ListingAlreadySharedException( __( 'The ad was already sent to a Facebook Group.', 'another-wordpress-classifieds-plugin' ) );
         }
 
-        if ( $listing->disabled ) {
-            throw new AWPCP_Exception( __( "The ad is currently disabled. If you share it, Facebook servers and users won't be able to access it.", 'another-wordpress-classifieds-plugin' ) );
+        if ( ! $this->listing_renderer->is_public( $listing ) ) {
+            throw new AWPCP_ListingDisabledException( __( "The ad is currently disabled. If you share it, Facebook servers and users won't be able to access it.", 'another-wordpress-classifieds-plugin' ) );
         }
 
         $integration_method = $this->settings->get_option( 'facebook-integration-method' );
         $listing_sent       = false;
 
+        if ( empty( $integration_method ) ) {
+            throw new AWPCP_NoIntegrationMethodDefined();
+        }
+
         if ( 'facebook-api' === $integration_method ) {
             $listing_sent = $this->send_listing_to_facebook_group_using_facebook_api( $listing );
         }
 
-        if ( $listing_sent ) {
-            $this->listings_metadata->set( $listing->ad_id, 'sent-to-facebook-group', true );
+        if ( 'webhooks' === $integration_method ) {
+            throw new AWPCP_WebhooksNotCurrentlySupported();
         }
+
+        if ( ! $listing_sent ) {
+            throw new AWPCP_Exception( 'Unknown error.' );
+        }
+
+        $this->wordpress->update_post_meta( $listing->ID, '_awpcp_sent_to_facebook_group', true );
 
         return $listing_sent;
     }
@@ -268,7 +305,7 @@ class AWPCP_SendToFacebookHelper {
         $this->facebook->set_access_token( 'user_token' );
 
         if ( ! $this->facebook->is_group_set() ) {
-            throw new AWPCP_Exception( 'There is no Facebook Group selected.' );
+            throw new AWPCP_NoFacebookObjectSelectedException( 'There is no Facebook Group selected.' );
         }
 
         $this->do_facebook_request(
@@ -289,6 +326,7 @@ class AWPCP_SendToFacebookHelper {
      * http://stackoverflow.com/a/19653226/201354
      *
      * @since 3.8.6
+     * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
      */
     private function send_listing_to_facebook_group_using_webhook( $listing ) {
         $webhooks = $this->get_webhooks_for_facebook_group_integration( $listing );
@@ -301,9 +339,16 @@ class AWPCP_SendToFacebookHelper {
     }
 
     /**
+     * We expect to add support for sending ads to Facebook Groups using webhooks
+     * in the near future as the corresponding Zapier and IFTTT integrations
+     * get approved.
+     *
      * @since 3.8.6
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     private function get_webhooks_for_facebook_group_integration( $listing ) {
         return array();
     }
 }
+
+// phpcs:enable

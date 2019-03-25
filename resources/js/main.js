@@ -6,42 +6,28 @@ function($) {
     });
 });
 
-AWPCP.run( 'awpcp/init-categories-dropdown', [ 'jquery', 'awpcp/category-dropdown' ],
-function( $ ) {
+AWPCP.run( 'awpcp/init-categories-dropdown', [ 'jquery', 'awpcp/categories-selector' ],
+function( $, CategoriesSelector ) {
     $( function() {
-        $( '.awpcp-category-dropdown' ).categorydropdown();
+        $( '.awpcp-category-dropdown[data-auto]' ).each( function() {
+            $.noop( new CategoriesSelector( $( this ) ) );
+        } );
     } );
 } );
 
 AWPCP.run( 'awpcp/init-category-selector', [ 'jquery' ],
 function( $ ) {
     $( function() {
-        var $selectors = $( '.awpcp-category-selector .awpcp-category-dropdown' );
+        var $selectors = $( '.awpcp-category-switcher .awpcp-category-dropdown' );
 
-        $.subscribe( '/category/updated', function( event, $dropdown, category_id ) {
+        $.subscribe( '/categories/change', function( event, $dropdown, category_id ) {
             if ( -1 === $selectors.index( $dropdown ) ) {
                 return;
             }
 
-            if ( $dropdown.closest( '.awpcp-category-dropdown-container' ).is( '.awpcp-multiple-dropdown-category-selector-container' ) ) {
-                return;
+            if ( category_id ) {
+                $dropdown.closest( 'form' ).submit();
             }
-
-            // TODO: This is a hack. We should be able to detect only real change
-            // events, not artificial events fired to let other parts of the UI
-            // know what's the current value when the page loads.
-            var previous_value = $dropdown.data( 'awpcp-category-selector-previous-value' );
-            $dropdown.data( 'awpcp-category-selector-previous-value', category_id );
-
-            if ( typeof previous_value === 'undefined' ) {
-                return;
-            }
-
-            if ( category_id === previous_value ) {
-                return;
-            }
-
-            $dropdown.closest( 'form' ).submit();
         } );
     } );
 } );

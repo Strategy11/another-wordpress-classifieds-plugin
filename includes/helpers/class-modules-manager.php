@@ -1,34 +1,36 @@
 <?php
+/**
+ * @package AWPCP
+ */
 
-function awpcp_modules_manager() {
-    static $instance = null;
+// phpcs:disable
 
-    if ( is_null( $instance ) ) {
-        $instance = new AWPCP_ModulesManager( awpcp(), awpcp_licenses_manager(), awpcp_modules_updater(), awpcp()->settings );
-    }
-
-    return $instance;
-}
-
+/**
+ * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
+ */
 class AWPCP_ModulesManager {
 
     private $plugin;
+    private $upgrade_tasks;
     private $licenses_manager;
     private $modules_updater;
-    private $settings;
+    private $licenses_settings;
+    private $request;
 
     private $modules = array();
     private $notices = array();
 
-    public function __construct( $plugin, $licenses_manager, $modules_updater, $settings ) {
+    public function __construct( $plugin, $upgrade_tasks, $licenses_manager, $modules_updater, $licenses_settings, $request ) {
         $this->plugin = $plugin;
+        $this->upgrade_tasks = $upgrade_tasks;
         $this->licenses_manager = $licenses_manager;
         $this->modules_updater = $modules_updater;
-        $this->settings = $settings;
+        $this->licenses_settings = $licenses_settings;
+        $this->request = $request;
     }
 
-    public function load_modules() {
-        do_action( 'awpcp-load-modules', $this );
+    public function load_modules( $container ) {
+        do_action( 'awpcp-load-modules', $this, $container );
     }
 
     public function load( $module ) {
@@ -41,26 +43,51 @@ class AWPCP_ModulesManager {
         }
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.ElseExpression)
+     * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
+     */
     private function load_module( $module ) {
         $module->load_textdomain();
 
         $this->handle_module_updates( $module );
         $this->verify_version_compatibility( $module );
 
-        if ( $this->is_premium_module( $module ) ) {
-            $this->settings->add_license_setting( $module->name, $module->slug );
+        $is_premium_module = $this->is_premium_module( $module );
+
+        if ( $is_premium_module && is_admin() ) {
+            $this->licenses_settings->add_license_setting( $module->name, $module->slug );
+        }
+
+        if ( $is_premium_module ) {
             $this->verify_license_status( $module );
         }
 
         $module->setup( $this->plugin );
+
+        if ( ! $this->upgrade_tasks->has_pending_tasks( array( 'context' => $module->slug ) ) ) {
+            add_action( 'awpcp-configure-routes', array( $module, 'configure_routes' ) );
+
+            // run after load_dependencies() in new modules and init() in old modules
+            add_action( 'init', array( $module, 'setup_module' ), 11 );
+        } else {
+            $this->notices['module-requires-manual-upgrade'][] = $module;
+        }
     }
 
     private function verify_version_compatibility( $module ) {
-        $modules = $this->plugin->get_premium_modules_information();
+        $modules_information = $this->plugin->get_premium_modules_information();
 
-        if ( ! isset( $modules[ $module->slug ] ) ) {
+        if ( ! isset( $modules_information[ $module->slug ] ) ) {
             $this->notices['modules-not-registered'][] = $module;
             throw new AWPCP_Exception( 'Module is not registered.' );
+        }
+
+        $module_information = $modules_information[ $module->slug ];
+
+        if ( isset( $module_information['removed'] ) && is_callable( $module_information['removed'] ) ) {
+            $this->notices['modules-removed'][] = $module;
+            throw new AWPCP_Exception( 'Module is no longer supported.' );
         }
 
         if ( version_compare( $this->plugin->version, $module->required_awpcp_version, '<' ) ) {
@@ -143,7 +170,10 @@ class AWPCP_ModulesManager {
                 echo $this->show_required_awpcp_version_notice( $modules );
                 break;
             case 'modules-not-compatible':
-                return $this->show_modules_not_compatible_notice( $modules );
+                echo $this->show_modules_not_compatible_notice( $modules );
+                break;
+            case 'modules-removed':
+                echo $this->show_modules_removed_notice( $modules );
                 break;
             case 'modules-with-inactive-license':
                 echo $this->show_inactive_licenses_notice( $modules );
@@ -153,6 +183,9 @@ class AWPCP_ModulesManager {
                 break;
             case 'modules-with-expired-license':
                 echo $this->show_expired_licenses_notice( $modules );
+                break;
+            case 'module-requires-manual-upgrade':
+                echo $this->show_module_requires_manual_upgrade_notice( $modules );
                 break;
         }
     }
@@ -165,15 +198,12 @@ class AWPCP_ModulesManager {
     }
 
     private function replace_modules_names_in_message( $message, $modules ) {
-        $modules_names = $this->get_modules_names( $modules );
+        $message = str_replace( '<module-name>', '<name>', $message );
+        $message = str_replace( '<modules-names>', '<names>', $message );
 
-        if ( count( $modules ) === 1 ) {
-            $message = str_replace( '<module-name>', $this->get_string_with_names( $modules_names ), $message );
-        } else {
-            $message = str_replace( '<modules-names>', $this->get_string_with_names( $modules_names ), $message );
-        }
-
-        return $message;
+        return awpcp_replace_names_in_message(
+            $message, $this->get_modules_names( $modules )
+        );
     }
 
     private function get_modules_names( $modules ) {
@@ -184,22 +214,6 @@ class AWPCP_ModulesManager {
         return $modules_names;
     }
 
-    private function get_string_with_names( $names ) {
-        if ( count( $names ) === 1 ) {
-            $string = '<strong>' . $names[0] . '</strong>';
-        } else {
-            $n_first_names = '<strong>' . implode( '</strong>, <strong>', array_slice( $names, 0, -1 ) ) . '</strong>';
-            $last_name = '<strong>' . end( $names ) . '</strong>';
-
-            /* translators: example: <Extra Fields, Featured Ads> and <Region Control> */
-            $string = __( '<comma-separated-names> and <single-name>', 'another-wordpress-classifieds-plugin' );
-            $string = str_replace( '<comma-separated-names>', $n_first_names, $string );
-            $string = str_replace( '<single-name>', $last_name, $string );
-        }
-
-        return $string;
-    }
-
     private function show_required_awpcp_version_notice( $modules ) {
         foreach ( $modules as $module ) {
             echo $module->required_awpcp_version_notice();
@@ -207,9 +221,38 @@ class AWPCP_ModulesManager {
     }
 
     private function show_modules_not_compatible_notice( $modules ) {
+        $modules_information = $this->plugin->get_premium_modules_information();
+
+        $message  = _n( 'The version of AWPCP {modules_names} is not compatible with version {awpcp_version}.', 'The versions of AWPCP {modules_names} are not compatible with version {awpcp_version}.', count( $modules ), 'another-wordpress-classifieds-plugin' );
+        $message .= '<br><br>';
+        $message .= __( 'Please get AWPCP {required_modules_versions} or newer!', 'another-wordpress-classifieds-plugin' );
+        $strings  = [];
+
         foreach ( $modules as $module ) {
-            echo $this->show_module_not_compatible_notice( $module );
+            $strings['modules'][]           = $module->name;
+            $strings['required_versions'][] = "{$module->name} ({$modules_information[ $module->slug ]['required']})";
         }
+
+        $message = str_replace( '{modules_names}', awpcp_string_with_names( $strings['modules'] ), $message );
+        $message = str_replace( '{awpcp_version}', '<strong>' . $this->plugin->version . '</strong>', $message );
+        $message = str_replace( '{required_modules_versions}', awpcp_string_with_names( $strings['required_versions'] ), $message );
+
+        return awpcp_print_error( $message );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function show_modules_removed_notice( $modules ) {
+        $modules_information = $this->plugin->get_premium_modules_information();
+        $notices             = '';
+
+        foreach ( $modules as $module ) {
+            $content  = call_user_func( $modules_information[ $module->slug ]['removed'] );
+            $notices .= awpcp_activation_failed_notice( $content );
+        }
+
+        return $notices;
     }
 
     private function show_inactive_licenses_notice( $modules ) {
@@ -236,14 +279,16 @@ class AWPCP_ModulesManager {
         return $this->show_license_notice( $message, $modules );
     }
 
-    private function show_module_not_compatible_notice( $module ) {
-        $modules = $this->plugin->get_premium_modules_information();
+    private function show_module_requires_manual_upgrade_notice( $modules ) {
+        if ( $this->request->param('page') == 'awpcp-admin-upgrade' ) {
+            return;
+        }
 
-        $required_version = $modules[ $module->slug ][ 'required' ];
+        $upgrade_url = add_query_arg( 'context', 'premium-modules', awpcp_get_admin_upgrade_url() );
 
-        $message = __( 'This version of AWPCP %1$s is not compatible with AWPCP version %2$s. Please get AWPCP %1$s %3$s or newer!', 'another-wordpress-classifieds-plugin' );
-        $message = sprintf( $message, '<strong>' . $module->name . '</strong>', $this->plugin->version, '<strong>' . $required_version . '</strong>' );
-        $message = sprintf( '<strong>%s:</strong> %s', __( 'Error', 'another-wordpress-classifieds-plugin' ), $message );
+        $message = _n( 'The AWPCP <module-name> is currently disabled because it requires you to perform a manual upgrade before continuing. Please <upgrade-link>go to the Classifieds admin section to Upgrade</a>.', 'The AWPCP <modules-names> are currently disabled because they require you to perform a manual upgrade before continuing. Please <upgrade-link>go to the Classifieds admin section to Upgrade</a>.', count( $modules ), 'another-wordpress-classifieds-plugin' );
+        $message = $this->replace_modules_names_in_message( $message, $modules );
+        $message = str_replace( '<upgrade-link>', sprintf( '<a href="%s">', $upgrade_url ), $message );
 
         return awpcp_print_error( $message );
     }

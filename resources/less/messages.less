@@ -1,4 +1,4 @@
-#classiwrapper {
+body:not(.wp-admin), #classiwrapper {
     .awpcp-message {
         background-color: #FFFBCC;
         border: 1px solid #CCC;
@@ -6,12 +6,47 @@
         margin: 10px 0;
         padding: 8px 12px;
 
-        &.updated {
-            border-color: #E6DB55;
+        p {
+            margin: 0;
         }
-        &.error {
-            border-color: #CC0000;
-        }
+    }
+
+    .awpcp-message.updated, .awpcp-message-updated, .awpcp-message-success {
+        border-color: #E6DB55;
+    }
+    .awpcp-message.error, .awpcp-message-error {
+        border-color: #CC0000;
+    }
+    .awpcp-message.info, .awpcp-message-info {
+        background: #f7fdff;
+        border-color: #00A1CE;
+    }
+    .awpcp-message.ghost {
+        display: none;
+    }
+
+    .awpcp-updated {
+        border-color: #E6DB55;
+        display: block !important;
+    }
+
+    .awpcp-error {
+        background-color: @error-message-background-color;
+        border-color: @error-message-border-color;
+        color: @error-message-font-color;
+        font-weight: normal;
+        font-size: 14px;
+    }
+}
+
+.wp-admin {
+    .awpcp-message:not(.notice) {
+        background-color: #FFFBCC;
+        border: 1px solid #CCC;
+        color: #333;
+        margin: 10px 0;
+        padding: 8px 12px;
+
         &.info {
             border-color: #00A1CE;
         }
@@ -24,15 +59,15 @@
         }
     }
 
-    .awpcp-updated {
+    .awpcp-updated:not(.notice) {
         border-color: #E6DB55;
         display: block !important;
     }
 
-    .awpcp-error {
-        background-color: #FFEBE8;
-        border-color: #CC0000;
-        color: #ff0000;
+    .awpcp-error:not(.notice) {
+        background-color: @error-message-background-color;
+        border-color: @error-message-border-color;
+        color: @error-message-font-color;
         font-weight: normal;
         font-size: 14px;
     }

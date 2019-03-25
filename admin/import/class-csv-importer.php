@@ -14,12 +14,16 @@ class AWPCP_CSV_Importer {
 
     public function import_rows() {
         $number_of_rows = $this->import_session->get_number_of_rows();
-        $number_of_rows_imported = $this->import_session->get_data( 'number_of_rows_imported', 0 );
-        $number_of_rows_rejected = $this->import_session->get_data( 'number_of_rows_rejected', 0 );
+        $number_of_rows_imported_before = $this->import_session->get_data( 'number_of_rows_imported', 0 );
+        $number_of_rows_imported = 0;
+        $number_of_rows_rejected_before = $this->import_session->get_data( 'number_of_rows_rejected', 0 );
+        $number_of_rows_rejected = 0;
 
         $last_row_processed = $this->import_session->get_data( 'last_row_processed', 0 );
         $batch_size = $this->import_session->get_batch_size();
+
         $errors = array();
+        $messages = array();
 
         $number_of_rows_to_process = min( $batch_size, $number_of_rows - $last_row_processed );
 
@@ -41,7 +45,7 @@ class AWPCP_CSV_Importer {
             }
 
             try {
-                $this->delegate->import_row( $row_data );
+                $result = $this->delegate->import_row( $row_data );
             } catch ( AWPCP_CSV_Importer_Exception $e ) {
                 foreach ( $e->getErrors() as $error ) {
                     $errors[] = array( 'type' => 'error', 'line' => $last_row_processed, 'content' => $error );
@@ -52,13 +56,22 @@ class AWPCP_CSV_Importer {
                 continue;
             }
 
+            foreach ( $result->messages as $message ) {
+                $messages[] = array( 'type' => 'info', 'line' => $last_row_processed, 'content' => $message );
+            }
+
             $number_of_rows_imported = $number_of_rows_imported + 1;
         }
 
+        if ( $number_of_rows_imported && ! $this->import_session->is_test_mode_enabled() ) {
+            do_action( 'awpcp-listings-imported' );
+        }
+
         $this->import_session->set_data( 'last_row_processed', $last_row_processed );
-        $this->import_session->set_data( 'number_of_rows_imported', $number_of_rows_imported );
-        $this->import_session->set_data( 'number_of_rows_rejected', $number_of_rows_rejected );
+        $this->import_session->set_data( 'number_of_rows_imported', $number_of_rows_imported_before + $number_of_rows_imported );
+        $this->import_session->set_data( 'number_of_rows_rejected', $number_of_rows_rejected_before + $number_of_rows_rejected );
         $this->import_session->add_errors( $errors );
+        $this->import_session->add_messages( $messages );
 
         $this->csv_reader->release();
     }

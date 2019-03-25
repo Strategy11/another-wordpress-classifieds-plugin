@@ -1,8 +1,11 @@
 <?php
-    foreach ($messages as $message) {
-        echo awpcp_print_message($message);
-    }
+/**
+ * @package AWPCP\Templates
+ */
 
+// phpcs:disable
+
+?><?php
     foreach ($errors as $index => $error) {
         if (is_numeric($index)) {
             echo awpcp_print_message($error, array('error'));
@@ -15,25 +18,26 @@
 <form class="awpcp-search-ads-form" method="get" action="<?php echo esc_url( $action_url ); ?>"name="myform">
     <?php echo awpcp_html_hidden_fields( $hidden ); ?>
 
-    <p class='awpcp-form-spacer'>
-        <label for="query"><?php _e("Search for Ads containing this word or phrase", 'another-wordpress-classifieds-plugin'); ?>:</label>
+    <p class="awpcp-form-field awpcp-form-spacer">
+        <label for="query"><?php esc_html_e( 'Search for ads containing this word or phrase', 'another-wordpress-classifieds-plugin' ); ?>:</label>
         <input type="text" id="query" class="awpcp-textfield inputbox" size="50" name="keywordphrase" value="<?php echo esc_attr($form['query']); ?>" />
         <?php echo awpcp_form_error('query', $errors); ?>
     </p>
 
     <p class="awpcp-form-spacer">
-        <?php $dropdown = new AWPCP_CategoriesDropdown(); ?>
-        <?php echo $dropdown->render( array(
+        <?php echo awpcp_categories_selector()->render( array(
                 'context' => 'search',
                 'selected' => awpcp_array_data('category', '', $form),
                 'name' => 'searchcategory',
                 'required' => false,
+                'multiple' => true,
+                'auto'     => false,
               ) ); ?>
     </p>
 
     <?php if ($ui['posted-by-field']): ?>
-    <p class='awpcp-form-spacer'>
-        <label for="name"><?php _e("For Ads Posted By", 'another-wordpress-classifieds-plugin'); ?></label>
+    <p class="awpcp-form-field awpcp-form-spacer">
+        <label for="name"><?php esc_html_e( 'For ads posted by', 'another-wordpress-classifieds-plugin' ); ?></label>
         <select id="name" name="searchname">
             <option value=""><?php _e("All Users", 'another-wordpress-classifieds-plugin'); ?></option>
             <?php echo create_ad_postedby_list($form['name']); ?>
@@ -42,17 +46,18 @@
     <?php endif ?>
 
     <?php if ($ui['price-field']): ?>
-    <p class="awpcp-form-spacer">
-        <label for="min-price"><?php _e( 'Price', 'another-wordpress-classifieds-plugin' ); ?></label>
-        <span class="awpcp-range-search">
-            <label for="min-price"><?php _e( "Min", 'another-wordpress-classifieds-plugin' ); ?></label>
+    <div class="awpcp-form-field awpcp-range-form-field awpcp-form-spacer">
+        <div class="awpcp-range-search">
+            <label for="min-price"><?php esc_html_e( 'Min price', 'another-wordpress-classifieds-plugin' ); ?></label>
             <input id="min-price" class="awpcp-textfield inputbox money" type="text" name="searchpricemin" value="<?php echo esc_attr( $form['min_price'] ); ?>">
-            <label for="max-price"><?php _e( "Max", 'another-wordpress-classifieds-plugin' ); ?></label>
+        </div>
+        <div class="awpcp-range-search">
+            <label for="max-price"><?php esc_html_e( 'Max price', 'another-wordpress-classifieds-plugin' ); ?></label>
             <input id="max-price" class="awpcp-textfield inputbox money" type="text" name="searchpricemax" value="<?php echo esc_attr( $form['max_price'] ); ?>">
-        </span>
+        </div>
         <?php echo awpcp_form_error('min_price', $errors); ?>
         <?php echo awpcp_form_error('max_price', $errors); ?>
-    </p>
+    </div>
     <?php endif ?>
 
     <?php
@@ -66,7 +71,7 @@
     ?>
 
     <?php
-        echo awpcp_form_fields()->render_fields(
+        echo awpcp()->container['ListingDetailsFormFieldsRenderer']->render_fields(
             $form,
             $errors,
             null,
@@ -74,5 +79,5 @@
         );
     ?>
 
-    <input type="submit" class="button" value="<?php echo esc_attr( _x( 'Start Search', 'ad search form', 'another-wordpress-classifieds-plugin' ) ); ?>" />
+    <input type="submit" class="button" value="<?php echo esc_attr( _x( 'Find Ads', 'ad search form', 'another-wordpress-classifieds-plugin' ) ); ?>" />
 </form>

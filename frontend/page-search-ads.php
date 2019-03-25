@@ -1,17 +1,33 @@
 <?php
+/**
+ * @package AWPCP
+ */
 
-require_once(AWPCP_DIR . '/includes/helpers/page.php');
+// phpcs:disable
 
+function awpcp_search_listings_page() {
+    return new AWPCP_SearchAdsPage(
+        'awpcp-search-ads',
+        __('Search Ads', 'another-wordpress-classifieds-plugin'),
+        awpcp_template_renderer(),
+        awpcp_request()
+    );
+}
 
 /**
  * @since  2.1.4
+ * @SuppressWarnings(PHPMD)
  */
 class AWPCP_SearchAdsPage extends AWPCP_Page {
 
-    public function __construct($page='awpcp-search-ads', $title=null) {
-        parent::__construct($page, is_null($title) ? __('Search Ads', 'another-wordpress-classifieds-plugin') : $title);
+    private $request;
+
+    public function __construct( $slug, $title, $template_renderer, $request ) {
+        parent::__construct( $slug, $title, $template_renderer );
 
         $this->classifieds_bar_components = array( 'search_bar' => false );
+
+        $this->request = $request;
     }
 
     public function get_current_action($default='searchads') {
@@ -31,6 +47,7 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
 
     public function dispatch() {
         wp_enqueue_style('awpcp-jquery-ui');
+        wp_enqueue_style( 'select2' );
         wp_enqueue_script('awpcp-page-search-listings');
         wp_enqueue_script('awpcp-extra-fields');
 
@@ -40,35 +57,30 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
     protected function _dispatch($default=null) {
         $action = $this->get_current_action();
 
-        $form = $this->search_step();
-
-        if ( 'dosearch' !== $action ) {
-            return $form;
+        if ( 'searchads' === $action ) {
+            return $this->search_step();
         }
 
-        $results = $this->do_search_step();
-
-        if ( 'above' === get_awpcp_option( 'search-form-in-results' ) ) {
-            return $form . $results;
-        }
-
-        if ( 'below' === get_awpcp_option( 'search-form-in-results' ) ) {
-            return $results . $form;
-        }
-
-        return $results;
+        return $this->do_search_step();
     }
 
     protected function get_posted_data() {
-        $data = stripslashes_deep( array(
-            'query' => awpcp_request_param('keywordphrase'),
-            'category' => awpcp_request_param('searchcategory'),
-            'name' => awpcp_request_param('searchname'),
-            'min_price' => awpcp_parse_money( awpcp_request_param( 'searchpricemin' ) ),
-            'max_price' => awpcp_parse_money( awpcp_request_param( 'searchpricemax' ) ),
-            'regions' => awpcp_request_param('regions'),
-        ) );
+        $data = [
+            'query' => $this->request->param('keywordphrase'),
+            'category' => null,
+            'name' => $this->request->param('searchname'),
+            'min_price' => awpcp_parse_money( $this->request->param( 'searchpricemin' ) ),
+            'max_price' => awpcp_parse_money( $this->request->param( 'searchpricemax' ) ),
+            'regions' => $this->request->param('regions'),
+        ];
 
+        $category = array_filter( array_map( 'intval', (array) $this->request->param( 'searchcategory' ) ) );
+
+        if ( $category ) {
+            $data['category'] = $category;
+        }
+
+        $data = stripslashes_deep( $data );
         $data = apply_filters( 'awpcp-get-posted-data', $data, 'search', array() );
 
         return $data;
@@ -91,7 +103,9 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
     }
 
     protected function search_step() {
-        return $this->search_form($this->get_posted_data());
+        $search_form = $this->search_form( $this->get_posted_data() );
+
+        return $this->render( 'content', $search_form );
     }
 
     protected function search_form($form, $errors=array()) {
@@ -99,14 +113,8 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
 
         $ui['module-extra-fields'] = $hasextrafieldsmodule;
         $ui['posted-by-field'] = get_awpcp_option('displaypostedbyfield');
-        $ui['price-field'] = get_awpcp_option('displaypricefield');
+        $ui['price-field'] = get_awpcp_option( 'display_price_field_on_search_form' );
         $ui['allow-user-to-search-in-multiple-regions'] = get_awpcp_option('allow-user-to-search-in-multiple-regions');
-
-        $messages = array();
-
-        if ( 'searchads' === $this->get_current_action() ) {
-            $messages[] = __( 'Use the form below to select the fields on which you want to search. Adding more fields makes for a more specific search. Using fewer fields will make for a broader search.', 'another-wordpress-classifieds-plugin' );
-        }
 
         $url_params = wp_parse_args( parse_url( awpcp_current_url(), PHP_URL_QUERY ) );
 
@@ -116,14 +124,17 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
             }
         }
 
+        // Allow selected categories to be cleared or replaced.
+        unset( $url_params['searchcategory'] );
+
         $action_url = awpcp_current_url();
         $hidden = array_merge( $url_params, array( 'awpcp-step' => 'dosearch' ) );
 
-        $params = compact( 'action_url', 'ui', 'form', 'hidden', 'messages', 'errors' );
+        $params = compact( 'action_url', 'ui', 'form', 'hidden', 'errors' );
 
         $template = AWPCP_DIR . '/frontend/templates/page-search-ads.tpl.php';
 
-        return $this->render($template, $params);
+        return $this->template_renderer->render_template( $template, $params );
     }
 
     protected function do_search_step() {
@@ -144,30 +155,64 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
     }
 
     private function search_listings( $form ) {
-        $query = array_merge( $form, array(
-            'context' => 'public-listings',
-            'keyword' => $form['query'],
-            'category_id' => $form['category'],
-            'contact_name' => $form['name'],
-            'min_price' => $form['min_price'],
-            'max_price' => $form['max_price'],
-            'regions' => $form['regions'],
-            'disabled' => false,
-            'limit' => absint( awpcp_request_param( 'results', get_awpcp_option( 'adresultsperpage', 10 ) ) ),
-            'offset' => absint( awpcp_request_param( 'offset', 0 ) ),
-            'orderby' => get_awpcp_option( 'search-results-order' ),
-        ) );
+        $query  = $this->build_search_listings_query( $form );
+        $params = $this->get_display_listings_params( $form );
 
-        return awpcp_display_listings( $query, 'search', array(
-            'show_intro_message' => true,
-            'show_menu_items' => true,
-            'show_category_selector' => false,
-            'show_pagination' => true,
+        $search_results = awpcp_display_listings( $query, 'search', $params );
+
+        return $this->render( 'content', $search_results );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function build_search_listings_query( $posted_data ) {
+        $query = array(
+            's'                 => $posted_data['query'],
+            'classifieds_query' => array(
+                'context'      => 'public-listings',
+                'category'     => $posted_data['category'],
+                'contact_name' => $posted_data['name'],
+                'min_price'    => $posted_data['min_price'],
+                'max_price'    => $posted_data['max_price'],
+                'regions'      => $posted_data['regions'],
+            ),
+            'posts_per_page'    => absint( awpcp_request_param( 'results', get_awpcp_option( 'adresultsperpage', 10 ) ) ),
+            'offset'            => absint( awpcp_request_param( 'offset', 0 ) ),
+            'orderby'           => get_awpcp_option( 'search-results-order' ),
+        );
+
+        return apply_filters( 'awpcp-search-listings-query', $query, $posted_data );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function get_display_listings_params( $posted_data ) {
+        $params = [
+            'show_intro_message'         => true,
+            'show_menu_items'            => false,
+            'show_category_selector'     => false,
+            'show_pagination'            => true,
 
             'classifieds_bar_components' => $this->classifieds_bar_components,
+        ];
 
-            'before_list' => $this->build_return_link(),
-        ) );
+        $position_of_form_in_results = get_awpcp_option( 'search-form-in-results' );
+
+        if ( 'above' === $position_of_form_in_results ) {
+            $params['before_pagination'] = $this->search_form( $posted_data );
+        }
+
+        if ( 'below' === $position_of_form_in_results ) {
+            $params['after_pagination'] = $this->search_form( $posted_data );
+        }
+
+        if ( 'none' === $position_of_form_in_results ) {
+            $params['before_list'] = $this->build_return_link();
+        }
+
+        return $params;
     }
 
     public function build_return_link() {

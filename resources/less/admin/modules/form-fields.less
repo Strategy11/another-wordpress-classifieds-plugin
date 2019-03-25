@@ -1,6 +1,3 @@
-.awpcp-form-fields-table {
-}
-
 .awpcp-sortable-handle {
     background: url(../images/drag-handle.png) center center no-repeat;
     cursor: move;
@@ -9,6 +6,142 @@
     height: 20px;
 }
 
+@sortable_handler_width: 16px;
+
+.awpcp-form-fields-table {
+    .column-cb {
+        width: 3.2em;
+
+        input {
+            margin-left: @sortable_handler_width + 8px;
+        }
+    }
+
+    .awpcp-sortable-handle {
+        float: left;
+        height: @sortable_handler_width;
+        width: @sortable_handler_width;
+    }
+}
+
 .awpcp-form-fields-table-spinner {
     margin: 0;
+}
+
+.awpcp-admin-form {
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    padding: 20px;
+
+    h1 {
+        margin-bottom: 20px;
+    }
+}
+
+.awpcp-admin-form-fieldset {
+    margin-bottom: 30px;
+}
+
+.awpcp-admin-form-field,
+.awpcp-admin-form-textfield,
+.awpcp-admin-form-text-field-with-left-label,
+.awpcp-admin-form-textarea,
+.awpcp-admin-form-checkbox,
+.awpcp-admin-form-select,
+.awpcp-admin-form-radio-buttons {
+    margin-bottom: 6px;
+}
+
+.awpcp-admin-form-field {
+    margin-bottom: 6px;
+
+    label {
+        display: block;
+    }
+    input[type="text"] {
+        width: 100%;
+    }
+}
+
+.awpcp-admin-form-field-with-left-label,
+.awpcp-admin-form-text-field-with-left-label {
+    display: flex;
+    flex-direction: column;
+
+    label {
+        margin-top: 16px;
+        margin-bottom: 8px;
+        width: 100%;
+    }
+}
+.awpcp-admin-form-text-field-with-left-label input[type="text"] {
+    width: 100%;
+}
+.awpcp-admin-form-text-field-with-left-label {
+    input[type="text"] {
+        display: inherit;
+    }
+}
+
+.awpcp-admin-form-textarea {
+    label {
+        display: block;
+    }
+    textarea {
+        width: 100%;
+    }
+}
+
+.awpcp-admin-form-checkbox {
+    span {
+        color: #777;
+        display: block;
+        margin: 2px 0 0 20px;
+        font-style: italic;
+    }
+}
+
+.awpcp-admin-form-checkbox-textfield {
+
+}
+
+.awpcp-admin-form-radio-buttons {
+    label {
+        display: block;
+        margin-bottom: 4px;
+    }
+}
+
+.awpcp-admin-form-select {
+    label {
+        display: block;
+    }
+    select {
+        width: 100%;
+    }
+}
+
+.awpcp-admin-form-submit-buttons {
+    margin-top: 26px;
+
+    input[type="submit"], input[type="button"], a.button {
+        margin-right: 8px;
+    }
+}
+
+@media (min-width: 768px) {
+    .awpcp-admin-form-field-with-left-label,
+    .awpcp-admin-form-text-field-with-left-label {
+        flex-direction: row;
+
+        label {
+            flex: 0 1 60%;
+            margin-top: 5px;
+            margin-bottom: 0;
+        }
+    }
+    .awpcp-admin-form-field-with-left-label > div,
+    .awpcp-admin-form-text-field-with-left-label input[type="text"] {
+        flex: 1 1 40%;
+    }
 }

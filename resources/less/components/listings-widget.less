@@ -1,22 +1,51 @@
+.thumbnail_by_the_side() {
+    .awpcplatestbox {
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        .awpcplatestthumb {
+            order: 1;
+            width: 50%;
+        }
+
+        .awpcp-listings-widget-item--title-and-content {
+            order: 2;
+            width: 50%;
+        }
+
+        .awpcp-widget-read-more-container {
+            order: 3;
+        }
+    }
+}
+
+.thumbnail_on_right_side() {
+    .awpcplatestthumb {
+        order: 2;
+    }
+
+    .awpcp-listings-widget-item--title-and-content {
+        order: 1;
+    }
+
+    .awpcp-widget-read-more-container {
+        order: 3;
+    }
+}
+
 .thumbnail_above() {
-    margin-right: 0;
-    margin-left: 0;
-    float: none;
-    width: 100%;
+    flex-direction: column;
+
+    .awpcplatestthumb {
+        margin: 0 0 4px;
+        width: 100%;
+    }
 }
 
-.left_thumbnail() {
-    margin-right: 10px;
-    margin-left: 0;
-    float: left;
-    width: 50%;
-}
-
-.right_thumbnail() {
-    margin-right: 0;
-    margin-left: 10px;
-    float: right;
-    width: 50%;
+.no_thumbnail() {
+    .awpcp-listings-widget-item--title-and-content {
+        width: 100%;
+    }
 }
 
 /* Using !important because theme authors love to use IDs in their
@@ -30,9 +59,27 @@
     .awpcp-listings-widget-item {
         margin-bottom: 15px;
 
+        .awpcplatestbox {
+            display: flex;
+
+            .awpcplatestthumb, .awpcp-listings-widget-item--title-and-content, .awpcp-widget-read-more-container {
+                box-sizing: border-box;
+                flex: 0 0 auto;
+            }
+
+            .awpcp-listings-widget-item--title-and-content {
+                padding: 4px;
+            }
+
+            .awpcp-widget-read-more-container {
+                margin: 4px 0 0;
+                text-align: right;
+                width: 100%;
+            }
+        }
+
         .awpcplatestthumb {
-            box-sizing: border-box;
-            margin-bottom: 5px;
+            margin: 0;
 
             a {
                 display: block !important;
@@ -56,37 +103,39 @@
         }
     }
 
-    .awpcp-listings-widget-item-with-thumbnail-above-in-desktop .awpcplatestthumb {
+    .awpcp-listings-widget-item-with-left-thumbnail-in-mobile, .awpcp-listings-widget-item-with-right-thumbnail-in-mobile {
+        .thumbnail_by_the_side();
+    }
+
+    .awpcp-listings-widget-item-with-right-thumbnail-in-mobile .awpcplatestbox {
+        .thumbnail_on_right_side();
+    }
+
+    .awpcp-listings-widget-item-with-thumbnail-above-in-mobile .awpcplatestbox {
         .thumbnail_above();
     }
 
-    .awpcp-listings-widget-item-with-left-thumbnail-in-desktop .awpcplatestthumb {
-        .left_thumbnail();
-    }
-
-    .awpcp-listings-widget-item-with-right-thumbnail-in-desktop .awpcplatestthumb {
-        .right_thumbnail();
-    }
-
-    .awpcp-listings-widget-item-listing-link {
-        position: relative;
+    .awpcp-listings-widget-item-without-thumbnail .awpcplatestbox {
+        .no_thumbnail();
     }
 }
 
-@media screen and (max-width: 44em) {
+@media screen and (min-width: 44em) {
+    .awpcp-listings-widget-items-list {
+        .awpcp-listings-widget-item-with-left-thumbnail-in-desktop, .awpcp-listings-widget-item-with-right-thumbnail-in-desktop {
+            .thumbnail_by_the_side();
+        }
 
-.awpcp-listings-widget-items-list {
-    .awpcp-listings-widget-item-with-left-thumbnail-in-mobile .awpcplatestthumb {
-        .left_thumbnail();
+        .awpcp-listings-widget-item-with-right-thumbnail-in-desktop .awpcplatestbox {
+            .thumbnail_on_right_side();
+        }
+
+        .awpcp-listings-widget-item-with-thumbnail-above-in-desktop .awpcplatestbox {
+            .thumbnail_above();
+        }
+
+        .awpcp-listings-widget-item-without-thumbnail .awpcplatestbox {
+            .no_thumbnail();
+        }
     }
-
-    .awpcp-listings-widget-item-with-right-thumbnail-in-mobile .awpcplatestthumb {
-        .right_thumbnail();
-    }
-
-    .awpcp-listings-widget-item-with-thumbnail-above-in-mobile .awpcplatestthumb {
-        .thumbnail_above();
-    }
-}
-
 }

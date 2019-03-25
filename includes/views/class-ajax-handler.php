@@ -52,44 +52,41 @@ abstract class AWPCP_AjaxHandler {
 
     /**
      * @since 3.2.2
+     * @since 4.0.0 access changed to public.
      */
-    protected function success( $params = array() ) {
+    public function success( $params = array() ) {
         return $this->flush( array_merge( array( 'status' => 'ok' ), $params ) );
     }
 
     /**
      * @since 3.2.2
+     * @since 4.0.0 access changed to public.
      */
-    protected function error( $params = array() ) {
+    public function error( $params = array() ) {
         return $this->flush( array_merge( array( 'status' => 'error' ), $params ) );
     }
 
     /**
      * @since 3.2.2
+     * @since 4.0.0 access changed to public.
      */
-    protected function progress_response( $records_count, $records_left ) {
+    public function progress_response( $records_count, $records_left ) {
         return $this->success( array( 'recordsCount' => $records_count, 'recordsLeft' => $records_left ) );
     }
 
     /**
      * @since 3.2.2
+     * @since 4.0.0 access changed to public.
      */
-    protected function response( $records_count, $records_left ) {
-        _deprecated_function( __FUNCTION__, '3.2.2', 'AWPCP_AjaxHandler::progress_response' );
-        return $this->progress_response( $records_count, $records_left );
-    }
-
-    /**
-     * @since 3.2.2
-     */
-    protected function error_response( $error_message ) {
+    public function error_response( $error_message ) {
         return $this->error( array( 'error' => $error_message ) );
     }
 
     /**
      * @since 3.2.2
+     * @since 4.0.0 access changed to public.
      */
-    protected function multiple_errors_response( $errors ) {
+    public function multiple_errors_response( $errors ) {
         return $this->error( array( 'errors' => (array) $errors ) );
     }
 

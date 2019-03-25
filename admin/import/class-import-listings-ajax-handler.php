@@ -31,7 +31,10 @@ class AWPCP_Import_Listings_Ajax_Handler extends AWPCP_AjaxHandler {
             'rowsCount' => $import_session->get_number_of_rows(),
             'rowsImported' => $import_session->get_number_of_rows_imported(),
             'rowsRejected' => $import_session->get_number_of_rows_rejected(),
-            'errors' => $import_session->get_last_errors(),
+            'errors' => array_merge(
+                $import_session->get_last_errors(),
+                $import_session->get_last_messages()
+            ),
         ) );
     }
 }

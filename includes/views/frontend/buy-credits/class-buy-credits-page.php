@@ -16,7 +16,6 @@ class AWPCP_BuyCreditsPage extends AWPCP_BasePage {
         if ( ! isset( $this->transaction ) ) {
             $id = $this->request->param( 'transaction_id' );
 
-            // TODO: inject PaymentTransaction dependency
             if ( $create === true  ) {
                 $this->transaction = AWPCP_Payment_Transaction::find_or_create( $id );
             } else {

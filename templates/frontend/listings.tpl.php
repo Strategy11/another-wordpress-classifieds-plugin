@@ -14,7 +14,7 @@
     <?php endif; ?>
 
     <?php echo implode( '', $before_pagination ); ?>
-    <?php echo $pagination; ?>
+    <?php echo $top_pagination; ?>
     <?php echo $before_list; ?>
 
     <div class="awpcp-listings awpcp-clearboth">
@@ -25,7 +25,7 @@
         <?php endif;?>
     </div>
 
-    <?php echo $pagination; ?>
+    <?php echo $bottom_pagination; ?>
     <?php echo implode( '', $after_pagination ); ?>
     <?php echo $after_content; ?>
 </div>

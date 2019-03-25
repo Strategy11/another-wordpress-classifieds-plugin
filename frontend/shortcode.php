@@ -1,26 +1,29 @@
 <?php
+/**
+ * @package AWPCP
+ */
 
-require_once(AWPCP_DIR . '/frontend/class-awpcp-meta.php');
+// phpcs:disable
 
 require_once(AWPCP_DIR . '/frontend/shortcode-raw.php');
 
-require_once(AWPCP_DIR . '/frontend/page-place-ad.php');
-require_once(AWPCP_DIR . '/frontend/page-edit-ad.php');
 require_once(AWPCP_DIR . '/frontend/page-renew-ad.php');
 require_once(AWPCP_DIR . '/frontend/page-show-ad.php');
 require_once(AWPCP_DIR . '/frontend/page-reply-to-ad.php');
 require_once(AWPCP_DIR . '/frontend/page-search-ads.php');
 require_once(AWPCP_DIR . '/frontend/page-browse-ads.php');
 
-
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 class AWPCP_Pages {
     private $output = array();
 
 	public function __construct() {
-		$this->meta = awpcp_meta();
+		$this->meta = awpcp()->container['Meta'];
 
-		$this->show_ad = new AWPCP_Show_Ad_Page();
-		$this->browse_ads = new AWPCP_BrowseAdsPage();
+		$this->show_ad = awpcp()->container['ShowListingPage'];
+		$this->browse_ads = awpcp_browse_listings_page();
 
 		// fix for theme conflict with ThemeForest themes.
 		new AWPCP_RawShortcode();
@@ -36,6 +39,7 @@ class AWPCP_Pages {
 		add_shortcode('AWPCPSEARCHADS', array($this, 'search_ads'));
 		add_shortcode('AWPCPREPLYTOAD', array($this, 'reply_to_ad'));
 
+        // These shortcodes are no longer used, but kept for backwards compatibility.
 		add_shortcode('AWPCPPAYMENTTHANKYOU', array($this, 'noop'));
 		add_shortcode('AWPCPCANCELPAYMENT', array($this, 'noop'));
 
@@ -67,7 +71,8 @@ class AWPCP_Pages {
             do_action('awpcp-shortcode', 'place-ad');
 
             if ( ! isset( $this->place_ad_page ) ) {
-                $this->place_ad_page = new AWPCP_Place_Ad_Page();
+                // TODO: Get container or page as constructor dependency.
+                $this->place_ad_page = awpcp()->container['SubmitListingPage'];
             }
 
             $this->output['place-ad'] = $this->place_ad_page->dispatch();
@@ -81,7 +86,7 @@ class AWPCP_Pages {
             do_action('awpcp-shortcode', 'edit-ad');
 
             if ( ! isset( $this->edit_ad_page ) ) {
-                $this->edit_ad_page = new AWPCP_EditAdPage();
+                $this->edit_ad_page = awpcp()->container['EditListingPage'];
             }
 
             $this->output['edit-ad'] = $this->edit_ad_page->dispatch();
@@ -91,8 +96,10 @@ class AWPCP_Pages {
 	}
 
 	public function renew_ad() {
-		if (!isset($this->renew_ad_page))
-			$this->renew_ad_page = new AWPCP_RenewAdPage();
+		if ( ! isset( $this->renew_ad_page ) ) {
+			$this->renew_ad_page = awpcp_renew_listing_page();
+        }
+
 		return is_null($this->renew_ad_page) ? '' : $this->renew_ad_page->dispatch();
 	}
 
@@ -106,8 +113,7 @@ class AWPCP_Pages {
 
 	public function search_ads() {
         if ( ! isset( $this->output['search-ads'] ) ) {
-            $page = new AWPCP_SearchAdsPage();
-            $this->output['search-ads'] = $page->dispatch();
+            $this->output['search-ads'] = awpcp_search_listings_page()->dispatch();
         }
 
         return $this->output['search-ads'];
@@ -116,7 +122,7 @@ class AWPCP_Pages {
 	public function reply_to_ad() {
         if ( ! isset( $this->output['reply-to-ad'] ) ) {
             do_action('awpcp-shortcode', 'reply-to-ad');
-            $page = new AWPCP_ReplyToAdPage();
+            $page = awpcp_reply_to_listing_page();
             $this->output['reply-to-ad'] = $page->dispatch();
         }
 
@@ -232,10 +238,11 @@ class AWPCP_Pages {
         $response = 0;
 
         if ( check_ajax_referer( 'flag_ad', 'nonce' ) ) {
-            $ad = AWPCP_Ad::find_by_id( intval( awpcp_request_param( 'ad', 0 ) ) );
-
-            if ( ! is_null( $ad ) ) {
+            try {
+                $ad = awpcp_listings_collection()->get( intval( awpcp_request_param( 'ad', 0 ) ) );
                 $response = awpcp_listings_api()->flag_listing( $ad );
+            } catch ( AWPCP_Exception $e ) {
+                // pass
             }
         }
 
@@ -247,6 +254,9 @@ class AWPCP_Pages {
 
 // Set Home Screen
 
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 function awpcpui_homescreen() {
 	global $classicontent;
 
@@ -259,8 +269,11 @@ function awpcpui_homescreen() {
 }
 
 
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 function awpcpui_process($awpcppagename) {
-	global $hasrssmodule, $hasregionsmodule, $awpcp_plugin_url;
+	global $hasregionsmodule;
 
 	$output = '';
 
@@ -292,7 +305,9 @@ function awpcpui_process($awpcppagename) {
 	return $output;
 }
 
-
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 function awpcp_load_classifieds($awpcppagename) {
 	if (get_awpcp_option('main_page_display') == 1) {
         $query = array(
@@ -312,6 +327,10 @@ function awpcp_load_classifieds($awpcppagename) {
 
 
 //	START FUNCTION: show the classifieds page body
+
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 function awpcp_display_the_classifieds_page_body($awpcppagename) {
 	global $hasregionsmodule;
 
@@ -343,7 +362,7 @@ function awpcp_display_the_classifieds_page_body($awpcppagename) {
         'show_listings_count' => get_awpcp_option( 'showadcount' ),
         'show_sidebar' => true,
     );
-    $output .= awpcp_categories_list_renderer()->render( $params );
+    $output .= awpcp_categories_renderer_factory()->create_list_renderer()->render( $params );
 
 	$output .= "</div>";
 
@@ -353,7 +372,9 @@ function awpcp_display_the_classifieds_page_body($awpcppagename) {
 }
 //	End function display the home screen
 
-
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 function awpcp_menu_items() {
     $params = array(
         'show-create-listing-button' => get_awpcp_option( 'show-menu-item-place-ad' ),
@@ -378,6 +399,9 @@ function awpcp_menu_items() {
     return awpcp_render_template( $template, $params );
 }
 
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 function awpcp_get_menu_items( $params ) {
     $items = array();
 
@@ -388,7 +412,7 @@ function awpcp_get_menu_items( $params ) {
 
     if ( $show_place_ad_item ) {
         $place_ad_url = awpcp_get_page_url( 'place-ad-page-name' );
-        $place_ad_page_name = get_awpcp_option( 'place-ad-page-name' );
+        $place_ad_page_name = awpcp_get_page_name( 'place-ad-page-name' );
         $items['post-listing'] = array( 'url' => $place_ad_url, 'title' => esc_html( $place_ad_page_name ) );
     }
 
@@ -419,23 +443,33 @@ function awpcp_get_menu_items( $params ) {
                 );
             }
         } else {
-            $browse_ads_page_name = get_awpcp_option('browse-ads-page-name');
+            $browse_ads_page_name = awpcp_get_page_name( 'browse-ads-page-name' );
             $browse_ads_url = awpcp_get_page_url( 'browse-ads-page-name' );
             $items['browse-listings'] = array( 'url' => $browse_ads_url, 'title' => esc_html( $browse_ads_page_name  ) );
         }
     }
 
     if ( $show_search_ads_item ) {
-        $search_ads_page_name = get_awpcp_option( 'search-ads-page-name' );
+        $search_ads_page_name = awpcp_get_page_name( 'search-ads-page-name' );
         $search_ads_url = awpcp_get_page_url( 'search-ads-page-name' );
         $items['search-listings'] = array( 'url' => $search_ads_url, 'title' => esc_html( $search_ads_page_name ) );
     }
 
+    /**
+     * @params array $items     An array of menu items where every entry is a new array
+     *                          with url and title keys.
+     *
+     *                          The value of associated with title key must be passed
+     *                          through esc_html().
+     */
     $items = apply_filters( 'awpcp_menu_items', $items );
 
     return $items;
 }
 
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 function awpcp_should_show_edit_listing_menu( $params ) {
     if ( get_awpcp_option( 'onlyadmincanplaceads' ) && ! awpcp_current_user_is_admin() ) {
         return false;
@@ -452,6 +486,9 @@ function awpcp_should_show_edit_listing_menu( $params ) {
     return true;
 }
 
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 function awpcp_get_edit_listing_menu_item() {
     $listings = awpcp_listings_collection();
     $authorization = awpcp_listing_authorization();
@@ -475,7 +512,8 @@ function awpcp_get_edit_listing_menu_item() {
     if ( is_null( $edit_ad_url ) ) {
         return null;
     } else {
-        $edit_ad_page_name = $settings->get_option( 'edit-ad-page-name' );
+        $edit_ad_page_name = awpcp_get_page_name( 'edit-ad-page-name' );
+
         return array( 'url' => $edit_ad_url, 'title' => esc_html( $edit_ad_page_name ) );
     }
 }

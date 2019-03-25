@@ -1,4 +1,24 @@
 <?php
+/**
+ * @package AWPCP\Listings
+ */
+
+// phpcs:disable Generic.Commenting
+// phpcs:disable Generic.Formatting
+// phpcs:disable Generic.Functions
+// phpcs:disable PEAR.Functions
+// phpcs:disable PSR2.ControlStructures
+// phpcs:disable Squiz.Commenting
+// phpcs:disable Squiz.Functions
+// phpcs:disable Squiz.PHP
+// phpcs:disable Squiz.Strings
+// phpcs:disable WordPress.Arrays
+// phpcs:disable WordPress.Classes
+// phpcs:disable WordPress.NamingConventions
+// phpcs:disable WordPress.PHP
+// phpcs:disable WordPress.VIP
+// phpcs:disable WordPress.WP
+// phpcs:disable WordPress.WhiteSpace
 
 /**
  * Return an array of Ad Fees.
@@ -19,6 +39,7 @@ function awpcp_get_fees() {
  * Generic function to calculate an date relative to a given start date.
  *
  * @since 2.0.7
+ * @SuppressWarnings(PHPMD)
  */
 function awpcp_calculate_end_date($increment, $period, $start_date) {
 	$periods = array('D' => 'DAY', 'W' => 'WEEK', 'M' => 'MONTH', 'Y' => 'YEAR');
@@ -41,34 +62,17 @@ function awpcp_calculate_end_date($increment, $period, $start_date) {
 }
 
 /**
- * If an Ad was passed, calculates Ad End Date from current End Date.
- * If no Ad was passed, calculates Ad End Date as if Ad would have
- * been posted at the current time.
- *
- * TODO: Use the new $ad->calculate_end_date() method.
- */
-function awpcp_calculate_ad_end_date($duration, $interval='DAY', $ad=null) {
-	$now = awpcp_datetime( 'timestamp' );
-	$end_date = is_null($ad) ? $ad->ad_enddate : 0;
-	// if the Ad's end date is in the future, use that as starting point 
-	// for the new end date, else use current date.
-	$start_date = $end_date > $now ? $end_date : $now;
-	return awpcp_calculate_end_date($duration, $interval, $start_date);
-}
-
-
-/**
- * ...
- *
- * @param $id	Ad ID.
- * @param $transaction	Payment Transaction associated to the Ad being posted
- *
  * It must be possible to have more than one transaction associated to a single
  * Ad, for example, when an Ad has been posted AND renewed one or more times.
  *
- * TODO: this can be moved into the Ad class. We actually don't need a transaction,
+ * This can be moved into the Ad class. We actually don't need a transaction,
  * because the payment_status is stored in the Ad object. We need, however, to update
  * the payment_status when the Ad is placed AND renewed. ~2012-09-19
+ *
+ * @param $id	Ad ID.
+ * @param $transaction	Payment Transaction associated to the Ad being posted
+ * @deprecated 4.0.0    This is function is no longer used.
+ * @SuppressWarnings(PHPMD)
  */
 function awpcp_calculate_ad_disabled_state($id=null, $transaction=null, $payment_status=null) {
     if ( is_null( $payment_status ) && ! is_null( $transaction ) ) {
@@ -92,6 +96,10 @@ function awpcp_calculate_ad_disabled_state($id=null, $transaction=null, $payment
     return $disabled;
 }
 
+/**
+ * @deprecated 4.0.0    This function is no longer used.
+ * @SuppressWarnings(PHPMD)
+ */
 function awpcp_should_disable_new_listing_with_payment_status( $listing, $payment_status ) {
     $payment_is_pending = $payment_status == AWPCP_Payment_Transaction::PAYMENT_STATUS_PENDING;
 
@@ -110,10 +118,16 @@ function awpcp_should_disable_new_listing_with_payment_status( $listing, $paymen
     return $should_disable;
 }
 
+/**
+ * @deprecated 4.0.0    This function is no longer used.
+ */
 function awpcp_should_enable_new_listing_with_payment_status( $listing, $payment_status ) {
     return awpcp_should_disable_new_listing_with_payment_status( $listing, $payment_status ) ? false : true;
 }
 
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 function awpcp_should_disable_existing_listing( $listing ) {
     if ( awpcp_current_user_is_moderator() ) {
         $should_disable = false;
@@ -132,16 +146,26 @@ function awpcp_should_enable_existing_listing( $listing ) {
 
 /**
  * @since 3.0.2
+ * @deprecated 4.0.0    Use ListingRenewedEmailNotifications::send_user_notification().
  */
 function awpcp_ad_renewed_user_email( $ad ) {
-	$mail = new AWPCP_Email;
-	$mail->to[] = awpcp_format_recipient_address( $ad->ad_contact_email, $ad->ad_contact_name );
-	$mail->subject = sprintf( get_awpcp_option( 'ad-renewed-email-subject' ), $ad->get_title() );
+	$listing_renderer = awpcp_listing_renderer();
 
 	$introduction = get_awpcp_option( 'ad-renewed-email-body' );
+	$listing_title = $listing_renderer->get_listing_title( $ad );
+	$contact_name = $listing_renderer->get_contact_name( $ad );
+	$contact_email = $listing_renderer->get_contact_email( $ad );
+	$access_key = $listing_renderer->get_access_key( $ad );
+	$end_date = $listing_renderer->get_end_date( $ad );
+
+	$mail = new AWPCP_Email;
+	$mail->to[] = awpcp_format_recipient_address( $contact_email, $contact_name );
+	$mail->subject = sprintf( get_awpcp_option( 'ad-renewed-email-subject' ), $listing_title );
 
 	$template = AWPCP_DIR . '/frontend/templates/email-ad-renewed-success-user.tpl.php';
-	$mail->prepare( $template, compact( 'ad', 'introduction' ) );
+	$params = compact( 'ad', 'listing_title', 'contact_name', 'contact_email', 'access_key', 'end_date', 'introduction' );
+
+	$mail->prepare( $template, $params );
 
 	return $mail;
 }
@@ -149,11 +173,15 @@ function awpcp_ad_renewed_user_email( $ad ) {
 
 /**
  * @since 3.0.2
+ * @deprecated 4.0.0    Use ListingRenewedEmailNotifications::send_admin_notification().
  */
 function awpcp_ad_renewed_admin_email( $ad, $body ) {
+	$subject = __( 'The ad "%s" has been successfully renewed.', 'another-wordpress-classifieds-plugin' );
+	$subject = sprintf( $subject, awpcp_listing_renderer()->get_listing_title( $ad ) );
+
 	$mail = new AWPCP_Email;
 	$mail->to[] = awpcp_admin_email_to();
-	$mail->subject = sprintf( __( 'The classifieds listing "%s" has been successfully renewed.', 'another-wordpress-classifieds-plugin' ), $ad->ad_title );
+	$mail->subject = $subject;
 
 	$template = AWPCP_DIR . '/frontend/templates/email-ad-renewed-success-admin.tpl.php';
 	$mail->prepare( $template, compact( 'body' ) );
@@ -177,10 +205,12 @@ function awpcp_send_ad_renewed_email($ad) {
 
 /**
  * @since 2.0.7
+ * @deprecated 4.0.0 No longer used by internal code.
+ * @SuppressWarnings(PHPMD)
  */
 function awpcp_renew_ad_success_message($ad, $text=null, $send_email=true) {
 	if (is_null($text)) {
-		$text = __("The Ad has been successfully renewed. New expiration date is %s. ", 'another-wordpress-classifieds-plugin');
+		$text = __( 'The Ad has been successfully renewed. New expiration date is %s.', 'another-wordpress-classifieds-plugin' );
 	}
 
 	$return = '';
@@ -195,21 +225,9 @@ function awpcp_renew_ad_success_message($ad, $text=null, $send_email=true) {
 	return sprintf("%s %s", sprintf($text, $ad->get_end_date()), $return);
 }
 
-
 /**
- * Deletes an image
- *
- * @param $picid int The id of the image to delete.
- * @param $adid int The id of the Ad the image belongs to.
- * @param $force boolean True if image should be deleted even if curent
- * 						 user is not admin.
- * @deprecated use awpcp_media_api()->delete()
+ * @SuppressWarnings(PHPMD)
  */
-function deletepic( $picid, $adid, $adtermid, $adkey, $editemail, $force=false ) {
-	_deprecated_function( __FUNCTION__, '3.0.2', 'awpcp_media_api()->delete()' );
-}
-
-
 function deletead($adid, $adkey, $editemail, $force=false, &$errors=array()) {
 	$output = '';
 	$awpcppage = get_currentpagename();
@@ -222,15 +240,16 @@ function deletead($adid, $adkey, $editemail, $force=false, &$errors=array()) {
 		$errors[] = $message;
 
 	} else {
-		global $wpdb, $nameofsite;
-
-		$tbl_ads = $wpdb->prefix . "awpcp_ads";
-		$tbl_ad_photos = $wpdb->prefix . "awpcp_adphotos";
 		$savedemail=get_adposteremail($adid);
 
 		if ( $isadmin == 1 || strcasecmp( $editemail, $savedemail ) == 0 ) {
-			$ad = AWPCP_Ad::find_by_id($adid);
-			if ( $ad && $ad->delete() ) {
+			try {
+				$ad = awpcp_listings_collection()->get( $adid );
+			} catch ( AWPCP_Exception $e ) {
+				$ad = null;
+			}
+
+			if ( $ad && awpcp_listings_api()->delete_listing( $ad ) ) {
 				if (($isadmin == 1) && is_admin()) {
 					$message=__("The Ad has been deleted",'another-wordpress-classifieds-plugin');
 					return $message;
@@ -262,6 +281,7 @@ function deletead($adid, $adkey, $editemail, $force=false, &$errors=array()) {
 
 /**
  * @since 3.0.2
+ * @SuppressWarnings(PHPMD)
  */
 function awpcp_ad_posted_user_email( $ad, $transaction = null, $message='' ) {
 	$admin_email = awpcp_admin_recipient_email_address();
@@ -289,8 +309,18 @@ function awpcp_ad_posted_user_email( $ad, $transaction = null, $message='' ) {
 		$include_edit_listing_url = false;
 	}
 
+	$listing_renderer = awpcp_listing_renderer();
+
+	$listing_title = $listing_renderer->get_listing_title( $ad );
+	$contact_name = $listing_renderer->get_contact_name( $ad );
+	$contact_email = $listing_renderer->get_contact_email( $ad );
+	$access_key = $listing_renderer->get_access_key( $ad );
+
 	$params = compact(
 		'ad',
+		'listing_title',
+		'contact_email',
+		'access_key',
 		'admin_email',
 		'transaction',
 		'currency_code',
@@ -305,7 +335,7 @@ function awpcp_ad_posted_user_email( $ad, $transaction = null, $message='' ) {
 	);
 
 	$email = new AWPCP_Email;
-	$email->to[] = awpcp_format_recipient_address( $ad->ad_contact_email, $ad->ad_contact_name );
+	$email->to[] = awpcp_format_recipient_address( $contact_email, $contact_name );
 	$email->subject = get_awpcp_option('listingaddedsubject');
 	$email->prepare( AWPCP_DIR . '/frontend/templates/email-place-ad-success-user.tpl.php', $params );
 
@@ -334,11 +364,6 @@ function awpcp_render_listings_items( $listings, $context ) {
 	foreach ( $listings as $i => $listing ) {
 		$rendered_listing = awpcp_do_placeholders( $listing, $layout, $context );
 		$rendered_listing = str_replace( "\$awpcpdisplayaditems", $parity[$i % 2], $rendered_listing );
-
-		if ( function_exists( 'awpcp_featured_ads' ) ) {
-			$rendered_listing = awpcp_featured_ad_class( $listing->ad_id, $rendered_listing );
-		}
-
 		$items[] = apply_filters( 'awpcp-render-listing-item', $rendered_listing, $listing, $i + 1 );
 	}
 
@@ -363,7 +388,9 @@ function awpcp_login_form($message=null, $redirect=null) {
 	return $login_form->render( $redirect, $message );
 }
 
-
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 function awpcp_user_payment_terms_sort($a, $b) {
 	$result = strcasecmp($a->type, $b->type);
 	if ($result == 0) {

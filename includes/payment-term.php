@@ -1,7 +1,13 @@
 <?php
+/**
+ * @package AWPCP
+ */
+
+// phpcs:disable
 
 /**
  * @since 2.1.4
+ * @SuppressWarnings(PHPMD)
  */
 class AWPCP_PaymentTerm {
 
@@ -102,7 +108,12 @@ class AWPCP_PaymentTerm {
     }
 
     protected function sanitize( $data ) {
-        $data['categories'] = array_filter($data['categories']);
+        if ( is_array( $data['categories'] ) ) {
+            $data['categories'] = array_filter($data['categories']);
+        } else {
+            $data['categories'] = trim( $data['categories'] );
+        }
+
         $data['duration_amount'] = (int) $data['duration_amount'];
         $data['images'] = (int) $data['images'];
         $data['regions'] = (int) $data['regions'];
@@ -113,6 +124,7 @@ class AWPCP_PaymentTerm {
         $data['ads'] = (int) $data['ads'];
         $data['featured'] = absint( (bool) $data['featured'] );
         $data['private'] = absint( (bool) $data['private'] );
+
         return $data;
     }
 
@@ -251,14 +263,21 @@ class AWPCP_PaymentTerm {
     }
 
     public function get_characters_allowed() {
-        return $this->characters;
+        return absint( $this->characters );
     }
 
     public function get_characters_allowed_in_title() {
-        return $this->title_characters;
+        return absint( $this->title_characters );
     }
 
     public function get_regions_allowed() {
         return 1;
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function get_dashboard_url() {
+        return awpcp_get_admin_fees_url();
     }
 }

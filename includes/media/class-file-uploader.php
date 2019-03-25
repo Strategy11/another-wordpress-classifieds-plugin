@@ -95,7 +95,7 @@ class AWPCP_FileUploader {
     private function write_uploaded_data_to_file( $file_path ) {
         $base_dir = dirname( $file_path );
 
-        if ( ! file_exists( $base_dir ) && ! mkdir( $base_dir, awpcp_directory_permissions(), true ) ) {
+        if ( ! file_exists( $base_dir ) && ! wp_mkdir_p( $base_dir ) ) {
             throw new AWPCP_Exception( __( "Temporary directory doesn't exists and couldn't be created.", 'another-wordpress-classifieds-plugin' ) );
         }
 
@@ -116,7 +116,7 @@ class AWPCP_FileUploader {
             }
 
             if ( ! $output = fopen( $file_path, 'wb' ) ) {
-                throw new AWPCP_Exception( __( 'There was an error trying to open the output stream.', 'another-wordpress-classifieds-plugin' ) );
+                throw new AWPCP_Exception( $this->get_failed_to_open_output_stream_error_message( $file_path ) );
             }
 
             while ( $buffer = fread( $input, 4096 ) ) {
@@ -128,9 +128,21 @@ class AWPCP_FileUploader {
         }
     }
 
+    private function get_failed_to_open_output_stream_error_message( $file_path ) {
+        if ( awpcp_current_user_is_moderator() ) {
+            $message = __( 'There was an error trying to write to the following file: <file-path>. Please make sure the webserver is allowed to write to the <parent-directory> directory.', 'another-wordpress-classifieds-plugin' );
+            $message = str_replace( '<file-path>', '<code>' . $file_path . '</code>', $message );
+            $message = str_replace( '<parent-directory>', '<code>' . dirname( $file_path ) . '</code>', $message );
+        } else {
+            $message = __( 'There was an error trying to create the uploaded file on the server.', 'another-wordpress-classifieds-plugin' );
+        }
+
+        return $message;
+    }
+
     private function write_uploaded_chunks_to_file( $chunks_count, $file_path ) {
         if ( ! $output = fopen( $file_path, 'wb' ) ) {
-            throw new AWPCP_Exception( __( 'There was an error trying to open the output stream.', 'another-wordpress-classifieds-plugin' ) );
+            throw new AWPCP_Exception( $this->get_failed_to_open_output_stream_error_message( $file_path ) );
         }
 
         for ( $i = 0; $i < $chunks_count; $i = $i + 1 ) {

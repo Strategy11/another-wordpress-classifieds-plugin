@@ -1,20 +1,32 @@
 <?php
+/**
+ * @package AWPCP\Upgrade
+ */
 
-function awpcp_migrate_media_information_task_handler() {
-    return new AWPCP_Migrate_Media_Information_Task_Handler( $GLOBALS['wpdb'] );
-}
+// phpcs:disable
 
 class AWPCP_Migrate_Media_Information_Task_Handler {
 
+    /**
+     * @var Settings
+     */
+    private $settings;
+
+    /**
+     * @var wpdb
+     */
     private $db;
 
-    public function __construct( $db ) {
-        $this->db = $db;
+    public function __construct( $settings, $db ) {
+        $this->settings = $settings;
+        $this->db       = $db;
     }
 
     /**
      * TODO: do this in the next version upgrade
      * $this->db->query( 'DROP TABLE ' . AWPCP_TABLE_ADPHOTOS );
+     *
+     * @SuppressWarnings(PHPMD.ElseExpression)
      */
     public function run_task() {
         $mime_types = awpcp_mime_types();
@@ -31,21 +43,20 @@ class AWPCP_Migrate_Media_Information_Task_Handler {
 
         $results = $this->db->get_results( $this->db->prepare( $sql, $cursor ) );
 
-        $uploads = awpcp_setup_uploads_dir();
-        $uploads = array_shift( $uploads );
+        $uploads_dir = trailingslashit( $this->settings->get_option( 'awpcp-uploads-dir' ) );
 
         foreach ( $results as $image ) {
             $cursor = $image->ad_id;
 
-            if ( file_exists( AWPCPUPLOADDIR . $image->image_name ) ) {
+            if ( file_exists( $uploads_dir . $image->image_name ) ) {
                 $relative_path = $image->image_name;
-            } else if ( file_exists( AWPCPUPLOADDIR . 'images/' . $image->image_name ) ) {
+            } elseif ( file_exists( $uploads_dir . 'images/' . $image->image_name ) ) {
                 $relative_path = 'images/' . $image->image_name;
             } else {
                 continue;
             }
 
-            $mime_type = $mime_types->get_file_mime_type( AWPCPUPLOADDIR . $relative_path );
+            $mime_type = $mime_types->get_file_mime_type( $uploads_dir . $relative_path );
 
             $entry = array(
                 'ad_id' => $image->ad_id,

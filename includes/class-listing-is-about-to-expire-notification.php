@@ -1,14 +1,19 @@
 <?php
 
 function awpcp_listing_is_about_to_expire_notification() {
-    return new AWPCP_ListingIsAboutToExpireNotification( awpcp()->settings );
+    return new AWPCP_ListingIsAboutToExpireNotification(
+        awpcp_listing_renderer(),
+        awpcp()->settings
+    );
 }
 
 class AWPCP_ListingIsAboutToExpireNotification {
 
+    private $listing_renderer;
     private $settings;
 
-    public function __construct( $settings ) {
+    public function __construct( $listing_renderer, $settings ) {
+        $this->listing_renderer = $listing_renderer;
         $this->settings = $settings;
     }
 
@@ -20,14 +25,13 @@ class AWPCP_ListingIsAboutToExpireNotification {
     }
 
     private function days_before_listing_expires( $listing ) {
-        $current_time = awpcp_datetime( 'timestamp' );
-        $end_date = strtotime( $listing->ad_enddate );
+        $end_date = strtotime( $this->listing_renderer->get_end_date( $listing ) );
         $extended_end_date = awpcp_extend_date_to_end_of_the_day( $end_date );
 
-        if ( $listing->has_expired() ) {
+        if ( $this->listing_renderer->has_expired( $listing ) ) {
             $time_left = 0;
         } else {
-            $time_left = $extended_end_date - $current_time;
+            $time_left = $extended_end_date - current_time( 'timestamp' );
         }
 
         $days_left = $time_left / (24 * 60 * 60);
@@ -46,7 +50,11 @@ class AWPCP_ListingIsAboutToExpireNotification {
             $introduction = sprintf( str_replace( '%d', '%s', $introduction ), $days_before_listing_expires );
         }
 
-        $renew_url = urldecode( awpcp_get_renew_ad_url( $listing->ad_id ) );
+        $listing_title = $this->listing_renderer->get_listing_title( $listing );
+        $start_date = $this->listing_renderer->get_start_date( $listing );
+        $end_date = $this->listing_renderer->get_end_date( $listing );
+
+        $renew_url = urldecode( awpcp_get_renew_ad_url( $listing->ID ) );
 
         ob_start();
         include( AWPCP_DIR . '/templates/email/listing-is-about-to-expire-notification.plain.tpl.php' );

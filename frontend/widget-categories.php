@@ -34,7 +34,7 @@ class AWPCP_CategoriesWidget extends WP_Widget {
             'show_children_categories' => $instance['show-parents-only'] ? false : true,
             'show_listings_count' => $instance['show-ad-count'],
         );
-        echo awpcp_categories_list_renderer()->render( $params );
+        echo awpcp_categories_renderer_factory()->create_list_renderer()->render( $params );
 
         echo $after_widget;
     }

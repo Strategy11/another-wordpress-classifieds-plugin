@@ -1,4 +1,9 @@
-<div class="wp-suggested-text">
+<?php
+/**
+ * @package AWPCP\Templates
+ */
+
+?><div class="wp-suggested-text">
 
     <h3><?php echo _x( 'Another WordPress Classifieds Plugin', 'privacy policy', 'another-wordpress-classifieds-plugin' ); // XSS Ok. ?></h3>
 

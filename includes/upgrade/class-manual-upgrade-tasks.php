@@ -1,88 +1,161 @@
 <?php
+/**
+ * @package AWPCP/Upgrade
+ */
 
+/**
+ * Constructor function for Manual Upgrade Tasks class.
+ */
 function awpcp_manual_upgrade_tasks() {
-    return new AWPCP_Manual_Upgrade_Tasks(
-        awpcp_manual_upgrade_tasks_manager(),
-        awpcp_upgrade_task_ajax_handler_factory()
-    );
+    return new AWPCP_Manual_Upgrade_Tasks( awpcp_upgrade_tasks_manager() );
 }
 
+/**
+ * Registers the plugin manual upgrade routines that are enabled from other
+ * routines on Installer during upgrade.
+ *
+ * Manual Upgrade Routines are routines that require the user to initiate them
+ * from the admin dashboard and keep the browser tab open until all the steps
+ * have been completed.
+ *
+ * If a manual upgrade routine is defined with blocking = true, then all other
+ * plugin features are disabled until that upgrade routine is completed.
+ */
 class AWPCP_Manual_Upgrade_Tasks {
 
+    /**
+     * @var UpgradeTasksManager
+     */
     private $upgrade_tasks;
-    private $task_handlers;
 
-    public function __construct( $upgrade_tasks, $task_handlers ) {
+    /**
+     * Constructor.
+     */
+    public function __construct( $upgrade_tasks ) {
         $this->upgrade_tasks = $upgrade_tasks;
-        $this->task_handlers = $task_handlers;
     }
 
+    /**
+     * Register manual upgrade rotuines.
+     *
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+     */
     public function register_upgrade_tasks() {
         $this->upgrade_tasks->register_upgrade_task(
-            'awpcp-import-payment-transactions', __( 'Import Payment Transactions', 'another-wordpress-classifieds-plugin' ),
-            'awpcp_import_payment_transactions_task_handler'
+            [
+                'slug'    => 'awpcp-import-payment-transactions',
+                'name'    => __( 'Import Payment Transactions', 'another-wordpress-classifieds-plugin' ),
+                'handler' => 'ImportPaymentTransactionsTaskHandler',
+                'context' => 'plugin',
+            ]
+        );
+
+        // @phpcs:disable PEAR.Functions.FunctionCallSignature.CloseBracketLine
+        // @phpcs:disable WordPress.Arrays.MultipleStatementAlignment.DoubleArrowNotAligned
+        // @phpcs:disable PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket
+
+        $this->upgrade_tasks->register_upgrade_task( array(
+            'slug' => 'awpcp-migrate-regions-information',
+            'name' => __( 'Migrate Regions Information', 'another-wordpress-classifieds-plugin' ),
+            'handler' => 'MigrateRegionsInformationTaskHandler',
+            'context' => 'plugin',
+        ) );
+
+        $this->upgrade_tasks->register_upgrade_task( array(
+            'slug' => 'awpcp-migrate-media-information',
+            'name' => __( 'Migrate Media Information', 'another-wordpress-classifieds-plugin' ),
+            'handler' => 'MigrateMediaInformationTaskHandler',
+            'context' => 'plugin',
+        ) );
+
+        $this->upgrade_tasks->register_upgrade_task( array(
+            'slug' => 'awpcp-update-media-status',
+            'name' => __( 'Update Image/Attachments Status', 'another-wordpress-classifieds-plugin' ),
+            'handler' => 'UpdateMediaStatusTaskHandler',
+            'context' => 'plugin',
+        ) );
+
+        $this->upgrade_tasks->register_upgrade_task( array(
+            'slug' => 'awpcp-store-phone-number-digits',
+            'name' => __( 'Store phone number digits', 'another-wordpress-classifieds-plugin' ),
+            'handler' => 'StorePhoneNumberDigitsUpgradeTaskHandler',
+            'context' => 'plugin',
+        ) );
+
+        $this->upgrade_tasks->register_upgrade_task( array(
+            'slug' => 'awpcp-store-listing-categories-as-custom-taxonomies',
+            'name' => __( 'Store Listing Categories as Custom Taxonomies', 'another-wordpress-classifieds-plugin' ),
+            'handler' => 'StoreListingCategoriesAsCustomTaxonomiesUpgradeTaskHandler',
+            'context' => 'plugin',
+        ) );
+
+        $this->upgrade_tasks->register_upgrade_task( array(
+            'slug' => 'awpcp-store-listings-as-custom-post-types',
+            'name' => __( 'Store Listings as Custom Post Types', 'another-wordpress-classifieds-plugin' ),
+            'handler' => 'StoreListingsAsCustomPostTypesUpgradeTaskHandler',
+            'context' => 'plugin',
+        ) );
+
+        // @phpcs:enable
+
+        $this->upgrade_tasks->register_upgrade_task(
+            [
+                'slug'     => 'awpcp-fix-id-collision-for-listing-categories',
+                'name'     => __( 'Fix ID Collision for Listing Categories', 'another-wordpress-classifieds-plugin' ),
+                'handler'  => 'FixIDCollisionForListingCategoriesUpgradeTaskHandler',
+                'context'  => 'plugin',
+                'blocking' => true,
+            ]
         );
 
         $this->upgrade_tasks->register_upgrade_task(
-            'awpcp-migrate-regions-information', __( 'Migrate Regions Information', 'another-wordpress-classifieds-plugin' ),
-            'awpcp_migrate_regions_information_task_handler'
+            [
+                'slug'     => 'awpcp-store-categories-order-as-term-meta',
+                'name'     => __( 'Store Categories Order as Term Meta', 'another-wordpress-classifieds-plugin' ),
+                'handler'  => 'StoreCategoriesOrderAsTermMetaTaskHandler',
+                'context'  => 'plugin',
+                'blocking' => false,
+            ]
         );
 
         $this->upgrade_tasks->register_upgrade_task(
-            'awpcp-migrate-media-information', __( 'Migrate Media Information', 'another-wordpress-classifieds-plugin' ),
-            'awpcp_migrate_media_information_task_handler'
+            [
+                'slug'     => 'awpcp-maybe-force-post-id',
+                'name'     => __( 'Maybe force the value for the next Post ID', 'another-wordpress-classifieds-plugin' ),
+                'handler'  => 'MaybeForcePostIDUpgradeTaskHandler',
+                'context'  => 'plugin',
+                'blocking' => true,
+            ]
         );
 
         $this->upgrade_tasks->register_upgrade_task(
-            'awpcp-update-media-status', __( 'Update Image/Attachments Status', 'another-wordpress-classifieds-plugin' ),
-            'awpcp_update_media_status_task_handler'
+            [
+                'slug'     => 'awpcp-fix-id-collision-for-listings',
+                'name'     => __( 'Fix ID Collision for Listings', 'another-wordpress-classifieds-plugin' ),
+                'handler'  => 'FixIDCollisionForListingsUpgradeTaskHandler',
+                'context'  => 'plugin',
+                'blocking' => true,
+            ]
         );
 
         $this->upgrade_tasks->register_upgrade_task(
-            'awpcp-sanitize-media-filenames',  __( 'Remove invalid characters from media filenames', 'another-wordpress-classifieds-plugin' ),
-            'awpcp_sanitize_media_filenames_upgrade_task_handler'
+            [
+                'slug'     => 'awpcp-store-media-as-attachments-upgrade-task-handler',
+                'name'     => __( 'Store Media as Attachments', 'another-wordpress-classifieds-plugin' ),
+                'handler'  => 'StoreMediaAsAttachmentsUpgradeTaskHandler',
+                'context'  => 'plugin',
+                'blocking' => false,
+            ]
         );
 
         $this->upgrade_tasks->register_upgrade_task(
-            'awpcp-calculate-image-dimensions',
-            __( 'Calculate image dimensions', 'another-wordpress-classifieds-plugin' ),
-            'awpcp_calculate_image_dimensions_upgrade_task_handler'
+            [
+                'slug'     => 'awpcp-generate-thumbnails-for-migrated-media',
+                'name'     => __( 'Generate Thumbnails for Migrated Media', 'another-wordpress-classifieds-plugin' ),
+                'handler'  => 'GenerateThumbnailsForMigratedMediaTaskHandler',
+                'context'  => 'plugin',
+                'blocking' => false,
+            ]
         );
-
-        $this->upgrade_tasks->register_upgrade_task(
-            'awpcp-store-phone-number-digits',
-            __( 'Store phone number digits', 'another-wordpress-classifieds-plugin' ),
-            'awpcp_store_phone_number_digits_upgrade_task_handler'
-        );
-    }
-
-    public function register_upgrade_task_handlers() {
-        $task_handler = $this->task_handlers->create_upgrade_task_ajax_handler( $this->upgrade_tasks );
-
-        foreach ( $this->upgrade_tasks->get_pending_tasks() as $slug => $task ) {
-            add_action( "wp_ajax_$slug", array( $task_handler, 'ajax' ) );
-        }
-    }
-
-    public function has_pending_tasks() {
-        if ( ! get_option( 'awpcp-pending-manual-upgrade' ) ) {
-            return false;
-        }
-
-        if ( ! $this->upgrade_tasks->has_pending_tasks() ) {
-            delete_option( 'awpcp-pending-manual-upgrade' );
-            return false;
-        }
-
-        return true;
-    }
-
-    public function get_pending_tasks() {
-        return $this->upgrade_tasks->get_pending_tasks();
-    }
-
-    public function enable_upgrade_task( $name ) {
-        $this->upgrade_tasks->enable_upgrade_task( $name );
-        update_option( 'awpcp-pending-manual-upgrade', true );
     }
 }

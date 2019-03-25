@@ -2,8 +2,9 @@
 AWPCP.run( 'awpcp/page-search-listings', [
     'jquery',
     'awpcp/datepicker-field',
+    'awpcp/categories-selector',
     'awpcp/jquery-validate-methods'
-], function( $, DatepickerField ) {
+], function( $, DatepickerField, CategoriesSelector ) {
     var AWPCP = $.AWPCP = $.extend({}, $.AWPCP, AWPCP);
 
     $(function() {
@@ -19,9 +20,20 @@ AWPCP.run( 'awpcp/page-search-listings', [
             // create and store jQuery objects for all form fields
             fields = form.find(':input').filter(':not(:button,:submit)').filter('[type!="hidden"]');
 
+            form.find( '.awpcp-category-dropdown' ).each( function() {
+                var $dropdown = $( this ),
+                    selector  = new CategoriesSelector( $dropdown );
+
+                setTimeout( function() {
+                    $.publish( '/categories/change', [ $dropdown, selector.getSelectedCategoriesIds() ] );
+                }, 10 );
+            } );
+
             $( '[datepicker-placeholder]' ).each( function() {
                 $.noop( new DatepickerField( $(this).siblings('[name]:hidden') ) );
             } );
+
+            $( '[name="searchname"]' ).select2();
         }
     });
 } );

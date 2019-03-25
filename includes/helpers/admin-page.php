@@ -10,7 +10,7 @@ class AWPCP_AdminPage extends AWPCP_Page {
     public $menu;
 
     public function __construct($page, $title, $menu) {
-        parent::__construct($page, $title);
+        parent::__construct( $page, $title, null );
         $this->menu = $menu;
     }
 

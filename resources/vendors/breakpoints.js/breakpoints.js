@@ -15,7 +15,7 @@ Reusables.Breakpoints = (function ($) {
     var nextKey = 1;
     return function () {
       var key = 'breakpoint-' + nextKey;
-      nextKey++;
+      nextKey = nextKey + 1;
       return key;
     };
   })();
@@ -65,8 +65,6 @@ Reusables.Breakpoints = (function ($) {
         elements = function () { return $($elements.selector); };
       } else if (isJQuery) {
         elements = function () { return $elements; };
-      } else {
-        // ...
       }
 
       return elements;
@@ -152,7 +150,7 @@ Reusables.Breakpoints = (function ($) {
 
     Breakpoints.evaluate = function () {
       var length = breakpoints.length;
-      for (var i = 0; i < length; i++) {
+      for (var i = 0; i < length; i = i + 1) {
         breakpoints[i].evaluate();
       }
       enterQueue.process();
@@ -162,7 +160,7 @@ Reusables.Breakpoints = (function ($) {
 
   Breakpoints.scan = function($element) {
     $element.find('[data-breakpoints]').each(function() {
-        Breakpoints.register($(this))
+        Breakpoints.register($(this));
     });
 
     Reusables.Breakpoints.evaluate();

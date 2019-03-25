@@ -120,4 +120,21 @@ class AWPCP_CSV_Import_Session {
         $this->settings['errors'] = array();
         $this->settings['last_errors'] = array();
     }
+
+    public function add_messages( $messages = array() ) {
+        foreach ( $messages as $message ) {
+            array_push( $this->settings['messages'], $message );
+        }
+
+        $this->settings['last_messages'] = $messages;
+    }
+
+    public function get_last_messages() {
+        return (array) $this->settings['last_messages'];
+    }
+
+    public function clear_messages() {
+        $this->settings['messages'] = array();
+        $this->settings['last_messages'] = array();
+    }
 }
