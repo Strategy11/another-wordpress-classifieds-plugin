@@ -31,17 +31,17 @@ class AWPCP_DisplaySettings {
      *
      * Validate settings
      */
-    function validate_settings( $new_options, $group, $subgroup, $settings_validator ) {
+    public function validate_settings( $new_options ) {
 
         $awpcp    = awpcp();
         $settings = $awpcp->settings_manager->get_settings();
-        if ( isset( $new_options['displayadlayoutcode-default'] ) && $new_options['displayadlayoutcode-default'] == 1 ) {
+        if ( isset( $new_options['displayadlayoutcode-default'] ) && $new_options['displayadlayoutcode-default'] === '1' ) {
             $new_options['displayadlayoutcode-default'] = 0;
             $new_options['displayadlayoutcode']         = $settings['displayadlayoutcode']['default'];
         }
-        if ( isset( $new_options['awpcpshowtheadlayout-default'] ) && $new_options['awpcpshowtheadlayout-default'] == 1 ) {
+        if ( isset( $new_options['awpcpshowtheadlayout-default'] ) && $new_options['awpcpshowtheadlayout-default'] === '1' ) {
             $new_options['awpcpshowtheadlayout-default'] = 0;
-            $new_options['awpcpshowtheadlayout']          = $settings['awpcpshowtheadlayout']['default'];
+            $new_options['awpcpshowtheadlayout']         = $settings['awpcpshowtheadlayout']['default'];
         }
 
         return $new_options;
