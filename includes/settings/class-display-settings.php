@@ -7,6 +7,12 @@
  * Register settings for the Appearance group.
  */
 class AWPCP_DisplaySettings {
+    private $settings_manager;
+
+
+    public function __construct( $settings_manager ) {
+        $this->settings_manager = $settings_manager;
+    }
 
     /**
      * @since 4.0.0
@@ -23,7 +29,7 @@ class AWPCP_DisplaySettings {
         $this->register_layout_and_presentation_settings( $settings_manager );
         $this->register_classifieds_bar_settings( $settings_manager );
         $this->register_form_settings( $settings_manager );
-        add_filter( 'awpcp_validate_settings', array( $this, 'validate_settings' ), 10, 4 );
+        add_filter( 'awpcp_validate_settings', array( $this, 'validate_settings' ), 10 );
     }
 
     /**
@@ -33,15 +39,15 @@ class AWPCP_DisplaySettings {
      */
     public function validate_settings( $new_options ) {
 
-        $awpcp    = awpcp();
-        $settings = $awpcp->settings_manager->get_settings();
+        $displayadlyoutcode = $this->settings_manager->get_setting('displayadlayoutcode');
+        $awpcpshowtheadlayout = $this->settings_manager->get_setting('awpcpshowtheadlayout');
         if ( isset( $new_options['displayadlayoutcode-default'] ) && $new_options['displayadlayoutcode-default'] === '1' ) {
             $new_options['displayadlayoutcode-default'] = 0;
-            $new_options['displayadlayoutcode']         = $settings['displayadlayoutcode']['default'];
+            $new_options['displayadlayoutcode']         = $displayadlyoutcode['default'];
         }
         if ( isset( $new_options['awpcpshowtheadlayout-default'] ) && $new_options['awpcpshowtheadlayout-default'] === '1' ) {
             $new_options['awpcpshowtheadlayout-default'] = 0;
-            $new_options['awpcpshowtheadlayout']         = $settings['awpcpshowtheadlayout']['default'];
+            $new_options['awpcpshowtheadlayout']         = $awpcpshowtheadlayout['default'];
         }
 
         return $new_options;

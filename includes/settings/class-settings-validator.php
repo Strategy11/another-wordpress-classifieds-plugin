@@ -48,7 +48,7 @@ class AWPCP_SettingsValidator {
             $new_options = apply_filters( 'awpcp_validate_settings_' . $group, $new_options, $group, $subgroup );
         }
 
-        $new_options = apply_filters( 'awpcp_validate_settings', $new_options, $group, $subgroup, $this );
+        $new_options = apply_filters( 'awpcp_validate_settings', $new_options, $group, $subgroup );
 
         if ( $subgroup ) {
             do_action( 'awpcp_settings_validated_subgroup_' . $subgroup, $new_options, $group, $subgroup );
