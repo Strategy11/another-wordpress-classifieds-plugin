@@ -39,8 +39,8 @@ class AWPCP_DisplaySettings {
      */
     public function validate_settings( $new_options ) {
 
-        $displayadlyoutcode = $this->settings_manager->get_setting('displayadlayoutcode');
-        $awpcpshowtheadlayout = $this->settings_manager->get_setting('awpcpshowtheadlayout');
+        $displayadlyoutcode   = $this->settings_manager->get_setting( 'displayadlayoutcode' );
+        $awpcpshowtheadlayout = $this->settings_manager->get_setting( 'awpcpshowtheadlayout' );
         if ( isset( $new_options['displayadlayoutcode-default'] ) && $new_options['displayadlayoutcode-default'] === '1' ) {
             $new_options['displayadlayoutcode-default'] = 0;
             $new_options['displayadlayoutcode']         = $displayadlyoutcode['default'];
