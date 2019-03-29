@@ -45,7 +45,12 @@ function( $, CategoriesSelectorHelper ) {
                     enabledCategories = self.helper.getAllCategoriesIds();
                 }
 
+                // Select2 is initialized with data returned by helper.getAllCategories(),
+                // so every category that we care about has been rendered as an
+                // option in the select field that is now hidden.
                 self.$element.find( 'option' ).each( function() {
+                    // Turn the option element into a JavaScript model and
+                    // find out whether it matches the current search term.
                     var item  = self.item( $( this ) ),
                         match = self.matches( params, item );
 
@@ -118,6 +123,36 @@ function( $, CategoriesSelectorHelper ) {
 
         return CategoriesAdapter;
     } );
+
+    /**
+     * Select2 custom results adapter.
+     */
+    $.fn.select2.amd.define(
+        'awpcp/select2/results',
+        [ 'select2/utils', 'select2/results' ],
+        function( Utils, ResultsAdapter ) {
+            var CategoriesResultsAdapter = function( $element, options, dataAdapter ) {
+                CategoriesResultsAdapter.__super__.constructor.call( this, $element, options, dataAdapter );
+            }
+
+            Utils.Extend( CategoriesResultsAdapter, ResultsAdapter );
+
+            CategoriesResultsAdapter.prototype.option = function( data ) {
+                var option  = CategoriesResultsAdapter.__super__.option.call( this, data ),
+                    level   = data.level ? data.level + 1 : 1;
+
+                if ( data.id ) {
+                    $( option )
+                        .addClass( 'awpcp-category-dropdown-option-' + data.id )
+                        .addClass( 'awpcp-category-dropdown-option-level-' + level );
+                }
+
+                return option;
+            };
+
+            return CategoriesResultsAdapter;
+        }
+    );
 
     /**
      * Categories Selector component.
@@ -197,8 +232,9 @@ function( $, CategoriesSelectorHelper ) {
             var $select = this.$select;
             var $placeholderOption = $select.find( '.awpcp-dropdown-placeholder' );
 
-            options.dataAdapter = $.fn.select2.amd.require( 'awpcp/select2/data/array' );
-            options.helper      = this.options.helper;
+            options.dataAdapter    = $.fn.select2.amd.require( 'awpcp/select2/data/array' );
+            options.resultsAdapter = $.fn.select2.amd.require( 'awpcp/select2/results' );
+            options.helper         = this.options.helper;
 
             options.data = $.map( this.options.helper.getAllCategories(), function( category ) {
                 if ( $.inArray( category.id, self.options.selectedCategoriesIds ) >= 0 ) {

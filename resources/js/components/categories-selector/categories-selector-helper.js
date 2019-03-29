@@ -29,10 +29,11 @@ function( $ ) {
 
                 model = {
                     id:       category.term_id,
-                    text:     ' '.repeat( 3 * level ) + name,
+                    text:     name,
                     disabled: category.disabled || false,
                     name:     name,
-                    parent:   parent !== 'root' ? parent : null
+                    parent:   parent !== 'root' ? parent : null,
+                    level:    level
                 };
 
                 self.allCategories.push( model );

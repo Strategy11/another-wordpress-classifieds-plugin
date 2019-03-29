@@ -152,6 +152,8 @@ class AWPCP_Category_Selector {
         $options = array(
             'mode'                  => $params['mode'],
             'select2'               => array(
+                'containerCssClass'      => 'awpcp-category-dropdown-selection',
+                'dropdownCssClass'       => 'awpcp-category-dropdown-options',
                 'allowClear'             => true,
                 'placeholder'            => $placeholder,
                 'maximumSelectionLength' => 100,

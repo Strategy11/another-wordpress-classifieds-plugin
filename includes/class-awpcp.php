@@ -1002,7 +1002,7 @@ class AWPCP {
 
         wp_register_script(
             'select2',
-            "{$vendors}/select2-4.0.5/js/select2.min.js",
+            "{$vendors}/select2-4.0.5/js/select2.full.min.js",
             array(),
             '4.0.5',
             true
