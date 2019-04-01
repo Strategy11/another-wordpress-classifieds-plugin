@@ -102,6 +102,7 @@ function( $, SettingsValidator ) {
     })();
 
     (function() {
+
         $(function() {
             var table = $('#x-date-time-format-american').closest('table');
             $.noop(new $.AWPCP.DateTimeSettings(table));
@@ -109,6 +110,42 @@ function( $, SettingsValidator ) {
             $( '#awpcp-admin-settings .settings-form' ).each( function() {
                 SettingsValidator.setup( $(this) );
             } );
+
+
+            // Display settings reset default functionality.
+            console.log('testing');
+            $( '.TB_closeWindowButton' ).on( 'click', function() {
+                tb_remove();
+            } );
+
+            $( 'button#displayadlayoutcode-default' ).on( 'click', function() {
+                var nonce = $(this).data('nonce');
+                $.post( $.AWPCP.get('ajaxurl'), {
+                    action: 'awpcp-layout-default',
+                    security: nonce,
+                    id: $( this ).attr( 'id' )
+                }, function( response ) {
+                    if ( response.status === 'ok' ) {
+                        tb_remove();
+                        $('#displayadlayoutcode').val(response.default);
+                    }
+                } );
+            } );
+
+            $( 'button#awpcpshowtheadlayout-default' ).on( 'click', function() {
+                var nonce = $(this).data('nonce');
+                $.post( $.AWPCP.get('ajaxurl'), {
+                    action: 'awpcp-layout-default',
+                    security: nonce,
+                    id: $( this ).attr( 'id' )
+                }, function( response ) {
+                    if ( response.status === 'ok' ) {
+                        tb_remove();
+                        $('#awpcpshowtheadlayout').val(response.default);
+                    }
+                } );
+            } );
+
         });
     })();
 

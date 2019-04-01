@@ -266,6 +266,7 @@ class AWPCP {
         $renderers['textarea']       = $this->container['TextareaSettingsRenderer'];
         $renderers['radio']          = $this->container['RadioSettingsRenderer'];
         $renderers['textfield']      = $this->container['TextfieldSettingsRenderer'];
+        $renderers['button']         = $this->container['ButtonSettingsRenderer'];
         $renderers['password']       = $this->container['TextfieldSettingsRenderer'];
         $renderers['choice']         = $this->container['ChoiceSettingsRenderer'];
         $renderers['categories']     = $this->container['CategoriesSettingsRenderer'];
@@ -588,8 +589,11 @@ class AWPCP {
         $handler = awpcp_delete_credit_plan_ajax_handler();
         add_action( 'wp_ajax_awpcp-credit-plans-delete', array( $handler, 'ajax' ) );
 
-        $handler = awpcp_import_listings_ajax_handler();
-        add_action( 'wp_ajax_awpcp-import-listings', array( $handler, 'ajax' ) );
+        $handler = awpcp_default_layout_ajax_handler();
+        add_action( 'wp_ajax_awpcp-layout-default', array( $handler, 'ajax' ) );
+
+        $handler = awpcp_dismiss_notice_ajax_handler();
+        add_action( 'wp_ajax_awpcp-dismiss-notice', array( $handler, 'ajax' ) );
 
         $handler = awpcp_dismiss_notice_ajax_handler();
         add_action( 'wp_ajax_awpcp-dismiss-notice', array( $handler, 'ajax' ) );

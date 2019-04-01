@@ -85,6 +85,7 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_Category_Selector' => __DIR__ . '/../..' . '/includes/ui/class-category-selector.php',
         'AWPCP_CheckboxSettingsRenderer' => __DIR__ . '/../..' . '/includes/settings/renderers/class-checkbox-settings-renderer.php',
         'AWPCP_ChoiceSettingsRenderer' => __DIR__ . '/../..' . '/includes/settings/renderers/class-choice-settings-renderer.php',
+        'AWPCP_ButtonSettingsRenderer' => __DIR__ . '/../..' . '/includes/settings/renderers/class-button-settings-renderer.php',
         'AWPCP_Classified_Pages_Settings' => __DIR__ . '/../..' . '/admin/class-settings-admin-page.php',
         'AWPCP_Classifieds_Bar' => __DIR__ . '/../..' . '/includes/ui/class-classifieds-bar.php',
         'AWPCP_Classifieds_Menu_Component' => __DIR__ . '/../..' . '/includes/ui/class-classifieds-menu-component.php',
