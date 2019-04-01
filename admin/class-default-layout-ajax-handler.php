@@ -1,8 +1,16 @@
 <?php
+/**
+ * @package AWPCP\Admin
+ */
 
+/**
+ * @since 4.1.0
+ */
 function awpcp_default_layout_ajax_handler() {
     return new AWPCP_Default_Layout_Ajax_Handler(
-        awpcp_request(), awpcp_ajax_response(), awpcp()->container['SettingsManager']
+        awpcp_request(),
+        awpcp_ajax_response(),
+        awpcp()->container['SettingsManager']
     );
 }
 
@@ -27,11 +35,11 @@ class AWPCP_Default_Layout_Ajax_Handler extends AWPCP_AjaxHandler {
             return $this->error();
         }
 
-        if ( $id == "displayadlayoutcode-default" ) {
+        if ( $id === 'displayadlayoutcode-default' ) {
             return $this->success( $displayadlyoutcode );
         }
 
-        if ( $id == "awpcpshowtheadlayout-default" ) {
+        if ( $id === 'awpcpshowtheadlayout-default' ) {
             return $this->success( $awpcpshowtheadlayout );
         }
 
