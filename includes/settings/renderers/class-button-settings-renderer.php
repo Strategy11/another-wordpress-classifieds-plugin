@@ -25,7 +25,7 @@ class AWPCP_ButtonSettingsRenderer {
      */
     public function render_setting( $setting, $config ) {
         add_thickbox();
-        $html = '<a href="#TB_inline?&width=400&height=120&inlineId=pop-' . esc_attr( $setting['id'] ) . '" class="button-secondary thickbox"';
+        $html = '<a href="#TB_inline?&width=500&height=130&modal=true&inlineId=pop-' . esc_attr( $setting['id'] ) . '" class="button-secondary thickbox"';
 
         if ( ! empty( $setting['readonly'] ) ) {
             $html .= 'disabled="disabled" ';
@@ -39,7 +39,7 @@ class AWPCP_ButtonSettingsRenderer {
         $html .= strlen( $setting['description'] ) > 20 ? '<br/>' : '&nbsp;';
         $html .= '<span class="description">' . $setting['description'] . '</span>';
         $html .= '<div id="pop-' . esc_attr( $setting['id'] ) . '" style="display:none">';
-        $html .= '<h2 style="text-align: center">' . __( 'You will lose your current changes', 'another-wordpress-classifieds-plugin' ) . '</h2>';
+        $html .= '<h2 style="text-align: center">' . __( 'Resetting to the default layout will cause any custom HTML layout changes you\'ve made to be lost. Are you sure?', 'another-wordpress-classifieds-plugin' ) . '</h2>';
         $html .= '<p style="text-align: center">';
         $html .= '<button data-nonce="' . $nonce . '" id="' . esc_attr( $setting['id'] ) . '" class="button-primary">' . __( 'Reset', ' another-wordpress-classifieds-plugin' ) . '</button> ';
         $html .= '<button  class="button-secondary TB_closeWindowButton">' . __( 'Cancel', ' another-wordpress-classifieds-plugin' ) . '</button></p>';
