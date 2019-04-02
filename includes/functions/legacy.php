@@ -3,6 +3,25 @@
  * @package AWPCP
  */
 
+/**
+ * Count listings in the database.
+ *
+ * @since 1.8.9.4
+ * @deprecated 4.0.0 awpcp_listings_collection()->count_enabled_listings()
+ *                   awpcp_listings_collection()->count_disabled_listings()
+ */
+function countlistings( $is_active ) {
+    if ( $is_active ) {
+        _deprecated_function( __FUNCTION__, '4.0.0', 'awpcp_listings_collection()->count_enabled_listings()' );
+
+        return awpcp_listings_collection()->count_enabled_listings();
+    }
+
+    _deprecated_function( __FUNCTION__, '4.0.0', 'awpcp_listings_collection()->count_disabled_listings()' );
+
+    return awpcp_listings_collection()->count_disabled_listings();
+}
+
 // phpcs:disable
 
 function get_awpcp_setting($column, $option) {
