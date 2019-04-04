@@ -112,7 +112,7 @@ class AWPCP_DisplaySettings {
 <div class="fixfloat"></div>',
             __( 'Modify as needed to control layout of ad listings page. Maintain code formatted as \$somecodetitle. Changing the code keys will prevent the elements they represent from displaying.', 'another-wordpress-classifieds-plugin' )
         );
-        $settings_manager->add_setting( $key, 'displayadlayoutcode-default', __( '', 'another-wordpress-classifieds-plugin' ), 'button', __('Reset Default'), __( '', 'another-wordpress-classifieds-plugin' ) );
+        $settings_manager->add_setting( $key, 'displayadlayoutcode-default', '', 'button', __( 'Reset Default', 'another-wordpress-classifieds-plugin' ), '' );
         $settings_manager->add_setting( $key, 'awpcpshowtheadlayout', __( 'Single Ad page layout', 'another-wordpress-classifieds-plugin' ),
             'textarea', '
 							<div id="showawpcpadpage">
@@ -148,7 +148,7 @@ class AWPCP_DisplaySettings {
 								$edit_listing_link
 							</div>', __( 'Modify as needed to control layout of single ad view page. Maintain code formatted as \$somecodetitle. Changing the code keys will prevent the elements they represent from displaying.', 'another-wordpress-classifieds-plugin' ) );
 
-        $settings_manager->add_setting( $key, 'awpcpshowtheadlayout-default',  __( '', 'another-wordpress-classifieds-plugin' ), 'button', __('Reset Default'), __( '', 'another-wordpress-classifieds-plugin' ) );
+        $settings_manager->add_setting( $key, 'awpcpshowtheadlayout-default', '', 'button', __( 'Reset Default', 'another-wordpress-classifieds-plugin' ), '' );
         $settings_manager->add_setting(
             $key,
             'allow-wordpress-shortcodes-in-single-template',
