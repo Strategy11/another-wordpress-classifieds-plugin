@@ -592,8 +592,8 @@ class AWPCP {
         $handler = awpcp_default_layout_ajax_handler();
         add_action( 'wp_ajax_awpcp-layout-default', array( $handler, 'ajax' ) );
 
-        $handler = awpcp_dismiss_notice_ajax_handler();
-        add_action( 'wp_ajax_awpcp-dismiss-notice', array( $handler, 'ajax' ) );
+        $handler = awpcp_import_listings_ajax_handler();
+        add_action( 'wp_ajax_awpcp-import-listings', array( $handler, 'ajax' ) );
 
         $handler = awpcp_dismiss_notice_ajax_handler();
         add_action( 'wp_ajax_awpcp-dismiss-notice', array( $handler, 'ajax' ) );
