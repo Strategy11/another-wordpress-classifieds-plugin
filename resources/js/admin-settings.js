@@ -113,7 +113,6 @@ function( $, SettingsValidator ) {
 
 
             // Display settings reset default functionality.
-            console.log('testing');
             $( '.TB_closeWindowButton' ).on( 'click', function() {
                 tb_remove();
             } );
