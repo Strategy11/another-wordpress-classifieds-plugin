@@ -304,6 +304,7 @@ require_once AWPCP_DIR . '/admin/interface-table-entry-action-handler.php';
 require_once AWPCP_DIR . '/admin/admin-panel.php';
 require_once AWPCP_DIR . '/admin/class-delete-browse-categories-page-notice.php';
 require_once AWPCP_DIR . '/admin/class-dismiss-notice-ajax-handler.php';
+require_once AWPCP_DIR . '/admin/class-default-layout-ajax-handler.php';
 require_once AWPCP_DIR . '/admin/class-export-settings-admin-page.php';
 require_once AWPCP_DIR . '/admin/class-import-settings-admin-page.php';
 require_once AWPCP_DIR . '/admin/class-missing-paypal-merchant-id-setting-notice.php';

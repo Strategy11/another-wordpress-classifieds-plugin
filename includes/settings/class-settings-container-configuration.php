@@ -71,7 +71,9 @@ class AWPCP_SettingsContainerConfiguration implements AWPCP_ContainerConfigurati
         } );
 
         $container['DisplaySettings'] = $container->service( function( $container ) {
-            return new AWPCP_DisplaySettings();
+            return new AWPCP_DisplaySettings(
+                $container['SettingsManager']
+            );
         } );
 
         $container['EmailSettings'] = $container->service( function( $container ) {
@@ -160,6 +162,13 @@ class AWPCP_SettingsContainerConfiguration implements AWPCP_ContainerConfigurati
 
         $container['EmailTemplateSettingsRenderer'] = $container->service( function( $container ) {
             return new AWPCP_EmailTemplateSettingsRenderer(
+                $container['Settings'],
+                $container['TemplateRenderer']
+            );
+        } );
+
+        $container['ButtonSettingsRenderer'] = $container->service( function( $container ) {
+            return new AWPCP_ButtonSettingsRenderer(
                 $container['Settings'],
                 $container['TemplateRenderer']
             );
