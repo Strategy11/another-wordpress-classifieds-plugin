@@ -56,7 +56,19 @@ class AWPCP_Request {
      * @since 3.3
      */
     function domain( $include_www = true, $www_prefix_replacement = '' ) {
-        $domain = isset( $_SERVER['HTTP_HOST'] ) ? $_SERVER['HTTP_HOST'] : '';
+        $domain = '';
+
+        if ( ! empty( $_SERVER['HTTP_HOST'] ) ) {
+            $domain = esc_url_raw( wp_unslash( $_SERVER['HTTP_HOST'] ) );
+        }
+
+        //  If the server runs on a port other than 80 then HTTP_HOST contains
+        //  the port. See https://stackoverflow.com/a/12046836.
+        $port_position = strpos( $domain, ':' );
+
+        if ( $port_position ) {
+            $domain = substr( $domain, 0, $port_position );
+        }
 
         if ( empty( $domain ) ) {
             $domain = isset( $_SERVER['SERVER_NAME'] ) ? $_SERVER['SERVER_NAME'] : '';
