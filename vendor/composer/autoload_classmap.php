@@ -214,6 +214,7 @@ return array(
     'AWPCP_Image_Placeholders' => $baseDir . '/frontend/class-image-placeholders.php',
     'AWPCP_ImagesAwaitingApprovalListingTableView' => $baseDir . '/includes/admin/listings/class-images-awaiting-approval-listing-table-view.php',
     'AWPCP_ImportListingsAdminPage' => $baseDir . '/admin/class-import-listings-admin-page.php',
+    'AWPCP_ExportListingsAdminPage' => $baseDir . '/admin/class-export-listings-admin-page.php',
     'AWPCP_Import_Listings_Ajax_Handler' => $baseDir . '/admin/import/class-import-listings-ajax-handler.php',
     'AWPCP_Import_Payment_Transactions_Task_Handler' => $baseDir . '/includes/upgrade/class-import-payment-transactions-task-handler.php',
     'AWPCP_Import_Settings_Admin_Page' => $baseDir . '/admin/class-import-settings-admin-page.php',

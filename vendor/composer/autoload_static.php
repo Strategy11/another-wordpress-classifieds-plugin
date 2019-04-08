@@ -216,6 +216,7 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_Image_Placeholders' => __DIR__ . '/../..' . '/frontend/class-image-placeholders.php',
         'AWPCP_ImagesAwaitingApprovalListingTableView' => __DIR__ . '/../..' . '/includes/admin/listings/class-images-awaiting-approval-listing-table-view.php',
         'AWPCP_ImportListingsAdminPage' => __DIR__ . '/../..' . '/admin/class-import-listings-admin-page.php',
+        'AWPCP_ExportListingsAdminPage' => __DIR__ . '/../..' . '/admin/class-export-listings-admin-page.php',
         'AWPCP_Import_Listings_Ajax_Handler' => __DIR__ . '/../..' . '/admin/import/class-import-listings-ajax-handler.php',
         'AWPCP_Import_Payment_Transactions_Task_Handler' => __DIR__ . '/../..' . '/includes/upgrade/class-import-payment-transactions-task-handler.php',
         'AWPCP_Import_Settings_Admin_Page' => __DIR__ . '/../..' . '/admin/class-import-settings-admin-page.php',
