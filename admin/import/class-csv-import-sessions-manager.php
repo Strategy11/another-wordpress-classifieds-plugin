@@ -47,8 +47,9 @@ class AWPCP_CSV_Import_Sessions_Manager {
             'csv_reader' => array(),
             'csv_importer' => array(),
 
-            'params' => array(),
-            'errors' => array(),
+            'params'   => [],
+            'messages' => [],
+            'errors'   => [],
         ) );
 
         $settings['working_directory'] = $this->make_absolute_path( $settings['working_directory'] );
