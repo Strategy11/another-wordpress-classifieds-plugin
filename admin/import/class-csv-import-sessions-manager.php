@@ -54,19 +54,6 @@ class AWPCP_CSV_Import_Sessions_Manager {
 
         $settings['working_directory'] = $this->make_absolute_path( $settings['working_directory'] );
 
-        // $importer_delegate = $this->csv_importer_delegate_factory->create_importer_delegate(
-        //     $settings['type']
-        // );
-
-        // $csv_importer = $this->csv_importer_factory->create_importer(
-        //     array_merge(
-        //         $settings['csv_importer'],
-        //         array( 'working_directory' => $settings['working_directory'] )
-        //     ),
-        //     $importer_delegate,
-        //     $csv_reader
-        // );
-
         return new AWPCP_CSV_Import_Session( $settings, null );
     }
 
