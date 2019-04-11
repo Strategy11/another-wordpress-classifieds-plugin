@@ -124,7 +124,6 @@ class AWPCP_CSV_Importer_Delegate {
             $listing_data['attachments'] = array();
         }
 
-        // TODO: fix Extra Fields module to be able to import extra fields data
         return apply_filters( 'awpcp-imported-listing-data', $listing_data, $row_data );
     }
 
