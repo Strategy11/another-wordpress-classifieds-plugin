@@ -1,5 +1,11 @@
 <?php
+/**
+ * @package AWPCP\Admin\Import
+ */
 
+/**
+ * Constructor function for CSV Import Sessions Manager class.
+ */
 function awpcp_csv_import_sessions_manager() {
     return new AWPCP_CSV_Import_Sessions_Manager(
         awpcp_csv_importer_factory(),
@@ -18,11 +24,11 @@ class AWPCP_CSV_Import_Sessions_Manager {
     private $wordpress;
 
     public function __construct( $csv_importer_factory, $csv_importer_delegate_factory, $csv_reader_factory, $settings, $wordpress ) {
-        $this->csv_importer_factory = $csv_importer_factory;
+        $this->csv_importer_factory          = $csv_importer_factory;
         $this->csv_importer_delegate_factory = $csv_importer_delegate_factory;
-        $this->csv_reader_factory = $csv_reader_factory;
-        $this->settings = $settings;
-        $this->wordpress = $wordpress;
+        $this->csv_reader_factory            = $csv_reader_factory;
+        $this->settings                      = $settings;
+        $this->wordpress                     = $wordpress;
     }
 
     public function get_current_import_session() {
@@ -36,21 +42,24 @@ class AWPCP_CSV_Import_Sessions_Manager {
     }
 
     public function create_import_session( $settings = array() ) {
-        $settings = wp_parse_args( $settings, array(
-            'session_id' => wp_hash( uniqid() ),
+        $settings = wp_parse_args(
+            $settings,
+            array(
+                'session_id'        => wp_hash( uniqid() ),
 
-            'type' => null,
-            'working_directory' => null,
-            'batch_size' => 20,
-            'in_progress' => false,
+                'type'              => null,
+                'working_directory' => null,
+                'batch_size'        => 20,
+                'in_progress'       => false,
 
-            'csv_reader' => array(),
-            'csv_importer' => array(),
+                'csv_reader'        => array(),
+                'csv_importer'      => array(),
 
-            'params'   => [],
-            'messages' => [],
-            'errors'   => [],
-        ) );
+                'params'            => [],
+                'messages'          => [],
+                'errors'            => [],
+            )
+        );
 
         $settings['working_directory'] = $this->make_absolute_path( $settings['working_directory'] );
 
