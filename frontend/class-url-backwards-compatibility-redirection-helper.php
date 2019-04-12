@@ -47,15 +47,20 @@ class AWPCP_URL_Backwards_Compatibility_Redirection_Helper {
     }
 
     /**
-     * TODO: Find out if this query will show a single listing.
+     * Redirect frontend requests that try to show a single listing using an old ID.
+     *
+     * A handler for the {@see 'parse_request'} action.
      *
      * @since 4.0.0
+     *
      * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      */
     public function maybe_redirect_from_old_listing_url( $query ) {
         $vars                 = $query->query_vars;
         $requested_listing_id = null;
 
+        // 1. A query for a single awpcp_listing.
+        // 2 & 3. A query for a single awpcp_listing shown through the Show Ad page.
         if ( ! empty( $vars['post_type'] ) && $this->post_type === $vars['post_type'] && ! empty( $vars['p'] ) ) {
             $requested_listing_id = $vars['p'];
         } elseif ( ! empty( $vars['id'] ) && ! empty( $vars['page_id'] ) && $this->get_show_listing_page_id() === intval( $vars['page_id'] ) ) {
@@ -94,8 +99,10 @@ class AWPCP_URL_Backwards_Compatibility_Redirection_Helper {
     }
 
     /**
-     * TODO: Remove this method when maybe_redirect_from_old_listing_url() handles
-     *       all necessary cases.
+     * Redirect frontend requests that try to filter ads using an old category
+     * ID or are trying to renew a listing using an old ID.
+     *
+     * A handler for the {@see 'template_redirect'} action.
      */
     public function maybe_redirect_frontend_request() {
         if ( $this->request->param( 'awpcp-no-redirect' ) ) {
@@ -103,16 +110,32 @@ class AWPCP_URL_Backwards_Compatibility_Redirection_Helper {
         }
 
         if ( $this->query->is_browse_listings_page() || $this->query->is_browse_categories_page() ) {
-            $requested_category_id  = intval( $this->request->get_category_id() );
-            $equivalent_category_id = $this->get_equivalent_category_id( $requested_category_id );
-
-            if ( $requested_category_id !== $equivalent_category_id ) {
-                $category = $this->categories->get( $equivalent_category_id );
-                return $this->redirect( url_browsecategory( $category ) );
-            }
-        } elseif ( $this->query->is_renew_listing_page() ) {
-            $this->maybe_redirect_frontend_renew_listing_request();
+            $this->maybe_redirect_browse_listings_request();
+            return;
         }
+
+        if ( $this->query->is_renew_listing_page() ) {
+            $this->maybe_redirect_renew_listing_request( $this->request->get_current_listing_id() );
+            return;
+        }
+    }
+
+    /**
+     * Redirect frontend requests that include an old category ID.
+     *
+     * @since 4.0.0
+     */
+    private function maybe_redirect_browse_listings_request() {
+        $requested_category_id  = intval( $this->request->get_category_id() );
+        $equivalent_category_id = $this->get_equivalent_category_id( $requested_category_id );
+
+        if ( $requested_category_id === $equivalent_category_id ) {
+            return;
+        }
+
+        $category = $this->categories->get( $equivalent_category_id );
+
+        return $this->redirect( url_browsecategory( $category ) );
     }
 
     private function get_equivalent_category_id( $category_id ) {
@@ -134,10 +157,6 @@ class AWPCP_URL_Backwards_Compatibility_Redirection_Helper {
         }
     }
 
-    private function maybe_redirect_frontend_renew_listing_request() {
-        return $this->maybe_redirect_renew_listing_request( $this->request->get_current_listing_id() );
-    }
-
     private function maybe_redirect_renew_listing_request( $old_listing_id ) {
         $renew_hash = $this->request->param( 'awpcprah' );
 
@@ -154,15 +173,17 @@ class AWPCP_URL_Backwards_Compatibility_Redirection_Helper {
         return $this->redirect( awpcp_get_renew_ad_url( $listing->ID ) );
     }
 
+    /**
+     * Redirect admin request that are trying to renew a listing using an old ID.
+     */
     public function maybe_redirect_admin_request() {
         if ( $this->request->param( 'awpcp-no-redirect' ) ) {
             return;
         }
 
-        if ( strcmp( $this->request->param( 'action' ), 'renew' ) !== 0 ) {
+        if ( strcmp( $this->request->param( 'action' ), 'renew' ) === 0 ) {
+            $this->maybe_redirect_renew_listing_request( $this->request->get_current_listing_id() );
             return;
         }
-
-        return $this->maybe_redirect_renew_listing_request( $this->request->get_current_listing_id() );
     }
 }
