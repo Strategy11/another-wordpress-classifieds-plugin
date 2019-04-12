@@ -40,9 +40,9 @@ class AWPCP_Loop_Integration {
      */
     public function __construct( $listing_renderer, $listings, $wordpress, $request ) {
         $this->listing_renderer = $listing_renderer;
-        $this->listings = $listings;
-        $this->wordpress = $wordpress;
-        $this->request = $request;
+        $this->listings         = $listings;
+        $this->wordpress        = $wordpress;
+        $this->request          = $request;
     }
 
     /**
@@ -70,7 +70,7 @@ class AWPCP_Loop_Integration {
      */
     public function maybe_overwrite_page_title( $title, $post_id = null ) {
         if ( is_null( $post_id ) ) {
-            $post = $this->wordpress->get_post();
+            $post    = $this->wordpress->get_post();
             $post_id = isset( $post->ID ) ? $post->ID : null;
         }
 
