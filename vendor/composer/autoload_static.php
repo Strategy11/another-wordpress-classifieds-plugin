@@ -298,7 +298,7 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_ListingsTableSearchByUserCondition' => __DIR__ . '/../..' . '/includes/views/admin/listings/class-listings-table-search-by-user-condition.php',
         'AWPCP_Listings_Media_Uploader_Component' => __DIR__ . '/../..' . '/includes/media/class-listings-media-uploader-component.php',
         'AWPCP_LocationListingsTableSearchMode' => __DIR__ . '/../..' . '/includes/admin/listings/class-location-listings-table-search-mode.php',
-        'AWPCP_Loop_Integration' => __DIR__ . '/../..' . '/frontend/class-loop-integration.php',
+        'AWPCP_Loop_Integration' => __DIR__ . '/../..' . '/includes/listings/class-loop-integration.php',
         'AWPCP_MainClassifiedsAdminPage' => __DIR__ . '/../..' . '/admin/class-main-classifieds-admin-page.php',
         'AWPCP_MakeFeaturedListingTableAction' => __DIR__ . '/../..' . '/includes/admin/listings/class-make-featured-listing-table-action.php',
         'AWPCP_MakeStandardListingTableAction' => __DIR__ . '/../..' . '/includes/admin/listings/class-make-standard-listing-table-action.php',

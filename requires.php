@@ -360,7 +360,6 @@ require_once AWPCP_DIR . '/admin/user-panel.php';
 require_once AWPCP_DIR . '/frontend/class-categories-renderer-factory.php';
 require_once AWPCP_DIR . '/frontend/class-categories-switcher.php';
 require_once AWPCP_DIR . '/frontend/class-image-placeholders.php';
-require_once AWPCP_DIR . '/frontend/class-loop-integration.php';
 require_once AWPCP_DIR . '/frontend/class-query.php';
 require_once AWPCP_DIR . '/frontend/class-url-backwards-compatibility-redirection-helper.php';
 require_once AWPCP_DIR . '/frontend/widget-search.php';

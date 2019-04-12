@@ -43,6 +43,17 @@ class AWPCP_ListingsContainerConfiguration implements AWPCP_ContainerConfigurati
             }
         );
 
+        $container['LoopIntegration'] = $container->service(
+            function( $container ) {
+                return new AWPCP_Loop_Integration(
+                    $container['ListingRenderer'],
+                    $container['ListingsCollection'],
+                    $container['WordPress'],
+                    $container['Request']
+                );
+            }
+        );
+
         $container['ListingsContent'] = $container->service(
             function( $container ) {
                 return new AWPCP_ListingsContent(

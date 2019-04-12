@@ -296,7 +296,7 @@ return array(
     'AWPCP_ListingsTableSearchByUserCondition' => $baseDir . '/includes/views/admin/listings/class-listings-table-search-by-user-condition.php',
     'AWPCP_Listings_Media_Uploader_Component' => $baseDir . '/includes/media/class-listings-media-uploader-component.php',
     'AWPCP_LocationListingsTableSearchMode' => $baseDir . '/includes/admin/listings/class-location-listings-table-search-mode.php',
-    'AWPCP_Loop_Integration' => $baseDir . '/frontend/class-loop-integration.php',
+    'AWPCP_Loop_Integration' => $baseDir . '/includes/listings/class-loop-integration.php',
     'AWPCP_MainClassifiedsAdminPage' => $baseDir . '/admin/class-main-classifieds-admin-page.php',
     'AWPCP_MakeFeaturedListingTableAction' => $baseDir . '/includes/admin/listings/class-make-featured-listing-table-action.php',
     'AWPCP_MakeStandardListingTableAction' => $baseDir . '/includes/admin/listings/class-make-standard-listing-table-action.php',

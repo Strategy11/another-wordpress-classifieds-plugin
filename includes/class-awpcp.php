@@ -427,8 +427,7 @@ class AWPCP {
             }
         } else {
             // load resources required in frontend screens only.
-            $loop_integration = awpcp_loop_integration();
-            add_action( 'wp', array( $loop_integration, 'setup' ) );
+            add_action( 'wp', array( $this->container['LoopIntegration'], 'setup' ) );
 
             add_action( 'template_redirect', array( awpcp_secure_url_redirection_handler(), 'dispatch' ) );
 

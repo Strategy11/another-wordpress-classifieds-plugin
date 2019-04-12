@@ -1,19 +1,7 @@
 <?php
 /**
- * @package AWPCP\Frontend
+ * @package AWPCP\Listings
  */
-
-/**
- * Constructor function for AWPCP_Loop_Integration class.
- */
-function awpcp_loop_integration() {
-    return new AWPCP_Loop_Integration(
-        awpcp_listing_renderer(),
-        awpcp_listings_collection(),
-        awpcp_wordpress(),
-        awpcp_request()
-    );
-}
 
 /**
  * Loop Integration adds filter handlers to overwrite
