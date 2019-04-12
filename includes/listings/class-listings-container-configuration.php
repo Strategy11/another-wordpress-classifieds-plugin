@@ -32,13 +32,12 @@ class AWPCP_ListingsContainerConfiguration implements AWPCP_ContainerConfigurati
     private function register_listings_presentation_values( $container ) {
         $container['ListingsPermalinks'] = $container->service(
             function( $container ) {
-                // TODO: Add dependencies to the container.
                 return new AWPCP_ListingsPermalinks(
                     $container['listing_post_type'],
                     $container['listing_category_taxonomy'],
-                    awpcp_listing_renderer(),
+                    $container['ListingRenderer'],
                     awpcp_rewrite_rules_helper(),
-                    awpcp_settings_api()
+                    $container['Settings']
                 );
             }
         );
