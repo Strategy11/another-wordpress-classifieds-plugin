@@ -45,9 +45,8 @@ class AWPCP_Query {
             $is_single_listing_page = true;
         }
 
-        // @phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
+        // @phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
         return apply_filters( 'awpcp-is-single-listing-page', $is_single_listing_page );
-        // @phpcs:enable WordPress.NamingConventions.ValidHookName.UseUnderscores
     }
 
     public function is_reply_to_listing_page() {
