@@ -38,6 +38,10 @@ class AWPCP_Query {
         return $this->is_page_that_has_shortcode( 'AWPCPEDITAD' );
     }
 
+    /**
+     * Determine wether the current request is displaying an individual listing
+     * either throug the Show Ad page or on its own page.
+     */
     public function is_single_listing_page() {
         $is_single_listing_page = false;
 
