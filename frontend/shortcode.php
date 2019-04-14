@@ -19,10 +19,11 @@ require_once(AWPCP_DIR . '/frontend/page-browse-ads.php');
 class AWPCP_Pages {
     private $output = array();
 
-	public function __construct() {
-		$this->meta = awpcp()->container['Meta'];
+	public function __construct( $container ) {
+        $this->container = $container;
 
-		$this->show_ad = awpcp()->container['ShowListingPage'];
+		$this->meta       = $this->container['Meta'];
+		$this->show_ad    = $this->container['ShowListingPage'];
 		$this->browse_ads = awpcp_browse_listings_page();
 
 		// fix for theme conflict with ThemeForest themes.
@@ -71,8 +72,7 @@ class AWPCP_Pages {
             do_action('awpcp-shortcode', 'place-ad');
 
             if ( ! isset( $this->place_ad_page ) ) {
-                // TODO: Get container or page as constructor dependency.
-                $this->place_ad_page = awpcp()->container['SubmitListingPage'];
+                $this->place_ad_page = $this->container['SubmitListingPage'];
             }
 
             $this->output['place-ad'] = $this->place_ad_page->dispatch();
@@ -86,7 +86,7 @@ class AWPCP_Pages {
             do_action('awpcp-shortcode', 'edit-ad');
 
             if ( ! isset( $this->edit_ad_page ) ) {
-                $this->edit_ad_page = awpcp()->container['EditListingPage'];
+                $this->edit_ad_page = $this->container['EditListingPage'];
             }
 
             $this->output['edit-ad'] = $this->edit_ad_page->dispatch();

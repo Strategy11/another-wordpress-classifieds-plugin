@@ -199,7 +199,7 @@ class AWPCP {
         );
 
         if ( ! $has_pending_blocking_manual_upgrades ) {
-    		$this->pages = new AWPCP_Pages();
+            $this->pages = new AWPCP_Pages( $this->container );
 
             add_action( 'awpcp-process-payment-transaction', array( $this, 'process_transaction_update_payment_status' ) );
             add_action( 'awpcp-process-payment-transaction', array( $this, 'process_transaction_notify_wp_affiliate_platform' ) );
