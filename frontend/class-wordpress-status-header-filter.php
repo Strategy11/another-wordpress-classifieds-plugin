@@ -1,5 +1,11 @@
 <?php
+/**
+ * @package AWPCP\Frontend
+ */
 
+/**
+ * Constructor for WordPress Status Header Filter class.
+ */
 function awpcp_wordpress_status_header_filter() {
     return new AWPCP_WordPress_Status_Header_Filter(
         awpcp_listings_collection(),
@@ -16,12 +22,15 @@ class AWPCP_WordPress_Status_Header_Filter {
 
     public function __construct( $listings, $query, $request ) {
         $this->listings = $listings;
-        $this->query = $query;
-        $this->request = $request;
+        $this->query    = $query;
+        $this->request  = $request;
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
     public function filter_status_header( $status_header, $code, $description, $protocol ) {
-        if ( $code != 200 ) {
+        if ( intval( $code ) !== 200 ) {
             return $status_header;
         }
 
