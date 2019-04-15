@@ -101,6 +101,20 @@ class AWPCP_Upgrade_Tasks_Manager {
     }
 
     public function disable_upgrade_task( $slug ) {
+        // A website had individual cache for upgrade task options even though
+        // the options are created with autoload = 'yes' (meaning the option
+        // must be cached in 'alloptions' cache). As a result, when the option
+        // was automatically deleted from {@see 'clean_already_completed_upgrade_tasks'},
+        // the individual cache was preserved, causing get_option() to always
+        // return true and the upgrade tasks to be enabled forever.
+        //
+        // I wasn't able to figure out what caused that situation so decided to
+        // manually deleted the individual cache when the task is disabled, just
+        // in case.
+        //
+        // See {@link 'https://github.com/drodenbaugh/awpcp/issues/2370'}.
+        wp_cache_delete( $slug, 'options' );
+
         return delete_option( $slug );
     }
 }
