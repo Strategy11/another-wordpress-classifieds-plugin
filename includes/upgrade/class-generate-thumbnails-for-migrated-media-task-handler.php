@@ -125,7 +125,14 @@ class AWPCP_GenerateThumbnailsForMigratedMediaTaskHandler implements AWPCP_Upgra
 
         // Force WordPress to generate the intermediate image sizes we want only.
         add_filter( 'intermediate_image_sizes_advanced', $callback, 10, 2 );
+
+        // Prevent exif_read_data from being called. Image metadata was already
+        // retrieved when the image was imported.
+        add_filter( 'wp_read_image_metadata_types', '__return_empty_array', 1000 );
+
         $new_metadata = wp_generate_attachment_metadata( $item->ID, get_attached_file( $item->ID ) );
+
+        remove_filter( 'wp_read_image_metadata_types', '__return_empty_array', 1000 );
         remove_filter( 'intermediate_image_sizes_advanced', $callback, 10, 2 );
 
         return $new_metadata;
