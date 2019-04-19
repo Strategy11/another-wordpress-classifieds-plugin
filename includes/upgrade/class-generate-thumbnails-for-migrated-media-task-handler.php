@@ -82,21 +82,26 @@ class AWPCP_GenerateThumbnailsForMigratedMediaTaskHandler implements AWPCP_Upgra
 
         // There is no information about what image sizes to generate. Skip this attachment.
         if ( ! is_array( $pending_sizes ) || 0 === count( $pending_sizes ) ) {
-            $this->wordpress->delete_post_meta( $item->ID, '_awpcp_generate_intermediate_image_sizes' );
+            $this->delete_pending_image_sizes( $item );
 
             return $item->ID;
         }
 
-        $intermediate_sizes_to_process = 1;
+        $item_metadata = wp_get_attachment_metadata( $item->ID );
 
-        $old_metadata = wp_get_attachment_metadata( $item->ID );
-        $new_metadata = $this->generate_intermediate_image_sizes( $item, array_slice( $pending_sizes, 0, $intermediate_sizes_to_process ) );
+        foreach ( $pending_sizes as $index => $pending_size ) {
+            $new_metadata = $this->generate_intermediate_image_sizes( $item, [ $pending_size ] );
 
-        $new_metadata['sizes'] = array_merge( $old_metadata['sizes'], $new_metadata['sizes'] );
+            $item_metadata['sizes'] = array_merge( $item_metadata['sizes'], $new_metadata['sizes'] );
 
-        wp_update_attachment_metadata( 2597, $new_metadata );
+            // We save the modified version of the item's metadata in case
+            // PHP dies trying to generate the next image size.
+            wp_update_attachment_metadata( $item->ID, $item_metadata );
 
-        $this->update_or_delete_pending_image_sizes( $item, array_slice( $pending_sizes, $intermediate_sizes_to_process ) );
+            $this->wordpress->update_post_meta( $item->ID, '_awpcp_generate_intermediate_image_sizes', array_slice( $pending_sizes, $index + 1 ) );
+        }
+
+        $this->delete_pending_image_sizes( $item );
 
         return $item->ID;
     }
@@ -118,6 +123,7 @@ class AWPCP_GenerateThumbnailsForMigratedMediaTaskHandler implements AWPCP_Upgra
             return $new_sizes;
         };
 
+        // Force WordPress to generate the intermediate image sizes we want only.
         add_filter( 'intermediate_image_sizes_advanced', $callback, 10, 2 );
         $new_metadata = wp_generate_attachment_metadata( $item->ID, get_attached_file( $item->ID ) );
         remove_filter( 'intermediate_image_sizes_advanced', $callback, 10, 2 );
@@ -125,11 +131,10 @@ class AWPCP_GenerateThumbnailsForMigratedMediaTaskHandler implements AWPCP_Upgra
         return $new_metadata;
     }
 
-    private function update_or_delete_pending_image_sizes( $item, $pending_sizes ) {
-        if ( $pending_sizes ) {
-            return $this->wordpress->update_post_meta( $item->ID, '_awpcp_generate_intermediate_image_sizes', $pending_sizes );
-        }
-
+    /**
+     * @since 4.0.0
+     */
+    private function delete_pending_image_sizes( $item ) {
         return $this->wordpress->delete_post_meta( $item->ID, '_awpcp_generate_intermediate_image_sizes' );
     }
 }
