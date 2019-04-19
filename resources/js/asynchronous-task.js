@@ -54,6 +54,7 @@ function($, ko, moment, settings) {
             return this.recordsLeft() === 0;
         }, this );
 
+        this.initialPercentageOfCompletion = ko.observable( 0 );
         this.percentageOfCompletion = ko.computed(function() {
             var recordsCount = this.recordsCount(),
                 recordsLeft = this.recordsLeft(),
@@ -81,9 +82,10 @@ function($, ko, moment, settings) {
             return function() {
                 var startTime = this.startTime(),
                     lastUpdatedTime = this.lastUpdatedTime(),
+                    initialPercentageOfCompletion = this.initialPercentageOfCompletion(),
                     percentageOfCompletion = this.percentageOfCompletion(),
                     now = new Date(),
-                    progressLeft, timeTaken, remainingSeconds;
+                    progressMade, progressLeft, timeTaken, remainingSeconds;
 
                 if ( ( now - lastRemainingTimeUpdateTime ) < 2500 ) {
                     return remainingTime;
@@ -97,9 +99,10 @@ function($, ko, moment, settings) {
                     return null;
                 }
 
+                progressMade = percentageOfCompletion - initialPercentageOfCompletion;
                 progressLeft = 100 - percentageOfCompletion;
                 timeTaken = lastUpdatedTime - startTime;
-                remainingSeconds = progressLeft * timeTaken / percentageOfCompletion / 1000;
+                remainingSeconds = ( progressLeft * timeTaken / progressMade ) / 1000;
                 lastRemainingTimeUpdateTime = now;
 
                 if ( remainingSeconds > 0 ) {
@@ -134,6 +137,10 @@ function($, ko, moment, settings) {
             return this.remainingTime();
         },
 
+        setInitialPercentageOfCompletion: function( percentageOfCompletion ) {
+            this.initialPercentageOfCompletion( percentageOfCompletion );
+        },
+
         getPercentageOfCompletion: function() {
             return this.percentageOfCompletion();
         },
@@ -163,6 +170,7 @@ function($, ko, moment, settings) {
 
             if ( task.getStartTime() === null ) {
                 task.setStartTime( new Date() );
+                task.setInitialPercentageOfCompletion( task.getPercentageOfCompletion() );
             }
 
             $.getJSON( settings.get( 'ajaxurl' ), {
