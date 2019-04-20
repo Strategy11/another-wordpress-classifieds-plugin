@@ -718,7 +718,7 @@ function awpcp_get_current_domain($www=true, $prefix='') {
 }
 
 /**
- * Bulds WordPress ajax URL using the same domain used in the current request.
+ * Builds WordPress ajax URL using the same domain used in the current request.
  *
  * @since 2.0.6
  */
