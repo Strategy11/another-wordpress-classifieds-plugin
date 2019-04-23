@@ -267,6 +267,9 @@ class AWPCP_GeneralSettings {
 
         $current_time = current_time( 'timestamp' );
 
+        // The x- in x-date-time-format is not a typo. It was added to indicate
+        // that the setting is not meant to be used outside the code that
+        // registers or validates other date and time format settings.
         $settings_manager->add_setting(
             [
                 'id'      => 'x-date-time-format',
