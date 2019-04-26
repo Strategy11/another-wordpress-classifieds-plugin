@@ -46,11 +46,19 @@ class AWPCP_UpgradeContainerConfiguration implements AWPCP_ContainerConfiguratio
             }
         );
 
+        $container['UpgradeTaskController'] = $container->service(
+            function( $container ) {
+                return new AWPCP_UpgradeTaskController(
+                    awpcp_upgrade_tasks_manager(),
+                    $container['UpgradeTaskHandlerFactory']
+                );
+            }
+        );
+
         $container['UpgradeTaskAjaxHandler'] = $container->service(
             function( $container ) {
                 return new AWPCP_Upgrade_Task_Ajax_Handler(
-                    awpcp_upgrade_tasks_manager(),
-                    $container['UpgradeTaskHandlerFactory'],
+                    $container['UpgradeTaskController'],
                     awpcp_request(),
                     awpcp_ajax_response()
                 );

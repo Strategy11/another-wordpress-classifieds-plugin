@@ -472,6 +472,7 @@ return array(
     'AWPCP_UpgradeCategoriesTaskHandlerHelper' => $baseDir . '/includes/upgrade/trait-upgrade-categories-task-handler-helper.php',
     'AWPCP_UpgradeContainerConfiguration' => $baseDir . '/includes/upgrade/class-upgrade-container-configuration.php',
     'AWPCP_UpgradeListingsTaskHandlerHelper' => $baseDir . '/includes/upgrade/trait-upgrade-listings-task-handler-helper.php',
+    'AWPCP_UpgradeTaskController' => $baseDir . '/includes/upgrade/class-upgrade-task-controller.php',
     'AWPCP_Upgrade_Session' => $baseDir . '/includes/upgrade/class-upgrade-session.php',
     'AWPCP_Upgrade_Sessions' => $baseDir . '/includes/upgrade/class-upgrade-sessions.php',
     'AWPCP_Upgrade_Task_Ajax_Handler' => $baseDir . '/includes/upgrade/class-upgrade-task-ajax-handler.php',
