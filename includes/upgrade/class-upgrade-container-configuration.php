@@ -8,6 +8,8 @@
 /**
  * Container configuration object responsible for registering classes used
  * in manual upgrade routines.
+ *
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class AWPCP_UpgradeContainerConfiguration implements AWPCP_ContainerConfigurationInterface {
 
