@@ -7,7 +7,7 @@
  * Constructor function for Manual Upgrade Tasks class.
  */
 function awpcp_manual_upgrade_tasks() {
-    return new AWPCP_Manual_Upgrade_Tasks( awpcp_upgrade_tasks_manager() );
+    return awpcp()->container['ManualUpgradeTasks'];
 }
 
 /**
