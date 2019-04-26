@@ -17,6 +17,12 @@ class AWPCP_UpgradeContainerConfiguration implements AWPCP_ContainerConfiguratio
      * @see AWPCP_ContainerConfigurationInterface::modify()
      */
     public function modify( $container ) {
+        $container['UpgradeTasksManager'] = $container->service(
+            function ( $container ) {
+                return new AWPCP_Upgrade_Tasks_Manager();
+            }
+        );
+
         $container['UpgradeSessions'] = $container->service(
             function( $container ) {
                 return new AWPCP_Upgrade_Sessions(

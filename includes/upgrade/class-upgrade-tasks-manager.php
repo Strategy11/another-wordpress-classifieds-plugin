@@ -7,13 +7,7 @@
  * Constructor function for Upgrade Tasks Manager class.
  */
 function awpcp_upgrade_tasks_manager() {
-    static $instance = null;
-
-    if ( is_null( $instance ) ) {
-        $instance = new AWPCP_Upgrade_Tasks_Manager();
-    }
-
-    return $instance;
+    return awpcp()->container['UpgradeTasksManager'];
 }
 
 class AWPCP_Upgrade_Tasks_Manager {
