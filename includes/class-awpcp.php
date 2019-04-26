@@ -37,8 +37,6 @@ class AWPCP {
     public function bootstrap() {
         $this->settings_manager = $this->container['SettingsManager'];
 		$this->js = AWPCP_JavaScript::instance();
-        $this->upgrade_tasks = awpcp_upgrade_tasks_manager();
-        $this->manual_upgrades = awpcp_manual_upgrade_tasks();
 
         awpcp_load_plugin_textdomain( AWPCP_FILE );
 
@@ -83,6 +81,8 @@ class AWPCP {
         // Stored options are loaded when the settings API is instatiated.
         $this->settings = $this->container['Settings'];
 
+        $this->upgrade_tasks   = $this->container['UpgradeTasksManager'];
+        $this->manual_upgrades = $this->container['ManualUpgradeTasks'];
         $this->modules_manager = $this->container['ModulesManager'];
         $this->modules_updater = awpcp_modules_updater();
         $this->router = awpcp_router();
