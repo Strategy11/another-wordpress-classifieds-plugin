@@ -29,7 +29,7 @@ function($, ko, moment, settings) {
 
         this.templates = params.templates;
 
-        this.numberOfRecordsProcessed = ko.computed(function() {
+        this.numberOfRecordsProcessed = ko.computed(function() {
             var recordsCount = this.recordsCount(),
                 recordsLeft = this.recordsLeft();
 
