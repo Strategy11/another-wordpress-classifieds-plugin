@@ -13,6 +13,8 @@ function($, ko, moment, settings) {
         this.startTime = ko.observable( null );
         this.lastUpdatedTime = ko.observable( null );
 
+        this.failedRequestsCount = ko.observable( 0 );
+
         if ( typeof params.recordsCount === 'undefined' ) {
             this.recordsCount = ko.observable( null );
         } else {
@@ -166,19 +168,37 @@ function($, ko, moment, settings) {
         },
 
         execute: function( done ) {
-            var task = this;
+            var task = this,
+                callback = $.isFunction( done ) ? done : $.noop;
 
             if ( task.getStartTime() === null ) {
                 task.setStartTime( new Date() );
                 task.setInitialPercentageOfCompletion( task.getPercentageOfCompletion() );
             }
 
-            $.getJSON( settings.get( 'ajaxurl' ), {
-                action: task.action,
-                context: task.context
-            }, function( response ) {
-                task._onSuccess( response, $.isFunction( done ) ? done : $.noop );
-            } );
+            $.ajax(
+                settings.get( 'ajaxurl' ),
+                {
+                    method: 'POST',
+                    data: {
+                        action: task.action,
+                        context: task.context
+                    },
+                    success: function( data, status, xhr ) {
+                        task._onSuccess( data, callback );
+                    },
+                    error: function( xhr, status, response ) {
+                        if ( typeof response.error === 'undefined' ) {
+                            response = {
+                                status: 'error',
+                                error: response
+                            };
+                        }
+
+                        task._handleErrorResponse( response, callback );
+                    }
+                }
+            );
 
             this.running( true );
         },
@@ -198,21 +218,37 @@ function($, ko, moment, settings) {
                 task.setStatusMessage( response.message );
             }
 
+            task.failedRequestsCount( 0 );
             task.recordsCount( task.recordsCount() || parseInt( response.recordsCount, 10 ) );
             task.recordsLeft( parseInt( response.recordsLeft, 10 ) );
             task.setLastUpdatedTime( new Date() );
+
+            task._handleResponse( done, 1 );
+        },
+
+        _handleResponse: function( done, timeout ) {
+            var task = this;
 
             if ( task.recordsLeft() === 0 ) {
                 task.running( false );
                 done();
             } else {
-                setTimeout( function() { task.execute( done ); }, 1 );
+                setTimeout( function() { task.execute( done ); }, timeout );
             }
         },
 
         _handleErrorResponse: function( response, done ) {
-            this.setErrorMessage( response.error );
-            done();
+            if ( response.error ) {
+                this.setErrorMessage( response.error );
+            }
+
+            var failedRequestsCount = this.failedRequestsCount();
+
+            if ( failedRequestsCount < 6 ) {
+                this.failedRequestsCount( failedRequestsCount + 1 );
+            }
+
+            this._handleResponse( done, Math.pow( 2, failedRequestsCount ) * 1000 );
         }
     } );
 
