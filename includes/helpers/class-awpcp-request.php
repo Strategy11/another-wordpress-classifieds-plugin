@@ -56,14 +56,10 @@ class AWPCP_Request {
      * @since 3.3
      */
     function domain( $include_www = true, $www_prefix_replacement = '' ) {
-        $domain = '';
+        $domain = $this->filter_input( INPUT_SERVER, 'HTTP_HOST', FILTER_SANITIZE_STRING );
 
-        if ( ! empty( $_SERVER['HTTP_HOST'] ) ) {
-            $domain = filter_input( INPUT_SERVER, 'HTTP_HOST', FILTER_SANITIZE_STRING );
-        }
-
-        //  If the server runs on a port other than 80 then HTTP_HOST contains
-        //  the port. See https://stackoverflow.com/a/12046836.
+        // If the server runs on a port other than 80 then HTTP_HOST contains
+        // the port. See https://stackoverflow.com/a/12046836.
         $port_position = strpos( $domain, ':' );
 
         if ( $port_position ) {
@@ -82,6 +78,17 @@ class AWPCP_Request {
         }
 
         return $domain;
+    }
+
+    /**
+     * Filter external variable.
+     *
+     * A wrapper of PHP's filter_input that can be mocked during in tests.
+     *
+     * @since 4.0.0
+     */
+    private function filter_input( $input_type, $var_name, $filter ) {
+        return filter_input( $input_type, $var_name, $filter );
     }
 
     /**
