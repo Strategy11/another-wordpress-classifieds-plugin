@@ -59,7 +59,7 @@ class AWPCP_Request {
         $domain = '';
 
         if ( ! empty( $_SERVER['HTTP_HOST'] ) ) {
-            $domain = esc_url_raw( wp_unslash( $_SERVER['HTTP_HOST'] ) );
+            $domain = filter_input( INPUT_SERVER, 'HTTP_HOST', FILTER_SANITIZE_STRING );
         }
 
         //  If the server runs on a port other than 80 then HTTP_HOST contains
