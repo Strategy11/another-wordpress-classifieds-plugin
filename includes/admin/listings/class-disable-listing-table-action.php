@@ -76,8 +76,6 @@ class AWPCP_DisableListingTableAction implements AWPCP_ListTableActionInterface 
     }
 
     /**
-     * TODO: Perform authorization.
-     *
      * @param object $post  An instance of WP_Post.
      * @since 4.0.0
      */
@@ -133,4 +131,3 @@ class AWPCP_DisableListingTableAction implements AWPCP_ListTableActionInterface 
         return '';
     }
 }
-
