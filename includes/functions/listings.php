@@ -186,6 +186,15 @@ function awpcp_display_listings_in_page( $query, $context, $options = array() ) 
 }
 
 /**
+ * Handler for the {@see 'awpcp-content-before-listing-page'} filter.
+ *
+ * @since 4.0.0
+ */
+function awpcp_insert_classifieds_bar_before_listing_page( $content_before_page ) {
+    return $content_before_page . awpcp_render_classifieds_bar();
+}
+
+/**
  * Returns the HTML code for the Classifieds Bar component.
  *
  * If called from the Admin Dashboard, then it returns an empty string

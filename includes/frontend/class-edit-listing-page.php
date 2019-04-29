@@ -192,12 +192,16 @@ class AWPCP_EditListingPage extends AWPCP_Page {
             $messages[] = sprintf( $message, esc_url( $url ) );
         }
 
-        $template = AWPCP_DIR . '/frontend/templates/page-place-ad-finish-step.tpl.php';
-        $params   = array(
-            'messages' => $this->get_listing_messages( $ad ),
+        $params = array(
             'edit'     => true,
             'ad'       => $ad,
+            'messages' => $this->get_listing_messages( $ad ),
         );
+
+        $template = AWPCP_DIR . '/frontend/templates/page-place-ad-finish-step.tpl.php';
+
+        // Do not show the Classifieds Bar in ad previews.
+        remove_filter( 'awpcp-content-before-listing-page', 'awpcp_insert_classifieds_bar_before_listing_page' );
 
         return $this->render( $template, $params );
     }

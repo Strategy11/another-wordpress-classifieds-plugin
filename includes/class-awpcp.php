@@ -444,6 +444,8 @@ class AWPCP {
 
             $listings_content = $this->container['ListingsContent'];
             add_filter( 'the_content', array( $listings_content, 'filter_content' ) );
+
+            add_filter( 'awpcp-content-before-listing-page', 'awpcp_insert_classifieds_bar_before_listing_page' );
         }
 
         add_filter( 'awpcp-content-placeholders', array( $this, 'register_content_placeholders' ) );

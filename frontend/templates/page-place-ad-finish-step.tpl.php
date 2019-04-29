@@ -4,11 +4,11 @@
  */
 
 if ( isset( $transaction ) && get_awpcp_option( 'show-create-listing-form-steps' ) ) {
-    echo awpcp_render_listing_form_steps( 'finish', $transaction ); // XSS Ok.
+    echo awpcp_render_listing_form_steps( 'finish', $transaction ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }
 
 ?><?php foreach ( (array) $messages as $message ) : ?>
-    <?php echo awpcp_print_message( $message ); // XSS Ok. ?>
+    <?php echo awpcp_print_message( $message ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 <?php endforeach; ?>
 
 <?php

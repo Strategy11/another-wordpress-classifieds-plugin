@@ -170,7 +170,7 @@ class AWPCP_ListingsContentRenderer {
         );
 
         // phpcs:disable
-        $content_before_page = apply_filters( 'awpcp-content-before-listing-page', awpcp_render_classifieds_bar() );
+        $content_before_page = apply_filters( 'awpcp-content-before-listing-page', '' );
         $content_after_page  = apply_filters( 'awpcp-content-after-listing-page', '' );
         // phpcs:enable
 
