@@ -76,13 +76,16 @@ class AWPCP_EnableListingTableAction implements AWPCP_ListTableActionInterface {
     }
 
     /**
-     * TODO: Trying to enable an already enabled item should trigger an error/notice.
      * TODO: Perform authorization.
      *
      * @param object $post  An instance of WP_Post.
      * @since 4.0.0
      */
     public function process_item( $post ) {
+        if ( $this->listing_renderer->is_public( $post ) ) {
+            return 'already-enabled';
+        }
+
         if ( $this->listings_logic->enable_listing( $post ) ) {
             return 'success';
         }
@@ -112,10 +115,19 @@ class AWPCP_EnableListingTableAction implements AWPCP_ListTableActionInterface {
      */
     private function get_message( $code, $count ) {
         if ( 'success' === $code ) {
-            $message = _n( 'The ad was successfully enabled.', '{count} ads were successfully enabled.', $count, 'another-wordpress-classifieds-plugin' );
-            $message = str_replace( '{count}', $count, $message );
+            /* translators: %d is the number of ads that were successfully enabled. */
+            $message = _n( '%d ad was successfully enabled.', '%d ads were successfully enabled.', $count, 'another-wordpress-classifieds-plugin' );
+            $message = sprintf( $message, $count );
 
             return awpcp_render_dismissible_success_message( $message );
+        }
+
+        if ( 'already-enabled' === $code ) {
+            /* translators: %d is the number of ads that were already enabled. */
+            $message = _n( '%d ad was already enabled.', '%d ads were already enabled.', $count, 'another-wordpress-classifieds-plugin' );
+            $message = sprintf( $message, $count );
+
+            return awpcp_render_dismissible_error_message( $message );
         }
 
         return '';
