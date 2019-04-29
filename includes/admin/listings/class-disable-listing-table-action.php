@@ -76,13 +76,16 @@ class AWPCP_DisableListingTableAction implements AWPCP_ListTableActionInterface 
     }
 
     /**
-     * TODO: Trying to disable an already disabled item should trigger an error/notice.
      * TODO: Perform authorization.
      *
      * @param object $post  An instance of WP_Post.
      * @since 4.0.0
      */
     public function process_item( $post ) {
+        if ( $this->listing_renderer->is_disabled( $post ) ) {
+            return 'already-disabled';
+        }
+
         if ( $this->listings_logic->disable_listing( $post ) ) {
             return 'success';
         }
@@ -112,10 +115,19 @@ class AWPCP_DisableListingTableAction implements AWPCP_ListTableActionInterface 
      */
     private function get_message( $code, $count ) {
         if ( 'success' === $code ) {
-            $message = _n( 'The ad was successfully disabled.', '{count} ads were successfully disabled.', $count, 'another-wordpress-classifieds-plugin' );
-            $message = str_replace( '{count}', $count, $message );
+            /* translators: %d is the number of ads that were successfully disabled. */
+            $message = _n( '%d ad was successfully disabled.', '%d ads were successfully disabled.', $count, 'another-wordpress-classifieds-plugin' );
+            $message = sprintf( $message, $count );
 
             return awpcp_render_dismissible_success_message( $message );
+        }
+
+        if ( 'already-disabled' === $code ) {
+            /* translators: %d is the number of ads that were already disabled. */
+            $message = _n( '%d ad was already disabled.', '%d ads were already disabled.', $count, 'another-wordpress-classifieds-plugin' );
+            $message = sprintf( $message, $count );
+
+            return awpcp_render_dismissible_error_message( $message );
         }
 
         return '';
