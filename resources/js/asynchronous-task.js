@@ -239,7 +239,7 @@ function($, ko, moment, settings) {
 
         _handleErrorResponse: function( response, done ) {
             if ( response.error ) {
-                this.setErrorMessage( response.error );
+                // this.setErrorMessage( response.error );
             }
 
             var failedRequestsCount = this.failedRequestsCount();
