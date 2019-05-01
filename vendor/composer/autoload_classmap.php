@@ -469,6 +469,7 @@ return array(
     'AWPCP_Update_Categories_Task_Runner' => $baseDir . '/includes/upgrade/class-update-categories-task-runner.php',
     'AWPCP_Update_Category_Admin_Page' => $baseDir . '/admin/categories/class-update-category-admin-page.php',
     'AWPCP_Update_Media_Status_Task_Handler' => $baseDir . '/includes/upgrade/class-update-media-status-task-handler.php',
+    'AWPCP_UpgradeAssociatedListingsTaskHandlerHelper' => $baseDir . '/includes/upgrade/trait-upgrade-associated-listings-task-handler-helper.php',
     'AWPCP_UpgradeCategoriesTaskHandlerHelper' => $baseDir . '/includes/upgrade/trait-upgrade-categories-task-handler-helper.php',
     'AWPCP_UpgradeContainerConfiguration' => $baseDir . '/includes/upgrade/class-upgrade-container-configuration.php',
     'AWPCP_UpgradeListingsTaskHandlerHelper' => $baseDir . '/includes/upgrade/trait-upgrade-listings-task-handler-helper.php',

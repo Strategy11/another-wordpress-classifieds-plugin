@@ -506,10 +506,8 @@ class AWPCP_QueryIntegration {
             $previous_id = intval( $query_vars['classifieds_query']['previous_id'] );
 
             $query_vars['meta_query'][] = array(
-                'key'     => '_awpcp_old_id',
-                'value'   => $previous_id,
-                'compare' => '=',
-                'type'    => 'NUMERIC',
+                'key'     => "_awpcp_old_id_{$previous_id}",
+                'compare' => 'EXISTS',
             );
         }
 

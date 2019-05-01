@@ -471,6 +471,7 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_Update_Categories_Task_Runner' => __DIR__ . '/../..' . '/includes/upgrade/class-update-categories-task-runner.php',
         'AWPCP_Update_Category_Admin_Page' => __DIR__ . '/../..' . '/admin/categories/class-update-category-admin-page.php',
         'AWPCP_Update_Media_Status_Task_Handler' => __DIR__ . '/../..' . '/includes/upgrade/class-update-media-status-task-handler.php',
+        'AWPCP_UpgradeAssociatedListingsTaskHandlerHelper' => __DIR__ . '/../..' . '/includes/upgrade/trait-upgrade-associated-listings-task-handler-helper.php',
         'AWPCP_UpgradeCategoriesTaskHandlerHelper' => __DIR__ . '/../..' . '/includes/upgrade/trait-upgrade-categories-task-handler-helper.php',
         'AWPCP_UpgradeContainerConfiguration' => __DIR__ . '/../..' . '/includes/upgrade/class-upgrade-container-configuration.php',
         'AWPCP_UpgradeListingsTaskHandlerHelper' => __DIR__ . '/../..' . '/includes/upgrade/trait-upgrade-listings-task-handler-helper.php',

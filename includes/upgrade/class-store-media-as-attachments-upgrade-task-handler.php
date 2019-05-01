@@ -8,6 +8,8 @@
  */
 class AWPCP_Store_Media_As_Attachments_Upgrade_Task_Handler implements AWPCP_Upgrade_Task_Runner {
 
+    use AWPCP_UpgradeAssociatedListingsTaskHandlerHelper;
+
     /**
      * @var object
      */
@@ -78,7 +80,7 @@ class AWPCP_Store_Media_As_Attachments_Upgrade_Task_Handler implements AWPCP_Upg
             require_once ABSPATH . 'wp-admin/includes/media.php';
         }
 
-        $parent_listing_id = $this->get_id_of_associated_listing( $item );
+        $parent_listing_id = $this->get_id_of_associated_listing( $item->ad_id );
 
         if ( 0 === $parent_listing_id ) {
             // The file has no associated listing. We assume this is an orphan file
@@ -166,28 +168,5 @@ class AWPCP_Store_Media_As_Attachments_Upgrade_Task_Handler implements AWPCP_Upg
         add_post_meta( $attachment_id, '_awpcp_generate_intermediate_image_sizes', get_intermediate_image_sizes() );
 
         return $item->id;
-    }
-
-    /**
-     * phpcs:disable WordPress.VIP.SlowDBQuery.slow_db_query_meta_key
-     * phpcs:disable WordPress.VIP.SlowDBQuery.slow_db_query_meta_value
-     *
-     * @param object $item  An item that is being processed.
-     */
-    private function get_id_of_associated_listing( $item ) {
-        // TODO: Use a new WP_Query instead.
-        $listings = $this->wordpress->get_posts(
-            [
-                'post_type'  => 'awpcp_listing',
-                'meta_key'   => '_awpcp_old_id',
-                'meta_value' => $item->ad_id,
-            ]
-        );
-
-        if ( ! is_array( $listings ) || empty( $listings ) ) {
-            return 0;
-        }
-
-        return $listings[0]->ID;
     }
 }

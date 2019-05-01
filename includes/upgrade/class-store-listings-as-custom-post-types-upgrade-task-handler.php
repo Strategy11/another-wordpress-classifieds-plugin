@@ -76,7 +76,7 @@ class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements 
             ],
             'post_meta' => [
                 // Store old listing's ad_id in custom field so premium modules can rebuild relationships.
-                '_awpcp_old_id' => $item->ad_id,
+                "_awpcp_old_id_{$item->ad_id}" => $item->ad_id,
             ],
         ];
 
