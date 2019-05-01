@@ -100,8 +100,11 @@ class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements 
             throw new AWPCP_Exception( sprintf( "A custom post entry couldn't be created for listing %d. %s", $item->ad_id, $post_id->get_error_message() ) );
         }
 
+        // We can safely use add_post_meta() to add meta data because this post
+        // was just created, so there are no existing keys that we need to
+        // worry about.
         foreach ( $data['post_meta'] as $meta_key => $meta_value ) {
-            $this->wordpress->update_post_meta( $post_id, $meta_key, $meta_value );
+            $this->wordpress->add_post_meta( $post_id, $meta_key, $meta_value );
         }
 
         // Update references to listing's id in ad_regions table.
