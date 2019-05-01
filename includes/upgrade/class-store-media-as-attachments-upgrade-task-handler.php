@@ -154,16 +154,16 @@ class AWPCP_Store_Media_As_Attachments_Upgrade_Task_Handler implements AWPCP_Upg
         }
 
         if ( $item->enabled ) {
-            update_post_meta( $attachment_id, '_awpcp_enabled', true );
+            add_post_meta( $attachment_id, '_awpcp_enabled', true );
         }
 
         if ( $item->is_primary ) {
-            update_post_meta( $parent_listing_id, '_thumbnail_id', $attachment_id );
-            update_post_meta( $attachment_id, '_awpcp_featured', true );
+            add_post_meta( $parent_listing_id, '_thumbnail_id', $attachment_id );
+            add_post_meta( $attachment_id, '_awpcp_featured', true );
         }
 
-        update_post_meta( $attachment_id, '_awpcp_allowed_status', $item->status );
-        update_post_meta( $attachment_id, '_awpcp_generate_intermediate_image_sizes', get_intermediate_image_sizes() );
+        add_post_meta( $attachment_id, '_awpcp_allowed_status', $item->status );
+        add_post_meta( $attachment_id, '_awpcp_generate_intermediate_image_sizes', get_intermediate_image_sizes() );
 
         return $item->id;
     }
