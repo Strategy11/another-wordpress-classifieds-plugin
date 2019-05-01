@@ -60,7 +60,7 @@ class AWPCP_Store_Media_As_Attachments_Upgrade_Task_Handler implements AWPCP_Upg
      * @param int $last_item_id     The ID of the last item processed by the routine.
      */
     public function get_pending_items( $last_item_id ) {
-        $query = 'SELECT * FROM ' . AWPCP_TABLE_MEDIA . ' WHERE id > %d LIMIT 0, 20';
+        $query = 'SELECT * FROM ' . AWPCP_TABLE_MEDIA . ' WHERE id > %d LIMIT 0, 50';
         return $this->db->get_results( $this->db->prepare( $query, $last_item_id ) );
     }
 
