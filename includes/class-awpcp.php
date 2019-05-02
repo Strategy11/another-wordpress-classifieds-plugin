@@ -602,6 +602,9 @@ class AWPCP {
 
         $ajax_request_handler = awpcp_ajax_request_handler( $this->router->get_routes() );
         $this->router->register_ajax_request_handler( $ajax_request_handler );
+
+	    $export_csv = $this->container['ExportListingsAdminPage'];
+	    add_action( 'wp_ajax_awpcp-csv-export', [ $export_csv, 'ajax' ] );
     }
 
     /**
@@ -1115,6 +1118,23 @@ class AWPCP {
             $awpcp_db_version,
             true
         );
+
+		wp_register_script(
+			'awpcp-admin-export',
+			"{$js}/admin-export.js",
+			array(
+				'awpcp'
+			),
+			$awpcp_db_version,
+			true
+		);
+
+		wp_register_style(
+			'awpcp-admin-export-style',
+			"{$css}/awpcp-admin-export.css",
+			array(),
+			$awpcp_db_version
+		);
 
         wp_register_script(
             'awpcp-admin-listings-table',

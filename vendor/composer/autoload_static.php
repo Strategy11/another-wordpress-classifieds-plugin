@@ -67,6 +67,7 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_CSV_Reader' => __DIR__ . '/../..' . '/admin/import/class-csv-reader.php',
         'AWPCP_CSV_Reader_Factory' => __DIR__ . '/../..' . '/admin/import/class-csv-reader-factory.php',
         'AWPCP_CategoriesAdminPage' => __DIR__ . '/../..' . '/admin/class-categories-admin-page.php',
+        'AWPCP_CSVExporter' => __DIR__ . '/../..' . '/admin/class-csv-exporter.php',
         'AWPCP_CategoriesCheckboxListWalker' => __DIR__ . '/../..' . '/includes/views/admin/class-categories-checkbox-list-walker.php',
         'AWPCP_CategoriesListCache' => __DIR__ . '/../..' . '/includes/class-categories-list-cache.php',
         'AWPCP_CategoriesListWalker' => __DIR__ . '/../..' . '/includes/views/frontend/class-categories-list-walker.php',

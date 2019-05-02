@@ -66,6 +66,7 @@ return array(
     'AWPCP_CSV_Reader' => $baseDir . '/admin/import/class-csv-reader.php',
     'AWPCP_CSV_Reader_Factory' => $baseDir . '/admin/import/class-csv-reader-factory.php',
     'AWPCP_CategoriesAdminPage' => $baseDir . '/admin/class-categories-admin-page.php',
+    'AWPCP_CSVExporter' => $baseDir . '/admin/class-csv-exporter.php',
     'AWPCP_CategoriesCheckboxListWalker' => $baseDir . '/includes/views/admin/class-categories-checkbox-list-walker.php',
     'AWPCP_CategoriesListCache' => $baseDir . '/includes/class-categories-list-cache.php',
     'AWPCP_CategoriesListWalker' => $baseDir . '/includes/views/frontend/class-categories-list-walker.php',
