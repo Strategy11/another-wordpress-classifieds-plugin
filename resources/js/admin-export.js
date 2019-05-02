@@ -6,11 +6,12 @@ AWPCP.run( 'awpcp/admin-export', [
   ],
   function( $, settings ) {
     $( function() {
-      var progress = new ProgressBar( $( '.awpcp-step-2 .export-progress' ) );
+      let progress = new ProgressBar( $( '.awpcp-step-2 .export-progress' ) );
 
-      var exportInProgress = false;
-      var cancelExport = false;
-      var lastState = null;
+      let exportInProgress = false;
+      let cancelExport = false;
+      let lastState = null;
+      let nonce = null;
 
       function ProgressBar( $item, settings ) {
         $item.empty();
@@ -63,7 +64,7 @@ AWPCP.run( 'awpcp/admin-export', [
           } );
 
           $.ajax( ajaxurl, {
-            data: { 'action': 'awpcp-csv-export', 'state': state, 'cleanup': 1 },
+            data: { 'action': 'awpcp-csv-export', 'state': state, 'cleanup': 1, '_wpnonce': nonce },
             type: 'POST',
             dataType: 'json',
             success: function( res ) {
@@ -73,7 +74,7 @@ AWPCP.run( 'awpcp/admin-export', [
         }
 
         $.ajax( ajaxurl, {
-          data: { 'action': 'awpcp-csv-export', 'state': state },
+          data: { 'action': 'awpcp-csv-export', 'state': state, '_wpnonce': nonce },
           type: 'POST',
           dataType: 'json',
           success: function( res ) {
@@ -110,7 +111,7 @@ AWPCP.run( 'awpcp/admin-export', [
 
       $( 'form#awpcp-csv-export-form' ).submit( function( e ) {
         e.preventDefault();
-
+        nonce = $('#_wpnonce').val();
         let data = $( this ).serialize() + '&action=awpcp-csv-export';
         $.ajax( settings.get( 'ajaxurl' ), {
           data: data,
@@ -149,7 +150,7 @@ AWPCP.run( 'awpcp/admin-export', [
       $( '.awpcp-step-3 .cleanup-link a' ).click( function( e ) {
         e.preventDefault();
         $.ajax( settings.get( 'ajaxurl' ), {
-          data: { 'action': 'awpcp-csv-export', 'state': lastState, 'cleanup': 1 },
+          data: { 'action': 'awpcp-csv-export', 'state': lastState, 'cleanup': 1, '_wpnonce': nonce },
           type: 'POST',
           dataType: 'json',
           success: function( res ) {

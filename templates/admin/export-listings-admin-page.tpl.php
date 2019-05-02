@@ -1,156 +1,184 @@
+<?php
+/**
+ * @package AWPCP\Admin
+ */
+
+?>
+
 <div class="awpcp-page-csv-export">
 
-	<a name="exporterror"></a>
-	<div class="error" style="display: none;"><p>
-			<?php _ex( 'An unknown error occurred during the export. Please make sure you have enough free disk space and memory available to PHP. Check your error logs for details.',
-				'admin csv-export',
-				'another-wordpress-classifieds-plugin' ); ?>
-		</p></div>
+    <a name="exporterror"></a>
+    <div class="error" style="display: none;"><p>
+			<?php
+			echo esc_html_x(
+				'An unknown error occurred during the export. Please make sure you have enough free disk space and memory available to PHP. Check your error logs for details.',
+				'listings-csv-export',
+				'another-wordpress-classifieds-plugin'
+			);
+			?>
+        </p></div>
 
-	<div class="awpcp-step-1">
+    <div class="awpcp-step-1">
 
-		<div class="notice notice-info"><p>
+        <div class="notice notice-info"><p>
 				<?php
-				$notice = _x( "Please note that the export process is a resource intensive task. If your export does not succeed try disabling other plugins first and/or increasing the values of the 'memory_limit' and 'max_execution_time' directives in your server's php.ini configuration file.",
-					'admin csv-export',
-					'another-wordpress-classifieds-plugin' );
-				$notice = str_replace( array( 'memory_limit', 'max_execution_time' ),
-					array( '<a href="http://www.php.net/manual/en/ini.core.php#ini.memory-limit" target="_blank" rel="noopener">memory_limit</a>',
-						'<a href="http://www.php.net/manual/en/info.configuration.php#ini.max-execution-time" target="_blank" rel="noopener">max_execution_time</a>' ),
-					$notice );
+				$notice = _x(
+					"Please note that the export process is a resource intensive task. If your export does not succeed try disabling other plugins first and/or increasing the values of the 'memory_limit' and 'max_execution_time' directives in your server's php.ini configuration file.",
+					'listings-csv-export',
+					'another-wordpress-classifieds-plugin'
+				);
+				$notice = str_replace(
+					array( 'memory_limit', 'max_execution_time' ),
+					array(
+						'<a href="http://www.php.net/manual/en/ini.core.php#ini.memory-limit" target="_blank" rel="noopener">memory_limit</a>',
+						'<a href="http://www.php.net/manual/en/info.configuration.php#ini.max-execution-time" target="_blank" rel="noopener">max_execution_time</a>',
+					),
+					$notice
+				);
+				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				echo $notice;
 				?>
-			</p>
-		</div>
+            </p>
+        </div>
 
-		<!--<h3><?php _ex('Export Configuration', 'admin csv-export', 'another-wordpress-classifieds-plugin'); ?></h3>-->
-		<form id="awpcp-csv-export-form" action="" method="POST">
+        <!--<h3><?php echo esc_html_x( 'Export Configuration', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?></h3>-->
+        <form id="awpcp-csv-export-form" action="" method="POST">
 
-			<h2><?php _ex( 'Export settings', 'admin csv-export', 'another-wordpress-classifieds-plugin' ); ?></h2>
-			<table class="form-table">
-				<tr>
-					<th scope="row">
-						<label> <?php _ex('Which listings to export?', 'admin csv-export', 'another-wordpress-classifieds-plugin'); ?></label>
-					</th>
-					<td>
-						<select name="settings[listing_status]">
-							<option value="all"><?php _ex( 'All', 'admin csv-export', 'another-wordpress-classifieds-plugin' ); ?></option>
-							<option value="publish"><?php _ex( 'Active Only', 'admin csv-export', 'another-wordpress-classifieds-plugin' ); ?></option>
-							<option value="publish+draft"><?php _ex( 'Active + Pending Renewal', 'admin csv-export', 'another-wordpress-classifieds-plugin' ); ?></option>
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">
-						<label> <?php _ex('Export images?', 'admin csv-export', 'another-wordpress-classifieds-plugin'); ?></label>
-					</th>
-					<td>
-						<label><input name="settings[export-images]"
-						              type="checkbox"
-						              value="1" /> <?php _ex('Export images', 'admin csv-export', 'another-wordpress-classifieds-plugin'); ?></label> <br />
-						<span class="description">
-                    <?php _ex( 'When checked, instead of just a CSV file a ZIP file will be generated with both a CSV file and listing images.', 'admin csv-export', 'another-wordpress-classifieds-plugin' ); ?>
+            <h2><?php echo esc_html_x( 'Export settings', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?></h2>
+            <table class="form-table">
+                <tr>
+                    <th scope="row">
+                        <label> <?php echo esc_html_x( 'Which listings to export?', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?></label>
+                    </th>
+                    <td>
+                        <select name="settings[listing_status]">
+                            <option value="all"><?php echo esc_html_x( 'All', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?></option>
+                            <option value="publish"><?php echo esc_html_x( 'Active Only', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?></option>
+                            <option value="publish+draft"><?php echo esc_html_x( 'Active + Pending Renewal', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <label> <?php echo esc_html_x( 'Export images?', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?></label>
+                    </th>
+                    <td>
+                        <label>
+                            <input name="settings[export-images]" type="checkbox" value="1"/>
+							<?php echo esc_html_x( 'Export images', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?>
+                        </label> <br/>
+                        <span class="description">
+                    <?php echo esc_html_x( 'When checked, instead of just a CSV file a ZIP file will be generated with both a CSV file and listing images.', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?>
                 </span>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">
-						<label> <?php _ex('Additional metadata to export:', 'admin csv-export', 'another-wordpress-classifieds-plugin'); ?></label>
-					</th>
-					<td>
-						<label><input name="settings[generate-sequence-ids]"
-						              type="checkbox"
-						              value="1" /> <?php _ex('Include unique IDs for each listing (sequence_id column).', 'admin csv-export', 'another-wordpress-classifieds-plugin' ); ?></label><br />
-						<span class="description">
-                <strong><?php _ex( 'If you plan to re-import the listings into BD and don\'t want new ones created, select this option!', 'admin csv-export', 'another-wordpress-classifieds-plugin'); ?></strong>
-                </span> <br /><br />
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <label> <?php echo esc_html_x( 'Additional metadata to export:', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?></label>
+                    </th>
+                    <td>
+                        <label>
+                            <input name="settings[generate-sequence-ids]" type="checkbox" value="1"/>
+							<?php echo esc_html_x( 'Include unique IDs for each listing (sequence_id column).', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?>
+                        </label><br/>
+                        <span class="description">
+                <strong><?php echo esc_html_x( 'If you plan to re-import the listings into BD and don\'t want new ones created, select this option!', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?></strong>
+                </span> <br/><br/>
 
-						<label><input name="settings[include-users]"
-						              type="checkbox"
-						              value="1"
-						              checked="checked" /> <?php _ex('Author information (username)', 'admin csv-export', 'another-wordpress-classifieds-plugin'); ?></label> <br />
-					</td>
-				</tr>
-			</table>
+                        <label>
+                            <input name="settings[include-users]" type="checkbox" value="1" checked="checked"/>
+							<?php echo esc_html_x( 'Author information (username)', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?>
+                        </label> <br/>
+                    </td>
+                </tr>
+            </table>
 
-			<h2><?php _ex('CSV File Settings', 'admin csv-export', 'another-wordpress-classifieds-plugin'); ?></h2>
-			<table class="form-table">
-				<tr class="form-required">
-					<th scope="row">
-						<label> <?php _ex( 'What operating system will you use to edit the CSV file?', 'admin csv-export', 'another-wordpress-classifieds-plugin' ); ?> <span class="description">(<?php _ex('required', 'admin forms', 'another-wordpress-classifieds-plugin'); ?>)</span></label>
-					</th>
-					<td>
-						<label><input name="settings[target-os]"
-						              type="radio"
-						              aria-required="true"
-						              value="windows"
-						              checked="checked" /><?php _ex( 'Windows', 'admin csv-export', 'another-wordpress-classifieds-plugin' ); ?></label>
-						<br />
-						<label><input name="settings[target-os]"
-						              type="radio"
-						              aria-required="true"
-						              value="macos" /><?php _ex( 'macOS', 'admin csv-export', 'another-wordpress-classifieds-plugin' ); ?></label>
-						<br />
-						<p><?php _ex( 'Windows and macOS versions of MS Excel handle CSV files differently. To make sure all your listings information is displayed properly when you view or edit the CSV file, we need to generate different versions of the file for each operating system.', 'admin csv-export', 'another-wordpress-classifieds-plugin' ); ?></p>
-					</td>
-				</tr>
-				<tr class="form-required">
-					<th scope="row">
-						<label> <?php _ex('Image Separator', 'admin csv-export', 'another-wordpress-classifieds-plugin'); ?> <span class="description">(<?php _ex('required', 'admin forms', 'another-wordpress-classifieds-plugin'); ?>)</span></label>
-					</th>
-					<td>
-						<input name="settings[images-separator]"
-						       type="text"
-						       aria-required="true"
-						       value=";" />
-					</td>
-				</tr>
-			</table>
+            <h2><?php echo esc_html_x( 'CSV File Settings', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?></h2>
+            <table class="form-table">
+                <tr class="form-required">
+                    <th scope="row">
+                        <label>
+							<?php echo esc_html_x( 'What operating system will you use to edit the CSV file?', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?>
+                            <span class="description">(<?php echo esc_html_x( 'required', 'admin forms', 'another-wordpress-classifieds-plugin' ); ?>)
+                            </span>
+                        </label>
+                    </th>
+                    <td>
+                        <label>
+                            <input name="settings[target-os]" type="radio" aria-required="true" value="windows" checked="checked"/>
+							<?php echo esc_html_x( 'Windows', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?>
+                        </label>
+                        <br/>
+                        <label>
+                            <input name="settings[target-os]" type="radio" aria-required="true" value="macos"/>
+							<?php echo esc_html_x( 'macOS', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?>
+                        </label>
+                        <br/>
+                        <p><?php echo esc_html_x( 'Windows and macOS versions of MS Excel handle CSV files differently. To make sure all your listings information is displayed properly when you view or edit the CSV file, we need to generate different versions of the file for each operating system.', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?></p>
+                    </td>
+                </tr>
+                <tr class="form-required">
+                    <th scope="row">
+                        <label> <?php echo esc_html_x( 'Image Separator', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?> <span
+                                    class="description">(<?php echo esc_html_x( 'required', 'admin forms', 'another-wordpress-classifieds-plugin' ); ?>)</span></label>
+                    </th>
+                    <td>
+                        <input name="settings[images-separator]" type="text" aria-required="true" value=";"/>
+                    </td>
+                </tr>
+            </table>
+			<?php wp_nonce_field( 'awpcp-export-csv' ); ?>
+            <p class="submit">
+				<?php submit_button( _x( 'Export Listings', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ), 'primary', 'do-export', false ); ?>
+            </p>
+        </form>
+    </div>
 
-			<p class="submit">
-				<?php echo submit_button( _x( 'Export Listings', 'admin csv-export', 'another-wordpress-classifieds-plugin' ), 'primary', 'do-export', false ); ?>
-			</p>
-		</form>
-	</div>
+    <div class="awpcp-step-2">
+        <h2><?php echo esc_html_x( 'Export in Progress...', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?></h2>
+        <p><?php echo esc_html_x( 'Your export file is being prepared. Please <u>do not leave</u> this page until the export finishes.', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?></p>
 
-	<div class="awpcp-step-2">
-		<h2><?php _ex( 'Export in Progress...', 'admin csv-export', 'another-wordpress-classifieds-plugin' ); ?></h2>
-		<p><?php _ex( 'Your export file is being prepared. Please <u>do not leave</u> this page until the export finishes.', 'admin csv-export', 'another-wordpress-classifieds-plugin' ); ?></p>
+        <dl>
+            <dt><?php echo esc_html_x( 'No. of listings:', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?></dt>
+            <dd class="listings">?</dd>
+            <dt><?php echo esc_html_x( 'Approximate export file size:', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?></dt>
+            <dd class="size">?</dd>
+        </dl>
 
-		<dl>
-			<dt><?php _ex( 'No. of listings:', 'admin csv-export', 'another-wordpress-classifieds-plugin' ); ?></dt>
-			<dd class="listings">?</dd>
-			<dt><?php _ex( 'Approximate export file size:', 'admin csv-export', 'another-wordpress-classifieds-plugin' ); ?></dt>
-			<dd class="size">?</dd>
-		</dl>
+        <div class="export-progress"></div>
 
-		<div class="export-progress"></div>
+        <p class="submit">
+            <a href="#" class="awpcp-cancel-export button"><?php echo esc_html_x( 'Cancel Export', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?></a>
+        </p>
+    </div>
 
-		<p class="submit">
-			<a href="#" class="awpcp-cancel-export button"><?php _ex( 'Cancel Export', 'admin csv-export', 'another-wordpress-classifieds-plugin' ); ?></a>
-		</p>
-	</div>
-
-	<div class="awpcp-step-3">
-		<h2><?php _ex( 'Export Complete', 'admin csv-export' )?></h2>
-		<p><?php _ex( 'Your export file has been successfully created and it is now ready for download.', 'admin csv-export', 'another-wordpress-classifieds-plugin' ); ?></p>
-		<div class="download-link">
-			<a href="" class="button button-primary">
-				<?php echo sprintf( _x( 'Download %s (%s)', 'admin csv-export', 'another-wordpress-classifieds-plugin' ),
+    <div class="awpcp-step-3">
+        <h2><?php echo esc_html_x( 'Export Complete', 'listings-csv-export' ); ?></h2>
+        <p><?php echo esc_html_x( 'Your export file has been successfully created and it is now ready for download.', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?></p>
+        <div class="download-link">
+            <a href="" class="button button-primary">
+				<?php
+				$text = sprintf(
+                    /* translators: %1$s filename %2$s filesize. */
+					_x( 'Download %1$s (%2$s)', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ),
 					'<span class="filename"></span>',
-					'<span class="filesize"></span>' ); ?>
-			</a>
-		</div>
-		<div class="cleanup-link awpcp-note">
-			<p><?php _ex( 'Click "Cleanup" once the file has been downloaded in order to remove all temporary data created by Another Wordpress Classifieds during the export process.', 'admin csv-export', 'another-wordpress-classifieds-plugin' ); ?><br />
-				<a href="" class="button"><?php _ex( 'Cleanup', 'admin csv-export', 'another-wordpress-classifieds-plugin' ); ?></a></p>
-		</div>
-	</div>
+					'<span class="filesize"></span>'
+				);
+				echo wp_kses( $text, array( 'span' => array( 'class' => array() ) ) );
+				?>
+            </a>
+        </div>
+        <div class="cleanup-link awpcp-note">
+            <p><?php echo esc_html_x( 'Click "Cleanup" once the file has been downloaded in order to remove all temporary data created by Another WordPress Classifieds during the export process.', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?>
+                <br/>
+                <a href="" class="button"><?php echo esc_html_x( 'Cleanup', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?></a></p>
+        </div>
+    </div>
 
-	<div class="canceled-export">
-		<h2><?php _ex( 'Export Canceled', 'admin csv-export' )?></h2>
-		<p><?php _ex( 'The export has been canceled.', 'admin csv-export', 'another-wordpress-classifieds-plugin' ); ?></p>
-		<p><a href="" class="button"><?php _ex( '← Return to CSV Export', 'admin csv-export', 'another-wordpress-classifieds-plugin' ); ?></a></p>
-	</div>
+    <div class="canceled-export">
+        <h2><?php echo esc_html_x( 'Export Canceled', 'listings-csv-export' ); ?></h2>
+        <p><?php echo esc_html_x( 'The export has been canceled.', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?></p>
+        <p><a href="" class="button"><?php echo esc_html_x( '← Return to CSV Export', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?></a></p>
+    </div>
 
 </div>

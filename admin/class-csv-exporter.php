@@ -5,14 +5,17 @@
  * @package Includes/Admin/CSV Exporter
  */
 
-
 /**
  * CSV export.
  *
  * @since 4.1.0
+ *
+ * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  */
 class AWPCP_CSVExporter {
-
+	// phpcs:disable WordPress.WP.AlternativeFunctions.file_system_read_fwrite
+	// phpcs:disable WordPress.WP.AlternativeFunctions.file_system_read_fclose
+	// phpcs:disableWordPress.WP.AlternativeFunctions.file_system_read_fopen
 	const BATCH_SIZE = 20;
 
 	private $settings = array(
@@ -24,33 +27,35 @@ class AWPCP_CSVExporter {
 		'export-images'         => false,
 		'include-users'         => false,
 		'listing_status'        => 'all',
-		'generate-sequence-ids' => false
+		'generate-sequence-ids' => false,
 	);
 
 	private $settings_api;
 
 	private $workingdir = '';
 
-	private $columns = array();
-	private $listings = array(); // Listing IDs to be exported.
-	private $exported = 0; // # of already exported listings.
-	private $images = array();
+	private $columns  = array();
+	private $listings = array();
+	private $exported = 0;
 
 	public function __construct( $settings, $settings_api, $workingdir = null, $listings = array() ) {
-		global $wpdb;
-
 		$this->settings     = array_merge( $this->settings, $settings );
 		$this->settings_api = $settings_api;
 
-
-		if ( ! in_array( $this->settings['target-os'], array( 'windows', 'macos' ) ) ) {
+		if ( ! in_array( $this->settings['target-os'], array( 'windows', 'macos' ), true ) ) {
 			$this->settings['target-os'] = 'windows';
 		}
 
-		if ( $this->settings['target-os'] == 'macos' ) {
+		if ( $this->settings['target-os'] === 'macos' ) {
 			$this->settings['csv-file-separator'] = "\t";
 		}
 
+		$this->setup_columns();
+		$this->setup_working_dir( $workingdir );
+		$this->get_listings( $listings );
+	}
+
+	public function setup_columns() {
 		if ( $this->settings['generate-sequence-ids'] ) {
 			$this->columns['sequence_id'] = 'sequence_id';
 		}
@@ -83,9 +88,15 @@ class AWPCP_CSVExporter {
 		$this->columns['country']           = 'country';
 		$this->columns['state']             = 'state';
 		$this->columns['city']              = 'city';
+	}
 
+	/**
+	 * @throws AWPCP_Exception If unable to create exports directory.
+	 * @SuppressWarnings(PHPMD.ElseExpression)
+	 */
+	public function setup_working_dir( $workingdir ) {
+		$this->workingdir = $workingdir;
 
-		// Setup working directory.
 		if ( ! $workingdir ) {
 			$direrror = '';
 
@@ -105,37 +116,41 @@ class AWPCP_CSVExporter {
 			}
 
 			if ( $direrror ) {
+				/* translators: %s the error. */
 				throw new Exception( sprintf( _x( 'Error while creating a temporary directory for CSV export: %s', 'admin csv-export', 'another-wordpress-classifieds-plugin' ), $direrror ) );
 			}
-		} else {
-			$this->workingdir = $workingdir;
-		}
+        }
 
+	}
+
+	public function get_listings( $listings ) {
 		if ( $listings ) {
 			$this->listings = $listings;
-		} else {
-			switch ( $this->settings['listing_status'] ) {
-				case 'publish+draft':
-					$post_status = array( 'publish', 'draft', 'pending' );
-					break;
-				case 'publish':
-					$post_status = 'publish';
-					break;
-				case 'all':
-				default:
-					$post_status = array( 'publish', 'draft', 'pending', 'private', 'future', 'trash' );
-					break;
-			}
 
-			$this->listings = get_posts(
-				array(
-					'post_status'    => $post_status,
-					'posts_per_page' => - 1,
-					'post_type'      => AWPCP_LISTING_POST_TYPE,
-					'fields'         => 'ids',
-				)
-			);
+			return false;
 		}
+		switch ( $this->settings['listing_status'] ) {
+			case 'publish+draft':
+				$post_status = array( 'publish', 'draft', 'pending' );
+				break;
+			case 'publish':
+				$post_status = 'publish';
+				break;
+			case 'all':
+			default:
+				$post_status = array( 'publish', 'draft', 'pending', 'private', 'future', 'trash', 'disabled' );
+				break;
+		}
+
+		$this->listings = get_posts(
+			array(
+				'post_status'    => $post_status,
+				'posts_per_page' => - 1,
+				'post_type'      => AWPCP_LISTING_POST_TYPE,
+				'fields'         => 'ids',
+			)
+		);
+
 	}
 
 	public static function &from_state( $state ) {
@@ -187,7 +202,8 @@ class AWPCP_CSVExporter {
 		$nextlistings = array_slice( $this->listings, $this->exported, self::BATCH_SIZE );
 
 		foreach ( $nextlistings as $listing_id ) {
-			if ( $data = $this->extract_data( $listing_id ) ) {
+			$data = $this->extract_data( $listing_id );
+			if ( $data ) {
 				$content = implode( $this->settings['csv-file-separator'], $data );
 				fwrite( $csvfile, $this->prepare_content( $content ) );
 			}
@@ -199,7 +215,7 @@ class AWPCP_CSVExporter {
 
 		if ( $this->is_done() ) {
 			if ( file_exists( $this->workingdir . 'images.zip' ) ) {
-				@unlink( $this->workingdir . 'export.zip' );
+				unlink( $this->workingdir . 'export.zip' );
 				$zip = $this->get_pclzip_instance( $this->workingdir . 'export.zip' );
 
 				$files   = array();
@@ -208,8 +224,8 @@ class AWPCP_CSVExporter {
 
 				$zip->create( implode( ',', $files ), PCLZIP_OPT_REMOVE_ALL_PATH );
 
-				@unlink( $this->workingdir . 'export.csv' );
-				@unlink( $this->workingdir . 'images.zip' );
+				unlink( $this->workingdir . 'export.csv' );
+				unlink( $this->workingdir . 'images.zip' );
 			}
 		}
 	}
@@ -228,7 +244,7 @@ class AWPCP_CSVExporter {
 	}
 
 	public function is_done() {
-		return $this->exported == count( $this->listings );
+		return $this->exported === count( $this->listings );
 	}
 
 	private function prepare_header( $header ) {
@@ -254,9 +270,9 @@ class AWPCP_CSVExporter {
 	public function get_file_path() {
 		if ( file_exists( $this->workingdir . 'export.zip' ) ) {
 			return $this->workingdir . 'export.zip';
-		} else {
-			return $this->workingdir . 'export.csv';
 		}
+
+		return $this->workingdir . 'export.csv';
 	}
 
 	public function get_file_url() {
@@ -265,12 +281,17 @@ class AWPCP_CSVExporter {
 
 		if ( file_exists( $this->workingdir . 'export.zip' ) ) {
 			return $urldir . 'export.zip';
-		} else {
-			return $urldir . 'export.csv';
 		}
+
+		return $urldir . 'export.csv';
+
 	}
 
-	private function header( $echo = false ) {
+	/**
+	 * @SuppressWarnings(PHPMD.UnusedLocalVariable)
+	 * @return bool|string
+	 */
+	private function header() {
 		$out = '';
 
 		foreach ( $this->columns as $colname => &$col ) {
@@ -280,13 +301,44 @@ class AWPCP_CSVExporter {
 
 		$out = substr( $out, 0, - 1 );
 
-		if ( $echo ) {
-			echo $out;
-		}
-
 		return $out;
 	}
 
+	private function prepare_images( $post_id ) {
+		$images        = array();
+		$image_objects = get_attached_media( 'image', $post_id );
+		if ( count( $image_objects ) > 0 ) {
+			$upload_dir = wp_upload_dir();
+
+			foreach ( $image_objects as $image ) {
+				$img_meta = wp_get_attachment_metadata( $image->ID );
+
+				if ( empty( $img_meta['file'] ) ) {
+					continue;
+				}
+
+				$img_path = realpath( $upload_dir['basedir'] . DIRECTORY_SEPARATOR . $img_meta['file'] );
+
+				if ( ! is_readable( $img_path ) ) {
+					continue;
+				}
+
+				$this->images_archive = ( ! isset( $this->images_archive ) ) ? $this->get_pclzip_instance( $this->workingdir . 'images.zip' ) : $this->images_archive;
+				$success              = $this->images_archive->add( $img_path, PCLZIP_OPT_REMOVE_ALL_PATH );
+				if ( $success ) {
+					$images[] = basename( $img_path );
+				}
+			}
+		}
+
+		return implode( $this->settings['images-separator'], $images );
+	}
+
+	/**
+	 * @param int $post_id the post id to extract data from.
+	 * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+	 * @return array|bool
+	 */
 	private function extract_data( $post_id ) {
 		global $awpcp;
 		$listing                    = get_post( $post_id );
@@ -313,32 +365,7 @@ class AWPCP_CSVExporter {
 					$value  = $author->user_login;
 					break;
 				case 'images':
-					$images        = array();
-					$image_objects = get_attached_media( 'image', $post_id );
-					if ( count( $image_objects ) > 0 ) {
-						$upload_dir = wp_upload_dir();
-
-						foreach ( $image_objects as $image ) {
-							$img_meta = wp_get_attachment_metadata( $image->ID );
-
-							if ( empty( $img_meta['file'] ) ) {
-								continue;
-							}
-
-							$img_path = realpath( $upload_dir['basedir'] . DIRECTORY_SEPARATOR . $img_meta['file'] );
-
-							if ( ! is_readable( $img_path ) ) {
-								continue;
-							}
-
-							$this->images_archive = ( ! isset( $this->images_archive ) ) ? $this->get_pclzip_instance( $this->workingdir . 'images.zip' ) : $this->images_archive;
-							if ( $success = $this->images_archive->add( $img_path, PCLZIP_OPT_REMOVE_ALL_PATH ) ) {
-								$images[] = basename( $img_path );
-							}
-						}
-					}
-
-					$value = implode( $this->settings['images-separator'], $images );
+					$value = $this->prepare_images( $post_id );
 					break;
 				case 'country':
 					$value = $listing_data['regions'][0]['country'];
