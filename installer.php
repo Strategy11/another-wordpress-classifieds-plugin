@@ -318,7 +318,8 @@ class AWPCP_Installer {
             '4.0.0beta8' => [
                 'enable_routine_to_force_post_id',
             ],
-            '4.0.0beta11' => [
+            '4.0.0beta13' => [
+                'maybe_enable_routine_to_update_categories_term_count',
                 'maybe_enable_upgrade_routines_to_migrate_media',
             ],
             '4.0.0' => [
@@ -934,7 +935,8 @@ class AWPCP_Installer {
      */
     private function maybe_enable_upgrade_routines_to_migrate_media( $oldversion ) {
         // These upgrade routines were first introduced in 4.0.0beta1 and modified
-        // for 4.0.0beta11 (See https://github.com/drodenbaugh/awpcp/issues/2201).
+        // for 4.0.0beta11 (See https://github.com/drodenbaugh/awpcp/issues/2201)
+        // and 4.0.0beta13 (See https://github.com/drodenbaugh/awpcp/issues/2370).
         //
         // The routines continued to be included in other beta releases and enqueued
         // last, so that all blocking routines were always executed first, even those
@@ -942,7 +944,7 @@ class AWPCP_Installer {
         // always performed as a non-blocking routine.
         //
         // However, if the website is already using 4.0.0beta1 or superior, then there
-        // is no to need enable the routine again.
+        // is no need to enable the routine again.
         if ( version_compare( $oldversion, '4.0.0beta1', '>=' ) ) {
             return;
         }
@@ -1053,6 +1055,22 @@ class AWPCP_Installer {
         $this->upgrade_tasks->enable_upgrade_task( 'awpcp-maybe-force-post-id' );
 
         update_option( 'awpcp_mfpi_maybe_force_post_id', true );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function maybe_enable_routine_to_update_categories_term_count( $oldversion ) {
+        // We started using wp_defer_term_counting() in 4.0.0beta13, but anyone
+        // who is running 4.0.0beta1 or older already migrated the ads and
+        // categories using the old version of the routine, so there is no need
+        // to update term counts again (it was done automatically by WordPress
+        // every time a categories were associated with ads).
+        if ( version_compare( $oldversion, '4.0.0beta1', '>=' ) ) {
+            return;
+        }
+
+        $this->upgrade_tasks->enable_upgrade_task( 'awpcp-update-categories-term-count' );
     }
 
     /**

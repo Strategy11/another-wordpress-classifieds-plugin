@@ -145,5 +145,14 @@ class AWPCP_UpgradeContainerConfiguration implements AWPCP_ContainerConfiguratio
                 );
             }
         );
+
+        $container['UpdateCategoriesTermCountUpgradeTaskRunner'] = $container->service(
+            function( $container ) {
+                return new AWPCP_Update_Categories_Term_Count_Upgrade_Task_Runner(
+                    $container['listing_category_taxonomy'],
+                    $container['wpdb']
+                );
+            }
+        );
     }
 }

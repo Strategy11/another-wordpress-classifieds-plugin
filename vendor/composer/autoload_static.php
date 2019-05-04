@@ -469,6 +469,7 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_Update_Attachment_Allowed_Status_Ajax_Action' => __DIR__ . '/../..' . '/includes/media/class-update-attachment-allowed-status-ajax-action.php',
         'AWPCP_Update_Attachment_Enabled_Status_Ajax_Action' => __DIR__ . '/../..' . '/includes/media/class-update-attachment-enabled-status-ajax-action.php',
         'AWPCP_Update_Categories_Task_Runner' => __DIR__ . '/../..' . '/includes/upgrade/class-update-categories-task-runner.php',
+        'AWPCP_Update_Categories_Term_Count_Upgrade_Task_Runner' => __DIR__ . '/../..' . '/includes/upgrade/class-update-categories-term-count-upgrade-task-runner.php',
         'AWPCP_Update_Category_Admin_Page' => __DIR__ . '/../..' . '/admin/categories/class-update-category-admin-page.php',
         'AWPCP_Update_Media_Status_Task_Handler' => __DIR__ . '/../..' . '/includes/upgrade/class-update-media-status-task-handler.php',
         'AWPCP_UpgradeAssociatedListingsTaskHandlerHelper' => __DIR__ . '/../..' . '/includes/upgrade/trait-upgrade-associated-listings-task-handler-helper.php',

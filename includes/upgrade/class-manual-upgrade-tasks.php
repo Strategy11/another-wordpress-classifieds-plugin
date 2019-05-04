@@ -140,6 +140,16 @@ class AWPCP_Manual_Upgrade_Tasks {
 
         $this->upgrade_tasks->register_upgrade_task(
             [
+                'slug'     => 'awpcp-update-categories-term-count',
+                'name'     => __( 'Update Categories Term Count', 'another-wordpress-classifieds-plugin' ),
+                'handler'  => 'UpdateCategoriesTermCountUpgradeTaskRunner',
+                'context'  => 'plugin',
+                'blocking' => true,
+            ]
+        );
+
+        $this->upgrade_tasks->register_upgrade_task(
+            [
                 'slug'     => 'awpcp-store-media-as-attachments-upgrade-task-handler',
                 'name'     => __( 'Store Media as Attachments', 'another-wordpress-classifieds-plugin' ),
                 'handler'  => 'StoreMediaAsAttachmentsUpgradeTaskHandler',
