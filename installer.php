@@ -319,6 +319,7 @@ class AWPCP_Installer {
                 'enable_routine_to_force_post_id',
             ],
             '4.0.0beta13' => [
+                'fix_old_listing_id_metadata',
                 'maybe_enable_routine_to_update_categories_term_count',
                 'maybe_enable_upgrade_routines_to_migrate_media',
             ],
@@ -1055,6 +1056,22 @@ class AWPCP_Installer {
         $this->upgrade_tasks->enable_upgrade_task( 'awpcp-maybe-force-post-id' );
 
         update_option( 'awpcp_mfpi_maybe_force_post_id', true );
+    }
+
+    /**
+     * Fix the name of the post meta that holds the old ID of the listing.
+     *
+     * Version 4.0.0beta1-4.0.0beta12 used an _awpcp_old_id meta to store the
+     * ID that the listing was using in the custom tables. To improve the
+     * performance, of SQL queries trying to find listings by their old ID,
+     * 4.0.0beta13 started including the old ID in the meta_key (_awpcp_old_id_1234).
+     * That way queries no longer need to find a meta whose value matches the
+     * old ID but can check whether a specifc meta_key exists instead.
+     *
+     * @since 4.0.0
+     */
+    private function fix_old_listing_id_metadata() {
+        $this->db->query( "UPDATE {$this->db->postmeta} SET meta_key = CONCAT('_awpcp_old_id_', meta_value) WHERE meta_key = '_awpcp_old_id'" );
     }
 
     /**
