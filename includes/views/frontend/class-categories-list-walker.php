@@ -1,35 +1,44 @@
 <?php
+/**
+ * @package AWPCP\Categories
+ */
 
 if ( ! class_exists( 'Walker' ) ) {
-  require_once( ABSPATH . '/wp-includes/class-wp-walker.php' );
+    require_once ABSPATH . '/wp-includes/class-wp-walker.php';
 }
-
-if ( class_exists( 'Walker' ) ) {
 
 class AWPCP_CategoriesListWalker extends Walker {
 
-    protected $options = array();
-    protected $all_elements_count = 0;
+    protected $options                  = array();
+    protected $all_elements_count       = 0;
     protected $top_level_elements_count = 0;
-    protected $elements_count = 0;
+    protected $elements_count           = 0;
 
     public function __construct() {
-		$this->db_fields = array( 'id' => 'term_id', 'parent' => 'parent' );
+        $this->db_fields = array(
+            'id'     => 'term_id',
+            'parent' => 'parent',
+        );
     }
 
     public function configure( $options = array() ) {
-        $this->options = wp_parse_args( $options, array(
-            'show_in_columns' => 1,
-            'show_listings_count' => true,
-            'collapsible_categories' => get_awpcp_option( 'collapse-categories-columns' ),
+        $this->options = wp_parse_args(
+            $options,
+            array(
+                'show_in_columns'                    => 1,
+                'show_listings_count'                => true,
+                'collapsible_categories'             => get_awpcp_option( 'collapse-categories-columns' ),
 
-            'first_level_ul_class' => 'top-level-categories showcategoriesmainlist clearfix',
-            'second_level_ul_class' => 'sub-categories showcategoriessublist clearfix',
-            'first_level_element_wrapper' => 'p',
-            'first_level_element_wrapper_class' => 'top-level-category maincategoryclass',
-            'second_level_element_wrapper' => false,
-            'second_level_element_wrapper_class' => false,
-        ) );
+                'first_level_ul_class'               => 'top-level-categories showcategoriesmainlist clearfix',
+                'second_level_ul_class'              => 'sub-categories showcategoriessublist clearfix',
+                'first_level_element_wrapper'        => 'p',
+                'first_level_element_wrapper_class'  => 'top-level-category maincategoryclass',
+                'second_level_element_wrapper'       => false,
+                'second_level_element_wrapper_class' => false,
+            )
+        );
+
+        $this->options['show_in_columns'] = intval( $this->options['show_in_columns'] );
 
         return true;
     }
@@ -41,9 +50,15 @@ class AWPCP_CategoriesListWalker extends Walker {
 
     protected function list_container() {
         $container = '<div id="awpcpcatlayout" class="awpcp-categories-list">[categories-list]</div><div class="fixfloat"></div>';
+
+        // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
         return apply_filters( 'awpcp-categories-list-container', $container, $this->options );
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter) $args is defined in the parent class.
+     * @SuppressWarnings(PHPMD.ElseExpression)
+     */
     public function start_lvl( &$output, $depth = 0, $args = array() ) {
         if ( $this->options['collapsible_categories'] ) {
             $element_start = '<ul %s data-collapsible="true">';
@@ -51,7 +66,7 @@ class AWPCP_CategoriesListWalker extends Walker {
             $element_start = '<ul %s>';
         }
 
-        $class = $this->options[ 'second_level_ul_class' ];
+        $class = $this->options['second_level_ul_class'];
 
         if ( ! empty( $class ) ) {
             $output .= sprintf( $element_start, 'class="' . $class . '"' );
@@ -60,16 +75,22 @@ class AWPCP_CategoriesListWalker extends Walker {
         }
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter) $args is defined in the parent class.
+     */
     public function end_lvl( &$output, $depth = 0, $args = array() ) {
         $output .= '</ul>';
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.ElseExpression)
+     */
     public function start_el( &$output, $category, $depth = 0, $args = array(), $current_object_id = 0 ) {
         if ( $this->is_first_element_in_row( $depth ) ) {
             $output .= $this->first_level_ul_start();
         }
 
-        if ( $depth == 0 ) {
+        if ( $depth === 0 ) {
             $output .= sprintf( '<li class="columns-%d">', $this->options['show_in_columns'] );
             $output .= $this->first_level_element_wrapper_start();
         } else {
@@ -79,7 +100,7 @@ class AWPCP_CategoriesListWalker extends Walker {
 
         $output .= $this->element( $category, $depth, $args, $current_object_id );
 
-        if ( $depth == 0 ) {
+        if ( $depth === 0 ) {
             $output .= $this->first_level_element_wrapper_end();
         } else {
             $output .= $this->second_level_element_wrapper_end();
@@ -89,15 +110,15 @@ class AWPCP_CategoriesListWalker extends Walker {
     }
 
     private function is_first_element_in_row( $depth ) {
-        if ( $depth != 0 ) {
+        if ( $depth !== 0 ) {
             return false;
         }
 
-        if ( $this->top_level_elements_count == 0 ) {
+        if ( $this->top_level_elements_count === 0 ) {
             return true;
         }
 
-        if ( $this->options['show_in_columns'] > 1 && $this->top_level_elements_count % $this->options['show_in_columns'] == 0 ) {
+        if ( $this->options['show_in_columns'] > 1 && $this->top_level_elements_count % $this->options['show_in_columns'] === 0 ) {
             return true;
         }
 
@@ -105,15 +126,15 @@ class AWPCP_CategoriesListWalker extends Walker {
     }
 
     private function first_level_ul_start() {
-        if ( ! empty( $this->options[ 'first_level_ul_class' ] ) ) {
-            return sprintf( '<ul class="%s">', $this->options[ 'first_level_ul_class' ] );
-        } else {
-            return '<ul>';
+        if ( ! empty( $this->options['first_level_ul_class'] ) ) {
+            return sprintf( '<ul class="%s">', $this->options['first_level_ul_class'] );
         }
+
+        return '<ul>';
     }
 
     private function first_level_element_wrapper_start() {
-        $tag = $this->options['first_level_element_wrapper'];
+        $tag   = $this->options['first_level_element_wrapper'];
         $class = $this->options['first_level_element_wrapper_class'];
         return $this->element_wrapper_start( $tag, $class );
     }
@@ -121,26 +142,29 @@ class AWPCP_CategoriesListWalker extends Walker {
     private function element_wrapper_start( $tag, $class ) {
         if ( ! empty( $tag ) && ! empty( $class ) ) {
             return sprintf( '<%s class="%s">', $tag, $class );
-        } else if ( ! empty( $tag ) ) {
+        } elseif ( ! empty( $tag ) ) {
             return sprintf( '<%s>', $tag );
-        } else {
-            return '';
         }
+
+        return '';
     }
 
     private function second_level_element_wrapper_start() {
-        $tag = $this->options['second_level_element_wrapper'];
+        $tag   = $this->options['second_level_element_wrapper'];
         $class = $this->options['second_level_element_wrapper_class'];
         return $this->element_wrapper_start( $tag, $class );
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
     protected function element( $category, $depth, $args, $current_object_id ) {
         $element = '[category-icon]<a class="[category-class]" href="[category-url]">[category-name]</a> [listings-count][js-handler]';
 
         $element = apply_filters( 'awpcp_categories_list_element_template', $element, $category, $depth, $args );
 
         $element = str_replace( '[category-icon]', $this->render_category_icon( $category ), $element );
-        $element = str_replace( '[category-class]', $depth == 0 ? 'toplevelitem' : '', $element );
+        $element = str_replace( '[category-class]', $depth === 0 ? 'toplevelitem' : '', $element );
         $element = str_replace( '[category-url]', esc_attr( url_browsecategory( $category ) ), $element );
         $element = str_replace( '[category-name]', esc_attr( $category->name ), $element );
         $element = str_replace( '[category-description]', esc_html( $category->description ), $element );
@@ -157,9 +181,9 @@ class AWPCP_CategoriesListWalker extends Walker {
     private function element_wrapper_end( $tag ) {
         if ( $tag ) {
             return '</' . $tag . '>';
-        } else {
-            return '';
         }
+
+        return '';
     }
 
     private function second_level_element_wrapper_end() {
@@ -190,20 +214,23 @@ class AWPCP_CategoriesListWalker extends Walker {
     }
 
     private function render_js_handler( $depth ) {
-        if ( $this->options['collapsible_categories'] && $depth == 0 ) {
+        if ( $this->options['collapsible_categories'] && $depth === 0 ) {
             return '<a class="js-handler" href="#"><span></span></a>';
-        } else {
-            return '';
         }
+
+        return '';
     }
 
     private function update_elements_count( $depth ) {
-        if ( $depth == 0 ) {
+        if ( $depth === 0 ) {
             $this->top_level_elements_count = $this->top_level_elements_count + 1;
         }
         $this->elements_count = $this->elements_count + 1;
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter) $args is defined in the parent class.
+     */
     public function end_el( &$output, $object, $depth = 0, $args = array() ) {
         $output .= '</li>';
 
@@ -213,20 +240,18 @@ class AWPCP_CategoriesListWalker extends Walker {
     }
 
     private function is_last_element_in_row( $depth ) {
-        if ( $depth != 0 ) {
+        if ( $depth !== 0 ) {
             return false;
         }
 
-        if ( $this->options['show_in_columns'] > 1 && $this->top_level_elements_count % $this->options['show_in_columns'] == 0 ) {
+        if ( $this->options['show_in_columns'] > 1 && $this->top_level_elements_count % $this->options['show_in_columns'] === 0 ) {
             return true;
         }
 
-        if ( $this->elements_count == $this->all_elements_count ) {
+        if ( $this->elements_count === $this->all_elements_count ) {
             return true;
         }
 
         return false;
     }
-}
-
 }
