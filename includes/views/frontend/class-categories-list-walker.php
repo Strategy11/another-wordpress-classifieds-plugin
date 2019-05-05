@@ -136,10 +136,14 @@ class AWPCP_CategoriesListWalker extends Walker {
 
     protected function element( $category, $depth, $args, $current_object_id ) {
         $element = '[category-icon]<a class="[category-class]" href="[category-url]">[category-name]</a> [listings-count][js-handler]';
+
+        $element = apply_filters( 'awpcp_categories_list_element_template', $element, $category, $depth, $args );
+
         $element = str_replace( '[category-icon]', $this->render_category_icon( $category ), $element );
         $element = str_replace( '[category-class]', $depth == 0 ? 'toplevelitem' : '', $element );
         $element = str_replace( '[category-url]', esc_attr( url_browsecategory( $category ) ), $element );
         $element = str_replace( '[category-name]', esc_attr( $category->name ), $element );
+        $element = str_replace( '[category-description]', esc_html( $category->description ), $element );
         $element = str_replace( '[listings-count]', $this->render_listings_count( $category ), $element );
         $element = str_replace( '[js-handler]', $this->render_js_handler( $depth ), $element );
 
