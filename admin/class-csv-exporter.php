@@ -24,6 +24,7 @@ class AWPCP_CSVExporter {
 		'time-separator'        => ';',
 		'date-separator'        => ';',
 		'images-separator'      => ';',
+		'category-separator'    => ';',
 		'export-images'         => false,
 		'include-users'         => false,
 		'listing_status'        => 'all',
@@ -130,8 +131,8 @@ class AWPCP_CSVExporter {
 			return false;
 		}
 		switch ( $this->settings['listing_status'] ) {
-			case 'publish+draft':
-				$post_status = array( 'publish', 'draft', 'pending' );
+			case 'publish+disabled':
+				$post_status = array( 'publish', 'disabled', 'pending' );
 				break;
 			case 'publish':
 				$post_status = 'publish';
@@ -334,6 +335,16 @@ class AWPCP_CSVExporter {
 		return implode( $this->settings['images-separator'], $images );
 	}
 
+    private function prepare_categories( $post_id ) {
+        $categories = get_the_terms($post_id, AWPCP_CATEGORY_TAXONOMY);
+        $term_array = array();
+        foreach ($categories as $category) {
+            $term_array[] = $category->name;
+        }
+
+        return implode( $this->settings['category-separator'], $term_array );
+    }
+
 	/**
 	 * @param int $post_id the post id to extract data from.
 	 * @SuppressWarnings(PHPMD.CyclomaticComplexity)
@@ -362,7 +373,7 @@ class AWPCP_CSVExporter {
 					break;
 				case 'username':
 					$author = get_userdata( $listing->post_author );
-					$value  = $author->user_login;
+					$value  = $author ? $author->user_login : '';
 					break;
 				case 'images':
 					$value = $this->prepare_images( $post_id );
@@ -380,8 +391,7 @@ class AWPCP_CSVExporter {
 					$value = $listing_data['regions'][0]['city'];
 					break;
 				case 'category_name':
-					$value = get_term( $listing_data['ad_category_id'] );
-					$value = $value->name;
+                    $value = $this->prepare_categories($post_id);
 					break;
 				case 'sequence_id':
 					$value = get_post_meta( $post_id, '_awpcp_sequence_id', true ) ?: "awpcp-{$post_id}";

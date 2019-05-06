@@ -54,7 +54,7 @@
                         <select name="settings[listing_status]">
                             <option value="all"><?php echo esc_html_x( 'All', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?></option>
                             <option value="publish"><?php echo esc_html_x( 'Active Only', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?></option>
-                            <option value="publish+draft"><?php echo esc_html_x( 'Active + Pending Renewal', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?></option>
+                            <option value="publish+disabled"><?php echo esc_html_x( 'Active + Pending Renewal', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?></option>
                         </select>
                     </td>
                 </tr>
@@ -82,7 +82,7 @@
 							<?php echo esc_html_x( 'Include unique IDs for each listing (sequence_id column).', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?>
                         </label><br/>
                         <span class="description">
-                <strong><?php echo esc_html_x( 'If you plan to re-import the listings into BD and don\'t want new ones created, select this option!', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?></strong>
+                <strong><?php echo esc_html_x( 'If you plan to re-import the listings into AWPCP and don\'t want new ones created, select this option!', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?></strong>
                 </span> <br/><br/>
 
                         <label>
@@ -124,6 +124,17 @@
                     </th>
                     <td>
                         <input name="settings[images-separator]" type="text" aria-required="true" value=";"/>
+                    </td>
+                </tr>
+                <tr class="form-required">
+                    <th scope="row">
+                        <label> <?php echo esc_html_x('Category Separator', 'listings-csv-export', 'another-wordpress-classifieds-plugin'); ?> <span class="description">(<?php _ex('required', 'admin forms', 'WPBDM'); ?>)</span></label>
+                    </th>
+                    <td>
+                        <input name="settings[category-separator]"
+                               type="text"
+                               aria-required="true"
+                               value=";" />
                     </td>
                 </tr>
             </table>
@@ -169,7 +180,7 @@
             </a>
         </div>
         <div class="cleanup-link awpcp-note">
-            <p><?php echo esc_html_x( 'Click "Cleanup" once the file has been downloaded in order to remove all temporary data created by Another WordPress Classifieds during the export process.', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?>
+            <p><?php echo esc_html_x( 'Click "Cleanup" once the file has been downloaded in order to remove all temporary data created by Another WordPress Classifieds Plugin during the export process.', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?>
                 <br/>
                 <a href="" class="button"><?php echo esc_html_x( 'Cleanup', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?></a></p>
         </div>
