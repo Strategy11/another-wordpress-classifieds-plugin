@@ -128,13 +128,10 @@
                 </tr>
                 <tr class="form-required">
                     <th scope="row">
-                        <label> <?php echo esc_html_x('Category Separator', 'listings-csv-export', 'another-wordpress-classifieds-plugin'); ?> <span class="description">(<?php _ex('required', 'admin forms', 'WPBDM'); ?>)</span></label>
+                        <label> <?php echo esc_html_x( 'Category Separator', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?> <span class="description">(<?php esc_html_x( 'required', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?>)</span></label>
                     </th>
                     <td>
-                        <input name="settings[category-separator]"
-                               type="text"
-                               aria-required="true"
-                               value=";" />
+                        <input name="settings[category-separator]" type="text" aria-required="true" value=";" />
                     </td>
                 </tr>
             </table>

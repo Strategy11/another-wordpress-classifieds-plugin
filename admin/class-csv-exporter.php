@@ -336,9 +336,9 @@ class AWPCP_CSVExporter {
 	}
 
     private function prepare_categories( $post_id ) {
-        $categories = get_the_terms($post_id, AWPCP_CATEGORY_TAXONOMY);
+        $categories = get_the_terms( $post_id, AWPCP_CATEGORY_TAXONOMY );
         $term_array = array();
-        foreach ($categories as $category) {
+        foreach ( $categories as $category ) {
             $term_array[] = $category->name;
         }
 
@@ -391,7 +391,7 @@ class AWPCP_CSVExporter {
 					$value = $listing_data['regions'][0]['city'];
 					break;
 				case 'category_name':
-                    $value = $this->prepare_categories($post_id);
+                    $value = $this->prepare_categories( $post_id );
 					break;
 				case 'sequence_id':
 					$value = get_post_meta( $post_id, '_awpcp_sequence_id', true ) ?: "awpcp-{$post_id}";
