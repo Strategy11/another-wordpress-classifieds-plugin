@@ -165,8 +165,24 @@ class AWPCP_Store_Media_As_Attachments_Upgrade_Task_Handler implements AWPCP_Upg
         }
 
         add_post_meta( $attachment_id, '_awpcp_allowed_status', $item->status );
-        add_post_meta( $attachment_id, '_awpcp_generate_intermediate_image_sizes', get_intermediate_image_sizes() );
+        add_post_meta( $attachment_id, '_awpcp_generate_intermediate_image_sizes', $this->get_intermediate_image_sizes() );
 
         return $item->id;
+    }
+
+    /**
+     * Get a list of AWPCP's intermediate image sizes.
+     *
+     * See https://github.com/drodenbaugh/awpcp/issues/2370#issuecomment-490937711.
+     *
+     * @since 4.0.0
+     */
+    private function get_intermediate_image_sizes() {
+        return array_filter(
+            get_intermediate_image_sizes(),
+            function( $size ) {
+                return 'awpcp' === substr( $size, 0, 5 );
+            }
+        );
     }
 }

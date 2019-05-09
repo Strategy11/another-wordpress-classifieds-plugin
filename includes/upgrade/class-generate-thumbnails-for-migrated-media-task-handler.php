@@ -90,13 +90,16 @@ class AWPCP_GenerateThumbnailsForMigratedMediaTaskHandler implements AWPCP_Upgra
         $item_metadata = wp_get_attachment_metadata( $item->ID );
 
         foreach ( $pending_sizes as $index => $pending_size ) {
-            $new_metadata = $this->generate_intermediate_image_sizes( $item, [ $pending_size ] );
+            // Generate AWPCP image sizes only. See https://github.com/drodenbaugh/awpcp/issues/2370#issuecomment-490937711.
+            if ( 'awpcp' === substr( $pending_size, 0, 5 ) ) {
+                $new_metadata = $this->generate_intermediate_image_sizes( $item, [ $pending_size ] );
 
-            $item_metadata['sizes'] = array_merge( $item_metadata['sizes'], $new_metadata['sizes'] );
+                $item_metadata['sizes'] = array_merge( $item_metadata['sizes'], $new_metadata['sizes'] );
 
-            // We save the modified version of the item's metadata in case
-            // PHP dies trying to generate the next image size.
-            wp_update_attachment_metadata( $item->ID, $item_metadata );
+                // We save the modified version of the item's metadata in case
+                // PHP dies trying to generate the next image size.
+                wp_update_attachment_metadata( $item->ID, $item_metadata );
+            }
 
             $this->wordpress->update_post_meta( $item->ID, '_awpcp_generate_intermediate_image_sizes', array_slice( $pending_sizes, $index + 1 ) );
         }
