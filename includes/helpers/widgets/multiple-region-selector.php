@@ -73,7 +73,13 @@ class AWPCP_MultipleRegionSelector {
              */
             'enabled_fields'          => null,
         ) );
-        
+
+        // The region selector should show all regions that were provided, even
+        // if it is configured to let the user enter fewer regions.
+        //
+        // We trust that the logic in the Edit/Submit Ad pages never allows users
+        // to enter more regions than they should, so we honor the data.
+        $this->options['maxRegions'] = max( $this->options['maxRegions'], count( $regions ) );
     }
 
     public function set_template( $template ) {
