@@ -58,6 +58,7 @@ class AWPCP_MultipleRegionSelector {
              * All keys must be provided.
              */
             'enabled_fields'          => null,
+            'template'                => [],
         ) );
 
         $this->regions = $this->prepare_regions( $regions );
@@ -220,8 +221,10 @@ class AWPCP_MultipleRegionSelector {
             }
         }
 
-        // use first region as template for additional regions
-        $this->options['template'] = $regions[0];
+        // Use first region as template for additional regions.
+        if ( isset( $regions[0] ) ) {
+            $this->options['template'] = $regions[0];
+        }
 
         $options = apply_filters( 'awpcp-multiple-region-selector-configuration', $this->options, $context, $fields );
 
