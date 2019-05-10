@@ -43,20 +43,6 @@ class AWPCP_MultipleRegionSelector {
      * @param array $options    An array of options.
      */
     public function __construct( $regions, $options ) {
-        // We need at least one region, even if its empty.
-        if ( ! is_array( $regions ) || empty( $regions ) ) {
-            $this->regions = array(
-                array(
-                    'country' => '',
-                    'county'  => '',
-                    'state'   => '',
-                    'city'    => '',
-                ),
-            );
-        } else {
-            $this->regions = $regions;
-        }
-
         $this->options = wp_parse_args( $options, array(
             'maxRegions'              => 1,
             'showTextField'           => false,
@@ -74,12 +60,43 @@ class AWPCP_MultipleRegionSelector {
             'enabled_fields'          => null,
         ) );
 
+        $this->regions = $this->prepare_regions( $regions );
+
         // The region selector should show all regions that were provided, even
         // if it is configured to let the user enter fewer regions.
         //
         // We trust that the logic in the Edit/Submit Ad pages never allows users
         // to enter more regions than they should, so we honor the data.
         $this->options['maxRegions'] = max( $this->options['maxRegions'], count( $regions ) );
+    }
+
+    /**
+     * Sanitize the provided array of regions considering the number of regions
+     * allowed.
+     *
+     * @since 4.0.0
+     */
+    private function prepare_regions( $regions ) {
+        // We expect an array and will ignore anything else.
+        if ( ! is_array( $regions ) ) {
+            $regions = [];
+        }
+
+        // If regions are allowed, the array of regions should include at least
+        // one empty region so that the necessary frontend fields are rendered.
+        if ( (int) $this->options['maxRegions'] > 0 && empty( $regions ) ) {
+            return array(
+                array(
+                    'country' => '',
+                    'county'  => '',
+                    'state'   => '',
+                    'city'    => '',
+                ),
+            );
+        }
+
+        // The user provided a non-empty array of regions. Let's use that as is.
+        return $regions;
     }
 
     public function set_template( $template ) {
