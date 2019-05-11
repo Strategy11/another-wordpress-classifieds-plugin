@@ -108,14 +108,17 @@ class AWPCP_ListingPostedData {
 
         // TODO: Should we validate that the payment term can be used?
         // TODO: For pending payment listings, we should use the payment term info sent with the request.
-        $post_data['post_fields'] = array_merge( $post_data['post_fields'], [
-            'post_name'         => '',
-            'post_author'       => $user_id,
-            'post_modified'     => $now,
-            'post_modified_gmt' => get_gmt_from_date( $now ),
-            // TODO: Use appropriate post status for new and existing listings.
-            'post_status'       => $post_status,
-        ] );
+        $post_data['post_fields'] = array_merge(
+            $post_data['post_fields'],
+            [
+                'post_name'         => '',
+                'post_author'       => $user_id,
+                'post_modified'     => $now,
+                'post_modified_gmt' => get_gmt_from_date( $now ),
+                // TODO: Use appropriate post status for new and existing listings.
+                'post_status'       => $post_status,
+            ]
+        );
 
         // TODO: Make sure users are allowed to change the start/end date fields when authorized.
         if ( empty( $post_data['metadata']['_awpcp_start_date'] ) ) {
