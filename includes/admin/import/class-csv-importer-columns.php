@@ -22,14 +22,17 @@ class AWPCP_CSVImporterColumns {
 
             foreach ( $this->supported_columns as $column_type => $columns ) {
                 foreach ( $columns as $header => $column ) {
-                    $this->supported_columns[ $column_type ][ $header ] = wp_parse_args( $column, [
-                        'name'        => '',
-                        'label'       => '',
-                        'description' => '',
-                        'required'    => false,
-                        'multiple'    => false,
-                        'examples'    => [ '' ],
-                    ] );
+                    $this->supported_columns[ $column_type ][ $header ] = wp_parse_args(
+                        $column,
+                        [
+                            'name'        => '',
+                            'label'       => '',
+                            'description' => '',
+                            'required'    => false,
+                            'multiple'    => false,
+                            'examples'    => [ '' ],
+                        ]
+                    );
                 }
             }
         }
