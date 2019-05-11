@@ -1,5 +1,11 @@
 <?php
+/**
+ * @package AWPCP\FormFields
+ */
 
+/**
+ * Constructor function for Listing Region Form Field.
+ */
 function awpcp_listing_regions_form_field( $slug ) {
     return new AWPCP_ListingRegionsFormField(
         $slug,
@@ -9,9 +15,11 @@ function awpcp_listing_regions_form_field( $slug ) {
     );
 }
 
+/**
+ * Form fields used to enter region information.
+ */
 class AWPCP_ListingRegionsFormField extends AWPCP_FormField {
 
-    private $region_selector;
     private $listing_renderer;
     private $payments;
     private $settings;
@@ -20,9 +28,8 @@ class AWPCP_ListingRegionsFormField extends AWPCP_FormField {
         parent::__construct( $slug );
 
         $this->listing_renderer = $listing_renderer;
-        $this->payments = $payments;
-        // $this->region_selector = $region_selector;
-        $this->settings = $settings;
+        $this->payments         = $payments;
+        $this->settings         = $settings;
     }
 
     public function get_name() {
@@ -38,19 +45,24 @@ class AWPCP_ListingRegionsFormField extends AWPCP_FormField {
             return false;
         }
 
-        // ugly hack to figure out if we are editing or creating a list...
-        if ( $transaction = $this->payments->get_transaction() ) {
+        $transaction = $this->payments->get_transaction();
+
+        // Ugly hack to figure out if we are editing or creating a list.
+        if ( $transaction ) {
             return false;
         }
 
         return true;
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter) $context
+     */
     public function render( $value, $errors, $listing, $context ) {
         $options = array(
             'showTextField' => true,
             'maxRegions'    => $this->listing_renderer->get_number_of_regions_allowed( $listing ),
-            'disabled' => $this->is_read_only(),
+            'disabled'      => $this->is_read_only(),
         );
 
         $region_selector = awpcp_multiple_region_selector( $value, $options );
