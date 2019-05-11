@@ -19,7 +19,6 @@ class AWPCP_CSVExporter {
 	const BATCH_SIZE = 20;
 
 	private $settings = array(
-		'target-os'             => 'windows',
 		'csv-file-separator'    => ',',
 		'time-separator'        => ';',
 		'date-separator'        => ';',
@@ -42,14 +41,6 @@ class AWPCP_CSVExporter {
 	public function __construct( $settings, $settings_api, $workingdir = null, $listings = array() ) {
 		$this->settings     = array_merge( $this->settings, $settings );
 		$this->settings_api = $settings_api;
-
-		if ( ! in_array( $this->settings['target-os'], array( 'windows', 'macos' ), true ) ) {
-			$this->settings['target-os'] = 'windows';
-		}
-
-		if ( $this->settings['target-os'] === 'macos' ) {
-			$this->settings['csv-file-separator'] = "\t";
-		}
 
 		$this->setup_columns();
 		$this->setup_working_dir( $workingdir );
@@ -249,23 +240,17 @@ class AWPCP_CSVExporter {
 	}
 
 	private function prepare_header( $header ) {
-		if ( $this->settings['target-os'] === 'windows' ) {
-			$bom = "\xEF\xBB\xBF"; /* UTF-8 BOM */
-		} elseif ( $this->settings['target-os'] === 'macos' ) {
-			$bom = "\xFF\xFE"; /* UTF-16LE BOM */
-		}
-
+		$bom = "\xEF\xBB\xBF"; /* UTF-8 BOM */
 		return $bom . $this->prepare_content( $header );
 	}
 
 	private function prepare_content( $content ) {
-		if ( $this->settings['target-os'] === 'windows' ) {
-			$encoded_content = $content . "\n";
-		} elseif ( $this->settings['target-os'] === 'macos' ) {
-			$encoded_content = iconv( 'UTF-8', 'UTF-16LE', $content . "\n" );
-		}
+        // remove line break to avoid empty line on last write.
+        if ( $this->exported !== count( $this->listings ) - 1 ) {
+            $content = $content . "\n";
+        }
 
-		return $encoded_content;
+		return $content;
 	}
 
 	public function get_file_path() {

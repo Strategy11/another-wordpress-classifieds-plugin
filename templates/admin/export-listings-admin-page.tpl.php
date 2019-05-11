@@ -103,19 +103,6 @@
                             </span>
                         </label>
                     </th>
-                    <td>
-                        <label>
-                            <input name="settings[target-os]" type="radio" aria-required="true" value="windows" checked="checked"/>
-							<?php echo esc_html_x( 'Windows', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?>
-                        </label>
-                        <br/>
-                        <label>
-                            <input name="settings[target-os]" type="radio" aria-required="true" value="macos"/>
-							<?php echo esc_html_x( 'macOS', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?>
-                        </label>
-                        <br/>
-                        <p><?php echo esc_html_x( 'Windows and macOS versions of MS Excel handle CSV files differently. To make sure all your listings information is displayed properly when you view or edit the CSV file, we need to generate different versions of the file for each operating system.', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?></p>
-                    </td>
                 </tr>
                 <tr class="form-required">
                     <th scope="row">
@@ -128,7 +115,7 @@
                 </tr>
                 <tr class="form-required">
                     <th scope="row">
-                        <label> <?php echo esc_html_x( 'Category Separator', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?> <span class="description">(<?php esc_html_x( 'required', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?>)</span></label>
+                        <label> <?php echo esc_html_x( 'Category Separator', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?> <span class="description">(<?php echo esc_html_x( 'required', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?>)</span></label>
                     </th>
                     <td>
                         <input name="settings[category-separator]" type="text" aria-required="true" value=";" />

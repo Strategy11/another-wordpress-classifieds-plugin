@@ -87,7 +87,7 @@ class AWPCP_CSVImporterColumns {
             ),
             'terms'         => array(
                 'category_name' => [
-                    'name'        => 'term_id',
+                    'name'        => AWPCP_CATEGORY_TAXONOMY,
                     'label'       => __( 'Category', 'another-wordpress-classifieds-plugin' ),
                     'description' => 'The name of the category associated with this ad.',
                     'required'    => true,
