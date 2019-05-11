@@ -49,30 +49,12 @@ class AWPCP_ListingRegionsFormField extends AWPCP_FormField {
     public function render( $value, $errors, $listing, $context ) {
         $options = array(
             'showTextField' => true,
-            'maxRegions' => $this->get_allowed_regions_for_listing( $listing ),
+            'maxRegions'    => $this->listing_renderer->get_number_of_regions_allowed( $listing ),
             'disabled' => $this->is_read_only(),
         );
 
         $region_selector = awpcp_multiple_region_selector( $value, $options );
 
         return $region_selector->render( 'details', array(), $errors );
-    }
-
-    private function get_allowed_regions_for_listing( $listing ) {
-        if ( is_object( $listing ) ) {
-            $payment_term = $this->listing_renderer->get_payment_term( $listing );
-        } else if ( $transaction = $this->payments->get_transaction() ) {
-            $payment_term = $this->payments->get_transaction_payment_term( $transaction );
-        } else {
-            $payment_term = null;
-        }
-
-        if ( ! is_null( $payment_term ) ) {
-            $allowed_regions = $payment_term->get_regions_allowed();
-        } else {
-            $allowed_regions = 0;
-        }
-
-        return $allowed_regions;
     }
 }
