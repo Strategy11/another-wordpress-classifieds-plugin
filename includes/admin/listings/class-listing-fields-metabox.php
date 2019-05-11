@@ -168,9 +168,6 @@ class AWPCP_ListingFieldsMetabox {
      */
     private function save_or_store_errors( $post, $data, $errors ) {
         if ( empty( $errors ) ) {
-            // TODO: Figure out the best place to calculate the number of regions allowed.
-            $data['regions-allowed'] = 1;
-
             $this->save_listing_information( $post, $data );
 
             $this->wordpress->delete_post_meta( $post->ID, '__awpcp_admin_editor_pending_data' );

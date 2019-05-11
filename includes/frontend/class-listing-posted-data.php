@@ -150,9 +150,6 @@ class AWPCP_ListingPostedData {
             $posted_data['post_data']['metadata']['_awpcp_end_date'] = $payment_term->calculate_end_date( $start_date_timestamp );
         }
 
-        // TODO: Save regions.
-        $posted_data['post_data']['regions-allowed'] = $payment_term->get_regions_allowed();
-
         return $posted_data;
     }
 

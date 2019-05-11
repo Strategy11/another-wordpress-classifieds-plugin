@@ -193,11 +193,22 @@ class AWPCP_ListingsAPI {
         $this->update_listing_terms( $listing, $listing_data['terms'] );
         $this->update_listing_metadata( $listing, $listing_data['metadata'] );
 
-        if ( isset( $listing_data['regions'] ) && isset( $listing_data['regions-allowed'] ) ) {
-            awpcp_basic_regions_api()->update_ad_regions( $listing, $listing_data['regions'], $listing_data['regions-allowed'] );
+        if ( isset( $listing_data['regions'] ) ) {
+            $this->update_listing_regions( $listing, $listing_data['regions'] );
         }
 
         return $this->listings->get( $listing_id );
+    }
+
+    /**
+     * Update region information.
+     *
+     * @since 4.0.0
+     */
+    private function update_listing_regions( $listing, $regions ) {
+        $regions_allowed = $this->listing_renderer->get_number_of_regions_allowed( $listing );
+
+        awpcp_basic_regions_api()->update_ad_regions( $listing, $regions, $regions_allowed );
     }
 
     /**

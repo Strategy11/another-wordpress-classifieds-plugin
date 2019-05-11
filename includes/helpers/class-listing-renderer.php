@@ -234,6 +234,34 @@ class AWPCP_ListingRenderer {
     }
 
     /**
+     * Calculate the number of regions that can be associated with the given listing.
+     *
+     * Returns zero if the listing is not already assocaited with a region or payment
+     * term. No new information should be be added until a payment term is assigned.
+     *
+     * @since 4.0.0
+     *
+     * @return int
+     */
+    public function get_number_of_regions_allowed( $listing ) {
+        $payment_term = $this->get_payment_term( $listing );
+
+        $regions_allowed = 0;
+
+        if ( $payment_term ) {
+            $regions_allowed = (int) $payment_term->get_regions_allowed();
+        }
+
+        $existing_regions = $this->get_regions( $listing );
+
+        if ( $existing_regions ) {
+            $regions_allowed = max( $regions_allowed, count( $existing_regions ) );
+        }
+
+        return $regions_allowed;
+    }
+
+    /**
      * TODO: Store User's IP address during listing creation.
      *
      * @since 4.0.0
