@@ -379,7 +379,8 @@ class AWPCP_CSVExporter {
                     $value = $this->prepare_categories( $post_id );
 					break;
 				case 'sequence_id':
-					$value = get_post_meta( $post_id, '_awpcp_sequence_id', true ) ?: "awpcp-{$post_id}";
+                    update_post_meta( $post_id, '_awpcp_sequence_id', "awpcp-{$post_id}" );
+					$value = get_post_meta( $post_id, '_awpcp_sequence_id', true );
 					break;
 				case 'payment_term_id':
 					$value = get_post_meta( $post_id, '_awpcp_payment_term_id', true );
