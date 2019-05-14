@@ -307,6 +307,14 @@ class AWPCP_AdminPanel {
 		    function() { return awpcp()->container['ExampleCSVFileAdminPage']; }
 	    );
 
+        $router->add_admin_section(
+            'awpcp.php::awpcp-tools',
+            'export-listings',
+            'awpcp-view',
+            'export-listings',
+            function() { return awpcp()->container['ExportListingsAdminPage']; }
+        );
+
         $router->add_admin_subpage(
             $parent_page,
             __( 'Debug', 'another-wordpress-classifieds-plugin' ),

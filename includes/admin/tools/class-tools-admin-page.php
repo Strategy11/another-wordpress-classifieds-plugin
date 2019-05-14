@@ -40,6 +40,10 @@ class AWPCP_ToolsAdminPage {
                 'title' => __( 'Import Listings', 'another-wordpress-classifieds-plugin' ),
                 'url'   => add_query_arg( 'awpcp-view', 'import-listings' ),
             ),
+            array(
+                'title' => __( 'Export Listings', 'another-wordpress-classifieds-plugin' ),
+                'url'   => add_query_arg( 'awpcp-view', 'export-listings' ),
+            ),
         );
         $views       = apply_filters( 'awpcp_tool_page_views', $views );
         $this->views = $views;
