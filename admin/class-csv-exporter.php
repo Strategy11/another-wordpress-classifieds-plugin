@@ -380,7 +380,7 @@ class AWPCP_CSVExporter {
 					break;
 				case 'sequence_id':
                     $sequence_id = "awpcp-{$post_id}";
-                    update_post_meta( $post_id, '_awpcp_sequence_id', $sequence_id);
+                    update_post_meta( $post_id, '_awpcp_sequence_id', $sequence_id );
                     $value = $sequence_id;
 					break;
 				case 'payment_term_id':
