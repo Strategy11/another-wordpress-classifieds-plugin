@@ -1063,7 +1063,7 @@ class AWPCP_Installer {
      *
      * Version 4.0.0beta1-4.0.0beta12 used an _awpcp_old_id meta to store the
      * ID that the listing was using in the custom tables. To improve the
-     * performance, of SQL queries trying to find listings by their old ID,
+     * performance of SQL queries trying to find listings by their old ID,
      * 4.0.0beta13 started including the old ID in the meta_key (_awpcp_old_id_1234).
      * That way queries no longer need to find a meta whose value matches the
      * old ID but can check whether a specifc meta_key exists instead.
