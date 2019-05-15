@@ -102,9 +102,9 @@ class AWPCP_Upgrade_Tasks_Manager {
         // the individual cache was preserved, causing get_option() to always
         // return true and the upgrade tasks to be enabled forever.
         //
-        // I wasn't able to figure out what caused that situation so decided to
-        // manually deleted the individual cache when the task is disabled, just
-        // in case.
+        // I wasn't able to figure out what caused that situation so I decided
+        // to manually delete the individual cache when the task is disabled,
+        // just in case.
         //
         // See {@link 'https://github.com/drodenbaugh/awpcp/issues/2370'}.
         wp_cache_delete( $slug, 'options' );
