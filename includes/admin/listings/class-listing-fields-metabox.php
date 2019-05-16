@@ -96,7 +96,6 @@ class AWPCP_ListingFieldsMetabox {
         wp_enqueue_script( 'awpcp-admin-edit-post' );
         wp_enqueue_script( 'awpcp-extra-fields' );
 
-        // TODO: Inject JavaScript as a constructor parameter.
         awpcp()->js->localize( 'edit-post-form-fields', awpcp_listing_form_fields_validation_messages() );
     }
 
