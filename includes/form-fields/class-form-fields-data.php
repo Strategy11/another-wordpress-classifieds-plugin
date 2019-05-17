@@ -43,134 +43,97 @@ class AWPCP_FormFieldsData {
      */
     public function get_stored_data( $post ) {
         $data = array(
-            'ad_id'            => $post->ID,
-            'user_id'          => $post->post_author,
-            'ad_key'           => $this->listing_renderer->get_access_key( $post ),
-            'ad_title'         => $this->listing_renderer->get_listing_title( $post ),
-            'ad_details'       => $post->post_content,
-            'ad_startdate'     => $this->listing_renderer->get_plain_start_date( $post ),
-            'ad_enddate'       => $this->listing_renderer->get_plain_end_date( $post ),
-            'ad_contact_name'  => $this->listing_renderer->get_contact_name( $post ),
-            'ad_contact_phone' => $this->listing_renderer->get_contact_phone( $post ),
-            'ad_contact_email' => $this->listing_renderer->get_contact_email( $post ),
-            'websiteurl'       => $this->listing_renderer->get_website_url( $post ),
-            'ad_item_price'    => $this->listing_renderer->get_price( $post ),
-            'ad_category_id'   => $this->listing_renderer->get_category_id( $post ),
-            'categories'       => $this->listing_renderer->get_categories_ids( $post ),
-            'regions'          => $this->listing_renderer->get_regions( $post ),
+            'ID'          => $post->ID,
+            'post_fields' => [
+                'post_author'  => $post->post_author,
+                'post_title'   => $this->listing_renderer->get_listing_title( $post ),
+                'post_content' => $post->post_content,
+            ],
+            'metadata'    => [
+                '_awpcp_access_key'    => $this->listing_renderer->get_access_key( $post ),
+                '_awpcp_start_date'    => $this->listing_renderer->get_plain_start_date( $post ),
+                '_awpcp_end_date'      => $this->listing_renderer->get_plain_end_date( $post ),
+                '_awpcp_contact_name'  => $this->listing_renderer->get_contact_name( $post ),
+                '_awpcp_contact_phone' => $this->listing_renderer->get_contact_phone( $post ),
+                '_awpcp_contact_email' => $this->listing_renderer->get_contact_email( $post ),
+                '_awpcp_website_url'   => $this->listing_renderer->get_website_url( $post ),
+                '_awpcp_price'         => $this->listing_renderer->get_price( $post ),
+            ],
+            'categories'  => array_filter(
+                array_unique(
+                    array_merge(
+                        [ $this->listing_renderer->get_category_id( $post ) ],
+                        $this->listing_renderer->get_categories_ids( $post )
+                    )
+                )
+            ),
+            'regions'     => $this->listing_renderer->get_regions( $post ),
         );
 
-        $data['ad_category'] = $data['categories'];
-        $data['start_date']  = $data['ad_startdate'];
-        $data['end_date']    = $data['ad_enddate'];
-
-        // Listing prices have been historically stored in cents, so we have to
-        // devide them by 100.
-        $data['ad_item_price'] = $data['ad_item_price'] / 100;
-
         // Remove default title for listings created on the frontend.
-        if ( 'Classified Auto Draft' === $data['ad_title'] ) {
-            $data['ad_title'] = '';
+        if ( 'Classified Auto Draft' === $data['post_fields']['post_title'] ) {
+            $data['post_fields']['post_title'] = '';
         }
 
         return apply_filters( 'awpcp_form_fields_stored_data', $data, 'details' );
     }
 
     /**
-     * @param object $post  An instance of WP_Post.
      * @since 4.0.0
+     *
+     * @param object $post  An instance of WP_Post.
      */
     public function get_posted_data( $post ) {
-        $defaults = $this->get_default_values();
-        $data     = array();
-
-        foreach ( $defaults as $name => $default ) {
-            $value = $this->request->param( $name, $default );
-
-            if ( 'ad_details' !== $name ) {
-                $value = awpcp_strip_all_tags_deep( $value );
-            }
-
-            $data[ $name ] = $value;
-        }
-
-        $data['ad_title']   = str_replace( array( "\r", "\n" ), '', $data['ad_title'] );
-        $data['ad_details'] = str_replace( "\r", '', $data['ad_details'] );
-        $data['websiteurl'] = awpcp_maybe_add_http_to_url( $data['websiteurl'] );
-
-        // Parse the value provided by the user and convert it to a float value.
-        $data['ad_item_price'] = awpcp_parse_money( $data['ad_item_price'] );
-        $data['ad_item_price'] = 100 * $data['ad_item_price'];
+        $data = [
+            'ID'          => $this->request->param( 'ad_id' ),
+            'post_fields' => [
+                'post_title'   => str_replace(
+                    [ "\r", "\n" ],
+                    '',
+                    $this->request->param( 'ad_title' )
+                ),
+                'post_content' => str_replace(
+                    "\r",
+                    '',
+                    awpcp_strip_all_tags_deep( $this->request->param( 'ad_details' ) )
+                ),
+            ],
+            'metadata'    => [
+                '_awpcp_start_date'    => $this->request->param( 'start_date', null ),
+                '_awpcp_end_date'      => $this->request->param( 'end_date', null ),
+                '_awpcp_contact_name'  => $this->request->param( 'ad_contact_name' ),
+                '_awpcp_contact_phone' => $this->request->param( 'ad_contact_phone' ),
+                '_awpcp_contact_email' => $this->request->param( 'ad_contact_email' ),
+                '_awpcp_website_url'   => awpcp_maybe_add_http_to_url(
+                    $this->request->param( 'websiteurl' )
+                ),
+                // Parse the value provided by the user and convert it to a float value.
+                '_awpcp_price'         => 100 * awpcp_parse_money(
+                    $this->request->param( 'ad_item_price' )
+                ),
+            ],
+            'categories'  => [],
+            'regions'     => $this->request->param( 'regions', [] ),
+        ];
 
         $can_edit_start_date = $this->authorization->is_current_user_allowed_to_edit_listing_start_date( $post );
         $can_edit_end_date   = $this->authorization->is_current_user_allowed_to_edit_listing_end_date( $post );
 
-        if ( ! $can_edit_start_date || empty( $data['start_date'] ) ) {
-            $data['start_date'] = $this->listing_renderer->get_plain_start_date( $post );
-        } elseif ( ! empty( $data['start_date'] ) ) {
-            $data['start_date'] = awpcp_set_datetime_date( current_time( 'mysql' ), $data['start_date'] );
+        if ( ! $can_edit_start_date || empty( $data['metadata']['_awpcp_start_date'] ) ) {
+            $data['metadata']['_awpcp_start_date'] = $this->listing_renderer->get_plain_start_date( $post );
+        } elseif ( ! empty( $data['metadata']['_awpcp_start_date'] ) ) {
+            $data['metadata']['_awpcp_start_date'] = awpcp_set_datetime_date( current_time( 'mysql' ), $data['metadata']['_awpcp_start_date'] );
         }
 
-        if ( ! $can_edit_end_date || empty( $data['end_date'] ) ) {
-            $data['end_date'] = $this->listing_renderer->get_plain_end_date( $post );
-        } elseif ( ! empty( $data['end_date'] ) ) {
-            $data['end_date'] = awpcp_set_datetime_date( current_time( 'mysql' ), $data['end_date'] );
+        if ( ! $can_edit_end_date || empty( $data['metadata']['_awpcp_end_date'] ) ) {
+            $data['metadata']['_awpcp_end_date'] = $this->listing_renderer->get_plain_end_date( $post );
+        } elseif ( ! empty( $data['metadata']['_awpcp_end_date'] ) ) {
+            $data['metadata']['_awpcp_end_date'] = awpcp_set_datetime_date( current_time( 'mysql' ), $data['metadata']['_awpcp_end_date'] );
         }
 
         // phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
         // TODO: We no longer pass an array that filters can use to extract data from.
-        return apply_filters( 'awpcp-get-posted-data', $this->translate_data( $data ), 'details', null );
+        return apply_filters( 'awpcp-get-posted-data', $data, 'details', null );
         // phpcs:enable
-    }
-
-    /**
-     * Return default values for standard fields.
-     * TODO: We should probably remove payment term fields from this class.
-     */
-    private function get_default_values() {
-        return array(
-            'start_date'       => null,
-            'end_date'         => null,
-
-            'ad_id'            => '',
-            'adterm_id'        => '',
-            'ad_title'         => '',
-            'ad_contact_name'  => '',
-            'ad_contact_phone' => '',
-            'ad_contact_email' => '',
-            'websiteurl'       => '',
-            'ad_item_price'    => '',
-            'ad_details'       => '',
-            'ad_payment_term'  => '',
-
-            'regions'          => array(),
-        );
-    }
-
-    /**
-     * Convert pre-4.0 fields into the new format that uses post attribuets and
-     * metadata.
-     *
-     * @param array $data   Array of data using old index names.
-     * @since 4.0.0
-     */
-    private function translate_data( $data ) {
-        return array(
-            'ID'          => $data['ad_id'],
-            'post_fields' => array(
-                'post_title'   => $data['ad_title'],
-                'post_content' => $data['ad_details'],
-            ),
-            'regions'     => $data['regions'],
-            'metadata'    => array(
-                '_awpcp_start_date'    => $data['start_date'],
-                '_awpcp_end_date'      => $data['end_date'],
-                '_awpcp_contact_name'  => $data['ad_contact_name'],
-                '_awpcp_contact_phone' => $data['ad_contact_phone'],
-                '_awpcp_contact_email' => $data['ad_contact_email'],
-                '_awpcp_website_url'   => $data['websiteurl'],
-                '_awpcp_price'         => $data['ad_item_price'],
-            ),
-        );
     }
 }
