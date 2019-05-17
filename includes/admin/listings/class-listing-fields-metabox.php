@@ -106,7 +106,8 @@ class AWPCP_ListingFieldsMetabox {
      */
     public function render( $post ) {
         $data    = $this->form_fields_data->get_stored_data( $post );
-        $errors  = array();
+        $errors = $this->get_errors( $post );
+
         $context = array(
             'category' => null,
             'action'   => 'normal',
@@ -116,6 +117,7 @@ class AWPCP_ListingFieldsMetabox {
             'details_form_fields' => $this->form_fields->render_fields( $data, $errors, $post, $context ),
             'date_form_fields'    => '',
             'media_manager'       => $this->media_center->render( $post ),
+            'errors'              => $errors,
         );
 
         if ( $this->roles_and_capabilities->current_user_is_moderator() ) {
@@ -127,8 +129,28 @@ class AWPCP_ListingFieldsMetabox {
     }
 
     /**
+     * Get validation and save errors stored in the post's metadata.
+     *
+     * @since 4.0.0
+     */
+    private function get_errors( $post ) {
+        $validation_errors = get_post_meta( $post->ID, '__awpcp_admin_editor_validation_errors', true );
+        $save_errors       = get_post_meta( $post->ID, '__awpcp_admin_editor_save_errors', true );
+        $errors            = [];
+
+        if ( $validation_errors ) {
+            $errors = $validation_errors;
+        }
+
+        if ( $save_errors ) {
+            $errors = array_merge( $errors, $save_errors );
+        }
+
+        return $errors;
+    }
+
+    /**
      * TODO: Use redirect_post_location filter to add feedback messages on redirect_post().
-     * TODO: What happens when update_listing throws an exception?
      *
      * @param int    $post_id   The ID of the post being saved.
      * @param object $post      The post being saved.
@@ -167,17 +189,26 @@ class AWPCP_ListingFieldsMetabox {
      * @param array  $errors    An array of errors.
      */
     private function save_or_store_errors( $post, $data, $errors ) {
-        if ( empty( $errors ) ) {
-            $this->save_listing_information( $post, $data );
-
-            $this->wordpress->delete_post_meta( $post->ID, '__awpcp_admin_editor_pending_data' );
-            $this->wordpress->delete_post_meta( $post->ID, '__awpcp_admin_editor_validation_errors' );
-
+        if ( ! empty( $errors ) ) {
+            $this->wordpress->update_post_meta( $post->ID, '__awpcp_admin_editor_pending_data', $data );
+            $this->wordpress->update_post_meta( $post->ID, '__awpcp_admin_editor_validation_errors', $errors );
             return;
         }
 
-        $this->wordpress->update_post_meta( $post->ID, '__awpcp_admin_editor_pending_data', $data );
-        $this->wordpress->update_post_meta( $post->ID, '__awpcp_admin_editor_validation_errors', $errors );
+        // Delete old validation errors.
+        $this->wordpress->delete_post_meta( $post->ID, '__awpcp_admin_editor_validation_errors' );
+
+        try {
+            $this->save_listing_information( $post, $data );
+        } catch ( AWPCP_Exception $e ) {
+            $this->wordpress->update_post_meta( $post->ID, '__awpcp_admin_editor_pending_data', $data );
+            $this->wordpress->update_post_meta( $post->ID, '__awpcp_admin_editor_save_errors', [ $e->getMessage() ] );
+            return;
+        }
+
+        // Delete old save errors and no longer necessary temporary data.
+        $this->wordpress->delete_post_meta( $post->ID, '__awpcp_admin_editor_pending_data' );
+        $this->wordpress->delete_post_meta( $post->ID, '__awpcp_admin_editor_save_errors' );
     }
 
     /**
