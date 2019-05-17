@@ -29,6 +29,17 @@ class AWPCP_ListingWebsiteFormField extends AWPCP_FormField {
         return parent::is_allowed_in_context( $context );
     }
 
+    /**
+     * @since 4.0.0
+     */
+    public function extract_value( $data ) {
+        if ( ! isset( $data['metadata']['_awpcp_website_url'] ) ) {
+            return null;
+        }
+
+        return $data['metadata']['_awpcp_website_url'];
+    }
+
     public function render( $value, $errors, $listing, $context ) {
         $params = array(
             'required' => $this->is_required(),

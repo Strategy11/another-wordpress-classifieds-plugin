@@ -64,7 +64,7 @@ class AWPCP_FormFieldsRenderer {
                 continue;
             }
 
-            $form_value = isset( $form_values[ $field_slug ] ) ? $form_values[ $field_slug ] : '';
+            $form_value = $field->extract_value( $form_values );
 
             $output[] = $this->render_field( $field, $form_value, $form_errors, $listing, $context );
         }

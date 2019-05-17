@@ -35,6 +35,17 @@ class AWPCP_ListingTitleFormField extends AWPCP_FormField {
         return __( 'Listing Title', 'another-wordpress-classifieds-plugin' );
     }
 
+    /**
+     * @since 4.0.0
+     */
+    public function extract_value( $data ) {
+        if ( ! isset( $data['post_fields']['post_title'] ) ) {
+            return null;
+        }
+
+        return $data['post_fields']['post_title'];
+    }
+
     public function render( $value, $errors, $listing, $context ) {
         $characters_limit = $this->get_characters_limit_for_listing( $listing );
 

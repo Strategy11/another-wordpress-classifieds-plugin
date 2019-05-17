@@ -38,6 +38,17 @@ abstract class AWPCP_FormField {
     // // TODO: define a get_posted_value, similiar to the following one:
     // public abstract function get_posted_value( $request );
 
+    /**
+     * Extract the value for this field from a data array returned by
+     * FormFieldsData::get_stored_data() or FormFieldsData::get_posted_data().
+     *
+     * @since 4.0.0
+     */
+    public function extract_value( $data ) {
+        _doing_it_wrong( __FUNCTION__, 'Overwrite this method in a subclass of FormField.', 'Another WordPress Classifieds Plugin 4.0.0' );
+        return null;
+    }
+
     protected function format_value( $value ) {
         return $value;
     }

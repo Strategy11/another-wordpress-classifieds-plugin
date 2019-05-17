@@ -33,6 +33,19 @@ class AWPCP_ListingPriceFormField extends AWPCP_FormField {
         return $value ? awpcp_format_money_without_currency_symbol( $value ) : '';
     }
 
+    /**
+     * @since 4.0.0
+     */
+    public function extract_value( $data ) {
+        if ( ! isset( $data['metadata']['_awpcp_price'] ) ) {
+            return null;
+        }
+
+        // Listing prices have been historically stored in cents, so we have to
+        // devide them by 100.
+        return $data['metadata']['_awpcp_price'] / 100;
+    }
+
     public function render( $value, $errors, $listing, $context ) {
         if ( $this->is_required() ) {
             $validators = 'required money';
