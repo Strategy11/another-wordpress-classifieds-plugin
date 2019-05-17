@@ -8,7 +8,7 @@
         <?php $label = _x( 'Form Fields', 'listing fields metabox', 'another-wordpress-classifieds-plugin' ); ?>
         <li class="awpcp-tab awpcp-tab-active"><a href="#awpcp-listing-fields--form-fields"><span class="screen-reader-text"><?php echo esc_html( $label ); ?></span><span class="dashicons dashicons-feedback"></span><span class="awpcp-tab-name"><?php echo esc_html( $label ); ?></span></a></li>
         <?php if ( $date_form_fields ) : ?>
-        <?php $label = _x( 'Start/End Date', 'listing fields metabox', 'another-wordpress-classifieds-plugin' ); ?>
+            <?php $label = _x( 'Start/End Date', 'listing fields metabox', 'another-wordpress-classifieds-plugin' ); ?>
         <li class="awpcp-tab"><a href="#awpcp-listing-fields--start-end-date"><span class="screen-reader-text"><?php echo esc_html( $label ); ?></span><span class="dashicons dashicons-calendar-alt"></span><span class="awpcp-tab-name"><?php echo esc_html( $label ); ?></span></a></li>
         <?php endif; ?>
         <?php $label = _x( 'Images', 'listing fields metabox', 'another-wordpress-classifieds-plugin' ); ?>
@@ -23,6 +23,6 @@
 
         <?php echo $details_form_fields; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
     </div>
-    <div id="awpcp-listing-fields--start-end-date" class="awpcp-tab-panel"><?php echo $date_form_fields; // XSS Ok. ?></div>
-    <div id="awpcp-listing-fields--media-manager" class="awpcp-listing-fields--media-manager-tab-panel awpcp-tab-panel"><?php echo $media_manager; // XSS Ok. ?></div>
+    <div id="awpcp-listing-fields--start-end-date" class="awpcp-tab-panel"><?php echo $date_form_fields; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
+    <div id="awpcp-listing-fields--media-manager" class="awpcp-listing-fields--media-manager-tab-panel awpcp-tab-panel"><?php echo $media_manager; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
 </div>
