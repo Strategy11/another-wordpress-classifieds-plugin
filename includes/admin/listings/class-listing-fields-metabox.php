@@ -105,8 +105,8 @@ class AWPCP_ListingFieldsMetabox {
      * @since 4.0.0
      */
     public function render( $post ) {
-        $data    = $this->form_fields_data->get_stored_data( $post );
         $errors = $this->get_errors( $post );
+        $data   = $this->get_stored_data( $post, $errors );
 
         $context = array(
             'category' => null,
@@ -147,6 +147,28 @@ class AWPCP_ListingFieldsMetabox {
         }
 
         return $errors;
+    }
+
+    /**
+     * Get listing data necessary to populate form fields.
+     *
+     * Returns pending data stored in the post's metadata if available, to allow
+     * users to recover from errors.
+     *
+     * @since 4.0.0
+     */
+    private function get_stored_data( $post, $errors ) {
+        $data = [];
+
+        if ( $errors ) {
+            $data = get_post_meta( $post->ID, '__awpcp_admin_editor_pending_data', true );
+        }
+
+        if ( is_array( $data ) && $data ) {
+            return $data;
+        }
+
+        return $this->form_fields_data->get_stored_data( $post );
     }
 
     /**
