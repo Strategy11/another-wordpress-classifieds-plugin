@@ -47,7 +47,9 @@ function( $ ) {
 
                     var selected = partial.selected();
 
-                    if ( selected === undefined || ( selected.length && selected.length === 0 ) ) {
+                    // True if selected is null, undefined, 0, an empty string
+                    // or any other value with false boolean value.
+                    if ( ! selected || ! selected.length ) {
                         region.error( AWPCP.l10n( 'multiple-region-selector', 'missing-' + partial.type ) );
                         emptyRequiredField = emptyRequiredField ? emptyRequiredField : partial;
                         requiredFieldsAreEmpty = true;
