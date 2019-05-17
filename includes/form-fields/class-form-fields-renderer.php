@@ -59,7 +59,7 @@ class AWPCP_FormFieldsRenderer {
     public function render_fields( $form_values, $form_errors, $listing, $context ) {
         $output = array();
 
-        foreach ( $this->get_fields( $listing, $context ) as $field_slug => $field ) {
+        foreach ( $this->get_fields( $listing, $context ) as $field ) {
             if ( ! $field->is_allowed_in_context( $context ) ) {
                 continue;
             }
@@ -84,21 +84,27 @@ class AWPCP_FormFieldsRenderer {
     public function render_field( $field, $form_value, $form_errors, $listing, $context ) {
         $output = $field->render( $form_value, $form_errors, $listing, $context );
 
-        // phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
+        // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
         $output = apply_filters(
             'awpcp-render-form-field-' . $field->get_slug(),
             $output,
-            $field, $form_value, $form_errors, $listing, $context
+            $field,
+            $form_value,
+            $form_errors,
+            $listing,
+            $context
         );
-        // phpcs:enable
 
-        // phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
+        // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
         $output = apply_filters(
             'awpcp-render-form-field',
             $output,
-            $field, $form_value, $form_errors, $listing, $context
+            $field,
+            $form_value,
+            $form_errors,
+            $listing,
+            $context
         );
-        // phpcs:enable
 
         return $output;
     }

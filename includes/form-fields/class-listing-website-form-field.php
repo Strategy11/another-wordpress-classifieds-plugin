@@ -1,5 +1,11 @@
 <?php
+/**
+ * @package AWPCP\FormFields
+ */
 
+/**
+ * Constructor for Listing Website Form Field.
+ */
 function awpcp_listing_website_form_field( $slug ) {
     return new AWPCP_ListingWebsiteFormField( $slug, awpcp()->settings );
 }
@@ -43,13 +49,13 @@ class AWPCP_ListingWebsiteFormField extends AWPCP_FormField {
     public function render( $value, $errors, $listing, $context ) {
         $params = array(
             'required' => $this->is_required(),
-            'value' => $value,
-            'errors' => $errors,
+            'value'    => $value,
+            'errors'   => $errors,
 
-            'label' => $this->get_label(),
+            'label'    => $this->get_label(),
 
-            'html' => array(
-                'id' => str_replace( '_', '-', $this->get_slug() ),
+            'html'     => array(
+                'id'   => str_replace( '_', '-', $this->get_slug() ),
                 'name' => $this->get_slug(),
             ),
         );

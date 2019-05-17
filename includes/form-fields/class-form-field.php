@@ -1,5 +1,12 @@
 <?php
+/**
+ * @package AWPCP\FormFields
+ */
 
+/**
+ * TODO: improve the API to make the fields able to return the value that was posted.
+ * TODO: define a get_posted_value, similiar to public abstract function get_posted_value( $request );
+ */
 abstract class AWPCP_FormField {
 
     private $slug;
@@ -16,33 +23,34 @@ abstract class AWPCP_FormField {
         return $this->get_name();
     }
 
-    public abstract function get_name();
+    abstract public function get_name();
 
     protected function is_required() {
         return false;
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
     public function is_readonly( $value ) {
         return false;
     }
 
     public function is_allowed_in_context( $context ) {
-        if ( $context['action'] == 'search' ) {
+        if ( $context['action'] === 'search' ) {
             return false;
         }
 
         return true;
     }
 
-    // // TODO: improve the API to make the fields able to return the value that was posted.
-    // // TODO: define a get_posted_value, similiar to the following one:
-    // public abstract function get_posted_value( $request );
-
     /**
      * Extract the value for this field from a data array returned by
      * FormFieldsData::get_stored_data() or FormFieldsData::get_posted_data().
      *
      * @since 4.0.0
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function extract_value( $data ) {
         _doing_it_wrong( __FUNCTION__, 'Overwrite this method in a subclass of FormField.', 'Another WordPress Classifieds Plugin 4.0.0' );
@@ -53,5 +61,5 @@ abstract class AWPCP_FormField {
         return $value;
     }
 
-    public abstract function render( $value, $errors, $listing, $context );
+    abstract public function render( $value, $errors, $listing, $context );
 }
