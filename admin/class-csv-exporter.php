@@ -34,7 +34,7 @@ class AWPCP_CSVExporter {
 
     private $workingdir = '';
 
-    private $columns = array();
+    private $columns  = array();
     private $listings = array();
     private $exported = 0;
     private $listing;
@@ -316,7 +316,7 @@ class AWPCP_CSVExporter {
     }
 
     /**
-     * @param array $column
+     * @param array $column field information.
      * Processing for date and extra fields values.
      *
      * @return string
@@ -324,11 +324,11 @@ class AWPCP_CSVExporter {
     private function prepare_meta_value( $column ) {
         $value = get_post_meta( $this->listing->ID, $column['name'], true );
 
-        if (empty($value)) {
+        if ( empty( $value ) ) {
             return $value;
         }
 
-        if ( $column['name'] === "_awpcp_start_date" || $column['name'] === "_awpcp_end_date" ) {
+        if ( $column['name'] === '_awpcp_start_date' || $column['name'] === '_awpcp_end_date' ) {
             $value = date_create( $value );
             $value = date_format( $value, 'm/d/y H:i:s' );
         }
@@ -341,8 +341,8 @@ class AWPCP_CSVExporter {
             }
         }
 
-        if ( $column['description'] === "Select Multiple" || $column['description'] === "Checkbox" ) {
-            $value = is_array($value) ? implode( ';', $value ) : '';
+        if ( $column['description'] === 'Select Multiple' || $column['description'] === 'Checkbox' ) {
+            $value = is_array( $value ) ? implode( ';', $value ) : '';
         }
 
         return $value;
@@ -378,10 +378,10 @@ class AWPCP_CSVExporter {
                         $value = $this->prepare_meta_value( $column );
                         break;
                     case 'region_fields':
-                        $value = isset($this->listing_data['regions'][0][ $column_name ]) ? $this->listing_data['regions'][0][ $column_name ] : '' ;
+                        $value = isset( $this->listing_data['regions'][0][ $column_name ] ) ? $this->listing_data['regions'][0][ $column_name ] : '';
                         break;
                     case 'custom':
-                        if ( $column_name === "images" ) {
+                        if ( $column_name === 'images' ) {
                             $value = $this->prepare_images();
                             break;
                         }
@@ -393,7 +393,6 @@ class AWPCP_CSVExporter {
 
                 $data[ $column_name ] = '"' . str_replace( '"', '""', $value ) . '"';
             }
-
         }
 
         return $data;
