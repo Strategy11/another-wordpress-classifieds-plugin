@@ -370,6 +370,10 @@ class AWPCP_CSVExporter {
                 switch ( $column_type ) {
                     case 'post_fields':
                         $value = $this->listing->{$column['name']};
+                        if ($column['name'] === 'post_author') {
+                            $author = get_userdata( $value );
+                            $value  = $author ? $author->user_login : '';
+                        }
                         break;
                     case 'terms':
                         $value = $this->prepare_categories();
