@@ -257,8 +257,8 @@ class AWPCP_AdminPanel {
 
         $router->add_admin_subpage(
             $parent_page,
-            __( 'Tools', 'another-wordpress-classifieds-plugin' ),
-            awpcp_admin_page_title( __( 'Tools', 'another-wordpress-classifieds-plugin' ) ),
+            __( 'Import & Export', 'another-wordpress-classifieds-plugin' ),
+            awpcp_admin_page_title( __( 'Import & Export', 'another-wordpress-classifieds-plugin' ) ),
             'awpcp-tools',
             function() {
                 return awpcp()->container['ToolsAdminPage'];
