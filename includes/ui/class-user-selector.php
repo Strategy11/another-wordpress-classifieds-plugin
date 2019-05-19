@@ -59,6 +59,7 @@ class AWPCP_UserSelector {
             $params,
             [
                 'label'                         => false,
+                'required'                      => false,
                 'selected'                      => null,
                 'mode'                          => null,
                 'include_full_user_information' => true,
