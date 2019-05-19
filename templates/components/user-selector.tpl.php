@@ -16,11 +16,11 @@
 
     <?php foreach ( $users as $k => $user ) : ?>
 
-    <?php if ( $include_full_user_information ) : ?>
+        <?php if ( $include_full_user_information ) : ?>
     <option value="<?php echo esc_attr( $user->ID ); ?>" data-user-information='<?php echo wp_json_encode( $user ); ?>'<?php echo $selected && $selected['id'] === $user->ID ? ' selected="selected"' : ''; ?>>
-    <?php else : ?>
+        <?php else : ?>
     <option value="<?php echo esc_attr( $user->ID ); ?>"<?php echo $selected && $selected['id'] === $user->ID ? ' selected="selected"' : ''; ?>>
-    <?php endif; ?>
+        <?php endif; ?>
         <?php echo esc_html( $user->public_name ); ?>
     </option>
 
