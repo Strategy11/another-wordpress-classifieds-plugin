@@ -4,7 +4,7 @@
  */
 
 /**
- * Entry point for all plugin features available from the Admin Dashboard.
+ * Entry point for all plugin features available from the Classified Ads admin menu.
  */
 class AWPCP_Admin {
 
@@ -49,6 +49,8 @@ class AWPCP_Admin {
     private $table_restrictions;
 
     /**
+     * @since 4.0.0
+     *
      * @param string $post_type             A post type identifier.
      * @param array  $container             An instance of Container.
      * @param object $table_views           An instance of List Table Views Handler.
@@ -57,7 +59,6 @@ class AWPCP_Admin {
      * @param object $table_search          An instance of List Table Search Handler.
      * @param object $table_columns         An instance of List Table Columns Handler.
      * @param object $table_restrictions    An instance of List Table Restrictions.
-     * @since 4.0.0
      */
     public function __construct( $post_type, $container, $table_views, $table_actions, $table_nav, $table_search, $table_columns, $table_restrictions ) {
         $this->post_type          = $post_type;
