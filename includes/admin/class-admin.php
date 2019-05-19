@@ -60,7 +60,16 @@ class AWPCP_Admin {
      * @param object $table_columns         An instance of List Table Columns Handler.
      * @param object $table_restrictions    An instance of List Table Restrictions.
      */
-    public function __construct( $post_type, $container, $table_views, $table_actions, $table_nav, $table_search, $table_columns, $table_restrictions ) {
+    public function __construct(
+        $post_type,
+        $container,
+        $table_views,
+        $table_actions,
+        $table_nav,
+        $table_search,
+        $table_columns,
+        $table_restrictions
+    ) {
         $this->post_type          = $post_type;
         $this->container          = $container;
         $this->table_views        = $table_views;
