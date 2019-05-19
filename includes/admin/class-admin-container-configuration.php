@@ -289,6 +289,14 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
             );
         } );
 
+        $container['ListingOwnerMetabox'] = $container->service( function( $container ) {
+            return new AWPCP_ListingOwnerMetabox(
+                $container['UserSelector'],
+                $container['UsersCollection'],
+                $container['RolesAndCapabilities']
+            );
+        } );
+
         $container['ListingFieldsMetabox'] = $container->service( function( $container ) {
             return new AWPCP_ListingFieldsMetabox(
                 $container['listing_post_type'],

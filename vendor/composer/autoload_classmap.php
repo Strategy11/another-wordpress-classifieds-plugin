@@ -263,6 +263,7 @@ return array(
     'AWPCP_ListingInfromationMetabox' => $baseDir . '/includes/admin/listings/class-listing-information-metabox.php',
     'AWPCP_ListingIsAboutToExpireNotification' => $baseDir . '/includes/class-listing-is-about-to-expire-notification.php',
     'AWPCP_ListingOrderPostedData' => $baseDir . '/includes/frontend/class-listing-order-posted-data.php',
+    'AWPCP_ListingOwnerMetabox' => $baseDir . '/includes/admin/listings/class-listing-owner-metabox.php',
     'AWPCP_ListingPaymentTransactionHandler' => $baseDir . '/includes/class-listing-payment-transaction-handler.php',
     'AWPCP_ListingPostedData' => $baseDir . '/includes/frontend/class-listing-posted-data.php',
     'AWPCP_ListingPriceFormField' => $baseDir . '/includes/form-fields/class-listing-price-form-field.php',

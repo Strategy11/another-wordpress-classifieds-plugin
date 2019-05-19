@@ -213,12 +213,23 @@ class AWPCP_Admin {
      * @since 4.0.0
      */
     public function add_classifieds_meta_boxes() {
+        // The Author meta box is replaced with the Classified Owner meta box below.
+        remove_meta_box( 'authordiv', $this->post_type, 'normal' );
+
         add_meta_box(
             'awpcp-classifeds-information-metabox',
             __( 'Classified Information', 'another-wordpress-classifieds-plugin' ),
             [ $this->container['ListingInformationMetabox'], 'render' ],
             $this->post_type,
             'side'
+        );
+
+        add_meta_box(
+            'awpcp-classifieds-owner-metabox',
+            __( 'Classified Owner', 'another-wordpress-classifieds-plugin' ),
+            [ $this->container['ListingOwnerMetabox'], 'render' ],
+            $this->post_type,
+            'advanced'
         );
 
         add_meta_box(
