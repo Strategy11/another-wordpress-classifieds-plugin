@@ -112,7 +112,10 @@ class AWPCP_RenewListingTableAction implements AWPCP_ListTableActionInterface {
         }
 
         $this->email_notifications->send_user_notification( $post );
-        $this->email_notifications->send_admin_notification( $post );
+
+        if ( awpcp()->settings->get_option( 'send-listing-renewed-notification-to-admin' ) ) {
+            $this->email_notifications->send_admin_notification( $post );
+        }
 
         // TODO: MOVE inside Ad::renew() ?
         // phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
