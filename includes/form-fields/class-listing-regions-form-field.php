@@ -56,6 +56,17 @@ class AWPCP_ListingRegionsFormField extends AWPCP_FormField {
     }
 
     /**
+     * @since 4.0.0
+     */
+    public function extract_value( $data ) {
+        if ( ! isset( $data[ $this->get_slug() ] ) ) {
+            return null;
+        }
+
+        return $data[ $this->get_slug() ];
+    }
+
+    /**
      * @SuppressWarnings(PHPMD.UnusedFormalParameter) $context
      */
     public function render( $value, $errors, $listing, $context ) {

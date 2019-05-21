@@ -54,6 +54,17 @@ class AWPCP_ListingContactPhoneFormField extends AWPCP_FormField {
     }
 
     /**
+     * @since 4.0.0
+     */
+    public function extract_value( $data ) {
+        if ( ! isset( $data['metadata']['_awpcp_contact_phone'] ) ) {
+            return null;
+        }
+
+        return $data['metadata']['_awpcp_contact_phone'];
+    }
+
+    /**
      * @param mixed  $value     The current value for thi field.
      * @param array  $errors    An array of form errors.
      * @param object $listing   An instance of WP_Post.

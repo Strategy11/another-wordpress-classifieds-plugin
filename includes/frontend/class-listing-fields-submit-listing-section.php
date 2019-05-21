@@ -104,19 +104,25 @@ class AWPCP_ListingFieldsSubmitListingSection {
      * @since 4.0.0
      */
     private function get_form_fields_data( $listing, $transaction ) {
-        $data = $this->form_fields_data->get_stored_data( $listing );
+        $form_data = $this->form_fields_data->get_stored_data( $listing );
 
         if ( empty( $transaction->user_id ) ) {
-            return $data;
+            return $form_data;
         }
 
-        foreach ( $this->get_user_data( $transaction->user_id ) as $field => $value ) {
-            if ( empty( $data[ $field ] ) ) {
-                $data[ $field ] = $value;
+        $user_data = $this->get_user_data( $transaction->user_id );
+
+        foreach ( $user_data['metadata'] as $field => $value ) {
+            if ( empty( $form_data['metadata'][ $field ] ) ) {
+                $form_data['metadata'][ $field ] = $value;
             }
         }
 
-        return $data;
+        if ( empty( $form_data['regions'] ) ) {
+            $form_data['regions'] = $user_data['regions'];
+        }
+
+        return $form_data;
     }
 
     /**
@@ -140,40 +146,41 @@ class AWPCP_ListingFieldsSubmitListingSection {
         ];
 
         $user = $this->users->find_by_id( $user_id, $user_properties );
-        $data = array();
 
         $field_translations = [
-            'ad_contact_name'   => 'public_name',
-            'ad_contact_email'  => 'user_email',
-            'ad_contact_phone'  => 'phone',
-            'websiteurl'        => 'user_url',
-            'ad_country'        => 'country',
-            'ad_state'          => 'state',
-            'ad_city'           => 'city',
-            'ad_county_village' => 'county',
+            '_awpcp_contact_name'  => 'public_name',
+            '_awpcp_contact_email' => 'user_email',
+            '_awpcp_contact_phone' => 'phone',
+            '_awpcp_website_url'   => 'user_url',
+        ];
+
+        $data = [
+            'metadata' => [],
+            'regions'  => [],
         ];
 
         foreach ( $field_translations as $field => $key ) {
-            if ( isset( $user->$key ) && ! empty( $user->$key ) ) {
-                $data[ $field ] = $user->$key;
+            if ( ! empty( $user->$key ) ) {
+                $data['metadata'][ $field ] = $user->$key;
             }
         }
 
-        $user_region = [
-            'country' => awpcp_array_data( 'ad_country', '', $data ),
-            'state'   => awpcp_array_data( 'ad_state', '', $data ),
-            'city'    => awpcp_array_data( 'ad_city', '', $data ),
-            'county'  => awpcp_array_data( 'ad_county_village', '', $data ),
-        ];
-        $user_region = array_filter( $user_region, 'strlen' );
+        $user_region = array_filter(
+            [
+                'country' => awpcp_get_property( $user, 'country' ),
+                'state'   => awpcp_get_property( $user, 'state' ),
+                'city'    => awpcp_get_property( $user, 'city' ),
+                'county'  => awpcp_get_property( $user, 'county' ),
+            ],
+            'strlen'
+        );
 
         if ( ! empty( $user_region ) ) {
             $data['regions'][] = $user_region;
         }
 
-        // @phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
+        // @phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
         return apply_filters( 'awpcp-listing-details-user-info', $data, $user_id );
-        // @phpcs:enable WordPress.NamingConventions.ValidHookName.UseUnderscores
     }
 
     /**

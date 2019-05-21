@@ -1,5 +1,11 @@
 <?php
+/**
+ * @package AWPCP\FormFields
+ */
 
+/**
+ * Constructor for Listing Price Form Field.
+ */
 function awpcp_listing_price_form_field( $slug ) {
     return new AWPCP_ListingPriceFormField( $slug, awpcp()->settings );
 }
@@ -33,29 +39,36 @@ class AWPCP_ListingPriceFormField extends AWPCP_FormField {
         return $value ? awpcp_format_money_without_currency_symbol( $value ) : '';
     }
 
-    public function render( $value, $errors, $listing, $context ) {
-        if ( $this->is_required() ) {
-            $validators = 'required money';
-        } else {
-            $validators = 'money';
+    /**
+     * @since 4.0.0
+     */
+    public function extract_value( $data ) {
+        if ( ! isset( $data['metadata']['_awpcp_price'] ) ) {
+            return null;
         }
 
+        // Listing prices have been historically stored in cents, so we have to
+        // devide them by 100.
+        return $data['metadata']['_awpcp_price'] / 100;
+    }
+
+    public function render( $value, $errors, $listing, $context ) {
         $params = array(
-            'required' => $this->is_required(),
-            'value' => $this->format_value( $value ),
-            'errors' => $errors,
+            'required'                      => $this->is_required(),
+            'value'                         => $this->format_value( $value ),
+            'errors'                        => $errors,
 
-            'label' => $this->get_label(),
-            'help_text' => '',
-            'validators' => $validators,
+            'label'                         => $this->get_label(),
+            'help_text'                     => '',
+            'validators'                    => $this->is_required() ? 'required money' : 'money',
 
-            'html' => array(
-                'id' => str_replace( '_', '-', $this->get_slug() ),
-                'name' => $this->get_slug(),
+            'html'                          => array(
+                'id'       => str_replace( '_', '-', $this->get_slug() ),
+                'name'     => $this->get_slug(),
                 'readonly' => false,
             ),
 
-            'currency_symbol' => awpcp_get_currency_symbol(),
+            'currency_symbol'               => awpcp_get_currency_symbol(),
             'show_currency_symbol_on_right' => $this->should_show_currency_symbol_on_right(),
         );
 
@@ -63,6 +76,6 @@ class AWPCP_ListingPriceFormField extends AWPCP_FormField {
     }
 
     private function should_show_currency_symbol_on_right() {
-        return $this->settings->get_option( 'show-currency-symbol' ) == 'show-currency-symbol-on-right';
+        return $this->settings->get_option( 'show-currency-symbol' ) === 'show-currency-symbol-on-right';
     }
 }

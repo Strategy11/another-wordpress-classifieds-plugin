@@ -39,6 +39,17 @@ class AWPCP_ListingDetailsFormField extends AWPCP_FormField {
         return true;
     }
 
+    /**
+     * @since 4.0.0
+     */
+    public function extract_value( $data ) {
+        if ( ! isset( $data['post_fields']['post_content'] ) ) {
+            return null;
+        }
+
+        return $data['post_fields']['post_content'];
+    }
+
     public function render( $value, $errors, $listing, $context ) {
         $characters_limit = $this->get_characters_limit_for_listing( $listing );
 

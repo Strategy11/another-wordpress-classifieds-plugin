@@ -46,6 +46,17 @@ class AWPCP_ListingDatePickerFormField extends AWPCP_FormField {
     }
 
     /**
+     * @since 4.0.0
+     */
+    public function extract_value( $data ) {
+        if ( ! isset( $data['metadata'][ '_awpcp_' . $this->get_slug() ] ) ) {
+            return null;
+        }
+
+        return $data['metadata'][ '_awpcp_' . $this->get_slug() ];
+    }
+
+    /**
      * @param mixed  $value     The value for this form field.
      * @param array  $errors    An array of form field errors index by field slug.
      * @param object $listing   An instance of WP_Post.
