@@ -18,20 +18,27 @@ class AWPCP_RenewListingTableAction implements AWPCP_ListTableActionInterface {
      */
     private $listing_renderer;
 
-    /**
+    /**class-admin-container-configuration.php
      * @var object
      */
     private $email_notifications;
 
     /**
+     * @var object
+     */
+    private $settings;
+
+    /**
      * @param object $listings_logic        An instance of Listings API.
      * @param object $listing_renderer      An instance of Listing Renderer.
      * @param object $email_notifications   An instance of ListingRenewedEmailNotifications.
+     * @param object $settings              An instance of AWPCP_Settings_API.
      */
-    public function __construct( $listings_logic, $listing_renderer, $email_notifications ) {
+    public function __construct( $listings_logic, $listing_renderer, $email_notifications, $settings ) {
         $this->listings_logic      = $listings_logic;
         $this->listing_renderer    = $listing_renderer;
         $this->email_notifications = $email_notifications;
+        $this->settings = $settings;
     }
 
     /**
@@ -113,7 +120,7 @@ class AWPCP_RenewListingTableAction implements AWPCP_ListTableActionInterface {
 
         $this->email_notifications->send_user_notification( $post );
 
-        if ( awpcp()->settings->get_option( 'send-listing-renewed-notification-to-admin' ) ) {
+        if ( $this->settings->get_option( 'send-listing-renewed-notification-to-admin' ) ) {
             $this->email_notifications->send_admin_notification( $post );
         }
 

@@ -166,7 +166,8 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
             return new AWPCP_RenewListingTableAction(
                 $container['ListingsLogic'],
                 $container['ListingRenderer'],
-                $container['ListingRenewedEmailNotifications']
+                $container['ListingRenewedEmailNotifications'],
+                $container['Settings']
             );
         } );
 
