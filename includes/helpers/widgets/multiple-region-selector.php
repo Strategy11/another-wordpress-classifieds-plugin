@@ -62,7 +62,8 @@ class AWPCP_MultipleRegionSelector {
             )
         );
 
-        $this->regions = $this->prepare_regions( $regions );
+        // We expect an array and will ignore anything else.
+        $this->regions = is_array( $regions ) ? $regions : [];
 
         // The region selector should show all regions that were provided, even
         // if it is configured to let the user enter fewer regions.
@@ -70,35 +71,6 @@ class AWPCP_MultipleRegionSelector {
         // We trust that the logic in the Edit/Submit Ad pages never allows users
         // to enter more regions than they should, so we honor the data.
         $this->options['maxRegions'] = max( $this->options['maxRegions'], count( $regions ) );
-    }
-
-    /**
-     * Sanitize the provided array of regions considering the number of regions
-     * allowed.
-     *
-     * @since 4.0.0
-     */
-    private function prepare_regions( $regions ) {
-        // We expect an array and will ignore anything else.
-        if ( ! is_array( $regions ) ) {
-            $regions = [];
-        }
-
-        // If regions are allowed, the array of regions should include at least
-        // one empty region so that the necessary frontend fields are rendered.
-        if ( (int) $this->options['maxRegions'] > 0 && empty( $regions ) ) {
-            return array(
-                array(
-                    'country' => '',
-                    'county'  => '',
-                    'state'   => '',
-                    'city'    => '',
-                ),
-            );
-        }
-
-        // The user provided a non-empty array of regions. Let's use that as is.
-        return $regions;
     }
 
     public function set_template( $template ) {
@@ -184,6 +156,12 @@ class AWPCP_MultipleRegionSelector {
         return awpcp_array_data( $type, null, $parent_types );
     }
 
+    /**
+     * @param string $context      'search' or 'details' to indicate that the selector is
+     *                             being shown on a Search form or the Listing Fields form.
+     * @param array  $translations A region type => field name map.
+     * @param array  $errors       An array of form errors.
+     */
     public function render( $context, $translations = array(), $errors = array() ) {
         $fields = $this->get_region_fields( $context );
 
@@ -209,31 +187,35 @@ class AWPCP_MultipleRegionSelector {
         );
 
         $regions = array();
+
         foreach ( $this->regions as $i => $region ) {
-            $hierarchy = array();
-            foreach ( $fields as $type => $field ) {
-                $selected = awpcp_array_data( $type, null, $region );
-
-                $regions[ $i ][ $type ]             = $field;
-                $regions[ $i ][ $type ]['options']  = $this->get_region_field_options( $context, $type, $selected, $hierarchy );
-                $regions[ $i ][ $type ]['selected'] = $selected;
-                $regions[ $i ][ $type ]['required'] = ( 'search' === $context ) ? false : $field['required'];
-
-                if ( isset( $translations[ $type ] ) ) {
-                    $regions[ $i ][ $type ]['param'] = $translations[ $type ];
-                } else {
-                    $regions[ $i ][ $type ]['param'] = $type;
-                }
-
-                // Make values selected in parent fields available to child
-                // fields when computing the field options.
-                $hierarchy[ $type ] = $regions[ $i ][ $type ]['selected'];
-            }
+            $regions[ $i ] = $this->prepare_region_data(
+                $region,
+                $fields,
+                $translations,
+                $context
+            );
         }
 
         // Use first region as template for additional regions.
         if ( isset( $regions[0] ) ) {
             $this->options['template'] = $regions[0];
+        }
+
+        // If no template has been set, create a template from an empty region
+        // so that the Region Selector can create new fields in the frontend.
+        if ( empty( $this->options['template'] ) ) {
+            $this->options['template'] = $this->prepare_region_data(
+                [
+                    'country' => '',
+                    'county'  => '',
+                    'state'   => '',
+                    'city'    => '',
+                ],
+                $fields,
+                $translations,
+                $context
+            );
         }
 
         // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
@@ -259,5 +241,40 @@ class AWPCP_MultipleRegionSelector {
         ob_end_clean();
 
         return $html;
+    }
+
+    /**
+     * @since 4.0.0
+     *
+     * @param array  $region       Data for a region record.
+     * @param array  $fields       Definition of form fields enabled for this selector.
+     * @param array  $translations A region type => field name map.
+     * @param string $context      'search' or 'details' to indicate that the selector is
+     *                             being shown on a Search form or the Listing Fields form.
+     */
+    private function prepare_region_data( $region, $fields, $translations, $context ) {
+        $region    = [];
+        $hierarchy = [];
+
+        foreach ( $fields as $type => $field ) {
+            $selected = awpcp_array_data( $type, null, $region );
+
+            $region[ $type ]             = $field;
+            $region[ $type ]['options']  = $this->get_region_field_options( $context, $type, $selected, $hierarchy );
+            $region[ $type ]['selected'] = $selected;
+            $region[ $type ]['required'] = ( 'search' === $context ) ? false : $field['required'];
+
+            if ( isset( $translations[ $type ] ) ) {
+                $region[ $type ]['param'] = $translations[ $type ];
+            } else {
+                $region[ $type ]['param'] = $type;
+            }
+
+            // Make values selected in parent fields available to child
+            // fields when computing the field options.
+            $hierarchy[ $type ] = $region[ $type ]['selected'];
+        }
+
+        return $region;
     }
 }

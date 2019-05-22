@@ -49,6 +49,13 @@ if (typeof jQuery !== 'undefined') {
             $.each(regions, function(i, region) {
                 self.addRegion( region, self.options.fields );
             });
+
+            // If no regions were included but the selector is configured to
+            // accept at least one region, let's add an empry region so that the
+            // necessary fields are shown.
+            if ( regions.length === 0 && self.options.maxRegions ) {
+                self.addEmptyRegion();
+            }
         };
 
         $.extend($.AWPCP.RegionSelector.prototype, {
@@ -196,11 +203,19 @@ if (typeof jQuery !== 'undefined') {
              */
             onAddRegion: function(selector, event) {
                 event.preventDefault();
+                this.addEmptyRegion();
+            },
 
-                var region = this.addRegion(this.options.template,
-                                            this.options.fields);
+            /**
+             * Add an empty region to the list of regions displayed by the selector.
+             */
+            addEmptyRegion: function() {
+                var region = this.addRegion(
+                    this.options.template,
+                    this.options.fields
+                );
 
-                // clean selected values
+                // Clean selected values.
                 region.reset();
             },
 
