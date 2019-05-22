@@ -18,7 +18,7 @@ class AWPCP_RenewListingTableAction implements AWPCP_ListTableActionInterface {
      */
     private $listing_renderer;
 
-    /**class-admin-container-configuration.php
+    /**
      * @var object
      */
     private $email_notifications;
@@ -38,7 +38,7 @@ class AWPCP_RenewListingTableAction implements AWPCP_ListTableActionInterface {
         $this->listings_logic      = $listings_logic;
         $this->listing_renderer    = $listing_renderer;
         $this->email_notifications = $email_notifications;
-        $this->settings = $settings;
+        $this->settings            = $settings;
     }
 
     /**
