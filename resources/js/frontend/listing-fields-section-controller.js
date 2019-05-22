@@ -159,22 +159,7 @@ AWPCP.define( 'awpcp/frontend/listing-fields-section-controller', [
 
             self.$element.find( 'form' ).validate({
                 messages: $.AWPCP.l10n( 'submit-listing-form-fields' ),
-                onfocusout: false,
-                submitHandler: function( form, event ) {
-                    event.preventDefault();
-
-                    var $form = $( form );
-
-                    if ( MultipleRegionsSelectorValidator.showErrorsIfUserSelectedDuplicatedRegions( $form ) ) {
-                        return false;
-                    }
-
-                    if ( MultipleRegionsSelectorValidator.showErrorsIfRequiredFieldsAreEmpty( $form ) ) {
-                        return false;
-                    }
-
-                    self.onContinueButtonClicked();
-                }
+                onfocusout: false
             });
 
             self.$element.on( 'change', '.awpcp-has-value', function() {
@@ -324,6 +309,9 @@ AWPCP.define( 'awpcp/frontend/listing-fields-section-controller', [
             }
         },
 
+        /**
+         * @return non-empty array if the form has errors.
+         */
         validate: function( action ) {
             var self = this;
 
@@ -334,11 +322,21 @@ AWPCP.define( 'awpcp/frontend/listing-fields-section-controller', [
                 return [];
             }
 
-            if ( self.$element.find( 'form' ).valid() ) {
-                return [];
+            var $form = self.$element.find( 'form' ),
+                formHasDuplicatedRegions = false,
+                formHasEmptyRegionFields = false;
+
+            formHasDuplicatedRegions = MultipleRegionsSelectorValidator
+                .showErrorsIfUserSelectedDuplicatedRegions( $form );
+
+            formHasEmptyRegionFields = MultipleRegionsSelectorValidator
+                .showErrorsIfRequiredFieldsAreEmpty( $form );
+
+            if ( ! $form.valid() || formHasDuplicatedRegions || formHasEmptyRegionFields ) {
+                return [ true ];
             }
 
-            return [ true ];
+            return [];
         },
 
         showErrors: function() {
