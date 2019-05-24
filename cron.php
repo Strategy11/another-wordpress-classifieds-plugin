@@ -134,7 +134,7 @@ function doadexpirations() {
         $body.= "\n\n";
 
         if ( $notify_expiring ) {
-            $user_email = awpcp_format_recipient_address( get_adposteremail( $ad->ad_id ) );
+            $user_email = awpcp_format_recipient_address( get_adposteremail( $ad->ID ) );
             if ( ! empty( $user_email ) ) {
                 $email = new AWPCP_Email();
 
