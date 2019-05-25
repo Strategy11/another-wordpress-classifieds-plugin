@@ -246,18 +246,18 @@ class AWPCP_MultipleRegionSelector {
     /**
      * @since 4.0.0
      *
-     * @param array  $region       Data for a region record.
+     * @param array  $region_data  Data for a region record.
      * @param array  $fields       Definition of form fields enabled for this selector.
      * @param array  $translations A region type => field name map.
      * @param string $context      'search' or 'details' to indicate that the selector is
      *                             being shown on a Search form or the Listing Fields form.
      */
-    private function prepare_region_data( $region, $fields, $translations, $context ) {
+    private function prepare_region_data( $region_data, $fields, $translations, $context ) {
         $region    = [];
         $hierarchy = [];
 
         foreach ( $fields as $type => $field ) {
-            $selected = awpcp_array_data( $type, null, $region );
+            $selected = awpcp_array_data( $type, null, $region_data );
 
             $region[ $type ]             = $field;
             $region[ $type ]['options']  = $this->get_region_field_options( $context, $type, $selected, $hierarchy );
