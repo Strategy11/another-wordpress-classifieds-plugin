@@ -237,7 +237,7 @@ function deletead($adid, $adkey, $editemail, $force=false, &$errors=array()) {
 
 	$isadmin = checkifisadmin() || $force;
 
-	if (get_awpcp_option('onlyadmincanplaceads') && ($isadmin != 1)) {
+	if (get_awpcp_option('onlyadmincanplaceads') && ( $isadmin != 1 )) {
 		$message = __("You do not have permission to perform the function you are trying to perform. Access to this page has been denied",'another-wordpress-classifieds-plugin');
 		$errors[] = $message;
 
@@ -252,7 +252,7 @@ function deletead($adid, $adkey, $editemail, $force=false, &$errors=array()) {
 			}
 
 			if ( $ad && awpcp_listings_api()->delete_listing( $ad ) ) {
-				if (($isadmin == 1) && is_admin()) {
+				if (( $isadmin == 1 ) && is_admin()) {
 					$message=__("The Ad has been deleted",'another-wordpress-classifieds-plugin');
 					return $message;
 				} else {
