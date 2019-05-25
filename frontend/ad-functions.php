@@ -198,9 +198,11 @@ function awpcp_send_ad_renewed_email($ad) {
 	$user_email = awpcp_ad_renewed_user_email( $ad );
 	$user_email->send();
 
-	// send notification to the admin
-	$admin_email = awpcp_ad_renewed_admin_email( $ad, $user_email->body );
-	$admin_email->send();
+    if ( awpcp()->settings->get_option( 'send-listing-renewed-notification-to-admin' ) ) {
+        // send notification to the admin
+        $admin_email = awpcp_ad_renewed_admin_email( $ad, $user_email->body );
+        $admin_email->send();
+    }
 }
 
 /**
