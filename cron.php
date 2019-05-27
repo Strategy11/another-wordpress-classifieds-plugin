@@ -167,7 +167,7 @@ function doadcleanup() {
     $listings_logic = awpcp_listings_api();
     $listings       = awpcp_listings_collection();
 
-    if ( ! get_awpcp_option( 'autoexpiredisabledelete' ) ) {
+    if ( get_awpcp_option( 'delete-expired-listings' ) ) {
         $days_before = get_awpcp_option( 'days-before-expired-listings-are-deleted' );
         awpcp_delete_listings_expired_more_than_days_ago( intval( $days_before ), $listings_logic, $listings );
     }

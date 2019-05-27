@@ -103,18 +103,20 @@ class AWPCP_ListingsSettings {
             __( 'The end date for listings posted in free mode will be calculated using the value in this field. You can enter 0 to keep listings enabled for 10 years.', 'another-wordpress-classifieds-plugin' )
         );
 
-        $setting_name = __( 'Disable expired listings instead of deleting them?', 'another-wordpress-classifieds-plugin' );
+        $setting_name = __( 'Delete expired ads', 'another-wordpress-classifieds-plugin' );
 
         $settings_manager->add_setting(
-            $key,
-            'autoexpiredisabledelete',
-            $setting_name,
-            'checkbox',
-            0,
-            __( 'If checked, listings will remain in disabled indefinitely after they expire. If not checked, listings will be deleted after the number of days set in the next setting.', 'another-wordpress-classifieds-plugin' )
+            [
+                'id'          => 'delete-expired-listings',
+                'name'        => $setting_name,
+                'default'     => ! (bool) $this->settings->get_option( 'autoexpiredisabledelete' ),
+                'type'        => 'checkbox',
+                'description' => __( "Check to delete ads after the number of days configured in the next setting have passed since the ads were marked as expired. If not checked, ads will continue to be stored in the system but won't be visible in the frontend. They'll remain disabled.", 'another-wordpress-classifieds-plugin' ),
+                'section'     => $key,
+            ]
         );
 
-        $description = __( 'If the <setting-name> setting is NOT checked, the listings will be permanently deleted from the system, after the number of days specified in this field have passed since each listing was disabled.', 'another-wordpress-classifieds-plugin' );
+        $description = __( 'If the <setting-name> setting is checked, the ads will be permanently deleted from the system after the number of days configured in this field have passed since each ad was marked as expired.', 'another-wordpress-classifieds-plugin' );
         $description = str_replace( '<setting-name>', '<strong>' . $setting_name . '</strong>', $description );
 
         $settings_manager->add_setting( [
@@ -124,7 +126,7 @@ class AWPCP_ListingsSettings {
             'priority'    => 7,
             'description' => $description,
             'behavior'   => [
-                'shownUnless' => 'autoexpiredisabledelete',
+                'enabledIf' => 'delete-expired-listings',
             ],
             'section'     => $key,
         ] );
