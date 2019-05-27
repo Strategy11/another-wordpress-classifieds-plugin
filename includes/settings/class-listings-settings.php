@@ -38,20 +38,22 @@ class AWPCP_ListingsSettings {
         $this->register_regions_settings( $settings_manager );
     }
 
-    // phpcs:disable
-
     /**
      * @since 4.0.0
+     *
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     private function register_moderation_settings( $settings_manager ) {
-        $settings_manager->add_settings_subgroup( [
-            'id'       => 'listings-moderation',
-            'name'     => __( 'Moderation', 'another-wordpress-classifieds-plugin' ),
-            'priority' => 10,
-            'parent'   => 'listings-settings',
-        ] );
+        $settings_manager->add_settings_subgroup(
+            [
+                'id'       => 'listings-moderation',
+                'name'     => __( 'Moderation', 'another-wordpress-classifieds-plugin' ),
+                'priority' => 10,
+                'parent'   => 'listings-settings',
+            ]
+        );
 
-        // Section: Ad/Listings - Moderation
+        // Section: Ad/Listings - Moderation.
 
         $key = 'listings-moderation';
 
@@ -88,11 +90,10 @@ class AWPCP_ListingsSettings {
             __( 'Awaiting approval message', 'another-wordpress-classifieds-plugin' ),
             'textarea',
             __( 'All listings must be approved by an administrator before they are activated on the system. As soon as an administrator has approved your listing it will become visible. Thank you for your business.', 'another-wordpress-classifieds-plugin' ),
-            __( 'This message is shown to users right after they post an Ad, if that Ad is awaiting approval from the administrator. The message may also be included in email notifications sent when a new Ad is posted.', 'another-wordpress-classifieds-plugin')
+            __( 'This message is shown to users right after they post an Ad, if that Ad is awaiting approval from the administrator. The message may also be included in email notifications sent when a new Ad is posted.', 'another-wordpress-classifieds-plugin' )
         );
 
         $settings_manager->add_setting( $key, 'ad-poster-email-address-whitelist', __( 'Allowed domains in Ad poster email', 'another-wordpress-classifieds-plugin' ), 'textarea', '', __( 'Only email addresses with a domain in the list above will be allowed. *.foo.com will match a.foo.com, b.foo.com, etc. but foo.com will match foo.com only. Please type a domain per line.', 'another-wordpress-classifieds-plugin' ) );
-
 
         $settings_manager->add_setting(
             $key,
@@ -119,17 +120,19 @@ class AWPCP_ListingsSettings {
         $description = __( 'If the <setting-name> setting is checked, the ads will be permanently deleted from the system after the number of days configured in this field have passed since each ad was marked as expired.', 'another-wordpress-classifieds-plugin' );
         $description = str_replace( '<setting-name>', '<strong>' . $setting_name . '</strong>', $description );
 
-        $settings_manager->add_setting( [
-            'id'          => 'days-before-expired-listings-are-deleted',
-            'name'        => __( 'Number of days before expired listings are deleted', 'another-wordpress-classifieds-plugin' ),
-            'type'        => 'textfield',
-            'priority'    => 7,
-            'description' => $description,
-            'behavior'   => [
-                'enabledIf' => 'delete-expired-listings',
-            ],
-            'section'     => $key,
-        ] );
+        $settings_manager->add_setting(
+            [
+                'id'          => 'days-before-expired-listings-are-deleted',
+                'name'        => __( 'Number of days before expired listings are deleted', 'another-wordpress-classifieds-plugin' ),
+                'type'        => 'textfield',
+                'priority'    => 7,
+                'description' => $description,
+                'behavior'    => [
+                    'enabledIf' => 'delete-expired-listings',
+                ],
+                'section'     => $key,
+            ]
+        );
 
         $settings_manager->add_setting(
             $key,
@@ -145,12 +148,14 @@ class AWPCP_ListingsSettings {
      * @since 4.0.0
      */
     private function register_notification_settings( $settings_manager ) {
-        $settings_manager->add_settings_subgroup( [
-            'id'       => 'listings-notifications',
-            'name'     => __( 'Notifications', 'another-wordpress-classifieds-plugin' ),
-            'priority' => 20,
-            'parent'   => 'listings-settings',
-        ] );
+        $settings_manager->add_settings_subgroup(
+            [
+                'id'       => 'listings-notifications',
+                'name'     => __( 'Notifications', 'another-wordpress-classifieds-plugin' ),
+                'priority' => 20,
+                'parent'   => 'listings-settings',
+            ]
+        );
 
         $this->register_subscriber_notifications_settings( $settings_manager );
         $this->register_moderator_notifications_settings( $settings_manager );
@@ -161,7 +166,7 @@ class AWPCP_ListingsSettings {
      * Register settings for subscriber notifications.
      */
     private function register_subscriber_notifications_settings( $settings_manager ) {
-        $key   = 'user-notifications';
+        $key = 'user-notifications';
 
         $settings_manager->add_section( 'listings-notifications', __( 'User Notifications', 'another-wordpress-classifieds-plugin' ), 'user-notifications', 3, array( $settings_manager, 'section' ) );
 
@@ -271,7 +276,7 @@ class AWPCP_ListingsSettings {
             __( 'An email will be sent to administrator users when a listing is flagged.', 'another-wordpress-classifieds-plugin' )
         );
 
-         $settings_manager->add_setting(
+        $settings_manager->add_setting(
             $key,
             'send-media-uploaded-notification-to-administrators',
             __( 'New media was uploaded', 'another-wordpress-classifieds-plugin' ),
@@ -285,12 +290,14 @@ class AWPCP_ListingsSettings {
      * @since 4.0.0
      */
     private function register_seo_settings( $settings_manager ) {
-        $settings_manager->add_settings_subgroup( [
-            'id'       => 'seo-settings',
-            'name'     => __( 'SEO', 'another-wordpress-classifieds-plugin' ),
-            'priority' => 30,
-            'parent'   => 'listings-settings',
-        ] );
+        $settings_manager->add_settings_subgroup(
+            [
+                'id'       => 'seo-settings',
+                'name'     => __( 'SEO', 'another-wordpress-classifieds-plugin' ),
+                'priority' => 30,
+                'parent'   => 'listings-settings',
+            ]
+        );
 
         $this->register_friendly_urls_settings( $settings_manager );
         $this->register_window_title_settings( $settings_manager );
@@ -301,13 +308,15 @@ class AWPCP_ListingsSettings {
      * @since 4.0.0
      */
     private function register_friendly_urls_settings( $settings_manager ) {
-        $key   = 'friendly-urls-settings';
+        $key = 'friendly-urls-settings';
 
-        $settings_manager->add_settings_section( [
-            'id'      => 'friendly-urls-settings',
-            'name'    => __( 'Search Engine Friendly URLs', 'another-wordpress-classifieds-plugin' ),
-            'subgroup' => 'seo-settings',
-        ] );
+        $settings_manager->add_settings_section(
+            [
+                'id'       => 'friendly-urls-settings',
+                'name'     => __( 'Search Engine Friendly URLs', 'another-wordpress-classifieds-plugin' ),
+                'subgroup' => 'seo-settings',
+            ]
+        );
 
         $settings_manager->add_setting(
             $key,
@@ -327,13 +336,15 @@ class AWPCP_ListingsSettings {
 
         $introduction = _x( 'These settings affect the title shown in the title bar of the browser for the listing. You can include or remove certain elements if you wish.', 'window title settings section', 'another-wordpress-classifieds-plugin' );
 
-        $settings_manager->add_settings_section( [
-            'id'          => 'window-title',
-            'name'        => __( 'Window Title', 'another-wordpress-classifieds-plugin' ),
-            'description' => '<p>' . $introduction . '</p>',
-            'priority'    => 40,
-            'subgroup'    => 'seo-settings',
-        ] );
+        $settings_manager->add_settings_section(
+            [
+                'id'          => 'window-title',
+                'name'        => __( 'Window Title', 'another-wordpress-classifieds-plugin' ),
+                'description' => '<p>' . $introduction . '</p>',
+                'priority'    => 40,
+                'subgroup'    => 'seo-settings',
+            ]
+        );
 
         $settings_manager->add_setting(
             $key,
@@ -359,7 +370,7 @@ class AWPCP_ListingsSettings {
             __( 'Show state in window title', 'another-wordpress-classifieds-plugin' ),
             'checkbox',
             1,
-            __('Show state in browser page title when viewing individual Ad', 'another-wordpress-classifieds-plugin' )
+            __( 'Show state in browser page title when viewing individual Ad', 'another-wordpress-classifieds-plugin' )
         );
 
         $settings_manager->add_setting(
@@ -403,7 +414,7 @@ class AWPCP_ListingsSettings {
         $show_listings_page = awpcp_get_page_by_ref( 'show-ads-page-name' );
 
         if ( $show_listings_page ) {
-            $show_listings_url = awpcp_get_page_link( $show_listings_page->ID );
+            $show_listings_url  = awpcp_get_page_link( $show_listings_page->ID );
             $show_listings_link = sprintf( '<a href="%s">%s</a>', $show_listings_url, $show_listings_page->post_title );
         } else {
             $show_listings_link = _x( 'Show Ad', 'page name', 'another-wordpress-classifieds-plugin' );
@@ -429,17 +440,19 @@ class AWPCP_ListingsSettings {
 
         // TODO: Update the slug if the show listing page's uri changes and
         // listings are not being displayed on their own page.
-        $settings_manager->add_setting( [
-            'section'     => $key,
-            'id'          => 'listings-slug',
-            'name'        => __( 'Listings slug', 'another-wordpress-classifieds-plugin' ),
-            'type'        => 'textfield',
-            'default'     => $default_slug,
-            'description' => $description,
-            'behavior'   => [
-                'enabledIf' => 'display-listings-as-single-posts',
-            ],
-        ] );
+        $settings_manager->add_setting(
+            [
+                'section'     => $key,
+                'id'          => 'listings-slug',
+                'name'        => __( 'Listings slug', 'another-wordpress-classifieds-plugin' ),
+                'type'        => 'textfield',
+                'default'     => $default_slug,
+                'description' => $description,
+                'behavior'    => [
+                    'enabledIf' => 'display-listings-as-single-posts',
+                ],
+            ]
+        );
 
         $main_page_slug = $this->get_main_page_slug();
 
@@ -450,17 +463,19 @@ class AWPCP_ListingsSettings {
             $description = __( "Include the slug of the plugin's main page in the URL that points to the page of an individual listing.", 'another-wordpress-classifieds-plugin' );
         }
 
-        $settings_manager->add_setting( [
-            'id'          => 'include-main-page-slug-in-listing-url',
-            'name'        => __( "Include the slug of the plugin's main page in the listing URL", 'another-wordpress-classifieds-plugin' ),
-            'type'        => 'checkbox',
-            'default'     => 0,
-            'description' => $description,
-            'behavior'   => [
-                'enabledIf' => 'display-listings-as-single-posts',
-            ],
-            'section'     => $key,
-        ] );
+        $settings_manager->add_setting(
+            [
+                'id'          => 'include-main-page-slug-in-listing-url',
+                'name'        => __( "Include the slug of the plugin's main page in the listing URL", 'another-wordpress-classifieds-plugin' ),
+                'type'        => 'checkbox',
+                'default'     => 0,
+                'description' => $description,
+                'behavior'    => [
+                    'enabledIf' => 'display-listings-as-single-posts',
+                ],
+                'section'     => $key,
+            ]
+        );
 
         $settings_manager->add_setting(
             $key,
@@ -535,13 +550,14 @@ class AWPCP_ListingsSettings {
         $introduction = _x( 'These settings affect the URL path shown for listings. You can include or remove elements for SEO purposes.', 'listing url settings section', 'another-wordpress-classifieds-plugin' );
 
         $main_page_slug = $this->get_main_page_slug();
-        $default_slug = $this->get_default_listings_slug();
+        $default_slug   = $this->get_default_listings_slug();
 
         $example_path = '<code>/' . $main_page_slug . '/' . $default_slug . '/id/listing-title/city/state/category</code>';
         $example_text = _x( 'Example path: <example-path>.', 'listing url settings section', 'another-wordpress-classifieds-plugin' );
         $example_text = str_replace( '<example-path>', $example_path, $example_text );
 
-        echo '<p>' . $introduction . '<br/><br/>' . $example_text . '</p>';
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        echo '<p>' . esc_html( $introduction ) . '<br/><br/>' . $example_text . '</p>';
     }
 
     /**
@@ -550,6 +566,7 @@ class AWPCP_ListingsSettings {
      *
      *       Alternatively, we could add filters and actions for sections and
      *       invidiual settings.
+     *
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function seo_settings_validated( $options, $group, $subgroup ) {
@@ -561,14 +578,16 @@ class AWPCP_ListingsSettings {
      */
     private function register_regions_settings( $settings_manager ) {
         $group = 'regions-settings';
-        $key = 'regions-settings';
+        $key   = 'regions-settings';
 
-        $settings_manager->add_settings_subgroup( [
-            'id' => 'regions-settings',
-            'name' => __( 'Regions', 'another-wordpress-classifieds-plugin' ),
-            'priority' => 40,
-            'parent' => 'listings-settings',
-        ] );
+        $settings_manager->add_settings_subgroup(
+            [
+                'id'       => 'regions-settings',
+                'name'     => __( 'Regions', 'another-wordpress-classifieds-plugin' ),
+                'priority' => 40,
+                'parent'   => 'listings-settings',
+            ]
+        );
 
         $settings_manager->add_section( $group, __( 'Regions Settings', 'another-wordpress-classifieds-plugin' ), 'regions-settings', 20, array( $settings_manager, 'section' ) );
 
