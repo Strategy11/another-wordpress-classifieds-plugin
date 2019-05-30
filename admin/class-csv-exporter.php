@@ -226,7 +226,7 @@ class AWPCP_CSVExporter {
     private function prepare_header( $header ) {
         $bom = "\xEF\xBB\xBF"; /* UTF-8 BOM */
 
-        return $bom . $this->prepare_content( $header );
+        return $bom . $header . "\n";
     }
 
     private function prepare_content( $content ) {
@@ -323,10 +323,6 @@ class AWPCP_CSVExporter {
      */
     private function prepare_meta_value( $column ) {
         $value = get_post_meta( $this->listing->ID, $column['name'], true );
-
-        if ( empty( $value ) ) {
-            return $value;
-        }
 
         if ( $column['name'] === '_awpcp_start_date' || $column['name'] === '_awpcp_end_date' ) {
             $value = date_create( $value );
