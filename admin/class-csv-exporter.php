@@ -191,7 +191,6 @@ class AWPCP_CSVExporter {
 
         if ( $this->is_done() ) {
             if ( file_exists( $this->workingdir . 'images.zip' ) ) {
-                unlink( $this->workingdir . 'export.zip' );
                 $zip = $this->get_pclzip_instance( $this->workingdir . 'export.zip' );
 
                 $files   = array();
