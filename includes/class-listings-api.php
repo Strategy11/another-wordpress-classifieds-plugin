@@ -112,7 +112,9 @@ class AWPCP_ListingsAPI {
 
         $listing = $this->listings->get( $listing_id );
 
-        $this->update_listing_terms( $listing, $listing_data['terms'] );
+        if (isset($listing_data['terms'])) {
+            $this->update_listing_terms( $listing, $listing_data['terms'] );
+        }
         $this->update_listing_metadata( $listing, $this->get_default_listing_metadata( $listing_data['metadata'] ) );
 
         return $listing;
