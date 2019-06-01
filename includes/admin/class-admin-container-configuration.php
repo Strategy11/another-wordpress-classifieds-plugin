@@ -318,6 +318,11 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
         } );
 
         $this->register_importer_objects( $container );
+	    $container['ExportListingsAdminPage'] = $container->service( function( $container ) {
+		    return new AWPCP_ExportListingsAdminPage(
+			    awpcp_request()
+		    );
+	    } );
         $this->register_tools_objects( $container );
     }
 

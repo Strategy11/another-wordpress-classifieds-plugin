@@ -22,14 +22,17 @@ class AWPCP_CSVImporterColumns {
 
             foreach ( $this->supported_columns as $column_type => $columns ) {
                 foreach ( $columns as $header => $column ) {
-                    $this->supported_columns[ $column_type ][ $header ] = wp_parse_args( $column, [
-                        'name'        => '',
-                        'label'       => '',
-                        'description' => '',
-                        'required'    => false,
-                        'multiple'    => false,
-                        'examples'    => [ '' ],
-                    ] );
+                    $this->supported_columns[ $column_type ][ $header ] = wp_parse_args(
+                        $column,
+                        [
+                            'name'        => '',
+                            'label'       => '',
+                            'description' => '',
+                            'required'    => false,
+                            'multiple'    => false,
+                            'examples'    => [ '' ],
+                        ]
+                    );
                 }
             }
         }
@@ -87,7 +90,7 @@ class AWPCP_CSVImporterColumns {
             ),
             'terms'         => array(
                 'category_name' => [
-                    'name'        => 'term_id',
+                    'name'        => AWPCP_CATEGORY_TAXONOMY,
                     'label'       => __( 'Category', 'another-wordpress-classifieds-plugin' ),
                     'description' => 'The name of the category associated with this ad.',
                     'required'    => true,

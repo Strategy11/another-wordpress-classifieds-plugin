@@ -669,7 +669,6 @@ class AWPCP_CSV_Importer_Delegate {
  */
 function awpcp_validate_extra_field( $name, $value, $validate, $type, $options, $enforce, &$errors ) {
     $validation_errors = array();
-    $serialize = false;
 
     $values_list = null;
 
@@ -684,7 +683,7 @@ function awpcp_validate_extra_field( $name, $value, $validate, $type, $options, 
             // value can be any combination of items from options list
             $msg = sprintf( __( "The value for Extra Field %s's is not allowed. Allowed values are: %%s", 'another-wordpress-classifieds-plugin' ), $name );
             $values_list = explode( ';', $value );
-            $serialize = true;
+            $value = explode( ';', $value );
 
         case 'Select':
         case 'Radio Button':
@@ -705,10 +704,6 @@ function awpcp_validate_extra_field( $name, $value, $validate, $type, $options, 
                 }
             }
 
-            // extra fields multiple values are stored serialized
-            if ( $serialize ) {
-                $value = maybe_serialize( $values_list );
-            }
 
             break;
 

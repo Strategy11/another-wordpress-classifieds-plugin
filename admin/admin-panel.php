@@ -257,8 +257,8 @@ class AWPCP_AdminPanel {
 
         $router->add_admin_subpage(
             $parent_page,
-            __( 'Tools', 'another-wordpress-classifieds-plugin' ),
-            awpcp_admin_page_title( __( 'Tools', 'another-wordpress-classifieds-plugin' ) ),
+            __( 'Import & Export', 'another-wordpress-classifieds-plugin' ),
+            awpcp_admin_page_title( __( 'Import & Export', 'another-wordpress-classifieds-plugin' ) ),
             'awpcp-tools',
             function() {
                 return awpcp()->container['ToolsAdminPage'];
@@ -306,6 +306,14 @@ class AWPCP_AdminPanel {
 		    'example-csv-file',
 		    function() { return awpcp()->container['ExampleCSVFileAdminPage']; }
 	    );
+
+        $router->add_admin_section(
+            'awpcp.php::awpcp-tools',
+            'export-listings',
+            'awpcp-view',
+            'export-listings',
+            function() { return awpcp()->container['ExportListingsAdminPage']; }
+        );
 
         $router->add_admin_subpage(
             $parent_page,
