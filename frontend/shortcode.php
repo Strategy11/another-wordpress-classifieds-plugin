@@ -159,9 +159,12 @@ class AWPCP_Pages {
 
         $query = array(
             'context' => 'public-listings',
-            'limit' => absint( $attrs['limit'] ),
             'user_id' => $user_id,
         );
+
+        if ( ! is_null( $attrs['limit'] ) ) {
+            $query['limit'] = absint( $attrs['limit'] );
+        }
 
         $options = array(
             'show_menu_items' => awpcp_parse_bool( $attrs['menu'] )
