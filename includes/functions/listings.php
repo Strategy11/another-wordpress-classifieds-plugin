@@ -109,15 +109,15 @@ function awpcp_display_listings( $query_vars, $context, $options ) {
 function awpcp_get_results_per_page( $query_vars = [] ) {
     $results_per_page = intval( awpcp_request_param( 'results', get_awpcp_option( 'adresultsperpage', 10 ) ) );
 
-    if ( isset( $query_vars['results'] ) ) {
+    if ( ! empty( $query_vars['results'] ) ) {
         $results_per_page = intval( $query_vars['results'] );
     }
 
-    if ( isset( $query_vars['limit'] ) ) {
+    if ( ! empty( $query_vars['limit'] ) ) {
         $results_per_page = intval( $query_vars['limit'] );
     }
 
-    if ( isset( $query_vars['posts_per_page'] ) ) {
+    if ( ! empty( $query_vars['posts_per_page'] ) ) {
         $results_per_page = intval( $query_vars['posts_per_page'] );
     }
 
