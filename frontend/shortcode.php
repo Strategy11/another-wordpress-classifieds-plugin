@@ -1,20 +1,22 @@
 <?php
 /**
- * @package AWPCP
+ * The handlers for the plugin shortcodes and frontend pages are
+ * defined and some of them implemented in this file.
+ *
+ * @package AWPCP/Frontend
  */
 
-// phpcs:disable
+// TODO: Do we really need to requires these files here?
+require_once AWPCP_DIR . '/frontend/shortcode-raw.php';
 
-require_once(AWPCP_DIR . '/frontend/shortcode-raw.php');
-
-require_once(AWPCP_DIR . '/frontend/page-renew-ad.php');
-require_once(AWPCP_DIR . '/frontend/page-show-ad.php');
-require_once(AWPCP_DIR . '/frontend/page-reply-to-ad.php');
-require_once(AWPCP_DIR . '/frontend/page-search-ads.php');
-require_once(AWPCP_DIR . '/frontend/page-browse-ads.php');
+require_once AWPCP_DIR . '/frontend/page-renew-ad.php';
+require_once AWPCP_DIR . '/frontend/page-show-ad.php';
+require_once AWPCP_DIR . '/frontend/page-reply-to-ad.php';
+require_once AWPCP_DIR . '/frontend/page-search-ads.php';
+require_once AWPCP_DIR . '/frontend/page-browse-ads.php';
 
 /**
- * @SuppressWarnings(PHPMD)
+ * Configures handlers for plugin shortcodes and frontend pages.
  */
 class AWPCP_Pages {
     private $output = array();
@@ -29,30 +31,30 @@ class AWPCP_Pages {
 		// fix for theme conflict with ThemeForest themes.
 		new AWPCP_RawShortcode();
 
-		add_action('init', array($this, 'init'));
+		add_action( 'init', array( $this, 'init' ) );
 	}
 
 	public function init() {
-        // page shortcodes
-		add_shortcode('AWPCPPLACEAD', array($this, 'place_ad'));
-		add_shortcode('AWPCPEDITAD', array($this, 'edit_ad'));
-		add_shortcode('AWPCP-RENEW-AD', array($this, 'renew_ad'));
-		add_shortcode('AWPCPSEARCHADS', array($this, 'search_ads'));
-		add_shortcode('AWPCPREPLYTOAD', array($this, 'reply_to_ad'));
+        // Page shortcodes.
+		add_shortcode( 'AWPCPPLACEAD', array( $this, 'place_ad' ) );
+		add_shortcode( 'AWPCPEDITAD', array( $this, 'edit_ad' ) );
+		add_shortcode( 'AWPCP-RENEW-AD', array( $this, 'renew_ad' ) );
+		add_shortcode( 'AWPCPSEARCHADS', array( $this, 'search_ads' ) );
+		add_shortcode( 'AWPCPREPLYTOAD', array( $this, 'reply_to_ad' ) );
 
         // These shortcodes are no longer used, but kept for backwards compatibility.
-		add_shortcode('AWPCPPAYMENTTHANKYOU', array($this, 'noop'));
-		add_shortcode('AWPCPCANCELPAYMENT', array($this, 'noop'));
+		add_shortcode( 'AWPCPPAYMENTTHANKYOU', array( $this, 'noop' ) );
+		add_shortcode( 'AWPCPCANCELPAYMENT', array( $this, 'noop' ) );
 
         add_shortcode( 'AWPCPBROWSECATS', array( $this->browse_ads, 'dispatch' ) );
-		add_shortcode('AWPCPBROWSEADS', array($this->browse_ads, 'dispatch'));
+		add_shortcode( 'AWPCPBROWSEADS', array( $this->browse_ads, 'dispatch' ) );
 
-        add_shortcode('AWPCPSHOWAD', array( $this, 'show_ad' ) );
-		add_shortcode('AWPCPCLASSIFIEDSUI', 'awpcpui_homescreen');
+        add_shortcode( 'AWPCPSHOWAD', array( $this, 'show_ad' ) );
+		add_shortcode( 'AWPCPCLASSIFIEDSUI', 'awpcpui_homescreen' );
 
-        add_shortcode('AWPCPLATESTLISTINGS', array($this, 'listings_shortcode'));
-        add_shortcode('AWPCPRANDOMLISTINGS', array($this, 'random_listings_shortcode'));
-        add_shortcode('AWPCPSHOWCAT', array($this, 'category_shortcode'));
+        add_shortcode( 'AWPCPLATESTLISTINGS', array( $this, 'listings_shortcode' ) );
+        add_shortcode( 'AWPCPRANDOMLISTINGS', array( $this, 'random_listings_shortcode' ) );
+        add_shortcode( 'AWPCPSHOWCAT', array( $this, 'category_shortcode' ) );
         add_shortcode( 'AWPCPUSERLISTINGS', array( $this, 'user_listings_shortcode' ) );
 
         add_shortcode( 'AWPCPBUYCREDITS', array( $this, 'buy_credits' ) );
@@ -60,7 +62,7 @@ class AWPCP_Pages {
         add_action( 'wp_ajax_awpcp-flag-ad', array( $this, 'ajax_flag_ad' ) );
         add_action( 'wp_ajax_nopriv_awpcp-flag-ad', array( $this, 'ajax_flag_ad' ) );
 
-		do_action('awpcp_setup_shortcode');
+		do_action( 'awpcp_setup_shortcode' );
 	}
 
     public function noop() {
@@ -69,7 +71,8 @@ class AWPCP_Pages {
 
 	public function place_ad() {
         if ( ! isset( $this->output['place-ad'] ) ) {
-            do_action('awpcp-shortcode', 'place-ad');
+            // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
+            do_action( 'awpcp-shortcode', 'place-ad' );
 
             if ( ! isset( $this->place_ad_page ) ) {
                 $this->place_ad_page = $this->container['SubmitListingPage'];
@@ -83,7 +86,8 @@ class AWPCP_Pages {
 
 	public function edit_ad() {
         if ( ! isset( $this->output['edit-ad'] ) ) {
-            do_action('awpcp-shortcode', 'edit-ad');
+            // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
+            do_action( 'awpcp-shortcode', 'edit-ad' );
 
             if ( ! isset( $this->edit_ad_page ) ) {
                 $this->edit_ad_page = $this->container['EditListingPage'];
@@ -100,7 +104,7 @@ class AWPCP_Pages {
 			$this->renew_ad_page = awpcp_renew_listing_page();
         }
 
-		return is_null($this->renew_ad_page) ? '' : $this->renew_ad_page->dispatch();
+		return is_null( $this->renew_ad_page ) ? '' : $this->renew_ad_page->dispatch();
 	}
 
     public function show_ad() {
@@ -121,8 +125,10 @@ class AWPCP_Pages {
 
 	public function reply_to_ad() {
         if ( ! isset( $this->output['reply-to-ad'] ) ) {
-            do_action('awpcp-shortcode', 'reply-to-ad');
-            $page = awpcp_reply_to_listing_page();
+            // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
+            do_action( 'awpcp-shortcode', 'reply-to-ad' );
+
+            $page                        = awpcp_reply_to_listing_page();
             $this->output['reply-to-ad'] = $page->dispatch();
         }
 
@@ -142,14 +148,28 @@ class AWPCP_Pages {
 
     /* Shortcodes */
 
+    /**
+     * @param array $attrs {
+     *      Optional. An array of shortcode attributes.
+     *
+     *      @type int  $user_id If defined, the shortcode will show listings
+     *                          owned by this user only. Default {@see get_current_user_id()}.
+     *      @type bool $menu    Whether to show the menu items above the list of listings.
+     *      @type int  $limit   The number of listings to show. Default to number
+     *                          of ads per page configured in the plugin settings.
+     * }
+     */
     public function user_listings_shortcode( $attrs ) {
         wp_enqueue_script( 'awpcp' );
 
-        $attrs = shortcode_atts( array(
-            'user_id' => get_current_user_id(),
-            'menu' => true,
-            'limit' => null
-        ), $attrs );
+        $attrs = shortcode_atts(
+            array(
+                'user_id' => get_current_user_id(),
+                'menu'    => true,
+                'limit'   => null,
+            ),
+            $attrs
+        );
 
         $user_id = absint( $attrs['user_id'] );
 
@@ -167,29 +187,29 @@ class AWPCP_Pages {
         }
 
         $options = array(
-            'show_menu_items' => awpcp_parse_bool( $attrs['menu'] )
+            'show_menu_items' => awpcp_parse_bool( $attrs['menu'] ),
         );
 
         return awpcp_display_listings( $query, 'user-listings-shortcode', $options );
     }
 
-    public function listings_shortcode($attrs) {
-        wp_enqueue_script('awpcp');
+    public function listings_shortcode( $attrs ) {
+        wp_enqueue_script( 'awpcp' );
 
         $default_attrs = array(
-            'menu' => true,
+            'menu'       => true,
             'pagination' => false,
-            'limit' => 10,
+            'limit'      => 10,
         );
 
-        $attrs = shortcode_atts( $default_attrs, $attrs );
-        $show_menu = awpcp_parse_bool($attrs['menu']);
+        $attrs           = shortcode_atts( $default_attrs, $attrs );
+        $show_menu       = awpcp_parse_bool( $attrs['menu'] );
         $show_pagination = awpcp_parse_bool( $attrs['pagination'] );
-        $limit = absint($attrs['limit']);
+        $limit           = absint( $attrs['limit'] );
 
         $query = array(
             'context' => 'public-listings',
-            'limit' => $limit,
+            'limit'   => $limit,
         );
 
         $options = array(
@@ -200,20 +220,27 @@ class AWPCP_Pages {
         return awpcp_display_listings( $query, 'latest-listings-shortcode', $options );
     }
 
-    public function random_listings_shortcode($attrs) {
-        wp_enqueue_script('awpcp');
+    public function random_listings_shortcode( $attrs ) {
+        wp_enqueue_script( 'awpcp' );
 
-        $attrs = shortcode_atts( array( 'category' => null, 'menu' => true, 'limit' => 10 ), $attrs );
+        $attrs = shortcode_atts(
+            array(
+                'category' => null,
+                'menu'     => true,
+                'limit'    => 10,
+            ),
+            $attrs
+        );
 
         $categories = array_filter( array_map( 'absint', explode( ',', $attrs['category'] ) ) );
-        $show_menu = awpcp_parse_bool($attrs['menu']);
-        $limit = absint($attrs['limit']);
+        $show_menu  = awpcp_parse_bool( $attrs['menu'] );
+        $limit      = absint( $attrs['limit'] );
 
         $query = array(
-            'context' => 'public-listings',
+            'context'     => 'public-listings',
             'category_id' => $categories,
-            'orderby' => 'random',
-            'limit' => $limit,
+            'orderby'     => 'random',
+            'limit'       => $limit,
         );
 
         $options = array(
@@ -224,7 +251,7 @@ class AWPCP_Pages {
     }
 
     public function category_shortcode( $attrs ) {
-        wp_enqueue_script('awpcp');
+        wp_enqueue_script( 'awpcp' );
 
         $cache_key = crc32( maybe_serialize( $attrs ) );
 
@@ -237,25 +264,25 @@ class AWPCP_Pages {
 
     /* Ajax handlers */
 
+    /**
+     * @since unknown
+     */
     public function ajax_flag_ad() {
         $response = 0;
 
         if ( check_ajax_referer( 'flag_ad', 'nonce' ) ) {
             try {
-                $ad = awpcp_listings_collection()->get( intval( awpcp_request_param( 'ad', 0 ) ) );
+                $ad       = awpcp_listings_collection()->get( intval( awpcp_request_param( 'ad', 0 ) ) );
                 $response = awpcp_listings_api()->flag_listing( $ad );
             } catch ( AWPCP_Exception $e ) {
-                // pass
+                $response = 0;
             }
         }
 
-        echo $response; die();
+        echo $response; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        die();
     }
 }
-
-
-
-// Set Home Screen
 
 /**
  * @SuppressWarnings(PHPMD)
@@ -265,44 +292,44 @@ function awpcpui_homescreen() {
 
 	$awpcppagename = sanitize_title( get_currentpagename() );
 
-	if (!isset($classicontent) || empty($classicontent)) {
-		$classicontent=awpcpui_process($awpcppagename);
+	if ( ! isset( $classicontent ) || empty( $classicontent ) ) {
+		$classicontent = awpcpui_process( $awpcppagename );
 	}
 	return $classicontent;
 }
 
-
 /**
  * @SuppressWarnings(PHPMD)
  */
-function awpcpui_process($awpcppagename) {
+function awpcpui_process( $awpcppagename ) {
 	global $hasregionsmodule;
 
 	$output = '';
 
 	$awpcppage = get_currentpagename();
-	if (!isset($awpcppagename) || empty($awpcppagename)) {
-		$awpcppagename = sanitize_title($awpcppage, $post_ID='');
+	if ( ! isset( $awpcppagename ) || empty( $awpcppagename ) ) {
+		$awpcppagename = sanitize_title( $awpcppage, $post_ID = '' );
 	}
 
-	$layout = get_query_var('layout');
+	$layout = intval( get_query_var( 'layout' ) );
 
-	$isadmin=checkifisadmin();
+	$isadmin = checkifisadmin();
 
     awpcp_enqueue_main_script();
 
-	$isclassifiedpage = checkifclassifiedpage($awpcppage);
-	if (($isclassifiedpage == false) && ($isadmin == 1)) {
-		$output .= __("Hi admin, you need to go to your dashboard and setup your classifieds.", 'another-wordpress-classifieds-plugin');
+	$isclassifiedpage = checkifclassifiedpage( $awpcppage );
 
-	} elseif (($isclassifiedpage == false) && ($isadmin != 1)) {
-		$output .= __("You currently have no classifieds", 'another-wordpress-classifieds-plugin');
+    if ( ! $isclassifiedpage && $isadmin ) {
+		$output .= __( 'Hi admin, you need to go to your dashboard and setup your classifieds.', 'another-wordpress-classifieds-plugin' );
 
-	} elseif ($layout == 2) {
-		$output .= awpcp_display_the_classifieds_page_body($awpcppagename);
+    } elseif ( ! $isclassifiedpage && ! $isadmin ) {
+		$output .= __( 'You currently have no classifieds', 'another-wordpress-classifieds-plugin' );
+
+	} elseif ( $layout === 2 ) {
+		$output .= awpcp_display_the_classifieds_page_body( $awpcppagename );
 
 	} else {
-		$output .= awpcp_load_classifieds($awpcppagename);
+		$output .= awpcp_load_classifieds( $awpcppagename );
 	}
 
 	return $output;
@@ -311,12 +338,12 @@ function awpcpui_process($awpcppagename) {
 /**
  * @SuppressWarnings(PHPMD)
  */
-function awpcp_load_classifieds($awpcppagename) {
-	if (get_awpcp_option('main_page_display') == 1) {
+function awpcp_load_classifieds( $awpcppagename ) {
+	if ( get_awpcp_option( 'main_page_display' ) ) {
         $query = array(
             'context' => 'public-listings',
-            'limit' => absint( awpcp_request_param( 'results', get_awpcp_option( 'adresultsperpage', 10 ) ) ),
-            'offset' => absint( awpcp_request_param( 'offset', 0 ) ),
+            'limit'   => absint( awpcp_request_param( 'results', get_awpcp_option( 'adresultsperpage', 10 ) ) ),
+            'offset'  => absint( awpcp_request_param( 'offset', 0 ) ),
             'orderby' => get_awpcp_option( 'groupbrowseadsby' ),
         );
 
@@ -329,59 +356,56 @@ function awpcp_load_classifieds($awpcppagename) {
 }
 
 
-//	START FUNCTION: show the classifieds page body
-
 /**
  * @SuppressWarnings(PHPMD)
  */
-function awpcp_display_the_classifieds_page_body($awpcppagename) {
+function awpcp_display_the_classifieds_page_body( $awpcppagename ) {
 	global $hasregionsmodule;
 
 	$output = '';
 
-	if (!isset($awpcppagename) || empty($awpcppagename)) {
-		$awpcppage=get_currentpagename();
-		$awpcppagename = sanitize_title($awpcppage, $post_ID='');
+	if ( ! isset( $awpcppagename ) || empty( $awpcppagename ) ) {
+		$awpcppage     = get_currentpagename();
+		$awpcppagename = sanitize_title( $awpcppage, $post_ID = '' );
 	}
 
-	$output .= "<div id=\"classiwrapper\">";
-	$uiwelcome=stripslashes_deep(get_awpcp_option('uiwelcome'));
-	$output .= "<div class=\"uiwelcome\">$uiwelcome</div>";
+	$output   .= '<div id="classiwrapper">';
+	$uiwelcome = stripslashes_deep( get_awpcp_option( 'uiwelcome' ) );
+	$output   .= "<div class=\"uiwelcome\">$uiwelcome</div>";
 
-	// Place the menu items
+	// Show the menu items.
     $output .= awpcp_render_classifieds_bar();
 
 	if ( function_exists( 'awpcp_region_control_selector' ) && get_awpcp_option( 'show-region-selector', true ) ) {
 		$output .= awpcp_region_control_selector();
 	}
 
-	$output .= "<div class=\"classifiedcats\">";
+	$output .= '<div class="classifiedcats">';
 
-	//Display the categories
-    $params = array(
-        'show_in_columns' => get_awpcp_option( 'view-categories-columns' ),
-        'show_empty_categories' => ! get_awpcp_option( 'hide-empty-categories' ),
+	// Display the categories.
+    $params  = array(
+        'show_in_columns'          => get_awpcp_option( 'view-categories-columns' ),
+        'show_empty_categories'    => ! get_awpcp_option( 'hide-empty-categories' ),
         'show_children_categories' => true,
-        'show_listings_count' => get_awpcp_option( 'showadcount' ),
-        'show_sidebar' => true,
+        'show_listings_count'      => get_awpcp_option( 'showadcount' ),
+        'show_sidebar'             => true,
     );
     $output .= awpcp_categories_renderer_factory()->create_list_renderer()->render( $params );
 
-	$output .= "</div>";
+	$output .= '</div>';
 
-	$output .= "</div>";
+	$output .= '</div>';
 
 	return $output;
 }
-//	End function display the home screen
 
 /**
  * @SuppressWarnings(PHPMD)
  */
 function awpcp_menu_items() {
     $params = array(
-        'show-create-listing-button' => get_awpcp_option( 'show-menu-item-place-ad' ),
-        'show-edit-listing-button' => get_awpcp_option( 'show-menu-item-edit-ad' ),
+        'show-create-listing-button'  => get_awpcp_option( 'show-menu-item-place-ad' ),
+        'show-edit-listing-button'    => get_awpcp_option( 'show-menu-item-edit-ad' ),
         'show-browse-listings-button' => get_awpcp_option( 'show-menu-item-browse-ads' ),
         'show-search-listings-button' => get_awpcp_option( 'show-menu-item-search-ads' ),
     );
@@ -397,7 +421,7 @@ function awpcp_menu_items() {
     }
 
     $template = AWPCP_DIR . '/frontend/templates/main-menu.tpl.php';
-    $params = compact( 'menu_items', 'navigation_attributes' );
+    $params   = compact( 'menu_items', 'navigation_attributes' );
 
     return awpcp_render_template( $template, $params );
 }
@@ -409,14 +433,17 @@ function awpcp_get_menu_items( $params ) {
     $items = array();
 
     $user_is_allowed_to_place_ads = ! get_awpcp_option( 'onlyadmincanplaceads' ) || awpcp_current_user_is_admin();
-    $show_place_ad_item = $user_is_allowed_to_place_ads && $params['show-create-listing-button'];
-    $show_browse_ads_item = $params['show-browse-listings-button'];
-    $show_search_ads_item = $params['show-search-listings-button'];
+    $show_place_ad_item           = $user_is_allowed_to_place_ads && $params['show-create-listing-button'];
+    $show_browse_ads_item         = $params['show-browse-listings-button'];
+    $show_search_ads_item         = $params['show-search-listings-button'];
 
     if ( $show_place_ad_item ) {
-        $place_ad_url = awpcp_get_page_url( 'place-ad-page-name' );
-        $place_ad_page_name = awpcp_get_page_name( 'place-ad-page-name' );
-        $items['post-listing'] = array( 'url' => $place_ad_url, 'title' => esc_html( $place_ad_page_name ) );
+        $place_ad_url          = awpcp_get_page_url( 'place-ad-page-name' );
+        $place_ad_page_name    = awpcp_get_page_name( 'place-ad-page-name' );
+        $items['post-listing'] = array(
+            'url'   => $place_ad_url,
+            'title' => esc_html( $place_ad_page_name ),
+        );
     }
 
     if ( awpcp_should_show_edit_listing_menu( $params ) ) {
@@ -441,21 +468,27 @@ function awpcp_get_menu_items( $params ) {
 
             if ( $view_categories_page_name ) {
                 $items['browse-listings'] = array(
-                    'url' => $browse_cats_url,
+                    'url'   => $browse_cats_url,
                     'title' => esc_html( $view_categories_page_name ),
                 );
             }
         } else {
-            $browse_ads_page_name = awpcp_get_page_name( 'browse-ads-page-name' );
-            $browse_ads_url = awpcp_get_page_url( 'browse-ads-page-name' );
-            $items['browse-listings'] = array( 'url' => $browse_ads_url, 'title' => esc_html( $browse_ads_page_name  ) );
+            $browse_ads_page_name     = awpcp_get_page_name( 'browse-ads-page-name' );
+            $browse_ads_url           = awpcp_get_page_url( 'browse-ads-page-name' );
+            $items['browse-listings'] = array(
+                'url'   => $browse_ads_url,
+                'title' => esc_html( $browse_ads_page_name ),
+            );
         }
     }
 
     if ( $show_search_ads_item ) {
-        $search_ads_page_name = awpcp_get_page_name( 'search-ads-page-name' );
-        $search_ads_url = awpcp_get_page_url( 'search-ads-page-name' );
-        $items['search-listings'] = array( 'url' => $search_ads_url, 'title' => esc_html( $search_ads_page_name ) );
+        $search_ads_page_name     = awpcp_get_page_name( 'search-ads-page-name' );
+        $search_ads_url           = awpcp_get_page_url( 'search-ads-page-name' );
+        $items['search-listings'] = array(
+            'url'   => $search_ads_url,
+            'title' => esc_html( $search_ads_page_name ),
+        );
     }
 
     /**
@@ -498,20 +531,20 @@ function awpcp_should_show_edit_listing_menu( $params ) {
  * @SuppressWarnings(PHPMD)
  */
 function awpcp_get_edit_listing_menu_item() {
-    $listings = awpcp_listings_collection();
+    $listings      = awpcp_listings_collection();
     $authorization = awpcp_listing_authorization();
-    $request = awpcp_request();
-    $settings = awpcp()->settings;
+    $request       = awpcp_request();
+    $settings      = awpcp()->settings;
 
     try {
         $listing = $listings->get( $request->get_current_listing_id() );
-    } catch( AWPCP_Exception $e ) {
+    } catch ( AWPCP_Exception $e ) {
         $listing = null;
     }
 
     if ( is_object( $listing ) && $authorization->is_current_user_allowed_to_edit_listing( $listing ) ) {
         $edit_ad_url = awpcp_get_edit_listing_direct_url( $listing );
-    } else if ( ! $settings->get_option( 'requireuserregistration' ) ) {
+    } elseif ( ! $settings->get_option( 'requireuserregistration' ) ) {
         $edit_ad_url = awpcp_get_edit_listing_generic_url();
     } else {
         $edit_ad_url = null;
@@ -522,6 +555,9 @@ function awpcp_get_edit_listing_menu_item() {
     } else {
         $edit_ad_page_name = awpcp_get_page_name( 'edit-ad-page-name' );
 
-        return array( 'url' => $edit_ad_url, 'title' => esc_html( $edit_ad_page_name ) );
+        return array(
+            'url'   => $edit_ad_url,
+            'title' => esc_html( $edit_ad_page_name ),
+        );
     }
 }
