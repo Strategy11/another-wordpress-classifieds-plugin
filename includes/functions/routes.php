@@ -538,10 +538,11 @@ function awpcp_get_renew_ad_url($ad_id) {
             'ids'         => $ad_id,
             'action'      => 'renew',
             'awpcprah'    => $hash,
-            'redirect_to' => $url
+            'redirect_to' => $url,
+            '_wpnonce'    => wp_create_nonce( 'bulk-posts' ),
         ];
 
-        return wp_nonce_url( add_query_arg( urlencode_deep( $params ), $url ), 'bulk-posts' );
+        return add_query_arg( urlencode_deep( $params ), $url );
     }
 
     $url = awpcp_get_page_url('renew-ad-page-name');
