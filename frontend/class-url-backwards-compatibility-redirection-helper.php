@@ -152,7 +152,19 @@ class AWPCP_URL_Backwards_Compatibility_Redirection_Helper {
      * @SuppressWarnings(PHPMD.ExitExpression)
      */
     private function redirect( $redirect_url ) {
-        if ( wp_safe_redirect( $redirect_url, 301 ) ) {
+        global $wp_version;
+
+        // Before 5.1.0, wp_safe_redirect() always returned null, making it
+        // impossible to know whether the call to wp_redirect() worked or not.
+        //
+        // See https://github.com/WordPress/WordPress/blob/94b592ac684d7cc9a82b5ba42161d320a4c329f4/wp-includes/pluggable.php#L1334.
+        //
+        // phpcs:ignore WordPress.Security.SafeRedirect.wp_redirect_wp_redirect
+        if ( version_compare( $wp_version, '5.1.0', '<' ) && wp_redirect( $redirect_url, 301 ) ) {
+            exit();
+        }
+
+        if ( version_compare( $wp_version, '5.1.0', '>=' ) && wp_safe_redirect( $redirect_url, 301 ) ) {
             exit();
         }
     }
