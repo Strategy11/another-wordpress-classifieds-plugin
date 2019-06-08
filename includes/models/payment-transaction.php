@@ -542,6 +542,17 @@ class AWPCP_Payment_Transaction {
         return $totals['money'];
     }
 
+    /**
+     * Return the nubmer of credits that will be used in this transaction.
+     *
+     * @since 4.0.0
+     */
+    public function get_total_credits() {
+        $totals = $this->get_totals();
+
+        return (int) $totals['credits'];
+    }
+
     public function user_has_enough_credit(&$balance=null) {
         if ( awpcp_current_user_is_admin() ) {
             return true;

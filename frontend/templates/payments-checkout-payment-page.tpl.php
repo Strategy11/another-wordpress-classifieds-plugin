@@ -4,7 +4,7 @@
 
 <h3><?php _ex('Payment Terms', 'checkout-payment page', 'another-wordpress-classifieds-plugin'); ?></h3>
 
-<?php echo $this->render_account_balance(); ?>
+<?php echo $this->render_account_balance_for_transaction( $transaction ); ?>
 
 <?php echo $this->render_transaction_items($transaction); ?>
 

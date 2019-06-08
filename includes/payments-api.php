@@ -631,6 +631,42 @@ class AWPCP_PaymentsAPI {
 
     /* Render functions */
 
+    /**
+     * Render the credits account balance inn the context of the given transaction,
+     * including the number of credits available when the transaction is completed.
+     *
+     * @since 4.0.0
+     */
+    public function render_account_balance_for_transaction( $transaction ) {
+        $credit_plan     = $this->get_credit_plan( $transaction->get( 'credit-plan' ) );
+        $account_balance = $this->get_account_balance( $transaction->used_id );
+        $credits_used    = $transaction->get_total_credits();
+
+        if ( $credit_plan ) {
+            $message = sprintf(
+                'You currently have %s credits in your account. The balance after this transaction is completed successfully will be %s.',
+                $this->format_account_balance( $transaction->user_id ),
+                number_format( $account_balance + $credit_plan->credits - $credits_used )
+            );
+
+            return awpcp_print_message( $message );
+        }
+
+        if ( $credits_used ) {
+            $message = sprintf(
+                'You currently have %s credits in your account. The balance after this transaction is completed successfully will be %s.',
+                $this->format_account_balance( $transaction->user_id ),
+                number_format( $account_balance - $credits_used )
+            );
+
+            return awpcp_print_message( $message );
+        }
+
+        // No need to show the balance if credits are not used nor purchased in
+        // the transaction.
+        return '';
+    }
+
     public function render_account_balance() {
         if (!$this->credit_system_enabled())
             return '';
