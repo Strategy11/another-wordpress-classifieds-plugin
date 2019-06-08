@@ -1,11 +1,16 @@
-<?php echo awpcp_print_message($message); ?>
+<?php
+/**
+ * @package AWPCP\Templates
+ */
 
-<p><?php _ex('You are about to pay for the following items.', 'checkout-payment page', 'another-wordpress-classifieds-plugin'); ?></p>
+?><?php echo awpcp_print_message( $message ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 
-<h3><?php _ex('Payment Terms', 'checkout-payment page', 'another-wordpress-classifieds-plugin'); ?></h3>
+<p><?php echo esc_html_x( 'You are about to pay for the following items.', 'checkout-payment page', 'another-wordpress-classifieds-plugin' ); ?></p>
 
-<?php echo $this->render_account_balance_for_transaction( $transaction ); ?>
+<h3><?php echo esc_html_x( 'Payment Terms', 'checkout-payment page', 'another-wordpress-classifieds-plugin' ); ?></h3>
 
-<?php echo $this->render_transaction_items($transaction); ?>
+<?php echo $this->render_account_balance_for_transaction( $transaction ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 
-<?php echo $output; ?>
+<?php echo $this->render_transaction_items( $transaction ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+
+<?php echo $output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
