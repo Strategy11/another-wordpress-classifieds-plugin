@@ -434,10 +434,15 @@ function awpcp_do_placeholder_website_url($ad, $placeholder) {
  * @since 3.0
  */
 function awpcp_do_placeholder_website_link($ad, $placeholder) {
-    if ( ( get_awpcp_option( 'displaywebsitefieldreqpriv' ) != 1 || is_user_logged_in() ) && !empty( $ad->websiteurl ) ) {
+    $website_url = awpcp_listing_renderer()->get_website_url( $ad );
+
+    // Whether the website field should be shown to registered users only.
+    $login_required = intval( get_awpcp_option( 'displaywebsitefieldreqpriv' ) );
+
+    if ( ( ! $login_required || is_user_logged_in() ) && ! empty( $website_url ) ) {
         $nofollow = get_awpcp_option('visitwebsitelinknofollow') ? 'rel="nofollow"' : '';
         $escaped_label = esc_html( __( 'Visit Website', 'another-wordpress-classifieds-plugin' ) );
-        $escaped_url = awpcp_esc_attr( $ad->websiteurl );
+        $escaped_url = awpcp_esc_attr( $website_url );
 
         $content = '<br/><a %s href="%s" target="_blank">%s</a>';
         $content = sprintf( $content, $nofollow, $escaped_url, $escaped_label );
