@@ -426,7 +426,7 @@ function awpcp_do_placeholder_contact_name($ad, $placeholder) {
  * @since 3.0
  */
 function awpcp_do_placeholder_website_url($ad, $placeholder) {
-    return $ad->websiteurl;
+    return awpcp_listing_renderer()->get_website_url( $ad );
 }
 
 
