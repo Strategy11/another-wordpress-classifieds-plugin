@@ -632,7 +632,7 @@ class AWPCP_PaymentsAPI {
     /* Render functions */
 
     /**
-     * Render the credits account balance inn the context of the given transaction,
+     * Render the credits account balance in the context of the given transaction,
      * including the number of credits available when the transaction is completed.
      *
      * @since 4.0.0
