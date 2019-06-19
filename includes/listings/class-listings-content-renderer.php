@@ -34,9 +34,8 @@ class AWPCP_ListingsContentRenderer {
             return awpcp_print_error( $message );
         }
 
-        // phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
+        // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
         $output = apply_filters( 'awpcp-show-listing-content-replacement', null, $content, $post );
-        // phpcs:enable
 
         if ( ! is_null( $output ) ) {
             return $output;

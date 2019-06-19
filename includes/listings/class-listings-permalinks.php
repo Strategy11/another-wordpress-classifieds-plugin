@@ -245,9 +245,8 @@ class AWPCP_ListingsPermalinks {
 
         // TODO: Make sure all handlers of this filter are still working on 4.0.
         // TODO: Rename to awpcp_listing_url.
-        // phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
+        // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
         return apply_filters( 'awpcp-listing-url', $this->get_post_link( $post_link, $post ), $post );
-        // phpcs:enable
     }
 
     /**

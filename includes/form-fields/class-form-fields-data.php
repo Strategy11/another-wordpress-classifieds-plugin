@@ -133,7 +133,7 @@ class AWPCP_FormFieldsData {
 
         // phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
         // TODO: We no longer pass an array that filters can use to extract data from.
-        return apply_filters( 'awpcp-get-posted-data', $data, 'details', null );
+        return apply_filters( 'awpcp-get-posted-data', $data, 'details', [] );
         // phpcs:enable
     }
 }

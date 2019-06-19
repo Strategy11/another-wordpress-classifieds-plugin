@@ -369,7 +369,7 @@ function awpcp_do_placeholder_details($ad, $placeholder) {
         return $replacements[ $ad->ID ][$placeholder];
     }
 
-    $placeholders['addetails'] = apply_filters( 'awpcp-ad-details', stripslashes_deep( $ad->post_content ) );
+    $placeholders['addetails'] = apply_filters( 'awpcp-ad-details', $ad->post_content );
 
     if (get_awpcp_option('hyperlinkurlsinadtext')) {
         $pattern = '#(?<!")(https?://[^\s]+)(?!")#';

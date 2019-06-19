@@ -456,11 +456,16 @@ function awpcp_get_menu_items( $params ) {
     }
 
     /**
-     * @params array $items     An array of menu items where every entry is a new array
-     *                          with url and title keys.
+     * @param array $items {
+     *     An associative array of menu items.
      *
-     *                          The value of associated with title key must be passed
-     *                          through esc_html().
+     *     @type array $menu_id {
+     *         The definition of a single menu item.
+     *
+     *         @type string $title The title of the menu item. Must be passed through esc_html().
+     *         @type string $url   The raw URL (do not use esc_url() or esc_attr()) associated with this menu item.
+     *     }
+     * }
      */
     $items = apply_filters( 'awpcp_menu_items', $items );
 

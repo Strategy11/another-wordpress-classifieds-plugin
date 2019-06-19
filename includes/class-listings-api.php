@@ -155,7 +155,7 @@ class AWPCP_ListingsAPI {
         ) );
 
         if ( ! isset( $metadata['_awpcp_access_key'] ) || empty( $metadata['_awpcp_access_key'] ) ) {
-            $metadata['_awpcp_access_key'] = $this->generate_access_key();
+            $metadata['_awpcp_access_key'] = apply_filters( 'awpcp-listing-access-key', $this->generate_access_key(), $this );
         }
 
         return $metadata;

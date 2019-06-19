@@ -91,12 +91,11 @@ class AWPCP_Categories_Logic {
             $category_data['order'] = intval( $category_order );
         }
 
-        /**
-         * TODO: fix now that we pass a different array
-         */
-        // @phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
-        return apply_filters( 'awpcp-category-data', $category_data, $category );
-        // @phpcs:enable WordPress.NamingConventions.ValidHookName.UseUnderscores
+        // phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
+        $category_data = apply_filters( 'awpcp-category-data', $category_data, $category );
+        // phpcs:enable WordPress.NamingConventions.ValidHookName.UseUnderscores
+
+        return $category_data;
     }
 
     public function update_category( $category, $category_order = null ) {
