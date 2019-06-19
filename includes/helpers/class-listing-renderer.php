@@ -70,6 +70,11 @@ class AWPCP_ListingRenderer {
         return is_object( $category ) ? $category->name : null;
     }
 
+    public function get_category_description( $listing ) {
+        $category = $this->get_category( $listing );
+        return is_object( $category ) ? $category->description : null;
+    }
+
     public function get_category_id( $listing ) {
         $category = $this->get_category( $listing );
         return is_object( $category ) ? $category->term_id : null;
