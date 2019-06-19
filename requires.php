@@ -318,7 +318,6 @@ require_once AWPCP_DIR . '/admin/class-settings-admin-page.php';
 require_once AWPCP_DIR . '/admin/class-table-entry-action-ajax-handler.php';
 require_once AWPCP_DIR . '/admin/class-uninstall-admin-page.php';
 require_once AWPCP_DIR . '/admin/class-add-edit-table-entry-rendering-helper.php';
-require_once AWPCP_DIR . '/admin/class-csv-exporter.php';
 
 require_once AWPCP_DIR . '/admin/categories/class-create-category-admin-page.php';
 require_once AWPCP_DIR . '/admin/categories/class-delete-categories-admin-page.php';

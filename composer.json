@@ -7,8 +7,7 @@
             "admin",
             "frontend",
             "includes",
-            "installer.php",
-            "interface-container-configuration.php"
+            "installer.php"
         ]
     }
 }

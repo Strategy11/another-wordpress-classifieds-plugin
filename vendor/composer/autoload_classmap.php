@@ -98,7 +98,7 @@ return array(
     'AWPCP_ContactPhoneListingsTableSearchMode' => $baseDir . '/includes/admin/listings/class-contact-phone-listings-table-search-mode.php',
     'AWPCP_Container' => $baseDir . '/includes/class-container.php',
     'AWPCP_ContainerConfiguration' => $baseDir . '/includes/class-container-configuration.php',
-    'AWPCP_ContainerConfigurationInterface' => $baseDir . '/interface-container-configuration.php',
+    'AWPCP_ContainerConfigurationInterface' => $baseDir . '/includes/interface-container-configuration.php',
     'AWPCP_ContentAwareSidebarsCategoriesWalker' => $baseDir . '/includes/compatibility/class-content-aware-sidebars-categories-walker.php',
     'AWPCP_ContentAwareSidebarsListingsCategoriesModule' => $baseDir . '/includes/compatibility/class-content-aware-sidebars-listings-categories-module.php',
     'AWPCP_CookieManager' => $baseDir . '/includes/class-cookie-manager.php',

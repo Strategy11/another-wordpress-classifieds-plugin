@@ -99,7 +99,7 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_ContactPhoneListingsTableSearchMode' => __DIR__ . '/../..' . '/includes/admin/listings/class-contact-phone-listings-table-search-mode.php',
         'AWPCP_Container' => __DIR__ . '/../..' . '/includes/class-container.php',
         'AWPCP_ContainerConfiguration' => __DIR__ . '/../..' . '/includes/class-container-configuration.php',
-        'AWPCP_ContainerConfigurationInterface' => __DIR__ . '/../..' . '/interface-container-configuration.php',
+        'AWPCP_ContainerConfigurationInterface' => __DIR__ . '/../..' . '/includes/interface-container-configuration.php',
         'AWPCP_ContentAwareSidebarsCategoriesWalker' => __DIR__ . '/../..' . '/includes/compatibility/class-content-aware-sidebars-categories-walker.php',
         'AWPCP_ContentAwareSidebarsListingsCategoriesModule' => __DIR__ . '/../..' . '/includes/compatibility/class-content-aware-sidebars-listings-categories-module.php',
         'AWPCP_CookieManager' => __DIR__ . '/../..' . '/includes/class-cookie-manager.php',
