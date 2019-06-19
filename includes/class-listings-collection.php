@@ -521,9 +521,6 @@ class AWPCP_ListingsCollection {
             $query['order'] = 'DESC';
         }
 
-        $basedate = 'CASE WHEN renewed_date IS NULL THEN ad_startdate ELSE GREATEST(ad_startdate, renewed_date) END';
-        $is_paid = 'CASE WHEN ad_fee_paid > 0 THEN 1 ELSE 0 END';
-
         switch ( $orderby ) {
             case 1:
                 $query['meta_key'] = '_awpcp_most_recent_start_date';
