@@ -554,6 +554,9 @@ class AWPCP_CSV_Importer_Delegate {
         $listing_data['metadata']['_awpcp_verified'] = true;
         $listing_data['metadata']['_awpcp_payment_status'] = AWPCP_Payment_Transaction::PAYMENT_STATUS_NOT_REQUIRED;
 
+        // If a valid payment term was found, an instance of that payment term is
+        // stored in $listing_data['metadata']['_awpcp_payment_term_id'] instead
+        // of the ID.
         if ( ! empty( $listing_data['metadata']['_awpcp_payment_term_id'] ) ) {
             $payment_term = $listing_data['metadata']['_awpcp_payment_term_id'];
         }
