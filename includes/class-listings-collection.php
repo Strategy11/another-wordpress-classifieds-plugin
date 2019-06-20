@@ -681,7 +681,7 @@ class AWPCP_ListingsCollection {
             case 'payment-term':
                 $query['orderby'] = array( 'menu_order' => 'DESC', 'ID' => $query['order'] );
                 $query['_meta_order'] = array( '_awpcp_payment_term_id' => $query['order'], '_awpcp_start_date' => $query['order'] );
-                $query['_meta_type'] = array( '_awpcp_payment_term_id' => 'DATETIME', '_awpcp_start_date' => 'DATETIME' );
+                $query['_meta_type'] = array( '_awpcp_payment_term_id' => 'SIGNED', '_awpcp_start_date' => 'DATETIME' );
 
                 $query['meta_query'][] = array(
                     'key' => '_awpcp_payment_term_id',
@@ -697,7 +697,7 @@ class AWPCP_ListingsCollection {
             case 'payment-status':
                 $query['orderby'] = array( 'menu_order' => 'DESC', 'ID' => $query['order'] );
                 $query['_meta_order'] = array( '_awpcp_payment_status' => $query['order'], '_awpcp_start_date' => $query['order'] );
-                $query['_meta_type'] = array( '_awpcp_payment_status' => 'DATETIME', '_awpcp_start_date' => 'DATETIME' );
+                $query['_meta_type'] = array( '_awpcp_payment_status' => 'CHAR', '_awpcp_start_date' => 'DATETIME' );
 
                 $query['meta_query'][] = array(
                     'key' => '_awpcp_payment_status',
