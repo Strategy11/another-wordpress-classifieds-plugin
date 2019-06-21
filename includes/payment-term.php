@@ -179,6 +179,16 @@ class AWPCP_PaymentTerm {
     }
 
     /**
+     * Determine whether the user had to pay money at some point to use this
+     * payment term.
+     *
+     * @since 4.0.0
+     */
+    public function is_paid() {
+        return $this->price || $this->credits;
+    }
+
+    /**
      * Used to determine if the given Ad can be renewed using
      * this payment term. The default behavior always returns true but
      * sub-classes can overwrite the method to support other scenearios.

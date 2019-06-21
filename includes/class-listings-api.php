@@ -768,7 +768,7 @@ class AWPCP_ListingsAPI {
                 // An ad will be marked as posted under a paid payment term
                 // whenever the selected payment term has credits or currency
                 // cost greater than zero.
-                '_awpcp_is_paid'           => $payment_term->price || $payment_term->credits,
+                '_awpcp_is_paid'           => $payment_term->is_paid(),
             ],
         ];
 
