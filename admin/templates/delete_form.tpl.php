@@ -9,7 +9,7 @@
 
         <p class="submit inline-edit-save">
             <a class="button-secondary cancel alignleft" title="<?php echo esc_attr( __( 'Cancel', 'another-wordpress-classifieds-plugin' ) ); ?>" href="#inline-edit" accesskey="c"><?php echo __( 'Cancel', 'another-wordpress-classifieds-plugin' ); ?></a>
-            <a class="button-primary delete alignleft" title="<?php echo esc_attr( __( 'Delete', 'another-wordpress-classifieds-plugin' ) ); ?>" href="#inline-edit" accesskey="s"><?php echo __( 'Delete', 'another-wordpress-classifieds-plugin' ); ?></a>
+            <a class="button-primary delete alignright" title="<?php echo esc_attr( __( 'Delete', 'another-wordpress-classifieds-plugin' ) ); ?>" href="#inline-edit" accesskey="s"><?php echo __( 'Delete', 'another-wordpress-classifieds-plugin' ); ?></a>
             <img alt="" src="<?php echo admin_url( '/images/wpspin_light.gif' ); ?>" style="display: none;" class="waiting">
             <input type="hidden" value="<?php echo esc_attr( $_POST['id'] ); ?>" name="id">
             <input type="hidden" value="<?php echo esc_attr( $_POST['action'] ); ?>" name="action">
