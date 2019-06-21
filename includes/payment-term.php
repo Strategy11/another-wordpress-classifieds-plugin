@@ -182,6 +182,9 @@ class AWPCP_PaymentTerm {
      * Determine whether the user had to pay money at some point to use this
      * payment term.
      *
+     * An ad will be marked as posted under a paid payment term whenever the
+     * selected payment term has credits or currency cost greater than zero.
+     *
      * @since 4.0.0
      */
     public function is_paid() {
