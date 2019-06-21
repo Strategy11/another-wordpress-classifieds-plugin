@@ -82,6 +82,18 @@ AWPCP.run( 'awpcp/edit-post', [
                 $listingInformationMetabox.find( '.awpcp-payment-term-number-of-regions .awpcp-value-display' ).text( properties.number_of_regions );
                 $listingInformationMetabox.find( '.awpcp-payment-term-characters-in-title .awpcp-value-display' ).text( properties.characters_in_title );
                 $listingInformationMetabox.find( '.awpcp-payment-term-characters-in-description .awpcp-value-display' ).text( properties.characters_in_description );
+
+                let mediaUploaderOptions = settings.get( 'media-uploader-data' );
+                mediaUploaderOptions['allowed_files']['images']['allowed_file_count'] = properties.number_of_images ;
+                $.post( settings.get( 'ajaxurl' ), {
+                    nonce: mediaUploaderOptions.nonce,
+                    action: 'awpcp-upload-listing-media',
+                    change_payment_term: 1,
+                    payment_term: paymentTermId,
+                    listing: mediaUploaderOptions.listing_id
+                }, function( response ) {
+
+                } );
             }
 
             $changePaymentTermLink.toggleClass( 'awpcp-hidden' );

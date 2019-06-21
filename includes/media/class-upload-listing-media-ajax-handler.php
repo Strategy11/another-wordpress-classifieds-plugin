@@ -1,5 +1,11 @@
 <?php
+/**
+ * @package AWPCP\Media
+ */
 
+/**
+ * Constructor function for AWPCP_UploadListingMediaAjaxHandler.
+ */
 function awpcp_upload_listing_media_ajax_handler() {
     return new AWPCP_UploadListingMediaAjaxHandler(
         awpcp_attachment_properties(),
@@ -7,7 +13,8 @@ function awpcp_upload_listing_media_ajax_handler() {
         awpcp_file_uploader(),
         awpcp_new_media_manager(),
         awpcp_request(),
-        awpcp_ajax_response()
+        awpcp_ajax_response(),
+        awpcp()->container['ListingInformationMetabox']
     );
 }
 
@@ -18,23 +25,38 @@ class AWPCP_UploadListingMediaAjaxHandler extends AWPCP_AjaxHandler {
     private $uploader;
     private $media_manager;
     private $request;
+    private $metabox;
 
-    public function __construct( $attachment_properties, $listings, $uploader, $media_manager, $request, $response ) {
+    public function __construct( $attachment_properties, $listings, $uploader, $media_manager, $request, $response, $metabox ) {
         parent::__construct( $response );
 
         $this->attachment_properties = $attachment_properties;
-        $this->listings = $listings;
-        $this->media_manager = $media_manager;
-        $this->uploader = $uploader;
-        $this->request = $request;
+        $this->listings              = $listings;
+        $this->media_manager         = $media_manager;
+        $this->uploader              = $uploader;
+        $this->request               = $request;
+        $this->metabox               = $metabox;
     }
 
     public function ajax() {
+        $update_listing_term = $this->request->post( 'change_payment_term' );
+        if ( $update_listing_term ) {
+            $this->update_payment_term();
+        }
+
         try {
             $this->try_to_process_uploaded_file();
         } catch ( AWPCP_Exception $e ) {
             return $this->multiple_errors_response( $e->get_errors() );
         }
+    }
+
+    private function update_payment_term() {
+        $listing = $this->listings->get( $this->request->post( 'listing' ) );
+        if ( wp_verify_nonce( $this->request->post( 'nonce' ), 'awpcp-upload-media-for-listing-' . $listing->ID ) ) {
+            $this->metabox->save( $listing );
+        }
+        return false;
     }
 
     private function try_to_process_uploaded_file() {
@@ -60,25 +82,28 @@ class AWPCP_UploadListingMediaAjaxHandler extends AWPCP_AjaxHandler {
 
         if ( $uploaded_file->is_complete ) {
             $file = $this->media_manager->add_file( $listing, $uploaded_file );
-
+            // @phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
             do_action( 'awpcp-media-uploaded', $file, $listing );
 
-            return $this->success( array(
-                'file' => array(
-                    'id' => $file->ID,
-                    'name' => $file->post_title, // TODO: where is the name of the file stored?
-                    'listingId' => $file->post_parent,
-                    'enabled' => $this->attachment_properties->is_enabled( $file ),
-                    'status' => $this->attachment_properties->get_allowed_status( $file ),
-                    'mimeType' => $file->post_mime_type,
-                    'isPrimary' => $this->attachment_properties->is_featured( $file ),
-                    'thumbnailUrl' => $this->attachment_properties->get_image_url( $file, 'thumbnail' ),
-                    'iconUrl' => $this->attachment_properties->get_icon_url( $file ),
-                    'url' => $this->attachment_properties->get_image_url( $file, 'large' ),
-                ),
-            ) );
-        } else {
-            return $this->success();
+            return $this->success(
+                array(
+                    'file' => array(
+                        'id'           => $file->ID,
+                        'name'         => $file->post_title, // TODO: where is the name of the file stored?
+                        'listingId'    => $file->post_parent,
+                        'enabled'      => $this->attachment_properties->is_enabled( $file ),
+                        'status'       => $this->attachment_properties->get_allowed_status( $file ),
+                        'mimeType'     => $file->post_mime_type,
+                        'isPrimary'    => $this->attachment_properties->is_featured( $file ),
+                        'thumbnailUrl' => $this->attachment_properties->get_image_url( $file, 'thumbnail' ),
+                        'iconUrl'      => $this->attachment_properties->get_icon_url( $file ),
+                        'url'          => $this->attachment_properties->get_image_url( $file, 'large' ),
+                    ),
+                )
+            );
         }
+
+        return $this->success();
+
     }
 }
