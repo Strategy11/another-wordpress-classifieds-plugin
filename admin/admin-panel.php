@@ -148,6 +148,7 @@ class AWPCP_AdminPanel {
             10
         );
 
+        // TODO: This doesn't seem to be needed anymore.
         $router->add_private_ajax_action( 'listings-delete-ad', 'awpcp_delete_listing_ajax_handler' );
 
         $router->add_admin_subpage(

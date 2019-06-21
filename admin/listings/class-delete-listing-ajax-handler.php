@@ -1,9 +1,9 @@
 <?php
 /**
+ * TODO: This doesn't seem to be needed anymore.
+ *
  * @package AWPCP\Admin
  */
-
-// phpcs:disable
 
 function awpcp_delete_listing_ajax_handler() {
     return new AWPCP_TableEntryActionAjaxHandler(
