@@ -98,6 +98,7 @@ class AWPCP_UpdateListingOrderAjaxHandler extends AWPCP_AjaxHandler {
 
         $this->listings_logic->update_listing( $listing, $post_data );
         $this->listings_transactions->prepare_transaction_for_checkout( $transaction, $posted_data );
+        $this->listings_logic->update_listing_payment_term( $listing, $posted_data['payment_term'] );
 
         $response = [
             'transaction' => $transaction->id,

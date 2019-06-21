@@ -113,7 +113,7 @@ class AWPCP_CreateEmptyListingAjaxHandler extends AWPCP_AjaxHandler {
 
         $posted_data = $this->posted_data->get_posted_data();
         $transaction = $this->create_transaction( $posted_data );
-        $listing     = $this->create_listing( $transaction, $posted_data['post_data'] );
+        $listing     = $this->create_listing( $transaction, $posted_data );
 
         $this->listings_transactions->prepare_transaction_for_checkout( $transaction, $posted_data );
 
@@ -164,7 +164,9 @@ class AWPCP_CreateEmptyListingAjaxHandler extends AWPCP_AjaxHandler {
      * @since 4.0.0
      * @throws AWPCP_Exception  When the payment information is not valid.
      */
-    private function create_listing( $transaction, $post_data ) {
+    private function create_listing( $transaction, $posted_data ) {
+        $post_data = $posted_data['post_data'];
+
         $post_data['post_fields']['post_title']  = 'Classified Auto Draft';
         $post_data['post_fields']['post_status'] = 'auto-draft';
 
@@ -175,6 +177,8 @@ class AWPCP_CreateEmptyListingAjaxHandler extends AWPCP_AjaxHandler {
         }
 
         $listing = $this->listings_logic->create_listing( $post_data );
+
+        $this->listings_logic->update_listing_payment_term( $listing, $posted_data['payment_term'] );
 
         $transaction->set( 'ad-id', $listing->ID );
         $transaction->save();

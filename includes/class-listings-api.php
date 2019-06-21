@@ -152,6 +152,7 @@ class AWPCP_ListingsAPI {
             '_awpcp_most_recent_start_date' => current_time( 'mysql' ),
             '_awpcp_renewed_date'           => '',
             '_awpcp_poster_ip'              => awpcp_getip(),
+            '_awpcp_is_paid'                => false,
         ) );
 
         if ( ! isset( $metadata['_awpcp_access_key'] ) || empty( $metadata['_awpcp_access_key'] ) ) {
@@ -764,6 +765,10 @@ class AWPCP_ListingsAPI {
                 '_awpcp_is_featured'       => $payment_term->featured,
                 '_awpcp_start_date'        => $dates['_awpcp_start_date'],
                 '_awpcp_end_date'          => $dates['_awpcp_end_date'],
+                // An ad will be marked as posted under a paid payment term
+                // whenever the selected payment term has credits or currency
+                // cost greater than zero.
+                '_awpcp_is_paid'           => $payment_term->price || $payment_term->credits,
             ],
         ];
 

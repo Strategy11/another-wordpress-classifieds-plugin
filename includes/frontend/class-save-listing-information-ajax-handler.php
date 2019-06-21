@@ -228,6 +228,7 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
 
         $this->listings_transactions->prepare_transaction_for_checkout( $transaction, $posted_data );
         $this->save_listing_information( $listing, $posted_data['post_data'] );
+        $this->listings_logic->update_listing_payment_term( $listing, $posted_data['payment_term'] );
 
         // TODO: Redirect to checkout page.
         return $this->redirect_to_checkout_page( $listing, $transaction, $posted_data );
