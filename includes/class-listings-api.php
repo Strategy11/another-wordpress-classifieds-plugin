@@ -708,7 +708,7 @@ class AWPCP_ListingsAPI {
         return $result === false ? false : true;
     }
 
-    // phpcs:enable Generic,Squiz,WordPress,PSR2,PEAR
+    // phpcs:enable
 
     /**
      * @since 4.0.0
