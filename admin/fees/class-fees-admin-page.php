@@ -84,6 +84,14 @@ class AWPCP_AdminFees extends AWPCP_AdminPageWithTable {
         }
     }
 
+    /**
+     * There is no UI to initiate this action anymore since version 4.0.0, but
+     * the implementation may be useful in the future. Now fees cannot be
+     * deleted if there are ads still associated with them.
+     *
+     * Please test thoroughly before enabling this feature again,
+     * to make sure it works with recent modifications.
+     */
     public function transfer() {
         $fee = AWPCP_Fee::find_by_id(awpcp_request_param('id', 0));
         if (is_null($fee)) {

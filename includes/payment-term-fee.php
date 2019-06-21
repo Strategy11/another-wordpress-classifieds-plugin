@@ -239,19 +239,17 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
                     'type' => 'SIGNED',
                 ),
                 array(
-                    'key' => '_awpcp_payment_term_id',
-                    'value' => $this->id,
-                    'compare' => '=',
-                    'type' => 'SIGNED',
+                    'key'   => '_awpcp_payment_term_type',
+                    'value' => 'fee',
                 ),
             ),
         ));
 
-        $wordpress = awpcp_wordpress();
-        $success = true;
+        $listings_payments = awpcp()->container['ListingsPayments'];
+        $success           = true;
 
         foreach ( $listings as $listing ) {
-            $success = $success && $wordpress->update_post_meta( $listing->ID, '_awpcp_payment_term_id', $recipient->id );
+            $success = $success && $listings_payments->update_listing_payment_term( $listing, $recipient );
         }
 
         return $success;
