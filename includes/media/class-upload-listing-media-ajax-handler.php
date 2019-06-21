@@ -54,7 +54,7 @@ class AWPCP_UploadListingMediaAjaxHandler extends AWPCP_AjaxHandler {
     private function update_payment_term() {
         $listing = $this->listings->get( $this->request->post( 'listing' ) );
         if ( wp_verify_nonce( $this->request->post( 'nonce' ), 'awpcp-upload-media-for-listing-' . $listing->ID ) ) {
-            $this->metabox->save( $listing );
+            $this->metabox->save( $listing->ID, $listing );
         }
         return false;
     }
