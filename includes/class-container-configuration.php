@@ -273,6 +273,15 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
             }
         );
 
+        $container['AddMissingIsPaidMetaUpgradeTaskHandler'] = $container->service(
+            function( $container ) {
+                return new AWPCP_AddMissingIsPaidMetaUpgradeTaskHandler(
+                    $container['ListingRenderer'],
+                    $container['ListingsCollection']
+                );
+            }
+        );
+
         $container['AddMissingViewsMetaUpgradeTaskHandler'] = $container->service(
             function( $container ) {
                 return new AWPCP_AddMissingViewsMetaUpgradeTaskHandler(

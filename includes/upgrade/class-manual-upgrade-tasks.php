@@ -87,6 +87,8 @@ class AWPCP_Manual_Upgrade_Tasks {
 
     /**
      * @since 4.0.0
+     *
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     private function register_upgrade_tasks_for_4_0_0() {
         $this->upgrade_tasks->register_upgrade_task( array(
@@ -170,6 +172,16 @@ class AWPCP_Manual_Upgrade_Tasks {
                 'slug'     => 'awpcp-generate-thumbnails-for-migrated-media',
                 'name'     => __( 'Generate Thumbnails for Migrated Media', 'another-wordpress-classifieds-plugin' ),
                 'handler'  => 'GenerateThumbnailsForMigratedMediaTaskHandler',
+                'context'  => 'plugin',
+                'blocking' => false,
+            ]
+        );
+
+        $this->upgrade_tasks->register_upgrade_task(
+            [
+                'slug'     => 'awpcp-add-missing-is-paid-meta',
+                'name'     => __( 'Add Missing _awpcp_is_paid Meta', 'another-wordpress-classifieds-plugin' ),
+                'handler'  => 'AddMissingIsPaidMetaUpgradeTaskHandler',
                 'context'  => 'plugin',
                 'blocking' => false,
             ]
