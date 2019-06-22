@@ -208,6 +208,13 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
      * @since 4.0.0
      */
     private function register_upgrade_task_handlers( $container ) {
+        $this->register_upgrade_task_handlers_for_4_0_0( $container );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function register_upgrade_task_handlers_for_4_0_0( $container ) {
         $container['FixIDCollisionForListingCategoriesUpgradeTaskHandler'] = $container->service(
             function( $container ) {
                 return new AWPCP_FixIDCollisionForListingCategoriesUpgradeTaskHandler(
@@ -262,6 +269,14 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
             function( $container ) {
                 return new AWPCP_GenerateThumbnailsForMigratedMediaTaskHandler(
                     $container['WordPress']
+                );
+            }
+        );
+
+        $container['AddMissingViewsMetaUpgradeTaskHandler'] = $container->service(
+            function( $container ) {
+                return new AWPCP_AddMissingViewsMetaUpgradeTaskHandler(
+                    $container['ListingsCollection']
                 );
             }
         );

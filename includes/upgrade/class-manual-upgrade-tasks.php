@@ -82,6 +82,13 @@ class AWPCP_Manual_Upgrade_Tasks {
             'context' => 'plugin',
         ) );
 
+        $this->register_upgrade_tasks_for_4_0_0();
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function register_upgrade_tasks_for_4_0_0() {
         $this->upgrade_tasks->register_upgrade_task( array(
             'slug' => 'awpcp-store-listing-categories-as-custom-taxonomies',
             'name' => __( 'Store Listing Categories as Custom Taxonomies', 'another-wordpress-classifieds-plugin' ),
@@ -163,6 +170,16 @@ class AWPCP_Manual_Upgrade_Tasks {
                 'slug'     => 'awpcp-generate-thumbnails-for-migrated-media',
                 'name'     => __( 'Generate Thumbnails for Migrated Media', 'another-wordpress-classifieds-plugin' ),
                 'handler'  => 'GenerateThumbnailsForMigratedMediaTaskHandler',
+                'context'  => 'plugin',
+                'blocking' => false,
+            ]
+        );
+
+        $this->upgrade_tasks->register_upgrade_task(
+            [
+                'slug'     => 'awpcp-add-missing-views-meta',
+                'name'     => __( 'Add Missing _awpcp_views Meta', 'another-wordpress-classifieds-plugin' ),
+                'handler'  => 'AddMissingViewsMetaUpgradeTaskHandler',
                 'context'  => 'plugin',
                 'blocking' => false,
             ]

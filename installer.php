@@ -324,6 +324,7 @@ class AWPCP_Installer {
                 'maybe_enable_upgrade_routines_to_migrate_media',
             ],
             '4.0.0' => [
+                'enable_routine_to_add_missing_views_meta',
                 'delete_settings_table',
             ],
         );
@@ -1088,6 +1089,13 @@ class AWPCP_Installer {
         }
 
         $this->upgrade_tasks->enable_upgrade_task( 'awpcp-update-categories-term-count' );
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    private function enable_routine_to_add_missing_views_meta() {
+        $this->upgrade_tasks->enable_upgrade_task( 'awpcp-add-missing-views-meta' );
     }
 
     /**
