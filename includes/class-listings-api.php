@@ -153,6 +153,7 @@ class AWPCP_ListingsAPI {
             '_awpcp_renewed_date'           => '',
             '_awpcp_poster_ip'              => awpcp_getip(),
             '_awpcp_is_paid'                => false,
+            '_awpcp_views'                  => 0,
         ) );
 
         if ( ! isset( $metadata['_awpcp_access_key'] ) || empty( $metadata['_awpcp_access_key'] ) ) {
