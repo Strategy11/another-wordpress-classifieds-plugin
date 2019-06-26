@@ -606,6 +606,10 @@ class AWPCP {
 
 	    $export_csv = $this->container['ExportListingsAdminPage'];
 	    add_action( 'wp_ajax_awpcp-csv-export', [ $export_csv, 'ajax' ] );
+
+        $view_counter = $this->container['ListingsViewCounter'];
+        add_action( 'wp_ajax_awpcp-ad-count-view', array( $view_counter, 'ajax' ) );
+        add_action( 'wp_ajax_nopriv_awpcp-ad-count-view', array( $view_counter, 'ajax' ) );
     }
 
     /**

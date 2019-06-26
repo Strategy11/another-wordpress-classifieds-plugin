@@ -159,6 +159,7 @@ class AWPCP_ListingsContentRenderer {
         $awpcp = awpcp();
 
         $awpcp->js->set( 'page-show-ad-flag-ad-nonce', wp_create_nonce( 'flag_ad' ) );
+        $awpcp->js->set( 'ad-id', $post->ID );
 
         $awpcp->js->localize(
             'page-show-ad',

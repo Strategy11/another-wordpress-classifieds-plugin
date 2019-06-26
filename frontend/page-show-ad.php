@@ -61,10 +61,6 @@ class AWPCP_Show_Ad_Page {
             return awpcp_print_error( $message );
         }
 
-        if ( ! $this->request->is_bot() ) {
-            $this->listings_logic->increase_visits_count( $post );
-        }
-
         return $this->listings_content_renderer->render(
             apply_filters( 'the_content', $post->post_content ),
             $post

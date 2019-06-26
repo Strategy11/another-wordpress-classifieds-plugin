@@ -169,6 +169,16 @@ class AWPCP_ListingsContainerConfiguration implements AWPCP_ContainerConfigurati
                 );
             }
         );
+
+        $container['ListingsViewCounter'] = $container->service(
+            function( $container ) {
+                return new AWPCP_ListingsViewCounter(
+                    awpcp_ajax_response(),
+                    $container['Request'],
+                    $container['ListingsLogic']
+                );
+            }
+        );
     }
 
     /**
