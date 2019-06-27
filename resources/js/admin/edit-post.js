@@ -87,8 +87,7 @@ AWPCP.run( 'awpcp/edit-post', [
                 mediaUploaderOptions['allowed_files']['images']['allowed_file_count'] = properties.number_of_images ;
                 $.post( settings.get( 'ajaxurl' ), {
                     nonce: mediaUploaderOptions.nonce,
-                    action: 'awpcp-upload-listing-media',
-                    change_payment_term: 1,
+                    action: 'awpcp-update-payment-term',
                     payment_term: paymentTermId,
                     listing: mediaUploaderOptions.listing_id
                 }, function( response ) {

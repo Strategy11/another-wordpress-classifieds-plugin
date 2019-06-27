@@ -325,6 +325,17 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
             return new AWPCP_TestSSLClientAjaxHandler();
         } );
 
+        $container['UpdatePaymentTerm'] = $container->service(
+            function( $container ) {
+                return new AWPCP_PaymentTermAjaxHandler(
+                    $container['Request'],
+                    $container['ListingInformationMetabox'],
+                    awpcp_ajax_response(),
+                    awpcp_listings_collection()
+                );
+            }
+        );
+
         $this->register_importer_objects( $container );
 	    $container['ExportListingsAdminPage'] = $container->service( function( $container ) {
 		    return new AWPCP_ExportListingsAdminPage(

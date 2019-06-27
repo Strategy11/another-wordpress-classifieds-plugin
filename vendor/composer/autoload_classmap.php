@@ -357,6 +357,7 @@ return array(
     'AWPCP_PaymentSettings' => $baseDir . '/includes/settings/class-payment-general-settings.php',
     'AWPCP_PaymentStepDecorator' => $baseDir . '/includes/views/class-payment-step-decorator.php',
     'AWPCP_PaymentTerm' => $baseDir . '/includes/payment-term.php',
+    'AWPCP_PaymentTermAjaxHandler' => $baseDir . '/includes/listings/class-payment-term-ajax-handler.php',
     'AWPCP_PaymentTermType' => $baseDir . '/includes/payment-term-type.php',
     'AWPCP_PaymentTermsTable' => $baseDir . '/includes/payment-terms-table.php',
     'AWPCP_PaymentTransactionHelper' => $baseDir . '/includes/helpers/class-payment-transaction-helper.php',

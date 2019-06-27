@@ -39,24 +39,11 @@ class AWPCP_UploadListingMediaAjaxHandler extends AWPCP_AjaxHandler {
     }
 
     public function ajax() {
-        $update_listing_term = $this->request->post( 'change_payment_term' );
-        if ( $update_listing_term ) {
-            $this->update_payment_term();
-        }
-
         try {
             $this->try_to_process_uploaded_file();
         } catch ( AWPCP_Exception $e ) {
             return $this->multiple_errors_response( $e->get_errors() );
         }
-    }
-
-    private function update_payment_term() {
-        $listing = $this->listings->get( $this->request->post( 'listing' ) );
-        if ( wp_verify_nonce( $this->request->post( 'nonce' ), 'awpcp-upload-media-for-listing-' . $listing->ID ) ) {
-            $this->metabox->save( $listing->ID, $listing );
-        }
-        return false;
     }
 
     private function try_to_process_uploaded_file() {

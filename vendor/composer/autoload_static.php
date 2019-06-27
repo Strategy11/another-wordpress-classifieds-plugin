@@ -358,6 +358,7 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_PaymentSettings' => __DIR__ . '/../..' . '/includes/settings/class-payment-general-settings.php',
         'AWPCP_PaymentStepDecorator' => __DIR__ . '/../..' . '/includes/views/class-payment-step-decorator.php',
         'AWPCP_PaymentTerm' => __DIR__ . '/../..' . '/includes/payment-term.php',
+        'AWPCP_PaymentTermAjaxHandler' => __DIR__ . '/../..' . '/includes/listings/class-payment-term-ajax-handler.php',
         'AWPCP_PaymentTermType' => __DIR__ . '/../..' . '/includes/payment-term-type.php',
         'AWPCP_PaymentTermsTable' => __DIR__ . '/../..' . '/includes/payment-terms-table.php',
         'AWPCP_PaymentTransactionHelper' => __DIR__ . '/../..' . '/includes/helpers/class-payment-transaction-helper.php',
