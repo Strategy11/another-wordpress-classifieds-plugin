@@ -70,7 +70,7 @@ class AWPCP_MultipleRegionSelector {
         //
         // We trust that the logic in the Edit/Submit Ad pages never allows users
         // to enter more regions than they should, so we honor the data.
-        $this->options['maxRegions'] = max( $this->options['maxRegions'], count( $regions ) );
+        $this->options['maxRegions'] = max( $this->options['maxRegions'], count( $this->regions ) );
     }
 
     public function set_template( $template ) {
