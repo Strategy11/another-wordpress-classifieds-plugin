@@ -91,7 +91,7 @@
 
                 <div style="border-top:1px solid #dddddd;">
                     <?php $msg = __( 'You have not categories defined. Go to the %s section to set up your categories.', 'another-wordpress-classifieds-plugin' ); ?>
-                    <?php $url = add_query_arg( 'page', 'Cofigure3', admin_url( 'admin.php' ) ); ?>
+                    <?php $url = awpcp_get_admin_categories_url(); ?>
                     <p><?php echo sprintf( $msg, sprintf( '<a href="%s">%s</a>', esc_url( $url ), __( 'Manage Categories', 'another-wordpress-classifieds-plugin' ) ) ); ?></p>
                 </div>
 
