@@ -1743,6 +1743,15 @@ function awpcp_render_info_message( $message, $classes = [] ) {
 /**
  * @since 4.0.0
  */
+function awpcp_render_success_message( $message, $classes = [] ) {
+    $default_classes = [ 'awpcp-message-success', 'notice', 'notice-success' ];
+
+    return awpcp_print_message( $message, array_merge( $default_classes, $classes ) );
+}
+
+/**
+ * @since 4.0.0
+ */
 function awpcp_render_error_message( $message, $classes = [] ) {
     $default_classes = [ 'awpcp-message-error', 'awpcp-error', 'notice', 'notice-error' ];
 
@@ -1753,7 +1762,7 @@ function awpcp_render_error_message( $message, $classes = [] ) {
  * @since 4.0.0
  */
 function awpcp_render_dismissible_success_message( $message ) {
-    return awpcp_print_message( $message, array( 'awpcp-message-success', 'notice', 'notice-success', 'is-dismissible' ) );
+    return awpcp_render_success_message( $message, [ 'is-dismissible' ] );
 }
 
 /**
