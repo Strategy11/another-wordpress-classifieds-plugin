@@ -3,13 +3,13 @@
 <?php /* translators: %1$s is the opening link tag <a>, %2$s is the closing link tag </a>. */ ?>
 <?php $msg = esc_html_x( 'Thank you for using Another WordPress Classifieds Plugin, the #1 WordPress Classifieds Plugin.  Please direct support requests, enhancement ideas and bug reports to the %s.', '... to the <a>AWPCP Support Website link</a>', 'another-wordpress-classifieds-plugin' ); ?>
 <?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-<?php echo awpcp_render_success_message( sprintf( $msg, '<a href="http://www.awpcp.com/forum/">' . esc_html__( 'AWPCP Support Website', 'another-wordpress-classifieds-plugin' ) . '</a>' ) ); ?>
+<?php echo awpcp_render_success_message( sprintf( $msg, '<a href="https://awpcp.com/forum/">' . esc_html__( 'AWPCP Support Website', 'another-wordpress-classifieds-plugin' ) . '</a>' ) ); ?>
 
 <?php if ( $hasextrafieldsmodule == 1 && ! ( $extrafieldsversioncompatibility == 1 ) ) : ?>
 <div id="message" class="awpcp-updated updated fade">
     <p>
         <?php _e( 'The version of the extra fields module that you are using is not compatible with this version of Another WordPress Classifieds Plugin.', 'another-wordpress-classifieds-plugin' ); ?>
-        <a href="http://www.awpcp.com/contact/"><?php _e( 'Please request updated Extra Fields module files', 'another-wordpress-classifieds-plugin' ); ?></a>.
+        <a href="https://awpcp.com/contact/"><?php esc_html_e( 'Please request updated Extra Fields module files', 'another-wordpress-classifieds-plugin' ); ?></a>.
     </p>
 </div>
 <?php endif; ?>
