@@ -1,11 +1,9 @@
 <?php echo $message; ?>
 
-<div class="awpcp-updated updated">
-    <p>
-        <?php $msg = _x( 'Thank you for using Another WordPress Classifieds Plugin, the #1 WordPress Classifieds Plugin.  Please direct support requests, enhancement ideas and bug reports to the %s.', '... to the <a>AWPCP Support Website link</a>', 'another-wordpress-classifieds-plugin' ); ?>
-        <?php echo sprintf( $msg, '<a href="http://www.awpcp.com/forum/">' . __( 'AWPCP Support Website', 'another-wordpress-classifieds-plugin' ) . '</a>' ); ?>
-    </p>
-</div>
+<?php /* translators: %1$s is the opening link tag <a>, %2$s is the closing link tag </a>. */ ?>
+<?php $msg = esc_html_x( 'Thank you for using Another WordPress Classifieds Plugin, the #1 WordPress Classifieds Plugin.  Please direct support requests, enhancement ideas and bug reports to the %s.', '... to the <a>AWPCP Support Website link</a>', 'another-wordpress-classifieds-plugin' ); ?>
+<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+<?php echo awpcp_render_success_message( sprintf( $msg, '<a href="http://www.awpcp.com/forum/">' . esc_html__( 'AWPCP Support Website', 'another-wordpress-classifieds-plugin' ) . '</a>' ) ); ?>
 
 <?php if ( $hasextrafieldsmodule == 1 && ! ( $extrafieldsversioncompatibility == 1 ) ) : ?>
 <div id="message" class="awpcp-updated updated fade">
