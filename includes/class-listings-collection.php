@@ -204,7 +204,7 @@ class AWPCP_ListingsCollection {
 
         $this->last_query = $this->wordpress->create_posts_query( $query_vars );
 
-        return $this->last_query->found_posts;
+        return intval( $this->last_query->found_posts );
     }
 
     /**
