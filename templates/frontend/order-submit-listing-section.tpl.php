@@ -47,7 +47,7 @@
                             'name'                       => 'user',
                             'class'                      => array( 'awpcp-user-selector' ),
                             'include_selected_user_only' => ! $show_user_field,
-                            'include_full_user_information' => false,
+                            'include_full_user_information' => $show_user_field,
                         ]
                     );
 
