@@ -135,7 +135,6 @@ abstract class AWPCP_PaymentGateway {
     }
 
     /**
-     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     protected function render_billing_form( $transaction, $data = array(), $hidden = array(), $errors = array() ) {
