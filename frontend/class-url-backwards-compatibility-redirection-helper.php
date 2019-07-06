@@ -69,6 +69,17 @@ class AWPCP_URL_Backwards_Compatibility_Redirection_Helper {
             $requested_listing_id = $vars['id'];
         }
 
+        /**
+         * A filter with a very long name to allow premium modules to help identify the
+         * requested listing ID.
+         *
+         * @since 4.0.0
+         */
+        $requested_listing_id = apply_filters(
+            'awpcp_url_backwards_compatibility_redirection_helper_requested_listing_id',
+            $requested_listing_id
+        );
+
         if ( ! $requested_listing_id ) {
             return;
         }
