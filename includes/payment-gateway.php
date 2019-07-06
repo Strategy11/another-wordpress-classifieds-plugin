@@ -140,7 +140,7 @@ abstract class AWPCP_PaymentGateway {
     protected function render_billing_form( $transaction, $data = array(), $hidden = array(), $errors = array() ) {
         wp_enqueue_script( 'awpcp-billing-form' );
         $listing_id = awpcp_request()->param( 'listing_id' );
-        if ( $listing_id ) {
+        if ( empty( $data['email'] ) && $listing_id ) {
             $data['email'] = get_post_meta( $listing_id, '_awpcp_contact_email', true );
         }
         if ( $transaction->user_id && empty( $data ) && is_user_logged_in() ) {
