@@ -174,16 +174,16 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
 
         } elseif ( strcasecmp( $payment_status, 'Pending' ) === 0 ) {
             $transaction->payment_status = AWPCP_Payment_Transaction::PAYMENT_STATUS_PENDING;
-        // phpcs:disable WordPress.WhiteSpace.PrecisionAlignment.Found
-        // phpcs:disable WordPress.PHP.StrictComparisons.LooseComparison
-        } elseif ( strcasecmp( $payment_status, 'Refunded' ) === 0 ||
-                   strcasecmp( $payment_status, 'Reversed' ) == 0 ||
-                   strcasecmp( $payment_status, 'Partially-Refunded' ) == 0 ||
-                   strcasecmp( $payment_status, 'Canceled_Reversal' ) == 0 ||
-                   strcasecmp( $payment_status, 'Denied' ) == 0 ||
-                   strcasecmp( $payment_status, 'Expired' ) == 0 ||
-                   strcasecmp( $payment_status, 'Failed' ) == 0 ||
-                   strcasecmp( $payment_status, 'Voided' ) == 0 ) {
+        } elseif (
+            strcasecmp( $payment_status, 'Refunded' ) === 0
+            || strcasecmp( $payment_status, 'Reversed' ) === 0
+            || strcasecmp( $payment_status, 'Partially-Refunded' ) === 0
+            || strcasecmp( $payment_status, 'Canceled_Reversal' ) === 0
+            || strcasecmp( $payment_status, 'Denied' ) === 0
+            || strcasecmp( $payment_status, 'Expired' ) === 0
+            || strcasecmp( $payment_status, 'Failed' ) === 0
+            || strcasecmp( $payment_status, 'Voided' ) === 0
+        ) {
             $transaction->payment_status = AWPCP_Payment_Transaction::PAYMENT_STATUS_FAILED;
 
         } else {
@@ -237,7 +237,6 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
 
     /**
      * @SuppressWarnings(PHPMD.UnusedLocalVariable)
-     * @SuppressWarnings(PHPMD.ElseExpression)
      */
     private function render_payment_button( $transaction ) {
         global $awpcp_imagesurl;
@@ -246,7 +245,7 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
         $item = $transaction->get_item( 0 );
 
         $is_recurring         = get_awpcp_option( 'paypalpaymentsrecurring' );
-        $is_test_mode_enabled = get_awpcp_option( 'paylivetestmode' ) == 1;
+        $is_test_mode_enabled = intval( get_awpcp_option( 'paylivetestmode' ) ) === 1;
 
         $currency = get_awpcp_option( 'paypalcurrencycode' );
         $custom   = $transaction->id;
