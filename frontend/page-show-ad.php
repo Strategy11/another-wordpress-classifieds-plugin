@@ -33,7 +33,22 @@ class AWPCP_Show_Ad_Page {
         $this->listings_logic            = $listings_logic;
         $this->listings_collection       = $listings_collection;
         $this->request                   = $request;
+
+        add_filter( 'awpcp-ad-details', array( $this, 'oembed' ) );
 	}
+
+    /**
+     * Acts on awpcp-ad-details filter to add oEmbed support
+     */
+    public function oembed( $content ) {
+        global $wp_embed;
+        $usecache           = $wp_embed->usecache;
+        $wp_embed->usecache = false;
+        $content            = $wp_embed->run_shortcode( $content );
+        $content            = $wp_embed->autoembed( $content );
+        $wp_embed->usecache = $usecache;
+        return $content;
+    }
 
 	public function dispatch() {
         $listing_id = $this->request->get_current_listing_id();
@@ -62,7 +77,7 @@ class AWPCP_Show_Ad_Page {
         }
 
         return $this->listings_content_renderer->render(
-            apply_filters( 'the_content', $post->post_content ),
+            apply_filters( 'awpcp-ad-details', $post->post_content ),
             $post
         );
 	}
