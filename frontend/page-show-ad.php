@@ -9,7 +9,7 @@
 class AWPCP_Show_Ad_Page {
 
     /**
-     * @var object ListingsContentRenderer
+     * @var AWPCP_ListingsContentRenderer
      */
     private $listings_content_renderer;
 
@@ -78,7 +78,7 @@ class AWPCP_Show_Ad_Page {
 
         return $this->listings_content_renderer->render(
             // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
-            apply_filters( 'awpcp-ad-details', $post->post_content ),
+            $post->post_content,
             $post
         );
 	}
