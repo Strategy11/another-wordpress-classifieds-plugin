@@ -160,6 +160,14 @@ class AWPCP_ListingsContainerConfiguration implements AWPCP_ContainerConfigurati
             );
         } );
 
+        $container['DeleteListingEventListener'] = $container->service(
+            function( $container ) {
+                return new AWPCP_DeleteListingEventListener(
+                    $container['listing_post_type']
+                );
+            }
+        );
+
         $container['RemoveListingAttachmentsService'] = $container->service(
             function( $container ) {
                 return new AWPCP_RemoveListingAttachmentsService(

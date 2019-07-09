@@ -334,6 +334,7 @@ class AWPCP {
 
         add_filter( 'terms_clauses', [ $term_query_integration, 'terms_clauses' ], 10, 3 );
 
+        $this->container['DeleteListingEventListener']->register();
         $this->container['RemoveListingRegionsService']->register();
 
         $remove_listing_attachments_service = $this->container['RemoveListingAttachmentsService'];

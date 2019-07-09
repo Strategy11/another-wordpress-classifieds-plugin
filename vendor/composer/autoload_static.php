@@ -125,6 +125,7 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_DeleteListingAction' => __DIR__ . '/../..' . '/includes/listings/class-delete-listing-action.php',
         'AWPCP_DeleteListingActionHandler' => __DIR__ . '/../..' . '/includes/frontend/class-delete-listing-action-handler.php',
         'AWPCP_DeleteListingAjaxHandler' => __DIR__ . '/../..' . '/admin/listings/class-delete-listing-ajax-handler.php',
+        'AWPCP_DeleteListingEventListener' => __DIR__ . '/../..' . '/includes/listings/class-delete-listing-event-listener.php',
         'AWPCP_Delete_Attachment_Ajax_Action' => __DIR__ . '/../..' . '/includes/media/class-delete-attachment-ajax-action.php',
         'AWPCP_Delete_Browse_Categories_Page_Notice' => __DIR__ . '/../..' . '/admin/class-delete-browse-categories-page-notice.php',
         'AWPCP_Delete_Categories_Admin_Page' => __DIR__ . '/../..' . '/admin/categories/class-delete-categories-admin-page.php',

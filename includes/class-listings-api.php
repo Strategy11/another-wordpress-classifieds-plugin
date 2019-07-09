@@ -699,13 +699,7 @@ class AWPCP_ListingsAPI {
      * @since 4.0.0
      */
     public function delete_listing( $listing ) {
-        do_action( 'awpcp_before_delete_ad', $listing );
-
-        $this->wordpress->delete_post( $listing->ID, true );
-
-        do_action( 'awpcp_delete_ad', $listing );
-
-        return $result === false ? false : true;
+        return wp_delete_post( $listing->ID, true ) !== false;
     }
 
     // phpcs:enable

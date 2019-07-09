@@ -124,6 +124,7 @@ return array(
     'AWPCP_DeleteListingAction' => $baseDir . '/includes/listings/class-delete-listing-action.php',
     'AWPCP_DeleteListingActionHandler' => $baseDir . '/includes/frontend/class-delete-listing-action-handler.php',
     'AWPCP_DeleteListingAjaxHandler' => $baseDir . '/admin/listings/class-delete-listing-ajax-handler.php',
+    'AWPCP_DeleteListingEventListener' => $baseDir . '/includes/listings/class-delete-listing-event-listener.php',
     'AWPCP_Delete_Attachment_Ajax_Action' => $baseDir . '/includes/media/class-delete-attachment-ajax-action.php',
     'AWPCP_Delete_Browse_Categories_Page_Notice' => $baseDir . '/admin/class-delete-browse-categories-page-notice.php',
     'AWPCP_Delete_Categories_Admin_Page' => $baseDir . '/admin/categories/class-delete-categories-admin-page.php',
