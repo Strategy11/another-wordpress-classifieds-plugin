@@ -701,10 +701,6 @@ class AWPCP_ListingsAPI {
     public function delete_listing( $listing ) {
         do_action( 'awpcp_before_delete_ad', $listing );
 
-
-        $sql = 'DELETE FROM ' . AWPCP_TABLE_AD_REGIONS . ' WHERE ad_id = %d';
-        $result = $this->db->query( $this->db->prepare( $sql, $listing->ID ) );
-
         $this->wordpress->delete_post( $listing->ID, true );
 
         do_action( 'awpcp_delete_ad', $listing );

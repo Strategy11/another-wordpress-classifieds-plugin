@@ -170,6 +170,14 @@ class AWPCP_ListingsContainerConfiguration implements AWPCP_ContainerConfigurati
             }
         );
 
+        $container['RemoveListingRegionsService'] = $container->service(
+            function( $container ) {
+                return new AWPCP_RemoveListingRegionsService(
+                    $container['wpdb']
+                );
+            }
+        );
+
         $container['ListingsViewCounter'] = $container->service(
             function( $container ) {
                 return new AWPCP_ListingsViewCounter(

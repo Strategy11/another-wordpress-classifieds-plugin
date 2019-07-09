@@ -334,6 +334,8 @@ class AWPCP {
 
         add_filter( 'terms_clauses', [ $term_query_integration, 'terms_clauses' ], 10, 3 );
 
+        $this->container['RemoveListingRegionsService']->register();
+
         $remove_listing_attachments_service = $this->container['RemoveListingAttachmentsService'];
 
         add_action( 'before_delete_post', [ $remove_listing_attachments_service, 'enqueue_attachments_to_be_removed' ], 10, 1 );
