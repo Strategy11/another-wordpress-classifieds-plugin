@@ -466,9 +466,18 @@ class AWPCP_ListingsAPI {
     }
 
     /**
+     * Set the listing's status to enabled, but don't trigger the
+     * awpcp_approve_ad action.
+     *
      * @since 4.0.0
+     *
+     * @return true if the listing was enabled, false otherwise.
      */
     public function enable_listing_without_triggering_actions( $listing ) {
+        if ( $this->listing_renderer->is_public( $listing ) ) {
+            return false;
+        }
+
         $post_data = [
             'post_fields' => [
                 'post_status' => 'publish',
