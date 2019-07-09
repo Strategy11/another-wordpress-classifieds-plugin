@@ -701,11 +701,6 @@ class AWPCP_ListingsAPI {
     public function delete_listing( $listing ) {
         do_action( 'awpcp_before_delete_ad', $listing );
 
-        $attachments = $this->attachments->find_attachments( array( 'post_parent' => $listing->ID ) );
-
-        foreach ( $attachments as $attachment ) {
-            $this->attachments_logic->delete_attachment( $attachment );
-        }
 
         $sql = 'DELETE FROM ' . AWPCP_TABLE_AD_REGIONS . ' WHERE ad_id = %d';
         $result = $this->db->query( $this->db->prepare( $sql, $listing->ID ) );
