@@ -11,6 +11,18 @@
 class AWPCP_EmailSettings {
 
     /**
+     * @var Settings
+     */
+    private $settings;
+
+    /**
+     * @since 4.0.0
+     */
+    public function __construct( $settings ) {
+        $this->settings = $settings;
+    }
+
+    /**
      * @since 4.0.0
      * @SuppressWarnings(PHPMD)
      */
@@ -291,7 +303,7 @@ class AWPCP_EmailSettings {
 
             awpcp_flash( $message, 'notice notice-error' );
 
-            return $this->get_option( $setting_name );
+            return $this->settings->get_option( $setting_name );
         }
 
         return $options[ $setting_name ];
