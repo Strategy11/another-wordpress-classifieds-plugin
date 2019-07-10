@@ -19,11 +19,13 @@ class AWPCP_PaymentSettings {
      * Handler for awpcp_register_settings action.
      */
     public function register_settings( $settings_manager ) {
-        $settings_manager->add_settings_group( [
-            'id'       => 'payment-settings',
-            'name'     => __( 'Payment', 'another-wordpress-classifieds-plugin' ),
-            'priority' => 40,
-        ] );
+        $settings_manager->add_settings_group(
+            [
+                'id'       => 'payment-settings',
+                'name'     => __( 'Payment', 'another-wordpress-classifieds-plugin' ),
+                'priority' => 40,
+            ]
+        );
 
         $this->register_general_payment_settings( $settings_manager );
         $this->register_paypal_settings( $settings_manager );
