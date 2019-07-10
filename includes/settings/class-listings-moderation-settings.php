@@ -15,13 +15,10 @@ class AWPCP_ListingsModerationSettings {
         $this->settings = $settings;
     }
 
-    /**
-     * TODO: Check this is still working.
-     */
     public function validate_all_settings( $options, $group ) {
         if ( isset( $options['requireuserregistration'] ) && $options['requireuserregistration'] && get_awpcp_option( 'enable-email-verification' ) ) {
             $message = __( "Email verification was disabled because you enabled Require Registration. Registered users don't need to verify the email address used for contact information.", 'another-wordpress-classifieds-plugin' );
-            awpcp_flash( $message, 'error' );
+            awpcp_flash_warning( $message );
 
             $options['enable-email-verification'] = 0;
         }
@@ -29,13 +26,10 @@ class AWPCP_ListingsModerationSettings {
         return $options;
     }
 
-    /**
-     * TODO: Check this is still working.
-     */
     public function validate_group_settings( $options, $group ) {
         if ( isset( $options['enable-email-verification'] ) && $options['enable-email-verification'] && get_awpcp_option( 'requireuserregistration' ) ) {
             $message = __( "Email verification was not enabled because Require Registration is on. Registered users don't need to verify the email address used for contact information.", 'another-wordpress-classifieds-plugin' );
-            awpcp_flash( $message, 'error' );
+            awpcp_flash_warning( $message );
 
             $options['enable-email-verification'] = 0;
         }

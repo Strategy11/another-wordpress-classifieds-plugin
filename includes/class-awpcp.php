@@ -223,9 +223,9 @@ class AWPCP {
         add_action( 'awpcp_register_settings', array( $general_settings, 'register_settings' ) );
         add_filter( 'awpcp_validate_settings_general-settings', array( $general_settings, 'validate_group_settings' ), 10, 2 );
         add_filter( 'awpcp_validate_settings_general-settings', array( $general_settings, 'validate_general_settings' ), 10, 2 );
-        add_filter( 'awpcp_validate_settings_subgroup_date-time-format-settings', array( $general_settings, 'validate_date_time_format_settings' ), 10, 2 );
-        add_filter( 'awpcp_validate_settings_registration-settings',[ $general_settings, 'validate_registration_settings' ] );
         add_filter( 'awpcp_validate_settings_facebook-settings', [ $general_settings, 'validate_facebook_settings' ] );
+        add_filter( 'awpcp_validate_settings_subgroup_date-time-format-settings', array( $general_settings, 'validate_date_time_format_settings' ), 10, 2 );
+        add_filter( 'awpcp_validate_settings_subgroup_registration-settings',[ $general_settings, 'validate_registration_settings' ] );
 
         $pages_settings = $this->container['PagesSettings'];
         add_action( 'awpcp_register_settings', [ $pages_settings, 'register_settings' ] );
