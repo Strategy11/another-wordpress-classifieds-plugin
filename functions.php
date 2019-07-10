@@ -1671,7 +1671,7 @@ function awpcp_flash( $message, $class = array( 'awpcp-updated', 'notice', 'noti
 /**
  * @since 4.0.0
  */
-function awpcp_flash_error( $message, $class = array( 'awpcp-error', 'notice', 'notice-error', 'notice' ) ) {
+function awpcp_flash_error( $message, $class = array( 'awpcp-error', 'notice', 'notice-error' ) ) {
     awpcp_flash( $message, $class );
 }
 
