@@ -296,17 +296,4 @@ class AWPCP_EmailSettings {
 
         return $options[ $setting_name ];
     }
-
-    /**
-     * SMTP Settings checks.
-     */
-    public function validate_smtp_settings( $options ) {
-        // Not sure if this works, but that's what the old code did.
-        $setting = 'smtppassword';
-        if (isset($options[$setting])) {
-            $options[$setting] = md5($options[$setting]);
-        }
-
-        return $options;
-    }
 }

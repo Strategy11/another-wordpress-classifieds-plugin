@@ -254,7 +254,6 @@ class AWPCP {
         $email_settings = $this->container['EmailSettings'];
         add_action( 'awpcp_register_settings', [ $email_settings, 'register_settings' ] );
         add_filter( 'awpcp_validate_settings_email-settings', [ $email_settings, 'validate_email_settings' ] );
-        add_filter( 'awpcp_validate_settings_smtp-settings', [ $email_settings, 'validate_smtp_settings' ], 10, 2 );
 	}
 
     /**
