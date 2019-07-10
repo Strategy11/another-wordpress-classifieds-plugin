@@ -102,11 +102,10 @@ class AWPCP_PaymentSettings {
     }
 
     public function validate_group_settings( $options ) {
-        // debugp( $options, $group );
         if ( isset( $options[ 'force-secure-urls' ] ) && $options[ 'force-secure-urls' ] ) {
-            if ( $this->is_https_disabled() ) {
+            if ( ! $this->is_https_available() ) {
                 $message = __( "Force Secure URLs was not enabled because your website couldn't be accessed using a secure connection.", 'another-wordpress-classifieds-plugin' );
-                awpcp_flash( $message, 'error' );
+                awpcp_flash_error( $message );
 
                 $options['force-secure-urls'] = 0;
             }
@@ -115,25 +114,14 @@ class AWPCP_PaymentSettings {
         return $options;
     }
 
-    public function is_https_disabled() {
-        $url = set_url_scheme( awpcp_get_page_url( 'place-ad-page-name' ), 'https' );
+    /**
+     * @since 4.0.0
+     */
+    private function is_https_available() {
+        $url      = set_url_scheme( awpcp_get_page_url( 'place-ad-page-name' ), 'https' );
         $response = wp_remote_get( $url, array( 'timeout' => 30 ) );
 
-        if ( ! is_wp_error( $response ) ) {
-            return false;
-        }
-
-        if ( ! isset( $response->errors ) || ! isset( $response->errors['http_request_failed'] ) ) {
-            return false;
-        }
-
-        foreach ( (array) $response->errors['http_request_failed'] as $error ) {
-            if ( false === strpos( $error, 'Connection refused' ) ) {
-                return false;
-            }
-        }
-
-        return true;
+        return ! is_wp_error( $response );
     }
 
     private function register_paypal_settings( $settings_manager ) {
