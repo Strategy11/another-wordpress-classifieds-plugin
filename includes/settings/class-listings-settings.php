@@ -266,7 +266,7 @@ class AWPCP_ListingsSettings {
             'name'        => __( 'Listing Renewed', 'another-wordpress-classifieds-plugin' ),
             'type'        => 'checkbox',
             'description' => __( 'An email will be sent to administrator users when a listing is renewed.', 'another-wordpress-classifieds-plugin' ),
-            'default'     => 0,
+            'default'     => true,
             'validation'  => [],
             'behavior'    => [],
             'section'     => $key,
