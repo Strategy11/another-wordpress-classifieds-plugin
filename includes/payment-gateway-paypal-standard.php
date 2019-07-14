@@ -13,6 +13,7 @@ function awpcp_paypal_standard_payment_gateway() {
 /**
  * Class AWPCP_PayPalStandardPaymentGateway
  *
+ * @SuppressWarnings(PHPMD)
  */
 class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
 
