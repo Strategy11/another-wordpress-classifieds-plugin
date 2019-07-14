@@ -196,6 +196,8 @@ class AWPCP_ListingsSettings {
 
     /**
      * Register settings for moderator notifications.
+     *
+     * @param AWPCP_SettingsManager $settings_manager The plugin's settings manager.
      */
     private function register_moderator_notifications_settings( $settings_manager ) {
         $key = 'moderator-notifications';
@@ -232,6 +234,8 @@ class AWPCP_ListingsSettings {
 
     /**
      * Register settings for administrator notifications.
+     *
+     * @param AWPCP_SettingsManager $settings_manager The plugin's settings manager.
      */
     private function register_administrator_notifications_settings( $settings_manager ) {
         $key = 'admin-notifications';
@@ -256,6 +260,19 @@ class AWPCP_ListingsSettings {
             'checkbox',
             $this->settings->get_option( 'notifyofadposted' ),
             __( 'An email will be sent to administrator when a listing is edited.', 'another-wordpress-classifieds-plugin' )
+        );
+
+        $settings_manager->add_setting(
+            [
+                'id'          => 'send-listing-renewed-notification-to-admin',
+                'name'        => __( 'Listing Renewed', 'another-wordpress-classifieds-plugin' ),
+                'type'        => 'checkbox',
+                'description' => __( 'An email will be sent to administrator users when a listing is renewed.', 'another-wordpress-classifieds-plugin' ),
+                'default'     => true,
+                'validation'  => [],
+                'behavior'    => [],
+                'section'     => $key,
+            ]
         );
 
         $settings_manager->add_setting(
