@@ -22,7 +22,7 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
     public function __construct( $request ) {
         parent::__construct(
             'paypal',
-            _x( 'Credit Card via PayPal', 'payment gateways', 'another-wordpress-classifieds-plugin' ),
+            _x( 'PayPal', 'payment gateways', 'another-wordpress-classifieds-plugin' ),
             '',
             AWPCP_URL . '/resources/images/payments-paypal.jpg'
         );
