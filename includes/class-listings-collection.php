@@ -265,7 +265,9 @@ class AWPCP_ListingsCollection {
      * @since 4.0.0     Uses Classifieds Query Integration.
      */
     public function find_enabled_listings( $query_vars = array() ) {
-        $query_vars['classifieds_query']['is_enabled'] = true;
+        if (!array_key_exists('is_enabled', $query_vars['classifieds_query'])) {
+            $query_vars['classifieds_query']['is_enabled'] = true;
+        }
 
         return $this->find_listings( $query_vars );
     }

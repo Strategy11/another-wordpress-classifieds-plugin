@@ -55,6 +55,7 @@ module.exports = function(grunt) {
           '<%= path.awpcp %>/js/jquery-validate-methods.js',
           '<%= path.awpcp %>/js/main.js',
           '<%= path.awpcp %>/js/recaptcha.js',
+          '<%= path.awpcp %>/js/listing-renew-action.js',
         ],
         '<%= path.awpcp %>/js/admin-pointers.src.js': [
           '<%= path.awpcp %>/js/components/pointers/pointers-manager.js',

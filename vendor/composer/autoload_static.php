@@ -295,6 +295,7 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_ListingsPermalinks' => __DIR__ . '/../..' . '/includes/listings/class-listings-permalinks.php',
         'AWPCP_ListingsPersonalDataProvider' => __DIR__ . '/../..' . '/includes/admin/class-listings-personal-data-provider.php',
         'AWPCP_ListingsRegistry' => __DIR__ . '/../..' . '/includes/upgrade/class-listings-registry.php',
+        'AWPCP_ListingsRenewAction' => __DIR__ . '/../..' . '/includes/listings/class-listings-renew-action.php',
         'AWPCP_ListingsSettings' => __DIR__ . '/../..' . '/includes/settings/class-listings-settings.php',
         'AWPCP_ListingsTableColumnsHandler' => __DIR__ . '/../..' . '/includes/admin/listings/class-listings-table-columns-handler.php',
         'AWPCP_ListingsTableNavHandler' => __DIR__ . '/../..' . '/includes/admin/listings/class-listings-table-nav-handler.php',

@@ -294,6 +294,7 @@ return array(
     'AWPCP_ListingsPermalinks' => $baseDir . '/includes/listings/class-listings-permalinks.php',
     'AWPCP_ListingsPersonalDataProvider' => $baseDir . '/includes/admin/class-listings-personal-data-provider.php',
     'AWPCP_ListingsRegistry' => $baseDir . '/includes/upgrade/class-listings-registry.php',
+    'AWPCP_ListingsRenewAction' => $baseDir . '/includes/listings/class-listings-renew-action.php',
     'AWPCP_ListingsSettings' => $baseDir . '/includes/settings/class-listings-settings.php',
     'AWPCP_ListingsTableColumnsHandler' => $baseDir . '/includes/admin/listings/class-listings-table-columns-handler.php',
     'AWPCP_ListingsTableNavHandler' => $baseDir . '/includes/admin/listings/class-listings-table-nav-handler.php',

@@ -195,6 +195,17 @@ class AWPCP_ListingsContainerConfiguration implements AWPCP_ContainerConfigurati
                 );
             }
         );
+
+        $container['ListingsRenewAction'] = $container->service(
+            function( $container ) {
+                return new AWPCP_ListingsRenewAction(
+                    awpcp_ajax_response(),
+                    $container['Request'],
+                    $container['ListingsLogic'],
+                    $container['RenewListingTableAction']
+                );
+            }
+        );
     }
 
     /**

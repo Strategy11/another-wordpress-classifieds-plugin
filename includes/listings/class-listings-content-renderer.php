@@ -69,7 +69,7 @@ class AWPCP_ListingsContentRenderer {
      * @since 4.0.0
      */
     private function current_user_is_listing_owner( $post ) {
-        if ( $post->post_author > 0 && wp_get_current_user()->ID === $post->post_author ) {
+        if ( $post->post_author > 0 && wp_get_current_user()->ID === (int)$post->post_author ) {
             return true;
         }
 
