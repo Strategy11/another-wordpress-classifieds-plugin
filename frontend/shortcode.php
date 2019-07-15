@@ -178,9 +178,9 @@ class AWPCP_Pages {
         }
 
         $query = array(
-            'context' => 'public-listings',
-            'author'  => $user_id,
-            'classifieds_query' => ['is_enabled' => null]
+            'context'           => 'public-listings',
+            'author'            => $user_id,
+            'classifieds_query' => [ 'is_enabled' => null ],
         );
 
         if ( ! is_null( $attrs['limit'] ) ) {

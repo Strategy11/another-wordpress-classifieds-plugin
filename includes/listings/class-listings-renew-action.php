@@ -15,9 +15,9 @@ class AWPCP_ListingsRenewAction extends AWPCP_AjaxHandler {
 
     public function __construct( $response, $request, $listings_login, $renew_listing_action ) {
         parent::__construct( $response );
-        $this->request        = $request;
-        $this->response       = $response;
-        $this->listings_logic = $listings_login;
+        $this->request              = $request;
+        $this->response             = $response;
+        $this->listings_logic       = $listings_login;
         $this->renew_listing_action = $renew_listing_action;
     }
 
@@ -28,10 +28,10 @@ class AWPCP_ListingsRenewAction extends AWPCP_AjaxHandler {
             if ( $listing ) {
                 $result  = $this->renew_listing_action->process_item( $listing );
                 $message = $this->renew_listing_action->get_message( $result, 1 );
-                if ($result !== 'success') {
-                    $this->error(array($message));
+                if ( $result !== 'success' ) {
+                    $this->error( array( $message ) );
                 }
-                $this->success(array($message));
+                $this->success( array( $message ) );
             }
         }
     }

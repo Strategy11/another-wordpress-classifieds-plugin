@@ -211,7 +211,7 @@ function awpcp_content_placeholders() {
         'thumbnail_width'      => array(
             'callback' => 'awpcp_do_placeholder_images',
         ),
-        'ad_actions'          => array(),
+        'ad_actions'           => array(),
     );
 
     $placeholders = array_merge( $legacy_placeholders, $placeholders );
@@ -869,7 +869,7 @@ function awpcp_do_placeholder_facebook_button_url( $ad, $placeholder ) {
  * @since 4.0
  */
 function awpcp_do_placeholder_ad_actions( $ad, $placeholder ) {
-    $is_owner = get_current_user_id() === (int) $ad->post_author;
+    $is_owner   = get_current_user_id() === (int) $ad->post_author;
     $is_expired = awpcp()->container['RenewListingTableAction']->should_show_action_for( $ad );
     if ( $is_owner && $is_expired ) {
         $label = awpcp()->container['RenewListingTableAction']->get_title();
