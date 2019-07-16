@@ -5,6 +5,8 @@
 
 /**
  * Entry point for all plugin features available from the Classified Ads admin menu.
+ *
+ * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
 class AWPCP_Admin {
 
