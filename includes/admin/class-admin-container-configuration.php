@@ -129,14 +129,16 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
         $container['EnableListingTableAction'] = $container->service( function( $container ) {
             return new AWPCP_EnableListingTableAction(
                 awpcp_listings_api(),
-                $container['ListingRenderer']
+                $container['ListingRenderer'],
+                $container['RolesAndCapabilities']
             );
         } );
 
         $container['DisableListingTableAction'] = $container->service( function( $container ) {
             return new AWPCP_DisableListingTableAction(
                 awpcp_listings_api(),
-                $container['ListingRenderer']
+                $container['ListingRenderer'],
+                $container['RolesAndCapabilities']
             );
         } );
 
@@ -151,6 +153,7 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
             return new AWPCP_MarkAsSPAMListingTableAction(
                 $container['SPAMSubmitter'],
                 $container['ListingsLogic'],
+                $container['RolesAndCapabilities'],
                 $container['WordPress']
             );
         } );
@@ -158,7 +161,8 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
         $container['UnflagListingTableAction'] = $container->service( function( $container ) {
             return new AWPCP_UnflagListingTableAction(
                 $container['ListingsLogic'],
-                $container['ListingRenderer']
+                $container['ListingRenderer'],
+                $container['RolesAndCapabilities']
             );
         } );
 
@@ -167,14 +171,15 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
                 $container['ListingsLogic'],
                 $container['ListingRenderer'],
                 $container['ListingRenewedEmailNotifications'],
+                $container['RolesAndCapabilities'],
                 $container['Settings']
             );
         } );
 
         $container['MakeFeaturedListingTableAction'] = $container->service( function( $container ) {
             return new AWPCP_MakeFeaturedListingTableAction(
-                $container['RolesAndCapabilities'],
                 $container['ListingRenderer'],
+                $container['RolesAndCapabilities'],
                 $container['WordPress']
             );
         } );
@@ -182,6 +187,7 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
         $container['MakeStandardListingTableAction'] = $container->service( function( $container ) {
             return new AWPCP_MakeStandardListingTableAction(
                 $container['ListingRenderer'],
+                $container['RolesAndCapabilities'],
                 $container['WordPress']
             );
         } );
@@ -189,23 +195,24 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
         $container['MarkReviewedListingTableAction'] = $container->service( function( $container ) {
             return new AWPCP_MarkReviewedListingTableAction(
                 $container['ListingRenderer'],
+                $container['RolesAndCapabilities'],
                 $container['WordPress']
             );
         } );
 
         $container['MarkPaidListingTableAction'] = $container->service( function( $container ) {
             return new AWPCP_MarkPaidListingTableAction(
-                $container['RolesAndCapabilities'],
                 $container['ListingsLogic'],
-                $container['ListingRenderer']
+                $container['ListingRenderer'],
+                $container['RolesAndCapabilities']
             );
         } );
 
         $container['MarkVerifiedListingTableAction'] = $container->service( function( $container ) {
             return new AWPCP_MarkVerifiedListingTableAction(
-                $container['RolesAndCapabilities'],
                 $container['ListingsLogic'],
-                $container['ListingRenderer']
+                $container['ListingRenderer'],
+                $container['RolesAndCapabilities']
             );
         } );
 

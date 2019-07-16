@@ -6,9 +6,9 @@
 /**
  * Action to mark a listing as featured.
  */
-class AWPCP_MakeFeaturedListingTableAction implements AWPCP_ListTableActionInterface {
-
-    use AWPCP_ModeratorListTableActionTrait;
+class AWPCP_MakeFeaturedListingTableAction implements
+    AWPCP_ListTableActionInterface,
+    AWPCP_ConditionalListTableActionInterface {
 
     /**
      * @var object
@@ -21,23 +21,38 @@ class AWPCP_MakeFeaturedListingTableAction implements AWPCP_ListTableActionInter
     private $wordpress;
 
     /**
-     * @param object $roles_and_capabilities    An instance of Roles and Capabilities.
-     * @param object $listing_renderer          An instance of Listing Renderer.
-     * @param object $wordpress                 An instance of WordPress.
-     * @since 4.0.0
+     * @var object
      */
-    public function __construct( $roles_and_capabilities, $listing_renderer, $wordpress ) {
-        $this->roles_and_capabilities = $roles_and_capabilities;
-        $this->listing_renderer       = $listing_renderer;
-        $this->wordpress              = $wordpress;
+    private $roles;
+
+    /**
+     * @since 4.0.0
+     *
+     * @param object $listing_renderer An instance of Listing Renderer.
+     * @param object $roles            An instance of Roles and Capabilities.
+     * @param object $wordpress        An instance of WordPress.
+     */
+    public function __construct( $listing_renderer, $roles, $wordpress ) {
+        $this->listing_renderer = $listing_renderer;
+        $this->roles            = $roles;
+        $this->wordpress        = $wordpress;
     }
 
     /**
-     * @param object $post  An instance of WP_Post.
      * @since 4.0.0
+     */
+    public function is_needed() {
+        return $this->roles->current_user_is_moderator();
+    }
+
+    /**
+     * @since 4.0.0
+     *
+     * @param object $post  An instance of WP_Post.
+     *
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    protected function should_show_action_for_post( $post ) {
+    public function should_show_action_for( $post ) {
         return false; // Available as a bulk action only.
     }
 

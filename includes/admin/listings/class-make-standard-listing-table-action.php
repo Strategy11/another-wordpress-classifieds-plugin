@@ -6,7 +6,9 @@
 /**
  * Make Standard listing table action.
  */
-class AWPCP_MakeStandardListingTableAction implements AWPCP_ListTableActionInterface {
+class AWPCP_MakeStandardListingTableAction implements
+    AWPCP_ListTableActionInterface,
+    AWPCP_ConditionalListTableActionInterface {
 
     /**
      * @var object
@@ -16,16 +18,31 @@ class AWPCP_MakeStandardListingTableAction implements AWPCP_ListTableActionInter
     /**
      * @var object
      */
+    private $roles;
+
+    /**
+     * @var object
+     */
     private $wordpress;
 
     /**
+     * @since 4.0.0
+     *
      * @param object $listing_renderer  An instance of Listing Renderer.
+     * @param object $roles             An instance of Roles and Capabilities.
      * @param object $wordpress         An instance of WordPress.
+     */
+    public function __construct( $listing_renderer, $roles, $wordpress ) {
+        $this->listing_renderer = $listing_renderer;
+        $this->roles            = $roles;
+        $this->wordpress        = $wordpress;
+    }
+
+    /**
      * @since 4.0.0
      */
-    public function __construct( $listing_renderer, $wordpress ) {
-        $this->listing_renderer = $listing_renderer;
-        $this->wordpress        = $wordpress;
+    public function is_needed() {
+        return $this->roles->current_user_is_moderator();
     }
 
     /**

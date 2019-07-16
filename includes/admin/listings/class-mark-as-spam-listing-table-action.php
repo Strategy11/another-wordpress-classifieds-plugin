@@ -6,7 +6,9 @@
 /**
  * Mark as SPAM listing admin action.
  */
-class AWPCP_MarkAsSPAMListingTableAction implements AWPCP_ListTableActionInterface {
+class AWPCP_MarkAsSPAMListingTableAction implements
+    AWPCP_ListTableActionInterface,
+    AWPCP_ConditionalListTableActionInterface {
 
     /**
      * @var object
@@ -21,18 +23,33 @@ class AWPCP_MarkAsSPAMListingTableAction implements AWPCP_ListTableActionInterfa
     /**
      * @var object
      */
+    private $roles;
+
+    /**
+     * @var object
+     */
     private $wordpress;
 
     /**
+     * @since 4.0.0
+     *
      * @param object $spam_submitter    Akismet API wrapper.
      * @param object $listings_logic    An instance of Listings API.
+     * @param object $roles             An instance of Roles and Capabilities.
      * @param object $wordpress         An instance of WordPress.
-     * @since 4.0.0
      */
-    public function __construct( $spam_submitter, $listings_logic, $wordpress ) {
+    public function __construct( $spam_submitter, $listings_logic, $roles, $wordpress ) {
         $this->spam_submitter = $spam_submitter;
         $this->listings_logic = $listings_logic;
+        $this->roles          = $roles;
         $this->wordpress      = $wordpress;
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function is_needed() {
+        return $this->roles->current_user_is_moderator();
     }
 
     /**

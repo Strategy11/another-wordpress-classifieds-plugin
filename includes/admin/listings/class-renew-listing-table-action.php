@@ -6,7 +6,9 @@
 /**
  * Renew listing action.
  */
-class AWPCP_RenewListingTableAction implements AWPCP_ListTableActionInterface {
+class AWPCP_RenewListingTableAction implements
+    AWPCP_ListTableActionInterface,
+    AWPCP_ConditionalListTableActionInterface {
 
     /**
      * @var object
@@ -26,19 +28,33 @@ class AWPCP_RenewListingTableAction implements AWPCP_ListTableActionInterface {
     /**
      * @var object
      */
+    private $roles;
+
+    /**
+     * @var object
+     */
     private $settings;
 
     /**
      * @param object $listings_logic        An instance of Listings API.
      * @param object $listing_renderer      An instance of Listing Renderer.
      * @param object $email_notifications   An instance of ListingRenewedEmailNotifications.
+     * @param object $roles                 An instance of Roles and Capabilities.
      * @param object $settings              An instance of AWPCP_Settings_API.
      */
-    public function __construct( $listings_logic, $listing_renderer, $email_notifications, $settings ) {
+    public function __construct( $listings_logic, $listing_renderer, $email_notifications, $roles, $settings ) {
         $this->listings_logic      = $listings_logic;
         $this->listing_renderer    = $listing_renderer;
         $this->email_notifications = $email_notifications;
+        $this->roles               = $roles;
         $this->settings            = $settings;
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function is_needed() {
+        return $this->roles->current_user_is_moderator();
     }
 
     /**

@@ -6,9 +6,9 @@
 /**
  * Mark Listing as Paid table action.
  */
-class AWPCP_MarkPaidListingTableAction implements AWPCP_ListTableActionInterface {
-
-    use AWPCP_ModeratorListTableActionTrait;
+class AWPCP_MarkPaidListingTableAction implements
+    AWPCP_ListTableActionInterface,
+    AWPCP_ConditionalListTableActionInterface {
 
     /**
      * @var ListingsLogic
@@ -21,19 +21,36 @@ class AWPCP_MarkPaidListingTableAction implements AWPCP_ListTableActionInterface
     private $listing_renderer;
 
     /**
-     * @since 4.0.0
+     * @var object
      */
-    public function __construct( $roles_and_capabilities, $listings_logic, $listing_renderer ) {
-        $this->roles_and_capabilities = $roles_and_capabilities;
-        $this->listings_logic         = $listings_logic;
-        $this->listing_renderer       = $listing_renderer;
+    private $roles;
+
+    /**
+     * @since 4.0.0
+     *
+     * @param object $listings_logic    An instance of Listings API.
+     * @param object $listing_renderer  An instance of Listing Renderer.
+     * @param object $roles             An instance of Roles and Capabilities.
+     */
+    public function __construct( $listings_logic, $listing_renderer, $roles ) {
+        $this->listings_logic   = $listings_logic;
+        $this->listing_renderer = $listing_renderer;
+        $this->roles            = $roles;
     }
 
     /**
      * @since 4.0.0
+     */
+    public function is_needed() {
+        return $this->roles->current_user_is_moderator();
+    }
+
+    /**
+     * @since 4.0.0
+     *
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    protected function should_show_action_for_post( $post ) {
+    public function should_show_action_for( $post ) {
         return false; // Available as a bulk action only.
     }
 

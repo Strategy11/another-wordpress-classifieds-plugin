@@ -95,6 +95,7 @@ return array(
     'AWPCP_Compatibility' => $baseDir . '/includes/compatibility/compatibility.php',
     'AWPCP_CompleteListingTableView' => $baseDir . '/includes/admin/listings/class-complete-listing-table-view.php',
     'AWPCP_CompleteOpenGraphPluginIntegration' => $baseDir . '/includes/compatibility/class-complete-open-graph-plugin-integration.php',
+    'AWPCP_ConditionalListTableActionInterface' => $baseDir . '/includes/admin/interface-conditional-list-table-action.php',
     'AWPCP_ContactEmailListingsTableSearchMode' => $baseDir . '/includes/admin/listings/class-contact-email-listings-table-search-mode.php',
     'AWPCP_ContactNameListingsTableSearchMode' => $baseDir . '/includes/admin/listings/class-contact-name-listings-table-search-mode.php',
     'AWPCP_ContactPhoneListingsTableSearchMode' => $baseDir . '/includes/admin/listings/class-contact-phone-listings-table-search-mode.php',

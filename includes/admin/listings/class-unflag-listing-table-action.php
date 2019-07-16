@@ -6,7 +6,9 @@
 /**
  * Unflag Listing Table Action
  */
-class AWPCP_UnflagListingTableAction implements AWPCP_ListTableActionInterface {
+class AWPCP_UnflagListingTableAction implements
+    AWPCP_ListTableActionInterface,
+    AWPCP_ConditionalListTableActionInterface {
 
     /**
      * @var object
@@ -19,13 +21,28 @@ class AWPCP_UnflagListingTableAction implements AWPCP_ListTableActionInterface {
     private $listing_renderer;
 
     /**
+     * @var object
+     */
+    private $roles;
+
+    /**
+     * @since 4.0.0
+     *
      * @param object $listings_logic    An instance of ListingsAPI.
      * @param object $listing_renderer  An instance of Listing Renderer.
-     * @since 4.0.0
+     * @param object $roles             An instance of Roles and Capabilities.
      */
-    public function __construct( $listings_logic, $listing_renderer ) {
+    public function __construct( $listings_logic, $listing_renderer, $roles ) {
         $this->listings_logic   = $listings_logic;
         $this->listing_renderer = $listing_renderer;
+        $this->roles            = $roles;
+    }
+
+    /**
+     * @since 4.0.0
+     */
+    public function is_needed() {
+        return $this->roles->current_user_is_moderator();
     }
 
     /**

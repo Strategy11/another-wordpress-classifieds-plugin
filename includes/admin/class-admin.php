@@ -118,6 +118,7 @@ class AWPCP_Admin {
 
         add_filter( 'awpcp_list_table_views_listings', array( $this, 'register_listings_table_views' ) );
         add_filter( 'awpcp_list_table_actions_listings', array( $this, 'register_listings_table_actions' ) );
+        add_filter( 'awpcp_list_table_actions_listings', [ $this, 'filter_listings_table_actions' ], 99, 1 );
         add_filter( 'awpcp_list_table_search_listings', array( $this, 'register_listings_table_search_modes' ) );
 
         add_action( 'admin_enqueue_scripts', [ $this, 'maybe_enqueue_meta_boxes_scripts' ] );
@@ -180,6 +181,28 @@ class AWPCP_Admin {
         $actions['mark-verified']          = $this->container['MarkVerifiedListingTableAction'];
         $actions['send-to-facebook-page']  = $this->container['SendToFacebookPageListingTableAction'];
         $actions['send-to-facebook-group'] = $this->container['SendToFacebookGroupListingTableAction'];
+
+        return $actions;
+    }
+
+    /**
+     * Remove listing table actions that are not needed on this request.
+     *
+     * @since 4.0.0
+     */
+    public function filter_listings_table_actions( $available_actions ) {
+        $actions = [];
+
+        foreach ( $available_actions as $name => $action ) {
+            // We assume the action should be used on every request if the object
+            // is not an instance of the AWPCP_ConditionalListTableActionInterface.
+            if (
+                ! is_a( $action, 'AWPCP_ConditionalListTableActionInterface' )
+                || $action->is_needed()
+            ) {
+                $actions[ $name ] = $action;
+            }
+        }
 
         return $actions;
     }

@@ -6,9 +6,9 @@
 /**
  * Send to Facebook Page listing admin action.
  */
-class AWPCP_SendToFacebookPageListingTableAction implements AWPCP_ListTableActionInterface {
-
-    use AWPCP_ModeratorListTableActionTrait;
+class AWPCP_SendToFacebookPageListingTableAction implements
+    AWPCP_ListTableActionInterface,
+    AWPCP_ConditionalListTableActionInterface {
 
     /**
      * @var object
@@ -21,15 +21,28 @@ class AWPCP_SendToFacebookPageListingTableAction implements AWPCP_ListTableActio
     private $wordpress;
 
     /**
-     * @param object $facebook_helper           An instance of Send To Facebook Helper.
-     * @param object $roles_and_capabilities    An instance of Roles and Capabilities.
-     * @param object $wordpress                 An instance of WordPress.
+     * @var object
+     */
+    private $roles;
+
+    /**
+     * @since 4.0.0
+     *
+     * @param object $facebook_helper An instance of Send To Facebook Helper.
+     * @param object $roles           An instance of Roles and Capabilities.
+     * @param object $wordpress       An instance of WordPress.
+     */
+    public function __construct( $facebook_helper, $roles, $wordpress ) {
+        $this->facebook_helper = $facebook_helper;
+        $this->roles           = $roles;
+        $this->wordpress       = $wordpress;
+    }
+
+    /**
      * @since 4.0.0
      */
-    public function __construct( $facebook_helper, $roles_and_capabilities, $wordpress ) {
-        $this->facebook_helper        = $facebook_helper;
-        $this->roles_and_capabilities = $roles_and_capabilities;
-        $this->wordpress              = $wordpress;
+    public function is_needed() {
+        return $this->roles->current_user_is_moderator();
     }
 
     /**
@@ -37,7 +50,7 @@ class AWPCP_SendToFacebookPageListingTableAction implements AWPCP_ListTableActio
      * @since 4.0.0
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    protected function should_show_action_for_post( $post ) {
+    public function should_show_action_for( $post ) {
         return false; // Available as a bulk action only.
     }
 

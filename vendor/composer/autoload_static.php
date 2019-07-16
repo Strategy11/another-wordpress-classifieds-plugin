@@ -96,6 +96,7 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_Compatibility' => __DIR__ . '/../..' . '/includes/compatibility/compatibility.php',
         'AWPCP_CompleteListingTableView' => __DIR__ . '/../..' . '/includes/admin/listings/class-complete-listing-table-view.php',
         'AWPCP_CompleteOpenGraphPluginIntegration' => __DIR__ . '/../..' . '/includes/compatibility/class-complete-open-graph-plugin-integration.php',
+        'AWPCP_ConditionalListTableActionInterface' => __DIR__ . '/../..' . '/includes/admin/interface-conditional-list-table-action.php',
         'AWPCP_ContactEmailListingsTableSearchMode' => __DIR__ . '/../..' . '/includes/admin/listings/class-contact-email-listings-table-search-mode.php',
         'AWPCP_ContactNameListingsTableSearchMode' => __DIR__ . '/../..' . '/includes/admin/listings/class-contact-name-listings-table-search-mode.php',
         'AWPCP_ContactPhoneListingsTableSearchMode' => __DIR__ . '/../..' . '/includes/admin/listings/class-contact-phone-listings-table-search-mode.php',
