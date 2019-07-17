@@ -1,14 +1,21 @@
 <?php
 /**
+ * Renew Listing Table Action for Moderators.
+ *
  * @package AWPCP\Admin\Listings
  */
 
 /**
- * Renew listing action.
+ * @since 4.0.0
  */
-class AWPCP_RenewListingTableAction implements
+class AWPCP_ModeratorRenewListingTableAction implements
     AWPCP_ListTableActionInterface,
     AWPCP_ConditionalListTableActionInterface {
+
+    /**
+     * Implements some of the methods from the AWPCP_ListTableActionInterface.
+     */
+    use AWPCP_RenewListingTableAction;
 
     /**
      * @var object
@@ -58,43 +65,10 @@ class AWPCP_RenewListingTableAction implements
     }
 
     /**
-     * @param object $post  An instance of WP_Post.
      * @since 4.0.0
      */
-    public function should_show_action_for( $post ) {
-        if ( $this->listing_renderer->is_about_to_expire( $post ) ) {
-            return true;
-        }
-
-        if ( $this->listing_renderer->has_expired( $post ) ) {
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     */
-    public function get_icon_class( $post ) {
-        return 'fa fa-redo';
-    }
-
-    /**
-     * @since 4.0.0
-     */
-    public function get_title() {
-        return _x( 'Renew', 'listing row action', 'another-wordpress-classifieds-plugin' );
-    }
-
-    /**
-     * @param object $post  An instance of WP_Post.
-     * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     */
-    public function get_label( $post ) {
-        return $this->get_title();
+    public function should_show_as_bulk_action() {
+        return $this->roles->current_user_is_moderator();
     }
 
     /**

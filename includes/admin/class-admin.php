@@ -175,7 +175,8 @@ class AWPCP_Admin {
         $actions['send-access-key']        = $this->container['SendAccessKeyListingTableAction'];
         $actions['spam']                   = $this->container['MarkAsSPAMListingTableAction'];
         $actions['unflag']                 = $this->container['UnflagListingTableAction'];
-        $actions['renew']                  = $this->container['RenewListingTableAction'];
+        $actions['renew']                  = $this->container['ModeratorRenewListingTableAction'];
+        $actions['renew-for-subscribers']  = $this->container['SubscriberRenewListingTableAction'];
         $actions['make-featured']          = $this->container['MakeFeaturedListingTableAction'];
         $actions['make-standard']          = $this->container['MakeStandardListingTableAction'];
         $actions['mark-reviewed']          = $this->container['MarkReviewedListingTableAction'];

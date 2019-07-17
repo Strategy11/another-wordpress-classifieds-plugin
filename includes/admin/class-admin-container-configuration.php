@@ -166,13 +166,37 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
             );
         } );
 
-        $container['RenewListingTableAction'] = $container->service( function( $container ) {
-            return new AWPCP_RenewListingTableAction(
+        $container['ModeratorRenewListingTableAction'] = $container->service( function( $container ) {
+            return new AWPCP_ModeratorRenewListingTableAction(
                 $container['ListingsLogic'],
                 $container['ListingRenderer'],
                 $container['ListingRenewedEmailNotifications'],
                 $container['RolesAndCapabilities'],
                 $container['Settings']
+            );
+        } );
+
+        $container['SubscriberRenewListingTableAction'] = $container->service( function( $container ) {
+            return new AWPCP_SubscriberRenewListingTableAction(
+                $container['ListingRenderer'],
+                $container['RolesAndCapabilities']
+            );
+        } );
+
+        $container['SubscriberRenewListingAdminPage'] = $container->service( function( $container ) {
+            return new AWPCP_RenewAdPage(
+                'awpcp-admin-renew-listing',
+                awpcp_admin_page_title( __( 'Renew Ad', 'another-wordpress-classifieds-plugin' ) ),
+                $container['AttachmentsCollection'],
+                $container['ListingUploadLimits'],
+                $container['ListingAuthorization'],
+                $container['ListingRenderer'],
+                $container['ListingsLogic'],
+                $container['ListingsCollection'],
+                $container['Payments'],
+                $container['TemplateRenderer'],
+                $container['WordPress'],
+                $container['Request']
             );
         } );
 

@@ -338,20 +338,33 @@ class AWPCP_AdminPanel {
 
         $quick_view_admin_page_slug = 'awpcp-admin-quick-view-listing';
 
-        if ( $this->request->param( 'page' ) !== $quick_view_admin_page_slug ) {
-            return;
+        if ( $this->request->param( 'page' ) === $quick_view_admin_page_slug ) {
+            $router->add_admin_subpage(
+                'edit.php?post_type=awpcp_listing',
+                __( 'Quick View', 'another-wordpress-classifieds-plugin' ),
+                awpcp_admin_page_title( __( 'Listing Quick View', 'another-wordpress-classifieds-plugin' ) ),
+                $quick_view_admin_page_slug,
+                function() {
+                    return awpcp()->container['QuickViewListingAdminPage'];
+                },
+                awpcp_roles_and_capabilities()->get_dashboard_capability()
+            );
         }
 
-        $router->add_admin_subpage(
-            'edit.php?post_type=awpcp_listing',
-            __( 'Quick View', 'another-wordpress-classifieds-plugin' ),
-            awpcp_admin_page_title( __( 'Listing Quick View', 'another-wordpress-classifieds-plugin' ) ),
-            $quick_view_admin_page_slug,
-            function() {
-                return awpcp()->container['QuickViewListingAdminPage'];
-            },
-            awpcp_roles_and_capabilities()->get_dashboard_capability()
-        );
+        $renew_listing_subscriber_admin_page_slug = 'awpcp-admin-renew-listing';
+
+        if ( $this->request->param( 'page' ) === $renew_listing_subscriber_admin_page_slug ) {
+            $router->add_admin_subpage(
+                'edit.php?post_type=awpcp_listing',
+                __( 'Renew Ad', 'another-wordpress-classifieds-plugin' ),
+                awpcp_admin_page_title( __( 'Renew Ad', 'another-wordpress-classifieds-plugin' ) ),
+                $renew_listing_subscriber_admin_page_slug,
+                function() {
+                    return awpcp()->container['SubscriberRenewListingAdminPage'];
+                },
+                awpcp_roles_and_capabilities()->get_dashboard_capability()
+            );
+        }
     }
 
     private function configure_regular_routes( $parent_menu, $router ) {
