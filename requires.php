@@ -169,7 +169,6 @@ require_once AWPCP_DIR . '/includes/views/admin/class-fee-payment-terms-notices.
 require_once AWPCP_DIR . '/includes/views/admin/class-credit-plans-notices.php';
 require_once AWPCP_DIR . '/includes/views/admin/class-categories-checkbox-list-walker.php';
 require_once AWPCP_DIR . '/includes/views/admin/listings/class-listing-action-admin-page.php';
-require_once AWPCP_DIR . '/includes/views/admin/listings/class-renew-listings-admin-page.php';
 require_once AWPCP_DIR . '/includes/views/admin/listings/class-listings-table-search-by-id-condition.php';
 require_once AWPCP_DIR . '/includes/views/admin/listings/class-listings-table-search-by-keyword-condition.php';
 require_once AWPCP_DIR . '/includes/views/admin/listings/class-listings-table-search-by-location-condition.php';
