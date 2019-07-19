@@ -1,8 +1,12 @@
 <?php
 /**
- * @package AWPCP
+ * @package AWPCP\Helpers
  */
 
+/**
+ * A helper class used to clear ads information from Facebook cache so that
+ * the social snippets show up to date content when the URLs are shared.
+ */
 class AWPCP_FacebookCacheHelper {
 
     /**
@@ -58,17 +62,17 @@ class AWPCP_FacebookCacheHelper {
 
         $args = array(
             'timeout' => 30,
-            'body' => array(
-                'id' => url_showad( $ad->ID ),
-                'scrape' => true,
+            'body'    => array(
+                'id'           => url_showad( $ad->ID ),
+                'scrape'       => true,
                 'access_token' => $user_token,
             ),
         );
 
-        $response = wp_remote_post( 'https://graph.facebook.com/', $args  );
+        $response = wp_remote_post( 'https://graph.facebook.com/', $args );
 
         if ( $this->is_successful_response( $response ) ) {
-            do_action( 'awpcp-listing-facebook-cache-cleared', $ad );
+            do_action( 'awpcp-listing-facebook-cache-cleared', $ad ); // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
         } else {
             $this->facebook_integration->schedule_clear_cache_action( $ad, 5 * MINUTE_IN_SECONDS );
         }
@@ -77,19 +81,19 @@ class AWPCP_FacebookCacheHelper {
     private function is_successful_response( $response ) {
         if ( is_wp_error( $response ) || ! is_array( $response ) ) {
             return false;
-        } else if ( ! isset( $response['response']['code'] ) ) {
+        } elseif ( ! isset( $response['response']['code'] ) ) {
             return false;
-        } else if ( $response['response']['code'] != 200 ) {
+        } elseif ( intval( $response['response']['code'] ) !== 200 ) {
             return false;
         }
 
         $listing_info = json_decode( $response['body'] );
 
-        if ( ! isset( $listing_info->type ) || $listing_info->type != 'article' ) {
+        if ( ! isset( $listing_info->type ) || $listing_info->type !== 'article' ) {
             return false;
-        } else if ( empty( $listing_info->title ) ) {
+        } elseif ( empty( $listing_info->title ) ) {
             return false;
-        } else if ( ! isset( $listing_info->description ) ) {
+        } elseif ( ! isset( $listing_info->description ) ) {
             return false;
         }
 
