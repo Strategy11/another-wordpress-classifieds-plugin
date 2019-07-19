@@ -342,6 +342,14 @@ class AWPCP {
         add_action( 'before_delete_post', [ $remove_listing_attachments_service, 'enqueue_attachments_to_be_removed' ], 10, 1 );
         add_action( 'after_delete_post', [ $remove_listing_attachments_service, 'remove_attachments' ], 10, 1 );
 
+        $listing_payment_transaction_handler = awpcp_listing_payment_transaction_handler();
+        add_action( 'awpcp-transaction-status-updated', array( $listing_payment_transaction_handler, 'transaction_status_updated' ), 20, 2 );
+        add_filter( 'awpcp-process-payment-transaction', array( $listing_payment_transaction_handler, 'process_payment_transaction' ), 20 );
+
+        $handler = awpcp_renew_listing_payment_transaction_handler();
+        add_action( 'awpcp-transaction-status-updated', array( $handler, 'process_payment_transaction' ), 20 );
+        add_filter( 'awpcp-process-payment-transaction', array( $handler, 'process_payment_transaction' ), 20 );
+
         // load resources always required
         $facebook_cache_helper = awpcp_facebook_cache_helper();
         add_action( 'awpcp-clear-ad-facebook-cache', array( $facebook_cache_helper, 'handle_clear_cache_event_hook' ), 10, 1 );
@@ -367,15 +375,7 @@ class AWPCP {
         add_filter( 'awpcp-listing-actions', array( $this, 'register_listing_actions' ), 10, 2 );
 
         // load resources required both in front end and admin screens, but not during ajax calls.
-        if ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) {
-            $listing_payment_transaction_handler = awpcp_listing_payment_transaction_handler();
-            add_action( 'awpcp-transaction-status-updated', array( $listing_payment_transaction_handler, 'transaction_status_updated' ), 20, 2 );
-            add_filter( 'awpcp-process-payment-transaction', array( $listing_payment_transaction_handler, 'process_payment_transaction' ), 20 );
-
-            $handler = awpcp_renew_listing_payment_transaction_handler();
-            add_action( 'awpcp-transaction-status-updated', array( $handler, 'process_payment_transaction' ), 20 );
-            add_filter( 'awpcp-process-payment-transaction', array( $handler, 'process_payment_transaction' ), 20 );
-
+        if ( ! wp_doing_ajax() ) {
             $facebook_integration = awpcp_facebook_integration();
             add_action( 'awpcp-place-ad', array( $facebook_integration, 'on_ad_modified' ) );
             add_action( 'awpcp_approve_ad', array( $facebook_integration, 'on_ad_modified' ) );
