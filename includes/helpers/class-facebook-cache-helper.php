@@ -3,25 +3,13 @@
  * @package AWPCP
  */
 
-// phpcs:disable
-
-function awpcp_facebook_cache_helper() {
-    return new AWPCP_FacebookCacheHelper(
-        awpcp_facebook_integration(),
-        awpcp_listing_renderer(),
-        awpcp_listings_collection(),
-        awpcp()->settings
-    );
-}
-
 class AWPCP_FacebookCacheHelper {
 
     /**
      * @var FacebookIntegration
      */
     private $facebook_integration;
-    
-    
+
     /**
      * @var ListingRenderer
      */

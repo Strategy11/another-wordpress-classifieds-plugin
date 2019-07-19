@@ -77,7 +77,6 @@ require_once AWPCP_DIR . '/includes/form-fields/class-listing-website-form-field
 require_once AWPCP_DIR . '/includes/helpers/class-easy-digital-downloads.php';
 require_once AWPCP_DIR . '/includes/helpers/class-licenses-manager.php';
 require_once AWPCP_DIR . '/includes/helpers/class-module.php';
-require_once AWPCP_DIR . '/includes/helpers/class-modules-manager-factory.php';
 require_once AWPCP_DIR . '/includes/helpers/class-modules-manager.php';
 require_once AWPCP_DIR . '/includes/helpers/class-modules-updater.php';
 
