@@ -619,10 +619,6 @@ class AWPCP {
         $view_counter = $this->container['ListingsViewCounter'];
         add_action( 'wp_ajax_awpcp-ad-count-view', array( $view_counter, 'ajax' ) );
         add_action( 'wp_ajax_nopriv_awpcp-ad-count-view', array( $view_counter, 'ajax' ) );
-
-        $renew_action = $this->container['ListingsRenewAction'];
-        add_action( 'wp_ajax_awpcp-ad-renew', array( $renew_action, 'ajax' ) );
-        add_action( 'wp_ajax_nopriv_awpcp-ad-renew', array( $renew_action, 'ajax' ) );
     }
 
     /**
