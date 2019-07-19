@@ -115,7 +115,13 @@ class AWPCP_ListingsAPI {
         if (isset($listing_data['terms'])) {
             $this->update_listing_terms( $listing, $listing_data['terms'] );
         }
-        $this->update_listing_metadata( $listing, $this->get_default_listing_metadata( $listing_data['metadata'] ) );
+
+        $metadata = $this->fill_default_listing_metadata(
+            $listing,
+            $listing_data['metadata']
+        );
+
+        $this->update_listing_metadata( $listing, $metadata );
 
         return $listing;
     }
@@ -144,8 +150,14 @@ class AWPCP_ListingsAPI {
 
     /**
      * @since 4.0.0
+     * @since 4.0.1 This method is no longer used and not recommended. Use
+     *              fill_default_listing_metadata() instead.
+     *
+     * @see fill_default_listing_metadata()
      */
     public function get_default_listing_metadata( $metadata ) {
+        _doing_it_wrong( __FUNCTION__, __( 'To avoid overwritting existing metadata, use fill_default_listing_metadata() instead.', 'another-wordpress-classifieds-plugin' ), '4.0.1' );
+
         $metadata = wp_parse_args( $metadata, array(
             '_awpcp_payment_status'         => 'Unpaid',
             '_awpcp_verification_needed'    => true,
@@ -157,11 +169,72 @@ class AWPCP_ListingsAPI {
         ) );
 
         if ( ! isset( $metadata['_awpcp_access_key'] ) || empty( $metadata['_awpcp_access_key'] ) ) {
+            /* This filter is documented in fill_default_listing_metadata(). */
             $metadata['_awpcp_access_key'] = apply_filters( 'awpcp-listing-access-key', $this->generate_access_key(), $this );
         }
 
         return $metadata;
+    }
 
+    /**
+     * @since 4.0.0
+     */
+    public function fill_default_listing_metadata( $listing, $metadata ) {
+        $stored_metadata = get_post_meta( $listing->ID );
+
+        $default_metadata = [
+            '_awpcp_payment_status'         => 'Unpaid',
+            '_awpcp_verification_needed'    => true,
+            '_awpcp_most_recent_start_date' => current_time( 'mysql' ),
+            '_awpcp_renewed_date'           => '',
+            '_awpcp_poster_ip'              => awpcp_getip(),
+            '_awpcp_is_paid'                => false,
+            '_awpcp_views'                  => 0,
+        ];
+
+        // We want an array with the default keys defined above, but using the
+        // stored values if one is available for the listing.
+        //
+        // This approach avoids unnecessary overwrites of information in case
+        // some of those key are already defined, for example, if during the
+        // creation of a new ad from the admin dashboard, the payment term
+        // is assigned asynchronously before the Update button is clicked for
+        // the first time.
+        //
+        // See https://github.com/drodenbaugh/awpcp/issues/2502.
+        foreach ( array_keys( $default_metadata ) as $key ) {
+            if ( isset( $stored_metadata[ $key ] ) ) {
+                // FIXME: is the value always an array?
+                $default_metadata[ $key ] = current( $stored_metadata[ $key ] );
+            }
+        }
+
+        // Now we merge the metadata that the user provided with defaults that
+        // take into account the stored metadata.
+        $metadata = wp_parse_args( $metadata, $default_metadata );
+
+        // In addition to avoid overwritting existing data, we also need to make
+        // sure not to add defaults that are incosistent with the stored metadata.
+        //
+        // _awpcp_verification_needed and _awpcp_verified should never exist for
+        // the same listing at the same time.
+        if ( isset( $stored_metadata['_awpcp_verified'] ) && $stored_metadata['_awpcp_verified'] ) {
+            unset( $metadata['_awpcp_verification_needed'] );
+        }
+
+        if ( ! isset( $stored_metadata['_awpcp_access_key'] ) || empty( $stored_metadata['_awpcp_access_key'] ) ) {
+            /**
+             * Filter the newly generated Access Key for the given listing.
+             *
+             * @since unknown
+             *
+             * @param $access_key A newley genreated access key for the listing.
+             * @param $listing    The listing associated with the access key.
+             */
+            $metadata['_awpcp_access_key'] = apply_filters( 'awpcp-listing-access-key', $this->generate_access_key(), $listing );
+        }
+
+        return $metadata;
     }
 
     /**

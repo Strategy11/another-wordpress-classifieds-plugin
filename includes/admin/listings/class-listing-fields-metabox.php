@@ -197,7 +197,10 @@ class AWPCP_ListingFieldsMetabox {
         }
 
         if ( ! $this->wordpress->get_post_meta( $post->ID, '_awpcp_access_key', true ) ) {
-            $data['metadata'] = $this->listings_logic->get_default_listing_metadata( $data['metadata'] );
+            $data['metadata'] = $this->listings_logic->fill_default_listing_metadata(
+                $post,
+                $data['metadata']
+            );
         }
 
         $this->save_or_store_errors( $post, $data, $errors );
