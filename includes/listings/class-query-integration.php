@@ -357,7 +357,7 @@ class AWPCP_QueryIntegration {
      * @since 4.0.0
      */
     public function process_is_enabled_query_parameter( $query_vars ) {
-        if ( isset( $query_vars['classifieds_query']['is_enabled'] ) ) {
+        if ( isset( $query_vars['classifieds_query']['is_enabled']) && $query_vars['classifieds_query']['is_enabled'] !== false ) {
             $query_vars['post_status'] = 'publish';
 
             $query_vars['meta_query'][] = array(

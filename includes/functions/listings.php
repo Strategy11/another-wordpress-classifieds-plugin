@@ -33,7 +33,12 @@ function awpcp_display_listings( $query_vars, $context, $options ) {
 
     $listings_collection = awpcp_listings_collection();
 
-    $listings = $listings_collection->find_enabled_listings( $query_vars );
+    if ($context === 'user-listings-shortcode') {
+        $listings = $listings_collection->find_user_listings( $query_vars['author'], $query_vars );
+    }
+    else {
+        $listings = $listings_collection->find_enabled_listings( $query_vars );
+    }
     $query    = $listings_collection->get_last_query();
 
     $before_content = apply_filters( 'awpcp-content-before-listings-page', $options['before_content'], $context );
