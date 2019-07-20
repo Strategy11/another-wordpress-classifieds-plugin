@@ -178,8 +178,8 @@ class AWPCP_Pages {
         }
 
         $query = array(
-            'context'           => 'public-listings',
-            'author'            => $user_id
+            'context' => 'public-listings',
+            'author'  => $user_id,
         );
 
         if ( ! is_null( $attrs['limit'] ) ) {
