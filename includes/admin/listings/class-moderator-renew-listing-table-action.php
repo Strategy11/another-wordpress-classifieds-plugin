@@ -142,7 +142,7 @@ class AWPCP_ModeratorRenewListingTableAction implements
      *                          code.
      * @since 4.0.0
      */
-    public function get_message( $code, $count ) {
+    private function get_message( $code, $count ) {
         if ( 'success' === $code ) {
             $message = _n( 'Ad renewed successfully.', '{count} ads renewed successfully.', $count, 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '{count}', $count, $message );
