@@ -532,6 +532,8 @@ function awpcp_get_renew_ad_url($ad_id) {
     $hash = awpcp_get_renew_ad_hash( $ad_id );
 
     if ( get_awpcp_option( 'enable-user-panel' ) == 1 ) {
+        $url = awpcp_get_user_panel_url();
+
         $params = [
             'id'          => $ad_id,
             'page'        => 'awpcp-admin-renew-listing',
