@@ -187,3 +187,12 @@ function awpcp_facebook_cache_helper() {
         $container['Settings']
     );
 }
+
+/**
+ * Constructor function for Attachment Properties.
+ *
+ * @since 4.0.1 Extracted from class-attachment-properties.php.
+ */
+function awpcp_attachment_properties() {
+    return new AWPCP_Attachment_Properties( awpcp_wordpress() );
+}

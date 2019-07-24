@@ -4,13 +4,6 @@
  */
 
 /**
- * Constructor function for Attachment Properties.
- */
-function awpcp_attachment_properties() {
-    return new AWPCP_Attachment_Properties( awpcp_wordpress() );
-}
-
-/**
  * Helper class used to get properties from Attachments objects (WP_Post).
  */
 class AWPCP_Attachment_Properties {
