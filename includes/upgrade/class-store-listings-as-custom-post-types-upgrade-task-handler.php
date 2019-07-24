@@ -18,6 +18,8 @@ class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements 
 
     use AWPCP_UpgradeListingsTaskHandlerHelper;
 
+    use AWPCP_UpgradeAssociatedListingsTaskHandlerHelper;
+
     public function __construct( $categories, $legacy_listing_metadata, $wordpress, $db ) {
         $this->categories              = $categories;
         $this->legacy_listing_metadata = $legacy_listing_metadata;
@@ -94,7 +96,7 @@ class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements 
         $data = $this->update_post_author_with_item_properties( $data, $item );
 
         // Create post and import standard fields as custom fields.
-        $post_id = $this->insert_post( $data['post_data'] );
+        $post_id = $this->insert_or_update_post( $item, $data['post_data'] );
 
         if ( is_wp_error( $post_id ) ) {
             throw new AWPCP_Exception( sprintf( "A custom post entry couldn't be created for listing %d. %s", $item->ad_id, $post_id->get_error_message() ) );
@@ -112,6 +114,25 @@ class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements 
         $this->db->query( $this->db->prepare( $sql, $post_id, $item->ad_id ) );
 
         return $item->ad_id;
+    }
+
+    /**
+     * Insert a new post or update an existing one with the ad's information.
+     *
+     * We will check if a new post already exists for the ad being migrated, in
+     * case the user had already installed 4.0.0 and decided to downgrade for
+     * some time before attempting to upgrade again.
+     *
+     * @since 4.0.1
+     */
+    private function insert_or_update_post( $item, $post_data ) {
+        $existing_listing_id = $this->get_id_of_associated_listing( $item->ad_id );
+
+        if ( $existing_listing_id ) {
+            return wp_update_post( [ 'ID' => $existing_listing_id ] + $post_data, true );
+        }
+
+        return $this->insert_post( $post_data );
     }
 
     /**
