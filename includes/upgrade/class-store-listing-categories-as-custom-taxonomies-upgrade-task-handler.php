@@ -45,22 +45,7 @@ class AWPCP_Store_Listing_Categories_As_Custom_Taxonomies_Upgrade_Task_Handler i
     }
 
     public function process_item( $item, $last_item_id ) {
-        $categories_registry = $this->categories->get_categories_registry();
-
-        if ( isset( $categories_registry[ $item->category_id ] ) ) {
-            return $last_item_id + 1;
-        }
-
-        $category_slug = $this->generate_category_slug( $item );
-        $existing_term = $this->wordpress->get_term_by( 'slug', $category_slug, 'awpcp_listing_category' );
-        $category_name = $item->category_name;
-
-        if ( is_object( $existing_term ) ) {
-            $category_name = $this->generate_unique_category_name( $existing_term );
-            $category_slug = null;
-        }
-
-        $term = $this->insert_term( $category_name, $category_slug, $item );
+        $term = $this->insert_or_update_term( $item );
 
         if ( is_wp_error( $term ) ) {
             throw new AWPCP_Exception( sprintf( "A custom taxonomy term coulnd't be created for listing category \"%s\".", $item->category_name ) );
@@ -69,6 +54,80 @@ class AWPCP_Store_Listing_Categories_As_Custom_Taxonomies_Upgrade_Task_Handler i
         $this->categories->update_categories_registry( $item->category_id, $term['term_id'] );
 
         return $last_item_id + 1;
+    }
+
+    /**
+     * @since 4.0.1
+     */
+    private function insert_or_update_term( $item ) {
+        $categories_registry = $this->categories->get_categories_registry();
+        $existing_term       = null;
+
+        if ( isset( $categories_registry[ $item->category_id ] ) ) {
+            $existing_term = get_term_by(
+                'id',
+                $categories_registry[ $item->category_id ],
+                'awpcp_listing_category'
+            );
+        }
+
+        if ( $existing_term ) {
+            return $this->maybe_update_term( $existing_term, $item );
+        }
+
+        $category_slug = $this->generate_category_slug( $item );
+        $category_name = $this->get_unique_category_name( $item, $category_slug );
+
+        // If we need a new name, let WP generate the slug.
+        if ( $item->category_name !== $category_name ) {
+            $category_slug = null;
+        }
+
+        return $this->insert_term( $category_name, $category_slug, $item );
+    }
+
+    /**
+     * @since 4.0.1
+     */
+    private function maybe_update_term( $term, $item ) {
+        $category_slug      = $this->generate_category_slug( $item );
+        $category_parent_id = $this->get_item_parent_id( $item );
+
+        // The name or the parent category changed, so we generate a new unique
+        // name and update the term with that information.
+        //
+        // It is possible that the slugs don't match because the name of the
+        // migrated term includes '(Copy N)'. In that case updating the term
+        // may not be necessary, but we do it anyway. The resulting name will
+        // include '(Copy X)' with X > N.
+        if ( $category_slug !== $term->slug ) {
+            $term_data = [
+                'slug'        => $category_slug,
+                'name'        => $this->get_unique_category_name( $item, $category_slug ),
+                'description' => '',
+                'parent'      => $category_parent_id,
+            ];
+
+            // If we need a new name, let WP generate the slug.
+            if ( $term->name !== $term_data['name'] ) {
+                $term_data['slug'] = null;
+            }
+
+            return wp_update_term( (int) $term->term_id, 'awpcp_listing_category', $term_data );
+        }
+
+        if ( $category_parent_id !== (int) $term->parent ) {
+            $term_data = [
+                'parent' => $category_parent_id,
+            ];
+
+            return wp_update_term( (int) $term->term_id, 'awpcp_listing_category', $term_data );
+        }
+
+        return [
+            'term_id'          => $term->term_id,
+            'term_taxonomy_id' => $term->term_taxonomy_id,
+        ];
     }
 
     /**
@@ -109,6 +168,19 @@ class AWPCP_Store_Listing_Categories_As_Custom_Taxonomies_Upgrade_Task_Handler i
         }
 
         return "{$parent_category_slug}-{$category_slug}";
+    }
+
+    /**
+     * @since 4.0.1
+     */
+    private function get_unique_category_name( $item, $category_slug ) {
+        $existing_term = get_term_by( 'slug', $category_slug, 'awpcp_listing_category' );
+
+        if ( is_object( $existing_term ) ) {
+            return $this->generate_unique_category_name( $existing_term );
+        }
+
+        return $item->category_name;
     }
 
     private function generate_unique_category_name( $term ) {
@@ -184,7 +256,7 @@ class AWPCP_Store_Listing_Categories_As_Custom_Taxonomies_Upgrade_Task_Handler i
             return 0;
         }
 
-        return $categories_registry[ $parent_item->category_id ];
+        return (int) $categories_registry[ $parent_item->category_id ];
     }
 
     private function get_parent_item( $parent_id ) {
