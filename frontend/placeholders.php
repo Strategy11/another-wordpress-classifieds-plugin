@@ -874,7 +874,7 @@ function awpcp_do_placeholder_ad_actions( $ad, $placeholder ) {
     if ( $is_owner && $is_expired ) {
         $renew_url = awpcp_get_renew_ad_url( $ad->ID );
         $label     = awpcp()->container['RenewListingTableAction']->get_title();
-        return "<div class='awpcp-user-renew'><a  class='awpcp-action-button button' href='{$renew_url}' title='{$label}' aria-label='{$label}'><i class='fa fa-redo'></i></a></div>";
+        return "<div class='awpcp-user-renew'><a  class='awpcp-action-button' href='{$renew_url}' title='{$label}' aria-label='{$label}'><i class='fa fa-redo'></i></a></div>";
     }
 }
 
