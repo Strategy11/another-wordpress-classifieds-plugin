@@ -188,6 +188,7 @@ class AWPCP_Pages {
 
         $options = array(
             'show_menu_items' => awpcp_parse_bool( $attrs['menu'] ),
+            'show_pagination' => true
         );
 
         return awpcp_display_listings( $query, 'user-listings-shortcode', $options );
