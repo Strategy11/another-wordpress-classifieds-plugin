@@ -51,7 +51,9 @@ class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements 
 
     /**
      * @throws AWPCP_Exception  If a custom post can't be created.
+     *
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     * @SuppressWarnings(PHPMD.ElseExpression)
      */
     public function process_item( $item, $last_item_id ) {
         // Ignore incomplete ad records.
@@ -96,17 +98,36 @@ class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements 
         $data = $this->update_post_author_with_item_properties( $data, $item );
 
         // Create post and import standard fields as custom fields.
-        $post_id = $this->insert_or_update_post( $item, $data['post_data'] );
+        $existing_listing_id = $this->get_id_of_associated_listing( $item->ad_id );
+
+        // Insert a new post or update an existing one with the ad's information.
+        //
+        // We will check if a new post already exists for the ad being migrated, in
+        // case the user had already installed 4.0.0 and decided to downgrade for
+        // some time before attempting to upgrade again.
+        if ( $existing_listing_id ) {
+            $post_id = wp_update_post( [ 'ID' => $existing_listing_id ] + $data['post_data'], true );
+        } else {
+            $post_id = $this->insert_post( $data['post_data'] );
+        }
 
         if ( is_wp_error( $post_id ) ) {
             throw new AWPCP_Exception( sprintf( "A custom post entry couldn't be created for listing %d. %s", $item->ad_id, $post_id->get_error_message() ) );
         }
 
-        // We can safely use add_post_meta() to add meta data because this post
-        // was just created, so there are no existing keys that we need to
-        // worry about.
-        foreach ( $data['post_meta'] as $meta_key => $meta_value ) {
-            $this->wordpress->add_post_meta( $post_id, $meta_key, $meta_value );
+        if ( $existing_listing_id ) {
+            $data = $this->update_post_metadata_with_attachments_data( $data, $existing_listing_id );
+
+            foreach ( $data['post_meta'] as $meta_key => $meta_value ) {
+                update_post_meta( $post_id, $meta_key, $meta_value );
+            }
+        } else {
+            // We can safely use add_post_meta() to add meta data because this post
+            // was just created, so there are no existing keys that we need to
+            // worry about.
+            foreach ( $data['post_meta'] as $meta_key => $meta_value ) {
+                add_post_meta( $post_id, $meta_key, $meta_value );
+            }
         }
 
         // Update references to listing's id in ad_regions table.
@@ -114,25 +135,6 @@ class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements 
         $this->db->query( $this->db->prepare( $sql, $post_id, $item->ad_id ) );
 
         return $item->ad_id;
-    }
-
-    /**
-     * Insert a new post or update an existing one with the ad's information.
-     *
-     * We will check if a new post already exists for the ad being migrated, in
-     * case the user had already installed 4.0.0 and decided to downgrade for
-     * some time before attempting to upgrade again.
-     *
-     * @since 4.0.1
-     */
-    private function insert_or_update_post( $item, $post_data ) {
-        $existing_listing_id = $this->get_id_of_associated_listing( $item->ad_id );
-
-        if ( $existing_listing_id ) {
-            return wp_update_post( [ 'ID' => $existing_listing_id ] + $post_data, true );
-        }
-
-        return $this->insert_post( $post_data );
     }
 
     /**
@@ -262,5 +264,71 @@ class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements 
         $data['post_data']['post_author'] = $user_id;
 
         return $data;
+    }
+
+    /**
+     * Update the post metadata with a list of the filenames of existing attachments.
+     *
+     * If we are running this upgrade routine after the user downgraded from
+     * 4.0.0, we need to preload information that the routine that migrate
+     * media records is going to need to decide whether a record needs to be
+     * migrated again or not.
+     *
+     * @since 4.0.1
+     *
+     * @param array $data       An array with information for the new listing.
+     * @param int   $listing_id The ID of a WP_Post object associated with the
+     *                          ad being migrated.
+     *
+     * @return array A modified version of $data.
+     */
+    private function update_post_metadata_with_attachments_data( $data, $listing_id ) {
+        $meta_key = '__awpcp_migrated_attachments_filenames';
+
+        $data['post_meta'][ $meta_key ] = $this->get_attachments_filenames( $listing_id );
+
+        return $data;
+    }
+
+    /**
+     * Get the filenames of attachments associated with the given post.
+     *
+     * @since 4.0.1
+     *
+     * @see AWPCP_Store_Media_As_Attachments_Upgrade_Task_Handler
+     *
+     * @param int $listing_id The ID of a WP_Post object associated with the ad
+     *                        being migrated.
+     */
+    private function get_attachments_filenames( $listing_id ) {
+        $query = new WP_Query(
+            [
+                'post_type'              => 'attachment',
+                'post_status'            => 'any',
+                'post_parent'            => $listing_id,
+                // I can't know what's the maximum number of media records
+                // associated with a single ad out there, but I hope is
+                // significantly less than 100.
+                'posts_per_page'         => 100,
+                'meta_query'             => [
+                    [
+                        'key'     => '_awpcp_allowed_status',
+                        'compare' => 'EXISTS',
+                    ],
+                ],
+                // See https://10up.github.io/Engineering-Best-Practices/php/#performance.
+                'no_found_rows'          => true,
+                'update_post_meta_cache' => false,
+                'update_post_term_cache' => false,
+            ]
+        );
+
+        $filenames = [];
+
+        foreach ( $query->posts as $attachment ) {
+            $filenames[ $attachment->ID ] = awpcp_utf8_basename( $attachment->guid );
+        }
+
+        return $filenames;
     }
 }

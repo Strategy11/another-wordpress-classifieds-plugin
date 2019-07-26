@@ -69,9 +69,13 @@ class AWPCP_Store_Media_As_Attachments_Upgrade_Task_Handler implements AWPCP_Upg
     /**
      * @param object $item          An item to process.
      * @param int    $last_item_id  The ID of the last item processed by the routine.
+     *
      * @throws AWPCP_Exception  If the associated file cannot be copied or stored.
+     *
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      * @SuppressWarnings(PHPMD.NPathComplexity)
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     public function process_item( $item, $last_item_id ) {
         if ( ! function_exists( 'media_handle_upload' ) ) {
@@ -86,6 +90,13 @@ class AWPCP_Store_Media_As_Attachments_Upgrade_Task_Handler implements AWPCP_Upg
             // The file has no associated listing. We assume this is an orphan file
             // left behind by broken delete operation on previous versions of the
             // plugin.
+            return $item->id;
+        }
+
+        // Some users are downgrading to version 3.9.5 after upgrading to 4.0.0.
+        // Those users will eventually upgrade again, but we don't want to
+        // migrate media records that were already migrated.
+        if ( $this->is_item_already_processed( $item, $parent_listing_id ) ) {
             return $item->id;
         }
 
@@ -168,6 +179,42 @@ class AWPCP_Store_Media_As_Attachments_Upgrade_Task_Handler implements AWPCP_Upg
         add_post_meta( $attachment_id, '_awpcp_generate_intermediate_image_sizes', $this->get_intermediate_image_sizes() );
 
         return $item->id;
+    }
+
+    /**
+     * Check whether the current media record was already processed on a previous
+     * upgrade operation.
+     *
+     * @since 4.0.1
+     *
+     * @param object $item       The current media record.
+     * @param int    $listing_id The ID of the WP_Post associated with
+     *                           this media record.
+     *
+     * @return bool
+     */
+    private function is_item_already_processed( $item, $listing_id ) {
+        $migrated_attachments_filenames = get_post_meta( $listing_id, '__awpcp_migrated_attachments_filenames', true );
+
+        // It seems the asasociated listing was recently created during this
+        // upgrade operation. Process items normally.
+        if ( ! is_array( $migrated_attachments_filenames ) ) {
+            return false;
+        }
+
+        // Media items keep their original name except, maybe, for a numeric
+        // suffix used when another file with the same name already exists
+        // in the uploads directory.
+        $info    = awpcp_utf8_pathinfo( $item->name );
+        $pattern = preg_quote( $info['filename'], '/' ) . '(?:-\d+)?\.' . preg_quote( $info['extension'], '/' );
+
+        foreach ( $migrated_attachments_filenames as $filename ) {
+            if ( preg_match( '/^' . $pattern . '$/', $filename ) ) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
