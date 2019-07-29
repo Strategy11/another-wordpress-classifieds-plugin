@@ -54,6 +54,8 @@ function( $, settings ) {
             if ( $.isFunction( self.options.onChange ) ) {
                 self.options.onChange( self.getSelectedPaymentTerm() );
             }
+
+            self.isMaxCategories();
         },
 
         getSelectedPaymentTerm: function() {
@@ -66,7 +68,8 @@ function( $, settings ) {
                     id: $radio.data( 'payment-term-id' ),
                     type: $radio.data( 'payment-term-type' ),
                     mode: $radio.data( 'payment-term-mode' ),
-                    summary: $radio.data( 'payment-term-summary' )
+                    summary: $radio.data( 'payment-term-summary' ),
+                    maxCategories: $radio.parents('li').data('number-of-categories-allowed')
                 };
             }
 
@@ -112,8 +115,20 @@ function( $, settings ) {
                 radio.trigger( 'change' );
             }
 
+            this.isMaxCategories();
             enabledPaymentTerms.fadeIn();
             disabledPaymentTerms.fadeOut();
+        },
+
+        isMaxCategories: function() {
+            $('.awpcp-submit-listing-page-form .select2-container + .awpcp-message-info').remove();
+            var message = $.AWPCP.get( 'default-validation-messages' ).maxCategories;
+            if (typeof(this.state.selectedCategories) != "undefined" && this.state.selectedCategories !== null && this.state.selectedCategories.length > 0) {
+                console.log(this.getSelectedPaymentTerm().maxCategories);
+                if (this.state.selectedCategories.length >= this.getSelectedPaymentTerm().maxCategories) {
+                    $('.awpcp-submit-listing-page-form .select2-container').after("<p class='awpcp-message-info'>" + message + "</p>");
+                }
+            }
         },
 
         _getDisabledPaymentTerms: function _getDisabledPaymentTerms() {

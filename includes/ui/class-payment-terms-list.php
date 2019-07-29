@@ -146,6 +146,7 @@ class AWPCP_Payment_Terms_List {
             'images' => $this->get_number_of_images_allowed_feature_description( $payment_term ),
             'characters-in-title' => $this->get_number_of_characters_allowed_in_title_feature_description( $payment_term ),
             'characters-in-content' => $this->get_number_of_characters_allowed_in_content_feature_description( $payment_term ),
+            'categories' => $this->get_number_of_categories_allowed_feature_description( $payment_term ),
         );
     }
 
@@ -174,6 +175,13 @@ class AWPCP_Payment_Terms_List {
         $description = __( "Up to <characters-count> characters in listing's title.", 'another-wordpress-classifieds-plugin' );
 
         return str_replace( '<characters-count>', '<strong>' . $payment_term->title_characters . '</strong>', $description );
+    }
+
+    private function get_number_of_categories_allowed_feature_description( $payment_term ) {
+        $attrs = $this->get_payment_term_attributes($payment_term);
+        $description = __( "Up to <categories-count> categories allowed.", 'another-wordpress-classifieds-plugin' );
+
+        return str_replace( '<categories-count>', '<strong>' . $attrs['data-number-of-categories-allowed'] . '</strong>', $description );
     }
 
     private function get_number_of_characters_allowed_in_content_feature_description( $payment_term ) {
