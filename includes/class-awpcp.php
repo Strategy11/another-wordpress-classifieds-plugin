@@ -1366,7 +1366,7 @@ class AWPCP {
             'classifiedsurl' => __( 'Please enter a valid URL.', 'another-wordpress-classifieds-plugin' ),
 			'number' => __( 'Please enter a valid number.', 'another-wordpress-classifieds-plugin' ),
 			'money' => __( 'Please enter a valid amount.', 'another-wordpress-classifieds-plugin' ),
-            'maxCategories' =>  __( 'You have reached the maximum allowed categories for this fee plan.', 'another-wordpress-classifieds-plugin' )
+            'maxCategories'  =>  __( 'You have reached the maximum allowed categories for the selected fee plan.', 'another-wordpress-classifieds-plugin' ),
 		) );
 
         global $wp_locale;
