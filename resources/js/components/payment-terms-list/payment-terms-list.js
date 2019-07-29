@@ -126,7 +126,7 @@ function( $, settings ) {
             if (typeof(this.state.selectedCategories) != "undefined" && this.state.selectedCategories !== null && this.state.selectedCategories.length > 0) {
                 console.log(this.getSelectedPaymentTerm().maxCategories);
                 if (this.state.selectedCategories.length >= this.getSelectedPaymentTerm().maxCategories) {
-                    $('.awpcp-submit-listing-page-form .select2-container').after("<p class='awpcp-message-info'>" + message + "</p>");
+                    $('.awpcp-submit-listing-page-form .select2-container').after('<p class="awpcp-message awpcp-message-error">' + message + '</p>');
                 }
             }
         },
