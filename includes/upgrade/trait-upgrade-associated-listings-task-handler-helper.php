@@ -58,7 +58,7 @@ trait AWPCP_UpgradeAssociatedListingsTaskHandlerHelper {
         $query = $this->get_query_for_associated_listing( $old_listing_id );
 
         if ( ! is_array( $query->posts ) || empty( $query->posts ) ) {
-            return 0;
+            return null;
         }
 
         return $query->posts[0];
