@@ -58,6 +58,10 @@ class AWPCP_FixIDCollisionForListingsUpgradeTaskHandler implements AWPCP_Upgrade
     }
 
     /**
+     * This method should probably be renamed to ....with_id_less_than(), since
+     * it tries to run a query over existing listings without counting new
+     * listings that are added to the database by this routine.
+     *
      * @since 4.0.0
      */
     private function execute_query_for_posts_with_id_greater_than( $last_item_id, $query ) {
