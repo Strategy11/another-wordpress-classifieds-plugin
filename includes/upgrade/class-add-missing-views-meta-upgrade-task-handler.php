@@ -28,7 +28,14 @@ class AWPCP_AddMissingViewsMetaUpgradeTaskHandler implements AWPCP_Upgrade_Task_
     public function count_pending_items( $last_item_id ) {
         return $this->listings->count_listings(
             [
-                'post_status'            => [ 'disabled', 'draft', 'pending', 'publish', 'trash', 'auto-draft' ],
+
+                /*
+                 * I used 'any' somewhere else and found out too late that post
+                 * status with 'exclude_from_search' set to true are not considered.
+                 * As a result, some upgrade routines failed to process disabled
+                 * ads in some cases.
+                 */
+                'post_status'            => [ 'disabled', 'draft', 'pending', 'publish', 'trash', 'auto-draft', 'future', 'private' ],
                 'meta_query'             => [
                     [
                         'key'     => '_awpcp_views',
@@ -49,7 +56,8 @@ class AWPCP_AddMissingViewsMetaUpgradeTaskHandler implements AWPCP_Upgrade_Task_
     public function get_pending_items( $last_item_id ) {
         return $this->listings->find_listings(
             [
-                'post_status'            => [ 'disabled', 'draft', 'pending', 'publish', 'trash', 'auto-draft' ],
+                // Check the post_status query var in count_pending_items().
+                'post_status'            => [ 'disabled', 'draft', 'pending', 'publish', 'trash', 'auto-draft', 'future', 'private' ],
                 'meta_query'             => [
                     [
                         'key'     => '_awpcp_views',

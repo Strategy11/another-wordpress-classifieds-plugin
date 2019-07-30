@@ -26,7 +26,14 @@ trait AWPCP_UpgradeAssociatedListingsTaskHandlerHelper {
         $query_vars = array_merge(
             [
                 'post_type'              => 'awpcp_listing',
-                'post_status'            => 'any',
+
+                /*
+                 * I used 'any' before and found out too late that post status
+                 * with 'exclude_from_search' set to true are not considered.
+                 * As a result, some upgrade routines failed to process disabled
+                 * ads in some cases.
+                 */
+                'post_status'            => [ 'disabled', 'draft', 'pending', 'publish', 'trash', 'auto-draft', 'future', 'private' ],
                 'meta_query'             => [
                     [
                         'key'     => "_awpcp_old_id_{$old_listing_id}",

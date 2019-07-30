@@ -42,7 +42,13 @@ class AWPCP_AddMissingIsPaidMetaUpgradeTaskHandler implements AWPCP_Upgrade_Task
      * @since 4.0.0
      */
     private function prepare_query_vars( $query_vars ) {
-        $query_vars['post_status'] = [ 'disabled', 'draft', 'pending', 'publish', 'trash', 'auto-draft' ];
+        /*
+         * I used 'any' somewhere else and found out too late that post
+         * status with 'exclude_from_search' set to true are not considered.
+         * As a result, some upgrade routines failed to process disabled
+         * ads in some cases.
+         */
+        $query_vars['post_status'] = [ 'disabled', 'draft', 'pending', 'publish', 'trash', 'auto-draft', 'future', 'private' ];
 
         $query_vars['meta_query'][] = [
             'key'     => '_awpcp_is_paid',
