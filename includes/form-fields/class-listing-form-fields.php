@@ -50,6 +50,14 @@ class AWPCP_ListingFormFields {
             }
         }
 
+        // Show Terms of Service field last, unless explicitly configured to
+        // appear in a different position.
+        if ( isset( $fields['terms_of_service'] ) ) {
+            $terms_of_service_field = $fields['terms_of_service'];
+            unset( $fields['terms_of_service'] );
+            $fields['terms_of_service'] = $terms_of_service_field;
+        }
+
         return array_merge( $sorted_fields, $fields );
     }
 
