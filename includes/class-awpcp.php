@@ -726,7 +726,7 @@ class AWPCP {
 					'url' => 'http://awpcp.com/downloads/comments-ratings-module/?ref=panel',
 					'installed' => defined( 'AWPCP_COMMENTS_MODULE' ),
 					'version' => 'AWPCP_COMMENTS_MODULE_VERSION',
-					'required' => '4.0.0',
+					'required' => '4.0.1',
 				),
 				'coupons' => array(
 					'name' => __( 'Coupons/Discount', 'another-wordpress-classifieds-plugin' ),
@@ -740,14 +740,14 @@ class AWPCP {
 					'url' => 'http://awpcp.com/downloads/extra-fields-module/?ref=panel',
 					'installed' => defined( 'AWPCP_EXTRA_FIELDS_MODULE' ),
 					'version' => 'AWPCP_EXTRA_FIELDS_MODULE_DB_VERSION',
-					'required' => '4.0.0',
+					'required' => '4.0.1',
 				),
 				'featured-ads' => array(
 					'name' => __( 'Featured Ads', 'another-wordpress-classifieds-plugin' ),
 					'url' => 'http://awpcp.com/downloads/featured-ads-module/?ref=panel',
 					'installed' => defined( 'AWPCP_FEATURED_ADS_MODULE' ),
 					'version' => 'AWPCP_FEATURED_ADS_MODULE_DB_VERSION',
-					'required' => '4.0.0',
+					'required' => '4.0.1',
 				),
 				'fee-per-category' => array(
 					'name' => __( 'Fee per Category', 'another-wordpress-classifieds-plugin' ),
@@ -769,7 +769,7 @@ class AWPCP {
                     'url' => 'http://awpcp.com/downloads/mark-as-sold-module/?ref=panel',
                     'installed' => defined( 'AWPCP_MARK_AS_SOLD_MODULE' ),
                     'version' => 'AWPCP_MARK_AS_SOLD_MODULE_DB_VERSION',
-                    'required' => '4.0.0',
+                    'required' => '4.0.1',
                 ),
                 'payfast' => array(
                     'name' => __( 'PayFast', 'another-wordpress-classifieds-plugin' ),
@@ -797,7 +797,7 @@ class AWPCP {
 					'url' => 'http://awpcp.com/premium-modules/restricted-categories-module?ref=panel',
 					'installed' => defined( 'AWPCP_RESTRICTED_CATEGORIES_MODULE' ),
 					'version' => 'AWPCP_RESTRICTED_CATEGORIES_MODULE_DB_VERSION',
-					'required' => '4.0.0',
+					'required' => '4.0.1',
 				),
 				'rss' => array(
 					'name' => __( 'RSS', 'another-wordpress-classifieds-plugin' ),
@@ -818,7 +818,7 @@ class AWPCP {
 					'url' => 'http://awpcp.com/downloads/subscriptions-module/?ref=panel',
 					'installed' => defined( 'AWPCP_SUBSCRIPTIONS_MODULE' ),
 					'version' => 'AWPCP_SUBSCRIPTIONS_MODULE_DB_VERSION',
-					'required' => '4.0.0'
+					'required' => '4.0.1'
 				),
                 'videos' => array(
                     'name' => __( 'Videos', 'another-wordpress-classifieds-plugin' ),
@@ -841,7 +841,7 @@ class AWPCP {
                     'url' => 'http://www.awpcp.com/premium-modules/',
                     'installed' => defined( 'AWPCP_ZIP_CODE_SEARCH_MODULE_DB_VERSION' ),
                     'version' => 'AWPCP_ZIP_CODE_SEARCH_MODULE_DB_VERSION',
-                    'required' => '4.0.0',
+                    'required' => '4.0.1',
                 ),
 			);
 		}
