@@ -85,8 +85,8 @@ class AWPCP_FormFieldsData {
      */
     public function get_posted_data( $post ) {
         $data = [
-            'ID'          => $this->request->param( 'ad_id' ),
-            'post_fields' => [
+            'ID'               => $this->request->param( 'ad_id' ),
+            'post_fields'      => [
                 'post_title'   => str_replace(
                     [ "\r", "\n" ],
                     '',
@@ -98,7 +98,7 @@ class AWPCP_FormFieldsData {
                     awpcp_strip_all_tags_deep( $this->request->param( 'ad_details' ) )
                 ),
             ],
-            'metadata'    => [
+            'metadata'         => [
                 '_awpcp_start_date'    => $this->request->param( 'start_date', null ),
                 '_awpcp_end_date'      => $this->request->param( 'end_date', null ),
                 '_awpcp_contact_name'  => $this->request->param( 'ad_contact_name' ),
@@ -112,8 +112,9 @@ class AWPCP_FormFieldsData {
                     $this->request->param( 'ad_item_price' )
                 ),
             ],
-            'categories'  => [],
-            'regions'     => $this->request->param( 'regions', [] ),
+            'categories'       => [],
+            'regions'          => $this->request->param( 'regions', [] ),
+            'terms_of_service' => $this->request->param( 'terms_of_service' ),
         ];
 
         $can_edit_start_date = $this->authorization->is_current_user_allowed_to_edit_listing_start_date( $post );

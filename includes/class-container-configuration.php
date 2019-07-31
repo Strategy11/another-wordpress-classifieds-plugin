@@ -121,6 +121,7 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
         $container['FormFieldsValidator'] = $container->service( function( $container ) {
             return new AWPCP_FormFieldsValidator(
                 $container['ListingAuthorization'],
+                $container['RolesAndCapabilities'],
                 $container['Settings']
             );
         } );

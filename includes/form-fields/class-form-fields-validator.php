@@ -14,17 +14,25 @@ class AWPCP_FormFieldsValidator {
     private $authorization;
 
     /**
+     * @var RolesAndCapabilities
+     */
+    private $roles;
+
+    /**
      * @var object
      */
     private $settings;
 
     /**
-     * @param object $authorization     An instance of Listing Authorization.
-     * @param object $settings          An instance of Settings API.
      * @since 4.0.0
+     *
+     * @param object $authorization     An instance of Listing Authorization.
+     * @param object $roles             An instance of Roles and Capabilities.
+     * @param object $settings          An instance of Settings API.
      */
-    public function __construct( $authorization, $settings ) {
+    public function __construct( $authorization, $roles, $settings ) {
         $this->authorization = $authorization;
+        $this->roles         = $roles;
         $this->settings      = $settings;
     }
 
@@ -122,6 +130,12 @@ class AWPCP_FormFieldsValidator {
         if ( $this->settings->get_option( 'displaypricefield' ) && ! empty( $data['metadata']['_awpcp_price'] ) ) {
             if ( ! is_numeric( $data['metadata']['_awpcp_price'] ) ) {
                 $errors['ad_item_price'] = __( 'Please enter a valid price. Make sure to use numbers only and don\'t include a currency symbol.', 'another-wordpress-classifieds-plugin' );
+            }
+        }
+
+        if ( $this->settings->get_option( 'requiredtos' ) && ! $this->roles->current_user_is_moderator() ) {
+            if ( $data['terms_of_service'] !== 'accepted' ) {
+                $errors['terms_of_service'] = __( 'Please read and accept the Terms of Service.', 'another-wordpress-classifieds-plugin' );
             }
         }
 

@@ -26,5 +26,6 @@ function awpcp_listing_form_fields_validation_messages() {
         'ad_item_price'     => __( 'Please type in a price for your ad.', 'another-wordpress-classifieds-plugin' ),
         'ad_details'        => __( 'Please type in the details of your ad.', 'another-wordpress-classifieds-plugin' ),
         'captcha'           => __( 'Please type in the result of the operation.', 'another-wordpress-classifieds-plugin' ),
+        'terms_of_service'  => __( 'Please read and accept the Terms of Service.', 'another-wordpress-classifieds-plugin' ),
     );
 }
