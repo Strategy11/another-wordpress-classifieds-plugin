@@ -121,12 +121,14 @@ function( $, settings ) {
         },
 
         isMaxCategories: function() {
-            $('.awpcp-submit-listing-page-form .select2-container + .awpcp-message-info').remove();
+            $( '.awpcp-submit-listing-page-form .select2-container + .awpcp-message-error' ).remove();
             var message = $.AWPCP.get( 'default-validation-messages' ).maxCategories;
-            if (typeof(this.state.selectedCategories) != "undefined" && this.state.selectedCategories !== null && this.state.selectedCategories.length > 0) {
-                console.log(this.getSelectedPaymentTerm().maxCategories);
-                if (this.state.selectedCategories.length >= this.getSelectedPaymentTerm().maxCategories) {
-                    $('.awpcp-submit-listing-page-form .select2-container').after('<p class="awpcp-message awpcp-message-error">' + message + '</p>');
+            var cats = this.state.selectedCategories;
+            var singleSelect = $( '.awpcp-submit-listing-page-form .select2-selection--multiple' ).length > 0;
+            if ( typeof ( cats ) != 'undefined' && cats !== null && cats.length > 0 && !isNaN( cats[ 0 ] ) && singleSelect ) {
+                if ( this.state.selectedCategories.length >= this.getSelectedPaymentTerm().maxCategories ) {
+                    $( '.awpcp-submit-listing-page-form .select2-container' ).
+                        after( '<p class="awpcp-message awpcp-message-error">' + message + '</p>' );
                 }
             }
         },
