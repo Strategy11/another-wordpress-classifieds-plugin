@@ -466,6 +466,7 @@ return array(
     'AWPCP_TasksCollection' => $baseDir . '/includes/cron/class-tasks-collection.php',
     'AWPCP_Template_Renderer' => $baseDir . '/includes/class-template-renderer.php',
     'AWPCP_TermQueryIntegration' => $baseDir . '/includes/listings/class-term-query-integration.php',
+    'AWPCP_TermsOfServiceFormField' => $baseDir . '/includes/form-fields/class-terms-of-service-form-field.php',
     'AWPCP_TestSSLClientAjaxHandler' => $baseDir . '/includes/admin/debug/class-test-ssl-client-ajax-handler.php',
     'AWPCP_TextareaSettingsRenderer' => $baseDir . '/includes/settings/renderers/class-textarea-settings-renderer.php',
     'AWPCP_TextfieldSettingsRenderer' => $baseDir . '/includes/settings/renderers/class-textfield-settings-renderer.php',

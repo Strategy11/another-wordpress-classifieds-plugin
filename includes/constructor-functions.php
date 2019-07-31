@@ -196,3 +196,19 @@ function awpcp_facebook_cache_helper() {
 function awpcp_attachment_properties() {
     return new AWPCP_Attachment_Properties( awpcp_wordpress() );
 }
+
+/**
+ * Constructor function for Terms Of Service Form Field.
+ *
+ * @since 4.0.1
+ */
+function awpcp_terms_of_service_form_field( $slug ) {
+    $container = awpcp()->container;
+
+    return new AWPCP_TermsOfServiceFormField(
+        $slug,
+        $container['RolesAndCapabilities'],
+        $container['Settings'],
+        $container['TemplateRenderer']
+    );
+}

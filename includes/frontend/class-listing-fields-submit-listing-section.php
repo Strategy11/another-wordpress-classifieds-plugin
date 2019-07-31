@@ -73,7 +73,7 @@ class AWPCP_ListingFieldsSubmitListingSection {
     /**
      * @since 4.0.0
      */
-    public function render( $listing, $transaction ) {
+    public function render( $listing, $transaction, $mode ) {
         if ( is_null( $listing ) ) {
             $listing = (object) [
                 'ID'           => 0,
@@ -90,6 +90,7 @@ class AWPCP_ListingFieldsSubmitListingSection {
         $context = array(
             'category' => null,
             'action'   => 'normal',
+            'mode'     => $mode,
         );
 
         $params = array(
