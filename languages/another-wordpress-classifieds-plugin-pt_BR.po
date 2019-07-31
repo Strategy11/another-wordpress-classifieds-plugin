@@ -1,5 +1,5 @@
-# Copyright (C) 2019
-# This file is distributed under the same license as the  package.
+# Copyright (C) 2019 Another WordPress Classifieds Plugin (AWPCP)
+# This file is distributed under the same license as the Another WordPress Classifieds Plugin (AWPCP) package.
 # Translators:
 # Jean Franco <stuntshell@gmail.com>, 2019
 # André Varella Nemirovsky <andrenemirovsky@gmail.com>, 2019
@@ -19,23 +19,24 @@
 # Josh Lyford <josh@brewlabs.us>, 2019
 # Gregory Karpinsky <gregory@tiv.net>, 2019
 # Marcos Nakamine, 2019
-# Marcelo Antunes, 2019
 # Marco Castelluccio <mar.castelluccio@studenti.unina.it>, 2019
-# Francisco Baptista <francisco@sabercriativo.com.br>, 2019
-# Dionizio Bonfim Bach <translations@djio.com.br>, 2019
 # Jardel Rebouças <jardelrs@gmail.com>, 2019
-# Willington Vega <wvega@wvega.com>, 2019
-# Raphael Mendonça, 2019
 # FX Bénard <fxb@wp-translations.org>, 2019
 # Vincent Mimoun-Prat <vpratfr@yahoo.fr>, 2019
+# Will Zillyan <zillyanplay@gmail.com>, 2019
+# Willington Vega <wvega@wvega.com>, 2019
+# Dionizio Bonfim Bach <translations@djio.com.br>, 2019
+# Raphael Mendonça, 2019
+# Marcelo Antunes, 2019
+# Francisco Baptista <francisco@sabercriativo.com.br>, 2019
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: http://wordpress.org/tag/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2019-07-14 15:50:00+00:00\n"
+"Project-Id-Version: Another WordPress Classifieds Plugin (AWPCP) 4.0.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/another-wordpress-classifieds-plugin\n"
+"POT-Creation-Date: 2019-07-31 14:35:33+00:00\n"
 "PO-Revision-Date: 2019-02-25 21:46+0000\n"
-"Last-Translator: Vincent Mimoun-Prat <vpratfr@yahoo.fr>, 2019\n"
+"Last-Translator: Francisco Baptista <francisco@sabercriativo.com.br>, 2019\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/wp-translations/teams/8416/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -94,19 +95,19 @@ msgstr "Privado"
 
 #: admin/admin-panel-fees-table.php:195
 msgid "<duration-amount> <duration-interval>"
-msgstr ""
+msgstr "<duration-amount> <duration-interval>"
 
 #: admin/admin-panel-fees-table.php:199
 msgid "Duration: <payment-term-duration>"
-msgstr ""
+msgstr "Duração: <payment-term-duration>"
 
 #: admin/admin-panel-fees-table.php:209
 msgid "# of images: <number-of-images-allowed>"
-msgstr ""
+msgstr "Nro. de imagens: <number-of-images-allowed>"
 
 #: admin/admin-panel-fees-table.php:219
 msgid "# of regions: <number-of-regions-allowed>"
-msgstr ""
+msgstr "Nro. de regiões: <number-of-regions-allowed>"
 
 #: admin/admin-panel-fees-table.php:232 admin/admin-panel-fees-table.php:248
 msgid "unlimited"
@@ -114,11 +115,11 @@ msgstr "ilimitado"
 
 #: admin/admin-panel-fees-table.php:235
 msgid "Chars in title: <characters-limit>"
-msgstr ""
+msgstr "Caracteres no título: <characters-limit>"
 
 #: admin/admin-panel-fees-table.php:251
 msgid "Chars in description: <characters-limit>"
-msgstr ""
+msgstr "Caracteres na descrição: <characters-limit>"
 
 #: admin/admin-panel-fees-table.php:267
 msgctxt "all categories"
@@ -166,7 +167,7 @@ msgstr "Classificados"
 msgid "Manual Upgrade"
 msgstr "atualização manual"
 
-#: admin/admin-panel.php:87 admin/admin-panel.php:765
+#: admin/admin-panel.php:87 admin/admin-panel.php:778
 #: includes/models/class-custom-post-types.php:81
 #: includes/settings/class-listings-settings.php:30
 msgid "Classifieds"
@@ -174,14 +175,14 @@ msgstr "Classificados"
 
 #: admin/admin-panel.php:92
 msgid "Classified Admin"
-msgstr ""
+msgstr "Admin Classificado(s)"
 
 #: admin/admin-panel.php:110
 msgid "AWPCP"
 msgstr "AWPCP"
 
 #: admin/admin-panel.php:143 admin/admin-panel.php:144
-#: admin/admin-panel.php:488
+#: admin/admin-panel.php:501
 msgid "Settings"
 msgstr "Configurações"
 
@@ -217,7 +218,7 @@ msgstr "Honorários"
 
 #: admin/admin-panel.php:236
 msgid "Manage Listings Fees"
-msgstr ""
+msgstr "Gerenciar taxas de listagem"
 
 #: admin/admin-panel.php:261 admin/admin-panel.php:262
 msgid "Import & Export"
@@ -235,27 +236,37 @@ msgstr "Informações de depuração"
 msgid "Uninstall"
 msgstr "Desinstalação"
 
-#: admin/admin-panel.php:347
+#: admin/admin-panel.php:344
 msgid "Quick View"
-msgstr ""
+msgstr "Visualizar rápido"
 
-#: admin/admin-panel.php:348
+#: admin/admin-panel.php:345
 msgid "Listing Quick View"
-msgstr ""
+msgstr "Visualizar rápido listagem"
 
-#: admin/admin-panel.php:406
+#: admin/admin-panel.php:359 admin/admin-panel.php:360
+#: frontend/templates/page-renew-ad.tpl.php:3
+#: includes/admin/class-admin-container-configuration.php:189
+msgid "Renew Ad"
+msgstr "Renove Anúncio"
+
+#: admin/admin-panel.php:419
 msgid ""
 "Use the Account Balance column on the table below to manage credit balance "
 "for users."
 msgstr ""
+"Usar a coluna Saldo em Conta na tabela abaixo para gerenciar créditos para "
+"usuários."
 
-#: admin/admin-panel.php:425
+#: admin/admin-panel.php:438
 msgid ""
 "AWPCP features are currently disabled because the plugin needs you to "
 "perform a manual upgrade before continuing."
 msgstr ""
+"Funções AWPCP estão desativadas pois o plugin precisa que você faça um "
+"upgrade manual antes de continuar."
 
-#: admin/admin-panel.php:426
+#: admin/admin-panel.php:439
 msgid ""
 "The duration for this upgrade operation varies between several minutes and a"
 " few hours, depending on the size of your database, the current network "
@@ -263,46 +274,66 @@ msgid ""
 "to use the Classified Admin pages or submit and explore ads on the frontend "
 "until the upgrade is complete."
 msgstr ""
+"A duração desta operação de upgrade varia entre alguns minutos a poucas "
+"horas, dependendo do tamanho do seu banco de dados, condições atuais da rede"
+" e capacidade do servidor. Seus usuários e você não poderão usar as páginas "
+"Admin Classificado ou enviar e explorar anúncios no terminal até que o "
+"upgrade esteja completo."
 
 #. translators: %1$s is the opening tag for the link to the page explaining
 #. how
 #. to downgrade to a previous version of the plugin, %2$s is the closing tag
 #. for the link.
-#: admin/admin-panel.php:429
+#: admin/admin-panel.php:442
 msgid ""
 "If this is not a good time to go through the upgrade process, we recommend "
 "you to %1$sinstall the previous version again%2$s and plan to upgrade "
 "tonight or later this week when you have more time."
 msgstr ""
+"Se agora não for uma boa hora pra fazer o upgrade (atualização?), "
+"reomendamos que você %1$sinstale a versão atual novamente %2$se planeje o "
+"upgrade (atualização?) esta noite ou durante esta semana quando tiver mais "
+"tempo."
 
 #. translators: %1$s is the opening tag for the link to the upgrade page, %2$s
 #. is the closing tag for the link.
-#: admin/admin-panel.php:435
+#: admin/admin-panel.php:448
 msgid ""
 "To upgrade, please %1$sgo to the Classifieds admin section%2$s or click the "
 "button below."
 msgstr ""
+"Para atualizar, por favor %1$s vá para a seção Admin Classificados %2$s ou "
+"clique no botão abaixo."
 
 #. translators: %1$s is the opening tag for the link to the upgrade page, %2$s
 #. is the closing tag for the link.
-#: admin/admin-panel.php:445
+#: admin/admin-panel.php:458
 msgid ""
 "AWPCP features are currently disabled because the plugin needs you to "
 "perform a manual upgrade before continuing. Please %1$sgo to the Classifieds"
 " admin section to Upgrade%2$s or click the button below."
 msgstr ""
+"Funções AWPCP estão atualmente desativadas pois o plugin precisa que você "
+"faça um uṕgrade(atualização?) manual antes de continuar. Por favor %1$s vá "
+"para a seção Admin Classificados para Upgrade (atualizar?) %2$s ou clique no"
+" botão abaixo."
 
 #. translators: %1$s is the opening tag for the link to the upgrade page, %2$s
 #. is the closing tag for the link.
-#: admin/admin-panel.php:467
+#: admin/admin-panel.php:480
 msgid ""
 "AWPCP needs you to perform a manual upgrade to update the database schema "
 "and the information stored there. All plugin features will continue to work "
 "while the upgrade routines are executed. Please %1$sgo to the Classifieds "
 "admin section to Upgrade%2$s or click the button below."
 msgstr ""
+"AWPCP requer que você faça um upgrade (atualização?) manual para atualizar o"
+" esquema do banco de dados e as informações guardadas ali. Todas as funções "
+"do plugin continuarão funcionando enquanto a rotina de upgrade "
+"(atualização?) são executadas. Por favor %1$s vá para a seção de Admin "
+"Classificados para Upgrade %2$s ou clique no botão abaixo."
 
-#: admin/admin-panel.php:541
+#: admin/admin-panel.php:554
 msgid ""
 "Page %1$s has the same URL as the %2$s from AWPCP. The WordPress page %1$s "
 "is going to be unreachable until this changes."
@@ -310,9 +341,13 @@ msgid_plural ""
 "Pages %1$s have the same URL as the %2$s from AWPCP. The WordPress pages "
 "%1$s is going to be unreachable until this changes."
 msgstr[0] ""
+"A página %1$s tem a mesma URL que a %2$s do AWPCP. A página do WordPress "
+"%1$s ficará indisponível até que isso seja alterado."
 msgstr[1] ""
+"As páginas %1$s tem a mesma URL que as %2$s do AWPCP. As páginas do "
+"WordPress %1$s ficarão indisponíveis até que isso seja alterado."
 
-#: admin/admin-panel.php:549
+#: admin/admin-panel.php:562
 msgid ""
 "The %1$s is dynamic; you don't need to create a real WordPress page to show "
 "the list of categories, the plugin will generate it for you. If the "
@@ -326,59 +361,70 @@ msgid_plural ""
 "you can delete them and this error message will go away. Otherwise, please "
 "make sure you don't have duplicate page names."
 msgstr[0] ""
+"%1$sé dinâmico; você não precisa criar uma página real no WordPress para "
+"mostrar a lista de categorias, o plugin vai gerar por você. Caso a página "
+"WordPress tenha sido criada para mostrar a lista padrão de categorias AWPCP,"
+" você pode apagá-la e essa mensagem de erro desaparecerá. Do contrário, por "
+"favor certifique-se que não tenha páginas com nomes duplicados."
 msgstr[1] ""
+"%1$s é dinâmico; você não precisa criar uma página real no WordPress para "
+"mostrar a lista de categorias, o plugin vai gerar por você. Caso as páginas "
+"WordPress tenham sido criadas para mostrar a lista padrão de categorias "
+"AWPCP, você pode apagá-las e essa mensagem de erro desaparecerá. Do "
+"contrário, por favor certifique-se que não tenha páginas com nomes "
+"duplicados."
 
-#: admin/admin-panel.php:730 admin/class-categories-admin-page.php:70
+#: admin/admin-panel.php:743 admin/class-categories-admin-page.php:70
 #: admin/class-categories-admin-page.php:74
 msgid "Manage Category Icon"
 msgstr "Gerenciar Categoria Ícone"
 
-#: admin/admin-panel.php:735 admin/class-categories-admin-page.php:45
+#: admin/admin-panel.php:748 admin/class-categories-admin-page.php:45
 #: admin/class-categories-admin-page.php:49
 #: admin/class-categories-admin-page.php:142
 msgid "Edit Category"
 msgstr "Editar Categoria"
 
-#: admin/admin-panel.php:736 admin/class-categories-admin-page.php:56
+#: admin/admin-panel.php:749 admin/class-categories-admin-page.php:56
 #: admin/class-categories-admin-page.php:60
 msgid "Delete Category"
 msgstr "Excluir Categoria"
 
-#: admin/admin-panel.php:742
+#: admin/admin-panel.php:755
 msgid "Select {category_name}"
-msgstr ""
+msgstr "Selecione {category_name}"
 
-#: admin/admin-panel.php:776 includes/settings/class-listings-settings.php:437
+#: admin/admin-panel.php:789 includes/settings/class-listings-settings.php:437
 msgctxt "page name"
 msgid "Show Ad"
-msgstr ""
+msgstr "Mostrar anúncio"
 
-#: admin/admin-panel.php:780
+#: admin/admin-panel.php:793
 msgctxt "page name"
 msgid "Reply to Ad"
 msgstr "Responder a este anúncio"
 
-#: admin/admin-panel.php:784
+#: admin/admin-panel.php:797
 msgctxt "page name"
 msgid "Edit Ad"
 msgstr "Editar anúncio"
 
-#: admin/admin-panel.php:788
+#: admin/admin-panel.php:801
 msgctxt "page name"
 msgid "Place Ad"
 msgstr "Colocar anúncio"
 
-#: admin/admin-panel.php:792
+#: admin/admin-panel.php:805
 msgctxt "page name"
 msgid "Renew Ad"
 msgstr "Renove Anúncio"
 
-#: admin/admin-panel.php:796
+#: admin/admin-panel.php:809
 msgctxt "page name"
 msgid "Browse Ads"
 msgstr "Consulte os anúncios"
 
-#: admin/admin-panel.php:800
+#: admin/admin-panel.php:813
 msgctxt "page name"
 msgid "Search Ads"
 msgstr "Anúncios de pesquisa"
@@ -393,14 +439,17 @@ msgid ""
 " the categoery that you selecetd to become the new category associated to "
 "affected ads. <error-message>"
 msgstr ""
+"As categorias não podem ser apagadas porque houve um erro ao tentar carregar"
+" a categoria que você selecionou para ser a nova categoria associada aos "
+"anúncios afetados."
 
 #: admin/categories/class-delete-categories-admin-page.php:68
 msgid "The selected categories have been deleted."
-msgstr ""
+msgstr "As categorias selecionadas foram apagadas."
 
 #: admin/categories/class-delete-categories-admin-page.php:73
 msgid "There was an error trying to delete the selected categories."
-msgstr ""
+msgstr "Ocorreu um erro ao tentar deletar as categorias selecionadas."
 
 #: admin/categories/class-delete-categories-admin-page.php:77
 msgid ""
@@ -408,31 +457,35 @@ msgid ""
 "However, there was an error trying to delete the other <categories-not-"
 "deleted> categories."
 msgstr ""
+"<categories-deleted> (de <categories-count>) categorias foram apagadas. "
+"Entretanto, ocorreu um erro ao tentar apagar as outras <categories-not-"
+"deleted> categorias."
 
 #: admin/categories/class-delete-category-admin-page.php:44
 msgid "The category you are trying to delete doesn't exist."
-msgstr ""
+msgstr "A categoria que você está tentando deletar não existe."
 
 #: admin/categories/class-delete-category-admin-page.php:57
 msgid "There was an error trying to delete the category. <error-message>"
-msgstr ""
+msgstr "Ocorreu um erro ao tentar apagar a categoria<error-message>"
 
 #: admin/categories/class-delete-category-admin-page.php:74
 msgid ""
 "There was an error trying to load the selected category. <error-message>"
 msgstr ""
+"Ocorreu um erro ao tentar carregar a categoria selecionada. <error-message>"
 
 #: admin/categories/class-delete-category-admin-page.php:85
 msgid "The category was deleted successfully"
-msgstr ""
+msgstr "A categoria selecionada foi apagada com sucesso."
 
 #: admin/categories/class-delete-category-admin-page.php:103
 msgid "Are you sure you want to delete \"<category-name>\" category?"
-msgstr ""
+msgstr "Tem certeza que quer apagar a categoria  \"<category-name>\" ?"
 
 #: admin/categories/class-delete-category-admin-page.php:114
 msgid "Delete category"
-msgstr ""
+msgstr "Apagar categoria"
 
 #: admin/categories/class-delete-category-admin-page.php:115
 #: admin/fees/class-fee-details-form.php:76
@@ -454,14 +507,16 @@ msgid ""
 "The categories couldn't be moved because there was an error trying to load "
 "the target category. <specific-error-message>"
 msgstr ""
+"As categorias não puderam ser movidas pois ocorreu um erro ao carregar a "
+"categoria selecionada. <specific-error-message>"
 
 #: admin/categories/class-move-categories-admin-page.php:65
 msgid "The selected categories have been moved."
-msgstr ""
+msgstr "As categorias selecionadas foram movidas."
 
 #: admin/categories/class-move-categories-admin-page.php:70
 msgid "There was an error trying to move the selected categories."
-msgstr ""
+msgstr "Ocorreu um erro ao tentar mover as categorias selecionadas."
 
 #: admin/categories/class-move-categories-admin-page.php:74
 msgid ""
@@ -469,26 +524,29 @@ msgid ""
 "However, there was an error trying to move the other <categories-not-moved> "
 "categories."
 msgstr ""
+"<categories-moved> (de <categories-count>) categorias foram movidas. No "
+"entanto ocorreu um erro ao mover as outras <categories-not-moved> "
+"categorias."
 
 #: admin/categories/class-update-category-admin-page.php:55
 msgid "The category you're trying to update doesn't exist."
-msgstr ""
+msgstr "A categoria que você está tentando atualizar não existe."
 
 #: admin/categories/class-update-category-admin-page.php:66
 msgid "The category was successfully updated."
-msgstr ""
+msgstr "A categoria foi atualizada com sucesso."
 
 #: admin/class-categories-admin-page.php:116
 msgid "Categories per page:"
-msgstr ""
+msgstr "Categorias por página:"
 
 #: admin/class-categories-admin-page.php:128
 msgid "None (this is a top level category)"
-msgstr ""
+msgstr "Nenhuma (esta categoria é nível superior)"
 
 #: admin/class-categories-admin-page.php:138
 msgid "Select target category"
-msgstr ""
+msgstr "Selecione a categoria alvo"
 
 #: admin/class-categories-admin-page.php:142
 msgid "Add New Category"
@@ -496,7 +554,7 @@ msgstr "Adicionar Nova Categoria"
 
 #: admin/class-categories-admin-page.php:151
 msgid "Update category"
-msgstr ""
+msgstr "Atualizar categoria"
 
 #: admin/class-categories-admin-page.php:151
 msgid "Add new category"
@@ -506,38 +564,39 @@ msgstr "Adicionar nova categoria"
 msgctxt "admin csv-export"
 msgid "Could not create a temporary directory for handling this CSV export."
 msgstr ""
+"Não foi possível criar um diretório temporário para exportar o arquivo CSV."
 
 #: admin/class-csv-exporter.php:90
 msgctxt "admin csv-export"
 msgid "Could not create awpcp-csv-exports directory."
-msgstr ""
+msgstr "Não foi possível criar o diretório awpcp-csv-exportados."
 
 #. translators: %s the error.
 #: admin/class-csv-exporter.php:96
 msgctxt "admin csv-export"
 msgid "Error while creating a temporary directory for CSV export: %s"
-msgstr ""
+msgstr "Erro ao criar diretório temporário para exportar CSV %s"
 
 #: admin/class-debug-admin-page.php:140
 msgctxt "debug page"
 msgid "Plugin Info"
-msgstr ""
+msgstr "Informação do Plugin"
 
 #: admin/class-debug-admin-page.php:141
 #: templates/admin/debug/plugin-pages-debug-section.tpl.php:33
 msgctxt "debug page"
 msgid "Plugin Pages"
-msgstr ""
+msgstr "Páginas do Plugin"
 
 #: admin/class-debug-admin-page.php:142
 msgctxt "debug page"
 msgid "Plugin Settings"
-msgstr ""
+msgstr "Configurações do Plugin"
 
 #: admin/class-debug-admin-page.php:143
 msgctxt "debug page"
 msgid "Environment"
-msgstr ""
+msgstr "Ambiente"
 
 #: admin/class-debug-admin-page.php:144
 #: admin/templates/admin-panel-debug.tpl.php:25
@@ -548,19 +607,19 @@ msgstr "regras de reescrita"
 #: admin/class-debug-admin-page.php:180
 msgctxt "debug page"
 msgid "Plugin Version"
-msgstr ""
+msgstr "Versão do Plugin"
 
 #: admin/class-debug-admin-page.php:258
 msgid "WordPress version"
-msgstr ""
+msgstr "Versão do WordPress"
 
 #: admin/class-debug-admin-page.php:262
 msgid "OS"
-msgstr ""
+msgstr "Sistema Operacional"
 
 #: admin/class-debug-admin-page.php:266
 msgid "Apache Version"
-msgstr ""
+msgstr "Versão do Apache"
 
 #: admin/class-debug-admin-page.php:270
 msgid "PHP Version"
@@ -572,11 +631,11 @@ msgstr "Versão do MySQL "
 
 #: admin/class-debug-admin-page.php:278
 msgid "cURL Version"
-msgstr ""
+msgstr "Versão da cURL"
 
 #: admin/class-debug-admin-page.php:282
 msgid "cURL SSL Version"
-msgstr ""
+msgstr "Versão da cURL SSL"
 
 #: admin/class-debug-admin-page.php:286
 #: admin/templates/admin-panel-debug.tpl.php:119
@@ -621,27 +680,33 @@ msgstr "Não trabalho"
 #: admin/class-export-listings-admin-page.php:49
 msgctxt "admin csv-export"
 msgid "Could not decode export state information."
-msgstr ""
+msgstr "Não foi possível decodificar a informação do estado da exportação"
 
 #: admin/class-import-listings-admin-page.php:114
 msgid ""
 "The uploaded file doesn't look like a CSV file. Please upload a valid CSV "
 "file."
 msgstr ""
+"O Arquivo submetido não parece um arquivo CSV. Por favor envie um arquivo "
+"CSV válido."
 
 #: admin/class-import-listings-admin-page.php:116
 msgid "There was an error moving the uploaded CSV file to a proper location."
 msgstr ""
+"Ocorreu um erro ao mover o arquivo CSV enviado para um local apropriado."
 
 #: admin/class-import-listings-admin-page.php:128
 msgid ""
 "The uploaded file doesn't look like a ZIP file. Please upload a valid ZIP "
 "file."
 msgstr ""
+"O arquivo enviado não parece um arquivo ZIP. Por favor envie um arquivo ZIP "
+"válido."
 
 #: admin/class-import-listings-admin-page.php:130
 msgid "There was an error moving the uploaded ZIP file to a proper location."
 msgstr ""
+"Ocorreu um erro ao mover o arquivo ZIP enviado para um local apropriado."
 
 #: admin/class-import-listings-admin-page.php:142
 msgid "Incompatible ZIP Archive"
@@ -657,11 +722,11 @@ msgstr "Não foi possível gravar arquivo temporário %s"
 
 #: admin/class-import-listings-admin-page.php:179
 msgid "The specified directory is not a valid path."
-msgstr ""
+msgstr "O diretório especificado não é um caminho válido."
 
 #: admin/class-import-listings-admin-page.php:181
 msgid "The specified directory does not exists."
-msgstr ""
+msgstr "O diretório especificado não existe."
 
 #: admin/class-import-listings-admin-page.php:365
 msgid ""
@@ -669,13 +734,16 @@ msgid ""
 "processed. <number-of-rows-imported> rows imported and <number-of-rows-"
 "rejected> rows rejected."
 msgstr ""
+"(<percentage>) <number-of-rows-processed> de <number-of-rows> linhas "
+"processadas. <number-of-rows-imported> linhas importadas e <number-of-rows-"
+"rejected> linhas rejeitadas."
 
 #: admin/class-import-listings-admin-page.php:366
 msgctxt ""
 "description for messages used to show feedback for the Import Listings "
 "operation"
 msgid "<message-type> in line <message-line>"
-msgstr ""
+msgstr "<message-type> em linha <message-line>"
 
 #: admin/class-import-listings-admin-page.php:377
 msgctxt "text for page subtitle and submit button"
@@ -697,6 +765,13 @@ msgctxt "import settings"
 msgid ""
 "There was a problem trying to read the settings file; it appears the file "
 "wasn't uploaded correctly. Please try again."
+msgstr ""
+"Houve um problema tentando ler o arquivo de configuração; parece que o "
+"arquivo não foi enviado corretamente. Por favor tente novamente."
+
+#: admin/class-import-settings-admin-page.php:124
+msgctxt "another-wordpress-classifieds-plugin"
+msgid "Your settings have been successfully imported."
 msgstr ""
 
 #: admin/class-settings-admin-page.php:250
@@ -728,7 +803,7 @@ msgstr "Tudo parece OK."
 #: includes/frontend/class-save-listing-information-ajax-handler.php:105
 #: includes/frontend/class-update-listing-order-ajax-handler.php:75
 msgid "You are not authorized to perform this action."
-msgstr ""
+msgstr "Você não está autorizado a executar esta ação."
 
 #: admin/credit-plans/class-add-credit-plan-action-handler.php:39
 #: admin/credit-plans/class-edit-credit-plan-action-handler.php:49
@@ -762,29 +837,31 @@ msgstr "A taxa especificada não existe."
 
 #: admin/fees/class-fee-details-admin-page.php:68
 msgid "Fee successfully updated."
-msgstr ""
+msgstr "Tarifa atualizada com sucesso."
 
 #: admin/fees/class-fee-details-admin-page.php:104
 msgid "Create Fee Plan"
-msgstr ""
+msgstr "Criar Plano de Tarifa"
 
 #: admin/fees/class-fee-details-admin-page.php:116
 msgid "No Fee Plan id was specified."
-msgstr ""
+msgstr "Nenhuma id de Plano de Tarifa especificada."
 
 #: admin/fees/class-fee-details-admin-page.php:123
 msgid "The specified Fee Plan doesn't exist or couldn't be loaded."
-msgstr ""
+msgstr "O Plano de Tarifa especificado não existe ou não pôde ser carregado."
 
 #: admin/fees/class-fee-details-form.php:56
 msgid "This is a private fee plan"
-msgstr ""
+msgstr "Este é um plano de tarifa privado."
 
 #: admin/fees/class-fee-details-form.php:57
 msgid ""
 "The plan will be hidden from public view. It will be used for existing "
 "listings or special listings that only admins can create."
 msgstr ""
+"O plano ficará oculto para visualização pública. Será usado para listagens "
+"existentes ou listagens especiais que somente administradores podem criar."
 
 #: admin/fees/class-fee-details-form.php:84
 msgid "Save"
@@ -792,7 +869,7 @@ msgstr "Salvar"
 
 #: admin/fees/class-fee-details-form.php:94
 msgid "Save & Continue"
-msgstr ""
+msgstr "Salvar & Continuar"
 
 #: admin/fees/class-fee-details-form.php:118
 #: includes/settings/class-payment-general-settings.php:63
@@ -801,19 +878,19 @@ msgstr "Duração"
 
 #: admin/fees/class-fee-details-form.php:179
 msgid "Images allowed for this plan"
-msgstr ""
+msgstr "Imagens permitidas para este plano"
 
 #: admin/fees/class-fee-details-form.php:186
 msgid "Regions allowed for this plan"
-msgstr ""
+msgstr "Regiões permitidas para este plano"
 
 #: admin/fees/class-fee-details-form.php:192
 msgid "Limit number of characters in title"
-msgstr ""
+msgstr "Número limite de caracteres no título"
 
 #: admin/fees/class-fee-details-form.php:199
 msgid "Limit number of characters in description"
-msgstr ""
+msgstr "Número máximo de caracteres na descrição"
 
 #: admin/fees/class-fee-details-form.php:234
 msgid "Price (currency)"
@@ -836,6 +913,7 @@ msgstr "A taxa selecionada não existe."
 #: admin/fees/class-fees-admin-page.php:134
 msgid "All Ads associated to Fee %1$s have been associated with Fee %2$s."
 msgstr ""
+"Todos os Anúncios associados à Tarifa %1$s foram associados à Tarifa %2$s"
 
 #: admin/fees/class-fees-admin-page.php:178
 msgid "The Fee was successfully deleted."
@@ -880,12 +958,13 @@ msgstr "Links Permanentes"
 #: admin/import/class-csv-importer-delegate.php:100
 msgctxt "csv importer"
 msgid "Required value for column \"<column-name>\" is missing."
-msgstr ""
+msgstr "Valor requerido para coluna \"<column-name>\" ausente."
 
 #: admin/import/class-csv-importer-delegate.php:179
 msgctxt "csv importer"
 msgid "A new user '%s' with email address '%s' and password '%s' was created."
 msgstr ""
+"Um novo usuário '%s' com endereço de email '%s' e senha '%s' foi criado."
 
 #: admin/import/class-csv-importer-delegate.php:251
 msgctxt "csv importer"
@@ -895,6 +974,10 @@ msgid ""
 "empty value. Please include a username and contact email or select a default"
 " user."
 msgstr ""
+"Nenhum usuário pôde ser designado a esta listagem. Um novo usuário não pôde "
+"ser criado porque ambos nome de usuário e email de contato estão faltando ou"
+" tem valor vazio. Por favor inclua nome de usuário e email de contato ou "
+"selecione usuário padrão."
 
 #: admin/import/class-csv-importer-delegate.php:254
 msgctxt "csv importer"
@@ -903,6 +986,9 @@ msgid ""
 "because the username column is missing or has an empty value. Please include"
 " a username or select a default user."
 msgstr ""
+"Nenhum usuário pôde ser designado a esta listagem. Um novo usuário não pôde "
+"ser criado porque a coluna nome de usuário está faltando ou tem valor vazio."
+" Por favor inclua nome de usuário ou selecione usuário padrão."
 
 #: admin/import/class-csv-importer-delegate.php:257
 msgctxt "csv importer"
@@ -911,12 +997,17 @@ msgid ""
 "because the contact_email column is missing or has an empty value. Please "
 "include a contact_email or select a default user."
 msgstr ""
+"Nenhum usuário pôde ser designado a esta listagem. Um novo usuário não pôde "
+"ser criado porque a coluna email de contato está faltando ou tem valor "
+"vazio. Por favor inclua um email de contato ou selecione usuário padrão."
 
 #: admin/import/class-csv-importer-delegate.php:270
 msgid ""
 "No user could be assigned to this listing. Our attempt to create a new user "
 "failed with the following error: <error-message>."
 msgstr ""
+"Nenhum usuário pôde ser designado a esta listagem. Nossa tentativa de criar "
+"um novo usuário falhou e apresentou o seguinte erro: <error-message>."
 
 #: admin/import/class-csv-importer-delegate.php:305
 msgctxt "csv importer"
@@ -1792,6 +1883,18 @@ msgid ""
 "<strong>PHP 7.2</strong>."
 msgstr ""
 
+#: awpcp.php:157
+msgid ""
+"Please read <a href=\"https://wordpress.org/support/upgrade-php/\">Upgrading"
+" PHP</a> to understand more about PHP and how to upgrade."
+msgstr ""
+
+#: awpcp.php:201
+msgid ""
+"Another WordPress Classifieds Plugin installation is incomplete. Please "
+"{support_link}contact support{/support_link}."
+msgstr ""
+
 #: cron.php:123
 msgid "Listing Details"
 msgstr "Detalhes do Imóvel"
@@ -2652,6 +2755,10 @@ msgstr ""
 "Você pode adicionar mais crédito ao postar um novo anúncio ou utilizando o "
 "botão \\ \"Adicionar Crédito \" abaixo."
 
+#: frontend/templates/page-buy-credits-select-credit-plan-step.tpl.php:11
+msgid "Select a Credit Plan"
+msgstr ""
+
 #: frontend/templates/page-buy-credits-select-credit-plan-step.tpl.php:18
 #: frontend/templates/page-renew-ad-order-step.tpl.php:29
 #: frontend/templates/page-reply-to-ad.tpl.php:43
@@ -2733,6 +2840,7 @@ msgid "Add Details and Contact Information"
 msgstr "Adicionar detalhes e informações de contato"
 
 #: frontend/templates/page-place-ad-details-step.tpl.php:100
+#: templates/frontend/form-fields/terms-of-service-form-field.tpl.php:4
 msgctxt "ad details form"
 msgid "Read our Terms of Service"
 msgstr "Leia nossos termos de serviço"
@@ -2743,6 +2851,7 @@ msgid "Terms of service:"
 msgstr "Termos de serviço"
 
 #: frontend/templates/page-place-ad-details-step.tpl.php:107
+#: templates/frontend/form-fields/terms-of-service-form-field.tpl.php:12
 msgctxt "ad details form"
 msgid "I agree to the terms of service"
 msgstr "Eu aceito os Termos de Serviço"
@@ -2842,10 +2951,6 @@ msgstr "Seu anúncio foi renovada"
 msgctxt "renew ad order step"
 msgid "Select Payment Term"
 msgstr "Select Prazo de Pagamento"
-
-#: frontend/templates/page-renew-ad.tpl.php:3
-msgid "Renew Ad"
-msgstr "Renove Anúncio"
 
 #: frontend/templates/page-renew-ad.tpl.php:15
 msgid ""
@@ -3225,6 +3330,10 @@ msgstr "Busca por categoria"
 msgid "Search"
 msgstr "Pesquisar"
 
+#: functions.php:461
+msgid "%s ago"
+msgstr "%s atrás"
+
 #: functions.php:630
 msgid "Ads per page:"
 msgstr ""
@@ -3397,15 +3506,19 @@ msgstr ""
 msgid "SSL Support: No."
 msgstr ""
 
-#: includes/admin/class-admin.php:231
+#: functions.php:3189
+msgid "OpenSSL version:"
+msgstr ""
+
+#: includes/admin/class-admin.php:257
 msgid "Classified Information"
 msgstr ""
 
-#: includes/admin/class-admin.php:239
+#: includes/admin/class-admin.php:265
 msgid "Classified Owner"
 msgstr ""
 
-#: includes/admin/class-admin.php:247
+#: includes/admin/class-admin.php:273
 msgid "Classified Fields"
 msgstr ""
 
@@ -3664,39 +3777,39 @@ msgctxt "listings table search"
 msgid "Contact Phone"
 msgstr ""
 
-#: includes/admin/listings/class-disable-listing-table-action.php:52
+#: includes/admin/listings/class-disable-listing-table-action.php:69
 msgctxt "listing row action"
 msgid "Disable"
 msgstr "Desabilitar"
 
 #. translators: %d is the number of ads that were successfully disabled.
-#: includes/admin/listings/class-disable-listing-table-action.php:117
+#: includes/admin/listings/class-disable-listing-table-action.php:134
 msgid "%d ad was successfully disabled."
 msgid_plural "%d ads were successfully disabled."
 msgstr[0] ""
 msgstr[1] ""
 
 #. translators: %d is the number of ads that were already disabled.
-#: includes/admin/listings/class-disable-listing-table-action.php:125
+#: includes/admin/listings/class-disable-listing-table-action.php:142
 msgid "%d ad was already disabled."
 msgid_plural "%d ads were already disabled."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/listings/class-enable-listing-table-action.php:52
+#: includes/admin/listings/class-enable-listing-table-action.php:69
 msgctxt "listing row action"
 msgid "Enable"
 msgstr "Ativar"
 
 #. translators: %d is the number of ads that were successfully enabled.
-#: includes/admin/listings/class-enable-listing-table-action.php:117
+#: includes/admin/listings/class-enable-listing-table-action.php:134
 msgid "%d ad was successfully enabled."
 msgid_plural "%d ads were successfully enabled."
 msgstr[0] ""
 msgstr[1] ""
 
 #. translators: %d is the number of ads that were already enabled.
-#: includes/admin/listings/class-enable-listing-table-action.php:125
+#: includes/admin/listings/class-enable-listing-table-action.php:142
 msgid "%d ad was already enabled."
 msgid_plural "%d ads were already enabled."
 msgstr[0] ""
@@ -3864,105 +3977,133 @@ msgctxt "listings table search"
 msgid "Location"
 msgstr "Localização"
 
-#: includes/admin/listings/class-make-featured-listing-table-action.php:56
+#: includes/admin/listings/class-make-featured-listing-table-action.php:71
 msgctxt "listing row action"
 msgid "Make Featured"
 msgstr "Certifique destaque?"
 
-#: includes/admin/listings/class-make-featured-listing-table-action.php:116
+#: includes/admin/listings/class-make-featured-listing-table-action.php:131
 msgid "Ad marked as featured."
 msgid_plural "{count} ads marked as featured."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/listings/class-make-featured-listing-table-action.php:123
+#: includes/admin/listings/class-make-featured-listing-table-action.php:138
 msgid "An error occurred trying to mark an ad as featured."
 msgid_plural "An error occurred trying to mark {count} ads as featured."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/listings/class-make-standard-listing-table-action.php:52
+#: includes/admin/listings/class-make-standard-listing-table-action.php:69
 msgctxt "listing row action"
 msgid "Make Standard"
 msgstr ""
 
-#: includes/admin/listings/class-make-standard-listing-table-action.php:112
+#: includes/admin/listings/class-make-standard-listing-table-action.php:129
 msgid "Ad marked as standard."
 msgid_plural "{count} ads marked as standard."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/listings/class-make-standard-listing-table-action.php:119
+#: includes/admin/listings/class-make-standard-listing-table-action.php:136
 msgid "An error occurred trying to mark an ad as standard."
 msgid_plural "An error occurred trying to mark {count} ads as standard."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/listings/class-mark-as-spam-listing-table-action.php:67
+#: includes/admin/listings/class-mark-as-spam-listing-table-action.php:84
 msgctxt "listing row action"
 msgid "SPAM"
 msgstr ""
 
-#: includes/admin/listings/class-mark-as-spam-listing-table-action.php:131
+#: includes/admin/listings/class-mark-as-spam-listing-table-action.php:148
 msgid "The ad was marked as SPAM and removed."
 msgid_plural "{count} ads were marked as SPAM and removed."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/listings/class-mark-as-spam-listing-table-action.php:138
+#: includes/admin/listings/class-mark-as-spam-listing-table-action.php:155
 msgid "There was an error trying to mark the ad as SPAM."
 msgid_plural "There was an error trying to mark {count} ads as SPAM."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/listings/class-mark-paid-listing-table-action.php:52
+#: includes/admin/listings/class-mark-paid-listing-table-action.php:69
 msgctxt "listing row action"
 msgid "Mark as Paid"
 msgstr "Marcar como Pago"
 
-#: includes/admin/listings/class-mark-paid-listing-table-action.php:114
+#: includes/admin/listings/class-mark-paid-listing-table-action.php:131
 msgid "Ad marked as paid."
 msgid_plural "{count} ads marked as paid."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/listings/class-mark-paid-listing-table-action.php:121
+#: includes/admin/listings/class-mark-paid-listing-table-action.php:138
 msgid "An error occurred trying to mark an ad as paid."
 msgid_plural "An error occurred trying to mark {count} ads as paid."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/listings/class-mark-reviewed-listing-table-action.php:52
+#: includes/admin/listings/class-mark-reviewed-listing-table-action.php:69
 msgctxt "listing row action"
 msgid "Mark as Reviewed"
 msgstr ""
 
-#: includes/admin/listings/class-mark-reviewed-listing-table-action.php:116
+#: includes/admin/listings/class-mark-reviewed-listing-table-action.php:133
 msgid "Ad marked as reviewed."
 msgid_plural "{count} ads marked as reviewed."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/listings/class-mark-reviewed-listing-table-action.php:123
+#: includes/admin/listings/class-mark-reviewed-listing-table-action.php:140
 msgid "An error occurred trying to mark an ad as reviewed."
 msgid_plural "An error occurred trying to mark {count} ads as reviewed."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/listings/class-mark-verified-listing-table-action.php:53
+#: includes/admin/listings/class-mark-verified-listing-table-action.php:71
 msgctxt "listing row action"
 msgid "Mark as Verified"
 msgstr "Marcar como Verificado"
 
-#: includes/admin/listings/class-mark-verified-listing-table-action.php:93
+#: includes/admin/listings/class-mark-verified-listing-table-action.php:111
 msgid "Ad marked as verified."
 msgid_plural "{count} ads marked as verified."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/listings/class-mark-verified-listing-table-action.php:100
+#: includes/admin/listings/class-mark-verified-listing-table-action.php:118
 msgid "An error occurred trying to mark an ad as verified."
 msgid_plural "An error occurred trying to mark {count} ads as verified."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/admin/listings/class-moderator-renew-listing-table-action.php:147
+msgid "Ad renewed successfully."
+msgid_plural "{count} ads renewed successfully."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/admin/listings/class-moderator-renew-listing-table-action.php:154
+msgid "The ad couldn't be renewed because it hasn't expired yet."
+msgid_plural ""
+"{count} ads couldn't be renewed because they haven't expired yet."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/admin/listings/class-moderator-renew-listing-table-action.php:161
+msgid ""
+"The ad couldn't be renewed because we couldn't find the associated payment."
+msgid_plural ""
+"{count} ads couldn't be renewed because we couldn't finde the associated "
+"payments."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/admin/listings/class-moderator-renew-listing-table-action.php:168
+msgid "There was an error trying to renew one ad."
+msgid_plural "There was an error trying to renew {count} ads."
 msgstr[0] ""
 msgstr[1] ""
 
@@ -3983,40 +4124,7 @@ msgstr ""
 #: includes/admin/listings/class-quick-view-listing-table-action.php:39
 msgctxt "listings row action"
 msgid "Quick View"
-msgstr ""
-
-#: includes/admin/listings/class-renew-listing-table-action.php:72
-msgctxt "listing row action"
-msgid "Renew"
-msgstr "Renovar"
-
-#: includes/admin/listings/class-renew-listing-table-action.php:157
-msgid "Ad renewed successfully."
-msgid_plural "{count} ads renewed successfully."
-msgstr[0] ""
-msgstr[1] ""
-
-#: includes/admin/listings/class-renew-listing-table-action.php:164
-msgid "The ad couldn't be renewed because it hasn't expired yet."
-msgid_plural ""
-"{count} ads couldn't be renewed because they haven't expired yet."
-msgstr[0] ""
-msgstr[1] ""
-
-#: includes/admin/listings/class-renew-listing-table-action.php:171
-msgid ""
-"The ad couldn't be renewed because we couldn't find the associated payment."
-msgid_plural ""
-"{count} ads couldn't be renewed because we couldn't finde the associated "
-"payments."
-msgstr[0] ""
-msgstr[1] ""
-
-#: includes/admin/listings/class-renew-listing-table-action.php:178
-msgid "There was an error trying to renew one ad."
-msgid_plural "There was an error trying to renew {count} ads."
-msgstr[0] ""
-msgstr[1] ""
+msgstr "Visualizar rápido"
 
 #: includes/admin/listings/class-send-access-key-listing-table-action.php:52
 msgctxt "listing row action"
@@ -4043,19 +4151,19 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/listings/class-send-to-facebook-group-listing-table-action.php:56
+#: includes/admin/listings/class-send-to-facebook-group-listing-table-action.php:71
 msgctxt "listing row action"
 msgid "Send to Facebook Group"
 msgstr "Enviar para o Facebook Group"
 
-#: includes/admin/listings/class-send-to-facebook-group-listing-table-action.php:128
+#: includes/admin/listings/class-send-to-facebook-group-listing-table-action.php:143
 msgid "Ad sent to Facebook group."
 msgid_plural "{count} ads sent to Facebook group."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/listings/class-send-to-facebook-group-listing-table-action.php:137
-#: includes/admin/listings/class-send-to-facebook-page-listing-table-action.php:135
+#: includes/admin/listings/class-send-to-facebook-group-listing-table-action.php:152
+#: includes/admin/listings/class-send-to-facebook-page-listing-table-action.php:148
 msgid ""
 "1 ad couldn't be sent to Facebook because there is no integration method "
 "selected on {facebook_settings_link}Facebook "
@@ -4067,7 +4175,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/listings/class-send-to-facebook-group-listing-table-action.php:146
+#: includes/admin/listings/class-send-to-facebook-group-listing-table-action.php:161
 msgid ""
 "1 ad couldn't be sent to Facebook because sending ads to Facebook groups "
 "using webhooks is not currently supported."
@@ -4077,15 +4185,15 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/listings/class-send-to-facebook-group-listing-table-action.php:153
+#: includes/admin/listings/class-send-to-facebook-group-listing-table-action.php:168
 msgid "1 ad couldn't be sent to Facebook because there is no group selected."
 msgid_plural ""
 "{count} ads couldn't be sent to Facebook because there is no group selected."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/listings/class-send-to-facebook-group-listing-table-action.php:160
-#: includes/admin/listings/class-send-to-facebook-page-listing-table-action.php:151
+#: includes/admin/listings/class-send-to-facebook-group-listing-table-action.php:175
+#: includes/admin/listings/class-send-to-facebook-page-listing-table-action.php:164
 msgid ""
 "1 ad was not sent to Facebook because it is currenlty disabled. If you share"
 " it, Facebook servers and users won't be able to access it."
@@ -4095,44 +4203,44 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/listings/class-send-to-facebook-group-listing-table-action.php:167
+#: includes/admin/listings/class-send-to-facebook-group-listing-table-action.php:182
 msgid "1 ad was already sent to the Facebook group."
 msgid_plural "{count} ads were already sent to the Facebook group."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/listings/class-send-to-facebook-group-listing-table-action.php:174
+#: includes/admin/listings/class-send-to-facebook-group-listing-table-action.php:189
 msgid "An error occurred trying to sent an ad to the Facebook group."
 msgid_plural ""
 "An error occurred trying to sent {count} ads to the Facebook group."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/listings/class-send-to-facebook-page-listing-table-action.php:56
+#: includes/admin/listings/class-send-to-facebook-page-listing-table-action.php:69
 msgctxt "listing row action"
 msgid "Send to Facebook Page"
 msgstr ""
 
-#: includes/admin/listings/class-send-to-facebook-page-listing-table-action.php:126
+#: includes/admin/listings/class-send-to-facebook-page-listing-table-action.php:139
 msgid "Ad sent to Facebook page."
 msgid_plural "{count} ads sent to Facebook page."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/listings/class-send-to-facebook-page-listing-table-action.php:144
+#: includes/admin/listings/class-send-to-facebook-page-listing-table-action.php:157
 msgid "1 ad couldn't be sent to Facebook because there is no page selected."
 msgid_plural ""
 "{count} ads couldn't be sent to Facebook because there is no page selected."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/listings/class-send-to-facebook-page-listing-table-action.php:158
+#: includes/admin/listings/class-send-to-facebook-page-listing-table-action.php:171
 msgid "1 ad was already sent to the Facebook page."
 msgid_plural "{count} ads were already sent to the Facebook page."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/listings/class-send-to-facebook-page-listing-table-action.php:165
+#: includes/admin/listings/class-send-to-facebook-page-listing-table-action.php:178
 msgid "An error occurred trying to sent an ad to the Facebook page."
 msgid_plural ""
 "An error occurred trying to sent {count} ads to the Facebook page."
@@ -4144,12 +4252,12 @@ msgctxt "listings search mode"
 msgid "Title"
 msgstr "Título"
 
-#: includes/admin/listings/class-unflag-listing-table-action.php:51
+#: includes/admin/listings/class-unflag-listing-table-action.php:68
 msgctxt "listing row action"
 msgid "Unflag"
 msgstr "remover o sinalizador"
 
-#: includes/admin/listings/class-unflag-listing-table-action.php:111
+#: includes/admin/listings/class-unflag-listing-table-action.php:128
 msgid "The ad was unflagged."
 msgid_plural "{count} ads were unflagged."
 msgstr[0] ""
@@ -4164,6 +4272,11 @@ msgstr "não verificado"
 msgctxt "listings table search"
 msgid "User"
 msgstr "Usuários"
+
+#: includes/admin/listings/trait-renew-listing-table-action.php:44
+msgctxt "listing row action"
+msgid "Renew"
+msgstr "Renovar"
 
 #: includes/admin/tools/class-tools-admin-page.php:35
 msgid "Import and Export Settings"
@@ -4193,6 +4306,17 @@ msgstr ""
 #: includes/categories/class-categories-logic.php:77
 msgid "The name of the Category is required."
 msgstr "O nome da categoria é necessária."
+
+#: includes/categories/class-categories-logic.php:85
+msgid ""
+"The ID of the parent category and the ID of the category must be different."
+msgstr ""
+
+#: includes/categories/class-categories-logic.php:103
+msgid ""
+"There was an error trying to update a category. The ID of the category is "
+"required."
+msgstr ""
 
 #: includes/categories/class-categories-logic.php:110
 msgid "There was an error trying to update a category: <error-message>."
@@ -4426,17 +4550,23 @@ msgstr ""
 msgid "less than 1"
 msgstr "Menor que"
 
-#: includes/class-listings-api.php:109 includes/class-listings-api.php:191
+#: includes/class-listings-api.php:109 includes/class-listings-api.php:264
 msgid ""
 "There was an unexpected error trying to save the listing details. Please try"
 " again or contact an administrator."
 msgstr ""
 
-#: includes/class-listings-api.php:187
+#: includes/class-listings-api.php:159
+msgid ""
+"To avoid overwritting existing metadata, use fill_default_listing_metadata()"
+" instead."
+msgstr ""
+
+#: includes/class-listings-api.php:260
 msgid "There was an error trying to save the listing details:"
 msgstr ""
 
-#: includes/class-listings-api.php:595
+#: includes/class-listings-api.php:668
 msgid ""
 "If you have uploaded images your images will not show up until an admin has "
 "approved them."
@@ -4465,6 +4595,12 @@ msgstr ""
 msgid "Classifieds Moderator"
 msgstr "Classificados Moderador"
 
+#: includes/class-settings-json-writer.php:45
+msgid ""
+"There was a problem reading the content of the file. Please try again or "
+"contact customer support with a copy of the file."
+msgstr ""
+
 #: includes/class-settings-json-writer.php:52
 msgid ""
 "There was a problem reading the content of the file. Are sure the file "
@@ -4475,6 +4611,14 @@ msgstr ""
 #: includes/compatibility/class-content-aware-sidebars-listings-categories-module.php:21
 msgid "Categories (AWPCP)"
 msgstr "Categorias (AWPCP)"
+
+#: includes/compatibility/class-content-aware-sidebars-listings-categories-module.php:116
+msgid "View All"
+msgstr "Ver tudo"
+
+#: includes/compatibility/class-content-aware-sidebars-listings-categories-module.php:126
+msgid "Add to Group"
+msgstr ""
 
 #: includes/credit-plan.php:95 includes/payment-term.php:133
 msgid "The name of the plan is required."
@@ -4529,6 +4673,14 @@ msgstr "Houve um erro ao tentar encontrar tarefas no banco de dados."
 msgid "There is no task with ID %d."
 msgstr "Não há tarefa com ID %d ."
 
+#: includes/cron/class-tasks-collection.php:108
+msgid "There was an error trying to retrive the tasks from the database."
+msgstr ""
+
+#: includes/cron/class-tasks-collection.php:126
+msgid "There was an erroy trying to count the tasks in the database."
+msgstr ""
+
 #: includes/exceptions.php:80
 msgctxt "DBException message template"
 msgid "%s The error was: %s."
@@ -4581,6 +4733,10 @@ msgstr ""
 msgid "Please enter a contact phone number."
 msgstr ""
 
+#: includes/form-fields/class-form-fields-validator.php:118
+msgid "Please enter a price for the ad."
+msgstr ""
+
 #: includes/form-fields/class-form-fields-validator.php:124
 msgid ""
 "Please enter a valid price. Make sure to use numbers only and don't include "
@@ -4615,6 +4771,11 @@ msgstr ""
 msgctxt "listing form field"
 msgid "Regions"
 msgstr "Regiões"
+
+#: includes/form-fields/class-terms-of-service-form-field.php:37
+msgctxt "ad details form"
+msgid "Terms of Service"
+msgstr "Termos de serviço"
 
 #: includes/frontend/class-captcha.php:70
 msgid ""
@@ -5782,6 +5943,10 @@ msgstr ""
 msgid "Trying to upload a thumbnail for an unknown file."
 msgstr "Tentando carregar uma miniatura de um arquivo desconhecido."
 
+#: includes/media/class-upload-generated-thumbnail-ajax-handler.php:50
+msgid "You are not authorized to upload thumbnails."
+msgstr ""
+
 #: includes/media/class-upload-generated-thumbnail-ajax-handler.php:74
 msgid ""
 "There was an error trying to store the uploaded thumbnail for file "
@@ -5945,7 +6110,7 @@ msgstr ""
 "erro e pode ser desconsiderada."
 
 #: includes/payment-gateway-2checkout.php:96
-#: includes/payment-gateway-paypal-standard.php:145
+#: includes/payment-gateway-paypal-standard.php:146
 msgid ""
 "The amount you have paid does not match the required amount for this "
 "transaction. Please contact us to clarify the problem."
@@ -5954,7 +6119,7 @@ msgstr ""
 "transação. Entre em contato conosco para esclarecer o problema."
 
 #: includes/payment-gateway-2checkout.php:104
-#: includes/payment-gateway-paypal-standard.php:153
+#: includes/payment-gateway-paypal-standard.php:154
 msgid ""
 "There was an error processing your transaction. If funds have been deducted "
 "from your account, they have not been processed to our account. You will "
@@ -5965,7 +6130,7 @@ msgstr ""
 "entrar em contato com PayPal sobre o assunto."
 
 #: includes/payment-gateway-2checkout.php:114
-#: includes/payment-gateway-paypal-standard.php:164
+#: includes/payment-gateway-paypal-standard.php:165
 msgid ""
 "It appears this transaction has already been processed. If you do not see "
 "your ad in the system please contact the site adminstrator for assistance."
@@ -5973,13 +6138,13 @@ msgstr ""
 "Parece esta transação já foi processado. Se você não ver o seu anúncio no "
 "sistema entre em contato com o administrador local para assistência."
 
-#: includes/payment-gateway-paypal-standard.php:25
+#: includes/payment-gateway-paypal-standard.php:26
 msgctxt "payment gateways"
-msgid "Credit Card via PayPal"
-msgstr ""
+msgid "PayPal"
+msgstr "PayPal"
 
 #. translators: %s link url.
-#: includes/payment-gateway-paypal-standard.php:64
+#: includes/payment-gateway-paypal-standard.php:65
 msgid ""
 "We haven't received your payment information from PayPal yet and we are "
 "unable to verify your transaction. Please reload this page or visit <a "
@@ -5987,13 +6152,13 @@ msgid ""
 msgstr ""
 
 #. translators: %s status %d variables count.
-#: includes/payment-gateway-paypal-standard.php:68
+#: includes/payment-gateway-paypal-standard.php:69
 msgid ""
 "PayPal returned the following status from your payment: %1$s. %2$d payment "
 "variables were posted."
 msgstr ""
 
-#: includes/payment-gateway-paypal-standard.php:70
+#: includes/payment-gateway-paypal-standard.php:71
 msgid ""
 "If this status is not COMPLETED or VERIFIED, then you may need to wait a bit"
 " before your payment is approved, or contact PayPal directly as to the "
@@ -6003,14 +6168,14 @@ msgstr ""
 "esperar um pouco antes de seu pagamento for aprovado, ou entre em contato "
 "com PayPal diretamente quanto à razão do pagamento está a ter um problema."
 
-#: includes/payment-gateway-paypal-standard.php:73
+#: includes/payment-gateway-paypal-standard.php:74
 msgid ""
 "If you have any further questions, please contact this site administrator."
 msgstr ""
 "Se você tiver alguma dúvida, entre em contato com o administrador deste "
 "site."
 
-#: includes/payment-gateway-paypal-standard.php:189
+#: includes/payment-gateway-paypal-standard.php:190
 msgid ""
 "We couldn't determine the payment status for your transaction. Please "
 "contact customer service if you are viewing this message after having made a"
@@ -6024,7 +6189,7 @@ msgstr ""
 "pagamento e você está vendo esta mensagem, significa que esta mensagem está "
 "sendo mostrado em erro e pode ser desconsiderada."
 
-#: includes/payment-gateway-paypal-standard.php:294
+#: includes/payment-gateway-paypal-standard.php:295
 msgid "The payment transaction was canceled by the user."
 msgstr "A operação de pagamento foi cancelado pelo usuário."
 
@@ -7111,6 +7276,17 @@ msgstr ""
 "precisa para deixar esta opção desmarcada e se o seu endereço de e-mail de "
 "administração do WordPress está vinculado a sua conta de hospedagem."
 
+#. translators: full-email-address=John Doe <john.doe@example.com>,
+#. short-email-address=john.doe@example.com
+#: includes/settings/class-email-settings.php:85
+msgid ""
+"If checked, whenever the name of the recipient is available, emails will be "
+"sent to <full-email-address> instead of just <short-email-address>. Some "
+"email servers, however, have problems handling email address that include "
+"the name of the recipient. If emails sent by the plugin are not being "
+"delivered properly, try unchecking this settting."
+msgstr ""
+
 #: includes/settings/class-email-settings.php:92
 msgid "Include the name of the recipient in the email address"
 msgstr ""
@@ -7339,6 +7515,24 @@ msgstr ""
 
 #: includes/settings/class-email-settings.php:202
 msgid "Verify the email address used for Ad {listing_title}"
+msgstr ""
+
+#: includes/settings/class-email-settings.php:203
+msgctxt "another-wordpress-classifieds-plugin"
+msgid ""
+"Hello {author_name} \n"
+"\n"
+"You recently posted the Ad {listing_title} to {website_title}. \n"
+"\n"
+"In order to complete the posting process you have to verify your email address. Please click the link below to complete the verification process. You will be redirected to the website where you can see your Ad. \n"
+"\n"
+"{verification_link} \n"
+"\n"
+"After you verify your email address, the administrator will be notified about the new Ad. If moderation is enabled, your Ad will remain in a disabled status until the administrator approves it.\n"
+"\n"
+"{website_title}\n"
+"\n"
+"{website_url}"
 msgstr ""
 
 #: includes/settings/class-email-settings.php:206
@@ -8523,6 +8717,12 @@ msgstr ""
 msgid "Ask Facebook to clear cache for ads pages"
 msgstr ""
 
+#: includes/settings/class-general-settings.php:774
+msgid ""
+"Clearing Facebook cache is useful to ensure users always see the latest "
+"version when the ad is shared on Facebook Pages, Groups and user feeds."
+msgstr ""
+
 #: includes/settings/class-general-settings.php:782
 msgid "Facebook Application"
 msgstr ""
@@ -8774,6 +8974,14 @@ msgstr "Licenças"
 #: templates/admin/debug/plugin-info-debug-section.tpl.php:18
 msgid "Premium Modules"
 msgstr "Módulos Premium"
+
+#: includes/settings/class-licenses-settings.php:81
+msgctxt "settings"
+msgid ""
+"The IP address of your server is <ip-address>. Please make sure to include "
+"that information if you need to contact support about problems trying to "
+"activate your licenses."
+msgstr ""
 
 #: includes/settings/class-listings-moderation-settings.php:23
 msgid ""
@@ -9162,6 +9370,12 @@ msgstr ""
 "Mostrar categoria no título da página do navegador ao visualizar Ad "
 "indivíduo"
 
+#: includes/settings/class-listings-settings.php:440
+msgid ""
+"Enable this setting to display each listing on its own page, instead of "
+"showing the listing's content inside the <show-listing-page> page."
+msgstr ""
+
 #: includes/settings/class-listings-settings.php:446
 msgid "Display listings on their own page"
 msgstr ""
@@ -9518,6 +9732,14 @@ msgstr ""
 msgid "PayPal Merchant ID"
 msgstr ""
 
+#: includes/settings/class-payment-general-settings.php:170
+msgid ""
+"Merchant ID associated with the PayPal account that will receive the "
+"payments. Go to <a href=\"https://www.paypal.com/myaccount/settings/\" "
+"target=\"_blank\">https://www.paypal.com/myaccount/settings/</a> to obtain "
+"your Merchant ID."
+msgstr ""
+
 #: includes/settings/class-payment-general-settings.php:178
 msgid "The PayPal Currency Code must be one of <currency-codes>."
 msgstr "O código da moeda PayPal deve ser um dos <-códigos de moeda>."
@@ -9647,6 +9869,10 @@ msgid ""
 "Resetting to the default layout will cause any custom HTML layout changes "
 "you've made to be lost. Are you sure?"
 msgstr ""
+
+#: includes/settings/renderers/class-button-settings-renderer.php:42
+msgid "Reset"
+msgstr "Resetar"
 
 #: includes/settings/renderers/class-license-settings-renderer.php:42
 msgid "Deactivate"
@@ -9787,13 +10013,13 @@ msgstr "Selecionar"
 msgid "credits"
 msgstr ""
 
-#: includes/upgrade/class-fix-id-collision-for-listings-upgrade-task-handler.php:142
+#: includes/upgrade/class-fix-id-collision-for-listings-upgrade-task-handler.php:146
 msgid ""
 "There was an error trying to create a replacement post for post with ID "
 "equal to {post_id}. {error_message}"
 msgstr ""
 
-#: includes/upgrade/class-fix-id-collision-for-listings-upgrade-task-handler.php:156
+#: includes/upgrade/class-fix-id-collision-for-listings-upgrade-task-handler.php:160
 msgid ""
 "There was an error trying to update the replacement post "
 "({replacement_post_id}) for post with ID equal to {post_id}. {error_message}"
@@ -9869,11 +10095,11 @@ msgid ""
 "{post_id}. {error_message}"
 msgstr ""
 
-#: includes/upgrade/class-store-media-as-attachments-upgrade-task-handler.php:96
+#: includes/upgrade/class-store-media-as-attachments-upgrade-task-handler.php:107
 msgid "The file {filepath} doesn't exist."
 msgstr ""
 
-#: includes/upgrade/class-store-media-as-attachments-upgrade-task-handler.php:140
+#: includes/upgrade/class-store-media-as-attachments-upgrade-task-handler.php:151
 msgid "An attachment couldn't be created for media item with id {media_id}."
 msgstr ""
 
@@ -9909,34 +10135,6 @@ msgstr ""
 msgctxt "Listing bulk operations: <message-ok> and <message-error>."
 msgid "%s and %s."
 msgstr "%s e %s ."
-
-#: includes/views/admin/listings/class-renew-listings-admin-page.php:43
-msgid "There was an error trying to renew Ad %s."
-msgstr "Houve um erro ao tentar renovar Ad %s ."
-
-#: includes/views/admin/listings/class-renew-listings-admin-page.php:56
-msgid "The Ad hasn't expired yet and is not about to expire."
-msgstr "O anúncio ainda não expirou e não está prestes a expirar."
-
-#: includes/views/admin/listings/class-renew-listings-admin-page.php:62
-msgid "We couldn't find a valid payment term associated with this Ad."
-msgstr ""
-"Nós não conseguimos encontrar um termo de pagamento válido associado a este "
-"anúncio."
-
-#: includes/views/admin/listings/class-renew-listings-admin-page.php:80
-msgid "No Ads were selected"
-msgstr "Não foram selecionados os anúncios"
-
-#: includes/views/admin/listings/class-renew-listings-admin-page.php:82
-msgid "%d Ad was renewed"
-msgid_plural "%d Ads were renewed"
-msgstr[0] ""
-msgstr[1] ""
-
-#: includes/views/admin/listings/class-renew-listings-admin-page.php:84
-msgid "there was an error trying to renew %d Ads"
-msgstr "houve um erro ao tentar renovar %d Anúncios"
 
 #: includes/views/class-base-page.php:80
 msgid "Unkown step \"%s\". Please contact the administrator about this error."
@@ -10043,6 +10241,24 @@ msgstr ""
 #: installer.php:870
 msgid "Verify the email address used for Ad $title"
 msgstr "Verifique o endereço de e-mail utilizado para Ad $title"
+
+#: installer.php:871
+msgctxt "another-wordpress-classifieds-plugin"
+msgid ""
+"Hello $author_name \n"
+"\n"
+"You recently posted the Ad $title to $website_name. \n"
+"\n"
+"In order to complete the posting process you have to verify your email address. Please click the link below to complete the verification process. You will be redirected to the website where you can see your Ad. \n"
+"\n"
+"$verification_link \n"
+"\n"
+"After you verify your email address, the administrator will be notified about the new Ad. If moderation is enabled, your Ad will remain in a disabled status until the administrator approves it.\n"
+"\n"
+"$website_name\n"
+"\n"
+"$website_url"
+msgstr ""
 
 #. translators: %s is the URL to download the debug information
 #: templates/admin/debug/debug-admin-page.tpl.php:17
@@ -10308,6 +10524,11 @@ msgctxt "listings-csv-export"
 msgid "Cancel Export"
 msgstr ""
 
+#: templates/admin/export-listings-admin-page.tpl.php:151
+msgctxt "listings-csv-export"
+msgid "Export Complete"
+msgstr ""
+
 #: templates/admin/export-listings-admin-page.tpl.php:152
 msgctxt "listings-csv-export"
 msgid ""
@@ -10332,6 +10553,11 @@ msgstr ""
 #: templates/admin/export-listings-admin-page.tpl.php:169
 msgctxt "listings-csv-export"
 msgid "Cleanup"
+msgstr ""
+
+#: templates/admin/export-listings-admin-page.tpl.php:174
+msgctxt "listings-csv-export"
+msgid "Export Canceled"
 msgstr ""
 
 #: templates/admin/export-listings-admin-page.tpl.php:175
@@ -10383,6 +10609,12 @@ msgstr ""
 
 #: templates/admin/import/supported-csv-headers.tpl.php:8
 msgid "Import Listings: Supported CSV Headers"
+msgstr ""
+
+#: templates/admin/import/supported-csv-headers.tpl.php:12
+msgid ""
+"The following are the valid header names that can be included in the CSV "
+"file used to import listings."
 msgstr ""
 
 #: templates/admin/import/supported-csv-headers.tpl.php:17
@@ -11260,6 +11492,10 @@ msgid "Another WordPress Classifieds Plugin"
 msgstr ""
 
 #: templates/privacy-policy.tpl.php:10
+msgid "Suggested text:"
+msgstr ""
+
+#: templates/privacy-policy.tpl.php:10
 msgctxt "privacy policy"
 msgid ""
 "When you submit a classified listing, the content of the listing and its "
@@ -11368,3 +11604,26 @@ msgid ""
 " The cookie will be stored on your browser for the remainder of that "
 "session."
 msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Another WordPress Classifieds Plugin (AWPCP)"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://www.awpcp.com"
+msgstr "http://www.awpcp.com"
+
+#. Description of the plugin/theme
+msgid ""
+"AWPCP - A plugin that provides the ability to run a free or paid classified "
+"ads service on your WP site. <strong>!!!IMPORTANT!!!</strong> It's always a "
+"good idea to do a BACKUP before you upgrade AWPCP!"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "D. Rodenbaugh"
+msgstr "D. Rodenbaugh"
+
+#. Author URI of the plugin/theme
+msgid "http://www.skylineconsult.com"
+msgstr "http://www.skylineconsult.com"

@@ -2565,6 +2565,7 @@ msgid "Add Details and Contact Information"
 msgstr ""
 
 #: frontend/templates/page-place-ad-details-step.tpl.php:100
+#: templates/frontend/form-fields/terms-of-service-form-field.tpl.php:4
 msgctxt "ad details form"
 msgid "Read our Terms of Service"
 msgstr ""
@@ -2575,6 +2576,7 @@ msgid "Terms of service:"
 msgstr ""
 
 #: frontend/templates/page-place-ad-details-step.tpl.php:107
+#: templates/frontend/form-fields/terms-of-service-form-field.tpl.php:12
 msgctxt "ad details form"
 msgid "I agree to the terms of service"
 msgstr ""
@@ -4451,6 +4453,11 @@ msgstr ""
 #: includes/form-fields/class-listing-regions-form-field.php:36
 msgctxt "listing form field"
 msgid "Regions"
+msgstr ""
+
+#: includes/form-fields/class-terms-of-service-form-field.php:37
+msgctxt "ad details form"
+msgid "Terms of Service"
 msgstr ""
 
 #: includes/frontend/class-captcha.php:70
