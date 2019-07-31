@@ -58,9 +58,8 @@ class AWPCP_TermsOfServiceFormField extends AWPCP_FormField {
             return false;
         }
 
-        // Do not show Terms of Service field in search forms or while editing
-        // a listing.
-        if ( $context['mode'] === 'edit' || $context['action'] === 'search' ) {
+        // Do not show Terms of Service field in search forms.
+        if ( $context['action'] === 'search' ) {
             return false;
         }
 
@@ -72,6 +71,17 @@ class AWPCP_TermsOfServiceFormField extends AWPCP_FormField {
     }
 
     /**
+     * Render the Terms of Service form field.
+     *
+     * If we are editing a listing, the field will be rendered as a hidden input
+     * with the value set to "accepted". That way we don't need to check whether
+     * the listing is being edited or created in the Form Fields Validator
+     * class.
+     *
+     * When an ad is being created, the user has to check the Terms of Service
+     * box, but when the the ad is being edited, we simualte that the box was
+     * checked using a hidden input field.
+     *
      * @since 4.0.1
      *
      * @SuppressWarnings(PHPMD.UnusedFormalParameter) $listing, $context
@@ -81,15 +91,16 @@ class AWPCP_TermsOfServiceFormField extends AWPCP_FormField {
         $show_link = $this->should_show_link( $text );
 
         $params = [
-            'text'        => $text,
-            'show_link'   => $show_link,
-            'is_required' => true,
-            'label'       => $this->get_label(),
-            'html'        => [
+            'text'          => $text,
+            'show_checkbox' => $context['mode'] === 'create',
+            'show_link'     => $show_link,
+            'is_required'   => true,
+            'label'         => $this->get_label(),
+            'html'          => [
                 'id'   => str_replace( '_', '-', $this->get_slug() ),
                 'name' => $this->get_slug(),
             ],
-            'errors'      => $errors,
+            'errors'        => $errors,
         ];
 
         return $this->template_renderer->render_template( $this->template, $params );
