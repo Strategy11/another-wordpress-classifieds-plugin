@@ -37,11 +37,14 @@ class AWPCP_FormFieldsValidator {
     }
 
     /**
+     * @since 4.0.0
+     *
      * @param array  $data  Array of data to validate.
      * @param object $post  An instance of WP_Post.
-     * @since 4.0.0
+     *
      * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      * @SuppressWarnings(PHPMD.NPathComplexity)
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     public function get_validation_errors( $data, $post ) {
         $errors = array();
