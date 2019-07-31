@@ -43,7 +43,7 @@ class AWPCP_CategoriesAdminPage {
         $icons = array(
             array(
                 'label' => __( 'Edit Category', 'another-wordpress-classifieds-plugin' ),
-                'class' => 'fa fa-pen',
+                'class' => 'fa fa-pen fa-pencil',
                 'image' => array(
                     'attributes' => array(
                         'alt' => __( 'Edit Category', 'another-wordpress-classifieds-plugin' ),
@@ -54,7 +54,7 @@ class AWPCP_CategoriesAdminPage {
             ),
             array(
                 'label' => __( 'Delete Category', 'another-wordpress-classifieds-plugin' ),
-                'class' => 'fa fa-trash-alt',
+                'class' => 'fa fa-trash-alt fa-trash',
                 'image' => array(
                     'attributes' => array(
                         'alt' => __( 'Delete Category', 'another-wordpress-classifieds-plugin' ),
