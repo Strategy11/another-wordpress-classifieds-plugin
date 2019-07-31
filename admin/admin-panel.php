@@ -762,9 +762,9 @@ function awpcp_admin_categories_render_category_item($category, $level, $start, 
 	$row.= "<td style=\"border-bottom:1px dotted #dddddd;font-weight:normal;\">$thecategory_order</td>";
 	$row.= "<td style=\"border-bottom:1px dotted #dddddd;font-size:smaller;font-weight:normal;\">";
 	$url = esc_url( add_query_arg( 'awpcp-action', 'edit-category', $admin_categories_url ) );
-	$row.= "<a class=\"awpcp-action-button button\" href=\"$url\" title=\"$awpcpeditcategoryword\"><i class=\"fa fa-pen\"></i></a>";
+	$row.= "<a class=\"awpcp-action-button button\" href=\"$url\" title=\"$awpcpeditcategoryword\"><i class=\"fa fa-pen fa-pencil\"></i></a>";
 	$url = esc_url( add_query_arg( 'awpcp-action', 'delete-category', $admin_categories_url ) );
-	$row.= "<a class=\"awpcp-action-button button\" href=\"$url\" title=\"$awpcpdeletecategoryword\"><i class=\"fa fa-trash-alt\"></i></a>";
+	$row.= "<a class=\"awpcp-action-button button\" href=\"$url\" title=\"$awpcpdeletecategoryword\"><i class=\"fa fa-trash-alt fa-trash\"></i></a>";
 	$row.= $managecaticon;
 	$row.= "</td>";
 	$row.= "</tr>";
