@@ -90,12 +90,12 @@ class AWPCP_FormFieldsData {
                 'post_title'   => str_replace(
                     [ "\r", "\n" ],
                     '',
-                    $this->request->param( 'ad_title' )
+                    awpcp_strip_all_tags_deep( $this->request->param( 'ad_title' ) )
                 ),
                 'post_content' => str_replace(
                     "\r",
                     '',
-                    awpcp_strip_all_tags_deep( $this->request->param( 'ad_details' ) )
+                    $this->request->param( 'ad_details' )
                 ),
             ],
             'metadata'         => [
