@@ -200,7 +200,7 @@ function awpcp_attachment_properties() {
 /**
  * Constructor function for Terms Of Service Form Field.
  *
- * @since 4.0.1
+ * @since 4.0.2
  */
 function awpcp_terms_of_service_form_field( $slug ) {
     $container = awpcp()->container;

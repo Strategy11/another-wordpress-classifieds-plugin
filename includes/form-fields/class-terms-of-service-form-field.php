@@ -4,7 +4,7 @@
  */
 
 /**
- * @since 4.0.1
+ * @since 4.0.2
  */
 class AWPCP_TermsOfServiceFormField extends AWPCP_FormField {
 
@@ -26,7 +26,7 @@ class AWPCP_TermsOfServiceFormField extends AWPCP_FormField {
     private $template_renderer;
 
     /**
-     * @since 4.0.1
+     * @since 4.0.2
      */
     public function __construct( $slug, $roles, $settings, $template_renderer ) {
         parent::__construct( $slug );
@@ -37,7 +37,7 @@ class AWPCP_TermsOfServiceFormField extends AWPCP_FormField {
     }
 
     /**
-     * @since 4.0.1
+     * @since 4.0.2
      */
     public function get_name() {
         return _x( 'Terms of Service', 'ad details form', 'another-wordpress-classifieds-plugin' );
@@ -47,7 +47,7 @@ class AWPCP_TermsOfServiceFormField extends AWPCP_FormField {
      * Determine whether the field is allowed or should be displayed in the
      * current context.
      *
-     * @since 4.0.1
+     * @since 4.0.2
      *
      * @param array $context An array describing the current context.
      *
@@ -82,7 +82,7 @@ class AWPCP_TermsOfServiceFormField extends AWPCP_FormField {
      * box, but when the the ad is being edited, we simualte that the box was
      * checked using a hidden input field.
      *
-     * @since 4.0.1
+     * @since 4.0.2
      *
      * @SuppressWarnings(PHPMD.UnusedFormalParameter) $listing, $context
      */
@@ -107,7 +107,7 @@ class AWPCP_TermsOfServiceFormField extends AWPCP_FormField {
     }
 
     /**
-     * @since 4.0.1
+     * @since 4.0.2
      */
     private function should_show_link( $text ) {
         if ( string_starts_with( $text, 'http://', false ) ) {
