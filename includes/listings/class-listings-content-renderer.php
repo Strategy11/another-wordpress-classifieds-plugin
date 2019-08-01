@@ -177,8 +177,7 @@ class AWPCP_ListingsContentRenderer {
         $output = '<div id="classiwrapper">%s<!--awpcp-single-ad-layout-->%s</div><!--close classiwrapper-->';
         $output = sprintf( $output, $content_before_page, $content_after_page );
 
-        // We expect 'the_content' filter to be already applied to the value in $content
-        // and want the placeholders to use the filtered valued instead.
+        // Use the content provided by the user of this class.
         $post->post_content = $content;
 
         $layout = awpcp_get_listing_single_view_layout( $post );
