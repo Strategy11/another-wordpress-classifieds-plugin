@@ -1014,20 +1014,28 @@ class AWPCP {
             true
         );
 
-        wp_register_style(
-            'select2',
-            "{$vendors}/select2-4.0.5/css/select2.min.css",
-            array(),
-            '4.0.5'
-        );
+       /*
+        * If WooCommerce 3.2.0 or newer is active, we use their fork of select2
+        * to avoid conflicts.
+        *
+        * See https://github.com/woocommerce/woocommerce/pull/15792
+        */
+        if ( awpcp_should_register_select2_script() ) {
+            wp_register_style(
+                'select2',
+                "{$vendors}/select2-4.0.5/css/select2.min.css",
+                array(),
+                '4.0.5'
+            );
 
-        wp_register_script(
-            'select2',
-            "{$vendors}/select2-4.0.5/js/select2.full.min.js",
-            array(),
-            '4.0.5',
-            true
-        );
+            wp_register_script(
+                'select2',
+                "{$vendors}/select2-4.0.5/js/select2.full.min.js",
+                array(),
+                '4.0.5',
+                true
+            );
+        }
 
         // TODO: If we ever have to load Moment.js on the frontend, we need to load
         // only the required locale, using BP's logic to enqueue just the necessary files.
@@ -1061,7 +1069,14 @@ class AWPCP {
 		wp_register_script(
             'awpcp',
             "{$js}/awpcp.min.js",
-            array( 'jquery', 'backbone', 'underscore', 'awpcp-knockout', 'select2', 'breakpoints.js' ),
+            [
+                'jquery',
+                'backbone',
+                'underscore',
+                'awpcp-knockout',
+                awpcp_get_select2_script_handle(),
+                'breakpoints.js'
+            ],
             $awpcp_db_version,
             true
         );
@@ -1127,7 +1142,7 @@ class AWPCP {
                 'awpcp-knockout-progress',
                 'jquery-ui-datepicker',
                 'jquery-ui-autocomplete',
-                'select2',
+                awpcp_get_select2_script_handle(),
             ),
             $awpcp_db_version,
             true
@@ -1210,7 +1225,7 @@ class AWPCP {
                 'awpcp',
                 'awpcp-multiple-region-selector',
                 'awpcp-jquery-validate',
-                'select2',
+                awpcp_get_select2_script_handle(),
                 'jquery-ui-datepicker',
                 'jquery-ui-autocomplete',
                 'plupload-all',
@@ -1249,6 +1264,10 @@ class AWPCP {
         );
 	}
 
+    /**
+     * Register a script ocassionally replacing a previously registered script
+     * with the same handle if our version is more recent.
+     */
     private function maybe_register_script( $handle, $src, $deps, $ver, $in_footer = false ) {
         $scripts = wp_scripts();
 

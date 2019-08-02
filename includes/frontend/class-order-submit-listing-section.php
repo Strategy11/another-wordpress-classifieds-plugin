@@ -104,8 +104,7 @@ class AWPCP_OrderSubmitListingSection {
      * @since 4.0.0
      */
     public function enqueue_scripts() {
-        wp_enqueue_style( 'select2' );
-        wp_enqueue_script( 'select2' );
+        awpcp_enqueue_select2();
     }
 
     /**

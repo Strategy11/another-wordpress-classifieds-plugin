@@ -67,3 +67,37 @@ function awpcp_add_font_awesome_style_class_for_brands( $icon_class ) {
 
     return "fa $icon_class";
 }
+
+/**
+ * @since 4.0.2
+ */
+function awpcp_enqueue_select2() {
+    wp_enqueue_style( 'select2' );
+    wp_enqueue_script( awpcp_get_select2_script_handle() );
+}
+
+/**
+ * Choose between the handle for our copy of the select2 script or the select2
+ * fork included in WooCommerce 3.2.0 and newer.
+ *
+ * @since 4.0.2
+ */
+function awpcp_get_select2_script_handle() {
+    return awpcp_should_register_select2_script() ? 'select2' : 'selectWoo';
+}
+
+/**
+ * Determine whether we need to enqueue our copy of the select2 script.
+ *
+ * We should enqueue the script if WooCommerce is not active or the installed
+ * version is older than 3.2.0.
+ *
+ * @since 4.0.2
+ */
+function awpcp_should_register_select2_script() {
+    if ( ! defined( 'WC_VERSION' ) ) {
+        return true;
+    }
+
+    return version_compare( constant( 'WC_VERSION' ), '3.2.0', '<' );
+}
