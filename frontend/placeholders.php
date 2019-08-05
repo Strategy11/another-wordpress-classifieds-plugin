@@ -303,7 +303,17 @@ function awpcp_do_placeholder_title( $ad, $placeholder ) {
  * @since 3.0
  */
 function awpcp_do_placeholder_category_name( $ad, $placeholder ) {
-    return esc_html( stripslashes( awpcp_listing_renderer()->get_category_name( $ad ) ) );
+    $categories      = awpcp_listing_renderer()->get_categories( $ad );
+    $category_name = isset($categories[0]) ? $categories[0]->name : null ;
+    if ( count( $categories ) > 1 ) {
+        foreach ( $categories as $category ) {
+            if ($category->parent > 0) {
+                $category_name = $category->name;
+            }
+        }
+    }
+
+    return esc_html( stripslashes( $category_name ) );
 }
 
 /**
@@ -324,7 +334,17 @@ function awpcp_do_placeholder_category_url( $ad, $placeholder ) {
  * @since 3.2
  */
 function awpcp_do_placeholder_parent_category_name( $ad, $placeholder ) {
-    return esc_html( stripslashes( get_adcatname( $ad->ad_category_parent_id ) ) );
+    $categories      = awpcp_listing_renderer()->get_categories( $ad );
+    $parent_category = '';
+    if ( count( $categories ) > 1 ) {
+        foreach ( $categories as $category ) {
+            if ($category->parent == 0) {
+                $parent_category = $category->name;
+            }
+        }
+    }
+
+    return esc_html( stripslashes( $parent_category ) );
 }
 
 /**
