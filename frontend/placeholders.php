@@ -303,11 +303,11 @@ function awpcp_do_placeholder_title( $ad, $placeholder ) {
  * @since 3.0
  */
 function awpcp_do_placeholder_category_name( $ad, $placeholder ) {
-    $categories      = awpcp_listing_renderer()->get_categories( $ad );
-    $category_name = isset($categories[0]) ? $categories[0]->name : null ;
+    $categories    = awpcp_listing_renderer()->get_categories( $ad );
+    $category_name = isset( $categories[0] ) ? $categories[0]->name : null;
     if ( count( $categories ) > 1 ) {
         foreach ( $categories as $category ) {
-            if ($category->parent > 0) {
+            if ( $category->parent > 0 ) {
                 $category_name = $category->name;
             }
         }
@@ -319,7 +319,7 @@ function awpcp_do_placeholder_category_name( $ad, $placeholder ) {
 /**
  * @since 4.1
  */
-function awpcp_do_placeholder_category_description($ad, $placeholder) {
+function awpcp_do_placeholder_category_description( $ad, $placeholder ) {
     return esc_html( stripslashes( awpcp_listing_renderer()->get_category_description( $ad ) ) );
 }
 
@@ -338,7 +338,7 @@ function awpcp_do_placeholder_parent_category_name( $ad, $placeholder ) {
     $parent_category = '';
     if ( count( $categories ) > 1 ) {
         foreach ( $categories as $category ) {
-            if ($category->parent == 0) {
+            if ( $category->parent === 0 ) {
                 $parent_category = $category->name;
             }
         }
@@ -686,13 +686,11 @@ function awpcp_do_placeholder_legacy_views( $ad, $placeholder ) {
         $views = get_numtimesadviewd( $ad->ID );
 
         // Single ad.
-
         /* translators: %d is the number of views for this ad. */
         $text                         = _n( 'This Ad has been viewed %d time.', 'This Ad has been viewed %d times.', $views, 'another-wordpress-classifieds-plugin' );
         $replacements['awpcpadviews'] = sprintf( '<div class="adviewed">%s</div>', sprintf( $text, $views ) );
 
         // Listings.
-
         /* translators: %d is the number of views for this ad. */
         $content                               = sprintf( __( 'Total views: %d', 'another-wordpress-classifieds-plugin' ), $views );
         $replacements['awpcp_display_adviews'] = sprintf( '%s<br/>', $content );
