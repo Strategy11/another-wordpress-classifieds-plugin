@@ -328,6 +328,9 @@ class AWPCP_Installer {
                 'enable_routine_to_add_missing_views_meta',
                 'delete_settings_table',
             ],
+            '4.0.2' => [
+                'remove_invalid_admin_editor_metadata',
+            ],
         );
     }
 
@@ -1114,6 +1117,53 @@ class AWPCP_Installer {
     }
 
     // phpcs:enable
+
+    /**
+     * Remove pending data and validation errors stored by mistake.
+     *
+     * Versions 4.0.0 and 4.0.1 stored invalid pending data and validation errors
+     * for the admin editor every time the post was saved during an admin request.
+     * The method responsible for saving the information entered in the Listing
+     * Fields metabox was being executed without checking whether the metabox was
+     * actually being saved or not.
+     *
+     * This routine removes the invalid data.
+     *
+     * @since 4.0.2
+     *
+     * @see https://github.com/drodenbaugh/awpcp/issues/2557
+     */
+    private function remove_invalid_admin_editor_metadata() {
+        $results = $this->db->get_results( "SELECT * FROM {$this->db->postmeta} WHERE meta_key = '__awpcp_admin_editor_pending_data'" );
+
+        foreach ( $results as $postmeta ) {
+            $meta_value = maybe_unserialize( $postmeta->meta_value );
+
+            /*
+             * If the metadata inclues values for at least one of the following
+             * fields then it was created when the metabox was really being
+             * saved and we don't need to remove it.
+             */
+            if ( ! empty( $meta_value['metadata']['_awpcp_contact_name'] ) ) {
+                continue;
+            }
+
+            if ( ! empty( $meta_value['metadata']['_awpcp_contact_email'] ) ) {
+                continue;
+            }
+
+            if ( ! empty( $meta_value['metadata']['_awpcp_contact_phone'] ) ) {
+                continue;
+            }
+
+            if ( ! empty( $meta_value['metadata']['_awpcp_website_url'] ) ) {
+                continue;
+            }
+
+            delete_post_meta( $postmeta->post_id, '__awpcp_admin_editor_pending_data' );
+            delete_post_meta( $postmeta->post_id, '__awpcp_admin_editor_validation_errors' );
+        }
+    }
 }
 
 // phpcs:disable PEAR.Functions.FunctionCallSignature.SpaceBeforeCloseBracket

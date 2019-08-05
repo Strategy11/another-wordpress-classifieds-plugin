@@ -116,6 +116,7 @@ class AWPCP_ListingFieldsMetabox {
             'details_form_fields' => $this->form_fields->render_fields( $data, $errors, $post, $context ),
             'date_form_fields'    => '',
             'media_manager'       => $this->media_center->render( $post ),
+            'nonce'               => wp_create_nonce( 'save-listing-fields-metabox' ),
             'errors'              => $errors,
         );
 
@@ -179,6 +180,13 @@ class AWPCP_ListingFieldsMetabox {
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function save( $post_id, $post ) {
+        if (
+            empty( $_POST['awpcp_listing_fields_nonce'] )
+            || ! wp_verify_nonce( sanitize_key( $_POST['awpcp_listing_fields_nonce'] ), 'save-listing-fields-metabox' )
+        ) {
+            return;
+        }
+
         $data   = $this->form_fields_data->get_posted_data( $post );
         $errors = $this->form_fields_validator->get_validation_errors( $data, $post );
 
