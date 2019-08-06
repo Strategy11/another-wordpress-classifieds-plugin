@@ -303,17 +303,7 @@ function awpcp_do_placeholder_title( $ad, $placeholder ) {
  * @since 3.0
  */
 function awpcp_do_placeholder_category_name( $ad, $placeholder ) {
-    $categories    = awpcp_listing_renderer()->get_categories( $ad );
-    $category_name = isset( $categories[0] ) ? $categories[0]->name : null;
-    if ( count( $categories ) > 1 ) {
-        foreach ( $categories as $category ) {
-            if ( $category->parent > 0 ) {
-                $category_name = $category->name;
-            }
-        }
-    }
-
-    return esc_html( stripslashes( $category_name ) );
+    return esc_html( stripslashes( awpcp_listing_renderer()->get_category_name( $ad ) ) );
 }
 
 /**
@@ -334,10 +324,10 @@ function awpcp_do_placeholder_category_url( $ad, $placeholder ) {
  * @since 3.2
  */
 function awpcp_do_placeholder_parent_category_name( $ad, $placeholder ) {
-    $categories      = awpcp_listing_renderer()->get_categories( $ad );
+    $category      = awpcp_listing_renderer()->get_category( $ad );
     $parent_category = null;
-    if ( $categories && $categories[0]->parent > 0 ) {
-        $parent_category = get_term( $categories[0]->parent );
+    if ($category && $category->parent > 0) {
+        $parent_category = get_term( $category->parent );
         $parent_category = $parent_category->name;
     }
 

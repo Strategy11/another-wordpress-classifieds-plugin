@@ -62,7 +62,17 @@ class AWPCP_ListingRenderer {
             return null;
         }
 
-        return $categories[0];
+        $category = $categories[0];
+        if ( count( $categories ) > 1 ) {
+            foreach ( $categories as $cat ) {
+                if ( $cat->parent > 0 ) {
+                    $category = $cat;
+                    break;
+                }
+            }
+        }
+
+        return $category;
     }
 
     public function get_category_name( $listing ) {
