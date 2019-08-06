@@ -343,7 +343,7 @@ class AWPCP_QueryIntegration {
      */
     public function process_is_disabled_query_parameter( $query_vars ) {
         if ( isset( $query_vars['classifieds_query']['is_disabled'] ) ) {
-            $query_vars['post_status'] = array('disabled', 'pending');
+            $query_vars['post_status'] = array( 'disabled', 'pending' );
         }
 
         return $query_vars;
