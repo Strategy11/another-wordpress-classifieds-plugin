@@ -639,7 +639,7 @@ class AWPCP_PaymentsAPI {
      */
     public function render_account_balance_for_transaction( $transaction ) {
         $credit_plan     = $this->get_credit_plan( $transaction->get( 'credit-plan' ) );
-        $account_balance = $this->get_account_balance( $transaction->used_id );
+        $account_balance = $this->get_account_balance( $transaction->user_id );
         $credits_used    = $transaction->get_total_credits();
 
         if ( $credit_plan ) {
