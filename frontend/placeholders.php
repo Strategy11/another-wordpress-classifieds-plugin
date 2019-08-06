@@ -336,8 +336,8 @@ function awpcp_do_placeholder_category_url( $ad, $placeholder ) {
 function awpcp_do_placeholder_parent_category_name( $ad, $placeholder ) {
     $categories      = awpcp_listing_renderer()->get_categories( $ad );
     $parent_category = null;
-    if ($categories && $categories[0]->parent > 0) {
-        $parent_category = get_term($categories[0]->parent);
+    if ( $categories && $categories[0]->parent > 0 ) {
+        $parent_category = get_term( $categories[0]->parent );
         $parent_category = $parent_category->name;
     }
 
