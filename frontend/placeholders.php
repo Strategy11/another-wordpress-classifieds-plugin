@@ -335,13 +335,10 @@ function awpcp_do_placeholder_category_url( $ad, $placeholder ) {
  */
 function awpcp_do_placeholder_parent_category_name( $ad, $placeholder ) {
     $categories      = awpcp_listing_renderer()->get_categories( $ad );
-    $parent_category = '';
-    if ( count( $categories ) > 1 ) {
-        foreach ( $categories as $category ) {
-            if ( $category->parent === 0 ) {
-                $parent_category = $category->name;
-            }
-        }
+    $parent_category = null;
+    if ($categories && $categories[0]->parent > 0) {
+        $parent_category = get_term($categories[0]->parent);
+        $parent_category = $parent_category->name;
     }
 
     return esc_html( stripslashes( $parent_category ) );
