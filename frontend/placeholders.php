@@ -324,9 +324,9 @@ function awpcp_do_placeholder_category_url( $ad, $placeholder ) {
  * @since 3.2
  */
 function awpcp_do_placeholder_parent_category_name( $ad, $placeholder ) {
-    $category      = awpcp_listing_renderer()->get_category( $ad );
+    $category        = awpcp_listing_renderer()->get_category( $ad );
     $parent_category = null;
-    if ($category && $category->parent > 0) {
+    if ( $category && $category->parent > 0 ) {
         $parent_category = get_term( $category->parent );
         $parent_category = $parent_category->name;
     }
