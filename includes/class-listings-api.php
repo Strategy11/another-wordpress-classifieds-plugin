@@ -424,9 +424,16 @@ class AWPCP_ListingsAPI {
             $timestamp  = current_time( 'timestamp' );
         }
 
+        // Let's assume a null payment term last zero seconds.
+        $end_date = $start_date;
+
+        if ( $payment_term ) {
+            $end_date = $payment_term->calculate_end_date( $timestamp );
+        }
+
         return [
             '_awpcp_start_date' => $start_date,
-            '_awpcp_end_date'   => $payment_term->calculate_end_date( $timestamp ),
+            '_awpcp_end_date'   => $end_date,
         ];
     }
 
