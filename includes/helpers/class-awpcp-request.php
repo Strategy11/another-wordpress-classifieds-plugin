@@ -158,6 +158,16 @@ class AWPCP_Request {
      */
     public function get_query_var( $name, $default='' ) {
         $value = get_query_var( $name );
+
+        /*
+         * Sometimes values are arrays.
+         *
+         * See https://github.com/drodenbaugh/awpcp/issues/2531.
+         */
+        if ( is_array( $value ) ) {
+            return $value;
+        }
+
         return strlen( $value ) === 0 ? $default : $value;
     }
 
