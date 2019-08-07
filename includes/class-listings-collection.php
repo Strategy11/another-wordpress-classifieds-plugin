@@ -821,7 +821,6 @@ class AWPCP_ListingsCollection {
 
         // TODO: run 'awpcp-ad-order-conditions' and 'awpcp-find-listings-order-conditions' filters?
         // I think is better to remove these filters and let modules filter the query before is executed.
-
         return $query;
     }
 
