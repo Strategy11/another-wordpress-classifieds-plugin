@@ -4,15 +4,6 @@
  */
 
 /**
- * Constructor function for Categories Registry class.
- */
-function awpcp_categories_registry() {
-    return new AWPCP_Categories_Registry(
-        awpcp()->container['ArrayOptions']
-    );
-}
-
-/**
  * Provides access to translation arrays for pre-4.0.0 categories that were
  * converted into listing category taxonomy terms and terms that had to be
  * replaced by other terms with greater IDs to avoid ID collisions.

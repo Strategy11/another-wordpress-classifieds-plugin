@@ -45,6 +45,10 @@ class AWPCP_Store_Listing_Categories_As_Custom_Taxonomies_Upgrade_Task_Handler i
     }
 
     public function process_item( $item, $last_item_id ) {
+        if ( ! $item->category_name ) {
+            $item->category_name = 'Unknown';
+        }
+
         $term = $this->insert_or_update_term( $item );
 
         if ( is_wp_error( $term ) ) {

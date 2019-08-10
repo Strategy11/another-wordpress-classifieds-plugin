@@ -212,3 +212,14 @@ function awpcp_terms_of_service_form_field( $slug ) {
         $container['TemplateRenderer']
     );
 }
+
+/**
+ * Constructor function for Categories Registry class.
+ *
+ * @since 4.0.3 Extracted from class-categories-registry.php.
+ */
+function awpcp_categories_registry() {
+    return new AWPCP_Categories_Registry(
+        awpcp()->container['ArrayOptions']
+    );
+}
