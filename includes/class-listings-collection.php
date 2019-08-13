@@ -526,9 +526,11 @@ class AWPCP_ListingsCollection {
                     'relation' => 'AND',
                     'start'    => array(
                         'key' => '_awpcp_most_recent_start_date',
+                        'type' => 'DATETIME'
                     ),
                     'renewed'  => array(
                         'key' => '_awpcp_renewed_date',
+                        'type' => 'DATETIME'
                     ),
                 );
                 $query['orderby']    = array(
