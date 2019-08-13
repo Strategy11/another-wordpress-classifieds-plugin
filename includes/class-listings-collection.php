@@ -525,12 +525,12 @@ class AWPCP_ListingsCollection {
                 $query['meta_query'] = array(
                     'relation' => 'AND',
                     'start'    => array(
-                        'key' => '_awpcp_most_recent_start_date',
-                        'type' => 'DATETIME'
+                        'key'  => '_awpcp_most_recent_start_date',
+                        'type' => 'DATETIME',
                     ),
                     'renewed'  => array(
-                        'key' => '_awpcp_renewed_date',
-                        'type' => 'DATETIME'
+                        'key'  => '_awpcp_renewed_date',
+                        'type' => 'DATETIME',
                     ),
                 );
                 $query['orderby']    = array(
