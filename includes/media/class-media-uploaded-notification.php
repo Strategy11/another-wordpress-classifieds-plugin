@@ -131,8 +131,7 @@ class AWPCP_Media_Uploaded_Notification {
         $message->to = array( awpcp_admin_email_to() );
         $message->subject = str_replace( '<listing-title>', $this->listing_renderer->get_listing_title( $listing ), $subject );
 
-        $query_args = array( 'action' => 'view', 'id' => $listing->ID );
-        $view_listing_url = add_query_arg( $query_args, awpcp_get_admin_listings_url() );
+        $view_listing_url = awpcp_get_quick_view_listing_url( $listing );
 
         $query_args = array( 'action' => 'manage-images', 'id' => $listing->ID );
         $manage_listing_media_url = add_query_arg( $query_args, awpcp_get_admin_listings_url() );

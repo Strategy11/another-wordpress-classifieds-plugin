@@ -2491,8 +2491,8 @@ function awpcp_ad_awaiting_approval_email($ad, $ad_approve, $images_approve) {
 		$subject = __( 'The Ad "%s" is awaiting approval', 'another-wordpress-classifieds-plugin' );
 
 		$message = __('The Ad "%s" is awaiting approval. You can approve the Ad going to the Manage Listings section and clicking the "Enable" action shown on top. Click here to continue: %s.', 'another-wordpress-classifieds-plugin');
-		$params = array( 'action' => 'view', 'id' => $ad->ID );
-	    $url = add_query_arg( urlencode_deep( $params ), awpcp_get_admin_listings_url() );
+
+        $url = awpcp_get_quick_view_listing_url( $ad );
 
 	    $messages[] = sprintf( $message, $listing_renderer->get_listing_title( $ad ), $url );
 
