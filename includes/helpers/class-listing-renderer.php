@@ -410,6 +410,18 @@ class AWPCP_ListingRenderer {
         return $this->has_expired_on_date( $listing, $end_of_date_range + 1 );
     }
 
+    /**
+     * Determine whether the listing already expired or will expire within the
+     * renew email threshold.
+     *
+     * @since 4.0.4
+     *
+     * @param WP_Post $listing An instance of WP_Post representing an ad.
+     */
+    public function has_expired_or_is_about_to_expire( $listing ) {
+        return $this->has_expired( $listing ) || $this->is_about_to_expire( $listing );
+    }
+
     public function get_payment_status( $listing ) {
         return $this->wordpress->get_post_meta( $listing->ID, '_awpcp_payment_status', true );
     }

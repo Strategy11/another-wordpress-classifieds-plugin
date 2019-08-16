@@ -869,11 +869,11 @@ function awpcp_do_placeholder_facebook_button_url( $ad, $placeholder ) {
  * @since 4.0
  */
 function awpcp_do_placeholder_ad_actions( $ad, $placeholder ) {
-    $is_owner   = get_current_user_id() === (int) $ad->post_author;
-    $is_expired = awpcp()->container['RenewListingTableAction']->should_show_action_for( $ad );
-    if ( $is_owner && $is_expired ) {
+    $is_owner = get_current_user_id() === (int) $ad->post_author;
+
+    if ( $is_owner && awpcp_listing_renderer()->has_expired_or_is_about_to_expire( $ad ) ) {
         $renew_url = awpcp_get_renew_ad_url( $ad->ID );
-        $label     = awpcp()->container['RenewListingTableAction']->get_title();
+        $label     = _x( 'Renew', 'listing row action', 'another-wordpress-classifieds-plugin' );
         return "<div class='awpcp-user-renew'><a  class='awpcp-action-button' href='{$renew_url}' title='{$label}' aria-label='{$label}'><i class='fa fa-redo'></i></a></div>";
     }
 }

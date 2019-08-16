@@ -17,15 +17,7 @@ trait AWPCP_RenewListingTableAction {
      * @param object $post  An instance of WP_Post.
      */
     public function should_show_action_for( $post ) {
-        if ( $this->listing_renderer->is_about_to_expire( $post ) ) {
-            return true;
-        }
-
-        if ( $this->listing_renderer->has_expired( $post ) ) {
-            return true;
-        }
-
-        return false;
+        return $this->listing_renderer->has_expired_or_is_about_to_expire( $post );
     }
 
     /**
