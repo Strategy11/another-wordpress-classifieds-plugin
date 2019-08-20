@@ -73,7 +73,7 @@
             return items;
         }
 
-        $( '#showawpcpadpage' ).on( 'click', '.awpcp-listing-primary-image-thickbox-link, .thickbox', function( event ) {
+        $( '#classiwrapper' ).on( 'click', '.awpcp-listing-primary-image-thickbox-link, .thickbox', function( event ) {
             event.preventDefault();
 
             var $link = $( this ),
