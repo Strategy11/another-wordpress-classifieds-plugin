@@ -223,3 +223,12 @@ function awpcp_categories_registry() {
         awpcp()->container['ArrayOptions']
     );
 }
+
+/**
+ * @since 3.6
+ * @since 4.0.4 Extracted from class-query.php and modified to load an instance
+ *              from the container.
+ */
+function awpcp_query() {
+    return awpcp()->container['Query'];
+}

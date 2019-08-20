@@ -5,15 +5,6 @@
 
 /**
  * @since 3.6
- */
-function awpcp_query() {
-    return new AWPCP_Query(
-        awpcp()->container['listing_post_type']
-    );
-}
-
-/**
- * @since 3.6
  * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
 class AWPCP_Query {
