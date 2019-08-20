@@ -326,6 +326,7 @@ class AWPCP {
         $query_integration = $this->container['QueryIntegration'];
 
         // Execute later to allow Listing Table Views to add query parameters.
+        add_action( 'parse_query', [ $query_integration, 'parse_query' ], 5 );
         add_action( 'pre_get_posts', array( $query_integration, 'pre_get_posts' ), 100 );
         add_filter( 'posts_where', array( $query_integration, 'posts_where' ), 10, 2 );
         add_filter( 'posts_clauses', array( $query_integration, 'posts_clauses' ), 10, 2 );

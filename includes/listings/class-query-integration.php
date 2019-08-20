@@ -47,6 +47,23 @@ class AWPCP_QueryIntegration {
     }
 
     /**
+     * Set the post_type query var early if the query is a Classifieds Query.
+     *
+     * Polylang will try to load translated ads, even when translations are not
+     * enabled for ads, if the post_type query var is not properly configured
+     * before PLL_Frontend::parse_query() is executed.
+     *
+     * @since 4.0.4
+     *
+     * @param WP_Query $query A new posts query.
+     */
+    public function parse_query( $query ) {
+        if ( isset( $query->query_vars['classifieds_query'] ) ) {
+            $query->query_vars['post_type'] = $this->listing_post_type;
+        }
+    }
+
+    /**
      * @param object $query     An instance of WP_Query.
      * @since 4.0.0
      */
@@ -116,10 +133,6 @@ class AWPCP_QueryIntegration {
      * @since 4.0.0
      */
     private function set_default_query_paramaters( $query_vars ) {
-        if ( isset( $query_vars['classifieds_query'] ) ) {
-            $query_vars['post_type'] = $this->listing_post_type;
-        }
-
         if ( ! isset( $query_vars['post_status'] ) ) {
             $query_vars['post_status'] = array( 'disabled', 'draft', 'pending', 'publish' );
         }
