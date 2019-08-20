@@ -7,6 +7,14 @@ function awpcp_html_admin_form_textarea_renderer() {
 class AWPCP_HTML_Admin_Form_Textarea_Renderer implements AWPCP_HTML_Element_Renderer {
 
     public function render_element( $html_renderer, $element_definition ) {
+        $element_definition = wp_parse_args(
+            $element_definition,
+            [
+                '#cols' => null,
+                '#rows' => null,
+            ]
+        );
+
         $form_field_id = "awpcp-admin-form-textarea-{$element_definition['#name']}";
 
         $form_field_definition = array(
