@@ -71,7 +71,7 @@ class AWPCP_Pages {
 
 	public function place_ad() {
         awpcp_maybe_add_thickbox();
-        wp_enqueue_script('awpcp-page-show-ad');
+        wp_enqueue_script( 'awpcp-page-show-ad' );
         if ( ! isset( $this->output['place-ad'] ) ) {
             // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
             do_action( 'awpcp-shortcode', 'place-ad' );
