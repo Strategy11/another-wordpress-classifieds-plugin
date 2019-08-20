@@ -690,7 +690,7 @@ class AWPCP_ListingsAPI {
         $moderate_listings = get_awpcp_option( 'adapprove' );
         $moderate_images = get_awpcp_option('imagesapprove') == 1;
 
-        if ( ( $moderate_listings || $moderate_images ) && $this->listing_renderer->is_disabled( $ad ) ) {
+        if ( ( $moderate_listings || $moderate_images ) && $this->listing_renderer->is_pending_approval( $ad ) ) {
             awpcp_send_listing_awaiting_approval_notification_to_moderators(
                 $ad, $moderate_listings, $moderate_images
             );

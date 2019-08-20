@@ -319,6 +319,11 @@ class AWPCP_ListingRenderer {
     }
 
     /**
+     * Before AWPCP 4.0.0, both disabled listings and listings pending approval
+     * had a disabled property set to true. In 4.0.0 and newer versions,
+     * disabled listings have post_status = disabled and listings pending
+     * approval have post_status = pending.
+     *
      * @since 4.0.0
      */
     public function is_pending_approval( $listing ) {
