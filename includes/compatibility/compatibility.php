@@ -28,6 +28,9 @@ class AWPCP_Compatibility {
         add_action( 'init', array( $facebookall_plugin_integration, 'maybe_remove_userlogin_handler' ), 5 );
     }
 
+    /**
+     * TODO: Instantiate integrations that are required only.
+     */
     private function load_plugin_integration_used_in_frontend_screens() {
         add_filter( 'awpcp-should-generate-opengraph-tags', array( new AWPCP_FacebookPluginIntegration(), 'should_generate_opengraph_tags' ), 10, 2 );
 
@@ -50,6 +53,9 @@ class AWPCP_Compatibility {
 	    $integration->setup();
 
         $integration = awpcp_navxt_plugin_integration();
+        $integration->setup();
+
+        $integration = awpcp_indeed_membership_pro_plugin_integration();
         $integration->setup();
     }
 

@@ -232,3 +232,14 @@ function awpcp_categories_registry() {
 function awpcp_query() {
     return awpcp()->container['Query'];
 }
+
+/**
+ * Constructor function for Indeed Membership Pro Plugin Integration class.
+ *
+ * @since 4.0.4
+ */
+function awpcp_indeed_membership_pro_plugin_integration() {
+    return new AWPCP_IndeedMembershipProPluginIntegration(
+        awpcp()->container['Query']
+    );
+}

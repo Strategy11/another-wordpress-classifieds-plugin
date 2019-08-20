@@ -228,6 +228,7 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_Import_Settings_Admin_Page' => __DIR__ . '/../..' . '/admin/class-import-settings-admin-page.php',
         'AWPCP_ImporterFormSteps' => __DIR__ . '/../..' . '/includes/admin/import/class-importer-form-steps.php',
         'AWPCP_IncompleteListingTableView' => __DIR__ . '/../..' . '/includes/admin/listings/class-incomplete-listing-table-view.php',
+        'AWPCP_IndeedMembershipProPluginIntegration' => __DIR__ . '/../..' . '/includes/compatibility/class-indeed-membership-pro-plugin-integration.php',
         'AWPCP_Infinite_Loop_Detected_Exception' => __DIR__ . '/../..' . '/includes/exceptions.php',
         'AWPCP_Installer' => __DIR__ . '/../..' . '/installer.php',
         'AWPCP_JavaScript' => __DIR__ . '/../..' . '/includes/helpers/javascript.php',

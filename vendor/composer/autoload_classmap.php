@@ -227,6 +227,7 @@ return array(
     'AWPCP_Import_Settings_Admin_Page' => $baseDir . '/admin/class-import-settings-admin-page.php',
     'AWPCP_ImporterFormSteps' => $baseDir . '/includes/admin/import/class-importer-form-steps.php',
     'AWPCP_IncompleteListingTableView' => $baseDir . '/includes/admin/listings/class-incomplete-listing-table-view.php',
+    'AWPCP_IndeedMembershipProPluginIntegration' => $baseDir . '/includes/compatibility/class-indeed-membership-pro-plugin-integration.php',
     'AWPCP_Infinite_Loop_Detected_Exception' => $baseDir . '/includes/exceptions.php',
     'AWPCP_Installer' => $baseDir . '/installer.php',
     'AWPCP_JavaScript' => $baseDir . '/includes/helpers/javascript.php',
