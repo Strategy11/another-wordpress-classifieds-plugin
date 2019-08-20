@@ -97,4 +97,11 @@ class AWPCP_Query {
     public function is_singular_listing_page() {
         return is_singular( $this->listing_post_type );
     }
+
+    /**
+     * @since 4.0.4
+     */
+    public function is_search_listings_page() {
+        return $this->is_page_that_has_shortcode( 'AWPCPSEARCHADS' );
+    }
 }
