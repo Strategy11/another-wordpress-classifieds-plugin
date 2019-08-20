@@ -71,6 +71,18 @@ class AWPCP_TermsOfServiceFormField extends AWPCP_FormField {
     }
 
     /**
+     * This field does not take any initial value becuase user must
+     * accept the terms of service every time they submit the form.
+     *
+     * @since 4.0.3
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
+    public function extract_value( $data ) {
+        return null;
+    }
+
+    /**
      * Render the Terms of Service form field.
      *
      * If we are editing a listing, the field will be rendered as a hidden input
