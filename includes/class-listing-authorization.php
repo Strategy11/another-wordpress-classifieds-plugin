@@ -84,8 +84,8 @@ class AWPCP_ListingAuthorization {
             return true;
         }
 
-        if ( ! $this->settings->get_option( 'allow-start-date-modification' ) ) {
-            return false;
+        if ( $this->settings->get_option( 'allow-start-date-modification' ) ) {
+            return true;
         }
 
         $start_date = $this->listing_renderer->get_start_date( $listing );
