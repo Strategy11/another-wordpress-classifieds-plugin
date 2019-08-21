@@ -177,11 +177,16 @@ AWPCP.define( 'awpcp/frontend/save-section-controller', [
             // Replace Multiple Region Selector data with just selected regions.
             data.regions = regions;
 
+            /**
+             * The 'method' option was added in jQuery 1.9, we also include
+             * 'type' for websites using jQuery 1.8.x or older.
+             */
             options = {
                 url: $.AWPCP.get( 'ajaxurl' ),
                 data: data,
                 dataType: 'json',
-                method: 'POST'
+                method: 'POST',
+                type:     'POST',
             };
 
             return $.ajax( options );
@@ -223,11 +228,16 @@ AWPCP.define( 'awpcp/frontend/save-section-controller', [
                 ad_id:  self.store.getListingId()
             };
 
+            /**
+             * The 'method' option was added in jQuery 1.9, we also include
+             * 'type' for websites using jQuery 1.8.x or older.
+             */
             options = {
                 url:      $.AWPCP.get( 'ajaxurl' ),
                 data:     data,
                 dataType: 'json',
-                method:   'POST'
+                method:   'POST',
+                type:     'POST'
             };
 
             return $.ajax( options );

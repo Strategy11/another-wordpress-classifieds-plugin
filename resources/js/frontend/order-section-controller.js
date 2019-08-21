@@ -309,11 +309,16 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
             callback = function() {
                 data = $.extend( data, self.getCaptchaFields() );
 
+                /**
+                 * The 'method' option was added in jQuery 1.9, we also include
+                 * 'type' for websites using jQuery 1.8.x or older.
+                 */
                 var options = {
                     url: $.AWPCP.get( 'ajaxurl' ),
                     data: data,
                     dataType: 'json',
-                    method: 'POST'
+                    method: 'POST',
+                    type: 'POST'
                 };
 
                 $.ajax( options ).done( function( response ) {

@@ -97,6 +97,10 @@ AWPCP.define( 'awpcp/frontend/actions-section-controller', [
         execute: function( $action ) {
             var self = this, options;
 
+            /**
+             * The 'method' option was added in jQuery 1.9, we also include
+             * 'type' for websites using jQuery 1.8.x or older.
+             */
             options = {
                 url:       $.AWPCP.get( 'ajaxurl' ),
                 data:      {
@@ -106,7 +110,8 @@ AWPCP.define( 'awpcp/frontend/actions-section-controller', [
                     nonce: $action.data( 'nonce' )
                 },
                 dataType: 'json',
-                method:   'POST'
+                method:   'POST',
+                type:     'POST',
             };
 
             $.ajax( options ).done( function( response ) {

@@ -339,11 +339,16 @@ AWPCP.define( 'awpcp/frontend/submit-listing-data-store', [
                 transaction_id: self.getTransactionId()
             };
 
+            /**
+             * The 'method' option was added in jQuery 1.9, we also include
+             * 'type' for websites using jQuery 1.8.x or older.
+             */
             options = {
                 url: $.AWPCP.get( 'ajaxurl' ),
                 data: data,
                 dataType: 'json',
-                method: 'POST'
+                method: 'POST',
+                type:     'POST'
             };
 
             self.updateSectionsTimeout = setTimeout( function() {
