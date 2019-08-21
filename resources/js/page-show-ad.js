@@ -57,7 +57,7 @@
                 return items;
             }
 
-            items = $( '#showawpcpadpage [data-awpcp-gallery]' ).map( function( index, element ) {
+            items = $( '#classiwrapper [data-awpcp-gallery]' ).map( function( index, element ) {
                 var $link = $( element ), $img = $link.find( 'img' );
 
                 if ( $img.length === 0 ) {
