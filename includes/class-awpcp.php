@@ -1263,6 +1263,16 @@ class AWPCP {
             $awpcp_db_version,
             true
         );
+
+        wp_register_script(
+            'awpcp-ad-counter',
+            "{$js}/ad-counter.js",
+            array(
+                'jquery',
+            ),
+            $awpcp_db_version,
+            true
+        );
 	}
 
     /**
@@ -1347,6 +1357,10 @@ class AWPCP {
 
             if ( $query->is_post_listings_page() || $query->is_edit_listing_page() || $query->is_single_listing_page() ) {
                 awpcp_maybe_include_lightbox_style();
+            }
+
+            if ( $query->is_single_listing_page() ) {
+                wp_enqueue_script('awpcp-ad-counter');
             }
 
 			wp_enqueue_style('awpcp-frontend-style');
