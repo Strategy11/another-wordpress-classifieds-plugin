@@ -76,7 +76,7 @@ class AWPCP_ListingAuthorization {
     }
 
     /**
-     * Determine wether current user can edit the start date of the listing.
+     * Determine whether current user can edit the start date of the listing.
      *
      * See https://github.com/drodenbaugh/awpcp/issues/1906#issuecomment-328189213
      * for a description of the editable start date feature.
