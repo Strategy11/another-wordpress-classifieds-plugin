@@ -76,8 +76,14 @@ class AWPCP_ListingAuthorization {
     }
 
     /**
-     * @param object $listing   An instance of WP_Post.
+     * Determine wether current user can edit the start date of the listing.
+     *
+     * See https://github.com/drodenbaugh/awpcp/issues/1906#issuecomment-328189213
+     * for a description of the editable start date feature.
+     *
      * @since 4.0.0
+     *
+     * @param object $listing An instance of WP_Post.
      */
     public function is_current_user_allowed_to_edit_listing_start_date( $listing ) {
         if ( $this->roles->current_user_is_moderator() ) {
