@@ -306,6 +306,10 @@ class AWPCP_YoastWordPressSEOPluginIntegration {
      * @since 4.0.0
      */
     public function add_opengraph_images( $opengraph_image ) {
+        if ( ! method_exists( $opengraph_image, 'add_image_by_id' ) || ! method_exists( $opengraph_image, 'add_image_by_url' ) ) {
+            return;
+        }
+
         $image_id  = WPSEO_Meta::get_value( 'opengraph-image-id', $this->current_listing->ID );
         $image_url = WPSEO_Meta::get_value( 'opengraph-image', $this->current_listing->ID );
 
