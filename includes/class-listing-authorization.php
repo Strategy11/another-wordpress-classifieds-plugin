@@ -117,7 +117,7 @@ class AWPCP_ListingAuthorization {
             return true;
         }
 
-        $is_saving_listing   = $this->request->post( 'action' ) === 'awpcp_save_listing_information';
+        $is_saving_listing = $this->request->post( 'action' ) === 'awpcp_save_listing_information';
         if ( $allow_modification && $is_saving_listing ) {
             return true;
         }
