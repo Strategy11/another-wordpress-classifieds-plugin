@@ -97,7 +97,7 @@ class AWPCP_MakeStandardListingTableAction implements
      * @since 4.0.0
      */
     public function process_item( $post ) {
-        if ( $this->wordpress->delete_post_meta( $post->ID, '_awpcp_is_featured' ) ) {
+        if ( $this->wordpress->update_post_meta( $post->ID, '_awpcp_is_featured', 0 ) ) {
             return 'success';
         }
 
