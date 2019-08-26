@@ -84,23 +84,41 @@ class AWPCP_ListingAuthorization {
      * @since 4.0.0
      *
      * @param object $listing An instance of WP_Post.
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     * @SuppressWarnings(PHPMD.NPathComplexity)
      */
     public function is_current_user_allowed_to_edit_listing_start_date( $listing ) {
         if ( $this->roles->current_user_is_moderator() ) {
             return true;
         }
 
-        if ( $this->settings->get_option( 'allow-start-date-modification' ) ) {
-            return true;
+        $allow_modification = $this->settings->get_option( 'allow-start-date-modification' );
+        if ( ! $allow_modification ) {
+            return false;
         }
 
         $start_date = $this->listing_renderer->get_start_date( $listing );
-
-        if ( empty( $start_date ) ) {
+        if ( empty( $start_date ) && $allow_modification ) {
             return true;
         }
 
-        if ( strtotime( $start_date ) > current_time( 'timestamp' ) ) {
+        $is_future_date    = strtotime( $start_date ) > current_time( 'timestamp' );
+        $is_create_listing = $this->request->post( 'mode' ) === 'create';
+        $is_edit_listing   = $this->request->post( 'mode' ) === 'edit';
+        if ( ! $is_future_date && $is_create_listing ) {
+            return true;
+        }
+
+        if ( ! $is_future_date && $is_edit_listing ) {
+            return false;
+        }
+
+        if ( $is_future_date && $allow_modification ) {
+            return true;
+        }
+
+        $is_saving_listing   = $this->request->post( 'action' ) === 'awpcp_save_listing_information';
+        if ( $allow_modification && $is_saving_listing ) {
             return true;
         }
 
