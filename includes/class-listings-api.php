@@ -645,7 +645,7 @@ class AWPCP_ListingsAPI {
 
         $this->wordpress->update_post_meta( $listing->ID, '_awpcp_end_date', $end_date );
         $this->wordpress->delete_post_meta( $listing->ID, '_awpcp_renew_email_sent' );
-        $this->wordpress->update_post_meta( $listing->ID, '_awpcp_renewed_date', current_time( 'mysql' ) );
+        $this->wordpress->update_post_meta( $listing->ID, '_awpcp_most_recent_start_date', current_time( 'mysql' ) );
 
         if ( ! $this->listing_renderer->is_public( $listing ) ) {
             $this->enable_listing( $listing );
