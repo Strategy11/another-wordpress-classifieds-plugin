@@ -44,7 +44,7 @@ class AWPCP_Attachments_Collection {
             'key'        => '_awpcp_featured',
             'value'      => true,
             'comparator' => '=',
-            'type'       => 'BINARY',
+            'type'       => 'UNSIGNED',
         );
 
         return $query;
@@ -130,7 +130,7 @@ class AWPCP_Attachments_Collection {
             'key'     => '_awpcp_enabled',
             'value'   => true,
             'compare' => '=',
-            'type'    => 'BINARY',
+            'type'    => 'UNSIGNED',
         );
 
         $query['meta_query'][] = array(

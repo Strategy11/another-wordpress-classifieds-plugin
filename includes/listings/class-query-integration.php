@@ -290,7 +290,7 @@ class AWPCP_QueryIntegration {
                 'key'     => '_awpcp_verified',
                 'value'   => true,
                 'compare' => '=',
-                'type'    => 'BINARY',
+                'type'    => 'UNSIGNED',
             );
         }
 
@@ -341,7 +341,7 @@ class AWPCP_QueryIntegration {
                 'key'     => '_awpcp_content_needs_review',
                 'value'   => true,
                 'compare' => '=',
-                'type'    => 'BINARY',
+                'type'    => 'UNSIGNED',
             );
         }
 
