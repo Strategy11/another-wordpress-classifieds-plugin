@@ -108,7 +108,13 @@ AWPCP.define( 'awpcp/frontend/listing-fields-section-controller', [
             var self = this,
                 data = self.store.getListingFields();
 
-            self.$element = $( self.template ).replaceAll( self.$element ).collapsible();
+            // We use slice() because prior to jQuery 1.9, replaceAll() returned
+            // the aggregate set of all elements appended to the target elements.
+            //
+            // https://jquery.com/upgrade-guide/1.9/#appendto-insertbefore-insertafter-and-replaceall
+            self.$element = $( self.template ).replaceAll( self.$element ).slice( 0, self.$element.length );
+
+            self.$element.collapsible();
 
             // Mark element as rendered earlier to prevent renderTemplate from being called
             // again if the data store is refreshed as the result of one of the actions
