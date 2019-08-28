@@ -522,21 +522,9 @@ class AWPCP_ListingsCollection {
 
         switch ( $orderby ) {
             case 1:
-                $query['meta_query'] = array(
-                    'relation' => 'AND',
-                    'start'    => array(
-                        'key'  => '_awpcp_most_recent_start_date',
-                        'type' => 'DATETIME',
-                    ),
-                    'renewed'  => array(
-                        'key'  => '_awpcp_renewed_date',
-                        'type' => 'DATETIME',
-                    ),
-                );
-                $query['orderby']    = array(
-                    'renewed' => 'DESC',
-                    'start'   => 'DESC',
-                );
+                $query['meta_key']  = '_awpcp_most_recent_start_date';
+                $query['meta_type'] = 'DATETIME';
+                $query['orderby']   = array( 'meta_value' => 'DESC' );
                 break;
 
             case 2:

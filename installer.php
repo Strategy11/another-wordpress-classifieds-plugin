@@ -331,6 +331,9 @@ class AWPCP_Installer {
             '4.0.2' => [
                 'remove_invalid_admin_editor_metadata',
             ],
+            '4.0.5' => [
+                'enable_routine_to_update_most_recent_date',
+            ]
         );
     }
 
@@ -1163,6 +1166,13 @@ class AWPCP_Installer {
             delete_post_meta( $postmeta->post_id, '__awpcp_admin_editor_pending_data' );
             delete_post_meta( $postmeta->post_id, '__awpcp_admin_editor_validation_errors' );
         }
+    }
+
+    /**
+     * @since 4.0.5
+     */
+    private function enable_routine_to_update_most_recent_date() {
+        $this->upgrade_tasks->enable_upgrade_task( 'awpcp-update-most-recent-date' );
     }
 }
 

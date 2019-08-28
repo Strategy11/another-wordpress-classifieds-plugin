@@ -196,5 +196,15 @@ class AWPCP_Manual_Upgrade_Tasks {
                 'blocking' => false,
             ]
         );
+
+        $this->upgrade_tasks->register_upgrade_task(
+            [
+                'slug'     => 'awpcp-update-most-recent-date',
+                'name'     => __( 'Update _awpcp_most_recent_start_date', 'another-wordpress-classifieds-plugin' ),
+                'handler'  => 'UpdateMostRecentDate',
+                'context'  => 'plugin',
+                'blocking' => false,
+            ]
+        );
     }
 }

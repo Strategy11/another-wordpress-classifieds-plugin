@@ -290,5 +290,13 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
                 );
             }
         );
+
+        $container['UpdateMostRecentDate'] = $container->service(
+            function( $container ) {
+                return new AWPCP_UpdateMostRecentDate(
+                    $container['wpdb']
+                );
+            }
+        );
     }
 }
