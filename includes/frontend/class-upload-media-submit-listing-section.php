@@ -147,9 +147,11 @@ class AWPCP_UploadMediaSubmitListingSection {
                 'allowed_files' => $allowed_files,
             ],
             'listing'                           => $listing,
-            'files'                             => $this->attachments->find_attachments( [
-                'post_parent' => $listing->ID,
-            ] ),
+            'files'                             => $this->attachments->find_attachments(
+                [
+                    'post_parent' => $listing->ID,
+                ]
+            ),
             'images_allowed'                    => $images_allowed,
             'images_uploaded'                   => $images_uploaded,
             'messages'                          => $messages,
