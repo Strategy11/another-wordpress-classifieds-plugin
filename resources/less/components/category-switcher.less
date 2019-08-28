@@ -17,5 +17,8 @@
         .awpcp-category-dropdown {
             flex: 0 1 auto;
         }
+        &> .select2-container {
+            flex: 1; /* flex: 0 1 auto was not working on https://github.com/drodenbaugh/awpcp/issues/2528#issuecomment-525059479 */
+        }
     }
 }
