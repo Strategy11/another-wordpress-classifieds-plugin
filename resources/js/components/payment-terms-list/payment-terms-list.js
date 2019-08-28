@@ -121,14 +121,16 @@ function( $, settings ) {
         },
 
         isMaxCategories: function() {
-            $( '.awpcp-submit-listing-page-form .select2-container + .awpcp-message-error' ).remove();
+            $( ".awpcp-submit-listing-page-form select[name='category[]']" )
+            .parent( '.awpcp-form-spacer' ).find( '.awpcp-message-error' ).remove();
             var message = $.AWPCP.get( 'default-validation-messages' ).maxCategories;
             var cats = this.state.selectedCategories;
             var singleSelect = $( '.awpcp-submit-listing-page-form .select2-selection--multiple' ).length > 0;
             if ( typeof ( cats ) != 'undefined' && cats !== null && cats.length > 0 && !isNaN( cats[ 0 ] ) && singleSelect ) {
                 if ( this.state.selectedCategories.length >= this.getSelectedPaymentTerm().maxCategories ) {
-                    $( '.awpcp-submit-listing-page-form .select2-container' ).
-                        after( '<p class="awpcp-message awpcp-message-error">' + message + '</p>' );
+                    $( ".awpcp-submit-listing-page-form select[name='category[]']" ).
+                        parent( '.awpcp-form-spacer' ).
+                        append( '<p class="awpcp-message awpcp-message-error">' + message + '</p>' );
                 }
             }
         },
