@@ -67,7 +67,15 @@ class AWPCP_UploadMediaSubmitListingSection {
      * @since 4.0.0
      */
     public function get_state( $listing = null ) {
-        return is_null( $listing ) ? 'disabled' : 'edit';
+        if ( is_null( $listing ) ) {
+            return 'disabled';
+        }
+
+        if ( ! $this->listing_upload_limits->are_uploads_allowed_for_listing( $listing ) ) {
+            return 'disabled';
+        }
+
+        return 'edit';
     }
 
     /**

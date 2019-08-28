@@ -50,11 +50,22 @@ AWPCP.define( 'awpcp/frontend/upload-media-section-controller', [
 
             var selectedPaymentTerm = self.store.getSelectedPaymentTermId();
 
+            // See https://github.com/drodenbaugh/awpcp/commit/e59ccd2
+            var orderModifiedDate = self.store.getOrderModifiedDate();
+
             if ( selectedPaymentTerm === null ) {
                 return false;
             }
 
-            return selectedPaymentTerm !== self.selectedPaymentTerm;
+            if ( selectedPaymentTerm !== self.selectedPaymentTerm ) {
+                return true;
+            }
+
+            if ( orderModifiedDate !== self.orderModifiedDate ) {
+                return true;
+            }
+
+            return false;
         },
 
         updateSelectedValues: function() {
@@ -62,6 +73,7 @@ AWPCP.define( 'awpcp/frontend/upload-media-section-controller', [
 
             self.selectedPaymentTerm = self.store.getSelectedPaymentTermId();
             self.listing             = self.store.getListingId();
+            self.orderModifiedDate   = self.store.getOrderModifiedDate();
         },
 
         prepareTemplate: function() {
