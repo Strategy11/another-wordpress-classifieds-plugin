@@ -49,7 +49,8 @@
                             <div class="awpcp-manage-categories-category-form-field">
                                 <label for="awpcp-category-parent-field"><?php echo esc_html__( 'Selected Category', 'another-wordpress-classifieds-plugin' ); ?></label>
                                 <select id="awpcp-category-parent-field" name="target_category_id">
-                                    <?php echo esc_html( get_categorynameid( $form_values['category_id'], $form_values['target_category_id'] ) ); ?>
+                                    <?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                                    <?php echo get_categorynameid( $form_values['category_id'], $form_values['target_category_id'] ); ?>
                                 </select>
                             </div>
                         </div>
