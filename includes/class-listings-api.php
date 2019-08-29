@@ -139,13 +139,54 @@ class AWPCP_ListingsAPI {
      * @since 4.0.0
      */
     private function update_listing_metadata( $listing, $metadata ) {
-        if ( isset( $metadata['_awpcp_start_date'] ) ) {
-            $metadata['_awpcp_most_recent_start_date'] = $metadata['_awpcp_start_date'];
-        }
+        $metadata = $this->maybe_update_most_recent_start_date( $listing, $metadata );
 
         foreach ( $metadata as $field_name => $field_value ) {
             $this->wordpress->update_post_meta( $listing->ID, $field_name, $field_value );
         }
+    }
+
+    /**
+     * @since 4.0.5
+     */
+    private function maybe_update_most_recent_start_date( $listing, $metadata ) {
+        $start_date   = isset( $metadata['_awpcp_start_date'] ) ? $metadata['_awpcp_start_date'] : '';
+        $renewed_date = isset( $metadata['_awpcp_renewed_date'] ) ? $metadata['_awpcp_renewed_date'] : '';
+
+        /*
+         * Neither the start date nor the renewed date are being modified, so
+         * there is no need to update the most recent start date meta property
+         * either.
+         */
+        if ( ! $start_date && ! $renewed_date ) {
+            return $metadata;
+        }
+
+        // Load the other date if only one of the properties is being modified.
+        if ( ! $start_date ) {
+            $start_date = $this->listing_renderer->get_plain_start_date( $listing );
+        }
+
+        if ( ! $renewed_date ) {
+            $renewed_date = $this->listing_renderer->get_renewed_date( $listing );
+        }
+
+        /*
+         * The most recent start date is the date the ad was renewed or the
+         * start date if no renewed date has been defined yet.
+         *
+         * We also use the renewed date only if it occurs after the current
+         * start date.
+         */
+        $most_recent_start_date = $start_date;
+
+        if ( $renewed_date && strtotime( $renewed_date ) > strtotime( $start_date ) ) {
+            $most_recent_start_date = $renewed_date;
+        }
+
+        $metadata['_awpcp_most_recent_start_date'] = $most_recent_start_date;
+
+        return $metadata;
     }
 
     /**
@@ -635,18 +676,24 @@ class AWPCP_ListingsAPI {
                $period_start_date = $current_end_date;
             }
 
-            $metadata = $this->calculate_start_and_end_dates_using_payment_term(
+            $calculated_dates = $this->calculate_start_and_end_dates_using_payment_term(
                 $this->listing_renderer->get_payment_term( $listing ),
                 $period_start_date
             );
 
-            $end_date = $metadata['_awpcp_end_date'];
+            $end_date = $calculated_dates['_awpcp_end_date'];
         }
 
-        $this->wordpress->update_post_meta( $listing->ID, '_awpcp_end_date', $end_date );
         $this->wordpress->delete_post_meta( $listing->ID, '_awpcp_renew_email_sent' );
-        $this->wordpress->update_post_meta( $listing->ID, '_awpcp_most_recent_start_date', current_time( 'mysql' ) );
-        $this->wordpress->update_post_meta( $listing->ID, '_awpcp_renewed_date', current_time( 'mysql' ) );
+
+        // Let update_listing_metadata() update the most recent start date if necessary.
+        $this->update_listing_metadata(
+            $listing,
+            [
+                '_awpcp_end_date'     => $end_date,
+                '_awpcp_renewed_date' => current_time( 'mysql' ),
+            ]
+        );
 
         if ( ! $this->listing_renderer->is_public( $listing ) ) {
             $this->enable_listing( $listing );

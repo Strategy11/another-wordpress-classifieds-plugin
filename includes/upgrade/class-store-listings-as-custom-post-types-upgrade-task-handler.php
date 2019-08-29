@@ -212,6 +212,10 @@ class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements 
         $data['post_meta']['_awpcp_renewed_date']                = $item->renewed_date;
         $data['post_meta']['_awpcp_is_paid']                     = $item->ad_fee_paid > 0;
 
+        if ( $item->renewed_date && strtotime( $item->renewed_date ) > strtotime( $item->ad_startdate ) ) {
+            $data['post_meta']['_awpcp_most_recent_start_date'] = $item->renewed_date;
+        }
+
         return $data;
     }
 
