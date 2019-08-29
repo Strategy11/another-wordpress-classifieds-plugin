@@ -106,7 +106,7 @@ class AWPCP_Delete_Category_Admin_Page {
         $params = array(
             'category_has_listings' => ads_exist_cat( $category->term_id ),
             'category_has_children' => category_has_children( $category->term_id ),
-            'form_title'            => esc_html($form_title),
+            'form_title'            => esc_html( $form_title ),
             'form_values'           => array(
                 'category_id' => $category->term_id,
                 'action'      => 'delete-category',
