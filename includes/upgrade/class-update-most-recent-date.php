@@ -37,7 +37,7 @@ WHERE pm.meta_key = '_awpcp_renewed_date'
 SQL;
         $result = $this->db->get_results( $sql );
 
-        return $result[0]->COUNT;
+        return (int) $result[0]->COUNT;
     }
 
     /**

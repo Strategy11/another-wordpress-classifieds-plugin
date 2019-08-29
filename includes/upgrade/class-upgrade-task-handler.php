@@ -85,7 +85,7 @@ class AWPCP_Upgrade_Task_Handler {
     }
 
     private function disable_upgrade_task_if_there_are_no_more_records( $task, $result ) {
-        if ( $result['pending_items_count_now'] === 0 ) {
+        if ( (int) $result['pending_items_count_now'] === 0 ) {
             $this->tasks_manager->disable_upgrade_task( $task );
         }
     }
