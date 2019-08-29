@@ -32,9 +32,8 @@ FROM {$this->db->posts} AS p
          INNER JOIN {$this->db->postmeta}  AS pm ON p.ID = pm.post_id
          INNER JOIN {$this->db->postmeta} AS pm2 ON p.ID = pm2.post_id
 WHERE pm.meta_key = '_awpcp_renewed_date'
-  AND pm.meta_value != ''
   AND pm2.meta_key = '_awpcp_most_recent_start_date'
-  AND pm2.meta_value < pm.meta_value
+  AND CAST(pm2.meta_value AS DATETIME) < CAST(pm.meta_value AS DATETIME)
 SQL;
         $result = $this->db->get_results( $sql );
 
@@ -53,9 +52,8 @@ FROM {$this->db->posts} AS p
          INNER JOIN {$this->db->postmeta} AS pm ON p.ID = pm.post_id
          INNER JOIN {$this->db->postmeta} AS pm2 ON p.ID = pm2.post_id
 WHERE pm.meta_key = '_awpcp_renewed_date'
-  AND pm.meta_value != ''
   AND pm2.meta_key = '_awpcp_most_recent_start_date'
-  AND pm2.meta_value < pm.meta_value
+  AND CAST(pm2.meta_value AS DATETIME) < CAST(pm.meta_value AS DATETIME)
 lIMIT 50
 SQL;
         $result = $this->db->get_results( $sql );
