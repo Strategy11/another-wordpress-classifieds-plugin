@@ -56,6 +56,10 @@ class AWPCP_Category_Selector {
 
         $placeholder = $this->get_placeholder( $params );
 
+        // Select2 was likely already enqueued on some pages, but it doesn't hurt
+        // to enqueue it here where is trully needed.
+        awpcp_enqueue_select2();
+
         // Export categories list to JavaScript, but don't replace an existing categories list.
         awpcp()->js->set( 'categories', $categories_hierarchy, false );
 
