@@ -13,7 +13,7 @@
                     // @phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                     echo awpcp_html_admin_third_level_heading(
                         array(
-                            'content'    => $form_title,
+                            'content'    => esc_html( $form_title ),
                             'attributes' => array( 'class' => 'hndle' ),
                         )
                     );
@@ -30,8 +30,8 @@
                     <p>
                     <?php
                         $message = __( 'Click <cancel-button-label> to go back to the list of categories or click <submit-button-label> to proceed.', 'another-wordpress-classifieds-plugin' );
-                        $message = str_replace( '<cancel-button-label>', '<strong>' . $form_cancel . '</strong>', $message );
-                        $message = str_replace( '<submit-button-label>', '<strong>' . $form_submit . '</strong>', $message );
+                        $message = str_replace( '<cancel-button-label>', '<strong>' . esc_html( $form_cancel ) . '</strong>', $message );
+                        $message = str_replace( '<submit-button-label>', '<strong>' . esc_html( $form_submit ) . '</strong>', $message );
 
                         // @phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                         echo $message;
@@ -56,7 +56,7 @@
                         <?php endif; ?>
 
                         <p class="submit inline-edit-save">
-                            <a href="<?php echo esc_url( awpcp_get_admin_categories_url() ); ?>" class="button"  name="awpcp-cancel-delete-category"><?php echo esc_attr( $form_cancel ); ?></a>
+                            <a href="<?php echo esc_url( awpcp_get_admin_categories_url() ); ?>" class="button"  name="awpcp-cancel-delete-category"><?php echo esc_html( $form_cancel ); ?></a>
                             <input type="submit" class="button-primary button" name="awpcp-confirm-delete-category" value="<?php echo esc_attr( $form_submit ); ?>" />
                         </p>
                     </form>

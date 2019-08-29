@@ -106,13 +106,13 @@ class AWPCP_Delete_Category_Admin_Page {
         $params = array(
             'category_has_listings' => ads_exist_cat( $category->term_id ),
             'category_has_children' => category_has_children( $category->term_id ),
-            'form_title'            => esc_html( $form_title ),
+            'form_title'            => $form_title,
             'form_values'           => array(
                 'category_id' => $category->term_id,
                 'action'      => 'delete-category',
             ),
-            'form_submit'           => esc_html__( 'Delete category', 'another-wordpress-classifieds-plugin' ),
-            'form_cancel'           => esc_html__( 'Cancel', 'another-wordpress-classifieds-plugin' ),
+            'form_submit'           => __( 'Delete category', 'another-wordpress-classifieds-plugin' ),
+            'form_cancel'           => __( 'Cancel', 'another-wordpress-classifieds-plugin' ),
             'offset'                => (int) $this->request->param( 'offset' ),
             'results'               => max( (int) $this->request->param( 'results', 10 ), 1 ),
         );
