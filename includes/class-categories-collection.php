@@ -154,7 +154,12 @@ class AWPCP_Categories_Collection {
             return array();
         }
 
-        return $this->prepare_categories_objects( $results );
+        // If the results is an array of term objects, process each object first.
+        if ( count( $results ) && property_exists( current( $results ), 'term_id' ) ) {
+            return $this->prepare_categories_objects( $results );
+        }
+
+        return $results;
     }
 
     /**
