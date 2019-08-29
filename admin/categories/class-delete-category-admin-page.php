@@ -108,8 +108,9 @@ class AWPCP_Delete_Category_Admin_Page {
             'category_has_children' => category_has_children( $category->term_id ),
             'form_title'            => $form_title,
             'form_values'           => array(
-                'category_id' => $category->term_id,
-                'action'      => 'delete-category',
+                'category_id'        => $category->term_id,
+                'target_category_id' => 0,
+                'action'             => 'delete-category',
             ),
             'form_submit'           => __( 'Delete category', 'another-wordpress-classifieds-plugin' ),
             'form_cancel'           => __( 'Cancel', 'another-wordpress-classifieds-plugin' ),
