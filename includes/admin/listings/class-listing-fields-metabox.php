@@ -59,6 +59,11 @@ class AWPCP_ListingFieldsMetabox {
     private $wordpress;
 
     /**
+     * @var object
+     */
+    private $listing_authorization;
+
+    /**
      * @param string $post_type                 The post type associated with this metabox.
      * @param object $roles_and_capabilities    An instance of Roles And Capabilities.
      * @param object $listings_logic            An instance of Listings API.
@@ -72,7 +77,7 @@ class AWPCP_ListingFieldsMetabox {
      * @since 4.0.0
      * @SuppressWarnings(PHPMD.ExcessiveParameterList)
      */
-    public function __construct( $post_type, $roles_and_capabilities, $listings_logic, $form_fields_data, $form_fields_validator, $form_fields, $date_form_fields, $media_center, $template_renderer, $wordpress ) {
+    public function __construct( $post_type, $roles_and_capabilities, $listings_logic, $form_fields_data, $form_fields_validator, $form_fields, $date_form_fields, $media_center, $template_renderer, $wordpress, $listing_authorization ) {
         $this->post_type = $post_type;
 
         $this->roles_and_capabilities = $roles_and_capabilities;
@@ -84,6 +89,7 @@ class AWPCP_ListingFieldsMetabox {
         $this->media_center           = $media_center;
         $this->template_renderer      = $template_renderer;
         $this->wordpress              = $wordpress;
+        $this->listing_authorization  = $listing_authorization;
     }
 
     /**
@@ -121,6 +127,10 @@ class AWPCP_ListingFieldsMetabox {
         );
 
         if ( $this->roles_and_capabilities->current_user_is_moderator() ) {
+            $params['date_form_fields'] = $this->date_form_fields->render_fields( $data, $errors, $post, $context );
+        }
+
+        if (  $this->listing_authorization->is_current_user_allowed_to_edit_listing_start_date($post) ) {
             $params['date_form_fields'] = $this->date_form_fields->render_fields( $data, $errors, $post, $context );
         }
 

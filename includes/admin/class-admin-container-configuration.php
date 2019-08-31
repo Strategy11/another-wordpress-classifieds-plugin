@@ -340,7 +340,8 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
                 $container['ListingDateFormFieldsRenderer'],
                 $container['MediaCenterComponent'],
                 $container['TemplateRenderer'],
-                $container['WordPress']
+                $container['WordPress'],
+                $container['ListingAuthorization']
             );
         } );
 
