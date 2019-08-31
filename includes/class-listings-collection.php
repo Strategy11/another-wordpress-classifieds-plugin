@@ -184,13 +184,21 @@ class AWPCP_ListingsCollection {
     }
 
     /**
-     * @param array $query  An array of query vars.
+     * @param array $query_vars An array of query vars.
      * @since 3.3
      */
-    public function count_listings( $query = array() ) {
-        // phpcs:disable
-        return $this->count_posts( apply_filters( 'awpcp-find-listings-query', $query ) );
-        // phpcs:enable
+    public function count_listings( $query_vars = [] ) {
+        // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
+        $query_vars = apply_filters( 'awpcp-find-listings-query', $query_vars );
+
+        /**
+         * Filter the query vars used to count listings.
+         *
+         * @since 4.0.6
+         */
+        $query_vars = apply_filters( 'awpcp_count_listings_query', $query_vars );
+
+        return $this->count_posts( $query_vars );
     }
 
     /**

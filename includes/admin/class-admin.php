@@ -104,6 +104,8 @@ class AWPCP_Admin {
             add_filter( "get_user_option_edit_{$this->post_type}_per_page", [ $this, 'filter_items_per_page_user_option' ], 10, 3 );
 
             add_action( 'pre_get_posts', array( $this->table_restrictions, 'pre_get_posts' ) );
+            add_filter( 'awpcp_before_admin_listings_views', [ $this->table_restrictions, 'maybe_add_count_listings_query_filter' ] );
+            add_filter( 'awpcp_after_admin_listings_views', [ $this->table_restrictions, 'maybe_remove_count_listings_query_filter' ] );
 
             add_action( 'pre_get_posts', array( $this->table_views, 'pre_get_posts' ) );
             add_filter( 'views_edit-' . $this->post_type, array( $this->table_views, 'views' ) );

@@ -57,6 +57,14 @@ class AWPCP_ListTableViewsHandler {
      * @param array $views  An array of already defined views for the table.
      */
     public function views( $views ) {
+        /**
+         * Fired before the plugin creates the view links for the table of ads
+         * in the Classifieds Ads admin page.
+         *
+         * @since 4.0.6
+         */
+        do_action( 'awpcp_before_admin_listings_views' );
+
         $current_view = $this->get_current_view();
         $current_url  = add_query_arg( 'post_type', $this->request->param( 'post_type' ), admin_url( 'edit.php' ) );
 
@@ -74,6 +82,14 @@ class AWPCP_ListTableViewsHandler {
                 $current_view === $name ? 'current' : ''
             );
         }
+
+        /**
+         * Fired after the plugin creates the view links for the table of ads
+         * in the Classifieds Ads admin page.
+         *
+         * @since 4.0.6
+         */
+        do_action( 'awpcp_after_admin_listings_views' );
 
         return $views;
     }

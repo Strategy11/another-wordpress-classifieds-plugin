@@ -37,14 +37,42 @@ class AWPCP_ListTableRestrictions {
             return;
         }
 
-        if ( ! empty( $query->query_vars['author'] ) ) {
-            return;
-        }
-
         if ( $this->roles_and_capabilities->current_user_is_moderator() ) {
             return;
         }
 
-        $query->query_vars['author'] = $this->request->get_current_user()->ID;
+        $query->query_vars = $this->maybe_filter_by_author( $query->query_vars );
+    }
+
+    /**
+     * Add the author query var if not already set to ensure only listings
+     * owned by the current user are included.
+     *
+     * @since 4.0.6
+     */
+    public function maybe_filter_by_author( $query_vars ) {
+        if ( empty( $query_vars['author'] ) ) {
+            $query_vars['author'] = $this->request->get_current_user_id();
+        }
+
+        return $query_vars;
+    }
+
+    /**
+     * @since 4.0.6
+     */
+    public function maybe_add_count_listings_query_filter() {
+        if ( ! $this->roles_and_capabilities->current_user_is_moderator() ) {
+            add_filter( 'awpcp_count_listings_query', [ $this, 'maybe_filter_by_author' ] );
+        }
+    }
+
+    /**
+     * @since 4.0.6
+     */
+    public function maybe_remove_count_listings_query_filter() {
+        if ( ! $this->roles_and_capabilities->current_user_is_moderator() ) {
+            remove_filter( 'awpcp_count_listings_query', [ $this, 'maybe_filter_by_author' ] );
+        }
     }
 }
