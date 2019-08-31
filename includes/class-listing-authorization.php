@@ -84,13 +84,15 @@ class AWPCP_ListingAuthorization {
      * @since 4.0.0
      *
      * @param object $listing An instance of WP_Post.
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     * @SuppressWarnings(PHPMD.NPathComplexity)
      */
     public function is_current_user_allowed_to_edit_listing_start_date( $listing ) {
         if ( $this->roles->current_user_is_moderator() ) {
             return true;
         }
 
-        if ( !$this->settings->get_option( 'allow-start-date-modification' ) ) {
+        if ( ! $this->settings->get_option( 'allow-start-date-modification' ) ) {
             return false;
         }
 
@@ -114,7 +116,7 @@ class AWPCP_ListingAuthorization {
             return true;
         }
 
-        if (  $this->request->post( 'action' ) === 'awpcp_save_listing_information' ) {
+        if ( $this->request->post( 'action' ) === 'awpcp_save_listing_information' ) {
             return true;
         }
 
