@@ -110,7 +110,7 @@ class AWPCP_Custom_Post_Types {
                     'custom-fields',
                 ),
                 'capability_type'      => 'awpcp_classified_ad',
-                'map_meta_cap'         => true,
+                'map_meta_cap'         => false,
                 'capabilities'         => array(
                     // Moderators and subscribers.
                     'edit_posts'             => $dashboard_capability,
