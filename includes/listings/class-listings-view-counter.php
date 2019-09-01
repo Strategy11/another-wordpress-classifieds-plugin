@@ -24,6 +24,8 @@ class AWPCP_ListingsViewCounter extends AWPCP_AjaxHandler {
             $listing_id = $this->request->post( 'listing_id' );
             $listing    = get_post( $listing_id );
             $this->listings_logic->increase_visits_count( $listing );
+            $placeholder = awpcp_do_placeholder_legacy_views($listing, 'awpcpadviews');
+            $this->success(['placeholder' => $placeholder]);
         }
     }
 }
