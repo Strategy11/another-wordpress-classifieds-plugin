@@ -140,6 +140,8 @@ class AWPCP_RolesAndCapabilities {
 
     public function get_subscriber_capabilities() {
         return array(
+            'delete_awpcp_classified_ad',
+            'edit_awpcp_classified_ad',
             $this->get_subscriber_capability(),
         );
     }
