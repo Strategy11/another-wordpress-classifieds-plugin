@@ -126,10 +126,6 @@ class AWPCP_ListingFieldsMetabox {
             'errors'              => $errors,
         );
 
-        if ( $this->roles_and_capabilities->current_user_is_moderator() ) {
-            $params['date_form_fields'] = $this->date_form_fields->render_fields( $data, $errors, $post, $context );
-        }
-
         if ( $this->listing_authorization->is_current_user_allowed_to_edit_listing_start_date( $post ) ) {
             $params['date_form_fields'] = $this->date_form_fields->render_fields( $data, $errors, $post, $context );
         }
