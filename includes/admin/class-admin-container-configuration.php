@@ -332,7 +332,6 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
         $container['ListingFieldsMetabox'] = $container->service( function( $container ) {
             return new AWPCP_ListingFieldsMetabox(
                 $container['listing_post_type'],
-                $container['RolesAndCapabilities'],
                 $container['ListingsLogic'],
                 $container['FormFieldsData'],
                 $container['FormFieldsValidator'],
