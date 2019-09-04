@@ -110,7 +110,7 @@ class AWPCP_Custom_Post_Types {
                     'custom-fields',
                 ),
                 'capability_type'      => 'awpcp_classified_ad',
-                'map_meta_cap'         => false,
+                'map_meta_cap'         => true,
                 'capabilities'         => array(
                     // Moderators and subscribers.
                     'edit_posts'             => $dashboard_capability,
@@ -122,7 +122,7 @@ class AWPCP_Custom_Post_Types {
                     'edit_others_posts'      => $moderator_capability,
                     'publish_posts'          => $moderator_capability,
                     'delete_private_posts'   => $moderator_capability,
-                    'delete_published_posts' => $moderator_capability,
+                    'delete_published_posts' => $dashboard_capability,
                     'delete_others_posts'    => $moderator_capability,
                     'create_posts'           => $moderator_capability,
                 ),
