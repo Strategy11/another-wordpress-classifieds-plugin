@@ -33,6 +33,7 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
 
         $container['ListTableRestrictions'] = $container->service( function( $container ) {
             return new AWPCP_ListTableRestrictions(
+                $container['listing_post_type'],
                 $container['RolesAndCapabilities'],
                 $container['Request']
             );
