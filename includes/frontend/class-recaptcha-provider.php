@@ -61,7 +61,7 @@ class AWPCP_ReCAPTCHAProvider implements AWPCP_CAPTCHAProviderInterface {
                 'body' => [
                     'secret'   => $this->secret_key,
                     'response' => $this->delegate->get_recaptcha_response(),
-                    filter_var( INPUT_SERVER, 'REMOTE_ADDR', FILTER_VALIDATE_IP ),
+                    filter_input( INPUT_SERVER, 'REMOTE_ADDR', FILTER_VALIDATE_IP ),
                 ],
             ]
         );
