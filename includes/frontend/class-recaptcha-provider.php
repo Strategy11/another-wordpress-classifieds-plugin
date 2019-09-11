@@ -74,14 +74,14 @@ class AWPCP_ReCAPTCHAProvider implements AWPCP_CAPTCHAProviderInterface {
 
         $json = json_decode( $response['body'], true );
 
-        if ( $json['error-codes'] ) {
+        if ( isset( $json['error-codes'] ) ) {
             $error_message = $this->delegate->process_error_codes( $json['error-codes'] );
             $message       = $this->delegate->get_verification_error_message( $error_message );
 
             throw new AWPCP_Exception( $message );
         }
 
-        if ( ! $json['success'] ) {
+        if ( empty( $json['success'] ) ) {
             $message = __( "Your answers couldn't be verified by the reCAPTCHA server.", 'another-wordpress-classifieds-plugin' );
 
             throw new AWPCP_Exception( $message );
