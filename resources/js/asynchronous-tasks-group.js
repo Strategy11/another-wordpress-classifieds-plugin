@@ -70,6 +70,16 @@ function($, ko, moment, AsynchronousTask) {
                 }
             } );
 
+            this.tasks.sort(function(a, b) {
+                if (a.completed() < b.completed())  {
+                    return 1;
+                }
+                if (a.completed() == b.completed()) {
+                    return 0;
+                }
+                return -1;
+            });
+
             this.currentTaskIndex( currentTaskIndex );
             this.tasksCompleted( tasksCompleted );
         },
