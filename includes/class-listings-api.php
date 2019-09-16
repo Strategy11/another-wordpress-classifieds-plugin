@@ -272,6 +272,15 @@ class AWPCP_ListingsAPI {
         // take into account the stored metadata.
         $metadata = wp_parse_args( $metadata, $default_metadata );
 
+        // In addition to avoid overwritting existing data, we also need to make
+        // sure not to add defaults that are incosistent with the stored metadata.
+        //
+        // _awpcp_verification_needed and _awpcp_verified should never exist for
+        // the same listing at the same time.
+        if ( isset( $stored_metadata['_awpcp_verified'] ) && $stored_metadata['_awpcp_verified'] ) {
+            unset( $metadata['_awpcp_verification_needed'] );
+        }
+
         if ( ! isset( $stored_metadata['_awpcp_access_key'] ) || empty( $stored_metadata['_awpcp_access_key'] ) ) {
             /**
              * Filter the newly generated Access Key for the given listing.
