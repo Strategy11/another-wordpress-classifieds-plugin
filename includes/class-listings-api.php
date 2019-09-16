@@ -140,6 +140,17 @@ class AWPCP_ListingsAPI {
      */
     private function update_listing_metadata( $listing, $metadata ) {
         $metadata = $this->maybe_update_most_recent_start_date( $listing, $metadata );
+        $stored_metadata = get_post_meta( $listing->ID);
+        $stored_metadata = array_map(function($value) {return $value[0];}, $stored_metadata);
+        $metadata = array_merge($metadata, $stored_metadata);
+
+
+        // _awpcp_verification_needed and _awpcp_verified should never exist for
+        // the same listing at the same time.
+        if ( isset( $metadata['_awpcp_verified'] ) && $metadata['_awpcp_verified'] ) {
+            unset($metadata['_awpcp_verification_needed']);
+            delete_post_Meta($listing->ID, '_awpcp_verification_needed');
+        }
 
         foreach ( $metadata as $field_name => $field_value ) {
             $this->wordpress->update_post_meta( $listing->ID, $field_name, $field_value );
@@ -260,15 +271,6 @@ class AWPCP_ListingsAPI {
         // Now we merge the metadata that the user provided with defaults that
         // take into account the stored metadata.
         $metadata = wp_parse_args( $metadata, $default_metadata );
-
-        // In addition to avoid overwritting existing data, we also need to make
-        // sure not to add defaults that are incosistent with the stored metadata.
-        //
-        // _awpcp_verification_needed and _awpcp_verified should never exist for
-        // the same listing at the same time.
-        if ( isset( $stored_metadata['_awpcp_verified'] ) && $stored_metadata['_awpcp_verified'] ) {
-            unset( $metadata['_awpcp_verification_needed'] );
-        }
 
         if ( ! isset( $stored_metadata['_awpcp_access_key'] ) || empty( $stored_metadata['_awpcp_access_key'] ) ) {
             /**
