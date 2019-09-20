@@ -40,7 +40,7 @@ class AWPCP_ListingsTableNavHandler {
         $selected_category = $this->get_selected_category();
 
         if ( $selected_category ) {
-            $query->query_vars['classifieds_query']['category'] = $selected_category;
+            $query->query_vars['classifieds_query']['category']                                = $selected_category;
             $query->query_vars['classifieds_query']['include_listings_in_children_categories'] = false;
         }
 
