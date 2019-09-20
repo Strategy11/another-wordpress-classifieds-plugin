@@ -41,6 +41,7 @@ class AWPCP_ListingsTableNavHandler {
 
         if ( $selected_category ) {
             $query->query_vars['classifieds_query']['category'] = $selected_category;
+            $query->query_vars['classifieds_query']['include_listings_in_children_categories'] = false;
         }
 
         $selected_date_filter = $this->get_selected_date_filter();
