@@ -116,7 +116,7 @@ class AWPCP_ModeratorRenewListingTableAction implements
 
         // TODO: MOVE inside Ad::renew() ?
         // phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
-        do_action( 'awpcp-renew-ad' );
+        do_action( 'awpcp-renew-ad', $post->ID, null );
         // phpcs:enable
 
         return 'success';
