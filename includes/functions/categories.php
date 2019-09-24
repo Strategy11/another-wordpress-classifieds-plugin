@@ -191,6 +191,7 @@ function awpcp_count_listings_in_category( $category_id ) {
     $children_categories = get_term_children( $category_id , 'awpcp_listing_category' );
 
     $listings_count = awpcp_listings_collection()->count_enabled_listings( array(
+        'classifieds_query' => array('context' => 'public-listings'),
         'tax_query' => array(
             array(
                 'taxonomy' => 'awpcp_listing_category',
