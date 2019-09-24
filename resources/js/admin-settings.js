@@ -33,9 +33,17 @@ function( $, SettingsValidator ) {
                         description = descriptions[value];
                     }
 
-                    self.time.val(description.time);
-                    self.date.val(description.date);
-                    self.format.val(description.format);
+                    if (description.date === self.date.val()) {
+                        self.date.val(description.date);
+                    }
+
+                    if (description.time === self.time.val()) {
+                        self.time.val(description.time);
+                    }
+
+                    if (description.format === self.format.val()) {
+                        self.format.val(description.format);
+                    }
 
                     self.update();
                 }
