@@ -140,14 +140,10 @@ class AWPCP_ListingsAPI {
      */
     private function update_listing_metadata( $listing, $metadata ) {
         $metadata = $this->maybe_update_most_recent_start_date( $listing, $metadata );
-        $stored_metadata = get_post_meta( $listing->ID);
-        $stored_metadata = array_map(function($value) {return $value[0];}, $stored_metadata);
-        $metadata = array_merge($metadata, $stored_metadata);
-
 
         // _awpcp_verification_needed and _awpcp_verified should never exist for
         // the same listing at the same time.
-        if ( isset( $metadata['_awpcp_verified'] ) && $metadata['_awpcp_verified'] ) {
+        if ( isset( $metadata['_awpcp_verified'] ) && $metadata['_awpcp_verification_needed'] ) {
             unset($metadata['_awpcp_verification_needed']);
             delete_post_Meta($listing->ID, '_awpcp_verification_needed');
         }

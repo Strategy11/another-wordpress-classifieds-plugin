@@ -552,6 +552,7 @@ class AWPCP_CSV_Importer_Delegate {
         $payment_term = null;
 
         $listing_data['metadata']['_awpcp_verified'] = true;
+        $listing_data['metadata']['_awpcp_verification_needed'] = true;
         $listing_data['metadata']['_awpcp_payment_status'] = AWPCP_Payment_Transaction::PAYMENT_STATUS_NOT_REQUIRED;
 
         // If a valid payment term was found, an instance of that payment term is
@@ -566,11 +567,11 @@ class AWPCP_CSV_Importer_Delegate {
 
         try {
             $listing = $this->find_or_create_listing( $listing_data );
-            $listing = $this->listings_logic->update_listing( $listing, $listing_data );
-
             if ( $payment_term ) {
                 $this->listings_payments->update_listing_payment_term( $listing, $payment_term );
             }
+            $listing = $this->listings_logic->update_listing( $listing, $listing_data );
+
         } catch ( AWPCP_Exception $previous ) {
             $message = _x( 'There was an error trying to store imported data into the database.', 'csv importer', 'another-wordpress-classifieds-plugin' );
             throw new AWPCP_CSV_Importer_Exception( $message, 0, $previous );
