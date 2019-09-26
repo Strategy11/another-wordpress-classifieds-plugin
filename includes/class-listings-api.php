@@ -235,6 +235,11 @@ class AWPCP_ListingsAPI {
             '_awpcp_views'                  => 0,
         ];
 
+        if (awpcp_current_user_is_moderator()) {
+            $stored_metadata['_awpcp_verified'] = true;
+            $metadata['_awpcp_verified'] = true;
+        }
+
         // We want an array with the default keys defined above, but using the
         // stored values if one is available for the listing.
         //
