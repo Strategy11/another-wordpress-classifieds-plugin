@@ -68,7 +68,7 @@ class AWPCP_Categories_Logic {
      */
     private function get_category_data( $category, $category_order ) {
         $category_data = [
-            'order' => null,
+            'order' => 0,
         ];
 
         if ( isset( $category->name ) && ! empty( $category->name ) ) {

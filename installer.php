@@ -333,6 +333,9 @@ class AWPCP_Installer {
             ],
             '4.0.5' => [
                 'enable_routine_to_update_most_recent_date',
+            ],
+            '4.0.6' => [
+                'enable_routine_to_add_default_awpcp_order',
             ]
         );
     }
@@ -1173,6 +1176,13 @@ class AWPCP_Installer {
      */
     private function enable_routine_to_update_most_recent_date() {
         $this->upgrade_tasks->enable_upgrade_task( 'awpcp-update-most-recent-date' );
+    }
+
+    /**
+     * @since 4.0.6
+     */
+    private function enable_routine_to_add_default_awpcp_order() {
+        $this->upgrade_tasks->enable_upgrade_task( 'awpcp-add-missing-categories-order' );
     }
 }
 

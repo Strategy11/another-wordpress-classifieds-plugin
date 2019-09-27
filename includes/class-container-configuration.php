@@ -298,5 +298,14 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
                 );
             }
         );
+
+        $container['AddMissingCategoriesOrder'] = $container->service(
+            function( $container ) {
+                return new AWPCP_AddMissingCategoriesOrder(
+                    $container['listing_category_taxonomy'],
+                    awpcp_wordpress()
+                );
+            }
+        );
     }
 }

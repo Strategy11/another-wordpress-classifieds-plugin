@@ -316,7 +316,7 @@ class AWPCP_CSV_Importer_Delegate {
      */
     private function create_category( $name ) {
         try {
-            $category_id = $this->categories_logic->create_category( array( 'name' => $name ), 0 );
+            $category_id = $this->categories_logic->create_category( array( 'name' => $name ) );
         } catch ( AWPCP_Exception $e ) {
             $message = _x( 'There was an error trying to create category "<category-name>".', 'csv importer', 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '<category-name>', $name, $message );

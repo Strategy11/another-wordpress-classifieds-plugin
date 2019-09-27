@@ -206,5 +206,15 @@ class AWPCP_Manual_Upgrade_Tasks {
                 'blocking' => false,
             ]
         );
+
+        $this->upgrade_tasks->register_upgrade_task(
+            [
+                'slug'     => 'awpcp-add-missing-categories-order',
+                'name'     => __( 'Add missing _awpcp_order', 'another-wordpress-classifieds-plugin' ),
+                'handler'  => 'AddMissingCategoriesOrder',
+                'context'  => 'plugin',
+                'blocking' => false,
+            ]
+        );
     }
 }
