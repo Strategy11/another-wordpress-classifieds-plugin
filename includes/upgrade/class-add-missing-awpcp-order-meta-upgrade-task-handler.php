@@ -20,14 +20,14 @@ class AWPCP_AddMissingCategoriesOrder implements AWPCP_Upgrade_Task_Runner {
 
 
     /**
-     * @param $taxonomy
-     * @param $wordpress
+     * @param string          $taxonomy taxonomy name.
+     * @param AWPCP_WordPress $wordpress AWPCP_WordPress.
      *
      * @since 4.0.0
      */
     public function __construct( $taxonomy, $wordpress ) {
-        $this->taxonomy             = $taxonomy;
-        $this->wordpress             = $wordpress;
+        $this->taxonomy  = $taxonomy;
+        $this->wordpress = $wordpress;
     }
 
     /**
@@ -50,9 +50,9 @@ class AWPCP_AddMissingCategoriesOrder implements AWPCP_Upgrade_Task_Runner {
      * @since 4.0.0
      */
     private function prepare_query_vars( $query_vars = null ) {
-        $query_vars['taxonomy']   = $this->taxonomy;
-        $query_vars['hide_empty'] = false;
-        $query_vars['meta_key'] = '_awpcp_order';
+        $query_vars['taxonomy']     = $this->taxonomy;
+        $query_vars['hide_empty']   = false;
+        $query_vars['meta_key']     = '_awpcp_order';
         $query_vars['meta_compare'] = 'NOT EXISTS';
 
         return $query_vars;
