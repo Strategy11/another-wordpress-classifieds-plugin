@@ -143,7 +143,7 @@ class AWPCP_ListingsAPI {
 
         // _awpcp_verification_needed and _awpcp_verified should never exist for
         // the same listing at the same time.
-        if ( isset( $metadata['_awpcp_verified'] ) && $metadata['_awpcp_verification_needed'] ) {
+        if ( isset( $metadata['_awpcp_verified'] ) && isset($metadata['_awpcp_verification_needed']) ) {
             unset($metadata['_awpcp_verification_needed']);
             delete_post_Meta($listing->ID, '_awpcp_verification_needed');
         }
