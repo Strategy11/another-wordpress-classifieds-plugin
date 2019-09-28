@@ -5,13 +5,15 @@ AWPCP.run( 'awpcp/edit-post', [
     'awpcp/multiple-region-selector-validator',
     'awpcp/media-center',
     'awpcp/settings',
-    'awpcp/jquery-validate-methods'
+    'awpcp/user-selector',
+    'awpcp/jquery-validate-methods',
 ], function(
     $,
     DatepickerField,
     MultipleRegionsSelectorValidator,
     MediaCenter,
-    settings
+    settings,
+    UserSelector
 ) {
     $( function() {
         $( '[datepicker-placeholder]' ).each( function() {
@@ -105,5 +107,18 @@ AWPCP.run( 'awpcp/edit-post', [
             $changePaymentTermLink.toggleClass( 'awpcp-hidden' );
             $changePaymentTermForm.toggleClass( 'awpcp-hidden' );
         } );
+
+
+        // Classifieds Owner Dropdown
+        $userSelect = $('#awpcp-classifieds-owner-metabox').find( '.awpcp-user-selector' );
+        function getUserInformation( userId ) {
+            $user = $userSelect.find( 'option[value="' + userId + '"]' );
+
+            return $user.length ? $user.data( 'user-information' ) : null;
+        }
+        userData = $userSelect.data( 'configuration' );
+
+        $userSelector = new UserSelector( $userSelect, $userSelect.data( 'configuration' ) );
+
     } );
 } );

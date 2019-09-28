@@ -87,6 +87,14 @@ class AWPCP_Admin {
      */
     public function admin_init() {
         global $typenow;
+        if (empty($typenow)) {
+            // try to pick it up from the query string
+            if (!empty($_GET['post'])) {
+                $post = get_post($_GET['post']);
+                $typenow = $post->post_type;
+            }
+        }
+
 
         if ( $this->post_type === $typenow ) {
             add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
