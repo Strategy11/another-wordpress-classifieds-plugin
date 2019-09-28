@@ -87,16 +87,18 @@ class AWPCP_Admin {
      */
     public function admin_init() {
         global $typenow;
-        if (empty($typenow)) {
-            // try to pick it up from the query string
-            if (!empty($_GET['post'])) {
-                $post = get_post($_GET['post']);
-                $typenow = $post->post_type;
+        $post_type = $typenow;
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        if ( empty( $post_type ) && isset( $_GET['post'] ) ) {
+            $post = intval( $_GET['post'] );
+            // try to pick it up from the query string.
+            if ( ! empty( $post ) ) {
+                $post      = get_post( $post );
+                $post_type = $post->post_type;
             }
         }
 
-
-        if ( $this->post_type === $typenow ) {
+        if ( $this->post_type === $post_type ) {
             add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 
             add_filter( "get_user_option_edit_{$this->post_type}_per_page", [ $this, 'filter_items_per_page_user_option' ], 10, 3 );
