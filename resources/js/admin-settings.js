@@ -14,9 +14,9 @@ function( $, SettingsValidator ) {
             self.format = self.element.find('#date-time-format');
             self.example = self.element.find('[example]');
 
-            self.keep_format_strings = false;
+            self.radios  = self.element.find(':radio');
+            self.current = self.radios.filter( ':checked' );
 
-            self.radios = self.element.find(':radio');
             self.radios.change(function() {
                 var $radio = $( this );
 
@@ -24,7 +24,7 @@ function( $, SettingsValidator ) {
                     return;
                 }
 
-                if (!self.keep_format_strings) {
+                if ( $radio.val() !== self.current.val() ) {
                     var value = $(this).val(),
                         descriptions = $.AWPCP.get('datetime-formats'),
                         description;
@@ -33,28 +33,18 @@ function( $, SettingsValidator ) {
                         description = descriptions[value];
                     }
 
-                    if (description.date === self.date.val()) {
-                        self.date.val(description.date);
-                    }
+                    self.time.val(description.time);
+                    self.date.val(description.date);
+                    self.format.val(description.format);
 
-                    if (description.time === self.time.val()) {
-                        self.time.val(description.time);
-                    }
-
-                    if (description.format === self.format.val()) {
-                        self.format.val(description.format);
-                    }
-
-                    self.update();
+                    self.current = $radio;
                 }
 
-                self.keep_format_strings = false;
+                self.update();
             });
 
             self.element.find(':text').change(function() {
-                self.keep_format_strings = true;
-                self.radios.filter('[value="custom"]').click();
-                self.update();
+                self.radios.filter('[value="custom"]').trigger( 'change' );
             });
         };
 
