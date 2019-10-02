@@ -97,15 +97,6 @@
             <table class="form-table">
                 <tr class="form-required">
                     <th scope="row">
-                        <label>
-							<?php echo esc_html_x( 'What operating system will you use to edit the CSV file?', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?>
-                            <span class="description">(<?php echo esc_html_x( 'required', 'admin forms', 'another-wordpress-classifieds-plugin' ); ?>)
-                            </span>
-                        </label>
-                    </th>
-                </tr>
-                <tr class="form-required">
-                    <th scope="row">
                         <label> <?php echo esc_html_x( 'Image Separator', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?> <span
                                     class="description">(<?php echo esc_html_x( 'required', 'admin forms', 'another-wordpress-classifieds-plugin' ); ?>)</span></label>
                     </th>

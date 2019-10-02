@@ -13,7 +13,7 @@
 
             <p>
                 <?php $support_csv_headers_link = add_query_arg( 'awpcp-view', 'supported-csv-headers' ); ?>
-                <a class="button" href="<?php echo esc_url( $support_csv_headers_link ); ?>"><?php esc_html_e( 'See Supported CSV Hedaers', 'another-wordpress-classifieds-plugin' ); ?></a>
+                <a class="button" href="<?php echo esc_url( $support_csv_headers_link ); ?>"><?php esc_html_e( 'See Supported CSV Headers', 'another-wordpress-classifieds-plugin' ); ?></a>
                 <?php $import_listings_link = remove_query_arg( 'awpcp-view' ); ?>
                 <a class="button-primary" href="<?php echo esc_url( $import_listings_link ); ?>"><?php esc_html_e( 'Import Listings', 'another-wordpress-classifieds-plugin' ); ?></a>
             </p>

@@ -61,7 +61,7 @@
 
                 <p class="submit">
                     <?php $support_csv_headers_link = add_query_arg( 'awpcp-view', 'supported-csv-headers' ); ?>
-                    <a class="button" href="<?php echo esc_url( $support_csv_headers_link ); ?>"><?php esc_html_e( 'See Supported CSV Hedaers', 'another-wordpress-classifieds-plugin' ); ?></a>
+                    <a class="button" href="<?php echo esc_url( $support_csv_headers_link ); ?>"><?php esc_html_e( 'See Supported CSV Headers', 'another-wordpress-classifieds-plugin' ); ?></a>
                     <?php $example_csv_file_link = add_query_arg( 'awpcp-view', 'example-csv-file' ); ?>
                     <a class="button" href="<?php echo esc_url( $example_csv_file_link ); ?>"><?php esc_html_e( 'See Example CSV File', 'another-wordpress-classifieds-plugin' ); ?></a>
 
