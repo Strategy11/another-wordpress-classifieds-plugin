@@ -4,12 +4,15 @@
  */
 
 ?>
-<?php $page_id    = 'awpcp-admin-csv-importer'; ?>
+<?php $page_id = 'awpcp-admin-csv-importer'; ?>
 <?php $page_title = awpcp_admin_page_title( __( 'Import Listings', 'another-wordpress-classifieds-plugin' ) ); ?>
 
 <?php require AWPCP_DIR . '/admin/templates/admin-panel-header.tpl.php'; ?>
 
-            <?php echo $form_steps; // XSS Ok. ?>
+            <?php
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+            echo $form_steps;
+            ?>
 
             <h3><?php echo esc_html( __( 'Upload Source Files', 'another-wordpress-classifieds-plugin' ) ); ?></h3>
 
@@ -22,7 +25,11 @@
                             </th>
                             <td>
                                 <input id="awpcp-importer-csv-file" type="file" name="csv_file" />
-                                <br/><?php echo awpcp_form_error( 'csv_file', $form_errors ); // XSS Ok. ?>
+                                <br/>
+                                <?php
+                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                echo awpcp_form_error( 'csv_file', $form_errors );
+                                ?>
                             </td>
                         </tr>
                         <tr>
@@ -43,7 +50,11 @@
                             </th>
                             <td>
                                 <input id="awpcp-importer-zip-file" type="file" name="zip_file" />
-                                <br/><?php echo awpcp_form_error( 'zip_file', $form_errors ); // XSS Ok. ?>
+                                <br/>
+                                <?php
+                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                echo awpcp_form_error( 'zip_file', $form_errors );
+                                ?>
                             </td>
                         </tr>
                         <tr data-usableform="show-if:images_source:local">
@@ -52,8 +63,17 @@
                             </th>
                             <td>
                                 <input id="awpcp-importer-local-path" type="text" name="local_path" value="<?php echo esc_attr( $form_data['local_path'] ); ?>"/>
-                                <br/><?php echo awpcp_form_error( 'local_path', $form_errors ); // XSS Ok. ?>
-                                <p class="awpcp-helptext"><?php echo str_replace( '<uploads-directory-path>', '<code>' . awpcp()->settings->get_runtime_option( 'awpcp-uploads-dir' ) . '</code>', __( 'The relative path to a directory inside <uploads-directory-path>.', 'another-wordpress-classifieds-plugin' ) ); // XSS Ok. ?></p>
+                                <br/>
+                                <?php
+                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                echo awpcp_form_error( 'local_path', $form_errors );
+                                ?>
+                                <p class="awpcp-helptext">
+                                <?php
+                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                    echo str_replace( '<uploads-directory-path>', '<code>' . awpcp()->settings->get_runtime_option( 'awpcp-uploads-dir' ) . '</code>', __( 'The relative path to a directory inside <uploads-directory-path>.', 'another-wordpress-classifieds-plugin' ) );
+                                ?>
+                                    </p>
                             </td>
                         </tr>
                     </tbody>

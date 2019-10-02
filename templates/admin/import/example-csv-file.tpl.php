@@ -4,7 +4,7 @@
  */
 
 ?>
-<?php $page_id    = 'awpcp-import-example-csv-file'; ?>
+<?php $page_id = 'awpcp-import-example-csv-file'; ?>
 <?php $page_title = awpcp_admin_page_title( __( 'Import Listings: Example CSV File', 'another-wordpress-classifieds-plugin' ) ); ?>
 
 <?php require AWPCP_DIR . '/admin/templates/admin-panel-header.tpl.php'; ?>
