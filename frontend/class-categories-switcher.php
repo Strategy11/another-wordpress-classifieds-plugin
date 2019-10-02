@@ -76,7 +76,7 @@ class AWPCP_Categories_Switcher {
                 'awpcp-action' => 'browsecat',
                 'results'      => $this->request->param( 'results' ),
                 'offset'       => 0,
-                'page_id'      => $post->ID
+                'page_id'      => $post->ID,
             ),
             'strlen'
         );
