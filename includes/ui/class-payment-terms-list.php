@@ -47,6 +47,8 @@ class AWPCP_Payment_Terms_List {
     }
 
     public function render( $model_data, $options = array() ) {
+        $option_name = 'hide-all-payment-terms-if-no-category-is-selected';
+        awpcp()->js->set( $option_name, awpcp_parse_bool( get_awpcp_option( $option_name ) ) );
         $options = wp_parse_args( $options, array(
             'payment_terms' => null,
             'transaction'   => null,
