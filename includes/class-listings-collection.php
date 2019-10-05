@@ -45,11 +45,17 @@ class AWPCP_ListingsCollection {
      */
     private $db;
 
-    public function __construct( $listing_post_type, $settings, $wordpress, $db ) {
+    /**
+     * @var AWPCP_RolesAndCapabilities $roles
+     */
+    private $roles;
+
+    public function __construct( $listing_post_type, $settings, $wordpress, $db, $roles ) {
         $this->listing_post_type = $listing_post_type;
         $this->settings          = $settings;
         $this->wordpress         = $wordpress;
         $this->db                = $db;
+        $this->roles = $roles;
     }
 
     /**
@@ -208,6 +214,10 @@ class AWPCP_ListingsCollection {
     private function count_posts( $query_vars ) {
         if ( ! isset( $query_vars['classifieds_query'] ) ) {
             $query_vars['classifieds_query'] = array();
+        }
+
+        if (!$this->roles->current_user_is_moderator()) {
+            $query_vars['author'] = get_current_user_id();
         }
 
         $this->last_query = $this->wordpress->create_posts_query( $query_vars );

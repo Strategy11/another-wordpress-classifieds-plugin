@@ -107,7 +107,8 @@ class AWPCP_ListingsContainerConfiguration implements AWPCP_ContainerConfigurati
                     $container['listing_post_type'],
                     $container['Settings'],
                     $container['WordPress'],
-                    $container['wpdb']
+                    $container['wpdb'],
+                    $container['RolesAndCapabilities']
                 );
             }
         );

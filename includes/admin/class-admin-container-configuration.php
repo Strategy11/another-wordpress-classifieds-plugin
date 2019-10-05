@@ -143,6 +143,14 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
             );
         } );
 
+        $container['ApproveImagesTableAction'] = $container->service( function( $container ) {
+            return new AWPCP_ApproveImagesTableAction(
+                awpcp_listings_api(),
+                $container['RolesAndCapabilities'],
+                $container['AttachmentsLogic']
+            );
+        } );
+
         $container['SendAccessKeyListingTableAction'] = $container->service( function( $container ) {
             return new AWPCP_SendAccessKeyListingTableAction(
                 $container['EmailFactory'],

@@ -184,6 +184,7 @@ class AWPCP_Admin {
     public function register_listings_table_actions( $actions ) {
         $actions['quick-view']             = $this->container['QuickViewListingTableAction'];
         $actions['enable']                 = $this->container['EnableListingTableAction'];
+        $actions['approve-images']         = $this->container['ApproveImagesTableAction'];
         $actions['disable']                = $this->container['DisableListingTableAction'];
         $actions['send-access-key']        = $this->container['SendAccessKeyListingTableAction'];
         $actions['spam']                   = $this->container['MarkAsSPAMListingTableAction'];

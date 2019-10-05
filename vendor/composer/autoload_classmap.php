@@ -35,6 +35,7 @@ return array(
     'AWPCP_AkismetWrapperBase' => $baseDir . '/includes/helpers/class-akismet-wrapper-base.php',
     'AWPCP_AkismetWrapperFactory' => $baseDir . '/includes/helpers/class-akismet-wrapper-factory.php',
     'AWPCP_AllInOneSEOPackPluginIntegration' => $baseDir . '/includes/compatibility/class-all-in-one-seo-pack-plugin-integration.php',
+    'AWPCP_ApproveImagesTableAction' => $baseDir . '/includes/admin/listings/class-approve-images-table-action.php',
     'AWPCP_ArrayOptions' => $baseDir . '/includes/wordpress/class-array-options.php',
     'AWPCP_AsynchronousTasksComponent' => $baseDir . '/includes/helpers/widgets/class-asynchronous-tasks-component.php',
     'AWPCP_Attachment_Action_Ajax_Handler' => $baseDir . '/includes/media/class-attachment-action-ajax-handler.php',

@@ -36,6 +36,7 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_AkismetWrapperBase' => __DIR__ . '/../..' . '/includes/helpers/class-akismet-wrapper-base.php',
         'AWPCP_AkismetWrapperFactory' => __DIR__ . '/../..' . '/includes/helpers/class-akismet-wrapper-factory.php',
         'AWPCP_AllInOneSEOPackPluginIntegration' => __DIR__ . '/../..' . '/includes/compatibility/class-all-in-one-seo-pack-plugin-integration.php',
+        'AWPCP_ApproveImagesTableAction' => __DIR__ . '/../..' . '/includes/admin/listings/class-approve-images-table-action.php',
         'AWPCP_ArrayOptions' => __DIR__ . '/../..' . '/includes/wordpress/class-array-options.php',
         'AWPCP_AsynchronousTasksComponent' => __DIR__ . '/../..' . '/includes/helpers/widgets/class-asynchronous-tasks-component.php',
         'AWPCP_Attachment_Action_Ajax_Handler' => __DIR__ . '/../..' . '/includes/media/class-attachment-action-ajax-handler.php',
