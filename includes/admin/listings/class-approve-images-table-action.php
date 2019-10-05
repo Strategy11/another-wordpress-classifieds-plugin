@@ -24,15 +24,13 @@ class AWPCP_ApproveImagesTableAction implements AWPCP_ListTableActionInterface {
     private $attachments_logic;
 
     /**
-     * @param object $email_factory An instance of Email Factory.
-     * @param object $listing_renderer An instance of Listing Renderer.
      *
      * @since 4.0.0
      */
     public function __construct( $listings_api, $roles, $attachments_logic ) {
-        $this->listings_api       = $listings_api;
-        $this->roles = $roles;
-        $this->attachments_logic  = $attachments_logic;
+        $this->listings_api      = $listings_api;
+        $this->roles             = $roles;
+        $this->attachments_logic = $attachments_logic;
     }
 
     /**
@@ -46,7 +44,6 @@ class AWPCP_ApproveImagesTableAction implements AWPCP_ListTableActionInterface {
     }
 
     /**
-     * @param object $post An instance of WP_Post.
      *
      * @since 4.0.0
      */
@@ -100,21 +97,20 @@ class AWPCP_ApproveImagesTableAction implements AWPCP_ListTableActionInterface {
      * @since 4.0.0
      */
     public function process_item( $post ) {
-        $images = get_attached_media( 'image', $post->ID );
+        $images   = get_attached_media( 'image', $post->ID );
         $approved = [];
         foreach ( $images as $image ) {
-            if (metadata_exists('post', $image->ID, '_awpcp_allowed_status')) {
+            if ( metadata_exists( 'post', $image->ID, '_awpcp_allowed_status' ) ) {
                 continue;
             }
-            if ( $this->attachments_logic->approve_attachment( $image )) {
+            if ( $this->attachments_logic->approve_attachment( $image ) ) {
                 $approved[] = 'success';
+                continue;
             }
-            else {
-                $approved[] = 'error';
-            }
+            $approved[] = 'error';
         }
 
-        if (!in_array('error', $approved )) {
+        if ( ! in_array( 'error', $approved, true ) ) {
             $this->listings_api->remove_having_images_awaiting_approval_mark( $post );
             return 'success';
         }
@@ -140,8 +136,8 @@ class AWPCP_ApproveImagesTableAction implements AWPCP_ListTableActionInterface {
 
     /**
      * @param string $code Result code.
-     * @param int $count Number of posts associated with the given result
-     *                          code.
+     * @param int    $count Number of posts associated with the given result
+     *                             code.
      *
      * @since 4.0.0
      */

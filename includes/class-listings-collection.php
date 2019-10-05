@@ -55,7 +55,7 @@ class AWPCP_ListingsCollection {
         $this->settings          = $settings;
         $this->wordpress         = $wordpress;
         $this->db                = $db;
-        $this->roles = $roles;
+        $this->roles             = $roles;
     }
 
     /**
@@ -216,7 +216,7 @@ class AWPCP_ListingsCollection {
             $query_vars['classifieds_query'] = array();
         }
 
-        if (!$this->roles->current_user_is_moderator()) {
+        if ( ! $this->roles->current_user_is_moderator() ) {
             $query_vars['author'] = get_current_user_id();
         }
 
