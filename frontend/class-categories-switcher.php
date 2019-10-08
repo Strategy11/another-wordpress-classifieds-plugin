@@ -72,8 +72,8 @@ class AWPCP_Categories_Switcher {
 
         $hidden = array_filter(
             array(
-                'results'      => $this->request->param( 'results' ),
-                'offset'       => 0,
+                'results' => $this->request->param( 'results' ),
+                'offset'  => 0,
             ),
             'strlen'
         );
