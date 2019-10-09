@@ -43,9 +43,12 @@ class AWPCP_CategoriesListWalker extends Walker {
         return true;
     }
 
-    public function walk( $elements, $max_depth = 0 ) {
+    /**
+     * @see \Walker::walk()
+     */
+    public function walk( $elements, $max_depth = 0, ...$args ) {
         $this->all_elements_count = count( $elements );
-        return str_replace( '[categories-list]', parent::walk( $elements, $max_depth ), $this->list_container() );
+        return str_replace( '[categories-list]', parent::walk( $elements, $max_depth, ...$args ), $this->list_container() );
     }
 
     protected function list_container() {
