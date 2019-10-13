@@ -100,7 +100,8 @@ class AWPCP_ApproveImagesTableAction implements AWPCP_ListTableActionInterface {
         $images   = get_attached_media( 'image', $post->ID );
         $approved = [];
         foreach ( $images as $image ) {
-            if ( metadata_exists( 'post', $image->ID, '_awpcp_allowed_status' ) ) {
+            $allowed_status = get_metadata( 'post', $image->ID, '_awpcp_allowed_status', true );
+            if ( $allowed_status === 'Approved' ) {
                 continue;
             }
             if ( $this->attachments_logic->approve_attachment( $image ) ) {
