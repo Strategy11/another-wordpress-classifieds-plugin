@@ -407,13 +407,18 @@ class AWPCP_CSV_Importer_Delegate {
             'uk_date' => array(
                 array('%d', '%m', '%y'),
                 array('%d', '%m', '%Y'),
-            )
+            ),
+            'eur_date' => array(
+                array('%y', '%m', '%d'),
+                array('%Y', '%m', '%d'),
+            ),
         );
 
         $date_formats['us_date_time'] = $date_formats['us_date'];
         $date_formats['uk_date_time'] = $date_formats['uk_date'];
+        $date_formats['eur_date_time'] = $date_formats['eur_date'];
 
-        if (in_array($date_time_format, array('us_date_time', 'uk_date_time')))
+        if (in_array($date_time_format, array('us_date_time', 'uk_date_time', 'eur_date_time')))
             $suffix = implode($time_separator, array('%H', '%M', '%S'));
         else
             $suffix = '';
