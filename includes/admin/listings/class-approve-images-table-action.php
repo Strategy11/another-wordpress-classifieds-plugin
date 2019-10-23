@@ -152,8 +152,8 @@ class AWPCP_ApproveImagesTableAction implements AWPCP_ListTableActionInterface {
         }
 
         if ( 'error' === $code ) {
-            /* translators: %d is the number of ads that were successfully enabled. */
-            $message = _n( "Images from %d ad couldnt't be enabled.", 'Images from %d ads were successfully approved.', $count, 'another-wordpress-classifieds-plugin' );
+            /* translators: %d is the number of ads that couldnt be approved. */
+            $message = _n( "Images from %d ad couldn't be approved.", "Images from %d ads couldn't be approved.", $count, 'another-wordpress-classifieds-plugin' );
             $message = sprintf( $message, $count );
 
             return awpcp_render_dismissible_error_message( $message );
