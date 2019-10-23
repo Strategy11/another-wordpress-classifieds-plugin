@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2019-09-04 19:55:40+00:00\n"
-"PO-Revision-Date: 2019-09-04 19:57+0000\n"
+"POT-Creation-Date: 2019-10-23 17:10:40+00:00\n"
+"PO-Revision-Date: 2019-10-23 17:11+0000\n"
 "Last-Translator: Juan <juandlopezr@gmail.com>\n"
 "Language-Team: Italian (Italy) (http://www.transifex.com/wp-translations/another-wordpress-classifieds-plugin/language/it_IT/)\n"
 "MIME-Version: 1.0\n"
@@ -223,7 +223,7 @@ msgstr ""
 
 #: admin/admin-panel.php:359 admin/admin-panel.php:360
 #: frontend/templates/page-renew-ad.tpl.php:3
-#: includes/admin/class-admin-container-configuration.php:189
+#: includes/admin/class-admin-container-configuration.php:198
 msgid "Renew Ad"
 msgstr "Rinnova Annuncio"
 
@@ -428,7 +428,7 @@ msgstr ""
 #: frontend/templates/payments-billing-form.tpl.php:123
 #: includes/listings/class-listing-action-with-confirmation.php:8
 #: includes/settings/renderers/class-button-settings-renderer.php:41
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:165
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:173
 #: templates/admin/import-listings-admin-page-import-form.tpl.php:47
 msgid "Cancel"
 msgstr "Cancella"
@@ -933,55 +933,55 @@ msgctxt "csv importer"
 msgid "Invalid default start date."
 msgstr ""
 
-#: admin/import/class-csv-importer-delegate.php:451
-#: admin/import/class-csv-importer-delegate.php:452
+#: admin/import/class-csv-importer-delegate.php:456
+#: admin/import/class-csv-importer-delegate.php:457
 msgctxt "csv importer"
 msgid "The end date is missing and no default value was defined."
 msgstr ""
 
-#: admin/import/class-csv-importer-delegate.php:453
+#: admin/import/class-csv-importer-delegate.php:458
 msgctxt "csv importer"
 msgid "Invalid default end date."
 msgstr ""
 
-#: admin/import/class-csv-importer-delegate.php:491
+#: admin/import/class-csv-importer-delegate.php:496
 msgid "The payment term type must be 'fee' or 'subscription'."
 msgstr ""
 
-#: admin/import/class-csv-importer-delegate.php:497
+#: admin/import/class-csv-importer-delegate.php:502
 msgid ""
 "There is no payment term with type {payment_term_type} and ID "
 "{payment_term_id}."
 msgstr ""
 
-#: admin/import/class-csv-importer-delegate.php:511
+#: admin/import/class-csv-importer-delegate.php:516
 msgid ""
 "No images directory was configured. Are you sure you uploaded a ZIP file or "
 "defined a local directory?"
 msgstr ""
 
-#: admin/import/class-csv-importer-delegate.php:520
+#: admin/import/class-csv-importer-delegate.php:525
 msgctxt "csv importer"
 msgid "Image file with name <image-name> not found."
 msgstr ""
 
-#: admin/import/class-csv-importer-delegate.php:575
+#: admin/import/class-csv-importer-delegate.php:581
 msgctxt "csv importer"
 msgid "There was an error trying to store imported data into the database."
 msgstr ""
 
-#: admin/import/class-csv-importer-delegate.php:596
+#: admin/import/class-csv-importer-delegate.php:602
 msgctxt "csv importer"
 msgid ""
 "There was an error trying to import one of the images: {image-validation-"
 "error}"
 msgstr ""
 
-#: admin/import/class-csv-importer-delegate.php:687
+#: admin/import/class-csv-importer-delegate.php:693
 msgid "The value for Extra Field %s's is not allowed. Allowed values are: %%s"
 msgstr ""
 
-#: admin/import/class-csv-importer-delegate.php:696
+#: admin/import/class-csv-importer-delegate.php:702
 msgid ""
 "The value for Extra Field %s's is not allowed. Allowed value is one of: %%s"
 msgstr ""
@@ -1928,7 +1928,7 @@ msgstr "Data di inizio e fine"
 
 #: frontend/page-place-ad.php:857
 #: includes/admin/import/class-csv-importer-columns.php:176
-#: includes/admin/listings/class-listings-table-nav-handler.php:157
+#: includes/admin/listings/class-listings-table-nav-handler.php:158
 #: includes/form-fields/class-listing-form-fields.php:129
 #: templates/admin/import-listings-admin-page-configuration-form.tpl.php:33
 msgid "Start Date"
@@ -1936,7 +1936,7 @@ msgstr "Data di Inizio"
 
 #: frontend/page-place-ad.php:859
 #: includes/admin/import/class-csv-importer-columns.php:187
-#: includes/admin/listings/class-listings-table-nav-handler.php:158
+#: includes/admin/listings/class-listings-table-nav-handler.php:159
 #: includes/form-fields/class-listing-form-fields.php:133
 #: templates/admin/import-listings-admin-page-configuration-form.tpl.php:43
 msgid "End Date"
@@ -3222,15 +3222,15 @@ msgstr ""
 msgid "OpenSSL version:"
 msgstr ""
 
-#: includes/admin/class-admin.php:257
+#: includes/admin/class-admin.php:271
 msgid "Classified Information"
 msgstr ""
 
-#: includes/admin/class-admin.php:265
+#: includes/admin/class-admin.php:279
 msgid "Classified Owner"
 msgstr ""
 
-#: includes/admin/class-admin.php:273
+#: includes/admin/class-admin.php:287
 msgid "Classified Fields"
 msgstr ""
 
@@ -3445,8 +3445,8 @@ msgid ""
 msgstr ""
 
 #: includes/admin/import/class-importer-form-steps.php:16
-#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:14
-#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:68
+#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:17
+#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:88
 msgid "Upload Source Files"
 msgstr ""
 
@@ -3455,14 +3455,33 @@ msgid "Configuration"
 msgstr "Configurazione"
 
 #: includes/admin/import/class-importer-form-steps.php:29
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:157
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:165
 msgid "Import"
 msgstr "Importa"
 
 #: includes/admin/import/class-importer-form-steps.php:32
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:156
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:164
 msgid "Test Import"
 msgstr "Importazione Test"
+
+#: includes/admin/listings/class-approve-images-table-action.php:66
+msgctxt "listing row action"
+msgid "Approve Images"
+msgstr ""
+
+#. translators: %d is the number of ads that were successfully enabled.
+#: includes/admin/listings/class-approve-images-table-action.php:148
+msgid "Images from %d ad were successfully approved."
+msgid_plural "Images from %d ads were successfully approved."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d is the number of ads that couldnt be approved.
+#: includes/admin/listings/class-approve-images-table-action.php:156
+msgid "Images from %d ad couldn't be approved."
+msgid_plural "Images from %d ads couldn't be approved."
+msgstr[0] ""
+msgstr[1] ""
 
 #: includes/admin/listings/class-awaiting-approval-listing-table-view.php:28
 msgctxt "listing view"
@@ -3659,27 +3678,27 @@ msgctxt "listing status"
 msgid "Pending Verification"
 msgstr ""
 
-#: includes/admin/listings/class-listings-table-nav-handler.php:147
+#: includes/admin/listings/class-listings-table-nav-handler.php:148
 msgid "Select date field"
 msgstr ""
 
-#: includes/admin/listings/class-listings-table-nav-handler.php:156
+#: includes/admin/listings/class-listings-table-nav-handler.php:157
 msgid "All dates"
 msgstr "Tutte le date"
 
-#: includes/admin/listings/class-listings-table-nav-handler.php:159
+#: includes/admin/listings/class-listings-table-nav-handler.php:160
 msgid "Renewed Date"
 msgstr "Data rinnovo"
 
-#: includes/admin/listings/class-listings-table-nav-handler.php:160
+#: includes/admin/listings/class-listings-table-nav-handler.php:161
 msgid "Published Date"
 msgstr ""
 
-#: includes/admin/listings/class-listings-table-nav-handler.php:172
+#: includes/admin/listings/class-listings-table-nav-handler.php:173
 msgid "Select date range"
 msgstr ""
 
-#: includes/admin/listings/class-listings-table-nav-handler.php:215
+#: includes/admin/listings/class-listings-table-nav-handler.php:216
 msgctxt "category filter placeholder"
 msgid "All categories"
 msgstr ""
@@ -4256,42 +4275,42 @@ msgstr ""
 msgid "less than 1"
 msgstr "meno di 1"
 
-#: includes/class-listings-api.php:109 includes/class-listings-api.php:307
+#: includes/class-listings-api.php:109 includes/class-listings-api.php:319
 msgid ""
 "There was an unexpected error trying to save the listing details. Please try"
 " again or contact an administrator."
 msgstr ""
 
-#: includes/class-listings-api.php:200
+#: includes/class-listings-api.php:207
 msgid ""
 "To avoid overwritting existing metadata, use fill_default_listing_metadata()"
 " instead."
 msgstr ""
 
-#: includes/class-listings-api.php:303
+#: includes/class-listings-api.php:315
 msgid "There was an error trying to save the listing details:"
 msgstr ""
 
-#: includes/class-listings-api.php:725
+#: includes/class-listings-api.php:737
 msgid ""
 "If you have uploaded images your images will not show up until an admin has "
 "approved them."
 msgstr "Eventuali immagini caricate saranno visibili solo dopo l'approvazione dell'amministratore."
 
 #. translators: %d is the ID used to search.
-#: includes/class-listings-collection.php:78
+#: includes/class-listings-collection.php:84
 msgid "The listing ID must be a positive integer, %d was given."
 msgstr ""
 
 #. translators: %d is the ID used to search.
-#: includes/class-listings-collection.php:86
 #: includes/class-listings-collection.php:92
+#: includes/class-listings-collection.php:98
 msgid "No Listing was found with id: %d."
 msgstr "Non è presente un'inserzione con id: %d."
 
 #. translators: %d is the ID used to search.
-#: includes/class-listings-collection.php:118
-#: includes/class-listings-collection.php:126
+#: includes/class-listings-collection.php:124
+#: includes/class-listings-collection.php:132
 msgid "No Listing was found with old id: %d."
 msgstr ""
 
@@ -9168,72 +9187,72 @@ msgstr "Categoria dell'annuncio"
 msgid "All Categories"
 msgstr "Tutte le Categorie"
 
-#: includes/ui/class-payment-terms-list.php:89
+#: includes/ui/class-payment-terms-list.php:91
 msgid ""
 "{payment-term-name} &ndash; {payment-term-duration} ({payment-term-price})"
 msgstr ""
 
-#: includes/ui/class-payment-terms-list.php:94
+#: includes/ui/class-payment-terms-list.php:96
 msgid ""
 "{payment-term-name} &ndash; {payment-term-duration} ({payment-term-price} "
 "credits)"
 msgstr ""
 
-#: includes/ui/class-payment-terms-list.php:154
+#: includes/ui/class-payment-terms-list.php:156
 msgid "<number-of-listings> listing allowed."
 msgid_plural "<number-of-listings> listings allowed."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/ui/class-payment-terms-list.php:162
+#: includes/ui/class-payment-terms-list.php:164
 msgid "No images allowed."
 msgstr ""
 
-#: includes/ui/class-payment-terms-list.php:165
+#: includes/ui/class-payment-terms-list.php:167
 msgid "<number-of-images> image allowed."
 msgid_plural "<number-of-images> images allowed."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/ui/class-payment-terms-list.php:172
+#: includes/ui/class-payment-terms-list.php:174
 msgid "Unlimited characters in listing's title."
 msgstr ""
 
-#: includes/ui/class-payment-terms-list.php:175
+#: includes/ui/class-payment-terms-list.php:177
 msgid "Up to <characters-count> characters in listing's title."
 msgstr ""
 
-#: includes/ui/class-payment-terms-list.php:182
+#: includes/ui/class-payment-terms-list.php:184
 msgid "Up to <categories-count> categories allowed."
 msgstr ""
 
-#: includes/ui/class-payment-terms-list.php:189
+#: includes/ui/class-payment-terms-list.php:191
 msgid "Unlimited characters in listing's content."
 msgstr ""
 
-#: includes/ui/class-payment-terms-list.php:192
+#: includes/ui/class-payment-terms-list.php:194
 msgid "Up to <characters-count> characters in listing's content."
 msgstr ""
 
-#: includes/ui/class-payment-terms-list.php:198
+#: includes/ui/class-payment-terms-list.php:200
 msgid "Purchase this plan"
 msgstr ""
 
-#: includes/ui/class-payment-terms-list.php:199
+#: includes/ui/class-payment-terms-list.php:201
 msgid "Pay for this plan with credits"
 msgstr ""
 
-#: includes/ui/class-payment-terms-list.php:202
-#: includes/ui/class-payment-terms-list.php:206
+#: includes/ui/class-payment-terms-list.php:204
+#: includes/ui/class-payment-terms-list.php:208
 msgid "Use this plan for free!"
 msgstr ""
 
-#: includes/ui/class-payment-terms-list.php:211
-#: includes/ui/class-payment-terms-list.php:216
+#: includes/ui/class-payment-terms-list.php:213
+#: includes/ui/class-payment-terms-list.php:218
 msgid "Select"
 msgstr "Seleziona"
 
-#: includes/ui/class-payment-terms-list.php:215
+#: includes/ui/class-payment-terms-list.php:217
 msgid "credits"
 msgstr ""
 
@@ -9315,6 +9334,10 @@ msgstr ""
 
 #: includes/upgrade/class-manual-upgrade-tasks.php:203
 msgid "Update _awpcp_most_recent_start_date"
+msgstr ""
+
+#: includes/upgrade/class-manual-upgrade-tasks.php:213
+msgid "Add missing _awpcp_order"
 msgstr ""
 
 #: includes/upgrade/class-maybe-force-post-id-upgrade-task-handler.php:80
@@ -9416,20 +9439,20 @@ msgstr ""
 msgid "30 Day Listing"
 msgstr ""
 
-#: installer.php:850
+#: installer.php:853
 msgid "Response to your AWPCP Demo Ad"
 msgstr "Rispondi alla demo AWPCP degli annunci"
 
-#: installer.php:851
+#: installer.php:854
 msgid "Someone has responded to your AWPCP Demo Ad"
 msgstr ""
 
-#: installer.php:861
+#: installer.php:864
 msgctxt "reply to ad email"
 msgid "{__previous_subject__} regarding: {listing_title}"
 msgstr ""
 
-#: installer.php:862
+#: installer.php:865
 msgctxt "reply to ad email"
 msgid ""
 "{__previous_body__}\n"
@@ -9448,11 +9471,11 @@ msgid ""
 "{website_url}"
 msgstr ""
 
-#: installer.php:876
+#: installer.php:879
 msgid "Verify the email address used for Ad $title"
 msgstr ""
 
-#: installer.php:877
+#: installer.php:880
 msgctxt "another-wordpress-classifieds-plugin"
 msgid ""
 "Hello $author_name \n"
@@ -9676,70 +9699,64 @@ msgctxt "listings-csv-export"
 msgid "CSV File Settings"
 msgstr ""
 
-#: templates/admin/export-listings-admin-page.tpl.php:101
+#: templates/admin/export-listings-admin-page.tpl.php:100
 msgctxt "listings-csv-export"
-msgid "What operating system will you use to edit the CSV file?"
-msgstr ""
+msgid "Image Separator"
+msgstr "Separatore Immagine"
 
-#: templates/admin/export-listings-admin-page.tpl.php:102
-#: templates/admin/export-listings-admin-page.tpl.php:110
+#: templates/admin/export-listings-admin-page.tpl.php:101
 msgctxt "admin forms"
 msgid "required"
 msgstr ""
 
 #: templates/admin/export-listings-admin-page.tpl.php:109
 msgctxt "listings-csv-export"
-msgid "Image Separator"
-msgstr "Separatore Immagine"
-
-#: templates/admin/export-listings-admin-page.tpl.php:118
-msgctxt "listings-csv-export"
 msgid "Category Separator"
 msgstr ""
 
-#: templates/admin/export-listings-admin-page.tpl.php:118
+#: templates/admin/export-listings-admin-page.tpl.php:109
 msgctxt "listings-csv-export"
 msgid "required"
 msgstr ""
 
-#: templates/admin/export-listings-admin-page.tpl.php:127
+#: templates/admin/export-listings-admin-page.tpl.php:118
 msgctxt "listings-csv-export"
 msgid "Export Listings"
 msgstr ""
 
-#: templates/admin/export-listings-admin-page.tpl.php:133
+#: templates/admin/export-listings-admin-page.tpl.php:124
 msgctxt "listings-csv-export"
 msgid "Export in Progress..."
 msgstr ""
 
-#: templates/admin/export-listings-admin-page.tpl.php:134
+#: templates/admin/export-listings-admin-page.tpl.php:125
 msgctxt "listings-csv-export"
 msgid ""
 "Your export file is being prepared. Please <u>do not leave</u> this page "
 "until the export finishes."
 msgstr ""
 
-#: templates/admin/export-listings-admin-page.tpl.php:137
+#: templates/admin/export-listings-admin-page.tpl.php:128
 msgctxt "listings-csv-export"
 msgid "No. of listings:"
 msgstr ""
 
-#: templates/admin/export-listings-admin-page.tpl.php:139
+#: templates/admin/export-listings-admin-page.tpl.php:130
 msgctxt "listings-csv-export"
 msgid "Approximate export file size:"
 msgstr ""
 
-#: templates/admin/export-listings-admin-page.tpl.php:146
+#: templates/admin/export-listings-admin-page.tpl.php:137
 msgctxt "listings-csv-export"
 msgid "Cancel Export"
 msgstr ""
 
-#: templates/admin/export-listings-admin-page.tpl.php:151
+#: templates/admin/export-listings-admin-page.tpl.php:142
 msgctxt "listings-csv-export"
 msgid "Export Complete"
 msgstr ""
 
-#: templates/admin/export-listings-admin-page.tpl.php:152
+#: templates/admin/export-listings-admin-page.tpl.php:143
 msgctxt "listings-csv-export"
 msgid ""
 "Your export file has been successfully created and it is now ready for "
@@ -9747,12 +9764,12 @@ msgid ""
 msgstr ""
 
 #. translators: %1$s filename %2$s filesize.
-#: templates/admin/export-listings-admin-page.tpl.php:158
+#: templates/admin/export-listings-admin-page.tpl.php:149
 msgctxt "listings-csv-export"
 msgid "Download %1$s (%2$s)"
 msgstr ""
 
-#: templates/admin/export-listings-admin-page.tpl.php:167
+#: templates/admin/export-listings-admin-page.tpl.php:158
 msgctxt "listings-csv-export"
 msgid ""
 "Click \"Cleanup\" once the file has been downloaded in order to remove all "
@@ -9760,22 +9777,22 @@ msgid ""
 "export process."
 msgstr ""
 
-#: templates/admin/export-listings-admin-page.tpl.php:169
+#: templates/admin/export-listings-admin-page.tpl.php:160
 msgctxt "listings-csv-export"
 msgid "Cleanup"
 msgstr "Pulizia"
 
-#: templates/admin/export-listings-admin-page.tpl.php:174
+#: templates/admin/export-listings-admin-page.tpl.php:165
 msgctxt "listings-csv-export"
 msgid "Export Canceled"
 msgstr ""
 
-#: templates/admin/export-listings-admin-page.tpl.php:175
+#: templates/admin/export-listings-admin-page.tpl.php:166
 msgctxt "listings-csv-export"
 msgid "The export has been canceled."
 msgstr ""
 
-#: templates/admin/export-listings-admin-page.tpl.php:176
+#: templates/admin/export-listings-admin-page.tpl.php:167
 msgctxt "listings-csv-export"
 msgid "← Return to CSV Export"
 msgstr ""
@@ -9805,8 +9822,8 @@ msgid "Import Listings: Example CSV File"
 msgstr ""
 
 #: templates/admin/import/example-csv-file.tpl.php:16
-#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:64
-msgid "See Supported CSV Hedaers"
+#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:84
+msgid "See Supported CSV Headers"
 msgstr ""
 
 #: templates/admin/import/supported-csv-headers.tpl.php:8
@@ -9824,7 +9841,7 @@ msgid "Header"
 msgstr "Testata"
 
 #: templates/admin/import/supported-csv-headers.tpl.php:39
-#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:66
+#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:86
 msgid "See Example CSV File"
 msgstr ""
 
@@ -9854,74 +9871,82 @@ msgstr "Solo date US (mm/gg/anno)"
 msgid "UK Date Only (dd/mm/year)"
 msgstr "Solo date UK (gg/mm/anno)"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:68
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:67
+msgid "EUR Date Only (year/mm/dd)"
+msgstr ""
+
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:72
 msgid "US Date and Time (mm/dd/year hh:mm:ss)"
 msgstr "Data e Ora US (mm/gg/anno hh:mm:ss)"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:72
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:76
 msgid "UK Date and Time (dd/mm/year hh:mm:ss)"
 msgstr "Data e Ora UK (gg/mm/anno hh:mm:ss)"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:77
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:80
+msgid "EUR Date and Time (year/mm/dd hh:mm:ss)"
+msgstr ""
+
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:85
 msgid "Separators Used in CSV"
 msgstr "Separatori utilizzati nel CSV"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:80
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:88
 msgid "Date Separator"
 msgstr "Separatore Data"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:85
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:93
 msgid "Time Separator"
 msgstr "Separatore Orario"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:90
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:98
 msgid "Image Separator"
 msgstr "Separatore Immagine"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:91
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:99
 msgid "(semi-colon)"
 msgstr "(punto e virgola)"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:97
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:105
 msgid "How to handle missing categories?"
 msgstr ""
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:101
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:109
 msgid "Create missing categories"
 msgstr ""
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:102
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:110
 msgid "Generate an error"
 msgstr ""
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:105
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:113
 msgid ""
 "Define whether you want to create missing categories or generate an error "
 "whenever a category in the CSV file is not found in the system."
 msgstr ""
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:110
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:118
 msgctxt "csv-importer"
 msgid "Assign listings to a user?"
 msgstr ""
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:115
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:123
 msgctxt "csv-importer"
 msgid "Assign listings to a user"
 msgstr ""
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:116
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:124
 msgid ""
 "If checked, listings will be assigned to the user specified in the CSV file "
 "or a default user that can be defined below."
 msgstr ""
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:122
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:130
 msgctxt "csv-importer"
 msgid "Define a default user?"
 msgstr ""
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:127
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:135
 msgctxt "csv-importer"
 msgid ""
 "The default user will be used when the username column is not present in the"
@@ -9929,11 +9954,11 @@ msgid ""
 "find a user with the contact email address specified in the CSV file."
 msgstr ""
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:133
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:141
 msgid "Default user"
 msgstr "Utente di default"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:162
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:170
 #: templates/admin/import-listings-admin-page-import-form.tpl.php:44
 msgid ""
 "Press the button below to cancel the current import operation and discard "
@@ -9964,35 +9989,35 @@ msgstr ""
 msgid "Pause"
 msgstr "Pausa"
 
-#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:21
+#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:24
 msgid "CSV file"
 msgstr "File CSV"
 
-#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:30
+#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:37
 msgid "Images source"
 msgstr ""
 
-#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:33
+#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:40
 msgid "Don't import images"
 msgstr ""
 
-#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:35
+#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:42
 msgid "ZIP file"
 msgstr ""
 
-#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:37
+#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:44
 msgid "Local directory"
 msgstr ""
 
-#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:42
+#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:49
 msgid "Zip file containing images"
 msgstr "File zip contenenti immagini"
 
-#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:51
+#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:62
 msgid "Local directory path"
 msgstr ""
 
-#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:56
+#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:74
 msgid "The relative path to a directory inside <uploads-directory-path>."
 msgstr ""
 
