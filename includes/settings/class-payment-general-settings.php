@@ -139,7 +139,7 @@ class AWPCP_PaymentSettings {
 
         $settings_manager->add_section( $group, __( 'PayPal Settings', 'another-wordpress-classifieds-plugin' ), 'paypal', 20, array( $settings_manager, 'section' ) );
 
-		$settings_manager->add_setting($key, 'activatepaypal', __( 'Activate PayPal?', 'another-wordpress-classifieds-plugin' ), 'checkbox', 1, __( 'Activate PayPal?', 'another-wordpress-classifieds-plugin' ) );
+		$settings_manager->add_setting($key, 'activatepaypal', __( 'Activate PayPal?', 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, __( 'Activate PayPal?', 'another-wordpress-classifieds-plugin' ) );
 
 		$settings_manager->add_setting( [
             'id'          => 'paypalemail',
@@ -213,7 +213,7 @@ class AWPCP_PaymentSettings {
 
         $settings_manager->add_section($group, __('2Checkout Settings', 'another-wordpress-classifieds-plugin'), '2checkout', 30, array($settings_manager, 'section'));
 
-		$settings_manager->add_setting( $key, 'activate2checkout', __( 'Activate 2Checkout', 'another-wordpress-classifieds-plugin' ), 'checkbox', 1, __( 'Activate 2Checkout?', 'another-wordpress-classifieds-plugin' ) );
+		$settings_manager->add_setting( $key, 'activate2checkout', __( 'Activate 2Checkout', 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, __( 'Activate 2Checkout?', 'another-wordpress-classifieds-plugin' ) );
 
         $settings_manager->add_setting( [
             'id'          =>'2checkout',
