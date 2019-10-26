@@ -13,7 +13,7 @@
             </table>
             <?php settings_fields( $option ); ?>
             <input type="hidden" name="group" value="<?php echo 'payment-settings'; ?>" />
-
+            <input type="hidden" name="subgroup" value="<?php echo 'credit-system-settings'; ?>" />
             <p class="submit">
                 <input type="submit" value="<?php echo esc_attr( __( 'Save Changes', 'another-wordpress-classifieds-plugin' ) ); ?>" class="button-primary" id="submit" name="submit">
             </p>
