@@ -5,7 +5,10 @@
 
 ?><div class="metabox-holder">
     <div class="awpcp-credit-system-settings-postbox postbox">
-        <?php echo awpcp_html_postbox_handle( array( 'content' => esc_html( __( 'Credit System Settings', 'another-wordpress-classifieds-plugin' ) ) ) ); // XSS Ok. ?>
+        <?php
+        // @phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        echo awpcp_html_postbox_handle( array( 'content' => esc_html( __( 'Credit System Settings', 'another-wordpress-classifieds-plugin' ) ) ) );
+        ?>
         <div class="inside">
         <form action="<?php echo esc_attr( admin_url( 'options.php' ) ); ?>" method="post">
             <table class="form-table">
@@ -27,9 +30,10 @@
     <input type="hidden" name="<?php echo esc_attr( $name ); ?>" value="<?php echo esc_attr( $value ); ?>" />
     <?php endforeach; ?>
 
-    <?php $url   = $page->url( array( 'action' => 'add-credit-plan' ) ); ?>
+    <?php $url = $page->url( array( 'action' => 'add-credit-plan' ) ); ?>
     <?php $label = __( 'Add Credit Plan', 'another-wordpress-classifieds-plugin' ); ?>
+    <?php // @phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped ?>
     <a class="add button-primary" title="<?php echo esc_attr( $label ); ?>" href="<?php echo esc_attr( $url ); ?>" accesskey="s"><?php echo esc_html( $label ); ?></a>
-
-    <?php echo $table->display(); // XSS Ok. ?>
+    <?php echo $table->display(); ?>
+    <?php // phpcs:enable ?>
 </form>
