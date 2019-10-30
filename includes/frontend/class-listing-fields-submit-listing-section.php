@@ -92,8 +92,8 @@ class AWPCP_ListingFieldsSubmitListingSection {
             'action'   => 'normal',
             'mode'     => $mode,
         );
-        if ($context['mode'] === 'create') {
-            $user_data = $this->get_user_data( get_current_user_id());
+        if ( $context['mode'] === 'create' ) {
+            $user_data       = $this->get_user_data( get_current_user_id() );
             $data['regions'] = $user_data['regions'];
         }
         $params = array(
