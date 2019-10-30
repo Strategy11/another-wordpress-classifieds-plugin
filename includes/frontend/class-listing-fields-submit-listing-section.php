@@ -92,7 +92,10 @@ class AWPCP_ListingFieldsSubmitListingSection {
             'action'   => 'normal',
             'mode'     => $mode,
         );
-
+        if ($context['mode'] === 'create') {
+            $user_data = $this->get_user_data( get_current_user_id());
+            $data['regions'] = $user_data['regions'];
+        }
         $params = array(
             'form_fields' => $this->form_fields->render_fields( $data, $errors, $listing, $context ),
             'nonces'      => $this->maybe_generate_nonces( $listing ),
