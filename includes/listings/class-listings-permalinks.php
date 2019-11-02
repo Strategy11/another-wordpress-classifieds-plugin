@@ -224,9 +224,11 @@ class AWPCP_ListingsPermalinks {
 
         $page_uris = $this->rewrite_rules_helper->generate_page_uri_variants( get_page_uri( $page_id ) );
 
-        foreach ( $page_uris as $page_uri ) {
-            if ( 0 === strpos( $page_uri, $query->request ) ) {
-                return true;
+        if ( $query->request ) {
+            foreach ( $page_uris as $page_uri ) {
+                if ( 0 === strpos( $page_uri, $query->request ) ) {
+                    return true;
+                }
             }
         }
 
