@@ -446,6 +446,7 @@ class AWPCP {
             add_filter( 'status_header', array( $filter, 'filter_status_header' ), 10, 4 );
 
             $listings_content = $this->container['ListingsContent'];
+            add_filter( 'the_posts', [$listings_content, 'return_pending_post'], 10, 2 );
             add_filter( 'the_content', array( $listings_content, 'filter_content' ) );
 
             add_filter( 'awpcp-content-before-listing-page', 'awpcp_insert_classifieds_bar_before_listing_page' );
