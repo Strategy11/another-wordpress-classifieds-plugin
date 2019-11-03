@@ -9,6 +9,10 @@ function( $ ) {
         self.$select = $( select );
         self.options = options;
 
+        if (typeof self.options === 'undefined') {
+            return false;
+        }
+
         if ( self.options.mode === 'ajax' ) {
             return self.configureAjaxBehavior();
         }
