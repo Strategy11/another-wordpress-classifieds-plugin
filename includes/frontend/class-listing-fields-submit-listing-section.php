@@ -29,7 +29,7 @@ class AWPCP_ListingFieldsSubmitListingSection {
     private $users;
 
     /**
-     * @var object
+     * @var AWPCP_Template_Renderer
      */
     private $template_renderer;
 
@@ -85,17 +85,14 @@ class AWPCP_ListingFieldsSubmitListingSection {
 
         awpcp()->js->localize( 'submit-listing-form-fields', awpcp_listing_form_fields_validation_messages() );
 
-        $data    = $this->get_form_fields_data( $listing, $transaction );
         $errors  = array();
         $context = array(
             'category' => null,
             'action'   => 'normal',
             'mode'     => $mode,
         );
-        if ( $context['mode'] === 'create' ) {
-            $user_data       = $this->get_user_data( get_current_user_id() );
-            $data['regions'] = $user_data['regions'];
-        }
+        $data    = $this->get_form_fields_data( $listing, $transaction, $mode );
+
         $params = array(
             'form_fields' => $this->form_fields->render_fields( $data, $errors, $listing, $context ),
             'nonces'      => $this->maybe_generate_nonces( $listing ),
@@ -107,14 +104,20 @@ class AWPCP_ListingFieldsSubmitListingSection {
     /**
      * @since 4.0.0
      */
-    private function get_form_fields_data( $listing, $transaction ) {
+    private function get_form_fields_data( $listing, $transaction, $mode = null ) {
         $form_data = $this->form_fields_data->get_stored_data( $listing );
 
-        if ( empty( $transaction->user_id ) ) {
+        $user_data = null;
+        if ( !empty( $transaction->user_id )) {
+            $user_data = $this->get_user_data( $transaction->user_id );
+        }
+        elseif ( $mode === 'create' && get_current_user_id() ) {
+            $user_data       = $this->get_user_data( get_current_user_id() );
+        }
+        else {
             return $form_data;
         }
 
-        $user_data = $this->get_user_data( $transaction->user_id );
 
         foreach ( $user_data['metadata'] as $field => $value ) {
             if ( empty( $form_data['metadata'][ $field ] ) ) {
