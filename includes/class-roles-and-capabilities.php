@@ -231,6 +231,9 @@ class AWPCP_RolesAndCapabilities {
         return $this->current_user_can( $this->get_moderator_capability() );
     }
 
+    /**
+     * @since 4.0.7
+     */
     public function current_user_is_subscriber() {
         return $this->current_user_can( $this->get_subscriber_capability() );
     }
