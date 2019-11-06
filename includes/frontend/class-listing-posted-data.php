@@ -121,7 +121,7 @@ class AWPCP_ListingPostedData {
         );
 
         // TODO: Make sure users are allowed to change the start/end date fields when authorized.
-        if ( !empty( $post_data['metadata']['_awpcp_start_date'] ) ) {
+        if ( ! empty( $post_data['metadata']['_awpcp_start_date'] ) ) {
             $post_data['metadata']['_awpcp_start_date'] = $now;
         }
 

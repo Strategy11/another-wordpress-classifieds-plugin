@@ -118,8 +118,8 @@ class AWPCP_FormFieldsData {
             'terms_of_service' => $this->request->param( 'terms_of_service' ),
         ];
 
-        if (!empty($data['metadata']['_awpcp_contact_phone'])) {
-            $data['metadata']['_awpcp_contact_phone_number_digits'] = awpcp_get_digits_from_string($data['metadata']['_awpcp_contact_phone']);
+        if ( ! empty( $data['metadata']['_awpcp_contact_phone'] ) ) {
+            $data['metadata']['_awpcp_contact_phone_number_digits'] = awpcp_get_digits_from_string( $data['metadata']['_awpcp_contact_phone'] );
         }
 
         $can_edit_start_date = $this->authorization->is_current_user_allowed_to_edit_listing_start_date( $post );
