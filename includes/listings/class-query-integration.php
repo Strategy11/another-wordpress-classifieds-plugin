@@ -627,8 +627,8 @@ class AWPCP_QueryIntegration {
     public function process_contact_phone_query_parameter( $query_vars ) {
         if ( ! empty( $query_vars['classifieds_query']['contact_phone'] ) ) {
             $query_vars['meta_query'][] = array(
-                'key'     => '_awpcp_contact_phone',
-                'value'   => $query_vars['classifieds_query']['contact_phone'],
+                'key'     => '_awpcp_contact_phone_number_digits',
+                'value'   => awpcp_get_digits_from_string( $query_vars['classifieds_query']['contact_phone'] ),
                 'compare' => 'LIKE',
             );
         }

@@ -103,6 +103,7 @@ class AWPCP_FormFieldsData {
                 '_awpcp_end_date'      => $this->request->param( 'end_date', null ),
                 '_awpcp_contact_name'  => $this->request->param( 'ad_contact_name' ),
                 '_awpcp_contact_phone' => $this->request->param( 'ad_contact_phone' ),
+                '_awpcp_contact_phone' => $this->request->param( 'ad_contact_phone' ),
                 '_awpcp_contact_email' => $this->request->param( 'ad_contact_email' ),
                 '_awpcp_website_url'   => awpcp_maybe_add_http_to_url(
                     $this->request->param( 'websiteurl' )
@@ -116,6 +117,10 @@ class AWPCP_FormFieldsData {
             'regions'          => $this->request->param( 'regions', [] ),
             'terms_of_service' => $this->request->param( 'terms_of_service' ),
         ];
+
+        if (!empty($data['metadata']['_awpcp_contact_phone'])) {
+            $data['metadata']['_awpcp_contact_phone_number_digits'] = awpcp_get_digits_from_string($data['metadata']['_awpcp_contact_phone']);
+        }
 
         $can_edit_start_date = $this->authorization->is_current_user_allowed_to_edit_listing_start_date( $post );
         $can_edit_end_date   = $this->authorization->is_current_user_allowed_to_edit_listing_end_date( $post );
