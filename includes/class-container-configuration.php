@@ -214,6 +214,7 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
 
     /**
      * @since 4.0.0
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     private function register_upgrade_task_handlers_for_4_0_0( $container ) {
         $container['FixIDCollisionForListingCategoriesUpgradeTaskHandler'] = $container->service(

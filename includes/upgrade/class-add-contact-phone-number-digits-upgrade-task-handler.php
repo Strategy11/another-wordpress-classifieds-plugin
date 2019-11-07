@@ -9,18 +9,12 @@
 class AWPCP_AddMissingPhoneDigits implements AWPCP_Upgrade_Task_Runner {
 
     /**
-     * @var string
-     */
-    private $taxonomy;
-
-    /**
      * @var object
      */
     private $wordpress;
 
 
     /**
-     * @param string          $taxonomy taxonomy name.
      * @param AWPCP_WordPress $wordpress AWPCP_WordPress.
      *
      * @since 4.0.0
@@ -50,7 +44,7 @@ class AWPCP_AddMissingPhoneDigits implements AWPCP_Upgrade_Task_Runner {
      */
     private function prepare_query_vars( $query_vars = null ) {
         $query_vars['hide_empty']   = false;
-        $query_vars['post_type'] = AWPCP_LISTING_POST_TYPE;
+        $query_vars['post_type']    = AWPCP_LISTING_POST_TYPE;
         $query_vars['meta_key']     = '_awpcp_contact_phone_number_digits';
         $query_vars['meta_compare'] = 'NOT EXISTS';
 
@@ -77,7 +71,7 @@ class AWPCP_AddMissingPhoneDigits implements AWPCP_Upgrade_Task_Runner {
      * @SuppressWarnings(PHPMD.UnusedFormalParameter) $last_item_id
      */
     public function process_item( $item, $last_item_id ) {
-        $contact_phone = $this->wordpress->get_post_meta($item->ID, '_awpcp_contact_phone', true);
+        $contact_phone = $this->wordpress->get_post_meta( $item->ID, '_awpcp_contact_phone', true );
         $contact_phone = awpcp_get_digits_from_string( $contact_phone );
         $this->wordpress->update_post_meta( $item->ID, '_awpcp_contact_phone_number_digits', $contact_phone );
         return $item;
