@@ -336,7 +336,10 @@ class AWPCP_Installer {
             ],
             '4.0.6' => [
                 'enable_routine_to_add_default_awpcp_order',
-            ]
+            ],
+            '4.0.7' => [
+                'enable_routine_to_add_awpcp_contact_phone_number_digits',
+            ],
         );
     }
 
@@ -1183,6 +1186,13 @@ class AWPCP_Installer {
      */
     private function enable_routine_to_add_default_awpcp_order() {
         $this->upgrade_tasks->enable_upgrade_task( 'awpcp-add-missing-categories-order' );
+    }
+
+    /**
+     * @since 4.0.7
+     */
+    private function enable_routine_to_add_awpcp_contact_phone_number_digits() {
+        $this->upgrade_tasks->enable_upgrade_task( 'awpcp-add-contact-phone-number-digits' );
     }
 }
 

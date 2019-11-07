@@ -307,5 +307,13 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
                 );
             }
         );
+
+        $container['AddMissingPhoneDigits'] = $container->service(
+            function( $container ) {
+                return new AWPCP_AddMissingPhoneDigits(
+                    awpcp_wordpress()
+                );
+            }
+        );
     }
 }

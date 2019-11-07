@@ -15,6 +15,7 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_AddMetaTagsPluginIntegration' => __DIR__ . '/../..' . '/includes/compatibility/class-add-meta-tags-plugin-integration.php',
         'AWPCP_AddMissingCategoriesOrder' => __DIR__ . '/../..' . '/includes/upgrade/class-add-missing-awpcp-order-meta-upgrade-task-handler.php',
         'AWPCP_AddMissingIsPaidMetaUpgradeTaskHandler' => __DIR__ . '/../..' . '/includes/upgrade/class-add-missing-is-paid-meta-upgrade-task-handler.php',
+        'AWPCP_AddMissingPhoneDigits' => __DIR__ . '/../..' . '/includes/upgrade/class-add-contact-phone-number-digits-upgrade-task-handler.php',
         'AWPCP_AddMissingViewsMetaUpgradeTaskHandler' => __DIR__ . '/../..' . '/includes/upgrade/class-add-missing-views-meta-upgrade-task-handler.php',
         'AWPCP_Add_Credit_Plan_Action_Handler' => __DIR__ . '/../..' . '/admin/credit-plans/class-add-credit-plan-action-handler.php',
         'AWPCP_Add_Edit_Fee_Action_Helper' => __DIR__ . '/../..' . '/admin/fees/class-add-edit-fee-action-helper.php',

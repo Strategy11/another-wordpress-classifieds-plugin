@@ -216,5 +216,14 @@ class AWPCP_Manual_Upgrade_Tasks {
                 'blocking' => false,
             ]
         );
+        $this->upgrade_tasks->register_upgrade_task(
+            [
+                'slug'     => 'awpcp-add-contact-phone-number-digits',
+                'name'     => __( 'Add missing awpcp-add-contact-phone-number-digits', 'another-wordpress-classifieds-plugin' ),
+                'handler'  => 'AddMissingPhoneDigits',
+                'context'  => 'plugin',
+                'blocking' => false,
+            ]
+        );
     }
 }

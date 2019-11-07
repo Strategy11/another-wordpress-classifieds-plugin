@@ -14,6 +14,7 @@ return array(
     'AWPCP_AddMetaTagsPluginIntegration' => $baseDir . '/includes/compatibility/class-add-meta-tags-plugin-integration.php',
     'AWPCP_AddMissingCategoriesOrder' => $baseDir . '/includes/upgrade/class-add-missing-awpcp-order-meta-upgrade-task-handler.php',
     'AWPCP_AddMissingIsPaidMetaUpgradeTaskHandler' => $baseDir . '/includes/upgrade/class-add-missing-is-paid-meta-upgrade-task-handler.php',
+    'AWPCP_AddMissingPhoneDigits' => $baseDir . '/includes/upgrade/class-add-contact-phone-number-digits-upgrade-task-handler.php',
     'AWPCP_AddMissingViewsMetaUpgradeTaskHandler' => $baseDir . '/includes/upgrade/class-add-missing-views-meta-upgrade-task-handler.php',
     'AWPCP_Add_Credit_Plan_Action_Handler' => $baseDir . '/admin/credit-plans/class-add-credit-plan-action-handler.php',
     'AWPCP_Add_Edit_Fee_Action_Helper' => $baseDir . '/admin/fees/class-add-edit-fee-action-helper.php',
