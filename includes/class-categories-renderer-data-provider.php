@@ -17,9 +17,13 @@ class AWPCP_Categories_Renderer_Data_Provider {
     public function get_categories( $params ) {
         if ( ! is_null( $params['category_id'] ) && $params['show_children_categories'] ) {
             try {
-                $parent_category = $this->categories->get( $params['category_id'] );
-                $categories_found = $this->categories->find_categories( array( 'child_of' => $params['category_id'] ) );
-                array_push( $categories_found, $parent_category );
+                $category_ids =  $params['category_id'];
+                $categories_found = array();
+                foreach ($category_ids as $category_id) {
+                    $parent_category = $this->categories->get( $category_id );
+                    $child_categories = $this->categories->find_categories( array( 'child_of' => $category_id ) );
+                    array_push( $categories_found, $parent_category, ...$child_categories);
+                }
             } catch ( AWPCP_Exception $e ) {
                 $categories_found = array();
             }

@@ -150,13 +150,14 @@ class AWPCP_CategoryShortcode {
      * @SuppressWarnings(PHPMD.ElseExpression)
      */
     private function render_categories_list( array $categories_ids ) {
-        $categories_list_params = array( 'show_listings_count' => true );
 
-        if ( count( $categories_ids ) === 1 ) {
-            $categories_list_params['parent_category_id'] = $categories_ids[0];
-        } else {
-            $categories_list_params['category_id'] = $categories_ids;
-        }
+        $categories_list_params['category_id'] = $categories_ids;
+        // Display the categories.
+        $categories_list_params['show_in_columns'] = get_awpcp_option( 'view-categories-columns' );
+        $categories_list_params['show_empty_categories'] = get_awpcp_option( 'hide-empty-categories' );
+        $categories_list_params['show_children_categories'] = true;
+        $categories_list_params['show_listings_count'] = get_awpcp_option( 'showadcount' );
+        $categories_list_params['show_sidebar'] = true;
 
         $categories_renderer = $this->categories_renderer_factory->create_list_renderer();
 
