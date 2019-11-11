@@ -162,6 +162,14 @@ class AWPCP_Pages {
      * }
      */
     public function user_listings_shortcode( $attrs ) {
+        if (!get_awpcp_option('requireuserregistration') && !is_user_logged_in()) {
+            $message = __('this shortcode only works with registered users.', 'another-wordpress-classifieds-plugin');
+            return awpcp_print_message($message);
+        }
+        if (get_awpcp_option('requireuserregistration') && !is_user_logged_in()) {
+            return awpcp_login_form();
+        }
+
         wp_enqueue_script( 'awpcp' );
 
         $attrs = shortcode_atts(
