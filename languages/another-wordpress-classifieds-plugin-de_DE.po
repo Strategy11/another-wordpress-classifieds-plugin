@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2019-10-23 17:10:40+00:00\n"
-"PO-Revision-Date: 2019-10-23 17:11+0000\n"
+"POT-Creation-Date: 2019-11-12 16:40:19+00:00\n"
+"PO-Revision-Date: 2019-11-12 16:42+0000\n"
 "Last-Translator: Juan <juandlopezr@gmail.com>\n"
 "Language-Team: German (Germany) (http://www.transifex.com/wp-translations/another-wordpress-classifieds-plugin/language/de_DE/)\n"
 "MIME-Version: 1.0\n"
@@ -60,7 +60,7 @@ msgstr "Attribute"
 msgid "Categories"
 msgstr "Kategorien verwalten"
 
-#: admin/admin-panel-fees-table.php:129 includes/class-awpcp.php:747
+#: admin/admin-panel-fees-table.php:129 includes/class-awpcp.php:748
 msgid "Featured Ads"
 msgstr "Anzeigen"
 
@@ -1074,17 +1074,17 @@ msgstr "Aktualisieren"
 msgid "Add"
 msgstr "Hinzufügen"
 
-#: admin/templates/admin-panel-credit-plans.tpl.php:8
+#: admin/templates/admin-panel-credit-plans.tpl.php:10
 msgid "Credit System Settings"
 msgstr "Credit Einstellungen"
 
-#: admin/templates/admin-panel-credit-plans.tpl.php:18
+#: admin/templates/admin-panel-credit-plans.tpl.php:21
 #: templates/admin/settings-admin-page.tpl.php:50
 #: templates/admin/settings-admin-page.tpl.php:64
 msgid "Save Changes"
 msgstr "Änderungen speichern"
 
-#: admin/templates/admin-panel-credit-plans.tpl.php:31
+#: admin/templates/admin-panel-credit-plans.tpl.php:34
 msgid "Add Credit Plan"
 msgstr "Neue Gebühr erstellen"
 
@@ -2259,11 +2259,15 @@ msgctxt "listing row action"
 msgid "Renew"
 msgstr "Verlängern"
 
-#: frontend/shortcode.php:326
+#: frontend/shortcode.php:166
+msgid "this shortcode only works with registered users."
+msgstr ""
+
+#: frontend/shortcode.php:334
 msgid "Hi admin, you need to go to your dashboard and setup your classifieds."
 msgstr "Hallo Admin, Sie müssen Ihre Anzeigen im Dashboard einrichten."
 
-#: frontend/shortcode.php:329
+#: frontend/shortcode.php:337
 msgid "You currently have no classifieds"
 msgstr "Sie haben zur Zeit keine Anzeigen"
 
@@ -2711,11 +2715,11 @@ msgstr "Geben Sie Ihre Nachricht unten ein"
 
 #: frontend/templates/page-search-ads.tpl.php:22
 msgid "Search for ads containing this word or phrase"
-msgstr ""
+msgstr "Suche nach Anzeigen, welche dieses Wort oder Phrase enthalten."
 
 #: frontend/templates/page-search-ads.tpl.php:40
 msgid "For ads posted by"
-msgstr ""
+msgstr "Nach Anzeigen von"
 
 #: frontend/templates/page-search-ads.tpl.php:42
 msgid "All Users"
@@ -2723,16 +2727,16 @@ msgstr "Alle Benutzer"
 
 #: frontend/templates/page-search-ads.tpl.php:51
 msgid "Min price"
-msgstr ""
+msgstr "Min. Preis"
 
 #: frontend/templates/page-search-ads.tpl.php:55
 msgid "Max price"
-msgstr ""
+msgstr "Max. Preis"
 
 #: frontend/templates/page-search-ads.tpl.php:82
 msgctxt "ad search form"
 msgid "Find Ads"
-msgstr ""
+msgstr "Anzeigen finden"
 
 #: frontend/templates/payments-2checkout-payment-button.tpl.php:29
 msgid "Pay With 2Checkout"
@@ -3061,7 +3065,7 @@ msgstr "vor %s"
 
 #: functions.php:630
 msgid "Ads per page:"
-msgstr ""
+msgstr "Anzeigen pro Seite"
 
 #: functions.php:647
 msgid "Page {current_page_number} of {number_of_pages}"
@@ -4063,106 +4067,106 @@ msgid ""
 " one of the associated listings: <error-message>"
 msgstr ""
 
-#: includes/class-awpcp.php:674
+#: includes/class-awpcp.php:675
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
 msgstr "AWPCP erfordert die Grafik-Bibliothek GD welche nicht installiert ist. Kontaktieren Sie Ihren Web-Host, dies zu beheben."
 
-#: includes/class-awpcp.php:675
+#: includes/class-awpcp.php:676
 #: includes/placeholders/class-placeholders-installation-verifier.php:63
 msgid "Warning"
 msgstr "Warnung"
 
-#: includes/class-awpcp.php:691
+#: includes/class-awpcp.php:692
 msgid "Attachments"
 msgstr "Anhänge"
 
-#: includes/class-awpcp.php:698
+#: includes/class-awpcp.php:699
 msgid "Authorize.Net"
 msgstr "Authorize.Net"
 
-#: includes/class-awpcp.php:705
+#: includes/class-awpcp.php:706
 msgid "BuddyPress Listings"
 msgstr "BuddyPress Anzeigen "
 
-#: includes/class-awpcp.php:712
+#: includes/class-awpcp.php:713
 msgid "Campaign Manager"
 msgstr "Kampagnien Manager"
 
-#: includes/class-awpcp.php:719
+#: includes/class-awpcp.php:720
 msgid "Category Icons"
 msgstr "Kategoriebildermodul"
 
-#: includes/class-awpcp.php:726
+#: includes/class-awpcp.php:727
 msgid "Comments & Ratings"
 msgstr "Kommentare und Bewertungen"
 
-#: includes/class-awpcp.php:733
+#: includes/class-awpcp.php:734
 msgid "Coupons/Discount"
 msgstr "Gutscheine"
 
-#: includes/class-awpcp.php:740
+#: includes/class-awpcp.php:741
 msgid "Extra Fields"
 msgstr "Extrafelder Modul"
 
-#: includes/class-awpcp.php:754
+#: includes/class-awpcp.php:755
 msgid "Fee per Category"
 msgstr "Gebühr pro Kategorie Module"
 
-#: includes/class-awpcp.php:761
+#: includes/class-awpcp.php:762
 msgid "Google Checkout"
 msgstr "Google Checkout"
 
-#: includes/class-awpcp.php:769
+#: includes/class-awpcp.php:770
 msgid "Mark as Sold"
 msgstr "Als verkauft markieren"
 
-#: includes/class-awpcp.php:776
+#: includes/class-awpcp.php:777
 msgid "PayFast"
 msgstr "Schnelle Bezahlung"
 
-#: includes/class-awpcp.php:783
+#: includes/class-awpcp.php:784
 msgid "PayPal Pro"
 msgstr "PayPal Pro"
 
-#: includes/class-awpcp.php:790
+#: includes/class-awpcp.php:791
 msgid "Regions Control"
 msgstr "Regionskontrollmodul"
 
-#: includes/class-awpcp.php:797
+#: includes/class-awpcp.php:798
 msgid "Restricted Categories"
 msgstr "Limitierte Kategorien"
 
-#: includes/class-awpcp.php:804
+#: includes/class-awpcp.php:805
 msgid "RSS"
 msgstr "RSS Modul"
 
-#: includes/class-awpcp.php:811
+#: includes/class-awpcp.php:812
 msgid "Stripe"
 msgstr "Stripe"
 
-#: includes/class-awpcp.php:818
+#: includes/class-awpcp.php:819
 msgid "Subscriptions"
 msgstr "Abos"
 
-#: includes/class-awpcp.php:825 templates/components/media-manager.tpl.php:50
+#: includes/class-awpcp.php:826 templates/components/media-manager.tpl.php:50
 msgid "Videos"
 msgstr "Videos"
 
-#: includes/class-awpcp.php:833
+#: includes/class-awpcp.php:834
 msgid "XML Sitemap"
 msgstr "XML Sitemap"
 
-#: includes/class-awpcp.php:841
+#: includes/class-awpcp.php:842
 msgid "ZIP Code Search Module"
 msgstr "ZIP Code Search Modul"
 
-#: includes/class-awpcp.php:1378
+#: includes/class-awpcp.php:1379
 msgid "This field is required."
 msgstr "Pflichtfeld"
 
-#: includes/class-awpcp.php:1379
+#: includes/class-awpcp.php:1380
 #: includes/form-fields/class-form-fields-validator.php:105
 #: includes/frontend/class-edit-listing-page.php:267
 #: includes/frontend/class-edit-listing-page.php:361
@@ -4170,53 +4174,53 @@ msgstr "Pflichtfeld"
 msgid "Please enter a valid email address."
 msgstr "Bitte geben Sie Ihre E-Mail-Adresse ein!"
 
-#: includes/class-awpcp.php:1380 includes/class-awpcp.php:1381
+#: includes/class-awpcp.php:1381 includes/class-awpcp.php:1382
 msgid "Please enter a valid URL."
 msgstr "Bitte geben Sie eine gültige URL (Webseitenadresse) ein!"
 
-#: includes/class-awpcp.php:1382
+#: includes/class-awpcp.php:1383
 msgid "Please enter a valid number."
 msgstr "Bitte geben Sie eine Zahl ein!"
 
-#: includes/class-awpcp.php:1383
+#: includes/class-awpcp.php:1384
 msgid "Please enter a valid amount."
 msgstr "Bitte geben Sie eine Menge ein!"
 
-#: includes/class-awpcp.php:1384
+#: includes/class-awpcp.php:1385
 msgid ""
 "You have reached the maximum allowed categories for the selected fee plan."
 msgstr ""
 
-#: includes/class-awpcp.php:1394
+#: includes/class-awpcp.php:1395
 msgctxt "[UI Datepicker] Display text for previous month link"
 msgid "&#x3c;Prev"
 msgstr "&#x3c;Prev"
 
-#: includes/class-awpcp.php:1396
+#: includes/class-awpcp.php:1397
 msgctxt "[UI Datepicker] Display text for next month link"
 msgid "Next&#x3e;"
 msgstr "Next&#x3e;"
 
-#: includes/class-awpcp.php:1411
+#: includes/class-awpcp.php:1412
 msgctxt "[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ..."
 msgid "0"
 msgstr "0"
 
-#: includes/class-awpcp.php:1417
+#: includes/class-awpcp.php:1418
 msgid "There are files currently being uploaded."
 msgstr "Es werden gerade Dateien hochgeladen."
 
-#: includes/class-awpcp.php:1418
+#: includes/class-awpcp.php:1419
 msgid "There are files pending to be uploaded."
 msgstr "Dateien sind in der Warteschlange zum Upload."
 
-#: includes/class-awpcp.php:1419
+#: includes/class-awpcp.php:1420
 msgid "You haven't uploaded any images or files."
 msgstr "Sie haben noch keine Bilder oder Dateien hochgeladen."
 
-#: includes/class-awpcp.php:1488 includes/class-awpcp.php:1496
-#: includes/class-awpcp.php:1504 includes/class-awpcp.php:1581
-#: includes/class-awpcp.php:1589 includes/class-awpcp.php:1597
+#: includes/class-awpcp.php:1489 includes/class-awpcp.php:1497
+#: includes/class-awpcp.php:1505 includes/class-awpcp.php:1582
+#: includes/class-awpcp.php:1590 includes/class-awpcp.php:1598
 #: templates/admin/debug/plugin-info-debug-section.tpl.php:6
 msgid "Another WordPress Classifieds Plugin"
 msgstr "Another WordPress Classifieds Plugin"
@@ -4474,7 +4478,7 @@ msgctxt "ad details form"
 msgid ""
 "The access codes needed to edit your listing will be sent to this email "
 "address."
-msgstr ""
+msgstr "Der Zugangscode, welcher benötigt wird um die Anzeige zu editieren, wird an diese E-Mail Adresse gesendet."
 
 #: includes/form-fields/class-listing-details-form-field.php:35
 msgctxt "ad details form"
@@ -4491,7 +4495,7 @@ msgstr ""
 #: includes/form-fields/class-listing-title-form-field.php:56
 msgctxt "ad details form"
 msgid "characters left"
-msgstr ""
+msgstr "Zeichen verbleiben"
 
 #: includes/form-fields/class-listing-regions-form-field.php:36
 msgctxt "listing form field"
@@ -4682,7 +4686,7 @@ msgstr ""
 #: includes/frontend/class-order-submit-listing-section.php:227
 msgctxt "order submit listing section"
 msgid "Category, owner and payment term selection"
-msgstr ""
+msgstr "Kategorieauswahl"
 
 #: includes/frontend/class-order-submit-listing-section.php:229
 msgctxt "order submit listing section"
@@ -4697,7 +4701,7 @@ msgstr ""
 #: includes/frontend/class-order-submit-listing-section.php:234
 msgctxt "order submit listing section"
 msgid "Category selection"
-msgstr ""
+msgstr "Kategorieauswahl"
 
 #. translators: %s will become an A HTML tag pointing to reCAPTCHA admin
 #. console.
@@ -4759,7 +4763,7 @@ msgstr ""
 #: includes/frontend/class-save-submit-listing-section.php:91
 msgctxt "save submit listing section"
 msgid "Complete Ad"
-msgstr ""
+msgstr "Anzeige vervollständigen"
 
 #: includes/frontend/class-save-submit-listing-section.php:96
 msgctxt "save submit listing section"
@@ -4788,7 +4792,7 @@ msgstr "Zahlungseinstellungen"
 
 #: includes/frontend/class-submit-listing-form-steps.php:59
 msgid "Enter Ad Information"
-msgstr ""
+msgstr "Eingabe von Anzeigeinformationen"
 
 #: includes/frontend/class-submit-listing-page.php:77
 msgid "Users are not allowed to publish ads at this time."
@@ -4965,7 +4969,7 @@ msgstr "<comma-separated-names> und <single-name>"
 
 #: includes/functions/l10n.php:17
 msgid "Please type in a title for your ad."
-msgstr ""
+msgstr "Bitte einen Titel für die Anzeige eingeben."
 
 #: includes/functions/l10n.php:18
 msgid "Please type in a valid URL."
@@ -5005,24 +5009,24 @@ msgstr ""
 
 #: includes/functions/l10n.php:27
 msgid "Please type in the details of your ad."
-msgstr ""
+msgstr "Bitte geben Sie die Details ihrer Anzeige ein."
 
 #: includes/functions/legacy.php:194
 msgid "Top Level Category"
 msgstr "Hauptkategorie"
 
 #: includes/functions/listings.php:244
-#: includes/listings/class-listings-content-renderer.php:166
+#: includes/listings/class-listings-content-renderer.php:171
 msgid "Are you sure you want to flag this ad?"
 msgstr "Sind Sie sicher diese Anzeige zu markieren?"
 
 #: includes/functions/listings.php:245
-#: includes/listings/class-listings-content-renderer.php:167
+#: includes/listings/class-listings-content-renderer.php:172
 msgid "This Ad has been flagged."
 msgstr "Diese Anzeige wurde markiert"
 
 #: includes/functions/listings.php:246
-#: includes/listings/class-listings-content-renderer.php:168
+#: includes/listings/class-listings-content-renderer.php:173
 msgid "An error occurred while trying to flag the Ad."
 msgstr "Es ist ein Fehler aufgetreten als Sie versucht haben die Anzeige zu markieren."
 
@@ -5039,7 +5043,7 @@ msgid ""
 msgstr "Diese Anzeige ist noch nicht freigeschaltet. Sobald der Administrator die Anzeige freigeschalten hat wird die Anzeige hier sichtbar."
 
 #: includes/functions/listings.php:305
-#: includes/listings/class-listings-content-renderer.php:102
+#: includes/listings/class-listings-content-renderer.php:107
 msgid "Your email address was successfully verified."
 msgstr "Ihre E-Mail-Adresse wurde erfolgreich bestätigt!"
 
@@ -5397,10 +5401,14 @@ msgid "Are you sure?"
 msgstr "Sind Sie sicher?"
 
 #: includes/listings/class-listings-content-renderer.php:33
+msgid "This listing is currently disabled until an administrator approves it."
+msgstr ""
+
+#: includes/listings/class-listings-content-renderer.php:38
 msgid "The listing you are trying to view is not available right now."
 msgstr ""
 
-#: includes/listings/class-listings-content-renderer.php:119
+#: includes/listings/class-listings-content-renderer.php:124
 msgid ""
 "This listing is currently disabled until the owner verifies the email "
 "address used for the contact information. Right now only administrators "
@@ -5408,14 +5416,14 @@ msgid ""
 " sent to you."
 msgstr ""
 
-#: includes/listings/class-listings-content-renderer.php:123
+#: includes/listings/class-listings-content-renderer.php:128
 msgid ""
 "This listing is currently disabled until you verify the email address used "
 "for the contact information. Right now only you (the owner) and "
 "administrators users can see it."
 msgstr ""
 
-#: includes/listings/class-listings-content-renderer.php:132
+#: includes/listings/class-listings-content-renderer.php:137
 msgid ""
 "This listing is currently disabled until an administrator approves it. As "
 "soon as an administrator approves the listing, it will become visilbe on the"
@@ -5423,7 +5431,7 @@ msgid ""
 "can see it."
 msgstr ""
 
-#: includes/listings/class-listings-content-renderer.php:136
+#: includes/listings/class-listings-content-renderer.php:141
 msgid ""
 "This listing is currently disabled until an administrator approves it. As "
 "soon as an administrator approves the listing, it will become visilbe on the"
@@ -9338,6 +9346,10 @@ msgstr ""
 msgid "Add missing _awpcp_order"
 msgstr ""
 
+#: includes/upgrade/class-manual-upgrade-tasks.php:222
+msgid "Add missing awpcp-add-contact-phone-number-digits"
+msgstr ""
+
 #: includes/upgrade/class-maybe-force-post-id-upgrade-task-handler.php:80
 msgid ""
 "There was an error trying to force the next post_id to be greater than "
@@ -9437,20 +9449,20 @@ msgstr "Die Instanz von WP_Scripts ist nicht bereit!"
 msgid "30 Day Listing"
 msgstr "30 Tage Anzeige"
 
-#: installer.php:853
+#: installer.php:856
 msgid "Response to your AWPCP Demo Ad"
 msgstr "Antworten Sie auf Ihre AWPCP Demo Anzeige."
 
-#: installer.php:854
+#: installer.php:857
 msgid "Someone has responded to your AWPCP Demo Ad"
 msgstr "Jemand hat auf Ihre AWPCP Demo Anzeige geantwortet."
 
-#: installer.php:864
+#: installer.php:867
 msgctxt "reply to ad email"
 msgid "{__previous_subject__} regarding: {listing_title}"
 msgstr ""
 
-#: installer.php:865
+#: installer.php:868
 msgctxt "reply to ad email"
 msgid ""
 "{__previous_body__}\n"
@@ -9469,11 +9481,11 @@ msgid ""
 "{website_url}"
 msgstr ""
 
-#: installer.php:879
+#: installer.php:882
 msgid "Verify the email address used for Ad $title"
 msgstr "Bestätigen Sie Ihre E-Mail-Adresse für die Anzeige $title"
 
-#: installer.php:880
+#: installer.php:883
 msgctxt "another-wordpress-classifieds-plugin"
 msgid ""
 "Hello $author_name \n"
@@ -10631,7 +10643,7 @@ msgstr "Es wurden keine Anzeigen gefunden."
 #: templates/frontend/order-submit-listing-section.tpl.php:19
 msgctxt "order submit listing section"
 msgid "Please select a category for your ad"
-msgstr ""
+msgstr " Bitte eine Kategorie wählen"
 
 #: templates/frontend/order-submit-listing-section.tpl.php:44
 msgctxt "order submit listing section"
@@ -10677,12 +10689,12 @@ msgstr ""
 #: templates/frontend/save-submit-listing-section.tpl.php:22
 msgctxt "save submit listing section"
 msgid "Clear form"
-msgstr ""
+msgstr "Formular leeren"
 
 #: templates/frontend/upload-media-submit-listing-section.tpl.php:7
 msgctxt "upload media submit listing section"
 msgid "Images and attachments"
-msgstr ""
+msgstr "Bilder und Anhänge"
 
 #: templates/frontend/upload-media-submit-listing-section.tpl.php:11
 msgctxt "upload media submit listing section"

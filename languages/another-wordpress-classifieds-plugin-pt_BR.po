@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2019-10-23 17:10:40+00:00\n"
-"PO-Revision-Date: 2019-10-23 17:11+0000\n"
+"POT-Creation-Date: 2019-11-12 16:40:19+00:00\n"
+"PO-Revision-Date: 2019-11-12 16:42+0000\n"
 "Last-Translator: Juan <juandlopezr@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wp-translations/another-wordpress-classifieds-plugin/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -60,7 +60,7 @@ msgstr "Atributos"
 msgid "Categories"
 msgstr "Categorias"
 
-#: admin/admin-panel-fees-table.php:129 includes/class-awpcp.php:747
+#: admin/admin-panel-fees-table.php:129 includes/class-awpcp.php:748
 msgid "Featured Ads"
 msgstr "Anúncios em destaque"
 
@@ -1074,17 +1074,17 @@ msgstr "Atualizar"
 msgid "Add"
 msgstr "Adicionar"
 
-#: admin/templates/admin-panel-credit-plans.tpl.php:8
+#: admin/templates/admin-panel-credit-plans.tpl.php:10
 msgid "Credit System Settings"
 msgstr "Configurações do sistema de crédito"
 
-#: admin/templates/admin-panel-credit-plans.tpl.php:18
+#: admin/templates/admin-panel-credit-plans.tpl.php:21
 #: templates/admin/settings-admin-page.tpl.php:50
 #: templates/admin/settings-admin-page.tpl.php:64
 msgid "Save Changes"
 msgstr "Salvar alterações"
 
-#: admin/templates/admin-panel-credit-plans.tpl.php:31
+#: admin/templates/admin-panel-credit-plans.tpl.php:34
 msgid "Add Credit Plan"
 msgstr "Adicionar plano de crédito"
 
@@ -2259,11 +2259,15 @@ msgctxt "listing row action"
 msgid "Renew"
 msgstr "Renovar"
 
-#: frontend/shortcode.php:326
+#: frontend/shortcode.php:166
+msgid "this shortcode only works with registered users."
+msgstr ""
+
+#: frontend/shortcode.php:334
 msgid "Hi admin, you need to go to your dashboard and setup your classifieds."
 msgstr "Oi admin, você precisa ir ao seu painel e configurar os seus anúncios."
 
-#: frontend/shortcode.php:329
+#: frontend/shortcode.php:337
 msgid "You currently have no classifieds"
 msgstr "Atualmente você não tem Classificados"
 
@@ -4063,106 +4067,106 @@ msgid ""
 " one of the associated listings: <error-message>"
 msgstr ""
 
-#: includes/class-awpcp.php:674
+#: includes/class-awpcp.php:675
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
 msgstr "AWPCP requer a biblioteca GD de processamento gráfico e ele não está instalado. Entre em contato com o seu host para corrigir isso."
 
-#: includes/class-awpcp.php:675
+#: includes/class-awpcp.php:676
 #: includes/placeholders/class-placeholders-installation-verifier.php:63
 msgid "Warning"
 msgstr "Advertência"
 
-#: includes/class-awpcp.php:691
+#: includes/class-awpcp.php:692
 msgid "Attachments"
 msgstr "Anexos"
 
-#: includes/class-awpcp.php:698
+#: includes/class-awpcp.php:699
 msgid "Authorize.Net"
 msgstr "Authorize.Net"
 
-#: includes/class-awpcp.php:705
+#: includes/class-awpcp.php:706
 msgid "BuddyPress Listings"
 msgstr "Listagens BuddyPress"
 
-#: includes/class-awpcp.php:712
+#: includes/class-awpcp.php:713
 msgid "Campaign Manager"
 msgstr "Gerenciamento de Campanha"
 
-#: includes/class-awpcp.php:719
+#: includes/class-awpcp.php:720
 msgid "Category Icons"
 msgstr "Ícones Categoria do"
 
-#: includes/class-awpcp.php:726
+#: includes/class-awpcp.php:727
 msgid "Comments & Ratings"
 msgstr "Comentários do utilizador"
 
-#: includes/class-awpcp.php:733
+#: includes/class-awpcp.php:734
 msgid "Coupons/Discount"
 msgstr "Cupons/Disconto"
 
-#: includes/class-awpcp.php:740
+#: includes/class-awpcp.php:741
 msgid "Extra Fields"
 msgstr "Campos extra"
 
-#: includes/class-awpcp.php:754
+#: includes/class-awpcp.php:755
 msgid "Fee per Category"
 msgstr "Taxa por Categoria"
 
-#: includes/class-awpcp.php:761
+#: includes/class-awpcp.php:762
 msgid "Google Checkout"
 msgstr "Google Checkout"
 
-#: includes/class-awpcp.php:769
+#: includes/class-awpcp.php:770
 msgid "Mark as Sold"
 msgstr "Marque como vendido"
 
-#: includes/class-awpcp.php:776
+#: includes/class-awpcp.php:777
 msgid "PayFast"
 msgstr ""
 
-#: includes/class-awpcp.php:783
+#: includes/class-awpcp.php:784
 msgid "PayPal Pro"
 msgstr "PayPal Pro"
 
-#: includes/class-awpcp.php:790
+#: includes/class-awpcp.php:791
 msgid "Regions Control"
 msgstr "regiões de Controlo"
 
-#: includes/class-awpcp.php:797
+#: includes/class-awpcp.php:798
 msgid "Restricted Categories"
 msgstr "Categorias restritos"
 
-#: includes/class-awpcp.php:804
+#: includes/class-awpcp.php:805
 msgid "RSS"
 msgstr "RSS"
 
-#: includes/class-awpcp.php:811
+#: includes/class-awpcp.php:812
 msgid "Stripe"
 msgstr "Stripe"
 
-#: includes/class-awpcp.php:818
+#: includes/class-awpcp.php:819
 msgid "Subscriptions"
 msgstr "Assinaturas"
 
-#: includes/class-awpcp.php:825 templates/components/media-manager.tpl.php:50
+#: includes/class-awpcp.php:826 templates/components/media-manager.tpl.php:50
 msgid "Videos"
 msgstr "Vídeos"
 
-#: includes/class-awpcp.php:833
+#: includes/class-awpcp.php:834
 msgid "XML Sitemap"
 msgstr "XML Sitemap"
 
-#: includes/class-awpcp.php:841
+#: includes/class-awpcp.php:842
 msgid "ZIP Code Search Module"
 msgstr "ZIP Code Search Module"
 
-#: includes/class-awpcp.php:1378
+#: includes/class-awpcp.php:1379
 msgid "This field is required."
 msgstr "Este campo é obrigatório."
 
-#: includes/class-awpcp.php:1379
+#: includes/class-awpcp.php:1380
 #: includes/form-fields/class-form-fields-validator.php:105
 #: includes/frontend/class-edit-listing-page.php:267
 #: includes/frontend/class-edit-listing-page.php:361
@@ -4170,53 +4174,53 @@ msgstr "Este campo é obrigatório."
 msgid "Please enter a valid email address."
 msgstr "Por favor insira um endereço de e-mail válido."
 
-#: includes/class-awpcp.php:1380 includes/class-awpcp.php:1381
+#: includes/class-awpcp.php:1381 includes/class-awpcp.php:1382
 msgid "Please enter a valid URL."
 msgstr "Por favor, insira uma URL válida."
 
-#: includes/class-awpcp.php:1382
+#: includes/class-awpcp.php:1383
 msgid "Please enter a valid number."
 msgstr "por favor insira um número válido."
 
-#: includes/class-awpcp.php:1383
+#: includes/class-awpcp.php:1384
 msgid "Please enter a valid amount."
 msgstr "Por favor insira um Valor válido!'"
 
-#: includes/class-awpcp.php:1384
+#: includes/class-awpcp.php:1385
 msgid ""
 "You have reached the maximum allowed categories for the selected fee plan."
 msgstr ""
 
-#: includes/class-awpcp.php:1394
+#: includes/class-awpcp.php:1395
 msgctxt "[UI Datepicker] Display text for previous month link"
 msgid "&#x3c;Prev"
 msgstr "&#x3c;Prev"
 
-#: includes/class-awpcp.php:1396
+#: includes/class-awpcp.php:1397
 msgctxt "[UI Datepicker] Display text for next month link"
 msgid "Next&#x3e;"
 msgstr "Next&#x3e;"
 
-#: includes/class-awpcp.php:1411
+#: includes/class-awpcp.php:1412
 msgctxt "[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ..."
 msgid "0"
 msgstr "."
 
-#: includes/class-awpcp.php:1417
+#: includes/class-awpcp.php:1418
 msgid "There are files currently being uploaded."
 msgstr "Há arquivos atualmente sendo carregados."
 
-#: includes/class-awpcp.php:1418
+#: includes/class-awpcp.php:1419
 msgid "There are files pending to be uploaded."
 msgstr "Há arquivos pendentes para ser carregado."
 
-#: includes/class-awpcp.php:1419
+#: includes/class-awpcp.php:1420
 msgid "You haven't uploaded any images or files."
 msgstr "Você não adicionou imagens ou arquivos."
 
-#: includes/class-awpcp.php:1488 includes/class-awpcp.php:1496
-#: includes/class-awpcp.php:1504 includes/class-awpcp.php:1581
-#: includes/class-awpcp.php:1589 includes/class-awpcp.php:1597
+#: includes/class-awpcp.php:1489 includes/class-awpcp.php:1497
+#: includes/class-awpcp.php:1505 includes/class-awpcp.php:1582
+#: includes/class-awpcp.php:1590 includes/class-awpcp.php:1598
 #: templates/admin/debug/plugin-info-debug-section.tpl.php:6
 msgid "Another WordPress Classifieds Plugin"
 msgstr ""
@@ -5012,17 +5016,17 @@ msgid "Top Level Category"
 msgstr "Top Categoria Nível"
 
 #: includes/functions/listings.php:244
-#: includes/listings/class-listings-content-renderer.php:166
+#: includes/listings/class-listings-content-renderer.php:171
 msgid "Are you sure you want to flag this ad?"
 msgstr "Tem certeza de que deseja sinalizar esse anúncio?"
 
 #: includes/functions/listings.php:245
-#: includes/listings/class-listings-content-renderer.php:167
+#: includes/listings/class-listings-content-renderer.php:172
 msgid "This Ad has been flagged."
 msgstr "Este anúncio foi sinalizado."
 
 #: includes/functions/listings.php:246
-#: includes/listings/class-listings-content-renderer.php:168
+#: includes/listings/class-listings-content-renderer.php:173
 msgid "An error occurred while trying to flag the Ad."
 msgstr "Ocorreu um erro ao tentar a bandeira do anúncio."
 
@@ -5039,7 +5043,7 @@ msgid ""
 msgstr "O anúncio que você está tentando exibir é pendente de aprovação. Uma vez que o administrador aprovar, será activa e visível."
 
 #: includes/functions/listings.php:305
-#: includes/listings/class-listings-content-renderer.php:102
+#: includes/listings/class-listings-content-renderer.php:107
 msgid "Your email address was successfully verified."
 msgstr "O seu endereço de e-mail foi verificada com êxito."
 
@@ -5397,10 +5401,14 @@ msgid "Are you sure?"
 msgstr "Você tem certeza"
 
 #: includes/listings/class-listings-content-renderer.php:33
+msgid "This listing is currently disabled until an administrator approves it."
+msgstr ""
+
+#: includes/listings/class-listings-content-renderer.php:38
 msgid "The listing you are trying to view is not available right now."
 msgstr ""
 
-#: includes/listings/class-listings-content-renderer.php:119
+#: includes/listings/class-listings-content-renderer.php:124
 msgid ""
 "This listing is currently disabled until the owner verifies the email "
 "address used for the contact information. Right now only administrators "
@@ -5408,14 +5416,14 @@ msgid ""
 " sent to you."
 msgstr ""
 
-#: includes/listings/class-listings-content-renderer.php:123
+#: includes/listings/class-listings-content-renderer.php:128
 msgid ""
 "This listing is currently disabled until you verify the email address used "
 "for the contact information. Right now only you (the owner) and "
 "administrators users can see it."
 msgstr ""
 
-#: includes/listings/class-listings-content-renderer.php:132
+#: includes/listings/class-listings-content-renderer.php:137
 msgid ""
 "This listing is currently disabled until an administrator approves it. As "
 "soon as an administrator approves the listing, it will become visilbe on the"
@@ -5423,7 +5431,7 @@ msgid ""
 "can see it."
 msgstr ""
 
-#: includes/listings/class-listings-content-renderer.php:136
+#: includes/listings/class-listings-content-renderer.php:141
 msgid ""
 "This listing is currently disabled until an administrator approves it. As "
 "soon as an administrator approves the listing, it will become visilbe on the"
@@ -8449,7 +8457,7 @@ msgstr ""
 
 #: includes/settings/class-listings-settings.php:154
 msgid "Notifications"
-msgstr ""
+msgstr "Notificações"
 
 #: includes/settings/class-listings-settings.php:171
 msgid "User Notifications"
@@ -9338,6 +9346,10 @@ msgstr ""
 msgid "Add missing _awpcp_order"
 msgstr ""
 
+#: includes/upgrade/class-manual-upgrade-tasks.php:222
+msgid "Add missing awpcp-add-contact-phone-number-digits"
+msgstr ""
+
 #: includes/upgrade/class-maybe-force-post-id-upgrade-task-handler.php:80
 msgid ""
 "There was an error trying to force the next post_id to be greater than "
@@ -9437,20 +9449,20 @@ msgstr ""
 msgid "30 Day Listing"
 msgstr "Dia 30 Listing"
 
-#: installer.php:853
+#: installer.php:856
 msgid "Response to your AWPCP Demo Ad"
 msgstr "Resposta ao seu anúncio AWPCP Demonstração"
 
-#: installer.php:854
+#: installer.php:857
 msgid "Someone has responded to your AWPCP Demo Ad"
 msgstr "Alguém tem respondido ao seu anúncio AWPCP Demonstração"
 
-#: installer.php:864
+#: installer.php:867
 msgctxt "reply to ad email"
 msgid "{__previous_subject__} regarding: {listing_title}"
 msgstr ""
 
-#: installer.php:865
+#: installer.php:868
 msgctxt "reply to ad email"
 msgid ""
 "{__previous_body__}\n"
@@ -9469,11 +9481,11 @@ msgid ""
 "{website_url}"
 msgstr ""
 
-#: installer.php:879
+#: installer.php:882
 msgid "Verify the email address used for Ad $title"
 msgstr "Verifique o endereço de e-mail utilizado para Ad $title"
 
-#: installer.php:880
+#: installer.php:883
 msgctxt "another-wordpress-classifieds-plugin"
 msgid ""
 "Hello $author_name \n"
