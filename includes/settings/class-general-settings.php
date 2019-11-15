@@ -1072,9 +1072,7 @@ class AWPCP_GeneralSettings {
         }
 
         // reset categories cache if collapse categories option is updated.
-        delete_option('awpcp-categories-list-cache-keys');
-
-
+        delete_option( 'awpcp-categories-list-cache-keys' );
         return $options;
     }
 
