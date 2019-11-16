@@ -216,10 +216,6 @@ class AWPCP_ListingsCollection {
             $query_vars['classifieds_query'] = array();
         }
 
-        if ( ! $this->roles->current_user_is_moderator() ) {
-            $query_vars['author'] = get_current_user_id();
-        }
-
         $this->last_query = $this->wordpress->create_posts_query( $query_vars );
 
         return intval( $this->last_query->found_posts );
