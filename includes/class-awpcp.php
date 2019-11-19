@@ -372,8 +372,12 @@ class AWPCP {
         add_action( 'awpcp-pages-updated', [ $categories_list_cache, 'clear' ] );
         add_action( 'awpcp-listings-imported', [ $categories_list_cache, 'clear' ] );
         add_action( 'set_object_terms', [ $categories_list_cache, 'on_set_object_terms' ], 10, 4 );
+        $contact_information_controller = awpcp_user_profile_contact_information_controller();
+        add_action( 'show_user_profile', array( $contact_information_controller, 'show_contact_information_fields' ) );
+        add_action( 'personal_options_update', array( $contact_information_controller, 'save_contact_information' ) );
 
         add_filter( 'awpcp-listing-actions', array( $this, 'register_listing_actions' ), 10, 2 );
+
 
         // load resources required both in front end and admin screens, but not during ajax calls.
         if ( ! wp_doing_ajax() ) {
@@ -396,11 +400,8 @@ class AWPCP {
             $this->admin_setup();
 
             // load resources required in admin screens only
-            $controller = awpcp_user_profile_contact_information_controller();
-            add_action( 'show_user_profile', array( $controller, 'show_contact_information_fields' ) );
-            add_action( 'edit_user_profile', array( $controller, 'show_contact_information_fields' ) );
-            add_action( 'personal_options_update', array( $controller, 'save_contact_information' ) );
-            add_action( 'edit_user_profile_update', array( $controller, 'save_contact_information' ) );
+            add_action( 'edit_user_profile', array( $contact_information_controller, 'show_contact_information_fields' ) );
+            add_action( 'edit_user_profile_update', array( $contact_information_controller, 'save_contact_information' ) );
 
             $pointers_manager = awpcp_pointers_manager();
             add_action( 'admin_enqueue_scripts', array( $pointers_manager, 'register_pointers' ) );
