@@ -323,6 +323,8 @@ class AWPCP {
     }
 
 	public function init() {
+        global $wpdb;
+        $wpdb->query('SET SQL_BIG_SELECTS=1');
         $query_integration = $this->container['QueryIntegration'];
 
         // Execute later to allow Listing Table Views to add query parameters.
