@@ -7,7 +7,11 @@
 
 ?><?php if ( $show_payment_terms ) : ?>
 <ul class="awpcp-payment-terms-list">
-    <?php foreach ( $payment_terms as $payment_term ) : ?>
+    <?php foreach ( $payment_terms as $payment_term ) :
+        if ($payment_term['type'] !== 'subscription-plan') {
+            unset($payment_term['features']['listings']);
+        }
+        ?>
     <li class="awpcp-payment-term awpcp-clearfix" <?php echo awpcp_html_attributes( $payment_term['attributes'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
         <div class="awpcp-payment-term-content">
             <span class="awpcp-payment-term-name"><?php echo esc_html( $payment_term['name'] ); ?></span>
