@@ -2,6 +2,9 @@
 
 class AWPCP_CSV_Importer {
 
+    /**
+     * @var AWPCP_CSV_Importer_Delegate
+     */
     private $delegate;
     private $import_session;
     private $csv_reader;

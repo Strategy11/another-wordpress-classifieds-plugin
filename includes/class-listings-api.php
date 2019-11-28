@@ -17,6 +17,9 @@ class AWPCP_ListingsAPI {
     private $disabled_status = 'disabled';
     private $attachments_logic;
     private $attachments;
+    /**
+     * @var AWPCP_ListingRenderer
+     */
     private $listing_renderer;
     private $listings;
     private $roles;

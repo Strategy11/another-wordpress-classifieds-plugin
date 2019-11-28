@@ -25,6 +25,9 @@ class AWPCP_CSV_Importer_Delegate {
     private $mime_types;
     private $categories_logic;
     private $categories;
+    /**
+     * @var AWPCP_ListingsAPI
+     */
     private $listings_logic;
 
     /**
@@ -559,6 +562,10 @@ class AWPCP_CSV_Importer_Delegate {
         $listing_data['metadata']['_awpcp_verified'] = true;
         $listing_data['metadata']['_awpcp_verification_needed'] = true;
         $listing_data['metadata']['_awpcp_payment_status'] = AWPCP_Payment_Transaction::PAYMENT_STATUS_NOT_REQUIRED;
+        if (!isset($listing_data['metadata']['_awpcp_sequence_id'])) {
+            $import_settings = $this->import_session->get_params();
+            $listing_data['post_fields']['post_status'] = $import_settings['listing_status'];
+        }
 
         // If a valid payment term was found, an instance of that payment term is
         // stored in $listing_data['metadata']['_awpcp_payment_term_id'] instead

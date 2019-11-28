@@ -102,6 +102,19 @@
                         </tr>
                         <tr>
                             <th scope="row">
+                                <?php echo esc_html( __( 'Post status of imported listings', 'another-wordpress-classifieds-plugin' ) ); ?>
+                            </th>
+                            <td>
+                                <select name="listing_status" id="listing-status">
+                                    <option value="pending"<?php echo $form_data['listing_status'] == "pending" ? ' selected="selected"' : ''; ?>><?php echo esc_html( __( 'Pending Review', 'another-wordpress-classifieds-plugin' ) ); ?></option>
+                                    <option value="draft"<?php   echo $form_data['listing_status'] == "draft" ? ' selected="selected"' : ''; ?>><?php echo esc_html( __( 'Draft', 'another-wordpress-classifieds-plugin' ) ); ?></option>
+                                    <option value="private"<?php echo $form_data['listing_status'] == "disabled" ? ' selected="selected"' : ''; ?>><?php echo esc_html( __( 'Private', 'another-wordpress-classifieds-plugin' ) ); ?></option>
+                                    <option value="publish"<?php echo $form_data['listing_status'] == "published" ? ' selected="selected"' : ''; ?>><?php echo esc_html( __( 'Published', 'another-wordpress-classifieds-plugin' ) ); ?></option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
                                 <?php echo esc_html( __( 'How to handle missing categories?', 'another-wordpress-classifieds-plugin' ) ); ?>
                             </th>
                             <td>

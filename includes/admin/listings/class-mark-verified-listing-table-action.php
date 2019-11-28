@@ -13,7 +13,7 @@ class AWPCP_MarkVerifiedListingTableAction implements
     use AWPCP_ListTableActionWithMessages;
 
     /**
-     * @var ListingsLogic
+     * @var AWPCP_ListingsAPI
      */
     private $listings_logic;
 
