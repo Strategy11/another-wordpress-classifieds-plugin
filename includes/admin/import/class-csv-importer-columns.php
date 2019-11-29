@@ -50,7 +50,7 @@ class AWPCP_CSVImporterColumns {
     private function get_default_supported_columns() {
         return [
             'post_fields'   => array(
-                'title'    => [
+                'title'       => [
                     'name'        => 'post_title',
                     'label'       => __( 'Listing Title', 'another-wordpress-classifieds-plugin' ),
                     'description' => '',
@@ -63,7 +63,7 @@ class AWPCP_CSVImporterColumns {
                         'House for Sale',
                     ],
                 ],
-                'details'  => [
+                'details'     => [
                     'name'        => 'post_content',
                     'label'       => __( 'Ad Details', 'another-wordpress-classifieds-plugin' ),
                     'description' => 'The content of the ad.',
@@ -75,7 +75,7 @@ class AWPCP_CSVImporterColumns {
                         'Rent is $825 includes all utilities except electric.',
                     ],
                 ],
-                'username' => [
+                'username'    => [
                     'name'        => 'post_author',
                     'label'       => __( 'Ad Owner', 'another-wordpress-classifieds-plugin' ),
                     'description' => __( 'A username or email address.', 'another-wordpress-classifieds-plugin' ),

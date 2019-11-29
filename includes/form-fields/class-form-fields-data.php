@@ -48,7 +48,7 @@ class AWPCP_FormFieldsData {
                 'post_author'  => $post->post_author,
                 'post_title'   => $this->listing_renderer->get_listing_title( $post ),
                 'post_content' => $post->post_content,
-                'post_status'  => $post->post_status
+                'post_status'  => $post->post_status,
             ],
             'metadata'    => [
                 '_awpcp_access_key'    => $this->listing_renderer->get_access_key( $post ),
