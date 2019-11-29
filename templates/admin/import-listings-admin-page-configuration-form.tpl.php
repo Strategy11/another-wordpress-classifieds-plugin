@@ -106,9 +106,11 @@
                             </th>
                             <td>
                                 <select name="listing_status" id="listing-status">
+                                    <option value="default"<?php echo $form_data['listing_status'] == "default" ? ' selected="selected"' : ''; ?>><?php echo esc_html( __( 'Leave current post status', 'another-wordpress-classifieds-plugin' ) ); ?></option>
                                     <option value="pending"<?php echo $form_data['listing_status'] == "pending" ? ' selected="selected"' : ''; ?>><?php echo esc_html( __( 'Pending Review', 'another-wordpress-classifieds-plugin' ) ); ?></option>
-                                    <option value="draft"<?php   echo $form_data['listing_status'] == "draft" ? ' selected="selected"' : ''; ?>><?php echo esc_html( __( 'Draft', 'another-wordpress-classifieds-plugin' ) ); ?></option>
-                                    <option value="private"<?php echo $form_data['listing_status'] == "disabled" ? ' selected="selected"' : ''; ?>><?php echo esc_html( __( 'Private', 'another-wordpress-classifieds-plugin' ) ); ?></option>
+                                    <option value="draft"  <?php echo $form_data['listing_status'] == "draft" ? ' selected="selected"' : ''; ?>><?php echo esc_html( __( 'Draft', 'another-wordpress-classifieds-plugin' ) ); ?></option>
+                                    <option value="private"<?php echo $form_data['listing_status'] == "disabled" ? ' selected="selected"' : ''; ?>><?php echo esc_html( __( 'Disabled', 'another-wordpress-classifieds-plugin' ) ); ?></option>
+                                    <option value="private"<?php echo $form_data['listing_status'] == "private" ? ' selected="selected"' : ''; ?>><?php echo esc_html( __( 'Private', 'another-wordpress-classifieds-plugin' ) ); ?></option>
                                     <option value="publish"<?php echo $form_data['listing_status'] == "published" ? ' selected="selected"' : ''; ?>><?php echo esc_html( __( 'Published', 'another-wordpress-classifieds-plugin' ) ); ?></option>
                                 </select>
                             </td>

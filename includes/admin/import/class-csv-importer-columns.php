@@ -68,7 +68,6 @@ class AWPCP_CSVImporterColumns {
                     'label'       => __( 'Ad Details', 'another-wordpress-classifieds-plugin' ),
                     'description' => 'The content of the ad.',
                     'required'    => true,
-                    'examples'    => [],
                     'examples'    => [
                         'Furnished 1 bedroom in private home, just outside of the City.',
                         'Large 2 bedroom apartment available now, all one level living.',
@@ -85,6 +84,17 @@ class AWPCP_CSVImporterColumns {
                         'jane',
                         'TracyIklan',
                         'deb@gmail.com',
+                    ],
+                ],
+                'post_status' => [
+                    'name'        => 'post_status',
+                    'label'       => __( 'Post Status', 'another-wordpress-classifieds-plugin' ),
+                    'description' => __( 'Ad post status.', 'another-wordpress-classifieds-plugin' ),
+                    'examples'    => [
+                        'disabled',
+                        'pending',
+                        'draft',
+                        'publish',
                     ],
                 ],
             ),

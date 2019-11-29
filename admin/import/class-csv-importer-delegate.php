@@ -560,9 +560,18 @@ class AWPCP_CSV_Importer_Delegate {
         $payment_term = null;
 
         $listing_data['metadata']['_awpcp_payment_status'] = AWPCP_Payment_Transaction::PAYMENT_STATUS_NOT_REQUIRED;
-        if (!isset($listing_data['metadata']['_awpcp_sequence_id'])) {
-            $import_settings = $this->import_session->get_params();
+        $import_settings = $this->import_session->get_params();
+        if ($import_settings['listing_status'] !== 'default') {
             $listing_data['post_fields']['post_status'] = $import_settings['listing_status'];
+        }
+
+        if ($import_settings['listing_status'] === 'default' &&  $listing_data['post_fields']['post_status'] === "") {
+            $listing_data['post_fields']['post_status'] = 'pending';
+        }
+
+        // save phone as digits.
+        if (!empty($listing_data['metadata']['_awpcp_contact_phone'])) {
+             $listing_data['metadata']['_awpcp_contact_phone_number_digits'] = awpcp_get_digits_from_string( $listing_data['metadata']['_awpcp_contact_phone']);
         }
 
         // If a valid payment term was found, an instance of that payment term is

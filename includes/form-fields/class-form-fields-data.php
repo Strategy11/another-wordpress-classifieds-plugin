@@ -48,6 +48,7 @@ class AWPCP_FormFieldsData {
                 'post_author'  => $post->post_author,
                 'post_title'   => $this->listing_renderer->get_listing_title( $post ),
                 'post_content' => $post->post_content,
+                'post_status'  => $post->post_status
             ],
             'metadata'    => [
                 '_awpcp_access_key'    => $this->listing_renderer->get_access_key( $post ),
@@ -102,7 +103,6 @@ class AWPCP_FormFieldsData {
                 '_awpcp_start_date'    => $this->request->param( 'start_date', null ),
                 '_awpcp_end_date'      => $this->request->param( 'end_date', null ),
                 '_awpcp_contact_name'  => $this->request->param( 'ad_contact_name' ),
-                '_awpcp_contact_phone' => $this->request->param( 'ad_contact_phone' ),
                 '_awpcp_contact_phone' => $this->request->param( 'ad_contact_phone' ),
                 '_awpcp_contact_email' => $this->request->param( 'ad_contact_email' ),
                 '_awpcp_website_url'   => awpcp_maybe_add_http_to_url(
