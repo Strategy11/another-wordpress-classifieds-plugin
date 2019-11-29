@@ -559,8 +559,6 @@ class AWPCP_CSV_Importer_Delegate {
     private function save_listing_data( $listing_data ) {
         $payment_term = null;
 
-        $listing_data['metadata']['_awpcp_verified'] = true;
-        $listing_data['metadata']['_awpcp_verification_needed'] = true;
         $listing_data['metadata']['_awpcp_payment_status'] = AWPCP_Payment_Transaction::PAYMENT_STATUS_NOT_REQUIRED;
         if (!isset($listing_data['metadata']['_awpcp_sequence_id'])) {
             $import_settings = $this->import_session->get_params();

@@ -144,13 +144,6 @@ class AWPCP_ListingsAPI {
     private function update_listing_metadata( $listing, $metadata ) {
         $metadata = $this->maybe_update_most_recent_start_date( $listing, $metadata );
 
-        // _awpcp_verification_needed and _awpcp_verified should never exist for
-        // the same listing at the same time.
-        if ( isset( $metadata['_awpcp_verified'] ) && isset($metadata['_awpcp_verification_needed']) ) {
-            unset($metadata['_awpcp_verification_needed']);
-            delete_post_Meta($listing->ID, '_awpcp_verification_needed');
-        }
-
         foreach ( $metadata as $field_name => $field_value ) {
             $this->wordpress->update_post_meta( $listing->ID, $field_name, $field_value );
         }
@@ -246,8 +239,8 @@ class AWPCP_ListingsAPI {
         ];
 
         if (awpcp_current_user_is_moderator()) {
-            $stored_metadata['_awpcp_verified'] = true;
-            $metadata['_awpcp_verified'] = true;
+            $default_metadata['_awpcp_verified'] = true;
+            unset($default_metadata['_awpcp_verification_needed']);
         }
 
         // We want an array with the default keys defined above, but using the
