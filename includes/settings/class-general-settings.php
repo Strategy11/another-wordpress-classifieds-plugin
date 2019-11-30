@@ -1161,6 +1161,27 @@ class AWPCP_GeneralSettings {
     /**
      * Registration Settings checks
      */
+    public function validate_currency_settings( $options ) {
+        // Thousands separator and decimal separator cant be the same.
+        if ( $options['thousands-separator'] === $options['decimal-separator'] ) {
+            $thousands = $this->settings->get_option( 'thousands-separator' );
+            $decimal = $this->settings->get_option( 'decimal-separator' );
+            $options['thousands-separator'] = $thousands;
+            $options['decimal-separator'] = $decimal;
+            add_settings_error(
+                'currency-error',
+                esc_attr( 'settings_updated' ),
+                __( 'Thousands separator and decimal separator cant be the same.', 'another-wordpress-classifieds-plugin' ),
+               'error'
+            );
+        }
+
+        return $options;
+    }
+
+    /**
+     * Registration Settings checks
+     */
     public function validate_registration_settings( $options ) {
         // if Require Registration is disabled, User Ad Management Panel should be
         // disabled as well.
