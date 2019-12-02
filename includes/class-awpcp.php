@@ -642,6 +642,7 @@ class AWPCP {
     public function admin_setup() {
         add_action( 'admin_init', array( $this->container['Admin'], 'admin_init' ) );
         add_action( 'admin_init', [ $this->container['SettingsIntegration'], 'setup' ] );
+        add_action( 'admin_init', [ $this->container['QuickViewListingAdminPage'], 'handle_quick_actions' ] );
 
         add_action( 'load-options-reading.php', function() {
             $integration = $this->container['ReadingSettingsIntegration'];

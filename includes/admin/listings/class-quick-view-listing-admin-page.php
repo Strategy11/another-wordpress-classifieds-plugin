@@ -79,6 +79,7 @@ class AWPCP_QuickViewListingAdminPage {
         $edit_listing_link_text = str_replace( '{listing-title}', '&lsaquo;' . $listing_title . '&rsaquo;', $edit_listing_link_text );
 
         $params = array(
+            'post_id' => $post,
             'edit_listing_url'       => $this->wordpress->get_edit_post_link( $post ),
             'edit_listing_link_text' => $edit_listing_link_text,
             'listings_url'           => remove_query_arg( array( 'page', 'post', '_wpnonce' ) ),
@@ -90,5 +91,38 @@ class AWPCP_QuickViewListingAdminPage {
         );
 
         return $this->template_renderer->render_template( $template, $params );
+    }
+
+    /**
+     * Handles quick view quick actions, enable, disable and send key.
+     */
+    public function handle_quick_actions() {
+        global $awpcp;
+        $action_handler = $awpcp->container['ListingsTableActionsHandler'];
+        $result = $this->request->param( 'awpcp-result' );
+        $action = $this->request->param( 'action' );
+        $post_id = $this->request->param( 'post' );
+
+        try {
+            $post = $this->listings_collection->get( $post_id );
+        } catch ( AWPCP_Exception $e ) {
+            // TODO: Redirect and show notice.
+            return '';
+        }
+
+        $post_ids[] = $post_id;
+        if (!empty($action) && !$result) {
+            $url = awpcp_get_admin_listings_url();
+            $result = $action_handler->handle_action($url, $action, $post_ids);
+            $result = parse_url($result);
+            parse_str($result['query'], $query);
+            $result = $query['awpcp-result'];
+            $params = array(
+                'awpcp-action' => $action,
+                'awpcp-result' => $result,
+            );
+            wp_redirect(add_query_arg($params, $url));
+            exit();
+        }
     }
 }
