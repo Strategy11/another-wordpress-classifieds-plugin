@@ -79,7 +79,7 @@ class AWPCP_QuickViewListingAdminPage {
         $edit_listing_link_text = str_replace( '{listing-title}', '&lsaquo;' . $listing_title . '&rsaquo;', $edit_listing_link_text );
 
         $params = array(
-            'post_id' => $post,
+            'post_id'                => $post,
             'edit_listing_url'       => $this->wordpress->get_edit_post_link( $post ),
             'edit_listing_link_text' => $edit_listing_link_text,
             'listings_url'           => remove_query_arg( array( 'page', 'post', '_wpnonce' ) ),
@@ -95,33 +95,29 @@ class AWPCP_QuickViewListingAdminPage {
 
     /**
      * Handles quick view quick actions, enable, disable and send key.
+     *
+     * @SuppressWarnings(PHPMD.ExitExpression)
+     * @since 4.0.8
      */
     public function handle_quick_actions() {
         global $awpcp;
         $action_handler = $awpcp->container['ListingsTableActionsHandler'];
-        $result = $this->request->param( 'awpcp-result' );
-        $action = $this->request->param( 'action' );
-        $post_id = $this->request->param( 'post' );
-
-        try {
-            $post = $this->listings_collection->get( $post_id );
-        } catch ( AWPCP_Exception $e ) {
-            // TODO: Redirect and show notice.
-            return '';
-        }
+        $result         = $this->request->param( 'awpcp-result' );
+        $awpcp_action   = $this->request->param( 'action' );
+        $post_id        = $this->request->param( 'post' );
 
         $post_ids[] = $post_id;
-        if (!empty($action) && !$result) {
-            $url = awpcp_get_admin_listings_url();
-            $result = $action_handler->handle_action($url, $action, $post_ids);
-            $result = parse_url($result);
-            parse_str($result['query'], $query);
+        if ( ! empty( $awpcp_action ) && empty( $result ) ) {
+            $url    = awpcp_get_admin_listings_url();
+            $result = $action_handler->handle_action( $url, $awpcp_action, $post_ids );
+            $result = wp_parse_url( $result );
+            parse_str( $result['query'], $query );
             $result = $query['awpcp-result'];
             $params = array(
-                'awpcp-action' => $action,
+                'awpcp-action' => $awpcp_action,
                 'awpcp-result' => $result,
             );
-            wp_redirect(add_query_arg($params, $url));
+            wp_safe_redirect( add_query_arg( $params, $url ) );
             exit();
         }
     }
