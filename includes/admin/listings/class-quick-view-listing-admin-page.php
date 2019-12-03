@@ -111,11 +111,10 @@ class AWPCP_QuickViewListingAdminPage {
      * @since 4.0.8
      */
     public function handle_quick_actions() {
-        global $awpcp;
-        $result         = $this->request->param( 'awpcp-result' );
-        $awpcp_action   = $this->request->param( 'action' );
-        $post_id        = $this->request->param( 'post' );
-        $post           = get_post( $post_id );
+        $result       = $this->request->param( 'awpcp-result' );
+        $awpcp_action = $this->request->param( 'action' );
+        $post_id      = $this->request->param( 'post' );
+        $post         = get_post( $post_id );
 
         if ( ! empty( $awpcp_action ) && ! empty( $post ) && $post->post_type === AWPCP_LISTING_POST_TYPE ) {
             $url      = awpcp_get_quick_view_listing_url( $post );
