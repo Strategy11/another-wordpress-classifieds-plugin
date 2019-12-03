@@ -5,8 +5,8 @@
 
 ?>
 <?php
-if (isset($awpcp_result)) {
-    echo $awpcp_result;
+if ( isset( $awpcp_result ) ) {
+    echo wp_kses_post( $awpcp_result );
 }
 ?>
 <div class="postbox">
