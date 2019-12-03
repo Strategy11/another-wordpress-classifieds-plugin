@@ -123,7 +123,8 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
                 $container['ListingsCollection'],
                 $container['TemplateRenderer'],
                 $container['WordPress'],
-                awpcp_request()
+                awpcp_request(),
+                $container['ListingsTableActionsHandler']
             );
         } );
 

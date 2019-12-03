@@ -39,6 +39,11 @@ class AWPCP_QuickViewListingAdminPage {
     private $request;
 
     /**
+     * @var object
+     */
+    private $table_actions;
+
+    /**
      * @param object $content_renderer  An instance of Listing Content Renderer.
      * @param object $listing_renderer  An instance of Listing Renderer.
      * @param object $listings_collection   An instance of Listings Collection.
@@ -47,13 +52,14 @@ class AWPCP_QuickViewListingAdminPage {
      * @param object $request               An instance of Request.
      * @since 4.0.0
      */
-    public function __construct( $content_renderer, $listing_renderer, $listings_collection, $template_renderer, $wordpress, $request ) {
+    public function __construct( $content_renderer, $listing_renderer, $listings_collection, $template_renderer, $wordpress, $request, $table_actions ) {
         $this->content_renderer    = $content_renderer;
         $this->listing_renderer    = $listing_renderer;
         $this->listings_collection = $listings_collection;
         $this->template_renderer   = $template_renderer;
         $this->wordpress           = $wordpress;
         $this->request             = $request;
+        $this->table_actions       = $table_actions;
     }
 
     /**
@@ -90,7 +96,7 @@ class AWPCP_QuickViewListingAdminPage {
             ),
         );
 
-        $result = $this->handle_quick_actions();
+        $result = $this->request->param( 'awpcp-result' );
         if ( ! empty( $result ) ) {
             $params['awpcp_result'] = $result;
         }
@@ -106,20 +112,15 @@ class AWPCP_QuickViewListingAdminPage {
      */
     public function handle_quick_actions() {
         global $awpcp;
-        $action_handler = $awpcp->container['ListingsTableActionsHandler'];
         $result         = $this->request->param( 'awpcp-result' );
         $awpcp_action   = $this->request->param( 'action' );
         $post_id        = $this->request->param( 'post' );
         $post           = get_post( $post_id );
 
-        if ( ! empty( $result ) && empty( $awpcp_action ) ) {
-            return $result;
-        }
-
         if ( ! empty( $awpcp_action ) && ! empty( $post ) && $post->post_type === AWPCP_LISTING_POST_TYPE ) {
             $url      = awpcp_get_quick_view_listing_url( $post );
-            $result   = $action_handler->actions[ $awpcp_action ]->process_item( $post );
-            $messages = $action_handler->actions[ $awpcp_action ]->get_messages( array( $result => 1 ) );
+            $result   = $this->table_actions->actions[ $awpcp_action ]->process_item( $post );
+            $messages = $this->table_actions->actions[ $awpcp_action ]->get_messages( array( $result => 1 ) );
             $params   = array(
                 'awpcp-result' => rawurlencode( $messages[0] ),
             );
