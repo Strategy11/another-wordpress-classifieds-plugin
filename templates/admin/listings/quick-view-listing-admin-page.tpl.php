@@ -4,6 +4,11 @@
  */
 
 ?>
+<?php
+if (isset($awpcp_result)) {
+    echo $awpcp_result;
+}
+?>
 <div class="postbox">
     <?php
     $awpcp_actions = apply_filters( AWPCP_LISTING_POST_TYPE . '_row_actions', [], $params['post_id'] );

@@ -90,6 +90,11 @@ class AWPCP_QuickViewListingAdminPage {
             ),
         );
 
+        $result = $this->handle_quick_actions();
+        if (!empty($result)) {
+            $params['awpcp_result'] = $result;
+        }
+
         return $this->template_renderer->render_template( $template, $params );
     }
 
@@ -105,17 +110,18 @@ class AWPCP_QuickViewListingAdminPage {
         $result         = $this->request->param( 'awpcp-result' );
         $awpcp_action   = $this->request->param( 'action' );
         $post_id        = $this->request->param( 'post' );
+        $post = get_post($post_id);
 
-        $post_ids[] = $post_id;
-        if ( ! empty( $awpcp_action ) && empty( $result ) ) {
-            $url    = awpcp_get_admin_listings_url();
-            $result = $action_handler->handle_action( $url, $awpcp_action, $post_ids );
-            $result = wp_parse_url( $result );
-            parse_str( $result['query'], $query );
-            $result = $query['awpcp-result'];
+        if (!empty($result) && empty($awpcp_action)) {
+            return $result;
+        }
+
+        if ( ! empty( $awpcp_action ) && !empty($post) && $post->post_type === AWPCP_LISTING_POST_TYPE) {
+            $url    = awpcp_get_quick_view_listing_url($post);
+            $result = $action_handler->actions[$awpcp_action]->process_item( $post );
+            $messages = $action_handler->actions[$awpcp_action]->get_messages( array($result => 1) );
             $params = array(
-                'awpcp-action' => $awpcp_action,
-                'awpcp-result' => $result,
+                'awpcp-result' => rawurlencode($messages[0]),
             );
             wp_safe_redirect( add_query_arg( $params, $url ) );
             exit();

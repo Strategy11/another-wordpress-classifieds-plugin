@@ -11,7 +11,7 @@ class AWPCP_ListTableActionsHandler {
     /**
      * @var array A list of actions handlers.
      */
-    private $actions;
+    public $actions;
 
     /**
      * @var object
