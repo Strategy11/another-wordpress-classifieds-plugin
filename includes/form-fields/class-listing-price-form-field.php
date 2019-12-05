@@ -36,7 +36,7 @@ class AWPCP_ListingPriceFormField extends AWPCP_FormField {
     }
 
     protected function format_value( $value ) {
-        return is_numeric($value) ? awpcp_format_money_without_currency_symbol( $value ) : '';
+        return is_numeric( $value ) ? awpcp_format_money_without_currency_symbol( $value ) : '';
     }
 
     /**
@@ -52,6 +52,9 @@ class AWPCP_ListingPriceFormField extends AWPCP_FormField {
         return $data['metadata']['_awpcp_price'] / 100;
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
     public function render( $value, $errors, $listing, $context ) {
         $params = array(
             'required'                      => $this->is_required(),
