@@ -41,13 +41,16 @@ class AWPCP_ListTableActionsHandler {
     public function admin_head() {
         $action = $this->request->param( 'awpcp-action' );
         $result = $this->request->param( 'awpcp-result' );
-        /* Add new button in admin user panel for normal users but redirect to the front end place ad page,
-        There is no wordpress hook to do this cleanly so we have to do a little hack and add it with javascript. */
-        if ( !awpcp_current_user_is_moderator() ) {
-            $placead = url_placead();
-            $post_type_object = get_post_type_object(AWPCP_LISTING_POST_TYPE);
-            $add_new_label = esc_html( $post_type_object->labels->add_new );
-            $script = <<<script
+
+        /*
+        Adds Add new ad button in admin user panel for normal users but redirects to the front end place ad page,
+        There is no WordPress hook to do this cleanly so we have to do a little hack and add it with javascript #2788.
+        */
+        if ( ! awpcp_current_user_is_moderator() ) {
+            $placead          = esc_url( url_placead() );
+            $post_type_object = get_post_type_object( AWPCP_LISTING_POST_TYPE );
+            $add_new_label    = esc_html( $post_type_object->labels->add_new );
+            $script           = <<<script
         <script type="text/javascript">
             jQuery(document).ready( function($)
             {
@@ -55,7 +58,7 @@ class AWPCP_ListTableActionsHandler {
             });
         </script>
 script;
-
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             echo $script;
         }
 
