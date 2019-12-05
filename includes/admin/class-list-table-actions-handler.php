@@ -41,6 +41,23 @@ class AWPCP_ListTableActionsHandler {
     public function admin_head() {
         $action = $this->request->param( 'awpcp-action' );
         $result = $this->request->param( 'awpcp-result' );
+        /* Add new button in admin user panel for normal users but redirect to the front end place ad page,
+        There is no wordpress hook to do this cleanly so we have to do a little hack and add it with javascript. */
+        if ( !awpcp_current_user_is_moderator() ) {
+            $placead = url_placead();
+            $post_type_object = get_post_type_object(AWPCP_LISTING_POST_TYPE);
+            $add_new_label = esc_html( $post_type_object->labels->add_new );
+            $script = <<<script
+        <script type="text/javascript">
+            jQuery(document).ready( function($)
+            {
+                jQuery(".wp-heading-inline").after(" <a href='{$placead}' class='page-title-action'>{$add_new_label}</a>");
+            });
+        </script>
+script;
+
+            echo $script;
+        }
 
         if ( isset( $_SERVER['REQUEST_URI'] ) ) { // Input var okay.
             $_SERVER['REQUEST_URI'] = remove_query_arg( array( 'awpcp-action', 'awpcp-result' ), esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) ); // Input var okay.
