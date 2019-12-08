@@ -104,7 +104,7 @@ class AWPCP_ListTableRestrictions {
             return $counts;
         }
 
-        $counts = array_fill_keys(array_keys($counts), 0);
+        $counts          = array_fill_keys( array_keys( $counts ), 0 );
         $current_user_id = $this->request->get_current_user_id();
 
         $cache_key = "posts-{$this->listing_post_type}_{$current_user_id}";
