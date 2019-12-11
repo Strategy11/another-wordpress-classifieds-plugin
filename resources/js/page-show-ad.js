@@ -51,12 +51,8 @@
             return;
         }
 
-        var items = null;
         var getGalleryItems = function() {
-            if ( items !== null ) {
-                return items;
-            }
-
+            var items = null;
             items = $( '#classiwrapper [data-awpcp-gallery]' ).map( function( index, element ) {
                 var $link = $( element ), $img = $link.find( 'img' );
 
