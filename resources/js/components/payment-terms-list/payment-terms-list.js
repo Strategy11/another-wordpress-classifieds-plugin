@@ -137,8 +137,8 @@ function( $, settings ) {
 
         _getDisabledPaymentTerms: function _getDisabledPaymentTerms() {
             var self = this;
-
-            if ( self.state.selectedCategories === null && settings.get( 'hide-all-payment-terms-if-no-category-is-selected' ) ) {
+            var selectedCats = self.state.selectedCategories;
+            if ( (selectedCats === null || typeof selectedCats === 'undefined' || selectedCats.length === 0) && settings.get( 'hide-all-payment-terms-if-no-category-is-selected' ) ) {
                 return self.state.allPaymentTerms;
             }
 
