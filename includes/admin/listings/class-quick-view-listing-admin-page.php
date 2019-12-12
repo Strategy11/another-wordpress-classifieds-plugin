@@ -114,9 +114,10 @@ class AWPCP_QuickViewListingAdminPage {
         $result       = $this->request->param( 'awpcp-result' );
         $awpcp_action = $this->request->param( 'action' );
         $post_id      = $this->request->param( 'post' );
+        $page      = $this->request->param( 'page' );
         $post         = get_post( $post_id );
 
-        if ( ! empty( $awpcp_action ) && ! empty( $post ) && $post->post_type === AWPCP_LISTING_POST_TYPE ) {
+        if ( ! empty( $awpcp_action ) && ! empty( $post ) && $page === 'awpcp-admin-quick-view-listing' && $post->post_type === AWPCP_LISTING_POST_TYPE ) {
             $url      = awpcp_get_quick_view_listing_url( $post );
             $result   = $this->table_actions->actions[ $awpcp_action ]->process_item( $post );
             $messages = $this->table_actions->actions[ $awpcp_action ]->get_messages( array( $result => 1 ) );
