@@ -114,7 +114,7 @@ class AWPCP_QuickViewListingAdminPage {
         $result       = $this->request->param( 'awpcp-result' );
         $awpcp_action = $this->request->param( 'action' );
         $post_id      = $this->request->param( 'post' );
-        $page      = $this->request->param( 'page' );
+        $page         = $this->request->param( 'page' );
         $post         = get_post( $post_id );
 
         if ( ! empty( $awpcp_action ) && ! empty( $post ) && $page === 'awpcp-admin-quick-view-listing' && $post->post_type === AWPCP_LISTING_POST_TYPE ) {
