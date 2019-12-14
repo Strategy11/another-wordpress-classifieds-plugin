@@ -132,7 +132,7 @@ class AWPCP_Image_Placeholders {
 
                 $template = '<a class="awpcp-listing-primary-image-listing-link" data-gallery-images="%s" href="%s">%s</a>';
 
-                $placeholders['awpcp_image_name_srccode'] = sprintf( $template, $gallery_json, esc_url( $url ), $featured_image_on_lists );
+                $placeholders['awpcp_image_name_srccode'] = sprintf( $template, $gallery_json, esc_url( $large_image ), $featured_image_on_lists );
             }
 
             $images_uploaded_count = $this->attachments->count_attachments_of_type( 'image', array( 'post_parent' => $ad->ID ) );

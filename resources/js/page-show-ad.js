@@ -56,11 +56,14 @@
 
             var $link = $( this );
             var currentGalleryItem = 0;
+            var galleryItems = null;
 
+            // Single ads.
             if ($link.parents('#showawpcpadpage').length > 0) {
                 galleryItems = $link.closest('#showawpcpadpage').find('.awpcp-listing-primary-image-thickbox-link').data('gallery-images');
             }
 
+            // Browse ads.
             if ($link.parents('.awpcp-listing-excerpt').length > 0) {
                 galleryItems = $link.data('gallery-images');
             }
@@ -72,7 +75,7 @@
                     if (galleryItems[i].src === $link.attr('href')) {
                         currentGalleryItem = i;
                     }
-                }``
+                }
 
                 $link.lightGallery({
                     download: false,
