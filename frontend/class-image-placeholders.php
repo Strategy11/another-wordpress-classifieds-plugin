@@ -72,21 +72,20 @@ class AWPCP_Image_Placeholders {
         if ( awpcp_are_images_allowed() ) {
             $primary_image   = $this->attachments->get_featured_image( $ad->ID );
             $gallery_name    = 'awpcp-gallery-' . $ad->ID;
-            $images_uploaded_count = $this->attachments->count_attachments_of_type( 'image', array( 'post_parent' => $ad->ID ) );
-            $images_uploaded = $this->attachments->find_visible_attachments( array( 'post_parent' => $ad->ID ) );
-            $gallery         = array_map( function ( $gallery_image ) {
-                $large_image = $this->attachment_properties->get_image_url( $gallery_image, 'large' );
-
-                return array(
-                    'src'   => $large_image,
-                    'thumb' => wp_get_attachment_image_src( $gallery_image->ID, 'awpcp-thumbnail', false )[0],
-                );
-            }, $images_uploaded );
-
-            $gallery_json = htmlspecialchars( json_encode( $gallery ), ENT_QUOTES, 'UTF-8' );
 
 
             if ($primary_image) {
+                $images_uploaded = $this->attachments->find_visible_attachments( array( 'post_parent' => $ad->ID ) );
+                $gallery         = array_map( function ( $gallery_image ) {
+                    $large_image = $this->attachment_properties->get_image_url( $gallery_image, 'large' );
+
+                    return array(
+                        'src'   => $large_image,
+                        'thumb' => wp_get_attachment_image_src( $gallery_image->ID, 'awpcp-thumbnail', false )[0],
+                    );
+                }, $images_uploaded );
+
+                $gallery_json = htmlspecialchars( json_encode( $gallery ), ENT_QUOTES, 'UTF-8' );
                 $large_image = $this->attachment_properties->get_image_url( $primary_image, 'large' );
 
                 if (get_awpcp_option('show-click-to-enlarge-link', 1)) {
@@ -136,7 +135,9 @@ class AWPCP_Image_Placeholders {
                 $placeholders['awpcp_image_name_srccode'] = sprintf( $template, $gallery_json, esc_url( $url ), $featured_image_on_lists );
             }
 
+            $images_uploaded_count = $this->attachments->count_attachments_of_type( 'image', array( 'post_parent' => $ad->ID ) );
             if ($images_uploaded_count >= 1) {
+                $images_uploaded = $this->attachments->find_visible_attachments( array( 'post_parent' => $ad->ID ) );
                 $columns = get_awpcp_option('display-thumbnails-in-columns', 0);
                 $rows = $columns > 0 ? ceil(count($images_uploaded) / $columns) : 0;
                 $shown = 0;
