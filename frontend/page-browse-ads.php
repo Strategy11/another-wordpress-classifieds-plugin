@@ -40,7 +40,6 @@ class AWPCP_BrowseAdsPage extends AWPCP_Page {
         awpcp_enqueue_main_script();
         awpcp_enqueue_select2();
         awpcp_maybe_add_thickbox();
-        awpcp_maybe_include_lightbox_style();
         wp_enqueue_script( 'awpcp-page-show-ad' );
 
         $category_id = absint( $this->request->get_category_id() );

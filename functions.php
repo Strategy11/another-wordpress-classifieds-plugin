@@ -2536,6 +2536,7 @@ function awpcp_enqueue_main_script() {
  */
 function awpcp_maybe_add_thickbox() {
     awpcp_maybe_include_lightbox_script();
+    awpcp_maybe_include_lightbox_style();
 }
 
 /**
