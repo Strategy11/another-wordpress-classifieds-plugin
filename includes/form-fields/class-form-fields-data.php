@@ -5,6 +5,8 @@
 
 /**
  * Class used to retrieve data posted through listing's form fields.
+ *
+ * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
  */
 class AWPCP_FormFieldsData {
 
@@ -48,7 +50,7 @@ class AWPCP_FormFieldsData {
                 'post_author'  => $post->post_author,
                 'post_title'   => $this->listing_renderer->get_listing_title( $post ),
                 'post_content' => $post->post_content,
-                'post_status'  => isset($post->post_status) ? $post->post_status : '',
+                'post_status'  => isset( $post->post_status ) ? $post->post_status : '',
             ],
             'metadata'    => [
                 '_awpcp_access_key'    => $this->listing_renderer->get_access_key( $post ),
