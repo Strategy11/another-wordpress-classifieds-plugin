@@ -55,7 +55,7 @@ function( $, settings ) {
                 self.options.onChange( self.getSelectedPaymentTerm() );
             }
 
-            self.isMaxCategories();
+            // self.isMaxCategories();
         },
 
         getSelectedPaymentTerm: function() {
@@ -115,7 +115,7 @@ function( $, settings ) {
                 radio.trigger( 'change' );
             }
 
-            this.isMaxCategories();
+            // this.isMaxCategories();
             enabledPaymentTerms.fadeIn();
             disabledPaymentTerms.fadeOut();
         },
