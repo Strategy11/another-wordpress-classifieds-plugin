@@ -80,24 +80,39 @@
                                 <label for="awpcp-importer-format-eur-date-time"><?php echo esc_html( __( 'EUR Date and Time (year/mm/dd hh:mm:ss)', 'another-wordpress-classifieds-plugin' ) ); ?></label>
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="csv-separators">
                             <th scope="row">
                                 <?php echo esc_html( __( 'Separators Used in CSV', 'another-wordpress-classifieds-plugin' ) ); ?>
                             </th>
                             <td>
-                                <label for="awpcp-importer-date-separator"><?php echo esc_html( __( 'Date Separator', 'another-wordpress-classifieds-plugin' ) ); ?></label>
-                                <input id="awpcp-importer-date-separator" type="text" maxlength="1" size="1" name="date_separator" value="<?php echo esc_attr( $form_data['date_separator'] ); ?>" />
-                                <?php echo awpcp_form_error( 'date_separator', $form_errors ); ?>
-                                <br>
+                                <p>
+                                    <label for="awpcp-importer-date-separator"><?php echo esc_html( __( 'Date Separator', 'another-wordpress-classifieds-plugin' ) ); ?></label>
+                                    <input id="awpcp-importer-date-separator" type="text" maxlength="1" size="1" name="date_separator"
+                                           value="<?php echo esc_attr( $form_data['date_separator'] ); ?>"/>
+                                    <?php echo awpcp_form_error( 'date_separator', $form_errors ); ?>
+                                </p>
 
-                                <label for="awpcp-importer-time-separator"><?php echo esc_html( __( 'Time Separator', 'another-wordpress-classifieds-plugin' ) ); ?></label>
-                                <input id="awpcp-importer-time-separator" type="text" maxlength="1" size="1" name="time_separator" value="<?php echo esc_attr( $form_data['time_separator'] ); ?>" />
-                                <?php echo awpcp_form_error( 'time_separator', $form_errors ); ?>
-                                <br>
 
-                                <label for="awpcp-importer-image-separator"><?php echo esc_html( __( 'Image Separator', 'another-wordpress-classifieds-plugin' ) ); ?></label>
-                                <input id="awpcp-importer-image-separator" type="text" maxlength="1" size="1" name="images_separator" value="<?php echo esc_attr( $form_data['images_separator'] ); ?>" disabled="disabled" /> <?php echo esc_html( __( '(semi-colon)', 'another-wordpress-classifieds-plugin') ); ?>
-                                <?php echo awpcp_form_error( 'images_separator', $form_errors ); ?>
+                                <p><label for="awpcp-importer-time-separator"><?php echo esc_html( __( 'Time Separator', 'another-wordpress-classifieds-plugin' ) ); ?></label>
+                                    <input id="awpcp-importer-time-separator" type="text" maxlength="1" size="1" name="time_separator"
+                                           value="<?php echo esc_attr( $form_data['time_separator'] ); ?>"/>
+                                    <?php echo awpcp_form_error( 'time_separator', $form_errors ); ?>
+                                </p>
+
+                                <p>
+                                    <label for="awpcp-importer-image-separator"><?php echo esc_html( __( 'Category Separator',
+                                            'another-wordpress-classifieds-plugin' ) ); ?></label>
+                                    <input id="awpcp-importer-category-separator" type="text" maxlength="1" size="1" name="category_separator"
+                                           value="<?php echo esc_attr( $form_data['category_separator'] ); ?>"/>
+                                    <?php echo awpcp_form_error( 'category_separator', $form_errors ); ?>
+                                </p>
+                                <p>
+                                    <label for="awpcp-importer-image-separator"><?php echo esc_html( __( 'Image Separator', 'another-wordpress-classifieds-plugin' ) ); ?></label>
+                                    <input id="awpcp-importer-image-separator" type="text" maxlength="1" size="1" name="images_separator"
+                                           value="<?php echo esc_attr( $form_data['images_separator'] ); ?>" disabled="disabled"/> <?php echo esc_html( __( '(semi-colon)',
+                                        'another-wordpress-classifieds-plugin' ) ); ?>
+                                    <?php echo awpcp_form_error( 'images_separator', $form_errors ); ?>
+                                </p>
                             </td>
                         </tr>
                         <tr>

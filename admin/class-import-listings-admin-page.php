@@ -284,6 +284,7 @@ class AWPCP_ImportListingsAdminPage {
         $import_session->set_params( array(
             'date_format' => $this->request->post( 'date_format' ),
             'date_separator' => $this->request->post( 'date_separator' ),
+            'category_separator' => $this->request->post( 'category_separator' ),
             'time_separator' => $this->request->post( 'time_separator' ),
             'images_separator' => $this->request->post( 'images_separator' ),
             'listing_status' => $this->request->post( 'listing_status' ),
@@ -319,6 +320,7 @@ class AWPCP_ImportListingsAdminPage {
                 'listing_status' => 'default',
                 'time_separator' => ':',
                 'date_separator' => '/',
+                'category_separator' => ';',
                 'images_separator' => ';',
                 'create_missing_categories' => false,
                 'assign_listings_to_user' => true,

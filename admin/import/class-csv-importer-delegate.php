@@ -285,9 +285,15 @@ class AWPCP_CSV_Importer_Delegate {
      * @since 4.0.0
      */
     private function parse_category_name_column( $category_name, $row_data ) {
-        $category = $this->get_category( $category_name );
+        $category_separator = $this->import_session->get_param( 'category_separator' );
+        $categories = explode($category_separator, $category_name);
+        $category_ids = [];
+        foreach ($categories as $category) {
+            $category = $this->get_category( $category );
+            $category_ids[] =  $category ? $category->term_id : null;
+        }
 
-        return $category ? $category->term_id : null;
+        return $category_ids;
     }
 
     private function get_category( $name ) {
@@ -491,7 +497,7 @@ class AWPCP_CSV_Importer_Delegate {
         $payment_term_id   = intval( $payment_term_id );
         $payment_term_type = isset( $row_data['payment_term_type'] ) ? $row_data['payment_term_type'] : 'fee';
 
-        if ( ! $payment_term_id || ! $payment_term_type ) {
+        if ( ! isset($payment_term_id) || ! $payment_term_type ) {
             return null;
         }
 

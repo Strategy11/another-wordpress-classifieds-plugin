@@ -349,7 +349,7 @@ class AWPCP_ListingsAPI {
 
         $is_listing_verified = $this->listing_renderer->is_verified( $ad );
 
-        if ( $is_listing_verified && ! awpcp_current_user_is_moderator() ) {
+        if ( $is_listing_verified  ) {
             $this->send_ad_posted_email_notifications( $ad, array(), $transaction );
         } else if ( ! $is_listing_verified ) {
             $this->send_verification_email( $ad );
