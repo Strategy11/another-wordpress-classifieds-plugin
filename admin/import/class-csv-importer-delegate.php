@@ -494,7 +494,7 @@ class AWPCP_CSV_Importer_Delegate {
      * @since 4.0.0
      */
     private function parse_payment_term_id_column( $payment_term_id, $row_data ) {
-        $payment_term_id   = intval( $payment_term_id );
+        $payment_term_id   = is_numeric( $payment_term_id ) ? filter_var( $payment_term_id, FILTER_VALIDATE_INT ) : null;
         $payment_term_type = isset( $row_data['payment_term_type'] ) ? $row_data['payment_term_type'] : 'fee';
 
         if ( ! isset($payment_term_id) || ! $payment_term_type ) {
