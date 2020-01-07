@@ -145,23 +145,25 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
 
         $image_url  = '';
         $html_image = '';
-
-        // TODO: fix so that a blank image is shown if no image is available. Can we add the blank image as an attachment?
-        if ( ! is_null( $image ) && $show_images ) {
-            $image_url = $this->attachment_properties->get_image_url( $image, 'featured' );
-        } else if ( $instance['show-blank'] && $show_images ) {
-            $image_url = "$awpcp_imagesurl/adhasnoimage.png";
-        }
+        $listing_title = esc_attr( $this->listing_renderer->get_listing_title( $item ) );
 
         if ( ! is_null( $image ) && $show_images ) {
             $image_attributes = array(
-                'alt' => esc_attr( $this->listing_renderer->get_listing_title( $item ) ),
+                'alt' => $listing_title,
             );
 
             $html_image = sprintf(
                 '<a class="awpcp-listings-widget-item-listing-link self" href="%s">%s</a>',
                 $this->listing_renderer->get_view_listing_url( $item ),
                 $this->attachment_properties->get_image( $image, 'featured', false, $image_attributes )
+            );
+        } elseif ( $instance['show-blank'] && $show_images ) {
+            $image_url = "$awpcp_imagesurl/adhasnoimage.png";
+
+            $html_image = sprintf(
+                '<a class="awpcp-listings-widget-item-listing-link self" href="%s">%s</a>',
+                $this->listing_renderer->get_view_listing_url( $item ),
+                "<img src='{$image_url}' alt='{$listing_title}' />"
             );
         }
 
