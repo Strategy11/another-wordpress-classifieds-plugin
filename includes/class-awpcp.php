@@ -437,6 +437,7 @@ class AWPCP {
             add_action( 'wp', array( $this->container['LoopIntegration'], 'setup' ) );
 
             add_action( 'template_redirect', array( awpcp_secure_url_redirection_handler(), 'dispatch' ) );
+            add_action( 'template_redirect', array($this, 'disable_oembeds' ));
 
             // TODO: This is not necessary for new installations
             $helper = awpcp_url_backwards_compatibility_redirection_helper();
@@ -472,6 +473,16 @@ class AWPCP {
 
         $this->register_notification_handlers();
 	}
+
+    /**
+     * Disables oembeds when displaying single awpcp listings and html is not allowed.
+     */
+    public function disable_oembeds() {
+        $post = get_post();
+        if ( $post && $post->post_type === AWPCP_LISTING_POST_TYPE && is_singular( $this->post_type ) && !get_awpcp_option('allowhtmlinadtext') ) {
+            remove_filter( 'the_content', array( $GLOBALS['wp_embed'], 'autoembed' ), 8 );
+        }
+    }
 
     /**
      * Verifications that need to be done after the plugin is installed or updated,
