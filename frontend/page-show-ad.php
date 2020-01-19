@@ -34,7 +34,9 @@ class AWPCP_Show_Ad_Page {
         $this->listings_collection       = $listings_collection;
         $this->request                   = $request;
 
-        add_filter( 'awpcp-ad-details', array( $this, 'oembed' ) );
+        if ( get_awpcp_option('allowhtmlinadtext') ) {
+            add_filter( 'awpcp-ad-details', array( $this, 'oembed' ) );
+        }
 	}
 
     /**
