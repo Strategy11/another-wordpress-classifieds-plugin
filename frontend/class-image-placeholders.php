@@ -210,7 +210,7 @@ class AWPCP_Image_Placeholders {
                 $image_attributes['attributes']['height'] = $this->settings->get_option( 'featured-image-height-on-lists' );
             }
 
-            $content = '<a class="awpcp-listing-primary-image-listing-link" href="%s">%s</a>';
+            $content = '<a class="awpcp-listing-primary-image-listing-link adhasnoimage" href="%s">%s</a>';
             $content = sprintf($content, $url, awpcp_html_image( $image_attributes ) );
 
             $placeholders['awpcp_image_name_srccode'] = $content;

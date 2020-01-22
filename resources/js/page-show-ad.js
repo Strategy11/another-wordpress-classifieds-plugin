@@ -51,7 +51,7 @@
             return;
         }
 
-        $( 'body' ).on( 'click', '.awpcp-listing-primary-image-thickbox-link, .thickbox, .awpcp-listing-primary-image-listing-link', function( event ) {
+        $( 'body' ).on( 'click', '.awpcp-listing-primary-image-thickbox-link, .thickbox, .awpcp-listing-primary-image-listing-link:not(.adhasnoimage)', function( event ) {
             event.preventDefault();
 
             var $link = $( this );
