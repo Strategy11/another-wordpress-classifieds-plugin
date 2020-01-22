@@ -1,4 +1,4 @@
-# Copyright (C) 2019 Another WordPress Classifieds Plugin (AWPCP)
+# Copyright (C) 2020 Another WordPress Classifieds Plugin (AWPCP)
 # This file is distributed under the same license as the Another WordPress Classifieds Plugin (AWPCP) package.
 # Translators:
 # Moldovan Dragos Calin <dragosm92@gmail.com>, 2014
@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2019-12-11 21:28:09+00:00\n"
-"PO-Revision-Date: 2019-12-11 21:32+0000\n"
-"Last-Translator: Mihoc Maria Estela <maria_estela_mihoc@yahoo.com>\n"
+"POT-Creation-Date: 2020-01-22 20:09:42+00:00\n"
+"PO-Revision-Date: 2020-01-22 20:23+0000\n"
+"Last-Translator: Lucian Mihailescu <lucian@intercer.net>\n"
 "Language-Team: Romanian (Romania) (http://www.transifex.com/wp-translations/another-wordpress-classifieds-plugin/language/ro_RO/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -58,12 +58,12 @@ msgstr "Atribute"
 msgid "Categories"
 msgstr "Categorii"
 
-#: admin/admin-panel-fees-table.php:129 includes/class-awpcp.php:753
+#: admin/admin-panel-fees-table.php:129 includes/class-awpcp.php:764
 msgid "Featured Ads"
 msgstr "Anunțuri speciale"
 
 #: admin/admin-panel-fees-table.php:131
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:113
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:128
 msgid "Private"
 msgstr "Privat"
 
@@ -427,7 +427,7 @@ msgstr "Șterge categorie"
 #: frontend/templates/payments-billing-form.tpl.php:123
 #: includes/listings/class-listing-action-with-confirmation.php:8
 #: includes/settings/renderers/class-button-settings-renderer.php:41
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:188
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:203
 #: templates/admin/import-listings-admin-page-import-form.tpl.php:47
 msgid "Cancel"
 msgstr "Anulează"
@@ -646,26 +646,26 @@ msgstr "Directorul specificat nu are o adresă corectă."
 msgid "The specified directory does not exists."
 msgstr "Directorul specificat nu există."
 
-#: admin/class-import-listings-admin-page.php:367
+#: admin/class-import-listings-admin-page.php:369
 msgid ""
 "(<percentage>) <number-of-rows-processed> of <number-of-rows> rows "
 "processed. <number-of-rows-imported> rows imported and <number-of-rows-"
 "rejected> rows rejected."
 msgstr "(<percentage>) <number-of-rows-processed> din <number-of-rows> liniile procesate. <number-of-rows-imported> linii importate și <number-of-rows-rejected> linii respinse."
 
-#: admin/class-import-listings-admin-page.php:368
+#: admin/class-import-listings-admin-page.php:370
 msgctxt ""
 "description for messages used to show feedback for the Import Listings "
 "operation"
 msgid "<message-type> in line <message-line>"
 msgstr "<message-type> în linia <message-line>"
 
-#: admin/class-import-listings-admin-page.php:379
+#: admin/class-import-listings-admin-page.php:381
 msgctxt "text for page subtitle and submit button"
 msgid "Test Import"
 msgstr "Test import"
 
-#: admin/class-import-listings-admin-page.php:381
+#: admin/class-import-listings-admin-page.php:383
 msgctxt "text for page subtitle and submit button"
 msgid "Import"
 msgstr "Import"
@@ -895,92 +895,92 @@ msgid ""
 "failed with the following error: <error-message>."
 msgstr "Nu se poate asocia nici un utilizator cu această listă. Încercarea de a crea un utilizator nou produce eroarea următoare: <error-message>."
 
-#: admin/import/class-csv-importer-delegate.php:308
+#: admin/import/class-csv-importer-delegate.php:314
 msgctxt "csv importer"
 msgid "No category with name \"<category-name>\" was found."
 msgstr "Nu<category-name>s-a găsit</category-name> nicio categorie cu numele \"\"."
 
-#: admin/import/class-csv-importer-delegate.php:324
+#: admin/import/class-csv-importer-delegate.php:330
 msgctxt "csv importer"
 msgid "There was an error trying to create category \"<category-name>\"."
 msgstr "Eroare la încercarea de creare a categoriei \"<category-name>\".</category-name>."
 
-#: admin/import/class-csv-importer-delegate.php:333
+#: admin/import/class-csv-importer-delegate.php:339
 msgctxt "csv importer"
 msgid ""
 "A category with name \"<category-name>\" was created, but there was an error"
 " trying to retrieve its information from the database."
 msgstr "A fost creată o categorie cu numele \"<category-name>\", dar a fost o eroare la încercarea de preluare a informațiilor sale din baza de date.</category-name>."
 
-#: admin/import/class-csv-importer-delegate.php:345
+#: admin/import/class-csv-importer-delegate.php:351
 msgctxt "csv importer"
 msgid "Item price must be a number."
 msgstr "Prețul articolului trebuie să fie un număr."
 
-#: admin/import/class-csv-importer-delegate.php:359
+#: admin/import/class-csv-importer-delegate.php:365
 msgctxt "csv importer"
 msgid "The start date is missing and no default value was defined."
 msgstr "Data de începere lipsește și nu s-a definit nicio valoare implicită."
 
-#: admin/import/class-csv-importer-delegate.php:360
+#: admin/import/class-csv-importer-delegate.php:366
 msgctxt "csv importer"
 msgid "The start date is invalid and no default value was defined."
 msgstr "Data de începere nu este validă și nu s-a definit nicio valoare implicită."
 
-#: admin/import/class-csv-importer-delegate.php:361
+#: admin/import/class-csv-importer-delegate.php:367
 msgctxt "csv importer"
 msgid "Invalid default start date."
 msgstr "Dată de începere implicită nevalidă."
 
-#: admin/import/class-csv-importer-delegate.php:459
-#: admin/import/class-csv-importer-delegate.php:460
+#: admin/import/class-csv-importer-delegate.php:465
+#: admin/import/class-csv-importer-delegate.php:466
 msgctxt "csv importer"
 msgid "The end date is missing and no default value was defined."
 msgstr "Data de sfârșit lipsește și nu s-a definit nicio valoare implicită."
 
-#: admin/import/class-csv-importer-delegate.php:461
+#: admin/import/class-csv-importer-delegate.php:467
 msgctxt "csv importer"
 msgid "Invalid default end date."
 msgstr "Dată de încheiere implicită nevalidă."
 
-#: admin/import/class-csv-importer-delegate.php:499
+#: admin/import/class-csv-importer-delegate.php:505
 msgid "The payment term type must be 'fee' or 'subscription'."
 msgstr "Tipul termenului de plată trebuie să fie \"taxă\" sau \"abonament\"."
 
-#: admin/import/class-csv-importer-delegate.php:505
+#: admin/import/class-csv-importer-delegate.php:511
 msgid ""
 "There is no payment term with type {payment_term_type} and ID "
 "{payment_term_id}."
 msgstr "Nu există nici un termen de plată cu tipul {payment_term_type} și ID {payment_term_id}."
 
-#: admin/import/class-csv-importer-delegate.php:519
+#: admin/import/class-csv-importer-delegate.php:525
 msgid ""
 "No images directory was configured. Are you sure you uploaded a ZIP file or "
 "defined a local directory?"
 msgstr "Nu a fost configurat nici un director pentru imagini. Sunteți sigur că ați încărcat un fișier ZIP sau că ați definit un director local?"
 
-#: admin/import/class-csv-importer-delegate.php:528
+#: admin/import/class-csv-importer-delegate.php:534
 msgctxt "csv importer"
 msgid "Image file with name <image-name> not found."
 msgstr "Imagine dosar cu nume <image-name>nu a întemeia.</image-name>."
 
-#: admin/import/class-csv-importer-delegate.php:595
+#: admin/import/class-csv-importer-delegate.php:601
 msgctxt "csv importer"
 msgid "There was an error trying to store imported data into the database."
 msgstr "Eroare la încercarea de stocare a datelor importate în baza de date."
 
-#: admin/import/class-csv-importer-delegate.php:616
+#: admin/import/class-csv-importer-delegate.php:622
 msgctxt "csv importer"
 msgid ""
 "There was an error trying to import one of the images: {image-validation-"
 "error}"
 msgstr "Eroare la încercarea de a importa una dintre imagini: {Image-validare-Error}"
 
-#: admin/import/class-csv-importer-delegate.php:707
+#: admin/import/class-csv-importer-delegate.php:713
 msgid "The value for Extra Field %s's is not allowed. Allowed values are: %%s"
 msgstr "Valoarea pentru câmpul suplimentar %s's nu este permisă. Valorile permise sunt: %%s"
 
-#: admin/import/class-csv-importer-delegate.php:716
+#: admin/import/class-csv-importer-delegate.php:722
 msgid ""
 "The value for Extra Field %s's is not allowed. Allowed value is one of: %%s"
 msgstr "Valoarea pentru câmpul suplimentar %s's nu este permisă. Valorile permise sunt: %%s"
@@ -1795,11 +1795,11 @@ msgctxt "single dropdown category selector"
 msgid "Category:"
 msgstr "Categorie:"
 
-#: frontend/class-image-placeholders.php:81
+#: frontend/class-image-placeholders.php:93
 msgid "Click to enlarge image."
 msgstr "Click pentru a mări imaginea."
 
-#: frontend/class-image-placeholders.php:95
+#: frontend/class-image-placeholders.php:108
 msgid "Thumbnail for the listing's main image"
 msgstr "Imaginea miniatură a imaginii anunțului"
 
@@ -1812,7 +1812,7 @@ msgstr "Anunț negăsit"
 msgid "Browse Ads"
 msgstr "Explorează anunțuri"
 
-#: frontend/page-browse-ads.php:67
+#: frontend/page-browse-ads.php:68
 msgid ""
 "No specific category was selected for browsing so you are viewing listings "
 "from all categories."
@@ -2202,13 +2202,13 @@ msgstr "Ați introdus un preț maxim incorect. Asigurați-vă că prețul dvs. c
 msgid "Return to Search"
 msgstr "Înapoi la căutare"
 
-#: frontend/page-show-ad.php:59
+#: frontend/page-show-ad.php:61
 msgid ""
 "No ad ID was specified. Return to {browse_listings_link}browse all "
 "ads{/browse_listings_link}."
 msgstr "Nu s-a specificat niciun ID de anunț. Reveniți la {browse_listings_link} Răsfoiți toate anunțurile {/browse_listings_link,."
 
-#: frontend/page-show-ad.php:71
+#: frontend/page-show-ad.php:73
 msgid ""
 "No ad was found with ID equal to {listing_id}. Return to "
 "{browse_listings_link}browse all ads{/browse_listings_link}."
@@ -3202,27 +3202,27 @@ msgid ""
 "to continue: %s."
 msgstr "Suplimentar, puteți aproba imaginile mergând la secțiunea Administrare Imagini pentru acest anunț și dând click pe butonul \"Activează\" de sub fiecare imagine. Click aici pentru a continua: %s."
 
-#: functions.php:3035
+#: functions.php:3036
 msgid "Email sent %s."
 msgstr "Email trimis %s."
 
-#: functions.php:3172
+#: functions.php:3173
 msgid "Not Installed"
 msgstr "Neinstalate"
 
-#: functions.php:3176
+#: functions.php:3177
 msgid "Installed"
 msgstr "Instalate"
 
-#: functions.php:3184
+#: functions.php:3185
 msgid "SSL Support: Yes."
 msgstr "Suport SSL: Da."
 
-#: functions.php:3186
+#: functions.php:3187
 msgid "SSL Support: No."
 msgstr "Suport SSL: Nu."
 
-#: functions.php:3189
+#: functions.php:3190
 msgid "OpenSSL version:"
 msgstr ""
 
@@ -3467,12 +3467,12 @@ msgid "Configuration"
 msgstr "Configurare"
 
 #: includes/admin/import/class-importer-form-steps.php:29
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:180
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:195
 msgid "Import"
 msgstr "Import"
 
 #: includes/admin/import/class-importer-form-steps.php:32
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:179
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:194
 msgid "Test Import"
 msgstr "Test import"
 
@@ -4113,106 +4113,106 @@ msgid ""
 " one of the associated listings: <error-message>"
 msgstr "Categoria nu a putut fi ștearsă, deoarece a existat o eroare la încercarea de a șterge una dintre listările asociate:<error-message></error-message>"
 
-#: includes/class-awpcp.php:680
+#: includes/class-awpcp.php:691
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
 msgstr "AWPCP necesită librăria de procesare grafică GD, iar aceasta nu este instalată. Contactați administratorul hosting-ul dvs. pentru a rezolva aceasta."
 
-#: includes/class-awpcp.php:681
+#: includes/class-awpcp.php:692
 #: includes/placeholders/class-placeholders-installation-verifier.php:63
 msgid "Warning"
 msgstr "Atenționare"
 
-#: includes/class-awpcp.php:697
+#: includes/class-awpcp.php:708
 msgid "Attachments"
 msgstr "Atașamente"
 
-#: includes/class-awpcp.php:704
+#: includes/class-awpcp.php:715
 msgid "Authorize.Net"
 msgstr "Authorize.net"
 
-#: includes/class-awpcp.php:711
+#: includes/class-awpcp.php:722
 msgid "BuddyPress Listings"
 msgstr "Anunțuri BuddyPress"
 
-#: includes/class-awpcp.php:718
+#: includes/class-awpcp.php:729
 msgid "Campaign Manager"
 msgstr "Administrator Campanii"
 
-#: includes/class-awpcp.php:725
+#: includes/class-awpcp.php:736
 msgid "Category Icons"
 msgstr "Icon-uri pentru categorii"
 
-#: includes/class-awpcp.php:732
+#: includes/class-awpcp.php:743
 msgid "Comments & Ratings"
 msgstr "Comentarii și Evaluări"
 
-#: includes/class-awpcp.php:739
+#: includes/class-awpcp.php:750
 msgid "Coupons/Discount"
 msgstr "Cupoane/Reduceri"
 
-#: includes/class-awpcp.php:746
+#: includes/class-awpcp.php:757
 msgid "Extra Fields"
 msgstr "Câmpuri suplimentare"
 
-#: includes/class-awpcp.php:760
+#: includes/class-awpcp.php:771
 msgid "Fee per Category"
 msgstr "Preț pe categorie"
 
-#: includes/class-awpcp.php:767
+#: includes/class-awpcp.php:778
 msgid "Google Checkout"
 msgstr "Google Checkout"
 
-#: includes/class-awpcp.php:775
+#: includes/class-awpcp.php:786
 msgid "Mark as Sold"
 msgstr "Marcaț ca vândut"
 
-#: includes/class-awpcp.php:782
+#: includes/class-awpcp.php:793
 msgid "PayFast"
 msgstr "PayFast"
 
-#: includes/class-awpcp.php:789
+#: includes/class-awpcp.php:800
 msgid "PayPal Pro"
 msgstr "PayPal Pro"
 
-#: includes/class-awpcp.php:796
+#: includes/class-awpcp.php:807
 msgid "Regions Control"
 msgstr "Control regiuni"
 
-#: includes/class-awpcp.php:803
+#: includes/class-awpcp.php:814
 msgid "Restricted Categories"
 msgstr "Categorii restricționate"
 
-#: includes/class-awpcp.php:810
+#: includes/class-awpcp.php:821
 msgid "RSS"
 msgstr "Feed RSS"
 
-#: includes/class-awpcp.php:817
+#: includes/class-awpcp.php:828
 msgid "Stripe"
 msgstr "Stripe"
 
-#: includes/class-awpcp.php:824
+#: includes/class-awpcp.php:835
 msgid "Subscriptions"
 msgstr "Abonamente"
 
-#: includes/class-awpcp.php:831 templates/components/media-manager.tpl.php:50
+#: includes/class-awpcp.php:842 templates/components/media-manager.tpl.php:50
 msgid "Videos"
 msgstr "Video-uri"
 
-#: includes/class-awpcp.php:839
+#: includes/class-awpcp.php:850
 msgid "XML Sitemap"
 msgstr "Hartă XML"
 
-#: includes/class-awpcp.php:847
+#: includes/class-awpcp.php:858
 msgid "ZIP Code Search Module"
 msgstr "Modul de căutare după codul poștal"
 
-#: includes/class-awpcp.php:1384
+#: includes/class-awpcp.php:1395
 msgid "This field is required."
 msgstr "Acest câmp este obligatoriu."
 
-#: includes/class-awpcp.php:1385
+#: includes/class-awpcp.php:1396
 #: includes/form-fields/class-form-fields-validator.php:105
 #: includes/frontend/class-edit-listing-page.php:267
 #: includes/frontend/class-edit-listing-page.php:361
@@ -4220,53 +4220,53 @@ msgstr "Acest câmp este obligatoriu."
 msgid "Please enter a valid email address."
 msgstr "Vă rugăm să introduceți o adresă de email validă."
 
-#: includes/class-awpcp.php:1386 includes/class-awpcp.php:1387
+#: includes/class-awpcp.php:1397 includes/class-awpcp.php:1398
 msgid "Please enter a valid URL."
 msgstr "Vă rugăm să introduceți un link (URL) corect."
 
-#: includes/class-awpcp.php:1388
+#: includes/class-awpcp.php:1399
 msgid "Please enter a valid number."
 msgstr "Vă rugăm să introduceți un număr corect."
 
-#: includes/class-awpcp.php:1389
+#: includes/class-awpcp.php:1400
 msgid "Please enter a valid amount."
 msgstr "Vă rugăm să introduceți un preț valid."
 
-#: includes/class-awpcp.php:1390
+#: includes/class-awpcp.php:1401
 msgid ""
 "You have reached the maximum allowed categories for the selected fee plan."
 msgstr ""
 
-#: includes/class-awpcp.php:1400
+#: includes/class-awpcp.php:1411
 msgctxt "[UI Datepicker] Display text for previous month link"
 msgid "&#x3c;Prev"
 msgstr "&#x3c;Înapoi"
 
-#: includes/class-awpcp.php:1402
+#: includes/class-awpcp.php:1413
 msgctxt "[UI Datepicker] Display text for next month link"
 msgid "Next&#x3e;"
 msgstr "Înainte&#x3e;"
 
-#: includes/class-awpcp.php:1417
+#: includes/class-awpcp.php:1428
 msgctxt "[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ..."
 msgid "0"
 msgstr "0"
 
-#: includes/class-awpcp.php:1423
+#: includes/class-awpcp.php:1434
 msgid "There are files currently being uploaded."
 msgstr "Fișierele se încarcă în acest moment."
 
-#: includes/class-awpcp.php:1424
+#: includes/class-awpcp.php:1435
 msgid "There are files pending to be uploaded."
 msgstr "Fișierele așteaptă să fie încărcate."
 
-#: includes/class-awpcp.php:1425
+#: includes/class-awpcp.php:1436
 msgid "You haven't uploaded any images or files."
 msgstr "Nu ați încărcat nici o imagine sau fișier."
 
-#: includes/class-awpcp.php:1494 includes/class-awpcp.php:1502
-#: includes/class-awpcp.php:1510 includes/class-awpcp.php:1587
-#: includes/class-awpcp.php:1595 includes/class-awpcp.php:1603
+#: includes/class-awpcp.php:1505 includes/class-awpcp.php:1513
+#: includes/class-awpcp.php:1521 includes/class-awpcp.php:1598
+#: includes/class-awpcp.php:1606 includes/class-awpcp.php:1614
 #: templates/admin/debug/plugin-info-debug-section.tpl.php:6
 msgid "Another WordPress Classifieds Plugin"
 msgstr "Un alt WordPress Classifieds plugin"
@@ -5671,7 +5671,7 @@ msgid "Destination directory doesn't exists and couldn't be created."
 msgstr "Directorul destinație nu există și nu poate fi creat."
 
 #: includes/models/class-custom-post-types.php:57
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:112
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:127
 msgid "Disabled"
 msgstr "Deactivat"
 
@@ -9965,82 +9965,86 @@ msgstr ""
 msgid "Separators Used in CSV"
 msgstr "Seprator folosit în fișierul CSV"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:88
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:89
 msgid "Date Separator"
 msgstr "Separator dată"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:93
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:96
 msgid "Time Separator"
 msgstr "Separator timp"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:98
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:103
+msgid "Category Separator"
+msgstr "Separator Categorie"
+
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:110
 msgid "Image Separator"
 msgstr "Separator imagine"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:99
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:112
 msgid "(semi-colon)"
 msgstr "(punct și virgulă)"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:105
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:120
 msgid "Post status of imported listings"
 msgstr ""
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:109
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:124
 msgid "Leave current post status"
 msgstr ""
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:110
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:125
 msgid "Pending Review"
 msgstr "Recenzie în așteptare"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:111
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:126
 msgid "Draft"
 msgstr "Ciornă"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:114
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:129
 msgid "Published"
 msgstr "Publicat"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:120
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:135
 msgid "How to handle missing categories?"
 msgstr "Cum veți proceda cu categoriile lipsă?"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:124
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:139
 msgid "Create missing categories"
 msgstr "Creați categoriile lipsă"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:125
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:140
 msgid "Generate an error"
 msgstr "Generați o eroare"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:128
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:143
 msgid ""
 "Define whether you want to create missing categories or generate an error "
 "whenever a category in the CSV file is not found in the system."
 msgstr "Definiți dacă doriți să creați categoriile lipsă sau să generați o eroare oridecâteori o categorie din fișierul CSV nu este gasită în sistem."
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:133
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:148
 msgctxt "csv-importer"
 msgid "Assign listings to a user?"
 msgstr "Asociază anunțul cu un utilizator?"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:138
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:153
 msgctxt "csv-importer"
 msgid "Assign listings to a user"
 msgstr "Asociază anunțul cu un utilizator"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:139
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:154
 msgid ""
 "If checked, listings will be assigned to the user specified in the CSV file "
 "or a default user that can be defined below."
 msgstr "Dacă este bifat, anunțul va fi asociat cu un utilizator specificat în fișierul CSV sau cu un utilizator implicit care poate fi definit mai jos."
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:145
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:160
 msgctxt "csv-importer"
 msgid "Define a default user?"
 msgstr "Definiți un utilizator implicit?"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:150
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:165
 msgctxt "csv-importer"
 msgid ""
 "The default user will be used when the username column is not present in the"
@@ -10048,11 +10052,11 @@ msgid ""
 "find a user with the contact email address specified in the CSV file."
 msgstr "Utilizatorul implicit va fi utilizat atunci când coloana de nume de utilizator nu este prezentă în fișierul CSV sau nu există nici un utilizator cu numele de utilizator specificat și nu am putut găsi un utilizator cu adresa de e-mail de contact specificată în fișierul CSV."
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:156
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:171
 msgid "Default user"
 msgstr "Utilizator implicit"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:185
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:200
 #: templates/admin/import-listings-admin-page-import-form.tpl.php:44
 msgid ""
 "Press the button below to cancel the current import operation and discard "

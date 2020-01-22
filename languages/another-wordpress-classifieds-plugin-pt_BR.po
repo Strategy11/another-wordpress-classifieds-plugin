@@ -1,4 +1,4 @@
-# Copyright (C) 2019 Another WordPress Classifieds Plugin (AWPCP)
+# Copyright (C) 2020 Another WordPress Classifieds Plugin (AWPCP)
 # This file is distributed under the same license as the Another WordPress Classifieds Plugin (AWPCP) package.
 # Translators:
 # Thiago Cangussu <cng.thg@gmail.com>, 2014
@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2019-12-11 21:28:09+00:00\n"
-"PO-Revision-Date: 2019-12-11 21:32+0000\n"
-"Last-Translator: Marcos Nakamine\n"
+"POT-Creation-Date: 2020-01-22 20:09:42+00:00\n"
+"PO-Revision-Date: 2020-01-22 20:23+0000\n"
+"Last-Translator: Juan <juandlopezr@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wp-translations/another-wordpress-classifieds-plugin/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -60,12 +60,12 @@ msgstr "Atributos"
 msgid "Categories"
 msgstr "Categorias"
 
-#: admin/admin-panel-fees-table.php:129 includes/class-awpcp.php:753
+#: admin/admin-panel-fees-table.php:129 includes/class-awpcp.php:764
 msgid "Featured Ads"
 msgstr "Anúncios em destaque"
 
 #: admin/admin-panel-fees-table.php:131
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:113
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:128
 msgid "Private"
 msgstr "Privado"
 
@@ -427,7 +427,7 @@ msgstr "Apagar categoria"
 #: frontend/templates/payments-billing-form.tpl.php:123
 #: includes/listings/class-listing-action-with-confirmation.php:8
 #: includes/settings/renderers/class-button-settings-renderer.php:41
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:188
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:203
 #: templates/admin/import-listings-admin-page-import-form.tpl.php:47
 msgid "Cancel"
 msgstr "Cancelar"
@@ -646,26 +646,26 @@ msgstr "O diretório especificado não é um caminho válido."
 msgid "The specified directory does not exists."
 msgstr "O diretório especificado não existe."
 
-#: admin/class-import-listings-admin-page.php:367
+#: admin/class-import-listings-admin-page.php:369
 msgid ""
 "(<percentage>) <number-of-rows-processed> of <number-of-rows> rows "
 "processed. <number-of-rows-imported> rows imported and <number-of-rows-"
 "rejected> rows rejected."
 msgstr "(<percentage>) <number-of-rows-processed> de <number-of-rows> linhas processadas. <number-of-rows-imported> linhas importadas e <number-of-rows-rejected> linhas rejeitadas."
 
-#: admin/class-import-listings-admin-page.php:368
+#: admin/class-import-listings-admin-page.php:370
 msgctxt ""
 "description for messages used to show feedback for the Import Listings "
 "operation"
 msgid "<message-type> in line <message-line>"
 msgstr "<message-type> em linha <message-line>"
 
-#: admin/class-import-listings-admin-page.php:379
+#: admin/class-import-listings-admin-page.php:381
 msgctxt "text for page subtitle and submit button"
 msgid "Test Import"
 msgstr "Importação de teste"
 
-#: admin/class-import-listings-admin-page.php:381
+#: admin/class-import-listings-admin-page.php:383
 msgctxt "text for page subtitle and submit button"
 msgid "Import"
 msgstr "Importar"
@@ -895,92 +895,92 @@ msgid ""
 "failed with the following error: <error-message>."
 msgstr "Nenhum usuário pôde ser designado a esta listagem. Nossa tentativa de criar um novo usuário falhou e apresentou o seguinte erro: <error-message>."
 
-#: admin/import/class-csv-importer-delegate.php:308
+#: admin/import/class-csv-importer-delegate.php:314
 msgctxt "csv importer"
 msgid "No category with name \"<category-name>\" was found."
 msgstr "Nenhuma categoria com nome \"<category-name>\" foi encontrada."
 
-#: admin/import/class-csv-importer-delegate.php:324
+#: admin/import/class-csv-importer-delegate.php:330
 msgctxt "csv importer"
 msgid "There was an error trying to create category \"<category-name>\"."
 msgstr "Há um erro tentando criar categoria \"<category-name>\"."
 
-#: admin/import/class-csv-importer-delegate.php:333
+#: admin/import/class-csv-importer-delegate.php:339
 msgctxt "csv importer"
 msgid ""
 "A category with name \"<category-name>\" was created, but there was an error"
 " trying to retrieve its information from the database."
 msgstr "Uma categoria com nome \"<category-name>\" foi criada, mas houve um erro tentando recuperar esta informação da base de dados."
 
-#: admin/import/class-csv-importer-delegate.php:345
+#: admin/import/class-csv-importer-delegate.php:351
 msgctxt "csv importer"
 msgid "Item price must be a number."
 msgstr "Item preço deve ser um número."
 
-#: admin/import/class-csv-importer-delegate.php:359
+#: admin/import/class-csv-importer-delegate.php:365
 msgctxt "csv importer"
 msgid "The start date is missing and no default value was defined."
 msgstr "A data de início está perdida e nenhum valor padrão foi definido."
 
-#: admin/import/class-csv-importer-delegate.php:360
+#: admin/import/class-csv-importer-delegate.php:366
 msgctxt "csv importer"
 msgid "The start date is invalid and no default value was defined."
 msgstr "A data de início é inválida e nenhum valor padrão foi definido."
 
-#: admin/import/class-csv-importer-delegate.php:361
+#: admin/import/class-csv-importer-delegate.php:367
 msgctxt "csv importer"
 msgid "Invalid default start date."
 msgstr "Padrão inválido para a data de início."
 
-#: admin/import/class-csv-importer-delegate.php:459
-#: admin/import/class-csv-importer-delegate.php:460
+#: admin/import/class-csv-importer-delegate.php:465
+#: admin/import/class-csv-importer-delegate.php:466
 msgctxt "csv importer"
 msgid "The end date is missing and no default value was defined."
 msgstr "A data final está perdida e nenhum valor padrão foi definido."
 
-#: admin/import/class-csv-importer-delegate.php:461
+#: admin/import/class-csv-importer-delegate.php:467
 msgctxt "csv importer"
 msgid "Invalid default end date."
 msgstr "Padrão inválido para a data final."
 
-#: admin/import/class-csv-importer-delegate.php:499
+#: admin/import/class-csv-importer-delegate.php:505
 msgid "The payment term type must be 'fee' or 'subscription'."
 msgstr "O tipo de termo de pagamento deve ser 'taxa' or 'subscrição'."
 
-#: admin/import/class-csv-importer-delegate.php:505
+#: admin/import/class-csv-importer-delegate.php:511
 msgid ""
 "There is no payment term with type {payment_term_type} and ID "
 "{payment_term_id}."
 msgstr "Não há têrmo de pagamento com tipo {payment_term_type} e ID {payment_term_id}."
 
-#: admin/import/class-csv-importer-delegate.php:519
+#: admin/import/class-csv-importer-delegate.php:525
 msgid ""
 "No images directory was configured. Are you sure you uploaded a ZIP file or "
 "defined a local directory?"
 msgstr "Nenhuma imagem de diretório foi configurada. Tem certeza que você carregou um arquivo .ZIP ou definido um diretório local?"
 
-#: admin/import/class-csv-importer-delegate.php:528
+#: admin/import/class-csv-importer-delegate.php:534
 msgctxt "csv importer"
 msgid "Image file with name <image-name> not found."
 msgstr "Arquivo de imagem com nome <image-name> não foi encontrado."
 
-#: admin/import/class-csv-importer-delegate.php:595
+#: admin/import/class-csv-importer-delegate.php:601
 msgctxt "csv importer"
 msgid "There was an error trying to store imported data into the database."
 msgstr "Há um erro tentando armazenar dados importados para a base de dados."
 
-#: admin/import/class-csv-importer-delegate.php:616
+#: admin/import/class-csv-importer-delegate.php:622
 msgctxt "csv importer"
 msgid ""
 "There was an error trying to import one of the images: {image-validation-"
 "error}"
 msgstr "Há um erro tentando importar uma das imagens: {image-validation-error}"
 
-#: admin/import/class-csv-importer-delegate.php:707
+#: admin/import/class-csv-importer-delegate.php:713
 msgid "The value for Extra Field %s's is not allowed. Allowed values are: %%s"
 msgstr "O valor para Campo Extra %s's não é permitido. O valores permitidos são: %%s"
 
-#: admin/import/class-csv-importer-delegate.php:716
+#: admin/import/class-csv-importer-delegate.php:722
 msgid ""
 "The value for Extra Field %s's is not allowed. Allowed value is one of: %%s"
 msgstr "O valor para Campo Extra %s's não é permitido. O valor permitido é um de: %%s"
@@ -1795,11 +1795,11 @@ msgctxt "single dropdown category selector"
 msgid "Category:"
 msgstr "Categoria:"
 
-#: frontend/class-image-placeholders.php:81
+#: frontend/class-image-placeholders.php:93
 msgid "Click to enlarge image."
 msgstr "Clique para ampliar a imagem."
 
-#: frontend/class-image-placeholders.php:95
+#: frontend/class-image-placeholders.php:108
 msgid "Thumbnail for the listing's main image"
 msgstr "Miniatura de imagem principal do anúncio"
 
@@ -1812,7 +1812,7 @@ msgstr "Anúncio não encontrado"
 msgid "Browse Ads"
 msgstr "Consulte os anúncios"
 
-#: frontend/page-browse-ads.php:67
+#: frontend/page-browse-ads.php:68
 msgid ""
 "No specific category was selected for browsing so you are viewing listings "
 "from all categories."
@@ -2202,13 +2202,13 @@ msgstr "Você digitou um preço máximo inválido. Verifique se o seu preço con
 msgid "Return to Search"
 msgstr "Voltar para Pesquisar"
 
-#: frontend/page-show-ad.php:59
+#: frontend/page-show-ad.php:61
 msgid ""
 "No ad ID was specified. Return to {browse_listings_link}browse all "
 "ads{/browse_listings_link}."
 msgstr "Nenhum ID de anúncio foi especificado. Retorne para {browse_listings_link}navegue em todos os anúncios{/browse_listings_link}."
 
-#: frontend/page-show-ad.php:71
+#: frontend/page-show-ad.php:73
 msgid ""
 "No ad was found with ID equal to {listing_id}. Return to "
 "{browse_listings_link}browse all ads{/browse_listings_link}."
@@ -3201,27 +3201,27 @@ msgid ""
 "to continue: %s."
 msgstr "Além disso, você pode aprovar as imagens que vão para a seção Gerenciar Imagens para esse anúncio e clicando no \\ \"Activar \" botão abaixo de cada imagem. Clique aqui para continuar: %s ."
 
-#: functions.php:3035
+#: functions.php:3036
 msgid "Email sent %s."
 msgstr "E-mail enviado %s ."
 
-#: functions.php:3172
+#: functions.php:3173
 msgid "Not Installed"
 msgstr "Não instalado"
 
-#: functions.php:3176
+#: functions.php:3177
 msgid "Installed"
 msgstr "Instalado"
 
-#: functions.php:3184
+#: functions.php:3185
 msgid "SSL Support: Yes."
 msgstr "Suporta SSL: Sim."
 
-#: functions.php:3186
+#: functions.php:3187
 msgid "SSL Support: No."
 msgstr "Suporta SSL: Não."
 
-#: functions.php:3189
+#: functions.php:3190
 msgid "OpenSSL version:"
 msgstr "OpenSSL versão:"
 
@@ -3466,12 +3466,12 @@ msgid "Configuration"
 msgstr "Configuração"
 
 #: includes/admin/import/class-importer-form-steps.php:29
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:180
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:195
 msgid "Import"
 msgstr "Importar"
 
 #: includes/admin/import/class-importer-form-steps.php:32
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:179
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:194
 msgid "Test Import"
 msgstr "Importação de teste"
 
@@ -4076,106 +4076,106 @@ msgid ""
 " one of the associated listings: <error-message>"
 msgstr "A categoria não pode ser apagada porque houve um erro tentando apagar um dos anúncios associados: <error-message>"
 
-#: includes/class-awpcp.php:680
+#: includes/class-awpcp.php:691
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
 msgstr "AWPCP requer a biblioteca GD de processamento gráfico e ele não está instalado. Entre em contato com o seu host para corrigir isso."
 
-#: includes/class-awpcp.php:681
+#: includes/class-awpcp.php:692
 #: includes/placeholders/class-placeholders-installation-verifier.php:63
 msgid "Warning"
 msgstr "Advertência"
 
-#: includes/class-awpcp.php:697
+#: includes/class-awpcp.php:708
 msgid "Attachments"
 msgstr "Anexos"
 
-#: includes/class-awpcp.php:704
+#: includes/class-awpcp.php:715
 msgid "Authorize.Net"
 msgstr "Authorize.Net"
 
-#: includes/class-awpcp.php:711
+#: includes/class-awpcp.php:722
 msgid "BuddyPress Listings"
 msgstr "Listagens BuddyPress"
 
-#: includes/class-awpcp.php:718
+#: includes/class-awpcp.php:729
 msgid "Campaign Manager"
 msgstr "Gerenciamento de Campanha"
 
-#: includes/class-awpcp.php:725
+#: includes/class-awpcp.php:736
 msgid "Category Icons"
 msgstr "Ícones Categoria do"
 
-#: includes/class-awpcp.php:732
+#: includes/class-awpcp.php:743
 msgid "Comments & Ratings"
 msgstr "Comentários do utilizador"
 
-#: includes/class-awpcp.php:739
+#: includes/class-awpcp.php:750
 msgid "Coupons/Discount"
 msgstr "Cupons/Disconto"
 
-#: includes/class-awpcp.php:746
+#: includes/class-awpcp.php:757
 msgid "Extra Fields"
 msgstr "Campos extra"
 
-#: includes/class-awpcp.php:760
+#: includes/class-awpcp.php:771
 msgid "Fee per Category"
 msgstr "Taxa por Categoria"
 
-#: includes/class-awpcp.php:767
+#: includes/class-awpcp.php:778
 msgid "Google Checkout"
 msgstr "Google Checkout"
 
-#: includes/class-awpcp.php:775
+#: includes/class-awpcp.php:786
 msgid "Mark as Sold"
 msgstr "Marque como vendido"
 
-#: includes/class-awpcp.php:782
+#: includes/class-awpcp.php:793
 msgid "PayFast"
 msgstr "PayFast"
 
-#: includes/class-awpcp.php:789
+#: includes/class-awpcp.php:800
 msgid "PayPal Pro"
 msgstr "PayPal Pro"
 
-#: includes/class-awpcp.php:796
+#: includes/class-awpcp.php:807
 msgid "Regions Control"
 msgstr "regiões de Controlo"
 
-#: includes/class-awpcp.php:803
+#: includes/class-awpcp.php:814
 msgid "Restricted Categories"
 msgstr "Categorias restritos"
 
-#: includes/class-awpcp.php:810
+#: includes/class-awpcp.php:821
 msgid "RSS"
 msgstr "RSS"
 
-#: includes/class-awpcp.php:817
+#: includes/class-awpcp.php:828
 msgid "Stripe"
 msgstr "Stripe"
 
-#: includes/class-awpcp.php:824
+#: includes/class-awpcp.php:835
 msgid "Subscriptions"
 msgstr "Assinaturas"
 
-#: includes/class-awpcp.php:831 templates/components/media-manager.tpl.php:50
+#: includes/class-awpcp.php:842 templates/components/media-manager.tpl.php:50
 msgid "Videos"
 msgstr "Vídeos"
 
-#: includes/class-awpcp.php:839
+#: includes/class-awpcp.php:850
 msgid "XML Sitemap"
 msgstr "XML Sitemap"
 
-#: includes/class-awpcp.php:847
+#: includes/class-awpcp.php:858
 msgid "ZIP Code Search Module"
 msgstr "ZIP Code Search Module"
 
-#: includes/class-awpcp.php:1384
+#: includes/class-awpcp.php:1395
 msgid "This field is required."
 msgstr "Este campo é obrigatório."
 
-#: includes/class-awpcp.php:1385
+#: includes/class-awpcp.php:1396
 #: includes/form-fields/class-form-fields-validator.php:105
 #: includes/frontend/class-edit-listing-page.php:267
 #: includes/frontend/class-edit-listing-page.php:361
@@ -4183,53 +4183,53 @@ msgstr "Este campo é obrigatório."
 msgid "Please enter a valid email address."
 msgstr "Por favor insira um endereço de e-mail válido."
 
-#: includes/class-awpcp.php:1386 includes/class-awpcp.php:1387
+#: includes/class-awpcp.php:1397 includes/class-awpcp.php:1398
 msgid "Please enter a valid URL."
 msgstr "Por favor, insira uma URL válida."
 
-#: includes/class-awpcp.php:1388
+#: includes/class-awpcp.php:1399
 msgid "Please enter a valid number."
 msgstr "por favor insira um número válido."
 
-#: includes/class-awpcp.php:1389
+#: includes/class-awpcp.php:1400
 msgid "Please enter a valid amount."
 msgstr "Por favor insira um Valor válido!'"
 
-#: includes/class-awpcp.php:1390
+#: includes/class-awpcp.php:1401
 msgid ""
 "You have reached the maximum allowed categories for the selected fee plan."
 msgstr ""
 
-#: includes/class-awpcp.php:1400
+#: includes/class-awpcp.php:1411
 msgctxt "[UI Datepicker] Display text for previous month link"
 msgid "&#x3c;Prev"
 msgstr "&#x3c;Prev"
 
-#: includes/class-awpcp.php:1402
+#: includes/class-awpcp.php:1413
 msgctxt "[UI Datepicker] Display text for next month link"
 msgid "Next&#x3e;"
 msgstr "Next&#x3e;"
 
-#: includes/class-awpcp.php:1417
+#: includes/class-awpcp.php:1428
 msgctxt "[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ..."
 msgid "0"
 msgstr "."
 
-#: includes/class-awpcp.php:1423
+#: includes/class-awpcp.php:1434
 msgid "There are files currently being uploaded."
 msgstr "Há arquivos atualmente sendo carregados."
 
-#: includes/class-awpcp.php:1424
+#: includes/class-awpcp.php:1435
 msgid "There are files pending to be uploaded."
 msgstr "Há arquivos pendentes para ser carregado."
 
-#: includes/class-awpcp.php:1425
+#: includes/class-awpcp.php:1436
 msgid "You haven't uploaded any images or files."
 msgstr "Você não adicionou imagens ou arquivos."
 
-#: includes/class-awpcp.php:1494 includes/class-awpcp.php:1502
-#: includes/class-awpcp.php:1510 includes/class-awpcp.php:1587
-#: includes/class-awpcp.php:1595 includes/class-awpcp.php:1603
+#: includes/class-awpcp.php:1505 includes/class-awpcp.php:1513
+#: includes/class-awpcp.php:1521 includes/class-awpcp.php:1598
+#: includes/class-awpcp.php:1606 includes/class-awpcp.php:1614
 #: templates/admin/debug/plugin-info-debug-section.tpl.php:6
 msgid "Another WordPress Classifieds Plugin"
 msgstr "Another WordPress Classifieds Plugin"
@@ -5628,7 +5628,7 @@ msgid "Destination directory doesn't exists and couldn't be created."
 msgstr "diretório de destino não existe e não pode ser criado."
 
 #: includes/models/class-custom-post-types.php:57
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:112
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:127
 msgid "Disabled"
 msgstr "Desativado"
 
@@ -9915,82 +9915,86 @@ msgstr ""
 msgid "Separators Used in CSV"
 msgstr "Separadores utilizados em CSV"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:88
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:89
 msgid "Date Separator"
 msgstr "Separador de data"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:93
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:96
 msgid "Time Separator"
 msgstr "Separador de tempo"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:98
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:103
+msgid "Category Separator"
+msgstr "Separador de Categoria"
+
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:110
 msgid "Image Separator"
 msgstr "Separador de imagem"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:99
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:112
 msgid "(semi-colon)"
 msgstr "ponto e vírgula (;)"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:105
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:120
 msgid "Post status of imported listings"
 msgstr ""
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:109
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:124
 msgid "Leave current post status"
 msgstr ""
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:110
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:125
 msgid "Pending Review"
 msgstr "Revisão pendente"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:111
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:126
 msgid "Draft"
 msgstr "Rascunho"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:114
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:129
 msgid "Published"
 msgstr "Publicado"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:120
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:135
 msgid "How to handle missing categories?"
 msgstr "Como lidar com categorias ausentes?"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:124
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:139
 msgid "Create missing categories"
 msgstr "Crie categorias ausentes"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:125
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:140
 msgid "Generate an error"
 msgstr "Gere um erro"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:128
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:143
 msgid ""
 "Define whether you want to create missing categories or generate an error "
 "whenever a category in the CSV file is not found in the system."
 msgstr "Defina se você deseja criar categorias ausentes ou gerar um erro sempre que uma categoria no arquivo CSV não for encontrada no sistema."
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:133
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:148
 msgctxt "csv-importer"
 msgid "Assign listings to a user?"
 msgstr "Atribuir anúncios a um usuário?"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:138
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:153
 msgctxt "csv-importer"
 msgid "Assign listings to a user"
 msgstr "Atribuir anúncios a um usuário"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:139
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:154
 msgid ""
 "If checked, listings will be assigned to the user specified in the CSV file "
 "or a default user that can be defined below."
 msgstr "Se marcada, os anúncios serão atribuídos ao usuário especificado no arquivo CSV ou a um usuário padrão que pode ser definido abaixo."
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:145
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:160
 msgctxt "csv-importer"
 msgid "Define a default user?"
 msgstr "Definir um usuário padrão?"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:150
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:165
 msgctxt "csv-importer"
 msgid ""
 "The default user will be used when the username column is not present in the"
@@ -9998,11 +10002,11 @@ msgid ""
 "find a user with the contact email address specified in the CSV file."
 msgstr "O usuário padrão será usado quando a coluna do nome de usuário não estiver presente no arquivo CSV ou se não houver um usuário com o nome de usuário especificado e não for possível encontrar um usuário com o endereço de e-mail do contato especificado no arquivo CSV."
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:156
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:171
 msgid "Default user"
 msgstr "Usuário padrão"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:185
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:200
 #: templates/admin/import-listings-admin-page-import-form.tpl.php:44
 msgid ""
 "Press the button below to cancel the current import operation and discard "
