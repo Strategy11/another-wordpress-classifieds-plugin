@@ -104,9 +104,9 @@ class AWPCP_ListTableRestrictions {
             return $counts;
         }
 
-        $counts_array = get_object_vars($counts);
-        $counts_array = array_fill_keys( array_keys( $counts_array ), 0 );
-        $counts = (object) $counts_array;
+        $counts_array    = get_object_vars( $counts );
+        $counts_array    = array_fill_keys( array_keys( $counts_array ), 0 );
+        $counts          = (object) $counts_array;
         $current_user_id = $this->request->get_current_user_id();
 
         $cache_key = "posts-{$this->listing_post_type}_{$current_user_id}";
@@ -132,7 +132,6 @@ class AWPCP_ListTableRestrictions {
             // the cache.
             wp_cache_set( $cache_key, $results, 'awpcp-counts', 30 );
         }
-
 
         foreach ( $results as $row ) {
             $counts->{$row['post_status']} = $row['num_posts'];
