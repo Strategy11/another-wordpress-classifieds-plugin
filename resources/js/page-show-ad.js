@@ -51,41 +51,43 @@
             return;
         }
 
-        $( 'body' ).on( 'click', '.awpcp-listing-primary-image-thickbox-link, .thickbox, .awpcp-listing-primary-image-listing-link:not(.adhasnoimage)', function( event ) {
-            event.preventDefault();
+        var getGalleryItems = function() {
+            var items = null;
+            items = $( '#classiwrapper [data-awpcp-gallery]' ).map( function( index, element ) {
+                var $link = $( element ), $img = $link.find( 'img' );
 
-            var $link = $( this );
-            var currentGalleryItem = 0;
-            var galleryItems = null;
-
-            // Single ads.
-            if ($link.parents('#showawpcpadpage').length > 0) {
-                galleryItems = $link.closest('#showawpcpadpage').find('.awpcp-listing-primary-image-thickbox-link').data('gallery-images');
-            }
-
-            // Browse ads.
-            if ($link.parents('.awpcp-listing-excerpt').length > 0) {
-                galleryItems = $link.data('gallery-images');
-            }
-
-
-
-            if (typeof galleryItems !== 'undefined') {
-                for (var i = galleryItems.length - 1; i >= 0; i = i - 1) {
-                    if (galleryItems[i].src === $link.attr('href')) {
-                        currentGalleryItem = i;
-                    }
+                if ( $img.length === 0 ) {
+                    return undefined;
                 }
 
-                $link.lightGallery({
-                    download: false,
-                    dynamic: true,
-                    dynamicEl: galleryItems,
-                    index: currentGalleryItem
-                });
+                return {
+                    src: $link.attr( 'href' ),
+                    thumb: $img.attr( 'src' )
+                };
+            } ).get();
+
+            return items;
+        }
+
+        $( '#classiwrapper' ).on( 'click', '.awpcp-listing-primary-image-thickbox-link, .thickbox', function( event ) {
+            event.preventDefault();
+
+            var $link = $( this ),
+                galleryItems = getGalleryItems(),
+                currentGalleryItem = 0;
+
+            for ( var i = galleryItems.length - 1; i >= 0; i = i - 1 ) {
+                if ( galleryItems[ i ].src === $link.attr( 'href' ) ) {
+                    currentGalleryItem = i;
+                }
             }
 
-            return false;
+            $link.lightGallery({
+                download: false,
+                dynamic: true,
+                dynamicEl: galleryItems,
+                index: currentGalleryItem
+            });
         } );
 
     });

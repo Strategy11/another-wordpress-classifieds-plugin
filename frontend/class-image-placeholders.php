@@ -70,22 +70,10 @@ class AWPCP_Image_Placeholders {
         $thumbnail_width = get_awpcp_option('displayadthumbwidth');
 
         if ( awpcp_are_images_allowed() ) {
-            $primary_image   = $this->attachments->get_featured_image( $ad->ID );
-            $gallery_name    = 'awpcp-gallery-' . $ad->ID;
-
+            $primary_image = $this->attachments->get_featured_image( $ad->ID );
+            $gallery_name  = 'awpcp-gallery-' . $ad->ID;
 
             if ($primary_image) {
-                $images_uploaded = $this->attachments->find_visible_attachments( array( 'post_parent' => $ad->ID ) );
-                $gallery         = array_map( function ( $gallery_image ) {
-                    $large_image = $this->attachment_properties->get_image_url( $gallery_image, 'large' );
-
-                    return array(
-                        'src'   => $large_image,
-                        'thumb' => wp_get_attachment_image_src( $gallery_image->ID, 'awpcp-thumbnail', false )[0],
-                    );
-                }, $images_uploaded );
-
-                $gallery_json = htmlspecialchars( json_encode( $gallery ), ENT_QUOTES, 'UTF-8' );
                 $large_image = $this->attachment_properties->get_image_url( $primary_image, 'large' );
 
                 if (get_awpcp_option('show-click-to-enlarge-link', 1)) {
@@ -100,7 +88,6 @@ class AWPCP_Image_Placeholders {
                     'href' => esc_url( $large_image ),
                     'rel' => esc_attr( $gallery_name ),
                     'data-awpcp-gallery' => esc_attr( $gallery_name ),
-                    'data-gallery-images' => $gallery_json,
                 );
 
                 $image_attributes = array(
@@ -130,20 +117,22 @@ class AWPCP_Image_Placeholders {
                     $image_attributes
                 );
 
-                $template = '<a class="awpcp-listing-primary-image-listing-link" data-gallery-images="%s" href="%s">%s</a>';
+                $template = '<a class="awpcp-listing-primary-image-listing-link" href="%s">%s</a>';
 
-                $placeholders['awpcp_image_name_srccode'] = sprintf( $template, $gallery_json, esc_url( $large_image ), $featured_image_on_lists );
+                $placeholders['awpcp_image_name_srccode'] = sprintf( $template, esc_url( $url ), $featured_image_on_lists );
             }
 
-            $images_uploaded_count = $this->attachments->count_attachments_of_type( 'image', array( 'post_parent' => $ad->ID ) );
-            if ($images_uploaded_count >= 1) {
-                $images_uploaded = $this->attachments->find_visible_attachments( array( 'post_parent' => $ad->ID ) );
+            $images_uploaded = $this->attachments->count_attachments_of_type( 'image', array( 'post_parent' => $ad->ID ) );
+
+            if ($images_uploaded >= 1) {
+                $results = $this->attachments->find_visible_attachments( array( 'post_parent' => $ad->ID ) );
+
                 $columns = get_awpcp_option('display-thumbnails-in-columns', 0);
-                $rows = $columns > 0 ? ceil(count($images_uploaded) / $columns) : 0;
+                $rows = $columns > 0 ? ceil(count($results) / $columns) : 0;
                 $shown = 0;
 
                 $images = array();
-                foreach ($images_uploaded as $image) {
+                foreach ($results as $image) {
                     if ( $primary_image && $primary_image->ID == $image->ID ) {
                         continue;
                     }
@@ -210,7 +199,7 @@ class AWPCP_Image_Placeholders {
                 $image_attributes['attributes']['height'] = $this->settings->get_option( 'featured-image-height-on-lists' );
             }
 
-            $content = '<a class="awpcp-listing-primary-image-listing-link adhasnoimage" href="%s">%s</a>';
+            $content = '<a class="awpcp-listing-primary-image-listing-link" href="%s">%s</a>';
             $content = sprintf($content, $url, awpcp_html_image( $image_attributes ) );
 
             $placeholders['awpcp_image_name_srccode'] = $content;
