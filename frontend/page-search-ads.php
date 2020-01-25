@@ -180,7 +180,6 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
             'posts_per_page'    => absint( awpcp_request_param( 'results', get_awpcp_option( 'adresultsperpage', 10 ) ) ),
             'offset'            => absint( awpcp_request_param( 'offset', 0 ) ),
             'orderby'           => get_awpcp_option( 'search-results-order' ),
-            'suppress_filters'   => true
         );
 
         return apply_filters( 'awpcp-search-listings-query', $query, $posted_data );
