@@ -84,12 +84,13 @@ class AWPCP_UsersCollection {
     }
 
     private function build_users_query_with_meta_fields( $params ) {
+        global $wpdb;
         $query  = 'SELECT <wp-users>.' . implode( ', <wp-users>.', $params['standard_fields'] ) . ', <wp-usermeta>.meta_key, <wp-usermeta>.meta_value ';
         $query .= 'FROM <wp-users> ';
 
         if ( ! empty( $params['role'] ) ) {
             $query       .= 'JOIN <wp-usermeta> AS user_roles ON (user_roles.user_id = <wp-users>.ID) ';
-            $conditions[] = "user_roles.meta_key = 'wp_capabilities'";
+            $conditions[] = "user_roles.meta_key = '{$wpdb->prefix}capabilities'";
             $conditions[] = "user_roles.meta_value LIKE '%\"" . $params['role'] . "\"%'";
         }
 
