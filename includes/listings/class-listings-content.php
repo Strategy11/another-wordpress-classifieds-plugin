@@ -50,7 +50,7 @@ class AWPCP_ListingsContent {
         $post_id = get_query_var( 'p' );
 
         // get our post instead and return it as the result...
-        if ( ! empty( $post_id ) ) {
+        if ( ! empty( $post_id ) && is_numeric($post_id) && $post_id > 0) {
             $post = get_post( $post_id );
             if ( $this->post_type !== $post->post_type ) {
                 return false;
