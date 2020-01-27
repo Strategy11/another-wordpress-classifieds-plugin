@@ -159,6 +159,10 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
             );
         } elseif ( $instance['show-blank'] && $show_images ) {
             $image_url = "$awpcp_imagesurl/adhasnoimage.png";
+            if ( get_awpcp_option( 'override-noimage-placeholder', true ) ) {
+                // get saved no image placeholer url
+                $image_url = get_awpcp_option( 'noimage-placeholder-url' );
+            }
 
             $html_image = sprintf(
                 '<a class="awpcp-listings-widget-item-listing-link self" href="%s">%s</a>',
