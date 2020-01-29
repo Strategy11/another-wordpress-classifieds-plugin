@@ -38,7 +38,7 @@ function( $ ) {
                 }
             } );
 
-            self.$select.select2( options );
+            self.$select.selectWoo( options );
 
             if ( self.options.selected.id ) {
                 var option = new Option( self.options.selected.text, self.options.selected.id, true, true );
@@ -59,7 +59,7 @@ function( $ ) {
         configureInlineBehavior: function() {
             var self = this;
 
-            self.$select.select2( self.options.select2 );
+            self.$select.selectWoo( self.options.select2 );
 
             self.setupEventHandlers();
         },
@@ -74,7 +74,7 @@ function( $ ) {
 
         getSelectedUser: function() {
             var self  = this;
-            var users = self.$select.select2( 'data' );
+            var users = self.$select.selectWoo( 'data' );
 
             if ( users && users.length ) {
                 return { id: users[0].id, name: users[0].text };

@@ -33,7 +33,7 @@ AWPCP.run( 'awpcp/page-search-listings', [
                 $.noop( new DatepickerField( $(this).siblings('[name]:hidden') ) );
             } );
 
-            $( '[name="searchname"]' ).select2();
+            $( '[name="searchname"]' ).selectWoo();
         }
     });
 } );

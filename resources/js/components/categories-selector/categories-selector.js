@@ -196,7 +196,7 @@ function( $, CategoriesSelectorHelper ) {
         getSelectedCategories: function() {
             var self = this;
 
-            return $.map( self.$select.select2( 'data' ), function ( option ) {
+            return $.map( self.$select.selectWoo( 'data' ), function ( option ) {
                 if ( option.id === '' ) {
                     return null;
                 }
@@ -219,7 +219,7 @@ function( $, CategoriesSelectorHelper ) {
         getSelectedCategoriesIds: function() {
             var self = this;
 
-            return $.map( self.$select.select2( 'data' ), function ( option ) {
+            return $.map( self.$select.selectWoo( 'data' ), function ( option ) {
                 return parseInt( option.id, 10 );
             } );
         },
@@ -261,7 +261,7 @@ function( $, CategoriesSelectorHelper ) {
                 $select.empty();
             }
 
-            $select.select2( options );
+            $select.selectWoo( options );
         }
     } );
 
