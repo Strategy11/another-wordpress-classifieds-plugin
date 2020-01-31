@@ -451,7 +451,8 @@ class AWPCP {
             add_filter( 'status_header', array( $filter, 'filter_status_header' ), 10, 4 );
 
             $listings_content = $this->container['ListingsContent'];
-            add_filter( 'the_posts', [$listings_content, 'return_pending_post'], 10, 2 );
+            add_filter( 'the_posts', [$this, 'return_pending_post'], 10, 2 );
+            add_filter( 'pre_handle_404', [$this, 'redirect_deleted_ads'], 10, 2 );
             add_filter( 'the_content', array( $listings_content, 'filter_content' ) );
 
             add_filter( 'awpcp-content-before-listing-page', 'awpcp_insert_classifieds_bar_before_listing_page' );
@@ -473,6 +474,43 @@ class AWPCP {
 
         $this->register_notification_handlers();
 	}
+
+    /**
+     * Make sure disabled posts are returned in the posts array
+     * in order to avoid a not found page and display a message instead.
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
+    public function redirect_deleted_ads( $handle_404, $wp_query ) {
+        $classifieds_page_url = awpcp_get_main_page_url();
+        if ( isset( $wp_query->query['post_type'] ) && $wp_query->query['post_type'] === AWPCP_LISTING_POST_TYPE && $wp_query->post_count === 0 && get_awpcp_option( '301redirection' ) ) {
+            wp_safe_redirect( $classifieds_page_url, 301 );
+            exit();
+        }
+
+        return $handle_404;
+    }
+
+    /**
+     * Returns pending ad to avoid WordPress default 404 handling and display a message instead.
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
+    public function return_pending_post( $posts, $wp_query ) {
+        // abort if $posts is not empty, this query is not for us.
+        if ( count( $posts ) ) {
+            return $posts;
+        }
+
+        $post_id = get_query_var( 'p' );
+        $post    = get_post( $post_id );
+        // get our post instead and return it as the result...
+        if ( ! empty( $post ) && $this->post_type === $post->post_type && $post->post_status === 'pending' ) {
+            return array( $post );
+        }
+
+        return [];
+    }
 
     /**
      * Disables oembeds when displaying single awpcp listings and html is not allowed.

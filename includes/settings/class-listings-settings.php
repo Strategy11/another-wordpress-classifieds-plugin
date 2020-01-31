@@ -318,6 +318,7 @@ class AWPCP_ListingsSettings {
 
         $this->register_friendly_urls_settings( $settings_manager );
         $this->register_window_title_settings( $settings_manager );
+        $this->register_redirect_settings( $settings_manager );
         $this->register_url_settings( $settings_manager );
     }
 
@@ -342,6 +343,31 @@ class AWPCP_ListingsSettings {
             'checkbox',
             1,
             __( 'Turn on Search Engine Friendly URLs? (SEO Mode)', 'another-wordpress-classifieds-plugin' )
+        );
+    }
+
+    /**
+     * @since 4.0.10
+     */
+    private function register_redirect_settings( $settings_manager ) {
+        $key = 'redirect-settings';
+
+        $settings_manager->add_settings_section(
+            [
+                'id'       => $key,
+                'name'     => __( 'Redirection', 'another-wordpress-classifieds-plugin' ),
+                'subgroup' => 'seo-settings',
+                'priority' => 11,
+            ]
+        );
+
+        $settings_manager->add_setting(
+            $key,
+            '301redirection',
+            __( 'Redirect deleted listings', 'another-wordpress-classifieds-plugin' ),
+            'checkbox',
+            1,
+            __( 'Performs a 301 redirect to the main classifieds page when landing on a deleted listing url.', 'another-wordpress-classifieds-plugin' )
         );
     }
 

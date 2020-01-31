@@ -35,29 +35,6 @@ class AWPCP_ListingsContent {
         $this->wordpress        = $wordpress;
     }
 
-    /**
-     * Make sure disabled posts are returned in the posts array
-     * in order to avoid a not found page and display a message instead.
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     */
-    public function return_pending_post( $posts, $wp_query ) {
-        // abort if $posts is not empty, this query ain't for us...
-        if ( count( $posts ) ) {
-            return $posts;
-        }
-
-        $post_id = get_query_var( 'p' );
-
-        // get our post instead and return it as the result...
-        if ( ! empty( $post_id ) && is_numeric( $post_id ) && $post_id > 0 ) {
-            $post = get_post( $post_id );
-            if ( $this->post_type !== $post->post_type ) {
-                return false;
-            }
-            return array( get_post( $post_id ) );
-        }
-    }
 
     /**
      * Handle for the `the_content` filter.
