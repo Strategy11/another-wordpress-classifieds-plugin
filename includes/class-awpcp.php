@@ -483,7 +483,7 @@ class AWPCP {
      */
     public function redirect_deleted_ads( $handle_404, $wp_query ) {
         $classifieds_page_url = awpcp_get_main_page_url();
-        if ( isset( $wp_query->query['post_type'] ) && $wp_query->query['post_type'] === AWPCP_LISTING_POST_TYPE && $wp_query->post_count === 0 && get_awpcp_option( '301redirection' ) ) {
+        if ( isset( $wp_query->query['post_type'] ) && $wp_query->query['post_type'] === AWPCP_LISTING_POST_TYPE && $wp_query->post_count === 0 && get_awpcp_option( '301redirection' ) && $classifieds_page_url ) {
             wp_safe_redirect( $classifieds_page_url, 301 );
             exit();
         }
@@ -505,7 +505,7 @@ class AWPCP {
         $post_id = get_query_var( 'p' );
         $post    = get_post( $post_id );
         // get our post instead and return it as the result...
-        if ( ! empty( $post ) && $this->post_type === $post->post_type && $post->post_status === 'pending' ) {
+        if ( ! empty( $post ) && AWPCP_LISTING_POST_TYPE === $post->post_type && $post->post_status === 'pending' ) {
             return array( $post );
         }
 

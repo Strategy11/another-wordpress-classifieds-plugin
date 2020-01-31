@@ -367,7 +367,7 @@ class AWPCP_ListingsSettings {
             __( 'Redirect deleted listings', 'another-wordpress-classifieds-plugin' ),
             'checkbox',
             1,
-            __( 'Performs a 301 redirect to the main classifieds page when landing on a deleted listing url.', 'another-wordpress-classifieds-plugin' )
+            __( 'Perform a 301 redirect to the main classifieds page when landing on a deleted listing url.', 'another-wordpress-classifieds-plugin' )
         );
     }
 
