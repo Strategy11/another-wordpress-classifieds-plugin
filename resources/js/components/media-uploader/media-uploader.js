@@ -30,7 +30,7 @@ function( $, settings) {
                     context: self.get( 'settings' ).context,
                     nonce: self.get('settings').nonce
                 },
-                multi_selection: false,
+                multi_selection: true,
                 chunk_size: '10000000',
                 runtimes: 'html5,flash,silverlight,html4',
                 flash_swf_url : self.get('settings').flash_swf_url,
