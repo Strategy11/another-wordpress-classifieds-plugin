@@ -516,7 +516,6 @@ class AWPCP {
      * Disables oembeds when displaying single awpcp listings and html is not allowed.
      */
     public function disable_oembeds() {
-        $post = get_post();
         if ( is_singular( AWPCP_LISTING_POST_TYPE ) && !get_awpcp_option('allowhtmlinadtext') ) {
             remove_filter( 'the_content', array( $GLOBALS['wp_embed'], 'autoembed' ), 8 );
         }
