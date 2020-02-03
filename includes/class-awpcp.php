@@ -451,7 +451,7 @@ class AWPCP {
             add_filter( 'status_header', array( $filter, 'filter_status_header' ), 10, 4 );
 
             $listings_content = $this->container['ListingsContent'];
-            add_filter( 'the_posts', [$this, 'return_pending_post'], 10, 2 );
+            add_filter( 'pre_handle_404', [$this, 'return_pending_post'], 10, 2 );
             add_filter( 'pre_handle_404', [$this, 'redirect_deleted_ads'], 10, 2 );
             add_filter( 'the_content', array( $listings_content, 'filter_content' ) );
 
@@ -496,20 +496,19 @@ class AWPCP {
      *
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function return_pending_post( $posts, $wp_query ) {
-        // abort if $posts is not empty, this query is not for us.
-        if ( count( $posts ) ) {
-            return $posts;
-        }
-
-        $post_id = get_query_var( 'p' );
+    public function return_pending_post( $handle_404, $query ) {
+        $post_id = $query->get( 'p' );
+        $post_type = $query->get('post_type');
         $post    = get_post( $post_id );
         // get our post instead and return it as the result...
-        if ( ! empty( $post ) && AWPCP_LISTING_POST_TYPE === $post->post_type && $post->post_status === 'pending' ) {
-            return array( $post );
+        if ( ! empty( $post ) && $post_type === AWPCP_LISTING_POST_TYPE && $post->post_status === 'pending' ) {
+            $query->posts = array($post);
+            $query->post = $post;
+            $query->post_count = 1;
+            return true;
         }
 
-        return [];
+        return false;
     }
 
     /**
