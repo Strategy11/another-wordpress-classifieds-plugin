@@ -21,7 +21,7 @@ class AWPCP_Delete_Browse_Categories_Page_Notice {
 
         $browse_categories_page_id = awpcp_get_page_id_by_ref( 'browse-categories-page-name' );
 
-        if ( ! current_user_can( 'delete_page', $browse_categories_page_id ) ) {
+        if ( !$browse_categories_page_id || ! current_user_can( 'delete_page', $browse_categories_page_id ) ) {
             return;
         }
 
