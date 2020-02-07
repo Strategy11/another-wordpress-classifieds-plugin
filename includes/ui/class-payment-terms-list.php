@@ -146,6 +146,7 @@ class AWPCP_Payment_Terms_List {
         return array(
             'listings' => $this->get_number_of_listings_allowed_feature_description( $payment_term ),
             'images' => $this->get_number_of_images_allowed_feature_description( $payment_term ),
+            'regions' => $this->get_number_of_regions_allowed_feature_description( $payment_term ),
             'characters-in-title' => $this->get_number_of_characters_allowed_in_title_feature_description( $payment_term ),
             'characters-in-content' => $this->get_number_of_characters_allowed_in_content_feature_description( $payment_term ),
             'categories' => $this->get_number_of_categories_allowed_feature_description( $payment_term ),
@@ -167,6 +168,18 @@ class AWPCP_Payment_Terms_List {
         $description = _n( '<number-of-images> image allowed.', '<number-of-images> images allowed.', $number_of_images_allowed, 'another-wordpress-classifieds-plugin' );
 
         return str_replace( '<number-of-images>', '<strong>' . $number_of_images_allowed . '</strong>', $description );
+    }
+
+    private function get_number_of_regions_allowed_feature_description( $payment_term ) {
+        $regions_allowed = $payment_term->regions;
+
+        if ( $regions_allowed == 0 ) {
+            return __( 'No regions allowed.', 'another-wordpress-classifieds-plugin' );
+        }
+
+        $description = _n( '<number-of-regions> region allowed.', '<number-of-regions> regions allowed.', $regions_allowed, 'another-wordpress-classifieds-plugin' );
+
+        return str_replace( '<number-of-regions>', '<strong>' . $regions_allowed . '</strong>', $description );
     }
 
     private function get_number_of_characters_allowed_in_title_feature_description( $payment_term ) {
