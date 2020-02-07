@@ -15,7 +15,6 @@
     }
 ?>
 
-<form class="awpcp-search-ads-form" method="get" action="<?php echo esc_url( $action_url ); ?>"name="myform">
     <?php echo awpcp_html_hidden_fields( $hidden ); ?>
 
     <p class="awpcp-form-field awpcp-form-spacer">
@@ -79,5 +78,5 @@
         );
     ?>
 
-    <input type="submit" class="button" value="<?php echo esc_attr( _x( 'Find Ads', 'ad search form', 'another-wordpress-classifieds-plugin' ) ); ?>" />
+    <p class="awpcp-form-field"><input type="submit" class="button" value="<?php echo esc_attr( _x( 'Find Ads', 'ad search form', 'another-wordpress-classifieds-plugin' ) ); ?>"/></p>
 </form>
