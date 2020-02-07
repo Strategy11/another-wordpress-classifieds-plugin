@@ -1071,8 +1071,7 @@ class AWPCP_GeneralSettings {
             $options['requireuserregistration'] = 1;
         }
 
-        // reset categories cache if collapse categories option is updated.
-        delete_option( 'awpcp-categories-list-cache-keys' );
+        do_action( 'awpcp_clear_categories_list_cache' );
         return $options;
     }
 
