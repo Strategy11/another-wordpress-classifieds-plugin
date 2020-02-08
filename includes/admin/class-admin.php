@@ -87,21 +87,8 @@ class AWPCP_Admin {
      */
     public function admin_init() {
         global $typenow;
-        $post_type = $typenow;
-        // phpcs:disable WordPress.Security.NonceVerification.Recommended
-        if ( empty( $post_type ) && isset( $_GET['post'] ) ) {
-            $post = intval( $_GET['post'] );
-            // phpcs:enable WordPress.Security.NonceVerification.Recommended
-            // try to pick it up from the query string.
-            if ( ! empty( $post ) ) {
-                $post      = get_post( $post );
-                $post_type = $post->post_type;
-            }
-        }
 
-        if ( $this->post_type === $post_type ) {
-            add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
-
+        if ( $this->post_type === $typenow ) {
             add_filter( "get_user_option_edit_{$this->post_type}_per_page", [ $this, 'filter_items_per_page_user_option' ], 10, 3 );
 
             add_action( 'pre_get_posts', array( $this->table_restrictions, 'pre_get_posts' ) );
@@ -137,6 +124,7 @@ class AWPCP_Admin {
         add_filter( 'awpcp_list_table_actions_listings', [ $this, 'filter_listings_table_actions' ], 99, 1 );
         add_filter( 'awpcp_list_table_search_listings', array( $this, 'register_listings_table_search_modes' ) );
 
+        add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
         add_action( 'admin_enqueue_scripts', [ $this, 'maybe_enqueue_meta_boxes_scripts' ] );
         add_action( 'add_meta_boxes_' . $this->post_type, array( $this, 'add_classifieds_meta_boxes' ) );
         add_action( 'save_post_' . $this->post_type, [ $this, 'save_classifieds_meta_boxes' ], 10, 2 );
