@@ -88,9 +88,10 @@ class AWPCP_Admin {
     public function admin_init() {
         global $typenow;
         $post_type = $typenow;
-        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        // phpcs:disable WordPress.Security.NonceVerification.Recommended
         if ( empty( $post_type ) && isset( $_GET['post'] ) ) {
             $post = intval( $_GET['post'] );
+            // phpcs:enable WordPress.Security.NonceVerification.Recommended
             // try to pick it up from the query string.
             if ( ! empty( $post ) ) {
                 $post      = get_post( $post );
@@ -182,23 +183,23 @@ class AWPCP_Admin {
      * @since 4.0.0
      */
     public function register_listings_table_actions( $actions ) {
-        $actions['quick-view']             = $this->container['QuickViewListingTableAction'];
-        $actions['enable']                 = $this->container['EnableListingTableAction'];
-        $actions['approve-images']         = $this->container['ApproveImagesTableAction'];
-        $actions['disable']                = $this->container['DisableListingTableAction'];
-        $actions['send-access-key']        = $this->container['SendAccessKeyListingTableAction'];
-        $actions['spam']                   = $this->container['MarkAsSPAMListingTableAction'];
-        $actions['unflag']                 = $this->container['UnflagListingTableAction'];
-        $actions['renew']                  = $this->container['ModeratorRenewListingTableAction'];
-        $actions['renew-for-subscribers']  = $this->container['SubscriberRenewListingTableAction'];
-        $actions['make-featured']          = $this->container['MakeFeaturedListingTableAction'];
-        $actions['make-standard']          = $this->container['MakeStandardListingTableAction'];
-        $actions['mark-reviewed']          = $this->container['MarkReviewedListingTableAction'];
-        $actions['mark-paid']              = $this->container['MarkPaidListingTableAction'];
-        $actions['mark-verified']          = $this->container['MarkVerifiedListingTableAction'];
-        $actions['send-verification-email']          = $this->container['SendVerificationEmailTableAction'];
-        $actions['send-to-facebook-page']  = $this->container['SendToFacebookPageListingTableAction'];
-        $actions['send-to-facebook-group'] = $this->container['SendToFacebookGroupListingTableAction'];
+        $actions['quick-view']              = $this->container['QuickViewListingTableAction'];
+        $actions['enable']                  = $this->container['EnableListingTableAction'];
+        $actions['approve-images']          = $this->container['ApproveImagesTableAction'];
+        $actions['disable']                 = $this->container['DisableListingTableAction'];
+        $actions['send-access-key']         = $this->container['SendAccessKeyListingTableAction'];
+        $actions['spam']                    = $this->container['MarkAsSPAMListingTableAction'];
+        $actions['unflag']                  = $this->container['UnflagListingTableAction'];
+        $actions['renew']                   = $this->container['ModeratorRenewListingTableAction'];
+        $actions['renew-for-subscribers']   = $this->container['SubscriberRenewListingTableAction'];
+        $actions['make-featured']           = $this->container['MakeFeaturedListingTableAction'];
+        $actions['make-standard']           = $this->container['MakeStandardListingTableAction'];
+        $actions['mark-reviewed']           = $this->container['MarkReviewedListingTableAction'];
+        $actions['mark-paid']               = $this->container['MarkPaidListingTableAction'];
+        $actions['mark-verified']           = $this->container['MarkVerifiedListingTableAction'];
+        $actions['send-verification-email'] = $this->container['SendVerificationEmailTableAction'];
+        $actions['send-to-facebook-page']   = $this->container['SendToFacebookPageListingTableAction'];
+        $actions['send-to-facebook-group']  = $this->container['SendToFacebookGroupListingTableAction'];
 
         return $actions;
     }

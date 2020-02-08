@@ -98,7 +98,7 @@ class AWPCP_SendVerificationEmailTableAction implements
         $is_listing_verified = $this->listing_renderer->is_verified( $post );
         if ( ! $is_listing_verified ) {
             $email_sent = $this->listings_logic->send_verification_email( $post );
-            if ($email_sent) {
+            if ( $email_sent ) {
                 return 'success';
             }
             return 'error';
