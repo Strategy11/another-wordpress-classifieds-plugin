@@ -196,6 +196,7 @@ class AWPCP_Admin {
         $actions['mark-reviewed']          = $this->container['MarkReviewedListingTableAction'];
         $actions['mark-paid']              = $this->container['MarkPaidListingTableAction'];
         $actions['mark-verified']          = $this->container['MarkVerifiedListingTableAction'];
+        $actions['send-verification-email']          = $this->container['SendVerificationEmailTableAction'];
         $actions['send-to-facebook-page']  = $this->container['SendToFacebookPageListingTableAction'];
         $actions['send-to-facebook-group'] = $this->container['SendToFacebookGroupListingTableAction'];
 

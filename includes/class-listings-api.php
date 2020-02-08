@@ -794,11 +794,13 @@ class AWPCP_ListingsAPI {
 
         $email->to[] = awpcp_format_recipient_address( $contact_email, $contact_name );
 
-        if ( $email->send() ) {
+        $email_sent = $email->send();
+        if ( $email_sent ) {
             $emails_sent = intval( $this->wordpress->get_post_meta( $ad->ID, '_awpcp_verification_emails_sent', 1 ) );
             $this->wordpress->update_post_meta( $ad->ID, '_awpcp_verification_email_sent_at', current_time( 'mysql' ) );
             $this->wordpress->update_post_meta( $ad->ID, '_awpcp_verification_emails_sent', $emails_sent + 1 );
         }
+        return $email_sent;
     }
 
     // phpcs:enable Generic,Squiz,WordPress,PSR2,PEAR

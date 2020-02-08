@@ -250,6 +250,14 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
             );
         } );
 
+        $container['SendVerificationEmailTableAction'] = $container->service( function( $container ) {
+            return new AWPCP_SendVerificationEmailTableAction(
+                $container['ListingsLogic'],
+                $container['ListingRenderer'],
+                $container['RolesAndCapabilities']
+            );
+        } );
+
         $container['SendToFacebookPageListingTableAction'] = $container->service( function( $container ) {
             return new AWPCP_SendToFacebookPageListingTableAction(
                 $container['SendListingToFacebookHelper'],

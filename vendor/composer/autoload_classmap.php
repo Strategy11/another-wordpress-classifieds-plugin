@@ -425,6 +425,7 @@ return array(
     'AWPCP_SendToFacebookGroupListingTableAction' => $baseDir . '/includes/admin/listings/class-send-to-facebook-group-listing-table-action.php',
     'AWPCP_SendToFacebookHelper' => $baseDir . '/includes/helpers/class-send-to-facebook-helper.php',
     'AWPCP_SendToFacebookPageListingTableAction' => $baseDir . '/includes/admin/listings/class-send-to-facebook-page-listing-table-action.php',
+    'AWPCP_SendVerificationEmailTableAction' => $baseDir . '/includes/admin/listings/class-send-verification-email-table-action.php',
     'AWPCP_SetCreditPlanStepDecorator' => $baseDir . '/includes/views/class-set-credit-plan-step-decorator.php',
     'AWPCP_SetPaymentMethodStepDecorator' => $baseDir . '/includes/views/class-set-payment-method-step-decorator.php',
     'AWPCP_SetTransactionStatusToCheckoutStepDecorator' => $baseDir . '/includes/views/class-set-transaction-status-to-checkout-step-decorator.php',

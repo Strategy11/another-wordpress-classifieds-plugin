@@ -426,6 +426,7 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_SendToFacebookGroupListingTableAction' => __DIR__ . '/../..' . '/includes/admin/listings/class-send-to-facebook-group-listing-table-action.php',
         'AWPCP_SendToFacebookHelper' => __DIR__ . '/../..' . '/includes/helpers/class-send-to-facebook-helper.php',
         'AWPCP_SendToFacebookPageListingTableAction' => __DIR__ . '/../..' . '/includes/admin/listings/class-send-to-facebook-page-listing-table-action.php',
+        'AWPCP_SendVerificationEmailTableAction' => __DIR__ . '/../..' . '/includes/admin/listings/class-send-verification-email-table-action.php',
         'AWPCP_SetCreditPlanStepDecorator' => __DIR__ . '/../..' . '/includes/views/class-set-credit-plan-step-decorator.php',
         'AWPCP_SetPaymentMethodStepDecorator' => __DIR__ . '/../..' . '/includes/views/class-set-payment-method-step-decorator.php',
         'AWPCP_SetTransactionStatusToCheckoutStepDecorator' => __DIR__ . '/../..' . '/includes/views/class-set-transaction-status-to-checkout-step-decorator.php',
