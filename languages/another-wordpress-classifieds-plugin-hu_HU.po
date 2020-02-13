@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2020-01-22 20:09:42+00:00\n"
-"PO-Revision-Date: 2020-01-22 20:22+0000\n"
+"POT-Creation-Date: 2020-02-13 22:00:34+00:00\n"
+"PO-Revision-Date: 2020-02-13 22:01+0000\n"
 "Last-Translator: Juan <juandlopezr@gmail.com>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/wp-translations/another-wordpress-classifieds-plugin/language/hu_HU/)\n"
 "MIME-Version: 1.0\n"
@@ -59,7 +59,7 @@ msgstr "Tulajdonságok"
 msgid "Categories"
 msgstr "Kategóriák"
 
-#: admin/admin-panel-fees-table.php:129 includes/class-awpcp.php:764
+#: admin/admin-panel-fees-table.php:129 includes/class-awpcp.php:800
 msgid "Featured Ads"
 msgstr "Kiemelt Hirdetések"
 
@@ -330,7 +330,7 @@ msgstr "Kategória Törlése"
 msgid "Select {category_name}"
 msgstr ""
 
-#: admin/admin-panel.php:789 includes/settings/class-listings-settings.php:437
+#: admin/admin-panel.php:789 includes/settings/class-listings-settings.php:463
 msgctxt "page name"
 msgid "Show Ad"
 msgstr ""
@@ -1794,11 +1794,11 @@ msgctxt "single dropdown category selector"
 msgid "Category:"
 msgstr "Kategória:"
 
-#: frontend/class-image-placeholders.php:93
+#: frontend/class-image-placeholders.php:81
 msgid "Click to enlarge image."
 msgstr "Kattintson a kép megnöveléséhez."
 
-#: frontend/class-image-placeholders.php:108
+#: frontend/class-image-placeholders.php:95
 msgid "Thumbnail for the listing's main image"
 msgstr ""
 
@@ -1811,7 +1811,7 @@ msgstr ""
 msgid "Browse Ads"
 msgstr "Hirdetések böngészése"
 
-#: frontend/page-browse-ads.php:68
+#: frontend/page-browse-ads.php:67
 msgid ""
 "No specific category was selected for browsing so you are viewing listings "
 "from all categories."
@@ -2197,7 +2197,7 @@ msgid ""
 "numbers only. Please do not include currency symbols."
 msgstr "Érvénytelen az ön által megadott maximum ár. Kérjük csak számokkal, pénznem nélkül adja meg az árat."
 
-#: frontend/page-search-ads.php:225
+#: frontend/page-search-ads.php:224
 msgid "Return to Search"
 msgstr "Visszatérés a kereséshez."
 
@@ -4075,106 +4075,106 @@ msgid ""
 " one of the associated listings: <error-message>"
 msgstr ""
 
-#: includes/class-awpcp.php:691
+#: includes/class-awpcp.php:727
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
 msgstr "Az AWPCP-nek szüksége van a grafika-feldolgozó könyvtár GD-re, amely nincs telepítve. Ennek megjavításához lépjen kapcsolatba webszolgáltatójával."
 
-#: includes/class-awpcp.php:692
+#: includes/class-awpcp.php:728
 #: includes/placeholders/class-placeholders-installation-verifier.php:63
 msgid "Warning"
 msgstr "Figyelmeztetés"
 
-#: includes/class-awpcp.php:708
+#: includes/class-awpcp.php:744
 msgid "Attachments"
 msgstr "Csatolmányok"
 
-#: includes/class-awpcp.php:715
+#: includes/class-awpcp.php:751
 msgid "Authorize.Net"
 msgstr "Authorize.Net"
 
-#: includes/class-awpcp.php:722
+#: includes/class-awpcp.php:758
 msgid "BuddyPress Listings"
 msgstr "BuddyPress listázások"
 
-#: includes/class-awpcp.php:729
+#: includes/class-awpcp.php:765
 msgid "Campaign Manager"
 msgstr "Kampány Kezelő"
 
-#: includes/class-awpcp.php:736
+#: includes/class-awpcp.php:772
 msgid "Category Icons"
 msgstr "Kategória ikonok"
 
-#: includes/class-awpcp.php:743
+#: includes/class-awpcp.php:779
 msgid "Comments & Ratings"
 msgstr "Kommentek & értékelések"
 
-#: includes/class-awpcp.php:750
+#: includes/class-awpcp.php:786
 msgid "Coupons/Discount"
 msgstr "Kuponok/Engedmények"
 
-#: includes/class-awpcp.php:757
+#: includes/class-awpcp.php:793
 msgid "Extra Fields"
 msgstr "Extra Mezők"
 
-#: includes/class-awpcp.php:771
+#: includes/class-awpcp.php:807
 msgid "Fee per Category"
 msgstr "Kategóriánkénti Díj"
 
-#: includes/class-awpcp.php:778
+#: includes/class-awpcp.php:814
 msgid "Google Checkout"
 msgstr "Google checkout"
 
-#: includes/class-awpcp.php:786
+#: includes/class-awpcp.php:822
 msgid "Mark as Sold"
 msgstr "Megjelölés eladottként"
 
-#: includes/class-awpcp.php:793
+#: includes/class-awpcp.php:829
 msgid "PayFast"
 msgstr ""
 
-#: includes/class-awpcp.php:800
+#: includes/class-awpcp.php:836
 msgid "PayPal Pro"
 msgstr "PayPal Pro"
 
-#: includes/class-awpcp.php:807
+#: includes/class-awpcp.php:843
 msgid "Regions Control"
 msgstr "Régiós beállítások"
 
-#: includes/class-awpcp.php:814
+#: includes/class-awpcp.php:850
 msgid "Restricted Categories"
 msgstr "Korlátozott kategóriák"
 
-#: includes/class-awpcp.php:821
+#: includes/class-awpcp.php:857
 msgid "RSS"
 msgstr "RSS"
 
-#: includes/class-awpcp.php:828
+#: includes/class-awpcp.php:864
 msgid "Stripe"
 msgstr ""
 
-#: includes/class-awpcp.php:835
+#: includes/class-awpcp.php:871
 msgid "Subscriptions"
 msgstr "Feliratkozások"
 
-#: includes/class-awpcp.php:842 templates/components/media-manager.tpl.php:50
+#: includes/class-awpcp.php:878 templates/components/media-manager.tpl.php:50
 msgid "Videos"
 msgstr "Videók"
 
-#: includes/class-awpcp.php:850
+#: includes/class-awpcp.php:886
 msgid "XML Sitemap"
 msgstr "XML oldaltérkép"
 
-#: includes/class-awpcp.php:858
+#: includes/class-awpcp.php:894
 msgid "ZIP Code Search Module"
 msgstr "ZIP kód kereső modul"
 
-#: includes/class-awpcp.php:1395
+#: includes/class-awpcp.php:1431
 msgid "This field is required."
 msgstr "A mező kitöltése szükséges"
 
-#: includes/class-awpcp.php:1396
+#: includes/class-awpcp.php:1432
 #: includes/form-fields/class-form-fields-validator.php:105
 #: includes/frontend/class-edit-listing-page.php:267
 #: includes/frontend/class-edit-listing-page.php:361
@@ -4182,53 +4182,53 @@ msgstr "A mező kitöltése szükséges"
 msgid "Please enter a valid email address."
 msgstr "Adjunk meg egy valós email címet."
 
-#: includes/class-awpcp.php:1397 includes/class-awpcp.php:1398
+#: includes/class-awpcp.php:1433 includes/class-awpcp.php:1434
 msgid "Please enter a valid URL."
 msgstr "Kérjük írjon be egy érvényes URL-t."
 
-#: includes/class-awpcp.php:1399
+#: includes/class-awpcp.php:1435
 msgid "Please enter a valid number."
 msgstr "Kérjük érvényes számot írjon be."
 
-#: includes/class-awpcp.php:1400
+#: includes/class-awpcp.php:1436
 msgid "Please enter a valid amount."
 msgstr "Kérjük érvényes mennyiséget adjon meg."
 
-#: includes/class-awpcp.php:1401
+#: includes/class-awpcp.php:1437
 msgid ""
 "You have reached the maximum allowed categories for the selected fee plan."
 msgstr ""
 
-#: includes/class-awpcp.php:1411
+#: includes/class-awpcp.php:1447
 msgctxt "[UI Datepicker] Display text for previous month link"
 msgid "&#x3c;Prev"
 msgstr "&#x3c;Prev"
 
-#: includes/class-awpcp.php:1413
+#: includes/class-awpcp.php:1449
 msgctxt "[UI Datepicker] Display text for next month link"
 msgid "Next&#x3e;"
 msgstr "Következő&#x3e;"
 
-#: includes/class-awpcp.php:1428
+#: includes/class-awpcp.php:1464
 msgctxt "[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ..."
 msgid "0"
 msgstr "0"
 
-#: includes/class-awpcp.php:1434
+#: includes/class-awpcp.php:1470
 msgid "There are files currently being uploaded."
 msgstr "Folyamatban lévő fájlfeltöltés."
 
-#: includes/class-awpcp.php:1435
+#: includes/class-awpcp.php:1471
 msgid "There are files pending to be uploaded."
 msgstr "Fájlok várnak feltöltésre."
 
-#: includes/class-awpcp.php:1436
+#: includes/class-awpcp.php:1472
 msgid "You haven't uploaded any images or files."
 msgstr "Nem töltöttél fel semmit."
 
-#: includes/class-awpcp.php:1505 includes/class-awpcp.php:1513
-#: includes/class-awpcp.php:1521 includes/class-awpcp.php:1598
-#: includes/class-awpcp.php:1606 includes/class-awpcp.php:1614
+#: includes/class-awpcp.php:1541 includes/class-awpcp.php:1549
+#: includes/class-awpcp.php:1557 includes/class-awpcp.php:1634
+#: includes/class-awpcp.php:1642 includes/class-awpcp.php:1650
 #: templates/admin/debug/plugin-info-debug-section.tpl.php:6
 msgid "Another WordPress Classifieds Plugin"
 msgstr ""
@@ -5688,7 +5688,7 @@ msgid "A classified ad."
 msgstr ""
 
 #: includes/models/class-custom-post-types.php:147
-#: includes/settings/class-listings-settings.php:563
+#: includes/settings/class-listings-settings.php:589
 msgctxt "listing post type slug"
 msgid "classifieds"
 msgstr ""
@@ -8597,212 +8597,226 @@ msgstr ""
 msgid "SEO"
 msgstr ""
 
-#: includes/settings/class-listings-settings.php:333
+#: includes/settings/class-listings-settings.php:334
 msgid "Search Engine Friendly URLs"
 msgstr ""
 
-#: includes/settings/class-listings-settings.php:341
+#: includes/settings/class-listings-settings.php:342
 msgid "Turn on Search Engine Friendly URLs"
 msgstr "Keresőbarát URL-ek bekapcsolása"
 
-#: includes/settings/class-listings-settings.php:344
+#: includes/settings/class-listings-settings.php:345
 msgid "Turn on Search Engine Friendly URLs? (SEO Mode)"
 msgstr "Keresőbarát URL-ek bekapcsolása? (SEO mód)"
 
-#: includes/settings/class-listings-settings.php:354
+#: includes/settings/class-listings-settings.php:358
+msgid "Redirection"
+msgstr ""
+
+#: includes/settings/class-listings-settings.php:367
+msgid "Redirect deleted listings"
+msgstr ""
+
+#: includes/settings/class-listings-settings.php:370
+msgid ""
+"Perform a 301 redirect to the main classifieds page when landing on a "
+"deleted listing url."
+msgstr ""
+
+#: includes/settings/class-listings-settings.php:380
 msgctxt "window title settings section"
 msgid ""
 "These settings affect the title shown in the title bar of the browser for "
 "the listing. You can include or remove certain elements if you wish."
 msgstr "Ezek a beállítások böngésző címsorában megjelenő szövegre hatnak ki Hozzáadhat és eltávolíthat bizonyos elemeket, ha szükségesnek találja."
 
-#: includes/settings/class-listings-settings.php:359
+#: includes/settings/class-listings-settings.php:385
 msgid "Window Title"
 msgstr "Böngészö Címsor megnevezése"
 
-#: includes/settings/class-listings-settings.php:369
+#: includes/settings/class-listings-settings.php:395
 msgid "Window title separator"
 msgstr "Böngésző Címsor elválasztó"
 
-#: includes/settings/class-listings-settings.php:372
+#: includes/settings/class-listings-settings.php:398
 msgid ""
 "The character to use to separate ad details used in browser page title. "
 "Example: | / -"
 msgstr "Elválasztásra használt karakter a böngésző címsorában. Pl.: | / -"
 
-#: includes/settings/class-listings-settings.php:378
+#: includes/settings/class-listings-settings.php:404
 msgid "Show city in window title"
 msgstr "Állam megjelenítése a címsorban"
 
-#: includes/settings/class-listings-settings.php:381
+#: includes/settings/class-listings-settings.php:407
 msgid "Show city in browser page title when viewing individual Ad"
 msgstr "Település megjelenítése a böngésző címsorában, amikor egy egyedi hirdetés van megnyitva."
 
-#: includes/settings/class-listings-settings.php:387
+#: includes/settings/class-listings-settings.php:413
 msgid "Show state in window title"
 msgstr "Állam megjelenítése a böngésző címsorában"
 
-#: includes/settings/class-listings-settings.php:390
+#: includes/settings/class-listings-settings.php:416
 msgid "Show state in browser page title when viewing individual Ad"
 msgstr "Állam megjelenítése a böngésző címsorában, amikor egy egyedi hirdetés van megnyitva."
 
-#: includes/settings/class-listings-settings.php:396
+#: includes/settings/class-listings-settings.php:422
 msgid "Show country in window title"
 msgstr "Ország megjelenítése a címsorban"
 
-#: includes/settings/class-listings-settings.php:399
+#: includes/settings/class-listings-settings.php:425
 msgid "Show country in browser page title when viewing individual Ad"
 msgstr "Ország megjelenítése a böngésző címsorában, amikor egy egyedi hirdetés van megnyitva."
 
-#: includes/settings/class-listings-settings.php:405
+#: includes/settings/class-listings-settings.php:431
 msgid "Show county/village/other in window title"
 msgstr "Megye/település/egyéb megjelenítése a címsorban"
 
-#: includes/settings/class-listings-settings.php:408
+#: includes/settings/class-listings-settings.php:434
 msgid ""
 "Show county/village/other setting in browser page title when viewing "
 "individual Ad"
 msgstr "Megye/település/egyéb beállítás megjelenítése a böngésző címsorában egyedi hirdetés megtekintése esetén"
 
-#: includes/settings/class-listings-settings.php:414
+#: includes/settings/class-listings-settings.php:440
 msgid "Show category in title"
 msgstr "Kategória megjelenítése a címben"
 
-#: includes/settings/class-listings-settings.php:417
+#: includes/settings/class-listings-settings.php:443
 msgid "Show category in browser page title when viewing individual Ad"
 msgstr "Kategória megjelenítése a böngésző címsorában, amikor egy egyedi hirdetés van megnyitva."
 
-#: includes/settings/class-listings-settings.php:440
+#: includes/settings/class-listings-settings.php:466
 msgid ""
 "Enable this setting to display each listing on its own page, instead of "
 "showing the listing's content inside the <show-listing-page> page."
 msgstr ""
 
-#: includes/settings/class-listings-settings.php:446
+#: includes/settings/class-listings-settings.php:472
 msgid "Display listings on their own page"
 msgstr ""
 
-#: includes/settings/class-listings-settings.php:454
+#: includes/settings/class-listings-settings.php:480
 msgid ""
 "Portion of the URL that appears between the website's domain and the "
 "listing's information. Example: <example-slug> in <example-url>."
 msgstr ""
 
-#: includes/settings/class-listings-settings.php:464
+#: includes/settings/class-listings-settings.php:490
 msgid "Listings slug"
 msgstr ""
 
-#: includes/settings/class-listings-settings.php:477
+#: includes/settings/class-listings-settings.php:503
 msgid ""
 "Include the slug of the plugin's main page (<main-page-slug>) in the URL "
 "that points to the page of an individual listing."
 msgstr ""
 
-#: includes/settings/class-listings-settings.php:480
+#: includes/settings/class-listings-settings.php:506
 msgid ""
 "Include the slug of the plugin's main page in the URL that points to the "
 "page of an individual listing."
 msgstr ""
 
-#: includes/settings/class-listings-settings.php:486
+#: includes/settings/class-listings-settings.php:512
 msgid "Include the slug of the plugin's main page in the listing URL"
 msgstr ""
 
-#: includes/settings/class-listings-settings.php:500
+#: includes/settings/class-listings-settings.php:526
 msgid "Include the title in the listing URL"
 msgstr "Hirdetés címe jelenjen meg a listázás URL-jében"
 
-#: includes/settings/class-listings-settings.php:503
+#: includes/settings/class-listings-settings.php:529
 msgid ""
 "Include the title in the URL that points to the page of an individual "
 "listing."
 msgstr "Hirdetés címe jelenjen meg az URL-ben ami egy hirdetésre mutat."
 
-#: includes/settings/class-listings-settings.php:509
+#: includes/settings/class-listings-settings.php:535
 msgid "Include the name of the category in the listing URL"
 msgstr "Kategória neve jelenjen meg a listázás URL-jében"
 
-#: includes/settings/class-listings-settings.php:512
+#: includes/settings/class-listings-settings.php:538
 msgid ""
 "Include the name of the category in the URL that points to the page of an "
 "individual listing."
 msgstr "Kategória neve jelenjen meg az URL-ben ami egy hirdetésre mutat."
 
-#: includes/settings/class-listings-settings.php:518
+#: includes/settings/class-listings-settings.php:544
 msgid "Include the name of the country in the listing URL"
 msgstr "Ország neve jelenjen meg a listázás URL-jében"
 
-#: includes/settings/class-listings-settings.php:521
+#: includes/settings/class-listings-settings.php:547
 msgid ""
 "Include the name of the country in the URL that points to the page of an "
 "individual listing."
 msgstr "Ország neve jelenjen meg az URL-ben ami egy hirdetésre mutat."
 
-#: includes/settings/class-listings-settings.php:527
+#: includes/settings/class-listings-settings.php:553
 msgid "Include the name of the state in the listing URL"
 msgstr "Állam neve jelenjen meg a listázás URL-jében "
 
-#: includes/settings/class-listings-settings.php:530
+#: includes/settings/class-listings-settings.php:556
 msgid ""
 "Include the name of the state in the URL that points to the page of an "
 "individual listing."
 msgstr "Állam neve jelenjen meg az URL-ben ami egy hirdetésre mutat."
 
-#: includes/settings/class-listings-settings.php:536
+#: includes/settings/class-listings-settings.php:562
 msgid "Include the name of the city in the listing URL"
 msgstr "Település neve jelenjen meg a listázás URL-jében"
 
-#: includes/settings/class-listings-settings.php:539
+#: includes/settings/class-listings-settings.php:565
 msgid ""
 "Include the name of the city in the URL that points to the page of an "
 "individual listing."
 msgstr "Település neve jelenjen meg az URL-ben ami egy hirdetésre mutat."
 
-#: includes/settings/class-listings-settings.php:545
+#: includes/settings/class-listings-settings.php:571
 msgid "Include the name of the county in the listing URL"
 msgstr "Megye neve jelenjen meg a listázás URL-jében"
 
-#: includes/settings/class-listings-settings.php:548
+#: includes/settings/class-listings-settings.php:574
 msgid ""
 "Include the name of the county in the URL that points to the page of an "
 "individual listing."
 msgstr "Megye neve jelenjen meg az URL-ben ami egy hirdetésre mutat."
 
-#: includes/settings/class-listings-settings.php:567
+#: includes/settings/class-listings-settings.php:593
 msgctxt "listing url settings section"
 msgid ""
 "These settings affect the URL path shown for listings. You can include or "
 "remove elements for SEO purposes."
 msgstr ""
 
-#: includes/settings/class-listings-settings.php:573
+#: includes/settings/class-listings-settings.php:599
 msgctxt "listing url settings section"
 msgid "Example path: <example-path>."
 msgstr ""
 
-#: includes/settings/class-listings-settings.php:603
+#: includes/settings/class-listings-settings.php:629
 msgid "Regions"
 msgstr "Régiók"
 
-#: includes/settings/class-listings-settings.php:609
+#: includes/settings/class-listings-settings.php:635
 msgid "Regions Settings"
 msgstr "Régiók beállítások"
 
-#: includes/settings/class-listings-settings.php:611
+#: includes/settings/class-listings-settings.php:637
 msgid "Allow Regions modification"
 msgstr "Régiók módosítások engedélyezése"
 
-#: includes/settings/class-listings-settings.php:611
+#: includes/settings/class-listings-settings.php:637
 msgid ""
 "If enabled, users will be allowed to change the region information "
 "associated with their Ads."
 msgstr "Ha engedélyezve van, akkor a felhasználóknak lehetségük van a hirdetésükhöz kapcsolódó régió információikat módosítani."
 
-#: includes/settings/class-listings-settings.php:612
+#: includes/settings/class-listings-settings.php:638
 msgid "Allow users to search Ads in multiple regions"
 msgstr "Felhasználóknak megengedi, hogy egyszerre több régióban is keressenek hirdetéseket."
 
-#: includes/settings/class-listings-settings.php:612
+#: includes/settings/class-listings-settings.php:638
 msgid "If enabled, users will be allowed to search Ads in multiple regions."
 msgstr "Ha engedélyezve van, akkor a felhasználók egyszerre több régióban is kereshetnek hirdetéseket."
 
