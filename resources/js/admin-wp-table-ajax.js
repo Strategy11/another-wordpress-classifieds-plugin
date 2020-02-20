@@ -49,6 +49,7 @@ if (typeof jQuery !== 'undefined') {
                 } else if (parent.hasClass('trash')) {
                     self.trash();
                 } else {
+                    link.addClass( "loading" );
                     self.default(parent.attr('class'));
                 }
             });
@@ -323,6 +324,7 @@ if (typeof jQuery !== 'undefined') {
                             options.onDefaultActionError.apply(self, [action, response]);
                         }
                     }
+                    self.link.removeClass('loading');
                 });
             }
         };
