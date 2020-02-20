@@ -49,7 +49,6 @@ if (typeof jQuery !== 'undefined') {
                 } else if (parent.hasClass('trash')) {
                     self.trash();
                 } else {
-                    link.addClass( "loading" );
                     self.default(parent.attr('class'));
                 }
             });
@@ -310,7 +309,6 @@ if (typeof jQuery !== 'undefined') {
 
             default: function(action) {
                 var self = this, options = self.options;
-
                 $.post(options.ajaxurl, $.extend({}, options.data, {
                     'action': options.actions[action],
                     'id': self.row.data('id')
@@ -324,7 +322,6 @@ if (typeof jQuery !== 'undefined') {
                             options.onDefaultActionError.apply(self, [action, response]);
                         }
                     }
-                    self.link.removeClass('loading');
                 });
             }
         };
