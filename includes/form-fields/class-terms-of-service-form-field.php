@@ -104,7 +104,7 @@ class AWPCP_TermsOfServiceFormField extends AWPCP_FormField {
 
         $params = [
             'text'          => $text,
-            'show_checkbox' => isset($context['mode']) && $context['mode'] === 'create',
+            'show_checkbox' => isset( $context['mode'] ) && $context['mode'] === 'create',
             'show_link'     => $show_link,
             'is_required'   => true,
             'label'         => $this->get_label(),
