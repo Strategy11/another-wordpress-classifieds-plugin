@@ -91,7 +91,7 @@ class AWPCP_TermsOfServiceFormField extends AWPCP_FormField {
      * class.
      *
      * When an ad is being created, the user has to check the Terms of Service
-     * box, but when the the ad is being edited, we simualte that the box was
+     * box, but when the the ad is being edited, we simulate that the box was
      * checked using a hidden input field.
      *
      * @since 4.0.2
@@ -104,7 +104,7 @@ class AWPCP_TermsOfServiceFormField extends AWPCP_FormField {
 
         $params = [
             'text'          => $text,
-            'show_checkbox' => $context['mode'] === 'create',
+            'show_checkbox' => isset($context['mode']) && $context['mode'] === 'create',
             'show_link'     => $show_link,
             'is_required'   => true,
             'label'         => $this->get_label(),
