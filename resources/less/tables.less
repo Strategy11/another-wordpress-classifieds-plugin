@@ -6,6 +6,8 @@
     th, td {
         padding: 6px;
         text-align: left;
+        word-break: unset;
+        font-size: initial;
     }
     th {
         background: #EFEFEF;
@@ -21,7 +23,7 @@
 @media only screen and (max-width: 800px) {
 
     table.awpcp-table, /* to avoid specificity problems */
-    .awpcp-table, {
+    .awpcp-table {
         /* Force table to not be like tables anymore */
         table, thead, tbody, th, td, tr {
             display: block;
