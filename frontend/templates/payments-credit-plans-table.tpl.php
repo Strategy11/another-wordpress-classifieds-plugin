@@ -24,7 +24,12 @@
             <tr><td colspan="4"><?php echo __('No credit plans available.', 'another-wordpress-classifieds-plugin') ?></td></tr>
         <?php endif ?>
 
-        <?php $type = '' ?>
+        <?php
+        $type = '';
+        if ($table_only && !empty($credit_plans)) {
+            $selected = $credit_plans[0]->id;
+        }
+        ?>
         <?php foreach ($credit_plans as $plan): ?>
 
             <tr data-price="<?php echo esc_attr($plan->price) ?>" data-credits="<?php echo esc_attr($plan->credits) ?>">
@@ -40,7 +45,7 @@
         <?php endforeach ?>
         </tbody>
 
-        <?php if (!empty($credit_plans)): ?>
+        <?php if (!$selected): ?>
         <tfoot>
             <tr class="clear-selection" data-price="0" data-credits="0">
                 <td colspan="4">
