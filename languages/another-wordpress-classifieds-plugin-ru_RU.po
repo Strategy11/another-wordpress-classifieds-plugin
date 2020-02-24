@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2020-02-13 22:00:34+00:00\n"
-"PO-Revision-Date: 2020-02-13 22:01+0000\n"
+"POT-Creation-Date: 2020-02-16 22:48:09+00:00\n"
+"PO-Revision-Date: 2020-02-24 19:21+0000\n"
 "Last-Translator: Juan <juandlopezr@gmail.com>\n"
 "Language-Team: Russian (Russia) (http://www.transifex.com/wp-translations/another-wordpress-classifieds-plugin/language/ru_RU/)\n"
 "MIME-Version: 1.0\n"
@@ -2723,27 +2723,27 @@ msgstr "Ваш адрес электронной почты"
 msgid "Your message"
 msgstr "Ваше сообщение"
 
-#: frontend/templates/page-search-ads.tpl.php:22
+#: frontend/templates/page-search-ads.tpl.php:21
 msgid "Search for ads containing this word or phrase"
 msgstr ""
 
-#: frontend/templates/page-search-ads.tpl.php:40
+#: frontend/templates/page-search-ads.tpl.php:39
 msgid "For ads posted by"
 msgstr ""
 
-#: frontend/templates/page-search-ads.tpl.php:42
+#: frontend/templates/page-search-ads.tpl.php:41
 msgid "All Users"
 msgstr "Все пользователи"
 
-#: frontend/templates/page-search-ads.tpl.php:51
+#: frontend/templates/page-search-ads.tpl.php:50
 msgid "Min price"
 msgstr ""
 
-#: frontend/templates/page-search-ads.tpl.php:55
+#: frontend/templates/page-search-ads.tpl.php:54
 msgid "Max price"
 msgstr ""
 
-#: frontend/templates/page-search-ads.tpl.php:82
+#: frontend/templates/page-search-ads.tpl.php:81
 msgctxt "ad search form"
 msgid "Find Ads"
 msgstr ""
@@ -3234,15 +3234,15 @@ msgstr "Поддержка SSL: Нет."
 msgid "OpenSSL version:"
 msgstr ""
 
-#: includes/admin/class-admin.php:271
+#: includes/admin/class-admin.php:261
 msgid "Classified Information"
 msgstr ""
 
-#: includes/admin/class-admin.php:279
+#: includes/admin/class-admin.php:269
 msgid "Classified Owner"
 msgstr ""
 
-#: includes/admin/class-admin.php:287
+#: includes/admin/class-admin.php:277
 msgid "Classified Fields"
 msgstr ""
 
@@ -4063,6 +4063,27 @@ msgstr[3] ""
 msgid "An error occurred trying to sent an ad to the Facebook page."
 msgid_plural ""
 "An error occurred trying to sent {count} ads to the Facebook page."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+#: includes/admin/listings/class-send-verification-email-table-action.php:71
+msgctxt "listing row action"
+msgid "Send Verification Email"
+msgstr ""
+
+#: includes/admin/listings/class-send-verification-email-table-action.php:116
+msgid "Verification Email Sent."
+msgid_plural "{count} ads marked as verified."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+#: includes/admin/listings/class-send-verification-email-table-action.php:123
+msgid "An error occurred trying to send verification email."
+msgid_plural "An error occurred trying to send {count} verification email."
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
@@ -8371,47 +8392,47 @@ msgid ""
 " the User Ad Management panel."
 msgstr "Обязательная регистрация была включена автоматически, так как вы активировали пользовательскую панель объявлений."
 
-#: includes/settings/class-general-settings.php:1092
+#: includes/settings/class-general-settings.php:1091
 msgid ""
 "Akismet SPAM control cannot be enabled because Akismet plugin is not "
 "installed or activated."
 msgstr "Вы не можете активировать контроль спама Akismet, так как Akismet не установлен либо не активирован "
 
-#: includes/settings/class-general-settings.php:1096
+#: includes/settings/class-general-settings.php:1095
 msgid ""
 "Akismet SPAM control cannot be enabled because Akismet is not properly "
 "configured."
 msgstr "Вы не можете активировать контроль спама Akismet, так как Akismet неверно настроен."
 
-#: includes/settings/class-general-settings.php:1123
+#: includes/settings/class-general-settings.php:1122
 msgid ""
 "reCAPTCHA can't be used because the public key and private key settings are "
 "required for reCAPTCHA to work properly."
 msgstr "reCAPTCHA не может быть использован, так как настройки открытого и закрытого ключей являются обязательными для нормальной работы reCAPTCHA"
 
-#: includes/settings/class-general-settings.php:1125
+#: includes/settings/class-general-settings.php:1124
 msgid ""
 "reCAPTCHA can't be used because the public key setting is required for "
 "reCAPTCHA to work properly."
 msgstr "reCAPTCHA не может быть использован, так как настройки открытого ключа являются обязательными для нормальной работы reCAPTCHA"
 
-#: includes/settings/class-general-settings.php:1127
+#: includes/settings/class-general-settings.php:1126
 msgid ""
 "reCAPTCHA can't be used because the private key setting is required for "
 "reCAPTCHA to work properly."
 msgstr "reCAPTCHA не может быть использован, так как настройки закрытого ключа являются обязательными для нормальной работы reCAPTCHA"
 
-#: includes/settings/class-general-settings.php:1174
+#: includes/settings/class-general-settings.php:1173
 msgid "Thousands separator and decimal separator cant be the same."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:1190
+#: includes/settings/class-general-settings.php:1189
 msgid ""
 "User Ad Management panel was automatically deactivated because you disabled "
 "Require Registration setting."
 msgstr "Пользовательская Панель Управления Объявлениями была автоматически отключена, потому что вы отключили настройку Обязательной Регистрации."
 
-#: includes/settings/class-general-settings.php:1195
+#: includes/settings/class-general-settings.php:1194
 msgid ""
 "Credit System was automatically disabled because you disabled Require "
 "Registration setting."
@@ -9335,7 +9356,7 @@ msgid ""
 "credits)"
 msgstr ""
 
-#: includes/ui/class-payment-terms-list.php:156
+#: includes/ui/class-payment-terms-list.php:157
 msgid "<number-of-listings> listing allowed."
 msgid_plural "<number-of-listings> listings allowed."
 msgstr[0] ""
@@ -9343,11 +9364,11 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: includes/ui/class-payment-terms-list.php:164
+#: includes/ui/class-payment-terms-list.php:165
 msgid "No images allowed."
 msgstr ""
 
-#: includes/ui/class-payment-terms-list.php:167
+#: includes/ui/class-payment-terms-list.php:168
 msgid "<number-of-images> image allowed."
 msgid_plural "<number-of-images> images allowed."
 msgstr[0] ""
@@ -9355,45 +9376,57 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: includes/ui/class-payment-terms-list.php:174
+#: includes/ui/class-payment-terms-list.php:177
+msgid "No regions allowed."
+msgstr ""
+
+#: includes/ui/class-payment-terms-list.php:180
+msgid "<number-of-regions> region allowed."
+msgid_plural "<number-of-regions> regions allowed."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+#: includes/ui/class-payment-terms-list.php:187
 msgid "Unlimited characters in listing's title."
 msgstr ""
 
-#: includes/ui/class-payment-terms-list.php:177
+#: includes/ui/class-payment-terms-list.php:190
 msgid "Up to <characters-count> characters in listing's title."
 msgstr ""
 
-#: includes/ui/class-payment-terms-list.php:184
+#: includes/ui/class-payment-terms-list.php:197
 msgid "Up to <categories-count> categories allowed."
 msgstr ""
 
-#: includes/ui/class-payment-terms-list.php:191
+#: includes/ui/class-payment-terms-list.php:204
 msgid "Unlimited characters in listing's content."
 msgstr ""
 
-#: includes/ui/class-payment-terms-list.php:194
+#: includes/ui/class-payment-terms-list.php:207
 msgid "Up to <characters-count> characters in listing's content."
 msgstr ""
 
-#: includes/ui/class-payment-terms-list.php:200
+#: includes/ui/class-payment-terms-list.php:213
 msgid "Purchase this plan"
 msgstr ""
 
-#: includes/ui/class-payment-terms-list.php:201
+#: includes/ui/class-payment-terms-list.php:214
 msgid "Pay for this plan with credits"
 msgstr ""
 
-#: includes/ui/class-payment-terms-list.php:204
-#: includes/ui/class-payment-terms-list.php:208
+#: includes/ui/class-payment-terms-list.php:217
+#: includes/ui/class-payment-terms-list.php:221
 msgid "Use this plan for free!"
 msgstr ""
 
-#: includes/ui/class-payment-terms-list.php:213
-#: includes/ui/class-payment-terms-list.php:218
+#: includes/ui/class-payment-terms-list.php:226
+#: includes/ui/class-payment-terms-list.php:231
 msgid "Select"
 msgstr "Выбрать "
 
-#: includes/ui/class-payment-terms-list.php:217
+#: includes/ui/class-payment-terms-list.php:230
 msgid "credits"
 msgstr ""
 

@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2020-02-13 22:00:34+00:00\n"
-"PO-Revision-Date: 2020-02-13 22:14+0000\n"
+"POT-Creation-Date: 2020-02-16 22:48:09+00:00\n"
+"PO-Revision-Date: 2020-02-24 19:27+0000\n"
 "Last-Translator: Juan <juandlopezr@gmail.com>\n"
 "Language-Team: Spanish (Spain) (http://www.transifex.com/wp-translations/another-wordpress-classifieds-plugin/language/es_ES/)\n"
 "MIME-Version: 1.0\n"
@@ -2715,27 +2715,27 @@ msgstr "Su dirección de correo electrónico"
 msgid "Your message"
 msgstr "Su mensaje"
 
-#: frontend/templates/page-search-ads.tpl.php:22
+#: frontend/templates/page-search-ads.tpl.php:21
 msgid "Search for ads containing this word or phrase"
 msgstr "Buscar anuncios que contienen esta palabra o frase"
 
-#: frontend/templates/page-search-ads.tpl.php:40
+#: frontend/templates/page-search-ads.tpl.php:39
 msgid "For ads posted by"
 msgstr "Publicados por"
 
-#: frontend/templates/page-search-ads.tpl.php:42
+#: frontend/templates/page-search-ads.tpl.php:41
 msgid "All Users"
 msgstr "Todos los usuarios"
 
-#: frontend/templates/page-search-ads.tpl.php:51
+#: frontend/templates/page-search-ads.tpl.php:50
 msgid "Min price"
 msgstr "Precio mínimo"
 
-#: frontend/templates/page-search-ads.tpl.php:55
+#: frontend/templates/page-search-ads.tpl.php:54
 msgid "Max price"
 msgstr "Precio máximo"
 
-#: frontend/templates/page-search-ads.tpl.php:82
+#: frontend/templates/page-search-ads.tpl.php:81
 msgctxt "ad search form"
 msgid "Find Ads"
 msgstr "Buscar anuncios"
@@ -3226,15 +3226,15 @@ msgstr "Soporta SSL: No."
 msgid "OpenSSL version:"
 msgstr "Versión de OpenSSL:"
 
-#: includes/admin/class-admin.php:271
+#: includes/admin/class-admin.php:261
 msgid "Classified Information"
 msgstr "Información del anuncio"
 
-#: includes/admin/class-admin.php:279
+#: includes/admin/class-admin.php:269
 msgid "Classified Owner"
 msgstr "Autor del anuncio"
 
-#: includes/admin/class-admin.php:287
+#: includes/admin/class-admin.php:277
 msgid "Classified Fields"
 msgstr "Campos del anuncio"
 
@@ -3989,6 +3989,23 @@ msgid_plural ""
 "An error occurred trying to sent {count} ads to the Facebook page."
 msgstr[0] "Ocurrió un error publicando un anuncio en la página de Facebook."
 msgstr[1] "Ocurrió un error publicando {count} anuncios en la página de Facebook."
+
+#: includes/admin/listings/class-send-verification-email-table-action.php:71
+msgctxt "listing row action"
+msgid "Send Verification Email"
+msgstr "Envia correo de verificación"
+
+#: includes/admin/listings/class-send-verification-email-table-action.php:116
+msgid "Verification Email Sent."
+msgid_plural "{count} ads marked as verified."
+msgstr[0] "El mensaje de verificación ha sido enviado."
+msgstr[1] "{count} anuncios marcados como verificados."
+
+#: includes/admin/listings/class-send-verification-email-table-action.php:123
+msgid "An error occurred trying to send verification email."
+msgid_plural "An error occurred trying to send {count} verification email."
+msgstr[0] "Se produjo un error al intentar enviar el correo de verificación."
+msgstr[1] "Se produjo un error al intentar enviar {count} correos electrónicos de verificación."
 
 #: includes/admin/listings/class-title-listings-table-search-mode.php:15
 msgctxt "listings search mode"
@@ -8269,47 +8286,47 @@ msgid ""
 " the User Ad Management panel."
 msgstr "La opción Requerir Registro se habilitó automáticamente porque se ha activado el panel de Administración de Anuncios de Usuarios."
 
-#: includes/settings/class-general-settings.php:1092
+#: includes/settings/class-general-settings.php:1091
 msgid ""
 "Akismet SPAM control cannot be enabled because Akismet plugin is not "
 "installed or activated."
 msgstr "No se puede activar el control de SPAM Askimet porque el plugin Askimet no está instalado o activado."
 
-#: includes/settings/class-general-settings.php:1096
+#: includes/settings/class-general-settings.php:1095
 msgid ""
 "Akismet SPAM control cannot be enabled because Akismet is not properly "
 "configured."
 msgstr "No se puede activar el control de SPAM Askimet porque el plugin Askimet no ha sido configurado adecuadamente."
 
-#: includes/settings/class-general-settings.php:1123
+#: includes/settings/class-general-settings.php:1122
 msgid ""
 "reCAPTCHA can't be used because the public key and private key settings are "
 "required for reCAPTCHA to work properly."
 msgstr "reCAPTCHA no puede user usado porque se requiere un valor en la opción clave pública y clave privada para que reCAPTCHA funcione adecuadamente."
 
-#: includes/settings/class-general-settings.php:1125
+#: includes/settings/class-general-settings.php:1124
 msgid ""
 "reCAPTCHA can't be used because the public key setting is required for "
 "reCAPTCHA to work properly."
 msgstr "reCAPTCHA no puede user usado porque se require un valor en la opción clave pública para que reCAPTCHA funcione adecuadamente."
 
-#: includes/settings/class-general-settings.php:1127
+#: includes/settings/class-general-settings.php:1126
 msgid ""
 "reCAPTCHA can't be used because the private key setting is required for "
 "reCAPTCHA to work properly."
 msgstr "reCAPTCHA no puede user usado porque se requiere un valor en la opción clave privada para que reCAPTCHA funcione adecuadamente."
 
-#: includes/settings/class-general-settings.php:1174
+#: includes/settings/class-general-settings.php:1173
 msgid "Thousands separator and decimal separator cant be the same."
 msgstr "El separador de miles y el separador decimal no pueden ser lo mismo."
 
-#: includes/settings/class-general-settings.php:1190
+#: includes/settings/class-general-settings.php:1189
 msgid ""
 "User Ad Management panel was automatically deactivated because you disabled "
 "Require Registration setting."
 msgstr "El Panel de Administración de Anuncios de Usuarios fue desactivado automáticamente debido a que desactivó la opción Requerir Registro."
 
-#: includes/settings/class-general-settings.php:1195
+#: includes/settings/class-general-settings.php:1194
 msgid ""
 "Credit System was automatically disabled because you disabled Require "
 "Registration setting."
@@ -9233,61 +9250,71 @@ msgid ""
 "credits)"
 msgstr "{payment-term-name} &ndash; {payment-term-duration} ({payment-term-price} créditos)"
 
-#: includes/ui/class-payment-terms-list.php:156
+#: includes/ui/class-payment-terms-list.php:157
 msgid "<number-of-listings> listing allowed."
 msgid_plural "<number-of-listings> listings allowed."
 msgstr[0] "<number-of-listings> anuncio permitido."
 msgstr[1] "<number-of-listings> anuncios permitidos."
 
-#: includes/ui/class-payment-terms-list.php:164
+#: includes/ui/class-payment-terms-list.php:165
 msgid "No images allowed."
 msgstr "Sin imágenes."
 
-#: includes/ui/class-payment-terms-list.php:167
+#: includes/ui/class-payment-terms-list.php:168
 msgid "<number-of-images> image allowed."
 msgid_plural "<number-of-images> images allowed."
 msgstr[0] "<number-of-images> imagen permitida."
 msgstr[1] "<number-of-images> imágenes permitidas."
 
-#: includes/ui/class-payment-terms-list.php:174
+#: includes/ui/class-payment-terms-list.php:177
+msgid "No regions allowed."
+msgstr "No se permiten regiones."
+
+#: includes/ui/class-payment-terms-list.php:180
+msgid "<number-of-regions> region allowed."
+msgid_plural "<number-of-regions> regions allowed."
+msgstr[0] "<number-of-regions> región permitida."
+msgstr[1] "<number-of-regions> regiónes permitidas."
+
+#: includes/ui/class-payment-terms-list.php:187
 msgid "Unlimited characters in listing's title."
 msgstr "Caracteres ilimitados en el título del anuncio."
 
-#: includes/ui/class-payment-terms-list.php:177
+#: includes/ui/class-payment-terms-list.php:190
 msgid "Up to <characters-count> characters in listing's title."
 msgstr "Un máximo de <characters-count> caracteres en el título del anuncio."
 
-#: includes/ui/class-payment-terms-list.php:184
+#: includes/ui/class-payment-terms-list.php:197
 msgid "Up to <categories-count> categories allowed."
 msgstr "Hasta <categories-count> categorías permitidas."
 
-#: includes/ui/class-payment-terms-list.php:191
+#: includes/ui/class-payment-terms-list.php:204
 msgid "Unlimited characters in listing's content."
 msgstr "Caracteres ilimitados en el contenido del anuncio."
 
-#: includes/ui/class-payment-terms-list.php:194
+#: includes/ui/class-payment-terms-list.php:207
 msgid "Up to <characters-count> characters in listing's content."
 msgstr "Un máximo de <characters-count> caracteres en el contenido del anuncio."
 
-#: includes/ui/class-payment-terms-list.php:200
+#: includes/ui/class-payment-terms-list.php:213
 msgid "Purchase this plan"
 msgstr "Comprar este plan"
 
-#: includes/ui/class-payment-terms-list.php:201
+#: includes/ui/class-payment-terms-list.php:214
 msgid "Pay for this plan with credits"
 msgstr "Pagar este plan usando créditos"
 
-#: includes/ui/class-payment-terms-list.php:204
-#: includes/ui/class-payment-terms-list.php:208
+#: includes/ui/class-payment-terms-list.php:217
+#: includes/ui/class-payment-terms-list.php:221
 msgid "Use this plan for free!"
 msgstr "Usar este plan gratis!"
 
-#: includes/ui/class-payment-terms-list.php:213
-#: includes/ui/class-payment-terms-list.php:218
+#: includes/ui/class-payment-terms-list.php:226
+#: includes/ui/class-payment-terms-list.php:231
 msgid "Select"
 msgstr "Seleccione"
 
-#: includes/ui/class-payment-terms-list.php:217
+#: includes/ui/class-payment-terms-list.php:230
 msgid "credits"
 msgstr "créditos"
 
