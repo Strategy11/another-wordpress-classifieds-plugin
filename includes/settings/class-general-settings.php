@@ -397,7 +397,7 @@ class AWPCP_GeneralSettings {
             'include-space-between-currency-symbol-and-amount',
             __( 'Include a space between the currency symbol and the amount', 'another-wordpress-classifieds-plugin' ),
             'checkbox',
-            1,
+            0,
             ''
         );
     }
