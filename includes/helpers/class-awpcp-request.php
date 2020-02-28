@@ -88,7 +88,7 @@ class AWPCP_Request {
      * @since 4.0.0
      */
     private function filter_input( $var_name, $filter ) {
-        $var_name = isset($_SERVER[$var_name]) ? $_SERVER[$var_name] : null;
+        $var_name = isset( $_SERVER[$var_name] ) ? $_SERVER[$var_name] : null;
         return filter_var( $var_name, $filter );
     }
 
