@@ -56,7 +56,7 @@ class AWPCP_Request {
      * @since 3.3
      */
     function domain( $include_www = true, $www_prefix_replacement = '' ) {
-        $domain = $this->filter_input( INPUT_SERVER, 'HTTP_HOST', FILTER_SANITIZE_STRING );
+        $domain = $this->filter_input( 'HTTP_HOST', FILTER_SANITIZE_STRING );
 
         // If the server runs on a port other than 80 then HTTP_HOST contains
         // the port. See https://stackoverflow.com/a/12046836.
@@ -87,8 +87,9 @@ class AWPCP_Request {
      *
      * @since 4.0.0
      */
-    private function filter_input( $input_type, $var_name, $filter ) {
-        return filter_input( $input_type, $var_name, $filter );
+    private function filter_input( $var_name, $filter ) {
+        $var_name = isset($_SERVER[$var_name]) ? $_SERVER[$var_name] : null;
+        return filter_var( $var_name, $filter );
     }
 
     /**
