@@ -1108,7 +1108,7 @@ class AWPCP {
             wp_register_script(
                 'select2',
                 "{$vendors}/selectWoo-woo-1.0.0-beta/js/select2.full.min.js",
-                array(),
+                array('jquery'),
                 '4.0.5',
                 true
             );
