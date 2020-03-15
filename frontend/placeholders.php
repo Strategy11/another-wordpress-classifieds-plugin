@@ -867,6 +867,7 @@ function awpcp_do_placeholder_facebook_button_url( $ad, $placeholder ) {
 
 /**
  * TODO: Remove this placeholder, already added to ad actions in edit mode.
+ *
  * @since 4.0
  */
 function awpcp_do_placeholder_ad_actions( $ad, $placeholder ) {

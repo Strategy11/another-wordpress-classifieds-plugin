@@ -1,5 +1,11 @@
 <?php
+/**
+ * @package AWPCP\Listings
+ */
 
+/**
+ * Class AWPCP_RenewListingAction
+ */
 class AWPCP_RenewListingAction extends AWPCP_ListingAction {
 
     private $wordpress;
@@ -12,7 +18,7 @@ class AWPCP_RenewListingAction extends AWPCP_ListingAction {
         if ( $this->wordpress->get_post_meta( $listing->ID, '_awpcp_expired', true ) ) {
             return true;
         }
-       return false;
+        return false;
     }
 
     public function get_name() {
@@ -27,6 +33,9 @@ class AWPCP_RenewListingAction extends AWPCP_ListingAction {
         return __( 'You can use this button to renew your ad.', 'another-wordpress-classifieds-plugin' );
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
     public function render( $listing, $config = [] ) {
         $renew_url = awpcp_get_renew_ad_url( $listing->ID );
         return "<a class='button' href='{$renew_url}'> {$this->get_name()} </a>";
