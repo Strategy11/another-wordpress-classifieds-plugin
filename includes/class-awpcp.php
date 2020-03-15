@@ -453,6 +453,7 @@ class AWPCP {
             $listings_content = $this->container['ListingsContent'];
             add_filter( 'pre_handle_404', [$this, 'return_pending_post'], 10, 2 );
             add_filter( 'pre_handle_404', [$this, 'redirect_deleted_ads'], 10, 2 );
+            add_filter( 'pre_handle_404', [$this, 'expired_ads'], 10, 2 );
             add_filter( 'the_content', array( $listings_content, 'filter_content' ) );
 
             add_filter( 'awpcp-content-before-listing-page', 'awpcp_insert_classifieds_bar_before_listing_page' );
@@ -502,6 +503,28 @@ class AWPCP {
         $post    = get_post( $post_id );
         // get our post instead and return it as the result...
         if ( ! empty( $post ) && $post_type === AWPCP_LISTING_POST_TYPE && $post->post_status === 'pending' ) {
+            $query->posts = array($post);
+            $query->post = $post;
+            $query->post_count = 1;
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Ad owner can see expired ads.
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
+    public function expired_ads( $handle_404, $query ) {
+        $post_id = $query->get( 'p' );
+        $post_type = $query->get('post_type');
+        $author_id = get_current_user_id();
+        $post    = get_post( $post_id );
+        $expired = get_post_meta($post_id, '_awpcp_expired', true);
+        // get our post instead and return it as the result...
+        if ( ! empty( $post ) && $post_type === AWPCP_LISTING_POST_TYPE && $expired && $post->post_author == $author_id ) {
             $query->posts = array($post);
             $query->post = $post;
             $query->post_count = 1;

@@ -92,7 +92,6 @@ class AWPCP_DisplaySettings {
             __( 'Ad Listings page layout', 'another-wordpress-classifieds-plugin' ),
             'textarea', '
 <div class="awpcp-listing-excerpt $awpcpdisplayaditems $isfeaturedclass" data-breakpoints-class-prefix="awpcp-listing-excerpt" data-breakpoints=\'{"tiny": [0,328], "small": [328,600], "medium": [600,999999]}\'>
-        $ad_actions
     <div class="awpcp-listing-excerpt-thumbnail">
         $awpcp_image_name_srccode
     </div>
