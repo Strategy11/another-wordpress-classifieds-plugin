@@ -404,6 +404,7 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_RemoveListingRegionsService' => __DIR__ . '/../..' . '/includes/listings/class-remove-listing-regions-service.php',
         'AWPCP_RenewAdPage' => __DIR__ . '/../..' . '/frontend/page-renew-ad.php',
         'AWPCP_RenewAdPageImplementation' => __DIR__ . '/../..' . '/frontend/page-renew-ad.php',
+        'AWPCP_RenewListingAction' => __DIR__ . '/../..' . '/includes/listings/class-renew-listing-action.php',
         'AWPCP_RenewListingTableAction' => __DIR__ . '/../..' . '/includes/admin/listings/trait-renew-listing-table-action.php',
         'AWPCP_Renew_Listing_Payment_Transaction_Handler' => __DIR__ . '/../..' . '/includes/class-renew-listing-payment-transaction-handler.php',
         'AWPCP_ReplaceConflictingCategoriesIDsTaskRunner' => __DIR__ . '/../..' . '/includes/upgrade/class-replace-conflicting-categories-ids-task-runner.php',

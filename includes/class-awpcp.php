@@ -513,7 +513,7 @@ class AWPCP {
     }
 
     /**
-     * Ad owner can see expired ads.
+     * Return expired ad so owner can renew.
      *
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
@@ -524,7 +524,7 @@ class AWPCP {
         $post    = get_post( $post_id );
         $expired = get_post_meta($post_id, '_awpcp_expired', true);
         // get our post instead and return it as the result...
-        if ( ! empty( $post ) && $post_type === AWPCP_LISTING_POST_TYPE && $expired && $post->post_author == $author_id ) {
+        if ( ! empty( $post ) && $post_type === AWPCP_LISTING_POST_TYPE && $expired && $post->post_author == $author_id && $post->post_status === 'disabled') {
             $query->posts = array($post);
             $query->post = $post;
             $query->post_count = 1;
@@ -1822,7 +1822,7 @@ class AWPCP {
 
     public function register_listing_actions( $actions, $listing ) {
         $this->maybe_add_listing_action( $actions, $listing, new AWPCP_DeleteListingAction() );
-
+        $this->maybe_add_listing_action( $actions, $listing, new AWPCP_RenewListingAction( awpcp_wordpress() ) );
         return $actions;
     }
 

@@ -403,6 +403,7 @@ return array(
     'AWPCP_RemoveListingRegionsService' => $baseDir . '/includes/listings/class-remove-listing-regions-service.php',
     'AWPCP_RenewAdPage' => $baseDir . '/frontend/page-renew-ad.php',
     'AWPCP_RenewAdPageImplementation' => $baseDir . '/frontend/page-renew-ad.php',
+    'AWPCP_RenewListingAction' => $baseDir . '/includes/listings/class-renew-listing-action.php',
     'AWPCP_RenewListingTableAction' => $baseDir . '/includes/admin/listings/trait-renew-listing-table-action.php',
     'AWPCP_Renew_Listing_Payment_Transaction_Handler' => $baseDir . '/includes/class-renew-listing-payment-transaction-handler.php',
     'AWPCP_ReplaceConflictingCategoriesIDsTaskRunner' => $baseDir . '/includes/upgrade/class-replace-conflicting-categories-ids-task-runner.php',
