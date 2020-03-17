@@ -32,6 +32,9 @@ function awpcp_content_placeholders() {
         'adcontactphone'           => array(
             'callback' => 'awpcp_do_placeholder_contact_phone',
         ),
+        'adcontactemail'           => array(
+            'callback' => 'awpcp_do_placeholder_contact_email',
+        ),
         'codecontact'              => array(
             'callback' => 'awpcp_do_placeholder_contact_url',
         ),
@@ -749,6 +752,12 @@ function awpcp_do_placeholder_contact_phone( $ad, $placeholder ) {
     return $replacements[ $placeholder ];
 }
 
+/**
+ * @since 4.0.11
+ */
+function awpcp_do_placeholder_contact_email( $ad, $placeholder ) {
+    return esc_html( stripslashes( awpcp_listing_renderer()->get_contact_email( $ad ) ) );
+}
 
 /**
  * @since 3.0
