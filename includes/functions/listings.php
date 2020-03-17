@@ -113,6 +113,9 @@ function awpcp_display_listings( $query_vars, $context, $options ) {
  */
 function awpcp_get_results_per_page( $query_vars = [] ) {
     $results_per_page = intval( awpcp_request_param( 'results', get_awpcp_option( 'adresultsperpage', 10 ) ) );
+    if ($results_per_page > 500) {
+        $results_per_page = 500;
+    }
 
     if ( ! empty( $query_vars['results'] ) ) {
         $results_per_page = intval( $query_vars['results'] );
