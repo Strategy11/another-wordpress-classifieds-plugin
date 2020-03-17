@@ -112,9 +112,11 @@ function awpcp_display_listings( $query_vars, $context, $options ) {
  * @since 4.0.0
  */
 function awpcp_get_results_per_page( $query_vars = [] ) {
+    $pagination_options = get_awpcp_option('pagination-options');
+    $max_results = max($pagination_options) ? max($pagination_options) : 10;
     $results_per_page = intval( awpcp_request_param( 'results', get_awpcp_option( 'adresultsperpage', 10 ) ) );
-    if ($results_per_page > 500) {
-        $results_per_page = 500;
+    if ($results_per_page > $max_results) {
+        $results_per_page = $max_results;
     }
 
     if ( ! empty( $query_vars['results'] ) ) {
