@@ -138,7 +138,7 @@ function( $, settings ) {
         _getDisabledPaymentTerms: function _getDisabledPaymentTerms() {
             var self = this;
             var selectedCats = self.state.selectedCategories;
-            if ( (selectedCats === null || typeof selectedCats === 'undefined' || selectedCats.length === 0) && settings.get( 'hide-all-payment-terms-if-no-category-is-selected' ) ) {
+            if ( (selectedCats === null || typeof selectedCats === 'undefined' || selectedCats.length === 0) && settings.get( 'hide-all-payment-terms-if-no-category-is-selected' ) || AWPCPSubmitListingPageData.payments_enabled == "0" ) {
                 return self.state.allPaymentTerms;
             }
 
