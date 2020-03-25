@@ -176,6 +176,7 @@ class AWPCP_OrderSubmitListingSection {
 
         $data['listing_id'] = $listing->ID;
         $data['category']   = $this->listing_renderer->get_categories_ids( $listing );
+        $data['category'][]   = $this->listing_renderer->get_category_name( $listing );
         $data['user']       = $listing->post_author;
 
         $payment_term = $this->listing_renderer->get_payment_term( $listing );

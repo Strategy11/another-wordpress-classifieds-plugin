@@ -3,6 +3,8 @@
  * @package AWPCP\UI
  */
 
+include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+
 /**
  * @since 3.3
  */
@@ -74,6 +76,7 @@ class AWPCP_Category_Selector {
             'hash'                 => uniqid(),
             'multiple'             => $params['multiple'],
             'javascript'           => $this->get_javascript_options( $params, $placeholder, $categories_hierarchy ),
+            'use_multiple_dropdowns'    => get_awpcp_option('use-multiple-category-dropdowns') && !is_plugin_active('awpcp-fee-per-category/awpcp_fee_per_category.php'),
         );
 
         return $this->template_renderer->render_template(

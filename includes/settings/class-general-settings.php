@@ -132,6 +132,17 @@ class AWPCP_GeneralSettings {
 
         $settings_manager->add_setting(
             [
+                'id'          => 'use-multiple-category-dropdowns',
+                'name'        => __( 'Use multiple dropdowns to choose categories', 'another-wordpress-classifieds-plugin' ),
+                'type'        => 'checkbox',
+                'default'     => 0,
+                'description' => __( 'If checked, a dropdown shows all top-level categories in the place ad screen. When the user chooses a category, a new dropdown will appear, showing the sub-categories of the selected category, if any. Useful if your website supports a high number of categories. *If the pay per fee category module is enabled, this setting has no effect.', 'another-wordpress-classifieds-plugin' ),
+                'section'     => 'general-settings',
+            ]
+        );
+
+        $settings_manager->add_setting(
+            [
                 'id'          => 'noadsinparentcat',
                 'name'        => __( 'Force ads to be posted on categories that have no children categories only', 'another-wordpress-classifieds-plugin' ),
                 'type'        => 'checkbox',

@@ -2,13 +2,14 @@
 AWPCP.define( 'awpcp/frontend/order-section-controller', [
     'jquery',
     'awpcp/categories-selector',
+    'awpcp/category-dropdown',
     'awpcp/user-selector',
     'awpcp/payment-terms-list',
     'awpcp/credit-plans-list',
     'awpcp/jquery-collapsible',
     'awpcp/jquery-userfield',
     'awpcp/jquery-validate-methods'
-], function( $, CategoriesSelector, UserSelector, PaymentTermsList, CreditPlansList ) {
+], function( $, CategoriesSelector, CategoriesDropdown, UserSelector, PaymentTermsList, CreditPlansList ) {
     var OrderSectionController = function( section, store ) {
         var self = this;
 
@@ -69,13 +70,26 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
                 }
             } );
 
-            self.$categoriesDropdown = $container.find( '.awpcp-category-dropdown' );
+            // Init Categories Selector
+            self.$categoriesDropdown = $container.find('.awpcp-multiple-category-dropdown');
+            if (self.$categoriesDropdown.length > 0) {
+                // multiple dropdown widget selector
+                self.categoriesSelector = new CategoriesDropdown(self.$categoriesDropdown, {
+                    onChange: function(categories) {
+                        self.store.updateSelectedCategories(categories);
+                    },
+                });
+            }
+            else {
+                // WooSelect widget selector
+                self.$categoriesDropdown = $container.find('.awpcp-category-dropdown');
+                self.categoriesSelector = new CategoriesSelector(self.$categoriesDropdown, {
+                    onChange: function(categories) {
+                        self.store.updateSelectedCategories(categories);
+                    },
+                });
+            }
 
-            self.categoriesSelector = new CategoriesSelector( self.$categoriesDropdown, {
-                onChange: function( categories ) {
-                    self.store.updateSelectedCategories( categories );
-                }
-            } );
 
             self.$userSelect = $container.find( '.awpcp-user-selector' );
 
