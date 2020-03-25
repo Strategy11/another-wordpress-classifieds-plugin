@@ -3,12 +3,11 @@
  * @package AWPCP\UI
  */
 
-include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-
 /**
  * @since 3.3
  */
 function awpcp_categories_selector() {
+    require_once ABSPATH . 'wp-admin/includes/plugin.php';
     return new AWPCP_Category_Selector(
         awpcp_categories_selector_helper(),
         awpcp_categories_collection(),
@@ -66,17 +65,17 @@ class AWPCP_Category_Selector {
         awpcp()->js->set( 'categories', $categories_hierarchy, false );
 
         $template_params = array(
-            'name'                 => $params['name'],
-            'label'                => $params['label'],
-            'required'             => $params['required'],
-            'placeholder'          => $placeholder,
-            'selected'             => $params['selected'],
-            'auto'                 => $params['auto'],
-            'categories_hierarchy' => $categories_hierarchy,
-            'hash'                 => uniqid(),
-            'multiple'             => $params['multiple'],
-            'javascript'           => $this->get_javascript_options( $params, $placeholder, $categories_hierarchy ),
-            'use_multiple_dropdowns'    => get_awpcp_option('use-multiple-category-dropdowns') && !is_plugin_active('awpcp-fee-per-category/awpcp_fee_per_category.php'),
+            'name'                   => $params['name'],
+            'label'                  => $params['label'],
+            'required'               => $params['required'],
+            'placeholder'            => $placeholder,
+            'selected'               => $params['selected'],
+            'auto'                   => $params['auto'],
+            'categories_hierarchy'   => $categories_hierarchy,
+            'hash'                   => uniqid(),
+            'multiple'               => $params['multiple'],
+            'javascript'             => $this->get_javascript_options( $params, $placeholder, $categories_hierarchy ),
+            'use_multiple_dropdowns' => get_awpcp_option( 'use-multiple-category-dropdowns' ) && ! is_plugin_active( 'awpcp-fee-per-category/awpcp_fee_per_category.php' ),
         );
 
         return $this->template_renderer->render_template(
