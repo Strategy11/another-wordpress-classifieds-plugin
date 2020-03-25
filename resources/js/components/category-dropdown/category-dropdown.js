@@ -2,9 +2,9 @@
 AWPCP.define( 'awpcp/category-dropdown', [ 'jquery',  'awpcp/categories-selector-helper' ],
 function( $, CategoriesSelectorHelper ) {
      const CategoriesDropdown = function( select, options ) {
-         let self = this;
+         var self = this;
          this.$select = $( select );
-         let identifier = this.$select.attr('target');
+         var identifier = this.$select.attr('target');
          this.options = $.extend(
              {},
              window[ 'categories_' + this.$select.attr( 'data-hash' ) ],
@@ -17,16 +17,16 @@ function( $, CategoriesSelectorHelper ) {
          );
         this.$container = $('.awpcp-multiple-category-dropdown-container');
         this.$hidden = $( '#awpcp-multiple-category-dropdown-' + identifier );
-        let categoriesHierarchy = window['categories_'+ identifier]['categoriesHierarchy'];
+        var categoriesHierarchy = window['categories_'+ identifier]['categoriesHierarchy'];
 
          // add subcategory dropdown
         this.$container.on('change', '.awpcp-multiple-category-dropdown', function() {
             self.$select = $(this);
-            let category = self.setCategory(this);
-            let children = categoriesHierarchy[category[0]];
+            var category = self.setCategory(this);
+            var children = categoriesHierarchy[category[0]];
             $(this).nextAll('.awpcp-multiple-category-dropdown').remove();
             if (category[0] in categoriesHierarchy && children.length > 0 && self.$select.next('.awpcp-multiple-category-dropdown').length == 0) {
-                let subDropdown = $('<select class="awpcp-multiple-category-dropdown"><option value="">Select a Sub-category (optional)</option></select>').insertAfter($(this));
+                var subDropdown = $('<select class="awpcp-multiple-category-dropdown"><option value="">Select a Sub-category (optional)</option></select>').insertAfter($(this));
                 for (var i = 0; i < children.length; i = i + 1) {
                     subDropdown.append($('<option value="' + children[i].term_id + '">' + children[i].name + '</option>'));
                 }
@@ -38,7 +38,7 @@ function( $, CategoriesSelectorHelper ) {
 
     $.extend( CategoriesDropdown.prototype, {
         onChange: function() {
-            let categoriesIds = this.getSelectedCategoriesIds();
+            var categoriesIds = this.getSelectedCategoriesIds();
 
             this.options.helper.updateSelectedCategories( categoriesIds );
 
@@ -50,7 +50,7 @@ function( $, CategoriesSelectorHelper ) {
         },
 
         getSelectedCategories: function() {
-            let category = this.$hidden.val();
+            var category = this.$hidden.val();
             category = JSON.parse(category);
             return [{
                 id: category[0],
@@ -59,13 +59,13 @@ function( $, CategoriesSelectorHelper ) {
         },
 
         getSelectedCategoriesIds: function() {
-            let category = this.$hidden.val();
+            var category = this.$hidden.val();
             category = JSON.parse(category);
             return [category[0]];
         },
 
         setCategory: function() {
-            let category = [
+            var category = [
                 parseInt(this.$select.val(), 10) ? parseInt(this.$select.val(), 10) : null,
                 $('option:selected', this.$select).text(),
             ];
