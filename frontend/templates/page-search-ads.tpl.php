@@ -61,8 +61,15 @@
 
     <?php
     $options = array(
-        'showTextField' => true,
-        'maxRegions' => ($ui['allow-user-to-search-in-multiple-regions'] ? 10 : 1),
+        'showTextField' => false,
+        'showExistingRegionsOnly' => true,
+        'maxRegions' => 1,
+        'enabled_fields' => array(
+            'country' => 1,
+            'state' => 1,
+            'county'  => 1,
+            'city' => 1,
+        ),
     );
 
     $selector = awpcp_multiple_region_selector( $form['regions'], $options );
