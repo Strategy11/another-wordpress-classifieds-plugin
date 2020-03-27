@@ -167,7 +167,7 @@ class AWPCP_Category_Selector {
             'selectedCategoriesIds' => $params['selected'],
             'categoriesHierarchy'   => $categories_hierarchy,
             'paymentTerms'          => $this->prepare_payment_terms( $params['payment_terms'] ),
-            'subcategoryLabel' => __( 'Select a Sub-category', 'another-wordpress-classifieds-plugin' )
+            'subcategoryLabel'      => __( 'Select a Sub-category', 'another-wordpress-classifieds-plugin' ),
         );
 
         return $options;
