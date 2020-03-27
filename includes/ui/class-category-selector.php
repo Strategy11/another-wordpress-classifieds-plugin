@@ -75,7 +75,7 @@ class AWPCP_Category_Selector {
             'hash'                   => uniqid(),
             'multiple'               => $params['multiple'],
             'javascript'             => $this->get_javascript_options( $params, $placeholder, $categories_hierarchy ),
-            'use_multiple_dropdowns' => get_awpcp_option( 'use-multiple-category-dropdowns' ) && ! is_plugin_active( 'awpcp-fee-per-category/awpcp_fee_per_category.php' ),
+            'use_multiple_dropdowns' => get_awpcp_option( 'use-multiple-category-dropdowns' ) && ! is_plugin_active( 'awpcp-fee-per-category/awpcp_fee_per_category.php' ) && $params['context'] === 'default',
         );
 
         return $this->template_renderer->render_template(
@@ -167,6 +167,7 @@ class AWPCP_Category_Selector {
             'selectedCategoriesIds' => $params['selected'],
             'categoriesHierarchy'   => $categories_hierarchy,
             'paymentTerms'          => $this->prepare_payment_terms( $params['payment_terms'] ),
+            'subcategoryLabel' => __( 'Select a Sub-category', 'another-wordpress-classifieds-plugin' )
         );
 
         return $options;

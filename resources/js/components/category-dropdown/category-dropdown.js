@@ -26,9 +26,10 @@ function( $, CategoriesSelectorHelper ) {
             var children = categoriesHierarchy[category[0]];
             $(this).nextAll('.awpcp-multiple-category-dropdown').remove();
             if (category[0] in categoriesHierarchy && children.length > 0 && self.$select.next('.awpcp-multiple-category-dropdown').length == 0) {
-                var subDropdown = $('<select class="awpcp-multiple-category-dropdown"><option value="">Select a Sub-category (optional)</option></select>').insertAfter($(this));
+                var subDropdownHtml = '<select class="awpcp-multiple-category-dropdown"><option value="">' + self.options.subcategoryLabel + '</option></select>';
+                    $subDropdown = $(subDropdownHtml).insertAfter($(this));
                 for (var i = 0; i < children.length; i = i + 1) {
-                    subDropdown.append($('<option value="' + children[i].term_id + '">' + children[i].name + '</option>'));
+                    $subDropdown.append($('<option value="' + children[i].term_id + '">' + children[i].name + '</option>'));
                 }
             }
         });
