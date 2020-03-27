@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the Another WordPress Classifieds Plugin (AWPCP) package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Another WordPress Classifieds Plugin (AWPCP) 4.0.11dev1\n"
+"Project-Id-Version: Another WordPress Classifieds Plugin (AWPCP) 4.0.11\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/another-wordpress-"
 "classifieds-plugin\n"
-"POT-Creation-Date: 2020-03-25 19:54:18+00:00\n"
+"POT-Creation-Date: 2020-03-27 06:38:13+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -9232,6 +9232,10 @@ msgstr ""
 
 #: includes/ui/class-category-selector.php:121
 msgid "All Categories"
+msgstr ""
+
+#: includes/ui/class-category-selector.php:170
+msgid "Select a Sub-category"
 msgstr ""
 
 #: includes/ui/class-payment-terms-list.php:91
