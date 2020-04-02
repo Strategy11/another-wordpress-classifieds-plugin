@@ -65,10 +65,10 @@
         'showExistingRegionsOnly' => true,
         'maxRegions' => 1,
         'enabled_fields' => array(
-            'country' => 1,
-            'state' => 1,
-            'county'  => 1,
-            'city' => 1,
+            'country' => get_awpcp_option('display_country_field_on_search_form'),
+            'state' => get_awpcp_option('display_state_field_on_search_form'),
+            'county'  => get_awpcp_option('display_county_field_on_search_form'),
+            'city' => get_awpcp_option('display_city_field_on_search_form'),
         ),
     );
 
