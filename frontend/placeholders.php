@@ -395,8 +395,7 @@ function awpcp_do_placeholder_details( $ad, $placeholder ) {
         $placeholders['addetails'] = preg_replace( $pattern, $link, $placeholders['addetails'] );
     }
 
-    $placeholders['addetails'] = nl2br( $placeholders['addetails'] );
-    $placeholders['details']   = $placeholders['addetails'];
+    $placeholders['details'] = $placeholders['addetails'];
 
     $replacements[ $ad->ID ] = $placeholders;
 
