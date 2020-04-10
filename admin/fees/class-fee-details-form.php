@@ -181,13 +181,6 @@ class AWPCP_Fee_Details_Form implements AWPCP_HTML_Element {
                     '#value' => awpcp_get_property( $params['fee'], 'images', 0 ),
                 ),
                 array(
-                    '#type' => 'admin-form-textfield',
-                    '#attributes' => array( 'class' => 'awpcp-admin-form-text-field-with-left-label' ),
-                    '#label' => __( 'Regions allowed for this plan', 'another-wordpress-classifieds-plugin' ),
-                    '#name' => 'regions_allowed',
-                    '#value' => awpcp_get_property( $params['fee'], 'regions', 1 ),
-                ),
-                array(
                     '#type' => 'admin-form-checkbox-textfield',
                     '#label' => __( 'Limit number of characters in title', 'another-wordpress-classifieds-plugin' ),
                     '#name' => 'characters_allowed_in_title',

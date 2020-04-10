@@ -72,8 +72,10 @@
         ),
     );
 
-    $selector = awpcp_multiple_region_selector( $form['regions'], $options );
-    echo $selector->render( 'search', array(), $errors );
+    if (is_plugin_active( 'awpcp-region-control/awpcp_region_control_module.php' ) ) {
+        $selector = awpcp_multiple_region_selector( $form['regions'], $options );
+        echo $selector->render( 'search', array(), $errors );
+    }
     ?>
 
     <?php

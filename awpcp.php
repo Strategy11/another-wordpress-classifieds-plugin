@@ -122,6 +122,7 @@ require_once $awpcp_autoload_file;
 // have to require the files upfront and be able to take advantage of
 // the autoloader.
 require_once AWPCP_DIR . '/requires.php';
+require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
 /**
  * @since 4.0.0
