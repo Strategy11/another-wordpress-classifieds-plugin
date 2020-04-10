@@ -35,7 +35,6 @@ class AWPCP_ListingsSettings {
         $this->register_moderation_settings( $settings_manager );
         $this->register_notification_settings( $settings_manager );
         $this->register_seo_settings( $settings_manager );
-        $this->register_regions_settings( $settings_manager );
     }
 
     /**
