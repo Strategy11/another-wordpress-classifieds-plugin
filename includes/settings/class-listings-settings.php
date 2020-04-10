@@ -615,26 +615,4 @@ class AWPCP_ListingsSettings {
         update_option( 'awpcp-flush-rewrite-rules', true );
     }
 
-    /**
-     * @since 4.0.0
-     */
-    private function register_regions_settings( $settings_manager ) {
-        $group = 'regions-settings';
-        $key   = 'regions-settings';
-
-        $settings_manager->add_settings_subgroup(
-            [
-                'id'       => 'regions-settings',
-                'name'     => __( 'Regions', 'another-wordpress-classifieds-plugin' ),
-                'priority' => 40,
-                'parent'   => 'listings-settings',
-            ]
-        );
-
-        $settings_manager->add_section( $group, __( 'Regions Settings', 'another-wordpress-classifieds-plugin' ), 'regions-settings', 20, array( $settings_manager, 'section' ) );
-
-		$settings_manager->add_setting( $key, 'allow-regions-modification', __( 'Allow Regions modification', 'another-wordpress-classifieds-plugin' ), 'checkbox', 1, __( 'If enabled, users will be allowed to change the region information associated with their Ads.', 'another-wordpress-classifieds-plugin' ) );
-		$settings_manager->add_setting( $key, 'allow-user-to-search-in-multiple-regions', __( 'Allow users to search Ads in multiple regions', 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, __( 'If enabled, users will be allowed to search Ads in multiple regions.', 'another-wordpress-classifieds-plugin' ) );
-
-    }
 }
