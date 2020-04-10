@@ -580,6 +580,10 @@ function awpcp_do_placeholder_legacy_dates( $ad, $placeholder ) {
  * @since 3.0
  */
 function awpcp_do_placeholder_location( $ad, $placeholder ) {
+    if (!is_plugin_active( 'awpcp-region-control/awpcp_region_control_module.php' ) ) {
+        return '';
+    }
+
     $regions = awpcp_listing_renderer()->get_regions( $ad );
 
     $cities    = array();
