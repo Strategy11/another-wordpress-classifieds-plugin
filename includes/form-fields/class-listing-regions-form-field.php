@@ -71,7 +71,7 @@ class AWPCP_ListingRegionsFormField extends AWPCP_FormField {
      */
     public function render( $value, $errors, $listing, $context ) {
         $options = array(
-            'showTextField' => true,
+            'showTextField' => false,
             'maxRegions'    => $this->listing_renderer->get_number_of_regions_allowed( $listing ),
             'disabled'      => $this->is_read_only(),
         );

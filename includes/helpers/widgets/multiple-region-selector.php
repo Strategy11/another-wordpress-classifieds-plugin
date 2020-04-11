@@ -46,7 +46,7 @@ class AWPCP_MultipleRegionSelector {
             array(
                 'maxRegions'              => 1,
                 'showTextField'           => false,
-                'showExistingRegionsOnly' => get_awpcp_option( 'buildsearchdropdownlists' ),
+                'showExistingRegionsOnly' => 1,
                 'hierarchy'               => array( 'country', 'county', 'state', 'city' ),
                 /**
                  * List of Enabled Fields

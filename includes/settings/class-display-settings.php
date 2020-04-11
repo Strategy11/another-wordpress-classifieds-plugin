@@ -196,7 +196,6 @@ class AWPCP_DisplaySettings {
         $pagination_options = array( 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 500 );
         $settings_manager->add_setting( $key, 'pagination-options', __( 'Pagination Options', 'another-wordpress-classifieds-plugin' ), 'choice', $pagination_options, '', array( 'choices' => array_combine( $pagination_options, $pagination_options ) ) );
 
-        $settings_manager->add_setting( $key, 'buildsearchdropdownlists', __( 'Limits search to available locations.', 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, __( 'The search form can attempt to build drop down country, state, city and county lists if data is available in the system. Note that with the regions module installed the value for this option is overridden.', 'another-wordpress-classifieds-plugin' ) );
         $settings_manager->add_setting( $key, 'showadcount', __( 'Show Ad count in categories', 'another-wordpress-classifieds-plugin' ), 'checkbox', 1, __( 'Show how many ads a category contains.', 'another-wordpress-classifieds-plugin' ) );
         $settings_manager->add_setting( $key, 'hide-empty-categories', __( 'Hide empty categories?', 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, __( "If checked, categories with 0 listings in it won't be shown.", 'another-wordpress-classifieds-plugin' ) );
 
