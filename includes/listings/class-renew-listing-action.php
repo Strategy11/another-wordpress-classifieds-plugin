@@ -15,7 +15,7 @@ class AWPCP_RenewListingAction extends AWPCP_ListingAction {
     }
 
     public function is_enabled_for_listing( $listing ) {
-        if ( $this->wordpress->get_post_meta( $listing->ID, '_awpcp_expired', true ) ) {
+        if ( awpcp_listing_renderer()->has_expired_or_is_about_to_expire( $listing ) ) {
             return true;
         }
         return false;
@@ -38,6 +38,7 @@ class AWPCP_RenewListingAction extends AWPCP_ListingAction {
      */
     public function render( $listing, $config = [] ) {
         $renew_url = awpcp_get_renew_ad_url( $listing->ID );
-        return "<a class='button' href='{$renew_url}'> {$this->get_name()} </a>";
+
+        return "<button type='button' onclick=\"window.location.href='{$renew_url}'\">{$this->get_name()}</button>";
     }
 }
