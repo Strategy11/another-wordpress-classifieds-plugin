@@ -30,8 +30,10 @@
             <?php if ( $show_currency_payment_option ) : ?>
                 <?php
                 $checked = '';
-                // phpcs:disable WordPress.PHP.StrictComparisons.LooseComparison
                 if ( $payment_term['id'] == 0 ) {
+                    $checked = ' checked="checked"';
+                }
+                if ( $payment_term['price']['currency_option'] === $selected_payment_option ) {
                     $checked = ' checked="checked"';
                 }
                 ?>
