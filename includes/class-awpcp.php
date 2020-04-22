@@ -142,10 +142,10 @@ class AWPCP {
         //       Perhaps delaying rewrite rules generation until next request makes
         //       makes more sense.
         $custom_post_types = awpcp_custom_post_types();
-        add_action( 'init', array( $custom_post_types, 'register_custom_post_status' ), 9999 );
-        add_action( 'init', array( $custom_post_types, 'register_custom_post_types' ), 9999 );
-        add_action( 'init', array( $custom_post_types, 'register_custom_taxonomies' ), 9999 );
-        add_action( 'init', array( $custom_post_types, 'register_custom_image_sizes' ), 9999 );
+        add_action( 'init', array( $custom_post_types, 'register_custom_post_status' ) );
+        add_action( 'init', array( $custom_post_types, 'register_custom_post_types' ) );
+        add_action( 'init', array( $custom_post_types, 'register_custom_taxonomies' ) );
+        add_action( 'init', array( $custom_post_types, 'register_custom_image_sizes' ) );
         add_action( 'awpcp-installed', array( $custom_post_types, 'create_default_category' ) );
 
         $listing_permalinks = $this->container['ListingsPermalinks'];
@@ -167,7 +167,7 @@ class AWPCP {
 
         // XXX: This is really a hack. We should get the priorities on order or
         //      come up with a better name for this method.
-        add_action( 'init', array( $this, 'first_time_verifications' ), 9999 );
+        add_action( 'init', array( $this, 'first_time_verifications' ) );
 
 		add_action('admin_notices', array($this, 'admin_notices'));
 		add_action( 'admin_notices', array( $this->modules_manager, 'show_admin_notices' ) );
