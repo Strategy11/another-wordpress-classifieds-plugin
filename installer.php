@@ -140,7 +140,6 @@ class AWPCP_Installer {
         }
 
         update_option( 'awpcp-installed-or-upgraded', true );
-        update_option( 'awpcp-flush-rewrite-rules', true );
     }
 
     /**

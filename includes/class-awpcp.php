@@ -100,6 +100,7 @@ class AWPCP {
         $this->plugin_integrations = new AWPCP_Plugin_Integrations();
 
         if (!$this->is_up_to_date()) {
+            update_option( 'awpcp-flush-rewrite-rules', true );
             $this->installer->install_or_upgrade();
         }
 
