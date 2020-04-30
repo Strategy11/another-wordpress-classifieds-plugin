@@ -131,7 +131,7 @@ class AWPCP {
          * Make sure to update setup_component() on premium-modules/awpcp-buddypress-listings/includes/class-buddypress-listings-loader.php
          * if you ever change the priority for this action.
          */
-        add_action( 'init', [ $this->settings_manager, 'register_settings' ], 9999 );
+        add_action( 'init', [ $this->settings_manager, 'register_settings' ] );
 
         // TODO: Make sure to update permastruct for custom post types before generating rewrite rules.
         //
@@ -1687,6 +1687,9 @@ class AWPCP {
         $media_uploaded_notification = awpcp_media_uploaded_notification();
         add_action( 'awpcp-media-uploaded', array( $media_uploaded_notification, 'maybe_schedule_notification' ), 10, 2 );
         add_action( 'awpcp-media-uploaded-notification', array( $media_uploaded_notification, 'send_notification' ) );
+        if (get_awpcp_option('send-ad-enabled-email')) {
+            add_action('awpcp_approve_ad', 'awpcp_ad_enabled_email');
+        }
     }
 
     public function register_file_handlers( $file_handlers ) {
