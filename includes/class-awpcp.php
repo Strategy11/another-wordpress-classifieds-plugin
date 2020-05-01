@@ -1553,9 +1553,7 @@ class AWPCP {
 	public function register_widgets() {
 	    register_widget("AWPCP_LatestAdsWidget");
 	    register_widget('AWPCP_RandomAdWidget');
-        if (is_plugin_active( 'awpcp-region-control/awpcp_region_control_module.php' ) ) {
-            register_widget( 'AWPCP_Search_Widget' );
-        }
+        register_widget( 'AWPCP_Search_Widget' );
 	    register_widget( 'AWPCP_CategoriesWidget' );
 	}
 
