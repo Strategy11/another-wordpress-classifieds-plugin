@@ -18,16 +18,15 @@ class AWPCP_Search_Widget extends WP_Widget {
 	 * @since 3.0
 	 */
 	protected function defaults() {
-		return array(
-			'title' => '',
-			'subtitle' => '',
-			'show_keyword' => 1,
-			'show_by' => 1,
-			'show_city' => 1,
-            'show_county'   => false,
-			'show_state' => 1,
-			'show_country' => 1,
-			'show_category' => 1,
+		return apply_filters(
+            'awpcp-search-listings-widget-defaults',
+            array(
+                'title' => '',
+                'subtitle' => '',
+                'show_keyword' => 1,
+                'show_by' => 1,
+                'show_category' => 1,
+            )
 		);
 	}
 
@@ -54,6 +53,7 @@ class AWPCP_Search_Widget extends WP_Widget {
 
     /**
      * @since 3.0.2
+     * @deprecated 4.0.13    No longer used.
      */
     private function render_region_fields( $instance ) {
         if ( isset( $_REQUEST['regions'][0] ) ) {
@@ -145,8 +145,6 @@ class AWPCP_Search_Widget extends WP_Widget {
             echo '</div>';
 		}
 
-		echo $this->render_region_fields( $instance );
-
 		if ($instance['show_category'] == 1) {
             wp_enqueue_style( 'select2' );
 
@@ -166,7 +164,7 @@ class AWPCP_Search_Widget extends WP_Widget {
             echo '</div>';
 		}
 
-        do_action( 'awpcp-search-listings-widget-form-field' );
+        do_action( 'awpcp-search-listings-widget-form-field', $instance );
 
 		echo '<div class="submit"><input class="button" type="submit" value="' . __( 'Search', 'another-wordpress-classifieds-plugin' ) . '"></div>';
         echo '</form>';
@@ -180,12 +178,8 @@ class AWPCP_Search_Widget extends WP_Widget {
 		$instance['subtitle'] = strip_tags( $new_instance['subtitle'] );
 		$instance['show_keyword'] = absint( $new_instance['show_keyword'] );
 		$instance['show_by'] = absint( $new_instance['show_by'] );
-		$instance['show_city'] = absint( $new_instance['show_city'] );
-		$instance['show_county']   = absint( $new_instance['show_county'] );
-		$instance['show_state'] = absint( $new_instance['show_state'] );
-		$instance['show_country'] = absint( $new_instance['show_country'] );
 		$instance['show_category'] = absint( $new_instance['show_category'] );
-		return $instance;
+		return apply_filters( 'awpcp-search-listings-widget-update-widget', $instance, $new_instance );
 	}
 
     /**
@@ -194,17 +188,16 @@ class AWPCP_Search_Widget extends WP_Widget {
 	function form($instance) {
 		$instance = wp_parse_args((array) $instance, $this->defaults());
 
-		$title = strip_tags( $instance['title'] );
-		$subtitle = strip_tags( $instance['subtitle'] );
-		$show_keyword = absint( $instance['show_keyword'] );
-		$show_by = absint( $instance['show_by'] );
-		$show_city = absint( $instance['show_city'] );
-        $show_county   = absint( $instance['show_county'] );
-		$show_state = absint( $instance['show_state'] );
-		$show_country = absint( $instance['show_country'] );
-		$show_category = absint( $instance['show_category'] );
+		$title         = strip_tags( $instance['title'] );
+		$subtitle      = strip_tags( $instance['subtitle'] );
+		$show_keyword  = absint( $instance['show_keyword'] );
+		$show_by       = absint( $instance['show_by'] );
+        $show_category = absint( $instance['show_category'] );
+        
+        $additional_fields = apply_filters( 'awpcp-search-listings-widget-additional-form-fields', '', $instance, $this );
 
-		include(AWPCP_DIR . '/frontend/templates/widget-search-form.tpl.php');
+        include(AWPCP_DIR . '/frontend/templates/widget-search-form.tpl.php');
+        
 	}
 }
 
