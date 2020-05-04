@@ -91,7 +91,8 @@ AWPCP.run( 'awpcp/edit-post', [
                     nonce: mediaUploaderOptions.nonce,
                     action: 'awpcp-update-payment-term',
                     payment_term: paymentTermId,
-                    listing: mediaUploaderOptions.listing_id
+                    listing: mediaUploaderOptions.listing_id,
+                    context: 'admin-place-ad'
                 }, function( response ) {
                 } );
 
