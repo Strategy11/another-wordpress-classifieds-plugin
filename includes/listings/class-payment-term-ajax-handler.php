@@ -27,4 +27,21 @@ class AWPCP_PaymentTermAjaxHandler extends AWPCP_AjaxHandler {
         }
         return false;
     }
+
+    /**
+     * @since 4.0.13
+     */
+    public function maybe_prevent_ad_approval( $prevent_approval ) {
+        if ( $prevent_approval ) {
+            return $prevent_approval;
+        }
+
+        $context = $this->request->post( 'context' );
+
+        if( $context && 'admin-place-ad' === $context ) {
+            return true;
+        }
+
+        return $prevent_approval;
+    }
 }

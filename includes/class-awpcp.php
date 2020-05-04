@@ -351,6 +351,9 @@ class AWPCP {
         add_action( 'awpcp-transaction-status-updated', array( $listing_payment_transaction_handler, 'transaction_status_updated' ), 20, 2 );
         add_filter( 'awpcp-process-payment-transaction', array( $listing_payment_transaction_handler, 'process_payment_transaction' ), 20 );
 
+        $handler = $this->container['UpdatePaymentTerm'];
+        add_filter( 'awpcp_before_approve_ad', array( $handler, 'maybe_prevent_ad_approval' ) );
+
         $handler = awpcp_renew_listing_payment_transaction_handler();
         add_action( 'awpcp-transaction-status-updated', array( $handler, 'process_payment_transaction' ), 20 );
         add_filter( 'awpcp-process-payment-transaction', array( $handler, 'process_payment_transaction' ), 20 );
