@@ -124,6 +124,11 @@ class AWPCP {
         add_action( 'awpcp-configure-routes', array( $this->admin, 'configure_routes' ) );
         add_action( 'awpcp-configure-routes', array( $this->panel, 'configure_routes' ) );
 
+        // TODO: This is an ugly hack to make sure rewrite rules are flushed correctly after
+        // plugin upgrade. Find the reason `9999` priority on register settings prevents the
+        // right behavior of rewrite rules flush.
+        $priority = get_option( 'awpcp-flush-rewrite-rules' ) ? 10 : 9999;
+
         /**
          * The setup_nav method in BuddyPressListingsComponent needs to run
          * after register_settings().
@@ -131,7 +136,7 @@ class AWPCP {
          * Make sure to update setup_component() on premium-modules/awpcp-buddypress-listings/includes/class-buddypress-listings-loader.php
          * if you ever change the priority for this action.
          */
-        add_action( 'init', [ $this->settings_manager, 'register_settings' ], 9999 );
+        add_action( 'init', [ $this->settings_manager, 'register_settings' ], $priority );
 
         // TODO: Make sure to update permastruct for custom post types before generating rewrite rules.
         //
@@ -570,14 +575,14 @@ class AWPCP {
             update_option( 'awpcp-installed-or-upgraded', false );
         }
 
-        add_filter( 'wp_privacy_personal_data_exporters', array( $this, 'register_personal_data_exporters' ) );
-        add_filter( 'wp_privacy_personal_data_erasers', array( $this, 'register_personal_data_erasers' ) );
-
         if ( get_option( 'awpcp-flush-rewrite-rules' ) ) {
             add_action( 'shutdown', 'flush_rewrite_rules' );
 
             update_option( 'awpcp-flush-rewrite-rules', false );
         }
+
+        add_filter( 'wp_privacy_personal_data_exporters', array( $this, 'register_personal_data_exporters' ) );
+        add_filter( 'wp_privacy_personal_data_erasers', array( $this, 'register_personal_data_erasers' ) );
     }
 
     private function ajax_setup() {
