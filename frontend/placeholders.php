@@ -395,6 +395,7 @@ function awpcp_do_placeholder_details( $ad, $placeholder ) {
         $placeholders['addetails'] = preg_replace( $pattern, $link, $placeholders['addetails'] );
     }
 
+    $placeholders['addetails'] = wpautop( $placeholders['addetails'] );
     $placeholders['details']   = $placeholders['addetails'];
 
 
