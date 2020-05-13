@@ -108,6 +108,7 @@ class AWPCP_Admin {
             add_action( 'pre_get_posts', array( $this->table_nav, 'pre_get_posts' ) );
             add_action( 'restrict_manage_posts', array( $this->table_nav, 'restrict_listings' ), 10, 2 );
 
+            add_action( 'admin_enqueue_scripts', array( $this->table_search, 'enqueue_scripts' ) );
             add_action( 'pre_get_posts', array( $this->table_search, 'pre_get_posts' ) );
             add_filter( 'get_search_query', array( $this->table_search, 'get_search_query' ) );
             add_action( 'manage_posts_extra_tablenav', array( $this->table_search, 'render_search_mode_dropdown' ) );
@@ -137,8 +138,6 @@ class AWPCP_Admin {
         wp_enqueue_style( 'select2' );
         wp_enqueue_style( 'daterangepicker' );
         wp_enqueue_style( 'awpcp-admin-style' );
-
-        wp_enqueue_script( 'awpcp-admin-listings-table' );
     }
 
     /**

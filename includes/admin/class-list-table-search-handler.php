@@ -37,6 +37,14 @@ class AWPCP_ListTableSearchHandler {
 
     /**
      * @param object $query     An instance of WP_Query.
+     * @since 4.0.14
+     */
+    public function enqueue_scripts() {
+        wp_enqueue_script( 'awpcp-admin-listings-table' );
+    }
+
+    /**
+     * @param object $query     An instance of WP_Query.
      * @since 4.0.0
      */
     public function pre_get_posts( $query ) {
