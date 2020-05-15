@@ -178,6 +178,15 @@ class AWPCP_ListingsSettings {
             __( 'An email will be sent when a listing is created.', 'another-wordpress-classifieds-plugin' )
         );
 
+        $settings_manager->add_setting(
+            $key,
+            'send-user-ad-edited-notification',
+            __( 'Listing Edited', 'another-wordpress-classifieds-plugin' ),
+            'checkbox',
+            1,
+            __( 'An email will be sent when a listing is edited.', 'another-wordpress-classifieds-plugin' )
+        );
+
         $settings_manager->add_setting( $key, 'send-ad-enabled-email', __( 'Listing Enabled', 'another-wordpress-classifieds-plugin' ), 'checkbox', 1, __( 'Notify Ad owner when the Ad is enabled.', 'another-wordpress-classifieds-plugin' ) );
         $settings_manager->add_setting( $key, 'sent-ad-renew-email', __( 'Listing Needs to be Renewed', 'another-wordpress-classifieds-plugin' ), 'checkbox', 1, __( 'An email will be sent to remind the user to Renew the Ad when the Ad is about to expire.', 'another-wordpress-classifieds-plugin' ) );
 
