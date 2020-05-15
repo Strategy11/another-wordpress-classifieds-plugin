@@ -43,7 +43,7 @@ function awpcp_send_listing_posted_notification_to_moderators( $listing, $transa
 }
 
 function awpcp_send_listing_updated_notification_to_user( $listing, $messages ) {
-    if ( get_awpcp_option( 'send-user-ad-posted-notification' ) ) {
+    if ( get_awpcp_option( 'send-user-ad-edited-notification' ) ) {
         $user_mesage = awpcp_ad_updated_user_email( $listing, $messages );
         $response = $user_mesage->send();
     } else {
