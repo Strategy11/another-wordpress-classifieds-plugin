@@ -102,7 +102,7 @@ class AWPCP_Database_Tables {
             `adterm_name` VARCHAR(100) CHARACTER SET <charset> COLLATE <collate> NOT NULL DEFAULT '',
             `description` TEXT COLLATE <collate> NOT NULL,
             `credits` INT(10) NOT NULL DEFAULT 0,
-            `amount` FLOAT(6,2) UNSIGNED NOT NULL DEFAULT '0.00',
+            `amount` FLOAT(10,2) UNSIGNED NOT NULL DEFAULT '0.00',
             `recurring` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
             `rec_period` INT(5) UNSIGNED NOT NULL DEFAULT 0,
             `rec_increment` VARCHAR(5) CHARACTER SET <charset> COLLATE <collate> NOT NULL DEFAULT '',

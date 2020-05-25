@@ -339,6 +339,9 @@ class AWPCP_Installer {
             '4.0.7' => [
                 'enable_routine_to_add_awpcp_contact_phone_number_digits',
             ],
+            '4.0.14' => [
+                'increase_adfee_table_amount_field_max_value',
+            ],
         );
     }
 
@@ -1192,6 +1195,24 @@ class AWPCP_Installer {
      */
     private function enable_routine_to_add_awpcp_contact_phone_number_digits() {
         $this->upgrade_tasks->enable_upgrade_task( 'awpcp-add-contact-phone-number-digits' );
+    }
+
+
+
+    /**
+     * Increase pending data and validation errors stored by mistake.
+     *
+     * @since 4.0.14
+     *
+     * @see https://github.com/drodenbaugh/awpcp/issues/2970
+     */
+    private function increase_adfee_table_amount_field_max_value() {
+        global $wpdb;
+
+        if ( awpcp_column_exists( AWPCP_TABLE_ADFEES, 'amount' ) ) {
+            $sql = $this->database_helper->replace_charset_and_collate( 'ALTER TABLE ' . AWPCP_TABLE_ADFEES . ' MODIFY `amount` FLOAT(10,2) UNSIGNED NOT NULL DEFAULT 0.00' );
+            $wpdb->query( $sql );
+        }
     }
 }
 
