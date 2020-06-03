@@ -143,10 +143,10 @@ class AWPCP {
         //       Perhaps delaying rewrite rules generation until next request makes
         //       makes more sense.
         $custom_post_types = awpcp_custom_post_types();
-        add_action( 'init', array( $custom_post_types, 'register_custom_post_status' ), 9999 );
-        add_action( 'init', array( $custom_post_types, 'register_custom_post_types' ), 9999 );
-        add_action( 'init', array( $custom_post_types, 'register_custom_taxonomies' ), 9999 );
-        add_action( 'init', array( $custom_post_types, 'register_custom_image_sizes' ), 9999 );
+        add_action( 'init', array( $custom_post_types, 'register_custom_post_status' ), 0 );
+        add_action( 'init', array( $custom_post_types, 'register_custom_post_types' ), 0 );
+        add_action( 'init', array( $custom_post_types, 'register_custom_taxonomies' ), 0 );
+        add_action( 'init', array( $custom_post_types, 'register_custom_image_sizes' ), 0 );
         add_action( 'awpcp-installed', array( $custom_post_types, 'create_default_category' ) );
 
         $listing_permalinks = $this->container['ListingsPermalinks'];
