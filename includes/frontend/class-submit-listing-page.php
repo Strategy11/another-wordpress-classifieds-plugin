@@ -429,7 +429,16 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
         }
 
         if ( $this->listing_renderer->is_pending_approval( $listing ) ) {
-            $messages[] = __( 'Your listing has been submitted. This is a preview of the content as seen by visitors of the website.', 'another-wordpress-classifieds-plugin' );
+            $messages[] =  sprintf(
+                '%s %s', 
+                __( 'Your listing has been submitted.', 'another-wordpress-classifieds-plugin' ),
+                __( 'This is a preview of the content as seen by visitors of the website.', 'another-wordpress-classifieds-plugin' )
+            );
+        }
+
+        if ( $this->listing_renderer->is_disabled( $listing ) ) {
+            $messages[] = __( 'Your listing has been submitted but it requires your email address to be validated. To do so, please click on the verification link we have sent to the email address used to post the listing.', 'another-wordpress-classifieds-plugin' );
+            $messages[] = __( 'This is a preview of the content as seen by visitors of the website.', 'another-wordpress-classifieds-plugin' );
         }
 
         return array_merge( $messages, $this->listings_logic->get_ad_alerts( $listing ) );
