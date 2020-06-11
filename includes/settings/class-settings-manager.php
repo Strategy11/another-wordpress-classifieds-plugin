@@ -203,7 +203,7 @@ class AWPCP_SettingsManager {
 
         $this->sections[ $setting['section'] ]['settings'][] = $setting['id'];
 
-        $this->settings[ $setting['id'] ] = $setting;
+        $this->settings[ $setting['id'] ] = apply_filters( 'awpcp_add_setting', $setting, $setting['id'], $this );
     }
 
     /**
