@@ -849,7 +849,7 @@ function awpcp_do_placeholder_twitter_button_url( $ad, $placeholder ) {
             'url'  => rawurlencode( $url ),
             'text' => rawurlencode( $title ),
         ),
-        'http://twitter.com/share'
+        'https://twitter.com/share'
     );
 }
 
@@ -876,7 +876,7 @@ function awpcp_do_placeholder_facebook_button( $ad, $placeholder ) {
  */
 function awpcp_do_placeholder_facebook_button_url( $ad, $placeholder ) {
     $info = awpcp_get_ad_share_info( $ad->ID );
-    return sprintf( 'http://www.facebook.com/sharer/sharer.php?u=%s', rawurlencode( $info['url'] ) );
+    return sprintf( 'https://www.facebook.com/sharer/sharer.php?u=%s', rawurlencode( $info['url'] ) );
 }
 
 /**
