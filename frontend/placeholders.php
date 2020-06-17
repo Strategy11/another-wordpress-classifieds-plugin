@@ -363,7 +363,7 @@ function awpcp_do_placeholder_categories( $listing, $placeholder ) {
         }
 
         $link = '<a href="<category-url>"><category-name></a>';
-        $link = str_replace( '<category-url>', esc_attr( url_browsecategory( $category ), $link ) );
+        $link = str_replace( '<category-url>', esc_attr( url_browsecategory( $category ) ), $link );
         $link = str_replace( '<category-name>', esc_html( $category->name ), $link );
 
         $links[ $category_type ] = $link;
