@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2020-03-25 19:54:18+00:00\n"
-"PO-Revision-Date: 2020-03-25 19:55+0000\n"
-"Last-Translator: Joerg Knoerchen <news@sensorgrafie.de>\n"
+"POT-Creation-Date: 2020-06-23 22:57:22+00:00\n"
+"PO-Revision-Date: 2020-06-23 23:04+0000\n"
+"Last-Translator: Diego Giraldo <diego.dgiraldo36@gmail.com>\n"
 "Language-Team: German (Germany) (http://www.transifex.com/wp-translations/another-wordpress-classifieds-plugin/language/de_DE/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: admin/admin-panel-credit-plans-table.php:73
 #: admin/admin-panel-fees-table.php:120
-#: admin/fees/class-fee-details-form.php:35
+#: admin/fees/class-fee-details-form.php:39
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:9
 #: includes/settings/class-payment-general-settings.php:60
 #: templates/admin/manage-categories-admin-page.tpl.php:30
@@ -29,7 +29,7 @@ msgid "Name"
 msgstr "Name"
 
 #: admin/admin-panel-credit-plans-table.php:74
-#: admin/fees/class-fee-details-form.php:41
+#: admin/fees/class-fee-details-form.php:45
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:25
 #: templates/admin/manage-categories-admin-page.tpl.php:35
 msgid "Description"
@@ -44,10 +44,10 @@ msgstr "Credits"
 
 #: admin/admin-panel-credit-plans-table.php:76
 #: admin/admin-panel-fees-table.php:122
-#: admin/fees/class-fee-details-form.php:227
+#: admin/fees/class-fee-details-form.php:225
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:19
-#: frontend/placeholders.php:501
-#: includes/settings/class-display-settings.php:556
+#: frontend/placeholders.php:502
+#: includes/settings/class-display-settings.php:490
 #: includes/settings/class-payment-general-settings.php:61
 msgid "Price"
 msgstr "Preis"
@@ -60,7 +60,7 @@ msgstr "Attribute"
 msgid "Categories"
 msgstr "Kategorien verwalten"
 
-#: admin/admin-panel-fees-table.php:129 includes/class-awpcp.php:823
+#: admin/admin-panel-fees-table.php:129 includes/class-awpcp.php:827
 msgid "Featured Ads"
 msgstr "Anzeigen"
 
@@ -170,8 +170,8 @@ msgstr "Kategorien verwalten"
 
 #: admin/admin-panel.php:206 admin/admin-panel.php:207
 #: admin/form-fields/class-form-fields-admin-page.php:12
-#: includes/settings/class-display-settings.php:306
-#: includes/settings/class-display-settings.php:511
+#: includes/settings/class-display-settings.php:305
+#: includes/settings/class-display-settings.php:445
 msgid "Form Fields"
 msgstr "Formular Eingabefelder"
 
@@ -331,7 +331,7 @@ msgstr "Kategorie löschen"
 msgid "Select {category_name}"
 msgstr "Wähle {category_name}"
 
-#: admin/admin-panel.php:789 includes/settings/class-listings-settings.php:463
+#: admin/admin-panel.php:789 includes/settings/class-listings-settings.php:471
 msgctxt "page name"
 msgid "Show Ad"
 msgstr "Anzeige zeigen"
@@ -418,7 +418,7 @@ msgid "Delete category"
 msgstr "Kategorie löschen"
 
 #: admin/categories/class-delete-category-admin-page.php:116
-#: admin/fees/class-fee-details-form.php:76
+#: admin/fees/class-fee-details-form.php:80
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:31
 #: admin/templates/admin-panel-fees-delete-form.tpl.php:12
 #: admin/templates/admin-panel-fees-delete.tpl.php:12
@@ -760,50 +760,46 @@ msgstr "Es wurde keine Gebührenplan-ID angegeben."
 msgid "The specified Fee Plan doesn't exist or couldn't be loaded."
 msgstr "Der festgelegte Gebührenplan existiert nicht oder konnte nicht geladen werden."
 
-#: admin/fees/class-fee-details-form.php:56
+#: admin/fees/class-fee-details-form.php:60
 msgid "This is a private fee plan"
 msgstr "Dies ist ein privater Gebührenplan."
 
-#: admin/fees/class-fee-details-form.php:57
+#: admin/fees/class-fee-details-form.php:61
 msgid ""
 "The plan will be hidden from public view. It will be used for existing "
 "listings or special listings that only admins can create."
 msgstr "Dieser Plan ist für die Öffentlichkeit nicht sichtbar. Er wird für bereits bestehende Einträge benutzt oder für spezielle Einträge, die nur ein Administratior erstellen kann."
 
-#: admin/fees/class-fee-details-form.php:84
+#: admin/fees/class-fee-details-form.php:88
 msgid "Save"
 msgstr "speichern"
 
-#: admin/fees/class-fee-details-form.php:94
+#: admin/fees/class-fee-details-form.php:98
 msgid "Save & Continue"
 msgstr "Speichern & Fortfahren"
 
-#: admin/fees/class-fee-details-form.php:118
+#: admin/fees/class-fee-details-form.php:122
 #: includes/settings/class-payment-general-settings.php:63
 msgid "Duration"
 msgstr "Dauer"
 
-#: admin/fees/class-fee-details-form.php:179
+#: admin/fees/class-fee-details-form.php:184
 msgid "Images allowed for this plan"
 msgstr "Bilder sind für diesen Plan erlaubt."
 
-#: admin/fees/class-fee-details-form.php:186
-msgid "Regions allowed for this plan"
-msgstr "Zulässige Regionen für diesen Plan"
-
-#: admin/fees/class-fee-details-form.php:192
+#: admin/fees/class-fee-details-form.php:190
 msgid "Limit number of characters in title"
 msgstr "Begrenze Zeichenanzahl in der Überschrift."
 
-#: admin/fees/class-fee-details-form.php:199
+#: admin/fees/class-fee-details-form.php:197
 msgid "Limit number of characters in description"
 msgstr "Begrenze Zeichenanzahl in der Beschreibung."
 
-#: admin/fees/class-fee-details-form.php:234
+#: admin/fees/class-fee-details-form.php:232
 msgid "Price (currency)"
 msgstr "Preis (Geld)"
 
-#: admin/fees/class-fee-details-form.php:241
+#: admin/fees/class-fee-details-form.php:239
 msgid "Price (credits)"
 msgstr "Preis (Credits)"
 
@@ -1698,31 +1694,31 @@ msgstr "Aktualisieren"
 msgid "Account Balance"
 msgstr "Kontostand"
 
-#: awpcp.php:148
+#: awpcp.php:149
 msgid "{product_name} was deactivated because it requires PHP 5.6 or newer."
 msgstr "{product_name} wurde deaktiviert, weil es PHP 5.6 oder höher benötigt."
 
-#: awpcp.php:151
+#: awpcp.php:152
 msgid ""
 "Hi, we noticed that your site is running on an outdated version of PHP. New "
 "versions of PHP are faster, more secure and include the features our product"
 " requires."
 msgstr "Hallo, wir haben festgestellt, dass auf Deiner Website eine veraltete Version von PHP ausgeführt wird. Neue Versionen von PHP sind schneller, sicherer und enthalten die Funktionen, die unser Produkt benötigt."
 
-#: awpcp.php:154
+#: awpcp.php:155
 msgid ""
 "You should upgrade to <strong>PHP 5.6</strong>, but if you want your site to"
 " also be considerable faster and even more secure, we recommend going up to "
 "<strong>PHP 7.2</strong>."
 msgstr "Du solltest auf <strong>PHP 5.61</strong> upgraden, aber wenn Du möchtest, dass Deine Seite auch erheblich schneller und sicherer wird, empfehlen wir Dir, auf <strong>PHP 7.22</strong> zu wechseln."
 
-#: awpcp.php:157
+#: awpcp.php:158
 msgid ""
 "Please read <a href=\"https://wordpress.org/support/upgrade-php/\">Upgrading"
 " PHP</a> to understand more about PHP and how to upgrade."
 msgstr "Bitte lese <a href=\"https://wordpress.org/support/upgrade-php/\">Upgrade von PHP</a>, um mehr über PHP und das Upgrade zu erfahren."
 
-#: awpcp.php:201
+#: awpcp.php:202
 msgid ""
 "Another WordPress Classifieds Plugin installation is incomplete. Please "
 "{support_link}contact support{/support_link}."
@@ -1846,7 +1842,7 @@ msgid ""
 msgstr "Du versuchst eine Anzeige zu veröffentlichen die mit einer anderen Transaktion erstellt wurde. Bitte gehe zurück zu <a href=\"%s\">%s</a>. <br>Bitte kontaktiere den Webseiten-Betreiber wenn dies ein Fehler ist. Teile ihm diese Transaktions-ID %s mit!"
 
 #: frontend/page-place-ad.php:180
-#: includes/frontend/class-submit-listing-page.php:277
+#: includes/frontend/class-submit-listing-page.php:278
 msgid ""
 "You can't post an Ad at this time because the payment associated with this "
 "transaction failed (see reasons below)."
@@ -1896,7 +1892,7 @@ msgstr "Du bist als Administrator eingeloggt. Bezahlungen werden ausgeschaltet."
 #. translators: %s is an alphanumeric string that identifies a payment
 #. transaction.
 #: frontend/page-place-ad.php:503 frontend/page-renew-ad.php:361
-#: includes/frontend/class-submit-listing-page.php:319
+#: includes/frontend/class-submit-listing-page.php:320
 #: includes/views/class-verify-payment-can-be-processed-step-decorator.php:17
 msgid ""
 "We can't process payments for this Payment Transaction at this time. Please "
@@ -1928,7 +1924,7 @@ msgstr "Start und Ende der Anzeige"
 #: frontend/page-place-ad.php:857
 #: includes/admin/import/class-csv-importer-columns.php:186
 #: includes/admin/listings/class-listings-table-nav-handler.php:158
-#: includes/form-fields/class-listing-form-fields.php:129
+#: includes/form-fields/class-listing-form-fields.php:128
 #: templates/admin/import-listings-admin-page-configuration-form.tpl.php:33
 msgid "Start Date"
 msgstr "Anfangsdatum"
@@ -1936,7 +1932,7 @@ msgstr "Anfangsdatum"
 #: frontend/page-place-ad.php:859
 #: includes/admin/import/class-csv-importer-columns.php:197
 #: includes/admin/listings/class-listings-table-nav-handler.php:159
-#: includes/form-fields/class-listing-form-fields.php:133
+#: includes/form-fields/class-listing-form-fields.php:132
 #: templates/admin/import-listings-admin-page-configuration-form.tpl.php:43
 msgid "End Date"
 msgstr "Enddatum"
@@ -2076,14 +2072,14 @@ msgid "Checkout"
 msgstr "Buchung abschließen"
 
 #: frontend/page-place-ad.php:1428 frontend/page-place-ad.php:1480
-#: includes/frontend/class-submit-listing-page.php:379
+#: includes/frontend/class-submit-listing-page.php:380
 msgid ""
 "We were unable to find a Payment Transaction assigned to this operation."
 msgstr "Wir können keine Bezahl-Transaktion für diesen Vorgang finden."
 
 #: frontend/page-place-ad.php:1435 frontend/page-place-ad.php:1487
 #: frontend/page-renew-ad.php:422
-#: includes/frontend/class-submit-listing-page.php:386
+#: includes/frontend/class-submit-listing-page.php:387
 msgid "The Ad associated with this transaction doesn't exists."
 msgstr "Die Anzeige mit dieser Transaktion existiert nicht."
 
@@ -2214,47 +2210,47 @@ msgid ""
 "{browse_listings_link}browse all ads{/browse_listings_link}."
 msgstr "Es wurde keine Anzeige mit der ID {listing_id} gefunden. Zurück zu {browse_listings_link} Alle Anzeigen durchsuchen {/ browse_listings_link}."
 
-#: frontend/placeholders.php:434
+#: frontend/placeholders.php:435
 msgid "Seller"
 msgstr "Verkäufer"
 
-#: frontend/placeholders.php:462
+#: frontend/placeholders.php:463
 msgid "Visit Website"
 msgstr "Webseite"
 
-#: frontend/placeholders.php:643 includes/functions/listings.php:368
+#: frontend/placeholders.php:648 includes/functions/listings.php:369
 msgid "Location"
 msgstr "Ort"
 
 #. translators: %d is the number of views for this ad.
-#: frontend/placeholders.php:681
+#: frontend/placeholders.php:686
 msgid "This Ad has been viewed %d time."
 msgid_plural "This Ad has been viewed %d times."
 msgstr[0] "Anzeigenaufrufe: %d."
 msgstr[1] "Anzeigenaufrufe: %d"
 
 #. translators: %d is the number of views for this ad.
-#: frontend/placeholders.php:686
+#: frontend/placeholders.php:691
 msgid "Total views: %d"
 msgstr "Aufrufe: %d"
 
-#: frontend/placeholders.php:741
+#: frontend/placeholders.php:746
 msgid "Phone"
 msgstr "Telefonnummer"
 
-#: frontend/placeholders.php:805
+#: frontend/placeholders.php:810
 msgid "Flag Ad"
 msgstr "Merken"
 
-#: frontend/placeholders.php:820
+#: frontend/placeholders.php:825
 msgid "Tweet This"
 msgstr "Tweet This"
 
-#: frontend/placeholders.php:856
+#: frontend/placeholders.php:861
 msgid "Share on Facebook"
 msgstr "Share on Facebook"
 
-#: frontend/placeholders.php:887
+#: frontend/placeholders.php:892
 #: includes/admin/listings/trait-renew-listing-table-action.php:36
 msgctxt "listing row action"
 msgid "Renew"
@@ -2264,11 +2260,11 @@ msgstr "Verlängern"
 msgid "this shortcode only works with registered users."
 msgstr "Dieser Shortcode funktioniert nur mit registrierten Benutzern."
 
-#: frontend/shortcode.php:334
+#: frontend/shortcode.php:341
 msgid "Hi admin, you need to go to your dashboard and setup your classifieds."
 msgstr "Hallo Admin, Du musst Deine Anzeigen im Dashboard einrichten."
 
-#: frontend/shortcode.php:337
+#: frontend/shortcode.php:344
 msgid "You currently have no classifieds"
 msgstr "Du hast zur Zeit keine Anzeigen"
 
@@ -2734,7 +2730,7 @@ msgstr "Min. Preis"
 msgid "Max price"
 msgstr "Max. Preis"
 
-#: frontend/templates/page-search-ads.tpl.php:88
+#: frontend/templates/page-search-ads.tpl.php:90
 msgctxt "ad search form"
 msgid "Find Ads"
 msgstr "Anzeigen finden"
@@ -2754,7 +2750,6 @@ msgstr "Bitte fülle die Zahlungsinformationen in dem Formular unten aus."
 #: includes/admin/class-listings-personal-data-provider.php:115
 #: includes/admin/class-listings-personal-data-provider.php:125
 #: includes/admin/import/class-csv-importer-columns.php:231
-#: includes/settings/class-display-settings.php:563
 msgid "Country"
 msgstr "Land"
 
@@ -2794,7 +2789,6 @@ msgstr "Adresse Zeile 2"
 #: includes/admin/class-listings-personal-data-provider.php:116
 #: includes/admin/class-listings-personal-data-provider.php:126
 #: includes/admin/import/class-csv-importer-columns.php:239
-#: includes/settings/class-display-settings.php:569
 msgid "State"
 msgstr "Bundesland"
 
@@ -2802,7 +2796,6 @@ msgstr "Bundesland"
 #: includes/admin/class-listings-personal-data-provider.php:117
 #: includes/admin/class-listings-personal-data-provider.php:127
 #: includes/admin/import/class-csv-importer-columns.php:261
-#: includes/settings/class-display-settings.php:581
 msgid "City"
 msgstr "Stadt"
 
@@ -2968,23 +2961,7 @@ msgstr "Schlüsselwortfeld zeigen?"
 msgid "Show Posted By field?"
 msgstr "Erstellt am-Datum zeigen?"
 
-#: frontend/templates/widget-search-form.tpl.php:27
-msgid "Show City field?"
-msgstr "Stadt-Feld zeigen?"
-
-#: frontend/templates/widget-search-form.tpl.php:31
-msgid "Show County field?"
-msgstr "Bezirk-Feld anzeigen?"
-
-#: frontend/templates/widget-search-form.tpl.php:35
-msgid "Show State field?"
-msgstr "Bundesland-Feld zeigen?"
-
-#: frontend/templates/widget-search-form.tpl.php:39
-msgid "Show Country field?"
-msgstr "Land-Feld zeigen?"
-
-#: frontend/templates/widget-search-form.tpl.php:43
+#: frontend/templates/widget-search-form.tpl.php:28
 msgid "Show Category field?"
 msgstr "Kategoriefeld anzeigen?"
 
@@ -3036,11 +3013,11 @@ msgstr "Zufallsanzeigen"
 msgid "AWPCP Search Ads"
 msgstr "Suche in Anzeigen"
 
-#: frontend/widget-search.php:48
+#: frontend/widget-search.php:47
 msgid "Find ads by Contact Name"
 msgstr "Anzeigen nach Kontaktname finden"
 
-#: frontend/widget-search.php:51
+#: frontend/widget-search.php:50
 msgid "All Contact Names"
 msgstr "Alle Kontaktnamen"
 
@@ -3052,11 +3029,11 @@ msgstr "Bitte wähle"
 msgid "Search by keyword"
 msgstr "Nach Schlüsselwort suchen"
 
-#: frontend/widget-search.php:153
+#: frontend/widget-search.php:151
 msgid "Search by Category"
 msgstr "Suchen in der Kategorie"
 
-#: frontend/widget-search.php:171
+#: frontend/widget-search.php:169
 msgid "Search"
 msgstr "Suchen"
 
@@ -3225,19 +3202,19 @@ msgstr "SSL Support: Nein."
 msgid "OpenSSL version:"
 msgstr "OpenSSL version:"
 
-#: includes/admin/class-admin.php:261
+#: includes/admin/class-admin.php:260
 msgid "Classified Information"
 msgstr "Anzeigen Information"
 
-#: includes/admin/class-admin.php:269
+#: includes/admin/class-admin.php:268
 msgid "Classified Owner"
 msgstr "Anzeigen Besitzer"
 
-#: includes/admin/class-admin.php:277
+#: includes/admin/class-admin.php:276
 msgid "Classified Fields"
 msgstr "Anzeigen Felder"
 
-#: includes/admin/class-list-table-search-handler.php:96
+#: includes/admin/class-list-table-search-handler.php:104
 msgid "Search for listings matching"
 msgstr "Suche nach passenden Einträgen"
 
@@ -3264,7 +3241,6 @@ msgstr "Kontakt E-Mail"
 #: includes/admin/class-listings-personal-data-provider.php:118
 #: includes/admin/class-listings-personal-data-provider.php:128
 #: includes/admin/import/class-csv-importer-columns.php:250
-#: includes/settings/class-display-settings.php:575
 msgid "County"
 msgstr "Bundesland"
 
@@ -3314,7 +3290,7 @@ msgid "Contact Address"
 msgstr "Kontakt Adresse"
 
 #: includes/admin/class-user-personal-data-provider.php:55
-#: includes/settings/class-display-settings.php:549
+#: includes/settings/class-display-settings.php:483
 msgid "Contact Phone"
 msgstr "Kontakt Telefonnummer"
 
@@ -4093,106 +4069,106 @@ msgid ""
 " one of the associated listings: <error-message>"
 msgstr "Die Kategorie konnte nicht gelöscht werden, da beim Löschen eines der zugeordneten Einträge ein Fehler aufgetreten ist:<error-message>"
 
-#: includes/class-awpcp.php:750
+#: includes/class-awpcp.php:754
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
 msgstr "AWPCP erfordert die Grafik-Bibliothek GD welche nicht installiert ist. Kontaktiere Deinen Web-Host, dies zu beheben."
 
-#: includes/class-awpcp.php:751
+#: includes/class-awpcp.php:755
 #: includes/placeholders/class-placeholders-installation-verifier.php:63
 msgid "Warning"
 msgstr "Warnung"
 
-#: includes/class-awpcp.php:767
+#: includes/class-awpcp.php:771
 msgid "Attachments"
 msgstr "Anhänge"
 
-#: includes/class-awpcp.php:774
+#: includes/class-awpcp.php:778
 msgid "Authorize.Net"
 msgstr "Authorize.Net"
 
-#: includes/class-awpcp.php:781
+#: includes/class-awpcp.php:785
 msgid "BuddyPress Listings"
 msgstr "BuddyPress Anzeigen "
 
-#: includes/class-awpcp.php:788
+#: includes/class-awpcp.php:792
 msgid "Campaign Manager"
 msgstr "Kampagnien Manager"
 
-#: includes/class-awpcp.php:795
+#: includes/class-awpcp.php:799
 msgid "Category Icons"
 msgstr "Kategoriebildermodul"
 
-#: includes/class-awpcp.php:802
+#: includes/class-awpcp.php:806
 msgid "Comments & Ratings"
 msgstr "Kommentare und Bewertungen"
 
-#: includes/class-awpcp.php:809
+#: includes/class-awpcp.php:813
 msgid "Coupons/Discount"
 msgstr "Gutscheine"
 
-#: includes/class-awpcp.php:816
+#: includes/class-awpcp.php:820
 msgid "Extra Fields"
 msgstr "Extrafelder Modul"
 
-#: includes/class-awpcp.php:830
+#: includes/class-awpcp.php:834
 msgid "Fee per Category"
 msgstr "Gebühr pro Kategorie Module"
 
-#: includes/class-awpcp.php:837
+#: includes/class-awpcp.php:841
 msgid "Google Checkout"
 msgstr "Google Checkout"
 
-#: includes/class-awpcp.php:845
+#: includes/class-awpcp.php:849
 msgid "Mark as Sold"
 msgstr "Als verkauft markieren"
 
-#: includes/class-awpcp.php:852
+#: includes/class-awpcp.php:856
 msgid "PayFast"
 msgstr "Schnelle Bezahlung"
 
-#: includes/class-awpcp.php:859
+#: includes/class-awpcp.php:863
 msgid "PayPal Pro"
 msgstr "PayPal Pro"
 
-#: includes/class-awpcp.php:866
+#: includes/class-awpcp.php:870
 msgid "Regions Control"
 msgstr "Regionskontrollmodul"
 
-#: includes/class-awpcp.php:873
+#: includes/class-awpcp.php:877
 msgid "Restricted Categories"
 msgstr "Limitierte Kategorien"
 
-#: includes/class-awpcp.php:880
+#: includes/class-awpcp.php:884
 msgid "RSS"
 msgstr "RSS Modul"
 
-#: includes/class-awpcp.php:887
+#: includes/class-awpcp.php:891
 msgid "Stripe"
 msgstr "Stripe"
 
-#: includes/class-awpcp.php:894
+#: includes/class-awpcp.php:898
 msgid "Subscriptions"
 msgstr "Abos"
 
-#: includes/class-awpcp.php:901 templates/components/media-manager.tpl.php:50
+#: includes/class-awpcp.php:905 templates/components/media-manager.tpl.php:50
 msgid "Videos"
 msgstr "Videos"
 
-#: includes/class-awpcp.php:909
+#: includes/class-awpcp.php:913
 msgid "XML Sitemap"
 msgstr "XML Sitemap"
 
-#: includes/class-awpcp.php:917
+#: includes/class-awpcp.php:921
 msgid "ZIP Code Search Module"
 msgstr "ZIP Code Search Modul"
 
-#: includes/class-awpcp.php:1454
+#: includes/class-awpcp.php:1458
 msgid "This field is required."
 msgstr "Pflichtfeld"
 
-#: includes/class-awpcp.php:1455
+#: includes/class-awpcp.php:1459
 #: includes/form-fields/class-form-fields-validator.php:105
 #: includes/frontend/class-edit-listing-page.php:267
 #: includes/frontend/class-edit-listing-page.php:361
@@ -4200,53 +4176,53 @@ msgstr "Pflichtfeld"
 msgid "Please enter a valid email address."
 msgstr "Bitte gib Deine E-Mail-Adresse ein!"
 
-#: includes/class-awpcp.php:1456 includes/class-awpcp.php:1457
+#: includes/class-awpcp.php:1460 includes/class-awpcp.php:1461
 msgid "Please enter a valid URL."
 msgstr "Bitte gib eine gültige URL (Webseitenadresse) ein!"
 
-#: includes/class-awpcp.php:1458
+#: includes/class-awpcp.php:1462
 msgid "Please enter a valid number."
 msgstr "Bitte gib eine Zahl ein!"
 
-#: includes/class-awpcp.php:1459
+#: includes/class-awpcp.php:1463
 msgid "Please enter a valid amount."
 msgstr "Bitte gib eine Menge ein!"
 
-#: includes/class-awpcp.php:1460
+#: includes/class-awpcp.php:1464
 msgid ""
 "You have reached the maximum allowed categories for the selected fee plan."
 msgstr "Du hast die maximal zulässigen Kategorien für den ausgewählten Gebührenplan erreicht."
 
-#: includes/class-awpcp.php:1470
+#: includes/class-awpcp.php:1474
 msgctxt "[UI Datepicker] Display text for previous month link"
 msgid "&#x3c;Prev"
 msgstr "&#x3c;Prev"
 
-#: includes/class-awpcp.php:1472
+#: includes/class-awpcp.php:1476
 msgctxt "[UI Datepicker] Display text for next month link"
 msgid "Next&#x3e;"
 msgstr "Next&#x3e;"
 
-#: includes/class-awpcp.php:1487
+#: includes/class-awpcp.php:1491
 msgctxt "[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ..."
 msgid "0"
 msgstr "0"
 
-#: includes/class-awpcp.php:1493
+#: includes/class-awpcp.php:1497
 msgid "There are files currently being uploaded."
 msgstr "Es werden gerade Dateien hochgeladen."
 
-#: includes/class-awpcp.php:1494
+#: includes/class-awpcp.php:1498
 msgid "There are files pending to be uploaded."
 msgstr "Dateien sind in der Warteschlange zum Upload."
 
-#: includes/class-awpcp.php:1495
+#: includes/class-awpcp.php:1499
 msgid "You haven't uploaded any images or files."
 msgstr "Du hast noch keine Bilder oder Dateien hochgeladen."
 
-#: includes/class-awpcp.php:1564 includes/class-awpcp.php:1572
-#: includes/class-awpcp.php:1580 includes/class-awpcp.php:1657
-#: includes/class-awpcp.php:1665 includes/class-awpcp.php:1673
+#: includes/class-awpcp.php:1568 includes/class-awpcp.php:1576
+#: includes/class-awpcp.php:1584 includes/class-awpcp.php:1661
+#: includes/class-awpcp.php:1669 includes/class-awpcp.php:1677
 #: templates/admin/debug/plugin-info-debug-section.tpl.php:6
 msgid "Another WordPress Classifieds Plugin"
 msgstr "Another WordPress Classifieds Plugin"
@@ -4831,7 +4807,7 @@ msgstr "Die Information für die ausgewählte Anzeige war bereits gespeichert."
 
 #. translators: %1$s URL, %2$s name of the submit listing page, %3$s an
 #. alphanumeric string that identifies a payment transaction.
-#: includes/frontend/class-submit-listing-page.php:266
+#: includes/frontend/class-submit-listing-page.php:267
 msgid ""
 "You are trying to post an Ad using a transaction created for a different "
 "purpose. Please go back to the <a href=\"%1$s\">%2$s</a> page.<br>If you "
@@ -4839,17 +4815,27 @@ msgid ""
 "following transaction ID: %3$s"
 msgstr "Du versuchst, eine Anzeige mit einer Transaktion zu veröffentlichen, die für einen anderen Zweck erstellt wurde. Kehre zur Seite <a href=\"%1$s\">%2$s</a>zurück. <br>Wenn Du glaubst, dass dies ein Fehler ist, wende Dich an den Administrator und gebe die folgende Transaktions-ID an:%3$s"
 
-#: includes/frontend/class-submit-listing-page.php:427
+#: includes/frontend/class-submit-listing-page.php:428
 msgid ""
 "Your listing has been published. This is the content that will be seen by "
 "visitors of the website."
 msgstr "Deine Anzeige ist nun online. Dies ist der Inhalt, der für Besucher auf der Webseite sichtbar sein wird."
 
-#: includes/frontend/class-submit-listing-page.php:431
+#: includes/frontend/class-submit-listing-page.php:434
+msgid "Your listing has been submitted."
+msgstr ""
+
+#: includes/frontend/class-submit-listing-page.php:435
+#: includes/frontend/class-submit-listing-page.php:441
+msgid "This is a preview of the content as seen by visitors of the website."
+msgstr ""
+
+#: includes/frontend/class-submit-listing-page.php:440
 msgid ""
-"Your listing has been submitted. This is a preview of the content as seen by"
-" visitors of the website."
-msgstr "Deine Anzeige wurde eingereicht. Dies ist eine Vorschau des Inhalts, der für Besucher der Webseite später sichtbar sein wird. "
+"Your listing has been submitted but it requires your email address to be "
+"validated. To do so, please click on the verification link we have sent to "
+"the email address used to post the listing."
+msgstr ""
 
 #: includes/frontend/class-update-listing-order-ajax-handler.php:81
 msgid ""
@@ -5042,51 +5028,51 @@ msgstr "Bitte gib die Details Deiner Anzeige ein."
 msgid "Top Level Category"
 msgstr "Hauptkategorie"
 
-#: includes/functions/listings.php:250
+#: includes/functions/listings.php:251
 #: includes/listings/class-listings-content-renderer.php:171
 msgid "Are you sure you want to flag this ad?"
 msgstr "Bist Du sicher diese Anzeige zu markieren?"
 
-#: includes/functions/listings.php:251
+#: includes/functions/listings.php:252
 #: includes/listings/class-listings-content-renderer.php:172
 msgid "This Ad has been flagged."
 msgstr "Diese Anzeige wurde markiert"
 
-#: includes/functions/listings.php:252
+#: includes/functions/listings.php:253
 #: includes/listings/class-listings-content-renderer.php:173
 msgid "An error occurred while trying to flag the Ad."
 msgstr "Es ist ein Fehler aufgetreten als Du versucht hast die Anzeige zu markieren."
 
-#: includes/functions/listings.php:289
+#: includes/functions/listings.php:290
 msgid ""
 "Sorry, that listing is not available. Please try browsing or searching "
 "existing listings."
 msgstr "Entschuldigung, diese Anzeige ist nicht vorhanden. Bitte schaue in den aktuellen Anzeigen."
 
-#: includes/functions/listings.php:306
+#: includes/functions/listings.php:307
 msgid ""
 "The Ad you are trying to view is pending approval. Once the Administrator "
 "approves it, it will be active and visible."
 msgstr "Diese Anzeige ist noch nicht freigeschaltet. Sobald der Administrator die Anzeige freigeschalten hat wird die Anzeige hier sichtbar."
 
-#: includes/functions/listings.php:311
+#: includes/functions/listings.php:312
 #: includes/listings/class-listings-content-renderer.php:107
 msgid "Your email address was successfully verified."
 msgstr "Deine E-Mail-Adresse wurde erfolgreich bestätigt!"
 
-#: includes/functions/listings.php:315
+#: includes/functions/listings.php:316
 msgid ""
 "This Ad is currently disabled until the Administrator approves it. Only you "
 "(the Administrator) and the author can see it."
 msgstr "Diese Anzeige ist im Moment deaktiviert da sie noch vom Administrator genehmigt werden muss. Nur Du (der Administrator) und der Besitzer können die Anzeige sehen. "
 
-#: includes/functions/listings.php:318
+#: includes/functions/listings.php:319
 msgid ""
 "This Ad is currently disabled until you verify the email address used for "
 "the contact information. Only you (the author) can see it."
 msgstr "Diese Anzeige ist im Moment deaktiviert da Deine E-Mail-Adresse noch von Dir bestätigt werden muss. Nur Du (der Ersteller) kannst diese Anzeige sehen. "
 
-#: includes/functions/listings.php:321
+#: includes/functions/listings.php:322
 msgid ""
 "This Ad is currently disabled until the Administrator approves it. Only you "
 "(the author) can see it."
@@ -5471,7 +5457,7 @@ msgstr "Verlängern"
 
 #: includes/listings/class-renew-listing-action.php:33
 msgid "You can use this button to renew your ad."
-msgstr ""
+msgstr "Hier kannst Du Deine Anzeige erneuern."
 
 #: includes/media/class-attachment-action-ajax-handler.php:42
 msgid "There was an error trying to update the database."
@@ -5715,7 +5701,7 @@ msgid "A classified ad."
 msgstr "Eine Anzeige."
 
 #: includes/models/class-custom-post-types.php:147
-#: includes/settings/class-listings-settings.php:589
+#: includes/settings/class-listings-settings.php:597
 msgctxt "listing post type slug"
 msgid "classifieds"
 msgstr "Anzeigen"
@@ -6373,117 +6359,106 @@ msgid "Pagination Options"
 msgstr "Nummerierungs-Optionen"
 
 #: includes/settings/class-display-settings.php:199
-msgid "Limits search to available locations."
-msgstr "Suche für Orte begrenzen"
-
-#: includes/settings/class-display-settings.php:199
-msgid ""
-"The search form can attempt to build drop down country, state, city and "
-"county lists if data is available in the system. Note that with the regions "
-"module installed the value for this option is overridden."
-msgstr "Das Suchen-Formular kann versuchen Drop-Down Menüs für Land, Bundesland und Stadt zu erstellen wenn es diese im System gibt. Achtung: Diese Option wird mit dem \"Regionen-Modul\" überschrieben wenn dieses installiert ist."
-
-#: includes/settings/class-display-settings.php:200
 msgid "Show Ad count in categories"
 msgstr "Anzeigenanzahl in Kategorie anzeigen"
 
-#: includes/settings/class-display-settings.php:200
+#: includes/settings/class-display-settings.php:199
 msgid "Show how many ads a category contains."
 msgstr "Zeige wie viele Anzeigen eine Kategorie enthält."
 
-#: includes/settings/class-display-settings.php:201
+#: includes/settings/class-display-settings.php:200
 msgid "Hide empty categories?"
 msgstr "Leere Kategorieren verstecken."
 
-#: includes/settings/class-display-settings.php:201
+#: includes/settings/class-display-settings.php:200
 msgid "If checked, categories with 0 listings in it won't be shown."
 msgstr "Wenn angewählt werden Kategorien mit 0 Anzeigen nicht angezeigt."
 
-#: includes/settings/class-display-settings.php:206
+#: includes/settings/class-display-settings.php:205
 msgid "Show Ad views"
 msgstr "Zeige Anzeigenbesuche"
 
-#: includes/settings/class-display-settings.php:209
+#: includes/settings/class-display-settings.php:208
 msgid ""
 "Show the number of times the ad has been viewed (simple count made by AWPCP "
 "&endash; warning, may not be accurate!)"
 msgstr "Anzahl der Anzeigen-Betrachtungen anzeigen"
 
-#: includes/settings/class-display-settings.php:212
+#: includes/settings/class-display-settings.php:211
 msgid "Make URLs in ad text clickable"
 msgstr "URLs sind im Anzeigentext anwählbar."
 
-#: includes/settings/class-display-settings.php:213
+#: includes/settings/class-display-settings.php:212
 msgid "Add no follow to links in Ads"
 msgstr "\"no follow\" in Links von Anzeigen verwenden."
 
-#: includes/settings/class-display-settings.php:226
-#: includes/settings/class-display-settings.php:231
+#: includes/settings/class-display-settings.php:225
+#: includes/settings/class-display-settings.php:230
 msgid "Classifieds Bar"
 msgstr "Anzeigen Menü"
 
-#: includes/settings/class-display-settings.php:236
+#: includes/settings/class-display-settings.php:235
 msgid "Show Classifieds Bar"
 msgstr "Zeige Anzeigen Menü"
 
-#: includes/settings/class-display-settings.php:239
+#: includes/settings/class-display-settings.php:238
 msgid ""
 "The Classifieds Bar is a section shown at the top of the plugin pages, "
 "displaying a Search Bar and multiple menu items. Each element of the bar can"
 " be enabled or disabled using the settings below."
 msgstr "Die Classifieds Bar ist ein Abschnitt oberhalb der Anzeigen. Es wird eine Suche angezeigt und mehrer Menüeinträge. Jedes Element kann mit den folgenden Einstellungen aktiviert oder deaktivert werden."
 
-#: includes/settings/class-display-settings.php:244
+#: includes/settings/class-display-settings.php:243
 msgid "Show Search Bar"
 msgstr "Zeige Suchen-Feld"
 
-#: includes/settings/class-display-settings.php:255
+#: includes/settings/class-display-settings.php:254
 msgid "Show Place Ad menu item"
 msgstr "Zeige \"Anzeige erstellen\" Menüeintrag"
 
-#: includes/settings/class-display-settings.php:266
+#: includes/settings/class-display-settings.php:265
 msgid "Show Edit Ad menu item"
 msgstr "Zeige \"Anzeige bearbeiten\" Menüeintrag"
 
-#: includes/settings/class-display-settings.php:277
+#: includes/settings/class-display-settings.php:276
 msgid "Show Browse Ads menu item"
 msgstr "Zeige \"in Anzeigen stöbern\" als Menü-Eintrag"
 
-#: includes/settings/class-display-settings.php:288
+#: includes/settings/class-display-settings.php:287
 msgid "Show Search Ads menu item"
 msgstr "Zeige \"Anzeigen Suchen\" als Menüeintrag"
 
-#: includes/settings/class-display-settings.php:316
+#: includes/settings/class-display-settings.php:315
 msgid "Form Steps"
 msgstr "Formularschritte"
 
-#: includes/settings/class-display-settings.php:325
+#: includes/settings/class-display-settings.php:324
 msgid "Show Form Steps"
 msgstr "Formular-Schritte anzeigen"
 
-#: includes/settings/class-display-settings.php:328
+#: includes/settings/class-display-settings.php:327
 msgid ""
 "If checked, when a user is creating a new listing, a list of steps will be "
 "shown at the top of the forms."
 msgstr "Wenn angewählt werden alle Schritte oben im Formularfeld angezeigt wenn ein Benutzer eine neue Anzeige erstellt."
 
-#: includes/settings/class-display-settings.php:336
+#: includes/settings/class-display-settings.php:335
 msgid "User Field"
 msgstr "Benutzerfeld"
 
-#: includes/settings/class-display-settings.php:338
+#: includes/settings/class-display-settings.php:337
 msgid "Dropdown"
 msgstr "Dropdown"
 
-#: includes/settings/class-display-settings.php:338
+#: includes/settings/class-display-settings.php:337
 msgid "Autocomplete"
 msgstr "Automatisch vervollständigen"
 
-#: includes/settings/class-display-settings.php:340
+#: includes/settings/class-display-settings.php:339
 msgid "HTML Widget for User field"
 msgstr "HTML Widget für Benutzerfeld"
 
-#: includes/settings/class-display-settings.php:340
+#: includes/settings/class-display-settings.php:339
 msgid ""
 "The user field can be represented with an HTML dropdown or a text field with"
 " autocomplete capabilities. Using the dropdown is faster if you have a small"
@@ -6492,21 +6467,21 @@ msgid ""
 "may be a better idea."
 msgstr "Das Benutzerfeld kann mit einem HTML-Dropdown-Menü oder einer Automatischen Eingabe verwendet werden. Das Dropdown-Menü ist schneller bei einer kleinen Anzahl von Benutzern. Wenn Deine Webseite eine große Anzahl an registrierten Benutzern hat, dann ist das Dropdown-Menü langsamer und die Automatische-Eingabe-Version besser."
 
-#: includes/settings/class-display-settings.php:341
+#: includes/settings/class-display-settings.php:340
 msgid "Show User Field on Search"
 msgstr "Benutzerfeld in der Suche anzeigen"
 
-#: includes/settings/class-display-settings.php:341
+#: includes/settings/class-display-settings.php:340
 msgid "Show as \"Posted By\" in search form?"
 msgstr "Zeige \"erstellt von\" in Suchmaske?"
 
-#: includes/settings/class-display-settings.php:346
+#: includes/settings/class-display-settings.php:345
 msgid ""
 "Overwrite information in contact fields when a different listing owner is "
 "selected"
 msgstr "Überschreibe die Kontaktdaten-Felder wenn ein anderer Anzeigen-Besitzer ausgewählt ist."
 
-#: includes/settings/class-display-settings.php:349
+#: includes/settings/class-display-settings.php:348
 msgid ""
 "If this setting is enabled, when an administrator is editing a listing and "
 "he changes the selected value in the User/Owner field, the information in "
@@ -6516,25 +6491,25 @@ msgid ""
 "will not be persisted until you click the Continue button."
 msgstr "Wenn diese Einstellung aktiviert ist kann der Administrator die Kontakt-Daten beim Anzeige editieren bearbeiten. Die Einstellungen werden erst übernommen wenn auf \"weiter\" geklickt wird."
 
-#: includes/settings/class-display-settings.php:355
+#: includes/settings/class-display-settings.php:354
 msgid "User's name format"
 msgstr "Format Benutzername"
 
-#: includes/settings/class-display-settings.php:358
+#: includes/settings/class-display-settings.php:357
 msgid ""
 "The selected format will be used to show a user's name in dropdown fields, "
 "text fields and templates."
 msgstr "Das ausgewählte Format wird verwendet um den Benutzernamen in den DropDown-Menü-Feldern, Textfeldern und Templates zu verwenden."
 
-#: includes/settings/class-display-settings.php:373
+#: includes/settings/class-display-settings.php:372
 msgid "Contact Fields"
 msgstr "Kontakt-Felder"
 
-#: includes/settings/class-display-settings.php:378
+#: includes/settings/class-display-settings.php:377
 msgid "Allow logged in users to overwrite Contact Name and Contact Email"
 msgstr "Erlaube eingeloggten Benutzern den Kontaktnamen und die Kontakt-E-Mail zu verändern."
 
-#: includes/settings/class-display-settings.php:381
+#: includes/settings/class-display-settings.php:380
 msgid ""
 "Normally registered users who are not administrators are not allowed to "
 "change the email address or contact name. The fields are rendered as read-"
@@ -6543,211 +6518,121 @@ msgid ""
 "fields."
 msgstr "Normal registrierte Benutzer sind nicht Administratoren und haben daher nicht die Erlaubnis die E-Mail-Adresse oder den Kontaktnamen zu ändern. Die Felder können dann nicht geändert werden. Wenn diese Einstellung aktiviert ist sind angemeldete Benutzer in der Lage die Felder zu ändern."
 
-#: includes/settings/class-display-settings.php:388
+#: includes/settings/class-display-settings.php:387
 msgid "Show Phone field"
 msgstr "Zeige Telefon-Feld?"
 
-#: includes/settings/class-display-settings.php:388
+#: includes/settings/class-display-settings.php:387
 msgid "Show phone field?"
 msgstr "Zeige Telefon-Feld?"
 
-#: includes/settings/class-display-settings.php:390
+#: includes/settings/class-display-settings.php:389
 msgid "Require Phone"
 msgstr "Mussfeld Telefon"
 
-#: includes/settings/class-display-settings.php:390
+#: includes/settings/class-display-settings.php:389
 msgid "Require phone on Place Ad and Edit Ad forms?"
 msgstr "Mussfeld Telefonnummer?"
 
-#: includes/settings/class-display-settings.php:395
+#: includes/settings/class-display-settings.php:394
 msgid "Show Phone Field only to registered users"
 msgstr "Telefon-Feld nur für registrierte Benutzer anzeigen"
 
-#: includes/settings/class-display-settings.php:398
-#: includes/settings/class-display-settings.php:413
-#: includes/settings/class-display-settings.php:438
+#: includes/settings/class-display-settings.php:397
+#: includes/settings/class-display-settings.php:412
+#: includes/settings/class-display-settings.php:437
 msgid ""
 "This setting restricts viewing of this field so that only registered users "
 "that are logged in can see it."
 msgstr "Diese Einstellung legt fest ob nur registrierte Benutzer das Feld sehen dürfen."
 
-#: includes/settings/class-display-settings.php:403
+#: includes/settings/class-display-settings.php:402
 msgid "Show Website field"
 msgstr "Zeige Webseiten-Feld"
 
-#: includes/settings/class-display-settings.php:403
+#: includes/settings/class-display-settings.php:402
 msgid "Show website field?"
 msgstr "Zeige Webseiten-Feld?"
 
-#: includes/settings/class-display-settings.php:405
+#: includes/settings/class-display-settings.php:404
 msgid "Require Website"
 msgstr "Mussfeld Webseite"
 
-#: includes/settings/class-display-settings.php:405
+#: includes/settings/class-display-settings.php:404
 msgid "Require website on Place Ad and Edit Ad forms?"
 msgstr "Mussfeld Webseite"
 
-#: includes/settings/class-display-settings.php:410
+#: includes/settings/class-display-settings.php:409
 msgid "Show Website Field only to registered users"
 msgstr "Webseiten-Feld nur für registrierte Benutzer anzeigen"
 
-#: includes/settings/class-display-settings.php:418
+#: includes/settings/class-display-settings.php:417
 msgid "Show Price field"
 msgstr "Zeige Preis-Feld"
 
-#: includes/settings/class-display-settings.php:418
+#: includes/settings/class-display-settings.php:417
 msgid "Show price field?"
 msgstr "Zeige Preis-Feld?"
 
-#: includes/settings/class-display-settings.php:423
+#: includes/settings/class-display-settings.php:422
 msgid "Show price field on search form"
 msgstr "Preis-Feld auf der Suchmaske anzeigen"
 
-#: includes/settings/class-display-settings.php:430
+#: includes/settings/class-display-settings.php:429
 msgid "Require Price"
 msgstr "Mussfeld Preis"
 
-#: includes/settings/class-display-settings.php:430
+#: includes/settings/class-display-settings.php:429
 msgid "Require price on Place Ad and Edit Ad forms?"
 msgstr "Mussfeld Preis"
 
-#: includes/settings/class-display-settings.php:435
+#: includes/settings/class-display-settings.php:434
 msgid "Show Price Field only to registered users"
 msgstr "Preis-Feld nur für registrierte Benutzer anzeigen"
 
-#: includes/settings/class-display-settings.php:441
+#: includes/settings/class-display-settings.php:440
 msgid "Hide Price field if empty or zero"
 msgstr "Preis-Feld verbergen wenn leer oder 0 ist"
 
-#: includes/settings/class-display-settings.php:441
+#: includes/settings/class-display-settings.php:440
 msgid ""
 "If checked all price placeholders will be replaced with an empty string when"
 " the price of the Ad is zero or was not set."
 msgstr "Alle Platzhalter werden mit einem Leerstring ersetzt wenn der Preis der Anzeige Null oder leer ist."
 
-#: includes/settings/class-display-settings.php:445
-msgid "Show Country field"
-msgstr "Land-Feld zeigen?"
-
-#: includes/settings/class-display-settings.php:445
-msgid "Show country field?"
-msgstr "Land-Feld zeigen?"
-
-#: includes/settings/class-display-settings.php:450
-msgid "Show country field on search form"
-msgstr "Land-Feld auf der Suchmaske anzeigen"
-
-#: includes/settings/class-display-settings.php:457
-msgid "Require Country"
-msgstr "Mussfeld Land-Feld"
-
-#: includes/settings/class-display-settings.php:457
-msgid "Require country on Place Ad and Edit Ad forms?"
-msgstr "Mussfeld Land?"
-
-#: includes/settings/class-display-settings.php:461
-msgid "Show State field"
-msgstr "Bundesland-Feld zeigen?"
-
-#: includes/settings/class-display-settings.php:461
-msgid "Show state field?"
-msgstr "Bundesland-Feld anzeigen?"
-
-#: includes/settings/class-display-settings.php:466
-msgid "Show state field on search form"
-msgstr "Bundesland-Feld auf der Suchmaske anzeigen"
-
-#: includes/settings/class-display-settings.php:473
-msgid "Require State"
-msgstr "Mussfeld Bundesland"
-
-#: includes/settings/class-display-settings.php:473
-msgid "Require state on Place Ad and Edit Ad forms?"
-msgstr "Mussfeld Bundesland"
-
-#: includes/settings/class-display-settings.php:477
-msgid "Show County/Village/other"
-msgstr "Zeige Land/Ort/andere"
-
-#: includes/settings/class-display-settings.php:477
-msgid "Show County/village/other?"
-msgstr "Zeige Land/Ort/andere"
-
-#: includes/settings/class-display-settings.php:482
-msgid "Show county/village/other field on search form"
-msgstr "Kreis-Feld auf der Suchmaske anzeigen"
-
-#: includes/settings/class-display-settings.php:489
-msgid "Require County/Village/other"
-msgstr "Mussfeld Land/Ort/andere"
-
-#: includes/settings/class-display-settings.php:489
-msgid "Require county/village/other on Place Ad and Edit Ad forms?"
-msgstr "Mussfeld Land/Ort/andere"
-
-#: includes/settings/class-display-settings.php:493
-msgid "Show City field"
-msgstr "Stadt-Feld zeigen?"
-
-#: includes/settings/class-display-settings.php:493
-msgid "Show city field?"
-msgstr "Stadt-Feld zeigen?"
-
-#: includes/settings/class-display-settings.php:498
-msgid "Show city field on search form"
-msgstr "Stadt-Feld auf der Suchmaske anzeigen"
-
-#: includes/settings/class-display-settings.php:505
-msgid "Require City"
-msgstr "Mussfeld Stadt-Feld"
-
-#: includes/settings/class-display-settings.php:505
-msgid "Require city on Place Ad and Edit Ad forms?"
-msgstr "Mussfeld Stadt"
-
-#: includes/settings/class-display-settings.php:506
-msgid "Show City field before County field"
-msgstr "Zeige Stadt vor Land"
-
-#: includes/settings/class-display-settings.php:506
-msgid ""
-"If checked the city field will be shown before the county field. This "
-"setting may be overwritten if Region Control module is installed."
-msgstr "Stadt vor Land zeigen. Diese Option kann überschrieben werden wenn das Regionsmodul installiert ist."
-
-#: includes/settings/class-display-settings.php:513
+#: includes/settings/class-display-settings.php:447
 msgid ""
 "Go to the <form-fields-section> admin section to change the order in which "
 "the fields mentioned below are shown to users in the Ad Details form."
 msgstr "Gehe zu <form-fields-section> um die Reihenfolge der Formularfelder zu ändern."
 
-#: includes/settings/class-display-settings.php:525
+#: includes/settings/class-display-settings.php:459
 msgid "Form Fields Behavior"
 msgstr "Verhalten von Formularfeldern"
 
-#: includes/settings/class-display-settings.php:534
+#: includes/settings/class-display-settings.php:468
 #: templates/admin/import/supported-csv-headers.tpl.php:18
 msgid "Field"
 msgstr "Feld"
 
-#: includes/settings/class-display-settings.php:535
+#: includes/settings/class-display-settings.php:469
 msgid "Show field on form"
 msgstr "Feld im Formular anzeigen"
 
-#: includes/settings/class-display-settings.php:536
+#: includes/settings/class-display-settings.php:470
 msgid "Show field on search form"
 msgstr "Feld im Such-Formular anzeigen"
 
-#: includes/settings/class-display-settings.php:537
+#: includes/settings/class-display-settings.php:471
 #: templates/admin/import/supported-csv-headers.tpl.php:19
 msgid "Required"
 msgstr "Pflichtfeld"
 
-#: includes/settings/class-display-settings.php:538
+#: includes/settings/class-display-settings.php:472
 msgid "Show value to registered users only"
 msgstr "Wert nur für registrierte Benutzer anzeigen"
 
-#: includes/settings/class-display-settings.php:542
+#: includes/settings/class-display-settings.php:476
 msgid "Website"
 msgstr "Website"
 
@@ -7312,8 +7197,8 @@ msgid ""
 msgstr "Dies sind die verbleibenden Bilder, die keine Vorschaubilder sind, wenn Du mehr als ein Bild pro Anzeige zulässt."
 
 #: includes/settings/class-files-settings.php:91
-#: includes/settings/class-listings-settings.php:50
-#: includes/settings/class-listings-settings.php:60
+#: includes/settings/class-listings-settings.php:49
+#: includes/settings/class-listings-settings.php:59
 msgid "Moderation"
 msgstr "Moderation"
 
@@ -7588,7 +7473,7 @@ msgid ""
 "showing the sub-categories of the selected category, if any. Useful if your "
 "website supports a high number of categories. *If the pay per fee category "
 "module is enabled, this setting has no effect."
-msgstr ""
+msgstr "Wenn diese Option aktiviert ist, werden in einem Dropdown-Menü alle Kategorien der obersten Ebene im Anzeigenbildschirm angezeigt. Wenn der Benutzer eine Kategorie auswählt, wird ein neues Dropdown-Menü mit den Unterkategorien der ausgewählten Kategorie angezeigt, sofern vorhanden. Nützlich, wenn Deine Website eine hohe Anzahl von Kategorien unterstützt. * Wenn das Modul Pay-per-Fee-Kategorie aktiviert ist, hat diese Einstellung keine Auswirkung."
 
 #: includes/settings/class-general-settings.php:147
 msgid ""
@@ -8389,103 +8274,103 @@ msgid ""
 "information."
 msgstr "Die E-Mail Bestätigung wurde nicht aktiviert weil die Registrierung eingeschaltet ist. Registrierte Benutzer müssen die E-Mail-Adresse immer bestätigen."
 
-#: includes/settings/class-listings-settings.php:62
+#: includes/settings/class-listings-settings.php:61
 msgid "Only admin can post Ads"
 msgstr "Nur Administrator können Anzeigen veröffentlichen"
 
-#: includes/settings/class-listings-settings.php:62
+#: includes/settings/class-listings-settings.php:61
 msgid "If checked only administrator users will be allowed to post Ads."
 msgstr "Nur Administratoren dürfen Anzeigen erstellen."
 
-#: includes/settings/class-listings-settings.php:67
+#: includes/settings/class-listings-settings.php:66
 msgid "Disable listings until administrator approves"
 msgstr "Anzeige deaktivieren bis Administrator die Anzeige bestätigt."
 
-#: includes/settings/class-listings-settings.php:70
+#: includes/settings/class-listings-settings.php:69
 msgid ""
 "New Ads will be in a disabled status, not visible to visitors, until the "
 "administrator approves them."
 msgstr "Neue Anzeigen sind solange deaktiviert, nicht sichtbar für Besucher, bis der Administrator die Anzeigen freischaltet."
 
-#: includes/settings/class-listings-settings.php:76
+#: includes/settings/class-listings-settings.php:75
 msgid "Disable listings until administrator approves modifications"
 msgstr "Anzeige deaktivieren bis Administrator die Änderungen bestätigt."
 
-#: includes/settings/class-listings-settings.php:79
+#: includes/settings/class-listings-settings.php:78
 msgid ""
 "Listings will be in a disabled status after the owners modifies them and "
 "until the administrator approves them."
 msgstr "Anzeigen sind nach Änderungen durch den Benutzer solange deaktiviert, nicht sichtbar für Besucher, bis der Administrator die Anzeigen freischaltet."
 
-#: includes/settings/class-listings-settings.php:82
+#: includes/settings/class-listings-settings.php:81
 msgid "Enable paid ads that are pending payment."
 msgstr "Anzeige aktivieren in denen die Zahlung offen ist."
 
-#: includes/settings/class-listings-settings.php:83
+#: includes/settings/class-listings-settings.php:82
 msgid ""
 "Have non-registered users verify the email address used to post new Ads"
 msgstr "Nicht registrierte Benutzer müssen ihre E-Mail-Adresse bestätigen, um Anzeigen zu veröffentlichen (Double Opt-In)"
 
-#: includes/settings/class-listings-settings.php:83
+#: includes/settings/class-listings-settings.php:82
 msgid ""
 "A message with an email verification link will be sent to the email address "
 "used in the contact information. New Ads will remain disabled until the user"
 " clicks the verification link."
 msgstr "Double-Opt-In: Eine Bestätigungs-E-Mail wird an die Kontaktadresse geschickt. Neue Anzeigen bleiben solange deaktiviert bis die E-Mail-Adresse durch den Benutzer bestätigt wurde."
 
-#: includes/settings/class-listings-settings.php:84
+#: includes/settings/class-listings-settings.php:83
 msgid "Number of days before the verification email is sent again"
 msgstr "Tage bis Bestätigungs-E-Mail erneut gesendet wird."
 
-#: includes/settings/class-listings-settings.php:85
+#: includes/settings/class-listings-settings.php:84
 msgid ""
 "Number of days before Ads that remain in a unverified status will be deleted"
 msgstr "Anzahl von Tagen nach dem eine ungeprüfte Anzeige gelöscht wird."
 
-#: includes/settings/class-listings-settings.php:90
+#: includes/settings/class-listings-settings.php:89
 msgid "Awaiting approval message"
 msgstr "Nachricht: Anzeige muss freigeschaltet werden"
 
-#: includes/settings/class-listings-settings.php:92
+#: includes/settings/class-listings-settings.php:91
 msgid ""
 "All listings must be approved by an administrator before they are activated "
 "on the system. As soon as an administrator has approved your listing it will"
 " become visible. Thank you for your business."
 msgstr "Alle Anzeigen müssen von einem Administrator genehmigt werden, bevor sie im System aktiviert werden. Sobald ein Administrator Deinen Eintrag genehmigt hat, wird er angezeigt. Vielen Dank dass Du auf unserer Seite anzeigen erstellst!"
 
-#: includes/settings/class-listings-settings.php:93
+#: includes/settings/class-listings-settings.php:92
 msgid ""
 "This message is shown to users right after they post an Ad, if that Ad is "
 "awaiting approval from the administrator. The message may also be included "
 "in email notifications sent when a new Ad is posted."
 msgstr "Diese Nachricht wird dem Benutzer unter der Anzeige gezeigt nachdem er eine Anzeige erstellt hat die noch vom Administrator genehmigt werden muss. Diese Nachricht kann auch in E-Mails verwendet werden wenn eine neue Anzeige erstellt wurde."
 
-#: includes/settings/class-listings-settings.php:96
+#: includes/settings/class-listings-settings.php:95
 msgid "Allowed domains in Ad poster email"
 msgstr "Erlaubte Domains in der E-Mail vom Inserenten."
 
-#: includes/settings/class-listings-settings.php:96
+#: includes/settings/class-listings-settings.php:95
 msgid ""
 "Only email addresses with a domain in the list above will be allowed. "
 "*.foo.com will match a.foo.com, b.foo.com, etc. but foo.com will match "
 "foo.com only. Please type a domain per line."
 msgstr "Nur E-Mail-Adresse mit einer Domain aus der obigen Liste sind erlaubt. *.foo.com kann als Platzhalter für a.foo.com, b.foo.com, usw. benutz werden.  Foo.com ist nur foo.com. Bitte eine Domain pro Zeile!"
 
-#: includes/settings/class-listings-settings.php:101
+#: includes/settings/class-listings-settings.php:100
 msgid "Duration of listings in free mode (in days)"
 msgstr "Anzeigendauer im kostenlosen Modus (in Tagen)"
 
-#: includes/settings/class-listings-settings.php:104
+#: includes/settings/class-listings-settings.php:103
 msgid ""
 "The end date for listings posted in free mode will be calculated using the "
 "value in this field. You can enter 0 to keep listings enabled for 10 years."
 msgstr "Das Enddatum für Anzeigen im kostenlosen Modus werden durch diesen Wert berechnet. Wenn eine 0 eingetragen wird, so wird die Anzeige für 10 Jahre im System bleiben."
 
-#: includes/settings/class-listings-settings.php:107
+#: includes/settings/class-listings-settings.php:106
 msgid "Delete expired ads"
 msgstr "Abgelaufene Anzeigen löschen."
 
-#: includes/settings/class-listings-settings.php:115
+#: includes/settings/class-listings-settings.php:114
 msgid ""
 "Check to delete ads after the number of days configured in the next setting "
 "have passed since the ads were marked as expired. If not checked, ads will "
@@ -8493,372 +8378,351 @@ msgid ""
 "They'll remain disabled."
 msgstr "Aktiviere diese Option, um Anzeigen zu löschen, nachdem die in der nächsten Einstellung festgelegte Anzahl von Tagen verstrichen ist, seit die Anzeigen als abgelaufen markiert wurden. Wenn diese Option nicht aktiviert ist, werden Anzeigen weiterhin im System gespeichert, sind jedoch im Frontend nicht sichtbar. Sie bleiben deaktiviert."
 
-#: includes/settings/class-listings-settings.php:120
+#: includes/settings/class-listings-settings.php:119
 msgid ""
 "If the <setting-name> setting is checked, the ads will be permanently "
 "deleted from the system after the number of days configured in this field "
 "have passed since each ad was marked as expired."
 msgstr "Wenn die Einstellung <setting-name> aktiviert ist, werden die Anzeigen endgültig aus dem System gelöscht, nachdem die in diesem Feld konfigurierten Tage verstrichen sind, seit die Anzeige als abgelaufen markiert wurde."
 
-#: includes/settings/class-listings-settings.php:126
+#: includes/settings/class-listings-settings.php:125
 msgid "Number of days before expired listings are deleted"
 msgstr "Anzahl der Tage bis ausgelaufene Anzeigen gelöscht werden."
 
-#: includes/settings/class-listings-settings.php:140
+#: includes/settings/class-listings-settings.php:139
 msgid "Allow users to edit the start date of their listings?"
 msgstr "Benutzern das Ändern des Startdatums ihrer Anzeigen erlauben?"
 
-#: includes/settings/class-listings-settings.php:154
+#: includes/settings/class-listings-settings.php:153
 msgid "Notifications"
 msgstr "Benachrichtigungen"
 
-#: includes/settings/class-listings-settings.php:171
+#: includes/settings/class-listings-settings.php:170
 msgid "User Notifications"
 msgstr "Benutzer Benachrichtigung"
 
-#: includes/settings/class-listings-settings.php:176
-#: includes/settings/class-listings-settings.php:210
-#: includes/settings/class-listings-settings.php:248
+#: includes/settings/class-listings-settings.php:175
+#: includes/settings/class-listings-settings.php:218
+#: includes/settings/class-listings-settings.php:256
 msgid "Listing Created"
 msgstr "Anzeige erstellt"
 
-#: includes/settings/class-listings-settings.php:179
-#: includes/settings/class-listings-settings.php:251
+#: includes/settings/class-listings-settings.php:178
+#: includes/settings/class-listings-settings.php:259
 msgid "An email will be sent when a listing is created."
 msgstr "Eine E-Mail wird gesendet wenn eine Anzeige erstellt wurde"
 
-#: includes/settings/class-listings-settings.php:182
+#: includes/settings/class-listings-settings.php:184
+#: includes/settings/class-listings-settings.php:227
+#: includes/settings/class-listings-settings.php:267
+msgid "Listing Edited"
+msgstr "Anzeige wurde editiert"
+
+#: includes/settings/class-listings-settings.php:187
+msgid "An email will be sent when a listing is edited."
+msgstr ""
+
+#: includes/settings/class-listings-settings.php:190
 msgid "Listing Enabled"
 msgstr "Anzeige ist aktiviert"
 
-#: includes/settings/class-listings-settings.php:182
+#: includes/settings/class-listings-settings.php:190
 msgid "Notify Ad owner when the Ad is enabled."
 msgstr "Anzeigenbesitzer benachrichtigen wenn Anzeige aktiviert wurde."
 
-#: includes/settings/class-listings-settings.php:183
+#: includes/settings/class-listings-settings.php:191
 msgid "Listing Needs to be Renewed"
 msgstr "Anzeigen welche erneuert werden müssen"
 
-#: includes/settings/class-listings-settings.php:183
+#: includes/settings/class-listings-settings.php:191
 msgid ""
 "An email will be sent to remind the user to Renew the Ad when the Ad is "
 "about to expire."
 msgstr "Erinnerungs-E-Mail an Benutzer wenn Anzeige ausläuft."
 
-#: includes/settings/class-listings-settings.php:188
+#: includes/settings/class-listings-settings.php:196
 msgid "When should AWPCP send the expiration notice?"
 msgstr "Wann soll AWPCP eine Ablaufnachricht schicken?"
 
-#: includes/settings/class-listings-settings.php:191
+#: includes/settings/class-listings-settings.php:199
 msgid "Enter the number of days before the ad expires to send the email."
 msgstr "Tage vor dem Senden der Erneuerungs-E-Mail."
 
-#: includes/settings/class-listings-settings.php:194
-#: includes/settings/class-listings-settings.php:254
+#: includes/settings/class-listings-settings.php:202
+#: includes/settings/class-listings-settings.php:262
 msgid "Listing Expired"
 msgstr "Anzeige ist abgelaufen"
 
-#: includes/settings/class-listings-settings.php:194
-#: includes/settings/class-listings-settings.php:254
+#: includes/settings/class-listings-settings.php:202
+#: includes/settings/class-listings-settings.php:262
 msgid "An email will be sent when the Ad expires."
 msgstr "Eine E-Mail wird gesendet wenn die Anzeige deaktiviert/abgelaufen ist."
 
-#: includes/settings/class-listings-settings.php:205
+#: includes/settings/class-listings-settings.php:213
 msgid "Moderator Notifications"
 msgstr "Moderator Benachrichtigung"
 
-#: includes/settings/class-listings-settings.php:213
+#: includes/settings/class-listings-settings.php:221
 msgid "An email will be sent to moderators when a listing is created."
 msgstr "Eine E-Mail wird an den Moderator gesendet wenn eine Anzeige erstellt wurde."
 
-#: includes/settings/class-listings-settings.php:219
-#: includes/settings/class-listings-settings.php:259
-msgid "Listing Edited"
-msgstr "Anzeige wurde editiert"
-
-#: includes/settings/class-listings-settings.php:222
+#: includes/settings/class-listings-settings.php:230
 msgid "An email will be sent to moderators when a listing is edited."
 msgstr "Eine E-Mail wird an den Moderator gesendet wenn eine Anzeige editiert wurde."
 
-#: includes/settings/class-listings-settings.php:228
-#: includes/settings/class-listings-settings.php:281
+#: includes/settings/class-listings-settings.php:236
+#: includes/settings/class-listings-settings.php:289
 msgid "Listing Awaiting Approval"
 msgstr "Anzeigen die auf Freischaltung warten"
 
-#: includes/settings/class-listings-settings.php:231
+#: includes/settings/class-listings-settings.php:239
 msgid ""
 "An email will be sent to moderator users every time a listing needs to be "
 "approved."
 msgstr "Eine E-Mail wird an den Moderator gesendet wenn eine Anzeige genehmigt werden muss."
 
-#: includes/settings/class-listings-settings.php:243
+#: includes/settings/class-listings-settings.php:251
 msgid "Admin Notifications"
 msgstr "Administrator Benachrichtigungen"
 
-#: includes/settings/class-listings-settings.php:262
+#: includes/settings/class-listings-settings.php:270
 msgid "An email will be sent to administrator when a listing is edited."
 msgstr "Eine E-Mail wird an den Administrator gesendet wenn eine Anzeige editiert wurde."
 
-#: includes/settings/class-listings-settings.php:268
+#: includes/settings/class-listings-settings.php:276
 msgid "Listing Renewed"
 msgstr "Anzeige erneuert."
 
-#: includes/settings/class-listings-settings.php:270
+#: includes/settings/class-listings-settings.php:278
 msgid ""
 "An email will be sent to administrator users when a listing is renewed."
 msgstr "Wenn Anzeigen erneuert werden, erhalten Administratoren eine E-Mail.  "
 
-#: includes/settings/class-listings-settings.php:284
+#: includes/settings/class-listings-settings.php:292
 msgid ""
 "An email will be sent to administrator users every time a listing needs to "
 "be approved."
 msgstr "Eine E-Mail wird an den Administrator gesendet wenn eine Anzeige genehmigt werden muss."
 
-#: includes/settings/class-listings-settings.php:290
+#: includes/settings/class-listings-settings.php:298
 msgid "Listing Was Flagged"
 msgstr "Die Anzeige wurde markiert."
 
-#: includes/settings/class-listings-settings.php:293
+#: includes/settings/class-listings-settings.php:301
 msgid ""
 "An email will be sent to administrator users when a listing is flagged."
 msgstr "Eine E-Mail wird an den Administrator gesendet wenn eine Anzeige markiert wurde."
 
-#: includes/settings/class-listings-settings.php:299
+#: includes/settings/class-listings-settings.php:307
 msgid "New media was uploaded"
 msgstr "Eine neue Datei wurde hochgeladen."
 
-#: includes/settings/class-listings-settings.php:302
+#: includes/settings/class-listings-settings.php:310
 msgid ""
 "An email will be sent to administrator users when new media is added to a "
 "listing."
 msgstr "Eine E-Mail wird an den Administrator gesendet wenn eine neue Datei zu einer Anzeige hinzugefügt wird."
 
-#: includes/settings/class-listings-settings.php:313
+#: includes/settings/class-listings-settings.php:321
 msgid "SEO"
 msgstr "SEO"
 
-#: includes/settings/class-listings-settings.php:334
+#: includes/settings/class-listings-settings.php:342
 msgid "Search Engine Friendly URLs"
 msgstr "Suchmaschinenoptimierte URLs"
 
-#: includes/settings/class-listings-settings.php:342
+#: includes/settings/class-listings-settings.php:350
 msgid "Turn on Search Engine Friendly URLs"
 msgstr "Suchmaschinenoptimierte URLs verwenden"
 
-#: includes/settings/class-listings-settings.php:345
+#: includes/settings/class-listings-settings.php:353
 msgid "Turn on Search Engine Friendly URLs? (SEO Mode)"
 msgstr "Suchmaschinenoptimierte URLs verwenden (SEO Mode)"
 
-#: includes/settings/class-listings-settings.php:358
+#: includes/settings/class-listings-settings.php:366
 msgid "Redirection"
 msgstr "301 Umleitung"
 
-#: includes/settings/class-listings-settings.php:367
+#: includes/settings/class-listings-settings.php:375
 msgid "Redirect deleted listings"
 msgstr "Umleitung für gelöschte Anzeigen aktivieren"
 
-#: includes/settings/class-listings-settings.php:370
+#: includes/settings/class-listings-settings.php:378
 msgid ""
 "Perform a 301 redirect to the main classifieds page when landing on a "
 "deleted listing url."
 msgstr "301 Umleitung zur Anzeigenseite wenn der Benutzer auf eine gelöschte Anzeige kommt."
 
-#: includes/settings/class-listings-settings.php:380
+#: includes/settings/class-listings-settings.php:388
 msgctxt "window title settings section"
 msgid ""
 "These settings affect the title shown in the title bar of the browser for "
 "the listing. You can include or remove certain elements if you wish."
 msgstr "Diese Einstellungen beeinflussen die Titelbar vom Webbrowser. Du kannst hier Elemente hinzufügen oder entfernen."
 
-#: includes/settings/class-listings-settings.php:385
+#: includes/settings/class-listings-settings.php:393
 msgid "Window Title"
 msgstr "Titel"
 
-#: includes/settings/class-listings-settings.php:395
+#: includes/settings/class-listings-settings.php:403
 msgid "Window title separator"
 msgstr "Titel Trennzeichen"
 
-#: includes/settings/class-listings-settings.php:398
+#: includes/settings/class-listings-settings.php:406
 msgid ""
 "The character to use to separate ad details used in browser page title. "
 "Example: | / -"
 msgstr "Zeichen welches verwendet wird um Details der Anzeige im Browser-Titel zu trennen. Beispiel: | / -"
 
-#: includes/settings/class-listings-settings.php:404
+#: includes/settings/class-listings-settings.php:412
 msgid "Show city in window title"
 msgstr "Stadt im Titel anzeigen"
 
-#: includes/settings/class-listings-settings.php:407
+#: includes/settings/class-listings-settings.php:415
 msgid "Show city in browser page title when viewing individual Ad"
 msgstr "Zeige die Stadt im Browser-Titel beim Aufruf einer einzelnen Anzeige"
 
-#: includes/settings/class-listings-settings.php:413
+#: includes/settings/class-listings-settings.php:421
 msgid "Show state in window title"
 msgstr "Bundesland im Titel anzeigen"
 
-#: includes/settings/class-listings-settings.php:416
+#: includes/settings/class-listings-settings.php:424
 msgid "Show state in browser page title when viewing individual Ad"
 msgstr "Zeige das Bundesland im Browser-Titel beim Aufruf einer einzelnen Anzeige"
 
-#: includes/settings/class-listings-settings.php:422
+#: includes/settings/class-listings-settings.php:430
 msgid "Show country in window title"
 msgstr "Zeige das Land im Browser-Titel "
 
-#: includes/settings/class-listings-settings.php:425
+#: includes/settings/class-listings-settings.php:433
 msgid "Show country in browser page title when viewing individual Ad"
 msgstr "Zeige das Land im Browser-Titel beim Aufruf einer einzelnen Anzeige"
 
-#: includes/settings/class-listings-settings.php:431
+#: includes/settings/class-listings-settings.php:439
 msgid "Show county/village/other in window title"
 msgstr "Zeige die Stadt/Dorf/Anderes im Browser-Titel"
 
-#: includes/settings/class-listings-settings.php:434
+#: includes/settings/class-listings-settings.php:442
 msgid ""
 "Show county/village/other setting in browser page title when viewing "
 "individual Ad"
 msgstr "Zeige die Stadt/Dorf/Anderes im Browser-Titel beim Aufruf einer einzelnen Anzeige"
 
-#: includes/settings/class-listings-settings.php:440
+#: includes/settings/class-listings-settings.php:448
 msgid "Show category in title"
 msgstr "Kategorie im Titel zeigen?"
 
-#: includes/settings/class-listings-settings.php:443
+#: includes/settings/class-listings-settings.php:451
 msgid "Show category in browser page title when viewing individual Ad"
 msgstr "Zeige Kategorie im Browser-Titel beim Aufruf einer einzelnen Anzeige"
 
-#: includes/settings/class-listings-settings.php:466
+#: includes/settings/class-listings-settings.php:474
 msgid ""
 "Enable this setting to display each listing on its own page, instead of "
 "showing the listing's content inside the <show-listing-page> page."
 msgstr "Aktiviere diese Einstellung, um jede Anzeige auf einer eigenen Seite darzustellen, anstatt den Inhalt der Anzeige innerhalb der <show-listing-page> Seite zu zeigen."
 
-#: includes/settings/class-listings-settings.php:472
+#: includes/settings/class-listings-settings.php:480
 msgid "Display listings on their own page"
 msgstr "Anzeigen auf ihrer eigenen Seite anzeigen. "
 
-#: includes/settings/class-listings-settings.php:480
+#: includes/settings/class-listings-settings.php:488
 msgid ""
 "Portion of the URL that appears between the website's domain and the "
 "listing's information. Example: <example-slug> in <example-url>."
 msgstr "Teil der URL der zwischen der Webseitendomain und der Anzeigeninformation erscheint. Beispiel: <example-slug> in <example-url>."
 
-#: includes/settings/class-listings-settings.php:490
+#: includes/settings/class-listings-settings.php:498
 msgid "Listings slug"
 msgstr "Anzeigen slug = sprechende URL"
 
-#: includes/settings/class-listings-settings.php:503
+#: includes/settings/class-listings-settings.php:511
 msgid ""
 "Include the slug of the plugin's main page (<main-page-slug>) in the URL "
 "that points to the page of an individual listing."
 msgstr "Slug Url der Hauptseite des Plugins (<main-page-slug>) in die Anzeigen-URL einfügen."
 
-#: includes/settings/class-listings-settings.php:506
+#: includes/settings/class-listings-settings.php:514
 msgid ""
 "Include the slug of the plugin's main page in the URL that points to the "
 "page of an individual listing."
 msgstr "Slug Url der Hauptseite des Plugins in die Anzeigen-URL einfügen."
 
-#: includes/settings/class-listings-settings.php:512
+#: includes/settings/class-listings-settings.php:520
 msgid "Include the slug of the plugin's main page in the listing URL"
 msgstr "Slug Url der Hauptseite des Plugins in die Anzeigen-URL einfügen."
 
-#: includes/settings/class-listings-settings.php:526
+#: includes/settings/class-listings-settings.php:534
 msgid "Include the title in the listing URL"
 msgstr "Den Titel in die URL einfügen."
 
-#: includes/settings/class-listings-settings.php:529
+#: includes/settings/class-listings-settings.php:537
 msgid ""
 "Include the title in the URL that points to the page of an individual "
 "listing."
 msgstr "Den Titel in die URL der Anzeige einfügen."
 
-#: includes/settings/class-listings-settings.php:535
+#: includes/settings/class-listings-settings.php:543
 msgid "Include the name of the category in the listing URL"
 msgstr "Kategoriename in URL"
 
-#: includes/settings/class-listings-settings.php:538
+#: includes/settings/class-listings-settings.php:546
 msgid ""
 "Include the name of the category in the URL that points to the page of an "
 "individual listing."
 msgstr "Den Kategorie-Namen in die URL der Anzeige einbinden."
 
-#: includes/settings/class-listings-settings.php:544
+#: includes/settings/class-listings-settings.php:552
 msgid "Include the name of the country in the listing URL"
 msgstr "Das Land in die URL einfügen."
 
-#: includes/settings/class-listings-settings.php:547
+#: includes/settings/class-listings-settings.php:555
 msgid ""
 "Include the name of the country in the URL that points to the page of an "
 "individual listing."
 msgstr "Den Länder-Namen in die URL der Anzeige einfügen."
 
-#: includes/settings/class-listings-settings.php:553
+#: includes/settings/class-listings-settings.php:561
 msgid "Include the name of the state in the listing URL"
 msgstr "Das Bundesland in die URL einfügen."
 
-#: includes/settings/class-listings-settings.php:556
+#: includes/settings/class-listings-settings.php:564
 msgid ""
 "Include the name of the state in the URL that points to the page of an "
 "individual listing."
 msgstr "Den Bundesländer-Namen in die URL der Anzeige einfügen."
 
-#: includes/settings/class-listings-settings.php:562
+#: includes/settings/class-listings-settings.php:570
 msgid "Include the name of the city in the listing URL"
 msgstr "Den Stadtnamen in die URL einfügen."
 
-#: includes/settings/class-listings-settings.php:565
+#: includes/settings/class-listings-settings.php:573
 msgid ""
 "Include the name of the city in the URL that points to the page of an "
 "individual listing."
 msgstr "Den Städte-Namen in die URL der Anzeige einfügen."
 
-#: includes/settings/class-listings-settings.php:571
+#: includes/settings/class-listings-settings.php:579
 msgid "Include the name of the county in the listing URL"
 msgstr "Das Land in die URL einfügen."
 
-#: includes/settings/class-listings-settings.php:574
+#: includes/settings/class-listings-settings.php:582
 msgid ""
 "Include the name of the county in the URL that points to the page of an "
 "individual listing."
 msgstr "Den Länder-Namen in die URL der Anzeige einfügen."
 
-#: includes/settings/class-listings-settings.php:593
+#: includes/settings/class-listings-settings.php:601
 msgctxt "listing url settings section"
 msgid ""
 "These settings affect the URL path shown for listings. You can include or "
 "remove elements for SEO purposes."
 msgstr "Diese Einstellungen wirken sich auf den URL-Pfad aus, der für Listings angezeigt wird. Du kannst Elemente für SEO-Zwecke einbeziehen oder entfernen."
 
-#: includes/settings/class-listings-settings.php:599
+#: includes/settings/class-listings-settings.php:607
 msgctxt "listing url settings section"
 msgid "Example path: <example-path>."
 msgstr "Beispiel-Pfad: <example-path>."
-
-#: includes/settings/class-listings-settings.php:629
-msgid "Regions"
-msgstr "Regionen"
-
-#: includes/settings/class-listings-settings.php:635
-msgid "Regions Settings"
-msgstr "Ländereinstellungen "
-
-#: includes/settings/class-listings-settings.php:637
-msgid "Allow Regions modification"
-msgstr "Ländereinstellungen zulassen"
-
-#: includes/settings/class-listings-settings.php:637
-msgid ""
-"If enabled, users will be allowed to change the region information "
-"associated with their Ads."
-msgstr "Regionsinfos dürfen geändert werden."
-
-#: includes/settings/class-listings-settings.php:638
-msgid "Allow users to search Ads in multiple regions"
-msgstr "Suche für verschiedene Regionen möglich."
-
-#: includes/settings/class-listings-settings.php:638
-msgid "If enabled, users will be allowed to search Ads in multiple regions."
-msgstr "Benutzer dürfen Anzeigen in verschiedenen Regionen durchsuchen."
 
 #: includes/settings/class-pages-settings.php:19
 #: includes/settings/class-pages-settings.php:27
@@ -9260,6 +9124,10 @@ msgstr "Kategorie der Anzeige"
 msgid "All Categories"
 msgstr "Alle Kategorien"
 
+#: includes/ui/class-category-selector.php:170
+msgid "Select a Sub-category"
+msgstr "Wählen Sie eine Unterkategorie"
+
 #: includes/ui/class-payment-terms-list.php:91
 msgid ""
 "{payment-term-name} &ndash; {payment-term-duration} ({payment-term-price})"
@@ -9287,55 +9155,45 @@ msgid_plural "<number-of-images> images allowed."
 msgstr[0] "<number-of-images> Bild erlaubt."
 msgstr[1] "<number-of-images> Bilder erlaubt."
 
-#: includes/ui/class-payment-terms-list.php:177
-msgid "No regions allowed."
-msgstr "Keine Regionen erlaubt."
-
-#: includes/ui/class-payment-terms-list.php:180
-msgid "<number-of-regions> region allowed."
-msgid_plural "<number-of-regions> regions allowed."
-msgstr[0] "<number-of-regions> Region erlaubt."
-msgstr[1] "<number-of-regions> Regionen erlaubt."
-
-#: includes/ui/class-payment-terms-list.php:187
+#: includes/ui/class-payment-terms-list.php:175
 msgid "Unlimited characters in listing's title."
 msgstr "Unbegrenzte Zeichenanzahl in Anzeigen-Überschrift. "
 
-#: includes/ui/class-payment-terms-list.php:190
+#: includes/ui/class-payment-terms-list.php:178
 msgid "Up to <characters-count> characters in listing's title."
 msgstr "Bis zu <characters-count> Zeichen in Anzeigen-Überschrift."
 
-#: includes/ui/class-payment-terms-list.php:197
+#: includes/ui/class-payment-terms-list.php:185
 msgid "Up to <categories-count> categories allowed."
 msgstr "Bis zu <categories-count> Kategorien erlaubt."
 
-#: includes/ui/class-payment-terms-list.php:204
+#: includes/ui/class-payment-terms-list.php:192
 msgid "Unlimited characters in listing's content."
 msgstr "Unbegrenzte Zeichenanzahl im Anzeigen-Inhalt"
 
-#: includes/ui/class-payment-terms-list.php:207
+#: includes/ui/class-payment-terms-list.php:195
 msgid "Up to <characters-count> characters in listing's content."
 msgstr "Bis zu <characters-count> Zeichen im Anzeigen-Inhalt."
 
-#: includes/ui/class-payment-terms-list.php:213
+#: includes/ui/class-payment-terms-list.php:201
 msgid "Purchase this plan"
 msgstr "Diesen Plan kaufen"
 
-#: includes/ui/class-payment-terms-list.php:214
+#: includes/ui/class-payment-terms-list.php:202
 msgid "Pay for this plan with credits"
 msgstr "Zahle für diesen Plan mit Credits"
 
-#: includes/ui/class-payment-terms-list.php:217
-#: includes/ui/class-payment-terms-list.php:221
+#: includes/ui/class-payment-terms-list.php:205
+#: includes/ui/class-payment-terms-list.php:209
 msgid "Use this plan for free!"
 msgstr "Nutze diesen Plan kostenlos!"
 
-#: includes/ui/class-payment-terms-list.php:226
-#: includes/ui/class-payment-terms-list.php:231
+#: includes/ui/class-payment-terms-list.php:214
+#: includes/ui/class-payment-terms-list.php:219
 msgid "Select"
 msgstr "Bitte wählen"
 
-#: includes/ui/class-payment-terms-list.php:230
+#: includes/ui/class-payment-terms-list.php:218
 msgid "credits"
 msgstr "Credits"
 
@@ -9522,24 +9380,24 @@ msgstr "Mit den angegebenen IDs wurde keine Kategorie gefunden. Bitte gib mindes
 msgid "The instance of WP_Scripts is not ready!"
 msgstr "Die Instanz von WP_Scripts ist nicht bereit!"
 
-#: installer.php:192
+#: installer.php:191
 msgid "30 Day Listing"
 msgstr "30 Tage Anzeige"
 
-#: installer.php:856
+#: installer.php:858
 msgid "Response to your AWPCP Demo Ad"
 msgstr "Antworte auf Deine AWPCP Demo Anzeige."
 
-#: installer.php:857
+#: installer.php:859
 msgid "Someone has responded to your AWPCP Demo Ad"
 msgstr "Jemand hat auf Deine AWPCP Demo Anzeige geantwortet."
 
-#: installer.php:867
+#: installer.php:869
 msgctxt "reply to ad email"
 msgid "{__previous_subject__} regarding: {listing_title}"
 msgstr "{__previous_subject__} AW: {listing_title}"
 
-#: installer.php:868
+#: installer.php:870
 msgctxt "reply to ad email"
 msgid ""
 "{__previous_body__}\n"
@@ -9558,11 +9416,11 @@ msgid ""
 "{website_url}"
 msgstr "{__previous_body__}\n\nContact name: {sender_name}\nContact email: {sender_email}\n\nBetreff {listing_title}\n{listing_url}\n\nNachricht:\n\n{message}\n\n{website_title}\n{website_url}"
 
-#: installer.php:882
+#: installer.php:884
 msgid "Verify the email address used for Ad $title"
 msgstr "Bestätige Deine E-Mail-Adresse für die Anzeige $title"
 
-#: installer.php:883
+#: installer.php:885
 msgctxt "another-wordpress-classifieds-plugin"
 msgid ""
 "Hello $author_name \n"
@@ -10767,22 +10625,22 @@ msgctxt "order submit listing section"
 msgid "Your ad will be posted on the following categories: {categories}."
 msgstr "Deine Anzeige wird in den folgenden Kategorien gepostet: {categories}."
 
-#: templates/frontend/order-submit-listing-section.tpl.php:94
+#: templates/frontend/order-submit-listing-section.tpl.php:96
 msgctxt "order submit listing section"
 msgid "Credit Plan:"
 msgstr "Zahlungsarten"
 
-#: templates/frontend/order-submit-listing-section.tpl.php:95
+#: templates/frontend/order-submit-listing-section.tpl.php:97
 msgctxt "order submit listing section"
 msgid "Owner:"
 msgstr "Besitzer"
 
-#: templates/frontend/order-submit-listing-section.tpl.php:98
+#: templates/frontend/order-submit-listing-section.tpl.php:100
 msgctxt "order submit listing section"
 msgid "Loading ad fields"
 msgstr "Lade Anzeigenfelder"
 
-#: templates/frontend/order-submit-listing-section.tpl.php:99
+#: templates/frontend/order-submit-listing-section.tpl.php:101
 msgctxt "order submit listing section"
 msgid "Change selection"
 msgstr "Auswahl ändern"
