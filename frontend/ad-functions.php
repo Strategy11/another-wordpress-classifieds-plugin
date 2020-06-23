@@ -352,9 +352,10 @@ function awpcp_ad_posted_user_email( $ad, $transaction = null, $message='' ) {
  *
  * @param Array $listings An array of AWPCP_Ad objects.
  * @param string $context The context where the listings will be shown: listings, ?.
+ * @param Array $options An array of parameters related with $context.
  * @return Array An array of rendered items.
  */
-function awpcp_render_listings_items( $listings, $context ) {
+function awpcp_render_listings_items( $listings, $context, $options = array() ) {
 	$parity = array( 'displayaditemseven', 'displayaditemsodd' );
 	$layout = get_awpcp_option('displayadlayoutcode');
 
@@ -362,14 +363,23 @@ function awpcp_render_listings_items( $listings, $context ) {
 		$layout = awpcp()->settings->get_option_default_value( 'displayadlayoutcode' );
 	}
 
-	$items = array();
+	$listing_renderer = awpcp_listing_renderer();
+
+	$items    = array();
+	$featured = array();
 	foreach ( $listings as $i => $listing ) {
 		$rendered_listing = awpcp_do_placeholders( $listing, $layout, $context );
 		$rendered_listing = str_replace( "\$awpcpdisplayaditems", $parity[$i % 2], $rendered_listing );
+		
+		if ( 'latest-listings-shortcode' === $context && ! empty( $options['featured_on_top'] ) && $listing_renderer->is_featured( $listing ) ) {
+			$featured[] = apply_filters( 'awpcp-render-listing-item', $rendered_listing, $listing, $i + 1 );
+			continue;
+		}
+
 		$items[] = apply_filters( 'awpcp-render-listing-item', $rendered_listing, $listing, $i + 1 );
 	}
 
-	return $items;
+	return array_merge( $featured, $items );
 }
 
 /**

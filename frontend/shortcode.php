@@ -208,15 +208,21 @@ class AWPCP_Pages {
         wp_enqueue_script( 'awpcp' );
 
         $default_attrs = array(
-            'menu'       => true,
-            'pagination' => false,
-            'limit'      => 10,
+            'menu'         => true,
+            'pagination'   => false,
+            'limit'        => 10,
+            'sortfeatured' => false,
         );
 
         $attrs           = shortcode_atts( $default_attrs, $attrs );
         $show_menu       = awpcp_parse_bool( $attrs['menu'] );
         $show_pagination = awpcp_parse_bool( $attrs['pagination'] );
         $limit           = absint( $attrs['limit'] );
+        $featured_on_top = awpcp_parse_bool( $attrs['sortfeatured'] );
+
+        if ( ! function_exists('awpcp_featured_ads') ) {
+            $featured_on_top = false;
+        }
 
         $query = array(
             'context' => 'public-listings',
@@ -226,6 +232,7 @@ class AWPCP_Pages {
         $options = array(
             'show_menu_items' => $show_menu,
             'show_pagination' => $show_pagination,
+            'featured_on_top' => $featured_on_top
         );
 
         return awpcp_display_listings( $query, 'latest-listings-shortcode', $options );

@@ -10,6 +10,7 @@ function awpcp_display_listings( $query_vars, $context, $options ) {
         'show_menu_items' => false,
         'show_category_selector' => false,
         'show_pagination' => false,
+        'featured' => false,
         'classifieds_bar_components' => array(),
         'before_content' => '',
         'before_pagination' => '',
@@ -75,7 +76,7 @@ function awpcp_display_listings( $query_vars, $context, $options ) {
             $bottom_pagination = awpcp_pagination( $bottom_pagination_options, awpcp_current_url() );
         }
 
-        $items = awpcp_render_listings_items( $listings, $context );
+        $items = awpcp_render_listings_items( $listings, $context, $options );
     } else {
         $top_pagination    = '';
         $bottom_pagination = '';
