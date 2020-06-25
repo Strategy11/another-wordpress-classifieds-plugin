@@ -13,6 +13,10 @@ class AWPCP_Classifieds_Search_Bar_Component {
             'action_url' => url_searchads(),
         );
 
+        if ( ! get_option('permalink_structure') ) {
+            $params['page_id'] = awpcp_get_page_id_by_ref( 'search-ads-page-name' );
+        }
+
         return awpcp_render_template( $template, $params );
     }
 }
