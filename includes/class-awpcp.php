@@ -131,7 +131,7 @@ class AWPCP {
          * Make sure to update setup_component() on premium-modules/awpcp-buddypress-listings/includes/class-buddypress-listings-loader.php
          * if you ever change the priority for this action.
          */
-        add_action( 'init', [ $this->settings_manager, 'register_settings' ], 9999 );
+        add_action( 'init', [ $this->settings_manager, 'register_settings' ], 5 );
 
         // TODO: Make sure to update permastruct for custom post types before generating rewrite rules.
         //
@@ -143,10 +143,10 @@ class AWPCP {
         //       Perhaps delaying rewrite rules generation until next request makes
         //       makes more sense.
         $custom_post_types = awpcp_custom_post_types();
-        add_action( 'init', array( $custom_post_types, 'register_custom_post_status' ), 0 );
-        add_action( 'init', array( $custom_post_types, 'register_custom_post_types' ), 0 );
-        add_action( 'init', array( $custom_post_types, 'register_custom_taxonomies' ), 0 );
-        add_action( 'init', array( $custom_post_types, 'register_custom_image_sizes' ), 0 );
+        add_action( 'init', array( $custom_post_types, 'register_custom_post_status' ), 5 );
+        add_action( 'init', array( $custom_post_types, 'register_custom_post_types' ), 5 );
+        add_action( 'init', array( $custom_post_types, 'register_custom_taxonomies' ), 5 );
+        add_action( 'init', array( $custom_post_types, 'register_custom_image_sizes' ), 5 );
         add_action( 'awpcp-installed', array( $custom_post_types, 'create_default_category' ) );
 
         $listing_permalinks = $this->container['ListingsPermalinks'];
@@ -159,16 +159,16 @@ class AWPCP {
 
         add_filter( 'term_link', [ $listings_categories_permalinks, 'filter_term_link' ], 10, 3 );
 
-        add_action( 'init', array( $this, 'register_plugin_integrations' ) );
-        add_action( 'init', array( $this->compatibility, 'load_plugin_integrations_on_init' ) );
+        add_action( 'init', array( $this, 'register_plugin_integrations' ), 4 );
+        add_action( 'init', array( $this->compatibility, 'load_plugin_integrations_on_init' ), 4 );
         add_action( 'init', array( $this->plugin_integrations, 'load_plugin_integrations' ), AWPCP_LOWEST_FILTER_PRIORITY );
-		add_action( 'init', array($this, 'init' ));
+		add_action( 'init', array($this, 'init' ), 4 );
         add_action( 'init', [ $this, 'register_scripts' ], AWPCP_LOWEST_FILTER_PRIORITY );
 		add_action( 'init', array($this, 'register_custom_style'), AWPCP_LOWEST_FILTER_PRIORITY );
 
         // XXX: This is really a hack. We should get the priorities on order or
         //      come up with a better name for this method.
-        add_action( 'init', array( $this, 'first_time_verifications' ), 9999 );
+        add_action( 'init', array( $this, 'first_time_verifications' ), 5 );
 
 		add_action('admin_notices', array($this, 'admin_notices'));
 		add_action( 'admin_notices', array( $this->modules_manager, 'show_admin_notices' ) );
