@@ -69,7 +69,7 @@ class AWPCP_ModulesManager {
             add_action( 'awpcp-configure-routes', array( $module, 'configure_routes' ) );
 
             // run after load_dependencies() in new modules and init() in old modules
-            add_action( 'init', array( $module, 'setup_module' ), 11 );
+            add_action( 'init', array( $module, 'setup_module' ), 4 );
         } else {
             $this->notices['module-requires-manual-upgrade'][] = $module;
         }
