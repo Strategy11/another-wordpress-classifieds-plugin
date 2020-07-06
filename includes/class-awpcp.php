@@ -583,6 +583,7 @@ class AWPCP {
     private function ajax_setup() {
         add_action( 'admin_init', [ $this, 'register_ajax_handlers' ] );
         add_action( 'admin_init', [ $this, 'register_listing_actions_handlers' ] );
+        add_action( 'admin_init', [ $this, 'register_categories_actions_handlers' ] );
     }
 
     /**
@@ -706,6 +707,13 @@ class AWPCP {
      */
     public function register_listing_actions_handlers() {
         add_filter( 'awpcp-custom-listing-action-delete-ad', array( $this->container['DeleteListingActionHandler'], 'do_action' ), 10, 2 );
+    }
+
+    /**
+     * @since 4.0.16
+     */
+    public function register_categories_actions_handlers() {
+        add_action( 'created_' . AWPCP_CATEGORY_TAXONOMY, array( awpcp_categories_logic(), 'update_category_order' ), 10, 1 );
     }
 
     /**

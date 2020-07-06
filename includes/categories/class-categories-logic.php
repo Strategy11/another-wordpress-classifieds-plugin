@@ -211,4 +211,21 @@ class AWPCP_Categories_Logic {
 
         return $category_deleted;
     }
+
+    /**
+     * @since 4.0.16
+     */
+    public function update_category_order( $category_id ) {
+        if ( ! $category_id ) {
+            return;
+        }
+
+        $category = get_term( $category_id, AWPCP_CATEGORY_TAXONOMY );
+
+        if ( ! $category ) {
+            return;
+        }
+
+        $this->update_category( $category );
+    }
 }
