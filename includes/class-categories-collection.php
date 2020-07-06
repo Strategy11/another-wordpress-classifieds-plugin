@@ -211,4 +211,44 @@ class AWPCP_Categories_Collection {
 
         return $categories;
     }
+
+    /**
+     * @since 4.0.16
+     */
+    public function maybe_update_categories_order() {
+        $total_count = $this->count_categories();
+        $ordered_count = intval( $this->wordpress->get_terms(
+            array_merge(
+                $this->prepare_categories_args(),
+                array( 'fields' => 'count' ) 
+            )
+        ) );
+
+        if ( $ordered_count < $total_count ) {
+            $args = $this->prepare_categories_args();
+
+            if ( 'meta_value_num' === $args['orderby'] && '_awpcp_order' === $args['meta_key'] ) {
+                unset( $args['meta_key'] );
+            }
+    
+            unset( $args['orderby'], $args['order'] );
+
+            $categories = $this->wordpress->get_terms( $args );
+
+            if ( ! $categories ) {
+                return;
+            }
+
+            foreach ( $categories as $term ) {
+                $cat_order = get_term_meta( $term->term_id, '_awpcp_order', true );
+
+                if ( $cat_order || 0 === $cat_order ) {
+                    continue;
+                }
+
+                $this->wordpress->update_term_meta( $term->term_id, '_awpcp_order', 0 );
+                
+            }
+        }
+    }
 }

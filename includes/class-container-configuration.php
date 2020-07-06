@@ -197,7 +197,8 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
         $container['CategoriesListCache'] = $container->service(
             function( $container ) {
                 return new AWPCP_CategoriesListCache(
-                    $container['listing_category_taxonomy']
+                    $container['listing_category_taxonomy'],
+                    awpcp_categories_collection()
                 );
             }
         );

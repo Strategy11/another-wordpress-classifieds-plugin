@@ -13,11 +13,14 @@ class AWPCP_CategoriesListCache {
      */
     private $listing_category_taxonomy;
 
+    private $categories;
+
     /**
      * @since 4.0.0
      */
-    public function __construct( $listing_category_taxonomy ) {
+    public function __construct( $listing_category_taxonomy, $categories ) {
         $this->listing_category_taxonomy = $listing_category_taxonomy;
+        $this->categories = $categories;
     }
 
     /**
@@ -31,6 +34,8 @@ class AWPCP_CategoriesListCache {
         }
 
         delete_option( 'awpcp-categories-list-cache-keys' );
+
+        $this->categories->maybe_update_categories_order();
     }
 
     /**
