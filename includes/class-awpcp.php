@@ -89,8 +89,6 @@ class AWPCP {
         $this->payments = awpcp_payments_api();
         $this->listings = awpcp_listings_api();
 
-        $this->manual_upgrades->register_upgrade_tasks();
-
         $this->admin = awpcp_admin_panel();
         $this->panel = awpcp_user_panel();
 
@@ -100,6 +98,7 @@ class AWPCP {
         $this->plugin_integrations = new AWPCP_Plugin_Integrations();
 
         if (!$this->is_up_to_date()) {
+            $this->manual_upgrades->register_upgrade_tasks();
             update_option( 'awpcp-flush-rewrite-rules', true );
             $this->installer->install_or_upgrade();
         }
