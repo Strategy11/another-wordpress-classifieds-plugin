@@ -50,9 +50,14 @@ class AWPCP_Category_Selector {
      * @param array $params     An array of parameters for the Category Selector component.
      */
     public function render( $params ) {
-        $categories = $this->categories->get_all();
+        $params            = $this->helper->get_params( $params );
+        $categories_params = array();
 
-        $params               = $this->helper->get_params( $params );
+        if ( $params['hide_empty'] ) {
+            $categories_params['hide_empty'] = true;
+        }
+
+        $categories           = $this->categories->find_categories( $categories_params );
         $categories_hierarchy = $this->get_categories_hierarchy( $categories, $params );
 
         $placeholder = $this->get_placeholder( $params );
@@ -100,10 +105,6 @@ class AWPCP_Category_Selector {
 
                 return $category;
             };
-        }
-
-        if ( $params['hide_empty'] ) {
-            return $this->helper->build_non_empty_categories_hierarchy( $categories, $categories_callback );
         }
 
         return $this->helper->build_categories_hierarchy( $categories, null, $categories_callback );
