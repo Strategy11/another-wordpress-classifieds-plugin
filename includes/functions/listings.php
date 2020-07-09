@@ -190,7 +190,7 @@ function awpcp_display_listings_in_page( $query, $context, $options = array() ) 
     $options = wp_parse_args( $options, array(
         'show_intro_message' => true,
         'show_menu_items' => true,
-        'show_category_selector' => true,
+        'show_category_selector' => ! awpcp_get_option( 'hide-categories-selector', false ),
         'show_pagination' => true,
     ) );
 

@@ -164,6 +164,17 @@ class AWPCP_GeneralSettings {
 
         $settings_manager->add_setting(
             [
+                'id'      => 'hide-categories-selector',
+                'name'    => __( 'Hide categories selector dropdown', 'another-wordpress-classifieds-plugin' ),
+                'type'    => 'checkbox',
+                'default' => 0,
+                'description' => __( 'If checked, category filtering dropdown won\'t be displayed in "Browse Ads" page.', 'another-wordpress-classifieds-plugin' ),
+                'section' => 'general-settings',
+            ]
+        );
+
+        $settings_manager->add_setting(
+            [
                 'id'          => 'uiwelcome',
                 'name'        => __( 'Welcome message in Classifieds page', 'another-wordpress-classifieds-plugin' ),
                 'type'        => 'textarea',
