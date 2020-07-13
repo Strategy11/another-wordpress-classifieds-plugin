@@ -63,7 +63,7 @@
     $options = array(
         'showTextField' => false,
         'showExistingRegionsOnly' => true,
-        'maxRegions' => 1,
+        'maxRegions' => ($ui['allow-user-to-search-in-multiple-regions'] ? 10 : 1),
         'enabled_fields' => array(
             'country' => get_awpcp_option('display_country_field_on_search_form'),
             'state' => get_awpcp_option('display_state_field_on_search_form'),
