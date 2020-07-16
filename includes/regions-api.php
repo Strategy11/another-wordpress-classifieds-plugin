@@ -115,6 +115,9 @@ class AWPCP_BasicRegionsAPI {
 
         $count = 0;
         foreach ($regions as $region) {
+            if ( empty( implode( $region ) ) ) {
+                continue;
+            }
             if ($count < $max_regions) {
                 $data = array_map( 'trim', $region );
                 $this->save( array_merge( array( 'ad_id' => $ad->ID ), $data ) );
