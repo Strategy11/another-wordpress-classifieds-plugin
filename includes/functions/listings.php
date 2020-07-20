@@ -58,6 +58,10 @@ function awpcp_display_listings( $query_vars, $context, $options ) {
     $before_pagination = awpcp_flatten_array( $before_pagination );
 
     $before_list = apply_filters( 'awpcp-content-before-listings-list', $options['before_list'], $context );
+    
+    $top_pagination    = '';
+    $bottom_pagination = '';
+    $items = array();
 
     if ( $query->found_posts > 0 ) {
         if ( $options['show_pagination'] ) {
@@ -77,10 +81,6 @@ function awpcp_display_listings( $query_vars, $context, $options ) {
         }
 
         $items = awpcp_render_listings_items( $listings, $context, $options );
-    } else {
-        $top_pagination    = '';
-        $bottom_pagination = '';
-        $items = array();
     }
 
     $after_pagination = array( 'user-content' => $options['after_pagination'] );
