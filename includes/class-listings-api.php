@@ -320,11 +320,13 @@ class AWPCP_ListingsAPI {
 
         $this->update_listing_terms( $listing, $listing_data['terms'] );
         $this->update_listing_metadata( $listing, $listing_data['metadata'] );
-
-        foreach( (array)$listing_data['regions'] as $region ) {
-            if( ! empty( implode( $region ) ) ) {
-                $this->update_listing_regions( $listing, $listing_data['regions'] );
-                break;
+        
+        if ( ! empty( $listing_data['regions'] ) ) {
+            foreach( (array)$listing_data['regions'] as $region ) {
+                if( ! empty( implode( $region ) ) ) {
+                    $this->update_listing_regions( $listing, $listing_data['regions'] );
+                    break;
+                }
             }
         }
 
