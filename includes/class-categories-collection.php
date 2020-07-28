@@ -217,20 +217,20 @@ class AWPCP_Categories_Collection {
      */
     public function maybe_update_categories_order() {
         $total_count = $this->count_categories();
+        $args = $this->prepare_categories_args();
+
+        if ( 'meta_value_num' === $args['orderby'] && '_awpcp_order' === $args['meta_key'] ) {
+            unset( $args['meta_key'] );
+        }
+        
         $ordered_count = intval( $this->wordpress->get_terms(
             array_merge(
-                $this->prepare_categories_args(),
+                $args,
                 array( 'fields' => 'count' ) 
             )
         ) );
 
         if ( $ordered_count < $total_count ) {
-            $args = $this->prepare_categories_args();
-
-            if ( 'meta_value_num' === $args['orderby'] && '_awpcp_order' === $args['meta_key'] ) {
-                unset( $args['meta_key'] );
-            }
-    
             unset( $args['orderby'], $args['order'] );
 
             $categories = $this->wordpress->get_terms( $args );
