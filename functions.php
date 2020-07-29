@@ -2307,8 +2307,16 @@ function awpcp_encode_address_name($str) {
 function awpcp_phpmailer() {
     global $phpmailer;
 
-    // (Re)create it, if it's gone missing
-    if ( !is_object( $phpmailer ) || !is_a( $phpmailer, 'PHPMailer' ) ) {
+    // (Re)create it, if it's gone missin.
+    // Add support for WP5.5 PHPMailer changes. 
+    if (  version_compare( get_bloginfo('version'), '5.5', '>=' ) ) {
+        if ( ! ( $phpmailer instanceof PHPMailer\PHPMailer\PHPMailer ) ) {
+            require_once ABSPATH . WPINC . '/PHPMailer/PHPMailer.php';
+            require_once ABSPATH . WPINC . '/PHPMailer/SMTP.php';
+            require_once ABSPATH . WPINC . '/PHPMailer/Exception.php';
+            $phpmailer = new PHPMailer\PHPMailer\PHPMailer( true );
+        }
+    } elseif ( !is_object( $phpmailer ) || !is_a( $phpmailer, 'PHPMailer' ) ) {
         require_once ABSPATH . WPINC . '/class-phpmailer.php';
         require_once ABSPATH . WPINC . '/class-smtp.php';
         $phpmailer = new PHPMailer( true );
