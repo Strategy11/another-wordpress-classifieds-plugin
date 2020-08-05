@@ -30,7 +30,7 @@ class AWPCP_HTML_Admin_Form_Radio_Buttons_Renderer implements AWPCP_HTML_Element
         foreach ( $element_definition['#options'] as $option_value => $option_label ) {
             $attributes = array(
                 'type' => 'radio',
-                'name' => 'price_model',
+                'name' => empty( $element_definition['#name'] ) ? 'price_model' : $element_definition['#name'],
                 'value' => $option_value,
             );
 
