@@ -93,6 +93,7 @@ function doadexpirations() {
     $bodybase = get_awpcp_option('adexpiredbodymessage');
 
     $ads = awpcp_listings_collection()->find_valid_listings(array(
+        'post_type' => AWPCP_LISTING_POST_TYPE,
         'meta_query' => array(
             'relation' => 'AND',
             array(
