@@ -1063,7 +1063,7 @@ function awpcp_country_list_options($value=false, $use_names=true) {
 
 	$options[] ='<option value="">' . __('-- Choose a Country --', 'another-wordpress-classifieds-plugin') . '</option>';
 
-	foreach ($countries as $code => $name) {
+	foreach ( apply_filters( 'awpcp_country_list_options_countries', $countries ) as $code => $name) {
 		if ($use_names) {
 			$selected = $value == $name ? ' selected="selected"' : '';
 			$options[] = sprintf('<option value="%s"%s>%s</option>', $name, $selected, $name);
